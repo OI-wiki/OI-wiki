@@ -2,7 +2,7 @@
 site_name: OI Wiki
 site_description: OI Wiki
 site_author: OI Wiki Team
-site_url: https://oi-wiki.cfs
+site_url: https://oi-wiki.cf
 
 # Repository
 repo_name: 'Ir1d/OI-wiki'
@@ -15,7 +15,26 @@ copyright: 'Copyright &copy; 2016 - 2018 OI Wiki Team'
 # Contents
 pages:
   - Introduction:
-      - 简介: index.md
+    - Getting Started: index.md
+    - OI 历史: introduction/history.md
+    - OI 竞赛赛制简介: introduction/mode.md
+    - 学习资源: introduction/resources.md
+  - Basic:
+    - Getting Started: basic/index.md
+  - Dynamic Programming:
+    - Getting Started: dp/index.md
+  - String:
+    - Getting Started: string/index.md
+  - Math:
+    - Getting Started: math/index.md
+  - Data Structure:
+    - Getting Started: data-structure/index.md
+  - Graph:
+    - Getting Started: graph/index.md
+  - Geometry:
+    - Getting Started: geometry/index.md
+  - Misc:
+    - Getting Started: misc/index.md
 
 # Theme
 theme:
