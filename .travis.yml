@@ -1,0 +1,6 @@
+language: python
+python:
+  - 3.6
+install:
+  - pip install -r requirements.txt
+script: chmod +x deploy.sh && ./deploy.sh
