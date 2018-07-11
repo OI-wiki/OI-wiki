@@ -55,6 +55,7 @@ theme:
 extra:
   search:
     language: 'cn'
+  disqus: 'OI-Wiki'
 
 extra_javascript:
   - '_static/js/extra.js'
