@@ -9,7 +9,7 @@
 - [Vijos](https://vijos.org/)
 - [UOJ](http://uoj.ac)
 - [LibreOJ](https://loj.ac/)
-- 
+- [51nod](http://51nod.com)
 
 ## 在线教程
 
