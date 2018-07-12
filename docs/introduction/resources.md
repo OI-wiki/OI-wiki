@@ -5,11 +5,11 @@
 - [Codeforces](http://codeforces.com)
 - [POJ](http://poj.org)
 - [HDU OJ](http://acm.hdu.edu.cn)
-- [LuoGu](http://luogu.org)
-- [Vijos](https://vijos.org/)
+- [Luogu](http://luogu.org)
+- [Vijos](https://vijos.org)
 - [UOJ](http://uoj.ac)
-- [LibreOJ](https://loj.ac/)
-- [51nod](http://51nod.com)
+- [LibreOJ](https://loj.ac)
+- [51Nod](http://www.51nod.com)
 
 ## 在线教程
 
@@ -27,6 +27,6 @@
 ## 工具
 
 - [经典算法的可视化结果 - VisuAlgo](https://visualgo.net/en)
-- [OEIS 整数数列搜索引擎](https://oeis.org/)
-- [Ubuntu pastebin，可以用来分享代码](https://paste.ubuntu.com/)
-- [uDebug 提供一些 OJ 题目的调试辅助](https://www.udebug.com/)
+- [OEIS 整数数列搜索引擎](https://oeis.org)
+- [Ubuntu Pastebin，可以用来分享代码](https://paste.ubuntu.com)
+- [uDebug 提供一些 OJ 题目的调试辅助](https://www.udebug.com)
