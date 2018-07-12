@@ -19,6 +19,7 @@ pages:
     - OI 赛制简介: introduction/mode.md
     - 学习资源: introduction/resources.md
   - Basic:
+    - 基础部分简介: basic/index.md
     - 枚举: basic/enumerate.md
     - 模拟: basic/simulate.md
     - 分治: basic/divide-and-conquer.md
