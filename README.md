@@ -1,4 +1,4 @@
-# OI-wiki
+# OI-Wiki
 
 
 [![Travis](https://img.shields.io/travis/Ir1d/OI-wiki.svg?style=flat-square)](https://travis-ci.org/Ir1d/OI-wiki)
@@ -51,7 +51,7 @@ mkdocs serve
 
 ----
 
-## 如何参与完善 OI wiki
+## 如何参与完善 OI Wiki
 
 我们非常欢迎你为 **OI Wiki** 编写内容，将自己的所学所得与大家分享。
 具体的贡献方式在 [CONTRIBUTING](.github/CONTRIBUTING.md)。
@@ -60,4 +60,4 @@ mkdocs serve
 
 项目采用 [The Star And Thank Author License](https://github.com/zTrix/sata-license)， 欢迎大家 star 本项目。
 
-非常感谢一起完善 OI wiki 的小伙伴们！
+非常感谢一起完善 OI Wiki 的 [小伙伴们](https://github.com/Ir1d/OI-wiki/graphs/contributors)！
