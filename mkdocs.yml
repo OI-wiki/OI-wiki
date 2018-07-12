@@ -19,7 +19,13 @@ pages:
     - OI 赛制简介: introduction/mode.md
     - 学习资源: introduction/resources.md
   - Basic:
-    - Getting Started: basic/index.md
+    - 枚举: basic/enumerate.md
+    - 模拟: basic/simulate.md
+    - 分治: basic/divide-and-conquer.md
+    - 搜索: basic/search.md
+    - 贪心: basic/greedy.md
+    - 排序: basic/sort.md
+    - 表达式求值: basic/expression.md
   - Dynamic Programming:
     - Getting Started: dp/index.md
   - String:
