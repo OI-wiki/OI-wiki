@@ -1,22 +1,26 @@
 window.MathJax = {
-    tex2jax: {
-      inlineMath: [ ["\\(","\\)"] ],
-      displayMath: [ ["\\[","\\]"] ]
+  tex2jax: {
+    inlineMath: [['$', '$'], ["\\(", "\\)"]],
+    displayMath: [['$$', '$$'], ["\\[", "\\]"]],
+    processEscapes: true,
+    processEnvironments: true,
+    ignoreClass: ".*|",
+    processClass: "arithmatex"
+  },
+  TeX: {
+    TagSide: "right",
+    TagIndent: ".8em",
+    MultLineWidth: "85%",
+    equationNumbers: {
+      autoNumber: "AMS",
     },
-    TeX: {
-      TagSide: "right",
-      TagIndent: ".8em",
-      MultLineWidth: "85%",
-      equationNumbers: {
-        autoNumber: "AMS",
-      },
-      unicode: {
-        fonts: "STIXGeneral,'Arial Unicode MS'"
-      }
-    },
-    showProcessingMessages: false,
-    messageStyle: "none"
-  };
+    unicode: {
+      fonts: "STIXGeneral,'Arial Unicode MS'"
+    }
+  },
+  showProcessingMessages: false,
+  messageStyle: "none"
+};
 window.addEventListener('load', function() { 
     var p=localStorage.getItem("data-md-color-primary");
     if (p){
