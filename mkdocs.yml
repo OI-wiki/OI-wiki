@@ -14,11 +14,11 @@ copyright: 'Copyright &copy; 2016 - 2018 OI Wiki Team'
 
 # Contents
 pages:
-  - Introduction:
+  - 简介:
     - Getting Started: index.md
     - OI 赛制简介: introduction/mode.md
     - 学习资源: introduction/resources.md
-  - Basic:
+  - 基础部分:
     - 基础部分简介: basic/index.md
     - 枚举: basic/enumerate.md
     - 模拟: basic/simulate.md
@@ -39,8 +39,8 @@ pages:
     - 迭代深搜: search/iterative.md
     - 回溯法: search/backtracking.md
     - Dancing Links: search/dlx.md
-  - Dynamic Programming:
-    - 动态规划简介: dp/index.md
+  - 动态规划:
+    - 动态规划部分简介: dp/index.md
     - 记忆化搜索: dp/记忆化搜索.md
     - 背包DP: dp/backpack.md
     - 区间DP: dp/interval.md
@@ -51,7 +51,7 @@ pages:
     - 插头DP: dp/plug.md
     - 优化及其它: dp/optimization.md
     - 其它动规方法: dp/misc.md
-  - String:
+  - 字符串:
     - 字符串部分简介: string/index.md
     - 一堆字符串函数: string/stl.md
     - 哈希大法: string/hash.md
@@ -64,7 +64,7 @@ pages:
     - 后缀树: string/suffix-tree.md
     - Manacher: string/manacher.md
     - 最小表示法: string/minimal-string.md
-  - Math:
+  - 数学:
     - 数学部分简介: math/index.md
     - 进制相关: math/base.md
     - 最大公约数: math/gcd.md
@@ -99,7 +99,7 @@ pages:
     - 快速数论变换: math/fnt.md
     - 线性规划: math/linear-programming.md
     - 杂项: math/misc.md
-  - Data Structure:
+  - 数据结构:
     - 数据结构部分简介: data-structure/index.md
     - STL: data-structure/stl.md
     - pb_ds: data-structure/pb_ds.md
@@ -137,7 +137,7 @@ pages:
       - 动态树:
         - Link Cut Tree: data-structure/advanced/lct.md
         - 树分块: data-structure/advanced/tree-decompose.md
-  - Graph:
+  - 图论:
     - 图论部分简介: graph/index.md
     - 存储方式：邻接矩阵、前向星、链式前向星: graph/save.md
     - 遍历：BFS和DFS: graph/traverse.md
