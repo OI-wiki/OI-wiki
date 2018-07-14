@@ -5,7 +5,6 @@
 大步小步算法英文名：**baby-step gaint-step (BSGS)**.
 
 该算法可以在 $O(\sqrt{q})$ 用于求解
-
 $$
 a^x \equiv b \bmod p
 $$
@@ -22,8 +21,6 @@ $$
 
 我们已知的是 $a,b$，所以我们可以先算出等式右边的 $ba^B$ 的所有取值，枚举 $B$，用 hash/map 存下来，然后逐一计算 $a^{A\lceil \sqrt p \rceil}$，枚举 $A$，寻找是否有与之相等的 $ba^B$，从而我们可以得到所有的 $x$，$x=A \lceil \sqrt p \rceil - B$.
 
-
-
 注意到 $A,B$ 均小于 $\lceil \sqrt p \rceil$，所以时间复杂度为 $O(\sqrt q)$，用 map 的话会多一个 $\log$.
 
 
@@ -36,11 +33,9 @@ $$
 
 求解
 
-$$ x^a \equiv b \bmod p $$
+$$ x^a \equiv b \bmod p $$其中 $p$ 是个质数.
 
-其中 $p$ 是个质数.
-
-该模型可以通过一系列的转化为成**基础篇**中的模型，你可能需要一些关于[原根](/primitive-root/)的概念.
+该模型可以通过一系列的转化为成**基础篇**中的模型，你可能需要一些关于[原根](math/primitive-root/)的概念.
 
 **原根的定义**为：对于任意数 $a$，满足 $(a,p)=1$，且 $t$ 为最小的**正整数**满足 $a^t \equiv 1 \bmod p$，则称 $t$ 是 $a$ 模 $p$ 意义下的次数，若 $t=p-1$，则称 $a$ 是 $p$ 的原根.
 
@@ -62,9 +57,9 @@ $\because a^d \equiv a^{xq+r} \equiv (a^t)^qa^r \equiv a^r \equiv 1$.
 
 $\because 0 \le r < t$，$t$ 是 $a$ 模 $p$ 的次数，即 $t$ 是最小的**正整数**满足 $a^t \equiv 1$.
 
-$\therefore r = 0$.
+$\therefore  r = 0$.
 
-即 $d = tq$，$t \mid d$
+即 $d = tq​$，$t \mid d​$.
 
 **Q.E.D.**
 
@@ -80,10 +75,12 @@ $\therefore r = 0$.
 
 看上去复杂度好像很爆炸（可能确实是爆炸的，但一般情况下，最小的原根不会很大）.
 
-~~基于一个**假设**，原联系根是**均匀分布**的，我们**伪证明**一下总复杂度~~：原根数量定理：数 $p$ 要么没有原根，要么有 $\varphi(\varphi(p))$ 个原根.
+~~基于一个**假设**，原联系根是**均匀分布**的，我们**伪证明**一下总复杂度：原根数量定理：数 $p$ 要么没有原根，要么有 $\varphi(\varphi(p))$ 个原根由于 $p$ 是质数，所以 $p$ 有 $\varphi(p-1)$ 个原根，所以大概最小的原根为 $\frac{p}{\varphi(p-1)}=O(\log\log p)$，由于求每一个数时要枚举一遍 $p-1$ 所有的因数 $O(\sqrt p)$ 来判断其是否为原根，最后再算上 **BSGS** 的复杂度 $O(\sqrt{p})$，则复杂度约为 $O(\sqrt{p}\log \log p)$.~~
 
-由于 $p$ 是质数，所以 $p$ 有 $\varphi(p-1)$ 个原根，所以大概最小的原根为 $\frac{p}{\varphi(p-1)}=O(\log\log n)$，由于求每一个数时要枚举一遍 $p-1$ 所有的因数 $O(\sqrt p)$ 来判断其是否为原根，最后再算上 **BSGS** 的复杂度 $O(\sqrt{p})$，则复杂度约为 $O(\sqrt{p}\log \log n)$.
+基于广义黎曼猜想，我们可以得出数 $p$ 的最小原根是在 $O(\log^6 p)$[^1] 的级别，由于求每一个数时要枚举一遍 $p-1$ 所有的因数 $O(\sqrt p)$ 来判断其是否为原根，最后再算上 **BSGS** 的复杂度 $O(\sqrt{p})$，则复杂度约为 $O(\sqrt{p}\log^6 p)$（实际上有更优的找原根算法，由于过于复杂，不在此讨论）.
 
 
 
 [BZOJ-1319](http://www.lydsy.com/JudgeOnline/problem.php?id=1319) 是一道模板题，代码可以在 [Steaunk的博客](https://blog.csdn.net/Steaunk/article/details/78988376) 中看到.
+
+[^1]: Victor Shoup.Searching for primitive roots in finite fields\[J].Mathematics of Computation,1992;58:369~380
