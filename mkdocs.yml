@@ -165,7 +165,7 @@ pages:
     - 最小割: graph/flow/min-cut.md
     - 费用流: graph/flow/min-cost.md
     - 上下界网络流: graph/flow/bound.md
-  - Geometry:
+  - 计算几何:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
     - 三维计算几何基础: geometry/3d.md
@@ -176,7 +176,7 @@ pages:
     - 旋转卡壳: geometry/rotating-calipers.md
     - 半平面交: geometry/half-plane-intersection.md
     - 其他黑科技: geometry/magic.md
-  - Misc:
+  - 杂项:
     - 杂项简介: misc/index.md
     - 非传统题（提答大法）: misc/non-traditional.md
     - cdq分治: misc/cdq-divide.md
