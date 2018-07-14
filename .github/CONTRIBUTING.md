@@ -1,6 +1,8 @@
 # 交流方式
 
-本项目主要使用 Issue 与 Telegram 进行交流沟通。Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki)，欢迎加入
+本项目主要使用 Issue 与 Telegram 进行交流沟通。Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki)，欢迎加入。
+
+同时还有一个 [相关 QQ 群](https://jq.qq.com/?_wv=1027&k=5EfkM6K)，群聊号码：`588793226`。
 
 # 贡献方式
 

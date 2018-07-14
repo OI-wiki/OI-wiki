@@ -2,7 +2,8 @@
 
 
 [![Travis](https://img.shields.io/travis/Ir1d/OI-wiki.svg?style=flat-square)](https://travis-ci.org/Ir1d/OI-wiki)
-[![Telegram](https://img.shields.io/badge/OI--wiki-join%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
+[![Telegram](https://img.shields.io/badge/OI--wiki-join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
+![[![QQ](https://img.shields.io/badge/OI--wiki-join%20QQ%20group-brightgreen.svg?style=flat-square)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)]
 
 ----
 
