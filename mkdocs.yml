@@ -34,8 +34,8 @@ pages:
     - BFS: search/bfs.md
     - 双向广搜: search/dbfs.md
     - 启发式搜索: search/heuristic.md
-    - A-: search/astar.md
-    - IDA-: search/idastar.md
+    - Astar: search/astar.md
+    - IDAstar: search/idastar.md
     - 迭代深搜: search/iterative.md
     - 回溯法: search/backtracking.md
     - Dancing Links: search/dlx.md
