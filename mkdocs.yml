@@ -102,7 +102,7 @@ pages:
   - 数据结构:
     - 数据结构部分简介: data-structure/index.md
     - STL: data-structure/stl.md
-    - pb_ds: data-structure/pb_ds.md
+    - pb_ds: data-structure/pb-ds.md
     - 基础数据结构:
       - 堆: data-structure/novice/heap.md
       - 链表: data-structure/novice/linked-list.md
@@ -128,15 +128,14 @@ pages:
         - 平衡树套线段树: data-structure/advanced/balanced-in-seg.md
       - AVL树: data-structure/advanced/avl.md
       - 划分树: data-structure/advanced/dividin.md
-      - Euler Tour Tree: data-structure/advanced/ett.md
       - K-Dtree: data-structure/advanced/k-dtree.md
       - 可持久化线段树: data-structure/advanced/persistent-seg.md
       - 可持久化块状数组: data-structure/advanced/persistent-block-array.md
       - 可持久化平衡树: data-structure/advanced/persistent-balanced.md
       - 可持久化字典树: data-structure/advanced/persistent-trie.md
-      - 动态树:
-        - Link Cut Tree: data-structure/advanced/lct.md
-        - 树分块: data-structure/advanced/tree-decompose.md
+      - Link Cut Tree: data-structure/advanced/lct.md
+      - Euler Tour Tree: data-structure/advanced/ett.md
+      - 树分块: data-structure/advanced/tree-decompose.md
   - 图论:
     - 图论部分简介: graph/index.md
     - 存储方式：邻接矩阵、前向星、链式前向星: graph/save.md
