@@ -1,7 +1,7 @@
 # OI-Wiki
 
 
-[![Travis](https://img.shields.io/travis/Ir1d/OI-wiki.svg?style=flat-square)](https://travis-ci.org/Ir1d/OI-wiki)
+[![Travis](https://img.shields.io/travis/24OI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/24OI/OI-wiki)
 [![Telegram](https://img.shields.io/badge/OI--wiki-join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
 [![QQ](https://img.shields.io/badge/OI--wiki-join%20QQ%20group-brightgreen.svg?style=flat-square)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
 
@@ -40,7 +40,7 @@
 当然也可以本地部署。
 
 ```bash
-git clone https://github.com/Ir1d/OI-wiki.git
+git clone https://github.com/24OI/OI-wiki.git
 cd OI-wiki
 pip install -r requirements.txt
 
@@ -61,4 +61,6 @@ mkdocs serve
 
 项目采用 [The Star And Thank Author License](https://github.com/zTrix/sata-license)， 欢迎大家 star 本项目。
 
-非常感谢一起完善 OI Wiki 的 [小伙伴们](https://github.com/Ir1d/OI-wiki/graphs/contributors)！
+非常感谢一起完善 OI Wiki 的 [小伙伴们](https://github.com/24OI/OI-wiki/graphs/contributors)！
+
+感谢 24OI 的朋友们的大力支持！

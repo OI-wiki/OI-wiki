@@ -6,7 +6,7 @@
 
 本项目受 [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
 
-文档内容托管在 [Github](https://github.com/Ir1d/OI-wiki)，期待你的加入。
+文档内容托管在 [Github](https://github.com/24OI/OI-wiki)，期待你的加入。
 
 ## Material color palette 颜色主题
 ### Primary colors 主色
