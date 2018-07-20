@@ -16,5 +16,6 @@ sed -i "s/name: 'material'/name : null\n  custom_dir: 'mkdocs-material\/material
 # Change Google CDN to loli.net
 sed -i 's/fonts.gstatic.com/gstatic.loli.net/g' mkdocs-material/material/base.html
 sed -i 's/fonts.googleapis.com/fonts.loli.net/g' mkdocs-material/material/base.html
+cp ./static/disqus.html mkdocs-material/material/partials/integrations/disqus.html
 
 mkdocs build
