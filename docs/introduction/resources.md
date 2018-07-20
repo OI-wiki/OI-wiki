@@ -6,6 +6,7 @@
 - [POJ](http://poj.org)
 - [HDU OJ](http://acm.hdu.edu.cn)
 - [Luogu](http://luogu.org)
+- [LibreOJ](https://loj.ac)
 - [Vijos](https://vijos.org)
 - [UOJ](http://uoj.ac)
 - [LibreOJ](https://loj.ac)
@@ -19,9 +20,11 @@
 
 ## 书籍
 
+- 信息学奥赛一本通（初学者向）
 - 算法竞赛入门经典 （人称紫书）
 - 算法竞赛入门经典——训练指南 （人称大白）
 - 算法艺术与信息学竞赛 （人称黑书）
+- 算法竞赛进阶指南
 - [Competitive Programmer's Handbook](https://cses.fi/book/index.html)
 
 ## 工具
