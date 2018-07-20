@@ -67,10 +67,10 @@ pages:
   - 数学:
     - 数学部分简介: math/index.md
     - 进制相关: math/base.md
-    - 最大公约数: math/gcd.md
-    - 找一个数的所有约数: math/divisor.md
-    - 费马小定理（欧拉定理）: math/fermat.md
     - 素数: math/prime.md
+    - 最大公约数: math/gcd.md
+    - 筛法: math/sieve.md
+    - 费马小定理（欧拉定理）: math/fermat.md
     - 快速幂: math/quick-pow.md
     - 中国剩余定理: math/crt.md
     - 分段打表: math/dictionary.md
@@ -80,7 +80,6 @@ pages:
     - 乘法逆元: math/inverse.md
     - 阶 原根: math/primitive-root.md
     - BSGS: math/bsgs.md
-    - 筛法: math/sieve.md
     - 博弈论: math/game.md
     - 欧拉函数: math/euler.md
     - 多项式黑科技: math/poly.md
