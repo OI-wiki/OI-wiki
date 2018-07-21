@@ -103,13 +103,13 @@ pages:
     - STL: data-structure/stl.md
     - pb_ds: data-structure/pb-ds.md
     - 基础数据结构:
-      - 堆: data-structure/novice/heap.md
       - 链表: data-structure/novice/linked-list.md
-      - 分块: data-structure/novice/square-root-decomposition.md
       - 哈希表: data-structure/novice/hash.md
+      - 并查集: data-structure/novice/dsu.md
+      - 堆: data-structure/novice/heap.md
+      - 分块: data-structure/novice/square-root-decomposition.md
       - 单调栈: data-structure/novice/monotonous-stack.md
       - 单调队列: data-structure/novice/monotonous-queue.md
-      - 并查集: data-structure/novice/dsu.md
     - 中级数据结构:
       - 倍增法: data-structure/intermediate/sparse-table.md
       - 块状链表: data-structure/intermediate/block-list.md
