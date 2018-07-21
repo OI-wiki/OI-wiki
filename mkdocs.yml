@@ -18,6 +18,7 @@ pages:
     - Getting Started: index.md
     - OI 赛制简介: introduction/mode.md
     - 学习资源: introduction/resources.md
+    - 工具软件: introduction/softwares.md
   - 基础部分:
     - 基础部分简介: basic/index.md
     - 枚举: basic/enumerate.md
