@@ -33,8 +33,8 @@
 
 设 $a = p_{a_1}^{k_{a_1}}p_{a_2}^{k_{a_2}} \cdots p_{a_s}^{k_{a_s}}$, $b = p_{b_1}^{k_{b_1}}p_{b_2}^{k_{b_2}} \cdots p_{b_s}^{k_{b_s}}$
 
-我们发现，对于 a 和 b 的情况，二者的最大公约数等于 $$p_{min\{a_1, b_1\}}^{k_{min\{a_1, b_1\}}}p_{min\{a_2, b_2\}}^{k_{min\{a_2, b_2\}}} \cdots p_{min\{a_s, b_s\}}^{k_{min\{a_s, b_s\}}}$$
-最小公倍数等于 $$p_{max\{a_1, b_1\}}^{k_{max\{a_1, b_1\}}}p_{max\{a_2, b_2\}}^{k_{max\{a_2, b_2\}}} \cdots p_{max\{a_s, b_s\}}^{k_{max\{a_s, b_s\}}}$$
+我们发现，对于 a 和 b 的情况，二者的最大公约数等于 $$p_1^{k_{min\{a_1, b_1\}}}p_2^{k_{min\{a_2, b_2\}}} \cdots p_s^{k_{min\{a_s, b_s\}}}$$
+最小公倍数等于 $$p_1^{k_{max\{a_1, b_1\}}}p_2^{k_{max\{a_2, b_2\}}} \cdots p_s^{k_{max\{a_s, b_s\}}}$$
 
 由于 $a + b == max\{a, b\} + min\{a, b\}$
 
