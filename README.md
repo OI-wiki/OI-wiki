@@ -44,7 +44,7 @@ git clone https://github.com/24OI/OI-wiki.git
 cd OI-wiki
 pip install -r requirements.txt
 
-# 最简单的构建方法
+# 最简单的构建方法，会在 site/ 文件夹下得到静态页面
 mkdocs build
 # 我们对主题进行了修改，如果想要和 https://oi-wiki.cf 得到相似的效果
 chmod +x ./build.sh && sed -i "s/mkdocs serve/mkdocs build/g" build.sh && build.sh
@@ -54,7 +54,7 @@ mkdocs serve
 # 如果想要使用修改后的主题来运行服务器
 chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && build.sh
 
-# 注：大部分时候不需要测试修改后的主题
+# 注：大部分时候不需要测试我们修改后的主题
 ```
 
 ----
