@@ -29,12 +29,12 @@
 
 >  每一个正整数都可以表示成若干整数的乘积，这种分解方式在忽略排列次序的条件下是唯一的。
 
-用数学公式来表示就是 $x = r_1^{p_1}r_2^{p_2} \cdots r_s^{p_s}$
+用数学公式来表示就是 $x = p_1^{k_1}p_2^{k_2} \cdots p_s^{k_s}$
 
-设 $a = r_{a_1}^{p_{a_1}}r_{a_2}^{p_{a_2}} \cdots r_{a_s}^{p_{a_s}}$, $b = r_{b_1}^{p_{b_1}}r_{b_2}^{p_{b_2}} \cdots r_{b_s}^{p_{b_s}}$
+设 $a = p_{a_1}^{k_{a_1}}p_{a_2}^{k_{a_2}} \cdots p_{a_s}^{k_{a_s}}$, $b = p_{b_1}^{k_{b_1}}p_{b_2}^{k_{b_2}} \cdots p_{b_s}^{k_{b_s}}$
 
-我们发现，对于 a 和 b 的情况，二者的最大公约数等于 $$r_{min\{a_1, b_1\}}^{p_{min\{a_1, b_1\}}}r_{min\{a_2, b_2\}}^{p_{min\{a_2, b_2\}}} \cdots r_{min\{a_s, b_s\}}^{p_{min\{a_s, b_s\}}}$$
-最小公倍数等于 $$r_{max\{a_1, b_1\}}^{p_{max\{a_1, b_1\}}}r_{max\{a_2, b_2\}}^{p_{max\{a_2, b_2\}}} \cdots r_{max\{a_s, b_s\}}^{p_{max\{a_s, b_s\}}}$$
+我们发现，对于 a 和 b 的情况，二者的最大公约数等于 $$p_{min\{a_1, b_1\}}^{k_{min\{a_1, b_1\}}}p_{min\{a_2, b_2\}}^{k_{min\{a_2, b_2\}}} \cdots p_{min\{a_s, b_s\}}^{k_{min\{a_s, b_s\}}}$$
+最小公倍数等于 $$p_{max\{a_1, b_1\}}^{k_{max\{a_1, b_1\}}}p_{max\{a_2, b_2\}}^{k_{max\{a_2, b_2\}}} \cdots p_{max\{a_s, b_s\}}^{k_{max\{a_s, b_s\}}}$$
 
 由于 $a + b == max\{a, b\} + min\{a, b\}$
 
