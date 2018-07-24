@@ -66,8 +66,13 @@ chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && ./buil
 
 本项目受 [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
 
-项目采用 [The Star And Thank Author License](https://github.com/zTrix/sata-license)， 欢迎大家 star 本项目。
-
 非常感谢一起完善 OI Wiki 的 [小伙伴们](https://github.com/24OI/OI-wiki/graphs/contributors)！
 
 感谢 24OI 的朋友们的大力支持！
+
+## 版权声明
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />
+除特别注明外，项目中除了代码部分均采用<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> (Creative Commons BY-SA 4.0) 知识共享署名-相同方式共享 4.0 国际许可协议</a> 及附加的 [The Star And Thank Author License](https://github.com/zTrix/sata-license) 进行许可。
+
+换言之，使用过程中您可以自由地共享、演绎，但是必须署名、以相同方式共享、分享时没有附加限制，而且需要在 Github 仓库点赞（star）。
