@@ -62,13 +62,15 @@ chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && ./buil
 ## 如何参与完善 OI Wiki
 
 我们非常欢迎你为 **OI Wiki** 编写内容，将自己的所学所得与大家分享。
-具体的贡献方式在 [CONTRIBUTING](.github/CONTRIBUTING.md)。
+具体的贡献方式在 [CONTRIBUTING.md](.github/CONTRIBUTING.md)。
 
 本项目受 [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
 
 非常感谢一起完善 OI Wiki 的 [小伙伴们](https://github.com/24OI/OI-wiki/graphs/contributors)！
 
 感谢 24OI 的朋友们的大力支持！
+
+----
 
 ## 版权声明
 
