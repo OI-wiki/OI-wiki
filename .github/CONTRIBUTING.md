@@ -56,3 +56,7 @@
 
 1. 可以开一个 Issue
 2. 可以自行阅读目录 (mkdocs.yml)
+
+## commit message 怎么写
+
+我们推荐使用 [commitizen/cz-cli](https://github.com/commitizen/cz-cli) 来规范 commit message （并非强求）。
