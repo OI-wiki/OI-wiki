@@ -13,7 +13,7 @@
 
 **OI** 竞赛发展多年，难度越来越高，内容越来越复杂，而网上资料大多零散，初学者往往并不知道如何系统地学习 OI 相关知识，需要花费大量时间摸索。
 
-为了方便热爱 **OI** 的小伙伴更好地入门 **OI**，2018 年 7 月份，**OI Wiki** 迁移至 Github，方便更多小伙伴参与其中。
+为了方便热爱 **OI** 的小伙伴更好地入门 **OI**，2018 年 7 月份，**OI Wiki** 迁移至 GitHub，方便更多小伙伴参与其中。
 
 ----
 
@@ -25,7 +25,7 @@
 
 当然，**OI Wiki** 基于 **OI**，却不会局限于 **OI**。**OI Wiki** 会努力完善以下内容：
 
-- 应用在 ACM / ICPC 竞赛中的进阶知识
+- 应用在 ACM-ICPC 竞赛中的进阶知识
 - 算法竞赛中的优质题目
 
 于此同时， **OI Wiki** 源于社区，提倡知识自由，在未来也绝不会商业化，将始终保持独立自由的性质。
@@ -77,4 +77,4 @@ chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && ./buil
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />
 除特别注明外，项目中除了代码部分均采用<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> (Creative Commons BY-SA 4.0) 知识共享署名-相同方式共享 4.0 国际许可协议</a> 及附加的 [The Star And Thank Author License](https://github.com/zTrix/sata-license) 进行许可。
 
-换言之，使用过程中您可以自由地共享、演绎，但是必须署名、以相同方式共享、分享时没有附加限制，而且需要在 Github 仓库点赞（star）。
+换言之，使用过程中您可以自由地共享、演绎，但是必须署名、以相同方式共享、分享时没有附加限制，而且需要在 GitHub 仓库点赞（Star）。
