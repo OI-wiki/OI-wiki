@@ -2,15 +2,15 @@
 
 在线测试平台又称 Online Judging System，一般用来刷题、组织比赛，也有的会提供博客功能方便选手交流。
 
-- [Codeforces](http://codeforces.com)
+- [Judge Duck Online](https://judge-duck.online/)
+- [Codeforces](https://codeforces.com)
 - [POJ](http://poj.org)
 - [HDU OJ](http://acm.hdu.edu.cn)
 - [Luogu](http://luogu.org)
 - [LibreOJ](https://loj.ac)
 - [Vijos](https://vijos.org)
 - [UOJ](http://uoj.ac)
-- [LibreOJ](https://loj.ac)
-- [51Nod](http://www.51nod.com)
+- [51Nod](https://www.51nod.com)
 
 ## 在线教程
 
