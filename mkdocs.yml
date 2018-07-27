@@ -189,6 +189,7 @@ pages:
     - 随机化: misc/random.md
     - 离线处理: misc/offline.md
     - 各种距离: misc/distance.md
+    - 字节顺序: misc/endianness.md
 
 # Theme
 theme:
