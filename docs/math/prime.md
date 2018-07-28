@@ -36,4 +36,14 @@ bool isPrime(a) {
 
 Miller-Rabbin 算法是进阶的素数判定方法，具有比暴力做法更好的时间复杂度。但是代码复杂度较高，在比赛中使用较少。
 
+它的基本思想是不断地选取不超过 $n-1$ 的基 $b$，并检验是否每次都有 $b^{n-1} \bmod n = 1$
 
+```c++
+bool millerRabbin(int n) {
+  for (int i = 1; i <= s; ++i) {
+    int a = rand() % (n - 2) + 2;
+    if (quickPow(a, n - 1, n) != 1) return 0;
+  }
+  return 1;
+}
+```

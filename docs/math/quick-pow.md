@@ -25,7 +25,7 @@ $$
 在算法竞赛中，快速幂的思想不仅用于整数乘法，也可用于大整数加法，矩阵幂运算等场合中。
 
 ```c++
-int pow(int a, int b, int c) {
+int quickPow(int a, int b, int c) {
   // calculates a^b mod c
   int res = 1, bas = a;
   while (b) {
