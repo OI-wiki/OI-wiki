@@ -19,7 +19,6 @@ pages:
     - OI 赛制简介: introduction/mode.md
     - 学习资源: introduction/resources.md
     - 工具软件: introduction/softwares.md
-    - 科学上网: introduction/magic.md
   - 基础部分:
     - 基础部分简介: basic/index.md
     - 枚举: basic/enumerate.md
@@ -190,6 +189,7 @@ pages:
     - 离线处理: misc/offline.md
     - 各种距离: misc/distance.md
     - 字节顺序: misc/endianness.md
+    - 科学上网: misc/magic.md
 
 # Theme
 theme:
