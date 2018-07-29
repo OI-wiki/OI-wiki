@@ -53,7 +53,7 @@ IOI（International Olympiad in Informatics）是国际信息学奥林匹克竞�
 
 [Codeforces](https://codeforces.com) 是一个在线评测系统，定期会举办比赛。它的比赛特点是在比赛过程中只测试一部分数据（pretests），而在比赛结束后返回更多测试点的测试结果（system tests）。比赛时可以多次提交，允许 hack 别人的代码。当然，如果想要 hack ，必须要锁定自己的代码（换言之，无法重新提交该题）。
 
-## 其他国家的 OI 竞赛
+## 其他国家和地区的 OI 竞赛
 
 ### 台湾地区的信息学奥林匹克竞赛（資訊奧林匹亞競賽）
 
@@ -70,7 +70,7 @@ IOI（International Olympiad in Informatics）是国际信息学奥林匹克竞�
 那些跟我说"政治正确"的人，自己复习下“九二共识”和“一中各表”。  
 一天笔试，一天机试。机试一场 5 小时 7 题。2016 年的题目，除了一道真·签到题，剩下的题目难度和考试范围都在 **提高- 到 弱省省选-** 左右。  
 官方拿题目的渠道戳[这里](http://nhspc.csie.ntnu.edu.tw/2016/ref_exam.php)，然而并不提供数据和题解。  
-在线提交同样左转 TIOJ。至于传题目……题目已经在未公开列表里了。由于我们并不是很有时间造数据，我们正在与 TIOJ 方面联系要数据（TIOJ 上的似乎也是民间数据）。
+在线提交同样左转 TIOJ。LOJ 管理员正在与 TIOJ 方面联系要数据（TIOJ 上的似乎也是民间数据）。
 
 #### 3. 研习营（TOI / 資訊研習營）
 [中華民國參加國際資訊奧林匹亞競賽代表隊遴選作業要點](http://toi.csie.ntnu.edu.tw/file/20170906164404.pdf)  
@@ -84,7 +84,7 @@ IOI（International Olympiad in Informatics）是国际信息学奥林匹克竞�
 
 ### 二、日本信息学奥林匹克竞赛（日本情報オリンピック）
 
-[官网地址](https://www.ioi-jp.org/) $\ \ $ [日本选手在 CF 上的介绍](http://codeforces.com/blog/entry/53733)
+[官网地址](https://www.ioi-jp.org/) | [日本选手在 CF 上的介绍](http://codeforces.com/blog/entry/53733)
 
 一般简称为 JOI。**所有的日本题目都提供题目、数据、题解和标程**。  
 
@@ -99,7 +99,7 @@ IOI（International Olympiad in Informatics）是国际信息学奥林匹克竞�
 每年有 60~90 位选手参加决赛。一部分选手从预赛脱颖而出，另一部分是从去年的春令营空降而来。  
 与预赛一样，每年的决赛只有一天（与预赛不同，正式比赛前有练习赛），4 小时 5 题。 难度大约为 普及 到 提高+ ，考试范围大约为 提高。  
 **自 2016/2017 赛季起，JOI 决赛同时提供日语与英语题目，还有场外同步赛。**以前的题目只有日语。  
-赛后，如果你想在线测试，你可以在 LibreOJ 提交。我正在翻译近年的决赛题，目前上传了近三年的决赛题（比心心）
+赛后，如果你想在线测试，你可以在 LibreOJ 提交。Planet6174 正在翻译近年的决赛题，目前上传了近三年的决赛题（比心心）
 你也可以选择在 AtCoder 提交，例如 [JOI 2016/2017 决赛](https://joi2017ho.contest.atcoder.jp/)。决赛网址中的年份与实际年份相同，不用像预赛那样麻烦。  
 题外话：上面的那位日本选手说，JOI 决赛包吃包住包路费，**国家补贴不花选手钱**，相比之下，NOI 系列比赛就显得 [手动和谐] 了。
 
@@ -114,12 +114,11 @@ IOI（International Olympiad in Informatics）是国际信息学奥林匹克竞�
 通信教育的汉语翻译差不多是”信息学“或者”資訊科“的意思。春训营结束后，公开赛是给 IOI 日本队的选手练兵的，与日本队的选拔无关。  
 JOI 公开赛是在线竞赛，实行完整的 IOI 赛制，可以实时提交，分数取多次提交中的最高分 Blahblahblah  
 **JOI 公开赛的题目、题解都同时提供日语和英语。**  
-然而，公开赛的题目并没有在线提交的地方（也可能是我没找到？），<del>我也暂时没有把题目翻译后加入 LibreOJ 的计划</del>2017 年的题现在丢在未公开列表里。  
-JOI 公开赛的题目本人并没有做过，难度不清楚。
+然而，公开赛的题目并没有在线提交的地方（也可能是没找到？）。
 
 ### 三、俄罗斯：олимпиадная информатика
 
-[官网](http://inf-olymp.ru/) $\ \ $ [在线提交地址](https://contest.yandex.ru/roiarchive/) $\ \ $ [能下 Data & Solution 的真官网？](http://neerc.ifmo.ru/school/archive/index.html)（感谢 @Chiaki 提供的连接）  
+[官网](http://inf-olymp.ru/) | [在线提交地址](https://contest.yandex.ru/roiarchive/) | [能下 Data & Solution 的真官网？](http://neerc.ifmo.ru/school/archive/index.html)（感谢 @Chiaki 提供的连接）  
 一般简称为 ROI。
 
 
@@ -127,7 +126,7 @@ JOI 公开赛的题目本人并没有做过，难度不清楚。
 
 **韩国：한국 정보 올림 피아드**
 
-[官网地址](https://www.digitalculture.or.kr/koi/) $\ \ $ [试题地址](https://www.digitalculture.or.kr/koi/selectOlymPiadDissentList.do) $\ \ $ [在线提交地址](https://www.acmicpc.net/)  
+[官网地址](https://www.digitalculture.or.kr/koi/) | [试题地址](https://www.digitalculture.or.kr/koi/selectOlymPiadDissentList.do) | [在线提交地址](https://www.acmicpc.net/)  
 一般简称为 KOI。
 
 **加拿大：Canadian Computing Competition (CCC) and Canadian Computing Olympiad (CCO)**
@@ -173,6 +172,7 @@ http://www.olympiad.org.uk/
 |2002|http://ims.mii.lt/olimp/senas/english/boi2002/tasks.htm|$√$|$√$|$√$|
 |2001|http://ims.mii.lt/olimp/?lang=lt&sk=baltijos&id=320480|$√$|$√$|$√$|
 |2000|http://ingforum.haninge.kth.se/BOI00/boi00.html|$√$|$√$|$√$|
+
 1995 ~ 2004 年的 BalticOI 题面、数据、题解都可以在 http://ims.mii.lt/olimp/uzdav/boi_ar/ 下载  
 1995 ~ 2016 年：http://www.lmio.mii.vu.lt/?p=viewarticle&id=292
 
