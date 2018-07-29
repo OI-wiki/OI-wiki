@@ -20,6 +20,8 @@ dfs(u) {
 }
 ```
 
+C++：
+
 ```c++
 void dfs(int u) {
   vis[u] = 1;
