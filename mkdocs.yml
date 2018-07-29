@@ -138,7 +138,7 @@ pages:
       - 树分块: data-structure/advanced/tree-decompose.md
   - 图论:
     - 图论部分简介: graph/index.md
-    - 存储方式：邻接矩阵、前向星、链式前向星: graph/save.md
+    - 图论基础: graph/basic.md
     - 遍历：BFS和DFS: graph/traverse.md
     - 最小生成树: graph/mst.md
     - 最近公共祖先: graph/lca.md
@@ -189,6 +189,7 @@ pages:
     - 离线处理: misc/offline.md
     - 各种距离: misc/distance.md
     - 字节顺序: misc/endianness.md
+    - 复杂度: misc/complexity.md
     - 科学上网: misc/magic.md
 
 # Theme
