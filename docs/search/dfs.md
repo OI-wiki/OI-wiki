@@ -38,4 +38,4 @@ void dfs(int u) {
 
 空间复杂度 $O(n)$ （vis 数组和递归栈）
 
-## [在树上 dfs](/graph/traverse)
+## [在树 / 图上 dfs](/graph/traverse)
