@@ -65,8 +65,6 @@
 
 # 2. 虚树Virtual Tree
 
->  Nia，你在搞虚树啊？！虚树是个好东西！ —— Cai
-
 对于上面那题，我们不难发现——如果树的点数很少，那么我们可以直接跑Dp。
 
 首先我们称某次询问中被选中的点为——**“关键点”**
@@ -88,7 +86,7 @@
 
 比如下图：
 
-![vtree1](http://www.k-xzy.xyz/wp-content/uploads/2018/03/vtree1.png)
+![vtree1](./images/vtree1.png)
 
 图中只有两个红色的点是**关键点**，而别的黑色的点全都是“非关键点”。一号节点（敌人所在之处）是树顶的那个标了1的节点。
 
@@ -106,13 +104,13 @@
 
 下图中，左边为原树，右边为生成的新的虚树。
 
-![vtree2](http://www.k-xzy.xyz/wp-content/uploads/2018/03/vtree2.png)
+![vtree2](./images/vtree2.png)
 
-![vtree3](http://www.k-xzy.xyz/wp-content/uploads/2018/03/vtree3.png)
+![vtree3](./images/vtree3.png)
 
-![vtree4](http://www.k-xzy.xyz/wp-content/uploads/2018/03/vtree4.png)
+![vtree4](./images/vtree4.png)
 
-![vtree5](http://www.k-xzy.xyz/wp-content/uploads/2018/03/vtree5.png)
+![vtree5](./images/vtree5.png)
 
 看明白了吗？
 
@@ -148,7 +146,7 @@
 
 也就是一个栈里相邻的两个节点在虚树上也是相邻的，而且栈是从底部到栈首单调递增的（指的是栈中节点Dfs序单调递增），说白了就是某个节点的父亲就是栈中它下面的那个节点。
 
-![vtree7](http://www.k-xzy.xyz/wp-content/uploads/2018/03/vtree7.png)
+![vtree7](./images/vtree7.png)
 
 
 
@@ -158,29 +156,29 @@
 
 假如当前的节点与栈顶节点的$LCA$就是栈顶节点的话，则说明它们是在一条链上的。所以直接把当前节点入栈就行了。
 
-![vtree8](http://www.k-xzy.xyz/wp-content/uploads/2018/03/vtree8.png)
+![vtree8](./images/vtree8.png)
 
 假如当前节点与栈顶节点的$LCA$不是栈顶节点的话，比如这样——
 
-![vtree9](http://www.k-xzy.xyz/wp-content/uploads/2018/03/vtree9.png)
+![vtree9](./images/vtree9.png)
 
 那就，，非常尴尬了
 
 显然，当前单调栈维护的链是：
 
-![vtree10](http://www.k-xzy.xyz/wp-content/uploads/2018/03/vtree10.png)
+![vtree10](./images/vtree10.png)
 
 而我们需要把链变成：
 
-![vtree11](http://www.k-xzy.xyz/wp-content/uploads/2018/03/vtree11.png)
+![vtree11](./images/vtree11.png)
 
 那么我们就虚树中连上这些边：
 
-![vtree11 (复件)](http://www.k-xzy.xyz/wp-content/uploads/2018/03/vtree12.png)
+![vtree11 (复件)](./images/vtree12.png)
 
 并且把这两个点从栈中弹出：
 
-![vtree13](http://www.k-xzy.xyz/wp-content/uploads/2018/03/vtree13.png)
+![vtree13](./images/vtree13.png)
 
 假如弹出以后发现栈首不是$LCA$的话要让$LCA$入栈。
 
@@ -190,7 +188,7 @@
 
 假如那棵树长这样：
 
-![vtree6](http://www.k-xzy.xyz/wp-content/uploads/2018/03/vtree6.png)
+![vtree6](./images/vtree6.png)
 
 
 
