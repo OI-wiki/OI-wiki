@@ -35,9 +35,9 @@
 O(∩\_∩)O哈哈~
 
 **思路如下：**
-![](http://www.k-xzy.xyz/wp-content/uploads/2017/02/segt2.png)
-![](http://www.k-xzy.xyz/wp-content/uploads/2017/02/segt3.png)
-![](http://www.k-xzy.xyz/wp-content/uploads/2017/02/segt4.png)
+![](./segt2.png)
+![](./segt3.png)
+![](./segt4.png)
 
 那么就这样写代码：
 ```cpp
@@ -75,16 +75,16 @@ void build(int s,int t,int p)
 传送门：[http://scinart.github.io/acm/2014/03/19/acm-segment-tree-space-analysis/](http://scinart.github.io/acm/2014/03/19/acm-segment-tree-space-analysis/)
 （链接已失效）
 
-![](http://www.k-xzy.xyz/wp-content/uploads/2017/02/segt5.png)
+![](./segt5.png)
 
 ## (2) 线段树的区间查询
 区间查询，比如求区间$[l,r]$的总和（即$a[l]+a[l+1]+...+a[r]$）、求区间最大值/最小值……还有很多很多……怎么做呢？
 
-![](http://www.k-xzy.xyz/wp-content/uploads/2017/02/segt6.png)
+![](./segt6.png)
 
 拿上面这张图举栗！
 
-![](http://www.k-xzy.xyz/wp-content/uploads/2017/02/segt7.png)
+![](./segt7.png)
 
 （发博客累死了无聊一下）
 如果要查询区间$[1,5]$的和，那直接获取$d[1]$的值（60）即可。那如果我就不查询区间$[1,5]$，我就查区间$[3,5]$呢？
@@ -172,15 +172,15 @@ int getsum(int l,int r,int s,int t,int p)
 
 如图：
 
-![](http://www.k-xzy.xyz/wp-content/uploads/2017/02/segt8.png)
+![](./segt8.png)
 
-![](http://www.k-xzy.xyz/wp-content/uploads/2017/02/segt9.png)
+![](./segt9.png)
 
-![](http://www.k-xzy.xyz/wp-content/uploads/2017/02/segt10.png)
+![](./segt10.png)
 
-![](http://www.k-xzy.xyz/wp-content/uploads/2017/02/segt11.png)
+![](./segt11.png)
 
-![](http://www.k-xzy.xyz/wp-content/uploads/2017/02/segt12.png)
+![](./segt12.png)
 
 注：这里D表示当前节点的值（即所表示区间的区间和）
 为什么节点A的D是$2\times (1000000000000001\%2)$呢？原因很简单。节点A表示的区间是[1,2]，一共包含2个元素。我们是让$[1,2]$这个区间的每个元素都加上$1000000000000001\%2$，所以节点A的值就加上了$2\times (1000000000000001\%2)$咯 =￣ω￣= 。
@@ -189,16 +189,16 @@ int getsum(int l,int r,int s,int t,int p)
 
 具体是这样操作（如图）：
 
-![](http://www.k-xzy.xyz/wp-content/uploads/2017/02/segt13.png)
+![](./segt13.png)
 
-![](http://www.k-xzy.xyz/wp-content/uploads/2017/02/segt14.png)
+![](./segt14.png)
 
 注：为什么是加上$1\times (1000000000000001\%2)$呢？
 
 原因和上面一样——B和C表示的区间中只有1个元素啊！
 
 
-![](http://www.k-xzy.xyz/wp-content/uploads/2017/02/segt15.png)
+![](./segt15.png)
 
 
 由此我们可以得到，区间$[1,1]$的区间和就是1啦！O(∩\_∩)O哈哈~！
