@@ -121,6 +121,7 @@ pages:
       - SBT: data-structure/intermediate/sbt.md
       - Splay: data-structure/intermediate/splay.md
       - 替罪羊树: data-structure/intermediate/scapegoat.md
+      - 虚树: data-structure/intermediate/virtual-tree.md
     - 高级数据结构:
       - 树套树:
         - 线段树套线段树: data-structure/advanced/seg-in-seg.md
