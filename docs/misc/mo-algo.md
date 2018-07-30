@@ -1,6 +1,8 @@
 <h1>1. 普通莫队算法</h1>
 
-这里只讲到了普通莫队算法（不带修改），内容有诸多是借鉴与网上的（O(∩_∩)O谢谢啦！），主要借鉴了：<a href="https://blog.sengxian.com/algorithms/mo-s-algorithm">https://blog.sengxian.com/algorithms/mo-s-algorithm</a> 和ZYF（或JYF）神犇的博客（懒得帮你搞超链接了）。
+这里只讲到了普通莫队算法（不带修改），内容有诸多是借鉴与网上的（O(∩_∩)O谢谢啦！），主要借鉴了：<a href="https://blog.sengxian.com/algorithms/mo-s-algorithm">https://blog.sengxian.com/algorithms/mo-s-algorithm</a>
+
+（后面附赠带修改的莫队算法）
 
 <h5>概述</h5>
 
