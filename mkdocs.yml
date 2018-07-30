@@ -136,6 +136,7 @@ pages:
       - Link Cut Tree: data-structure/advanced/lct.md
       - Euler Tour Tree: data-structure/advanced/ett.md
       - 树分块: data-structure/advanced/tree-decompose.md
+      - 虚树： data-structure/advanced/virtual-tree.md
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论基础: graph/basic.md
