@@ -141,7 +141,7 @@ pages:
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论基础: graph/basic.md
-    - 树相关: graph/tree-basic.md
+    - 树相关基础: graph/tree-basic.md
     - 遍历：BFS 和 DFS: graph/traverse.md
     - 最小生成树: graph/mst.md
     - 最近公共祖先: graph/lca.md
