@@ -3,6 +3,7 @@ site_name: OI Wiki
 site_description: OI Wiki
 site_author: OI Wiki Team
 site_url: https://oi-wiki.cf
+strict: true
 
 # Repository
 repo_name: '24OI/OI-wiki'
