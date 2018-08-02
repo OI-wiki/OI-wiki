@@ -3,6 +3,7 @@ site_name: OI Wiki
 site_description: OI Wiki
 site_author: OI Wiki Team
 site_url: https://oi-wiki.cf
+strict: true
 
 # Repository
 repo_name: '24OI/OI-wiki'
@@ -140,7 +141,7 @@ pages:
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论基础: graph/basic.md
-    - 树相关: graph/tree-basic.md
+    - 树相关基础: graph/tree-basic.md
     - 遍历：BFS 和 DFS: graph/traverse.md
     - 最小生成树: graph/mst.md
     - 最近公共祖先: graph/lca.md
@@ -155,6 +156,7 @@ pages:
     - 双连通分量: graph/bcc.md
     - 割点割边: graph/bridge.md
     - 差分约束: graph/differential-constraints.md
+    - 有向无环图: graph/dag.md
     - 二分图: graph/bi-graph.md
     - 最短路: graph/shortest-path.md
     - 最小环: graph/min-circle.md
