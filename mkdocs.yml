@@ -197,7 +197,8 @@ pages:
 
 # Theme
 theme:
-  name: 'material'
+  name : null
+  custom_dir: 'mkdocs-material/material'
   language: 'zh'
   palette:
     primary: 'white'

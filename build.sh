@@ -10,7 +10,9 @@ EMAIL=sirius.caffrey@gmail.com
 set -e
 
 # Clone Theme for Editing
-git clone --depth 1 https://github.com/squidfunk/mkdocs-material.git
+if [ ! -d "mkdocs-material" ] ; then
+  git clone --depth 1 https://github.com/squidfunk/mkdocs-material.git
+fi
 sed -i "s/name: 'material'/name : null\n  custom_dir: 'mkdocs-material\/material'/g" mkdocs.yml
 
 # Change Google CDN to loli.net
