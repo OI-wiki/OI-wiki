@@ -197,7 +197,7 @@ pages:
 
 # Theme
 theme:
-  name : material
+  name: 'material'
   language: 'zh'
   palette:
     primary: 'white'
