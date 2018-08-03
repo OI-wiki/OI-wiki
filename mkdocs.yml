@@ -214,7 +214,7 @@ theme:
 # Customization
 extra:
   search:
-    language: 'cn'
+    language: 'jp'
   disqus: 'OI-Wiki'
 
 extra_javascript:
