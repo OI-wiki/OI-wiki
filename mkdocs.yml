@@ -43,7 +43,7 @@ pages:
     - Dancing Links: search/dlx.md
   - 动态规划:
     - 动态规划部分简介: dp/index.md
-    - 记忆化搜索: dp/记忆化搜索.md
+    - 记忆化搜索: dp/memo.md
     - 背包 DP: dp/backpack.md
     - 区间 DP: dp/interval.md
     - DAG 上的 dp: dp/dag.md
