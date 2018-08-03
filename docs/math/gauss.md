@@ -16,19 +16,22 @@
 
 例一：利用消元法求解二元一次线性方程组：
 
-![](./images/gauss9.png)
+$\left\{\begin{aligned}
+4x+y&=100 \notag \\ 
+x-y&=100 \notag
+\end{aligned}\right.$
 
 解：将方程组中两方程相加，消元y可得：
 
-$5x$ = 200
+$5x = 200$
 
 解得：
 
-$x$ = 40
+$x = 40$
 
 将$x$ = 40代入方程组中第二个方程可得：
 
-$y$ = -60
+$y = -60$
 
 
 ###1.2  消元法理论的核心
@@ -63,27 +66,73 @@ $y$ = -60
 
 例二：利用高斯消元法五步骤法求解线性方程组：
 
-![](./images/gauss13.png)
+$\left\{\begin{aligned}
+2x_1+5x_3+6x_4&=9 \notag \\ 
+x_3+x_4&=-4 \notag \\
+2x_3+2x_4&=-8 \notag
+\end{aligned}\right.$
 
 ###第1步  增广矩阵行（初等）变换为行最简形
 
 所谓增广矩阵，即为方程组系数矩阵A与常数列b的并生成的新矩阵，即(A | b)，增广矩阵行初等变换化为行最简形，即是利用了高斯消元法的思想理念，省略了变量而用变量的系数位置表示变量，增广矩阵中用竖线隔开了系数矩阵和常数列，代表了等于符号。
 
-![](./images/gauss1.png)
+$\left(\begin{matrix} 
+2 & 0 & 5 & 6 \\
+0 & 0 & 1 & 1 \\
+0 & 0 & 2 & 2
+\end{matrix} \middle|
+\begin{matrix}
+9 \\
+-4 \\
+-8 
+\end{matrix} \right)$
 
-![](./images/gauss2.png)
+$\xrightarrow{r_3-2r_2}
+\left(\begin{matrix} 
+2 & 0 & 5 & 6 \\
+0 & 0 & 1 & 1 \\
+0 & 0 & 0 & 0
+\end{matrix} \middle|
+\begin{matrix}
+9 \\
+-4 \\
+0
+\end{matrix} \right)$
 
 化为行阶梯形 
 
-![](./images/gauss3.png)
+$\xrightarrow{\frac{r_1}{2}}
+\left(\begin{matrix} 
+1 & 0 & 2.5 & 3 \\
+0 & 0 & 1 & 1 \\
+0 & 0 & 0 & 0
+\end{matrix} \middle|
+\begin{matrix}
+4.5 \\
+-4 \\
+0
+\end{matrix} \right)$
 
-![](./images/gauss4.png)
+$\xrightarrow{r_1-r_2 \times 2.5}
+\left(\begin{matrix} 
+1 & 0 & 0 & 0.5 \\
+0 & 0 & 1 & 1 \\
+0 & 0 & 0 & 0
+\end{matrix} \middle|
+\begin{matrix}
+14.5 \\
+-4 \\
+0
+\end{matrix} \right)$
 
 化为最简形
 
 ###第2步  还原线性方程组
 
-![](./images/gauss5.png)
+$\left\{\begin{aligned}
+x_1+0.5x_4 &= 14.5 \notag\\ 
+x_3+x_4 &= -4 \notag \\
+\end{aligned}\right.$
  
 解释  
 
@@ -91,7 +140,10 @@ $y$ = -60
 
 ###第3步  求解第一个变量
 
-![](./images/gauss6.png)
+$\left\{\begin{aligned}
+x_1 &= -0.5x_4+14.5\notag \\ 
+x_3 &= -x_4-4\notag 
+\end{aligned}\right.$
  
 解释  
 
@@ -99,7 +151,12 @@ $y$ = -60
 
 ###第4步  补充自由未知量
 
-![](./images/gauss7.png)
+$\left\{\begin{aligned}
+x_1 &= -0.5x_4+14.5 \notag \\ 
+x_2 &= x_2 \notag \\
+x_3 &= -x_4-4 \notag \\
+x_4 &= x_4 \notag
+\end{aligned}\right.$
  
 解释  
 
@@ -107,7 +164,15 @@ $y$ = -60
 
 ###第5步  列表示方程组的通解
 
-![](./images/gauss8.png)
+$\begin{aligned}
+\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} &=
+\begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} x_2+
+\begin{pmatrix} -0.5 \\ 0 \\ -1 \\ 1 \end{pmatrix} x_4 +
+\begin{pmatrix} 14.5 \\ 0 \\ -4 \\ 0 \end{pmatrix} \notag \\
+&= \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} C_1+
+\begin{pmatrix} -0.5 \\ 0 \\ -1 \\ 1 \end{pmatrix} C_2 +
+\begin{pmatrix} 14.5 \\ 0 \\ -4 \\ 0 \end{pmatrix} \notag
+\end{aligned}$
  
 其中$C_1$和$C_2$为任意常数。
 
@@ -119,17 +184,23 @@ $y$ = -60
 
 #行列式
 
-$N$×$N$方阵行列式可以理解为所有列向量所夹的几何体的有向体积
+$N \times N$方阵行列式可以理解为所有列向量所夹的几何体的有向体积
 
 例如：
 
-![](./images/gauss10.png)
+$\begin{vmatrix}
+1 & 0 \\
+0 & 1 \end{vmatrix} = 1$
+
+$\begin{vmatrix}
+1 & 2 \\
+2 & 1 \end{vmatrix} = -3$
  
 行列式有公式
 
-![](./images/gauss11.png)
+$D = \left| A \right| = \sum(-1)^va_{1,l_1}a_{2,l_2}\dots a_{n,l_n}$
  
->其中v为$l_1$, $l_2$,……, $l_n$中逆序对的个数。
+>其中$v$为$l_1$, $l_2$,……, $l_n$中逆序对的个数。
 
 通过体积概念理解行列式不变性是一个非常简单的办法：<br>
 * 矩阵转置，行列式不变；<br>
@@ -147,7 +218,24 @@ $N$×$N$方阵行列式可以理解为所有列向量所夹的几何体的有向
 
 例如，一个正方形图的生成树个数
 
-![](./images/gauss12.png)
+$\begin{pmatrix}
+0 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 \\
+0 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 \end{pmatrix}-\begin{pmatrix}
+2 & 0 & 0 & 0 \\
+0 & 2 & 0 & 0 \\
+0 & 0 & 2 & 0 \\
+0 & 0 & 0 & 2 \end{pmatrix}=\begin{pmatrix}
+-2 & 1 & 0 & 1 \\
+1 & -2 & 1 & 0 \\
+0 & 1 & -2 & 1 \\
+1 & 0 & 1 & -2 \end{pmatrix}$
+
+$\begin{vmatrix}
+-2 & 1 & 0 \\
+1 & -2 & 1 \\
+0 & 1 & -2 \end{vmatrix} = 4$
 
 附一个冗长的复杂的令人难过的高斯消元与Matrix Tree计数代码：
 
