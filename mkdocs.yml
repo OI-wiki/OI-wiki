@@ -86,8 +86,9 @@ pages:
     - BSGS: math/bsgs.md
     - 博弈论: math/game.md
     - 多项式黑科技: math/poly.md
-    - 卡特兰数: math/catalan.md
     - 排列组合: math/combination.md
+    - 卡特兰数: math/catalan.md
+    - 斯特林数: math/stirling.md
     - 康托展开: math/cantor.md
     - 概率与期望: math/expectation.md
     - 置换群: math/permutation-group.md
