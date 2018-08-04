@@ -14,7 +14,7 @@ edit_uri: 'blob/master/docs/'
 copyright: 'Copyright &copy; 2016 - 2018 OI Wiki Team'
 
 # Contents
-pages:
+nav:
   - 简介:
     - Getting Started: index.md
     - OI 赛制简介: introduction/mode.md
