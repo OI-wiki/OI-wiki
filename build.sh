@@ -20,4 +20,4 @@ sed -i 's/fonts.gstatic.com/gstatic.loli.net/g' mkdocs-material/material/base.ht
 sed -i 's/fonts.googleapis.com/fonts.loli.net/g' mkdocs-material/material/base.html
 cp ./static/disqus.html mkdocs-material/material/partials/integrations/disqus.html
 
-mkdocs build
+mkdocs build -v
