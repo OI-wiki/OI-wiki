@@ -57,7 +57,7 @@ nav:
     - 字符串部分简介: string/index.md
     - 标准库: string/stl.md
     - 字符串匹配问题: string/match.md
-    - 哈希大法: string/hash.md
+    - 哈希: string/hash.md
     - KMP: string/kmp.md
     - 字典树（Trie）: string/trie.md
     - 回文自动机: string/pam.md
