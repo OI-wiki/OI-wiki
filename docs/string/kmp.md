@@ -6,7 +6,7 @@
 
 对于模式串 b，定义 next[]
 
-$$next[i] = largest j s.t. 0<=j<i && b[0..j-1]==b[i-j..i-1]$$
+$$next[i] = largest j s.t. 0 \leq j<i\ \&\&\ b[0..j-1]==b[i-j..i-1]$$
 
 【注意下标从 0 开始】【需要画图】
 
