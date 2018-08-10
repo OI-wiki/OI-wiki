@@ -196,7 +196,6 @@ nav:
     - 各种距离: misc/distance.md
     - 字节顺序: misc/endianness.md
     - 复杂度: misc/complexity.md
-    - 科学上网: misc/magic.md
 
 # Theme
 theme:
