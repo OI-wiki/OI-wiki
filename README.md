@@ -2,7 +2,7 @@
 
 
 [![Travis](https://img.shields.io/travis/24OI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/24OI/OI-wiki)
-[![Progress](https://img.shields.io/badge/Progress-20%25-brightgreen.svg?style=flat-square)](https://github.com/24OI/OI-wiki)
+[![Progress](https://img.shields.io/badge/Progress-28%25-brightgreen.svg?style=flat-square)](https://github.com/24OI/OI-wiki)
 [![Telegram](https://img.shields.io/badge/OI--wiki-join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
 [![QQ](https://img.shields.io/badge/OI--wiki-join%20QQ%20group-brightgreen.svg?style=flat-square)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
 
@@ -20,16 +20,16 @@
 
 ## 内容
 
-**OI Wiki** 是一个免费开放且持续更新的知识整合站点，你可以在这里学到关于 OI 竞赛相关的有趣知识，我们为你准备了 OI 竞赛中的基础知识、常见题型、解题思路以及常用工具等，帮助你更快速地了解 OI 竞赛。
+**OI Wiki** 致力于成为一个免费开放且持续更新的知识整合站点，大家可以在这里学到关于 **OI** 竞赛有趣又实用的知识，我们为大家准备了 **OI** 竞赛中的基础知识、常见题型、解题思路以及常用工具等内容，帮助大家更快速深入地学习 **OI** 竞赛。
 
-目前，**OI Wiki** 希望能包含 **OI** 竞赛各大方向的基础知识，以便于初学者更好地学习。
+目前，**OI Wiki** 正在完善各大方向的基础知识，以便于初学者更好地学习。
 
 当然，**OI Wiki** 基于 **OI**，却不会局限于 **OI**。**OI Wiki** 会努力完善以下内容：
 
 - 应用在 ACM-ICPC 竞赛中的进阶知识
 - 算法竞赛中的优质题目
 
-于此同时， **OI Wiki** 源于社区，提倡知识自由，在未来也绝不会商业化，将始终保持独立自由的性质。
+与此同时， **OI Wiki** 源于社区，提倡 **知识自由**，在未来也绝不会商业化，将始终保持独立自由的性质。
 
 ----
 
