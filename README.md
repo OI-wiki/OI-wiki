@@ -12,7 +12,7 @@
 
 **OI** （Olympiad in Informatics，信息学奥林匹克竞赛）在中国起源于 1984 年，是五大学科竞赛之一。自 1989 年起，每年还会选拔出国家集训队选手准备 IOI (International Olympiad in Informatics，国际信息学奥林匹克竞赛)。
 
-**OI** 竞赛发展多年，难度越来越高，内容越来越复杂，而网上资料大多零散，初学者往往并不知道如何系统地学习 OI 相关知识，需要花费大量时间摸索。
+**OI** 竞赛发展多年，难度越来越高，内容越来越复杂，而网上资料大多零散，初学者往往并不知道如何系统地学习 **OI** 相关知识，需要花费大量时间摸索。
 
 为了方便热爱 **OI** 的小伙伴更好地入门 **OI**，2018 年 7 月份，**OI Wiki** 迁移至 GitHub，方便更多小伙伴参与其中。
 
@@ -69,7 +69,7 @@ chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && ./buil
 
 非常感谢一起完善 OI Wiki 的 [小伙伴们](https://github.com/24OI/OI-wiki/graphs/contributors)！
 
-感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
+特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
 
 ----
 
@@ -78,4 +78,6 @@ chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && ./buil
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />
 除特别注明外，项目中除了代码部分均采用<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> (Creative Commons BY-SA 4.0) 知识共享署名-相同方式共享 4.0 国际许可协议</a> 及附加的 [The Star And Thank Author License](https://github.com/zTrix/sata-license) 进行许可。
 
-换言之，使用过程中您可以自由地共享、演绎，但是必须署名、以相同方式共享、分享时没有附加限制，而且需要在 GitHub 仓库点赞（Star）。
+换言之，使用过程中您可以自由地共享、演绎，但是必须署名、以相同方式共享、分享时没有附加限制，
+
+而且需要在 GitHub 仓库点赞（Star）。
