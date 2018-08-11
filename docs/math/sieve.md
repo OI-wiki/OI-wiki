@@ -21,7 +21,7 @@ void genPrimes() {
 }
 ```
 
-这个筛法被成为 eratosthenes （念作“埃拉托斯特尼”）筛法，时间复杂度是 $O(nloglogn)$。
+这个筛法被成为 eratosthenes （念作“埃拉托斯特尼”）筛法，时间复杂度是 $O(n\log\log n)$。
 
 以上做法仍有优化空间，我们发现这里面似乎会对某些数标记了很多次其为合数。有没有什么办法省掉无意义的步骤呢？
 
@@ -68,9 +68,9 @@ void init() {
 
 $$
 \begin{aligned}
-\phi(n) & = n * \prod_{i = 1}^s{\frac{p_i - 1}{p_i}} \\\\
+\varphi(n) & = n * \prod_{i = 1}^s{\frac{p_i - 1}{p_i}} \\\\
 & = p_1 * n' * \prod_{i = 1}^s{\frac{p_i - 1}{p_i}} \\\\
-& = p_1 * \phi(n')
+& = p_1 * \varphi(n')
 \end{aligned}
 $$
 
@@ -78,8 +78,8 @@ $$
 
 $$
 \begin{aligned}
-\phi(n) & = \phi(p_1) * \phi(n') \\\\
-& = (p_1 - 1) * \phi(n')
+\varphi(n) & = \varphi(p_1) * \varphi(n') \\\\
+& = (p_1 - 1) * \varphi(n')
 \end{aligned}
 $$
 
