@@ -4,13 +4,14 @@
 
 <!-- Comments Integration -->
 {% if not page.is_homepage and disqus %}
+{% set pageID = page.title | default("404", true) %}
 <h2 id="__comments">{{ lang.t("meta.comments") }}</h2>
 <div id="gitment_container">
     <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
     <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
     <script>
       var gitment = new Gitment({
-        id: '{{ page.title }}',
+        id: '{{ page.title | default("404 Page", true)  }}',
         owner: 'Ir1d',
         repo: 'gitment',
         oauth: {
