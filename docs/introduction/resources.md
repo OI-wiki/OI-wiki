@@ -11,6 +11,8 @@
 - [Vijos](https://vijos.org)
 - [UOJ](http://uoj.ac)
 - [51Nod](https://www.51nod.com)
+- [Hackerrank](https://www.hackerrank.com/)
+- [Topcoder](https://www.topcoder.com/)
 
 ## 在线教程
 
