@@ -28,6 +28,7 @@
 - 算法艺术与信息学竞赛 （人称黑书）
 - 算法竞赛进阶指南
 - [Competitive Programmer's Handbook](https://cses.fi/book/index.html)
+- 算法导论
 
 ## 工具
 
@@ -35,3 +36,4 @@
 - [OEIS 整数数列搜索引擎](https://oeis.org)
 - [Ubuntu Pastebin，可以用来分享代码](https://paste.ubuntu.com)
 - [uDebug 提供一些 OJ 题目的调试辅助](https://www.udebug.com)
+- [提供C++内语法的查询等](http://www.cplusplus.com/reference/)
