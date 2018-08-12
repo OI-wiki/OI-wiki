@@ -13,6 +13,10 @@
 - [51Nod](https://www.51nod.com)
 - [Hackerrank](https://www.hackerrank.com/)
 - [Topcoder](https://www.topcoder.com/)
+- [BZOJ](https://www.lydsy.com/JudgeOnline/wttl/wttl.php)
+- [TYVJ](http://www.codevs.cn/)
+- [OpenJudge](http://openjudge.cn/)
+
 
 ## 在线教程
 
@@ -36,4 +40,4 @@
 - [OEIS 整数数列搜索引擎](https://oeis.org)
 - [Ubuntu Pastebin，可以用来分享代码](https://paste.ubuntu.com)
 - [uDebug 提供一些 OJ 题目的调试辅助](https://www.udebug.com)
-- [提供C++内语法的查询等](http://www.cplusplus.com/reference/)
+- [提供C++内语法的查询等 - C++ Reference](http://www.cplusplus.com/reference/)
