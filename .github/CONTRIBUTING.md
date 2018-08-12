@@ -1,8 +1,8 @@
 # 交流方式
 
-本项目主要使用 Issue 与 Telegram 进行交流沟通。Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki)，欢迎加入。
+本项目主要使用 Issues / [QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) / [Telegram]((https://t.me/OIwiki)) 进行交流沟通。
 
-同时还有一个 [相关 QQ 群](https://jq.qq.com/?_wv=1027&k=5EfkM6K)，群聊号码：`588793226`。
+Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`588793226`](https://jq.qq.com/?_wv=1027&k=5EfkM6K)，欢迎加入。
 
 # 贡献方式
 
@@ -46,17 +46,99 @@
 
 # F.A.Q.
 
+## 目录在哪
+
+目录在项目根目录下的 [mkdocs.yml](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 文件中。
+
 ## 如何修改一个 topic 的内容
 
-在对应页面右上方有一个编辑按钮，点击之后会跳转到 github 上对应文件的位置。
+在对应页面右上方有一个编辑按钮，点击之后会跳转到 Github 上对应文件的位置。
 
-或者也可以自行阅读目录 (mkdocs.yml) 查找文件位置
+或者也可以自行阅读目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 查找文件位置
 
 ## 如何添加一个 topic
 
 1. 可以开一个 Issue
-2. 可以自行阅读目录 (mkdocs.yml)
+2. 可以自行阅读目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17)
 
 ## commit message 怎么写
 
 我们推荐使用 [commitizen/cz-cli](https://github.com/commitizen/cz-cli) 来规范 commit message （并非强求）。
+
+## 我尝试访问 Github 的时候遇到了困难
+
+推荐在 hosts 文件中加入如下几行：（来源： [@GoogleHosts](https://github.com/googlehosts/hosts/blob/master/hosts-files/hosts#L481-L485)）
+
+```
+# Github Start
+192.30.253.118	gist.github.com
+192.30.253.112	github.com
+192.30.253.112	www.github.com
+# Github End
+```
+
+可以在 [@GoogleHosts 主页](https://github.com/googlehosts/hosts) 上了解到更多信息。
+
+## 我这里 pip 也太慢了
+
+可以选择更换国内源，参考： 	https://blog.csdn.net/lambert310/article/details/52412059
+
+或者：
+
+```
+pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+```
+
+## 我之前没有用过 Github
+
+参与 Wiki 的编写 **需要** 一个 Github 账号， **不需要** 高超的 Github 技巧。
+
+举个栗子，假如我想要修改一个页面内容，应该怎么操作呢？
+
+1. 在 OI Wiki 网站上找到对应页面
+2. 点击正文右上方、目录左侧的“编辑此页”按钮
+3. （应该已经跳转到了 Github 上的对应页面吧？）这时候右上方还会有一个“编辑此页”的按钮，点击它就可以在线编辑了
+4. 写好了之后点下方的绿色按钮，可能会提示没有权限。不必担心！Github 会自动帮你 fork 一份项目的文件并创建 Pull Requests
+
+（有木有很简单？）
+
+如果还是不放心，可以参考这篇文章：https://juejin.im/entry/56e638591ea49300550885cc
+
+## 我在客户端 clone 了这个项目，速度太慢
+
+如果有安装 `git bash`，可以加几个限制来减少下载量：
+
+```
+git clone https://github.com/24OI/OI-wiki.git --depth=1 -b master
+```
+
+参考这篇文章：https://blog.csdn.net/FreeApe/article/details/46845555
+	``
+## 我没装过 python3
+
+可以访问 [Python 官网](https://www.python.org/downloads/) 了解更多信息。
+
+## 好像提示我 pip 版本过低
+进入 cmd / shell 之后
+
+```
+python -m pip install --upgrade pip
+```
+
+## 我安装依赖失败了
+
+检查一下：网络？权限？查看错误信息？
+
+## 我已经 clone 下来了，为什么部署不了？
+
+检查一下是否安装好了依赖？
+
+## 我 clone 了很久之前的 repo，怎么更新到新版本呢？
+
+参考：	https://help.github.com/articles/syncing-a-fork/
+
+## 如果是装了之前的依赖怎么更新
+
+```
+pip install -U -r requirements.txt
+```
