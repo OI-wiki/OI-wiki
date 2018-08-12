@@ -11,7 +11,7 @@
     <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
     <script>
       var gitment = new Gitment({
-        
+        id: '{{ page.title | default("404", true)  }}',
         owner: 'Ir1d',
         repo: 'gitment',
         oauth: {
