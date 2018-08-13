@@ -20,6 +20,7 @@ nav:
     - OI 赛制简介: introduction/mode.md
     - 学习资源: introduction/resources.md
     - 工具软件: introduction/softwares.md
+    - F.A.Q: introduction/faq.md
   - 基础部分:
     - 基础部分简介: basic/index.md
     - 枚举: basic/enumerate.md
@@ -99,7 +100,8 @@ nav:
     - 抽屉原理: math/drawer-principle.md
     - 数值与积分: math/integral.md
     - 快速傅里叶变换: math/fft.md
-    - 快速数论变换: math/fnt.md
+    - 快速数论变换: math/ntt.md
+    - 快速沃尔什变换: math/fwt.md
     - 线性规划: math/linear-programming.md
     - 杂项: math/misc.md
   - 数据结构:

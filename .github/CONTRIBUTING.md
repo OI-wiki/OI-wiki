@@ -1,6 +1,6 @@
 # 交流方式
 
-本项目主要使用 Issues / [QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) / [Telegram]((https://t.me/OIwiki)) 进行交流沟通。
+本项目主要使用 Issues / [QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) / [Telegram](https://t.me/OIwiki) 进行交流沟通。
 
 Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`588793226`](https://jq.qq.com/?_wv=1027&k=5EfkM6K)，欢迎加入。
 
@@ -115,7 +115,7 @@ git clone https://github.com/24OI/OI-wiki.git --depth=1 -b master
 ```
 
 参考这篇文章：https://blog.csdn.net/FreeApe/article/details/46845555
-	``
+
 ## 我没装过 python3
 
 可以访问 [Python 官网](https://www.python.org/downloads/) 了解更多信息。
