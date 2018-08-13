@@ -48,7 +48,7 @@ int vec_query(int k,int l,int r,int x,int y)
 }
 ```
 第三维修改
-```
+```c++
 void vec_insert(int &k,int l,int r,int loc)
 {
 	if (k == 0) k = ++tot;
