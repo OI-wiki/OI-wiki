@@ -43,7 +43,7 @@ match_pre(int n) {
 }
 
 match(char *a, char *b, int n, int m) {
-    // match 函数返回：长度为 m 的串 b 在长度为 n 的串 a 中的匹配次数
+    // match 函数返回：长度为 m 的串 b 在长度为 n 的串 a 中的匹配位置
     // hash(a, m) 函数用来获得某个字符串前 m 个字符的部分的 hash 值
     ans = new vector();
     int ha = hash(a, m);
