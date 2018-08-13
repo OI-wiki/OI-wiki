@@ -1,6 +1,6 @@
 # 交流方式
 
-本项目主要使用 Issues / [QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) / [Telegram]((https://t.me/OIwiki)) 进行交流沟通。
+本项目主要使用 Issues / [QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) / [Telegram](https://t.me/OIwiki) 进行交流沟通。
 
 Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`588793226`](https://jq.qq.com/?_wv=1027&k=5EfkM6K)，欢迎加入。
 
