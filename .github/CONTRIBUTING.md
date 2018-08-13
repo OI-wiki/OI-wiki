@@ -115,7 +115,7 @@ git clone https://github.com/24OI/OI-wiki.git --depth=1 -b master
 ```
 
 参考这篇文章：https://blog.csdn.net/FreeApe/article/details/46845555
-	``
+
 ## 我没装过 python3
 
 可以访问 [Python 官网](https://www.python.org/downloads/) 了解更多信息。
