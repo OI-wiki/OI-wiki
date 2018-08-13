@@ -2,6 +2,11 @@
 
 很多时候，你拿到了一套题，想要在本地测试一下自己能得多少分，这时候就需要评测软件了。
 
+### Cena
+
+Cena 是由刘其帅和李子星使用 Pascal 语言编写的开源评测工具，是流传最广泛的本地评测工具。Cena 最初开源于 Google Code 平台，由于不明原因 Google 删除了 Cena 项目，目前可以在 [Web Archive](https://web.archive.org/web/20131023112258/http://code.google.com/p/cena/) 上找到 Cena 的官网。
+
+Cena 的源代码可以在[这里](https://github.com/billchenchina/cena)找到。
 
 ### Lemon
 
@@ -46,10 +51,8 @@ cd ..
 
 此时你的题目和数据点应该都显示在 lemon 当中了
 
-### Cena
 
-老牌评测软件
 
 ### Arbiter
 
-NOI Linux 御用评测工具
+Arbiter 为北京航空航天大学为 NOI Linux 开发的评测工具，现已用于各大 NOI 系列程序设计竞赛的评测。
