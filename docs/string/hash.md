@@ -50,7 +50,7 @@ match(char *a, char *b, int n, int m) {
         if ((ha - hb * exp[i]) % M == 0) {
             ans.push_back(i);
         }
-        ha = (ha - a[i] + a[i + m] * exp[i + m]) % M;
+        ha = (ha - a[i] * exp[i] + a[i + m] * exp[i + m]) % M;
     }
     return ans;
 }
