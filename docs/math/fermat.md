@@ -1,12 +1,12 @@
 ## 费马小定理
 
-若 $p$ 为素数，$gcd(a, p) = 1$，则 $a^{p - 1} \equiv 1 \pmod{p}$。
+若 $p$ 为素数，$\gcd(a, p) = 1$，则 $a^{p - 1} \equiv 1 \pmod{p}$。
 
 另一个形式：对于任意整数 $a$，有 $a^p \equiv a \pmod{p}$。
 
 ## 欧拉定理
 
-若 $gcd(a, m) = 1$，则 $a^{\phi(m)} \equiv 1 \pmod{m}$。
+若 $\gcd(a, m) = 1$，则 $a^{\phi(m)} \equiv 1 \pmod{m}$。
 
 ### 证明
 
