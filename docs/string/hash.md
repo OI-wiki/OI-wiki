@@ -35,20 +35,26 @@ Hash 的核心思想在于，暴力算法中，单次比较的时间太长了，
 伪代码：
 
 ```
-
-match_prematch_pre((intint n) {
-	 n) { 	expexp[[00] = ] = 11;
-	; 	forfor (i =  (i = 11; i < n; i++) ; i < n; i++) expexp[i] = [i] = expexp[i - [i - 11] * b % M;
+match_pre(int n) {
+    exp[0] = 1;
+    for (i = 1; i < n; i++) {
+        exp[i] = exp[i - 1] * b % M;
+    }
 }
-] * b % M; } matchmatch((charchar *a,  *a, charchar *b,  *b, intint n,  n, intint m) {
-	ans =  m) { 	ans = newnew  vectorvector();
-	(); 	intint ha =  ha = hashhash(a, m);
-	(a, m); 	intint hb =  hb = hashhash(b, m);
-	(b, m); 	forfor (i =  (i = 00; i < n - m + ; i < n - m + 11; i++) {
-		; i++) { 		ifif ((ha - hb *  ((ha - hb * expexp[i]) % M == [i]) % M == 00) ans.) ans.push_backpush_back(i);
-		ha = (ha - a[i] * (i); 		ha = (ha - a[ exp[i] + a[i + m] * exp[i + m]) % M;
-	}
-	return ans;
+
+match(char *a, char *b, int n, int m) {
+    // match 函数返回：长度为 m 的串 b 在长度为 n 的串 a 中的匹配次数
+    // hash(a, m) 函数用来获得某个字符串前 m 个字符的部分的 hash 值
+    ans = new vector();
+    int ha = hash(a, m);
+    int hb = hash(b, m);
+    for (i = 0; i < n - m + 1; i++) {
+        if ((ha - hb * exp[i]) % M == 0) {
+            ans.push_back(i);
+        }
+        ha = (ha - a[i] * exp[i] + a[i + m] * exp[i + m]) % M;
+    }
+    return ans;
 }
 ```
 

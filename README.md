@@ -38,9 +38,9 @@
 
 本文档目前采用 [mkdocs](https://github.com/mkdocs/mkdocs) 部署在 [oi-wiki.cf](https://oi-wiki.cf)。
 
-当然也可以本地部署。（需要 python3）
+当然也可以本地部署。（**需要 python3**）
 
-可以访问 [CONTRIBUTING.md](.github/CONTRIBUTING.md) 了解更多信息。
+如果遇到问题，可以查阅 [F.A.Q.](.github/CONTRIBUTING.md#faq) 来了解更多信息。
 
 ```bash
 git clone https://github.com/24OI/OI-wiki.git
