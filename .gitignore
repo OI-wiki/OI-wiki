@@ -1,5 +1,7 @@
 _build/
 site/
+mkdocs-material/
 .vscode/
 .DS_Store
 .env
+.well-known/

@@ -3,6 +3,7 @@ site_name: OI Wiki
 site_description: OI Wiki
 site_author: OI Wiki Team
 site_url: https://oi-wiki.cf
+strict: true
 
 # Repository
 repo_name: '24OI/OI-wiki'
@@ -13,11 +14,13 @@ edit_uri: 'blob/master/docs/'
 copyright: 'Copyright &copy; 2016 - 2018 OI Wiki Team'
 
 # Contents
-pages:
+nav:
   - 简介:
     - Getting Started: index.md
     - OI 赛制简介: introduction/mode.md
     - 学习资源: introduction/resources.md
+    - 工具软件: introduction/softwares.md
+    - F.A.Q: introduction/faq.md
   - 基础部分:
     - 基础部分简介: basic/index.md
     - 枚举: basic/enumerate.md
@@ -41,25 +44,27 @@ pages:
     - Dancing Links: search/dlx.md
   - 动态规划:
     - 动态规划部分简介: dp/index.md
-    - 记忆化搜索: dp/记忆化搜索.md
-    - 背包DP: dp/backpack.md
-    - 区间DP: dp/interval.md
-    - DAG上的dp: dp/dag.md
-    - 树形DP: dp/tree.md
-    - 状压DP: dp/state.md
-    - 数位DP: dp/number.md
-    - 插头DP: dp/plug.md
+    - 记忆化搜索: dp/memo.md
+    - 背包 DP: dp/backpack.md
+    - 区间 DP: dp/interval.md
+    - DAG 上的 dp: dp/dag.md
+    - 树形 DP: dp/tree.md
+    - 状压 DP: dp/state.md
+    - 数位 DP: dp/number.md
+    - 插头 DP: dp/plug.md
     - 优化及其它: dp/optimization.md
     - 其它动规方法: dp/misc.md
   - 字符串:
     - 字符串部分简介: string/index.md
-    - 一堆字符串函数: string/stl.md
-    - 哈希大法: string/hash.md
+    - 标准库: string/stl.md
+    - 字符串匹配问题: string/match.md
+    - 哈希: string/hash.md
+    - KMP: string/kmp.md
     - 字典树（Trie）: string/trie.md
     - 回文自动机: string/pam.md
     - 回文树: string/palindrome-tree.md
     - 后缀数组（SA）: string/sa.md
-    - AC自动机: string/ac-automaton.md
+    - AC 自动机: string/ac-automaton.md
     - 后缀自动机（SAM）: string/sam.md
     - 后缀树: string/suffix-tree.md
     - Manacher: string/manacher.md
@@ -67,25 +72,25 @@ pages:
   - 数学:
     - 数学部分简介: math/index.md
     - 进制相关: math/base.md
-    - 最大公约数: math/gcd.md
-    - 找一个数的所有约数: math/divisor.md
-    - 费马小定理（欧拉定理）: math/fermat.md
     - 素数: math/prime.md
+    - 最大公约数: math/gcd.md
+    - 欧拉函数: math/euler.md
+    - 筛法: math/sieve.md
+    - 莫比乌斯反演: math/mobius.md
+    - 费马小定理（欧拉定理）: math/fermat.md
     - 快速幂: math/quick-pow.md
     - 中国剩余定理: math/crt.md
     - 分段打表: math/dictionary.md
-    - 欧几里得算法: math/euclid.md
     - 矩阵: math/matrix.md
     - 位运算: math/bit.md
     - 乘法逆元: math/inverse.md
     - 阶 原根: math/primitive-root.md
     - BSGS: math/bsgs.md
-    - 筛法: math/sieve.md
     - 博弈论: math/game.md
-    - 欧拉函数: math/euler.md
     - 多项式黑科技: math/poly.md
-    - 卡特兰数: math/catalan.md
     - 排列组合: math/combination.md
+    - 卡特兰数: math/catalan.md
+    - 斯特林数: math/stirling.md
     - 康托展开: math/cantor.md
     - 概率与期望: math/expectation.md
     - 置换群: math/permutation-group.md
@@ -94,9 +99,9 @@ pages:
     - 容斥原理: math/inclusion-exclusion-principle.md
     - 抽屉原理: math/drawer-principle.md
     - 数值与积分: math/integral.md
-    - 莫比乌斯反演: math/mobius.md
     - 快速傅里叶变换: math/fft.md
-    - 快速数论变换: math/fnt.md
+    - 快速数论变换: math/ntt.md
+    - 快速沃尔什变换: math/fwt.md
     - 线性规划: math/linear-programming.md
     - 杂项: math/misc.md
   - 数据结构:
@@ -104,13 +109,13 @@ pages:
     - STL: data-structure/stl.md
     - pb_ds: data-structure/pb-ds.md
     - 基础数据结构:
-      - 堆: data-structure/novice/heap.md
       - 链表: data-structure/novice/linked-list.md
-      - 分块: data-structure/novice/square-root-decomposition.md
       - 哈希表: data-structure/novice/hash.md
+      - 并查集: data-structure/novice/dsu.md
+      - 堆: data-structure/novice/heap.md
+      - 分块: data-structure/novice/square-root-decomposition.md
       - 单调栈: data-structure/novice/monotonous-stack.md
       - 单调队列: data-structure/novice/monotonous-queue.md
-      - 并查集: data-structure/novice/dsu.md
     - 中级数据结构:
       - 倍增法: data-structure/intermediate/sparse-table.md
       - 块状链表: data-structure/intermediate/block-list.md
@@ -121,6 +126,7 @@ pages:
       - SBT: data-structure/intermediate/sbt.md
       - Splay: data-structure/intermediate/splay.md
       - 替罪羊树: data-structure/intermediate/scapegoat.md
+      - 虚树: data-structure/intermediate/virtual-tree.md
     - 高级数据结构:
       - 树套树:
         - 线段树套线段树: data-structure/advanced/seg-in-seg.md
@@ -138,8 +144,9 @@ pages:
       - 树分块: data-structure/advanced/tree-decompose.md
   - 图论:
     - 图论部分简介: graph/index.md
-    - 存储方式：邻接矩阵、前向星、链式前向星: graph/save.md
-    - 遍历：BFS和DFS: graph/traverse.md
+    - 图论基础: graph/basic.md
+    - 树相关基础: graph/tree-basic.md
+    - 遍历：BFS 和 DFS: graph/traverse.md
     - 最小生成树: graph/mst.md
     - 最近公共祖先: graph/lca.md
     - 树链剖分: graph/heavy-light-decomposition.md
@@ -153,10 +160,11 @@ pages:
     - 双连通分量: graph/bcc.md
     - 割点割边: graph/bridge.md
     - 差分约束: graph/differential-constraints.md
+    - 有向无环图: graph/dag.md
     - 二分图: graph/bi-graph.md
     - 最短路: graph/shortest-path.md
     - 最小环: graph/min-circle.md
-    - k短路: graph/kth-path.md
+    - k 短路: graph/kth-path.md
     - 欧拉图: graph/euler.md
     - 网络流: graph/flow.md
     - 拆点: graph/flow/node.md
@@ -188,6 +196,8 @@ pages:
     - 随机化: misc/random.md
     - 离线处理: misc/offline.md
     - 各种距离: misc/distance.md
+    - 字节顺序: misc/endianness.md
+    - 复杂度: misc/complexity.md
 
 # Theme
 theme:
@@ -196,6 +206,10 @@ theme:
   palette:
     primary: 'white'
     accent: 'red'
+
+  include_search_page: false
+  search_index_only: true
+
   logo:
     icon: 'school'
   feature:
@@ -207,7 +221,7 @@ theme:
 # Customization
 extra:
   search:
-    language: 'cn'
+    language: 'jp'
   disqus: 'OI-Wiki'
 
 extra_javascript:
