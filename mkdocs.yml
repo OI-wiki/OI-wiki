@@ -103,6 +103,7 @@ nav:
     - 快速数论变换: math/ntt.md
     - 快速沃尔什变换: math/fwt.md
     - 线性规划: math/linear-programming.md
+    - 复数: math/complex.md
     - 杂项: math/misc.md
   - 数据结构:
     - 数据结构部分简介: data-structure/index.md
