@@ -193,6 +193,7 @@ nav:
     - 分数规划: misc/fractional-programming.md
     - 模拟退火: misc/simulated-annealing.md
     - 朱刘算法: misc/zhu-liu-algorithm.md
+    - 矩阵树定理: misc/matrix-tree.md
     - 随机增量法: misc/random-incremental.md
     - 随机化: misc/random.md
     - 离线处理: misc/offline.md
