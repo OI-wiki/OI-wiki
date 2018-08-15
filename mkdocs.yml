@@ -20,7 +20,7 @@ nav:
     - OI 赛制简介: introduction/mode.md
     - 学习资源: introduction/resources.md
     - 工具软件: introduction/softwares.md
-    - F.A.Q: introduction/faq.md
+    - F.A.Q.: introduction/faq.md
   - 基础部分:
     - 基础部分简介: basic/index.md
     - 枚举: basic/enumerate.md
@@ -104,6 +104,7 @@ nav:
     - 快速沃尔什变换: math/fwt.md
     - 线性规划: math/linear-programming.md
     - 复数: math/complex.md
+    - 高精度: math/bignum.md
     - 杂项: math/misc.md
   - 数据结构:
     - 数据结构部分简介: data-structure/index.md
@@ -131,8 +132,8 @@ nav:
     - 高级数据结构:
       - 树套树:
         - 线段树套线段树: data-structure/advanced/seg-in-seg.md
-        - 线段树套平衡树: data-structure/advanced/seg-in-balanced.md
-        - 平衡树套线段树: data-structure/advanced/balanced-in-seg.md
+        - 平衡树套线段树: data-structure/advanced/seg-in-balanced.md
+        - 线段树套平衡树: data-structure/advanced/balanced-in-seg.md
       - AVL树: data-structure/advanced/avl.md
       - 划分树: data-structure/advanced/dividin.md
       - K-Dtree: data-structure/advanced/k-dtree.md
