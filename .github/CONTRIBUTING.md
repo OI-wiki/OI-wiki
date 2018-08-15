@@ -144,3 +144,13 @@ python -m pip install --upgrade pip
 ```
 pip install -U -r requirements.txt
 ```
+
+## 我的数学公式怎么乱码了？
+
+如果是行间公式（用的 `$$`），目前已知的问题是需要在 `$$` 两侧留有空行。格式如下：
+
+```
+// 空行
+$$ a_i $$
+// 空行
+```
