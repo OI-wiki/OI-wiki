@@ -47,3 +47,146 @@ bool millerRabbin(int n) {
   return 1;
 }
 ```
+
+## 反素数
+
+### 定义
+
+如果某个正整数 n 满足如下条件，则称为是反素数：
+  任何小于 n 的正数的约数个数都小于 n 的约数个数
+
+注：注意区分 [emirp](https://en.wikipedia.org/wiki/Emirp)，它是用来表示从后向前写读是素数的数。
+
+### 简介
+
+（本段转载自 [桃酱的算法笔记](https://zhuanlan.zhihu.com/c_1005817911142838272)，原文戳 [链接](https://zhuanlan.zhihu.com/p/41759808)，已获得作者授权）
+
+其实顾名思义，素数就是因子只有两个的数，那么反素数，就是因子最多的数（并且因子个数相同的时候值最小），所以反素数是相对于一个集合来说的。
+
+我所理解的反素数定义就是，在一个集合中，因素最多并且值最小的数，就是反素数。
+
+那么，如何来求解反素数呢？
+
+首先，既然要求因子数，我首先想到的就是素因子分解。把 n 分解成 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$
+
+的形式，其中 p 是素数，k 为他的指数。这样的话总因子个数就是 $(k_1+1)*(k_2+1)*(k_3+1) \cdots * (k_n+1)$。
+
+但是显然质因子分解的复杂度是很高的，并且前一个数的结果不能被后面利用。所以要换个方法。
+
+我们来观察一下反素数的特点。
+
+1. 反素数肯定是从 2 开始的连续素数的幂次形式的乘积。
+2. 数值小的素数的幂次大于等于数值大的素数，即 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 中，有 $k1 \geq k2 \geq k3 \geq \cdots \geq k_n$
+
+解释：
+1. 如果不是从 2 开始的连续素数，那么如果幂次不变，把素数变成数值更小的素数，那么此时因子个数不变，但是 n 的数值变小了。交换到从 2 开始的连续素数的时候 n 值最小。
+2. 如果数值小的素数的幂次小于数值大的素数的幂，那么如果把这两个素数交换位置（幂次不变），那么所得的 n 因子数量不变，但是 n 的值变小。
+
+另外还有两个问题，
+
+1. 对于给定的 n，要枚举到哪一个素数呢？
+
+最极端的情况大不了就是 $n=p_{1}*p_{2} \cdots p_{n}$ ，所以只要连续素数连乘到刚好小于等于 n 就可以的呢。再大了，连全都一次幂，都用不了，当然就是用不到的啦！
+
+2. 我们要枚举到多少次幂呢？
+
+我们考虑一个极端情况，当我们最小的素数的某个幂次已经比所给的 n（的最大值）大的话，那么展开成其他的形式，最大幂次一定小于这个幂次。unsigned long long 的最大值是 2 的 64 次方，所以我这边习惯展开成 2 的 64 次方。
+
+细节有了，那么我们具体如何具体实现呢？
+
+我们可以把当前走到每一个素数前面的时候列举成一棵树的根节点，然后一层层的去找。找到什么时候停止呢？
+
+1. 当前走到的数字已经大于我们想要的数字了
+
+2. 当前枚举的因子已经用不到了（和 1 重复了嘻嘻嘻）
+
+3. 当前因子大于我们想要的因子了
+
+4. 当前因子正好是我们想要的因子（此时判断是否需要更新最小 ans）
+
+然后 dfs 里面不断一层一层枚举次数继续往下迭代就好啦~~
+
+### 常见题型
+
+#### 给定因子数，求满足因子数恰好等于这个数的最小数
+
+题目链接：http://codeforces.com/problemset/problem/27/E
+
+对于这种题，我么只要以因子数为 dfs 的返回条件基准，不断更新找到的最小值就可以了
+
+上代码：
+
+```c++
+#include<stdio.h>
+#define ULL unsigned long long
+#define INF ~0ULL
+int p[16] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53};
+ 
+ULL ans;
+int n;
+ 
+//depth: 当前在枚举第几个素数。num: 当前因子数。
+//temp: 当前因子数量为 num 的时候的数值。up：上一个素数的幂，这次应该小于等于这个幂次嘛
+void dfs(int depth,int temp,int num,int up){
+    if(num > n||depth >= 16) return;
+    if(num == n&&ans > temp){
+        ans = temp;
+        return;
+    }
+    for(int i = 1;i <= up;i++){
+        if(temp/p[depth] > ans) break;
+        dfs(depth+1,temp = temp*p[depth],num*(i+1),i);
+    }
+}
+ 
+ 
+int main(){
+    while(scanf("%d",&n) != EOF){
+        ans = INF;
+        dfs(0,1,1,64);
+        printf("%d\n",ans);
+    }
+    return 0;
+}
+```
+
+#### 给定一个 n，求 n 以内因子数最多的数
+
+http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemId=1562
+
+思路同上，只不过要改改 dfs 的返回条件。注意这样的题目的数据范围，我一开始用了 int，应该是溢出了，在循环里可能就出不来了就超时了。上代码，0ms 过。注释就没必要写了上面写的很清楚了。
+
+```c++
+#include<cstdio>
+#include<iostream>
+#define ULL unsigned long long
+ 
+int p[16] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53};
+ULL n;
+ULL ans,ans_num;//ans 为 n 以内的最大反素数（会持续更新），ans_sum 为 ans 的因子数。
+ 
+void dfs(int depth,ULL temp,ULL num,int up){
+    if(depth >= 16||temp > n)return;
+    if(num > ans_num){
+        ans = temp;
+        ans_num = num;
+    }
+    if(num == ans_num&&ans > temp)
+        ans = temp;
+    for(int i = 1;i <= up;i++){
+        if(temp*p[depth] > n)break;
+        dfs(depth+1,temp *= p[depth],num*(i+1),i);
+    }
+    return;
+}
+ 
+ 
+int main(){
+    while(scanf("%lld",&n) != EOF){
+        ans_num = 0;
+        dfs(0,1,1,60);
+        printf("%lld\n",ans);
+    }
+    return 0;
+}
+```
