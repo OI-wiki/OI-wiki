@@ -20,6 +20,7 @@ nav:
     - OI 赛制简介: introduction/mode.md
     - 学习资源: introduction/resources.md
     - 工具软件: introduction/softwares.md
+    - F.A.Q.: introduction/faq.md
   - 基础部分:
     - 基础部分简介: basic/index.md
     - 枚举: basic/enumerate.md
@@ -94,13 +95,16 @@ nav:
     - 概率与期望: math/expectation.md
     - 置换群: math/permutation-group.md
     - 高斯消元: math/gauss.md
-    - xor模线性方程组: math/linear-equations.md
+    - xor 模线性方程组: math/linear-equations.md
     - 容斥原理: math/inclusion-exclusion-principle.md
     - 抽屉原理: math/drawer-principle.md
     - 数值积分: math/integral.md
     - 快速傅里叶变换: math/fft.md
-    - 快速数论变换: math/fnt.md
+    - 快速数论变换: math/ntt.md
+    - 快速沃尔什变换: math/fwt.md
     - 线性规划: math/linear-programming.md
+    - 复数: math/complex.md
+    - 高精度: math/bignum.md
     - 杂项: math/misc.md
   - 数据结构:
     - 数据结构部分简介: data-structure/index.md
@@ -128,9 +132,9 @@ nav:
     - 高级数据结构:
       - 树套树:
         - 线段树套线段树: data-structure/advanced/seg-in-seg.md
-        - 线段树套平衡树: data-structure/advanced/seg-in-balanced.md
-        - 平衡树套线段树: data-structure/advanced/balanced-in-seg.md
-      - AVL树: data-structure/advanced/avl.md
+        - 平衡树套线段树: data-structure/advanced/seg-in-balanced.md
+        - 线段树套平衡树: data-structure/advanced/balanced-in-seg.md
+      - AVL 树: data-structure/advanced/avl.md
       - 划分树: data-structure/advanced/dividin.md
       - K-Dtree: data-structure/advanced/k-dtree.md
       - 可持久化线段树: data-structure/advanced/persistent-seg.md
@@ -174,7 +178,7 @@ nav:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
     - 三维计算几何基础: geometry/3d.md
-    - pick定理: geometry/pick.md
+    - Pick 定理: geometry/pick.md
     - 三角剖分: geometry/triangulation.md
     - 凸包: geometry/convex-hull.md
     - 扫描线: geometry/scanning.md
@@ -184,12 +188,13 @@ nav:
   - 杂项:
     - 杂项简介: misc/index.md
     - 非传统题（提答大法）: misc/non-traditional.md
-    - cdq分治: misc/cdq-divide.md
+    - CDQ 分治: misc/cdq-divide.md
     - 莫队算法: misc/mo-algo.md
     - 爬山算法: misc/hill-climbing.md
     - 分数规划: misc/fractional-programming.md
     - 模拟退火: misc/simulated-annealing.md
     - 朱刘算法: misc/zhu-liu-algorithm.md
+    - 矩阵树定理: misc/matrix-tree.md
     - 随机增量法: misc/random-incremental.md
     - 随机化: misc/random.md
     - 离线处理: misc/offline.md
@@ -199,7 +204,10 @@ nav:
 
 # Theme
 theme:
-  name: 'material'
+  name : null
+  custom_dir: 'mkdocs-material/material'
+  static_templates:
+    - 404.html
   language: 'zh'
   palette:
     primary: 'white'

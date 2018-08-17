@@ -53,4 +53,4 @@ void bfs(int u) {
 
 在实现 bfs 的时候，我们把未被访问过的节点放在一个称为 open 的容器中，而把已经访问过了的节点放在 closed 容器中。
 
-## [在树 / 图上 dfs](/graph/traverse)
+## [在树 / 图上 bfs](/graph/traverse)

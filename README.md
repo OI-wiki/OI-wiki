@@ -38,12 +38,14 @@
 
 本文档目前采用 [mkdocs](https://github.com/mkdocs/mkdocs) 部署在 [oi-wiki.cf](https://oi-wiki.cf)。
 
-当然也可以本地部署。
+当然也可以本地部署。（**需要 python3**）
+
+如果遇到问题，可以查阅 [F.A.Q.](.github/CONTRIBUTING.md#faq) 来了解更多信息。
 
 ```bash
 git clone https://github.com/24OI/OI-wiki.git
 cd OI-wiki
-pip install -r requirements.txt
+pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
 # 最简单的构建方法，会在 site/ 文件夹下得到静态页面
 mkdocs build
