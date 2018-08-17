@@ -32,9 +32,23 @@ $$
 1. 计算所有模数的积 $n$；
 2. 对于第 $i$ 个方程：
 	1. 计算 $m_i=n/n_i$；
-	2. 计算 $m_i$ 在模 $n_i$ 意义下的逆元 $m_i^{-1}$；
+	2. 计算 $m_i$ 在模 $n_i$ 意义下的[逆元](/math/inverse/) $m_i^{-1}$；
 	3. 计算 $c_i=m_im_i^{-1}$（**不要对 $n_i$ 取模**）。
 3. 方程组的唯一解为：$a=\sum_{i=1}^k a_ic_i \pmod n$。
+
+### 伪代码
+
+```plain
+1 → n
+0 → ans
+for i = 1 to k
+	n * n[i] → n
+for i = 1 to k
+	n / n[i] → m
+	inv(m, n[i]) → b               // b * m mod n[i] = 1
+	(ans + m * b) mod n → ans
+return ans
+```
 
 ## 算法的证明
 

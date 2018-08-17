@@ -97,7 +97,7 @@ nav:
     - xor模线性方程组: math/linear-equations.md
     - 容斥原理: math/inclusion-exclusion-principle.md
     - 抽屉原理: math/drawer-principle.md
-    - 数值与积分: math/integral.md
+    - 数值积分: math/integral.md
     - 快速傅里叶变换: math/fft.md
     - 快速数论变换: math/fnt.md
     - 线性规划: math/linear-programming.md
