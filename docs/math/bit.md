@@ -55,7 +55,7 @@
 
 ## 位运算的应用
 
-> num<<i相当于num乘以2的i次方，而num>>i相当于num/2 的i次方(位运算比"%"和"/"操作快得多
+> num<<<seperator style="font-size:0;margin:0;padding:0;"></seperator>i相当于num乘以2的i次方，而num>>i相当于num/2 的i次方(位运算比"%"和"/"操作快得多
 (据说效率可以提高60%)(据2018JSOI夏令营课件)
 
 > num*10=(num<<1)+(num<<3)
