@@ -72,3 +72,8 @@ void swap(int a, int b){
 }
 
 ```
+---
+
+#### 题目推荐
+
+[CODE[VS] 2743 黑白棋游戏 ](http://codevs.cn/problem/2743/)
