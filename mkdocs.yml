@@ -201,7 +201,7 @@ nav:
     - 各种距离: misc/distance.md
     - 字节顺序: misc/endianness.md
     - 复杂度: misc/complexity.md
-    - 读入和输出优化: misc/inandout.md
+    - 读入和输出优化: misc/io.md
 
 # Theme
 theme:
