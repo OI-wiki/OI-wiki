@@ -22,9 +22,9 @@
 
 ## 快速排序
 
-C++ 函数模板库实现了快速排序，可以查阅 [std::sort()](https://devdocs.io/cpp/algorithm/sort)
+C函数模板库实现了快速排序，即`stdlib.h`当中的`qsort`。但在OI相关比赛当中，更为常见的库排序函数是C++ `algorithm`库中的`std::sort`函数。C++标准并未严格要求此函数的实现算法，具体实现取决于编译器，但他的时间复杂度是$O(N\log N)$的。可以查阅 [std::sort()](http://www.cplusplus.com/reference/list/list/sort/)
 
-用法：
+快速用法：
 ```c++
 // a[0] .. a[n - 1] 是放了元素的
 std::sort(a, a + n);
