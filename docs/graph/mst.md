@@ -52,9 +52,9 @@ for (edge(u, v, len) in sorted(edges)) {
 }
 ```
 
-`find_set` 调用 $\mathcal{O}(m)$ 次，merge 调用 $\mathcal{O}(n)$ 次。
+`find_set` 调用 $O(m)$ 次，merge 调用 $O(n)$ 次。
 
-排序的复杂度为 $\mathcal{O}(m \log m)$，或 $\mathcal{O}(m)$（假设能基数排序）。
+排序的复杂度为 $O(m \log m)$，或 $O(m)$（假设能基数排序）。
 
 ### “集合”数据结构的一种实现
 
@@ -62,15 +62,15 @@ for (edge(u, v, len) in sorted(edges)) {
 
 我们先考虑暴力，直接维护每个元素属于哪个集合，以及每个集合有哪些元素。
 
-find_set：$\mathcal{O}(1)$
+find_set：$O(1)$
 
-merge：$\mathcal{O}(n)$，需要将一个集合中的所有元素移到另一个集合中。
+merge：$O(n)$，需要将一个集合中的所有元素移到另一个集合中。
 
 于是考虑如何优化 merge。
 
 一个简单的思路是，将较小的集合中所有元素移到较大的集合中。
 
-复杂度是 $\mathcal{O}(较小集合的大小)$。
+复杂度是 $O(较小集合的大小)$。
 
 那么总时间复杂度是多少呢？
 
@@ -80,11 +80,11 @@ merge：$\mathcal{O}(n)$，需要将一个集合中的所有元素移到另一�
 
 所以一个元素所在的集合，最多有 $\log n$ 次，作为较小集合被合并。
 
-一共$n$个元素，所以总时间复杂度为 $\mathcal{O}(n \log n + m)$。
+一共$n$个元素，所以总时间复杂度为 $O(n \log n + m)$。
 
 这种做法或者思想，叫「启发式合并」。
 
-总之我们得到了 $\mathcal{O}(n \log n + m \log m)$ 的 Kruskal 算法。
+总之我们得到了 $O(n \log n + m \log m)$ 的 Kruskal 算法。
 
 ## Prim 算法
 
@@ -127,11 +127,11 @@ merge：$\mathcal{O}(n)$，需要将一个集合中的所有元素移到另一�
 
 其实跟 Dijkstra 算法一样，只要一个堆来维护距离即可。
 
-暴力：$\mathcal{O}(n^2+m)$。
+暴力：$O(n^2+m)$。
 
-二叉堆：$\mathcal{O}((n+m) \log n)$。
+二叉堆：$O((n+m) \log n)$。
 
-Fib 堆：$\mathcal{O}(n \log n + m)$。
+Fib 堆：$O(n \log n + m)$。
 
 （伪代码）
 ```

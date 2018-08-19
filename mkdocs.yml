@@ -1,6 +1,6 @@
 # Project Information
 site_name: OI Wiki
-site_description: OI Wiki
+site_description: OI Wiki 是一个信息学奥林匹克竞赛知识整合站点，提供有趣又实用的 OI 知识以及其他有帮助的内容，帮助广大 OI 爱好者更快更深入地学习 OI 竞赛
 site_author: OI Wiki Team
 site_url: https://oi-wiki.cf
 strict: true
@@ -201,14 +201,11 @@ nav:
     - 各种距离: misc/distance.md
     - 字节顺序: misc/endianness.md
     - 复杂度: misc/complexity.md
-    - 读入和输出优化: misc/inandout.md
+    - 读入和输出优化: misc/io.md
 
 # Theme
 theme:
-  name : null
-  custom_dir: 'mkdocs-material/material'
-  static_templates:
-    - 404.html
+  name: 'material'
   language: 'zh'
   palette:
     primary: 'white'

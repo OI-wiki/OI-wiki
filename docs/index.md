@@ -1,4 +1,5 @@
 disqus:
+title: OI Wiki
 
 # 欢迎来到 **OI Wiki**。
 

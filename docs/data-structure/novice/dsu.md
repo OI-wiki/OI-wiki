@@ -93,11 +93,11 @@ void unionSet(int x,int y)
 
 ### 时间复杂度
 
-同时使用路径压缩和启发式合并之后，并查集的每个操作平均时间仅为 $\mathcal{O}(\alpha(n))$ ，其中 $\alpha$ 为 [阿克曼函数](https://en.wikipedia.org/wiki/Ackermann_function) 的反函数，其增长极其缓慢，也就是说其平均运行时间可以认为是一个含笑的常数。 
+同时使用路径压缩和启发式合并之后，并查集的每个操作平均时间仅为 $O(\alpha(n))$ ，其中 $\alpha$ 为 [阿克曼函数](https://en.wikipedia.org/wiki/Ackermann_function) 的反函数，其增长极其缓慢，也就是说其平均运行时间可以认为是一个含笑的常数。 
 
 ### 空间复杂度
 
-显然为 $\mathcal{O}(n)$。
+显然为 $O(n)$。
 
 ## 其他应用
 
