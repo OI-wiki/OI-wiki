@@ -81,34 +81,34 @@ $$p=998244353=2 \times 17 \times 2^23+1, g=3$$
 #include<map>
 #include<set>
 using namespace std;
-
+ 
 inline int read()
 {
 	int x=0,f=1;char ch=getchar();
 	while(ch<'0'||ch>'9'){if(ch=='-')f=-1;ch=getchar();}
-	while(ch<='9'&&ch>='0'){x=10 \times x+ch-'0';ch=getchar();}
-	return x \times f;
+	while(ch<='9'&&ch>='0'){x=10*x+ch-'0';ch=getchar();}
+	return x*f;
 }
 void print(int x)
 {if(x<0)putchar('-'),x=-x;if(x>=10)print(x/10);putchar(x%10+'0');}
-
+ 
 const int N=300100,P=998244353;
-
+ 
 inline int qpow(int x,int y)
 {
 	int res(1);
 	while(y)
 	{
-		if(y&1) res=1ll \times res \times x%P;
-		x=1ll \times x \times x%P;
+		if(y&1) res=1ll*res*x%P;
+		x=1ll*x*x%P;
 		y>>=1;
 	}
 	return res;
 }
-
+ 
 int r[N];
-
-void ntt(int  \times x,int lim,int opt)
+ 
+void ntt(int *x,int lim,int opt)
 {
 	register int i,j,k,m,gn,g,tmp;
 	for(i=0;i<lim;++i)
@@ -121,9 +121,9 @@ void ntt(int  \times x,int lim,int opt)
 		for(i=0;i<lim;i+=m)
 		{
 			g=1;
-			for(j=0;j<k;++j,g=1ll \times g \times gn%P)
+			for(j=0;j<k;++j,g=1ll*g*gn%P)
 			{
-				tmp=1ll \times x[i+j+k] \times g%P;
+				tmp=1ll*x[i+j+k]*g%P;
 				x[i+j+k]=(x[i+j]-tmp+P)%P;
 				x[i+j]=(x[i+j]+tmp)%P;
 			}
@@ -134,14 +134,14 @@ void ntt(int  \times x,int lim,int opt)
 		reverse(x+1,x+lim);
 		register int inv=qpow(lim,P-2);
 		for(i=0;i<lim;++i)
-			x[i]=1ll \times x[i] \times inv%P;
+			x[i]=1ll*x[i]*inv%P;
 	}
 }
-
+ 
 int A[N],B[N],C[N];
-
+ 
 char a[N],b[N];
-
+ 
 int main()
 {
 	register int i,lim(1),n;
@@ -154,10 +154,10 @@ int main()
 	for(i=0;i<n;++i) B[i]=b[n-i-1]-'0';
 	while(lim<(n<<1)) lim<<=1;
 	for(i=0;i<lim;++i)
-		r[i]=(i&1) \times (lim>>1)+(r[i>>1]>>1);
+		r[i]=(i&1)*(lim>>1)+(r[i>>1]>>1);
 	ntt(A,lim,1);ntt(B,lim,1);
 	for(i=0;i<lim;++i)
-		C[i]=1ll \times A[i] \times B[i]%P;
+		C[i]=1ll*A[i]*B[i]%P;
 	ntt(C,lim,-1);
 	int len(0);
 	for(i=0;i<lim;++i)

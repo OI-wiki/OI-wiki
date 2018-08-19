@@ -105,7 +105,8 @@ $C(a,2)=a\times (a-1)/2$
 <strong>注意：下面代码中的移动区间的 4 个 for 循环的位置很关键，不能改变它们之间的位置关系，不然会 WA（因为有那个 ++l 和 --r）。</strong>
 代码：
 
-<pre><code class="cpp">#include <bits/stdc++.h>
+```cpp
+#include <bits/stdc++.h>
 #define bi(a) ((a-1)/sqn+1)
 using namespace std;
 typedef long long LL;
@@ -123,23 +124,23 @@ LL gcd(LL a,LL b){return !b?a:gcd(b,a%b);}
 int main()
 {
     read(n),read(m),sqn=sqrt(n);
-    for(LL i=1;i \le n;i++)read(arr[i]);
-    for(LL i=1,a,b;i \le m;i++)read(a),read(b),tab.push_back((node){a,b,i});
+    for(LL i=1;i<=n;i++)read(arr[i]);
+    for(LL i=1,a,b;i<=m;i++)read(a),read(b),tab.push_back((node){a,b,i});
     sort(tab.begin(),tab.end(),cmp),l=r=tab[0].l,col[arr[l]]++;
     for(LL i=0,gcdnum;i<tab.size();i++)
     {
         for(;l<tab[i].l;l++)col[arr[l]]--,ans-=col[arr[l]];
         for(--l;l>=tab[i].l;l--)ans+=col[arr[l]],col[arr[l]]++;
         for(;r>tab[i].r;r--)col[arr[r]]--,ans-=col[arr[r]];
-        for(++r;r \le tab[i].r;r++)ans+=col[arr[r]],col[arr[r]]++;
+        for(++r;r<=tab[i].r;r++)ans+=col[arr[r]],col[arr[r]]++;
         sub[tab[i].i]=ans,l=tab[i].l,r=tab[i].r;
         mot[tab[i].i]=((r-l)*(r-l+1))>>1;
     }
-    for(LL i=1,gcdn;i \le m;i++)
+    for(LL i=1,gcdn;i<=m;i++)
         gcdn=gcd(sub[i],mot[i]),printf("%lld/%lld\n",sub[i]/gcdn,mot[i]/gcdn);
     return 0;
 }
-</code></pre>
+```
 
 
 ## 带修改
@@ -246,8 +247,8 @@ char opt[10];
 int main()
 {
 	IN(n),IN(m),sqn=pow(n,(double)2/(double)3);
-	for(int i=1;i \le n;i++)IN(c[i]),ct[i]=c[i];
-	for(int i=1,a,b;i \le m;i++)
+	for(int i=1;i<=n;i++)IN(c[i]),ct[i]=c[i];
+	for(int i=1,a,b;i<=m;i++)
 		if(scanf("%s",opt),IN(a),IN(b),opt[0]=='Q')
 			Q[c1].l=a,Q[c1].r=b,Q[c1].i=c1,Q[c1].c=c2,c1++;
 		else mem[c2][0]=a,mem[c2][1]=ct[a],mem[c2][2]=ct[a]=b,c2++;
@@ -257,17 +258,17 @@ int main()
 	{
 		for(;lst<Q[i].c;lst++)
 		{
-			if(l \le mem[lst][0]&&mem[lst][0] \le r)
+			if(l<=mem[lst][0]&&mem[lst][0]<=r)
 				del(mem[lst][1]),add(mem[lst][2]);
 			c[mem[lst][0]]=mem[lst][2];
 		}
 		for(;lst>Q[i].c;lst--)
 		{
-			if(l \le mem[lst-1][0]&&mem[lst-1][0] \le r)
+			if(l<=mem[lst-1][0]&&mem[lst-1][0]<=r)
 				del(mem[lst-1][2]),add(mem[lst-1][1]);
 			c[mem[lst-1][0]]=mem[lst-1][1];
 		}
-		for(++r;r \le Q[i].r;r++)add(c[r]);
+		for(++r;r<=Q[i].r;r++)add(c[r]);
 		for(--r;r>Q[i].r;r--)del(c[r]);
 		for(--l;l>=Q[i].l;l--)add(c[l]);
 		for(++l;l<Q[i].l;l++)del(c[l]);

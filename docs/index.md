@@ -1,5 +1,5 @@
 disqus:
-description: OI Wiki 是一个信息学奥林匹克竞赛知识整合站点，提供有趣又实用的OI知识以及其他有帮助的内容，帮助广大OI爱好者更快更深入地学习OI竞赛
+title: OI Wiki
 
 # 欢迎来到 **OI Wiki**。
 
