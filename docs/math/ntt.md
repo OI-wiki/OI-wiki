@@ -14,9 +14,9 @@ NTT 解决的是多项式乘法带模数的情况，可以说有些受模数的�
 
 拉格朗日定理:$|S′|∣|S |$ 证明需要用到陪集，得到陪集大小等于子群大小，每个陪集要么不想交要么相等，所有陪集的并是集合 $S$，那么显然成立。
 
-生成子群：$a \in S$ ​的生成子群 $<a> = \{a^{(k)}, k \geq 1 \}$ ​，$a$ 是 $< a >$ 的生成元
+生成子群：$a \in S$ ​的生成子群 $\left<a\right> = \{a^{(k)}, k \geq 1 \}$ ​，$a$ 是 $\left< a \right>$ 的生成元
 
-阶：群 $S$ 中 $a$ 的阶是满足 $a^r=e$ 的最小的 $r$, 符号 $ \operatorname{ord}(a) $ ​, 有 $ \operatorname{ord}(a) = |< a >| $​，显然成立。
+阶：群 $S$ 中 $a$ 的阶是满足 $a^r=e$ 的最小的 $r$, 符号 $\operatorname{ord}(a)$ , 有 $\operatorname{ord}(a)=\left|\left<a\right>\right|$，显然成立。
 
 考虑群 $Z_n^ \times =\{[a], n \in Z_n : \gcd(a, n) = 1\}, |Z_n^ \times | = \phi(n)$
 
@@ -24,7 +24,7 @@ NTT 解决的是多项式乘法带模数的情况，可以说有些受模数的�
 
 ### [原根](/math/primitive-root)
 
-$g$ 满足 $ \operatorname{ord}_n(g) = |Z_n^ \times | = \phi(n) $  ​，对于质数 $p$，也就是说 $g^i \bmod p, 0 \leq i < p$ ​结果互不相同.
+$g$ 满足 $\operatorname{ord}_n(g)=\left|Z_n^\times\right|=\phi(n)$，对于质数 $p$，也就是说 $g^i \bmod p, 0 \leq i < p$ 结果互不相同.
 
 模 $n$ 有原根的充要条件 : $n = 2, 4, p^e, 2 \times p^e$
 
