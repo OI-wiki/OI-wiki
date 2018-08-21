@@ -36,7 +36,7 @@
 ## 部署
 
 
-本文档目前采用 [mkdocs](https://github.com/mkdocs/mkdocs) 部署在 [oi-wiki.cf](https://oi-wiki.cf)。
+本文档目前采用 [mkdocs](https://github.com/mkdocs/mkdocs) 部署在 [oi-wiki.org](https://oi-wiki.org)。
 
 当然也可以本地部署。（**需要 python3**）
 
@@ -49,12 +49,12 @@ pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
 # 最简单的构建方法，会在 site/ 文件夹下得到静态页面
 mkdocs build
-# 我们对主题进行了修改，如果想要得到和 https://oi-wiki.cf 相似的效果，还需要运行下面这行
+# 我们对主题进行了修改，如果想要得到和 https://oi-wiki.org 相似的效果，还需要运行下面这行
 chmod +x ./build.sh && sed -i "s/mkdocs serve/mkdocs build/g" build.sh && ./build.sh
 
 # 运行一个服务器，访问 http://127.0.0.1:8000 可以查看效果
 mkdocs serve
-# 我们对主题进行了修改，如果想要得到和 https://oi-wiki.cf 相似的效果，还需要运行下面这行
+# 我们对主题进行了修改，如果想要得到和 https://oi-wiki.org 相似的效果，还需要运行下面这行
 chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && ./build.sh
 
 # 注：大部分时候不需要测试我们修改后的主题
