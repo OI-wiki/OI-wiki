@@ -40,7 +40,7 @@
 
 当然也可以本地部署。（**需要 python3**）
 
-如果遇到问题，可以查阅 [F.A.Q.](.github/CONTRIBUTING.md#faq) 来了解更多信息。
+**如果遇到问题，可以查阅 [F.A.Q.](.github/CONTRIBUTING.md#faq) 来了解更多信息。**
 
 ```bash
 git clone https://github.com/24OI/OI-wiki.git
