@@ -14,7 +14,7 @@
 - [Hackerrank](https://www.hackerrank.com/)
 - [Topcoder](https://www.topcoder.com/)
 - [BZOJ](https://www.lydsy.com/JudgeOnline/wttl/wttl.php)
-- [TYVJ](http://www.codevs.cn/)
+- [CodeVS](http://www.codevs.cn/)
 - [OpenJudge](http://openjudge.cn/)
 - [Virtual Judge](https://vjudge.net/)
 
