@@ -39,5 +39,3 @@ Ps. 单调队列中的"队列"与正常的队列有一定的区别，稍后会�
 [例题代码](https://www.luogu.org/paste/dze1lw3b)
 
 Ps. 此处的"队列"跟普通队列的一大不同就在于可以从队尾进行操作， C++ 中有相似的数据结构 deque
-
-Ps.Ps. 建议不要使用 deque ，本题使用 deque 会 TLE (亲测)
