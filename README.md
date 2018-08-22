@@ -2,7 +2,7 @@
 
 
 [![Travis](https://img.shields.io/travis/24OI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/24OI/OI-wiki)
-[![Progress](https://img.shields.io/badge/Progress-28%25-brightgreen.svg?style=flat-square)](https://github.com/24OI/OI-wiki)
+[![Progress](https://img.shields.io/badge/Progress-36%25-brightgreen.svg?style=flat-square)](https://github.com/24OI/OI-wiki)
 [![Telegram](https://img.shields.io/badge/OI--wiki-join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
 [![QQ](https://img.shields.io/badge/OI--wiki-join%20QQ%20group-brightgreen.svg?style=flat-square)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
 
@@ -36,11 +36,11 @@
 ## 部署
 
 
-本文档目前采用 [mkdocs](https://github.com/mkdocs/mkdocs) 部署在 [oi-wiki.cf](https://oi-wiki.cf)。
+本文档目前采用 [mkdocs](https://github.com/mkdocs/mkdocs) 部署在 [oi-wiki.org](https://oi-wiki.org)。
 
 当然也可以本地部署。（**需要 python3**）
 
-如果遇到问题，可以查阅 [F.A.Q.](.github/CONTRIBUTING.md#faq) 来了解更多信息。
+**如果遇到问题，可以查阅 [F.A.Q.](.github/CONTRIBUTING.md#faq) 来了解更多信息。**
 
 ```bash
 git clone https://github.com/24OI/OI-wiki.git
@@ -49,12 +49,12 @@ pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
 # 最简单的构建方法，会在 site/ 文件夹下得到静态页面
 mkdocs build
-# 我们对主题进行了修改，如果想要得到和 https://oi-wiki.cf 相似的效果，还需要运行下面这行
+# 我们对主题进行了修改，如果想要得到和 https://oi-wiki.org 相似的效果，还需要运行下面这行
 chmod +x ./build.sh && sed -i "s/mkdocs serve/mkdocs build/g" build.sh && ./build.sh
 
 # 运行一个服务器，访问 http://127.0.0.1:8000 可以查看效果
 mkdocs serve
-# 我们对主题进行了修改，如果想要得到和 https://oi-wiki.cf 相似的效果，还需要运行下面这行
+# 我们对主题进行了修改，如果想要得到和 https://oi-wiki.org 相似的效果，还需要运行下面这行
 chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && ./build.sh
 
 # 注：大部分时候不需要测试我们修改后的主题
@@ -69,7 +69,7 @@ chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && ./buil
 
 本项目受 [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
 
-非常感谢一起完善 OI Wiki 的 [小伙伴们](https://github.com/24OI/OI-wiki/graphs/contributors)！
+非常感谢一起完善 **OI Wiki** 的 [小伙伴们](https://github.com/24OI/OI-wiki/graphs/contributors)！
 
 特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
 
