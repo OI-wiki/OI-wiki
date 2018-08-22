@@ -112,12 +112,12 @@ $endpos$ 相同的一个或多个子串。
  >             是 $endpos(u)$ 的一个子集。并且这依赖于 $u$ 是否为 $w$ 的一个后
  >               缀。即：
  >
- >             $$
+ >$$
  >             \begin{cases}
  >             endpos(w)\subseteq endpos(u)&\text{if $u$ is a suffix of $w$}\\
  >             endpos{w}\cap endpos(u)=\emptyset&\text{otherwise}\\
  >             \end{cases}
- >             $$
+ >$$
 
 证明：如果集合 $endpos(u)$ 与 $endpos(w)$ 有至少一个公共元素，那么由于字符串 
 $u$ 与 $w$ 都在一个位置结束，即 $u$ 是 $w$ 的一个后缀。但是如果如此在每次 $w$ 
