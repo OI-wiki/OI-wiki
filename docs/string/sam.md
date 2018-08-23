@@ -105,7 +105,7 @@ $O(n\log k)$）。
 的所有结束位置。例如，对于字符串 <span><span class="MathJax_Preview">``abcbc"，我们有 endpos(``bc")=2,\,4</span><script type="math/tex">``abcbc"，我们有 endpos(``bc")=2,\,4</script></span>。</p>
 
 当两个子串 $t_1$ 与 $t_2$ 的末尾集合相等时我们称它们是 $endpos$ 等价的：即 
-$endpos(t_1)=endpos(t_2)$。因此所有字符串 $s$ 的非空子串都可以根据它们的
+$endpos(t_1)=endpos(t_2)$。这样所有字符串 $s$ 的非空子串都可以根据它们的
 **$endpos$** 集合被分为几个**等价类**。
 
 显然，在后缀自动机中，$endpos$ 等价的子串对应于同一状态。换句话说，后缀自动机
