@@ -202,6 +202,7 @@ nav:
     - 字节顺序: misc/endianness.md
     - 复杂度: misc/complexity.md
     - 读入和输出优化: misc/io.md
+    - 离散化: misc/discrete.md
 
 # Theme
 theme:
