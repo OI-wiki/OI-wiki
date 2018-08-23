@@ -20,6 +20,7 @@ $$O(g(n)) = \{f(n):存在常数 c,n_0 使得 0\leq f(n) \leq cg(n), \qquad \fora
 
 ### $\Omega$ 符号
 同样的，我们使用$\Omega$符号来描述一个函数的渐进下界。
+
 $$\Omega(g(n)) = \{f(n):存在常数 c,n_0 使得 0 \leq cg(n) \leq f(n) , \qquad \forall n \geq n_0\}$$
 
 ![](images/order.png)
