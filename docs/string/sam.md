@@ -608,7 +608,7 @@ $$firstpos(clone)=firstpos(q)$$
 （因为值的唯一其它选项 $firstpos(cur)$ 肯定太大了）。
 
 那么查询的答案就是 $firstpos(t)-length(P)+1$，其中 $t$ 为对应字符串 $P$ 的状
-态。单词查询只需要 $O(length(P))$ 的时间。
+态。单次查询只需要 $O(length(P))$ 的时间。
 
 ### 所有出现的位置
 
