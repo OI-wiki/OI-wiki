@@ -111,6 +111,8 @@ nav:
     - STL: data-structure/stl.md
     - pb_ds: data-structure/pb-ds.md
     - 基础数据结构:
+      - 栈: data-structure/novice/stack.md
+      - 队列: data-structure/novice/queue.md
       - 链表: data-structure/novice/linked-list.md
       - 哈希表: data-structure/novice/hash.md
       - 并查集: data-structure/novice/dsu.md
@@ -202,6 +204,7 @@ nav:
     - 字节顺序: misc/endianness.md
     - 复杂度: misc/complexity.md
     - 读入和输出优化: misc/io.md
+    - 离散化: misc/discrete.md
 
 # Theme
 theme:
@@ -240,6 +243,7 @@ markdown_extensions:
   - admonition
   - codehilite:
       guess_lang: false
+      linenums: true
   - def_list
   - footnotes
   - meta

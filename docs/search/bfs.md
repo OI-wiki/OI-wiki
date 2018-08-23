@@ -1,4 +1,4 @@
-BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first_search)。
+BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first_search)，中文名是宽度优先搜索。
 
 是图上最基础、最重要的搜索算法之一。
 
