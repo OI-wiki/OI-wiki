@@ -42,7 +42,9 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 ## 文档内容的基本格式
 
-这里主要是指 [中文排版指南](https://github.com/ctf-wiki/ctf-wiki/wiki/%E4%B8%AD%E6%96%87%E6%8E%92%E7%89%88%E6%8C%87%E5%8D%97) 与 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。
+这里主要是指 [中文排版指南](https://github.com/ctf-wiki/ctf-wiki/wiki/%E4%B8%AD%E6%96%87%E6%8E%92%E7%89%88%E6%8C%87%E5%8D%97) 与 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。后者额外介绍了 mkdocs-material 主题的插件使用方式。
+
+如果对 mkdocs-material （我们使用的这个主题）还有什么问题，还可以查阅 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，他有介绍 markdown 传统语法和 mkdocs-material 支持的扩展语法。
 
 ## 文档的合理性
 
@@ -154,3 +156,7 @@ pip install -U -r requirements.txt
 $$ a_i $$
 // 空行
 ```
+
+## 为什么我的 markdown 格式乱了
+
+可以查阅 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，或者 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。
