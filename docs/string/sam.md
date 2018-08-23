@@ -96,7 +96,7 @@ $O(n\log k)$）。
 在我们描述线性时间内构造后缀自动机的算法之前，我们需要引入几个对理解构造过程非
 常重要的新概念并简单证明。
 
-### 结束位置 $endpos$
+### 结束位置 <script type="math/tex">endpos</script>
 
 <p>考虑字符串 <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span> 的任意非空子串 <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span>，我们记 <span><span class="MathJax_Preview">endpos(t)</span><script type="math/tex">endpos(t)</script></span> 为在字符串 <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span> 中 <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> 
 的所有结束位置。例如，对于字符串 <span><span class="MathJax_Preview">``abcbc"，我们有 endpos(``bc")=2,\,4</span><script type="math/tex">``abcbc"，我们有 endpos(``bc")=2,\,4</script></span>。</p>
@@ -156,7 +156,7 @@ $[length(u),\,length(w)]$ 中的 $w$ 的任意后缀。容易看出，这个后�
 缀 $u$ 在 $s$ 中只以 $w$ 的后缀的形式存在）。因此，由引理 1，这个后缀与字符串 
 $w$ $endpos$ 等价。
 
-### 后缀链接 $link$
+### 后缀链接 <script type="math/tex">link</script>
 
 考虑后缀自动机中满足 $v\ne t_0$ 的一些状态。我们已经知道，状态 $v$ 对应于具有相
 同 $endpos$ 的等价类。我们如果定义 $w$ 为这些字符串中最长的一个，则所有其它的字
@@ -523,7 +523,7 @@ $$ans[v]=\sum_{w:(v,\,w,\,c)\in DAWG}d[w]+ans[w]$$
 
 算法的时间复杂度仍然是 $O(length(S))$。
 
-### 词典序第 $k$ 大子串
+### 词典序第 <script type="math/tex">k</script> 大子串
 
  > 给定一个字符串 $S$。多组询问，每组询问给定一个数 $K_i$，查询所有子串中词典序
 第 $k$ 大的子串。
