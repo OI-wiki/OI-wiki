@@ -22,6 +22,8 @@ $$O(g(n)) = \{f(n):存在常数 c,n_0 使得 0\leq f(n) \leq cg(n), \qquad \fora
 同样的，我们使用$\Omega$符号来描述一个函数的渐进下界。
 $$\Omega(g(n)) = \{f(n):存在常数 c,n_0 使得 0 \leq cg(n) \leq f(n) , \qquad \forall n \geq n_0\}$$
 
+![](images/order.png)
+
 ## 主定理 (Master Theorem)
 我们可以使用Master Theorem来快速的求得关于递归算法的复杂度。
 假设我们有递推关系式
