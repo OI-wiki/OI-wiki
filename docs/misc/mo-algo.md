@@ -46,9 +46,9 @@ void solve() {
 
 接着就到了莫队算法的精髓了，下面我们用通俗易懂的初中方法来证明它的时间复杂度是$O(n\sqrt{n})$；
 
-证：令每一块中 $L$ 的最大值为 $max1,max2,max3,...,\operatorname{maxceil}(\sqrt{n})$。
+证：令每一块中 $L$ 的最大值为 $max_1,max_2,max_3,..., max_{\operatorname{ceil}(\sqrt{n})}$。
 
-由第一次排序可知，$max1 \le max2 \le ... \le \operatorname{maxceil}(\sqrt{n})$。
+由第一次排序可知，$max_1 \le max_2 \le ... \le max_{\operatorname{ceil}(\sqrt{n})}$。
 
 显然，对于每一块暴力求出第一个询问的时间复杂度为 $O(n)$。
 
@@ -56,21 +56,21 @@ void solve() {
 
 考虑 $R$：因为 $R$ 在块中已经排好序，所以在同一块修改完它的时间复杂度为 $O(n)$。对于所有块就是 $O(n\sqrt{n})$。
 
-重点分析 $L$：因为每一次改变的时间复杂度都是 $O(maxi-maxi-1)$ 的，所以在同一块中时间复杂度为 $O(\sqrt{n}*(max_i-max_{i-1}))$。
+重点分析 $L$：因为每一次改变的时间复杂度都是 $O(max_i-max_{i-1})$ 的，所以在同一块中时间复杂度为 $O(\sqrt{n}*(max_i-max_{i-1}))$。
 
 将每一块 $L$ 的时间复杂度合在一起，可以得到：
 
 $$
 \begin{aligned}
-对于 L 的总时间复杂度为 & = O(\sqrt{n}(max1-1)+\sqrt{n}(max2-max1)+\sqrt{n}(max3-max2)+...+\sqrt{n}(\operatorname{maxceil}(\sqrt{n})-\operatorname{maxceil}(\sqrt{n}-1))) \\\\
-& = O(\sqrt{n}*(max1-1+max2-max1+max3-max2+...+\operatorname{maxceil}(\sqrt{n}-1)-\operatorname{maxceil}(\sqrt{n}-2)+\operatorname{maxceil}(\sqrt{n})-\operatorname{maxceil}(\sqrt{n}-1))) \\\\
-& = O(\sqrt{n}*(\operatorname{maxceil}(\sqrt{n})-1))
+对于 L 的总时间复杂度为 & = O(\sqrt{n}(max_1-1)+\sqrt{n}(max_2-max_1)+\sqrt{n}(max_3-max_2)+...+\sqrt{n}(max_{\operatorname{ceil}(\sqrt{n})}-max_{\operatorname{ceil}(\sqrt{n})-1))} \\\\
+& = O(\sqrt{n}*(max_1-1+max_2-max_1+max_3-max_2+...+max_{\operatorname{ceil}(\sqrt{n})-1}-max_{\operatorname{ceil}(\sqrt{n})-2}+max_{\operatorname{ceil}(\sqrt{n})}-max_{\operatorname{ceil}(\sqrt{n})-1)}) \\\\
+& = O(\sqrt{n}*(max_{\operatorname{ceil}(\sqrt{n})-1}))
 \end{aligned}
 $$
 
 (裂项求和)
 
-由题可知 $\operatorname{maxceil}(\sqrt{n})$ 最大为 $n$，所以 $L$ 的总时间复杂度最坏情况下为 $O(n\sqrt{n})$。
+由题可知 $max_{\operatorname{ceil}(\sqrt{n})}$ 最大为 $n$，所以 $L$ 的总时间复杂度最坏情况下为 $O(n\sqrt{n})$。
 
 综上所述，莫队算法的时间复杂度为 $O(n\sqrt{n})$；
 

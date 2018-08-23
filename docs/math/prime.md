@@ -75,7 +75,7 @@ bool millerRabbin(int n) {
 
 1. 反素数肯定是从 $2$ 开始的连续素数的幂次形式的乘积。
 
-2. 数值小的素数的幂次大于等于数值大的素数，即 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 中，有 $k1 \geq k2 \geq k3 \geq \cdots \geq k_n$
+2. 数值小的素数的幂次大于等于数值大的素数，即 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 中，有 $k_1 \geq k_2 \geq k_3 \geq \cdots \geq k_n$
 
 解释：
 
