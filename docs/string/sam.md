@@ -70,23 +70,23 @@ $O(n\log k)$）。
 
 ![](./images/SAM/SA.pdf.svg)
 
-对于字符串 $s=``a"$：
+对于字符串 $s=``a\!"$：
 
 ![](./images/SAM/SAa.pdf.svg)
 
-对于字符串 $s=``aa"$：
+对于字符串 $s=``aa\!"$：
 
 ![](./images/SAM/SAaa.pdf.svg)
 
-对于字符串 $s=``ab"$：
+对于字符串 $s=``ab\!"$：
 
 ![](./images/SAM/SAab.pdf.svg)
 
-对于字符串 $s=``abb"$：
+对于字符串 $s=``abb\!"$：
 
 ![](./images/SAM/SAabb.pdf.svg)
 
-对于字符串 $s=``abbb"$：
+对于字符串 $s=``abbb\!"$：
 
 ![](./images/SAM/SAabbb.pdf.svg)
 
@@ -98,7 +98,7 @@ $O(n\log k)$）。
 ### 结束位置 <script type="math/tex">endpos</script>
 
 <p>考虑字符串 <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span> 的任意非空子串 <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span>，我们记 <span><span class="MathJax_Preview">endpos(t)</span><script type="math/tex">endpos(t)</script></span> 为在字符串 <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span> 中 <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> 
-的所有结束位置。例如，对于字符串 <span><span class="MathJax_Preview">``abcbc"，我们有 endpos(``bc")=2,\,4</span><script type="math/tex">``abcbc"，我们有 endpos(``bc")=2,\,4</script></span>。</p>
+的所有结束位置。例如，对于字符串 <span><span class="MathJax_Preview">``abcbc\!"，我们有 endpos(``bc\!")=2,\,4</span><script type="math/tex">``abcbc\!"，我们有 endpos(``bc\!")=2,\,4</script></span>。</p>
 
 当两个子串 $t_1$ 与 $t_2$ 的末尾集合相等时我们称它们是 $endpos$ 等价的：即 
 $endpos(t_1)=endpos(t_2)$。这样所有字符串 $s$ 的非空子串都可以根据它们的
