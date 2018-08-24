@@ -36,9 +36,9 @@
 ## 部署
 
 
-本文档目前采用 [mkdocs](https://github.com/mkdocs/mkdocs) 部署在 [oi-wiki.org](https://oi-wiki.org)。
+本文档目前采用 [MkDocs](https://github.com/mkdocs/mkdocs) 部署在 [oi-wiki.org](https://oi-wiki.org)。
 
-当然也可以本地部署。（**需要 python3**）
+当然也可以本地部署。（**需要 Python 3**）
 
 **如果遇到问题，可以查阅 [F.A.Q.](.github/CONTRIBUTING.md#faq) 来了解更多信息。**
 
@@ -47,7 +47,7 @@ git clone https://github.com/24OI/OI-wiki.git
 cd OI-wiki
 pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
-# 最简单的构建方法，会在 site/ 文件夹下得到静态页面
+# 最简单的构建方法，会在 site 文件夹下得到静态页面
 mkdocs build
 # 我们对主题进行了修改，如果想要得到和 https://oi-wiki.org 相似的效果，还需要运行下面这行
 chmod +x ./build.sh && sed -i "s/mkdocs serve/mkdocs build/g" build.sh && ./build.sh
@@ -80,6 +80,5 @@ chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && ./buil
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />
 除特别注明外，项目中除了代码部分均采用<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> (Creative Commons BY-SA 4.0) 知识共享署名-相同方式共享 4.0 国际许可协议</a> 及附加的 [The Star And Thank Author License](https://github.com/zTrix/sata-license) 进行许可。
 
-换言之，使用过程中您可以自由地共享、演绎，但是必须署名、以相同方式共享、分享时没有附加限制，
-
-而且需要在 GitHub 仓库点赞（Star）。
+换言之，使用过程中您可以自由地共享、演绎，但是必须署名、以相同方式共享、分享时没有附加限制，  
+而且需要为 GitHub 仓库点赞（Star）。

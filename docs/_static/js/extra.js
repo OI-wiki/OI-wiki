@@ -19,7 +19,8 @@ window.MathJax = {
     }
   },
   showProcessingMessages: false,
-  messageStyle: "none"
+  messageStyle: "none",
+  jax: ["input/TeX","output/SVG"]
 };
 window.addEventListener('load', function() { 
     var p=localStorage.getItem("data-md-color-primary");
