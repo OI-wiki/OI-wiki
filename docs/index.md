@@ -1,5 +1,6 @@
 disqus:
 title: OI Wiki
+pagetime:
 
 # 欢迎来到 **OI Wiki**。
 

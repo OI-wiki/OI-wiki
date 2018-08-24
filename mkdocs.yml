@@ -231,6 +231,7 @@ extra:
     language: 'jp'
   disqus: 'OI-Wiki'
   copyright: 'CC BY-SA 4.0 和 SATA'
+  pageTime: 'on'
 
 extra_javascript:
   - 'https://oi-wiki.org/analytics.js'

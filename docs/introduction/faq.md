@@ -134,11 +134,11 @@ python -m pip install --upgrade pip
 
 检查一下：网络？权限？查看错误信息？
 
-### 我已经 clone 下来了，为什么部署不了？
+### 我已经 clone 下来了，为什么部署不了
 
 检查一下是否安装好了依赖？
 
-### 我 clone 了很久之前的 repo，怎么更新到新版本呢？
+### 我 clone 了很久之前的 repo，怎么更新到新版本呢
 
 参考：	https://help.github.com/articles/syncing-a-fork/
 
@@ -148,7 +148,7 @@ python -m pip install --upgrade pip
 pip install -U -r requirements.txt
 ```
 
-### 我的数学公式怎么乱码了？
+### 我的数学公式怎么乱码了
 
 如果是行间公式（用的 `$$`），目前已知的问题是需要在 `$$` 两侧留有空行。格式如下：
 
@@ -161,6 +161,30 @@ $$ a_i $$
 ### 为什么我的 markdown 格式乱了
 
 可以查阅 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，或者 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。
+
+### 如何给一个页面单独声明版权信息
+
+参考 [Metadata](https://squidfunk.github.io/mkdocs-material/extensions/metadata/#usage) 的使用，在页面开头加一行即可。
+
+比如：
+
+```
+copyright: SATA
+```
+
+注：默认的是 ‘CC BY-SA 4.0 和 SATA’
+
+### 如何给一个页面关闭字数统计
+
+参考 [Metadata](https://squidfunk.github.io/mkdocs-material/extensions/metadata/#usage) 的使用，在页面开头加一行即可。
+
+比如：
+
+```
+pagetime:
+```
+
+注：默认的是开着的
 
 ------
 
