@@ -37,3 +37,19 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments); }
 gtag('js', new Date());  
 gtag('config', 'UA-124485594-1');
+
+var cur = document.getElementsByClassName('page-time')[0]
+if (cur) {
+  var comments = document.getElementById('gitment_container');
+  var pos = 0;
+  if (comments) {
+    pos -= comments.textContent.length;
+  }
+  comments = document.getElementById('__comments');
+  if (comments) {
+    pos -= comments.textContent.length;
+  }
+  var textLength = (document.getElementsByClassName('md-content__inner')[0].textContent.slice(0, pos).replace(/\s/g, '').length);
+  var ti = Math.ceil(textLength / 400);
+  cur.innerHTML = `<p>本页面共 ${textLength} 字，预计阅读需要 ${ti} 分钟</p>`;
+}
