@@ -230,6 +230,7 @@ extra:
   search:
     language: 'jp'
   disqus: 'OI-Wiki'
+  copyright: 'CC BY-SA 4.0 和 SATA'
 
 extra_javascript:
   - 'https://oi-wiki.org/analytics.js'
