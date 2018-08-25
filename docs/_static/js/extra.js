@@ -49,7 +49,9 @@ if (cur) {
   if (comments) {
     pos -= comments.textContent.length;
   }
-  var textLength = (document.getElementsByClassName('md-content__inner')[0].textContent.slice(0, pos).replace(/\s/g, '').length);
+  var textLength = 0;
+  if (pos < 0) textLength = (document.getElementsByClassName('md-content__inner')[0].textContent.slice(0, pos).replace(/\s/g, '').length);
+  else textLength = (document.getElementsByClassName('md-content__inner')[0].textContent.replace(/\s/g, '').length);
   var ti = Math.ceil(textLength / 400);
   cur.innerHTML = `<p>本页面共 ${textLength} 字，预计阅读需要 ${ti} 分钟</p>`;
 }
