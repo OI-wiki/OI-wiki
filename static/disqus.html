@@ -4,7 +4,7 @@
 {% set copyright = config.extra.copyright %} {% if page and page.meta and page.meta.copyright is string %} {% set copyright = page.meta.copyright
   %} {% endif %}
 
-<hr><blockquote class="page-copyright"><p>本页面的全部文字在 <strong>{{ copyright }}</strong> 协议之条款下提供，附加条款亦可能应用</p></blockquote>
+<hr><blockquote class="page-copyright"><p>本页面的全部内容在 <strong>{{ copyright }}</strong> 协议之条款下提供，附加条款亦可能应用</p></blockquote>
 <!-- Comments Integration -->
 {% if not page.is_homepage and disqus %}
 {% set pageID = page.title | default("404", true) %}
