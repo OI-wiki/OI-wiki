@@ -21,7 +21,7 @@
 ### 经典例题
 [二逼平衡树](https://www.lydsy.com/JudgeOnline/problem.php?id=3196) 外层线段树，内层平衡树。
 ### 示例代码
-平衡树部分代码请参考 Splay 等其他条目。[传送至 Splay 条目](/data-structure/intermediate/splay/)
+平衡树部分代码请参考 Splay 等其他条目。[传送至 Splay 条目](/ds/splay/)
 
 操作一
 ```cpp

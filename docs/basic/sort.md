@@ -56,7 +56,7 @@ void merge(int ll, int rr) {
 
 所谓逆序对，就是数对 $(i, j)$，满足 $a[i] > a[j]$ 且 $i < j$。
 
-可以用 [树状数组](/data-structure/intermediate/bit)、[线段树](/data-structure/intermediate/segment/) 等数据结构来求，也可以用归并排序来求。
+可以用 [树状数组](/ds/bit)、[线段树](/ds/segment/) 等数据结构来求，也可以用归并排序来求。
 
 具体来说，上面归并排序中间注释掉的 `ans += md - p` 就是在统计逆序对个数。
 
