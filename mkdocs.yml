@@ -112,41 +112,41 @@ nav:
     - STL: data-structure/stl.md
     - pb_ds: data-structure/pb-ds.md
     - 基础数据结构:
-      - 栈: data-structure/novice/stack.md
-      - 队列: data-structure/novice/queue.md
-      - 链表: data-structure/novice/linked-list.md
-      - 哈希表: data-structure/novice/hash.md
-      - 并查集: data-structure/novice/dsu.md
-      - 堆: data-structure/novice/heap.md
-      - 分块: data-structure/novice/square-root-decomposition.md
-      - 单调栈: data-structure/novice/monotonous-stack.md
-      - 单调队列: data-structure/novice/monotonous-queue.md
+      - 栈: data-structure/stack.md
+      - 队列: data-structure/queue.md
+      - 链表: data-structure/linked-list.md
+      - 哈希表: data-structure/hash.md
+      - 并查集: data-structure/dsu.md
+      - 堆: data-structure/heap.md
+      - 分块: data-structure/square-root-decomposition.md
+      - 单调栈: data-structure/monotonous-stack.md
+      - 单调队列: data-structure/monotonous-queue.md
     - 中级数据结构:
-      - 倍增法: data-structure/intermediate/sparse-table.md
-      - 块状链表: data-structure/intermediate/block-list.md
-      - 块状数组: data-structure/intermediate/block-array.md
-      - 树状数组: data-structure/intermediate/bit.md
-      - 线段树: data-structure/intermediate/segment.md
-      - Treap: data-structure/intermediate/treap.md
-      - SBT: data-structure/intermediate/sbt.md
-      - Splay: data-structure/intermediate/splay.md
-      - 替罪羊树: data-structure/intermediate/scapegoat.md
-      - 虚树: data-structure/intermediate/virtual-tree.md
+      - 倍增法: data-structure/sparse-table.md
+      - 块状链表: data-structure/block-list.md
+      - 块状数组: data-structure/block-array.md
+      - 树状数组: data-structure/bit.md
+      - 线段树: data-structure/segment.md
+      - Treap: data-structure/treap.md
+      - SBT: data-structure/sbt.md
+      - Splay: data-structure/splay.md
+      - 替罪羊树: data-structure/scapegoat.md
+      - 虚树: data-structure/virtual-tree.md
     - 高级数据结构:
       - 树套树:
-        - 线段树套线段树: data-structure/advanced/seg-in-seg.md
-        - 平衡树套线段树: data-structure/advanced/seg-in-balanced.md
-        - 线段树套平衡树: data-structure/advanced/balanced-in-seg.md
-      - AVL 树: data-structure/advanced/avl.md
-      - 划分树: data-structure/advanced/dividin.md
-      - K-Dtree: data-structure/advanced/k-dtree.md
-      - 可持久化线段树: data-structure/advanced/persistent-seg.md
-      - 可持久化块状数组: data-structure/advanced/persistent-block-array.md
-      - 可持久化平衡树: data-structure/advanced/persistent-balanced.md
-      - 可持久化字典树: data-structure/advanced/persistent-trie.md
-      - Link Cut Tree: data-structure/advanced/lct.md
-      - Euler Tour Tree: data-structure/advanced/ett.md
-      - 树分块: data-structure/advanced/tree-decompose.md
+        - 线段树套线段树: data-structure/seg-in-seg.md
+        - 平衡树套线段树: data-structure/seg-in-balanced.md
+        - 线段树套平衡树: data-structure/balanced-in-seg.md
+      - AVL 树: data-structure/avl.md
+      - 划分树: data-structure/dividin.md
+      - K-Dtree: data-structure/k-dtree.md
+      - 可持久化线段树: data-structure/persistent-seg.md
+      - 可持久化块状数组: data-structure/persistent-block-array.md
+      - 可持久化平衡树: data-structure/persistent-balanced.md
+      - 可持久化字典树: data-structure/persistent-trie.md
+      - Link Cut Tree: data-structure/lct.md
+      - Euler Tour Tree: data-structure/ett.md
+      - 树分块: data-structure/tree-decompose.md
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论基础: graph/basic.md
