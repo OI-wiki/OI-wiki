@@ -1,4 +1,4 @@
-在学习之前请先学习[数据结构 - 基础数据结构 - 分块](/data-structure/novice/square-root-decomposition/)。
+在学习之前请先学习 [分块](/ds/square-root-decomposition/)。
 
 打表大家都知道，就是在比赛时把答案都输出出来，然后开个数组，把答案直接存入数组里。于是你的代码时间复杂度就是 $O(1)$ 的了。
 
