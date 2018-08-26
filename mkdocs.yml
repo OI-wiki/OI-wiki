@@ -17,11 +17,11 @@ copyright: 'Copyright &copy; 2016 - 2018 OI Wiki Team'
 nav:
   - 简介:
     - Getting Started: index.md
-    - OI 赛制简介: introduction/mode.md
-    - 学习资源: introduction/resources.md
-    - 工具软件: introduction/softwares.md
-    - 关于本项目: introduction/about.md
-    - F.A.Q.: introduction/faq.md
+    - OI 赛制简介: intro/mode.md
+    - 学习资源: intro/resources.md
+    - 工具软件: intro/softwares.md
+    - 关于本项目: intro/about.md
+    - F.A.Q.: intro/faq.md
   - 基础部分:
     - 基础部分简介: basic/index.md
     - 枚举: basic/enumerate.md
