@@ -39,7 +39,7 @@
 - 算法艺术与信息学竞赛 （人称黑书）
 - 算法竞赛进阶指南
 - [Competitive Programmer's Handbook](https://cses.fi/book/index.html)
-- 算法导论
+- [算法导论](https://github.com/mymmsc/books/raw/master/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA%E4%B8%AD%E6%96%87%E7%89%88.pdf)
 
 ## 工具
 
