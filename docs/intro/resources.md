@@ -2,7 +2,7 @@
 
 在线测试平台又称 Online Judging System，一般用来刷题、组织比赛，也有的会提供博客功能方便选手交流。
 
-- [Judge Duck Online](https://judge-duck.online/)
+- [Judge Duck Online](https://duck.ac/)
 - [Codeforces](https://codeforces.com/)
 - [POJ](http://poj.org/)
 - [HDU OJ](http://acm.hdu.edu.cn/)
