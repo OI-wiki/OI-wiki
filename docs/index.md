@@ -12,6 +12,10 @@ title: OI Wiki
 
 文档内容托管在 [Github](https://github.com/24OI/OI-wiki)，期待你的加入。
 
+本项目主要使用 [Issues](https://github.com/24OI/OI-wiki/issues) / [QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) / [Telegram](https://t.me/OIwiki) 进行交流沟通。
+
+Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`588793226`](https://jq.qq.com/?_wv=1027&k=5EfkM6K)，欢迎加入。
+
 ## Material color palette 颜色主题
 ### Primary colors 主色
 
