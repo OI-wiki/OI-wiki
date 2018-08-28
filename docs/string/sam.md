@@ -82,9 +82,9 @@ QQ 号：742745308
 ### 结束位置 <script type="math/tex">endpos</script>
 
 <p>考虑字符串 <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span> 的任意非空子串 <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span>，我们记 <span><span class="MathJax_Preview">endpos(t)</span><script type="math/tex">endpos(t)</script></span> 为在字符串 <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span> 中 <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> 
-的所有结束位置。例如，对于字符串 <span><span class="MathJax_Preview">``abcbc\!"，我们有 endpos(``bc\!")=2,\,4</span><script type="math/tex">``abcbc\!"，我们有 endpos(``bc\!")=2,\,4</script></span>。</p>
+的所有出现位置。例如，对于字符串 <span><span class="MathJax_Preview">``abcbc\!"，我们有 endpos(``bc\!")=2,\,4</span><script type="math/tex">``abcbc\!"，我们有 endpos(``bc\!")=2,\,4</script></span>。</p>
 
-当两个子串 $t_1$ 与 $t_2$ 的末尾集合相等时我们称它们是 $endpos$ 等价的：即 $endpos(t_1)=endpos(t_2)$。这样所有字符串 $s$ 的非空子串都可以根据它们的**$endpos$** 集合被分为几个**等价类**。
+当两个子串 $t_1$ 与 $t_2$ 的末尾集合相等时我们称它们是 $endpos$ 等价的：即 $endpos(t_1)=endpos(t_2)$。这样所有字符串 $s$ 的非空子串都可以根据它们的 **$endpos$** 集合被分为几个**等价类**。
 
 显然，在后缀自动机中的每个状态对应于一个或多个 $endpos$ 相同的子串。换句话说，后缀自动机中的状态数等于所有子串的等价类的个数，加上初始状态。后缀自动机的状态个数等价于 $endpos$ 相同的一个或多个子串。
 
@@ -113,7 +113,7 @@ $$
 
 由引理 1，两个不同的 $endpos$ 等价字符串中较短的一个总是较长的一个的真后缀。因此，等价类中不可能有两个等长的字符串。
 
-记 $w$ 为等价类中最长的字符串，类似地，记 $u$ 为等价类中最短的字符串。由引理1，字符串 $u$ 是字符串 $w$ 的真后缀。现在考虑长度在区间 $[length(u),\,length(w)]$ 中的 $w$ 的任意后缀。容易看出，这个后缀也在同一等价类中。因为这个后缀只能在字符串 $s$ 中以 $w$ 的一个后缀的形式存在（也因为较短的后缀 $u$ 在 $s$ 中只以 $w$ 的后缀的形式存在）。因此，由引理 1，这个后缀与字符串 $w$ $endpos$ 等价。
+记 $w$ 为等价类中最长的字符串，类似地，记 $u$ 为等价类中最短的字符串。由引理 1，字符串 $u$ 是字符串 $w$ 的真后缀。现在考虑长度在区间 $[length(u),\,length(w)]$ 中的 $w$ 的任意后缀。容易看出，这个后缀也在同一等价类中。因为这个后缀只能在字符串 $s$ 中以 $w$ 的一个后缀的形式存在（也因为较短的后缀 $u$ 在 $s$ 中只以 $w$ 的后缀的形式存在）。因此，由引理 1，这个后缀与字符串 $w$ $endpos$ 等价。
 
 ### 后缀链接 <script type="math/tex">link</script>
 
