@@ -87,3 +87,19 @@ $\therefore r = 0$.
 
 
 [BZOJ-1319](http://www.lydsy.com/JudgeOnline/problem.php?id=1319) 是一道模板题，代码可以在 [Steaunk的博客](https://blog.csdn.net/Steaunk/article/details/78988376) 中看到.
+
+3.0 扩展篇
+
+其实一般的题用普通的BSGS就够了，但如果 $p$ 不是质数，该怎么办呢？
+
+我们只需要根据同余的一条性质：
+
+令 $d=gcd(a,p) , a=md,b=nd,p=k*d$； 则 $a \times d≡b \times d(mod p \times d)$ 等价于 $a≡b(mod p)$
+
+所以，我们要先消除因子；
+
+消除完后，问题就变成了求$d \times a^{x-cnt}≡b(mod p)$
+
+令 $x=i \times m+j+cnt$ 然后就和普通的BSGS一样了。
+
+注意，$i,j \le 0$，所以 $ x \le cnt $ ，这会导致小于等于 $ cnt $ 情况枚举不到，所以在消因子前我们要先做一下 $\Theta(\log_2 p)$ 的枚举，直接验证 $a^x mod p = b$ 就避免了这种情况。
