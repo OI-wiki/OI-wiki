@@ -25,7 +25,7 @@ h(x)&=\sum_{d|x}f(d)g(\frac{x}{d})
 \end{align*}
 $$
 
-### 例子 ###	
+### 例子 ###
 
 $$
 \qquad\begin{array}
