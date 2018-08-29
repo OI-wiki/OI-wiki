@@ -25,7 +25,6 @@
 - [LeetCode China](https://leetcode-cn.com/)
 - [hihoCoder](https://hihocoder.com/)
 - [Kattis](https://open.kattis.com/)
-- 远程评测工具：[Virtual Judge](https://vjudge.net/)
 
 ## 教程
 
