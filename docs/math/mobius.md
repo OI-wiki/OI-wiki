@@ -1,6 +1,7 @@
 ## 简介 ##
 
 &emsp;&emsp;莫比乌斯反演是数论中的重要内容。对于一些函数 $f(n)$，如果很难直接求出它的值，而容易求出其倍数和或约数和 $g(n)$，那么可以通过莫比乌斯反演简化运算，求得 $f(n)$ 的值。
+
 &emsp;&emsp;开始学习莫比乌斯反演前，我们需要一些前置知识：**积性函数**、**Dirichlet 卷积**、**莫比乌斯函数**。
 
 ---
@@ -14,6 +15,7 @@
 ### 性质 ###
 
 &emsp;&emsp;若 $f(x)$ 和 $g(x)$ 均为积性函数，则以下函数也为积性函数：
+
 $$
 \begin{align*}
 h(x)&=f(x^p)\\
@@ -23,7 +25,8 @@ h(x)&=\sum_{d|x}f(d)g(\frac{x}{d})
 \end{align*}
 $$
 
-### 例子 ###
+### 例子 ###	
+
 $$
 \qquad\begin{array}
 \text{约数个数函数}&d(n)=\displaystyle\sum_{d|n}1\\
@@ -73,6 +76,7 @@ $$
 ### 性质 ###
 
 &emsp;&emsp;莫比乌斯函数不但是积性函数，还有如下性质：
+
 $$
 \mu(n)=
 \begin{cases}
@@ -120,12 +124,17 @@ void getMu() {
 ### 拓展 ###
 
 &emsp;&emsp;证明
+
 $$\varphi*1=\text{ID}\text{（ID 函数即 } f(x)=x\text{）}$$
 
 &emsp;&emsp;将 $n$ 分解质因数：$\displaystyle n=\prod_{i=1}^k {p_i}^{c_i}$
+
 &emsp;&emsp;首先，因为 $\varphi$ 是积性函数，故只要证明当 $n'=p^c$ 时 $\displaystyle\varphi*1=\sum_{d|n'}\varphi(\frac{n'}{d})=\text{ID}$ 成立即可。
+
 &emsp;&emsp;因为 $p$ 是质数，于是 $d=p^0,p^1,p^2,\cdots,p^c$
+
 &emsp;&emsp;易知如下过程：
+
 $$
 \begin{align*}
 \varphi*1&=\sum_{d|n}\varphi(\frac{n}{d})\\
@@ -143,10 +152,13 @@ $$
 ### 公式 ###
 
 &emsp;&emsp;设 $f(n),g(n)$ 为两个数论函数。
+
 &emsp;&emsp;如果有
+
 $$f(n)=\sum_{d|n}g(d)$$
 
 &emsp;&emsp;那么有
+
 $$g(n)=\sum_{d|n}\mu(d)f(\frac{n}{d})$$
 
 ### 证明 ###
@@ -160,6 +172,7 @@ $$\sum_{d|n}\mu(d)f(\frac{n}{d})=\sum_{d|n}\mu(d)\sum_{k|\frac{n}{d}}g(k)=\sum_{
 - **运用卷积**：
 
 &emsp;&emsp;原问题为：已知 $f=g*1$，证明 $g=f*\mu$
+
 &emsp;&emsp;易知如下转化：$f*\mu=g*1*\mu\Rightarrow f*\mu=g$（其中 $1*\mu=\epsilon$）
 
 ---
@@ -169,25 +182,32 @@ $$\sum_{d|n}\mu(d)f(\frac{n}{d})=\sum_{d|n}\mu(d)\sum_{k|\frac{n}{d}}g(k)=\sum_{
 ### [「HAOI 2011」Problem b](https://www.lydsy.com/JudgeOnline/problem.php?id=2301) ###
 
 &emsp;&emsp;求值（多组数据）
+
 $$\sum_{i=x}^{n}\sum_{j=y}^{m}[\gcd(i,j)=k]\qquad (1\leqslant T,x,y,n,m,k\leqslant 5\times 10^4)$$
 
 &emsp;&emsp;根据容斥原理，原式可以分成 $4$ 块来处理，每一块的式子都为
+
 $$\sum_{i=1}^{n}\sum_{j=1}^{m}[\gcd(i,j)=k]$$
 
 &emsp;&emsp;考虑化简该式子
+
 $$\sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}[\gcd(i,j)=1]$$
 
 &emsp;&emsp;因为 $\gcd(i,j)=1$ 时对答案才用贡献，于是我们可以将其替换为 $\epsilon(\gcd(i,j))$（$\epsilon(n)$ 当且仅当 $n=1$ 时值为 $1$ 否则为 $0$ ），故原式化为
+
 $$\sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}\epsilon(\gcd(i,j))$$
 
 &emsp;&emsp;将 $\epsilon$ 函数展开得到
+
 $$\displaystyle\sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}\sum_{d| \gcd(i,j)}\mu(d)$$
 
 &emsp;&emsp;变换求和顺序，先枚举 $d|gcd(i,j)$ 可得
+
 $$\displaystyle\sum_{d=1}^{\lfloor\frac{n}{k}\rfloor}\mu(d)\sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}d|i\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}d|j$$
 
 &emsp;&emsp;（其中 $d|i$ 表示 $i$ 是 $d$ 的倍数时对答案有 $1$ 的贡献）
 &emsp;&emsp;易知 $1\sim\lfloor\dfrac{n}{k}\rfloor$ 中 $d$ 的倍数有 $\lfloor\dfrac{n}{kd}\rfloor$ 个，故原式化为
+
 $$\displaystyle\sum_{d=1}^{\lfloor\frac{n}{k}\rfloor}\mu(d) \lfloor\frac{n}{kd}\rfloor\lfloor\frac{m}{kd}\rfloor$$
 
 &emsp;&emsp;很显然，式子可以数论分块求解（注意：过程中默认 $n\leqslant m$）。
@@ -242,23 +262,29 @@ int main() {
 ### [「SPOJ 5971」LCMSUM](https://www.luogu.org/problemnew/show/SP5971) ###
 
 &emsp;&emsp;求值（多组数据）
+
 $$\sum_{i=1}^n \text{lcm}(i,n)\qquad (1\leqslant T\leqslant 3\times 10^5,1\leqslant n\leqslant 10^6)$$
 
 &emsp;&emsp;易得原式即
+
 $$\sum_{i=1}^n \frac{i\cdot n}{\gcd(i,n)}$$
 
 &emsp;&emsp;根据 $\gcd(a,n)=1$ 时一定有 $\gcd(n-a,n)=1$ ，可将原式化为
+
 $$\frac{1}{2}\cdot(\sum_{i=1}^{n-1}\frac{i\cdot n}{\gcd(i,n)}+\sum_{i=n-1}^{1}\frac{i\cdot n}{\gcd(i,n)})+n$$
 
 &emsp;&emsp;上述式子中括号内的两个 $\sum$ 对应的项相等，故又可以化为
+
 $$\frac{1}{2}\cdot \sum_{i=1}^{n-1}\frac{n^2}{\gcd(i,n)}+n$$
 
 &emsp;&emsp;可以将相同的 $\gcd(i,n)$ 合并在一起计算，故只需要统计 $\gcd(i,n)=d$ 的个数。当 $\gcd(i,n)=d$ 时，$\displaystyle\gcd(\frac{i}{d},\frac{n}{d})=1$，所以 $\gcd(i,n)=d$ 的个数有 $\displaystyle\varphi(\frac{n}{d})$ 个。
 
 &emsp;&emsp;故答案为
+
 $$ \frac{1}{2}\cdot\sum_{d|n}\frac{n^2\cdot\varphi(\frac{n}{d})}{d}+n$$
 
 &emsp;&emsp;变换求和顺序，设 $\displaystyle d'=\frac{n}{d}$，式子化为
+
 $$\frac{1}{2}n\cdot\sum_{d'|n}d'\cdot\varphi(d')+n$$
 
 &emsp;&emsp;设 $\displaystyle \text{g}(n)=\sum_{d|n} d\cdot\varphi(d)$，已知 $\text{g}$ 为积性函数，于是可以 $\Theta(n)$ 预处理。最后枚举 $d$，统计贡献即可。
@@ -307,37 +333,47 @@ int main() {
 ### [「BZOJ 2154」Crash的数字表格](https://www.lydsy.com/JudgeOnline/problem.php?id=2154) ###
 
 &emsp;&emsp;求值（对 $20101009$ 取模）
+
 $$\sum_{i=1}^n\sum_{j=1}^m\text{lcm}(i,j)\qquad (n,m\leqslant 10^7)$$
 
 &emsp;&emsp;易知原式等价于
+
 $$\sum_{i=1}^n\sum_{j=1}^m\frac{i\cdot j}{\gcd(i,j)}$$
 
 &emsp;&emsp;枚举最大公因数 $d$，显然两个数除以 $d$ 得到的数互质
+
 $$\sum_{i=1}^n\sum_{j=1}^m\sum_{d|i,d|j,\gcd(\frac{i}{d},\frac{j}{d})=1}\frac{i\cdot j}{d}$$
 
 &emsp;&emsp;非常经典的 $\gcd$ 式子的化法
+
 $$\sum_{d=1}^n d\cdot\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}[\gcd(i,j)=1]\ i\cdot j$$
 
 &emsp;&emsp;后半段式子中，出现了互质数对之积的和，为了让式子更简洁就把它拿出来单独计算。于是我们记
+
 $$\text{sum}(n,m)=\sum_{i=1}^n\sum_{j=1}^m [\gcd(i,j)=1]\  i\cdot j$$
 
 &emsp;&emsp;接下来对 $\text{sum}(n,m)$ 进行化简。首先枚举约数，并将 $[\gcd(i,j)=1]$ 表示为 $\epsilon(\gcd(i,j))$
+
 $$\sum_{d=1}^n\sum_{d|i}^n\sum_{d|j}^m\mu(d)\cdot i\cdot j$$
 
 &emsp;&emsp;设 $i=i'\cdot d$，$j=j'\cdot d$，显然式子可以变为
+
 $$\sum_{d=1}^n\mu(d)\cdot d^2\cdot\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}i\cdot j$$
 
 &emsp;&emsp;观察上式，前半段可以预处理前缀和；后半段又是一个范围内数对之和，记
+
 $$g(n,m)=\sum_{i=1}^n\sum_{j=1}^m i\cdot j=\frac{n\cdot(n+1)}{2}\times\frac{m\cdot(m+1)}{2}$$
 
 可以 $\Theta(1)$ 求解
 
 &emsp;&emsp;至此
+
 $$\text{sum}(n,m)=\sum_{d=1}^n\mu(d)\cdot d^2\cdot g(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)$$
 
 &emsp;&emsp;我们可以 $\lfloor\frac{n}{\lfloor\frac{n}{d}\rfloor}\rfloor$ 数论分块求解 $\text{sum}(n,m)$ 函数。
 
 &emsp;&emsp;在求出 $\text{sum}(n,m)$ 后，回到定义 $\text{sum}$ 的地方，可得原式为
+
 $$\sum_{d=1}^n d\cdot\text{sum}(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)$$
 
 &emsp;&emsp;可见这又是一个可以数论分块求解的式子！
