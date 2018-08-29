@@ -11,6 +11,7 @@
 - [Vijos](https://vijos.org/)
 - [UOJ](http://uoj.ac/)
 - [51Nod](https://www.51nod.com/)
+- [Ural](http://acm.timus.ru/)
 - [Hackerrank](https://www.hackerrank.com/)
 - [Topcoder](https://www.topcoder.com/)
 - [BZOJ](https://www.lydsy.com/JudgeOnline/)
@@ -24,7 +25,7 @@
 - [LeetCode China](https://leetcode-cn.com/)
 - [hihoCoder](https://hihocoder.com/)
 - [Kattis](https://open.kattis.com/)
-
+- 远程评测工具：[Virtual Judge](https://vjudge.net/)
 
 ## 教程
 
@@ -44,6 +45,8 @@
 - 算法竞赛进阶指南
 - [Competitive Programmer's Handbook](https://cses.fi/book/index.html)
 - 算法导论
+- 啊哈算法
+- 挑战程序设计竞赛全套（通俗易懂）
 
 ## 工具
 
