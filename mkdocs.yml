@@ -111,42 +111,39 @@ nav:
     - 数据结构部分简介: ds/index.md
     - STL: ds/stl.md
     - pb_ds: ds/pb-ds.md
-    - 基础数据结构:
-      - 栈: ds/stack.md
-      - 队列: ds/queue.md
-      - 链表: ds/linked-list.md
-      - 哈希表: ds/hash.md
-      - 并查集: ds/dsu.md
-      - 堆: ds/heap.md
-      - 分块: ds/square-root-decomposition.md
-      - 单调栈: ds/monotonous-stack.md
-      - 单调队列: ds/monotonous-queue.md
-    - 中级数据结构:
-      - 倍增法: ds/sparse-table.md
-      - 块状链表: ds/block-list.md
-      - 块状数组: ds/block-array.md
-      - 树状数组: ds/bit.md
-      - 线段树: ds/segment.md
-      - Treap: ds/treap.md
-      - SBT: ds/sbt.md
-      - Splay: ds/splay.md
-      - 替罪羊树: ds/scapegoat.md
-      - 虚树: ds/virtual-tree.md
-    - 高级数据结构:
-      - 树套树:
-        - 线段树套线段树: ds/seg-in-seg.md
-        - 平衡树套线段树: ds/seg-in-balanced.md
-        - 线段树套平衡树: ds/balanced-in-seg.md
-      - AVL 树: ds/avl.md
-      - 划分树: ds/dividin.md
-      - K-Dtree: ds/k-dtree.md
-      - 可持久化线段树: ds/persistent-seg.md
-      - 可持久化块状数组: ds/persistent-block-array.md
-      - 可持久化平衡树: ds/persistent-balanced.md
-      - 可持久化字典树: ds/persistent-trie.md
-      - Link Cut Tree: ds/lct.md
-      - Euler Tour Tree: ds/ett.md
-      - 树分块: ds/tree-decompose.md
+    - 栈: ds/stack.md
+    - 队列: ds/queue.md
+    - 链表: ds/linked-list.md
+    - 哈希表: ds/hash.md
+    - 并查集: ds/dsu.md
+    - 堆: ds/heap.md
+    - 分块: ds/square-root-decomposition.md
+    - 单调栈: ds/monotonous-stack.md
+    - 单调队列: ds/monotonous-queue.md
+    - 倍增法: ds/sparse-table.md
+    - 块状链表: ds/block-list.md
+    - 块状数组: ds/block-array.md
+    - 树状数组: ds/bit.md
+    - 线段树: ds/segment.md
+    - Treap: ds/treap.md
+    - SBT: ds/sbt.md
+    - Splay: ds/splay.md
+    - 替罪羊树: ds/scapegoat.md
+    - 虚树: ds/virtual-tree.md
+    - 树套树:
+      - 线段树套线段树: ds/seg-in-seg.md
+      - 平衡树套线段树: ds/seg-in-balanced.md
+      - 线段树套平衡树: ds/balanced-in-seg.md
+    - AVL 树: ds/avl.md
+    - 划分树: ds/dividin.md
+    - K-Dtree: ds/k-dtree.md
+    - 可持久化线段树: ds/persistent-seg.md
+    - 可持久化块状数组: ds/persistent-block-array.md
+    - 可持久化平衡树: ds/persistent-balanced.md
+    - 可持久化字典树: ds/persistent-trie.md
+    - Link Cut Tree: ds/lct.md
+    - Euler Tour Tree: ds/ett.md
+    - 树分块: ds/tree-decompose.md
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论基础: graph/basic.md
