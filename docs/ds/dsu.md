@@ -99,6 +99,16 @@ void unionSet(int x,int y)
 
 显然为 $O(n)$。
 
+### 经典题目
+
+[[NOI2015]程序自动分析](https://www.lydsy.com/JudgeOnline/problem.php?id=4195)
+
+[[JSOI2008]星球大战](https://www.lydsy.com/JudgeOnline/problem.php?id=1015)
+
+[[NOI2001]食物链](https://www.luogu.org/problemnew/show/P2024)
+
+[[NOI2002]银河英雄传说](https://www.luogu.org/problemnew/show/P1196)
+
 ## 其他应用
 
 [最小生成树](/graph/mst) Kruskal 算法。
