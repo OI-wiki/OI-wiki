@@ -41,7 +41,22 @@ $$
 \end{cases}
 \end{array}
 $$
+### 常用结论及其证明 ###
+1. $\sum\limits_{d\mid n}\varphi(d) =  n$
 
+   证明步骤如下 ：
+
+   我们把$1-n$的数按与n的gcd分组，得到如下式子，由于每个数与n的gcd是固定的，每个数在 $[gcd(i, n)=1]$ 中只会被统计一次，所以下式等于 n
+
+   $n = \sum\limits_{d\mid n}\sum\limits_{i=1}^{n}[gcd(i, n)=d]$
+
+   $\Rightarrow \sum\limits_{d\mid n}\sum\limits_{i=1}^{\lfloor\frac{n}{d}\rfloor}[gcd(i, \frac{n}{d})=1]$
+
+   $\Rightarrow \sum\limits_{d\mid n}\varphi(\frac{n}{d})$
+
+   我们发现 $\sum\limits_{d|n}\varphi(\frac{n}{d})\Leftrightarrow\sum\limits_{d|n}\varphi(d)$
+
+   所以此结论得证。
 ---
 
 ## Dirichlet 卷积 ##
@@ -67,6 +82,46 @@ d=1*1&\Leftrightarrow d(n)=\sum_{d|n}1\\
 \varphi=\mu*\text{ID}&\Leftrightarrow\varphi(n)=\sum_{d|n}\mu(d)\cdot\frac{n}{d}
 \end{align*}
 $$
+
+### 由狄利克雷卷积证明的一个反演常用结论 ###
+
+$\sum\limits_{d\mid Q}d\times\mu(\frac{Q}{d})$就是$\varphi(Q)$
+
+$f(x)=x,g(x)=\varphi(x),h(x)= 1$（这三个函数都是积性函数）
+
+$n = \sum\limits_{d\mid n}\varphi(d)$ 可以把它看成$g\ast h$的形式
+
+$\Rightarrow f(x) = (g\ast h)(x)$
+
+$\varepsilon(n) = \sum\limits_{d\mid n}\mu(d)$
+
+$\Rightarrow (\mu\ast h)(x) = \varepsilon(x)$
+
+在 $\Rightarrow f(x) = (g\ast h)(x)$ 两侧一起卷上一个 $\mu$ 函数
+
+$(f\ast\mu)=g\ast(h\ast\mu)$
+
+即
+
+$(f\ast\mu)=g\ast\varepsilon$
+
+那么 $f\ast\mu$ 是什么？带入狄利克雷卷积的定义式
+
+$f\ast\mu(Q) = \sum\limits_{d\mid Q}f(d)\mu(\frac{Q}{d})$
+
+为了更明显，我已经把n换成了Q。
+
+别急，后面还多个$\varepsilon$函数呢。
+
+我们把等式右边展开 ：
+
+$\sum\limits_{d\mid n}\varphi(d)\varepsilon(\frac{n}{d})$
+
+我们想要让它等于 $\varphi$ 函数
+
+考虑 $\varepsilon$ 什么时候有意义 —— 当 $\frac{n}{d}=1$ 的时候，即 $n = d$ 的时候，因为其他取值都会导致 $\varepsilon$ 为 0
+
+那么这个卷积式其实就是 $\varphi(n)\times 1 = \varphi(n)$ 啦
 
 ---
 
@@ -105,6 +160,11 @@ $$
 那么 $\displaystyle\sum_{d|n}\mu(d)=\sum_{d|n'}\mu(d)=\sum_{i=0}^k C_k^i\cdot(-1)^k$
 
 根据二项式定理，易知该式子的值在 $k=0$ 即 $n=1$ 时值为 $1$ 否则为 $0$，这也同时证明了 $\sum_{d|n}\mu(d)=[n=1]$
+
+### 依据上面的性质补充一个非常常用的结论 ### 
+反演结论 ：$[gcd(i, j)=1] \Leftrightarrow\sum\limits_{p\mid gcd(i, j)}\mu(p)$
+
+   如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $gcd(i, j) = 1$ 的话，那么代表着我们按上个结论中枚举的那个n是1，也就是式子的值是1，反之，有一个与 $[gcd(i, j)=1]$ 相同的值 ：0;
 
 ### 线性筛 ###
 由于 $\mu$ 函数为积性函数，因此可以线性筛莫比乌斯函数（线性筛基本可以求所有的积性函数，尽管方法不尽相同）。
