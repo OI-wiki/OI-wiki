@@ -73,9 +73,9 @@ chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && ./buil
 
 非常感谢一起完善 **OI Wiki** 的 [小伙伴们](https://github.com/24OI/OI-wiki/graphs/contributors)！
 
-特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
-
 <a href="https://github.com/24OI/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890" /></a>
+
+特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
 
 ----
 
