@@ -12,7 +12,7 @@ By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 写出 ** 状态转移方程 ** ： $f_{i,j}=\max\{f_{i,k}+f_{k+1,j}+(sum_j-sum_i)\}(i\le k\le j)$
 
-考虑常规的转移方法，枚举 $i$ ， $j$ 和 $k$ ，时间复杂度为 $O(n^3)$。
+考虑常规的转移方法，枚举 $i$、$j$ 和 $k$，时间复杂度为 $O(n^3)$。
 
 ### 什么是四边形不等式？
 
