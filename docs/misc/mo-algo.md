@@ -8,7 +8,7 @@
 
 ### 形式
 
-对于序列上的区间询问问题，如果从 $[l,r]$ 的答案能够 $O(1)$ 扩展到 $[l-1,r],[l+1,r],[l,r+1],[l,r-1]$（即与 $[l,r]$ 相邻的区间）的答案，那么可以在 $O(n\sqrt{n})$ 的复杂度内求出所有询问的答案。
+假设n=m，那么对于序列上的区间询问问题，如果从 $[l,r]$ 的答案能够 $O(1)$ 扩展到 $[l-1,r],[l+1,r],[l,r+1],[l,r-1]$（即与 $[l,r]$ 相邻的区间）的答案，那么可以在 $O(n\sqrt{n})$ 的复杂度内求出所有询问的答案。
 
 ### 实现
 
@@ -20,7 +20,7 @@
 
 ### 模板
 
-<pre><code class="cpp">int l = 0, r = 0, nowAns = 0;
+```cpp
 
 inline void move(int pos, int sign) {
     // update nowAns
@@ -38,9 +38,11 @@ void solve() {
         ans[q.id] = nowAns;
     }
 }
-</code></pre>
+```
 
 ### 复杂度分析
+
+以下的情况在n和m同阶的前提下讨论。
 
 首先是分块这一步，这一步的时间复杂度毫无疑问地是 $O(\sqrt{n}\sqrt{n}log\sqrt{n}+nlogn)=O(nlogn)$;
 
@@ -73,6 +75,12 @@ $$
 由题可知 $max_{\operatorname{ceil}(\sqrt{n})}$ 最大为 $n$，所以 $L$ 的总时间复杂度最坏情况下为 $O(n\sqrt{n})$。
 
 综上所述，莫队算法的时间复杂度为 $O(n\sqrt{n})$；
+
+但是对于m的其他取值，如m<n，分块方式需要改变才能变的更优
+
+怎么分块呢？
+
+我们设块长度为$S$，那么对于任意多个在同一块内的询问，挪动的距离就是$n$，一共$\frac{n}{S}$个块，移动的总次数就是$\frac{n^2}{S}$，移动可能跨越块，所以还要加上一个$mS$的复杂度，总复杂度为$O(\frac{n^2}{S}+mS)$，我们要让这个值尽量小，那么就要将这两个项尽量相等，发现$S$取$\frac{n}{\sqrt{m}}$是最优的，此时复杂度为$O(\frac{n^2}{\frac{n}{\sqrt{m}}}+m(\frac{n}{\sqrt{m}}))=O(n\sqrt{m})$
 
 ### 例题&代码
 
@@ -150,39 +158,36 @@ int main()
 
 ### 特点
 
-- 用于离线处理区间问题
+普通莫队是不能带修改的
 
-- 仅含单点修改
+我们可以强行让它可以修改，就像DP一样，可以强行加上一维**时间维**,表示这次操作的时间。
 
-- 能 $O(1)$ 转移区间（和普通莫队一样）
+时间维表示经历的修改次数。
 
-- 分块的每一块的大小是 $n^\frac{2}{3}$
+即把询问$[l,r]$变成$[l,r,time]$
 
-- 复杂度 $O(n^\frac{5}{3})$
+那么我们的坐标也可以在时间维上移动，即$[l,r,time]$多了一维可以移动的方向，可以变成：
 
-带修改的莫队的询问排序方法为：
+- $[l-1,r,time]$
+- $[l+1,r,time]$
+- $[l,r-1,time]$
+- $[l,r+1,time]$
+- $[l,r,time-1]$
+- $[l,r,time+1]$
 
-- 第一关键字：左端点所在块编号，从小到大排序。
+这样的转移也是$O(1)$的，但是我们排序又多了一个关键字，再搞搞就行了
 
-- 第二关键字：右端点所在块编号，从小到大排序。
+可以用和普通莫队类似的方法排序转移，做到$O(n^{\frac{5}{3}})$
 
-- 第三关键字：**经历的修改次数**。也可以说是询问的先后，先询问的排前面。
+这一次我们排序的方式是以$n^{\frac{2}{3}}$为一块，分成了$n^{\frac{1}{3}}$块，第一关键字是左端点所在块，第二关键字是右端点所在块，第三关键字是时间。
 
-对于前后两个区间的转移：
+还是来证明一下时间复杂度（默认块大小为$\sqrt{n}$）：
 
-设当前询问为 $a$，下一个询问为 $b$，我们已知 $a$，要求 $b$。
+- 左右端点所在块不变，时间在排序后单调向右移，这样的复杂度是$O(n)$
 
-首先我们像普通莫队一样转移左右端点。
+- 若左右端点所在块改变，时间一次最多会移动n个格子，时间复杂度$O(n)$
 
-这时候我们可能会发现**$a$ 和 $b$ 的经历的修改次数不同**！
-
-怎么办呢？
-
-然而，莫队就是个优雅的暴力。
-
-假如 $a$ 较 $b$ 少修改了 $p$ 次，那我们就把这 $p$ 次修改一个一个 **从前往后** 暴力地加上去。假如 $a$ 较 $b$ 多修改了 $q$ 次，那我们就把这 $q$ 次修改**从后往前**还原掉。
-
-具体怎么做呢？我们来看一道例题。
+- 左端点所在块一共有$n^{\frac{1}{3}}$中，右端点也是$n^{\frac{1}{3}}$种，一共${n^{\frac{1}{3}}}\times{n^{\frac{1}{3}}}=n^{\frac{2}{3}}$种，每种乘上移动的复杂度$O(n)$，总复杂度$O(n^{\frac{5}{3}})$
 
 ### 例题
 [数颜色 BZOJ - 2120](https://www.lydsy.com/JudgeOnline/problem.php?id=2120)
@@ -214,8 +219,6 @@ int main()
 
 因此这道题就这样用带修改莫队轻松解决啦！
 
-记得前面说的一些普通莫队与带修改莫队不同的地方就行了，比如分块的每一块的大小是 $n^\frac{2}{3}$。这个很重要。。。
-
 代码：
 ```cpp
 #include <bits/stdc++.h>
@@ -223,7 +226,7 @@ int main()
 using namespace std;
 template<typename _Tp>inline void IN(_Tp&dig)
 {
-	char c;dig=0;
+    char c;dig=0;
 	while(c=getchar(),!isdigit(c));
 	while(isdigit(c))dig=dig*10+c-'0',c=getchar();
 }
@@ -276,5 +279,224 @@ int main()
 	}
 	for(int i=0;i<c1;i++)printf("%d\n",nal[i]);
 	return 0;
+}
+```
+
+### 树上莫队
+
+莫队只能处理线性问题，我们要把树强行压成序列
+
+我们可以将树的括号序跑下来，把括号序分块，在括号序上跑莫队
+
+具体怎么做呢？
+
+dfs一棵树，然后如果dfs到x点，就push_back(x),dfs完x点，就直接push_back(-x)，然后我们在挪动指针的时候
+
+- 新加入的值是x  ---> add(x)
+- 新加入的值是-x ---> del(x)
+- 新删除的值是x  ---> del(x)
+- 新删除的值是-x ---> add(x)
+
+这样的话，我们就把一棵树处理成了序列。
+
+例题是[[WC2013]糖果公园](https://www.luogu.org/problemnew/show/P4074),这题是带修改树上莫队
+
+题意是给你一棵树,每个点有颜色,每次询问
+
+$\sum_{c}val_c\sum_{i=1}^{cnt_c}w_i$
+
+val表示该颜色的价值
+
+cnt表示颜色出现的次数
+
+w表示该颜色出现i次后的价值
+
+先把树变成序列，然后每次添加/删除一个点，这个点的对答案的的贡献是可以在$O(1)$时间内获得的，即$val_c\times w_{cnt_{c+1}}$
+
+发现因为他会把起点的子树也扫了一遍，产生多余的贡献，怎么办呢？
+
+因为扫的过程中起点的子树里的点肯定会被扫两次，但贡献为0
+
+所以可以开一个vis数组，每次扫到点x，就把$vis_x$异或上1
+
+如果$vis_x=0$，那这个点的贡献就可以不计
+
+所以可以用树上莫队来求
+
+修改的话，加上一维时间维即可,变成带修改树上莫队
+
+然后因为所包含的区间内可能没有LCA，对于没有的情况要将多余的贡献删除，然后就完事了
+
+code：
+```cpp
+#include<algorithm>
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+
+#define DEBUG printf("line:%d func:%s\n",__LINE__,__FUNCTION__);
+
+using namespace std;
+
+const int maxn=200010;
+
+int f[maxn],g[maxn],id[maxn],head[maxn],cnt,last[maxn],dep[maxn],fa[maxn][22],v[maxn],w[maxn];
+int block,index,n,m,q;
+int pos[maxn],col[maxn],app[maxn];
+bool vis[maxn];
+long long ans[maxn],cur;
+
+struct edge {
+    int to,nxt;
+} e[maxn];
+int cnt1=0,cnt2=0;//时间戳
+
+struct query {
+    int l,r,t,id;
+    bool operator <(const query &b)const {
+        return (pos[l]<pos[b.l])||(pos[l]==pos[b.l]&&pos[r]<pos[b.r])||(pos[l]==pos[b.l]&&pos[r]==pos[b.r]&&t<b.t);
+    }
+} a[maxn],b[maxn];
+
+inline void addedge(int x, int y) {
+    e[++cnt]=(edge) {
+        y,head[x]
+    };
+    head[x]=cnt;
+}
+
+
+void dfs(int x) {
+    id[f[x]=++index]=x;
+    for(int i=head[x]; i; i=e[i].nxt) {
+        if(e[i].to!=fa[x][0]) {
+            fa[e[i].to][0]=x;
+            dep[e[i].to]=dep[x]+1;
+            dfs(e[i].to);
+        }
+    }
+    id[g[x]=++index]=x;//括号序
+}
+
+inline void swap(int &x,int &y) {
+    int t;
+    t=x;
+    x=y;
+    y=t;
+}
+
+inline int lca(int x,int y) {
+    if(dep[x]<dep[y])
+        swap(x,y);
+    if(dep[x]!=dep[y]) {
+        int dis=dep[x]-dep[y];
+        for(int i=20; i>=0; i--)
+            if(dis>=(1<<i))
+                dis-=1<<i,x=fa[x][i];
+    }//爬到同一高度 
+    if(x==y) return x;
+    for(int i=20; i>=0; i--) {
+        if(fa[x][i]!=fa[y][i])
+            x=fa[x][i],y=fa[y][i];
+    }
+    return fa[x][0];
+}
+
+inline void add(int x) {
+    if(vis[x])
+        cur-=(long long )v[col[x]]*w[app[col[x]]--];
+    else
+        cur+=(long long )v[col[x]]*w[++app[col[x]]];
+    vis[x]^=1;
+}
+
+inline void modify(int x,int t) {
+    if(vis[x]) {
+        add(x);
+        col[x]=t;
+        add(x);
+    } else col[x]=t;
+}//在时间维上移动
+
+int main() {
+    scanf("%d%d%d",&n,&m,&q);
+    for(int i=1; i<=m; i++)
+        scanf("%d",&v[i]);
+    for(int i=1; i<=n; i++)
+        scanf("%d",&w[i]);
+    for(int i=1; i<n; i++) {
+        int x,y;
+        scanf("%d%d",&x,&y);
+        addedge(x,y);
+        addedge(y,x);
+    }
+    for(int i=1; i<=n; i++) {
+        scanf("%d",&last[i]);
+        col[i]=last[i];
+    }
+    dfs(1);
+    for(int j=1; j<=20; j++)
+        for(int i=1; i<=n; i++)
+            fa[i][j]=fa[fa[i][j-1]][j-1];//预处理祖先 
+    int block=pow(index,2.0/3);
+    for(int i=1; i<=index; i++) {
+        pos[i]=(i-1)/block;
+    }
+    while(q--) {
+        int opt,x,y;
+        scanf("%d%d%d",&opt,&x,&y);
+        if(opt==0) {
+            b[++cnt2].l=x;
+            b[cnt2].r=last[x];
+            last[x]=b[cnt2].t=y;
+        } else {
+            if(f[x]>f[y])
+                swap(x,y);
+            a[++cnt1]=(query) {
+                lca(x,y)==x?f[x]:g[x],f[y],cnt2,cnt1
+            };
+        }
+    }
+    sort(a+1,a+cnt1+1);
+    int L,R,T;//指针坐标
+    L=R=0;
+    T=1;
+    for(int i=1; i<=cnt1; i++) {
+        while(T<=a[i].t) {
+            modify(b[T].l,b[T].t);
+            T++;
+        }
+        while(T>a[i].t) {
+            modify(b[T].l,b[T].r);
+            T--;
+        }
+        while(L>a[i].l) {
+            L--;
+            add(id[L]);
+        }
+        while(L<a[i].l) {
+            add(id[L]);
+            L++;
+        }
+        while(R>a[i].r) {
+            add(id[R]);
+            R--;
+        }
+        while(R<a[i].r) {
+            R++;
+            add(id[R]);
+        }
+        int x=id[L],y=id[R];
+        int llca=lca(x,y);
+        if(x!=llca&&y!=llca) {
+            add(llca);
+            ans[a[i].id]=cur;
+            add(llca);
+        } else ans[a[i].id]=cur;
+    }
+    for(int i=1; i<=cnt1; i++) {
+        printf("%lld\n",ans[i]);
+    }
+    return 0;
 }
 ```
