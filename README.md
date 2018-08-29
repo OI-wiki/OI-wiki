@@ -24,6 +24,8 @@
 
 目前，**OI Wiki** 正在完善各大方向的基础知识，以便于初学者更好地学习。
 
+关于上述部分待完善内容，请参见 **OI Wiki** 中的 [Projects](https://github.com/24OI/OI-wiki/projects)，详细列举了正在做的事情以及待做事项。
+
 当然，**OI Wiki** 基于 **OI**，却不会局限于 **OI**。**OI Wiki** 会努力完善以下内容：
 
 - 应用在 ACM-ICPC 竞赛中的进阶知识
