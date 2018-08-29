@@ -73,7 +73,7 @@ chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && ./buil
 
 特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
 
-<a href="graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890" /></a>
+<a href="https://github.com/24OI/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890" /></a>
 
 ----
 
