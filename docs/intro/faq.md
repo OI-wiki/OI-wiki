@@ -6,6 +6,12 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 ## 贡献方式
 
+**我们现在在使用 [Projects](https://github.com/24OI/OI-wiki/projects)，这里详细列举了正在做的事情以及待做事项。**
+
+**在开始编写一段内容之前，请查阅 [Issues](https://github.com/24OI/OI-wiki/issues)，确认没有别人在做相同的工作之后，**
+
+**开个 [新 issue](https://github.com/24OI/OI-wiki/issues/new) 记录你要编写的内容。**
+
 ### 我之前没怎么用过 Github
 
 参与 Wiki 的编写 ** 需要 ** 一个 Github 账号， ** 不需要 ** 高超的 Github 技巧。
@@ -28,12 +34,10 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 基本协作方式如下：
 
 1. Fork 主仓库到自己的仓库中。
-2. 当想要贡献某部分内容时，请务必仔细查看 **Issue**，以便确定是否有人已经开始了这项工作。当然，我们更希望你可以加入 QQ / Telegram 群组，方便交流。
+2. 当想要贡献某部分内容时，请务必仔细查看 **Issues**，以便确定是否有人已经开始了这项工作。当然，我们更希望你可以加入 QQ / Telegram 群组，方便交流。
 3. 在决定将内容推送到本仓库时，** 请你首先拉取本仓库代码进行合并，自行处理好冲突，同时确保在本地可以正常生成文档 **，然后再将分支 PR 到主仓库的 master 分支上。其中，PR 需要包含以下基本信息   
   标题：本次 PR 的目的（做了什么工作，修复了什么问题）  
   内容：如果必要的话，请给出对修复问题的叙述
-
-目前，（人员较少），基本上可以忽略 2-3 步，可以直接在 GitHub 网页版进行修改。
 
 ## 贡献文档要求
 
@@ -187,3 +191,25 @@ pagetime:
 ```
 
 注：默认的是开着的
+
+### Github 是不是不显示我的数学公式？
+
+是的，Github 的预览不显示数学公式。但是请放心，mkdocs 是支持数学公式的，可以正常使用，只要是 mathjax 支持的句式都可以使用。
+
+### 我的公式为什么在目录里没有正常显示？好像双倍了？
+
+是的，这个是 python-markdown 的一个 bug，可能近期会修复。
+
+如果现在想要避免目录中出现双倍公式，可以参考 https://github.com/24OI/OI-wiki/blame/master/docs/string/sam.md#L82
+
+```
+### 结束位置 <script type="math/tex">endpos</script>
+```
+
+在目录中会变成
+
+```
+结束位置 endpos
+```
+
+【注】：现在请尽量避免在目录中引入 mathjax 公式
