@@ -52,7 +52,7 @@ By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 由于上一步已经证明出了$cost$满足四边形不等式，而该不等式的左边在上式出现过，将其替换得
 
-$f_{i,x}+f_{x+1,j}+cost_{i,j}+f_{i+1,y}+f_{y+1,j+1}+cost_{i+1,j+1}\le f_{i,x}+f_{x+1,j+1}+cost{i,j+1}+f_{i+1,y}+f_{y+1,j}+cost_{i+1,j}$
+$f_{i,x}+f_{x+1,j}+cost_{i,j}+f_{i+1,y}+f_{y+1,j+1}+cost_{i+1,j+1}\le f_{i,x}+f_{x+1,j+1}+cost_{i,j+1}+f_{i+1,y}+f_{y+1,j}+cost_{i+1,j}$
 
 消去公共项可得 $f_{i,j}+f_{i+1,j+1}\le f_{i+1,j}+f_{i,j+1}$
 
