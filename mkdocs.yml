@@ -205,6 +205,7 @@ nav:
     - 复杂度: misc/complexity.md
     - 读入和输出优化: misc/io.md
     - 离散化: misc/discrete.md
+    - 树上启发式合并: misc/dsu-on-tree.md
 
 # Theme
 theme:
