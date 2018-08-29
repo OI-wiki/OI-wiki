@@ -12,24 +12,24 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 **开个 [新 issue](https://github.com/24OI/OI-wiki/issues/new) 记录你要编写的内容。**
 
-### 我之前没怎么用过 Github
+### 我之前没怎么用过 GitHub
 
-参与 Wiki 的编写 ** 需要 ** 一个 Github 账号， ** 不需要 ** 高超的 Github 技巧。
+参与 Wiki 的编写 ** 需要 ** 一个 GitHub 账号， ** 不需要 ** 高超的 GitHub 技巧。
 
 举个栗子，假如我想要修改一个页面内容，应该怎么操作呢？
 
 1. 在 OI Wiki 网站上找到对应页面
 2. 点击 正文右上方、目录左侧的 **“编辑此页”** <svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg> 按钮
-3. （应该已经跳转到了 Github 上的对应页面吧？）这时候右上方还会有一个 **“编辑此页”** <svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg> 的按钮，点击它就可以在线编辑了
-4. 写好了之后点下方的绿色按钮（Propose file change），可能会提示没有权限。不必担心！Github 会自动帮你 fork 一份项目的文件并创建 Pull Request
+3. （应该已经跳转到了 GitHub 上的对应页面吧？）这时候右上方还会有一个 **“编辑此页”** <svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg> 的按钮，点击它就可以在线编辑了
+4. 写好了之后点下方的绿色按钮（Propose file change），可能会提示没有权限。不必担心！GitHub 会自动帮你 fork 一份项目的文件并创建 Pull Request
 5. 之后点上方的绿色按钮（Create pull request）后，再点一下出现的绿色按钮（Create pull request）。
-6. 提交之后就可以等待了，管理员会检查一下，合并或者指出还要修改的地方。如果有消息，会有邮件通知或者网页上的提醒。
+6. 提交之后就可以等待他人合并或者指出还要修改的地方，当然你也可以给他人的 PR 提出修改意见，或者只是点赞/踩。如果有消息，会有邮件通知和/或网页上的提醒（取决于在你个人 Settings 中的设置）。
 
 （有木有很简单？）
 
 如果还是不放心，可以参考这篇文章：https://juejin.im/entry/56e638591ea49300550885cc
 
-### 我之前用过 Github
+### 我之前用过 GitHub
 
 基本协作方式如下：
 
@@ -78,7 +78,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 ### 如何修改一个 topic 的内容
 
-在对应页面右上方有一个编辑按钮 <svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg> ，点击之后会跳转到 Github 上对应文件的位置。
+在对应页面右上方有一个编辑按钮 <svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg> ，点击之后会跳转到 GitHub 上对应文件的位置。
 
 或者也可以自行阅读目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 查找文件位置
 
@@ -91,16 +91,16 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 我们推荐使用 [commitizen/cz-cli](https://github.com/commitizen/cz-cli) 来规范 commit message （并非强求）。
 
-### 我尝试访问 Github 的时候遇到了困难
+### 我尝试访问 GitHub 的时候遇到了困难
 
 推荐在 hosts 文件中加入如下几行：（来源： [@GoogleHosts](https://github.com/googlehosts/hosts/blob/master/hosts-files/hosts#L481-L485)）
 
 ```
-## Github Start
+## GitHub Start
 192.30.253.118	gist.github.com
 192.30.253.112	github.com
 192.30.253.112	www.github.com
-## Github End
+## GitHub End
 ```
 
 可以在 [@GoogleHosts 主页](https://github.com/googlehosts/hosts) 上了解到更多信息。
@@ -111,7 +111,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 或者：
 
-```
+```bash
 pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 ```
 
@@ -119,20 +119,20 @@ pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
 如果有安装 `git bash`，可以加几个限制来减少下载量：
 
-```
+```bash
 git clone https://github.com/24OI/OI-wiki.git --depth=1 -b master
 ```
 
 参考这篇文章：https://blog.csdn.net/FreeApe/article/details/46845555
 
-### 我没装过 python3
+### 我没装过 Python 3
 
 可以访问 [Python 官网](https://www.python.org/downloads/) 了解更多信息。
 
 ### 好像提示我 pip 版本过低
 进入 cmd / shell 之后
 
-```
+```bash
 python -m pip install --upgrade pip
 ```
 
@@ -146,11 +146,11 @@ python -m pip install --upgrade pip
 
 ### 我 clone 了很久之前的 repo，怎么更新到新版本呢
 
-参考：	https://help.github.com/articles/syncing-a-fork/
+参考：https://help.github.com/articles/syncing-a-fork/
 
 ### 如果是装了之前的依赖怎么更新
 
-```
+```bash
 pip install -U -r requirements.txt
 ```
 
@@ -192,9 +192,9 @@ pagetime:
 
 注：默认的是开着的
 
-### Github 是不是不显示我的数学公式？
+### GitHub 是不是不显示我的数学公式？
 
-是的，Github 的预览不显示数学公式。但是请放心，mkdocs 是支持数学公式的，可以正常使用，只要是 mathjax 支持的句式都可以使用。
+是的，GitHub 的预览不显示数学公式。但是请放心，mkdocs 是支持数学公式的，可以正常使用，只要是 mathjax 支持的句式都可以使用。
 
 ### 我的公式为什么在目录里没有正常显示？好像双倍了？
 

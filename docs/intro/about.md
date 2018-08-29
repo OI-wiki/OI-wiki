@@ -6,7 +6,7 @@ A：不知道你在学 **OI** 的时候，面对庞大的知识体系，有没�
 
 Q：我很感兴趣，怎么参与呢？
 
-A：**OI Wiki** 现在托管在 [Github](https://github.com/24OI/OI-wiki) 上，你可以直接访问这个 [repo](https://github.com/24OI/OI-wiki) 来查看最新进展。参与的途径包括在 [Github](https://github.com/24OI/OI-wiki) 上面开 Issue、Pull Request，或者在交流群中分享你的想法、直接向管理员投稿。目前，我们使用的框架是 [mkdocs](https://mkdocs.readthedocs.io)，支持 Markdown 格式（当然也支持插入数学公式）。
+A：**OI Wiki** 现在托管在 [GitHub](https://github.com/24OI/OI-wiki) 上，你可以直接访问这个 [repo](https://github.com/24OI/OI-wiki) 来查看最新进展。参与的途径包括在 [GitHub](https://github.com/24OI/OI-wiki) 上面开 Issue、Pull Request，或者在交流群中分享你的想法、直接向管理员投稿。目前，我们使用的框架是 [mkdocs](https://mkdocs.readthedocs.io)，支持 Markdown 格式（当然也支持插入数学公式）。
 
 Q：可是我比较弱…… 不知道我能做点什么？
 
@@ -18,7 +18,7 @@ A：现在主要是一些退役老年选手在做这件事，靠的都是信仰�
 
 Q：听说过 nocow 吧，**OI Wiki** 怎么保证我们添加的内容不会像 nocow 那样突然间就不见了呢？
 
-A：我们把内容托管在 [Github](https://github.com/24OI/OI-wiki) 上面，即使我们的服务器翻车了，内容也不会丢失。另外，我们也会定期备份大家的心血，即使有一天 [Github](https://github.com/24OI/OI-wiki) 倒闭了（？），我们的内容也不会丢失。
+A：我们把内容托管在 [GitHub](https://github.com/24OI/OI-wiki) 上面，即使我们的服务器翻车了，内容也不会丢失。另外，我们也会定期备份大家的心血，即使有一天 [GitHub](https://github.com/24OI/OI-wiki) 倒闭了（？），我们的内容也不会丢失。
 
 Q：**OI Wiki** 好像现在大部分内容都是空的啊？
 
