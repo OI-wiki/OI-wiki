@@ -108,6 +108,80 @@ int write(int x){
 
 也可以写成非递归的形式，来得到更好的效果。
 
+## 更快的读入/输出优化
+
+通过`fread`或者`mmap`可以实现更快的读入和输出。其本质为一次性读入/输出一个巨大的缓存区，如此比一个一个字符读入输出要快的多(`getchar`,`putchar`）。
+
+更通用的是`fread`，因为`mmap`不能在Windows使用。
+
+`fread`类似于`scanf("%s")`，不过它更为快速，而且可以一次性读入若干个字符（包括空格换行等制表符），如果缓存区足够大，甚至可以一次性读入整个文件。
+
+```cpp
+std::size_t fread( void* buffer, std::size_t size, std::size_t count, std::FILE* stream );
+std::size_t fwrite( const void* buffer, std::size_t size, std::size_t count, std::FILE* stream );
+```
+
+使用示例：`fread(Buf, 1, MAXSIZE, stdin)`，如此从stdin文件流中读入MAXSIZE个字符到Buf中。
+
+读入之后的使用就跟普通的读入优化相似了，只需要重定义一下getchar。它原来是从文件中读入一个char，现在变成从Buf中读入一个char，也就是头指针向后移动一位。
+
+```cpp
+char Buf[MASIZE], *S = Buf;
+char getchar() {
+	return *S++;
+}
+```
+
+`fwrite`也是类似的，先放入一个`OutBuf[MAXSIZE]` 中，最后通过`fwrite`一次性将`OutBuf`输出。
+
+注意`fread`必须使用文件读入，但是`fwrite`不需要。
+
+参考代码：
+```
+namespace io {
+const int MAXSIZE = 1 << 22;
+inline char gc() {
+    static char In[MAXSIZE], *at = In, *en = In;
+    if (at == en) {
+        en = (at = In) + fread(In, 1, MAXSIZE, stdin);
+    }
+    return at == en ? EOF : *at++;
+}
+template <class T> inline T gt() {
+    char c;
+    while (c = gc(), !isdigit(c) && c != '-') {}
+    bool f = c == '-';
+    T x = f ? 0 : c - '0';
+    for (c = gc(); isdigit(c); c = gc()) {
+        x = x * 10 + c - '0';
+    }
+    return f ? -x : x;
+}
+char Out[MAXSIZE], *cur = Out, *end = Out + MAXSIZE - 100;
+void flush() {
+    fwrite(Out, 1, cur - Out, stdout);
+    cur = Out;
+}
+template <typename T> inline void pt(T x, char c = '\n') {
+    static int S[20], *top;
+    top = S;
+    if (x < 0) {
+        *cur++ = '-', x = -x;
+    }
+    do {
+        *++top = x % 10, x /= 10;
+    } while (x);
+    while (top != S) {
+        *cur++ = *top-- + '0';
+    }
+    *cur++ = c;
+    if(cur >= end) {
+        flush();
+    }
+}
+}  // namespace io
+```
+
 ## 参考
 
 http://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html
