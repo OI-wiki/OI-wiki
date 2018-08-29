@@ -110,6 +110,8 @@ nav:
   - 数据结构:
     - 数据结构部分简介: ds/index.md
     - STL: ds/stl.md
+      - vector: ds/stl/vector.md
+      - priority_queue: ds/stl/priority_queue.md
     - pb_ds:
       - pb_ds 简介: ds/pb-ds/index.md
       - priority_queue: ds/pb-ds/priority-queue.md
