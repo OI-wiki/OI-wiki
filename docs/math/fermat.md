@@ -23,7 +23,7 @@ $a^b≡a^b$   $(gcd(a,p)≠1,b<ϕ(p))$
 
 $a^b≡a^{b mod φ(p)+φ(p)}$  $(gcd(a,p)≠1,b≥ϕ(p)\mod p)$
 
-　　证明转载自[这](http://blog.csdn.net/synapse7/article/details/19610361)
+　　证明转载自 [synapse7](http://blog.csdn.net/synapse7/article/details/19610361)
 
 　　1. 在 $a$ 的 $0$ 次， $1$ 次，...， $b$ 次幂模 $m$ 的序列中，前 $r$ 个数 （ $a^0$ 到 $a^{r-1}$ )互不相同，从第 $r$ 个数开始，每 $s$ 个数就循环一次。
 
