@@ -1,4 +1,4 @@
-dfs 全称是 Depth First Search。
+dfs 全称是 ![Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)。
 
 是一种图的遍历算法。
 
