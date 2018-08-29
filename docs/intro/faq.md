@@ -15,8 +15,9 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 1. 在 OI Wiki 网站上找到对应页面
 2. 点击 正文右上方、目录左侧的 **“编辑此页”** <svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg> 按钮
 3. （应该已经跳转到了 Github 上的对应页面吧？）这时候右上方还会有一个 **“编辑此页”** <svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg> 的按钮，点击它就可以在线编辑了
-4. 写好了之后点下方的绿色按钮，可能会提示没有权限。不必担心！Github 会自动帮你 fork 一份项目的文件并创建 Pull Request
-
+4. 写好了之后点下方的绿色按钮（Pro），可能会提示没有权限。不必担心！Github 会自动帮你 fork 一份项目的文件并创建 Pull Request
+5.之后点上方的绿色按钮（Create pull request）后，再点一下出现的绿色按钮（Create pull request）。
+6.静等邮件通知。
 （有木有很简单？）
 
 如果还是不放心，可以参考这篇文章：https://juejin.im/entry/56e638591ea49300550885cc
