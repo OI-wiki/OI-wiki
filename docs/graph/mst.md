@@ -166,6 +166,11 @@ for (i = 1; i <= n; i++) {
 
 Kruskal 算法中的「集合」，能否进一步优化？
 
+## 最小生成树题目
+
+[[HAOI2006]聪明的猴子](https://www.lydsy.com/JudgeOnline/problem.php?id=2429)
+
+[[SCOI2005]繁忙的都市](https://www.lydsy.com/JudgeOnline/problem.php?id=1083)
 ## 次小生成树
 
 ## 第 k 小生成树
