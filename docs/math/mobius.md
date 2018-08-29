@@ -7,11 +7,11 @@
 
 ## 积性函数 ##
 
-#### 定义 ####
+### 定义 ###
 
 &emsp;&emsp;若 $\gcd(x,y)=1$ 且 $f(xy)=f(x)f(y)$，则 $f(n)$ 为积性函数。
 
-#### 性质 ####
+### 性质 ###
 
 &emsp;&emsp;若 $f(x)$ 和 $g(x)$ 均为积性函数，则以下函数也为积性函数：
 $$
@@ -23,7 +23,7 @@ h(x)&=\sum_{d|x}f(d)g(\frac{x}{d})
 \end{align*}
 $$
 
-#### 例子 ####
+### 例子 ###
 $$
 \qquad\begin{array}
 \text{约数个数函数}&d(n)=\displaystyle\sum_{d|n}1\\
@@ -43,16 +43,16 @@ $$
 
 ## Dirichlet 卷积 ##
 
-#### 定义 ####
+### 定义 ###
 
 &emsp;&emsp;定义两个数论函数 $f,g$ 的 $\text{Dirichlet}$ 卷积为$$(f*g)(n)=\sum_{d|n}f(d)g(\frac{n}{d})$$
 
-#### 性质 ####
+### 性质 ###
 
 &emsp;&emsp;$\text{Dirichlet}$ 卷积满足交换律和结合律。
 &emsp;&emsp;其中 $\epsilon$ 为 $\text{Dirichlet}$ 卷积的单位元（任何函数卷 $\epsilon$ 都为其本身）
 
-#### 例子 ####
+### 例子 ###
 $$
 \begin{align*}
 \epsilon=\mu*1&\Leftrightarrow\epsilon(n)=\sum_{d|n}\mu(d)\\
@@ -66,11 +66,11 @@ $$
 
 ## 莫比乌斯函数 ##
 
-#### 定义 ####
+### 定义 ###
 
 &emsp;&emsp;$\mu$ 为莫比乌斯函数
 
-#### 性质 ####
+### 性质 ###
 
 &emsp;&emsp;莫比乌斯函数不但是积性函数，还有如下性质：
 $$
@@ -82,7 +82,7 @@ $$
 \end{cases}
 $$
 
-#### 证明 ####
+### 证明 ###
 $$
 \epsilon(n)=
 \begin{cases}
@@ -96,7 +96,7 @@ $$
 &emsp;&emsp;那么 $\displaystyle\sum_{d|n}\mu(d)=\sum_{d|n'}\mu(d)=\sum_{i=0}^k C_k^i\cdot(-1)^k$
 &emsp;&emsp;根据二项式定理，易知该式子的值在 $k=0$ 即 $n=1$ 时值为 $1$ 否则为 $0$，这也同时证明了 $\sum_{d|n}\mu(d)=[n=1]$
 
-#### 线性筛 ####
+### 线性筛 ###
 &emsp;&emsp;由于 $\mu$ 函数为积性函数，因此可以线性筛莫比乌斯函数（线性筛基本可以求所有的积性函数，尽管方法不尽相同）。
 
 &emsp;&emsp;**代码**：
@@ -117,7 +117,7 @@ void getMu() {
 }
 ```
 
-#### 拓展 ####
+### 拓展 ###
 
 &emsp;&emsp;证明
 $$\varphi*1=\text{ID}\text{（ID 函数即 } f(x)=x\text{）}$$
@@ -140,7 +140,7 @@ $$
 
 ## 莫比乌斯反演 ##
 
-#### 公式 ####
+### 公式 ###
 
 &emsp;&emsp;设 $f(n),g(n)$ 为两个数论函数。
 &emsp;&emsp;如果有
@@ -149,7 +149,7 @@ $$f(n)=\sum_{d|n}g(d)$$
 &emsp;&emsp;那么有
 $$g(n)=\sum_{d|n}\mu(d)f(\frac{n}{d})$$
 
-#### 证明 ####
+### 证明 ###
 
 - **暴力计算**：
 
