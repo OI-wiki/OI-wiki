@@ -209,7 +209,10 @@ nav:
 
 # Theme
 theme:
-  name: 'material'
+  name: null
+  custom_dir: 'mkdocs-material/material'
+  static_templates:
+    - 404.html
   language: 'zh'
   palette:
     primary: 'white'

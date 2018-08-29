@@ -21,4 +21,4 @@ sed -i 's/fonts.googleapis.com/fonts.loli.net/g' mkdocs-material/material/base.h
 sed -i 's/{{ page.content }}/{% set pagetime = config.extra.pagetime %} {% if page and page.meta and page.meta.pagetime is string %} {% set pagetime = page.meta.pagetime %} {% endif %}{% if pagetime %}<blockquote class="page-time"><\/blockquote>{% endif %}\n                {{ page.content }}/g' mkdocs-material/material/base.html
 cp ./static/disqus.html mkdocs-material/material/partials/integrations/disqus.html
 
-mkdocs build -v
+mkdocs serve -v
