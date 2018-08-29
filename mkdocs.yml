@@ -111,8 +111,8 @@ nav:
     - 数据结构部分简介: ds/index.md
     - STL: ds/stl.md
     - pb_ds:
-      - pb_ds 简介: ds/pb_ds.md
-      - priority_queue: ds/pb_ds/priority_queue.md
+      - pb_ds 简介: ds/pb-ds/index.md
+      - priority_queue: ds/pb-ds/priority-queue.md
     - 栈: ds/stack.md
     - 队列: ds/queue.md
     - 链表: ds/linked-list.md
