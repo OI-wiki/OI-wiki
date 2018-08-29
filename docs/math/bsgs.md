@@ -103,7 +103,9 @@ $\therefore r = 0$.
 ```cpp
 d=1,num=0;
 while(gcd(a,c)!=1){
-    if(b%gcd(a,c)!=0) \\无解
+    if(b%gcd(a,c)!=0) {
+        \\无解
+    }
     b\=gcd(a,c);
     c\=gcd(a,c);
     d*=a/gcd(a,c);
