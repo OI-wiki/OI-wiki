@@ -48,11 +48,14 @@ $$
 
 ### 定义 ###
 
-&emsp;&emsp;定义两个数论函数 $f,g$ 的 $\text{Dirichlet}$ 卷积为$$(f*g)(n)=\sum_{d|n}f(d)g(\frac{n}{d})$$
+&emsp;&emsp;定义两个数论函数 $f,g$ 的 $\text{Dirichlet}$ 卷积为
+
+$$(f*g)(n)=\sum_{d|n}f(d)g(\frac{n}{d})$$
 
 ### 性质 ###
 
 &emsp;&emsp;$\text{Dirichlet}$ 卷积满足交换律和结合律。
+
 &emsp;&emsp;其中 $\epsilon$ 为 $\text{Dirichlet}$ 卷积的单位元（任何函数卷 $\epsilon$ 都为其本身）
 
 ### 例子 ###
@@ -96,8 +99,11 @@ $$
 $$
 
 &emsp;&emsp;其中 $\displaystyle\epsilon(n)=\sum_{d|n}\mu(d)$ 即 $\epsilon=\mu*1$
+
 &emsp;&emsp;设 $\displaystyle n=\prod_{i=1}^k{p_i}^{c_i},n'=\prod_{i=1}^k p_i$
+
 &emsp;&emsp;那么 $\displaystyle\sum_{d|n}\mu(d)=\sum_{d|n'}\mu(d)=\sum_{i=0}^k C_k^i\cdot(-1)^k$
+
 &emsp;&emsp;根据二项式定理，易知该式子的值在 $k=0$ 即 $n=1$ 时值为 $1$ 否则为 $0$，这也同时证明了 $\sum_{d|n}\mu(d)=[n=1]$
 
 ### 线性筛 ###
