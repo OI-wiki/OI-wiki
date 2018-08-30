@@ -56,7 +56,7 @@ for(iter=mp.begin();iter!=mp.end();iter++)
 if(i->first=="ddjxd") mp.erase(i);
 ```
 
-如果你想清空所有的元素，可以直接```mp.clear```
+如果你想清空所有的元素，可以直接`mp.clear`
 
 - 其他
 
