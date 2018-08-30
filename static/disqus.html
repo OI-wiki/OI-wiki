@@ -8,8 +8,8 @@
 <!-- Comments Integration -->
 {% if not page.is_homepage and disqus %}
 {% set pageID = page.title | default("404", true) %}
-<h2 id="__comments" data-no-instant>{{ lang.t("meta.comments") }}</h2>
-<div id="gitment_container" data-no-instant>
+<h2 id="__comments">{{ lang.t("meta.comments") }}</h2>
+<div id="gitment_container">
     <link rel="stylesheet" href="https://24oi.cf/gitment.css">
     <script src="https://24oi.cf/gitment.js"></script>
     <script>

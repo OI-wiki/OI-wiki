@@ -23,7 +23,7 @@
 {% import "partials/language.html" as lang with context %}
 
 <!-- InstantClick -->
-<script type="text/javascript" src="https://cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/instantclick/3.0.0/instantclick.js" data-no-instant></script>
 <script data-no-instant>
 InstantClick.on('change', function(isInitialLoad) {
  if (isInitialLoad === false) {
@@ -37,7 +37,7 @@ InstantClick.on('change', function(isInitialLoad) {
     ga('send', 'pageview', location.pathname + location.search);
  }
 });
-InstantClick.init();
+InstantClick.init(true);
 </script>
 
 <!-- back to top -->
