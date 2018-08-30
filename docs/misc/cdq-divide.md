@@ -33,32 +33,30 @@ $CDQ$ 大体可以认为是 先算出 $l \cdots mid$ 的贡献, 然后算出 $l$
 
 最后循环扫一遍, 因为这个时候后已经满足 $b[i]\leq b[j]\ (i\leq j)$。我们就可以按照逆序对这样子, 对权值线段树 (树状数组) 插入第三维 $c[i]$。如果 $num[i]\leq mid$ 的话, 我们就插入, 否则算贡献。为什么这样子呢? 因为现在满足的是 $b[i]\leq b[j]\ (i\leq j)$ , 而 $num[i]\leq mid$ 可以满足 $a[l .. mid]\leq a[mid+1 .. r]$, 我们只需要对 $c$ 数组进行逆序对一样的操作。
 
-```pascal
-procedure CDQ(l,r:longint);
-var
-    mid,i,j:longint;
-begin
-    if l=r then exit; // 到了叶子, 退出
-    mid:=(l+r) div 2;
-    CDQ(l,mid); // 先左边
-
-    for i:=l to r do // 赋值
-    begin
-        element[i]:=point[2,i]; // 第二维
-        num[i]:=i; // 编号
-    end;
-    Sort_2(l,r); // 进行排序, 关键字如上述
-
-    for i:=l to r do
-        if num[i]<=mid then // 左边的, 插入
-            Insert(point[3,num[i]],1)
-        else
-            inc(value[num[i]],Query(point[3,num[i]])); // 算贡献
-    for i:=l to r do // 还原树状数组
-        if num[i]<=mid then
-            Insert(point[3,num[i]],-1); // 还原, 所以是 - 1
-    CDQ(mid+1,r); // 再往右边
-end;
+```cpp
+void CDQ(int l,int r) {
+	if(l==r) return; // 到了叶子, 退出
+	int mid=(l+r)>>1;
+	CDQ(l,mid); // 先左边
+	for(int i=l;i<=r;++i) { // 赋值
+		element[i]=point[2][i]; // 第二维
+		num[i]=i; // 编号
+	}
+	Sort_2(l,r); // 进行排序, 关键字如上述
+	for(int i=l;i<=r;++i) {
+		if(num[i]<=mid) { // 左边的, 插入
+			Insert(point[3][num[i]],1);
+		} else {
+			value[num[i]]+=Query(point[3][num[i]]); // 算贡献
+		}
+	}
+	for(int i=l;i<=r;++i) { // 还原树状数组
+		if(num[i]<=mid) {
+			Insert(point[3][num[i]],-1); // 还原, 所以是 - 1
+		}
+	}
+	CDQ(mid+1,r); // 再往右边
+}
 ```
 
 $a[l..mid]\leq a[mid+1..r]$ 是只能算出 $l$ 对 $r$ 的贡献的, 所以就需要分治啦。最后别忘了还原树状数组和 $CDQ(mid+1,r)$!!! 加上树状数组时间复杂度 $O(n\ (log\ n)^2)$。

@@ -2,8 +2,6 @@
 
 马拉车算法（Manacher's algorithm）是一个求一个字符串中最长回文连续子序列的算法
 
-其实是自己复习用的（
-
 ##  正文
 
 [【模板】manacher算法](https://www.luogu.org/problemnew/show/P3805)

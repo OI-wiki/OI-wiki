@@ -24,6 +24,8 @@
 
 目前，**OI Wiki** 正在完善各大方向的基础知识，以便于初学者更好地学习。
 
+关于上述部分待完善内容，请参见 **OI Wiki** 中的 [Projects](https://github.com/24OI/OI-wiki/projects)，详细列举了正在做的事情以及待做事项。
+
 当然，**OI Wiki** 基于 **OI**，却不会局限于 **OI**。**OI Wiki** 会努力完善以下内容：
 
 - 应用在 ACM-ICPC 竞赛中的进阶知识
@@ -40,7 +42,7 @@
 
 当然也可以本地部署。（**需要 Python 3**）
 
-**如果遇到问题，可以查阅 [F.A.Q.](.github/CONTRIBUTING.md#faq) 来了解更多信息。**
+**如果遇到问题，可以查阅 [F.A.Q.](https://oi-wiki.org/intro/faq/) 来了解更多信息。**
 
 ```bash
 git clone https://github.com/24OI/OI-wiki.git
@@ -65,15 +67,15 @@ chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && ./buil
 ## 如何参与完善 OI Wiki
 
 我们非常欢迎你为 **OI Wiki** 编写内容，将自己的所学所得与大家分享。
-具体的贡献方式在 [CONTRIBUTING.md](.github/CONTRIBUTING.md)。
+具体的贡献方式在 [F.A.Q](https://oi-wiki.org/intro/faq/)。
 
 本项目受 [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
 
 非常感谢一起完善 **OI Wiki** 的 [小伙伴们](https://github.com/24OI/OI-wiki/graphs/contributors)！
 
-特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
+<a href="https://github.com/24OI/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890" /></a>
 
-<a href="graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890" /></a>
+特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
 
 ----
 

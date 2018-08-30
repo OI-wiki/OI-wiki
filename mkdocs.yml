@@ -111,8 +111,8 @@ nav:
     - 数据结构部分简介: ds/index.md
     - STL: ds/stl.md
     - pb_ds:
-      - pb_ds 简介: ds/pb_ds.md
-      - priority_queue: ds/pb_ds/priority_queue.md
+      - pb_ds 简介: ds/pb-ds/index.md
+      - priority_queue: ds/pb-ds/priority-queue.md
     - 栈: ds/stack.md
     - 队列: ds/queue.md
     - 链表: ds/linked-list.md
@@ -205,6 +205,7 @@ nav:
     - 复杂度: misc/complexity.md
     - 读入和输出优化: misc/io.md
     - 离散化: misc/discrete.md
+    - 树上启发式合并: misc/dsu-on-tree.md
 
 # Theme
 theme:
@@ -235,11 +236,11 @@ extra:
 
 extra_javascript:
   - 'https://oi-wiki.org/analytics.js'
-  - '_static/js/extra.js?v=1'
+  - '_static/js/extra.js?v=2'
   - 'https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'
 
 extra_css:
-  - '_static/css/extra.css?v=1'
+  - '_static/css/extra.css?v=2'
 
 # Extensions
 markdown_extensions:

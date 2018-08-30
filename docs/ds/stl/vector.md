@@ -137,4 +137,4 @@ vector有如下几种返回容量的函数
 
 标准库提供对 bool 的 vector 优化，其空间占用与 bitset 一样，每个 `bool` 只占 1bit，且支持动态内存
 
-注意，`vector<bool>`没有 bitset 的位运算重载，所以适用情况与 bitset 并不完全重合，请选择食用。
+注意，`vector<bool>`没有 bitset 的位运算重载，所以适用情况与 bitset 并不完全重合，请选择食用
