@@ -2,7 +2,7 @@
 
 `map` 的数据结构为一颗红黑树。
 
-当你在写程序的时候，可能需要存储一些信息，例如存储学生姓名对应的分数，例如：`ddjxd 0`，`Ir1d 100`，`siyuan 100`，`yyfcpp 100`。
+当你在写程序的时候，可能需要存储一些信息，例如存储学生姓名对应的分数，例如：`Tom 0`，`Bob 100`，`Alan 100`。
 但是由于数组下标只能为非负整数，所以无法用姓名来存储，这个时候最简单的办法就是使用 STL 的 `map` 了！
 
 `map` 可任意类型为下标，下面是 `map` 的模型：
@@ -22,21 +22,21 @@ map <string,int> mp
 
 - `map` 添加元素
 
-1.直接存，例如 `mp["ddjxd"]=0`
+1.直接存，例如 `mp["Tom"]=0`
 
-2.通过插入，例如 `mp.insert(pair<string,int>("siyuan",100));`
+2.通过插入，例如 `mp.insert(pair<string,int>("Alan",100));`
 
 3.初始化（至少 `C++11`）和数组差不多：
 ```cpp
 map <string,int> mp= {
-                {"ddjxd",0},
-                {"Ir1d","100"},
-                {"siyuan",100}};
+                {"Tom",0},
+                {"Bob","100"},
+                {"Alan",100}};
 ```
 
 - `map` 查找删除元素
 
-1.在你知道查找元素是啥的时候直接来就可以了，例如：`int grade=mp["ddjxd"]`
+1.在你知道查找元素是啥的时候直接来就可以了，例如：`int grade=mp["Tom"]`
 
 2.如果你知道了元素的下标，但是想知道这个元素是否已经存在 `map` 中，可以使用 `find` 函数。
 
@@ -53,12 +53,12 @@ for(iter=mp.begin();iter!=mp.end();iter++)
 
 其中 ```mp.begin()``` 返回指向map头部的迭代器
 
-`iter->first` 是 `map` 索引，例如 `ddjxd`，而 `iter->second` 是下标。
+`iter->first` 是 `map` 索引，例如 `Tom`，而 `iter->second` 是下标。
 
-当然，如果你想删除 `ddjxd` 这个元素，那么就可以在循环里加入：
+当然，如果你想删除 `Tom` 这个元素，那么就可以在循环里加入：
 
 ```cpp
-if(iter->first=="ddjxd") mp.erase(iter);//这里的iter是迭代器，
+if(iter->first=="Tom") mp.erase(iter);//这里的iter是迭代器，
 ```
 
 如果你想清空所有的元素，可以直接`mp.clear()`
