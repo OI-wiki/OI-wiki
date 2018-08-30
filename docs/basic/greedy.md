@@ -25,9 +25,9 @@
 
 用排序法常见的情况是输入一个包含几个（一般一到两个）权值的数组，通过排序然后遍历模拟计算的方法求出最优值。
 
-有些题的排序方法非常显然，如[LG1209](https://www.luogu.org/problemnew/show/P1209)就是将输入数组差分后排序模拟求值。
+有些题的排序方法非常显然，如 [LG1209](https://www.luogu.org/problemnew/show/P1209) 就是将输入数组差分后排序模拟求值。
 
-然而有些时候很难直接一下子看出排序方法，比如[LG1080](https://www.luogu.org/problemnew/show/P1080)就很容易凭直觉而错误地以a或b为关键字排序，过样例之后提交就发现 WA 了 QAQ。一个 ~~众所周知的~~ 常见办法就是尝试交换数组相邻的两个元素来**推导**出正确的排序方法。我们假设这题输入的俩个数用一个结构体来保存
+然而有些时候很难直接一下子看出排序方法，比如 [LG1080](https://www.luogu.org/problemnew/show/P1080) 就很容易凭直觉而错误地以 $a$ 或 $b$ 为关键字排序，过样例之后提交就发现 WA 了 QAQ。一个 ~~众所周知的~~ 常见办法就是尝试交换数组相邻的两个元素来**推导**出正确的排序方法。我们假设这题输入的俩个数用一个结构体来保存
 
 ```c++
 struct { 
@@ -53,15 +53,15 @@ $$\frac{m \cdot v[i + 1].a} {v[i].b}$$
 
 如果交前更优当且仅当 
 
-$$\max {\frac{m} {v[i].b}, \frac{m \cdot v[i].a} {v[i + 1].b}}  < \max {frac{m} {v[i + 1].b}, \frac{m \cdot v[i + 1].a} {v[i].b}}$$
+$$\max (\frac{m} {v[i].b}, \frac{m \times v[i].a} {v[i + 1].b})  < \max (\frac{m} {v[i + 1].b}, \frac{m \times v[i + 1].a} {v[i].b})$$
 
 提取出相同的 $m$ 并约分得到 
 
-$$\max{\frac{1} {v[i].b}, \frac{v[i].a} {v[i + 1].b}} < \max{\frac{1} {v[i + 1].b}, \frac{v[i + 1].a} {v[i].b}}$$
+$$\max(\frac{1} {v[i].b}, \frac{v[i].a} {v[i + 1].b}) < \max(\frac{1} {v[i + 1].b}, \frac{v[i + 1].a} {v[i].b})$$
 
 然后分式化成整式得到 
 
-$$\max{v[i + 1].b, v[i].a \cdot v[i].b} < \max{v[i].b, v[i + 1].a \cdot v[i + 1].b}$$
+$$\max(v[i + 1].b, v[i].a \times v[i].b) < \max(v[i].b, v[i + 1].a \times v[i + 1].b)$$
 
 于是我们就成功得到排序函数了！
 
@@ -74,5 +74,5 @@ struct uv {
 };
 ```
 
-~~看上去是不是很简单呢（这题高精度卡常……）~~ ，如果看懂了就可以尝试下一道类似的题[LG2123](https://www.luogu.org/problemnew/show/P2123)（请不要翻题解……。
+~~看上去是不是很简单呢（这题高精度卡常……）~~ ，如果看懂了就可以尝试下一道类似的题 [LG2123](https://www.luogu.org/problemnew/show/P2123)（请不要翻题解……。
 
