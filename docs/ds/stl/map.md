@@ -42,7 +42,7 @@ map <string,int> mp= {
 
 格式：`if(mp.find()==mp.end())`，意思是如果返回的是 `map` 的末尾，因为 `map` 如果没有查找到元素，迭代器会返回末尾。
 
-其中 ```mp.end()``` 返回指向map尾部的迭代器
+其中 `mp.end()` 返回指向map尾部的迭代器
 
 3.如果你想知道map里全部的元素，那么最正确的做法使用迭代器了，如果你还不会，请查阅之前文章中的迭代器。
 
@@ -51,7 +51,7 @@ for(iter=mp.begin();iter!=mp.end();iter++)
         cout<<iter->first<<" "<<iter->second<<endl;
 ```
 
-其中 ```mp.begin()``` 返回指向map头部的迭代器
+其中 `mp.begin()` 返回指向map头部的迭代器
 
 `iter->first` 是 `map` 索引，例如 `Tom`，而 `iter->second` 是下标。
 
