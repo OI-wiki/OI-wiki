@@ -1,13 +1,18 @@
 ### `map` 是啥鬼？
 
+`map` 的数据结构为一颗红黑树。
+
 当你在写程序的时候，可能需要存储一些信息，例如存储学生姓名对应的分数，例如：`ddjxd 0`，`Ir1d 100`，`siyuan 100`，`yyfcpp 100`。
 但是由于数组下标只能为非负整数，所以无法用姓名来存储，这个时候最简单的办法就是使用 STL 的 `map` 了！
 
 `map` 可任意类型为下标，下面是 `map` 的模型：
+
 ```cpp
 map <类型名,类型名> 你想给map起的名字
 ```
+
 其中两个类型名第一个是数组的下标（索引），第二个是对应的元素。例如上面的例子，我们可以这样的存储：
+
 ```cpp
 map <string,int> mp
 ```
@@ -18,14 +23,27 @@ map <string,int> mp
 - `map` 添加元素
 
 1.直接存，例如 `mp["ddjxd"]=0`
+
 2.通过插入，例如 `mp.insert(pair<string,int>("siyuan",100));`
+
+3.初始化（至少 `C++11`）和数组差不多：
+```cpp
+map <string,int> mp= {
+                {"ddjxd",0},
+                {"Ir1d","100"},
+                {"siyuan",100}};
+```
 
 - `map` 查找删除元素
 
 1.在你知道查找元素是啥的时候直接来就可以了，例如：`int grade=mp["ddjxd"]`
+
 2.如果你知道了元素的下标，但是想知道这个元素是否已经存在 `map` 中，可以使用 `find` 函数。
+
 格式：`if(mp.find()==mp.end())`，意思是如果返回的是 `map` 的末尾，因为 `map` 如果没有查找到元素，迭代器会返回末尾。
+
 3.如果你想知道map里全部的元素，那么就要使用迭代器了，如果你还不会，请查阅之前文章中的迭代器。
+
 ```cpp
 for(iter=mp.begin();iter!=mp.end();iter++)
         cout<<iter->first<<" "<<iter->second<<endl;
@@ -33,9 +51,12 @@ for(iter=mp.begin();iter!=mp.end();iter++)
 其中，`iter->first` 是指的索引，例如 `ddjxd`，而 `iter->second` 是下标。
 
 当然，如果你想删除 `ddjxd` 这个元素，那么就可以在循环里加入：
+
 ```cpp
 if(i->first=="ddjxd") mp.erase(i);
 ```
+
+如果你想清空所有的元素，可以直接```mp.clear```
 
 - 其他
 
@@ -45,7 +66,7 @@ if(i->first=="ddjxd") mp.erase(i);
 
      begin()         返回指向map头部的迭代器
 
-     clear(）        删除所有元素
+     clear()         删除所有元素
 
      count()         返回指定元素出现的次数
 
@@ -90,6 +111,6 @@ if(i->first=="ddjxd") mp.erase(i);
 
 ### 更快：基于 `Hash` 实现的 `map`！
 
-这个 `map` 的名字就是 `unordered_map` 了，它的查询，插入，删除的复杂度几乎是 $O(1)$ 级别（不过最坏会达到 $O(N)$）的！
+这个 `map` 的名字就是 `unordered_map` 了，它的查询，插入，删除的复杂度几乎是 $O(1)$ 级别（不过最坏会达到 $O(N)$）的！所有的操作都和 `map`一样。
 
-不过它的遍历速度会很慢，慢到至少 $O(N)$。
+不过它的遍历速度会很慢，而且空间占用的会更大。
