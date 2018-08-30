@@ -113,6 +113,7 @@ nav:
       - STL 简介: ds/stl.md
       - vector: ds/stl/vector.md
       - priority_queue: ds/stl/priority_queue.md
+      - map: ds/stl/map.md
     - pb_ds:
       - pb_ds 简介: ds/pb-ds/index.md
       - priority_queue: ds/pb-ds/priority-queue.md
