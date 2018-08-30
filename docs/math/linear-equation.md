@@ -2,7 +2,7 @@
 
 形如 $ax \equiv b \pmod c$ 的方程被称为**线性同余方程**。
 
-[[NOIp 2013]同余方程](https://www.luogu.org/problemnew/show/P1082)
+[[NOIp 2012]同余方程](https://www.luogu.org/problemnew/show/P1082)
 
 ## 求解方法
 
