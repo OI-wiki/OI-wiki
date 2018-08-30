@@ -77,6 +77,8 @@ vim 是一款非常优秀的文本编辑器，但由于其陡峭的学习曲线�
 
 附一张图，论各大编辑器的学习曲线，纵坐标代表掌握知识量及难度，横坐标代表使用的熟练程度与完成任务的效率。我们可以看到，vim 的曲线岂止陡峭，都垂直了...... 但是开始过去后，是平稳的提升，只要度过开始的阶段，vim 的学习将再无阻碍，一路直上有没有。
 
+![https://github.com/LuoshuiTianyi/OI-wiki/blob/master/docs/intro/images/horrorstories.txt.jpg?raw=true]
+
 #### 基础知识
 我会穿插必要配置的讲解，在后面的配置里也会有总结的。
 
