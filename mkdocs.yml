@@ -217,7 +217,6 @@ theme:
   palette:
     primary: 'white'
     accent: 'red'
-
   include_search_page: false
   search_index_only: true
 
