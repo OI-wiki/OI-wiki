@@ -212,7 +212,10 @@ nav:
 
 # Theme
 theme:
-  name: 'material'
+  name: null
+  custom_dir: 'mkdocs-material/material'
+  static_templates:
+    - 404.html
   language: 'zh'
   palette:
     primary: 'white'
@@ -239,7 +242,6 @@ extra:
 extra_javascript:
   - 'https://oi-wiki.org/analytics.js'
   - '_static/js/extra.js?v=2'
-  - 'https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'
 
 extra_css:
   - '_static/css/extra.css?v=2'
