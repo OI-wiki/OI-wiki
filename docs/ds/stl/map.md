@@ -42,7 +42,7 @@ map <string,int> mp= {
 
 格式：`if(mp.find()==mp.end())`，意思是如果返回的是 `map` 的末尾，因为 `map` 如果没有查找到元素，迭代器会返回末尾。
 
-其中 ```mp.end()``` 返回指向map尾部的迭代器
+其中 `mp.end()` 返回指向map尾部的迭代器
 
 3.如果你想知道map里全部的元素，那么最正确的做法使用迭代器了，如果你还不会，请查阅之前文章中的迭代器。
 
@@ -51,7 +51,7 @@ for(iter=mp.begin();iter!=mp.end();iter++)
         cout<<iter->first<<" "<<iter->second<<endl;
 ```
 
-其中 ```mp.begin()``` 返回指向map头部的迭代器
+其中 `mp.begin()` 返回指向map头部的迭代器
 
 `iter->first` 是 `key` 索引，例如 `Tom`，而 `iter->second` 是 `value`。
 
@@ -67,13 +67,13 @@ if(iter->first=="Tom") mp.erase(iter);//这里的iter是迭代器，
 
 我们刚才介绍了最常用的，下面是其他比较常用的：
 
-- `count()`   返回指定元素出现的次数 ，例如 `mp.count()`
+- `count()` 返回指定元素出现的次数 ，例如 `mp.count()`
 
 - `swap()` 可以交换两个 `map` ，例如 `swap(m1,m2)`
 
 - `size()` 返回 `map` 中元素的个数
      
-- `empty()`  如果 `map` 为空则返回 `true`，例如 `mp.empty()`。
+- `empty()` 如果 `map` 为空则返回 `true`，例如 `mp.empty()`。
 
 
 ### `map` 常数靠得住吗？
