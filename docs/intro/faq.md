@@ -87,6 +87,9 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 1. 可以开一个 Issue，注明希望能添加的内容
 2. 可以开一个 Pull Request，在目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 中加上新的 topic，并在 [docs](https://github.com/24OI/OI-wiki/tree/master/docs) 文件夹下对应位置创建一个空的 `.md` 文件。
 
+!!! warning "注意"
+    写 .md 文件时，请勿在开头写上标题
+
 ### commit message 怎么写
 
 我们推荐使用 [commitizen/cz-cli](https://github.com/commitizen/cz-cli) 来规范 commit message （并非强求）。
