@@ -21,7 +21,7 @@ $$
 h(x)&=f(x^p)\\
 h(x)&=f^p(x)\\
 h(x)&=f(x)g(x)\\
-h(x)&=\sum_{d|x}f(d)g(\frac{x}{d})
+h(x)&=\sum_{d\mid x}f(d)g(\frac{x}{d})
 \end{align*}
 $$
 
@@ -29,9 +29,9 @@ $$
 
 $$
 \qquad\begin{array}
-\text{约数个数函数}&d(n)=\displaystyle\sum_{d|n}1\\
-\text{约数和函数}&\displaystyle\sigma(n)=\sum_{d|n}d\\
-\text{约数 $k$ 次幂函数}&\displaystyle\sigma_k(n)=\sum_{d|n}d^k\\
+\text{约数个数函数}&d(n)=\displaystyle\sum_{d\mid n}1\\
+\text{约数和函数}&\displaystyle\sigma(n)=\sum_{d\mid n}d\\
+\text{约数 $k$ 次幂函数}&\displaystyle\sigma_k(n)=\sum_{d\mid n}d^k\\
 \text{欧拉函数}&\displaystyle\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]\\
 \text{莫比乌斯函数}&\displaystyle\mu(n)=
 \begin{cases}
@@ -50,21 +50,21 @@ $$
 
 定义两个数论函数 $f,g$ 的 $\text{Dirichlet}$ 卷积为
 
-$$(f*g)(n)=\sum_{d|n}f(d)g(\frac{n}{d})$$
+$$(f*g)(n)=\sum_{d\mid n}f(d)g(\frac{n}{d})$$
 
 ### 性质 ###
 
 $\text{Dirichlet}$ 卷积满足交换律和结合律。
 
-其中 $\epsilon$ 为 $\text{Dirichlet}$ 卷积的单位元（任何函数卷 $\epsilon$ 都为其本身）
+其中 $\varepsilon$ 为 $\text{Dirichlet}$ 卷积的单位元（任何函数卷 $\varepsilon$ 都为其本身）
 
 ### 例子 ###
 $$
 \begin{align*}
-\epsilon=\mu*1&\Leftrightarrow\epsilon(n)=\sum_{d|n}\mu(d)\\
-d=1*1&\Leftrightarrow d(n)=\sum_{d|n}1\\
-\sigma=d*1&\Leftrightarrow\epsilon(n)=\sum_{d|n}d\\
-\varphi=\mu*\text{ID}&\Leftrightarrow\varphi(n)=\sum_{d|n}\mu(d)\cdot\frac{n}{d}
+\varepsilon=\mu*1&\Leftrightarrow\varepsilon(n)=\sum_{d\mid n}\mu(d)\\
+d=1*1&\Leftrightarrow d(n)=\sum_{d\mid n}1\\
+\sigma=d*1&\Leftrightarrow\varepsilon(n)=\sum_{d\mid n}d\\
+\varphi=\mu*\text{ID}&\Leftrightarrow\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
 \end{align*}
 $$
 
@@ -91,20 +91,29 @@ $$
 
 ### 证明 ###
 $$
-\epsilon(n)=
+\varepsilon(n)=
 \begin{cases}
 1&n=1\\
 0&n\neq 1\\
 \end{cases}
 $$
 
-其中 $\displaystyle\epsilon(n)=\sum_{d|n}\mu(d)$ 即 $\epsilon=\mu*1$
+其中 $\displaystyle\varepsilon(n)=\sum_{d\mid n}\mu(d)$ 即 $\varepsilon=\mu*1$
 
 设 $\displaystyle n=\prod_{i=1}^k{p_i}^{c_i},n'=\prod_{i=1}^k p_i$
 
-那么 $\displaystyle\sum_{d|n}\mu(d)=\sum_{d|n'}\mu(d)=\sum_{i=0}^k C_k^i\cdot(-1)^k$
+那么 $\displaystyle\sum_{d\mid n}\mu(d)=\sum_{d\mid n'}\mu(d)=\sum_{i=0}^k C_k^i\cdot(-1)^k$
 
-根据二项式定理，易知该式子的值在 $k=0$ 即 $n=1$ 时值为 $1$ 否则为 $0$，这也同时证明了 $\sum_{d|n}\mu(d)=[n=1]$
+根据二项式定理，易知该式子的值在 $k=0$ 即 $n=1$ 时值为 $1$ 否则为 $0$，这也同时证明了 $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]$
+
+### 补充结论 ###
+
+反演结论：$\displaystyle [gcd(i,j)=1] \Leftrightarrow\sum_{d\mid\gcd(i,j)}\mu(d)$
+
+- **直接推导**：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$，也就是式子的值是 $1$，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值：$0$
+
+- **利用 $\varepsilon$ 函数**：根据上一结论，$[\gcd(i,j)=1]\Rightarrow \varepsilon(\gcd(i,j))$，将 $\varepsilon$ 展开即可。
+
 
 ### 线性筛 ###
 由于 $\mu$ 函数为积性函数，因此可以线性筛莫比乌斯函数（线性筛基本可以求所有的积性函数，尽管方法不尽相同）。
@@ -135,7 +144,7 @@ $$\varphi*1=\text{ID}\text{（ID 函数即 } f(x)=x\text{）}$$
 
 将 $n$ 分解质因数：$\displaystyle n=\prod_{i=1}^k {p_i}^{c_i}$
 
-首先，因为 $\varphi$ 是积性函数，故只要证明当 $n'=p^c$ 时 $\displaystyle\varphi*1=\sum_{d|n'}\varphi(\frac{n'}{d})=\text{ID}$ 成立即可。
+首先，因为 $\varphi$ 是积性函数，故只要证明当 $n'=p^c$ 时 $\displaystyle\varphi*1=\sum_{d\mid n'}\varphi(\frac{n'}{d})=\text{ID}$ 成立即可。
 
 因为 $p$ 是质数，于是 $d=p^0,p^1,p^2,\cdots,p^c$
 
@@ -143,13 +152,15 @@ $$\varphi*1=\text{ID}\text{（ID 函数即 } f(x)=x\text{）}$$
 
 $$
 \begin{align*}
-\varphi*1&=\sum_{d|n}\varphi(\frac{n}{d})\\
+\varphi*1&=\sum_{d\mid n}\varphi(\frac{n}{d})\\
 &=\sum_{i=0}^c\varphi(p^i)\\
 &=1+p^0\cdot(p-1)+p^1\cdot(p-1)+\cdots+p^{c-1}\cdot(p-1)\\
 &=p^c\\
 &=\text{ID}\\
 \end{align*}
 $$
+
+该式子两侧同时卷 $\mu$ 可得 $\displaystyle\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})$
 
 ---
 
@@ -161,25 +172,25 @@ $$
 
 如果有
 
-$$f(n)=\sum_{d|n}g(d)$$
+$$f(n)=\sum_{d\mid n}g(d)$$
 
 那么有
 
-$$g(n)=\sum_{d|n}\mu(d)f(\frac{n}{d})$$
+$$g(n)=\sum_{d\mid n}\mu(d)f(\frac{n}{d})$$
 
 ### 证明 ###
 
 - **暴力计算**：
 
-$$\sum_{d|n}\mu(d)f(\frac{n}{d})=\sum_{d|n}\mu(d)\sum_{k|\frac{n}{d}}g(k)=\sum_{k|n}g(k)\sum_{d|\frac{n}{k}}\mu(d)=g(n)$$
+$$\sum_{d\mid n}\mu(d)f(\frac{n}{d})=\sum_{d\mid n}\mu(d)\sum_{k\mid \frac{n}{d}}g(k)=\sum_{k\mid n}g(k)\sum_{d\mid \frac{n}{k}}\mu(d)=g(n)$$
 
-用 $\displaystyle\sum_{d|n}g(d)$ 来替换 $f(\dfrac{n}{d})$，再变换求和顺序。最后一步转为的依据：$\displaystyle\sum_{d|n}\mu(d)=[n=1]$，因此在 $\dfrac{n}{k}=1$ 时第二个和式的值才为 $1$。此时 $n=k$，故原式等价于 $\displaystyle\sum_{k|n}[n=k]\cdot g(k)=g(n)$
+用 $\displaystyle\sum_{d\mid n}g(d)$ 来替换 $f(\dfrac{n}{d})$，再变换求和顺序。最后一步转为的依据：$\displaystyle\sum_{d\mid n}\mu(d)=[n=1]$，因此在 $\dfrac{n}{k}=1$ 时第二个和式的值才为 $1$。此时 $n=k$，故原式等价于 $\displaystyle\sum_{k\mid n}[n=k]\cdot g(k)=g(n)$
 
 - **运用卷积**：
 
 原问题为：已知 $f=g*1$，证明 $g=f*\mu$
 
-易知如下转化：$f*\mu=g*1*\mu\Rightarrow f*\mu=g$（其中 $1*\mu=\epsilon$）
+易知如下转化：$f*\mu=g*1*\mu\Rightarrow f*\mu=g$（其中 $1*\mu=\varepsilon$）
 
 ---
 
@@ -199,19 +210,19 @@ $$\sum_{i=1}^{n}\sum_{j=1}^{m}[\gcd(i,j)=k]$$
 
 $$\sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}[\gcd(i,j)=1]$$
 
-因为 $\gcd(i,j)=1$ 时对答案才用贡献，于是我们可以将其替换为 $\epsilon(\gcd(i,j))$（$\epsilon(n)$ 当且仅当 $n=1$ 时值为 $1$ 否则为 $0$ ），故原式化为
+因为 $\gcd(i,j)=1$ 时对答案才用贡献，于是我们可以将其替换为 $\varepsilon(\gcd(i,j))$（$\varepsilon(n)$ 当且仅当 $n=1$ 时值为 $1$ 否则为 $0$ ），故原式化为
 
-$$\sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}\epsilon(\gcd(i,j))$$
+$$\sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}\varepsilon(\gcd(i,j))$$
 
-将 $\epsilon$ 函数展开得到
+将 $\varepsilon$ 函数展开得到
 
-$$\displaystyle\sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}\sum_{d| \gcd(i,j)}\mu(d)$$
+$$\displaystyle\sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}\sum_{d\mid  \gcd(i,j)}\mu(d)$$
 
-变换求和顺序，先枚举 $d|gcd(i,j)$ 可得
+变换求和顺序，先枚举 $d\mid gcd(i,j)$ 可得
 
-$$\displaystyle\sum_{d=1}^{\lfloor\frac{n}{k}\rfloor}\mu(d)\sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}d|i\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}d|j$$
+$$\displaystyle\sum_{d=1}^{\lfloor\frac{n}{k}\rfloor}\mu(d)\sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}d\mid i\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}d\mid j$$
 
-（其中 $d|i$ 表示 $i$ 是 $d$ 的倍数时对答案有 $1$ 的贡献）
+（其中 $d\mid i$ 表示 $i$ 是 $d$ 的倍数时对答案有 $1$ 的贡献）
 易知 $1\sim\lfloor\dfrac{n}{k}\rfloor$ 中 $d$ 的倍数有 $\lfloor\dfrac{n}{kd}\rfloor$ 个，故原式化为
 
 $$\displaystyle\sum_{d=1}^{\lfloor\frac{n}{k}\rfloor}\mu(d) \lfloor\frac{n}{kd}\rfloor\lfloor\frac{m}{kd}\rfloor$$
@@ -287,13 +298,13 @@ $$\frac{1}{2}\cdot \sum_{i=1}^{n-1}\frac{n^2}{\gcd(i,n)}+n$$
 
 故答案为
 
-$$ \frac{1}{2}\cdot\sum_{d|n}\frac{n^2\cdot\varphi(\frac{n}{d})}{d}+n$$
+$$ \frac{1}{2}\cdot\sum_{d\mid n}\frac{n^2\cdot\varphi(\frac{n}{d})}{d}+n$$
 
 变换求和顺序，设 $\displaystyle d'=\frac{n}{d}$，式子化为
 
-$$\frac{1}{2}n\cdot\sum_{d'|n}d'\cdot\varphi(d')+n$$
+$$\frac{1}{2}n\cdot\sum_{d'\mid n}d'\cdot\varphi(d')+n$$
 
-设 $\displaystyle \text{g}(n)=\sum_{d|n} d\cdot\varphi(d)$，已知 $\text{g}$ 为积性函数，于是可以 $\Theta(n)$ 预处理。最后枚举 $d$，统计贡献即可。
+设 $\displaystyle \text{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$，已知 $\text{g}$ 为积性函数，于是可以 $\Theta(n)$ 预处理。最后枚举 $d$，统计贡献即可。
 
 **时间复杂度**：$\Theta(n\log n)$
 
@@ -348,7 +359,7 @@ $$\sum_{i=1}^n\sum_{j=1}^m\frac{i\cdot j}{\gcd(i,j)}$$
 
 枚举最大公因数 $d$，显然两个数除以 $d$ 得到的数互质
 
-$$\sum_{i=1}^n\sum_{j=1}^m\sum_{d|i,d|j,\gcd(\frac{i}{d},\frac{j}{d})=1}\frac{i\cdot j}{d}$$
+$$\sum_{i=1}^n\sum_{j=1}^m\sum_{d\mid i,d\mid j,\gcd(\frac{i}{d},\frac{j}{d})=1}\frac{i\cdot j}{d}$$
 
 非常经典的 $\gcd$ 式子的化法
 
@@ -358,9 +369,9 @@ $$\sum_{d=1}^n d\cdot\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\f
 
 $$\text{sum}(n,m)=\sum_{i=1}^n\sum_{j=1}^m [\gcd(i,j)=1]\  i\cdot j$$
 
-接下来对 $\text{sum}(n,m)$ 进行化简。首先枚举约数，并将 $[\gcd(i,j)=1]$ 表示为 $\epsilon(\gcd(i,j))$
+接下来对 $\text{sum}(n,m)$ 进行化简。首先枚举约数，并将 $[\gcd(i,j)=1]$ 表示为 $\varepsilon(\gcd(i,j))$
 
-$$\sum_{d=1}^n\sum_{d|i}^n\sum_{d|j}^m\mu(d)\cdot i\cdot j$$
+$$\sum_{d=1}^n\sum_{d\mid i}^n\sum_{d\mid j}^m\mu(d)\cdot i\cdot j$$
 
 设 $i=i'\cdot d$，$j=j'\cdot d$，显然式子可以变为
 
