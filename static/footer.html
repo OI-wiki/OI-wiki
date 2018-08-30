@@ -22,6 +22,24 @@
 
 {% import "partials/language.html" as lang with context %}
 
+<!-- InstantClick -->
+<script type="text/javascript" src="https://cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>
+InstantClick.on('change', function(isInitialLoad) {
+ if (isInitialLoad === false) {
+  if (typeof MathJax !== 'undefined') // support MathJax
+   MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  if (typeof prettyPrint !== 'undefined') // support google code prettify
+   prettyPrint();
+  if (typeof _hmt !== 'undefined') // support 百度统计
+   _hmt.push(['_trackPageview', location.pathname + location.search]);
+  if (typeof ga !== 'undefined') // support google analytics
+    ga('send', 'pageview', location.pathname + location.search);
+ }
+});
+InstantClick.init();
+</script>
+
 <!-- back to top -->
 <link rel="stylesheet" href="https://npmcdn.com/data-tip@0.0.52/dist/data-tip.css">
 <script>
@@ -45,7 +63,6 @@ function topFunction() {
 <button onclick="topFunction()" id="myBtn" class="data-tip-left" data-tip="回到顶部">
   <svg class="Zi Zi--BackToTop data-tip-left" data-tip="回到顶部" fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M16.036 19.59a1 1 0 0 1-.997.995H9.032a.996.996 0 0 1-.997-.996v-7.005H5.03c-1.1 0-1.36-.633-.578-1.416L11.33 4.29a1.003 1.003 0 0 1 1.412 0l6.878 6.88c.782.78.523 1.415-.58 1.415h-3.004v7.005z"></path></svg>
 </button>
-
 
 <!-- Application footer -->
 <footer class="md-footer">
