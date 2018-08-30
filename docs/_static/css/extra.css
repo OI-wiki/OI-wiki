@@ -11,3 +11,20 @@ blockquote.page-time{
   padding-left: 1.5rem;
   border-left: 5px solid #64b5f6; /* Just change the color value and that's it*/
 }
+#myBtn {
+    display: none;
+    position: fixed; 
+    bottom: 3rem; 
+    right: 4rem; 
+    z-index: 99; 
+    border: none;
+    outline: none; 
+    color: #8590a6;
+    cursor: pointer; 
+    padding: .7rem; 
+    border-radius: .4rem;
+}
+ 
+#myBtn:hover {
+    background-color: #d3d3d3; 
+}
