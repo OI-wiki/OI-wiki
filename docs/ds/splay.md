@@ -4,7 +4,7 @@
 
 # 简介 #
 
-$\text{Splay}$ 是一种二叉查找树，它通过不断将某个节点旋转到根节点，使得整棵树仍然满足二叉查找树的性质，并且保持平衡而不至于退化为链，它由Robert Tarjan发明，Serval Yang对其进行了改进。
+$\text{Splay}$ 是一种二叉查找树，它通过不断将某个节点旋转到根节点，使得整棵树仍然满足二叉查找树的性质，并且保持平衡而不至于退化为链，它由 Robert Tarjan 发明，Serval Yang 对其进行了改进。
 
 ---
 
@@ -374,7 +374,7 @@ int main() {
 
 # 练习题 #
 
-[bzoj 1552](https://www.lydsy.com/JudgeOnline/problem.php?id=1552) （权限题）
+[bzoj 1552 [Cerc2007] robotic sort](https://www.lydsy.com/JudgeOnline/problem.php?id=1552) （权限题）
 
 [luogu P3380 【模板】二逼平衡树（树套树）](https://www.luogu.org/problemnew/show/P3380)
 
