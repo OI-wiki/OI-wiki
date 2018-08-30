@@ -41,23 +41,24 @@ map <string,int> mp= {
 2.如果你知道了元素的下标，但是想知道这个元素是否已经存在 `map` 中，可以使用 `find` 函数。
 
 格式：`if(mp.find()==mp.end())`，意思是如果返回的是 `map` 的末尾，因为 `map` 如果没有查找到元素，迭代器会返回末尾。
-其中 ```end()``` 返回指向map尾部的迭代器
 
-3.如果你想知道map里全部的元素，那么就要使用迭代器了，如果你还不会，请查阅之前文章中的迭代器。
+其中 ```mp.end()``` 返回指向map尾部的迭代器
+
+3.如果你想知道map里全部的元素，那么最正确的做法使用迭代器了，如果你还不会，请查阅之前文章中的迭代器。
 
 ```cpp
 for(iter=mp.begin();iter!=mp.end();iter++)
         cout<<iter->first<<" "<<iter->second<<endl;
 ```
 
-其中 ```end()``` 返回指向map尾部的迭代器
+其中 ```mp.begin()``` 返回指向map头部的迭代器
 
 `iter->first` 是 `map` 索引，例如 `ddjxd`，而 `iter->second` 是下标。
 
 当然，如果你想删除 `ddjxd` 这个元素，那么就可以在循环里加入：
 
 ```cpp
-if(i->first=="ddjxd") mp.erase(i);//
+if(iter->first=="ddjxd") mp.erase(iter);//这里的iter是迭代器，
 ```
 
 如果你想清空所有的元素，可以直接`mp.clear()`
