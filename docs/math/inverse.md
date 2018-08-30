@@ -29,11 +29,9 @@ void exgcd(int a,int b,int c,int &x,int &y){
 
 ### 快速幂法：
 
-这个要运用费马小定理：
+这个要运用 [费马小定理](https://oi-wiki.org/math/fermat/)：
 
 > 若 $p$ 为质数，$a$ 为正整数，且 $a$、$p$ 互质，则 $a^{p-1} \equiv 1 \pmod p$。
-
-关于费马小定理在[这里]()
 
 因为 $ax \equiv 1 \pmod b$；
 
