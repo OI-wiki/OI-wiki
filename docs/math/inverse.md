@@ -25,7 +25,7 @@ void exgcd(int a,int b,int c,int &x,int &y){
 }
 ```
 
-扩展欧几里得法和求解线性同余方程是一个原理，在这里不做解释。
+扩展欧几里得法和求解 [线性同余方程](/math/linear-equation/) 是一个原理，在这里不展开解释。
 
 ### 快速幂法：
 
