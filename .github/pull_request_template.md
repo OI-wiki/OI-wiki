@@ -4,8 +4,8 @@
 - 请给 PR 起比较有意义的标题。
 - 请在 PR 之前检查一下您的 PR 是否存在以下常见问题：（确认无问题后请将选项打钩 / 填为 `[x]`）
    * [ ] 您的 MD 代码的书写格式，包括但不限于 **中文与英文之间、中文与阿拉伯数字、中文与 LaTeX 公式之间要有一个半角空格**，特别地，在中文全角符号与英文、阿拉伯数字、LaTeX 公式之间，**不需要**半角空格。（这个可以使用自动化工具辅助，比如 https://github.com/baurine/vscode-pangu)
-   * [ ] 对于 LaTeX 公式，请注意常见的问题，**一定要使用** `$\log$`、`$\min$`、`$\max$`、`$\gcd$` 等，而非 `$log$`、`$min$`、`$max$`、`$gcd$`。对于最小公倍数，请使用 `$\operatorname{lcm}$` 而非 `$lcm$`，省略号请使用 `\cdots`，叉乘请使用 `\times`，点乘请使用 `\cdot`。
-   * [ ] 所有公式中的希腊字母等特殊符号，请不要使用输入法的插入特殊符号功能，而应该使用对应的 LaTeX 公式符号。如 `ϕ` 应该使用 `$\phi$` 或 `\varphi`。
+   * [ ] 对于 LaTeX 公式，请注意常见的问题，**一定要使用** `$\log$`、`$\min$`、`$\max$`、`$\gcd$` 等，而非 `$log$`、`$min$`、`$max$`、`$gcd$`。对于最小公倍数，请使用 `$\operatorname{lcm}$` 而非 `$lcm$`，省略号请使用 `$\cdots$`，叉乘请使用 `$\times$`，点乘请使用 `$\cdot$`。
+   * [ ] 所有公式中的希腊字母等特殊符号，请不要使用输入法的插入特殊符号功能，而应该使用对应的 LaTeX 公式符号。如 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Greek_phi_Didot.svg/11px-Greek_phi_Didot.svg.png) 应该使用 `$\varphi$`，![](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Greek_phi_Porson.svg/10px-Greek_phi_Porson.svg.png) 应该使用 `$\phi$`。
    * [ ] 行间公式前后各要有一行空行。
    * [ ] 对于目录中存在公式的情况，请使用 HTML 代码而非直接插入公式以避免双倍公式的问题，请参考[避免 ToC 中双倍公式的写法](https://oi-wiki.org/intro/faq/#_13))。
 
