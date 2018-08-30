@@ -172,7 +172,6 @@ nav:
     - 最短路: graph/shortest-path.md
     - 最小环: graph/min-circle.md
     - k 短路: graph/kth-path.md
-    - 欧拉图: graph/euler.md
     - 网络流: graph/flow.md
     - 拆点: graph/flow/node.md
     - 最大流: graph/flow/max-flow.md
