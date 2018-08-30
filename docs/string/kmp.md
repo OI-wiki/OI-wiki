@@ -6,7 +6,7 @@
 
 对于模式串 $b$，定义 $next[]$
 
-$$next[i] = \max\{j\}\ s.t.\ 0 \leq j<i\ \&\&\ b[0..j-1]=b[i-j..i-1]$$
+$$next[i] = \max\{j\}\ s.t.\ 0 \leq j<i\ \&\&\ b[0 \cdots j-1]=b[i-j \cdots i-1]$$
 
 【注意下标从 $0$ 开始】【需要画图】
 
@@ -20,7 +20,7 @@ $$next[i] = \max\{j\}\ s.t.\ 0 \leq j<i\ \&\&\ b[0..j-1]=b[i-j..i-1]$$
 
 基础：显然 $next[1]=0$
 
-归纳：如果已知 $next[0..i-1]$，那么 $next[i]=next[i-1]+1$ 或 $next[next[i-1]]+1$ 或…
+归纳：如果已知 $next[0 \cdots i-1]$，那么 $next[i]=next[i-1]+1$ 或 $next[next[i-1]]+1$ 或…
 
 这算法的复杂度是多少？
 

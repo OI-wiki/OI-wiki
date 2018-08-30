@@ -8,9 +8,9 @@ by $\color{Gray}{InterestingLSY}$ (菜到发灰)
 
 ## 1. 记忆化搜索是啥
 
-好，就以 [这道题](https://www.luogu.org/problemnew/show/P1048) 为例，我不会动态规划，只会搜索，我就会直接写一个粗暴的 [DFS](/search/dfs) :
+好，就以 [洛谷 P1048 采药](https://www.luogu.org/problemnew/show/P1048) 为例，我不会动态规划，只会搜索，我就会直接写一个粗暴的 [DFS](/search/dfs) :
 
-* 注: 为了方便食用, 本文中所有代码省略头文件 *
+* 注: 为了方便食用, 本文中所有代码省略头文件
 
 ```cpp
 int n,t;
@@ -262,7 +262,6 @@ dp 状态很显然:
 
 ---
 
-** 如有疑问或质疑, 请留下评论或私信我 **
+** 如有疑问或质疑, 请留下评论或联系我 GitHub [@interestingLSY](https://github.com/interestingLSY) **
 
 ** questions are welcome **
-
