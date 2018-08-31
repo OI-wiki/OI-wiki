@@ -95,7 +95,7 @@ sudo apt-get remove vim
 ```bash
 sudo apt-get install vim
 ```
-做法二，先到[https://github.com/Vim/vim/archive/v8.1.0338.tar.gz]下载源码包，然后解压，并进入解压后的文件夹，并打开终端，cd 至文件夹路径，并依次输入如下命令：
+做法二，先到[https://github.com/Vim/vim/archive/v8.1.0338.tar.gz] 下载源码包，然后解压，并进入解压后的文件夹，并打开终端，cd 至文件夹路径，并依次输入如下命令：
 ```bash
 ./configure
 make
