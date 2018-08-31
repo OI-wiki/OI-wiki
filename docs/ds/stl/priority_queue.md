@@ -31,20 +31,20 @@ std :: priority_queue<int, deque<int>, greater<int>> //注意 ：不可跳过容
 ## 示例 ：
 
 ```cpp
-    q1.push(1); 
-    // 堆中元素 ： [1];
-    for(int i = 2; i <= 5; i ++ ) q1.push(i);
-    // 堆中元素 :  [1, 2, 3, 4, 5];
-    std :: cout << q1.top() << std :: endl;
-    // 输出结果 : 5;
-    q1.pop();
-    std :: cout << q1.size() << std :: endl;
-    // 输出结果 ：4
-    // 堆中元素 : [1, 2, 3, 4];
-    q1.push(10);
-    // 堆中元素 : [1, 2, 3, 4, 10];
-    std :: cout << q1.top() << std :: endl;
-    // 输出结果 : 10;
-    q1.pop();
-    // 堆中元素 : [1, 2, 3, 4];
+q1.push(1); 
+// 堆中元素 ： [1];
+for(int i = 2; i <= 5; i ++ ) q1.push(i);
+// 堆中元素 :  [1, 2, 3, 4, 5];
+std :: cout << q1.top() << std :: endl;
+// 输出结果 : 5;
+q1.pop();
+std :: cout << q1.size() << std :: endl;
+// 输出结果 ：4
+// 堆中元素 : [1, 2, 3, 4];
+q1.push(10);
+// 堆中元素 : [1, 2, 3, 4, 10];
+std :: cout << q1.top() << std :: endl;
+// 输出结果 : 10;
+q1.pop();
+// 堆中元素 : [1, 2, 3, 4];
 ```
