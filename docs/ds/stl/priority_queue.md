@@ -1,7 +1,8 @@
 ```cpp
 #include <queue> // std::priority_queue
-// using namespace std; 为了方便区别于 pb_ds 库，不推荐直接使用 using namespace std;
 // 本文里的所有优先队列都会加上命名空间
+// 如果不想加命名空间，需要使用：using std::priority_queue;
+// 不推荐直接使用 using namespace std;
 std::priority_queue<T, Container, Compare>
 /*
  * T: 储存的元素类型
@@ -15,8 +16,10 @@ std::priority_queue<T, Container, Compare>
  */
 // 构造方式 ：
 std::priority_queue<int>;
-std::priority_queue<int, vector<int>> // C++11前，请使用 vector<int> >，空格不可省略
-std::priority_queue<int, deque<int>, greater<int>> //注意：不可跳过容器参数直接传入比较类
+std::priority_queue<int, vector<int>>
+// C++11前，请使用 vector<int> >，空格不可省略
+std::priority_queue<int, deque<int>, greater<int>>
+// 注意：不可跳过容器参数直接传入比较类
 ```
 
 ## 成员函数 ：
