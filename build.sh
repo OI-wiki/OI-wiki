@@ -15,6 +15,7 @@ if [ ! -d "mkdocs-material" ] ; then
 fi
 sed -i "s/name: 'material'/name: null\n  custom_dir: 'mkdocs-material\/material'\n  static_templates:\n    - 404.html/g" mkdocs.yml
 
+sed '9 a\<meta http-equiv="x-dns-prefetch-control" content="on">\n\<link rel="dns-prefetch" href="//fonts.loli.net">\n\<link rel="dns-prefetch" href="//cdn.bootcss.com">\n\<link rel="dns-prefetch" href="//unpkg.com">\n\<link rel="dns-prefetch" href="//npmcdn.com">\n\<link rel="dns-prefetch" href="//oi-wiki.org">\n\<link rel="dns-prefetch" href="//api.github.com">\n\<link rel="dns-prefetch" href="//www.google-analytics.com">' mkdocs-material/material/base.html
 # Change Google CDN to loli.net
 sed -i 's/fonts.gstatic.com/gstatic.loli.net/g' mkdocs-material/material/base.html
 sed -i 's/fonts.googleapis.com/fonts.loli.net/g' mkdocs-material/material/base.html
