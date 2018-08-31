@@ -245,7 +245,7 @@ vim filename
 ```
 打开文件还是在 Vim 内使用 `:e filename` 来打开文件显然都过于麻烦。那么有没有什么更好的法子？
 
-答案是显然的，Vim 的用户们开发了 nerdtree 这一插件。这个插件达到了一种类似于 VScode 中的效果——工程目录树，之需在左侧目录栏选中相应文件即可打开相应文件。这在配置篇中将会有介绍。nerdtree 的开启方式是在 Vim 中输入 `:NERDTreeToggle` ，它会在左侧打开一个侧边栏窗口。我知道这显然太过麻烦，所以在配置中我给它赋予了`F10`这个快捷键。至于具体还有什么快捷键，详请参照此文章 [http://yang3wei.github.io/blog/2013/01/29/nerdtree-kuai-jie-jian-ji-lu/] 。
+答案是显然的，Vim 的用户们开发了 nerdtree 这一插件。这个插件达到了一种类似于 VScode 中的效果——工程目录树，之需在左侧目录栏选中相应文件即可打开相应文件。这在配置篇中将会有介绍。nerdtree 的开启方式是在 Vim 中输入 `:NERDTreeToggle` ，它会在左侧打开一个侧边栏窗口。我知道这显然太过麻烦，所以在配置中我给它赋予了`F10`这个快捷键。至于具体还有什么快捷键，详请参照 [此文章]([http://yang3wei.github.io/blog/2013/01/29/nerdtree-kuai-jie-jian-ji-lu/)。
 
 也许有人要说考场上该如何呢？没关系，Vim 自带了一个稍逊一筹的文件管理器 netrw 。如果你的命令是这样的
 ```bash
@@ -287,6 +287,6 @@ delimitMate ： 括号补全功能。同时考试中可用配置实现部分功�
 
 vimcdoc ：汉化 Vim 在线文档。
 
-vimim ：这个的安装不在配置中，相当于 Vim 自带中文输入法，需在 .vim 中创建文件夹 Plugin 并把 [https://www.vim.org/scripts/download_script.php?src_id=23122] 下得的文件扔入此文件夹中即可。打开 Vim 并进入插入模式，按下`ctrl+/`即可启用。
+vimim ：这个的安装不在配置中，相当于 Vim 自带中文输入法，需在 .vim 中创建文件夹 Plugin 并把 [从这里](https://www.vim.org/scripts/download_script.php?src_id=23122) 下得的文件扔入此文件夹中即可。打开 Vim 并进入插入模式，按下 <kbd>ctrl</kbd> + <kbd>/</kbd> 即可启用。
 
 一切插件的安装写法及快捷键及配置皆在配置篇中，请移步。
