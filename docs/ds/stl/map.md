@@ -26,7 +26,7 @@ map <string,int> mp
 
 2.通过插入，例如 `mp.insert(pair<string,int>("Alan",100));`
 
-3.初始化（至少 C++11）和数组差不多：
+3.初始化（C++11 及以上）和数组差不多：
 ```cpp
 map <string,int> mp= {
                 {"Tom",0},
