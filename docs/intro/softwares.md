@@ -88,13 +88,13 @@ vim
 Vim 依附于终端，所以调整终端设置也可以达到美化效果。
 
 但是自带的 Vim 很容易有功能残缺，比如有的就不能与系统剪切板交互(将会在效率篇讲解)，各种未开启支持。那么这时候我们就需要手动安装，方法有二。第一步先是卸载 Vim,命令如下：
-`bash
+```bash
 sudo apt-get remove vim
-`
+```
 然后安装有两种做法，一是使用命令安装，但我无法确定软件源的版本有没有问题= =。
-`bash
+```bash
 sudo apt-get install vim
-`
+```
 做法二，先到[https://github.com/Vim/vim/archive/v8.1.0338.tar.gz]下载源码包，然后解压，并进入解压后的文件夹，并打开终端，cd 至文件夹路径，并依次输入如下命令：
 ```bash
 ./configure
@@ -104,22 +104,22 @@ sudo make install
 make 的过程可能稍久，淡定点等。
 
 最后在终端输入
-`bash
+```bash
 vim
-`
+```
 就跳出了那个帮帮乌干达的可怜儿童啥的，按 `a` 或 `i` 键开始编辑新文件吧。
 
 或者要打开某个文件的话就可以在终端中
-`bash
+```bash
 vim 文件路径
-`
+```
 可以直接编辑文件。
 
 ### 编译
 编译的话，先要安装g++，命令如下：
-`bash
+```bash
 sudo apt-get install g++
-`
+```
 然后 cd 至 cpp 文件指定路径执行如下命令
 ```bash
 g++ filename.cpp -o filename
@@ -198,7 +198,7 @@ asdasdasd
 emm 基础应该就用到这些了吧，往后的插件，配置，效率使用在对应篇幅里。
 
 最后其实 Vim 还有一些基础操作，它们在 Vim 自带的教程里将会讲述。打开终端输入：
-`bash
+```bash
 vimtutor
-`
+```
 即可进入教程，二三十分钟你就能掌握基础了，但应当严加联系才能彻底掌握。
