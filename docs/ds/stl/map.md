@@ -26,7 +26,7 @@ map <string,int> mp
 
 2.通过插入，例如 `mp.insert(pair<string,int>("Alan",100));`
 
-3.初始化（ C++11 及以上 ）和数组差不多：
+3.初始化（ C++11 及以上）和数组差不多：
 ```cpp
 map <string,int> mp= {
                 {"Tom",0},
@@ -50,8 +50,8 @@ map <string,int> mp= {
 for(iter=mp.begin();iter!=mp.end();iter++)
         cout<<iter->first<<" "<<iter->second<<endl;
 ```
-其中 `mp.begin()` 返回指向map头部的迭代器
-当然，如果使用 c++11 （及以上）你还可以使用 c++11 的新特性 ，如下
+其中 `mp.begin()` 返回指向 `map` 头部的迭代器
+当然，如果使用 C++11 （及以上）你还可以使用 C++11 的新特性 ，如下
 ```cpp
   for(auto &i : mp) {
       printf("Key : %d, Value : %d\n", i.first, i.second);
