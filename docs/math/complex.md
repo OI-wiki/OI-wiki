@@ -136,3 +136,4 @@ $$
 
 由于向量没有除法，这里不讨论与向量的关系。
 
+Author: [@HeRaNO](https://github.com/HeRaNO)
