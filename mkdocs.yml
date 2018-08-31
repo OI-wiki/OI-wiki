@@ -241,11 +241,10 @@ extra:
 
 extra_javascript:
   - 'https://oi-wiki.org/analytics.js'
-  - '_static/js/extra.js?v=2'
-  - 'https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'
+  - '_static/js/extra.js?v=3'
 
 extra_css:
-  - '_static/css/extra.css?v=2'
+  - '_static/css/extra.css?v=3'
 
 # Extensions
 markdown_extensions:
