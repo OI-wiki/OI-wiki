@@ -1,5 +1,3 @@
-### std :: priority_queue
-
 ```cpp
 #include <queue> // std :: priority_queue
 // using namespace std; 推荐根据不同的使用分别using，而不是直接using std; 为了方便区别与pb_ds，
@@ -20,7 +18,7 @@ std :: priority_queue<int, vector<int>> // C++11前，vector<int>" ">双引号�
 std :: priority_queue<int, deque<int>, greater<int>> //注意 ：不可跳过容器参数而直接传入比较类
 ```
 
-##### 成员函数 ：
+## 成员函数 ：
 
 1. ```top()```: 访问栈顶元素 常数复杂度
 2. ```empty()```: 检查底层的容器是否为空 常数复杂度
@@ -30,7 +28,7 @@ std :: priority_queue<int, deque<int>, greater<int>> //注意 ：不可跳过容
 
 由于```std :: priority_queue```原生不支持```modify()``` /```join()```/```erase()```故不做讲解。
 
-##### 示例 ：
+## 示例 ：
 
 ```cpp
     q1.push(1); 
