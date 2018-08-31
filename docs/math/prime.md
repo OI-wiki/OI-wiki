@@ -87,7 +87,7 @@ bool millerRabbin(int n) {
   for (int i=1,j;i<=s;++i) {
     int x=rand()%(n-2)+2,v=quickPow(x,a,n);
     if(v==1||v==n-1) continue;
-    for(j=1;j<b;++j) {
+    for(j=0;j<b;++j) {
       v=(long long)v*v%n;
       if(v==n-1) break;
     }
