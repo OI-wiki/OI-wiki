@@ -112,7 +112,7 @@ boolean isOddNumber(int n){
 }
 ```
 
-- 取绝对值（某些机器上，效率比 $n>0$  $?$  $n:-n$ 高）
+- 取绝对值（某些机器上，效率比 `n>0  ?  n:-n` 高）
 ```cpp
 int abs(int n){
 return (n ^ (n >> 31)) - (n >> 31);
@@ -122,7 +122,7 @@ return (n ^ (n >> 31)) - (n >> 31);
 }
 ```
 
-- 取两个数的最大值（某些机器上，效率比 $a>b$ $?$ $a:b$ 高）
+- 取两个数的最大值（某些机器上，效率比 ` a>b ? a:b` 高）
 ```cpp
 int max(int a,int b){
     return b & ((a-b) >> 31) | a & (~(a-b) >> 31);
@@ -130,7 +130,7 @@ int max(int a,int b){
 }
 ```
 
-- 取两个数的最小值（某些机器上，效率比 $a>b$ $?$ $b:a$ 高）
+- 取两个数的最小值（某些机器上，效率比 `a>b ? b:a` 高）
 ```cpp
 int min(int a,int b){
     return a & ((a-b) >> 31) | b & (~(a-b) >> 31);
