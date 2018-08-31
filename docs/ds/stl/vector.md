@@ -60,19 +60,19 @@ void Vector_Constructor_Test() {
 };
 ```
 
-可以利用上述的方法构造一个vector， 足够我们使用了。
+可以利用上述的方法构造一个 vector， 足够我们使用了。
 
 ## vector元素访问
 
-vector提供了如下几种方法进行访问元素
+vector 提供了如下几种方法进行访问元素
 
 1. `at() `
 
-    使用方法 ：`v.at(pos)` 返回vector中下标为 `pos` 的引用。如果数组越界 抛出 `std::out_of_range` 类型的异常。
+    使用方法 ：`v.at(pos)` 返回 vector 中下标为 `pos` 的引用。如果数组越界抛出 `std::out_of_range` 类型的异常。
 
 2. `operator[]`
 
-    使用方法 ：`v[pos]` 返回vector中下标为 `pos` 的引用。如果数组越界就显示 `SIGSEGV` 错误。
+    使用方法 ：`v[pos]` 返回 vector 中下标为 `pos` 的引用。不执行越界检查。
 
 3. `front()`
 
@@ -108,7 +108,7 @@ vector 提供了如下几种迭代器
 
 ## vector 容量
 
-vector有如下几种返回容量的函数
+vector 有如下几种返回容量的函数
 
 1. `empty()`
 
@@ -118,7 +118,7 @@ vector有如下几种返回容量的函数
 
     返回一个元素数量，即 `(std :: distance(v.begin(), v.end()))`
 
-3. `shrink_to_fit()`
+3. `shrink_to_fit()` （C++11）
 
     释放未使用的内存来减少内存使用
 
@@ -129,7 +129,7 @@ vector有如下几种返回容量的函数
 - `clear()` 清除所有元素
 - `insert()` 支持在某个迭代器位置插入元素、可以插入多个**此操作是与 `pos` 距离末尾长度成线性而非常数的**
 - `erase()` 删除某个迭代器或者区间的元素，返回最后被删除的迭代器。
-- `push_back()` 在末尾插入一个元素。 
+- `push_back()` 在末尾插入一个元素。
 - `pop_back()` 删除末尾元素。
 - `swap()` 与另一个容器进行交换，此操作是**常数复杂度**而非线性的。
 
