@@ -77,28 +77,28 @@ void swap(int a, int b){
 
 ## 位运算的常用方法
 
-- 乘以$2$运算
+- 乘以　２　运算
 ```cpp
 int mulTwo(int n){//计算n*2
     return n << 1;
 }
 ```
 
-- 除以$2$运算
+- 除以　２　运算
 ```cpp
 int divTwo(int n){//负奇数的运算不可用
     return n >> 1;//除以2
 }
 ```
 
-- 乘以$2$的$m$次方
+- 乘以　２　的　$m$　次方
 ```cpp
 int mulTwoPower(int n,int m){//计算n*(2^m)
     return n << m;
 }
 ```
 
-- 除以$2$的$m$次方
+- 除以　２　的　$m$　次方
 ```cpp
 int divTwoPower(int n,int m){//计算n/(2^m)
     return n >> m;
@@ -112,10 +112,7 @@ boolean isOddNumber(int n){
 }
 ```
 
-
-
-
-- 取绝对值（某些机器上，效率比$n>0$  $?$  $n:-n$ 高）
+- 取绝对值（某些机器上，效率比 $n>0$  $?$  $n:-n$ 高）
 ```cpp
 int abs(int n){
 return (n ^ (n >> 31)) - (n >> 31);
@@ -125,7 +122,7 @@ return (n ^ (n >> 31)) - (n >> 31);
 }
 ```
 
-- 取两个数的最大值（某些机器上，效率比$a>b$ $?$ $a:b$高）
+- 取两个数的最大值（某些机器上，效率比 $a>b$ $?$ $a:b$ 高）
 ```cpp
 int max(int a,int b){
     return b & ((a-b) >> 31) | a & (~(a-b) >> 31);
@@ -133,7 +130,7 @@ int max(int a,int b){
 }
 ```
 
-- 取两个数的最小值（某些机器上，效率比$a>b$ $?$ $b:a$高）
+- 取两个数的最小值（某些机器上，效率比 $a>b$ $?$ $b:a$ 高）
 ```cpp
 int min(int a,int b){
     return a & ((a-b) >> 31) | b & (~(a-b) >> 31);
@@ -148,14 +145,14 @@ boolean isSameSign(int x, int y){ //有0的情况例外
 }
 ```
 
-- 计算$2$的$n$次方
+- 计算　２　的 $n$ 次方
 ```cpp
 int getFactorialofTwo(int n){//n > 0
     return 2 << (n-1);//2的n次方
 }
 ```
 
-- 判断一个数是不是$2$的幂
+- 判断一个数是不是　２　的幂
 ```cpp
 boolean isFactorialofTwo(int n){
     return n > 0 ? (n & (n - 1)) == 0 : false;
@@ -164,7 +161,7 @@ boolean isFactorialofTwo(int n){
 }
 ```
 
-- 对$2$的$n$次方取余
+- 对　２　的 $n$ 次方取余
 ```cpp
 int quyu(int m,int n){//n为2的次方
     return m & (n - 1);
