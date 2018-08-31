@@ -17,7 +17,6 @@ std::priority_queue<T, Container, Compare>
 std::priority_queue<int>;
 std::priority_queue<int, vector<int>> // C++11前，请使用 vector<int> >，空格不可省略
 std::priority_queue<int, deque<int>, greater<int>> //注意：不可跳过容器参数直接传入比较类
-
 ```
 
 ## 成员函数 ：
