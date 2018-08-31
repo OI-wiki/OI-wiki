@@ -19,7 +19,9 @@ nav:
     - Getting Started: index.md
     - OI 赛制简介: intro/mode.md
     - 学习资源: intro/resources.md
-    - 工具软件: intro/softwares.md
+    - 工具软件: 
+      - 评测工具: intro/judgers.md
+      - 编辑工具: intro/editors.md
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
   - 基础部分:
