@@ -42,7 +42,7 @@ map <string,int> mp= {
 
 格式：`if(mp.find()==mp.end())`，意思是是否返回的是 `map` 的末尾，因为 `map` 如果没有查找到元素，迭代器会返回末尾。
 
-其中 `mp.end()` 返回指向map尾部的迭代器， 另外 也可以用 ```mp.count(__key) != 0```来判断
+其中 `mp.end()` 返回指向map尾部的迭代器， 另外 也可以用 `mp.count(__key) != 0` 来判断
 
 3.如果你想知道map里全部的元素，那么最正确的做法使用迭代器了，如果你还不会，请查阅之前文章中的迭代器。
 
@@ -54,7 +54,7 @@ for(iter=mp.begin();iter!=mp.end();iter++)
 
 ```cpp
   for(auto &i : mp) {
-      printf("Key : %d, Value : %d\n", i.first, i.next);
+      printf("Key : %d, Value : %d\n", i.first, i.second);
   }
 ```
 
@@ -92,7 +92,7 @@ mp.erase(it)
 
 不过有的时候不会满足啊！我只想查询元素，插入元素，但是时间不够咋办？请往下看！
 
-* 由于 NOIp 不资瓷吸氧，所以 NOIp 要注意是否会被卡
+* 由于 NOIP 不资瓷吸氧（开启 O2 优化），所以 NOIP 要注意是否会被卡
 
 ### 更快：基于 `Hash` 实现的 `map`！
 
