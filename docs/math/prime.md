@@ -34,14 +34,18 @@ bool isPrime(a) {
 }
 ```
 
-### Miller-Rabbin
+### Miller-Rabin 素性测试
 
-Miller-Rabbin 算法是进阶的素数判定方法，具有比暴力做法更好的时间复杂度。但是代码复杂度较高，在比赛中使用较少。
+Miller-Rabin 素性测试（Miller–Rabin primality test）是进阶的素数判定方法，具有比暴力做法更好的时间复杂度。但是代码复杂度较高，在比赛中使用较少。
 
-它的基本思想是不断地选取不超过 $n-1$ 的基 $b$，并检验是否每次都有 $b^{n-1} \equiv 1 \pmod n$
+#### Fermat 素性测试
+
+我们可以根据 [费马小定理](/math/fermat/#_1) 得出一种检验素数的思路：
+
+它的基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$
 
 ```c++
-bool millerRabbin(int n) {
+bool millerRabin(int n) {
   for (int i = 1; i <= s; ++i) {
     int a = rand() % (n - 2) + 2;
     if (quickPow(a, n - 1, n) != 1) return 0;
@@ -49,6 +53,55 @@ bool millerRabbin(int n) {
   return 1;
 }
 ```
+
+很遗憾，费马小定理的逆定理并不成立，换言之，满足了 $a^{n-1} \equiv 1 \pmod n$ ，$n$ 也不一定是素数。
+
+#### 卡迈克尔数
+
+上面的做法中随机地选择 $a$，很大程度地降低了犯错的概率。但是仍有一类数，上面的做法并不能准确地判断。
+
+对于合数 $n$，如果对于所有正整数 $a$，$a$ 和 $n$ 互素，都有同余式 $a^{n-1} \equiv 1 \pmod n$ 成立，则合数 $n$ 为卡迈克尔数（Carmichael Number），又称为费马伪素数。
+
+比如，$341 = 11 \times 31$ 就是一个卡迈克尔数。
+
+而且我们知道，若 $n$ 为卡迈克尔数，则 $m=2^{n}-1$ 也是一个卡迈克尔数，从而卡迈克尔数的个数是无穷的。
+
+#### 二次探测定理
+
+如果 $p$ 是奇素数，则 $x^2 \equiv 1 \bmod p$ 的解为 $x = 1$ 或者 $x = p - 1 (\bmod p)$;
+
+### 实现
+
+根据卡迈克尔数的性质，可知其一定不是 $p^e$。
+
+不妨将费马小定理和二次探测定理结合起来使用：
+
+将 $n−1$ 分解为 $n−1=u \times 2^t$，不断地对 $u$ 进行平方操作，若发现非平凡平方根时即可判断出其不是素数。
+
+比较正确的 Miller Rabin：（来自 fjzzq2002）
+
+```c++
+bool millerRabbin(int n) {
+  int a=n-1,b=0;
+  while(a%2==0) a/=2,++b;
+  for (int i=1,j;i<=s;++i) {
+    int x=rand()%(n-2)+2,v=quickPow(x,a,n);
+    if(v==1||v==n-1) continue;
+    for(j=1;j<b;++j) {
+      v=(long long)v*v%n;
+      if(v==n-1) break;
+    }
+    if(j>=b) return 0;
+  }
+  return 1;
+}
+```
+
+### 参考
+
+http://www.matrix67.com/blog/archives/234
+
+https://blog.bill.moe/miller-rabin-notes/
 
 ## 反素数
 
@@ -111,7 +164,7 @@ bool millerRabbin(int n) {
 
 ### 常见题型
 
-#### 给定因子数，求满足因子数恰好等于这个数的最小数
+#### 求因子数一定的最小数
 
 题目链接：http://codeforces.com/problemset/problem/27/E
 
@@ -153,7 +206,7 @@ int main(){
 }
 ```
 
-#### 给定一个 n，求 n 以内因子数最多的数
+#### 求 n 以内因子数最多的数
 
 http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemId=1562
 
