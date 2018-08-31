@@ -22,6 +22,7 @@
 
 {% import "partials/language.html" as lang with context %}
 
+<style>.MathJax{outline:0;}</style>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     showProcessingMessages: false,
@@ -36,7 +37,6 @@ MathJax.Hub.Config({
     },
     "HTML-CSS": {
         availableFonts: ["STIX","TeX"],
-        showMathMenu: false
     }
 });
 MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
