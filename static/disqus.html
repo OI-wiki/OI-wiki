@@ -9,7 +9,7 @@
 {% if not page.is_homepage and disqus %}
 {% set pageID = page.title | default("404", true) %}
 <h2 id="__comments">{{ lang.t("meta.comments") }}</h2>
-<div id="gitment_container">
+<div id="gitment_container" data-no-instant>
     <link rel="stylesheet" href="https://unpkg.com/ah@1.0.0/index.css">
     <script src="https://unpkg.com/ah@1.0.0/index.js"></script>
     <script>
