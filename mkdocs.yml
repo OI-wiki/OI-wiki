@@ -19,7 +19,9 @@ nav:
     - Getting Started: index.md
     - OI 赛制简介: intro/mode.md
     - 学习资源: intro/resources.md
-    - 工具软件: intro/softwares.md
+    - 工具软件: 
+      - 评测工具: intro/judgers.md
+      - 编辑工具: intro/editors.md
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
   - 基础部分:
@@ -75,6 +77,7 @@ nav:
     - 进制相关: math/base.md
     - 素数: math/prime.md
     - 最大公约数: math/gcd.md
+    - 贝祖定理: math/bezouts.md
     - 欧拉函数: math/euler.md
     - 筛法: math/sieve.md
     - 莫比乌斯反演: math/mobius.md
@@ -96,7 +99,7 @@ nav:
     - 概率与期望: math/expectation.md
     - 置换群: math/permutation-group.md
     - 高斯消元: math/gauss.md
-    - xor 模线性方程组: math/linear-equations.md
+    - 线性方程: math/linear-equation.md
     - 容斥原理: math/inclusion-exclusion-principle.md
     - 抽屉原理: math/drawer-principle.md
     - 数值积分: math/integral.md
@@ -109,7 +112,11 @@ nav:
     - 杂项: math/misc.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
-    - STL: ds/stl.md
+    - STL:
+      - STL 简介: ds/stl.md
+      - vector: ds/stl/vector.md
+      - priority_queue: ds/stl/priority_queue.md
+      - map: ds/stl/map.md
     - pb_ds:
       - pb_ds 简介: ds/pb-ds/index.md
       - priority_queue: ds/pb-ds/priority-queue.md
@@ -169,7 +176,6 @@ nav:
     - 最短路: graph/shortest-path.md
     - 最小环: graph/min-circle.md
     - k 短路: graph/kth-path.md
-    - 欧拉图: graph/euler.md
     - 网络流: graph/flow.md
     - 拆点: graph/flow/node.md
     - 最大流: graph/flow/max-flow.md
@@ -214,9 +220,9 @@ theme:
   palette:
     primary: 'white'
     accent: 'red'
-
   include_search_page: false
   search_index_only: true
+  favicon: 'favicon.ico'
 
   logo:
     icon: 'school'

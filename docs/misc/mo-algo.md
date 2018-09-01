@@ -48,9 +48,9 @@ void solve() {
 
 接着就到了莫队算法的精髓了，下面我们用通俗易懂的初中方法来证明它的时间复杂度是 $O(n\sqrt{n})$；
 
-证：令每一块中 $L$ 的最大值为 $max_1,max_2,max_3,..., max_{\operatorname{ceil}(\sqrt{n})}$。
+证：令每一块中 $L$ 的最大值为 $max_1,max_2,max_3, \cdots , max_{\operatorname{ceil}(\sqrt{n})}$。
 
-由第一次排序可知，$max_1 \le max_2 \le ... \le max_{\operatorname{ceil}(\sqrt{n})}$。
+由第一次排序可知，$max_1 \le max_2 \le \cdots \le max_{\operatorname{ceil}(\sqrt{n})}$。
 
 显然，对于每一块暴力求出第一个询问的时间复杂度为 $O(n)$。
 
@@ -64,8 +64,8 @@ void solve() {
 
 $$
 \begin{aligned}
-对于 L 的总时间复杂度为 & = O(\sqrt{n}(max_1-1)+\sqrt{n}(max_2-max_1)+\sqrt{n}(max_3-max_2)+...+\sqrt{n}(max_{\operatorname{ceil}(\sqrt{n})}-max_{\operatorname{ceil}(\sqrt{n})-1))} \\\\
-& = O(\sqrt{n}*(max_1-1+max_2-max_1+max_3-max_2+...+max_{\operatorname{ceil}(\sqrt{n})-1}-max_{\operatorname{ceil}(\sqrt{n})-2}+max_{\operatorname{ceil}(\sqrt{n})}-max_{\operatorname{ceil}(\sqrt{n})-1)}) \\\\
+对于 L 的总时间复杂度为 & = O(\sqrt{n}(max_1-1)+\sqrt{n}(max_2-max_1)+\sqrt{n}(max_3-max_2)+\cdots+\sqrt{n}(max_{\operatorname{ceil}(\sqrt{n})}-max_{\operatorname{ceil}(\sqrt{n})-1))} \\\\
+& = O(\sqrt{n}*(max_1-1+max_2-max_1+max_3-max_2+\cdots+max_{\operatorname{ceil}(\sqrt{n})-1}-max_{\operatorname{ceil}(\sqrt{n})-2}+max_{\operatorname{ceil}(\sqrt{n})}-max_{\operatorname{ceil}(\sqrt{n})-1)}) \\\\
 & = O(\sqrt{n}*(max_{\operatorname{ceil}(\sqrt{n})-1}))
 \end{aligned}
 $$

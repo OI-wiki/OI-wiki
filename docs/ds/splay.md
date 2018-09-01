@@ -4,7 +4,7 @@
 
 # 简介 #
 
-$\text{Splay}$ 是一种二叉查找树，它通过不断将某个节点旋转到根节点，使得整棵树仍然满足二叉查找树的性质，并且保持平衡而不至于退化为链。
+$\text{Splay}$ 是一种二叉查找树，它通过不断将某个节点旋转到根节点，使得整棵树仍然满足二叉查找树的性质，并且保持平衡而不至于退化为链，它由 Daniel Sleator 和 Robert Tarjan 发明。
 
 ---
 
@@ -371,6 +371,16 @@ int main() {
 - [【模板】普通平衡树](https://www.luogu.org/problemnew/show/P3369)
 - [[HNOI2002]营业额统计](https://www.lydsy.com/JudgeOnline/problem.php?id=1588)
 - [[HNOI2004]宠物收养所](https://www.lydsy.com/JudgeOnline/problem.php?id=1208)
+
+# 练习题 #
+
+[bzoj 1552 [Cerc2007] robotic sort](https://www.lydsy.com/JudgeOnline/problem.php?id=1552) （权限题）
+
+[luogu P3380 【模板】二逼平衡树（树套树）](https://www.luogu.org/problemnew/show/P3380)
+
+[bzoj 2827 千山鸟飞绝](https://www.lydsy.com/JudgeOnline/problem.php?id=2827)
+
+[bzoj 4923 [Lydsy1706月赛]K小值查询](https://www.lydsy.com/JudgeOnline/problem.php?id=4923)
 
 ---
 

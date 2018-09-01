@@ -35,3 +35,4 @@ $$
 
 ~~明明是我先写的分段打表为什么你们这么熟练QAQ，可以对比下[我的题解](https://blog.csdn.net/HeRaNO/article/details/78379324)的发布时间和 Luogu 中的。~~
 
+Author: [@HeRaNO](https://github.com/HeRaNO)
