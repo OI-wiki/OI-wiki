@@ -29,7 +29,9 @@ void DFS(int p)
 
 ## DFS 找桥并判断边双联通
 对原图进行 DFS 后，我们如何判断一条边是不是桥呢？
-怎么上传图片！！
+
+![bcc-1.png](images/bcc-1.png)
+
 
 ## DFS 找割点并判断点双联通
 。
