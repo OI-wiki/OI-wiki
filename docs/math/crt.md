@@ -112,3 +112,7 @@ $$
 用上面的方法两两合并就可以了……
 
 推荐练习：POJ 2891
+
+[【模板】扩展中国剩余定理](https://www.luogu.org/problemnew/show/P4777)
+
+[[NOI2018]屠龙勇士](https://www.luogu.org/problemnew/show/P4774)
