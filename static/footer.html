@@ -22,8 +22,47 @@
 
 {% import "partials/language.html" as lang with context %}
 
+<style>.MathJax{outline:0;}</style>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    showProcessingMessages: false,
+    messageStyle: "none",
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+        inlineMath:  [ ["$", "$"] ],
+        displayMath: [ ["$$","$$"] ],
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code','a'],
+        ignoreClass:"comment-content"
+    },
+    "HTML-CSS": {
+        availableFonts: ["STIX","TeX"],
+    }
+});
+MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+</script>
+<script src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script async src="https://oi-wiki.org/analytics.js"></script>
+
+<!-- InstantClick -->
+<script type="text/javascript" src="https://cdn.bootcss.com/instantclick/3.0.0/instantclick.js" data-no-instant></script>
+<script data-no-instant>
+InstantClick.on('change', function(isInitialLoad) {
+ if (isInitialLoad === false) {
+  if (typeof MathJax !== 'undefined') // support MathJax
+   MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  if (typeof ga !== 'undefined') // support google analytics
+    ga('send', 'pageview', location.pathname + location.search);
+ }
+});
+InstantClick.init(true);
+</script>
+
+<script src="{{ 'assets/javascripts/modernizr.1aa3b519.js' | url }}" data-no-instant></script>
+
 <!-- back to top -->
-<link rel="stylesheet" href="https://npmcdn.com/data-tip@0.0.52/dist/data-tip.css">
+<link rel="stylesheet" href="https://unpkg.com/data-tip@0.0.52/dist/data-tip.css">
 <script>
 // 当网页向下滑动 20px 出现"返回顶部" 按钮
 window.onscroll = function() {scrollFunction()};
