@@ -240,7 +240,6 @@ extra:
   pagetime: 'on'
 
 extra_javascript:
-  - 'https://oi-wiki.org/analytics.js'
   - '_static/js/extra.js?v=3'
 
 extra_css:
