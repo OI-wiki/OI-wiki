@@ -77,7 +77,7 @@ nav:
     - 进制相关: math/base.md
     - 素数: math/prime.md
     - 最大公约数: math/gcd.md
-    - 贝祖定理: math/bezouts.md
+    - 裴蜀定理: math/bezouts.md
     - 欧拉函数: math/euler.md
     - 筛法: math/sieve.md
     - 莫比乌斯反演: math/mobius.md
@@ -222,6 +222,7 @@ theme:
     accent: 'red'
   include_search_page: false
   search_index_only: true
+  favicon: 'favicon.ico'
 
   logo:
     icon: 'school'
