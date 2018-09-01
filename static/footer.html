@@ -28,15 +28,12 @@ MathJax.Hub.Config({
     showProcessingMessages: false,
     messageStyle: "none",
     extensions: ["tex2jax.js"],
-    jax: ["input/TeX", "output/HTML-CSS"],
+    jax: ["input/TeX", "output/commonHTML"],
     tex2jax: {
         inlineMath:  [ ["$", "$"] ],
         displayMath: [ ["$$","$$"] ],
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code','a'],
         ignoreClass:"comment-content"
-    },
-    "HTML-CSS": {
-        availableFonts: ["STIX","TeX"],
     }
 });
 MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
@@ -57,7 +54,6 @@ InstantClick.on('change', function(isInitialLoad) {
 InstantClick.init(true);
 </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <script src="{{ 'assets/javascripts/modernizr.1aa3b519.js' | url }}" data-no-instant></script>
 
 <!-- back to top -->
