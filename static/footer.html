@@ -28,20 +28,18 @@ MathJax.Hub.Config({
     showProcessingMessages: false,
     messageStyle: "none",
     extensions: ["tex2jax.js"],
-    jax: ["input/TeX", "output/HTML-CSS"],
+    jax: ["input/TeX", "output/SVG"],
     tex2jax: {
         inlineMath:  [ ["$", "$"] ],
         displayMath: [ ["$$","$$"] ],
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code','a'],
         ignoreClass:"comment-content"
-    },	
-    "HTML-CSS": {	
-        availableFonts: ["STIX","TeX"],	
     }
 });
 MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 </script>
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script async src="https://oi-wiki.org/analytics.js"></script>
 
 <!-- InstantClick -->
 <script type="text/javascript" src="https://cdn.bootcss.com/instantclick/3.0.0/instantclick.js" data-no-instant></script>
