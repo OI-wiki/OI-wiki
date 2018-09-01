@@ -71,7 +71,7 @@ struct Twosat{
 
 ## 例题
 
-**HDU3062 [Party](http://acm.hdu.edu.cn/showproblem.php?pid=3062)**
+### **HDU3062 [Party](http://acm.hdu.edu.cn/showproblem.php?pid=3062)**
 >题面：有n对夫妻被邀请参加一个聚会，因为场地的问题，每对夫妻中只有1人可以列席。在2n 个人中，某些人之间有着很大的矛盾（当然夫妻之间是没有矛盾的），有矛盾的2个人是不会同时出现在聚会上的。有没有可能会有n 个人同时列席？
 
 这是一道多校题，裸的2-SAT判断是否有方案，按照我们上面的分析，如果 a1 中的丈夫和 a2 中的妻子通奸我们就把 a1 中的丈夫和 a2 中的丈夫连边，把 a2 中的妻子和 a1 中的妻子连边，然后缩点染色判断即可。
@@ -158,7 +158,7 @@ int main(){
 
 ```
 
-## 练习题：
+## 练习题
 
 HDU1814 [和平委员会](http://acm.hdu.edu.cn/showproblem.php?pid=1814)
 
