@@ -28,7 +28,6 @@ if (cur) {
   var textLength = 0;
   if (pos < 0) textLength = (document.getElementsByClassName('md-content__inner')[0].textContent.slice(0, pos).replace(/\s/g, '').length - document.getElementsByTagName('h1')[0].textContent.replace(/\s/g, '').length - document.getElementsByClassName('page-copyright')[0].textContent.replace(/\s/g, '').length - 4);
   else textLength = (document.getElementsByClassName('md-content__inner')[0].textContent.replace(/\s/g, '').length - document.getElementsByTagName('h1')[0].textContent.replace(/\s/g, '').length - document.getElementsByClassName('page-copyright')[0].textContent.replace(/\s/g, '').length - 4);
-  var ti = Math.ceil(textLength / 80);
-  if (textLength > 0) cur.innerHTML = `<p>本页面共 ${textLength} 字，预计阅读需要 ${ti} 分钟</p>`;
+  if (textLength > 0) cur.innerHTML = `<p>本页面共 ${textLength} 字</p>`;
   else cur.innerHTML = `<p>本页面还在建设中，欢迎参与完善！</p>`;
 }
