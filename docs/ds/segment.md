@@ -450,7 +450,7 @@ int main()
 
 [传送门 =￣ω￣=](http://codevs.cn/problem/?q=%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%83%E4%B9%A0)
 
-具体题解去我的博客里搜索吧。
+具体题解去[我的博客](https://www.k-xzy.xyz/)里搜索吧。
 
 不保证搜得到。
 
@@ -584,4 +584,4 @@ lcp 实在是不难求，x 和 y 的二进制下 `lcp=x>>log[x^y]`
 
 ### 参考
 
-[immotalCO 大爷的博客](http://immortalco.blog.uoj.ac/blog/2102)
+[immortalCO 大爷的博客](http://immortalco.blog.uoj.ac/blog/2102)
