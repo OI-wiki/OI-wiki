@@ -1,4 +1,4 @@
-By (hsfzLZH1)[https://github.com/hsfzLZH1]
+By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 ## 什么是区间DP？
 
@@ -50,6 +50,10 @@ for(len=1;len<=n;len++)
 
 ## 几道练习题
 
+[luogu T2027 蜈蚣](https://www.luogu.org/problemnew/show/T2027)
+
 [luogu P1063 能量项链](https://www.luogu.org/problemnew/show/P1063)
 
-[luogu P1005 矩阵取数游戏](https://www.luogu.org/problemnew/show/P1005#sub)
+[luogu P1005 矩阵取数游戏](https://www.luogu.org/problemnew/show/P1005)
+
+[luogu P4767 [IOI2000]邮局](https://www.luogu.org/problemnew/show/P4767)
