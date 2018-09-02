@@ -47,9 +47,28 @@ for (int i=1;i<=v1;i++)
         dp[l+i]=max(dp[l]+w[i],dp[l+i]);
 ```
 
-[例题代码](https://www.luogu.org/paste/2mb5d46q)
+例题代码
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+const int maxn=13010;
+int n,v,c[maxn],w[maxn],most[maxn];
+int main(){
+    cin>>n>>v;
+    for (int i=1;i<=n;i++){
+        cin>>c[i]>>w[i];
+    }
+    for (int i=1;i<=n;i++)
+        for (int l=v;l>=c[i];l--){
+            if (most[l-c[i]]+w[i]>most[l])
+                most[l]=most[l-c[i]]+w[i];
+        }
+    cout<<most[v];
+    return 0;
+}
+```
 
-Ps.事实上，由到大穷举是另一种背包问题的解法，稍后会提到
+Ps.事实上，由小到大穷举是另一种背包问题的解法，稍后会提到
 
 #### 完全背包
 
