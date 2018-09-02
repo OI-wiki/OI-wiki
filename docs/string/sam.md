@@ -81,8 +81,7 @@ QQ 号：742745308
 
 ### 结束位置 <script type="math/tex">endpos</script>
 
-<p>考虑字符串 <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span> 的任意非空子串 <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span>，我们记 <span><span class="MathJax_Preview">endpos(t)</span><script type="math/tex">endpos(t)</script></span> 为在字符串 <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span> 中 <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> 
-的所有结束位置（假设对字符串中字符的编号从零开始）。例如，对于字符串 <span><span class="MathJax_Preview">``abcbc\!"，我们有 endpos(``bc\!")=2,\,4</span><script type="math/tex">``abcbc\!"，我们有 endpos(``bc\!")=2,\,4</script></span>。</p>
+<p>考虑字符串 <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span> 的任意非空子串 <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> ，我们记 <span><span class="MathJax_Preview">endpos(t)</span><script type="math/tex">endpos(t)</script></span> 为在字符串 <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span> 中 <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> 的所有结束位置（假设对字符串中字符的编号从零开始）。例如，对于字符串 <span><span class="MathJax_Preview">``abcbc\!"</span><script type="math/tex">``abcbc\!"</script></span>，我们有 <span><span class="MathJax_Preview">endpos(``bc\!")=2,\,4</span><script type="math/tex">endpos(``bc\!")=2,\,4</script></span>。</p>
 
 当两个子串 $t_1$ 与 $t_2$ 的末尾集合相等时我们称它们是 $endpos$ 等价的：即 $endpos(t_1)=endpos(t_2)$。这样所有字符串 $s$ 的非空子串都可以根据它们的 **$endpos$** 集合被分为几个**等价类**。
 
@@ -500,7 +499,7 @@ $$d[v]=1+\min_{w(v,\,w,\,c)\in SA}d[w]$$
 
 $$v=link(v)$$
 
-与此同时，需要缩短当前长度。显然我们需要将 $l$ 赋值为 $len(v)$，因为经过这个后缀链接后我们到达的状态所对应的最长字符串是一个子串。
+   与此同时，需要缩短当前长度。显然我们需要将 $l$ 赋值为 $len(v)$，因为经过这个后缀链接后我们到达的状态所对应的最长字符串是一个子串。
  - 如果仍然没有使用这一字符的转移，我们继续重复经过后缀链接并减小 $l$，直到我们找到一个转移或到达虚拟状态 $-1$（这意味着字符 $T[i]$ 根本没有在 $S$ 中出现过，所以我们设置 $v=l=0$）。
 
 问题的答案就是所有 $l$ 的最大值。
