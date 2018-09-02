@@ -159,4 +159,4 @@ int main(){
 
     HDU1814 [和平委员会](http://acm.hdu.edu.cn/showproblem.php?pid=1814)
 
-    ÂPOJ3683 [牧师忙碌日](http://poj.org/problem?id=3683)
+    POJ3683 [牧师忙碌日](http://poj.org/problem?id=3683)
