@@ -76,7 +76,7 @@ $$
 
 ## 位运算的应用
 
-> num<<<seperator style="font-size:0;margin:0;padding:0;"></seperator> i 相当于 num 乘以 2 的 i 次方，而 num>>i 相当于 num/2 的 i 次方(位运算比"%"和"/"操作快得多
+> num<<<seperator style="font-size:0;margin:0;padding:0;"></seperator>i 相当于 num 乘以 2 的 i 次方，而 num>>i 相当于 num/2 的 i 次方(位运算比"%"和"/"操作快得多
 (据说效率可以提高60%)(据2018JSOI夏令营课件)
 
 > num*10=(num<<1)+(num<<3)
