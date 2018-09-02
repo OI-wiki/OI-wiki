@@ -273,7 +273,7 @@ $$ \begin{bmatrix}y[0] \\ y[1] \\ y[2] \\ y[3] \\ \dots \\ y[n-1] \end{bmatrix}
 void fft(Complex y[],int len,int on){
 	change(y,len);
 	for(int h = 2;h <= len;h<<=1){// 模拟合并过程
-		Complex wn(cos(-on*2*PI/h),sin(-on*2*PI/h));// 计算当前单位复根
+		Complex wn(cos(on*2*PI/h),sin(on*2*PI/h));// 计算当前单位复根
 		for(int j = 0;j < len;j += h){
 			Complex w(1,0);// 计算当前单位复根
 			for(int k = j;k < j + h/2;k++){
@@ -288,7 +288,7 @@ void fft(Complex y[],int len,int on){
 			}
 		}
 	}
-	if(on == 1){
+	if(on == -1){
 		for(int i = 0;i < len;i++){
 			y[i].x /= len;
 		}
@@ -349,7 +349,7 @@ void change(Complex y[],int len){
 void fft(Complex y[],int len,int on){
 	change(y,len);
 	for(int h = 2;h <= len;h<<=1){
-		Complex wn(cos(-on*2*PI/h),sin(-on*2*PI/h));
+		Complex wn(cos(on*2*PI/h),sin(on*2*PI/h));
 		for(int j = 0;j < len;j += h){
 			Complex w(1,0);
 			for(int k = j;k < j + h/2;k++){
@@ -361,7 +361,7 @@ void fft(Complex y[],int len,int on){
 			}
 		}
 	}
-	if(on == 1){
+	if(on == -1){
 		for(int i = 0;i < len;i++){
 			y[i].x /= len;
 		}
