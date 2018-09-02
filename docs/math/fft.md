@@ -191,10 +191,10 @@ $$DFT(f(\omega_n^k))=DFT(G((\omega_n^k)^2)) + \omega_n^k  \times  DFT(H((\omega_
 *len 必须是 2^k 形式
 *on == 1 时是 DFT，on == -1 时是 IDFT
 */
-void fft(Complex y[],int len){
+void fft(Complex y[],int len, int on){
 	change(y,len);
 	for(int h = 2;h <= len;h<<=1){
-		Complex wn(cos(-1*2*PI/h),sin(-1*2*PI/h));
+		Complex wn(cos(2*PI/h),sin(on*2*PI/h));
 		for(int j = 0;j < len;j += h){
 			Complex w(1,0);
 			for(int k = j;k < j + h/2;k++){
@@ -273,7 +273,7 @@ $$ \begin{bmatrix}y[0] \\ y[1] \\ y[2] \\ y[3] \\ \dots \\ y[n-1] \end{bmatrix}
 void fft(Complex y[],int len,int on){
 	change(y,len);
 	for(int h = 2;h <= len;h<<=1){// 模拟合并过程
-		Complex wn(cos(on*2*PI/h),sin(on*2*PI/h));// 计算当前单位复根
+		Complex wn(cos(2*PI/h),sin(on*2*PI/h));// 计算当前单位复根
 		for(int j = 0;j < len;j += h){
 			Complex w(1,0);// 计算当前单位复根
 			for(int k = j;k < j + h/2;k++){
@@ -295,7 +295,7 @@ void fft(Complex y[],int len,int on){
 	}
 }
 ```
-好了现在附上全部代码，序言说过代码来自 kuangbin 的模板~~~~~ 来大家和我一起 Orz 一发
+好了现在附上全部代码（[HDU 1402](http://acm.hdu.edu.cn/showproblem.php?pid=1402)），序言说过代码来自 kuangbin 的模板~~~~~ 来大家和我一起 Orz 一发
 
 ```c++
 #include<iostream>
@@ -349,7 +349,7 @@ void change(Complex y[],int len){
 void fft(Complex y[],int len,int on){
 	change(y,len);
 	for(int h = 2;h <= len;h<<=1){
-		Complex wn(cos(on*2*PI/h),sin(on*2*PI/h));
+		Complex wn(cos(2*PI/h),sin(on*2*PI/h));
 		for(int j = 0;j < len;j += h){
 			Complex w(1,0);
 			for(int k = j;k < j + h/2;k++){
@@ -381,7 +381,7 @@ int main(){
 		int len = 1;
 		while(len < len1*2||len < len2*2)	len <<= 1;
 		for(int i = 0;i < len1;i++)
-			x1[i] = Complex(str1[len-1-i] - '0',0);
+			x1[i] = Complex(str1[len1-1-i] - '0',0);
 		for(int i = len1;i < len;i++)
 			x1[i] = Complex(0,0);
 		for(int i = 0;i < len2;i++)
@@ -395,6 +395,12 @@ int main(){
 		fft(x1,len,-1);
 		for(int i = 0;i < len;i++)
 			sum[i] = int(x1[i].x + 0.5);
+		for(int i = 0;i < len;i++)
+        	{
+            		sum[i+1]+=sum[i]/10;
+            		sum[i]%=10;
+        	}
+        	len = len1+len2-1;
 		while(sum[len] == 0&&len > 0)	len--;
 		for(int i = len;i >= 0;i--)
 			printf("%c",sum[i] + '0');
