@@ -1,4 +1,4 @@
 static/* linguist-vendored
 docs/_static/* linguist-vendored
-build.sh linguist-vendored=false
-deploy.sh linguist-vendored=false
+build.sh linguist-vendored
+deploy.sh linguist-vendored
