@@ -1,4 +1,5 @@
 # 块状链表
+
 [![./images/kuaizhuanglianbiao.png](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")
 
 大概就长这样……
@@ -28,7 +29,6 @@ struct node
 随着元素的插入（或删除），$n$ 会变， $\sqrt{n}$ 也会变。这样块的大小就会变化，我们难道还要每次维护块的大小？
 
 其实不然，把 $\sqrt{n}$ 设置为一个定值即可。比如题目给的范围是 $10^6$，那么 $\sqrt{n}$ 就设置为大小为 $10^3$ 的常量，不用更改它。
-
 
 ```cpp
 list<vector<char> > orz_list;

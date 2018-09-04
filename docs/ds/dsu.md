@@ -3,11 +3,11 @@
 并查集是一种树形的数据结构，顾名思义，它用于处理一些不交集的**合并**及**查询**问题。  
 它支持两种操作：
 
-- 查找 （Find）：确定某个元素处于哪个子集；
+-   查找 （Find）：确定某个元素处于哪个子集；
 
-- 合并（Union）：将两个子集合并成一个集合。
+-   合并（Union）：将两个子集合并成一个集合。
 
-## 初始化  
+## 初始化
 
 ```cpp
 void makeSet(int size)
@@ -22,7 +22,7 @@ void makeSet(int size)
 
 ## 查找
 
-!!! 举个例子   
+!!! 举个例子  
 几个家族进行宴会，但是家族普遍长寿，所以人数众多。由于长时间的分离以及年龄的增长，这些人逐渐忘掉了自己的亲人，只记得自己的爸爸是谁了，而最长者（称为「祖先」）的父亲已经去世，他只知道自己是祖先。为了确定自己是哪个家族，他们想出了一个办法，只要问自己的爸爸是不是祖先，一层一层的向上问，直到问到祖先。如果要判断两人是否在同一家族，只要看两人的祖先是不是同一人就可以了。  
 
 在这样的思想下，并查集的查找算法诞生了。我们可以用代码模拟这个过程。
@@ -101,13 +101,13 @@ void unionSet(int x,int y)
 
 ## 经典题目
 
-[[NOI2015]程序自动分析](https://www.lydsy.com/JudgeOnline/problem.php?id=4195)
+[\[NOI2015\]程序自动分析](https://www.lydsy.com/JudgeOnline/problem.php?id=4195)
 
-[[JSOI2008]星球大战](https://www.lydsy.com/JudgeOnline/problem.php?id=1015)
+[\[JSOI2008\]星球大战](https://www.lydsy.com/JudgeOnline/problem.php?id=1015)
 
-[[NOI2001]食物链](https://www.luogu.org/problemnew/show/P2024)
+[\[NOI2001\]食物链](https://www.luogu.org/problemnew/show/P2024)
 
-[[NOI2002]银河英雄传说](https://www.luogu.org/problemnew/show/P1196)
+[\[NOI2002\]银河英雄传说](https://www.luogu.org/problemnew/show/P1196)
 
 ## 其他应用
 

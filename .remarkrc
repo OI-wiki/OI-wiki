@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    "remark-math",
+    "remark-preset-lint-consistent",
+    "remark-lint-final-newline",
+    "remark-lint-no-tabs",
+    ["remark-lint-no-shortcut-reference-link", false],
+    ["remark-lint-no-undefined-references", false]
+  ]
+}

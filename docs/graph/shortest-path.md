@@ -2,10 +2,10 @@
 
 （还记得这些定义吗？在阅读下列内容之前，请务必了解 [图论基础](/graph/basic) 部分。）
 
-- 路径
-- 最短路
-- 有向图中的最短路、无向图中的最短路
-- 单源最短路、每对结点之间的最短路
+-   路径
+-   最短路
+-   有向图中的最短路、无向图中的最短路
+-   单源最短路、每对结点之间的最短路
 
 ## 性质
 
@@ -112,20 +112,17 @@ while (1) for each edge(u, v) relax(u, v);
 
 总时间复杂度 $O(NM)$。 **（对于最短路存在的图）**
 
-```
-relax(u, v) {
-	dist[v] = min(dist[v], dist[u] + edge_len(u, v));
-}
-for (i = 1; i <= n; i++) {
-	dist[i] = edge_len(S, i);
-}
-for (i = 1; i < n; i++) {
-	for each edge(u, v) {
-		relax(u, v);
-	}
-}
-```
-
+    relax(u, v) {
+    	dist[v] = min(dist[v], dist[u] + edge_len(u, v));
+    }
+    for (i = 1; i <= n; i++) {
+    	dist[i] = edge_len(S, i);
+    }
+    for (i = 1; i < n; i++) {
+    	for each edge(u, v) {
+    		relax(u, v);
+    	}
+    }
 
 注：这里的 $edge_len(u, v)$ 表示边的权值，如果该边不存在则为 $+\infty$，$u=v$ 则为 $0$。
 
@@ -145,21 +142,20 @@ for (i = 1; i < n; i++) {
 
 那么我们用队列来维护“哪些结点可能会引起 $relax$”，就能只访问必要的边了。
 
-```
-q = new queue();
-q.push(S);
-in_queue[S] = true;
-while (!q.empty()) {
-	u = q.pop();
-	in_queue[u] = false;
-	for each edge(u, v) {
-		if (relax(u, v) && !in_queue[v]) {
-			q.push(v);
-			in_queue[v] = true;
-		}
-	}
-}
-```
+    q = new queue();
+    q.push(S);
+    in_queue[S] = true;
+    while (!q.empty()) {
+    	u = q.pop();
+    	in_queue[u] = false;
+    	for each edge(u, v) {
+    		if (relax(u, v) && !in_queue[v]) {
+    			q.push(v);
+    			in_queue[v] = true;
+    		}
+    	}
+    }
+
 SPFA 的时间复杂度为 $O(kM)~ (k\approx 2)$ （玄学），但 **理论上界** 为 $O(NM)$，精心设计的稠密图可以随便卡掉 SPFA，所以考试时谨慎使用  （NOI 2018中很多选手的SPFA被卡掉了）。
 
 ## Dijkstra 算法
@@ -204,24 +200,22 @@ IPA: /ˈdikstrɑ/ 或 /ˈdɛikstrɑ/。
 
 第二步，考虑每次加进来的结点，到他的最短路，上一步必然是第一个集合中的元素（否则他不会是第二个集合中的最小值，而且有第一步的性质），又因为第一个集合已经全部 $relax$ 过了，所以最短路显然确定了。
 
-```
-H = new heap();
-H.insert(S, 0);
-dist[S] = 0;
-for (i = 1; i <= n; i++) {
-	u = H.delete_min();
-	for each edge(u, v) {
-		if (relax(u, v)) {
-			H.decrease_key(v, dist[v]);
-		}
-	}
-}
-```
+    H = new heap();
+    H.insert(S, 0);
+    dist[S] = 0;
+    for (i = 1; i <= n; i++) {
+    	u = H.delete_min();
+    	for each edge(u, v) {
+    		if (relax(u, v)) {
+    			H.decrease_key(v, dist[v]);
+    		}
+    	}
+    }
 
 ## 不同方法的比较
 
-| Floyd     | Bellman-Ford | Dijkstra |
-| -------- | ------ | ------ |
-| 每对结点之间的最短路 | 单源最短路 | 单源最短路 |
-| 没有负环的图 | 任意图 | 非负权图 |
-| $O(N^3)$ | $O(NM)$ | $O((N+M)\log N)$ |
+| Floyd      | Bellman-Ford | Dijkstra         |
+| ---------- | ------------ | ---------------- |
+| 每对结点之间的最短路 | 单源最短路        | 单源最短路            |
+| 没有负环的图     | 任意图          | 非负权图             |
+| $O(N^3)$   | $O(NM)$      | $O((N+M)\log N)$ |
