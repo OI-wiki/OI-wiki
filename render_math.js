@@ -51,7 +51,7 @@ function fromDir(startPath, filter) {
       }
     }
 }
-fromDir('./site/math/mobius', '.html');
-// fromDir("./site/", ".html");
+// fromDir('./site/math/mobius', '.html');
+fromDir("./site/", ".html");
 // console.log(typeof input.text)
 // input = input.replace(/\<span class=\"MathJax\_Preview\"\>.+?\<\/span\>\<script type="math\/tex"\>/gi, `<script type="math/tex">`)
