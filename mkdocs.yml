@@ -242,6 +242,7 @@ extra:
 
 extra_javascript:
   - '_static/js/extra.js?v=4'
+  - 'https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'
 
 extra_css:
   - '_static/css/extra.css?v=3'
