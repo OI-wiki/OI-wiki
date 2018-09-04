@@ -1,0 +1,30 @@
+{
+  "name": "oi-wiki",
+  "version": "1.0.0",
+  "description": "wiki for OI/ACM-ICPC",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ir1d/OI-wiki.git"
+  },
+  "keywords": [
+    "OI",
+    "wiki",
+    "ACM-ICPC"
+  ],
+  "author": "OI Wiki Team",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Ir1d/OI-wiki/issues"
+  },
+  "homepage": "https://github.com/Ir1d/OI-wiki#readme",
+  "dependencies": {
+    "mathjax-node-page": "^3.0.1"
+  }
+}

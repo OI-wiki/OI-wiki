@@ -2,12 +2,21 @@ language: python
 cache: pip
 python:
   - 3.6
+before_install:
+  - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+  - export NVM_DIR="$HOME/.nvm" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+  - nvm install 10.9
 install:
   - pip install -r requirements.txt
-script: chmod +x build.sh && ./build.sh
+  - npm install .
+script:
+  - chmod +x build.sh && ./build.sh
+  - mkdocs build -v
+  - node render_math.js
 deploy:
+  provider: pages
   skip_cleanup: true
-  provider: script
-  script: chmod +x deploy.sh && bash ./deploy.sh
+  github-token: $GH_TOKEN
+  local-dir: site
   on:
     branch: master
