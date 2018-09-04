@@ -1,5 +1,8 @@
 language: python
-cache: pip
+cache:
+  pip: true
+  directories:
+  - node_modules
 python:
   - 3.6
 before_install:
