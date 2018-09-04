@@ -12,7 +12,7 @@ By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 ** 求解 ** ：对整个问题设最优值，枚举合并点，将问题分解为左右两个部分，最后合并两个部分的最优值得到原问题的最优值。
 
-## 例题[luogu P1880 [NOI1995]石子合并](https://www.luogu.org/problemnew/show/P1880)
+## 例题[luogu P1880 \[NOI1995\]石子合并](https://www.luogu.org/problemnew/show/P1880)
 
 题目大意：在一个环上有 $n$ 个数 $a_1,a_2,...,a_n$，进行 $n-1$ 次合并操作，每次操作将相邻的两堆合并成一堆，能获得新的一堆中的石子数量的和的得分。你需要最大化你的得分。
 
@@ -56,4 +56,4 @@ for(len=1;len<=n;len++)
 
 [luogu P1005 矩阵取数游戏](https://www.luogu.org/problemnew/show/P1005)
 
-[luogu P4767 [IOI2000]邮局](https://www.luogu.org/problemnew/show/P4767)
+[luogu P4767 \[IOI2000\]邮局](https://www.luogu.org/problemnew/show/P4767)

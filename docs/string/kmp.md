@@ -8,7 +8,7 @@
 
 对于模式串 $b$，定义 $next[]$。
 
-$$next[i] = \max\{j\}\ \operatorname{s.t.}\ 0 \leq j<i\ \&\&\ b[0 \cdots j-1]=b[i-j \cdots i-1]$$
+$next[i] = \max\{j\}\ \operatorname{s.t.}\ 0 \leq j<i\ \&\&\ b[0 \cdots j-1]=b[i-j \cdots i-1]$
 
 !!! warning
     【注意下标从 $0$ 开始】【需要画图】

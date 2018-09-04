@@ -54,8 +54,8 @@
 
 所以我们整理一下向量的加法法则：
 
-1. **向量加法的三角形法则**：若要求和的向量首尾顺次相连，那么这些向量的和为第一个向量的起点指向最后一个向量的终点；
-2. **向量加法的平行四边形法则**：若要求和的两个向量**共起点**，那么它们的和向量为以这两个向量为邻边的平行四边形的对角线，起点为两个向量共有的起点，方向沿平行四边形对角线方向。
+1.  **向量加法的三角形法则**：若要求和的向量首尾顺次相连，那么这些向量的和为第一个向量的起点指向最后一个向量的终点；
+2.  **向量加法的平行四边形法则**：若要求和的两个向量**共起点**，那么它们的和向量为以这两个向量为邻边的平行四边形的对角线，起点为两个向量共有的起点，方向沿平行四边形对角线方向。
 
 这样，向量的加法就具有了几何意义。
 
@@ -77,8 +77,8 @@
 
 于是，一般地，我们规定实数 $\lambda$ 与向量 $\vec a$ 的积为一个向量，这种运算就是向量的**数乘运算**，记作 $\lambda \vec a$，它的长度与方向规定如下：
 
-1. $|\lambda \vec a|=|\lambda||\vec a|$；
-2. 当 $\lambda >0$ 时，$\lambda\vec a$ 与 $\vec a$ 同向，当 $\lambda =0$ 时，$\lambda \vec a=\vec 0$，当 $\lambda<0$ 时，$\lambda \vec a$ 与 $\vec a$ 方向相反。
+1.  $|\lambda \vec a|=|\lambda||\vec a|$；
+2.  当 $\lambda >0$ 时，$\lambda\vec a$ 与 $\vec a$ 同向，当 $\lambda =0$ 时，$\lambda \vec a=\vec 0$，当 $\lambda<0$ 时，$\lambda \vec a$ 与 $\vec a$ 方向相反。
 
 我们根据数乘的定义，可以验证有如下运算律：
 
@@ -195,8 +195,8 @@ $$
 
 我们定义向量 $\vec a,\vec b$ 的向量积为一个向量，记为 $\vec a\times \vec b$，其模与方向定义如下：
 
-1. $|\vec a\times \vec b|=|\vec a||\vec b|\sin \langle \vec a,\vec b\rangle$；
-2. $\vec a\times \vec b$ 与 $\vec a,\vec b$ 都垂直，且 $\vec a,\vec b,\vec a\times \vec b$ 符合右手法则。
+1.  $|\vec a\times \vec b|=|\vec a||\vec b|\sin \langle \vec a,\vec b\rangle$；
+2.  $\vec a\times \vec b$ 与 $\vec a,\vec b$ 都垂直，且 $\vec a,\vec b,\vec a\times \vec b$ 符合右手法则。
 
 向量积也叫外积。
 

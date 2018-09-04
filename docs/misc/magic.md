@@ -17,12 +17,12 @@ Shadowsocks 是一个安全的 `socks5` 代理，支持多种平台。
 
 ### Windows
 
-下载地址：[shadowsocks-win](https://github.com/shadowsocks/shadowsocks-windows/releases) |
+下载地址：[shadowsocks-win](https://github.com/shadowsocks/shadowsocks-windows/releases) \|
 [Outline Windows](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/Outline-Client.exe)
 
 ### Mac OS X
 
-下载地址：[ShadowsocksX-NG](https://github.com/shadowsocks/ShadowsocksX-NG/releases) |
+下载地址：[ShadowsocksX-NG](https://github.com/shadowsocks/ShadowsocksX-NG/releases) \|
 [Outline macOS](https://itunes.apple.com/app/outline-app/id1356178125)
 
 ### Linux
@@ -51,7 +51,6 @@ ssr 在开发过程中违反了 [GPL 协议](https://zh.wikipedia.org/wiki/GNU%E
 
 所以，我们希望您在使用此服务时，不要盲目地攻击当局的做法。
 
-
-----
+* * *
 
 > [I believe you guys will make great stuff with Network Extensions.](https://github.com/shadowsocks/shadowsocks-iOS/issues/124#issuecomment-133630294)

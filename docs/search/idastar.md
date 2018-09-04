@@ -1,37 +1,36 @@
 学习 IDA\* 之前，请确保您已经学完了 [A\*](/search/astar) 算法和 [迭代加深搜索](/search/iterative) 。
 
-## IDA* 简介
+## IDA\* 简介
+
 IDA\*，即采用迭代加深的 A\* 算法。相对于 A\* 算法，由于 IDA\* 改成了深度优先的方式，所以 IDA\* 更实用：
-1. 不需要判重，不需要排序；
-2. 空间需求减少。
+1\. 不需要判重，不需要排序；
+2\. 空间需求减少。
 
 **大致框架**（伪代码）：
 
-```
-Procedure IDA_STAR(StartState)
-Begin
-PathLimit := H(StartState) - 1;
-Succes := False;
-Repeat
-inc(PathLimit);
-StartState.g = 0;
-Push(OpenStack , StartState);
-Repeat
-CurrentState := Pop(OpenStack);
-If Solution(CurrentState) then
-Success = True
-Elseif PathLimit >= CurrentState.g + H(CurrentState) then
-For each Child(CurrentState) do
-Push(OpenStack , Child(CurrentState));
-until Successor empty(OpenStack);
-until Success or ResourceLimtsReached;
-end;
-```
+    Procedure IDA_STAR(StartState)
+    Begin
+    PathLimit := H(StartState) - 1;
+    Succes := False;
+    Repeat
+    inc(PathLimit);
+    StartState.g = 0;
+    Push(OpenStack , StartState);
+    Repeat
+    CurrentState := Pop(OpenStack);
+    If Solution(CurrentState) then
+    Success = True
+    Elseif PathLimit >= CurrentState.g + H(CurrentState) then
+    For each Child(CurrentState) do
+    Push(OpenStack , Child(CurrentState));
+    until Successor empty(OpenStack);
+    until Success or ResourceLimtsReached;
+    end;
 
 ### 优点
 
-1. 空间开销小，每个深度下实际上是一个深度优先搜索，不过深度有限制，而 DFS 的空间消耗小是众所周知的；
-2. 利于深度剪枝。
+1.  空间开销小，每个深度下实际上是一个深度优先搜索，不过深度有限制，而 DFS 的空间消耗小是众所周知的；
+2.  利于深度剪枝。
 
 ### 缺点
 

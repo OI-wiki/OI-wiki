@@ -16,15 +16,15 @@
 
 在 NOIP 中，我们只要求一个能支持主要操作的堆就行，也就是二叉堆。
 
-- 二叉堆 *(binary heap)*
+-   二叉堆 _(binary heap)_
 
 最基础的堆，不支持 merge 和可持久化，所有操作的复杂度都是 $O(\log n)$ 的。
 
-- 二项堆 *(binomial heap)*
+-   二项堆 _(binomial heap)_
 
 支持 merge 的堆，（也能可持久化），所有操作的复杂度都是 $O(\log n)$。
 
-- Fib 堆 *(Fibonacci heap)*
+-   Fib 堆 _(Fibonacci heap)_
 
 除了不能可持久化，支持全部功能，而且除了 deletemin 以外都是均摊 $O(1)$ 的。
 
@@ -110,11 +110,9 @@ down(x) {
 
 从根开始，按 BFS 序进行.
 
-```
-build_heap_1() {
-	for (i = 1; i <= n; i++) up(i);
-}
-```
+    build_heap_1() {
+    	for (i = 1; i <= n; i++) up(i);
+    }
 
 为啥这么做：对于第 $k$ 层的结点，向上调整的复杂度为 $O(k)$ 而不是 $O(\log n)$。
 
@@ -126,11 +124,9 @@ build_heap_1() {
 
 这时换一种思路，从叶子开始，逐个向下调整
 
-```
-build_heap_2() {
-	for (i = n; i >= 1; i--) down(i);
-}
-```
+    build_heap_2() {
+    	for (i = n; i >= 1; i--) down(i);
+    }
 
 换一种理解方法，每次「合并」两个已经调整好的堆，这说明了正确性。
 

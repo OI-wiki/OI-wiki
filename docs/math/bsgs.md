@@ -12,31 +12,21 @@ $$
 
 其中 $p$ 是个质数的方程的解 $x$ 满足 $0 \le x < p$ .
 
-
-
 令 $x = A \lceil \sqrt p \rceil - B$，其中 $0\le A,B \le \lceil \sqrt p \rceil$，
 
 则有 $a^{A\lceil \sqrt p \rceil -B} \equiv b$，稍加变换，则有 $a^{A\lceil \sqrt p \rceil} \equiv ba^B$.
 
-
-
 我们已知的是 $a,b$，所以我们可以先算出等式右边的 $ba^B$ 的所有取值，枚举 $B$，用 hash/map 存下来，然后逐一计算 $a^{A\lceil \sqrt p \rceil}$，枚举 $A$，寻找是否有与之相等的 $ba^B$，从而我们可以得到所有的 $x$，$x=A \lceil \sqrt p \rceil - B$.
-
-
 
 注意到 $A,B$ 均小于 $\lceil \sqrt p \rceil$，所以时间复杂度为 $O(\sqrt q)$，用 map 的话会多一个 $\log$.
 
-
-
 [BZOJ-2480](http://www.lydsy.com/JudgeOnline/problem.php?id=2480) 是一道模板题（可能是权限题），[BZOJ-3122](http://www.lydsy.com/JudgeOnline/problem.php?id=3122) 是一道略加变化的题，代码可以在 [Steaunk的博客](https://blog.csdn.net/Steaunk/article/details/78988376) 中看到.
-
-
 
 ### 2.0 略微进阶篇
 
 求解
 
-$$ x^a \equiv b \bmod p $$
+$x^a \equiv b \bmod p$
 
 其中 $p$ 是个质数.
 
@@ -68,23 +58,15 @@ $\therefore r = 0$.
 
 **Q.E.D.**
 
-
-
 由此当 $p$ 是质数的时候还有这样的推论：如果不存在小于 $p$ 且整除 $p-1$ 正整数 $t$, 满足 $a^t \equiv 1$，那么又根据**费马小定理**，有 $a^{p-1} \equiv 1$，所以 $p-1$ 是 $a$ 模 $p$ 的次数，即 $a$ 是 $p$ 的原根.
 
-
-
 于是可以得到一种基于**原根分布**的算法来找原根，首先把 $p-1$ 的因数全部求出来，然后从 $2$ 到 $p-1$ 枚举，判断是否为原根，如果对于数 $g$，$\exists g^t \equiv 1 \bmod p$，$t$ 是 $p-1$ 的因数，则 $g$ 一定不是 $p$ 的原根.
-
-
 
 看上去复杂度好像很爆炸（可能确实是爆炸的，但一般情况下，最小的原根不会很大）.
 
 ~~基于一个**假设**，原联系根是**均匀分布**的，我们**伪证明**一下总复杂度~~：原根数量定理：数 $p$ 要么没有原根，要么有 $\varphi(\varphi(p))$ 个原根.
 
 由于 $p$ 是质数，所以 $p$ 有 $\varphi(p-1)$ 个原根，所以大概最小的原根为 $\frac{p}{\varphi(p-1)}=O(\log\log n)$，由于求每一个数时要枚举一遍 $p-1$ 所有的因数 $O(\sqrt p)$ 来判断其是否为原根，最后再算上 **BSGS** 的复杂度 $O(\sqrt{p})$，则复杂度约为 $O(\sqrt{p}\log \log n)$.
-
-
 
 [BZOJ-1319](http://www.lydsy.com/JudgeOnline/problem.php?id=1319) 是一道模板题，代码可以在 [Steaunk的博客](https://blog.csdn.net/Steaunk/article/details/78988376) 中看到.
 

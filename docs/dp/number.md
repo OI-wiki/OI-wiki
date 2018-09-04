@@ -58,9 +58,9 @@ int solve(int x)
 
 [BZOJ 3679 数字之积 ](https://www.lydsy.com/JudgeOnline/problem.php?id=3679)
 
-[luogu P2602 [ZJOI2010] 数字计数 ](https://www.luogu.org/problemnew/show/P2602)
+[luogu P2602 \[ZJOI2010\] 数字计数 ](https://www.luogu.org/problemnew/show/P2602)
 
-[luogu P4127 [AHOI2009] 同类分布 ](https://www.luogu.org/problemnew/show/P4127)
+[luogu P4127 \[AHOI2009\] 同类分布 ](https://www.luogu.org/problemnew/show/P4127)
 
 [luogu  P3413 SAC#1 - 萌数](https://www.luogu.org/problemnew/show/P3413)
 

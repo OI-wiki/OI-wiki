@@ -34,29 +34,27 @@ Hash 的核心思想在于，暴力算法中，单次比较的时间太长了，
 
 伪代码：
 
-```
-match_pre(int n) {
-    exp[0] = 1;
-    for (i = 1; i < n; i++) {
-        exp[i] = exp[i - 1] * b % M;
-    }
-}
-
-match(char *a, char *b, int n, int m) {
-    // match 函数返回：长度为 m 的串 b 在长度为 n 的串 a 中的匹配位置
-    // hash(a, m) 函数用来获得某个字符串前 m 个字符的部分的 hash 值
-    ans = new vector();
-    int ha = hash(a, m);
-    int hb = hash(b, m);
-    for (i = 0; i < n - m + 1; i++) {
-        if ((ha - hb * exp[i]) % M == 0) {
-            ans.push_back(i);
+    match_pre(int n) {
+        exp[0] = 1;
+        for (i = 1; i < n; i++) {
+            exp[i] = exp[i - 1] * b % M;
         }
-        ha = (ha - a[i] * exp[i] + a[i + m] * exp[i + m]) % M;
     }
-    return ans;
-}
-```
+
+    match(char *a, char *b, int n, int m) {
+        // match 函数返回：长度为 m 的串 b 在长度为 n 的串 a 中的匹配位置
+        // hash(a, m) 函数用来获得某个字符串前 m 个字符的部分的 hash 值
+        ans = new vector();
+        int ha = hash(a, m);
+        int hb = hash(b, m);
+        for (i = 0; i < n - m + 1; i++) {
+            if ((ha - hb * exp[i]) % M == 0) {
+                ans.push_back(i);
+            }
+            ha = (ha - a[i] * exp[i] + a[i + m] * exp[i + m]) % M;
+        }
+        return ans;
+    }
 
 通过上面这段代码，可以发现，每次直接计算 Hash 是 $O(串长)$ 的
 

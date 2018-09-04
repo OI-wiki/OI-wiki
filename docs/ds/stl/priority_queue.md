@@ -24,11 +24,11 @@ std::priority_queue<int, deque<int>, greater<int>>
 
 ## 成员函数 ：
 
-1. `top()`: 访问栈顶元素 常数复杂度
-2. `empty()`: 检查底层的容器是否为空 常数复杂度
-3. `size()`: 返回底层容器的元素数量 常数复杂度
-4. `push()`: 插入元素，并对底层容器排序 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$
-5. `pop()`: 删除第一个元素 最坏 $\Theta(\log(n))$
+1.  `top()`: 访问栈顶元素 常数复杂度
+2.  `empty()`: 检查底层的容器是否为空 常数复杂度
+3.  `size()`: 返回底层容器的元素数量 常数复杂度
+4.  `push()`: 插入元素，并对底层容器排序 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$
+5.  `pop()`: 删除第一个元素 最坏 $\Theta(\log(n))$
 
 由于 `std::priority_queue` 原生不支持 `modify()` / `join()` / `erase()` 故不做讲解。
 
