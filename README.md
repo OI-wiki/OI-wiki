@@ -60,7 +60,7 @@ mkdocs serve -v
 
 ```
 
-我们现在在服务器端渲染 mathjax ，如果希望实现类似效果，可以参考 [.travis.yml](https://github.com/24OI/OI-wiki/blob/master/.travis.yml)。（需要安装 Node.js）
+我们现在在服务器端渲染 mathjax ，如果希望实现类似效果，可以参考 [netlify_build.sh](https://github.com/24OI/OI-wiki/blob/master/netlify_build.sh)。（需要安装 Node.js）
 
 ----
 
