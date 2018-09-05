@@ -251,24 +251,24 @@ int main()
 
 ## 时间复杂度证明
 
-以上算法的时间复杂度为 $O(q\times lg^2~n)$，下证：
+以上算法的时间复杂度为 $O(q \log^2 n)$，下证：
 
-可以证明，如果 $u$ 是 $v$ 的父亲，且 $v$ 不是 $u$ 的重儿子，有 $siz(v)\le \frac{1}{2} \times siz(u)$。
+可以证明，如果 $u$ 是 $v$ 的父亲，且 $v$ 不是 $u$ 的重儿子，有 $siz(v)\le \frac{1}{2} siz(u)$。
 
-因为如果 $siz(v)> \frac{1}{2} \times siz(u)$，那么 $siz(v)$ 大于其他 $u$ 的儿子的 $siz$ 的和，就有 $siz(v)$ 大于其他 $u$ 的儿子的 $siz$。这样 $v$ 一定是 $u$ 的重儿子，与题设不符。
+因为如果 $siz(v)> \frac{1}{2} siz(u)$，那么 $siz(v)$ 大于其他 $u$ 的儿子的 $siz$ 的和，就有 $siz(v)$ 大于其他 $u$ 的儿子的 $siz$。这样 $v$ 一定是 $u$ 的重儿子，与题设不符。
 
-由此可知，每次查询操作，我们顺着 **非重链** 向上跳，其子树节点个数一定至少 **乘以2**。如果我们顺着重链向上跳，其子树节点个数也会乘以2，最大为 $n$。
+由此可知，每次查询操作，我们顺着 **非重链** 向上跳，其子树节点个数一定至少 **乘以 2**。如果我们顺着重链向上跳，其子树节点个数也会乘以 2，最大为 $n$。
 
-由于一个点的子树的节点个数最多为 $n$ ，所以我们最多只需要向上跳 $O(lg~n)$ 次。再乘上线段树查询的时间复杂度 $O(lg~n)$ 和操作数 $O(q)$，最后的时间复杂度为 $O(q\times lg^2~n)$。证毕。
+由于一个点的子树的节点个数最多为 $n$ ，所以我们最多只需要向上跳 $O(\log n)$ 次。再乘上线段树查询的时间复杂度 $O(\log n)$ 和操作数 $O(q)$，最后的时间复杂度为 $O(q \log^2 n)$。证毕。
 
-## 几道练习题
+## 练习
 
-[luogu P3258 [JLOI2014]松鼠的新家](https://www.luogu.org/problemnew/show/P3258) （当然可以用树上差分）
+[luogu P3258 [JLOI2014] 松鼠的新家](https://www.luogu.org/problemnew/show/P3258) （当然可以用树上差分）
 
-[luogu P3178 [HAOI2015]树上操作](https://www.luogu.org/problemnew/show/P3178)
+[luogu P3178 [HAOI2015] 树上操作](https://www.luogu.org/problemnew/show/P3178)
 
 [luogu P3384 【模板】树链剖分](https://www.luogu.org/problemnew/show/P3384)
 
-[luogu P2146 [NOI2015]软件包管理器](https://www.luogu.org/problemnew/show/P2146)
+[luogu P2146 [NOI2015] 软件包管理器](https://www.luogu.org/problemnew/show/P2146)
 
-[luogu P2486 [SDOI2011]染色](https://www.luogu.org/problemnew/show/P2486)
+[luogu P2486 [SDOI2011] 染色](https://www.luogu.org/problemnew/show/P2486)
