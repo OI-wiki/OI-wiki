@@ -37,7 +37,7 @@ function fromDir(startPath, filter) {
                 }
               }
             },
-            { svg: true, ex: 8, cjkCharWidth: 18 },
+            { svg: true, ex: 8, cjkCharWidth: 18, linebreaks: true },
             function(output) {
               // console.log(output); // resulting HTML string
               // console.log(filename)
