@@ -28,3 +28,8 @@ blockquote.page-time{
 #myBtn:hover {
     background-color: #d3d3d3; 
 }
+
+.MathJax_Display {
+    width: auto !important;
+    display: inline !important;
+}

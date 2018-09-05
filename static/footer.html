@@ -40,6 +40,9 @@ MathJax.Hub.Config({
     }
 });
 MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+MathJax.Hub.Queue(function(){
+  document.getElementsByTagName("body")[0].style.opacity=1;
+});
 </script>
 <script src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
