@@ -33,3 +33,7 @@ span.mjpage > svg {
     overflow-x: scroll;
     max-width: fit-content;
 }
+
+span.mjpage__block > svg {
+  min-width: 80%;
+}
