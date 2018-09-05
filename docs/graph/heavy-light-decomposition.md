@@ -1,6 +1,6 @@
 By [hsfzLZH1](https://github.com/hsfzLZH1)
 
-在学习本部分时，请先学习 **[线段树](https://oi-wiki.org/ds/segment/)** 的相关内容。
+在学习本部分时，请先学习 **[线段树](ds/segment/)** 的相关内容。
 
 ## 树链剖分的思想及能解决的问题
 
@@ -16,17 +16,17 @@ By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 如果树是动态的，需要使用 **LCT** 来解决。
 
-由于树链剖分的思想十分暴力，所以被OIers戏称为 **“优雅的暴力”** 。
+由于树链剖分的思想十分暴力，所以被 OIers 戏称为 **“优雅的暴力”** 。
 
 ## 例题 [luogu P2590 [ZJOI2008]树的统计](https://www.luogu.org/problemnew/show/P2590)
 
 题目大意：对一棵有 $n$ 个节点的静态树，进行三种操作共 $q$ 次：
 
-1.修改单个节点的值；
+1. 修改单个节点的值；
 
-2.查询 $u$ 到 $v$ 的最短路径上的最大值；
+2. 查询 $u$ 到 $v$ 的最短路径上的最大值；
 
-3.查询 $u$ 到 $v$ 的最短路径上的权值和。
+3. 查询 $u$ 到 $v$ 的最短路径上的权值和。
 
 题目保证 $1\le n\le 30000,0\le q\le 200000$
 
@@ -83,11 +83,11 @@ void dfs2(int o,int t)
 
 根据题面以及以上的性质，你的线段树需要维护三种操作：
 
-1.单点修改；
+1. 单点修改；
 
-2.区间查询最大值；
+2. 区间查询最大值；
 
-3.区间查询和。
+3. 区间查询和。
 
 单点修改很容易实现。
 
@@ -102,7 +102,7 @@ void dfs2(int o,int t)
 给出一种代码实现：
 
 ```cpp
-//st 是线段树结构体
+// st 是线段树结构体
 int querymax(int x,int y)
 {
 	int ret=-inf,fx=top[x],fy=top[y];
@@ -127,7 +127,6 @@ int querymax(int x,int y)
 鉴于树链剖分的题目细节较多，容易打错，给出一种代码实现，以供参考。
 
 ```cpp
-// luogu-judger-enable-o2
 #include<cstdio>
 #include<cstring>
 #include<algorithm>
