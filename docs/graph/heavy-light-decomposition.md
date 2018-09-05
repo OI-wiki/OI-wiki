@@ -1,6 +1,6 @@
 By [hsfzLZH1](https://github.com/hsfzLZH1)
 
-在学习本部分时，请先学习 **[线段树](ds/segment/)** 的相关内容。
+在学习本部分时，请先学习 **[线段树](/ds/segment/)** 的相关内容。
 
 ## 树链剖分的思想及能解决的问题
 
