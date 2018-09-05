@@ -29,15 +29,9 @@ function fromDir(startPath, filter) {
                 ""
               ),
             {
-              format: ["TeX"],
-              Mathjax: {
-                font: "STIX-Web",
-                SVG: {
-                  undefinedFamily: '"Arial Unicode MS", Arial, sans-serif'
-                }
-              }
+              format: ["TeX"]
             },
-            { svg: true, ex: 8, cjkCharWidth: 18, linebreaks: true },
+            { html: true, css: true, ex: 8, cjkCharWidth: 18, linebreaks: true },
             function(output) {
               // console.log(output); // resulting HTML string
               // console.log(filename)
