@@ -245,7 +245,7 @@ extra_javascript:
   - 'https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'
 
 extra_css:
-  - '_static/css/extra.css?v=3'
+  - '_static/css/extra.css?v=4'
 
 # Extensions
 markdown_extensions:
