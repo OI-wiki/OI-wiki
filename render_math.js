@@ -31,7 +31,7 @@ function fromDir(startPath, filter) {
             {
               format: ["TeX"]
             },
-            { html: true, css: true, ex: 8, cjkCharWidth: 18, linebreaks: true },
+            { svg: true, ex: 8, cjkCharWidth: 18, linebreaks: true },
             function(output) {
               // console.log(output); // resulting HTML string
               // console.log(filename)
