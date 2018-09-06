@@ -1,4 +1,5 @@
 static/* linguist-vendored
 docs/_static/* linguist-vendored
-build.sh linguist-vendored
-deploy.sh linguist-vendored
+*.sh linguist-vendored
+*.js linguist-vendored
+*.json linguist-vendored

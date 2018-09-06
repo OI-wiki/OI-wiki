@@ -5,3 +5,4 @@ mkdocs-material/
 .DS_Store
 .env
 .well-known/
+node_modules/
