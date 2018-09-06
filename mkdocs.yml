@@ -215,8 +215,11 @@ nav:
 
 # Theme
 theme:
-  name: 'material'
-  language: 'zh'
+  name: null
+  custom_dir: 'mkdocs-material/material'
+  static_templates:
+    - 404.html
+  language: 'zh-Hans'
   palette:
     primary: 'white'
     accent: 'red'
@@ -242,9 +245,11 @@ extra:
 
 extra_javascript:
   - '_static/js/extra.js?v=4'
+  - 'https://cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.js'
 
 extra_css:
   - '_static/css/extra.css?v=3'
+  - '_static/css/han.css'
 
 # Extensions
 markdown_extensions:
