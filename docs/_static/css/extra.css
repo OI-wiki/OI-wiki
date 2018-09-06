@@ -31,9 +31,9 @@ blockquote.page-time{
 
 span.mjpage > svg {
     overflow-x: scroll;
-    width: intrinsic;
-    width: -moz-max-content;
-    width: -webkit-max-content;
+    max-width: intrinsic;
+    max-width: -moz-max-content;
+    max-width: -webkit-max-content;
 }
 
 span.mjpage__block > svg {
