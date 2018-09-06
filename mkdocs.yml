@@ -250,7 +250,7 @@ extra_javascript:
   - '_static/js/enableHan.js'
 
 extra_css:
-  - '_static/css/extra.css?v=3'
+  - '_static/css/extra.css?v=4'
   - '_static/css/han.css'
 
 # Extensions

@@ -49,18 +49,18 @@ git clone https://github.com/24OI/OI-wiki.git
 cd OI-wiki
 pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
+# 使用我们的自定义主题（不是必须执行）
+chmod +x ./build.sh && ./build.sh
+
 # 最简单的构建方法，会在 site 文件夹下得到静态页面
-mkdocs build
-# 我们对主题进行了修改，如果想要得到和 https://oi-wiki.org 相似的效果，还需要运行下面这行
-chmod +x ./build.sh && sed -i "s/mkdocs serve/mkdocs build/g" build.sh && ./build.sh
+mkdocs build -v
 
 # 运行一个服务器，访问 http://127.0.0.1:8000 可以查看效果
-mkdocs serve
-# 我们对主题进行了修改，如果想要得到和 https://oi-wiki.org 相似的效果，还需要运行下面这行
-chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && ./build.sh
+mkdocs serve -v
 
-# 注：大部分时候不需要测试我们修改后的主题
 ```
+
+我们现在在服务器端渲染 mathjax ，如果希望实现类似效果，可以参考 [netlify_build.sh](https://github.com/24OI/OI-wiki/blob/master/netlify_build.sh)。（需要安装 Node.js）
 
 ----
 
