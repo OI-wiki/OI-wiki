@@ -216,7 +216,7 @@ nav:
 # Theme
 theme:
   name: 'material'
-  language: 'zh'
+  language: 'zh-Hans'
   palette:
     primary: 'white'
     accent: 'red'
