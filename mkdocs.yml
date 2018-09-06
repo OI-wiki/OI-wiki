@@ -1,7 +1,7 @@
 # Project Information
 site_name: OI Wiki
 site_description: OI Wiki 是一个信息学奥林匹克竞赛知识整合站点，提供有趣又实用的 OI 知识以及其他有帮助的内容，帮助广大 OI 爱好者更快更深入地学习 OI 竞赛
-site_author: OI Wiki Team
+ site_author: OI Wiki Team
 site_url: https://oi-wiki.org
 strict: true
 
@@ -215,11 +215,8 @@ nav:
 
 # Theme
 theme:
-  name: null
-  custom_dir: 'mkdocs-material/material'
-  static_templates:
-    - 404.html
-  language: 'zh-Hans'
+  name: 'material'
+  language: 'zh'
   palette:
     primary: 'white'
     accent: 'red'
@@ -245,7 +242,7 @@ extra:
 
 extra_javascript:
   - '_static/js/extra.js?v=4'
-  - 'https://cdnjs.cloudflare.com/ajax/libs/Han/3.3.0/han.min.js'
+  - '_static/js/enableHan.js'
 
 extra_css:
   - '_static/css/extra.css?v=3'
@@ -276,4 +273,4 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
-  - pymdownx.tilde
+- pymdownx.tilde
