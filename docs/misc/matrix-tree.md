@@ -68,17 +68,23 @@ $$t^{leaf}(G,k) = \det L^{in}(G)\binom{1,2,\cdots,k-1,k+1,\cdots,n}{1,2,\cdots,k
 
 因此如果要统计一张图所有的叶向树形图，只要枚举所有的根 $k$ 并对 $t^{leaf}(G,k)$ 求和即可。
 
-## 定理的应用
+## BEST定理
 
-### 直接利用本定理
+**定理 5 (BEST定理)** 设$G$是有向欧拉图，那么$G$的不同欧拉回路总数$ec(G)$是
 
-!!! 例题 1
-    [HEOI2015]小 Z 的房间，请参考https://www.lydsy.com/JudgeOnline/problem.php?id=4031
+$$ec(G) = t^{root}(G,k)\prod_{v\in V}(\deg (v) - 1)!$$
+
+注意，对欧拉图$G$的任意两个节点$k, k'$，都有$t^{root}(G,k)=t^{root}(G,k')$，且欧拉图$G$的所有节点的入度和出度相等。
+
+## 例题
+
+!!! 例题1
+    HEOI2015: 小 Z 的房间，请参考https://www.lydsy.com/JudgeOnline/problem.php?id=4031
 
 **解** 矩阵树定理的裸题。将每个空房间看作一个结点，根据输入的信息建图，得到Laplace矩阵后，任意删掉L的第 $i$ 行第 $i$ 列，求这个子式的行列式即可。求行列式的方法就是高斯消元成上三角阵然后算对角线积。另外本题需要在模 $k$ 的整数子环 $\mathbb{Z}_k$ 上进行高斯消元，采用辗转相除法即可。
 
-!!! 例题 2
-    [FJOI2007]轮状病毒。请参考https://www.lydsy.com/JudgeOnline/problem.php?id=1002
+!!! 例题2
+    FJOI2007: 轮状病毒。请参考https://www.lydsy.com/JudgeOnline/problem.php?id=1002
 
 **解** 本题的解法很多，这里用矩阵树定理是最直接的解法。当输入为 $n$ 时，容易写出其 $n+1$ 阶的Laplace矩阵为：
 
@@ -96,61 +102,68 @@ $$
 
 求出它的 $n$ 阶子式的行列式即可，剩下的只有高精度计算了。
 
-!!! 例题 2'
+!!! 例题2+
     将例题 2 的数据加强，要求 $n\leq 100000$，但是答案对 1000007 取模。（本题求解需要一些线性代数知识）
 
-**解** 注意到 $L_n$ 删掉第 1 行第 1 列以后得到的矩阵很有规律，因此其实就是在求矩阵
+**解** 推导递推式后利用矩阵快速幂即可求得。
 
-$$
-M_n = \begin{bmatrix}
-3&	-1&	0&	\cdots&	0&	-1\\
--1&	3&	-1&	\cdots&	0&	0\\
-0&	-1&	3&	\cdots&	0&	0\\
-\vdots&	\vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
-0&	0&	0&	\cdots&	3&	-1\\
--1&	0&	0&	\cdots&	-1&	3\\
-\end{bmatrix}_{n}
-$$
+??? danger "推导递推式的过程。警告：过程冗杂"
+    
+    注意到 $L_n$ 删掉第 1 行第 1 列以后得到的矩阵很有规律，因此其实就是在求矩阵
+    
+    $$
+    M_n = \begin{bmatrix}
+    3&	-1&	0&	\cdots&	0&	-1\\
+    -1&	3&	-1&	\cdots&	0&	0\\
+    0&	-1&	3&	\cdots&	0&	0\\
+    \vdots&	\vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
+    0&	0&	0&	\cdots&	3&	-1\\
+    -1&	0&	0&	\cdots&	-1&	3\\
+    \end{bmatrix}_{n}
+    $$
+    
+    的行列式。对 $M_n$ 的行列式按第一列展开，得到
+    
+    $$
+    \det M_n = 3\det \begin{bmatrix}
+    3&	-1&	\cdots&	0&	0\\
+    -1&	3&	\cdots&	0&	0\\
+    \vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
+    0&	0&	\cdots&	3&	-1\\
+    0&	0&	\cdots&	-1&	3\\
+    \end{bmatrix}_{n-1} + \det\begin{bmatrix}
+    -1&	0&	\cdots&	0&	-1\\
+    -1&	3&	\cdots&	0&	0\\
+    \vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
+    0&	0&	\cdots&	3&	-1\\
+    0&	0&	\cdots&	-1&	3\\
+    \end{bmatrix}_{n-1} + (-1)^n \det\begin{bmatrix}
+    -1&	0&	\cdots&	0&	-1\\
+    3&	-1&	\cdots&	0&	0\\
+    -1&	3&	\cdots&	0&	0\\
+    \vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
+    0&	0&	\cdots&	3&	-1\\
+    \end{bmatrix}_{n-1}
+    $$
+    
+    上述三个矩阵的行列式记为 $d_{n-1}, a_{n-1}, b_{n-1}$。注意到 $d_n$ 是三对角行列式，采用类似的展开的方法可以得到 $d_n$ 具有递推公式 $d_n=3d_{n-1}-d_{n-2}$。类似地，采用展开的方法可以得到 $a_{n-1}=-d_{n-2}-1$，以及 $(-1)^n b_{n-1}=-d_{n-2}-1$。将这些递推公式代入上式，得到
+    
+    $$\det M_n = 3d_{n-1}-2d_{n-2}-2$$
+    
+    $$d_n = 3d_{n-1}-d_{n-2}$$
+    
+    于是猜测 $\det M_n$ 也是非齐次的二阶线性递推。采用待定系数法可以得到最终的递推公式为
+    
+    $$\det M_n = 3\det M_{n-1} - \det M_{n-2} + 2$$
+    
+    改写成 $(\det M_n+2) = 3(\det M_{n-1}+2) - (\det M_{n-2} + 2)$ 后，采用矩阵快速幂即可求出答案。
 
-的行列式。对 $M_n$ 的行列式按第一列展开，得到
+!!! 例题3
+    BZOJ3659: WHICH DREAMED IT
 
-$$
-\det M_n = 3\det \begin{bmatrix}
-3&	-1&	\cdots&	0&	0\\
--1&	3&	\cdots&	0&	0\\
-\vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
-0&	0&	\cdots&	3&	-1\\
-0&	0&	\cdots&	-1&	3\\
-\end{bmatrix}_{n-1} + \det\begin{bmatrix}
--1&	0&	\cdots&	0&	-1\\
--1&	3&	\cdots&	0&	0\\
-\vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
-0&	0&	\cdots&	3&	-1\\
-0&	0&	\cdots&	-1&	3\\
-\end{bmatrix}_{n-1} + (-1)^n \det\begin{bmatrix}
--1&	0&	\cdots&	0&	-1\\
-3&	-1&	\cdots&	0&	0\\
--1&	3&	\cdots&	0&	0\\
-\vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
-0&	0&	\cdots&	3&	-1\\
-\end{bmatrix}_{n-1}
-$$
+**解** 本题是BEST定理的直接应用，但是要注意，由于题目规定“两种完成任务的方式算作不同当且仅当使用钥匙的顺序不同”，对每个欧拉回路，1号房间可以沿着任意一条出边出发，从而答案还要乘以1号房间的出度。
 
-上述三个矩阵的行列式记为 $d_{n-1}, a_{n-1}, b_{n-1}$。注意到 $d_n$ 是三对角行列式，采用类似的展开的方法可以得到 $d_n$ 具有递推公式 $d_n=3d_{n-1}-d_{n-2}$。类似地，采用展开的方法可以得到 $a_{n-1}=-d_{n-2}-1$，以及 $(-1)^n b_{n-1}=-d_{n-2}-1$。将这些递推公式代入上式，得到
 
-$$\det M_n = 3d_{n-1}-2d_{n-2}-2$$
-
-$$d_n = 3d_{n-1}-d_{n-2}$$
-
-于是猜测 $\det M_n$ 也是非齐次的二阶线性递推。采用待定系数法可以得到最终的递推公式为
-
-$$\det M_n = 3\det M_{n-1} - \det M_{n-2} + 2$$
-
-改写成 $(\det M_n+2) = 3(\det M_{n-1}+2) - (\det M_{n-2} + 2)$ 后，采用矩阵快速幂即可求出答案。
-
-### 与其它问题相结合
-
-（挖坑）
 
 ## 注释
 
