@@ -216,9 +216,6 @@ nav:
 # Theme
 theme:
   name: null
-  custom_dir: 'mkdocs-material/material'
-  static_templates:
-    - 404.html
   language: 'zh-Hans'
   palette:
     primary: 'white'
