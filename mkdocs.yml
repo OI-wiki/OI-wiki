@@ -216,6 +216,8 @@ nav:
 # Theme
 theme:
   name: 'material'
+  static_templates:
+    - 404.html
   language: 'zh-Hans'
   palette:
     primary: 'white'
