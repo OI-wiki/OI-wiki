@@ -39,3 +39,8 @@ span.mjpage > svg {
 span.mjpage__block > svg {
   min-width: 80%;
 }
+
+i .md-icon {
+  font-family: 'Material Icons';
+  font-style: normal;"
+}
