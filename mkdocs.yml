@@ -215,7 +215,7 @@ nav:
 
 # Theme
 theme:
-  name: mkdocs-material
+  name: materials
   language: 'zh-Hans'
   static_templates:
     - 404.html
