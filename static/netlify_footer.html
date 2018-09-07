@@ -22,9 +22,17 @@
 
 {% import "partials/language.html" as lang with context %}
 
+<script async src="https://oi-wiki.org/analytics.js"></script>
+
 <!-- InstantClick -->
 <script type="text/javascript" src="https://cdn.bootcss.com/instantclick/3.0.0/instantclick.js" data-no-instant></script>
 <script data-no-instant>
+InstantClick.on('change', function(isInitialLoad) {
+ if (isInitialLoad === false) {
+  if (typeof ga !== 'undefined') // support google analytics
+    ga('send', 'pageview', location.pathname + location.search);
+ }
+});
 InstantClick.init(true);
 </script>
 
@@ -36,7 +44,7 @@ InstantClick.init(true);
 // 当网页向下滑动 20px 出现"返回顶部" 按钮
 window.onscroll = function() {scrollFunction()};
  
-function scrollFunction() {
+function scrollFunction() {console.log(121);
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         document.getElementById("myBtn").style.display = "block";
     } else {
