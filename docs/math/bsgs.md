@@ -101,14 +101,15 @@ $\therefore r = 0$.
 所以我们要先消除因子：
 
 ```cpp
-d=1,num=0;
+d=1,num=0,t=0;
 while(gcd(a,c)!=1){
     if(b%gcd(a,c)!=0) {
         \\无解
     }
-    b\=gcd(a,c);
-    c\=gcd(a,c);
-    d*=a/gcd(a,c);
+    t = gcd(a, c);
+    b/=t;
+    c/=t;
+    d*=a/t;
     num++;
 }
 ```
