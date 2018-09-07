@@ -215,7 +215,7 @@ nav:
 
 # Theme
 theme:
-  name: material
+  name: 'material'
   language: 'zh-Hans'
   static_templates:
     - 404.html
