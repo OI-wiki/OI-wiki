@@ -28,7 +28,7 @@ sed -i 's/{{ page.content }}/{% set pagetime = config.extra.pagetime %} {% if pa
 cp ./static/disqus.html mkdocs-material/material/partials/integrations/disqus.html
 cp ./static/footer.html mkdocs-material/material/partials/footer.html
 
-cp ./static/extra.js docs/_static/js/extra.js
+# cp ./static/extra.js docs/_static/js/extra.js
 
 mkdocs build -v
 
