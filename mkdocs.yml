@@ -246,12 +246,12 @@ extra:
   pagetime: 'on'
 
 extra_javascript:
+  - '//cdnjs.cloudflare.com/ajax/libs/Han/3.2.7/han.min.js'
   - '_static/js/extra.js?v=4'
-  - '_static/js/enableHan.js'
 
 extra_css:
-  - '_static/css/extra.css?v=4'
   - '_static/css/han.css'
+  - '_static/css/extra.css?v=4'
 
 # Extensions
 markdown_extensions:
