@@ -215,8 +215,7 @@ nav:
 
 # Theme
 theme:
-  name: null
-  custom_dir: 'mkdocs-material/material'
+  name: mkdocs-material
   static_templates:
     - 404.html
   static_templates:
