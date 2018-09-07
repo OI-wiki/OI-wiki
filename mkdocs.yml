@@ -216,11 +216,11 @@ nav:
 # Theme
 theme:
   name: mkdocs-material
-  static_templates:
-    - 404.html
-  static_templates:
-    - 404.html
   language: 'zh-Hans'
+  static_templates:
+    - 404.html
+  static_templates:
+    - 404.html
   palette:
     primary: 'white'
     accent: 'red'
