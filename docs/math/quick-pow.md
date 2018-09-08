@@ -10,7 +10,6 @@ $$
 
 ，其中 $a_i$ 是 0 或者 1。
 那么就有
-
 $$
 \begin{aligned}
 a^b \bmod p & = (a^{a_t 2^t + \cdots + a_0 2^0}) \bmod p \\\\
@@ -37,3 +36,51 @@ int quickPow(int a, int b, int c) {
   return res;
 }
 ```
+
+
+
+如果你看不懂上面的内容，那就看我的简单版本的吧。*——来自[CBW2007](https://github.com/CBW2007)*
+
+$$a^b mod p$$ 之所以费时，是因为b有多大就需要多长时间，如果b太大就会耗时太长从而gg，那能不能省一点时间呢？
+
+举个栗子，$$a^{10}$$ ，在普通计算机中是可以正常运算的，可是假设计算机每秒只能运行2次，在如此差的硬件条件下该怎么办呢？
+
+我们知道，$$a^{10}$$等价于下面的式子：
+
+$$a \times a \times a \times a \times a \times a \times a \times a \times a \times a$$
+
+通过观察我们不难发现，$$a^{10}$$可以转化成$$a \times a^{5}$$
+
+$$\left(a \times a \right) \times\left(a \times a \right) \times \left(a \times a \right) \times \left(a \times a \right) \times \left(a \times a \right)$$
+
+这时，再进行分解，我们假设$$a' =a \times a $$，可是我们发现，a不能正好分完，于是我们单独拎出来一个a'，就转化成了$${a' \times a' }^{2} \times a'$$
+
+$$\left (a' \times a'\right) \times\left (a' \times a'\right) \times a'$$
+
+如此重复下去即可，终止条件：
+
+$$a^0=1$$和$$a^1=a$$
+
+实现代码
+
+```c++
+long long qpow(long long a,long long b,long long p)
+{
+	if(b==0)	return 1%p;
+	if(b==1)	return a%p;
+	if(b%2==0)
+    {
+		long long t=a*a%p;
+		return qpow(t,b/2,p);
+	}
+    else 
+    {
+		long long t=a*a%p;
+		return (qpow(t,b/2,p)*a)%p;
+	}
+}
+```
+
+（为了使用[这题](https://www.luogu.org/problemnew/show/P1226)测试，全部改成了long long。）
+
+这样，时间复杂度就从$$O(b)$$降至了非常可观的指数级$$O(log_2b)$$
