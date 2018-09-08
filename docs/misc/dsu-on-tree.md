@@ -134,7 +134,7 @@ int dfs2(int u,int fa,bool keep,bool isson){
 
 ### 运用
 
-1\. 某些出题人设置的正解是 dsu on tree 的题
+1. 某些出题人设置的正解是 dsu on tree 的题
 
 如 [CF741D](http://codeforces.com/problemset/problem/741/D)。给一棵树，每个节点的权值是'a'到'v'的字母，每次询问要求在一个子树找一条路径，使该路径包含的字符排序后成为回文串。
 
@@ -142,7 +142,7 @@ int dfs2(int u,int fa,bool keep,bool isson){
 
 正常做法是对每一个节点 dfs，每到一个节点就强行枚举所有字母找到和他异或后结果为 1 的个数 &lt; 1 的路径，再去最长值，这样 $O(n^2\log n)$ 的，可以用 dsu on tree 优化到 $O(n\log^2n)$。关于具体做法，可以参考下面的扩展阅读
 
-2\. 可以用 dsu 乱搞~~吊打 std~~水分的题
+2. 可以用 dsu 乱搞~~吊打 std~~水分的题
 
 可以水一些树套树的部分分（没有修改操作），还可以把树上莫队的 $O(n\sqrt{m})$ 吊着打
 

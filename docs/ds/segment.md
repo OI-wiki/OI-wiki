@@ -128,7 +128,7 @@ void build(int s,int t,int p)
 }
 ```
 
-怎么样，代码很丑吧？废话，用中文写的能不丑吗？现在搞个英 (da) 文 (xin) 的(wen)：
+怎么样，代码很丑吧？废话，用中文写的能不丑吗？现在搞个英 (da) 文 (xin) 的 (wen)：
 
 ```cpp
 int getsum(int l,int r,int s,int t,int p)
