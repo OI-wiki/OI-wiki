@@ -25,6 +25,11 @@
   },
   "homepage": "https://github.com/Ir1d/OI-wiki#readme",
   "dependencies": {
-    "mathjax-node-page": "^3.0.1"
+    "mathjax-node-page": "^3.0.1",
+    "remark-lint-final-newline": "^1.0.2",
+    "remark-lint-no-tabs": "^1.0.2",
+    "remark-math": "^1.0.4",
+    "remark-pangu": "^1.0.1",
+    "remark-preset-lint-markdown-style-guide": "^2.1.2"
   }
 }
