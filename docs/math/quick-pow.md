@@ -4,18 +4,18 @@
 
 如果把 $b$ 写作二进制为 $a_ta_{t-1} \cdots a_1a_0$，那么有：
 
-$
+$$
 b = a_t2^2 + a_{t-1}2^{t-1} + a_{t-2}2^{t-2} + \cdots + a_12^1 + a_02^0
-$
+$$
 
 ，其中 $a_i$ 是 0 或者 1。
 那么就有
-$
+$$
 \begin{aligned}
 a^b \bmod p & = (a^{a_t 2^t + \cdots + a_0 2^0}) \bmod p \\\\
 & = (..(a^{a_0 2^0} \bmod p) \times \cdots \times a^{a_52^5}) \bmod p
 \end{aligned}
-$
+$$
 
 根据上式我们发现，原问题被我们转化成了形式相同的子问题的乘积。
 
@@ -39,7 +39,7 @@ int quickPow(int a, int b, int c) {
 
 
 
-如果你看不懂上面的内容，那就看我的简单版本的吧。*——来自[CBW2007](https://github.com/CBW2007)*
+如果你看不懂上面的内容，那就看我的简单版本的吧。*——copyright:[CBW2007](https://github.com/CBW2007)*
 
 $a^b mod p$ 之所以费时，是因为b有多大就需要多长时间，如果b太大就会耗时太长从而gg，那能不能省一点时间呢？
 
