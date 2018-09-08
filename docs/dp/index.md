@@ -236,7 +236,7 @@ $dp[i] = \min(dp[j] + cost[j][i])$
 
 相当于仅有三个操作的带权编辑距离。
 
-```
+```text
 copy    :  1
 replace : -1
 insert  : -2

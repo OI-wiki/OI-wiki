@@ -7,7 +7,7 @@ IDA\*，即采用迭代加深的 A\* 算法。相对于 A\* 算法，由于 IDA\
 
 **大致框架**（伪代码）：
 
-```
+```text
 Procedure IDA_STAR(StartState)
 Begin
 PathLimit := H(StartState) - 1;
@@ -53,13 +53,13 @@ end;
 
 输入样例：
 
-```plain
+```text
 495 499
 ```
 
 输出样例：
 
-```plain
+```text
 Case 1: 495/499=1/2+1/5+1/6+1/8+1/3992+1/14970
 ```
 

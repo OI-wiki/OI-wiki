@@ -110,7 +110,7 @@ down(x) {
 
 从根开始，按 BFS 序进行.
 
-```
+```text
 build_heap_1() {
 	for (i = 1; i <= n; i++) up(i);
 }
@@ -126,7 +126,7 @@ build_heap_1() {
 
 这时换一种思路，从叶子开始，逐个向下调整
 
-```
+```text
 build_heap_2() {
 	for (i = n; i >= 1; i--) down(i);
 }

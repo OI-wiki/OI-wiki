@@ -137,7 +137,7 @@ char getchar() {
 注意 `fread` 必须使用文件读入，但是 `fwrite` 不需要。
 
 参考代码：
-```
+```text
 namespace io {
 const int MAXSIZE = 1 << 22;
 inline char gc() {

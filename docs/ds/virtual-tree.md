@@ -22,7 +22,7 @@
 
 ### Sample Input
 
-```plain
+```text
 10
 1 5 13
 1 9 6
@@ -41,7 +41,7 @@
 
 ### Sample Output
 
-```plain
+```text
 12
 32
 22

@@ -45,7 +45,7 @@
 我们先啥都不管，假设已经实现了这个数据结构……
 
 （伪代码）
-```
+```text
 for (edge(u, v, len) in sorted(edges)) {
 	a = find_set(u), b = find_set(v);
 	if (a != b) merge(a, b);
@@ -59,7 +59,7 @@ for (edge(u, v, len) in sorted(edges)) {
 那么让我们模拟一下：
 
 先上数据：
-```
+```text
 4 5
 1 2 2
 1 3 2
@@ -196,7 +196,7 @@ merge：$O(n)$，需要将一个集合中的所有元素移到另一个集合中
 Fib 堆：$O(n \log n + m)$。
 
 （伪代码）
-```
+```text
 H = new heap();
 for (i = 1; i <= n; i++) H.insert(i, inf);
 H.decrease_key(1, 0);

@@ -98,7 +98,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 推荐在 hosts 文件中加入如下几行：（来源： [@GoogleHosts](https://github.com/googlehosts/hosts/blob/master/hosts-files/hosts#L481-L485)）
 
-```
+```text
 ## GitHub Start
 192.30.253.118	gist.github.com
 192.30.253.112	github.com
@@ -161,9 +161,11 @@ pip install -U -r requirements.txt
 
 如果是行间公式（用的 `$$`），目前已知的问题是需要在 `$$` 两侧留有空行。格式如下：
 
-```
+```text
 // 空行
-$$ a_i $$
+$$
+a_i
+$$
 // 空行
 ```
 
@@ -177,19 +179,19 @@ $$ a_i $$
 
 比如：
 
-```
+```text
 copyright: SATA
 ```
 
 注：默认的是 ‘CC BY-SA 4.0 和 SATA’
 
-### 如何给一个页面关闭字数统计
+### 如何给一个页面关闭字数统计 （现已默认关闭）
 
 参考 [Metadata](https://squidfunk.github.io/mkdocs-material/extensions/metadata/#usage) 的使用，在页面开头加一行即可。
 
 比如：
 
-```
+```text
 pagetime:
 ```
 
@@ -205,13 +207,13 @@ pagetime:
 
 如果现在想要避免目录中出现双倍公式，可以参考 https://github.com/24OI/OI-wiki/blame/master/docs/string/sam.md#L82
 
-```
+```text
 ### 结束位置 <script type="math/tex">endpos</script>
 ```
 
 在目录中会变成
 
-```
+```text
 结束位置 endpos
 ```
 

@@ -90,7 +90,7 @@ $relax$ 是从哪里来的呢？
 
 Bellman-Ford 算法如下：
 
-```pseudocode
+```text
 while (1) for each edge(u, v) relax(u, v);
 ```
 
@@ -112,7 +112,7 @@ while (1) for each edge(u, v) relax(u, v);
 
 总时间复杂度 $O(NM)$。 **（对于最短路存在的图）**
 
-```
+```text
 relax(u, v) {
 	dist[v] = min(dist[v], dist[u] + edge_len(u, v));
 }
@@ -145,7 +145,7 @@ for (i = 1; i < n; i++) {
 
 那么我们用队列来维护“哪些结点可能会引起 $relax$”，就能只访问必要的边了。
 
-```
+```text
 q = new queue();
 q.push(S);
 in_queue[S] = true;
@@ -204,7 +204,7 @@ IPA: /ˈdikstrɑ/ 或 /ˈdɛikstrɑ/。
 
 第二步，考虑每次加进来的结点，到他的最短路，上一步必然是第一个集合中的元素（否则他不会是第二个集合中的最小值，而且有第一步的性质），又因为第一个集合已经全部 $relax$ 过了，所以最短路显然确定了。
 
-```
+```text
 H = new heap();
 H.insert(S, 0);
 dist[S] = 0;

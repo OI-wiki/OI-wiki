@@ -42,7 +42,7 @@ $$
 
 ### 伪代码
 
-```plain
+```text
 1 → n
 0 → ans
 for i = 1 to k
