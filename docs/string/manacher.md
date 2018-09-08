@@ -2,13 +2,13 @@
 
 马拉车算法（Manacher's algorithm）是一个求一个字符串中最长回文连续子序列的算法
 
-##  正文
+## 正文
 
-[【模板】manacher算法](https://www.luogu.org/problemnew/show/P3805)
+[【模板】manacher 算法](https://www.luogu.org/problemnew/show/P3805)
 
-题意是求S中的最长回文串
+题意是求 S 中的最长回文串
 
-最暴力的做法当然是枚举l和r，对于每个l和r求遍历一遍判断是否为回文
+最暴力的做法当然是枚举 l 和 r，对于每个 l 和 r 求遍历一遍判断是否为回文
 
 时间复杂度达到$O(n^3)$，显然做不了这题
 
@@ -18,8 +18,9 @@
 
 观察数据范围，$S.length()\leq11000000$，应该需要一个$O(n)$及以下的算法
 
-dalao云
->暴力算法的优化是信息的利用和对重复搜索的去重
+dalao 云
+
+> 暴力算法的优化是信息的利用和对重复搜索的去重
 
 我们考虑如何利用这里的重复信息
 
@@ -45,7 +46,7 @@ $O A K A B A K A B A O A K$
 
 1. 回文串长度的奇偶性造成了对称轴的位置可能在某字符上，也可能在两个字符之间的空隙处，要对两种情况分别处理
 
-如何解决？我们可以强行在原字符串中插入其他本字符串不会出现的字符，如"#"
+如何解决？我们可以强行在原字符串中插入其他本字符串不会出现的字符，如 "#"
 
 也就是说，若原来的字符串是这样
 
@@ -56,6 +57,7 @@ $O A K A B A K A B A O A K$
 ![](https://cdn.luogu.org/upload/pic/30954.png)
 
 关于这部分的代码：
+
 ```cpp
 inline void change() {
 	s[0]=s[1]='#';
@@ -84,17 +86,18 @@ inline void change() {
 
 ![](https://cdn.luogu.org/upload/pic/7884.png)
 
-当i在maxright左边且在mid右边时：
+当 i 在 maxright 左边且在 mid 右边时：
 
-设i关于mid的对称点为j，显然$hw_i$一定不会小于$hw_j$。
+设 i 关于 mid 的对称点为 j，显然$hw_i$一定不会小于$hw_j$。
 
-我们没必要保存j，j可以通过计算得出，为$mid+(mid-i)=(mid\times2)-i$
+我们没必要保存 j，j 可以通过计算得出，为$mid+(mid-i)=(mid\times2)-i$
 
-那么我们就将$hw_i$设为$hw_j$，从$i+hw_i$开始扩展（利用已知信息），这样就可以较快地求出hw[i]，然后重新maxright和mid
+那么我们就将$hw_i$设为$hw_j$，从$i+hw_i$开始扩展（利用已知信息），这样就可以较快地求出 hw[i]，然后重新 maxright 和 mid
 
-当$i$在$maxright$右边时，我们无法得知关于$hw_i$的信息，只好从1开始遍历，然后更新$maxright$和$mid$
+当$i$在$maxright$右边时，我们无法得知关于$hw_i$的信息，只好从 1 开始遍历，然后更新$maxright$和$mid$
 
 这部分的代码也是非常简短的:
+
 ```cpp
 inline void manacher() {
 	int maxright=0,mid;
@@ -112,16 +115,18 @@ inline void manacher() {
 	}
 }
 ```
+
 虽然看起来优化不了多少，但它的时间复杂度确实是$O(n)$的
 
 ## 习题
-[P4555 [国家集训队]最长双回文串](https://www.luogu.org/problemnew/show/P4555)
+
+[P4555 \[国家集训队\] 最长双回文串](https://www.luogu.org/problemnew/show/P4555)
 
 一道几乎是裸题的题
 
 看到回文串可以想想马拉车，于是我们就用马拉车写
 
-在朴素的马拉车基础上求出l和r数组，$l_i$表示i所在回文串中的最右端的下标，$r_i$代表i所在回文串中的最左端的下标
+在朴素的马拉车基础上求出 l 和 r 数组，$l_i$表示 i 所在回文串中的最右端的下标，$r_i$代表 i 所在回文串中的最左端的下标
 
 然后拼接一下即可：
 

@@ -1,10 +1,10 @@
 By [hsfzLZH1](https://github.com/hsfzLZH1)
 
-## 什么是区间DP？
+## 什么是区间 DP？
 
 区间类动态规划是线性动态规划的扩展，它在分阶段地划分问题时，与阶段中元素出现的顺序和由前一阶段的哪些元素合并而来由很大的关系。令状态 $f(i,j)$ 表示将下标位置 $i$ 到 $j$ 的所有元素合并能获得的价值的最大值，那么 $f(i,j)=\max\{f(i,k)+f(k+1,j)+cost\}$， $cost$ 为将这两组元素合并起来的代价。
 
-区间DP的特点：
+区间 DP 的特点：
 
 ** 合并 ** ：即将两个或多个部分进行整合，当然也可以反过来；
 
@@ -12,7 +12,7 @@ By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 ** 求解 ** ：对整个问题设最优值，枚举合并点，将问题分解为左右两个部分，最后合并两个部分的最优值得到原问题的最优值。
 
-## 例题[luogu P1880 [NOI1995]石子合并](https://www.luogu.org/problemnew/show/P1880)
+## 例题[luogu P1880 \[NOI1995\] 石子合并](https://www.luogu.org/problemnew/show/P1880)
 
 题目大意：在一个环上有 $n$ 个数 $a_1,a_2,...,a_n$，进行 $n-1$ 次合并操作，每次操作将相邻的两堆合并成一堆，能获得新的一堆中的石子数量的和的得分。你需要最大化你的得分。
 
@@ -26,7 +26,7 @@ By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 ## 怎样进行状态转移
 
-由于计算 $f(i,j)$ 的值时需要知道所有 $f(i,k)$ 和 $f(k+1,j)$的值，而这两个中包含的元素的数量都小于 $f(i,j)$，所以我们以 $len=j-i+1$ 作为DP的阶段。首先从小到大枚举 $len$，然后枚举 $i$ 的值，根据 $len$ 和 $i$ 用公式计算出 $j$ 的值，然后枚举 $k$，时间复杂度为 $O(n^3)$
+由于计算 $f(i,j)$ 的值时需要知道所有 $f(i,k)$ 和 $f(k+1,j)$的值，而这两个中包含的元素的数量都小于 $f(i,j)$，所以我们以 $len=j-i+1$ 作为 DP 的阶段。首先从小到大枚举 $len$，然后枚举 $i$ 的值，根据 $len$ 和 $i$ 用公式计算出 $j$ 的值，然后枚举 $k$，时间复杂度为 $O(n^3)$
 
 ## 怎样处理环
 
@@ -56,4 +56,4 @@ for(len=1;len<=n;len++)
 
 [luogu P1005 矩阵取数游戏](https://www.luogu.org/problemnew/show/P1005)
 
-[luogu P4767 [IOI2000]邮局](https://www.luogu.org/problemnew/show/P4767)
+[luogu P4767 \[IOI2000\] 邮局](https://www.luogu.org/problemnew/show/P4767)
