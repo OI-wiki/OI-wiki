@@ -160,12 +160,16 @@ $f_i+2\times s_i\times (s_j+L')=f_j+s_i^2+(s_j+L')^2$
 
 由于上一步已经证明出了$cost$满足四边形不等式，而该不等式的左边在上式出现过，将其替换得
 
+
 $$
+
 \begin{aligned}
 &&f_{i,\,x}+f_{x+1,\,j}+cost_{i,\,j}+f_{i+1,\,y}+f_{y+1,\,j+1}+cost_{i+1,\,j+1}\\
 &\le&f_{i,\,x}+f_{x+1,\,j+1}+cost_{i,\,j+1}+f_{i+1,\,y}+f_{y+1,\,j}+cost_{i+1,\,j}\\
 \end{aligned}
+
 $$
+
 
 消去公共项可得 $f_{i,j}+f_{i+1,j+1}\le f_{i+1,j}+f_{i,j+1}$
 

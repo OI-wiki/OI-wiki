@@ -37,31 +37,61 @@ struct {
 
 用 $m$ 表示 $i$ 前面所有的 $a$ 的乘积，那么第 $i$ 个大臣得到的奖赏就是 
 
-$$\frac{m} {v[i].b}$$ 
+
+$$
+\frac{m} {v[i].b}
+$$
+ 
 
 第 $i + 1$ 个大臣得到的奖赏就是 
 
-$$\frac{m \cdot v[i].a} {v[i + 1].b}$$ 
+
+$$
+\frac{m \cdot v[i].a} {v[i + 1].b}
+$$
+ 
 
 如果我们交换第 $i$ 个大臣与第 $i + 1$ 个大臣的位置，那么第 $i + 1$ 个大臣得到的奖赏就是 
 
-$$\frac{m} {v[i + 1].b}$$ 
+
+$$
+\frac{m} {v[i + 1].b}
+$$
+ 
 
 第 $i + 1$ 个大臣得到的奖励就是 
 
-$$\frac{m \cdot v[i + 1].a} {v[i].b}$$
+
+$$
+\frac{m \cdot v[i + 1].a} {v[i].b}
+$$
+
 
 如果交前更优当且仅当 
 
-$$\max (\frac{m} {v[i].b}, \frac{m \times v[i].a} {v[i + 1].b})  < \max (\frac{m} {v[i + 1].b}, \frac{m \times v[i + 1].a} {v[i].b})$$
+
+$$
+\max (\frac{m} {v[i].b}, \frac{m \times v[i].a} {v[i + 1].b})  < \max (\frac{m} {v[i + 1].b}, \frac{m \times v[i + 1].a} {v[i].b})
+$$
+
 
 提取出相同的 $m$ 并约分得到 
 
-$$\max(\frac{1} {v[i].b}, \frac{v[i].a} {v[i + 1].b}) < \max(\frac{1} {v[i + 1].b}, \frac{v[i + 1].a} {v[i].b})$$
+
+$$
+\max(\frac{1} {v[i].b}, \frac{v[i].a} {v[i + 1].b}) < \max(\frac{1} {v[i + 1].b}, \frac{v[i + 1].a} {v[i].b})
+$$
+
 
 然后分式化成整式得到 
 
-$$\max(v[i + 1].b, v[i].a \times v[i].b) < \max(v[i].b, v[i + 1].a \times v[i + 1].b)$$
+
+$$
+\max(v[i + 1].b, v[i].a \times v[i].b) < \max(v[i].b, v[i + 1].a \times v[i + 1].b)
+
+$$
+
+
 
 于是我们就成功得到排序函数了！
 

@@ -136,7 +136,9 @@ build_heap_2() {
 
 注意到向下调整的复杂度，为 $O(\log n - k)$。
 
+
 $$
+
 \begin{aligned}
 总复杂度 & = n \log n - \log 1 - \log 2 - \cdots - \log n \\\\
 & \leq n \log n - 0 \times 2^0 - 1 \times 2^1 -\cdots - (\log n - 1) \times \frac{n}{2} \\\\
@@ -144,7 +146,9 @@ $$
 & = n \log n - n \log n + 1 + 2 + 4 + \cdots + \frac{n}{2} \\\\
 & = n - 1 \\\\ &  = O(n)
 \end{aligned}
+
 $$
+
 
 之所以能 $O(n)$ 建堆，是因为堆性质很弱，二叉堆并不是唯一的。
 

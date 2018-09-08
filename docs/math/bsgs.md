@@ -6,9 +6,13 @@
 
 该算法可以在 $O(\sqrt{q})$ 用于求解
 
+
 $$
+
 a^x \equiv b \bmod p
+
 $$
+
 
 其中 $p$ 是个质数的方程的解 $x$ 满足 $0 \le x < p$ .
 
@@ -36,7 +40,11 @@ $$
 
 求解
 
-$$ x^a \equiv b \bmod p $$
+
+$$
+ x^a \equiv b \bmod p 
+$$
+
 
 其中 $p$ 是个质数.
 

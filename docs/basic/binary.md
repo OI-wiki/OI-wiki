@@ -72,17 +72,25 @@ else
 
 比如说我们要求的是最小的，记 $L$ 为最优的答案，对这个式子做一些变换：
 
-$$L \geq \frac{\sum{c_i}}{\sum{d_i}}$$
+$$
+L \geq \frac{\sum{c_i}}{\sum{d_i}}
+$$
 
 把分母乘过去，把右侧化为 $0$：
 
-$${\sum{d_i}} \times L - {\sum{c_i}} \geq 0$$
+$$
+{\sum{d_i}} \times L - {\sum{c_i}} \geq 0
+$$
 
 即：
 
-$${\sum_{i=1}^N{d_i}} \times L - {\sum_{i=1}^N{c_i}} \geq 0$$
+$$
+{\sum_{i=1}^N{d_i}} \times L - {\sum_{i=1}^N{c_i}} \geq 0
+$$
 
-$$\sum_{i=1}^N{d_i \times L - c_i} \geq 0$$
+$$
+\sum_{i=1}^N{d_i \times L - c_i} \geq 0
+$$
 
 不难发现，如果 $L'$ 比 $L$ 要小，上式左端的值会更大一些。
 

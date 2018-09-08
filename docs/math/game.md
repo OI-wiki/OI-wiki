@@ -78,13 +78,21 @@ $n$ 堆物品，每堆有 $a_i$ 个，两个玩家轮流取走任意一堆的任
 
 定义 $mex$ 函数的值为不属于集合 $S$ 中的最小非负整数，即：
 
-$$mex(S)=min\{x\} \quad (x \notin S, x \in N)$$
+
+$$
+mex(S)=min\{x\} \quad (x \notin S, x \in N)
+$$
+
 
 例如 $mex(\{0, 2, 4\})=1$ ， $mex(\{1, 2\})=0$ 。
 
 对于状态 $x$ 和它的所有 $k$ 个后继状态 $y_1, y_2, \ldots, y_k$ ，定义 $SG$ 函数：
 
-$$SG(x)=mex\{SG(y_1), SG(y_2), \ldots, G(y_k)\}$$
+
+$$
+SG(x)=mex\{SG(y_1), SG(y_2), \ldots, G(y_k)\}
+$$
+
 
 而对于由 $n$ 个有向图游戏组成的组合游戏，设它们的起点分别为 $s_1, s_2, \ldots, s_n$ ，则有定理：** 当且仅当 $SG(s_1) \oplus SG(s_2) \oplus \ldots \oplus SG(s_n) \neq 0$ 时，这个游戏是先手必胜的。**
 

@@ -14,7 +14,9 @@ $2\times 70+3\times 21+2\times 15=233=2\times 105+23$，故答案为 $23$。
 
 中国剩余定理 (Chinese Remainder Theorem, CRT) 可求解如下形式的一元线性同余方程组（其中 $n_1, n_2, \cdots, n_k$ 两两互质）：
 
+
 $$
+
 \left \{
 \begin{array}{c}
 x &\equiv& a_1 \pmod {n_1} \\
@@ -23,7 +25,9 @@ x &\equiv& a_2 \pmod {n_2} \\
 x &\equiv& a_n \pmod {n_k} \\
 \end{array}
 \right.
+
 $$
+
 
 上面的「物不知数」问题就是一元线性同余方程组的一个实例。
 
@@ -56,14 +60,18 @@ return ans
 
 当 $i\neq j$ 时，有 $m_j\equiv 0 \pmod {n_i}$，故 $c_j\equiv m_j\equiv 0 \pmod {n_i}$。又有 $c_i\equiv m_i(m_i^{-1}\bmod {n_i})\equiv 1 \pmod {n_i}$，所以我们有：
 
+
 $$
+
 \begin{aligned}
 a&\equiv \sum_{j=1}^k a_jc_j        &\pmod {n_i} \\
  &\equiv a_ic_i                     &\pmod {n_i} \\
  &\equiv a_im_i(m^{-1}_i \bmod n_i) &\pmod {n_i} \\
  &\equiv a_i                        &\pmod {n_i}
 \end{aligned}
+
 $$
+
 
 **即对于任意 $i=1,2,\cdots,k$，上面算法得到的 $a$ 总是满足 $a\equiv a_i \pmod{n_i}$，即证明了解同余方程组的算法的正确性。**
 
