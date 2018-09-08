@@ -33,6 +33,6 @@ $$
 
 [「Luogu P1822」魔法指纹](https://www.luogu.org/problem/show?pid=P1822)：其实是一道暴搜，不过可以练练分段打表。
 
-~~明明是我先写的分段打表为什么你们这么熟练QAQ，可以对比下[我的题解](https://blog.csdn.net/HeRaNO/article/details/78379324)的发布时间和 Luogu 中的。~~
+~~明明是我先写的分段打表为什么你们这么熟练 QAQ，可以对比下[我的题解](https://blog.csdn.net/HeRaNO/article/details/78379324)的发布时间和 Luogu 中的。~~
 
 Author: [@HeRaNO](https://github.com/HeRaNO)

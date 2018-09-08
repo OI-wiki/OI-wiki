@@ -23,6 +23,7 @@
 归并排序是 [分治](/basic/divide-and-conquer) 地来将一个数组排序。
 
 归并排序分为三个过程：
+
 1. 将数列划分为两部分（直接分，而不是像快速排序那样要求保证相对大小关系）
 2. 递归到两个子序列中分别进行归并排序
 3. 合并两个子序列
@@ -64,13 +65,14 @@ void merge(int ll, int rr) {
 
 ### 参考
 
-https://www.geeksforgeeks.org/merge-sort/
+<https://www.geeksforgeeks.org/merge-sort/>
 
 ## 快速排序
 
 快速排序是 [分治](/basic/divide-and-conquer) 地来将一个数组排序。
 
 快速排序分为三个过程：
+
 1. 将数列划分为两部分（不是直接分，要求保证相对大小关系）
 2. 递归到两个子序列中分别进行快速排序
 3. 不用合并，因为此时数列已经完全有序
@@ -91,7 +93,7 @@ https://www.geeksforgeeks.org/merge-sort/
 
 注意，一般我们说的快速排序的时间复杂度是平均为 $O(N\log N)$，最坏是 $O(n^2)$，只不过实践中几乎不可能达到最坏情况。
 
-其实，在选择 m 的过程中使用 [Median of Medians](https://en.wikipedia.org/wiki/Median_of_medians) 算法，就可以保证最坏时间复杂度为 $O(N\log N)$，但是由于j小微复杂，实践中一般不使用。
+其实，在选择 m 的过程中使用 [Median of Medians](https://en.wikipedia.org/wiki/Median_of_medians) 算法，就可以保证最坏时间复杂度为 $O(N\log N)$，但是由于 j 小微复杂，实践中一般不使用。
 
 ### STL
 
@@ -110,6 +112,7 @@ Introsort 限制了快速排序的分治深度，当分治达到一定深度之�
 Introsort 的这个限制使得它的最坏时间复杂度是 $O(N\log N)$ 的。
 
 快速用法：
+
 ```c++
 // a[0] .. a[n - 1] 是放了元素的
 std::sort(a, a + n);
@@ -126,9 +129,9 @@ std::sort(a, a + n);
 
 ### 参考
 
-https://stackoverflow.com/questions/22339240/what-algorithms-are-used-in-c11-stdsort-in-different-stl-implementations
+<https://stackoverflow.com/questions/22339240/what-algorithms-are-used-in-c11-stdsort-in-different-stl-implementations>
 
-https://en.cppreference.com/w/cpp/algorithm/sort
+<https://en.cppreference.com/w/cpp/algorithm/sort>
 
 ## 计数排序
 
@@ -143,4 +146,4 @@ https://en.cppreference.com/w/cpp/algorithm/sort
 
 ### 参考
 
-https://www.geeksforgeeks.org/counting-sort/
+<https://www.geeksforgeeks.org/counting-sort/>

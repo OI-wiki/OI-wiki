@@ -1,6 +1,6 @@
 快速幂，是一种求 $a^b \bmod p$ 的方法，得益于将指数按二进制拆开的思想。
 
-事实上，根据模运算的性质，$a \times b \bmod p = ((a \bmod p) \times b) \bmod p$。那么我们也可以把2 $a^b \mod p$ 分解成一系列比较小的数的乘积。
+事实上，根据模运算的性质，$a \times b \bmod p = ((a \bmod p) \times b) \bmod p$。那么我们也可以把 2 $a^b \mod p$ 分解成一系列比较小的数的乘积。
 
 如果把 $b$ 写作二进制为 $a_ta_{t-1} \cdots a_1a_0$，那么有：
 
@@ -10,6 +10,7 @@ $$
 
 ，其中 $a_i$ 是 0 或者 1。
 那么就有
+
 $$
 \begin{aligned}
 a^b \bmod p & = (a^{a_t 2^t + \cdots + a_0 2^0}) \bmod p \\\\
@@ -36,10 +37,6 @@ int quickPow(int a, int b, int c) {
   return res;
 }
 ```
-
-
-
-如果你看不懂上面的内容，那就看我的简单版本的吧。*——copyright:[CBW2007](https://github.com/CBW2007)*
 
 $a^b mod p$ 之所以费时，是因为b有多大就需要多长时间，如果b太大就会耗时太长从而gg，那能不能省一点时间呢？
 

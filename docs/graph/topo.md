@@ -30,7 +30,7 @@
 
 伪代码：
 
-```
+```text
 bool toposort() {
 	q = new queue();
 	for (i = 0; i < n; i++)

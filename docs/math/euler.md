@@ -10,25 +10,24 @@
 
 ### 欧拉函数的一些神奇性质
 
-- 欧拉函数是积性函数。
-    
-    积性是什么意思呢？如果有 $\gcd(a, b) = 1$，那么 $\varphi(a \times b) = \varphi(a) \times \varphi(b)$。
-    
-    特别地，当 $n$ 是奇数时 $\varphi(2n) = 2 \times \varphi(n)$。
+-   欧拉函数是积性函数。
 
-- $n = \sum_{d | n}{\varphi(d)}$
-    
-    利用 [莫比乌斯反演](/math/mobius/) 相关知识可以得出。
-    
-    也可以这样考虑：如果 $\gcd(k, n) = d$，那么 $\gcd(\frac{k}{d},\frac{n}{d}) = 1$。（$k < n$）
-    
-    如果我们设 $f(x)$ 表示 $\gcd(k, n) = x$ 的数的个数，那么 $n = \sum_{i = 1}^n{f(x)}$。
-    
-    根据上面的证明，我们发现，$f(x) = \varphi(\frac{n}{x})$，从而 $n = \sum_{d | n}\varphi(\frac{n}{d})$。注意到约数 $d$ 和 $\frac{n}{d}$ 具有对称性，所以上式化为 $n = \sum_{d | n}\varphi(d)$。
+      积性是什么意思呢？如果有 $\gcd(a, b) = 1$，那么 $\varphi(a \times b) = \varphi(a) \times \varphi(b)$。
 
-- 若 $n = p^k$，其中 $p$ 是质数，那么 $\varphi(n) = p^k - p^{k - 1}$。
-    
-    （根据定义可知）
+      特别地，当 $n$ 是奇数时 $\varphi(2n) = 2 \times \varphi(n)$。
+
+-   $n = \sum_{d | n}{\varphi(d)}$
+
+      利用 [莫比乌斯反演](/math/mobius/) 相关知识可以得出。
+
+      也可以这样考虑：如果 $\gcd(k, n) = d$，那么 $\gcd(\frac{k}{d},\frac{n}{d}) = 1$。（$k < n$）
+
+      如果我们设 $f(x)$ 表示 $\gcd(k, n) = x$ 的数的个数，那么 $n = \sum_{i = 1}^n{f(x)}$。
+
+      根据上面的证明，我们发现，$f(x) = \varphi(\frac{n}{x})$，从而 $n = \sum_{d | n}\varphi(\frac{n}{d})$。注意到约数 $d$ 和 $\frac{n}{d}$ 具有对称性，所以上式化为 $n = \sum_{d | n}\varphi(d)$。
+
+-   若 $n = p^k$，其中 $p$ 是质数，那么 $\varphi(n) = p^k - p^{k - 1}$。
+      （根据定义可知）
 
 ### 如何求欧拉函数值
 

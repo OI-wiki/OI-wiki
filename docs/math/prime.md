@@ -99,9 +99,9 @@ bool millerRabbin(int n) {
 
 ### 参考
 
-http://www.matrix67.com/blog/archives/234
+<http://www.matrix67.com/blog/archives/234>
 
-https://blog.bill.moe/miller-rabin-notes/
+<https://blog.bill.moe/miller-rabin-notes/>
 
 ## 反素数
 
@@ -160,13 +160,13 @@ https://blog.bill.moe/miller-rabin-notes/
 
 4. 当前因子正好是我们想要的因子（此时判断是否需要更新最小 $ans$）
 
-然后 dfs 里面不断一层一层枚举次数继续往下迭代就好啦~~
+然后 dfs 里面不断一层一层枚举次数继续往下迭代就好啦\~~
 
 ### 常见题型
 
 #### 求因子数一定的最小数
 
-题目链接：http://codeforces.com/problemset/problem/27/E
+题目链接：<http://codeforces.com/problemset/problem/27/E>
 
 对于这种题，我么只要以因子数为 dfs 的返回条件基准，不断更新找到的最小值就可以了
 
@@ -208,7 +208,7 @@ int main(){
 
 #### 求 n 以内因子数最多的数
 
-http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemId=1562
+<http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemId=1562>
 
 思路同上，只不过要改改 dfs 的返回条件。注意这样的题目的数据范围，我一开始用了 int，应该是溢出了，在循环里可能就出不来了就超时了。上代码，0ms 过。注释就没必要写了上面写的很清楚了。
 

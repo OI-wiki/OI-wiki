@@ -15,7 +15,7 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
 
 伪代码：
 
-```
+```text
 bfs(s) {
   q = new queue()
   q.push(s)), visited[s] = true
@@ -95,16 +95,15 @@ void restore(int x) {
 - 找到一定在 $(a, b)$ 最短路上的点。（分别从 a 和 b 进行 BFS，得到两个 d 数组。之后对每一个点 v，如果 $d_a[u]+d_b[v]=d_a[b]$，则说明该点在最短路上）
 - 找到一条长度为偶数的最短路。（我们需要一个构造一个新图，把每个点拆成两个新点，原图的边 $(u, v)$ 变成 $((u, 0), (v, 1))$ 和 $((u, 1), (v, 0))$。对新图做 BFS，$(s, 0)$ 和 $(t, 0)$ 之间的最短路即为所求）
 
-
 ## 例题
 
 - [LOJ#2317. 「NOIP2017」奶酪](https://loj.ac/problem/2317)
 
 ## 参考
 
-https://cp-algorithms.com/graph/breadth-first-search.html
+<https://cp-algorithms.com/graph/breadth-first-search.html>
 
-## 双端队列BFS
+## 双端队列 BFS
 
 如果你不了解双端队列 `deque` 的话，请到 STL-queue 中学习。
 
@@ -139,7 +138,7 @@ while(队列不为空)
 ```
 
 ### 例题
- 
+
 ### [Croc Champ 2012 - Round 1 B Chamber of Secrets](http://codeforces.com/problemset/problem/173/B)
 
 一个 $n \times m$ 的图，现在有一束激光从左上角往右边射出，每遇到 '#'，你可以选择光线往四个方向射出，或者什么都不做，问最少需要多少个 '#' 往四个方向射出才能使光线在第 $n$ 行往右边射出。
@@ -149,6 +148,7 @@ while(队列不为空)
 做法很简单，一个方向射出不需要花费（0），而往四个方向射出需要花费（1），然后直接来就可以了。
 
 #### Code
+
 ```cpp
 #include<bits/stdc++.h>
 using namespace std;
