@@ -232,5 +232,3 @@ copyright: SATA
 ```text
 pagetime:
 ```
-
-注：默认的是开着的
