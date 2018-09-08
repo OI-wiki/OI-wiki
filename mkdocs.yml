@@ -215,15 +215,8 @@ nav:
 
 # Theme
 theme:
-  name: null
-  custom_dir: 'mkdocs-material/material'
-  static_templates:
-    - 404.html
-  language: 'zh-Hans'
-  static_templates:
-    - 404.html
-  static_templates:
-    - 404.html
+  name: 'material'
+  language: 'zh'
   palette:
     primary: 'white'
     accent: 'red'
@@ -250,6 +243,7 @@ extra:
 extra_javascript:
   - '//cdnjs.cloudflare.com/ajax/libs/Han/3.2.7/han.min.js'
   - '_static/js/extra.js?v=4'
+  - 'https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'
 
 extra_css:
   - '_static/css/han.css'

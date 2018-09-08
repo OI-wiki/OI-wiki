@@ -17,6 +17,7 @@ if [ ! -d "mkdocs-material" ] ; then
 fi
 sed -i "s/name: 'material'/name: null\n  custom_dir: 'mkdocs-material\/material'\n  static_templates:\n    - 404.html/g" mkdocs.yml
 sed -i "s/- 'https:\/\/cdn.bootcss.com\/mathjax\/2.7.2\/MathJax.js?config=TeX-MML-AM_CHTML'//g" mkdocs.yml
+sed -i "s/'zh'/'zh-Hans'/g" mkdocs.yml
 
 
 # Change Google CDN to loli.net
