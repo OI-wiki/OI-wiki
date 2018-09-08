@@ -1,12 +1,12 @@
 > 如何用 $\text{Splay}$ 维护二叉查找树。
 
----
+* * *
 
 # 简介
 
 $\text{Splay}$ 是一种二叉查找树，它通过不断将某个节点旋转到根节点，使得整棵树仍然满足二叉查找树的性质，并且保持平衡而不至于退化为链，它由 Daniel Sleator 和 Robert Tarjan 发明。
 
----
+* * *
 
 # 结构
 
@@ -18,11 +18,11 @@ $\text{Splay}$ 是一种二叉查找树，它通过不断将某个节点旋转�
 
 ### 节点维护信息
 
-|$rt$|$tot$|$fa[i]$|$ch[i][0/1]$|$val[i]$|$cnt[i]$|$sz[i]$|
-|:----|:----|:----|:----|:----|:----|:----|
-|根节点编号|节点个数|父亲|左右儿子编号|节点权值|权值出现次数|子树大小|
+| $rt$  | $tot$ | $fa[i]$ | $ch[i][0/1]$ | $val[i]$ | $cnt[i]$ | $sz[i]$ |
+| :---- | :---- | :------ | :----------- | :------- | :------- | :------ |
+| 根节点编号 | 节点个数  | 父亲      | 左右儿子编号       | 节点权值     | 权值出现次数   | 子树大小    |
 
----
+* * *
 
 # 操作
 
@@ -31,6 +31,7 @@ $\text{Splay}$ 是一种二叉查找树，它通过不断将某个节点旋转�
 - $\text{maintain}(x)$：在改变节点位置前，将节点 $x$ 的 $\text{size}$ 更新。
 - $\text{get}(x)$：判断节点 $x$ 是父亲节点的左儿子还是右儿子。
 - $\text{clear}(x)$：销毁节点 $x$。
+
 ```cpp
 void maintain(int x) {
 	sz[x]=sz[ch[x][0]]+sz[ch[x][1]]+cnt[x];
@@ -59,12 +60,13 @@ void clear(int x) {
 
 **具体分析旋转步骤**（假设需要旋转的节点为 $x$，其父亲为 $y$，以右旋为例）
 
-1. 将 $y$ 的左儿子指向 $x$ 的右儿子，且 $x$ 的右儿子的父亲指向 $y$。
-`ch[y][0]=ch[x][1]; fa[ch[x][1]]=y;`
-2. 将 $x$ 的右儿子指向 $y$，且 $y$ 的父亲指向 $x$。
-`ch[x][chk^1]=y; fa[y]=x;`
-3. 如果原来的 $y$ 还有父亲 $z$，那么把 $z$ 的某个儿子（原来 $y$ 所在的儿子位置）指向 $x$，且 $x$ 的父亲指向 $z$。
-`fa[x]=z; if(z) ch[z][y==ch[z][1]]=x;`
+1.  将 $y$ 的左儿子指向 $x$ 的右儿子，且 $x$ 的右儿子的父亲指向 $y$。
+    `ch[y][0]=ch[x][1]; fa[ch[x][1]]=y;`
+2.  将 $x$ 的右儿子指向 $y$，且 $y$ 的父亲指向 $x$。
+    `ch[x][chk^1]=y; fa[y]=x;`
+3.  如果原来的 $y$ 还有父亲 $z$，那么把 $z$ 的某个儿子（原来 $y$ 所在的儿子位置）指向 $x$，且 $x$ 的父亲指向 $z$。
+    `fa[x]=z; if(z) ch[z][y==ch[z][1]]=x;`
+
 ```cpp
 void rotate(int x) {
 	int y=fa[x],z=fa[y],chk=get(x);
@@ -86,6 +88,7 @@ $\text{Splay}$ 规定：每访问一个节点后都要强制将其旋转到根�
 - 如果 $x$ 的父亲不是根节点，且 $x$ 和父亲的儿子类型不同，将 $x$ 左旋再右旋、或者右旋再左旋（图 $5,6$）。
 
 分析起来一大串，其实代码一小段。大家可以自己模拟一下 $6$ 种旋转情况，就能理解 $\text{Splay}$ 的基本思想了。
+
 ```cpp
 void splay(int x) {
 	for(int f=fa[x];f=fa[x],f;rotate(x))
@@ -101,6 +104,7 @@ void splay(int x) {
 - 如果树空了则直接插入根并退出。
 - 如果当前节点的权值等于 $k$ 则增加当前节点的大小并更新节点和父亲的信息，将当前节点进行 $\text{Splay}$ 操作。
 - 否则按照二叉查找树的性质向下找，找到空节点就插入即可（当然别忘了 $\text{Splay}$ 操作哦）。
+
 ```cpp
 void ins(int k) {
 	if(!rt) {
@@ -142,6 +146,7 @@ void ins(int k) {
 - 如果 $x$ 与当前节点的权值相同，将答案加 $1$ 并返回。
 
 注意最后需要进行 $\text{Splay}$ 操作。
+
 ```cpp
 int rk(int k) {
 	int res=0,cnr=rt;
@@ -235,7 +240,7 @@ void del(int k) {
 }
 ```
 
----
+* * *
 
 # 完整代码
 
@@ -362,26 +367,26 @@ int main() {
 }
 ```
 
----
+* * *
 
 # 例题
 
 以下题目都是裸的 $\text{Splay}$ 维护二叉查找树。~~（直接套板子即可）~~
 
 - [【模板】普通平衡树](https://www.luogu.org/problemnew/show/P3369)
-- [[HNOI2002]营业额统计](https://www.lydsy.com/JudgeOnline/problem.php?id=1588)
-- [[HNOI2004]宠物收养所](https://www.lydsy.com/JudgeOnline/problem.php?id=1208)
+- [\[HNOI2002\] 营业额统计](https://www.lydsy.com/JudgeOnline/problem.php?id=1588)
+- [\[HNOI2004\] 宠物收养所](https://www.lydsy.com/JudgeOnline/problem.php?id=1208)
 
 # 练习题
 
-[bzoj 1552 [Cerc2007] robotic sort](https://www.lydsy.com/JudgeOnline/problem.php?id=1552) （权限题）
+[bzoj 1552 \[Cerc2007\] robotic sort](https://www.lydsy.com/JudgeOnline/problem.php?id=1552) （权限题）
 
 [luogu P3380 【模板】二逼平衡树（树套树）](https://www.luogu.org/problemnew/show/P3380)
 
 [bzoj 2827 千山鸟飞绝](https://www.lydsy.com/JudgeOnline/problem.php?id=2827)
 
-[bzoj 4923 [Lydsy1706月赛]K小值查询](https://www.lydsy.com/JudgeOnline/problem.php?id=4923)
+[bzoj 4923 \[Lydsy1706 月赛\]K 小值查询](https://www.lydsy.com/JudgeOnline/problem.php?id=4923)
 
----
+* * *
 
 > 本文部分内容引用于 [algocode 算法博客](https://algocode.net)，特别鸣谢！

@@ -2,7 +2,7 @@
 
 爬山算法是一种局部择优的方法，采用启发式方法，是对深度优先搜索的一种改进，它利用反馈信息帮助生成解的决策。
 
----
+* * *
 
 ## 实现
 
@@ -14,11 +14,11 @@
 
 ![](https://s1.ax1x.com/2018/08/22/PooS9e.png)
 
----
+* * *
 
 ## 代码
 
-此处代码以 [「BZOJ 3680」吊打XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)（求 $n$ 个点的带权类费马点）为例。
+此处代码以 [「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)（求 $n$ 个点的带权类费马点）为例。
 
 ```cpp
 #include <cstdio>
@@ -53,7 +53,7 @@ int main() {
 }
 ```
 
----
+* * *
 
 ## 劣势
 

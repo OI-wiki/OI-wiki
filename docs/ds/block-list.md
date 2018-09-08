@@ -1,10 +1,11 @@
 # 块状链表
+
 [![./images/kuaizhuanglianbiao.png](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")
 
 大概就长这样……
 
 不难发现块状链表就是一个链表，每个节点指向一个数组。
-我们把原来长度为n的数组分为 $\sqrt{n}$ 个节点，每个节点对应的数组大小为 $\sqrt{n}$ 。
+我们把原来长度为 n 的数组分为 $\sqrt{n}$ 个节点，每个节点对应的数组大小为 $\sqrt{n}$ 。
 所以我们这么定义结构体，代码见下。
 其中 `sqn` 表示 `sqrt(n)` 即 $\sqrt{n}$，`pb` 表示 `push_back`，即在这个 `node` 中加入一个元素。
 
@@ -28,7 +29,6 @@ struct node
 随着元素的插入（或删除），$n$ 会变， $\sqrt{n}$ 也会变。这样块的大小就会变化，我们难道还要每次维护块的大小？
 
 其实不然，把 $\sqrt{n}$ 设置为一个定值即可。比如题目给的范围是 $10^6$，那么 $\sqrt{n}$ 就设置为大小为 $10^3$ 的常量，不用更改它。
-
 
 ```cpp
 list<vector<char> > orz_list;

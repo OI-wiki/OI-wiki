@@ -1,12 +1,11 @@
 # OI-Wiki
 
-
 [![Travis](https://img.shields.io/travis/24OI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/24OI/OI-wiki)
 [![Progress](https://img.shields.io/badge/Progress-49%25-brightgreen.svg?style=flat-square)](https://github.com/24OI/OI-wiki)
 [![Telegram](https://img.shields.io/badge/OI--wiki-join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
 [![QQ](https://img.shields.io/badge/OI--wiki-join%20QQ%20group-brightgreen.svg?style=flat-square)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
 
-----
+* * *
 
 欢迎来到 **OI Wiki**。
 
@@ -16,7 +15,7 @@
 
 为了方便热爱 **OI** 的小伙伴更好地入门 **OI**，2018 年 7 月份，**OI Wiki** 迁移至 GitHub，方便更多小伙伴参与其中。
 
-----
+* * *
 
 ## 内容
 
@@ -33,10 +32,9 @@
 
 与此同时， **OI Wiki** 源于社区，提倡 **知识自由**，在未来也绝不会商业化，将始终保持独立自由的性质。
 
-----
+* * *
 
 ## 部署
-
 
 本文档目前采用 [MkDocs](https://github.com/mkdocs/mkdocs) 部署在 [oi-wiki.org](https://oi-wiki.org)。
 
@@ -57,12 +55,11 @@ mkdocs build -v
 
 # 运行一个服务器，访问 http://127.0.0.1:8000 可以查看效果
 mkdocs serve -v
-
 ```
 
 我们现在在服务器端渲染 mathjax ，如果希望实现类似效果，可以参考 [netlify_build.sh](https://github.com/24OI/OI-wiki/blob/master/netlify_build.sh)。（需要安装 Node.js）
 
-----
+* * *
 
 ## 如何参与完善 OI Wiki
 
@@ -77,12 +74,12 @@ mkdocs serve -v
 
 特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
 
-----
+* * *
 
 ## 版权声明
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />
-除特别注明外，项目中除了代码部分均采用<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> (Creative Commons BY-SA 4.0) 知识共享署名-相同方式共享 4.0 国际许可协议</a> 及附加的 [The Star And Thank Author License](https://github.com/zTrix/sata-license) 进行许可。
+除特别注明外，项目中除了代码部分均采用<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> (Creative Commons BY-SA 4.0) 知识共享署名 - 相同方式共享 4.0 国际许可协议</a> 及附加的 [The Star And Thank Author License](https://github.com/zTrix/sata-license) 进行许可。
 
 换言之，使用过程中您可以自由地共享、演绎，但是必须署名、以相同方式共享、分享时没有附加限制，  
 而且需要为 GitHub 仓库点赞（Star）。

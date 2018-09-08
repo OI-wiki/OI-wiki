@@ -26,6 +26,7 @@
 实际上这两步操作可以在一次遍历中解决。对结点 u 的每一个儿子 v，递归的处理 v，求出 sz[v]，然后判断是否是结点数最多的子树，处理完所有子结点后，判断 u 是否为重心。
 
 （代码来自叉姐）
+
 ```c++
 struct CenterTree{
     int n;
@@ -60,7 +61,6 @@ struct CenterTree{
 
 ## 参考
 
-http://fanhq666.blog.163.com/blog/static/81943426201172472943638/
+<http://fanhq666.blog.163.com/blog/static/81943426201172472943638/>
 
-
-https://www.cnblogs.com/zinthos/p/3899075.html
+<https://www.cnblogs.com/zinthos/p/3899075.html>

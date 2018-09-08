@@ -2,7 +2,7 @@
 
 模拟退火是一种随机化算法。当一个问题的方案数量极大（甚至是无穷的）而且不是一个单峰函数时，我们常使用模拟退火求解。
 
----
+* * *
 
 ## 实现
 
@@ -40,11 +40,11 @@ $$
 
 ![](https://upload.wikimedia.org/wikipedia/commons/d/d5/Hill_Climbing_with_Simulated_Annealing.gif)
 
----
+* * *
 
 ## 代码
 
-此处代码以 [「BZOJ 3680」吊打XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)（求 $n$ 个点的带权类费马点）为例。
+此处代码以 [「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)（求 $n$ 个点的带权类费马点）为例。
 
 ```cpp
 #include <cstdio>
@@ -98,10 +98,10 @@ int main() {
 }
 ```
 
----
+* * *
 
 ## 习题
 
-- [「BZOJ 3680」吊打XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)
+- [「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)
 - [「JSOI 2016」炸弹攻击](https://www.lydsy.com/JudgeOnline/problem.php?id=4852)
 - [「HAOI 2006」均分数据](https://www.lydsy.com/JudgeOnline/problem.php?id=2428)

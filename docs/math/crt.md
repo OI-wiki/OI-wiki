@@ -14,9 +14,7 @@ $2\times 70+3\times 21+2\times 15=233=2\times 105+23$，故答案为 $23$。
 
 中国剩余定理 (Chinese Remainder Theorem, CRT) 可求解如下形式的一元线性同余方程组（其中 $n_1, n_2, \cdots, n_k$ 两两互质）：
 
-
 $$
-
 \left \{
 \begin{array}{c}
 x &\equiv& a_1 \pmod {n_1} \\
@@ -25,19 +23,17 @@ x &\equiv& a_2 \pmod {n_2} \\
 x &\equiv& a_n \pmod {n_k} \\
 \end{array}
 \right.
-
 $$
-
 
 上面的「物不知数」问题就是一元线性同余方程组的一个实例。
 
 ### 算法流程
 
 1. 计算所有模数的积 $n$；
-2. 对于第 $i$ 个方程：
-	1. 计算 $m_i=\frac{n}{n_i}$；
-	2. 计算 $m_i$ 在模 $n_i$ 意义下的[逆元](/math/inverse/) $m_i^{-1}$；
-	3. 计算 $c_i=m_im_i^{-1}$（**不要对 $n_i$ 取模**）。
+2.  对于第 $i$ 个方程：
+    1. 计算 $m_i=\frac{n}{n_i}$；
+    2. 计算 $m_i$ 在模 $n_i$ 意义下的[逆元](/math/inverse/) $m_i^{-1}$；
+    3. 计算 $c_i=m_im_i^{-1}$（**不要对 $n_i$ 取模**）。
 3. 方程组的唯一解为：$a=\sum_{i=1}^k a_ic_i \pmod n$。
 
 ### 伪代码
@@ -60,18 +56,14 @@ return ans
 
 当 $i\neq j$ 时，有 $m_j\equiv 0 \pmod {n_i}$，故 $c_j\equiv m_j\equiv 0 \pmod {n_i}$。又有 $c_i\equiv m_i(m_i^{-1}\bmod {n_i})\equiv 1 \pmod {n_i}$，所以我们有：
 
-
 $$
-
 \begin{aligned}
 a&\equiv \sum_{j=1}^k a_jc_j        &\pmod {n_i} \\
  &\equiv a_ic_i                     &\pmod {n_i} \\
  &\equiv a_im_i(m^{-1}_i \bmod n_i) &\pmod {n_i} \\
  &\equiv a_i                        &\pmod {n_i}
 \end{aligned}
-
 $$
-
 
 **即对于任意 $i=1,2,\cdots,k$，上面算法得到的 $a$ 总是满足 $a\equiv a_i \pmod{n_i}$，即证明了解同余方程组的算法的正确性。**
 
@@ -123,8 +115,8 @@ $$
 
 [【模板】扩展中国剩余定理](https://www.luogu.org/problemnew/show/P4777)
 
-[[NOI2018]屠龙勇士](https://www.luogu.org/problemnew/show/P4774)
+[\[NOI2018\] 屠龙勇士](https://www.luogu.org/problemnew/show/P4774)
 
-[[TJOI2009]猜数字](https://www.luogu.org/problemnew/show/P3868)
+[\[TJOI2009\] 猜数字](https://www.luogu.org/problemnew/show/P3868)
 
-[[SDOI2010]古代猪文](https://www.luogu.org/problemnew/show/P2480)
+[\[SDOI2010\] 古代猪文](https://www.luogu.org/problemnew/show/P2480)

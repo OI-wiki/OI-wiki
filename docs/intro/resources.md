@@ -53,7 +53,7 @@
 - [OEIS 整数数列搜索引擎](https://oeis.org)
 - [Ubuntu Pastebin，可以用来分享代码](https://paste.ubuntu.com)
 - [uDebug 提供一些 OJ 题目的调试辅助](https://www.udebug.com)
-- [提供C++内语法的查询等 - cppreference.com](https://en.cppreference.com/w/)
+- [提供 C++ 内语法的查询等 - cppreference.com](https://en.cppreference.com/w/)
 
 ## 题集
 

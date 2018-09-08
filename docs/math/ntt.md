@@ -49,17 +49,13 @@ $g$ 满足 $\operatorname{ord}_n(g)=\left|Z_n^\times\right|=\phi(n)$，对于质
 
 常见的有
 
-
 $$
 p = 1004535809 = 479 \times 2^{21}, g=3
 $$
 
-
-
 $$
 p=998244353=2 \times 17 \times 2^{23}+1, g=3
 $$
-
 
 就是 $g^{qn}$ 的等价 $e^{2\pi n}$
 
@@ -67,7 +63,7 @@ $$
 
 接下来放一个大数相乘的模板
 
-参考网址如下 https://blog.csdn.net/blackjack_/article/details/79346433
+参考网址如下 <https://blog.csdn.net/blackjack_/article/details/79346433>
 
 ```c++
 #include<cmath>

@@ -16,15 +16,15 @@
 
 在 NOIP 中，我们只要求一个能支持主要操作的堆就行，也就是二叉堆。
 
-- 二叉堆 *(binary heap)*
+- 二叉堆 _(binary heap)_
 
 最基础的堆，不支持 merge 和可持久化，所有操作的复杂度都是 $O(\log n)$ 的。
 
-- 二项堆 *(binomial heap)*
+- 二项堆 _(binomial heap)_
 
 支持 merge 的堆，（也能可持久化），所有操作的复杂度都是 $O(\log n)$。
 
-- Fib 堆 *(Fibonacci heap)*
+- Fib 堆 _(Fibonacci heap)_
 
 除了不能可持久化，支持全部功能，而且除了 deletemin 以外都是均摊 $O(1)$ 的。
 
@@ -136,9 +136,7 @@ build_heap_2() {
 
 注意到向下调整的复杂度，为 $O(\log n - k)$。
 
-
 $$
-
 \begin{aligned}
 总复杂度 & = n \log n - \log 1 - \log 2 - \cdots - \log n \\\\
 & \leq n \log n - 0 \times 2^0 - 1 \times 2^1 -\cdots - (\log n - 1) \times \frac{n}{2} \\\\
@@ -146,9 +144,7 @@ $$
 & = n \log n - n \log n + 1 + 2 + 4 + \cdots + \frac{n}{2} \\\\
 & = n - 1 \\\\ &  = O(n)
 \end{aligned}
-
 $$
-
 
 之所以能 $O(n)$ 建堆，是因为堆性质很弱，二叉堆并不是唯一的。
 

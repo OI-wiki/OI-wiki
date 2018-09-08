@@ -6,9 +6,9 @@ By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 一棵静态（形状固定的）树，要求进行几种操作：
 
-1.修改 **单个节点 / 树上两点之间的路径 / 一个节点的子树上** 的所有点的值。
+1\. 修改 **单个节点 / 树上两点之间的路径 / 一个节点的子树上** 的所有点的值。
 
-2.查询 **单个节点 / 树上两点之间的路径 / 一个节点的子树上** 节点的值的 **和 / 极值 / 其他（具有较强的合并性）** 。
+2\. 查询 **单个节点 / 树上两点之间的路径 / 一个节点的子树上** 节点的值的 **和 / 极值 / 其他（具有较强的合并性）** 。
 
 如果树的形态是一条链，那么我们只需要维护一个线段树，修改或查询线段树的值。
 
@@ -18,7 +18,7 @@ By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 由于树链剖分的思想十分暴力，所以被 OIers 戏称为 **“优雅的暴力”** 。
 
-## 例题 [luogu P2590 [ZJOI2008]树的统计](https://www.luogu.org/problemnew/show/P2590)
+## 例题 [luogu P2590 \[ZJOI2008\] 树的统计](https://www.luogu.org/problemnew/show/P2590)
 
 题目大意：对一棵有 $n$ 个节点的静态树，进行三种操作共 $q$ 次：
 
@@ -50,7 +50,7 @@ $tid(x)$ 表示节点 $x$ 的 **时间戳** ，也是其在线段树中的编号
 
 $rnk(x)$ 表示时间戳所对应的节点编号，有 $rnk(tid(x))=x$。
 
-我们进行两遍DFS预处理出这些值，其中第一次DFS求出 $fa(x),dep(x),siz(x),son(x)$，第二次DFS求出 $top(x),tid(x),rnk(x)$。
+我们进行两遍 DFS 预处理出这些值，其中第一次 DFS 求出 $fa(x),dep(x),siz(x),son(x)$，第二次 DFS 求出 $top(x),tid(x),rnk(x)$。
 
 给出一种代码实现：
 
@@ -77,7 +77,7 @@ void dfs2(int o,int t)
 }
 ```
 
-这样构成的线段树有这样一个性质，这是原树的一个DFS序，一个节点的子树在线段树中是相连的， **所有重链在线段树上也是相连的** 。
+这样构成的线段树有这样一个性质，这是原树的一个 DFS 序，一个节点的子树在线段树中是相连的， **所有重链在线段树上也是相连的** 。
 
 ## 解法
 
@@ -93,11 +93,11 @@ void dfs2(int o,int t)
 
 修改一个节点的子树也很容易实现。
 
-问题是如何修改/查询两个节点之间的路径。
+问题是如何修改 / 查询两个节点之间的路径。
 
-考虑我们是如何用 **倍增法求解LCA** 的。首先我们 **将两个节点提到同一高度，然后将两个节点一起向上跳** 。对于树链剖分也可以使用这样的思想。
+考虑我们是如何用 **倍增法求解 LCA** 的。首先我们 **将两个节点提到同一高度，然后将两个节点一起向上跳** 。对于树链剖分也可以使用这样的思想。
 
-在向上跳的过程中，如果当前节点在重链上，借助线段树向上跳到重链顶端，如果当前节点不在重链上，向上跳一个节点。如此直到两节点相同。沿途更新/查询区间信息。
+在向上跳的过程中，如果当前节点在重链上，借助线段树向上跳到重链顶端，如果当前节点不在重链上，向上跳一个节点。如此直到两节点相同。沿途更新 / 查询区间信息。
 
 给出一种代码实现：
 
@@ -262,12 +262,12 @@ int main()
 
 ## 练习
 
-[luogu P3258 [JLOI2014] 松鼠的新家](https://www.luogu.org/problemnew/show/P3258) （当然可以用树上差分）
+[luogu P3258 \[JLOI2014\] 松鼠的新家](https://www.luogu.org/problemnew/show/P3258) （当然可以用树上差分）
 
-[luogu P3178 [HAOI2015] 树上操作](https://www.luogu.org/problemnew/show/P3178)
+[luogu P3178 \[HAOI2015\] 树上操作](https://www.luogu.org/problemnew/show/P3178)
 
 [luogu P3384 【模板】树链剖分](https://www.luogu.org/problemnew/show/P3384)
 
-[luogu P2146 [NOI2015] 软件包管理器](https://www.luogu.org/problemnew/show/P2146)
+[luogu P2146 \[NOI2015\] 软件包管理器](https://www.luogu.org/problemnew/show/P2146)
 
-[luogu P2486 [SDOI2011] 染色](https://www.luogu.org/problemnew/show/P2486)
+[luogu P2486 \[SDOI2011\] 染色](https://www.luogu.org/problemnew/show/P2486)

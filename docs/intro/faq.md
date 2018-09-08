@@ -23,11 +23,11 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 3. （应该已经跳转到了 GitHub 上的对应页面吧？）这时候右上方还会有一个 **“编辑此页”** <svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg> 的按钮，点击它就可以在线编辑了
 4. 写好了之后点下方的绿色按钮（Propose file change），可能会提示没有权限。不必担心！GitHub 会自动帮你 fork 一份项目的文件并创建 Pull Request
 5. 之后点上方的绿色按钮（Create pull request）后，再点一下出现的绿色按钮（Create pull request）。
-6. 提交之后就可以等待他人合并或者指出还要修改的地方，当然你也可以给他人的 PR 提出修改意见，或者只是点赞/踩。如果有消息，会有邮件通知和/或网页上的提醒（取决于在你个人 Settings 中的设置）。
+6. 提交之后就可以等待他人合并或者指出还要修改的地方，当然你也可以给他人的 PR 提出修改意见，或者只是点赞 / 踩。如果有消息，会有邮件通知和 / 或网页上的提醒（取决于在你个人 Settings 中的设置）。
 
 （有木有很简单？）
 
-如果还是不放心，可以参考这篇文章：https://juejin.im/entry/56e638591ea49300550885cc
+如果还是不放心，可以参考这篇文章：<https://juejin.im/entry/56e638591ea49300550885cc>
 
 ### 我之前用过 GitHub
 
@@ -35,9 +35,9 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 1. Fork 主仓库到自己的仓库中。
 2. 当想要贡献某部分内容时，请务必仔细查看 **Issues**，以便确定是否有人已经开始了这项工作。当然，我们更希望你可以加入 QQ / Telegram 群组，方便交流。
-3. 在决定将内容推送到本仓库时，** 请你首先拉取本仓库代码进行合并，自行处理好冲突，同时确保在本地可以正常生成文档 **，然后再将分支 PR 到主仓库的 master 分支上。其中，PR 需要包含以下基本信息   
-  标题：本次 PR 的目的（做了什么工作，修复了什么问题）  
-  内容：如果必要的话，请给出对修复问题的叙述
+3.  在决定将内容推送到本仓库时，** 请你首先拉取本仓库代码进行合并，自行处理好冲突，同时确保在本地可以正常生成文档 **，然后再将分支 PR 到主仓库的 master 分支上。其中，PR 需要包含以下基本信息  
+    标题：本次 PR 的目的（做了什么工作，修复了什么问题）  
+    内容：如果必要的话，请给出对修复问题的叙述
 
 ## 贡献文档要求
 
@@ -58,10 +58,10 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 所谓合理性，指所编写的 ** 内容 ** 必须具有如下的特性
 
 - 由浅入深，内容的难度应该具有渐进性。
-- 逻辑性，对于每类内容的撰写应该尽量包含以下的内容
-   - 原理，说明该内容对应的原理。
-   - 例子，给出 1 ~ 2 个典型的例子。
-   - 题目，在该标题下， ** 只需要给出题目名字、题目链接 **
+-   逻辑性，对于每类内容的撰写应该尽量包含以下的内容
+    - 原理，说明该内容对应的原理。
+    - 例子，给出 1 ~ 2 个典型的例子。
+    - 题目，在该标题下， ** 只需要给出题目名字、题目链接 **
 
 ### 文档存储的格式
 
@@ -110,7 +110,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 ### 我这里 pip 也太慢了
 
-可以选择更换国内源，参考： 	https://blog.csdn.net/lambert310/article/details/52412059
+可以选择更换国内源，参考： 	<https://blog.csdn.net/lambert310/article/details/52412059>
 
 或者：
 
@@ -126,13 +126,14 @@ pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 git clone https://github.com/24OI/OI-wiki.git --depth=1 -b master
 ```
 
-参考这篇文章：https://blog.csdn.net/FreeApe/article/details/46845555
+参考这篇文章：<https://blog.csdn.net/FreeApe/article/details/46845555>
 
 ### 我没装过 Python 3
 
 可以访问 [Python 官网](https://www.python.org/downloads/) 了解更多信息。
 
 ### 好像提示我 pip 版本过低
+
 进入 cmd / shell 之后
 
 ```bash
@@ -149,7 +150,7 @@ python -m pip install --upgrade pip
 
 ### 我 clone 了很久之前的 repo，怎么更新到新版本呢
 
-参考：https://help.github.com/articles/syncing-a-fork/
+参考：<https://help.github.com/articles/syncing-a-fork/>
 
 ### 如果是装了之前的依赖怎么更新
 
@@ -205,7 +206,7 @@ pagetime:
 
 是的，这个是 python-markdown 的一个 bug，可能近期会修复。
 
-如果现在想要避免目录中出现双倍公式，可以参考 https://github.com/24OI/OI-wiki/blame/master/docs/string/sam.md#L82
+如果现在想要避免目录中出现双倍公式，可以参考 <https://github.com/24OI/OI-wiki/blame/master/docs/string/sam.md#L82>
 
 ```text
 ### 结束位置 <script type="math/tex">endpos</script>
