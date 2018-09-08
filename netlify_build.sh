@@ -13,7 +13,6 @@ set -e
 if [ ! -d "mkdocs-material" ] ; then
   git clone --depth 1 https://github.com/squidfunk/mkdocs-material.git
   sed -i '9a\<meta http-equiv="x-dns-prefetch-control" content="on">\n\<link rel="dns-prefetch" href="//fonts.loli.net">\n\<link rel="dns-prefetch" href="//cdn.bootcss.com">\n\<link rel="dns-prefetch" href="//unpkg.com">\n\<link rel="dns-prefetch" href="//npmcdn.com">\n\<link rel="dns-prefetch" href="//oi-wiki.org">\n\<link rel="dns-prefetch" href="//api.github.com">\n\<link rel="dns-prefetch" href="//www.google-analytics.com">' mkdocs-material/material/base.html
-  mv ./mkdocs-material/material/partials/language/zh.html ./mkdocs-material/material/partials/language/zh-Hans.html
 fi
 sed -i "s/name: 'material'/name: null\n  custom_dir: 'mkdocs-material\/material'\n  static_templates:\n    - 404.html/g" mkdocs.yml
 sed -i "s/- 'https:\/\/cdn.bootcss.com\/mathjax\/2.7.2\/MathJax.js?config=TeX-MML-AM_CHTML'//g" mkdocs.yml 
@@ -29,6 +28,8 @@ cp ./static/disqus.html mkdocs-material/material/partials/integrations/disqus.ht
 cp ./static/footer.html mkdocs-material/material/partials/footer.html
 
 cp ./static/extra.js docs/_static/js/extra.js
+
+mv ./mkdocs-material/material/partials/language/zh.html ./mkdocs-material/material/partials/language/zh-Hans.html
 
 mkdocs build -v
 
