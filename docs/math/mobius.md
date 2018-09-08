@@ -1,4 +1,4 @@
-## 简介 ##
+## 简介
 
 莫比乌斯反演是数论中的重要内容。对于一些函数 $f(n)$，如果很难直接求出它的值，而容易求出其倍数和或约数和 $g(n)$，那么可以通过莫比乌斯反演简化运算，求得 $f(n)$ 的值。
 
@@ -6,13 +6,13 @@
 
 ---
 
-## 积性函数 ##
+## 积性函数
 
-### 定义 ###
+### 定义
 
 若 $\gcd(x,y)=1$ 且 $f(xy)=f(x)f(y)$，则 $f(n)$ 为积性函数。
 
-### 性质 ###
+### 性质
 
 若 $f(x)$ 和 $g(x)$ 均为积性函数，则以下函数也为积性函数：
 
@@ -29,7 +29,7 @@ h(x)&=\sum_{d\mid x}f(d)g(\frac{x}{d})
 $$
 
 
-### 例子 ###
+### 例子
 
 
 $$
@@ -52,9 +52,9 @@ $$
 
 ---
 
-## Dirichlet 卷积 ##
+## Dirichlet 卷积
 
-### 定义 ###
+### 定义
 
 定义两个数论函数 $f,g$ 的 $\text{Dirichlet}$ 卷积为
 
@@ -64,13 +64,13 @@ $$
 $$
 
 
-### 性质 ###
+### 性质
 
 $\text{Dirichlet}$ 卷积满足交换律和结合律。
 
 其中 $\varepsilon$ 为 $\text{Dirichlet}$ 卷积的单位元（任何函数卷 $\varepsilon$ 都为其本身）
 
-### 例子 ###
+### 例子
 
 $$
 
@@ -86,13 +86,13 @@ $$
 
 ---
 
-## 莫比乌斯函数 ##
+## 莫比乌斯函数
 
-### 定义 ###
+### 定义
 
 $\mu$ 为莫比乌斯函数
 
-### 性质 ###
+### 性质
 
 莫比乌斯函数不但是积性函数，还有如下性质：
 
@@ -109,7 +109,7 @@ $$
 $$
 
 
-### 证明 ###
+### 证明
 
 $$
 
@@ -130,7 +130,7 @@ $$
 
 根据二项式定理，易知该式子的值在 $k=0$ 即 $n=1$ 时值为 $1$ 否则为 $0$，这也同时证明了 $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]$
 
-### 补充结论 ###
+### 补充结论
 
 反演结论：$\displaystyle [gcd(i,j)=1] \Leftrightarrow\sum_{d\mid\gcd(i,j)}\mu(d)$
 
@@ -139,7 +139,7 @@ $$
 - **利用 $\varepsilon$ 函数**：根据上一结论，$[\gcd(i,j)=1]\Rightarrow \varepsilon(\gcd(i,j))$，将 $\varepsilon$ 展开即可。
 
 
-### 线性筛 ###
+### 线性筛
 由于 $\mu$ 函数为积性函数，因此可以线性筛莫比乌斯函数（线性筛基本可以求所有的积性函数，尽管方法不尽相同）。
 
 **代码**：
@@ -160,7 +160,7 @@ void getMu() {
 }
 ```
 
-### 拓展 ###
+### 拓展
 
 证明
 
@@ -196,9 +196,9 @@ $$
 
 ---
 
-## 莫比乌斯反演 ##
+## 莫比乌斯反演
 
-### 公式 ###
+### 公式
 
 设 $f(n),g(n)$ 为两个数论函数。
 
@@ -218,7 +218,7 @@ g(n)=\sum_{d\mid n}\mu(d)f(\frac{n}{d})
 $$
 
 
-### 证明 ###
+### 证明
 
 - **暴力计算**：
 
@@ -238,9 +238,9 @@ $$
 
 ---
 
-## 问题形式 ##
+## 问题形式
 
-### [「HAOI 2011」Problem b](https://www.lydsy.com/JudgeOnline/problem.php?id=2301) ###
+### [「HAOI 2011」Problem b](https://www.lydsy.com/JudgeOnline/problem.php?id=2301)
 
 求值（多组数据）
 
@@ -348,7 +348,7 @@ int main() {
 }
 ```
 
-### [「SPOJ 5971」LCMSUM](https://www.luogu.org/problemnew/show/SP5971) ###
+### [「SPOJ 5971」LCMSUM](https://www.luogu.org/problemnew/show/SP5971)
 
 求值（多组数据）
 
@@ -443,7 +443,7 @@ int main() {
 }
 ```
 
-### [「BZOJ 2154」Crash的数字表格](https://www.lydsy.com/JudgeOnline/problem.php?id=2154) ###
+### [「BZOJ 2154」Crash的数字表格](https://www.lydsy.com/JudgeOnline/problem.php?id=2154)
 
 求值（对 $20101009$ 取模）
 
