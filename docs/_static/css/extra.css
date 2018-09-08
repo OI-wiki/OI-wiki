@@ -45,3 +45,7 @@ span.mjpage__block > svg {
   font-style: normal !important; /* over ride is needed*/
   font-variant: nomal !important; /* over ride is needed*/
 }
+
+#color-button {
+  text-align: unset !important;
+}
