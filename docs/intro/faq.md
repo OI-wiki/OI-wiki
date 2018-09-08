@@ -158,9 +158,32 @@ python -m pip install --upgrade pip
 pip install -U -r requirements.txt
 ```
 
-### 我的数学公式怎么乱码了
+### 为什么我的 markdown 格式乱了
 
-如果是行间公式（用的 `$$`），目前已知的问题是需要在 `$$` 两侧留有空行。格式如下：
+可以查阅 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，或者 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。
+
+我们目前在使用 [remark-lint](https://github.com/remarkjs/remark-lint) 来自动化修正格式，可能还有一些 [配置](https://github.com/24OI/OI-wiki/blob/master/.remarkrc) 不够好的地方，欢迎指出。
+
+#### remark-lint 要求怎样的格式
+
+我们现在启用的配置文件在 [.remarkrc](https://github.com/24OI/OI-wiki/blob/master/.remarkrc)，它可以自动给项目内文件统一风格。
+
+在配置过程中我们也遇到了一些 remark-lint 不能很好处理的问题：
+
+1. `## 简介` 标题要空一格，也不要写成 `## 简介 ##`。
+2.  列表
+    1. 列表前要有空行，新开一段。
+    2. `1.` 点号后要有空格。
+3. 行间公式不能写在一行里，否则会被当做是行内公式
+4. 伪代码请使用 ```` ```text````
+
+#### GitHub 是不是不显示我的数学公式？
+
+是的，GitHub 的预览不显示数学公式。但是请放心，mkdocs 是支持数学公式的，可以正常使用，只要是 mathjax 支持的句式都可以使用。
+
+#### 我的数学公式怎么乱码了
+
+如果是行间公式（用的 `$$`），目前已知的问题是需要在 `$$` 两侧留有空行，且 `$$` 要 **单独** 放在一行里。格式如下：
 
 ```text
 // 空行
@@ -170,9 +193,23 @@ $$
 // 空行
 ```
 
-### 为什么我的 markdown 格式乱了
+#### 我的公式为什么在目录里没有正常显示？好像双倍了？
 
-可以查阅 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，或者 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。
+是的，这个是 python-markdown 的一个 bug，可能近期会修复。
+
+如果现在想要避免目录中出现双倍公式，可以参考 <https://github.com/24OI/OI-wiki/blame/master/docs/string/sam.md#L82>
+
+```text
+### 结束位置 <script type="math/tex">endpos</script>
+```
+
+在目录中会变成
+
+```text
+结束位置 endpos
+```
+
+【注】：现在请尽量避免在目录中引入 mathjax 公式
 
 ### 如何给一个页面单独声明版权信息
 
@@ -197,25 +234,3 @@ pagetime:
 ```
 
 注：默认的是开着的
-
-### GitHub 是不是不显示我的数学公式？
-
-是的，GitHub 的预览不显示数学公式。但是请放心，mkdocs 是支持数学公式的，可以正常使用，只要是 mathjax 支持的句式都可以使用。
-
-### 我的公式为什么在目录里没有正常显示？好像双倍了？
-
-是的，这个是 python-markdown 的一个 bug，可能近期会修复。
-
-如果现在想要避免目录中出现双倍公式，可以参考 <https://github.com/24OI/OI-wiki/blame/master/docs/string/sam.md#L82>
-
-```text
-### 结束位置 <script type="math/tex">endpos</script>
-```
-
-在目录中会变成
-
-```text
-结束位置 endpos
-```
-
-【注】：现在请尽量避免在目录中引入 mathjax 公式
