@@ -215,15 +215,10 @@ nav:
 
 # Theme
 theme:
-  name: null
-  custom_dir: 'mkdocs-material/material'
+  name: 'material'
   static_templates:
     - 404.html
-  language: 'zh-Hans'
-  static_templates:
-    - 404.html
-  static_templates:
-    - 404.html
+  language: 'zh'
   palette:
     primary: 'white'
     accent: 'red'

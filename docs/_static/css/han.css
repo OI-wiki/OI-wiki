@@ -234,10 +234,6 @@ q:lang(ja):after,q:lang(ja):before {
 	content: none
 }
 
-code,kbd,pre,samp {
-	font-family: monospace,monospace,sans-serif
-}
-
 .han-js-rendered del+del.adjacent,.han-js-rendered del+s.adjacent,.han-js-rendered ins.adjacent,.han-js-rendered s+del.adjacent,.han-js-rendered s+s.adjacent,.han-js-rendered u.adjacent,del+del,del+s,ins+ins,ins+u,s+del,s+s,u+ins,u+u {
 	margin-left: .125em
 }
@@ -586,6 +582,7 @@ h-jinze,h-word {
 }
 
 @font-face {
+	font-family:"Han Songti";src:local("Songti SC Regular"),local(STSongti-SC-Regular),local("Songti SC"),local("Songti TC Regular"),local(STSongti-TC-Regular),local("Songti TC"),local(STSongti),local("Lisong Pro"),local("MS Mincho"),local(SimSun),local(PMingLiU);unicode-range:U+270C
 	font-family:"Han Songti";src:local("Songti SC Regular"),local(STSongti-SC-Regular),local("Songti SC"),local("Songti TC Regular"),local(STSongti-TC-Regular),local("Songti TC"),local(STSongti),local("Lisong Pro"),local("MS Mincho"),local(SimSun),local(PMingLiU);unicode-range:U+270C
 }
 
@@ -1016,31 +1013,31 @@ i:lang(ja),var:lang(ja) {
 }
 
 code :lang(ja-Latn),code :lang(zh-Latn),code :not(:lang(zh)):not(:lang(ja)),code:lang(ja-Latn),code:lang(zh-Latn),code:not(:lang(zh)):not(:lang(ja)),kbd :lang(ja-Latn),kbd :lang(zh-Latn),kbd :not(:lang(zh)):not(:lang(ja)),kbd:lang(ja-Latn),kbd:lang(zh-Latn),kbd:not(:lang(zh)):not(:lang(ja)),pre :lang(ja-Latn),pre :lang(zh-Latn),pre :not(:lang(zh)):not(:lang(ja)),pre:lang(ja-Latn),pre:lang(zh-Latn),pre:not(:lang(zh)):not(:lang(ja)),samp :lang(ja-Latn),samp :lang(zh-Latn),samp :not(:lang(zh)):not(:lang(ja)),samp:lang(ja-Latn),samp:lang(zh-Latn),samp:not(:lang(zh)):not(:lang(ja)) {
-	font-family: Menlo,Consolas,Courier,"Han Heiti",monospace,monospace,sans-serif
+	font-family: "Fira Mono","Courier New",Courier,"Han Heiti",monospace,sans-serif
 }
 
 code:lang(zh),code:lang(zh-Hant),kbd:lang(zh),kbd:lang(zh-Hant),pre:lang(zh),pre:lang(zh-Hant),samp:lang(zh),samp:lang(zh-Hant) {
-	font-family: "Biaodian Pro Sans CNS",Menlo,Consolas,Courier,"Zhuyin Heiti","Han Heiti",monospace,monospace,sans-serif
+	font-family: "Fira Mono","Courier New",Courier,"Han Heiti","Biaodian Pro Sans CNS","Zhuyin Heiti","Han Heiti",monospace,sans-serif
 }
 
 .no-unicoderange code:lang(zh),.no-unicoderange code:lang(zh-Hant),.no-unicoderange kbd:lang(zh),.no-unicoderange kbd:lang(zh-Hant),.no-unicoderange pre:lang(zh),.no-unicoderange pre:lang(zh-Hant),.no-unicoderange samp:lang(zh),.no-unicoderange samp:lang(zh-Hant) {
-	font-family: Menlo,Consolas,Courier,"Han Heiti",monospace,monospace,sans-serif
+	font-family: "Fira Mono","Courier New",Courier,"Han Heiti",monospace,sans-serif
 }
 
 code:lang(zh-CN),code:lang(zh-Hans),kbd:lang(zh-CN),kbd:lang(zh-Hans),pre:lang(zh-CN),pre:lang(zh-Hans),samp:lang(zh-CN),samp:lang(zh-Hans) {
-	font-family: "Biaodian Pro Sans GB",Menlo,Consolas,Courier,"Han Heiti GB",monospace,monospace,sans-serif
+	font-family: "Fira Mono","Courier New","Biaodian Pro Sans GB",Menlo,Consolas,Courier,"Han Heiti GB",monospace,monospace,sans-serif
 }
 
 .no-unicoderange code:lang(zh-CN),.no-unicoderange code:lang(zh-Hans),.no-unicoderange kbd:lang(zh-CN),.no-unicoderange kbd:lang(zh-Hans),.no-unicoderange pre:lang(zh-CN),.no-unicoderange pre:lang(zh-Hans),.no-unicoderange samp:lang(zh-CN),.no-unicoderange samp:lang(zh-Hans) {
-	font-family: Menlo,Consolas,Courier,"Han Heiti GB",monospace,monospace,sans-serif
+	font-family: "Fira Mono","Courier New",Courier,"Han Heiti GB",monospace,sans-serif
 }
 
 code:lang(ja),kbd:lang(ja),pre:lang(ja),samp:lang(ja) {
-	font-family: "Yakumono Sans",Menlo,Consolas,Courier,monospace,monospace,sans-serif
+	font-family: "Fira Mono","Yakumono Sans",Menlo,Consolas,"Courier New",Courier,monospace,monospace,sans-serif
 }
 
 .no-unicoderange code:lang(ja),.no-unicoderange kbd:lang(ja),.no-unicoderange pre:lang(ja),.no-unicoderange samp:lang(ja) {
-	font-family: Menlo,Consolas,Courier,monospace,monospace,sans-serif
+	font-family: "Fira Mono",Menlo,Consolas,Courier,monospace,monospace,sans-serif
 }
 
 .no-unicoderange h-char.bd-liga,.no-unicoderange h-char[unicode=b7],h-ruby [annotation] rt,h-ruby h-zhuyin,h-ruby h-zhuyin h-diao,h-ruby.romanization rt,html,ruby [annotation] rt,ruby h-zhuyin,ruby h-zhuyin h-diao,ruby.romanization rt {

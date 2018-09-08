@@ -31,10 +31,6 @@ cp ./static/footer.html mkdocs-material/material/partials/footer.html
 
 cp ./static/extra.js docs/_static/js/extra.js
 
-if [! -f "./mkdocs-material/material/partials/language/zh-Hans.html"] ; then
-  mv ./mkdocs-material/material/partials/language/zh.html ./mkdocs-material/material/partials/language/zh-Hans.html
-fi
-
 mkdocs build -v
 
 node render_math.js
