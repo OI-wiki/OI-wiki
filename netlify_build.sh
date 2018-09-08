@@ -29,7 +29,9 @@ cp ./static/footer.html mkdocs-material/material/partials/footer.html
 
 cp ./static/extra.js docs/_static/js/extra.js
 
-mv ./mkdocs-material/material/partials/language/zh.html ./mkdocs-material/material/partials/language/zh-Hans.html
+if [! -f "./mkdocs-material/material/partials/language/zh-Hans.html"] ; then
+  mv ./mkdocs-material/material/partials/language/zh.html ./mkdocs-material/material/partials/language/zh-Hans.html
+fi
 
 mkdocs build -v
 
