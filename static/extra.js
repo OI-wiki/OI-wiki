@@ -9,11 +9,6 @@ window.addEventListener('load', function() {
     }
 }, false);
 
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments); }
-gtag('js', new Date());  
-gtag('config', 'UA-124485594-1');
-
 var cur = document.getElementsByClassName('page-time')[0]
 if (cur) {
   var comments = document.getElementById('gitment_container');
