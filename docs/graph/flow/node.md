@@ -10,11 +10,11 @@ By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 如果原图是这样：
 
-![](https://cdn.luogu.org/upload/pic/32467.png)
+![](./images/node1.png)
 
 拆点之后的图是这个样子：
 
-![](https://cdn.luogu.org/upload/pic/32468.png)
+![](./images/node2.png)
 
 # 例题 [luogu P4568 \[JLOI2011\] 飞行路线](https://www.luogu.org/problemnew/show/P4568)
 
