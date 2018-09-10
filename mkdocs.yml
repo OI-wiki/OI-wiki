@@ -241,7 +241,7 @@ extra:
   pagetime: 'on'
 
 extra_javascript:
-  - 'https://unpkg.com/ah@1.0.3/han.min.js'
+  - 'https://cdn.bootcss.com/Han/3.3.0/han.min.js'
   - '_static/js/extra.js?v=5'
   - 'https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'
   
