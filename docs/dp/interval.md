@@ -2,7 +2,7 @@ By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 ## 什么是区间DP？
 
-区间类动态规划是线性动态规划的扩展，它在分阶段地划分问题时，与阶段中元素出现的顺序和由前一阶段的哪些元素合并而来由很大的关系。令状态 $f(i,j)$ 表示将下标位置 $i$ 到 $j$ 的所有元素合并能获得的价值的最大值，那么 $f(i,j)=\max\{f(i,k)+f(k+1,j)+cost\}$， $cost$ 为将这两组元素合并起来的代价。
+区间类动态规划是线性动态规划的扩展，它在分阶段地划分问题时，与阶段中元素出现的顺序和由前一阶段的哪些元素合并而来由很大的关系。令状态 $f(i,j)$ 表示将下标位置 $i$ 到 $j$ 的所有元素合并能获得的价值的最大值，那么 $f(i,j)=\\max{f(i,k)+f(k+1,j)+cost}$， $cost$ 为将这两组元素合并起来的代价。
 
 区间DP的特点：
 
@@ -12,7 +12,7 @@ By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 ** 求解 ** ：对整个问题设最优值，枚举合并点，将问题分解为左右两个部分，最后合并两个部分的最优值得到原问题的最优值。
 
-## 例题[luogu P1880 [NOI1995]石子合并](https://www.luogu.org/problemnew/show/P1880)
+## 例题[luogu P1880 \[NOI1995\]石子合并](https://www.luogu.org/problemnew/show/P1880)
 
 题目大意：在一个环上有 $n$ 个数 $a_1,a_2,...,a_n$，进行 $n-1$ 次合并操作，每次操作将相邻的两堆合并成一堆，能获得新的一堆中的石子数量的和的得分。你需要最大化你的得分。
 
@@ -20,9 +20,9 @@ By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 令 $f(i,j)$ 表示将区间 $[i,j]$ 内的所有石子合并到一起的最大得分。
 
-写出 ** 状态转移方程 ** ： $f(i,j)=max\{f(i,k)+f(k+1,j)+\sum_{t=i}^{j} a_t \}~(i\le k<j)$
+写出 ** 状态转移方程 ** ： $f(i,j)=max{f(i,k)+f(k+1,j)+\\sum\_{t=i}^{j} a_t }~(i\\le k&lt;j)$
 
-令 $sum_i$ 表示 $a$ 数组的前缀和，状态转移方程变形为 $f(i,j)=max\{f(i,k)+f(k+1,j)+sum_j-sum_{i-1} \}$。
+令 $sum_i$ 表示 $a$ 数组的前缀和，状态转移方程变形为 $f(i,j)=max{f(i,k)+f(k+1,j)+sum_j-sum_{i-1} }$。
 
 ## 怎样进行状态转移
 
@@ -34,7 +34,7 @@ By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 ** 方法一 ** ：由于石子围成一个环，我们可以枚举分开的位置，将这个环转化成一个链，由于要枚举 $n$ 次，最终的时间复杂度为 $O(n^4)$。
 
-** 方法二 ** ：我们将这条链延长两倍，变成 $2\times n$ 堆，其中第 $i$ 堆与第 $n+i$ 堆相同，用动态规划求解后，取 $f(1,n),f(2,n+1),...,f(i,n+i-1)$ 中的最优值，即为最后的答案。时间复杂度 $O(n^3)$。
+** 方法二 ** ：我们将这条链延长两倍，变成 $2\\times n$ 堆，其中第 $i$ 堆与第 $n+i$ 堆相同，用动态规划求解后，取 $f(1,n),f(2,n+1),...,f(i,n+i-1)$ 中的最优值，即为最后的答案。时间复杂度 $O(n^3)$。
 
 ## 核心代码
 
@@ -56,4 +56,4 @@ for(len=1;len<=n;len++)
 
 [luogu P1005 矩阵取数游戏](https://www.luogu.org/problemnew/show/P1005)
 
-[luogu P4767 [IOI2000]邮局](https://www.luogu.org/problemnew/show/P4767)
+[luogu P4767 \[IOI2000\]邮局](https://www.luogu.org/problemnew/show/P4767)

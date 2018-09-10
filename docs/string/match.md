@@ -22,18 +22,16 @@
 
 （伪代码）
 
-```
-match(char *a, char *b, int n, int m) {
-	ans = new vector();
-	for (i = 0; i < n - m + 1; i++) {
-		for (j = 0; j < m; j++) {
-			if (a[i + j] != b[j]) break;
-		}
-		if (j == m) ans.push_back(i);
-	}
-	return ans;
-}
-```
+    match(char *a, char *b, int n, int m) {
+    	ans = new vector();
+    	for (i = 0; i < n - m + 1; i++) {
+    		for (j = 0; j < m; j++) {
+    			if (a[i + j] != b[j]) break;
+    		}
+    		if (j == m) ans.push_back(i);
+    	}
+    	return ans;
+    }
 
 时间复杂度分析：
 

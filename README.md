@@ -1,12 +1,11 @@
 # OI-Wiki
 
-
 [![Travis](https://img.shields.io/travis/24OI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/24OI/OI-wiki)
 [![Progress](https://img.shields.io/badge/Progress-49%25-brightgreen.svg?style=flat-square)](https://github.com/24OI/OI-wiki)
 [![Telegram](https://img.shields.io/badge/OI--wiki-join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
 [![QQ](https://img.shields.io/badge/OI--wiki-join%20QQ%20group-brightgreen.svg?style=flat-square)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
 
-----
+* * *
 
 欢迎来到 **OI Wiki**。
 
@@ -16,7 +15,7 @@
 
 为了方便热爱 **OI** 的小伙伴更好地入门 **OI**，2018 年 7 月份，**OI Wiki** 迁移至 GitHub，方便更多小伙伴参与其中。
 
-----
+* * *
 
 ## 内容
 
@@ -28,15 +27,14 @@
 
 当然，**OI Wiki** 基于 **OI**，却不会局限于 **OI**。**OI Wiki** 会努力完善以下内容：
 
-- 应用在 ACM-ICPC 竞赛中的进阶知识
-- 算法竞赛中的优质题目
+-   应用在 ACM-ICPC 竞赛中的进阶知识
+-   算法竞赛中的优质题目
 
 与此同时， **OI Wiki** 源于社区，提倡 **知识自由**，在未来也绝不会商业化，将始终保持独立自由的性质。
 
-----
+* * *
 
 ## 部署
-
 
 本文档目前采用 [MkDocs](https://github.com/mkdocs/mkdocs) 部署在 [oi-wiki.org](https://oi-wiki.org)。
 
@@ -62,7 +60,7 @@ chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && ./buil
 # 注：大部分时候不需要测试我们修改后的主题
 ```
 
-----
+* * *
 
 ## 如何参与完善 OI Wiki
 
@@ -77,7 +75,7 @@ chmod +x ./build.sh && sed -i "s/mkdocs build/mkdocs serve/g" build.sh && ./buil
 
 特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
 
-----
+* * *
 
 ## 版权声明
 

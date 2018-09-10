@@ -1,4 +1,4 @@
-## __gnu_pbds :: priority_queue 
+## \_\_gnu_pbds :: priority_queue
 
 附 ：[官方文档地址——复杂度及常数测试](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/pq_performance_tests.html#std_mod1)
 
@@ -35,24 +35,24 @@ __gnu_pbds :: priority_queue<T, Compare, Tag, Allocator> // 由于 OI 中很少�
 
 复杂度如下表 ：
 
-|                      | push                                     | pop                                      | modify                                   | erase                                     | Join              |
-| -------------------- | ---------------------------------------- | :--------------------------------------- | ---------------------------------------- | ----------------------------------------- | ----------------- |
-| Pairing_heap_tag     | $O(1)$                                   | 最坏$\Theta(n)$    均摊$\Theta(\log(n))$ | 最坏$\Theta(n)$    均摊$\Theta(\log(n))$ | 最坏$\Theta(n)$    均摊$\Theta(\log(n))$  | $O(1)$            |
-| Binary_heap_tag      | 最坏$\Theta(n)$    均摊$\Theta(\log(n))$ | 最坏$\Theta(n)$    均摊$\Theta(\log(n))$ | $\Theta(n)$                              | $\Theta(n)$                               | $\Theta(n)$       |
-| Binomial_heap_tag    | 最坏$\Theta(\log(n))$   均摊$O(1)$       | $\Theta(\log(n))$                        | $\Theta(\log(n))$                        | $\Theta(\log(n))$                         | $\Theta(\log(n))$ |
-| Rc_Binomial_heap_tag | $O(1)$                                   | $\Theta(\log(n))$                        | $\Theta(\log(n))$                        | $\Theta(\log(n))$                         | $\Theta(\log(n))$ |
-| Thin_heap_tag        | $O(1)$                                   | 最坏$\Theta(n)$    均摊$\Theta(\log(n))$ | 最坏$\Theta(\log(n))$   均摊$O(1)$       | 最坏$\Theta(n)$    0均摊$\Theta(\log(n))$ | $\Theta(n)$       |
+|                      | push                                    | pop                                     | modify                                  | erase                                    | Join                |
+| -------------------- | --------------------------------------- | :-------------------------------------- | --------------------------------------- | ---------------------------------------- | ------------------- |
+| Pairing_heap_tag     | $O(1)$                                  | 最坏$\\Theta(n)$    均摊$\\Theta(\\log(n))$ | 最坏$\\Theta(n)$    均摊$\\Theta(\\log(n))$ | 最坏$\\Theta(n)$    均摊$\\Theta(\\log(n))$  | $O(1)$              |
+| Binary_heap_tag      | 最坏$\\Theta(n)$    均摊$\\Theta(\\log(n))$ | 最坏$\\Theta(n)$    均摊$\\Theta(\\log(n))$ | $\\Theta(n)$                            | $\\Theta(n)$                             | $\\Theta(n)$        |
+| Binomial_heap_tag    | 最坏$\\Theta(\\log(n))$   均摊$O(1)$        | $\\Theta(\\log(n))$                     | $\\Theta(\\log(n))$                     | $\\Theta(\\log(n))$                      | $\\Theta(\\log(n))$ |
+| Rc_Binomial_heap_tag | $O(1)$                                  | $\\Theta(\\log(n))$                     | $\\Theta(\\log(n))$                     | $\\Theta(\\log(n))$                      | $\\Theta(\\log(n))$ |
+| Thin_heap_tag        | $O(1)$                                  | 最坏$\\Theta(n)$    均摊$\\Theta(\\log(n))$ | 最坏$\\Theta(\\log(n))$   均摊$O(1)$        | 最坏$\\Theta(n)$    0均摊$\\Theta(\\log(n))$ | $\\Theta(n)$        |
 
 ##### 成员函数：
 
-1. ```push()```:向堆中压入一个元素, 返回该元素位置的迭代器
-2. ```pop()```:将堆顶元素弹出
-3. ```top()```:返回堆顶元素
-4. ```size()```返回元素个数
-5. ```empty()```返回是否非空
-6. ```modify(point_iterator, const key)``` : 把迭代器位置的key修改为传入的key，并对底层储存结构进行排序
-7. ```erase(point_iterator)``` : 把迭代器位置的键值从堆中擦除
-8. ```join(__gnu_pbds :: priority_queue &other)```:把other合并到*this并把other清空。
+1.  `push()`:向堆中压入一个元素, 返回该元素位置的迭代器
+2.  `pop()`:将堆顶元素弹出
+3.  `top()`:返回堆顶元素
+4.  `size()`返回元素个数
+5.  `empty()`返回是否非空
+6.  `modify(point_iterator, const key)` : 把迭代器位置的key修改为传入的key，并对底层储存结构进行排序
+7.  `erase(point_iterator)` : 把迭代器位置的键值从堆中擦除
+8.  `join(__gnu_pbds :: priority_queue &other)`:把other合并到\*this并把other清空。
 
 ##### 示例:
 
@@ -94,6 +94,4 @@ int main() {
 	q2.join(q1);
 	// q1中无元素，q2中元素 ：[1, 1, 1, 2, 3, 3, 5];
 }
-
-
 ```

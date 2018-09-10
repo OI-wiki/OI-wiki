@@ -1,37 +1,36 @@
 学习 IDA\* 之前，请确保您已经学完了 [A\*](/search/astar) 算法和 [迭代加深搜索](/search/iterative) 。
 
-## IDA* 简介
+## IDA\* 简介
+
 IDA\*，即采用迭代加深的 A\* 算法。相对于 A\* 算法，由于 IDA\* 改成了深度优先的方式，所以 IDA\* 更实用：
-1. 不需要判重，不需要排序；
-2. 空间需求减少。
+1\. 不需要判重，不需要排序；
+2\. 空间需求减少。
 
 **大致框架**（伪代码）：
 
-```
-Procedure IDA_STAR(StartState)
-Begin
-PathLimit := H(StartState) - 1;
-Succes := False;
-Repeat
-inc(PathLimit);
-StartState.g = 0;
-Push(OpenStack , StartState);
-Repeat
-CurrentState := Pop(OpenStack);
-If Solution(CurrentState) then
-Success = True
-Elseif PathLimit >= CurrentState.g + H(CurrentState) then
-For each Child(CurrentState) do
-Push(OpenStack , Child(CurrentState));
-until Successor empty(OpenStack);
-until Success or ResourceLimtsReached;
-end;
-```
+    Procedure IDA_STAR(StartState)
+    Begin
+    PathLimit := H(StartState) - 1;
+    Succes := False;
+    Repeat
+    inc(PathLimit);
+    StartState.g = 0;
+    Push(OpenStack , StartState);
+    Repeat
+    CurrentState := Pop(OpenStack);
+    If Solution(CurrentState) then
+    Success = True
+    Elseif PathLimit >= CurrentState.g + H(CurrentState) then
+    For each Child(CurrentState) do
+    Push(OpenStack , Child(CurrentState));
+    until Successor empty(OpenStack);
+    until Success or ResourceLimtsReached;
+    end;
 
 ### 优点
 
-1. 空间开销小，每个深度下实际上是一个深度优先搜索，不过深度有限制，而 DFS 的空间消耗小是众所周知的；
-2. 利于深度剪枝。
+1.  空间开销小，每个深度下实际上是一个深度优先搜索，不过深度有限制，而 DFS 的空间消耗小是众所周知的；
+2.  利于深度剪枝。
 
 ### 缺点
 
@@ -45,11 +44,11 @@ end;
 
 **题目描述**
 
-在古埃及，人们使用单位分数的和（即 $\frac{1}{a}$，$a$ 是自然数）表示一切有理数。例如，$\frac{2}{3}=\frac{1}{2}+\frac{1}{6}$，但不允许 $\frac{2}{3}=\frac{1}{3}+\frac{1}{3}$，因为在加数中不允许有相同的。 
+在古埃及，人们使用单位分数的和（即 $\\frac{1}{a}$，$a$ 是自然数）表示一切有理数。例如，$\\frac{2}{3}=\\frac{1}{2}+\\frac{1}{6}$，但不允许 $\\frac{2}{3}=\\frac{1}{3}+\\frac{1}{3}$，因为在加数中不允许有相同的。 
 
-对于一个分数 $\frac{a}{b}$ ，表示方法有很多种，其中加数少的比加数多的好，如果加数个数相同，则最小的分数越大越好。 例如，$\frac{19}{45}=\frac{1}{5}+\frac{1}{6}+\frac{1}{18}$ 是最优方案。 
+对于一个分数 $\\frac{a}{b}$ ，表示方法有很多种，其中加数少的比加数多的好，如果加数个数相同，则最小的分数越大越好。 例如，$\\frac{19}{45}=\\frac{1}{5}+\\frac{1}{6}+\\frac{1}{18}$ 是最优方案。 
 
-输入整数 $a,b$ （$0<a<b<500$），试编程计算最佳表达式。
+输入整数 $a,b$ （$0&lt;a&lt;b&lt;500$），试编程计算最佳表达式。
 
 输入样例：
 
@@ -69,7 +68,7 @@ Case 1: 495/499=1/2+1/5+1/6+1/8+1/3992+1/14970
 
 解决方案是采用迭代加深搜索：从小到大枚举深度上限 $maxd$，每次执行只考虑深度不超过 $maxd$ 的节点。这样，只要解的深度优先，则一定可以在有限时间内枚举到。
 
-深度上限 $maxd$ 还可以用来**剪枝**。 按照分母递增的顺序来进行扩展，如果扩展到i层时，前 $i$ 个分数之和为 $\frac{c}{d}$，而第 $i$ 个分数为 $\frac{1}{e}$ ，则接下来至少还需要 $\frac{\frac{a}{b}-\frac{c}{d}}{\frac{1}{e}}$ 个分数，总和才能达到 $\frac{a}{b}$ 。 例如，当前搜索到 $\frac{19}{45}=\frac{1}{5}+\frac{1}{100}+\cdots$ ，则后面的分数每个最大为 $\frac{1}{101}$，至少需要 $\frac{\frac{19}{45}-\frac{1}{5}}{\frac{1}{101}}=23$ 项总和才能达到 $\frac{19}{45}$ ，因此前 $22$ 次迭代是根本不会考虑这棵子树的。这里的关键在于：可以估计至少还要多少步才能出解。 
+深度上限 $maxd$ 还可以用来**剪枝**。 按照分母递增的顺序来进行扩展，如果扩展到i层时，前 $i$ 个分数之和为 $\\frac{c}{d}$，而第 $i$ 个分数为 $\\frac{1}{e}$ ，则接下来至少还需要 $\\frac{\\frac{a}{b}-\\frac{c}{d}}{\\frac{1}{e}}$ 个分数，总和才能达到 $\\frac{a}{b}$ 。 例如，当前搜索到 $\\frac{19}{45}=\\frac{1}{5}+\\frac{1}{100}+\\cdots$ ，则后面的分数每个最大为 $\\frac{1}{101}$，至少需要 $\\frac{\\frac{19}{45}-\\frac{1}{5}}{\\frac{1}{101}}=23$ 项总和才能达到 $\\frac{19}{45}$ ，因此前 $22$ 次迭代是根本不会考虑这棵子树的。这里的关键在于：可以估计至少还要多少步才能出解。 
 
 注意，这里的估计都是乐观的，因为用了**至少**这个词。 说得学术一点，设深度上限为 $maxd$，当前结点 $n$ 的深度为 $g(n)$，乐观估价函数为 $h(n)$，则当 $g(n)+h(n)>maxd$ 时应该剪枝。 这样的算法就是 IDA\*。 当然，在实战中不需要严格地在代码里写出 $g(n)$ 和 $h(n)$ ，只需要像刚才那样设计出乐观估价函数，想清楚在什么情况下不可能在当前的深度限制下出解即可。
 

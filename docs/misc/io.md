@@ -19,18 +19,16 @@ tie 是将两个 stream 绑定的函数，空参数的话返回当前的输出�
 ### 代码实现
 
 ```cpp
-
 std::ios::sync_with_stdio(false);
 
 std::cin.tie(0);
-
 ```
 
 ## 读入优化
 
 `scanf` 和 `printf` 依然有优化的空间，这就是本章所介绍的内容——读入和输出优化。
 
-* 注意，读入和输出优化均针对整数，不支持其他类型的数据
+-   注意，读入和输出优化均针对整数，不支持其他类型的数据
 
 ### 原理
 
@@ -45,7 +43,6 @@ std::cin.tie(0);
 ### 代码实现
 
 ```cpp
-
 int read(){
 
 	int x=0,w=1;char ch=0;
@@ -69,7 +66,7 @@ int read(){
 }
 ```
 
-* 举例 
+-   举例 
 
 读入 num 可写为 `num=read();`
 
@@ -102,7 +99,7 @@ int write(int x){
 }
 ```
 
-* 举例
+-   举例
 
 输出 num 可写为 `write(num);`
 
@@ -137,53 +134,52 @@ char getchar() {
 注意 `fread` 必须使用文件读入，但是 `fwrite` 不需要。
 
 参考代码：
-```
-namespace io {
-const int MAXSIZE = 1 << 22;
-inline char gc() {
-    static char In[MAXSIZE], *at = In, *en = In;
-    if (at == en) {
-        en = (at = In) + fread(In, 1, MAXSIZE, stdin);
+
+    namespace io {
+    const int MAXSIZE = 1 << 22;
+    inline char gc() {
+        static char In[MAXSIZE], *at = In, *en = In;
+        if (at == en) {
+            en = (at = In) + fread(In, 1, MAXSIZE, stdin);
+        }
+        return at == en ? EOF : *at++;
     }
-    return at == en ? EOF : *at++;
-}
-template <class T> inline T gt() {
-    char c;
-    while (c = gc(), !isdigit(c) && c != '-') {}
-    bool f = c == '-';
-    T x = f ? 0 : c - '0';
-    for (c = gc(); isdigit(c); c = gc()) {
-        x = x * 10 + c - '0';
+    template <class T> inline T gt() {
+        char c;
+        while (c = gc(), !isdigit(c) && c != '-') {}
+        bool f = c == '-';
+        T x = f ? 0 : c - '0';
+        for (c = gc(); isdigit(c); c = gc()) {
+            x = x * 10 + c - '0';
+        }
+        return f ? -x : x;
     }
-    return f ? -x : x;
-}
-char Out[MAXSIZE], *cur = Out, *end = Out + MAXSIZE - 100;
-void flush() {
-    fwrite(Out, 1, cur - Out, stdout);
-    cur = Out;
-}
-template <typename T> inline void pt(T x, char c = '\n') {
-    static int S[20], *top;
-    top = S;
-    if (x < 0) {
-        *cur++ = '-', x = -x;
+    char Out[MAXSIZE], *cur = Out, *end = Out + MAXSIZE - 100;
+    void flush() {
+        fwrite(Out, 1, cur - Out, stdout);
+        cur = Out;
     }
-    do {
-        *++top = x % 10, x /= 10;
-    } while (x);
-    while (top != S) {
-        *cur++ = *top-- + '0';
+    template <typename T> inline void pt(T x, char c = '\n') {
+        static int S[20], *top;
+        top = S;
+        if (x < 0) {
+            *cur++ = '-', x = -x;
+        }
+        do {
+            *++top = x % 10, x /= 10;
+        } while (x);
+        while (top != S) {
+            *cur++ = *top-- + '0';
+        }
+        *cur++ = c;
+        if(cur >= end) {
+            flush();
+        }
     }
-    *cur++ = c;
-    if(cur >= end) {
-        flush();
-    }
-}
-}  // namespace io
-```
+    }  // namespace io
 
 ## 参考
 
-http://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html
+<http://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html>
 
-http://meme.biology.tohoku.ac.jp/students/iwasaki/cxx/speed.html
+<http://meme.biology.tohoku.ac.jp/students/iwasaki/cxx/speed.html>

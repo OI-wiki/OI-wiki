@@ -1,10 +1,10 @@
-## 简介 ##
+## 简介
 
 模拟退火是一种随机化算法。当一个问题的方案数量极大（甚至是无穷的）而且不是一个单峰函数时，我们常使用模拟退火求解。
 
----
+* * *
 
-## 实现 ##
+## 实现
 
 根据 [爬山算法](https://oi-wiki.org/misc/hill-climbing/) 的过程，我们发现：对于一个当前最优解附近的非最优解，爬山算法直接舍去了这个解。而很多情况下，我们需要去接受这个非最优解从而跳出这个局部最优解，即为模拟退火算法。
 
@@ -14,35 +14,35 @@
 
 由于退火的规律引入了更多随机因素，那么我们得到最优解的概率会大大增加。于是我们可以去模拟这个过程，将目标函数作为能量函数。
 
-### 模拟退火算法描述 ###
+### 模拟退火算法描述
 
 先用一句话概括：如果新状态的解更优则修改答案，否则以一定概率接受新状态。
 
-我们定义当前温度为 $T$，新状态与已知状态（由已知状态通过随机的方式得到）之间的能量（值）差为 $\Delta E$（$\Delta E\geqslant 0$），则发生状态转移（修改最优解）的概率为
+我们定义当前温度为 $T$，新状态与已知状态（由已知状态通过随机的方式得到）之间的能量（值）差为 $\\Delta E$（$\\Delta E\\geqslant 0$），则发生状态转移（修改最优解）的概率为
 
 $$
-P(\Delta E)=
-\begin{cases}
-1&\text{新状态更优}\\
-e^\frac{-\Delta E}{T}&\text{新状态更劣}
-\end{cases}
+P(\\Delta E)=
+\\begin{cases}
+1&\\text{新状态更优}\\
+e^\\frac{-\\Delta E}{T}&\\text{新状态更劣}
+\\end{cases}
 $$
 
 **注意**：我们有时为了使得到的解更有质量，会在模拟退火结束后，以当前温度在得到的解附近多次随机状态，尝试得到更优的解（其过程与模拟退火相似）。
 
-### 如何退火（降温）？ ###
+### 如何退火（降温）？
 
 模拟退火时我们有三个参数：初始温度 $T_0$，降温系数 $d$，终止温度 $T_k$。其中 $T_0$ 是一个比较大的数，$d$ 是一个非常接近 $1$ 但是小于 $1$ 的数，$T_k$ 是一个接近 $0$ 的正数。
 
-首先让温度 $T=T_0$，然后按照上述步骤进行一次转移尝试，再让 $T=d\cdot T$。当 $T<T_k$ 时模拟退火过程结束，当前最优解即为最终的最优解。
+首先让温度 $T=T_0$，然后按照上述步骤进行一次转移尝试，再让 $T=d\\cdot T$。当 $T&lt;T_k$ 时模拟退火过程结束，当前最优解即为最终的最优解。
 
 引用一张 [Wiki - Simulated annealing](https://en.wikipedia.org/wiki/Simulated_annealing) 的图片（随着温度的降低，跳跃越来越不随机，最优解也越来越稳定）。
 
 ![](https://upload.wikimedia.org/wikipedia/commons/d/d5/Hill_Climbing_with_Simulated_Annealing.gif)
 
----
+* * *
 
-## 代码 ##
+## 代码
 
 此处代码以 [「BZOJ 3680」吊打XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)（求 $n$ 个点的带权类费马点）为例。
 
@@ -98,10 +98,10 @@ int main() {
 }
 ```
 
----
+* * *
 
-## 习题 ##
+## 习题
 
-- [「BZOJ 3680」吊打XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)
-- [「JSOI 2016」炸弹攻击](https://www.lydsy.com/JudgeOnline/problem.php?id=4852)
-- [「HAOI 2006」均分数据](https://www.lydsy.com/JudgeOnline/problem.php?id=2428)
+-   [「BZOJ 3680」吊打XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)
+-   [「JSOI 2016」炸弹攻击](https://www.lydsy.com/JudgeOnline/problem.php?id=4852)
+-   [「HAOI 2006」均分数据](https://www.lydsy.com/JudgeOnline/problem.php?id=2428)
