@@ -31,11 +31,11 @@ blockquote.page-time{
 
 span.mjpage > svg {
     overflow-x: scroll;
-    max-width: intrinsic;
-    max-width: -moz-max-content;
-    max-width: -webkit-max-content;
 }
 
 span.mjpage__block > svg {
   min-width: 80%;
+  max-width: intrinsic;
+  max-width: -moz-max-content;
+  max-width: -webkit-max-content;
 }
