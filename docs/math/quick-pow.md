@@ -83,4 +83,4 @@ long long qpow(long long a,long long b,long long p)
 
 （为了使用[这题](https://www.luogu.org/problemnew/show/P1226)测试，全部改成了long long。）
 
-这样，时间复杂度就从$$O(b)$$降至了非常可观的指数级$$O(log_2n)$$
+这样，时间复杂度就从$$O(b)​$$降至了非常可观的指数级$$O(log_2b)​$$
