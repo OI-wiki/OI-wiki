@@ -271,3 +271,5 @@ int main()
 [luogu P2146 \[NOI2015\] 软件包管理器](https://www.luogu.org/problemnew/show/P2146)
 
 [luogu P2486 \[SDOI2011\] 染色](https://www.luogu.org/problemnew/show/P2486)
+
+[luogu P3313 \[SDOI2014\] 旅行](https://www.luogu.org/problemnew/show/P3313)
