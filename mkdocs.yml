@@ -247,7 +247,7 @@ extra_javascript:
   
 
 extra_css:
-  - '_static/css/han.css'
+  - 'https://unpkg.com/ah@1.0.5/han.min.css'
   - '_static/css/extra.css?v=5'
 
 # Extensions
