@@ -97,13 +97,6 @@ img {
 svg:not(:root) {
   overflow: hidden;
 }
-code,
-kbd,
-pre,
-samp {
-  font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
-}
 figure {
   margin: 1em 40px;
 }
