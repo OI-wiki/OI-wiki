@@ -1,10 +1,10 @@
-让我们一起来认识认识高端的STL。
+让我们一起来认识认识高端的 STL。
 
-## 什么是STL？
+## 什么是 STL？
 
-STL是Standard Template Library的简称，中文名为标准模板库。它是C++的一大特色，里面包含了许多标准算法或数据结构。
+STL 是 Standard Template Library 的简称，中文名为标准模板库。它是 C++ 的一大特色，里面包含了许多标准算法或数据结构。
 
-在C++标准中，STL被组织为下面的13个头文件：<algorithm>、<deque>、<functional>、<iterator>、<array>、<vector>、<list>、<forward_list>、<map>、<unordered_map>、<memory>、<numeric>、<set>、<unordered_set>、<stack>、<utility>。
+在 C++ 标准中，STL 被组织为下面的 13 个头文件：<algorithm>、<deque>、<functional>、<iterator>、<array>、<vector>、<list>、&lt;forward_list>、<map>、&lt;unordered_map>、<memory>、<numeric>、<set>、&lt;unordered_set>、<stack>、<utility>。
 
 ## 数据结构
 
@@ -30,22 +30,22 @@ STL是Standard Template Library的简称，中文名为标准模板库。它是C
 
 **多重集合**(multiset) 允许存在两个次序相等的元素的集合 。
 
-**映射**(map) 由{键，值}对组成的集合，以某种作用于键对上的谓词排列 。
+**映射**(map) 由 {键，值} 对组成的集合，以某种作用于键对上的谓词排列 。
 
 **多重映射**(multimap) 允许键对有相等的次序的映射 。
 
 ## 算法
 
-STL提供了大约100个实现算法的模版函数，基本都包含在<algorithm>之中，还有一部分包含在<numeric>和<functional>。
+STL 提供了大约 100 个实现算法的模版函数，基本都包含在<algorithm>之中，还有一部分包含在<numeric>和<functional>。
 
 常用函数：
 
-排序(sort)
+排序 (sort)
 
 增删改查（因情况而异）
 
 翻转数组、字符串 等（reverse）
 
-## 附：C&C++语言参考
+## 附：C&C++ 语言参考
 
-https://share.weiyun.com/5StcunU
+<https://share.weiyun.com/5StcunU>
