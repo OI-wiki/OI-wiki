@@ -277,12 +277,6 @@ q:lang(ja):before,
 q:lang(ja):after {
   content: none;
 }
-code,
-kbd,
-samp,
-pre {
-  font-family: monospace, monospace, sans-serif;
-}
 i:lang(zh),
 var:lang(zh),
 i:lang(ja),
