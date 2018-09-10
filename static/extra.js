@@ -25,3 +25,5 @@ if (cur) {
   else textLength = (document.getElementsByClassName('md-content__inner')[0].textContent.replace(/\s/g, '').length - document.getElementsByTagName('h1')[0].textContent.replace(/\s/g, '').length - document.getElementsByClassName('page-copyright')[0].textContent.replace(/\s/g, '').length - 4);
   if (textLength <= 0) cur.innerHTML = `<p>本页面还在建设中，欢迎参与完善！</p>`;
 }
+
+document.getElementsByTagName("html")[0].lang = "zh-Hans"; // change language to `zh-Hans` for Han.js.
