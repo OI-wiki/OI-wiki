@@ -24,21 +24,21 @@ $$
 
 在算法竞赛中，快速幂的思想不仅用于整数乘法，也可用于大整数加法，矩阵幂运算等场合中。
 
-举个栗子，$a^{10}$等价于下面的式子：
+举个栗子，$a^{10}$ 等价于下面的式子：
 
 $a \times a \times a \times a \times a \times a \times a \times a \times a \times a$
 
-通过观察我们不难发现，$a^{10}$可以转化成$(a \times a)^{5}$
+通过观察我们不难发现，$a^{10}$ 可以转化成 $(a \times a)^{5}$
 
 $\left(a \times a \right) \times\left(a \times a \right) \times \left(a \times a \right) \times \left(a \times a \right) \times \left(a \times a \right)$
 
-这时，再进行分解，我们假设$a' =a \times a$，可是我们发现，a 不能正好分完，于是我们单独拎出来一个 a'，就转化成了${a' \times a' }^{2} \times a'$
+这时，再进行分解，我们假设$a' =a \times a$，可是我们发现，a 不能正好分完，于是我们单独拎出来一个 a'，就转化成了 ${a' \times a' }^{2} \times a'$
 
 $\left (a' \times a'\right) \times\left (a' \times a'\right) \times a'$
 
 如此重复下去即可，终止条件：
 
-$a^0=1$和$a^1=a$
+$a^0=1$ 和 $a^1=a$
 
 ## 实现代码
 
