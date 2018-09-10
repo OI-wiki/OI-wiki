@@ -9,7 +9,7 @@ dfs 全称是 [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_sea
 
 伪代码：
 
-```
+```text
 dfs(u) {
   visited[u] = true
   for each edge(u, v) {

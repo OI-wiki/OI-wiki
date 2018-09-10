@@ -1,6 +1,6 @@
 ## 普通莫队算法
 
-这里内容有诸多是借鉴网上的（O(∩_∩)O 谢谢啦！），主要借鉴了：<a href="https://blog.sengxian.com/algorithms/mo-s-algorithm">https://blog.sengxian.com/algorithms/mo-s-algorithm</a>
+这里内容有诸多是借鉴网上的（O(∩\_∩)O 谢谢啦！），主要借鉴了：<a href="https://blog.sengxian.com/algorithms/mo-s-algorithm">https&#x3A;//blog.sengxian.com/algorithms/mo-s-algorithm</a>
 
 ### 概述
 
@@ -21,7 +21,6 @@
 ### 模板
 
 ```cpp
-
 inline void move(int pos, int sign) {
     // update nowAns
 }
@@ -76,7 +75,7 @@ $$
 
 综上所述，莫队算法的时间复杂度为 $O(n\sqrt{n})$；
 
-但是对于 m 的其他取值，如 m<n，分块方式需要改变才能变的更优
+但是对于 m 的其他取值，如 m&lt;n，分块方式需要改变才能变的更优
 
 怎么分块呢？
 
@@ -109,7 +108,7 @@ $C(a,2)=a\times (a-1)/2$
 
 算法总复杂度：$O(n\sqrt{n} )$
 
-下面的代码中 `mot` 表示答案的分母(mother)，`sub` 表示分子，`sqn` 表示块的大小：$\sqrt{n}$，`arr` 是输入的数组，`node ` 是存储询问的结构体，`tab` 是询问序列（排序后的），`col` 同上所述。
+下面的代码中 `mot` 表示答案的分母 (mother)，`sub` 表示分子，`sqn` 表示块的大小：$\sqrt{n}$，`arr` 是输入的数组，`node` 是存储询问的结构体，`tab` 是询问序列（排序后的），`col` 同上所述。
 <strong > 注意：下面代码中的移动区间的 4 个 for 循环的位置很关键，不能改变它们之间的位置关系，不然会 WA（因为有那个 ++l 和 --r）。</strong>
 代码：
 
@@ -150,11 +149,10 @@ int main()
 }
 ```
 
-
 ## 带修改
 
 请确保您已经会普通莫队算法了。
-如果您还不会，请先阅读上面的“普通莫队算法”
+如果您还不会，请先阅读上面的 “普通莫队算法”
 
 ### 特点
 
@@ -190,6 +188,7 @@ int main()
 - 左端点所在块一共有 $n^{\frac{1}{3}}$ 中，右端点也是 $n^{\frac{1}{3}}$ 种，一共 ${n^{\frac{1}{3}}}\times{n^{\frac{1}{3}}}=n^{\frac{2}{3}}$ 种，每种乘上移动的复杂度 $O(n)$，总复杂度 $O(n^{\frac{5}{3}})$
 
 ### 例题
+
 [数颜色 BZOJ - 2120](https://www.lydsy.com/JudgeOnline/problem.php?id=2120)
 
 题目大意：给你一个序列，M 个操作，有两种操作：
@@ -220,6 +219,7 @@ int main()
 因此这道题就这样用带修改莫队轻松解决啦！
 
 代码：
+
 ```cpp
 #include <bits/stdc++.h>
 #define SZ (10005)
@@ -299,7 +299,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 push_back(x),dfs 完 x 点，�
 
 这样的话，我们就把一棵树处理成了序列。
 
-例题是 [[WC2013] 糖果公园](https://www.luogu.org/problemnew/show/P4074), 这题是带修改树上莫队
+例题是 [\[WC2013\] 糖果公园](https://www.luogu.org/problemnew/show/P4074), 这题是带修改树上莫队
 
 题意是给你一棵树, 每个点有颜色, 每次询问
 
@@ -328,6 +328,7 @@ w 表示该颜色出现 i 次后的价值
 然后因为所包含的区间内可能没有 LCA，对于没有的情况要将多余的贡献删除，然后就完事了
 
 code：
+
 ```cpp
 #include<algorithm>
 #include<iostream>

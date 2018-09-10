@@ -4,7 +4,7 @@ By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 ## 二进制优化解多重背包
 
-### 例题 [经典问题-多重背包](https://oi-wiki.org/dp/backpack/#_3)
+### 例题 [经典问题 - 多重背包](https://oi-wiki.org/dp/backpack/#_3)
 
 题目大意：有 $n$ 种物品，每种物品有 $a_i$ 件，购买一件这种物品的费用为 $c_i$，价值为 $v_i$。有一个容量为 $t$ 的背包，现在让你找到最优的一种方案，使得装入背包的物品的总价值最大。
 
@@ -35,7 +35,7 @@ for(int i=1;i<=cur;i++)for(int j=m;j>=v[i];j--)if(f[j-v[i]])f[j]=true;
 
 [HDU 2844 Coins](http://acm.hdu.edu.cn/showproblem.php?pid=2844)
 
-## 单调队列&单调栈优化
+## 单调队列 & 单调栈优化
 
 学习本节前，请务必先学习 [单调队列](https://oi-wiki.org/ds/monotonous-queue/)。
 
@@ -70,13 +70,13 @@ $f_{i,j}=\max\{f_{i-1,k}+b_i+|a_i-j|\}=\max\{f_{i-1,k}+|a_i-j|\}+b_i$
 
 [luogu P1886 滑动窗口](https://www.luogu.org/problemnew/show/P1886)
 
-[luogu P2254 [NOI2005] 瑰丽华尔兹](https://www.luogu.org/problemnew/show/P2254)
+[luogu P2254 \[NOI2005\] 瑰丽华尔兹](https://www.luogu.org/problemnew/show/P2254)
 
-[luogu P2569 [SCOI2010] 股票交易](https://www.luogu.org/problemnew/show/P2569)
+[luogu P2569 \[SCOI2010\] 股票交易](https://www.luogu.org/problemnew/show/P2569)
 
 ## 斜率优化
 
-### 例题 [luogu P3195 [HNOI2008]玩具装箱TOY](https://www.luogu.org/problemnew/show/P3195)
+### 例题 [luogu P3195 \[HNOI2008\] 玩具装箱 TOY](https://www.luogu.org/problemnew/show/P3195)
 
 令 $f_i$ 表示前 $i$ 个物品，随意分组装在任意多个容器里所能得到的最小费用。
 
@@ -92,27 +92,27 @@ $f_i+2\times s_i\times (s_j+L')=f_j+s_i^2+(s_j+L')^2$
 
 ![](https://cdn.luogu.org/upload/pic/13267.png)
 
-如图，我们将这个斜率固定的直线从下往上平移，直到有一个点在这条直线上，然后将新的点加入点集，这样肯定能保证所有的直线的斜率都是单调递升的（因为如果新的直线斜率小于斜率最大的直线，那么其一定不成被选择成为新的决策），所以我们相当于维护了一个下凸包。（如果求的是 $\max$ 那么就要维护一个 ** 上凸包 ** 。这种东西要具体情况具体分析，如果直线的斜率不满足单调性，那就要维护整个凸包/二分等奇技淫巧。）
+如图，我们将这个斜率固定的直线从下往上平移，直到有一个点在这条直线上，然后将新的点加入点集，这样肯定能保证所有的直线的斜率都是单调递升的（因为如果新的直线斜率小于斜率最大的直线，那么其一定不成被选择成为新的决策），所以我们相当于维护了一个下凸包。（如果求的是 $\max$ 那么就要维护一个 ** 上凸包 ** 。这种东西要具体情况具体分析，如果直线的斜率不满足单调性，那就要维护整个凸包 / 二分等奇技淫巧。）
 
 可以用单调队列维护下凸包。
 
 ### 几道练习题：
 
-[luogu P4072 [SDOI2016] 征途](https://www.luogu.org/problemnew/show/P4072)
+[luogu P4072 \[SDOI2016\] 征途](https://www.luogu.org/problemnew/show/P4072)
 
-[luogu P2120 [ZJOI2007] 仓库建设](https://www.luogu.org/problemnew/show/P2120)
+[luogu P2120 \[ZJOI2007\] 仓库建设](https://www.luogu.org/problemnew/show/P2120)
 
-[luogu P3628 [APIO2010] 特别行动队](https://www.luogu.org/problemnew/show/P3628)
+[luogu P3628 \[APIO2010\] 特别行动队](https://www.luogu.org/problemnew/show/P3628)
 
-[bzoj 4709 [Jsoi2011] 柠檬](https://www.lydsy.com/JudgeOnline/problem.php?id=4709)
+[bzoj 4709 \[Jsoi2011\] 柠檬](https://www.lydsy.com/JudgeOnline/problem.php?id=4709)
 
 [CF311B Cats Transport](http://codeforces.com/problemset/problem/311/B)
 
-[luogu P4027 [NOI2007] 货币兑换](https://www.luogu.org/problemnew/show/P4027)
+[luogu P4027 \[NOI2007\] 货币兑换](https://www.luogu.org/problemnew/show/P4027)
 
 ## 四边形不等式优化
 
-### 例题 [luogu P1880 [NOI1995]石子合并](https://www.luogu.org/problemnew/show/P1880)
+### 例题 [luogu P1880 \[NOI1995\] 石子合并](https://www.luogu.org/problemnew/show/P1880)
 
 题目大意：在一个环上有 $n$ 个数，进行 $n-1$ 次合并操作，每次操作将相邻的两堆合并成一堆，能获得新的一堆中的石子数量的和的得分。你需要最大化你的得分。
 
@@ -124,15 +124,15 @@ $f_i+2\times s_i\times (s_j+L')=f_j+s_i^2+(s_j+L')^2$
 
 ### 什么是四边形不等式？
 
-对于 $a<b\le c<d$，如果有$f_{a,c}+f_{b,d}\le f_{b,c}+f_{a,d}$，则称该数组满足四边形不等式，可以用通俗的方法表述为“交叉小于包含”。
+对于 $a<b\le c<d$，如果有$f_{a,c}+f_{b,d}\le f_{b,c}+f_{a,d}$，则称该数组满足四边形不等式，可以用通俗的方法表述为 “交叉小于包含”。
 
 两个定理：
 
-1.四边形不等式能优化的状态转移方程能表示为 $f_{i,j}=\max\{f_{i,k}+f_{k+1,j}+cost(i,j)\}(i\le k\le j)$。如果 $cost$ 函数同时满足单调性和四边形不等式，那么数组 $f$ 也满足四边形不等式。
+1. 四边形不等式能优化的状态转移方程能表示为 $f_{i,j}=\max\{f_{i,k}+f_{k+1,j}+cost(i,j)\}(i\le k\le j)$。如果 $cost$ 函数同时满足单调性和四边形不等式，那么数组 $f$ 也满足四边形不等式。
 
 定义 $idx_{i,j}$ 为在转移 $f_{i,j}$ 的过程中在 $k=idx_{i,j}$ 时取得最小值，那么有如下定理：
 
-2.如果 $f$ 数组满足四边形不等式，那么 $idx$ 函数满足单调性，即有 $idx_{i,j}\le idx_{i,j+1}\le idx_{i+1,j+1}$ 。
+2. 如果 $f$ 数组满足四边形不等式，那么 $idx$ 函数满足单调性，即有 $idx_{i,j}\le idx_{i,j+1}\le idx_{i+1,j+1}$ 。
 
 证明会和题目解法一起 $qwq$ 
 
@@ -220,8 +220,8 @@ for(int i=n;i>=1;i--)
 
 ### 一道练习题：
 
-[luogu P4767 [IOI2000]邮局](https://www.luogu.org/problemnew/show/P4767)
+[luogu P4767 \[IOI2000\] 邮局](https://www.luogu.org/problemnew/show/P4767)
 
 ### 参考资料
 
-[NOIAu 的CSDN 博客](https://blog.csdn.net/noiau/article/details/72514812)
+[NOIAu 的 CSDN 博客](https://blog.csdn.net/noiau/article/details/72514812)

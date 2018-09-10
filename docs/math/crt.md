@@ -30,15 +30,15 @@ $$
 ### 算法流程
 
 1. 计算所有模数的积 $n$；
-2. 对于第 $i$ 个方程：
-	1. 计算 $m_i=\frac{n}{n_i}$；
-	2. 计算 $m_i$ 在模 $n_i$ 意义下的[逆元](/math/inverse/) $m_i^{-1}$；
-	3. 计算 $c_i=m_im_i^{-1}$（**不要对 $n_i$ 取模**）。
+2.  对于第 $i$ 个方程：
+    1. 计算 $m_i=\frac{n}{n_i}$；
+    2. 计算 $m_i$ 在模 $n_i$ 意义下的[逆元](/math/inverse/) $m_i^{-1}$；
+    3. 计算 $c_i=m_im_i^{-1}$（**不要对 $n_i$ 取模**）。
 3. 方程组的唯一解为：$a=\sum_{i=1}^k a_ic_i \pmod n$。
 
 ### 伪代码
 
-```plain
+```text
 1 → n
 0 → ans
 for i = 1 to k
@@ -112,3 +112,11 @@ $$
 用上面的方法两两合并就可以了……
 
 推荐练习：POJ 2891
+
+[【模板】扩展中国剩余定理](https://www.luogu.org/problemnew/show/P4777)
+
+[\[NOI2018\] 屠龙勇士](https://www.luogu.org/problemnew/show/P4774)
+
+[\[TJOI2009\] 猜数字](https://www.luogu.org/problemnew/show/P3868)
+
+[\[SDOI2010\] 古代猪文](https://www.luogu.org/problemnew/show/P2480)

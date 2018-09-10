@@ -11,6 +11,8 @@
 
 放一个之前的高精度板子吧。
 
+还有一个很好用的[高精度封装类](https://paste.ubuntu.com/p/7VKYzpC7dn/) 10kb 想用可以自行下载。
+
 ```c++
 #define MAXN 9999
 //MAXN 是一位中最大的数字
@@ -38,9 +40,9 @@ struct Big{
   //TODO: Big / Big;
   Big operator ^ (const int &)const;
   //TODO: Big ^ Big;
-  
+
   //TODO: Big 位运算;
-  
+
   int operator % (const int &)const;
   //TODO: Big ^ Big;
   bool operator < (const Big &)const;

@@ -28,3 +28,24 @@ blockquote.page-time{
 #myBtn:hover {
     background-color: #d3d3d3; 
 }
+
+span.mjpage > svg {
+    overflow-x: scroll;
+    max-width: intrinsic;
+    max-width: -moz-max-content;
+    max-width: -webkit-max-content;
+}
+
+span.mjpage__block > svg {
+  min-width: 80%;
+}
+
+.md-icon, .md-clipboard::before, .md-nav__title::before, .md-nav__button, .md-nav__link::after, .md-search-result__article--document::before, .md-source-file::before, .md-typeset .admonition > .admonition-title::before, .md-typeset details > .admonition-title::before, .md-typeset .admonition > summary::before, .md-typeset details > summary::before, .md-typeset .footnote-backref, .md-typeset .critic.comment::before, .md-typeset summary::after, .md-typeset .task-list-control .task-list-indicator::before {
+  font-family: 'Material Icons' !important; /* over ride is needed*/
+  font-style: normal !important; /* over ride is needed*/
+  font-variant: nomal !important; /* over ride is needed*/
+}
+
+#color-button {
+  text-align: unset !important;
+}

@@ -15,7 +15,7 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
 
 伪代码：
 
-```
+```text
 bfs(s) {
   q = new queue()
   q.push(s)), visited[s] = true
@@ -95,11 +95,126 @@ void restore(int x) {
 - 找到一定在 $(a, b)$ 最短路上的点。（分别从 a 和 b 进行 BFS，得到两个 d 数组。之后对每一个点 v，如果 $d_a[u]+d_b[v]=d_a[b]$，则说明该点在最短路上）
 - 找到一条长度为偶数的最短路。（我们需要一个构造一个新图，把每个点拆成两个新点，原图的边 $(u, v)$ 变成 $((u, 0), (v, 1))$ 和 $((u, 1), (v, 0))$。对新图做 BFS，$(s, 0)$ 和 $(t, 0)$ 之间的最短路即为所求）
 
-
 ## 例题
 
 - [LOJ#2317. 「NOIP2017」奶酪](https://loj.ac/problem/2317)
 
 ## 参考
 
-https://cp-algorithms.com/graph/breadth-first-search.html
+<https://cp-algorithms.com/graph/breadth-first-search.html>
+
+## 双端队列 BFS
+
+如果你不了解双端队列 `deque` 的话，请到 STL-queue 中学习。
+
+双端队列 BFS 又称 0-1 BFS
+
+### 适用范围
+
+边权值为可能有，也可能没有（由于 BFS 适用于权值为 1 的图，所以一般是 0 or 1），或者能够转化为这种边权值的最短路问题。
+
+例如在走迷宫问题中，你可以花 1 个金币走 5 步，也可以不花金币走 1 步，这就可以用 0-1 BFS 解决。
+
+### 实现
+
+把没有权值的边扩展到的点放到队首，有权值的边扩展到的点放到队尾。
+
+下面是伪代码：
+
+```cpp
+while(队列不为空) 
+{
+    int u = 队首; 
+    弹出队首;
+    for(枚举 u 的邻居) 
+    {
+        更新数据 
+        if(...) 
+          添加到队首;
+         else
+          添加到队尾;
+    }
+}
+```
+
+### 例题
+
+### [Croc Champ 2012 - Round 1 B Chamber of Secrets](http://codeforces.com/problemset/problem/173/B)
+
+一个 $n \times m$ 的图，现在有一束激光从左上角往右边射出，每遇到 '#'，你可以选择光线往四个方向射出，或者什么都不做，问最少需要多少个 '#' 往四个方向射出才能使光线在第 $n$ 行往右边射出。
+
+此题目正解不是 0-1 BFS 但是适用 0-1 BFS 可以不需要思考过程，赛时许多大佬都是这么做的。
+
+做法很简单，一个方向射出不需要花费（0），而往四个方向射出需要花费（1），然后直接来就可以了。
+
+#### Code
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+#define INF (1<<29)
+int n,m;
+char grid[1001][1001];
+int dist[1001][1001][4];
+int vis[1001][1001][4];
+int fx[]={1,-1,0,0};
+int fy[]={0,0,1,-1};
+deque <int> q;
+void add_front(int x,int y,int dir,int d)
+{
+    if(d<dist[x][y][dir])
+    {
+        dist[x][y][dir]=d;
+        q.push_front(dir);
+        q.push_front(y);
+        q.push_front(x);
+    }
+}
+void add_back(int x,int y,int dir,int d)
+{
+    if(d<dist[x][y][dir])
+    {
+        dist[x][y][dir]=d;
+        q.push_back(x);
+        q.push_back(y);
+        q.push_back(dir);
+    }
+}
+int main()
+{
+    cin>>n>>m;
+    for(int i=0;i<n;i++)
+        cin>>grid[i];
+
+    for(int i=0;i<n;i++)
+        for(int j=0;j<m;j++)
+            for(int k=0;k<4;k++)
+                dist[i][j][k]=INF;
+
+    add_front(n-1,m-1,3,0);
+
+    while(!q.empty())
+    {
+        int x=q[0],y=q[1],dir=q[2];
+        q.pop_front();
+        q.pop_front();
+        q.pop_front();
+        if(vis[x][y][dir])
+            continue;
+        vis[x][y][dir]=true;
+        int d=dist[x][y][dir];
+        int nx=x+fx[dir],ny=y+fy[dir];
+        if(nx>=0&&nx<n&&ny>=0&&ny<m)
+            add_front(nx,ny,dir,d);
+        if(grid[x][y]=='#')
+            for(int i=0;i<4;i++)
+                if(i!=dir)
+                    add_back(x,y,i,d+1);
+    }
+    if(dist[0][0][3]==INF)
+        cout<<-1<<endl;
+    else
+        cout<<dist[0][0][3]<<endl;
+    return 0;
+}
+```

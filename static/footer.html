@@ -22,13 +22,21 @@
 
 {% import "partials/language.html" as lang with context %}
 
+<!-- InstantClick -->
+<script type="text/javascript" src="https://cdn.bootcss.com/instantclick/3.0.0/instantclick.js" data-no-instant></script>
+<script data-no-instant>
+InstantClick.init(true);
+</script>
+
+<script src="{{ 'assets/javascripts/modernizr.1aa3b519.js' | url }}" data-no-instant></script>
+
 <!-- back to top -->
-<link rel="stylesheet" href="https://npmcdn.com/data-tip@0.0.52/dist/data-tip.css">
+<link rel="stylesheet" href="https://unpkg.com/data-tip@0.0.52/dist/data-tip.css">
 <script>
 // 当网页向下滑动 20px 出现"返回顶部" 按钮
 window.onscroll = function() {scrollFunction()};
  
-function scrollFunction() {console.log(121);
+function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         document.getElementById("myBtn").style.display = "block";
     } else {

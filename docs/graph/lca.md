@@ -34,6 +34,7 @@
 
 可先求出 LCA，再结合性质 $7$ 进行解答。也可以直接在求 LCA 时求出结果。  
 以下代码仅供参考。
+
 ```c++
 #include <cstdio>
 #include <iostream>
@@ -107,6 +108,7 @@ int main() {
 ### 转化为 RMQ 问题
 
 首先对树进行 dfs，`dfs(root, 1)`，将深度和节点编号按顺序记录到数组中，并记录各个点在 dfs 序列中第一次出现的位置。
+
 ```c++
 int depth[N * 2], id[N * 2], loc[N];
 int tot = 1;
@@ -123,6 +125,7 @@ void dfs(int x, int dep) {
     }
 }
 ```
+
 然后对 depth 数组建立支持 RMQ 查询的数据结构，需要支持查询最小值所处位置。
 
 当我们需要查询某点对 `(u, v)` 的 LCA 时，需要先查询区间 `[min(loc[u], loc[v]), max(loc[u], loc[v])]` 上最小值的出现位置，设其为 `pos`，则 `(u, v)` 的 LCA 为 `id[pos]`。
@@ -137,23 +140,23 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
 
 > 本节**性质**部分内容翻译自[wcipeg](http://wcipeg.com/wiki/Lowest_common_ancestor)，并做过修改。
 
-### 标准RMQ
+### 标准 RMQ
 
 时间复杂度 $O(N)-O(1)$，空间复杂度 $O(N)$ ，支持在线查询，常数较大，编程复杂度较高。
 
 流程：
 
-- 通过DFS序将树上LCA问题转为序列RMQ问题
+- 通过 DFS 序将树上 LCA 问题转为序列 RMQ 问题
 
 - 通过单调栈将序列转为笛卡尔树
 
 - 在笛卡尔树上求欧拉序，如此转化为 $\pm 1$ RMQ
 
-- 对新序列分块，做分块ST表，块内通过二进制状压DP维护
+- 对新序列分块，做分块 ST 表，块内通过二进制状压 DP 维护
 
 每一步的复杂度都是 $O(N)$ 的，因此总复杂度依然是 $O(N)$ 。
 
-提供RMQ转标准RMQ的代码，为洛谷上ST表的例题[**P3865** 【模板】ST表](https://www.luogu.org/problemnew/show/P3865)
+提供 RMQ 转标准 RMQ 的代码，为洛谷上 ST 表的例题[**P3865** 【模板】ST 表](https://www.luogu.org/problemnew/show/P3865)
 
 ```cpp
 // Copyright (C) 2018 Skqliao. All rights served.

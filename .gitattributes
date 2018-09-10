@@ -1,0 +1,5 @@
+static/* linguist-vendored
+docs/_static/* linguist-vendored
+*.sh linguist-vendored
+*.js linguist-vendored
+*.json linguist-vendored
