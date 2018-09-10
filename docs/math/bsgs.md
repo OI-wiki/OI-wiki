@@ -26,7 +26,9 @@ $$
 
 求解
 
-$x^a \equiv b \bmod p$
+$$
+x^a \equiv b \bmod p
+$$
 
 其中 $p$ 是个质数.
 
