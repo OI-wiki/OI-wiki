@@ -32,7 +32,7 @@ $a \times a \times a \times a \times a \times a \times a \times a \times a \time
 
 $\left(a \times a \right) \times\left(a \times a \right) \times \left(a \times a \right) \times \left(a \times a \right) \times \left(a \times a \right)$
 
-这时，再进行分解，我们假设$a' =a \times a $，可是我们发现，a不能正好分完，于是我们单独拎出来一个a'，就转化成了${a' \times a' }^{2} \times a'$
+这时，再进行分解，我们假设$a' =a \times a$，可是我们发现，a 不能正好分完，于是我们单独拎出来一个 a'，就转化成了${a' \times a' }^{2} \times a'$
 
 $\left (a' \times a'\right) \times\left (a' \times a'\right) \times a'$
 
