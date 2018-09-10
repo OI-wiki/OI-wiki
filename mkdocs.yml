@@ -241,11 +241,14 @@ extra:
   pagetime: 'on'
 
 extra_javascript:
-  - '_static/js/extra.js?v=4'
+  - 'https://cdn.bootcss.com/Han/3.3.0/han.min.js'
+  - '_static/js/extra.js?v=5'
   - 'https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'
+  
 
 extra_css:
-  - '_static/css/extra.css?v=4'
+  - 'https://unpkg.com/ah@1.0.5/han.min.css'
+  - '_static/css/extra.css?v=5'
 
 # Extensions
 markdown_extensions:

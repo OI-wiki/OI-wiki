@@ -22,6 +22,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 点击色块可更换主题的主色
 
+<div id="color-button">
 <button data-md-color-primary="red">Red</button>
 <button data-md-color-primary="pink">Pink</button>
 <button data-md-color-primary="purple">Purple</button>
@@ -42,6 +43,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 <button data-md-color-primary="grey">Grey</button>
 <button data-md-color-primary="blue-grey">Blue Grey</button>
 <button data-md-color-primary="white">White</button>
+</div>
 
 <script>
   var buttons = document.querySelectorAll("button[data-md-color-primary]");
@@ -59,6 +61,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 点击色块更换主题的辅助色
 
+<div id="color-button">
 <button data-md-color-accent="red">Red</button>
 <button data-md-color-accent="pink">Pink</button>
 <button data-md-color-accent="purple">Purple</button>
@@ -75,6 +78,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 <button data-md-color-accent="amber">Amber</button>
 <button data-md-color-accent="orange">Orange</button>
 <button data-md-color-accent="deep-orange">Deep Orange</button>
+</div>
 
 <script>
   var buttons = document.querySelectorAll("button[data-md-color-accent]");
