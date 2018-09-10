@@ -102,11 +102,10 @@ $\therefore r = 0$.
 
 ```cpp
 d=1,num=0,t=0;
-while(gcd(a,c)!=1){
-    if(b%gcd(a,c)!=0) {
+for (int t = t = gcd(a, c); t != 1; t = gcd(a, c)){
+    if(b % t) {
         \\无解
     }
-    t = gcd(a, c);
     b/=t;
     c/=t;
     d*=a/t;
