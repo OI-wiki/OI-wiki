@@ -29,6 +29,7 @@ sed -i 's/{{ page.content }}/{% set pagetime = config.extra.pagetime %} {% if pa
 # Maybe remove md-icons or just use an important attr. for icons?
 # sed -i 's/<div class="md-content">/<div class="han-init-context">/g' mkdocs-material/material/base.html
 
+cp ./static/main.html mkdocs-material/material/
 cp ./static/disqus.html mkdocs-material/material/partials/integrations/disqus.html
 cp ./static/footer.html mkdocs-material/material/partials/footer.html
 cp ./static/extra.js docs/_static/js/extra.js
