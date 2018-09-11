@@ -28,34 +28,43 @@ if (cur) {
 
 document.getElementsByTagName("html")[0].lang = "zh-Hans"; // change language to `zh-Hans` for Han.js.
 
+var site_url = 'http://127.0.0.1:8000/';
+// var site_url = 'https://oi-wiki.org/';
+var url = document.URL.replace(site_url, '').replace(site_url, '').slice(0, -1);
+var script = document.createElement('script');
 function foo(response) {
   var data = response.data;
   var num = response.data.length;
-  var ti = new Date(data[0].commit.author.date).toLocaleString('zh-CN', { timeZone: "Asia/Shanghai", hour12: false });
-
-  var author_list = [];
-  for (var i = 0; i < num; ++i) {
-    author_list.push(data[i].author.login);
+  if (data && data[0]) {
+    var ti = new Date(data[0].commit.author.date).toLocaleString('zh-CN', { timeZone: "Asia/Shanghai", hour12: false });
+  
+    var author_list = [];
+    for (var i = 0; i < num; ++i) {
+      author_list.push(data[i].author.login);
+    }
+    var cnts = author_list.reduce(function (obj, val) {
+      obj[val] = (obj[val] || 0) + 1;
+      return obj;
+    }, {});
+    //Use the keys of the object to get all the values of the array
+    //and sort those keys by their counts
+    var sorted = Object.keys(cnts).sort(function (a, b) {
+      return cnts[b] - cnts[a];
+    });
+    sorted = sorted.map(function(x) {
+      return `<a href=https://github.com/${x}>${x}</a>`
+    })
+    document.getElementsByClassName('facts_modified')[0].innerHTML = (ti);
+    document.getElementsByClassName('page_contributors')[0].innerHTML = (sorted.join(', '));
+  } else {
+    url += '/index';
+    var script = document.createElement('script');
+    document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/24OI/OI-wiki/commits/master/docs/${url}.md`);
+    script.src = `https://api.github.com/repos/24OI/OI-WIki/commits?path=docs/${url}.md&callback=foo`;
+    document.getElementsByTagName('head')[0].appendChild(script);
   }
-  var cnts = author_list.reduce(function (obj, val) {
-    obj[val] = (obj[val] || 0) + 1;
-    return obj;
-  }, {});
-  //Use the keys of the object to get all the values of the array
-  //and sort those keys by their counts
-  var sorted = Object.keys(cnts).sort(function (a, b) {
-    return cnts[b] - cnts[a];
-  });
-  sorted = sorted.map(function(x) {
-    return `<a href=https://github.com/${x}>${x}</a>`
-  })
-  document.getElementsByClassName('facts_modified')[0].innerHTML = (ti);
-  document.getElementsByClassName('page_contributors')[0].innerHTML = (sorted.join(', '));
 }
 
-var site_url = 'https://oi-wiki.org/';
-var url = document.URL.replace(site_url, '').replace(site_url, '').slice(0, -1);
-var script = document.createElement('script');
 if (url == "") {
   // HomePage
   document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/24OI/OI-wiki/commits/master/docs/index.md`);
