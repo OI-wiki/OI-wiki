@@ -28,8 +28,7 @@ if (cur) {
 
 document.getElementsByTagName("html")[0].lang = "zh-Hans"; // change language to `zh-Hans` for Han.js.
 
-var site_url = 'http://127.0.0.1:8000/';
-// var site_url = 'https://oi-wiki.org/';
+var site_url = 'https://oi-wiki.org/';
 var url = document.URL.replace(site_url, '').replace(site_url, '').slice(0, -1);
 var script = document.createElement('script');
 function foo(response) {
