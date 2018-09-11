@@ -242,13 +242,13 @@ extra:
 
 extra_javascript:
   - 'https://cdn.bootcss.com/Han/3.3.0/han.min.js'
-  - '_static/js/extra.js?v=5'
+  - '_static/js/extra.js?v=6'
   - 'https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'
   
 
 extra_css:
   - 'https://unpkg.com/ah@1.0.5/han.min.css'
-  - '_static/css/extra.css?v=5'
+  - '_static/css/extra.css?v=6'
 
 # Extensions
 markdown_extensions:
