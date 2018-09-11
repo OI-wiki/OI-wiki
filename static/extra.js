@@ -60,8 +60,14 @@ if (url == "") {
   // HomePage
   document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/24OI/OI-wiki/commits/master/docs/index.md`);
   script.src = `https://api.github.com/repos/24OI/OI-WIki/commits?path=docs/index.md&callback=foo`;
-} else {
+  document.getElementsByTagName('head')[0].appendChild(script);
+} else if (url != "404.htm") {
   document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/24OI/OI-wiki/commits/master/docs/${url}.md`);
   script.src = `https://api.github.com/repos/24OI/OI-WIki/commits?path=docs/${url}.md&callback=foo`;
+  document.getElementsByTagName('head')[0].appendChild(script);
+} else {
+  document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/24OI/OI-wiki/commits/master`);
+  document.getElementsByClassName('facts_modified')[0].innerHTML = ('最近没更新过这个页面');
+  document.getElementsByClassName('page_contributors')[0].innerHTML = ('本页面是自动生成的');
+  document.getElementsByClassName('page_edit_url')[0].setAttribute('href', `#`);
 }
-document.getElementsByTagName('head')[0].appendChild(script);
