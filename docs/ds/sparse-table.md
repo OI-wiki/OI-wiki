@@ -96,7 +96,7 @@ int main()
 ### 注意点
 
 1. 输入输出数据一般很多，建议开启输入输出优化
-2. 每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议预处理：
+2.  每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议预处理：
 
     $log2[i]=log2[i/2]+1$
 
@@ -107,4 +107,3 @@ int main()
 $ST$ 表能较好的维护区间信息，时间复杂度较低，代码量相对其他算法不大。但是，$ST$ 表能维护的信息非常有限，不能较好地扩展，并且不支持修改操作。
 
 ## 树上倍增求 LCA
-
