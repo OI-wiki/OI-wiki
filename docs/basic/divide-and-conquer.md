@@ -45,7 +45,56 @@ int f(传入数值)
 
 我们发现，许多数是经过重复调用的，做了许多重复的事，当然会慢。我们可以用数组记下重复的值，具体见这篇文章：<https://cbw.blog.luogu.org/P1028-antithesis>
 
-因为递归很像搜索，所以搜索中的优化、剪枝在递归中基本都可以用。
+### 各种模板
+
+**记忆化搜索模板：**
+
+```c++
+int g[MAXN]；
+int f(传入数值)
+{
+    if (g[规模]!=无效数值)
+        return g[规模];
+    if (终止条件)
+        return 最小子问题解;
+    g[规模]=f(缩小规模);
+    return g[规模];
+}
+int main()
+{
+    ...
+    memset(g,无效数值,sizeof(g));
+}
+```
+
+**最优性剪枝模板：**
+
+```c++
+int ans；
+int f(传入数值)
+{
+    if (当前解没ans优)
+        return 0；
+    if (终止条件)
+        return 最小子问题解;
+    return f(缩小规模);
+}
+```
+
+**可行性剪枝模板：**
+
+```c++
+int f(传入数值)
+{
+    if (该解不可能存在)
+        return 0；
+    if (终止条件)
+        return 最小子问题解;
+    return f(缩小规模);
+}
+```
+
+因为递归很像搜索，所以搜索中的优化、剪枝在递归中基本都可以用。具体见还未完工的<https://oi-wiki.org/search/optimization>
 
 # 分治
 
