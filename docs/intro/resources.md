@@ -25,6 +25,7 @@
 - [LeetCode China](https://leetcode-cn.com/)
 - [hihoCoder](https://hihocoder.com/)
 - [Kattis](https://open.kattis.com/)
+- [CodeChef](https://codechef.com/)
 
 ## 教程
 
@@ -46,6 +47,7 @@
 - 算法导论
 - 啊哈算法
 - 挑战程序设计竞赛全套（通俗易懂）
+- 算法概论（提纲挚领，但内容较少）
 
 ## 工具
 
