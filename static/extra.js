@@ -28,8 +28,7 @@ if (cur) {
 
 document.getElementsByTagName("html")[0].lang = "zh-Hans"; // change language to `zh-Hans` for Han.js.
 
-var site_url = 'https://oi-wiki.org/';
-var url = document.URL.replace(site_url, '').replace(site_url, '').slice(0, -1);
+var url = document.URL.replace(/http\S+\.org\//gi, '').replace(/#\S+$/gi, '').slice(0, -1);
 var script = document.createElement('script');
 function foo(response) {
   var data = response.data;
@@ -55,7 +54,7 @@ function foo(response) {
     })
     document.getElementsByClassName('facts_modified')[0].innerHTML = (ti);
     document.getElementsByClassName('page_contributors')[0].innerHTML = (sorted.join(', '));
-  } else {
+  } else if (!url.endsWith('index')) {
     url += '/index';
     var script = document.createElement('script');
     document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/24OI/OI-wiki/commits/master/docs/${url}.md`);
