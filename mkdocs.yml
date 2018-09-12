@@ -144,7 +144,7 @@ nav:
       - 平衡树套线段树: ds/seg-in-balanced.md
       - 线段树套平衡树: ds/balanced-in-seg.md
     - AVL 树: ds/avl.md
-    - 划分树: ds/dividin.md
+    - 划分树: ds/dividing.md
     - K-Dtree: ds/k-dtree.md
     - 可持久化线段树: ds/persistent-seg.md
     - 可持久化块状数组: ds/persistent-block-array.md
