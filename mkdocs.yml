@@ -242,7 +242,7 @@ extra:
 
 extra_javascript:
   - 'https://cdn.bootcss.com/Han/3.3.0/han.min.js'
-  - '_static/js/extra.js?v=7'
+  - '_static/js/extra.js?v=8'
   - 'https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'
   
 
