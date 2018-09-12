@@ -50,7 +50,7 @@ begin
 	Build(left,mid,deep+1); // 继续
 	Build(mid+1,right,deep+1);
 end;
-````
+```
 
 ## 查询
 
