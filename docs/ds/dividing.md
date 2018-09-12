@@ -13,9 +13,10 @@
 
 两个关键数组:
 
-````text
+```text
 tree[log(N),N]   : 也就是树,要存下所有的值,空间复杂度 $O(n\log n)$。
-toleft[log(N),n] : 也就是每一层 1~i 进入左儿子的数量,这里需要理解一下,这是一个前缀和。还有,这个东西不分是在哪一个节点,但是分那一层(没有关系)。 
+toleft[log(N),n] : 也就是每一层 1~i 进入左儿子的数量,这里需要理解一下,这是一个前缀和。
+```
 
 ```pascal
 procedure Build(left,right,deep:longint); // left,right 是左右区间,deep是第几层
@@ -49,7 +50,7 @@ begin
 	Build(left,mid,deep+1); // 继续
 	Build(mid+1,right,deep+1);
 end;
-````
+```
 
 ## 查询
 
