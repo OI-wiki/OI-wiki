@@ -275,9 +275,3 @@ int main()
     ...
 }
 ```
-
-* * *
-
-**如有疑问或质疑, 请留下评论或联系我 GitHub [@interestingLSY](https://github.com/interestingLSY)**
-
-**questions are welcome**
