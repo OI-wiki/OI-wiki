@@ -1,19 +1,3 @@
-**本文译自博文
-[Суффиксный автомат](http://e-maxx.ru/algo/suffix_automata) 与其英文翻译版 [Suffix Automaton](https://cp-algorithms.com/string/suffix-automaton.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
-
-[LibreOJ 题库维护组](https://loj.ac/article/746)
-/
-[MingqiHuang @ GitHub](https://github.com/MingqiHuang)
-/
-[Mingqi_H @ LibreOJ](https://loj.ac/user/1180)
-/
-QQ 号：742745308  
-2018 年 8 月 23 日
-
-# 后缀自动机
-
-**FBI Warning: 全文约 20000 字，阅读全文约需要 1 小时。**
-
 **后缀自动机**是一个能解决许多字符串相关问题的有力的数据结构。
 
 举个例子，字符串问题：
@@ -572,27 +556,40 @@ $$
 
 因此我们需要计算可达性，它告诉我们对于自动机中的每个状态和每个字符 $D_i$ 是否存在这样的一条路径。这可以容易地通过 DFS 或 BFS 与动态规划计算。在此之后，问题的答案就是状态 $v$ 的字符串 $longest(v)$ 中存在所有特殊字符的路径。
 
-## 练习
+## 例题
 
-可以使用后缀自动机解决的问题：
+- SPOJ #7258 SUBLEX
+- [HihoCoder #1441 : 后缀自动机一·基本概念](http://hihocoder.com/problemset/problem/1441)
 
-- SPOJ #7258 SUBLEX 「字典序子串搜索」（难度：中等）
-
-## 相关文献
+## 相关资料
 
 我们先给出与后缀自动机有关的最初的一些文献：
 
--   A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler, R. McConnell. **Linear 
+- A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler, R. McConnell. **Linear 
     Size Finite Automata for the Set of All Subwords of a Word. An Outline of 
     Results** [1983]
--   A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler. **The Smallest Automaton 
+- A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler. **The Smallest Automaton 
     Recognizing the Subwords of a Text** [1984]
 - Maxime Crochemore. **Optimal Factor Transducers** [1985]
 - Maxime Crochemore. **Transducers and Repetitions** [1986]
 - A. Nerode. **Linear automaton transformations** [1958]
 
-另外，在更现代化的一些资源里，在很多关于字符串算法的书中，这个主题都能被找到：
+另外，在更新的一些资源里，在很多关于字符串算法的书中，都能找到这个主题：
 
 - Maxime Crochemore, Rytter Wowjcieh. **Jewels of Stringology** [2002]
 - Bill Smyth. **Computing Patterns in Strings** [2003]
 - Bill Smith. **Methods and algorithms of calculations on lines** [2006]
+
+另外，还有一些资料：
+
+- 《后缀自动机》，陈立杰。
+- 《后缀自动机在字典树上的拓展》，刘研绎。
+- 《后缀自动机及其应用》，张天扬。
+- https://www.cnblogs.com/zinthos/p/3899679.html
+- https://codeforces.com/blog/entry/20861
+- https://zhuanlan.zhihu.com/p/25948077
+
+----
+
+**本页面主要译自博文
+[Суффиксный автомат](http://e-maxx.ru/algo/suffix_automata) 与其英文翻译版 [Suffix Automaton](https://cp-algorithms.com/string/suffix-automaton.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

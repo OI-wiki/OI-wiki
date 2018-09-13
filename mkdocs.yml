@@ -175,7 +175,7 @@ nav:
     - 欧拉图: graph/euler.md
     - 强连通分量: graph/scc.md
     - 双连通分量: graph/bcc.md
-    - 割点割边: graph/bridge.md
+    - 割点和桥: graph/bridge.md
     - 二分图: graph/bi-graph.md
     - 最短路: graph/shortest-path.md
     - 差分约束: graph/differential-constraints.md

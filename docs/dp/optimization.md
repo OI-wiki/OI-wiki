@@ -1,5 +1,3 @@
-By [hsfzLZH1](https://github.com/hsfzLZH1)
-
 本章主要讲解动态规划的几种基础 ** 优化 ** 方法。
 
 ## 二进制优化解多重背包
