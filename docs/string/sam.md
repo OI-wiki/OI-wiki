@@ -559,17 +559,17 @@ $$
 ## 例题
 
 - SPOJ #7258 SUBLEX
-- [HihoCoder #1441 : 后缀自动机一·基本概念](http://hihocoder.com/problemset/problem/1441)
+- [HihoCoder #1441 : 后缀自动机一 · 基本概念](http://hihocoder.com/problemset/problem/1441)
 
 ## 相关资料
 
 我们先给出与后缀自动机有关的最初的一些文献：
 
-- A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler, R. McConnell. **Linear 
-    Size Finite Automata for the Set of All Subwords of a Word. An Outline of 
-    Results** [1983]
-- A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler. **The Smallest Automaton 
-    Recognizing the Subwords of a Text** [1984]
+-   A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler, R. McConnell. **Linear 
+      Size Finite Automata for the Set of All Subwords of a Word. An Outline of 
+      Results** [1983]
+-   A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler. **The Smallest Automaton 
+      Recognizing the Subwords of a Text** [1984]
 - Maxime Crochemore. **Optimal Factor Transducers** [1985]
 - Maxime Crochemore. **Transducers and Repetitions** [1986]
 - A. Nerode. **Linear automaton transformations** [1958]
@@ -585,11 +585,11 @@ $$
 - 《后缀自动机》，陈立杰。
 - 《后缀自动机在字典树上的拓展》，刘研绎。
 - 《后缀自动机及其应用》，张天扬。
-- https://www.cnblogs.com/zinthos/p/3899679.html
-- https://codeforces.com/blog/entry/20861
-- https://zhuanlan.zhihu.com/p/25948077
+- <https://www.cnblogs.com/zinthos/p/3899679.html>
+- <https://codeforces.com/blog/entry/20861>
+- <https://zhuanlan.zhihu.com/p/25948077>
 
-----
+* * *
 
 **本页面主要译自博文
 [Суффиксный автомат](http://e-maxx.ru/algo/suffix_automata) 与其英文翻译版 [Suffix Automaton](https://cp-algorithms.com/string/suffix-automaton.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

@@ -119,6 +119,6 @@ int main()
 
 ## 参考
 
-https://en.wikipedia.org/wiki/Persistent_data_structure
+<https://en.wikipedia.org/wiki/Persistent_data_structure>
 
-https://www.cnblogs.com/zinthos/p/3899565.html
+<https://www.cnblogs.com/zinthos/p/3899565.html>

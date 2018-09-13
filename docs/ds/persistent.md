@@ -8,4 +8,4 @@
 
 ## 参考
 
-https://en.wikipedia.org/wiki/Persistent_data_structure
+<https://en.wikipedia.org/wiki/Persistent_data_structure>
