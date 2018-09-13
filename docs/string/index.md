@@ -11,3 +11,17 @@
 数组（更常用） / 向量（就是 C++ 的 vector）
 
 其实， C / C++ 的字符串常量也是用数组存的。
+
+## 相关算法（欢迎补充整理）
+
+字符串查找算法
+
+正则表达式算法
+
+模式匹配
+
+The Knuth-Morris-Pratt Algorithm（字符串匹配算法或称KMP算法）
+
+Aho-Corasick automaton（AC自动机）
+
+后缀数组、后缀树、后缀自动机
