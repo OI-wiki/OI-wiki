@@ -269,5 +269,3 @@ $$
 于是，极角 $\theta=\arctan \frac{y}{x}$，这样就可以求出极角了。
 
 在编程中，若要求反正切函数，尽量使用 `atan2(y, x)`，这个函数用途比 `atan(x)` 广泛。
-
-Author: [@HeRaNO](https://github.com/HeRaNO)

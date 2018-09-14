@@ -27,7 +27,7 @@ $$
 求解
 
 $$
- x^a \equiv b \bmod p 
+x^a \equiv b \bmod p
 $$
 
 其中 $p$ 是个质数.
@@ -85,14 +85,14 @@ $\therefore r = 0$.
 所以我们要先消除因子：
 
 ```cpp
-d=1,num=0;
-while(gcd(a,c)!=1){
-    if(b%gcd(a,c)!=0) {
+d=1,num=0,t=0;
+for (int t = gcd(a, c); t != 1; t = gcd(a, c)){
+    if(b % t) {
         \\无解
     }
-    b\=gcd(a,c);
-    c\=gcd(a,c);
-    d*=a/gcd(a,c);
+    b/=t;
+    c/=t;
+    d*=a/t;
     num++;
 }
 ```
