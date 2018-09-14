@@ -2,31 +2,30 @@
 
 在线测试平台又称 Online Judging System，一般用来刷题、组织比赛，也有的会提供博客功能方便选手交流。
 
-
-- [BZOJ](https://www.lydsy.com/JudgeOnline/)(常用 OJ 优质的题巨多)
-- [Luogu](http://www.luogu.org/)(常用 OJ 现代 OJ 支持发布比赛等很多功能，评测机快)
-- [UOJ](http://uoj.ac/) (VFK 的 OJ 多原创比赛题和CCF\THU 题 难度较高)
-- [Codeforces](https://codeforces.com/) （俄罗斯 OJ 一个用比赛积累起来的 OJ）
-- [Virtual Judge ](https://vjudge.net/) (可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ)
-- [POJ](http://poj.org/) (PKU OJ 很多英文题， 有一些基础题和好题)
-- [HDU OJ](http://acm.hdu.edu.cn/) (杭电的 OJ)
-- [AtCoder](https://atcoder.jp/) (日本的一个 OJ 类似 CodeForces 但是也会放 JOI 的题)
-- [Judge Duck Online](https://duck.ac/) (松松松的 OJ 精确到 $\mu s$ )
-- [Vijos](https://vijos.org/) (开源的界面好看的 OJ )
 - [51Nod](https://www.51nod.com/) (有很多好的数学题和思维题) 
-- [UVA](https://uva.onlinejudge.org/) (做 lrj 的书怎么可能不知道这个 OJ )
-- [Ural](http://acm.timus.ru/)
-- [Hackerrank](https://www.hackerrank.com/)
-- [Topcoder](https://www.topcoder.com/) (麻烦的 OJ 进阶选手可以使用，比赛很多)
-- [CodeVS](http://www.codevs.cn/)
-- [OpenJudge](http://openjudge.cn/) (曾经是 NOI 的官方 OJ 后来好像中山纪念写了一个新的？ )
-- [ZOJ](http://acm.zju.edu.cn/onlinejudge/)
-- [FZUOJ](http://acm.fzu.edu.cn/)
-- [LeetCode](https://leetcode.com/)
-- [LeetCode China](https://leetcode-cn.com/)
-- [hihoCoder](https://hihocoder.com/)
-- [Kattis](https://open.kattis.com/)
+- [AtCoder](https://atcoder.jp/) (日本的一个 OJ，类似 CodeForces 但是也会放 JOI 的题)
+- [BZOJ](https://www.lydsy.com/JudgeOnline/)(常用 OJ，优质的题巨多)
 - [CodeChef](https://codechef.com/)
+- [Codeforces](https://codeforces.com/) （俄罗斯 OJ，一个用比赛积累起来的 OJ）
+- [CodeVS](http://www.codevs.cn/)
+- [FZUOJ](http://acm.fzu.edu.cn/)
+- [Hackerrank](https://www.hackerrank.com/)
+- [HDU OJ](http://acm.hdu.edu.cn/) (杭电的 OJ，多校训练的题目放在这里)
+- [hihoCoder](https://hihocoder.com/)
+- [Judge Duck Online](https://duck.ac/) (松松松的 OJ，精确到 $\mu s$ )
+- [Kattis](https://open.kattis.com/)
+- [LeetCode China](https://leetcode-cn.com/)
+- [LeetCode](https://leetcode.com/)
+- [Luogu](http://www.luogu.org/)(常用 OJ，现代 OJ 支持发布比赛等很多功能，评测机快)
+- [OpenJudge](http://openjudge.cn/) (曾经是 NOI 的官方 OJ，后来好像中山纪念写了一个新的？ )
+- [POJ](http://poj.org/) (PKU OJ，很多英文题， 有一些基础题和好题)
+- [Topcoder](https://www.topcoder.com/) (比赛也很多)
+- [UOJ](http://uoj.ac/) (VFK 的 OJ，多原创比赛题和 CCF/THU 题 难度较高)
+- [Ural](http://acm.timus.ru/)
+- [UVA](https://uva.onlinejudge.org/) (做 lrj 的书怎么可能不知道这个 OJ)
+- [Vijos](https://vijos.org/) (开源的界面好看的 OJ)
+- [Virtual Judge](https://vjudge.net/) (可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ)
+- [ZOJ](http://acm.zju.edu.cn/onlinejudge/)
 
 ## 教程
 
