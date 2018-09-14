@@ -1,6 +1,5 @@
 ### Link - Cut - Trees !
 
-> 本文由 Yirannn 撰稿， 引用了 @Flash_Hu 的一些图片。转载请注明原始链接
 
 ### LCT 简介
 
@@ -360,7 +359,6 @@ inline int Find(int p) {
 
 #### 一些题：
 
-先打个广告 ： [本人博客](https://yirannn.com)
 
 - BZOJ_2049 
 - BZOJ_3282
