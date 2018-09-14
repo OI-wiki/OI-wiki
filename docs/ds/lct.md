@@ -210,16 +210,16 @@ inline void Access(int x) {
 
 我们有这样一棵树，实线为实边，虚线为虚边 
 
-![pic1](https://yirannn.com/wp-content/uploads/2018/09/1.-e1536891624369.png)
+![pic1](./images/lct1.png)
 
 - 它的辅助树可能长成这样 (构图方式不同可能 LCT 的结构也不同)
 - 每个绿框里是一棵 Splay。
 
-![pic2](https://yirannn.com/wp-content/uploads/2018/09/2-e1536891712315.png)
+![pic2](./images/lct2.png)
 
 - 现在我们要 Access(N), 把 A-N 的路径都变实, 拉成一棵 Splay
 
-![pic3](https://yirannn.com/wp-content/uploads/2018/09/3-e1536891792152.png)
+![pic3](./images/lct3.png)
 
 - 实现的方法是从下到上逐步更新 Splay
 - 首先我们要把 N 旋至当前 Splay 的根。
@@ -227,9 +227,9 @@ inline void Access(int x) {
 - 由于认父不认子的性质, 我们可以单方面的把 N 的儿子改为 Null。
 - 于是原来的 Aux 就从下图变成了下下图。
 
-![pic4](https://yirannn.com/wp-content/uploads/2018/09/4.png)
+![pic4](./images/lct4.png)
 
-![pic](https://yirannn.com/wp-content/uploads/2018/09/5-1-e1536891906445.png)
+![pic](./images/lct5.png)
 
 - 下一步, 我们把 N 指向的 Father-> I 也旋转到它 (I) 的 Splay 树根。
 
@@ -241,12 +241,12 @@ inline void Access(int x) {
 
 - 之后的树是这样的。
 
-![pic](https://yirannn.com/wp-content/uploads/2018/09/6-e1536892080829.png)
+![pic](./images/lct6.png)
 
 - 同理我们 Splay(A) , 并把 A 的右儿子指向 H。
 - 于是我们得到了这样一棵 AuxTree。并且发现 A——N 的整个路径已经在同一棵 Splay 中了。大功告成！
 
-![pic](https://yirannn.com/wp-content/uploads/2018/09/7-e1536892113970.png)
+![pic](./images/lct7.png)
 
 ```cpp
 // 回顾一下代码
