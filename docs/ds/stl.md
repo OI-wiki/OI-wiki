@@ -4,7 +4,7 @@
 
 STL 是 Standard Template Library 的简称，中文名为标准模板库。它是 C++ 的一大特色，里面包含了许多标准算法或数据结构。
 
-在 C++ 标准中，STL 被组织为下面的 13 个头文件：`<algorithm>`, `<deque>`、`<functional>`, `<iterator>`, `<array>`, `<vector>`, `<list>`, `<forward_list>`, `<map>`, `<unordered_map>`, `<memory>`, `<numeric>`, `<set>`, `<unordered_set>`, `<stack>`, `<utility>`。
+在 C++ 标准中，STL 被组织为下面的 13 个头文件：`<algorithm>`, `<deque>`, `<functional>`, `<iterator>`, `<array>`, `<vector>`, `<list>`, `<forward_list>`, `<map>`, `<unordered_map>`, `<memory>`, `<numeric>`, `<set>`, `<unordered_set>`, `<stack>`, `<utility>`。
 
 ## 数据结构
 
