@@ -100,6 +100,7 @@ int write(int x){
 	putchar(x%10+'0');//已经输出（递归）完x末位前的所有数字，输出末位
 }
 ```
+
 但是递归实现是很慢的，我们可以写一个栈来实现这个过程
 
 ```cpp
@@ -110,6 +111,7 @@ inline void write(int x) {
 	while(top) putchar(sta[--top]+48); // 48 是 '0' 
 }
 ```
+
 - 举例
 
 输出 num 可写为 `write(num);`
@@ -123,6 +125,7 @@ inline void write(int x) {
 `fread`类似于`scanf("%s")`，不过它更为快速，而且可以一次性读入若干个字符（包括空格换行等制表符），如果缓存区足够大，甚至可以一次性读入整个文件。
 
 对于输出，我们还有对应的 `fwrite` 函数
+
 ```cpp
 std::size_t fread( void* buffer, std::size_t size, std::size_t count, std::FILE* stream );
 std::size_t fwrite( const void* buffer, std::size_t size, std::size_t count, std::FILE* stream );
