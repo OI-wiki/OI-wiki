@@ -77,11 +77,11 @@
 - 现在我们有⼀棵原树, 如图。 
 - 加粗边是实边, 虚线边是虚边
 
-<img src = "https://yirannn.com/wp-content/uploads/2018/09/屏幕快照-2018-09-09-上午8.38.53-e1536453838929.png">
+![lct9](./images/lct9,png)
 
 - 由刚刚的定义， 辅助树的结构如下
 
-<img src = "https://yirannn.com/wp-content/uploads/2018/09/屏幕快照-2018-09-09-上午8.42.06-e1536891593594.png" >
+![lct10](./images/lct10.png)
 
 ### 考虑原树和辅助树的结构关系
 
@@ -233,9 +233,9 @@ inline void Access(int x) {
 
 - 下一步, 我们把 N 指向的 Father-> I 也旋转到它 (I) 的 Splay 树根。
 
--   原来的实边 I —— K 要去掉, 这时候我们把 I 的右儿子指向 N, 就得到了 I——L 这样一棵 Splay。
+- 原来的实边 I —— K 要去掉, 这时候我们把 I 的右儿子指向 N, 就得到了 I——L 这样一棵 Splay。
 
-    ![pic](https://yirannn.com/wp-content/uploads/2018/09/5-e1536892029692.png)
+![pic](./images/lct8.png)
 
 - 接下来, 按照刚刚的操作步骤, 由于 I 的 Father 指向 H, 我们把 H 旋转到他所在 Splay Tree 的根, 然后把 H 的 rs 设为 I。
 
