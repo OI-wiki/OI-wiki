@@ -49,13 +49,13 @@ function foo(response) {
     var sorted = Object.keys(cnts).sort(function (a, b) {
       return cnts[b] - cnts[a];
     });
-    sorted = sorted.map(function(x) {
-      return `<a href=https://github.com/${x}>${x}</a>`
-    })
     var index = sorted.indexOf('24OI-bot');
     if (index > -1) {
       sorted.splice(index, 1);
     }
+    sorted = sorted.map(function(x) {
+      return `<a href=https://github.com/${x}>${x}</a>`
+    })
     document.getElementsByClassName('facts_modified')[0].innerHTML = (ti);
     document.getElementsByClassName('page_contributors')[0].innerHTML = (sorted.join(', '));
   } else if (!url.endsWith('index')) {
