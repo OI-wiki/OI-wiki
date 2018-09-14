@@ -183,7 +183,7 @@ int main(){
 
 举例:
 
-$且dp[i] = max\{dp[j]+1\}\quad 1 \leq j < i \text{且}a[j]<a[i]$  (最长上升子序列)
+$dp[i] = max\{dp[j]+1\}\quad 1 \leq j < i \text{且}a[j]<a[i]$  (最长上升子序列)
 
 转为
 
