@@ -41,11 +41,9 @@ int f(传入数值)
 
 先来一道例题：[三连击](https://www.luogu.org/problemnew/show/P1028)。
 
-这道题的递归写法只能得到 25 分，因为它的递归次数太多，所以超时。
+这道题朴素的递归写法只能得到 25 分，因为递归次数太多，所以超时。
 
-我们发现，许多数是经过重复调用的，做了许多重复的事，当然会慢。我们可以用数组记下重复的值，具体见这篇文章：<https://cbw.blog.luogu.org/P1028-antithesis>
-
-因为递归很像搜索，所以搜索中的优化、剪枝在递归中基本都可以用。具体见还未完工的<https://oi-wiki.org/search/optimization>和[记忆化搜索](https://oi-wiki.org/dp/memo/)
+怎么优化呢？详见 [搜索优化](/search/optimization) 和 [记忆化搜索](https://oi-wiki.org/dp/memo/)。
 
 # 分治
 
