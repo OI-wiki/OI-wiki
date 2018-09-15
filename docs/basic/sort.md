@@ -144,7 +144,7 @@ std::sort(a, a + n);
 
 一般考虑的是某一范围内的整数，但是计数排序也可以和 [离散化](/misc/discrete) 一起使用，来对浮点数、大整数进行计数排序。
 
-
 ### 参考
-<http://atool.org/sort.php> ATool的排序演示动画   
+
+<http://atool.org/sort.php> ATool 的排序演示动画  
 <https://www.geeksforgeeks.org/counting-sort/>   
