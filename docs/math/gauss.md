@@ -16,10 +16,12 @@
 
 例一：利用消元法求解二元一次线性方程组：
 
-$\left\{\begin{aligned}
+$$
+\left\{\begin{aligned}
 4x+y&=100 \notag \\
 x-y&=100 \notag
-\end{aligned}\right.$
+\end{aligned}\right.
+$$
 
 解：将方程组中两方程相加，消元 $y$ 可得：
 
@@ -148,10 +150,12 @@ $$
 
 #### 第 2 步  还原线性方程组
 
-$\left\{\begin{aligned}
+$$
+\left\{\begin{aligned}
 x_1+0.5x_4 &= 14.5 \notag\\
 x_3+x_4 &= -4 \notag \\
-\end{aligned}\right.$
+\end{aligned}\right.
+$$
 
 解释
 
@@ -159,10 +163,12 @@ x_3+x_4 &= -4 \notag \\
 
 #### 第 3 步  求解第一个变量
 
-$\left\{\begin{aligned}
+$$
+\left\{\begin{aligned}
 x_1 &= -0.5x_4+14.5\notag \\
 x_3 &= -x_4-4\notag
-\end{aligned}\right.$
+\end{aligned}\right.
+$$
 
 解释
 
@@ -170,12 +176,14 @@ x_3 &= -x_4-4\notag
 
 #### 第 4 步  补充自由未知量
 
-$\left\{\begin{aligned}
+$$
+\left\{\begin{aligned}
 x_1 &= -0.5x_4+14.5 \notag \\
 x_2 &= x_2 \notag \\
 x_3 &= -x_4-4 \notag \\
 x_4 &= x_4 \notag
-\end{aligned}\right.$
+\end{aligned}\right.
+$$
 
 解释
 
@@ -183,7 +191,8 @@ x_4 &= x_4 \notag
 
 #### 第 5 步  列表示方程组的通解
 
-$\begin{aligned}
+$$
+\begin{aligned}
 \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} &=
 \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} x_2+
 \begin{pmatrix} -0.5 \\ 0 \\ -1 \\ 1 \end{pmatrix} x_4 +
@@ -191,7 +200,8 @@ $\begin{aligned}
 &= \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} C_1+
 \begin{pmatrix} -0.5 \\ 0 \\ -1 \\ 1 \end{pmatrix} C_2 +
 \begin{pmatrix} 14.5 \\ 0 \\ -4 \\ 0 \end{pmatrix} \notag
-\end{aligned}$
+\end{aligned}
+$$
 
 其中 $C_1$ 和 $C_2$ 为任意常数。
 
@@ -207,17 +217,23 @@ $N \times N$ 方阵行列式可以理解为所有列向量所夹的几何体的�
 
 例如：
 
-$\begin{vmatrix}
+$$
+\begin{vmatrix}
 1 & 0 \\
-0 & 1 \end{vmatrix} = 1$
+0 & 1 \end{vmatrix} = 1
+$$
 
-$\begin{vmatrix}
+$$
+\begin{vmatrix}
 1 & 2 \\
-2 & 1 \end{vmatrix} = -3$
+2 & 1 \end{vmatrix} = -3
+$$
 
 行列式有公式
 
-$D = \left| A \right| = \sum(-1)^va_{1,l_1}a_{2,l_2}\dots a_{n,l_n}$
+$$
+D = \left| A \right| = \sum(-1)^va_{1,l_1}a_{2,l_2}\dots a_{n,l_n}
+$$
 
 > 其中 $v$ 为 $l_1$, $l_2$,\\cdots, $l_n$ 中逆序对的个数。
 
@@ -350,15 +366,12 @@ struct matrix
 					mat[j][k] -= mat[i][k] * ratio;
 				}
 			}
-			//print();
 		}
 		for (int i=0; i<n; i++)
 			ans *= mat[i][i];
 		return abs(ans);
 	}
 };
-
-
 int main()
 {
 	srand(1);
