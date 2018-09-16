@@ -12,13 +12,11 @@ Cena 对权限的限制不是很明确，测试的时候可以读测点 AC QAQ
 
 Lemon 是 zhipeng-jia 写的开源的评测工具，地址在：[zhipeng-jia/project-lemon](https://github.com/zhipeng-jia/project-lemon)。
 
-Ir1d 提供了一份 linux 下编译好的版本在 [Project_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built)。
+Ir1d 提供了一份 linux 下编译好的版本在 [FreestyleOJ/Project_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built)。
 
 Menci 提供了一份更新的版本在 [Menci/Lemon](https://github.com/Menci/Lemon/)
 
-如果你使用 macOS， 可以自行下载源代码并使用 Qt 来编译一份 Lemon。具体请看 Menci 的 gitHub，和下文中的编译命令还是稍有区别。
-
-**注意** 使用 macLemon 可能会出现内存测试不准确的情况， 这是由于 mac 下没有一些 Linux 的监测工具，而 Lemon-Linux 也没有对于 macOS 的使用优化。
+**注意** macOS下 Lemon 可能会出现内存测试不准确的情况， 这是由于 mac 下没有一些 Linux 的监测工具，而 Lemon-Linux 也没有对于 macOS 的使用优化。
 
 ### 自行编译
 
@@ -27,7 +25,7 @@ sudo apt update
 sudo apt install qt5-default build-essential git -y
 git clone --depth=1 http://github.com/menci/lemon.git
 cd lemon
- 可以修改 make 文件来调整 make job 的线程数
+# 可以修改 make 文件来调整 make job 的线程数
 sed -i 's/make $/make -j 1 $/g' make
 ./make
 cp Lemon ~
@@ -62,4 +60,4 @@ Arbiter 为北京航空航天大学为 NOI Linux 开发的评测工具，现已�
 
 ## CCR-Plus
 
-一款开源的界面好看的评测工具 gitHub 地址 ：[sxyzccr/CCR-Plus](https://github.com/sxyzccr/CCR-Plus)
+一款开源的界面好看的评测工具 GitHub 地址 ：[sxyzccr/CCR-Plus](https://github.com/sxyzccr/CCR-Plus)
