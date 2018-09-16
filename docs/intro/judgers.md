@@ -16,9 +16,9 @@ Ir1d 提供了一份 linux 下编译好的版本在 [Project_lemon](https://gith
 
 Menci 提供了一份更新的版本在 [Menci/Lemon](https://github.com/Menci/Lemon/)
 
-如果你使用 macOS， 可以自行下载源代码并使用 Qt 来编译一份 Lemon 具体请看 Menci 的 gitHub 和下文中的变异命令还是稍有区别
+如果你使用 macOS， 可以自行下载源代码并使用 Qt 来编译一份 Lemon。具体请看 Menci 的 gitHub，和下文中的变异命令还是稍有区别。
 
-**注意** 使用 macLemon 可能会出现内存测试不准确的情况， 这是由于 mac 下没有一些 Linux 的监测工具，而 Lemon-Linux 也没有对于 macOS 的使用优化
+**注意** 使用 macLemon 可能会出现内存测试不准确的情况， 这是由于 mac 下没有一些 Linux 的监测工具，而 Lemon-Linux 也没有对于 macOS 的使用优化。
 
 ### 自行编译
 
