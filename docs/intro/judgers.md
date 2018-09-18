@@ -14,11 +14,13 @@ Lemon 是 zhipeng-jia 写的开源的评测工具，地址在：[zhipeng-jia/pro
 
 Ir1d 提供了一份 linux 下编译好的版本在 [FreestyleOJ/Project_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built)。
 
-Menci 提供了一份更新的版本在 [Menci/Lemon](https://github.com/Menci/Lemon/)
+Menci 提供了一份更新的版本在 [Menci/Lemon](https://github.com/Menci/Lemon/)。
 
 **注意** macOS 下 Lemon 可能会出现内存测试不准确的情况， 这是由于 mac 下没有一些 Linux 的监测工具，而 Lemon-Linux 也没有对于 macOS 的使用优化。
 
 ### 自行编译
+
+在 Ubuntu 下编译：
 
 ```bash
 sudo apt update
