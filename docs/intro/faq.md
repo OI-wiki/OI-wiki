@@ -18,10 +18,10 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 举个栗子，假如我想要修改一个页面内容，应该怎么操作呢？
 
-1. 在 OI Wiki 网站上找到对应页面
-2. 点击 正文右上方、目录左侧的 **“编辑此页”** <i class="md-icon">edit</i> 按钮
-3. （应该已经跳转到了 GitHub 上的对应页面吧？）这时候右上方还会有一个 **“编辑此页”** <i class="md-icon">edit</i> 的按钮，点击它就可以在线编辑了
-4. 写好了之后点下方的绿色按钮（Propose file change），可能会提示没有权限。不必担心！GitHub 会自动帮你 fork 一份项目的文件并创建 Pull Request
+1. 在 OI Wiki 网站上找到对应页面。
+2. 点击 正文右上方、目录左侧的 **“编辑此页”** <i class="md-icon">edit</i> 按钮。
+3. （应该已经跳转到了 GitHub 上的对应页面吧？）这时候右上方还会有一个 **“编辑此页”** <i class="md-icon">edit</i> 的按钮，点击它就可以在线编辑了。
+4. 写好了之后点下方的绿色按钮（Propose file change），可能会提示没有权限。不必担心！GitHub 会自动帮你 fork 一份项目的文件并创建 Pull Request。
 5. 之后点上方的绿色按钮（Create pull request）后，再点一下出现的绿色按钮（Create pull request）。
 6. 提交之后就可以等待他人合并或者指出还要修改的地方，当然你也可以给他人的 PR 提出修改意见，或者只是点赞 / 踩。如果有消息，会有邮件通知和 / 或网页上的提醒（取决于在你个人 Settings 中的设置）。
 
@@ -35,40 +35,42 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 1. Fork 主仓库到自己的仓库中。
 2. 当想要贡献某部分内容时，请务必仔细查看 **Issues**，以便确定是否有人已经开始了这项工作。当然，我们更希望你可以加入 QQ / Telegram 群组，方便交流。
-3.  在决定将内容推送到本仓库时，** 请你首先拉取本仓库代码进行合并，自行处理好冲突，同时确保在本地可以正常生成文档 **，然后再将分支 PR 到主仓库的 master 分支上。其中，PR 需要包含以下基本信息  
-    标题：本次 PR 的目的（做了什么工作，修复了什么问题）  
-    内容：如果必要的话，请给出对修复问题的叙述
+3.  在决定将内容推送到本仓库时，** 请你首先拉取本仓库代码进行合并，自行处理好冲突，同时确保在本地可以正常生成文档 **，然后再将分支 PR 到主仓库的 master 分支上。其中，PR 需要包含以下基本信息：
+    标题：本次 PR 的目的（做了什么工作，修复了什么问题）；
+    内容：如果必要的话，请给出对修复问题的叙述。
 
 ## 贡献文档要求
 
-当你打算贡献某部分的内容时，你应该尽量确保
+当你打算贡献某部分的内容时，你应该尽量确保：
 
-- 文档内容满足基本格式要求
-- 文档的合理性
-- 文档存储的格式
+- 文档内容满足基本格式要求；
+- 文档的合理性；
+- 文档存储的格式。
 
 ### 文档内容的基本格式
 
-这里主要是指 [中文排版指南](https://github.com/ctf-wiki/ctf-wiki/wiki/%E4%B8%AD%E6%96%87%E6%8E%92%E7%89%88%E6%8C%87%E5%8D%97) 与 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。后者额外介绍了 mkdocs-material 主题的插件使用方式。
+在提交 PR 前，请先确保文档内容符合 [如何贡献 How to contribute](https://github.com/24OI/OI-wiki/wiki/%E5%A6%82%E4%BD%95%E8%B4%A1%E7%8C%AE---How-to-contribute) 中的格式要求。格式缺乏基本的规范性、严谨性可能会使你的贡献不能及时通过审核。
+
+文档内容的基本格式主要是指 [中文排版指南](https://github.com/ctf-wiki/ctf-wiki/wiki/%E4%B8%AD%E6%96%87%E6%8E%92%E7%89%88%E6%8C%87%E5%8D%97) 与 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。后者额外介绍了 mkdocs-material 主题的插件使用方式。
 
 如果对 mkdocs-material （我们使用的这个主题）还有什么问题，还可以查阅 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，他有介绍 markdown 传统语法和 mkdocs-material 支持的扩展语法。
 
 ### 文档的合理性
 
-所谓合理性，指所编写的 ** 内容 ** 必须具有如下的特性
+所谓合理性，指所编写的 **内容** 必须具有如下的特性：
 
 - 由浅入深，内容的难度应该具有渐进性。
--   逻辑性，对于每类内容的撰写应该尽量包含以下的内容
+-   逻辑性，对于每类内容的撰写应该尽量包含以下的内容：
     - 原理，说明该内容对应的原理。
     - 例子，给出 1 ~ 2 个典型的例子。
-    - 题目，在该标题下， ** 只需要给出题目名字、题目链接 **
+    - 题目，在该标题下， **只需要给出题目名字、题目链接**。
 
 ### 文档存储的格式
 
-对于每类要编写的内容，对应的文档应该存储在合适的目录下
+对于每类要编写的内容，对应的文档应该存储在合适的目录下。
 
 - images， 存储文档介绍时所使用的图片，位置为所添加的目录下（即格式为 `![](./images/xx.jpg)`）。
-- ** 文件名请务必都小写，以 `-` 分割， 如 `file-name`**
+- **文件名请务必都小写，以 `-` 分割， 如 `file-name`。**
 
 ## F.A.Q.
 
@@ -80,15 +82,15 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 在对应页面右上方有一个编辑按钮 <i class="md-icon">edit</i>，点击之后会跳转到 GitHub 上对应文件的位置。
 
-或者也可以自行阅读目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 查找文件位置
+或者也可以自行阅读目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 查找文件位置。
 
 ### 如何添加一个 topic
 
-1. 可以开一个 Issue，注明希望能添加的内容
+1. 可以开一个 Issue，注明希望能添加的内容。
 2. 可以开一个 Pull Request，在目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 中加上新的 topic，并在 [docs](https://github.com/24OI/OI-wiki/tree/master/docs) 文件夹下对应位置创建一个空的 `.md` 文件。
 
 !!! warning "注意"
-    写 .md 文件时，请勿在开头写上标题
+    写 .md 文件时，请勿在开头写上标题。
 
 ### commit message 怎么写
 
@@ -110,7 +112,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 ### 我这里 pip 也太慢了
 
-可以选择更换国内源，参考： 	<https://blog.csdn.net/lambert310/article/details/52412059>
+可以选择更换国内源，参考： <https://blog.csdn.net/lambert310/article/details/52412059>
 
 或者：
 
@@ -134,7 +136,7 @@ git clone https://github.com/24OI/OI-wiki.git --depth=1 -b master
 
 ### 好像提示我 pip 版本过低
 
-进入 cmd / shell 之后
+进入 cmd / shell 之后，
 
 ```bash
 python -m pip install --upgrade pip
@@ -150,7 +152,7 @@ python -m pip install --upgrade pip
 
 ### 我 clone 了很久之前的 repo，怎么更新到新版本呢
 
-参考：<https://help.github.com/articles/syncing-a-fork/>
+参考：<https://help.github.com/articles/syncing-a-fork/>。
 
 ### 如果是装了之前的依赖怎么更新
 
@@ -179,7 +181,7 @@ pip install -U -r requirements.txt
 
 #### GitHub 是不是不显示我的数学公式？
 
-是的，GitHub 的预览不显示数学公式。但是请放心，mkdocs 是支持数学公式的，可以正常使用，只要是 mathjax 支持的句式都可以使用。
+是的，GitHub 的预览不显示数学公式。但是请放心，mkdocs 是支持数学公式的，可以正常使用，只要是 MathJax 支持的句式都可以使用。
 
 #### 我的数学公式怎么乱码了
 
@@ -209,7 +211,7 @@ $$
 结束位置 endpos
 ```
 
-【注】：现在请尽量避免在目录中引入 mathjax 公式
+注：现在请尽量避免在目录中引入 MathJax 公式。
 
 ### 如何给一个页面单独声明版权信息
 
@@ -221,7 +223,7 @@ $$
 copyright: SATA
 ```
 
-注：默认的是 ‘CC BY-SA 4.0 和 SATA’
+注：默认的是 ‘CC BY-SA 4.0 和 SATA’。
 
 ### 如何给一个页面关闭字数统计 （现已默认关闭）
 
