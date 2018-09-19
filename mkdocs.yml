@@ -244,7 +244,7 @@ extra:
   search:
     language: 'jp'
   disqus: 'OI-Wiki'
-  copyright: 'CC BY-SA 4.0 和 SATA'
+  copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
 
 extra_javascript:
