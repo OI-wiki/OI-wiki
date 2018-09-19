@@ -98,13 +98,13 @@
 
 而对应的位运算也就可以看作是对集合进行的操作。
 
-| 操作       | 集合表示   |  位运算语句  |
-| --------   | -----:  | :----:  |
-| 交集     | $a \cap b$ |   `a & b`     |
-| 并集        |  $a \cup b$   |   `a | b`  |
-| 补集        |    $\bar{a}$    |  `~a`  |
-| 差集        |    $a \setminus b$    |  `~a`  |
-| 对称差        |    $a\triangle b$    |  `a ^ b`  |
+| 操作  |            集合表示 |  位运算语句  |
+| --- | --------------: | :-----: |
+| 交集  |      $a \cap b$ | `a & b` |
+| 并集  |      $a \cup b$ | `a | b` |
+| 补集  |       $\bar{a}$ |   `~a`  |
+| 差集  | $a \setminus b$ |   `~a`  |
+| 对称差 |  $a\triangle b$ | `a ^ b` |
 
 * * *
 
@@ -222,8 +222,8 @@
       return (x + y) >> 1;
       ｝
     ```
-    
--    遍历一个集合的子集
+
+-   遍历一个集合的子集
     ```cpp
     int b = 0;
     do {
@@ -237,4 +237,4 @@
 
 ## 参考
 
-位运算技巧：https://graphics.stanford.edu/~seander/bithacks.html
+位运算技巧：<https://graphics.stanford.edu/~seander/bithacks.html>
