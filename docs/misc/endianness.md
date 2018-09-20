@@ -29,3 +29,9 @@
 | .... | 0x100 | 0x101 | 0x102 | 0x103 | .... |
 | ---- | ----- | ----- | ----- | ----- | ---- |
 | .... | 01    | 23    | 45    | 67    | .... |
+
+## 惯例
+
+小端序：x86, ARM processors running Android, iOS, and Windows
+
+大端序：Sun, PPC Mac, Internet
