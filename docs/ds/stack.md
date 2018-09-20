@@ -2,7 +2,10 @@
 
 栈是 OI 中常用的一种线性数据结构，请注意，本文主要讲的是栈这种数据结构， 而非程序运行时的系统栈 / 栈空间
 
-栈遵循 FILO 的规则，即 Fist in Last out 先进后出。
+栈的修改是按照后进先出的原则进行的，因此栈通常被称为是后进先出（last in first out）表，简称 LIFO 表。
+
+!!! warning
+    为什么不是 FILO 呢？
 
 我们可以方便的使用数组来模拟一个栈， 如下 ：
 
@@ -26,7 +29,7 @@ if(*stk) --*stk;
 // stack 构造 ：
 1. stack<Typename T> s;
 2. stack<Typename T, Container> s;
-/* 与绝大多数 STL 所需要的容器一样， stack 的 Container 也需要满足有如下接口 ：
+/* stack 的 Container 需要满足有如下接口 ：
  * back()
  * push_back()
  * pop_back()
