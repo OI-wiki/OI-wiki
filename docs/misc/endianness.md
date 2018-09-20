@@ -32,6 +32,6 @@
 
 ## 惯例
 
-大端序：Sun, PPC Mac, Internet
-
 小端序：x86, ARM processors running Android, iOS, and Windows
+
+大端序：Sun, PPC Mac, Internet
