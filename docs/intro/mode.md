@@ -34,7 +34,7 @@ CTSC（China Team Selection Competition）是中国队选拔赛。用来从国�
 
 ### IOI
 
-IOI（International Olympiad in Informatics）是国际信息学奥林匹克竞赛，每个国家有四人参赛，比赛会有直播。
+IOI（International Olympiad in Informatics）是国际信息学奥林匹克竞赛，每个国家有四人参赛，比赛一般会有直播。IOI 赛制中每个题目会有 subtask （子任务），每个子任务对应一定的分数。
 
 ## 赛制介绍
 
