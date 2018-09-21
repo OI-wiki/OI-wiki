@@ -26,7 +26,7 @@ ST 表基于倍增思想，可以在 $O(n\log{n})$ 的时间复杂度下预处�
 
 但是，如果我们预处理出每一段的最大值，就可以将效率提高很多。
 
-令 $f[i][j]$ 表示$[i,i+2^j-1]$的最大值。
+令 $f[i][j]$ 表示 $[i,i+2^j-1]$ 的最大值。
 
 显然，$f[i][0]=a[i]$ 。
 
@@ -90,11 +90,12 @@ int main()
 ### 注意点
 
 1. 输入输出数据一般很多，建议开启输入输出优化
-2.  每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议预处理：
 
-    $log2[i]=log2[i/2]+1$
+2. 每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议预处理：
 
-    初始值 $log2[1]=0$
+`Logn[i]=Logn[i/2]+1`
+
+初始值 `Logn[1]=0`
 
 ### 总结
 
