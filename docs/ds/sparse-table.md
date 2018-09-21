@@ -1,12 +1,12 @@
-倍增法，通过字面意思来看就是翻倍。这个方法在很多算法中均有应用。其中最常用的就是RMQ问题和求LCA了。
+倍增法，通过字面意思来看就是翻倍。这个方法在很多算法中均有应用。其中最常用的就是 RMQ 问题和求 LCA 了。
 
 ## RMQ 问题
 
 ### 简介
 
-RMQ是英文Range Maximum （Minimum） Query的缩写，表示查询区间最大（最小）值。
+RMQ 是英文 Range Maximum （Minimum） Query 的缩写，表示查询区间最大（最小）值。
 
-解决RMQ问题的主要方法有两种，分别是ST表和线段树。本文主要讲ST表。
+解决 RMQ 问题的主要方法有两种，分别是 ST 表和线段树。本文主要讲 ST 表。
 
 ### 引入
 
@@ -90,7 +90,7 @@ int main()
 ### 注意点
 
 1. 输入输出数据一般很多，建议开启输入输出优化
-2. 每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议预处理：
+2.  每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议预处理：
 
     $log2[i]=log2[i/2]+1$
 
