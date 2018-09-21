@@ -48,3 +48,23 @@ span.mjpage__block > svg {
 #color-button {
   text-align: unset !important;
 }
+
+li.md-tabs__item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 0;
+    height: 100%;
+    border-bottom: 2px solid #000;
+    transition: 0.2s all linear;
+}
+
+li.md-tabs__item:hover::before {
+    width: 100%;
+    left: 0;
+}
+
+li.md-tabs__item:hover ~ li.md-tabs__item::before {
+    left: 0;
+}
