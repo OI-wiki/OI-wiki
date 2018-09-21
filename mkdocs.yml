@@ -85,6 +85,7 @@ nav:
     - 快速幂: math/quick-pow.md
     - 中国剩余定理: math/crt.md
     - 分段打表: math/dictionary.md
+    - 线性基: math/linear-base.md
     - 矩阵: math/matrix.md
     - 位运算: math/bit.md
     - 乘法逆元: math/inverse.md
