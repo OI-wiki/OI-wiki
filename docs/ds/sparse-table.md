@@ -92,9 +92,9 @@ int main()
 1. 输入输出数据一般很多，建议开启输入输出优化
 2.  每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议预处理：
 
-    $log2[i]=log2[i/2]+1$
+    $Logn[i]=Logn[i/2]+1$
 
-    初始值 $log2[1]=0$
+    初始值 $Logn[1]=0$
 
 ### 总结
 
