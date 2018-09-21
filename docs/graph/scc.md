@@ -52,8 +52,6 @@ void kosaraju() {
 
 Robert E. Tarjan (1948~) 美国人。
 
-这是你们第一次在本课程中听说此人，但不会是最后一次。
-
 Tarjan 发明了很多很有用的东西，下到 NOIP 上到 CTSC 难度的都有。
 
 【举例子：Tarjan 算法，并查集，Splay 树，Tarjan 离线求 lca（Lowest Common Ancestor，最近公共祖先）等等】

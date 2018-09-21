@@ -34,17 +34,19 @@ CTSC（China Team Selection Competition）是中国队选拔赛。用来从国�
 
 ### IOI
 
-IOI（International Olympiad in Informatics）是国际信息学奥林匹克竞赛，每个国家有四人参赛，比赛会有直播。
+IOI（International Olympiad in Informatics）是国际信息学奥林匹克竞赛，每个国家有四人参赛，比赛一般会有直播。IOI 赛制中每个题目会有 subtask （子任务），每个子任务对应一定的分数。
 
 ## 赛制介绍
 
 ### OI 赛制
 
 一般的 OI 赛制可以理解为单人在 5 个小时的时间内尝试解决 3 个题。每个题目可以不全部解决，会有多个数据点，题目的分数一般是数据点得分之和。每个数据点还可能会有部分分，就是数据点内部也不需要完全正确才能得到分数。评分方式是在比赛结束后统一评测，只有一次提交机会。
+NOIP、NOI、省选都是 OI 赛制
 
 ### IOI 赛制
 
 目前国内比赛也在逐渐向 IOI 赛制靠拢。
+IOI 赛制可以赛时任意提交，可以即时查看评测结果， APIO、IOI 都是 IOI 赛制
 
 ### ACM / ICPC 赛制
 

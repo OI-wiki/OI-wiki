@@ -50,11 +50,11 @@ $O A K A B A K A B A O A K$
 
 也就是说，若原来的字符串是这样
 
-![](https://cdn.luogu.org/upload/pic/30955.png)
+![](./images/manacher1.png)
 
 那么我们把它改成这样
 
-![](https://cdn.luogu.org/upload/pic/30954.png)
+![](./images/manacher2.png)
 
 关于这部分的代码：
 
@@ -84,7 +84,7 @@ inline void change() {
 
 也就是这样：
 
-![](https://cdn.luogu.org/upload/pic/7884.png)
+![](./images/manacher3.png)
 
 当 i 在 maxright 左边且在 mid 右边时：
 
