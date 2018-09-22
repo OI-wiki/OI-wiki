@@ -50,5 +50,5 @@ span.mjpage__block > svg {
 }
 
 h1, h2, h3, h4, h5 {
-  font-weight: bolder;
+  font-weight: bolder !important;
 }
