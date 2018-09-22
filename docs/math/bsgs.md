@@ -81,7 +81,7 @@ $\therefore r = 0$.
 扩展 BSGS 用到了同余的一条性质：
 
 令 $d=gcd(a,c) ,a=m \times d,b=n \times d,p=k \times d$；
-则 $m \times d \equiv b \times d (mod c \times d)$ 等价于 $m \equiv n \pmod k$
+则 $m \times d \equiv b \times d \pmod {c \times d}$ 等价于 $m \equiv n \pmod k$
 所以我们要先消除因子：
 
 ```cpp
@@ -99,4 +99,4 @@ for (int t = gcd(a, c); t != 1; t = gcd(a, c)){
 
 消除完后，就变成了 $d \times m^{x-num} \equiv n \pmod k$，令 $x=i \times m+j+num$，后面的做法就和普通 BSGS 一样了。
 
-注意，因为 $i,j \le 0$，所以 $x \le num$，但不排除解小于等于 $num$ 的情况，所以在消因子之前做一下 $\Theta(\log_2 p)$ 枚举，直接验证 $a^i mod c = b$，这样就能避免这种情况。
+注意，因为 $i,j \le 0$，所以 $x \le num$，但不排除解小于等于 $num$ 的情况，所以在消因子之前做一下 $\Theta(\log_2 p)$ 枚举，直接验证 $a^i \mod c = b$，这样就能避免这种情况。
