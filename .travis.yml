@@ -16,7 +16,6 @@ script:
   - chmod +x build.sh && ./build.sh
   - mkdocs build -v
   - node render_math.js
-  - chmod +x BaiduPusher.sh && ./BaiduPusher.sh
 deploy:
   provider: pages
   skip_cleanup: true
