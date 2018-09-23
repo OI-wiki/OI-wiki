@@ -1,6 +1,6 @@
 ## 普通莫队算法
 
-这里内容有诸多是借鉴网上的（O(∩\_∩)O 谢谢啦！），主要借鉴了：<a href="https://blog.sengxian.com/algorithms/mo-s-algorithm">https&#x3A;//blog.sengxian.com/algorithms/mo-s-algorithm</a>
+这里内容有诸多是借鉴网上的（O(∩\_∩)O 谢谢啦！），主要借鉴了：<https://blog.sengxian.com/algorithms/mo-s-algorithm>
 
 ### 概述
 
