@@ -23,3 +23,5 @@ deploy:
   local-dir: site
   on:
     branch: master
+after_deploy:
+  - chmod +x BaiduPusher.sh && ./BaiduPusher.sh
