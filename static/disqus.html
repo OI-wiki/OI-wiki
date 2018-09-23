@@ -14,21 +14,21 @@
 {% if not page.is_homepage and disqus %}
 {% set pageID = page.title | default("404", true) %}
 <h2 id="__comments" data-no-instant>{{ lang.t("meta.comments") }}</h2>
-<form id="gitalk-form" onsubmit="return false;">
+<form id="gitalk-form" onsubmit="return false;" data-no-instant>
 <div id="gitalk-container" data-no-instant>
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
-      const gitalk = new Gitalk({
-        id: '{{ page.title | default("404", true)  }}',
-        owner: 'Ir1d',
-        repo: 'gitment',
-        client_id: 'd6a911c8fba0194626d4',
-        client_secret: '867ec7e13cc99b420bd147cbb62d5cfec271ba81',
-        distractionFreeMode: false
-      })
-      gitalk.render('gitalk-container')
-    </script>
 </div>
 </form>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    id: '{{ page.title | default("404", true)  }}',
+    owner: 'Ir1d',
+    repo: 'gitment',
+    client_id: 'd6a911c8fba0194626d4',
+    client_secret: '867ec7e13cc99b420bd147cbb62d5cfec271ba81',
+    distractionFreeMode: false
+  })
+  gitalk.render('gitalk-container')
+</script>
 {% endif %}
