@@ -16,6 +16,7 @@
 - [Kattis](https://open.kattis.com/)
 - [LeetCode China](https://leetcode-cn.com/)
 - [LeetCode](https://leetcode.com/)
+- [LibreOJ](https://loj.ac/)
 - [Luogu](http://www.luogu.org/)(常用 OJ，现代 OJ 支持发布比赛等很多功能，评测机快)
 - [OpenJudge](http://openjudge.cn/) (曾经是 NOI 的官方 OJ，后来好像中山纪念写了一个新的？)
 - [POJ](http://poj.org/) (PKU OJ，很多英文题， 有一些基础题和好题)
