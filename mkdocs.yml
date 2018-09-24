@@ -22,7 +22,7 @@ nav:
     - 工具软件: 
       - 评测工具: intro/judgers.md
       - 编辑工具: intro/editors.md
-      - Windows 10 下的WSL: intro/wsl.md
+      - Windows 10 的 WSL: intro/wsl.md
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
   - 基础部分:
