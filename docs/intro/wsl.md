@@ -27,7 +27,7 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 > #### 补充资料：何为 Linux 子系统（WSL）？(via 百度百科)
 >
-> Windows Subsystem for Linux（简称 WSL）是一个为在 Windows 10 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。它是由微软与 Canonical 公司合作开发，目标是使纯正的Ubuntu 14.04/18.04, OpenSUSE, Kali Linux和Debian映像能下载和解压到用户的本地计算机，并且映像内的工具和实用工具能在此子系统上原生运行。
+> Windows Subsystem for Linux（简称 WSL）是一个为在 Windows 10 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。它是由微软与 Canonical 公司合作开发，目标是使纯正的 Ubuntu 14.04/18.04, OpenSUSE, Kali Linux 和 Debian 映像能下载和解压到用户的本地计算机，并且映像内的工具和实用工具能在此子系统上原生运行。
 >
 > WSL 提供了一个微软开发的 Linux 兼容内核接口（不包含 Linux 代码），来自 Ubuntu 的用户模式二进制文件在其上运行。  
 > 此子系统起源于命运多舛的 Astoria 项目，其目的是允许 Android 应用运行在 Windows 10 Mobile 上。此功能组件从 Windows 10 Insider Preview build 14316 开始可用。
@@ -40,8 +40,8 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 #### 其次，你需要配置一下开发人员模式环境。
 
-1. 设置 -> 更新与安全 -> 开发人员模式框选 -> 是
-![来，跟着箭头走](./images/WSL4.png)     
+1.  设置 -> 更新与安全 -> 开发人员模式框选 -> 是
+    ![来，跟着箭头走](./images/WSL4.png)     
 
 <div align='center'> 来，跟着箭头走 </div>      
  
@@ -56,7 +56,7 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 ## 0x03 开搞
 
-去 Windows 自带的应用商店，搜索 “Ubuntu”，然后选第一个安装。  （build of Ubuntu 18.04 LTS）     
+去 Windows 自带的应用商店，搜索 “Ubuntu”，然后选第一个安装。  （build of Ubuntu 18.04 LTS）  
 亦可打开<https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6>  
 
 安装完后，打开 Ubuntu，等待一段时间，让其自己配置，不久就会提示你设置用户名和密码。（这里看你喜好，推荐设置短点，毕竟本地环境不怕攻击）
@@ -77,6 +77,7 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 ### 解锁 root 账户（非必需）
 
 Ubuntu 默认是把 root 账户锁住的，给刚刚的账户开放 sudo 权限。
+
 ```text
 在 Linux 的权限系统中，“sudo”正如 “以管理员身份运行”，不声明就没法使用管理员权限。而“root” 则是 "Administrator“，直接解锁全部权限。 
 ```
@@ -266,8 +267,8 @@ TUNA 的源（这个 Ubuntu 是 16.04LTS 长期支持版的）
 
 ### **Enjoy It!**
 
-## 0x06 附言 - 补充材料    
-   
+## 0x06 附言 - 补充材料
+
 暂无。    
 
 **乱码是因为我用的预览体验系统...... 不过用正式版也可以了！**
@@ -294,26 +295,25 @@ TUNA 的源（这个 Ubuntu 是 16.04LTS 长期支持版的）
 
 这里列举了所有文中提到的链接，以便查阅。
 
-1\.[NOIP 标准评测系统及相关问题 ,smart0326,2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html)
+1.[NOIP 标准评测系统及相关问题 ,smart0326,2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html)
 
-2\.[WSL, 百度百科](https://baike.baidu.com/item/wsl/20359185)
+2.[WSL, 百度百科](https://baike.baidu.com/item/wsl/20359185)
 
-3\.[Run Bash on Ubuntu on Windows,Mike Harsh,2016-05-30,Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97)
+3.[Run Bash on Ubuntu on Windows,Mike Harsh,2016-05-30,Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97)
 
-4\.[Windows Subsystem for Linux Documentation,MSDN](https://docs.microsoft.com/zh-cn/windows/wsl/about)
+4.[Windows Subsystem for Linux Documentation,MSDN](https://docs.microsoft.com/zh-cn/windows/wsl/about)
 
-5\.[NOI 系列活动标准竞赛环境, 2016-11-08,NOI 官网](http://www.noi.cn/2016-11-08-03-42-01)
+5.[NOI 系列活动标准竞赛环境, 2016-11-08,NOI 官网](http://www.noi.cn/2016-11-08-03-42-01)
 
-6\.[购买 Ubuntu,Microsoft Store](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6)
+6.[购买 Ubuntu,Microsoft Store](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6)
 
-7\.[Ubuntu 镜像使用帮助, 清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
+7.[Ubuntu 镜像使用帮助, 清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
 
-8\.[ubuntu 的 man 命令帮助如何设置中文版, Frank 看庐山, 2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523)
+8.[ubuntu 的 man 命令帮助如何设置中文版, Frank 看庐山, 2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523)
 
-9\.[帮助, lin_toto,2017-04-08, 洛谷百科](https://www.luogu.org/wiki/show?name=%E5%B8%AE%E5%8A%A9)
+9.[帮助, lin_toto,2017-04-08, 洛谷百科](https://www.luogu.org/wiki/show?name=%E5%B8%AE%E5%8A%A9)
 
-10\.[Xming X Server for Windows,SourceForge](https://sourceforge.net/projects/xming/)
-
+10.[Xming X Server for Windows,SourceForge](https://sourceforge.net/projects/xming/)
 
 ### 啰嗦几句
 
