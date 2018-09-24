@@ -12,12 +12,14 @@
 - [Hackerrank](https://www.hackerrank.com/)
 - [HDU OJ](http://acm.hdu.edu.cn/) (杭电的 OJ，多校训练的题目放在这里)
 - [hihoCoder](https://hihocoder.com/)
+- [JoyOI](http://www.joyoi.cn/)
 - [Judge Duck Online](https://duck.ac/) (松松松的 OJ，精确到 $\mu s$ )
 - [Kattis](https://open.kattis.com/)
 - [LeetCode China](https://leetcode-cn.com/)
 - [LeetCode](https://leetcode.com/)
 - [LibreOJ](https://loj.ac/)
 - [Luogu](http://www.luogu.org/) (常用 OJ，现代 OJ 支持发布比赛等很多功能，评测机快)
+- [NowCoder](https://www.nowcoder.com/)
 - [OpenJudge](http://openjudge.cn/) (曾经是 NOI 的官方 OJ，后来好像中山纪念写了一个新的？)
 - [POJ](http://poj.org/) (PKU OJ，很多英文题， 有一些基础题和好题)
 - [Topcoder](https://www.topcoder.com/) (比赛也很多)
@@ -59,7 +61,7 @@
 - [uDebug 提供一些 OJ 题目的调试辅助](https://www.udebug.com)
 - [提供 C++ 内语法的查询等 - cppreference.com](https://zh.cppreference.com/w/)
 - [图论画板](https://csacademy.com/app/graph_editor/) (同时推荐 GraphViz)
-- [Latex 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm)
+- [LaTeX 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm)
 
 ## 题集
 
