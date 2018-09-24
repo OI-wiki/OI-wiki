@@ -6,7 +6,7 @@
 
 ### sync_with_stdio
 
-这个函数是一个“是否兼容 stdio”的开关，C++ 为了兼容 C，保证程序在使用了 `std::printf` 和 `std::cout` 的时候不发生混乱，将输出流绑到了一起。
+这个函数是一个 “是否兼容 stdio” 的开关，C++ 为了兼容 C，保证程序在使用了 `std::printf` 和 `std::cout` 的时候不发生混乱，将输出流绑到了一起。
 
 这其实是 C++ 为了兼容而采取的保守措施。我们可以在 IO 之前将 stdio 解除绑定，这样做了之后要注意不要同时混用 `cout` 和 `printf` 之类
 
@@ -14,27 +14,25 @@
 
 tie 是将两个 stream 绑定的函数，空参数的话返回当前的输出流指针。
 
-在默认的情况下 `cin` 绑定的是 `cout`，每次执行 `<<` 操作符的时候都要调用 `flush`，这样会增加 IO 负担。可以通过`tie(0)`（0表示 NULL）来解除 `cin` 与 `cout` 的绑定，进一步加快执行效率。
+在默认的情况下 `cin` 绑定的是 `cout`，每次执行 `<<` 操作符的时候都要调用 `flush`，这样会增加 IO 负担。可以通过`tie(0)`（0 表示 NULL）来解除 `cin` 与 `cout` 的绑定，进一步加快执行效率。
 
 ### 代码实现
 
 ```cpp
-
 std::ios::sync_with_stdio(false);
 
 std::cin.tie(0);
-
 ```
 
 ## 读入优化
 
 `scanf` 和 `printf` 依然有优化的空间，这就是本章所介绍的内容——读入和输出优化。
 
-* 注意，读入和输出优化均针对整数，不支持其他类型的数据
+- 注意，读入和输出优化均针对整数，不支持其他类型的数据
 
 ### 原理
 
-众所周知，`getchar` 是用来读入 char 类型，且速度很快，用“读入字符——转换为整形”来代替缓慢的读入
+众所周知，`getchar` 是用来读入 char 类型，且速度很快，用 “读入字符——转换为整形” 来代替缓慢的读入
 
 每个整数由两部分组成——符号和数字
 
@@ -45,7 +43,6 @@ std::cin.tie(0);
 ### 代码实现
 
 ```cpp
-
 int read(){
 
 	int x=0,w=1;char ch=0;
@@ -69,7 +66,7 @@ int read(){
 }
 ```
 
-* 举例 
+- 举例 
 
 读入 num 可写为 `num=read();`
 
@@ -77,11 +74,11 @@ int read(){
 
 ### 原理
 
-同样是众所周知，`putchar` 是输出单个字符，其速度远快于其它输出方式 
+同样是众所周知，`putchar` 是输出单个字符
 
 因此将数字的每一位转化为字符输出以加速
 
-要注意的是，负号要单独判断输出，并且每次%（mod）取出的是数字末位，因此要倒序输出（递归加速）
+要注意的是，负号要单独判断输出，并且每次 %（mod）取出的是数字末位，因此要倒序输出
 
 ### 代码实现
 
@@ -102,88 +99,76 @@ int write(int x){
 }
 ```
 
-* 举例
+但是递归实现是很慢的，我们可以写一个栈来实现这个过程
+
+```cpp
+inline void write(int x) {
+	static int sta[35];
+	int top=0;
+	do{sta[top++]=x%10,x/=10;}while(x);
+	while(top) putchar(sta[--top]+48); // 48 是 '0' 
+}
+```
+
+- 举例
 
 输出 num 可写为 `write(num);`
 
-也可以写成非递归的形式，来得到更好的效果。
+## 更快的读入 / 输出优化
 
-## 更快的读入/输出优化
-
-通过 `fread` 或者 `mmap` 可以实现更快的读入和输出。其本质为一次性读入/输出一个巨大的缓存区，如此比一个一个字符读入输出要快的多(`getchar`,`putchar`）。
+通过 `fread` 或者 `mmap` 可以实现更快的读入。其本质为一次性读入一个巨大的缓存区，如此比一个一个字符读入要快的多 (`getchar`,`putchar`）。 因为硬盘的多次读写速度是要慢于内存的，先一次性读到内存里在读入要快的多。
 
 更通用的是 `fread`，因为 `mmap` 不能在 Windows 使用。
 
 `fread`类似于`scanf("%s")`，不过它更为快速，而且可以一次性读入若干个字符（包括空格换行等制表符），如果缓存区足够大，甚至可以一次性读入整个文件。
+
+对于输出，我们还有对应的 `fwrite` 函数
 
 ```cpp
 std::size_t fread( void* buffer, std::size_t size, std::size_t count, std::FILE* stream );
 std::size_t fwrite( const void* buffer, std::size_t size, std::size_t count, std::FILE* stream );
 ```
 
-使用示例：`fread(Buf, 1, MAXSIZE, stdin)`，如此从 stdin 文件流中读入 MAXSIZE 个字符到 Buf 中。
+使用示例：`fread(Buf, 1, MAXSIZE, stdin)`，如此从 stdin 文件流中读入 MAXSIZE 个大小为 1 的字符到 Buf 中。
 
-读入之后的使用就跟普通的读入优化相似了，只需要重定义一下 getchar。它原来是从文件中读入一个 char，现在变成从 Buf中读入一个 char，也就是头指针向后移动一位。
+读入之后的使用就跟普通的读入优化相似了，只需要重定义一下 getchar。它原来是从文件中读入一个 char，现在变成从 Buf 中读入一个 char，也就是头指针向后移动一位。
 
 ```cpp
-char Buf[MASIZE], *S = Buf;
-char getchar() {
-	return *S++;
-}
+char buf[1<<20], *p1, *p2;
+#define gc() (p1==p2&&(p2=(p1=buf)+fread(buf,1,1<<20,stdin),p1==p2)?EOF:*p1++)
 ```
 
 `fwrite` 也是类似的，先放入一个 `OutBuf[MAXSIZE]` 中，最后通过 `fwrite` 一次性将 `OutBuf` 输出。
 
-注意 `fread` 必须使用文件读入，但是 `fwrite` 不需要。
-
 参考代码：
-```
-namespace io {
-const int MAXSIZE = 1 << 22;
-inline char gc() {
-    static char In[MAXSIZE], *at = In, *en = In;
-    if (at == en) {
-        en = (at = In) + fread(In, 1, MAXSIZE, stdin);
-    }
-    return at == en ? EOF : *at++;
+
+```cpp
+namespace IO {
+	const int MAXSIZE = 1 << 20;
+	char buf[MAXSIZE], *p1, *p2;
+	#define gc() (p1==p2&&(p2=(p1=buf)+fread(buf,1,MAXSIZE,stdin),p1==p2)?EOF:*p1++)
+	inline int rd() {
+		int x = 0, f = 1;char c=nc();
+		while(!isdigit(c)) {if(c == '-') f = -1; c = nc();}
+		while(isdigit(c)) x = (x<<1)+(x<<3)+(c^48), c = nc();
+		return x*f;
+	}
+	char pbuf[1<<20],*pp=pbuf;
+	inline void push(const char &c) {
+		if(pp-pbuf==1<<20) fwrite(pbuf,1,1<<20,stdout),pp=pbuf;
+		*pp++=c;
+	}
+	inline void write(int x) {
+		static int sta[35];
+		int top=0;
+		do{sta[top++]=x%10,x/=10;}while(x);
+		while(top) push(sta[--top]+'0');
+	}
 }
-template <class T> inline T gt() {
-    char c;
-    while (c = gc(), !isdigit(c) && c != '-') {}
-    bool f = c == '-';
-    T x = f ? 0 : c - '0';
-    for (c = gc(); isdigit(c); c = gc()) {
-        x = x * 10 + c - '0';
-    }
-    return f ? -x : x;
-}
-char Out[MAXSIZE], *cur = Out, *end = Out + MAXSIZE - 100;
-void flush() {
-    fwrite(Out, 1, cur - Out, stdout);
-    cur = Out;
-}
-template <typename T> inline void pt(T x, char c = '\n') {
-    static int S[20], *top;
-    top = S;
-    if (x < 0) {
-        *cur++ = '-', x = -x;
-    }
-    do {
-        *++top = x % 10, x /= 10;
-    } while (x);
-    while (top != S) {
-        *cur++ = *top-- + '0';
-    }
-    *cur++ = c;
-    if(cur >= end) {
-        flush();
-    }
-}
-}  // namespace io
 ```
 
 ## 参考
 
-http://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html
+<http://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html>
 
-http://meme.biology.tohoku.ac.jp/students/iwasaki/cxx/speed.html
+<http://meme.biology.tohoku.ac.jp/students/iwasaki/cxx/speed.html>

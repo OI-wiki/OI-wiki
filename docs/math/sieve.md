@@ -21,7 +21,7 @@ void genPrimes() {
 }
 ```
 
-这个筛法被成为 eratosthenes （念作“埃拉托斯特尼”）筛法，时间复杂度是 $O(n\log\log n)$。
+这个筛法被成为 eratosthenes （念作 “埃拉托斯特尼”）筛法，时间复杂度是 $O(n\log\log n)$。
 
 以上做法仍有优化空间，我们发现这里面似乎会对某些数标记了很多次其为合数。有没有什么办法省掉无意义的步骤呢？
 
@@ -82,6 +82,21 @@ $$
 & = (p_1 - 1) \times \varphi(n')
 \end{aligned}
 $$
+
+```c++
+void phi_table(int n,int* phi)
+{
+    for (int i=2;i<=n;i++) phi[i]=0;
+    phi[1]=1;
+    for (int i=2;i<=n;i++)
+    if (!phi[i])
+	    for (int j=i;j<=n;j+=i)
+	    {
+		    if (!phi[j]) phi[j]=j;
+		    phi[j]=phi[j]/i*(i-1);
+	    }
+}
+```
 
 ## 筛法求莫比乌斯函数
 

@@ -1,5 +1,3 @@
-By [hsfzLZH1](https://github.com/hsfzLZH1)
-
 ## 经典题型
 
 数位 DP 问题往往都是这样的题型，给定一个闭区间 $[l,r]$，让你求这个区间中满足 **某种条件** 的数的总数。
@@ -58,9 +56,9 @@ int solve(int x)
 
 [BZOJ 3679 数字之积 ](https://www.lydsy.com/JudgeOnline/problem.php?id=3679)
 
-[luogu P2602 [ZJOI2010] 数字计数 ](https://www.luogu.org/problemnew/show/P2602)
+[luogu P2602 \[ZJOI2010\] 数字计数 ](https://www.luogu.org/problemnew/show/P2602)
 
-[luogu P4127 [AHOI2009] 同类分布 ](https://www.luogu.org/problemnew/show/P4127)
+[luogu P4127 \[AHOI2009\] 同类分布 ](https://www.luogu.org/problemnew/show/P4127)
 
 [luogu  P3413 SAC#1 - 萌数](https://www.luogu.org/problemnew/show/P3413)
 

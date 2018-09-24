@@ -1,34 +1,20 @@
-<!--
-  Copyright (c) 2016-2018 Martin Donath <martin.donath@squidfunk.com>
-
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to
-  deal in the Software without restriction, including without limitation the
-  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-  sell copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be included in
-  all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-  IN THE SOFTWARE.
--->
-
 {% import "partials/language.html" as lang with context %}
 
+<!-- InstantClick -->
+<script type="text/javascript" src="https://cdn.bootcss.com/instantclick/3.0.0/instantclick.js" data-no-instant></script>
+<script data-no-instant>
+InstantClick.init(true);
+</script>
+
+<script src="{{ 'assets/javascripts/modernizr.1aa3b519.js' | url }}" data-no-instant></script>
+
 <!-- back to top -->
-<link rel="stylesheet" href="https://npmcdn.com/data-tip@0.0.52/dist/data-tip.css">
+<link rel="stylesheet" href="https://unpkg.com/data-tip@0.0.52/dist/data-tip.css">
 <script>
 // 当网页向下滑动 20px 出现"返回顶部" 按钮
 window.onscroll = function() {scrollFunction()};
  
-function scrollFunction() {console.log(121);
+function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         document.getElementById("myBtn").style.display = "block";
     } else {
@@ -118,8 +104,9 @@ function topFunction() {
         and
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
-      </div>
-
+        </div>
+        
+        <span style="float:right" class="build_date_utc"><a href="https://github.com/24OI/OI-wiki">最近更新：{{ build_date_utc.strftime('%Y-%m-%d') }}</a></span>
       <!-- Social links -->
       {% block social %}
         {% include "partials/social.html" %}

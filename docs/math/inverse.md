@@ -2,7 +2,7 @@
 
 ## 逆元简介
 
-如果一个线性同余方程 $ax \equiv 1 \pmod b$，则 $x$ 称为 $a$ 的逆元，记作 $a^{-1}$。
+如果一个线性同余方程 $ax \equiv 1 \pmod b$，则 $x$ 称为 $a \mod b$ 的逆元，记作 $a^{-1}$。
 
 ## 如何求逆元
 
@@ -88,6 +88,6 @@ a[i]=(p-p/i)*a[p%i]%p;
 
 ## 逆元练习题
 
-[[AHOI2005]洗牌](https://www.lydsy.com/JudgeOnline/problem.php?id=1965)
+[\[AHOI2005\] 洗牌](https://www.lydsy.com/JudgeOnline/problem.php?id=1965)
 
-[[SDOI2016]排列计数](https://www.luogu.org/problemnew/show/P4071)
+[\[SDOI2016\] 排列计数](https://www.luogu.org/problemnew/show/P4071)

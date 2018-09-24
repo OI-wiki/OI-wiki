@@ -28,7 +28,7 @@ nav:
     - 基础部分简介: basic/index.md
     - 枚举: basic/enumerate.md
     - 模拟: basic/simulate.md
-    - 分治: basic/divide-and-conquer.md
+    - 递归&分治: basic/divide-and-conquer.md
     - 贪心: basic/greedy.md
     - 排序: basic/sort.md
     - 表达式求值: basic/expression.md
@@ -40,17 +40,18 @@ nav:
     - BFS: search/bfs.md
     - 双向广搜: search/dbfs.md
     - 启发式搜索: search/heuristic.md
-    - Astar: search/astar.md
-    - IDAstar: search/idastar.md
-    - 迭代深搜: search/iterative.md
+    - A*: search/astar.md
+    - 迭代加深搜索: search/iterative.md
+    - IDA*: search/idastar.md
     - 回溯法: search/backtracking.md
     - Dancing Links: search/dlx.md
+    - 优化: search/optimization.md
   - 动态规划:
     - 动态规划部分简介: dp/index.md
     - 记忆化搜索: dp/memo.md
     - 背包 DP: dp/backpack.md
     - 区间 DP: dp/interval.md
-    - DAG 上的 dp: dp/dag.md
+    - DAG 上的 DP: dp/dag.md
     - 树形 DP: dp/tree.md
     - 状压 DP: dp/state.md
     - 数位 DP: dp/number.md
@@ -75,6 +76,7 @@ nav:
   - 数学:
     - 数学部分简介: math/index.md
     - 进制相关: math/base.md
+    - 位运算: math/bit.md
     - 素数: math/prime.md
     - 最大公约数: math/gcd.md
     - 裴蜀定理: math/bezouts.md
@@ -83,32 +85,33 @@ nav:
     - 莫比乌斯反演: math/mobius.md
     - 费马小定理（欧拉定理）: math/fermat.md
     - 快速幂: math/quick-pow.md
-    - 中国剩余定理: math/crt.md
-    - 分段打表: math/dictionary.md
-    - 矩阵: math/matrix.md
-    - 位运算: math/bit.md
+    - 线性基: math/basis.md
     - 乘法逆元: math/inverse.md
-    - 阶 原根: math/primitive-root.md
+    - 线性方程: math/linear-equation.md
+    - 高斯消元: math/gauss.md
+    - 矩阵: math/matrix.md
+    - 中国剩余定理: math/crt.md
+    - 复数: math/complex.md
+    - 高精度: math/bignum.md
+    - 分段打表: math/dictionary.md
+    - 原根: math/primitive-root.md
     - BSGS: math/bsgs.md
     - 博弈论: math/game.md
-    - 多项式黑科技: math/poly.md
-    - 排列组合: math/combination.md
-    - 卡特兰数: math/catalan.md
-    - 斯特林数: math/stirling.md
-    - 康托展开: math/cantor.md
-    - 概率与期望: math/expectation.md
-    - 置换群: math/permutation-group.md
-    - 高斯消元: math/gauss.md
-    - 线性方程: math/linear-equation.md
-    - 容斥原理: math/inclusion-exclusion-principle.md
-    - 抽屉原理: math/drawer-principle.md
-    - 数值积分: math/integral.md
+    - 多项式相关: math/poly.md
     - 快速傅里叶变换: math/fft.md
     - 快速数论变换: math/ntt.md
     - 快速沃尔什变换: math/fwt.md
+    - 组合数学:
+      - 排列组合: math/combination.md
+      - 卡特兰数: math/catalan.md
+      - 斯特林数: math/stirling.md
+      - 康托展开: math/cantor.md
+      - 容斥原理: math/inclusion-exclusion-principle.md
+      - 抽屉原理: math/drawer-principle.md
+    - 概率与期望: math/expectation.md
+    - 置换群: math/permutation-group.md
+    - 数值积分: math/integral.md
     - 线性规划: math/linear-programming.md
-    - 复数: math/complex.md
-    - 高精度: math/bignum.md
     - 杂项: math/misc.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
@@ -126,62 +129,67 @@ nav:
     - 哈希表: ds/hash.md
     - 并查集: ds/dsu.md
     - 堆: ds/heap.md
-    - 分块: ds/square-root-decomposition.md
+    - 块状数据结构:
+      - 分块思想: ds/square-root-decomposition.md
+      - 块状链表: ds/block-list.md
+      - 块状数组: ds/block-array.md
+      - 树分块: ds/tree-decompose.md
     - 单调栈: ds/monotonous-stack.md
     - 单调队列: ds/monotonous-queue.md
     - 倍增法: ds/sparse-table.md
-    - 块状链表: ds/block-list.md
-    - 块状数组: ds/block-array.md
     - 树状数组: ds/bit.md
     - 线段树: ds/segment.md
-    - Treap: ds/treap.md
-    - SBT: ds/sbt.md
-    - Splay: ds/splay.md
-    - 替罪羊树: ds/scapegoat.md
+    - 划分树: ds/dividing.md
     - 虚树: ds/virtual-tree.md
+    - Size Balanced Tree: ds/sbt.md
+    - Treap: ds/treap.md
+    - Splay: ds/splay.md
+    - AVL 树: ds/avl.md
+    - 替罪羊树: ds/scapegoat.md
     - 树套树:
       - 线段树套线段树: ds/seg-in-seg.md
       - 平衡树套线段树: ds/seg-in-balanced.md
       - 线段树套平衡树: ds/balanced-in-seg.md
-    - AVL 树: ds/avl.md
-    - 划分树: ds/dividin.md
     - K-Dtree: ds/k-dtree.md
-    - 可持久化线段树: ds/persistent-seg.md
-    - 可持久化块状数组: ds/persistent-block-array.md
-    - 可持久化平衡树: ds/persistent-balanced.md
-    - 可持久化字典树: ds/persistent-trie.md
+    - 可持久化数据结构:
+      - 可持久化数据结构简介: ds/persistent.md
+      - 可持久化线段树: ds/persistent-seg.md
+      - 可持久化块状数组: ds/persistent-block-array.md
+      - 可持久化平衡树: ds/persistent-balanced.md
+      - 可持久化字典树: ds/persistent-trie.md
     - Link Cut Tree: ds/lct.md
     - Euler Tour Tree: ds/ett.md
-    - 树分块: ds/tree-decompose.md
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论基础: graph/basic.md
-    - 树相关基础: graph/tree-basic.md
+    - 树相关:
+      - 树相关基础: graph/tree-basic.md
+      - 树链剖分: graph/heavy-light-decomposition.md
+      - 树分治: graph/tree-divide.md
+      - 树的其他问题: graph/tree-misc.md
+      - 动态树分治: graph/dynamic-tree-divide.md
+      - 最近公共祖先: graph/lca.md
     - 遍历：BFS 和 DFS: graph/traverse.md
+    - 有向无环图: graph/dag.md
     - 最小生成树: graph/mst.md
-    - 最近公共祖先: graph/lca.md
-    - 树链剖分: graph/heavy-light-decomposition.md
-    - 树分治: graph/tree-divide.md
-    - 树的其他问题: graph/tree-misc.md
     - 拓扑排序: graph/topo.md
-    - 动态树分治: graph/dynamic-tree-divide.md
     - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
     - 强连通分量: graph/scc.md
     - 双连通分量: graph/bcc.md
-    - 割点割边: graph/bridge.md
-    - 差分约束: graph/differential-constraints.md
-    - 有向无环图: graph/dag.md
+    - 割点和桥: graph/bridge.md
     - 二分图: graph/bi-graph.md
     - 最短路: graph/shortest-path.md
-    - 最小环: graph/min-circle.md
+    - 差分约束: graph/differential-constraints.md
     - k 短路: graph/kth-path.md
-    - 网络流: graph/flow.md
-    - 拆点: graph/flow/node.md
-    - 最大流: graph/flow/max-flow.md
-    - 最小割: graph/flow/min-cut.md
-    - 费用流: graph/flow/min-cost.md
-    - 上下界网络流: graph/flow/bound.md
+    - 最小环: graph/min-circle.md
+    - 网络流:
+      - 网络流简介: graph/flow.md
+      - 拆点: graph/flow/node.md
+      - 最大流: graph/flow/max-flow.md
+      - 最小割: graph/flow/min-cut.md
+      - 费用流: graph/flow/min-cost.md
+      - 上下界网络流: graph/flow/bound.md
   - 计算几何:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
@@ -237,16 +245,18 @@ extra:
   search:
     language: 'jp'
   disqus: 'OI-Wiki'
-  copyright: 'CC BY-SA 4.0 和 SATA'
+  copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
 
 extra_javascript:
-  - 'https://oi-wiki.org/analytics.js'
-  - '_static/js/extra.js?v=2'
+  - 'https://cdn.bootcss.com/Han/3.3.0/han.min.js'
+  - '_static/js/extra.js?v=10'
   - 'https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'
+  
 
 extra_css:
-  - '_static/css/extra.css?v=2'
+  - 'https://unpkg.com/ah@1.0.5/han.min.css'
+  - '_static/css/extra.css?v=7'
 
 # Extensions
 markdown_extensions:
