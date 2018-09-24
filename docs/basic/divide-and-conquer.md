@@ -43,7 +43,7 @@ int f(传入数值)
 
 这道题朴素的递归写法只能得到 25 分，因为递归次数太多，所以超时。
 
-怎么优化呢？详见 [搜索优化](/search/optimization) 和 [记忆化搜索](https://oi-wiki.org/dp/memo/)。
+怎么优化呢？详见 [搜索优化](/search/optimization) 和 [记忆化搜索](/dp/memo/)。
 
 # 分治
 
