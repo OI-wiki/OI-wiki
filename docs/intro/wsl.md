@@ -2,15 +2,6 @@
 
 * * *
 
-### 啰嗦几句
-
-**原标题：练习 Linux？其实你的 Win10 自带一个 Ubuntu！**  
-这篇文章原本发布于[洛谷日报 #6](https://www.luogu.org/discuss/show/48491)，现由本人咨询 @Ir1d 后为方便 OIer 的目的转载到这里。  
-在转载过程中，进行了图片归档，然后顺便重新审了下文章，并针对[OI-wiki](/)进行了修改优化。  
-现发布出来，再次感谢各位的支持，如仍有兼容的问题请 Github Issue。    
-
-* * *
-
 ## 0x01 引言
 
 众所周知，尽管现在大部分学校的竞赛练习环境都是构建 XP 等 Windows 系操作系统，但是在 CCF 组织的一系列竞赛（如 NOI）中，早已用上了 NOI Linux 这个**Ubuntu**操作系统的阉割版。  
@@ -36,7 +27,7 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 > #### 补充资料：何为 Linux 子系统（WSL）？(via 百度百科)
 >
-> Windows Subsystem for Linux（简称 WSL）是一个为在 Windows 10 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。它是由微软与 Canonical 公司合作开发，目标是使纯正的 Ubuntu 14.04 "Trusty Tahr" 映像能下载和解压到用户的本地计算机，并且映像内的工具和实用工具能在此子系统上原生运行。     
+> Windows Subsystem for Linux（简称 WSL）是一个为在 Windows 10 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。它是由微软与 Canonical 公司合作开发，目标是使纯正的Ubuntu 14.04/18.04, OpenSUSE, Kali Linux和Debian映像能下载和解压到用户的本地计算机，并且映像内的工具和实用工具能在此子系统上原生运行。
 >
 > WSL 提供了一个微软开发的 Linux 兼容内核接口（不包含 Linux 代码），来自 Ubuntu 的用户模式二进制文件在其上运行。  
 > 此子系统起源于命运多舛的 Astoria 项目，其目的是允许 Android 应用运行在 Windows 10 Mobile 上。此功能组件从 Windows 10 Insider Preview build 14316 开始可用。
@@ -49,7 +40,7 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 #### 其次，你需要配置一下开发人员模式环境。
 
-1\. 设置 -> 更新与安全 -> 开发人员模式框选 -> 是
+1. 设置 -> 更新与安全 -> 开发人员模式框选 -> 是
 ![来，跟着箭头走](./images/WSL4.png)     
 
 <div align='center'> 来，跟着箭头走 </div>      
@@ -65,7 +56,7 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 ## 0x03 开搞
 
-去 Windows 自带的应用商店，搜索 “Ubuntu”，然后选第一个安装。  
+去 Windows 自带的应用商店，搜索 “Ubuntu”，然后选第一个安装。  （build of Ubuntu 18.04 LTS）     
 亦可打开<https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6>  
 
 安装完后，打开 Ubuntu，等待一段时间，让其自己配置，不久就会提示你设置用户名和密码。（这里看你喜好，推荐设置短点，毕竟本地环境不怕攻击）
@@ -86,8 +77,9 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 ### 解锁 root 账户（非必需）
 
 Ubuntu 默认是把 root 账户锁住的，给刚刚的账户开放 sudo 权限。
-
-** 在 Linux 的权限系统中，“sudo”正如 “以管理员身份运行”，不声明就没法使用管理员权限。而“root” 则是 "Administrator“，直接解锁全部权限。 **
+```text
+在 Linux 的权限系统中，“sudo”正如 “以管理员身份运行”，不声明就没法使用管理员权限。而“root” 则是 "Administrator“，直接解锁全部权限。 
+```
 
 命令三连：
 
@@ -274,30 +266,10 @@ TUNA 的源（这个 Ubuntu 是 16.04LTS 长期支持版的）
 
 ### **Enjoy It!**
 
-## 0x06 附言 - 补充材料
+## 0x06 附言 - 补充材料    
+   
+暂无。    
 
-以下的内容均为进入备选区后更新。
-
-### 洛谷的编译参数 [via](https://www.luogu.org/wiki/show?name=%E5%B8%AE%E5%8A%A9)
-
-    - C：gcc -DONLINE_JUDGE -Wall -fno-asm -std=c99 -lm
-    - C++：g++ -DONLINE_JUDGE -Wall -fno-asm -std=c++98 
-    - C++11：g++ -DONLINE_JUDGE -Wall -fno-asm -std=c++11
-    - Pascal：ppcx64 -dONLINE_JUDGE 
-
-### 常见 “我在本地 / xxOJ AC 了、洛谷却不过” 的原因 [via](https://www.luogu.org/wiki/show?name=%E5%B8%AE%E5%8A%A9)
-
-    Linux中换行符是'\n'而Windows中是'\r\n'（多一个字符），有些数据在Windows中生成，而在洛谷评测机Linux环境下评测。这种情况在字符串输入中非常常见。
-
-    评测系统建立在Linux下，可能由于使用了Linux的保留字而出现CE，但在Windows下正常。
-
-    Linux对内存的访问控制更为严格，因此在Windows上可能正常运行的无效指针或数组下标访问越界，在评测系统上无法运行。
-
-    严重的内存泄露的问题很可能会引起系统的保护模块杀死你的进程。因此，凡是使用malloc(或calloc,realloc,new)分配而得的内存空间，请使用free(或delete)完全释放。
-
-    数据可能真的有问题。但是如果不止一个人通过了这道题，那最好不要怀疑是数据的锅。
-
-如有写得不好的地方，还请 dalao 多多指正！
 **乱码是因为我用的预览体验系统...... 不过用正式版也可以了！**
 
 ## 0x07 FAQ
@@ -341,3 +313,11 @@ TUNA 的源（这个 Ubuntu 是 16.04LTS 长期支持版的）
 9\.[帮助, lin_toto,2017-04-08, 洛谷百科](https://www.luogu.org/wiki/show?name=%E5%B8%AE%E5%8A%A9)
 
 10\.[Xming X Server for Windows,SourceForge](https://sourceforge.net/projects/xming/)
+
+
+### 啰嗦几句
+
+**原标题：练习 Linux？其实你的 Win10 自带一个 Ubuntu！**  
+这篇文章原本发布于[洛谷日报 #6](https://www.luogu.org/discuss/show/48491)，现由本人咨询 @Ir1d 后为方便 OIer 的目的转载到这里。  
+在转载过程中，进行了图片归档，然后顺便重新审了下文章，并针对[OI-wiki](/)进行了修改优化。  
+现发布出来，再次感谢各位的支持，如仍有兼容的问题请 Github Issue。    
