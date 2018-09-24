@@ -156,7 +156,7 @@ $$\\varphi\*1=\\text{ID}\\text{（ID 函数即 } f(x)=x\\text{）}$$
 $$
 \\begin{align_}
 \\varphi_1&=\\sum_{d\\mid n}\\varphi(\\frac{n}{d})\\
-&=\\sum_{i=0}^c\\varphi(p^i)\\
+&=\\sum\_{i=0}^c\\varphi(p^i)\\
 &=1+p^0\\cdot(p-1)+p^1\\cdot(p-1)+\\cdots+p^{c-1}\\cdot(p-1)\\
 &=p^c\\
 &=\\text{ID}\\
@@ -193,7 +193,7 @@ $$\\sum_{d\\mid n}\\mu(d)f(\\frac{n}{d})=\\sum_{d\\mid n}\\mu(d)\\sum_{k\\mid \\
 
 原问题为：已知 $f=g_1$，证明 $g=f_\\mu$
 
-易知如下转化：$f_\\mu=g_1_\\mu\\Rightarrow f_\\mu=g$（其中 $1\*\\mu=\\varepsilon$）
+易知如下转化：$f_\\mu=g_1_\\mu\\Rightarrow f\_\\mu=g$（其中 $1\*\\mu=\\varepsilon$）
 
 * * *
 
