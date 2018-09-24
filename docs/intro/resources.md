@@ -1,12 +1,12 @@
-## 在线测试（训练）平台
+## 在线测试 (训练) 平台
 
 在线测试平台又称 Online Judging System，一般用来刷题、组织比赛，也有的会提供博客功能方便选手交流。
 
-- [51Nod](https://www.51nod.com/) (有很多好的数学题和思维题) 
+- [51Nod](https://www.51nod.com/) (有很多好的数学题和思维题)
 - [AtCoder](https://atcoder.jp/) (日本的一个 OJ，类似 CodeForces 但是也会放 JOI 的题)
-- [BZOJ](https://www.lydsy.com/JudgeOnline/)(常用 OJ，优质的题巨多)
+- [BZOJ](https://www.lydsy.com/JudgeOnline/) (常用 OJ，优质的题巨多)
 - [CodeChef](https://codechef.com/)
-- [Codeforces](https://codeforces.com/) （俄罗斯 OJ，一个用比赛积累起来的 OJ）
+- [Codeforces](https://codeforces.com/) (俄罗斯 OJ，一个用比赛积累起来的 OJ)
 - [CodeVS](http://www.codevs.cn/)
 - [FZUOJ](http://acm.fzu.edu.cn/)
 - [Hackerrank](https://www.hackerrank.com/)
@@ -17,7 +17,7 @@
 - [LeetCode China](https://leetcode-cn.com/)
 - [LeetCode](https://leetcode.com/)
 - [LibreOJ](https://loj.ac/)
-- [Luogu](http://www.luogu.org/)(常用 OJ，现代 OJ 支持发布比赛等很多功能，评测机快)
+- [Luogu](http://www.luogu.org/) (常用 OJ，现代 OJ 支持发布比赛等很多功能，评测机快)
 - [OpenJudge](http://openjudge.cn/) (曾经是 NOI 的官方 OJ，后来好像中山纪念写了一个新的？)
 - [POJ](http://poj.org/) (PKU OJ，很多英文题， 有一些基础题和好题)
 - [Topcoder](https://www.topcoder.com/) (比赛也很多)
@@ -39,17 +39,17 @@
 
 ## 书籍
 
-- 信息学奥赛一本通（初学者向）
-- 算法竞赛入门经典 （人称紫书）
-- 算法竞赛入门经典——训练指南 （人称大白）
-- 算法艺术与信息学竞赛 （人称黑书）
+- 信息学奥赛一本通 (初学者向)
+- 算法竞赛入门经典 (人称紫书)
+- 算法竞赛入门经典——训练指南 (人称大白)
+- 算法艺术与信息学竞赛 (人称黑书)
 - 算法竞赛进阶指南
-- 具体数学 
+- 具体数学
 - [Competitive Programmer's Handbook](https://cses.fi/book/index.html)
 - 算法导论
 - 啊哈算法
-- 挑战程序设计竞赛全套（通俗易懂）
-- 算法概论（提纲挚领，但内容较少）
+- 挑战程序设计竞赛全套 (通俗易懂)
+- 算法概论 (提纲挚领，但内容较少)
 
 ## 工具
 
