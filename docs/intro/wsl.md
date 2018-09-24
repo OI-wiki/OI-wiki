@@ -321,12 +321,10 @@ xfce4-session
 
 7. [Ubuntu 镜像使用帮助, 清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
 
-8. [ubuntu 的 man 命令帮助如何设置中文版, Frank 看庐山, 2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523)
+8. [Ubuntu 的 man 命令帮助如何设置中文版, Frank 看庐山, 2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523)
 
-9. [帮助, lin_toto,2017-04-08, 洛谷百科](https://www.luogu.org/wiki/show?name=%E5%B8%AE%E5%8A%A9)
-
-10. [Xming X Server for Windows,SourceForge](https://sourceforge.net/projects/xming/)
+9.  [Xming X Server for Windows,SourceForge](https://sourceforge.net/projects/xming/)
 
 ### 后记
 
-本文最初发布于[洛谷日报 #6](https://www.luogu.org/discuss/show/48491)，现由原作者修改后更新至此。
+本文最初发布于[洛谷日报 #6](https://www.luogu.org/discuss/show/48491)，现由原作者搬运至此，有删改。
