@@ -2,7 +2,7 @@
 
 我们在此实现一个可重的权值平衡树。
 
-``` cpp
+```cpp
 int cnt, // 树中元素总数
   rt, // 根节点，初值为 0 代表空树
   w[MAXN], // 点中的数据 / 权值
@@ -20,11 +20,11 @@ void Calc(int k) {
 
 ## 重构
 
-首先，如前所述，我们需要判定一个节点是否应重构。为此我们引入一个比例常数 $\alpha$（取值在 $(0.5,1)$，一般采用 $0.7$ 或 $0.8$），若某节点的子节点大小占它本身大小的比例超过 $\alpha$，则重构。
+首先，如前所述，我们需要判定一个节点是否应重构。为此我们引入一个比例常数 $\\alpha$（取值在 $(0.5,1)$，一般采用 $0.7$ 或 $0.8$），若某节点的子节点大小占它本身大小的比例超过 $\\alpha$，则重构。
 
-另外由于我们采用惰性删除（删除只使用 `wn[k]--`），已删除节点过多也影响效率。因此若未被删除的子树大小占总大小的比例低于 $\alpha$，则亦重构。
+另外由于我们采用惰性删除（删除只使用 `wn[k]--`），已删除节点过多也影响效率。因此若未被删除的子树大小占总大小的比例低于 $\\alpha$，则亦重构。
 
-``` cpp
+```cpp
 inline bool CanRbu(int k) {
 // 判断节点 k 是否需要重构
  return wn[k] && (alpha * s[k] <= (double)std::max(s[lc[k]], s[rc[k]])
@@ -34,7 +34,7 @@ inline bool CanRbu(int k) {
 
 重构分为两个步骤——先前序遍历展开存入数组，再二分重建成树。
 
-``` cpp
+```cpp
 void Rbu_Flatten(int& ldc, int k) {
 // 前序遍历展开以 k 节点为根子树
  if(!k) return;
@@ -70,7 +70,7 @@ void Rbu(int& k) {
 
 插入时，到达空结点则新建节点，找到对应结点则 `wn[k]++`。递归结束后，途经的节点可重构的要重构。
 
-``` cpp
+```cpp
 void Ins(int& k, int p) {
 // 在以 k 为根的子树内添加权值为 p 节点
  if(!k) { k = ++cnt; if(!rt) rt = 1;
@@ -88,7 +88,7 @@ void Ins(int& k, int p) {
 
 惰性删除，到达空结点则忽略，找到对应结点则 `wn[k]--`。递归结束后，可重构节点要重构。
 
-``` cpp
+```cpp
 void Del(int& k, int p) {
 // 从以 k 为根子树移除权值为 p 节点
  if(!k) return; else {
@@ -109,7 +109,7 @@ void Del(int& k, int p) {
 
 到达空结点则返回 1，因为只有该子树左边的数均小于查找数才会递归至此。找到对应结点，则返回该节点所占据的最后一个名次 + 1。
 
-``` cpp
+```cpp
 int MyUprBd(int k, int p) {
 // 在以 k 为根子树中，大于 p 的最小数的名次
  if(!k) return 1;
@@ -121,7 +121,7 @@ int MyUprBd(int k, int p) {
 
 以下是反义函数，相当于采用 `std::greater<>` 比较，即返回权值严格小于某值的最大名次。查询一个数的排名可以用 `MyUprGrt(rt, x) + 1`。
 
-``` cpp
+```cpp
 int MyUprGrt(int k, int p) {
  if(!k) return 0;
  else if(w[k] == p && wn[k]) return sd[lc[k]];
@@ -134,7 +134,7 @@ int MyUprGrt(int k, int p) {
 
 给定名次，返回该名次上的权值。到达空结点说明无此名次，找到对应结点则返回其权值。
 
-``` cpp
+```cpp
 int MyAt(int k, int p) {
 // 以 k 为根的子树中，名次为 p 的权值
  if(!k) return 0;
@@ -148,7 +148,7 @@ int MyAt(int k, int p) {
 
 以上两种功能结合即可。
 
-``` cpp
+```cpp
 inline int  MyPre(int k, int p) { return MyAt(k, MyUprGrt(k, p)); }
 inline int MyPost(int k, int p) { return MyAt(k, MyUprBd (k, p)); }
 ```

@@ -16,15 +16,15 @@
 
 在 NOIP 中，我们只要求一个能支持主要操作的堆就行，也就是二叉堆。
 
-- 二叉堆 *(binary heap)*
+-   二叉堆 _(binary heap)_
 
-最基础的堆，不支持 merge 和可持久化，所有操作的复杂度都是 $O(\log n)$ 的。
+最基础的堆，不支持 merge 和可持久化，所有操作的复杂度都是 $O(\\log n)$ 的。
 
-- 二项堆 *(binomial heap)*
+-   二项堆 _(binomial heap)_
 
-支持 merge 的堆，（也能可持久化），所有操作的复杂度都是 $O(\log n)$。
+支持 merge 的堆，（也能可持久化），所有操作的复杂度都是 $O(\\log n)$。
 
-- Fib 堆 *(Fibonacci heap)*
+-   Fib 堆 _(Fibonacci heap)_
 
 除了不能可持久化，支持全部功能，而且除了 deletemin 以外都是均摊 $O(1)$ 的。
 
@@ -52,7 +52,7 @@
 
 可以证明，插入之后向上调整后，没有其他结点会不满足堆性质。
 
-向上调整的时间复杂度是 $O(\log n)$ 的。
+向上调整的时间复杂度是 $O(\\log n)$ 的。
 
 ### 删除操作
 
@@ -70,11 +70,11 @@
 
 可以证明，删除并向下调整后，没有其他结点不满足堆性质。
 
-时间复杂度 $O(\log n)$。
+时间复杂度 $O(\\log n)$。
 
 ### 减小某个点的权值
 
-很显然，直接修改后，向上调整一次即可，时间复杂度为 $O(\log n)$。
+很显然，直接修改后，向上调整一次即可，时间复杂度为 $O(\\log n)$。
 
 ### 实现
 
@@ -104,21 +104,19 @@ down(x) {
 
 考虑这么一个问题，从一个空的堆开始，插入 $n$ 个元素，不在乎顺序。
 
-直接一个一个插入需要 $O(n \log n)$ 的时间，有没有更好的方法？
+直接一个一个插入需要 $O(n \\log n)$ 的时间，有没有更好的方法？
 
 #### 方法一：使用 decreasekey（即，向上调整）
 
 从根开始，按 BFS 序进行.
 
-```
-build_heap_1() {
-	for (i = 1; i <= n; i++) up(i);
-}
-```
+    build_heap_1() {
+    	for (i = 1; i <= n; i++) up(i);
+    }
 
-为啥这么做：对于第 $k$ 层的结点，向上调整的复杂度为 $O(k)$ 而不是 $O(\log n)$。
+为啥这么做：对于第 $k$ 层的结点，向上调整的复杂度为 $O(k)$ 而不是 $O(\\log n)$。
 
-总复杂度：$\log 1 + \log 2 + \cdots + \log n = \Theta(n \log n)$。
+总复杂度：$\\log 1 + \\log 2 + \\cdots + \\log n = \\Theta(n \\log n)$。
 
 （在「基于比较的排序」中证明过）
 
@@ -126,24 +124,22 @@ build_heap_1() {
 
 这时换一种思路，从叶子开始，逐个向下调整
 
-```
-build_heap_2() {
-	for (i = n; i >= 1; i--) down(i);
-}
-```
+    build_heap_2() {
+    	for (i = n; i >= 1; i--) down(i);
+    }
 
 换一种理解方法，每次「合并」两个已经调整好的堆，这说明了正确性。
 
-注意到向下调整的复杂度，为 $O(\log n - k)$。
+注意到向下调整的复杂度，为 $O(\\log n - k)$。
 
 $$
-\begin{aligned}
-总复杂度 & = n \log n - \log 1 - \log 2 - \cdots - \log n \\\\
-& \leq n \log n - 0 \times 2^0 - 1 \times 2^1 -\cdots - (\log n - 1) \times \frac{n}{2} \\\\
-& = n \log n - (n-1) - (n-2) - (n-4) - \cdots - (n-\frac{n}{2}) \\\\
-& = n \log n - n \log n + 1 + 2 + 4 + \cdots + \frac{n}{2} \\\\
+\\begin{aligned}
+总复杂度 & = n \\log n - \\log 1 - \\log 2 - \\cdots - \\log n \\\\
+& \\leq n \\log n - 0 \\times 2^0 - 1 \\times 2^1 -\\cdots - (\\log n - 1) \\times \\frac{n}{2} \\\\
+& = n \\log n - (n-1) - (n-2) - (n-4) - \\cdots - (n-\\frac{n}{2}) \\\\
+& = n \\log n - n \\log n + 1 + 2 + 4 + \\cdots + \\frac{n}{2} \\\\
 & = n - 1 \\\\ &  = O(n)
-\end{aligned}
+\\end{aligned}
 $$
 
 之所以能 $O(n)$ 建堆，是因为堆性质很弱，二叉堆并不是唯一的。

@@ -2,17 +2,17 @@
 
 （还记得这些定义吗？在阅读下列内容之前，请务必了解 [图论基础](/graph/basic) 部分。）
 
-- 路径
-- 最短路
-- 有向图中的最短路、无向图中的最短路
-- 单源最短路、每对结点之间的最短路
+-   路径
+-   最短路
+-   有向图中的最短路、无向图中的最短路
+-   单源最短路、每对结点之间的最短路
 
 ## 性质
 
 对于边权为正的图，任意两个结点之间的最短路，不会经过重复的结点。
 
 对于边权为正的图，任意两个结点之间的最短路，不会经过重复的边。
- 
+
 对于边权为正的图，任意两个结点之间的最短路，任意一条的结点数不会超过 $n$，边数不会超过 $n-1$。
 
 ## Floyd 算法
@@ -31,7 +31,7 @@
 
 我们来考虑怎么求这个数组
 
-`f[0][x][y]`：边权，或者 $0$，或者 $+\infty$ （`f[0][x][x]` 什么时候应该是 $+\infty$？）
+`f[0][x][y]`：边权，或者 $0$，或者 $+\\infty$ （`f[0][x][x]` 什么时候应该是 $+\\infty$？）
 
 `f[k][x][y] = min(f[k-1][x][y], f[k-1][x][k]+f[k-1][k][y])`
 
@@ -84,7 +84,7 @@ $relax(u,v)$: $dist(v) = min(dist(v), dist(u) + edge_len(u, v))$
 
 $relax$ 是从哪里来的呢？
 
-三角形不等式: $dist(v) \leq dist(u) + edge_len(u, v)$。
+三角形不等式: $dist(v) \\leq dist(u) + edge_len(u, v)$。
 
 证明：反证法，如果不满足，那么可以用 $relax$ 操作来更新 $dist(v)$ 的值。
 
@@ -98,7 +98,7 @@ while (1) for each edge(u, v) relax(u, v);
 
 每次循环是 $O(m)$ 的，那么最多会循环多少次呢？
 
-答案是 $\infty$！（如果有一个 $S$ 能走到的负环就会这样）
+答案是 $\\infty$！（如果有一个 $S$ 能走到的负环就会这样）
 
 但是此时某些结点的最短路不存在。
 
@@ -112,22 +112,19 @@ while (1) for each edge(u, v) relax(u, v);
 
 总时间复杂度 $O(NM)$。 **（对于最短路存在的图）**
 
-```
-relax(u, v) {
-	dist[v] = min(dist[v], dist[u] + edge_len(u, v));
-}
-for (i = 1; i <= n; i++) {
-	dist[i] = edge_len(S, i);
-}
-for (i = 1; i < n; i++) {
-	for each edge(u, v) {
-		relax(u, v);
-	}
-}
-```
+    relax(u, v) {
+    	dist[v] = min(dist[v], dist[u] + edge_len(u, v));
+    }
+    for (i = 1; i <= n; i++) {
+    	dist[i] = edge_len(S, i);
+    }
+    for (i = 1; i < n; i++) {
+    	for each edge(u, v) {
+    		relax(u, v);
+    	}
+    }
 
-
-注：这里的 $edge_len(u, v)$ 表示边的权值，如果该边不存在则为 $+\infty$，$u=v$ 则为 $0$。
+注：这里的 $edge_len(u, v)$ 表示边的权值，如果该边不存在则为 $+\\infty$，$u=v$ 则为 $0$。
 
 ### 应用
 
@@ -145,22 +142,21 @@ for (i = 1; i < n; i++) {
 
 那么我们用队列来维护“哪些结点可能会引起 $relax$”，就能只访问必要的边了。
 
-```
-q = new queue();
-q.push(S);
-in_queue[S] = true;
-while (!q.empty()) {
-	u = q.pop();
-	in_queue[u] = false;
-	for each edge(u, v) {
-		if (relax(u, v) && !in_queue[v]) {
-			q.push(v);
-			in_queue[v] = true;
-		}
-	}
-}
-```
-SPFA 的时间复杂度为 $O(kM)~ (k\approx 2)$ （玄学），但 **理论上界** 为 $O(NM)$，精心设计的稠密图可以随便卡掉 SPFA，所以考试时谨慎使用  （NOI 2018中很多选手的SPFA被卡掉了）。
+    q = new queue();
+    q.push(S);
+    in_queue[S] = true;
+    while (!q.empty()) {
+    	u = q.pop();
+    	in_queue[u] = false;
+    	for each edge(u, v) {
+    		if (relax(u, v) && !in_queue[v]) {
+    			q.push(v);
+    			in_queue[v] = true;
+    		}
+    	}
+    }
+
+SPFA 的时间复杂度为 $O(kM)~ (k\\approx 2)$ （玄学），但 **理论上界** 为 $O(NM)$，精心设计的稠密图可以随便卡掉 SPFA，所以考试时谨慎使用  （NOI 2018中很多选手的SPFA被卡掉了）。
 
 ## Dijkstra 算法
 
@@ -190,9 +186,9 @@ IPA: /ˈdikstrɑ/ 或 /ˈdɛikstrɑ/。
 
 如果用暴力： $O(n^2 + m)$。
 
-如果用堆：$O((n+m) \log n)$。
+如果用堆：$O((n+m) \\log n)$。
 
-如果用 Fibonacci 堆： $O(n \log n + m)$（这就是为啥优秀了）。
+如果用 Fibonacci 堆： $O(n \\log n + m)$（这就是为啥优秀了）。
 
 等等，还没说正确性呢！
 
@@ -204,24 +200,22 @@ IPA: /ˈdikstrɑ/ 或 /ˈdɛikstrɑ/。
 
 第二步，考虑每次加进来的结点，到他的最短路，上一步必然是第一个集合中的元素（否则他不会是第二个集合中的最小值，而且有第一步的性质），又因为第一个集合已经全部 $relax$ 过了，所以最短路显然确定了。
 
-```
-H = new heap();
-H.insert(S, 0);
-dist[S] = 0;
-for (i = 1; i <= n; i++) {
-	u = H.delete_min();
-	for each edge(u, v) {
-		if (relax(u, v)) {
-			H.decrease_key(v, dist[v]);
-		}
-	}
-}
-```
+    H = new heap();
+    H.insert(S, 0);
+    dist[S] = 0;
+    for (i = 1; i <= n; i++) {
+    	u = H.delete_min();
+    	for each edge(u, v) {
+    		if (relax(u, v)) {
+    			H.decrease_key(v, dist[v]);
+    		}
+    	}
+    }
 
 ## 不同方法的比较
 
-| Floyd     | Bellman-Ford | Dijkstra |
-| -------- | ------ | ------ |
-| 每对结点之间的最短路 | 单源最短路 | 单源最短路 |
-| 没有负环的图 | 任意图 | 非负权图 |
-| $O(N^3)$ | $O(NM)$ | $O((N+M)\log N)$ |
+| Floyd      | Bellman-Ford | Dijkstra          |
+| ---------- | ------------ | ----------------- |
+| 每对结点之间的最短路 | 单源最短路        | 单源最短路             |
+| 没有负环的图     | 任意图          | 非负权图              |
+| $O(N^3)$   | $O(NM)$      | $O((N+M)\\log N)$ |

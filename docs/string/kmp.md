@@ -6,9 +6,9 @@
 
 主要思想是暴力的改进。
 
-对于模式串 $b$，定义 $next[]$。
+对于模式串 $b$，定义 $next\[]$。
 
-$$next[i] = \max\{j\}\ \operatorname{s.t.}\ 0 \leq j<i\ \&\&\ b[0 \cdots j-1]=b[i-j \cdots i-1]$$
+$$next[i] = \\max{j}\\ \\operatorname{s.t.}\\ 0 \\leq j&lt;i\\ \\&\\&\\ b[0 \cdots j-1]=b[i-j \cdots i-1]$$
 
 !!! warning
     【注意下标从 $0$ 开始】【需要画图】
@@ -23,15 +23,15 @@ $$next[i] = \max\{j\}\ \operatorname{s.t.}\ 0 \leq j<i\ \&\&\ b[0 \cdots j-1]=b[
 
 基础：显然 $next[1]=0$。
 
-归纳：如果已知 $next[0 \cdots i-1]$，那么 $next[i]=next[i-1]+1$ 或 $next[next[i-1]]+1$ 或…
+归纳：如果已知 $next[0 \cdots i-1]$，那么 $next[i]=next[i-1]+1$ 或 $next\[next[i-1]]+1$ 或…
 
 这算法的复杂度是多少？
 
-考虑 $next[i]$ 这个非负值，每次循环最多 $+1$，并且每次应用 $next[]$ 的时候，至少 $-1$，所以是 $O(m)$ 的。
+考虑 $next[i]$ 这个非负值，每次循环最多 $+1$，并且每次应用 $next\[]$ 的时候，至少 $-1$，所以是 $O(m)$ 的。
 
 定义势能为 $next[i]$，每次循环势能 $+1$，每次取 $next$ 势能减少得比实际代价多。
 
-均摊代价 $\leq 1$，势能取值范围 $0 \sim 2m$，所以 $O(m)$。
+均摊代价 $\\leq 1$，势能取值范围 $0 \\sim 2m$，所以 $O(m)$。
 
 求出了 $next$，对字符串匹配有什么用呢？
 
