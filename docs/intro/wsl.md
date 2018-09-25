@@ -25,20 +25,20 @@
 Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周年更新时推出了 Linux 子系统（WSL），可以供装不起 VMware 等虚拟机的同学食用。  
 缺点是没有 NOI 评测用的**Arbiter**，但是在各大 OJ 背书的情况下谁在乎呢......
 
-> #### 补充资料：何为 Linux 子系统（WSL）？(via 百度百科)
->
-> Windows Subsystem for Linux（简称 WSL）是一个为在 Windows 10 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。它是由微软与 Canonical 公司合作开发，目标是使纯正的 Ubuntu, OpenSUSE, Kali Linux 和 Debian 映像能下载和解压到用户的本地计算机，并且映像内的工具和实用工具能在此子系统上原生运行。
->
-> WSL 提供了一个微软开发的 Linux 兼容内核接口（不包含 Linux 代码），来自 Linux 的用户模式二进制文件在其上运行。  
-> 此子系统起源于命运多舛的 Astoria 项目，其目的是允许 Android 应用运行在 Windows 10 Mobile 上。此功能组件从 Windows 10 Insider Preview build 14316 开始可用。
+???+ note 补充资料：何为 Linux 子系统（WSL）？(via 百度百科)      
+ 
+  > Windows Subsystem for Linux（简称 WSL）是一个为在 Windows 10 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。它是由微软与 Canonical 公司合作开发，目标是使纯正的 Ubuntu, OpenSUSE, Kali Linux 和 Debian 映像能下载和解压到用户的本地计算机，并且映像内的工具和实用工具能在此子系统上原生运行。     
+  >     
+  > WSL 提供了一个微软开发的 Linux 兼容内核接口（不包含 Linux 代码），来自 Linux 的用户模式二进制文件在其上运行。  
+  > 此子系统起源于命运多舛的 Astoria 项目，其目的是允许 Android 应用运行在 Windows 10 Mobile 上。此功能组件从 Windows 10 Insider Preview build 14316 开始可用。
 
 * * *
 
 ## 0x02 准备
 
-首先，你需要一个最新的 Windows 10 操作系统，这点不必多说。
+首先，你需要一个最新的 Windows 10 操作系统，这点不必多说。     
 
-#### 其次，你需要配置一下开发人员模式环境。
+其次，你需要配置一下开发人员模式环境。
 
 1. 设置 -> 更新与安全 -> 开发人员模式框选 -> 是
 
@@ -57,8 +57,21 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 ## 0x03 开搞
 
-去 Windows 自带的应用商店，搜索 "Ubuntu"，然后选第一个安装。  （build of Ubuntu 18.04 LTS）  
-亦可打开<https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6>  
+去 Windows 自带的应用商店，搜索 "Ubuntu"，然后选第一个安装。    
+亦可打开<https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6>      
+
+???+ warning
+ Windows 10 商店的第一个 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。
+ 可使用 ` sudo lsb_release -a ` 查看自己的Ubuntu版本。
+ 也可安装带有版本号的旧Windows。
+
+
+
+
+
+
+
+
 
 安装完后，打开 Ubuntu，等待一段时间，让其自己配置，不久就会提示你设置用户名和密码。（这里看你喜好，推荐设置短点，毕竟本地环境不怕攻击）
 **Linux 区分大小写！**
@@ -77,9 +90,17 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 ### 解锁 root 账户（非必需）
 
-Ubuntu 默认是把 root 账户锁住的，给刚刚的账户开放 sudo 权限。
+解锁`root`账户会产生**安全隐患**，请确定你**可以解决**因进入`root`账户而产生的各种问题，否则请不要解锁！
 
-**在 Linux 的权限系统中，"sudo" 正如 “以管理员身份运行”，不声明就没法使用管理员权限。而 "root" 则是 "Administrator"，直接解锁全部权限。**
+Ubuntu 默认是把 root 账户锁住的，给刚刚的账户开放 `Sudo` 权限。
+
+
+???+ warning 补充资料：何为 `Sudo` ？（Wikipedia）    
+> `Sudo` （substitute user [或 superuser] do），是一种程序，用于类Unix操作系统如BSD，Mac OS X，以及GNU/Linux以允许用户透过安全的方式使用特殊的权限运行程序 （通常为系统的超级用户）。    
+> 在`Sudo`于1980年前后被写出之前，一般用户管理系统的方式是利用 su 切换为超级用户。但是使用su的缺点之一在于必须要先告知超级用户的密码。    
+> `Sudo`使一般用户不需要知道超级用户的密码即可获得权限。首先超级用户将普通用户的名字、可以执行的特定命令、按照哪种用户或用户组的身份执行等信息，登记在特殊的文件中（通常是`/etc/sudoers`），即完成对该用户的授权（此时该用户称为`sudoer`）；在一般用户需要获取特殊权限时，其可在命令前加上“sudo”，此时sudo将会询问该用户自己的密码（以确认终端机前的是该用户本人），回答后系统即会将该命令的进程以超级用户的权限运行。之后的一段时间内（默认为5分钟，可在`/etc/sudoers`自定义），使用sudo不需要再次输入密码。     
+> 由于不需要超级用户的密码，部分Unix系统甚至利用sudo使一般用户取代超级用户作为管理账号，例如Ubuntu、Mac OS X等。     
+
 
 命令三连：
 
@@ -90,40 +111,26 @@ sudo su
 ```
 
 ![](./images/WSL8.png)
-
-**Warning：如果跳过这一节，请在接下来每个命令前带上 sudo！**
+???+ warning
+  ** 如果跳过这一节，请在接下来每个命令前带上 sudo！**
 
 ### 更换为国内软件源
 
-Ubuntu 默认的软件源在国外，我们可以换为国内的加快速度，如[清华 TUNA 的软件源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)。
+Ubuntu 默认的软件源在国外，我们可以换为国内的加快速度，如[清华 TUNA 的软件源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)。     
+???+ Warning：  
+  **请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a`查看，具体详见 `0x03` ）     
+  **除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！**     
 
-TUNA 的源（这个 Ubuntu 是 16.04 LTS 的）
 
+
+使用的命令
 ???+ warning
-    除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！
-
-```text
-# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
-
-# 预发布软件源，不建议启用
-# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
-# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
-```
-
-使用的命令**（需按上节指示进入 root 环境，否则请在每个命令前带上 sudo）**：
+  （需按上节指示进入 `root` 环境，否则请在每个命令前带上 sudo）
 
 ```bash
-cp /etc/apt/sources.list /etc/apt/sources.list.bak
-echo '' > /etc/apt/sources.list
-nano /etc/apt/sources.list
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+sudo echo '' > /etc/apt/sources.list
+sudo nano /etc/apt/sources.list
 # （将上文的源右键粘贴进去，编辑完后按 Ctrl + X，再按 Y 和回车）
 apt update && apt upgrade -y
 ```
@@ -155,8 +162,8 @@ sudo dpkg-reconfigure locales
 再用下列命令，把 man 帮助页替换为中文：[via](https://blog.csdn.net/qq_14989227/article/details/72954523)
 
 ```bash
-apt install manpages-zh
-vi /etc/manpath.config
+sudo apt install manpages-zh
+sudo vi /etc/manpath.config
 :1,$s#/usr/share/man#/usr/share/man/zh_CN#g
 :wq
 ```
@@ -166,11 +173,11 @@ vi /etc/manpath.config
 ### 安装编译环境
 
 ```bash
-apt install build-essential vim ddd gdb fpc emacs gedit anjuta lazarus -y
+sudo apt install build-essential vim ddd gdb fpc emacs gedit anjuta lazarus -y
 wget http://download.noi.cn/T/noi/GUIDE-1.0.2-ubuntu.tar
 tar -xvf GUIDE-1.0.2-ubuntu.tar
 cd GUIDE-1.0.2-ubuntu
-./install.sh
+chmod +x install.sh && ./install.sh
 ```
 
 这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install 程序名` 来安装别的。
@@ -194,8 +201,8 @@ AMD Ryzen 5 1400 Quad-Core Processor
 推荐图形环境用 xfce4，不臃肿。
 
 ```bash
-apt install xfce4 -y
-# 或使用 apt install xubuntu-desktop -y
+sudo apt install xfce4 tightvncserver -y
+# 或使用 sudo apt install xubuntu-desktop -y
 # xubuntu安装的软件多，基础环境可用第一种
 ```
 
@@ -204,9 +211,9 @@ apt install xfce4 -y
 下面配置 xrdp：
 
 ```bash
-apt install xrdp -y
+sudo apt install xrdp -y
 echo "xfce4-session" >~/.xsession
-service xrdp restart
+sudo service xrdp restart
 ```
 
 为了防止和你计算机本来带的远程桌面冲突，最好换一下端口。
@@ -219,7 +226,7 @@ service xrdp restart
 
 ![](./images/WSL13.png)
 
-运行 `service xrdp restart`，然后去开始菜单，用 `localhost: 你配置的端口` 来访问。
+运行 `sudo service xrdp restart`，然后去开始菜单，用 `localhost: 你配置的端口` 来访问。
 
 ![](./images/WSL14.png)
 
@@ -234,7 +241,7 @@ service xrdp restart
 我们进入 Ubuntu 环境，安装 xterm：
 
 ```bash
-apt-get install xterm -y
+sudo apt-get install xterm -y
 ```
 
 ##### 服务端：下载 Xming Server
@@ -328,6 +335,7 @@ xfce4-session
 
 9. [Xming X Server for Windows,SourceForge](https://sourceforge.net/projects/xming/)
 
+10. [Sudo,Wikipedia](https://zh.wikipedia.org/wiki/Sudo)
 ### 后记
 
 本文最初发布于[洛谷日报 #6](https://www.luogu.org/discuss/show/48491)，现由原作者搬运至此，有删改。
