@@ -15,6 +15,8 @@
 
 可以 / 必须使用 Testlib 做 spj 的 OJ：洛谷、UOJ、LibreOJ(SYZOJ 2)（需要修改版的 Testlib）......
 
+SYZOJ 2 所需的修改版 Testlib 可以在[这里](https://pastebin.com/3GANXMG7)获取到，感谢 [cyand1317](https://loj.ac/article/124)。
+
 本地评测器都可以使用 Testlib，但需要按照其格式修改 Testlib。
 
 ```cpp
