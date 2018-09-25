@@ -34,8 +34,8 @@ int main(int argc, char *argv[]){
      */
     registerTestlibCmd(argc, argv);
     double pans=ouf.readDouble(), jans=ans.readDouble();
-    if(abs(pans - jans) < 1e-3) quitf(_wa, "Too big or too small, expected %f, found %f", jans, pans);
-    else quitf(_ok, "Good job");
+    if(abs(pans - jans) < 1e-3) quitf(_ok, "Good job");
+    else quitf(_wa, "Too big or too small, expected %f, found %f", jans, pans);
 }
 ```
 
@@ -65,10 +65,10 @@ int main(int argc,char *argv[]){
 	fscanf(fstd, "%lf", &jans);
 	if(abs(pans - jans) < 1e-3){
 		fprintf(fscore, "%s", argv[4]);
-		fprintf(freport, "Too big or too small, expected %f, found %f", jans, pans);
+		fprintf(freport, "Good job");
 	}else{
 		fprintf(fscore, "%d", 0);
-		fprintf(freport, "Good job");
+		fprintf(freport, "Too big or too small, expected %f, found %f", jans, pans);
 	}
 }
 ```
@@ -97,10 +97,10 @@ int main(int argc,char *argv[]){
 	fscanf(fstd, "%lf", &jans);
 	if(abs(pans - jans) < 1e-3){
 		fprintf(fscore, "%s", argv[1]);
-		fprintf(freport, "Too big or too small, expected %f, found %f", jans, pans);
+		fprintf(freport, "Good job");
 	}else{
 		fprintf(fscore, "%d", 0);
-		fprintf(freport, "Good job");
+		fprintf(freport, "Too big or too small, expected %f, found %f", jans, pans);
 	}
 }
 ```
@@ -125,10 +125,10 @@ int main(int argc,char *argv[]){
 	fscanf(fstd, "%lf", &jans);
 	if(abs(pans - jans) < 1e-3){
 		printf("%d\n", 1);
-		printf("Too big or too small, expected %f, found %f", jans, pans);
+		printf("Good job");
 	}else{
 		printf("%d\n", 0);
-		printf("Good job");
+		printf("Too big or too small, expected %f, found %f", jans, pans);
 	}
 }
 ```
@@ -214,10 +214,10 @@ int main(int argc,char *argv[]){
 	fscanf(fstd, "%lf", &jans);
 	if(abs(pans - jans) < 1e-3){
 		printf("%d", 100);
-		fprintf(stderr, "Too big or too small, expected %f, found %f", jans, pans);
+		fprintf(stderr, "Good job");
 	}else{
 		printf("%d", 0);
-		fprintf(stderr, "Good job");
+		fprintf(stderr, "Too big or too small, expected %f, found %f", jans, pans);
 	}
 }
 ```
