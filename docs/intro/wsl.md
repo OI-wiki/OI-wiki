@@ -4,39 +4,39 @@
 
 ## 0x01 引言
 
-众所周知，尽管现在大部分学校的竞赛练习环境都是构建 XP 等 Windows 系操作系统，但是在 CCF 组织的一系列竞赛（如 NOI）中，早已用上了 NOI Linux 这个**Ubuntu**操作系统的阉割版。  
+众所周知，尽管现在大部分学校的竞赛练习环境都是构建 XP 等 Windows 系操作系统，但是在 NOI 系列赛中，早已用上了 NOI Linux 这个 **Ubuntu** 操作系统的阉割版。  
 ![NOI 竞赛的环境要求](./images/WSL2.png)           
 
-<div align='center'> NOI竞赛的环境要求 </div>
+<div align='center'> NOI 竞赛的环境要求 </div>
 
-或许大家对自己 Windows 环境下的 Dev-C++、VSCode 等都已熟识，但是当场景突然切换到 Linux 的时候，你会不会不知所措？
+或许大家对自己 Windows 环境下的 Dev-C++ 等都已熟识，但是当场景突然切换到 Linux 的时候，你会不会不知所措？
 
 > “想用 <kbd>Ctrl</kbd>+<kbd>C</kbd> 复制，结果退出了程序”  
 > “平时 AC 的程序模板到了 Linux 上就 WA”......
 
 ![平台差异（转自百度文库”NOIP 标准评测系统及相关问题 “）](./images/WSL3.png)
 
-<div align='center'> 平台差异（转自百度文库”NOIP标准评测系统及相关问题“） </div>
+<div align='center'> 平台差异（转自百度文库“NOIP 标准评测系统及相关问题”） </div>
     
-为了防止考场上出现此类尴尬情况，我们必须要提前熟悉下Linux系统的操作方法。
+为了防止考场上出现此类尴尬情况，我们必须要提前熟悉下 Linux 系统的操作方法。
 
-虽然在 NOI 的官网已经放出了 NOI Linux 的 ISO 镜像，但是如果跑虚拟机的话，配置也相当麻烦，包括激活 Vmware，用 Vmware 装系统开虚拟机等步骤，且 NOI Linux 默认自带图形界面，两个系统一起运行是低配党的噩梦。
+虽然在 NOI 的官网已经放出了 NOI Linux 的 ISO 镜像，但是如果跑虚拟机的话，配置也相当麻烦，包括激活 VMware，用 VMware 装系统开虚拟机等步骤，且 NOI Linux 默认自带图形界面，两个系统一起运行是低配党的噩梦。
 
-Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周年更新时推出了 Linux 子系统（WSL），可以供装不起 Vmware 等虚拟机的同学食用。  
+Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周年更新时推出了 Linux 子系统（WSL），可以供装不起 VMware 等虚拟机的同学食用。  
 缺点是没有 NOI 评测用的**Arbiter**，但是在各大 OJ 背书的情况下谁在乎呢......
 
 > #### 补充资料：何为 Linux 子系统（WSL）？(via 百度百科)
 >
-> Windows Subsystem for Linux（简称 WSL）是一个为在 Windows 10 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。它是由微软与 Canonical 公司合作开发，目标是使纯正的 Ubuntu 14.04/18.04, OpenSUSE, Kali Linux 和 Debian 映像能下载和解压到用户的本地计算机，并且映像内的工具和实用工具能在此子系统上原生运行。
+> Windows Subsystem for Linux（简称 WSL）是一个为在 Windows 10 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。它是由微软与 Canonical 公司合作开发，目标是使纯正的 Ubuntu, OpenSUSE, Kali Linux 和 Debian 映像能下载和解压到用户的本地计算机，并且映像内的工具和实用工具能在此子系统上原生运行。
 >
-> WSL 提供了一个微软开发的 Linux 兼容内核接口（不包含 Linux 代码），来自 Ubuntu 的用户模式二进制文件在其上运行。  
+> WSL 提供了一个微软开发的 Linux 兼容内核接口（不包含 Linux 代码），来自 Linux 的用户模式二进制文件在其上运行。  
 > 此子系统起源于命运多舛的 Astoria 项目，其目的是允许 Android 应用运行在 Windows 10 Mobile 上。此功能组件从 Windows 10 Insider Preview build 14316 开始可用。
 
 * * *
 
 ## 0x02 准备
 
-首先，你需要一个最新的 Windows10 操作系统，这点不必多说。
+首先，你需要一个最新的 Windows 10 操作系统，这点不必多说。
 
 #### 其次，你需要配置一下开发人员模式环境。
 
@@ -46,7 +46,7 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 <div align='center'> 来，跟着箭头走 </div>
  
-2.控制面板->程序->启用和关闭Windows功能->框选“适用于Linux的Windows子系统”->确定->重启
+2.控制面板->程序->启用和关闭 Windows 功能->框选“适用于 Linux 的 Windows 子系统”->确定->重启
 ![自行忽略乱码](./images/WSL5.png)
 
 给系统盘留下足够的空间，毕竟装好的 Linux 没法迁移。
@@ -57,7 +57,7 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 ## 0x03 开搞
 
-去 Windows 自带的应用商店，搜索 “Ubuntu”，然后选第一个安装。  （build of Ubuntu 18.04 LTS）  
+去 Windows 自带的应用商店，搜索 "Ubuntu"，然后选第一个安装。  （build of Ubuntu 18.04 LTS）  
 亦可打开<https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6>  
 
 安装完后，打开 Ubuntu，等待一段时间，让其自己配置，不久就会提示你设置用户名和密码。（这里看你喜好，推荐设置短点，毕竟本地环境不怕攻击）
@@ -79,7 +79,7 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 Ubuntu 默认是把 root 账户锁住的，给刚刚的账户开放 sudo 权限。
 
-**在 Linux 的权限系统中，“sudo” 正如 “以管理员身份运行”，不声明就没法使用管理员权限。而 “root” 则是 "Administrator“，直接解锁全部权限。**
+**在 Linux 的权限系统中，"sudo" 正如 “以管理员身份运行”，不声明就没法使用管理员权限。而 "root" 则是 "Administrator"，直接解锁全部权限。**
 
 命令三连：
 
@@ -97,7 +97,10 @@ sudo su
 
 Ubuntu 默认的软件源在国外，我们可以换为国内的加快速度，如[清华 TUNA 的软件源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)。
 
-TUNA 的源（这个 Ubuntu 是 16.04LTS 长期支持版的）
+TUNA 的源（这个 Ubuntu 是 16.04 LTS 的）
+
+???+ warning
+    除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！
 
 ```text
 # 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
