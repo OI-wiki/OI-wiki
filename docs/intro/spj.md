@@ -13,11 +13,15 @@
 
 使用 Testlib 编写 spj 的好处为我们不再需要判断文件尾的多余内容，其会帮助我们自动判断，也无需担忧 nan。
 
-可以 / 必须使用 Testlib 做 spj 的 OJ：洛谷、UOJ、LibreOJ(SYZOJ 2)（需要修改版的 Testlib）......
+必须使用 Testlib 做 spj 的 评测工具 /OJ：Codeforces、洛谷、UOJ 等
+
+可以使用 Testlib 做 spj 的 评测工具 /OJ：LibreOJ(SYZOJ 2)、Lemon 等
 
 SYZOJ 2 所需的修改版 Testlib 可以在[这里](https://pastebin.com/3GANXMG7)获取到，感谢 [cyand1317](https://loj.ac/article/124)。
 
-本地评测器都可以使用 Testlib，但需要按照其格式修改 Testlib。
+Lemon 所需的修改版 Testlib 可以在[这里](https://paste.ubuntu.com/p/JsTspHHnmB/)获取到，感谢 matthew99。注意此版本 Testlib 注册 checker 应使用 `registerLemonChecker()` 而非 `registerTestlibCmd()`。
+
+其他评测工具 /OJ 大部分需要按照其 spj 编写格式修改 Testlib。
 
 ```cpp
 #include <testlib.h>
@@ -36,6 +40,8 @@ int main(int argc, char *argv[]){
 ```
 
 ## Lemon
+
+**Lemon 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib)**
 
 ```cpp
 #include <cstdio>
@@ -180,5 +186,38 @@ int main(int argc,char *argv[]){
 	jans = solve(...);
 	if(abs(pans - jans) < 1e-3) return AC;
 	else return WA;
+}
+```
+
+## LibreOJ(SYZOJ 2)
+
+**LibreOJ(SYZOJ 2) 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib)**
+
+```cpp
+#include <cstdio>
+#include <cmath>
+int main(int argc,char *argv[]){
+    /*
+     * in：输入
+     * user_out：选手输出
+     * answer：标准输出
+     * code：选手代码
+     * stdout：输出最终得分
+     * stderr：输出错误报告
+     */
+    FILE* fin = fopen("in", "r");
+	FILE* fout = fopen("user_out", "r");
+	FILE* fstd = fopen("answer", "r");
+	FILE* fcode = fopen("code", "r");
+	double pans, jans;
+	fscanf(fout, "%lf", &pans);
+	fscanf(fstd, "%lf", &jans);
+	if(abs(pans - jans) < 1e-3){
+		printf("%d", 100);
+		fprintf(stderr, "Too big or too small, expected %f, found %f", jans, pans);
+	}else{
+		printf("%d", 0);
+		fprintf(stderr, "Good job");
+	}
 }
 ```
