@@ -25,12 +25,12 @@
 Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周年更新时推出了 Linux 子系统（WSL），可以供装不起 VMware 等虚拟机的同学食用。  
 缺点是没有 NOI 评测用的**Arbiter**，但是在各大 OJ 背书的情况下谁在乎呢......
 
-???+ note 补充资料：何为 Linux 子系统（WSL）？(via 百度百科)      
+???+ note "补充资料：何为 Linux 子系统（WSL）？(via 百度百科)"
 
-> Windows Subsystem for Linux（简称 WSL）是一个为在 Windows 10 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。它是由微软与 Canonical 公司合作开发，目标是使纯正的 Ubuntu, OpenSUSE, Kali Linux 和 Debian 映像能下载和解压到用户的本地计算机，并且映像内的工具和实用工具能在此子系统上原生运行。     
->
-> WSL 提供了一个微软开发的 Linux 兼容内核接口（不包含 Linux 代码），来自 Linux 的用户模式二进制文件在其上运行。  
-> 此子系统起源于命运多舛的 Astoria 项目，其目的是允许 Android 应用运行在 Windows 10 Mobile 上。此功能组件从 Windows 10 Insider Preview build 14316 开始可用。
+     Windows Subsystem for Linux（简称 WSL）是一个为在 Windows 10 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。它是由微软与 Canonical 公司合作开发，目标是使纯正的 Ubuntu, OpenSUSE, Kali Linux 和 Debian 映像能下载和解压到用户的本地计算机，并且映像内的工具和实用工具能在此子系统上原生运行。     
+    
+     WSL 提供了一个微软开发的 Linux 兼容内核接口（不包含 Linux 代码），来自 Linux 的用户模式二进制文件在其上运行。  
+     此子系统起源于命运多舛的 Astoria 项目，其目的是允许 Android 应用运行在 Windows 10 Mobile 上。此功能组件从 Windows 10 Insider Preview build 14316 开始可用。
 
 * * *
 
@@ -61,9 +61,9 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 亦可打开<https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6>      
 
 ???+ warning
- Windows 10 商店的第一个 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。
- 可使用 `sudo lsb_release -a` 查看自己的 Ubuntu 版本。
- 也可安装带有版本号的旧 Windows。
+    Windows 10 商店的第一个 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。
+    可使用 `sudo lsb_release -a` 查看自己的 Ubuntu 版本。
+    也可安装带有版本号的旧 Windows。
 
 安装完后，打开 Ubuntu，等待一段时间，让其自己配置，不久就会提示你设置用户名和密码。（这里看你喜好，推荐设置短点，毕竟本地环境不怕攻击）
 **Linux 区分大小写！**
@@ -86,12 +86,12 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 Ubuntu 默认是把 root 账户锁住的，给刚刚的账户开放 `Sudo` 权限。
 
-???+ warning 补充资料：何为 `Sudo` ？（Wikipedia）    
+???+ note "补充资料：何为 `Sudo` ？(Wikipedia)"    
 
-> `Sudo` （substitute user [或 superuser] do），是一种程序，用于类 Unix 操作系统如 BSD，Mac OS X，以及 GNU/Linux 以允许用户透过安全的方式使用特殊的权限运行程序 （通常为系统的超级用户）。  
-> 在`Sudo`于 1980 年前后被写出之前，一般用户管理系统的方式是利用 su 切换为超级用户。但是使用 su 的缺点之一在于必须要先告知超级用户的密码。  
-> `Sudo`使一般用户不需要知道超级用户的密码即可获得权限。首先超级用户将普通用户的名字、可以执行的特定命令、按照哪种用户或用户组的身份执行等信息，登记在特殊的文件中（通常是`/etc/sudoers`），即完成对该用户的授权（此时该用户称为`sudoer`）；在一般用户需要获取特殊权限时，其可在命令前加上 “sudo”，此时 sudo 将会询问该用户自己的密码（以确认终端机前的是该用户本人），回答后系统即会将该命令的进程以超级用户的权限运行。之后的一段时间内（默认为 5 分钟，可在`/etc/sudoers`自定义），使用 sudo 不需要再次输入密码。  
-> 由于不需要超级用户的密码，部分 Unix 系统甚至利用 sudo 使一般用户取代超级用户作为管理账号，例如 Ubuntu、Mac OS X 等。     
+     `Sudo` （substitute user [或 superuser] do），是一种程序，用于类 Unix 操作系统如 BSD，Mac OS X，以及 GNU/Linux 以允许用户透过安全的方式使用特殊的权限运行程序 （通常为系统的超级用户）。     
+     在`Sudo`于 1980 年前后被写出之前，一般用户管理系统的方式是利用 su 切换为超级用户。但是使用 su 的缺点之一在于必须要先告知超级用户的密码。  
+     `Sudo`使一般用户不需要知道超级用户的密码即可获得权限。首先超级用户将普通用户的名字、可以执行的特定命令、按照哪种用户或用户组的身份执行等信息，登记在特殊的文件中（通常是`/etc/sudoers`），即完成对该用户的授权（此时该用户称为`sudoer`）；在一般用户需要获取特殊权限时，其可在命令前加上 “sudo”，此时 sudo 将会询问该用户自己的密码（以确认终端机前的是该用户本人），回答后系统即会将该命令的进程以超级用户的权限运行。之后的一段时间内（默认为 5 分钟，可在`/etc/sudoers`自定义），使用 sudo 不需要再次输入密码。  
+     由于不需要超级用户的密码，部分 Unix 系统甚至利用 sudo 使一般用户取代超级用户作为管理账号，例如 Ubuntu、Mac OS X 等。     
 
 命令三连：
 
@@ -103,18 +103,18 @@ sudo su
 
 ![](./images/WSL8.png)
 ???+ warning
-  ** 如果跳过这一节，请在接下来每个命令前带上 sudo！**
+    ** 如果跳过这一节，请在接下来每个命令前带上 sudo！**
 
 ### 更换为国内软件源
 
 Ubuntu 默认的软件源在国外，我们可以换为国内的加快速度，如[清华 TUNA 的软件源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)。  
-???+ Warning：  
-  **请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a`查看，具体详见 `0x03` ）  
-  **除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！\*\*     
+???+ warning  
+    **请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a`查看，具体详见 `0x03` ）  
+    **除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！\*\*     
 
 使用的命令
 ???+ warning
-  （需按上节指示进入 `root` 环境，否则请在每个命令前带上 sudo）
+    （需按上节指示进入 `root` 环境，否则请在每个命令前带上 sudo）
 
 ```bash
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
