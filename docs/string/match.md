@@ -22,7 +22,7 @@
 
 （伪代码）
 
-```
+```text
 match(char *a, char *b, int n, int m) {
 	ans = new vector();
 	for (i = 0; i < n - m + 1; i++) {

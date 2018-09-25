@@ -34,7 +34,7 @@
 
 **向量的夹角**：已知两个非零向量 $\vec a,\vec b$，作 $\vec{OA}=\vec a,\vec{OB}=\vec b$，那么 $\theta=\angle \text{AOB}$ 就是向量 $\vec a$ 与向量 $\vec b$ 的夹角。记作：$\langle \vec a,\vec b\rangle$。显然当 $\theta =0$ 时两向量同向，$\theta=\pi$ 时两向量反向，$\theta=\frac{\pi}{2}$ 时我们说两向量垂直，记作 $\vec a\perp \vec b$。并且，我们规定 $\theta \in [0,\pi]$。
 
-（呼……我们一口气把数学书上 2.1.3 之前的定义都给出了。）
+（呼…… 我们一口气把数学书上 2.1.3 之前的定义都给出了。）
 
 我们考虑平行向量，可以任作一条直线与这些向量平行，那么任一组平行向量都可以平移到同一直线上，所以平行向量又叫**共线向量**。
 
@@ -269,5 +269,3 @@ $$
 于是，极角 $\theta=\arctan \frac{y}{x}$，这样就可以求出极角了。
 
 在编程中，若要求反正切函数，尽量使用 `atan2(y, x)`，这个函数用途比 `atan(x)` 广泛。
-
-Author: [@HeRaNO](https://github.com/HeRaNO)

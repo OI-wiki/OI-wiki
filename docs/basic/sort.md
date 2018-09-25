@@ -16,13 +16,14 @@
 
 基于比较的排序算法的时间复杂度下限是 $O(n\log n)$ 的。
 
-当然也有不是 $O(n\log n)$ 的，桶排序的时间复杂度是 $O(n)$，但是它是在「用空间换时间」，它的空间复杂度是 $O(所排序的最大数)$
+当然也有不是 $O(n\log n)$ 的，桶排序的时间复杂度是 $O(n)$，但是它是在「用空间换时间」，它的空间复杂度是 $O($所排序的最大数$)$
 
 ## 归并排序
 
 归并排序是 [分治](/basic/divide-and-conquer) 地来将一个数组排序。
 
 归并排序分为三个过程：
+
 1. 将数列划分为两部分（直接分，而不是像快速排序那样要求保证相对大小关系）
 2. 递归到两个子序列中分别进行归并排序
 3. 合并两个子序列
@@ -64,13 +65,14 @@ void merge(int ll, int rr) {
 
 ### 参考
 
-https://www.geeksforgeeks.org/merge-sort/
+<https://www.geeksforgeeks.org/merge-sort/>
 
 ## 快速排序
 
 快速排序是 [分治](/basic/divide-and-conquer) 地来将一个数组排序。
 
 快速排序分为三个过程：
+
 1. 将数列划分为两部分（不是直接分，要求保证相对大小关系）
 2. 递归到两个子序列中分别进行快速排序
 3. 不用合并，因为此时数列已经完全有序
@@ -91,7 +93,7 @@ https://www.geeksforgeeks.org/merge-sort/
 
 注意，一般我们说的快速排序的时间复杂度是平均为 $O(N\log N)$，最坏是 $O(n^2)$，只不过实践中几乎不可能达到最坏情况。
 
-其实，在选择 m 的过程中使用 [Median of Medians](https://en.wikipedia.org/wiki/Median_of_medians) 算法，就可以保证最坏时间复杂度为 $O(N\log N)$，但是由于j小微复杂，实践中一般不使用。
+其实，在选择 m 的过程中使用 [Median of Medians](https://en.wikipedia.org/wiki/Median_of_medians) 算法，就可以保证最坏时间复杂度为 $O(N\log N)$，但是由于 j 小微复杂，实践中一般不使用。
 
 ### STL
 
@@ -110,6 +112,7 @@ Introsort 限制了快速排序的分治深度，当分治达到一定深度之�
 Introsort 的这个限制使得它的最坏时间复杂度是 $O(N\log N)$ 的。
 
 快速用法：
+
 ```c++
 // a[0] .. a[n - 1] 是放了元素的
 std::sort(a, a + n);
@@ -126,9 +129,9 @@ std::sort(a, a + n);
 
 ### 参考
 
-https://stackoverflow.com/questions/22339240/what-algorithms-are-used-in-c11-stdsort-in-different-stl-implementations
+<https://stackoverflow.com/questions/22339240/what-algorithms-are-used-in-c11-stdsort-in-different-stl-implementations>
 
-https://en.cppreference.com/w/cpp/algorithm/sort
+<https://en.cppreference.com/w/cpp/algorithm/sort>
 
 ## 计数排序
 
@@ -143,4 +146,15 @@ https://en.cppreference.com/w/cpp/algorithm/sort
 
 ### 参考
 
-https://www.geeksforgeeks.org/counting-sort/
+<http://atool.org/sort.php> ATool 的排序演示动画  
+<https://www.geeksforgeeks.org/counting-sort/>   
+
+## 排序的应用
+
+借助排序，我们可以降低求解问题所需要的时间复杂度。
+
+考虑一个数列，你需要检查其中是否有元素相等。
+
+一个朴素的做法是检查每一个数对，并判断这一对数是否相等。时间复杂度是 $O(n^2)$。
+
+我们不妨先对这一列数排序，之后不难发现：如果有相等的两个数，它们一定在新数列中处于相邻的位置上。这时，只需要 $O(n)$ 地扫一遍新数列了。总的时间复杂度是排序的复杂度（$O(nlogn)$）。
