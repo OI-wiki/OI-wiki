@@ -71,6 +71,7 @@ $f_{i,j}=\max\{f_{i-1,k}+b_i+|a_i-j|\}=\max\{f_{i-1,k}+|a_i-j|\}+b_i$
 [luogu P2569 \[SCOI2010\] 股票交易](https://www.luogu.org/problemnew/show/P2569)
 
 ## 斜率优化
+
 !!! 例题 [luogu P3195 \[HNOI2008\] 玩具装箱 TOY](https://www.luogu.org/problemnew/show/P3195)
     令 $f_i$ 表示前 $i$ 个物品，随意分组装在任意多个容器里所能得到的最小费用。
 
