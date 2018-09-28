@@ -2,7 +2,8 @@
 
 在具体讲何为 "背包 dp" 前，先来看如下的例题
 
-??? note " 例题 [\[USACO07DEC\] 手链 Charm Bracelet](https://www.luogu.org/problemnew/show/P2871)"本题题意可概括为——N 物体，放入容量为 M 的背包，要求使总价值最大。由于每个物体只有 2 种情况——取与不取，正如二进制中的 0 和 1——这类问题便被称为"0-1 背包问题 "。
+??? note " 例题 [\[USACO07DEC\] 手链 Charm Bracelet](https://www.luogu.org/problemnew/show/P2871)
+    本题题意可概括为——N 物体，放入容量为 M 的背包，要求使总价值最大。由于每个物体只有 2 种情况——取与不取，正如二进制中的 0 和 1——这类问题便被称为“0-1 背包问题”。
 
 ## 0-1 背包
 
