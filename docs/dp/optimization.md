@@ -44,7 +44,7 @@ for(int i=1;i<=cur;i++)for(int j=m;j>=v[i];j--)if(f[j-v[i]])f[j]=true;
 
 设 $f_{i,j}$ 表示在放第 $i$ 个烟花时，你的位置在 $j$ 所能获得的最大快乐值。
 
-写出 ** 状态转移方程 ** ：$f_{i,j}=\max\{f_{i-1,k}+b_i-|a_i-j|\}$
+写出 ** 状态转移方程 ** ：$f_{i,j}=\max\{f_{i-1,k}+b_i+|a_i-j|\}$
 
 这里的 $k$ 是有范围的，$j-(t_{i+1}-t_i)\times d\le k\le j+(t_{i+1}-t_i)\times d$。
 
