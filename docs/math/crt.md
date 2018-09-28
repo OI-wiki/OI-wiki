@@ -93,6 +93,39 @@ $$
 
 推荐练习：BZOJ 1951
 
+## 比较两CRT下整数
+
+考虑CRT,不妨假设$n_1\leq n_2 \leq ... \leq n_k$
+
+$$
+\left \{
+\begin{array}{c}
+x &\equiv& a_1 \pmod {n_1} \\
+x &\equiv& a_2 \pmod {n_2} \\
+  &\vdots& \\
+x &\equiv& a_n \pmod {n_k} \\
+\end{array}
+\right.
+$$
+
+与PMR(Primorial Mixed Radix)表示
+
+$$ x=b_1+b_2n_1+b_3n_1n_2...+b_kn_1n_2...n_{k-1} ,b_i\in [0,n_i)$$
+
+将数字转化到PMR下,逐位比较即可
+
+转化方法考虑依次对PMR取模
+
+\begin{align}
+b_1&=a_1 \mod p_1\\
+b_2&=(a_2-b_1)c_{1,2} \mod n_2\\
+b_3&=((a_3-b_1')c_{1,3}-x_2')c_{2,3} \mod n_3\\
+&...\\
+b_k&=(...((a_k-b_1)c_{1,k}-b_2)c_{2,k})-...)c_{k-1,k} \mod n_k
+\end{align}
+
+其中$c_{i,j}$表示$n_i$对$n_j$的逆元,$c_{i,j}n_i=1 \mod n_j$
+
 ## 扩展：模数不互质的情况
 
 ### 两个方程
