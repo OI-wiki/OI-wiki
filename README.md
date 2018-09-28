@@ -90,7 +90,6 @@ mkdocs serve -v
 
 ## 鸣谢
 
-
 <img src='https://i.loli.net/2018/09/28/5bae46121a2be.png' alt='QVQNetWork' height=233>
 
 鸣谢 QVQNetwork 赞助的服务器。
