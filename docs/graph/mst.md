@@ -245,7 +245,8 @@ Kruskal 算法中的「集合」，能否进一步优化？
 
 寻找权值与当前边相同的边，我们只需要记录头尾指针，用单调队列即可在$O(\alpha(m))$（m 为边数）的时间复杂度里优秀解决这个问题（基本与原算法时间相同）。
 
-??? note "例题：[POJ 1679]((http://poj.org/problem?id=1679)"
+??? note " 例题：[POJ 1679]\((<http://poj.org/problem?id=1679>)"
+
     ```cpp
     #include <algorithm>
     #include <cstdio>
