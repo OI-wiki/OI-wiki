@@ -154,7 +154,15 @@ $O\left(n log n\right)$的算法，参考了这篇文章<https://www.cnblogs.com
 2. 元素等于$d_{len}$，因为前面的元素都小于它，所以这个元素可以直接抛弃。
 3. 元素小于$d_{len}$，找到**第一个**大于它的元素，插入进去，其他小于它的元素不要。
 
-于是代码略。
+```cpp
+for(int i = 0; i < n; ++i) scanf("%d", a + i);
+memset(dp, 0x1f, sizeof dp); mx = dp[0];
+for(int i = 0; i < n; ++i) {
+  *std::lower_bound(dp, dp + n, a[i]) = a[i];
+}
+ans = 0;
+while (dp[ans] != mx) ++ans;
+```
 
 ## 经典问题（来自习题）
 
@@ -265,7 +273,7 @@ $dp[i][j] = \min(dp[i][k] + dis[k][j], dp[k][j] + dis[i][k])$
 
 $dp[i] = \min(dp[j] + cost[j][i])$
 
-举一反三：有 $n$ 个单词，可以不按顺序打印，问怎么安排，使得把他们打印成 $m$ 行之后，每行的空格之和最小。
+不知道这样可不可做：有 $n$ 个单词，可以不按顺序打印，问怎么安排，使得把他们打印成 $m$ 行之后，每行的空格之和最小。
 
 ### 编辑距离
 
