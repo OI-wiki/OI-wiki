@@ -36,8 +36,8 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 首先，你需要一个最新的 Windows 10 操作系统，这点不必多说。  
 其次，你需要配置一下开发人员模式环境。
 
-1. 设置 -> 更新与安全 -> 开发人员模式框选 -> 是
-![来，跟着箭头走](./images/WSL4.png)     
+1.  设置 -> 更新与安全 -> 开发人员模式框选 -> 是
+    ![来，跟着箭头走](./images/WSL4.png)     
 
 <div align='center'> 来，跟着箭头走 </div>
  
@@ -86,8 +86,10 @@ sudo apt upgrade -y
 ```
 
 ![](./images/WSL9.png)
+
 ### 安装中文环境
- ```bash
+
+```bash
 sudo apt install  language-pack-zh-han* -y
 sudo locale-gen zh_CN.GB18030 && sudo locale-gen zh_CN.GB2312 && sudo locale-gen zh_CN.UTF8
 # 中文字体，别忘了同意 EULA
@@ -98,30 +100,37 @@ sudo apt install -y --force-yes --no-install-recommends fonts-wqy-microhei
 sudo apt install -y --force-yes --no-install-recommends ttf-wqy-zenhei
 sudo dpkg-reconfigure locales
 ```
+
  使用 `sudo dpkg-reconfigure locales` 进入菜单，选择 `zh_CN.UTF-8` 回车，下一个菜单中也是选它打回车。
 ![](./images/WSL10.png)
 ![](./images/WSL11.png)
  之后关上 Ubuntu 重开一遍登录，是不是变中文了？
 再依次输入下列命令，把 `man` 帮助页替换为中文：[via](https://blog.csdn.net/qq_14989227/article/details/72954523)
+
 ```bash
 sudo apt install manpages-zh
 sudo vi /etc/manpath.config
 :1,$s#/usr/share/man#/usr/share/man/zh_CN#g
 :wq
 ```
+
  可以用 `man help` 测试下。
+
 ### 安装编译环境
- ```bash
+
+```bash
 sudo apt install build-essential vim ddd gdb fpc emacs gedit anjuta lazarus -y
 wget http://download.noi.cn/T/noi/GUIDE-1.0.2-ubuntu.tar
 tar -xvf GUIDE-1.0.2-ubuntu.tar
 cd GUIDE-1.0.2-ubuntu
 chmod +x install.sh && ./install.sh
 ```
-这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install 程序名 ` 来安装别的。
+
+这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install 程序名` 来安装别的。
 若想安装其他版本可以参考下 [这个](https://www.cnblogs.com/EasonJim/p/7144017.html)
 
 来个程序玩玩：
+
 ```bash
 $ vim cpuid.cpp
 $ g++ -Wall cpuid.cpp -o cpuid
@@ -130,23 +139,31 @@ AMD Ryzen 5 1400 Quad-Core Processor
 ```
 
 **Tips：Linux 环境下可执行文件可不带扩展名，实现方式看上方命令行 **
+
 ## 0x05 进阶操作
+
 ### 安装图形环境，并使用远程桌面连接
+
 推荐图形环境用 xfce4，不臃肿。
+
 ```bash
 sudo apt install xfce4 tightvncserver -y
 # 或使用 sudo apt install xubuntu-desktop -y
 # xubuntu 安装的软件多，基础环境可用第一种
- ```
+```
+
 图形环境是个大头，因此要多等会，静静等待下载解包。
 下面配置 xrdp：
+
 ```bash
 sudo apt install xrdp -y
 echo "xfce4-session" >~/.xsession
 sudo service xrdp restart
 ```
+
  为了防止和你计算机本来带的远程桌面冲突，最好换一下端口。
 ![](./images/WSL12.png)
+
 <div align='center'> 不换端口的结果 </div>
  运行命令 `nano /etc/xrdp/xrdp.ini`，把 `port=3389` 改为别的（如 `port=3390`），然后保存即可。
 ![](./images/WSL13.png)
