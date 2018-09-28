@@ -23,6 +23,8 @@ nav:
       - 评测工具: intro/judgers.md
       - 编辑工具: intro/editors.md
       - Windows 10 的 WSL: intro/wsl.md
+      - Special Judge: intro/spj.md
+      - Testlib: intro/testlib.md
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
   - 基础部分:
