@@ -1,3 +1,5 @@
+![Word Art](https://raw.githubusercontent.com/24OI/OI-wiki/master/docs/images/wordArt.png)
+
 # OI-Wiki
 
 [![Travis](https://img.shields.io/travis/24OI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/24OI/OI-wiki)
@@ -83,3 +85,11 @@ mkdocs serve -v
 
 换言之，使用过程中您可以自由地共享、演绎，但是必须署名、以相同方式共享、分享时没有附加限制，  
 而且需要为 GitHub 仓库点赞（Star）。
+
+* * *
+
+## 鸣谢
+
+<img src='https://i.loli.net/2018/09/28/5bae46121a2be.png' alt='QVQNetWork' height=233>
+
+鸣谢 QVQNetwork 赞助的服务器。
