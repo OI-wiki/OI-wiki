@@ -35,7 +35,8 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 首先，你需要一个最新的 Windows 10 操作系统，这点不必多说。  
 其次，你需要配置一下开发人员模式环境。
-1\. 设置 -> 更新与安全 -> 开发人员模式框选 -> 是
+
+1. 设置 -> 更新与安全 -> 开发人员模式框选 -> 是
 ![来，跟着箭头走](./images/WSL4.png)     
 
 <div align='center'> 来，跟着箭头走 </div>
@@ -63,48 +64,37 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
  ** 以下命令均可直接右键复制粘贴进窗口哦！**
 ![](./images/WSL7.png)
  正如图片所示，这个系统纯净到连个编译器都没有，所以这一节来看看基础的环境配置。
-### 解锁 root 账户（非必需）
-解锁 `root` 账户会产生 ** 安全隐患 **，请确定你 ** 可以解决 ** 因进入 `root` 账户而产生的各种问题，否则请不要解锁！
-Ubuntu 默认是把 root 账户锁住的，给刚刚的账户开放 `Sudo` 权限。
-???+ note " 补充资料：何为 `sudo`(Wikipedia)？"    
-     `sudo`【substitute user (或 superuser) do】，是一种程序，用于类 Unix 操作系统如 BSD、Mac OS X 以及 GNU/Linux 以允许用户通过安全的方式使用特殊的权限运行程序 （通常为系统的超级用户）。     
-     在 `sudo` 于 1980 年前后被写出之前，一般用户管理系统的方式是利用 `su` 切换为超级用户。但是使用 `su` 的缺点之一在于必须要先告知超级用户的密码。  
-     `sudo` 使一般用户不需要知道超级用户的密码即可获得权限。首先超级用户将普通用户的名字、可以执行的特定命令、按照哪种用户或用户组的身份执行等信息，登记在特殊的文件中（通常是 `/etc/sudoers`），即完成对该用户的授权（此时该用户称为 `sudoer`）；在一般用户需要获取特殊权限时，其可在命令前加上 `sudo`，此时 `sudo` 将会询问该用户自己的密码（以确认终端机前的是该用户本人），回答后系统即会将该命令的进程以超级用户的权限运行。之后的一段时间内（默认为 5 分钟，可在 `/etc/sudoers` 自定义），使用 `sudo` 不需要再次输入密码。  
-     由于不需要超级用户的密码，部分类 Unix 系统甚至利用 `sudo` 使一般用户取代超级用户作为管理账号，例如 Ubuntu、Mac OS X 等。     
-命令三连：
-```bash
-sudo passwd root
-sudo passwd --unlock root
-sudo su
-```
-![](./images/WSL8.png)
-???+ warning
-    ** 如果跳过这一节，请在接下来每个命令前带上 `sudo`！**
+
 ### 更换为国内软件源
- Ubuntu 默认的软件源在国外，我们可以换为国内的加快速度，如 [清华 TUNA 的软件源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)。  
+
+Ubuntu 默认的软件源在国外，我们可以换为国内的加快速度，如 [清华 TUNA 的软件源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)。  
+
+可以访问 [TUNA 的页面](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/) 来获得国内源的信息。
+
 ???+ warning  
     ** 请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a` 查看，具体详见 `0x03` ）  
     ** 除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！\*\*     
+
 使用的命令
-???+ warning
-    （需按上节指示进入 `root` 环境，否则请在每个命令前带上 `sudo`）
+
 ```bash
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
-sudo echo '' > /etc/apt/sources.list
-sudo nano /etc/apt/sources.list
-# （将上文的源右键粘贴进去，编辑完后按 Ctrl + X，再按 Y 和回车）
-apt update && apt upgrade -y
+sudo vim /etc/apt/sources.list
+# （按 i 之后将上文的源右键粘贴进去，编辑完后按 Esc，再输入 :wq 和回车）
+sudo apt update
+sudo apt upgrade -y
 ```
+
 ![](./images/WSL9.png)
 ### 安装中文环境
  ```bash
-apt install  language-pack-zh-han* -y
-locale-gen zh_CN.GB18030 && locale-gen zh_CN.GB2312 && locale-gen zh_CN.UTF8
+sudo apt install  language-pack-zh-han* -y
+sudo locale-gen zh_CN.GB18030 && sudo locale-gen zh_CN.GB2312 && sudo locale-gen zh_CN.UTF8
 # 中文字体，别忘了同意 EULA
-apt install fontconfig -y
+sudo apt install fontconfig -y
 sudo apt install ttf-mscorefonts-installer -y
 # 下面的再执行一遍以防万一
- sudo apt install -y --force-yes --no-install-recommends fonts-wqy-microhei
+sudo apt install -y --force-yes --no-install-recommends fonts-wqy-microhei
 sudo apt install -y --force-yes --no-install-recommends ttf-wqy-zenhei
 sudo dpkg-reconfigure locales
 ```
@@ -112,7 +102,7 @@ sudo dpkg-reconfigure locales
 ![](./images/WSL10.png)
 ![](./images/WSL11.png)
  之后关上 Ubuntu 重开一遍登录，是不是变中文了？
-再用下列命令，把 `man` 帮助页替换为中文：[via](https://blog.csdn.net/qq_14989227/article/details/72954523)
+再依次输入下列命令，把 `man` 帮助页替换为中文：[via](https://blog.csdn.net/qq_14989227/article/details/72954523)
 ```bash
 sudo apt install manpages-zh
 sudo vi /etc/manpath.config
@@ -128,15 +118,17 @@ tar -xvf GUIDE-1.0.2-ubuntu.tar
 cd GUIDE-1.0.2-ubuntu
 chmod +x install.sh && ./install.sh
 ```
- 这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install 程序名 ` 来安装别的。
+这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install 程序名 ` 来安装别的。
 若想安装其他版本可以参考下 [这个](https://www.cnblogs.com/EasonJim/p/7144017.html)
- 来个程序玩玩：
+
+来个程序玩玩：
 ```bash
-$ nano cpuid.cpp
+$ vim cpuid.cpp
 $ g++ -Wall cpuid.cpp -o cpuid
 $ ./cpuid
 AMD Ryzen 5 1400 Quad-Core Processor
 ```
+
 **Tips：Linux 环境下可执行文件可不带扩展名，实现方式看上方命令行 **
 ## 0x05 进阶操作
 ### 安装图形环境，并使用远程桌面连接
@@ -146,7 +138,7 @@ sudo apt install xfce4 tightvncserver -y
 # 或使用 sudo apt install xubuntu-desktop -y
 # xubuntu 安装的软件多，基础环境可用第一种
  ```
- 图形环境是个大头，因此要多等会，静静等待下载解包。
+图形环境是个大头，因此要多等会，静静等待下载解包。
 下面配置 xrdp：
 ```bash
 sudo apt install xrdp -y
