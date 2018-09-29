@@ -2,9 +2,9 @@ disqus:
 pagetime:
 title: OI Wiki
 
-# 欢迎来到 **OI Wiki**。
+# 欢迎来到 **OI Wiki**。<a class="github-button" href="https://github.com/24OI/OI-Wiki/subscription" data-icon="octicon-eye" data-size="large" data-show-count="true" aria-label="Watch 24OI/OI-Wiki on GitHub">Watch</a> <a class="github-button" href="https://github.com/24OI/OI-Wiki" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star 24OI/OI-Wiki on GitHub">Star</a>
 
-![Word Art](./images/wordArt.png)
+[![Word Art](./images/wordArt.png)](https://github.com/24OI/OI-wiki)
 
 **OI** （Olympiad in Informatics，信息学奥林匹克竞赛）在中国起源于 1984 年，是五大高中学科竞赛之一。自 1989 年起，每年还会选拔出国家集训队选手准备 IOI (International Olympiad in Informatics，国际信息学奥林匹克竞赛)。
 
