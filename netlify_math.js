@@ -1,7 +1,7 @@
 const mjpage = require("mathjax-node-page").mjpage;
 const fs = require("fs");
 const path = require("path");
-var async = require('async');
+var async = require("async");
 
 function fromDir(startPath, filter, callback) {
   // console.log('Starting from dir '+startPath+'/');
@@ -30,44 +30,48 @@ function fromDir(startPath, filter, callback) {
 // arr = [];
 fromDir("./site/", ".html", function(res) {
   // console.log(arr);
-  console.log('??');
-  async.each(res, function (filename, cb) {
-    try {
-      console.log("Starts rendering: ", filename);
-      let input = fs.readFileSync(filename, "utf-8");
-      mjpage(
-        input
-          .replace(
-            /\<span class=\"MathJax\_Preview\"\>.+?\<\/span\>\<script type="math\/tex"\>/gi,
-            `<script type="math/tex">`
-          )
-          .replace(
-            /\<div class=\"MathJax_Preview\"\>[\s\S]*?\<\/div\>/gi,
-            ""
-          ),
-        {
-          format: ["TeX"]
-        },
-        { svg: true, ex: 8, cjkCharWidth: 18, linebreaks: true },
-        function (output) {
-          // console.log(output); // resulting HTML string
-          // console.log(filename)
-          console.log("Finished rendering: ", filename);
-          fs.writeFileSync(filename, output, "utf-8");
-        }
-      );
-      cb();
-    } catch (e) {
-      console.log(e);
-      throw e;
+  // console.log('??');
+  async.each(
+    res,
+    function(filename, cb) {
+      try {
+        console.log("Starts rendering: ", filename);
+        let input = fs.readFileSync(filename, "utf-8");
+        mjpage(
+          input
+            .replace(
+              /\<span class=\"MathJax\_Preview\"\>.+?\<\/span\>\<script type="math\/tex"\>/gi,
+              `<script type="math/tex">`
+            )
+            .replace(
+              /\<div class=\"MathJax_Preview\"\>[\s\S]*?\<\/div\>/gi,
+              ""
+            ),
+          {
+            format: ["TeX"]
+          },
+          { svg: true, ex: 8, cjkCharWidth: 18, linebreaks: true },
+          function(output) {
+            // console.log(output); // resulting HTML string
+            // console.log(filename)
+            console.log("Finished rendering: ", filename);
+            fs.writeFileSync(filename, output, "utf-8");
+          }
+        );
+        cb();
+      } catch (e) {
+        console.log(e);
+        throw e;
+      }
+    },
+    function(err) {
+      if (err) {
+        console.log("A file failed to process");
+      } else {
+        console.log("All files have been processed successfully");
+      }
     }
-  }, function(err) {
-    if (err) {
-      console.log('A file failed to process');
-    } else {
-      console.log('All files have been processed successfully');
-    }
-  });
+  );
 });
 
 // console.log(typeof input.text)
