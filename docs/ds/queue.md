@@ -2,7 +2,7 @@
 
 先进入队列的元素一定先出队列，因此队列通常也被称为先进先出（first in first out）表，简称 FIFO 表。
 
-STL 中的栈和队列都是通过 deque 实现的。
+注：`std::stack` 和 `std::queue` 都是容器适配器，默认底层容器为 `std::deque`（双端队列）。
 
 通常用一个数组模拟一个队列，用两个指针：front 和 rear 分别表示队列头部和尾部。
 
