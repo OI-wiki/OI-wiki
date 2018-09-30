@@ -30,4 +30,4 @@ cp ./static/extra.js docs/_static/js/extra.js
 
 mkdocs build -v
 
-node render_math.js
+node --max_old_space_size=512 render_math.js
