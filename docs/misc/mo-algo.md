@@ -1,6 +1,6 @@
 ## 普通莫队算法
 
-这里内容有诸多是借鉴网上的（O(∩\_∩)O 谢谢啦！），主要借鉴了：<https://blog.sengxian.com/algorithms/mo-s-algorithm>
+（主要参考了 <https://blog.sengxian.com/algorithms/mo-s-algorithm>。）
 
 ### 概述
 
@@ -41,75 +41,81 @@ void solve() {
 
 ### 复杂度分析
 
-以下的情况在 n 和 m 同阶的前提下讨论。
+以下的情况在 $n$ 和 $m$ 同阶的前提下讨论。
 
-首先是分块这一步，这一步的时间复杂度毫无疑问地是 $O(\sqrt{n}\sqrt{n}log\sqrt{n}+nlogn)=O(nlogn)$;
+首先是分块这一步，这一步的时间复杂度毫无疑问地是 $O(\sqrt{n}\cdot\sqrt{n}\log\sqrt{n}+n\log n)=O(n\log n)$;
 
 接着就到了莫队算法的精髓了，下面我们用通俗易懂的初中方法来证明它的时间复杂度是 $O(n\sqrt{n})$；
 
-证：令每一块中 $L$ 的最大值为 $max_1,max_2,max_3, \cdots , max_{\operatorname{ceil}(\sqrt{n})}$。
+证：令每一块中 $L$ 的最大值为 $\max_1,\max_2,\max_3, \cdots , \max_{\lceil\sqrt{n}\rceil}$。
 
-由第一次排序可知，$max_1 \le max_2 \le \cdots \le max_{\operatorname{ceil}(\sqrt{n})}$。
+由第一次排序可知，$\max_1 \le \max_2 \le \cdots \le \max_{\lceil\sqrt{n}\rceil}$。
 
 显然，对于每一块暴力求出第一个询问的时间复杂度为 $O(n)$。
 
-考虑最坏的情况，在每一块中，$R$ 的最大值均为 $n$，每次修改操作均要将 $L$ 由 $max_{i - 1}$ 修改至 $max_i$ 或由 $max_i$ 修改至 $max_{i - 1}$。
+考虑最坏的情况，在每一块中，$R$ 的最大值均为 $n$，每次修改操作均要将 $L$ 由 $\max_{i - 1}$ 修改至 $\max_i$ 或由 $\max_i$ 修改至 $\max_{i - 1}$。
 
 考虑 $R$：因为 $R$ 在块中已经排好序，所以在同一块修改完它的时间复杂度为 $O(n)$。对于所有块就是 $O(n\sqrt{n})$。
 
-重点分析 $L$：因为每一次改变的时间复杂度都是 $O(max_i-max_{i-1})$ 的，所以在同一块中时间复杂度为 $O(\sqrt{n}*(max_i-max_{i-1}))$。
+重点分析 $L$：因为每一次改变的时间复杂度都是 $O(\max_i-\max_{i-1})$ 的，所以在同一块中时间复杂度为 $O(\sqrt{n}\cdot(\max_i-\max_{i-1}))$。
 
 将每一块 $L$ 的时间复杂度合在一起，可以得到：
 
+对于 $L$ 的总时间复杂度为
+
 $$
 \begin{aligned}
-对于 L 的总时间复杂度为 & = O(\sqrt{n}(max_1-1)+\sqrt{n}(max_2-max_1)+\sqrt{n}(max_3-max_2)+\cdots+\sqrt{n}(max_{\operatorname{ceil}(\sqrt{n})}-max_{\operatorname{ceil}(\sqrt{n})-1))} \\\\
-& = O(\sqrt{n}*(max_1-1+max_2-max_1+max_3-max_2+\cdots+max_{\operatorname{ceil}(\sqrt{n})-1}-max_{\operatorname{ceil}(\sqrt{n})-2}+max_{\operatorname{ceil}(\sqrt{n})}-max_{\operatorname{ceil}(\sqrt{n})-1)}) \\\\
-& = O(\sqrt{n}*(max_{\operatorname{ceil}(\sqrt{n})-1}))
+& O(\sqrt{n}(\operatorname{max}_1-1)+\sqrt{n}(\operatorname{max}_2-\operatorname{max}_1)+\sqrt{n}(\operatorname{max}_3-\operatorname{max}_2)+\cdots+\sqrt{n}(\operatorname{max}_{\lceil\sqrt{n}\rceil}-\operatorname{max}_{\lceil\sqrt{n}\rceil-1))} \\\\
+= & O(\sqrt{n}\cdot(\operatorname{max}_1-1+\operatorname{max}_2-\operatorname{max}_1+\operatorname{max}_3-\operatorname{max}_2+\cdots+\operatorname{max}_{\lceil\sqrt{n}\rceil-1}-\operatorname{max}_{\lceil\sqrt{n}\rceil-2}+\operatorname{max}_{\lceil\sqrt{n}\rceil}-\operatorname{max}_{\lceil\sqrt{n}\rceil-1)}) \\\\
+= & O(\sqrt{n}\cdot(\operatorname{max}_{\lceil\sqrt{n}\rceil-1}))
 \end{aligned}
 $$
 
 (裂项求和)
 
-由题可知 $max_{\operatorname{ceil}(\sqrt{n})}$ 最大为 $n$，所以 $L$ 的总时间复杂度最坏情况下为 $O(n\sqrt{n})$。
+由题可知 $\max_{\lceil\sqrt{n}\rceil}$ 最大为 $n$，所以 $L$ 的总时间复杂度最坏情况下为 $O(n\sqrt{n})$。
 
 综上所述，莫队算法的时间复杂度为 $O(n\sqrt{n})$；
 
-但是对于 m 的其他取值，如 m&lt;n，分块方式需要改变才能变的更优
+但是对于 $m$ 的其他取值，如 $m<n$，分块方式需要改变才能变的更优。
 
 怎么分块呢？
 
-我们设块长度为 $S$，那么对于任意多个在同一块内的询问，挪动的距离就是 $n$，一共 $\frac{n}{S}$ 个块，移动的总次数就是 $\frac{n^2}{S}$，移动可能跨越块，所以还要加上一个 $mS$ 的复杂度，总复杂度为 $O(\frac{n^2}{S}+mS)$，我们要让这个值尽量小，那么就要将这两个项尽量相等，发现 $S$ 取 $\frac{n}{\sqrt{m}}$ 是最优的，此时复杂度为 $O(\frac{n^2}{\frac{n}{\sqrt{m}}}+m(\frac{n}{\sqrt{m}}))=O(n\sqrt{m})$
+我们设块长度为 $S$，那么对于任意多个在同一块内的询问，挪动的距离就是 $n$，一共 $\displaystyle \frac{n}{S}$ 个块，移动的总次数就是 $\displaystyle \frac{n^2}{S}$，移动可能跨越块，所以还要加上一个 $mS$ 的复杂度，总复杂度为 $\displaystyle O(\frac{n^2}{S}+mS)$，我们要让这个值尽量小，那么就要将这两个项尽量相等，发现 $S$ 取 $\displaystyle \frac{n}{\sqrt{m}}$ 是最优的，此时复杂度为 $\displaystyle O(\frac{n^2}{\displaystyle \frac{n}{\sqrt{m}}}+m(\frac{n}{\sqrt{m}}))=O(n\sqrt{m})$。
 
 ### 例题 & 代码
 
 [小 Z 的袜子](https://www.lydsy.com/JudgeOnline/problem.php?id=2038)
 
 思路：莫队算法模板题。
+
 对于区间 $[l,r]$，以 $l$ 所在块的编号为第一关键字，$r$ 为第二关键字从小到大排序。
 然后从序列的第一个询问开始计算答案，第一个询问通过直接暴力算出，复杂度为 $O(n)$，后面的询问在前一个询问的基础上得到答案。
 
 具体做法：
+
 对于区间 $[i,i]$ ，由于区间只有一个元素，我们很容易就能知道答案。
 然后一步一步从当前区间（已知答案）向下一个区间靠近。
 
-我们设 $col[i]$ 表示当前颜色 i 出现了多少次，$ans$ 当前共有多少种可行的配对方案（有多少种可以选到一双颜色相同的袜子），表示然后每次移动的时候更新答案——设当前颜色为 $k$，如果是增长区间就是 $ans$ 加上 $C(col[k]+1,2)-C(col[k],2)$，如果是缩短就是 $ans$ 减去 $C(col[k],2)-C(col[k]-1,2)$。这应该很好理解。
-而这个询问的答案就是 $\frac{ans}{C(r-l+1,2)}$
+我们设 $col[i]$ 表示当前颜色 i 出现了多少次，$ans$ 当前共有多少种可行的配对方案（有多少种可以选到一双颜色相同的袜子），表示然后每次移动的时候更新答案——设当前颜色为 $k$，如果是增长区间就是 $ans$ 加上 $C_{col[k]+1}^2-C_{col[k]}^2$，如果是缩短就是 $ans$ 减去 $C_{col[k]}^2-C_{col[k]-1}^2$。这应该很好理解。
 
-这里有个优化：
-$C(a,2)=a\times (a-1)/2$
-所以 $C(a+1,2)-C(a,2)=(a+1)\times a/2-a\times (a-1)/2=a/2\times (a+1-a+1)=a/2\times 2=a$
-所以 $C(col[k]+1,2)-C(col[k],2)=col[k]$
+而这个询问的答案就是 $\displaystyle \frac{ans}{C_{r-l+1}^2}$。
+
+这里有个优化：$\displaystyle C_a^2=\frac{a (a-1)}{2}$。
+
+所以 $\displaystyle C_{a+1}^2-C_a^2=\frac{(a+1) a}{2}-\frac{a (a-1)}{2}=\frac{a}{2}\cdot (a+1-a+1)=\frac{a}{2}\cdot 2=a$。
+
+所以 $C_{col[k]+1}^2-C_{col[k]}^2=col[k]$。
 
 这样我们少算了很多东西呢！
 至少我的代码在 BZOJ 上测快了一倍。
 
-还有，算 $C(a,2)$ 可以用位运算，`a/2` 可以写成 `a>>1`。
+还有，算 $C_a^2$ 可以用位运算，`a/2` 可以写成 `a>>1`。
 
 算法总复杂度：$O(n\sqrt{n} )$
 
 下面的代码中 `mot` 表示答案的分母 (mother)，`sub` 表示分子，`sqn` 表示块的大小：$\sqrt{n}$，`arr` 是输入的数组，`node` 是存储询问的结构体，`tab` 是询问序列（排序后的），`col` 同上所述。
-<strong > 注意：下面代码中的移动区间的 4 个 for 循环的位置很关键，不能改变它们之间的位置关系，不然会 WA（因为有那个 ++l 和 --r）。</strong>
+<strong > 注意：下面代码中的移动区间的 4 个 for 循环的位置很关键，不能改变它们之间的位置关系，不然会 WA（因为有那个 `++l` 和 `--r`）。</strong>
 代码：
 
 ```cpp
@@ -305,11 +311,11 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 push_back(x),dfs 完 x 点，�
 
 $\sum_{c}val_c\sum_{i=1}^{cnt_c}w_i$
 
-val 表示该颜色的价值
+$val$ 表示该颜色的价值
 
-cnt 表示颜色出现的次数
+$cnt$ 表示颜色出现的次数
 
-w 表示该颜色出现 i 次后的价值
+$w$ 表示该颜色出现 $i$ 次后的价值
 
 先把树变成序列，然后每次添加 / 删除一个点，这个点的对答案的的贡献是可以在 $O(1)$ 时间内获得的，即 $val_c\times w_{cnt_{c+1}}$
 
@@ -317,7 +323,7 @@ w 表示该颜色出现 i 次后的价值
 
 因为扫的过程中起点的子树里的点肯定会被扫两次，但贡献为 0
 
-所以可以开一个 vis 数组，每次扫到点 x，就把 $vis_x$ 异或上 1
+所以可以开一个 $vis$ 数组，每次扫到点 x，就把 $vis_x$ 异或上 1
 
 如果 $vis_x=0$，那这个点的贡献就可以不计
 
