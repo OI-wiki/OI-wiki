@@ -30,4 +30,3 @@ cp ./static/extra.js docs/_static/js/extra.js
 
 mkdocs build -v
 
-node --max_old_space_size=1024 netlify_math.js
