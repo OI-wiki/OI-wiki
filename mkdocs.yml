@@ -24,6 +24,7 @@ nav:
       - 编辑工具: intro/editors.md
       - Special Judge: intro/spj.md
       - Testlib: intro/testlib.md
+    - Markdown语法: intro/markdown.md
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
   - 基础部分:
