@@ -30,3 +30,5 @@ cp ./static/extra.js docs/_static/js/extra.js
 
 mkdocs build -v
 
+# uncomment this line to render mathjax on server side
+# node netlify_math.js
