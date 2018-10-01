@@ -251,13 +251,13 @@ extra:
   pagetime: 'on'
 
 extra_javascript:
-  - 'https://cdn.staticfile.org/Han/3.3.0/han.min.js'
+  - 'https://cdnjs.loli.net/ajax/libs/Han/3.3.0/han.min.js'
   - '_static/js/extra.js?v=10'
-  - 'https://cdn.staticfile.org/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
+  - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
   
 
 extra_css:
-  - 'https://unpkg.com/ah@1.0.5/han.min.css'
+  - 'https://cdn.jsdelivr.net/npm/ah@1.1.0/han.min.css'
   - '_static/css/extra.css?v=7'
 
 # Extensions

@@ -12,10 +12,10 @@ set -e
 # Clone Theme for Editing
 if [ ! -d "mkdocs-material" ] ; then
   git clone --depth 1 https://github.com/squidfunk/mkdocs-material.git
-  sed -i '9a\<meta http-equiv="x-dns-prefetch-control" content="on">\n\<link rel="dns-prefetch" href="//fonts.loli.net">\n\<link rel="dns-prefetch" href="//unpkg.com">\n\<link rel="dns-prefetch" href="//oi-wiki.org">\n\<link rel="dns-prefetch" href="//api.github.com">' mkdocs-material/material/base.html
+  sed -i '9a\<meta http-equiv="x-dns-prefetch-control" content="on">\n\<link rel="dns-prefetch" href="//fonts.loli.net">\n\<link rel="dns-prefetch" href="//cdnjs.loli.net">\n\<link rel="dns-prefetch" href="//oi-wiki.org">\n\<link rel="dns-prefetch" href="//cdn.jsdelivr.net">\n\<link rel="dns-prefetch" href="//api.github.com">' mkdocs-material/material/base.html
 fi
 sed -i "s/name: 'material'/name: null\n  custom_dir: 'mkdocs-material\/material'\n  static_templates:\n    - 404.html/g" mkdocs.yml
-sed -i "s/- 'https:\/\/cdn.staticfile.org\/mathjax\/2.7.5\/MathJax.js?config=TeX-MML-AM_CHTML'//g" mkdocs.yml
+sed -i "s/- 'https:\/\/cdnjs.loli.net\/ajax\/libs\/mathjax\/2.7.5\/MathJax.js?config=TeX-MML-AM_CHTML'//g" mkdocs.yml
 
 # Change Google CDN to loli.net
 sed -i 's/fonts.gstatic.com/gstatic.loli.net/g' mkdocs-material/material/base.html
@@ -30,4 +30,4 @@ cp ./static/extra.js docs/_static/js/extra.js
 
 mkdocs build -v
 
-node render_math.js
+node --max_old_space_size=1024 netlify_math.js
