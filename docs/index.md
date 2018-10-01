@@ -92,4 +92,4 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
   })
 </script>
 
-<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script async defer src="https://cdn.jsdelivr.net/npm/ah@1.1.1/buttons.js"></script>
