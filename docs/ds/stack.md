@@ -59,5 +59,3 @@ if(*stk) --*stk;
 其他运算符 ：
 
 `==`、`!=`、`<`、`<=`、`>`、`>=` 可以按照字典序比较两个 `stack` 的值
-
-`stack` 也支持 `lexicographical_compare()` 
