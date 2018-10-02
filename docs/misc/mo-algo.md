@@ -62,6 +62,7 @@ void solve() {
 将每一块 $L$ 的时间复杂度合在一起，可以得到：
 
 对于 $L$ 的总时间复杂度为
+
 $$
 \begin{aligned}
 & O(\sqrt{n}(\max{}_1-1)+\sqrt{n}(\max{}_2-\max{}_1)+\sqrt{n}(\max{}_3-\max{}_2)+\cdots+\sqrt{n}(\max{}_{\lceil\sqrt{n}\rceil}-\max{}_{\lceil\sqrt{n}\rceil-1))} \\
@@ -69,6 +70,7 @@ $$
 = & O(\sqrt{n}\cdot(\max{}_{\lceil\sqrt{n}\rceil-1}))\\
 \end{aligned}
 $$
+
 (裂项求和)
 
 由题可知 $\max_{\lceil\sqrt{n}\rceil}$ 最大为 $n$，所以 $L$ 的总时间复杂度最坏情况下为 $O(n\sqrt{n})$。
