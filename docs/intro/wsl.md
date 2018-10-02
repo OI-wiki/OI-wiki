@@ -55,13 +55,16 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
     也可安装带有版本号的旧 Windows。
 安装完后，打开 Ubuntu，等待一段时间，让其自己配置，不久就会提示你设置用户名和密码。   
 （这里看你喜好，推荐设置短点，毕竟 ** 本地环境不怕攻击 **）     
-???+ warning  
-     请不要在生产环境下（暴露在外网）的服务器上这么做！
+
 **Linux 区分大小写！**
+
 ![](./images/WSL6.png)
  这样之后，一个纯净的 Ubuntu 系统安装完成了！
+
 ## 0x04 基础配置
+
  ** 以下命令均可直接右键复制粘贴进窗口哦！**
+
 ![](./images/WSL7.png)
  正如图片所示，这个系统纯净到连个编译器都没有，所以这一节来看看基础的环境配置。
 
@@ -101,7 +104,8 @@ sudo apt install -y --force-yes --no-install-recommends ttf-wqy-zenhei
 sudo dpkg-reconfigure locales
 ```
 
- 使用 `sudo dpkg-reconfigure locales` 进入菜单，选择 `zh_CN.UTF-8` 回车，下一个菜单中也是选它打回车。
+使用 `sudo dpkg-reconfigure locales` 进入菜单，选择 `zh_CN.UTF-8` 回车，下一个菜单中也是选它打回车。
+
 ![](./images/WSL10.png)
 ![](./images/WSL11.png)
  之后关上 Ubuntu 重开一遍登录，是不是变中文了？
