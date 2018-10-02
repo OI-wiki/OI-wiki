@@ -165,7 +165,7 @@ sudo service xrdp restart
 ![](./images/WSL12.png)
 
 <div align='center'> 不换端口的结果 </div>
- 运行命令 `nano /etc/xrdp/xrdp.ini`，把 `port=3389` 改为别的（如 `port=3390`），然后保存即可。
+ 运行命令 `vim /etc/xrdp/xrdp.ini`，把 `port=3389` 改为别的（如 `port=3390`），然后保存即可。
 ![](./images/WSL13.png)
  运行 `sudo service xrdp restart`，然后去开始菜单，用 `localhost: 你配置的端口 ` 来访问。
 ![](./images/WSL14.png)
