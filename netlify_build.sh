@@ -13,6 +13,7 @@ set -e
 if [ ! -d "mkdocs-material" ] ; then
   git clone --depth 1 https://github.com/squidfunk/mkdocs-material.git
   sed -i '9a\<meta http-equiv="x-dns-prefetch-control" content="on">\n\<link rel="dns-prefetch" href="//fonts.loli.net">\n\<link rel="dns-prefetch" href="//cdnjs.loli.net">\n\<link rel="dns-prefetch" href="//oi-wiki.org">\n\<link rel="dns-prefetch" href="//cdn.jsdelivr.net">\n\<link rel="dns-prefetch" href="//api.github.com">' mkdocs-material/material/base.html
+  sed -i '86a\<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />' mkdocs-material/material/base.html
 fi
 sed -i "s/name: 'material'/name: null\n  custom_dir: 'mkdocs-material\/material'\n  static_templates:\n    - 404.html/g" mkdocs.yml
 sed -i "s/- 'https:\/\/cdnjs.loli.net\/ajax\/libs\/mathjax\/2.7.5\/MathJax.js?config=TeX-MML-AM_CHTML'//g" mkdocs.yml
@@ -26,6 +27,7 @@ sed -i "s/'assets\/fonts\/material-icons.css'/'https:\/\/fonts.loli.net\/icon?fa
 sed -i 's/{{ page.content }}/{% set pagetime = config.extra.pagetime %} {% if page and page.meta and page.meta.pagetime is string %} {% set pagetime = page.meta.pagetime %} {% endif %}{% if pagetime %}<blockquote class="page-time"><\/blockquote>{% endif %}\n                {{ page.content }}/g' mkdocs-material/material/base.html
 cp ./static/disqus.html mkdocs-material/material/partials/integrations/disqus.html
 cp ./static/footer.html mkdocs-material/material/partials/footer.html
+cp ./static/search.html mkdocs-material/material/partials/search.html
 cp ./static/extra.js docs/_static/js/extra.js
 
 mkdocs build -v
