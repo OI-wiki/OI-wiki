@@ -2,7 +2,7 @@ disqus:
 pagetime:
 title: OI Wiki
 
-# 欢迎来到 **OI Wiki**。<a class="github-button" href="https://github.com/24OI/OI-Wiki/subscription" data-icon="octicon-eye" data-size="large" data-show-count="true" aria-label="Watch 24OI/OI-Wiki on GitHub">Watch</a> <a class="github-button" href="https://github.com/24OI/OI-Wiki" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star 24OI/OI-Wiki on GitHub">Star</a>
+# 欢迎来到 **OI Wiki**。[![GitHub watchers](https://img.shields.io/github/watchers/24OI/OI-Wiki.svg?style=social&label=Watch)](https://github.com/24OI/OI-wiki) [![GitHub stars](https://img.shields.io/github/stars/24OI/OI-Wiki.svg?style=social&label=Stars)](https://github.com/24OI/OI-wiki)
 
 [![Word Art](./images/wordArt.png)](https://github.com/24OI/OI-wiki)
 
@@ -91,5 +91,3 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
     })
   })
 </script>
-
-<script async defer src="https://cdn.jsdelivr.net/npm/ah@1.1.1/buttons.js"></script>

@@ -65,9 +65,9 @@ void solve() {
 
 $$
 \begin{aligned}
-& O(\sqrt{n}(\operatorname{max}_1-1)+\sqrt{n}(\operatorname{max}_2-\operatorname{max}_1)+\sqrt{n}(\operatorname{max}_3-\operatorname{max}_2)+\cdots+\sqrt{n}(\operatorname{max}_{\lceil\sqrt{n}\rceil}-\operatorname{max}_{\lceil\sqrt{n}\rceil-1))} \\\\
-= & O(\sqrt{n}\cdot(\operatorname{max}_1-1+\operatorname{max}_2-\operatorname{max}_1+\operatorname{max}_3-\operatorname{max}_2+\cdots+\operatorname{max}_{\lceil\sqrt{n}\rceil-1}-\operatorname{max}_{\lceil\sqrt{n}\rceil-2}+\operatorname{max}_{\lceil\sqrt{n}\rceil}-\operatorname{max}_{\lceil\sqrt{n}\rceil-1)}) \\\\
-= & O(\sqrt{n}\cdot(\operatorname{max}_{\lceil\sqrt{n}\rceil-1}))
+& O(\sqrt{n}(\max{}_1-1)+\sqrt{n}(\max{}_2-\max{}_1)+\sqrt{n}(\max{}_3-\max{}_2)+\cdots+\sqrt{n}(\max{}_{\lceil\sqrt{n}\rceil}-\max{}_{\lceil\sqrt{n}\rceil-1))} \\
+= & O(\sqrt{n}\cdot(\max{}_1-1+\max{}_2-\max{}_1+\max{}_3-\max{}_2+\cdots+\max{}_{\lceil\sqrt{n}\rceil-1}-\max{}_{\lceil\sqrt{n}\rceil-2}+\max{}_{\lceil\sqrt{n}\rceil}-\max{}_{\lceil\sqrt{n}\rceil-1)}) \\
+= & O(\sqrt{n}\cdot(\max{}_{\lceil\sqrt{n}\rceil-1}))\\
 \end{aligned}
 $$
 
@@ -81,7 +81,7 @@ $$
 
 怎么分块呢？
 
-我们设块长度为 $S$，那么对于任意多个在同一块内的询问，挪动的距离就是 $n$，一共 $\displaystyle \frac{n}{S}$ 个块，移动的总次数就是 $\displaystyle \frac{n^2}{S}$，移动可能跨越块，所以还要加上一个 $mS$ 的复杂度，总复杂度为 $\displaystyle O(\frac{n^2}{S}+mS)$，我们要让这个值尽量小，那么就要将这两个项尽量相等，发现 $S$ 取 $\displaystyle \frac{n}{\sqrt{m}}$ 是最优的，此时复杂度为 $\displaystyle O(\frac{n^2}{\displaystyle \frac{n}{\sqrt{m}}}+m(\frac{n}{\sqrt{m}}))=O(n\sqrt{m})$。
+我们设块长度为 $S$，那么对于任意多个在同一块内的询问，挪动的距离就是 $n$，一共 $\displaystyle \frac{n}{S}$ 个块，移动的总次数就是 $\displaystyle \frac{n^2}{S}$，移动可能跨越块，所以还要加上一个 $mS$ 的复杂度，总复杂度为 $\displaystyle O\left(\frac{n^2}{S}+mS\right)$，我们要让这个值尽量小，那么就要将这两个项尽量相等，发现 $S$ 取 $\displaystyle \frac{n}{\sqrt{m}}$ 是最优的，此时复杂度为 $\displaystyle O\left(\frac{n^2}{\displaystyle \frac{n}{\sqrt{m}}}+m\left(\frac{n}{\sqrt{m}}\right)\right)=O(n\sqrt{m})$。
 
 ### 例题 & 代码
 
@@ -188,9 +188,7 @@ int main()
 还是来证明一下时间复杂度（默认块大小为 $\sqrt{n}$）：
 
 - 左右端点所在块不变，时间在排序后单调向右移，这样的复杂度是 $O(n)$
-
 - 若左右端点所在块改变，时间一次最多会移动 n 个格子，时间复杂度 $O(n)$
-
 - 左端点所在块一共有 $n^{\frac{1}{3}}$ 中，右端点也是 $n^{\frac{1}{3}}$ 种，一共 ${n^{\frac{1}{3}}}\times{n^{\frac{1}{3}}}=n^{\frac{2}{3}}$ 种，每种乘上移动的复杂度 $O(n)$，总复杂度 $O(n^{\frac{5}{3}})$
 
 ### 例题
@@ -214,7 +212,6 @@ int main()
 现在再来考虑修改：
 
 - 单点修改，把某一位的数字修改掉。假如我们是从一个经历修改次数为 $i$ 的询问转移到一个经历修改次数为 $j$ 的询问上，且 $i<j$ 的话，我们就需要把第 $i+1$ 个到第 $j$ 个修改强行加上。
-
 - 假如 $j<i$ 的话，则需要把第 $i$ 个到第 $j+1$ 个修改强行还原。
 
 怎么强行加上一个修改呢？假设一个修改是修改第 $pos$ 个位置上的颜色，原本 $pos$ 上的颜色为 $a$，修改后颜色为 $b$，还假设当前莫队的区间扩展到了 $[l,r]$。
