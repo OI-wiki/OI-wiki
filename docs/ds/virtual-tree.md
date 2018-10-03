@@ -238,7 +238,7 @@ for (int i = 1; i < top; i += 1) g.push(sta[i], sta[i + 1]);//剩余的最后一
 
 ## 推荐习题
 
-## BZOJ - 2286 消耗战
+### BZOJ - 2286 消耗战
 
 代码：
 
@@ -363,7 +363,7 @@ int main (int argc, char const* argv[])
 }
 ```
 
-## BZOJ - 3611 大工程
+### BZOJ - 3611 大工程
 
 代码：
 
@@ -484,7 +484,7 @@ int main (int argc, char const* argv[])
 }
 ```
 
-## CF613D Kingdom and its Cities
+### CF613D Kingdom and its Cities
 
 代码：
 
@@ -593,7 +593,7 @@ int main (int argc, char const* argv[])
 }
 ```
 
-## BZOJ - 3572 世界树
+### BZOJ - 3572 世界树
 
 （丧心病狂啊）
 
