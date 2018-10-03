@@ -48,3 +48,34 @@ span.mjpage__block > svg {
 #color-button {
   text-align: unset !important;
 }
+
+/* Main dropdown wrapper */
+.algolia-autocomplete .ds-dropdown-menu {
+  width: 500px;
+}
+
+.ds-dataset-1 {
+  height: 70%;
+  overflow-y: auto;
+}
+
+/* Category (eg. Downloads) */
+.algolia-autocomplete .algolia-docsearch-suggestion--subcategory-column {
+  font-size: 1.2em !important;
+}
+
+/* Title (eg. Bootstrap CDN) */
+.algolia-autocomplete .algolia-docsearch-suggestion--title {
+  font-weight: bold;
+  font-size: 1.2em !important;
+  color: black;
+}
+
+/* Highlighted text */
+.algolia-autocomplete .algolia-docsearch-suggestion--highlight {
+  color: blue;
+}
+
+.algolia-autocomplete .algolia-docsearch-suggestion--content {
+    font-size: 1.2em !important;
+}
