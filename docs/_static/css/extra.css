@@ -51,12 +51,13 @@ span.mjpage__block > svg {
 
 /* Main dropdown wrapper */
 .algolia-autocomplete .ds-dropdown-menu {
-  width: 500px;
+  min-width: 80vh !important;
+  max-width: 100vh !important;
 }
 
 .ds-dataset-1 {
-  height: 700px;
-  overflow-y: auto;
+  height: 70vh;
+  overflow-y: scroll !important;
 }
 
 /* Category (eg. Downloads) */
