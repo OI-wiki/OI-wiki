@@ -1,4 +1,4 @@
-**图论（graph theory）** 是数学的一个分支，它以 [ **图** ](https://baike.baidu.com/item/%E5%9B%BE%E8%AE%BA/1433806) 为研究的对象。
+**图论（graph theory）** 是数学的一个分支，它以 **图** 为研究的对象。
 
 图论本身是应用数学的一部分，历史上图论曾经被很多数学家各自独立建立过。关于图论的最早文字记载最早出现在欧拉 1736 年的论著中，也就是著名的柯尼斯堡（Konigsberg）问题（七桥问题）。
 
@@ -96,4 +96,4 @@ $\sum_{v\in V} deg^{+} (v)=\sum_{v\in V} deg^{-} (v)=|E|$
 
 ## 参考资料
 
-离散数学（修订版）$\space\space\space\space$ 田文成 周禄新 编著 $\space\space\space\space$ 天津文学出版社 $\space\space\space\space$ P184-P187
+离散数学（修订版）, 田文成 周禄新 编著, 天津文学出版社, P184-187
