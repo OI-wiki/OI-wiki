@@ -76,7 +76,7 @@ $\sum_{v\in V} deg^{+} (v)=\sum_{v\in V} deg^{-} (v)=|E|$
 
 ## 特殊的图
 
-树：边数比结点数少一的连通图。更多内容，详见 [树相关基础](https://oi-wiki.org/graph/tree-basic/)。
+树：边数比结点数少一的连通图。更多内容，详见 [树相关基础](/graph/tree-basic/)。
 
 森林：由 $m$ 棵（ $m\ge 0$ ）互不相交的树组成的图。
 
