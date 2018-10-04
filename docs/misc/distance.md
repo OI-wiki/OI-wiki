@@ -24,7 +24,7 @@ $Dis(A, B)  = \max\limits_i(|x_{1i}-x_{2i}|)$
 
 $Dis(A, B)  = \sqrt{\sum\limits_{k=1}^n(x_{1k}-x_{2k})^2}$
 
-### 4.Lm距离
+### 4.Lm 距离
 
 一般地，我们定义平面上两点 $A(x_1, y_1)$, $B(x_2, y_2)$ 之间的 $L_m$ 距离为
 
