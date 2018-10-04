@@ -228,7 +228,7 @@ vim-instant-markdown ：这个插件可就厉害了。Vim 用习惯了之后什�
 一切插件的安装写法及快捷键及配置皆在配置篇中，请移步。
 
 ### 配置篇
-[我的配置](https://github.com/LuoshuiTianyi/Caosiyu/tree/master/vim-old) Ps:我的 .vimrc 时刻在改，所以这只是个副本……
+[我的配置](https://github.com/LuoshuiTianyi/Vim-for-OIWiki) Ps:我的 .vimrc 时刻在改，所以这只是个副本……
 
 结合我的配置讲一讲一些 Vim 中的小细节和快捷键以及一些……七里八里的东西？
 
