@@ -33,17 +33,16 @@ cd ..
 首先打开 lemon 选择新建试题，而后打开新建试题的文件夹
 
 题目和数据应该如以下格式所示
-```
-├── data
-│   ├── gendata.py
-│   ├── product
-│   │   ├── product100.in
-│   │   ├── product100.out
-│   │   ├── product10.in
-│   │   ├── product10.out
-│   │   ├── product11.in
-...
-```
+
+    ├── data
+    │   ├── gendata.py
+    │   ├── product
+    │   │   ├── product100.in
+    │   │   ├── product100.out
+    │   │   ├── product10.in
+    │   │   ├── product10.out
+    │   │   ├── product11.in
+    ...
 
 当所有试题添加完成后，回到 lemon 选择自动添加试题
 
@@ -52,4 +51,3 @@ cd ..
 ## Arbiter
 
 Arbiter 为北京航空航天大学为 NOI Linux 开发的评测工具，现已用于各大 NOI 系列程序设计竞赛的评测。
-
