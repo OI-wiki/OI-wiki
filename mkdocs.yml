@@ -255,11 +255,10 @@ extra_javascript:
   - 'https://cdnjs.loli.net/ajax/libs/Han/3.3.0/han.min.js'
   - '_static/js/extra.js?v=10'
   - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
-  
 
 extra_css:
   - 'https://cdn.jsdelivr.net/npm/ah@1.1.0/han.min.css'
-  - '_static/css/extra.css?v=7'
+  - '_static/css/extra.css?v=8'
 
 # Extensions
 markdown_extensions:

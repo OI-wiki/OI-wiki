@@ -26,6 +26,7 @@ sed -i "s/'assets\/fonts\/material-icons.css'/'https:\/\/fonts.loli.net\/icon?fa
 sed -i 's/{{ page.content }}/{% set pagetime = config.extra.pagetime %} {% if page and page.meta and page.meta.pagetime is string %} {% set pagetime = page.meta.pagetime %} {% endif %}{% if pagetime %}<blockquote class="page-time"><\/blockquote>{% endif %}\n                {{ page.content }}/g' mkdocs-material/material/base.html
 cp ./static/disqus.html mkdocs-material/material/partials/integrations/disqus.html
 cp ./static/footer.html mkdocs-material/material/partials/footer.html
+cp ./static/search.html mkdocs-material/material/partials/search.html
 cp ./static/extra.js docs/_static/js/extra.js
 
 mkdocs build -v
