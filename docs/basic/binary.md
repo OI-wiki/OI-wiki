@@ -13,7 +13,7 @@ int binary_search(int start, int end, int key) {
   int ret = -1;       // 未搜索到数据返回-1下标  
 	int mid;
 	while (start <= end) {
-		mid = start + (end - start) / 2; //直接平均可能會溢位，所以用此算法
+		mid = start + (end - start >> 1); //直接平均可能會溢位，所以用此算法
 		if (arr[mid] < key)
 			start = mid + 1;
 		else if (arr[mid] > key)
@@ -26,6 +26,9 @@ int binary_search(int start, int end, int key) {
 	return ret;     // 单一出口
 }
 ```
+
+??? note
+    `>> 1` 比 `/ 2` 速度快一些
 
 注意，这里的有序是广义的有序，如果一个数组中的左侧或者右侧都满足某一种条件，而另一侧都不满足这种条件，也可以看作是一种有序（如果把满足条件看做 $1$，不满足看做 $0$，至少对于这个条件的这一维度是有序的）。换言之，二分搜索法可以用来查找满足某种条件的最大（最小）的值。
 
@@ -52,8 +55,8 @@ int binary_search(int start, int end, int key) {
 ## 三分法
 
 ```c++
-mid = (left + right) / 2;
-midmid = (mid + right) / 2; // 对右侧区间取半
+mid = left + (right - left >> 1);
+midmid = mid + (right - mid >> 1); // 对右侧区间取半
 if (cal(mid) > cal(midmid))
   right = midmid;
 else
