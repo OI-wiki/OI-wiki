@@ -26,6 +26,6 @@ $-f(s-d_1-d_2-d_3)-f(s-d_1-d_2-d_4)-f(s-d_1-d_3-d_4)-f(s-d_2-d_3-d_4)+f(s-d_1-d_
 
 ### 练习
 
-[bzoj 4665 小w的喜糖](https://www.lydsy.com/JudgeOnline/problem.php?id=4665)
+[bzoj 4665 小 w 的喜糖](https://www.lydsy.com/JudgeOnline/problem.php?id=4665)
 
 [bzoj 4361 isn](https://www.lydsy.com/JudgeOnline/problem.php?id=4361)
