@@ -10,7 +10,7 @@ $| \bigcup_{i=1}^n A_i | =\sum_{k=1}^n (-1)^{(k-1)} \times \sum_{1\le i_1<i_2<..
 
 ## 容斥原理在算法竞赛中的应用
 
-???+ note "例题 [BZOJ 1042 \[HAOI2008\] 硬币购物](https://www.lydsy.com/JudgeOnline/problem.php?id=1042)"
+???+ note " 例题 [BZOJ 1042 \[HAOI2008\] 硬币购物](https://www.lydsy.com/JudgeOnline/problem.php?id=1042)"
     题目大意：一共有 $4$ 种硬币，面值分别为 $c_1,c_2,c_3,c_4$ 。某人去买东西，去了 $tot$ 次。每次给出 $d1,d2,d3,d4$ ，$d_i$ 表示有 $i$ 个面值为 $c_i$ 的硬币，求购买价值为 $s$ 的物品的付款方案数。
 
 先用多重背包预处理出 $f(i)$ ，表示不限制钞票数量购买价格为 $i$ 的物品的方案数。由于容斥原理，我们最后的答案为
