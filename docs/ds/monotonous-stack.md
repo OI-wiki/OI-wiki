@@ -14,10 +14,12 @@
 
 用伪代码描述如下：
 
-    insert x
-    	while !sta.empty() && sta.top()<x
-    		sta.pop()
-    	sta.push(x)
+```text
+insert x
+while !sta.empty() && sta.top()<x
+    sta.pop()
+sta.push(x)
+```
 
 ### 使用
 
