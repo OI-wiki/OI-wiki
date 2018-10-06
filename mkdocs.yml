@@ -25,6 +25,7 @@ nav:
       - Windows 10 的 WSL: intro/wsl.md
       - Special Judge: intro/spj.md
       - Testlib: intro/testlib.md
+    - Markdown及其拓展语法使用指南: intro/markdown.md
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
   - 基础部分:
