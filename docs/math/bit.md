@@ -70,7 +70,7 @@
 > \end{aligned}
 > $$
 
-在 C++ 中，右移操作中末尾多余的 “1” 将会被舍弃。而左移较为复杂，对于无符号数，会在左侧补 0；而对于有符号数，则会用最高位的数补齐（Replicate most significant bit on left）。
+在 C++ 中，右移操作中右侧多余的位将会被舍弃。而左侧较为复杂：对于无符号数，会在左侧补 0；而对于有符号数，则会用最高位的数补齐（Replicate most significant bit on left）。
 
 注意：
 
