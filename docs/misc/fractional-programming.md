@@ -1,16 +1,22 @@
-## 例题 [ luogu P4322 \[JSOI2016\] 最佳团体 ](https://www.luogu.org/problemnew/show/P4322)
-
-题目大意：有一棵 $n+1$ 个结点的树，根为 $0$ 号结点。每个结点 $i$ 有一个价值 $p_i$ 和费用 $s_i$ 。你需要选择 $k$ 个结点 $a_1,a_2,...,a_k$ （不包括 $0$ 号结点），使得
-
-$\frac{\sum_{i=1}^k p_{a_i}}{\sum_{i=1}^k s_{a_i}}$
-
-最大。你需要保证对于你选择的一个树上结点，它的父亲一定被选中。求出这个最大的比值。
+!!! note "例题 [ luogu P4322 \[JSOI2016\] 最佳团体 ](https://www.luogu.org/problemnew/show/P4322)"
+    题目大意：有一棵 $n+1$ 个结点的树，根为 $0$ 号结点。每个结点 $i$ 有一个价值 $p_i$ 和费用 $s_i$ 。你需要选择 $k$ 个结点 $a_1,a_2,...,a_k$ （不包括 $0$ 号结点），使得
+    
+    $\frac{\sum_{i=1}^k p_{a_i}}{\sum_{i=1}^k s_{a_i}}$
+    
+    最大。你需要保证对于你选择的一个树上结点，它的父亲一定被选中。求出这个最大的比值。
 
 如果每个点都只有一个价值（设为 $v_i$ ），我们要做的只是最大化这个最后能得到的价值，那么我们可以用树形动态规划解决这个问题。
 
 定义 $f(i,j)$ 表示以 $i$ 为根的子树中选择 $j$ 个结点的最大价值。由于要满足如果一个点被选择，其父亲也一定被选择，如果 $j\ge 1$ ，那么当前结点 $i$ 一定是已经被选中的。利用树上背包进行合并。写出状态转移方程：
 
-$f(i,j)=\left\{\begin{aligned}0 & & (j=0)\\\max\{\sum f(son,k)\}(\sum k=j-1)+v(i)& & (j\neq 0)\end{aligned}\right.$
+$$
+f(i,j)=\left\{
+\begin{aligned}
+& 0, & j=0, \\
+& \max\left\{\sum f(son,k)\right\}+v(i),\quad\text{where }\sum k=j-1, & j\neq 0
+\end{aligned} \right
+.
+$$
 
 如果 ** 合并方式得当 ** ，则可以在 $O(n^2)$ 的时间复杂度内完成状态转移，具体细节参见代码。
 
@@ -22,7 +28,7 @@ $f(i,j)=\left\{\begin{aligned}0 & & (j=0)\\\max\{\sum f(son,k)\}(\sum k=j-1)+v(i
 
 这就是分数规划的基本思想。
 
-## 代码展示
+代码：
 
 ```cpp
 // luogu-judger-enable-o2
