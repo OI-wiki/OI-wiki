@@ -29,6 +29,9 @@ sta.push(x)
 
 ## 应用
 
-??? note "[POJ3250](http://poj.org/problem?id=3250)" 有 $N$ 头牛从左到右拍成一排，每头牛有一个高度 $h_i$，设左数第 $i$ 头牛与「它右边第一头高度 $≥h_i$」的牛之间有 $c_i$ 头牛，试求 $\sum_{i=1}^{N} c_i$。（可以左转 [洛谷 P2866](https://www.luogu.org/problemnew/show/P2866)）
+??? note "[POJ3250 Bad Hair Day](http://poj.org/problem?id=3250)"
+    有 $N$ 头牛从左到右排成一排，每头牛有一个高度 $h_i$，设左数第 $i$ 头牛与「它右边第一头高度 $≥h_i$」的牛之间有 $c_i$ 头牛，试求 $\sum_{i=1}^{N} c_i$。
+
+    （可以左转 [洛谷 P2866](https://www.luogu.org/problemnew/show/P2866)）
 
 比较基础的应用有这一题，就是个单调栈的简单应用，记录每头牛被弹出的位置，如果没有被弹出过则为最远端，稍微处理一下即可计算出题目所需结果。
