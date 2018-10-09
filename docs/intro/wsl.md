@@ -221,7 +221,8 @@ xfce4-session
 -   汉语化时提示不存在？
     玄学问题，可以忽略。修了个疏忽导致的错误，可以重上一下试试。
 ## 0x08 参考资料
-这里列举了所有文中提到的链接，以便查阅。
+这里列举了文中提到的链接，以便查阅。
+
 1. [NOIP 标准评测系统及相关问题, smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html)         
 2. [WSL, 百度百科](https://baike.baidu.com/item/wsl/20359185)        
 3. [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97)         
@@ -232,5 +233,7 @@ xfce4-session
 8. [Ubuntu 的 man 命令帮助如何设置中文版, Frank 看庐山, 2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523)      
 9. [Xming X Server for Windows, SourceForge](https://sourceforge.net/projects/xming/)       
 10. [Sudo, Wikipedia](https://zh.wikipedia.org/wiki/Sudo)       
-### 后记     
+
+### 后记
+
 本文最初发布于 [洛谷日报 #6](https://www.luogu.org/discuss/show/48491)，现由原作者搬运至此，有删改。      
