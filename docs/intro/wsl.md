@@ -221,7 +221,8 @@ xfce4-session
 -   汉语化时提示不存在？
     玄学问题，可以忽略。修了个疏忽导致的错误，可以重上一下试试。
 ## 0x08 参考资料
-这里列举了所有文中提到的链接，以便查阅。
+这里列举了文中提到的链接，以便查阅。
+
 1. [NOIP 标准评测系统及相关问题, smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html)         
 2. [WSL, 百度百科](https://baike.baidu.com/item/wsl/20359185)        
 3. [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97)         
