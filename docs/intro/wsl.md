@@ -233,5 +233,7 @@ xfce4-session
 8. [Ubuntu 的 man 命令帮助如何设置中文版, Frank 看庐山, 2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523)      
 9. [Xming X Server for Windows, SourceForge](https://sourceforge.net/projects/xming/)       
 10. [Sudo, Wikipedia](https://zh.wikipedia.org/wiki/Sudo)       
-### 后记     
+
+### 后记
+
 本文最初发布于 [洛谷日报 #6](https://www.luogu.org/discuss/show/48491)，现由原作者搬运至此，有删改。      
