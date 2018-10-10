@@ -30,5 +30,4 @@ cp ./static/extra.js docs/_static/js/extra.js
 
 mkdocs build -v
 
-# uncomment this line to render mathjax on server side
-# node netlify_math.js
+for f in site/**/*.html ; do node --max_old_space_size=512 render_math.js $f; done
