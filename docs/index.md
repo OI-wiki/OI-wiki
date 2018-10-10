@@ -2,7 +2,7 @@ disqus:
 pagetime:
 title: OI Wiki
 
-# 欢迎来到 **OI Wiki**。<a class="github-button" href="https://github.com/24OI/OI-Wiki/subscription" data-icon="octicon-eye" data-size="large" data-show-count="true" aria-label="Watch 24OI/OI-Wiki on GitHub">Watch</a> <a class="github-button" href="https://github.com/24OI/OI-Wiki" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star 24OI/OI-Wiki on GitHub">Star</a>
+# 欢迎来到 **OI Wiki**。[![GitHub watchers](https://img.shields.io/github/watchers/24OI/OI-Wiki.svg?style=social&label=Watch)](https://github.com/24OI/OI-wiki) [![GitHub stars](https://img.shields.io/github/stars/24OI/OI-Wiki.svg?style=social&label=Stars)](https://github.com/24OI/OI-wiki)
 
 [![Word Art](./images/wordArt.png)](https://github.com/24OI/OI-wiki)
 
@@ -12,7 +12,7 @@ title: OI Wiki
 
 本项目受 [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
 
-本项目文档内容托管在 [GitHub](https://github.com/24OI/OI-wiki)，主要使用 [Issues](https://github.com/24OI/OI-wiki/issues) / [QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) / [Telegram](https://t.me/OIwiki) 进行交流沟通，期待你的加入。
+本项目文档内容托管在 [GitHub](https://github.com/24OI/OI-wiki)，主要使用 [Issues](https://github.com/24OI/OI-wiki/issues) / [QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) / [Telegram](https://t.me/OIwiki) / [Discord](https://discord.gg/xXdYSMq) 进行交流沟通，期待你的加入。
 
 Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`588793226`](https://jq.qq.com/?_wv=1027&k=5EfkM6K)，欢迎加入。
 
@@ -91,5 +91,3 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
     })
   })
 </script>
-
-<script async defer src="https://buttons.github.io/buttons.js"></script>

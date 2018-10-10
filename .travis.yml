@@ -15,7 +15,7 @@ install:
 script:
   - chmod +x build.sh && ./build.sh
   - mkdocs build -v
-  - node render_math.js
+  - find ./site -type f -name '*.html' -exec node --max_old_space_size=512 render_math.js {} \;
 deploy:
   provider: pages
   skip_cleanup: true
