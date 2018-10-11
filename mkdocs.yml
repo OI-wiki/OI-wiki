@@ -19,7 +19,7 @@ nav:
     - Getting Started: index.md
     - OI 赛制简介: intro/mode.md
     - 学习资源: intro/resources.md
-    - 工具软件: 
+    - 工具软件:
       - 评测工具: intro/judgers.md
       - 编辑工具: intro/editors.md
       - WSL (Windows 10): intro/wsl.md
@@ -247,7 +247,7 @@ theme:
 # Customization
 extra:
   search:
-    language: 'jp'
+    language: 'zhcn'
   disqus: 'OI-Wiki'
   copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
@@ -256,7 +256,7 @@ extra_javascript:
   - 'https://cdnjs.loli.net/ajax/libs/Han/3.3.0/han.min.js'
   - '_static/js/extra.js?v=10'
   - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
-  
+
 
 extra_css:
   - 'https://cdn.jsdelivr.net/npm/ah@1.1.0/han.min.css'
