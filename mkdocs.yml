@@ -247,7 +247,7 @@ theme:
 # Customization
 extra:
   search:
-    language: 'en'
+    language: 'zhcn'
   disqus: 'OI-Wiki'
   copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
