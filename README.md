@@ -69,15 +69,7 @@ mkdocs serve -v
 ## 如何参与完善 OI Wiki
 
 我们非常欢迎你为 **OI Wiki** 编写内容，将自己的所学所得与大家分享。
-具体的贡献方式在 [F.A.Q](https://oi-wiki.org/intro/faq/)。
-
-本项目受 [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
-
-非常感谢一起完善 **OI Wiki** 的 [小伙伴们](https://github.com/24OI/OI-wiki/graphs/contributors)！
-
-<a href="https://github.com/24OI/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890" /></a>
-
-特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
+具体的贡献方式可以查阅 [F.A.Q](https://oi-wiki.org/intro/faq/)。
 
 * * *
 
@@ -92,6 +84,14 @@ mkdocs serve -v
 * * *
 
 ## 鸣谢
+
+本项目受 [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
+
+非常感谢一起完善 **OI Wiki** 的 [小伙伴们](https://github.com/24OI/OI-wiki/graphs/contributors)！
+
+<a href="https://github.com/24OI/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890" /></a>
+
+特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
 
 <img src='https://i.loli.net/2018/09/28/5bae46121a2be.png' alt='QVQNetWork' height=233>
 
