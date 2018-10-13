@@ -17,9 +17,9 @@ C/C++ 将文件分为文本文件和二进制文件。文本文件就是简单�
 FILE * freopen(const char * filename, const char * mode, FILE * stream);
 ```
 
-[参数说明]
+[参数说明]  
 `filename`: 要打开的文件名  
-`mode`: 文件打开的模式
+`mode`: 文件打开的模式  
 `stream`: 文件指针，通常使用标准文件流（`stdin/stdout/stderr`)  
 [使用方法]
 读入文件内容：
