@@ -1,7 +1,7 @@
 {
   "name": "oi-wiki",
   "version": "1.0.0",
-  "description": "wiki for OI/ACM-ICPC",
+  "description": "wiki for OI / ACM-ICPC",
   "main": "index.js",
   "directories": {
     "doc": "docs"
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ir1d/OI-wiki.git"
+    "url": "git+https://github.com/24OI/OI-wiki.git"
   },
   "keywords": [
     "OI",
@@ -21,9 +21,9 @@
   "author": "OI Wiki Team",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/Ir1d/OI-wiki/issues"
+    "url": "https://github.com/24OI/OI-wiki/issues"
   },
-  "homepage": "https://github.com/Ir1d/OI-wiki#readme",
+  "homepage": "https://github.com/24OI/OI-wiki#readme",
   "dependencies": {
     "mathjax-node-page": "^3.0.1",
     "remark-lint-final-newline": "^1.0.2",
