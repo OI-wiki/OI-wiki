@@ -1,5 +1,3 @@
-[【模板】乘法逆元](https://www.luogu.org/problemnew/show/P3811)
-
 ## 逆元简介
 
 如果一个线性同余方程 $ax \equiv 1 \pmod b$，则 $x$ 称为 $a \mod b$ 的逆元，记作 $a^{-1}$。
@@ -9,19 +7,18 @@
 ### 扩展欧几里得法：
 
 ```cpp
-void exgcd(int a,int b,int c,int &x,int &y){
-    if(a==0){
-        x=0;
-        y=0;
-        return;
-    }
-    else{
-        int tx,ty;
-        exgcd(b%a,a,tx,ty);
-        x=ty-(b/a)*tx;
-        y=tx;
-        return;
-    }
+void ex_gcd(int a,int b,int&x,int&y)
+{
+	if(b==0)
+	{
+		x=1,y=0;
+  		return;
+ 	}
+ 	ex_gcd(b,a%b,x,y);
+ 	int t=x;
+ 	x=y;
+ 	y=t-a/b*y;
+ 	return;
 }
 ```
 
@@ -87,6 +84,10 @@ a[i]=(p-p/i)*a[p%i]%p;
 这就是线性求逆元
 
 ## 逆元练习题
+
+[【模板】乘法逆元](https://www.luogu.org/problemnew/show/P3811)
+
+[同余方程](https://www.luogu.org/problemnew/show/P1082)
 
 [\[AHOI2005\] 洗牌](https://www.lydsy.com/JudgeOnline/problem.php?id=1965)
 

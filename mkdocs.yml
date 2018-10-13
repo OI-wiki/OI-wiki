@@ -22,7 +22,7 @@ nav:
     - 工具软件: 
       - 评测工具: intro/judgers.md
       - 编辑工具: intro/editors.md
-      - Windows 10 的 WSL: intro/wsl.md
+      - WSL (Windows 10): intro/wsl.md
       - Special Judge: intro/spj.md
       - Testlib: intro/testlib.md
     - 关于本项目: intro/about.md
@@ -31,17 +31,18 @@ nav:
     - 基础部分简介: basic/index.md
     - 枚举: basic/enumerate.md
     - 模拟: basic/simulate.md
-    - 递归&分治: basic/divide-and-conquer.md
+    - 递归 & 分治: basic/divide-and-conquer.md
     - 贪心: basic/greedy.md
     - 排序: basic/sort.md
     - 表达式求值: basic/expression.md
     - 二分: basic/binary.md
     - 构造: basic/construction.md
+    - 文件操作: basic/file-operation.md
   - 搜索:
     - 搜索部分简介: search/index.md
     - DFS: search/dfs.md
     - BFS: search/bfs.md
-    - 双向广搜: search/dbfs.md
+    - 双向 BFS: search/dbfs.md
     - 启发式搜索: search/heuristic.md
     - A*: search/astar.md
     - 迭代加深搜索: search/iterative.md
@@ -59,26 +60,26 @@ nav:
     - 状压 DP: dp/state.md
     - 数位 DP: dp/number.md
     - 插头 DP: dp/plug.md
-    - 优化及其它: dp/optimization.md
-    - 其它动规方法: dp/misc.md
+    - DP 优化: dp/optimization.md
+    - 其它 DP 方法: dp/misc.md
   - 字符串:
     - 字符串部分简介: string/index.md
     - 标准库: string/stl.md
-    - 字符串匹配问题: string/match.md
+    - 字符串匹配: string/match.md
     - 哈希: string/hash.md
     - KMP: string/kmp.md
-    - 字典树（Trie）: string/trie.md
+    - 字典树 (Trie): string/trie.md
     - 回文自动机: string/pam.md
     - 回文树: string/palindrome-tree.md
-    - 后缀数组（SA）: string/sa.md
+    - 后缀数组 (SA): string/sa.md
     - AC 自动机: string/ac-automaton.md
-    - 后缀自动机（SAM）: string/sam.md
+    - 后缀自动机 (SAM): string/sam.md
     - 后缀树: string/suffix-tree.md
     - Manacher: string/manacher.md
     - 最小表示法: string/minimal-string.md
   - 数学:
     - 数学部分简介: math/index.md
-    - 进制相关: math/base.md
+    - 进制: math/base.md
     - 位运算: math/bit.md
     - 素数: math/prime.md
     - 最大公约数: math/gcd.md
@@ -86,7 +87,7 @@ nav:
     - 欧拉函数: math/euler.md
     - 筛法: math/sieve.md
     - 莫比乌斯反演: math/mobius.md
-    - 费马小定理（欧拉定理）: math/fermat.md
+    - 费马小定理: math/fermat.md
     - 快速幂: math/quick-pow.md
     - 线性基: math/basis.md
     - 乘法逆元: math/inverse.md
@@ -100,7 +101,7 @@ nav:
     - 原根: math/primitive-root.md
     - BSGS: math/bsgs.md
     - 博弈论: math/game.md
-    - 多项式相关: math/poly.md
+    - 多项式: math/poly.md
     - 快速傅里叶变换: math/fft.md
     - 快速数论变换: math/ntt.md
     - 快速沃尔什变换: math/fwt.md
@@ -111,7 +112,7 @@ nav:
       - 康托展开: math/cantor.md
       - 容斥原理: math/inclusion-exclusion-principle.md
       - 抽屉原理: math/drawer-principle.md
-    - 概率与期望: math/expectation.md
+    - 概率 & 期望: math/expectation.md
     - 置换群: math/permutation-group.md
     - 数值积分: math/integral.md
     - 线性规划: math/linear-programming.md
@@ -139,7 +140,7 @@ nav:
       - 树分块: ds/tree-decompose.md
     - 单调栈: ds/monotonous-stack.md
     - 单调队列: ds/monotonous-queue.md
-    - 倍增法: ds/sparse-table.md
+    - 倍增: ds/sparse-table.md
     - 树状数组: ds/bit.md
     - 线段树: ds/segment.md
     - 划分树: ds/dividing.md
@@ -165,16 +166,16 @@ nav:
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论基础: graph/basic.md
-    - 树相关:
-      - 树相关基础: graph/tree-basic.md
+    - 图的遍历: graph/traverse.md
+    - 树:
+      - 树基础: graph/tree-basic.md
+      - 最小生成树: graph/mst.md
       - 树链剖分: graph/heavy-light-decomposition.md
       - 树分治: graph/tree-divide.md
       - 树的其他问题: graph/tree-misc.md
       - 动态树分治: graph/dynamic-tree-divide.md
       - 最近公共祖先: graph/lca.md
-    - 遍历：BFS 和 DFS: graph/traverse.md
     - 有向无环图: graph/dag.md
-    - 最小生成树: graph/mst.md
     - 拓扑排序: graph/topo.md
     - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
@@ -203,10 +204,10 @@ nav:
     - 扫描线: geometry/scanning.md
     - 旋转卡壳: geometry/rotating-calipers.md
     - 半平面交: geometry/half-plane-intersection.md
-    - 其他黑科技: geometry/magic.md
+    - 计算几何杂项: geometry/magic.md
   - 杂项:
     - 杂项简介: misc/index.md
-    - 非传统题（提答大法）: misc/non-traditional.md
+    - 非传统题: misc/non-traditional.md
     - CDQ 分治: misc/cdq-divide.md
     - 莫队算法: misc/mo-algo.md
     - 爬山算法: misc/hill-climbing.md
@@ -217,10 +218,10 @@ nav:
     - 随机增量法: misc/random-incremental.md
     - 随机化: misc/random.md
     - 离线处理: misc/offline.md
-    - 各种距离: misc/distance.md
+    - 距离: misc/distance.md
     - 字节顺序: misc/endianness.md
     - 复杂度: misc/complexity.md
-    - 读入和输出优化: misc/io.md
+    - 读入、输出优化: misc/io.md
     - 离散化: misc/discrete.md
     - 树上启发式合并: misc/dsu-on-tree.md
 
@@ -259,7 +260,7 @@ extra_javascript:
 
 extra_css:
   - 'https://cdn.jsdelivr.net/npm/ah@1.1.0/han.min.css'
-  - '_static/css/extra.css?v=7'
+  - '_static/css/extra.css?v=8'
 
 # Extensions
 markdown_extensions:
@@ -282,6 +283,7 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.magiclink
   - pymdownx.mark
+  - pymdownx.progressbar
   - pymdownx.smartsymbols
   - pymdownx.superfences
   - pymdownx.tasklist:
