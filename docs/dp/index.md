@@ -154,6 +154,8 @@ $O\left(n log n\right)$的算法，参考了这篇文章<https://www.cnblogs.com
 2. 元素等于$d_{len}$，因为前面的元素都小于它，所以这个元素可以直接抛弃。
 3. 元素小于$d_{len}$，找到**第一个**大于它的元素，插入进去，其他小于它的元素不要。
 
+那么代码如下：
+
 ```cpp
 for(int i = 0; i < n; ++i) scanf("%d", a + i);
 memset(dp, 0x1f, sizeof dp); mx = dp[0];
