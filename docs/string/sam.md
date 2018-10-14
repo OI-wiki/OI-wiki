@@ -254,7 +254,7 @@ void sa_extend(char c) {
         st[cur].link = 0;
     } else {
         int q = st[p].next[c];
-        if (st[p].len + 1 = st[q].len) {
+        if (st[p].len + 1 == st[q].len) {
             st[cur].link = q;
         } else {
             int clone = sz++;
