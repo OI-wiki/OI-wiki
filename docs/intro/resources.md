@@ -63,6 +63,7 @@
 - [图论画板](https://csacademy.com/app/graph_editor/) (同时推荐 GraphViz)
 - [LaTeX 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm)
 - [Godbolt - 在浏览器中查看编译后代码块对应的汇编语句](https://godbolt.org/)
+- [《100个gdb小技巧》](https://github.com/hellogcc/100-gdb-tips)
 
 ## 题集
 
