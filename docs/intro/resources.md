@@ -29,6 +29,7 @@
 - [Vijos](https://vijos.org/) (开源的界面好看的 OJ)
 - [Virtual Judge](https://vjudge.net/) (可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ)
 - [ZOJ](http://acm.zju.edu.cn/onlinejudge/)
+- [DMOJ](https://dmoj.ca/) (加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛)
 
 ## 教程
 
