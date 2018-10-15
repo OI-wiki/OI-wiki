@@ -8,10 +8,12 @@
 - [CodeChef](https://codechef.com/)
 - [Codeforces](https://codeforces.com/) (俄罗斯 OJ，一个用比赛积累起来的 OJ)
 - [CodeVS](http://www.codevs.cn/)
+- [DMOJ](https://dmoj.ca/) (加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛)
 - [FZUOJ](http://acm.fzu.edu.cn/)
 - [Hackerrank](https://www.hackerrank.com/)
 - [HDU OJ](http://acm.hdu.edu.cn/) (杭电的 OJ，多校训练的题目放在这里)
 - [hihoCoder](https://hihocoder.com/)
+- [Jisuanke](https://www.jisuanke.com/)
 - [JoyOI](http://www.joyoi.cn/)
 - [Judge Duck Online](https://duck.ac/) (松松松的 OJ，精确到 $\mu s$ )
 - [Kattis](https://open.kattis.com/)
@@ -19,6 +21,7 @@
 - [LeetCode](https://leetcode.com/)
 - [LibreOJ](https://loj.ac/)
 - [Luogu](http://www.luogu.org/) (常用 OJ，现代 OJ 支持发布比赛等很多功能，评测机快)
+- [NOI.AC](http://noi.ac/)
 - [NowCoder](https://www.nowcoder.com/)
 - [OpenJudge](http://openjudge.cn/) (曾经是 NOI 的官方 OJ，后来好像中山纪念写了一个新的？)
 - [POJ](http://poj.org/) (PKU OJ，很多英文题， 有一些基础题和好题)
@@ -29,7 +32,6 @@
 - [Vijos](https://vijos.org/) (开源的界面好看的 OJ)
 - [Virtual Judge](https://vjudge.net/) (可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ)
 - [ZOJ](http://acm.zju.edu.cn/onlinejudge/)
-- [DMOJ](https://dmoj.ca/) (加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛)
 
 ## 教程
 
