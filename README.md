@@ -48,7 +48,7 @@ cd OI-wiki
 pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
 # 使用我们的自定义主题（不是必须执行）
-chmod +x ./build.sh && ./build.sh
+chmod +x ./scripts/build.sh && ./scripts/build.sh
 
 # 最简单的构建方法，会在 site 文件夹下得到静态页面
 mkdocs build -v
@@ -57,7 +57,14 @@ mkdocs build -v
 mkdocs serve -v
 ```
 
-我们现在在服务器端渲染 mathjax ，如果希望实现类似效果，可以参考 [netlify_build.sh](https://github.com/24OI/OI-wiki/blob/master/netlify_build.sh)。（需要安装 Node.js）
+我们现在在服务器端渲染 mathjax ，如果希望实现类似效果，可以参考 [netlify_build.sh](https://github.com/24OI/OI-wiki/blob/master/scripts/netlify_build.sh)。（需要安装 Node.js）
+
+### 离线版
+
+```bash
+git clone https://git.coding.net/scaffrey/OI-wiki.git
+# coding 上的镜像仓库和 gh-pages 分支的内容相同
+```
 
 * * *
 
