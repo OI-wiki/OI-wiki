@@ -14,7 +14,7 @@
 - [Judge Duck Online](https://duck.ac/) (松松松的 OJ，精确到 $\mu s$)
 - [JoyOI](http://www.joyoi.cn/) (原 Tyvj)
 - [LibreOJ](https://loj.ac/)
-- [Luogu](http://www.luogu.org/) (常用 OJ，现代 OJ 支持发布比赛等很多功能，评测机快)
+- [洛谷](http://www.luogu.org/) (常用 OJ，现代 OJ 支持发布比赛等很多功能，评测机快)
 - [牛客网](https://www.nowcoder.com/)
 - [OpenJudge](http://openjudge.cn/)
 - [POJ](http://poj.org/) (PKU OJ，国内历史最悠久的 OJ 之一，很多英文题，有一些基础题和好题)
@@ -25,17 +25,17 @@
 
 ### 国外
 
-- [AtCoder](https://atcoder.jp/) (日本的一个 OJ，类似 CodeForces 但是也会放 JOI 的题)
+- [AtCoder](https://atcoder.jp/) (日本的一个 OJ，类似 Codeforces 但是也会放 JOI 的题)
 - [CodeChef](https://codechef.com/) (印度 OJ，周期性有比赛)
 - [Codeforces](https://codeforces.com/) (俄罗斯 OJ，有很多比赛)
 - [DMOJ](https://dmoj.ca/) (加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛)
-- [Hackerrank](https://www.hackerrank.com/) (有很多比赛)
+- [HackerRank](https://www.hackerrank.com/) (有很多比赛)
 - [Kattis](https://open.kattis.com/)
 - [LeetCode](https://leetcode.com/) (有中文分站：[LeetCode China](https://leetcode-cn.com/))
 - [SPOJ](http://www.spoj.com)
 - [Topcoder](https://www.topcoder.com/) (有很多比赛)
 - [Ural](http://acm.timus.ru/)
-- [UVA](https://uva.onlinejudge.org/) (做 lrj 的书怎么可能不知道这个 OJ)
+- [UVa](https://uva.onlinejudge.org/) (做 lrj 的书怎么可能不知道这个 OJ)
 - [Yandex](https://contest.yandex.ru/) (存档了近几年的全俄罗斯信息学奥赛)
 
 ## 教程
