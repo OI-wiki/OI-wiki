@@ -2,39 +2,44 @@
 
 在线测试平台又称 Online Judging System，一般用来刷题、组织比赛，也有的会提供博客功能方便选手交流。
 
+### 国内
 - [51Nod](https://www.51nod.com/) (有很多好的数学题和思维题)
-- [AtCoder](https://atcoder.jp/) (日本的一个 OJ，类似 CodeForces 但是也会放 JOI 的题)
 - [BZOJ](https://www.lydsy.com/JudgeOnline/) (常用 OJ，优质的题巨多)
-- [CodeChef](https://codechef.com/)
-- [Codeforces](https://codeforces.com/) (俄罗斯 OJ，一个用比赛积累起来的 OJ)
 - [CodeVS](http://www.codevs.cn/)
-- [DMOJ](https://dmoj.ca/) (加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛)
 - [FZUOJ](http://acm.fzu.edu.cn/)
-- [Hackerrank](https://www.hackerrank.com/)
 - [HDU OJ](http://acm.hdu.edu.cn/) (杭电的 OJ，多校训练的题目放在这里)
 - [hihoCoder](https://hihocoder.com/)
-- [Jisuanke](https://www.jisuanke.com/)
-- [JoyOI](http://www.joyoi.cn/)
-- [Judge Duck Online](https://duck.ac/) (松松松的 OJ，精确到 $\mu s$ )
-- [Kattis](https://open.kattis.com/)
-- [LeetCode China](https://leetcode-cn.com/)
-- [LeetCode](https://leetcode.com/)
+- [计蒜客](https://www.jisuanke.com/)
+- [评测鸭](https://duck.ac/) (松松松的 OJ，精确到 μs )
+- [JoyOI](http://www.joyoi.cn/) (原 Tyvj，后被清北学堂收购)
 - [LibreOJ](https://loj.ac/)
 - [Luogu](http://www.luogu.org/) (常用 OJ，现代 OJ 支持发布比赛等很多功能，评测机快)
-- [NOI.AC](http://noi.ac/)
-- [NowCoder](https://www.nowcoder.com/)
-- [OpenJudge](http://openjudge.cn/) (曾经是 NOI 的官方 OJ，后来好像中山纪念写了一个新的？)
-- [POJ](http://poj.org/) (PKU OJ，很多英文题， 有一些基础题和好题)
+- [NOI.AC](http://noi.ac/) (不是 NOI 官方 OJ，由培训机构「实验舱」创立？)
+- [牛客网](https://www.nowcoder.com/)
+- [OpenJudge](http://openjudge.cn/) (曾经是 NOI 的官方 OJ，后来好像中山纪念中学写了一个新的？)
+- [POJ](http://poj.org/) (PKU OJ，国内历史最悠久的 OJ 之一，很多英文题， 有一些基础题和好题)
+- [Universal OJ](http://uoj.ac/) (VFK 的 OJ，多原创比赛题和 CCF/THU 题 难度较高)
+- [Vijos](https://vijos.org/) (开源的界面好看的 OJ)
+- [ZOJ](http://acm.zju.edu.cn/onlinejudge/)
+- [Virtual Judge](https://vjudge.net/) (可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ)
+
+### 国外
+
+- [AtCoder](https://atcoder.jp/) (日本的一个 OJ，类似 CodeForces 但是也会放 JOI 的题)
+- [CodeChef](https://codechef.com/)
+- [Codeforces](https://codeforces.com/) (俄罗斯 OJ，一个用比赛积累起来的 OJ)
+- [DMOJ](https://dmoj.ca/) (加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛)
+- [Hackerrank](https://www.hackerrank.com/)
+- [Kattis](https://open.kattis.com/)
+- [LeetCode](https://leetcode.com/) (有中文分站：[LeetCode China](https://leetcode-cn.com/))
 - [Topcoder](https://www.topcoder.com/) (比赛也很多)
-- [UOJ](http://uoj.ac/) (VFK 的 OJ，多原创比赛题和 CCF/THU 题 难度较高)
 - [Ural](http://acm.timus.ru/)
 - [UVA](https://uva.onlinejudge.org/) (做 lrj 的书怎么可能不知道这个 OJ)
-- [Vijos](https://vijos.org/) (开源的界面好看的 OJ)
-- [Virtual Judge](https://vjudge.net/) (可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ)
-- [ZOJ](http://acm.zju.edu.cn/onlinejudge/)
+- [Yandex](https://contest.yandex.ru/) (存档了近几年的全俄信息学奥赛)
 
 ## 教程
 
+- 毛遂自荐：OI Wiki（逃
 - [Codeforces 上网友整理的一份教程合集](http://codeforces.com/blog/entry/57282)
 - [英文版 E-Maxx 算法教程](https://cp-algorithms.com/)
 - [演算法笔记](http://www.csie.ntnu.edu.tw/~u91029/) 台湾师范大学总结的教程
