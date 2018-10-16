@@ -59,6 +59,13 @@ mkdocs serve -v
 
 我们现在在服务器端渲染 mathjax ，如果希望实现类似效果，可以参考 [netlify_build.sh](https://github.com/24OI/OI-wiki/blob/master/scripts/netlify_build.sh)。（需要安装 Node.js）
 
+### 离线版
+
+```bash
+git clone https://git.coding.net/scaffrey/OI-wiki.git
+# coding 上的镜像仓库和 gh-pages 分支的内容相同
+```
+
 * * *
 
 ## 如何参与完善 OI Wiki
