@@ -3,7 +3,6 @@
 在线测试平台又称 Online Judging System，一般用来刷题、组织比赛，也有的会提供博客功能方便选手交流。
 
 ### 国内
-
 - [51Nod](https://www.51nod.com/) (有很多好的数学题和思维题)
 - [BZOJ](https://www.lydsy.com/JudgeOnline/) (常用 OJ，优质的题巨多)
 - [CodeVS](http://www.codevs.cn/)
@@ -21,8 +20,8 @@
 - [POJ](http://poj.org/) (PKU OJ，国内历史最悠久的 OJ 之一，很多英文题， 有一些基础题和好题)
 - [Universal OJ](http://uoj.ac/) (VFK 的 OJ，多原创比赛题和 CCF/THU 题 难度较高)
 - [Vijos](https://vijos.org/) (开源的界面好看的 OJ)
-- [ZOJ](http://acm.zju.edu.cn/onlinejudge/)
 - [Virtual Judge](https://vjudge.net/) (可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ)
+- [ZOJ](http://acm.zju.edu.cn/onlinejudge/)
 
 ### 国外
 
