@@ -27,4 +27,5 @@ after_deploy:
   - chmod +x scripts/BaiduPusher.sh && ./scripts/BaiduPusher.sh
   - cd site
   - git remote add coding https://$CODING_USER:$CODING_KEY@git.coding.net/scaffrey/OI-wiki.git
+  - git fetch --unshallow coding
   - git push coding HEAD:master -f
