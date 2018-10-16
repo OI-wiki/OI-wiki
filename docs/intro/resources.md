@@ -3,6 +3,7 @@
 在线测试平台又称 Online Judging System，一般用来刷题、组织比赛，也有的会提供博客功能方便选手交流。
 
 ### 国内
+
 - [51Nod](https://www.51nod.com/) (有很多好的数学题和思维题)
 - [BZOJ](https://www.lydsy.com/JudgeOnline/) (常用 OJ，优质的题巨多)
 - [CodeVS](http://www.codevs.cn/)
@@ -10,7 +11,7 @@
 - [HDU OJ](http://acm.hdu.edu.cn/) (杭电的 OJ，多校训练的题目放在这里)
 - [hihoCoder](https://hihocoder.com/)
 - [计蒜客](https://www.jisuanke.com/)
-- [评测鸭](https://duck.ac/) (松松松的 OJ，精确到 μs )
+- [评测鸭](https://duck.ac/) (松松松的 OJ，精确到 μs)
 - [JoyOI](http://www.joyoi.cn/) (原 Tyvj，后被清北学堂收购)
 - [LibreOJ](https://loj.ac/)
 - [Luogu](http://www.luogu.org/) (常用 OJ，现代 OJ 支持发布比赛等很多功能，评测机快)
