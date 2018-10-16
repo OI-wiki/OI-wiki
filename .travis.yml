@@ -13,9 +13,9 @@ install:
   - pip install -r requirements.txt
   - npm install .
 script:
-  - chmod +x build.sh && ./build.sh
+  - chmod +x ./scripts/build.sh && ./scripts/build.sh
   - mkdocs build -v
-  - find ./site -type f -name '*.html' -exec node --max_old_space_size=512 render_math.js {} \;
+  - find ./site -type f -name '*.html' -exec node --max_old_space_size=512 ./scripts/render_math.js {} \;
 deploy:
   provider: pages
   skip_cleanup: true
@@ -24,4 +24,4 @@ deploy:
   on:
     branch: master
 after_deploy:
-  - chmod +x BaiduPusher.sh && ./BaiduPusher.sh
+  - chmod +x scripts/BaiduPusher.sh && ./scripts/BaiduPusher.sh
