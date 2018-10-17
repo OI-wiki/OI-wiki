@@ -24,8 +24,7 @@ deploy:
   on:
     branch: master
 after_deploy:
-  - cd scripts
-  - chmod +x BaiduPusher.sh && ./BaiduPusher.sh
+  - chmod +x scripts/BaiduPusher.sh && ./scripts/BaiduPusher.sh
   - cd /tmp
   - git clone https://github.com/24OI/OI-wiki.git -b gh-pages
   - cd OI-wiki
