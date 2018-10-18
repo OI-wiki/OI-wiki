@@ -24,6 +24,8 @@ $$
 
 在算法竞赛中，快速幂的思想不仅用于整数乘法，也可用于大整数加法，矩阵幂运算等场合中。
 
+如果你看不懂，那就简单点说吧。
+
 举个栗子，$a^{10}$ 等价于下面的式子：
 
 $a \times a \times a \times a \times a \times a \times a \times a \times a \times a$
@@ -41,6 +43,8 @@ $\left (a' \times a'\right) \times\left (a' \times a'\right) \times a'$
 $a^0=1$ 和 $a^1=a$
 
 ## 实现代码
+
+注意，这种方法能实现的问题比较单调，不可以解决大整数加法，矩阵幂运算。
 
 ### 非递归版
 
@@ -78,6 +82,5 @@ long long qpow(long long a,long long b,long long p)
 }
 ```
 
-## 例题
-
-模板题：[Luogu P1226](https://www.luogu.org/problemnew/show/P1226)
+??? note "例题"
+    做一做[Luogu P1226](https://www.luogu.org/problemnew/show/P1226)

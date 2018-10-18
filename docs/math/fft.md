@@ -83,7 +83,7 @@ $$
 $$
 
 $$
-f_n(x) = y_n6 = a_0 + a_1x_m+a_2x_m^2+a_3x_m^3+ \cdots + a_nx_m^n
+f_n(x) = y_n = a_0 + a_1x_m+a_2x_m^2+a_3x_m^3+ \cdots + a_nx_m^n
 $$
 
 一个非常通俗易懂的解释：
