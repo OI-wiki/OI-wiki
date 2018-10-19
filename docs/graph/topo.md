@@ -1,87 +1,55 @@
 ## 定义
 
-拓扑排序的英文名是 Topological sorting。
+拓扑排序的英文名是 topological sort。
 
-拓扑排序要解决的问题是给一个图的所有节点排序。
+拓扑排序要解决的问题是给一个图的所有节点排序，而图中有若干限制，形如：“点 x 要在点 y 后面”。
 
-我们可以拿大学选课的例子来描述这个过程, 比如学习大学课程中有: 单变量微积分, 线性代数, 离散数学概述, 概率论与统计学概述, 语言基础, 算法导论, 机器学习。 当我们想要学习 算法导论 的时候, 就必须先学会 离散数学概述 和 概率论与统计学概述, 不然在课堂就会听的一脸懵逼。 当然还有一个更加前的课程 单变量微积分。 这些课程就相当于几个顶点 $u$, 顶点之间的有向边 $(u,v)$ 就相当于学习课程的顺序。显然拓扑排序不是那么的麻烦, 不然你是如何选出合适的学习顺序。下面将介绍如何将这个过程抽象出来, 用算法来实现。
+举个现实一些的栗子，比如你去给刚开始学 OI 的同学们讲课，你会发现有很多知识点需要前置技能才能够听懂，并非是所有人都可以第一天就学明白 [线段树](/ds/segment)。怎么办呢？讲课的时候是需要按顺序来的，并不能同时讲若干个知识点。这时候就需要用到拓扑排序了。
 
-但是如果某一天排课的老师打瞌睡了, 说想要学习 算法导论, 还得先学 机器学习, 而 机器学习 的前置课程又是 算法导论, 然后你就一万脸懵逼了, 我到底应该先学哪一个 ? 当然我们在这里不考虑什么同时学几个课程的情况。在这里, 算法导论 和 机器学习 间就出现了一个环, 显然你现在没办法弄清楚你需要学什么了, 于是你也没办法进行拓扑排序了。因而如果有向图中存在环路, 那么我们就没办法进行 拓扑排序 了。
+形式化定义一下：
 
-因此我们可以说 在一个 [DAG （有向无环图）](/graph/dag) 中, 我们间图中的顶点以线性方式进行排序, 使得对于任何的顶点 $u$ 到 $v$ 的有向边  $(u,v)$  , 都可以有 $u$ 在 $v$ 的前面。
-
-还有给定一个 [DAG （有向无环图）](/graph/dag)，如果从 $i$ 到 $j$ 有边，则认为 $j$ 依赖于 $i$。如果 $i$ 到 $j$ 有路径（$i$ 可达 $j$），则称 $j$ 间接依赖于 $i$。
+给定一个 [DAG （有向无环图）](/graph/dag)，如果从 $i$ 到 $j$ 有边，啧认为 $j$ 依赖于 $i$。如果 $i$ 到 $j$ 有路径（$i$ 可达 $j$），则称 $j$ 间接依赖于 $i$。
 
 拓扑排序的目标是将所有节点排序，使得排在前面的节点不能依赖于排在后面的节点。
 
-## Kahn 算法
+## 拓扑排序算法及实现
 
-将入度为 0 的边组成一个集合 $S$ 
+### 算法思路
 
-每次从 $S$ 里面取出一个顶点 $v$ (可以随便取) 放入  $L$, 然后遍历顶点 $v$ 的所有边$(u_1, v), (u_2, v), (u_3, v) \cdots$, 并删除, 并判断如果该边的另一个顶点, 如果在移除这一条边后入度为 0 , 那么就将这个顶点放入集合 $L$ 中。不断地重复取出顶点然后……
+核心思想是每次找一个入度为 0 的节点，取出来丢到答案序列里。然后再删除这个节点（以及对应的边），更新其他节点的入度，不断重复此操作直到答案序列包含了所有的节点。
 
-最后当集合为空后, 就检查图中是否存在任何边。如果有, 那么这个图一定有环路, 否者返回 $L$ , $L$ 中顺序就是拓扑排序的结果
+在这个过程中，如果某一时刻发现找不到入度为 0 的节点，则可以认为这个图不能进行拓扑排序（会产生冲突）。
 
-首先看来自 [Wiki](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm) 的伪代码
+??? question "这里入度为 0 的点应该如何选取呢？"
+    随便选就好啦！找到一个就可以直接用！
 
-```text
-L← Empty list that will contain the sorted elements
-S ← Set of all nodes with no incoming edges
-while S is non-empty do
-    remove a node n from S
-    insert n into L
-    for each node m with an edge e from n to m do
-        remove edge e from the graph
-        if m has no other incoming edges then
-            insert m into S
-if graph has edges then
-    return error (graph has at least onecycle)
-else 
-    return L (a topologically sortedorder)
-```
-
-代码的核心是, 是维持一个入度为 0 的顶点。
-
-可以参考该图
-
-![1341373589_4609](images/1341373589_4609.png)
-
-对其排序的结果就是: 2 -> 8 -> 0 -> 3 -> 7 -> 1 -> 5 -> 6 -> 9 -> 4 -> 11 -> 10 -> 12
-
-### 时间复杂度
-
-假设这个图 $G = (V, E)$在初始化入度为 0 的集合 $S$ 的时候就需要遍历整个图, 并检查每一条边, 因而有 $\mathcal{O}(E+V)$ 的复杂度. 然后对该集合进行操作, 显然也是需要 $\mathcal{O}(E+V)$ 的时间复杂度。
-
-因而总的时间复杂度就有 $\mathcal{O}(E+V)$
+    为什么会这样呢？
+    是因为某个点既然在新图中入度为 0 了，那么它就没有依赖的东西了（或者依赖的都已经被完成了）。
 
 ### 实现
 
 伪代码：
 
-```text
-bool toposort() {
-	q = new queue();
-	for (i = 0; i < n; i++)
-		if (in_deg[i] == 0) q.push(i);
-	ans = new vector();
-	while (!q.empty()) {
-		u = q.pop();
-		ans.push_back(u);
-		for each edge(u, v) {
-			if (--in_deg[v] == 0) q.push(v);
-		}
-	}
-	if (ans.size() == n) {
-		for (i = 0; i < n; i++)
-			std::cout << ans[i] << std::endl;
-		return true;
-	} else {
-		return false;
-	}
-}
-```
-
-## DFS 算法
+    bool toposort() {
+    	q = new queue();
+    	for (i = 0; i < n; i++)
+    		if (in_deg[i] == 0) q.push(i);
+    	ans = new vector();
+    	while (!q.empty()) {
+    		u = q.pop();
+    		ans.push_back(u);
+    		for each edge(u, v) {
+    			if (--in_deg[v] == 0) q.push(v);
+    		}
+    	}
+    	if (ans.size() == n) {
+    		for (i = 0; i < n; i++)
+    			std::cout << ans[i] << std::endl;
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
 
 ```c++
 // dfs 版本
@@ -110,9 +78,3 @@ bool toposort(){
 ### 合理性证明
 
 考虑一个图，删掉某个入度为 0 的节点之后，如果新图可以拓扑排序，那么原图一定也可以。反过来，如果原图可以拓扑排序，那么删掉后也可以。
-
-## 参考
-
-1. 离散数学及其应用. ISBN:9787111555391
-2. <https://blog.csdn.net/dm_vincent/article/details/7714519>
-3. Topological sorting, <https://en.wikipedia.org/w/index.php?title=Topological_sorting&oldid=854351542>

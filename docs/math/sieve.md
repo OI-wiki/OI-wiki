@@ -21,7 +21,7 @@ void genPrimes() {
 }
 ```
 
-这个筛法被成为 eratosthenes （念作 “埃拉托斯特尼”）筛法，时间复杂度是 $O(n\log\log n)$。
+这个筛法被成为 eratosthenes （念作“埃拉托斯特尼”）筛法，时间复杂度是 $O(n\\log\\log n)$。
 
 以上做法仍有优化空间，我们发现这里面似乎会对某些数标记了很多次其为合数。有没有什么办法省掉无意义的步骤呢？
 
@@ -60,43 +60,28 @@ void init() {
 
 ## 筛法求欧拉函数
 
-注意到在线性筛中，每一个合数都是被最小的质因子筛掉。比如设 $p_1$ 是 $n$ 的最小质因子，$n' = \frac{n}{p_1}$，那么线性筛的过程中 $n$ 通过 $n' \times p_1$ 筛掉。
+注意到在线性筛中，每一个合数都是被最小的质因子筛掉。比如设 $p_1$ 是 $n$ 的最小质因子，$n' = \\frac{n}{p_1}$，那么线性筛的过程中 $n$ 通过 $n' \\times p_1$ 筛掉。
 
-观察线性筛的过程，我们还需要处理两个部分，下面对$n' \bmod p_1$ 分情况讨论。
+观察线性筛的过程，我们还需要处理两个部分，下面对$n' \\bmod p_1$ 分情况讨论。
 
-如果 $n' \bmod p_1 = 0$，那么 $n'$ 包含了 $n$ 的所有质因子。
-
-$$
-\begin{aligned}
-\varphi(n) & = n \times \prod_{i = 1}^s{\frac{p_i - 1}{p_i}} \\\\
-& = p_1 \times n' \times \prod_{i = 1}^s{\frac{p_i - 1}{p_i}} \\\\
-& = p_1 \times \varphi(n')
-\end{aligned}
-$$
-
-那如果 $n' \bmod p_1 \neq 0$ 呢，这时 $n'$ 和 $n$ 是互质的，根据欧拉函数性质，我们有：
+如果 $n' \\bmod p_1 = 0$，那么 $n'$ 包含了 $n$ 的所有质因子。
 
 $$
-\begin{aligned}
-\varphi(n) & = \varphi(p_1) \times \varphi(n') \\\\
-& = (p_1 - 1) \times \varphi(n')
-\end{aligned}
+\\begin{aligned}
+\\varphi(n) & = n \\times \\prod_{i = 1}^s{\\frac{p_i - 1}{p_i}} \\\\
+& = p_1 \\times n' \\times \\prod_{i = 1}^s{\\frac{p_i - 1}{p_i}} \\\\
+& = p_1 \\times \\varphi(n')
+\\end{aligned}
 $$
 
-```c++
-void phi_table(int n,int* phi)
-{
-    for (int i=2;i<=n;i++) phi[i]=0;
-    phi[1]=1;
-    for (int i=2;i<=n;i++)
-    if (!phi[i])
-	    for (int j=i;j<=n;j+=i)
-	    {
-		    if (!phi[j]) phi[j]=j;
-		    phi[j]=phi[j]/i*(i-1);
-	    }
-}
-```
+那如果 $n' \\bmod p_1 \\neq 0$ 呢，这时 $n'$ 和 $n$ 是互质的，根据欧拉函数性质，我们有：
+
+$$
+\\begin{aligned}
+\\varphi(n) & = \\varphi(p_1) \\times \\varphi(n') \\\\
+& = (p_1 - 1) \\times \\varphi(n')
+\\end{aligned}
+$$
 
 ## 筛法求莫比乌斯函数
 

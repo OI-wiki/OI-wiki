@@ -10,11 +10,11 @@
 
 那么 FWT 核心思想就是：
 
-我们需要一个新序列 $C$，由序列 $A$ 和序列 $B$ 经过某运算规则得到，即 $C = A \cdot B$
+我们需要一个新序列 $C$，由序列 $A$ 和序列 $B$ 经过某运算规则得到，即 $C = A \\cdot B$
 
 我们先正向得到 $FWT[A], FWT[B]$
 
-然后根据 $FWT[C]=FWT[A] \cdot FWT[B]$
+然后根据 $FWT[C]=FWT[A] \\cdot FWT[B]$
 
 在 $O(n)$ 求出 $FWT[C]$
 
@@ -22,13 +22,13 @@
 
 在算法竞赛中，FWT 是用于解决对下标进行位运算卷积问题的方法。
 
-公式： $C[i] = \sum_{i=j \bigoplus k}A[j] * B[k]$
+公式： $C[i] = \\sum\_{i=j \\bigoplus k}A[j] \* B[k]$
 
-（其中 $\bigoplus$ 是二元位运算中的某一种，$*$ 是普通乘法）
+（其中 $\\bigoplus$ 是二元位运算中的某一种，$\*$ 是普通乘法）
 
 ## FWT 的运算
 
-### FWT 之与（$\And$）运算和或（$|$）运算
+### FWT 之与（$\\And$）运算和或（$|$）运算
 
 与运算和或运算的本质是差不多的，所以这里讲一下或运算，与运算也是可以自己根据公式 yy 出来的。
 
@@ -36,11 +36,11 @@
 
 如果有 $k=i|j$，那么 $i$ 的二进制位为 $1$ 的位置和 $j$ 的二进制位为 $1$ 的位置肯定是 $k$ 的二进制位为 $1$ 的位置的子集。
 
-现在要得到 $FWT[C] = FWT[A] * FWT[B]$，我们就要构造这个 fwt 的规则。
+现在要得到 $FWT[C] = FWT[A] \* FWT[B]$，我们就要构造这个 fwt 的规则。
 
-我们按照定义，显然可以构造 $FWT[A] = A' = \sum_{i=i|j}A[j]$，来表示 $j$ 满足二进制中 $1$ 为 $i$ 的子集。
+我们按照定义，显然可以构造 $FWT[A] = A' = \\sum\_{i=i|j}A[j]$，来表示 $j$ 满足二进制中 $1$ 为 $i$ 的子集。
 
-那么显然会有 $C[i] = \sum_{i=j|k}A[j]*B[k] \Rightarrow FWT[C] = FWT[A] * FWT[B]$
+那么显然会有 $C[i] = \\sum\_{i=j|k}A[j]_B[k] \\Rightarrow FWT[C] = FWT[A] _ FWT[B]$
 
 那么我们接下来看 $FWT[A]$ 怎么求。
 
@@ -50,9 +50,7 @@
 
 我们令 $A_0$ 表示 $A$ 的前一半，$A_1$ 表示区间的后一半，那么 $A_0$ 就是 A 下标最大值的最高位为 $0$，他的子集就是他本身的子集（因为最高位为 $0$ 了），但是 $A_1$ 的最高位是 $1$，他满足条件的子集不仅仅是他本身，还包最高位为 $0$ 的子集，即
 
-$$
-FWT[A] = merge(FWT[A_0], FWT[A_0] + FWT[A_1])
-$$
+$$FWT[A] = merge(FWT[A_0], FWT[A_0] + FWT[A_1])$$
 
 其中 merge 表示像字符串拼接一样把它们拼起来， $+$ 就是普通加法，表示对应二进制位相加。
 
@@ -60,21 +58,15 @@ $$
 
 接下来就是反演了，其实反演是很简单的，既然知道了 $A_0$ 的本身的子集是他自己 ($A_0 = FAT[A_0]$)，$A_1$ 的子集是 $FAT[A_0] + FAT[A_1]（A_1'= A_0' + A_1'$）, 那就很简单的得出反演的递推式了：
 
-$$
-UFWT[A'] = merge(UFWT[A_0'], UFWT[A_1'] - UFWT[A_0'])
-$$
+$$UFWT[A'] = merge(UFWT[A_0'], UFWT[A_1'] - UFWT[A_0'])$$
 
 ### 与运算
 
 与运算类比或运算可以得到类似结论
 
-$$
-FWT[A] = merge(FWT[A_0] + FWT[A_1], FWT[A_1])
-$$
+$$FWT[A] = merge(FWT[A_0] + FWT[A_1], FWT[A_1])$$
 
-$$
-UFWT[A'] = merge(UFWT[A_0'] - UFWT[A_1'], UFWT[A_1'])
-$$
+$$UFWT[A'] = merge(UFWT[A_0'] - UFWT[A_1'], UFWT[A_1'])$$
 
 ### 异或运算
 
@@ -82,34 +74,26 @@ $$
 
 异或的卷积是基于如下原理：
 
-若我们令 $i\And j$ 中 $1$ 数量的奇偶性为 $i$ 与 $j$ 的奇偶性，那么 $i$ 与 $k$ 的奇偶性异或 $j$ 和 $k$ 的奇偶性等于 $i \operatorname{xor} j$ 和 $k$ 的奇偶性。
+若我们令 $i\\And j$ 中 $1$ 数量的奇偶性为 $i$ 与 $j$ 的奇偶性，那么 $i$ 与 $k$ 的奇偶性异或 $j$ 和 $k$ 的奇偶性等于 $i \\operatorname{xor} j$ 和 $k$ 的奇偶性。
 
 对于 $FWT[A]$ 的运算其实也很好得到。
 
 公式如下：
 
-$A[i] = \sum_{C_1}A[j] - \sum_{C_2}A[j]$ ($C_1$ 表示 $i \And j$ 奇偶性为 $0$，$C_2$ 表示 $i \And j$ 的奇偶性为 $1$)
+$A[i] = \\sum_{C_1}A[j] - \\sum_{C_2}A[j]$ ($C_1$ 表示 $i \\And j$ 奇偶性为 $0$，$C_2$ 表示 $i \\And j$ 的奇偶性为 $1$)
 
 结论：
 
-$$
-FWT[A] = merge(FWT[A_0] + FWT[A_1], FWT[A_0] - FWT[A_1])
-$$
+$$FWT[A] = merge(FWT[A_0] + FWT[A_1], FWT[A_0] - FWT[A_1])$$
 
-$$
-UFWT[A'] - merge(\frac{FWT[A_0'] + FWT[A_1']}{2}, \frac{FWT[A_0'] - FWT[A_1']}{2})
-$$
+$$UFWT[A'] - merge(\\frac{FWT[A_0'] + FWT[A_1']}{2}, \\frac{FWT[A_0'] - FWT[A_1']}{2})$$
 
 ### 同或运算
 
 类比异或运算给出公式：
 
-$A[i] = \sum_{C_1}A[j] - \sum_{C_2}A[j]$ ($C_1$ 表示 $i|j$ 奇偶性为 $0$，$C_2$ 表示 $i|j$ 的奇偶性为 $1$)
+$A[i] = \\sum_{C_1}A[j] - \\sum_{C_2}A[j]$ ($C_1$ 表示 $i|j$ 奇偶性为 $0$，$C_2$ 表示 $i|j$ 的奇偶性为 $1$)
 
-$$
-FWT[A] = merge(FWT[A_1] - FWT[A_0], FWT[A_1] + FWT[A_0])
-$$
+$$FWT[A] = merge(FWT[A_1] - FWT[A_0], FWT[A_1] + FWT[A_0])$$
 
-$$
-UFWT[A'] = merge(\frac{FWT[A_1'] - FWT[A_0']}{2}, \frac{FWT[A_1'] + FWT[A_0']}{2})
-$$
+$$UFWT[A'] = merge(\\frac{FWT[A_1'] - FWT[A_0']}{2}, \\frac{FWT[A_1'] + FWT[A_0']}{2})$$

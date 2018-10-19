@@ -2,16 +2,14 @@
 
 高精度问题包含很多小的细节，实现上也有很多讲究，暂时先不展开。
 
-- 四则运算
-- 快速幂
-- 分数
-- 对数（？）
-- 开根
-- 压位高精度
+-   四则运算
+-   快速幂
+-   分数
+-   对数（？）
+-   开根
+-   压位高精度
 
 放一个之前的高精度板子吧。
-
-还有一个很好用的[高精度封装类](https://paste.ubuntu.com/p/7VKYzpC7dn/) 10kb 想用可以自行下载。
 
 ```c++
 #define MAXN 9999
@@ -40,9 +38,9 @@ struct Big{
   //TODO: Big / Big;
   Big operator ^ (const int &)const;
   //TODO: Big ^ Big;
-
+  
   //TODO: Big 位运算;
-
+  
   int operator % (const int &)const;
   //TODO: Big ^ Big;
   bool operator < (const Big &)const;

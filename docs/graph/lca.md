@@ -1,17 +1,17 @@
 ## 定义
 
 最近公共祖先简称 LCA（Lowest Common Ancestor）。两个节点的最近公共祖先，就是这两个点的公共祖先里面，离根最远的那个。  
-为了方便，我们记某点集 $S={v_1,v_2,\ldots,v_n}$ 的最近公共祖先为 $\text{LCA}(v_1,v_2,\ldots,v_n)$ 或 $\text{LCA}(S)$。
+为了方便，我们记某点集 $S={v_1,v_2,\\ldots,v_n}$ 的最近公共祖先为 $\\text{LCA}(v_1,v_2,\\ldots,v_n)$ 或 $\\text{LCA}(S)$。
 
 ## 性质
 
-1. $\text{LCA}({u})=u$；
-2. $u$ 是 $v$ 的祖先，当且仅当 $\text{LCA}(u,v)=u$；
-3. 如果 $u$ 不为 $v$ 的祖先并且 $v$ 不为 $u$ 的祖先，那么 $u,v$ 分别处于 $\text{LCA}(u,v)$ 的两棵不同子树中；
-4. 前序遍历中，$\text{LCA}(S)$ 出现在所有 $S$ 中元素之前，后序遍历中 $\text{LCA}(S)$ 则出现在所有 $S$ 中元素之后；
-5. 两点集并的最近公共祖先为两点集分别的最近公共祖先的最近公共祖先，即 $\text{LCA}(A\cup B)=\text{LCA}(\text{LCA}(A), \text{LCA}(B))$；
-6. 两点的最近公共祖先必定处在树上两点间的最短路上；
-7. $d(u,v)=h(u)+h(v)-2h(\text{LCA}(u,v))$，其中 $d$ 是树上两点间的距离，$h$ 代表某点到树根的距离。
+1.  $\\text{LCA}({u})=u$；
+2.  $u$ 是 $v$ 的祖先，当且仅当 $\\text{LCA}(u,v)=u$；
+3.  如果 $u$ 不为 $v$ 的祖先并且 $v$ 不为 $u$ 的祖先，那么 $u,v$ 分别处于 $\\text{LCA}(u,v)$ 的两棵不同子树中；
+4.  前序遍历中，$\\text{LCA}(S)$ 出现在所有 $S$ 中元素之前，后序遍历中 $\\text{LCA}(S)$ 则出现在所有 $S$ 中元素之后；
+5.  两点集并的最近公共祖先为两点集分别的最近公共祖先的最近公共祖先，即 $\\text{LCA}(A\\cup B)=\\text{LCA}(\\text{LCA}(A), \\text{LCA}(B))$；
+6.  两点的最近公共祖先必定处在树上两点间的最短路上；
+7.  $d(u,v)=h(u)+h(v)-2h(\\text{LCA}(u,v))$，其中 $d$ 是树上两点间的距离，$h$ 代表某点到树根的距离。
 
 ## 求法
 
@@ -140,23 +140,23 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
 
 > 本节**性质**部分内容翻译自[wcipeg](http://wcipeg.com/wiki/Lowest_common_ancestor)，并做过修改。
 
-### 标准 RMQ
+### 标准RMQ
 
 时间复杂度 $O(N)-O(1)$，空间复杂度 $O(N)$ ，支持在线查询，常数较大，编程复杂度较高。
 
 流程：
 
-- 通过 DFS 序将树上 LCA 问题转为序列 RMQ 问题
+-   通过DFS序将树上LCA问题转为序列RMQ问题
 
-- 通过单调栈将序列转为笛卡尔树
+-   通过单调栈将序列转为笛卡尔树
 
-- 在笛卡尔树上求欧拉序，如此转化为 $\pm 1$ RMQ
+-   在笛卡尔树上求欧拉序，如此转化为 $\\pm 1$ RMQ
 
-- 对新序列分块，做分块 ST 表，块内通过二进制状压 DP 维护
+-   对新序列分块，做分块ST表，块内通过二进制状压DP维护
 
 每一步的复杂度都是 $O(N)$ 的，因此总复杂度依然是 $O(N)$ 。
 
-提供 RMQ 转标准 RMQ 的代码，为洛谷上 ST 表的例题[**P3865** 【模板】ST 表](https://www.luogu.org/problemnew/show/P3865)
+提供RMQ转标准RMQ的代码，为洛谷上ST表的例题[**P3865** 【模板】ST表](https://www.luogu.org/problemnew/show/P3865)
 
 ```cpp
 // Copyright (C) 2018 Skqliao. All rights served.

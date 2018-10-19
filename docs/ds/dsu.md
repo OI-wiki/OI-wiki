@@ -3,9 +3,9 @@
 并查集是一种树形的数据结构，顾名思义，它用于处理一些不交集的**合并**及**查询**问题。  
 它支持两种操作：
 
-- 查找 （Find）：确定某个元素处于哪个子集；
+-   查找 （Find）：确定某个元素处于哪个子集；
 
-- 合并（Union）：将两个子集合并成一个集合。
+-   合并（Union）：将两个子集合并成一个集合。
 
 ## 初始化
 
@@ -55,7 +55,7 @@ int find(int x)
 
 ## 合并
 
-宴会上，一个家族的祖先突然对另一个家族说: 我们两个家族交情这么好，不如合成一家好了。另一个家族也欣然接受了。  
+宴会上，一个家族的祖先突然对另一个家族说:我们两个家族交情这么好，不如合成一家好了。另一个家族也欣然接受了。  
 我们之前说过，并不在意祖先究竟是谁，所以只要其中一个祖先变成另一个祖先的儿子就可以了。
 
 ```cpp
@@ -93,7 +93,7 @@ void unionSet(int x,int y)
 
 ### 时间复杂度
 
-同时使用路径压缩和启发式合并之后，并查集的每个操作平均时间仅为 $O(\alpha(n))$ ，其中 $\alpha$ 为 [阿克曼函数](https://en.wikipedia.org/wiki/Ackermann_function) 的反函数，其增长极其缓慢，也就是说其平均运行时间可以认为是一个很小的常数。 
+同时使用路径压缩和启发式合并之后，并查集的每个操作平均时间仅为 $O(\\alpha(n))$ ，其中 $\\alpha$ 为 [阿克曼函数](https://en.wikipedia.org/wiki/Ackermann_function) 的反函数，其增长极其缓慢，也就是说其平均运行时间可以认为是一个很小的常数。 
 
 ### 空间复杂度
 
@@ -101,13 +101,13 @@ void unionSet(int x,int y)
 
 ## 经典题目
 
-[\[NOI2015\] 程序自动分析](https://www.lydsy.com/JudgeOnline/problem.php?id=4195)
+[\[NOI2015\]程序自动分析](https://www.lydsy.com/JudgeOnline/problem.php?id=4195)
 
-[\[JSOI2008\] 星球大战](https://www.lydsy.com/JudgeOnline/problem.php?id=1015)
+[\[JSOI2008\]星球大战](https://www.lydsy.com/JudgeOnline/problem.php?id=1015)
 
-[\[NOI2001\] 食物链](https://www.luogu.org/problemnew/show/P2024)
+[\[NOI2001\]食物链](https://www.luogu.org/problemnew/show/P2024)
 
-[\[NOI2002\] 银河英雄传说](https://www.luogu.org/problemnew/show/P1196)
+[\[NOI2002\]银河英雄传说](https://www.luogu.org/problemnew/show/P1196)
 
 ## 其他应用
 
