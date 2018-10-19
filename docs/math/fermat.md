@@ -16,7 +16,15 @@
 
 ## 扩展欧拉定理
 
-$a^b \equiv \begin{cases} a^{b\%\varphi(p)}~~~~~~~~~~~,gcd(a,p)=1\\a^b~~~~~~~~~~~~~~~~~~~,gcd(a,p)\neq1,b<\varphi(p)\\a^{b\%\varphi(p)+\varphi(p)}~~~~,gcd(a,p)\neq1,b\geq\varphi(p)\end{cases}~~~~~~~(mod~p)$
+$$
+a^b\equiv
+\begin{cases}
+a^{b\bmod\varphi(p)},\,&\gcd(a,\,p)=1\\
+a^b,&\gcd(a,\,p)\ne1,\,b<\varphi(p)\pmod p\\
+a^{b\bmod\varphi(p)+\varphi(p)},&\gcd(a,\,p)\ne1,\,b\ge\varphi(p)
+\end{cases}
+\pmod p
+$$
 
 ### 证明
 
