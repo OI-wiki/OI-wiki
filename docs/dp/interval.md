@@ -47,8 +47,6 @@ for(len=1;len<=n;len++)
 
 ## 几道练习题
 
-[luogu T2027 蜈蚣](https://www.luogu.org/problemnew/show/T2027)
-
 [luogu P1063 能量项链](https://www.luogu.org/problemnew/show/P1063)
 
 [luogu P1005 矩阵取数游戏](https://www.luogu.org/problemnew/show/P1005)
