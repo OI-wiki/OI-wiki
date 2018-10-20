@@ -80,7 +80,7 @@ int main()
 下面是用 Bellman-Ford 算法判断图中是否存在负环的代码实现，请在调用前先保证图是联通的。
 
 ```cpp
-bool SPFA()
+bool Bellman_Ford()
 {
 	for(int i=0;i<n;i++)
 	{
