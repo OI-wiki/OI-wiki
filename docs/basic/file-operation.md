@@ -44,7 +44,7 @@ fclose(stdin);
 fclose(stdout);
 ```
 
-### freopen模板
+### freopen 模板
 
 ```cpp
 #include <cstdio>
@@ -64,7 +64,7 @@ int main(void)
 
 参考书目：信息学奥赛一本通
 
-## C++的ifstream/ofstream文件输入输出流
+## C++ 的 ifstream/ofstream 文件输入输出流
 
 #### 使用方法
 
@@ -87,7 +87,7 @@ fin.close();
 fout.close();
 ```
 
-### freopen模板
+### freopen 模板
 
 ```cpp
 #include <cstdio>
