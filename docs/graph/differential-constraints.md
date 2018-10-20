@@ -10,7 +10,7 @@
 
 ## 常用变形技巧
 
-### 例题 [ luogu P1993 小K的农场 ](https://www.luogu.org/problemnew/show/P1993)
+### 例题 [ luogu P1993 小 K 的农场 ](https://www.luogu.org/problemnew/show/P1993)
 
 题目大意：求解差分约束系统，有 $m$ 条约束条件， 每条都为形如 $x_a-x_b\ge c_k$ ， $x_a-x_b\le c_k$ 或 $x_a=x_b$ 的形式，判断该差分约束系统有没有解。
 
@@ -18,7 +18,7 @@
 
 对于 $x_a=x_b$ ，我们将其拆分为两个式子， $x_a-x_b\ge 0$ （根据上一行所推导的，等价于 $x_b-x_a\le 0$） 和 $x_a-x_b\le 0$ 。
 
-跑判断负环，如果不存在负环，输出 ```Yes``` ，否则输出 ```No```。
+跑判断负环，如果不存在负环，输出 `Yes` ，否则输出 `No`。
 
 给出一种用 DFS-SPFA 实现的判负环（时间复杂度极度不稳定）：
 
@@ -69,11 +69,11 @@ int main()
 }
 ```
 
-### 例题 [P4926 [1007]倍杀测量者](https://www.luogu.org/problemnew/show/P4926)
+### 例题 [P4926 \[1007\] 倍杀测量者](https://www.luogu.org/problemnew/show/P4926)
 
 不考虑二分等其他的东西，这里只论述差分系统 $\frac{x_i}{x_j}\le c_k$  的求解方法。
 
-对每个 $x_i,x_j$ 和 $c_k$ 取一个 $\log$ 就可以把乘法变成加法运算，即 $\log x_i-\log x_j \le \log c_k $  ，这样就可以用差分约束解决了。
+对每个 $x_i,x_j$ 和 $c_k$ 取一个 $\log$ 就可以把乘法变成加法运算，即 $\log x_i-\log x_j \le \log c_k$  ，这样就可以用差分约束解决了。
 
 ## Bellman-Ford 判负环代码实现
 
@@ -93,7 +93,7 @@ bool SPFA()
 	if(dist[i]>dist[p[j]]+w[j])return false;
 	return true;
 }
-``` 
+```
 
 ## 习题
 
