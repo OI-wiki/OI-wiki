@@ -44,7 +44,7 @@ fclose(stdin);
 fclose(stdout);
 ```
 
-## 模板
+### freopen模板
 
 ```cpp
 #include <cstdio>
@@ -63,3 +63,44 @@ int main(void)
 ```
 
 参考书目：信息学奥赛一本通
+
+## C++的ifstream/ofstream文件输入输出流
+
+#### 使用方法
+
+读入文件内容：
+
+```cpp
+ifstream fin("data.in"); //data.in 就是读取的文件名，要和可执行文件放在同一目录下
+```
+
+输出到文件：
+
+```cpp
+ofstream fout("data.out"); //data.out 就是输出文件的文件名，和可执行文件在同一目录下
+```
+
+关闭标准输入 \\ 输出流
+
+```cpp
+fin.close();
+fout.close();
+```
+
+### freopen模板
+
+```cpp
+#include <cstdio>
+#include <fstream>
+ifstream fin("data.in");
+ofstream fout("data.out");
+int main(void)
+{
+  /*
+  中间的代码改变 cin 为 fin ，cout 为 fout 即可
+  */
+  fin.close();
+  fout.close();
+  return 0;
+}
+```
