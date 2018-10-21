@@ -1,0 +1,34 @@
+Font: Latin Modern MathJax
+
+Copyright 2012--2013 for TeX Gyre math extensions by B. Jackowski,
+P. Strzelczyk and P. Pianowski (on behalf of TeX Users Groups).
+
+Copyright 2013 The MathJax Consortium
+
+This work can be freely used and distributed under
+the GUST Font License (GFL -- see GUST-FONT-LICENSE.txt)
+which is actually an instance of the LaTeX Project Public License
+(LPPL -- see http://www.latex-project.org/lppl.txt).
+
+Below, in three sections required by the GUST Font License,
+font names and file names specific for the Latin Modern MathJax
+font are listed.
+
+NOTE: the names of the directories are not subject to the renaming
+restrictions.
+
+1. Fonts whose names should be changed in derived works as requested
+   by clause 1 of GUST-FONT-LICENSE.txt
+
+   Latin Modern MathJax
+   LatinModernMathJax-*
+
+2. Files whose names should be changed in derived works as requested
+   by clause 1 of GUST-FONT-LICENSE.txt
+
+   */LatinModernMathJax-*.otf
+
+3. Files whose names need not be changed in derived works as requested
+   by clause 1 of GUST-FONT-LICENSE.txt
+
+       All the other files not mentioned above.

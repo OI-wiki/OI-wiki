@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example of defining a macro that autoloads an extension</title>
+<!-- Copyright (c) 2012-2018 The MathJax Consortium -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--
+ |
+ |  This page shows how to define macros that autoloads an extension
+ |  where those macros are implemented.
+ |  
+ |  The \cancel, \bcancel, \xcancel, and \cancelto macros are
+ |  all defined within the cancel extension, so we tie these
+ |  macros to the function that loads an extension, passing it
+ |  the name of the extension to load.
+ |
+ |-->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+  MathJax.Hub.Insert(MathJax.InputJax.TeX.Definitions.macros,{
+    cancel: ["Extension","cancel"],
+    bcancel: ["Extension","cancel"],
+    xcancel: ["Extension","cancel"],
+    cancelto: ["Extension","cancel"]
+  });
+});
+</script>
+<script type="text/javascript" src="../MathJax.js?config=TeX-AMS_HTML-full"></script>
+
+</head>
+<body>
+
+<p>
+This page makes <code>\cancel</code>, <code>\bcancel</code>, 
+<code>\xcancel</code>, and <code>\cancelto</code> all be defined so that 
+they will load the <code>cancel.js</code> extension when first used.
+</p>
+
+<p>
+Here is the first usage:  \(\cancel{x+1}\).  It will cause the cancel 
+package to be loaded automatically.
+</p>
+
+</body>
+</html>

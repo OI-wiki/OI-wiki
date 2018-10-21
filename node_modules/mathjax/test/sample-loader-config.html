@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Load MathJax with in-line configuration after the page is ready</title>
+<!-- Copyright (c) 2012-2018 The MathJax Consortium -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript">
+//
+//  We wait for the onload function to show that MathJax is laoded after 
+//  the page is ready, and then use setTimeout to prove that MathJax is
+//  definitely loaded after the page is displayed and active.  MathJax is 
+//  loaded two seconds after the page is ready.
+//
+window.onload = function () {
+  setTimeout(function () {
+    var head = document.getElementsByTagName("head")[0], script;
+    script = document.createElement("script");
+    script.type = "text/x-mathjax-config";
+    script[(window.opera ? "innerHTML" : "text")] =
+      "MathJax.Hub.Config({\n" +
+      "  tex2jax: { inlineMath: [['$','$'], ['\\\\(','\\\\)']] }\n" +
+      "});"
+    head.appendChild(script);
+    script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "../MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    head.appendChild(script);
+  },2000)
+}
+</script>
+
+<style>
+h1 {
+  text-align: center;
+  background: #CCCCCC;
+  padding: .2em 1em;
+  border-top: 3px solid #666666;
+  border-bottom: 3px solid #999999;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Adding MathJax with In-Line Configuration</h1>
+
+<p>
+When $a \ne 0$, there are two solutions to $ax^2 + bx + c = 0$ and they are
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+</p>
+
+</body>
+</html>

@@ -50,7 +50,7 @@
 
 我们令 $A_0$ 表示 $A$ 的前一半，$A_1$ 表示区间的后一半，那么 $A_0$ 就是 A 下标最大值的最高位为 $0$，他的子集就是他本身的子集（因为最高位为 $0$ 了），但是 $A_1$ 的最高位是 $1$，他满足条件的子集不仅仅是他本身，还包最高位为 $0$ 的子集，即
 
-$$FWT[A] = merge(FWT[A_0], FWT[A_0] + FWT[A_1])$$
+$FWT[A] = merge(FWT[A_0], FWT[A_0] + FWT[A_1])$
 
 其中 merge 表示像字符串拼接一样把它们拼起来， $+$ 就是普通加法，表示对应二进制位相加。
 
@@ -58,15 +58,15 @@ $$FWT[A] = merge(FWT[A_0], FWT[A_0] + FWT[A_1])$$
 
 接下来就是反演了，其实反演是很简单的，既然知道了 $A_0$ 的本身的子集是他自己 ($A_0 = FAT[A_0]$)，$A_1$ 的子集是 $FAT[A_0] + FAT[A_1]（A_1'= A_0' + A_1'$）, 那就很简单的得出反演的递推式了：
 
-$$UFWT[A'] = merge(UFWT[A_0'], UFWT[A_1'] - UFWT[A_0'])$$
+$UFWT[A'] = merge(UFWT[A_0'], UFWT[A_1'] - UFWT[A_0'])$
 
 ### 与运算
 
 与运算类比或运算可以得到类似结论
 
-$$FWT[A] = merge(FWT[A_0] + FWT[A_1], FWT[A_1])$$
+$FWT[A] = merge(FWT[A_0] + FWT[A_1], FWT[A_1])$
 
-$$UFWT[A'] = merge(UFWT[A_0'] - UFWT[A_1'], UFWT[A_1'])$$
+$UFWT[A'] = merge(UFWT[A_0'] - UFWT[A_1'], UFWT[A_1'])$
 
 ### 异或运算
 
@@ -84,9 +84,9 @@ $A[i] = \\sum_{C_1}A[j] - \\sum_{C_2}A[j]$ ($C_1$ 表示 $i \\And j$ 奇偶性�
 
 结论：
 
-$$FWT[A] = merge(FWT[A_0] + FWT[A_1], FWT[A_0] - FWT[A_1])$$
+$FWT[A] = merge(FWT[A_0] + FWT[A_1], FWT[A_0] - FWT[A_1])$
 
-$$UFWT[A'] - merge(\\frac{FWT[A_0'] + FWT[A_1']}{2}, \\frac{FWT[A_0'] - FWT[A_1']}{2})$$
+$UFWT[A'] - merge(\\frac{FWT[A_0'] + FWT[A_1']}{2}, \\frac{FWT[A_0'] - FWT[A_1']}{2})$
 
 ### 同或运算
 
@@ -94,6 +94,6 @@ $$UFWT[A'] - merge(\\frac{FWT[A_0'] + FWT[A_1']}{2}, \\frac{FWT[A_0'] - FWT[A_1'
 
 $A[i] = \\sum_{C_1}A[j] - \\sum_{C_2}A[j]$ ($C_1$ 表示 $i|j$ 奇偶性为 $0$，$C_2$ 表示 $i|j$ 的奇偶性为 $1$)
 
-$$FWT[A] = merge(FWT[A_1] - FWT[A_0], FWT[A_1] + FWT[A_0])$$
+$FWT[A] = merge(FWT[A_1] - FWT[A_0], FWT[A_1] + FWT[A_0])$
 
-$$UFWT[A'] = merge(\\frac{FWT[A_1'] - FWT[A_0']}{2}, \\frac{FWT[A_1'] + FWT[A_0']}{2})$$
+$UFWT[A'] = merge(\\frac{FWT[A_1'] - FWT[A_0']}{2}, \\frac{FWT[A_1'] + FWT[A_0']}{2})$

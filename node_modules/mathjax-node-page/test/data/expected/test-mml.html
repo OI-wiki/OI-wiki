@@ -1,0 +1,739 @@
+<!DOCTYPE html><html><head>
+    <meta charset="UTF-8">
+    <title>mathjax-node-page test file</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <h1>A very basic test</h1>
+    <p>
+        Just some basic configuration to build upon for tests, demos etc. Meant to be forked or based upon. <span class="mjpage mjpage__block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="LaTeX">
+  <mi>L</mi>
+  <mi>a</mi>
+  <mi>T</mi>
+  <mi>e</mi>
+  <mi>X</mi>
+</math></span>, <span class="mjpage"><math xmlns="http://www.w3.org/1998/Math/MathML" alttext="LaTeX">
+  <mi>L</mi>
+  <mi>a</mi>
+  <mi>T</mi>
+  <mi>e</mi>
+  <mi>X</mi>
+</math></span>, <span class="mjpage"><math xmlns="http://www.w3.org/1998/Math/MathML" alttext="asciimath">
+  <mstyle displaystyle="true">
+    <mi>a</mi>
+    <mi>s</mi>
+    <mi>c</mi>
+    <mi>i</mi>
+    <mi>i</mi>
+    <mi>m</mi>
+    <mi>a</mi>
+    <mi>t</mi>
+    <mi>h</mi>
+  </mstyle>
+</math></span>,
+        <span class="mjpage"><math xmlns="http://www.w3.org/1998/Math/MathML" alttext="Equation">
+  <mtext>MathML</mtext>
+</math></span>
+    </p>
+
+    <h1>Sample MathJax Equations</h1>
+
+    <blockquote>
+
+    <h2>The Lorenz Equations</h2>
+
+    <p>
+    <span class="mjpage mjpage__block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="\begin{align}
+    \dot{x} &amp; = \sigma(y-x) \\
+    \dot{y} &amp; = \rho x - y - xz \\
+    \dot{z} &amp; = -\beta z + xy
+    \end{align}">
+  <mtable columnalign="right left right left right left right left right left right left" rowspacing="3pt" columnspacing="0em 2em 0em 2em 0em 2em 0em 2em 0em 2em 0em" displaystyle="true">
+    <mtr>
+      <mtd>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mover>
+            <mi>x</mi>
+            <mo>˙<!-- ˙ --></mo>
+          </mover>
+        </mrow>
+      </mtd>
+      <mtd>
+        <mi></mi>
+        <mo>=</mo>
+        <mi>σ<!-- σ --></mi>
+        <mo stretchy="false">(</mo>
+        <mi>y</mi>
+        <mo>−<!-- − --></mo>
+        <mi>x</mi>
+        <mo stretchy="false">)</mo>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mover>
+            <mi>y</mi>
+            <mo>˙<!-- ˙ --></mo>
+          </mover>
+        </mrow>
+      </mtd>
+      <mtd>
+        <mi></mi>
+        <mo>=</mo>
+        <mi>ρ<!-- ρ --></mi>
+        <mi>x</mi>
+        <mo>−<!-- − --></mo>
+        <mi>y</mi>
+        <mo>−<!-- − --></mo>
+        <mi>x</mi>
+        <mi>z</mi>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mover>
+            <mi>z</mi>
+            <mo>˙<!-- ˙ --></mo>
+          </mover>
+        </mrow>
+      </mtd>
+      <mtd>
+        <mi></mi>
+        <mo>=</mo>
+        <mo>−<!-- − --></mo>
+        <mi>β<!-- β --></mi>
+        <mi>z</mi>
+        <mo>+</mo>
+        <mi>x</mi>
+        <mi>y</mi>
+      </mtd>
+    </mtr>
+  </mtable>
+</math></span>
+    </p>
+
+    <h2>The Cauchy-Schwarz Inequality</h2>
+
+    <p><span class="mjpage mjpage__block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="
+    \left( \sum_{k=1}^n a_k b_k \right)^{\!\!2} \leq
+     \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
+    ">
+  <msup>
+    <mrow>
+      <mo>(</mo>
+      <munderover>
+        <mo>∑<!-- ∑ --></mo>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mi>k</mi>
+          <mo>=</mo>
+          <mn>1</mn>
+        </mrow>
+        <mi>n</mi>
+      </munderover>
+      <msub>
+        <mi>a</mi>
+        <mi>k</mi>
+      </msub>
+      <msub>
+        <mi>b</mi>
+        <mi>k</mi>
+      </msub>
+      <mo>)</mo>
+    </mrow>
+    <mrow class="MJX-TeXAtom-ORD">
+      <mspace width="negativethinmathspace"></mspace>
+      <mspace width="negativethinmathspace"></mspace>
+      <mn>2</mn>
+    </mrow>
+  </msup>
+  <mo>≤<!-- ≤ --></mo>
+  <mrow>
+    <mo>(</mo>
+    <munderover>
+      <mo>∑<!-- ∑ --></mo>
+      <mrow class="MJX-TeXAtom-ORD">
+        <mi>k</mi>
+        <mo>=</mo>
+        <mn>1</mn>
+      </mrow>
+      <mi>n</mi>
+    </munderover>
+    <msubsup>
+      <mi>a</mi>
+      <mi>k</mi>
+      <mn>2</mn>
+    </msubsup>
+    <mo>)</mo>
+  </mrow>
+  <mrow>
+    <mo>(</mo>
+    <munderover>
+      <mo>∑<!-- ∑ --></mo>
+      <mrow class="MJX-TeXAtom-ORD">
+        <mi>k</mi>
+        <mo>=</mo>
+        <mn>1</mn>
+      </mrow>
+      <mi>n</mi>
+    </munderover>
+    <msubsup>
+      <mi>b</mi>
+      <mi>k</mi>
+      <mn>2</mn>
+    </msubsup>
+    <mo>)</mo>
+  </mrow>
+</math></span></p>
+
+    <h2>A Cross Product Formula</h2>
+
+    <p><span class="mjpage mjpage__block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="
+      \mathbf{V}_1 \times \mathbf{V}_2 =
+       \begin{vmatrix}
+        \mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\
+        \frac{\partial X}{\partial u} &amp; \frac{\partial Y}{\partial u} &amp; 0 \\
+        \frac{\partial X}{\partial v} &amp; \frac{\partial Y}{\partial v} &amp; 0 \\
+       \end{vmatrix}
+    ">
+  <msub>
+    <mrow class="MJX-TeXAtom-ORD">
+      <mi mathvariant="bold">V</mi>
+    </mrow>
+    <mn>1</mn>
+  </msub>
+  <mo>×<!-- × --></mo>
+  <msub>
+    <mrow class="MJX-TeXAtom-ORD">
+      <mi mathvariant="bold">V</mi>
+    </mrow>
+    <mn>2</mn>
+  </msub>
+  <mo>=</mo>
+  <mrow>
+    <mo>|</mo>
+    <mtable rowspacing="4pt" columnspacing="1em">
+      <mtr>
+        <mtd>
+          <mrow class="MJX-TeXAtom-ORD">
+            <mi mathvariant="bold">i</mi>
+          </mrow>
+        </mtd>
+        <mtd>
+          <mrow class="MJX-TeXAtom-ORD">
+            <mi mathvariant="bold">j</mi>
+          </mrow>
+        </mtd>
+        <mtd>
+          <mrow class="MJX-TeXAtom-ORD">
+            <mi mathvariant="bold">k</mi>
+          </mrow>
+        </mtd>
+      </mtr>
+      <mtr>
+        <mtd>
+          <mfrac>
+            <mrow>
+              <mi mathvariant="normal">∂<!-- ∂ --></mi>
+              <mi>X</mi>
+            </mrow>
+            <mrow>
+              <mi mathvariant="normal">∂<!-- ∂ --></mi>
+              <mi>u</mi>
+            </mrow>
+          </mfrac>
+        </mtd>
+        <mtd>
+          <mfrac>
+            <mrow>
+              <mi mathvariant="normal">∂<!-- ∂ --></mi>
+              <mi>Y</mi>
+            </mrow>
+            <mrow>
+              <mi mathvariant="normal">∂<!-- ∂ --></mi>
+              <mi>u</mi>
+            </mrow>
+          </mfrac>
+        </mtd>
+        <mtd>
+          <mn>0</mn>
+        </mtd>
+      </mtr>
+      <mtr>
+        <mtd>
+          <mfrac>
+            <mrow>
+              <mi mathvariant="normal">∂<!-- ∂ --></mi>
+              <mi>X</mi>
+            </mrow>
+            <mrow>
+              <mi mathvariant="normal">∂<!-- ∂ --></mi>
+              <mi>v</mi>
+            </mrow>
+          </mfrac>
+        </mtd>
+        <mtd>
+          <mfrac>
+            <mrow>
+              <mi mathvariant="normal">∂<!-- ∂ --></mi>
+              <mi>Y</mi>
+            </mrow>
+            <mrow>
+              <mi mathvariant="normal">∂<!-- ∂ --></mi>
+              <mi>v</mi>
+            </mrow>
+          </mfrac>
+        </mtd>
+        <mtd>
+          <mn>0</mn>
+        </mtd>
+      </mtr>
+    </mtable>
+    <mo>|</mo>
+  </mrow>
+</math></span></p>
+
+    <h2>The probability of getting <span class="mjpage"><math xmlns="http://www.w3.org/1998/Math/MathML" alttext="k">
+  <mi>k</mi>
+</math></span> heads when flipping <span class="mjpage"><math xmlns="http://www.w3.org/1998/Math/MathML" alttext="n">
+  <mi>n</mi>
+</math></span> coins is:</h2>
+
+    <p><span class="mjpage mjpage__block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="P(E) = {n \choose k} p^k (1-p)^{ n-k} ">
+  <mi>P</mi>
+  <mo stretchy="false">(</mo>
+  <mi>E</mi>
+  <mo stretchy="false">)</mo>
+  <mo>=</mo>
+  <mrow class="MJX-TeXAtom-ORD">
+    <mrow>
+      <mstyle scriptlevel="0">
+        <mrow class="MJX-TeXAtom-OPEN">
+          <mo maxsize="2.047em" minsize="2.047em">(</mo>
+        </mrow>
+      </mstyle>
+      <mfrac linethickness="0">
+        <mi>n</mi>
+        <mi>k</mi>
+      </mfrac>
+      <mstyle scriptlevel="0">
+        <mrow class="MJX-TeXAtom-CLOSE">
+          <mo maxsize="2.047em" minsize="2.047em">)</mo>
+        </mrow>
+      </mstyle>
+    </mrow>
+  </mrow>
+  <msup>
+    <mi>p</mi>
+    <mi>k</mi>
+  </msup>
+  <mo stretchy="false">(</mo>
+  <mn>1</mn>
+  <mo>−<!-- − --></mo>
+  <mi>p</mi>
+  <msup>
+    <mo stretchy="false">)</mo>
+    <mrow class="MJX-TeXAtom-ORD">
+      <mi>n</mi>
+      <mo>−<!-- − --></mo>
+      <mi>k</mi>
+    </mrow>
+  </msup>
+</math></span></p>
+
+    <h2>An Identity of Ramanujan</h2>
+
+    <p><span class="mjpage mjpage__block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="
+       \frac{1}{(\sqrt{\phi \sqrt{5}}-\phi) e^{\frac25 \pi}} =
+         1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}}
+          {1+\frac{e^{-8\pi}} {1+\ldots} } } }
+    ">
+  <mfrac>
+    <mn>1</mn>
+    <mrow>
+      <mo stretchy="false">(</mo>
+      <msqrt>
+        <mi>ϕ<!-- ϕ --></mi>
+        <msqrt>
+          <mn>5</mn>
+        </msqrt>
+      </msqrt>
+      <mo>−<!-- − --></mo>
+      <mi>ϕ<!-- ϕ --></mi>
+      <mo stretchy="false">)</mo>
+      <msup>
+        <mi>e</mi>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mfrac>
+            <mn>2</mn>
+            <mn>5</mn>
+          </mfrac>
+          <mi>π<!-- π --></mi>
+        </mrow>
+      </msup>
+    </mrow>
+  </mfrac>
+  <mo>=</mo>
+  <mn>1</mn>
+  <mo>+</mo>
+  <mfrac>
+    <msup>
+      <mi>e</mi>
+      <mrow class="MJX-TeXAtom-ORD">
+        <mo>−<!-- − --></mo>
+        <mn>2</mn>
+        <mi>π<!-- π --></mi>
+      </mrow>
+    </msup>
+    <mrow>
+      <mn>1</mn>
+      <mo>+</mo>
+      <mfrac>
+        <msup>
+          <mi>e</mi>
+          <mrow class="MJX-TeXAtom-ORD">
+            <mo>−<!-- − --></mo>
+            <mn>4</mn>
+            <mi>π<!-- π --></mi>
+          </mrow>
+        </msup>
+        <mrow>
+          <mn>1</mn>
+          <mo>+</mo>
+          <mfrac>
+            <msup>
+              <mi>e</mi>
+              <mrow class="MJX-TeXAtom-ORD">
+                <mo>−<!-- − --></mo>
+                <mn>6</mn>
+                <mi>π<!-- π --></mi>
+              </mrow>
+            </msup>
+            <mrow>
+              <mn>1</mn>
+              <mo>+</mo>
+              <mfrac>
+                <msup>
+                  <mi>e</mi>
+                  <mrow class="MJX-TeXAtom-ORD">
+                    <mo>−<!-- − --></mo>
+                    <mn>8</mn>
+                    <mi>π<!-- π --></mi>
+                  </mrow>
+                </msup>
+                <mrow>
+                  <mn>1</mn>
+                  <mo>+</mo>
+                  <mo>…<!-- … --></mo>
+                </mrow>
+              </mfrac>
+            </mrow>
+          </mfrac>
+        </mrow>
+      </mfrac>
+    </mrow>
+  </mfrac>
+</math></span></p>
+
+    <h2>A Rogers-Ramanujan Identity</h2>
+
+    <p><span class="mjpage mjpage__block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="
+      1 +  \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots =
+        \prod_{j=0}^{\infty}\frac{1}{(1-q^{5j+2})(1-q^{5j+3})},
+         \quad\quad \text{for $|q|<1$}.
+    ">
+  <mn>1</mn>
+  <mo>+</mo>
+  <mfrac>
+    <msup>
+      <mi>q</mi>
+      <mn>2</mn>
+    </msup>
+    <mrow>
+      <mo stretchy="false">(</mo>
+      <mn>1</mn>
+      <mo>−<!-- − --></mo>
+      <mi>q</mi>
+      <mo stretchy="false">)</mo>
+    </mrow>
+  </mfrac>
+  <mo>+</mo>
+  <mfrac>
+    <msup>
+      <mi>q</mi>
+      <mn>6</mn>
+    </msup>
+    <mrow>
+      <mo stretchy="false">(</mo>
+      <mn>1</mn>
+      <mo>−<!-- − --></mo>
+      <mi>q</mi>
+      <mo stretchy="false">)</mo>
+      <mo stretchy="false">(</mo>
+      <mn>1</mn>
+      <mo>−<!-- − --></mo>
+      <msup>
+        <mi>q</mi>
+        <mn>2</mn>
+      </msup>
+      <mo stretchy="false">)</mo>
+    </mrow>
+  </mfrac>
+  <mo>+</mo>
+  <mo>⋯<!-- ⋯ --></mo>
+  <mo>=</mo>
+  <munderover>
+    <mo>∏<!-- ∏ --></mo>
+    <mrow class="MJX-TeXAtom-ORD">
+      <mi>j</mi>
+      <mo>=</mo>
+      <mn>0</mn>
+    </mrow>
+    <mrow class="MJX-TeXAtom-ORD">
+      <mi mathvariant="normal">∞<!-- ∞ --></mi>
+    </mrow>
+  </munderover>
+  <mfrac>
+    <mn>1</mn>
+    <mrow>
+      <mo stretchy="false">(</mo>
+      <mn>1</mn>
+      <mo>−<!-- − --></mo>
+      <msup>
+        <mi>q</mi>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mn>5</mn>
+          <mi>j</mi>
+          <mo>+</mo>
+          <mn>2</mn>
+        </mrow>
+      </msup>
+      <mo stretchy="false">)</mo>
+      <mo stretchy="false">(</mo>
+      <mn>1</mn>
+      <mo>−<!-- − --></mo>
+      <msup>
+        <mi>q</mi>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mn>5</mn>
+          <mi>j</mi>
+          <mo>+</mo>
+          <mn>3</mn>
+        </mrow>
+      </msup>
+      <mo stretchy="false">)</mo>
+    </mrow>
+  </mfrac>
+  <mo>,</mo>
+  <mspace width="1em"></mspace>
+  <mspace width="1em"></mspace>
+  <mrow>
+    <mtext>for&nbsp;</mtext>
+    <mrow class="MJX-TeXAtom-ORD">
+      <mrow class="MJX-TeXAtom-ORD">
+        <mo stretchy="false">|</mo>
+      </mrow>
+      <mi>q</mi>
+      <mrow class="MJX-TeXAtom-ORD">
+        <mo stretchy="false">|</mo>
+      </mrow>
+      <mo>&lt;</mo>
+      <mn>1</mn>
+    </mrow>
+  </mrow>
+  <mo>.</mo>
+</math></span></p>
+
+    <h2>Maxwell's Equations</h2>
+
+    <p>
+    <span class="mjpage mjpage__block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="\begin{align}
+      \nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &amp; = \frac{4\pi}{c}\vec{\mathbf{j}} \\
+      \nabla \cdot \vec{\mathbf{E}} &amp; = 4 \pi \rho \\
+      \nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} &amp; = \vec{\mathbf{0}} \\
+      \nabla \cdot \vec{\mathbf{B}} &amp; = 0
+    \end{align}">
+  <mtable columnalign="right left right left right left right left right left right left" rowspacing="3pt" columnspacing="0em 2em 0em 2em 0em 2em 0em 2em 0em 2em 0em" displaystyle="true">
+    <mtr>
+      <mtd>
+        <mi mathvariant="normal">∇<!-- ∇ --></mi>
+        <mo>×<!-- × --></mo>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mover>
+            <mrow class="MJX-TeXAtom-ORD">
+              <mi mathvariant="bold">B</mi>
+            </mrow>
+            <mo stretchy="false">→<!-- → --></mo>
+          </mover>
+        </mrow>
+        <mo>−<!-- − --></mo>
+        <mspace width="thinmathspace"></mspace>
+        <mfrac>
+          <mn>1</mn>
+          <mi>c</mi>
+        </mfrac>
+        <mspace width="thinmathspace"></mspace>
+        <mfrac>
+          <mrow>
+            <mi mathvariant="normal">∂<!-- ∂ --></mi>
+            <mrow class="MJX-TeXAtom-ORD">
+              <mover>
+                <mrow class="MJX-TeXAtom-ORD">
+                  <mi mathvariant="bold">E</mi>
+                </mrow>
+                <mo stretchy="false">→<!-- → --></mo>
+              </mover>
+            </mrow>
+          </mrow>
+          <mrow>
+            <mi mathvariant="normal">∂<!-- ∂ --></mi>
+            <mi>t</mi>
+          </mrow>
+        </mfrac>
+      </mtd>
+      <mtd>
+        <mi></mi>
+        <mo>=</mo>
+        <mfrac>
+          <mrow>
+            <mn>4</mn>
+            <mi>π<!-- π --></mi>
+          </mrow>
+          <mi>c</mi>
+        </mfrac>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mover>
+            <mrow class="MJX-TeXAtom-ORD">
+              <mi mathvariant="bold">j</mi>
+            </mrow>
+            <mo stretchy="false">→<!-- → --></mo>
+          </mover>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mi mathvariant="normal">∇<!-- ∇ --></mi>
+        <mo>⋅<!-- ⋅ --></mo>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mover>
+            <mrow class="MJX-TeXAtom-ORD">
+              <mi mathvariant="bold">E</mi>
+            </mrow>
+            <mo stretchy="false">→<!-- → --></mo>
+          </mover>
+        </mrow>
+      </mtd>
+      <mtd>
+        <mi></mi>
+        <mo>=</mo>
+        <mn>4</mn>
+        <mi>π<!-- π --></mi>
+        <mi>ρ<!-- ρ --></mi>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mi mathvariant="normal">∇<!-- ∇ --></mi>
+        <mo>×<!-- × --></mo>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mover>
+            <mrow class="MJX-TeXAtom-ORD">
+              <mi mathvariant="bold">E</mi>
+            </mrow>
+            <mo stretchy="false">→<!-- → --></mo>
+          </mover>
+        </mrow>
+        <mspace width="thinmathspace"></mspace>
+        <mo>+</mo>
+        <mspace width="thinmathspace"></mspace>
+        <mfrac>
+          <mn>1</mn>
+          <mi>c</mi>
+        </mfrac>
+        <mspace width="thinmathspace"></mspace>
+        <mfrac>
+          <mrow>
+            <mi mathvariant="normal">∂<!-- ∂ --></mi>
+            <mrow class="MJX-TeXAtom-ORD">
+              <mover>
+                <mrow class="MJX-TeXAtom-ORD">
+                  <mi mathvariant="bold">B</mi>
+                </mrow>
+                <mo stretchy="false">→<!-- → --></mo>
+              </mover>
+            </mrow>
+          </mrow>
+          <mrow>
+            <mi mathvariant="normal">∂<!-- ∂ --></mi>
+            <mi>t</mi>
+          </mrow>
+        </mfrac>
+      </mtd>
+      <mtd>
+        <mi></mi>
+        <mo>=</mo>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mover>
+            <mrow class="MJX-TeXAtom-ORD">
+              <mn mathvariant="bold">0</mn>
+            </mrow>
+            <mo stretchy="false">→<!-- → --></mo>
+          </mover>
+        </mrow>
+      </mtd>
+    </mtr>
+    <mtr>
+      <mtd>
+        <mi mathvariant="normal">∇<!-- ∇ --></mi>
+        <mo>⋅<!-- ⋅ --></mo>
+        <mrow class="MJX-TeXAtom-ORD">
+          <mover>
+            <mrow class="MJX-TeXAtom-ORD">
+              <mi mathvariant="bold">B</mi>
+            </mrow>
+            <mo stretchy="false">→<!-- → --></mo>
+          </mover>
+        </mrow>
+      </mtd>
+      <mtd>
+        <mi></mi>
+        <mo>=</mo>
+        <mn>0</mn>
+      </mtd>
+    </mtr>
+  </mtable>
+</math></span>
+    </p>
+
+    <h2>In-line Mathematics</h2>
+
+    <p>Finally, while display equations look good for a page of samples, the
+    ability to mix math and text in a paragraph is also important.  This
+    expression <span class="mjpage"><math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\sqrt{3x-1}+(1+x)^2">
+  <msqrt>
+    <mn>3</mn>
+    <mi>x</mi>
+    <mo>−<!-- − --></mo>
+    <mn>1</mn>
+  </msqrt>
+  <mo>+</mo>
+  <mo stretchy="false">(</mo>
+  <mn>1</mn>
+  <mo>+</mo>
+  <mi>x</mi>
+  <msup>
+    <mo stretchy="false">)</mo>
+    <mn>2</mn>
+  </msup>
+</math></span> is an example of an inline equation.  As
+    you see, MathJax equations can be used this way as well, without unduly
+    disturbing the spacing between lines.</p>
+
+
+    </blockquote>
+  
+
+</body></html>

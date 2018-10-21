@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+- stable
+sudo: false
+script:
+- npm install
+- npm test
+branches:
+  only:
+  - "/^\\d+\\.\\d+/"
+deploy:
+  provider: npm
+  email: manager@mathjax.org
+  api_key:
+    secure: cTkds6AqvCrkE9lAbBBjyDy7swjQEsGTCvLcjEyJemWH7ciNmtbwQ+Mzpk5bsL1i734CS29fTUBY05bPdwhBXB19yC0LzDfuNd2OKd1GhKa5OUig3d3+iNZEb/bhlEL/N2pM3pNBLT3+HDWBWVPPzDOCgSHYf355WmNlFIxrUtWbQQ7w5cX1d6ZKHVDkO0s9cl9eIQkX5aIKpsQM/N/tfkqPlF3OZuseTg7TU1wL+g6zqtsa0a1uhjXiCSRfDzgi4e2FUg9OBJHInbRho7MoZ9c8NrgCDTqwh1xJVAgi50HZpFAlhw3bBvWMzWLESLKUgmDOQc1/jzq6EhdUY1HMmryHPtvFIlyj0mWH88lZjUOqsCntG+t874ONYGkHF7I5q9VsX5LJNiZzASeXMymA1BP3fC33s/vGXen1H90JpdlGQXQvIXn6ZIQ9UiI1/bONuxVEUghnVRZHLTe2Nhy7s2s0OHTN23PmDVPHSzuM1FjEXXFaza/dGgOfi0ACRBPcqopQ2wxuCVDlmrrL+3r2o4Tp5F3f49KIrqNwO/GSnWX5H7GgxHKSh7CK1rUwqcpTumwYfY1Do/xdlu2D3I/IjZXO9TzDtZYJG1ye0BVTh44cECfBgBIZVmRH56Yjo5MvKEQwSSFfETKW4PKWoahbZIC4V99YWhoRqYqtb+OT0ow=
+  on:
+    tags: true

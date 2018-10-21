@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MathJax Signals Test Page</title>
+<!-- Copyright (c) 2010-2018 The MathJax Consortium -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--
+ | This example shows how to use MathJax's signal mechanism to find out 
+ | about what MathJax is doing, and to hook into various events as they 
+ | occur.
+-->
+
+<script type="text/x-mathjax-config">
+
+  //
+  //  Configure MathJax
+  //
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js","TeX/noUndefined.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+    TeX: {extensions: ["AMSmath.js","AMSsymbols.js"]}
+  });
+  //
+  //  Display messages when these files are loaded
+  //  (Note the difference between extensions and TeX.extensions,
+  //   and the difference between when noUndefind is loaded compared
+  //   to when it signals that it is ready)
+  //
+  MathJax.Hub.Register.LoadHook("[MathJax]/extensions/TeX/noUndefined.js",
+    function () {MathJax.Hub.Startup.signal.Post("*** noUndefined Loaded ***")});
+  MathJax.Hub.Register.LoadHook("[MathJax]/extensions/TeX/AMSmath.js",
+    function () {MathJax.Hub.Startup.signal.Post("*** AMSmath Loaded ***")});
+
+  //
+  //  Display a message that we are in the configuration code
+  //   (The Message function is not yet defined when this code
+  //    runs, so we can't use that here.  Post a signal
+  //    of our own, so it will be displayed along with all
+  //    the other signals).
+  //
+  MathJax.Hub.Startup.signal.Post("*** In Startup Configuration code ***");
+
+  //
+  //  When the "onLoad" message is posted, display a message.
+  //    (Since this hook is registered before the ones in the main body 
+  //     below, it runs before the code to print the "Startup: onLoad"
+  //     message, so this message shows up first in the output.)
+  //
+  MathJax.Hub.Register.StartupHook("onLoad",function () {
+    Message("*** The onLoad handler has run, page is ready to process ***");
+  });
+
+  //
+  //  This will be performed after MathJax has completed its
+  //  setup and typesetting run, which have already been
+  //  pushed onto the queue.
+  //    (Since the Message function isn't defined yet when this code
+  //     runs, we need to enclose it in a function so it will be
+  //     looked up later when it is defined.) 
+  //
+  MathJax.Hub.Queue(function () {Message("*** MathJax is done ***")});
+
+</script>
+<script type="text/javascript" src="../MathJax.js"></script>
+
+<style>
+  .output {
+    background-color: #F0F0F0;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    padding: 3px 1em;
+  }
+</style>
+
+</head>
+<body>
+
+<p>
+When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+</p>
+
+<p>
+Messages about mathematics:
+<pre id="MathMessages" class="output">
+</pre>
+</p>
+
+<p>
+All Messages:
+<pre id="AllMessages" class="output">
+</pre>
+</p>
+
+<script>
+(function () {
+  //
+  //  The output areas
+  //
+  var math = document.getElementById("MathMessages");
+  var all = document.getElementById("AllMessages");
+
+  //
+  //  A function to display messages in the "AllMessages" area.
+  //  We make it global so it can be used in the startup code above.
+  //
+  window.Message = function (message) {
+    MathJax.HTML.addText(all,message);
+    MathJax.HTML.addElement(all,"br");
+  };
+
+  //
+  //  Find out about "New Math" messages from the Hub and display them.
+  //    (Look up the TeX code for each new math element)
+  //
+  MathJax.Hub.Register.MessageHook("New Math",function (message) {
+    var script = MathJax.Hub.getJaxFor(message[1]).SourceElement();
+    MathJax.HTML.addText(math,message.join(" ")+": '"+script.text+"'");
+    MathJax.HTML.addElement(math,"br");
+  });
+
+  //
+  //  Find out about ALL startup and hub messages
+  //
+  MathJax.Hub.Startup.signal.Interest(function (message) {Message("Startup: "+message)});
+  MathJax.Hub.signal.Interest(function (message) {Message("Hub: "+message)});
+  //
+  //  Since signals are remembered, registering an interest will cause
+  //  use to receive all the past signals as well as new ones.
+  //  This marks the point were the above routines were called.
+  //
+  Message("##### events above this have already occurred #####");
+
+})();
+</script>
+
+</body>
+</html>

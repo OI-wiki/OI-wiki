@@ -18,7 +18,7 @@ Robert E. Tarjan (1948~) 美国人。
 
 Tarjan 发明了很多很有用的东西，下到 NOIP 上到 CTSC 难度的都有。
 
-【举例子：Tarjan算法，并查集，Splay 树，Tarjan离线求lca（Lowest Common Ancestor，最近公共祖先）等等】
+【举例子：Tarjan 算法，并查集，Splay 树，Tarjan 离线求 lca（Lowest Common Ancestor，最近公共祖先）等等】
 
 我们这里要介绍的是图论中的 Tarjan 算法，用来处理各种连通性相关的问题。
 
@@ -26,7 +26,7 @@ Tarjan 发明了很多很有用的东西，下到 NOIP 上到 CTSC 难度的都�
 
 方便起见，我们先定义一些东西。
 
-dfn(x)：节点 x 第一次被访问的时间戳(dfs number)
+dfn(x)：节点 x 第一次被访问的时间戳 (dfs number)
 
 low(x)：节点 x 所能访问到的点的 dfn 值的最小值
 
@@ -42,11 +42,11 @@ low(x)：节点 x 所能访问到的点的 dfn 值的最小值
 
 一棵 DFS 树被构造出来后，考虑图中的非树边。
 
-前向边(forward edge)：祖先→儿子
+前向边 (forward edge)：祖先→儿子
 
-后向边(backward edge)：儿子→祖先
+后向边 (backward edge)：儿子→祖先
 
-横叉边(cross edge)：没有祖先—儿子关系的
+横叉边 (cross edge)：没有祖先—儿子关系的
 
 注意：横叉边只会往 dfn 减小的方向连接
 
@@ -79,13 +79,13 @@ low(x)：节点 x 所能访问到的点的 dfn 值的最小值
 
 时间复杂度 $O(n+m)$
 
-## Garbow算法
+## Garbow 算法
 
 ## 应用
 
 我们可以将一张图的每个强连通分量都缩成一个点。
 
-然后这张图会变成一个DAG（为什么？）。
+然后这张图会变成一个 DAG（为什么？）。
 
 DAG 好啊，能拓扑排序了就能做很多事情了。
 

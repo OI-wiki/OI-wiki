@@ -37,7 +37,7 @@ $c[6]$ 管理的是 $a[5]$ & $a[6]$ ；$c[8]$ 则管理全部 $8$ 个数。
 
 ## 用法及操作
 
-那么问题来了，你是怎么知道 $c$ 管的 $a$ 的个数分别是多少呢？你那个 $1$ 个，$2$ 个，$8$ 个……是怎么来的呢？
+那么问题来了，你是怎么知道 $c$ 管的 $a$ 的个数分别是多少呢？你那个 $1$ 个，$2$ 个，$8$ 个…… 是怎么来的呢？
 这时，我们引入一个函数—— `lowbit`：
 
 ```cpp
@@ -99,4 +99,4 @@ int getsum(int x) //a[1]……a[x]的和
 ## 例题
 
 [传送门](https://www.luogu.org/problemnew/show/P3374)<br>
-[传送门2](https://www.luogu.org/problemnew/show/P3368)
+[传送门 2](https://www.luogu.org/problemnew/show/P3368)

@@ -1,0 +1,19 @@
+#! /usr/bin/perl
+
+#
+#  grep -l -r Copyright unpacked/ test | xargs -L 1 ./fixCopyright
+#
+
+foreach $file (@ARGV) {
+  next if ($file =~ m/\/confg\//);
+  next if ($file =~ m/\/extensions\/TeX\/mhchem3\//);
+  next if ($file =~ m/\/extensions\/a11y\/wgxpath\.install\.js/);
+  open(INFILE,"<",$file) || die "Can't open '$file' for reading: $!\n";
+  @lines = <INFILE>; close(INFILE);
+  $lines = join("",@lines);
+  $lines =~ s/Design Science, Inc\./The MathJax Consortium/;
+  $lines =~ s/(Copyright \(c\)) (\d\d\d\d)(-(\d\d)?\d\d)?/$1 $2-2018/;
+  open(OUTFILE,">",$file);
+  print OUTFILE $lines;
+  close(OUTFILE);
+}

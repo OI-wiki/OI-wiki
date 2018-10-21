@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MathJax Dynamic Math Test Page</title>
+<!-- Copyright (c) 2010-2018 The MathJax Consortium -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" src="../MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+input {margin-top: .7em}
+.output {
+  border: 1px solid black;
+  padding: 1em;
+  width: auto;
+  position: absolute; top: 0; left: 2em;
+  min-width: 20em;
+}
+.box {position: relative}
+</style>
+</head>
+<body>
+
+<script>
+  //
+  //  Use a closure to hide the local variables from the
+  //  global namespace
+  //
+  (function () {
+    var QUEUE = MathJax.Hub.queue;  // shorthand for the queue
+    var math = null, box = null;    // the element jax for the math output, and the box it's in
+
+    //
+    //  Hide and show the box (so it doesn't flicker as much)
+    //
+    var HIDEBOX = function () {box.style.visibility = "hidden"}
+    var SHOWBOX = function () {box.style.visibility = "visible"}
+
+    //
+    //  Get the element jax when MathJax has produced it.
+    //
+    QUEUE.Push(function () {
+      math = MathJax.Hub.getAllJax("MathOutput")[0];
+      box = document.getElementById("box");
+      SHOWBOX(); // box is initially hidden so the braces don't show
+    });
+
+    //
+    //  The onchange event handler that typesets the math entered
+    //  by the user.  Hide the box, then typeset, then show it again
+    //  so we don't see a flash as the math is cleared and replaced.
+    //
+    window.UpdateMath = function (TeX) {
+      QUEUE.Push(
+          HIDEBOX,
+          ["resetEquationNumbers",MathJax.InputJax.TeX],
+          ["Text",math,"\\displaystyle{"+TeX+"}"],
+          SHOWBOX
+      );
+    }
+  })();
+</script>
+
+<p>
+Type some \(\rm\TeX\) code and press RETURN:<br /> 
+<input id="MathInput" size="80" onchange="UpdateMath(this.value)" />
+</p>
+
+<p>You typed:</p>
+<div class="box" id="box" style="visibility:hidden">
+<div id="MathOutput" class="output">$${}$$</div>
+</div>
+
+<script>
+  //
+  //  IE doesn't fire onchange events for RETURN, so
+  //   use onkeypress to do a blur (and refocus) to
+  //   force the onchange to occur
+  //
+  if (MathJax.Hub.Browser.isMSIE) {
+    MathInput.onkeypress = function () {
+      if (window.event && window.event.keyCode === 13) {this.blur(); this.focus()}
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Equation List</title>
+<!-- Copyright (c) 2012-2018 The MathJax Consortium -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: { inlineMath: [['$','$']] }
+});
+</script>
+<script src="../MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script>
+var Equation = {
+  //
+  // onclick and onchange routines for buttons and type-in areas
+  // (avoids creating new closures for each button)
+  //
+  addEqn: function () {Equation.Add(this)},
+  removeEqn: function () {Equation.Remove(this)},
+  updateEqn: function () {Equation.Update(this)},
+
+  //
+  //  Add a new equation prior to the one where the plus button was pressed
+  //    Create a new equation DIV with +, -, tex, and typeset areas
+  //    Insert it into the list of equations at the right spot
+  //    Typeset it and show the results (the math is initially hidden to avoid flicker)
+  //
+  Add: function (input) {
+    var div = input.parentNode;
+    var eqn = MathJax.HTML.Element("div",{},[
+      ["input",{type:"button",value:"+",onclick:this.addEqn}],
+      ["input",{type:"button",value:"-",onclick:this.removeEqn}]," ",
+      ["input",{type:"text",size:"40",onchange:this.updateEqn,style:{"margin-right":"5em"}}],
+      ["span",{style:{visibility:"hidden"}},["${}$"]]
+    ]);
+    div.parentNode.insertBefore(eqn,div);
+    MathJax.Hub.Queue(
+      ["Typeset",MathJax.Hub,eqn],
+      ["Show",this,eqn]
+    );
+  },
+
+  //
+  //  Remove the equation and its buttons and typset form
+  //
+  Remove: function (input) {
+    var eqn = input.parentNode;
+    eqn.parentNode.removeChild(eqn);
+  },
+
+  //
+  //  Get the element jax for the associated equation,
+  //    hide the math, set its text and typeset it, then show it again
+  //
+  Update: function (input) {
+    var eqn = input.parentNode;
+    var math = MathJax.Hub.getAllJax(eqn)[0];
+    MathJax.Hub.Queue(
+      ["Hide",this,eqn],
+      ["Text",math,input.value],
+      ["Show",this,eqn]
+    );
+  },
+
+  //
+  //  Hide and show math (during typesetting, so you don't see the initial TeX code)
+  //
+  Hide: function (eqn) {eqn.lastChild.style.visibility = "hidden"},
+  Show: function (eqn) {eqn.lastChild.style.visibility = ""}
+}
+</script>
+
+</head>
+<body>
+
+<div id="eqn_list">
+<div><input type="button" value="+" onclick="Equation.Add(this)" id="add"/></div>
+</div>
+
+<script>
+Equation.Add(document.getElementById("add"));  // Create initial equation
+</script>
+
+</body>
+</html>

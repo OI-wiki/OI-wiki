@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- stable
+sudo: false
+script:
+- npm install
+- npm test
+deploy:
+  provider: npm
+  email: p.krautzberger@gmail.com
+  api_key:
+    secure: tLB1pYNPzdv/qINbm8PE83W1b0GEH3/B6VbsLzaDXsiHFJrKcQvF/e8/sEYicq4fO5pXN0fmX1cbmFzA/ds+DZPNDAm6poizlMUOXCA90VwClNgtmgSOVGsFtgpldtC1A/PLCFAYs4J47Uv+loXe0ILM73jujdMWApY09JBczL27y5H0UfTVJY70KoEudLn5LnUl4wx2eD7illnCXjmny2kO/RJqYH5M3oy3xcRnUmd/gKi2cqosoIXPpstENqfDzrszCkUdOOuhpNvPvm8GpG0FriwZHdF+EMUMNibUHEPPUyDHjUYCOMBfMtwSQW23VEebayXiDRV20noBSWPanSAV29Y4uQa1nrHr438nnmK9Z85sk9r4peONjjSSIz6nbijKPKSFmVoKcc7sJl8DyW552n8VWKrUzz+L9C1S1Jxoz1La7F0B7sJls9sntvVDSJljkyY+zk51WbcV4LTAPeH0MquNDDPVW3Kuq2c2LL7VOxxrFsJrrol8a7qtCTDQ801Z5XZ5lqzNxE5DjeKHoOTriDB7G5OtILfnNGHsfjdBl6pOPjqiBchCnI9t3Sxz6V53/5IirtRYnOca/WcboAWMTJyEp1V7ODRi0RJLkUOE4ndQwfjhN4SdSTgcBLLocLa2lPi/x7OXdrH2d2aZyHRx9VZMRD0X5NEED8nnnf8=
+  on:
+    tags: true
+    repo: pkra/mathjax-node-page

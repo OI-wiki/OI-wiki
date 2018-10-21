@@ -1,0 +1,13 @@
+{
+  "ecmaVersion": 6,
+  "libs": [
+    "browser"
+  ],
+  "plugins": {
+    "complete_strings": {},
+    "es_modules": {},
+    "lint": {},
+    "modules": {},
+    "node": {}
+  }
+}

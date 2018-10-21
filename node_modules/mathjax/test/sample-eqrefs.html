@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MathJax Equation References</title>
+<!-- Copyright (c) 2012-2018 The MathJax Consortium -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "all"} } });
+</script>
+<script type="text/javascript" src="../MathJax.js?config=TeX-AMS_HTML"></script>
+
+<style>
+h1 {
+  background: #CCCCCC;
+  padding: .2em 1em;
+  border-top: 3px solid #666666;
+  border-bottom: 3px solid #999999;
+}
+</style>
+
+</head>
+<body>
+
+<center>
+<h1>A test of Equation References</h1>
+</center>
+
+<div style="padding:0 2em">
+<hr>
+Here is a labeled equation:
+$$x+1\over\sqrt{1-x^2}\label{ref1}$$
+with a reference to ref1: \ref{ref1},
+and another numbered one with no label:
+$$x+1\over\sqrt{1-x^2}$$
+This one uses \nonumber:
+$$x+1\over\sqrt{1-x^2}\nonumber$$
+<p>
+<HR>
+<p>
+Here's one using the equation environment:
+\begin{equation}
+x+1\over\sqrt{1-x^2}
+\end{equation}
+and one with equation* environment:
+\begin{equation*}
+x+1\over\sqrt{1-x^2}
+\end{equation*}
+<p>
+<HR>
+<p>
+This is a forward reference [\ref{ref2}] and another \eqref{ref2} for the 
+following equation:
+$$x+1\over\sqrt{1-x^2}\label{ref2}$$
+More math:
+$$x+1\over\sqrt{1-x^2}$$
+Here is a ref inside math: \(\ref{ref2}+1\) and text after it.
+
+\begin{align} 
+x& = y_1-y_2+y_3-y_5+y_8-\dots 
+&& \text{by \eqref{ref1}}\\ 
+& = y'\circ y^* && \text{(by \eqref{ref3})}\\ 
+& = y(0) y' && \text {by Axiom 1.} 
+\end{align} 
+
+Here's a bad ref [\ref{ref4}] to a nonexistent label.
+<p>
+<HR>
+<p>
+An alignment:
+\begin{align}
+a&=b\label{ref3}\cr
+&=c+d
+\end{align}
+and a starred one:
+\begin{align*}
+a&=b\cr
+&=c+d
+\end{align*}
+
+</div>
+
+</body>
+</html>

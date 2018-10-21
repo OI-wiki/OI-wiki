@@ -16,15 +16,15 @@ By [hsfzLZH1](https://github.com/hsfzLZH1)
 
 ### 什么是四边形不等式？
 
-对于 $a&lt;b\\le c&lt;d$，如果有$f_{a,c}+f_{b,d}\\le f_{b,c}+f_{a,d}$，则称该数组满足四边形不等式，可以用通俗的方法表述为“交叉小于包含”。
+对于 $a&lt;b\\le c&lt;d$，如果有$f_{a,c}+f_{b,d}\\le f_{b,c}+f_{a,d}$，则称该数组满足四边形不等式，可以用通俗的方法表述为 “交叉小于包含”。
 
 两个定理：
 
-1.四边形不等式能优化的状态转移方程能表示为 $f_{i,j}=max{f_{i,k}+f\_{k+1,j}+cost(i,j)}(i\\le k\\le j)$。如果 $cost$ 函数同时满足单调性和四边形不等式，那么数组 $f$ 也满足四边形不等式。
+1\. 四边形不等式能优化的状态转移方程能表示为 $f_{i,j}=max{f_{i,k}+f\_{k+1,j}+cost(i,j)}(i\\le k\\le j)$。如果 $cost$ 函数同时满足单调性和四边形不等式，那么数组 $f$ 也满足四边形不等式。
 
 定义 $idx_{i,j}$ 为在转移 $f_{i,j}$ 的过程中在 $k=idx\_{i,j}$ 时取得最小值，那么有如下定理：
 
-2.如果 $f$ 数组满足四边形不等式，那么 $idx$ 函数满足单调性，即有 $idx_{i,j}\\le idx_{i,j+1}\\le idx\_{i+1,j+1}$ 。
+2\. 如果 $f$ 数组满足四边形不等式，那么 $idx$ 函数满足单调性，即有 $idx_{i,j}\\le idx_{i,j+1}\\le idx\_{i+1,j+1}$ 。
 
 证明会和题目解法一起 $qwq$ 
 
@@ -111,9 +111,9 @@ for(int i=n;i>=1;i--)
 
 ### 参考资料
 
-[NOIAu 的CSDN 博客](https://blog.csdn.net/noiau/article/details/72514812)
+[NOIAu 的 CSDN 博客](https://blog.csdn.net/noiau/article/details/72514812)
 
-## 单调队列&单调栈优化
+## 单调队列 & 单调栈优化
 
 学习本节前，请务必先学习 [单调队列](https://oi-wiki.org/ds/monotonous-queue/)。
 

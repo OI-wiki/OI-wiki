@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Preview of Textarea with MathJax Content</title>
+<!-- Copyright (c) 2012-2018 The MathJax Consortium -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<style>
+.changed { color: red }
+</style>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {autoNumber: "AMS"},
+      extensions: ["begingroup.js"],
+      noErrors: {disabled: true}
+    },
+    showProcessingMessages: false,
+    tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+  });
+</script>
+<script type="text/javascript" src="../MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script>
+var Preview = {
+  typeset: null,     // the typeset preview area (filled in by Init below)
+  preview: null,     // the untypeset preview    (filled in by Init below)
+  buffer: null,      // the new preview to be typeset (filled in by Init below)
+  numbers: [],       // the equation numbers per paragraph
+  labels: [],        // the equation labels per paragraph
+  defs: [],          // the definitions per paragraph
+
+  oldtext: '',       // used to see if an update is needed
+  pending: false,    // true when a restart is in the MathJax queue
+
+  colorDelay: 400,   // how long to leave changed paragraphs colored
+  ctimeout: null,    // timeout for changed style remover
+  labelDelay: 1250,  // how long to wait before reprocessing for label changes
+  ltimeout: null,    // timeout for changed labels
+
+  //
+  //  Get the preview and buffer DIV's
+  //
+  Init: function () {
+    this.typeset = document.getElementById("MathPreview");
+    this.buffer = document.createElement("div");
+    this.preview = document.createElement("div");
+  },
+
+  //
+  //  This gets called when a key is pressed in the textarea.
+  //
+  Update: function () {
+    var text = document.getElementById("MathInput").value;
+    text = text.replace(/^\s+/,'').replace(/\s+$/,'');
+    if (text !== this.oldtext) {
+      this.oldtext = text;
+      if (!this.pending) {
+        this.pending = true;
+        MathJax.Hub.Queue(["Restart",this]);
+      }
+    }
+  },
+
+  Restart: function (from) {
+    this.pending = false;
+    var text = this.oldtext.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    var text = "<p>"+text.replace(/\n\n+/g,"</p><p>")+"</p>";
+//    var text = text.replace(/\n\n+/g,"<p>");
+    this.buffer.innerHTML = text;
+    if (this.ctimeout) {clearTimeout(this.ctimeout); this.ctimeout = null}
+    if (this.ltimeout) {clearTimeout(this.ltimeout); this.ltimeout = null}
+    var update = this.CompareBuffers(from);
+    if (update.needed) {
+      MathJax.Hub.Queue(
+        ["PreTypeset",this,update],
+        ["Typeset",this,update],
+        ["PostTypeset",this,update]
+      );
+    }
+  },
+
+  CompareBuffers: function (from) {
+    var b1 = this.buffer.childNodes,
+        b2 = this.preview.childNodes,
+        i, m1 = b1.length, m2 = b2.length;
+    //
+    //  Make sure all top-level elements are containers
+    //
+    for (i = 0; i < m1; i++) {
+      var node = b1[i];
+      if (typeof(node.innerHTML) === "undefined") {
+        this.buffer.replaceChild(document.createElement("span"),node);
+        b1[i].appendChild(node);
+      }
+    }
+    //
+    //  Determine the range of elements to update
+    //
+    if (from != null) {
+      //
+      //  If from a starting point to the end, return the proper range
+      //
+      i = from; m1--; m2--;
+    } else {
+      //
+      //  Find first non-matching element, if any,
+      //    and the last non-matching element
+      //
+      m = Math.min(m1,m2);
+      for (i = 0; i < m; i++) {if (b1[i].innerHTML !== b2[i].innerHTML) break}
+      if (i === m && m1 === m2) {return {needed: false}}
+      while (m1 > i && m2 > i) {if (b1[--m1].innerHTML !== b2[--m2].innerHTML) break}
+    }
+    return {needed:true, start:i, end1:m1, end2:m2};
+  },
+
+  Typeset: function (update) {
+    return MathJax.Hub.Typeset(update.nodes);
+  },
+
+  PreTypeset: function (update) {
+    var TEX = MathJax.InputJax.TeX;
+    var i, m, n = 0, defs = [], m1 = update.end1, m2 = update.end2;
+    var b1 = this.buffer.childNodes,
+        b2 = this.typeset.childNodes;
+    //
+    //  Remove the change color, if any
+    //
+    if (this.changed) {this.Unmark()}
+
+    //
+    //  Determine the starting equation number
+    //
+    for (i = 0, m = update.start; i < m; i++) {
+      n += this.numbers[i];
+      defs = defs.concat(this.defs[i]);
+    }
+    TEX.resetEquationNumbers(n,true);
+    //
+    //  Pop any left over \begingroups and push a new one
+    //  Then define any macros from previous paragraphs
+    //
+    while (TEX.rootStack.top > 1) {TEX.rootStack.stack.pop(); TEX.rootStack.top--}
+    TEX.rootStack.Push(TEX.nsStack.nsFrame());
+    for (i = 0, m = defs.length; i < m; i++) {TEX.rootStack.Def.apply(TEX.rootStack,defs[i])}
+    i = this.i = update.start; this.refs = []; this.defs.all = [];
+
+    //
+    //  Remove differing elements from typeset copy
+    //  and add in the new (untypeset) elements.
+    //
+    m = m2+1; update.nodes = [];
+    var tail = b2[m];
+    this.recordNumbers(this.numbers.splice(i,m-i),n);
+    this.recordLabels(this.labels.splice(i,m-i));
+    this.recordDefs(this.defs.splice(i,m-i));
+    while (m2 >= i && b2[i]) {this.typeset.removeChild(b2[i]); m2--}
+    while (i <= m1 && b1[i]) {
+      this.numbers.splice(i,0,0); this.labels.splice(i,0,[]); this.defs.splice(i,0,[]);
+      var node = b1[i].cloneNode(true); update.nodes.push(node);
+      this.typeset.insertBefore(node,tail); i++;
+      if (node.className && node.className != "")
+        {node.className += " changed"} else {node.className = "changed"}
+    }
+    //
+    //  Swap buffers and set up the new buffer for the next change
+    //
+    this.preview = this.buffer; this.buffer = document.createElement("div");
+    this.incremental = true;
+  },
+
+  recordNumbers: function (numbers,top) {
+    this.oldtop = this.newtop = top;
+    for (var i = 0, m = numbers.length; i < m; i++) {this.oldtop += numbers[i]}
+  },
+  recordLabels: function (labels) {
+    var AMS = MathJax.Extension["TeX/AMSmath"];
+    this.oldlabels = labels.join(''); this.newlabels = [];
+    if (labels && labels.length) {
+      for (var i = 0, m = labels.length; i < m; i++) {
+        for (var j = 0, n = labels[i].length; j < n; j++) {
+          delete AMS.labels[labels[i][j].split(/=/)[0]];
+        }
+      }
+    }
+  },
+  recordDefs: function (defs) {
+    var all = [];
+    for (var i = 0, m = defs.length; i < m; i++) {all.push(defs[i].all)}
+    this.defs.old = all.join(",");
+  },
+
+  PostTypeset: function (update) {
+    var incremental = this.incremental; this.incremental = false;
+    if (incremental && this.refs.length) {
+      var refs = this.refs; this.refs = [];
+      var queue = MathJax.Callback.Queue(["Reprocess",MathJax.Hub,refs,{}]);
+      return queue.Push(["PostTypeset",this,update]);
+    }
+    this.changed = update.nodes; this.ctimeout = setTimeout(this.Unmark,this.colorDelay);
+    if (update.nodes.length !== this.preview.childNodes.length) {
+      //  ###  Make delay be dynamic based on number of equations?  ###
+      if (this.needsRefresh || this.newlabels && this.newlabels.join('') !== this.oldlabels) {
+        this.needsRefresh = true;
+        this.ltimeout = setTimeout(this.Refresh,this.labelDelay);
+      } else {
+        if (this.newtop != this.oldtop || this.defs.all.join("") !== this.defs.old) {
+          if (this.needsRenumber == null) {this.needsRenumber = this.i}
+          else {this.needsRenumber = Math.min(this.needsRenumber,this.i)}
+        }
+        if (this.needsRenumber != null)
+          {this.ltimeout = setTimeout(this.Renumber,this.labelDelay)}
+      }
+    }
+  },
+  Unmark: function () {
+    var nodes = Preview.changed; Preview.changed = Preview.ctimeout = null;
+    for (var i = 0, m = nodes.length; i < m; i++) {Preview.removeChanged(nodes[i])}
+  },
+  Refresh: function () {
+    Preview.pending = true; Preview.needsRefresh = false; delete Preview.needsRenumber;
+    MathJax.Hub.Queue(["Restart",Preview,0]);
+  },
+  Renumber: function () {
+    if (Preview.needsRenumber < Preview.preview.childNodes.length) {
+      var n = Preview.needsRenumber;
+      Preview.pending = true; delete Preview.needsRenumber;
+      MathJax.Hub.Queue(["Restart",Preview,n]);
+    }
+  },
+
+  //
+  //  Remove the "changed" class from an element (leaving all other classes)
+  //
+  removeChanged: function (node) {
+    if (node.className) {
+      node.className = node.className.toString()
+                           .replace(/(^|\s+)changed(\s|$)/,"$2")
+                           .replace(/^\s+/,"");
+    }
+  }
+
+};
+
+MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
+  MathJax.InputJax.TeX.postfilterHooks.Add(function (data) {
+    if (Preview.incremental) {
+      var AMS = MathJax.Extension["TeX/AMSmath"];
+      var labels = Preview.labels[Preview.i];
+      for (var id in AMS.eqlabels) {if (AMS.eqlabels.hasOwnProperty(id)) {
+        labels.push(id+"="+AMS.eqlabels[id])
+      }}
+      Preview.newlabels = Preview.newlabels.concat(labels);
+    }
+  });
+});
+MathJax.Hub.Register.MessageHook("Begin Math Input",function () {
+  if (Preview.incremental) {Preview.eqDefs = []; Preview.eqDefs.all = []}
+});
+MathJax.Hub.Register.MessageHook("End Math Input",function () {
+  if (Preview.incremental) {
+    var AMS = MathJax.Extension["TeX/AMSmath"];
+    Preview.refs = Preview.refs.concat(AMS.refs); AMS.refs = [];
+    Preview.eqDefs.all = Preview.eqDefs.all.join("");
+    Preview.defs[Preview.i] = Preview.eqDefs;
+    Preview.defs.all.push(Preview.defs[Preview.i].all);
+    Preview.numbers[Preview.i] = AMS.startNumber - Preview.newtop;
+    Preview.newtop = AMS.startNumber;
+    Preview.i++;
+  }
+},5); // priority = 5 to make sure it is before AMS runs.
+
+MathJax.Hub.Register.StartupHook("TeX begingroup Ready",function () {
+  var STACK = MathJax.InputJax.TeX.eqnStack;
+  var DEF = STACK.Def;
+  STACK.Def = function () {
+    if (Preview.incremental) {
+      Preview.eqDefs.push([].slice.call(arguments,0));
+      Preview.eqDefs.all.push(arguments[0]+"{"+arguments[1]+"}");
+    }
+    DEF.apply(this,arguments);
+  }
+  //
+  //  Temporary hack to fix typo in begingroup.js
+  //
+  MathJax.InputJax.TeX.rootStack.stack[0].environments =
+    MathJax.InputJax.TeX.Definitions.environment;
+});
+
+</script>
+</head>
+<body>
+
+Type text with embedded TeX in the box below:<br/>
+
+<textarea id="MathInput" cols="60" rows="10" onkeyup="Preview.Update()" onkeydown="Preview.Update()" style="margin-top:5px">
+</textarea>
+<br/><br/>
+Preview is shown here:
+<div id="MathPreview" style="border:1px solid; padding: 3px; width:50%; margin-top:5px"></div>
+
+<script>
+Preview.Init();
+</script>
+
+</body>
+</html>

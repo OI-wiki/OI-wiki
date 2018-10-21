@@ -1,0 +1,11 @@
+#! /usr/bin/perl
+
+#
+#  git diff -U0 SHA...develop unpacked/extensions unpacked/jax unpacked/MathJax.js | ./getStrings | sort | uniq
+#
+
+while ($line = <>) {
+  chomp($line);
+  while ($line =~ s/("(\\.|.)*?"|'(\\.|.)*?')//) {print $1,"\n"}
+}
+1;

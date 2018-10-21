@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Preview of Textarea with MathJax Content</title>
+<!-- Copyright (c) 2012-2018 The MathJax Consortium -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    showProcessingMessages: false,
+    tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+  });
+</script>
+<script type="text/javascript" src="../MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script>
+var Preview = {
+  delay: 150,        // a short delay before processing after typing
+
+  typeset: null,     // the typeset preview area (filled in by Init below)
+  preview: null,     // the untypeset preview    (filled in by Init below)
+  buffer: null,      // the new preview to be typeset (filled in by Init below)
+
+  oldtext: '',       // used to see if an update is needed
+  pending: false,    // true when a restart is in the MathJax queue
+
+  //
+  //  Get the preview and buffer DIV's
+  //
+  Init: function () {
+    this.typeset = document.getElementById("MathPreview");
+    this.buffer = document.createElement("div");
+    this.review = document.createElement("div");
+  },
+
+  //
+  //  This gets called when a key is pressed in the textarea.
+  //
+  Update: function () {
+    var text = document.getElementById("MathInput").value;
+    if (text !== this.oldtext) {
+      this.oldtext = text;
+      if (!this.pending) {
+        this.pending = true;
+        MathJax.Hub.Queue(["Restart",this]);
+      }
+    }
+  },
+
+  Restart: function () {
+    var text = "<p>"+this.oldtext.replace(/\n\n+/g,"</p><p>")+"</p>";
+    this.buffer.innerHTML = this.typeset.innerHTML = text;
+    this.pending = false;
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub,this.typeset]);
+  }
+
+};
+
+</script>
+</head>
+<body>
+
+Type text in the box below:<br/>
+
+<textarea id="MathInput" cols="60" rows="10" onkeyup="Preview.Update()" style="margin-top:5px">
+</textarea>
+<br/><br/>
+Preview is shown here:
+<div id="MathPreview" style="border:1px solid; padding: 3px; width:50%; margin-top:5px"></div>
+
+<script>
+Preview.Init();
+</script>
+
+</body>
+</html>

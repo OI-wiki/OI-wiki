@@ -1,0 +1,224 @@
+/* -*- Mode: Javascript; indent-tabs-mode:nil; js-indent-level: 2 -*- */
+/* vim: set ts=2 et sw=2 tw=80: */
+
+/*************************************************************
+ *
+ *  MathJax/extensions/mml-preview.js
+ *  
+ *  Implements a fast preview using the NativeMML output jax
+ *  and then a slower update using whatever output jax the user
+ *  has selected.  The MathML is styled for those browsers that
+ *  don't support MathML natively.
+ *  
+ *  ---------------------------------------------------------------------
+ *  
+ *  Copyright (c) 2014-2018 The MathJax Consortium
+ * 
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+(function (HUB,HTML) {
+
+  var MMLpreview = MathJax.Extension["mml-preview"] = {
+    version: "2.7.5",
+
+    //
+    //  Configuration for the chunking of the main output
+    //  after the previews have been created
+    //
+    config: HUB.CombineConfig("mml-preview",{
+      EqnChunk: 5, EqnChunkFactor: 1, EqnChunkDelay: 15000
+    }),
+    
+    //
+    //  Styles used for browsers that don't have native MathML support
+    //
+    styles: {
+      "math": {
+        "font-family": "Times, 'Times New Roman', serif",
+        "display": "inline",
+        "text-indent": "0",
+        "white-space": "nowrap"
+      },
+      "math[display='block']": {
+        "display": "block",
+        "text-indent": "0",
+        "text-align": "center",
+        "margin": "1em 0"
+      },
+//      "math *[mathbackground]": {
+//        "display": "inline-block!important",
+//        "background-color": "attr(mathbackground)"
+//      },
+//      "math *[mathcolor]": {
+//        "color": "attr(mathcolor)"
+//      },
+
+      "mi": {"font-style": "italic"},
+      "mo": {"margin": "0 .15em"},
+      "mphantom": {"visibility": "hidden", "display":"inline-block"},
+//      "mspace": {
+//        "display": "inline-block!important",
+//        "width": "attr(width)",
+//        "height": "attr(height)"
+//      },
+      
+      "mfrac": {
+        "display": "inline-table!important",
+        "vertical-align": "middle",
+        "border-collapse": "collapse",
+        "margin": "0 .125em"
+      },
+      "mfrac > *": {
+        "display": "table-row!important"
+      },
+      "mfrac:not([linethickness='0']) > *:first-child": {
+        "border-bottom": "thin solid"
+      },
+      
+      "msqrt, mroot": {
+        "display":"-webkit-inline-flex!important",
+        "display ":"inline-flex!important",
+        "margin-left": ".6em",
+        "vertical-align": "middle",
+        "border-top": "solid thin",
+        "margin-top": "1px"
+      },
+      "msqrt:before, mroot:before": {
+        "margin-left": "-.6em",
+        "content": '"\u221A"'
+      },
+      "mroot > *:nth-child(2)": {
+        "margin-top": "-.5em",
+        "margin-right": ".25em",
+        "margin-left": "-.75em",
+        "font-size": "80%", "line-height": 1,
+        "-webkit-order": -1, "order": -1
+      },
+
+      "msubsup > *:nth-child(2), msub > *:nth-child(2)": {
+        "font-size": "80%", "line-height": 1,
+        "vertical-align": "sub"
+      },
+      "msubsup > *:nth-child(3), msup > *:nth-child(2)": {
+        "font-size": "80%", "line-height": 1,
+        "vertical-align": "super"
+      },
+      
+      "munderover, munder, mover": {
+        "display":"-webkit-inline-flex!important",
+        "-webkit-flex-direction": "column",
+        "display ":"inline-flex!important",
+        "flex-direction": "column"
+      },
+      "munderover > *:nth-child(2), munder > *:nth-child(2)": {
+        "font-size": "80%", "line-height": 1
+      },
+      "munderover > *:nth-child(3), mover > *:nth-child(2)": {
+        "-webkit-order": -1, "order": -1,
+        "font-size": "80%", "line-height": 1
+      },
+      "mover": {"vertical-align": "text-bottom"},
+      "munder": {"vertical-align": "text-top"},
+      "munderover": {"vertical-align": "middle"},
+      
+      "mtable": {
+        "display": "inline-table!important",
+        "vertical-align": "middle",
+        "border-collapse": "collapse"
+      },
+      "mtr, mlabeledtr": {
+        "display": "table-row!important"
+      },
+      "mtd": {
+        "display": "table-cell!important",
+        "padding-left": "1em",
+        "padding-top": ".5em"
+      },
+      "mtr > *:first-child": {"padding-left": 0},
+      "mtable > mtr:first-child > *": {"padding-top": 0},
+      "mlabeledtr > *:first-child": {"display":"none"},
+      
+      "semantics > *": {"display":"none!important"},
+      "semantics > *:first-child": {"display":"inline"}
+    },
+    
+    //
+    //  Ajust the chunking of the output jax
+    //
+    Config: function () {
+      HUB.Config({
+        "HTML-CSS": this.config,
+        "SVG": this.config
+      });
+    },
+
+    //
+    //  Insert a preview span, if there isn't one already,
+    //  and call the NativeMML output jax to create the preview
+    //
+    Preview: function (data) {
+      var preview = data.script.previousSibling;
+      if (!preview || preview.className !== HUB.config.preRemoveClass) {
+        preview = HTML.Element("span",{className:HUB.config.preRemoveClass});
+        data.script.parentNode.insertBefore(preview,data.script);
+      }
+      preview.innerHTML = "";
+      try {data.math.root.toNativeMML(preview)} catch (e) {}
+      return data;
+    },
+
+    //
+    //  Hook into the inut jax postFilter to create the previews as
+    //  the input jax are processed.
+    //
+    Register: function (name) {
+      HUB.Register.StartupHook(name+" Jax Require",function () {
+        var jax = MathJax.InputJax[name];
+        var delay = HUB.config.delayJaxRegistration;
+        HUB.config.delayJaxRegistration = true;
+        HUB.Register.StartupHook(name+" Jax Ready",function () {HUB.config.delayJaxRegistration = delay});
+        jax.require.push(
+          "[MathJax]/jax/output/NativeMML/config.js",
+          "[MathJax]/jax/output/NativeMML/jax.js"
+        );
+        jax.postfilterHooks.Add(["Preview",MathJax.Extension["mml-preview"]]);
+      });
+    }
+  }
+
+  //
+  //  Hook into each input jax
+  //
+  MMLpreview.Register("TeX");
+  MMLpreview.Register("MathML");
+  MMLpreview.Register("AsciiMath");
+  
+  HUB.Register.StartupHook("End Config",["Config",MMLpreview]);
+  
+  HUB.Register.StartupHook("onLoad",function () {
+    var test = HTML.addElement(document.body,"div",{
+      style: {
+        visibility:"hidden", position:"absolute", left:0, top:0,
+        height:"auto", width:"auto", "font-family":"serif", "line-height":"normal",
+        display:"block!important"
+      }
+    });
+    test.innerHTML = "<math><mfrac><mi>xx</mi><mi>yy</mi></mfrac></math>";
+    if (test.offsetHeight < test.offsetWidth) {MathJax.Ajax.Styles(MMLpreview.styles)}
+  });
+
+})(MathJax.Hub,MathJax.HTML);
+
+MathJax.Ajax.loadComplete("[MathJax]/extensions/mml-preview.js");
+

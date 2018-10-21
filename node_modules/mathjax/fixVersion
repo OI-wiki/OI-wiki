@@ -1,0 +1,23 @@
+#! /usr/bin/perl
+
+#
+#  grep -l -r -i ' "\?version"\?\(:\| =\) "' unpacked/ test package.json | grep -v "/local/" | xargs -L 1 ./fixVersion x.y.z
+#
+
+$V = shift;
+
+foreach $file (@ARGV) {
+  next if ($file =~ m/\/config\//);
+  next if ($file =~ m/\/extensions\/TeX\/mhchem3\//);
+  next if ($file =~ m/\/extensions\/a11y\//);
+  open(INFILE,"<",$file) || die "Can't open '$file' for reading: $!\n";
+  @lines = <INFILE>; close(INFILE);
+  $lines = join("",@lines);
+  $lines =~ s/( "?version"?(:| =) ")\d+(\.\d+)*(-beta([-.]\d+)?)?"/$1$V"/gi;
+  $lines =~ s/MathJax.version = "\d+(\.\d+)*(-beta([-.]\d+)?)?"/MathJax.version = "$V"/;
+  $lines =~ s/MathJax.fileversion = "\d+(\.\d+)*(-beta([-.]\d+)?)?"/MathJax.fileversion = "$V"/;
+  $lines =~ s/MathJax.cdnVersion = "(\d+(\.\d+)*(-beta([-.]\d+)?)?)?"/MathJax.cdnVersion = "$V"/;
+  open(OUTFILE,">",$file);
+  print OUTFILE $lines;
+  close(OUTFILE);
+}

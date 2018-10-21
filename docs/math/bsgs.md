@@ -20,13 +20,13 @@ $$
 
 注意到 $A,B$ 均小于 $\\lceil \\sqrt p \\rceil$，所以时间复杂度为 $O(\\sqrt q)$，用 map 的话会多一个 $\\log$.
 
-[BZOJ-2480](http://www.lydsy.com/JudgeOnline/problem.php?id=2480) 是一道模板题（可能是权限题），[BZOJ-3122](http://www.lydsy.com/JudgeOnline/problem.php?id=3122) 是一道略加变化的题，代码可以在 [Steaunk的博客](https://blog.csdn.net/Steaunk/article/details/78988376) 中看到.
+[BZOJ-2480](http://www.lydsy.com/JudgeOnline/problem.php?id=2480) 是一道模板题（可能是权限题），[BZOJ-3122](http://www.lydsy.com/JudgeOnline/problem.php?id=3122) 是一道略加变化的题，代码可以在 [Steaunk 的博客](https://blog.csdn.net/Steaunk/article/details/78988376) 中看到.
 
 ### 2.0 略微进阶篇
 
 求解
 
-$$ x^a \\equiv b \\bmod p $$
+$x^a \\equiv b \\bmod p$
 
 其中 $p$ 是个质数.
 
@@ -68,15 +68,15 @@ $\\therefore r = 0$.
 
 由于 $p$ 是质数，所以 $p$ 有 $\\varphi(p-1)$ 个原根，所以大概最小的原根为 $\\frac{p}{\\varphi(p-1)}=O(\\log\\log n)$，由于求每一个数时要枚举一遍 $p-1$ 所有的因数 $O(\\sqrt p)$ 来判断其是否为原根，最后再算上 **BSGS** 的复杂度 $O(\\sqrt{p})$，则复杂度约为 $O(\\sqrt{p}\\log \\log n)$.
 
-[BZOJ-1319](http://www.lydsy.com/JudgeOnline/problem.php?id=1319) 是一道模板题，代码可以在 [Steaunk的博客](https://blog.csdn.net/Steaunk/article/details/78988376) 中看到.
+[BZOJ-1319](http://www.lydsy.com/JudgeOnline/problem.php?id=1319) 是一道模板题，代码可以在 [Steaunk 的博客](https://blog.csdn.net/Steaunk/article/details/78988376) 中看到.
 
 ### 3.0 扩展篇
 
 上文提到的情况是 $c$ 为素数的情况，如果 $c$ 不是素数呢？
 
-这就需要用到扩展BSGS算法，不要求 $c$ 为素数！
+这就需要用到扩展 BSGS 算法，不要求 $c$ 为素数！
 
-扩展BSGS用到了同余的一条性质：
+扩展 BSGS 用到了同余的一条性质：
 
 令 $d=gcd(a,c) ,a=m \\times d,b=n \\times d,p=k \\times d$；
 则 $m \\times d \\equiv b \\times d (mod c \\times d)$ 等价于 $m \\equiv n(mod k)$
@@ -95,6 +95,6 @@ while(gcd(a,c)!=1){
 }
 ```
 
-消除完后，就变成了 $d \\times m^{x-num} \\equiv n (mod k)$，令 $x=i \\times m+j+num$，后面的做法就和普通BSGS一样了。
+消除完后，就变成了 $d \\times m^{x-num} \\equiv n (mod k)$，令 $x=i \\times m+j+num$，后面的做法就和普通 BSGS 一样了。
 
 注意，因为 $i,j \\le 0$，所以 $x \\le num$，但不排除解小于等于 $num$ 的情况，所以在消因子之前做一下 $\\Theta(\\log_2 p)$ 枚举，直接验证 $a^i mod c = b$，这样就能避免这种情况。

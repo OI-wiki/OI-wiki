@@ -50,7 +50,7 @@ $$
 
   定义两个数论函数 $f,g$ 的 $\\text{Dirichlet}$ 卷积为
 
-$$(f\*g)(n)=\\sum\_{d|n}f(d)g(\\frac{n}{d})$$
+$(f\*g)(n)=\\sum\_{d|n}f(d)g(\\frac{n}{d})$
 
 ### 性质
 
@@ -135,7 +135,7 @@ void getMu() {
 
   证明
 
-$$\\varphi\*1=\\text{ID}\\text{（ID 函数即 } f(x)=x\\text{）}$$
+$\\varphi\*1=\\text{ID}\\text{（ID 函数即 } f(x)=x\\text{）}$
 
   将 $n$ 分解质因数：$\\displaystyle n=\\prod\_{i=1}^k {p_i}^{c_i}$
 
@@ -165,21 +165,21 @@ $$
 
   如果有
 
-$$f(n)=\\sum\_{d|n}g(d)$$
+$f(n)=\\sum\_{d|n}g(d)$
 
   那么有
 
-$$g(n)=\\sum\_{d|n}\\mu(d)f(\\frac{n}{d})$$
+$g(n)=\\sum\_{d|n}\\mu(d)f(\\frac{n}{d})$
 
 ### 证明
 
--   **暴力计算**：
+- **暴力计算**：
 
-$$\\sum_{d|n}\\mu(d)f(\\frac{n}{d})=\\sum_{d|n}\\mu(d)\\sum_{k|\\frac{n}{d}}g(k)=\\sum_{k|n}g(k)\\sum\_{d|\\frac{n}{k}}\\mu(d)=g(n)$$
+$\\sum_{d|n}\\mu(d)f(\\frac{n}{d})=\\sum_{d|n}\\mu(d)\\sum_{k|\\frac{n}{d}}g(k)=\\sum_{k|n}g(k)\\sum\_{d|\\frac{n}{k}}\\mu(d)=g(n)$
 
   用 $\\displaystyle\\sum_{d|n}g(d)$ 来替换 $f(\\dfrac{n}{d})$，再变换求和顺序。最后一步转为的依据：$\\displaystyle\\sum_{d|n}\\mu(d)=[n=1]$，因此在 $\\dfrac{n}{k}=1$ 时第二个和式的值才为 $1$。此时 $n=k$，故原式等价于 $\\displaystyle\\sum\_{k|n}[n=k]\\cdot g(k)=g(n)$
 
--   **运用卷积**：
+- **运用卷积**：
 
   原问题为：已知 $f=g_1$，证明 $g=f_\\mu$
 
@@ -193,32 +193,32 @@ $$\\sum_{d|n}\\mu(d)f(\\frac{n}{d})=\\sum_{d|n}\\mu(d)\\sum_{k|\\frac{n}{d}}g(k)
 
   求值（多组数据）
 
-$$\\sum_{i=x}^{n}\\sum_{j=y}^{m}[\gcd(i,j)=k]\\qquad (1\\leqslant T,x,y,n,m,k\\leqslant 5\\times 10^4)$$
+$\\sum_{i=x}^{n}\\sum_{j=y}^{m}[\gcd(i,j)=k]\\qquad (1\\leqslant T,x,y,n,m,k\\leqslant 5\\times 10^4)$
 
   根据容斥原理，原式可以分成 $4$ 块来处理，每一块的式子都为
 
-$$\\sum_{i=1}^{n}\\sum_{j=1}^{m}[\gcd(i,j)=k]$$
+$\\sum_{i=1}^{n}\\sum_{j=1}^{m}[\gcd(i,j)=k]$
 
   考虑化简该式子
 
-$$\\sum_{i=1}^{\\lfloor\\frac{n}{k}\\rfloor}\\sum_{j=1}^{\\lfloor\\frac{m}{k}\\rfloor}[\gcd(i,j)=1]$$
+$\\sum_{i=1}^{\\lfloor\\frac{n}{k}\\rfloor}\\sum_{j=1}^{\\lfloor\\frac{m}{k}\\rfloor}[\gcd(i,j)=1]$
 
   因为 $\\gcd(i,j)=1$ 时对答案才用贡献，于是我们可以将其替换为 $\\epsilon(\\gcd(i,j))$（$\\epsilon(n)$ 当且仅当 $n=1$ 时值为 $1$ 否则为 $0$ ），故原式化为
 
-$$\\sum_{i=1}^{\\lfloor\\frac{n}{k}\\rfloor}\\sum_{j=1}^{\\lfloor\\frac{m}{k}\\rfloor}\\epsilon(\\gcd(i,j))$$
+$\\sum_{i=1}^{\\lfloor\\frac{n}{k}\\rfloor}\\sum_{j=1}^{\\lfloor\\frac{m}{k}\\rfloor}\\epsilon(\\gcd(i,j))$
 
   将 $\\epsilon$ 函数展开得到
 
-$$\\displaystyle\\sum_{i=1}^{\\lfloor\\frac{n}{k}\\rfloor}\\sum_{j=1}^{\\lfloor\\frac{m}{k}\\rfloor}\\sum\_{d| \\gcd(i,j)}\\mu(d)$$
+$\\displaystyle\\sum_{i=1}^{\\lfloor\\frac{n}{k}\\rfloor}\\sum_{j=1}^{\\lfloor\\frac{m}{k}\\rfloor}\\sum\_{d| \\gcd(i,j)}\\mu(d)$
 
   变换求和顺序，先枚举 $d|gcd(i,j)$ 可得
 
-$$\\displaystyle\\sum_{d=1}^{\\lfloor\\frac{n}{k}\\rfloor}\\mu(d)\\sum_{i=1}^{\\lfloor\\frac{n}{k}\\rfloor}d|i\\sum\_{j=1}^{\\lfloor\\frac{m}{k}\\rfloor}d|j$$
+$\\displaystyle\\sum_{d=1}^{\\lfloor\\frac{n}{k}\\rfloor}\\mu(d)\\sum_{i=1}^{\\lfloor\\frac{n}{k}\\rfloor}d|i\\sum\_{j=1}^{\\lfloor\\frac{m}{k}\\rfloor}d|j$
 
   （其中 $d|i$ 表示 $i$ 是 $d$ 的倍数时对答案有 $1$ 的贡献）
   易知 $1\\sim\\lfloor\\dfrac{n}{k}\\rfloor$ 中 $d$ 的倍数有 $\\lfloor\\dfrac{n}{kd}\\rfloor$ 个，故原式化为
 
-$$\\displaystyle\\sum\_{d=1}^{\\lfloor\\frac{n}{k}\\rfloor}\\mu(d) \\lfloor\\frac{n}{kd}\\rfloor\\lfloor\\frac{m}{kd}\\rfloor$$
+$\\displaystyle\\sum\_{d=1}^{\\lfloor\\frac{n}{k}\\rfloor}\\mu(d) \\lfloor\\frac{n}{kd}\\rfloor\\lfloor\\frac{m}{kd}\\rfloor$
 
   很显然，式子可以数论分块求解（注意：过程中默认 $n\\leqslant m$）。
 
@@ -274,29 +274,29 @@ int main() {
 
   求值（多组数据）
 
-$$\\sum\_{i=1}^n \\text{lcm}(i,n)\\qquad (1\\leqslant T\\leqslant 3\\times 10^5,1\\leqslant n\\leqslant 10^6)$$
+$\\sum\_{i=1}^n \\text{lcm}(i,n)\\qquad (1\\leqslant T\\leqslant 3\\times 10^5,1\\leqslant n\\leqslant 10^6)$
 
   易得原式即
 
-$$\\sum\_{i=1}^n \\frac{i\\cdot n}{\\gcd(i,n)}$$
+$\\sum\_{i=1}^n \\frac{i\\cdot n}{\\gcd(i,n)}$
 
   根据 $\\gcd(a,n)=1$ 时一定有 $\\gcd(n-a,n)=1$ ，可将原式化为
 
-$$\\frac{1}{2}\\cdot(\\sum_{i=1}^{n-1}\\frac{i\\cdot n}{\\gcd(i,n)}+\\sum_{i=n-1}^{1}\\frac{i\\cdot n}{\\gcd(i,n)})+n$$
+$\\frac{1}{2}\\cdot(\\sum_{i=1}^{n-1}\\frac{i\\cdot n}{\\gcd(i,n)}+\\sum_{i=n-1}^{1}\\frac{i\\cdot n}{\\gcd(i,n)})+n$
 
   上述式子中括号内的两个 $\\sum$ 对应的项相等，故又可以化为
 
-$$\\frac{1}{2}\\cdot \\sum\_{i=1}^{n-1}\\frac{n^2}{\\gcd(i,n)}+n$$
+$\\frac{1}{2}\\cdot \\sum\_{i=1}^{n-1}\\frac{n^2}{\\gcd(i,n)}+n$
 
   可以将相同的 $\\gcd(i,n)$ 合并在一起计算，故只需要统计 $\\gcd(i,n)=d$ 的个数。当 $\\gcd(i,n)=d$ 时，$\\displaystyle\\gcd(\\frac{i}{d},\\frac{n}{d})=1$，所以 $\\gcd(i,n)=d$ 的个数有 $\\displaystyle\\varphi(\\frac{n}{d})$ 个。
 
   故答案为
 
-$$ \\frac{1}{2}\\cdot\\sum\_{d|n}\\frac{n^2\\cdot\\varphi(\\frac{n}{d})}{d}+n$$
+$\\frac{1}{2}\\cdot\\sum\_{d|n}\\frac{n^2\\cdot\\varphi(\\frac{n}{d})}{d}+n$
 
   变换求和顺序，设 $\\displaystyle d'=\\frac{n}{d}$，式子化为
 
-$$\\frac{1}{2}n\\cdot\\sum\_{d'|n}d'\\cdot\\varphi(d')+n$$
+$\\frac{1}{2}n\\cdot\\sum\_{d'|n}d'\\cdot\\varphi(d')+n$
 
   设 $\\displaystyle \\text{g}(n)=\\sum\_{d|n} d\\cdot\\varphi(d)$，已知 $\\text{g}$ 为积性函数，于是可以 $\\Theta(n)$ 预处理。最后枚举 $d$，统计贡献即可。
 
@@ -342,51 +342,51 @@ int main() {
 }
 ```
 
-### [「BZOJ 2154」Crash的数字表格](https://www.lydsy.com/JudgeOnline/problem.php?id=2154)
+### [「BZOJ 2154」Crash 的数字表格](https://www.lydsy.com/JudgeOnline/problem.php?id=2154)
 
   求值（对 $20101009$ 取模）
 
-$$\\sum_{i=1}^n\\sum_{j=1}^m\\text{lcm}(i,j)\\qquad (n,m\\leqslant 10^7)$$
+$\\sum_{i=1}^n\\sum_{j=1}^m\\text{lcm}(i,j)\\qquad (n,m\\leqslant 10^7)$
 
   易知原式等价于
 
-$$\\sum_{i=1}^n\\sum_{j=1}^m\\frac{i\\cdot j}{\\gcd(i,j)}$$
+$\\sum_{i=1}^n\\sum_{j=1}^m\\frac{i\\cdot j}{\\gcd(i,j)}$
 
   枚举最大公因数 $d$，显然两个数除以 $d$ 得到的数互质
 
-$$\\sum_{i=1}^n\\sum_{j=1}^m\\sum\_{d|i,d|j,\\gcd(\\frac{i}{d},\\frac{j}{d})=1}\\frac{i\\cdot j}{d}$$
+$\\sum_{i=1}^n\\sum_{j=1}^m\\sum\_{d|i,d|j,\\gcd(\\frac{i}{d},\\frac{j}{d})=1}\\frac{i\\cdot j}{d}$
 
   非常经典的 $\\gcd$ 式子的化法
 
-$$\\sum_{d=1}^n d\\cdot\\sum_{i=1}^{\\lfloor\\frac{n}{d}\\rfloor}\\sum\_{j=1}^{\\lfloor\\frac{m}{d}\\rfloor}[\gcd(i,j)=1]\\ i\\cdot j$$
+$\\sum_{d=1}^n d\\cdot\\sum_{i=1}^{\\lfloor\\frac{n}{d}\\rfloor}\\sum\_{j=1}^{\\lfloor\\frac{m}{d}\\rfloor}[\gcd(i,j)=1]\\ i\\cdot j$
 
   后半段式子中，出现了互质数对之积的和，为了让式子更简洁就把它拿出来单独计算。于是我们记
 
-$$\\text{sum}(n,m)=\\sum_{i=1}^n\\sum_{j=1}^m [\gcd(i,j)=1]\\  i\\cdot j$$
+$\\text{sum}(n,m)=\\sum_{i=1}^n\\sum_{j=1}^m [\gcd(i,j)=1]\\  i\\cdot j$
 
   接下来对 $\\text{sum}(n,m)$ 进行化简。首先枚举约数，并将 $[\gcd(i,j)=1]$ 表示为 $\\epsilon(\\gcd(i,j))$
 
-$$\\sum_{d=1}^n\\sum_{d|i}^n\\sum\_{d|j}^m\\mu(d)\\cdot i\\cdot j$$
+$\\sum_{d=1}^n\\sum_{d|i}^n\\sum\_{d|j}^m\\mu(d)\\cdot i\\cdot j$
 
   设 $i=i'\\cdot d$，$j=j'\\cdot d$，显然式子可以变为
 
-$$\\sum_{d=1}^n\\mu(d)\\cdot d^2\\cdot\\sum_{i=1}^{\\lfloor\\frac{n}{d}\\rfloor}\\sum\_{j=1}^{\\lfloor\\frac{m}{d}\\rfloor}i\\cdot j$$
+$\\sum_{d=1}^n\\mu(d)\\cdot d^2\\cdot\\sum_{i=1}^{\\lfloor\\frac{n}{d}\\rfloor}\\sum\_{j=1}^{\\lfloor\\frac{m}{d}\\rfloor}i\\cdot j$
 
   观察上式，前半段可以预处理前缀和；后半段又是一个范围内数对之和，记
 
-$$g(n,m)=\\sum_{i=1}^n\\sum_{j=1}^m i\\cdot j=\\frac{n\\cdot(n+1)}{2}\\times\\frac{m\\cdot(m+1)}{2}$$
+$g(n,m)=\\sum_{i=1}^n\\sum_{j=1}^m i\\cdot j=\\frac{n\\cdot(n+1)}{2}\\times\\frac{m\\cdot(m+1)}{2}$
 
 可以 $\\Theta(1)$ 求解
 
   至此
 
-$$\\text{sum}(n,m)=\\sum\_{d=1}^n\\mu(d)\\cdot d^2\\cdot g(\\lfloor\\frac{n}{d}\\rfloor,\\lfloor\\frac{m}{d}\\rfloor)$$
+$\\text{sum}(n,m)=\\sum\_{d=1}^n\\mu(d)\\cdot d^2\\cdot g(\\lfloor\\frac{n}{d}\\rfloor,\\lfloor\\frac{m}{d}\\rfloor)$
 
   我们可以 $\\lfloor\\frac{n}{\\lfloor\\frac{n}{d}\\rfloor}\\rfloor$ 数论分块求解 $\\text{sum}(n,m)$ 函数。
 
   在求出 $\\text{sum}(n,m)$ 后，回到定义 $\\text{sum}$ 的地方，可得原式为
 
-$$\\sum\_{d=1}^n d\\cdot\\text{sum}(\\lfloor\\frac{n}{d}\\rfloor,\\lfloor\\frac{m}{d}\\rfloor)$$
+$\\sum\_{d=1}^n d\\cdot\\text{sum}(\\lfloor\\frac{n}{d}\\rfloor,\\lfloor\\frac{m}{d}\\rfloor)$
 
   可见这又是一个可以数论分块求解的式子！
 

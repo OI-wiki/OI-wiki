@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MathJax Equation Numbering</title>
+<!-- Copyright (c) 2012-2018 The MathJax Consortium -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+</script>
+<script type="text/javascript" src="../MathJax.js?config=TeX-AMS_HTML"></script>
+
+<style>
+h1 {
+  background: #CCCCCC;
+  padding: .2em 1em;
+  border-top: 3px solid #666666;
+  border-bottom: 3px solid #999999;
+}
+</style>
+
+</head>
+<body>
+
+<center>
+<h1>A test of Equation Numbering</h1>
+</center>
+
+<div style="padding:0 2em">
+<hr>
+Equation:
+
+\begin{equation}
+E = mc^2
+\end{equation}
+
+Equation*:
+
+\begin{equation*}
+E = mc^2
+\end{equation*}
+
+<hr>
+Brackets:
+
+\[E = mc^2\]
+
+Brackets tagged:
+
+\[E = mc^2\tag{x}\]
+
+<hr>
+Split:
+
+\begin{equation}
+\begin{split} 
+a& =b+c-d\\ 
+& \quad +e-f\\ 
+& =g+h\\ 
+& =i 
+\end{split} 
+\end{equation} 
+
+<hr>
+Multline:
+
+\begin{multline}
+  a+b+c+d+e+f+g\\
+  M+N+O+P+Q\\
+  R+S+T\\
+  u+v+w+x+y+z
+\end{multline}
+
+Multline*:
+
+\begin{multline*}
+  a+b+c+d+e+f+g\\
+  M+N+O+P+Q\\
+  R+S+T\\
+  u+v+w+x+y+z
+\end{multline*}
+
+<hr>
+Gather:
+
+\begin{gather} 
+a_1=b_1+c_1\\ 
+a_2=b_2+c_2-d_2+e_2 
+\end{gather} 
+
+Gather*:
+
+\begin{gather*} 
+a_1=b_1+c_1\\ 
+a_2=b_2+c_2-d_2+e_2 
+\end{gather*} 
+
+<hr>
+Align:
+
+\begin{align} 
+a_1& =b_1+c_1\\ 
+a_2& =b_2+c_2-d_2+e_2 
+\end{align}
+
+Align*:
+
+\begin{align*} 
+a_1& =b_1+c_1\\ 
+a_2& =b_2+c_2-d_2+e_2 
+\end{align*}
+
+Align:
+
+\begin{align} 
+a_{11}& =b_{11}& a_{12}& =b_{12}\\ 
+a_{21}& =b_{21}& a_{22}& =b_{22}+c_{22} 
+\end{align}
+
+Align with \notag and \tag:
+
+\begin{align} 
+a_{11}& =b_{11}& a_{12}& =b_{12}\notag\\ 
+a_{21}& =b_{21}& a_{22}& =b_{22}+c_{22} \tag{y}
+\end{align}
+
+Align* with \tag:
+
+\begin{align*} 
+a_1& =b_1+c_1\tag{z}\\ 
+a_2& =b_2+c_2-d_2+e_2 
+\end{align*}
+
+</div>
+
+</body>
+</html>

@@ -12,12 +12,12 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 举个栗子，假如我想要修改一个页面内容，应该怎么操作呢？
 
-1.  在 OI Wiki 网站上找到对应页面
-2.  点击 正文右上方、目录左侧的 **“编辑此页”** <svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg> 按钮
-3.  （应该已经跳转到了 Github 上的对应页面吧？）这时候右上方还会有一个 **“编辑此页”** <svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg> 的按钮，点击它就可以在线编辑了
-4.  写好了之后点下方的绿色按钮（Propose file change），可能会提示没有权限。不必担心！Github 会自动帮你 fork 一份项目的文件并创建 Pull Request
-5.  之后点上方的绿色按钮（Create pull request）后，再点一下出现的绿色按钮（Create pull request）。
-6.  提交之后就可以等待了，管理员会检查一下，合并或者指出还要修改的地方。如果有消息，会有邮件通知或者网页上的提醒。
+1. 在 OI Wiki 网站上找到对应页面
+2. 点击 正文右上方、目录左侧的 **“编辑此页”** <svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg> 按钮
+3. （应该已经跳转到了 Github 上的对应页面吧？）这时候右上方还会有一个 **“编辑此页”** <svg class="octicon octicon-pencil" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"></path></svg> 的按钮，点击它就可以在线编辑了
+4. 写好了之后点下方的绿色按钮（Propose file change），可能会提示没有权限。不必担心！Github 会自动帮你 fork 一份项目的文件并创建 Pull Request
+5. 之后点上方的绿色按钮（Create pull request）后，再点一下出现的绿色按钮（Create pull request）。
+6. 提交之后就可以等待了，管理员会检查一下，合并或者指出还要修改的地方。如果有消息，会有邮件通知或者网页上的提醒。
 
 （有木有很简单？）
 
@@ -27,8 +27,8 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 基本协作方式如下：
 
-1.  Fork 主仓库到自己的仓库中。
-2.  当想要贡献某部分内容时，请务必仔细查看 **Issue**，以便确定是否有人已经开始了这项工作。当然，我们更希望你可以加入 QQ / Telegram 群组，方便交流。
+1. Fork 主仓库到自己的仓库中。
+2. 当想要贡献某部分内容时，请务必仔细查看 **Issue**，以便确定是否有人已经开始了这项工作。当然，我们更希望你可以加入 QQ / Telegram 群组，方便交流。
 3.  在决定将内容推送到本仓库时，** 请你首先拉取本仓库代码进行合并，自行处理好冲突，同时确保在本地可以正常生成文档 **，然后再将分支 PR 到主仓库的 master 分支上。其中，PR 需要包含以下基本信息  
     标题：本次 PR 的目的（做了什么工作，修复了什么问题）  
     内容：如果必要的话，请给出对修复问题的叙述
@@ -39,9 +39,9 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 当你打算贡献某部分的内容时，你应该尽量确保
 
--   文档内容满足基本格式要求
--   文档的合理性
--   文档存储的格式
+- 文档内容满足基本格式要求
+- 文档的合理性
+- 文档存储的格式
 
 ### 文档内容的基本格式
 
@@ -53,18 +53,18 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 所谓合理性，指所编写的 ** 内容 ** 必须具有如下的特性
 
--   由浅入深，内容的难度应该具有渐进性。
+- 由浅入深，内容的难度应该具有渐进性。
 -   逻辑性，对于每类内容的撰写应该尽量包含以下的内容
-    -   原理，说明该内容对应的原理。
-    -   例子，给出 1 ~ 2 个典型的例子。
-    -   题目，在该标题下， ** 只需要给出题目名字、题目链接 **
+    - 原理，说明该内容对应的原理。
+    - 例子，给出 1 ~ 2 个典型的例子。
+    - 题目，在该标题下， ** 只需要给出题目名字、题目链接 **
 
 ### 文档存储的格式
 
 对于每类要编写的内容，对应的文档应该存储在合适的目录下
 
--   images， 存储文档介绍时所使用的图片，位置为所添加的目录下（即格式为 `![](./images/xx.jpg)`）。
--   ** 文件名请务必都小写，以 `-` 分割， 如 `file-name`**
+- images， 存储文档介绍时所使用的图片，位置为所添加的目录下（即格式为 `![](./images/xx.jpg)`）。
+- ** 文件名请务必都小写，以 `-` 分割， 如 `file-name`**
 
 ## F.A.Q.
 
@@ -80,8 +80,8 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 ### 如何添加一个 topic
 
-1.  可以开一个 Issue，注明希望能添加的内容
-2.  可以开一个 Pull Request，在目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 中加上新的 topic，并在 [docs](https://github.com/24OI/OI-wiki/tree/master/docs) 文件夹下对应位置创建一个空的 `.md` 文件。
+1. 可以开一个 Issue，注明希望能添加的内容
+2. 可以开一个 Pull Request，在目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 中加上新的 topic，并在 [docs](https://github.com/24OI/OI-wiki/tree/master/docs) 文件夹下对应位置创建一个空的 `.md` 文件。
 
 ### commit message 怎么写
 

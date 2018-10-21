@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Localization</title>
+<!-- Copyright (c) 2013-2018 The MathJax Consortium -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" src="../unpacked/MathJax.js?config=TeX-MML-AM_HTMLorMML-full.js">
+  var _M_ = 'MISSING TRANSLATION';
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Localization.strings.en.isLoaded = false;
+  MathJax.Hub.Config({
+    TeX: {
+      noErrors: { disabled: true },
+      noUndefined: { disabled: true },
+      equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js",
+                   "begingroup.js", "color.js", "extpfeil.js", "mhchem.js",
+                   "newcommand.js"]
+    }
+  });
+
+  /* Create the list of locales. */
+  var locales = {};
+  var i = 0;
+  for (l in MathJax.Localization.strings) {
+    if (!MathJax.Localization.strings.hasOwnProperty(l)) continue;
+    var option = document.createElement('option');
+    option.appendChild(document.createTextNode(l));
+    document.form.locale.appendChild(option);
+    locales[l] = i;
+    i++;
+  }
+
+  /* Parse the query string to determine the current locale */
+  var currentLocale = document.form.locale[0].value;
+  var query = location.search.substring(1);
+  var params = query.split("&");
+  for(var i = 0; i < params.length; i++) {
+    var parts = params[i].split("=");
+    if (parts.length != 2) continue;
+    if (parts[0] == "locale" && locales[parts[1]]) {
+        currentLocale = parts[1];
+        document.form.locale.selectedIndex = locales[parts[1]];
+        break;
+    }
+  }
+
+  /* set the currentLocale */
+  MathJax.Hub.Config({
+    menuSettings: { locale: currentLocale }
+  });
+  var menu = MathJax.HTML.Cookie.Get("menu");
+  menu.locale = currentLocale;
+  MathJax.HTML.Cookie.Set("menu", menu);
+
+  /* Main Strings */
+  MathJax.Hub.Queue(function() {
+    var s;
+
+    s = document.getElementById('s1');
+    s.MathJax = {};
+    MathJax.Hub.formatError(s, new Error(''));
+
+    s = document.getElementById('s3');
+    s.MathJax = {};
+    MathJax.Hub.formatError(s, new Error('ERROR MESSAGE'));
+
+    s = document.getElementById('s2');
+    s.MathJax = {};
+    MathJax.Hub.Config({errorSettings: { message: ["[",["MathError","MathError"],"]"] }});
+    MathJax.Hub.formatError(s, new Error(''));
+  });
+
+  /* FontWarnings */
+  MathJax.Hub.config.extensions.push("FontWarnings.js");
+  MathJax.HTML.Cookie.Set("fontWarn", { warned: false });
+  function displayFontWarning(aSignal, aAvailableFonts)
+  {
+    MathJax.Hub.config['HTML-CSS'].allowWebFonts = false;
+    MathJax.Hub.config['HTML-CSS'].availableFonts = aAvailableFonts;
+    MathJax.HTML.Cookie.Set("fontWarn", { warned: false });
+    MathJax.OutputJax['HTML-CSS'].addElement = MathJax.HTML.addElement;
+    MathJax.Hub.Startup.signal.Post(aSignal);
+    setTimeout("document.body.setAttribute('onclick', 'location.reload()')", 1000);
+  }
+
+  /* MathMenu */
+  function switchRendererWarning(aWarning)
+  {
+  var message = MathJax.Localization._(["MathMenu",aWarning], _M_);
+  message += "\n\n";
+  message += MathJax.Localization._(["MathMenu","SwitchAnyway"], _M_);
+  alert(message);
+  }
+  function showAllItems(aMenu)
+  {
+     for (var i = 0, m = aMenu.items.length; i < m; i++) {
+       var item = aMenu.items[i];
+       item.hidden = false;
+       item.disabled = false;
+       if (item.menu) showAllItems(item.menu);
+     }
+  }
+  MathJax.Hub.Register.StartupHook("MathMenu Ready", function () {
+     showAllItems(MathJax.Menu.menu);
+  });
+
+  /* These MathML parsing errors happen only in rare cases, so we fake them... */
+  MathJax.Hub.Queue(function() {
+    document.getElementById('ErrorParsingMathML').innerHTML = MathJax.Localization._(['MathML','ErrorParsingMathML'], _M_);
+    document.getElementById('MathMLSingleElement').innerHTML = MathJax.Localization._(['MathML','MathMLSingleElement'], _M_);
+  });
+</script>
+
+</head>
+<body>
+
+<h1>MathJax Localization</h1>
+
+  <form name="form" action="localization.html" method="get">
+    <p style="text-align: center;">
+      Language: 
+      <select name="locale" onchange="document.form.submit()">
+      </select>
+    </p>
+  </form>
+  
+<ul>
+<li id="main">Main strings
+  <ul>
+    <li>CookieConfig: <input type="button" onclick="confirm(MathJax.Localization._('CookieConfig', _M_))" value="Show confirm box"/></li>
+    <li>MathProcessingError: <script id="s1"></script></li>
+    <li>MathError: <script id="s2"></script></li>
+    <li>LoadFile: <input type="button" onclick="MathJax.Message.Set(['LoadFile',_M_,'MYFILE.JS'],null,null)" value="Show message box"/></li>
+    <li>Loading: <input type="button" onclick="MathJax.Message.Set(MathJax.Localization._('Loading',_M_)+'.....',null,null)" value="Show message box"/></li>
+    <li>LoadFailed: <input type="button" onclick="MathJax.Message.Set(['LoadFailed',_M_,'MYFILE.JS'],null,null)" value="Show message box"/></li>
+    <li>ProcessMath: <input type="button" onclick="MathJax.Message.Set(['ProcessMath',_M_,50],null,null)" value="Show message box"/></li>
+    <li>Processing: <input type="button" onclick="MathJax.Message.Set(MathJax.Localization._('Processing',_M_)+'.....',null,null)" value="Show message box"/></li>
+    <li>TypesetMath: <input type="button" onclick="MathJax.Message.Set(['TypesetMath',_M_,50],null,null)" value="Show message box"/></li>
+    <li>Typesetting: <input type="button" onclick="MathJax.Message.Set(MathJax.Localization._('Typesetting',_M_)+'.....',null,null)" value="Show message box"/></li>
+    <li>MathJaxNotSupported: <input type="button" onclick="MathJax.Message.Set(MathJax.Localization._('MathJaxNotSupported',_M_),null,null)" value="Show message box"/></li>
+   </ul>
+</li>
+<li id="HelpDialog">HelpDialog: <input type="button" onclick="MathJax.Menu.Help()" value="Show Help"/>
+</li>
+<li id="MathML">MathML:
+  <ul>
+    <li>BadMglyph: <math><mi><mglyph alt="" src="BADURL"/></mi></math></li>
+    <li>BadMglyphFont: <math><mi><mglyph fontfamily="BADFONT" alt="" src="" index="0"/></mi></math></li>
+    <li>MathPlayer: <input type="button" onclick="alert(MathJax.Localization._(['MathML','MathPlayer'], _M_))" value="Show alert box"/></li>
+    <li>CantCreateXMLParser: <input type="button" onclick="alert(MathJax.Localization._(['MathML','CantCreateXMLParser'], _M_))" value="Show alert box"/></li>
+    <li>UnknownNodeType: <math><UNKNOWNNODE/></math></li>
+    <li>UnexpectedTextNode: <math>UNEXPECTEDTEXT</math></li>
+    <li>ErrorParsingMathML: <math><merror><mtext id="ErrorParsingMathML"></mtext></merror></math>
+    </li>
+    <li>ParsingError: <script type="math/mml"></script></li>
+    <li>MathMLSingleElement: <math><merror><mtext id="MathMLSingleElement"></mtext></merror></math>
+    <li>MathMLRootElement: <script type="math/mml"><INVALIDROOT/></script></li>
+  </ul>
+</li>
+<li id="FontWarnings">FontWarnings
+  <ul>
+    <li>webFont, fonts: <input type="button" onclick="displayFontWarning('HTML-CSS Jax - Web-Font',['TeX','STIX'])" value="Show Warning Message"/></li>
+    <li>imageFonts, fonts: <input type="button" onclick="displayFontWarning('HTML-CSS Jax - using image fonts',['TeX','STIX'])" value="Show Warning Message"/></li>
+    <li>noFonts, fonts: <input type="button" onclick="displayFontWarning('HTML-CSS Jax - no valid font',['TeX','STIX'])" value="Show Warning Message"/></li>
+    <li>webFont, TeX: <input type="button" onclick="displayFontWarning('HTML-CSS Jax - Web-Font',['TeX'])" value="Show Warning Message"/></li>
+    <li>webFont, STIX: <input type="button" onclick="displayFontWarning('HTML-CSS Jax - Web-Font',['STIX'])" value="Show Warning Message"/></li>
+  </ul>
+</li>
+<li id="MathMenu">MathMenu:
+  <ul>
+    <li>Right click on one these formulas to display the menu:
+      <ul>
+        <li>TeX: \( x \)</li>
+        <li>AsciiMath: `x`</li>
+        <li>MathML: <math><mi>x</mi></math></li>
+        <li>MathProcessingError: <script id="s3"></script></li>
+        <li>Annotation:
+          <math>
+            <semantics>
+              <mi>x</mi>
+              <annotation encoding="TeX">x (TeX)</annotation>
+              <annotation encoding="StarMath 5.0">x (StarMath)</annotation>
+              <annotation encoding="Maple">x (Maple)</annotation>
+              <annotation-xml encoding="MathML-Content"><ci>x</ci></annotation-xml>
+              <annotation-xml encoding="OpenMath"><OMV name="x"/></annotation-xml>
+            </semantics>
+          </math>
+        </li>
+      </ul>
+    </li>
+    <li>About Box: <input type="button" onclick="MathJax.Menu.About()" value="Show About Box"/></li>
+    <li>WebkitNativeMMLWarning: <input type="button" onclick="switchRendererWarning('WebkitNativeMMLWarning')" value="Show alert box"/></li>
+    <li>MSIENativeMMLWarning: <input type="button" onclick="switchRendererWarning('MSIENativeMMLWarning')" value="Show alert box"/></li>
+    <li>OperaNativeMMLWarning: <input type="button" onclick="switchRendererWarning('OperaNativeMMLWarning')" value="Show alert box"/></li>
+    <li>SafariNativeMMLWarning: <input type="button" onclick="switchRendererWarning('SafariNativeMMLWarning')" value="Show alert box"/></li>
+    <li>FirefoxNativeMMLWarning: <input type="button" onclick="switchRendererWarning('FirefoxNativeMMLWarning')" value="Show alert box"/></li>
+    <li>MSIESVGWarning: <input type="button" onclick="switchRendererWarning('MSIESVGWarning')" value="Show alert box"/></li>
+    <li>LoadURL: <input type="button" onclick="prompt(MathJax.Localization._(['MathMenu','LoadURL'], _M_))" value="Show prompt box"/></li>
+    <li>BadURL: <input type="button" onclick="alert(MathJax.Localization._(['MathMenu','BadURL'], _M_))" value="Show alert box"/></li>
+    <li>BadData: <input type="button" onclick="alert(MathJax.Localization._(['MathMenu','BadData'], _M_, 'BADDATA'))" value="Show alert box"/></li>
+    <li>ScaleMath: <input type="button" onclick="prompt(MathJax.Localization._(['MathMenu','ScaleMath'], _M_))" value="Show prompt box"/></li>
+    <li>NonZeroScale: <input type="button" onclick="alert(MathJax.Localization._(['MathMenu','NonZeroScale'], _M_))" value="Show alert box"/></li>
+    <li>PercentScale: <input type="button" onclick="alert(MathJax.Localization._(['MathMenu','PercentScale'], _M_))" value="Show alert box"/></li>
+    <li>IE8warning: <input type="button" onclick="confirm(MathJax.Localization._(['MathMenu','IE8warning'], _M_))" value="Show confirm box"/></li>
+    <li>IE9warning: <input type="button" onclick="alert(MathJax.Localization._(['MathMenu','IE9warning'], _M_))" value="Show alert box"/></li>
+    <li>NoOriginalForm: <input type="button" onclick="alert(MathJax.Localization._(['MathMenu','NoOriginalForm'], _M_))" value="Show alert box"/></li>
+    <li>'Show Math As' window: <input type="button" onclick="MathJax.Menu.ShowSource.Text('POPUP CONTENT')" value="Open popup"/></li>
+  </ul>
+</li>
+<li id="HTML-CSS">HTML-CSS:
+  <ul>
+    <li>LoadWebFont: <input type="button" onclick="MathJax.Message.Set(MathJax.Localization._(['HTML-CSS','LoadWebFont'],_M_,'FONTNAME'),null,null)" value="Show message box"/></li>
+    <li>CantLoadWebFont: <input type="button" onclick="MathJax.Message.Set(MathJax.Localization._(['HTML-CSS','CantLoadWebFont'],_M_,'FONTNAME'),null,null)" value="Show message box"/></li>
+    <li>FirefoxCantLoadWebFont: <input type="button" onclick="MathJax.Message.Set(MathJax.Localization._(['HTML-CSS','FirefoxCantLoadWebFont'],_M_),null,null)" value="Show message box"/></li>
+    <li>CantFindFontUsing: <input type="button" onclick="MathJax.Message.Set(MathJax.Localization._(['HTML-CSS','CantFindFontUsing'],_M_,'FONT1,FONT2'),null,null)" value="Show message box"/></li>
+    <li>WebFontsNotAvailable: <input type="button" onclick="MathJax.Message.Set(MathJax.Localization._(['HTML-CSS','WebFontsNotAvailable'],_M_),null,null)" value="Show message box"/></li>
+  </ul>
+</li>
+<li id="TeX">TeX:
+<ul>
+<li>Main commands
+<ul>
+<li>ExtraOpenMissingClose: \( { \) </li>
+<li>ExtraCloseMissingOpen: \( } \)</li>
+<li>MissingLeftExtraRight: \( \right) \)</li>
+<li>MissingScript: \( x^ \)</li>
+<li>ExtraLeftMissingRight: \( \left( \)</li>
+<li>Misplaced: \( & \)</li>
+<li>MissingOpenForSub: \( x__ \)</li>
+<li>MissingOpenForSup: \( x^^ \)</li>
+<li>AmbiguousUseOf: \( x \over y \over z \)</li>
+<li>EnvBadEnd: \( \begin{aligned} \end{eqarray} \)</li>
+<li>EnvMissingEnd: \( \begin{aligned} \)</li>
+<li>MissingBoxFor: \( \raise 1pt \)</li>
+<li>MissingCloseBrace: \( \array{ \)</li>
+<li>UndefinedControlSequence: \( \UNDEFINED \)</li>
+<li>DoubleExponent: \( x^3^2 \) </li>
+<li>DoubleSubscripts: \( x_3_2 \) </li>
+<li>DoubleExponentPrime: \( x^2' \)</li>
+<li>CantUseHash1: \( # \)</li>
+<li>MisplacedMiddle: \( \middle| \)</li>
+<li>MisplacedLimits: \( \limits \) </li>
+<li>MisplacedMoveRoot: \( \uproot \)</li>
+
+<li>IntegerArg: \( \sqrt[\uproot{INVALID}]{x} \) </li>
+<li>NotMathMLToken: \( \mmlToken{INVALID}{x} \)</li>
+<li>InvalidMathMLAttr: \( \mmlToken{mi}[_INVALID_]{x} \)</li>
+<li>UnknownAttrForElement: \( \mmlToken{mi}[INVALIDATTR='']{x} \)</li>
+<li>MaxMacroSub1: \( \newcommand{\a}{\a} \a \)</li>
+<li>MaxMacroSub2: \( \newenvironment{a}{\begin{a}}{\end{a}} \begin{a}\end{a} \)</li>
+<li>MissingArgFor: \( \frac{a} \)</li>
+<li>ExtraAlignTab: \( \cases{a & b & c} \)</li>
+<li>BracketMustBeDimension: \(\begin{array} x \\[INVALID] y \end{array}\)</li>
+<li>InvalidEnv: \( \begin{_INVALID_} \end{_INVALID_} \)</li>
+<li>UnknownEnv: \( \begin{UNKNOWN} \end{UNKNOWN} \) </li>
+<li>ExtraCloseLooking: \( \sqrt[}]x \)</li>
+<li>MissingCloseBracket: \( \sqrt[ \)</li>
+<li>MissingOrUnrecognizedDelim: \( \left \)</li>
+<li>MissingDimOrUnits: \( x \above y \)</li>
+<li>TokenNotFoundForCommand: \( \root{x} \)</li>
+<li>MathNotTerminated: \( \text{$x} \)</li>
+<li>IllegalMacroParam: \( \def\mymacro#1{#2} \mymacro{x} \) </li>
+<li>MaxBufferSize: \( \newcommand{\a}{\a\a} \a \)
+</li>
+</ul>
+</li>
+<li>AMSmath
+<ul>
+<li>CommandNotAllowedInEnv: \(\begin{split} x \tag{x} \end{split} \)</li>
+<li>MultipleCommand: \( \tag{x} \tag{y} \) </li>
+<li>MultipleLabel: \( \label{x} \) \(\ \label{x} \)</li>
+<li>CommandAtTheBeginingOfLine: \( \shoveleft \) </li>
+<li>IllegalAlign: \( \cfrac[INVALID]{a}{b} \) </li>
+<li>BadMathStyleFor: \(  \genfrac{\{}{\}}{0pt}{INVALID}{a}{b}  \) </li>
+<li>PositiveIntegerArg: \(\begin{alignedat}{INVALID}\end{alignedat}\)</li>
+<li>ErroneousNestingEq: \( \begin{multline} \begin{multline} \end{multline} \end{multline} \)</li>
+<li>MultlineRowsOneCol: \( \begin{multline} x & y \end{multline} \)</li>
+</ul>
+</li>
+<li>bbox
+<ul>
+<li>MultipleBBoxProperty: \( \bbox[green,blue]{} \)</li>
+<li>InvalidBBoxProperty: \( \bbox[_INVALID_]{} \)</li>
+</ul>
+</li>
+<li>begingroup
+<ul>
+<li>ExtraEndMissingBegin: \( \endgroup \)</li>
+<li>GlobalNotFollowedBy: \( \global\unknown \)</li>
+</ul>
+</li>
+<li>color
+<ul>
+<li>UndefinedColorModel: \( \color[COLORMODEL]{}{} \)</li>
+<li>ModelArg1: \( \color[RGB]{}{} \)</li>
+<li>InvalidDecimalNumber: \( \color[rgb]{,,}{} \)</li>
+<li>ModelArg2: \( \color[RGB]{256,,}{} \)</li>
+<li>InvalidNumber: \( \color[RGB]{,,}{} \)</li>
+</ul>
+</li>
+<li>extpfeil
+<ul>
+<li>NewextarrowArg1: \( \Newextarrow{}{}{} \)</li>
+<li>NewextarrowArg2: \( \Newextarrow{\myarrow}{}{} \)</li>
+<li>NewextarrowArg3: \( \Newextarrow{\myarrow}{0,0}{} \) </li>
+</ul>
+</li>
+<li>mhchem
+<ul>
+<li>NoClosingChar: \( \ce{ ->[ } \)</li>
+</ul>
+</li>
+<li>newcommand
+<ul>
+<li>IllegalControlSequenceName: \( \newcommand{_INVALID_}{} \)</li>
+<li>IllegalParamNumber: \( \newcommand{mycommand}[INVALID]{} \)  </li>
+<li>MissingCS: \( \let INVALID \)</li>
+<li>CantUseHash2: \( \def\mycommand#A \)</li>
+<li>SequentialParam: \( \def\mycommand#2#1 \)</li>
+<li>MissingReplacementString: \( \def\mycommand \)</li>
+<li>MismatchUseDef: \( \def\mycommand[#1]#2[#3]{#1+#2+#3} \mycommand{a}{b}[c] \)</li>
+<li>RunawayArgument: \( \def\mycommand[#1][#2]#3{#1+#2+#3} \mycommand[a]{b} \)</li>
+</ul>
+</li>
+<li>NoClosingDelim: \( \verb?... \)</li>
+</ul>
+</ul>
+
+</body>
+</html>

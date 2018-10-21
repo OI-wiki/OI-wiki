@@ -1,6 +1,6 @@
 快速幂，是一种求 $a^b \\bmod p$ 的方法，得益于将指数按二进制拆开的思想。
 
-事实上，根据模运算的性质，$a \\times b \\bmod p = ((a \\bmod p) \\times b) \\bmod p$。那么我们也可以把2 $a^b \\mod p$ 分解成一系列比较小的数的乘积。
+事实上，根据模运算的性质，$a \\times b \\bmod p = ((a \\bmod p) \\times b) \\bmod p$。那么我们也可以把 2 $a^b \\mod p$ 分解成一系列比较小的数的乘积。
 
 如果把 $b$ 写作二进制为 $a_ta_{t-1} \\cdots a_1a_0$，那么有：
 
