@@ -30,8 +30,8 @@
 然而有些时候很难直接一下子看出排序方法，比如 [LG1080](https://www.luogu.org/problemnew/show/P1080) 就很容易凭直觉而错误地以 $a$ 或 $b$ 为关键字排序，过样例之后提交就发现 WA 了 QAQ。一个 ~~众所周知的~~ 常见办法就是尝试交换数组相邻的两个元素来**推导**出正确的排序方法。我们假设这题输入的俩个数用一个结构体来保存
 
 ```c++
-struct { 
-    int a, b; 
+struct {
+  int a, b;
 } v[n];
 ```
 
@@ -81,10 +81,10 @@ $$
 
 ```c++
 struct uv {
-    int a, b;
-    bool operator<(const uv &x) const {
-        return max(x.b, a * b) < max(b, x.a * x.b);
-    }
+  int a, b;
+  bool operator<(const uv &x) const {
+    return max(x.b, a * b) < max(b, x.a * x.b);
+  }
 };
 ```
 

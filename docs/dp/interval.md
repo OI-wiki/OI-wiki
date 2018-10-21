@@ -36,18 +36,15 @@
 ## 核心代码
 
 ```cpp
-for(len=1;len<=n;len++)
-    for(i=1;i<=2*n-1;i++)
-    {
-    	int j=len+i-1; 
-    	for(k=i;k<=j&&k<=2*n-1;k++)
-            f[i][j]=max(f[i][j],f[i][k]+f[k+1][j]+sum[j]-sum[i-1]);
-	}
+for (len = 1; len <= n; len++)
+  for (i = 1; i <= 2 * n - 1; i++) {
+    int j = len + i - 1;
+    for (k = i; k <= j && k <= 2 * n - 1; k++)
+      f[i][j] = max(f[i][j], f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1]);
+  }
 ```
 
 ## 几道练习题
-
-[luogu T2027 蜈蚣](https://www.luogu.org/problemnew/show/T2027)
 
 [luogu P1063 能量项链](https://www.luogu.org/problemnew/show/P1063)
 

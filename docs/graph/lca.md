@@ -37,9 +37,9 @@
 
 ```c++
 #include <cstdio>
+#include <cstring>
 #include <iostream>
 #include <vector>
-#include <cstring>
 #define MXN 50007
 using namespace std;
 std::vector<int> v[MXN];
@@ -49,57 +49,56 @@ int fa[MXN][31], cost[MXN][31], dep[MXN];
 int n, m;
 int a, b, c;
 void dfs(int root, int fno) {
-    fa[root][0] = fno;
-    dep[root] = dep[fa[root][0]] + 1;
-    for (int i = 1; i < 31; ++i) {
-        fa[root][i] = fa[fa[root][i - 1]][i - 1];
-        cost[root][i] = cost[fa[root][i - 1]][i - 1] + cost[root][i - 1];
-    }
-    int sz = v[root].size();
-    for (int i = 0; i < sz; ++i) {
-        if (v[root][i] == fno) continue;
-        cost[v[root][i]][0] = w[root][i];
-        dfs(v[root][i], root);
-    }
+  fa[root][0] = fno;
+  dep[root] = dep[fa[root][0]] + 1;
+  for (int i = 1; i < 31; ++i) {
+    fa[root][i] = fa[fa[root][i - 1]][i - 1];
+    cost[root][i] = cost[fa[root][i - 1]][i - 1] + cost[root][i - 1];
+  }
+  int sz = v[root].size();
+  for (int i = 0; i < sz; ++i) {
+    if (v[root][i] == fno) continue;
+    cost[v[root][i]][0] = w[root][i];
+    dfs(v[root][i], root);
+  }
 }
 int lca(int x, int y) {
-    if (dep[x] > dep[y])
-        swap(x, y);
-    int tmp = dep[y] - dep[x], ans = 0;
-    for (int j = 0; tmp; ++j, tmp >>= 1)
-        if (tmp & 1) ans += cost[y][j], y = fa[y][j];
-    if (y == x) return ans;
-    for (int j = 30; j >= 0 && y != x; --j) {
-        if (fa[x][j] != fa[y][j]) {
-            ans += cost[x][j] + cost[y][j];
-            x = fa[x][j];
-            y = fa[y][j];
-        }
+  if (dep[x] > dep[y]) swap(x, y);
+  int tmp = dep[y] - dep[x], ans = 0;
+  for (int j = 0; tmp; ++j, tmp >>= 1)
+    if (tmp & 1) ans += cost[y][j], y = fa[y][j];
+  if (y == x) return ans;
+  for (int j = 30; j >= 0 && y != x; --j) {
+    if (fa[x][j] != fa[y][j]) {
+      ans += cost[x][j] + cost[y][j];
+      x = fa[x][j];
+      y = fa[y][j];
     }
-    ans += cost[x][0] + cost[y][0];
-    return ans;
+  }
+  ans += cost[x][0] + cost[y][0];
+  return ans;
 }
 int main() {
-    memset(fa, 0, sizeof(fa));
-    memset(cost, 0, sizeof(cost));
-    memset(dep, 0, sizeof(dep));
-    scanf("%d", &n);
-    for (int i = 1; i < n; ++i) {
-        scanf("%d %d %d", &a, &b, &c);
-        ++a, ++b;
-        v[a].push_back(b);
-        v[b].push_back(a);
-        w[a].push_back(c);
-        w[b].push_back(c);
-    }
-    dfs(1, 0);
-    scanf("%d", &m);
-    for (int i = 0; i < m; ++i) {
-        scanf("%d %d", &a, &b);
-        ++a, ++b;
-        printf("%d\n", lca(a, b));
-    }
-    return 0;
+  memset(fa, 0, sizeof(fa));
+  memset(cost, 0, sizeof(cost));
+  memset(dep, 0, sizeof(dep));
+  scanf("%d", &n);
+  for (int i = 1; i < n; ++i) {
+    scanf("%d %d %d", &a, &b, &c);
+    ++a, ++b;
+    v[a].push_back(b);
+    v[b].push_back(a);
+    w[a].push_back(c);
+    w[b].push_back(c);
+  }
+  dfs(1, 0);
+  scanf("%d", &m);
+  for (int i = 0; i < m; ++i) {
+    scanf("%d %d", &a, &b);
+    ++a, ++b;
+    printf("%d\n", lca(a, b));
+  }
+  return 0;
 }
 ```
 
@@ -113,16 +112,16 @@ int main() {
 int depth[N * 2], id[N * 2], loc[N];
 int tot = 1;
 void dfs(int x, int dep) {
-    loc[x] = tot;
+  loc[x] = tot;
+  depth[tot] = dep;
+  id[tot] = x;
+  tot++;
+  for (int i = 0; i < v[x].size(); i++) {
+    dfs(v[x][i], dep + 1);
     depth[tot] = dep;
     id[tot] = x;
     tot++;
-    for (int i = 0; i < v[x].size(); i++) {
-        dfs(v[x][i], dep + 1);
-        depth[tot] = dep;
-        id[tot] = x;
-        tot++;
-    }
+  }
 }
 ```
 
@@ -163,181 +162,187 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
 #include <bits/stdc++.h>
 
 #define rep(i, l, r) for (int i = (l), _##i##_ = (r); i < _##i##_; ++i)
-#define rof(i, l, r) for (int i = (l) - 1, _##i##_ = (r); i >= _##i##_; --i)
+#define rof(i, l, r) for (int i = (l)-1, _##i##_ = (r); i >= _##i##_; --i)
 #define ALL(x) (x).begin(), (x).end()
 #define SZ(x) static_cast<int>((x).size())
 typedef long long ll;
 typedef std::pair<int, int> pii;
-template<typename T> inline bool chkMin(T &a, const T &b) { return a > b ? a = b, 1 : 0; }
-template<typename T> inline bool chkMax(T &a, const T &b) { return a < b ? a = b, 1 : 0; }
+template <typename T>
+inline bool chkMin(T &a, const T &b) {
+  return a > b ? a = b, 1 : 0;
+}
+template <typename T>
+inline bool chkMax(T &a, const T &b) {
+  return a < b ? a = b, 1 : 0;
+}
 
 const int MAXN = 1e5 + 5;
 
 struct PlusMinusOneRMQ {
-    const static int M = 8;
-    int blocklen, block, Minv[MAXN], F[MAXN / M * 2 + 5][M << 1],
-        T[MAXN], f[1 << M][M][M], S[MAXN];
-    void init(int n) {
-        blocklen = std::max(1, (int)(log(n * 1.0) / log(2.0)) / 2);
-        block = n / blocklen + (n % blocklen > 0);
-        int total = 1 << (blocklen - 1);
-        for (int i = 0; i < total; i++) {
-            for (int l = 0; l < blocklen; l++) {
-                f[i][l][l] = l;
-                int now = 0, minv = 0;
-                for (int r = l + 1; r < blocklen; r++) {
-                    f[i][l][r] = f[i][l][r - 1];
-                    if ((1 << (r - 1)) & i) {
-                        now++;
-                    } else {
-                        now--;
-                        if (now < minv) {
-                            minv = now;
-                            f[i][l][r] = r;
-                        }
-                    }
-                }
+  const static int M = 8;
+  int blocklen, block, Minv[MAXN], F[MAXN / M * 2 + 5][M << 1], T[MAXN],
+      f[1 << M][M][M], S[MAXN];
+  void init(int n) {
+    blocklen = std::max(1, (int)(log(n * 1.0) / log(2.0)) / 2);
+    block = n / blocklen + (n % blocklen > 0);
+    int total = 1 << (blocklen - 1);
+    for (int i = 0; i < total; i++) {
+      for (int l = 0; l < blocklen; l++) {
+        f[i][l][l] = l;
+        int now = 0, minv = 0;
+        for (int r = l + 1; r < blocklen; r++) {
+          f[i][l][r] = f[i][l][r - 1];
+          if ((1 << (r - 1)) & i) {
+            now++;
+          } else {
+            now--;
+            if (now < minv) {
+              minv = now;
+              f[i][l][r] = r;
             }
+          }
         }
-        T[1] = 0;
-        for (int i = 2; i < MAXN; i++) {
-            T[i] = T[i - 1];
-            if (!(i & (i - 1))) {
-                T[i]++;
-            }
-        }
+      }
     }
-    void initmin(int a[], int n) {
-        for (int i = 0; i < n; i++) {
-            if (i % blocklen == 0) {
-                Minv[i / blocklen] = i;
-                S[i / blocklen] = 0;
-            } else {
-                if (a[i] < a[Minv[i / blocklen]]) {
-                    Minv[i / blocklen] = i;
-                }
-                if (a[i] > a[i - 1]) {
-                    S[i / blocklen] |= 1 << (i % blocklen - 1);
-                }
-            }
-        }
-        for (int i = 0; i < block; i++) {
-            F[i][0] = Minv[i];
-        }
-        for (int j = 1; (1 << j) <= block; j++) {
-            for (int i = 0; i + (1 << j) - 1 < block; i++) {
-                int b1 = F[i][j - 1], b2 = F[i + (1 << (j - 1))][j - 1];
-                F[i][j] = a[b1] < a[b2] ? b1 : b2;
-            }
-        }
+    T[1] = 0;
+    for (int i = 2; i < MAXN; i++) {
+      T[i] = T[i - 1];
+      if (!(i & (i - 1))) {
+        T[i]++;
+      }
     }
-    int querymin(int a[], int L, int R) {
-        int idl = L / blocklen, idr = R / blocklen;
-        if (idl == idr)
-            return idl * blocklen + f[S[idl]][L % blocklen][R % blocklen];
-        else {
-            int b1 = idl * blocklen + f[S[idl]][L % blocklen][blocklen - 1];
-            int b2 = idr * blocklen + f[S[idr]][0][R % blocklen];
-            int buf = a[b1] < a[b2] ? b1 : b2;
-            int c = T[idr - idl - 1];
-            if (idr - idl - 1) {
-                int b1 = F[idl + 1][c];
-                int b2 = F[idr - 1 - (1 << c) + 1][c];
-                int b = a[b1] < a[b2] ? b1 : b2;
-                return a[buf] < a[b] ? buf : b;
-            }
-            return buf;
+  }
+  void initmin(int a[], int n) {
+    for (int i = 0; i < n; i++) {
+      if (i % blocklen == 0) {
+        Minv[i / blocklen] = i;
+        S[i / blocklen] = 0;
+      } else {
+        if (a[i] < a[Minv[i / blocklen]]) {
+          Minv[i / blocklen] = i;
         }
+        if (a[i] > a[i - 1]) {
+          S[i / blocklen] |= 1 << (i % blocklen - 1);
+        }
+      }
     }
+    for (int i = 0; i < block; i++) {
+      F[i][0] = Minv[i];
+    }
+    for (int j = 1; (1 << j) <= block; j++) {
+      for (int i = 0; i + (1 << j) - 1 < block; i++) {
+        int b1 = F[i][j - 1], b2 = F[i + (1 << (j - 1))][j - 1];
+        F[i][j] = a[b1] < a[b2] ? b1 : b2;
+      }
+    }
+  }
+  int querymin(int a[], int L, int R) {
+    int idl = L / blocklen, idr = R / blocklen;
+    if (idl == idr)
+      return idl * blocklen + f[S[idl]][L % blocklen][R % blocklen];
+    else {
+      int b1 = idl * blocklen + f[S[idl]][L % blocklen][blocklen - 1];
+      int b2 = idr * blocklen + f[S[idr]][0][R % blocklen];
+      int buf = a[b1] < a[b2] ? b1 : b2;
+      int c = T[idr - idl - 1];
+      if (idr - idl - 1) {
+        int b1 = F[idl + 1][c];
+        int b2 = F[idr - 1 - (1 << c) + 1][c];
+        int b = a[b1] < a[b2] ? b1 : b2;
+        return a[buf] < a[b] ? buf : b;
+      }
+      return buf;
+    }
+  }
 };
 
 struct CartesianTree {
-private:
-    struct Node {
-        int key, value, l, r;
-        Node(int key, int value) {
-            this->key = key;
-            this->value = value;
-            l = r = 0;
-        }
-        Node() {}
-    };
-    Node tree[MAXN];
-    int sz;
-    int S[MAXN], top;
-public:
-    void build(int a[], int n) {
-        top = 0;
-        tree[0] = Node(-1, INT_MAX);
-        S[top++] = 0;
-        sz = 0;
-        for (int i = 0; i < n; i++) {
-            tree[++sz] = Node(i, a[i]);
-            int last = 0;
-            while (tree[S[top - 1]].value <= tree[sz].value) {
-                last = S[top - 1];
-                top--;
-            }
-            tree[sz].l = last;
-            tree[S[top - 1]].r = sz;
-            S[top++] = sz;
-        }
+ private:
+  struct Node {
+    int key, value, l, r;
+    Node(int key, int value) {
+      this->key = key;
+      this->value = value;
+      l = r = 0;
     }
-    Node &operator [] (const int x) {
-        return tree[x];
+    Node() {}
+  };
+  Node tree[MAXN];
+  int sz;
+  int S[MAXN], top;
+
+ public:
+  void build(int a[], int n) {
+    top = 0;
+    tree[0] = Node(-1, INT_MAX);
+    S[top++] = 0;
+    sz = 0;
+    for (int i = 0; i < n; i++) {
+      tree[++sz] = Node(i, a[i]);
+      int last = 0;
+      while (tree[S[top - 1]].value <= tree[sz].value) {
+        last = S[top - 1];
+        top--;
+      }
+      tree[sz].l = last;
+      tree[S[top - 1]].r = sz;
+      S[top++] = sz;
     }
+  }
+  Node &operator[](const int x) { return tree[x]; }
 };
 
 class stdRMQ {
-public:
-    void work(int a[], int n) {
-        ct.build(a, n);
-        dfs_clock = 0;
-        dfs(0, 0);
-        rmq.init(dfs_clock);
-        rmq.initmin(depseq, dfs_clock);
+ public:
+  void work(int a[], int n) {
+    ct.build(a, n);
+    dfs_clock = 0;
+    dfs(0, 0);
+    rmq.init(dfs_clock);
+    rmq.initmin(depseq, dfs_clock);
+  }
+  int query(int L, int R) {
+    int cl = clk[L], cr = clk[R];
+    if (cl > cr) {
+      std::swap(cl, cr);
     }
-    int query(int L, int R) {
-        int cl = clk[L], cr = clk[R];
-        if (cl > cr) {
-            std::swap(cl, cr);
-        }
-        return Val[rmq.querymin(depseq, cl, cr)];
+    return Val[rmq.querymin(depseq, cl, cr)];
+  }
+
+ private:
+  CartesianTree ct;
+  PlusMinusOneRMQ rmq;
+  int dfs_clock, clk[MAXN], Val[MAXN << 1], depseq[MAXN << 1];
+  void dfs(int rt, int d) {
+    clk[ct[rt].key] = dfs_clock;
+    depseq[dfs_clock] = d;
+    Val[dfs_clock++] = ct[rt].value;
+    if (ct[rt].l) {
+      dfs(ct[rt].l, d + 1);
+      depseq[dfs_clock] = d;
+      Val[dfs_clock++] = ct[rt].value;
     }
-private:
-    CartesianTree ct;
-    PlusMinusOneRMQ rmq;
-    int dfs_clock, clk[MAXN], Val[MAXN << 1], depseq[MAXN << 1];
-    void dfs(int rt, int d) {
-        clk[ct[rt].key] = dfs_clock;
-        depseq[dfs_clock] = d;
-        Val[dfs_clock++] = ct[rt].value;
-        if (ct[rt].l) {
-            dfs(ct[rt].l, d + 1);
-            depseq[dfs_clock] = d;
-            Val[dfs_clock++] = ct[rt].value;
-        }
-        if (ct[rt].r) {
-            dfs(ct[rt].r, d + 1);
-            depseq[dfs_clock] = d;
-            Val[dfs_clock++] = ct[rt].value;
-        }
+    if (ct[rt].r) {
+      dfs(ct[rt].r, d + 1);
+      depseq[dfs_clock] = d;
+      Val[dfs_clock++] = ct[rt].value;
     }
+  }
 } doit;
 
 int A[MAXN];
 
 int main() {
-    int n, m, l, r;
-    scanf("%d%d", &n, &m);
-    for (int i = 0; i < n; ++i) {
-        scanf("%d", &A[i]);
-    }
-    doit.work(A, n);
-    while (m--) {
-        scanf("%d%d", &l, &r);
-        printf("%d\n", doit.query(l - 1, r - 1));
-    }
-    return 0;
+  int n, m, l, r;
+  scanf("%d%d", &n, &m);
+  for (int i = 0; i < n; ++i) {
+    scanf("%d", &A[i]);
+  }
+  doit.work(A, n);
+  while (m--) {
+    scanf("%d%d", &l, &r);
+    printf("%d\n", doit.query(l - 1, r - 1));
+  }
+  return 0;
 }
 ```

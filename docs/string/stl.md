@@ -18,7 +18,11 @@ C 标准库是在对字符数组进行操作
 
 ### sscanf
 
+`sscanf(const char *__source, const char *__format, ...)`：从字符串`__source`里读取变量，比如`sscanf(str,"%d",&a)`。
+
 ### sprintf
+
+`sprintf(char *__stream, const char *__format, ...)`：将`__format`字符串里的内容输出到`__stream`中，比如`sprintf(str,"%d",i)`。
 
 ### strcmp
 

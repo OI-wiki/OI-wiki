@@ -85,15 +85,15 @@ $\therefore r = 0$.
 所以我们要先消除因子：
 
 ```cpp
-d=1,num=0,t=0;
-for (int t = gcd(a, c); t != 1; t = gcd(a, c)){
-    if(b % t) {
-        \\无解
-    }
-    b/=t;
-    c/=t;
-    d*=a/t;
-    num++;
+d = 1, num = 0, t = 0;
+for (int t = gcd(a, c); t != 1; t = gcd(a, c)) {
+  if (b % t) {
+    \\无解
+  }
+  b /= t;
+  c /= t;
+  d *= a / t;
+  num++;
 }
 ```
 
