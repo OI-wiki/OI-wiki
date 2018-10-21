@@ -16,5 +16,6 @@ C++ 离散化有现成的 STL 算法：
 // vector<int> a, b; b 是 a 的一个副本
 std::sort(a.begin(), a.end());
 V.erase(std::unique(a.begin(), a.end()), a.end());
-for (int i = 0; i < n; ++i) b[i] = std::lower_bound(a.begin(), a.end(), b[i]) - a.begin();
+for (int i = 0; i < n; ++i)
+  b[i] = std::lower_bound(a.begin(), a.end(), b[i]) - a.begin();
 ```

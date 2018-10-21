@@ -65,20 +65,16 @@ int quickPow(int a, int b, int c) {
 ### 递归版
 
 ```c++
-long long qpow(long long a,long long b,long long p)
-{
-	if(b==0)	return 1%p;
-	if(b==1)	return a%p;
-	if(b%2==0)
-    {
-		long long t=a*a%p;
-		return qpow(t,b/2,p);
-	}
-    else 
-    {
-		long long t=a*a%p;
-		return (qpow(t,b/2,p)*a)%p;
-	}
+long long qpow(long long a, long long b, long long p) {
+  if (b == 0) return 1 % p;
+  if (b == 1) return a % p;
+  if (b % 2 == 0) {
+    long long t = a * a % p;
+    return qpow(t, b / 2, p);
+  } else {
+    long long t = a * a % p;
+    return (qpow(t, b / 2, p) * a) % p;
+  }
 }
 ```
 

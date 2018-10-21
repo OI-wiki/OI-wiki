@@ -31,32 +31,28 @@ using namespace std;
 int rank[123], sa[123];
 
 struct Str {
-	string s; int wei;
-    friend bool operator < (Str a1,Str a2) {
-    	return a1.s<a2.s;
-    }
-} k[123] ;
+  string s;
+  int wei;
+  friend bool operator<(Str a1, Str a2) { return a1.s < a2.s; }
+} k[123];
 
-int main()
-{
-    string s;
-    cin >> s;
-    int len=s.size()-1;
-    
-    for (int i=0;i<=len;i++)
-    {
-    	k[i].wei=i;
-        for (int j=i;j<=len;j++) 
-            k[i].s=k[i].s+s[j];
-    }
-    
-    sort (k,k+len+1);
-    for (int i=0;i<=len;i++) {
-      	rank[k[i].wei]=i;
-        sa[i]=k[i].wei;
-    }
-    
-    exit(0);
+int main() {
+  string s;
+  cin >> s;
+  int len = s.size() - 1;
+
+  for (int i = 0; i <= len; i++) {
+    k[i].wei = i;
+    for (int j = i; j <= len; j++) k[i].s = k[i].s + s[j];
+  }
+
+  sort(k, k + len + 1);
+  for (int i = 0; i <= len; i++) {
+    rank[k[i].wei] = i;
+    sa[i] = k[i].wei;
+  }
+
+  exit(0);
 }
 ```
 
@@ -100,46 +96,44 @@ int n;
 int sa[150], x[150], c[150], y[150];
 char a[150];
 
-inline void SA () {
-    int m=128;
-    for (int i=0;i<=m;i++) c[i]=0;
-    for (int i=1;i<=n;i++) c[x[i]]++;
-    for (int i=1;i<=m;i++) c[i]+=c[i-1];
-    for (int i=n;i;i--) sa[c[x[i]]--]=i;
-    
-    for (int k=1,p;k<=n;k<<=1)
-    {
-        p=0;
-        for (int i=n;i>n-k;i--) y[++p]=i;
-        for (int i=1;i<=n;i++) if(sa[i]>k) y[++p]=sa[i]-k;
-        
-        for (int i=0;i<=m;i++) c[i]=0;
-        for (int i=1;i<=n;i++) c[x[i]]++;
-        for (int i=1;i<=m;i++) c[i]+=c[i-1];
-        for (int i=n;i;i--) sa[c[x[y[i]]]--]=y[i];
-        
-        p=y[sa[1]]=1;
-        for (int i=2,a,b;i<=n;i++) {
-            a=sa[i]+k>n ? -1 : x[sa[i]+k];
-            b=sa[i-1]+k>n ? -1 : x[sa[i-1]+k];
-            y[sa[i]]= (x[sa[i]]==x[sa[i-1]]) && (a==b) ? p : ++p ;
-        }
-        swap (x,y);
-        m=p;
+inline void SA() {
+  int m = 128;
+  for (int i = 0; i <= m; i++) c[i] = 0;
+  for (int i = 1; i <= n; i++) c[x[i]]++;
+  for (int i = 1; i <= m; i++) c[i] += c[i - 1];
+  for (int i = n; i; i--) sa[c[x[i]]--] = i;
+
+  for (int k = 1, p; k <= n; k <<= 1) {
+    p = 0;
+    for (int i = n; i > n - k; i--) y[++p] = i;
+    for (int i = 1; i <= n; i++)
+      if (sa[i] > k) y[++p] = sa[i] - k;
+
+    for (int i = 0; i <= m; i++) c[i] = 0;
+    for (int i = 1; i <= n; i++) c[x[i]]++;
+    for (int i = 1; i <= m; i++) c[i] += c[i - 1];
+    for (int i = n; i; i--) sa[c[x[y[i]]]--] = y[i];
+
+    p = y[sa[1]] = 1;
+    for (int i = 2, a, b; i <= n; i++) {
+      a = sa[i] + k > n ? -1 : x[sa[i] + k];
+      b = sa[i - 1] + k > n ? -1 : x[sa[i - 1] + k];
+      y[sa[i]] = (x[sa[i]] == x[sa[i - 1]]) && (a == b) ? p : ++p;
     }
+    swap(x, y);
+    m = p;
+  }
 }
 
-int main () 
-{
-    scanf("%s",a+1);
-    
-    n=strlen (a+1);
-    for (int i=1;i<=n;i++) x[i]=a[i];
-    SA ();
-    
-    for (int i=1;i<=n;i++) 
-        printf("%d",sa[i]);
-    exit(0);
+int main() {
+  scanf("%s", a + 1);
+
+  n = strlen(a + 1);
+  for (int i = 1; i <= n; i++) x[i] = a[i];
+  SA();
+
+  for (int i = 1; i <= n; i++) printf("%d", sa[i]);
+  exit(0);
 }
 ```
 

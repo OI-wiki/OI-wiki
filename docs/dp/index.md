@@ -96,16 +96,13 @@
 
 ```c++
 int a[MAXN];
-int dp()
-{
-    int now=0,ans=1;
-    for (int i=2;i<=n;i++)
-    {
-        if (a[i]>a[i-1])
-            ans++;
-        now=max(now,ans);
-    }
-    return ans;
+int dp() {
+  int now = 0, ans = 1;
+  for (int i = 2; i <= n; i++) {
+    if (a[i] > a[i - 1]) ans++;
+    now = max(now, ans);
+  }
+  return ans;
 }
 ```
 
@@ -120,21 +117,18 @@ int dp()
 $O\left(n^2\right)$的算法。每一次重头扫描找出最佳答案。
 
 ```c++
-int a[MAXN],d[MAXN];
-int dp()
-{
-    d[1]=1;
-    int ans=0;
-    for (int i=2;i<=n;i++)
-    {
-        for (int j=i-1;j<i;j++)
-            if (a[j]<a[i])
-            {
-                d[i]=max(d[i],d[j]+1);
-                ans=max(ans,d[i]);
-            }
-    }
-    return ans;
+int a[MAXN], d[MAXN];
+int dp() {
+  d[1] = 1;
+  int ans = 0;
+  for (int i = 2; i <= n; i++) {
+    for (int j = i - 1; j < i; j++)
+      if (a[j] < a[i]) {
+        d[i] = max(d[i], d[j] + 1);
+        ans = max(ans, d[i]);
+      }
+  }
+  return ans;
 }
 ```
 
@@ -157,9 +151,10 @@ $O\left(n log n\right)$的算法，参考了这篇文章<https://www.cnblogs.com
 那么代码如下：
 
 ```cpp
-for(int i = 0; i < n; ++i) scanf("%d", a + i);
-memset(dp, 0x1f, sizeof dp); mx = dp[0];
-for(int i = 0; i < n; ++i) {
+for (int i = 0; i < n; ++i) scanf("%d", a + i);
+memset(dp, 0x1f, sizeof dp);
+mx = dp[0];
+for (int i = 0; i < n; ++i) {
   *std::lower_bound(dp, dp + n, a[i]) = a[i];
 }
 ans = 0;

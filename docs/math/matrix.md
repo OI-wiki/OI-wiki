@@ -41,31 +41,35 @@ $$
 ```c++
 struct mat {
   LL a[sz][sz];
-  inline mat() {
-    memset(a, 0, sizeof a);
-  }
-  inline mat operator + (const mat& T) const {
+  inline mat() { memset(a, 0, sizeof a); }
+  inline mat operator+(const mat& T) const {
     mat res;
-    for (int i = 0; i < 3; ++i) for (int j = 0; j < 3; ++j) res.a[i][j] = (a[i][j] - T.a[i][j] + MOD) % MOD;
+    for (int i = 0; i < 3; ++i)
+      for (int j = 0; j < 3; ++j)
+        res.a[i][j] = (a[i][j] - T.a[i][j] + MOD) % MOD;
     return res;
   }
-  inline mat operator - (const mat& T) const {
+  inline mat operator-(const mat& T) const {
     mat res;
-    for (int i = 0; i < 3; ++i) for (int j = 0; j < 3; ++j) res.a[i][j] = (a[i][j] + T.a[i][j]) % MOD;
+    for (int i = 0; i < 3; ++i)
+      for (int j = 0; j < 3; ++j) res.a[i][j] = (a[i][j] + T.a[i][j]) % MOD;
     return res;
   }
-  inline mat operator * (const mat& T) const {
+  inline mat operator*(const mat& T) const {
     mat res;
-    for (int i = 0; i < 3; ++i) for (int j = 0; j < 3; ++j) for (int k = 0; k < 3; ++k) {
-      res.a[i][j] += mul(a[i][k], T.a[k][j]);
-      res.a[i][j] %= MOD;
-    }
+    for (int i = 0; i < 3; ++i)
+      for (int j = 0; j < 3; ++j)
+        for (int k = 0; k < 3; ++k) {
+          res.a[i][j] += mul(a[i][k], T.a[k][j]);
+          res.a[i][j] %= MOD;
+        }
     return res;
   }
-  inline mat operator ^ (LL x) const {
+  inline mat operator^(LL x) const {
     mat res, bas;
     for (int i = 0; i < 3; ++i) res.a[i][i] = 1;
-    for (int i = 0; i < 3; ++i) for (int j = 0; j < 3; ++j) bas.a[i][j] = a[i][j];
+    for (int i = 0; i < 3; ++i)
+      for (int j = 0; j < 3; ++j) bas.a[i][j] = a[i][j];
     while (x) {
       if (x & 1) res = res * bas;
       bas = bas * bas;

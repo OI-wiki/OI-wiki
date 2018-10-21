@@ -27,12 +27,10 @@
 DFS 的代码如下：
 
 ```C++
-void DFS(int p)
-{
-    visited[p] = true;
-    for (int to : edge[p])
-        if (!visited[to])
-            DFS(to);
+void DFS(int p) {
+  visited[p] = true;
+  for (int to : edge[p])
+    if (!visited[to]) DFS(to);
 }
 ```
 

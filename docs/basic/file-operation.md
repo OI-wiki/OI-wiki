@@ -14,7 +14,7 @@ C/C++ 将文件分为文本文件和二进制文件。文本文件就是简单�
 ### 命令格式
 
 ```cpp
-FILE * freopen(const char * filename, const char * mode, FILE * stream);
+FILE* freopen(const char* filename, const char* mode, FILE* stream);
 ```
 
 ### 参数说明
@@ -28,13 +28,15 @@ FILE * freopen(const char * filename, const char * mode, FILE * stream);
 读入文件内容：
 
 ```cpp
-freopen("data.in","r",stdin); //data.in 就是读取的文件名，要和可执行文件放在同一目录下
+freopen("data.in", "r",
+        stdin);  // data.in 就是读取的文件名，要和可执行文件放在同一目录下
 ```
 
 输出到文件：
 
 ```cpp
-freopen("data.out","w",stdout); //data.out 就是输出文件的文件名，和可执行文件在同一目录下
+freopen("data.out", "w",
+        stdout);  // data.out 就是输出文件的文件名，和可执行文件在同一目录下
 ```
 
 关闭标准输入 \\ 输出流  
@@ -49,10 +51,9 @@ fclose(stdout);
 ```cpp
 #include <cstdio>
 #include <iostream>
-int main(void)
-{
-  freopen("data.in","r",stdin);
-  freopen("data.out","w",stdout);
+int main(void) {
+  freopen("data.in", "r", stdin);
+  freopen("data.out", "w", stdout);
   /*
   中间的代码不需要改变，直接使用 cin 和 cout 即可
   */
@@ -71,13 +72,15 @@ int main(void)
 读入文件内容：
 
 ```cpp
-ifstream fin("data.in"); //data.in 就是读取的文件名，要和可执行文件放在同一目录下
+ifstream fin(
+    "data.in");  // data.in 就是读取的文件名，要和可执行文件放在同一目录下
 ```
 
 输出到文件：
 
 ```cpp
-ofstream fout("data.out"); //data.out 就是输出文件的文件名，和可执行文件在同一目录下
+ofstream fout(
+    "data.out");  // data.out 就是输出文件的文件名，和可执行文件在同一目录下
 ```
 
 关闭标准输入 \\ 输出流
@@ -94,8 +97,7 @@ fout.close();
 #include <fstream>
 ifstream fin("data.in");
 ofstream fout("data.out");
-int main(void)
-{
+int main(void) {
   /*
   中间的代码改变 cin 为 fin ，cout 为 fout 即可
   */
