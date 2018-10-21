@@ -18,14 +18,16 @@
 代码实现：
 
 ```cpp
-for(int i=1;i<=n;i++)
-{
-	scanf("%d",a+i);
-	tot+=c[i]*a[i];
-	for(int j=1;j<=a[i];j*=2)if(a[i]>=j)a[i]-=j,v[++cur]=c[i]*j;
-	if(a[i])v[++cur]=c[i]*a[i];
+for (int i = 1; i <= n; i++) {
+  scanf("%d", a + i);
+  tot += c[i] * a[i];
+  for (int j = 1; j <= a[i]; j *= 2)
+    if (a[i] >= j) a[i] -= j, v[++cur] = c[i] * j;
+  if (a[i]) v[++cur] = c[i] * a[i];
 }
-for(int i=1;i<=cur;i++)for(int j=m;j>=v[i];j--)if(f[j-v[i]])f[j]=true;
+for (int i = 1; i <= cur; i++)
+  for (int j = m; j >= v[i]; j--)
+    if (f[j - v[i]]) f[j] = true;
 ```
 
 ## 几道练习题
@@ -187,20 +189,16 @@ $idx_{i,j-1}\le idx_{i,j}$
 给出核心代码：
 
 ```cpp
-for(int i=n;i>=1;i--)
-{
-	for(int j=i+1;j<=n;j++)
-	{
-		f[i][j]=inf;
-		for(int k=s[i][j-1];k<=s[i+1][j];k++)
-		{
-			if(f[i][j]<f[i][k]+f[k+1][j]+sum[j]-sum[i-1])
-			{
-				f[i][j]=f[i][k]+f[k+1][j]+sum[j]-sum[i-1];
-				idx[i][j]=k;
-			}
-		}
-	}
+for (int i = n; i >= 1; i--) {
+  for (int j = i + 1; j <= n; j++) {
+    f[i][j] = inf;
+    for (int k = s[i][j - 1]; k <= s[i + 1][j]; k++) {
+      if (f[i][j] < f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1]) {
+        f[i][j] = f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1];
+        idx[i][j] = k;
+      }
+    }
+  }
 }
 ```
 

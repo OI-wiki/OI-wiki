@@ -41,9 +41,10 @@ $c[6]$ 管理的是 $a[5]$ & $a[6]$ ；$c[8]$ 则管理全部 $8$ 个数。
 这时，我们引入一个函数—— `lowbit`：
 
 ```cpp
-int lowbit(int x)//算出x二进制的从右往左出现第一个1以及这个1之后的那些0组成数的二进制对应的十进制的数 
+int lowbit(
+    int x)  //算出x二进制的从右往左出现第一个1以及这个1之后的那些0组成数的二进制对应的十进制的数
 {
-    return x & -x;
+  return x & -x;
 }
 ```
 
@@ -69,28 +70,26 @@ $x\ \& \ (-x) = 1000_{(2)} = 8_{(10)}$。
 那么对于**单点修改**就更轻松了：
 
 ```cpp
-void change(int x ,int k)
-{
-    while(x <= n)//不能越界 
-    {
-        c[x] = c[x] + k;
-        x = x + lowbit(x);
-    }
+void change(int x, int k) {
+  while (x <= n)  //不能越界
+  {
+    c[x] = c[x] + k;
+    x = x + lowbit(x);
+  }
 }
 ```
 
 每次只要在他的上级那里更新就行，自己就可以不用管了。
 
 ```cpp
-int getsum(int x) //a[1]……a[x]的和 
+int getsum(int x)  // a[1]……a[x]的和
 {
-    int ans = 0;
-    while(x >= 1)
-    {
-        ans = ans + c[x];
-        x = x - lowbit(x);
-    }
-    return ans;
+  int ans = 0;
+  while (x >= 1) {
+    ans = ans + c[x];
+    x = x - lowbit(x);
+  }
+  return ans;
 }
 ```
 

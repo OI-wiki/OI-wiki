@@ -34,48 +34,51 @@ $$
 
 ```cpp
 // luogu-judger-enable-o2
-#include<cstdio>
-#include<cstring>
-#include<algorithm>
+#include <algorithm>
+#include <cstdio>
+#include <cstring>
 using namespace std;
-const int maxn=2510;
-int k,n,rr,cur,h[maxn],nxt[maxn*2],p[maxn*2],siz[maxn];
-double s[maxn],pp[maxn],l,r,mid,v[maxn],f[maxn][maxn];
-void add_edge(int x,int y)
-{
-    cur++;
-    nxt[cur]=h[x];
-    h[x]=cur;
-    p[cur]=y;
+const int maxn = 2510;
+int k, n, rr, cur, h[maxn], nxt[maxn * 2], p[maxn * 2], siz[maxn];
+double s[maxn], pp[maxn], l, r, mid, v[maxn], f[maxn][maxn];
+void add_edge(int x, int y) {
+  cur++;
+  nxt[cur] = h[x];
+  h[x] = cur;
+  p[cur] = y;
 }
-void dfs(int x,int fa)
-{
-    siz[x]=1;f[x][0]=0;f[x][1]=v[x];
-    for(int i=h[x];i!=-1;i=nxt[i])if(p[i]!=fa)
-    {
-        dfs(p[i],x);
-        for(int j=siz[x];j>=1;j--)for(int k=0;k<=siz[p[i]];k++)
-        f[x][j+k]=max(f[x][j+k],f[x][j]+f[p[i]][k]);
-        siz[x]+=siz[p[i]];
+void dfs(int x, int fa) {
+  siz[x] = 1;
+  f[x][0] = 0;
+  f[x][1] = v[x];
+  for (int i = h[x]; i != -1; i = nxt[i])
+    if (p[i] != fa) {
+      dfs(p[i], x);
+      for (int j = siz[x]; j >= 1; j--)
+        for (int k = 0; k <= siz[p[i]]; k++)
+          f[x][j + k] = max(f[x][j + k], f[x][j] + f[p[i]][k]);
+      siz[x] += siz[p[i]];
     }
 }
-int main()
-{
-    memset(h,-1,sizeof h);
-    scanf("%d%d",&k,&n);
-    for(int i=1;i<=n;i++)scanf("%lf%lf%d",s+i,pp+i,&rr),add_edge(rr,i),add_edge(i,rr);
-    r=10000.0;
-    while(r-l>1e-4)
-    {
-        mid=(l+r)*0.5;
-        for(int i=1;i<=n;i++)v[i]=pp[i]-mid*s[i];
-        for(int i=0;i<maxn;i++)for(int j=0;j<maxn;j++)f[i][j]=-2e9;
-        dfs(0,-1);
-        if(f[0][k+1]>0)l=mid;
-        else r=mid;
-    }
-    printf("%.3lf\n",l);
-    return 0;
+int main() {
+  memset(h, -1, sizeof h);
+  scanf("%d%d", &k, &n);
+  for (int i = 1; i <= n; i++)
+    scanf("%lf%lf%d", s + i, pp + i, &rr), add_edge(rr, i), add_edge(i, rr);
+  r = 10000.0;
+  while (r - l > 1e-4) {
+    mid = (l + r) * 0.5;
+    for (int i = 1; i <= n; i++) v[i] = pp[i] - mid * s[i];
+    for (int i = 0; i < maxn; i++)
+      for (int j = 0; j < maxn; j++) f[i][j] = -2e9;
+    dfs(0, -1);
+    if (f[0][k + 1] > 0)
+      l = mid;
+    else
+      r = mid;
+  }
+  printf("%.3lf\n", l);
+  return 0;
 }
 ```
 

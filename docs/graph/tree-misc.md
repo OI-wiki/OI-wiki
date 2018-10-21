@@ -28,34 +28,34 @@
 （代码来自叉姐）
 
 ```c++
-struct CenterTree{
-    int n;
-    int ans;
-    int siz;
-    int son[maxn];
-    void dfs(int u,int pa){
-        son[u]=1;
-        int res=0;
-        for (int i=head[u];i!=-1;i=edges[i].next){
-            int v=edges[i].to;
-            if (v==pa) continue;
-            if (vis[v]) continue;
-            dfs(v,u);
-            son[u]+=son[v];
-            res=max(res,son[v]-1);
-        }
-        res=max(res,n-son[u]);
-        if (res<siz){
-            ans=u;
-            siz=res;
-        }
+struct CenterTree {
+  int n;
+  int ans;
+  int siz;
+  int son[maxn];
+  void dfs(int u, int pa) {
+    son[u] = 1;
+    int res = 0;
+    for (int i = head[u]; i != -1; i = edges[i].next) {
+      int v = edges[i].to;
+      if (v == pa) continue;
+      if (vis[v]) continue;
+      dfs(v, u);
+      son[u] += son[v];
+      res = max(res, son[v] - 1);
     }
-    int getCenter(int x){
-        ans=0;
-        siz=INF;
-        dfs(x,-1);
-        return ans;
+    res = max(res, n - son[u]);
+    if (res < siz) {
+      ans = u;
+      siz = res;
     }
+  }
+  int getCenter(int x) {
+    ans = 0;
+    siz = INF;
+    dfs(x, -1);
+    return ans;
+  }
 }
 ```
 

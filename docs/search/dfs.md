@@ -27,7 +27,7 @@ void dfs(int u) {
   vis[u] = 1;
   for (int i = head[u]; i; i = e[i].x) {
     // 这里用到的是链式前向星来存图
-    if (!vis[ e[i].t ]) {
+    if (!vis[e[i].t]) {
       dfs(v);
     }
   }

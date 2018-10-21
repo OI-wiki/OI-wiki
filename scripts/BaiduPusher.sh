@@ -6,7 +6,7 @@ REPO=OI-wiki
 
 # Sitemap Parser
 pip install bs4
-python Sitemap_Parser.py
+python scripts/Sitemap_Parser.py
 
 cd site
 #Use Curl
