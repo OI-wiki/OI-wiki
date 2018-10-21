@@ -26,7 +26,7 @@
   "homepage": "https://github.com/24OI/OI-wiki#readme",
   "dependencies": {
     "mathjax-node-page": "^3.0.1",
-    "remark-clang-format": "^1.0.0",
+    "remark-clang-format": "^1.0.1",
     "remark-lint-final-newline": "^1.0.2",
     "remark-lint-no-tabs": "^1.0.2",
     "remark-math": "^1.0.4",
