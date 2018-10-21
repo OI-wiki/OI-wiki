@@ -19,6 +19,8 @@ nav:
     - Getting Started: index.md
     - OI 赛制简介: intro/mode.md
     - 学习资源: intro/resources.md
+    - 常见错误: intro/common-mistakes.md
+    - 常见技巧: intro/common-tricks.md
     - 工具软件: 
       - 评测工具: intro/judgers.md
       - 编辑工具: intro/editors.md
