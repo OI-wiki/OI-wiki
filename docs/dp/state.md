@@ -9,22 +9,21 @@
 #### 常用格式
 
 ```cpp
-int maxn=1<<n; //规定状态的上界
-for (int i=0;i<maxn;i++){
-	if (i&(i<<1)) continue;//如果i情况不成立就忽略
-	Type[++top]=i;//记录情况i到Type数组中
+int maxn = 1 << n;  //规定状态的上界
+for (int i = 0; i < maxn; i++) {
+  if (i & (i << 1)) continue;  //如果i情况不成立就忽略
+  Type[++top] = i;             //记录情况i到Type数组中
 }
-for (int i=1;i<=top;i++){
-	if (fit(situation[1],Type[i]))
-    	dp[1][Type[i]]=1;//初始化第一层
+for (int i = 1; i <= top; i++) {
+  if (fit(situation[1], Type[i])) dp[1][Type[i]] = 1;  //初始化第一层
 }
-for (int i=2;i<=层数(dp上界);i++){
-	for (int l=1;l<=top;l++)//穷举本层情况
-    	for (int j=1;j<=top;j++)//穷举上一层情况(上一层对本层有影响时)
-        	if (situation[i],Type[l]和Type[j]符合题意)
-            	dp[i][l]=dp[i][l]+dp[i-1][j];//改变当前层(i)的状态(l)的方案种数
+for (int i = 2; i <= 层数(dp上界); i++) {
+  for (int l = 1; l <= top; l++)  //穷举本层情况
+    for (int j = 1; j <= top; j++)  //穷举上一层情况(上一层对本层有影响时)
+      if (situation[i], Type[l] 和Type[j] 符合题意)
+        dp[i][l] = dp[i][l] + dp[i - 1][j];  //改变当前层(i)的状态(l)的方案种数
 }
-for (int i=1;i<=top;i++) ans+=dp[上界][Type[i]];
+for (int i = 1; i <= top; i++) ans += dp[上界][Type[i]];
 ```
 
 #### 典型例题

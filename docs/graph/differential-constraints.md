@@ -23,49 +23,57 @@
 给出一种用 DFS-SPFA 实现的判负环（时间复杂度极度不稳定）：
 
 ```cpp
-#include<cstdio>
-#include<cstring>
-#include<algorithm>
+#include <algorithm>
+#include <cstdio>
+#include <cstring>
 using namespace std;
-const int maxn=400010;
-int n,m,op,u,v,we,cur,h[maxn],nxt[maxn],p[maxn],w[maxn],dist[maxn];
-bool tf[maxn],ans;
-inline void add_edge(int x,int y,int z)
-{
-    cur++;
-    nxt[cur]=h[x];
-    h[x]=cur;
-    p[cur]=y;
-    w[cur]=z;
+const int maxn = 400010;
+int n, m, op, u, v, we, cur, h[maxn], nxt[maxn], p[maxn], w[maxn], dist[maxn];
+bool tf[maxn], ans;
+inline void add_edge(int x, int y, int z) {
+  cur++;
+  nxt[cur] = h[x];
+  h[x] = cur;
+  p[cur] = y;
+  w[cur] = z;
 }
-void dfs(int x)
-{
-    tf[x]=true;
-    for(int j=h[x];j!=-1;j=nxt[j])if(dist[p[j]]>dist[x]+w[j])
-    {
-        if(tf[p[j]]||ans){ans=1;break;}
-        dist[p[j]]=dist[x]+w[j];
-        dfs(p[j]);
+void dfs(int x) {
+  tf[x] = true;
+  for (int j = h[x]; j != -1; j = nxt[j])
+    if (dist[p[j]] > dist[x] + w[j]) {
+      if (tf[p[j]] || ans) {
+        ans = 1;
+        break;
+      }
+      dist[p[j]] = dist[x] + w[j];
+      dfs(p[j]);
     }
-    tf[x]=false;
+  tf[x] = false;
 }
-int main()
-{
-    cur=0;ans=false;
-    memset(h,-1,sizeof h);
-    memset(dist,127,sizeof dist);
-    scanf("%d%d",&n,&m);
-    while(m--)
-    {
-        scanf("%d%d%d",&op,&u,&v);
-        if(op==1)scanf("%d",&we),add_edge(u,v,-we);
-        else if(op==2)scanf("%d",&we),add_edge(v,u,we);
-        else if(op==3)add_edge(u,v,0),add_edge(v,u,0);
-    }
-    for(int i=1;i<=n;i++){dfs(i);if(ans)break;}
-    if(ans)printf("No\n");
-    else printf("Yes\n");
-    return 0;
+int main() {
+  cur = 0;
+  ans = false;
+  memset(h, -1, sizeof h);
+  memset(dist, 127, sizeof dist);
+  scanf("%d%d", &n, &m);
+  while (m--) {
+    scanf("%d%d%d", &op, &u, &v);
+    if (op == 1)
+      scanf("%d", &we), add_edge(u, v, -we);
+    else if (op == 2)
+      scanf("%d", &we), add_edge(v, u, we);
+    else if (op == 3)
+      add_edge(u, v, 0), add_edge(v, u, 0);
+  }
+  for (int i = 1; i <= n; i++) {
+    dfs(i);
+    if (ans) break;
+  }
+  if (ans)
+    printf("No\n");
+  else
+    printf("Yes\n");
+  return 0;
 }
 ```
 
@@ -80,18 +88,19 @@ int main()
 下面是用 Bellman-Ford 算法判断图中是否存在负环的代码实现，请在调用前先保证图是联通的。
 
 ```cpp
-bool Bellman_Ford()
-{
-	for(int i=0;i<n;i++)
-	{
-		bool jud=false;
-		for(int j=1;j<=n;j++)for(int k=h[j];~k;k=nxt[k])
-		if(dist[j]>dist[p[k]]+w[k])dist[j]=dist[p[k]]+w[k],jud=true;
-		if(!jud)break;
-	}
-	for(int i=1;i<=n;i++)for(int j=h[i];~j;j=nxt[j])
-	if(dist[i]>dist[p[j]]+w[j])return false;
-	return true;
+bool Bellman_Ford() {
+  for (int i = 0; i < n; i++) {
+    bool jud = false;
+    for (int j = 1; j <= n; j++)
+      for (int k = h[j]; ~k; k = nxt[k])
+        if (dist[j] > dist[p[k]] + w[k])
+          dist[j] = dist[p[k]] + w[k], jud = true;
+    if (!jud) break;
+  }
+  for (int i = 1; i <= n; i++)
+    for (int j = h[i]; ~j; j = nxt[j])
+      if (dist[i] > dist[p[j]] + w[j]) return false;
+  return true;
 }
 ```
 

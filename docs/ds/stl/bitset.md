@@ -23,7 +23,7 @@
 通过以下的介绍, 你可以更加详细的看到`bitset`具备的方便操作
 
 ```cpp
-#include <bitset> // 包含 bitset 的头文件
+#include <bitset>  // 包含 bitset 的头文件
 ```
 
 #### 运算符 :

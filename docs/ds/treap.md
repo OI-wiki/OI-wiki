@@ -11,20 +11,19 @@ treap 分为旋转式和无旋式两种。两种 treap 都易于编写，但无�
 分裂过程接受两个参数：根指针 $u$、关键值 $key$。结果为将根指针指向的 treap 分裂为两个 treap，第一个 treap 所有结点的关键值小于等于 $key$，第二个 treap 所有结点的关键值大于 $key$。该过程首先判断 $key$ 是否小于 $u$ 的关键值，若小于，则说明 $u$ 及其右子树全部属于第二个 treap，否则说明 $u$ 及其左子树全部属于第一个 treap。根据此判断决定应向左子树递归还是应向右子树递归，继续分裂子树。待子树分裂完成后按刚刚的判断情况连接 $u$ 的左子树或右子树到递归分裂所得的子树中。
 
 ```c++
-pair<node*, node*> split(node *u, int key) {
-	if (u == nullptr) {
-		return make_pair(nullptr, nullptr);
-	}
-	if (key < u->key) {
-		pair<node*, node*> o = split(u->lch, key);
-		u->lch = o.second;
-		return make_pair(o.first, u);
-	}
-	else {
-		pair<node*, node*> o = split(u->rch, key);
-		u->rch = o.first;
-		return make_pair(u, o.second);
-	}
+pair<node *, node *> split(node *u, int key) {
+  if (u == nullptr) {
+    return make_pair(nullptr, nullptr);
+  }
+  if (key < u->key) {
+    pair<node *, node *> o = split(u->lch, key);
+    u->lch = o.second;
+    return make_pair(o.first, u);
+  } else {
+    pair<node *, node *> o = split(u->rch, key);
+    u->rch = o.first;
+    return make_pair(u, o.second);
+  }
 }
 ```
 
@@ -33,21 +32,20 @@ pair<node*, node*> split(node *u, int key) {
 合并过程接受两个参数：左 treap 的根指针 $u$、右 treap 的根指针 $v$。必须满足 $u$ 中所有结点的关键值小于等于 $v$ 中左右结点的关键值。因为两个 treap 已经有序，我们只需要考虑 $priority$ 来决定哪个 treap 应与另一个 treap 的儿子合并。若 $u$ 的根结点的 $priority$ 大于 $v$ 的，那么 $u$ 即为新根结点，$v$ 应与 $u$ 的右子树合并；反之，则 $v$ 作为新根结点，然后让 $u$ 与 $v$ 的左子树合并。不难发现，这样合并所得的树依然满足 $priority$ 的大根堆性质。
 
 ```c++
-node* merge(node *u, node *v) {
-	if (u == nullptr) {
-		return v;
-	}
-	if (v == nullptr) {
-		return u;
-	}
-	if (u->priority > v->priority) {
-		u->rch = merge(u->rch, v);
-		return u;
-	}
-	else {
-		v->lch = merge(u, v->lch);
-		return v;
-	}
+node *merge(node *u, node *v) {
+  if (u == nullptr) {
+    return v;
+  }
+  if (v == nullptr) {
+    return u;
+  }
+  if (u->priority > v->priority) {
+    u->rch = merge(u->rch, v);
+    return u;
+  } else {
+    v->lch = merge(u, v->lch);
+    return v;
+  }
 }
 ```
 
@@ -59,23 +57,20 @@ node* merge(node *u, node *v) {
 
 ```c++
 int find(node *u, int key) {
-	if (u == nullptr) {
-		return 0;
-	}
-	if (key == u->key) {
-		return 1;
-	}
-	if (key < u->key) {
-		return find(u->lch, key);
-	}
-	else {
-		return find(u->rch, key);
-	}
+  if (u == nullptr) {
+    return 0;
+  }
+  if (key == u->key) {
+    return 1;
+  }
+  if (key < u->key) {
+    return find(u->lch, key);
+  } else {
+    return find(u->rch, key);
+  }
 }
 
-int count(int key) {
-	return find(root, key);
-}
+int count(int key) { return find(root, key); }
 ```
 
 ### insert 函数
@@ -84,11 +79,11 @@ int count(int key) {
 
 ```c++
 void insert(int key) {
-	pair<node*, node*> o = split(root, key);
-	if (find(root, key) == 0) {
-		o.first = merge(o.first, new node(key));
-	}
-	root = merge(o.first, o.second);
+  pair<node*, node*> o = split(root, key);
+  if (find(root, key) == 0) {
+    o.first = merge(o.first, new node(key));
+  }
+  root = merge(o.first, o.second);
 }
 ```
 
@@ -98,9 +93,9 @@ void insert(int key) {
 
 ```c++
 void erase(int key) {
-	pair<node*, node*> o = split(root, key - 1);
-	pair<node*, node*> p = split(o.second, key);
-	delete p.first;
-	root = merge(o.first, p.second);
+  pair<node*, node*> o = split(root, key - 1);
+  pair<node*, node*> p = split(o.second, key);
+  delete p.first;
+  root = merge(o.first, p.second);
 }
 ```

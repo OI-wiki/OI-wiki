@@ -31,26 +31,28 @@ void genPrimes() {
 
 ```c++
 void init() {
-	phi[1] = 1;
-	f(i, 2, MAXN) {
-		if (!vis[i]) {
-			phi[i] = i - 1; pri[cnt++] = i;
-		}
-		f(j, 0, cnt) {
-			if ((LL)i * pri[j] >= MAXN) break;
-			vis[i * pri[j]] = 1;
-			if (i % pri[j]) {
-				phi[i * pri[j]] = phi[i] * (pri[j] - 1);
-			} else {
+  phi[1] = 1;
+  f(i, 2, MAXN) {
+    if (!vis[i]) {
+      phi[i] = i - 1;
+      pri[cnt++] = i;
+    }
+    f(j, 0, cnt) {
+      if ((LL)i * pri[j] >= MAXN) break;
+      vis[i * pri[j]] = 1;
+      if (i % pri[j]) {
+        phi[i * pri[j]] = phi[i] * (pri[j] - 1);
+      } else {
         // i % pri[j] == 0
         // 换言之，i 之前被 pri[j] 筛过了
-        // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是 pri[j] 的倍数
-        // 它们都被筛过了，就不需要再筛了，所以这里直接 break 掉就好了
-				phi[i * pri[j]] = phi[i] * pri[j];
-				break;
-			}
-		}
-	}
+        // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
+        // pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
+        // 掉就好了
+        phi[i * pri[j]] = phi[i] * pri[j];
+        break;
+      }
+    }
+  }
 }
 ```
 
@@ -84,17 +86,15 @@ $$
 $$
 
 ```c++
-void phi_table(int n,int* phi)
-{
-    for (int i=2;i<=n;i++) phi[i]=0;
-    phi[1]=1;
-    for (int i=2;i<=n;i++)
+void phi_table(int n, int* phi) {
+  for (int i = 2; i <= n; i++) phi[i] = 0;
+  phi[1] = 1;
+  for (int i = 2; i <= n; i++)
     if (!phi[i])
-	    for (int j=i;j<=n;j+=i)
-	    {
-		    if (!phi[j]) phi[j]=j;
-		    phi[j]=phi[j]/i*(i-1);
-	    }
+      for (int j = i; j <= n; j += i) {
+        if (!phi[j]) phi[j] = j;
+        phi[j] = phi[j] / i * (i - 1);
+      }
 }
 ```
 

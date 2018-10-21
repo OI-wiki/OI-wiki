@@ -26,56 +26,54 @@
 第二维查询
 
 ```c++
-int tree_query(int k,int l,int r,int x)
-{
-	if (k == 0) return 0;
-	if (1 <= l && r <= sec[x].y) return vec_query(ou_root[k],1,p,1,sec[x].z);
-	int mid = l + r >> 1,res = 0;
-	if (1 <= mid) res += tree_query(ou_ch[k][0],l,mid,x);
-	if (sec[x].y > mid) res += tree_query(ou_ch[k][1],mid + 1,r,x);
-	return res;
+int tree_query(int k, int l, int r, int x) {
+  if (k == 0) return 0;
+  if (1 <= l && r <= sec[x].y) return vec_query(ou_root[k], 1, p, 1, sec[x].z);
+  int mid = l + r >> 1, res = 0;
+  if (1 <= mid) res += tree_query(ou_ch[k][0], l, mid, x);
+  if (sec[x].y > mid) res += tree_query(ou_ch[k][1], mid + 1, r, x);
+  return res;
 }
 ```
 
 第二维修改
 
 ```c++
-void tree_insert(int &k,int l,int r,int x)
-{
-	if (k == 0) k = ++ou_tot;
-	vec_insert(ou_root[k],1,p,sec[x].z);
-	if (l == r) return;
-	int mid = l + r >> 1;
-	if (sec[x].y <= mid) tree_insert(ou_ch[k][0],l,mid,x);
-	else tree_insert(ou_ch[k][1],mid + 1,r,x);
+void tree_insert(int &k, int l, int r, int x) {
+  if (k == 0) k = ++ou_tot;
+  vec_insert(ou_root[k], 1, p, sec[x].z);
+  if (l == r) return;
+  int mid = l + r >> 1;
+  if (sec[x].y <= mid)
+    tree_insert(ou_ch[k][0], l, mid, x);
+  else
+    tree_insert(ou_ch[k][1], mid + 1, r, x);
 }
 ```
 
 第三维查询
 
 ```c++
-int vec_query(int k,int l,int r,int x,int y)
-{
-	if (k == 0) return 0;
-	if (x <= l && r <= y) return data[k];
-	int mid = l + r >> 1,res = 0;
-	if (x <= mid) res += vec_query(ch[k][0],l,mid,x,y);
-	if (y > mid) res += vec_query(ch[k][1],mid + 1,r,x,y);
-	return res;
+int vec_query(int k, int l, int r, int x, int y) {
+  if (k == 0) return 0;
+  if (x <= l && r <= y) return data[k];
+  int mid = l + r >> 1, res = 0;
+  if (x <= mid) res += vec_query(ch[k][0], l, mid, x, y);
+  if (y > mid) res += vec_query(ch[k][1], mid + 1, r, x, y);
+  return res;
 }
 ```
 
 第三维修改
 
 ```c++
-void vec_insert(int &k,int l,int r,int loc)
-{
-	if (k == 0) k = ++tot;
-	data[k]++;
-	if (l == r) return;
-	int mid = l + r >> 1;
-	if (loc <= mid) vec_insert(ch[k][0],l,mid,loc);
-	if (loc > mid) vec_insert(ch[k][1],mid + 1,r,loc);
+void vec_insert(int &k, int l, int r, int loc) {
+  if (k == 0) k = ++tot;
+  data[k]++;
+  if (l == r) return;
+  int mid = l + r >> 1;
+  if (loc <= mid) vec_insert(ch[k][0], l, mid, loc);
+  if (loc > mid) vec_insert(ch[k][1], mid + 1, r, loc);
 }
 ```
 

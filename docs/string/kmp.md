@@ -45,23 +45,23 @@ $$
 
 ```cpp
 KMP(char *a, char *b, int n, int m) {
-	int *next = new int[m + 1];
-	next[1] = 0;
-	for (i = 2; i <= m; i++) {
-		int t = next[i - 1];
-		while (t && b[t] != b[i - 1]) t = next[t];
-		next[i] = t + (b[t] == b[i - 1]);
-	}
-	ans = new vector();
-	int p = 0;
-	for (i = 0; i < n; i++) {
-		while (p && a[i] != b[p]) p = next[p];
-		if (a[i] == b[p] && ++p == m) {
-			ans.push_back(i - m + 1);
-			p = next[p];
-		}
-	}
-	return ans;
+  int *next = new int[m + 1];
+  next[1] = 0;
+  for (i = 2; i <= m; i++) {
+    int t = next[i - 1];
+    while (t && b[t] != b[i - 1]) t = next[t];
+    next[i] = t + (b[t] == b[i - 1]);
+  }
+  ans = new vector();
+  int p = 0;
+  for (i = 0; i < n; i++) {
+    while (p && a[i] != b[p]) p = next[p];
+    if (a[i] == b[p] && ++p == m) {
+      ans.push_back(i - m + 1);
+      p = next[p];
+    }
+  }
+  return ans;
 }
 ```
 

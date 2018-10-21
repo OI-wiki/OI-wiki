@@ -26,16 +26,18 @@ Lemon 所需的修改版 Testlib 可以在[这里](https://paste.ubuntu.com/p/Js
 ```cpp
 #include <testlib.h>
 #include <cmath>
-int main(int argc, char *argv[]){
-    /*
-     * inf：输入
-     * ouf：选手输出
-     * ans：标准输出
-     */
-    registerTestlibCmd(argc, argv);
-    double pans=ouf.readDouble(), jans=ans.readDouble();
-    if(abs(pans - jans) < 1e-3) quitf(_ok, "Good job");
-    else quitf(_wa, "Too big or too small, expected %f, found %f", jans, pans);
+int main(int argc, char *argv[]) {
+  /*
+   * inf：输入
+   * ouf：选手输出
+   * ans：标准输出
+   */
+  registerTestlibCmd(argc, argv);
+  double pans = ouf.readDouble(), jans = ans.readDouble();
+  if (abs(pans - jans) < 1e-3)
+    quitf(_ok, "Good job");
+  else
+    quitf(_wa, "Too big or too small, expected %f, found %f", jans, pans);
 }
 ```
 
@@ -44,92 +46,92 @@ int main(int argc, char *argv[]){
 **Lemon 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib)**
 
 ```cpp
-#include <cstdio>
 #include <cmath>
-int main(int argc,char *argv[]){
-    /*
-     * argv[1]：输入
-     * argv[2]：选手输出
-     * argv[3]：标准输出
-     * argv[4]：单个测试点分值
-     * argv[5]：输出最终得分
-     * argv[6]：输出错误报告
-     */
-    FILE* fin = fopen(argv[1], "r");
-	FILE* fout = fopen(argv[2], "r");
-	FILE* fstd = fopen(argv[3], "r");
-	FILE* fscore = fopen(argv[5], "w");
-	FILE* freport = fopen(argv[6], "w");
-	double pans, jans;
-	fscanf(fout, "%lf", &pans);
-	fscanf(fstd, "%lf", &jans);
-	if(abs(pans - jans) < 1e-3){
-		fprintf(fscore, "%s", argv[4]);
-		fprintf(freport, "Good job");
-	}else{
-		fprintf(fscore, "%d", 0);
-		fprintf(freport, "Too big or too small, expected %f, found %f", jans, pans);
-	}
+#include <cstdio>
+int main(int argc, char* argv[]) {
+  /*
+   * argv[1]：输入
+   * argv[2]：选手输出
+   * argv[3]：标准输出
+   * argv[4]：单个测试点分值
+   * argv[5]：输出最终得分
+   * argv[6]：输出错误报告
+   */
+  FILE* fin = fopen(argv[1], "r");
+  FILE* fout = fopen(argv[2], "r");
+  FILE* fstd = fopen(argv[3], "r");
+  FILE* fscore = fopen(argv[5], "w");
+  FILE* freport = fopen(argv[6], "w");
+  double pans, jans;
+  fscanf(fout, "%lf", &pans);
+  fscanf(fstd, "%lf", &jans);
+  if (abs(pans - jans) < 1e-3) {
+    fprintf(fscore, "%s", argv[4]);
+    fprintf(freport, "Good job");
+  } else {
+    fprintf(fscore, "%d", 0);
+    fprintf(freport, "Too big or too small, expected %f, found %f", jans, pans);
+  }
 }
 ```
 
 ## Cena
 
 ```cpp
-#include <cstdio>
 #include <cmath>
-int main(int argc,char *argv[]){
-    /*
-     * FILENAME.in：输入
-     * FILENAME.out：选手输出
-     * argv[2]：标准输出
-     * argv[1]：单个测试点分值
-     * score.log：输出最终得分
-     * report.log：输出错误报告
-     */
-    FILE* fin = fopen("num.in", "r");
-	FILE* fout = fopen("num.out", "r");
-	FILE* fstd = fopen(argv[2], "r");
-	FILE* fscore = fopen("score.log", "w");
-	FILE* freport = fopen("report.log", "w");
-	double pans, jans;
-	fscanf(fout, "%lf", &pans);
-	fscanf(fstd, "%lf", &jans);
-	if(abs(pans - jans) < 1e-3){
-		fprintf(fscore, "%s", argv[1]);
-		fprintf(freport, "Good job");
-	}else{
-		fprintf(fscore, "%d", 0);
-		fprintf(freport, "Too big or too small, expected %f, found %f", jans, pans);
-	}
+#include <cstdio>
+int main(int argc, char* argv[]) {
+  /*
+   * FILENAME.in：输入
+   * FILENAME.out：选手输出
+   * argv[2]：标准输出
+   * argv[1]：单个测试点分值
+   * score.log：输出最终得分
+   * report.log：输出错误报告
+   */
+  FILE* fin = fopen("num.in", "r");
+  FILE* fout = fopen("num.out", "r");
+  FILE* fstd = fopen(argv[2], "r");
+  FILE* fscore = fopen("score.log", "w");
+  FILE* freport = fopen("report.log", "w");
+  double pans, jans;
+  fscanf(fout, "%lf", &pans);
+  fscanf(fstd, "%lf", &jans);
+  if (abs(pans - jans) < 1e-3) {
+    fprintf(fscore, "%s", argv[1]);
+    fprintf(freport, "Good job");
+  } else {
+    fprintf(fscore, "%d", 0);
+    fprintf(freport, "Too big or too small, expected %f, found %f", jans, pans);
+  }
 }
 ```
 
 ## CCR
 
 ```cpp
-#include <cstdio>
 #include <cmath>
-int main(int argc,char *argv[]){
-    /*
-     * stdin：输入
-     * argv[3]：选手输出
-     * argv[2]：标准输出
-     * stdout:L1：输出最终得分比率
-     * stdout:L2：输出错误报告
-     */
-	FILE* fout = fopen(argv[3], "r");
-	FILE* fstd = fopen(argv[2], "r");
-	double pans, jans;
-	fscanf(fout, "%lf", &pans);
-	fscanf(fstd, "%lf", &jans);
-	if(abs(pans - jans) < 1e-3){
-		printf("%d\n", 1);
-		printf("Good job");
-	}else{
-		printf("%d\n", 0);
-		printf("Too big or too small, expected %f, found %f", jans, pans);
-	}
+#include <cstdio>
+int main(int argc, char* argv[]) {
+  /*
+   * stdin：输入
+   * argv[3]：选手输出
+   * argv[2]：标准输出
+   * stdout:L1：输出最终得分比率
+   * stdout:L2：输出错误报告
+   */
+  FILE* fout = fopen(argv[3], "r");
+  FILE* fstd = fopen(argv[2], "r");
+  double pans, jans;
+  fscanf(fout, "%lf", &pans);
+  fscanf(fstd, "%lf", &jans);
+  if (abs(pans - jans) < 1e-3) {
+    printf("%d\n", 1);
+    printf("Good job");
+  } else {
+    printf("%d\n", 0);
+    printf("Too big or too small, expected %f, found %f", jans, pans);
+  }
 }
 ```
 
@@ -138,24 +140,26 @@ int main(int argc,char *argv[]){
 ## HUSTOJ
 
 ```cpp
-#include <cstdio>
 #include <cmath>
+#include <cstdio>
 #define AC 0
 #define WA 1
-int main(int argc,char *argv[]){
-    /*
-     * argv[1]：输入
-     * argv[3]：选手输出
-     * argv[2]：标准输出
-     * exit code：返回判断结果
-     */
-	FILE* fout = fopen(argv[3], "r");
-	FILE* fstd = fopen(argv[2], "r");
-	double pans, jans;
-	fscanf(fout, "%lf", &pans);
-	fscanf(fstd, "%lf", &jans);
-	if(abs(pans - jans) < 1e-3) return AC;
-	else return WA;
+int main(int argc, char* argv[]) {
+  /*
+   * argv[1]：输入
+   * argv[3]：选手输出
+   * argv[2]：标准输出
+   * exit code：返回判断结果
+   */
+  FILE* fout = fopen(argv[3], "r");
+  FILE* fstd = fopen(argv[2], "r");
+  double pans, jans;
+  fscanf(fout, "%lf", &pans);
+  fscanf(fstd, "%lf", &jans);
+  if (abs(pans - jans) < 1e-3)
+    return AC;
+  else
+    return WA;
 }
 ```
 
@@ -164,28 +168,30 @@ int main(int argc,char *argv[]){
 QDUOJ 就麻烦一点，因为它的带 spj 的题目没有标准输出，只能把 std 写进 spj 跑出标准输出再判断。
 
 ```cpp
-#include <cstdio>
 #include <cmath>
+#include <cstdio>
 #define AC 0
 #define WA 1
 #define ERROR -1
-double solve(...){
-	// std
+double solve(...) {
+  // std
 }
-int main(int argc,char *argv[]){
-    /*
-     * argv[1]：输入
-     * argv[2]：选手输出
-     * exit code：返回判断结果
-     */
-	FILE* fin = fopen(argv[1], "r");
-	FILE* fout = fopen(argv[2], "r");
-	//读入
-	double pans, jans;
-	fscanf(fout, "%lf", &pans);
-	jans = solve(...);
-	if(abs(pans - jans) < 1e-3) return AC;
-	else return WA;
+int main(int argc, char* argv[]) {
+  /*
+   * argv[1]：输入
+   * argv[2]：选手输出
+   * exit code：返回判断结果
+   */
+  FILE* fin = fopen(argv[1], "r");
+  FILE* fout = fopen(argv[2], "r");
+  //读入
+  double pans, jans;
+  fscanf(fout, "%lf", &pans);
+  jans = solve(...);
+  if (abs(pans - jans) < 1e-3)
+    return AC;
+  else
+    return WA;
 }
 ```
 
@@ -194,30 +200,30 @@ int main(int argc,char *argv[]){
 **LibreOJ(SYZOJ 2) 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib)**
 
 ```cpp
-#include <cstdio>
 #include <cmath>
-int main(int argc,char *argv[]){
-    /*
-     * in：输入
-     * user_out：选手输出
-     * answer：标准输出
-     * code：选手代码
-     * stdout：输出最终得分
-     * stderr：输出错误报告
-     */
-    FILE* fin = fopen("in", "r");
-	FILE* fout = fopen("user_out", "r");
-	FILE* fstd = fopen("answer", "r");
-	FILE* fcode = fopen("code", "r");
-	double pans, jans;
-	fscanf(fout, "%lf", &pans);
-	fscanf(fstd, "%lf", &jans);
-	if(abs(pans - jans) < 1e-3){
-		printf("%d", 100);
-		fprintf(stderr, "Good job");
-	}else{
-		printf("%d", 0);
-		fprintf(stderr, "Too big or too small, expected %f, found %f", jans, pans);
-	}
+#include <cstdio>
+int main(int argc, char* argv[]) {
+  /*
+   * in：输入
+   * user_out：选手输出
+   * answer：标准输出
+   * code：选手代码
+   * stdout：输出最终得分
+   * stderr：输出错误报告
+   */
+  FILE* fin = fopen("in", "r");
+  FILE* fout = fopen("user_out", "r");
+  FILE* fstd = fopen("answer", "r");
+  FILE* fcode = fopen("code", "r");
+  double pans, jans;
+  fscanf(fout, "%lf", &pans);
+  fscanf(fstd, "%lf", &jans);
+  if (abs(pans - jans) < 1e-3) {
+    printf("%d", 100);
+    fprintf(stderr, "Good job");
+  } else {
+    printf("%d", 0);
+    fprintf(stderr, "Too big or too small, expected %f, found %f", jans, pans);
+  }
 }
 ```

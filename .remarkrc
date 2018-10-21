@@ -10,6 +10,7 @@
     ["remark-lint-ordered-list-marker-value", "ordered"],
     "remark-math",
     "remark-lint-final-newline",
-    "remark-lint-no-tabs"
+    "remark-lint-no-tabs",
+    "remark-clang-format"
   ]
 }

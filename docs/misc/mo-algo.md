@@ -22,20 +22,20 @@
 
 ```cpp
 inline void move(int pos, int sign) {
-    // update nowAns
+  // update nowAns
 }
 
 void solve() {
-    BLOCK_SIZE = int(ceil(pow(n, 0.5)));
-      sort(querys, querys + m);
-    for (int i = 0; i < m; ++i) {
-        const query &q = querys[i];
-        while (l > q.l) move(--l, 1);
-        while (r < q.r) move(r++, 1);
-        while (l < q.l) move(l++, -1);
-        while (r > q.r) move(--r, -1);
-        ans[q.id] = nowAns;
-    }
+  BLOCK_SIZE = int(ceil(pow(n, 0.5)));
+  sort(querys, querys + m);
+  for (int i = 0; i < m; ++i) {
+    const query &q = querys[i];
+    while (l > q.l) move(--l, 1);
+    while (r < q.r) move(r++, 1);
+    while (l < q.l) move(l++, -1);
+    while (r > q.r) move(--r, -1);
+    ans[q.id] = nowAns;
+  }
 }
 ```
 
@@ -120,38 +120,44 @@ $$
 
 ```cpp
 #include <bits/stdc++.h>
-#define bi(a) ((a-1)/sqn+1)
+#define bi(a) ((a - 1) / sqn + 1)
 using namespace std;
 typedef long long LL;
-template<typename tp>void read(tp & dig)
-{
-    char c=getchar();dig=0;
-    while(!isdigit(c))c=getchar();
-    while(isdigit(c))dig=dig*10+c-'0',c=getchar();
+template <typename tp>
+void read(tp& dig) {
+  char c = getchar();
+  dig = 0;
+  while (!isdigit(c)) c = getchar();
+  while (isdigit(c)) dig = dig * 10 + c - '0', c = getchar();
 }
-struct node{LL l,r,i;};
-LL n,m,sqn,arr[50005],l,r,ans,col[50005],sub[50005],mot[50005];
+struct node {
+  LL l, r, i;
+};
+LL n, m, sqn, arr[50005], l, r, ans, col[50005], sub[50005], mot[50005];
 vector<node> tab;
-bool cmp(node a,node b){if(bi(a.l)==bi(b.l))return a.r<b.r;return a.l<b.l;}
-LL gcd(LL a,LL b){return !b?a:gcd(b,a%b);}
-int main()
-{
-    read(n),read(m),sqn=sqrt(n);
-    for(LL i=1;i<=n;i++)read(arr[i]);
-    for(LL i=1,a,b;i<=m;i++)read(a),read(b),tab.push_back((node){a,b,i});
-    sort(tab.begin(),tab.end(),cmp),l=r=tab[0].l,col[arr[l]]++;
-    for(LL i=0,gcdnum;i<tab.size();i++)
-    {
-        for(;l<tab[i].l;l++)col[arr[l]]--,ans-=col[arr[l]];
-        for(--l;l>=tab[i].l;l--)ans+=col[arr[l]],col[arr[l]]++;
-        for(;r>tab[i].r;r--)col[arr[r]]--,ans-=col[arr[r]];
-        for(++r;r<=tab[i].r;r++)ans+=col[arr[r]],col[arr[r]]++;
-        sub[tab[i].i]=ans,l=tab[i].l,r=tab[i].r;
-        mot[tab[i].i]=((r-l)*(r-l+1))>>1;
-    }
-    for(LL i=1,gcdn;i<=m;i++)
-        gcdn=gcd(sub[i],mot[i]),printf("%lld/%lld\n",sub[i]/gcdn,mot[i]/gcdn);
-    return 0;
+bool cmp(node a, node b) {
+  if (bi(a.l) == bi(b.l)) return a.r < b.r;
+  return a.l < b.l;
+}
+LL gcd(LL a, LL b) { return !b ? a : gcd(b, a % b); }
+int main() {
+  read(n), read(m), sqn = sqrt(n);
+  for (LL i = 1; i <= n; i++) read(arr[i]);
+  for (LL i = 1, a, b; i <= m; i++)
+    read(a), read(b), tab.push_back((node){a, b, i});
+  sort(tab.begin(), tab.end(), cmp), l = r = tab[0].l, col[arr[l]]++;
+  for (LL i = 0, gcdnum; i < tab.size(); i++) {
+    for (; l < tab[i].l; l++) col[arr[l]]--, ans -= col[arr[l]];
+    for (--l; l >= tab[i].l; l--) ans += col[arr[l]], col[arr[l]]++;
+    for (; r > tab[i].r; r--) col[arr[r]]--, ans -= col[arr[r]];
+    for (++r; r <= tab[i].r; r++) ans += col[arr[r]], col[arr[r]]++;
+    sub[tab[i].i] = ans, l = tab[i].l, r = tab[i].r;
+    mot[tab[i].i] = ((r - l) * (r - l + 1)) >> 1;
+  }
+  for (LL i = 1, gcdn; i <= m; i++)
+    gcdn = gcd(sub[i], mot[i]),
+    printf("%lld/%lld\n", sub[i] / gcdn, mot[i] / gcdn);
+  return 0;
 }
 ```
 
@@ -227,61 +233,63 @@ int main()
 #include <bits/stdc++.h>
 #define SZ (10005)
 using namespace std;
-template<typename _Tp>inline void IN(_Tp&dig)
-{
-    char c;dig=0;
-	while(c=getchar(),!isdigit(c));
-	while(isdigit(c))dig=dig*10+c-'0',c=getchar();
+template <typename _Tp>
+inline void IN(_Tp& dig) {
+  char c;
+  dig = 0;
+  while (c = getchar(), !isdigit(c))
+    ;
+  while (isdigit(c)) dig = dig * 10 + c - '0', c = getchar();
 }
-int n,m,sqn,c[SZ],ct[SZ],c1,c2,mem[SZ][3],ans,tot[1000005],nal[SZ];
-struct query
-{
-	int l,r,i,c;
-	bool operator < (const query another)const
-	{
-		if(l/sqn==another.l/sqn)
-		{
-			if(r/sqn==another.r/sqn)return i<another.i;
-			return r<another.r;
-		}
-		return l<another.l;
-	}
-}Q[SZ];
-void add(int a){if(!tot[a])ans++;tot[a]++;}
-void del(int a){tot[a]--;if(!tot[a])ans--;}
+int n, m, sqn, c[SZ], ct[SZ], c1, c2, mem[SZ][3], ans, tot[1000005], nal[SZ];
+struct query {
+  int l, r, i, c;
+  bool operator<(const query another) const {
+    if (l / sqn == another.l / sqn) {
+      if (r / sqn == another.r / sqn) return i < another.i;
+      return r < another.r;
+    }
+    return l < another.l;
+  }
+} Q[SZ];
+void add(int a) {
+  if (!tot[a]) ans++;
+  tot[a]++;
+}
+void del(int a) {
+  tot[a]--;
+  if (!tot[a]) ans--;
+}
 char opt[10];
-int main()
-{
-	IN(n),IN(m),sqn=pow(n,(double)2/(double)3);
-	for(int i=1;i<=n;i++)IN(c[i]),ct[i]=c[i];
-	for(int i=1,a,b;i<=m;i++)
-		if(scanf("%s",opt),IN(a),IN(b),opt[0]=='Q')
-			Q[c1].l=a,Q[c1].r=b,Q[c1].i=c1,Q[c1].c=c2,c1++;
-		else mem[c2][0]=a,mem[c2][1]=ct[a],mem[c2][2]=ct[a]=b,c2++;
-	sort(Q,Q+c1),add(c[1]);
-	int l=1,r=1,lst=0;
-	for(int i=0;i<c1;i++)
-	{
-		for(;lst<Q[i].c;lst++)
-		{
-			if(l<=mem[lst][0]&&mem[lst][0]<=r)
-				del(mem[lst][1]),add(mem[lst][2]);
-			c[mem[lst][0]]=mem[lst][2];
-		}
-		for(;lst>Q[i].c;lst--)
-		{
-			if(l<=mem[lst-1][0]&&mem[lst-1][0]<=r)
-				del(mem[lst-1][2]),add(mem[lst-1][1]);
-			c[mem[lst-1][0]]=mem[lst-1][1];
-		}
-		for(++r;r<=Q[i].r;r++)add(c[r]);
-		for(--r;r>Q[i].r;r--)del(c[r]);
-		for(--l;l>=Q[i].l;l--)add(c[l]);
-		for(++l;l<Q[i].l;l++)del(c[l]);
-		nal[Q[i].i]=ans;
-	}
-	for(int i=0;i<c1;i++)printf("%d\n",nal[i]);
-	return 0;
+int main() {
+  IN(n), IN(m), sqn = pow(n, (double)2 / (double)3);
+  for (int i = 1; i <= n; i++) IN(c[i]), ct[i] = c[i];
+  for (int i = 1, a, b; i <= m; i++)
+    if (scanf("%s", opt), IN(a), IN(b), opt[0] == 'Q')
+      Q[c1].l = a, Q[c1].r = b, Q[c1].i = c1, Q[c1].c = c2, c1++;
+    else
+      mem[c2][0] = a, mem[c2][1] = ct[a], mem[c2][2] = ct[a] = b, c2++;
+  sort(Q, Q + c1), add(c[1]);
+  int l = 1, r = 1, lst = 0;
+  for (int i = 0; i < c1; i++) {
+    for (; lst < Q[i].c; lst++) {
+      if (l <= mem[lst][0] && mem[lst][0] <= r)
+        del(mem[lst][1]), add(mem[lst][2]);
+      c[mem[lst][0]] = mem[lst][2];
+    }
+    for (; lst > Q[i].c; lst--) {
+      if (l <= mem[lst - 1][0] && mem[lst - 1][0] <= r)
+        del(mem[lst - 1][2]), add(mem[lst - 1][1]);
+      c[mem[lst - 1][0]] = mem[lst - 1][1];
+    }
+    for (++r; r <= Q[i].r; r++) add(c[r]);
+    for (--r; r > Q[i].r; r--) del(c[r]);
+    for (--l; l >= Q[i].l; l--) add(c[l]);
+    for (++l; l < Q[i].l; l++) del(c[l]);
+    nal[Q[i].i] = ans;
+  }
+  for (int i = 0; i < c1; i++) printf("%d\n", nal[i]);
+  return 0;
 }
 ```
 
@@ -333,174 +341,167 @@ $w$ 表示该颜色出现 $i$ 次后的价值
 code：
 
 ```cpp
-#include<algorithm>
-#include<iostream>
-#include<cstdio>
-#include<cmath>
+#include <algorithm>
+#include <cmath>
+#include <cstdio>
+#include <iostream>
 
-#define DEBUG printf("line:%d func:%s\n",__LINE__,__FUNCTION__);
+#define DEBUG printf("line:%d func:%s\n", __LINE__, __FUNCTION__);
 
 using namespace std;
 
-const int maxn=200010;
+const int maxn = 200010;
 
-int f[maxn],g[maxn],id[maxn],head[maxn],cnt,last[maxn],dep[maxn],fa[maxn][22],v[maxn],w[maxn];
-int block,index,n,m,q;
-int pos[maxn],col[maxn],app[maxn];
+int f[maxn], g[maxn], id[maxn], head[maxn], cnt, last[maxn], dep[maxn],
+    fa[maxn][22], v[maxn], w[maxn];
+int block, index, n, m, q;
+int pos[maxn], col[maxn], app[maxn];
 bool vis[maxn];
-long long ans[maxn],cur;
+long long ans[maxn], cur;
 
 struct edge {
-    int to,nxt;
+  int to, nxt;
 } e[maxn];
-int cnt1=0,cnt2=0;// 时间戳
+int cnt1 = 0, cnt2 = 0;  // 时间戳
 
 struct query {
-    int l,r,t,id;
-    bool operator <(const query &b)const {
-        return (pos[l]<pos[b.l])||(pos[l]==pos[b.l]&&pos[r]<pos[b.r])||(pos[l]==pos[b.l]&&pos[r]==pos[b.r]&&t<b.t);
-    }
-} a[maxn],b[maxn];
+  int l, r, t, id;
+  bool operator<(const query &b) const {
+    return (pos[l] < pos[b.l]) || (pos[l] == pos[b.l] && pos[r] < pos[b.r]) ||
+           (pos[l] == pos[b.l] && pos[r] == pos[b.r] && t < b.t);
+  }
+} a[maxn], b[maxn];
 
 inline void addedge(int x, int y) {
-    e[++cnt]=(edge) {
-        y,head[x]
-    };
-    head[x]=cnt;
+  e[++cnt] = (edge){y, head[x]};
+  head[x] = cnt;
 }
-
 
 void dfs(int x) {
-    id[f[x]=++index]=x;
-    for(int i=head[x]; i; i=e[i].nxt) {
-        if(e[i].to!=fa[x][0]) {
-            fa[e[i].to][0]=x;
-            dep[e[i].to]=dep[x]+1;
-            dfs(e[i].to);
-        }
+  id[f[x] = ++index] = x;
+  for (int i = head[x]; i; i = e[i].nxt) {
+    if (e[i].to != fa[x][0]) {
+      fa[e[i].to][0] = x;
+      dep[e[i].to] = dep[x] + 1;
+      dfs(e[i].to);
     }
-    id[g[x]=++index]=x;// 括号序
+  }
+  id[g[x] = ++index] = x;  // 括号序
 }
 
-inline void swap(int &x,int &y) {
-    int t;
-    t=x;
-    x=y;
-    y=t;
+inline void swap(int &x, int &y) {
+  int t;
+  t = x;
+  x = y;
+  y = t;
 }
 
-inline int lca(int x,int y) {
-    if(dep[x]<dep[y])
-        swap(x,y);
-    if(dep[x]!=dep[y]) {
-        int dis=dep[x]-dep[y];
-        for(int i=20; i>=0; i--)
-            if(dis>=(1<<i))
-                dis-=1<<i,x=fa[x][i];
-    }// 爬到同一高度 
-    if(x==y) return x;
-    for(int i=20; i>=0; i--) {
-        if(fa[x][i]!=fa[y][i])
-            x=fa[x][i],y=fa[y][i];
-    }
-    return fa[x][0];
+inline int lca(int x, int y) {
+  if (dep[x] < dep[y]) swap(x, y);
+  if (dep[x] != dep[y]) {
+    int dis = dep[x] - dep[y];
+    for (int i = 20; i >= 0; i--)
+      if (dis >= (1 << i)) dis -= 1 << i, x = fa[x][i];
+  }  // 爬到同一高度
+  if (x == y) return x;
+  for (int i = 20; i >= 0; i--) {
+    if (fa[x][i] != fa[y][i]) x = fa[x][i], y = fa[y][i];
+  }
+  return fa[x][0];
 }
 
 inline void add(int x) {
-    if(vis[x])
-        cur-=(long long )v[col[x]]*w[app[col[x]]--];
-    else
-        cur+=(long long )v[col[x]]*w[++app[col[x]]];
-    vis[x]^=1;
+  if (vis[x])
+    cur -= (long long)v[col[x]] * w[app[col[x]]--];
+  else
+    cur += (long long)v[col[x]] * w[++app[col[x]]];
+  vis[x] ^= 1;
 }
 
-inline void modify(int x,int t) {
-    if(vis[x]) {
-        add(x);
-        col[x]=t;
-        add(x);
-    } else col[x]=t;
-}// 在时间维上移动
+inline void modify(int x, int t) {
+  if (vis[x]) {
+    add(x);
+    col[x] = t;
+    add(x);
+  } else
+    col[x] = t;
+}  // 在时间维上移动
 
 int main() {
-    scanf("%d%d%d",&n,&m,&q);
-    for(int i=1; i<=m; i++)
-        scanf("%d",&v[i]);
-    for(int i=1; i<=n; i++)
-        scanf("%d",&w[i]);
-    for(int i=1; i<n; i++) {
-        int x,y;
-        scanf("%d%d",&x,&y);
-        addedge(x,y);
-        addedge(y,x);
+  scanf("%d%d%d", &n, &m, &q);
+  for (int i = 1; i <= m; i++) scanf("%d", &v[i]);
+  for (int i = 1; i <= n; i++) scanf("%d", &w[i]);
+  for (int i = 1; i < n; i++) {
+    int x, y;
+    scanf("%d%d", &x, &y);
+    addedge(x, y);
+    addedge(y, x);
+  }
+  for (int i = 1; i <= n; i++) {
+    scanf("%d", &last[i]);
+    col[i] = last[i];
+  }
+  dfs(1);
+  for (int j = 1; j <= 20; j++)
+    for (int i = 1; i <= n; i++)
+      fa[i][j] = fa[fa[i][j - 1]][j - 1];  // 预处理祖先
+  int block = pow(index, 2.0 / 3);
+  for (int i = 1; i <= index; i++) {
+    pos[i] = (i - 1) / block;
+  }
+  while (q--) {
+    int opt, x, y;
+    scanf("%d%d%d", &opt, &x, &y);
+    if (opt == 0) {
+      b[++cnt2].l = x;
+      b[cnt2].r = last[x];
+      last[x] = b[cnt2].t = y;
+    } else {
+      if (f[x] > f[y]) swap(x, y);
+      a[++cnt1] = (query){lca(x, y) == x ? f[x] : g[x], f[y], cnt2, cnt1};
     }
-    for(int i=1; i<=n; i++) {
-        scanf("%d",&last[i]);
-        col[i]=last[i];
+  }
+  sort(a + 1, a + cnt1 + 1);
+  int L, R, T;  // 指针坐标
+  L = R = 0;
+  T = 1;
+  for (int i = 1; i <= cnt1; i++) {
+    while (T <= a[i].t) {
+      modify(b[T].l, b[T].t);
+      T++;
     }
-    dfs(1);
-    for(int j=1; j<=20; j++)
-        for(int i=1; i<=n; i++)
-            fa[i][j]=fa[fa[i][j-1]][j-1];// 预处理祖先 
-    int block=pow(index,2.0/3);
-    for(int i=1; i<=index; i++) {
-        pos[i]=(i-1)/block;
+    while (T > a[i].t) {
+      modify(b[T].l, b[T].r);
+      T--;
     }
-    while(q--) {
-        int opt,x,y;
-        scanf("%d%d%d",&opt,&x,&y);
-        if(opt==0) {
-            b[++cnt2].l=x;
-            b[cnt2].r=last[x];
-            last[x]=b[cnt2].t=y;
-        } else {
-            if(f[x]>f[y])
-                swap(x,y);
-            a[++cnt1]=(query) {
-                lca(x,y)==x?f[x]:g[x],f[y],cnt2,cnt1
-            };
-        }
+    while (L > a[i].l) {
+      L--;
+      add(id[L]);
     }
-    sort(a+1,a+cnt1+1);
-    int L,R,T;// 指针坐标
-    L=R=0;
-    T=1;
-    for(int i=1; i<=cnt1; i++) {
-        while(T<=a[i].t) {
-            modify(b[T].l,b[T].t);
-            T++;
-        }
-        while(T>a[i].t) {
-            modify(b[T].l,b[T].r);
-            T--;
-        }
-        while(L>a[i].l) {
-            L--;
-            add(id[L]);
-        }
-        while(L<a[i].l) {
-            add(id[L]);
-            L++;
-        }
-        while(R>a[i].r) {
-            add(id[R]);
-            R--;
-        }
-        while(R<a[i].r) {
-            R++;
-            add(id[R]);
-        }
-        int x=id[L],y=id[R];
-        int llca=lca(x,y);
-        if(x!=llca&&y!=llca) {
-            add(llca);
-            ans[a[i].id]=cur;
-            add(llca);
-        } else ans[a[i].id]=cur;
+    while (L < a[i].l) {
+      add(id[L]);
+      L++;
     }
-    for(int i=1; i<=cnt1; i++) {
-        printf("%lld\n",ans[i]);
+    while (R > a[i].r) {
+      add(id[R]);
+      R--;
     }
-    return 0;
+    while (R < a[i].r) {
+      R++;
+      add(id[R]);
+    }
+    int x = id[L], y = id[R];
+    int llca = lca(x, y);
+    if (x != llca && y != llca) {
+      add(llca);
+      ans[a[i].id] = cur;
+      add(llca);
+    } else
+      ans[a[i].id] = cur;
+  }
+  for (int i = 1; i <= cnt1; i++) {
+    printf("%lld\n", ans[i]);
+  }
+  return 0;
 }
 ```

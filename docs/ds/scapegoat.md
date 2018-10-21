@@ -3,18 +3,18 @@
 我们在此实现一个可重的权值平衡树。
 
 ```cpp
-int cnt, // 树中元素总数
-  rt, // 根节点，初值为 0 代表空树
-  w[MAXN], // 点中的数据 / 权值
- lc[MAXN], rc[MAXN], // 左右子树
- wn[MAXN], // 本数据出现次数（为 0 代表已删除）
-  s[MAXN], // 以本节点为根的子树大小
- sd[MAXN]; // 已删除节点不计的子树大小
- 
+int cnt,                 // 树中元素总数
+    rt,                  // 根节点，初值为 0 代表空树
+    w[MAXN],             // 点中的数据 / 权值
+    lc[MAXN], rc[MAXN],  // 左右子树
+    wn[MAXN],            // 本数据出现次数（为 0 代表已删除）
+    s[MAXN],             // 以本节点为根的子树大小
+    sd[MAXN];            // 已删除节点不计的子树大小
+
 void Calc(int k) {
-// 重新计算以 k 为根的子树大小
- s[k] = s[lc[k]] + s[rc[k]] + wn[k];
- sd[k] = sd[lc[k]] + sd[rc[k]] + wn[k];
+  // 重新计算以 k 为根的子树大小
+  s[k] = s[lc[k]] + s[rc[k]] + wn[k];
+  sd[k] = sd[lc[k]] + sd[rc[k]] + wn[k];
 }
 ```
 
@@ -26,9 +26,9 @@ void Calc(int k) {
 
 ```cpp
 inline bool CanRbu(int k) {
-// 判断节点 k 是否需要重构
- return wn[k] && (alpha * s[k] <= (double)std::max(s[lc[k]], s[rc[k]])
-  || (double)sd[k] <= alpha * s[k]);
+  // 判断节点 k 是否需要重构
+  return wn[k] && (alpha * s[k] <= (double)std::max(s[lc[k]], s[rc[k]]) ||
+                   (double)sd[k] <= alpha * s[k]);
 }
 ```
 
@@ -36,29 +36,29 @@ inline bool CanRbu(int k) {
 
 ```cpp
 void Rbu_Flatten(int& ldc, int k) {
-// 前序遍历展开以 k 节点为根子树
- if(!k) return;
- Rbu_Flatten(ldc, lc[k]);
- if(wn[k]) ldr[ldc++] = k;
-// 若当前节点已删除则不保留
- Rbu_Flatten(ldc, rc[k]);
+  // 前序遍历展开以 k 节点为根子树
+  if (!k) return;
+  Rbu_Flatten(ldc, lc[k]);
+  if (wn[k]) ldr[ldc++] = k;
+  // 若当前节点已删除则不保留
+  Rbu_Flatten(ldc, rc[k]);
 }
 
 int Rbu_Build(int l, int r) {
-// 将 ldr[] 数组内 [l, r) 区间重建成树，返回根节点
- int mid = l + r >> 1; // 选取中间为根使其平衡
- if(l >= r) return 0;
- lc[ldr[mid]] = Rbu_Build(l, mid);
- rc[ldr[mid]] = Rbu_Build(mid + 1, r); // 建左右子树
- Calc(ldr[mid]);
- return ldr[mid];
+  // 将 ldr[] 数组内 [l, r) 区间重建成树，返回根节点
+  int mid = l + r >> 1;  // 选取中间为根使其平衡
+  if (l >= r) return 0;
+  lc[ldr[mid]] = Rbu_Build(l, mid);
+  rc[ldr[mid]] = Rbu_Build(mid + 1, r);  // 建左右子树
+  Calc(ldr[mid]);
+  return ldr[mid];
 }
 
 void Rbu(int& k) {
-// 重构节点 k 的全过程
- int ldc = 0;
- Rbu_Flatten(ldc, k);
- k = Rbu_Build(0, ldc);
+  // 重构节点 k 的全过程
+  int ldc = 0;
+  Rbu_Flatten(ldc, k);
+  k = Rbu_Build(0, ldc);
 }
 ```
 
@@ -72,15 +72,23 @@ void Rbu(int& k) {
 
 ```cpp
 void Ins(int& k, int p) {
-// 在以 k 为根的子树内添加权值为 p 节点
- if(!k) { k = ++cnt; if(!rt) rt = 1;
-  w[k] = p; lc[k] = rc[k] = 0; wn[k] = s[k] = sd[k] = 1;
- } else {
-  if(w[k] == p) wn[k]++;
-  else if(w[k] < p) Ins(rc[k], p);
-  else Ins(lc[k], p);
-  Calc(k); if(CanRbu(k)) Rbu(k);
- }
+  // 在以 k 为根的子树内添加权值为 p 节点
+  if (!k) {
+    k = ++cnt;
+    if (!rt) rt = 1;
+    w[k] = p;
+    lc[k] = rc[k] = 0;
+    wn[k] = s[k] = sd[k] = 1;
+  } else {
+    if (w[k] == p)
+      wn[k]++;
+    else if (w[k] < p)
+      Ins(rc[k], p);
+    else
+      Ins(lc[k], p);
+    Calc(k);
+    if (CanRbu(k)) Rbu(k);
+  }
 }
 ```
 
@@ -90,16 +98,22 @@ void Ins(int& k, int p) {
 
 ```cpp
 void Del(int& k, int p) {
-// 从以 k 为根子树移除权值为 p 节点
- if(!k) return; else {
-  sd[k]--; if(w[k] == p) { if(wn[k]) wn[k]--; }
-   else {
-    if(w[k] < p) Del(rc[k], p);
-    else Del(lc[k], p);
-    Calc(k);
-   }
- }
- if(CanRbu(k)) Rbu(k);
+  // 从以 k 为根子树移除权值为 p 节点
+  if (!k)
+    return;
+  else {
+    sd[k]--;
+    if (w[k] == p) {
+      if (wn[k]) wn[k]--;
+    } else {
+      if (w[k] < p)
+        Del(rc[k], p);
+      else
+        Del(lc[k], p);
+      Calc(k);
+    }
+  }
+  if (CanRbu(k)) Rbu(k);
 }
 ```
 
@@ -111,11 +125,15 @@ void Del(int& k, int p) {
 
 ```cpp
 int MyUprBd(int k, int p) {
-// 在以 k 为根子树中，大于 p 的最小数的名次
- if(!k) return 1;
- else if(w[k] == p && wn[k]) return sd[lc[k]] + 1 + wn[k];
- else if(p < w[k]) return MyUprBd(lc[k], p);
- else return sd[lc[k]] + wn[k] + MyUprBd(rc[k], p);
+  // 在以 k 为根子树中，大于 p 的最小数的名次
+  if (!k)
+    return 1;
+  else if (w[k] == p && wn[k])
+    return sd[lc[k]] + 1 + wn[k];
+  else if (p < w[k])
+    return MyUprBd(lc[k], p);
+  else
+    return sd[lc[k]] + wn[k] + MyUprBd(rc[k], p);
 }
 ```
 
@@ -123,10 +141,14 @@ int MyUprBd(int k, int p) {
 
 ```cpp
 int MyUprGrt(int k, int p) {
- if(!k) return 0;
- else if(w[k] == p && wn[k]) return sd[lc[k]];
- else if(w[k] < p) return sd[lc[k]] + wn[k] + MyUprGrt(rc[k], p);
- else return MyUprGrt(lc[k], p);
+  if (!k)
+    return 0;
+  else if (w[k] == p && wn[k])
+    return sd[lc[k]];
+  else if (w[k] < p)
+    return sd[lc[k]] + wn[k] + MyUprGrt(rc[k], p);
+  else
+    return MyUprGrt(lc[k], p);
 }
 ```
 
@@ -136,11 +158,15 @@ int MyUprGrt(int k, int p) {
 
 ```cpp
 int MyAt(int k, int p) {
-// 以 k 为根的子树中，名次为 p 的权值
- if(!k) return 0;
- else if(sd[lc[k]] < p && p <= sd[lc[k]] + wn[k]) return w[k];
- else if(sd[lc[k]] + wn[k] < p) return MyAt(rc[k], p - sd[lc[k]] - wn[k]);
- else return MyAt(lc[k], p);
+  // 以 k 为根的子树中，名次为 p 的权值
+  if (!k)
+    return 0;
+  else if (sd[lc[k]] < p && p <= sd[lc[k]] + wn[k])
+    return w[k];
+  else if (sd[lc[k]] + wn[k] < p)
+    return MyAt(rc[k], p - sd[lc[k]] - wn[k]);
+  else
+    return MyAt(lc[k], p);
 }
 ```
 
@@ -149,6 +175,6 @@ int MyAt(int k, int p) {
 以上两种功能结合即可。
 
 ```cpp
-inline int  MyPre(int k, int p) { return MyAt(k, MyUprGrt(k, p)); }
-inline int MyPost(int k, int p) { return MyAt(k, MyUprBd (k, p)); }
+inline int MyPre(int k, int p) { return MyAt(k, MyUprGrt(k, p)); }
+inline int MyPost(int k, int p) { return MyAt(k, MyUprBd(k, p)); }
 ```

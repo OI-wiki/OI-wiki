@@ -93,10 +93,10 @@
 
 ```cpp
 //利用位运算的快捷的 swap 代码
-void swap(int a, int b){
-	a = a ^ b;   
-	b = a ^ b;  
-	a = a ^ b;
+void swap(int a, int b) {
+  a = a ^ b;
+  b = a ^ b;
+  a = a ^ b;
 }
 ```
 
@@ -119,7 +119,7 @@ void swap(int a, int b){
 -   乘以 2 运算。
 
     ```cpp
-    int mulTwo(int n) { // 计算n*2
+    int mulTwo(int n) {  // 计算n*2
       return n << 1;
     }
     ```
@@ -127,15 +127,15 @@ void swap(int a, int b){
 -   除以 2 运算。
 
     ```cpp
-    int divTwo(int n) { // 负奇数的运算不可用
-      return n >> 1; // 除以2
+    int divTwo(int n) {  // 负奇数的运算不可用
+      return n >> 1;     // 除以2
     }
     ```
 
 -   乘以 2 的 $m$ 次方。
 
     ```cpp
-    int mulTwoPower(int n, int m) { // 计算n*(2^m)
+    int mulTwoPower(int n, int m) {  // 计算n*(2^m)
       return n << m;
     }
     ```
@@ -143,7 +143,7 @@ void swap(int a, int b){
 -   除以 2 的 $m$ 次方。
 
     ```cpp
-    int divTwoPower(int n, int m) { // 计算n/(2^m)
+    int divTwoPower(int n, int m) {  // 计算n/(2^m)
       return n >> m;
     }
     ```
@@ -151,9 +151,7 @@ void swap(int a, int b){
 -   判断一个数的奇偶性。
 
     ```cpp
-    boolean isOddNumber(int n) {
-      return (n & 1) == 1;
-    }
+    boolean isOddNumber(int n) { return (n & 1) == 1; }
     ```
 
 -   取绝对值（某些机器上，效率比 `n > 0 ? n : -n` 高）。
@@ -162,7 +160,8 @@ void swap(int a, int b){
     int abs(int n) {
       return (n ^ (n >> 31)) - (n >> 31);
       /* n>>31 取得n的符号，若n为正数，n>>31等于0，若n为负数，n>>31等于-1
-         若n为正数 n^0=0,数不变，若n为负数有n^-1 需要计算n和-1的补码，然后进行异或运算，
+         若n为正数 n^0=0,数不变，若n为负数有n^-1
+         需要计算n和-1的补码，然后进行异或运算，
          结果n变号并且为n的绝对值减1，再减去-1就是绝对值 */
     }
     ```
@@ -188,16 +187,17 @@ void swap(int a, int b){
 -   判断符号是否相同。
 
     ```cpp
-    boolean isSameSign(int x, int y) { // 有0的情况例外
-      return (x ^ y) >= 0; // true 表示x和y有相同的符号，false 表示x,y有相反的符号。
+    boolean isSameSign(int x, int y) {  // 有0的情况例外
+      return (x ^ y) >=
+             0;  // true 表示x和y有相同的符号，false 表示x,y有相反的符号。
     }
     ```
 
 -   计算 2 的 $n$ 次方。
 
     ```cpp
-    int getFactorialofTwo(int n) { // n > 0
-      return 2 << (n - 1); // 2的n次方
+    int getFactorialofTwo(int n) {  // n > 0
+      return 2 << (n - 1);          // 2的n次方
     }
     ```
 
@@ -214,7 +214,7 @@ void swap(int a, int b){
 -   对 2 的 $n$ 次方取余。
 
     ```cpp
-    int quyu(int m, int n) { //n为2的次方
+    int quyu(int m, int n) {  // n为2的次方
       return m & (n - 1);
       /* 如果是2的幂，n一定是100... n-1就是1111....
          所以做与运算结果保留m在n范围的非0的位 */

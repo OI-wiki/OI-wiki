@@ -9,25 +9,24 @@
 - 注: 为了方便食用, 本文中所有代码省略头文件
 
 ```cpp
-int n,t;
-int tcost[103],mget[103];
+int n, t;
+int tcost[103], mget[103];
 int ans = 0;
-void dfs( int pos , int tleft , int tans ){
-	if( tleft < 0 ) return;
-	if( pos == n+1 ){
-		ans = max(ans,tans);
-		return;
-	}
-	dfs(pos+1,tleft,tans);
-	dfs(pos+1,tleft-tcost[pos],tans+mget[pos]);
+void dfs(int pos, int tleft, int tans) {
+  if (tleft < 0) return;
+  if (pos == n + 1) {
+    ans = max(ans, tans);
+    return;
+  }
+  dfs(pos + 1, tleft, tans);
+  dfs(pos + 1, tleft - tcost[pos], tans + mget[pos]);
 }
-int main(){
-	cin >> t >> n;
-	for(int i = 1;i <= n;i++)
-		cin >> tcost[i] >> mget[i];
-	dfs(1,t,0);
-	cout << ans << endl;
-	return 0;
+int main() {
+  cin >> t >> n;
+  for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
+  dfs(1, t, 0);
+  cout << ans << endl;
+  return 0;
 }
 ```
 
@@ -48,23 +47,20 @@ emmmmmm....... $\color{Red}{30}$ 分
 不理解就看看代码吧:
 
 ```cpp
-int n,time;
-int tcost[103],mget[103];
-int dfs(int pos,int tleft){
-	if(pos == n+1)
-		return 0;
-	int dfs1,dfs2 = -INF;
-	dfs1 = dfs(pos+1,tleft);
-	if( tleft >= tcost[pos] )
-		dfs2 = dfs(pos+1,tleft-tcost[pos]) + mget[pos];
-	return max(dfs1,dfs2);
+int n, time;
+int tcost[103], mget[103];
+int dfs(int pos, int tleft) {
+  if (pos == n + 1) return 0;
+  int dfs1, dfs2 = -INF;
+  dfs1 = dfs(pos + 1, tleft);
+  if (tleft >= tcost[pos]) dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];
+  return max(dfs1, dfs2);
 }
-int main(){
-	cin >> time >> n;
-	for(int i = 1;i <= n;i++)
-		cin >> tcost[i] >> mget[i];
-	cout << dfs(1,time) << endl;
-	return 0;
+int main() {
+  cin >> time >> n;
+  for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
+  cout << dfs(1, time) << endl;
+  return 0;
 }
 ```
 
@@ -87,26 +83,23 @@ int main(){
 **直接返回 $mem$ 中的值!**
 
 ```cpp
-int n,t;
-int tcost[103],mget[103];
+int n, t;
+int tcost[103], mget[103];
 int mem[103][1003];
-int dfs(int pos,int tleft){
-	if( mem[pos][tleft] != -1 ) return mem[pos][tleft];
-	if(pos == n+1)
-		return mem[pos][tleft] = 0;
-	int dfs1,dfs2 = -INF;
-	dfs1 = dfs(pos+1,tleft);
-	if( tleft >= tcost[pos] )
-		dfs2 = dfs(pos+1,tleft-tcost[pos]) + mget[pos];
-	return mem[pos][tleft] = max(dfs1,dfs2);
+int dfs(int pos, int tleft) {
+  if (mem[pos][tleft] != -1) return mem[pos][tleft];
+  if (pos == n + 1) return mem[pos][tleft] = 0;
+  int dfs1, dfs2 = -INF;
+  dfs1 = dfs(pos + 1, tleft);
+  if (tleft >= tcost[pos]) dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];
+  return mem[pos][tleft] = max(dfs1, dfs2);
 }
-int main(){
-	memset(mem,-1,sizeof(mem));
-	cin >> t >> n;
-	for(int i = 1;i <= n;i++)
-		cin >> tcost[i] >> mget[i];
-	cout << dfs(1,t) << endl;
-	return 0;
+int main() {
+  memset(mem, -1, sizeof(mem));
+  cin >> t >> n;
+  for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
+  cout << dfs(1, t) << endl;
+  return 0;
 }
 ```
 
@@ -159,15 +152,15 @@ $dp[i][j][k] = dp[i+1][j+1][k-a[j]] + dp[i+1][j][k]$
 转为
 
 ```cpp
-int dfs( int i , int j , int k ){
-	边界条件
-	if( mem[i][j][k] != -1 ) return mem[i][j][k];
-	return mem[i][j][k] = dfs(i+1,j+1,k-a[j]) + dfs(i+1,j,k);
+int dfs(int i, int j, int k) {
+  边界条件
+  if (mem[i][j][k] != -1) return mem[i][j][k];
+  return mem[i][j][k] = dfs(i + 1, j + 1, k - a[j]) + dfs(i + 1, j, k);
 }
-int main(){
-	memset(mem,-1,sizeof(mem));
-	读入
-	cout << dfs(1,0,0) << endl;
+int main() {
+  memset(mem, -1, sizeof(mem));
+  读入
+  cout << dfs(1, 0, 0) << endl;
 }
 ```
 
@@ -188,18 +181,17 @@ $dp[i] = max\{dp[j]+1\}\quad 1 \leq j < i \text{且}a[j]<a[i]$  (最长上升子
 转为
 
 ```cpp
-int dfs( int i ){
-	if( mem[i] != -1 ) return mem[i];
-	int ret = 1;
-	for( int j = 1 ; j < i ; j++ )
-		if( a[j] < a[i] )
-			ret = max(ret,dfs(j)+1);
-	return mem[i] = ret;
+int dfs(int i) {
+  if (mem[i] != -1) return mem[i];
+  int ret = 1;
+  for (int j = 1; j < i; j++)
+    if (a[j] < a[i]) ret = max(ret, dfs(j) + 1);
+  return mem[i] = ret;
 }
-int main(){
-	memset(mem,-1,sizeof(mem));
-	读入
-	cout << dfs(n) << endl;
+int main() {
+  memset(mem, -1, sizeof(mem));
+  读入
+  cout << dfs(n) << endl;
 }
 ```
 
@@ -254,20 +246,14 @@ dp 状态很显然:
 ## 6. 模板
 
 ```c++
-int g[MAXN]；
-int f(传入数值)
-{
-    if (g[规模]!=无效数值)
-        return g[规模];
-    if (终止条件)
-        return 最小子问题解;
-    g[规模]=f(缩小规模);
-    return g[规模];
+int g[MAXN] ； int f(传入数值) {
+  if (g[规模] != 无效数值) return g[规模];
+  if (终止条件) return 最小子问题解;
+  g[规模] = f(缩小规模);
+  return g[规模];
 }
-int main()
-{
-    ...
-    memset(g,无效数值,sizeof(g));
-    ...
+int main() {
+  ... memset(g, 无效数值, sizeof(g));
+  ...
 }
 ```
