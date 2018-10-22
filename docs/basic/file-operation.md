@@ -28,15 +28,15 @@ FILE* freopen(const char* filename, const char* mode, FILE* stream);
 读入文件内容：
 
 ```cpp
-freopen("data.in", "r",
-        stdin);  // data.in 就是读取的文件名，要和可执行文件放在同一目录下
+freopen("data.in", "r", stdin);
+// data.in 就是读取的文件名，要和可执行文件放在同一目录下
 ```
 
 输出到文件：
 
 ```cpp
-freopen("data.out", "w",
-        stdout);  // data.out 就是输出文件的文件名，和可执行文件在同一目录下
+freopen("data.out", "w", stdout);
+// data.out 就是输出文件的文件名，和可执行文件在同一目录下
 ```
 
 关闭标准输入 \\ 输出流  
@@ -72,15 +72,15 @@ int main(void) {
 读入文件内容：
 
 ```cpp
-ifstream fin(
-    "data.in");  // data.in 就是读取的文件名，要和可执行文件放在同一目录下
+ifstream fin("data.in");
+// data.in 就是读取的文件名，要和可执行文件放在同一目录下
 ```
 
 输出到文件：
 
 ```cpp
-ofstream fout(
-    "data.out");  // data.out 就是输出文件的文件名，和可执行文件在同一目录下
+ofstream fout("data.out");
+// data.out 就是输出文件的文件名，和可执行文件在同一目录下
 ```
 
 关闭标准输入 \\ 输出流
