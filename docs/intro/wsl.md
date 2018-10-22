@@ -234,6 +234,9 @@ xfce4-session
 9. [Xming X Server for Windows, SourceForge](https://sourceforge.net/projects/xming/)       
 10. [Sudo, Wikipedia](https://zh.wikipedia.org/wiki/Sudo)       
 
+## 0x09 延伸内容
+[Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://spencerwoo.com/Dev-on-Windows-with-WSL/)
+
 ### 后记
 
 本文最初发布于 [洛谷日报 #6](https://www.luogu.org/discuss/show/48491)，现由原作者搬运至此，有删改。      
