@@ -30,7 +30,7 @@ ST 表基于倍增思想，可以在 $O(n\log{n})$ 的时间复杂度下预处�
 
 显然，$f[i][0]=a[i]$ 。
 
-根据定义式，写出状态转移方程：$f[i][j]=max(f[i][j-1],f[i+2^{j-1}][j-1])$
+根据定义式，写出状态转移方程：$f[i][j]=\max(f[i][j-1],f[i+2^{j-1}][j-1])$
 
 我们可以这么理解：将区间 $[i,i+2^j-1]$ 分成左右两个长度相同的两部分 $[i,i+2^{j-1}-1]$ 和 $[i+2^{j-1}+1,i+2^j-1]$。
 
@@ -92,11 +92,14 @@ int main() {
 
 1. 输入输出数据一般很多，建议开启输入输出优化
 
-2. 每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议预处理：
+2. 每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议如下预处理
 
-`Logn[i]=Logn[i/2]+1`
-
-初始值 `Logn[1]=0`
+$$
+\left\{\begin{aligned}
+Logn[1] &=0, \\
+Logn\left[i\right] &=Logn[\frac{i}{2}] + 1.
+\end{aligned}\right.
+$$
 
 ### 总结
 
