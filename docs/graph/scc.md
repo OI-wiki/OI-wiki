@@ -114,7 +114,7 @@ dfs(x) {
 }
 ```
 
-（转自维基：<https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm）>
+（转自维基：<https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm> ）
 
 时间复杂度 $O(n+m)$
 
