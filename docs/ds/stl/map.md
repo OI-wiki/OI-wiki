@@ -93,7 +93,9 @@ mp.erase(it)
 
 ### 更快：基于 `Hash` 实现的 `map`！
 
-**注意：`unordered_map`只能在 C++11 及以后的标准中使用。**
+!!! note
+    C++11 及以后使用 `std::unordered_map`，在 `<unordered_map>` 头文件中
+    之前的版本可以使用 `std::tr1::unordered_map`，在 `<tr1/unordered_map>` 头文件中
 
 这个 `map` 的名字就是 `unordered_map` 了，它的查询，插入，删除的复杂度几乎是 $O(1)$ 级别（所有的操作几乎和 `map`一样（注意 `unordered_map` 用迭代器遍历是无序的）。
 
