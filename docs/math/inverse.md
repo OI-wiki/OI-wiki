@@ -7,18 +7,16 @@
 ### 扩展欧几里得法：
 
 ```cpp
-void ex_gcd(int a,int b,int&x,int&y)
-{
-	if(b==0)
-	{
-		x=1,y=0;
-  		return;
- 	}
- 	ex_gcd(b,a%b,x,y);
- 	int t=x;
- 	x=y;
- 	y=t-a/b*y;
- 	return;
+void ex_gcd(int a, int b, int& x, int& y) {
+  if (b == 0) {
+    x = 1, y = 0;
+    return;
+  }
+  ex_gcd(b, a % b, x, y);
+  int t = x;
+  x = y;
+  y = t - a / b * y;
+  return;
 }
 ```
 
@@ -42,14 +40,15 @@ void ex_gcd(int a,int b,int&x,int&y)
 
 ```cpp
 #define ll long long
-inline ll poW(ll a,ll b){
-    long long ans=1;
-    a%=p;
-    while (b){
-        if (b&1) ans=((ans*a)%p+p)%p;
-        a=(a*a)%p; b>>=1;
-    }
-    return ans%p;
+inline ll poW(ll a, ll b) {
+  long long ans = 1;
+  a %= p;
+  while (b) {
+    if (b & 1) ans = ((ans * a) % p + p) % p;
+    a = (a * a) % p;
+    b >>= 1;
+  }
+  return ans % p;
 }
 ```
 
@@ -72,13 +71,13 @@ $i^{-1} \equiv -(\frac{p}{i}) (p \mod i)^{-1}$；
 然后我们就可以推出逆元了，代码只有一行：
 
 ```cpp
-a[i]=-(p/i)*a[p%i];
+a[i] = -(p / i) * a[p % i];
 ```
 
 但是，有些情况下要避免出现负数，所以我们要改改代码，让它只求正整数：
 
 ```cpp
-a[i]=(p-p/i)*a[p%i]%p;
+a[i] = (p - p / i) * a[p % i] % p;
 ```
 
 这就是线性求逆元

@@ -10,13 +10,11 @@
 ## 初始化
 
 ```cpp
-void makeSet(int size)
-{
-    for(int i = 0;i < size;i ++)
-    {
-        fa[i] = i;//i就在它本身的集合里
-    }
-    return;
+void makeSet(int size) {
+  for (int i = 0; i < size; i++) {
+    fa[i] = i;  // i就在它本身的集合里
+  }
+  return;
 }
 ```
 
@@ -28,12 +26,13 @@ void makeSet(int size)
 在这样的思想下，并查集的查找算法诞生了。我们可以用代码模拟这个过程。
 
 ```cpp
-int fa[MAXN]; //记录某个人的爸爸是谁，特别规定，祖先的爸爸是他自己
-int find(int x) //寻找x的祖先
+int fa[MAXN];  //记录某个人的爸爸是谁，特别规定，祖先的爸爸是他自己
+int find(int x)  //寻找x的祖先
 {
-    if(fa[x] == x) //如果x是祖先则返回
-        return x;
-    else return find(fa[x]); //如果不是则x的爸爸问x的爷爷
+  if (fa[x] == x)  //如果x是祖先则返回
+    return x;
+  else
+    return find(fa[x]);  //如果不是则x的爸爸问x的爷爷
 }
 ```
 
@@ -45,11 +44,10 @@ int find(int x) //寻找x的祖先
 于是用代码实现它。
 
 ```cpp
-int find(int x)
-{
-    if(x != fa[x])//x不是自身的父亲，即x不是该集合的代表
-    fa[x] = find(fa[x]);//查找x的祖先直到找到代表,于是顺手路径压缩
-    return fa[x];
+int find(int x) {
+  if (x != fa[x])  // x不是自身的父亲，即x不是该集合的代表
+    fa[x] = find(fa[x]);  //查找x的祖先直到找到代表,于是顺手路径压缩
+  return fa[x];
 }
 ```
 
@@ -59,13 +57,13 @@ int find(int x)
 我们之前说过，并不在意祖先究竟是谁，所以只要其中一个祖先变成另一个祖先的儿子就可以了。
 
 ```cpp
-void unionSet(int x,int y)//x与y所在家族合并
+void unionSet(int x, int y)  // x与y所在家族合并
 {
-    x = find(x);
-    y = find(y);
-    if(x == y)//原本就在一个家族里就不管了
+  x = find(x);
+  y = find(y);
+  if (x == y)  //原本就在一个家族里就不管了
     return;
-    fa[x] = y;//把x的祖先变成y的祖先的儿子
+  fa[x] = y;  //把x的祖先变成y的祖先的儿子
 }
 ```
 
@@ -76,16 +74,14 @@ void unionSet(int x,int y)//x与y所在家族合并
 启发式合并是将深度小的集合合并到深度大的集合（也称为**按秩合并**），但是笔者认为路径压缩之后它就失去意义了，或者不如按照节点数量合并，这样还可以减少下次路径压缩的工作量。（反正启发式合并用得很少，路径压缩已经够快了。）
 
 ```cpp
-int size[N];//记录子树的大小
-void unionSet(int x,int y)
-{
-    int xx = find(x),yy = find(y);
-    if(xx == yy)
-        return;
-    if(size[xx] > size[yy])//保证小的合到大的里
-        swap(xx,yy);
-    fa[xx] = yy;
-    size[yy] += size[xx];
+int size[N];  //记录子树的大小
+void unionSet(int x, int y) {
+  int xx = find(x), yy = find(y);
+  if (xx == yy) return;
+  if (size[xx] > size[yy])  //保证小的合到大的里
+    swap(xx, yy);
+  fa[xx] = yy;
+  size[yy] += size[xx];
 }
 ```
 

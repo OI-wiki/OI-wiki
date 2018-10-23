@@ -11,30 +11,32 @@ C/C++ 将文件分为文本文件和二进制文件。文本文件就是简单�
 
 ## `freopen` 函数
 
-#### 命令格式
+### 命令格式
 
 ```cpp
-FILE * freopen(const char * filename, const char * mode, FILE * stream);
+FILE* freopen(const char* filename, const char* mode, FILE* stream);
 ```
 
-#### 参数说明
+### 参数说明
 
 - `filename`: 要打开的文件名
 - `mode`: 文件打开的模式
 - `stream`: 文件指针，通常使用标准文件流 (`stdin/stdout/stderr`)  
 
-#### 使用方法
+### 使用方法
 
 读入文件内容：
 
 ```cpp
-freopen("data.in","r",stdin); //data.in 就是读取的文件名，要和可执行文件放在同一目录下
+freopen("data.in", "r", stdin);
+// data.in 就是读取的文件名，要和可执行文件放在同一目录下
 ```
 
 输出到文件：
 
 ```cpp
-freopen("data.out","w",stdout); //data.out 就是输出文件的文件名，和可执行文件在同一目录下
+freopen("data.out", "w", stdout);
+// data.out 就是输出文件的文件名，和可执行文件在同一目录下
 ```
 
 关闭标准输入 \\ 输出流  
@@ -44,15 +46,14 @@ fclose(stdin);
 fclose(stdout);
 ```
 
-## 模板
+### 模板
 
 ```cpp
 #include <cstdio>
 #include <iostream>
-int main(void)
-{
-  freopen("data.in","r",stdin);
-  freopen("data.out","w",stdout);
+int main(void) {
+  freopen("data.in", "r", stdin);
+  freopen("data.out", "w", stdout);
   /*
   中间的代码不需要改变，直接使用 cin 和 cout 即可
   */
@@ -63,3 +64,45 @@ int main(void)
 ```
 
 参考书目：信息学奥赛一本通
+
+## C++ 的 ifstream/ofstream 文件输入输出流
+
+### 使用方法
+
+读入文件内容：
+
+```cpp
+ifstream fin("data.in");
+// data.in 就是读取的文件名，要和可执行文件放在同一目录下
+```
+
+输出到文件：
+
+```cpp
+ofstream fout("data.out");
+// data.out 就是输出文件的文件名，和可执行文件在同一目录下
+```
+
+关闭标准输入 \\ 输出流
+
+```cpp
+fin.close();
+fout.close();
+```
+
+### 模板
+
+```cpp
+#include <cstdio>
+#include <fstream>
+ifstream fin("data.in");
+ofstream fout("data.out");
+int main(void) {
+  /*
+  中间的代码改变 cin 为 fin ，cout 为 fout 即可
+  */
+  fin.close();
+  fout.close();
+  return 0;
+}
+```

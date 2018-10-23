@@ -24,27 +24,27 @@ Kosaraju 算法依靠两次简单的 dfs 实现。
 // g 是原图，g2 是反图
 
 void dfs1(int u) {
-    vis[u] = true;
-    for (int v : g[u]) 
-        if (!vis[v]) dfs1(v);
-    s.push_back(v);
+  vis[u] = true;
+  for (int v : g[u])
+    if (!vis[v]) dfs1(v);
+  s.push_back(v);
 }
 
 void dfs2(int u) {
-    color[u] = sccCnt;
-    for (int v : g2[u])
-        if (!color[v]) dfs2(v);
+  color[u] = sccCnt;
+  for (int v : g2[u])
+    if (!color[v]) dfs2(v);
 }
 
 void kosaraju() {
-    sccCnt = 0;
-    for (int i = 1; i <= n; ++i)
-        if (!vis[i]) dfs1(i);
-    for (int i = n; i >= 1; --i)
-        if (!color[s[i]]) { 
-            ++sccCnt; 
-            dfs2(s[i]) 
-        }
+  sccCnt = 0;
+  for (int i = 1; i <= n; ++i)
+    if (!vis[i]) dfs1(i);
+  for (int i = n; i >= 1; --i)
+    if (!color[s[i]]) {
+      ++sccCnt;
+      dfs2(s[i])
+    }
 }
 ```
 
@@ -92,28 +92,29 @@ Tarjan 发明了很多很有用的东西，下到 NOIP 上到 CTSC 难度的都�
 
 ```cpp
 dfs(x) {
-    dfn[x] = low[x] = ++index;
-    S.push(x);
-    instack[x] = true;
-    for each edge(x, y) {
+  dfn[x] = low[x] = ++index;
+  S.push(x);
+  instack[x] = true;
+    for
+      each edge(x, y) {
         if (!dfn[y]) {
-            dfs(y);
-            low[x] = min(low[x], low[y]);
+          dfs(y);
+          low[x] = min(low[x], low[y]);
         } else if (instack[y]) {
-            low[x] = min(low[x], dfn[y]);
+          low[x] = min(low[x], dfn[y]);
         }
-    }
+      }
     if (dfn[x] == low[x]) {
-        while (1) {
-            t = S.pop();
-            instack[t] = false;
-            if (t == x) break;
-        }
+      while (1) {
+        t = S.pop();
+        instack[t] = false;
+        if (t == x) break;
+      }
     }
 }
 ```
 
-（转自维基：<https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm）>
+（转自维基：<https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm> ）
 
 时间复杂度 $O(n+m)$
 

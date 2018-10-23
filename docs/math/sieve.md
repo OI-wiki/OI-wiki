@@ -2,7 +2,7 @@
 
 如果我们想要知道小于等于 $n$ 有多少个素数呢？
 
-一个自然的想法是我们对于小于等于 $n$ 的每个数进行一次判定。这种暴力的做法显然不能达到最优复杂度，考虑如何优化呢。
+一个自然的想法是我们对于小于等于 $n$ 的每个数进行一次判定。这种暴力的做法显然不能达到最优复杂度，考虑如何优化。
 
 考虑这样一件事情：如果 $x$ 是合数，那么 $x$ 的倍数也一定是合数。利用这个结论，我们可以避免很多次不必要的检测。
 
@@ -21,7 +21,7 @@ void genPrimes() {
 }
 ```
 
-这个筛法被成为 eratosthenes （念作 “埃拉托斯特尼”）筛法，时间复杂度是 $O(n\log\log n)$。
+以上为 **Eratosthenes 筛法**（埃拉托斯特尼筛法），时间复杂度是 $O(n\log\log n)$。
 
 以上做法仍有优化空间，我们发现这里面似乎会对某些数标记了很多次其为合数。有没有什么办法省掉无意义的步骤呢？
 
@@ -31,32 +31,34 @@ void genPrimes() {
 
 ```c++
 void init() {
-	phi[1] = 1;
-	f(i, 2, MAXN) {
-		if (!vis[i]) {
-			phi[i] = i - 1; pri[cnt++] = i;
-		}
-		f(j, 0, cnt) {
-			if ((LL)i * pri[j] >= MAXN) break;
-			vis[i * pri[j]] = 1;
-			if (i % pri[j]) {
-				phi[i * pri[j]] = phi[i] * (pri[j] - 1);
-			} else {
+  phi[1] = 1;
+  f(i, 2, MAXN) {
+    if (!vis[i]) {
+      phi[i] = i - 1;
+      pri[cnt++] = i;
+    }
+    f(j, 0, cnt) {
+      if ((LL)i * pri[j] >= MAXN) break;
+      vis[i * pri[j]] = 1;
+      if (i % pri[j]) {
+        phi[i * pri[j]] = phi[i] * (pri[j] - 1);
+      } else {
         // i % pri[j] == 0
         // 换言之，i 之前被 pri[j] 筛过了
-        // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是 pri[j] 的倍数
-        // 它们都被筛过了，就不需要再筛了，所以这里直接 break 掉就好了
-				phi[i * pri[j]] = phi[i] * pri[j];
-				break;
-			}
-		}
-	}
+        // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
+        // pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
+        // 掉就好了
+        phi[i * pri[j]] = phi[i] * pri[j];
+        break;
+      }
+    }
+  }
 }
 ```
 
 上面代码中的 $phi$ 数组，会在下面提到。
 
-这种线性筛也称为欧拉筛法
+上面的这种**线性筛法**也称为 **Euler 筛法**（欧拉筛法）。
 
 ## 筛法求欧拉函数
 
@@ -84,17 +86,15 @@ $$
 $$
 
 ```c++
-void phi_table(int n,int* phi)
-{
-    for (int i=2;i<=n;i++) phi[i]=0;
-    phi[1]=1;
-    for (int i=2;i<=n;i++)
+void phi_table(int n, int* phi) {
+  for (int i = 2; i <= n; i++) phi[i] = 0;
+  phi[1] = 1;
+  for (int i = 2; i <= n; i++)
     if (!phi[i])
-	    for (int j=i;j<=n;j+=i)
-	    {
-		    if (!phi[j]) phi[j]=j;
-		    phi[j]=phi[j]/i*(i-1);
-	    }
+      for (int j = i; j <= n; j += i) {
+        if (!phi[j]) phi[j] = j;
+        phi[j] = phi[j] / i * (i - 1);
+      }
 }
 ```
 
