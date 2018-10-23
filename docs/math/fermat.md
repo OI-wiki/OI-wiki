@@ -16,11 +16,15 @@
 
 ## 扩展欧拉定理
 
-$a^b \equiv a^{b \mod \phi(p)} \pmod p$   $(\gcd(a,p)=1)$
-
-$a^b \equiv a^b \pmod p$   $(\gcd(a,p)\ne 1,b<\varphi(p))$
-
-$a^b \equiv a^{b \mod \phi(p)+\phi(p)} \pmod p$  $(\gcd(a,p)\ne 1,b \ge  \varphi(p))$
+$$
+a^b\equiv
+\begin{cases}
+a^{b\bmod\varphi(p)},\,&\gcd(a,\,p)=1\\
+a^b,&\gcd(a,\,p)\ne1,\,b<\varphi(p)\\
+a^{b\bmod\varphi(p)+\varphi(p)},&\gcd(a,\,p)\ne1,\,b\ge\varphi(p)
+\end{cases}
+\pmod p
+$$
 
 ### 证明
 

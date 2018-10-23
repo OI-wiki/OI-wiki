@@ -27,21 +27,18 @@
 不难发现，我们最多需要扫描$n$遍数组才能完成排序。
 
 ```c++
-void bubble_sort()
-{
-    for(int i=1;i<=n;i++)
-    {
-        bool flag=false;
-        for(int j=1;j<n;j++)
-            if(a[j]>a[j+1])
-            {
-                flag=true;
-                int t=a[j];
-                a[j]=a[j+1];
-                a[j+1]=t;
-            }
-        if(!flag)break;//如果没有执行交换操作，说明数列已经有序
-    }
+void bubble_sort() {
+  for (int i = 1; i <= n; i++) {
+    bool flag = false;
+    for (int j = 1; j < n; j++)
+      if (a[j] > a[j + 1]) {
+        flag = true;
+        int t = a[j];
+        a[j] = a[j + 1];
+        a[j + 1] = t;
+      }
+    if (!flag) break;  //如果没有执行交换操作，说明数列已经有序
+  }
 }
 ```
 
@@ -66,13 +63,15 @@ void merge(int ll, int rr) {
   // 用来把 a[ll.. rr - 1] 这一区间的数排序。 t 数组是临时存放有序的版本用的。
   if (rr - ll <= 1) return;
   int md = ll + (rr - ll >> 1);
-  merge(ll, md); merge(md, rr);
+  merge(ll, md);
+  merge(md, rr);
   int p = ll, q = md, s = ll;
   while (s < rr) {
     if (p >= md || (q < rr && a[p] > a[q])) {
       t[s++] = a[q++];
       // ans += md - p;
-    } else t[s++] = a[p++];
+    } else
+      t[s++] = a[p++];
   }
   for (int i = ll; i < rr; ++i) a[i] = t[i];
 }

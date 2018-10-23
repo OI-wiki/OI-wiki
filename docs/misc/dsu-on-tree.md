@@ -9,11 +9,11 @@
 最常见的就是并查集的按秩合并了，有带按秩合并的并查集中，合并的代码是这样的：
 
 ```cpp
-void merge(int x,int y)
-{
-    int xx=find(x),yy=find(y);
-    if(size[xx]<size[yy])swap(xx,yy);
-    fa[yy]=xx;size[xx]+=size[yy];
+void merge(int x, int y) {
+  int xx = find(x), yy = find(y);
+  if (size[xx] < size[yy]) swap(xx, yy);
+  fa[yy] = xx;
+  size[xx] += size[yy];
 }
 ```
 
@@ -90,43 +90,44 @@ _上图是一个例子_
 这里是预处理代码
 
 ```cpp
-void dfs1(int u,int fa){
-    size[u]=1;
-    for(int i=head[u];i;i=tree[i].next){
-        int v=tree[i].v;
-        if(v!=fa){
-            dfs1(v,u);
-        	size[u]+=size[v];
-        	if(size[v]>size[son[u]])
-				son[u]=v;
-        }
+void dfs1(int u, int fa) {
+  size[u] = 1;
+  for (int i = head[u]; i; i = tree[i].next) {
+    int v = tree[i].v;
+    if (v != fa) {
+      dfs1(v, u);
+      size[u] += size[v];
+      if (size[v] > size[son[u]]) son[u] = v;
     }
+  }
 }
 ```
 
 下面是求答案的代码
 
 ```cpp
-int dfs2(int u,int fa,bool keep,bool isson){
-    int tmp=0;
-    for(int i=head[u];i;i=tree[i].next){
-        int v=tree[i].v;
-        if(v!=fa&&v!=son[u]){
-            dfs2(v,u,0,0);
-        }
+int dfs2(int u, int fa, bool keep, bool isson) {
+  int tmp = 0;
+  for (int i = head[u]; i; i = tree[i].next) {
+    int v = tree[i].v;
+    if (v != fa && v != son[u]) {
+      dfs2(v, u, 0, 0);
     }
-    if(son[u])
-    	tmp+=dfs2(son[u],u,1,1);
-    for(int i=head[u];i;i=tree[i].next){
-        int v=tree[i].v;
-        if(v!=fa&&v!=son[u]){
-            tmp+=dfs2(v,u,1,0);
-        }
+  }
+  if (son[u]) tmp += dfs2(son[u], u, 1, 1);
+  for (int i = head[u]; i; i = tree[i].next) {
+    int v = tree[i].v;
+    if (v != fa && v != son[u]) {
+      tmp += dfs2(v, u, 1, 0);
     }
-    if(!check[color[u]]){tmp++;check[color[u]]=1;}
-    if(!keep||isson)ans[u]=tmp;
-    if(!keep) memset(check,0,sizeof(check)),tmp=0;
-    return tmp;
+  }
+  if (!check[color[u]]) {
+    tmp++;
+    check[color[u]] = 1;
+  }
+  if (!keep || isson) ans[u] = tmp;
+  if (!keep) memset(check, 0, sizeof(check)), tmp = 0;
+  return tmp;
 }
 ```
 

@@ -20,9 +20,8 @@
 有了这样的思路，就可以顺利地写出代码了
 
 ```cpp
-for (int i=1;i<=v1;i++)
-    for (int l=0;l<=v1-i;l++)
-        dp[l+i]=max(dp[l]+w[i],dp[l+i]);
+for (int i = 1; i <= v1; i++)
+  for (int l = 0; l <= v1 - i; l++) dp[l + i] = max(dp[l] + w[i], dp[l + i]);
 ```
 
 按照正确的思路，写出了这样的核心代码，然后就可以提交......
@@ -40,30 +39,28 @@ for (int i=1;i<=v1;i++)
 因此实际核心代码为
 
 ```cpp
-for (int i=1;i<=v1;i++)
-    for (int l=v1-i;l>=0;l--)
-        dp[l+i]=max(dp[l]+w[i],dp[l+i]);
+for (int i = 1; i <= v1; i++)
+  for (int l = v1 - i; l >= 0; l--) dp[l + i] = max(dp[l] + w[i], dp[l + i]);
 ```
 
 例题代码
 
 ```cpp
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-const int maxn=13010;
-int n,v,c[maxn],w[maxn],most[maxn];
-int main(){
-    cin>>n>>v;
-    for (int i=1;i<=n;i++){
-        cin>>c[i]>>w[i];
+const int maxn = 13010;
+int n, v, c[maxn], w[maxn], most[maxn];
+int main() {
+  cin >> n >> v;
+  for (int i = 1; i <= n; i++) {
+    cin >> c[i] >> w[i];
+  }
+  for (int i = 1; i <= n; i++)
+    for (int l = v; l >= c[i]; l--) {
+      if (most[l - c[i]] + w[i] > most[l]) most[l] = most[l - c[i]] + w[i];
     }
-    for (int i=1;i<=n;i++)
-        for (int l=v;l>=c[i];l--){
-            if (most[l-c[i]]+w[i]>most[l])
-                most[l]=most[l-c[i]]+w[i];
-        }
-    cout<<most[v];
-    return 0;
+  cout << most[v];
+  return 0;
 }
 ```
 

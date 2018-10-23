@@ -32,40 +32,40 @@
 
 ```cpp
 //来源：白书第323页
-struct Twosat{
-    int n;
-    vector<int> g[maxn*2];
-    bool mark[maxn*2];
-    int s[maxn*2],c;
-    bool dfs(int x){
-        if(mark[x^1]) return false;
-        if(mark[x]) return true;
-        mark[x]=true;
-        s[c++]=x;
-        for(int i=0;i<(int)g[x].size();i++)
-            if(!dfs(g[x][i])) return false;
-        return true;
-    }
-    void init(int n){
-        this->n=n;
-        for(int i=0;i<n*2;i++) g[i].clear();
-        memset(mark,0,sizeof(mark));
-    }
-    void add_clause(int x,int y){//这个函数随题意变化
-        g[x].push_back(y^1);//选了x就必须选y^1
-        g[y].push_back(x^1);
-    }
-    bool solve(){
-        for(int i=0;i<n*2;i+=2)
-            if(!mark[i]&&!mark[i+1]){
-                c=0;
-                if(!dfs(i)){
-                    while(c>0) mark[s[--c]]=false;
-                    if(!dfs(i+1)) return false;
-                }
-            }
-        return true;
-    }
+struct Twosat {
+  int n;
+  vector<int> g[maxn * 2];
+  bool mark[maxn * 2];
+  int s[maxn * 2], c;
+  bool dfs(int x) {
+    if (mark[x ^ 1]) return false;
+    if (mark[x]) return true;
+    mark[x] = true;
+    s[c++] = x;
+    for (int i = 0; i < (int)g[x].size(); i++)
+      if (!dfs(g[x][i])) return false;
+    return true;
+  }
+  void init(int n) {
+    this->n = n;
+    for (int i = 0; i < n * 2; i++) g[i].clear();
+    memset(mark, 0, sizeof(mark));
+  }
+  void add_clause(int x, int y) {  //这个函数随题意变化
+    g[x].push_back(y ^ 1);         //选了x就必须选y^1
+    g[y].push_back(x ^ 1);
+  }
+  bool solve() {
+    for (int i = 0; i < n * 2; i += 2)
+      if (!mark[i] && !mark[i + 1]) {
+        c = 0;
+        if (!dfs(i)) {
+          while (c > 0) mark[s[--c]] = false;
+          if (!dfs(i + 1)) return false;
+        }
+      }
+    return true;
+  }
 };
 ```
 
@@ -79,82 +79,81 @@ struct Twosat{
 
 ```cpp
 //作者：小黑AWM
-#include <cstdio>
-#include <iostream>
 #include <algorithm>
+#include <cstdio>
 #include <cstring>
+#include <iostream>
 #define maxn 2018
 #define maxm 4000400
 using namespace std;
-int Index,instack[maxn],DFN[maxn],LOW[maxn];
-int tot,color[maxn];
-int numedge,head[maxn];
-struct Edge{
-    int nxt,to;
-}edge[maxm];
-int sta[maxn],top;
-int n,m;
-void add(int x,int y){
-    edge[++numedge].to=y;
-    edge[numedge].nxt=head[x];
-    head[x]=numedge;
+int Index, instack[maxn], DFN[maxn], LOW[maxn];
+int tot, color[maxn];
+int numedge, head[maxn];
+struct Edge {
+  int nxt, to;
+} edge[maxm];
+int sta[maxn], top;
+int n, m;
+void add(int x, int y) {
+  edge[++numedge].to = y;
+  edge[numedge].nxt = head[x];
+  head[x] = numedge;
 }
-void tarjan(int x){//缩点看不懂请移步强连通分量上面有一个链接可以点。
-    sta[++top]=x;
-    instack[x]=1;
-    DFN[x]=LOW[x]=++Index;
-    for(int i=head[x];i;i=edge[i].nxt){
-        int v=edge[i].to;
-        if(!DFN[v]){
-            tarjan(v);
-            LOW[x]=min(LOW[x],LOW[v]);
-        }
-        else if(instack[v])
-            LOW[x]=min(LOW[x],DFN[v]);
+void tarjan(int x) {  //缩点看不懂请移步强连通分量上面有一个链接可以点。
+  sta[++top] = x;
+  instack[x] = 1;
+  DFN[x] = LOW[x] = ++Index;
+  for (int i = head[x]; i; i = edge[i].nxt) {
+    int v = edge[i].to;
+    if (!DFN[v]) {
+      tarjan(v);
+      LOW[x] = min(LOW[x], LOW[v]);
+    } else if (instack[v])
+      LOW[x] = min(LOW[x], DFN[v]);
+  }
+  if (DFN[x] == LOW[x]) {
+    tot++;
+    do {
+      color[sta[top]] = tot;  //染色
+      instack[sta[top]] = 0;
+    } while (sta[top--] != x);
+  }
+}
+bool solve() {
+  for (int i = 0; i < 2 * n; i++)
+    if (!DFN[i]) tarjan(i);
+  for (int i = 0; i < 2 * n; i += 2)
+    if (color[i] == color[i + 1]) return 0;
+  return 1;
+}
+void init() {
+  top = 0;
+  tot = 0;
+  Index = 0;
+  numedge = 0;
+  memset(sta, 0, sizeof(sta));
+  memset(DFN, 0, sizeof(DFN));
+  memset(instack, 0, sizeof(instack));
+  memset(LOW, 0, sizeof(LOW));
+  memset(color, 0, sizeof(color));
+  memset(head, 0, sizeof(head));
+}
+int main() {
+  while (~scanf("%d%d", &n, &m)) {
+    init();
+    for (int i = 1; i <= m; i++) {
+      int a1, a2, c1, c2;
+      scanf("%d%d%d%d", &a1, &a2, &c1, &c2);  //自己做的时候别用cin会被卡
+      add(2 * a1 + c1,
+          2 * a2 + 1 - c2);  //我们将2i+1表示为第i对中的，2i表示为妻子。
+      add(2 * a2 + c2, 2 * a1 + 1 - c1);
     }
-    if(DFN[x]==LOW[x]){
-        tot++;
-        do{
-            color[sta[top]]=tot;//染色
-            instack[sta[top]]=0;
-        }while(sta[top--]!=x);
-    }
-}
-bool solve(){
-    for(int i=0;i<2*n;i++)
-        if(!DFN[i])
-            tarjan(i);
-    for(int i=0;i<2*n;i+=2)
-        if(color[i]==color[i+1])return 0;
-    return 1;
-}
-void init(){
-    top=0;
-    tot=0;
-    Index=0;
-    numedge=0;
-    memset(sta,0,sizeof(sta));
-    memset(DFN,0,sizeof(DFN));
-    memset(instack,0,sizeof(instack));
-    memset(LOW,0,sizeof(LOW));
-    memset(color,0,sizeof(color));
-    memset(head,0,sizeof(head));
-}
-int main(){
-    while(~scanf("%d%d", &n , &m )){
-        init();
-        for(int i = 1 ; i <= m ; i++){
-            int a1,a2,c1,c2;
-            scanf("%d%d%d%d",&a1,&a2,&c1,&c2);//自己做的时候别用cin会被卡
-            add( 2*a1+c1 , 2*a2+1-c2 );//我们将2i+1表示为第i对中的，2i表示为妻子。
-            add( 2*a2+c2 , 2*a1+1-c1 );
-        }
-        if( solve() )
-            printf("YES\n");
-        else
-            printf("NO\n");
-    }
-    return 0;
+    if (solve())
+      printf("YES\n");
+    else
+      printf("NO\n");
+  }
+  return 0;
 }
 ```
 

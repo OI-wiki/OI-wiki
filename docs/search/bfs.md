@@ -36,15 +36,18 @@ C++：
 ```c++
 void bfs(int u) {
   while (!Q.empty()) Q.pop();
-  Q.push(u); vis[u] = 1; d[u] = 0; p[u] = -1;
+  Q.push(u);
+  vis[u] = 1;
+  d[u] = 0;
+  p[u] = -1;
   while (!Q.empty()) {
     u = Q.pop() {
       for (int i = head[u]; i; i = e[i].x) {
-        if (!vis[ e[i].t ]) {
+        if (!vis[e[i].t]) {
           Q.push(e[i].t);
-          vis[ e[i].t ] = 1;
-          d[ e[i].t ] = d[u] + 1;
-          p[ e[i].t ] = u;
+          vis[e[i].t] = 1;
+          d[e[i].t] = d[u] + 1;
+          p[e[i].t] = u;
         }
       }
     }
@@ -56,7 +59,8 @@ void restore(int x) {
     res.push_back(v);
   }
   std::reverse(res.begin(), res.end());
-  for (int i = 0; i < res.size(); ++i) printf("%d", res[i]); puts("");
+  for (int i = 0; i < res.size(); ++i) printf("%d", res[i]);
+  puts("");
 }
 ```
 
@@ -122,18 +126,16 @@ void restore(int x) {
 下面是伪代码：
 
 ```cpp
-while(队列不为空) 
-{
-    int u = 队首; 
-    弹出队首;
-    for(枚举 u 的邻居) 
-    {
-        更新数据 
-        if(...) 
-          添加到队首;
-         else
-          添加到队尾;
-    }
+while (队列不为空) {
+  int u = 队首;
+  弹出队首;
+  for (枚举 u 的邻居) {
+    更新数据
+    if (...)
+      添加到队首;
+    else
+      添加到队尾;
+  }
 }
 ```
 
@@ -150,71 +152,60 @@ while(队列不为空)
 #### Code
 
 ```cpp
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-#define INF (1<<29)
-int n,m;
+#define INF (1 << 29)
+int n, m;
 char grid[1001][1001];
 int dist[1001][1001][4];
 int vis[1001][1001][4];
-int fx[]={1,-1,0,0};
-int fy[]={0,0,1,-1};
-deque <int> q;
-void add_front(int x,int y,int dir,int d)
-{
-    if(d<dist[x][y][dir])
-    {
-        dist[x][y][dir]=d;
-        q.push_front(dir);
-        q.push_front(y);
-        q.push_front(x);
-    }
+int fx[] = {1, -1, 0, 0};
+int fy[] = {0, 0, 1, -1};
+deque<int> q;
+void add_front(int x, int y, int dir, int d) {
+  if (d < dist[x][y][dir]) {
+    dist[x][y][dir] = d;
+    q.push_front(dir);
+    q.push_front(y);
+    q.push_front(x);
+  }
 }
-void add_back(int x,int y,int dir,int d)
-{
-    if(d<dist[x][y][dir])
-    {
-        dist[x][y][dir]=d;
-        q.push_back(x);
-        q.push_back(y);
-        q.push_back(dir);
-    }
+void add_back(int x, int y, int dir, int d) {
+  if (d < dist[x][y][dir]) {
+    dist[x][y][dir] = d;
+    q.push_back(x);
+    q.push_back(y);
+    q.push_back(dir);
+  }
 }
-int main()
-{
-    cin>>n>>m;
-    for(int i=0;i<n;i++)
-        cin>>grid[i];
+int main() {
+  cin >> n >> m;
+  for (int i = 0; i < n; i++) cin >> grid[i];
 
-    for(int i=0;i<n;i++)
-        for(int j=0;j<m;j++)
-            for(int k=0;k<4;k++)
-                dist[i][j][k]=INF;
+  for (int i = 0; i < n; i++)
+    for (int j = 0; j < m; j++)
+      for (int k = 0; k < 4; k++) dist[i][j][k] = INF;
 
-    add_front(n-1,m-1,3,0);
+  add_front(n - 1, m - 1, 3, 0);
 
-    while(!q.empty())
-    {
-        int x=q[0],y=q[1],dir=q[2];
-        q.pop_front();
-        q.pop_front();
-        q.pop_front();
-        if(vis[x][y][dir])
-            continue;
-        vis[x][y][dir]=true;
-        int d=dist[x][y][dir];
-        int nx=x+fx[dir],ny=y+fy[dir];
-        if(nx>=0&&nx<n&&ny>=0&&ny<m)
-            add_front(nx,ny,dir,d);
-        if(grid[x][y]=='#')
-            for(int i=0;i<4;i++)
-                if(i!=dir)
-                    add_back(x,y,i,d+1);
-    }
-    if(dist[0][0][3]==INF)
-        cout<<-1<<endl;
-    else
-        cout<<dist[0][0][3]<<endl;
-    return 0;
+  while (!q.empty()) {
+    int x = q[0], y = q[1], dir = q[2];
+    q.pop_front();
+    q.pop_front();
+    q.pop_front();
+    if (vis[x][y][dir]) continue;
+    vis[x][y][dir] = true;
+    int d = dist[x][y][dir];
+    int nx = x + fx[dir], ny = y + fy[dir];
+    if (nx >= 0 && nx < n && ny >= 0 && ny < m) add_front(nx, ny, dir, d);
+    if (grid[x][y] == '#')
+      for (int i = 0; i < 4; i++)
+        if (i != dir) add_back(x, y, i, d + 1);
+  }
+  if (dist[0][0][3] == INF)
+    cout << -1 << endl;
+  else
+    cout << dist[0][0][3] << endl;
+  return 0;
 }
 ```

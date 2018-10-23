@@ -31,7 +31,7 @@
 
 ### 从 LCT 的角度回顾一下树链剖分
 
-- 对整棵树按⼦子树⼤大⼩小进⾏行行剖分, 并重新标号。
+- 对整棵树按子树⼤小进⾏剖分, 并重新标号。
 
 - 我们发现重新标号之后, 在树上形成了一些以链为单位的连续区间, 并且可以用线段树进⾏区间操作。
 
@@ -147,8 +147,9 @@
 
 ```cpp
 inline void PushUp(int p) {
-    __var1[p] = __var1[ls] "operator 1" __var1[rs] "operator 2" __var1[p]/__siz[p];
-    siz[p] = siz[ls] + siz[rs];
+  __var1[p] =
+      __var1[ls] "operator 1" __var1[rs] "operator 2" __var1[p] / __siz[p];
+  siz[p] = siz[ls] + siz[rs];
 }
 ```
 
@@ -156,10 +157,10 @@ inline void PushUp(int p) {
 
 ```cpp
 inline void PushDown(int p) {
-    if(__tag1[p] != std_tag1) {
-        // do ls & do rs
-        __tag1[p] = std_tag1;
-    }
+  if (__tag1[p] != std_tag1) {
+    // do ls & do rs
+    __tag1[p] = std_tag1;
+  }
 }
 ```
 
@@ -170,18 +171,19 @@ inline void PushDown(int p) {
 ```cpp
 #define Get(x) (ch[f[x]][1] == x)
 inline void Rotate(int x) {
-    int y = f[x], z = f[y], k = Get(x);
-    if(!isRoot(y)) ch[z][ch[z][1]==y] = x;
-    // 上面这句一定要写在前面，普通的Splay是不用的，因为 isRoot  (后面会讲)
-    ch[y][k] = ch[x][!k], f[ch[y][k]] = y;
-    ch[x][!k] = y, f[y] = x, f[x] = z;
-    PushUp(x), PushUp(y);
+  int y = f[x], z = f[y], k = Get(x);
+  if (!isRoot(y)) ch[z][ch[z][1] == y] = x;
+  // 上面这句一定要写在前面，普通的Splay是不用的，因为 isRoot  (后面会讲)
+  ch[y][k] = ch[x][!k], f[ch[y][k]] = y;
+  ch[x][!k] = y, f[y] = x, f[x] = z;
+  PushUp(x), PushUp(y);
 }
 inline void Splay(int x) {
-    Update(x); // 马上就能看到啦。 在 Splay之前要把旋转会经过的路径上的点都PushDown
-    for(int fa; fa = f[x], !isRoot(x); Rotate(x)) {
-        if(!isRoot(fa)) Rotate(Get(fa) == Get(x) ? fa : x);
-    }
+  Update(
+      x);  // 马上就能看到啦。 在 Splay之前要把旋转会经过的路径上的点都PushDown
+  for (int fa; fa = f[x], !isRoot(x); Rotate(x)) {
+    if (!isRoot(fa)) Rotate(Get(fa) == Get(x) ? fa : x);
+  }
 }
 ```
 
@@ -192,19 +194,21 @@ inline void Splay(int x) {
 ### `isRoot()`
 
 ```cpp
-// 在前面我们已经说过，LCT 具有 如果一个儿子不是实儿子，他的父亲找不到它的性质 所以当一个点既不是它父亲的左儿子，又不是它父亲的右儿子，它就是当前 Splay 的根
+// 在前面我们已经说过，LCT 具有 如果一个儿子不是实儿子，他的父亲找不到它的性质
+// 所以当一个点既不是它父亲的左儿子，又不是它父亲的右儿子，它就是当前 Splay 的根
 #define isRoot(x) (ch[f[x]][0] != x && ch[f[x]][1] != x)
 ```
 
 ### <font color = "red">Access() </font>
 
 ```cpp
-// Access 是 LCT 的核心操作，试想我们像求解一条路径，而这条路径恰好就是我们当前的一棵 Splay， 直接调用其信息即可
-// 先来看一下代码，再结合图来看看过程
+// Access 是 LCT
+// 的核心操作，试想我们像求解一条路径，而这条路径恰好就是我们当前的一棵 Splay，
+// 直接调用其信息即可 先来看一下代码，再结合图来看看过程
 inline void Access(int x) {
-    for(int p = 0; x; p = x, x = f[x]) {
-        Splay(x), ch[x][1] = p, PushUp(x);
-    }
+  for (int p = 0; x; p = x, x = f[x]) {
+    Splay(x), ch[x][1] = p, PushUp(x);
+  }
 }
 ```
 
@@ -251,9 +255,9 @@ inline void Access(int x) {
 ```cpp
 // 回顾一下代码
 inline void Access(int x) {
-    for(int p = 0; x; p = x, x = f[x]) {
-        Splay(x), ch[x][1] = p, PushUp(x);
-    }
+  for (int p = 0; x; p = x, x = f[x]) {
+    Splay(x), ch[x][1] = p, PushUp(x);
+  }
 }
 ```
 
@@ -267,10 +271,9 @@ inline void Access(int x) {
 ### `Update()`
 
 ```cpp
-// 从上到下一层一层pushDown 即可 
+// 从上到下一层一层pushDown 即可
 void Update(int p) {
-    if(!isRoot(p)) Update(f[p])
-    pushDown(p);
+  if (!isRoot(p)) Update(f[p]) pushDown(p);
 }
 ```
 
@@ -285,8 +288,9 @@ void Update(int p) {
 
 ```cpp
 inline void makeRoot(int p) {
-    Access(p), Splay(p);
-    swap(ls, rs); tag[p]^=1;
+  Access(p), Splay(p);
+  swap(ls, rs);
+  tag[p] ^= 1;
 }
 ```
 
@@ -296,7 +300,8 @@ inline void makeRoot(int p) {
 
 ```cpp
 inline void Link(int x, int p) {
-    makeRoot(x); f[x] = p;
+  makeRoot(x);
+  f[x] = p;
 }
 ```
 
@@ -314,7 +319,7 @@ inline void Link(int x, int p) {
 
 ```cpp
 inline void Cut(int x, int p) {
-    makeRoot(x), Access(p), Splay(p), ls = f[x] = 0;
+  makeRoot(x), Access(p), Splay(p), ls = f[x] = 0;
 }
 ```
 
@@ -336,9 +341,9 @@ inline void Cut(int x, int p) {
 
 ```cpp
 inline int Find(int p) {
-    Access(p), Splay(p);
-    while(ls) pushDown(p), p = ls;
-    return p;
+  Access(p), Splay(p);
+  while (ls) pushDown(p), p = ls;
+  return p;
 }
 ```
 

@@ -8,13 +8,13 @@
 `map` 可任意类型为下标（在 `map` 中叫做 `key`，也就是索引），下面是 `map` 的模型：
 
 ```cpp
-map <类型名,类型名> 你想给map起的名字
+map<类型名, 类型名> 你想给map起的名字
 ```
 
 其中两个类型名第一个是 `key`（索引，可以理解为数组的下标），第二个是 `value`（对应的元素）。例如上面的例子，我们可以这样的存储：
 
 ```cpp
-map <string,int> mp
+map<string, int> mp
 ```
 
 是不是感觉很神奇？
@@ -30,10 +30,7 @@ map <string,int> mp
 3. 初始化（ C++11 及以上）和数组差不多：
 
 ```cpp
-map <string,int> mp= {
-                {"Tom",0},
-                {"Bob","100"},
-                {"Alan",100}};
+map<string, int> mp = {{"Tom", 0}, {"Bob", "100"}, {"Alan", 100}};
 ```
 
 - `map` 查找删除元素
@@ -49,17 +46,17 @@ map <string,int> mp= {
 3. 如果你想知道 map 里全部的元素，那么最正确的做法使用迭代器了，如果你还不会，请查阅之前文章中的迭代器。
 
 ```cpp
-for(iter=mp.begin();iter!=mp.end();iter++)
-        cout<<iter->first<<" "<<iter->second<<endl;
+for (iter = mp.begin(); iter != mp.end(); iter++)
+  cout << iter->first << " " << iter->second << endl;
 ```
 
 其中 `mp.begin()` 返回指向 `map` 头部的迭代器
 当然，如果使用 C++11 （及以上）你还可以使用 C++11 的新特性 ，如下
 
 ```cpp
-  for(auto &i : mp) {
-      printf("Key : %d, Value : %d\n", i.first, i.second);
-  }
+for (auto &i : mp) {
+  printf("Key : %d, Value : %d\n", i.first, i.second);
+}
 ```
 
 `iter->first` 是 `key` 索引，例如 `Tom`，而 `iter->second` 是 `value`。
@@ -67,7 +64,7 @@ for(iter=mp.begin();iter!=mp.end();iter++)
 如果你想删除 `Tom` 这个元素，则可以利用 `find` 函数找到 `Tom` ，然后再 `erase` 如下
 
 ```cpp
-map<string, int> :: iterator it;
+map<string, int>::iterator it;
 it = mp.find("Tom");
 mp.erase(it)
 ```

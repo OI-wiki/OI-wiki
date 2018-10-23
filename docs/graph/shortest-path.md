@@ -41,11 +41,11 @@
 
 ```c++
 for (k = 1; k <= n; k++) {
-	for (i = 1; i <= n; i++) {
-		for (j = 1; j <= n; j++) {
-			f[i][j] = min(f[i][j], f[i][k] + f[k][j]);
-		}
-	}
+  for (i = 1; i <= n; i++) {
+    for (j = 1; j <= n; j++) {
+      f[i][j] = min(f[i][j], f[i][k] + f[k][j]);
+    }
+  }
 }
 ```
 
