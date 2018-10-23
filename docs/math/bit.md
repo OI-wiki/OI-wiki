@@ -44,7 +44,7 @@
 > \begin{aligned}
 > 5=(0000\ 0101)_2\\
 > 5\ \text{的补码} =(1111\ 1010)_2\\
-> \tt\ \text{~}\rm5=(1111\ 1010)_2
+> \tt\ \textasciitilde\rm5=(1111\ 1010)_2
 > \end{aligned}
 > $$
 
