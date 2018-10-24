@@ -78,3 +78,9 @@ int calc(const std::string &s) {  // 计算转换好的后缀表达式
   return num.top();
 }
 ```
+
+## 习题
+
+1. [表达式求值 （NOIP2013）](https://www.luogu.org/problemnew/show/P1981)
+2. [后缀表达式](https://www.luogu.org/problemnew/show/P1449)
+3. [Transform the Expression](https://www.spoj.com/problems/ONP/)
