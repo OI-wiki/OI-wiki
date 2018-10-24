@@ -15,6 +15,7 @@ if [ ! -d "mkdocs-material" ] ; then
   sed -i '9a\<meta http-equiv="x-dns-prefetch-control" content="on">\n\<link rel="dns-prefetch" href="//fonts.loli.net">\n\<link rel="dns-prefetch" href="//cdnjs.loli.net">\n\<link rel="dns-prefetch" href="//oi-wiki.org">\n\<link rel="dns-prefetch" href="//cdn.jsdelivr.net">\n\<link rel="dns-prefetch" href="//api.github.com">' mkdocs-material/material/base.html
   sed -i 's/<script/<script async/g' mkdocs-material/material/base.html
   sed -i 's/<link/<link media="bogus"/g' mkdocs-material/material/base.html
+  sed -i 's/<script async src="{{ \'assets\/javascripts\/application.a26c1c19.js\' | url }}"><\/script>/<script src="{{ \'assets\/javascripts\/application.a26c1c19.js\' | url }}"><\/script>/g'
 fi
 sed -i "s/name: 'material'/name: null\n  custom_dir: 'mkdocs-material\/material'\n  static_templates:\n    - 404.html/g" mkdocs.yml
 sed -i "s/- 'https:\/\/cdnjs.loli.net\/ajax\/libs\/mathjax\/2.7.5\/MathJax.js?config=TeX-MML-AM_CHTML'//g" mkdocs.yml
