@@ -30,11 +30,11 @@
 
 ### 计算
 
-** 全概率公式 ** ：若事件 $A_1,A_2,...,A_n$ 构成一个完备的事件且都有正概率，即 $\sum_i\sum_j Ai\cap A_j=\varnothing$ 且 $\sum_{i=1}^n A_i=1$ ，有 $P(B)=\sum_{i=1}^n P(A_i)P(B|A_i)$ 。
+** 全概率公式 ** ：若事件 $A_1,A_2,\ldots,A_n$ 构成一个完备的事件且都有正概率，即 $\forall i,j, A_i\cap A_j=\varnothing$ 且 $\displaystyle \sum_{i=1}^n A_i=1$，有 $\displaystyle P(B)=\sum_{i=1}^n P(A_i)P(B|A_i)$ 。
 
-** 贝叶斯定理 ** ： $P(B_i|A)=\frac{P(B_i)P(A|B_i)}{\sum_{j=1}^n P(B_j)P(A|B_j)}$
+** 贝叶斯定理 ** ： $\displaystyle P(B_i|A)=\frac{P(B_i)P(A|B_i)}{\displaystyle \sum_{j=1}^n P(B_j)P(A|B_j)}$
 
-公式中，事件 $B_i$ 的概率为 $P(B_i)$ ，事件 $B_i$ 已发生条件下事件 $A$ 的概率为 $P(A|B_i)$ ，事件 $A$ 发生条件下事件 $B_i$ 的概率为 $P(Bi|A)$ 。
+公式中，事件 $B_i$ 的概率为 $P(B_i)$ ，事件 $B_i$ 已发生条件下事件 $A$ 的概率为 $P(A|B_i)$ ，事件 $A$ 发生条件下事件 $B_i$ 的概率为 $P(B_i|A)$ 。
 
 ## 期望
 
@@ -44,12 +44,12 @@
 
 ### 性质
 
-** 全期望公式 ** ： $EY=E[E(Y|X)]$ 。可由全概率公式证明。
+** 全期望公式 ** ： $E(Y)=E[E(Y|X)]$ 。可由全概率公式证明。
 
 ** 线性性质 ** : 对于任意两个随机事件 $x,y$ （ ** 不要求相互独立 ** ） ，有 $E(X+Y)=E(X)+E(Y)$ 。
 
 ## 例题
 
-[NOIP2017 初赛 T14，T15](https://ti.luogu.com.cn/problemset/1022)
+[NOIP2017 初赛 T14, T15](https://ti.luogu.com.cn/problemset/1022)
 
-[NOIP2016 换教室：概率期望 DP](https://www.luogu.org/problemnew/show/P1850)
+[NOIP2016 换教室](https://www.luogu.org/problemnew/show/P1850) （概率期望 DP）
