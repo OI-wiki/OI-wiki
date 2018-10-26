@@ -104,6 +104,7 @@ nav:
     - BSGS: math/bsgs.md
     - 博弈论: math/game.md
     - 多项式: math/poly.md
+    - 拉格朗日插值: math/lagrange-polynomial.md
     - 快速傅里叶变换: math/fft.md
     - 快速数论变换: math/ntt.md
     - 快速沃尔什变换: math/fwt.md
