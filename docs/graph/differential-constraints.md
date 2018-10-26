@@ -14,11 +14,11 @@
 
 题目大意：求解差分约束系统，有 $m$ 条约束条件， 每条都为形如 $x_a-x_b\ge c_k$ ， $x_a-x_b\le c_k$ 或 $x_a=x_b$ 的形式，判断该差分约束系统有没有解。
 
-|         题意         |                      转化                     |
-| :----------------: | :-----------------------------------------: |
-| $x_a - x_b \geq c$ |             $x_b - x_a \leq -c$             |
-| $x_a - x_b \leq c$ |              $x_a - x_b \leq c$             |
-|     $x_a = x_b$    | $x_a - x_b \leq 0, \space x_b - x_a \leq 0$ |
+| 题意 | 转化 | 连边 | 
+| :---: | :---: | :---: |
+| $x_a - x_b \geq c$ | $x_b - x_a \leq -c$ | `add(a, b, -c);` | 
+| $x_a - x_b \leq c$ | $x_a - x_b \leq c$ | `add(b, a, c);` |
+| $x_a = x_b$ | $x_a - x_b \leq 0, \space x_b - x_a \leq 0$ | `add(b, a, 0), add(a, b, 0);` |
 
 跑判断负环，如果不存在负环，输出 `Yes` ，否则输出 `No`。
 
@@ -79,7 +79,7 @@ int main() {
 }
 ```
 
-### 例题 [P4926 \[1007\] 倍杀测量者](https://www.luogu.org/problemnew/show/P4926)
+### 例题 [P4926 [1007] 倍杀测量者](https://www.luogu.org/problemnew/show/P4926)
 
 不考虑二分等其他的东西，这里只论述差分系统 $\frac{x_i}{x_j}\le c_k$  的求解方法。
 
@@ -108,9 +108,9 @@ bool Bellman_Ford() {
 
 ## 习题
 
-[ bzoj 1715: \[Usaco2006 Dec\] Wormholes 虫洞 ](https://www.lydsy.com/JudgeOnline/problem.php?id=1715) 
+[ bzoj 1715: [Usaco2006 Dec] Wormholes 虫洞 ](https://www.lydsy.com/JudgeOnline/problem.php?id=1715) 
 
-[ bzoj 2330: \[SCOI2011\] 糖果 ](https://www.lydsy.com/JudgeOnline/problem.php?id=2330)
+[ bzoj 2330: [SCOI2011] 糖果 ](https://www.lydsy.com/JudgeOnline/problem.php?id=2330)
 
 [ POJ 1364 King ](http://poj.org/problem?id=1364)
 
