@@ -6,7 +6,7 @@
 
 设 $dist[0]=0$ 并向每一个点连一条边，跑单源最短路，若图中存在负环，则给定的差分约束系统误解，否则， $x_i=dist[i]$ 为该差分约束系统的一组解。
 
-一般使用 Bellman-Ford 或队列优化的 Bellman-Ford 判断图中是否存在负环，时间复杂度为 $O(nm)$ 。 
+一般使用 Bellman-Ford 或队列优化的 Bellman-Ford（俗称 SPFA，在某些随机图跑得很快） 判断图中是否存在负环，最坏时间复杂度为 $O(nm)$ 。 
 
 ## 常用变形技巧
 
@@ -108,7 +108,7 @@ bool Bellman_Ford() {
 
 [ bzoj 1715: \[Usaco2006 Dec\]Wormholes 虫洞 ](https://www.lydsy.com/JudgeOnline/problem.php?id=1715) 
 
-[ bzoj 2330: \[SCOI2011\]糖果 ](https://www.lydsy.com/JudgeOnline/problem.php?id=2330)
+[ bzoj 2330: \[SCOI2011\] 糖果 ](https://www.lydsy.com/JudgeOnline/problem.php?id=2330)
 
 [ POJ 1364 King ](http://poj.org/problem?id=1364)
 
