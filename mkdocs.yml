@@ -154,6 +154,7 @@ nav:
     - Weight Balanced Leafy Tree: ds/wblt.md
     - Treap: ds/treap.md
     - Splay: ds/splay.md
+    - WBLT: ds/wblt.md
     - AVL 树: ds/avl.md
     - 替罪羊树: ds/scapegoat.md
     - 树套树:

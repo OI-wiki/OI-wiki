@@ -1,12 +1,12 @@
-WBLT ，全称 Weight Balanced Leafy Tree ，一种不常见的平衡树写法，但是具有常数较小，可以当做可并堆使用的优点。
+WBLT，全称 Weight Balanced Leafy Tree，一种不常见的平衡树写法，但是具有常数较小，可以当做可并堆使用的优点。
 
-类似于 WBL （ weight-balanced trees ，加权平衡树）， WBLT 体现了 ** leafy ** 的性质，即节点多，怎么多呢？
+类似于 WBL（weight-balanced trees，加权平衡树），WBLT 体现了 leafy 的性质, 即节点多，怎么多呢？
 
-对于 $n$ 个数，不同于 treap 等， WBLT 会建立 $2n$ 个节点，每个节点的权值为其右儿子的权值，且右儿子的权值大于等于左儿子。
+对于 n 个数，不同于 treap 等，WBLT 会建立 2n 个节点，每个节点的权值为其右儿子的权值，且右儿子的权值大于等于左儿子
 
-每次插入，类似于堆，逐次向下交换并向上 pushup 更新即可，删除也是同理。
+每次插入，类似于堆，逐次向下交换并向上 pushup 更新即可，删除也是同理
 
-当然，如果输入数据递增或递减， WBLT 会退化成链状，于是我们采用旋转来维护平衡。
+当然，如果输入数据递增或递减，WBLT 会退化成链状，于是我们采用旋转来维护平衡。
 
 因为 WBLT 同时满足堆的性质，我们可以用它来实现堆和可并堆。
 
@@ -17,11 +17,15 @@ WBLT ，全称 Weight Balanced Leafy Tree ，一种不常见的平衡树写法�
 ```cpp
 #include <cstdio>
 #include <iostream>
+
 using namespace std;
+
 const int maxn = 400005;
+
 const int ratio = 5;
 int n, cnt, fa, root;
 int size[maxn], ls[maxn], rs[maxn], val[maxn];
+
 void newnode(int &cur, int v) {
   cur = ++cnt;
   size[cur] = 1;
