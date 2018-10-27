@@ -1,13 +1,13 @@
 在数论题目中，常常需要根据一些 ** 积性函数 ** 的性质，求出一些式子的值。
 
 ** 积性函数 ** ： 对于所有互质的 $a$ 和 $b$ ，总有 $f(ab)=f(a)f(b)$ ，则称 $f(x)$ 为积性函数。
- 
+
 常见的积性函数有：
- 
+
 $d(x)=\sum_{i|n} 1$
- 
+
 $\sigma(x)=\sum_{i|n} i$
- 
+
 $\varphi(x)=\sum_{i=1}^x 1[gcd(x,i)=1]$
 
 $\mu(x)=\begin{cases}1&\text{n=1}\\(-1)^k& \ \prod_{i=1}^k q_i=1\\0 &\ \max\{q_i\}>1\end{cases}$
@@ -27,14 +27,14 @@ $h(x)=\sum_{d|x} f(d)g(\frac x d)$
 中的 $h(x)$ 也为积性函数。
 
 在莫比乌斯反演的题目中，往往要求出一些数论函数的前缀和，利用 ** 杜教筛 ** 可以快速求出这些前缀和。 
- 
+
 ??? note " 例题 [P4213 【模板】杜教筛（ Sum ） ](https://www.luogu.org/problemnew/show/P4213)"
 
 题目大意： 求 $S_1(n)= \sum_{i=1}^n \mu(i)$ 和 $S_2(n)= \sum_{i=1}^n \varphi(i)$  的值， $n\le 2^{31} -1$ 。
 
 由 ** 狄利克雷卷积 ** ，我们知道：
 
-$\because \epsilon =\mu * 1$ （ $ \epsilon(n)=~[n=1] $ ） 
+$\because \epsilon =\mu * 1$ （ $\epsilon(n)=~[n=1]$ ） 
 
 $\therefore \epsilon (n)=\sum_{d|n} \mu(d)$ 
 
@@ -48,7 +48,7 @@ $= 1-\sum_{i=2}^n S_1(\lfloor \frac n i \rfloor)$
 
 $O(\int_{0}^{n^{\frac 1 3}} \sqrt{\frac{n}{x}} ~ dx)=O(n^{\frac 2 3})$ 
 
-对于较大的值，需要用 ```map``` 存下其对应的值，方便以后使用时直接使用之前计算的结果。
+对于较大的值，需要用 `map` 存下其对应的值，方便以后使用时直接使用之前计算的结果。
 
 当然也可以用杜教筛求出 $\varphi (x)$ 的前缀和，但是更好的方法是应用莫比乌斯反演：
 
@@ -63,58 +63,57 @@ $=\sum_{d=1}^n \mu(d) {\lfloor \frac n d \rfloor}^2$
 给出一种代码实现：
 
 ```cpp
-#include<cstdio>
-#include<cstring>
-#include<algorithm>
-#include<map>
+#include <algorithm>
+#include <cstdio>
+#include <cstring>
+#include <map>
 using namespace std;
-const int maxn=2000010;
+const int maxn = 2000010;
 typedef long long ll;
-ll T,n,pri[maxn],cur,mu[maxn],sum_mu[maxn];
+ll T, n, pri[maxn], cur, mu[maxn], sum_mu[maxn];
 bool vis[maxn];
-map<ll,ll>mp_mu;
-ll S_mu(ll x)
-{
-    if(x<maxn)return sum_mu[x];
-    if(mp_mu[x])return mp_mu[x];
-    ll ret=1ll;
-    for(ll i=2,j;i<=x;i=j+1)
-    {
-        j=x/(x/i);
-        ret-=S_mu(x/i)*(j-i+1);
-    }
-    return mp_mu[x]=ret;
+map<ll, ll> mp_mu;
+ll S_mu(ll x) {
+  if (x < maxn) return sum_mu[x];
+  if (mp_mu[x]) return mp_mu[x];
+  ll ret = 1ll;
+  for (ll i = 2, j; i <= x; i = j + 1) {
+    j = x / (x / i);
+    ret -= S_mu(x / i) * (j - i + 1);
+  }
+  return mp_mu[x] = ret;
 }
-ll S_phi(ll x)
-{
-    ll ret=0ll;
-    for(ll i=1,j;i<=x;i=j+1)
-    {
-        j=x/(x/i);
-        ret+=(S_mu(j)-S_mu(i-1))*(x/i)*(x/i);
-    }
-    return ((ret-1)>>1)+1;
+ll S_phi(ll x) {
+  ll ret = 0ll;
+  for (ll i = 1, j; i <= x; i = j + 1) {
+    j = x / (x / i);
+    ret += (S_mu(j) - S_mu(i - 1)) * (x / i) * (x / i);
+  }
+  return ((ret - 1) >> 1) + 1;
 }
-int main()
-{
-    scanf("%lld",&T);
-    mu[1]=1;
-    for(int i=2;i<maxn;i++)
-    {
-        if(!vis[i]){pri[++cur]=i;mu[i]=-1;}
-        for(int j=1;j<=cur&&i*pri[j]<maxn;j++)
-        {
-            vis[i*pri[j]]=true;
-            if(i%pri[j])mu[i*pri[j]]=-mu[i];
-            else{mu[i*pri[j]]=0;break;}
-        }
+int main() {
+  scanf("%lld", &T);
+  mu[1] = 1;
+  for (int i = 2; i < maxn; i++) {
+    if (!vis[i]) {
+      pri[++cur] = i;
+      mu[i] = -1;
     }
-    for(int i=1;i<maxn;i++)sum_mu[i]=sum_mu[i-1]+mu[i];
-    while(T--)
-    {
-        scanf("%lld",&n);
-        printf("%lld %lld\n",S_phi(n),S_mu(n));
+    for (int j = 1; j <= cur && i * pri[j] < maxn; j++) {
+      vis[i * pri[j]] = true;
+      if (i % pri[j])
+        mu[i * pri[j]] = -mu[i];
+      else {
+        mu[i * pri[j]] = 0;
+        break;
+      }
     }
-    return 0;
+  }
+  for (int i = 1; i < maxn; i++) sum_mu[i] = sum_mu[i - 1] + mu[i];
+  while (T--) {
+    scanf("%lld", &n);
+    printf("%lld %lld\n", S_phi(n), S_mu(n));
+  }
+  return 0;
 }
-``` 
+```
