@@ -89,7 +89,7 @@ nav:
     - 欧拉函数: math/euler.md
     - 筛法: math/sieve.md
     - 莫比乌斯反演: math/mobius.md
-    - 杜教筛： math/du-sieves.md
+    - 杜教筛: math/du-sieves.md
     - 费马小定理: math/fermat.md
     - 快速幂: math/quick-pow.md
     - 线性基: math/basis.md
