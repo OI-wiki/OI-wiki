@@ -89,3 +89,67 @@ struct uv {
 ```
 
 ~~看上去是不是很简单呢（这题高精度卡常……）~~ ，如果看懂了就可以尝试下一道类似的题 [LG2123](https://www.luogu.org/problemnew/show/P2123)（请不要翻题解……。
+
+## [后悔法](https://www.luogu.org/problemnew/show/P2949)
+
+贪心思想：
+**1**.先假设每一项工作都做，将各项工作按截止时间排序后入队。
+**2**.在判断第i项工作做与不做时，若其截至时间符合条件，则将其与队中报酬最小的元素比较，若第i项工作报酬较高（后悔），则ans+=a[i].p-q.top()。
+**PS**:用优先队列（小根堆）来维护队首元素最小。
+
+### code:
+
+```cpp
+#include<cstdio>
+#include<iostream>
+#include<cstring>
+#include<cmath>
+#include<algorithm>
+#include<queue>
+using namespace std;
+struct f{
+	long long d;
+	long long x;
+}a[100005];
+bool cmp(f A,f B)
+{
+	return A.d<B.d;
+}
+priority_queue<long long,vector<long long>,greater<long long> >q;
+int main()
+{
+	long long n,i,j;
+	cin>>n;
+	for (i=1;i<=n;i++)
+	{
+		scanf("%d%d",&a[i].d,&a[i].x);
+	}
+	sort(a+1,a+n+1,cmp);
+	long long ans=0;
+	for (i=1;i<=n;i++)
+	{
+		if (a[i].d<=q.size())
+		{
+			if (q.top()<a[i].x)
+			{
+				ans+=a[i].x-q.top();
+				q.pop();
+				q.push(a[i].x);
+			}
+		}
+		else
+		{
+			ans+=a[i].x;
+			q.push(a[i].x);
+		}
+	} 
+	cout<<ans<<endl;
+	return 0;
+}
+```
+
+
+
+
+
+
