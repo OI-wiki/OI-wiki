@@ -42,7 +42,7 @@ $S_1(n)=\sum_{i=1}^n \epsilon (i)-\sum_{i=2}^n S_1(\lfloor \frac n i \rfloor)$
 
 $= 1-\sum_{i=2}^n S_1(\lfloor \frac n i \rfloor)$
 
-观察到 $\lfloor \frac n i \rfloor$ 最多只有 $O(\sqrt n)$ 中取值，我们就可以应用 ** 整除分块 ** （或称数论分块）来计算每一项的值了。 
+观察到 $\lfloor \frac n i \rfloor$ 最多只有 $O(\sqrt n)$ 种取值，我们就可以应用 ** 整除分块 ** （或称数论分块）来计算每一项的值了。 
 
 直接计算的时间复杂度为 $O(n^{\frac 3 4})$ 。考虑先线性筛预处理出前 $n^{\frac 2 3}$ 项，剩余部分的时间复杂度为
 
