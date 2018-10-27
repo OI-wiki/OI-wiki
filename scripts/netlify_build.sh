@@ -30,5 +30,5 @@ cp ./static/extra.js docs/_static/js/extra.js
 
 mkdocs build -v
 
-find ./site -type f -name '*.html' -exec node --max_old_space_size=512 render_math.js {} \;
+find ./site -type f -name '*.html' -exec node --max_old_space_size=512 ./scripts/render_math.js {} \;
 
