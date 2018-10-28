@@ -26,7 +26,8 @@ deploy:
 after_deploy:
   - chmod +x scripts/BaiduPusher.sh && ./scripts/BaiduPusher.sh
   - cd /tmp
-  - git clone https://github.com/24OI/OI-wiki.git -b gh-pages
+  - git clone https://github.com/24OI/OI-wiki.git
   - cd OI-wiki
   - git remote add coding https://$CODING_USER:$CODING_KEY@git.coding.net/scaffrey/OI-wiki.git
   - git push coding HEAD:master -f
+  - git push coding HEAD:gh-pages -f
