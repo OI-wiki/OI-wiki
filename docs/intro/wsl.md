@@ -236,7 +236,7 @@ xfce4-session
 
 ## 0x09 延伸内容
 
-[Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://spencerwoo.com/Dev-on-Windows-with-WSL/)
+[Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://spencerwoo.com/dowww//)
 
 ### 后记
 
