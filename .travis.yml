@@ -30,4 +30,6 @@ after_deploy:
   - cd OI-wiki
   - git remote add coding https://$CODING_USER:$CODING_KEY@git.coding.net/scaffrey/OI-wiki.git
   - git push coding HEAD:master -f
+  - git fetch
+  - git checkout origin/gh-pages
   - git push coding HEAD:gh-pages -f
