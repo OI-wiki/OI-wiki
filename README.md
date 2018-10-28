@@ -71,7 +71,7 @@ git clone https://git.coding.net/scaffrey/OI-wiki.git
 可以使用 `gh-pages` 分支的内容
 
 ```bash
-git clone https://git.coding.net/scaffrey/OI-wiki.git -b gh-pages
+git clone https://git.coding.net/scaffrey/OI-wiki.git -b coding-pages
 ```
 
 本地启动一个 http 服务器可能会更方便一些
