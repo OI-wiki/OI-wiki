@@ -90,7 +90,7 @@ struct uv {
 
 ## 后悔法
 
-[luogu P2949](https://www.luogu.org/problemnew/show/P2949)
+??? note " 例题 [luogu P2949 \[USACO09OPEN\] 工作调度 Work Scheduling ](https://www.luogu.org/problemnew/show/P2949)"
 
 贪心思想：
 
