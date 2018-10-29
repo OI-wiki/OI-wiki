@@ -1,4 +1,4 @@
-BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first_search)，中文名是宽度优先搜索。
+BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first_search)，中文名是宽度优先搜索，也叫广度优先搜索。
 
 是图上最基础、最重要的搜索算法之一。
 
@@ -121,7 +121,7 @@ void restore(int x) {
 
 ### 实现
 
-把没有权值的边扩展到的点放到队首，有权值的边扩展到的点放到队尾。
+一般情况下，我们把没有权值的边扩展到的点放到队首，有权值的边扩展到的点放到队尾。这样即可保证在整个队列中，像普通 BFS 一样，越靠近队首，权值越小，且权值零一之间有分隔。
 
 下面是伪代码：
 
@@ -141,7 +141,7 @@ while (队列不为空) {
 
 ### 例题
 
-### [Croc Champ 2012 - Round 1 B Chamber of Secrets](http://codeforces.com/problemset/problem/173/B)
+### [Codeforces 173B](http://codeforces.com/problemset/problem/173/B)
 
 一个 $n \times m$ 的图，现在有一束激光从左上角往右边射出，每遇到 '#'，你可以选择光线往四个方向射出，或者什么都不做，问最少需要多少个 '#' 往四个方向射出才能使光线在第 $n$ 行往右边射出。
 
