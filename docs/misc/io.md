@@ -43,26 +43,26 @@ std::cin.tie(0);
 ### 代码实现
 
 ```cpp
-int read(){
+int read() {
+  int x = 0, w = 1;
+  char ch = 0;
 
-	int x=0,w=1;char ch=0;
+  while (ch < '0' || ch > '9') {  // ch不是数字时
 
-    	while(ch<'0' || ch>'9'){//ch不是数字时
+    if (ch == '-') w = -1;  //判断是否为负
 
-		if(ch=='-') w=-1;//判断是否为负
+    ch = getchar();  //继续读入
+  }
 
-		ch=getchar();//继续读入
+  while (ch >= '0' && ch <= '9') {  // ch是数字时
 
-	}
-
-	while(ch>='0' && ch<='9') {//ch是数字时
-
-		x=(x<<3)+(x<<1)+ch-'0';//将新读入的数字’加’在x的后面
-		//x<<3==x*8  x<<1==x*2  所以(x<<3)+(x<<1)相当于x*10
-		//x是int 类型，char类型的ch和’0’会被自动转为其ASCII表中序号，相当于将ch转化为对应数字
-		ch=getchar();//继续读入
-	}
-	return x*w; //数字*正负号==实际数值
+    x = (x << 3) + (x << 1) + ch - '0';  //将新读入的数字’加’在x的后面
+    // x<<3==x*8  x<<1==x*2  所以(x<<3)+(x<<1)相当于x*10
+    // x是int
+    // 类型，char类型的ch和’0’会被自动转为其ASCII表中序号，相当于将ch转化为对应数字
+    ch = getchar();  //继续读入
+  }
+  return x * w;  //数字*正负号==实际数值
 }
 ```
 
@@ -83,19 +83,17 @@ int read(){
 ### 代码实现
 
 ```cpp
-int write(int x){
+int write(int x) {
+  if (x < 0) {  //判负+输出负号+变原数为正数
 
-	if (x<0) {//判负+输出负号+变原数为正数
-	
-    		x=-x;
-		
-        	putchar('-');
-		
-    	}
-	
-	if (x>9) write(x/10);//递归，将除最后一位外的其他部分放到递归中输出
-	
-	putchar(x%10+'0');//已经输出（递归）完x末位前的所有数字，输出末位
+    x = -x;
+
+    putchar('-');
+  }
+
+  if (x > 9) write(x / 10);  //递归，将除最后一位外的其他部分放到递归中输出
+
+  putchar(x % 10 + '0');  //已经输出（递归）完x末位前的所有数字，输出末位
 }
 ```
 
@@ -103,10 +101,12 @@ int write(int x){
 
 ```cpp
 inline void write(int x) {
-	static int sta[35];
-	int top=0;
-	do{sta[top++]=x%10,x/=10;}while(x);
-	while(top) putchar(sta[--top]+48); // 48 是 '0' 
+  static int sta[35];
+  int top = 0;
+  do {
+    sta[top++] = x % 10, x /= 10;
+  } while (x);
+  while (top) putchar(sta[--top] + 48);  // 48 是 '0'
 }
 ```
 
@@ -125,8 +125,10 @@ inline void write(int x) {
 对于输出，我们还有对应的 `fwrite` 函数
 
 ```cpp
-std::size_t fread( void* buffer, std::size_t size, std::size_t count, std::FILE* stream );
-std::size_t fwrite( const void* buffer, std::size_t size, std::size_t count, std::FILE* stream );
+std::size_t fread(void* buffer, std::size_t size, std::size_t count,
+                  std::FILE* stream);
+std::size_t fwrite(const void* buffer, std::size_t size, std::size_t count,
+                   std::FILE* stream);
 ```
 
 使用示例：`fread(Buf, 1, MAXSIZE, stdin)`，如此从 stdin 文件流中读入 MAXSIZE 个大小为 1 的字符到 Buf 中。
@@ -134,8 +136,11 @@ std::size_t fwrite( const void* buffer, std::size_t size, std::size_t count, std
 读入之后的使用就跟普通的读入优化相似了，只需要重定义一下 getchar。它原来是从文件中读入一个 char，现在变成从 Buf 中读入一个 char，也就是头指针向后移动一位。
 
 ```cpp
-char buf[1<<20], *p1, *p2;
-#define gc() (p1==p2&&(p2=(p1=buf)+fread(buf,1,1<<20,stdin),p1==p2)?EOF:*p1++)
+char buf[1 << 20], *p1, *p2;
+#define gc()                                                               \
+  (p1 == p2 && (p2 = (p1 = buf) + fread(buf, 1, 1 << 20, stdin), p1 == p2) \
+       ? EOF                                                               \
+       : *p1++)
 ```
 
 `fwrite` 也是类似的，先放入一个 `OutBuf[MAXSIZE]` 中，最后通过 `fwrite` 一次性将 `OutBuf` 输出。
@@ -144,27 +149,36 @@ char buf[1<<20], *p1, *p2;
 
 ```cpp
 namespace IO {
-	const int MAXSIZE = 1 << 20;
-	char buf[MAXSIZE], *p1, *p2;
-	#define gc() (p1==p2&&(p2=(p1=buf)+fread(buf,1,MAXSIZE,stdin),p1==p2)?EOF:*p1++)
-	inline int rd() {
-		int x = 0, f = 1;char c=nc();
-		while(!isdigit(c)) {if(c == '-') f = -1; c = nc();}
-		while(isdigit(c)) x = (x<<1)+(x<<3)+(c^48), c = nc();
-		return x*f;
-	}
-	char pbuf[1<<20],*pp=pbuf;
-	inline void push(const char &c) {
-		if(pp-pbuf==1<<20) fwrite(pbuf,1,1<<20,stdout),pp=pbuf;
-		*pp++=c;
-	}
-	inline void write(int x) {
-		static int sta[35];
-		int top=0;
-		do{sta[top++]=x%10,x/=10;}while(x);
-		while(top) push(sta[--top]+'0');
-	}
+const int MAXSIZE = 1 << 20;
+char buf[MAXSIZE], *p1, *p2;
+#define gc()                                                               \
+  (p1 == p2 && (p2 = (p1 = buf) + fread(buf, 1, MAXSIZE, stdin), p1 == p2) \
+       ? EOF                                                               \
+       : *p1++)
+inline int rd() {
+  int x = 0, f = 1;
+  char c = nc();
+  while (!isdigit(c)) {
+    if (c == '-') f = -1;
+    c = nc();
+  }
+  while (isdigit(c)) x = (x << 1) + (x << 3) + (c ^ 48), c = nc();
+  return x * f;
 }
+char pbuf[1 << 20], *pp = pbuf;
+inline void push(const char &c) {
+  if (pp - pbuf == 1 << 20) fwrite(pbuf, 1, 1 << 20, stdout), pp = pbuf;
+  *pp++ = c;
+}
+inline void write(int x) {
+  static int sta[35];
+  int top = 0;
+  do {
+    sta[top++] = x % 10, x /= 10;
+  } while (x);
+  while (top) push(sta[--top] + '0');
+}
+}  // namespace IO
 ```
 
 ## 参考

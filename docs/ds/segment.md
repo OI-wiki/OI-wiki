@@ -47,30 +47,27 @@ O(∩\_∩)O 哈哈~
 那么就这样写代码：
 
 ```cpp
-建树(s,t,i)
-{
-	如果(s==t)
-    {
-    	d[i]=a[s];
-    }
-    否则
-    {
-    	建树(s,(s+t)/2,2*i);
-        建树((s+t)/2+1,t,2*i+1);
-        d[i]=d[2*i]+d[2*i+1];
-    }
+建树(s, t, i) {
+  如果(s == t) { d[i] = a[s]; }
+  否则 {
+    建树(s, (s + t) / 2, 2 * i);
+    建树((s + t) / 2 + 1, t, 2 * i + 1);
+    d[i] = d[2 * i] + d[2 * i + 1];
+  }
 }
 ```
 
 具体代码实现 (C++)：
 
 ```cpp
-void build(int s,int t,int p)
-{
-    if(s==t){d[p]=a[s];return;}
-    int m=(s+t)/2;
-    build(s,m,p*2),build(m+1,t,p*2+1);
-    d[p]=d[p*2]+d[(p*2)+1];
+void build(int s, int t, int p) {
+  if (s == t) {
+    d[p] = a[s];
+    return;
+  }
+  int m = (s + t) / 2;
+  build(s, m, p * 2), build(m + 1, t, p * 2 + 1);
+  d[p] = d[p * 2] + d[(p * 2) + 1];
 }
 ```
 
@@ -104,38 +101,41 @@ void build(int s,int t,int p)
 具体思路见代码：
 
 ```cpp
-求和（查询区间的左端点 l, 查询区间的右端点 r, 当前节点表示的区间左端点 s, 当前节点表示的区间 t, 当前访问的节点编号 p）
-{
-    如果（l<=s&&t<=r）// 当前访问的节点表示的区间包含在查询区间内
+求和（查询区间的左端点 l, 查询区间的右端点 r, 当前节点表示的区间左端点 s,
+    当前节点表示的区间 t, 当前访问的节点编号 p） {
+  如果（l <= s&& t <= r）  // 当前访问的节点表示的区间包含在查询区间内
+      {返回 d[p] ；} 否则 {
+    令 返回值 = 0 如果（l <=
+                (s + t) / 2）  // 当前访问的节点的左儿子节点表示的区间包含在查
+                               // 询区间内,(s+t)/2
+                               // 其实是左右儿子节点表示的区间的分割线且(s+t)/2
+                               // 包含在左儿子节点表示的区间中
     {
-    	返回 d[p]；
+      返回值 += 求和（l, r, s, (s + t) / 2,
+          p * 2）;  // l 和 r
+                    // 是可以不用变的！不管你信不信我反正是信了。当前节点的左儿子节点编号是
+                    // p2，之前讲过了，左儿子节点表示的区间左端点就是当前节点表示的区间的左端点，(s+t)/2
+                    // 是左儿子节点表示的区间的右短点
     }
-    否则
+    如果(r >
+         (s + t) / 2)  // 当前访问的节点的右儿子节点表示的区间包含在查 询区间内
     {
-    	令 返回值 = 0
-        如果（l<=(s+t)/2）// 当前访问的节点的左儿子节点表示的区间包含在查 询区间内,(s+t)/2 其实是左右儿子节点表示的区间的分割线且(s+t)/2 包含在左儿子节点表示的区间中
-        {
-   	     返回值 += 求和（l,r,s,(s+t)/2,p*2）;//l 和 r 是可以不用变的！不管你信不信我反正是信了。当前节点的左儿子节点编号是 p2，之前讲过了，左儿子节点表示的区间左端点就是当前节点表示的区间的左端点，(s+t)/2 是左儿子节点表示的区间的右短点
-        }
-        如果(r>(s+t)/2)// 当前访问的节点的右儿子节点表示的区间包含在查 询区间内
-        {
-      	  返回值 += 求和（l,r,(s+t)/2+1,t,p*2+1）；//(s+t)/2+1 是当前访问节点的右儿子节点表示的区间的左端点
-        }
-	    返回 返回值；
-    }
+        返回值 += 求和（l, r, (s + t) / 2 + 1, t,
+        p * 2 + 1）；  //(s+t)/2+1 是当前访问节点的右儿子节点表示的区间的左端点
+    } 返回 返回值；
+  }
 }
 ```
 
 怎么样，代码很丑吧？废话，用中文写的能不丑吗？现在搞个英 (da) 文 (xin) 的 (wen)：
 
 ```cpp
-int getsum(int l,int r,int s,int t,int p)
-{
-        if(l<=s&&t<=r)return d[p];
-        int m=(s+t)/2,sum=0;
-        if(l<=m)sum+=getsum(l,r,s,m,p*2);
-        if(r>m)sum+=getsum(l,r,m+1,t,p*2+1);
-        return sum;
+int getsum(int l, int r, int s, int t, int p) {
+  if (l <= s && t <= r) return d[p];
+  int m = (s + t) / 2, sum = 0;
+  if (l <= m) sum += getsum(l, r, s, m, p * 2);
+  if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
+  return sum;
 }
 ```
 
@@ -203,32 +203,51 @@ int getsum(int l,int r,int s,int t,int p)
 区间修改（区间加上某个值）：
 
 ```cpp
-void update(int l,int r,int c,int s,int t,int p)//l 是查询的区间左端点，r 是右端点，c 表示区间每个元素加上的值，s 是当前节点所表示的区间的左端点，t 是右端点，p 是当前节点的编号(根节点标号为 1)
+void update(
+    int l, int r, int c, int s, int t,
+    int p)  // l 是查询的区间左端点，r 是右端点，c 表示区间每个元素加上的值，s
+            // 是当前节点所表示的区间的左端点，t 是右端点，p
+            // 是当前节点的编号(根节点标号为 1)
 {
-    if(l<=s&&t<=r){d[p]+=(t-s+1)*c,b[p]+=c;return;}// 如果当前节点表示的区间完全包含在查询区间内，直接修改当前节点的值，然后做上标记，结束修改
-    int m=(s+t)/2;// 计算左右节点表示区间的分割线
-    if(b[p]&&s!=t)// 如果当前节点不是叶子节点（叶子节点表示的区间的左右端点是相等的）且当前的懒惰标记值!=0，就更新当前节点的两个儿子节点的值和懒惰标记值
-        d[p*2]+=b[p]*(m-s+1),d[p*2+1]+=b[p]*(t-m),b[p*2]+=b[p],b[p*2+1]+=b[p];
-    b[p]=0;// 清空当前节点的懒惰标记值
-    if(l<=m)update(l,r,c,s,m,p*2);
-    if(r>m)update(l,r,c,m+1,t,p*2+1);
-    d[p]=d[p*2]+d[p*2+1];
+  if (l <= s && t <= r) {
+    d[p] += (t - s + 1) * c, b[p] += c;
+    return;
+  }  // 如果当前节点表示的区间完全包含在查询区间内，直接修改当前节点的值，然后做上标记，结束修改
+  int m = (s + t) / 2;  // 计算左右节点表示区间的分割线
+  if (b[p] &&
+      s !=
+          t)  // 如果当前节点不是叶子节点（叶子节点表示的区间的左右端点是相等的）且当前的懒惰标记值!=0，就更新当前节点的两个儿子节点的值和懒惰标记值
+    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m),
+        b[p * 2] += b[p], b[p * 2 + 1] += b[p];
+  b[p] = 0;  // 清空当前节点的懒惰标记值
+  if (l <= m) update(l, r, c, s, m, p * 2);
+  if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
+  d[p] = d[p * 2] + d[p * 2 + 1];
 }
 ```
 
 区间查询（求和）：
 
 ```cpp
-int getsum(int l,int r,int s,int t,int p)//l 是查询的区间左端点，r 是右端点，s 是当前节点所表示的区间的左端点，t 是右端点，p 是当前节点的编号（根节点标号为 1）
+int getsum(int l, int r, int s, int t,
+           int p)  // l 是查询的区间左端点，r 是右端点，s
+                   // 是当前节点所表示的区间的左端点，t 是右端点，p
+                   // 是当前节点的编号（根节点标号为 1）
 {
-    if(l<=s&&t<=r)return d[p];// 如果当前节点表示的区间完全包含在查询区间内，返回当前节点的值
-    int m=(s+t)/2;// 计算左右节点表示区间的分割线
-    if(b[p]&&s!=t)// 如果当前节点不是叶子节点（叶子节点表示的区间的左右端点是相等的）且当前的懒惰标记值!=0，就更新当前节点的两个儿子节点的值和懒惰标记
-        d[p*2]+=b[p]*(m-s+1),d[p*2+1]+=b[p]*(t-m),b[p*2]+=b[p],b[p*2+1]+=b[p];
-    b[p]=0;int sum=0;// 清空当前节点的懒惰标记值
-    if(l<=m)sum=getsum(l,r,s,m,p*2);
-    if(r>m)sum+=getsum(l,r,m+1,t,p*2+1);
-    return sum;
+  if (l <= s && t <= r)
+    return d
+        [p];  // 如果当前节点表示的区间完全包含在查询区间内，返回当前节点的值
+  int m = (s + t) / 2;  // 计算左右节点表示区间的分割线
+  if (b[p] &&
+      s !=
+          t)  // 如果当前节点不是叶子节点（叶子节点表示的区间的左右端点是相等的）且当前的懒惰标记值!=0，就更新当前节点的两个儿子节点的值和懒惰标记
+    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m),
+        b[p * 2] += b[p], b[p * 2 + 1] += b[p];
+  b[p] = 0;
+  int sum = 0;  // 清空当前节点的懒惰标记值
+  if (l <= m) sum = getsum(l, r, s, m, p * 2);
+  if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
+  return sum;
 }
 ```
 
@@ -239,27 +258,31 @@ int getsum(int l,int r,int s,int t,int p)//l 是查询的区间左端点，r 是
 如果你是要实现区间修改为某一个值而不是加上某一个值的话，很简单，把上面的代码中所有的 `+=` 替换成 `=` 即可（除了 `sum+=getsum(l,r,m+1,t,p*2+1)` 这一句）。代码如下：
 
 ```cpp
-void update(int l,int r,int c,int s,int t,int p)
-{
-    if(l<=s&&t<=r){d[p]=(t-s+1)*c,b[p]=c;return;}
-    int m=(s+t)/2;
-    if(b[p]&&s!=t)
-        d[p*2]=b[p]*(m-s+1),d[p*2+1]=b[p]*(t-m),b[p*2]=b[p*2+1]=b[p];
-    b[p]=0;
-    if(l<=m)update(l,r,c,s,m,p*2);
-    if(r>m)update(l,r,c,m+1,t,p*2+1);
-    d[p]=d[p*2]+d[p*2+1];
+void update(int l, int r, int c, int s, int t, int p) {
+  if (l <= s && t <= r) {
+    d[p] = (t - s + 1) * c, b[p] = c;
+    return;
+  }
+  int m = (s + t) / 2;
+  if (b[p] && s != t)
+    d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
+          b[p * 2] = b[p * 2 + 1] = b[p];
+  b[p] = 0;
+  if (l <= m) update(l, r, c, s, m, p * 2);
+  if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
+  d[p] = d[p * 2] + d[p * 2 + 1];
 }
-int getsum(int l,int r,int s,int t,int p)
-{
-    if(l<=s&&t<=r)return d[p];
-    int m=(s+t)/2;
-    if(b[p]&&s!=t)
-        d[p*2]=b[p]*(m-s+1),d[p*2+1]=b[p]*(t-m),b[p*2]=b[p*2+1]=b[p];
-    b[p]=0;int sum=0;
-    if(l<=m)sum=getsum(l,r,s,m,p*2);
-    if(r>m)sum+=getsum(l,r,m+1,t,p*2+1);
-    return sum;
+int getsum(int l, int r, int s, int t, int p) {
+  if (l <= s && t <= r) return d[p];
+  int m = (s + t) / 2;
+  if (b[p] && s != t)
+    d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
+          b[p * 2] = b[p * 2 + 1] = b[p];
+  b[p] = 0;
+  int sum = 0;
+  if (l <= m) sum = getsum(l, r, s, m, p * 2);
+  if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
+  return sum;
 }
 ```
 
@@ -274,10 +297,10 @@ int getsum(int l,int r,int s,int t,int p)
 - 因为下标为 $a$ 的节点的左儿子下标为 $a\times 2$，右儿子下标为 $a\times 2+1$，所以可以：
 
 ```cpp
-#define LS(a) (a<<1)
-//a<<1 等同于 a*2
-#define RS(a) (a<<1|1)
-//a<<1|1 等同于 a*2+1
+#define LS(a) (a << 1)
+// a<<1 等同于 a*2
+#define RS(a) (a << 1 | 1)
+// a<<1|1 等同于 a*2+1
 ```
 
 - 因为递归到叶子节点（左端点等于右端点的节点）的时候叶子节点一定包含在查询的区间内，所以一定会在懒惰标记下放前就处理完了 return 掉了，所以不用担心会出现叶子节点懒惰标记下放导致数组越界，也不用懒惰标记下方每次还检查当前节点是否为叶子节点了。（代码中的 `s!=t` 可以去掉）减小代码复杂度。
@@ -296,50 +319,56 @@ int getsum(int l,int r,int s,int t,int p)
 #include <iostream>
 using namespace std;
 typedef long long LL;
-LL n,a[100005],d[270000],b[270000];
-void build(LL l,LL r,LL p)
-{
-    if(l==r){d[p]=a[l];return;}
-    LL m=(l+r)>>1;
-    build(l,m,p<<1),build(m+1,r,(p<<1)|1);
-    d[p]=d[p<<1]+d[(p<<1)|1];
+LL n, a[100005], d[270000], b[270000];
+void build(LL l, LL r, LL p) {
+  if (l == r) {
+    d[p] = a[l];
+    return;
+  }
+  LL m = (l + r) >> 1;
+  build(l, m, p << 1), build(m + 1, r, (p << 1) | 1);
+  d[p] = d[p << 1] + d[(p << 1) | 1];
 }
-void update(LL l,LL r,LL c,LL s,LL t,LL p)
-{
-    if(l<=s&&t<=r){d[p]+=(t-s+1)*c,b[p]+=c;return;}
-    LL m=(s+t)>>1;
-    if(b[p]&&s!=t)
-        d[p<<1]+=b[p]*(m-s+1),d[(p<<1)|1]+=b[p]*(t-m),b[p<<1]+=b[p],b[(p<<1)|1]+=b[p];
-    b[p]=0;
-    if(l<=m)update(l,r,c,s,m,p<<1);
-    if(r>m)update(l,r,c,m+1,t,(p<<1)|1);
-    d[p]=d[p<<1]+d[(p<<1)|1];
+void update(LL l, LL r, LL c, LL s, LL t, LL p) {
+  if (l <= s && t <= r) {
+    d[p] += (t - s + 1) * c, b[p] += c;
+    return;
+  }
+  LL m = (s + t) >> 1;
+  if (b[p] && s != t)
+    d[p << 1] += b[p] * (m - s + 1), d[(p << 1) | 1] += b[p] * (t - m),
+        b[p << 1] += b[p], b[(p << 1) | 1] += b[p];
+  b[p] = 0;
+  if (l <= m) update(l, r, c, s, m, p << 1);
+  if (r > m) update(l, r, c, m + 1, t, (p << 1) | 1);
+  d[p] = d[p << 1] + d[(p << 1) | 1];
 }
-LL getsum(LL l,LL r,LL s,LL t,LL p)
-{
-    if(l<=s&&t<=r)return d[p];
-    LL m=(s+t)>>1;
-    if(b[p]&&s!=t)
-        d[p<<1]+=b[p]*(m-s+1),d[(p<<1)|1]+=b[p]*(t-m),b[p<<1]+=b[p],b[(p<<1)|1]+=b[p];
-    b[p]=0;LL sum=0;
-    if(l<=m)sum=getsum(l,r,s,m,p<<1);
-    if(r>m)sum+=getsum(l,r,m+1,t,(p<<1)|1);
-    return sum;
+LL getsum(LL l, LL r, LL s, LL t, LL p) {
+  if (l <= s && t <= r) return d[p];
+  LL m = (s + t) >> 1;
+  if (b[p] && s != t)
+    d[p << 1] += b[p] * (m - s + 1), d[(p << 1) | 1] += b[p] * (t - m),
+        b[p << 1] += b[p], b[(p << 1) | 1] += b[p];
+  b[p] = 0;
+  LL sum = 0;
+  if (l <= m) sum = getsum(l, r, s, m, p << 1);
+  if (r > m) sum += getsum(l, r, m + 1, t, (p << 1) | 1);
+  return sum;
 }
-int main()
-{
-    ios::sync_with_stdio(0);
-    LL q,i1,i2,i3,i4;
-    cin>>n>>q;
-    for(LL i=1;i<=n;i++)cin>>a[i];
-    build(1,n,1);
-    while(q--)
-    {
-        cin>>i1>>i2>>i3;
-        if(i1==2)cout<<getsum(i2,i3,1,n,1)<<endl;
-        else cin>>i4,update(i2,i3,i4,1,n,1);
-    }
-    return 0;
+int main() {
+  ios::sync_with_stdio(0);
+  LL q, i1, i2, i3, i4;
+  cin >> n >> q;
+  for (LL i = 1; i <= n; i++) cin >> a[i];
+  build(1, n, 1);
+  while (q--) {
+    cin >> i1 >> i2 >> i3;
+    if (i1 == 2)
+      cout << getsum(i2, i3, 1, n, 1) << endl;
+    else
+      cin >> i4, update(i2, i3, i4, 1, n, 1);
+  }
+  return 0;
 }
 ```
 
@@ -350,102 +379,138 @@ int main()
 代码：
 
 ```cpp
-#include<iostream>
-#include<cstdio>
-#include<cstring>
-#include<climits>
-#include<iomanip>
-#include<cmath>
-#include<vector>
-#include<algorithm>
+#include <algorithm>
+#include <climits>
+#include <cmath>
+#include <cstdio>
+#include <cstring>
+#include <iomanip>
+#include <iostream>
+#include <vector>
 using namespace std;
 #define ll long long
-ll read(){
-    ll w=1,q=0;char ch=' ';
-    while(ch!='-'&&(ch<'0'||ch>'9'))ch=getchar();
-    if(ch=='-')w=-1,ch=getchar();
-    while(ch>='0'&&ch<='9')q=(ll)q*10+ch-'0',ch=getchar();
-    return (ll)w*q;
+ll read() {
+  ll w = 1, q = 0;
+  char ch = ' ';
+  while (ch != '-' && (ch < '0' || ch > '9')) ch = getchar();
+  if (ch == '-') w = -1, ch = getchar();
+  while (ch >= '0' && ch <= '9') q = (ll)q * 10 + ch - '0', ch = getchar();
+  return (ll)w * q;
 }
-int n,m;
+int n, m;
 ll mod;
-ll a[100005],sum[400005],mul[400005],laz[400005];
-void up(int i){sum[i]=(sum[(i<<1)]+sum[(i<<1)|1])%mod;}
-void pd(int i,int s,int t){
-    int l=(i<<1),r=(i<<1)|1,mid=(s+t)>>1;
-    if(mul[i]!=1){
-    mul[l]*=mul[i];mul[l]%=mod;mul[r]*=mul[i];mul[r]%=mod;
-    laz[l]*=mul[i];laz[l]%=mod;laz[r]*=mul[i];laz[r]%=mod;
-    sum[l]*=mul[i];sum[l]%=mod;sum[r]*=mul[i];sum[r]%=mod;
-    mul[i]=1;
+ll a[100005], sum[400005], mul[400005], laz[400005];
+void up(int i) { sum[i] = (sum[(i << 1)] + sum[(i << 1) | 1]) % mod; }
+void pd(int i, int s, int t) {
+  int l = (i << 1), r = (i << 1) | 1, mid = (s + t) >> 1;
+  if (mul[i] != 1) {
+    mul[l] *= mul[i];
+    mul[l] %= mod;
+    mul[r] *= mul[i];
+    mul[r] %= mod;
+    laz[l] *= mul[i];
+    laz[l] %= mod;
+    laz[r] *= mul[i];
+    laz[r] %= mod;
+    sum[l] *= mul[i];
+    sum[l] %= mod;
+    sum[r] *= mul[i];
+    sum[r] %= mod;
+    mul[i] = 1;
+  }
+  if (laz[i]) {
+    sum[l] += laz[i] * (mid - s + 1);
+    sum[l] %= mod;
+    sum[r] += laz[i] * (t - mid);
+    sum[r] %= mod;
+    laz[l] += laz[i];
+    laz[l] %= mod;
+    laz[r] += laz[i];
+    laz[r] %= mod;
+    laz[i] = 0;
+  }
+  return;
+}
+void build(int s, int t, int i) {
+  mul[i] = 1;
+  if (s == t) {
+    sum[i] = a[s];
+    return;
+  }
+  int mid = (s + t) >> 1;
+  build(s, mid, i << 1);
+  build(mid + 1, t, (i << 1) | 1);
+  up(i);
+}
+void chen(int l, int r, int s, int t, int i, ll z) {
+  int mid = (s + t) >> 1;
+  if (l <= s && t <= r) {
+    mul[i] *= z;
+    mul[i] %= mod;
+    laz[i] *= z;
+    laz[i] %= mod;
+    sum[i] *= z;
+    sum[i] %= mod;
+    return;
+  }
+  pd(i, s, t);
+  if (mid >= l) chen(l, r, s, mid, (i << 1), z);
+  if (mid + 1 <= r) chen(l, r, mid + 1, t, (i << 1) | 1, z);
+  up(i);
+}
+void add(int l, int r, int s, int t, int i, ll z) {
+  int mid = (s + t) >> 1;
+  if (l <= s && t <= r) {
+    sum[i] += z * (t - s + 1);
+    sum[i] %= mod;
+    laz[i] += z;
+    laz[i] %= mod;
+    return;
+  }
+  pd(i, s, t);
+  if (mid >= l) add(l, r, s, mid, (i << 1), z);
+  if (mid + 1 <= r) add(l, r, mid + 1, t, (i << 1) | 1, z);
+  up(i);
+}
+ll getans(int l, int r, int s, int t, int i) {
+  int mid = (s + t) >> 1;
+  ll tot = 0;
+  if (l <= s && t <= r) {
+    return sum[i];
+  }
+  pd(i, s, t);
+  if (mid >= l) tot += getans(l, r, s, mid, (i << 1));
+  tot %= mod;
+  if (mid + 1 <= r) tot += getans(l, r, mid + 1, t, (i << 1) | 1);
+  return tot % mod;
+}
+int main() {
+  int i, j, x, y, bh;
+  ll z;
+  n = read();
+  m = read();
+  mod = read();
+  for (i = 1; i <= n; i++) a[i] = read();
+  build(1, n, 1);
+  for (i = 1; i <= m; i++) {
+    bh = read();
+    if (bh == 1) {
+      x = read();
+      y = read();
+      z = read();
+      chen(x, y, 1, n, 1, z);
+    } else if (bh == 2) {
+      x = read();
+      y = read();
+      z = read();
+      add(x, y, 1, n, 1, z);
+    } else if (bh == 3) {
+      x = read();
+      y = read();
+      printf("%lld\n", getans(x, y, 1, n, 1));
     }
-    if(laz[i]){
-    sum[l]+=laz[i]*(mid-s+1);sum[l]%=mod;
-    sum[r]+=laz[i]*(t-mid);sum[r]%=mod;
-    laz[l]+=laz[i];laz[l]%=mod;
-    laz[r]+=laz[i];laz[r]%=mod;
-    laz[i]=0;
-    }return;
-}
-void build(int s,int t,int i){
-    mul[i]=1;if(s==t){sum[i]=a[s];return;}
-    int mid=(s+t)>>1;
-    build(s,mid,i<<1);build(mid+1,t,(i<<1)|1);up(i);
-}
-void chen(int l,int r,int s,int t,int i,ll z){
-    int mid=(s+t)>>1;
-    if(l<=s&&t<=r){
-        mul[i]*=z;mul[i]%=mod;laz[i]*=z;laz[i]%=mod;
-        sum[i]*=z;sum[i]%=mod;return;
-    }
-    pd(i,s,t);
-    if(mid>=l)chen(l,r,s,mid,(i<<1),z);
-    if(mid+1<=r)chen(l,r,mid+1,t,(i<<1)|1,z);
-    up(i);
-}
-void add(int l,int r,int s,int t,int i,ll z){
-    int mid=(s+t)>>1;
-    if(l<=s&&t<=r){
-        sum[i]+=z*(t-s+1);sum[i]%=mod;laz[i]+=z;laz[i]%=mod;
-        return;
-    }
-    pd(i,s,t);
-    if(mid>=l)add(l,r,s,mid,(i<<1),z);
-    if(mid+1<=r)add(l,r,mid+1,t,(i<<1)|1,z);
-    up(i);
-}
-ll getans(int l,int r,int s,int t,int i){
-    int mid=(s+t)>>1;ll tot=0;
-    if(l<=s&&t<=r){return sum[i];}
-    pd(i,s,t);
-    if(mid>=l)tot+=getans(l,r,s,mid,(i<<1));
-    tot%=mod;
-    if(mid+1<=r)tot+=getans(l,r,mid+1,t,(i<<1)|1);
-    return tot%mod;
-}
-int main()
-{
-    int i,j,x,y,bh;
-    ll z;
-    n=read();m=read();mod=read();
-    for(i=1;i<=n;i++)a[i]=read();
-    build(1,n,1);
-    for(i=1;i<=m;i++){
-        bh=read();
-        if(bh==1){
-            x=read();y=read();z=read();
-            chen(x,y,1,n,1,z);
-        }
-        else if(bh==2){
-            x=read();y=read();z=read();
-            add(x,y,1,n,1,z);
-        }
-        else if(bh==3){
-            x=read();y=read();
-            printf("%lld\n",getans(x,y,1,n,1));
-        }
-    }
-       return 0;
+  }
+  return 0;
 }
 ```
 
@@ -466,51 +531,57 @@ int main()
 ```cpp
 #include <iostream>
 using namespace std;
-int n,a[100005],d[270000],b[270000];
-void build(int l,int r,int p)
-{
-    if(l==r){d[p]=a[l];return;}
-    int m=(l+r)>>1;
-    build(l,m,p<<1),build(m+1,r,(p<<1)|1);
-    d[p]=d[p<<1]+d[(p<<1)|1];
+int n, a[100005], d[270000], b[270000];
+void build(int l, int r, int p) {
+  if (l == r) {
+    d[p] = a[l];
+    return;
+  }
+  int m = (l + r) >> 1;
+  build(l, m, p << 1), build(m + 1, r, (p << 1) | 1);
+  d[p] = d[p << 1] + d[(p << 1) | 1];
 }
-void update(int l,int r,int c,int s,int t,int p)
-{
-    if(l<=s&&t<=r){d[p]=(t-s+1)*c,b[p]=c;return;}
-    int m=(s+t)>>1;
-    if(b[p]&&s!=t)
-        d[p<<1]=b[p]*(m-s+1),d[(p<<1)|1]=b[p]*(t-m),b[p<<1]=b[(p<<1)|1]=b[p];
-    b[p]=0;
-    if(l<=m)update(l,r,c,s,m,p<<1);
-    if(r>m)update(l,r,c,m+1,t,(p<<1)|1);
-    d[p]=d[p<<1]+d[(p<<1)|1];
+void update(int l, int r, int c, int s, int t, int p) {
+  if (l <= s && t <= r) {
+    d[p] = (t - s + 1) * c, b[p] = c;
+    return;
+  }
+  int m = (s + t) >> 1;
+  if (b[p] && s != t)
+    d[p << 1] = b[p] * (m - s + 1), d[(p << 1) | 1] = b[p] * (t - m),
+           b[p << 1] = b[(p << 1) | 1] = b[p];
+  b[p] = 0;
+  if (l <= m) update(l, r, c, s, m, p << 1);
+  if (r > m) update(l, r, c, m + 1, t, (p << 1) | 1);
+  d[p] = d[p << 1] + d[(p << 1) | 1];
 }
-int getsum(int l,int r,int s,int t,int p)
-{
-    if(l<=s&&t<=r)return d[p];
-    int m=(s+t)>>1;
-    if(b[p]&&s!=t)
-        d[p<<1]=b[p]*(m-s+1),d[(p<<1)|1]=b[p]*(t-m),b[p<<1]=b[(p<<1)|1]=b[p];
-    b[p]=0;int sum=0;
-    if(l<=m)sum=getsum(l,r,s,m,p<<1);
-    if(r>m)sum+=getsum(l,r,m+1,t,(p<<1)|1);
-    return sum;
+int getsum(int l, int r, int s, int t, int p) {
+  if (l <= s && t <= r) return d[p];
+  int m = (s + t) >> 1;
+  if (b[p] && s != t)
+    d[p << 1] = b[p] * (m - s + 1), d[(p << 1) | 1] = b[p] * (t - m),
+           b[p << 1] = b[(p << 1) | 1] = b[p];
+  b[p] = 0;
+  int sum = 0;
+  if (l <= m) sum = getsum(l, r, s, m, p << 1);
+  if (r > m) sum += getsum(l, r, m + 1, t, (p << 1) | 1);
+  return sum;
 }
-int main()
-{
-    ios::sync_with_stdio(0);
-    cin>>n;
-    for(int i=1;i<=n;i++)cin>>a[i];
-    build(1,n,1);
-    int q,i1,i2,i3,i4;
-    cin>>q;
-    while(q--)
-    {
-        cin>>i1>>i2>>i3;
-        if(i1==0)cout<<getsum(i2,i3,1,n,1)<<endl;
-        else cin>>i4,update(i2,i3,i4,1,n,1);
-    }
-    return 0;
+int main() {
+  ios::sync_with_stdio(0);
+  cin >> n;
+  for (int i = 1; i <= n; i++) cin >> a[i];
+  build(1, n, 1);
+  int q, i1, i2, i3, i4;
+  cin >> q;
+  while (q--) {
+    cin >> i1 >> i2 >> i3;
+    if (i1 == 0)
+      cout << getsum(i2, i3, 1, n, 1) << endl;
+    else
+      cin >> i4, update(i2, i3, i4, 1, n, 1);
+  }
+  return 0;
 }
 ```
 

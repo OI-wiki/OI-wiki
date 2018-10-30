@@ -60,13 +60,13 @@ $O A K A B A K A B A O A K$
 
 ```cpp
 inline void change() {
-	s[0]=s[1]='#';
-	for(int i=0; i<n; i++) {
-		s[i*2+2]=a[i];
-		s[i*2+3]='#';
-	}
-	n=n*2+2;
-	s[n]=0;
+  s[0] = s[1] = '#';
+  for (int i = 0; i < n; i++) {
+    s[i * 2 + 2] = a[i];
+    s[i * 2 + 3] = '#';
+  }
+  n = n * 2 + 2;
+  s[n] = 0;
 }
 ```
 
@@ -100,19 +100,18 @@ inline void change() {
 
 ```cpp
 inline void manacher() {
-	int maxright=0,mid;
-	for(int i=1; i<n; i++) {
-		if(i<maxright)
-			hw[i]=min(hw[(mid<<1)-i],hw[mid]+mid-i);
-		else
-			hw[i]=1;
-        while(s[i+hw[i]]==s[i-hw[i]])
-        	++hw[i];
-		if(hw[i]+i>maxright) {
-			maxright=hw[i]+i;
-			mid=i;
-		}
-	}
+  int maxright = 0, mid;
+  for (int i = 1; i < n; i++) {
+    if (i < maxright)
+      hw[i] = min(hw[(mid << 1) - i], hw[mid] + mid - i);
+    else
+      hw[i] = 1;
+    while (s[i + hw[i]] == s[i - hw[i]]) ++hw[i];
+    if (hw[i] + i > maxright) {
+      maxright = hw[i] + i;
+      mid = i;
+    }
+  }
 }
 ```
 
@@ -131,64 +130,57 @@ inline void manacher() {
 然后拼接一下即可：
 
 ```cpp
-#include<iostream>
-#include<cstdio>
-#include<cstring>
-#include<cstring>
+#include <cstdio>
+#include <cstring>
+#include <iostream>
 
 using namespace std;
 
-const int maxn=200010;
-char a[maxn],s[maxn<<1];
-int l[maxn<<1],r[maxn<<1];
-int n,hw[maxn],ans;
+const int maxn = 200010;
+char a[maxn], s[maxn << 1];
+int l[maxn << 1], r[maxn << 1];
+int n, hw[maxn], ans;
 inline void manacher() {
-    int maxright=0,mid;
-    for(int i=1; i<n; ++i) {
-        if(i<maxright)
-            hw[i]=min(hw[(mid<<1)-i],hw[mid]+mid-i);
-        else
-            hw[i]=1;
-        while(s[i+hw[i]]==s[i-hw[i]])
-            ++hw[i];
-        if(hw[i]+i>maxright) {
-            maxright=hw[i]+i;
-            mid=i;
-        }
+  int maxright = 0, mid;
+  for (int i = 1; i < n; ++i) {
+    if (i < maxright)
+      hw[i] = min(hw[(mid << 1) - i], hw[mid] + mid - i);
+    else
+      hw[i] = 1;
+    while (s[i + hw[i]] == s[i - hw[i]]) ++hw[i];
+    if (hw[i] + i > maxright) {
+      maxright = hw[i] + i;
+      mid = i;
     }
+  }
 }
 
 void change() {
-    s[0]=s[1]='#';
-    for(int i=0; i<n; ++i) {
-        s[i*2+2]=a[i];
-        s[i*2+3]='#';
-    }
-    n=n*2+2;
-    s[n]=0;
+  s[0] = s[1] = '#';
+  for (int i = 0; i < n; ++i) {
+    s[i * 2 + 2] = a[i];
+    s[i * 2 + 3] = '#';
+  }
+  n = n * 2 + 2;
+  s[n] = 0;
 }
 
-inline int maxx(int a,int b) {
-    return a>b?a:b;
-}
+inline int maxx(int a, int b) { return a > b ? a : b; }
 
 int main() {
-    scanf("%s",a);
-    n=strlen(a);
-    change();
-    manacher();
-    int now=0;
-    for(int i=0; i<n; ++i)
-        while(now<=i+hw[i]-1)
-            l[now++]=i;
-    now=n;
-    for(int i=n-1; i>=0; --i) {
-        while(now>=i-hw[i]+1)
-            r[now--]=i;
-    }
-    int ans=0;
-    for(int i=0; i<n; ++i)
-        ans=maxx(ans,r[i]-l[i]);
-    printf("%d",ans);
+  scanf("%s", a);
+  n = strlen(a);
+  change();
+  manacher();
+  int now = 0;
+  for (int i = 0; i < n; ++i)
+    while (now <= i + hw[i] - 1) l[now++] = i;
+  now = n;
+  for (int i = n - 1; i >= 0; --i) {
+    while (now >= i - hw[i] + 1) r[now--] = i;
+  }
+  int ans = 0;
+  for (int i = 0; i < n; ++i) ans = maxx(ans, r[i] - l[i]);
+  printf("%d", ans);
 }
 ```

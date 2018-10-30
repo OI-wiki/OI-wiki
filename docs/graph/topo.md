@@ -85,20 +85,25 @@ bool toposort() {
 
 ```c++
 // dfs 版本
-bool dfs(int u){
+bool dfs(int u) {
   c[u] = -1;
-  for(int v = 0; v <= n; v++) if(G[u][v]) {
-    if(c[v]<0) return false;
-    else if(!c[v]) dfs(v);
-  }
-  c[u] = 1; topo.push_back(u);
+  for (int v = 0; v <= n; v++)
+    if (G[u][v]) {
+      if (c[v] < 0)
+        return false;
+      else if (!c[v])
+        dfs(v);
+    }
+  c[u] = 1;
+  topo.push_back(u);
   return true;
 }
-bool toposort(){
+bool toposort() {
   topo.clear();
   memset(c, 0, sizeof(c));
-  for(int u = 0; u <= n; u++) if(!c[u])
-    if(!dfs(u)) return false;
+  for (int u = 0; u <= n; u++)
+    if (!c[u])
+      if (!dfs(u)) return false;
   reverse(topo.begin(), topo.end());
   return true;
 }

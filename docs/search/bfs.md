@@ -1,4 +1,4 @@
-BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first_search)，中文名是宽度优先搜索。
+BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first_search)，中文名是宽度优先搜索，也叫广度优先搜索。
 
 是图上最基础、最重要的搜索算法之一。
 
@@ -36,15 +36,18 @@ C++：
 ```c++
 void bfs(int u) {
   while (!Q.empty()) Q.pop();
-  Q.push(u); vis[u] = 1; d[u] = 0; p[u] = -1;
+  Q.push(u);
+  vis[u] = 1;
+  d[u] = 0;
+  p[u] = -1;
   while (!Q.empty()) {
     u = Q.pop() {
       for (int i = head[u]; i; i = e[i].x) {
-        if (!vis[ e[i].t ]) {
+        if (!vis[e[i].t]) {
           Q.push(e[i].t);
-          vis[ e[i].t ] = 1;
-          d[ e[i].t ] = d[u] + 1;
-          p[ e[i].t ] = u;
+          vis[e[i].t] = 1;
+          d[e[i].t] = d[u] + 1;
+          p[e[i].t] = u;
         }
       }
     }
@@ -56,7 +59,8 @@ void restore(int x) {
     res.push_back(v);
   }
   std::reverse(res.begin(), res.end());
-  for (int i = 0; i < res.size(); ++i) printf("%d", res[i]); puts("");
+  for (int i = 0; i < res.size(); ++i) printf("%d", res[i]);
+  puts("");
 }
 ```
 
@@ -117,29 +121,27 @@ void restore(int x) {
 
 ### 实现
 
-把没有权值的边扩展到的点放到队首，有权值的边扩展到的点放到队尾。
+一般情况下，我们把没有权值的边扩展到的点放到队首，有权值的边扩展到的点放到队尾。这样即可保证在整个队列中，像普通 BFS 一样，越靠近队首，权值越小，且权值零一之间有分隔。
 
 下面是伪代码：
 
 ```cpp
-while(队列不为空) 
-{
-    int u = 队首; 
-    弹出队首;
-    for(枚举 u 的邻居) 
-    {
-        更新数据 
-        if(...) 
-          添加到队首;
-         else
-          添加到队尾;
-    }
+while (队列不为空) {
+  int u = 队首;
+  弹出队首;
+  for (枚举 u 的邻居) {
+    更新数据
+    if (...)
+      添加到队首;
+    else
+      添加到队尾;
+  }
 }
 ```
 
 ### 例题
 
-### [Croc Champ 2012 - Round 1 B Chamber of Secrets](http://codeforces.com/problemset/problem/173/B)
+### [Codeforces 173B](http://codeforces.com/problemset/problem/173/B)
 
 一个 $n \times m$ 的图，现在有一束激光从左上角往右边射出，每遇到 '#'，你可以选择光线往四个方向射出，或者什么都不做，问最少需要多少个 '#' 往四个方向射出才能使光线在第 $n$ 行往右边射出。
 
@@ -150,71 +152,60 @@ while(队列不为空)
 #### Code
 
 ```cpp
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-#define INF (1<<29)
-int n,m;
+#define INF (1 << 29)
+int n, m;
 char grid[1001][1001];
 int dist[1001][1001][4];
 int vis[1001][1001][4];
-int fx[]={1,-1,0,0};
-int fy[]={0,0,1,-1};
-deque <int> q;
-void add_front(int x,int y,int dir,int d)
-{
-    if(d<dist[x][y][dir])
-    {
-        dist[x][y][dir]=d;
-        q.push_front(dir);
-        q.push_front(y);
-        q.push_front(x);
-    }
+int fx[] = {1, -1, 0, 0};
+int fy[] = {0, 0, 1, -1};
+deque<int> q;
+void add_front(int x, int y, int dir, int d) {
+  if (d < dist[x][y][dir]) {
+    dist[x][y][dir] = d;
+    q.push_front(dir);
+    q.push_front(y);
+    q.push_front(x);
+  }
 }
-void add_back(int x,int y,int dir,int d)
-{
-    if(d<dist[x][y][dir])
-    {
-        dist[x][y][dir]=d;
-        q.push_back(x);
-        q.push_back(y);
-        q.push_back(dir);
-    }
+void add_back(int x, int y, int dir, int d) {
+  if (d < dist[x][y][dir]) {
+    dist[x][y][dir] = d;
+    q.push_back(x);
+    q.push_back(y);
+    q.push_back(dir);
+  }
 }
-int main()
-{
-    cin>>n>>m;
-    for(int i=0;i<n;i++)
-        cin>>grid[i];
+int main() {
+  cin >> n >> m;
+  for (int i = 0; i < n; i++) cin >> grid[i];
 
-    for(int i=0;i<n;i++)
-        for(int j=0;j<m;j++)
-            for(int k=0;k<4;k++)
-                dist[i][j][k]=INF;
+  for (int i = 0; i < n; i++)
+    for (int j = 0; j < m; j++)
+      for (int k = 0; k < 4; k++) dist[i][j][k] = INF;
 
-    add_front(n-1,m-1,3,0);
+  add_front(n - 1, m - 1, 3, 0);
 
-    while(!q.empty())
-    {
-        int x=q[0],y=q[1],dir=q[2];
-        q.pop_front();
-        q.pop_front();
-        q.pop_front();
-        if(vis[x][y][dir])
-            continue;
-        vis[x][y][dir]=true;
-        int d=dist[x][y][dir];
-        int nx=x+fx[dir],ny=y+fy[dir];
-        if(nx>=0&&nx<n&&ny>=0&&ny<m)
-            add_front(nx,ny,dir,d);
-        if(grid[x][y]=='#')
-            for(int i=0;i<4;i++)
-                if(i!=dir)
-                    add_back(x,y,i,d+1);
-    }
-    if(dist[0][0][3]==INF)
-        cout<<-1<<endl;
-    else
-        cout<<dist[0][0][3]<<endl;
-    return 0;
+  while (!q.empty()) {
+    int x = q[0], y = q[1], dir = q[2];
+    q.pop_front();
+    q.pop_front();
+    q.pop_front();
+    if (vis[x][y][dir]) continue;
+    vis[x][y][dir] = true;
+    int d = dist[x][y][dir];
+    int nx = x + fx[dir], ny = y + fy[dir];
+    if (nx >= 0 && nx < n && ny >= 0 && ny < m) add_front(nx, ny, dir, d);
+    if (grid[x][y] == '#')
+      for (int i = 0; i < 4; i++)
+        if (i != dir) add_back(x, y, i, d + 1);
+  }
+  if (dist[0][0][3] == INF)
+    cout << -1 << endl;
+  else
+    cout << dist[0][0][3] << endl;
+  return 0;
 }
 ```
