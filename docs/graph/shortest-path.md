@@ -199,7 +199,7 @@ Small Label First
 
 Dijkstra 是个人名（荷兰姓氏）。
 
-IPA: /?dikstrɑ/ 或 /?d?ikstrɑ/。
+IPA: /ˈdikstrɑ/ 或 /ˈdɛikstrɑ/。
 
 这种算法只适用于非负权图，但是时间复杂度非常优秀。
 
