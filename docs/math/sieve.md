@@ -9,15 +9,17 @@
 如果我们从小到大考虑每个数，然后同时把当前这个数的所有（比自己大的）倍数记为合数，那么运行结束的时候没有被标记的数就是素数了。
 
 ```c++
-void genPrimes() {
-  for (int i = 2; i <= n; ++i) {
-    if (!vis[i]) pri[cnt++] = i;
-    for (int j = 0; j < cnt; ++j) {
-      if (i * pri[j] > n) break;
-      vis[i * pri[j]] = 1;
-      if (i % pri[j] == 0) break;
-    }
+int Eratosthenes(int n){
+	int p = 0;
+	for (int i = 0; i <= n; ++i)  is_prime[i] = 1;
+	is_prime[0] = is_prime[1] = 0;
+	for (int i = 2; i <= n; ++i){
+    if(is_prime[i]){
+		  prime[p++] = i; //prime[p]是i,后置自增运算代表当前素数数量
+		  for (int j = 2 * i; j <= n; j += i)   is_prime[j] = 0;//是i的倍数的均不是素数
+	  }
   }
+	return p;
 }
 ```
 
