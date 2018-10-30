@@ -83,6 +83,7 @@ nav:
     - 数学部分简介: math/index.md
     - 进制: math/base.md
     - 位运算: math/bit.md
+    - 高精度: math/bignum.md
     - 素数: math/prime.md
     - 最大公约数: math/gcd.md
     - 裴蜀定理: math/bezouts.md
@@ -99,7 +100,6 @@ nav:
     - 矩阵: math/matrix.md
     - 中国剩余定理: math/crt.md
     - 复数: math/complex.md
-    - 高精度: math/bignum.md
     - 分段打表: math/dictionary.md
     - 原根: math/primitive-root.md
     - BSGS: math/bsgs.md
