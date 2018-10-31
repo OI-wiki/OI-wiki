@@ -66,7 +66,7 @@ nav:
     - 其它 DP 方法: dp/misc.md
   - 字符串:
     - 字符串部分简介: string/index.md
-    - 标准库: string/stl.md
+    - 标准库: string/lib-func.md
     - 字符串匹配: string/match.md
     - 哈希: string/hash.md
     - KMP: string/kmp.md
@@ -266,7 +266,7 @@ extra_javascript:
 
 extra_css:
   - 'https://cdn.jsdelivr.net/npm/ah@1.1.0/han.min.css'
-  - '_static/css/extra.css?v=8'
+  - '_static/css/extra.css?v=9'
 
 # Extensions
 markdown_extensions:

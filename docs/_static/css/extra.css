@@ -49,6 +49,6 @@ span.mjpage__block > svg {
   text-align: unset !important;
 }
 
-.gt-container .gt-meta {
-  z-index: auto !important;
+.md-nav__list {
+  z-index: 12;
 }
