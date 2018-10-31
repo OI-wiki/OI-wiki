@@ -220,4 +220,4 @@ int main() {
 
 相对于普通队列的 BFS，时间复杂度多了一个 $\log$，毕竟要维护这个优先队列嘛。不过普通 BFS 有可能每个结点入队、出队多次，时间复杂度会达到 $O(n^2)$，不是 $O(n)$。所以优先队列 BFS 通常还是快的。
 
-诶？这怎么听起来这么想堆优化的 [Dijkstra](/graph/shortest-path/#dijkstra) 算法呢？事实上，堆优化 Dijkstra 就是优先队列 BFS。
+诶？这怎么听起来这么像堆优化的 [Dijkstra](/graph/shortest-path/#dijkstra) 算法呢？事实上，堆优化 Dijkstra 就是优先队列 BFS。
