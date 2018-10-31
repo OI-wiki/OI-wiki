@@ -28,6 +28,7 @@
 - [AtCoder](https://atcoder.jp/) (日本的一个 OJ，类似 Codeforces 但是也会放 JOI 的题)
 - [CodeChef](https://codechef.com/) (印度 OJ，周期性有比赛)
 - [Codeforces](https://codeforces.com/) (俄罗斯 OJ，有很多比赛)
+- [CS Academy](https://csacademy.com/)
 - [DMOJ](https://dmoj.ca/) (加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛)
 - [HackerRank](https://www.hackerrank.com/) (有很多比赛)
 - [Kattis](https://open.kattis.com/)
@@ -74,6 +75,7 @@
 - [LaTeX 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm)
 - [Godbolt - 在浏览器中查看编译后代码块对应的汇编语句](https://godbolt.org/)
 - [《100 个 gdb 小技巧》](https://github.com/hellogcc/100-gdb-tips)
+- [截图转LaTeX - Mathpix](https://mathpix.com/)
 
 ## 题集
 
