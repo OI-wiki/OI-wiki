@@ -104,7 +104,7 @@ sudo apt install -y --force-yes --no-install-recommends ttf-wqy-zenhei
 sudo dpkg-reconfigure locales
 ```
 
-使用 `sudo dpkg-reconfigure locales` 进入菜单，选择 `zh_CN.UTF-8` 回车，下一个菜单中也是选它打回车。
+使用 `sudo dpkg-reconfigure locales` 进入菜单，按空格选择带 `zh_CN` 的选项，选完后回车，下一个菜单中选 `zh_CN.UTF-8` 打回车。
 
 ![](./images/WSL10.png)
 ![](./images/WSL11.png)
