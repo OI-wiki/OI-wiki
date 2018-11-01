@@ -133,8 +133,7 @@ JOI Final 的难度在提高－$\sim$ 提高 + 左右。JOISC 和 JOI Open 的�
 - 地区级比赛（Regional Stage / Региональный этап）
 - 决赛（Final Stage / Заключительный этап）
 
-目前 LibreOJ 有近两年的 ROI 决赛题。
-目前国内没什么人来做这些题（注：我没搞清楚 CF 上那些 Olympiad 是啥……），难度未知。
+你可能已经在 Codeforces 上见过了一些 ROI 题。目前 LibreOJ 有近两年的 ROI 决赛题（包括翻译）。
 
 ### 加拿大：CCC & CCO
 
