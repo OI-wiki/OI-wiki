@@ -157,7 +157,7 @@ FARIO 的题目与 NOI 的难度旗鼓相当。
 ### BalticOI
 
 BalticOI 面向的是波罗的海周边各国。BalticOI 2018 的参赛国有立陶宛、波兰、爱沙尼亚、芬兰等 9 国。
-除了 2017 年，BalticOI 每年都公开题面、测试数据和题解。然而 BalticOI 没有一个固定的官网，每年的主办方都会新建一个网站…… 关于历年的官网地址，Planet6174 整理出了一个[帖子](https://loj.ac/article/281)。
+除了 2017 年，BalticOI 每年都公开题面、测试数据和题解。然而 BalticOI 没有一个固定的官网，每年的主办方都会新建一个网站…… 关于历年的官网地址，Planet6174 整理出了一个[帖子](https://loj.ac/article/416)。
 目前 LibreOJ 有近十年的 BalticOI 题。
 
 ### BalkanOI
