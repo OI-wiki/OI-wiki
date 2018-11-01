@@ -96,7 +96,7 @@ struct mat {
 
 怎么推呢？因为 $F_n=F_{n-1}+F_{n-2}$，所以 $\text{base}$ 矩阵第一列应该是 $\left[\begin{array}{ccc} 1 \\ 1 \end{array}\right]$，这样在进行矩阵乘法运算的时候才能令 $F_{n-1}$ 与 $F_{n-2}$ 相加，从而得出 $F_n$。同理，为了得出 $F_{n-1}$，矩阵 $\text{base}$ 的第二列应该为 $\left[\begin{array}{ccc} 1 \\ 0 \end{array}\right]$。
 
-综上所述：$$\text{base} = \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]$$ 原式化为 $$\left[\begin{array}{ccc}F_{n-1} & F_{n-2}\end{array}\right] \times \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right] = \left[ \begin{array}{ccc}F_n & F_{n-1} \end{array}\right]$$
+综上所述：$\text{base} = \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]$ 原式化为 $\left[\begin{array}{ccc}F_{n-1} & F_{n-2}\end{array}\right] \times \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right] = \left[ \begin{array}{ccc}F_n & F_{n-1} \end{array}\right]$
 
 转化为代码，应该怎么求呢？
 
@@ -114,8 +114,8 @@ struct Matrix {
   Matrix() { memset(a, 0, sizeof a); }
   Matrix operator*(const Matrix &b) const {
     Matrix res;
-    rep(i, 1, 2) rep(j, 1, 2) rep(k, 1, 2)
-      res.a[i][j] = (res.a[i][j] + a[i][k] * b.a[k][j]) % mod;
+    rep(i, 1, 2) rep(j, 1, 2) rep(k, 1, 2) res.a[i][j] =
+        (res.a[i][j] + a[i][k] * b.a[k][j]) % mod;
     return res;
   }
 } ans, base;
@@ -137,7 +137,7 @@ int main() {
   int n = read();
   if (n <= 2) return puts("1"), 0;
   init();
-  qpow(n - 2); 
+  qpow(n - 2);
   println(ans.a[1][1] % mod);
 }
 ```
