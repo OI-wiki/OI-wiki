@@ -114,8 +114,10 @@ struct Matrix {
   Matrix() { memset(a, 0, sizeof a); }
   Matrix operator*(const Matrix &b) const {
     Matrix res;
-    rep(i, 1, 2) rep(j, 1, 2) rep(k, 1, 2) res.a[i][j] =
-        (res.a[i][j] + a[i][k] * b.a[k][j]) % mod;
+    for (int i = 1; i <= 2; ++i)
+      for (int j = 1; j <= 2; ++j)
+        for (int k = 1; k <= 2; ++k)
+          res.a[i][j] = (res.a[i][j] + a[i][k] * b.a[k][j]) % mod;
     return res;
   }
 } ans, base;
