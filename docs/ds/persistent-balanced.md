@@ -137,7 +137,7 @@ static int _merge(int _x,int _y) {
 
 #### 输入格式：
 
-第一行为 n，表示操作的个数, 下面 n 行每行有两个数 opt 和 x，opt 表示操作的序号 $(1 \\leq x \\leq  le6)$。
+第一行为 n，表示操作的个数, 下面 n 行每行有两个数 opt 和 x，opt 表示操作的序号 $(1 \leq x \leq  le6)$。
 
 #### 输出格式：
 
