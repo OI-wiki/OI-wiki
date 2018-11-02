@@ -94,7 +94,7 @@ POI 是不少省选选手最常刷的外国 OI 比赛。
 
 官网地址：<http://www.hsin.hr/coci/>（有时候英文版的更新会延迟，克罗地亚语版本：<http://www.hsin.hr/honi/>）
 
-难度跨度很大的比赛，大约是从普及－$\sim$ 省选－。以往 COCI 所有的题目均提供题目、数据、题解和标程，然而从 2017 年底之后，COCI 的题解和标程就断更了（不是没有英语版翻译，而是连克罗地亚语的版本都没有）。
+难度跨度很大的比赛，大约是从普及 - $\sim$ 省选 -。以往 COCI 所有的题目均提供题目、数据、题解和标程，然而从 2017 年底之后，COCI 的题解和标程就断更了（不是没有英语版翻译，而是连克罗地亚语的版本都没有）。
 
 洛谷、BZOJ 和 LibreOJ 都有少量的 COCI 题目。
 
@@ -111,7 +111,7 @@ JOI 的流程：
 - 公开赛（通信教育 / JOI Open Contest）
 
 目前 LibreOJ 和 BZOJ 有近些年的 JOI Final、JOISC 和 JOI Open 的题目。UOJ 有部分 JOISC 2017 的题目。
-JOI Final 的难度在提高－$\sim$ 提高 + 左右。JOISC 和 JOI Open 的题目的难度在提高 $\sim$ NOI－不等。
+JOI Final 的难度在提高 - $\sim$ 提高 + 左右。JOISC 和 JOI Open 的题目的难度在提高 $\sim$ NOI - 不等。
 
 ### 台湾地区：資訊奧林匹亞競賽
 
