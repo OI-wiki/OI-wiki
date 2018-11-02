@@ -1,4 +1,4 @@
-[静态区间 k 小值](https://www.luogu.org/problemnew/show/P3834) 的问题可以用 [主席树](https://oi-wiki.org/ds/persistent-seg/) 在 $O(n\log_2 n)$ 的时间复杂度内解决。
+[静态区间 k 小值](https://www.luogu.org/problemnew/show/P3834) 的问题可以用 [主席树](/ds/persistent-seg/) 在 $O(n\log_2 n)$ 的时间复杂度内解决。
 
 如果区间变成动态的呢？即，如果还要求支持一种操作：单点修改某一位上的值，又该怎么办呢？
 
