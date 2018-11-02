@@ -17,7 +17,6 @@ $A$ 的逆矩阵 $P$ 是使得 $A \times P = I$ 的矩阵。
 矩阵的加减法是逐个元素进行的。
 
 ### 矩阵乘法
-
 矩阵相乘只有在第一个矩阵的列数和第二个矩阵的行数相同时才有意义。
 
 设 $A$ 为 $P \times M$ 的矩阵，$B$ 为 $M \times Q$ 的矩阵，设矩阵 $C$ 为矩阵 $A$ 与 $B$ 的乘积，
@@ -100,7 +99,9 @@ struct mat {
 
 转化为代码，应该怎么求呢？
 
-定义初始矩阵 $\text{ans} = \left[\begin{array}{ccc}F_2 & F1\end{array}\right] = \left[\begin{array}{ccc}1 & 1\end{array}\right], \text{base} = \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]$。那么，$F_n$ 就等于 $\text{ans} \times \text{base}^{n-2}$ 这个矩阵的第一行第一列元素，也就是 $\left[\begin{array}{ccc}1 & 1\end{array}\right] \times \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]^{n-2}$ 的第一行第一列元素。
+定义初始矩阵 $\text{ans} = \left[\begin{array}{ccc}F_2 & F_1\end{array}\right] = \left[\begin{array}{ccc}1 & 1\end{array}\right], \text{base} = \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]$。那么，$F_n$ 就等于 $\text{ans} \times \text{base}^{n-2}$ 这个矩阵的第一行第一列元素，也就是 $\left[\begin{array}{ccc}1 & 1\end{array}\right] \times \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]^{n-2}$ 的第一行第一列元素。
+
+注意，矩阵乘法不满足交换律，所以一定不能写成 $\left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]^{n-2} \times \left[\begin{array}{ccc}1 & 1\end{array}\right]$ 的第一行第一列元素。另外，对于 $n \leq 2$ 的情况，直接输出 $1$ 即可，不需要执行矩阵快速幂。
 
 为什么要乘上 $\text{base}$ 矩阵的 $n-2$ 次方而不是 $n$ 次方呢？因为 $F_1, F_2$ 是不需要进行矩阵乘法就能求的。也就是说，如果只进行一次乘法，就已经求出 $F_3$ 了。如果还不是很理解为什么幂是 $n-2$，建议手算一下。
 
