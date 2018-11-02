@@ -62,8 +62,8 @@ IOI 赛制可以赛时任意提交，可以即时查看评测结果， APIO、IO
 
 官网地址：<https://www.usaco.org/>
 
-USACO 或许是国内选手最熟悉的外国 OI 竞赛（因此可能也是中文题解最多的外国 OI 竞赛）。
-每年冬季到初春，USACO 会每月举办一场网络赛。一场比赛持续 $3\sim5$ 个小时。
+USACO 或许是国内选手最熟悉的外国 OI 竞赛（因此可能也是中文题解最多的外国 OI 竞赛）。  
+每年冬季到初春，USACO 会每月举办一场网络赛。一场比赛持续 $3\sim5$ 个小时。  
 根据官网的介绍，USACO 的比赛分成这 4 档难度（2015~2016 学年之前为 3 档）：
 
 - 铜牌组，适合编程初学者，尤其是只学了最最基础的算法（如：排序，二分查找）的学生。
@@ -75,11 +75,11 @@ USACO 或许是国内选手最熟悉的外国 OI 竞赛（因此可能也是中�
 
 ### 波兰：POI
 
-官网：<https://oi.edu.pl/>
-官方提交地址：<https://szkopul.edu.pl/p/default/problemset/>
+官网：<https://oi.edu.pl/>  
+官方提交地址：<https://szkopul.edu.pl/p/default/problemset/>  
 
-POI 是不少省选选手最常刷的外国 OI 比赛。
-根据（已经凉凉的）<http://main.edu.pl/en/> 的描述，POI 的流程如下：
+POI 是不少省选选手最常刷的外国 OI 比赛。  
+根据（已经凉凉的）<http://main.edu.pl/en/> 的描述，POI 的流程如下：  
 
 - 第一轮：五题，网络赛，公开赛。
 - 第二轮：包含一场练习赛，和两场正式比赛。
@@ -92,7 +92,8 @@ POI 是不少省选选手最常刷的外国 OI 比赛。
 
 ### 克罗地亚：COCI
 
-官网地址：<http://www.hsin.hr/coci/>（有时候英文版的更新会延迟，克罗地亚语版本：<http://www.hsin.hr/honi/>）
+官网地址：<http://www.hsin.hr/coci/>  
+（有时候英文版的更新会延迟，克罗地亚语版本：<http://www.hsin.hr/honi/>）
 
 难度跨度很大的比赛，大约是从普及 - $\sim$ 省选 -。以往 COCI 所有的题目均提供题目、数据、题解和标程，然而从 2017 年底之后，COCI 的题解和标程就断更了（不是没有英语版翻译，而是连克罗地亚语的版本都没有）。
 
@@ -124,9 +125,9 @@ JOI Final 的难度在提高 - $\sim$ 提高 + 左右。JOISC 和 JOI Open 的�
 
 ### 俄罗斯：ROI
 
-俄罗斯信息学奥赛（олимпиадная информатика）一般简称为 ROI。
-官网：<http://neerc.ifmo.ru/school/archive/index.html>
-在线提交地址：<https://contest.yandex.ru/roiarchive/>
+俄罗斯信息学奥赛（олимпиадная информатика）一般简称为 ROI。  
+官网：<http://neerc.ifmo.ru/school/archive/index.html>  
+在线提交地址：<https://contest.yandex.ru/roiarchive/>  
 一般简称为 ROI。流程：
 
 - 市级比赛（Municipal stage / Муниципальный этап）
@@ -139,12 +140,11 @@ JOI Final 的难度在提高 - $\sim$ 提高 + 左右。JOISC 和 JOI Open 的�
 
 CCC: Canadian Computing Competition  
 CCO: Canadian Computing Olympiad  
-官网地址：<https://cemc.math.uwaterloo.ca/contests/past_contests.html#ccc>
-CCC 提交地址：<https://dmoj.ca/problems/?category=4>
-CCO 提交地址：<https://dmoj.ca/problems/?category=24>
-CCC 在 DMOJ 有官方 (?) 题解。
-CCC Junior / Senior 贴近 NOIP 普及组 / 提高组难度。
-CCO 想要拿到金牌可能得有 NOI 银的水平。
+官网地址：<https://cemc.math.uwaterloo.ca/contests/past_contests.html#ccc>  
+CCC 提交地址：<https://dmoj.ca/problems/?category=4>  
+CCO 提交地址：<https://dmoj.ca/problems/?category=24>  
+CCC 在 DMOJ 有官方 (?) 题解。  
+CCC Junior / Senior 贴近 NOIP 普及组 / 提高组难度。CCO 想要拿到金牌可能得有 NOI 银的水平。
 
 ### 法国与澳大利亚：FARIO
 
