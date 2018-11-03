@@ -80,6 +80,7 @@ nav:
     - 后缀树: string/suffix-tree.md
     - Manacher: string/manacher.md
     - 最小表示法: string/minimal-string.md
+    - Z 函数: string/z-function.md
   - 数学:
     - 数学部分简介: math/index.md
     - 进制: math/base.md
