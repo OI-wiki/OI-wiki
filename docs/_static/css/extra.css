@@ -53,23 +53,20 @@ span.mjpage__block > svg {
   z-index: 12;
 }
 
-h1 {
-  font-weight: 450 !important;
+h1, h2, h3, h4 {
+  font-weight: 500 !important;
 }
 
 h2 {
   font-size: 2.8rem !important;
-  font-weight: 450 !important;
 }
 
 h3 {
   font-size: 2.4rem !important;
-  font-weight: 450 !important;
 }
 
 h4 {
   font-size: 2.0rem !important;
-  font-weight: 450 !important;
 }
 
 h5 {
