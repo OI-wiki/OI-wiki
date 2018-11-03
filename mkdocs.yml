@@ -39,6 +39,7 @@ nav:
     - 表达式求值: basic/expression.md
     - 二分: basic/binary.md
     - 构造: basic/construction.md
+    - 前缀和 & 差分: basic/prefix-sum.md
     - 文件操作: basic/file-operation.md
   - 搜索:
     - 搜索部分简介: search/index.md
@@ -173,25 +174,27 @@ nav:
     - 图论部分简介: graph/index.md
     - 图论基础: graph/basic.md
     - 图的遍历: graph/traverse.md
-    - 树:
+    - 树上问题:
       - 树基础: graph/tree-basic.md
-      - 最小生成树: graph/mst.md
+      - 最近公共祖先: graph/lca.md
+      - DFS 序: graph/dfs-order.md
+      - 树的其他问题: graph/tree-misc.md
       - 树链剖分: graph/heavy-light-decomposition.md
       - 树分治: graph/tree-divide.md
-      - 树的其他问题: graph/tree-misc.md
       - 动态树分治: graph/dynamic-tree-divide.md
-      - 最近公共祖先: graph/lca.md
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
-    - 2-SAT: graph/2-sat.md
-    - 欧拉图: graph/euler.md
-    - 强连通分量: graph/scc.md
-    - 双连通分量: graph/bcc.md
-    - 割点和桥: graph/bridge.md
-    - 二分图: graph/bi-graph.md
+    - 最小生成树: graph/mst.md
     - 最短路: graph/shortest-path.md
     - 差分约束: graph/differential-constraints.md
     - k 短路: graph/kth-path.md
+    - 连通性相关:
+      - 强连通分量: graph/scc.md
+      - 双连通分量: graph/bcc.md
+      - 割点和桥: graph/bridge.md
+      - 2-SAT: graph/2-sat.md
+    - 欧拉图: graph/euler.md
+    - 二分图: graph/bi-graph.md
     - 最小环: graph/min-circle.md
     - 网络流:
       - 网络流简介: graph/flow.md
