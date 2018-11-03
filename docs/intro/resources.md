@@ -82,3 +82,4 @@
 - [POJ 训练计划](http://blog.csdn.net/skywalkert/article/details/46594541)
 - [USACO](http://train.usaco.org/usacogate)
 - [洛谷试炼场](https://www.luogu.org/training/mainpage)
+- [-Morass- 贴在 Codeforces 上的一份题单](https://codeforces.com/blog/entry/55274)
