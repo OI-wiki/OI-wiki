@@ -83,3 +83,4 @@
 - [USACO](http://train.usaco.org/usacogate)
 - [洛谷试炼场](https://www.luogu.org/training/mainpage)
 - [-Morass- 贴在 Codeforces 上的一份题单](https://codeforces.com/blog/entry/55274)
+- [北京大学暑期课课件例题](https://vjudge.net/article/446)
