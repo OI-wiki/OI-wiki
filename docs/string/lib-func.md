@@ -6,7 +6,7 @@ C 标准库是在对字符数组进行操作
 
 ### strlen
 
-`strlen(str)` ：返回从 `str[0]` 开始直到 `'\0'` 的字符数。注意，未开启 O2 优化时，该操作写在循环条件中复杂度是 $\Theta(N)$ 的。
+`int strlen(char *str)` ：返回从 `str[0]` 开始直到 `'\0'` 的字符数。注意，未开启 O2 优化时，该操作写在循环条件中复杂度是 $\Theta(N)$ 的。
 
 ### printf
 
@@ -26,21 +26,25 @@ C 标准库是在对字符数组进行操作
 
 ### strcmp
 
-`strcmp(str1, str2)`：按照字典序比较 `str1 str2` 若 `str1` 字典序小返回负值， 一样返回 0 ，大返回正值 请注意，不要简单的认为只有 `0, 1, -1`  三种，在不同平台下的返回值都遵循正负，但并非都是 `0, 1, -1`
+`int strcmp(char *str1, char *str2)`：按照字典序比较 `str1 str2` 若 `str1` 字典序小返回负值， 一样返回 0 ，大返回正值 请注意，不要简单的认为只有 `0, 1, -1`  三种，在不同平台下的返回值都遵循正负，但并非都是 `0, 1, -1`
 
 ### strcpy
 
-`strcpy(str, src)` : 把 `src` 中的字符复制到 `str` 中， `str` `src` 均为字符数组头指针， 返回值为 `str` 包含空终止符号 `'\0'` 。
+`char *strcpy(char *str, char *src)` : 把 `src` 中的字符复制到 `str` 中， `str` `src` 均为字符数组头指针， 返回值为 `str` 包含空终止符号 `'\0'` 。
 
 ### strncpy
 
-`strncpy(str, src, cnt)` ：复制至多 `cnt` 个字符到 `str` 中，若 `src` 终止而数量未达 `cnt` 则写入空字符到 `str` 直至写入总共 `cnt` 个字符。
+`char *strncpy(char *str, char *src, int cnt)` ：复制至多 `cnt` 个字符到 `str` 中，若 `src` 终止而数量未达 `cnt` 则写入空字符到 `str` 直至写入总共 `cnt` 个字符。
 
 ### strcat
 
-`strcat(str1, str2)` : 将 `str2` 接到 `str1` 的结尾，用 `*str2` 替换 `str1` 末尾的 `'\0'`  返回 `str1` 。
+`char *strcat(char *str1, char *str2)` : 将 `str2` 接到 `str1` 的结尾，用 `*str2` 替换 `str1` 末尾的 `'\0'`  返回 `str1` 。
 
 ### strstr
+
+### strchr
+
+### strrchr
 
 ## C++ 标准库
 
