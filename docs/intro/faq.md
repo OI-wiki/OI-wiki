@@ -27,7 +27,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 （有木有很简单？）
 
-如果还是不放心，可以参考这篇文章：<https://juejin.im/entry/56e638591ea49300550885cc>
+如果还是不放心，可以参考[这篇文章](https://juejin.im/entry/56e638591ea49300550885cc)。
 
 ### 我之前用过 GitHub
 
@@ -112,9 +112,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 ### 我这里 pip 也太慢了
 
-可以选择更换国内源，参考： <https://blog.csdn.net/lambert310/article/details/52412059>
-
-或者：
+可以选择更换国内源，参考：[更改pip源至国内镜像 - L瑜 - CSDN博客](https://blog.csdn.net/lambert310/article/details/52412059)，或者：
 
 ```bash
 pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
@@ -128,7 +126,7 @@ pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 git clone https://github.com/24OI/OI-wiki.git --depth=1 -b master
 ```
 
-参考这篇文章：<https://blog.csdn.net/FreeApe/article/details/46845555>
+参考：<https://blog.csdn.net/FreeApe/article/details/46845555>
 
 ### 我没装过 Python 3
 
