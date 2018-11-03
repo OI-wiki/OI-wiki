@@ -112,7 +112,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 ### 我这里 pip 也太慢了
 
-可以选择更换国内源，参考：[更改pip源至国内镜像 - L瑜 - CSDN博客](https://blog.csdn.net/lambert310/article/details/52412059)，或者：
+可以选择更换国内源，参考：[更改 pip 源至国内镜像 - L 瑜 - CSDN 博客](https://blog.csdn.net/lambert310/article/details/52412059)，或者：
 
 ```bash
 pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
