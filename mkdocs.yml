@@ -70,7 +70,7 @@ nav:
     - 标准库: string/lib-func.md
     - 字符串匹配: string/match.md
     - 哈希: string/hash.md
-    - KMP: string/kmp.md
+    - 前缀函数与 KMP 算法: string/prefix-function.md
     - 字典树 (Trie): string/trie.md
     - 回文自动机: string/pam.md
     - 回文树: string/palindrome-tree.md
@@ -80,7 +80,7 @@ nav:
     - 后缀树: string/suffix-tree.md
     - Manacher: string/manacher.md
     - 最小表示法: string/minimal-string.md
-    - Z 函数: string/z-function.md
+    - Z 函数（扩展 KMP）: string/z-function.md
   - 数学:
     - 数学部分简介: math/index.md
     - 进制: math/base.md
