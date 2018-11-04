@@ -70,7 +70,7 @@ nav:
     - 标准库: string/lib-func.md
     - 字符串匹配: string/match.md
     - 哈希: string/hash.md
-    - KMP: string/kmp.md
+    - 前缀函数与 KMP 算法: string/prefix-function.md
     - 字典树 (Trie): string/trie.md
     - 回文自动机: string/pam.md
     - 回文树: string/palindrome-tree.md
