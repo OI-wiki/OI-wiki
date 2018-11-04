@@ -162,6 +162,7 @@ nav:
       - 线段树套线段树: ds/seg-in-seg.md
       - 平衡树套线段树: ds/seg-in-balanced.md
       - 线段树套平衡树: ds/balanced-in-seg.md
+      - 树状数组套主席树: ds/persistent-in-bit.md
     - K-Dtree: ds/k-dtree.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
