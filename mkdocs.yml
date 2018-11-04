@@ -269,7 +269,7 @@ extra_javascript:
   
 
 extra_css:
-  - 'https://cdn.jsdelivr.net/npm/ah@1.1.0/han.min.css'
+  - 'https://cdn.jsdelivr.net/gh/MingqiHuang/OI-wiki@master/han.min.css'
   - '_static/css/extra.css?v=9'
 
 # Extensions
