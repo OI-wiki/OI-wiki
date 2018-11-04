@@ -151,7 +151,7 @@ vector<int> z_function(string s) {
 
 我们现在来考虑在若干具体情况下 Z 函数的应用。
 
-这些应用在很大程度上同[前缀函数](https://cp-algorithms.com/string/prefix-function.html)的应用类似。
+这些应用在很大程度上同[前缀函数](./prefix-function.md)的应用类似。
 
 ### 查找子串
 
@@ -185,7 +185,7 @@ vector<int> z_function(string s) {
 
 其中一种解法为：计算 $s$ 的 Z 函数，从小到大循环所有满足 $i$ 整除 $n$ 的 $i$。在找到第一个满足 $i + z[i] = n$ 的 $i$ 时终止。那么该字符串 $s$ 可被压缩为长度 $i​$ 的字符串。
 
-该事实的证明同应用[前缀函数](https://cp-algorithms.com/string/prefix-function.html)的解法证明一样。
+该事实的证明同应用[前缀函数](./prefix-function.md)的解法证明一样。
 
 ## 练习题目
 
