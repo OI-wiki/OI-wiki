@@ -4,3 +4,5 @@ docs/_static/* linguist-vendored
 *.js linguist-vendored
 *.json linguist-vendored
 *.py linguist-vendored
+.bashrc linguist-vendored
+Dockerfile linguist-vendored
