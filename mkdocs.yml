@@ -21,12 +21,13 @@ nav:
     - 学习资源: intro/resources.md
     - 常见错误: intro/common-mistakes.md
     - 常见技巧: intro/common-tricks.md
-    - 工具软件: 
+    - 工具软件:
       - 评测工具: intro/judgers.md
       - 编辑工具: intro/editors.md
       - WSL (Windows 10): intro/wsl.md
       - Special Judge: intro/spj.md
       - Testlib: intro/testlib.md
+    - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
   - 基础部分:
@@ -266,7 +267,7 @@ extra_javascript:
   - 'https://cdnjs.loli.net/ajax/libs/Han/3.3.0/han.min.js'
   - '_static/js/extra.js?v=10'
   - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
-  
+
 
 extra_css:
   - 'https://cdn.jsdelivr.net/npm/ah@1.1.0/han.min.css'
