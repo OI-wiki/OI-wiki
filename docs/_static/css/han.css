@@ -1528,11 +1528,6 @@ article {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
-article p,
-article li {
-  text-align: justify;
-  text-justify: inter-ideograph;
-}
 p.poem-like,
 .poem-like p {
   margin-left: 2em;
