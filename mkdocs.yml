@@ -86,31 +86,33 @@ nav:
     - 进制: math/base.md
     - 位运算: math/bit.md
     - 高精度: math/bignum.md
-    - 素数: math/prime.md
-    - 最大公约数: math/gcd.md
-    - 裴蜀定理: math/bezouts.md
-    - 欧拉函数: math/euler.md
-    - 筛法: math/sieve.md
-    - 莫比乌斯反演: math/mobius.md
-    - 杜教筛: math/du-sieves.md
-    - 费马小定理: math/fermat.md
     - 快速幂: math/quick-pow.md
-    - 线性基: math/basis.md
-    - 乘法逆元: math/inverse.md
-    - 线性方程: math/linear-equation.md
+    - 整除及其性质:
+      - 素数: math/prime.md
+      - 最大公约数: math/gcd.md
+      - 欧拉函数: math/euler.md
+      - 筛法: math/sieve.md
+      - 费马小定理: math/fermat.md
+    - 同余方程相关:
+      - 裴蜀定理: math/bezouts.md
+      - 乘法逆元: math/inverse.md
+      - 线性方程: math/linear-equation.md
+      - 中国剩余定理: math/crt.md
+      - BSGS: math/bsgs.md
+      - 原根: math/primitive-root.md
     - 高斯消元: math/gauss.md
     - 矩阵: math/matrix.md
-    - 中国剩余定理: math/crt.md
     - 复数: math/complex.md
     - 分段打表: math/dictionary.md
-    - 原根: math/primitive-root.md
-    - BSGS: math/bsgs.md
-    - 博弈论: math/game.md
-    - 多项式: math/poly.md
-    - 拉格朗日插值: math/lagrange-poly.md
-    - 快速傅里叶变换: math/fft.md
-    - 快速数论变换: math/ntt.md
-    - 快速沃尔什变换: math/fwt.md
+    - 莫比乌斯反演: math/mobius.md
+    - 杜教筛: math/du-sieves.md
+    - 线性基: math/basis.md
+    - 多项式:
+      - 多项式部分简介: math/poly.md
+      - 拉格朗日插值: math/lagrange-poly.md
+      - 快速傅里叶变换: math/fft.md
+      - 快速数论变换: math/ntt.md
+      - 快速沃尔什变换: math/fwt.md
     - 组合数学:
       - 排列组合: math/combination.md
       - 卡特兰数: math/catalan.md
@@ -122,6 +124,7 @@ nav:
     - 置换群: math/permutation-group.md
     - 数值积分: math/integral.md
     - 线性规划: math/linear-programming.md
+    - 博弈论: math/game.md
     - 杂项: math/misc.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
