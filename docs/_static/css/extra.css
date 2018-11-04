@@ -52,3 +52,24 @@ span.mjpage__block > svg {
 .md-nav__list {
   z-index: 12;
 }
+
+h1, h2, h3, h4 {
+  font-weight: 500 !important;
+}
+
+h2 {
+  font-size: 2.8rem !important;
+}
+
+h3 {
+  font-size: 2.4rem !important;
+}
+
+h4 {
+  font-size: 2.0rem !important;
+}
+
+h5 {
+  font-size: 1.6rem !important;
+}
+
