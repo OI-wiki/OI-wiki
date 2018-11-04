@@ -20,8 +20,7 @@ vector<int> prefix_function(string s) {
   vector<int> pi(n);
   for (int i = 0; i < n; i++)
     for (int k = 0; k <= i; k++)
-      if (s.substr(0, k) == s.substr(i-k+1, k))
-        pi[i] = k;
+      if (s.substr(0, k) == s.substr(i - k + 1, k)) pi[i] = k;
   return pi;
 }
 ```
@@ -92,11 +91,9 @@ vector<int> prefix_function(string s) {
   int n = (int)s.length();
   vector<int> pi(n);
   for (int i = 1; i < n; i++) {
-    int j = pi[i-1];
-    while (j > 0 && s[i] != s[j])
-      j = pi[j-1];
-    if (s[i] == s[j])
-      j++;
+    int j = pi[i - 1];
+    while (j > 0 && s[i] != s[j]) j = pi[j - 1];
+    if (s[i] == s[j]) j++;
     pi[i] = j;
   }
   return pi;
@@ -131,12 +128,9 @@ vector<int> prefix_function(string s) {
 
 ```c++
 vector<int> ans(n + 1);
-for (int i = 0; i < n; i++)
-  ans[pi[i]]++;
-for (int i = n-1; i > 0; i--)
-  ans[pi[i-1]] += ans[i];
-for (int i = 0; i <= n; i++)
-  ans[i]++;
+for (int i = 0; i < n; i++) ans[pi[i]]++;
+for (int i = n - 1; i > 0; i--) ans[pi[i - 1]] += ans[i];
+for (int i = 0; i <= n; i++) ans[i]++;
 ```
 
 在上述代码中我们首先统计每个前缀函数值在数组 $\pi$ 中出现了多少次，然后再计算最后答案：如果我们知道长度为 $i$ 的前缀出现了恰好 $\text{ans}[i]$ 次，那么该值必须被叠加至其最长的既是后缀也是前缀的子串的出现次数中。在最后，为了统计原始的前缀，我们对每个结果加 $1$。
@@ -161,7 +155,7 @@ for (int i = 0; i <= n; i++)
 
 ### 字符串压缩
 
-给定一个长度为 $n$ 的字符串 $s$，我们希望找到其最短的“压缩”表示，也即我们希望寻找一个最短的字符串 $t$，使得 $s$ 可以被 $t$ 的一份或多份拷贝的拼接表示。
+给定一个长度为 $n$ 的字符串 $s$，我们希望找到其最短的 “压缩” 表示，也即我们希望寻找一个最短的字符串 $t$，使得 $s$ 可以被 $t$ 的一份或多份拷贝的拼接表示。
 
 显然，我们只需要找到 $t$ 的长度即可。知道了该长度，该问题的答案即为长度为该值的 $s$ 的前缀。
 
@@ -211,10 +205,8 @@ void compute_automaton(string s, vector<vector<int>>& aut) {
   for (int i = 0; i < n; i++) {
     for (int c = 0; c < 26; c++) {
       int j = i;
-      while (j > 0 && 'a' + c != s[j])
-        j = pi[j-1];
-      if ('a' + c == s[j])
-        j++;
+      while (j > 0 && 'a' + c != s[j]) j = pi[j - 1];
+      if ('a' + c == s[j]) j++;
       aut[i][c] = j;
     }
   }
@@ -232,7 +224,7 @@ void compute_automaton(string s, vector<vector<int>>& aut) {
   for (int i = 0; i < n; i++) {
     for (int c = 0; c < 26; c++) {
       if (i > 0 && 'a' + c != s[i])
-        aut[i][c] = aut[pi[i-1]][c];
+        aut[i][c] = aut[pi[i - 1]][c];
       else
         aut[i][c] = i + ('a' + c == s[i]);
     }
