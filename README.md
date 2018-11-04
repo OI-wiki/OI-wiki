@@ -202,7 +202,7 @@ docker rm [name]
 docker rmi [image]
 ```
 
-* * * *
+* * *
 
 ## 如何参与完善 OI Wiki
 
