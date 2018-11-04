@@ -28,18 +28,18 @@ Split-Merge Treap
 
 对于**可持久化线段树**来说，每一次新建历史版本就是把**沿途的修改路径**复制出来
 
-那么对可持久化 Treap (目前国内 OI 常用的版本)来说：
+那么对可持久化 Treap (目前国内 OI 常用的版本) 来说：
 
-在复制一个节点 $X_{a}$($X$ 节点的第 $a$ 个版本)的新版本 $X_{a+1}$ ($X$ 节点的第 $a+1$ 个版本)以后：
+在复制一个节点 $X_{a}$($X$ 节点的第 $a$ 个版本) 的新版本 $X_{a+1}$ ($X$ 节点的第 $a+1$ 个版本) 以后：
 
-- 如果某个儿子节点 $Y$ 不用修改信息，那么就把 $X_{a+1}$ 的指针直接指向 $Y_{a}$ ($Y$ 节点的第 $a$ 个版本)即可。
+- 如果某个儿子节点 $Y$ 不用修改信息，那么就把 $X_{a+1}$ 的指针直接指向 $Y_{a}$ ($Y$ 节点的第 $a$ 个版本) 即可。
 - 反之，如果要修改 $Y$ ，那么就在**递归到下层**时**新建** $Y_{a+1}$ ($Y$ 节点的第 $a+1$ 个版本) 这个新节点用于**存储新的信息**，同时把 $X_{a+1}$ 的指针指向 $Y\_{a+1}$ ($Y$ 节点的第 $a+1$ 个版本)。
 
 ### 可持久化
 
 需要的东西:
 
-- 一个 struct数组 存**每个节点**的信息 (一般叫做 tree 数组)； (当然写**指针版**平衡树的大佬就可以考虑不用这个数组了)
+- 一个 struct 数组 存**每个节点**的信息 (一般叫做 tree 数组)； (当然写**指针版**平衡树的大佬就可以考虑不用这个数组了)
 
 - 一个**根节点数组**，存每个版本的_树根_，每次查询版本信息时就从**根数组存的节点**开始；
 
@@ -63,19 +63,19 @@ std::pair &lt;int,int> split(x,k) 返回一个 std::pair;
 - 否则递归**右子树**。
 
 ```c++
-static std::pair<int,int> _split(int _x, int k) {
-  if(_x==0)
+static std::pair<int, int> _split(int _x, int k) {
+  if (_x == 0)
     return std::make_pair(0, 0);
   else {
-    int _vs = ++ _cnt; //新建节点（可持久化的精髓）
+    int _vs = ++_cnt;  //新建节点（可持久化的精髓）
     _trp[_vs] = _trp[_x];
-    std::pair<int,int> _y;
-    if(_trp[_vs].key <= k) {
-      _y = _split(_trp[_vs].leaf[1],k);
+    std::pair<int, int> _y;
+    if (_trp[_vs].key <= k) {
+      _y = _split(_trp[_vs].leaf[1], k);
       _trp[_vs].leaf[1] = _y.first;
       _y.first = _vs;
     } else {
-      _y = _split(_trp[_vs].leaf[0],k);
+      _y = _split(_trp[_vs].leaf[0], k);
       _trp[_vs].leaf[0] = _y.second;
       _y.second = _vs;
     }
@@ -92,16 +92,16 @@ int merge(x,y) 返回 merge 出的树的根。
 同样递归实现。如果 **x 的随机权值** > **y 的随机权值** ，则 $merge(x_{rc},y)$，否则 $merge(x,y_{lc})$。
 
 ```c++
-static int _merge(int _x,int _y) {
-  if(_x==0||_y==0)
-    return _x^_y;
+static int _merge(int _x, int _y) {
+  if (_x == 0 || _y == 0)
+    return _x ^ _y;
   else {
-    if(_trp[_x].fix<_trp[_y].fix) {
-      _trp[_x].leaf[1]=_merge(_trp[_x].leaf[1],_y);
+    if (_trp[_x].fix < _trp[_y].fix) {
+      _trp[_x].leaf[1] = _merge(_trp[_x].leaf[1], _y);
       _trp[_x]._update();
       return _x;
     } else {
-      _trp[_y].leaf[0]=_merge(_x,_trp[_y].leaf[0]);
+      _trp[_y].leaf[0] = _merge(_x, _trp[_y].leaf[0]);
       _trp[_y]._update();
       return _y;
     }
@@ -162,4 +162,3 @@ static int _merge(int _x,int _y) {
 1. 可持久化平衡树可以用来维护动态凸包，仙人掌等东西，如果读者有兴趣可以阅读相应的**计算几何知识**，再来食用。
 
 2. Zip Tree 作为一种新的数据结构在 2018.8 月由 Robert E. Tarjan -  Caleb C. Levy - Stephen Timmel 提出，可以去了解一下~
-
