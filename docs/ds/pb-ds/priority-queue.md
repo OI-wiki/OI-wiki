@@ -12,7 +12,7 @@ __gnu_pbds ::priority_queue<T, Compare, Tag, Allocator>
 
 - `T` : 储存的元素类型
 - `Compare` : 提供严格的弱序比较类型
--   Tag : 是 `__gnu_pbds` 提供的不同的五种堆，Tag 参数默认是 `pairing_heap_tag`
+- `Tag` : 是 `__gnu_pbds` 提供的不同的五种堆，Tag 参数默认是 `pairing_heap_tag`
     五种分别是 ：
     -   `pairing_heap_tag`：配对堆
         官方文档认为在非原生元素 (如自定义结构体 / `std :: string` / `pair`) 中，配对堆表现最好
@@ -22,6 +22,7 @@ __gnu_pbds ::priority_queue<T, Compare, Tag, Allocator>
         二项堆在合并操作的表现要优于配对堆 \* 但是其取堆顶元素的
     - `rc_binomial_heap_tag`：冗余计数二项堆
     - `thin_heap_tag`：除了合并的复杂度都和 Fibonacci 堆一样的一个 tag
+- `Allocator`：空间配置器，由于 OI 中很少出现，故这里不做讲解
 
 由于本篇文章只是提供给学习算法竞赛的同学们，故对于后四个 tag 只会简单的介绍复杂度，第一个会介绍成员函数和使用方法。
 
