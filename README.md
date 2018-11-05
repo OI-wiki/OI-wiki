@@ -80,6 +80,10 @@ git clone https://git.coding.net/scaffrey/OI-wiki.git -b coding-pages
 python3 -m http.server
 ```
 
+### Docker
+
+详见 [Docker 部署](https://oi-wiki.org/intro/docker-deploy/)
+
 * * *
 
 ## 如何参与完善 OI Wiki
