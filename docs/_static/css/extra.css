@@ -49,7 +49,11 @@ span.mjpage__block > svg {
   text-align: unset !important;
 }
 
-.md-sidebar .md-header {
+.md-sidebar  {
+  z-index: 14 !important;
+}
+
+.md-header  {
   z-index: 12 !important;
 }
 
