@@ -28,7 +28,6 @@ after_deploy:
   - cd /tmp
   - git clone https://github.com/24OI/OI-wiki.git
   - cd OI-wiki
-  - git push https://$DOCKER_USER:$DOCKER_KEY@github.com/frank-xjh/OI-wiki-docker.git master:master -f
   - git remote add coding https://$CODING_USER:$CODING_KEY@git.coding.net/scaffrey/OI-wiki.git
   - git push coding master:master -f
   - git fetch origin gh-pages
