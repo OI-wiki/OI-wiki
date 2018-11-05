@@ -55,7 +55,7 @@
 - 算法竞赛入门经典 (人称紫书)
 - 算法竞赛入门经典——训练指南 (人称大白)
 - 算法艺术与信息学竞赛 (人称黑书)
-- 算法竞赛进阶指南
+- 算法竞赛进阶指南，[配套资源仓库](https://github.com/lydrainbowcat/tedukuri)
 - 具体数学
 - [Competitive Programmer's Handbook](https://cses.fi/book/index.html)
 - 算法导论
