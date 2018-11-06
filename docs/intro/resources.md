@@ -38,6 +38,7 @@
 - [Ural](http://acm.timus.ru/)
 - [UVa](https://uva.onlinejudge.org/) (做 lrj 的书怎么可能不知道这个 OJ)
 - [Yandex](https://contest.yandex.ru/) (存档了近几年的全俄罗斯信息学奥赛)
+- [Light OJ](http://lightoj.com)（一个快挂了的OJ，`www`域名无法访问，请使用[根域名](http://lightoj.com)访问）
 
 ## 教程
 
