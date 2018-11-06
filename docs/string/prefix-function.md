@@ -77,10 +77,10 @@ $$
 
 以下是最终的流程：
 
-- 在一个循环中以 $i = 1$ 到 $i = n - 1$ 的顺序计算前缀函数 $\pi[i]$ 的值（$\pi[0]$ 被赋值为 $0$）。
-- 为了计算当前的前缀函数值 $\pi[i]$，我们令变量 $j$ 表示右端点位于 $i - 1$ 的最好的后缀的长度。初始时 $j = \pi[i - 1]$。
-- 通过比较 $s[j]$ 和 $s[i]$ 来检查长度为 $j + 1$ 的后缀是否同时也是一个前缀。如果二者相等，那么我们置 $\pi[i] = j + 1$，否则我们减少 $j$ 至 $\pi[j - 1]$ 并且重复该过程。
-- 如果 $j = 0$ 并且仍没有任何一次匹配，则置 $\pi[i] = 0$ 并移至下一个下标 $i + 1$。
+-   在一个循环中以 $i = 1$ 到 $i = n - 1$ 的顺序计算前缀函数 $\pi[i]$ 的值（$\pi[0]$ 被赋值为 $0$）。
+-   为了计算当前的前缀函数值 $\pi[i]$，我们令变量 $j$ 表示右端点位于 $i - 1$ 的最好的后缀的长度。初始时 $j = \pi[i - 1]$。
+-   通过比较 $s[j]$ 和 $s[i]$ 来检查长度为 $j + 1$ 的后缀是否同时也是一个前缀。如果二者相等，那么我们置 $\pi[i] = j + 1$，否则我们减少 $j$ 至 $\pi[j - 1]$ 并且重复该过程。
+-   如果 $j = 0$ 并且仍没有任何一次匹配，则置 $\pi[i] = 0$ 并移至下一个下标 $i + 1$。
 
 ### 实现
 
@@ -289,15 +289,15 @@ $$
 
 ## 练习题目
 
-- [UVA # 455 "Periodic Strings"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
-- [UVA # 11022 "String Factoring"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
-- [UVA # 11452 "Dancing the Cheeky-Cheeky"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2447)
-- [UVA 12604 - Caesar Cipher](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4282)
-- [UVA 12467 - Secret Word](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3911)
-- [UVA 11019 - Matrix Matcher](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1960)
-- [SPOJ - Pattern Find](http://www.spoj.com/problems/NAJPF/)
-- [Codeforces - Anthem of Berland](http://codeforces.com/contest/808/problem/G)
-- [Codeforces - MUH and Cube Walls](http://codeforces.com/problemset/problem/471/D)
+-   [UVA # 455 "Periodic Strings"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
+-   [UVA # 11022 "String Factoring"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
+-   [UVA # 11452 "Dancing the Cheeky-Cheeky"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2447)
+-   [UVA 12604 - Caesar Cipher](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4282)
+-   [UVA 12467 - Secret Word](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3911)
+-   [UVA 11019 - Matrix Matcher](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1960)
+-   [SPOJ - Pattern Find](http://www.spoj.com/problems/NAJPF/)
+-   [Codeforces - Anthem of Berland](http://codeforces.com/contest/808/problem/G)
+-   [Codeforces - MUH and Cube Walls](http://codeforces.com/problemset/problem/471/D)
 
 * * *
 

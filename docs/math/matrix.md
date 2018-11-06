@@ -148,6 +148,6 @@ int main() {
 
 #### 习题
 
-- [洛谷 P1962 斐波那契数列](https://www.luogu.org/problemnew/show/P1962)，即上面的例题，同题 POJ3070
-- [洛谷 P1349 广义斐波那契数列](https://www.luogu.org/problemnew/show/P1349)，$\text{base}$ 矩阵需要变化一下
-- [洛谷 P1939 【模板】矩阵加速（数列）](https://www.luogu.org/problemnew/show/P1939)，$\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
+-   [洛谷 P1962 斐波那契数列](https://www.luogu.org/problemnew/show/P1962)，即上面的例题，同题 POJ3070
+-   [洛谷 P1349 广义斐波那契数列](https://www.luogu.org/problemnew/show/P1349)，$\text{base}$ 矩阵需要变化一下
+-   [洛谷 P1939 【模板】矩阵加速（数列）](https://www.luogu.org/problemnew/show/P1939)，$\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
