@@ -1,27 +1,16 @@
-可以使用 **Docker** 部署环境。
+可以使用 Docker 部署环境。
 
-> 以下步骤均须在 root 用户下执行
+以下步骤须在 root 用户下或 docker 组用户下执行
 
 ## 拉取 oi-wiki 镜像
 
-Docker Hub 镜像（官方镜像仓库，针对国外用户）
-
 ```bash
-# 以下命令在主机中运行
+# 以下命令在主机中运行其中一个即可
+# Docker Hub 镜像（官方镜像仓库）
 docker pull 24oi/oi-wiki
-```
-
-DaoCloud Hub 镜像（国内镜像仓库，针对国内用户，不推荐）
-
-```bash
-# 以下命令在主机中运行
+# DaoCloud Hub 镜像（国内镜像仓库）
 docker pull daocloud.io/sirius/oi-wiki
-```
-
-Tencent Hub 镜像（国内镜像仓库，针对国内用户，推荐）
-
-```bash
-# 以下命令在主机中运行
+# Tencent Hub 镜像（国内镜像仓库）
 docker pull ccr.ccs.tencentyun.com/oi-wiki/oi-wiki
 ```
 
@@ -33,12 +22,12 @@ docker run -d -it [image]
 ```
 
 - 设置 `[image]` （必须）以设置镜像，如从 Docker Hub 拉取的则为 `24oi/oi-wiki` ，DaoCloud Hub 拉取的则为 `daocloud.io/sirius/oi-wiki`
-- 设置 `--name [name]` （默认为随机，若想查看随机名字，则输入 `docker ps` ，若设置请替换 `[name]` 为自定义的容器名字）以设置容器名字
-- 设置 `-p [port]:8000` （不写该语句则默认为随机，若设置请替换 `[port]` 为主机端口）以映射容器端口至主机端口（可以在主机使用 `http://127.0.0.1:[port]` 访问 **OI Wiki** ）
+- 设置 `--name [name]` （默认空，若想查看容器 id，则输入 `docker ps` ，若设置请替换 `[name]` 为自定义的容器名字）以设置容器名字
+- 设置 `-p [port]:8000` （必须）（不写该语句则默认为不暴露端口，若设置请替换 `[port]` 为主机端口）以映射容器端口至主机端口（可以在主机使用 `http://127.0.0.1:[port]` 访问 **OI Wiki** ）
 
 ## 使用
 
-> 基于 Ubuntu16.04 部署
+基于 Ubuntu 16.04 部署
 
 进入容器：
 
@@ -47,7 +36,7 @@ docker run -d -it [image]
 docker exec -it [name] /bin/bash
 ```
 
-> 若在上述运行容器中去掉 `-d` ，则可以直接进入容器 bash ，退出后容器停止，加上 `-d` 则后台运行，请手动停止。上述进入容器针对加上 `-d` 的方法运行。
+若在上述运行容器中去掉 `-d` ，则可以直接进入容器 bash ，退出后容器停止，加上 `-d` 则后台运行，请手动停止。上述进入容器针对加上 `-d` 的方法运行。
 
 特殊用法：
 
