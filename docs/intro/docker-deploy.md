@@ -1,27 +1,16 @@
-可以使用 **Docker** 部署环境。
+可以使用 Docker 部署环境。
 
-> 以下步骤须在 root 用户下或 docker 组用户下执行
+以下步骤须在 root 用户下或 docker 组用户下执行
 
 ## 拉取 oi-wiki 镜像
 
-Docker Hub 镜像（官方镜像仓库，针对国外用户）
-
 ```bash
-# 以下命令在主机中运行
+# 以下命令在主机中运行其中一个即可
+# Docker Hub 镜像（官方镜像仓库）
 docker pull 24oi/oi-wiki
-```
-
-DaoCloud Hub 镜像（国内镜像仓库，针对国内用户，不推荐）
-
-```bash
-# 以下命令在主机中运行
+# DaoCloud Hub 镜像（国内镜像仓库）
 docker pull daocloud.io/sirius/oi-wiki
-```
-
-Tencent Hub 镜像（国内镜像仓库，针对国内用户，推荐）
-
-```bash
-# 以下命令在主机中运行
+# Tencent Hub 镜像（国内镜像仓库）
 docker pull ccr.ccs.tencentyun.com/oi-wiki/oi-wiki
 ```
 
@@ -38,7 +27,7 @@ docker run -d -it [image]
 
 ## 使用
 
-> 基于 Ubuntu16.04 部署
+基于 Ubuntu 16.04 部署
 
 进入容器：
 
@@ -47,7 +36,7 @@ docker run -d -it [image]
 docker exec -it [name] /bin/bash
 ```
 
-> 若在上述运行容器中去掉 `-d` ，则可以直接进入容器 bash ，退出后容器停止，加上 `-d` 则后台运行，请手动停止。上述进入容器针对加上 `-d` 的方法运行。
+若在上述运行容器中去掉 `-d` ，则可以直接进入容器 bash ，退出后容器停止，加上 `-d` 则后台运行，请手动停止。上述进入容器针对加上 `-d` 的方法运行。
 
 特殊用法：
 
