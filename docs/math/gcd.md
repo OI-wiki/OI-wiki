@@ -87,42 +87,43 @@ $$
 
 可以发现，当我们求出两个数的$gcd$时，求最小公倍数是$O(1)$的复杂度。那么对于多个数，我们其实没有必要求一个共同的最大公约数再去处理，最直接的方法就是，当我们算出两个数的$gcd$，或许在求多个数的$gcd$时候，我们将它放入序列对后面的数继续求解，那么，我们转换一下，直接将最小公倍数放入序列即可
 
-## EXGCD-扩展欧几里得定理
+## EXGCD - 扩展欧几里得定理
 
 目的：求$ax+by=gcd(a,b)$的一组可行解
 
-证明
----
+## 证明
+
 设
 
-$$ax_1+by_1=gcd(a,b)$$
-$$bx_2+(a\,mod\,b)y_2=gcd(b,a\,mod\,b)$$
+$ax_1+by_1=gcd(a,b)$
+$bx_2+(a\,mod\,b)y_2=gcd(b,a\,mod\,b)$
 由欧几里得定理可知：
-$$gcd(a,b)=gcd(b,a\,mod\,b)$$
+$gcd(a,b)=gcd(b,a\,mod\,b)$
 所以
-$$ax_1+by_1=bx_2+(a\,mod\,b)y_2$$
+$ax_1+by_1=bx_2+(a\,mod\,b)y_2$
 又因为
-$$a\,mod\,b=a-(\lfloor\frac{a}{b}\rfloor*b)$$
+$a\,mod\,b=a-(\lfloor\frac{a}{b}\rfloor*b)$
 所以
-$$ax_1+by_1=bx_2+(a-(\lfloor\frac{a}{b}\rfloor*b))y_2$$
-$$ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor*by_2=ay_2+b(x_2-\lfloor\frac{a}{b}\rfloor y_2)$$
-因为a=a，b=b，所以
-$$x_1=y_2$$
-$$y_1=x_2-\lfloor\frac{a}{b}\rfloor y_2$$
-将$x_2,y_2$不断代入递归求解直至GCD为0递归$x=1,y=0$回去求解，就像GCD一样的方法
+$ax_1+by_1=bx_2+(a-(\lfloor\frac{a}{b}\rfloor*b))y_2$
+$ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor*by_2=ay_2+b(x_2-\lfloor\frac{a}{b}\rfloor y_2)$
+因为 a=a，b=b，所以
+$x_1=y_2$
+$y_1=x_2-\lfloor\frac{a}{b}\rfloor y_2$
+将$x_2,y_2$不断代入递归求解直至 GCD 为 0 递归$x=1,y=0$回去求解，就像 GCD 一样的方法
+
 ```cpp
-int Exgcd(int a,int b,int &x,int &y)
-{
-    if (!b) 
-    {
-        x=1;y=0;
-        return a;
-    }
-    int d=Exgcd(b,a%b,x,y);
-    int t=x;
-    x=y;
-    y=t-(a/b)*y;
-    return d;
+int Exgcd(int a, int b, int &x, int &y) {
+  if (!b) {
+    x = 1;
+    y = 0;
+    return a;
+  }
+  int d = Exgcd(b, a % b, x, y);
+  int t = x;
+  x = y;
+  y = t - (a / b) * y;
+  return d;
 }
 ```
-返回的值为GCD，在这个过程中计算$x，y$即可
+
+返回的值为 GCD，在这个过程中计算$x，y$即可
