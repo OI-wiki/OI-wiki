@@ -1,3 +1,5 @@
+## 最大公约数
+
 最大公约数即为 Greatest Common Divisor，常缩写为 gcd
 
 在 [素数](/math/prime) 一节中，我们已经介绍了约数的概念。
@@ -13,7 +15,7 @@
 不妨设 $a > b$
 
 我们发现如果 $b$ 是 $a$ 的约数，那么 $b$ 就是二者的最大公约数。
-下面讨论不能整除的情况， $a = b \times q + r$，其中 $r < b$。
+下面讨论不能整除的情况，即 $a = b \times q + r$，其中 $r < b$。
 
 我们通过证明可以得到$gcd(a,b)=gcd(b,a\,mod\,b)$，过程如下：
 
@@ -37,6 +39,15 @@ $\frac{a\,mod\,b}{d}+\frac{b}{d}k=\frac{a}{d}$
 $gcd(a,b)=gcd(b,a\,mod\,b)$
 
 既然得到了$\gcd(a, b) = \gcd(b, r)$，这里两个数的大小是不会增大的，那么我们也就得到了关于两个数的最大公约数的一个递归求法。
+
+```cpp
+int gcd(int a, int b) {
+  if (b == 0) return a;
+  return gcd(b, a % b);
+}
+```
+
+递归至$b==0$(即上一步的$a\,mod\,b==0$) 的情况再返回值即可。
 
 ### 多个数的
 
@@ -75,3 +86,43 @@ $$
 ### 多个数的
 
 可以发现，当我们求出两个数的$gcd$时，求最小公倍数是$O(1)$的复杂度。那么对于多个数，我们其实没有必要求一个共同的最大公约数再去处理，最直接的方法就是，当我们算出两个数的$gcd$，或许在求多个数的$gcd$时候，我们将它放入序列对后面的数继续求解，那么，我们转换一下，直接将最小公倍数放入序列即可
+
+## EXGCD-扩展欧几里得定理
+
+目的：求$ax+by=gcd(a,b)$的一组可行解
+
+证明
+---
+设
+
+$$ax_1+by_1=gcd(a,b)$$
+$$bx_2+(a\,mod\,b)y_2=gcd(b,a\,mod\,b)$$
+由欧几里得定理可知：
+$$gcd(a,b)=gcd(b,a\,mod\,b)$$
+所以
+$$ax_1+by_1=bx_2+(a\,mod\,b)y_2$$
+又因为
+$$a\,mod\,b=a-(\lfloor\frac{a}{b}\rfloor*b)$$
+所以
+$$ax_1+by_1=bx_2+(a-(\lfloor\frac{a}{b}\rfloor*b))y_2$$
+$$ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor*by_2=ay_2+b(x_2-\lfloor\frac{a}{b}\rfloor y_2)$$
+因为a=a，b=b，所以
+$$x_1=y_2$$
+$$y_1=x_2-\lfloor\frac{a}{b}\rfloor y_2$$
+将$x_2,y_2$不断代入递归求解直至GCD为0递归$x=1,y=0$回去求解，就像GCD一样的方法
+```cpp
+int Exgcd(int a,int b,int &x,int &y)
+{
+    if (!b) 
+    {
+        x=1;y=0;
+        return a;
+    }
+    int d=Exgcd(b,a%b,x,y);
+    int t=x;
+    x=y;
+    y=t-(a/b)*y;
+    return d;
+}
+```
+返回的值为GCD，在这个过程中计算$x，y$即可
