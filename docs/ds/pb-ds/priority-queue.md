@@ -12,8 +12,8 @@ __gnu_pbds ::priority_queue<T, Compare, Tag, Allocator>
 
 - `T` : 储存的元素类型
 - `Compare` : 提供严格的弱序比较类型
-- `Tag` : 是 `__gnu_pbds` 提供的不同的五种堆，Tag 参数默认是 `pairing_heap_tag`
-    五种分别是 ：
+-   `Tag` : 是 `__gnu_pbds` 提供的不同的五种堆，Tag 参数默认是 `pairing_heap_tag`
+      五种分别是 ：
     -   `pairing_heap_tag`：配对堆
         官方文档认为在非原生元素 (如自定义结构体 / `std :: string` / `pair`) 中，配对堆表现最好
     -   `binary_heap_tag`：二叉堆 
