@@ -50,7 +50,7 @@ int binary_search(int start, int end, int key) {
 
 请注意，必须是有序数组，否则答案是错误的。
 
-关于具体使用方法，请参见 [STL 页面](https://oi-wiki.org/ds/stl/)。
+关于具体使用方法，请参见 [STL 页面](/ds/stl/)。
 
 ## 三分法
 
