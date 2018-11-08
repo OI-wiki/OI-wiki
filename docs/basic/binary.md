@@ -46,11 +46,11 @@ int binary_search(int start, int end, int key) {
 
 ### STL 的二分查找
 
-补充一个小知识点， 对于一个有序的 array 你可以使用 `std::lower_bound()` 来找到第一个大于等于你的值的数， `std::upper_bound()` 来找到第一个大于你的值的数
+补充一个小知识点， 对于一个有序的 array 你可以使用 `std::lower_bound()` 来找到第一个大于等于你的值的数， `std::upper_bound()` 来找到第一个大于你的值的数。
 
 请注意，必须是有序数组，否则答案是错误的。
 
-关于具体使用方法，请参见 STL 页面（施工中）。
+关于具体使用方法，请参见 [STL 页面](https://oi-wiki.org/ds/stl/)。
 
 ## 三分法
 
