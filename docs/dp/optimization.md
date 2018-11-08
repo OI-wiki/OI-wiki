@@ -2,7 +2,7 @@
 
 ## 二进制优化解多重背包
 
-??? note " 例题 [经典问题 - 多重背包](https://oi-wiki.org/dp/backpack/#_3)"
+??? note " 例题 [经典问题 - 多重背包](/dp/backpack/#_3)"
     题目大意：有 $n$ 种物品，每种物品有 $a_i$ 件，购买一件这种物品的费用为 $c_i$，价值为 $v_i$。有一个容量为 $t$ 的背包，现在让你找到最优的一种方案，使得装入背包的物品的总价值最大。
 
 考虑常规的动规方式，定义 $f_{i,j}$ 为当前考虑到第 $i$ 个物品，背包容量为 $j$ 所能获得的最大价值。
@@ -36,7 +36,7 @@ for (int i = 1; i <= cur; i++)
 
 ## 单调队列 & 单调栈优化
 
-学习本节前，请务必先学习 [单调队列](https://oi-wiki.org/ds/monotonous-queue/)。
+学习本节前，请务必先学习 [单调队列](/ds/monotonous-queue/)。
 
 ??? note " 例题 [CF372C Watching Fireworks is Fun](http://codeforces.com/problemset/problem/372/C)"
     题目大意：城镇中有 $n$ 个位置，有 $m$ 个烟花要放。第 $i$ 个烟花放出的时间记为 $t_i$，放出的位置记为 $a_i$。如果烟花放出的时候，你处在位置 $x$，那么你将收获 $b_i-|a_i-x|$ 点快乐值。
