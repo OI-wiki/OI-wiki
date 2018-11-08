@@ -12,7 +12,7 @@
 
 但是对于多数需要求解的函数中，爬山算法很容易进入一个局部最优解，如下图（最优解为 $\color{green}{\Uparrow}$，而爬山算法可能找到的最优解为 $\color{red}{\Downarrow}$）。
 
-![](https://s1.ax1x.com/2018/08/22/PooS9e.png)
+![](./images/hill-climbing.png)
 
 * * *
 
