@@ -69,6 +69,8 @@
 - 挑战程序设计竞赛全套 (通俗易懂)
 - 算法概论 (提纲挚领，但内容较少)
 
+- [Legend-K 的数据结构与算法的笔记](http://www.legend-k.com/Algorithm/Algorithm.pdf)
+
 ## 工具
 
 - [经典算法的可视化结果 - VisuAlgo](https://visualgo.net/en)
