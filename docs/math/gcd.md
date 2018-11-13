@@ -67,15 +67,11 @@ int gcd(int a, int b) {
 
 我们发现，对于 $a$ 和 $b$ 的情况，二者的最大公约数等于
 
-$$
-p_1^{k_{\min(a_1, b_1)}}p_2^{k_{\min(a_2, b_2)}} \cdots p_s^{k_{\min(a_s, b_s)}}
-$$
+$p_1^{k_{\min(a_1, b_1)}}p_2^{k_{\min(a_2, b_2)}} \cdots p_s^{k_{\min(a_s, b_s)}}$
 
 最小公倍数等于
 
-$$
-p_1^{k_{\max(a_1, b_1)}}p_2^{k_{\max(a_2, b_2)}} \cdots p_s^{k_{\max(a_s, b_s)}}
-$$
+$p_1^{k_{\max(a_1, b_1)}}p_2^{k_{\max(a_2, b_2)}} \cdots p_s^{k_{\max(a_s, b_s)}}$
 
 由于 $a + b = \max(a, b) + \min(a, b)$
 
@@ -96,20 +92,27 @@ $$
 设
 
 $ax_1+by_1=gcd(a,b)$
+
 $bx_2+(a\,mod\,b)y_2=gcd(b,a\,mod\,b)$
+
 由欧几里得定理可知：
 $gcd(a,b)=gcd(b,a\,mod\,b)$
+
 所以
 $ax_1+by_1=bx_2+(a\,mod\,b)y_2$
+
 又因为
 $a\,mod\,b=a-(\lfloor\frac{a}{b}\rfloor*b)$
+
 所以
 $ax_1+by_1=bx_2+(a-(\lfloor\frac{a}{b}\rfloor*b))y_2$
+
 $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor*by_2=ay_2+b(x_2-\lfloor\frac{a}{b}\rfloor y_2)$
-因为 a=a，b=b，所以
-$x_1=y_2$
-$y_1=x_2-\lfloor\frac{a}{b}\rfloor y_2$
-将$x_2,y_2$不断代入递归求解直至 GCD 为 0 递归$x=1,y=0$回去求解，就像 GCD 一样的方法
+
+因为 $a=a,b=b$ ，所以
+$x_1=y_2,y_1=x_2-\lfloor\frac{a}{b}\rfloor y_2$ 
+
+将 $x_2,y_2$ 不断代入递归求解直至 GCD（最大公约数，下同） 为 $0$ 递归 $x=1,y=0$ 回去求解。
 
 ```cpp
 int Exgcd(int a, int b, int &x, int &y) {
@@ -126,4 +129,4 @@ int Exgcd(int a, int b, int &x, int &y) {
 }
 ```
 
-返回的值为 GCD，在这个过程中计算$x，y$即可
+函数返回的值为 GCD，在这个过程中计算 $x,y$ 即可
