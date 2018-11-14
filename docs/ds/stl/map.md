@@ -93,6 +93,10 @@ mp.erase(it)
 
 ### 更快：基于 `Hash` 实现的 `map`！
 
-这个 `map` 的名字就是 `unordered_map` 了，它的查询，插入，删除的复杂度几乎是 $O(1)$ 级别（不过最坏会达到 $O(N)$）的！所有的操作几乎和 `map`一样（注意 `unordered_map` 用迭代器遍历是无序的）。
+!!! note
+    C++11 及以后使用 `std::unordered_map`，在 `<unordered_map>` 头文件中
+    之前的版本可以使用 `std::tr1::unordered_map`，在 `<tr1/unordered_map>` 头文件中
 
-不过它的遍历速度会很慢，而且空间占用的会更大。
+这个 `map` 的名字就是 `unordered_map` 了，它的查询，插入，删除的复杂度几乎是 $O(1)$ 级别（所有的操作几乎和 `map`一样（注意 `unordered_map` 用迭代器遍历是无序的）。
+
+但是在最坏情况下（产生大量 hash 冲突时），`unordered_map`的各项操作的时间复杂度可达$O(n^2)$ 。[ （详情见 Codeforces 上发表的一篇卡 unordered_map 的文章） ](http://codeforces.com/blog/entry/62393) 而且它的遍历速度会很慢，空间占用的会更大。

@@ -24,7 +24,7 @@ void ex_gcd(int a, int b, int& x, int& y) {
 
 ### 快速幂法：
 
-这个要运用 [费马小定理](https://oi-wiki.org/math/fermat/)：
+这个要运用 [费马小定理](/math/fermat/)：
 
 > 若 $p$ 为质数，$a$ 为正整数，且 $a$、$p$ 互质，则 $a^{p-1} \equiv 1 \pmod p$。
 

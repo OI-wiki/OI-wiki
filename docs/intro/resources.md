@@ -28,6 +28,7 @@
 - [AtCoder](https://atcoder.jp/) (日本的一个 OJ，类似 Codeforces 但是也会放 JOI 的题)
 - [CodeChef](https://codechef.com/) (印度 OJ，周期性有比赛)
 - [Codeforces](https://codeforces.com/) (俄罗斯 OJ，有很多比赛)
+- [CS Academy](https://csacademy.com/)
 - [DMOJ](https://dmoj.ca/) (加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛)
 - [HackerRank](https://www.hackerrank.com/) (有很多比赛)
 - [Kattis](https://open.kattis.com/)
@@ -37,6 +38,7 @@
 - [Ural](http://acm.timus.ru/)
 - [UVa](https://uva.onlinejudge.org/) (做 lrj 的书怎么可能不知道这个 OJ)
 - [Yandex](https://contest.yandex.ru/) (存档了近几年的全俄罗斯信息学奥赛)
+- [Light OJ](http://lightoj.com)（一个快挂了的 OJ，`www`域名无法访问，请使用[根域名](http://lightoj.com)访问）
 
 ## 教程
 
@@ -51,16 +53,23 @@
 ## 书籍
 
 - 信息学奥赛一本通 (初学者向)
-- 算法竞赛入门经典 (人称紫书)
+-   算法竞赛入门经典 (人称紫书)
+    - [第一版 配套资源仓库 (mirror)](https://github.com/sukhoeing/aoapc-book/)
+    - [第二版 配套资源仓库](https://github.com/aoapc-book/aoapc-bac2nd)
+    - [第二版 习题选解](https://github.com/sukhoeing/aoapc-bac2nd-keys)
 - 算法竞赛入门经典——训练指南 (人称大白)
 - 算法艺术与信息学竞赛 (人称黑书)
-- 算法竞赛进阶指南
+-   算法竞赛进阶指南
+    - [配套资源仓库](https://github.com/lydrainbowcat/tedukuri)
 - 具体数学
 - [Competitive Programmer's Handbook](https://cses.fi/book/index.html)
-- 算法导论
+-   算法导论
+    - [答案解析 (English)](https://github.com/walkccc/CLRS)
 - 啊哈算法
 - 挑战程序设计竞赛全套 (通俗易懂)
 - 算法概论 (提纲挚领，但内容较少)
+
+- [Legend-K 的数据结构与算法的笔记](http://www.legend-k.com/Algorithm/Algorithm.pdf)
 
 ## 工具
 
@@ -74,9 +83,12 @@
 - [LaTeX 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm)
 - [Godbolt - 在浏览器中查看编译后代码块对应的汇编语句](https://godbolt.org/)
 - [《100 个 gdb 小技巧》](https://github.com/hellogcc/100-gdb-tips)
+- [截图转 LaTeX - Mathpix](https://mathpix.com/)
 
 ## 题集
 
 - [POJ 训练计划](http://blog.csdn.net/skywalkert/article/details/46594541)
 - [USACO](http://train.usaco.org/usacogate)
 - [洛谷试炼场](https://www.luogu.org/training/mainpage)
+- [-Morass- 贴在 Codeforces 上的一份题单](https://codeforces.com/blog/entry/55274)
+- [北京大学暑期课课件例题](https://vjudge.net/article/446)

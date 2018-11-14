@@ -37,7 +37,7 @@ int f(传入数值) {
 
 ### 递归优化
 
-先来一道例题：[三连击](https://www.luogu.org/problemnew/show/P1028)。
+先来一道例题：[三连击](https://www.luogu.org/problemnew/show/P1618)。
 
 这道题朴素的递归写法只能得到 25 分，因为递归次数太多，所以超时。
 

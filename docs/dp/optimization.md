@@ -2,7 +2,7 @@
 
 ## 二进制优化解多重背包
 
-??? note " 例题 [经典问题 - 多重背包](https://oi-wiki.org/dp/backpack/#_3)"
+??? note " 例题 [经典问题 - 多重背包](/dp/backpack/#_3)"
     题目大意：有 $n$ 种物品，每种物品有 $a_i$ 件，购买一件这种物品的费用为 $c_i$，价值为 $v_i$。有一个容量为 $t$ 的背包，现在让你找到最优的一种方案，使得装入背包的物品的总价值最大。
 
 考虑常规的动规方式，定义 $f_{i,j}$ 为当前考虑到第 $i$ 个物品，背包容量为 $j$ 所能获得的最大价值。
@@ -36,7 +36,7 @@ for (int i = 1; i <= cur; i++)
 
 ## 单调队列 & 单调栈优化
 
-学习本节前，请务必先学习 [单调队列](https://oi-wiki.org/ds/monotonous-queue/)。
+学习本节前，请务必先学习 [单调队列](/ds/monotonous-queue/)。
 
 ??? note " 例题 [CF372C Watching Fireworks is Fun](http://codeforces.com/problemset/problem/372/C)"
     题目大意：城镇中有 $n$ 个位置，有 $m$ 个烟花要放。第 $i$ 个烟花放出的时间记为 $t_i$，放出的位置记为 $a_i$。如果烟花放出的时候，你处在位置 $x$，那么你将收获 $b_i-|a_i-x|$ 点快乐值。
@@ -66,15 +66,15 @@ $f_{i,j}=\max\{f_{i-1,k}+b_i+|a_i-j|\}=\max\{f_{i-1,k}-|a_i-j|\}+b_i$
 
 ### 几道练习题：
 
-[luogu P1886 滑动窗口](https://www.luogu.org/problemnew/show/P1886)
+[洛谷 P1886 滑动窗口](https://www.luogu.org/problemnew/show/P1886)
 
-[luogu P2254 \[NOI2005\] 瑰丽华尔兹](https://www.luogu.org/problemnew/show/P2254)
+[洛谷 P2254 \[NOI2005\] 瑰丽华尔兹](https://www.luogu.org/problemnew/show/P2254)
 
-[luogu P2569 \[SCOI2010\] 股票交易](https://www.luogu.org/problemnew/show/P2569)
+[洛谷 P2569 \[SCOI2010\] 股票交易](https://www.luogu.org/problemnew/show/P2569)
 
 ## 斜率优化
 
-??? note " 例题 [luogu P3195 \[HNOI2008\] 玩具装箱 TOY](https://www.luogu.org/problemnew/show/P3195)"
+??? note " 例题 [洛谷 P3195 \[HNOI2008\] 玩具装箱 TOY](https://www.luogu.org/problemnew/show/P3195)"
     令 $f_i$ 表示前 $i$ 个物品，随意分组装在任意多个容器里所能得到的最小费用。
 
 写出 ** 状态转移方程 ** ：$f_i=max\{f_j+(pre_i-pre_i+i-j-1-L)^2\}$ ，其中 $pre_i$ 表示前 $i$ 个数的前缀和。
@@ -95,21 +95,21 @@ $f_i+2\times s_i\times (s_j+L')=f_j+s_i^2+(s_j+L')^2$
 
 ### 几道练习题：
 
-[luogu P4072 \[SDOI2016\] 征途](https://www.luogu.org/problemnew/show/P4072)
+[洛谷 P4072 \[SDOI2016\] 征途](https://www.luogu.org/problemnew/show/P4072)
 
-[luogu P2120 \[ZJOI2007\] 仓库建设](https://www.luogu.org/problemnew/show/P2120)
+[洛谷 P2120 \[ZJOI2007\] 仓库建设](https://www.luogu.org/problemnew/show/P2120)
 
-[luogu P3628 \[APIO2010\] 特别行动队](https://www.luogu.org/problemnew/show/P3628)
+[洛谷 P3628 \[APIO2010\] 特别行动队](https://www.luogu.org/problemnew/show/P3628)
 
 [bzoj 4709 \[Jsoi2011\] 柠檬](https://www.lydsy.com/JudgeOnline/problem.php?id=4709)
 
 [CF311B Cats Transport](http://codeforces.com/problemset/problem/311/B)
 
-[luogu P4027 \[NOI2007\] 货币兑换](https://www.luogu.org/problemnew/show/P4027)
+[洛谷 P4027 \[NOI2007\] 货币兑换](https://www.luogu.org/problemnew/show/P4027)
 
 ## 四边形不等式优化
 
-??? note " 例题 [luogu P1880 \[NOI1995\] 石子合并](https://www.luogu.org/problemnew/show/P1880)"
+??? note " 例题 [洛谷 P1880 \[NOI1995\] 石子合并](https://www.luogu.org/problemnew/show/P1880)"
     题目大意：在一个环上有 $n$ 个数，进行 $n-1$ 次合并操作，每次操作将相邻的两堆合并成一堆，能获得新的一堆中的石子数量的和的得分。你需要最大化你的得分。
 
 我们首先 ** 破环成链 ** ，然后进行动态规划。设 $f_{i,j}$ 表示从位置 $i$ 合并到位置 $j$ 所能得到的最大得分， $sum_i$ 为前 $i$ 堆石子数的前缀和。
@@ -212,7 +212,7 @@ for (int i = n; i >= 1; i--) {
 
 ### 一道练习题：
 
-[luogu P4767 \[IOI2000\] 邮局](https://www.luogu.org/problemnew/show/P4767)
+[洛谷 P4767 \[IOI2000\] 邮局](https://www.luogu.org/problemnew/show/P4767)
 
 ### 参考资料
 

@@ -52,7 +52,7 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 ???+ warning
     Windows 10 商店的第一个 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。
     可使用 `sudo lsb_release -a` 查看自己的 Ubuntu 版本。
-    也可安装带有版本号的旧 Windows。
+    也可安装带有版本号的旧 Linux版本（如本次演示使用了**16.04**）。
 安装完后，打开 Ubuntu，等待一段时间，让其自己配置，不久就会提示你设置用户名和密码。   
 （这里看你喜好，推荐设置短点，毕竟 ** 本地环境不怕攻击 **）     
 
@@ -104,7 +104,7 @@ sudo apt install -y --force-yes --no-install-recommends ttf-wqy-zenhei
 sudo dpkg-reconfigure locales
 ```
 
-使用 `sudo dpkg-reconfigure locales` 进入菜单，选择 `zh_CN.UTF-8` 回车，下一个菜单中也是选它打回车。
+使用 `sudo dpkg-reconfigure locales` 进入菜单，按空格选择带 `zh_CN` 的选项，选完后回车，下一个菜单中选 `zh_CN.UTF-8` 打回车。
 
 ![](./images/WSL10.png)
 ![](./images/WSL11.png)
@@ -236,7 +236,7 @@ xfce4-session
 
 ## 0x09 延伸内容
 
-[Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://spencerwoo.com/Dev-on-Windows-with-WSL/)
+[Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://spencerwoo.com/dowww/)
 
 ### 后记
 

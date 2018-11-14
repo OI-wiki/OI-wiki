@@ -28,19 +28,19 @@ Vim 依附于终端，所以调整终端设置也可以达到美化效果。
 
 但是自带的 Vim 很容易有功能残缺，比如有的就不能与系统剪切板交互 (将会在进阶篇讲解)，各种未开启支持。那么这时候我们就需要手动安装，方法有二。第一步先是卸载 Vim，命令如下：
 
-```bash
+```shell
 sudo apt-get remove vim
 ```
 
 然后安装有两种做法，一是使用命令安装，但我无法确定软件源的版本有没有问题 = =。
 
-```bash
+```shell
 sudo apt-get install vim
 ```
 
 做法二，先到 [Releases - vim/vim](https://github.com/vim/vim/releases) 下载源码包，然后解压，并进入解压后的文件夹，并打开终端，cd 至文件夹路径，并依次输入如下命令：
 
-```bash
+```shell
 ./configure
 make
 sudo make install
@@ -50,7 +50,7 @@ make 的过程可能稍久，淡定点等。
 
 最后在终端输入
 
-```bash
+```shell
 vim
 ```
 
@@ -58,7 +58,7 @@ vim
 
 或者要打开某个文件的话就可以在终端中
 
-```bash
+```shell
 vim 文件路径
 ```
 
@@ -68,13 +68,13 @@ vim 文件路径
 
 编译的话，先要安装 g++，命令如下：
 
-```bash
+```shell
 sudo apt-get install g++
 ```
 
 然后 cd 至 cpp 文件指定路径执行如下命令
 
-```bash
+```shell
 g++ filename.cpp -o filename
 ./filename
 ```
@@ -162,7 +162,7 @@ emm 基础应该就用到这些了吧，往后的插件，配置，更多操作�
 
 最后其实 Vim 还有一些基础操作，它们在 Vim 自带的教程里将会讲述。打开终端输入：
 
-```bash
+```shell
 vimtutor
 ```
 
@@ -178,7 +178,7 @@ vimtutor
 
 当然你的配置里必须有如下两行：
 
-```text
+```vim
 set nocompatible
 filetype plugin on
 ```
@@ -189,7 +189,7 @@ filetype plugin on
 
 首先是在 home 目录下建立文件夹 .vim。然后打开终端输入以下命令：
 
-```bash
+```shell
 sudo apt-get install git
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ```
@@ -204,7 +204,7 @@ Vundle 可以很轻松的管理插件，只需要在配置中写一下，并在 
 
 使用 Vim 的时候打开文件显然毫不方便，不论是在目标文件夹下利用
 
-```bash
+```shell
 vim filename
 ```
 
@@ -214,13 +214,13 @@ vim filename
 
 也许有人要说考场上该如何呢？没关系，Vim 自带了一个稍逊一筹的文件管理器 netrw 。如果你的命令是这样的
 
-```bash
+```shell
 vim 文件夹(或者说目录)路径
 ```
 
 或者是在 Vim 中 `e 文件夹路径`即可打开目录插件，你可以亲手试一试，我觉得这个还是不难琢磨的。同时在上述两个命令中可以用`.`来表示当前工作目录，意思是可以用
 
-```bash
+```shell
 vim .
 ```
 
@@ -228,7 +228,7 @@ vim .
 
 当然，如果仅是如此还不够，使用文件管理器打开文件的话，容易使工作目录出现差错，从而导致编译的程序不存在于原文件夹中，所以你的配置文件中还需以下语句：
 
-```text
+```vim
 set autochdir
 ```
 
@@ -284,7 +284,7 @@ Vim 的配置语法没那么麻烦，基本上就是 set 开启选项，call xxx
 
 首先使用各种插件容易与 vi 的模式产生冲突，所以我们要关闭 vi 的功能，那么就有了如下配置：
 
-```text
+```vim
 set nocompatible
 ```
 
@@ -292,7 +292,7 @@ set nocompatible
 
 随后，当你打开你的 cpp 文件时，你会发现及其之丑，因为没有了语法高亮，一切都是一个颜色了。那么配置中需加入如下两行
 
-```text
+```vim
 syntax enable
 syntax on
 ```
@@ -301,7 +301,7 @@ syntax on
 
 然后是我们可爱的状态栏，`set laststatus=2` 这行配置将会使得状态栏总是显示，而状态栏所显示的信息在配置中是可以设置的。设置如下：
 
-```text
+```vim
 set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ [%{(&fenc==\"\"?&enc:&fenc).(&bomb?\",BOM\":\"\")}]\ %c:%l/%L%)
 ```
 
@@ -319,7 +319,7 @@ set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ [%{(&fenc==\"\"?&
 
 还有一件事，就是文件编码，设置如下：
 
-```text
+```vim
 set langmenu=zh_CN.UTF-8
 set helplang=cn
 set termencoding=utf-8
@@ -331,7 +331,7 @@ set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 
 其实 Vim 普通模式下没有多少按键是 "自由身"，那么用户该如何定制自己的快捷键呢？Vim 为此提供了 <kbd>leader</kbd> 键来服务。<kbd>leader</kbd> 键在配置中由自己定制，只需要短短一行
 
-```text
+```vim
 let mapleader ＝ ""
 ```
 
@@ -339,7 +339,7 @@ let mapleader ＝ ""
 
 设置快捷键怎么写呢？
 
-```text
+```vim
 nnoremap 快捷键 指令
 inoremap 快捷键 指令
 ```
@@ -348,7 +348,7 @@ inoremap 快捷键 指令
 
 首先我的个人快捷键需求其实不是很多，我的 <kbd>leader</kbd> 键是 <kbd>\`</kbd>，但是处于一种坐冷板凳的状态，就更新插件的时候用一用，不过还是很方便的，我的设置是：
 
-```text
+```vim
 nnoremap <leader><leader>i :PluginInstall<CR>
 ```
 
@@ -356,7 +356,7 @@ nnoremap <leader><leader>i :PluginInstall<CR>
 
 那么你有没有猜到如何利用配置写出括号补全的部分功能呢？没错，就是利用快捷键。将插入模式下的左扩号当做快捷键即可，指令就是`()`。如果补全后要使光标在括号里怎么办呢？如果仔细观察你就会发现每当退出插入模式，光标总是会向后跳一个字符，我们可以利用这一点，组合 `Esc + i` 不就变成了向前一个字符进行插入吗？总结下来配置如下：
 
-```text
+```vim
 inoremap (  ()<esc>i
 inoremap [  []<esc>i
 inoremap "  ""<esc>i
@@ -367,7 +367,7 @@ inoremap '  ''<esc>i
 
 还记得进阶篇里的分屏吗？显然使用鼠标点击来选择活动窗口太慢，而移动命令前加个<kbd>Ctrl</kbd>+<kbd>w</kbd>也不习惯对不对，所以我的做法是用<kbd>Ctrl</kbd>+ 移动命令来映射前面的按键组合。
 
-```text
+```vim
 nnoremap <c-h> <c-w>h  
 nnoremap <c-l> <c-w>l  
 nnoremap <c-j> <c-w>j  
@@ -378,7 +378,7 @@ nnoremap <c-k> <c-w>k
 
 还记得自动折行吧，我们的`hjkl`命令其实都是在实际行之间移动，而折下来的屏幕行实在是没法子，只能用 `l` 键不断移过去。但实际上，`g + 移动命令` 便能够使你在屏幕行间移动，因为考虑到这种移动的常用，我选择将`g + 移动命令`与移动命令反过来映射。
 
-```text
+```vim
 noremap j gj
 noremap gj j
 noremap gk k
@@ -391,15 +391,15 @@ noremap k gk
 
 我想有了之前的编译命令，基础篇命令行模式中的介绍，你应该大概能有个思路了吧。作出的操作肯定如下：
 
-```text
-:w   保存
-:g++ xxx.cpp -o xxx 编译
-:./xxx 运行
+```vim
+:w   " 保存
+:g++ xxx.cpp -o xxx " 编译
+:./xxx " 运行
 ```
 
 那么如何实现呢？我倾向于写个函数：
 
-```text
+```vim
 nnoremap <F9> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
     exec "w" 
@@ -412,22 +412,22 @@ func! CompileRunGcc()
 
 不过如果你使用得多了，就会发现当按下 <kbd>F9</kbd> 的时候转到另一个屏即终端进行运行，但是每运行一次都会多一些信息。如此累积的话多来几次整个终端就满了，这时可以使用 bash 下的命令
 
-```bash
+```shell
 clear
 ```
 
 来清屏，不过我倾向于也把它封装在一个快捷键内，按 <kbd>F12</kbd> 就会自动清屏了，个人觉得用着挺爽……
 
-```text
+```vim
 nnoremap <F12> :call Clss()<CR>
 func! Clss()
     exec '!clear'
-    endfunc   
+    endfunc
 ```
 
 还有，在 Vim 中执行外部命令纵使有 `:!` 的方法，其实还是不方便，要是能直接在 Vim 中再打开一个终端就好了，对吧。Vim 从 8.0 之后就增添了在内部分个屏来打开一个终端的功能，命令是 `:terminal`。我个人也将它设置成了快捷键，作为强迫症还是装在了函数中 = =。我想有了命令你应该自己会写了。
 
-```text
+```vim
 nnoremap <F8> :call Term()<CR>
 func! Term()
     exec 'terminal'
@@ -438,7 +438,7 @@ func! Term()
 
 介于更各种 Vim 版本的压迫，Vim 作者也是奋发图强，Vim 8.1 又更新了调试程序，先用`packadd termdebug`开启此设置，然后在 Vim 中输入`:Termdebug + 编译出的程序名称`即可开始 GDB 的过程，具体详细操作可以参考[这篇文章](https://fzheng.me/2018/05/28/termdebug/)。这个自然也被我封装函数了 >\_&lt;。
 
-```text
+```vim
 packadd termdebug
 nnoremap <F11> :call GDB()<CR>
 func! GDB()
@@ -460,7 +460,7 @@ func! GDB()
 
 插件篇中说到了强大的插件管理器 Vundle，那么在配置中该如何写呢？框架如下：
 
-```text
+```vim
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin('~/.vim/自己创建的用来放插件文件的文件夹')
 
@@ -469,7 +469,7 @@ call vundle#end()
 
 在两块之间来写需要安装的插件，格式如下：
 
-```text
+```vim
 Plugin '作者 Github 上的名字/Github 上的插件仓库名'
 ```
 
@@ -477,7 +477,7 @@ Plugin '作者 Github 上的名字/Github 上的插件仓库名'
 
 我的插件列表：
 
-```text
+```vim
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin('~/.vim/plugged')
 
@@ -503,7 +503,46 @@ call vundle#end()
 
 同时我的配置里关于插件的快捷键如下：
 
-```text
+```vim
 F10 ：启动 nerdtree 侧边工程目录树
 F7  ：启动 Gundo 时光机
 ```
+
+### 关于高效编辑的建议
+
+为什么 Emacs 和 Vim 这些编辑器效率高？  
+很重要的一点在于这些编辑器可以让你切掉你的右半部分的键盘而让你的双手始终处于主键盘区域, 并且让你的双手保持合作, 而不会出现一只手不停的按而另一只手摊在键盘上。  
+所以, 如果你想用好 Vim(或者其他高级编辑器), 不要去按方向键, 不要去碰鼠标, 你甚至可以强迫自己：  
+
+```vim
+" 使方向键失效
+inoremap <UP> a<Bs>
+inoremap <DOWN> a<Bs>
+inoremap <LEFT> a<Bs>
+inoremap <RIGHT> a<Bs>
+```
+
+但也许这还不够, 你还可以进一步缩小你双手需要控制的区域。  
+
+-   Esc 键在 Vim 中使用频繁, 虽然有 ctrl+\[ 来代替它, 但这仍然不够。  
+    事实上还用一种高效却鲜为人知的办法: **用 alt**。  
+    在 TUI(终端) 中任何模式 alt + 任何按键完全等效于 Esc + 该按键。  
+    例如你要退出插入模式向上移动, 普通做法是 Esc+k, 但 alt+k 有同样的效果并且十分高效。  
+-   Backspace (删除键) 使用十分频繁, 但它处在主键盘的角落, 你不得不挪开手或是伸长小拇指。  
+    但在 Vim (甚至终端) 里, 你可以用 ctrl+h 来彻底代替 Backspace。  
+-   回车键使用同样频繁, 但同样不挪一挪手就得伸长小拇指。  
+    幸运的是在 Vim 和终端中, ctrl+m 完全等效与回车。  
+- 在绝大多数的情况下, 不要去按右边的 ctrl, shift, 用左边的代替。  
+- 最好不用 F1 到 F12, 如果要映射, 用 Leader 开头的自定义快捷键。  
+
+## Visual Studio Code - 微软家的编辑器
+
+### 简介
+
+Visual Studio Code (以下简称 VS Code) 是一个免费、开源、跨平台的由微软开发的程序编辑器。它是用 Typescript 编写的，并且采用 Electron 架构。官网是 <https://code.visualstudio.com/> 。它带有对 JavaScript、TypeScript 和 Node.js 的内置支持，并为其他语言（如 C++、Cype、Java、Python、PHP、GO）提供了丰富的扩展生态系统。
+对比 Sublime 和 Atom，它有以下优点：
+
+- 快速
+- 美观
+- 社区生态好
+- ……

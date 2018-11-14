@@ -57,14 +57,32 @@ mkdocs build -v
 mkdocs serve -v
 ```
 
-我们现在在服务器端渲染 mathjax ，如果希望实现类似效果，可以参考 [netlify_build.sh](https://github.com/24OI/OI-wiki/blob/master/scripts/netlify_build.sh)。（需要安装 Node.js）
+我们现在在服务器端渲染 MathJax ，如果希望实现类似效果，可以参考 [netlify_build.sh](https://github.com/24OI/OI-wiki/blob/master/scripts/netlify_build.sh)。（需要安装 Node.js）
 
-### 离线版
+### 镜像
 
 ```bash
 git clone https://git.coding.net/scaffrey/OI-wiki.git
-# coding 上的镜像仓库和 gh-pages 分支的内容相同
+# Coding 上的镜像仓库和 GitHub 仓库的内容相同
 ```
+
+### 离线版
+
+可以使用 `gh-pages` 分支的内容
+
+```bash
+git clone https://git.coding.net/scaffrey/OI-wiki.git -b coding-pages
+```
+
+本地启动一个 http 服务器可能会更方便一些
+
+```bash
+python3 -m http.server
+```
+
+### Docker
+
+详见 [Docker 部署](https://oi-wiki.org/intro/docker-deploy/)
 
 * * *
 

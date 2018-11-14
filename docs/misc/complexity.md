@@ -34,6 +34,12 @@ $$
 
 ![](images/order.png)
 
+### 常见性质
+
+- $f_1(n) + f_2(n) = O(\max(f_1(n), f_2(n)))$
+- $f_1(n) \times f_2(n) = O(f_1(n) \times f_2(n))$
+- 任何对数函数无论底数为何，都具有相同的增长率。$\forall a \neq 1, \log_a{n} = O(\log_2 n)$
+
 ## 主定理 (Master Theorem)
 
 我们可以使用 Master Theorem 来快速的求得关于递归算法的复杂度。

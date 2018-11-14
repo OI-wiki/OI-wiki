@@ -1,8 +1,8 @@
 ## 赛事介绍
 
-OI 竞赛是一项全球的赛事，每年夏天会有世界级竞赛（IOI）举行，大陆地区派出的队伍都是经过层层选拔的。对于大部分选手而言，每年新赛季从 10 月的 NOIP （省级选拔赛）开始。
+OI 竞赛是一项全球的赛事，每年夏天会有世界级竞赛（IOI）举行，参赛选手大多都经过层层选拔。对于大部分选手而言，每年新赛季从 10 月的 NOIP （省级选拔赛）开始。
 
-OI 竞赛中允许使用的语言包括 Pascal（NOI 系列比赛将于 2020 年停止使用 Pascal），C 和 C++。其中 C++ 的版本不同考试有不同的规定。考试题目一般为算法或者数据结构相关的内容，题目形式包括传统题（最常见的规定输入和输出到文件的题目）和非传统题（提交答案题、交互题、补全代码题等等）。
+OI 竞赛中允许使用的语言包括 Pascal（NOI 将于 2020 年停止使用 Pascal，NOIP 将于 2022 年停止使用 Pascal），C 和 C++。其中 C++ 的版本不同考试有不同的规定。考试题目一般为算法或者数据结构相关的内容，题目形式包括传统题（最常见的规定输入和输出到文件的题目）和非传统题（提交答案题、交互题、补全代码题等等）。
 
 ### NOIP
 
@@ -41,12 +41,12 @@ IOI（International Olympiad in Informatics）是国际信息学奥林匹克竞�
 ### OI 赛制
 
 一般的 OI 赛制可以理解为单人在 5 个小时的时间内尝试解决 3 个题。每个题目可以不全部解决，会有多个数据点，题目的分数一般是数据点得分之和。每个数据点还可能会有部分分，就是数据点内部也不需要完全正确才能得到分数。评分方式是在比赛结束后统一评测，只有一次提交机会。
-NOIP、NOI、省选都是 OI 赛制
+NOIP、NOI、省选都是 OI 赛制。
 
 ### IOI 赛制
 
 目前国内比赛也在逐渐向 IOI 赛制靠拢。
-IOI 赛制可以赛时任意提交，可以即时查看评测结果， APIO、IOI 都是 IOI 赛制
+IOI 赛制可以赛时任意提交，可以即时查看评测结果， APIO、IOI 都是 IOI 赛制。
 
 ### ACM / ICPC 赛制
 
@@ -54,195 +54,127 @@ IOI 赛制可以赛时任意提交，可以即时查看评测结果， APIO、IO
 
 ### Codeforces (CF) 赛制
 
-[Codeforces](https://codeforces.com) 是一个在线评测系统，定期会举办比赛。它的比赛特点是在比赛过程中只测试一部分数据（pretests），而在比赛结束后返回更多测试点的测试结果（system tests）。比赛时可以多次提交，允许 hack 别人的代码。当然，如果想要 hack ，必须要锁定自己的代码（换言之，无法重新提交该题）。
+[Codeforces](https://codeforces.com) 是一个在线评测系统，定期会举办比赛。它的比赛特点是在比赛过程中只测试一部分数据（pretests），而在比赛结束后返回完整的所有测试点的测试结果（system tests）。比赛时可以多次提交，允许 hack 别人的代码（此处 hack 的意思是提交一个测试数据，使得别人的代码无法给出正确答案）。当然，如果想要 hack ，必须要锁定自己的代码（换言之，比赛时无法重新提交该题）。
 
 ## 其他国家和地区的 OI 竞赛
 
-### 台湾地区的信息学奥林匹克竞赛（資訊奧林匹亞競賽）
+### 美国：USACO
 
-台湾地区把 informatics 翻译成 “资讯” 而非大陆通用的翻译 “信息”。  
-台湾地区的信息学奥林匹克竞赛赛制与大陆地区类似。  
-这些比赛并不能统称为 TOI，详情见下文。  
-两个台湾的 OJ：[TIOJ](http://tioj.infor.org/)，[Zerojudge](https://zerojudge.tw/)
+官网地址：<https://www.usaco.org/>
 
-#### 1. 区域赛（區域資訊學科能力競賽）
+USACO 或许是国内选手最熟悉的外国 OI 竞赛（因此可能也是中文题解最多的外国 OI 竞赛）。  
+每年冬季到初春，USACO 会每月举办一场网络赛。一场比赛持续 $3\sim5$ 个小时。  
+根据官网的介绍，USACO 的比赛分成这 4 档难度（2015~2016 学年之前为 3 档）：
 
-性质类似 NOIP，难度…… 没研究过。题目由各区的师范学院命题。  
-没有官方拿题目的渠道，主要靠选手自己找各区师范学院的教授拿。如果你想在线提交，TIOJ 上有很多北市赛（好像是台北？）的题。
+- 铜牌组，适合编程初学者，尤其是只学了最最基础的算法（如：排序，二分查找）的学生。
+- 银牌组，适合开始学习基本的算法技巧（如：递归，搜索，贪心算法）和基础数据结构的学生。
+- 金牌组，学生会遇到更复杂的算法（如：最短路径，DP）和更高级的数据结构。
+- 铂金组，适合有着扎实的算法设计能力的选手，铂金组可以帮助他们以复杂且更开放的问题来~~放飞~~挑战自我。
 
-#### 2. 全国赛（全國資訊學科能力競賽）
+在国内，目前 USACO 题目最齐全的是洛谷。
 
-那些跟我说 "政治正确" 的人，自己复习下 “九二共识” 和 “一中各表”。  
-一天笔试，一天机试。机试一场 5 小时 7 题。2016 年的题目，除了一道真 · 签到题，剩下的题目难度和考试范围都在 **提高 - 到 弱省省选 -** 左右。  
-官方拿题目的渠道戳[这里](http://nhspc.csie.ntnu.edu.tw/2016/ref_exam.php)，然而并不提供数据和题解。  
-在线提交同样左转 TIOJ。LOJ 管理员正在与 TIOJ 方面联系要数据（TIOJ 上的似乎也是民间数据）。
+### 波兰：POI
 
-#### 3. 研习营（TOI / 資訊研習營）
+官网：<https://oi.edu.pl/>  
+官方提交地址：<https://szkopul.edu.pl/p/default/problemset/>  
 
-[中華民國參加國際資訊奧林匹亞競賽代表隊遴選作業要點](http://toi.csie.ntnu.edu.tw/file/20170906164404.pdf)  
-（TODO）
+POI 是不少省选选手最常刷的外国 OI 比赛。  
+根据（已经凉凉的）<http://main.edu.pl/en/> 的描述，POI 的流程如下：  
 
-#### 4. NPSC
+- 第一轮：五题，网络赛，公开赛。
+- 第二轮：包含一场练习赛，和两场正式比赛。
+- 第三轮：赛制同上。
+- ONTAK：POI 训练营（类似国内的集训队）
 
-[NPSC 2017 官网](http://contest.cc.ntu.edu.tw/npsc2017/problem.asp)  
-这个比赛和 OI 没啥关系，这是出给高中生玩的 ACM（从赛制角度来说）。当然，因为面向高中生，所以题目是中文。  
-这个比赛比较好的一点是题目、数据齐全，然而同样没有题解。
+你可能还听说过 PA。PA 的大意是 “算法大战”（我也不知道为啥它叫这名字）。
 
-### 二、日本信息学奥林匹克竞赛（日本情報オリンピック）
+目前在国内 OJ 中，POI 题目最全的是 BZOJ。
 
-[官网地址](https://www.ioi-jp.org/) \| [日本选手在 CF 上的介绍](http://codeforces.com/blog/entry/53733)
+### 克罗地亚：COCI
 
-一般简称为 JOI。**所有的日本题目都提供题目、数据、题解和标程**。  
+官网地址：<http://www.hsin.hr/coci/>  
+（有时候英文版的更新会延迟，克罗地亚语版本：<http://www.hsin.hr/honi/>）
 
-#### 1. 预赛（予選）
+难度跨度很大的比赛，大约是从普及 - $\sim$ 省选 -。以往 COCI 所有的题目均提供题目、数据、题解和标程，然而从 2017 年底之后，COCI 的题解和标程就断更了（不是没有英语版翻译，而是连克罗地亚语的版本都没有）。
 
-每年参加预赛的选手大约有 1000 人。每年的预赛只有一天，3 小时 5 题。难度大约为 普及 - 到 普及 T4- ，考试范围大约为 普及 + 。  
-显然预赛题都挺水的，所以我不会把预赛题传至 LibreOJ。  
-预赛题只有日文版。如果你想在线测试，你可以在 AtCoder 提交，例如 [JOI 2016/2017 预赛](https://joi2017yo.contest.atcoder.jp/)。对于之前的年份，网址是类似的。  
-有点麻烦的是，网址中的年份与实际年份差一年。例如 JOI 2016/2017 预选的比赛时间在 2016 年底，然而网址上是 2017。  
-**预赛、决赛、春训营的题目、题解、标程，都只有日语**。
+洛谷、BZOJ 和 LibreOJ 都有少量的 COCI 题目。
 
-#### 2. 决赛（本選）
+### 日本：JOI
 
-每年有 60~90 位选手参加决赛。一部分选手从预赛脱颖而出，另一部分是从去年的春令营空降而来。  
-与预赛一样，每年的决赛只有一天（与预赛不同，正式比赛前有练习赛），4 小时 5 题。 难度大约为 普及 到 提高 + ，考试范围大约为 提高。  
-**自 2016/2017 赛季起，JOI 决赛同时提供日语与英语题目，还有场外同步赛。**以前的题目只有日语。  
-赛后，如果你想在线测试，你可以在 LibreOJ 提交。Planet6174 正在翻译近年的决赛题，目前上传了近三年的决赛题（比心心）
-你也可以选择在 AtCoder 提交，例如 [JOI 2016/2017 决赛](https://joi2017ho.contest.atcoder.jp/)。决赛网址中的年份与实际年份相同，不用像预赛那样麻烦。  
-题外话：上面的那位日本选手说，JOI 决赛包吃包住包路费，**国家补贴不花选手钱**，相比之下，NOI 系列比赛就显得 [手动和谐] 了。
+官网地址：<https://www.ioi-jp.org/>  
+日本信息学奥赛（日本情報オリンピック）一般简称为 JOI。JOI 所有的题目都提供题目、数据、题解和标程。近两年的 JOI 决赛和春训营提供了英语题面，但并没有英语题解。历年的 JOI Open 都提供了英语版题面和题解。绝大部分 JOI 题可以左转 AtCoder 提交。
 
-#### 3. 春训营（春季トレーニング合宿 / JOI Spring Camp / JOISC）
+JOI 的流程：
 
-每年有 14~20 位选手进入春训营。春训营中的竞赛共有 4 天（外加一天练习赛），每天 5 小时 3 题。  
-考试范围大约为 **提高 + 到 省选 -**，难度大约为 **省选**（本蒟蒻很菜，大佬们觉得它是啥难度啊）。春训营总分前四的选手将代表日本参加 IOI。  
-**自 2016/2017 赛季起，JOI 春训营的题目同时提供日语与英语。**（有没有场外同步赛啊？本蒟蒻没找到啊）以前的题目只有日语。  
-翻译…… 坑填了一半。你现在要提交的话可以去 AtCoder ，例如 [JOI 春训营 2017](https://joisc2017.contest.atcoder.jp/)。  
-本蒟蒻做的感觉是大多是思维难度高，代码能力要求并不算高。另外，数据结构最难只考到树状数组和线段树。至于平衡树，考察内容保证 set 之类的容器可做而没必要手写 Treap/Splay。不过其中很多题用高级数据结构做会更快。
+- 预赛（予選）
+- 决赛（本選 / JOI Final）
+- 春训营（春季トレーニング合宿 / JOI Spring Camp / JOISC）
+- 公开赛（通信教育 / JOI Open Contest）
 
-#### 4. 公开赛（通信教育 / JOI Open Contest）
+目前 LibreOJ 和 BZOJ 有近些年的 JOI Final、JOISC 和 JOI Open 的题目。UOJ 有部分 JOISC 2017 的题目。
+JOI Final 的难度在提高 - $\sim$ 提高 + 左右。JOISC 和 JOI Open 的题目的难度在提高 $\sim$ NOI - 不等。
 
-通信教育的汉语翻译差不多是” 信息学 “或者” 資訊科 “的意思。春训营结束后，公开赛是给 IOI 日本队的选手练兵的，与日本队的选拔无关。  
-JOI 公开赛是在线竞赛，实行完整的 IOI 赛制，可以实时提交，分数取多次提交中的最高分 Blahblahblah  
-**JOI 公开赛的题目、题解都同时提供日语和英语。**  
-然而，公开赛的题目并没有在线提交的地方（也可能是没找到？）。
+### 台湾地区：資訊奧林匹亞競賽
 
-### 三、俄罗斯：олимпиадная информатика
+台湾地区把 OI 中的 informatics 翻译成 “资讯” 而非大陆通用的翻译 “信息”。  
+台湾地区的选手如果想去参加 IOI，需要经过这几场比赛的洗礼：  
 
-[官网](http://inf-olymp.ru/) \| [在线提交地址](https://contest.yandex.ru/roiarchive/) \| [能下 Data & Solution 的真官网？](http://neerc.ifmo.ru/school/archive/index.html)（感谢 @Chiaki 提供的连接）  
-一般简称为 ROI。
+- 區域資訊學科能力競賽
+- 全國資訊學科能力競賽
+- 資訊研習營（TOI）
 
-### 四、其他
+### 俄罗斯：ROI
 
-**韩国：한국 정보 올림 피아드**
+俄罗斯信息学奥赛（олимпиадная информатика）一般简称为 ROI。  
+官网：<http://neerc.ifmo.ru/school/archive/index.html>  
+在线提交地址：<https://contest.yandex.ru/roiarchive/>  
+一般简称为 ROI。流程：
 
-[官网地址](https://www.digitalculture.or.kr/koi/) \| [试题地址](https://www.digitalculture.or.kr/koi/selectOlymPiadDissentList.do) \| [在线提交地址](https://www.acmicpc.net/)  
-一般简称为 KOI。
+- 市级比赛（Municipal stage / Муниципальный этап）
+- 地区级比赛（Regional Stage / Региональный этап）
+- 决赛（Final Stage / Заключительный этап）
 
-**加拿大：Canadian Computing Competition (CCC) and Canadian Computing Olympiad (CCO)**
-<https://cemc.math.uwaterloo.ca/contests/past_contests.html#ccc>
+你可能已经在 Codeforces 上见过了一些 ROI 题。目前 LibreOJ 有近两年的 ROI 决赛题（包括翻译）。
 
-**德国：BWINF: Bundesweit Informatiknachwuchs fördern**
-<https://www.bwinf.de/>
+### 加拿大：CCC & CCO
 
-**印度：INOI**
-<https://www.iarcs.org.in/inoi/archives.php>  
+CCC: Canadian Computing Competition  
+CCO: Canadian Computing Olympiad  
+官网地址：<https://cemc.math.uwaterloo.ca/contests/past_contests.html#ccc>  
+CCC 提交地址：<https://dmoj.ca/problems/?category=4>  
+CCO 提交地址：<https://dmoj.ca/problems/?category=24>  
+CCC 在 DMOJ 有官方 (?) 题解。  
+CCC Junior / Senior 贴近 NOIP 普及组 / 提高组难度。CCO 想要拿到金牌可能得有 NOI 银的水平。
 
-**捷克：Matematická olympiáda – kategorie P（它把 OI 划分到了 MO 里……）**
-<http://mo.mff.cuni.cz/p/archiv.html>
+### 法国与澳大利亚：FARIO
 
-**罗马尼亚：Olimpiada Nationala de Informatica**
-<http://olimpiada.info/>
+提交地址：<http://orac.amt.edu.au/cgi-bin/train/hub.pl>
 
-**英国：British Informatics Olympiad**
-<http://www.olympiad.org.uk/>
+FARIO 的题目与 NOI 的难度旗鼓相当。
 
 ## 其它大洲级 OI 竞赛
 
 ### BalticOI
 
-| 年份   | 地址                                                                                                                                                                                                                                                                                                 | 题面      | 数据      | 题解      |
-| ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------- | ------- |
-| 2018 | <https://boi2018.progolymp.se/tasks/>                                                                                                                                                                                                                                                              | $√$     | $√$     | $√$     |
-| 2017 | <http://www.boi2017.org/>                                                                                                                                                                                                                                                                          | $√$     | ×       | ×       |
-| 2016 | <https://www.cs.helsinki.fi/group/boi2016/tasks.shtml>                                                                                                                                                                                                                                             | $√$     | $√$     | $√$（见下） |
-| 2015 | <http://www.boi2015.mimuw.edu.pl/305_Tasks>                                                                                                                                                                                                                                                        | $√$     | $√$     | $√$（见下） |
-| 2014 | <http://www.boi2014.lmio.lt/tasks.html>                                                                                                                                                                                                                                                            | $√$     | $√$     | ×       |
-| 2013 | <http://boi2013.informatik-olympiade.de/?page_id=169#tasks>                                                                                                                                                                                                                                        | $√$     | $√$     | $√$     |
-| 2012 | <http://www.boi2012.lv/tasks>                                                                                                                                                                                                                                                                      | $√$     | $√$     | $√$     |
-| 2011 | <http://www.boi2011.dk/>                                                                                                                                                                                                                                                                           | $√$（见下） | $√$     | $√$     |
-| 2010 | <http://kodu.ut.ee/~ahto/boi/2010/?item=boi.tasks.0> <br> <http://kodu.ut.ee/~ahto/boi/2010/?item=boi.tasks.1> <br> <http://kodu.ut.ee/~ahto/boi/2010/?item=boi.tasks.2> <br> <http://kodu.ut.ee/~ahto/boi/2010/?item=boi.tasks.tests> <br> <http://kodu.ut.ee/~ahto/boi/2010/?item=boi.tasks.sol> | $√$     | $√$     | $√$     |
-| 2009 | <http://www.csc.kth.se/contest/boi/tasks.php>                                                                                                                                                                                                                                                      | $√$     | $√$     | $√$     |
-| 2008 | <http://b08.oi.edu.pl/>                                                                                                                                                                                                                                                                            | $√$     | $√$     | ×       |
-| 2007 | <http://www.boi2007.de/en/tasks>                                                                                                                                                                                                                                                                   | $√$     | $√$     | $√$     |
-| 2006 | <https://www.cs.helsinki.fi/group/boi2006/>                                                                                                                                                                                                                                                        | $√$     | $√$     | ×       |
-| 2005 | <http://ims.mii.lt/olimp/?lang=lt&sk=baltijos&id=320410>                                                                                                                                                                                                                                           | $√$     | $√$     | ×       |
-| 2004 | <http://www.boi2004.lv/tasks.htm>                                                                                                                                                                                                                                                                  | $√$     | $√$（见下） | $√$（见下） |
-| 2003 | <http://kodu.ut.ee/~ahto/boi/2003/?item=boi.tasks.0> <br> <http://kodu.ut.ee/~ahto/boi/2003/?item=boi.tasks.1> <br> <http://kodu.ut.ee/~ahto/boi/2003/?item=boi.tasks.2> <br> <http://kodu.ut.ee/~ahto/boi/2003/?item=boi.tasks.tests>                                                             | $√$     | $√$     | $√$（见下） |
-| 2002 | <http://ims.mii.lt/olimp/senas/english/boi2002/tasks.htm>                                                                                                                                                                                                                                          | $√$     | $√$     | $√$     |
-| 2001 | <http://ims.mii.lt/olimp/?lang=lt&sk=baltijos&id=320480>                                                                                                                                                                                                                                           | $√$     | $√$     | $√$     |
-| 2000 | <http://ingforum.haninge.kth.se/BOI00/boi00.html>                                                                                                                                                                                                                                                  | $√$     | $√$     | $√$     |
-
-1995 ~ 2004 年的 BalticOI 题面、数据、题解都可以在 <http://ims.mii.lt/olimp/uzdav/boi_ar/> 下载  
-1995 ~ 2016 年：<http://www.lmio.mii.vu.lt/?p=viewarticle&id=292>
+BalticOI 面向的是波罗的海周边各国。BalticOI 2018 的参赛国有立陶宛、波兰、爱沙尼亚、芬兰等 9 国。
+除了 2017 年，BalticOI 每年都公开题面、测试数据和题解。然而 BalticOI 没有一个固定的官网，每年的主办方都会新建一个网站…… 关于历年的官网地址，Planet6174 整理出了一个[帖子](https://loj.ac/article/416)。
+目前 LibreOJ 有近十年的 BalticOI 题。
 
 ### BalkanOI
 
-| 年份   | 地址                                                                                                                | 题面                    | 数据  | 题解  |
-| ---- | ----------------------------------------------------------------------------------------------------------------- | --------------------- | --- | --- |
-| 2018 | <http://boi2018.ro/>                                                                                              | $√$                   | $√$ | $√$ |
-| 2017 | <del><http://www.boi2017.md/></del> <br> <https://www.acmicpc.net/category/detail/1776>                           | $√$                   | ×   | ×   |
-| 2016 | <http://boi2016.euc.ac.cy/welcome-to-boi-2016/competition/tasks/>                                                 | $√$                   | $√$ | $√$ |
-| 2015 | <del><http://www.boi2015.uni-ruse.bg/competition/tasks></del> <br> <https://www.acmicpc.net/category/detail/1443> | $√$                   | ×   | ×   |
-| 2014 | <http://boi2014.tubitak.gov.tr/index.html%3Fq=tasks.html>                                                         | $√$                   | ×   | ×   |
-| 2013 | <https://github.com/f2lk6wf90d/boi2013-tasks>                                                                     | $√$                   | ×   | ×   |
-| 2012 | <https://boi2012.dms.rs/>                                                                                         | $√$（官网没有 BZOJ 却齐全 ?!） | $√$ | ?   |
-| 2011 | <http://www.boi2011.ro/boi2011/?pagina=probleme>                                                                  | $√$                   | $√$ | $√$ |
-| 2010 | ?                                                                                                                 | ?                     | ?   | ?   |
-| 2009 | <http://www.cs.org.mk/boi2009/tasks.html>                                                                         | $√$                   | $√$ | $√$ |
-| 2008 | <http://www.cs.org.mk/boi2008/tasks.htm>                                                                          | $√$                   | ×   | ×   |
-| 2007 | <http://boi2007.edu.md/> （Web Archive 有存档）                                                                        | $√$                   | $√$ | $√$ |
-| 2006 | <http://www.boi2006.com/> （Web Archive 有存档）                                                                       | $√$                   | ×   | ×   |
-| 2005 | <https://www.acmicpc.net/category/detail/841>                                                                     | $√$                   | ?   | ?   |
-| 2004 | <http://www.boi2004-plovdiv.org/> <br> <https://www.acmicpc.net/category/detail/1122>                             | ?（韩国人有两题）             | ?   | ?   |
-| 2003 | <http://students.info.uaic.ro/~boi2003/explore.php>                                                               | ?（BZOJ 有一题）           | ?   | ?   |
-| 2002 | ?                                                                                                                 | ?（BZOJ 有一题）           | ?   | ?   |
-| 2001 | <http://www.mash.gov.al/ministria_eng/events/boi2001/homea.html> （Web Archive 有存档）                                | $√$                   | ×   | ×   |
-| 2000 | <http://ii.edu.mk/boi2000> （Web Archive 有存档）                                                                      | $√$                   | $√$ | ×   |
-| 1999 | <http://www.cs.uoi.gr/~stavros/boi99/boi99.htm>                                                                   | $√$                   | ×   | ×   |
-| 1998 | <http://www.ioi99.org.tr/BOI/index.html> （Web Archive 有存档）                                                        | $√$                   | $√$ | ×   |
-| 1997 | <https://www.acmicpc.net/problem/7093> （韩国人真可怕，这么全）                                                               | $√$                   | ×   | ×   |
-
-### European Junior Olympiad in Informatics
-
-<https://ejoi.org/>
-
-### Junior Balkan Olmpiad in Informatics
-
-<https://mendo.club/Training.do?cid=2>
+BalkanOI 面向巴尔干地区周边各国。BalkanOI 2018 的参赛国有罗马尼亚、希腊、保加利亚、塞尔维亚等 12 国。
+BalkanOI 只有某几年公开题面、测试数据和题解，官网地址参见上面那个帖子。
 
 ### CEOI
 
-| 年份        | 地址                                                                       | 题面  | 数据  | 题解  |
-| --------- | ------------------------------------------------------------------------ | --- | --- | --- |
-| 2011~2017 | <http://ceoi.inf.elte.hu/tasks-archive/>                                 | $√$ | $√$ | $√$ |
-| 2010      | <http://ceoi2010.ics.upjs.sk/Contest/Tasks>                              | $√$ | $√$ | $√$ |
-| 2009      | <http://www.ceoi2009.ro/view_page.php?id=24>                             | $√$ | $√$ | $√$ |
-| 2008      | <http://www.ceoi2008.de/en/contest>                                      | $√$ | $√$ | $√$ |
-| 2007      | <https://www.fi.muni.cz/about/events-and-contests/ceoi/>                 | $√$ | $√$ | $√$ |
-| 2006      | <http://www.hsin.hr/ceoi2006/>                                           | $√$ | $√$ | $√$ |
-| 2005      | <http://ceoi.inf.elte.hu/ceoi2005/>                                      | $√$ | $√$ | $√$ |
-| 2004      | <https://www.oi.edu.pl/old/php/ceoi2004.php?module=show&file=tasks>      | $√$ | $√$ | $√$ |
-| 2003      | <http://www.ceoi2003.de/www/index.php?action=file&cathegory=competition> | $√$ | $√$ | $√$ |
-| 2002      | <http://www.ics.upjs.sk/ceoi/Documents.html>                             | $√$ | $√$ | $√$ |
-| 2001      | <http://ceoi.inf.elte.hu/ceoi2001/> （Web Archive 有存档，下同）                 | $√$ | ×   | ×   |
-| 2000      | <http://ceoi.ubbcluj.ro/internet/down.html>                              | $√$ | $√$ | ×   |
-| 1999      | <http://www.fi.muni.cz/ceoi/>                                            | $√$ | $√$ | $√$ |
-| 1998      | <http://pubwww.srce.hr/hsin/ceoi98/>                                     | $√$ | $√$ | $√$ |
-| 1997      | <http://www.oi.edu.pl/ceoi97/>                                           | $√$ | ?   | ?   |
-| 1996      | ?                                                                        | ?   | ?   | ?   |
-| 1995      | <http://ceoi.inf.elte.hu/95/>                                            | $√$ | ×   | ×   |
-| 1994      | <http://ceoi.inf.elte.hu/94/>                                            | $√$ | ×   | ×   |
+CEOI 2018 的参赛国与上面两个比赛有部分重叠，包括波兰、罗马尼亚、格鲁吉亚、克罗地亚等国。
 
-### Nordic Olympiads in Informatic
+CEOI 每年都公开题面、测试数据和题解，官网地址参见上面那个帖子。
 
-<https://github.com/nordicolympiad>
+在国内 OJ 中，BZOJ 的 CEOI 题相对最齐。
+
+### Nordic Olympiads in Informatics (NOI)
+
+官网地址：<http://nordic.progolymp.se>
+
+近两年才开始举办的比赛，面向北欧各国。
