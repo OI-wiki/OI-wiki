@@ -4,7 +4,7 @@ Split-Merge Treap
 
 ### 对于无旋 Treap 的提示
 
-- 看楼上的 Treap 词条
+看楼上的 [Treap 词条](/ds/treap/)
 
 **OI 常用的可持久化平衡树** 一般就是 **可持久化无旋转 Treap** 所以推荐首先学习楼上的 **无旋转 Treap**
 
