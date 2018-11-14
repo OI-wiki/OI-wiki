@@ -223,15 +223,15 @@ xfce4-session
 ## 0x08 参考资料
 这里列举了文中提到的链接，以便查阅。
 
-1. [NOIP 标准评测系统及相关问题, smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html)         
-2. [WSL, 百度百科](https://baike.baidu.com/item/wsl/20359185)        
-3. [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97)         
-4. [Windows Subsystem for Linux Documentation, MSDN](https://docs.microsoft.com/zh-cn/windows/wsl/about)      
-5. [NOI 系列活动标准竞赛环境, 2016-11-08, NOI 官网](http://www.noi.cn/2016-11-08-03-42-01)      
-6. [购买 Ubuntu, Microsoft Store](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6)      
-7. [Ubuntu 镜像使用帮助, 清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)      
-8. [Ubuntu 的 man 命令帮助如何设置中文版, Frank 看庐山, 2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523)      
-9. [Xming X Server for Windows, SourceForge](https://sourceforge.net/projects/xming/)       
+1.  [NOIP 标准评测系统及相关问题, smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html)         
+2.  [WSL, 百度百科](https://baike.baidu.com/item/wsl/20359185)        
+3.  [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97)         
+4.  [Windows Subsystem for Linux Documentation, MSDN](https://docs.microsoft.com/zh-cn/windows/wsl/about)      
+5.  [NOI 系列活动标准竞赛环境, 2016-11-08, NOI 官网](http://www.noi.cn/2016-11-08-03-42-01)      
+6.  [购买 Ubuntu, Microsoft Store](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6)      
+7.  [Ubuntu 镜像使用帮助, 清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)      
+8.  [Ubuntu 的 man 命令帮助如何设置中文版, Frank 看庐山, 2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523)      
+9.  [Xming X Server for Windows, SourceForge](https://sourceforge.net/projects/xming/)       
 10. [Sudo, Wikipedia](https://zh.wikipedia.org/wiki/Sudo)       
 
 ## 0x09 延伸内容

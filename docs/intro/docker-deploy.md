@@ -21,9 +21,9 @@ docker pull ccr.ccs.tencentyun.com/oi-wiki/oi-wiki
 docker run -d -it [image]
 ```
 
-- 设置 `[image]` （必须）以设置镜像，如从 Docker Hub 拉取的则为 `24oi/oi-wiki` ，DaoCloud Hub 拉取的则为 `daocloud.io/sirius/oi-wiki`
-- 设置 `--name [name]` （默认空，若想查看容器 id，则输入 `docker ps` ，若设置请替换 `[name]` 为自定义的容器名字）以设置容器名字
-- 设置 `-p [port]:8000` （必须）（不写该语句则默认为不暴露端口，若设置请替换 `[port]` 为主机端口）以映射容器端口至主机端口（可以在主机使用 `http://127.0.0.1:[port]` 访问 **OI Wiki** ）
+-   设置 `[image]` （必须）以设置镜像，如从 Docker Hub 拉取的则为 `24oi/oi-wiki` ，DaoCloud Hub 拉取的则为 `daocloud.io/sirius/oi-wiki`
+-   设置 `--name [name]` （默认空，若想查看容器 id，则输入 `docker ps` ，若设置请替换 `[name]` 为自定义的容器名字）以设置容器名字
+-   设置 `-p [port]:8000` （必须）（不写该语句则默认为不暴露端口，若设置请替换 `[port]` 为主机端口）以映射容器端口至主机端口（可以在主机使用 `http://127.0.0.1:[port]` 访问 **OI Wiki** ）
 
 ## 使用
 

@@ -178,8 +178,8 @@ for (int i = 0, l = 0, r = -1; i < n; i++) {
 
 ## 练习题目
 
-- [UVA #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470)
-- [P4555 \[国家集训队\] 最长双回文串](https://www.luogu.org/problemnew/show/P4555)
+-   [UVA #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470)
+-   [P4555 \[国家集训队\] 最长双回文串](https://www.luogu.org/problemnew/show/P4555)
 
 * * *
 
