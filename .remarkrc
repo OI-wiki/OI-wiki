@@ -1,6 +1,6 @@
 {
   "settings": {
-    "listItemIndent": "mixed"
+    "listItemIndent": "tab"
   },
   "plugins": [
     "remark-pangu",
