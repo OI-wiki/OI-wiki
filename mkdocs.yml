@@ -15,7 +15,7 @@ copyright: 'Copyright &copy; 2016 - 2018 OI Wiki Team'
 
 # Contents
 nav:
-  - Getting Started: index.md
+  - HOME: index.md
   - 简介:
     - OI 赛制简介: intro/mode.md
     - 学习资源: intro/resources.md
