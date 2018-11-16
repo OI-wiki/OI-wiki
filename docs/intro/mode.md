@@ -113,7 +113,7 @@ JOI 的流程：
 
 目前 LibreOJ 和 BZOJ 有近些年的 JOI Final、JOISC 和 JOI Open 的题目。UOJ 有部分 JOISC 2017 的题目。
 JOI Final 的难度在提高 - $\sim$ 提高 + 左右。JOISC 和 JOI Open 的题目的难度在提高 $\sim$ NOI - 不等。
-你可以在 JOI 官网或者 AtCoder 上找到更多的 JOI 题 ( 日文题面 )
+你可以在 JOI 官网或者 AtCoder 上找到更多的 JOI 题 (日文题面)
 
 ### 台湾地区：資訊奧林匹亞競賽
 
