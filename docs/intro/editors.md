@@ -532,8 +532,8 @@ inoremap <RIGHT> a<Bs>
     但在 Vim (甚至终端) 里, 你可以用 ctrl+h 来彻底代替 Backspace。  
 -   回车键使用同样频繁, 但同样不挪一挪手就得伸长小拇指。  
     幸运的是在 Vim 和终端中, ctrl+m 完全等效与回车。  
-- 在绝大多数的情况下, 不要去按右边的 ctrl, shift, 用左边的代替。  
-- 最好不用 F1 到 F12, 如果要映射, 用 Leader 开头的自定义快捷键。  
+-   在绝大多数的情况下, 不要去按右边的 ctrl, shift, 用左边的代替。  
+-   最好不用 F1 到 F12, 如果要映射, 用 Leader 开头的自定义快捷键。  
 
 ## Visual Studio Code - 微软家的编辑器
 
@@ -542,7 +542,7 @@ inoremap <RIGHT> a<Bs>
 Visual Studio Code (以下简称 VS Code) 是一个免费、开源、跨平台的由微软开发的程序编辑器。它是用 Typescript 编写的，并且采用 Electron 架构。官网是 <https://code.visualstudio.com/> 。它带有对 JavaScript、TypeScript 和 Node.js 的内置支持，并为其他语言（如 C++、Cype、Java、Python、PHP、GO）提供了丰富的扩展生态系统。
 对比 Sublime 和 Atom，它有以下优点：
 
-- 快速
-- 美观
-- 社区生态好
-- ……
+-   快速
+-   美观
+-   社区生态好
+-   ……

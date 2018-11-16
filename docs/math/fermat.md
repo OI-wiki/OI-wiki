@@ -46,7 +46,7 @@ $$
 
     所以 $p^r\equiv p^{r+s}\pmod m$，这里 $s=\phi(m)$
 
-3. 推论：$p^b\equiv p^{r+(b-r) \mod \phi(m)}\pmod m$ 
+3.  推论：$p^b\equiv p^{r+(b-r) \mod \phi(m)}\pmod m$ 
 
 4.  又由于 $m=p^rm'$，所以 $\phi(m) \ge  \phi(p^r)=p^{r-1}(p-1) \ge r$ 
 
