@@ -68,7 +68,7 @@ git clone https://git.coding.net/scaffrey/OI-wiki.git
 
 ### 离线版
 
-可以使用 `gh-pages` 分支的内容
+可以使用 `gh-pages` 分支的内容（CODING 上面的分支名叫 `coding-pages`）
 
 ```bash
 git clone https://git.coding.net/scaffrey/OI-wiki.git -b coding-pages
