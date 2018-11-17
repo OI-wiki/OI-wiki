@@ -30,7 +30,7 @@
 
 首先介绍一下链式前向星，本质上是用单向链表实现的邻接表。
 
-形式上是一个结构体：`struct edge {edge *pre, int to;} *head[N], edge[M]'`
+形式上是一个结构体：`struct edge {edge *pre, int to;} *head[N], edge[M]`
 
 这个结构广泛出现于算法竞赛选手的代码中，编写简洁而且对于大多数题目效率足够高。
 
