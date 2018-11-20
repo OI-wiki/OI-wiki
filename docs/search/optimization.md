@@ -32,9 +32,8 @@ void dfs(传入数值) {
 **模板：**
 
 ```c++
-int g[MAXN] ；  //定义记忆化数组
-    int ans = 最坏情况,
-        now;
+int g[MAXN];  //定义记忆化数组
+int ans = 最坏情况, now;
 void dfs f(传入数值) {
   if (g[规模] != 无效数值) return;  //或记录解，视情况而定
   if (到达目的地) ans = 从当前解与已有解中选最优;  //输出解，视情况而定
