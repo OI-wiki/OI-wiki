@@ -32,7 +32,7 @@ void dfs(传入数值) {
 **模板：**
 
 ```c++
-int g[MAXN] ；  //定义记忆化数组
+int g[MAXN];  //定义记忆化数组
     int ans = 最坏情况,
         now;
 void dfs f(传入数值) {
