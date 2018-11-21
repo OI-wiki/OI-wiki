@@ -121,23 +121,23 @@ LCA（Least Common Ancestors）表示最近公共祖先。
 
 对于一棵有根树，设 $LCA(u,v)=x$，则 $x$ 必须满足以下条件
 
-- $x$ 是 u 的祖先或 u
+-   $x$ 是 u 的祖先或 u
 
-- $x$ 是 v 的祖先或 v
+-   $x$ 是 v 的祖先或 v
 
-- $x$ 是在满足上面两个条件下深度最大的
+-   $x$ 是在满足上面两个条件下深度最大的
 
 显然，在一棵有根树内，对于任意两个节点有且仅有一个 $LCA$
 
 解决这个问题，我们通常有以下方法
 
-- 树上倍增（本文主要讲解此方法）
+-   树上倍增（本文主要讲解此方法）
 
-- 转化为 RMQ 问题
+-   转化为 RMQ 问题
 
-- 树链剖分
+-   树链剖分
 
-- Tarjan
+-   Tarjan
 
 ### 暴力做法
 
@@ -162,18 +162,16 @@ LCA（Least Common Ancestors）表示最近公共祖先。
 一遍 DFS 计算即可
 
 ```cpp
-void dfs(int u,int father)
-{
-	dep[u]=dep[father]+1; //dep[x] 表示 x 的深度，在查询时会用到
-	for (int i=0;i<=19;i++)
-	    f[u][i+1]=f[f[u][i]][i];  // 预处理
-	for (int i=first[u];i;i=next[i])  // 链式前向星
-	{
-	    int v=go[i];
-		if (v==father) continue;
-		f[v][0]=u;  //f[v][0] 表示 v 的父亲
-        dfs(v,u);	
-	}
+void dfs(int u, int father) {
+  dep[u] = dep[father] + 1;  // dep[x] 表示 x 的深度，在查询时会用到
+  for (int i = 0; i <= 19; i++) f[u][i + 1] = f[f[u][i]][i];  // 预处理
+  for (int i = first[u]; i; i = next[i])                      // 链式前向星
+  {
+    int v = go[i];
+    if (v == father) continue;
+    f[v][0] = u;  // f[v][0] 表示 v 的父亲
+    dfs(v, u);
+  }
 }
 ```
 
@@ -183,27 +181,26 @@ void dfs(int u,int father)
 
 只不过在跳的过程中从一步一步跳变成了 ** 一次跳多步 **。可以具体分为以下几步
 
-1. 让 $x$ 的深度比 $y$ 大（深度在预处理时已经求出）
+1.  让 $x$ 的深度比 $y$ 大（深度在预处理时已经求出）
 
-2. 将两个节点跳到同一深度。在此处我们使用二进制思想，依次尝试向上跳 $2^i,2^{i-1}\cdots 2^1,2^0$。如果发现则 $x$ 跳到了 $y$ 就说明 $LCA(x,y)=y$
+2.  将两个节点跳到同一深度。在此处我们使用二进制思想，依次尝试向上跳 $2^i,2^{i-1}\cdots 2^1,2^0$。如果发现则 $x$ 跳到了 $y$ 就说明 $LCA(x,y)=y$
 
-3. 一起往上跳。依然使用二进制思想，让他们一起往上跳 $2^i,2^{i-1}\cdots 2^1,2^0$. 如果 $f[x][i]!=f[y][i]$，说明 $x$ 和 $y$ 还未相遇。最后，$x$ 和 $y$ 必定只差一步相遇。这时 $x$ 的父亲即 $f[x][0]$ 就是他们的 LCA
+3.  一起往上跳。依然使用二进制思想，让他们一起往上跳 $2^i,2^{i-1}\cdots 2^1,2^0$. 如果 $f[x][i]!=f[y][i]$，说明 $x$ 和 $y$ 还未相遇。最后，$x$ 和 $y$ 必定只差一步相遇。这时 $x$ 的父亲即 $f[x][0]$ 就是他们的 LCA
 
 ```cpp
-int lca(int x,int y)
-{
-	if (dep[x]<dep[y]) swap(x,y);  // 步骤 1
-	for (int i=20;i>=0;i--)  // 步骤 2
-	{
-		if (dep[f[x][i]]>=dep[y]) x=f[x][i];
-		if (x==y) return x;
-	}
-	for (int i=20;i>=0;i--)  // 步骤 3
-	    if (f[x][i]!=f[y][i])
-	    {
-	    	x=f[x][i];y=f[y][i];
-		}
-    return f[x][0];
+int lca(int x, int y) {
+  if (dep[x] < dep[y]) swap(x, y);  // 步骤 1
+  for (int i = 20; i >= 0; i--)     // 步骤 2
+  {
+    if (dep[f[x][i]] >= dep[y]) x = f[x][i];
+    if (x == y) return x;
+  }
+  for (int i = 20; i >= 0; i--)  // 步骤 3
+    if (f[x][i] != f[y][i]) {
+      x = f[x][i];
+      y = f[y][i];
+    }
+  return f[x][0];
 }
 ```
 
