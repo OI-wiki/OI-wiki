@@ -19,7 +19,7 @@
 
 5.  多组数据未清空数组。
 
-6.  输出`double`要使用`%f`而非`%lf`。
+6.  输出`double`要使用 `%f` 而非 `%lf`。 参考 [链接](https://stackoverflow.com/questions/4264127/correct-format-specifier-for-double-in-printf)
 
 7.  分治未判边界导致死递归。
 
@@ -31,3 +31,5 @@
 
 11. 不正确地使用宏。
     `#define min(x,y) x<y?x:y`　如果这里的 `x` 或 `y` 是表达式，会被重复计算
+    
+12. 一些 OJ 上选择 `c++` 和 `g++` 提交得到的结果可能会不一样
