@@ -114,9 +114,9 @@ $$
 
 反演结论：$\displaystyle [gcd(i,j)=1] \Leftrightarrow\sum_{d\mid\gcd(i,j)}\mu(d)$
 
-- **直接推导**：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$，也就是式子的值是 $1$，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值：$0$
+-   **直接推导**：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$，也就是式子的值是 $1$，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值：$0$
 
-- **利用 $\varepsilon$ 函数**：根据上一结论，$[\gcd(i,j)=1]\Rightarrow \varepsilon(\gcd(i,j))$，将 $\varepsilon$ 展开即可。
+-   **利用 $\varepsilon$ 函数**：根据上一结论，$[\gcd(i,j)=1]\Rightarrow \varepsilon(\gcd(i,j))$，将 $\varepsilon$ 展开即可。
 
 ### 线性筛
 
@@ -126,18 +126,18 @@ $$
 
 ```cpp
 void getMu() {
-	mu[1]=1;
-	for(int i=2;i<=n;++i) {
-		if(!flg[i]) p[++tot]=i,mu[i]=-1;
-		for(int j=1;j<=tot&&i*p[j]<=n;++j) {
-			flg[i*p[j]]=1;
-			if(i%p[j]==0) {
-				mu[i*p[j]]=0;
-				break;
-			}
-			mu[i*p[j]]=-mu[i];
-		}
-	}
+  mu[1] = 1;
+  for (int i = 2; i <= n; ++i) {
+    if (!flg[i]) p[++tot] = i, mu[i] = -1;
+    for (int j = 1; j <= tot && i * p[j] <= n; ++j) {
+      flg[i * p[j]] = 1;
+      if (i % p[j] == 0) {
+        mu[i * p[j]] = 0;
+        break;
+      }
+      mu[i * p[j]] = -mu[i];
+    }
+  }
 }
 ```
 
@@ -191,7 +191,7 @@ $$
 
 ### 证明
 
-- **暴力计算**：
+-   **暴力计算**：
 
 $$
 \sum_{d\mid n}\mu(d)f(\frac{n}{d})=\sum_{d\mid n}\mu(d)\sum_{k\mid \frac{n}{d}}g(k)=\sum_{k\mid n}g(k)\sum_{d\mid \frac{n}{k}}\mu(d)=g(n)
@@ -199,7 +199,7 @@ $$
 
 用 $\displaystyle\sum_{d\mid n}g(d)$ 来替换 $f(\dfrac{n}{d})$，再变换求和顺序。最后一步转为的依据：$\displaystyle\sum_{d\mid n}\mu(d)=[n=1]$，因此在 $\dfrac{n}{k}=1$ 时第二个和式的值才为 $1$。此时 $n=k$，故原式等价于 $\displaystyle\sum_{k\mid n}[n=k]\cdot g(k)=g(n)$
 
-- **运用卷积**：
+-   **运用卷积**：
 
 原问题为：已知 $f=g*1$，证明 $g=f*\mu$
 
@@ -261,46 +261,48 @@ $$
 **代码**：
 
 ```cpp
-#include <cstdio>
 #include <algorithm>
-const int N=50000;
-int mu[N+5],p[N+5];
-bool flg[N+5];
+#include <cstdio>
+const int N = 50000;
+int mu[N + 5], p[N + 5];
+bool flg[N + 5];
 void init() {
-	int tot=0;
-	mu[1]=1;
-	for(int i=2;i<=N;++i) {
-		if(!flg[i]) {
-			p[++tot]=i;
-			mu[i]=-1;
-		}
-		for(int j=1;j<=tot&&i*p[j]<=N;++j) {
-			flg[i*p[j]]=1;
-			if(i%p[j]==0) {
-				mu[i*p[j]]=0;
-				break;
-			}
-			mu[i*p[j]]=-mu[i];
-		}
-	}
-	for(int i=1;i<=N;++i) mu[i]+=mu[i-1];
+  int tot = 0;
+  mu[1] = 1;
+  for (int i = 2; i <= N; ++i) {
+    if (!flg[i]) {
+      p[++tot] = i;
+      mu[i] = -1;
+    }
+    for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
+      flg[i * p[j]] = 1;
+      if (i % p[j] == 0) {
+        mu[i * p[j]] = 0;
+        break;
+      }
+      mu[i * p[j]] = -mu[i];
+    }
+  }
+  for (int i = 1; i <= N; ++i) mu[i] += mu[i - 1];
 }
-int solve(int n,int m) {
-	int res=0;
-	for(int i=1,j;i<=std::min(n,m);i=j+1) {
-		j=std::min(n/(n/i),m/(m/i));
-		res+=(mu[j]-mu[i-1])*(n/i)*(m/i);
-	}
-	return res;
+int solve(int n, int m) {
+  int res = 0;
+  for (int i = 1, j; i <= std::min(n, m); i = j + 1) {
+    j = std::min(n / (n / i), m / (m / i));
+    res += (mu[j] - mu[i - 1]) * (n / i) * (m / i);
+  }
+  return res;
 }
 int main() {
-	int T,a,b,c,d,k;
-	init();
-	for(scanf("%d",&T);T;--T) {
-		scanf("%d%d%d%d%d",&a,&b,&c,&d,&k);
-		printf("%d\n",solve(b/k,d/k)-solve(b/k,(c-1)/k)-solve((a-1)/k,d/k)+solve((a-1)/k,(c-1)/k));
-	}
-	return 0;
+  int T, a, b, c, d, k;
+  init();
+  for (scanf("%d", &T); T; --T) {
+    scanf("%d%d%d%d%d", &a, &b, &c, &d, &k);
+    printf("%d\n", solve(b / k, d / k) - solve(b / k, (c - 1) / k) -
+                       solve((a - 1) / k, d / k) +
+                       solve((a - 1) / k, (c - 1) / k));
+  }
+  return 0;
 }
 ```
 
@@ -352,39 +354,39 @@ $$
 
 ```cpp
 #include <cstdio>
-const int N=1000000;
-int tot,p[N+5],phi[N+5];
-long long ans[N+5];
-bool flg[N+5];
+const int N = 1000000;
+int tot, p[N + 5], phi[N + 5];
+long long ans[N + 5];
+bool flg[N + 5];
 
 void solve() {
-    phi[1]=1;
-    for(int i=2;i<=N;++i) {
-        if(!flg[i]) p[++tot]=i,phi[i]=i-1;
-        for(int j=1;j<=tot&&i*p[j]<=N;++j) {
-            flg[i*p[j]]=1;
-            if(i%p[j]==0) {
-                phi[i*p[j]]=phi[i]*p[j];
-                break;
-            }
-            phi[i*p[j]]=phi[i]*(p[j]-1);
-        }
+  phi[1] = 1;
+  for (int i = 2; i <= N; ++i) {
+    if (!flg[i]) p[++tot] = i, phi[i] = i - 1;
+    for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
+      flg[i * p[j]] = 1;
+      if (i % p[j] == 0) {
+        phi[i * p[j]] = phi[i] * p[j];
+        break;
+      }
+      phi[i * p[j]] = phi[i] * (p[j] - 1);
     }
-    for(int i=1;i<=N;++i) {
-        for(int j=1;i*j<=N;++j) {
-            ans[i*j]+=1LL*j*phi[j]/2;
-        }
+  }
+  for (int i = 1; i <= N; ++i) {
+    for (int j = 1; i * j <= N; ++j) {
+      ans[i * j] += 1LL * j * phi[j] / 2;
     }
-    for(int i=1;i<=N;++i) ans[i]=1LL*i*ans[i]+i;
+  }
+  for (int i = 1; i <= N; ++i) ans[i] = 1LL * i * ans[i] + i;
 }
 int main() {
-    int T,n;
-    solve();
-    for(scanf("%d",&T);T;--T) {
-        scanf("%d",&n);
-        printf("%lld\n",ans[n]);
-    }
-    return 0;
+  int T, n;
+  solve();
+  for (scanf("%d", &T); T; --T) {
+    scanf("%d", &n);
+    printf("%lld\n", ans[n]);
+  }
+  return 0;
 }
 ```
 
@@ -463,51 +465,58 @@ $$
 **代码**：
 
 ```cpp
-#include <cstdio>
 #include <algorithm>
+#include <cstdio>
 using std::min;
 
-const int N=1e7;
-const int mod=20101009;
-int n,m,mu[N+5],p[N/10+5],sum[N+5];
-bool flg[N+5];
+const int N = 1e7;
+const int mod = 20101009;
+int n, m, mu[N + 5], p[N / 10 + 5], sum[N + 5];
+bool flg[N + 5];
 
 void init() {
-	mu[1]=1;
-	int tot=0,k=min(n,m);
-	for(int i=2;i<=k;++i) {
-		if(!flg[i]) p[++tot]=i,mu[i]=-1;
-		for(int j=1;j<=tot&&i*p[j]<=k;++j) {
-			flg[i*p[j]]=1;
-			if(i%p[j]==0) {mu[i*p[j]]=0;break;}
-			mu[i*p[j]]=-mu[i];
-		}
-	}
-	for(int i=1;i<=k;++i) sum[i]=(sum[i-1]+1LL*i*i%mod*(mu[i]+mod))%mod;
+  mu[1] = 1;
+  int tot = 0, k = min(n, m);
+  for (int i = 2; i <= k; ++i) {
+    if (!flg[i]) p[++tot] = i, mu[i] = -1;
+    for (int j = 1; j <= tot && i * p[j] <= k; ++j) {
+      flg[i * p[j]] = 1;
+      if (i % p[j] == 0) {
+        mu[i * p[j]] = 0;
+        break;
+      }
+      mu[i * p[j]] = -mu[i];
+    }
+  }
+  for (int i = 1; i <= k; ++i)
+    sum[i] = (sum[i - 1] + 1LL * i * i % mod * (mu[i] + mod)) % mod;
 }
-int Sum(int x,int y) {
-	return (1LL*x*(x+1)/2%mod)*(1LL*y*(y+1)/2%mod)%mod;
+int Sum(int x, int y) {
+  return (1LL * x * (x + 1) / 2 % mod) * (1LL * y * (y + 1) / 2 % mod) % mod;
 }
-int func(int x,int y) {
-	int res=0;
-	for(int i=1,j;i<=min(x,y);i=j+1) {
-		j=min(x/(x/i),y/(y/i));
-		res=(res+1LL*(sum[j]-sum[i-1]+mod)*Sum(x/i,y/i)%mod)%mod;
-	}
-	return res;
+int func(int x, int y) {
+  int res = 0;
+  for (int i = 1, j; i <= min(x, y); i = j + 1) {
+    j = min(x / (x / i), y / (y / i));
+    res = (res + 1LL * (sum[j] - sum[i - 1] + mod) * Sum(x / i, y / i) % mod) %
+          mod;
+  }
+  return res;
 }
-int solve(int x,int y) {
-	int res=0;
-	for(int i=1,j;i<=min(x,y);i=j+1) {
-		j=min(x/(x/i),y/(y/i));
-		res=(res+1LL*(j-i+1)*(i+j)/2%mod*func(x/i,y/i)%mod)%mod;
-	}
-	return res;
+int solve(int x, int y) {
+  int res = 0;
+  for (int i = 1, j; i <= min(x, y); i = j + 1) {
+    j = min(x / (x / i), y / (y / i));
+    res = (res +
+           1LL * (j - i + 1) * (i + j) / 2 % mod * func(x / i, y / i) % mod) %
+          mod;
+  }
+  return res;
 }
 int main() {
-	scanf("%d%d",&n,&m);
-	init();
-	printf("%d\n",solve(n,m));
+  scanf("%d%d", &n, &m);
+  init();
+  printf("%d\n", solve(n, m));
 }
 ```
 

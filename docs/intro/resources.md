@@ -2,69 +2,93 @@
 
 在线测试平台又称 Online Judging System，一般用来刷题、组织比赛，也有的会提供博客功能方便选手交流。
 
-- [51Nod](https://www.51nod.com/) (有很多好的数学题和思维题)
-- [AtCoder](https://atcoder.jp/) (日本的一个 OJ，类似 CodeForces 但是也会放 JOI 的题)
-- [BZOJ](https://www.lydsy.com/JudgeOnline/) (常用 OJ，优质的题巨多)
-- [CodeChef](https://codechef.com/)
-- [Codeforces](https://codeforces.com/) (俄罗斯 OJ，一个用比赛积累起来的 OJ)
-- [CodeVS](http://www.codevs.cn/)
-- [FZUOJ](http://acm.fzu.edu.cn/)
-- [Hackerrank](https://www.hackerrank.com/)
-- [HDU OJ](http://acm.hdu.edu.cn/) (杭电的 OJ，多校训练的题目放在这里)
-- [hihoCoder](https://hihocoder.com/)
-- [JoyOI](http://www.joyoi.cn/)
-- [Judge Duck Online](https://duck.ac/) (松松松的 OJ，精确到 $\mu s$ )
-- [Kattis](https://open.kattis.com/)
-- [LeetCode China](https://leetcode-cn.com/)
-- [LeetCode](https://leetcode.com/)
-- [LibreOJ](https://loj.ac/)
-- [Luogu](http://www.luogu.org/) (常用 OJ，现代 OJ 支持发布比赛等很多功能，评测机快)
-- [NowCoder](https://www.nowcoder.com/)
-- [OpenJudge](http://openjudge.cn/) (曾经是 NOI 的官方 OJ，后来好像中山纪念写了一个新的？)
-- [POJ](http://poj.org/) (PKU OJ，很多英文题， 有一些基础题和好题)
-- [Topcoder](https://www.topcoder.com/) (比赛也很多)
-- [UOJ](http://uoj.ac/) (VFK 的 OJ，多原创比赛题和 CCF/THU 题 难度较高)
-- [Ural](http://acm.timus.ru/)
-- [UVA](https://uva.onlinejudge.org/) (做 lrj 的书怎么可能不知道这个 OJ)
-- [Vijos](https://vijos.org/) (开源的界面好看的 OJ)
-- [Virtual Judge](https://vjudge.net/) (可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ)
-- [ZOJ](http://acm.zju.edu.cn/onlinejudge/)
+### 国内
+
+-   [51Nod](https://www.51nod.com/) (有很多好的数学题和思维题)
+-   [BZOJ](https://www.lydsy.com/JudgeOnline/) (优质的题巨多)
+-   [CodeVS](http://www.codevs.cn/)
+-   [FZUOJ](http://acm.fzu.edu.cn/) (福州大学)
+-   [HDU OJ](http://acm.hdu.edu.cn/) (杭电的 OJ，多校训练的题目放在这里)
+-   [hihoCoder](https://hihocoder.com/)
+-   [计蒜客](https://www.jisuanke.com/)
+-   [Judge Duck Online](https://duck.ac/) (松松松的 OJ，精确到 $\mu s$)
+-   [JoyOI](http://www.joyoi.cn/) (原 Tyvj)
+-   [LibreOJ](https://loj.ac/)
+-   [洛谷](http://www.luogu.org/) (常用 OJ，现代 OJ 支持发布比赛等很多功能，评测机快)
+-   [牛客网](https://www.nowcoder.com/)
+-   [OpenJudge](http://openjudge.cn/)
+-   [POJ](http://poj.org/) (PKU OJ，国内历史最悠久的 OJ 之一，很多英文题，有一些基础题和好题)
+-   [Universal OJ](http://uoj.ac/) (VFK 的 OJ，多原创比赛题和 CCF/THU 题 难度较高)
+-   [Vijos](https://vijos.org/)
+-   [Virtual Judge](https://vjudge.net/) (可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ)
+-   [ZOJ](http://acm.zju.edu.cn/onlinejudge/) (浙大)
+
+### 国外
+
+-   [AtCoder](https://atcoder.jp/) (日本的一个 OJ，类似 Codeforces 但是也会放 JOI 的题)
+-   [CodeChef](https://codechef.com/) (印度 OJ，周期性有比赛)
+-   [Codeforces](https://codeforces.com/) (俄罗斯 OJ，有很多比赛)
+-   [CS Academy](https://csacademy.com/)
+-   [DMOJ](https://dmoj.ca/) (加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛)
+-   [HackerRank](https://www.hackerrank.com/) (有很多比赛)
+-   [Kattis](https://open.kattis.com/)
+-   [LeetCode](https://leetcode.com/) (有中文分站：[LeetCode China](https://leetcode-cn.com/))
+-   [SPOJ](http://www.spoj.com)
+-   [Topcoder](https://www.topcoder.com/) (有很多比赛)
+-   [Ural](http://acm.timus.ru/)
+-   [UVa](https://uva.onlinejudge.org/) (做 lrj 的书怎么可能不知道这个 OJ)
+-   [Yandex](https://contest.yandex.ru/) (存档了近几年的全俄罗斯信息学奥赛)
+-   [Light OJ](http://lightoj.com)（一个快挂了的 OJ，`www`域名无法访问，请使用[根域名](http://lightoj.com)访问）
 
 ## 教程
 
-- [Codeforces 上网友整理的一份教程合集](http://codeforces.com/blog/entry/57282)
-- [英文版 E-Maxx 算法教程](https://cp-algorithms.com/)
-- [演算法笔记](http://www.csie.ntnu.edu.tw/~u91029/) 台湾师范大学总结的教程
-- [algo.is](https://algo.is/t-414-aflv-competitive-programming-course-2016/)
-- [CS 97SI: Introduction to Programming Contests](http://web.stanford.edu/class/cs97si/) 斯坦福的一门课
-- [如何为 ACM-ICPC 做准备？ - geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)
+-   [OI Wiki](https://oi-wiki.org)
+-   [Codeforces 上网友整理的一份教程合集](http://codeforces.com/blog/entry/57282)
+-   [英文版 E-Maxx 算法教程](https://cp-algorithms.com/)
+-   [演算法笔记](http://www.csie.ntnu.edu.tw/~u91029/) 台湾师范大学总结的教程
+-   [algo.is](https://algo.is/t-414-aflv-competitive-programming-course-2016/)
+-   [CS 97SI: Introduction to Programming Contests](http://web.stanford.edu/class/cs97si/) 斯坦福的一门课
+-   [如何为 ACM-ICPC 做准备？ - geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)
 
 ## 书籍
 
-- 信息学奥赛一本通 (初学者向)
-- 算法竞赛入门经典 (人称紫书)
-- 算法竞赛入门经典——训练指南 (人称大白)
-- 算法艺术与信息学竞赛 (人称黑书)
-- 算法竞赛进阶指南
-- 具体数学
-- [Competitive Programmer's Handbook](https://cses.fi/book/index.html)
-- 算法导论
-- 啊哈算法
-- 挑战程序设计竞赛全套 (通俗易懂)
-- 算法概论 (提纲挚领，但内容较少)
+-   信息学奥赛一本通 (初学者向)
+-   算法竞赛入门经典 (人称紫书)
+    -   [第一版 配套资源仓库 (mirror)](https://github.com/sukhoeing/aoapc-book/)
+    -   [第二版 配套资源仓库](https://github.com/aoapc-book/aoapc-bac2nd)
+    -   [第二版 习题选解](https://github.com/sukhoeing/aoapc-bac2nd-keys)
+-   算法竞赛入门经典——训练指南 (人称大白)
+-   算法艺术与信息学竞赛 (人称黑书)
+-   算法竞赛进阶指南
+    -   [配套资源仓库](https://github.com/lydrainbowcat/tedukuri)
+-   具体数学
+-   [Competitive Programmer's Handbook](https://cses.fi/book/index.html)
+-   算法导论
+    -   [答案解析 (English)](https://github.com/walkccc/CLRS)
+-   啊哈算法
+-   挑战程序设计竞赛全套 (通俗易懂)
+-   算法概论 (提纲挚领，但内容较少)
+
+-   [Legend-K 的数据结构与算法的笔记](http://www.legend-k.com/Algorithm/Algorithm.pdf)
 
 ## 工具
 
-- [经典算法的可视化结果 - VisuAlgo](https://visualgo.net/en)
-- [OEIS 整数数列搜索引擎](https://oeis.org)
-- [Ubuntu Pastebin，可以用来分享代码](https://paste.ubuntu.com)
-- [uDebug 提供一些 OJ 题目的调试辅助](https://www.udebug.com)
-- [提供 C++ 内语法的查询等 - cppreference.com](https://zh.cppreference.com/w/)
-- [图论画板](https://csacademy.com/app/graph_editor/) (同时推荐 GraphViz)
-- [LaTeX 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm)
+-   [经典算法的可视化结果 - VisuAlgo](https://visualgo.net/en)
+-   [算法可视化 - USF](https://www.cs.usfca.edu/~galles/visualization/)
+-   [OEIS 整数数列搜索引擎](https://oeis.org)
+-   [Ubuntu Pastebin，可以用来分享代码](https://paste.ubuntu.com)
+-   [uDebug 提供一些 OJ 题目的调试辅助](https://www.udebug.com)
+-   [提供 C++ 内语法的查询等 - cppreference.com](https://zh.cppreference.com/w/)
+-   [图论画板](https://csacademy.com/app/graph_editor/) (同时推荐 GraphViz)
+-   [LaTeX 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm)
+-   [Godbolt - 在浏览器中查看编译后代码块对应的汇编语句](https://godbolt.org/)
+-   [《100 个 gdb 小技巧》](https://github.com/hellogcc/100-gdb-tips)
+-   [截图转 LaTeX - Mathpix](https://mathpix.com/)
 
 ## 题集
 
-- [POJ 训练计划](http://blog.csdn.net/skywalkert/article/details/46594541)
-- [USACO](http://train.usaco.org/usacogate)
-- [洛谷试炼场](https://www.luogu.org/training/mainpage)
+-   [POJ 训练计划](http://blog.csdn.net/skywalkert/article/details/46594541)
+-   [USACO](http://train.usaco.org/usacogate)
+-   [洛谷试炼场](https://www.luogu.org/training/mainpage)
+-   [-Morass- 贴在 Codeforces 上的一份题单](https://codeforces.com/blog/entry/55274)
+-   [北京大学暑期课课件例题](https://vjudge.net/article/446)

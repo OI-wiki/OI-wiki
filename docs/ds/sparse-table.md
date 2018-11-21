@@ -30,7 +30,7 @@ $ST$ 表基于倍增思想，可以做到 $O(n\log n)$ 预处理，$O(1)$ 回答
 
 显然，$f[i][0]=a[i]$
 
-状态转移方程：$f[i][j]=max(f[i][j-1],f[i+2^{j-1}][j-1])$
+根据定义式，写出状态转移方程：$f[i][j]=\max(f[i][j-1],f[i+2^{j-1}][j-1])$
 
 我们可以这么理解：将区间 $[i,i+2^j-1]$ 分成相同的两部分
 
@@ -55,54 +55,59 @@ $f[x][s]$  $f[y-2^s+1][s]$
 [ST 表模板题](https://www.luogu.org/problemnew/show/P3865)
 
 ```cpp
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-const int logn=21;
-const int maxn=2000001;
-long long a[maxn],f[maxn][logn],Logn[maxn];
-inline int read()
-{
-    char c=getchar();int x=0,f=1;
-    while(c<'0'||c>'9'){if(c=='-')f=-1;c=getchar();}
-    while(c>='0'&&c<='9'){x=x*10+c-'0';c=getchar();}
-    return x*f;
+const int logn = 21;
+const int maxn = 2000001;
+long long a[maxn], f[maxn][logn], Logn[maxn];
+inline int read() {
+  char c = getchar();
+  int x = 0, f = 1;
+  while (c < '0' || c > '9') {
+    if (c == '-') f = -1;
+    c = getchar();
+  }
+  while (c >= '0' && c <= '9') {
+    x = x * 10 + c - '0';
+    c = getchar();
+  }
+  return x * f;
 }
-void pre() 
-{
-    Logn[1]=0;
-    Logn[2]=1;
-    for(int i=3;i<=maxn;i++)
-    {
-        Logn[i]=Logn[i/2]+1;
-    }
+void pre() {
+  Logn[1] = 0;
+  Logn[2] = 1;
+  for (int i = 3; i <= maxn; i++) {
+    Logn[i] = Logn[i / 2] + 1;
+  }
 }
-int main()
-{
-    int n=read(),m=read();
-    for (int i=1;i<=m;i++)
-        f[i][0]=read();
-    pre();
-    for (int j=1;j<=logn;j++)
-        for (int i=1;i+(1<<j)-1<=n;i++)
-            f[i][j]=max(f[i][j-1],f[i+(1<<(j-1))][j-1]);
-    for (int i=1;i<=m;i++)
-    {
-        int x=read(),y=read();
-        int s=Logn[y-x+1];
-        printf("%d\n",max(f[x][s],f[y-(1<<s)+1][s]));   
-    }
-    return 0;
+int main() {
+  int n = read(), m = read();
+  for (int i = 1; i <= m; i++) f[i][0] = read();
+  pre();
+  for (int j = 1; j <= logn; j++)
+    for (int i = 1; i + (1 << j) - 1 <= n; i++)
+      f[i][j] = max(f[i][j - 1], f[i + (1 << (j - 1))][j - 1]);
+  for (int i = 1; i <= m; i++) {
+    int x = read(), y = read();
+    int s = Logn[y - x + 1];
+    printf("%d\n", max(f[x][s], f[y - (1 << s) + 1][s]));
+  }
+  return 0;
 }
 ```
 
 ### 注意点
 
-1. 输入输出数据一般很多，建议开启输入输出优化
-2.  因为 C++ `log()` 函数很慢，建议预处理 $log$
+1.  输入输出数据一般很多，建议开启输入输出优化
 
-    $log[i]=log[i/2]+1$ 
+2.  每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议如下预处理
 
-    初始值 $log[1]=0$
+$$
+\left\{\begin{aligned}
+Logn[1] &=0, \\
+Logn\left[i\right] &=Logn[\frac{i}{2}] + 1.
+\end{aligned}\right.
+$$
 
 ### 总结
 

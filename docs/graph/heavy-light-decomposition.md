@@ -4,9 +4,9 @@
 
 一棵静态（形状固定的）树，要求进行几种操作：
 
-1. 修改 **单个节点 / 树上两点之间的路径 / 一个节点的子树上** 的所有点的值。
+1.  修改 **单个节点 / 树上两点之间的路径 / 一个节点的子树上** 的所有点的值。
 
-2. 查询 **单个节点 / 树上两点之间的路径 / 一个节点的子树上** 节点的值的 **和 / 极值 / 其他（具有较强的合并性）** 。
+2.  查询 **单个节点 / 树上两点之间的路径 / 一个节点的子树上** 节点的值的 **和 / 极值 / 其他（具有较强的合并性）** 。
 
 如果树的形态是一条链，那么我们只需要维护一个线段树，修改或查询线段树的值。
 
@@ -20,11 +20,11 @@
 
 题目大意：对一棵有 $n$ 个节点的静态树，进行三种操作共 $q$ 次：
 
-1. 修改单个节点的值；
+1.  修改单个节点的值；
 
-2. 查询 $u$ 到 $v$ 的路径上的最大值；
+2.  查询 $u$ 到 $v$ 的路径上的最大值；
 
-3. 查询 $u$ 到 $v$ 的路径上的权值和。
+3.  查询 $u$ 到 $v$ 的路径上的权值和。
 
 题目保证 $1\le n\le 30000,0\le q\le 200000$
 
@@ -36,7 +36,7 @@ $dep(x)$ 表示节点 $x$ 在树上的深度。
 
 $siz(x)$ 表示节点 $x$ 的子树的节点个数。
 
-$son(x)$ 表示节点 $x$ 的 **重儿子**，及所有儿子中子树大小最大的一个。
+$son(x)$ 表示节点 $x$ 的 **重儿子**，即所有儿子中子树大小最大的一个。
 
 定义 **重边** 表示连接两个重儿子的边。
 
@@ -53,25 +53,27 @@ $rnk(x)$ 表示时间戳所对应的节点编号，有 $rnk(tid(x))=x$。
 给出一种代码实现：
 
 ```cpp
-void dfs1(int o,int fat)
-{
-	son[o]=-1;siz[o]=1;
-	for(int j=h[o];j;j=nxt[j])if(!dep[p[j]])
-	{
-		dep[p[j]]=dep[o]+1;
-		fa[p[j]]=o;
-		dfs1(p[j],o);
-		siz[o]+=siz[p[j]];
-		if(son[o]==-1||siz[p[j]]>siz[son[o]])son[o]=p[j];
-	}
+void dfs1(int o, int fat) {
+  son[o] = -1;
+  siz[o] = 1;
+  for (int j = h[o]; j; j = nxt[j])
+    if (!dep[p[j]]) {
+      dep[p[j]] = dep[o] + 1;
+      fa[p[j]] = o;
+      dfs1(p[j], o);
+      siz[o] += siz[p[j]];
+      if (son[o] == -1 || siz[p[j]] > siz[son[o]]) son[o] = p[j];
+    }
 }
-void dfs2(int o,int t)
-{
-	top[o]=t;
-	cnt++;tid[o]=cnt;rnk[cnt]=o;
-	if(son[o]==-1)return;
-	dfs2(son[o],t);
-	for(int j=h[o];j;j=nxt[j])if(p[j]!=son[o]&&p[j]!=fa[o])dfs2(p[j],p[j]);
+void dfs2(int o, int t) {
+  top[o] = t;
+  cnt++;
+  tid[o] = cnt;
+  rnk[cnt] = o;
+  if (son[o] == -1) return;
+  dfs2(son[o], t);
+  for (int j = h[o]; j; j = nxt[j])
+    if (p[j] != son[o] && p[j] != fa[o]) dfs2(p[j], p[j]);
 }
 ```
 
@@ -81,11 +83,11 @@ void dfs2(int o,int t)
 
 根据题面以及以上的性质，你的线段树需要维护三种操作：
 
-1. 单点修改；
+1.  单点修改；
 
-2. 区间查询最大值；
+2.  区间查询最大值；
 
-3. 区间查询和。
+3.  区间查询和。
 
 单点修改很容易实现。
 
@@ -101,22 +103,24 @@ void dfs2(int o,int t)
 
 ```cpp
 // st 是线段树结构体
-int querymax(int x,int y)
-{
-	int ret=-inf,fx=top[x],fy=top[y];
-	while(fx!=fy)
-	{
-		if(dep[fx]>=dep[fy])ret=max(ret,st.query1(1,1,n,tid[fx],tid[x])),x=fa[fx];
-		else ret=max(ret,st.query1(1,1,n,tid[fy],tid[y])),y=fa[fy];
-		fx=top[x];fy=top[y];
-	}
-	if(x!=y)
-	{
-		if(tid[x]<tid[y])ret=max(ret,st.query1(1,1,n,tid[x],tid[y]));
-		else ret=max(ret,st.query1(1,1,n,tid[y],tid[x]));
-	}
-	else ret=max(ret,st.query1(1,1,n,tid[x],tid[y]));
-	return ret;
+int querymax(int x, int y) {
+  int ret = -inf, fx = top[x], fy = top[y];
+  while (fx != fy) {
+    if (dep[fx] >= dep[fy])
+      ret = max(ret, st.query1(1, 1, n, tid[fx], tid[x])), x = fa[fx];
+    else
+      ret = max(ret, st.query1(1, 1, n, tid[fy], tid[y])), y = fa[fy];
+    fx = top[x];
+    fy = top[y];
+  }
+  if (x != y) {
+    if (tid[x] < tid[y])
+      ret = max(ret, st.query1(1, 1, n, tid[x], tid[y]));
+    else
+      ret = max(ret, st.query1(1, 1, n, tid[y], tid[x]));
+  } else
+    ret = max(ret, st.query1(1, 1, n, tid[x], tid[y]));
+  return ret;
 }
 ```
 
@@ -125,124 +129,143 @@ int querymax(int x,int y)
 鉴于树链剖分的题目细节较多，容易打错，给出一种代码实现，以供参考。
 
 ```cpp
-#include<cstdio>
-#include<cstring>
-#include<algorithm>
-#define lc o<<1
-#define rc o<<1|1
+#include <algorithm>
+#include <cstdio>
+#include <cstring>
+#define lc o << 1
+#define rc o << 1 | 1
 using namespace std;
-const int maxn=60010;
-const int inf=2e9;
-int n,a,b,w[maxn],q,u,v;
-int cur,h[maxn],nxt[maxn],p[maxn];
-int siz[maxn],top[maxn],son[maxn],dep[maxn],fa[maxn],tid[maxn],rnk[maxn],cnt;
+const int maxn = 60010;
+const int inf = 2e9;
+int n, a, b, w[maxn], q, u, v;
+int cur, h[maxn], nxt[maxn], p[maxn];
+int siz[maxn], top[maxn], son[maxn], dep[maxn], fa[maxn], tid[maxn], rnk[maxn],
+    cnt;
 char op[10];
-inline void add_edge(int x,int y){cur++;nxt[cur]=h[x];h[x]=cur;p[cur]=y;}
-struct SegTree
-{
-	int sum[maxn*4],maxx[maxn*4];
-	void build(int o,int l,int r)
-	{
-		if(l==r){sum[o]=maxx[o]=w[rnk[l]];return;}
-		int mid=(l+r)>>1;
-		build(lc,l,mid);
-		build(rc,mid+1,r);
-		sum[o]=sum[lc]+sum[rc];
-		maxx[o]=max(maxx[lc],maxx[rc]);
-	}
-	int query1(int o,int l,int r,int ql,int qr)//max
-	{
-		if(l>qr||r<ql)return -inf;
-		if(ql<=l&&r<=qr)return maxx[o];
-		int mid=(l+r)>>1;
-		return max(query1(lc,l,mid,ql,qr),query1(rc,mid+1,r,ql,qr));
-	}
-	int query2(int o,int l,int r,int ql,int qr)//sum
-	{
-		if(l>qr||r<ql)return 0;
-		if(ql<=l&&r<=qr)return sum[o];
-		int mid=(l+r)>>1;
-		return query2(lc,l,mid,ql,qr)+query2(rc,mid+1,r,ql,qr);
-	}
-	void update(int o,int l,int r,int x,int t)
-	{
-		if(l==r){maxx[o]=sum[o]=t;return;}
-		int mid=(l+r)>>1;
-		if(x<=mid)update(lc,l,mid,x,t);
-		else update(rc,mid+1,r,x,t);
-		sum[o]=sum[lc]+sum[rc];
-		maxx[o]=max(maxx[lc],maxx[rc]);
-	}
-}st;
-void dfs1(int o,int fat)
-{
-	son[o]=-1;siz[o]=1;
-	for(int j=h[o];j;j=nxt[j])if(!dep[p[j]])
-	{
-		dep[p[j]]=dep[o]+1;
-		fa[p[j]]=o;
-		dfs1(p[j],o);
-		siz[o]+=siz[p[j]];
-		if(son[o]==-1||siz[p[j]]>siz[son[o]])son[o]=p[j];
-	}
+inline void add_edge(int x, int y) {
+  cur++;
+  nxt[cur] = h[x];
+  h[x] = cur;
+  p[cur] = y;
 }
-void dfs2(int o,int t)
-{
-	top[o]=t;cnt++;tid[o]=cnt;rnk[cnt]=o;
-	if(son[o]==-1)return;
-	dfs2(son[o],t);
-	for(int j=h[o];j;j=nxt[j])if(p[j]!=son[o]&&p[j]!=fa[o])dfs2(p[j],p[j]);
+struct SegTree {
+  int sum[maxn * 4], maxx[maxn * 4];
+  void build(int o, int l, int r) {
+    if (l == r) {
+      sum[o] = maxx[o] = w[rnk[l]];
+      return;
+    }
+    int mid = (l + r) >> 1;
+    build(lc, l, mid);
+    build(rc, mid + 1, r);
+    sum[o] = sum[lc] + sum[rc];
+    maxx[o] = max(maxx[lc], maxx[rc]);
+  }
+  int query1(int o, int l, int r, int ql, int qr)  // max
+  {
+    if (l > qr || r < ql) return -inf;
+    if (ql <= l && r <= qr) return maxx[o];
+    int mid = (l + r) >> 1;
+    return max(query1(lc, l, mid, ql, qr), query1(rc, mid + 1, r, ql, qr));
+  }
+  int query2(int o, int l, int r, int ql, int qr)  // sum
+  {
+    if (l > qr || r < ql) return 0;
+    if (ql <= l && r <= qr) return sum[o];
+    int mid = (l + r) >> 1;
+    return query2(lc, l, mid, ql, qr) + query2(rc, mid + 1, r, ql, qr);
+  }
+  void update(int o, int l, int r, int x, int t) {
+    if (l == r) {
+      maxx[o] = sum[o] = t;
+      return;
+    }
+    int mid = (l + r) >> 1;
+    if (x <= mid)
+      update(lc, l, mid, x, t);
+    else
+      update(rc, mid + 1, r, x, t);
+    sum[o] = sum[lc] + sum[rc];
+    maxx[o] = max(maxx[lc], maxx[rc]);
+  }
+} st;
+void dfs1(int o, int fat) {
+  son[o] = -1;
+  siz[o] = 1;
+  for (int j = h[o]; j; j = nxt[j])
+    if (!dep[p[j]]) {
+      dep[p[j]] = dep[o] + 1;
+      fa[p[j]] = o;
+      dfs1(p[j], o);
+      siz[o] += siz[p[j]];
+      if (son[o] == -1 || siz[p[j]] > siz[son[o]]) son[o] = p[j];
+    }
 }
-int querymax(int x,int y)
-{
-	int ret=-inf,fx=top[x],fy=top[y];
-	while(fx!=fy)
-	{
-		if(dep[fx]>=dep[fy])ret=max(ret,st.query1(1,1,n,tid[fx],tid[x])),x=fa[fx];
-		else ret=max(ret,st.query1(1,1,n,tid[fy],tid[y])),y=fa[fy];
-		fx=top[x];fy=top[y];
-	}
-	if(x!=y)
-	{
-		if(tid[x]<tid[y])ret=max(ret,st.query1(1,1,n,tid[x],tid[y]));
-		else ret=max(ret,st.query1(1,1,n,tid[y],tid[x]));
-	}
-	else ret=max(ret,st.query1(1,1,n,tid[x],tid[y]));
-	return ret;
+void dfs2(int o, int t) {
+  top[o] = t;
+  cnt++;
+  tid[o] = cnt;
+  rnk[cnt] = o;
+  if (son[o] == -1) return;
+  dfs2(son[o], t);
+  for (int j = h[o]; j; j = nxt[j])
+    if (p[j] != son[o] && p[j] != fa[o]) dfs2(p[j], p[j]);
 }
-int querysum(int x,int y)
-{
-	int ret=0,fx=top[x],fy=top[y];
-	while(fx!=fy)
-	{
-		if(dep[fx]>=dep[fy])ret+=st.query2(1,1,n,tid[fx],tid[x]),x=fa[fx];
-		else ret+=st.query2(1,1,n,tid[fy],tid[y]),y=fa[fy];
-		fx=top[x];fy=top[y];
-	}
-	if(x!=y)
-	{
-		if(tid[x]<tid[y])ret+=st.query2(1,1,n,tid[x],tid[y]);
-		else ret+=st.query2(1,1,n,tid[y],tid[x]);
-	}
-	else ret+=st.query2(1,1,n,tid[x],tid[y]);
-	return ret;
+int querymax(int x, int y) {
+  int ret = -inf, fx = top[x], fy = top[y];
+  while (fx != fy) {
+    if (dep[fx] >= dep[fy])
+      ret = max(ret, st.query1(1, 1, n, tid[fx], tid[x])), x = fa[fx];
+    else
+      ret = max(ret, st.query1(1, 1, n, tid[fy], tid[y])), y = fa[fy];
+    fx = top[x];
+    fy = top[y];
+  }
+  if (x != y) {
+    if (tid[x] < tid[y])
+      ret = max(ret, st.query1(1, 1, n, tid[x], tid[y]));
+    else
+      ret = max(ret, st.query1(1, 1, n, tid[y], tid[x]));
+  } else
+    ret = max(ret, st.query1(1, 1, n, tid[x], tid[y]));
+  return ret;
 }
-int main()
-{
-	scanf("%d",&n);
-	for(int i=1;i<n;i++)scanf("%d%d",&a,&b),add_edge(a,b),add_edge(b,a);
-	for(int i=1;i<=n;i++)scanf("%d",w+i);
-	dep[1]=1;dfs1(1,-1);dfs2(1,1);
-	st.build(1,1,n);
-	scanf("%d",&q);
-	while(q--)
-	{
-		scanf("%s%d%d",op,&u,&v);
-		if(!strcmp(op,"CHANGE"))st.update(1,1,n,tid[u],v);
-		if(!strcmp(op,"QMAX"))printf("%d\n",querymax(u,v));
-		if(!strcmp(op,"QSUM"))printf("%d\n",querysum(u,v));
-	}
-	return 0;
+int querysum(int x, int y) {
+  int ret = 0, fx = top[x], fy = top[y];
+  while (fx != fy) {
+    if (dep[fx] >= dep[fy])
+      ret += st.query2(1, 1, n, tid[fx], tid[x]), x = fa[fx];
+    else
+      ret += st.query2(1, 1, n, tid[fy], tid[y]), y = fa[fy];
+    fx = top[x];
+    fy = top[y];
+  }
+  if (x != y) {
+    if (tid[x] < tid[y])
+      ret += st.query2(1, 1, n, tid[x], tid[y]);
+    else
+      ret += st.query2(1, 1, n, tid[y], tid[x]);
+  } else
+    ret += st.query2(1, 1, n, tid[x], tid[y]);
+  return ret;
+}
+int main() {
+  scanf("%d", &n);
+  for (int i = 1; i < n; i++)
+    scanf("%d%d", &a, &b), add_edge(a, b), add_edge(b, a);
+  for (int i = 1; i <= n; i++) scanf("%d", w + i);
+  dep[1] = 1;
+  dfs1(1, -1);
+  dfs2(1, 1);
+  st.build(1, 1, n);
+  scanf("%d", &q);
+  while (q--) {
+    scanf("%s%d%d", op, &u, &v);
+    if (!strcmp(op, "CHANGE")) st.update(1, 1, n, tid[u], v);
+    if (!strcmp(op, "QMAX")) printf("%d\n", querymax(u, v));
+    if (!strcmp(op, "QSUM")) printf("%d\n", querysum(u, v));
+  }
+  return 0;
 }
 ```
 

@@ -10,7 +10,7 @@
 
 因此我们可以说 在一个 [DAG （有向无环图）](/graph/dag) 中, 我们间图中的顶点以线性方式进行排序, 使得对于任何的顶点 $u$ 到 $v$ 的有向边  $(u,v)$  , 都可以有 $u$ 在 $v$ 的前面。
 
-还有给定一个 [DAG （有向无环图）](/graph/dag)，如果从 $i$ 到 $j$ 有边，啧认为 $j$ 依赖于 $i$。如果 $i$ 到 $j$ 有路径（$i$ 可达 $j$），则称 $j$ 间接依赖于 $i$。
+还有给定一个 [DAG （有向无环图）](/graph/dag)，如果从 $i$ 到 $j$ 有边，则认为 $j$ 依赖于 $i$。如果 $i$ 到 $j$ 有路径（$i$ 可达 $j$），则称 $j$ 间接依赖于 $i$。
 
 拓扑排序的目标是将所有节点排序，使得排在前面的节点不能依赖于排在后面的节点。
 
@@ -85,20 +85,25 @@ bool toposort() {
 
 ```c++
 // dfs 版本
-bool dfs(int u){
+bool dfs(int u) {
   c[u] = -1;
-  for(int v = 0; v <= n; v++) if(G[u][v]) {
-    if(c[v]<0) return false;
-    else if(!c[v]) dfs(v);
-  }
-  c[u] = 1; topo.push_back(u);
+  for (int v = 0; v <= n; v++)
+    if (G[u][v]) {
+      if (c[v] < 0)
+        return false;
+      else if (!c[v])
+        dfs(v);
+    }
+  c[u] = 1;
+  topo.push_back(u);
   return true;
 }
-bool toposort(){
+bool toposort() {
   topo.clear();
   memset(c, 0, sizeof(c));
-  for(int u = 0; u <= n; u++) if(!c[u])
-    if(!dfs(u)) return false;
+  for (int u = 0; u <= n; u++)
+    if (!c[u])
+      if (!dfs(u)) return false;
   reverse(topo.begin(), topo.end());
   return true;
 }
@@ -113,6 +118,6 @@ bool toposort(){
 
 ## 参考
 
-1. 离散数学及其应用. ISBN:9787111555391
-2. <https://blog.csdn.net/dm_vincent/article/details/7714519>
-3. Topological sorting, <https://en.wikipedia.org/w/index.php?title=Topological_sorting&oldid=854351542>
+1.  离散数学及其应用. ISBN:9787111555391
+2.  <https://blog.csdn.net/dm_vincent/article/details/7714519>
+3.  Topological sorting, <https://en.wikipedia.org/w/index.php?title=Topological_sorting&oldid=854351542>

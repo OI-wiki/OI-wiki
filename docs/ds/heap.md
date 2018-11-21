@@ -16,15 +16,15 @@
 
 在 NOIP 中，我们只要求一个能支持主要操作的堆就行，也就是二叉堆。
 
-- 二叉堆 _(binary heap)_
+-   二叉堆 _(binary heap)_
 
 最基础的堆，不支持 merge 和可持久化，所有操作的复杂度都是 $O(\log n)$ 的。
 
-- 二项堆 _(binomial heap)_
+-   二项堆 _(binomial heap)_
 
 支持 merge 的堆，（也能可持久化），所有操作的复杂度都是 $O(\log n)$。
 
-- Fib 堆 _(Fibonacci heap)_
+-   Fib 堆 _(Fibonacci heap)_
 
 除了不能可持久化，支持全部功能，而且除了 deletemin 以外都是均摊 $O(1)$ 的。
 
@@ -84,19 +84,19 @@
 
 ```c++
 up(x) {
-	while (x > 1 && h[x] > h[x / 2]) {
-		swap(h[x], h[x / 2]);
-		x /= 2;
-	}
+  while (x > 1 && h[x] > h[x / 2]) {
+    swap(h[x], h[x / 2]);
+    x /= 2;
+  }
 }
 down(x) {
-	while (x * 2 <= n) {
-		t = x * 2;
-		if (t + 1 <= n && h[t + 1] < h[t]) t++;
-		if (h[t] >= h[x]) break;
-		swap(h[x], h[t]);
-		x = t;
-	}
+  while (x * 2 <= n) {
+    t = x * 2;
+    if (t + 1 <= n && h[t + 1] < h[t]) t++;
+    if (h[t] >= h[x]) break;
+    swap(h[x], h[t]);
+    x = t;
+  }
 }
 ```
 

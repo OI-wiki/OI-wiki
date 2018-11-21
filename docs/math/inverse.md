@@ -1,5 +1,3 @@
-[【模板】乘法逆元](https://www.luogu.org/problemnew/show/P3811)
-
 ## 逆元简介
 
 如果一个线性同余方程 $ax \equiv 1 \pmod b$，则 $x$ 称为 $a \mod b$ 的逆元，记作 $a^{-1}$。
@@ -9,19 +7,16 @@
 ### 扩展欧几里得法：
 
 ```cpp
-void exgcd(int a,int b,int c,int &x,int &y){
-    if(a==0){
-        x=0;
-        y=0;
-        return;
-    }
-    else{
-        int tx,ty;
-        exgcd(b%a,a,tx,ty);
-        x=ty-(b/a)*tx;
-        y=tx;
-        return;
-    }
+void ex_gcd(int a, int b, int& x, int& y) {
+  if (b == 0) {
+    x = 1, y = 0;
+    return;
+  }
+  ex_gcd(b, a % b, x, y);
+  int t = x;
+  x = y;
+  y = t - a / b * y;
+  return;
 }
 ```
 
@@ -29,7 +24,7 @@ void exgcd(int a,int b,int c,int &x,int &y){
 
 ### 快速幂法：
 
-这个要运用 [费马小定理](https://oi-wiki.org/math/fermat/)：
+这个要运用 [费马小定理](/math/fermat/)：
 
 > 若 $p$ 为质数，$a$ 为正整数，且 $a$、$p$ 互质，则 $a^{p-1} \equiv 1 \pmod p$。
 
@@ -45,14 +40,15 @@ void exgcd(int a,int b,int c,int &x,int &y){
 
 ```cpp
 #define ll long long
-inline ll poW(ll a,ll b){
-    long long ans=1;
-    a%=p;
-    while (b){
-        if (b&1) ans=((ans*a)%p+p)%p;
-        a=(a*a)%p; b>>=1;
-    }
-    return ans%p;
+inline ll poW(ll a, ll b) {
+  long long ans = 1;
+  a %= p;
+  while (b) {
+    if (b & 1) ans = ((ans * a) % p + p) % p;
+    a = (a * a) % p;
+    b >>= 1;
+  }
+  return ans % p;
 }
 ```
 
@@ -75,18 +71,22 @@ $i^{-1} \equiv -(\frac{p}{i}) (p \mod i)^{-1}$；
 然后我们就可以推出逆元了，代码只有一行：
 
 ```cpp
-a[i]=-(p/i)*a[p%i];
+a[i] = -(p / i) * a[p % i];
 ```
 
 但是，有些情况下要避免出现负数，所以我们要改改代码，让它只求正整数：
 
 ```cpp
-a[i]=(p-p/i)*a[p%i]%p;
+a[i] = (p - p / i) * a[p % i] % p;
 ```
 
 这就是线性求逆元
 
 ## 逆元练习题
+
+[【模板】乘法逆元](https://www.luogu.org/problemnew/show/P3811)
+
+[同余方程](https://www.luogu.org/problemnew/show/P1082)
 
 [\[AHOI2005\] 洗牌](https://www.lydsy.com/JudgeOnline/problem.php?id=1965)
 

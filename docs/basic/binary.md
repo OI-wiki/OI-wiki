@@ -10,22 +10,25 @@
 
 ```c++
 int binary_search(int start, int end, int key) {
-  int ret = -1;       // 未搜索到数据返回-1下标  
-	int mid;
-	while (start <= end) {
-		mid = start + (end - start) / 2; //直接平均可能會溢位，所以用此算法
-		if (arr[mid] < key)
-			start = mid + 1;
-		else if (arr[mid] > key)
-			end = mid - 1;
-		else {            // 最後檢測相等是因為多數搜尋狀況不是大於要不就小於
-			ret = mid;  
+  int ret = -1;  // 未搜索到数据返回-1下标
+  int mid;
+  while (start <= end) {
+    mid = start + ((end - start) >> 1);  //直接平均可能会溢出，所以用这个算法
+    if (arr[mid] < key)
+      start = mid + 1;
+    else if (arr[mid] > key)
+      end = mid - 1;
+    else {  // 最后检测相等是因为多数搜索情况不是大于就是小于
+      ret = mid;
       break;
     }
-	}
-	return ret;     // 单一出口
+  }
+  return ret;  // 单一出口
 }
 ```
+
+??? note
+    `>> 1` 比 `/ 2` 速度快一些
 
 注意，这里的有序是广义的有序，如果一个数组中的左侧或者右侧都满足某一种条件，而另一侧都不满足这种条件，也可以看作是一种有序（如果把满足条件看做 $1$，不满足看做 $0$，至少对于这个条件的这一维度是有序的）。换言之，二分搜索法可以用来查找满足某种条件的最大（最小）的值。
 
@@ -33,9 +36,9 @@ int binary_search(int start, int end, int key) {
 
 要想使用二分搜索法来解这种「最大值最小化」的题目，需要满足以下三个条件：
 
-1. 答案在一个固定区间内；
-2. 可能查找一个符合条件的值不是很容易，但是要求能比较容易地判断某个值是否是符合条件的；
-3. 可行解对于区间满足一定的单调性。换言之，如果 $x$ 是符合条件的，那么有 $x + 1$ 或者 $x - 1$ 也符合条件。（这样下来就满足了上面提到的单调性）
+1.  答案在一个固定区间内；
+2.  可能查找一个符合条件的值不是很容易，但是要求能比较容易地判断某个值是否是符合条件的；
+3.  可行解对于区间满足一定的单调性。换言之，如果 $x$ 是符合条件的，那么有 $x + 1$ 或者 $x - 1$ 也符合条件。（这样下来就满足了上面提到的单调性）
 
 当然，最小值最大化是同理的。
 
@@ -43,17 +46,17 @@ int binary_search(int start, int end, int key) {
 
 ### STL 的二分查找
 
-补充一个小知识点， 对于一个有序的 array 你可以使用 `std::lower_bound()` 来找到第一个大于等于你的值的数， `std::upper_bound()` 来找到第一个大于你的值的数
+补充一个小知识点， 对于一个有序的 array 你可以使用 `std::lower_bound()` 来找到第一个大于等于你的值的数， `std::upper_bound()` 来找到第一个大于你的值的数。
 
 请注意，必须是有序数组，否则答案是错误的。
 
-关于具体使用方法，请参见 STL 页面（施工中）。
+关于具体使用方法，请参见 [STL 页面](/ds/stl/)。
 
 ## 三分法
 
 ```c++
-mid = (left + right) / 2;
-midmid = (mid + right) / 2; // 对右侧区间取半
+mid = left + (right - left >> 1);
+midmid = mid + (right - mid >> 1);  // 对右侧区间取半
 if (cal(mid) > cal(midmid))
   right = midmid;
 else

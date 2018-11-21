@@ -18,7 +18,7 @@ A\* 算法每次从 **优先队列** 中取出一个 $f$ 最小的，然后更�
 
 ## 例题 [八数码](https://www.luogu.org/problemnew/show/P1379)
 
-题目大意：在 $3\times 3$ 的棋盘上，摆有八个棋子，每个棋子上标有 1 至 8 的某一数字。棋盘中留有一个空格，空格用 0 来表示。空格周围的棋子可以移到空格中，这样原来的位置就会编程空格。给出一种初始布局和目标布局（为了使题目简单, 设目标状态为
+题目大意：在 $3\times 3$ 的棋盘上，摆有八个棋子，每个棋子上标有 1 至 8 的某一数字。棋盘中留有一个空格，空格用 0 来表示。空格周围的棋子可以移到空格中，这样原来的位置就会变成空格。给出一种初始布局和目标布局（为了使题目简单, 设目标状态为
 
     123
     804
@@ -33,46 +33,74 @@ $h$ 函数可以定义为，不在应该在的位置的数字个数。
 代码实现：
 
 ```cpp
-#include<cstdio>
-#include<algorithm>
+#include <algorithm>
+#include <cstdio>
+#include <cstring>
+#include <queue>
+#include <set>
 using namespace std;
-int fx[9]={0,1,1,1,2,3,3,3,2},fy[9]={0,1,2,3,3,3,2,1,1};
-int xx[4]={1,-1,0,0},yy[4]={0,0,-1,1},a[4][4]={},n,m,x,y,z,X,Y,ans;
-int h()
-{
-    int ans=0;
-    for(int i=1;i<=3;i++)for(int j=1;j<=3;j++)
-	if(a[i][j])ans+=abs(i-fx[a[i][j]])+abs(j-fy[a[i][j]]);
-    return ans;
+const int dx[4] = {1, -1, 0, 0}, dy[4] = {0, 0, 1, -1};
+int fx, fy;
+char ch;
+struct matrix {
+  int a[5][5];
+  bool operator<(matrix x) const {
+    for (int i = 1; i <= 3; i++)
+      for (int j = 1; j <= 3; j++)
+        if (a[i][j] != x.a[i][j]) return a[i][j] < x.a[i][j];
+    return false;
+  }
+} f, st;
+int h(matrix a) {
+  int ret = 0;
+  for (int i = 1; i <= 3; i++)
+    for (int j = 1; j <= 3; j++)
+      if (a.a[i][j] != st.a[i][j]) ret++;
+  return ret;
 }
-void dfs(int tf,int X,int Y,int g)
-{
-    int H=h();
-    if(!H){ans=g;return;}
-    if(g==tf||ans||H+g>tf)return;
-    for(int i=0;i<4;i++)
-	{
-        int x=X+xx[i],y=Y+yy[i];
-        if(x&&y&&x<=3&&y<=3)
-		{
-            swap(a[X][Y],a[x][y]);
-            dfs(tf,x,y,g+1);
-            swap(a[X][Y],a[x][y]);
-        }
+struct node {
+  matrix a;
+  int t;
+  bool operator<(node x) const { return t + h(a) > x.t + h(x.a); }
+} x;
+priority_queue<node> q;
+set<matrix> s;
+int main() {
+  st.a[1][1] = 1;
+  st.a[1][2] = 2;
+  st.a[1][3] = 3;
+  st.a[2][1] = 8;
+  st.a[2][2] = 0;
+  st.a[2][3] = 4;
+  st.a[3][1] = 7;
+  st.a[3][2] = 6;
+  st.a[3][3] = 5;
+  for (int i = 1; i <= 3; i++)
+    for (int j = 1; j <= 3; j++) {
+      scanf(" %c", &ch);
+      f.a[i][j] = ch - '0';
     }
-}
-int main()
-{
-    for(int i=1;i<=3;i++)for(int j=1;j<=3;j++)
-	{
-        char c;scanf(" %c",&c);a[i][j]=c-'0';
-        if(!a[i][j])X=i,Y=j;
+  q.push({f, 0});
+  while (!q.empty()) {
+    x = q.top();
+    q.pop();
+    if (!h(x.a)) {
+      printf("%d\n", x.t);
+      return 0;
     }
-    for(int i=0;;i++)
-	{
-        dfs(i,X,Y,0);  
-        if(ans){printf("%d\n",ans);return 0;};
+    for (int i = 1; i <= 3; i++)
+      for (int j = 1; j <= 3; j++)
+        if (!x.a.a[i][j]) fx = i, fy = j;
+    for (int i = 0; i < 4; i++) {
+      int xx = fx + dx[i], yy = fy + dy[i];
+      if (1 <= xx && xx <= 3 && 1 <= yy && yy <= 3) {
+        swap(x.a.a[fx][fy], x.a.a[xx][yy]);
+        if (!s.count(x.a)) s.insert(x.a), q.push({x.a, x.t + 1});
+        swap(x.a.a[fx][fy], x.a.a[xx][yy]);
+      }
     }
+  }
+  return 0;
 }
 ```
 
@@ -93,82 +121,80 @@ int main()
 代码实现：
 
 ```cpp
-#include<cstdio>
-#include<cstring>
-#include<algorithm>
-#include<queue>
+#include <algorithm>
+#include <cstdio>
+#include <cstring>
+#include <queue>
 using namespace std;
-const int maxn=5010;
-const int maxm=400010;
-const double inf=2e9;
-int n,m,k,u,v,cur,h[maxn],nxt[maxm],p[maxm],cnt[maxn],ans;
-int cur1,h1[maxn],nxt1[maxm],p1[maxm];
-double e,ww,w[maxm],f[maxn];
+const int maxn = 5010;
+const int maxm = 400010;
+const double inf = 2e9;
+int n, m, k, u, v, cur, h[maxn], nxt[maxm], p[maxm], cnt[maxn], ans;
+int cur1, h1[maxn], nxt1[maxm], p1[maxm];
+double e, ww, w[maxm], f[maxn];
 double w1[maxm];
 bool tf[maxn];
-void add_edge(int x,int y,double z)
-{
-    cur++;
-    nxt[cur]=h[x];
-    h[x]=cur;
-    p[cur]=y;
-    w[cur]=z;
+void add_edge(int x, int y, double z) {
+  cur++;
+  nxt[cur] = h[x];
+  h[x] = cur;
+  p[cur] = y;
+  w[cur] = z;
 }
-void add_edge1(int x,int y,double z)
-{
-    cur1++;
-    nxt1[cur1]=h1[x];
-    h1[x]=cur1;
-    p1[cur1]=y;
-    w1[cur1]=z; 
-} 
-struct node
-{
-    int x;
-    double v;
-    bool operator<(node a)const{return v+f[x]>a.v+f[a.x];}
+void add_edge1(int x, int y, double z) {
+  cur1++;
+  nxt1[cur1] = h1[x];
+  h1[x] = cur1;
+  p1[cur1] = y;
+  w1[cur1] = z;
+}
+struct node {
+  int x;
+  double v;
+  bool operator<(node a) const { return v + f[x] > a.v + f[a.x]; }
 };
-priority_queue<node>q;
-struct node2
-{
-    int x;
-    double v;
-    bool operator<(node2 a)const{return v>a.v;}
-}x;
-priority_queue<node2>Q;
-int main()
-{
-    scanf("%d%d%lf",&n,&m,&e);
-    while(m--)
-    {
-        scanf("%d%d%lf",&u,&v,&ww);
-        add_edge(u,v,ww);
-        add_edge1(v,u,ww);
+priority_queue<node> q;
+struct node2 {
+  int x;
+  double v;
+  bool operator<(node2 a) const { return v > a.v; }
+} x;
+priority_queue<node2> Q;
+int main() {
+  scanf("%d%d%lf", &n, &m, &e);
+  while (m--) {
+    scanf("%d%d%lf", &u, &v, &ww);
+    add_edge(u, v, ww);
+    add_edge1(v, u, ww);
+  }
+  for (int i = 1; i < n; i++) f[i] = inf;
+  Q.push({n, 0});
+  while (!Q.empty()) {
+    x = Q.top();
+    Q.pop();
+    if (tf[x.x]) continue;
+    tf[x.x] = true;
+    f[x.x] = x.v;
+    for (int j = h1[x.x]; j; j = nxt1[j]) Q.push({p1[j], x.v + w1[j]});
+  }
+  k = (int)e / f[1];
+  q.push({1, 0});
+  while (!q.empty()) {
+    node x = q.top();
+    q.pop();
+    cnt[x.x]++;
+    if (x.x == n) {
+      e -= x.v;
+      if (e < 0) {
+        printf("%d\n", ans);
+        return 0;
+      }
+      ans++;
     }
-    for(int i=1;i<n;i++)f[i]=inf;
-    Q.push({n,0});
-    while(!Q.empty())
-    {
-        x=Q.top();Q.pop();
-        if(tf[x.x])continue;
-        tf[x.x]=true;f[x.x]=x.v;
-        for(int j=h1[x.x];j;j=nxt1[j])Q.push({p1[j],x.v+w1[j]});
-    }
-    k=(int)e/f[1];
-    q.push({1,0});
-    while(!q.empty())
-    {
-        node x=q.top();q.pop();
-        cnt[x.x]++;
-        if(x.x==n)
-        {
-            e-=x.v;
-            if(e<0){printf("%d\n",ans);return 0;}
-            ans++;
-        }
-        for(int j=h[x.x];j;j=nxt[j])if(cnt[p[j]]<=k&&x.v+w[j]<=e)q.push({p[j],x.v+w[j]});
-    } 
-    printf("%d\n",ans);
-    return 0;
+    for (int j = h[x.x]; j; j = nxt[j])
+      if (cnt[p[j]] <= k && x.v + w[j] <= e) q.push({p[j], x.v + w[j]});
+  }
+  printf("%d\n", ans);
+  return 0;
 }
 ```

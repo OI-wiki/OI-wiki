@@ -20,42 +20,42 @@
 
 树的重心可以通过简单的两次搜索求出。
 
-1. 第一遍搜索求出每个结点的子结点数量 $sz[u]$
-2. 第二遍搜索找出使 $max\{sz[u],n-sz[u]-1\}$ 最小的结点。
+1.  第一遍搜索求出每个结点的子结点数量 $sz[u]$
+2.  第二遍搜索找出使 $max\{sz[u],n-sz[u]-1\}$ 最小的结点。
 
 实际上这两步操作可以在一次遍历中解决。对结点 u 的每一个儿子 v，递归的处理 v，求出 sz[v]，然后判断是否是结点数最多的子树，处理完所有子结点后，判断 u 是否为重心。
 
 （代码来自叉姐）
 
 ```c++
-struct CenterTree{
-    int n;
-    int ans;
-    int siz;
-    int son[maxn];
-    void dfs(int u,int pa){
-        son[u]=1;
-        int res=0;
-        for (int i=head[u];i!=-1;i=edges[i].next){
-            int v=edges[i].to;
-            if (v==pa) continue;
-            if (vis[v]) continue;
-            dfs(v,u);
-            son[u]+=son[v];
-            res=max(res,son[v]-1);
-        }
-        res=max(res,n-son[u]);
-        if (res<siz){
-            ans=u;
-            siz=res;
-        }
+struct CenterTree {
+  int n;
+  int ans;
+  int siz;
+  int son[maxn];
+  void dfs(int u, int pa) {
+    son[u] = 1;
+    int res = 0;
+    for (int i = head[u]; i != -1; i = edges[i].next) {
+      int v = edges[i].to;
+      if (v == pa) continue;
+      if (vis[v]) continue;
+      dfs(v, u);
+      son[u] += son[v];
+      res = max(res, son[v] - 1);
     }
-    int getCenter(int x){
-        ans=0;
-        siz=INF;
-        dfs(x,-1);
-        return ans;
+    res = max(res, n - son[u]);
+    if (res < siz) {
+      ans = u;
+      siz = res;
     }
+  }
+  int getCenter(int x) {
+    ans = 0;
+    siz = INF;
+    dfs(x, -1);
+    return ans;
+  }
 }
 ```
 

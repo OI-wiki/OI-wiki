@@ -2,17 +2,12 @@
 
 在具体讲何为 "背包 dp" 前，先来看如下的例题
 
-#### 例题
+??? note " 例题 [\[USACO07DEC\] 手链 Charm Bracelet](https://www.luogu.org/problemnew/show/P2871)"
+    本题题意可概括为——N 物体，放入容量为 M 的背包，要求使总价值最大。由于每个物体只有 2 种情况——取与不取，正如二进制中的 0 和 1——这类问题便被称为 “0-1 背包问题”。
 
-[\[USACO07DEC\] 手链 Charm Bracelet](https://www.luogu.org/problemnew/show/P2871)
+## 0-1 背包
 
-本题题意可概括为——N 物体，放入容量为 M 的背包，要求使总价值最大
-
-由于每个物体只有 2 种情况——取与不取，正如二进制中的 0 和 1——这类问题便被称为 "0-1 背包问题"
-
-#### 0-1 背包
-
-例题中已知条件有第 i 个物体的体积 v[i]和价值 w[i], 背包总容量
+例题中已知条件有第 i 个物体的体积 v[i] 和价值 w[i], 背包总容量
 
 显而易见的是，可以计算总价值的，只有已经放入背包的物体，因此该题中对 "是否为最大值" 的判断是建立在 "已经放入背包之中" 的基础之上的
 
@@ -20,14 +15,13 @@
 
 由此可以得出状态转移方程
 
-- dp[v1][i]=max(dp[v1][i-1],dp[v1-v\[i\]][i-1]+w[i])
+-   dp[v1][i]=max(dp[v1][i-1],dp[v1-v\[i\]][i-1]+w[i])
 
 有了这样的思路，就可以顺利地写出代码了
 
 ```cpp
-for (int i=1;i<=v1;i++)
-    for (int l=0;l<=v1-i;l++)
-        dp[l+i]=max(dp[l]+w[i],dp[l+i]);
+for (int i = 1; i <= v1; i++)
+  for (int l = 0; l <= v1 - i; l++) dp[l + i] = max(dp[l] + w[i], dp[l + i]);
 ```
 
 按照正确的思路，写出了这样的核心代码，然后就可以提交......
@@ -45,35 +39,33 @@ for (int i=1;i<=v1;i++)
 因此实际核心代码为
 
 ```cpp
-for (int i=1;i<=v1;i++)
-    for (int l=v1-i;l>=0;l--)
-        dp[l+i]=max(dp[l]+w[i],dp[l+i]);
+for (int i = 1; i <= v1; i++)
+  for (int l = v1 - i; l >= 0; l--) dp[l + i] = max(dp[l] + w[i], dp[l + i]);
 ```
 
 例题代码
 
 ```cpp
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-const int maxn=13010;
-int n,v,c[maxn],w[maxn],most[maxn];
-int main(){
-    cin>>n>>v;
-    for (int i=1;i<=n;i++){
-        cin>>c[i]>>w[i];
+const int maxn = 13010;
+int n, v, c[maxn], w[maxn], most[maxn];
+int main() {
+  cin >> n >> v;
+  for (int i = 1; i <= n; i++) {
+    cin >> c[i] >> w[i];
+  }
+  for (int i = 1; i <= n; i++)
+    for (int l = v; l >= c[i]; l--) {
+      if (most[l - c[i]] + w[i] > most[l]) most[l] = most[l - c[i]] + w[i];
     }
-    for (int i=1;i<=n;i++)
-        for (int l=v;l>=c[i];l--){
-            if (most[l-c[i]]+w[i]>most[l])
-                most[l]=most[l-c[i]]+w[i];
-        }
-    cout<<most[v];
-    return 0;
+  cout << most[v];
+  return 0;
 }
 ```
 
 Ps. 事实上，由小到大穷举是另一种背包问题的解法，稍后会提到
 
-#### 完全背包
+## 完全背包
 
-#### 多重背包
+## 多重背包

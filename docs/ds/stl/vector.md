@@ -24,39 +24,40 @@ vector 以字典序为关键字重载了 6 个比较运算符，这使得我们�
 
 ```cpp
 void Vector_Constructor_Test() {
-    // 1. 创建空vector v0;  常数复杂度
-    std::vector<int> v0;
-    // 2. 创建一个初始空间为3的vector v1，其元素的默认值是0; 线性复杂度
-    std::vector<int> v1(3);
-    // 3. 创建一个初始空间为5的vector v2，其元素的默认值是2; 线性复杂度
-    std::vector<int> v2(5, 2);
-    // 4. 创建一个初始空间为3的vector v3，其元素的默认值是1，并且使用v2的空间配置器 线性复杂度
-    std::vector<int> v3(3, 1, v2.get_allocator());
-    // 5. 创建一个v2的拷贝vector v4， 其内容元素和v2一样; 线性复杂度
-    std::vector<int> v4(v2);
-    // 6. 创建一个v4的拷贝vector v5，其内容是v4的[__First， __Last)区间 线性复杂度
-    std::vector<int> v5(v4.begin() + 1, v4.begin() + 3);
-    // 以下是测试代码，有兴趣的同学可以自己编译运行一下本代码。
-    std::cout << "v1 = ";
-    std::copy(v1.begin(), v1.end(), std::ostream_iterator<int>(std::cout, " "));
-    std::cout << std::endl;
-    std::cout << "v2 = ";
-    std::copy(v2.begin(), v2.end(), std::ostream_iterator<int>(std::cout, " "));
-    std::cout << std::endl;
-    std::cout << "v3 = ";
-    std::copy(v3.begin(), v3.end(), std::ostream_iterator<int>(std::cout, " "));
-    std::cout << std::endl;
-    std::cout << "v4 = ";
-    std::copy(v4.begin(), v4.end(), std::ostream_iterator<int>(std::cout, " "));
-    std::cout << std::endl;
-    std::cout << "v5 = ";
-    std::copy(v5.begin(), v5.end(), std::ostream_iterator<int>(std::cout, " "));
-    std::cout << std::endl;
-    // 移动v2到新创建的vector v6;
-    std::vector<int> v6(move(v2));
-    std::cout << "v6 = ";
-    std::copy(v6.begin(), v6.end(), std::ostream_iterator<int>(std::cout, " "));
-    std::cout << std::endl;
+  // 1. 创建空vector v0;  常数复杂度
+  std::vector<int> v0;
+  // 2. 创建一个初始空间为3的vector v1，其元素的默认值是0; 线性复杂度
+  std::vector<int> v1(3);
+  // 3. 创建一个初始空间为5的vector v2，其元素的默认值是2; 线性复杂度
+  std::vector<int> v2(5, 2);
+  // 4. 创建一个初始空间为3的vector
+  // v3，其元素的默认值是1，并且使用v2的空间配置器 线性复杂度
+  std::vector<int> v3(3, 1, v2.get_allocator());
+  // 5. 创建一个v2的拷贝vector v4， 其内容元素和v2一样; 线性复杂度
+  std::vector<int> v4(v2);
+  // 6. 创建一个v4的拷贝vector v5，其内容是v4的[__First， __Last)区间 线性复杂度
+  std::vector<int> v5(v4.begin() + 1, v4.begin() + 3);
+  // 以下是测试代码，有兴趣的同学可以自己编译运行一下本代码。
+  std::cout << "v1 = ";
+  std::copy(v1.begin(), v1.end(), std::ostream_iterator<int>(std::cout, " "));
+  std::cout << std::endl;
+  std::cout << "v2 = ";
+  std::copy(v2.begin(), v2.end(), std::ostream_iterator<int>(std::cout, " "));
+  std::cout << std::endl;
+  std::cout << "v3 = ";
+  std::copy(v3.begin(), v3.end(), std::ostream_iterator<int>(std::cout, " "));
+  std::cout << std::endl;
+  std::cout << "v4 = ";
+  std::copy(v4.begin(), v4.end(), std::ostream_iterator<int>(std::cout, " "));
+  std::cout << std::endl;
+  std::cout << "v5 = ";
+  std::copy(v5.begin(), v5.end(), std::ostream_iterator<int>(std::cout, " "));
+  std::cout << std::endl;
+  // 移动v2到新创建的vector v6;
+  std::vector<int> v6(move(v2));
+  std::cout << "v6 = ";
+  std::copy(v6.begin(), v6.end(), std::ostream_iterator<int>(std::cout, " "));
+  std::cout << std::endl;
 };
 ```
 
@@ -128,12 +129,12 @@ vector 有如下几种返回容量的函数
 
 ## vector 修改器
 
-- `clear()` 清除所有元素
-- `insert()` 支持在某个迭代器位置插入元素、可以插入多个**此操作是与 `pos` 距离末尾长度成线性而非常数的**
-- `erase()` 删除某个迭代器或者区间的元素，返回最后被删除的迭代器。
-- `push_back()` 在末尾插入一个元素。
-- `pop_back()` 删除末尾元素。
-- `swap()` 与另一个容器进行交换，此操作是**常数复杂度**而非线性的。
+-   `clear()` 清除所有元素
+-   `insert()` 支持在某个迭代器位置插入元素、可以插入多个**此操作是与 `pos` 距离末尾长度成线性而非常数的**
+-   `erase()` 删除某个迭代器或者区间的元素，返回最后被删除的迭代器。
+-   `push_back()` 在末尾插入一个元素。
+-   `pop_back()` 删除末尾元素。
+-   `swap()` 与另一个容器进行交换，此操作是**常数复杂度**而非线性的。
 
 ## vector 特化 `std::vector<bool>`
 

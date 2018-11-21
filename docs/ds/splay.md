@@ -28,20 +28,14 @@ $\text{Splay}$ 是一种二叉查找树，它通过不断将某个节点旋转�
 
 ### 基本操作
 
-- $\text{maintain}(x)$：在改变节点位置前，将节点 $x$ 的 $\text{size}$ 更新。
-- $\text{get}(x)$：判断节点 $x$ 是父亲节点的左儿子还是右儿子。
-- $\text{clear}(x)$：销毁节点 $x$。
+-   $\text{maintain}(x)$：在改变节点位置前，将节点 $x$ 的 $\text{size}$ 更新。
+-   $\text{get}(x)$：判断节点 $x$ 是父亲节点的左儿子还是右儿子。
+-   $\text{clear}(x)$：销毁节点 $x$。
 
 ```cpp
-void maintain(int x) {
-	sz[x]=sz[ch[x][0]]+sz[ch[x][1]]+cnt[x];
-}
-bool get(int x) {
-	return x==ch[fa[x]][1];
-}
-void clear(int x) {
-	ch[x][0]=ch[x][1]=fa[x]=val[x]=sz[x]=cnt[x]=0;
-}
+void maintain(int x) { sz[x] = sz[ch[x][0]] + sz[ch[x][1]] + cnt[x]; }
+bool get(int x) { return x == ch[fa[x]][1]; }
+void clear(int x) { ch[x][0] = ch[x][1] = fa[x] = val[x] = sz[x] = cnt[x] = 0; }
 ```
 
 ### 旋转操作
@@ -50,9 +44,9 @@ void clear(int x) {
 
 **旋转需要保证**：
 
-- 整棵 $\text{Splay}$ 的中序遍历不变（不能破坏二叉查找树的性质）。
-- 受影响的节点维护的信息依然正确有效。
-- $root$ 必须指向旋转后的根节点。
+-   整棵 $\text{Splay}$ 的中序遍历不变（不能破坏二叉查找树的性质）。
+-   受影响的节点维护的信息依然正确有效。
+-   $root$ 必须指向旋转后的根节点。
 
 在 $\text{Splay}$ 中旋转分为两种：左旋和右旋。
 
@@ -69,11 +63,15 @@ void clear(int x) {
 
 ```cpp
 void rotate(int x) {
-	int y=fa[x],z=fa[y],chk=get(x);
-	ch[y][chk]=ch[x][chk^1]; fa[ch[x][chk^1]]=y; ch[x][chk^1]=y;
-	fa[y]=x; fa[x]=z;
-	if(z) ch[z][y==ch[z][1]]=x;
-	maintain(x); maintain(y);
+  int y = fa[x], z = fa[y], chk = get(x);
+  ch[y][chk] = ch[x][chk ^ 1];
+  fa[ch[x][chk ^ 1]] = y;
+  ch[x][chk ^ 1] = y;
+  fa[y] = x;
+  fa[x] = z;
+  if (z) ch[z][y == ch[z][1]] = x;
+  maintain(x);
+  maintain(y);
 }
 ```
 
@@ -83,17 +81,17 @@ $\text{Splay}$ 规定：每访问一个节点后都要强制将其旋转到根�
 
 ![](./images/splay1.png)
 
-- 如果 $x$ 的父亲是根节点，直接将 $x$ 左旋或右旋（图 $1,2$）。
-- 如果 $x$ 的父亲不是根节点，且 $x$ 和父亲的儿子类型相同，首先将其父亲左旋或右旋，然后将 $x$ 右旋或左旋（图 $3,4$）。
-- 如果 $x$ 的父亲不是根节点，且 $x$ 和父亲的儿子类型不同，将 $x$ 左旋再右旋、或者右旋再左旋（图 $5,6$）。
+-   如果 $x$ 的父亲是根节点，直接将 $x$ 左旋或右旋（图 $1,2$）。
+-   如果 $x$ 的父亲不是根节点，且 $x$ 和父亲的儿子类型相同，首先将其父亲左旋或右旋，然后将 $x$ 右旋或左旋（图 $3,4$）。
+-   如果 $x$ 的父亲不是根节点，且 $x$ 和父亲的儿子类型不同，将 $x$ 左旋再右旋、或者右旋再左旋（图 $5,6$）。
 
 分析起来一大串，其实代码一小段。大家可以自己模拟一下 $6$ 种旋转情况，就能理解 $\text{Splay}$ 的基本思想了。
 
 ```cpp
 void splay(int x) {
-	for(int f=fa[x];f=fa[x],f;rotate(x))
-		if(fa[f]) rotate(get(x)==get(f)?f:x);
-	rt=x;
+  for (int f = fa[x]; f = fa[x], f; rotate(x))
+    if (fa[f]) rotate(get(x) == get(f) ? f : x);
+  rt = x;
 }
 ```
 
@@ -101,39 +99,41 @@ void splay(int x) {
 
 插入操作是一个比较复杂的过程，具体步骤如下（插入的值为 $k$）：
 
-- 如果树空了则直接插入根并退出。
-- 如果当前节点的权值等于 $k$ 则增加当前节点的大小并更新节点和父亲的信息，将当前节点进行 $\text{Splay}$ 操作。
-- 否则按照二叉查找树的性质向下找，找到空节点就插入即可（当然别忘了 $\text{Splay}$ 操作哦）。
+-   如果树空了则直接插入根并退出。
+-   如果当前节点的权值等于 $k$ 则增加当前节点的大小并更新节点和父亲的信息，将当前节点进行 $\text{Splay}$ 操作。
+-   否则按照二叉查找树的性质向下找，找到空节点就插入即可（当然别忘了 $\text{Splay}$ 操作哦）。
 
 ```cpp
 void ins(int k) {
-	if(!rt) {
-		val[++tot]=k;
-		cnt[tot]++;
-		rt=tot;
-		maintain(rt);
-		return;
-	}
-	int cnr=rt,f=0;
-	while(1) {
-		if(val[cnr]==k) {
-			cnt[cnr]++;
-			maintain(cnr); maintain(f);
-			splay(cnr);
-			break;
-		}
-		f=cnr;
-		cnr=ch[cnr][val[cnr]<k];
-		if(!cnr) {
-			val[++tot]=k;
-			cnt[tot]++;
-			fa[tot]=f;
-			ch[f][val[f]<k]=tot;
-			maintain(tot); maintain(f);
-			splay(tot);
-			break;
-		}
-	}
+  if (!rt) {
+    val[++tot] = k;
+    cnt[tot]++;
+    rt = tot;
+    maintain(rt);
+    return;
+  }
+  int cnr = rt, f = 0;
+  while (1) {
+    if (val[cnr] == k) {
+      cnt[cnr]++;
+      maintain(cnr);
+      maintain(f);
+      splay(cnr);
+      break;
+    }
+    f = cnr;
+    cnr = ch[cnr][val[cnr] < k];
+    if (!cnr) {
+      val[++tot] = k;
+      cnt[tot]++;
+      fa[tot] = f;
+      ch[f][val[f] < k] = tot;
+      maintain(tot);
+      maintain(f);
+      splay(tot);
+      break;
+    }
+  }
 }
 ```
 
@@ -141,28 +141,28 @@ void ins(int k) {
 
 根据二叉查找树的定义和性质，显然可以按照以下步骤查询 $x$ 的排名：
 
-- 如果 $x$ 比当前节点的权值小，向其左子树查找。
-- 如果 $x$ 比当前节点的权值大，将答案加上左子树（$size$）和当前节点（$cnt$）的大小，向其右子树查找。
-- 如果 $x$ 与当前节点的权值相同，将答案加 $1$ 并返回。
+-   如果 $x$ 比当前节点的权值小，向其左子树查找。
+-   如果 $x$ 比当前节点的权值大，将答案加上左子树（$size$）和当前节点（$cnt$）的大小，向其右子树查找。
+-   如果 $x$ 与当前节点的权值相同，将答案加 $1$ 并返回。
 
 注意最后需要进行 $\text{Splay}$ 操作。
 
 ```cpp
 int rk(int k) {
-	int res=0,cnr=rt;
-	while(1) {
-		if(k<val[cnr]) {
-			cnr=ch[cnr][0];
-		} else {
-			res+=sz[ch[cnr][0]];
-			if(k==val[cnr]) {
-				splay(cnr);
-				return res+1;
-			}
-			res+=cnt[cnr];
-			cnr=ch[cnr][1];
-		}
-	}
+  int res = 0, cnr = rt;
+  while (1) {
+    if (k < val[cnr]) {
+      cnr = ch[cnr][0];
+    } else {
+      res += sz[ch[cnr][0]];
+      if (k == val[cnr]) {
+        splay(cnr);
+        return res + 1;
+      }
+      res += cnt[cnr];
+      cnr = ch[cnr][1];
+    }
+  }
 }
 ```
 
@@ -170,21 +170,21 @@ int rk(int k) {
 
 设 $k$ 为剩余排名，具体步骤如下：
 
-- 如果左子树非空且剩余排名 $k$ 不大于左子树的大小 $size$，那么向左子树查找。
-- 否则将 $k$ 减去左子树的和根的大小。如果此时 $k$ 的值小于等于 $0$，则返回根节点的权值，否则继续向右子树查找。
+-   如果左子树非空且剩余排名 $k$ 不大于左子树的大小 $size$，那么向左子树查找。
+-   否则将 $k$ 减去左子树的和根的大小。如果此时 $k$ 的值小于等于 $0$，则返回根节点的权值，否则继续向右子树查找。
 
 ```cpp
 int kth(int k) {
-	int cnr=rt;
-	while(1) {
-		if(ch[cnr][0]&&k<=sz[ch[cnr][0]]) {
-			cnr=ch[cnr][0];
-		} else {
-			k-=cnt[cnr]+sz[ch[cnr][0]];
-			if(k<=0) return val[cnr];
-			cnr=ch[cnr][1];
-		}
-	}
+  int cnr = rt;
+  while (1) {
+    if (ch[cnr][0] && k <= sz[ch[cnr][0]]) {
+      cnr = ch[cnr][0];
+    } else {
+      k -= cnt[cnr] + sz[ch[cnr][0]];
+      if (k <= 0) return val[cnr];
+      cnr = ch[cnr][1];
+    }
+  }
 }
 ```
 
@@ -194,9 +194,9 @@ int kth(int k) {
 
 ```cpp
 int pre() {
-	int cnr=ch[rt][0];
-	while(ch[cnr][1]) cnr=ch[cnr][1];
-	return cnr;
+  int cnr = ch[rt][0];
+  while (ch[cnr][1]) cnr = ch[cnr][1];
+  return cnr;
 }
 ```
 
@@ -206,9 +206,9 @@ int pre() {
 
 ```cpp
 int nxt() {
-	int cnr=ch[rt][1];
-	while(ch[cnr][0]) cnr=ch[cnr][0];
-	return cnr;
+  int cnr = ch[rt][1];
+  while (ch[cnr][0]) cnr = ch[cnr][0];
+  return cnr;
 }
 ```
 
@@ -216,27 +216,47 @@ int nxt() {
 
 删除操作也是一个比较复杂的操作，具体步骤如下：
 
-- 首先将 $x$ 旋转到根的位置。
-- 接下来分为多个情况考虑：
+-   首先将 $x$ 旋转到根的位置。
+-   接下来分为多个情况考虑：
 
-1. 如果有不止一个 $x$，那么将 $cnt[x]$ 减 $1$ 并退出。
-2. 如果 $x$ 没有儿子节点，那么直接将当前节点 $\text{clear}$ 并退出。
-3. 如果 $x$ 只有一个儿子，那么先将当前节点 $\text{clear}$ 再把唯一的儿子作为根节点。
-4. 否则将 $x$ 的前驱旋转到根并作为根节点，将 $x$ 的右子树接到根节点的右子树上，最后要将根的信息更新。
+1.  如果有不止一个 $x$，那么将 $cnt[x]$ 减 $1$ 并退出。
+2.  如果 $x$ 没有儿子节点，那么直接将当前节点 $\text{clear}$ 并退出。
+3.  如果 $x$ 只有一个儿子，那么先将当前节点 $\text{clear}$ 再把唯一的儿子作为根节点。
+4.  否则将 $x$ 的前驱旋转到根并作为根节点，将 $x$ 的右子树接到根节点的右子树上，最后要将根的信息更新。
 
 ```cpp
 void del(int k) {
-	rk(k);
-	if(cnt[rt]>1) {cnt[rt]--;maintain(rt);return;}
-	if(!ch[rt][0]&&!ch[rt][1]) {clear(rt);rt=0;return;}
-	if(!ch[rt][0]) {int cnr=rt;rt=ch[rt][1];fa[rt]=0;clear(cnr);return;}
-	if(!ch[rt][1]) {int cnr=rt;rt=ch[rt][0];fa[rt]=0;clear(cnr);return;}
-	int x=pre(),cnr=rt;
-	splay(x);
-	fa[ch[cnr][1]]=x;
-	ch[x][1]=ch[cnr][1];
-	clear(cnr);
-	maintain(rt);
+  rk(k);
+  if (cnt[rt] > 1) {
+    cnt[rt]--;
+    maintain(rt);
+    return;
+  }
+  if (!ch[rt][0] && !ch[rt][1]) {
+    clear(rt);
+    rt = 0;
+    return;
+  }
+  if (!ch[rt][0]) {
+    int cnr = rt;
+    rt = ch[rt][1];
+    fa[rt] = 0;
+    clear(cnr);
+    return;
+  }
+  if (!ch[rt][1]) {
+    int cnr = rt;
+    rt = ch[rt][0];
+    fa[rt] = 0;
+    clear(cnr);
+    return;
+  }
+  int x = pre(), cnr = rt;
+  splay(x);
+  fa[ch[cnr][1]] = x;
+  ch[x][1] = ch[cnr][1];
+  clear(cnr);
+  maintain(rt);
 }
 ```
 
@@ -245,125 +265,153 @@ void del(int k) {
 # 完整代码
 
 ```cpp
-#include<cstdio>
-const int N=100005;
-int rt,tot,fa[N],ch[N][2],val[N],cnt[N],sz[N];
+#include <cstdio>
+const int N = 100005;
+int rt, tot, fa[N], ch[N][2], val[N], cnt[N], sz[N];
 struct Splay {
-	void maintain(int x) {
-		sz[x]=sz[ch[x][0]]+sz[ch[x][1]]+cnt[x];
-	}
-	bool get(int x) {
-		return x==ch[fa[x]][1];
-	}
-	void clear(int x) {
-		ch[x][0]=ch[x][1]=fa[x]=val[x]=sz[x]=cnt[x]=0;
-	}
-	void rotate(int x) {
-		int y=fa[x],z=fa[y],chk=get(x);
-		ch[y][chk]=ch[x][chk^1]; fa[ch[x][chk^1]]=y; ch[x][chk^1]=y;
-		fa[y]=x; fa[x]=z;
-		if(z) ch[z][y==ch[z][1]]=x;
-		maintain(x); maintain(y);
-	}
-	void splay(int x) {
-		for(int f=fa[x];f=fa[x],f;rotate(x))
-			if(fa[f]) rotate(get(x)==get(f)?f:x);
-		rt=x;
-	}
-	void ins(int k) {
-		if(!rt) {
-			val[++tot]=k;
-			cnt[tot]++;
-			rt=tot;
-			maintain(rt);
-			return;
-		}
-		int cnr=rt,f=0;
-		while(1) {
-			if(val[cnr]==k) {
-				cnt[cnr]++;
-				maintain(cnr); maintain(f);
-				splay(cnr);
-				break;
-			}
-			f=cnr;
-			cnr=ch[cnr][val[cnr]<k];
-			if(!cnr) {
-				val[++tot]=k;
-				cnt[tot]++;
-				fa[tot]=f;
-				ch[f][val[f]<k]=tot;
-				maintain(tot); maintain(f);
-				splay(tot);
-				break;
-			}
-		}
-	}
-	int rk(int k) {
-		int res=0,cnr=rt;
-		while(1) {
-			if(k<val[cnr]) {
-				cnr=ch[cnr][0];
-			} else {
-				res+=sz[ch[cnr][0]];
-				if(k==val[cnr]) {
-					splay(cnr);
-					return res+1;
-				}
-				res+=cnt[cnr];
-				cnr=ch[cnr][1];
-			}
-		}
-	}
-	int kth(int k) {
-		int cnr=rt;
-		while(1) {
-			if(ch[cnr][0]&&k<=sz[ch[cnr][0]]) {
-				cnr=ch[cnr][0];
-			} else {
-				k-=cnt[cnr]+sz[ch[cnr][0]];
-				if(k<=0) return val[cnr];
-				cnr=ch[cnr][1];
-			}
-		}
-	}
-	int pre() {
-		int cnr=ch[rt][0];
-		while(ch[cnr][1]) cnr=ch[cnr][1];
-		return cnr;
-	}
-	int nxt() {
-		int cnr=ch[rt][1];
-		while(ch[cnr][0]) cnr=ch[cnr][0];
-		return cnr;
-	}
-	void del(int k) {
-		rk(k);
-		if(cnt[rt]>1) {cnt[rt]--;maintain(rt);return;}
-		if(!ch[rt][0]&&!ch[rt][1]) {clear(rt);rt=0;return;}
-		if(!ch[rt][0]) {int cnr=rt;rt=ch[rt][1];fa[rt]=0;clear(cnr);return;}
-		if(!ch[rt][1]) {int cnr=rt;rt=ch[rt][0];fa[rt]=0;clear(cnr);return;}
-		int x=pre(),cnr=rt;
-		splay(x);
-		fa[ch[cnr][1]]=x;
-		ch[x][1]=ch[cnr][1];
-		clear(cnr);
-		maintain(rt);
-	}
-}tree;
+  void maintain(int x) { sz[x] = sz[ch[x][0]] + sz[ch[x][1]] + cnt[x]; }
+  bool get(int x) { return x == ch[fa[x]][1]; }
+  void clear(int x) {
+    ch[x][0] = ch[x][1] = fa[x] = val[x] = sz[x] = cnt[x] = 0;
+  }
+  void rotate(int x) {
+    int y = fa[x], z = fa[y], chk = get(x);
+    ch[y][chk] = ch[x][chk ^ 1];
+    fa[ch[x][chk ^ 1]] = y;
+    ch[x][chk ^ 1] = y;
+    fa[y] = x;
+    fa[x] = z;
+    if (z) ch[z][y == ch[z][1]] = x;
+    maintain(x);
+    maintain(y);
+  }
+  void splay(int x) {
+    for (int f = fa[x]; f = fa[x], f; rotate(x))
+      if (fa[f]) rotate(get(x) == get(f) ? f : x);
+    rt = x;
+  }
+  void ins(int k) {
+    if (!rt) {
+      val[++tot] = k;
+      cnt[tot]++;
+      rt = tot;
+      maintain(rt);
+      return;
+    }
+    int cnr = rt, f = 0;
+    while (1) {
+      if (val[cnr] == k) {
+        cnt[cnr]++;
+        maintain(cnr);
+        maintain(f);
+        splay(cnr);
+        break;
+      }
+      f = cnr;
+      cnr = ch[cnr][val[cnr] < k];
+      if (!cnr) {
+        val[++tot] = k;
+        cnt[tot]++;
+        fa[tot] = f;
+        ch[f][val[f] < k] = tot;
+        maintain(tot);
+        maintain(f);
+        splay(tot);
+        break;
+      }
+    }
+  }
+  int rk(int k) {
+    int res = 0, cnr = rt;
+    while (1) {
+      if (k < val[cnr]) {
+        cnr = ch[cnr][0];
+      } else {
+        res += sz[ch[cnr][0]];
+        if (k == val[cnr]) {
+          splay(cnr);
+          return res + 1;
+        }
+        res += cnt[cnr];
+        cnr = ch[cnr][1];
+      }
+    }
+  }
+  int kth(int k) {
+    int cnr = rt;
+    while (1) {
+      if (ch[cnr][0] && k <= sz[ch[cnr][0]]) {
+        cnr = ch[cnr][0];
+      } else {
+        k -= cnt[cnr] + sz[ch[cnr][0]];
+        if (k <= 0) return val[cnr];
+        cnr = ch[cnr][1];
+      }
+    }
+  }
+  int pre() {
+    int cnr = ch[rt][0];
+    while (ch[cnr][1]) cnr = ch[cnr][1];
+    return cnr;
+  }
+  int nxt() {
+    int cnr = ch[rt][1];
+    while (ch[cnr][0]) cnr = ch[cnr][0];
+    return cnr;
+  }
+  void del(int k) {
+    rk(k);
+    if (cnt[rt] > 1) {
+      cnt[rt]--;
+      maintain(rt);
+      return;
+    }
+    if (!ch[rt][0] && !ch[rt][1]) {
+      clear(rt);
+      rt = 0;
+      return;
+    }
+    if (!ch[rt][0]) {
+      int cnr = rt;
+      rt = ch[rt][1];
+      fa[rt] = 0;
+      clear(cnr);
+      return;
+    }
+    if (!ch[rt][1]) {
+      int cnr = rt;
+      rt = ch[rt][0];
+      fa[rt] = 0;
+      clear(cnr);
+      return;
+    }
+    int x = pre(), cnr = rt;
+    splay(x);
+    fa[ch[cnr][1]] = x;
+    ch[x][1] = ch[cnr][1];
+    clear(cnr);
+    maintain(rt);
+  }
+} tree;
 
 int main() {
-	int n,opt,x;
-	for(scanf("%d",&n);n;--n) {
-		scanf("%d%d",&opt,&x);
-		if(opt==1) tree.ins(x);
-		else if(opt==2) tree.del(x);
-		else if(opt==3) printf("%d\n",tree.rk(x));
-		else if(opt==4) printf("%d\n",tree.kth(x));
-		else if(opt==5) tree.ins(x),printf("%d\n",val[tree.pre()]),tree.del(x);
-		else tree.ins(x),printf("%d\n",val[tree.nxt()]),tree.del(x);
-	}
-	return 0;
+  int n, opt, x;
+  for (scanf("%d", &n); n; --n) {
+    scanf("%d%d", &opt, &x);
+    if (opt == 1)
+      tree.ins(x);
+    else if (opt == 2)
+      tree.del(x);
+    else if (opt == 3)
+      printf("%d\n", tree.rk(x));
+    else if (opt == 4)
+      printf("%d\n", tree.kth(x));
+    else if (opt == 5)
+      tree.ins(x), printf("%d\n", val[tree.pre()]), tree.del(x);
+    else
+      tree.ins(x), printf("%d\n", val[tree.nxt()]), tree.del(x);
+  }
+  return 0;
 }
 ```
 
@@ -373,9 +421,9 @@ int main() {
 
 以下题目都是裸的 $\text{Splay}$ 维护二叉查找树。~~（直接套板子即可）~~
 
-- [【模板】普通平衡树](https://www.luogu.org/problemnew/show/P3369)
-- [\[HNOI2002\] 营业额统计](https://www.lydsy.com/JudgeOnline/problem.php?id=1588)
-- [\[HNOI2004\] 宠物收养所](https://www.lydsy.com/JudgeOnline/problem.php?id=1208)
+-   [【模板】普通平衡树](https://www.luogu.org/problemnew/show/P3369)
+-   [\[HNOI2002\] 营业额统计](https://www.lydsy.com/JudgeOnline/problem.php?id=1588)
+-   [\[HNOI2004\] 宠物收养所](https://www.lydsy.com/JudgeOnline/problem.php?id=1208)
 
 # 练习题
 

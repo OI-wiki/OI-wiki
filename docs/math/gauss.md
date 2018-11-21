@@ -39,23 +39,23 @@ $y = -60$
 
 消元法理论的核心主要如下：
 
-- 两方程互换，解不变；
+-   两方程互换，解不变；
 
-- 一方程乘以非零数 $k$，解不变；
+-   一方程乘以非零数 $k$，解不变；
 
-- 一方程乘以数 $k$ 加上另一方程，解不变。
+-   一方程乘以数 $k$ 加上另一方程，解不变。
 
 #### 1.3  高斯消元法思想概念
 
 德国数学家高斯对消元法进行了思考分析，得出了如下结论：
 
-- 在消元法中，参与计算和发生改变的是方程中各变量的系数；
+-   在消元法中，参与计算和发生改变的是方程中各变量的系数；
 
-- 各变量并未参与计算，且没有发生改变；
+-   各变量并未参与计算，且没有发生改变；
 
-- 可以利用系数的位置表示变量，从而省略变量；
+-   可以利用系数的位置表示变量，从而省略变量；
 
-- 在计算中将变量简化省略，方程的解不变。
+-   在计算中将变量简化省略，方程的解不变。
 
 > 高斯在这些结论的基础上，提出了高斯消元法，首先将方程的增广矩阵利用行初等变换化为行最简形，然后以线性无关为准则对自由未知量赋值，最后列出表达方程组通解。
 
@@ -63,15 +63,15 @@ $y = -60$
 
 高斯消元法在将增广矩阵化为最简形后对于自由未知量的赋值，需要掌握线性相关知识，且赋值存在人工经验的因素，使得在学习过程中有一定的困难，将高斯消元法划分为五步骤，从而提出五步骤法，内容如下：
 
-1. 增广矩阵行初等行变换为行最简形；
+1.  增广矩阵行初等行变换为行最简形；
 
-2. 还原线性方程组；
+2.  还原线性方程组；
 
-3. 求解第一个变量；
+3.  求解第一个变量；
 
-4. 补充自由未知量；
+4.  补充自由未知量；
 
-5. 列表示方程组通解。
+5.  列表示方程组通解。
 
 利用实例进一步说明该算法的运作情况。
 
@@ -235,17 +235,17 @@ $$
 D = \left| A \right| = \sum(-1)^va_{1,l_1}a_{2,l_2}\dots a_{n,l_n}
 $$
 
-> 其中 $v$ 为 $l_1$, $l_2$,\\cdots, $l_n$ 中逆序对的个数。
+> 其中 $v$ 为 $l_1$, $l_2$, $\cdots$, $l_n$ 中逆序对的个数。
 
 通过体积概念理解行列式不变性是一个非常简单的办法：
 
-- 矩阵转置，行列式不变；
+-   矩阵转置，行列式不变；
 
-- 矩阵行交换，行列式取反；
+-   矩阵行交换，行列式取反；
 
-- 矩阵行叠加，行列式不变；
+-   矩阵行叠加，行列式不变；
 
-- 矩阵行伸长，行列式等比例变大。
+-   矩阵行伸长，行列式等比例变大。
 
 > 由此，发现高斯消元不改变矩阵行列式，且最终行列式等于倒三角矩阵的对角线乘积。
 
@@ -285,102 +285,82 @@ $$
 附一个冗长的复杂的令人难过的高斯消元与 Matrix Tree 计数代码：
 
 ```cpp
-#include<iostream>
-#include<cstring>
-#include<cstdio>
-#include<algorithm>
-#include<cassert>
-#include<cmath>
+#include <algorithm>
+#include <cassert>
+#include <cmath>
+#include <cstdio>
+#include <cstring>
+#include <iostream>
 using namespace std;
 #define MOD 100000007
 #define eps 1e-7
-struct matrix
-{
-	static const int maxn = 20;
-	int n,m;
-	double mat[maxn][maxn];
-	matrix()
-	{
-		memset(mat,0,sizeof(mat));
-	}
-	void print()
-	{
-		cout<<"MATRIX "<<n<<" "<<m<<endl;
-		for (int i=0; i<n; i++)
-		{
-			for (int j=0; j<m; j++)
-			{
-				cout<<mat[i][j]<<"\t";
-			}
-			cout<<endl;
-		}
-	}
-	void random(int n)
-	{
-		this->n = n;
-		this->m = n;
-		for (int i=0; i<n; i++)
-			for (int j=0; j<n; j++)
-				mat[i][j] = rand()%100;
-	}
-	void initSquare()
-	{
-		this->n = 4;
-		this->m = 4;
-		memset(mat,0,sizeof(mat));
-		mat[0][1] = mat[0][3] = 1;
-		mat[1][0] = mat[1][2] = 1;
-		mat[2][1] = mat[2][3] = 1;
-		mat[3][0] = mat[3][2] = 1;
-		mat[0][0] = mat[1][1] = mat[2][2] = mat[3][3] = -2;
-		this->n --;//去一行
-		this->m --;//去一列
-	}
-	double gauss()
-	{
-		double ans = 1;
-		for (int i=0; i<n; i++)
-		{
-			int sid = -1;
-			for (int j=i; j<n; j++)
-				if (abs(mat[j][i]) > eps)
-				{
-					sid = j;
-					break;
-				}
-			if (sid == -1)
-				continue;
-			if (sid != i)
-			{
-				for (int j=0; j<n; j++)
-				{
-					swap(mat[sid][j],mat[i][j]);
-					ans = - ans;
-				}
-			}
-			for (int j=i+1; j<n; j++)
-			{
-				double ratio = mat[j][i]/mat[i][i];
-				for (int k=0; k<n; k++)
-				{
-					mat[j][k] -= mat[i][k] * ratio;
-				}
-			}
-		}
-		for (int i=0; i<n; i++)
-			ans *= mat[i][i];
-		return abs(ans);
-	}
+struct matrix {
+  static const int maxn = 20;
+  int n, m;
+  double mat[maxn][maxn];
+  matrix() { memset(mat, 0, sizeof(mat)); }
+  void print() {
+    cout << "MATRIX " << n << " " << m << endl;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < m; j++) {
+        cout << mat[i][j] << "\t";
+      }
+      cout << endl;
+    }
+  }
+  void random(int n) {
+    this->n = n;
+    this->m = n;
+    for (int i = 0; i < n; i++)
+      for (int j = 0; j < n; j++) mat[i][j] = rand() % 100;
+  }
+  void initSquare() {
+    this->n = 4;
+    this->m = 4;
+    memset(mat, 0, sizeof(mat));
+    mat[0][1] = mat[0][3] = 1;
+    mat[1][0] = mat[1][2] = 1;
+    mat[2][1] = mat[2][3] = 1;
+    mat[3][0] = mat[3][2] = 1;
+    mat[0][0] = mat[1][1] = mat[2][2] = mat[3][3] = -2;
+    this->n--;  //去一行
+    this->m--;  //去一列
+  }
+  double gauss() {
+    double ans = 1;
+    for (int i = 0; i < n; i++) {
+      int sid = -1;
+      for (int j = i; j < n; j++)
+        if (abs(mat[j][i]) > eps) {
+          sid = j;
+          break;
+        }
+      if (sid == -1) continue;
+      if (sid != i) {
+        for (int j = 0; j < n; j++) {
+          swap(mat[sid][j], mat[i][j]);
+          ans = -ans;
+        }
+      }
+      for (int j = i + 1; j < n; j++) {
+        double ratio = mat[j][i] / mat[i][i];
+        for (int k = 0; k < n; k++) {
+          mat[j][k] -= mat[i][k] * ratio;
+        }
+      }
+    }
+    for (int i = 0; i < n; i++) ans *= mat[i][i];
+    return abs(ans);
+  }
 };
-int main()
-{
-	srand(1);
-	matrix T;
-	//T.random(2);
-	T.initSquare();
-	T.print();
-	double ans = T.gauss();
-	T.print();
-	cout<<ans<<endl;
+int main() {
+  srand(1);
+  matrix T;
+  // T.random(2);
+  T.initSquare();
+  T.print();
+  double ans = T.gauss();
+  T.print();
+  cout << ans << endl;
 }
 ```

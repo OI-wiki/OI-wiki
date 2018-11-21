@@ -16,11 +16,15 @@
 
 ## 扩展欧拉定理
 
-$a^b \equiv a^{b \mod \phi(p)} \pmod p$   $(\gcd(a,p)=1)$
-
-$a^b \equiv a^b \pmod p$   $(\gcd(a,p)\ne 1,b<\varphi(p))$
-
-$a^b \equiv a^{b \mod \phi(p)+\phi(p)} \pmod p$  $(\gcd(a,p)\ne 1,b \ge  \varphi(p))$
+$$
+a^b\equiv
+\begin{cases}
+a^{b\bmod\varphi(p)},\,&\gcd(a,\,p)=1\\
+a^b,&\gcd(a,\,p)\ne1,\,b<\varphi(p)\\
+a^{b\bmod\varphi(p)+\varphi(p)},&\gcd(a,\,p)\ne1,\,b\ge\varphi(p)
+\end{cases}
+\pmod p
+$$
 
 ### 证明
 
@@ -42,7 +46,7 @@ $a^b \equiv a^{b \mod \phi(p)+\phi(p)} \pmod p$  $(\gcd(a,p)\ne 1,b \ge  \varphi
 
     所以 $p^r\equiv p^{r+s}\pmod m$，这里 $s=\phi(m)$
 
-3. 推论：$p^b\equiv p^{r+(b-r) \mod \phi(m)}\pmod m$ 
+3.  推论：$p^b\equiv p^{r+(b-r) \mod \phi(m)}\pmod m$ 
 
 4.  又由于 $m=p^rm'$，所以 $\phi(m) \ge  \phi(p^r)=p^{r-1}(p-1) \ge r$ 
 

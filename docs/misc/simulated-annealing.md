@@ -6,7 +6,7 @@
 
 ## 实现
 
-根据 [爬山算法](https://oi-wiki.org/misc/hill-climbing/) 的过程，我们发现：对于一个当前最优解附近的非最优解，爬山算法直接舍去了这个解。而很多情况下，我们需要去接受这个非最优解从而跳出这个局部最优解，即为模拟退火算法。
+根据 [爬山算法](/misc/hill-climbing/) 的过程，我们发现：对于一个当前最优解附近的非最优解，爬山算法直接舍去了这个解。而很多情况下，我们需要去接受这个非最优解从而跳出这个局部最优解，即为模拟退火算法。
 
 > **什么是退火？**（选自百度百科）
 >
@@ -47,54 +47,52 @@ $$
 此处代码以 [「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)（求 $n$ 个点的带权类费马点）为例。
 
 ```cpp
-#include <cstdio>
 #include <cmath>
+#include <cstdio>
 #include <cstdlib>
 #include <ctime>
 
-const int N=10005;
-int n,x[N],y[N],w[N];
-double ansx,ansy,dis;
+const int N = 10005;
+int n, x[N], y[N], w[N];
+double ansx, ansy, dis;
 
-double Rand() {
-    return (double)rand()/RAND_MAX;
-}
-double calc(double xx,double yy) {
-    double res=0;
-    for(int i=1;i<=n;++i) {
-        double dx=x[i]-xx,dy=y[i]-yy;
-        res+=sqrt(dx*dx+dy*dy)*w[i];
-    }
-    if(res<dis) dis=res,ansx=xx,ansy=yy;
-    return res;
+double Rand() { return (double)rand() / RAND_MAX; }
+double calc(double xx, double yy) {
+  double res = 0;
+  for (int i = 1; i <= n; ++i) {
+    double dx = x[i] - xx, dy = y[i] - yy;
+    res += sqrt(dx * dx + dy * dy) * w[i];
+  }
+  if (res < dis) dis = res, ansx = xx, ansy = yy;
+  return res;
 }
 void simulateAnneal() {
-    double t=100000;
-    double nowx=ansx,nowy=ansy;
-    while(t>0.001) {
-        double nxtx=nowx+t*(Rand()*2-1);
-        double nxty=nowy+t*(Rand()*2-1);
-        double delta=calc(nxtx,nxty)-calc(nowx,nowy);
-        if(exp(-delta/t)>Rand()) nowx=nxtx,nowy=nxty;
-        t*=0.97;
-    }
-    for(int i=1;i<=1000;++i) {
-        double nxtx=ansx+t*(Rand()*2-1);
-        double nxty=ansy+t*(Rand()*2-1);
-        calc(nxtx,nxty);
-    }
+  double t = 100000;
+  double nowx = ansx, nowy = ansy;
+  while (t > 0.001) {
+    double nxtx = nowx + t * (Rand() * 2 - 1);
+    double nxty = nowy + t * (Rand() * 2 - 1);
+    double delta = calc(nxtx, nxty) - calc(nowx, nowy);
+    if (exp(-delta / t) > Rand()) nowx = nxtx, nowy = nxty;
+    t *= 0.97;
+  }
+  for (int i = 1; i <= 1000; ++i) {
+    double nxtx = ansx + t * (Rand() * 2 - 1);
+    double nxty = ansy + t * (Rand() * 2 - 1);
+    calc(nxtx, nxty);
+  }
 }
 int main() {
-    srand(time(0));
-    scanf("%d",&n);
-    for(int i=1;i<=n;++i) {
-        scanf("%d%d%d",&x[i],&y[i],&w[i]);
-        ansx+=x[i],ansy+=y[i];
-    }
-    ansx/=n,ansy/=n,dis=calc(ansx,ansy);
-    simulateAnneal();
-    printf("%.3lf %.3lf\n",ansx,ansy);
-    return 0;
+  srand(time(0));
+  scanf("%d", &n);
+  for (int i = 1; i <= n; ++i) {
+    scanf("%d%d%d", &x[i], &y[i], &w[i]);
+    ansx += x[i], ansy += y[i];
+  }
+  ansx /= n, ansy /= n, dis = calc(ansx, ansy);
+  simulateAnneal();
+  printf("%.3lf %.3lf\n", ansx, ansy);
+  return 0;
 }
 ```
 
@@ -102,6 +100,6 @@ int main() {
 
 ## 习题
 
-- [「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)
-- [「JSOI 2016」炸弹攻击](https://www.lydsy.com/JudgeOnline/problem.php?id=4852)
-- [「HAOI 2006」均分数据](https://www.lydsy.com/JudgeOnline/problem.php?id=2428)
+-   [「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)
+-   [「JSOI 2016」炸弹攻击](https://www.lydsy.com/JudgeOnline/problem.php?id=4852)
+-   [「HAOI 2006」均分数据](https://www.lydsy.com/JudgeOnline/problem.php?id=2428)
