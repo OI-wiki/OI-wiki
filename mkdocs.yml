@@ -300,7 +300,11 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.progressbar
   - pymdownx.smartsymbols
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: math
+          class: arithmatex
+          format: !!python/name:pymdownx.arithmatex.fence_mathjax_format
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
