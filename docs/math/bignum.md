@@ -361,37 +361,52 @@ $$
 代码如下：
 
 ```c++
-char aa[MAXLEN], bb[MAXLEN];
-int a[MAXLEN], b[MAXLEN], c[MAXLEN];
-int lena, lenb, len;
-void sub() {
-  read();
-  bool flag = false;
-  for (int i = len; i >= 1; i--)  //判断是否出现a<b的情况
-    if (a[i] < b[i]) flag = true;
-  if (flag) {
-    int tmp[MAXLEN];
-    for (int i = 1; i <= len; i++)  //交换两数
-      tmp[i] = a[i];
-    for (int i = 1; i <= len; i++) a[i] = b[i];
-    for (int i = 1; i <= len; i++) b[i] = tmp[i];
-    cout << "-";  //输出负号
-  }
-  for (int i = 1; i <= len; i++) {
-    if (a[i] - b[i] < 0) {
-      a[i] += 10;
-      a[i + 1]--;
+void sub()
+{
+    read();
+    int flag=-1;
+    for (int i=len;i>=1;i--)  //判断是否出现a<b的情况
+        if (a[i]>b[i])
+        {
+            flag=0;
+            break;
+        }
+        else if (a[i]<b[i])
+        {
+            flag=1;
+            break;
+        }
+    if (flag==1)
+    {
+        int tmp[MAXLEN]={0};  //交换两数
+        for (int i=1;i<=len;i++)
+            tmp[i]=a[i];
+        for (int i=1;i<=len;i++)
+            a[i]=b[i];
+        for (int i=1;i<=len;i++)
+            b[i]=tmp[i];
+        cout<<"-";  //输出负号
     }
-    c[i] = a[i] - b[i];
-  }
-  while (c[len] == 0)  //压前导零
-    len--;
-  for (int i = len; i >= 1; i--)  //从最高位输出
-    cout << c[i];
+	if (flag==-1)
+	{
+		cout<<0;
+		return;
+	}
+    for (int i=1;i<=len;i++)
+    {
+        if (a[i]-b[i]<0)
+        {
+            a[i]+=10;
+            a[i+1]--;
+        }
+        c[i]=a[i]-b[i];
+    }
+    while (c[len]==0)  //压前导零
+        len--;
+    for (int i=len;i>=1;i--)  //从最高位输出
+        cout<<c[i];
 }
 ```
-
-作者第一次做此题，所以请读者验证此代码是否正确，谢谢！
 
 ### 除法
 
