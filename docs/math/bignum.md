@@ -290,7 +290,7 @@ void plus()
     while (c[len]==0)//压前导0
         len--;
     for (int i=len;i>=1;i--)//从最高位输出
-        cout<<len[i];
+        cout<<c[i];
 }
 ```
 
@@ -335,7 +335,7 @@ void mul()
     while (c[len]==0)//压前导零
         len--;
     for (int i=len;i>=1;i--)//从最高位输出
-        cout<<len[i];
+        cout<<c[i];
 }
 ```
 
@@ -395,7 +395,7 @@ void sub()
     while (c[len]==0)//压前导零
         len--;
     for (int i=len;i>=1;i--)//从最高位输出
-        cout<<len[i];
+        cout<<c[i];
 }
 ```
 
