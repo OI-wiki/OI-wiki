@@ -361,50 +361,39 @@ $$
 代码如下：
 
 ```c++
-void sub()
-{
-    read();
-    int flag=-1;
-    for (int i=len;i>=1;i--)  //判断是否出现a<b的情况
-        if (a[i]>b[i])
-        {
-            flag=0;
-            break;
-        }
-        else if (a[i]<b[i])
-        {
-            flag=1;
-            break;
-        }
-    if (flag==1)
-    {
-        int tmp[MAXLEN]={0};  //交换两数
-        for (int i=1;i<=len;i++)
-            tmp[i]=a[i];
-        for (int i=1;i<=len;i++)
-            a[i]=b[i];
-        for (int i=1;i<=len;i++)
-            b[i]=tmp[i];
-        cout<<"-";  //输出负号
+void sub() {
+  read();
+  int flag = -1;
+  for (int i = len; i >= 1; i--)  //判断是否出现a<b的情况
+    if (a[i] > b[i]) {
+      flag = 0;
+      break;
+    } else if (a[i] < b[i]) {
+      flag = 1;
+      break;
     }
-	if (flag==-1)
-	{
-		cout<<0;
-		return;
-	}
-    for (int i=1;i<=len;i++)
-    {
-        if (a[i]-b[i]<0)
-        {
-            a[i]+=10;
-            a[i+1]--;
-        }
-        c[i]=a[i]-b[i];
+  if (flag == 1) {
+    int tmp[MAXLEN] = {0};  //交换两数
+    for (int i = 1; i <= len; i++) tmp[i] = a[i];
+    for (int i = 1; i <= len; i++) a[i] = b[i];
+    for (int i = 1; i <= len; i++) b[i] = tmp[i];
+    cout << "-";  //输出负号
+  }
+  if (flag == -1) {
+    cout << 0;
+    return;
+  }
+  for (int i = 1; i <= len; i++) {
+    if (a[i] - b[i] < 0) {
+      a[i] += 10;
+      a[i + 1]--;
     }
-    while (c[len]==0)  //压前导零
-        len--;
-    for (int i=len;i>=1;i--)  //从最高位输出
-        cout<<c[i];
+    c[i] = a[i] - b[i];
+  }
+  while (c[len] == 0)  //压前导零
+    len--;
+  for (int i = len; i >= 1; i--)  //从最高位输出
+    cout << c[i];
 }
 ```
 
