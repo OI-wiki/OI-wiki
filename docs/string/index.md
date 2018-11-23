@@ -17,3 +17,7 @@
 也可以用 `vector` 如  `vector<char> v`
 
 同时 STL 中也提供了字符串容器 `std :: string` 
+
+??? note
+    另外，在 `C / C++` 中也可以声明字符串常量，比如 `char *buf = "XD"`，它们的值在编译过程中已经确定，保存在可执行目标文件的 `.rodata` 段内
+    调用 `objdump -s -j .rodata 文件名` 可以查看 `.rodata` 段的具体内容
