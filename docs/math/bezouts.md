@@ -21,7 +21,7 @@
     转证 $a_1x+b_1y=1$. 由带余除法:
 
     $$
-    \begin{align*}a_1 &= q_1b+r_1 &(0\leq r_1<b_1) \\ b_1 &= q_2r_1+r_2 &(0\leq r_2<r_1) \\ r_1 &= q_3r_2+r_3 &(0\leq r_3<r_2) \\ &\cdots \\ r_{n-3} &= q_{n-1}r_{n-2}+r_{n-1} \\ r_{n-2} &= q_nr_{n-1}+r_n \\ r_{n-1} &= q_{n+1}r_n\end{align*}
+    \begin{aligned}a_1 &= q_1b+r_1 &(0\leq r_1<b_1) \\ b_1 &= q_2r_1+r_2 &(0\leq r_2<r_1) \\ r_1 &= q_3r_2+r_3 &(0\leq r_3<r_2) \\ &\cdots \\ r_{n-3} &= q_{n-1}r_{n-2}+r_{n-1} \\ r_{n-2} &= q_nr_{n-1}+r_n \\ r_{n-1} &= q_{n+1}r_n\end{aligned}
     $$
 
     于是, 有

@@ -17,12 +17,12 @@
 若 $f(x)$ 和 $g(x)$ 均为积性函数，则以下函数也为积性函数：
 
 $$
-\begin{align*}
+\begin{aligned}
 h(x)&=f(x^p)\\
 h(x)&=f^p(x)\\
 h(x)&=f(x)g(x)\\
 h(x)&=\sum_{d\mid x}f(d)g(\frac{x}{d})
-\end{align*}
+\end{aligned}
 $$
 
 ### 例子
@@ -63,12 +63,12 @@ $\text{Dirichlet}$ 卷积满足交换律和结合律。
 ### 例子
 
 $$
-\begin{align*}
+\begin{aligned}
 \varepsilon=\mu*1&\Leftrightarrow\varepsilon(n)=\sum_{d\mid n}\mu(d)\\
 d=1*1&\Leftrightarrow d(n)=\sum_{d\mid n}1\\
 \sigma=d*1&\Leftrightarrow\varepsilon(n)=\sum_{d\mid n}d\\
 \varphi=\mu*\text{ID}&\Leftrightarrow\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
-\end{align*}
+\end{aligned}
 $$
 
 * * *
@@ -158,13 +158,13 @@ $$
 易知如下过程：
 
 $$
-\begin{align*}
+\begin{aligned}
 \varphi*1&=\sum_{d\mid n}\varphi(\frac{n}{d})\\
 &=\sum_{i=0}^c\varphi(p^i)\\
 &=1+p^0\cdot(p-1)+p^1\cdot(p-1)+\cdots+p^{c-1}\cdot(p-1)\\
 &=p^c\\
 &=\text{ID}\\
-\end{align*}
+\end{aligned}
 $$
 
 该式子两侧同时卷 $\mu$ 可得 $\displaystyle\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})$
