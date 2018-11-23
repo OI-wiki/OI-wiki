@@ -117,13 +117,13 @@ $x=b_1+b_2n_1+b_3n_1n_2...+b_kn_1n_2...n_{k-1} ,b_i\in [0,n_i)$
 转化方法考虑依次对 PMR 取模
 
 $$
-\begin{align}
+\begin{aligned}
 b_1&=a_1 \mod n_1\\
 b_2&=(a_2-b_1)c_{1,2} \mod n_2\\
 b_3&=((a_3-b_1')c_{1,3}-x_2')c_{2,3} \mod n_3\\
 &...\\
 b_k&=(...((a_k-b_1)c_{1,k}-b_2)c_{2,k})-...)c_{k-1,k} \mod n_k
-\end{align}
+\end{aligned}
 $$
 
 其中$c_{i,j}$表示$n_i$对$n_j$的逆元,$c_{i,j}n_i=1 \mod n_j$
