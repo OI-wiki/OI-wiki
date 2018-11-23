@@ -37,27 +37,27 @@
 
 对于字符串 $s=``"$：
 
-![](./images/SAM/SA.pdf.svg)
+![](./images/SAM/SA.svg)
 
 对于字符串 $s=``a\!"$：
 
-![](./images/SAM/SAa.pdf.svg)
+![](./images/SAM/SAa.svg)
 
 对于字符串 $s=``aa\!"$：
 
-![](./images/SAM/SAaa.pdf.svg)
+![](./images/SAM/SAaa.svg)
 
 对于字符串 $s=``ab\!"$：
 
-![](./images/SAM/SAab.pdf.svg)
+![](./images/SAM/SAab.svg)
 
 对于字符串 $s=``abb\!"$：
 
-![](./images/SAM/SAabb.pdf.svg)
+![](./images/SAM/SAabb.svg)
 
 对于字符串 $s=``abbb\!"$：
 
-![](./images/SAM/SAabbb.pdf.svg)
+![](./images/SAM/SAabbb.svg)
 
 ## 在线性时间内构造后缀自动机
 
@@ -126,7 +126,7 @@ $$
 
 以下是对于字符串 $``abcbc\!"$ 构造后缀自动机时产生的后缀链接树的一个**例子**，节点被标记为对应等价类中最长的子串。
 
-![](./images/SAM/SA_suffix_links.pdf.svg)
+![](./images/SAM/SA_suffix_links.svg)
 
 ### 小结
 
