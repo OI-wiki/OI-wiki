@@ -283,7 +283,7 @@ void plu() {
   }
   if (len + 1 != 0)  //如果最后一位有进位
     len++;
-  while (c[len] == 0 && len!=1)  //压前导0
+  while (c[len] == 0 && len != 1)  //压前导0
     len--;
   for (int i = len; i >= 1; i--)  //从最高位输出
     cout << c[i];
@@ -329,7 +329,7 @@ void mul() {
       c[i] %= 10;
     }
   len = i;
-  while (c[len] == 0 && len!=1)  //压前导零
+  while (c[len] == 0 && len != 1)  //压前导零
     len--;
   for (int i = len; i >= 1; i--)  //从最高位输出
     cout << c[i];
@@ -386,7 +386,7 @@ void sub() {
     }
     c[i] = a[i] - b[i];
   }
-  while (c[len] == 0 && len!=1)  //压前导零
+  while (c[len] == 0 && len != 1)  //压前导零
     len--;
   for (int i = len; i >= 1; i--)  //从最高位输出
     cout << c[i];
