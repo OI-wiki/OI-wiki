@@ -57,16 +57,15 @@
 我们先啥都不管，假设已经实现了这个数据结构……
 
 （伪代码）
-```
-for (edge(u, v, len) in sorted(edges)) {
-	a = find_set(u), b = find_set(v);
-	if (a != b) merge(a, b);
-}
-```
+
+    for (edge(u, v, len) in sorted(edges)) {
+    	a = find_set(u), b = find_set(v);
+    	if (a != b) merge(a, b);
+    }
 
 find_set 调用 $O(m)$ 次，merge 调用 $O(n)$ 次
 
-排序的复杂度为 $O(m \log m)$，或 $O(m)$（假设能基数排序）
+排序的复杂度为 $O(m \\log m)$，或 $O(m)$（假设能基数排序）
 
 ### “集合”数据结构的一种实现
 
@@ -90,13 +89,13 @@ merge：$O(n)$，需要将一个集合中的所有元素移到另一个集合中
 
 很显然，一个元素所在的集合大小，在作为较小集合被合并一次之后，至少增加一倍
 
-所以一个元素所在的集合，最多有 $\log n$ 次，作为较小集合被合并
+所以一个元素所在的集合，最多有 $\\log n$ 次，作为较小集合被合并
 
-一共$n$个元素，所以总时间复杂度为 $O(n \log n + m)$
+一共$n$个元素，所以总时间复杂度为 $O(n \\log n + m)$
 
 这种做法或者思想，叫“启发式合并”
 
-总之我们得到了 $O(n \log n + m \log m)$ 的Kruskal算法
+总之我们得到了 $O(n \\log n + m \\log m)$ 的Kruskal算法
 
 ## Prim 算法
 
@@ -143,22 +142,21 @@ merge：$O(n)$，需要将一个集合中的所有元素移到另一个集合中
 
 暴力：$O(n^2+m)$
 
-二叉堆：$O((n+m) \log n)$
+二叉堆：$O((n+m) \\log n)$
 
-Fib堆：$O(n \log n + m)$
+Fib堆：$O(n \\log n + m)$
 
 （伪代码）
-```
-H = new heap();
-for (i = 1; i <= n; i++) H.insert(i, inf);
-H.decrease_key(1, 0);
-for (i = 1; i <= n; i++) {
-	u = H.delete_min();
-	for each edge(u, v, len) {
-		H.decrease_key(v, len);
-	}
-}
-```
+
+    H = new heap();
+    for (i = 1; i <= n; i++) H.insert(i, inf);
+    H.decrease_key(1, 0);
+    for (i = 1; i <= n; i++) {
+    	u = H.delete_min();
+    	for each edge(u, v, len) {
+    		H.decrease_key(v, len);
+    	}
+    }
 
 注意：上述代码只是实现了 Prim 算法主体，如果要输出方案还需要记录额外的信息
 

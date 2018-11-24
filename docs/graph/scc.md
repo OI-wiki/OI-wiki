@@ -1,4 +1,5 @@
 ## 简介
+
 在阅读下列内容之前，请务必了解 [图论基础](/graph/basic) 部分
 
 强连通的定义是：有向图 G 强连通是指，G 中任意两个节点连通。
@@ -51,30 +52,28 @@ low(x)：节点 x 所能访问到的点的 dfn 值的最小值
 
 ### 实现
 
-```
-dfs(x) {
-	dfn[x] = low[x] = ++index;
-	S.push(x);
-	instack[x] = true;
-	for each edge(x, y) {
-		if (!dfn[y]) {
-			dfs(y);
-			low[x] = min(low[x], low[y]);
-		} else if (instack[y]) {
-			low[x] = min(low[x], dfn[y]);
-		}
-	}
-	if (dfn[x] == low[x]) {
-		while (1) {
-			t = S.pop();
-			instack[t] = false;
-			if (t == x) break;
-		}
-	}
-}
-```
+    dfs(x) {
+    	dfn[x] = low[x] = ++index;
+    	S.push(x);
+    	instack[x] = true;
+    	for each edge(x, y) {
+    		if (!dfn[y]) {
+    			dfs(y);
+    			low[x] = min(low[x], low[y]);
+    		} else if (instack[y]) {
+    			low[x] = min(low[x], dfn[y]);
+    		}
+    	}
+    	if (dfn[x] == low[x]) {
+    		while (1) {
+    			t = S.pop();
+    			instack[t] = false;
+    			if (t == x) break;
+    		}
+    	}
+    }
 
-（转自维基：https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm）
+（转自维基：<https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm）>
 
 时间复杂度 $O(n+m)$
 
@@ -87,4 +86,3 @@ dfs(x) {
 DAG 好啊，能拓扑排序了就能做很多事情了
 
 举个简单的例子，求一条路径，可以经过重复结点，要求经过的不同结点数量最多
-

@@ -25,6 +25,7 @@
 C++ 函数模板库实现了快速排序，可以查阅[std::sort()](https://devdocs.io/cpp/algorithm/sort)
 
 用法：
+
 ```c++
 // a[0] .. a[n - 1] 是放了元素的
 std::sort(a, a + n);

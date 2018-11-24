@@ -9,21 +9,19 @@ bfs 全称是 Breadth First Search。
 
 伪代码：
 
-```
-bfs(s) {
-  q = new queue()
-  q.push(s)), visited[s] = true
-  while (!q.empty()) {
-    u = q.pop()
-    for each edge(u, v) {
-      if (!visited[v]) {
-        q.push(v)
-        visited[v] = true
+    bfs(s) {
+      q = new queue()
+      q.push(s)), visited[s] = true
+      while (!q.empty()) {
+        u = q.pop()
+        for each edge(u, v) {
+          if (!visited[v]) {
+            q.push(v)
+            visited[v] = true
+          }
+        }
       }
     }
-  }
-}
-```
 
 C++：
 
@@ -43,7 +41,6 @@ void bfs(int u) {
   }
 }
 ```
-
 
 时间复杂度 $O(n + m)$
 

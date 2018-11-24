@@ -2,7 +2,6 @@
 
 很多时候，你拿到了一套题，想要在本地测试一下自己能得多少分，这时候就需要评测软件了。
 
-
 ### Lemon
 
 Lemon 是 zhipeng-jia 写的开源的评测工具，地址在：[zhipeng-jia/project-lemon](https://github.com/zhipeng-jia/project-lemon)。
@@ -30,17 +29,16 @@ cd ..
 首先打开 lemon 选择新建试题，而后打开新建试题的文件夹
 
 题目和数据应该如以下格式所示
-```
-├── data
-│   ├── gendata.py
-│   ├── product
-│   │   ├── product100.in
-│   │   ├── product100.out
-│   │   ├── product10.in
-│   │   ├── product10.out
-│   │   ├── product11.in
-...
-```
+
+    ├── data
+    │   ├── gendata.py
+    │   ├── product
+    │   │   ├── product100.in
+    │   │   ├── product100.out
+    │   │   ├── product10.in
+    │   │   ├── product10.out
+    │   │   ├── product11.in
+    ...
 
 当所有试题添加完成后，回到 lemon 选择自动添加试题
 

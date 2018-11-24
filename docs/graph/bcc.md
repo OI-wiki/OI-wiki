@@ -1,4 +1,5 @@
 ## 简介
+
 在阅读下列内容之前，请务必了解 [图论基础](/graph/basic) 部分
 
 ## Tarjan 算法
@@ -25,30 +26,28 @@ AP：Articulation Point，割点 【也叫 Cut Vertex】
 
 （伪代码）
 
-```
-dfs(u, fa) {
-	dfn[u] = low[u] = ++index;
-	int n_childs = 0;
-	for each edge(u, v) {
-		if (!dfn[v]) {
-			dfs(v, u);
-			low[u] = min(low[u], low[v]);
-			if (low[v] == dfn[v]) {
-				report_bridge(u, v);
-			}
-			if (low[v] >= dfn[u]) {
-				is_AP[u] = true;
-			}
-			++n_childs;
-		} else if (v != fa) {
-			low[u] = min(low[u], dfn[v]);
-		}
-	}
-	if (fa == NULL && n_childs > 1) {
-		is_AP[u] = true;
-	}
-}
-```
+    dfs(u, fa) {
+    	dfn[u] = low[u] = ++index;
+    	int n_childs = 0;
+    	for each edge(u, v) {
+    		if (!dfn[v]) {
+    			dfs(v, u);
+    			low[u] = min(low[u], low[v]);
+    			if (low[v] == dfn[v]) {
+    				report_bridge(u, v);
+    			}
+    			if (low[v] >= dfn[u]) {
+    				is_AP[u] = true;
+    			}
+    			++n_childs;
+    		} else if (v != fa) {
+    			low[u] = min(low[u], dfn[v]);
+    		}
+    	}
+    	if (fa == NULL && n_childs > 1) {
+    		is_AP[u] = true;
+    	}
+    }
 
 使劲脑补一下，应该就能知道为啥是对的了
 

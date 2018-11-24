@@ -11,6 +11,7 @@ disqus:
 文档内容托管在 [Github](https://github.com/24OI/OI-wiki)，期待你的加入。
 
 ## Material color palette 颜色主题
+
 ### Primary colors 主色
 
 > 默认 `white`

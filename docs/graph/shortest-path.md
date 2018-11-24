@@ -15,7 +15,7 @@
 对于边权为正的图，任意两个结点之间的最短路，不会经过重复的结点
 
 同上，不会经过重复的边
- 
+
 同上，任意一条最短路的结点数不会超过n，边数不会超过 n-1
 
 ## Floyd 算法
@@ -34,7 +34,7 @@
 
 我们来考虑怎么求这个数组
 
-`f[0][x][y]`：边权，或者 0，或者 $+\infty$ 【`f[0][x][x]`什么时候应该是+inf？】
+`f[0][x][y]`：边权，或者 0，或者 $+\\infty$ 【`f[0][x][x]`什么时候应该是+inf？】
 
 `f[k][x][y] = min(f[k-1][x][y], f[k-1][x][k]+f[k-1][k][y])`
 
@@ -87,7 +87,7 @@ relax(u,v): $dist(v) = min(dist(v), dist(u) + edge_len(u, v))$
 
 relax是从哪里来的呢？
 
-三角形不等式: $dist(v) \leq dist(u) + edge_len(u, v)$
+三角形不等式: $dist(v) \\leq dist(u) + edge_len(u, v)$
 
 证明：反证法，如果不满足，那么可以用 relax 操作来更新 dist(v) 的值
 
@@ -99,7 +99,7 @@ Bellman-Ford 算法如下
 
 每次循环是 $O(m)$ 的，那么最多会循环多少次呢？
 
-答案是 $\infty$！（如果有一个S能走到的负环就会这样）
+答案是 $\\infty$！（如果有一个S能走到的负环就会这样）
 
 但是此时某些结点的最短路不存在
 
@@ -115,21 +115,19 @@ Bellman-Ford 算法如下
 
 （伪代码）
 
-```
-relax(u, v) {
-	dist[v] = min(dist[v], dist[u] + edge_len(u, v));
-}
-for (i = 1; i <= n; i++) {
-	dist[i] = edge_len(S, i);
-}
-for (i = 1; i < n; i++) {
-	for each edge(u, v) {
-		relax(u, v);
-	}
-}
-```
+    relax(u, v) {
+    	dist[v] = min(dist[v], dist[u] + edge_len(u, v));
+    }
+    for (i = 1; i <= n; i++) {
+    	dist[i] = edge_len(S, i);
+    }
+    for (i = 1; i < n; i++) {
+    	for each edge(u, v) {
+    		relax(u, v);
+    	}
+    }
 
-注：这里的 edge_len(u, v) 表示边的权值，如果该边不存在则为 $+\infty$，u=v 则为 0
+注：这里的 edge_len(u, v) 表示边的权值，如果该边不存在则为 $+\\infty$，u=v 则为 0
 
 ### 应用
 
@@ -149,21 +147,19 @@ for (i = 1; i < n; i++) {
 
 （伪代码）
 
-```
-q = new queue();
-q.push(S);
-in_queue[S] = true;
-while (!q.empty()) {
-	u = q.pop();
-	in_queue[u] = false;
-	for each edge(u, v) {
-		if (relax(u, v) && !in_queue[v]) {
-			q.push(v);
-			in_queue[v] = true;
-		}
-	}
-}
-```
+    q = new queue();
+    q.push(S);
+    in_queue[S] = true;
+    while (!q.empty()) {
+    	u = q.pop();
+    	in_queue[u] = false;
+    	for each edge(u, v) {
+    		if (relax(u, v) && !in_queue[v]) {
+    			q.push(v);
+    			in_queue[v] = true;
+    		}
+    	}
+    }
 
 ## Dijkstra 算法
 
@@ -193,9 +189,9 @@ Dijkstra 是个 人名
 
 如果用暴力： $O(n^2 + m)$
 
-如果用堆：$O((n+m) \log n)$
+如果用堆：$O((n+m) \\log n)$
 
-如果用 Fib 堆： $O(n \log n + m)$ （这就是为啥优秀了）
+如果用 Fib 堆： $O(n \\log n + m)$ （这就是为啥优秀了）
 
 等等，还没说正确性呢！
 
@@ -209,24 +205,22 @@ Dijkstra 是个 人名
 
 （伪代码）
 
-```
-H = new heap();
-H.insert(S, 0);
-dist[S] = 0;
-for (i = 1; i <= n; i++) {
-	u = H.delete_min();
-	for each edge(u, v) {
-		if (relax(u, v)) {
-			H.decrease_key(v, dist[v]);
-		}
-	}
-}
-```
+    H = new heap();
+    H.insert(S, 0);
+    dist[S] = 0;
+    for (i = 1; i <= n; i++) {
+    	u = H.delete_min();
+    	for each edge(u, v) {
+    		if (relax(u, v)) {
+    			H.decrease_key(v, dist[v]);
+    		}
+    	}
+    }
 
 ## 不同方法的比较
 
-| Floyd     | Bellman-Ford | Dijkstra |
-| -------- | ------ | ------ |
-| 每对结点之间的最短路 | 单源最短路 | 单源最短路 |
-| 没有负环的图 | 任意图 | 非负权图 |
-| $O(n^3)$ | $O(nm)$ | $O((n+m)\log n)$ |
+| Floyd      | Bellman-Ford | Dijkstra          |
+| ---------- | ------------ | ----------------- |
+| 每对结点之间的最短路 | 单源最短路        | 单源最短路             |
+| 没有负环的图     | 任意图          | 非负权图              |
+| $O(n^3)$   | $O(nm)$      | $O((n+m)\\log n)$ |

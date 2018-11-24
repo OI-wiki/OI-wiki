@@ -18,15 +18,15 @@
 
 在 NOIP 中，我们只要求一个能支持主要操作的堆就行，也就是二叉堆。
 
-- 二叉堆 (binary heap)
+-   二叉堆 (binary heap)
 
 最基础的堆，不支持 merge 和可持久化，所有操作的复杂度都是 $O(log n)$ 的
 
-- 二项堆 (binomial heap)
+-   二项堆 (binomial heap)
 
 支持 merge 的堆，（也能可持久化），所有操作的复杂度都是 $O(log n)$
 
-- Fib 堆 (fibonacci heap)：
+-   Fib 堆 (fibonacci heap)：
 
 除了不能可持久化，支持全部功能，而且除了 deletemin 以外都是均摊 $O(1)$ 的
 
@@ -87,23 +87,21 @@
 
 （伪代码）
 
-```
-up(x) {
-	while (x > 1 && h[x] > h[x / 2]) {
-		swap(h[x], h[x / 2]);
-		x /= 2;
-	}
-}
-down(x) {
-	while (x * 2 <= n) {
-		t = x * 2;
-		if (t + 1 <= n && h[t + 1] < h[t]) t++;
-		if (h[t] >= h[x]) break;
-		swap(h[x], h[t]);
-		x = t;
-	}
-}
-```
+    up(x) {
+    	while (x > 1 && h[x] > h[x / 2]) {
+    		swap(h[x], h[x / 2]);
+    		x /= 2;
+    	}
+    }
+    down(x) {
+    	while (x * 2 <= n) {
+    		t = x * 2;
+    		if (t + 1 <= n && h[t + 1] < h[t]) t++;
+    		if (h[t] >= h[x]) break;
+    		swap(h[x], h[t]);
+    		x = t;
+    	}
+    }
 
 ### 建堆
 
@@ -115,15 +113,13 @@ down(x) {
 
 从根开始，按BFS序进行
 
-```
-build_heap_1() {
-	for (i = 1; i <= n; i++) up(i);
-}
-```
+    build_heap_1() {
+    	for (i = 1; i <= n; i++) up(i);
+    }
 
 为啥这么做：对于第 k 层的结点，向上调整的复杂度为 $O(k)$ 而不是 $O(log n)$
 
-总复杂度：$log 1 + log 2 + \cdots + log n = \Theta(n log n)$
+总复杂度：$log 1 + log 2 + \\cdots + log n = \\Theta(n log n)$
 
 （在“基于比较的排序”中证明过）
 
@@ -131,24 +127,22 @@ build_heap_1() {
 
 这时换一种思路，从叶子开始，逐个向下调整
 
-```
-build_heap_2() {
-	for (i = n; i >= 1; i--) down(i);
-}
-```
+    build_heap_2() {
+    	for (i = n; i >= 1; i--) down(i);
+    }
 
 换一种理解方法，每次“合并”两个已经调整好的堆，这说明了正确性
 
 注意到向下调整的复杂度，为 $O(log n - k)$
 
 $$
-\begin{aligned}
+\\begin{aligned}
 总复杂度 & = n log n - log 1 - log 2 - ... - log n \\\\
-& \leq n log n - 0 * 2^0 - 1 * 2^1 - ... - (log n - 1) * (n/2) \\\\
+& \\leq n log n - 0 _ 2^0 - 1 _ 2^1 - ... - (log n - 1) \* (n/2) \\\\
 & = n log n - (n-1) - (n-2) - (n-4) - ... - (n-n/2) \\\\
 & = n log n - n log n + 1 + 2 + 4 + ... + n/2 \\\\
 & = n - 1 \\\\ &  = O(n)
-\end{aligned}
+\\end{aligned}
 $$
 
 之所以能 $O(n)$ 建堆，是因为堆性质很弱，二叉堆并不是唯一的
