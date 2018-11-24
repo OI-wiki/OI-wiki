@@ -53,8 +53,7 @@ int main() {
 
 ### 习题
 
-1.  [ U53525 前缀和（例题）
-    ](https://www.luogu.org/problemnew/show/U53525)
+1.  [U53525 前缀和（例题）](https://www.luogu.org/problemnew/show/U53525)
 
 ### 参考
 
