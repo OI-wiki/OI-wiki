@@ -16,7 +16,7 @@ $2\times 70+3\times 21+2\times 15=233=2\times 105+23$，故答案为 $23$。
 
 $$
 \left \{
-\begin{array}{c}
+\begin{array}{ccc}
 x &\equiv& a_1 \pmod {n_1} \\
 x &\equiv& a_2 \pmod {n_2} \\
   &\vdots& \\
