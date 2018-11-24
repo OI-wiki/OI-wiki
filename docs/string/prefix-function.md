@@ -194,7 +194,7 @@ $$
 
 换句话说，我们可以构造一个**自动机**（一个有限状态机）：其状态为当前的前缀函数值，而从一个状态到另一个状态的转移则由下一个字符确定。
 
-因此，即使没有字符串 $t$，我们同样可以应用构造转移表的算法构造一个转移表 $(\text{old_\(\pi\)}, c) \rightarrow \text{new_\(\pi\)}$：
+因此，即使没有字符串 $t$，我们同样可以应用构造转移表的算法构造一个转移表 $( \text { old } \pi , c ) \rightarrow \text { new } _ { - } \pi$：
 
 ```c++
 void compute_automaton(string s, vector<vector<int>>& aut) {

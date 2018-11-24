@@ -16,7 +16,7 @@ $2\times 70+3\times 21+2\times 15=233=2\times 105+23$，故答案为 $23$。
 
 $$
 \left \{
-\begin{array}{c}
+\begin{array}{ccc}
 x &\equiv& a_1 \pmod {n_1} \\
 x &\equiv& a_2 \pmod {n_2} \\
   &\vdots& \\
@@ -98,14 +98,7 @@ $$
 考虑 CRT, 不妨假设$n_1\leq n_2 \leq ... \leq n_k$
 
 $$
-\left \{
-\begin{array}{c}
-x &\equiv& a_1 \pmod {n_1} \\
-x &\equiv& a_2 \pmod {n_2} \\
-  &\vdots& \\
-x &\equiv& a_n \pmod {n_k} \\
-\end{array}
-\right.
+\left\{ \begin{array} { r l } { x } & { \equiv a _ { 1 } \left( \bmod n _ { 1 } \right) } \\ { x } & { \equiv a _ { 2 } \left( \bmod n _ { 2 } \right) } \\ { } & { \vdots } \\ { x } & { \equiv a _ { n } \left( \bmod n _ { k } \right) } \end{array} \right.
 $$
 
 与 PMR(Primorial Mixed Radix) 表示
