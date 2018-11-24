@@ -271,10 +271,10 @@ void read() {
 char aa[MAXLEN], bb[MAXLEN];
 int a[MAXLEN], b[MAXLEN], c[MAXLEN];
 int lena, lenb, len;
-void plus() {
+void plu() {
   read();
   for (int i = 1; i <= len; i++) {
-    c[i] = a[i] + b[i];
+    c[i] += a[i] + b[i];
     if (c[i] >= 10)  //进位
     {
       c[i + 1]++;
@@ -283,7 +283,7 @@ void plus() {
   }
   if (len + 1 != 0)  //如果最后一位有进位
     len++;
-  while (c[len] == 0)  //压前导0
+  while (c[len] == 0 && len!=1)  //压前导0
     len--;
   for (int i = len; i >= 1; i--)  //从最高位输出
     cout << c[i];
@@ -321,7 +321,7 @@ int lena, lenb, len;
 void mul() {
   read();
   for (int i = 1; i <= lena; i++)
-    for (int j = 1; j <= lenb; j++) c[i + j - 1] = a[i] * b[j];
+    for (int j = 1; j <= lenb; j++) c[i + j - 1] += a[i] * b[j];
   int i;
   for (i = 1; c[i] != 0 || i <= len; i++)  //进位
     if (c[i] >= 10) {
@@ -329,7 +329,7 @@ void mul() {
       c[i] %= 10;
     }
   len = i;
-  while (c[len] == 0)  //压前导零
+  while (c[len] == 0 && len!=1)  //压前导零
     len--;
   for (int i = len; i >= 1; i--)  //从最高位输出
     cout << c[i];
@@ -363,25 +363,21 @@ $$
 ```c++
 void sub() {
   read();
-  int flag = -1;
+  bool flag = false;
   for (int i = len; i >= 1; i--)  //判断是否出现a<b的情况
     if (a[i] > b[i]) {
-      flag = 0;
+      flag = false;
       break;
     } else if (a[i] < b[i]) {
-      flag = 1;
+      flag = true;
       break;
     }
-  if (flag == 1) {
+  if (flag) {
     int tmp[MAXLEN] = {0};  //交换两数
     for (int i = 1; i <= len; i++) tmp[i] = a[i];
     for (int i = 1; i <= len; i++) a[i] = b[i];
     for (int i = 1; i <= len; i++) b[i] = tmp[i];
     cout << "-";  //输出负号
-  }
-  if (flag == -1) {
-    cout << 0;
-    return;
   }
   for (int i = 1; i <= len; i++) {
     if (a[i] - b[i] < 0) {
@@ -390,7 +386,7 @@ void sub() {
     }
     c[i] = a[i] - b[i];
   }
-  while (c[len] == 0)  //压前导零
+  while (c[len] == 0 && len!=1)  //压前导零
     len--;
   for (int i = len; i >= 1; i--)  //从最高位输出
     cout << c[i];
