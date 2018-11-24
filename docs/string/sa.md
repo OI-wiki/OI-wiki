@@ -93,15 +93,15 @@ int main() {
 using namespace std;
 
 int n;
-int sa[150], x[150], c[150], y[150];
+int sa[150], rank[150], c[150], y[150];
 char a[150];
 
 inline void SA() {
   int m = 128;
   for (int i = 0; i <= m; i++) c[i] = 0;
-  for (int i = 1; i <= n; i++) c[x[i]]++;
+  for (int i = 1; i <= n; i++) c[rank[i]]++;
   for (int i = 1; i <= m; i++) c[i] += c[i - 1];
-  for (int i = n; i; i--) sa[c[x[i]]--] = i;
+  for (int i = n; i; i--) sa[c[rank[i]]--] = i;
 
   for (int k = 1, p; k <= n; k <<= 1) {
     p = 0;
@@ -110,17 +110,17 @@ inline void SA() {
       if (sa[i] > k) y[++p] = sa[i] - k;
 
     for (int i = 0; i <= m; i++) c[i] = 0;
-    for (int i = 1; i <= n; i++) c[x[i]]++;
+    for (int i = 1; i <= n; i++) c[rank[i]]++;
     for (int i = 1; i <= m; i++) c[i] += c[i - 1];
-    for (int i = n; i; i--) sa[c[x[y[i]]]--] = y[i];
+    for (int i = n; i; i--) sa[c[rank[y[i]]]--] = y[i];
 
     p = y[sa[1]] = 1;
     for (int i = 2, a, b; i <= n; i++) {
-      a = sa[i] + k > n ? -1 : x[sa[i] + k];
-      b = sa[i - 1] + k > n ? -1 : x[sa[i - 1] + k];
-      y[sa[i]] = (x[sa[i]] == x[sa[i - 1]]) && (a == b) ? p : ++p;
+      a = sa[i] + k > n ? -1 : rank[sa[i] + k];
+      b = sa[i - 1] + k > n ? -1 : rank[sa[i - 1] + k];
+      y[sa[i]] = (rank[sa[i]] == rank[sa[i - 1]]) && (a == b) ? p : ++p;
     }
-    swap(x, y);
+    swap(rank, y);
     m = p;
   }
 }
@@ -136,8 +136,6 @@ int main() {
   exit(0);
 }
 ```
-
-代码里 $x[i]$ 就是 $rank[i]$ 
 
 $y[i]$ ：假设 $y[i]=a\ ,\  y[i+1]=b$ 那么在原串中 从 $a+2^k$ 开始的 $2^k$ 个字符组成的子串 ** 小于等于 ** 从 $b+2^k$ 开始的 $2^k$ 个字符组成的子串
 
