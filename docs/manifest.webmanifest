@@ -11,6 +11,6 @@
       "sizes": "144x144"
     }
   ],
-  "display": "standalone",
+  "display": "browser",
   "start_url": "index.html?launcher=true"
 }
