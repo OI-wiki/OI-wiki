@@ -49,6 +49,7 @@
 -   [algo.is](https://algo.is/t-414-aflv-competitive-programming-course-2016/)
 -   [CS 97SI: Introduction to Programming Contests](http://web.stanford.edu/class/cs97si/) 斯坦福的一门课
 -   [如何为 ACM-ICPC 做准备？ - geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)
+-   [Topcoder 整理的教程](https://www.topcoder.com/community/competitive-programming/tutorials/)
 
 ## 书籍
 
