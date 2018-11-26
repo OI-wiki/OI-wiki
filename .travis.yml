@@ -16,6 +16,7 @@ script:
   - chmod +x ./scripts/build.sh && ./scripts/build.sh
   - mkdocs build -v
   - find ./site -type f -name '*.html' -exec node --max_old_space_size=512 ./scripts/render_math.js {} \;
+  - touch ./site/service-worker.js
 deploy:
   provider: pages
   skip_cleanup: true
