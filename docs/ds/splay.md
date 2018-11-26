@@ -2,13 +2,13 @@
 
 * * *
 
-# 简介
+## 简介
 
 $\text{Splay}$ 是一种二叉查找树，它通过不断将某个节点旋转到根节点，使得整棵树仍然满足二叉查找树的性质，并且保持平衡而不至于退化为链，它由 Daniel Sleator 和 Robert Tarjan 发明。
 
 * * *
 
-# 结构
+## 结构
 
 ### 二叉查找树的性质
 
@@ -24,7 +24,7 @@ $\text{Splay}$ 是一种二叉查找树，它通过不断将某个节点旋转�
 
 * * *
 
-# 操作
+## 操作
 
 ### 基本操作
 
@@ -262,7 +262,7 @@ void del(int k) {
 
 * * *
 
-# 完整代码
+## 完整代码
 
 ```cpp
 #include <cstdio>
@@ -417,7 +417,7 @@ int main() {
 
 * * *
 
-# 例题
+## 例题
 
 以下题目都是裸的 $\text{Splay}$ 维护二叉查找树。~~（直接套板子即可）~~
 
@@ -425,7 +425,7 @@ int main() {
 -   [\[HNOI2002\] 营业额统计](https://www.lydsy.com/JudgeOnline/problem.php?id=1588)
 -   [\[HNOI2004\] 宠物收养所](https://www.lydsy.com/JudgeOnline/problem.php?id=1208)
 
-# 练习题
+## 练习题
 
 [bzoj 1552 \[Cerc2007\] robotic sort](https://www.lydsy.com/JudgeOnline/problem.php?id=1552) （权限题）
 
