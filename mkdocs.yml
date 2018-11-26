@@ -125,7 +125,7 @@ nav:
     - 置换群: math/permutation-group.md
     - 数值积分: math/integral.md
     - 线性规划: math/linear-programming.md
-    - 博弈论: math/game.md
+    - 博弈论: math/game_theory.md
     - 杂项: math/misc.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
