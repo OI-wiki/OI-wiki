@@ -199,7 +199,7 @@ inline void Splay(int x) {
 #define isRoot(x) (ch[f[x]][0] != x && ch[f[x]][1] != x)
 ```
 
-### <font color = "red">Access() </font>
+### <code><font color = "red">Access() </font></code>
 
 ```cpp
 // Access 是 LCT

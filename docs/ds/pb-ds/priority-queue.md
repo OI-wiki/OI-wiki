@@ -1,4 +1,4 @@
-## \_\_gnu_pbds :: priority_queue
+## `__gnu_pbds :: priority_queue`
 
 附 ：[官方文档地址——复杂度及常数测试](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/pq_performance_tests.html#std_mod1)
 
