@@ -45,7 +45,8 @@
 我们先啥都不管，假设已经实现了这个数据结构……
 
 （伪代码）
-```
+
+```text
 for (edge(u, v, len) in sorted(edges)) {
 	a = find_set(u), b = find_set(v);
 	if (a != b) merge(a, b);
@@ -56,7 +57,70 @@ for (edge(u, v, len) in sorted(edges)) {
 
 排序的复杂度为 $O(m \log m)$，或 $O(m)$（假设能基数排序）。
 
-### “集合”数据结构的一种实现
+那么让我们模拟一下：
+
+先上数据：
+
+```text
+4 5
+1 2 2
+1 3 2
+1 4 3
+2 3 4
+3 4 3
+```
+
+图是这样的：
+
+![](./images/mst1.png)
+
+我们用 $F$ 表示并查集， $E$ 表示排序后的结构体，下面是初始的状态：
+
+$F$：
+
+|  编号 |   1 |   2 |   3 |   4 |
+| --: | --: | --: | --: | --: |
+|  祖宗 |   1 |   2 |   3 |   4 |
+
+$E$：
+
+|    编号 |   1 |   2 |   3 |   4 |   5 |
+| ----: | --: | --: | --: | --: | --: |
+| start |   1 |   1 |   1 |   3 |   2 |
+|    to |   2 |   3 |   4 |   4 |   3 |
+|  cost |   2 |   2 |   3 |   3 |   4 |
+
+首先我们发现　１,２　是最小的，于是我们在　１　与　２　建了一条边，由于这是第一次嘛，肯定不会出现环了，并且将　１　和　２　加入一个集合：
+
+![](./images/mst2.png)
+
+$F$：
+
+|  编号 |   1 |   2 |   3 |   4 |
+| --: | --: | --: | --: | --: |
+|  祖宗 |   1 |   1 |   3 |   4 |
+
+接着发现　１,３，判断　３　和　１　的是不是在一个集合？发现不是，于是将　３　加进去，并且标记　３　归属１。
+
+![](./images/mst3.png)
+
+$F$：
+
+|  编号 |   1 |   2 |   3 |   4 |
+| --: | --: | --: | --: | --: |
+|  祖宗 |   1 |   1 |   1 |   4 |
+
+发现　１,４，同时　１　和　４　不在一个集合，于是将　４　加进去，标记　４　也归属　１。
+
+![](./images/mst4.png)
+
+|  编号 |   1 |   2 |   3 |   4 |
+| --: | --: | --: | --: | --: |
+|  祖宗 |   1 |   1 |   1 |   1 |
+
+此时，边数为点数　$-1$，整个最小生成树完成了，代价是　$2+2+3=7$。
+
+### “集合” 数据结构的一种实现
 
 只要支持两个接口：find_set 和 merge。
 
@@ -134,7 +198,8 @@ merge：$O(n)$，需要将一个集合中的所有元素移到另一个集合中
 Fib 堆：$O(n \log n + m)$。
 
 （伪代码）
-```
+
+```text
 H = new heap();
 for (i = 1; i <= n; i++) H.insert(i, inf);
 H.decrease_key(1, 0);
@@ -165,6 +230,97 @@ for (i = 1; i <= n; i++) {
 那什么时候一定不唯一？
 
 Kruskal 算法中的「集合」，能否进一步优化？
+
+## 最小生成树题目
+
+[\[HAOI2006\] 聪明的猴子](https://www.lydsy.com/JudgeOnline/problem.php?id=2429)
+
+[\[SCOI2005\] 繁忙的都市](https://www.lydsy.com/JudgeOnline/problem.php?id=1083)
+
+## 最小生成树的唯一性
+
+考虑最小生成树的唯一性。如果一条边**不在最小生成树的边集中**，并且可以替换与其**权值相同、并且在最小生成树边集**的另一条边。那么，这个最小生成树就是不唯一的。
+
+对于 Kruskal 算法，只要计算为当前权值的边可以放几条，实际放了几条，如果这两个值不一样，那么就说明这几条边与之前的边产生了一个环（这个环中至少有两条当前权值的边，否则根据并查集，这条边是不能放的），即最小生成树不唯一。
+
+寻找权值与当前边相同的边，我们只需要记录头尾指针，用单调队列即可在$O(\alpha(m))$（m 为边数）的时间复杂度里优秀解决这个问题（基本与原算法时间相同）。
+
+??? note " 例题：[POJ 1679](http://poj.org/problem?id=1679)"
+
+    ```cpp
+    #include <algorithm>
+    #include <cstdio>
+    using namespace std;
+    struct tree
+    {
+      int x,y,z;
+    };
+    int f[100001];
+    tree a[100001];
+    int cmp(const tree a,const tree b)
+    {
+      return a.z<b.z;
+    }
+    int find(int x)
+    {
+      if (f[x]==x) return x;
+      f[x]=find(f[x]);
+      return f[x];
+    }
+    int main()
+    {
+      int t;
+      scanf("%d",&t);
+      while (t--)
+      {
+        int n,m;
+        scanf("%d%d",&n,&m);
+        for (int i=1;i<=n;i++) f[i]=i;
+        for (int i=1;i<=m;i++)
+          scanf("%d%d%d",&a[i].x,&a[i].y,&a[i].z);
+        sort(a+1,a+m+1,cmp);
+        int num=0;
+        int ans=0;
+        int tail=0;
+        int sum1=0;
+        int sum2=0;
+        int flag=1;
+        for (int i=1;i<=m+1;i++)
+        {
+          if (i>tail)
+          {
+            if (sum1!=sum2)
+            {		
+              flag=0;break;
+            }
+            sum1=0;
+            for (int j=i;j<=m+1;j++)
+            {
+              if (a[j].z!=a[i].z) 
+              {
+                tail=j-1;break;
+              }
+              if (find(a[j].x)!=find(a[j].y)) ++sum1;
+            }
+            sum2=0;
+          }
+          if (i>m) break;
+          int x=find(a[i].x);
+          int y=find(a[i].y);
+          if (x!=y&&num!=n-1)
+          {
+            sum2++;
+            num++;
+            f[x]=f[y];
+            ans+=a[i].z;
+          }
+        }
+        if (flag) printf("%d\n",ans);
+        else printf("Not Unique!\n");
+      }
+      return 0;
+    }
+    ```
 
 ## 次小生成树
 

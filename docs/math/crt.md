@@ -16,7 +16,7 @@ $2\times 70+3\times 21+2\times 15=233=2\times 105+23$，故答案为 $23$。
 
 $$
 \left \{
-\begin{array}{c}
+\begin{array}{ccc}
 x &\equiv& a_1 \pmod {n_1} \\
 x &\equiv& a_2 \pmod {n_2} \\
   &\vdots& \\
@@ -29,16 +29,16 @@ $$
 
 ### 算法流程
 
-1. 计算所有模数的积 $n$；
-2. 对于第 $i$ 个方程：
-	1. 计算 $m_i=\frac{n}{n_i}$；
-	2. 计算 $m_i$ 在模 $n_i$ 意义下的[逆元](/math/inverse/) $m_i^{-1}$；
-	3. 计算 $c_i=m_im_i^{-1}$（**不要对 $n_i$ 取模**）。
-3. 方程组的唯一解为：$a=\sum_{i=1}^k a_ic_i \pmod n$。
+1.  计算所有模数的积 $n$；
+2.  对于第 $i$ 个方程：
+    1.  计算 $m_i=\frac{n}{n_i}$；
+    2.  计算 $m_i$ 在模 $n_i$ 意义下的[逆元](/math/inverse/) $m_i^{-1}$；
+    3.  计算 $c_i=m_im_i^{-1}$（**不要对 $n_i$ 取模**）。
+3.  方程组的唯一解为：$a=\sum_{i=1}^k a_ic_i \pmod n$。
 
 ### 伪代码
 
-```plain
+```text
 1 → n
 0 → ans
 for i = 1 to k
@@ -77,11 +77,11 @@ $$
 
 下面演示 CRT 如何解「物不知数」问题。
 
-1. $n=3\times 5\times 7=105$；
-2. 三人同行**七十**希：$n_1=3, m_1=n/n_1=35, m_1^{-1}\equiv 2\pmod 3$，故 $c_1=35\times 2=70$；
-3. 五树梅花**廿一**支：$n_2=5, m_2=n/n_2=21, m_2^{-1}\equiv 1\pmod 5$，故 $c_2=21\times 1=21$；
-4. 七子团圆正**半月**：$n_3=7, m_3=n/n_3=15, m_3^{-1}\equiv 1\pmod 7$，故 $c_3=15\times 1=15$；
-5. 所以方程组的唯一解为 $a\equiv 2\times 70+3\times 21+2\times 15\equiv 233\equiv 23 \pmod {105}$。（除**百零五**便得知）
+1.  $n=3\times 5\times 7=105$；
+2.  三人同行**七十**希：$n_1=3, m_1=n/n_1=35, m_1^{-1}\equiv 2\pmod 3$，故 $c_1=35\times 2=70$；
+3.  五树梅花**廿一**支：$n_2=5, m_2=n/n_2=21, m_2^{-1}\equiv 1\pmod 5$，故 $c_2=21\times 1=21$；
+4.  七子团圆正**半月**：$n_3=7, m_3=n/n_3=15, m_3^{-1}\equiv 1\pmod 7$，故 $c_3=15\times 1=15$；
+5.  所以方程组的唯一解为 $a\equiv 2\times 70+3\times 21+2\times 15\equiv 233\equiv 23 \pmod {105}$。（除**百零五**便得知）
 
 ## 应用
 
@@ -92,6 +92,34 @@ $$
 那么我们可以分别对这些模数进行计算，最后用 CRT 合并答案。
 
 推荐练习：BZOJ 1951
+
+## 比较两 CRT 下整数
+
+考虑 CRT, 不妨假设$n_1\leq n_2 \leq ... \leq n_k$
+
+$$
+\left\{ \begin{array} { r l } { x } & { \equiv a _ { 1 } \left( \bmod n _ { 1 } \right) } \\ { x } & { \equiv a _ { 2 } \left( \bmod n _ { 2 } \right) } \\ { } & { \vdots } \\ { x } & { \equiv a _ { n } \left( \bmod n _ { k } \right) } \end{array} \right.
+$$
+
+与 PMR(Primorial Mixed Radix) 表示
+
+$x=b_1+b_2n_1+b_3n_1n_2...+b_kn_1n_2...n_{k-1} ,b_i\in [0,n_i)$
+
+将数字转化到 PMR 下, 逐位比较即可
+
+转化方法考虑依次对 PMR 取模
+
+$$
+\begin{aligned}
+b_1&=a_1 \mod n_1\\
+b_2&=(a_2-b_1)c_{1,2} \mod n_2\\
+b_3&=((a_3-b_1')c_{1,3}-x_2')c_{2,3} \mod n_3\\
+&...\\
+b_k&=(...((a_k-b_1)c_{1,k}-b_2)c_{2,k})-...)c_{k-1,k} \mod n_k
+\end{aligned}
+$$
+
+其中$c_{i,j}$表示$n_i$对$n_j$的逆元,$c_{i,j}n_i=1 \mod n_j$
 
 ## 扩展：模数不互质的情况
 
@@ -112,3 +140,11 @@ $$
 用上面的方法两两合并就可以了……
 
 推荐练习：POJ 2891
+
+[【模板】扩展中国剩余定理](https://www.luogu.org/problemnew/show/P4777)
+
+[\[NOI2018\] 屠龙勇士](https://www.luogu.org/problemnew/show/P4774)
+
+[\[TJOI2009\] 猜数字](https://www.luogu.org/problemnew/show/P3868)
+
+[\[SDOI2010\] 古代猪文](https://www.luogu.org/problemnew/show/P2480)

@@ -1,0 +1,36 @@
+{
+  "name": "oi-wiki",
+  "version": "1.0.0",
+  "description": "wiki for OI / ACM-ICPC",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/24OI/OI-wiki.git"
+  },
+  "keywords": [
+    "OI",
+    "wiki",
+    "ACM-ICPC"
+  ],
+  "author": "OI Wiki Team",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/24OI/OI-wiki/issues"
+  },
+  "homepage": "https://github.com/24OI/OI-wiki#readme",
+  "dependencies": {
+    "mathjax-node-page": "^3.0.1",
+    "remark-clang-format": "^1.0.1",
+    "remark-lint-final-newline": "^1.0.2",
+    "remark-lint-no-tabs": "^1.0.2",
+    "remark-math": "^1.0.4",
+    "remark-pangu": "^1.0.1",
+    "remark-preset-lint-markdown-style-guide": "^2.1.2"
+  }
+}

@@ -1,3 +1,79 @@
 .md-typeset table:not([class]) th {
     min-width: 0rem;
 }
+blockquote.page-copyright{
+  margin: 20px 0;
+  padding-left: 1.5rem;
+  border-left: 5px solid #ff1700; /* Just change the color value and that's it*/
+}
+blockquote.page-time{
+  margin: 20px 0;
+  padding-left: 1.5rem;
+  border-left: 5px solid #64b5f6; /* Just change the color value and that's it*/
+}
+#myBtn {
+    display: none;
+    position: fixed; 
+    bottom: 3rem; 
+    right: 4rem; 
+    z-index: 99; 
+    border: none;
+    outline: none; 
+    color: #8590a6;
+    cursor: pointer; 
+    padding: .7rem; 
+    border-radius: .4rem;
+}
+ 
+#myBtn:hover {
+    background-color: #d3d3d3; 
+}
+
+span.mjpage > svg {
+    overflow-x: scroll;
+    max-width: none !important;
+}
+
+span.mjpage__block > svg {
+    min-width: 80%;
+    max-width: none !important;
+}
+
+.md-icon, .md-clipboard::before, .md-nav__title::before, .md-nav__button, .md-nav__link::after, .md-search-result__article--document::before, .md-source-file::before, .md-typeset .admonition > .admonition-title::before, .md-typeset details > .admonition-title::before, .md-typeset .admonition > summary::before, .md-typeset details > summary::before, .md-typeset .footnote-backref, .md-typeset .critic.comment::before, .md-typeset summary::after, .md-typeset .task-list-control .task-list-indicator::before {
+  font-family: 'Material Icons' !important; /* over ride is needed*/
+  font-style: normal !important; /* over ride is needed*/
+  font-variant: nomal !important; /* over ride is needed*/
+}
+
+#color-button {
+  text-align: unset !important;
+}
+
+.md-sidebar--primary {
+  z-index: 14 !important;
+}
+
+.md-header  {
+  z-index: 12 !important;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 500 !important;
+}
+
+h2 {
+  font-size: 2.8rem !important;
+}
+
+h3 {
+  font-size: 2.4rem !important;
+}
+
+h4 {
+  font-size: 2.0rem !important;
+}
+
+h5 {
+  font-size: 1.6rem !important;
+}
+
