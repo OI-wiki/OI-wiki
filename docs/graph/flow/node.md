@@ -14,7 +14,7 @@
 
 ![](./images/node2.png)
 
-## 例题 [luogu P4568 \[JLOI2011\] 飞行路线](https://www.luogu.org/problemnew/show/P4568)
+## 例题 [luogu P4568 [JLOI2011] 飞行路线](https://www.luogu.org/problemnew/show/P4568)
 
 题目大意：有 $n$ 个结点， $m$ 条边， $k$ 张旅行券，可以使用一张旅行券使得经过该边的边权除以二向下取整，求从结点 $s$ 到 $t$ 的最短路的长度。
 

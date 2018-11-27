@@ -79,7 +79,7 @@ int main() {
 }
 ```
 
-### 例题 [P4926 \[1007\] 倍杀测量者](https://www.luogu.org/problemnew/show/P4926)
+### 例题 [P4926 [1007] 倍杀测量者](https://www.luogu.org/problemnew/show/P4926)
 
 不考虑二分等其他的东西，这里只论述差分系统 $\frac{x_i}{x_j}\leq c_k$  的求解方法。
 

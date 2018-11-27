@@ -273,7 +273,7 @@ $\text{dis}_{i, j} = \min\{\min\{\text{dis}_{from, j - 1}\}, \min\{\text{dis}_{f
 
 事实上，这个 DP 就相当于把每个结点拆分成了 $k+1$ 个结点，每个新结点代表使用不同多次免费通行后到达的原图结点。换句话说，就是每个结点 $u_i$ 表示使用 $i$ 次免费通行权限后到达 $u$ 结点。
 
-### 模板题：[\[JLOI2011\]飞行路线](https://www.luogu.org/problemnew/show/P4568)
+### 模板题：[[JLOI2011]飞行路线](https://www.luogu.org/problemnew/show/P4568)
 
 题意：有一个 $n$ 个点 $m$ 条边的无向图，你可以选择 $k$ 条道路以零代价通行，求 $s$ 到 $t$ 的最小花费。
 

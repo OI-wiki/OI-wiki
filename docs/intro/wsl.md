@@ -2,7 +2,7 @@
 
 * * *
 
-## 0x01 引言
+## 引言
 
 众所周知，尽管现在大部分学校的竞赛练习环境都是构建 XP 等 Windows 系操作系统，但是在 NOI 系列赛中，早已用上了 NOI Linux 这个 Ubuntu 操作系统的阉割版。  
 ![NOI 竞赛的环境要求](./images/WSL2.png)           
@@ -31,7 +31,7 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 * * *
 
-## 0x02 准备
+## 准备
 
 首先，你需要一个最新的 Windows 10 操作系统，这点不必多说。  
 其次，你需要配置一下开发人员模式环境。
@@ -46,7 +46,8 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
  给系统盘留下足够的空间，毕竟装好的 Linux 没法迁移。
 这次演示我们会安装 Ubuntu，因为 NOI Linux 正是 Ubuntu 的修改版。
 只要学会了方法，你也可照葫芦画瓢，安装 Windows 应用商店中的其他子系统。
-## 0x03 开搞
+
+## 开搞
 去 Windows 自带的应用商店，搜索 "Ubuntu"，然后选第一个安装。  
 亦可打开 <https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6>      
 ???+ warning
@@ -61,7 +62,7 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 ![](./images/WSL6.png)
  这样之后，一个纯净的 Ubuntu 系统安装完成了！
 
-## 0x04 基础配置
+## 基础配置
 
  ** 以下命令均可直接右键复制粘贴进窗口哦！**
 
@@ -144,7 +145,7 @@ AMD Ryzen 5 1400 Quad-Core Processor
 
 **Tips：Linux 环境下可执行文件可不带扩展名，实现方式看上方命令行 **
 
-## 0x05 进阶操作
+## 进阶操作
 
 ### 安装图形环境，并使用远程桌面连接
 
@@ -174,13 +175,16 @@ sudo service xrdp restart
  运行 `sudo service xrdp restart`，然后去开始菜单，用 `localhost: 你配置的端口 ` 来访问。
 ![](./images/WSL14.png)
 ![](./images/WSL15.png)
+
 #### 补充：使用 Xming 连接
 有网友说，这个可以用 Xming 连接，那我们就来研究一下。
+
 ##### 客户端：安装 Xterm
  我们进入 Ubuntu 环境，安装 xterm：
 ```bash
 sudo apt-get install xterm -y
 ```
+
 ##### 服务端：下载 Xming Server
  去 <https://sourceforge.net/projects/xming/> 下载最新的 Xming Server，然后一路安装：    
 ![](./images/WSL16.png)     
@@ -203,6 +207,7 @@ xfce4-session
 <div align='center'> 达成成就：Windows+Linux 二合一 </div>
  感受一下两个版本融合的感觉：
 ![](./images/WSL21.png)
+
 #### 与 Windows 内原硬盘分区交互
 硬盘分区作为文件夹在 `/mnt/` 里放着，因此可以直接交互，比如说直接编译个二进制文件，或者往 Ubuntu 里传文件什么的......      
  具体演示：    
@@ -210,7 +215,8 @@ xfce4-session
 ![](./images/WSL23.png)    
 <div align='center'> 这里也可以建立一些 Windows（一般情况下）建不了的文件，例如带点文件夹 </div>
 ** 乱码是因为我用的预览体验系统……不过用正式版也可以了！**
-## 0x07 FAQ
+
+## FAQ
 -   如何在子系统下进行 xxx？
     该怎么用怎么用，可以用自带命令行，实在不行参考教程唤醒图形界面。
     比如说 vim，在命令行中键入 `man vim`，会给出一份详尽的使用方法。
@@ -220,7 +226,8 @@ xfce4-session
     而且只要别装太多应用，应该还是可以带动的。
 -   汉语化时提示不存在？
     玄学问题，可以忽略。修了个疏忽导致的错误，可以重上一下试试。
-## 0x08 参考资料
+    
+## 参考资料
 这里列举了文中提到的链接，以便查阅。
 
 1.  [NOIP 标准评测系统及相关问题, smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html)         
@@ -234,7 +241,7 @@ xfce4-session
 9.  [Xming X Server for Windows, SourceForge](https://sourceforge.net/projects/xming/)       
 10. [Sudo, Wikipedia](https://zh.wikipedia.org/wiki/Sudo)       
 
-## 0x09 延伸内容
+## 延伸内容
 
 [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://spencerwoo.com/dowww/)
 

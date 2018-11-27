@@ -65,7 +65,7 @@ int main(void) {
 
 参考书目：信息学奥赛一本通
 
-## C++ 的 ifstream/ofstream 文件输入输出流
+## C++ 的 `ifstream/ofstream` 文件输入输出流
 
 ### 使用方法
 

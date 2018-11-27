@@ -4,13 +4,13 @@
 
 ## 关闭同步 / 解除绑定
 
-### std::ios::sync_with_stdio(false)
+### `std::ios::sync_with_stdio(false)`
 
 这个函数是一个 “是否兼容 stdio” 的开关，C++ 为了兼容 C，保证程序在使用了 `printf` 和 `std::cout` 的时候不发生混乱，将输出流绑到了一起。
 
 这其实是 C++ 为了兼容而采取的保守措施。我们可以在 IO 之前将 stdio 解除绑定，这样做了之后要注意不要同时混用 `std::cout` 和 `printf` 之类
 
-### tie
+### `tie`
 
 tie 是将两个 stream 绑定的函数，空参数的话返回当前的输出流指针。
 
