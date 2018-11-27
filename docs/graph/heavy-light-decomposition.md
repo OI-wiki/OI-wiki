@@ -16,7 +16,7 @@
 
 由于树链剖分的思想十分暴力，所以被 OIers 戏称为 **“优雅的暴力”** 。
 
-## 例题 [luogu P2590 [ZJOI2008] 树的统计](https://www.luogu.org/problemnew/show/P2590)
+## 例题 [luogu P2590 \[ZJOI2008\] 树的统计](https://www.luogu.org/problemnew/show/P2590)
 
 题目大意：对一棵有 $n$ 个节点的静态树，进行三种操作共 $q$ 次：
 

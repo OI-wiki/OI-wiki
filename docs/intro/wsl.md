@@ -48,13 +48,14 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 只要学会了方法，你也可照葫芦画瓢，安装 Windows 应用商店中的其他子系统。
 
 ## 开搞
+
 去 Windows 自带的应用商店，搜索 "Ubuntu"，然后选第一个安装。  
-亦可打开 <https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6>      
+亦可打开 <https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6>  
 ???+ warning
     Windows 10 商店的第一个 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。
     可使用 `sudo lsb_release -a` 查看自己的 Ubuntu 版本。
-    也可安装带有版本号的旧 Linux版本（如本次演示使用了**16.04**）。
-安装完后，打开 Ubuntu，等待一段时间，让其自己配置，不久就会提示你设置用户名和密码。   
+    也可安装带有版本号的旧 Linux 版本（如本次演示使用了**16.04**）。
+安装完后，打开 Ubuntu，等待一段时间，让其自己配置，不久就会提示你设置用户名和密码。  
 （这里看你喜好，推荐设置短点，毕竟 ** 本地环境不怕攻击 **）     
 
 **Linux 区分大小写！**
@@ -177,46 +178,58 @@ sudo service xrdp restart
 ![](./images/WSL15.png)
 
 #### 补充：使用 Xming 连接
+
 有网友说，这个可以用 Xming 连接，那我们就来研究一下。
 
 ##### 客户端：安装 Xterm
+
  我们进入 Ubuntu 环境，安装 xterm：
+
 ```bash
 sudo apt-get install xterm -y
 ```
 
 ##### 服务端：下载 Xming Server
- 去 <https://sourceforge.net/projects/xming/> 下载最新的 Xming Server，然后一路安装：    
-![](./images/WSL16.png)     
- 如果你把 Launch Xming 框点掉了，记得去开始菜单再打开：     
-![别忘了！](./images/WSL17.png)     
+
+ 去 <https://sourceforge.net/projects/xming/> 下载最新的 Xming Server，然后一路安装：  
+![](./images/WSL16.png)  
+ 如果你把 Launch Xming 框点掉了，记得去开始菜单再打开：  
+![别忘了！](./images/WSL17.png)  
  之后再回到 Ubuntu，键入如下指令：     
-```bash    
+
+```bash
 DISPLAY=:0 xterm
-```  
-**Duang！**     
+```
+
+**Duang！**  
 ![](./images/WSL18.png)  
-~~ 不过貌似只支持命令行……这时上一种方法的优势就显而易见了~~     
+\~~ 不过貌似只支持命令行…… 这时上一种方法的优势就显而易见了\~~  
  如果你和我一样使用了 xfce4，在弹出的窗口中使用如下命令激活 xfce4：     
-```bash   
+
+```bash
 xfce4-session
 ```
-![](./images/WSL19.png)    
- 不过这是什么效果......**（在 Xming 中使用 ** <kbd>Ctrl</kbd> + <kbd>C</kbd> ** 就可以退出这个鬼畜界面）**    
+
+![](./images/WSL19.png)  
+ 不过这是什么效果......**（在 Xming 中使用 ** <kbd>Ctrl</kbd> + <kbd>C</kbd> ** 就可以退出这个鬼畜界面）**  
 ![](./images/WSL20.png)
+
 <div align='center'> 达成成就：Windows+Linux 二合一 </div>
  感受一下两个版本融合的感觉：
 ![](./images/WSL21.png)
 
 #### 与 Windows 内原硬盘分区交互
-硬盘分区作为文件夹在 `/mnt/` 里放着，因此可以直接交互，比如说直接编译个二进制文件，或者往 Ubuntu 里传文件什么的......      
- 具体演示：    
-![](./images/WSL22.png)       
+
+硬盘分区作为文件夹在 `/mnt/` 里放着，因此可以直接交互，比如说直接编译个二进制文件，或者往 Ubuntu 里传文件什么的......  
+ 具体演示：  
+![](./images/WSL22.png)  
 ![](./images/WSL23.png)    
+
 <div align='center'> 这里也可以建立一些 Windows（一般情况下）建不了的文件，例如带点文件夹 </div>
 ** 乱码是因为我用的预览体验系统……不过用正式版也可以了！**
 
 ## FAQ
+
 -   如何在子系统下进行 xxx？
     该怎么用怎么用，可以用自带命令行，实在不行参考教程唤醒图形界面。
     比如说 vim，在命令行中键入 `man vim`，会给出一份详尽的使用方法。
@@ -226,8 +239,9 @@ xfce4-session
     而且只要别装太多应用，应该还是可以带动的。
 -   汉语化时提示不存在？
     玄学问题，可以忽略。修了个疏忽导致的错误，可以重上一下试试。
-    
+
 ## 参考资料
+
 这里列举了文中提到的链接，以便查阅。
 
 1.  [NOIP 标准评测系统及相关问题, smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html)         
