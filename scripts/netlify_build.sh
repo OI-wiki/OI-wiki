@@ -24,6 +24,8 @@ sed -i "s/'assets\/fonts\/material-icons.css'/'https:\/\/fonts.loli.net\/icon?fa
 # sed -i 's/script/script data-no-instant/g' mkdocs-material/material/base.html
 # sed -i 's/<head>/<head data-no-instant>/g' mkdocs-material/material/base.html
 sed -i 's/{{ page.content }}/{% set pagetime = config.extra.pagetime %} {% if page and page.meta and page.meta.pagetime is string %} {% set pagetime = page.meta.pagetime %} {% endif %}{% if pagetime %}<blockquote class="page-time"><\/blockquote>{% endif %}\n                {{ page.content }}/g' mkdocs-material/material/base.html
+
+cp ./static/main.html mkdocs-material/material/
 cp ./static/disqus.html mkdocs-material/material/partials/integrations/disqus.html
 cp ./static/footer.html mkdocs-material/material/partials/footer.html
 cp ./static/extra.js docs/_static/js/extra.js
@@ -31,4 +33,3 @@ cp ./static/extra.js docs/_static/js/extra.js
 mkdocs build -v
 
 find ./site -type f -name '*.html' -exec node --max_old_space_size=512 ./scripts/render_math.js {} \;
-
