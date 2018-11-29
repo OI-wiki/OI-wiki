@@ -54,17 +54,17 @@
 ## 书籍
 
 -   信息学奥赛一本通 (初学者向)
--   算法竞赛入门经典 (人称紫书)
+-   算法竞赛入门经典 (紫书)
     -   [第一版 配套资源仓库 (mirror)](https://github.com/sukhoeing/aoapc-book/)
     -   [第二版 配套资源仓库](https://github.com/aoapc-book/aoapc-bac2nd)
     -   [第二版 习题选解](https://github.com/sukhoeing/aoapc-bac2nd-keys)
--   算法竞赛入门经典——训练指南 (人称大白)
--   算法艺术与信息学竞赛 (人称蓝书)
+-   算法竞赛入门经典——训练指南 (大白)
+-   算法艺术与信息学竞赛 (蓝书 / 黑书)
 -   算法竞赛进阶指南
     -   [配套资源仓库](https://github.com/lydrainbowcat/tedukuri)
 -   具体数学
 -   [Competitive Programmer's Handbook](https://cses.fi/book/index.html)
--   算法导论 （人称黑书，大学经典教材）
+-   算法导论 （黑书，大学经典教材）
     -   [答案解析 (English)](https://github.com/walkccc/CLRS)
 -   啊哈算法
 -   挑战程序设计竞赛全套 (通俗易懂)
