@@ -36,6 +36,14 @@ CTSC（China Team Selection Competition）是中国队选拔赛。用来从国�
 
 IOI（International Olympiad in Informatics）是国际信息学奥林匹克竞赛，每个国家有四人参赛，比赛一般会有直播。IOI 赛制中每个题目会有 subtask （子任务），每个子任务对应一定的分数。
 
+### 学科营
+
+#### PKU
+
+- 北京大学信息学冬季体验营（PKUWC）在冬令营前后举行。
+- 北京大学信息学体验营（PKUSC）一般在六月份在校内举行。由于在学校机房比赛，机房环境是 windows，比赛系统是 openjudge。
+- 北京大学中学生暑期课堂（信息学）在暑假举行，面向高二年级理科学生。
+
 ## 赛制介绍
 
 ### OI 赛制
