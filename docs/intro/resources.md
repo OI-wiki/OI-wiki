@@ -64,7 +64,7 @@
     -   [配套资源仓库](https://github.com/lydrainbowcat/tedukuri)
 -   具体数学
 -   [Competitive Programmer's Handbook](https://cses.fi/book/index.html)
--   算法导论 （黑书，大学经典教材）
+-   算法导论 (黑书，大学经典教材)
     -   [答案解析 (English)](https://github.com/walkccc/CLRS)
 -   啊哈算法
 -   挑战程序设计竞赛全套 (通俗易懂)
@@ -92,4 +92,5 @@
 -   [USACO](http://train.usaco.org/usacogate)
 -   [洛谷试炼场](https://www.luogu.org/training/mainpage)
 -   [-Morass- 贴在 Codeforces 上的一份题单](https://codeforces.com/blog/entry/55274)
--   [北京大学暑期课课件例题](https://vjudge.net/article/446)
+-   [北京大学 ICPC 暑期课课件例题](https://vjudge.net/article/446)
+-   [北京大学 ICPC 暑期课课件](https://lib-pku.github.io/#acm-icpc%E6%9A%91%E6%9C%9F%E8%AF%BE)
