@@ -76,6 +76,8 @@
 
 -   [经典算法的可视化结果 - VisuAlgo](https://visualgo.net/en)
 -   [算法可视化 - USF](https://www.cs.usfca.edu/~galles/visualization/)
+-   [algomation](http://www.algomation.com/)
+-   [algorithm-visualizer](http://algorithm-visualizer.org)
 -   [OEIS 整数数列搜索引擎](https://oeis.org)
 -   [Ubuntu Pastebin，可以用来分享代码](https://paste.ubuntu.com)
 -   [uDebug 提供一些 OJ 题目的调试辅助](https://www.udebug.com)

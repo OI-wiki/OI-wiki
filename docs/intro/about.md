@@ -16,7 +16,7 @@ Q：现在主要是谁在做这件事啊？感觉这是个大坑，真的能做�
 
 A：最开始主要是一些退役老年选手在做这件事，后来遇到了很多志同道合的小伙伴：有现役选手，退役玩家，也有从未参加过 **OI** 的朋友。目前，这个项目主要是由 **OI Wiki** Team 来维护。（下面是一张合影）
 
-<a href="https://github.com/24OI/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890" /></a>
+<a href="https://github.com/24OI/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890&button=false" /></a>
 
 当然，这个项目只靠我们的力量是很难做得十全十美的，我们诚挚地邀请你一起来完善 **OI Wiki**。
 
@@ -26,7 +26,7 @@ A：我们把内容托管在 [GitHub](https://github.com/24OI/OI-wiki) 上面，
 
 Q：**OI Wiki** 好像现在大部分内容都是空的啊？
 
-A：是的，目前进度只完成了 57% （重新统计于 2018.9.13），还远远称不上是一个合格的 Wiki。在过去的几个月里，主要添加的内容也比较基础。所以在这里进行征稿和招募，希望可以遇到有同样想法的朋友，我们一起把 **OI Wiki** 完善起来。
+A：是的，目前进度只完成了 73% （重新统计于 2018.11），还远远称不上是一个合格的 Wiki。在过去的几个月里，主要添加的内容也比较基础。所以在这里进行征稿和招募，希望可以遇到有同样想法的朋友，我们一起把 **OI Wiki** 完善起来。
 
 Q：为什么不直接去写 [中文维基](https://zh.wikipedia.org/) 呢？
 
