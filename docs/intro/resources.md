@@ -8,7 +8,7 @@
 -   [BZOJ](https://www.lydsy.com/JudgeOnline/) (优质的题巨多)
 -   [CodeVS](http://www.codevs.cn/)
 -   [FZUOJ](http://acm.fzu.edu.cn/) (福州大学)
--   [HDU OJ](http://acm.hdu.edu.cn/) (杭电的 OJ，多校训练的题目放在这里)
+-   [HDU Online Judge](http://acm.hdu.edu.cn/) (杭电的 OJ，多校训练的题目放在这里)
 -   [hihoCoder](https://hihocoder.com/)
 -   [计蒜客](https://www.jisuanke.com/)
 -   [Judge Duck Online](https://duck.ac/) (松松松的 OJ，精确到 $\mu s$)
@@ -18,7 +18,7 @@
 -   [牛客网](https://www.nowcoder.com/)
 -   [OpenJudge](http://openjudge.cn/)
 -   [POJ](http://poj.org/) (PKU OJ，国内历史最悠久的 OJ 之一，很多英文题，有一些基础题和好题)
--   [Universal OJ](http://uoj.ac/) (VFK 的 OJ，多原创比赛题和 CCF/THU 题 难度较高)
+-   [Universal Online Judge](http://uoj.ac/) (VFK 的 OJ，多原创比赛题和 CCF/THU 题 难度较高)
 -   [Vijos](https://vijos.org/)
 -   [Virtual Judge](https://vjudge.net/) (可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ)
 -   [ZOJ](http://acm.zju.edu.cn/onlinejudge/) (浙大)
@@ -36,7 +36,7 @@
 -   [SPOJ](http://www.spoj.com)
 -   [Topcoder](https://www.topcoder.com/) (有很多比赛)
 -   [Ural](http://acm.timus.ru/)
--   [UVa](https://uva.onlinejudge.org/) (做 lrj 的书怎么可能不知道这个 OJ)
+-   [UVaOJ](https://uva.onlinejudge.org/) (做 lrj 的书怎么可能不知道这个 OJ)
 -   [Yandex](https://contest.yandex.ru/) (存档了近几年的全俄罗斯信息学奥赛)
 -   [Light OJ](http://lightoj.com)（一个快挂了的 OJ，`www`域名无法访问，请使用[根域名](http://lightoj.com)访问）
 
@@ -45,48 +45,48 @@
 -   [OI Wiki](https://oi-wiki.org)
 -   [Codeforces 上网友整理的一份教程合集](http://codeforces.com/blog/entry/57282)
 -   [英文版 E-Maxx 算法教程](https://cp-algorithms.com/)
--   [演算法笔记](http://www.csie.ntnu.edu.tw/~u91029/) 台湾师范大学总结的教程
+-   [演算法笔记](http://www.csie.ntnu.edu.tw/~u91029/) (台湾师范大学总结的教程)
 -   [algo.is](https://algo.is/t-414-aflv-competitive-programming-course-2016/)
--   [CS 97SI: Introduction to Programming Contests](http://web.stanford.edu/class/cs97si/) 斯坦福的一门课
+-   [CS 97SI: Introduction to Programming Contests](http://web.stanford.edu/class/cs97si/) (斯坦福的一门课)
 -   [如何为 ACM-ICPC 做准备？ - geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)
 -   [Topcoder 整理的教程](https://www.topcoder.com/community/competitive-programming/tutorials/)
 
 ## 书籍
 
--   信息学奥赛一本通 (初学者向)
--   算法竞赛入门经典 (紫书)
-    -   [第一版 配套资源仓库 (mirror)](https://github.com/sukhoeing/aoapc-book/)
+-   《信息学奥赛一本通》 (初学者向)
+-   《算法竞赛入门经典》 (紫书)
+    -   [第一版 配套资源仓库 (镜像)](https://github.com/sukhoeing/aoapc-book/)
     -   [第二版 配套资源仓库](https://github.com/aoapc-book/aoapc-bac2nd)
     -   [第二版 习题选解](https://github.com/sukhoeing/aoapc-bac2nd-keys)
--   算法竞赛入门经典——训练指南 (大白)
--   算法艺术与信息学竞赛 (蓝书 / 黑书)
--   算法竞赛进阶指南
+-   《算法竞赛入门经典——训练指南》 (大白)
+-   《算法艺术与信息学竞赛》 (蓝书 / 黑书)
+-   《算法竞赛进阶指南》
     -   [配套资源仓库](https://github.com/lydrainbowcat/tedukuri)
--   具体数学
--   [Competitive Programmer's Handbook](https://cses.fi/book/index.html)
--   算法导论 (黑书，大学经典教材)
+-   《具体数学》
+-   _[Competitive Programmer's Handbook](https://cses.fi/book/index.html)_
+-   《算法导论》 (黑书，大学经典教材)
     -   [答案解析 (English)](https://github.com/walkccc/CLRS)
--   啊哈算法
--   挑战程序设计竞赛全套 (通俗易懂)
--   算法概论 (提纲挚领，但内容较少)
+-   《啊哈算法》
+-   《挑战程序设计竞赛》全套 (通俗易懂)
+-   《算法概论》 (提纲挚领，但内容较少)
 
 -   [Legend-K 的数据结构与算法的笔记](http://www.legend-k.com/Algorithm/Algorithm.pdf)
 
 ## 工具
 
--   [经典算法的可视化结果 - VisuAlgo](https://visualgo.net/en)
--   [算法可视化 - USF](https://www.cs.usfca.edu/~galles/visualization/)
--   [algomation](http://www.algomation.com/)
--   [algorithm-visualizer](http://algorithm-visualizer.org)
--   [OEIS 整数数列搜索引擎](https://oeis.org)
--   [Ubuntu Pastebin，可以用来分享代码](https://paste.ubuntu.com)
--   [uDebug 提供一些 OJ 题目的调试辅助](https://www.udebug.com)
--   [提供 C++ 内语法的查询等 - cppreference.com](https://zh.cppreference.com/w/)
--   [图论画板](https://csacademy.com/app/graph_editor/) (同时推荐 GraphViz)
--   [LaTeX 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm)
--   [Godbolt - 在浏览器中查看编译后代码块对应的汇编语句](https://godbolt.org/)
+-   [VisuAlgo](https://visualgo.net/en) (经典算法的可视化结果)
+-   [USF](https://www.cs.usfca.edu/~galles/visualization/) (算法可视化)
+-   [Algomation](http://www.algomation.com/)
+-   [Algorithm Visualizer](http://algorithm-visualizer.org)
+-   [OEIS](https://oeis.org) (整数数列搜索引擎)
+-   [Ubuntu Pastebin](https://paste.ubuntu.com) (可以用来分享代码)
+-   [uDebug](https://www.udebug.com) (提供一些 OJ 题目的调试辅助)
+-   [cppreference.com](https://zh.cppreference.com/w/) (提供 C++ 内语法的查询等)
+-   [图论画板](https://csacademy.com/app/graph_editor/) (同时推荐 [GraphViz](http://www.graphviz.org/))
+-   [$\LaTeX{}$ 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm)
+-   [Godbolt](https://godbolt.org/) (在浏览器中查看编译后代码块对应的汇编语句)
 -   [《100 个 gdb 小技巧》](https://github.com/hellogcc/100-gdb-tips)
--   [截图转 LaTeX - Mathpix](https://mathpix.com/)
+-   [Mathpix](https://mathpix.com/) (截图转 $\LaTeX{}$)
 
 ## 题集
 
