@@ -56,6 +56,9 @@ wiki-bld-math
 
 # 运行一个服务器，访问容器中 http://127.0.0.1:8000 或访问主机中 http://127.0.0.1:[port] 可以查看效果
 wiki-svr
+
+# 修正 Markdown
+wiki-o
 ```
 
 退出容器：
