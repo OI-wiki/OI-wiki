@@ -63,7 +63,7 @@
 -   《算法竞赛进阶指南》
     -   [配套资源仓库](https://github.com/lydrainbowcat/tedukuri)
 -   《具体数学》
--   *[Competitive Programmer's Handbook](https://cses.fi/book/index.html)*
+-   _[Competitive Programmer's Handbook](https://cses.fi/book/index.html)_
 -   《算法导论》 (黑书，大学经典教材)
     -   [答案解析 (English)](https://github.com/walkccc/CLRS)
 -   《啊哈算法》
