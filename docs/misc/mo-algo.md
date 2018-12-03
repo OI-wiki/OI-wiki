@@ -295,7 +295,7 @@ int main() {
 
 ## 树上莫队
 
-莫队只能处理线性问题，我们要把树强行压成序列
+一般的莫队只能处理线性问题，我们要把树强行压成序列
 
 我们可以将树的括号序跑下来，把括号序分块，在括号序上跑莫队
 
@@ -504,4 +504,225 @@ int main() {
   }
   return 0;
 }
+```
+
+## 真·树上莫队
+上面的树上莫队只是将树转化成了链，下面的才是真正的树上莫队
+
+~~（由于莫队都是板子题，所以实现部分不做太多解释）~~
+### 询问的排序
+首先我们知道莫队的是基于分块的算法，所以我们需要找到一种树上的分块方法来保证时间复杂度
+
+条件：
+- 属于同一块的节点属于同一联通块
+- 每个块中的节点不能太多也不能太少
+- 每个节点都要属于一个块
+- 编号相邻的块之间的距离不能太大
+
+了解了这些条件后，我们看到这样一道题[ [SCOI2005]王室联邦](https://www.luogu.org/problemnew/show/P2325)
+
+在这道题的基础上我们只要保证最后一个条件就可以解决分块的问题了
+
+!!! 思路
+    令lim为希望块的大小，首先，对于整个树dfs，当子树的大小大于lim时，就将它们分在一块，容易想到：对于根，可能会剩下一些点，于是将这些点分在最后一个块里
+
+做法：用栈维护当前节点作为父节点访问它的子节点，当从栈顶到父节点的距离大于希望块的大小时，弹出这部分元素分为一块，最后剩余的一块单独作为一块
+
+最后的排序方法：若第一维时间戳大于第二维，交换它们，按第一维所属块为第一关键字，第二维时间戳为第二关键字排序
+
+### 指针的移动
+容易想到，我们可以标记被计入答案的点，让指针直接向目标移动，同时取反路径上的点
+
+但是，这样有一个问题，若指针一开始都在x上，显然x被标记，当两个指针向同一子节点移动（还有许多情况）时，x应该不被标记，但实际情况是x被标记，因为两个指针分别标记了一次，抵消了
+
+如何解决呢？
+
+有一个很显然的性质：这些点肯定是某些LCA，因为LCA处才有可能被重复撤销导致撤销失败
+
+所以我们每次不标记LCA，到需要询问答案时再将LCA标记，然后再撤销
+
+```cpp
+//取反路径上除LCA以外的所有节点
+void move(int x,int y) {
+	if(dp[x]<dp[y])swap(x,y);
+	while(dp[x]>dp[y])update(x),x=fa[x];
+	while(x!=y)update(x),update(y),x=fa[x],y=fa[y];
+    //x!=y保证LCA没被取反
+}
+```
+
+对于求LCA，我们可以用树剖，然后我们就可以把分块的步骤放到树剖的第一次dfs里面，时间戳也可以直接用第二次dfs的dfs序~~（如果你用tarjan就当我没说）~~
+
+```cpp
+int bl[100002],bls=0;//属于的块，块的数量
+unsigned step;//块大小
+int fa[100002],dp[100002],hs[100002]={0},sz[100002]={0};
+//父节点，深度，重儿子，大小
+stack<int>sta;
+void dfs1(int x) {
+	sz[x]=1;
+	unsigned ss=sta.size();
+	for(int i=head[x];i;i=nxt[i])
+		if(ver[i]!=fa[x]) {
+			fa[ver[i]]=x;
+			dp[ver[i]]=dp[x]+1;
+			dfs1(ver[i]);
+			sz[x]+=sz[ver[i]];
+			if(sz[ver[i]]>sz[hs[x]])hs[x]=ver[i];
+			if(sta.size()-ss>=step) {
+				bls++;while(sta.size()!=ss)bl[sta.top()]=bls,sta.pop();
+			}
+		}
+	sta.push(x);
+}
+//main
+	if(!sta.empty()) {
+		bls++;//这一行可写可不写
+		while(!sta.empty())bl[sta.top()]=bls,sta.pop();
+	}
+```
+
+### 时间复杂度
+重点到了，这里关系到块的大小取值
+
+设块的大小为unit
+
+对于x指针，由于每个块中节点的距离在unit左右，每个块中x指针移动 $unit^2$ 次（ $unit\times dis_max$ ），共计 $n\times unit$ （ $unit^2 \times (n\div unit)$ ）次
+
+对于y指针，每个块中最多移动O（n）次，共计 $n^2\div unit$ （ $n \times (n \div unit)$ ）次
+
+加起来大概在根号处取得最小值（由于树上莫队块的大小不固定，所以不一定要严格按照）
+
+### [WC2013]糖果公园
+由于多了时间维，块的大小取到0.6的样子就差不多了
+
+```cpp
+#include<bits/stdc++.h>
+//#pragma GCC optimize(2)
+using namespace std;
+inline int gi() {
+    register int x, c, op=1;
+    while(c=getchar(),c<'0'||c>'9')if(c=='-')op=-op;
+    x=c^48;
+    while(c=getchar(),c>='0'&&c<='9')x=(x<<3)+(x<<1)+(c^48);
+    return x*op;
+}
+int head[100002],nxt[200004],ver[200004],tot=0;
+void add(int x,int y) {
+	ver[++tot]=y,nxt[tot]=head[x],head[x]=tot;
+	ver[++tot]=x,nxt[tot]=head[y],head[y]=tot;
+}
+int bl[100002],bls=0;
+unsigned step;
+int fa[100002],dp[100002],hs[100002]={0},sz[100002]={0},top[100002],id[100002];
+stack<int>sta;
+void dfs1(int x) {
+	sz[x]=1;
+	unsigned ss=sta.size();
+	for(int i=head[x];i;i=nxt[i])
+		if(ver[i]!=fa[x]) {
+			fa[ver[i]]=x,dp[ver[i]]=dp[x]+1;
+			dfs1(ver[i]);
+			sz[x]+=sz[ver[i]];
+			if(sz[ver[i]]>sz[hs[x]])hs[x]=ver[i];
+			if(sta.size()-ss>=step) {
+				bls++;while(sta.size()!=ss)bl[sta.top()]=bls,sta.pop();
+			}
+		}
+	sta.push(x);
+}
+int cnt=0;
+void dfs2(int x,int hf) {
+	top[x]=hf,id[x]=++cnt;
+	if(!hs[x])return;
+	dfs2(hs[x],hf);
+	for(int i=head[x];i;i=nxt[i])
+		if(ver[i]!=fa[x]&&ver[i]!=hs[x])dfs2(ver[i],ver[i]);
+}
+int lca(int x,int y) {
+	while(top[x]!=top[y]) {
+		if(dp[top[x]]<dp[top[y]])swap(x,y);
+		x=fa[top[x]];
+	}
+	return dp[x]<dp[y]?x:y;
+}
+struct qu {
+	int x,y,t,id;
+	bool operator < (const qu a)const {
+		return bl[x]==bl[a.x]?(bl[y]==bl[a.y]?t<a.t:bl[y]<bl[a.y]):bl[x]<bl[a.x];
+	}
+}q[100001];
+int qs=0;
+struct ch {
+	int x,y,b;
+}upd[100001];
+int ups=0;
+long long ans[100001];
+int b[100001]={0};
+int a[100001];
+long long w[100001];
+long long v[100001];
+long long now=0;
+bool vis[100001]={0};
+void back(int t) {
+	if(vis[upd[t].x]) {
+		now-=w[b[upd[t].y]--]*v[upd[t].y];
+		now+=w[++b[upd[t].b]]*v[upd[t].b];
+	}
+	a[upd[t].x]=upd[t].b;
+}
+void change(int t) {
+	if(vis[upd[t].x]) {
+		now-=w[b[upd[t].b]--]*v[upd[t].b];
+		now+=w[++b[upd[t].y]]*v[upd[t].y];
+	}
+	a[upd[t].x]=upd[t].y;
+}
+void update(int x) {
+	if(vis[x])now-=w[b[a[x]]--]*v[a[x]];
+	else now+=w[++b[a[x]]]*v[a[x]];
+	vis[x]^=1;
+}
+void move(int x,int y) {
+	if(dp[x]<dp[y])swap(x,y);
+	while(dp[x]>dp[y])update(x),x=fa[x];
+	while(x!=y)update(x),update(y),x=fa[x],y=fa[y];
+}
+int main(){
+    int n=gi(),m=gi(),k=gi();
+	step=(int)pow(n,0.6);
+	for(int i=1;i<=m;i++)v[i]=gi();
+	for(int i=1;i<=n;i++)w[i]=gi();
+	for(int i=1;i<n;i++)add(gi(),gi());
+	for(int i=1;i<=n;i++)a[i]=gi();
+	for(int i=1;i<=k;i++)
+		if(gi())q[++qs].x=gi(),q[qs].y=gi(),q[qs].t=ups,q[qs].id=qs;
+		else upd[++ups].x=gi(),upd[ups].y=gi();
+	for(int i=1;i<=ups;i++)
+		upd[i].b=a[upd[i].x],a[upd[i].x]=upd[i].y;
+	for(int i=ups;i;i--)back(i);
+	fa[1]=1;
+	dfs1(1),dfs2(1,1);
+	if(!sta.empty()) {
+		bls++;
+		while(!sta.empty())bl[sta.top()]=bls,sta.pop();
+	}
+	for(int i=1;i<=n;i++)
+		if(id[q[i].x]>id[q[i].y])swap(q[i].x,q[i].y);
+	sort(q+1,q+qs+1);
+	int x=1,y=1,t=0;
+	for(int i=1;i<=qs;i++) {
+		if(x!=q[i].x)move(x,q[i].x),x=q[i].x;
+		if(y!=q[i].y)move(y,q[i].y),y=q[i].y;
+		int f=lca(x,y);
+		update(f);
+		while(t<q[i].t)change(++t);
+		while(t>q[i].t)back(t--);
+		ans[q[i].id]=now;
+		update(f);
+	}
+	for(int i=1;i<=qs;i++)printf("%lld\n",ans[i]);
+    return 0;
+}
+
 ```
