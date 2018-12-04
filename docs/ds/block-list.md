@@ -1,5 +1,3 @@
-# 块状链表
-
 [![./images/kuaizhuanglianbiao.png](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")
 
 大概就长这样……

@@ -17,7 +17,7 @@ copyright: 'Copyright &copy; 2016 - 2018 OI Wiki Team'
 nav:
   - 简介:
     - Getting Started: index.md
-    - OI 赛制简介: intro/mode.md
+    - OI 赛事与赛制: intro/mode.md
     - 学习资源: intro/resources.md
     - 常见错误: intro/common-mistakes.md
     - 常见技巧: intro/common-tricks.md
@@ -125,7 +125,7 @@ nav:
     - 置换群: math/permutation-group.md
     - 数值积分: math/integral.md
     - 线性规划: math/linear-programming.md
-    - 博弈论: math/game.md
+    - 博弈论: math/game-theory.md
     - 杂项: math/misc.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
@@ -137,7 +137,7 @@ nav:
       - bitset: ds/stl/bitset.md
     - pb_ds:
       - pb_ds 简介: ds/pb-ds/index.md
-      - priority_queue: ds/pb-ds/priority-queue.md
+      - __gnu_pbds::priority_queue: ds/pb-ds/priority-queue.md
     - 栈: ds/stack.md
     - 队列: ds/queue.md
     - 链表: ds/linked-list.md
@@ -266,6 +266,8 @@ extra:
   disqus: 'OI-Wiki'
   copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
+  manifest: 'manifest.webmanifest'
+  githash: ''
 
 extra_javascript:
   - 'https://cdnjs.loli.net/ajax/libs/Han/3.3.0/han.min.js'
@@ -300,7 +302,11 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.progressbar
   - pymdownx.smartsymbols
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: math
+          class: arithmatex
+          format: !!python/name:pymdownx.arithmatex.fence_mathjax_format
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde

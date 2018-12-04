@@ -1,6 +1,6 @@
 ## 大步小步算法
 
-### 1.0 基础篇
+### 基础篇
 
 大步小步算法英文名：**baby-step gaint-step (BSGS)**.
 
@@ -22,7 +22,7 @@ $$
 
 [BZOJ-2480](http://www.lydsy.com/JudgeOnline/problem.php?id=2480) 是一道模板题（可能是权限题），[BZOJ-3122](http://www.lydsy.com/JudgeOnline/problem.php?id=3122) 是一道略加变化的题，代码可以在 [Steaunk 的博客](https://blog.csdn.net/Steaunk/article/details/78988376) 中看到.
 
-### 2.0 略微进阶篇
+### 略微进阶篇
 
 求解
 
@@ -72,7 +72,7 @@ $\therefore r = 0$.
 
 [BZOJ-1319](http://www.lydsy.com/JudgeOnline/problem.php?id=1319) 是一道模板题，代码可以在 [Steaunk 的博客](https://blog.csdn.net/Steaunk/article/details/78988376) 中看到.
 
-### 3.0 扩展篇
+### 扩展篇
 
 上文提到的情况是 $c$ 为素数的情况，如果 $c$ 不是素数呢？
 

@@ -2,7 +2,7 @@
 
 * * *
 
-## 0x01 引言
+## 引言
 
 众所周知，尽管现在大部分学校的竞赛练习环境都是构建 XP 等 Windows 系操作系统，但是在 NOI 系列赛中，早已用上了 NOI Linux 这个 Ubuntu 操作系统的阉割版。  
 ![NOI 竞赛的环境要求](./images/WSL2.png)           
@@ -31,7 +31,7 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 * * *
 
-## 0x02 准备
+## 准备
 
 首先，你需要一个最新的 Windows 10 操作系统，这点不必多说。  
 其次，你需要配置一下开发人员模式环境。
@@ -46,14 +46,16 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
  给系统盘留下足够的空间，毕竟装好的 Linux 没法迁移。
 这次演示我们会安装 Ubuntu，因为 NOI Linux 正是 Ubuntu 的修改版。
 只要学会了方法，你也可照葫芦画瓢，安装 Windows 应用商店中的其他子系统。
-## 0x03 开搞
+
+## 开搞
+
 去 Windows 自带的应用商店，搜索 "Ubuntu"，然后选第一个安装。  
-亦可打开 <https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6>      
+亦可打开 <https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6>  
 ???+ warning
     Windows 10 商店的第一个 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。
     可使用 `sudo lsb_release -a` 查看自己的 Ubuntu 版本。
-    也可安装带有版本号的旧 Linux版本（如本次演示使用了**16.04**）。
-安装完后，打开 Ubuntu，等待一段时间，让其自己配置，不久就会提示你设置用户名和密码。   
+    也可安装带有版本号的旧 Linux 版本（如本次演示使用了**16.04**）。
+安装完后，打开 Ubuntu，等待一段时间，让其自己配置，不久就会提示你设置用户名和密码。  
 （这里看你喜好，推荐设置短点，毕竟 ** 本地环境不怕攻击 **）     
 
 **Linux 区分大小写！**
@@ -61,7 +63,7 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 ![](./images/WSL6.png)
  这样之后，一个纯净的 Ubuntu 系统安装完成了！
 
-## 0x04 基础配置
+## 基础配置
 
  ** 以下命令均可直接右键复制粘贴进窗口哦！**
 
@@ -144,7 +146,7 @@ AMD Ryzen 5 1400 Quad-Core Processor
 
 **Tips：Linux 环境下可执行文件可不带扩展名，实现方式看上方命令行 **
 
-## 0x05 进阶操作
+## 进阶操作
 
 ### 安装图形环境，并使用远程桌面连接
 
@@ -174,43 +176,60 @@ sudo service xrdp restart
  运行 `sudo service xrdp restart`，然后去开始菜单，用 `localhost: 你配置的端口 ` 来访问。
 ![](./images/WSL14.png)
 ![](./images/WSL15.png)
+
 #### 补充：使用 Xming 连接
+
 有网友说，这个可以用 Xming 连接，那我们就来研究一下。
+
 ##### 客户端：安装 Xterm
+
  我们进入 Ubuntu 环境，安装 xterm：
+
 ```bash
 sudo apt-get install xterm -y
 ```
+
 ##### 服务端：下载 Xming Server
- 去 <https://sourceforge.net/projects/xming/> 下载最新的 Xming Server，然后一路安装：    
-![](./images/WSL16.png)     
- 如果你把 Launch Xming 框点掉了，记得去开始菜单再打开：     
-![别忘了！](./images/WSL17.png)     
+
+ 去 <https://sourceforge.net/projects/xming/> 下载最新的 Xming Server，然后一路安装：  
+![](./images/WSL16.png)  
+ 如果你把 Launch Xming 框点掉了，记得去开始菜单再打开：  
+![别忘了！](./images/WSL17.png)  
  之后再回到 Ubuntu，键入如下指令：     
-```bash    
+
+```bash
 DISPLAY=:0 xterm
-```  
-**Duang！**     
+```
+
+**Duang！**  
 ![](./images/WSL18.png)  
-~~ 不过貌似只支持命令行……这时上一种方法的优势就显而易见了~~     
+不过貌似只支持命令行…… 这时上一种方法的优势就显而易见了  
  如果你和我一样使用了 xfce4，在弹出的窗口中使用如下命令激活 xfce4：     
-```bash   
+
+```bash
 xfce4-session
 ```
-![](./images/WSL19.png)    
- 不过这是什么效果......**（在 Xming 中使用 ** <kbd>Ctrl</kbd> + <kbd>C</kbd> ** 就可以退出这个鬼畜界面）**    
+
+![](./images/WSL19.png)  
+ 不过这是什么效果......**（在 Xming 中使用 ** <kbd>Ctrl</kbd> + <kbd>C</kbd> ** 就可以退出这个鬼畜界面）**  
 ![](./images/WSL20.png)
+
 <div align='center'> 达成成就：Windows+Linux 二合一 </div>
  感受一下两个版本融合的感觉：
 ![](./images/WSL21.png)
+
 #### 与 Windows 内原硬盘分区交互
-硬盘分区作为文件夹在 `/mnt/` 里放着，因此可以直接交互，比如说直接编译个二进制文件，或者往 Ubuntu 里传文件什么的......      
- 具体演示：    
-![](./images/WSL22.png)       
+
+硬盘分区作为文件夹在 `/mnt/` 里放着，因此可以直接交互，比如说直接编译个二进制文件，或者往 Ubuntu 里传文件什么的......  
+ 具体演示：  
+![](./images/WSL22.png)  
 ![](./images/WSL23.png)    
+
 <div align='center'> 这里也可以建立一些 Windows（一般情况下）建不了的文件，例如带点文件夹 </div>
 ** 乱码是因为我用的预览体验系统……不过用正式版也可以了！**
-## 0x07 FAQ
+
+## FAQ
+
 -   如何在子系统下进行 xxx？
     该怎么用怎么用，可以用自带命令行，实在不行参考教程唤醒图形界面。
     比如说 vim，在命令行中键入 `man vim`，会给出一份详尽的使用方法。
@@ -220,21 +239,23 @@ xfce4-session
     而且只要别装太多应用，应该还是可以带动的。
 -   汉语化时提示不存在？
     玄学问题，可以忽略。修了个疏忽导致的错误，可以重上一下试试。
-## 0x08 参考资料
+
+## 参考资料
+
 这里列举了文中提到的链接，以便查阅。
 
-1. [NOIP 标准评测系统及相关问题, smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html)         
-2. [WSL, 百度百科](https://baike.baidu.com/item/wsl/20359185)        
-3. [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97)         
-4. [Windows Subsystem for Linux Documentation, MSDN](https://docs.microsoft.com/zh-cn/windows/wsl/about)      
-5. [NOI 系列活动标准竞赛环境, 2016-11-08, NOI 官网](http://www.noi.cn/2016-11-08-03-42-01)      
-6. [购买 Ubuntu, Microsoft Store](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6)      
-7. [Ubuntu 镜像使用帮助, 清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)      
-8. [Ubuntu 的 man 命令帮助如何设置中文版, Frank 看庐山, 2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523)      
-9. [Xming X Server for Windows, SourceForge](https://sourceforge.net/projects/xming/)       
+1.  [NOIP 标准评测系统及相关问题, smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html)         
+2.  [WSL, 百度百科](https://baike.baidu.com/item/wsl/20359185)        
+3.  [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97)         
+4.  [Windows Subsystem for Linux Documentation, MSDN](https://docs.microsoft.com/zh-cn/windows/wsl/about)      
+5.  [NOI 系列活动标准竞赛环境, 2016-11-08, NOI 官网](http://www.noi.cn/2016-11-08-03-42-01)      
+6.  [购买 Ubuntu, Microsoft Store](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6)      
+7.  [Ubuntu 镜像使用帮助, 清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)      
+8.  [Ubuntu 的 man 命令帮助如何设置中文版, Frank 看庐山, 2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523)      
+9.  [Xming X Server for Windows, SourceForge](https://sourceforge.net/projects/xming/)       
 10. [Sudo, Wikipedia](https://zh.wikipedia.org/wiki/Sudo)       
 
-## 0x09 延伸内容
+## 延伸内容
 
 [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://spencerwoo.com/dowww/)
 

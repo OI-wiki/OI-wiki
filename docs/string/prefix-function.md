@@ -77,10 +77,10 @@ $$
 
 以下是最终的流程：
 
-- 在一个循环中以 $i = 1$ 到 $i = n - 1$ 的顺序计算前缀函数 $\pi[i]$ 的值（$\pi[0]$ 被赋值为 $0$）。
-- 为了计算当前的前缀函数值 $\pi[i]$，我们令变量 $j$ 表示右端点位于 $i - 1$ 的最好的后缀的长度。初始时 $j = \pi[i - 1]$。
-- 通过比较 $s[j]$ 和 $s[i]$ 来检查长度为 $j + 1$ 的后缀是否同时也是一个前缀。如果二者相等，那么我们置 $\pi[i] = j + 1$，否则我们减少 $j$ 至 $\pi[j - 1]$ 并且重复该过程。
-- 如果 $j = 0$ 并且仍没有任何一次匹配，则置 $\pi[i] = 0$ 并移至下一个下标 $i + 1$。
+-   在一个循环中以 $i = 1$ 到 $i = n - 1$ 的顺序计算前缀函数 $\pi[i]$ 的值（$\pi[0]$ 被赋值为 $0$）。
+-   为了计算当前的前缀函数值 $\pi[i]$，我们令变量 $j$ 表示右端点位于 $i - 1$ 的最好的后缀的长度。初始时 $j = \pi[i - 1]$。
+-   通过比较 $s[j]$ 和 $s[i]$ 来检查长度为 $j + 1$ 的后缀是否同时也是一个前缀。如果二者相等，那么我们置 $\pi[i] = j + 1$，否则我们减少 $j$ 至 $\pi[j - 1]$ 并且重复该过程。
+-   如果 $j = 0$ 并且仍没有任何一次匹配，则置 $\pi[i] = 0$ 并移至下一个下标 $i + 1$。
 
 ### 实现
 
@@ -168,10 +168,10 @@ for (int i = 0; i <= n; i++) ans[i]++;
 现在假设 $n$ 不可以被 $k$ 整除，我们将通过反证法证明这意味着答案为 $n$[^1]。假设其最小压缩表示 $r$ 的长度为 $p$（$p$ 整除 $n$），字符串 $s$ 被划分为 $n / p \ge 2$ 块。那么前缀函数的最后一个值 $\pi[n - 1]$ 必定大于 $n - p$（如果等于则 $n$ 可被 $k$ 整除），也即其所表示的后缀将部分的覆盖第一个块。现在考虑字符串的第二个块。该块有两种解释：第一种为 $r_0 r_1 \dots r_{p - 1}$，另一种为 $r_{p - k} r_{p - k + 1} \dots r_{p - 1} r_0 r_1 \dots r_{p - k - 1}$ 。由于两种解释对应同一个字符串，因此可得到 $p$ 个方程组成的方程组，该方程组可简写为 $r_{(i + k) \bmod p} = r_{i \bmod p}$，其中 $\cdot \bmod p$ 表示模 $p$ 意义下的最小非负剩余。
 
 $$
-\begin{gather}
+\begin{gathered}
 \overbrace{r_0 ~ r_1 ~ r_2 ~ r_3 ~ r_4 ~ r_5}^p ~ \overbrace{r_0 ~ r_1 ~ r_2 ~ r_3 ~ r_4 r_5}^p \\
 r_0 ~ r_1 ~ r_2 ~ r_3 ~ \underbrace{\overbrace{r_0 ~ r_1 ~ r_2 ~ r_3 ~ r_4 ~ r_5}^p ~ r_0 ~ r_1}_{\pi[11] = 8}
-\end{gather}
+\end{gathered}
 $$
 
 根据扩展欧几里得算法我们可以得到一组 $x$ 和 $y$ 使得 $xk + yp = \gcd(k, p)$。通过与等式 $pk - kp = 0$ 适当叠加我们可以得到一组 $x' > 0$ 和 $y' < 0$ 使得 $x'k + y'p = \gcd(k, p)$。这意味着通过不断应用前述方程组中的方程我们可以得到新的方程组 $r_{(i + \gcd(k, p)) \bmod p} = r_{i \bmod p}$。
@@ -194,7 +194,7 @@ $$
 
 换句话说，我们可以构造一个**自动机**（一个有限状态机）：其状态为当前的前缀函数值，而从一个状态到另一个状态的转移则由下一个字符确定。
 
-因此，即使没有字符串 $t$，我们同样可以应用构造转移表的算法构造一个转移表 $(\text{old_\(\pi\)}, c) \rightarrow \text{new_\(\pi\)}$：
+因此，即使没有字符串 $t$，我们同样可以应用构造转移表的算法构造一个转移表 $( \text { old } \pi , c ) \rightarrow \text { new } _ { - } \pi$：
 
 ```c++
 void compute_automaton(string s, vector<vector<int>>& aut) {
@@ -245,12 +245,12 @@ void compute_automaton(string s, vector<vector<int>>& aut) {
 出于完整性考虑，我们来解决这样一个问题：给定一个数 $k \le 10^5$，以及一个长度 $\le 10^5$ 的字符串 $s$，我们需要计算 $s$ 在第 $k$ 个 Gray 字符串中的出现次数。回想起 Gray 字符串以下述方式定义：
 
 $$
-\begin{align}
+\begin{aligned}
 g_1 &= \mathtt{a}\\
 g_2 &= \mathtt{aba}\\
 g_3 &= \mathtt{abacaba}\\
 g_4 &= \mathtt{abacabadabacaba}
-\end{align}
+\end{aligned}
 $$
 
 由于其天文数字般的长度，在这种情况下即使构造字符串 $t$ 都是不可能的：第 $k$ 个 Gray 字符串有 $2^k - 1$ 个字符。然而我们可以在仅仅知道开头若干前缀函数值的情况下，有效计算该字符串末尾的前缀函数值。
@@ -260,10 +260,10 @@ $$
 我们该如何计算这些值呢？首先根据定义，初始条件为 $G[0][j] = j$ 以及 $K[0][j] = 0$。之后所有值可以通过先前的值以及使用自动机计算得到。为了对某个 $i$ 计算相应值，回想起字符串 $g_i$ 由 $g_{i - 1}$，字母表中第 $i$ 个字符，以及 $g_{i - 1}$ 三者拼接而成。因此自动机会途径下列状态：
 
 $$
-\begin{gather}
+\begin{gathered}
 \text{mid} = \text{aut}[G[i - 1][j]][i] \\
 G[i][j] = G[i - 1][\text{mid}]
-\end{gather}
+\end{gathered}
 $$
 
 $K[i][j]$ 的值同样可被简单计算。
@@ -275,12 +275,12 @@ $$
 其中 $[\cdot]$ 当其中表达式取值为真时值为 $1$，否则为 $0$。综上，我们已经可以解决关于 Gray 字符串的问题，以及一大类与之类似的问题。举例来说，应用同样的方法可以解决下列问题：给定一个字符串 $s$ 以及一些模式 $t_i$，其中每个模式以下列方式给出：该模式由普通字符组成，当中可能以 $t_{k}^{\text{cnt}}$ 的形式递归插入先前的字符串，也即在该位置我们必须插入字符串 $t_k$ $\text{cnt}$ 次。以下是这些模式的一个例子：
 
 $$
-\begin{align}
+\begin{aligned}
 t_1 &= \mathtt{abdeca} \\
 t_2 &= \mathtt{abc} + t_1^{30} + \mathtt{abd} \\
 t_3 &= t_2^{50} + t_1^{100} \\
 t_4 &= t_2^{10} + t_3^{100}
-\end{align}
+\end{aligned}
 $$
 
 递归代入会使字符串长度爆炸式增长，他们的长度甚至可以达到 $100^{100}$ 的数量级。而我们必须找到字符串 $s$ 在每个字符串中的出现次数。
@@ -289,15 +289,15 @@ $$
 
 ## 练习题目
 
-- [UVA # 455 "Periodic Strings"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
-- [UVA # 11022 "String Factoring"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
-- [UVA # 11452 "Dancing the Cheeky-Cheeky"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2447)
-- [UVA 12604 - Caesar Cipher](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4282)
-- [UVA 12467 - Secret Word](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3911)
-- [UVA 11019 - Matrix Matcher](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1960)
-- [SPOJ - Pattern Find](http://www.spoj.com/problems/NAJPF/)
-- [Codeforces - Anthem of Berland](http://codeforces.com/contest/808/problem/G)
-- [Codeforces - MUH and Cube Walls](http://codeforces.com/problemset/problem/471/D)
+-   [UVA # 455 "Periodic Strings"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
+-   [UVA # 11022 "String Factoring"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
+-   [UVA # 11452 "Dancing the Cheeky-Cheeky"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2447)
+-   [UVA 12604 - Caesar Cipher](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4282)
+-   [UVA 12467 - Secret Word](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3911)
+-   [UVA 11019 - Matrix Matcher](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1960)
+-   [SPOJ - Pattern Find](http://www.spoj.com/problems/NAJPF/)
+-   [Codeforces - Anthem of Berland](http://codeforces.com/contest/808/problem/G)
+-   [Codeforces - MUH and Cube Walls](http://codeforces.com/problemset/problem/471/D)
 
 * * *
 

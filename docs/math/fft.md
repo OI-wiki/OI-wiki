@@ -113,9 +113,9 @@ $$
 
 接下来思考两个复数相乘是什么意义：
 
-1. $(a+bi) \times (c+di) = (ac-bd) + (ad+bc)i$
+1.  $(a+bi) \times (c+di) = (ac-bd) + (ad+bc)i$
 
-2. 长度相乘，角度相加： $(r_1, \theta_1)  \times  (r_2, \theta_2) = (r_1 \times r_2, \theta_1+\theta_2)$
+2.  长度相乘，角度相加： $(r_1, \theta_1)  \times  (r_2, \theta_2) = (r_1 \times r_2, \theta_1+\theta_2)$
 
 这么一看的话，我们很容易想到如果两个长度为 $1$ 的不同方向向量相乘，结果向量是不是一个长度依然为 $1$ 的新向量呢？
 

@@ -1,6 +1,4 @@
-## bitset :
-
-### 介绍 :
+## 介绍
 
 `std :: bitset`是标准库中的一个**固定大小**序列, 其储存的数据只包含`0/1`
 
@@ -26,32 +24,32 @@
 #include <bitset>  // 包含 bitset 的头文件
 ```
 
-#### 运算符 :
+### 运算符
 
-- `operator[]`: 访问其特定的一位
+-   `operator[]`: 访问其特定的一位
 
-- `operator ==/!=` : 比较两个`bitset`内容是否完全一样
+-   `operator ==/!=` : 比较两个`bitset`内容是否完全一样
 
-- `operator &= / |= / ^= / ~` : 进行按位与 / 或 / 异或 / 取反操作
-- `operator <</>> / <<= / >>=` : 进行二进制左移 / 右移
-- `operator <</>>` : 流运算符, 这意味着你可以通过`cin/cout`进行输入输出
+-   `operator &= / |= / ^= / ~` : 进行按位与 / 或 / 异或 / 取反操作
+-   `operator <</>> / <<= / >>=` : 进行二进制左移 / 右移
+-   `operator <</>>` : 流运算符, 这意味着你可以通过`cin/cout`进行输入输出
 
 `vector<bool>`只具有前两项
 
-#### 成员函数 :
+### 成员函数
 
-- `test()`: 它和`vector`中的`at()`的作用是一样的, 和`[]`运算符的区别就是越界检查
-- `count()`: 返回`true`的数量
-- `set()`: 将整个`bitset`设置成`true`, 你也可以传入参数使其设置成你的参数
-- `reset()`: 将整个`bitset`设置成`false`
-- `flip()`: 翻转该位 (0 变 1,1 变 0), 相当于逻辑非 / 异或 1
-- `to_string()`: 返回转换成的字符串表达
-- `to_ulong()`: 返回转换成的`unsigned long`表达 (`long`在 NT 及 32 位 POSIX 系统下与`int`一样,  在 64 位 POSIX 下与`long long`一样)
-- `to_ullong()` **C++11**, 返回转换成的`unsigned long long`表达
+-   `test()`: 它和`vector`中的`at()`的作用是一样的, 和`[]`运算符的区别就是越界检查
+-   `count()`: 返回`true`的数量
+-   `set()`: 将整个`bitset`设置成`true`, 你也可以传入参数使其设置成你的参数
+-   `reset()`: 将整个`bitset`设置成`false`
+-   `flip()`: 翻转该位 (0 变 1,1 变 0), 相当于逻辑非 / 异或 1
+-   `to_string()`: 返回转换成的字符串表达
+-   `to_ulong()`: 返回转换成的`unsigned long`表达 (`long`在 NT 及 32 位 POSIX 系统下与`int`一样,  在 64 位 POSIX 下与`long long`一样)
+-   `to_ullong()` **C++11**, 返回转换成的`unsigned long long`表达
 
 这些`vector<bool>`基本都没有
 
-### 作用 :
+## 作用
 
 一般来讲, 我们可以用`bitset`优化一些可行性 DP, 或者线筛素数 (`notprime`这种`bool`数组可以用`bitset`开到$10^8$之类的)
 
