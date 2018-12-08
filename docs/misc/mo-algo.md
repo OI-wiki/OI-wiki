@@ -165,13 +165,11 @@ int main() {
 
 我们看一下下面这组数据
 
-```
-// 设块的大小为 2 (假设)
-1 1
-2 100
-3 1
-4 100
-```
+    // 设块的大小为 2 (假设)
+    1 1
+    2 100
+    3 1
+    4 100
 
 手动模拟一下可以发现，r 指针的移动次数大概为 300 次，我们处理完第一个块之后，$l = 2, r = 100$，此时只需要移动两次 l 指针就可以得到第四个询问的答案，但是我们却将 r 指针移动到 1 来获取第三个询问的答案，再移动到 100 获取第四个询问的答案，这样多了九十几次的指针移动。我们怎么优化这个地方呢？这里我们就要用到奇偶化排序
 
@@ -180,26 +178,32 @@ int main() {
 排序代码：
 
 压行
+
 ```cpp
 // 这里有个小细节等下会讲
-int unit; // 块的大小
+int unit;  // 块的大小
 struct node {
-	int l, r, id;
-	bool operator < (const node &x)const {
-		return l / unit == x.l /unit ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r)) : l < x.l;
-	}
+  int l, r, id;
+  bool operator<(const node &x) const {
+    return l / unit == x.l / unit
+               ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r))
+               : l < x.l;
+  }
 };
 ```
 
 不压行
+
 ```cpp
 struct node {
-	int l, r, id;
-	bool operator < (const node &x)const {
-		if(l / unit != x.l / unit)return l < x.l;
-		if((l / unit) & 1)return r < x.r; // 注意这里和下面一行不能写小于（大于）等于，否则会出错（详见下面的小细节）
-		return r > x.r;
-	}
+  int l, r, id;
+  bool operator<(const node &x) const {
+    if (l / unit != x.l / unit) return l < x.l;
+    if ((l / unit) & 1)
+      return r <
+             x.r;  // 注意这里和下面一行不能写小于（大于）等于，否则会出错（详见下面的小细节）
+    return r > x.r;
+  }
 };
 ```
 
