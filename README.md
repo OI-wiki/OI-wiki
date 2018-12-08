@@ -113,6 +113,6 @@ python3 -m http.server
 
 特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
 
-<img src='https://i.loli.net/2018/09/28/5bae46121a2be.png' alt='QVQNetWork' height=233>
+<img src='https://i.loli.net/2018/12/07/5c0a6e4c31b30.png' alt='QVQNetWork' width=233>
 
 鸣谢 QVQNetwork 赞助的服务器。
