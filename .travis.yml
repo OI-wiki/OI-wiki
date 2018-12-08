@@ -15,10 +15,12 @@ install:
   - pip install -r requirements.txt
   - npm install .
 script:
+  - set -e
   - chmod +x ./scripts/build.sh && ./scripts/build.sh
   - mkdocs build -v
   - find ./site -type f -name '*.html' -exec node --max_old_space_size=512 ./scripts/render_math.js {} \;
   - docker build -t oi-wiki:latest .
+  - set +e
 deploy:
   provider: pages
   skip_cleanup: true
