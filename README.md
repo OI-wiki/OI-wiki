@@ -40,6 +40,8 @@
 
 当然也可以本地部署。（**需要 Python 3**）
 
+[点击查看 asciinema 录制的流程](https://asciinema.org/a/SlLiVHYv7kS2u2px18rUUDZep)
+
 **如果遇到问题，可以查阅 [F.A.Q.](https://oi-wiki.org/intro/faq/) 来了解更多信息。**
 
 ```bash
