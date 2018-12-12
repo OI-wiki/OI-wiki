@@ -1,4 +1,4 @@
-DFS 全称是 [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)。
+DFS 全称是[Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)。
 
 是一种图的遍历算法。
 
@@ -79,9 +79,9 @@ void dfs(int u) {
 }
 ```
 
-时间复杂度 $O(n + m)$。
+时间复杂度$O(n + m)$。
 
-空间复杂度 $O(n)$。 （vis 数组和递归栈）
+空间复杂度$O(n)$。（vis 数组和递归栈）
 
 ## 在树 / 图上 DFS
 

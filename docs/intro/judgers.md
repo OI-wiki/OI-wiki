@@ -2,7 +2,7 @@
 
 ## Cena
 
-Cena 是由刘其帅和李子星使用 Pascal 语言编写的开源评测工具，是流传最广泛的本地评测工具。Cena 最初开源于 Google Code 平台，由于不明原因 Google 删除了 Cena 项目，目前可以在 [Web Archive](https://web.archive.org/web/20131023112258/http://code.google.com/p/cena/) 上找到 Cena 的官网。
+Cena 是由刘其帅和李子星使用 Pascal 语言编写的开源评测工具，是流传最广泛的本地评测工具。Cena 最初开源于 Google Code 平台，由于不明原因 Google 删除了 Cena 项目，目前可以在[Web Archive](https://web.archive.org/web/20131023112258/http://code.google.com/p/cena/)上找到 Cena 的官网。
 
 Cena 的源代码可以在[这里](https://github.com/billchenchina/cena)找到。
 
@@ -12,11 +12,11 @@ Cena 对权限的限制不是很明确，测试的时候可以读测点 AC QAQ
 
 Lemon 是 zhipeng-jia 写的开源的评测工具，地址在：[zhipeng-jia/project-lemon](https://github.com/zhipeng-jia/project-lemon)。
 
-Ir1d 提供了一份 linux 下编译好的版本在 [FreestyleOJ/Project_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built)。
+Ir1 d 提供了一份 Linux 下编译好的版本在[FreestyleOJ/Project_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built)。
 
-Menci 提供了一份更新的版本在 [Menci/Lemon](https://github.com/Menci/Lemon/)。
+Menci 提供了一份更新的版本在[Menci/Lemon](https://github.com/Menci/Lemon/)。
 
-**注意** macOS 下 Lemon 可能会出现内存测试不准确的情况， 这是由于 mac 下没有一些 Linux 的监测工具，而 Lemon-Linux 也没有对于 macOS 的使用优化。
+**注意**macOS 下 Lemon 可能会出现内存测试不准确的情况，这是由于 Mac 下没有一些 Linux 的监测工具，而 Lemon-Linux 也没有对于 macOS 的使用优化。
 
 ### 自行编译
 
@@ -80,9 +80,9 @@ players/
 ...
 ```
 
-其中，`<contestant_x's ID>` 指的是选手编号，形如 `<省份>-< 编号 >`，例如 HL-001,JL-125 等等，`<problem_x>` 指的是题目名称。
+其中，`<contestant_x's ID>`指的是选手编号，形如`<省份>-< 编号 >`，例如 HL-001,JL-125 等等，`<problem_x>`指的是题目名称。
 
-当然，在自测时可以使用字母，短线（即 `-`）和数字的组合作为选手编号。
+当然，在自测时可以使用字母，短线（即`-`）和数字的组合作为选手编号。
 
 准备好选手文件夹还不够，需要准备选手名单。名单格式如下：
 
@@ -92,7 +92,7 @@ players/
 ...
 ```
 
-其中 `<contestant_x's name>` 表示选手姓名，保存这个文件为纯文本文件，文件编码是 GB2312。
+其中`<contestant_x's name>`表示选手姓名，保存这个文件为纯文本文件，文件编码是 GB2312。
 
 当然也可以手动添加，稍后介绍。
 
@@ -104,9 +104,9 @@ players/
 <problem_x><y>.in <problem_x><y>.ans
 ```
 
-其中，`<y>` 是数据编号，编号从 1 开始。
+其中，`<y>`是数据编号，编号从 1 开始。
 
-默认测试数据后缀名是 `.ans`，选手输出的后缀名是 `.out`，不能混淆。不用将每题的测试数据放置在各自文件夹里，只需要放在一起即可。
+默认测试数据后缀名是`.ans`，选手输出的后缀名是`.out`，不能混淆。不用将每题的测试数据放置在各自文件夹里，只需要放在一起即可。
 
 这样就准备好了，现在开始测评文件夹的配置。
 
@@ -122,7 +122,7 @@ players/
 
 在左边试题概要里右键 - 添加考试，再在考试标签上右键 - 添加试题，新建出试题即可。
 
-单击考试左边的 `+` 即可全部显示，单击试题标签对试题名称进行修改，改为题目的英文名称，同时修改题目时间与空间限制和比较方式。比较方式十分不推荐用全文完全直接比较，对于 Windows 下制作的数据十分不友好。比较方式不选的话默认为字符串比较中的单行单字符串比较方式。如果测试数据不同的话一定要注意比较方式的选择！
+单击考试左边的`+`即可全部显示，单击试题标签对试题名称进行修改，改为题目的英文名称，同时修改题目时间与空间限制和比较方式。比较方式十分不推荐用全文完全直接比较，对于 Windows 下制作的数据十分不友好。比较方式不选的话默认为字符串比较中的单行单字符串比较方式。如果测试数据不同的话一定要注意比较方式的选择！
 
 ![](./images/arbiter_problem.png)
 
@@ -150,11 +150,11 @@ players/
 `-- team.info
 ```
 
-我们把已经建好的选手程序文件夹放在 `players/` 目录下，将所有测试数据（不放在文件夹里）放在 `evaldata` 中。
+我们把已经建好的选手程序文件夹放在`players/`目录下，将所有测试数据（不放在文件夹里）放在`evaldata`中。
 
-`filter/` 文件夹放置了一些比较器及其源代码，写自定义比较器时可以参考，`result/` 文件夹存放选手的测评结果，`tmp/` 文件夹是测评时文件夹。
+`filter/`文件夹放置了一些比较器及其源代码，写自定义比较器时可以参考，`result/`文件夹存放选手的测评结果，`tmp/`文件夹是测评时文件夹。
 
-配置好后，就是正式测评环节了。点开 “试题评测” 标签，然后会出现如下所示情况。
+配置好后，就是正式测评环节了。点开“试题评测”标签，然后会出现如下所示情况。
 
 ![Pretest](./images/arbiter_pretest.png)
 
@@ -164,7 +164,7 @@ players/
 
 ![Test](./images/arbiter_test.png)
 
-因为我取得编号是 `HL-001`，所以会自动识别出 “所属” 一栏。如果不是 NOIP 规范的编号是识别不出来的。
+因为我取得编号是`HL-001`，所以会自动识别出“所属”一栏。如果不是 NOIP 规范的编号是识别不出来的。
 
 这个时候，要用**向上箭头**把测评第 0 场变为测评第 1 场，如果直接修改的话会识别失败。
 
@@ -174,9 +174,9 @@ players/
 
 #### 自定义校验器的编写
 
-注意编译后自定义校验器名称为 `<problem>_e`，其中 `<problem>` 为题目名称，必须放在 `filter/` 文件夹下。在配置题目时选择自定义校验器，然后选择需要的自定义校验器。
+注意编译后自定义校验器名称为`<problem>_e`，其中`<problem>`为题目名称，必须放在`filter/`文件夹下。在配置题目时选择自定义校验器，然后选择需要的自定义校验器。
 
-可以参考 `filter/` 下的源代码编写。
+可以参考`filter/`下的源代码编写。
 
 #### 测评时注意事项
 
@@ -194,7 +194,7 @@ players/
 
 #### 诶我怎么只能看见代码不能看见每个点得多少分
 
-测试点详细信息需要在 `result/` 文件夹下查看，文件夹下会有选手的结果文件夹，结果文件的后缀名为 `.result`，用纯文本方式查看即可。
+测试点详细信息需要在`result/`文件夹下查看，文件夹下会有选手的结果文件夹，结果文件的后缀名为`.result`，用纯文本方式查看即可。
 
 ~~（我觉得这个设计很值得吐槽）~~
 
@@ -210,11 +210,11 @@ players/
 
 至少不能读取答案文件……
 
-`bits/stdc++.h` 测得可用。
+`bits/stdc++.h`测得可用。
 
-`#pragma G++ optimize("O2")` 竟然可用。
+`#pragma G++ optimize("O2")`竟然可用。
 
-`__attribute__((__optimize__("-O2")))` 竟然也可用。
+`__attribute__((__optimize__("-O2")))`竟然也可用。
 
 我可能用的是假 Arbiter……
 
@@ -228,4 +228,4 @@ players/
 
 ## CCR-Plus
 
-一款开源的界面好看的评测工具 GitHub 地址 ：[sxyzccr/CCR-Plus](https://github.com/sxyzccr/CCR-Plus)
+一款开源的界面好看的评测工具 GitHub 地址：[sxyzccr/CCR-Plus](https://github.com/sxyzccr/CCR-Plus)

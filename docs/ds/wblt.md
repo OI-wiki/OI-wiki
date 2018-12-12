@@ -1,8 +1,8 @@
 WBLT，全称 Weight Balanced Leafy Tree，一种不常见的平衡树写法，但是具有常数较小，可以当做可并堆使用的优点。
 
-类似于 WBL（weight-balanced trees，加权平衡树），WBLT 体现了 leafy 的性质, 即节点多，怎么多呢？
+类似于 WBL（weight-balanced trees，加权平衡树），WBLT 体现了 leafy 的性质，即节点多，怎么多呢？
 
-对于 n 个数，不同于 treap 等，WBLT 会建立 2n 个节点，每个节点的权值为其右儿子的权值，且右儿子的权值大于等于左儿子
+对于 n 个数，不同于 treap 等，WBLT 会建立 2 n 个节点，每个节点的权值为其右儿子的权值，且右儿子的权值大于等于左儿子
 
 每次插入，类似于堆，逐次向下交换并向上 pushup 更新即可，删除也是同理
 
@@ -12,7 +12,7 @@ WBLT，全称 Weight Balanced Leafy Tree，一种不常见的平衡树写法，�
 
 而在旋转的过程中，会产生很多垃圾节点，我们采用垃圾回收的方式就可以回收废弃节点，将建立节点的操作稍作修改即可。
 
-附上普通平衡树代码:
+附上普通平衡树代码：
 
 ```cpp
 #include <cstdio>

@@ -11,7 +11,7 @@
 
 放一个之前的高精度板子吧。
 
-还有一个很好用的[高精度封装类](https://paste.ubuntu.com/p/7VKYzpC7dn/) 10kb 想用可以自行下载。
+还有一个很好用的[高精度封装类](https://paste.ubuntu.com/p/7VKYzpC7dn/)10 kb 想用可以自行下载。
 
 ```c++
 #define MAXN 9999

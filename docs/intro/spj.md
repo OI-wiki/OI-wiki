@@ -5,11 +5,11 @@
 
     浮点数时应注意 nan，不合理的判断方式会导致输出 nan 即可 AC。
 
-以下均使用 C++，以 “要求标准答案与选手答案差值小于 1e-3，文件名为 num” 为例。
+以下均使用 C++，以“要求标准答案与选手答案差值小于 1 e-3，文件名为 num”为例。
 
 ## Testlib
 
-[Testlib](https://codeforces.com/testlib) 是一个强大的算法竞赛题目辅助系统，只需要在程序中引入 [testlib.h](https://github.com/MikeMirzayanov/testlib/blob/master/testlib.h) 头文件即可使用。用法详见 [Testlib](/intro/testlib) 页面。
+[Testlib](https://codeforces.com/testlib)是一个强大的算法竞赛题目辅助系统，只需要在程序中引入[testlib.h](https://github.com/MikeMirzayanov/testlib/blob/master/testlib.h)头文件即可使用。用法详见[Testlib](/intro/testlib)页面。
 
 使用 Testlib 编写 spj 的好处为我们不再需要判断文件尾的多余内容，其会帮助我们自动判断，也无需担忧 nan。
 
@@ -17,9 +17,9 @@
 
 可以使用 Testlib 做 spj 的 评测工具 /OJ：LibreOJ(SYZOJ 2)、Lemon 等
 
-SYZOJ 2 所需的修改版 Testlib 可以在[这里](https://pastebin.com/3GANXMG7)获取到，感谢 [cyand1317](https://loj.ac/article/124)。
+SYZOJ 2 所需的修改版 Testlib 可以在[这里](https://pastebin.com/3GANXMG7)获取到，感谢[cyand1317](https://loj.ac/article/124)。
 
-Lemon 所需的修改版 Testlib 可以在[这里](https://paste.ubuntu.com/p/JsTspHHnmB/)获取到，感谢 matthew99。注意此版本 Testlib 注册 checker 应使用 `registerLemonChecker()` 而非 `registerTestlibCmd()`。
+Lemon 所需的修改版 Testlib 可以在[这里](https://paste.ubuntu.com/p/JsTspHHnmB/)获取到，感谢 matthew99。注意此版本 Testlib 注册 checker 应使用`registerLemonChecker()`而非`registerTestlibCmd()`。
 
 其他评测工具 /OJ 大部分需要按照其 spj 编写格式修改 Testlib。
 
@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 
 ## Lemon
 
-**Lemon 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib)**
+**Lemon 有现成的修改版 Testlib，建议使用 Testlib，见[Testlib](#testlib)**
 
 ```cpp
 #include <cmath>
@@ -197,7 +197,7 @@ int main(int argc, char* argv[]) {
 
 ## LibreOJ(SYZOJ 2)
 
-**LibreOJ(SYZOJ 2) 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib)**
+**LibreOJ(SYZOJ 2) 有现成的修改版 Testlib，建议使用 Testlib，见[Testlib](#testlib)**
 
 ```cpp
 #include <cmath>

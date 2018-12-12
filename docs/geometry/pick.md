@@ -1,13 +1,13 @@
 ## Pick 定理
 
-Pick 定理：给定顶点座标均是整点（或正方形格子点）的简单多边形，皮克定理说明了其面积${\displaystyle A}$和内部格点数目 ${\displaystyle i}$、边上格点数目${\displaystyle b}$的关系：${\displaystyle A=i+{\frac {b}{2}}-1}$。
+Pick 定理：给定顶点座标均是整点（或正方形格子点）的简单多边形，皮克定理说明了其面积${\displaystyle A}$和内部格点数目${\displaystyle i}$、边上格点数目${\displaystyle b}$的关系：${\displaystyle A=i+{\frac {b}{2}}-1}$。
 
 具体证明：[Pick's theorem](https://en.wikipedia.org/wiki/Pick%27s_theorem)
 
 它有以下推广：
 
 -   取格点的组成图形的面积为一单位。在平行四边形格点，皮克定理依然成立。套用于任意三角形格点，皮克定理则是${\displaystyle A=2 \times i+b-2}$。
--   对于非简单的多边形${\displaystyle P}$，皮克定理 ${\displaystyle A=i+{\frac {b}{2}}-\chi (P)}$，其中${\displaystyle \chi (P)}$表示${\displaystyle P}$的**欧拉特征数**。
+-   对于非简单的多边形${\displaystyle P}$，皮克定理${\displaystyle A=i+{\frac {b}{2}}-\chi (P)}$，其中${\displaystyle \chi (P)}$表示${\displaystyle P}$的**欧拉特征数**。
 -   高维推广：Ehrhart 多项式
 -   皮克定理和**欧拉公式**（${\displaystyle V-E+F=2}$）等价。
 
