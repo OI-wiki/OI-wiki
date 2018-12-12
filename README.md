@@ -10,7 +10,7 @@
 [![GitHub watchers](https://img.shields.io/github/watchers/24OI/OI-Wiki.svg?style=social&label=Watch)](https://github.com/24OI/OI-wiki)
 [![GitHub stars](https://img.shields.io/github/stars/24OI/OI-Wiki.svg?style=social&label=Stars)](https://github.com/24OI/OI-wiki)
 
-------
+* * *
 
 ## 内容
 
@@ -32,7 +32,7 @@
 
 与此同时， **OI Wiki** 源于社区，提倡 **知识自由**，在未来也绝不会商业化，将始终保持独立自由的性质。
 
-------
+* * *
 
 ## 部署
 
@@ -95,14 +95,14 @@ python3 -m http.server
 
 详见 [Docker 部署](https://oi-wiki.org/intro/docker-deploy/)
 
-------
+* * *
 
 ## 如何参与完善 OI Wiki
 
 我们非常欢迎你为 **OI Wiki** 编写内容，将自己的所学所得与大家分享。
 具体的贡献方式在 [F.A.Q](https://oi-wiki.org/intro/faq/)。
 
-------
+* * *
 
 ## 版权声明
 
@@ -112,7 +112,7 @@ python3 -m http.server
 换言之，使用过程中您可以自由地共享、演绎，但是必须署名、以相同方式共享、分享时没有附加限制，  
 而且需要为 GitHub 仓库点赞（Star）。
 
-------
+* * *
 
 ## 鸣谢
 
