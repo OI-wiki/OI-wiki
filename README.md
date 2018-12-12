@@ -1,6 +1,6 @@
 [![Word Art](https://raw.githubusercontent.com/24OI/OI-wiki/master/docs/images/wordArt.png)](https://oi-wiki.org/)
 
-# 欢迎来到 **OI Wiki**。
+# 欢迎来到 **OI Wiki**！
 
 [![Travis](https://img.shields.io/travis/24OI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/24OI/OI-wiki)
 [![Progress](https://img.shields.io/badge/Progress-73%25-brightgreen.svg?style=flat-square)](https://github.com/24OI/OI-wiki)
@@ -10,7 +10,7 @@
 [![GitHub watchers](https://img.shields.io/github/watchers/24OI/OI-Wiki.svg?style=social&label=Watch)](https://github.com/24OI/OI-wiki)
 [![GitHub stars](https://img.shields.io/github/stars/24OI/OI-Wiki.svg?style=social&label=Stars)](https://github.com/24OI/OI-wiki)
 
-* * *
+------
 
 ## 内容
 
@@ -32,7 +32,7 @@
 
 与此同时， **OI Wiki** 源于社区，提倡 **知识自由**，在未来也绝不会商业化，将始终保持独立自由的性质。
 
-* * *
+------
 
 ## 部署
 
@@ -44,18 +44,27 @@
 
 ```bash
 git clone https://github.com/24OI/OI-wiki.git --depth=1
+
 cd OI-wiki
-pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
-# 使用我们的自定义主题（不是必须执行）
+pip3 install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+# 安装mkdocs
+
 chmod +x ./scripts/build.sh && ./scripts/build.sh
+# 使用我们的自定义主题（不是必须执行）
 
-# 最简单的构建方法，会在 site 文件夹下得到静态页面
-mkdocs build -v
-
-# 运行一个服务器，访问 http://127.0.0.1:8000 可以查看效果
 mkdocs serve -v
+# 在/site文件夹生成静态文件并运行一个服务器，访问 http://127.0.0.1:8000 可以查看效果
 ```
+
+如果你只是想要得到静态文件，可以直接
+
+```bash
+mkdocs build -v
+# 最简单的构建方法，会在 site 文件夹下得到静态页面
+```
+
+```mkdocs sreve -v```和```mkdocs sreve```没有区别，```mkdocs build -v```和```mkdocs build```也没有区别
 
 我们现在在服务器端渲染 MathJax ，如果希望实现类似效果，可以参考 [netlify_build.sh](https://github.com/24OI/OI-wiki/blob/master/scripts/netlify_build.sh)。（需要安装 Node.js）
 
@@ -80,18 +89,20 @@ git clone https://git.dev.tencent.com/scaffrey/OI-wiki.git -b coding-pages
 python3 -m http.server
 ```
 
+在windows中，python3默认的程序名其实是python。如果你不确定，可以直接去你的安装目录查看有没有叫python.exe或python3.exe的文件即可。
+
 ### Docker
 
 详见 [Docker 部署](https://oi-wiki.org/intro/docker-deploy/)
 
-* * *
+------
 
 ## 如何参与完善 OI Wiki
 
 我们非常欢迎你为 **OI Wiki** 编写内容，将自己的所学所得与大家分享。
 具体的贡献方式在 [F.A.Q](https://oi-wiki.org/intro/faq/)。
 
-* * *
+------
 
 ## 版权声明
 
@@ -101,7 +112,7 @@ python3 -m http.server
 换言之，使用过程中您可以自由地共享、演绎，但是必须署名、以相同方式共享、分享时没有附加限制，  
 而且需要为 GitHub 仓库点赞（Star）。
 
-* * *
+------
 
 ## 鸣谢
 
