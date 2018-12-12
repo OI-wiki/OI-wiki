@@ -27,6 +27,7 @@
   "dependencies": {
     "mathjax-node-page": "^3.0.1",
     "remark-clang-format": "^1.0.1",
+    "remark-copywriting-correct": "0.0.2-development",
     "remark-lint-final-newline": "^1.0.2",
     "remark-lint-no-tabs": "^1.0.2",
     "remark-math": "^1.0.4",
