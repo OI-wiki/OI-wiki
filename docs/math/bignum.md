@@ -1,15 +1,18 @@
-什么时候需要高精度呢？就比如数据规模很大，unsigned long long 都存不下，就需要开一个字符数组来准确地表示一个数。
+## 前言
 
-高精度问题包含很多小的细节，实现上也有很多讲究，暂时先不展开。
+什么时候需要高精度呢？就比如数据规模很大，unsigned long long 都存不下，就需要自己丰衣足食开一个数组来准确地表示一个数。
 
+高精度问题包含很多小的细节，实现上也有很多讲究。
+
+目录：（内容正在逐步完善）
+
+-   存储
 -   四则运算
 -   快速幂
 -   分数
 -   对数（？）
 -   开根
 -   压位高精度
-
-放一个之前的高精度板子吧。
 
 还有一个很好用的[高精度封装类](https://paste.ubuntu.com/p/7VKYzpC7dn/) 10kb 想用可以自行下载。
 
@@ -221,3 +224,191 @@ inline void print(Big s) {
 }
 char s[100024];
 ```
+
+## 存储高精度
+
+存储高精度是最基础的内容，在学习高精度之前必须学习。
+
+高精度的存储其实非常简单。首先，我们读进去一个字符串，然后倒序将每一位存贮在数组内，每一位数对应一个下标。
+
+倒序存储是有原因的。当计算机读进来字符串时，第一位是最高位。为了方便计算，我们需要**将最低位存储在 1 位**（或者第 0 位）。
+
+下面给一份 C++ 代码：
+
+```c++
+char aa[MAXLEN], bb[MAXLEN];
+int a[MAXLEN], b[MAXLEN];
+int lena, lenb, len;
+void read() {
+  cin >> aa >> bb;
+  lena = strlen(aa);
+  lenb = strlen(bb);
+  len = max(lena, lenb);  //这一步在部分高精运算中可有可无
+  for (int i = 0; i < lena; i++) a[lena - i] = aa[i] - '0';  //好好理解这一步
+  for (int i = 0; i < lenb; i++) b[lenb - i] = bb[i] - '0';
+}
+```
+
+## 四则运算
+
+四则运算是最简单的内容，也是学习 OI 必备的内容之一。
+
+四则运算中难度也各不相同。最简单的是`高精度 + 高精度`，然后是`高精度 * 高精度`，其次是`高精度 - 高精度`，最后是`高精度 / 高精度`。我们先从简单的开始看起。
+
+### 加法
+
+高精度计算就是在模拟人工竖式计算，所以先来一张竖式图。
+
+![](./images/plus.png)
+
+加法非常简单，一位一位地加即可。
+
+在进位时，我们需要看一看该位（$a_i$）有没有超过 10，如果超过了，那么$c_{i+1}=c_{i+1}+1,c_i=c_i\mod 10$即可。
+
+代码如下：
+
+```c++
+char aa[MAXLEN], bb[MAXLEN];
+int a[MAXLEN], b[MAXLEN], c[MAXLEN];
+int lena, lenb, len;
+void plu() {
+  read();
+  for (int i = 1; i <= len; i++) {
+    c[i] += a[i] + b[i];
+    if (c[i] >= 10)  //进位
+    {
+      c[i + 1]++;
+      c[i] = c[i] % 10;
+    }
+  }
+  if (len + 1 != 0)  //如果最后一位有进位
+    len++;
+  while (c[len] == 0 && len != 1)  //压前导0
+    len--;
+  for (int i = len; i >= 1; i--)  //从最高位输出
+    cout << c[i];
+}
+```
+
+### 乘法
+
+![](./images/multiplication.png)
+
+通过观察我们发现有如下的计算规律：
+
+$$
+c_{i+j-1}=a_i*b_j
+$$
+
+（其中，$c_{i+j-1}$代表答案的第$i+j-1$位，$a_i$代表第一个数的第 i 位，$b_j$代表第二个数的第 j 位。该公式对于任何有效的 i 和 j 均有效。）
+
+进位也比较容易：
+
+$$
+c_{i+1}=c_{i+1}+c_i \div 10,c_i=c_i\mod 10
+$$
+
+（其中，除号为整除运算）
+
+**有一点需要特别注意！**
+
+如果你的下标是从 0 开始（最低位放在第 0 个位置），那么计算规律就有所改变：
+
+$$
+c_{i+j}=a_i*b_j
+$$
+
+代码如下：
+
+```c++
+char aa[MAXLEN], bb[MAXLEN];
+int a[MAXLEN], b[MAXLEN], c[MAXLEN];
+int lena, lenb, len;
+void mul() {
+  read();
+  for (int i = 1; i <= lena; i++)
+    for (int j = 1; j <= lenb; j++) c[i + j - 1] += a[i] * b[j];
+  int i;
+  for (i = 1; c[i] != 0 || i <= len; i++)  //进位
+    if (c[i] >= 10) {
+      c[i + 1] += c[i] / 10;
+      c[i] %= 10;
+    }
+  len = i;
+  while (c[len] == 0 && len != 1)  //压前导零
+    len--;
+  for (int i = len; i >= 1; i--)  //从最高位输出
+    cout << c[i];
+}
+```
+
+### 减法
+
+![](./images/subtraction.png)
+
+减法麻烦的一点就是判断正负数的问题了。
+
+我们发现一个特点：$a-b=-(b-a)$。
+
+举个例子：
+
+$$
+1-2=-1
+,
+2-1=1
+,
+-(2-1)=-1
+$$
+
+所以，我们遇到$a<b$的情况，我们需要先输出 “-” 再交换两数，接着进行减法计算。
+
+否则直接进行计算即可。
+
+代码如下：
+
+```c++
+void sub() {
+  read();
+  bool flag = false;
+  for (int i = len; i >= 1; i--)  //判断是否出现a<b的情况
+    if (a[i] > b[i]) {
+      flag = false;
+      break;
+    } else if (a[i] < b[i]) {
+      flag = true;
+      break;
+    }
+  if (flag) {
+    int tmp[MAXLEN] = {0};  //交换两数
+    for (int i = 1; i <= len; i++) tmp[i] = a[i];
+    for (int i = 1; i <= len; i++) a[i] = b[i];
+    for (int i = 1; i <= len; i++) b[i] = tmp[i];
+    cout << "-";  //输出负号
+  }
+  for (int i = 1; i <= len; i++) {
+    if (a[i] - b[i] < 0) {
+      a[i] += 10;
+      a[i + 1]--;
+    }
+    c[i] = a[i] - b[i];
+  }
+  while (c[len] == 0 && len != 1)  //压前导零
+    len--;
+  for (int i = len; i >= 1; i--)  //从最高位输出
+    cout << c[i];
+}
+```
+
+### 除法
+
+![](./images/division.png)
+
+作者不才，所以这里只讲一下除法的思想。
+
+在计算除法时，其实是模拟多次减法的过程。
+
+首先，两个指针，head、tail，初始都为最高位。
+
+这时，我们将$a_{head} a_{head-1} \dots  a_{tail}$看为一个数（a 为被除数，b 为除数，c 为商），对 b 进行减法运算，看看能做多少次，结果为$c_{tail}$的商，做完后，head++，重复直到无法继续运算。
+
+## 更多内容未完待续……
