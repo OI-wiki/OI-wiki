@@ -47,32 +47,38 @@ git clone https://github.com/24OI/OI-wiki.git --depth=1
 
 cd OI-wiki
 
-pip3 install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 # 安装mkdocs
+pip3 install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
-chmod +x ./scripts/build.sh && ./scripts/build.sh
 # 使用我们的自定义主题（不是必须执行）
+chmod +x ./scripts/build.sh && ./scripts/build.sh
 
-mkdocs serve -v
 # 在/site文件夹生成静态文件并运行一个服务器，访问 http://127.0.0.1:8000 可以查看效果
+mkdocs serve
 ```
 
 如果你只是想要得到静态文件，可以直接
 
 ```bash
-mkdocs build -v
 # 最简单的构建方法，会在 site 文件夹下得到静态页面
+mkdocs build
 ```
 
-```mkdocs sreve -v```和```mkdocs sreve```没有区别，```mkdocs build -v```和```mkdocs build```也没有区别
+你想看到更详细的信息的话，可以直接`mkdocs serve`和`mkdocs build`的后面加上`-v`。
+
+另外，想要重设端口，需要在`mkdocs serve`后面加上`-a [IP:PORT]`，比如我想在888端口开启，就得
+
+```shell
+mkdocs serve -a 127.0.0.1:888
+```
 
 我们现在在服务器端渲染 MathJax ，如果希望实现类似效果，可以参考 [netlify_build.sh](https://github.com/24OI/OI-wiki/blob/master/scripts/netlify_build.sh)。（需要安装 Node.js）
 
 ### 镜像
 
 ```bash
-git clone https://git.dev.tencent.com/scaffrey/OI-wiki.git
 # Coding 上的镜像仓库和 GitHub 仓库的内容相同
+git clone https://git.dev.tencent.com/scaffrey/OI-wiki.git
 ```
 
 ### 离线版
@@ -89,7 +95,7 @@ git clone https://git.dev.tencent.com/scaffrey/OI-wiki.git -b coding-pages
 python3 -m http.server
 ```
 
-在windows中，python3默认的程序名其实是python。如果你不确定，可以直接去你的安装目录查看有没有叫python.exe或python3.exe的文件即可。
+在 Windows 中， Python3 默认的程序名其实是 Python 。如果你不确定，可以直接去你的安装目录查看有没有叫python.exe或python3.exe的文件即可。
 
 ### Docker
 
