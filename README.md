@@ -95,7 +95,7 @@ git clone https://git.dev.tencent.com/scaffrey/OI-wiki.git -b coding-pages
 python3 -m http.server
 ```
 
-在 Windows 中， Python3 默认的程序名其实是 Python 。如果你不确定，可以直接去你的安装目录查看有没有叫python.exe或python3.exe的文件即可。
+在 Windows 中， Python 3 默认的程序名其实是 python。如果你不确定，可以直接去你的安装目录查看有没有叫 python.exe 或 python3.exe 的文件即可。
 
 ### Docker
 
