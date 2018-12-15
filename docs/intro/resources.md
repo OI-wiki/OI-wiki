@@ -88,6 +88,7 @@
 -   [Godbolt](https://godbolt.org/) (在浏览器中查看编译后代码块对应的汇编语句)
 -   [《100 个 gdb 小技巧》](https://github.com/hellogcc/100-gdb-tips)
 -   [Mathpix](https://mathpix.com/) (截图转 $\LaTeX{}$)
+-   [$\LaTeX{}$ 手写符号识别](http://detexify.kirelabs.org/classify.html)
 
 ## 题集
 
