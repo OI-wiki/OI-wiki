@@ -23,3 +23,7 @@ cp ./static/extra.js docs/_static/js/extra.js
 mkdocs build -v
 
 find ./site -type f -name '*.html' -exec node --max_old_space_size=512 ./scripts/render_math.js {} \;
+
+# generate service-worker
+npm i gulp-cli -g # prepare gulp
+gulp generate-service-worker # generate service-worker
