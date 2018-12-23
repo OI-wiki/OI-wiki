@@ -25,11 +25,11 @@
 <!-- WEB -->
 <!--<link rel="shortcut icon" href="<%= favicon %>" type="image/x-icon">-->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
-
+<script src="/service-worker.js"></script>
 <script>
   'use strict';
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js', { scope: '/' })
+    navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
       .then(function (reg) {
         console.log('Registration succeeded. Scope is ' + reg.scope);
       }).catch(function (error) {
