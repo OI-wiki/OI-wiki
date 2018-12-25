@@ -1,6 +1,6 @@
 ## 交流方式
 
-本项目主要使用 Issues / [QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) / [Telegram](https://t.me/OIwiki) 进行交流沟通。
+本项目主要使用 [Issues](https://github.com/24OI/OI-wiki/issues) / [QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) / [Telegram](https://t.me/OIwiki) 进行交流沟通。
 
 Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`588793226`](https://jq.qq.com/?_wv=1027&k=5EfkM6K)，欢迎加入。
 
@@ -14,7 +14,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 ### 我之前没怎么用过 GitHub
 
-参与 Wiki 的编写 ** 需要 ** 一个 GitHub 账号， ** 不需要 ** 高超的 GitHub 技巧。
+参与 Wiki 的编写 **需要** 一个 GitHub 账号， **不需要** 高超的 GitHub 技巧。
 
 举个栗子，假如我想要修改一个页面内容，应该怎么操作呢？
 
@@ -35,7 +35,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 1.  Fork 主仓库到自己的仓库中。
 2.  当想要贡献某部分内容时，请务必仔细查看 **Issues**，以便确定是否有人已经开始了这项工作。当然，我们更希望你可以加入 QQ / Telegram 群组，方便交流。
-3.  在决定将内容推送到本仓库时，** 请你首先拉取本仓库代码进行合并，自行处理好冲突，同时确保在本地可以正常生成文档 **，然后再将分支 PR 到主仓库的 master 分支上。其中，PR 需要包含以下基本信息：
+3.  在决定将内容推送到本仓库时，**请你首先拉取本仓库代码进行合并，自行处理好冲突，同时确保在本地可以正常生成文档**，然后再将分支 PR 到主仓库的 master 分支上。其中，PR 需要包含以下基本信息：
     标题：本次 PR 的目的（做了什么工作，修复了什么问题）；
     内容：如果必要的话，请给出对修复问题的叙述。
 
