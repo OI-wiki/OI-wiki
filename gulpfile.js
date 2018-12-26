@@ -40,6 +40,4 @@ gulp.task('minify:image', () => {
     .pipe(gulp.dest('site'))
 })
 
-gulp.task('minify', cb => {
-  run('minify:image', ['minify:html', 'minify:css'], cb)
-})
+gulp.task('minify', gulp.series('minify:html', 'minify:css', 'minify:image'))
