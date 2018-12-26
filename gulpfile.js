@@ -3,7 +3,6 @@ const htmlmin = require('gulp-htmlmin')
 const imagemin = require('gulp-imagemin')
 const purifycss = require('gulp-purifycss')
 const postcss = require('gulp-postcss')
-const run = require('run-sequence')
 
 gulp.task('minify:html', () => {
   return gulp.src('site/**/*.html')
