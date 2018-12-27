@@ -157,6 +157,7 @@ nav:
     - 划分树: ds/dividing.md
     - 虚树: ds/virtual-tree.md
     - Size Balanced Tree: ds/sbt.md
+    - 二叉搜索树: ds/bst.md
     - Treap: ds/treap.md
     - Splay: ds/splay.md
     - WBLT: ds/wblt.md
