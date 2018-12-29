@@ -1,6 +1,5 @@
 const gulp = require('gulp')
 const htmlmin = require('gulp-htmlmin')
-const imagemin = require('gulp-imagemin')
 const purifycss = require('gulp-purifycss')
 const postcss = require('gulp-postcss')
 
@@ -32,11 +31,4 @@ gulp.task('minify:css', () => {
     .pipe(gulp.dest('site'))
 })
 
-gulp.task('minify:image', () => {
-  return gulp
-    .src(`site/**/*.{png,jpg,svg}`)
-    .pipe(imagemin())
-    .pipe(gulp.dest('site'))
-})
-
-gulp.task('minify', gulp.series('minify:html', 'minify:css', 'minify:image'))
+gulp.task('minify', gulp.series('minify:html', 'minify:css'))
