@@ -26,7 +26,13 @@ nav:
       - 编辑工具: intro/editors.md
       - WSL (Windows 10): intro/wsl.md
       - Special Judge: intro/spj.md
-      - Testlib: intro/testlib.md
+      - Testlib:
+        - 简介: testlib/index.md
+        - 通用: testlib/general.md
+        - Generator: testlib/generator.md
+        - Validator: testlib/validator.md
+        - Interactor: testlib/interactor.md
+        - Checker: testlib/checker.md
     - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
