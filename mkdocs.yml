@@ -27,7 +27,7 @@ nav:
       - WSL (Windows 10): intro/wsl.md
       - Special Judge: intro/spj.md
       - Testlib:
-        - 简介: intro/testlib/index.md
+        - Testlib 简介: intro/testlib/index.md
         - 通用: intro/testlib/general.md
         - Generator: intro/testlib/generator.md
         - Validator: intro/testlib/validator.md
