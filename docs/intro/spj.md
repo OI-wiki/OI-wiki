@@ -9,7 +9,7 @@
 
 ## Testlib
 
-Testlib 的介绍见 [Testlib / 简介](./testlib/index/) 页面，用法见 [Testlib / Checker](./testlib/checker/) 页面。
+Testlib 的介绍见 [Testlib / 简介](/intro/testlib/) 页面，用法见 [Testlib / Checker](/intro/testlib/checker/) 页面。
 
 必须使用 Testlib 做 spj 的 评测工具 / OJ：Codeforces、洛谷、UOJ 等
 

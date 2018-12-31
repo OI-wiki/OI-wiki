@@ -7,7 +7,7 @@ Testlib 的具体用途：
 -   编写 [Generator](./generator.md)，即数据生成器。
 -   编写 [Validator](./validator.md)，即数据校验器，判断生成数据是否符合题目要求，如数据范围、格式等。
 -   编写 [Interactor](./interactor.md)，即交互器，用于交互题。
--   编写 [Checker](./checker.md)，即 [Special Judge](/intro/spj.md)。
+-   编写 [Checker](./checker.md)，即 [Special Judge](/intro/spj/)。
 
 Testlib 与 Codeforces 开发的 [Polygon](https://polygon.codeforces.com/) 出题平台完全兼容。
 

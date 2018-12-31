@@ -34,28 +34,29 @@
 | `void quitif(bool condition, TResult verdict, string message, ...)`                             | 如果 `condition` 成立，调用 `quitf(verdict, message, ...)` |
 
 流成员函数：
+
 | 调用                                                         | 含义                                                         |
-\| ------------------------------------------------------------ \| ------------------------------------------------------------ \|
-\| `char readChar()`                                            | 读入一个字符                                                 |
-\| `char readChar(char c)`                                      | 读入一个字符，必须为 `c`                                     \|
-\| `char readSpace()`                                           | 等同于 `readChar(' ')`                                       \|
-\| `string readToken()`/`string readWord()`                     | 读入一个串，到空白字符（空格、Tab、EOLN 等）停止             |
-\| `string readToken(string regex)`/`string readWord(string regex)` | 读入一个串，必须与 `regex` 匹配                              |
-\| `long long readLong()`                                       | 读入一个 64 位整数                                           |
-\| `long long readLong(long long L, long long R)`               | 读入一个 64 位整数，必须在 $[L,R]$ 之间                      |
-\| `vector<long long> readLongs(int n, long long L, long long R)` | 读入 $N$ 个 64 位整数，必须均在 $[L,R]$ 之间                 |
-\| `int readInt()`/`int readInteger()`                          | 读入一个 32 位整数                                           |
-\| `int readInt(int L, int R)`/`int readInteger(L, R)`          | 读入一个 32 位整数，必须在 $[L,R]$ 之间                      |
-\| `vector<int> readInts(int n, int L, int R)`/`vector<int> readIntegers(int n, int L, int R)` | 读入 $N$ 个 32 位整数，必须均在 $[L,R]$ 之间                 |
-\| `double readReal()`/`double readDouble()`                    | 读入一个双精度浮点数                                         |
-\| `double readReal(double L, double R)`/`double readDouble(double L, double R)` | 读入一个双精度浮点数，必须在 $[L,R]$ 之间                    |
-\| `double readStrictReal(double L, double R, int minPrecision, int maxPrecision)`/`double readStrictDouble(double L, double R, int minPrecision, int maxPrecision)` | 读入一个双精度浮点数，必须在 $[L,R]$ 之间，小数位数必须在 $[minPrecision,maxPrecision]$ 之间，不得使用指数计数法等非正常格式 |
-\| `string readString()`/`string readLine()`                    | 读入一行                                                     |
-\| `string readString(string regex)`/`string readLine(string regex)` | 读入一行，必须与 `regex` 匹配                                |
-\| `void readEoln()`                                            | 读入 EOLN                                                    |
-\| `void readEof()`                                             | 读入 EOF                                                     |
-\| `void quit(TResult verdict, string message)`/`void quitf(TResult verdict, string message, ...)` | 结束程序，若 `Stream` 为 `ouf` 返回 `verdict`，否则返回 `_fail`；输出 `message` \|
-\| `void quitif(bool condition, TResult verdict, string message, ...)` | 如果 `condition` 成立，调用 `quitf(verdict, message, ...)`   \|
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `char readChar()`                                            | 读入一个字符                                                 |
+| `char readChar(char c)`                                      | 读入一个字符，必须为 `c`                                     |
+| `char readSpace()`                                           | 等同于 `readChar(' ')`                                       |
+| `string readToken()`/`string readWord()`                     | 读入一个串，到空白字符（空格、Tab、EOLN 等）停止             |
+| `string readToken(string regex)`/`string readWord(string regex)` | 读入一个串，必须与 `regex` 匹配                              |
+| `long long readLong()`                                       | 读入一个 64 位整数                                           |
+| `long long readLong(long long L, long long R)`               | 读入一个 64 位整数，必须在 $[L,R]$ 之间                      |
+| `vector<long long> readLongs(int n, long long L, long long R)` | 读入 $N$ 个 64 位整数，必须均在 $[L,R]$ 之间                 |
+| `int readInt()`/`int readInteger()`                          | 读入一个 32 位整数                                           |
+| `int readInt(int L, int R)`/`int readInteger(L, R)`          | 读入一个 32 位整数，必须在 $[L,R]$ 之间                      |
+| `vector<int> readInts(int n, int L, int R)`/`vector<int> readIntegers(int n, int L, int R)` | 读入 $N$ 个 32 位整数，必须均在 $[L,R]$ 之间                 |
+| `double readReal()`/`double readDouble()`                    | 读入一个双精度浮点数                                         |
+| `double readReal(double L, double R)`/`double readDouble(double L, double R)` | 读入一个双精度浮点数，必须在 $[L,R]$ 之间                    |
+| `double readStrictReal(double L, double R, int minPrecision, int maxPrecision)`/`double readStrictDouble(double L, double R, int minPrecision, int maxPrecision)` | 读入一个双精度浮点数，必须在 $[L,R]$ 之间，小数位数必须在 $[minPrecision,maxPrecision]$ 之间，不得使用指数计数法等非正常格式 |
+| `string readString()`/`string readLine()`                    | 读入一行                                                     |
+| `string readString(string regex)`/`string readLine(string regex)` | 读入一行，必须与 `regex` 匹配                                |
+| `void readEoln()`                                            | 读入 EOLN                                                    |
+| `void readEof()`                                             | 读入 EOF                                                     |
+| `void quit(TResult verdict, string message)`/`void quitf(TResult verdict, string message, ...)` | 结束程序，若 `Stream` 为 `ouf` 返回 `verdict`，否则返回 `_fail`；输出 `message` |
+| `void quitif(bool condition, TResult verdict, string message, ...)` | 如果 `condition` 成立，调用 `quitf(verdict, message, ...)`   |
 
 未完待续...
 
@@ -78,8 +79,9 @@
 
 这两个函数用于检查条件是否成立（类似于 `assert`）。例如检查 $x_i \neq y_i$，我们可以使用 `ensuref(x_i != y_i, "Graph can't contain loops")`。还可以使用 C 风格占位符如 `ensuref(s.length() % 2 == 0, "String's'should have even length, but s.length()=%d", int(s.length()))`。方便地，我们可以使用 `ensure(x> y)`，如果条件不满足报错将为 `FAIL Condition failed: "x > y"`。
 
-???+ warning 注意成员与非成员 `ensure/ensuref` 的区别
-
+???+ warning
+    注意成员与非成员 `ensure/ensuref` 的区别
+    
     非成员函数仅用于题目内部检查，如标准输出是否合法（标准输出挂是真的有可能的）。如果检查失败将返回 `_fail`，而非 `_wa` 或 `pe`。
 
     成员函数仅用于判断选手输出是否合法。无论 `Stream` 为何（即 `inf` 和 `ans` 也如此），都将返回 `_wa`。
