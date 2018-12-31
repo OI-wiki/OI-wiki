@@ -1,4 +1,4 @@
-当你造好了一道题的数据，感觉有点虚，担心数据不合法（不符合题目的限制条件）：上溢、图不连通、不是树……你便需要 validator 来帮助你检查数据是否合法。
+当你造好了一道题的数据，感觉有点虚，担心数据不合法（不符合题目的限制条件）：上溢、图不连通、不是树…… 你便需要 validator 来帮助你检查数据是否合法。
 
 即便你非常有自信，也最好用 Validator 检查一下，比较稳妥。所有 Codeforces 上的题目都必须要有 validator，[Polygon](https://polygon.codeforces.com/) 内建了对 validator 的支持。
 
@@ -14,25 +14,24 @@
 #include "testlib.h"
 
 int main(int argc, char* argv[]) {
-    registerValidation(argc, argv);
-    int testCount = inf.readInt(1, 10, "testCount");
+  registerValidation(argc, argv);
+  int testCount = inf.readInt(1, 10, "testCount");
+  inf.readEoln();
+
+  for (int i = 0; i < testCount; i++) {
+    int n = inf.readInt(1, 100, "n");
+    inf.readSpace();
+    inf.readInt(1, 1000000, "w");
     inf.readEoln();
-    
-    for (int i = 0; i < testCount; i++) {
-        int n = inf.readInt(1, 100, "n");
-        inf.readSpace();
-        inf.readInt(1, 1000000, "w");
-        inf.readEoln();
 
-        for(int i = 0; i < n; ++i) {
-            inf.readInt(1, 1000, "p_i");
-            if (i < n-1)
-                inf.readSpace();
-        }
-        inf.readEoln();
+    for (int i = 0; i < n; ++i) {
+      inf.readInt(1, 1000, "p_i");
+      if (i < n - 1) inf.readSpace();
     }
+    inf.readEoln();
+  }
 
-    inf.readEof();
+  inf.readEof();
 }
 ```
 

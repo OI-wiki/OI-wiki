@@ -35,33 +35,31 @@ Linux:
     `1`：询问与答案相同，你的程序应当停止询问。
 
     `0`：询问比答案小。
-    
+
     `2`：询问比答案大。
 
 注意在此题中我们不需要 `ans`，因为我们不需要将标准输出与其比较；而在其他题中可能需要这么做。
 
 ```cpp
-int main(int argc, char ** argv){
-	registerInteraction(argc, argv);
-	int n = inf.readInt();	// 选数
-	cout.flush();	// 刷新缓冲区
-	int left = 50;
-	bool found = false;
-	while(left > 0 && !found){
-		left --;
-		int a = ouf.readInt(1, 1000000000);	// 询问
-		if(a < n)
-			cout << 0 << endl;
-		else if(a > n)
-			cout << 2 << endl;
-		else
-			cout << 1 << endl, found = true;
-		cout.flush();
-	}
-	if(!found)
-		quitf(_wa, "couldn't guess the number with 50 questions");
-	ouf.readEof();
-	quitf(_ok, "guessed the number with %d questions!", 50 - left);
-
+int main(int argc, char** argv) {
+  registerInteraction(argc, argv);
+  int n = inf.readInt();  // 选数
+  cout.flush();           // 刷新缓冲区
+  int left = 50;
+  bool found = false;
+  while (left > 0 && !found) {
+    left--;
+    int a = ouf.readInt(1, 1000000000);  // 询问
+    if (a < n)
+      cout << 0 << endl;
+    else if (a > n)
+      cout << 2 << endl;
+    else
+      cout << 1 << endl, found = true;
+    cout.flush();
+  }
+  if (!found) quitf(_wa, "couldn't guess the number with 50 questions");
+  ouf.readEof();
+  quitf(_ok, "guessed the number with %d questions!", 50 - left);
 }
 ```

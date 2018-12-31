@@ -22,8 +22,8 @@ Lemon 所需的修改版 Testlib 可以在[这里](https://paste.ubuntu.com/p/Js
 其他评测工具 / OJ 大部分需要按照其 spj 编写格式修改 Testlib（并将 testlib.h 与 spj 一同上传，或将 testlib.h 置于 include 目录）。
 
 ```cpp
-#include "testlib.h"
 #include <cmath>
+#include "testlib.h"
 int main(int argc, char *argv[]) {
   /*
    * inf：输入
