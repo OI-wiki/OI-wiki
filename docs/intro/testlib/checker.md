@@ -1,8 +1,8 @@
-Checker，即 [Special Judge](/intro/spj.md)，用于检验答案是否合法。使用 Testlib 可以让我们免去检验许多东西，使编写简单许多。
+Checker，即 [Special Judge](/intro/spj)，用于检验答案是否合法。使用 Testlib 可以让我们免去检验许多东西，使编写简单许多。
 
 Checker 从命令行参数读取到输入文件名、选手输出文件名、标准输出文件名，并确定选手输出是否正确，并返回一个预定义的结果：
 
-请在阅读下文前先阅读[通用](./general/)。
+请在阅读下文前先阅读[通用](./general.md)。
 
 ## 简单的例子
 

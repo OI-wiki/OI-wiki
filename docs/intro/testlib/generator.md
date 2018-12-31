@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
 
 另外，不要使用 `std::random_shuffle()`，请使用 Testlib 中的 `shuffle()`，它同样接受一对迭代器。它使用 `rnd` 来打乱序列，即满足如上 “好的 generator” 的要求。
 
-极简正则表达式：[通用](./general/)
+极简正则表达式：[通用](./general.md)
 
 ## 示例：生成一棵树
 
