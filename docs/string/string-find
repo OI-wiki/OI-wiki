@@ -1,0 +1,69 @@
+### `find()`
+
+##### 简介
+
+返回一个字符串中某个子串第一次出现的位置，若没有找到，返回 `string::npos`，也就是 $-1$ （打印出来为 $4294967295$ ）。
+
+##### 用法
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string s1="babbabab";
+    cout << s1.find('a')<<endl;//输出1  从位置0起开始查找
+    cout << s1.find('a', 0) << endl;//输出1 从位置0开始查找
+    cout << s1.find('a', 1) << endl;//输出1 从位置1开始查找
+    cout << s1.find('a', 2) << endl;//输出4 从位置3开始查找
+    cout << s1.find('c',0) << endl;//输出4294967295 没有查找到
+    cout << s1.find('a',100) << endl;//输出4294967295   当查找的起始位置超出字符串长度时，按查找失败处理。
+    string s2"aabcbcabcbabcc";
+    string s3="abc";
+    cout << s2.find(s3,2) << endl;//输出6   从s2的位置2开始查找，返回第一次成功匹配时abc的首字符在s2中的位置。
+    cout << s2.find("abc", 2) << endl; //输出6  同上
+    cout << s2.find("abcdefg", 2, 3) << endl;//输出6   取abcdefg得前3个字符abc来查找，相当于s2.find("abc", 2)
+    cout << s2.find("abcbc", 0, 5) << endl;//输出1   同上，相当于s2.find("abcbc", 0)
+    cout << s2.find("abcbc", 0, 6) << endl;//输出4294967295   第3个参数超出第1个参数的长度时，按照失败处理
+    return 0;
+}
+```
+
+### `rfind()`
+
+##### 简介
+
+`rfind()` 与 `find()` 很相似，差别在于查找顺序不一样，`rfind()` 是从指定位置起向前查找，直到串首（可以理解为倒着查找）。其参数与 `find()` 一样，请自行参考`find()`。
+
+### `find_first_of()`
+
+##### 简介
+
+这个函数与 `find()` 也比较像，参数也一样。唯一的差别的是：只要一个字符串中的一个字符包含一个字符串的任意一个字符，就算是查找成功。
+
+要注意的一点是，这里查找的是被查找字符串的每个字符，不是查找其子串的情况。
+
+##### 用法
+
+被查找字符串 `abcdef` ，查找字符串 `abcdg`,返回 `e`。
+
+被查找字符串 `abcdef` ，查找字符串 `abcdefg`,返回 `string::npos`。
+
+### `find_last_of()`
+
+##### 简介
+
+倒着找，同上且参数都一样，请自行研究。
+
+### `find_first_not_of()`
+
+##### 简介
+
+顾名思义，只要一个字符不包含一个字符串的任意一个字符，就算是查找成功，参数一样，自行研究。
+
+### `find_last_not_of()`
+
+##### 简介
+
+同上。
+
