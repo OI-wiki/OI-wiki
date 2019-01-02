@@ -30,26 +30,24 @@ void print(int o)  //遍历以 o 为根节点的二叉搜索树
 }
 ```
 
-### 查找最小/最大值
+### 查找最小 / 最大值
 
 由二叉搜索树的性质可得，二叉搜索树上的最小值为二叉搜索树左链的顶点，最大值为二叉搜索树右链的顶点。时间复杂度为 $O(h)$ 。
 
 ```cpp
-int findmin(int o)
-{
-  if(!lc[o])return val[o];
-  return findmin(lc[o]);//一直向左儿子跳
+int findmin(int o) {
+  if (!lc[o]) return val[o];
+  return findmin(lc[o]);  //一直向左儿子跳
 }
-int findmax(int o)
-{
-  if(!rc[o])return val[o];
-  return findmax(rc[o]);//一直向右儿子跳
+int findmax(int o) {
+  if (!rc[o]) return val[o];
+  return findmax(rc[o]);  //一直向右儿子跳
 }
 ```
 
 ### 插入一个元素
 
-定义 ```insert(o,v)``` 为在以 $o$ 为根节点的二叉搜索树中插入一个值为 $v$ 的新节点。
+定义 `insert(o,v)` 为在以 $o$ 为根节点的二叉搜索树中插入一个值为 $v$ 的新节点。
 
 分类讨论如下：
 
@@ -64,19 +62,21 @@ int findmax(int o)
 时间复杂度为 $O(h)$ 。
 
 ```cpp
-void insert(int o,int v)
-{
-  if(!o)return;
+void insert(int o, int v) {
+  if (!o) return;
   siz[o]++;
-  if(val[o]>v)insert(lc[o],v);
-  if(val[o]==v){cnt[o]++;return;}
-  if(val[o]<v)insert(rc[o],v);
+  if (val[o] > v) insert(lc[o], v);
+  if (val[o] == v) {
+    cnt[o]++;
+    return;
+  }
+  if (val[o] < v) insert(rc[o], v);
 }
 ```
 
 ### 删除一个元素
 
-定义 ```delete(o,v)``` 为在以 $o$ 为根节点的二叉搜索树中删除一个值为 $v$ 的节点。
+定义 `delete(o,v)` 为在以 $o$ 为根节点的二叉搜索树中删除一个值为 $v$ 的节点。
 
 先在二叉搜索树中找到权值为 $v$ 的节点，分类讨论如下：
 
@@ -91,22 +91,23 @@ void insert(int o,int v)
 时间复杂度 $O(h)$ 。
 
 ```cpp
-int deletemin(int o)
-{
-  if(!lc[o])int ret=val[o],o=rc[o],return ret;
-  else return deletemin(lc[o]);
+int deletemin(int o) {
+  if (!lc[o])
+    int ret = val[o], o = rc[o], return ret;
+  else
+    return deletemin(lc[o]);
 }
-void delete(int&o,int v)
-{
+void delete (int& o, int v) {
   siz[o]--;
-  if(val[o]==v)
-  {
-    if(lc[o]&&rc[o])o=deletemin(rc[o]);
-    else o=lc[o]+rc[o];
+  if (val[o] == v) {
+    if (lc[o] && rc[o])
+      o = deletemin(rc[o]);
+    else
+      o = lc[o] + rc[o];
     return;
   }
-  if(val[o]>v)delete(lc[o],v);
-  if(val[o]<v)delete(rc[o],v);
+  if (val[o] > v) delete (lc[o], v);
+  if (val[o] < v) delete (rc[o], v);
 }
 ```
 
@@ -119,11 +120,10 @@ void delete(int&o,int v)
 时间复杂度 $O(h)$ 。
 
 ```cpp
-int queryrnk(int o,int v)
-{
-  if(val[o]==v)return siz[lc[o]]+1;
-  if(val[o]>v)return queryrnk(lc[o],v);
-  if(val[o]<v)return queryrnk(rc[o],v)+siz[lc[o]]+cnt[o];
+int queryrnk(int o, int v) {
+  if (val[o] == v) return siz[lc[o]] + 1;
+  if (val[o] > v) return queryrnk(lc[o], v);
+  if (val[o] < v) return queryrnk(rc[o], v) + siz[lc[o]] + cnt[o];
 }
 ```
 
@@ -140,10 +140,10 @@ int queryrnk(int o,int v)
 时间复杂度 $O(h)$ 。
 
 ```cpp
-int querykth(int o,int k)
-{
-  if(siz[lc[o]]>=k)return querykth(lc[o],k);
-  if(siz[lc[o]]<k+cnt-1)return querykth(rc[o],k-siz[lc[o]]-cnt[o]+1);
+int querykth(int o, int k) {
+  if (siz[lc[o]] >= k) return querykth(lc[o], k);
+  if (siz[lc[o]] < k + cnt - 1)
+    return querykth(rc[o], k - siz[lc[o]] - cnt[o] + 1);
   return o;
 }
 ```
