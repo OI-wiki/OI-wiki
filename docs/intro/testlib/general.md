@@ -28,7 +28,7 @@
 | ----------------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | `void registerTestlibCmd(int argc, char* argv[])`                                               | 注册程序为 checker                                       |
 | `void registerInteraction(int argc, char* argv[])`                                              | 注册程序为 interactor                                    |
-| `void registerValidation()`                                                                     | 注册程序为 validator                                     |
+| `void registerValidation()`/`void registerValidation(int argc, char* argv[])`                   | 注册程序为 validator                                     |
 | `void registerGen(int argc, char* argv[], int randomGeneratorVersion)`                          | 注册程序为 generator<br>`randomGeneratorVersion` 推荐为 `1` |
 | `void quit(TResult verdict, string message)`/`void quitf(TResult verdict, string message, ...)` | 结束程序，返回 `verdict`，输出 `message`                      |
 | `void quitif(bool condition, TResult verdict, string message, ...)`                             | 如果 `condition` 成立，调用 `quitf(verdict, message, ...)` |
@@ -98,6 +98,6 @@ ensuref(s.length() % 2 == 0,
 
     全局函数 `::ensure/ensuref()` 多用于 generator 和 validator 中，如果检查失败将统一返回 `_fail`。
 
-    成员函数 `InStream::ensure/ensuref()` 一般用于判断选手和参考程序的输出是否合法。当 `Stream` 为 `ouf` 时，返回 `_wa`；为 `inf`（一般不使用）或 `ans` 时，返回 `_fail`。详见 [Checker 页面](./checker.md) 对于“`readAns` 模式”的说明。
+    成员函数 `InStream::ensure/ensuref()` 一般用于判断选手和参考程序的输出是否合法。当 `Stream` 为 `ouf` 时，返回 `_wa`；为 `inf`（一般不使用）或 `ans` 时，返回 `_fail`。详见 [Checker - 编写 readAns 函数¶](/intro/testlib/checker/#_3)。
 
 **本文翻译并综合自[Testlib - Codeforces](https://codeforces.com/testlib)系列。`testlib.h` 的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。**
