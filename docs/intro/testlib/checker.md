@@ -7,7 +7,7 @@ Checker 从命令行参数读取到输入文件名、选手输出文件名、标
 ## 简单的例子
 
 ???+note 题目
-    给定两个整数 $a,b(-1000 \le a,b \le 1000)$，输出它们的和。
+    给定两个整数 $a,b$（$-1000 \le a,b \le 1000$），输出它们的和。
 
 这题显然不需要 checker 对吧，但是如果一定要的话也可以写一个：
 
@@ -20,6 +20,7 @@ int main(int argc, char* argv[]) {
   int pans = ouf.readInt(-2000, 2000, "sum of numbers");
 
   // 假定标准输出是正确的，不检查其范围
+  // 之后我们会看到这并不合理
   int jans = ans.readInt();
 
   if (pans == jans)
@@ -106,7 +107,7 @@ int main(int argc, char* argv[]) {
 
 这个 checker 主要有两个问题：
 
-1.  它确信标准输出是正确的。如果选手输出比标准输出更优，它会被判成 WA，这不太妙。此时正确的操作是返回 Fail 状态。
+1.  它确信标准输出是正确的。如果选手输出比标准输出更优，它会被判成 WA，这不太妙。同时，如果标准输出不合法，也会产生 WA。对于这两种情况，正确的操作都是返回 Fail 状态。
 2.  读入标准输出和选手输出的代码是重复的。在这道题中写两遍读入问题不大，只需要一个 `for` 循环；但是如果有一道题输出很复杂，就会导致你的 checker 结构混乱。重复代码会大大降低可维护性，让你在 debug 或修改格式时变得困难。
 
 读入标准输出和选手输出的方式实际上是完全相同的，这就是我们通常编写一个用流作为参数的读入函数的原因。
@@ -124,7 +125,9 @@ int n, m, s, t;
 
 // 这个函数接受一个流，从其中读入
 // 检查路径的合法性并返回路径长度
-// 如果路径非法，对于选手输出流它将返回 _wa，
+// 当 stream 为 ans 时，所有 stream.quitf(_wa, ...)
+// 和失败的 readXxx() 均会返回 _fail 而非 _wa
+// 也就是说，如果输出非法，对于选手输出流它将返回 _wa，
 // 对于标准输出流它将返回 _fail
 int readAns(InStream& stream) {
   // 读入输出
@@ -183,39 +186,49 @@ int main(int argc, char* argv[]) {
 
 注意到这种写法我们同时也检查了标准输出是否合法，这样写 checker 让程序更短，且易于理解和 debug。此种写法也适用于输出 YES（并输出方案什么的），或 NO 的题目。
 
+???+ note
+    对于某些限制的检查可以用 `InStream::ensure/ensuref()` 函数更简洁地实现。如上例第 21 至 23 行也可以等价地写成如下形式：
+
+    ```cpp
+    stream.ensuref(!used[v - 1], "vertex %d was used twice", v);
+    ```
+
+???+ warning
+    请在 `readAns` 中避免调用**全局**函数 `::ensure/ensuref()`，这会导致在某些应判为 Wrong Answer 的选手输出下返回 `_fail`，产生错误。
+
 ## 建议与常见错误
 
 -   编写 readAns 函数，它真的可以让你的 checker 变得很棒。
 -   读入选手输出时永远限定好范围，如果某些变量忘记了限定且被用于某些参数，你的 checker 可能会判定错误或 RE 等。
 
-### 反面教材
+    ##### 反面教材
 
-```cpp
-// ....
-int k = ouf.readInt();
-vector<int> lst;
-for (int i = 0; i < k; i++)  // k = 0 和 k = -5 在这里作用相同（不会进入循环体）
-  lst.push_back(
-      ouf.readInt());  // 但是我们并不想接受一个长度为 -5 的 list，不是吗？
-// ....
-int pos = ouf.readInt();
-int x =
-    A[pos];  // 100% 会 RE。一定会有人输出 -42, 2147483456 或其他一些非法数字。
-             // ....
-```
+    ```cpp
+    // ....
+    int k = ouf.readInt();
+    vector<int> lst;
+    for (int i = 0; i < k; i++)  // k = 0 和 k = -5 在这里作用相同（不会进入循环体）
+      lst.push_back(
+          ouf.readInt());  // 但是我们并不想接受一个长度为 -5 的 list，不是吗？
+    // ....
+    int pos = ouf.readInt();
+    int x =
+        A[pos];  // 100% 会 RE。一定会有人输出 -42, 2147483456 或其他一些非法数字。
+                // ....
+    ```
 
-### 正面教材
+    ##### 正面教材
 
-```cpp
-// ....
-int k = ouf.readInt(0, n);  // 负数会 PE
-vector<int> lst;
-for (int i = 0; i < k; i++) lst.push_back(ouf.readInt());
-// ....
-int pos = ouf.readInt(0, (int)A.size() - 1);  // 防止 out of range
-int x = A[pos];
-// ....
-```
+    ```cpp
+    // ....
+    int k = ouf.readInt(0, n);  // 负数会 PE
+    vector<int> lst;
+    for (int i = 0; i < k; i++) lst.push_back(ouf.readInt());
+    // ....
+    int pos = ouf.readInt(0, (int)A.size() - 1);  // 防止 out of range
+    int x = A[pos];
+    // ....
+    ```
 
 -   使用项别名
 
