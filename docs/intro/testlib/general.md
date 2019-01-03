@@ -98,6 +98,6 @@ ensuref(s.length() % 2 == 0,
 
     全局函数 `::ensure/ensuref()` 多用于 generator 和 validator 中，如果检查失败将统一返回 `_fail`。
 
-    成员函数 `InStream::ensure/ensuref()` 一般用于判断选手和参考程序的输出是否合法。当 `Stream` 为 `ouf` 时，返回 `_wa`；为 `inf`（一般不使用）或 `ans` 时，返回 `_fail`。详见 [Checker - 编写 readAns 函数¶](/intro/testlib/checker/#_3)。
+    成员函数 `InStream::ensure/ensuref()` 一般用于判断选手和参考程序的输出是否合法。当 `Stream` 为 `ouf` 时，返回 `_wa`；为 `inf`（一般不使用）或 `ans` 时，返回 `_fail`。详见 [Checker - 编写 readAns 函数](/intro/testlib/checker/#_3)。
 
 **本文翻译并综合自[Testlib - Codeforces](https://codeforces.com/testlib)系列。`testlib.h` 的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。**
