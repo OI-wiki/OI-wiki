@@ -214,7 +214,7 @@ int main(int argc, char* argv[]) {
     int pos = ouf.readInt();
     int x =
         A[pos];  // 100% 会 RE。一定会有人输出 -42, 2147483456 或其他一些非法数字。
-                // ....
+                 // ....
     ```
 
     ##### 正面教材

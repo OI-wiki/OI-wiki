@@ -2,8 +2,8 @@
 
 ## 通用状态
 
-| 结果                 | Testlib 别名   | 含义                                                              |
-| ------------------ | ------------ | --------------------------------------------------------------- |
+| 结果                 | Testlib 别名   | 含义                                                                                       |
+| ------------------ | ------------ | ---------------------------------------------------------------------------------------- |
 | Ok                 | `_ok`        | 答案正确。                                                                                    |
 | Wrong Answer       | `_wa`        | 答案错误。                                                                                    |
 | Presentation Error | `_pe`        | 答案格式错误。注意包括 Codeforces 在内的许多 OJ 并不区分 PE 和 WA。                                            |
@@ -87,11 +87,11 @@ ensuref(x_i != y_i, "Graph can't contain loops");
 
 ```cpp
 ensuref(s.length() % 2 == 0,
-    "String 's' should have even length, but s.length()=%d",
-    int(s.length()));
+        "String 's' should have even length, but s.length()=%d",
+        int(s.length()));
 ```
 
-方便地，我们可以使用 `ensure(x > y)`，如果条件不满足报错将为 `FAIL Condition failed: "x > y"`。
+方便地，我们可以使用 `ensure(x> y)`，如果条件不满足报错将为 `FAIL Condition failed: "x > y"`。
 
 ???+ warning
     注意全局与成员 `ensure/ensuref()` 的区别
