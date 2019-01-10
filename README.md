@@ -3,7 +3,7 @@
 # 欢迎来到 **OI Wiki**。
 
 [![Travis](https://img.shields.io/travis/24OI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/24OI/OI-wiki)
-[![Progress](https://img.shields.io/badge/Progress-73%25-brightgreen.svg?style=flat-square)](https://github.com/24OI/OI-wiki)
+[![Progress](https://img.shields.io/badge/Progress-78%25-brightgreen.svg?style=flat-square)](https://github.com/24OI/OI-wiki)
 [![Uptime Robot Status](https://img.shields.io/uptimerobot/status/m781254113-3e3bac467c64fc99eafd383e.svg?style=flat-square)](https://status.oi-wiki.org/)
 [![Telegram](https://img.shields.io/badge/OI--wiki-join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
 [![QQ](https://img.shields.io/badge/OI--wiki-join%20QQ%20group-brightgreen.svg?style=flat-square)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
@@ -40,7 +40,7 @@
 
 当然也可以本地部署。（**需要 Python 3**）
 
-[点击查看 asciinema 录制的流程](https://asciinema.org/a/SlLiVHYv7kS2u2px18rUUDZep)
+[点击查看用 asciinema 录制的流程](https://asciinema.org/a/220681)
 
 **如果遇到问题，可以查阅 [F.A.Q.](https://oi-wiki.org/intro/faq/) 来了解更多信息。**
 
