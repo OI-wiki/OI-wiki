@@ -105,7 +105,44 @@ void phi_table(int n, int* phi) {
 ```
 
 ## 筛法求莫比乌斯函数
-
+#### 线性筛
+```cpp
+void pre(){
+    mu[1] = 1;
+    for(int i = 2; i <= 1e7; ++i) {
+        if(!v[i]) mu[i] = -1, p[++tot] = i;
+        for(int j = 1; j <= tot && i <= 1e7/p[j]; ++j){
+            v[i * p[j]] = 1;
+            if(i % p[j] == 0) {
+                mu[i * p[j]] = 0;
+                break;
+            }
+            mu[i * p[j]] = -mu[i];
+        }
+    }
+```
 ## 筛法求约数个数
-
+## 筛法求约数和
+$f_i$表示$i$的约数和
+$g_i$表示$i$的最小质因子的$p+p^1+p^2+\dots p^k$
+```cpp
+void pre() {
+    g[1] = f[1] = 1;
+    for(int i = 2; i <= n; ++i) {
+        if(!v[i]) v[i] = 1, p[++tot] = i, g[i] = i + 1, f[i] = i + 1;
+        for(int j = 1; j <= tot && i <= n / p[j]; ++j) {
+            v[p[j] * i] = 1;
+            if(i % p[j] == 0) {
+                g[i * p[j]] = g[i] * p[j] + 1;
+                f[i * p[j]] = f[i] / g[i] * g[i * p[j]];
+                break;
+            } else {
+                f[i * p[j]] = f[i] * f[p[j]];
+                g[i * p[j]] = 1 + p[j];
+            }
+        }
+    }
+    for(int i = 1; i <= n; ++i) f[i] = (f[i - 1] + f[i]) % Mod;
+}
+```
 ## 其他线性函数
