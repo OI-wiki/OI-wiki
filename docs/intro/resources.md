@@ -70,8 +70,8 @@
 -   《啊哈算法》
 -   《挑战程序设计竞赛》全套 (通俗易懂)
 -   《算法概论》 (提纲挚领，但内容较少)
-
 -   [Legend-K 的数据结构与算法的笔记](http://www.legend-k.com/Algorithm/Algorithm.pdf)
+-   [acm-cheat-sheet](https://github.com/soulmachine/acm-cheat-sheet)
 
 ## 工具
 
