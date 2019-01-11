@@ -10,15 +10,15 @@
 
 > 输入：一个形如 `a <op> b` 的表达式。
 >
-> - `a`、`b` 分别是长度不超过 $1000$ 的十进制非负整数；
-> - `<op>` 是一个字符（`+`、`-`、`*` 或 `/`），表示运算。
-> - 整数与运算符之间由一个空格分隔。
+> -   `a`、`b` 分别是长度不超过 $1000$ 的十进制非负整数；
+> -   `<op>` 是一个字符（`+`、`-`、`*` 或 `/`），表示运算。
+> -   整数与运算符之间由一个空格分隔。
 >
 > 输出：运算结果。
 >
-> - 对于 `+`、`-`、`*` 运算，输出一行表示结果；
-> - 对于 `/` 运算，输出两行分别表示商和余数。
-> - 保证结果均为非负整数。
+> -   对于 `+`、`-`、`*` 运算，输出一行表示结果；
+> -   对于 `/` 运算，输出两行分别表示商和余数。
+> -   保证结果均为非负整数。
 
 ## 存储
 
@@ -31,36 +31,33 @@
 由此不难写出读入高精度数字的代码：
 
 ```cpp
-void clear(int a[LEN])
-{
-    for (int i = 0; i < LEN; ++i) a[i] = 0;
+void clear(int a[LEN]) {
+  for (int i = 0; i < LEN; ++i) a[i] = 0;
 }
 
-void read(int a[LEN])
-{
-    static char s[LEN + 1];
-    scanf("%s", s);
+void read(int a[LEN]) {
+  static char s[LEN + 1];
+  scanf("%s", s);
 
-    clear(a);
+  clear(a);
 
-    int len = strlen(s);
-    // 如上所述，反转
-    for (int i = 0; i < len; ++i)
-        a[len - i - 1] = s[i] - '0';
-        // s[i] - '0' 就是 s[i] 所表示的数码
-        // 有些同学可能更习惯用 ord(s[i]) - ord('0') 的方式理解
+  int len = strlen(s);
+  // 如上所述，反转
+  for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
+  // s[i] - '0' 就是 s[i] 所表示的数码
+  // 有些同学可能更习惯用 ord(s[i]) - ord('0') 的方式理解
 }
 ```
 
 输出也按照存储的逆序输出。由于不希望输出前导零，故这里从最高位开始向下寻找第一个非零位，从此处开始输出；终止条件 `i >= 1` 而不是 `i >= 0` 是因为当整个数字等于 $0$ 时仍希望输出一个字符 `0`。
 
 ```cpp
-void print(int a[LEN])
-{
-    int i;
-    for (i = LEN - 1; i >= 1; --i) if (a[i] != 0) break;
-    for (; i >= 0; --i) putchar(a[i] + '0');
-    putchar('\n');
+void print(int a[LEN]) {
+  int i;
+  for (i = LEN - 1; i >= 1; --i)
+    if (a[i] != 0) break;
+  for (; i >= 0; --i) putchar(a[i] + '0');
+  putchar('\n');
 }
 ```
 
@@ -74,37 +71,33 @@ static const int LEN = 1004;
 
 int a[LEN], b[LEN];
 
-void clear(int a[LEN])
-{
-    for (int i = 0; i < LEN; ++i) a[i] = 0;
+void clear(int a[LEN]) {
+  for (int i = 0; i < LEN; ++i) a[i] = 0;
 }
 
-void read(int a[LEN])
-{
-    static char s[LEN + 1];
-    scanf("%s", s);
+void read(int a[LEN]) {
+  static char s[LEN + 1];
+  scanf("%s", s);
 
-    clear(a);
+  clear(a);
 
-    int len = strlen(s);
-    for (int i = 0; i < len; ++i)
-        a[len - i - 1] = s[i] - '0';
+  int len = strlen(s);
+  for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
 }
 
-void print(int a[LEN])
-{
-    int i;
-    for (i = LEN - 1; i >= 1; --i) if (a[i] != 0) break;
-    for (; i >= 0; --i) putchar(a[i] + '0');
-    putchar('\n');
+void print(int a[LEN]) {
+  int i;
+  for (i = LEN - 1; i >= 1; --i)
+    if (a[i] != 0) break;
+  for (; i >= 0; --i) putchar(a[i] + '0');
+  putchar('\n');
 }
 
-int main()
-{
-    read(a);
-    print(a);
+int main() {
+  read(a);
+  print(a);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -123,22 +116,21 @@ int main()
 也就是从最低位开始，将两个加数对应位置上的数码相加，并判断是否达到或超过 $10$。如果达到，那么处理进位：将更高一位的结果上增加 $1$，当前位的结果减少 $10$。
 
 ```cpp
-void add(int a[LEN], int b[LEN], int c[LEN])
-{
-    clear(c);
+void add(int a[LEN], int b[LEN], int c[LEN]) {
+  clear(c);
 
-    // 高精度实现中，一般令数组的最大长度 LEN 比可能的输入大一些
-    // 然后略去末尾的几次循环，这样一来可以省去不少边界情况的处理
-    // 因为实际输入不会超过 1000 位，故在此循环到 LEN - 1 = 1003 已经足够
-    for (int i = 0; i < LEN - 1; ++i) {
-        // 将相应位上的数码相加
-        c[i] += a[i] + b[i];
-        if (c[i] >= 10) {
-            // 进位
-            c[i + 1] += 1;
-            c[i] -= 10;
-        }
+  // 高精度实现中，一般令数组的最大长度 LEN 比可能的输入大一些
+  // 然后略去末尾的几次循环，这样一来可以省去不少边界情况的处理
+  // 因为实际输入不会超过 1000 位，故在此循环到 LEN - 1 = 1003 已经足够
+  for (int i = 0; i < LEN - 1; ++i) {
+    // 将相应位上的数码相加
+    c[i] += a[i] + b[i];
+    if (c[i] >= 10) {
+      // 进位
+      c[i + 1] += 1;
+      c[i] -= 10;
     }
+  }
 }
 ```
 
@@ -152,53 +144,48 @@ static const int LEN = 1004;
 
 int a[LEN], b[LEN], c[LEN];
 
-void clear(int a[LEN])
-{
-    for (int i = 0; i < LEN; ++i) a[i] = 0;
+void clear(int a[LEN]) {
+  for (int i = 0; i < LEN; ++i) a[i] = 0;
 }
 
-void read(int a[LEN])
-{
-    static char s[LEN + 1];
-    scanf("%s", s);
+void read(int a[LEN]) {
+  static char s[LEN + 1];
+  scanf("%s", s);
 
-    clear(a);
+  clear(a);
 
-    int len = strlen(s);
-    for (int i = 0; i < len; ++i)
-        a[len - i - 1] = s[i] - '0';
+  int len = strlen(s);
+  for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
 }
 
-void print(int a[LEN])
-{
-    int i;
-    for (i = LEN - 1; i >= 1; --i) if (a[i] != 0) break;
-    for (; i >= 0; --i) putchar(a[i] + '0');
-    putchar('\n');
+void print(int a[LEN]) {
+  int i;
+  for (i = LEN - 1; i >= 1; --i)
+    if (a[i] != 0) break;
+  for (; i >= 0; --i) putchar(a[i] + '0');
+  putchar('\n');
 }
 
-void add(int a[LEN], int b[LEN], int c[LEN])
-{
-    clear(c);
+void add(int a[LEN], int b[LEN], int c[LEN]) {
+  clear(c);
 
-    for (int i = 0; i < LEN - 1; ++i) {
-        c[i] += a[i] + b[i];
-        if (c[i] >= 10) {
-            c[i + 1] += 1;
-            c[i] -= 10;
-        }
+  for (int i = 0; i < LEN - 1; ++i) {
+    c[i] += a[i] + b[i];
+    if (c[i] >= 10) {
+      c[i + 1] += 1;
+      c[i] -= 10;
     }
+  }
 }
 
-int main()
-{
-    read(a);
-    read(b);
+int main() {
+  read(a);
+  read(b);
 
-    add(a, b, c);
-    print(c);
+  add(a, b, c);
+  print(c);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -211,19 +198,18 @@ int main()
 从个位起逐位相减，遇到负的情况则向上一位借 $1$。整体思路与加法完全一致。
 
 ```cpp
-void sub(int a[LEN], int b[LEN], int c[LEN])
-{
-    clear(c);
+void sub(int a[LEN], int b[LEN], int c[LEN]) {
+  clear(c);
 
-    for (int i = 0; i < LEN - 1; ++i) {
-        // 逐位相减
-        c[i] += a[i] - b[i];
-        if (c[i] < 0) {
-            // 借位
-            c[i + 1] -= 1;
-            c[i] += 10;
-        }
+  for (int i = 0; i < LEN - 1; ++i) {
+    // 逐位相减
+    c[i] += a[i] - b[i];
+    if (c[i] < 0) {
+      // 借位
+      c[i + 1] -= 1;
+      c[i] += 10;
     }
+  }
 }
 ```
 
@@ -250,22 +236,21 @@ void sub(int a[LEN], int b[LEN], int c[LEN])
 当然，也是出于这个原因，这个方法需要特别关注乘数 $b$ 的范围。若它和 $10^9$（或相应整型的取值上界）属于同一数量级，那么需要慎用高精度—单精度乘法。
 
 ```cpp
-void mul_short(int a[LEN], int b, int c[LEN])
-{
-    clear(c);
+void mul_short(int a[LEN], int b, int c[LEN]) {
+  clear(c);
 
-    for (int i = 0; i < LEN - 1; ++i) {
-        // 直接把 a 的第 i 位数码乘以乘数，加入结果
-        c[i] += a[i] * b;
+  for (int i = 0; i < LEN - 1; ++i) {
+    // 直接把 a 的第 i 位数码乘以乘数，加入结果
+    c[i] += a[i] * b;
 
-        if (c[i] >= 10) {
-            // 处理进位
-            // c[i] / 10 即除法的商数成为进位的增量值
-            c[i + 1] += c[i] / 10;
-            // 而 c[i] % 10 即除法的余数成为在当前位留下的值
-            c[i] %= 10;
-        }
+    if (c[i] >= 10) {
+      // 处理进位
+      // c[i] / 10 即除法的商数成为进位的增量值
+      c[i + 1] += c[i] / 10;
+      // 而 c[i] % 10 即除法的余数成为在当前位留下的值
+      c[i] %= 10;
     }
+  }
 }
 ```
 
@@ -282,22 +267,20 @@ void mul_short(int a[LEN], int b, int c[LEN])
 注意这个过程与竖式乘法不尽相同，我们的算法在每一步乘的过程中并不进位，而是将所有的结果保留在对应的位置上，到最后再统一处理进位，但这不会影响结果。
 
 ```c++
-void mul(int a[LEN], int b[LEN], int c[LEN])
-{
-    clear(c);
+void mul(int a[LEN], int b[LEN], int c[LEN]) {
+  clear(c);
 
-    for (int i = 0; i < LEN - 1; ++i) {
-        // 这里直接计算结果中的从低到高第 i 位，且一并处理了进位
-        // 第 i 次循环为 c[i] 加上了所有满足 p + q = i 的 a[p] 与 b[q] 的乘积之和
-        // 这样做的效果和直接进行上图的运算最后求和是一样的，只是更加简短的一种实现方式
-        for (int j = 0; j <= i; ++j)
-            c[i] += a[j] * b[i - j];
+  for (int i = 0; i < LEN - 1; ++i) {
+    // 这里直接计算结果中的从低到高第 i 位，且一并处理了进位
+    // 第 i 次循环为 c[i] 加上了所有满足 p + q = i 的 a[p] 与 b[q] 的乘积之和
+    // 这样做的效果和直接进行上图的运算最后求和是一样的，只是更加简短的一种实现方式
+    for (int j = 0; j <= i; ++j) c[i] += a[j] * b[i - j];
 
-        if (c[i] >= 10) {
-            c[i + 1] += c[i] / 10;
-            c[i] %= 10;
-        }
+    if (c[i] >= 10) {
+      c[i + 1] += c[i] / 10;
+      c[i] %= 10;
     }
+  }
 }
 ```
 
@@ -316,49 +299,52 @@ void mul(int a[LEN], int b[LEN], int c[LEN])
 ```cpp
 // 被除数 a 以下标 last_dg 为最低位，是否可以再减去除数 b 而保持非负
 // len 是除数 b 的长度，避免反复计算
-inline bool greater_eq(int a[LEN], int b[LEN], int last_dg, int len)
-{
-    // 有可能被除数剩余的部分比除数长，这个情况下最多多出 1 位，故如此判断即可
-    if (a[last_dg + len] != 0) return true;
-    // 从高位到低位，逐位比较
-    for (int i = len - 1; i >= 0; --i) {
-        if (a[last_dg + i] > b[i]) return true;
-        if (a[last_dg + i] < b[i]) return false;
-    }
-    // 相等的情形下也是可行的
-    return true;
+inline bool greater_eq(int a[LEN], int b[LEN], int last_dg, int len) {
+  // 有可能被除数剩余的部分比除数长，这个情况下最多多出 1 位，故如此判断即可
+  if (a[last_dg + len] != 0) return true;
+  // 从高位到低位，逐位比较
+  for (int i = len - 1; i >= 0; --i) {
+    if (a[last_dg + i] > b[i]) return true;
+    if (a[last_dg + i] < b[i]) return false;
+  }
+  // 相等的情形下也是可行的
+  return true;
 }
 
-void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN])
-{
-    clear(c);
-    clear(d);
+void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
+  clear(c);
+  clear(d);
 
-    int la, lb;
-    for (la = LEN - 1; la > 0; --la) if (a[la - 1] != 0) break;
-    for (lb = LEN - 1; lb > 0; --lb) if (b[lb - 1] != 0) break;
-    if (lb == 0) { puts("> <"); return; } // 除数不能为零
+  int la, lb;
+  for (la = LEN - 1; la > 0; --la)
+    if (a[la - 1] != 0) break;
+  for (lb = LEN - 1; lb > 0; --lb)
+    if (b[lb - 1] != 0) break;
+  if (lb == 0) {
+    puts("> <");
+    return;
+  }  // 除数不能为零
 
-    // c 是商
-    // d 是被除数的剩余部分，算法结束后自然成为余数
-    for (int i = 0; i < la; ++i) d[i] = a[i];
-    for (int i = la - lb; i >= 0; --i) {
-        // 计算商的第 i 位
-        while (greater_eq(d, b, i, lb)) {
-            // 若可以减，则减
-            // 这一段是一个高精度减法
-            for (int j = 0; j < lb; ++j) {
-                d[i + j] -= b[j];
-                if (d[i + j] < 0) {
-                    d[i + j + 1] -= 1;
-                    d[i + j] += 10;
-                }
-            }
-            // 使商的这一位增加 1
-            c[i] += 1;
-            // 返回循环开头，重新检查
+  // c 是商
+  // d 是被除数的剩余部分，算法结束后自然成为余数
+  for (int i = 0; i < la; ++i) d[i] = a[i];
+  for (int i = la - lb; i >= 0; --i) {
+    // 计算商的第 i 位
+    while (greater_eq(d, b, i, lb)) {
+      // 若可以减，则减
+      // 这一段是一个高精度减法
+      for (int j = 0; j < lb; ++j) {
+        d[i + j] -= b[j];
+        if (d[i + j] < 0) {
+          d[i + j + 1] -= 1;
+          d[i + j] += 10;
         }
+      }
+      // 使商的这一位增加 1
+      c[i] += 1;
+      // 返回循环开头，重新检查
     }
+  }
 }
 ```
 
@@ -374,138 +360,134 @@ static const int LEN = 1004;
 
 int a[LEN], b[LEN], c[LEN], d[LEN];
 
-void clear(int a[LEN])
-{
-    for (int i = 0; i < LEN; ++i) a[i] = 0;
+void clear(int a[LEN]) {
+  for (int i = 0; i < LEN; ++i) a[i] = 0;
 }
 
-void read(int a[LEN])
-{
-    static char s[LEN + 1];
-    scanf("%s", s);
+void read(int a[LEN]) {
+  static char s[LEN + 1];
+  scanf("%s", s);
 
-    clear(a);
+  clear(a);
 
-    int len = strlen(s);
-    for (int i = 0; i < len; ++i)
-        a[len - i - 1] = s[i] - '0';
+  int len = strlen(s);
+  for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
 }
 
-void print(int a[LEN])
-{
-    int i;
-    for (i = LEN - 1; i >= 1; --i) if (a[i] != 0) break;
-    for (; i >= 0; --i) putchar(a[i] + '0');
-    putchar('\n');
+void print(int a[LEN]) {
+  int i;
+  for (i = LEN - 1; i >= 1; --i)
+    if (a[i] != 0) break;
+  for (; i >= 0; --i) putchar(a[i] + '0');
+  putchar('\n');
 }
 
-void add(int a[LEN], int b[LEN], int c[LEN])
-{
-    clear(c);
+void add(int a[LEN], int b[LEN], int c[LEN]) {
+  clear(c);
 
-    for (int i = 0; i < LEN - 1; ++i) {
-        c[i] += a[i] + b[i];
-        if (c[i] >= 10) {
-            c[i + 1] += 1;
-            c[i] -= 10;
+  for (int i = 0; i < LEN - 1; ++i) {
+    c[i] += a[i] + b[i];
+    if (c[i] >= 10) {
+      c[i + 1] += 1;
+      c[i] -= 10;
+    }
+  }
+}
+
+void sub(int a[LEN], int b[LEN], int c[LEN]) {
+  clear(c);
+
+  for (int i = 0; i < LEN - 1; ++i) {
+    c[i] += a[i] - b[i];
+    if (c[i] < 0) {
+      c[i + 1] -= 1;
+      c[i] += 10;
+    }
+  }
+}
+
+void mul(int a[LEN], int b[LEN], int c[LEN]) {
+  clear(c);
+
+  for (int i = 0; i < LEN - 1; ++i) {
+    for (int j = 0; j <= i; ++j) c[i] += a[j] * b[i - j];
+
+    if (c[i] >= 10) {
+      c[i + 1] += c[i] / 10;
+      c[i] %= 10;
+    }
+  }
+}
+
+inline bool greater_eq(int a[LEN], int b[LEN], int last_dg, int len) {
+  if (a[last_dg + len] != 0) return true;
+  for (int i = len - 1; i >= 0; --i) {
+    if (a[last_dg + i] > b[i]) return true;
+    if (a[last_dg + i] < b[i]) return false;
+  }
+  return true;
+}
+
+void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
+  clear(c);
+  clear(d);
+
+  int la, lb;
+  for (la = LEN - 1; la > 0; --la)
+    if (a[la - 1] != 0) break;
+  for (lb = LEN - 1; lb > 0; --lb)
+    if (b[lb - 1] != 0) break;
+  if (lb == 0) {
+    puts("> <");
+    return;
+  }
+
+  for (int i = 0; i < la; ++i) d[i] = a[i];
+  for (int i = la - lb; i >= 0; --i) {
+    while (greater_eq(d, b, i, lb)) {
+      for (int j = 0; j < lb; ++j) {
+        d[i + j] -= b[j];
+        if (d[i + j] < 0) {
+          d[i + j + 1] -= 1;
+          d[i + j] += 10;
         }
+      }
+      c[i] += 1;
     }
+  }
 }
 
-void sub(int a[LEN], int b[LEN], int c[LEN])
-{
-    clear(c);
+int main() {
+  read(a);
 
-    for (int i = 0; i < LEN - 1; ++i) {
-        c[i] += a[i] - b[i];
-        if (c[i] < 0) {
-            c[i + 1] -= 1;
-            c[i] += 10;
-        }
-    }
-}
+  char op[4];
+  scanf("%s", op);
 
-void mul(int a[LEN], int b[LEN], int c[LEN])
-{
-    clear(c);
+  read(b);
 
-    for (int i = 0; i < LEN - 1; ++i) {
-        for (int j = 0; j <= i; ++j)
-            c[i] += a[j] * b[i - j];
-
-        if (c[i] >= 10) {
-            c[i + 1] += c[i] / 10;
-            c[i] %= 10;
-        }
-    }
-}
-
-inline bool greater_eq(int a[LEN], int b[LEN], int last_dg, int len)
-{
-    if (a[last_dg + len] != 0) return true;
-    for (int i = len - 1; i >= 0; --i) {
-        if (a[last_dg + i] > b[i]) return true;
-        if (a[last_dg + i] < b[i]) return false;
-    }
-    return true;
-}
-
-void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN])
-{
-    clear(c);
-    clear(d);
-
-    int la, lb;
-    for (la = LEN - 1; la > 0; --la) if (a[la - 1] != 0) break;
-    for (lb = LEN - 1; lb > 0; --lb) if (b[lb - 1] != 0) break;
-    if (lb == 0) { puts("> <"); return; }
-
-    for (int i = 0; i < la; ++i) d[i] = a[i];
-    for (int i = la - lb; i >= 0; --i) {
-        while (greater_eq(d, b, i, lb)) {
-            for (int j = 0; j < lb; ++j) {
-                d[i + j] -= b[j];
-                if (d[i + j] < 0) {
-                    d[i + j + 1] -= 1;
-                    d[i + j] += 10;
-                }
-            }
-            c[i] += 1;
-        }
-    }
-}
-
-int main()
-{
-    read(a);
-
-    char op[4];
-    scanf("%s", op);
-
-    read(b);
-
-    switch (op[0]) {
+  switch (op[0]) {
     case '+':
-        add(a, b, c);
-        print(c);
-        break;
+      add(a, b, c);
+      print(c);
+      break;
     case '-':
-        sub(a, b, c);
-        print(c);
-        break;
+      sub(a, b, c);
+      print(c);
+      break;
     case '*':
-        mul(a, b, c);
-        print(c);
-        break;
+      mul(a, b, c);
+      print(c);
+      break;
     case '/':
-        div(a, b, c, d);
-        print(c);
-        print(d);
-        break;
-    default: puts("> <");
-    }
+      div(a, b, c, d);
+      print(c);
+      print(d);
+      break;
+    default:
+      puts("> <");
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
