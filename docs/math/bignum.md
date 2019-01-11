@@ -1,6 +1,6 @@
 ## 前言
 
-> 太长不看版：结尾有一个封装好的模板……
+> 太长不看版：结尾自取模板……
 
 什么时候需要高精度呢？有时候题目计算的中间结果，甚至输入本身，都存在超过语言内建整型（最大 64 位或 128 位）所能表示的范围。这个时候就只好自己处理它们啦。
 
@@ -8,17 +8,18 @@
 
 所以今天就来一起实现一个简单的计算器吧。
 
-> 输入：一个形如 `a <op> b` 的表达式。
->
-> -   `a`、`b` 分别是长度不超过 $1000$ 的十进制非负整数；
-> -   `<op>` 是一个字符（`+`、`-`、`*` 或 `/`），表示运算。
-> -   整数与运算符之间由一个空格分隔。
->
-> 输出：运算结果。
->
-> -   对于 `+`、`-`、`*` 运算，输出一行表示结果；
-> -   对于 `/` 运算，输出两行分别表示商和余数。
-> -   保证结果均为非负整数。
+???+ note "任务"
+    输入：一个形如 `a <op> b` 的表达式。
+
+    -   `a`、`b` 分别是长度不超过 $1000$ 的十进制非负整数；
+    -   `<op>` 是一个字符（`+`、`-`、`*` 或 `/`），表示运算。
+    -   整数与运算符之间由一个空格分隔。
+
+    输出：运算结果。
+
+    -   对于 `+`、`-`、`*` 运算，输出一行表示结果；
+    -   对于 `/` 运算，输出两行分别表示商和余数。
+    -   保证结果均为非负整数。
 
 ## 存储
 
@@ -63,43 +64,44 @@ void print(int a[LEN]) {
 
 拼起来就是一个完整的复读机程序咯。
 
-```cpp
-#include <cstdio>
-#include <cstring>
+??? "`copycat.cpp`"
+    ```cpp
+    #include <cstdio>
+    #include <cstring>
 
-static const int LEN = 1004;
+    static const int LEN = 1004;
 
-int a[LEN], b[LEN];
+    int a[LEN], b[LEN];
 
-void clear(int a[LEN]) {
-  for (int i = 0; i < LEN; ++i) a[i] = 0;
-}
+    void clear(int a[LEN]) {
+      for (int i = 0; i < LEN; ++i) a[i] = 0;
+    }
 
-void read(int a[LEN]) {
-  static char s[LEN + 1];
-  scanf("%s", s);
+    void read(int a[LEN]) {
+      static char s[LEN + 1];
+      scanf("%s", s);
 
-  clear(a);
+      clear(a);
 
-  int len = strlen(s);
-  for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
-}
+      int len = strlen(s);
+      for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
+    }
 
-void print(int a[LEN]) {
-  int i;
-  for (i = LEN - 1; i >= 1; --i)
-    if (a[i] != 0) break;
-  for (; i >= 0; --i) putchar(a[i] + '0');
-  putchar('\n');
-}
+    void print(int a[LEN]) {
+      int i;
+      for (i = LEN - 1; i >= 1; --i)
+        if (a[i] != 0) break;
+      for (; i >= 0; --i) putchar(a[i] + '0');
+      putchar('\n');
+    }
 
-int main() {
-  read(a);
-  print(a);
+    int main() {
+      read(a);
+      print(a);
 
-  return 0;
-}
-```
+      return 0;
+    }
+    ```
 
 ## 四则运算
 
@@ -136,58 +138,59 @@ void add(int a[LEN], int b[LEN], int c[LEN]) {
 
 试着和上一部分结合，可以得到一个加法计算器。
 
-```cpp
-#include <cstdio>
-#include <cstring>
+??? "`adder.cpp`"
+    ```cpp
+    #include <cstdio>
+    #include <cstring>
 
-static const int LEN = 1004;
+    static const int LEN = 1004;
 
-int a[LEN], b[LEN], c[LEN];
+    int a[LEN], b[LEN], c[LEN];
 
-void clear(int a[LEN]) {
-  for (int i = 0; i < LEN; ++i) a[i] = 0;
-}
-
-void read(int a[LEN]) {
-  static char s[LEN + 1];
-  scanf("%s", s);
-
-  clear(a);
-
-  int len = strlen(s);
-  for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
-}
-
-void print(int a[LEN]) {
-  int i;
-  for (i = LEN - 1; i >= 1; --i)
-    if (a[i] != 0) break;
-  for (; i >= 0; --i) putchar(a[i] + '0');
-  putchar('\n');
-}
-
-void add(int a[LEN], int b[LEN], int c[LEN]) {
-  clear(c);
-
-  for (int i = 0; i < LEN - 1; ++i) {
-    c[i] += a[i] + b[i];
-    if (c[i] >= 10) {
-      c[i + 1] += 1;
-      c[i] -= 10;
+    void clear(int a[LEN]) {
+      for (int i = 0; i < LEN; ++i) a[i] = 0;
     }
-  }
-}
 
-int main() {
-  read(a);
-  read(b);
+    void read(int a[LEN]) {
+      static char s[LEN + 1];
+      scanf("%s", s);
 
-  add(a, b, c);
-  print(c);
+      clear(a);
 
-  return 0;
-}
-```
+      int len = strlen(s);
+      for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
+    }
+
+    void print(int a[LEN]) {
+      int i;
+      for (i = LEN - 1; i >= 1; --i)
+        if (a[i] != 0) break;
+      for (; i >= 0; --i) putchar(a[i] + '0');
+      putchar('\n');
+    }
+
+    void add(int a[LEN], int b[LEN], int c[LEN]) {
+      clear(c);
+
+      for (int i = 0; i < LEN - 1; ++i) {
+        c[i] += a[i] + b[i];
+        if (c[i] >= 10) {
+          c[i + 1] += 1;
+          c[i] -= 10;
+        }
+      }
+    }
+
+    int main() {
+      read(a);
+      read(b);
+
+      add(a, b, c);
+      print(c);
+
+      return 0;
+    }
+    ```
 
 ### 减法
 
@@ -214,6 +217,65 @@ void sub(int a[LEN], int b[LEN], int c[LEN]) {
 ```
 
 将上一个程序中的 `add()` 替换成 `sub()`，就有了一个减法计算器。
+
+??? "`subtractor.cpp`"
+    ```cpp
+    #include <cstdio>
+    #include <cstring>
+
+    static const int LEN = 1004;
+
+    int a[LEN], b[LEN], c[LEN];
+
+    void clear(int a[LEN])
+    {
+        for (int i = 0; i < LEN; ++i) a[i] = 0;
+    }
+
+    void read(int a[LEN])
+    {
+        static char s[LEN + 1];
+        scanf("%s", s);
+
+        clear(a);
+
+        int len = strlen(s);
+        for (int i = 0; i < len; ++i)
+            a[len - i - 1] = s[i] - '0';
+    }
+
+    void print(int a[LEN])
+    {
+        int i;
+        for (i = LEN - 1; i >= 1; --i) if (a[i] != 0) break;
+        for (; i >= 0; --i) putchar(a[i] + '0');
+        putchar('\n');
+    }
+
+    void sub(int a[LEN], int b[LEN], int c[LEN])
+    {
+        clear(c);
+
+        for (int i = 0; i < LEN - 1; ++i) {
+            c[i] += a[i] - b[i];
+            if (c[i] < 0) {
+                c[i + 1] -= 1;
+                c[i] += 10;
+            }
+        }
+    }
+
+    int main()
+    {
+        read(a);
+        read(b);
+
+        sub(a, b, c);
+        print(c);
+
+        return 0;
+    }
+    ```
 
 试一试，输入 `1 2` —— 输出 `/9999999`，诶这个 OI Wiki 怎么给了我一份假的代码啊……
 
@@ -352,366 +414,356 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
 
 将上面介绍的四则运算的实现结合，即可完成开头提到的计算器程序。
 
-```cpp
-#include <cstdio>
-#include <cstring>
+??? "`calculator.cpp`"
+    ```cpp
+    #include <cstdio>
+    #include <cstring>
 
-static const int LEN = 1004;
+    static const int LEN = 1004;
 
-int a[LEN], b[LEN], c[LEN], d[LEN];
+    int a[LEN], b[LEN], c[LEN], d[LEN];
 
-void clear(int a[LEN]) {
-  for (int i = 0; i < LEN; ++i) a[i] = 0;
-}
-
-void read(int a[LEN]) {
-  static char s[LEN + 1];
-  scanf("%s", s);
-
-  clear(a);
-
-  int len = strlen(s);
-  for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
-}
-
-void print(int a[LEN]) {
-  int i;
-  for (i = LEN - 1; i >= 1; --i)
-    if (a[i] != 0) break;
-  for (; i >= 0; --i) putchar(a[i] + '0');
-  putchar('\n');
-}
-
-void add(int a[LEN], int b[LEN], int c[LEN]) {
-  clear(c);
-
-  for (int i = 0; i < LEN - 1; ++i) {
-    c[i] += a[i] + b[i];
-    if (c[i] >= 10) {
-      c[i + 1] += 1;
-      c[i] -= 10;
+    void clear(int a[LEN]) {
+      for (int i = 0; i < LEN; ++i) a[i] = 0;
     }
-  }
-}
 
-void sub(int a[LEN], int b[LEN], int c[LEN]) {
-  clear(c);
+    void read(int a[LEN]) {
+      static char s[LEN + 1];
+      scanf("%s", s);
 
-  for (int i = 0; i < LEN - 1; ++i) {
-    c[i] += a[i] - b[i];
-    if (c[i] < 0) {
-      c[i + 1] -= 1;
-      c[i] += 10;
+      clear(a);
+
+      int len = strlen(s);
+      for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
     }
-  }
-}
 
-void mul(int a[LEN], int b[LEN], int c[LEN]) {
-  clear(c);
-
-  for (int i = 0; i < LEN - 1; ++i) {
-    for (int j = 0; j <= i; ++j) c[i] += a[j] * b[i - j];
-
-    if (c[i] >= 10) {
-      c[i + 1] += c[i] / 10;
-      c[i] %= 10;
+    void print(int a[LEN]) {
+      int i;
+      for (i = LEN - 1; i >= 1; --i)
+        if (a[i] != 0) break;
+      for (; i >= 0; --i) putchar(a[i] + '0');
+      putchar('\n');
     }
-  }
-}
 
-inline bool greater_eq(int a[LEN], int b[LEN], int last_dg, int len) {
-  if (a[last_dg + len] != 0) return true;
-  for (int i = len - 1; i >= 0; --i) {
-    if (a[last_dg + i] > b[i]) return true;
-    if (a[last_dg + i] < b[i]) return false;
-  }
-  return true;
-}
+    void add(int a[LEN], int b[LEN], int c[LEN]) {
+      clear(c);
 
-void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
-  clear(c);
-  clear(d);
-
-  int la, lb;
-  for (la = LEN - 1; la > 0; --la)
-    if (a[la - 1] != 0) break;
-  for (lb = LEN - 1; lb > 0; --lb)
-    if (b[lb - 1] != 0) break;
-  if (lb == 0) {
-    puts("> <");
-    return;
-  }
-
-  for (int i = 0; i < la; ++i) d[i] = a[i];
-  for (int i = la - lb; i >= 0; --i) {
-    while (greater_eq(d, b, i, lb)) {
-      for (int j = 0; j < lb; ++j) {
-        d[i + j] -= b[j];
-        if (d[i + j] < 0) {
-          d[i + j + 1] -= 1;
-          d[i + j] += 10;
+      for (int i = 0; i < LEN - 1; ++i) {
+        c[i] += a[i] + b[i];
+        if (c[i] >= 10) {
+          c[i + 1] += 1;
+          c[i] -= 10;
         }
       }
-      c[i] += 1;
     }
-  }
-}
 
-int main() {
-  read(a);
+    void sub(int a[LEN], int b[LEN], int c[LEN]) {
+      clear(c);
 
-  char op[4];
-  scanf("%s", op);
+      for (int i = 0; i < LEN - 1; ++i) {
+        c[i] += a[i] - b[i];
+        if (c[i] < 0) {
+          c[i + 1] -= 1;
+          c[i] += 10;
+        }
+      }
+    }
 
-  read(b);
+    void mul(int a[LEN], int b[LEN], int c[LEN]) {
+      clear(c);
 
-  switch (op[0]) {
-    case '+':
-      add(a, b, c);
-      print(c);
-      break;
-    case '-':
-      sub(a, b, c);
-      print(c);
-      break;
-    case '*':
-      mul(a, b, c);
-      print(c);
-      break;
-    case '/':
-      div(a, b, c, d);
-      print(c);
-      print(d);
-      break;
-    default:
-      puts("> <");
-  }
+      for (int i = 0; i < LEN - 1; ++i) {
+        for (int j = 0; j <= i; ++j) c[i] += a[j] * b[i - j];
 
-  return 0;
-}
-```
+        if (c[i] >= 10) {
+          c[i + 1] += c[i] / 10;
+          c[i] %= 10;
+        }
+      }
+    }
 
-入门篇的完整代码可以在 [这里](https://gist.github.com/0594218b23728299f9f0afac615c8ac5) 找到。
+    inline bool greater_eq(int a[LEN], int b[LEN], int last_dg, int len) {
+      if (a[last_dg + len] != 0) return true;
+      for (int i = len - 1; i >= 0; --i) {
+        if (a[last_dg + i] > b[i]) return true;
+        if (a[last_dg + i] < b[i]) return false;
+      }
+      return true;
+    }
 
-## 更多内容未完待续……
+    void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
+      clear(c);
+      clear(d);
 
-希望加入的进阶内容：
+      int la, lb;
+      for (la = LEN - 1; la > 0; --la)
+        if (a[la - 1] != 0) break;
+      for (lb = LEN - 1; lb > 0; --lb)
+        if (b[lb - 1] != 0) break;
+      if (lb == 0) {
+        puts("> <");
+        return;
+      }
 
--   Karatsuba 分治乘法
--   $k$ 进制高精度（压位高精度）
--   分数
--   开根（？）
--   对数（？）
+      for (int i = 0; i < la; ++i) d[i] = a[i];
+      for (int i = la - lb; i >= 0; --i) {
+        while (greater_eq(d, b, i, lb)) {
+          for (int j = 0; j < lb; ++j) {
+            d[i + j] -= b[j];
+            if (d[i + j] < 0) {
+              d[i + j + 1] -= 1;
+              d[i + j] += 10;
+            }
+          }
+          c[i] += 1;
+        }
+      }
+    }
+
+    int main() {
+      read(a);
+
+      char op[4];
+      scanf("%s", op);
+
+      read(b);
+
+      switch (op[0]) {
+        case '+':
+          add(a, b, c);
+          print(c);
+          break;
+        case '-':
+          sub(a, b, c);
+          print(c);
+          break;
+        case '*':
+          mul(a, b, c);
+          print(c);
+          break;
+        case '/':
+          div(a, b, c, d);
+          print(c);
+          print(d);
+          break;
+        default:
+          puts("> <");
+      }
+
+      return 0;
+    }
+    ```
 
 ## 封装类
 
-还有一个很好用的[高精度封装类](https://paste.ubuntu.com/p/7VKYzpC7dn/) 10kb 想用可以自行下载。
+[这里](https://paste.ubuntu.com/p/7VKYzpC7dn/) 有一个封装好的高精度整数类。
 
-```c++
-#define MAXN 9999
-// MAXN 是一位中最大的数字
-#define MAXSIZE 10024
-// MAXSIZE 是位数
-#define DLEN 4
-// DLEN 记录压几位
-struct Big {
-  int a[MAXSIZE], len;
-  bool flag;  //标记符号'-'
-  Big() {
-    len = 1;
-    memset(a, 0, sizeof a);
-    flag = 0;
-  }
-  Big(const int);
-  Big(const char*);
-  Big(const Big&);
-  Big& operator=(const Big&);  //注意这里operator有&，因为赋值有修改……
-  //由于OI中要求效率
-  //此处不使用泛型函数
-  //故不重载
-  // istream& operator>>(istream&,  BigNum&);   //重载输入运算符
-  // ostream& operator<<(ostream&,  BigNum&);   //重载输出运算符
-  Big operator+(const Big&) const;
-  Big operator-(const Big&) const;
-  Big operator*(const Big&)const;
-  Big operator/(const int&) const;
-  // TODO: Big / Big;
-  Big operator^(const int&) const;
-  // TODO: Big ^ Big;
+??? 这里是另一个模板
+    ```c++
+    #define MAXN 9999
+    // MAXN 是一位中最大的数字
+    #define MAXSIZE 10024
+    // MAXSIZE 是位数
+    #define DLEN 4
+    // DLEN 记录压几位
+    struct Big {
+      int a[MAXSIZE], len;
+      bool flag;  //标记符号'-'
+      Big() {
+        len = 1;
+        memset(a, 0, sizeof a);
+        flag = 0;
+      }
+      Big(const int);
+      Big(const char*);
+      Big(const Big&);
+      Big& operator=(const Big&);  //注意这里operator有&，因为赋值有修改……
+      //由于OI中要求效率
+      //此处不使用泛型函数
+      //故不重载
+      // istream& operator>>(istream&,  BigNum&);   //重载输入运算符
+      // ostream& operator<<(ostream&,  BigNum&);   //重载输出运算符
+      Big operator+(const Big&) const;
+      Big operator-(const Big&) const;
+      Big operator*(const Big&)const;
+      Big operator/(const int&) const;
+      // TODO: Big / Big;
+      Big operator^(const int&) const;
+      // TODO: Big ^ Big;
 
-  // TODO: Big 位运算;
+      // TODO: Big 位运算;
 
-  int operator%(const int&) const;
-  // TODO: Big ^ Big;
-  bool operator<(const Big&) const;
-  bool operator<(const int& t) const;
-  inline void print();
-};
-// README::不要随随便便把参数都变成引用，那样没办法传值
-Big::Big(const int b) {
-  int c, d = b;
-  len = 0;
-  // memset(a,0,sizeof a);
-  CLR(a);
-  while (d > MAXN) {
-    c = d - (d / (MAXN + 1) * (MAXN + 1));
-    d = d / (MAXN + 1);
-    a[len++] = c;
-  }
-  a[len++] = d;
-}
-Big::Big(const char* s) {
-  int t, k, index, l;
-  CLR(a);
-  l = strlen(s);
-  len = l / DLEN;
-  if (l % DLEN) ++len;
-  index = 0;
-  for (int i = l - 1; i >= 0; i -= DLEN) {
-    t = 0;
-    k = i - DLEN + 1;
-    if (k < 0) k = 0;
-    g(j, k, i) t = t * 10 + s[j] - '0';
-    a[index++] = t;
-  }
-}
-Big::Big(const Big& T) : len(T.len) {
-  CLR(a);
-  f(i, 0, len) a[i] = T.a[i];
-  // TODO:重载此处？
-}
-Big& Big::operator=(const Big& T) {
-  CLR(a);
-  len = T.len;
-  f(i, 0, len) a[i] = T.a[i];
-  return *this;
-}
-Big Big::operator+(const Big& T) const {
-  Big t(*this);
-  int big = len;
-  if (T.len > len) big = T.len;
-  f(i, 0, big) {
-    t.a[i] += T.a[i];
-    if (t.a[i] > MAXN) {
-      ++t.a[i + 1];
-      t.a[i] -= MAXN + 1;
+      int operator%(const int&) const;
+      // TODO: Big ^ Big;
+      bool operator<(const Big&) const;
+      bool operator<(const int& t) const;
+      inline void print();
+    };
+    // README::不要随随便便把参数都变成引用，那样没办法传值
+    Big::Big(const int b) {
+      int c, d = b;
+      len = 0;
+      // memset(a,0,sizeof a);
+      CLR(a);
+      while (d > MAXN) {
+        c = d - (d / (MAXN + 1) * (MAXN + 1));
+        d = d / (MAXN + 1);
+        a[len++] = c;
+      }
+      a[len++] = d;
     }
-  }
-  if (t.a[big])
-    t.len = big + 1;
-  else
-    t.len = big;
-  return t;
-}
-Big Big::operator-(const Big& T) const {
-  int big;
-  bool ctf;
-  Big t1, t2;
-  if (*this < T) {
-    t1 = T;
-    t2 = *this;
-    ctf = 1;
-  } else {
-    t1 = *this;
-    t2 = T;
-    ctf = 0;
-  }
-  big = t1.len;
-  int j = 0;
-  f(i, 0, big) {
-    if (t1.a[i] < t2.a[i]) {
-      j = i + 1;
-      while (t1.a[j] == 0) ++j;
-      --t1.a[j--];
-      // WTF?
-      while (j > i) t1.a[j--] += MAXN;
-      t1.a[i] += MAXN + 1 - t2.a[i];
-    } else
-      t1.a[i] -= t2.a[i];
-  }
-  t1.len = big;
-  while (t1.len > 1 && t1.a[t1.len - 1] == 0) {
-    --t1.len;
-    --big;
-  }
-  if (ctf) t1.a[big - 1] = -t1.a[big - 1];
-  return t1;
-}
-Big Big::operator*(const Big& T) const {
-  Big res;
-  int up;
-  int te, tee;
-  f(i, 0, len) {
-    up = 0;
-    f(j, 0, T.len) {
-      te = a[i] * T.a[j] + res.a[i + j] + up;
-      if (te > MAXN) {
-        tee = te - te / (MAXN + 1) * (MAXN + 1);
-        up = te / (MAXN + 1);
-        res.a[i + j] = tee;
-      } else {
-        up = 0;
-        res.a[i + j] = te;
+    Big::Big(const char* s) {
+      int t, k, index, l;
+      CLR(a);
+      l = strlen(s);
+      len = l / DLEN;
+      if (l % DLEN) ++len;
+      index = 0;
+      for (int i = l - 1; i >= 0; i -= DLEN) {
+        t = 0;
+        k = i - DLEN + 1;
+        if (k < 0) k = 0;
+        g(j, k, i) t = t * 10 + s[j] - '0';
+        a[index++] = t;
       }
     }
-    if (up) res.a[i + T.len] = up;
-  }
-  res.len = len + T.len;
-  while (res.len > 1 && res.a[res.len - 1] == 0) --res.len;
-  return res;
-}
-Big Big::operator/(const int& b) const {
-  Big res;
-  int down = 0;
-  gd(i, len - 1, 0) {
-    res.a[i] = (a[i] + down * (MAXN + 1) / b);
-    down = a[i] + down * (MAXN + 1) - res.a[i] * b;
-  }
-  res.len = len;
-  while (res.len > 1 && res.a[res.len - 1] == 0) --res.len;
-  return res;
-}
-int Big::operator%(const int& b) const {
-  int d = 0;
-  gd(i, len - 1, 0) d = (d * (MAXN + 1) % b + a[i]) % b;
-  return d;
-}
-Big Big::operator^(const int& n) const {
-  Big t(n), res(1);
-  // TODO::快速幂这样写好丑= =//DONE:)
-  int y = n;
-  while (y) {
-    if (y & 1) res = res * t;
-    t = t * t;
-    y >>= 1;
-  }
-  return res;
-}
-bool Big::operator<(const Big& T) const {
-  int ln;
-  if (len < T.len) return 233;
-  if (len == T.len) {
-    ln = len - 1;
-    while (ln >= 0 && a[ln] == T.a[ln]) --ln;
-    if (ln >= 0 && a[ln] < T.a[ln]) return 233;
-    return 0;
-  }
-  return 0;
-}
-inline bool Big::operator<(const int& t) const {
-  Big tee(t);
-  return *this < tee;
-}
-inline void Big::print() {
-  printf("%d", a[len - 1]);
-  gd(i, len - 2, 0) { printf("%04d", a[i]); }
-}
+    Big::Big(const Big& T) : len(T.len) {
+      CLR(a);
+      f(i, 0, len) a[i] = T.a[i];
+      // TODO:重载此处？
+    }
+    Big& Big::operator=(const Big& T) {
+      CLR(a);
+      len = T.len;
+      f(i, 0, len) a[i] = T.a[i];
+      return *this;
+    }
+    Big Big::operator+(const Big& T) const {
+      Big t(*this);
+      int big = len;
+      if (T.len > len) big = T.len;
+      f(i, 0, big) {
+        t.a[i] += T.a[i];
+        if (t.a[i] > MAXN) {
+          ++t.a[i + 1];
+          t.a[i] -= MAXN + 1;
+        }
+      }
+      if (t.a[big])
+        t.len = big + 1;
+      else
+        t.len = big;
+      return t;
+    }
+    Big Big::operator-(const Big& T) const {
+      int big;
+      bool ctf;
+      Big t1, t2;
+      if (*this < T) {
+        t1 = T;
+        t2 = *this;
+        ctf = 1;
+      } else {
+        t1 = *this;
+        t2 = T;
+        ctf = 0;
+      }
+      big = t1.len;
+      int j = 0;
+      f(i, 0, big) {
+        if (t1.a[i] < t2.a[i]) {
+          j = i + 1;
+          while (t1.a[j] == 0) ++j;
+          --t1.a[j--];
+          // WTF?
+          while (j > i) t1.a[j--] += MAXN;
+          t1.a[i] += MAXN + 1 - t2.a[i];
+        } else
+          t1.a[i] -= t2.a[i];
+      }
+      t1.len = big;
+      while (t1.len > 1 && t1.a[t1.len - 1] == 0) {
+        --t1.len;
+        --big;
+      }
+      if (ctf) t1.a[big - 1] = -t1.a[big - 1];
+      return t1;
+    }
+    Big Big::operator*(const Big& T) const {
+      Big res;
+      int up;
+      int te, tee;
+      f(i, 0, len) {
+        up = 0;
+        f(j, 0, T.len) {
+          te = a[i] * T.a[j] + res.a[i + j] + up;
+          if (te > MAXN) {
+            tee = te - te / (MAXN + 1) * (MAXN + 1);
+            up = te / (MAXN + 1);
+            res.a[i + j] = tee;
+          } else {
+            up = 0;
+            res.a[i + j] = te;
+          }
+        }
+        if (up) res.a[i + T.len] = up;
+      }
+      res.len = len + T.len;
+      while (res.len > 1 && res.a[res.len - 1] == 0) --res.len;
+      return res;
+    }
+    Big Big::operator/(const int& b) const {
+      Big res;
+      int down = 0;
+      gd(i, len - 1, 0) {
+        res.a[i] = (a[i] + down * (MAXN + 1) / b);
+        down = a[i] + down * (MAXN + 1) - res.a[i] * b;
+      }
+      res.len = len;
+      while (res.len > 1 && res.a[res.len - 1] == 0) --res.len;
+      return res;
+    }
+    int Big::operator%(const int& b) const {
+      int d = 0;
+      gd(i, len - 1, 0) d = (d * (MAXN + 1) % b + a[i]) % b;
+      return d;
+    }
+    Big Big::operator^(const int& n) const {
+      Big t(n), res(1);
+      // TODO::快速幂这样写好丑= =//DONE:)
+      int y = n;
+      while (y) {
+        if (y & 1) res = res * t;
+        t = t * t;
+        y >>= 1;
+      }
+      return res;
+    }
+    bool Big::operator<(const Big& T) const {
+      int ln;
+      if (len < T.len) return 233;
+      if (len == T.len) {
+        ln = len - 1;
+        while (ln >= 0 && a[ln] == T.a[ln]) --ln;
+        if (ln >= 0 && a[ln] < T.a[ln]) return 233;
+        return 0;
+      }
+      return 0;
+    }
+    inline bool Big::operator<(const int& t) const {
+      Big tee(t);
+      return *this < tee;
+    }
+    inline void Big::print() {
+      printf("%d", a[len - 1]);
+      gd(i, len - 2, 0) { printf("%04d", a[i]); }
+    }
 
-inline void print(Big s) {
-  // s不要是引用，要不然你怎么print(a * b);
-  int len = s.len;
-  printf("%d", s.a[len - 1]);
-  gd(i, len - 2, 0) { printf("%04d", s.a[i]); }
-}
-char s[100024];
-```
+    inline void print(Big s) {
+      // s不要是引用，要不然你怎么print(a * b);
+      int len = s.len;
+      printf("%d", s.a[len - 1]);
+      gd(i, len - 2, 0) { printf("%04d", s.a[i]); }
+    }
+    char s[100024];
+    ```
