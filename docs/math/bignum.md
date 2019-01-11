@@ -1,18 +1,527 @@
 ## 前言
 
-什么时候需要高精度呢？就比如数据规模很大，unsigned long long 都存不下，就需要自己丰衣足食开一个数组来准确地表示一个数。
+> 太长不看版：结尾有一个封装好的模板……
+
+什么时候需要高精度呢？有时候题目计算的中间结果，甚至输入本身，都存在超过语言内建整型（最大 64 位或 128 位）所能表示的范围。这个时候就只好自己处理它们啦。
 
 高精度问题包含很多小的细节，实现上也有很多讲究。
 
-目录：（内容正在逐步完善）
+所以今天就来一起实现一个简单的计算器吧。
 
--   存储
--   四则运算
--   快速幂
+> 输入：一个形如 `a <op> b` 的表达式。
+>
+> - `a`、`b` 分别是长度不超过 $1000$ 的十进制非负整数；
+> - `<op>` 是一个字符（`+`、`-`、`*` 或 `/`），表示运算。
+> - 整数与运算符之间由一个空格分隔。
+>
+> 输出：运算结果。
+>
+> - 对于 `+`、`-`、`*` 运算，输出一行表示结果；
+> - 对于 `/` 运算，输出两行分别表示商和余数。
+> - 保证结果均为非负整数。
+
+## 存储
+
+在平常的实现中，高精度数字利用字符串表示，每一个字符表示数字的一个十进制位。因此可以说，高精度数值计算实际上是一种特别的字符串处理。
+
+读入字符串时，数字最高位在字符串首（下标小的位置）。但是习惯上，下标最小的位置存放的是数字的**最低位**，即存储反转的字符串。这么做的原因在于，数字的长度可能发生变化，但我们希望同样权值位始终保持对齐（例如，希望所有的个位都在下标 `[0]`，所有的十位都在下标 `[1]`……）；同时，加、减、乘的运算一般都从个位开始进行（回想小学的竖式运算～），这都给了「反转存储」以充分的理由。
+
+此后我们将一直沿用这一约定。定义一个常数 `LEN = 1004` 表示程序所容纳的最大长度。
+
+由此不难写出读入高精度数字的代码：
+
+```cpp
+void clear(int a[LEN])
+{
+    for (int i = 0; i < LEN; ++i) a[i] = 0;
+}
+
+void read(int a[LEN])
+{
+    static char s[LEN + 1];
+    scanf("%s", s);
+
+    clear(a);
+
+    int len = strlen(s);
+    // 如上所述，反转
+    for (int i = 0; i < len; ++i)
+        a[len - i - 1] = s[i] - '0';
+        // s[i] - '0' 就是 s[i] 所表示的数码
+        // 有些同学可能更习惯用 ord(s[i]) - ord('0') 的方式理解
+}
+```
+
+输出也按照存储的逆序输出。由于不希望输出前导零，故这里从最高位开始向下寻找第一个非零位，从此处开始输出；终止条件 `i >= 1` 而不是 `i >= 0` 是因为当整个数字等于 $0$ 时仍希望输出一个字符 `0`。
+
+```cpp
+void print(int a[LEN])
+{
+    int i;
+    for (i = LEN - 1; i >= 1; --i) if (a[i] != 0) break;
+    for (; i >= 0; --i) putchar(a[i] + '0');
+    putchar('\n');
+}
+```
+
+拼起来就是一个完整的复读机程序咯。
+
+```cpp
+#include <cstdio>
+#include <cstring>
+
+static const int LEN = 1004;
+
+int a[LEN], b[LEN];
+
+void clear(int a[LEN])
+{
+    for (int i = 0; i < LEN; ++i) a[i] = 0;
+}
+
+void read(int a[LEN])
+{
+    static char s[LEN + 1];
+    scanf("%s", s);
+
+    clear(a);
+
+    int len = strlen(s);
+    for (int i = 0; i < len; ++i)
+        a[len - i - 1] = s[i] - '0';
+}
+
+void print(int a[LEN])
+{
+    int i;
+    for (i = LEN - 1; i >= 1; --i) if (a[i] != 0) break;
+    for (; i >= 0; --i) putchar(a[i] + '0');
+    putchar('\n');
+}
+
+int main()
+{
+    read(a);
+    print(a);
+
+    return 0;
+}
+```
+
+## 四则运算
+
+四则运算中难度也各不相同。最简单的是高精度加减法，其次是高精度—单精度（普通的 `int`）乘法和高精度—高精度乘法，最后是高精度—高精度除法。
+
+我们将按这个顺序分别实现所有要求的功能。
+
+### 加法
+
+高精度加法，其实就是竖式加法啦。
+
+![](./images/plus.png)
+
+也就是从最低位开始，将两个加数对应位置上的数码相加，并判断是否达到或超过 $10$。如果达到，那么处理进位：将更高一位的结果上增加 $1$，当前位的结果减少 $10$。
+
+```cpp
+void add(int a[LEN], int b[LEN], int c[LEN])
+{
+    clear(c);
+
+    // 高精度实现中，一般令数组的最大长度 LEN 比可能的输入大一些
+    // 然后略去末尾的几次循环，这样一来可以省去不少边界情况的处理
+    // 因为实际输入不会超过 1000 位，故在此循环到 LEN - 1 = 1003 已经足够
+    for (int i = 0; i < LEN - 1; ++i) {
+        // 将相应位上的数码相加
+        c[i] += a[i] + b[i];
+        if (c[i] >= 10) {
+            // 进位
+            c[i + 1] += 1;
+            c[i] -= 10;
+        }
+    }
+}
+```
+
+试着和上一部分结合，可以得到一个加法计算器。
+
+```cpp
+#include <cstdio>
+#include <cstring>
+
+static const int LEN = 1004;
+
+int a[LEN], b[LEN], c[LEN];
+
+void clear(int a[LEN])
+{
+    for (int i = 0; i < LEN; ++i) a[i] = 0;
+}
+
+void read(int a[LEN])
+{
+    static char s[LEN + 1];
+    scanf("%s", s);
+
+    clear(a);
+
+    int len = strlen(s);
+    for (int i = 0; i < len; ++i)
+        a[len - i - 1] = s[i] - '0';
+}
+
+void print(int a[LEN])
+{
+    int i;
+    for (i = LEN - 1; i >= 1; --i) if (a[i] != 0) break;
+    for (; i >= 0; --i) putchar(a[i] + '0');
+    putchar('\n');
+}
+
+void add(int a[LEN], int b[LEN], int c[LEN])
+{
+    clear(c);
+
+    for (int i = 0; i < LEN - 1; ++i) {
+        c[i] += a[i] + b[i];
+        if (c[i] >= 10) {
+            c[i + 1] += 1;
+            c[i] -= 10;
+        }
+    }
+}
+
+int main()
+{
+    read(a);
+    read(b);
+
+    add(a, b, c);
+    print(c);
+
+    return 0;
+}
+```
+
+### 减法
+
+高精度加法，也就是竖式减法啦。
+
+![](./images/subtraction.png)
+
+从个位起逐位相减，遇到负的情况则向上一位借 $1$。整体思路与加法完全一致。
+
+```cpp
+void sub(int a[LEN], int b[LEN], int c[LEN])
+{
+    clear(c);
+
+    for (int i = 0; i < LEN - 1; ++i) {
+        // 逐位相减
+        c[i] += a[i] - b[i];
+        if (c[i] < 0) {
+            // 借位
+            c[i + 1] -= 1;
+            c[i] += 10;
+        }
+    }
+}
+```
+
+将上一个程序中的 `add()` 替换成 `sub()`，就有了一个减法计算器。
+
+试一试，输入 `1 2` —— 输出 `/9999999`，诶这个 OI Wiki 怎么给了我一份假的代码啊……
+
+如你所见，上面的程序只能处理 $a \geq b$ 的情况，至于负数如何处理 —— 就交给聪明的你啦。
+
+### 乘法
+
+#### 高精度—单精度
+
+高精度乘法，也就是竖…… 等会儿等会儿！
+
+先考虑一个简单的情况：乘数中的一个是普通的 `int` 类型。有没有简单的处理方法呢？
+
+一个直观的思路是直接将 $a$ 每一位上的数字乘以 $b$。从数值上来说，这个方法是正确的，但它并不符合十进制表示法，因此需要将它重新整理成正常的样子。
+
+重整的方式，也是从个位开始逐位向上处理进位。但是这里的进位可能非常大，甚至远大于 $9$，因为每一位被乘上之后都可能达到 $9b$ 的数量级。所以这里的进位不能再简单地进行 $-10$ 运算，而是要通过除以 $10$ 的商以及余数计算。详见代码注释，也可以参考下图展示的一个计算高精度数 $1337$ 乘以单精度数 $42$ 的过程。
+
+![](./images/multiplication-short.png)
+
+当然，也是出于这个原因，这个方法需要特别关注乘数 $b$ 的范围。若它和 $10^9$（或相应整型的取值上界）属于同一数量级，那么需要慎用高精度—单精度乘法。
+
+```cpp
+void mul_short(int a[LEN], int b, int c[LEN])
+{
+    clear(c);
+
+    for (int i = 0; i < LEN - 1; ++i) {
+        // 直接把 a 的第 i 位数码乘以乘数，加入结果
+        c[i] += a[i] * b;
+
+        if (c[i] >= 10) {
+            // 处理进位
+            // c[i] / 10 即除法的商数成为进位的增量值
+            c[i + 1] += c[i] / 10;
+            // 而 c[i] % 10 即除法的余数成为在当前位留下的值
+            c[i] %= 10;
+        }
+    }
+}
+```
+
+#### 高精度—高精度
+
+如果两个乘数都是高精度，那么竖式乘法又可以大显身手了。
+
+回想竖式乘法的每一步，实际上是计算了若干 $a \times b_i \times 10^i$ 的和。例如计算 $1337 \times 42$，计算的就是 $1337 \times 2 \times 10^0 + 1337 \times 4 \times 10^1$。
+
+于是可以将 $b$ 分解为它的所有数码，其中每个数码都是单精度数，将它们分别与 $a$ 相乘，再向左移动到各自的位置上相加即得答案。当然，最后也需要用与上例相同的方式处理进位。
+
+![](./images/multiplication-long.png)
+
+注意这个过程与竖式乘法不尽相同，我们的算法在每一步乘的过程中并不进位，而是将所有的结果保留在对应的位置上，到最后再统一处理进位，但这不会影响结果。
+
+```c++
+void mul(int a[LEN], int b[LEN], int c[LEN])
+{
+    clear(c);
+
+    for (int i = 0; i < LEN - 1; ++i) {
+        // 这里直接计算结果中的从低到高第 i 位，且一并处理了进位
+        // 第 i 次循环为 c[i] 加上了所有满足 p + q = i 的 a[p] 与 b[q] 的乘积之和
+        // 这样做的效果和直接进行上图的运算最后求和是一样的，只是更加简短的一种实现方式
+        for (int j = 0; j <= i; ++j)
+            c[i] += a[j] * b[i - j];
+
+        if (c[i] >= 10) {
+            c[i + 1] += c[i] / 10;
+            c[i] %= 10;
+        }
+    }
+}
+```
+
+### 除法
+
+高精度除法，也就是竖～～～～竖式长除法啦！
+
+![](./images/division.png)
+
+竖式长除法实际上可以看作一个逐次减法的过程。例如上图中商数十位的计算可以这样理解：将 $45$ 减去三次 $12$ 后变得小于 $12$，不能再减，故此位为 $3$。
+
+为了减少冗余运算，我们提前得到被除数的长度 $l_a$ 与除数的长度 $l_b$，从下标 $l_a - l_b$ 开始，从高位到低位来计算商。这和手工计算时将第一次乘法的最高位与被除数最高位对齐的做法是一样的。
+
+参考程序实现了一个函数 `greater_eq()` 用于判断被除数以下标 `last_dg` 为最低位，是否可以再减去除数而保持非负。此后对于商的每一位，不断调用 `greater_eq()`，并在成立的时候用高精度减法从余数中减去除数，也即模拟了竖式除法的过程。
+
+```cpp
+// 被除数 a 以下标 last_dg 为最低位，是否可以再减去除数 b 而保持非负
+// len 是除数 b 的长度，避免反复计算
+inline bool greater_eq(int a[LEN], int b[LEN], int last_dg, int len)
+{
+    // 有可能被除数剩余的部分比除数长，这个情况下最多多出 1 位，故如此判断即可
+    if (a[last_dg + len] != 0) return true;
+    // 从高位到低位，逐位比较
+    for (int i = len - 1; i >= 0; --i) {
+        if (a[last_dg + i] > b[i]) return true;
+        if (a[last_dg + i] < b[i]) return false;
+    }
+    // 相等的情形下也是可行的
+    return true;
+}
+
+void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN])
+{
+    clear(c);
+    clear(d);
+
+    int la, lb;
+    for (la = LEN - 1; la > 0; --la) if (a[la - 1] != 0) break;
+    for (lb = LEN - 1; lb > 0; --lb) if (b[lb - 1] != 0) break;
+    if (lb == 0) { puts("> <"); return; } // 除数不能为零
+
+    // c 是商
+    // d 是被除数的剩余部分，算法结束后自然成为余数
+    for (int i = 0; i < la; ++i) d[i] = a[i];
+    for (int i = la - lb; i >= 0; --i) {
+        // 计算商的第 i 位
+        while (greater_eq(d, b, i, lb)) {
+            // 若可以减，则减
+            // 这一段是一个高精度减法
+            for (int j = 0; j < lb; ++j) {
+                d[i + j] -= b[j];
+                if (d[i + j] < 0) {
+                    d[i + j + 1] -= 1;
+                    d[i + j] += 10;
+                }
+            }
+            // 使商的这一位增加 1
+            c[i] += 1;
+            // 返回循环开头，重新检查
+        }
+    }
+}
+```
+
+## 入门篇完成！
+
+将上面介绍的四则运算的实现结合，即可完成开头提到的计算器程序。
+
+```cpp
+#include <cstdio>
+#include <cstring>
+
+static const int LEN = 1004;
+
+int a[LEN], b[LEN], c[LEN], d[LEN];
+
+void clear(int a[LEN])
+{
+    for (int i = 0; i < LEN; ++i) a[i] = 0;
+}
+
+void read(int a[LEN])
+{
+    static char s[LEN + 1];
+    scanf("%s", s);
+
+    clear(a);
+
+    int len = strlen(s);
+    for (int i = 0; i < len; ++i)
+        a[len - i - 1] = s[i] - '0';
+}
+
+void print(int a[LEN])
+{
+    int i;
+    for (i = LEN - 1; i >= 1; --i) if (a[i] != 0) break;
+    for (; i >= 0; --i) putchar(a[i] + '0');
+    putchar('\n');
+}
+
+void add(int a[LEN], int b[LEN], int c[LEN])
+{
+    clear(c);
+
+    for (int i = 0; i < LEN - 1; ++i) {
+        c[i] += a[i] + b[i];
+        if (c[i] >= 10) {
+            c[i + 1] += 1;
+            c[i] -= 10;
+        }
+    }
+}
+
+void sub(int a[LEN], int b[LEN], int c[LEN])
+{
+    clear(c);
+
+    for (int i = 0; i < LEN - 1; ++i) {
+        c[i] += a[i] - b[i];
+        if (c[i] < 0) {
+            c[i + 1] -= 1;
+            c[i] += 10;
+        }
+    }
+}
+
+void mul(int a[LEN], int b[LEN], int c[LEN])
+{
+    clear(c);
+
+    for (int i = 0; i < LEN - 1; ++i) {
+        for (int j = 0; j <= i; ++j)
+            c[i] += a[j] * b[i - j];
+
+        if (c[i] >= 10) {
+            c[i + 1] += c[i] / 10;
+            c[i] %= 10;
+        }
+    }
+}
+
+inline bool greater_eq(int a[LEN], int b[LEN], int last_dg, int len)
+{
+    if (a[last_dg + len] != 0) return true;
+    for (int i = len - 1; i >= 0; --i) {
+        if (a[last_dg + i] > b[i]) return true;
+        if (a[last_dg + i] < b[i]) return false;
+    }
+    return true;
+}
+
+void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN])
+{
+    clear(c);
+    clear(d);
+
+    int la, lb;
+    for (la = LEN - 1; la > 0; --la) if (a[la - 1] != 0) break;
+    for (lb = LEN - 1; lb > 0; --lb) if (b[lb - 1] != 0) break;
+    if (lb == 0) { puts("> <"); return; }
+
+    for (int i = 0; i < la; ++i) d[i] = a[i];
+    for (int i = la - lb; i >= 0; --i) {
+        while (greater_eq(d, b, i, lb)) {
+            for (int j = 0; j < lb; ++j) {
+                d[i + j] -= b[j];
+                if (d[i + j] < 0) {
+                    d[i + j + 1] -= 1;
+                    d[i + j] += 10;
+                }
+            }
+            c[i] += 1;
+        }
+    }
+}
+
+int main()
+{
+    read(a);
+
+    char op[4];
+    scanf("%s", op);
+
+    read(b);
+
+    switch (op[0]) {
+    case '+':
+        add(a, b, c);
+        print(c);
+        break;
+    case '-':
+        sub(a, b, c);
+        print(c);
+        break;
+    case '*':
+        mul(a, b, c);
+        print(c);
+        break;
+    case '/':
+        div(a, b, c, d);
+        print(c);
+        print(d);
+        break;
+    default: puts("> <");
+    }
+
+    return 0;
+}
+```
+
+入门篇的完整代码可以在 [这里](https://gist.github.com/0594218b23728299f9f0afac615c8ac5) 找到。
+
+## 更多内容未完待续……
+
+希望加入的进阶内容：
+
+-   Karatsuba 分治乘法
+-   $k$ 进制高精度（压位高精度）
 -   分数
+-   开根（？）
 -   对数（？）
--   开根
--   压位高精度
+
+## 封装类
 
 还有一个很好用的[高精度封装类](https://paste.ubuntu.com/p/7VKYzpC7dn/) 10kb 想用可以自行下载。
 
@@ -224,191 +733,3 @@ inline void print(Big s) {
 }
 char s[100024];
 ```
-
-## 存储高精度
-
-存储高精度是最基础的内容，在学习高精度之前必须学习。
-
-高精度的存储其实非常简单。首先，我们读进去一个字符串，然后倒序将每一位存贮在数组内，每一位数对应一个下标。
-
-倒序存储是有原因的。当计算机读进来字符串时，第一位是最高位。为了方便计算，我们需要**将最低位存储在 1 位**（或者第 0 位）。
-
-下面给一份 C++ 代码：
-
-```c++
-char aa[MAXLEN], bb[MAXLEN];
-int a[MAXLEN], b[MAXLEN];
-int lena, lenb, len;
-void read() {
-  cin >> aa >> bb;
-  lena = strlen(aa);
-  lenb = strlen(bb);
-  len = max(lena, lenb);  //这一步在部分高精运算中可有可无
-  for (int i = 0; i < lena; i++) a[lena - i] = aa[i] - '0';  //好好理解这一步
-  for (int i = 0; i < lenb; i++) b[lenb - i] = bb[i] - '0';
-}
-```
-
-## 四则运算
-
-四则运算是最简单的内容，也是学习 OI 必备的内容之一。
-
-四则运算中难度也各不相同。最简单的是`高精度 + 高精度`，然后是`高精度 * 高精度`，其次是`高精度 - 高精度`，最后是`高精度 / 高精度`。我们先从简单的开始看起。
-
-### 加法
-
-高精度计算就是在模拟人工竖式计算，所以先来一张竖式图。
-
-![](./images/plus.png)
-
-加法非常简单，一位一位地加即可。
-
-在进位时，我们需要看一看该位（$a_i$）有没有超过 10，如果超过了，那么$c_{i+1}=c_{i+1}+1,c_i=c_i\mod 10$即可。
-
-代码如下：
-
-```c++
-char aa[MAXLEN], bb[MAXLEN];
-int a[MAXLEN], b[MAXLEN], c[MAXLEN];
-int lena, lenb, len;
-void plu() {
-  read();
-  for (int i = 1; i <= len; i++) {
-    c[i] += a[i] + b[i];
-    if (c[i] >= 10)  //进位
-    {
-      c[i + 1]++;
-      c[i] = c[i] % 10;
-    }
-  }
-  if (len + 1 != 0)  //如果最后一位有进位
-    len++;
-  while (c[len] == 0 && len != 1)  //压前导0
-    len--;
-  for (int i = len; i >= 1; i--)  //从最高位输出
-    cout << c[i];
-}
-```
-
-### 乘法
-
-![](./images/multiplication.png)
-
-通过观察我们发现有如下的计算规律：
-
-$$
-c_{i+j-1}=a_i*b_j
-$$
-
-（其中，$c_{i+j-1}$代表答案的第$i+j-1$位，$a_i$代表第一个数的第 i 位，$b_j$代表第二个数的第 j 位。该公式对于任何有效的 i 和 j 均有效。）
-
-进位也比较容易：
-
-$$
-c_{i+1}=c_{i+1}+c_i \div 10,c_i=c_i\mod 10
-$$
-
-（其中，除号为整除运算）
-
-**有一点需要特别注意！**
-
-如果你的下标是从 0 开始（最低位放在第 0 个位置），那么计算规律就有所改变：
-
-$$
-c_{i+j}=a_i*b_j
-$$
-
-代码如下：
-
-```c++
-char aa[MAXLEN], bb[MAXLEN];
-int a[MAXLEN], b[MAXLEN], c[MAXLEN];
-int lena, lenb, len;
-void mul() {
-  read();
-  for (int i = 1; i <= lena; i++)
-    for (int j = 1; j <= lenb; j++) c[i + j - 1] += a[i] * b[j];
-  int i;
-  for (i = 1; c[i] != 0 || i <= len; i++)  //进位
-    if (c[i] >= 10) {
-      c[i + 1] += c[i] / 10;
-      c[i] %= 10;
-    }
-  len = i;
-  while (c[len] == 0 && len != 1)  //压前导零
-    len--;
-  for (int i = len; i >= 1; i--)  //从最高位输出
-    cout << c[i];
-}
-```
-
-### 减法
-
-![](./images/subtraction.png)
-
-减法麻烦的一点就是判断正负数的问题了。
-
-我们发现一个特点：$a-b=-(b-a)$。
-
-举个例子：
-
-$$
-1-2=-1
-,
-2-1=1
-,
--(2-1)=-1
-$$
-
-所以，我们遇到$a<b$的情况，我们需要先输出 “-” 再交换两数，接着进行减法计算。
-
-否则直接进行计算即可。
-
-代码如下：
-
-```c++
-void sub() {
-  read();
-  bool flag = false;
-  for (int i = len; i >= 1; i--)  //判断是否出现a<b的情况
-    if (a[i] > b[i]) {
-      flag = false;
-      break;
-    } else if (a[i] < b[i]) {
-      flag = true;
-      break;
-    }
-  if (flag) {
-    int tmp[MAXLEN] = {0};  //交换两数
-    for (int i = 1; i <= len; i++) tmp[i] = a[i];
-    for (int i = 1; i <= len; i++) a[i] = b[i];
-    for (int i = 1; i <= len; i++) b[i] = tmp[i];
-    cout << "-";  //输出负号
-  }
-  for (int i = 1; i <= len; i++) {
-    if (a[i] - b[i] < 0) {
-      a[i] += 10;
-      a[i + 1]--;
-    }
-    c[i] = a[i] - b[i];
-  }
-  while (c[len] == 0 && len != 1)  //压前导零
-    len--;
-  for (int i = len; i >= 1; i--)  //从最高位输出
-    cout << c[i];
-}
-```
-
-### 除法
-
-![](./images/division.png)
-
-作者不才，所以这里只讲一下除法的思想。
-
-在计算除法时，其实是模拟多次减法的过程。
-
-首先，两个指针，head、tail，初始都为最高位。
-
-这时，我们将$a_{head} a_{head-1} \dots  a_{tail}$看为一个数（a 为被除数，b 为除数，c 为商），对 b 进行减法运算，看看能做多少次，结果为$c_{tail}$的商，做完后，head++，重复直到无法继续运算。
-
-## 更多内容未完待续……
