@@ -5,7 +5,7 @@
 ### 国内
 
 -   [洛谷](http://www.luogu.org/) (常用 OJ，现代 OJ 支持发布比赛等很多功能，评测机快)
--   [PTA-拼题A](https://pintia.cn/)(没洛谷有名，不过题目不少)
+-   [PTA - 拼题 A](https://pintia.cn/)(没洛谷有名，不过题目不少)
 -   [51Nod](https://www.51nod.com/) (有很多好的数学题和思维题)
 -   [BZOJ](https://www.lydsy.com/JudgeOnline/) (优质的题巨多)
 -   [CodeVS](http://www.codevs.cn/)
