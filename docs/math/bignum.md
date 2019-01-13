@@ -65,6 +65,7 @@ void print(int a[LEN]) {
 拼起来就是一个完整的复读机程序咯。
 
 ??? "`copycat.cpp`"
+
     ```cpp
     #include <cstdio>
     #include <cstring>
@@ -139,6 +140,7 @@ void add(int a[LEN], int b[LEN], int c[LEN]) {
 试着和上一部分结合，可以得到一个加法计算器。
 
 ??? "`adder.cpp`"
+
     ```cpp
     #include <cstdio>
     #include <cstring>
@@ -219,6 +221,7 @@ void sub(int a[LEN], int b[LEN], int c[LEN]) {
 将上一个程序中的 `add()` 替换成 `sub()`，就有了一个减法计算器。
 
 ??? "`subtractor.cpp`"
+
     ```cpp
     #include <cstdio>
     #include <cstring>
@@ -415,6 +418,7 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
 将上面介绍的四则运算的实现结合，即可完成开头提到的计算器程序。
 
 ??? "`calculator.cpp`"
+
     ```cpp
     #include <cstdio>
     #include <cstring>
@@ -559,6 +563,7 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
 [这里](https://paste.ubuntu.com/p/7VKYzpC7dn/) 有一个封装好的高精度整数类。
 
 ??? 这里是另一个模板
+
     ```c++
     #define MAXN 9999
     // MAXN 是一位中最大的数字
