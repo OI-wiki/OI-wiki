@@ -14,11 +14,12 @@
 -   [Judge Duck Online](https://duck.ac/)（松松松的 OJ，精确到 $\mu s$ )
 -   [JoyOI](http://www.joyoi.cn/)（原 Tyvj)
 -   [LibreOJ](https://loj.ac/)
--   [洛谷](http://www.luogu.org/)（常用 OJ，现代 OJ 支持发布比赛等很多功能，评测机快）
+-   [洛谷](https://www.luogu.org/) (常用 OJ，现代 OJ 支持发布比赛等很多功能)
 -   [牛客网](https://www.nowcoder.com/)
 -   [OpenJudge](http://openjudge.cn/)
--   [POJ](http://poj.org/)(PKU OJ，国内历史最悠久的 OJ 之一，很多英文题，有一些基础题和好题）
--   [Universal Online Judge](http://uoj.ac/)(VFK 的 OJ，多原创比赛题和 CCF/THU 题 难度较高）
+-   [POJ](http://poj.org/) (PKU OJ，国内历史最悠久的 OJ 之一，很多英文题，有一些基础题和好题)
+-   [PTA - 拼题 A](https://pintia.cn/)
+-   [Universal Online Judge](http://uoj.ac/) (VFK 的 OJ，多原创比赛题和 CCF/THU 题 难度较高)
 -   [Vijos](https://vijos.org/)
 -   [Virtual Judge](https://vjudge.net/)（可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ)
 -   [ZOJ](http://acm.zju.edu.cn/onlinejudge/)（浙大）
