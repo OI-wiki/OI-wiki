@@ -5,11 +5,11 @@ Interactor，即交互器，用于交互题与选手程序交互。交互题的�
 
 请在阅读下文前先阅读[通用](./general.md)。
 
-Testlib 为 interactor 提供了一个特殊的流 `std::fstream tout`，它是一个 log 流，你可以在 interactor 中向它写入，并在 checker 中用 `ouf` 读取。
+Testlib 为 interactor 提供了一个特殊的流`std::fstream tout`，它是一个 log 流，你可以在 interactor 中向它写入，并在 checker 中用`ouf`读取。
 
-在 interactor 中，我们从 `inf` 读取题目测试数据，将选手程序（和标程）的标准输入写入 `stdout`（在线），从 `ouf` 读选手输出（在线），从 `ans` 读标准输出（在线）。
+在 interactor 中，我们从`inf`读取题目测试数据，将选手程序（和标程）的标准输入写入`stdout`（在线），从`ouf`读选手输出（在线），从`ans`读标准输出（在线）。
 
-如果 interactor 返回了 ok 状态，checker（如果有的话） 将接管工作，检查答案合法性。
+如果 interactor 返回了 ok 状态，checker（如果有的话）将接管工作，检查答案合法性。
 
 ## 用法
 
@@ -38,7 +38,7 @@ Linux:
 
     `2`：询问比答案大。
 
-注意在此题中我们不需要 `ans`，因为我们不需要将标准输出与其比较；而在其他题中可能需要这么做。
+注意在此题中我们不需要`ans`，因为我们不需要将标准输出与其比较；而在其他题中可能需要这么做。
 
 ```cpp
 int main(int argc, char** argv) {

@@ -1,4 +1,4 @@
-Checker，即 [Special Judge](/intro/spj)，用于检验答案是否合法。使用 Testlib 可以让我们免去检验许多东西，使编写简单许多。
+Checker，即[Special Judge](/intro/spj)，用于检验答案是否合法。使用 Testlib 可以让我们免去检验许多东西，使编写简单许多。
 
 Checker 从命令行参数读取到输入文件名、选手输出文件名、标准输出文件名，并确定选手输出是否正确，并返回一个预定义的结果：
 
@@ -7,7 +7,7 @@ Checker 从命令行参数读取到输入文件名、选手输出文件名、标
 ## 简单的例子
 
 ???+note 题目
-    给定两个整数 $a,b$（$-1000 \le a,b \le 1000$），输出它们的和。
+    给定两个整数 $a,b$ （ $-1000 \le a,b \le 1000$ ），输出它们的和。
 
 这题显然不需要 checker 对吧，但是如果一定要的话也可以写一个：
 
@@ -108,7 +108,7 @@ int main(int argc, char* argv[]) {
 这个 checker 主要有两个问题：
 
 1.  它确信标准输出是正确的。如果选手输出比标准输出更优，它会被判成 WA，这不太妙。同时，如果标准输出不合法，也会产生 WA。对于这两种情况，正确的操作都是返回 Fail 状态。
-2.  读入标准输出和选手输出的代码是重复的。在这道题中写两遍读入问题不大，只需要一个 `for` 循环；但是如果有一道题输出很复杂，就会导致你的 checker 结构混乱。重复代码会大大降低可维护性，让你在 debug 或修改格式时变得困难。
+2.  读入标准输出和选手输出的代码是重复的。在这道题中写两遍读入问题不大，只需要一个`for`循环；但是如果有一道题输出很复杂，就会导致你的 checker 结构混乱。重复代码会大大降低可维护性，让你在 debug 或修改格式时变得困难。
 
 读入标准输出和选手输出的方式实际上是完全相同的，这就是我们通常编写一个用流作为参数的读入函数的原因。
 
@@ -187,14 +187,14 @@ int main(int argc, char* argv[]) {
 注意到这种写法我们同时也检查了标准输出是否合法，这样写 checker 让程序更短，且易于理解和 debug。此种写法也适用于输出 YES（并输出方案什么的），或 NO 的题目。
 
 ???+ note
-    对于某些限制的检查可以用 `InStream::ensure/ensuref()` 函数更简洁地实现。如上例第 21 至 23 行也可以等价地写成如下形式：
+    对于某些限制的检查可以用`InStream::ensure/ensuref()`函数更简洁地实现。如上例第 21 至 23 行也可以等价地写成如下形式：
 
     ```cpp
     stream.ensuref(!used[v - 1], "vertex %d was used twice", v);
     ```
 
 ???+ warning
-    请在 `readAns` 中避免调用**全局**函数 `::ensure/ensuref()`，这会导致在某些应判为 Wrong Answer 的选手输出下返回 `_fail`，产生错误。
+    请在`readAns`中避免调用**全局**函数`::ensure/ensuref()`，这会导致在某些应判为 Wrong Answer 的选手输出下返回`_fail`，产生错误。
 
 ## 建议与常见错误
 
@@ -232,4 +232,4 @@ int main(int argc, char* argv[]) {
 
 -   使用项别名
 
-**本文翻译自[Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431)。`testlib.h` 的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。**
+**本文翻译自[Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431)。`testlib.h`的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。**
