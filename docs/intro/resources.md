@@ -4,7 +4,6 @@
 
 ### 国内
 
--   [洛谷](http://www.luogu.org/) (常用 OJ，现代 OJ 支持发布比赛等很多功能，评测机快)
 -   [51Nod](https://www.51nod.com/) (有很多好的数学题和思维题)
 -   [BZOJ](https://www.lydsy.com/JudgeOnline/) (优质的题巨多)
 -   [CodeVS](http://www.codevs.cn/)
@@ -15,6 +14,7 @@
 -   [Judge Duck Online](https://duck.ac/) (松松松的 OJ，精确到 $\mu s$)
 -   [JoyOI](http://www.joyoi.cn/) (原 Tyvj)
 -   [LibreOJ](https://loj.ac/)
+-   [洛谷](https://www.luogu.org/) (常用 OJ，现代 OJ 支持发布比赛等很多功能)
 -   [牛客网](https://www.nowcoder.com/)
 -   [OpenJudge](http://openjudge.cn/)
 -   [PTA - 拼题 A](https://pintia.cn/)
