@@ -42,21 +42,21 @@ $dist~L_m = (|x_1-x_2|^m+|y1-y2|^m)^{\frac{1}{m}}$
 
 当然， 还有其他的一些距离，但是在 OI 中并不常用，有兴趣的话可以了解一下。
 
----
+* * *
 
 ## 一、欧氏距离
 
 在平面直角坐标系中，设点 $A,B$ 的坐标分别为 $A(x_1,y_1),B(x_2,y_2)$ ，则两点间的**欧氏距离**为：
 
-$$\left | AB \right | = \sqrt{\left ( x_2 - x_1 \right )^2 + \left ( y_2 - y_1 \right )^2}$$
+$\left | AB \right | = \sqrt{\left ( x_2 - x_1 \right )^2 + \left ( y_2 - y_1 \right )^2}$
 
 举个例子，若在平面直角坐标系中，有两点 $A(6,5),B(2,2)$，通过公式，我们很容易得到 $A,B$ 两点间的欧氏距离：
 
-$$\left | AB \right | = \sqrt{\left ( 2 - 6 \right )^2 + \left ( 2 - 5 \right )^2} = \sqrt{4^2+3^2} = 5$$ 
+$\left | AB \right | = \sqrt{\left ( 2 - 6 \right )^2 + \left ( 2 - 5 \right )^2} = \sqrt{4^2+3^2} = 5$ 
 
 除此之外，$P(x,y)$ 到原点的欧氏距离可以用公式表示为：
 
-$$|P| = \sqrt{x^2+y^2}$$ 
+$|P| = \sqrt{x^2+y^2}$ 
 
 那么，三维空间中两点的欧氏距离公式呢？我们来观察下图。
 
@@ -64,23 +64,23 @@ $$|P| = \sqrt{x^2+y^2}$$
 
 我们很容易发现，在 $\triangle ADC$ 中， $\angle ADC = 90^\circ$ ；在 $\triangle ACB$ 中， $\angle ACB = 90^\circ$ 。
 
-$$\therefore |AB|=\sqrt{|AC|^2+|BC|^2}$$
+$\therefore |AB|=\sqrt{|AC|^2+|BC|^2}$
 
-$$=\sqrt{|AD|^2+|CD|^2+|BC|^2}$$ 
+$=\sqrt{|AD|^2+|CD|^2+|BC|^2}$ 
 
 由此可得，三维空间中欧氏距离的距离公式为：
 
-$$\left | AB \right | = \sqrt{\left ( x_2 - x_1 \right )^2 + \left ( y_2 - y_1 \right )^2 + \left ( z_2 - z_1 \right )^2}$$ 
+$\left | AB \right | = \sqrt{\left ( x_2 - x_1 \right )^2 + \left ( y_2 - y_1 \right )^2 + \left ( z_2 - z_1 \right )^2}$ 
 
-$$|P| = \sqrt{x^2+y^2+z^2}$$ 
+$|P| = \sqrt{x^2+y^2+z^2}$ 
 
-[NOIP2017提高组 奶酪](https://www.luogu.org/problemnew/show/P3958) 就运用了这一知识，可以作为欧氏距离的例题。
+[NOIP2017 提高组 奶酪](https://www.luogu.org/problemnew/show/P3958) 就运用了这一知识，可以作为欧氏距离的例题。
 
 以此类推，我们就得到了 $n$ 维空间中欧氏距离的距离公式：
 
-$$d(x,y) = \sqrt{\left ( x_1 - y_1 \right )^2 + \left ( x_2 - y_2 \right )^2 + \cdot \cdot \cdot +\left ( x_n - y_n \right )^2}$$
+$d(x,y) = \sqrt{\left ( x_1 - y_1 \right )^2 + \left ( x_2 - y_2 \right )^2 + \cdot \cdot \cdot +\left ( x_n - y_n \right )^2}$
 
-$$ = \sqrt{\sum_{i = 1}^{n}(x_i - y_i)^2}$$ 
+$= \sqrt{\sum_{i = 1}^{n}(x_i - y_i)^2}$ 
 
 欧氏距离虽然很有用，但也有明显的缺点。两个整点计算其欧氏距离时，往往答案是浮点型，会存在一定误差。
 
@@ -108,13 +108,13 @@ $\color{red}\colorbox{white}{红线}$ ， $\color{blue}\colorbox{white}{蓝线}$
 
 通过公式，我们很容易得到 $A,B$ 两点间的曼哈顿距离：
 
-$$d(A,B) = |6 - 2| + |5 - 2| = 4 + 3 = 7$$ 
+$d(A,B) = |6 - 2| + |5 - 2| = 4 + 3 = 7$ 
 
 经过推导，我们得到 $n$ 维空间 的曼哈顿距离公式为：
 
-$$d(A,B) = |x_1 - y_1| + |x_2 - y_2| + \cdot \cdot \cdot + |x_n - y_n|$$
+$d(A,B) = |x_1 - y_1| + |x_2 - y_2| + \cdot \cdot \cdot + |x_n - y_n|$
 
-$$=\sum_{i = 1}^{n}|x_i - y_i|$$ 
+$=\sum_{i = 1}^{n}|x_i - y_i|$ 
 
 除了公式之外，曼哈顿距离还具有以下数学性质：
 
@@ -260,7 +260,7 @@ return 0;
 
 <p>$$d(x,y) = max\begin{Bmatrix} |x_1 - y_1|,|x_2 - y_2|,\cdot \cdot \cdot,|x_n - y_n|\end{Bmatrix}$$
 
-$$ = max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in n)$$ 
+$= max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in n)$ 
 
 <hr />
 
@@ -318,15 +318,15 @@ $$ = max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in n)$$
 
 <p>$A,B$ 两点的 曼哈顿距离 为：
 
-$$d(A,B)=|x_1 - x_2| + |y_1 - y_2|$$
+$d(A,B)=|x_1 - x_2| + |y_1 - y_2|$
 
-$$=|x_1 - x_2| + |y_1 - y_2|$$
+$=|x_1 - x_2| + |y_1 - y_2|$
 
-$$= max\begin{Bmatrix} x_1 - x_2 + y_1 - y_2, x_1 - x_2 + y_2 - y_1,x_2 - x_1 + y_1 - y_2, x_2 - x_1 + y_2 - y_1\end{Bmatrix} $$
+$= max\begin{Bmatrix} x_1 - x_2 + y_1 - y_2, x_1 - x_2 + y_2 - y_1,x_2 - x_1 + y_1 - y_2, x_2 - x_1 + y_2 - y_1\end{Bmatrix}$
 
 （ 把绝对值拆开，能够得到四个值，这四个值中的最大值是两个 非负数 之和，即 曼哈顿距离 ）
 
-$$= max(|(x_1 + y_1) - (x_2 + y_2)|, |(x_1 - y_2) - (x_2 - y_2)|)$$ 
+$= max(|(x_1 + y_1) - (x_2 + y_2)|, |(x_1 - y_2) - (x_2 - y_2)|)$ 
 
 我们很容易发现，这就是 $(x_1 + y_1,x_1 - y_1), (x_2 + y_2,x_2 - y_2)$ 两点之间的 切比雪夫距离。
 
@@ -334,9 +334,9 @@ $$= max(|(x_1 + y_1) - (x_2 + y_2)|, |(x_1 - y_2) - (x_2 - y_2)|)$$
 
 同理， $A,B$ 两点的 切比雪夫距离 为：
 
-$$d(A,B)=max\begin{Bmatrix} |x_1 - x_2|,|y_1 - y_2|\end{Bmatrix} $$
+$d(A,B)=max\begin{Bmatrix} |x_1 - x_2|,|y_1 - y_2|\end{Bmatrix}$
 
-$$=max\begin{Bmatrix} |\frac{x_1 + y_1}{2}-\frac{x_2 + y_2}{2}|+|\frac{x_1 - y_1}{2}-\frac{x_2 - y_2}{2}|\end{Bmatrix} $$ 
+$=max\begin{Bmatrix} |\frac{x_1 + y_1}{2}-\frac{x_2 + y_2}{2}|+|\frac{x_1 - y_1}{2}-\frac{x_2 - y_2}{2}|\end{Bmatrix}$ 
 
 而这就是 $(\frac{x_1 + y_1}{2},\frac{x_1 - y_1}{2}), (\frac{x_2 + y_2}{2},\frac{x_2 - y_2}{2})$ 两点之间的 曼哈顿距离。
 
