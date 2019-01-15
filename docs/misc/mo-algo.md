@@ -161,6 +161,59 @@ int main() {
 }
 ```
 
+## 普通莫队的优化
+
+我们看一下下面这组数据
+
+```text
+// 设块的大小为 2 (假设)
+1 1
+2 100
+3 1
+4 100
+```
+
+手动模拟一下可以发现，r 指针的移动次数大概为 300 次，我们处理完第一个块之后，$l = 2, r = 100$，此时只需要移动两次 l 指针就可以得到第四个询问的答案，但是我们却将 r 指针移动到 1 来获取第三个询问的答案，再移动到 100 获取第四个询问的答案，这样多了九十几次的指针移动。我们怎么优化这个地方呢？这里我们就要用到奇偶化排序
+
+什么是奇偶化排序？奇偶化排序即对于属于奇数块的询问，r 按从小到大排序，对于属于偶数块的排序，r 从大到小排序，这样我们的 r 指针在处理完这个奇数块的问题后，将在返回的途中处理偶数块的问题，再向 n 移动处理下一个奇数块的问题，优化了 r 指针的移动次数，一般情况下，这种优化能让程序快 30% 左右
+
+排序代码：
+
+压行
+
+```cpp
+// 这里有个小细节等下会讲
+int unit;  // 块的大小
+struct node {
+  int l, r, id;
+  bool operator<(const node &x) const {
+    return l / unit == x.l / unit
+               ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r))
+               : l < x.l;
+  }
+};
+```
+
+不压行
+
+```cpp
+struct node {
+  int l, r, id;
+  bool operator<(const node &x) const {
+    if (l / unit != x.l / unit) return l < x.l;
+    if ((l / unit) & 1)
+      return r <
+             x.r;  // 注意这里和下面一行不能写小于（大于）等于，否则会出错（详见下面的小细节）
+    return r > x.r;
+  }
+};
+```
+
+!!! warning
+    小细节：如果使用 sort 比较两个函数，不能出现 $a < b == true$ 且 $b < a == true$ 的情况，否则会运行错误
+
+对于压行版，如果没有 $r == x.r$ 的特判，当 l 属于同一奇数块且 r 相等时，会出现上面小细节中的问题（自己手动模拟一下），对于压行版，如果写成小于（大于）等于，则也会出现同样的问题
+
 ## 带修改
 
 请确保您已经会普通莫队算法了。
@@ -178,12 +231,12 @@ int main() {
 
 那么我们的坐标也可以在时间维上移动，即 $[l,r,time]$ 多了一维可以移动的方向，可以变成：
 
-- $[l-1,r,time]$
-- $[l+1,r,time]$
-- $[l,r-1,time]$
-- $[l,r+1,time]$
-- $[l,r,time-1]$
-- $[l,r,time+1]$
+-   $[l-1,r,time]$
+-   $[l+1,r,time]$
+-   $[l,r-1,time]$
+-   $[l,r+1,time]$
+-   $[l,r,time-1]$
+-   $[l,r,time+1]$
 
 这样的转移也是 $O(1)$ 的，但是我们排序又多了一个关键字，再搞搞就行了
 
@@ -193,9 +246,9 @@ int main() {
 
 还是来证明一下时间复杂度（默认块大小为 $\sqrt{n}$）：
 
-- 左右端点所在块不变，时间在排序后单调向右移，这样的复杂度是 $O(n)$
-- 若左右端点所在块改变，时间一次最多会移动 n 个格子，时间复杂度 $O(n)$
-- 左端点所在块一共有 $n^{\frac{1}{3}}$ 中，右端点也是 $n^{\frac{1}{3}}$ 种，一共 ${n^{\frac{1}{3}}}\times{n^{\frac{1}{3}}}=n^{\frac{2}{3}}$ 种，每种乘上移动的复杂度 $O(n)$，总复杂度 $O(n^{\frac{5}{3}})$
+-   左右端点所在块不变，时间在排序后单调向右移，这样的复杂度是 $O(n)$
+-   若左右端点所在块改变，时间一次最多会移动 n 个格子，时间复杂度 $O(n)$
+-   左端点所在块一共有 $n^{\frac{1}{3}}$ 中，右端点也是 $n^{\frac{1}{3}}$ 种，一共 ${n^{\frac{1}{3}}}\times{n^{\frac{1}{3}}}=n^{\frac{2}{3}}$ 种，每种乘上移动的复杂度 $O(n)$，总复杂度 $O(n^{\frac{5}{3}})$
 
 ### 例题
 
@@ -203,8 +256,8 @@ int main() {
 
 题目大意：给你一个序列，M 个操作，有两种操作：
 
-1. 修改序列上某一位的数字
-2. 询问区间 $[l,r]$ 中数字的种类数（多个相同的数字只算一个）
+1.  修改序列上某一位的数字
+2.  询问区间 $[l,r]$ 中数字的种类数（多个相同的数字只算一个）
 
 我们不难发现，如果不带操作 1（修改）的话，我们就能轻松用普通莫队解决。
 
@@ -212,18 +265,18 @@ int main() {
 
 先考虑普通莫队的做法：
 
-- 每次扩大区间时，每加入一个数字，则统计它已经出现的次数，如果加入前这种数字出现次数为 $0$，则说明这是一种新的数字，答案 $+1$。然后这种数字的出现次数 $+1$。
-- 每次减小区间时，每删除一个数字，则统计它删除后的出现次数，如果删除后这种数字出现次数为 $0$，则说明这种数字已经从当前的区间内删光了，也就是当前区间减少了一种颜色，答案 $-1$。然后这种数字的出现次数 $-1$。
+-   每次扩大区间时，每加入一个数字，则统计它已经出现的次数，如果加入前这种数字出现次数为 $0$，则说明这是一种新的数字，答案 $+1$。然后这种数字的出现次数 $+1$。
+-   每次减小区间时，每删除一个数字，则统计它删除后的出现次数，如果删除后这种数字出现次数为 $0$，则说明这种数字已经从当前的区间内删光了，也就是当前区间减少了一种颜色，答案 $-1$。然后这种数字的出现次数 $-1$。
 
 现在再来考虑修改：
 
-- 单点修改，把某一位的数字修改掉。假如我们是从一个经历修改次数为 $i$ 的询问转移到一个经历修改次数为 $j$ 的询问上，且 $i<j$ 的话，我们就需要把第 $i+1$ 个到第 $j$ 个修改强行加上。
-- 假如 $j<i$ 的话，则需要把第 $i$ 个到第 $j+1$ 个修改强行还原。
+-   单点修改，把某一位的数字修改掉。假如我们是从一个经历修改次数为 $i$ 的询问转移到一个经历修改次数为 $j$ 的询问上，且 $i<j$ 的话，我们就需要把第 $i+1$ 个到第 $j$ 个修改强行加上。
+-   假如 $j<i$ 的话，则需要把第 $i$ 个到第 $j+1$ 个修改强行还原。
 
 怎么强行加上一个修改呢？假设一个修改是修改第 $pos$ 个位置上的颜色，原本 $pos$ 上的颜色为 $a$，修改后颜色为 $b$，还假设当前莫队的区间扩展到了 $[l,r]$。
 
-- 加上这个修改：我们首先判断 $pos$ 是否在区间 $[l,r]$ 内。如果是的话，我们等于是从区间中删掉颜色 $a$，加上颜色 $b$，并且当前颜色序列的第 $pos$ 项的颜色改成 $b$。如果不在区间 $[l,r]$ 内的话，我们就直接修改当前颜色序列的第 $pos$ 项为 $b$。
-- 还原这个修改：等于加上一个修改第 $pos$ 项、把颜色 $b$ 改成颜色 $a$ 的修改。
+-   加上这个修改：我们首先判断 $pos$ 是否在区间 $[l,r]$ 内。如果是的话，我们等于是从区间中删掉颜色 $a$，加上颜色 $b$，并且当前颜色序列的第 $pos$ 项的颜色改成 $b$。如果不在区间 $[l,r]$ 内的话，我们就直接修改当前颜色序列的第 $pos$ 项为 $b$。
+-   还原这个修改：等于加上一个修改第 $pos$ 项、把颜色 $b$ 改成颜色 $a$ 的修改。
 
 因此这道题就这样用带修改莫队轻松解决啦！
 
@@ -295,7 +348,7 @@ int main() {
 
 ## 树上莫队
 
-莫队只能处理线性问题，我们要把树强行压成序列
+一般的莫队只能处理线性问题，我们要把树强行压成序列
 
 我们可以将树的括号序跑下来，把括号序分块，在括号序上跑莫队
 
@@ -303,10 +356,10 @@ int main() {
 
 dfs 一棵树，然后如果 dfs 到 x 点，就 push_back(x),dfs 完 x 点，就直接 push_back(-x)，然后我们在挪动指针的时候
 
-- 新加入的值是 x  ---> add(x)
-- 新加入的值是 - x ---> del(x)
-- 新删除的值是 x  ---> del(x)
-- 新删除的值是 - x ---> add(x)
+-   新加入的值是 x  ---> add(x)
+-   新加入的值是 - x ---> del(x)
+-   新删除的值是 x  ---> del(x)
+-   新删除的值是 - x ---> add(x)
 
 这样的话，我们就把一棵树处理成了序列。
 
@@ -502,6 +555,242 @@ int main() {
   for (int i = 1; i <= cnt1; i++) {
     printf("%lld\n", ans[i]);
   }
+  return 0;
+}
+```
+
+## 真 · 树上莫队
+
+上面的树上莫队只是将树转化成了链，下面的才是真正的树上莫队
+
+~~（由于莫队都是板子题，所以实现部分不做太多解释）~~
+
+### 询问的排序
+
+首先我们知道莫队的是基于分块的算法，所以我们需要找到一种树上的分块方法来保证时间复杂度
+
+条件：
+
+-   属于同一块的节点之间的距离不超过给定块的大小
+-   每个块中的节点不能太多也不能太少
+-   每个节点都要属于一个块
+-   编号相邻的块之间的距离不能太大
+
+了解了这些条件后，我们看到这样一道题[ \[SCOI2005\] 王室联邦](https://www.luogu.org/problemnew/show/P2325)
+
+在这道题的基础上我们只要保证最后一个条件就可以解决分块的问题了
+
+!!! 思路
+    令 lim 为希望块的大小，首先，对于整个树 dfs，当子树的大小大于 lim 时，就将它们分在一块，容易想到：对于根，可能会剩下一些点，于是将这些点分在最后一个块里
+
+做法：用栈维护当前节点作为父节点访问它的子节点，当从栈顶到父节点的距离大于希望块的大小时，弹出这部分元素分为一块，最后剩余的一块单独作为一块
+
+最后的排序方法：若第一维时间戳大于第二维，交换它们，按第一维所属块为第一关键字，第二维时间戳为第二关键字排序
+
+### 指针的移动
+
+容易想到，我们可以标记被计入答案的点，让指针直接向目标移动，同时取反路径上的点
+
+但是，这样有一个问题，若指针一开始都在 x 上，显然 x 被标记，当两个指针向同一子节点移动（还有许多情况）时，x 应该不被标记，但实际情况是 x 被标记，因为两个指针分别标记了一次，抵消了
+
+如何解决呢？
+
+有一个很显然的性质：这些点肯定是某些 LCA，因为 LCA 处才有可能被重复撤销导致撤销失败
+
+所以我们每次不标记 LCA，到需要询问答案时再将 LCA 标记，然后再撤销
+
+```cpp
+//取反路径上除LCA以外的所有节点
+void move(int x, int y) {
+  if (dp[x] < dp[y]) swap(x, y);
+  while (dp[x] > dp[y]) update(x), x = fa[x];
+  while (x != y) update(x), update(y), x = fa[x], y = fa[y];
+  // x!=y保证LCA没被取反
+}
+```
+
+对于求 LCA，我们可以用树剖，然后我们就可以把分块的步骤放到树剖的第一次 dfs 里面，时间戳也可以直接用第二次 dfs 的 dfs 序~~（如果你用 tarjan 就当我没说）~~
+
+```cpp
+int bl[100002], bls = 0;  //属于的块，块的数量
+unsigned step;            //块大小
+int fa[100002], dp[100002], hs[100002] = {0}, sz[100002] = {0};
+//父节点，深度，重儿子，大小
+stack<int> sta;
+void dfs1(int x) {
+  sz[x] = 1;
+  unsigned ss = sta.size();
+  for (int i = head[x]; i; i = nxt[i])
+    if (ver[i] != fa[x]) {
+      fa[ver[i]] = x;
+      dp[ver[i]] = dp[x] + 1;
+      dfs1(ver[i]);
+      sz[x] += sz[ver[i]];
+      if (sz[ver[i]] > sz[hs[x]]) hs[x] = ver[i];
+      if (sta.size() - ss >= step) {
+        bls++;
+        while (sta.size() != ss) bl[sta.top()] = bls, sta.pop();
+      }
+    }
+  sta.push(x);
+}
+// main
+if (!sta.empty()) {
+  bls++;  //这一行可写可不写
+  while (!sta.empty()) bl[sta.top()] = bls, sta.pop();
+}
+```
+
+### 时间复杂度
+
+重点到了，这里关系到块的大小取值
+
+设块的大小为 unit
+
+对于 x 指针，由于每个块中节点的距离在 unit 左右，每个块中 x 指针移动 $unit^2$ 次（ $unit\times dis_max$ ），共计 $n\times unit$ （ $unit^2 \times (n\div unit)$ ）次
+
+对于 y 指针，每个块中最多移动 O（n）次，共计 $n^2\div unit$ （ $n \times (n \div unit)$ ）次
+
+加起来大概在根号处取得最小值（由于树上莫队块的大小不固定，所以不一定要严格按照）
+
+### [WC2013]糖果公园
+
+由于多了时间维，块的大小取到 0.6 的样子就差不多了
+
+```cpp
+#include <bits/stdc++.h>
+//#pragma GCC optimize(2)
+using namespace std;
+inline int gi() {
+  register int x, c, op = 1;
+  while (c = getchar(), c < '0' || c > '9')
+    if (c == '-') op = -op;
+  x = c ^ 48;
+  while (c = getchar(), c >= '0' && c <= '9')
+    x = (x << 3) + (x << 1) + (c ^ 48);
+  return x * op;
+}
+int head[100002], nxt[200004], ver[200004], tot = 0;
+void add(int x, int y) {
+  ver[++tot] = y, nxt[tot] = head[x], head[x] = tot;
+  ver[++tot] = x, nxt[tot] = head[y], head[y] = tot;
+}
+int bl[100002], bls = 0;
+unsigned step;
+int fa[100002], dp[100002], hs[100002] = {0}, sz[100002] = {0}, top[100002],
+                            id[100002];
+stack<int> sta;
+void dfs1(int x) {
+  sz[x] = 1;
+  unsigned ss = sta.size();
+  for (int i = head[x]; i; i = nxt[i])
+    if (ver[i] != fa[x]) {
+      fa[ver[i]] = x, dp[ver[i]] = dp[x] + 1;
+      dfs1(ver[i]);
+      sz[x] += sz[ver[i]];
+      if (sz[ver[i]] > sz[hs[x]]) hs[x] = ver[i];
+      if (sta.size() - ss >= step) {
+        bls++;
+        while (sta.size() != ss) bl[sta.top()] = bls, sta.pop();
+      }
+    }
+  sta.push(x);
+}
+int cnt = 0;
+void dfs2(int x, int hf) {
+  top[x] = hf, id[x] = ++cnt;
+  if (!hs[x]) return;
+  dfs2(hs[x], hf);
+  for (int i = head[x]; i; i = nxt[i])
+    if (ver[i] != fa[x] && ver[i] != hs[x]) dfs2(ver[i], ver[i]);
+}
+int lca(int x, int y) {
+  while (top[x] != top[y]) {
+    if (dp[top[x]] < dp[top[y]]) swap(x, y);
+    x = fa[top[x]];
+  }
+  return dp[x] < dp[y] ? x : y;
+}
+struct qu {
+  int x, y, t, id;
+  bool operator<(const qu a) const {
+    return bl[x] == bl[a.x] ? (bl[y] == bl[a.y] ? t < a.t : bl[y] < bl[a.y])
+                            : bl[x] < bl[a.x];
+  }
+} q[100001];
+int qs = 0;
+struct ch {
+  int x, y, b;
+} upd[100001];
+int ups = 0;
+long long ans[100001];
+int b[100001] = {0};
+int a[100001];
+long long w[100001];
+long long v[100001];
+long long now = 0;
+bool vis[100001] = {0};
+void back(int t) {
+  if (vis[upd[t].x]) {
+    now -= w[b[upd[t].y]--] * v[upd[t].y];
+    now += w[++b[upd[t].b]] * v[upd[t].b];
+  }
+  a[upd[t].x] = upd[t].b;
+}
+void change(int t) {
+  if (vis[upd[t].x]) {
+    now -= w[b[upd[t].b]--] * v[upd[t].b];
+    now += w[++b[upd[t].y]] * v[upd[t].y];
+  }
+  a[upd[t].x] = upd[t].y;
+}
+void update(int x) {
+  if (vis[x])
+    now -= w[b[a[x]]--] * v[a[x]];
+  else
+    now += w[++b[a[x]]] * v[a[x]];
+  vis[x] ^= 1;
+}
+void move(int x, int y) {
+  if (dp[x] < dp[y]) swap(x, y);
+  while (dp[x] > dp[y]) update(x), x = fa[x];
+  while (x != y) update(x), update(y), x = fa[x], y = fa[y];
+}
+int main() {
+  int n = gi(), m = gi(), k = gi();
+  step = (int)pow(n, 0.6);
+  for (int i = 1; i <= m; i++) v[i] = gi();
+  for (int i = 1; i <= n; i++) w[i] = gi();
+  for (int i = 1; i < n; i++) add(gi(), gi());
+  for (int i = 1; i <= n; i++) a[i] = gi();
+  for (int i = 1; i <= k; i++)
+    if (gi())
+      q[++qs].x = gi(), q[qs].y = gi(), q[qs].t = ups, q[qs].id = qs;
+    else
+      upd[++ups].x = gi(), upd[ups].y = gi();
+  for (int i = 1; i <= ups; i++) upd[i].b = a[upd[i].x], a[upd[i].x] = upd[i].y;
+  for (int i = ups; i; i--) back(i);
+  fa[1] = 1;
+  dfs1(1), dfs2(1, 1);
+  if (!sta.empty()) {
+    bls++;
+    while (!sta.empty()) bl[sta.top()] = bls, sta.pop();
+  }
+  for (int i = 1; i <= n; i++)
+    if (id[q[i].x] > id[q[i].y]) swap(q[i].x, q[i].y);
+  sort(q + 1, q + qs + 1);
+  int x = 1, y = 1, t = 0;
+  for (int i = 1; i <= qs; i++) {
+    if (x != q[i].x) move(x, q[i].x), x = q[i].x;
+    if (y != q[i].y) move(y, q[i].y), y = q[i].y;
+    int f = lca(x, y);
+    update(f);
+    while (t < q[i].t) change(++t);
+    while (t > q[i].t) back(t--);
+    ans[q[i].id] = now;
+    update(f);
+  }
+  for (int i = 1; i <= qs; i++) printf("%lld\n", ans[i]);
   return 0;
 }
 ```

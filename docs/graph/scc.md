@@ -8,46 +8,6 @@
 
 这里想要介绍的是如何来求强连通分量。
 
-## Kosaraju 算法
-
-Kosaraju 算法依靠两次简单的 dfs 实现。
-
-第一次 dfs，选取任意顶点作为起点，遍历所有为访问过的顶点，并在回溯之前给顶点编号，也就是后序遍历。
-
-第二次 dfs，对于反向后的图，以标号最大的顶点作为起点开始 dfs。这样遍历到的顶点集合就是一个强连通分量。对于所有未访问过的结点，选取标号最大的，重复上述过程。
-
-两次 dfs 结束后，强连通分量就找出来了，Kosaraju 算法的时间复杂度为 $O(n+m)$
-
-### 实现
-
-```cpp
-// g 是原图，g2 是反图
-
-void dfs1(int u) {
-  vis[u] = true;
-  for (int v : g[u])
-    if (!vis[v]) dfs1(v);
-  s.push_back(v);
-}
-
-void dfs2(int u) {
-  color[u] = sccCnt;
-  for (int v : g2[u])
-    if (!color[v]) dfs2(v);
-}
-
-void kosaraju() {
-  sccCnt = 0;
-  for (int i = 1; i <= n; ++i)
-    if (!vis[i]) dfs1(i);
-  for (int i = n; i >= 1; --i)
-    if (!color[s[i]]) {
-      ++sccCnt;
-      dfs2(s[i])
-    }
-}
-```
-
 ## Tarjan 算法
 
 Robert E. Tarjan (1948~) 美国人。
@@ -116,7 +76,47 @@ dfs(x) {
 
 （转自维基：<https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm> ）
 
-时间复杂度 $O(n+m)$
+时间复杂度 $O(n + m)$
+
+## Kosaraju 算法
+
+Kosaraju 算法依靠两次简单的 dfs 实现。
+
+第一次 dfs，选取任意顶点作为起点，遍历所有为访问过的顶点，并在回溯之前给顶点编号，也就是后序遍历。
+
+第二次 dfs，对于反向后的图，以标号最大的顶点作为起点开始 dfs。这样遍历到的顶点集合就是一个强连通分量。对于所有未访问过的结点，选取标号最大的，重复上述过程。
+
+两次 dfs 结束后，强连通分量就找出来了，Kosaraju 算法的时间复杂度为 $O(n+m)$
+
+### 实现
+
+```cpp
+// g 是原图，g2 是反图
+
+void dfs1(int u) {
+  vis[u] = true;
+  for (int v : g[u])
+    if (!vis[v]) dfs1(v);
+  s.push_back(v);
+}
+
+void dfs2(int u) {
+  color[u] = sccCnt;
+  for (int v : g2[u])
+    if (!color[v]) dfs2(v);
+}
+
+void kosaraju() {
+  sccCnt = 0;
+  for (int i = 1; i <= n; ++i)
+    if (!vis[i]) dfs1(i);
+  for (int i = n; i >= 1; --i)
+    if (!color[s[i]]) {
+      ++sccCnt;
+      dfs2(s[i])
+    }
+}
+```
 
 ## Garbow 算法
 

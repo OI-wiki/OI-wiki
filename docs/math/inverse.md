@@ -4,7 +4,7 @@
 
 ## 如何求逆元
 
-### 扩展欧几里得法：
+### 扩展欧几里得法
 
 ```cpp
 void ex_gcd(int a, int b, int& x, int& y) {
@@ -22,9 +22,9 @@ void ex_gcd(int a, int b, int& x, int& y) {
 
 扩展欧几里得法和求解 [线性同余方程](/math/linear-equation/) 是一个原理，在这里不展开解释。
 
-### 快速幂法：
+### 快速幂法
 
-这个要运用 [费马小定理](https://oi-wiki.org/math/fermat/)：
+这个要运用 [费马小定理](/math/fermat/)：
 
 > 若 $p$ 为质数，$a$ 为正整数，且 $a$、$p$ 互质，则 $a^{p-1} \equiv 1 \pmod p$。
 

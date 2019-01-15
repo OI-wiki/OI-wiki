@@ -1,6 +1,6 @@
 # Project Information
 site_name: OI Wiki
-site_description: OI Wiki 是一个编程竞赛知识整合站点，提供有趣又实用的编程竞赛知识以及其他有帮助的内容，帮助广大编程竞赛爱好者更快更深入地学习编程竞赛竞赛
+site_description: OI Wiki 是一个编程竞赛知识整合站点，提供有趣又实用的编程竞赛知识以及其他有帮助的内容，帮助广大编程竞赛爱好者更快更深入地学习编程竞赛
 site_author: OI Wiki Team
 site_url: https://oi-wiki.org
 strict: true
@@ -11,22 +11,30 @@ repo_url: 'https://github.com/24OI/OI-wiki'
 edit_uri: 'blob/master/docs/'
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2018 OI Wiki Team'
+copyright: 'Copyright &copy; 2016 - 2019 OI Wiki Team'
 
 # Contents
 nav:
   - 简介:
     - Getting Started: index.md
-    - OI 赛制简介: intro/mode.md
+    - OI 赛事与赛制: intro/mode.md
     - 学习资源: intro/resources.md
     - 常见错误: intro/common-mistakes.md
     - 常见技巧: intro/common-tricks.md
-    - 工具软件: 
+    - 非传统题: intro/non-traditional.md
+    - 工具软件:
       - 评测工具: intro/judgers.md
       - 编辑工具: intro/editors.md
       - WSL (Windows 10): intro/wsl.md
       - Special Judge: intro/spj.md
-      - Testlib: intro/testlib.md
+      - Testlib:
+        - Testlib 简介: intro/testlib/index.md
+        - 通用: intro/testlib/general.md
+        - Generator: intro/testlib/generator.md
+        - Validator: intro/testlib/validator.md
+        - Interactor: intro/testlib/interactor.md
+        - Checker: intro/testlib/checker.md
+    - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
   - 基础部分:
@@ -39,6 +47,7 @@ nav:
     - 表达式求值: basic/expression.md
     - 二分: basic/binary.md
     - 构造: basic/construction.md
+    - 前缀和 & 差分: basic/prefix-sum.md
     - 文件操作: basic/file-operation.md
   - 搜索:
     - 搜索部分简介: search/index.md
@@ -66,10 +75,10 @@ nav:
     - 其它 DP 方法: dp/misc.md
   - 字符串:
     - 字符串部分简介: string/index.md
-    - 标准库: string/stl.md
+    - 标准库: string/lib-func.md
     - 字符串匹配: string/match.md
     - 哈希: string/hash.md
-    - KMP: string/kmp.md
+    - 前缀函数与 KMP 算法: string/prefix-function.md
     - 字典树 (Trie): string/trie.md
     - 回文自动机: string/pam.md
     - 回文树: string/palindrome-tree.md
@@ -79,34 +88,39 @@ nav:
     - 后缀树: string/suffix-tree.md
     - Manacher: string/manacher.md
     - 最小表示法: string/minimal-string.md
+    - Z 函数（扩展 KMP）: string/z-function.md
   - 数学:
     - 数学部分简介: math/index.md
     - 进制: math/base.md
     - 位运算: math/bit.md
-    - 素数: math/prime.md
-    - 最大公约数: math/gcd.md
-    - 裴蜀定理: math/bezouts.md
-    - 欧拉函数: math/euler.md
-    - 筛法: math/sieve.md
-    - 莫比乌斯反演: math/mobius.md
-    - 费马小定理: math/fermat.md
+    - 高精度: math/bignum.md
     - 快速幂: math/quick-pow.md
-    - 线性基: math/basis.md
-    - 乘法逆元: math/inverse.md
-    - 线性方程: math/linear-equation.md
+    - 整除及其性质:
+      - 素数: math/prime.md
+      - 最大公约数: math/gcd.md
+      - 欧拉函数: math/euler.md
+      - 筛法: math/sieve.md
+      - 费马小定理: math/fermat.md
+    - 同余方程相关:
+      - 裴蜀定理: math/bezouts.md
+      - 乘法逆元: math/inverse.md
+      - 线性方程: math/linear-equation.md
+      - 中国剩余定理: math/crt.md
+      - BSGS: math/bsgs.md
+      - 原根: math/primitive-root.md
     - 高斯消元: math/gauss.md
     - 矩阵: math/matrix.md
-    - 中国剩余定理: math/crt.md
     - 复数: math/complex.md
-    - 高精度: math/bignum.md
     - 分段打表: math/dictionary.md
-    - 原根: math/primitive-root.md
-    - BSGS: math/bsgs.md
-    - 博弈论: math/game.md
-    - 多项式: math/poly.md
-    - 快速傅里叶变换: math/fft.md
-    - 快速数论变换: math/ntt.md
-    - 快速沃尔什变换: math/fwt.md
+    - 莫比乌斯反演: math/mobius.md
+    - 杜教筛: math/du-sieves.md
+    - 线性基: math/basis.md
+    - 多项式:
+      - 多项式部分简介: math/poly.md
+      - 拉格朗日插值: math/lagrange-poly.md
+      - 快速傅里叶变换: math/fft.md
+      - 快速数论变换: math/ntt.md
+      - 快速沃尔什变换: math/fwt.md
     - 组合数学:
       - 排列组合: math/combination.md
       - 卡特兰数: math/catalan.md
@@ -118,6 +132,7 @@ nav:
     - 置换群: math/permutation-group.md
     - 数值积分: math/integral.md
     - 线性规划: math/linear-programming.md
+    - 博弈论: math/game-theory.md
     - 杂项: math/misc.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
@@ -129,7 +144,7 @@ nav:
       - bitset: ds/stl/bitset.md
     - pb_ds:
       - pb_ds 简介: ds/pb-ds/index.md
-      - priority_queue: ds/pb-ds/priority-queue.md
+      - __gnu_pbds::priority_queue: ds/pb-ds/priority-queue.md
     - 栈: ds/stack.md
     - 队列: ds/queue.md
     - 链表: ds/linked-list.md
@@ -149,14 +164,17 @@ nav:
     - 划分树: ds/dividing.md
     - 虚树: ds/virtual-tree.md
     - Size Balanced Tree: ds/sbt.md
+    - 二叉搜索树: ds/bst.md
     - Treap: ds/treap.md
     - Splay: ds/splay.md
+    - WBLT: ds/wblt.md
     - AVL 树: ds/avl.md
     - 替罪羊树: ds/scapegoat.md
     - 树套树:
       - 线段树套线段树: ds/seg-in-seg.md
       - 平衡树套线段树: ds/seg-in-balanced.md
       - 线段树套平衡树: ds/balanced-in-seg.md
+      - 树状数组套主席树: ds/persistent-in-bit.md
     - K-Dtree: ds/k-dtree.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
@@ -170,25 +188,27 @@ nav:
     - 图论部分简介: graph/index.md
     - 图论基础: graph/basic.md
     - 图的遍历: graph/traverse.md
-    - 树:
+    - 树上问题:
       - 树基础: graph/tree-basic.md
-      - 最小生成树: graph/mst.md
+      - 最近公共祖先: graph/lca.md
+      - DFS 序: graph/dfs-order.md
+      - 树的其他问题: graph/tree-misc.md
       - 树链剖分: graph/heavy-light-decomposition.md
       - 树分治: graph/tree-divide.md
-      - 树的其他问题: graph/tree-misc.md
       - 动态树分治: graph/dynamic-tree-divide.md
-      - 最近公共祖先: graph/lca.md
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
-    - 2-SAT: graph/2-sat.md
-    - 欧拉图: graph/euler.md
-    - 强连通分量: graph/scc.md
-    - 双连通分量: graph/bcc.md
-    - 割点和桥: graph/bridge.md
-    - 二分图: graph/bi-graph.md
+    - 最小生成树: graph/mst.md
     - 最短路: graph/shortest-path.md
     - 差分约束: graph/differential-constraints.md
     - k 短路: graph/kth-path.md
+    - 连通性相关:
+      - 强连通分量: graph/scc.md
+      - 双连通分量: graph/bcc.md
+      - 割点和桥: graph/bridge.md
+      - 2-SAT: graph/2-sat.md
+    - 欧拉图: graph/euler.md
+    - 二分图: graph/bi-graph.md
     - 最小环: graph/min-circle.md
     - 网络流:
       - 网络流简介: graph/flow.md
@@ -210,7 +230,6 @@ nav:
     - 计算几何杂项: geometry/magic.md
   - 杂项:
     - 杂项简介: misc/index.md
-    - 非传统题: misc/non-traditional.md
     - CDQ 分治: misc/cdq-divide.md
     - 莫队算法: misc/mo-algo.md
     - 爬山算法: misc/hill-climbing.md
@@ -254,16 +273,18 @@ extra:
   disqus: 'OI-Wiki'
   copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
+  manifest: 'manifest.webmanifest'
+  githash: ''
 
 extra_javascript:
   - 'https://cdnjs.loli.net/ajax/libs/Han/3.3.0/han.min.js'
   - '_static/js/extra.js?v=10'
   - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
-  
+
 
 extra_css:
-  - 'https://cdn.jsdelivr.net/npm/ah@1.1.0/han.min.css'
-  - '_static/css/extra.css?v=8'
+  - 'https://cdn.jsdelivr.net/npm/ah@1.2.0/han.min.css'
+  - '_static/css/extra.css?v=11'
 
 # Extensions
 markdown_extensions:
@@ -288,7 +309,11 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.progressbar
   - pymdownx.smartsymbols
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: math
+          class: arithmatex
+          format: !!python/name:pymdownx.arithmatex.fence_mathjax_format
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde

@@ -8,13 +8,11 @@
 
 表示把两个整数分别转换为二进制后各位逐一比较。
 
-<table><tr>
-    <td style="text-align:center;"><code>&</code></td><td>只有在两个（对应位数中）都为 1 时才为 1。</td>
-</tr><tr>
-    <td style="text-align:center;"><code>|</code></td><td>只要在两个（对应位数中）有一个 1 时就为 1。</td>
-</tr><tr>
-    <td style="text-align:center;"><code>^</code></td><td>只有两个（对应位数）不同时才为 1。</td>
-</tr></table>
+|       运算符       |            解释           |
+| :-------------: | :---------------------: |
+|       `&`       |  只有在两个（对应位数中）都为 1 时才为 1 |
+| <code>\|</code> | 只要在两个（对应位数中）有一个 1 时就为 1 |
+|       `^`       |    只有两个（对应位数）不同时才为 1    |
 
 `^` 运算的逆运算是它本身，也就是说两次异或同一个数最后结果不变，即 `(a ^ b) ^ b = a`。
 
@@ -74,26 +72,26 @@
 
 注意：
 
-1. 左移和右移是有返回值的，并非对 $num$ 本身进行操作。
-2. 左移和右移的优先级低于四则运算符，例如 $x<<1+1$ 会被解释为 $x<<(1+1)$ ，所以必要的时候，要使用括号。
+1.  左移和右移是有返回值的，并非对 $num$ 本身进行操作。
+2.  左移和右移的优先级低于四则运算符，例如 $x<<1+1$ 会被解释为 $x<<(1+1)$ ，所以必要的时候，要使用括号。
 
 * * *
 
 ## 位运算的应用
 
-如果 $num$ 是正数，`num << i` 相当于 $num$ 乘以 2 的 $i$ 次方，而 `num >> i` 相当于 $num$ 除以 2 的 $i$ 次方。 (位运算比 `%` 和 `/` 操作快得多)
+如果 $num$ 是整数，`num << i` 相当于 $num \times 2^i$ ，而 `num >> i` 相当于 $num \div 2^i$ 。 (位运算比 `%` 和 `/` 操作快得多)
 (据 2018JSOI 夏令营，效率可以提高 60%)
 
 !!! warning
-    为什么要强调是正数呢？考虑一下 `-1 >> 3`
+    我们平常写的除法是向 0 取整，而这里的右移是向下取整（注意这里的区别），即当数大于等于 0 时两种方法等价，当数小于 0 时会有区别，如： $-1 \div 2 = 0$ , 而 $-1 >> 1 = -1$ 
 
 `num * 10 = (num<<1) + (num<<3)`
 
 `num & 1` 相当于取 $num$ 二进制的最末位，可用于判断 $num$ 的奇偶性，二进制的最末位为 0 表示该数为偶数，最末位为 1 表示该数为奇数。
 
 ```cpp
-//利用位运算的快捷的 swap 代码
-void swap(int a, int b) {
+// 利用位运算的快捷的 swap 代码
+void swap(int &a, int &b) {
   a = a ^ b;
   b = a ^ b;
   a = a ^ b;
@@ -119,7 +117,7 @@ void swap(int a, int b) {
 -   乘以 2 运算。
 
     ```cpp
-    int mulTwo(int n) {  // 计算n*2
+    int mulTwo(int n) {  // 计算 n*2
       return n << 1;
     }
     ```
@@ -128,14 +126,14 @@ void swap(int a, int b) {
 
     ```cpp
     int divTwo(int n) {  // 负奇数的运算不可用
-      return n >> 1;     // 除以2
+      return n >> 1;     // 除以 2
     }
     ```
 
 -   乘以 2 的 $m$ 次方。
 
     ```cpp
-    int mulTwoPower(int n, int m) {  // 计算n*(2^m)
+    int mulTwoPower(int n, int m) {  // 计算 n*(2^m)
       return n << m;
     }
     ```
@@ -143,7 +141,7 @@ void swap(int a, int b) {
 -   除以 2 的 $m$ 次方。
 
     ```cpp
-    int divTwoPower(int n, int m) {  // 计算n/(2^m)
+    int divTwoPower(int n, int m) {  // 计算 n/(2^m)
       return n >> m;
     }
     ```
@@ -151,7 +149,7 @@ void swap(int a, int b) {
 -   判断一个数的奇偶性。
 
     ```cpp
-    boolean isOddNumber(int n) { return (n & 1) == 1; }
+    boolean isOddNumber(int n) { return n & 1; }
     ```
 
 -   取绝对值（某些机器上，效率比 `n > 0 ? n : -n` 高）。
@@ -159,10 +157,10 @@ void swap(int a, int b) {
     ```cpp
     int abs(int n) {
       return (n ^ (n >> 31)) - (n >> 31);
-      /* n>>31 取得n的符号，若n为正数，n>>31等于0，若n为负数，n>>31等于-1
-         若n为正数 n^0=0,数不变，若n为负数有n^-1
-         需要计算n和-1的补码，然后进行异或运算，
-         结果n变号并且为n的绝对值减1，再减去-1就是绝对值 */
+      /* n>>31 取得 n 的符号，若 n 为正数，n>>31 等于 0，若 n 为负数，n>>31 等于 - 1
+         若 n 为正数 n^0=0, 数不变，若 n 为负数有 n^-1
+         需要计算 n 和 - 1 的补码，然后进行异或运算，
+         结果 n 变号并且为 n 的绝对值减 1，再减去 - 1 就是绝对值 */
     }
     ```
 
@@ -171,7 +169,7 @@ void swap(int a, int b) {
     ```cpp
     int max(int a, int b) {
       return b & ((a - b) >> 31) | a & (~(a - b) >> 31);
-      /* 如果a>=b,(a-b)>>31为0，否则为-1 */
+      /* 如果 a>=b,(a-b)>>31 为 0，否则为 - 1 */
     }
     ```
 
@@ -180,16 +178,16 @@ void swap(int a, int b) {
     ```cpp
     int min(int a, int b) {
       return a & ((a - b) >> 31) | b & (~(a - b) >> 31);
-      /* 如果a>=b,(a-b)>>31为0，否则为-1 */
+      /* 如果 a>=b,(a-b)>>31 为 0，否则为 - 1 */
     }
     ```
 
 -   判断符号是否相同。
 
     ```cpp
-    boolean isSameSign(int x, int y) {  // 有0的情况例外
+    boolean isSameSign(int x, int y) {  // 有 0 的情况例外
       return (x ^ y) >=
-             0;  // true 表示x和y有相同的符号，false 表示x,y有相反的符号。
+             0;  // true 表示 x 和 y 有相同的符号，false 表示 x,y 有相反的符号。
     }
     ```
 
@@ -197,7 +195,7 @@ void swap(int a, int b) {
 
     ```cpp
     int getFactorialofTwo(int n) {  // n > 0
-      return 2 << (n - 1);          // 2的n次方
+      return 1 << n;                // 2 的 n 次方
     }
     ```
 
@@ -206,18 +204,18 @@ void swap(int a, int b) {
     ```cpp
     boolean isFactorialofTwo(int n) {
       return n > 0 ? (n & (n - 1)) == 0 : false;
-      /* 如果是2的幂，n一定是100... n-1就是1111....
-         所以做与运算结果为0 */
+      /* 如果是 2 的幂，n 一定是 100... n-1 就是 1111....
+         所以做与运算结果为 0 */
     }
     ```
 
 -   对 2 的 $n$ 次方取余。
 
     ```cpp
-    int quyu(int m, int n) {  // n为2的次方
+    int quyu(int m, int n) {  // n 为 2 的次方
       return m & (n - 1);
-      /* 如果是2的幂，n一定是100... n-1就是1111....
-         所以做与运算结果保留m在n范围的非0的位 */
+      /* 如果是 2 的幂，n 一定是 100... n-1 就是 1111....
+         所以做与运算结果保留 m 在 n 范围的非 0 的位 */
     }
     ```
 

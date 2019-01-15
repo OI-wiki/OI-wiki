@@ -17,12 +17,12 @@
 若 $f(x)$ 和 $g(x)$ 均为积性函数，则以下函数也为积性函数：
 
 $$
-\begin{align*}
+\begin{aligned}
 h(x)&=f(x^p)\\
 h(x)&=f^p(x)\\
 h(x)&=f(x)g(x)\\
 h(x)&=\sum_{d\mid x}f(d)g(\frac{x}{d})
-\end{align*}
+\end{aligned}
 $$
 
 ### 例子
@@ -63,12 +63,12 @@ $\text{Dirichlet}$ 卷积满足交换律和结合律。
 ### 例子
 
 $$
-\begin{align*}
+\begin{aligned}
 \varepsilon=\mu*1&\Leftrightarrow\varepsilon(n)=\sum_{d\mid n}\mu(d)\\
 d=1*1&\Leftrightarrow d(n)=\sum_{d\mid n}1\\
 \sigma=d*1&\Leftrightarrow\varepsilon(n)=\sum_{d\mid n}d\\
 \varphi=\mu*\text{ID}&\Leftrightarrow\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
-\end{align*}
+\end{aligned}
 $$
 
 * * *
@@ -114,9 +114,9 @@ $$
 
 反演结论：$\displaystyle [gcd(i,j)=1] \Leftrightarrow\sum_{d\mid\gcd(i,j)}\mu(d)$
 
-- **直接推导**：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$，也就是式子的值是 $1$，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值：$0$
+-   **直接推导**：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$，也就是式子的值是 $1$，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值：$0$
 
-- **利用 $\varepsilon$ 函数**：根据上一结论，$[\gcd(i,j)=1]\Rightarrow \varepsilon(\gcd(i,j))$，将 $\varepsilon$ 展开即可。
+-   **利用 $\varepsilon$ 函数**：根据上一结论，$[\gcd(i,j)=1]\Rightarrow \varepsilon(\gcd(i,j))$，将 $\varepsilon$ 展开即可。
 
 ### 线性筛
 
@@ -158,13 +158,13 @@ $$
 易知如下过程：
 
 $$
-\begin{align*}
+\begin{aligned}
 \varphi*1&=\sum_{d\mid n}\varphi(\frac{n}{d})\\
 &=\sum_{i=0}^c\varphi(p^i)\\
 &=1+p^0\cdot(p-1)+p^1\cdot(p-1)+\cdots+p^{c-1}\cdot(p-1)\\
 &=p^c\\
 &=\text{ID}\\
-\end{align*}
+\end{aligned}
 $$
 
 该式子两侧同时卷 $\mu$ 可得 $\displaystyle\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})$
@@ -191,7 +191,7 @@ $$
 
 ### 证明
 
-- **暴力计算**：
+-   **暴力计算**：
 
 $$
 \sum_{d\mid n}\mu(d)f(\frac{n}{d})=\sum_{d\mid n}\mu(d)\sum_{k\mid \frac{n}{d}}g(k)=\sum_{k\mid n}g(k)\sum_{d\mid \frac{n}{k}}\mu(d)=g(n)
@@ -199,7 +199,7 @@ $$
 
 用 $\displaystyle\sum_{d\mid n}g(d)$ 来替换 $f(\dfrac{n}{d})$，再变换求和顺序。最后一步转为的依据：$\displaystyle\sum_{d\mid n}\mu(d)=[n=1]$，因此在 $\dfrac{n}{k}=1$ 时第二个和式的值才为 $1$。此时 $n=k$，故原式等价于 $\displaystyle\sum_{k\mid n}[n=k]\cdot g(k)=g(n)$
 
-- **运用卷积**：
+-   **运用卷积**：
 
 原问题为：已知 $f=g*1$，证明 $g=f*\mu$
 

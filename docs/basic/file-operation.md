@@ -19,9 +19,9 @@ FILE* freopen(const char* filename, const char* mode, FILE* stream);
 
 ### 参数说明
 
-- `filename`: 要打开的文件名
-- `mode`: 文件打开的模式
-- `stream`: 文件指针，通常使用标准文件流 (`stdin/stdout/stderr`)  
+-   `filename`: 要打开的文件名
+-   `mode`: 文件打开的模式
+-   `stream`: 文件指针，通常使用标准文件流 (`stdin/stdout/stderr`)  
 
 ### 使用方法
 
@@ -39,7 +39,7 @@ freopen("data.out", "w", stdout);
 // data.out 就是输出文件的文件名，和可执行文件在同一目录下
 ```
 
-关闭标准输入 \\ 输出流  
+关闭标准输入 / 输出流  
 
 ```cpp
 fclose(stdin);
@@ -65,7 +65,7 @@ int main(void) {
 
 参考书目：信息学奥赛一本通
 
-## C++ 的 ifstream/ofstream 文件输入输出流
+## C++ 的 `ifstream/ofstream` 文件输入输出流
 
 ### 使用方法
 

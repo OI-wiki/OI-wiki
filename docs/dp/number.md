@@ -2,7 +2,7 @@
 
 数位 DP 问题往往都是这样的题型，给定一个闭区间 $[l,r]$，让你求这个区间中满足 **某种条件** 的数的总数。
 
-??? note " 例题 [luogu P2657 \[SCOI2009\] windy 数](https://www.luogu.org/problemnew/show/P2657)"
+??? note " 例题 [洛谷 P2657 \[SCOI2009\] windy 数](https://www.luogu.org/problemnew/show/P2657)"
     题目大意：给定一个区间 $[l,r]$ ，求其中满足条件 **不含前导 $0$ 且相邻两个数字相差至少为 $2$** 的数字个数。
 
 首先我们将问题转化成更加简单的形式。设 $ans_i$ 表示在区间 $[1,i]$ 中满足条件的数的数量，那么所求的答案就是 $ans_r-ans_{l-1}$。
@@ -54,11 +54,11 @@ int solve(int x) {
 
 [BZOJ 3679 数字之积 ](https://www.lydsy.com/JudgeOnline/problem.php?id=3679)
 
-[luogu P2602 \[ZJOI2010\] 数字计数 ](https://www.luogu.org/problemnew/show/P2602)
+[洛谷 P2602 \[ZJOI2010\] 数字计数 ](https://www.luogu.org/problemnew/show/P2602)
 
-[luogu P4127 \[AHOI2009\] 同类分布 ](https://www.luogu.org/problemnew/show/P4127)
+[洛谷 P4127 \[AHOI2009\] 同类分布 ](https://www.luogu.org/problemnew/show/P4127)
 
-[luogu  P3413 SAC#1 - 萌数](https://www.luogu.org/problemnew/show/P3413)
+[洛谷  P3413 SAC#1 - 萌数](https://www.luogu.org/problemnew/show/P3413)
 
 [HDU 6148 Valley Number ](http://acm.hdu.edu.cn/showproblem.php?pid=6148)
 
