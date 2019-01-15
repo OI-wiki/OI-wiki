@@ -8,7 +8,7 @@
 
 ![](./images/bi-graph.png)
 
-（图源 [英文维基](https://en.wikipedia.org/wiki/Bipartite_graph)）
+（图源[英文维基](https://en.wikipedia.org/wiki/Bipartite_graph)）
 
 ## 性质
 
@@ -25,7 +25,7 @@
 
 显然，直接枚举答案集合的话实在是太慢了，我们需要更高效的方法。
 
-考虑上文提到的性质，我们可以使用 [DFS](/search/dfs) 或者 [BFS](/search/bfs) 来遍历这张图。如果发现了奇环，那么就不是二分图，否则是。
+考虑上文提到的性质，我们可以使用[DFS](/search/dfs)或者[BFS](/search/bfs)来遍历这张图。如果发现了奇环，那么就不是二分图，否则是。
 
 ## 应用
 
