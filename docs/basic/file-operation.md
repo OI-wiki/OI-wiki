@@ -83,7 +83,7 @@ ofstream fout("data.out");
 // data.out 就是输出文件的文件名，和可执行文件在同一目录下
 ```
 
-关闭标准输入\\输出流
+关闭标准输入/输出流
 
 ```cpp
 fin.close();
