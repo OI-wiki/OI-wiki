@@ -42,29 +42,28 @@ $$
 
 ```c++
 // 以下文的参考代码为例
-  inline mat operator*(const mat& T) const {
-    mat res;
-    for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j)
-        for (int k = 0; k < sz; ++k) {
-          res.a[i][j] += mul(a[i][k], T.a[k][j]);
-          res.a[i][j] %= MOD;
-        }
-    return res;
-  }
-// 不如
-  inline mat operator*(const mat& T) const {
-    mat res;
-    int r;
-    for (int i = 0; i < sz; ++i)
+inline mat operator*(const mat& T) const {
+  mat res;
+  for (int i = 0; i < sz; ++i)
+    for (int j = 0; j < sz; ++j)
       for (int k = 0; k < sz; ++k) {
-        r = a[i][k];
-        for (int j = 0; j < sz; ++j)
-          res.a[i][j] += T.a[k][j] * r;
-          res.a[i][j] %= MOD;
-        }
-    return res;
-  }
+        res.a[i][j] += mul(a[i][k], T.a[k][j]);
+        res.a[i][j] %= MOD;
+      }
+  return res;
+}
+// 不如
+inline mat operator*(const mat& T) const {
+  mat res;
+  int r;
+  for (int i = 0; i < sz; ++i)
+    for (int k = 0; k < sz; ++k) {
+      r = a[i][k];
+      for (int j = 0; j < sz; ++j) res.a[i][j] += T.a[k][j] * r;
+      res.a[i][j] %= MOD;
+    }
+  return res;
+}
 ```
 
 ## 参考代码
@@ -94,10 +93,9 @@ struct mat {
     for (int i = 0; i < sz; ++i)
       for (int k = 0; k < sz; ++k) {
         r = a[i][k];
-        for (int j = 0; j < sz; ++j)
-          res.a[i][j] += T.a[k][j] * r;
-          res.a[i][j] %= MOD;
-        }
+        for (int j = 0; j < sz; ++j) res.a[i][j] += T.a[k][j] * r;
+        res.a[i][j] %= MOD;
+      }
     return res;
   }
   inline mat operator^(LL x) const {
