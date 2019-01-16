@@ -223,7 +223,11 @@ IPA:/ˈdikstrɑ/或/ˈdɛikstrɑ/。
 
 如果用暴力： $O(n^2 + m)$ 。
 
-如果用堆： $O((n+m) \log m)$ 。
+如果用堆 $O((n+m) \log n)$ 。
+
+如果用 priority_queue： $O((n+m) \log m)$ 。
+
+（注：如果使用 priority_queue，无法删除某一个旧的结点，只能插入一个权值更小的编号相同结点，这样操作导致堆中元素是 $O(m)$ 的）
 
 如果用线段树（ZKW 线段树）： $(O(n+m)\log n)$ 
 
