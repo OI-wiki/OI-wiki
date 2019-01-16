@@ -36,6 +36,37 @@ $$
 
 在比赛中，由于线性递推式可以表示成矩阵乘法的形式，也通常用矩阵快速幂来求线性递推数列的某一项。
 
+#### 优化
+
+可以重新排列循环以提高空间局部性，这样的优化不会改变矩阵乘法的时间复杂度，但是会在得到常数级别的提升。
+
+```c++
+// 以下文的参考代码为例
+  inline mat operator*(const mat& T) const {
+    mat res;
+    for (int i = 0; i < sz; ++i)
+      for (int j = 0; j < sz; ++j)
+        for (int k = 0; k < sz; ++k) {
+          res.a[i][j] += mul(a[i][k], T.a[k][j]);
+          res.a[i][j] %= MOD;
+        }
+    return res;
+  }
+// 不如
+  inline mat operator*(const mat& T) const {
+    mat res;
+    int r;
+    for (int i = 0; i < sz; ++i)
+      for (int k = 0; k < sz; ++k) {
+        r = a[i][k];
+        for (int j = 0; j < sz; ++j)
+          res.a[i][j] += T.a[k][j] * r;
+          res.a[i][j] %= MOD;
+        }
+    return res;
+  }
+```
+
 ## 参考代码
 
 一般来说，可以用一个二维数组来模拟矩阵。
@@ -59,10 +90,12 @@ struct mat {
   }
   inline mat operator*(const mat& T) const {
     mat res;
+    int r;
     for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j)
-        for (int k = 0; k < sz; ++k) {
-          res.a[i][j] += mul(a[i][k], T.a[k][j]);
+      for (int k = 0; k < sz; ++k) {
+        r = a[i][k];
+        for (int j = 0; j < sz; ++j)
+          res.a[i][j] += T.a[k][j] * r;
           res.a[i][j] %= MOD;
         }
     return res;
