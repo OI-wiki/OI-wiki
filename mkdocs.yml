@@ -163,7 +163,7 @@ nav:
     - 线段树: ds/segment.md
     - 划分树: ds/dividing.md
     - 虚树: ds/virtual-tree.md
-    - 二叉搜索树/平衡树:
+    - 平衡树:
       - 二叉搜索树简介: ds/bst.md
       - Treap: ds/treap.md
       - Splay: ds/splay.md
