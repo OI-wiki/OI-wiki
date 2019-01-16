@@ -172,6 +172,19 @@ inline void write(int x) {
 }  // namespace IO
 ```
 
+## 输入输出的缓冲
+
+`printf` 和 `scanf` 是有缓冲区的。这也就是为什么，如果输入函数紧跟在输出函数之后 / 输出函数紧跟在输入函数之后可能导致错误。
+
+### 刷新缓冲区
+
+1. 程序结束
+2. 关闭文件
+3. `printf` 输出 `\r` 或者 `\n` 到终端的时候（注：如果是输出到文件，则不会刷新缓冲区）
+4. 手动 `fflush()`
+5. 缓冲区满自动刷新
+6. `cout` 输出 `endl`
+
 ## 参考
 
 <http://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html>
