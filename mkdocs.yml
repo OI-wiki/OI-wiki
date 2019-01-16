@@ -163,13 +163,14 @@ nav:
     - 线段树: ds/segment.md
     - 划分树: ds/dividing.md
     - 虚树: ds/virtual-tree.md
-    - Size Balanced Tree: ds/sbt.md
-    - 二叉搜索树: ds/bst.md
-    - Treap: ds/treap.md
-    - Splay: ds/splay.md
-    - WBLT: ds/wblt.md
-    - AVL 树: ds/avl.md
-    - 替罪羊树: ds/scapegoat.md
+    - 平衡树:
+      - 二叉搜索树简介: ds/bst.md
+      - Treap: ds/treap.md
+      - Splay: ds/splay.md
+      - WBLT: ds/wblt.md
+      - Size Balanced Tree: ds/sbt.md
+      - AVL 树: ds/avl.md
+      - 替罪羊树: ds/scapegoat.md
     - 树套树:
       - 线段树套线段树: ds/seg-in-seg.md
       - 平衡树套线段树: ds/seg-in-balanced.md
