@@ -16,7 +16,7 @@ Split-Merge Treap
 
 如果把 Treap 变为非旋转的，我们发现可以通过可持久化**Merge**和**Split**操作就可以完成可持久化。
 
-「一切可支持操作都可以通过**Merge\*\***Split\***\*Newnode\*\***Build**完成」，而**Build**操作只用于建造无需理会，**Newnode\*\*（新建节点）就是用来可持久化的工具。
+「一切可支持操作都可以通过**Merge Split Newnode Build**完成」，而**Build**操作只用于建造无需理会，**Newnode**（新建节点）就是用来可持久化的工具。
 
 我们来观察一下**Merge**和**Split**，我们会发现它们都是由上而下的操作！
 
