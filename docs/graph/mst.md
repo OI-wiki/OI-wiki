@@ -334,8 +334,8 @@ Kruskal 算法中的「集合」，能否进一步优化？
 
 ### 流程
 
-1. 对于每个点，选择它入度最小的那条边
-2. 如果没有环，算法终止；否则进行缩环、更新其他点到环的距离。
+1.  对于每个点，选择它入度最小的那条边
+2.  如果没有环，算法终止；否则进行缩环、更新其他点到环的距离。
 
 ### 代码
 
@@ -346,9 +346,10 @@ bool solve() {
   for (;;) {
     f(i, 0, n) in[i] = 1e100;
     f(i, 0, m) {
-      u = e[i].s; v = e[i].t;
+      u = e[i].s;
+      v = e[i].t;
       if (u != v && e[i].w < in[v]) {
-        in[v]=  e[i].w;
+        in[v] = e[i].w;
         pre[v] = u;
       }
     }
@@ -370,7 +371,7 @@ bool solve() {
         for (int u = pre[v]; u != v; u = pre[u]) {
           id[u] = tn;
         }
-        id[v] =  tn++;
+        id[v] = tn++;
       }
     }
     if (tn == 0) break;
@@ -378,7 +379,8 @@ bool solve() {
       if (id[i] == -1) id[i] = tn++;
     }
     f(i, 0, m) {
-      u = e[i].s; v = e[i].t;
+      u = e[i].s;
+      v = e[i].t;
       e[i].s = id[u];
       e[i].t = id[v];
       if (e[i].s != e[i].t) {
