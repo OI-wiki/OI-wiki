@@ -19,15 +19,15 @@
 
 ### STDIO 交互
 
-STDIO 交互（标准 I/O 交互）是 Codeforces、AtCoder 等在线平台的交互手段，也是 ICPC 系列赛事中的标准。[LOJ #559. 「LibreOJ Round #9」ZQC 的迷宫](https://loj.ac/problem/559) 是一道典型的 STDIO 交互题。[这里](https://codeforces.com/blog/entry/45307) 是 Codeforces 的一个更加简要的说明。
+STDIO 交互（标准 I/O 交互）是 Codeforces、AtCoder 等在线平台的交互手段，也是 ICPC 系列赛事中的标准。[LOJ #559.「LibreOJ Round #9」ZQC 的迷宫](https://loj.ac/problem/559)是一道典型的 STDIO 交互题。[这里](https://codeforces.com/blog/entry/45307)是 Codeforces 的一个更加简要的说明。
 
-对于这类题目，选手只需像往常一样将询问写到标准输出，**刷新输出缓冲**后从标准输入读取结果。选手程序刷新输出缓冲后，通过管道连接它的测评程序（称为交互器）才能立刻接收到这些数据。在 C/C++ 中，`fflush(stdout)` 和 `std::cout << std::flush` 可以实现这个操作；Pascal 则是 `flush(output)`。
+对于这类题目，选手只需像往常一样将询问写到标准输出，**刷新输出缓冲**后从标准输入读取结果。选手程序刷新输出缓冲后，通过管道连接它的测评程序（称为交互器）才能立刻接收到这些数据。在 C/C++ 中， `fflush(stdout)` 和 `std::cout << std::flush` 可以实现这个操作；Pascal 则是 `flush(output)` 。
 
 ### Grader 交互
 
-Grader 交互方式常见于 IOI、APIO 等国际 OI 赛事（特别是 CMS 平台的竞赛）。[UOJ #206. 【APIO2016】Gap](http://uoj.ac/problem/206) 是一道典型的 grader 交互题。
+Grader 交互方式常见于 IOI、APIO 等国际 OI 赛事（特别是 CMS 平台的竞赛）。[UOJ #206.【APIO2016】Gap](http://uoj.ac/problem/206)是一道典型的 grader 交互题。
 
-对于这类题目，选手只需编写一个特定的函数完成某项任务，它通过调用给定的若干辅助函数来进行交互。为了便于选手在本地测试，题目会下发一个头文件与一个参考测评程序 `grader.cpp`（对于 Pascal 语言是一个库 `graderlib`），选手将自己的程序与 `grader.cpp` 一同编译方可得到可执行文件。
+对于这类题目，选手只需编写一个特定的函数完成某项任务，它通过调用给定的若干辅助函数来进行交互。为了便于选手在本地测试，题目会下发一个头文件与一个参考测评程序 `grader.cpp` （对于 Pascal 语言是一个库 `graderlib` ），选手将自己的程序与 `grader.cpp` 一同编译方可得到可执行文件。
 
 ```sh
 g++ grader.cpp my_solution.cpp -o my_solution -Wall -O2
@@ -36,7 +36,7 @@ g++ grader.cpp my_solution.cpp -o my_solution -Wall -O2
 
 编译得到的程序表现与传统题程序类似。它会打开固定的文件，以固定的格式读取数据，调用选手编写的函数，并将结果和若干信息（例如询问的次数、答案正确性）显示在标准输出上。
 
-实际测评时，选手的程序会与一个不同的 `grader.cpp` 编译。这个 `grader.cpp` 将以类似的方式调用选手编写的函数，并记录其得分。一般来说，这个版本的 `grader.cpp` 所有全局符号都会设为 `static`，也即不能通过冲突命名的方式破解它，但是任何尝试突破 grader 限制的行为都是会导致 disqualification 的哦。
+实际测评时，选手的程序会与一个不同的 `grader.cpp` 编译。这个 `grader.cpp` 将以类似的方式调用选手编写的函数，并记录其得分。一般来说，这个版本的 `grader.cpp` 所有全局符号都会设为 `static` ，也即不能通过冲突命名的方式破解它，但是任何尝试突破 grader 限制的行为都是会导致 disqualification 的哦。
 
 ### 差别
 
@@ -46,12 +46,12 @@ STDIO 交互的一个明显优势在于它可以支持任何编程语言，但�
 
 ## 通信题
 
-在通信题中，选手需要编写**两个**程序，合作完成某项任务。第一个程序接收问题的输入，并产生某些输出；第二个程序的输入会与第一个的输出相关（有时是原封不动地作为一个参数，有时会由评测端处理得到），它需要产生问题的解。[UOJ #178. 新年的贺电](http://uoj.ac/problem/178) 和 [#454. 【UER #8】打雪仗](http://uoj.ac/problem/454) 都是典型的通信题。
+在通信题中，选手需要编写**两个**程序，合作完成某项任务。第一个程序接收问题的输入，并产生某些输出；第二个程序的输入会与第一个的输出相关（有时是原封不动地作为一个参数，有时会由评测端处理得到），它需要产生问题的解。[UOJ #178. 新年的贺电](http://uoj.ac/problem/178)和[#454.【UER #8】打雪仗](http://uoj.ac/problem/454)都是典型的通信题。
 
 本地测试的方法由于题目设定的不同而多种多样，常用的如：
 
 -   手工输入
 -   编写一个辅助程序，转换第一个程序的输出到第二个程序的输入
--   用双向管道将两个程序的标准输入 / 输出连接起来
+-   用双向管道将两个程序的标准输入/输出连接起来
 
 由于评测平台对于通信题的支持有限，因而目前为止通信题只常见于 IOI 系列赛和 UOJ 等少数在线平台举办的比赛，仍是一个有待探索的领域。期待着在未来，通信题能带来更多全新的挑战和新鲜的 idea。

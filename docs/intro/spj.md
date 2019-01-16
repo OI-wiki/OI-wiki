@@ -1,25 +1,25 @@
-一道题如果有多组解，我们就需要一个程序来判断答案合法性，这便是 Special Judge (spj)，又常被称作 checker，下面介绍部分评测工具 / OJ 的 spj 编写方法。
+一道题如果有多组解，我们就需要一个程序来判断答案合法性，这便是 Special Judge (spj)，又常被称作 checker，下面介绍部分评测工具/OJ 的 spj 编写方法。
 
 ???+ warning
     spj 还应当判断文件尾是否有多余内容，及输出格式是否正确（如题目要求数字间用一个空格隔开，而选手却使用了换行）。但是，目前前者只有 Testlib 可以方便地做到这一点，而后者几乎无人去特意进行这种判断。
 
     浮点数时应注意 nan，不合理的判断方式会导致输出 nan 即可 AC。
 
-以下均使用 C++，以 “要求标准答案与选手答案差值小于 1e-3，文件名为 num” 为例。
+以下均使用 C++，以“要求标准答案与选手答案差值小于 1e-3，文件名为 num”为例。
 
 ## Testlib
 
-Testlib 的介绍见 [Testlib / 简介](/intro/testlib/) 页面，用法见 [Testlib / Checker](/intro/testlib/checker/) 页面。
+Testlib 的介绍见[Testlib/简介](/intro/testlib/)页面，用法见[Testlib/Checker](/intro/testlib/checker/)页面。
 
-必须使用 Testlib 做 spj 的 评测工具 / OJ：Codeforces、洛谷、UOJ 等
+必须使用 Testlib 做 spj 的 评测工具/OJ：Codeforces、洛谷、UOJ 等
 
-可以使用 Testlib 做 spj 的 评测工具 / OJ：LibreOJ(SYZOJ 2)、Lemon 等
+可以使用 Testlib 做 spj 的 评测工具/OJ：LibreOJ(SYZOJ 2)、Lemon 等
 
-SYZOJ 2 所需的修改版 Testlib 可以在[这里](https://pastebin.com/3GANXMG7)获取到，感谢 [cyand1317](https://loj.ac/article/124)。
+SYZOJ 2 所需的修改版 Testlib 可以在[这里](https://pastebin.com/3GANXMG7)获取到，感谢[cyand1317](https://loj.ac/article/124)。
 
-Lemon 所需的修改版 Testlib 可以在[这里](https://paste.ubuntu.com/p/JsTspHHnmB/)获取到，感谢 matthew99。注意此版本 Testlib 注册 checker 应使用 `registerLemonChecker()` 而非 `registerTestlibCmd()`。
+Lemon 所需的修改版 Testlib 可以在[这里](https://paste.ubuntu.com/p/JsTspHHnmB/)获取到，感谢 matthew99。注意此版本 Testlib 注册 checker 应使用 `registerLemonChecker()` 而非 `registerTestlibCmd()` 。
 
-其他评测工具 / OJ 大部分需要按照其 spj 编写格式修改 Testlib（并将 testlib.h 与 spj 一同上传，或将 testlib.h 置于 include 目录）。
+其他评测工具/OJ 大部分需要按照其 spj 编写格式修改 Testlib（并将 testlib.h 与 spj 一同上传，或将 testlib.h 置于 include 目录）。
 
 ```cpp
 #include <cmath>
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
 
 ## Lemon
 
-**Lemon 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib)**
+**Lemon 有现成的修改版 Testlib，建议使用 Testlib，见[Testlib](#testlib)**
 
 ```cpp
 #include <cmath>
@@ -195,7 +195,7 @@ int main(int argc, char* argv[]) {
 
 ## LibreOJ(SYZOJ 2)
 
-**LibreOJ(SYZOJ 2) 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib)**
+**LibreOJ(SYZOJ 2) 有现成的修改版 Testlib，建议使用 Testlib，见[Testlib](#testlib)**
 
 ```cpp
 #include <cmath>

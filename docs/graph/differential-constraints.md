@@ -1,26 +1,26 @@
- ** 差分约束系统 ** 是一种特殊的 $n$ 元一次不等式组，它包含 $n$ 个变量 $x_1,x_2,...,x_n$ 以及 $m$ 个约束条件，每个约束条件是由两个其中的变量做差构成的，形如 $x_i-x_j\leq c_k$ ，其中 $c_k$ 是常数（可以是非负数，也可以是负数）。我们要解决的问题是：求一组解 $x_1=a_1,x_2=a_2,...,x_n=a_n$ ，使得所有的约束条件得到满足，否则判断出无解。
+**差分约束系统**是一种特殊的 $n$ 元一次不等式组，它包含 $n$ 个变量 $x_1,x_2,...,x_n$ 以及 $m$ 个约束条件，每个约束条件是由两个其中的变量做差构成的，形如 $x_i-x_j\leq c_k$ ，其中 $c_k$ 是常数（可以是非负数，也可以是负数）。我们要解决的问题是：求一组解 $x_1=a_1,x_2=a_2,...,x_n=a_n$ ，使得所有的约束条件得到满足，否则判断出无解。
 
-差分约束系统中的每个约束条件 $x_i-x_j\leq c_k$ 都可以变形成 $x_i\leq x_j+c_k$ ，这与单源最短路中的三角形不等式 $dist[y]\leq dist[x]+z$ 非常相似。因此，我们可以把每个变量 $x_i$ 看做图中的一个结点，对于每个约束条件 $x_i-x_j\leq c_k$ ，从结点 $j$ 向结点 $i$ 连一条长度为 $c_k$ 的有向边。 
+差分约束系统中的每个约束条件 $x_i-x_j\leq c_k$ 都可以变形成 $x_i\leq x_j+c_k$ ，这与单源最短路中的三角形不等式 $dist[y]\leq dist[x]+z$ 非常相似。因此，我们可以把每个变量 $x_i$ 看做图中的一个结点，对于每个约束条件 $x_i-x_j\leq c_k$ ，从结点 $j$ 向结点 $i$ 连一条长度为 $c_k$ 的有向边。
 
 注意到，如果 $\{a_1,a_2,...,a_n\}$ 是该差分约束系统的一组解，那么对于任意的常数 $d$ ， $\{a_1+d,a_2+d,...,a_n+d\}$ 显然也是该差分约束系统的一组解，因为这样做差后 $d$ 刚好被消掉。
 
 设 $dist[0]=0$ 并向每一个点连一条边，跑单源最短路，若图中存在负环，则给定的差分约束系统无解，否则， $x_i=dist[i]$ 为该差分约束系统的一组解。
 
-一般使用 Bellman-Ford 或队列优化的 Bellman-Ford（俗称 SPFA，在某些随机图跑得很快） 判断图中是否存在负环，最坏时间复杂度为 $O(nm)$ 。 
+一般使用 Bellman-Ford 或队列优化的 Bellman-Ford（俗称 SPFA，在某些随机图跑得很快）判断图中是否存在负环，最坏时间复杂度为 $O(nm)$ 。
 
 ## 常用变形技巧
 
-### 例题 [ luogu P1993 小 K 的农场 ](https://www.luogu.org/problemnew/show/P1993)
+### 例题[luogu P1993 小 K 的农场](https://www.luogu.org/problemnew/show/P1993)
 
-题目大意：求解差分约束系统，有 $m$ 条约束条件， 每条都为形如 $x_a-x_b\geq c_k$ ， $x_a-x_b\leq c_k$ 或 $x_a=x_b$ 的形式，判断该差分约束系统有没有解。
+题目大意：求解差分约束系统，有 $m$ 条约束条件，每条都为形如 $x_a-x_b\geq c_k$ ， $x_a-x_b\leq c_k$ 或 $x_a=x_b$ 的形式，判断该差分约束系统有没有解。
 
-|         题意         |                      转化                     |               连边              |
-| :----------------: | :-----------------------------------------: | :---------------------------: |
-| $x_a - x_b \geq c$ |             $x_b - x_a \leq -c$             |        `add(a, b, -c);`       |
-| $x_a - x_b \leq c$ |              $x_a - x_b \leq c$             |        `add(b, a, c);`        |
-|     $x_a = x_b$    | $x_a - x_b \leq 0, \space x_b - x_a \leq 0$ | `add(b, a, 0), add(a, b, 0);` |
+|          题意          |                       转化                      |                连边               |
+| :------------------: | :-------------------------------------------: | :-----------------------------: |
+|  $x_a - x_b \geq c$  |              $x_b - x_a \leq -c$              |         `add(a, b, -c);`        |
+|  $x_a - x_b \leq c$  |               $x_a - x_b \leq c$              |         `add(b, a, c);`         |
+|      $x_a = x_b$     |  $x_a - x_b \leq 0, \space x_b - x_a \leq 0$  |  `add(b, a, 0), add(a, b, 0);`  |
 
-跑判断负环，如果不存在负环，输出 `Yes` ，否则输出 `No`。
+跑判断负环，如果不存在负环，输出 `Yes` ，否则输出 `No` 。
 
 给出一种用 DFS-SPFA 实现的判负环（时间复杂度极度不稳定）：
 
@@ -79,11 +79,11 @@ int main() {
 }
 ```
 
-### 例题 [P4926 \[1007\] 倍杀测量者](https://www.luogu.org/problemnew/show/P4926)
+### 例题[P4926\[1007\]倍杀测量者](https://www.luogu.org/problemnew/show/P4926)
 
-不考虑二分等其他的东西，这里只论述差分系统 $\frac{x_i}{x_j}\leq c_k$  的求解方法。
+不考虑二分等其他的东西，这里只论述差分系统 $\frac{x_i}{x_j}\leq c_k$ 的求解方法。
 
-对每个 $x_i,x_j$ 和 $c_k$ 取一个 $\log$ 就可以把乘法变成加法运算，即 $\log x_i-\log x_j \leq \log c_k$  ，这样就可以用差分约束解决了。
+对每个 $x_i,x_j$ 和 $c_k$ 取一个 $\log$ 就可以把乘法变成加法运算，即 $\log x_i-\log x_j \leq \log c_k$ ，这样就可以用差分约束解决了。
 
 ## Bellman-Ford 判负环代码实现
 
@@ -108,10 +108,10 @@ bool Bellman_Ford() {
 
 ## 习题
 
-[ bzoj 1715: \[Usaco2006 Dec\] Wormholes 虫洞 ](https://www.lydsy.com/JudgeOnline/problem.php?id=1715) 
+[bzoj 1715:\[Usaco2006 Dec\]Wormholes 虫洞](https://www.lydsy.com/JudgeOnline/problem.php?id=1715)
 
-[ bzoj 2330: \[SCOI2011\] 糖果 ](https://www.lydsy.com/JudgeOnline/problem.php?id=2330)
+[bzoj 2330:\[SCOI2011\]糖果](https://www.lydsy.com/JudgeOnline/problem.php?id=2330)
 
-[ POJ 1364 King ](http://poj.org/problem?id=1364)
+[POJ 1364 King](http://poj.org/problem?id=1364)
 
-[ POJ 2983 Is the Information Reliable? ](http://poj.org/problem?id=2983)
+[POJ 2983 Is the Information Reliable?](http://poj.org/problem?id=2983)
