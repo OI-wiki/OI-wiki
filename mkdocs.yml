@@ -108,7 +108,7 @@ nav:
       - 中国剩余定理: math/crt.md
       - BSGS: math/bsgs.md
       - 原根: math/primitive-root.md
-    - 线性代数：
+    - 线性代数:
       - 矩阵: math/matrix.md
       - 高斯消元: math/gauss.md
       - 线性基: math/basis.md
