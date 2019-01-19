@@ -1,6 +1,6 @@
 ## 简介
 
-在阅读下列内容之前，请务必了解 [图论基础](/graph/basic) 部分。
+在阅读下列内容之前，请务必了解[图论基础](/graph/basic)部分。
 
 强连通的定义是：有向图 G 强连通是指，G 中任意两个结点连通。
 
@@ -22,9 +22,9 @@ Tarjan 发明了很多很有用的东西，下到 NOIP 上到 CTSC 难度的都�
 
 方便起见，我们先定义一些东西。
 
-`dfn[x]`：结点 x 第一次被访问的时间戳 (dfs number)
+ `dfn[x]` ：结点 x 第一次被访问的时间戳 (dfs number)
 
-`low[x]`：结点 x 所能访问到的点的 dfn 值的最小值
+ `low[x]` ：结点 x 所能访问到的点的 dfn 值的最小值
 
 这里的树指的是 DFS 树
 
@@ -32,7 +32,7 @@ Tarjan 发明了很多很有用的东西，下到 NOIP 上到 CTSC 难度的都�
 
 ### DFS 树的性质
 
-一个结点的子树内结点的 dfn 都大于该结点的 dfn。 
+一个结点的子树内结点的 dfn 都大于该结点的 dfn。
 
 从根开始的一条路径上的 dfn 严格递增。
 
@@ -74,9 +74,9 @@ dfs(x) {
 }
 ```
 
-（转自维基：<https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm> ）
+（转自维基：<https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm>）
 
-时间复杂度 $O(n + m)$
+时间复杂度 $O(n + m)$ 
 
 ## Kosaraju 算法
 
@@ -86,7 +86,7 @@ Kosaraju 算法依靠两次简单的 dfs 实现。
 
 第二次 dfs，对于反向后的图，以标号最大的顶点作为起点开始 dfs。这样遍历到的顶点集合就是一个强连通分量。对于所有未访问过的结点，选取标号最大的，重复上述过程。
 
-两次 dfs 结束后，强连通分量就找出来了，Kosaraju 算法的时间复杂度为 $O(n+m)$
+两次 dfs 结束后，强连通分量就找出来了，Kosaraju 算法的时间复杂度为 $O(n+m)$ 
 
 ### 实现
 

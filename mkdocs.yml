@@ -104,17 +104,18 @@ nav:
     - 同余方程相关:
       - 裴蜀定理: math/bezouts.md
       - 乘法逆元: math/inverse.md
-      - 线性方程: math/linear-equation.md
+      - 线性同余方程: math/linear-equation.md
       - 中国剩余定理: math/crt.md
       - BSGS: math/bsgs.md
       - 原根: math/primitive-root.md
-    - 高斯消元: math/gauss.md
-    - 矩阵: math/matrix.md
+    - 线性代数:
+      - 矩阵: math/matrix.md
+      - 高斯消元: math/gauss.md
+      - 线性基: math/basis.md
     - 复数: math/complex.md
     - 分段打表: math/dictionary.md
     - 莫比乌斯反演: math/mobius.md
     - 杜教筛: math/du-sieves.md
-    - 线性基: math/basis.md
     - 多项式:
       - 多项式部分简介: math/poly.md
       - 拉格朗日插值: math/lagrange-poly.md
@@ -163,13 +164,14 @@ nav:
     - 线段树: ds/segment.md
     - 划分树: ds/dividing.md
     - 虚树: ds/virtual-tree.md
-    - Size Balanced Tree: ds/sbt.md
-    - 二叉搜索树: ds/bst.md
-    - Treap: ds/treap.md
-    - Splay: ds/splay.md
-    - WBLT: ds/wblt.md
-    - AVL 树: ds/avl.md
-    - 替罪羊树: ds/scapegoat.md
+    - 平衡树:
+      - 二叉搜索树简介: ds/bst.md
+      - Treap: ds/treap.md
+      - Splay: ds/splay.md
+      - WBLT: ds/wblt.md
+      - Size Balanced Tree: ds/sbt.md
+      - AVL 树: ds/avl.md
+      - 替罪羊树: ds/scapegoat.md
     - 树套树:
       - 线段树套线段树: ds/seg-in-seg.md
       - 平衡树套线段树: ds/seg-in-balanced.md
