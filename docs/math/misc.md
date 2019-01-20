@@ -1,4 +1,3 @@
-
 本文主要介绍了在 OI 中可能用到的重要高中数学知识。
 
 如果是高中 OIer，强烈建议回班级听课。
@@ -9,20 +8,18 @@
 
 （必修四）
 
-> 平面的向量交错生长 / 织成 / 忧伤的网
+> 平面的向量交错生长/织成/忧伤的网
 > ——《膜你抄》
 
 ### 定义及相关概念
 
-**向量**　既有大小又有方向的量称为向量。 数学上研究的向量为**自由向量**，即只要不改变它的大小和方向，起点和终点可以任意平行移动的向量 
-**有向线段**　带有方向的线段称为有向线段。有向线段有三要素：**起点，方向，长度**，知道了三要素，终点就唯一确定。我们用有向线段表示向量。
-**向量的模**　有向线段 $\overrightarrow{AB}$ 的长度称为向量的模，即为这个向量的大小。记为： $|\overrightarrow{AB}|$ 。  
-**零向量**　模为 $0$ 的向量。零向量的方向任意。记为： $\vec 0$ 或 $\mathbf{0}$ 。  
-**单位向量**　模为 $1$ 的向量称为该方向上的单位向量。  
-**平行向量**　方向相同或相反的两个**非零**向量。记作： $\vec a\parallel \vec b$ 。对于多个互相平行的向量，可以任作一条直线与这些向量平行，那么任一组平行向量都可以平移到同一直线上，所以平行向量又叫**共线向量**。  
-**相等向量**　模相等且方向相同的向量。  
-**相反向量**　模相等且方向相反的向量。  
-**向量的夹角**　已知两个非零向量 $\vec a,\vec b$ ，作 $\overrightarrow{OA}=\vec a,\overrightarrow{OB}=\vec b$ ，那么 $\theta=\angle AOB$ 就是向量 $\vec a$ 与向量 $\vec b$ 的夹角。记作： $\langle \vec a,\vec b\rangle$ 。显然当 $\theta=0$ 时两向量同向， $\theta=\pi$ 时两向量反向， $\theta=\frac{\pi}{2}$ 时我们说两向量垂直，记作 $\vec a\perp \vec b$ 。并且，我们规定 $\theta \in [0,\pi]$ 。
+**向量**既有大小又有方向的量称为向量。数学上研究的向量为**自由向量**，即只要不改变它的大小和方向，起点和终点可以任意平行移动的向量**有向线段**带有方向的线段称为有向线段。有向线段有三要素：**起点，方向，长度**，知道了三要素，终点就唯一确定。我们用有向线段表示向量。**向量的模**有向线段 $\overrightarrow{AB}$ 的长度称为向量的模，即为这个向量的大小。记为： $|\overrightarrow{AB}|$ 。  
+**零向量**模为 $0$ 的向量。零向量的方向任意。记为： $\vec 0$ 或 $\mathbf{0}$ 。  
+**单位向量**模为 $1$ 的向量称为该方向上的单位向量。  
+**平行向量**方向相同或相反的两个**非零**向量。记作： $\vec a\parallel \vec b$ 。对于多个互相平行的向量，可以任作一条直线与这些向量平行，那么任一组平行向量都可以平移到同一直线上，所以平行向量又叫**共线向量**。  
+**相等向量**模相等且方向相同的向量。  
+**相反向量**模相等且方向相反的向量。  
+**向量的夹角**已知两个非零向量 $\vec a,\vec b$ ，作 $\overrightarrow{OA}=\vec a,\overrightarrow{OB}=\vec b$ ，那么 $\theta=\angle AOB$ 就是向量 $\vec a$ 与向量 $\vec b$ 的夹角。记作： $\langle \vec a,\vec b\rangle$ 。显然当 $\theta=0$ 时两向量同向， $\theta=\pi$ 时两向量反向， $\theta=\frac{\pi}{2}$ 时我们说两向量垂直，记作 $\vec a\perp \vec b$ 。并且，我们规定 $\theta \in [0,\pi]$ 。
 
 注意到平面向量具有方向性，我们并不能比较两个向量的大小（但可以比较两向量的模长）。但是两个向量可以相等。
 
@@ -74,7 +71,7 @@ $$
 $$
 
 !!! note "判定两向量共线"
-    两个**非零**向量 $\vec a$ 与 $\vec b$ 共线 $\Leftrightarrow$ 有唯一实数 $\lambda:$ $\vec b=\lambda \vec a$ 。
+    两个**非零**向量 $\vec a$ 与 $\vec b$ 共线 $\Leftrightarrow$ 有唯一实数 $\lambda:$  $\vec b=\lambda \vec a$ 。
 
 证明：由数乘的定义可知，对于**非零**向量 $\vec a$ ，如果存在实数 $\lambda$ ，使得 $\vec b=\lambda \vec a$ ，那么 $\vec a \parallel \vec b$ 。  
 反过来，如果 $\vec a\parallel \vec b$ ， $\vec a \not = \vec 0$ ，且 $|\vec b|=\mu |\vec a|$ ，那么当 $\vec a$ 与 $\vec b$ 同向时， $\vec b=\mu \vec a$ ，反向时 $\vec b=-\mu \vec a$ 。
@@ -92,7 +89,7 @@ $$
 我们再加入一个向量，用两个**不共线**向量表示（两个共线向量在此可以看成同一个向量），这样我们可以把任意一个平面向量分解到这两个向量的方向上了。
 
 !!! note "平面向量基本定理"
-    如果两个向量 $\overrightarrow{e_1},\overrightarrow{e_2}$ 不共线，那么存在唯一实数对 $(x,y)$ ，使得与 $\overrightarrow{e_1},\overrightarrow{e_2}$ 共面的任意向量 $\vec p$ 满足 $\vec p=x\overrightarrow{e_1}+y\overrightarrow{e_2}$。
+    如果两个向量 $\overrightarrow{e_1},\overrightarrow{e_2}$ 不共线，那么存在唯一实数对 $(x,y)$ ，使得与 $\overrightarrow{e_1},\overrightarrow{e_2}$ 共面的任意向量 $\vec p$ 满足 $\vec p=x\overrightarrow{e_1}+y\overrightarrow{e_2}$ 。
 
 在同一平面内的两个不共线的向量称为**基底**。
 
@@ -137,20 +134,16 @@ $$
 
 我们发现，这种运算得到的结果是一个实数，为标量，并不属于向量的线性运算。
 
-!!! note "判定两向量垂直"
-    $\vec a \perp \vec b$ $\Leftrightarrow$ $\vec a\cdot \vec b=0$
+!!! note "判定两向量垂直" $\vec a \perp \vec b$  $\Leftrightarrow$  $\vec a\cdot \vec b=0$ 
 
-!!! note "判定两向量共线"
-    $\vec a = \lambda \vec b$ $\Leftrightarrow$ $\vec a\cdot \vec b=|\vec a||\vec b|$ 
+!!! note "判定两向量共线" $\vec a = \lambda \vec b$  $\Leftrightarrow$  $\vec a\cdot \vec b=|\vec a||\vec b|$ 
 
 !!! note "数量积的坐标运算"
-    若 $\vec a=(m,n),\vec b=(p,q),$ 则 $\vec a\cdot \vec b=mp+nq$
+    若 $\vec a=(m,n),\vec b=(p,q),$ 则 $\vec a\cdot \vec b=mp+nq$ 
 
-!!! note "向量的模"
-    $|\vec a|=\sqrt {m^2+n^2}$
+!!! note "向量的模" $|\vec a|=\sqrt {m^2+n^2}$ 
 
-!!! note "两向量的夹角"
-    $\cos \theta=\cfrac{\vec a\cdot\vec b}{|\vec a||\vec b|}$
+!!! note "两向量的夹角" $\cos \theta=\cfrac{\vec a\cdot\vec b}{|\vec a||\vec b|}$ 
 
 ### 扩展
 
