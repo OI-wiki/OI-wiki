@@ -210,6 +210,7 @@ nav:
       - 割点和桥: graph/bridge.md
       - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
+    - 哈密顿图: graph/hamilton.md
     - 二分图: graph/bi-graph.md
     - 最小环: graph/min-circle.md
     - 网络流:

@@ -87,7 +87,7 @@ int main() {
 
 ## Bellman-Ford 判负环代码实现
 
-下面是用 Bellman-Ford 算法判断图中是否存在负环的代码实现，请在调用前先保证图是联通的。
+下面是用 Bellman-Ford 算法判断图中是否存在负环的代码实现，请在调用前先保证图是连通的。
 
 ```cpp
 bool Bellman_Ford() {
