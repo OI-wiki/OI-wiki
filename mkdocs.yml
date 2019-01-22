@@ -222,6 +222,7 @@ nav:
       - 最小割: graph/flow/min-cut.md
       - 费用流: graph/flow/min-cost.md
       - 上下界网络流: graph/flow/bound.md
+    - 图论杂项: graph/misc.md
   - 计算几何:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
