@@ -92,4 +92,7 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
       localStorage.setItem("data-md-color-accent",this.dataset.mdColorAccent);
     })
   })
+
+  // #758
+  document.getElementsByClassName('md-nav__title')[1].click()
 </script>
