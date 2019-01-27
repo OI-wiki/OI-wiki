@@ -9,16 +9,14 @@ dfs 全称是 Depth First Search。
 
 伪代码：
 
-```
-dfs(u) {
-  visited[u] = true
-  for each edge(u, v) {
-    if (!visited[v]) {
-      dfs(v)
+    dfs(u) {
+      visited[u] = true
+      for each edge(u, v) {
+        if (!visited[v]) {
+          dfs(v)
+        }
+      }
     }
-  }
-}
-```
 
 C++：
 

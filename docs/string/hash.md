@@ -20,13 +20,13 @@ Hash 的核心思想在于，暴力算法中，单次比较的时间太长了，
 
 时间复杂度和 Hash 的准确率。
 
-通常我们采用的是多项式 Hash 的方法，即 $\operatorname{f}(s) = \sum s[i] \times b^i \pmod M$
+通常我们采用的是多项式 Hash 的方法，即 $\\operatorname{f}(s) = \\sum s[i] \\times b^i \\pmod M$
 
 这里面的 $b$ 和 $M$ 需要选取得足够合适才行，以使得 Hash 的冲突尽量均匀。
 
-如果 $b$ 和 $M$ 互质，在输入随机的情况下，这个 Hash 函数在 $[0,M)$ 上每个值概率相等
+如果 $b$ 和 $M$ 互质，在输入随机的情况下，这个 Hash 函数在 $\[0,M)$ 上每个值概率相等
 
-此时错误率为 $\frac1M$ （单次比较）
+此时错误率为 $\\frac1M$ （单次比较）
 
 在输入不是随机的情况下，效果也很好。
 
@@ -34,29 +34,27 @@ Hash 的核心思想在于，暴力算法中，单次比较的时间太长了，
 
 伪代码：
 
-```
-match_pre(int n) {
-    exp[0] = 1;
-    for (i = 1; i < n; i++) {
-        exp[i] = exp[i - 1] * b % M;
-    }
-}
-
-match(char *a, char *b, int n, int m) {
-    // match 函数返回：长度为 m 的串 b 在长度为 n 的串 a 中的匹配位置
-    // hash(a, m) 函数用来获得某个字符串前 m 个字符的部分的 hash 值
-    ans = new vector();
-    int ha = hash(a, m);
-    int hb = hash(b, m);
-    for (i = 0; i < n - m + 1; i++) {
-        if ((ha - hb * exp[i]) % M == 0) {
-            ans.push_back(i);
+    match_pre(int n) {
+        exp[0] = 1;
+        for (i = 1; i < n; i++) {
+            exp[i] = exp[i - 1] * b % M;
         }
-        ha = (ha - a[i] * exp[i] + a[i + m] * exp[i + m]) % M;
     }
-    return ans;
-}
-```
+
+    match(char *a, char *b, int n, int m) {
+        // match 函数返回：长度为 m 的串 b 在长度为 n 的串 a 中的匹配位置
+        // hash(a, m) 函数用来获得某个字符串前 m 个字符的部分的 hash 值
+        ans = new vector();
+        int ha = hash(a, m);
+        int hb = hash(b, m);
+        for (i = 0; i < n - m + 1; i++) {
+            if ((ha - hb * exp[i]) % M == 0) {
+                ans.push_back(i);
+            }
+            ha = (ha - a[i] * exp[i] + a[i + m] * exp[i + m]) % M;
+        }
+        return ans;
+    }
 
 通过上面这段代码，可以发现，每次直接计算 Hash 是 $O(串长)$ 的
 
@@ -68,17 +66,17 @@ match(char *a, char *b, int n, int m) {
 
 我们来分析错误率
 
-由于 $n >> m$，要进行约 $n$ 次比较，每次错误率 $\frac1{M}$ ，那么总错误率是？
+由于 $n >> m$，要进行约 $n$ 次比较，每次错误率 $\\frac1{M}$ ，那么总错误率是？
 
 先补充一些随机数学的知识（非严格地）
 
 现在考虑这 $n$ 次比较，如果看成独立的，总错误率 $1-(1-1/M)^n$
 
-当 $M >> n$ 时，总错误率接近于$\frac{n}{M}$
+当 $M >> n$ 时，总错误率接近于$\\frac{n}{M}$
 
 当 $M = n$ 时，接近于 $1-1/e (≈0.63)$
 
-如果不是独立的，最坏情况也就是全部加起来，等于 $\frac{n}{M}$
+如果不是独立的，最坏情况也就是全部加起来，等于 $\\frac{n}{M}$
 
 要改进错误率，可以增加 $M$
 
@@ -92,7 +90,7 @@ match(char *a, char *b, int n, int m) {
 
 假设有个程序要对 $10^{18}$ 大小的数组进行操作，保证只有 $10^6$ 个元素被访问到
 
-由于存不下，我们在每次操作时，对下标取 Hash 值（比如，直接 $\bmod M$），然后在 $M$ 大小的数组内操作
+由于存不下，我们在每次操作时，对下标取 Hash 值（比如，直接 $\\bmod M$），然后在 $M$ 大小的数组内操作
 
 如果冲突了怎么办？
 

@@ -14,18 +14,18 @@
 
 时间复杂度分为最坏时间复杂度、平均时间复杂度、最好时间复杂度等等。OI 竞赛中要考虑的一般是最坏时间复杂度，因为它代表的是算法运行水平的下界，在评测中不会出现更差的结果了。
 
-基于比较的排序算法的时间复杂度下限是 $O(n\log n)$ 的。
+基于比较的排序算法的时间复杂度下限是 $O(n\\log n)$ 的。
 
-当然也有不是 $O(n\log n)$ 的，桶排序的时间复杂度是 $O(n)$，但是它是在「用空间换时间」，它的空间复杂度是 $O(所排序的最大数)$
+当然也有不是 $O(n\\log n)$ 的，桶排序的时间复杂度是 $O(n)$，但是它是在「用空间换时间」，它的空间复杂度是 $O(所排序的最大数)$
 
 ## 归并排序
 
 归并排序是 [分治](/basic/divide-and-conquer) 地来将一个数组排序。
 
 归并排序分为三个过程：
-1. 将数列划分为两部分（直接分，而不是像快速排序那样要求保证相对大小关系）
-2. 递归到两个子序列中分别进行归并排序
-3. 合并两个子序列
+1\. 将数列划分为两部分（直接分，而不是像快速排序那样要求保证相对大小关系）
+2\. 递归到两个子序列中分别进行归并排序
+3\. 合并两个子序列
 
 不难发现，归并排序的核心是如何合并两个子序列，前两步都很好实现。
 
@@ -54,7 +54,7 @@ void merge(int ll, int rr) {
 
 归并排序还可以用来求逆序对的个数。
 
-所谓逆序对，就是数对 $(i, j)$，满足 $a[i] > a[j]$ 且 $i < j$。
+所谓逆序对，就是数对 $(i, j)$，满足 $a[i] > a[j]$ 且 $i &lt; j$。
 
 可以用 [树状数组](/ds/bit)、[线段树](/ds/segment/) 等数据结构来求，也可以用归并排序来求。
 
@@ -64,16 +64,16 @@ void merge(int ll, int rr) {
 
 ### 参考
 
-https://www.geeksforgeeks.org/merge-sort/
+<https://www.geeksforgeeks.org/merge-sort/>
 
 ## 快速排序
 
 快速排序是 [分治](/basic/divide-and-conquer) 地来将一个数组排序。
 
 快速排序分为三个过程：
-1. 将数列划分为两部分（不是直接分，要求保证相对大小关系）
-2. 递归到两个子序列中分别进行快速排序
-3. 不用合并，因为此时数列已经完全有序
+1\. 将数列划分为两部分（不是直接分，要求保证相对大小关系）
+2\. 递归到两个子序列中分别进行快速排序
+3\. 不用合并，因为此时数列已经完全有序
 
 和归并排序不同，第一步并不是直接分成前后两个序列，而是在分的过程中要保证相对大小关系。
 
@@ -89,9 +89,9 @@ https://www.geeksforgeeks.org/merge-sort/
 
 其实，快速排序没有指定应如何具体实现第一步，不论是选择 m 的过程还是划分的过程，都不是只有一种实现方法。
 
-注意，一般我们说的快速排序的时间复杂度是平均为 $O(N\log N)$，最坏是 $O(n^2)$，只不过实践中几乎不可能达到最坏情况。
+注意，一般我们说的快速排序的时间复杂度是平均为 $O(N\\log N)$，最坏是 $O(n^2)$，只不过实践中几乎不可能达到最坏情况。
 
-其实，在选择 m 的过程中使用 [Median of Medians](https://en.wikipedia.org/wiki/Median_of_medians) 算法，就可以保证最坏时间复杂度为 $O(N\log N)$，但是由于j小微复杂，实践中一般不使用。
+其实，在选择 m 的过程中使用 [Median of Medians](https://en.wikipedia.org/wiki/Median_of_medians) 算法，就可以保证最坏时间复杂度为 $O(N\\log N)$，但是由于j小微复杂，实践中一般不使用。
 
 ### STL
 
@@ -101,15 +101,16 @@ C 函数模板库实现了快速排序，即 `stdlib.h` 当中的 `qsort`。
 
 C++ 标准并未严格要求此函数的实现算法，具体实现取决于编译器。
 
-旧版 C++ 标准中仅要求它的 **平均** 时间复杂度是 $O(N\log N)$ 的，但在 C++11 中要求它的 **最坏** 时间复杂度是 $O(N\log N)$ 的。可以查阅 [std::sort()](https://en.cppreference.com/w/cpp/algorithm/sort)
+旧版 C++ 标准中仅要求它的 **平均** 时间复杂度是 $O(N\\log N)$ 的，但在 C++11 中要求它的 **最坏** 时间复杂度是 $O(N\\log N)$ 的。可以查阅 [std::sort()](https://en.cppreference.com/w/cpp/algorithm/sort)
 
 在 [libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) 和 [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm) 中使用的都是 [Introsort](https://en.wikipedia.org/wiki/Introsort)。
 
-Introsort 限制了快速排序的分治深度，当分治达到一定深度之后，改用最坏时间复杂度为 $O(N\log N)$ 的排序算法（比如堆排序）来给子数组排序。
+Introsort 限制了快速排序的分治深度，当分治达到一定深度之后，改用最坏时间复杂度为 $O(N\\log N)$ 的排序算法（比如堆排序）来给子数组排序。
 
-Introsort 的这个限制使得它的最坏时间复杂度是 $O(N\log N)$ 的。
+Introsort 的这个限制使得它的最坏时间复杂度是 $O(N\\log N)$ 的。
 
 快速用法：
+
 ```c++
 // a[0] .. a[n - 1] 是放了元素的
 std::sort(a, a + n);
@@ -118,7 +119,7 @@ std::sort(a, a + n);
 
 ### 线性找第 k 大的数
 
-找第 k 大的数，最简单的方法是先排序，然后直接找到第 k 大的位置的元素。这样做的时间复杂度是 $O(N\log N)$，对于这个问题来说很不划算。事实上，我们有 $O(n)$ 的解法。
+找第 k 大的数，最简单的方法是先排序，然后直接找到第 k 大的位置的元素。这样做的时间复杂度是 $O(N\\log N)$，对于这个问题来说很不划算。事实上，我们有 $O(n)$ 的解法。
 
 考虑快速排序的划分过程，在快速排序的 “划分” 结束后，数列 $A[p \cdots r]]$ 被分成了 $A[p \cdots q]$ 和 $A[q+1 \cdots r]$，此时可以按照左边元素的个数（$q - p + 1$）和 k 的大小关系来判断是只在左边还是只在右边递归地求解。
 
@@ -126,9 +127,9 @@ std::sort(a, a + n);
 
 ### 参考
 
-https://stackoverflow.com/questions/22339240/what-algorithms-are-used-in-c11-stdsort-in-different-stl-implementations
+<https://stackoverflow.com/questions/22339240/what-algorithms-are-used-in-c11-stdsort-in-different-stl-implementations>
 
-https://en.cppreference.com/w/cpp/algorithm/sort
+<https://en.cppreference.com/w/cpp/algorithm/sort>
 
 ## 计数排序
 
@@ -143,4 +144,4 @@ https://en.cppreference.com/w/cpp/algorithm/sort
 
 ### 参考
 
-https://www.geeksforgeeks.org/counting-sort/
+<https://www.geeksforgeeks.org/counting-sort/>

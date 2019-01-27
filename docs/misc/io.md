@@ -14,23 +14,21 @@
 
 tie是将两个stream绑定的函数，空参数的话返回当前的输出流指针。
 
-在默认的情况下cin绑定的是cout，每次执行 << 操作符的时候都要调用flush，这样会增加IO负担。可以通过tie(0)（0表示NULL）来解除cin与cout的绑定，进一步加快执行效率。
+在默认的情况下cin绑定的是cout，每次执行 &lt;&lt; 操作符的时候都要调用flush，这样会增加IO负担。可以通过tie(0)（0表示NULL）来解除cin与cout的绑定，进一步加快执行效率。
 
 ### 代码实现
 
 ```cpp
-
 std::ios::sync_with_stdio(false);
 
 std::cin.tie(0);
-
 ```
 
 ## 读入优化
 
 scanf和printf依然有优化的空间，这就是本章所介绍的内容——读入和输出优化。
 
-* 注意，读入和输出优化均针对整数，不支持其他类型的数据
+-   注意，读入和输出优化均针对整数，不支持其他类型的数据
 
 ### 原理
 
@@ -45,7 +43,6 @@ scanf和printf依然有优化的空间，这就是本章所介绍的内容——
 ### 代码实现
 
 ```cpp
-
 int read(){
 
 	int x=0,w=1;char ch=0;
@@ -69,7 +66,7 @@ int read(){
 }
 ```
 
-* 举例 
+-   举例 
 
 读入num 可写为 num=read();
 
@@ -102,7 +99,7 @@ int write(int x){
 }
 ```
 
-* 举例
+-   举例
 
 输出num可写为write(num);
 
@@ -110,6 +107,6 @@ int write(int x){
 
 ## 参考
 
-http://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html
+<http://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html>
 
-http://meme.biology.tohoku.ac.jp/students/iwasaki/cxx/speed.html
+<http://meme.biology.tohoku.ac.jp/students/iwasaki/cxx/speed.html>

@@ -35,23 +35,20 @@ cd ..
 首先打开 lemon 选择新建试题，而后打开新建试题的文件夹
 
 题目和数据应该如以下格式所示
-```
-├── data
-│   ├── gendata.py
-│   ├── product
-│   │   ├── product100.in
-│   │   ├── product100.out
-│   │   ├── product10.in
-│   │   ├── product10.out
-│   │   ├── product11.in
-...
-```
+
+    ├── data
+    │   ├── gendata.py
+    │   ├── product
+    │   │   ├── product100.in
+    │   │   ├── product100.out
+    │   │   ├── product10.in
+    │   │   ├── product10.out
+    │   │   ├── product11.in
+    ...
 
 当所有试题添加完成后，回到 lemon 选择自动添加试题
 
 此时你的题目和数据点应该都显示在 lemon 当中了
-
-
 
 ### Arbiter
 

@@ -15,6 +15,7 @@ title: OI Wiki
 Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`588793226`](https://jq.qq.com/?_wv=1027&k=5EfkM6K)，欢迎加入。
 
 ## Material color palette 颜色主题
+
 ### Primary colors 主色
 
 > 默认 `white`

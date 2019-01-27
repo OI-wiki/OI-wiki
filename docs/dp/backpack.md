@@ -1,9 +1,10 @@
 在学习本章前请确认你已经学习了[动态规划部分简介](/dp/)
 
 在具体讲何为"背包dp"前，先来看如下的例题
+
 #### 例题
 
-[[USACO07DEC]手链Charm Bracelet](https://www.luogu.org/problemnew/show/P2871)
+[\[USACO07DEC\]手链Charm Bracelet](https://www.luogu.org/problemnew/show/P2871)
 
 本题题意可概括为——N物体，放入容量为M的背包，要求使总价值最大
 
@@ -19,7 +20,7 @@
 
 由此可以得出状态转移方程
 
-* dp[v1][i]=max(dp[v1][i-1],dp[v1-v[i]][i-1]+w[i])
+-   dp[v1][i]=max(dp[v1][i-1],dp[v1-v\[i\]][i-1]+w[i])
 
 有了这样的思路，就可以顺利地写出代码了
 
@@ -28,6 +29,7 @@ for (int i=1;i<=v1;i++)
     for (int l=0;l<=v1-i;l++)
         dp[l+i]=max(dp[l]+w[i],dp[l+i]);
 ```
+
 按照正确的思路，写出了这样的核心代码，然后就可以提交......
 
 错！
@@ -41,6 +43,7 @@ for (int i=1;i<=v1;i++)
 因此为了避免多取，穷举顺序应为v1-v[i]~0
 
 因此实际核心代码为
+
 ```cpp
 for (int i=1;i<=v1;i++)
     for (int l=v1-i;l>=0;l--)
