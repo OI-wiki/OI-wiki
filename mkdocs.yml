@@ -206,6 +206,7 @@ nav:
     - 复杂度: misc/complexity.md
     - 读入和输出优化: misc/io.md
     - 离散化: misc/discrete.md
+    - 珂朵莉树/ODT：misc/odt.md
 
 # Theme
 theme:
