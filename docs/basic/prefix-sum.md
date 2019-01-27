@@ -53,7 +53,7 @@ int main() {
 
 ### 习题
 
-- [洛谷 U53525 前缀和（例题）](https://www.luogu.org/problemnew/show/U53525)
+-   [洛谷 U53525 前缀和（例题）](https://www.luogu.org/problemnew/show/U53525)
 
 ### 参考
 
@@ -89,7 +89,7 @@ int main() {
 
 ### 习题
 
-- [CodeVS 1373. 射命丸文](http://codevs.cn/problem/1373/)
+-   [CodeVS 1373. 射命丸文](http://codevs.cn/problem/1373/)
 
 ## 树上前缀和
 
@@ -101,8 +101,8 @@ int main() {
 
 ### 习题
 
-- [LOJ 10134.Dis](https://loj.ac/problem/10134)
-- [LOJ 2491. 求和](https://loj.ac/problem/2491)
+-   [LOJ 10134.Dis](https://loj.ac/problem/10134)
+-   [LOJ 2491. 求和](https://loj.ac/problem/2491)
 
 ## 差分
 
@@ -118,7 +118,7 @@ int main() {
 
 ### 习题
 
-- [P3368 【模板】树状数组 2](https://www.luogu.org/problemnew/show/P3368)（需要掌握树状数组）
+-   [P3368【模板】树状数组 2](https://www.luogu.org/problemnew/show/P3368)（需要掌握树状数组）
 
 ## 树上差分
 
@@ -135,4 +135,4 @@ int main() {
 
 ### 习题
 
-- [洛谷 3128. 最大流](https://www.luogu.org/problemnew/show/P3128)
+-   [洛谷 3128. 最大流](https://www.luogu.org/problemnew/show/P3128)
