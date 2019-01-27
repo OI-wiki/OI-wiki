@@ -157,6 +157,8 @@ static int _merge(int _x, int _y) {
 
 2.  codeforces 702F T-shirt
 
+3.  luogu P5055 可持久化文艺平衡树
+
 ## 另外
 
 1.  可持久化平衡树可以用来维护动态凸包，仙人掌等东西，如果读者有兴趣可以阅读相应的[**计算几何**](/geometry)知识，再来食用。
