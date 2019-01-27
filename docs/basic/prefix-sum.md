@@ -53,7 +53,7 @@ int main() {
 
 ### 习题
 
-1.  [洛谷 U53525 前缀和（例题）](https://www.luogu.org/problemnew/show/U53525)
+-   [洛谷 U53525 前缀和（例题）](https://www.luogu.org/problemnew/show/U53525)
 
 ### 参考
 
@@ -89,7 +89,7 @@ int main() {
 
 ### 习题
 
-1.  [CodeVS 1373. 射命丸文](http://codevs.cn/problem/1373/)
+-   [CodeVS 1373. 射命丸文](http://codevs.cn/problem/1373/)
 
 ## 树上前缀和
 
@@ -101,8 +101,8 @@ int main() {
 
 ### 习题
 
-1.  [LOJ 10134.Dis](https://loj.ac/problem/10134)
-2.  [LOJ 2491. 求和](https://loj.ac/problem/2491)
+-   [LOJ 10134.Dis](https://loj.ac/problem/10134)
+-   [LOJ 2491. 求和](https://loj.ac/problem/2491)
 
 ## 差分
 
@@ -114,11 +114,11 @@ int main() {
 具体怎么搞？譬如使 $[l,r]$ 每个数加上一个 $k$ ，就是 $b_l \leftarrow b_l + k,b_{r + 1} \leftarrow b_{r + 1} - k$ 。  
 最后做一遍前缀和就好了。
 
-对于多维差分，自己手推一下就好了。（逃
+~~对于多维差分，自己手推一下就好了。（逃~~
 
 ### 习题
 
-待补充。
+-   [P3368【模板】树状数组 2](https://www.luogu.org/problemnew/show/P3368)（需要掌握树状数组）
 
 ## 树上差分
 
@@ -135,4 +135,4 @@ int main() {
 
 ### 习题
 
-1.  [洛谷 3128. 最大流](https://www.luogu.org/problemnew/show/P3128)
+-   [洛谷 3128. 最大流](https://www.luogu.org/problemnew/show/P3128)
