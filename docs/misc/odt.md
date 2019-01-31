@@ -1,17 +1,17 @@
-# 名称简介
+## 名称简介
 
 老司机树，ODT(Old Driver Tree)，珂朵莉树（Ctholly Tree)。  
-起源自[此](https://www.luogu.org/problemnew/show/CF896C)。
+起源自 [CF896C](https://codeforces.com/problemset/problem/896/C)。
 
-# 前置知识
+## 前置知识
 
 会用 STL 的 set 就行。
 
-# 核心思想
+## 核心思想
 
 把值相同的区间合并成一个结点保存在 set 里面。
 
-# 用处
+## 用处
 
 骗分。  
 只要是有区间赋值操作的数据结构题都可以用来骗分。  
@@ -20,7 +20,7 @@
 如果要保证复杂度正确，必须保证数据随机。  
 证明在[此](http://codeforces.com/blog/entry/56135?#comment-398940)。
 
-# 正文
+## 正文
 
 首先，结点的保存方式：
 
@@ -37,7 +37,7 @@ struct node {
 然后，我们定义一个 `set<node> odt;` 来维护这些结点。  
 为简化代码，可以 `typedef set<node>::iterator IT` 。
 
-## split
+### split
 
 最核心的操作之一 `split` ，它用于取得以 $x$ 开头的结点。  
 参考代码如下：
@@ -59,7 +59,7 @@ IT split(int x) {
 这个玩意有什么用呢？  
 任何对于 $[l,r]$ 的区间操作，都可以转换成 set 上 $[split(l),split(r + 1))$ 的操作。
 
-## assign
+### assign
 
 另外一个重要的操作 `assign` 用于对一段区间进行赋值。  
 对于 ODT 来说，区间操作只有这个比较特殊，也是保证复杂度的关键。  
@@ -74,7 +74,7 @@ void assign(int l, int r, int v) {
 }
 ```
 
-## 其他操作
+### 其他操作
 
 套模板就好了，参考代码如下：
 
@@ -87,7 +87,7 @@ void performance(int l, int r) {
 }
 ```
 
-# 习题
+## 习题
 
 -   [BZOJ 1858.\[SCOI2010\]序列操作](https://www.lydsy.com/JudgeOnline/problem.php?id=1858)
 -   [BZOJ 4592.\[SHOI2015\]脑洞治疗仪](https://www.lydsy.com/JudgeOnline/problem.php?id=4592)
