@@ -1,7 +1,7 @@
 ## 名称简介
 
 老司机树，ODT(Old Driver Tree)，珂朵莉树（Ctholly Tree)。  
-起源自 [CF896C](https://codeforces.com/problemset/problem/896/C)。
+起源自[CF896C](https://codeforces.com/problemset/problem/896/C)。
 
 ## 前置知识
 
