@@ -151,10 +151,10 @@ nav:
     - 链表: ds/linked-list.md
     - 哈希表: ds/hash.md
     - 并查集: ds/dsu.md
-    - 堆:
-      - 堆简介: ds/heap/heap.md
-      - 二叉堆: ds/heap/binary-heap.md
-      - 配对堆: ds/heap/pairing-heap.md
+    - 堆: 
+      - 简介: ds/heap.md
+      - 二叉堆: ds/binary-heap.md
+      - 配对堆: ds/pairing-heap.md
     - 块状数据结构:
       - 分块思想: ds/square-root-decomposition.md
       - 块状链表: ds/block-list.md
@@ -259,10 +259,7 @@ nav:
 
 # Theme
 theme:
-  name: null
-  custom_dir: 'mkdocs-material/material'
-  static_templates:
-    - 404.html
+  name: 'material'
   language: 'zh'
   palette:
     primary: 'white'
@@ -287,12 +284,12 @@ extra:
   copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
   manifest: 'manifest.webmanifest'
-  githash: 'ed60f96'
+  githash: ''
 
 extra_javascript:
   - 'https://cdnjs.loli.net/ajax/libs/Han/3.3.0/han.min.js'
   - '_static/js/extra.js?v=10'
-  
+  - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
 
 
 extra_css:
