@@ -1,3 +1,5 @@
+# 堆简介
+
 堆是一种数据结构，维护一个数的集合（或者，一个支持比较的元素的集合）。
 
 主要功能有：insert, getmin, deletemin, decreasekey。
