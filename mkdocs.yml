@@ -151,7 +151,10 @@ nav:
     - 链表: ds/linked-list.md
     - 哈希表: ds/hash.md
     - 并查集: ds/dsu.md
-    - 堆: ds/heap.md
+    - 堆: 
+      - 简介: ds/heap.md
+      - 二叉堆: ds/binary-heap.md
+      - 配对堆: ds/pairing-heap.md
     - 块状数据结构:
       - 分块思想: ds/square-root-decomposition.md
       - 块状链表: ds/block-list.md
