@@ -106,11 +106,11 @@ build_heap_2() {
 
 $$
 \begin{aligned}
-总复杂度 & = n \log n - \log 1 - \log 2 - \cdots - \log n \\\\
-& \leq n \log n - 0 \times 2^0 - 1 \times 2^1 -\cdots - (\log n - 1) \times \frac{n}{2} \\\\
-& = n \log n - (n-1) - (n-2) - (n-4) - \cdots - (n-\frac{n}{2}) \\\\
-& = n \log n - n \log n + 1 + 2 + 4 + \cdots + \frac{n}{2} \\\\
-& = n - 1 \\\\ &  = O(n)
+总复杂度 & = n \log n - \log 1 - \log 2 - \cdots - \log n \\
+& \leq n \log n - 0 \times 2^0 - 1 \times 2^1 -\cdots - (\log n - 1) \times \frac{n}{2} \\\
+& = n \log n - (n-1) - (n-2) - (n-4) - \cdots - (n-\frac{n}{2}) \\
+& = n \log n - n \log n + 1 + 2 + 4 + \cdots + \frac{n}{2} \\
+& = n - 1 \\ &  = O(n)
 \end{aligned}
 $$
 
