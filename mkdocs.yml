@@ -152,7 +152,7 @@ nav:
     - 哈希表: ds/hash.md
     - 并查集: ds/dsu.md
     - 堆: 
-      - 简介: ds/heap.md
+      - 堆简介: ds/heap.md
       - 二叉堆: ds/binary-heap.md
       - 配对堆: ds/pairing-heap.md
     - 块状数据结构:
