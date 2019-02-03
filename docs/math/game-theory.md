@@ -78,29 +78,29 @@
 
 对于定理 3，如果我们要将 $a_i$ 改为 $a_i'$ ，则根据异或运算律可以得出 $a_i=a_i'$ ，因而这不是个合法的移动。
 
-## 有向图游戏与 SG 函数
+## 有向图游戏与 \operatorname{SG} 函数
 
 有向图游戏是一个经典的博弈游戏——实际上，大部分的公平组合游戏都可以转换为有向图游戏。
 
 在一个有向无环图中，只有一个起点，上面有一个棋子，两个玩家轮流沿着有向边推动棋子，不能走的玩家判负。
 
-定义 $mex$ 函数的值为不属于集合 $S$ 中的最小非负整数，即：
+定义 $\operatorname{mex}$ 函数的值为不属于集合 $S$ 中的最小非负整数，即：
 
 $$
-mex(S)=min\{x\} \quad (x \notin S, x \in N)
+\operatorname{mex}(S)=\min\{x\} \quad (x \notin S, x \in N)
 $$
 
-例如 $mex(\{0, 2, 4\})=1$ ， $mex(\{1, 2\})=0$ 。
+例如 $\operatorname{mex}(\{0, 2, 4\})=1$ ， $\operatorname{mex}(\{1, 2\})=0$ 。
 
-对于状态 $x$ 和它的所有 $k$ 个后继状态 $y_1, y_2, \ldots, y_k$ ，定义 $SG$ 函数：
+对于状态 $x$ 和它的所有 $k$ 个后继状态 $y_1, y_2, \ldots, y_k$ ，定义 $\operatorname{SG}$ 函数：
 
 $$
-SG(x)=mex\{SG(y_1), SG(y_2), \ldots, G(y_k)\}
+\operatorname{SG}(x)=\operatorname{mex}\{\operatorname{SG}(y_1), \operatorname{SG}(y_2), \ldots, \operatorname{SG}(y_k)\}
 $$
 
-而对于由 $n$ 个有向图游戏组成的组合游戏，设它们的起点分别为 $s_1, s_2, \ldots, s_n$ ，则有定理：**当且仅当 $SG(s_1) \oplus SG(s_2) \oplus \ldots \oplus SG(s_n) \neq 0$ 时，这个游戏是先手必胜的。**
+而对于由 $n$ 个有向图游戏组成的组合游戏，设它们的起点分别为 $s_1, s_2, \ldots, s_n$ ，则有定理：**当且仅当 $\operatorname{SG}(s_1) \oplus \operatorname{SG}(s_2) \oplus \ldots \oplus \operatorname{SG}(s_n) \neq 0$ 时，这个游戏是先手必胜的。**
 
-这一定理被称作 SG 定理。
+这一定理被称作 \operatorname{SG} 定理。
 
 ## 将 Nim 游戏转换为有向图游戏
 
@@ -108,7 +108,7 @@ $$
 
 那么，由 $n$ 个堆组成的 Nim 游戏，就可以视为 $n$ 个有向图游戏了。
 
-根据上面的推论，可以得出 $SG(x)=x$ 。再根据 SG 定理，就可以得出 Nim 和的结论了。
+根据上面的推论，可以得出 $\operatorname{SG}(x)=x$ 。再根据 \operatorname{SG} 定理，就可以得出 Nim 和的结论了。
 
 ## 参考文献
 
