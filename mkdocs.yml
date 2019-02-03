@@ -53,7 +53,7 @@ nav:
     - 搜索部分简介: search/index.md
     - DFS: search/dfs.md
     - BFS: search/bfs.md
-    - 双向 BFS: search/dbfs.md
+    - 双向搜索: search/bidirectional.md
     - 启发式搜索: search/heuristic.md
     - A*: search/astar.md
     - 迭代加深搜索: search/iterative.md
@@ -81,7 +81,6 @@ nav:
     - 前缀函数与 KMP 算法: string/prefix-function.md
     - 字典树 (Trie): string/trie.md
     - 回文自动机: string/pam.md
-    - 回文树: string/palindrome-tree.md
     - 后缀数组 (SA): string/sa.md
     - AC 自动机: string/ac-automaton.md
     - 后缀自动机 (SAM): string/sam.md
