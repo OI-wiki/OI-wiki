@@ -88,6 +88,7 @@ alias wiki-theme='export LC_ALL=C.UTF-8 && cd /OI-wiki && chmod +x ./scripts/bui
 alias wiki-bld='export LC_ALL=C.UTF-8 && cd /OI-wiki && mkdocs build -v'
 alias wiki-svr='export LC_ALL=C.UTF-8 && cd /OI-wiki && mkdocs serve -v'
 alias wiki-bld-math='export LC_ALL=C.UTF-8 && cd /OI-wiki && mkdocs build -v && find ./site -type f -name "*.html" -exec node --max_old_space_size=512 ./scripts/render_math.js {} \;'
+alias wiki-o='export LC_ALL=C.UTF-8 && cd /OI-wiki && remark ./docs -o --silent'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

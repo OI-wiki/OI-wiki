@@ -41,12 +41,12 @@ match(char *a, char *b, int n, int m) {
 
 最好是 $O(n)$ 的。
 
-如果字符集的大小大于 1 （有至少两个不同的字符），平均时间复杂度是 $O(n)$ 的。
+如果字符集的大小大于 1（有至少两个不同的字符），平均时间复杂度是 $O(n)$ 的。
 
 ## Hash 的方法
 
-参见 [Hash](/string/hash)
+参见[Hash](/string/hash)
 
 ## KMP 算法
 
-参见 [KMP](/string/kmp)
+参见[KMP](/string/kmp)

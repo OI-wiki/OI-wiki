@@ -1,6 +1,6 @@
 ## 逆元简介
 
-如果一个线性同余方程 $ax \equiv 1 \pmod b$，则 $x$ 称为 $a \mod b$ 的逆元，记作 $a^{-1}$。
+如果一个线性同余方程 $ax \equiv 1 \pmod b$ ，则 $x$ 称为 $a \mod b$ 的逆元，记作 $a^{-1}$ 。
 
 ## 如何求逆元
 
@@ -20,19 +20,19 @@ void ex_gcd(int a, int b, int& x, int& y) {
 }
 ```
 
-扩展欧几里得法和求解 [线性同余方程](/math/linear-equation/) 是一个原理，在这里不展开解释。
+扩展欧几里得法和求解[线性同余方程](/math/linear-equation/)是一个原理，在这里不展开解释。
 
 ### 快速幂法
 
-这个要运用 [费马小定理](/math/fermat/)：
+这个要运用[费马小定理](/math/fermat/)：
 
-> 若 $p$ 为质数，$a$ 为正整数，且 $a$、$p$ 互质，则 $a^{p-1} \equiv 1 \pmod p$。
+> 若 $p$ 为质数， $a$ 为正整数，且 $a$ 、 $p$ 互质，则 $a^{p-1} \equiv 1 \pmod p$ 。
 
-因为 $ax \equiv 1 \pmod b$；
+因为 $ax \equiv 1 \pmod b$ ；
 
-所以 $ax \equiv a^{b-1} \pmod b$（根据费马小定理）；
+所以 $ax \equiv a^{b-1} \pmod b$ （根据费马小定理）；
 
-所以 $x \equiv a^{b-2} \pmod b$；
+所以 $x \equiv a^{b-2} \pmod b$ ；
 
 然后我们就可以用快速幂来求了。
 
@@ -56,17 +56,17 @@ inline ll poW(ll a, ll b) {
 
 但是如果要求的很多，以上两种方法就显得慢了，很有可能超时，所以下面来讲一下如何线性求逆元。
 
-首先，很显然的 $1^{-1} \equiv 1 \pmod p$；
+首先，很显然的 $1^{-1} \equiv 1 \pmod p$ ；
 
-然后，设 $p=ki+j,j<i,1<i<p$，再放到 $\mod p$ 意义下就会得到：$ki+j \equiv 0 \pmod p$；
+然后，设 $p=ki+j,j<i,1<i<p$ ，再放到 $\mod p$ 意义下就会得到： $ki+j \equiv 0 \pmod p$ ；
 
-两边同时乘 $i^{-1},j^{-1}$：
+两边同时乘 $i^{-1},j^{-1}$ ：
 
-$kj^{-1}+i^{-1} \equiv 0 \pmod p$；
+ $kj^{-1}+i^{-1} \equiv 0 \pmod p$ ；
 
-$i^{-1} \equiv -kj^{-1}+ \pmod p$；
+ $i^{-1} \equiv -kj^{-1}+ \pmod p$ ；
 
-$i^{-1} \equiv -(\frac{p}{i}) (p \mod i)^{-1}$；
+ $i^{-1} \equiv -(\frac{p}{i}) (p \mod i)^{-1}$ ；
 
 然后我们就可以推出逆元了，代码只有一行：
 
@@ -88,6 +88,6 @@ a[i] = (p - p / i) * a[p % i] % p;
 
 [同余方程](https://www.luogu.org/problemnew/show/P1082)
 
-[\[AHOI2005\] 洗牌](https://www.lydsy.com/JudgeOnline/problem.php?id=1965)
+[\[AHOI2005\]洗牌](https://www.lydsy.com/JudgeOnline/problem.php?id=1965)
 
-[\[SDOI2016\] 排列计数](https://www.luogu.org/problemnew/show/P4071)
+[\[SDOI2016\]排列计数](https://www.luogu.org/problemnew/show/P4071)

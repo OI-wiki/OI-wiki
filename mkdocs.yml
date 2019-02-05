@@ -1,6 +1,6 @@
 # Project Information
 site_name: OI Wiki
-site_description: OI Wiki 是一个编程竞赛知识整合站点，提供有趣又实用的编程竞赛知识以及其他有帮助的内容，帮助广大编程竞赛爱好者更快更深入地学习编程竞赛竞赛
+site_description: OI Wiki 是一个编程竞赛知识整合站点，提供有趣又实用的编程竞赛知识以及其他有帮助的内容，帮助广大编程竞赛爱好者更快更深入地学习编程竞赛
 site_author: OI Wiki Team
 site_url: https://oi-wiki.org
 strict: true
@@ -11,7 +11,7 @@ repo_url: 'https://github.com/24OI/OI-wiki'
 edit_uri: 'blob/master/docs/'
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2018 OI Wiki Team'
+copyright: 'Copyright &copy; 2016 - 2019 OI Wiki Team'
 
 # Contents
 nav:
@@ -21,12 +21,19 @@ nav:
     - 学习资源: intro/resources.md
     - 常见错误: intro/common-mistakes.md
     - 常见技巧: intro/common-tricks.md
+    - 非传统题: intro/non-traditional.md
     - 工具软件:
       - 评测工具: intro/judgers.md
       - 编辑工具: intro/editors.md
       - WSL (Windows 10): intro/wsl.md
       - Special Judge: intro/spj.md
-      - Testlib: intro/testlib.md
+      - Testlib:
+        - Testlib 简介: intro/testlib/index.md
+        - 通用: intro/testlib/general.md
+        - Generator: intro/testlib/generator.md
+        - Validator: intro/testlib/validator.md
+        - Interactor: intro/testlib/interactor.md
+        - Checker: intro/testlib/checker.md
     - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
@@ -46,7 +53,7 @@ nav:
     - 搜索部分简介: search/index.md
     - DFS: search/dfs.md
     - BFS: search/bfs.md
-    - 双向 BFS: search/dbfs.md
+    - 双向搜索: search/bidirectional.md
     - 启发式搜索: search/heuristic.md
     - A*: search/astar.md
     - 迭代加深搜索: search/iterative.md
@@ -74,7 +81,6 @@ nav:
     - 前缀函数与 KMP 算法: string/prefix-function.md
     - 字典树 (Trie): string/trie.md
     - 回文自动机: string/pam.md
-    - 回文树: string/palindrome-tree.md
     - 后缀数组 (SA): string/sa.md
     - AC 自动机: string/ac-automaton.md
     - 后缀自动机 (SAM): string/sam.md
@@ -97,17 +103,18 @@ nav:
     - 同余方程相关:
       - 裴蜀定理: math/bezouts.md
       - 乘法逆元: math/inverse.md
-      - 线性方程: math/linear-equation.md
+      - 线性同余方程: math/linear-equation.md
       - 中国剩余定理: math/crt.md
       - BSGS: math/bsgs.md
       - 原根: math/primitive-root.md
-    - 高斯消元: math/gauss.md
-    - 矩阵: math/matrix.md
+    - 线性代数:
+      - 矩阵: math/matrix.md
+      - 高斯消元: math/gauss.md
+      - 线性基: math/basis.md
     - 复数: math/complex.md
     - 分段打表: math/dictionary.md
     - 莫比乌斯反演: math/mobius.md
     - 杜教筛: math/du-sieves.md
-    - 线性基: math/basis.md
     - 多项式:
       - 多项式部分简介: math/poly.md
       - 拉格朗日插值: math/lagrange-poly.md
@@ -143,7 +150,10 @@ nav:
     - 链表: ds/linked-list.md
     - 哈希表: ds/hash.md
     - 并查集: ds/dsu.md
-    - 堆: ds/heap.md
+    - 堆: 
+      - 堆简介: ds/heap.md
+      - 二叉堆: ds/binary-heap.md
+      - 配对堆: ds/pairing-heap.md
     - 块状数据结构:
       - 分块思想: ds/square-root-decomposition.md
       - 块状链表: ds/block-list.md
@@ -156,12 +166,14 @@ nav:
     - 线段树: ds/segment.md
     - 划分树: ds/dividing.md
     - 虚树: ds/virtual-tree.md
-    - Size Balanced Tree: ds/sbt.md
-    - Treap: ds/treap.md
-    - Splay: ds/splay.md
-    - WBLT: ds/wblt.md
-    - AVL 树: ds/avl.md
-    - 替罪羊树: ds/scapegoat.md
+    - 平衡树:
+      - 二叉搜索树简介: ds/bst.md
+      - Treap: ds/treap.md
+      - Splay: ds/splay.md
+      - WBLT: ds/wblt.md
+      - Size Balanced Tree: ds/sbt.md
+      - AVL 树: ds/avl.md
+      - 替罪羊树: ds/scapegoat.md
     - 树套树:
       - 线段树套线段树: ds/seg-in-seg.md
       - 平衡树套线段树: ds/seg-in-balanced.md
@@ -200,8 +212,11 @@ nav:
       - 割点和桥: graph/bridge.md
       - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
+    - 哈密顿图: graph/hamilton.md
     - 二分图: graph/bi-graph.md
     - 最小环: graph/min-circle.md
+    - 平面图: graph/planar.md
+    - 图的着色: graph/color.md
     - 网络流:
       - 网络流简介: graph/flow.md
       - 拆点: graph/flow/node.md
@@ -209,6 +224,7 @@ nav:
       - 最小割: graph/flow/min-cut.md
       - 费用流: graph/flow/min-cost.md
       - 上下界网络流: graph/flow/bound.md
+    - 图论杂项: graph/misc.md
   - 计算几何:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
@@ -222,7 +238,6 @@ nav:
     - 计算几何杂项: geometry/magic.md
   - 杂项:
     - 杂项简介: misc/index.md
-    - 非传统题: misc/non-traditional.md
     - CDQ 分治: misc/cdq-divide.md
     - 莫队算法: misc/mo-algo.md
     - 爬山算法: misc/hill-climbing.md
@@ -239,6 +254,7 @@ nav:
     - 读入、输出优化: misc/io.md
     - 离散化: misc/discrete.md
     - 树上启发式合并: misc/dsu-on-tree.md
+    - 珂朵莉树: misc/odt.md
 
 # Theme
 theme:

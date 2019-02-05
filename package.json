@@ -25,11 +25,18 @@
   },
   "homepage": "https://github.com/24OI/OI-wiki#readme",
   "dependencies": {
+    "cssnano": "^4.1.8",
+    "gulp": "^4.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-purifycss": "^0.2.0",
     "mathjax-node-page": "^3.0.1",
     "remark-clang-format": "^1.0.1",
+    "remark-copywriting-correct": "^0.4.0",
     "remark-lint-final-newline": "^1.0.2",
     "remark-lint-no-tabs": "^1.0.2",
-    "remark-math": "^1.0.4",
+    "remark-math": "^1.0.5",
+    "remark-math-space": "^1.1.0",
     "remark-pangu": "^1.0.1",
     "remark-preset-lint-markdown-style-guide": "^2.1.2"
   }
