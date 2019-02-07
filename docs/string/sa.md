@@ -234,18 +234,9 @@ vector<int> sort_cyclic_shifts(string const& s) {
 为了完成这一目标，我们注意到长度为 $2^k$ 的循环子串包括两个长度为 $2^{k-1}$ 的子串，我们可以使用上一步 $c$ 数组的计算结果在 $O(1)$ 的时间复杂度内通过比较得出。因此，对于两个长度为 $2^k$，起点分别为 $i$ 和 $j$ 的子串，所需的用来比较信息在二元组 $(c[i],c[i+2^{k-1})$ 和 $(c[j],c[j+2^{k-1})$ 中已经全部包含。
 $$
 
-\\overbrace{
-\\underbrace{s_i \\dots s_{i+2^{k-1}-1}}\_{\\text{length} = 2^{k-1},~ \\text{class} = c[i]}
-\\quad
-\\underbrace{s_{i+2^{k-1}} \\dots s_{i+2^k-1}}\_{\\text{length} = 2^{k-1},~ \\text{class} = c[i + 2^{k-1}]}
-}^{\\text{length} = 2^k}
-\\dots
-\\overbrace{
-\\underbrace{s_j \\dots s_{j+2^{k-1}-1}}\_{\\text{length} = 2^{k-1},~ \\text{class} = c[j]}
-\\quad
-\\underbrace{s_{j+2^{k-1}} \\dots s_{j+2^k-1}}\_{\\text{length} = 2^{k-1},~ \\text{class} = c[j + 2^{k-1}]}
-}^{\\text{length} = 2^k}
-\\dots
+\\overbrace{\\underbrace{s_i\\dots s_{i+2^{k-1}-1}}\_{\\text{length} = 2^{k-1},~\\text{class} = c[i]}\\quad\\underbrace{s_{i+2^{k-1}}\\dots s_{i+2^k-1}}\_{\\text{length} = 2^{k-1},~\\text{class} = c[i + 2^{k-1}]}
+}^{\\text{length} = 2^k}\\dots\\overbrace{\\underbrace{s_j\\dots s_{j+2^{k-1}-1}}\_{\\text{length} = 2^{k-1},~\\text{class} = c[j]}\\quad\\underbrace{s_{j+2^{k-1}}\\dots s_{j+2^k-1}}\_{\\text{length} = 2^{k-1},~\\text{class} = c[j + 2^{k-1}]}
+}^{\\text{length} = 2^k}\\dots
 
 $$
 这就给我们带来了一个十分简单的解法：以**这些二元组**为关键字，**排序**所有长度为 $2^k$ 的子串。这给我们带来了所需要的顺序数组 $p$。然而一般的排序算法的时间复杂度为 $O(n\log n)$，这样的时间复杂度看起来不是很令人满意，因为构造后缀数组的整体时间复杂度将变成 $O(n \log^2 n)$。
@@ -318,10 +309,7 @@ vector<int> suffix_array_construction(string s) {
 假设有两个长度为 $l$，起点下标为 $i$ 和 $j$ 的子串。我们找到子串中长度最大的子段，即使得 $2^k\leq l$ 且 $k$ 最大。然后，比较两个子串就可以等价为比较两个重叠的，长度为 $2^k$ 的子段：一开始两个子段起点是 $i$ 和 $j$，如果这两个子段相同，就去比较两个结束点为 $i+l-1$ 和 $j+l-1$ 的子段。
 $$
 
-\\overbrace{\\underbrace{s_i \\dots s_{i+l-2^k} \\dots s_{i+2^k-1}}\_{2^k} \\dots s_{i+l-1}}^{\\text{first}}
-\\dots
-\\overbrace{\\underbrace{s_j \\dots s_{j+l-2^k} \\dots s_{j+2^k-1}}\_{2^k} \\dots s_{j+l-1}}^{\\text{second}}
-\\dots$$
+\\overbrace{\\underbrace{s_i\\dots s_{i+l-2^k}\\dots s_{i+2^k-1}}\_{2^k}\\dots s_{i+l-1}}^{\\text{first}}\\dots\\overbrace{\\underbrace{s_j\\dots s_{j+l-2^k}\\dots s_{j+2^k-1}}\_{2^k}\\dots s_{j+l-1}}^{\\text{second}}\\dots$$
 
 $$
 \overbrace{s_i \dots \underbrace{s_{i+l-2^k} \dots s_{i+2^k-1} \dots s_{i+l-1}}\_{2^k}}^{\text{first}}
