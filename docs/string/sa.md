@@ -134,71 +134,69 @@ int main() {
 
 ### DC3
 
-----
+* * *
 
 # e-maxx 翻译
+
 # 后缀数组
+
 ## 定义
-定义 $S$ 是一个长度为 $n$ 的字符串。字符串的 $S$ 第 $i$ 个后缀是子串 $S[i \dots n-1]$。
+
+定义 $S$ 是一个长度为 $n$ 的字符串。字符串的 $S$ 第 $i$ 个后缀是子串 $S[i \dots n-1]$ 。
 
 一个**后缀数组**将包含一些整数，表示一个给定字符串所有排序后的后缀的**起点位置**。
 
-例如字符串 $S=abaab$，它的所有后缀有：
+例如字符串 $S=abaab$ ，它的所有后缀有：
 
-```
-$$\begin{array}{ll}
-0. & abaab \\\\
-1. & baab \\\\
-2. & aab \\\\
-3. & ab \\\\
-4. & b
-\end{array}$$
-```
+    $$\begin{array}{ll}
+    0. & abaab \\\\
+    1. & baab \\\\
+    2. & aab \\\\
+    3. & ab \\\\
+    4. & b
+    \end{array}$$
 
 在排序这些后缀后：
 
-```
-$$\begin{array}{ll}
-2. & aab \\\\
-3. & ab \\\\
-0. & abaab \\\\
-4. & b \\\\
-1. & baab
-\end{array}$$
-```
+    $$\begin{array}{ll}
+    2. & aab \\\\
+    3. & ab \\\\
+    0. & abaab \\\\
+    4. & b \\\\
+    1. & baab
+    \end{array}$$
 
-因此字符串 $S​$ 的后缀数组为 $(2,~ 3,~ 0,~ 4,~ 1)​$。
+因此字符串 $S​$ 的后缀数组为 $(2,~ 3,~ 0,~ 4,~ 1)​$ 。
 
 这是一个广泛用于数据压缩，生物信息学的领域的数据结构以及宽泛的说，用在任何处理字符串和字符串匹配的题目。
 
 # 构造
 
-## $O(n^2 \log n)$ 算法
+##  $O(n^2 \log n)$ 算法
 
-这是最朴素的算法。找出所有后缀并用快速排序或者归并排序，同时维护下标。排序时比较 $O(n\log n)$ 次，比较两个字符串有额外的 $O(n^2)$ 的时间复杂度，因此时间复杂度为 $O(n^2 \log n)$。
+这是最朴素的算法。找出所有后缀并用快速排序或者归并排序，同时维护下标。排序时比较 $O(n\log n)$ 次，比较两个字符串有额外的 $O(n^2)$ 的时间复杂度，因此时间复杂度为 $O(n^2 \log n)$ 。
 
-## $O(n \log n)$ 算法
-严格来说，接下来的算法将不会排序后缀，而是循环的移动一个字符串。我们可以~轻易地~得到一个算法来将它变成后缀排序：假设有一个字符串 $S'$，那么添加任一小于 $S'$ 中所有字符到 $S'$ 末尾的时间复杂度是可以接受的。通常使用符号 $\$$ 来表示一个小于当前字符集中所有字符的字符。在以上前提下，排序后的循环移动的排列和排序后后缀的排列相同。例如字符串 $dabbb$：
+##  $O(n \log n)$ 算法
 
-```
-$$\begin{array}{lll}
-1. & abbb\\$d & abbb \\\\
-4. & b\\$dabb & b \\\\
-3. & bb\\$dab & bb \\\\
-2. & bbb\\$da & bbb \\\\
-0. & dabbb\\$ & dabbb
-\end{array}$$
-```
+严格来说，接下来的算法将不会排序后缀，而是循环的移动一个字符串。我们可以~ 轻易地~ 得到一个算法来将它变成后缀排序：假设有一个字符串 $S'$ ，那么添加任一小于 $S'$ 中所有字符到 $S'$ 末尾的时间复杂度是可以接受的。通常使用符号 $\$$ 来表示一个小于当前字符集中所有字符的字符。在以上前提下，排序后的循环移动的排列和排序后后缀的排列相同。例如字符串 $dabbb$ ：
 
-因为我们要排序循环移动，我们要考虑**循环子串**。我们将使用记号 $S[i\ldot j]$ 表示 $S$ 的一个子串。即使 $i>j$ 也不例外，因为在这种情况下我们表示的字符串是 $S[i \dots n-1]+S[0\dots j]$，另外我们将把所有下标取模 $n$，但在下文中为描述简便将忽略该操作。
+    $$\begin{array}{lll}
+    1. & abbb\\$d & abbb \\\\
+    4. & b\\$dabb & b \\\\
+    3. & bb\\$dab & bb \\\\
+    2. & bbb\\$da & bbb \\\\
+    0. & dabbb\\$ & dabbb
+    \end{array}$$
 
-在我们将要讨论的算法中，将会有 $\lceil \log n \rceil + 1$ 次迭代。在第 $k(k=0\dots \lceil \log n \rceil)$ 次迭代中，我们将会排序 $n$ 个长度为 $2^k$ 的循环子串 $s$。在第 $\lceil \log n \rceil$ 次迭代后，长度为 $2^{\lceil \log n \rceil}\geq n$ 的子串将被排序，因此这与同时排序循环移动等价。
+因为我们要排序循环移动，我们要考虑**循环子串**。我们将使用记号 $S[i\ldot j]$ 表示 $S$ 的一个子串。即使 $i>j$ 也不例外，因为在这种情况下我们表示的字符串是 $S[i \dots n-1]+S[0\dots j]$ ，另外我们将把所有下标取模 $n$ ，但在下文中为描述简便将忽略该操作。
 
-在算法的每次迭代中，令 $p[i]$ 表示第 $i$ 个子串（起点为 $i$，长度为 $2^k$）的子串的下标，在排列 $p[0\dots n-1]$ 的基础之上，我们还会维护数组 $c[0\dots n-1]$，其中 $c[i]$ 表示子串隶属的**等价类**。因为某些子串可能是相同的，因此算法需要将他们同等处理。为了方便，等价类将被以 $0$ 起的计数标记。另外，$c[i]$ 中的值将被用以保留顺序信息：如果一个子串比另外一个子串的字典序小，它的等价类标记也应该小于另一个子串。等价类的数量将被储存在一个可变的类当中。
+在我们将要讨论的算法中，将会有 $\lceil \log n \rceil + 1$ 次迭代。在第 $k(k=0\dots \lceil \log n \rceil)$ 次迭代中，我们将会排序 $n$ 个长度为 $2^k$ 的循环子串 $s$ 。在第 $\lceil \log n \rceil$ 次迭代后，长度为 $2^{\lceil \log n \rceil}\geq n$ 的子串将被排序，因此这与同时排序循环移动等价。
 
-现在来看一个例子，例如字符串 $S=aaba$。每次迭代时它的循环子串和对应的数组 $p[]$ 和 $c[]$ 如下所示：
+在算法的每次迭代中，令 $p[i]$ 表示第 $i$ 个子串（起点为 $i$ ，长度为 $2^k$ ）的子串的下标，在排列 $p[0\dots n-1]$ 的基础之上，我们还会维护数组 $c[0\dots n-1]$ ，其中 $c[i]$ 表示子串隶属的**等价类**。因为某些子串可能是相同的，因此算法需要将他们同等处理。为了方便，等价类将被以 $0$ 起的计数标记。另外， $c[i]$ 中的值将被用以保留顺序信息：如果一个子串比另外一个子串的字典序小，它的等价类标记也应该小于另一个子串。等价类的数量将被储存在一个可变的类当中。
 
-$$\begin{array}{cccc}
+现在来看一个例子，例如字符串 $S=aaba$ 。每次迭代时它的循环子串和对应的数组 $p[]$ 和 $c[]$ 如下所示：
+
+$$
 0: & (a,~ a,~ b,~ a) & p = (0,~ 1,~ 3,~ 2) & c = (0,~ 0,~ 1,~ 0)\\\\
 1: & (aa,~ ab,~ ba,~ aa) & p = (0,~ 3,~ 1,~ 2) & c = (0,~ 1,~ 2,~ 0)\\\\
 2: & (aaba,~ abaa,~ baaa,~ aaab) & p = (3,~ 0,~ 1,~ 2) & c = (1,~ 2,~ 3,~ 0)\\\\
@@ -236,22 +234,22 @@ vector<int> sort_cyclic_shifts(string const& s) {
 接下来我们说说如何进行迭代。假设我们已经完成了前 $k-1$ 步，并且计算了 $p$ 数组和 $c$ 数组。我们接下来想在 $O(n)$ 时间复杂度内计算这两个数组在第 $k$ 步的值。因为我们总共执行这个步骤 $O(\log n)$ 次，所以算法的时间复杂度是 $O(n\log n)$。
 
 为了完成这一目标，我们注意到长度为 $2^k$ 的循环子串包括两个长度为 $2^{k-1}$ 的子串，我们可以使用上一步 $c$ 数组的计算结果在 $O(1)$ 的时间复杂度内通过比较得出。因此，对于两个长度为 $2^k$，起点分别为 $i$ 和 $j$ 的子串，所需的用来比较信息在二元组 $(c[i],c[i+2^{k-1})$ 和 $(c[j],c[j+2^{k-1})$ 中已经全部包含。
-
-$$\dots
-\overbrace{
-\underbrace{s_i \dots s_{i+2^{k-1}-1}}\_{\text{length} = 2^{k-1},~ \text{class} = c[i]}
-\quad
-\underbrace{s_{i+2^{k-1}} \dots s_{i+2^k-1}}\_{\text{length} = 2^{k-1},~ \text{class} = c[i + 2^{k-1}]}
-}^{\text{length} = 2^k}
-\dots
-\overbrace{
-\underbrace{s_j \dots s_{j+2^{k-1}-1}}\_{\text{length} = 2^{k-1},~ \text{class} = c[j]}
-\quad
-\underbrace{s_{j+2^{k-1}} \dots s_{j+2^k-1}}\_{\text{length} = 2^{k-1},~ \text{class} = c[j + 2^{k-1}]}
-}^{\text{length} = 2^k}
-\dots
 $$
 
+\\overbrace{
+\\underbrace{s_i \\dots s_{i+2^{k-1}-1}}\_{\\text{length} = 2^{k-1},~ \\text{class} = c[i]}
+\\quad
+\\underbrace{s_{i+2^{k-1}} \\dots s_{i+2^k-1}}\_{\\text{length} = 2^{k-1},~ \\text{class} = c[i + 2^{k-1}]}
+}^{\\text{length} = 2^k}
+\\dots
+\\overbrace{
+\\underbrace{s_j \\dots s_{j+2^{k-1}-1}}\_{\\text{length} = 2^{k-1},~ \\text{class} = c[j]}
+\\quad
+\\underbrace{s_{j+2^{k-1}} \\dots s_{j+2^k-1}}\_{\\text{length} = 2^{k-1},~ \\text{class} = c[j + 2^{k-1}]}
+}^{\\text{length} = 2^k}
+\\dots
+
+$$
 这就给我们带来了一个十分简单的解法：以**这些二元组**为关键字，**排序**所有长度为 $2^k$ 的子串。这给我们带来了所需要的顺序数组 $p$。然而一般的排序算法的时间复杂度为 $O(n\log n)$，这样的时间复杂度看起来不是很令人满意，因为构造后缀数组的整体时间复杂度将变成 $O(n \log^2 n)$。
 
 有什么办法可以使得排序更快呢？因为这些元素值不超过 $n$，我们可以再次使用计数排序。然而直接这样做并不是最优的，因为时间复杂度后面隐藏着一个常数。为了优化常数，我们要用另外一个小技巧。
@@ -320,13 +318,14 @@ vector<int> suffix_array_construction(string s) {
 通过这个信息，我们就可以在 $O(1)$ 时间复杂度内通过比较两个字符串的等价类比较任意两个长度为 $2$ 的正整数幂次方的子串了。现在，我们想要拓展这个算法，使得其可用于任意长度。
 
 假设有两个长度为 $l$，起点下标为 $i$ 和 $j$ 的子串。我们找到子串中长度最大的子段，即使得 $2^k\leq l$ 且 $k$ 最大。然后，比较两个子串就可以等价为比较两个重叠的，长度为 $2^k$ 的子段：一开始两个子段起点是 $i$ 和 $j$，如果这两个子段相同，就去比较两个结束点为 $i+l-1$ 和 $j+l-1$ 的子段。
+$$
 
-$$\dots
-\overbrace{\underbrace{s_i \dots s_{i+l-2^k} \dots s_{i+2^k-1}}\_{2^k} \dots s_{i+l-1}}^{\text{first}}
-\dots
-\overbrace{\underbrace{s_j \dots s_{j+l-2^k} \dots s_{j+2^k-1}}\_{2^k} \dots s_{j+l-1}}^{\text{second}}
-\dots$$
-$$\dots
+\\overbrace{\\underbrace{s_i \\dots s_{i+l-2^k} \\dots s_{i+2^k-1}}\_{2^k} \\dots s_{i+l-1}}^{\\text{first}}
+\\dots
+\\overbrace{\\underbrace{s_j \\dots s_{j+l-2^k} \\dots s_{j+2^k-1}}\_{2^k} \\dots s_{j+l-1}}^{\\text{second}}
+\\dots$$
+
+$$
 \overbrace{s_i \dots \underbrace{s_{i+l-2^k} \dots s_{i+2^k-1} \dots s_{i+l-1}}\_{2^k}}^{\text{first}}
 \dots
 \overbrace{s_j \dots \underbrace{s_{j+l-2^k} \dots s_{j+2^k-1} \dots s_{j+l-1}}\_{2^k}}^{\text{second}}
@@ -444,4 +443,4 @@ vector<int> lcp_construction(string const& s, vector<int> const& p) {
 * [Codeforces - Forbidden Indices](http://codeforces.com/contest/873/problem/F)
 * [Codeforces - Tricky and Clever Password](http://codeforces.com/contest/30/problem/E)
 * [LA 6856 - Circle of digits](https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&page=show_problem&problem=4868)
-
+$$
