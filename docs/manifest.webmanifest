@@ -7,9 +7,9 @@
       "sizes": "48x48"
     },
     {
-      "src": "favicon_192x192.png",
+      "src": "favicon.ico",
       "sizes": "192x192"
-    },
+    }
   ],
   "display": "standalone",
   "start_url": "index.html?launcher=true"
