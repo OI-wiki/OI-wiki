@@ -90,7 +90,7 @@ Shell 排序的复杂度和间距序列的选取（就是间距如何减小到 1
 
 不难发现，归并排序的核心是如何合并两个子序列，前两步都很好实现。
 
-其实合并的时候也不难操作。注意到两个子序列在第二步中已经保证了都是有序的了，第三步中实际上是想要把两个**有序**数列合并起来。
+其实合并的时候也不难操作。注意到两个子序列在第二步中已经保证了都是有序的了，第三步中实际上是想要把两个 **有序** 数列合并起来。
 
 ```c++
 void merge(int ll, int rr) {
@@ -167,7 +167,7 @@ C 函数模板库实现了快速排序，即 `stdlib.h` 当中的 `qsort` 。
 
 C++ 标准并未严格要求此函数的实现算法，具体实现取决于编译器。
 
-旧版 C++ 标准中仅要求它的**平均**时间复杂度是 $O(N\log N)$ 的，但在 C++11 中要求它的**最坏**时间复杂度是 $O(N\log N)$ 的。可以查阅[std::sort()](https://en.cppreference.com/w/cpp/algorithm/sort)
+旧版 C++ 标准中仅要求它的 **平均** 时间复杂度是 $O(N\log N)$ 的，但在 C++11 中要求它的 **最坏** 时间复杂度是 $O(N\log N)$ 的。可以查阅[std::sort()](https://en.cppreference.com/w/cpp/algorithm/sort)
 
 在[libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h)和[libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm)中使用的都是[Introsort](https://en.wikipedia.org/wiki/Introsort)。
 
@@ -202,7 +202,7 @@ std::sort(a, a + n);
 计数排序也称桶排序，可以在 $O(n)$ 的时间内排序，但是它要求所有的数都出现在一定的范围内。
 
 !!! warning "注"
-    注意区分**基数排序**
+    注意区分 **基数排序** 
 
 算法流程顾名思义，就是记录每一个数出现了多少次，然后从小到大依次输出。
 
