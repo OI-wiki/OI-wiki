@@ -232,4 +232,4 @@ int main(int argc, char* argv[]) {
 
 -   使用项别名
 
- **本文翻译自[Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431)。 `testlib.h` 的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。** 
+     **本文翻译自[Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431)。 `testlib.h` 的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。** 
