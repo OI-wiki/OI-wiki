@@ -13,4 +13,4 @@ Testlib 与 Codeforces 开发的[Polygon](https://polygon.codeforces.com/)出题
 
  `testlib.h` 在 2005 年移植自 `testlib.pas` ，并一直在更新。Testlib 与绝大多数编译器兼容，如 VC++ 和 GCC g++，并兼容 C++11。
 
-**本文翻译自[Testlib - Codeforces](https://codeforces.com/testlib)。 `testlib.h` 的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。**
+ **本文翻译自[Testlib - Codeforces](https://codeforces.com/testlib)。 `testlib.h` 的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。** 
