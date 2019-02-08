@@ -6,7 +6,7 @@ A：不知道你在学**OI**的时候，面对庞大的知识体系，有没有�
 
 Q：我很感兴趣，怎么参与呢？
 
-A：**OI Wiki**现在托管在[GitHub](https://github.com/24OI/OI-wiki)上，你可以直接访问这个[repo](https://github.com/24OI/OI-wiki)来查看最新进展。参与的途径包括在[GitHub](https://github.com/24OI/OI-wiki)上面开 Issue、Pull Request，或者在交流群中分享你的想法、直接向管理员投稿。目前，我们使用的框架是[mkdocs](https://mkdocs.readthedocs.io)，支持 Markdown 格式（也支持插入数学公式）。
+A：**OI Wiki**现在托管在[GitHub](https://github.com/24OI/OI-wiki)上，你可以直接访问这个[repo](https://github.com/24OI/OI-wiki)来查看最新进展。参与的途径包括在[GitHub](https://github.com/24OI/OI-wiki)上面开 Issue、Pull Request，或者在交流群中分享你的想法、直接向管理员投稿。目前，我们使用的框架是用 Python 开发的[mkdocs](https://mkdocs.readthedocs.io)，支持 Markdown 格式（也支持插入数学公式）。
 
 Q：可是我比较弱……不知道我能做点什么？
 
@@ -26,7 +26,7 @@ A：我们把内容托管在[GitHub](https://github.com/24OI/OI-wiki)上面，�
 
 Q：**OI Wiki**好像现在大部分内容都是空的啊？
 
-A：是的，目前进度只完成了 73%（重新统计于 2018.11），还远远称不上是一个合格的 Wiki。在过去的几个月里，主要添加的内容也比较基础。所以在这里进行征稿和招募，希望可以遇到有同样想法的朋友，我们一起把**OI Wiki**完善起来。
+A：是的，目前进度只完成了 78%（重新统计于 2019.02），还远远称不上是一个合格的 Wiki。在过去的几个月里，主要添加的内容也比较基础。所以在这里进行征稿和招募，希望可以遇到有同样想法的朋友，我们一起把**OI Wiki**完善起来。
 
 Q：为什么不直接去写[中文维基](https://zh.wikipedia.org/)呢？
 
