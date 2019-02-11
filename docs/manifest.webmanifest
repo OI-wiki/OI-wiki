@@ -7,8 +7,12 @@
       "sizes": "48x48"
     },
     {
-      "src": "favicon.ico",
+      "src": "favicon_192x192.png",
       "sizes": "192x192"
+    },
+    {
+      "src": "favicon_512x512.png",
+      "sizes": "512x512"
     }
   ],
   "display": "standalone",
