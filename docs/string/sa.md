@@ -429,4 +429,3 @@ vector<int> lcp_construction(string const& s, vector<int> const& p) {
 * [Codeforces - Forbidden Indices](http://codeforces.com/contest/873/problem/F)
 * [Codeforces - Tricky and Clever Password](http://codeforces.com/contest/30/problem/E)
 * [LA 6856 - Circle of digits](https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&page=show_problem&problem=4868)
-$$
