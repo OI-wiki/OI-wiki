@@ -16,6 +16,8 @@ Ir1d 提供了一份 linux 下编译好的版本在[FreestyleOJ/Project_lemon](h
 
 Menci 提供了一份更新的版本在[Menci/Lemon](https://github.com/Menci/Lemon/)。
 
+Dust1404 维护了支持子文件夹和单题测试等功能的版本[Dust1404/Project_LemonPlus](https://github.com/Dust1404/Project_LemonPlus)。
+
  **注意** macOS 下 Lemon 可能会出现内存测试不准确的情况，这是由于 mac 下没有一些 Linux 的监测工具，而 Lemon-Linux 也没有对于 macOS 的使用优化。
 
 ### 自行编译
