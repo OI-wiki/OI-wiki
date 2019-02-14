@@ -7,8 +7,8 @@
 [![Uptime Robot Status](https://img.shields.io/uptimerobot/status/m781254113-3e3bac467c64fc99eafd383e.svg?style=flat-square)](https://status.oi-wiki.org/)
 [![Telegram](https://img.shields.io/badge/OI--wiki-join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
 [![QQ](https://img.shields.io/badge/OI--wiki-join%20QQ%20group-brightgreen.svg?style=flat-square)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
-[![GitHub watchers](https://img.shields.io/github/watchers/24OI/OI-Wiki.svg?style=social&label=Watch)](https://github.com/24OI/OI-wiki)
-[![GitHub stars](https://img.shields.io/github/stars/24OI/OI-Wiki.svg?style=social&label=Stars)](https://github.com/24OI/OI-wiki)
+[![GitHub watchers](https://img.shields.io/github/watchers/24OI/OI-Wiki.svg?label=Watch&style=flat-square&colorB=66FF00)](https://github.com/24OI/OI-wiki)
+[![GitHub stars](https://img.shields.io/github/stars/24OI/OI-Wiki.svg?style=flat-square&label=Stars)](https://github.com/24OI/OI-wiki)
 
 * * *
 
