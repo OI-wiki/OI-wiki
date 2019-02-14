@@ -2,7 +2,7 @@ disqus:
 pagetime:
 title: OI Wiki
 
-# 欢迎来到 **OI Wiki** ！[![GitHub watchers](https://img.shields.io/github/watchers/24OI/OI-Wiki.svg?label=Watch&style=flat-square&colorB=66FF00)](https://github.com/24OI/OI-wiki)[![GitHub stars](https://img.shields.io/github/stars/24OI/OI-Wiki.svg?style=flat-square&label=Stars)](https://github.com/24OI/OI-wiki)
+# 欢迎来到 **OI Wiki** ！[![GitHub watchers](https://img.shields.io/github/watchers/24OI/OI-Wiki.svg?label=Watch&style=flat-square&colorB=66FF00)](https://github.com/24OI/OI-wiki) [![GitHub stars](https://img.shields.io/github/stars/24OI/OI-Wiki.svg?style=flat-square&label=Stars)](https://github.com/24OI/OI-wiki)
 
 [![Word Art](./images/wordArt.png)](https://github.com/24OI/OI-wiki)
 
