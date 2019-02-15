@@ -300,9 +300,61 @@ $$
 
 而且现在我们已经得到最左边的结果了，中间的 $x$ 值在目标多项式的点值表示中也是一一对应的，所以，根据矩阵的基础知识，我们只要在式子两边左乘中间那个大矩阵的逆矩阵就行了。由于这个矩阵的元素非常特殊，他的逆矩阵也有特殊的性质，就是每一项取倒数，再除以 $n$ ，就能得到他的逆矩阵（这边根据的是单位原根的两个特殊性质推出来的，具体比较麻烦。如果想知道的话私我吧。）
 
-如何改变我们的操作才能使计算的结果文原来的倒数呢？我们当然可以重新写一遍，但是这里有更简单的实现。这就要看我们求“单位复根的过程了”：根据“欧拉函数” $e^{i\pi}=-1$ ，我么可以得到 $e^{2\pi i}=1$ 。如果我要找到一个数，它的 $k$ 次方 $= 1$ ，那么这个数 $\omega[k]=e^{2\pi \frac{i}{k}}$ （因为 $(e^{2\pi \frac{i}{k}})^k=e^{2\pi i}=1$ ）。而如果我要使这个数值变成 $\frac{1}{\omega[k]}$ 也就是 $(\omega[k])^-1$ ，我们可以尝试着把
+如何改变我们的操作才能使计算的结果文原来的倒数呢？我们当然可以重新写一遍，但是这里有更简单的实现。这就要看我们求“单位复根的过程了”：根据“欧拉函数” $e^{i\pi}=-1$ ，我么可以得到 $e^{2\pi i}=1$ 。如果我要找到一个数，它的 $k$ 次方 $= 1$ ，那么这个数 $\omega[k]=e^{2\pi \frac{i}{k}}$ （因为 $(e^{2\pi \frac{i}{k}})^k=e^{2\pi i}=1$ ）。而如果我要使这个数值变成 $\frac{1}{\omega[k]}$ 也就是 $(\omega[k])^-1$ ，我们可以尝试着把 $π$ 取成 - 3.14159…，这样我们的计算结果就会变成原来的倒数，而其它的操作过程与 DFT 是完全相同的（这真是极好的）。我们可以定义一个函数，向里面掺一个参数 $1$ 或者是 $-1$ ，然后把它乘到 $π$ 的身上。传入 $1$ 就是 DFT，传入 $-1$ 就是 IDFT，十分的智能。
 
- $π$ 取成 - 3.14159…，这样我们的计算结果就会变成原来的倒数，而其它的操作过程与 DFT 是完全相同的（这真是极好的）。我们可以定义一个函数，向里面掺一个参数 $1$ 或者是 $-1$ ，然后把它乘到 $π$ 的身上。传入 $1$ 就是 DFT，传入 $-1$ 就是 IDFT，十分的智能。
+#### 对IDFT操作的证明
+
+原本的多项式是$f(x)=a_0+a_1x+a_2x^2+\cdots+a_{n-1}x^{n-1}=\sum_{i=0}^{n-1}a_ix^i$
+
+而IDFT就是把你变换完成的单位根点值表示还原为系数表示
+
+这东西怎么做呢？我们考虑**构造法**。我们已知$y[i]=f\left( \omega_n^i \right),i\in\{0,1,\cdots,n-1\}$，求$\{a_0,a_1,\cdots,a_{n-1}\}$.
+
+那么构造多项式如下
+$$
+A(x)=\sum_{i=0}^{n-1}y[i]x^{i}
+$$
+相当于把$\{y[0],y[1],y[2],\cdots,y[n-1]\}$当做多项式$A$的系数表示法。那么给定点$b_i=\omega_n^{-i}$，则多项式$A$的点值表示法为
+$$
+\left\{ A(b_0),A(b_1),\cdots,A(b_{n-1}) \right\}
+$$
+计算$A(b_k)$的值
+$$
+\begin{split}
+A(b_k)&=\sum_{i=0}^{n-1}f(\omega_n^i)\omega_n^{-ik}=\sum_{i=0}^{n-1}\omega_n^{-ik}\sum_{j=0}^{n-1}a_j(\omega_n^i)^{j}\\
+&=\sum_{i=0}^{n-1}\sum_{j=0}^{n-1}a_j\omega_n^{i(j-k)}=\sum_{j=0}^{n-1}a_j\sum_{i=0}^{n-1}\left(\omega_n^{j-k}\right)^i\\
+\end{split}
+$$
+记$S\left(\omega_n^a\right)=\sum_{i=0}^{n-1}\left(\omega_n^a\right)^i$.
+
+当$a=0$时，$S\left(\omega_n^a\right)=n$.
+
+当$a\neq 0$时，我们错位相减一下
+$$
+\begin{split}
+S\left(\omega_n^a\right)&=\sum_{i=0}^{n-1}\left(\omega_n^a\right)^i\\
+\omega_n^a S\left(\omega_n^a\right)&=\sum_{i=1}^{n}\left(\omega_n^a\right)^i\\
+S\left(\omega_n^a\right)&=\frac{\left(\omega_n^a\right)^n-\left(\omega_n^a\right)^0}{\omega_n^a-1}=0\\
+\end{split}
+$$
+
+也就是说
+$$
+S\left(\omega_n^a\right)=
+\left\{\begin{split}
+n,a=0\\
+0,a\neq 0
+\end{split}\right.
+$$
+那么代回原式
+$$
+A(b_k)=\sum_{j=0}^{n-1}a_jS\left(\omega_n^{j-k}\right)=a_k\cdot n
+$$
+也就是说给定点$b_i=\omega_n^{-i}$，则$A$的点值表示法为
+$$
+\left\{ A(b_0),A(b_1),\cdots,A(b_{n-1}) \right\}＝\left\{ a_0\cdot n,a_1\cdot n,\cdots,a_{n-1}\cdot n \right\}=n\left\{ a_0,a_1,\cdots,a_{n-1}\right\}
+$$
+那么事情就很好办啦，我们把取单位根为其倒数，对$\{y[0],y[1],y[2],\cdots,y[n-1]\}$跑一遍FFT，然后除以n即可得到系数序列啦
 
 所以我们 fft 函数可以集 DFT 和 IDFT 于一身。见下
 
