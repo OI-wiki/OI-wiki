@@ -23,7 +23,7 @@
 虽然在 NOI 的官网已经放出了 NOI Linux 的 ISO 镜像，但是如果跑虚拟机的话，配置也相当麻烦，包括激活 VMware，用 VMware 装系统开虚拟机等步骤，且 NOI Linux 默认自带图形界面，两个系统一起运行是低配党的噩梦。
 
 Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周年更新时推出了 Linux 子系统（WSL），可以供装不起 VMware 等虚拟机的同学食用。  
-缺点是没有 NOI 评测用的**Arbiter**，但是在各大 OJ 背书的情况下谁在乎呢……
+缺点是没有 NOI 评测用的 **Arbiter** ，但是在各大 OJ 背书的情况下谁在乎呢……
 ???+ note "补充资料：何为 Linux 子系统（WSL）？(via 百度百科）"
      Windows Subsystem for Linux（简称 WSL）是一个为在 Windows 10 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。它是由微软与 Canonical 公司合作开发，目标是使纯正的 Ubuntu, OpenSUSE, Kali Linux 和 Debian 映像能下载和解压到用户的本地计算机，并且映像内的工具和实用工具能在此子系统上原生运行。  
 WSL 提供了一个微软开发的 Linux 兼容内核接口（不包含 Linux 代码），来自 Linux 的用户模式二进制文件在其上运行。  
@@ -36,15 +36,10 @@ WSL 提供了一个微软开发的 Linux 兼容内核接口（不包含 Linux �
 首先，你需要一个最新的 Windows 10 操作系统，这点不必多说。  
 其次，你需要配置一下开发人员模式环境。
 
-1.  设置 -> 更新与安全 -> 开发人员模式框选 -> 是![来，跟着箭头走](./images/WSL4.png)
-
-<div align='center'> 来，跟着箭头走 </div>
- 
-2. 控制面板 ->程序 ->启用和关闭 Windows 功能 ->框选 “适用于 Linux 的 Windows 子系统”-> 确定 ->重启
-![自行忽略乱码](./images/WSL5.png)
- 给系统盘留下足够的空间，毕竟装好的 Linux 没法迁移。
-这次演示我们会安装 Ubuntu，因为 NOI Linux 正是 Ubuntu 的修改版。
-只要学会了方法，你也可照葫芦画瓢，安装 Windows 应用商店中的其他子系统。
+1.  设置 -> 更新与安全 -> 开发人员模式框选 -> 是![来，跟着箭头走](./images/WSL4.png)<br /><div align='center'>来，跟着箭头走</div>
+2.  控制面板 -> 程序 -> 启用和关闭 Windows 功能 -> 框选“适用于 Linux 的 Windows 子系统”-> 确定 -> 重启![自行忽略乱码](./images/WSL5.png)给系统盘留下足够的空间，毕竟装好的 Linux 没法迁移。
+    这次演示我们会安装 Ubuntu，因为 NOI Linux 正是 Ubuntu 的修改版。
+    只要学会了方法，你也可照葫芦画瓢，安装 Windows 应用商店中的其他子系统。
 
 ## 开搞
 
@@ -53,17 +48,17 @@ WSL 提供了一个微软开发的 Linux 兼容内核接口（不包含 Linux �
 ???+ warning
     Windows 10 商店的第一个 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。
     可使用 `sudo lsb_release -a` 查看自己的 Ubuntu 版本。
-    也可安装带有版本号的旧 Linux 版本（如本次演示使用了**16.04**）。
+    也可安装带有版本号的旧 Linux 版本（如本次演示使用了 **16.04** ）。
 安装完后，打开 Ubuntu，等待一段时间，让其自己配置，不久就会提示你设置用户名和密码。  
-（这里看你喜好，推荐设置短点，毕竟**本地环境不怕攻击**）
+（这里看你喜好，推荐设置短点，毕竟 **本地环境不怕攻击** ）
 
-**Linux 区分大小写！**
+ **Linux 区分大小写！** 
 
 ![](./images/WSL6.png)这样之后，一个纯净的 Ubuntu 系统安装完成了！
 
 ## 基础配置
 
-**以下命令均可直接右键复制粘贴进窗口哦！**
+ **以下命令均可直接右键复制粘贴进窗口哦！** 
 
 ![](./images/WSL7.png)正如图片所示，这个系统纯净到连个编译器都没有，所以这一节来看看基础的环境配置。
 
@@ -74,8 +69,8 @@ Ubuntu 默认的软件源在国外，我们可以换为国内的加快速度，�
 可以访问[TUNA 的页面](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)来获得国内源的信息。
 
 ???+ warning  
-**请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a` 查看，具体详见 `0x03` ）  
-**除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！\*\*
+ **请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a` 查看，具体详见 `0x03` ）  
+** 除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！\*\*
 
 使用的命令
 
@@ -139,7 +134,7 @@ $ ./cpuid
 AMD Ryzen 5 1400 Quad-Core Processor
 ```
 
-**Tips：Linux 环境下可执行文件可不带扩展名，实现方式看上方命令行**
+ **Tips：Linux 环境下可执行文件可不带扩展名，实现方式看上方命令行** 
 
 ## 进阶操作
 
@@ -195,7 +190,7 @@ sudo apt-get install xterm -y
 DISPLAY=:0 xterm
 ```
 
-**Duang！**  
+ **Duang！**   
 ![](./images/WSL18.png)  
 不过貌似只支持命令行……这时上一种方法的优势就显而易见了  
 如果你和我一样使用了 xfce4，在弹出的窗口中使用如下命令激活 xfce4：
@@ -205,7 +200,7 @@ xfce4-session
 ```
 
 ![](./images/WSL19.png)  
-不过这是什么效果……**（在 Xming 中使用**<kbd>Ctrl</kbd>+<kbd>C</kbd>**就可以退出这个鬼畜界面）**  
+不过这是什么效果…… **（在 Xming 中使用** <kbd>Ctrl</kbd>+<kbd>C</kbd> **就可以退出这个鬼畜界面）**   
 ![](./images/WSL20.png)
 
 <div align='center'> 达成成就：Windows+Linux 二合一 </div>
@@ -220,7 +215,7 @@ xfce4-session
 ![](./images/WSL23.png)
 
 <div align='center'> 这里也可以建立一些 Windows（一般情况下）建不了的文件，例如带点文件夹 </div>
-** 乱码是因为我用的预览体验系统……不过用正式版也可以了！**
+**乱码是因为我用的预览体验系统……不过用正式版也可以了！**
 
 ## FAQ
 

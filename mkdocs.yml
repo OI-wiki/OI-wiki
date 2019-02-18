@@ -235,6 +235,7 @@ nav:
     - 扫描线: geometry/scanning.md
     - 旋转卡壳: geometry/rotating-calipers.md
     - 半平面交: geometry/half-plane-intersection.md
+    - 平面最近点对: geometry/nearest-points.md
     - 计算几何杂项: geometry/magic.md
   - 杂项:
     - 杂项简介: misc/index.md

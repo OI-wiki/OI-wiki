@@ -16,7 +16,7 @@ int Eratosthenes(int n) {
   for (int i = 2; i <= n; ++i) {
     if (is_prime[i]) {
       prime[p++] = i;  // prime[p]是i,后置自增运算代表当前素数数量
-      for (int j = 2 * i; j <= n; j += i)
+      for (int j = i * i; j <= n; j += i) // 因为从 2 到 i - 1 的倍数我们之前筛过了，这里直接从 i 的倍数开始，提高了运行速度
         is_prime[j] = 0;  //是i的倍数的均不是素数
     }
   }
@@ -24,7 +24,7 @@ int Eratosthenes(int n) {
 }
 ```
 
-以上为**Eratosthenes 筛法**（埃拉托斯特尼筛法），时间复杂度是 $O(n\log\log n)$ 。
+以上为 **Eratosthenes 筛法** （埃拉托斯特尼筛法），时间复杂度是 $O(n\log\log n)$ 。
 
 以上做法仍有优化空间，我们发现这里面似乎会对某些数标记了很多次其为合数。有没有什么办法省掉无意义的步骤呢？
 
@@ -61,7 +61,7 @@ void init() {
 
 上面代码中的 $phi$ 数组，会在下面提到。
 
-上面的这种**线性筛法**也称为**Euler 筛法**（欧拉筛法）。
+上面的这种 **线性筛法** 也称为 **Euler 筛法** （欧拉筛法）。
 
 ??? note
     注意到筛法求素数的同时也得到了每个数的最小质因子

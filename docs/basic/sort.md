@@ -90,7 +90,7 @@ Shell 排序的复杂度和间距序列的选取（就是间距如何减小到 1
 
 不难发现，归并排序的核心是如何合并两个子序列，前两步都很好实现。
 
-其实合并的时候也不难操作。注意到两个子序列在第二步中已经保证了都是有序的了，第三步中实际上是想要把两个**有序**数列合并起来。
+其实合并的时候也不难操作。注意到两个子序列在第二步中已经保证了都是有序的了，第三步中实际上是想要把两个 **有序** 数列合并起来。
 
 ```c++
 void merge(int ll, int rr) {
@@ -167,7 +167,7 @@ C 函数模板库实现了快速排序，即 `stdlib.h` 当中的 `qsort` 。
 
 C++ 标准并未严格要求此函数的实现算法，具体实现取决于编译器。
 
-旧版 C++ 标准中仅要求它的**平均**时间复杂度是 $O(N\log N)$ 的，但在 C++11 中要求它的**最坏**时间复杂度是 $O(N\log N)$ 的。可以查阅[std::sort()](https://en.cppreference.com/w/cpp/algorithm/sort)
+旧版 C++ 标准中仅要求它的 **平均** 时间复杂度是 $O(N\log N)$ 的，但在 C++11 中要求它的 **最坏** 时间复杂度是 $O(N\log N)$ 的。可以查阅[std::sort()](https://en.cppreference.com/w/cpp/algorithm/sort)
 
 在[libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h)和[libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm)中使用的都是[Introsort](https://en.wikipedia.org/wiki/Introsort)。
 
@@ -185,7 +185,7 @@ std::sort(a, a + n);
 
 ### 线性找第 k 大的数
 
-找第 k 大的数，最简单的方法是先排序，然后直接找到第 k 大的位置的元素。这样做的时间复杂度是 $O(N\log N)$ ，对于这个问题来说很不划算。事实上，我们有 $O(n)$ 的解法。
+找第 k 大的数（K-th order statistic），最简单的方法是先排序，然后直接找到第 k 大的位置的元素。这样做的时间复杂度是 $O(N\log N)$ ，对于这个问题来说很不划算。事实上，我们有 $O(n)$ 的解法。
 
 考虑快速排序的划分过程，在快速排序的“划分”结束后，数列 $A[p \cdots r]]$ 被分成了 $A[p \cdots q]$ 和 $A[q+1 \cdots r]$ ，此时可以按照左边元素的个数（ $q - p + 1$ ）和 k 的大小关系来判断是只在左边还是只在右边递归地求解。
 
@@ -202,7 +202,7 @@ std::sort(a, a + n);
 计数排序也称桶排序，可以在 $O(n)$ 的时间内排序，但是它要求所有的数都出现在一定的范围内。
 
 !!! warning "注"
-    注意区分**基数排序**
+    注意区分 **基数排序** 
 
 算法流程顾名思义，就是记录每一个数出现了多少次，然后从小到大依次输出。
 
