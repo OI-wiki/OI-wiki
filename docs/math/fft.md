@@ -304,32 +304,39 @@ $$
 
 #### 对IDFT操作的证明
 
-原本的多项式是$f(x)=a_0+a_1x+a_2x^2+\cdots+a_{n-1}x^{n-1}=\sum_{i=0}^{n-1}a_ix^i$
+原本的多项式是 $f(x)=a_0+a_1x+a_2x^2+\cdots+a_{n-1}x^{n-1}=\sum_{i=0}^{n-1}a_ix^i$
 
 而IDFT就是把你变换完成的单位根点值表示还原为系数表示
 
-这东西怎么做呢？我们考虑**构造法**。我们已知$y[i]=f\left( \omega_n^i \right),i\in\{0,1,\cdots,n-1\}$，求$\{a_0,a_1,\cdots,a_{n-1}\}$.
+这东西怎么做呢？我们考虑**构造法**。我们已知 $y[i]=f\left( \omega_n^i \right),i\in\{0,1,\cdots,n-1\}$，求 $\{a_0,a_1,\cdots,a_{n-1}\}$。
 
 那么构造多项式如下
+
 $$
 A(x)=\sum_{i=0}^{n-1}y[i]x^{i}
 $$
-相当于把$\{y[0],y[1],y[2],\cdots,y[n-1]\}$当做多项式$A$的系数表示法。那么给定点$b_i=\omega_n^{-i}$，则多项式$A$的点值表示法为
+
+相当于把 $\{y[0],y[1],y[2],\cdots,y[n-1]\}$ 当做多项式 $A$ 的系数表示法。那么给定点 $b_i=\omega_n^{-i}$，则多项式 $A$ 的点值表示法为
+
 $$
 \left\{ A(b_0),A(b_1),\cdots,A(b_{n-1}) \right\}
 $$
-计算$A(b_k)$的值
+
+计算 $A(b_k)$ 的值
+
 $$
 \begin{split}
 A(b_k)&=\sum_{i=0}^{n-1}f(\omega_n^i)\omega_n^{-ik}=\sum_{i=0}^{n-1}\omega_n^{-ik}\sum_{j=0}^{n-1}a_j(\omega_n^i)^{j}\\
 &=\sum_{i=0}^{n-1}\sum_{j=0}^{n-1}a_j\omega_n^{i(j-k)}=\sum_{j=0}^{n-1}a_j\sum_{i=0}^{n-1}\left(\omega_n^{j-k}\right)^i\\
 \end{split}
 $$
-记$S\left(\omega_n^a\right)=\sum_{i=0}^{n-1}\left(\omega_n^a\right)^i$.
 
-当$a=0$时，$S\left(\omega_n^a\right)=n$.
+记 $S\left(\omega_n^a\right)=\sum_{i=0}^{n-1}\left(\omega_n^a\right)^i$。
 
-当$a\neq 0$时，我们错位相减一下
+当 $a=0$ 时，$S\left(\omega_n^a\right)=n$.
+
+当 $a\neq 0$ 时，我们错位相减一下
+
 $$
 \begin{split}
 S\left(\omega_n^a\right)&=\sum_{i=0}^{n-1}\left(\omega_n^a\right)^i\\
@@ -339,6 +346,7 @@ S\left(\omega_n^a\right)&=\frac{\left(\omega_n^a\right)^n-\left(\omega_n^a\right
 $$
 
 也就是说
+
 $$
 S\left(\omega_n^a\right)=
 \left\{\begin{split}
@@ -346,15 +354,20 @@ n,a=0\\
 0,a\neq 0
 \end{split}\right.
 $$
+
 那么代回原式
+
 $$
 A(b_k)=\sum_{j=0}^{n-1}a_jS\left(\omega_n^{j-k}\right)=a_k\cdot n
 $$
-也就是说给定点$b_i=\omega_n^{-i}$，则$A$的点值表示法为
+
+也就是说给定点 $b_i=\omega_n^{-i}$，则 $A$ 的点值表示法为
+
 $$
 \left\{ A(b_0),A(b_1),\cdots,A(b_{n-1}) \right\}＝\left\{ a_0\cdot n,a_1\cdot n,\cdots,a_{n-1}\cdot n \right\}=n\left\{ a_0,a_1,\cdots,a_{n-1}\right\}
 $$
-那么事情就很好办啦，我们把取单位根为其倒数，对$\{y[0],y[1],y[2],\cdots,y[n-1]\}$跑一遍FFT，然后除以n即可得到系数序列啦
+
+那么事情就很好办啦，我们把取单位根为其倒数，对 $\{y[0],y[1],y[2],\cdots,y[n-1]\}$ 跑一遍 FFT，然后除以 n 即可得到系数序列啦
 
 所以我们 fft 函数可以集 DFT 和 IDFT 于一身。见下
 
