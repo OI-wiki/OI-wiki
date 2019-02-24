@@ -39,12 +39,15 @@
 我们想办法构造一个 $S(n)$ 关于 $S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 的递推式
 
 对于任意一个数论函数 $g$，必满足
+
 $$
 \sum_{i=1}^n\sum_{d|i}f(d)g\left(\frac{i}{d}\right)=\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 \Leftrightarrow
 \sum_{i=1}^n(f\ast g)(i)=\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
+
 略证：
+
 $$
 \begin{split}
 &\sum_{i=1}^n\sum_{d|i}f(d)g\left(\frac{i}{d}\right)\\
@@ -55,11 +58,12 @@ $$
 \end{split}
 $$
 
-
 那么可以得到递推式
+
 $$
 g(1)S(n)=\sum_{i=1}^n(f\ast g)(i)-\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
+
 那么假如我们可以快速对 $\sum_{i=1}^n(f\ast g)(i)$ 求和，并用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 就可以在较短时间内求得 $g(1)S(n)$.
 
 ## 【例 1】模板
@@ -105,6 +109,7 @@ $$
 求 $S(i)=\sum_{i=1}^n\varphi(i)$.
 
 同样的，$\varphi\ast 1=ID$
+
 $$
 \begin{split}
 &\sum_{i=1}^n(\varphi\ast 1)(i)=\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
@@ -177,16 +182,19 @@ int main() {
 ??? note " [[LuoguP3768] 简单的数学题](https://www.luogu.org/problemnew/show/P3768)"
 
 大意：求
+
 $$
 \sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot gcd(i,j)\bmod p\\
 n\leq10^{10},5\times10^8\leq p\leq1.1\times10^9,\text{p 是质数}
 $$
 
 利用 $\varphi\ast1=ID$ 做莫比乌斯反演化为
+
 $$
 \sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)
 \left(F(n)=\frac{1}{2}n\left(n+1\right)\right)\\
 $$
+
 对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2​$ 做数论分块，$d^2\varphi(d)​$ 的前缀和用杜教筛处理：
 
 $$
@@ -195,13 +203,17 @@ $$
 &S(n)=\sum_{i=1}^nf(i)=\sum_{i=1}^n(ID^2\varphi)(i)
 \end{split}
 $$
+
 需要构造积性函数 $g$，使得 $f\ast g$ 和 $g$ 能快速求和
 
 单纯的 $\varphi$ 的前缀和可以用 $\varphi\ast1$ 的杜教筛处理，但是这里的 $f$ 多了一个 $ID^2$，那么我们就卷一个 $ID^2$ 上去，让它变成常数：
+
 $$
 S(n)=\sum_{i=1}^n\left((ID^2\varphi)\ast ID^2\right)(i)-\sum_{i=2}^nID^2(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
+
 化一下卷积
+
 $$
 \begin{split}
 &(ID^2\varphi)\ast ID^2)(i)\\
@@ -211,7 +223,9 @@ $$
 =&i^2(\varphi\ast1)(i)=i^3
 \end{split}
 $$
+
 再化一下 $S(n)$
+
 $$
 \begin{split}
 S(n)&=\sum_{i=1}^n\left((ID^2\varphi)\ast ID^2\right)(i)-\sum_{i=2}^nID^2(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
@@ -219,6 +233,7 @@ S(n)&=\sum_{i=1}^n\left((ID^2\varphi)\ast ID^2\right)(i)-\sum_{i=2}^nID^2(i)S\le
 &=\left(\frac{1}{2}n(n+1)\right)^2-\sum_{i=2}^ni^2S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 \end{split}
 $$
+
 非常友好的式子啊，分块求解即可
 
 ### 代码实现
