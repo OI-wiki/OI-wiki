@@ -1,3 +1,5 @@
+## 积性函数
+
 在数论题目中，常常需要根据一些 **积性函数** 的性质，求出一些式子的值。
 
  **积性函数** ：对于所有互质的 $a$ 和 $b$ ，总有 $f(ab)=f(a)f(b)$ ，则称 $f(x)$ 为积性函数。
@@ -28,9 +30,45 @@
 
 在莫比乌斯反演的题目中，往往要求出一些数论函数的前缀和，利用 **杜教筛** 可以快速求出这些前缀和。
 
-??? note " 例题[P4213【模板】杜教筛（Sum）](https://www.luogu.org/problemnew/show/P4213)"
+## 杜教筛
+
+杜教筛被用来处理数论函数的前缀和问题。对于求解一个前缀和，杜教筛可以在低于线性时间的复杂度内求解
+
+对于数论函数 $f$，要求我们计算 $S(n)=\sum_{i=1}^nf(i)$.
+
+我们想办法构造一个 $S(n)$ 关于 $S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 的递推式
+
+对于任意一个数论函数 $g$，必满足
+$$
+\sum_{i=1}^n\sum_{d|i}f(d)g\left(\frac{i}{d}\right)=\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+\Leftrightarrow
+\sum_{i=1}^n(f\ast g)(i)=\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+$$
+略证：
+$$
+\begin{split}
+&\sum_{i=1}^n\sum_{d|i}f(d)g\left(\frac{i}{d}\right)\\
+=&\sum_{i=1}^n\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}g(i)f(j)&\text{【}f(d)g\left(\frac{i}{d}\right)\text{就是对所有}i\leq n\text{的做贡献，因此}\\&&\text{变换枚举顺序，枚举}d,\frac{i}{d}\text{（分别对应新的}i,j\text{）】}\\
+=&\sum_{i=1}^ng(i)\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}f(j)\\
+=&\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+&&&\square
+\end{split}
+$$
+
+
+那么可以得到递推式
+$$
+g(1)S(n)=\sum_{i=1}^n(f\ast g)(i)-\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+$$
+那么假如我们可以快速对 $\sum_{i=1}^n(f\ast g)(i)$ 求和，并用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 就可以在较短时间内求得 $g(1)S(n)$.
+
+## 【例 1】模板
+
+??? note " [P4213【模板】杜教筛（Sum）](https://www.luogu.org/problemnew/show/P4213)"
 
 题目大意：求 $S_1(n)= \sum_{i=1}^n \mu(i)$ 和 $S_2(n)= \sum_{i=1}^n \varphi(i)$ 的值， $n\le 2^{31} -1$ 。
+
+### 求解 $\mu$ 前缀和
 
 由 **狄利克雷卷积** ，我们知道：
 
@@ -50,6 +88,8 @@
 
 对于较大的值，需要用 `map` 存下其对应的值，方便以后使用时直接使用之前计算的结果。
 
+### 求解 $\varphi$ 前缀和
+
 当然也可以用杜教筛求出 $\varphi (x)$ 的前缀和，但是更好的方法是应用莫比乌斯反演：
 
  $\sum_{i=1}^n \sum_{j=1}^n 1[gcd(i,j)=1]=\sum_{i=1}^n \sum_{j=1}^n \sum_{d|i,d|j} \mu(d)$ 
@@ -60,7 +100,21 @@
 
 观察到，只需求出莫比乌斯函数的前缀和，就可以快速计算出欧拉函数的前缀和了。时间复杂度 $O(n^{\frac 2 3})$ 。
 
-给出一种代码实现：
+### 使用杜教筛求解 $\varphi$ 前缀和
+
+求 $S(i)=\sum_{i=1}^n\varphi(i)$.
+
+同样的，$\varphi\ast 1=ID$
+$$
+\begin{split}
+&\sum_{i=1}^n(\varphi\ast 1)(i)=\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+&\sum_{i=1}^nID(i)=\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+&\frac{1}{2}n(n+1)=\sum_{i=1}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+&S(n)=\frac{1}{2}n(n+1)-\sum_{i=2}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+\end{split}
+$$
+
+### 代码实现
 
 ```cpp
 #include <algorithm>
@@ -116,4 +170,112 @@ int main() {
   }
   return 0;
 }
+```
+
+## 【例 2】简单的数学题
+
+??? note " [[LuoguP3768] 简单的数学题](https://www.luogu.org/problemnew/show/P3768)"
+
+大意：求
+$$
+\sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot gcd(i,j)\bmod p\\
+n\leq10^{10},5\times10^8\leq p\leq1.1\times10^9,\text{p 是质数}
+$$
+
+利用 $\varphi\ast1=ID$ 做莫比乌斯反演化为
+$$
+\sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)
+\left(F(n)=\frac{1}{2}n\left(n+1\right)\right)\\
+$$
+对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2​$ 做数论分块，$d^2\varphi(d)​$ 的前缀和用杜教筛处理：
+
+$$
+\begin{split}
+&f(n)=n^2\varphi(n)=(ID^2\varphi)(n)\\
+&S(n)=\sum_{i=1}^nf(i)=\sum_{i=1}^n(ID^2\varphi)(i)
+\end{split}
+$$
+需要构造积性函数 $g$，使得 $f\ast g$ 和 $g$ 能快速求和
+
+单纯的 $\varphi$ 的前缀和可以用 $\varphi\ast1$ 的杜教筛处理，但是这里的 $f$ 多了一个 $ID^2$，那么我们就卷一个 $ID^2$ 上去，让它变成常数：
+$$
+S(n)=\sum_{i=1}^n\left((ID^2\varphi)\ast ID^2\right)(i)-\sum_{i=2}^nID^2(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+$$
+化一下卷积
+$$
+\begin{split}
+&(ID^2\varphi)\ast ID^2)(i)\\
+=&\sum_{d|i}(ID^2\varphi)(d)ID^2\left(\frac{i}{d}\right)\\
+=&\sum_{d|i}d^2\varphi(d)\left(\frac{i}{d}\right)^2\\
+=&\sum_{d|i}i^2\varphi(d)=i^2\sum_{d|i}\varphi(d)\\
+=&i^2(\varphi\ast1)(i)=i^3
+\end{split}
+$$
+再化一下 $S(n)$
+$$
+\begin{split}
+S(n)&=\sum_{i=1}^n\left((ID^2\varphi)\ast ID^2\right)(i)-\sum_{i=2}^nID^2(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+&=\sum_{i=1}^ni^3-\sum_{i=2}^ni^2S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+&=\left(\frac{1}{2}n(n+1)\right)^2-\sum_{i=2}^ni^2S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+\end{split}
+$$
+非常友好的式子啊，分块求解即可
+
+### 代码实现
+
+```cpp
+#include<cstdio>
+#include<cmath>
+#include<map>
+#define int long long
+using namespace std;
+const signed N=5e6,NP=5e6,SZ=N;
+int n,P,inv2,inv6,s[N];
+signed phi[N],p[NP],cnt,pn;
+bool bp[N];
+map<int,int> s_map;
+int ksm(int a,int m){// 求逆元用
+	int res=1;
+	while(m){
+		if(m&1)res=res*a%P;
+		a=a*a%P,m>>=1;
+	}
+	return res;
+}
+void prime_work(signed k){// 线性筛 phi，s
+	bp[0]=bp[1]=1,phi[1]=1;
+	for(signed i=2;i<=k;i++){
+		if(!bp[i])p[++cnt]=i,phi[i]=i-1;
+		for(signed j=1;j<=cnt&&i*p[j]<=k;j++){
+			bp[i*p[j]]=1;
+			if(i%p[j]==0){phi[i*p[j]]=phi[i]*p[j];break;}
+			else phi[i*p[j]]=phi[i]*phi[p[j]];
+		}
+	}
+	for(signed i=1;i<=k;i++)s[i]=(1ll*i*i%P*phi[i]%P+s[i-1])%P;
+}
+int s3(int k){return k%=P,(k*(k+1)/2)%P*((k*(k+1)/2)%P)%P;}// 立方和
+int s2(int k){return k%=P,k*(k+1)%P*(k*2+1)%P*inv6%P;}// 平方和
+int calc(int k){// 计算 S(k)
+	if(k<=pn)return s[k];
+	if(s_map[k])return s_map[k];// 对于超过 pn 的用 map 离散存储
+	int res=s3(k),pre=1,cur;
+	for(int i=2,j;i<=k;i=j+1)
+        j=k/(k/i),cur=s2(j),res=(res-calc(k/i)*(cur-pre)%P)%P,pre=cur;
+	return s_map[k]=(res+P)%P;
+}
+int solve(){
+	int res=0,pre=0,cur;
+	for(int i=1,j;i<=n;i=j+1)
+		j=n/(n/i),cur=calc(j),res=(res+(s3(n/i)*(cur-pre))%P)%P,pre=cur;
+	return (res+P)%P;
+}
+signed main(){
+	scanf("%lld%lld",&P,&n);
+	inv2=ksm(2,P-2),inv6=ksm(6,P-2);
+	pn=(int)pow(n,0.666667);//n^(2/3)
+	prime_work(pn);
+	printf("%lld",solve());
+	return 0;
+}// 不要为了省什么内存把数组开小...... 卡了好几次 80
 ```
