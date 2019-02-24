@@ -39,7 +39,7 @@ $$
 
 该方法通过寻找增广路来更新最大流
 
-有 $EK,dinic,SAP,ISAP$ 主流算法
+有 EK,dinic,SAP,ISAP 主流算法
 
 ### Push-Relabel 方法
 
