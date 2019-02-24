@@ -18,7 +18,7 @@
 
 点双连通 **不** 具有传递性，反例如下图， $A,B$ 点双连通， $B,C$ 点双连通，而 $A,C$  **不** 点双连通。
 
-![bcc-counterexample.png](images/bcc-counterexample.png)
+![bcc-counterexample.png](images/bcc-0.svg)
 
 ## DFS
 
@@ -40,7 +40,7 @@ void DFS(int p) {
 
 首先，对原图进行 DFS。
 
-![bcc-1.png](images/bcc-1.png)
+![bcc-1.png](images/bcc-1.svg)
 
 如上图所示，黑色与绿色边为树边，红色边为非树边。每一条非树边连接的两个点都对应了树上的一条简单路径，我们说这条非树边 **覆盖** 了这条树上路径上所有的边。绿色的树边 **至少** 被一条非树边覆盖，黑色的树边不被 **任何** 非树边覆盖。
 
@@ -54,7 +54,7 @@ void DFS(int p) {
 
 ## DFS 找割点并判断点双连通
 
-![bcc-2.png](images/bcc-2.png)
+![bcc-2.png](images/bcc-2.svg)
 
 如上图所示，黑色边为树边，红色边为非树边。每一条非树边连接的两个点都对应了树上的一条简单路径。
 
