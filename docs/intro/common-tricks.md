@@ -42,6 +42,7 @@
 使用namespace能使程序可读性更好，便于调试。
 
 ```cpp
+//NOI 2018 屠龙勇士 40分部分分代码
 #include <iostream>
 #include <algorithm>
 #include <cmath>
