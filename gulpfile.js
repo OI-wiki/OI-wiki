@@ -8,6 +8,7 @@ gulp.task('minify:html', () => {
     .pipe(htmlmin({
       collapseWhitespace: true,
       minifyJS: true,
+      minifyCSS: true,
       minifyURLs: true,
       removeComments: true,
       removeOptionalTags: true,

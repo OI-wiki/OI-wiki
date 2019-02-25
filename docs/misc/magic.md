@@ -29,7 +29,7 @@ Shadowsocks 是一个安全的 `socks5` 代理，支持多种平台。
 
 ### 为什么不推荐使用 ssr？
 
-ssr 在开发过程中违反了[GPL 协议](https://zh.wikipedia.org/wiki/GNU%E9%80%9A%E7%94%A8%E5%85%AC%E5%85%B1%E8%AE%B8%E5%8F%AF%E8%AF%81)，GPL 要求再分发时应开放源代码，而 ssr 的维护者并没有做到这一点。作为一个合格的 OIer，**遵守开源协议**是最起码的要求，所以这里并不提倡使用 ssr。
+ssr 在开发过程中违反了[GPL 协议](https://zh.wikipedia.org/wiki/GNU%E9%80%9A%E7%94%A8%E5%85%AC%E5%85%B1%E8%AE%B8%E5%8F%AF%E8%AF%81)，GPL 要求再分发时应开放源代码，而 ssr 的维护者并没有做到这一点。作为一个合格的 OIer， **遵守开源协议** 是最起码的要求，所以这里并不提倡使用 ssr。
 
 引用 clowwindy 的一段著名的[评论](https://github.com/shadowsocks/shadowsocks-windows/issues/293#issuecomment-132253168)作为结语。
 

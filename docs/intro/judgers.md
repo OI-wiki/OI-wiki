@@ -10,13 +10,15 @@ Cena 对权限的限制不是很明确，测试的时候可以读测点 AC QAQ
 
 ## Lemon
 
-Lemon 是 zhipeng-jia 写的开源的评测工具，地址在：[zhipeng-jia/project-lemon](https://github.com/zhipeng-jia/project-lemon)。
+Lemon 是 zhipeng-jia 写的开源的评测工具，仓库 [zhipeng-jia/project-lemon](https://github.com/zhipeng-jia/project-lemon)。
 
-Ir1d 提供了一份 linux 下编译好的版本在[FreestyleOJ/Project_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built)。
+Ir1d 提供了一份 linux 下编译好的版本在 [FreestyleOJ/Project_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built)。
 
-Menci 提供了一份更新的版本在[Menci/Lemon](https://github.com/Menci/Lemon/)。
+Menci 提供了一份更新的版本在 [Menci/Lemon](https://github.com/Menci/Lemon/)。
 
-**注意**macOS 下 Lemon 可能会出现内存测试不准确的情况，这是由于 mac 下没有一些 Linux 的监测工具，而 Lemon-Linux 也没有对于 macOS 的使用优化。
+Dust1404 维护了支持子文件夹和单题测试等功能的版本在 [Dust1404/Project_LemonPlus](https://github.com/Dust1404/Project_LemonPlus)。
+
+ **注意** macOS 下 Lemon 可能会出现内存测试不准确的情况，这是由于 mac 下没有一些 Linux 的监测工具，而 Lemon-Linux 也没有对于 macOS 的使用优化。
 
 ### 自行编译
 
@@ -128,7 +130,7 @@ players/
 
 （建了一些无聊的问题）
 
-这一步**十分重要：**点击文件 - 保存！一定要保存，否则没有题目配置文件！每一次对题目配置的修改都要保存！
+这一步 **十分重要：** 点击文件 - 保存！一定要保存，否则没有题目配置文件！每一次对题目配置的修改都要保存！
 
 此时，打开考试文件夹，会发现有如下内容。
 
@@ -166,7 +168,7 @@ players/
 
 因为我取得编号是 `HL-001` ，所以会自动识别出“所属”一栏。如果不是 NOIP 规范的编号是识别不出来的。
 
-这个时候，要用**向上箭头**把测评第 0 场变为测评第 1 场，如果直接修改的话会识别失败。
+这个时候，要用 **向上箭头** 把测评第 0 场变为测评第 1 场，如果直接修改的话会识别失败。
 
 然后选择右边的全选，再选择下面的评测选定选手，选择要测评的题目（有全部试题），等待测评结束即可。
 
