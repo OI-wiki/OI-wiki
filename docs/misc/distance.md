@@ -445,5 +445,7 @@ return 0;
 </div>
 
 搬运自[浅谈三种常见的距离算法](https://www.luogu.org/blog/xuxing/Distance-Algorithm)，感谢作者 [xuxing](https://www.luogu.org/space/show?uid=32139) 的授权。
-=======
+
+
+------
 当然，还有其他的一些距离，但是在 OI 中并不常用，有兴趣的话可以了解一下。
