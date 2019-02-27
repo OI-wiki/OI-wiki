@@ -1,6 +1,6 @@
 ## 定义
 
-二分图的英文名叫 Bipartite graph。
+二分图，又称二部图，英文名叫 Bipartite graph。
 
 二分图是什么？节点由两个集合组成，且两个集合内部没有边的图。
 
@@ -8,7 +8,7 @@
 
 ![](./images/bi-graph.png)
 
-（图源 [英文维基](https://en.wikipedia.org/wiki/Bipartite_graph)）
+（图源[英文维基](https://en.wikipedia.org/wiki/Bipartite_graph)）
 
 ## 性质
 
@@ -25,11 +25,15 @@
 
 显然，直接枚举答案集合的话实在是太慢了，我们需要更高效的方法。
 
-考虑上文提到的性质，我们可以使用 [DFS](/search/dfs) 或者 [BFS](/search/bfs) 来遍历这张图。如果发现了奇环，那么就不是二分图，否则是。
+考虑上文提到的性质，我们可以使用[DFS](/search/dfs)或者[BFS](/search/bfs)来遍历这张图。如果发现了奇环，那么就不是二分图，否则是。
 
 ## 应用
 
 ### 二分图匹配
+
+#### 霍尔定理
+
+设二部图 $G=<V_1, V_2, E>, |V_1| \leq |V_2|$ ，则 $G$ 中存在 $V_1$ 到 $V_2$ 的完备匹配当且仅当对于任意的 $S \subset V_1$ ，均有 $|S|\leq|N(S)|$ ，其中 $N(S)=\Cup_{v_i \in S}{N(V_i)}$ ，是 $S$ 的邻域。
 
 #### 最大匹配
 

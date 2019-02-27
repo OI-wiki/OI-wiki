@@ -1,4 +1,4 @@
-Checker，即 [Special Judge](/intro/spj)，用于检验答案是否合法。使用 Testlib 可以让我们免去检验许多东西，使编写简单许多。
+Checker，即[Special Judge](/intro/spj)，用于检验答案是否合法。使用 Testlib 可以让我们免去检验许多东西，使编写简单许多。
 
 Checker 从命令行参数读取到输入文件名、选手输出文件名、标准输出文件名，并确定选手输出是否正确，并返回一个预定义的结果：
 
@@ -7,7 +7,7 @@ Checker 从命令行参数读取到输入文件名、选手输出文件名、标
 ## 简单的例子
 
 ???+note 题目
-    给定两个整数 $a,b$（$-1000 \le a,b \le 1000$），输出它们的和。
+    给定两个整数 $a,b$ （ $-1000 \le a,b \le 1000$ ），输出它们的和。
 
 这题显然不需要 checker 对吧，但是如果一定要的话也可以写一个：
 
@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
 
 假设你有一道题输入输出均有很多数，如：给定一张 DAG，求 $s$ 到 $t$ 的最长路并输出路径（可能有多条，输出任一）。
 
-下面是一个**不好**的 checker 的例子。
+下面是一个 **不好** 的 checker 的例子。
 
 ### 不好的实现
 
@@ -194,7 +194,7 @@ int main(int argc, char* argv[]) {
     ```
 
 ???+ warning
-    请在 `readAns` 中避免调用**全局**函数 `::ensure/ensuref()`，这会导致在某些应判为 Wrong Answer 的选手输出下返回 `_fail`，产生错误。
+    请在 `readAns` 中避免调用 **全局** 函数 `::ensure/ensuref()` ，这会导致在某些应判为 Wrong Answer 的选手输出下返回 `_fail` ，产生错误。
 
 ## 建议与常见错误
 
@@ -232,4 +232,4 @@ int main(int argc, char* argv[]) {
 
 -   使用项别名
 
-**本文翻译自[Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431)。`testlib.h` 的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。**
+     **本文翻译自[Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431)。 `testlib.h` 的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。** 

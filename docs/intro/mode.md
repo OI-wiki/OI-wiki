@@ -1,6 +1,6 @@
 ## 赛事介绍
 
-OI 竞赛是一项全球的赛事，每年夏天会有世界级竞赛（IOI）举行，参赛选手大多都经过层层选拔。对于大部分选手而言，每年新赛季从 10 月的 NOIP （省级选拔赛）开始。
+OI 竞赛是一项全球的赛事，每年夏天会有世界级竞赛（IOI）举行，参赛选手大多都经过层层选拔。对于大部分选手而言，每年新赛季从 10 月的 NOIP（省级选拔赛）开始。
 
 OI 竞赛中允许使用的语言包括 Pascal（NOI 将于 2020 年停止使用 Pascal，NOIP 将于 2022 年停止使用 Pascal），C 和 C++。其中 C++ 的版本不同考试有不同的规定。考试题目一般为算法或者数据结构相关的内容，题目形式包括传统题（最常见的规定输入和输出到文件的题目）和非传统题（提交答案题、交互题、补全代码题等等）。
 
@@ -8,7 +8,7 @@ OI 竞赛中允许使用的语言包括 Pascal（NOI 将于 2020 年停止使用
 
 NOIP（National Olympiad in Informatics in Provinces）是全国青少年信息学奥林匹克联赛，顾名思义，是以省为单位排名评奖，对于大部分高校来说，获得省一等奖可以用于获得自主招生资格。
 
-NOIP 分为初赛和复赛两个阶段。初赛会考察一些计算机基础知识和算法基础（笔试），复赛是上机考试，时间上一般是 11 月的第二个周末。全国使用同一套试卷，但是评奖规则是按照省内情况由 CCF （中国计算机学会）统一指定，并于赛后在 [NOI 官方网站](http://www.noi.cn) 上公布。
+NOIP 分为初赛和复赛两个阶段。初赛会考察一些计算机基础知识和算法基础（笔试），复赛是上机考试，时间上一般是 11 月的第二个周末。全国使用同一套试卷，但是评奖规则是按照省内情况由 CCF（中国计算机学会）统一指定，并于赛后在[NOI 官方网站](http://www.noi.cn)上公布。
 
 ### 省选
 
@@ -20,7 +20,7 @@ NOI（National Olympiad in Informatics）是全国信息学奥林匹克竞赛，
 
 ### WC
 
-WC（Winter Camp）是全国青少年信息学奥林匹克竞赛冬令营，是每年冬天在当年 NOI 举办地进行的一项活动，内容包括若干天的培训和一天的考试。这项考试主要用于从国家集训队（ 50 人）选拔国家候选队（ 15 人）。
+WC（Winter Camp）是全国青少年信息学奥林匹克竞赛冬令营，是每年冬天在当年 NOI 举办地进行的一项活动，内容包括若干天的培训和一天的考试。这项考试主要用于从国家集训队（50 人）选拔国家候选队（15 人）。
 
 ### APIO
 
@@ -28,13 +28,13 @@ APIO（Asia-Pacific Informatics Olympiad）是亚太地区信息学奥林匹克�
 
 ### CTSC
 
-CTSC（China Team Selection Competition）是中国队选拔赛。用来从国家候选队（ 15 人）中选拔国家队（ 6 人）准备参加当年夏天的 IOI 比赛，其中正式选手 4 人，替补选手 2 人。
+CTSC（China Team Selection Competition）是中国队选拔赛。用来从国家候选队（15 人）中选拔国家队（6 人）准备参加当年夏天的 IOI 比赛，其中正式选手 4 人，替补选手 2 人。
 
-注： APIO 和 CTSC 都是以省为单位报名，一般是按照 NOIP 成绩排序来确定谁会有机会参加 APIO 和 CTSC （二者一般时间上非常接近）。
+注：APIO 和 CTSC 都是以省为单位报名，一般是按照 NOIP 成绩排序来确定谁会有机会参加 APIO 和 CTSC（二者一般时间上非常接近）。
 
 ### IOI
 
-IOI（International Olympiad in Informatics）是国际信息学奥林匹克竞赛，每个国家有四人参赛，比赛一般会有直播。IOI 赛制中每个题目会有 subtask （子任务），每个子任务对应一定的分数。
+IOI（International Olympiad in Informatics）是国际信息学奥林匹克竞赛，每个国家有四人参赛，比赛一般会有直播。IOI 赛制中每个题目会有 subtask（子任务），每个子任务对应一定的分数。
 
 ### 学科营
 
@@ -54,15 +54,15 @@ NOIP、NOI、省选都是 OI 赛制。
 ### IOI 赛制
 
 目前国内比赛也在逐渐向 IOI 赛制靠拢。
-IOI 赛制可以赛时任意提交，可以即时查看评测结果， APIO、IOI 都是 IOI 赛制。
+IOI 赛制可以赛时任意提交，可以即时查看评测结果，APIO、IOI 都是 IOI 赛制。
 
-### ACM / ICPC 赛制
+### ACM/ICPC 赛制
 
-在 ACM / ICPC 比赛中一般是三个人使用一台机器，每个题目只有在所有数据点全部正确后才能得到分数。比赛过程中可以有多次提交机会，实时评测并返回结果。比赛排名根据做题数和罚时来评判，罚时是通过题目的用时之和加上错误提交次数乘以一个系数。在 ACM 相关赛事中，选手允许带纸质资料。
+在 ACM/ICPC 比赛中一般是三个人使用一台机器，每个题目只有在所有数据点全部正确后才能得到分数。比赛过程中可以有多次提交机会，实时评测并返回结果。比赛排名根据做题数和罚时来评判，罚时是通过题目的用时之和加上错误提交次数乘以一个系数。在 ACM 相关赛事中，选手允许带纸质资料。
 
 ### Codeforces (CF) 赛制
 
-[Codeforces](https://codeforces.com) 是一个在线评测系统，定期会举办比赛。它的比赛特点是在比赛过程中只测试一部分数据（pretests），而在比赛结束后返回完整的所有测试点的测试结果（system tests）。比赛时可以多次提交，允许 hack 别人的代码（此处 hack 的意思是提交一个测试数据，使得别人的代码无法给出正确答案）。当然，如果想要 hack ，必须要锁定自己的代码（换言之，比赛时无法重新提交该题）。
+[Codeforces](https://codeforces.com)是一个在线评测系统，定期会举办比赛。它的比赛特点是在比赛过程中只测试一部分数据（pretests），而在比赛结束后返回完整的所有测试点的测试结果（system tests）。比赛时可以多次提交，允许 hack 别人的代码（此处 hack 的意思是提交一个测试数据，使得别人的代码无法给出正确答案）。当然，如果想要 hack，必须要锁定自己的代码（换言之，比赛时无法重新提交该题）。
 
 ## 其他国家和地区的 OI 竞赛
 
@@ -84,17 +84,17 @@ USACO 或许是国内选手最熟悉的外国 OI 竞赛（因此可能也是中�
 ### 波兰：POI
 
 官网：<https://oi.edu.pl/>  
-官方提交地址：<https://szkopul.edu.pl/p/default/problemset/>  
+官方提交地址：<https://szkopul.edu.pl/p/default/problemset/>
 
 POI 是不少省选选手最常刷的外国 OI 比赛。  
-根据（已经凉凉的）<http://main.edu.pl/en/> 的描述，POI 的流程如下：  
+根据（已经凉凉的）<http://main.edu.pl/en/>的描述，POI 的流程如下：
 
 -   第一轮：五题，网络赛，公开赛。
 -   第二轮：包含一场练习赛，和两场正式比赛。
 -   第三轮：赛制同上。
 -   ONTAK：POI 训练营（类似国内的集训队）
 
-你可能还听说过 PA。PA 的大意是 “算法大战”（我也不知道为啥它叫这名字）。
+你可能还听说过 PA。PA 的大意是“算法大战”（我也不知道为啥它叫这名字）。
 
 目前在国内 OJ 中，POI 题目最全的是 BZOJ。
 
@@ -115,18 +115,18 @@ POI 是不少省选选手最常刷的外国 OI 比赛。
 JOI 的流程：
 
 -   预赛（予選）
--   决赛（本選 / JOI Final）
--   春训营（春季トレーニング合宿 / JOI Spring Camp / JOISC）
--   公开赛（通信教育 / JOI Open Contest）
+-   决赛（本選/JOI Final）
+-   春训营（春季トレーニング合宿/JOI Spring Camp/JOISC）
+-   公开赛（通信教育/JOI Open Contest）
 
 目前 LibreOJ 和 BZOJ 有近些年的 JOI Final、JOISC 和 JOI Open 的题目。UOJ 有部分 JOISC 2017 的题目。
 JOI Final 的难度在提高 - $\sim$ 提高 + 左右。JOISC 和 JOI Open 的题目的难度在提高 $\sim$ NOI - 不等。
-你可以在 JOI 官网或者 AtCoder 上找到更多的 JOI 题 (日文题面)
+你可以在 JOI 官网或者 AtCoder 上找到更多的 JOI 题（日文题面）
 
 ### 台湾地区：資訊奧林匹亞競賽
 
-台湾地区把 OI 中的 informatics 翻译成 “资讯” 而非大陆通用的翻译 “信息”。  
-台湾地区的选手如果想去参加 IOI，需要经过这几场比赛的洗礼：  
+台湾地区把 OI 中的 informatics 翻译成“资讯”而非大陆通用的翻译“信息”。  
+台湾地区的选手如果想去参加 IOI，需要经过这几场比赛的洗礼：
 
 -   區域資訊學科能力競賽
 -   全國資訊學科能力競賽
@@ -139,9 +139,9 @@ JOI Final 的难度在提高 - $\sim$ 提高 + 左右。JOISC 和 JOI Open 的�
 在线提交地址：<https://contest.yandex.ru/roiarchive/>  
 一般简称为 ROI。流程：
 
--   市级比赛（Municipal stage / Муниципальный этап）
--   地区级比赛（Regional Stage / Региональный этап）
--   决赛（Final Stage / Заключительный этап）
+-   市级比赛（Municipal stage/Муниципальный этап）
+-   地区级比赛（Regional Stage/Региональный этап）
+-   决赛（Final Stage/Заключительный этап）
 
 你可能已经在 Codeforces 上见过了一些 ROI 题。目前 LibreOJ 有近两年的 ROI 决赛题（包括翻译）。
 
@@ -150,10 +150,10 @@ JOI Final 的难度在提高 - $\sim$ 提高 + 左右。JOISC 和 JOI Open 的�
 CCC: Canadian Computing Competition  
 CCO: Canadian Computing Olympiad  
 官网地址：<https://cemc.math.uwaterloo.ca/contests/past_contests.html#ccc>  
-CCC 提交地址：<https://dmoj.ca/problems/?category=4>  
-CCO 提交地址：<https://dmoj.ca/problems/?category=24>  
+CCC 提交地址：[https://dmoj.ca/problems/？category=4](https://dmoj.ca/problems/?category=4)  
+CCO 提交地址：[https://dmoj.ca/problems/？category=24](https://dmoj.ca/problems/?category=24)  
 CCC 在 DMOJ 有官方 (?) 题解。  
-CCC Junior / Senior 贴近 NOIP 普及组 / 提高组难度。CCO 想要拿到金牌可能得有 NOI 银的水平。
+CCC Junior/Senior 贴近 NOIP 普及组/提高组难度。CCO 想要拿到金牌可能得有 NOI 银的水平。
 
 ### 法国与澳大利亚：FARIO
 
@@ -166,7 +166,7 @@ FARIO 的题目与 NOI 的难度旗鼓相当。
 ### BalticOI
 
 BalticOI 面向的是波罗的海周边各国。BalticOI 2018 的参赛国有立陶宛、波兰、爱沙尼亚、芬兰等 9 国。
-除了 2017 年，BalticOI 每年都公开题面、测试数据和题解。然而 BalticOI 没有一个固定的官网，每年的主办方都会新建一个网站…… 关于历年的官网地址，Planet6174 整理出了一个[帖子](https://loj.ac/article/416)。
+除了 2017 年，BalticOI 每年都公开题面、测试数据和题解。然而 BalticOI 没有一个固定的官网，每年的主办方都会新建一个网站……关于历年的官网地址，Planet6174 整理出了一个[帖子](https://loj.ac/article/416)。
 目前 LibreOJ 有近十年的 BalticOI 题。
 
 ### BalkanOI
