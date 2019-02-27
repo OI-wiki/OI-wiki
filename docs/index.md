@@ -2,23 +2,27 @@ disqus:
 pagetime:
 title: OI Wiki
 
-# 欢迎来到 **OI Wiki**。
+# 欢迎来到 **OI Wiki** ！[![GitHub watchers](https://img.shields.io/github/watchers/24OI/OI-Wiki.svg?style=social&label=Watch)](https://github.com/24OI/OI-wiki)[![GitHub stars](https://img.shields.io/github/stars/24OI/OI-Wiki.svg?style=social&label=Stars)](https://github.com/24OI/OI-wiki)
 
-**OI** （Olympiad in Informatics，信息学奥林匹克竞赛）在中国起源于 1984 年，是五大高中学科竞赛之一。自 1989 年起，每年还会选拔出国家集训队选手准备 IOI (International Olympiad in Informatics，国际信息学奥林匹克竞赛)。
+[![Word Art](./images/wordArt.png)](https://github.com/24OI/OI-wiki)
 
-**OI Wiki** 致力于成为一个免费开放且持续更新的知识整合站点，大家可以在这里学到关于 **OI** 竞赛有趣又实用的知识，我们为大家准备了 **OI** 竞赛中的基础知识、常见题型、解题思路以及常用工具等内容，帮助大家更快速深入地学习 **OI** 竞赛。
+ **OI** （Olympiad in Informatics，信息学奥林匹克竞赛）在中国起源于 1984 年，是五大高中学科竞赛之一。自 1989 年起，每年还会选拔出国家集训队选手准备 IOI (International Olympiad in Informatics，国际信息学奥林匹克竞赛）。
 
-本项目受 [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
+ **ICPC** （International Collegiate Programming Contest, 国际大学生程序设计竞赛）由 ICPC 基金会（ICPC Foundation）举办，是最具影响力的大学生计算机竞赛。ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分。由于以前 ACM 赞助这个竞赛，也有很多人习惯叫它 ACM 竞赛。
 
-本项目文档内容托管在 [GitHub](https://github.com/24OI/OI-wiki)，主要使用 [Issues](https://github.com/24OI/OI-wiki/issues) / [QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) / [Telegram](https://t.me/OIwiki) 进行交流沟通，期待你的加入。
+ **OI Wiki** 致力于成为一个免费开放且持续更新的知识整合站点，大家可以在这里获取关于 **编程竞赛 (competitive programming)** 有趣又实用的知识，我们为大家准备了竞赛中的基础知识、常见题型、解题思路以及常用工具等内容，帮助大家更快速深入地学习编程竞赛。
 
-Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`588793226`](https://jq.qq.com/?_wv=1027&k=5EfkM6K)，欢迎加入。
+本项目受[CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/)的启发，在编写过程中参考了诸多资料，在此一并致谢。
+
+本项目文档内容托管在[GitHub](https://github.com/24OI/OI-wiki)，主要使用[Issues](https://github.com/24OI/OI-wiki/issues)/[QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K)/[Telegram](https://t.me/OIwiki)进行交流沟通，期待你的加入。
+
+Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `588793226` ](https://jq.qq.com/?_wv=1027&k=5EfkM6K)，欢迎加入。
 
 ## Material color palette 颜色主题
 
 ### Primary colors 主色
 
-> 默认 `white`
+> 默认 `white` 
 
 点击色块可更换主题的主色
 
@@ -57,7 +61,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
 
 ### Accent colors 辅助色
 
-> 默认 `red`
+> 默认 `red` 
 
 点击色块更换主题的辅助色
 
@@ -88,4 +92,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ， QQ 群号码为 [`58
       localStorage.setItem("data-md-color-accent",this.dataset.mdColorAccent);
     })
   })
+
+  // #758
+  document.getElementsByClassName('md-nav__title')[1].click()
 </script>

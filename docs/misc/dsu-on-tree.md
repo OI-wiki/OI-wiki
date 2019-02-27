@@ -9,11 +9,11 @@
 最常见的就是并查集的按秩合并了，有带按秩合并的并查集中，合并的代码是这样的：
 
 ```cpp
-void merge(int x,int y)
-{
-    int xx=find(x),yy=find(y);
-    if(size[xx]<size[yy])swap(xx,yy);
-    fa[yy]=xx;size[xx]+=size[yy];
+void merge(int x, int y) {
+  int xx = find(x), yy = find(y);
+  if (size[xx] < size[yy]) swap(xx, yy);
+  fa[yy] = xx;
+  size[xx] += size[yy];
 }
 ```
 
@@ -31,33 +31,33 @@ void merge(int x,int y)
 
 给出一棵树，每个节点有颜色，询问一些子树的颜色数量（颜色可重复）。
 
-![24620.png](./images/24620.png)   
+![24620.png](./images/24620.png)
 
 对于这种问题解决方式大多是运用大量的数据结构（树套树等），如果可以离线，询问的量巨大，是不是有更简单的方法？
 
-树上莫队!
+树上莫队！
 
 不行，莫队带根号，我要 log
 
 既然支持离线，考虑预处理后 $O(1)$ 输出答案。
 
-直接暴力预处理的时间复杂度为 $O(n^2)$，即对每一个子节点进行一次遍历，每次遍历的复杂度显然与 $n$ 同阶，有 $n$ 个节点，故复杂度为 $O(n^2)$。
+直接暴力预处理的时间复杂度为 $O(n^2)$ ，即对每一个子节点进行一次遍历，每次遍历的复杂度显然与 $n$ 同阶，有 $n$ 个节点，故复杂度为 $O(n^2)$ 。
 
 可以发现，每个节点的答案是其子树的叠加，考虑利用这个性质处理问题。
 
 我们可以先预处理出每个节点子树的 $size$ 和它的重儿子，重儿子同树链剖分一样，是拥有节点最多子树的儿子，这个过程显然可以 $O(n)$ 完成
 
-我们用 check[i] 表示颜色$i$有没有出现过，ans[i] 表示他的颜色个数
+我们用 check[i]表示颜色 $i$ 有没有出现过，ans[i]表示他的颜色个数
 
 遍历一个节点，我们按以下的步骤进行遍历：
 
-- 先遍历其非重儿子，获取它的 ans，但**不保留遍历后它的 check**；
+-   先遍历其非重儿子，获取它的 ans，但 **不保留遍历后它的 check** ；
 
-- 遍历它的重儿子，**保留它的 check**；
+-   遍历它的重儿子， **保留它的 check** ；
 
-- 再次遍历其非重儿子及其父亲，用重儿子的 check 对遍历到的节点进行计算，获取整棵子树的 ans；
+-   再次遍历其非重儿子及其父亲，用重儿子的 check 对遍历到的节点进行计算，获取整棵子树的 ans；
 
-![24919.png](./images/24919.png)    
+![24919.png](./images/24919.png)
 
 _上图是一个例子_
 
@@ -77,56 +77,57 @@ _上图是一个例子_
 
 我们像树链剖分一样定义重边和轻边（连向重儿子的为重边，其余为轻边）关于重儿子和重边的定义，可以见下图，对于一棵有 $n$ 个节点的树：
 
-根节点到树上任意节点的轻边数不超过 $\log n$ 条。我们设根到该节点有 x 条轻边该节点的子树大小为 $y$，显然轻边连接的子节点的子树大小小于父亲的一半（若大于一半就不是轻边了），则 $y<n/2^x$，显然 $n>2^x$，所以 $x<\log n$。
+根节点到树上任意节点的轻边数不超过 $\log n$ 条。我们设根到该节点有 x 条轻边该节点的子树大小为 $y$ ，显然轻边连接的子节点的子树大小小于父亲的一半（若大于一半就不是轻边了），则 $y<n/2^x$ ，显然 $n>2^x$ ，所以 $x<\log n$ 。
 
-又因为如果一个节点是其父亲的重儿子，则他的子树必定在他的兄弟之中最多，所以任意节点到根的路径上所有重边连接的父节点在计算答案是必定不会遍历到这个节点，所以一个节点的被遍历的次数等于他到根节点路径上的轻边树 $+1$（之所以要 $+1$ 是因为他本身要被遍历到），所以一个节点的被遍历次数 $=\log n+1$, 总时间复杂度则为 $O(n(\log n+1))=O(n\log n)$，输出答案花费 $O(m)$.
+又因为如果一个节点是其父亲的重儿子，则他的子树必定在他的兄弟之中最多，所以任意节点到根的路径上所有重边连接的父节点在计算答案是必定不会遍历到这个节点，所以一个节点的被遍历的次数等于他到根节点路径上的轻边树 $+1$ （之所以要 $+1$ 是因为他本身要被遍历到），所以一个节点的被遍历次数 $=\log n+1$ , 总时间复杂度则为 $O(n(\log n+1))=O(n\log n)$ ，输出答案花费 $O(m)$ .
 
-![24909.png](./images/24909.png) 
+![24909.png](./images/24909.png)
 
- _图中标红的即为重边，重边连向的子节点为重儿子_ 
+_图中标红的即为重边，重边连向的子节点为重儿子_
 
 ### 大致代码
 
 这里是预处理代码
 
 ```cpp
-void dfs1(int u,int fa){
-    size[u]=1;
-    for(int i=head[u];i;i=tree[i].next){
-        int v=tree[i].v;
-        if(v!=fa){
-            dfs1(v,u);
-        	size[u]+=size[v];
-        	if(size[v]>size[son[u]])
-				son[u]=v;
-        }
+void dfs1(int u, int fa) {
+  size[u] = 1;
+  for (int i = head[u]; i; i = tree[i].next) {
+    int v = tree[i].v;
+    if (v != fa) {
+      dfs1(v, u);
+      size[u] += size[v];
+      if (size[v] > size[son[u]]) son[u] = v;
     }
+  }
 }
 ```
 
 下面是求答案的代码
 
 ```cpp
-int dfs2(int u,int fa,bool keep,bool isson){
-    int tmp=0;
-    for(int i=head[u];i;i=tree[i].next){
-        int v=tree[i].v;
-        if(v!=fa&&v!=son[u]){
-            dfs2(v,u,0,0);
-        }
+int dfs2(int u, int fa, bool keep, bool isson) {
+  int tmp = 0;
+  for (int i = head[u]; i; i = tree[i].next) {
+    int v = tree[i].v;
+    if (v != fa && v != son[u]) {
+      dfs2(v, u, 0, 0);
     }
-    if(son[u])
-    	tmp+=dfs2(son[u],u,1,1);
-    for(int i=head[u];i;i=tree[i].next){
-        int v=tree[i].v;
-        if(v!=fa&&v!=son[u]){
-            tmp+=dfs2(v,u,1,0);
-        }
+  }
+  if (son[u]) tmp += dfs2(son[u], u, 1, 1);
+  for (int i = head[u]; i; i = tree[i].next) {
+    int v = tree[i].v;
+    if (v != fa && v != son[u]) {
+      tmp += dfs2(v, u, 1, 0);
     }
-    if(!check[color[u]]){tmp++;check[color[u]]=1;}
-    if(!keep||isson)ans[u]=tmp;
-    if(!keep) memset(check,0,sizeof(check)),tmp=0;
-    return tmp;
+  }
+  if (!check[color[u]]) {
+    tmp++;
+    check[color[u]] = 1;
+  }
+  if (!keep || isson) ans[u] = tmp;
+  if (!keep) memset(check, 0, sizeof(check)), tmp = 0;
+  return tmp;
 }
 ```
 
@@ -134,15 +135,15 @@ int dfs2(int u,int fa,bool keep,bool isson){
 
 ### 运用
 
-1. 某些出题人设置的正解是 dsu on tree 的题
+1.  某些出题人设置的正解是 dsu on tree 的题
 
-如 [CF741D](http://codeforces.com/problemset/problem/741/D)。给一棵树，每个节点的权值是'a'到'v'的字母，每次询问要求在一个子树找一条路径，使该路径包含的字符排序后成为回文串。
+如[CF741D](http://codeforces.com/problemset/problem/741/D)。给一棵树，每个节点的权值是'a'到'v'的字母，每次询问要求在一个子树找一条路径，使该路径包含的字符排序后成为回文串。
 
-因为是排列后成为回文串，所以一个字符出现了两次相当于没出现，也就是说，这条路径满足**最多有一个字符出现奇数次**。
+因为是排列后成为回文串，所以一个字符出现了两次相当于没出现，也就是说，这条路径满足 **最多有一个字符出现奇数次** 。
 
-正常做法是对每一个节点 dfs，每到一个节点就强行枚举所有字母找到和他异或后结果为 1 的个数 &lt; 1 的路径，再去最长值，这样 $O(n^2\log n)$ 的，可以用 dsu on tree 优化到 $O(n\log^2n)$。关于具体做法，可以参考下面的扩展阅读
+正常做法是对每一个节点 dfs，每到一个节点就强行枚举所有字母找到和他异或后结果为 1 的个数&lt;1 的路径，再去最长值，这样 $O(n^2\log n)$ 的，可以用 dsu on tree 优化到 $O(n\log^2n)$ 。关于具体做法，可以参考下面的扩展阅读
 
-2. 可以用 dsu 乱搞~~吊打 std~~水分的题
+2.  可以用 dsu 乱搞~~吊打 std~~水分的题
 
 可以水一些树套树的部分分（没有修改操作），还可以把树上莫队的 $O(n\sqrt{m})$ 吊着打
 
@@ -154,7 +155,7 @@ int dfs2(int u,int fa,bool keep,bool isson){
 
 [UOJ284 快乐游戏鸡](http://uoj.ac/problem/284)
 
-### 参考资料 / 扩展阅读
+### 参考资料/扩展阅读
 
 [CF741D 作者介绍的 dsu on tree](http://codeforces.com/blog/entry/44351)
 

@@ -4,9 +4,9 @@
 
 或者是有些数本身很大，自身无法作为数组的下标来方便地处理。
 
-用来离散化的可以是大整数、浮点数、字符串 …… 等等。
+用来离散化的可以是大整数、浮点数、字符串……等等。
 
-离散化本质上也可以看成是 [哈希](/string/hash) 的过程。
+离散化本质上也可以看成是[哈希](/string/hash)的过程。
 
 ## 实现
 
@@ -16,5 +16,6 @@ C++ 离散化有现成的 STL 算法：
 // vector<int> a, b; b 是 a 的一个副本
 std::sort(a.begin(), a.end());
 V.erase(std::unique(a.begin(), a.end()), a.end());
-for (int i = 0; i < n; ++i) b[i] = std::lower_bound(a.begin(), a.end(), b[i]) - a.begin();
+for (int i = 0; i < n; ++i)
+  b[i] = std::lower_bound(a.begin(), a.end(), b[i]) - a.begin();
 ```

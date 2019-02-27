@@ -1,7 +1,7 @@
 {
   "name": "oi-wiki",
   "version": "1.0.0",
-  "description": "wiki for OI/ACM-ICPC",
+  "description": "wiki for OI / ACM-ICPC",
   "main": "index.js",
   "directories": {
     "doc": "docs"
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ir1d/OI-wiki.git"
+    "url": "git+https://github.com/24OI/OI-wiki.git"
   },
   "keywords": [
     "OI",
@@ -21,14 +21,22 @@
   "author": "OI Wiki Team",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/Ir1d/OI-wiki/issues"
+    "url": "https://github.com/24OI/OI-wiki/issues"
   },
-  "homepage": "https://github.com/Ir1d/OI-wiki#readme",
+  "homepage": "https://github.com/24OI/OI-wiki#readme",
   "dependencies": {
+    "cssnano": "^4.1.8",
+    "gulp": "^4.0.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-purifycss": "^0.2.0",
     "mathjax-node-page": "^3.0.1",
+    "remark-clang-format": "^1.0.1",
+    "remark-copywriting-correct": "^0.4.0",
     "remark-lint-final-newline": "^1.0.2",
     "remark-lint-no-tabs": "^1.0.2",
-    "remark-math": "^1.0.4",
+    "remark-math": "^1.0.5",
+    "remark-math-space": "^1.2.0",
     "remark-pangu": "^1.0.1",
     "remark-preset-lint-markdown-style-guide": "^2.1.2"
   }

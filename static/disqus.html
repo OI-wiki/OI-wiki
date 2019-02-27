@@ -9,49 +9,28 @@
   <span><i class="md-icon">edit</i>发现错误？想一起完善？ <a href="{{ page.edit_url }}" title="{{ lang.t('edit.link.title') }}" class="page_edit_url">在 GitHub 上编辑此页！</a></span><br>
   <span><i class="md-icon">people</i>本页面贡献者：</span><span class="page_contributors"></span><br>
   <span><i class="md-icon">copyright</i>本页面的全部内容在 <strong>{{ copyright }}</strong> 协议之条款下提供，附加条款亦可能应用</span>
-</blockquote>  
+</blockquote>
 <!-- Comments Integration -->
 {% if not page.is_homepage and disqus %}
 {% set pageID = page.title | default("404", true) %}
 <h2 id="__comments" data-no-instant>{{ lang.t("meta.comments") }}</h2>
-<div id="gitment_container" data-no-instant>
-    <link rel="stylesheet" href="https://unpkg.com/ah@1.0.0/index.css">
-    <script src="https://unpkg.com/ah@1.0.0/index.js"></script>
-    <script>
-      const myTheme = {
-        render(state, instance) {
-          const container = document.createElement('div')
-          container.lang = "zh-CN"
-          container.className = 'gitment-container gitment-root-container'
-          const divv = document.createElement('form')
-          // container.appendChild(instance.renderSomething(state, instance))
-          container.appendChild(instance.renderHeader(state, instance))
-          divv.appendChild(instance.renderEditor(state, instance))
-          container.appendChild(divv)
-          container.appendChild(instance.renderComments(state, instance))
-          container.appendChild(instance.renderFooter(state, instance))
-          return container
-        },
-        renderSomething(state, instance) {
-          const container = document.createElement('div')
-          container.lang = "zh-CN"
-          if (state.user.login) {
-            container.innerText = `Hello, ${state.user.login}, 来说点什么吧？`
-          }
-          return container
-        }
-      }
-      const gitment = new Gitment({
-        id: '{{ page.title | default("404", true)  }}',
-        theme: myTheme,
-        owner: 'Ir1d',
-        repo: 'gitment',
-        oauth: {
-          client_id: 'd6a911c8fba0194626d4',
-          client_secret: '867ec7e13cc99b420bd147cbb62d5cfec271ba81',
-        },
-      })
-      gitment.render('gitment_container')
-    </script>
+<form id="gitalk-form" onsubmit="return false;" data-no-instant>
+<div id="gitalk-container" data-no-instant>
 </div>
+</form>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    id: '{{ page.title | default("404", true)  }}',
+    owner: 'Ir1d',
+    repo: 'gitment',
+    admin: ['Ir1d'],
+    clientID: 'd6a911c8fba0194626d4',
+    clientSecret: '867ec7e13cc99b420bd147cbb62d5cfec271ba81',
+    distractionFreeMode: false,
+    pagerDirection: 'first'
+  })
+  gitalk.render('gitalk-container')
+</script>
 {% endif %}
