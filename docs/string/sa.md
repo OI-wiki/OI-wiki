@@ -83,13 +83,15 @@ int main() {
 
 严格来说，接下来的算法将不会排序后缀，而是循环的移动一个字符串。我们可以~ 轻易地~ 得到一个算法来将它变成后缀排序：假设有一个字符串 $S'$ ，那么添加任一小于 $S'$ 中所有字符到 $S'$ 末尾的时间复杂度是可以接受的。通常使用符号 $\$$ 来表示一个小于当前字符集中所有字符的字符。在以上前提下，排序后的循环移动的排列和排序后后缀的排列相同。例如字符串 $dabbb$ ：
 
-    $$\begin{array}{lll}
-    1. & abbb\\$d & abbb \\
-    4. & b\\$dabb & b \\
-    3. & bb\\$dab & bb \\
-    2. & bbb\\$da & bbb \\
-    0. & dabbb\\$ & dabbb
-    \end{array}$$
+$$
+\begin{array}{lll}
+1. & abbb$d & abbb \\
+4. & b$dabb & b \\
+3. & bb$dab & bb \\
+2. & bbb$da & bbb \\
+0. & dabbb$ & dabbb
+\end{array}
+$$
 
 因为我们要排序循环移动，我们要考虑**循环子串**。我们将使用记号 $S[i\dots j]$ 表示 $S$ 的一个子串。即使 $i>j$ 也不例外，因为在这种情况下我们表示的字符串是 $S[i \dots n-1]+S[0\dots j]$ ，另外我们将把所有下标取模 $n$ ，但在下文中为描述简便将忽略该操作。
 
@@ -100,6 +102,7 @@ int main() {
 现在来看一个例子，例如字符串 $S=aaba$ 。每次迭代时它的循环子串和对应的数组 $p[]$ 和 $c[]$ 如下所示：
 
 $$
+\begin{array}{cccc}
 0: & (a,~ a,~ b,~ a) & p = (0,~ 1,~ 3,~ 2) & c = (0,~ 0,~ 1,~ 0)\\
 1: & (aa,~ ab,~ ba,~ aa) & p = (0,~ 3,~ 1,~ 2) & c = (0,~ 1,~ 2,~ 0)\\
 2: & (aaba,~ abaa,~ baaa,~ aaab) & p = (3,~ 0,~ 1,~ 2) & c = (1,~ 2,~ 3,~ 0)\\
@@ -140,9 +143,19 @@ vector<int> sort_cyclic_shifts(string const& s) {
 为了完成这一目标，我们注意到长度为 $2^k$ 的循环子串包括两个长度为 $2^{k-1}$ 的子串，我们可以使用上一步 $c$ 数组的计算结果在 $O(1)$ 的时间复杂度内通过比较得出。因此，对于两个长度为 $2^k$，起点分别为 $i$ 和 $j$ 的子串，所需的用来比较信息在二元组 $(c[i],c[i+2^{k-1}])$ 和 $(c[j],c[j+2^{k-1}])$ 中已经全部包含。
 
 $$
-\overbrace{\underbrace{s_i\dots s_{i+2^{k-1}-1}}\_{\text{length} = 2^{k-1},~\text{class} = c[i]}\quad\underbrace{s_{i+2^{k-1}}\dots s_{i+2^k-1}}\_{\text{length} = 2^{k-1},~\text{class} = c[i + 2^{k-1}]}
-}^{\text{length} = 2^k}\dots\overbrace{\underbrace{s_j\dots s_{j+2^{k-1}-1}}\_{\text{length} = 2^{k-1},~\text{class} = c[j]}\quad\underbrace{s_{j+2^{k-1}}\dots s_{j+2^k-1}}\_{\text{length} = 2^{k-1},~\text{class} = c[j + 2^{k-1}]}
-}^{\text{length} = 2^k}\\dots
+\dots
+\overbrace{
+\underbrace{s_i \dots s_{i+2^{k-1}-1}}_{\text{length} = 2^{k-1},~ \text{class} = c[i]}
+\quad
+\underbrace{s_{i+2^{k-1}} \dots s_{i+2^k-1}}_{\text{length} = 2^{k-1},~ \text{class} = c[i + 2^{k-1}]}
+}^{\text{length} = 2^k}
+\dots
+\overbrace{
+\underbrace{s_j \dots s_{j+2^{k-1}-1}}_{\text{length} = 2^{k-1},~ \text{class} = c[j]}
+\quad
+\underbrace{s_{j+2^{k-1}} \dots s_{j+2^k-1}}_{\text{length} = 2^{k-1},~ \text{class} = c[j + 2^{k-1}]}
+}^{\text{length} = 2^k}
+\dots
 $$
 
 这就给我们带来了一个十分简单的解法：以**这些二元组**为关键字，**排序**所有长度为 $2^k$ 的子串。这给我们带来了所需要的顺序数组 $p$。然而一般的排序算法的时间复杂度为 $O(n\log n)$，这样的时间复杂度看起来不是很令人满意，因为构造后缀数组的整体时间复杂度将变成 $O(n \log^2 n)$。
@@ -279,12 +292,18 @@ int main() {
 假设有两个长度为 $l$，起点下标为 $i$ 和 $j$ 的子串。我们找到子串中长度最大的子段，即使得 $2^k\leq l$ 且 $k$ 最大。然后，比较两个子串就可以等价为比较两个重叠的，长度为 $2^k$ 的子段：一开始两个子段起点是 $i$ 和 $j$，如果这两个子段相同，就去比较两个结束点为 $i+l-1$ 和 $j+l-1$ 的子段。
 
 $$
-\\overbrace{\\underbrace{s_i\\dots s_{i+l-2^k}\\dots s_{i+2^k-1}}\_{2^k}\\dots s_{i+l-1}}^{\\text{first}}\\dots\\overbrace{\\underbrace{s_j\\dots s_{j+l-2^k}\\dots s_{j+2^k-1}}\_{2^k}\\dots s_{j+l-1}}^{\\text{second}}\\dots$$
+\dots
+\overbrace{\underbrace{s_i \dots s_{i+l-2^k} \dots s_{i+2^k-1}}_{2^k} \dots s_{i+l-1}}^{\text{first}}
+\dots
+\overbrace{\underbrace{s_j \dots s_{j+l-2^k} \dots s_{j+2^k-1}}_{2^k} \dots s_{j+l-1}}^{\text{second}}
+\dots
+$$
 
 $$
-\overbrace{s_i \dots \underbrace{s_{i+l-2^k} \dots s_{i+2^k-1} \dots s_{i+l-1}}\_{2^k}}^{\text{first}}
 \dots
-\overbrace{s_j \dots \underbrace{s_{j+l-2^k} \dots s_{j+2^k-1} \dots s_{j+l-1}}\_{2^k}}^{\text{second}}
+\overbrace{s_i \dots \underbrace{s_{i+l-2^k} \dots s_{i+2^k-1} \dots s_{i+l-1}}_{2^k}}^{\text{first}}
+\dots
+\overbrace{s_j \dots \underbrace{s_{j+l-2^k} \dots s_{j+2^k-1} \dots s_{j+l-1}}_{2^k}}^{\text{second}}
 \dots
 $$
 
@@ -370,7 +389,11 @@ vector<int> lcp_construction(string const& s, vector<int> const& p) {
 
 为了达到目的，我们要想一下哪个新的子串在 $p[0]$ 位置开始，然后想想哪个在 $p[1]$ 开始。其实，我们使用排序后的后缀，然后看看给新的子串什么前缀，因此我们将不会错过任何一个。
 
-因为后缀已经排序了，明显当前后缀 $p[i]​$ 将为他的所有前缀贡献一个新的子串，除了由 $p[i-1]​$ 贡献的子串。即它除了前 $\text{LCP}[i-1]​$ 个前缀的所有前缀。因为当前后缀的长度是 $n-p[i]​$，因此 $n-p[i]-\text{LCP}[i-1]​$ 个新后缀将在 $p[i]​$ 开始。对所有后缀求和即得答案，即 $$\sum_{i=0}^{n-1} (n - p[i]) - \sum_{i=0}^{n-2} \text{lcp}[i] = \frac{n^2 + n}{2} - \sum_{i=0}^{n-2} \text{lcp}[i]​$$。
+因为后缀已经排序了，明显当前后缀 $p[i]​$ 将为他的所有前缀贡献一个新的子串，除了由 $p[i-1]​$ 贡献的子串。即它除了前 $\text{LCP}[i-1]​$ 个前缀的所有前缀。因为当前后缀的长度是 $n-p[i]​$，因此 $n-p[i]-\text{LCP}[i-1]​$ 个新后缀将在 $p[i]​$ 开始。对所有后缀求和即得答案，即 
+
+$$
+\sum_{i=0}^{n-1} (n - p[i]) - \sum_{i=0}^{n-2} \text{lcp}[i] = \frac{n^2 + n}{2} - \sum_{i=0}^{n-2} \text{lcp}[i]​
+$$
 
 ## 习题
 
