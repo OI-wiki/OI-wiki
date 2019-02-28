@@ -187,6 +187,26 @@ inline void write(int x) {
 5.  缓冲区满自动刷新
 6.   `cout` 输出 `endl` 
 
+## 使输入输出优化更为通用
+
+显然的,如果你的程序使用多个类型的变量,那么写输入输出优化的部分就会变得比较麻烦。下面给出的方法使用C++中的template类实现了对于自定类型的输入输出优化(显然不包括字符)
+
+```cpp
+template <typename T> inline T read(){ //声明 template 类,要求提供输入的类型T,并以此类型定义内联函数 read()
+    T sum=0,fl=1,ch=getchar();//将 sum,fl 和 ch 以输入的类型定义
+    for(;!isdigit(ch);ch=getchar()) if(ch=='-') fl=-1;
+    for(;isdigit(ch);ch=getchar()) sum=(sum<<3)+(sum<<1)+ch-'0';
+    return sum*fl;
+}
+```
+
+如果要分别输入 int 类型的变量 a ,long long 类型的变量 b 和 int128 类型的变量 c ，那么可以写成
+```cpp
+    a=read<int>();
+    b=read<long long>();
+    c=read<__int128>();
+```
+
 ## 参考
 
 <http://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html>
