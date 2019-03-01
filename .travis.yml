@@ -5,6 +5,8 @@ cache:
   - node_modules
 python:
   - 3.6
+services:
+- docker
 before_install:
   - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
   - source ~/.nvm/nvm.sh
@@ -13,9 +15,13 @@ install:
   - pip install -r requirements.txt
   - npm install .
 script:
+  - set -e
   - chmod +x ./scripts/build.sh && ./scripts/build.sh
   - mkdocs build -v
   - find ./site -type f -name '*.html' -exec node --max_old_space_size=512 ./scripts/render_math.js {} \;
+  - npx gulp minify
+  - docker build -t oi-wiki:latest .
+  - set +e
 deploy:
   provider: pages
   skip_cleanup: true

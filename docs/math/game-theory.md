@@ -1,4 +1,4 @@
-** 博弈论 **，是经济学的一个分支，主要研究具有竞争或对抗性质的对象，在一定规则下产生的各种行为。博弈论考虑游戏中的个体的预测行为和实际行为，并研究它们的优化策略。
+ **博弈论** ，是经济学的一个分支，主要研究具有竞争或对抗性质的对象，在一定规则下产生的各种行为。博弈论考虑游戏中的个体的预测行为和实际行为，并研究它们的优化策略。
 
 通俗地讲，博弈论主要研究的是：在一个游戏中，进行游戏的多位玩家的策略。
 
@@ -16,7 +16,7 @@
 
 ## Nim 游戏
 
-$n$ 堆物品，每堆有 $a_i$ 个，两个玩家轮流取走任意一堆的任意个物品，但不能不取。
+ $n$ 堆物品，每堆有 $a_i$ 个，两个玩家轮流取走任意一堆的任意个物品，但不能不取。
 
 取走最后一个物品的人获胜。
 
@@ -32,7 +32,7 @@ $n$ 堆物品，每堆有 $a_i$ 个，两个玩家轮流取走任意一堆的任
 
 ![博弈图的例子](./images/game1.png)
 
-定义 ** 必胜状态 ** 为 ** 先手必胜的状态 **，** 必败状态 ** 为 ** 先手必败的状态 **。
+定义 **必胜状态** 为 **先手必胜的状态** ， **必败状态** 为 **先手必败的状态** 。
 
 通过推理，我们可以得出下面三条定理：
 
@@ -56,7 +56,7 @@ $n$ 堆物品，每堆有 $a_i$ 个，两个玩家轮流取走任意一堆的任
 
 但是，这样的时间复杂度实在太高。有没有什么巧妙而快速的方法呢？
 
-定义 Nim 和 $=a_1 \oplus a_2 \oplus \ldots \oplus a_n$。
+定义 Nim 和 $=a_1 \oplus a_2 \oplus \ldots \oplus a_n$ 。
 
 当且仅当 Nim 和为 $0$ 时，该状态为必败状态；否则该状态为必胜状态。
 
@@ -84,21 +84,21 @@ $n$ 堆物品，每堆有 $a_i$ 个，两个玩家轮流取走任意一堆的任
 
 在一个有向无环图中，只有一个起点，上面有一个棋子，两个玩家轮流沿着有向边推动棋子，不能走的玩家判负。
 
-定义 $mex$ 函数的值为不属于集合 $S$ 中的最小非负整数，即：
+定义 $\operatorname{mex}$ 函数的值为不属于集合 $S$ 中的最小非负整数，即：
 
 $$
-mex(S)=min\{x\} \quad (x \notin S, x \in N)
+\operatorname{mex}(S)=\min\{x\} \quad (x \notin S, x \in N)
 $$
 
-例如 $mex(\{0, 2, 4\})=1$ ， $mex(\{1, 2\})=0$ 。
+例如 $\operatorname{mex}(\{0, 2, 4\})=1$ ， $\operatorname{mex}(\{1, 2\})=0$ 。
 
-对于状态 $x$ 和它的所有 $k$ 个后继状态 $y_1, y_2, \ldots, y_k$ ，定义 $SG$ 函数：
+对于状态 $x$ 和它的所有 $k$ 个后继状态 $y_1, y_2, \ldots, y_k$ ，定义 $\operatorname{SG}$ 函数：
 
 $$
-SG(x)=mex\{SG(y_1), SG(y_2), \ldots, G(y_k)\}
+\operatorname{SG}(x)=\operatorname{mex}\{\operatorname{SG}(y_1), \operatorname{SG}(y_2), \ldots, \operatorname{SG}(y_k)\}
 $$
 
-而对于由 $n$ 个有向图游戏组成的组合游戏，设它们的起点分别为 $s_1, s_2, \ldots, s_n$ ，则有定理：** 当且仅当 $SG(s_1) \oplus SG(s_2) \oplus \ldots \oplus SG(s_n) \neq 0$ 时，这个游戏是先手必胜的。**
+而对于由 $n$ 个有向图游戏组成的组合游戏，设它们的起点分别为 $s_1, s_2, \ldots, s_n$ ，则有定理： **当且仅当 $\operatorname{SG}(s_1) \oplus \operatorname{SG}(s_2) \oplus \ldots \oplus \operatorname{SG}(s_n) \neq 0$ 时，这个游戏是先手必胜的。** 
 
 这一定理被称作 SG 定理。
 
@@ -108,10 +108,10 @@ $$
 
 那么，由 $n$ 个堆组成的 Nim 游戏，就可以视为 $n$ 个有向图游戏了。
 
-根据上面的推论，可以得出 $SG(x)=x$ 。再根据 SG 定理，就可以得出 Nim 和的结论了。
+根据上面的推论，可以得出 $\operatorname{SG}(x)=x$ 。再根据 SG 定理，就可以得出 Nim 和的结论了。
 
 ## 参考文献
 
-[(转载)Nim 游戏博弈 (收集完全版) - exponent - 博客园](http://www.cnblogs.com/exponent/articles/2141477.html)
+[（转载）Nim 游戏博弈（收集完全版）- exponent - 博客园](http://www.cnblogs.com/exponent/articles/2141477.html)
 
-[\[组合游戏与博弈论\]【学习笔记】 - Candy? - 博客园](https://www.cnblogs.com/candy99/p/6548836.html)
+[\[组合游戏与博弈论\]【学习笔记】- Candy? - 博客园](https://www.cnblogs.com/candy99/p/6548836.html)

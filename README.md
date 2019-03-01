@@ -1,11 +1,11 @@
 [![Word Art](https://raw.githubusercontent.com/24OI/OI-wiki/master/docs/images/wordArt.png)](https://oi-wiki.org/)
 
-# 欢迎来到 **OI Wiki**。
+# 欢迎来到 **OI Wiki**！
 
 [![Travis](https://img.shields.io/travis/24OI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/24OI/OI-wiki)
-[![Progress](https://img.shields.io/badge/Progress-66%25-brightgreen.svg?style=flat-square)](https://github.com/24OI/OI-wiki)
+[![Progress](https://img.shields.io/badge/Progress-78%25-brightgreen.svg?style=flat-square)](https://github.com/24OI/OI-wiki)
+[![Uptime Robot Status](https://img.shields.io/uptimerobot/status/m781254113-3e3bac467c64fc99eafd383e.svg?style=flat-square)](https://status.oi-wiki.org/)
 [![Telegram](https://img.shields.io/badge/OI--wiki-join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
-[![Discord](https://img.shields.io/badge/oi--wiki-join%20Discord%20group-brightgreen.svg?style=flat-square)](https://discord.gg/xXdYSMq)
 [![QQ](https://img.shields.io/badge/OI--wiki-join%20QQ%20group-brightgreen.svg?style=flat-square)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
 [![GitHub watchers](https://img.shields.io/github/watchers/24OI/OI-Wiki.svg?style=social&label=Watch)](https://github.com/24OI/OI-wiki)
 [![GitHub stars](https://img.shields.io/github/stars/24OI/OI-Wiki.svg?style=social&label=Stars)](https://github.com/24OI/OI-wiki)
@@ -24,7 +24,7 @@
 
 **OI Wiki** 基于 **OI**，却不会局限于 **OI**。**OI Wiki** 会努力完善以下内容：
 
-- 应用在 **ACM-ICPC** 竞赛中的进阶知识
+- 应用在 **ICPC** 竞赛中的进阶知识
 - 竞赛中出现的优质题目
 - 与面试、实际应用相结合的经验
 
@@ -36,25 +36,36 @@
 
 ## 部署
 
-本文档目前采用 [MkDocs](https://github.com/mkdocs/mkdocs) 部署在 [oi-wiki.org](https://oi-wiki.org)。
+本项目目前采用 [MkDocs](https://github.com/mkdocs/mkdocs) 部署在 [oi-wiki.org](https://oi-wiki.org)。
 
-当然也可以本地部署。（**需要 Python 3**）
+我们在 [status.oi-wiki.org](https://status.oi-wiki.org) 维护了一份镜像站列表，它们的内容和 [oi-wiki.org](https://oi-wiki.org) 都是相同的。
+
+当然，也可以在本地部署。（**需要 Python 3**）
+
+[点击查看用 asciinema 录制的流程](https://asciinema.org/a/220681)
 
 **如果遇到问题，可以查阅 [F.A.Q.](https://oi-wiki.org/intro/faq/) 来了解更多信息。**
 
 ```bash
 git clone https://github.com/24OI/OI-wiki.git --depth=1
+
 cd OI-wiki
-pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+
+# 安装 mkdocs
+pip3 install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
 # 使用我们的自定义主题（不是必须执行）
 chmod +x ./scripts/build.sh && ./scripts/build.sh
 
-# 最简单的构建方法，会在 site 文件夹下得到静态页面
+# 两种方法（选其一即可）：
+# 1. 运行一个本地服务器，访问 http://127.0.0.1:8000 可以查看效果
+mkdocs serve -v
+
+# 2. 在 site 文件夹下得到静态页面
 mkdocs build -v
 
-# 运行一个服务器，访问 http://127.0.0.1:8000 可以查看效果
-mkdocs serve -v
+# 获取 mkdocs 的命令行工具的说明（解释了命令和参数的含义）
+mkdocs --help
 ```
 
 我们现在在服务器端渲染 MathJax ，如果希望实现类似效果，可以参考 [netlify_build.sh](https://github.com/24OI/OI-wiki/blob/master/scripts/netlify_build.sh)。（需要安装 Node.js）
@@ -62,8 +73,8 @@ mkdocs serve -v
 ### 镜像
 
 ```bash
-git clone https://git.coding.net/scaffrey/OI-wiki.git
 # Coding 上的镜像仓库和 GitHub 仓库的内容相同
+git clone https://git.dev.tencent.com/scaffrey/OI-wiki.git
 ```
 
 ### 离线版
@@ -71,13 +82,17 @@ git clone https://git.coding.net/scaffrey/OI-wiki.git
 可以使用 `gh-pages` 分支的内容（CODING 上面的分支名叫 `coding-pages`）
 
 ```bash
-git clone https://git.coding.net/scaffrey/OI-wiki.git -b coding-pages
+git clone https://git.dev.tencent.com/scaffrey/OI-wiki.git -b coding-pages
 ```
 
-本地启动一个 http 服务器可能会更方便一些
+本地启动一个 http 服务器可能会更方便一些。
 
 ```bash
+# 如果是 python3
 python3 -m http.server
+# 如果是 python2
+python2 -m SimpleHTTPServer
+# 有些环境下找不到名叫 python3/python2 的可执行文件，不妨运行 python 试试
 ```
 
 ### Docker
@@ -109,10 +124,10 @@ python3 -m http.server
 
 非常感谢一起完善 **OI Wiki** 的 [小伙伴们](https://github.com/24OI/OI-wiki/graphs/contributors)！
 
-<a href="https://github.com/24OI/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890" /></a>
+<a href="https://github.com/24OI/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890&button=false" /></a>
 
 特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
 
-<img src='https://i.loli.net/2018/09/28/5bae46121a2be.png' alt='QVQNetWork' height=233>
+<img src='https://i.loli.net/2018/12/07/5c0a6e4c31b30.png' alt='QVQNetWork' width=233>
 
 鸣谢 QVQNetwork 赞助的服务器。
