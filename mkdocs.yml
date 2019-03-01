@@ -122,7 +122,7 @@ nav:
       - 快速傅里叶变换: math/fft.md
       - 快速数论变换: math/ntt.md
       - 快速沃尔什变换: math/fwt.md
-      - 多项式求逆: math/poly-inv.md
+      - 多项式开方: math/poly-sqrt.md
     - 组合数学:
       - 排列组合: math/combination.md
       - 卡特兰数: math/catalan.md
