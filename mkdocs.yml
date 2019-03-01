@@ -122,7 +122,7 @@ nav:
       - 快速傅里叶变换: math/fft.md
       - 快速数论变换: math/ntt.md
       - 快速沃尔什变换: math/fwt.md
-      - 多项式对数函数|指数函数: math/poly-ln-exp.md
+      - 多项式牛顿迭代: math/poly-newton.md
     - 组合数学:
       - 排列组合: math/combination.md
       - 卡特兰数: math/catalan.md
