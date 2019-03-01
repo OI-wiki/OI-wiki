@@ -121,7 +121,7 @@ nav:
       - 拉格朗日插值: math/lagrange-poly.md
       - 快速傅里叶变换: math/fft.md
       - 快速数论变换: math/ntt.md
-      - 快速沃尔什变换: math/fwt.mdg
+      - 快速沃尔什变换: math/fwt.md
     - 组合数学:
       - 排列组合: math/combination.md
       - 卡特兰数: math/catalan.md
