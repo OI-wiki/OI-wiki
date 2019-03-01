@@ -121,13 +121,7 @@ nav:
       - 拉格朗日插值: math/lagrange-poly.md
       - 快速傅里叶变换: math/fft.md
       - 快速数论变换: math/ntt.md
-      - 快速沃尔什变换: math/fwt.md
-      - 多项式求逆: math/poly-inv.md
-      - 多项式开方: math/poly-sqrt.md
-      - 多项式除法|取模: math/poly-div-mod.md
-      - 多项式对数函数|指数函数: math/poly-ln-exp.md
-      - 多项式牛顿迭代: math/poly-newton.md
-      - 多项式多点求值|快速插值: math/poly-multipoint-eval-interpolation.md
+      - 快速沃尔什变换: math/fwt.mdg
     - 组合数学:
       - 排列组合: math/combination.md
       - 卡特兰数: math/catalan.md
