@@ -266,7 +266,6 @@ int getsum(int l, int r, int s, int t, int p) {
 
 ```cpp
 #include <iostream>
-using namespace std;
 typedef long long LL;
 LL n, a[100005], d[270000], b[270000];
 void build(LL l, LL r, LL p) {
@@ -305,32 +304,17 @@ LL getsum(LL l, LL r, LL s, LL t, LL p) {
   return sum;
 }
 int main() {
-  ios::sync_with_stdio(0);
+  std::ios::sync_with_stdio(0);
   LL q, i1, i2, i3, i4;
-  cin >> n >> q;
-  for (LL i = 1; i <= n; i++) cin >> a[i];
+  std::cin >> n >> q;
+  for (LL i = 1; i <= n; i++) std::cin >> a[i];
   build(1, n, 1);
   while (q--) {
-    cin >> i1 >> i2 >> i3;
+    std::cin >> i1 >> i2 >> i3;
     if (i1 == 2)
-      cout << getsum(i2, i3, 1, n, 1) << endl;
+     std::cout << getsum(i2, i3, 1, n, 1) << endl;
     else
-      cin >> i4, update(i2, i3, i4, 1, n, 1);
-  }
-  return 0;
-}
-int main() {
-  ios::sync_with_stdio(0);
-  LL q, i1, i2, i3, i4;
-  cin >> n >> q;
-  for (LL i = 1; i <= n; i++) cin >> a[i];
-  build(1, n, 1);
-  while (q--) {
-    cin >> i1 >> i2 >> i3;
-    if (i1 == 2)
-      cout << getsum(i2, i3, 1, n, 1) << endl;
-    else
-      cin >> i4, update(i2, i3, i4, 1, n, 1);
+      std::cin >> i4, update(i2, i3, i4, 1, n, 1);
   }
   return 0;
 }
@@ -343,15 +327,8 @@ int main() {
 代码：
 
 ```cpp
-#include <algorithm>
-#include <climits>
-#include <cmath>
 #include <cstdio>
-#include <cstring>
-#include <iomanip>
-#include <iostream>
-#include <vector>
-using namespace std;
+
 #define ll long long
 ll read() {
   ll w = 1, q = 0;
@@ -491,7 +468,7 @@ int main() {
 
 ```cpp
 #include <iostream>
-using namespace std;
+
 int n, a[100005], d[270000], b[270000];
 void build(int l, int r, int p) {
   if (l == r) {
@@ -531,18 +508,18 @@ int getsum(int l, int r, int s, int t, int p) {
   return sum;
 }
 int main() {
-  ios::sync_with_stdio(0);
-  cin >> n;
-  for (int i = 1; i <= n; i++) cin >> a[i];
+  std::ios::sync_with_stdio(0);
+  std::cin >> n;
+  for (int i = 1; i <= n; i++) std::cin >> a[i];
   build(1, n, 1);
   int q, i1, i2, i3, i4;
-  cin >> q;
+  std::cin >> q;
   while (q--) {
-    cin >> i1 >> i2 >> i3;
+    std::cin >> i1 >> i2 >> i3;
     if (i1 == 0)
-      cout << getsum(i2, i3, 1, n, 1) << endl;
+      std::cout << getsum(i2, i3, 1, n, 1) << endl;
     else
-      cin >> i4, update(i2, i3, i4, 1, n, 1);
+      std::cin >> i4, update(i2, i3, i4, 1, n, 1);
   }
   return 0;
 }
