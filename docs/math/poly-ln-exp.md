@@ -1,10 +1,10 @@
-# Description
+## Description
 
 给定多项式 $f\left(x\right)$,求模 $x^{n}$ 意义下的 $\ln{f\left(x\right)}$ 与 $\exp{f\left(x\right)}$.
 
-# Methods
+## Methods
 
-## 普通方法
+### 普通方法
 
 ---
 
@@ -45,11 +45,11 @@ $$\left(n+1\right)\left[x^{n}\right]\exp{f\left(x\right)}=\sum_{i=0}^{n-1}\left[
 
 时间复杂度 $O\left(n\log^{2}{n}\right)$.
 
-## Newton's Method
+### Newton's Method
 
 使用 [**Newton's Method**](../poly-newton/#exp) 即可在 $O\left(n\log{n}\right)$ 的时间复杂度内解决多项式 $\exp$.
 
-# Code
+## Code
 
 ??? " `poly-ln-exp.cpp` "
 
@@ -113,7 +113,7 @@ $$\left(n+1\right)\left[x^{n}\right]\exp{f\left(x\right)}=\sum_{i=0}^{n-1}\left[
     }
     ```
 
-# Examples
+## Examples
 
 1. 计算 $f^{k}\left(x\right)$
 

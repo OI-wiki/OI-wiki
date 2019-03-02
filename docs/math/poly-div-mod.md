@@ -1,8 +1,8 @@
-# Description
+## Description
 
 给定多项式 $f\left(x\right),g\left(x\right)$,求 $g\left(x\right)$ 除 $f\left(x\right)$ 的商 $Q\left(x\right)$ 和余数 $R\left(x\right)$.
 
-# Method
+## Method
 
 发现若能消除 $R\left(x\right)$ 的影响则可直接[**多项式求逆**](../poly-inv)解决.
 
@@ -33,7 +33,7 @@ $$f^{R}\left(x\right)\equiv Q^{R}\left(x\right)g^{R}\left(x\right)\pmod{x^{n-m+1
 
 时间复杂度 $O\left(n\log{n}\right)$.
 
-# Code
+## Code
 
 ??? " `poly-div-mod.cpp` "
 

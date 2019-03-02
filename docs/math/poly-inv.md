@@ -1,10 +1,10 @@
-# Description
+## Description
 
 给定多项式 $f\left(x\right)$,求 $f^{-1}\left(x\right)$.
 
-# Methods
+## Methods
 
-## 倍增法
+### 倍增法
 
 首先,易知
 
@@ -33,11 +33,11 @@ $$f^{-1}\left(x\right)\equiv f^{-1}_{0}\left(x\right)\left(2-f\left(x\right)f^{-
 
 $$T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)$$
 
-## Newton's Method
+### Newton's Method
 
 参见 [**Newton's Method**](../poly-newton/#inv).
 
-# Code
+## Code
 
 ??? " `poly-inv.cpp` "
 
@@ -67,8 +67,7 @@ $$T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{
     ```
 
 
-
-# Examples
+## Examples
 
 1. 有标号简单无向连通图计数:「BZOJ 3456」城市规划
 

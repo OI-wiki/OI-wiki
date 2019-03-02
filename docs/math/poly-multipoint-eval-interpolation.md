@@ -1,12 +1,12 @@
-# 多项式的多点求值
+## 多项式的多点求值
 
-## Description
+### Description
 
 给出一个多项式 $f\left(x\right)$ 和 $n$ 个点 $x_{1},x_{2},...,x_{n}$,求
 
 $$f\left(x_{1}\right),f\left(x_{2}\right),...,f\left(x_{n}\right)$$
 
-## Method
+### Method
 
 考虑使用分治来将问题规模减半.
 
@@ -35,13 +35,13 @@ $$f_{0}\left(x\right)\equiv f\left(x\right)\pmod{g_{0}\left(x\right)}$$
 
 $$T\left(n\right)=2T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log^{2}{n}\right)$$
 
-## Code
+### Code
 
 ~~啥?你问我要代码?不存在的,调了一万年现在还是 WA~~
 
-# 多项式的快速插值
+## 多项式的快速插值
 
-## Description
+### Description
 
 给出一个 $n+1$ 个点的集合
 
@@ -49,7 +49,7 @@ $$X=\left\{\left(x_{0},y_{0}\right),\left(x_{1},y_{1}\right),...,\left(x_{n},y_{
 
 求一个 $n$ 次多项式 $f\left(x\right)$ 使得其满足 $\forall\left(x,y\right)\in X:f\left(x\right)=y$.
 
-## Method
+### Method
 
 仍然考虑使用分治来将问题规模减半.
 
@@ -90,7 +90,7 @@ $$X'_{1}=\left\{\left(x,\frac{y-f_{0}\left(x\right)}{g_{0}\left(x\right)}\right)
 
 $$T\left(n\right)=2T\left(\frac{n}{2}\right)+O\left(n\log^{2}{n}\right)=O\left(n\log^{3}{n}\right)$$
 
-## Code
+### Code
 
 ~~啥?你问我要代码?我多点求值都没过你问我要插值代码?~~
 

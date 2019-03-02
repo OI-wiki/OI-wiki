@@ -1,12 +1,12 @@
-# Description
+## Description
 
 给定多项式 $g\left(x\right)$,求 $f\left(x\right)$,满足:
 
 $$f^{2}\left(x\right)\equiv g\left(x\right) \pmod{x^{n}}$$
 
-# Methods
+## Methods
 
-## 倍增法
+### 倍增法
 
 假设现在已经求出了 $g\left(x\right)$ 在模 $x^{\left\lceil\frac{n}{2}\right\rceil}$ 意义下的平方根 $f_{0}\left(x\right)$,则有:
 
@@ -30,11 +30,11 @@ $$T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{
 
 > 当 $\left[x^{0}\right]g\left(x\right)\neq 1$ 时,可能需要使用二次剩余来计算 $\left[x^{0}\right]f\left(x\right)$.
 
-## Newton's Method
+### Newton's Method
 
 参见 [**Newton's Method**](../poly-newton/#sqrt).
 
-# Code
+## Code
 
 ??? " `poly-sqrt.cpp` "
 
@@ -72,7 +72,7 @@ $$T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{
 		}
 		```
 
-# Examples
+## Examples
 
-1. [**「Codeforces Round #250」E. The Child and Binary Tree**](/「Codeforces-Round-250」E-The-Child-and-Binary-Tree/)
+1. [**「Codeforces Round #250」E. The Child and Binary Tree**](https://codeforces.com/contest/438/problem/E)
 

@@ -1,4 +1,4 @@
-# Description
+## Description
 
 给定多项式 $g\left(x\right)$,已知有 $f\left(x\right)$ 满足:
 
@@ -6,7 +6,7 @@ $$g\left(f\left(x\right)\right)\equiv 0\pmod{x^{n}}$$
 
 求出模 $x^{n}$ 意义下的 $f\left(x\right)$.
 
-# Newton's Method
+## Newton's Method
 
 考虑倍增.
 
@@ -27,9 +27,9 @@ $$\forall 2\leqslant i:\left(f\left(x\right)-f_{0}\left(x\right)\right)^{i}\equi
 $$\sum_{i=0}^{+\infty}\frac{g^{\left(i\right)}\left(f_{0}\left(x\right)\right)}{i!}\left(f\left(x\right)-f_{0}\left(x\right)\right)^{i}\equiv g\left(f_{0}\left(x\right)\right)+g'\left(f_{0}\left(x\right)\right)\left(f\left(x\right)-f_{0}\left(x\right)\right)\equiv 0\pmod{x^{n}}$$
 $$f\left(x\right)\equiv f_{0}\left(x\right)-\frac{g\left(f_{0}\left(x\right)\right)}{g'\left(f_{0}\left(x\right)\right)}\pmod{x^{n}}$$
 
-# Examples
+## Examples
 
-## <span id="inv">[多项式求逆](../poly-inv)</span>
+### <span id="inv">[多项式求逆](../poly-inv)</span>
 
 设给定函数为 $h\left(x\right)$,有方程:
 
@@ -46,7 +46,7 @@ $$\begin{aligned}
 
 $$T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)$$
 
-## <span id="sqrt">[多项式开方](../poly-sqrt)</span>
+### <span id="sqrt">[多项式开方](../poly-sqrt)</span>
 
 设给定函数为 $h\left(x\right)$,有方程:
 
@@ -63,7 +63,7 @@ $$\begin{aligned}
 
 $$T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)$$
 
-## <span id="exp">[多项式 exp](../poly-exp)</span>
+### <span id="exp">[多项式 exp](../poly-exp)</span>
 
 设给定函数为 $h\left(x\right)$,有方程:
 
