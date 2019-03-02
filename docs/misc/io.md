@@ -189,7 +189,7 @@ inline void write(int x) {
 
 ## 使输入输出优化更为通用
 
-显然的,如果你的程序使用多个类型的变量,那么写输入输出优化的部分就会变得比较麻烦。下面给出的方法使用C++中的template类实现了对于自定类型的输入输出优化(显然不包括字符)
+如果你的程序使用多个类型的变量，那么可能需要写多个输入输出优化的函数。下面给出的代码使用 [C++ 中的 `template` 类](http://www.cplusplus.com/doc/oldtutorial/templates)实现了对于自定类型的输入输出优化，从而简化这一步骤（注意不适用于字符）。
 
 ```cpp
 template <typename T> inline T read(){ //声明 template 类,要求提供输入的类型T,并以此类型定义内联函数 read()
