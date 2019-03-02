@@ -153,7 +153,7 @@ int getsum(int l, int r, int s, int t, int p) {
 
 代码如下（下面代码不知道为什么显示出来很丑，建议复制到自己的 C++ 编辑器里看……）：
 
-区间修改(区间加上某个值):
+区间修改（区间加上某个值）:
 
 ```cpp
 void update(int l, int r, int c, int s, int t,int p){
@@ -175,7 +175,7 @@ void update(int l, int r, int c, int s, int t,int p){
 }
 ```
 
-区间查询(求和)：
+区间查询（求和）:
 
 ```cpp
 int getsum(int l, int r, int s, int t,int p){
