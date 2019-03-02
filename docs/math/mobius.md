@@ -568,8 +568,6 @@ $$
 
 其中 $p$ 表示 $n$ 的最小质因子
 
-总时间复杂度 $\mathcal{O(n+\sqrt n)}$   
-
-
+总时间复杂度 $O(n+\sqrt n)$
 
 > 本文部分内容引用于[algocode 算法博客](https://algocode.net)，特别鸣谢！
