@@ -184,11 +184,11 @@ $$
 
 我们有一个不完全的坐标表示：记 $\vec a=(m,n),\vec b=(p,q)$ ，那么两个向量的向量积的竖坐标为 $mq-np$ ，我们根据右手法则和竖坐标符号可以推断出 $\vec b$ 相对于 $\vec a$ 的方向，若在逆时针方向竖坐标为正值，反之为负值，简记为 **顺负逆正** 。
 
-### 向量旋转
+#### 向量旋转
 
 设 $\vec a=(x,y)$ ，倾角为 $\theta$ ，长度为 $l=\sqrt{x^2+y^2}$。则 $x=l\cos \theta,y=l\sin\theta$。令其顺时针旋转 $\alpha$ 度角，得到向量 $\vec b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$。
 
-![](./images/misc1.png)
+![](./images/misc1.PNG)
 
 由三角恒等变换得，
 
