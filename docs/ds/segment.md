@@ -39,36 +39,25 @@ OI 中最常用的数据结构之一，不学不行啊！
 
  **思路如下：** ![](./images/segt2.png)![](./images/segt3.png)![](./images/segt4.png)
 
-那么就这样写代码：
-
-```cpp
-建树(s, t, i) {
-  如果(s == t) { d[i] = a[s]; }
-  否则 {
-    建树(s, (s + t) / 2, 2 * i);
-    建树((s + t) / 2 + 1, t, 2 * i + 1);
-    d[i] = d[2 * i] + d[2 * i + 1];
-  }
-}
-```
-
-具体代码实现 (C++)：
+此处给出 C++ 的代码实现,可参考注释理解:
 
 ```cpp
 void build(int s, int t, int p) {
+  // 对 [s,t] 区间建树,当前根的编号为 p
   if (s == t) {
     d[p] = a[s];
     return;
   }
   int m = (s + t) / 2;
   build(s, m, p * 2), build(m + 1, t, p * 2 + 1);
+  // 递归对左右区间建树
   d[p] = d[p * 2] + d[(p * 2) + 1];
 }
 ```
 
-上面那短短 $7$ 行代码就能建立一个线段树。
+上面那短短数行代码就能建立一个线段树。
 
-关于线段树的空间，如果采用堆式存储（上面的代码就是堆式存储，即 $2\times p$ 是 p 的左儿子， $2 \times p+1$ 是 p 的右儿子），d 数组的大小需要是 $n$ （元素个数）上取到一个 $2$ 的整数次幂（叶子数量）再乘以 $2$ （叶子上面的节点数量），上界是 $4$ 倍，可利用上面的 build 自行验证，如果采用动态开点，则需要两倍的空间（需要额外地记录左儿子和右儿子的编号/地址）。
+关于线段树的空间，如果采用堆式存储（堆式储存可以理解为 $2\times p$ 是 p 的左儿子， $2 \times p+1$ 是 p 的右儿子），d 数组的大小应为 $2n$ （叶子节点共有 $n$ 个，非叶子结点的个数不会超过叶子结点数量），上界是 $2n-1$。如果采用动态开点，则需要多开两个数组来记录左儿子和右儿子的编号/地址。
 
 ![](./images/segt5.png)
 
@@ -82,50 +71,23 @@ void build(int s, int t, int p) {
 
 ![](./images/segt7.png)
 
-（发博客累死了无聊一下）
 如果要查询区间 $[1,5]$ 的和，那直接获取 $d[1]$ 的值（ $60$ ）即可。那如果我就不查询区间 $[1,5]$ ，我就查区间 $[3,5]$ 呢？
 
-懵 B 了吧。但其实呢我们肯定还是有办法的！
+傻了吧。但其实呢我们肯定还是有办法的！
 
 你要查的不是 $[3,5]$ 吗？我把 $[3,5]$ 拆成 $[3,3]$ 和 $[4,5]$ 不就行了吗？
 
-具体思路见代码：
-
-```cpp
-求和（查询区间的左端点 l, 查询区间的右端点 r, 当前节点表示的区间左端点 s,
-    当前节点表示的区间 t, 当前访问的节点编号 p） {
-  如果（l <= s&& t <= r）  // 当前访问的节点表示的区间包含在查询区间内
-      {返回 d[p] ；} 否则 {
-    令 返回值 = 0 如果（l <=
-                (s + t) / 2）  // 当前访问的节点的左儿子节点表示的区间包含在查
-                               // 询区间内,(s+t)/2
-                               // 其实是左右儿子节点表示的区间的分割线且(s+t)/2
-                               // 包含在左儿子节点表示的区间中
-    {
-      返回值 += 求和（l, r, s, (s + t) / 2,
-          p * 2）;  // l 和 r
-                    // 是可以不用变的！不管你信不信我反正是信了。当前节点的左儿子节点编号是
-                    // p2，之前讲过了，左儿子节点表示的区间左端点就是当前节点表示的区间的左端点，(s+t)/2
-                    // 是左儿子节点表示的区间的右短点
-    }
-    如果(r >
-         (s + t) / 2)  // 当前访问的节点的右儿子节点表示的区间包含在查 询区间内
-    {
-        返回值 += 求和（l, r, (s + t) / 2 + 1, t,
-        p * 2 + 1）；  //(s+t)/2+1 是当前访问节点的右儿子节点表示的区间的左端点
-    } 返回 返回值；
-  }
-}
-```
-
-怎么样，代码很丑吧？废话，用中文写的能不丑吗？现在搞个英 (da) 文 (xin) 的 (wen)：
+此处给出 C++ 的代码实现,可参考注释理解:
 
 ```cpp
 int getsum(int l, int r, int s, int t, int p) {
-  if (l <= s && t <= r) return d[p];
+  // [l,r] 为查询区间,[s,t] 为当前节点包含的区间,p 为当前节点的编号
+  if (l <= s && t <= r) return d[p]; // 当前区间为询问区间的子集时直接返回当前区间的和
   int m = (s + t) / 2, sum = 0;
   if (l <= m) sum += getsum(l, r, s, m, p * 2);
+  // 如果左儿子代表的区间 [l,m] 与询问区间有交集,则递归查询左儿子
   if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
+  // 如果右儿子代表的区间 [m+1,r] 与询问区间有交集,则递归查询右儿子
   return sum;
 }
 ```
@@ -191,56 +153,50 @@ int getsum(int l, int r, int s, int t, int p) {
 
 代码如下（下面代码不知道为什么显示出来很丑，建议复制到自己的 C++ 编辑器里看……）：
 
-区间修改（区间加上某个值）：
+区间修改（区间加上某个值）:
 
 ```cpp
-void update(
-    int l, int r, int c, int s, int t,
-    int p)  // l 是查询的区间左端点，r 是右端点，c 表示区间每个元素加上的值，s
-            // 是当前节点所表示的区间的左端点，t 是右端点，p
-            // 是当前节点的编号(根节点标号为 1)
-{
+void update(int l, int r, int c, int s, int t,int p){
+  // [l,r] 为修改区间,c 为被修改的元素的变化量,[s,t] 为当前节点包含的区间,p 为当前节点的编号
   if (l <= s && t <= r) {
     d[p] += (t - s + 1) * c, b[p] += c;
     return;
-  }  // 如果当前节点表示的区间完全包含在查询区间内，直接修改当前节点的值，然后做上标记，结束修改
-  int m = (s + t) / 2;  // 计算左右节点表示区间的分割线
-  if (b[p] &&
-      s !=
-          t)  // 如果当前节点不是叶子节点（叶子节点表示的区间的左右端点是相等的）且当前的懒惰标记值!=0，就更新当前节点的两个儿子节点的值和懒惰标记值
-    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m),
-        b[p * 2] += b[p], b[p * 2 + 1] += b[p];
-  b[p] = 0;  // 清空当前节点的懒惰标记值
+  }// 当前区间为修改区间的子集时直接修改当前节点的值,然后打标记,结束修改
+  int m = (s + t) / 2; 
+  if (b[p] && s!=t){
+    // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
+    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m);
+    b[p * 2] += b[p], b[p * 2 + 1] += b[p]; // 将标记下传给子节点
+    b[p] = 0; // 清空当前节点的标记
+  }
   if (l <= m) update(l, r, c, s, m, p * 2);
   if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
   d[p] = d[p * 2] + d[p * 2 + 1];
 }
 ```
 
-区间查询（求和）：
+区间查询（求和）:
 
 ```cpp
-int getsum(int l, int r, int s, int t,
-           int p)  // l 是查询的区间左端点，r 是右端点，s
-                   // 是当前节点所表示的区间的左端点，t 是右端点，p
-                   // 是当前节点的编号（根节点标号为 1）
-{
+int getsum(int l, int r, int s, int t,int p){
+  // [l,r] 为修改区间,c 为被修改的元素的变化量,[s,t] 为当前节点包含的区间,p 为当前节点的编号
   if (l <= s && t <= r)
-    return d
-        [p];  // 如果当前节点表示的区间完全包含在查询区间内，返回当前节点的值
-  int m = (s + t) / 2;  // 计算左右节点表示区间的分割线
-  if (b[p] &&
-      s !=
-          t)  // 如果当前节点不是叶子节点（叶子节点表示的区间的左右端点是相等的）且当前的懒惰标记值!=0，就更新当前节点的两个儿子节点的值和懒惰标记
-    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m),
-        b[p * 2] += b[p], b[p * 2 + 1] += b[p];
-  b[p] = 0;
-  int sum = 0;  // 清空当前节点的懒惰标记值
+    return d[p]; 
+  // 当前区间为询问区间的子集时直接返回当前区间的和
+  int m = (s + t) / 2;
+  if (b[p]){
+    // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
+    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m), 
+    b[p * 2] += b[p], b[p * 2 + 1] += b[p];// 将标记下传给子节点
+    b[p] = 0;// 清空当前节点的标记
+  }
+  int sum = 0; 
   if (l <= m) sum = getsum(l, r, s, m, p * 2);
   if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
   return sum;
 }
 ```
+
 
 你有没有发现区间查询和区间修改很像吗？
 
@@ -255,10 +211,11 @@ void update(int l, int r, int c, int s, int t, int p) {
     return;
   }
   int m = (s + t) / 2;
-  if (b[p] && s != t)
+  if (b[p]){
     d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
-          b[p * 2] = b[p * 2 + 1] = b[p];
-  b[p] = 0;
+    b[p * 2] = b[p * 2 + 1] = b[p];
+    b[p] = 0;
+  }
   if (l <= m) update(l, r, c, s, m, p * 2);
   if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
   d[p] = d[p * 2] + d[p * 2 + 1];
@@ -266,10 +223,11 @@ void update(int l, int r, int c, int s, int t, int p) {
 int getsum(int l, int r, int s, int t, int p) {
   if (l <= s && t <= r) return d[p];
   int m = (s + t) / 2;
-  if (b[p] && s != t)
+  if (b[p]){
     d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
-          b[p * 2] = b[p * 2 + 1] = b[p];
-  b[p] = 0;
+    b[p * 2] = b[p * 2 + 1] = b[p];
+    b[p] = 0;
+  }
   int sum = 0;
   if (l <= m) sum = getsum(l, r, s, m, p * 2);
   if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
@@ -308,7 +266,6 @@ int getsum(int l, int r, int s, int t, int p) {
 
 ```cpp
 #include <iostream>
-using namespace std;
 typedef long long LL;
 LL n, a[100005], d[270000], b[270000];
 void build(LL l, LL r, LL p) {
@@ -326,7 +283,7 @@ void update(LL l, LL r, LL c, LL s, LL t, LL p) {
     return;
   }
   LL m = (s + t) >> 1;
-  if (b[p] && s != t)
+  if (b[p])
     d[p << 1] += b[p] * (m - s + 1), d[(p << 1) | 1] += b[p] * (t - m),
         b[p << 1] += b[p], b[(p << 1) | 1] += b[p];
   b[p] = 0;
@@ -337,7 +294,7 @@ void update(LL l, LL r, LL c, LL s, LL t, LL p) {
 LL getsum(LL l, LL r, LL s, LL t, LL p) {
   if (l <= s && t <= r) return d[p];
   LL m = (s + t) >> 1;
-  if (b[p] && s != t)
+  if (b[p])
     d[p << 1] += b[p] * (m - s + 1), d[(p << 1) | 1] += b[p] * (t - m),
         b[p << 1] += b[p], b[(p << 1) | 1] += b[p];
   b[p] = 0;
@@ -347,17 +304,17 @@ LL getsum(LL l, LL r, LL s, LL t, LL p) {
   return sum;
 }
 int main() {
-  ios::sync_with_stdio(0);
+  std::ios::sync_with_stdio(0);
   LL q, i1, i2, i3, i4;
-  cin >> n >> q;
-  for (LL i = 1; i <= n; i++) cin >> a[i];
+  std::cin >> n >> q;
+  for (LL i = 1; i <= n; i++) std::cin >> a[i];
   build(1, n, 1);
   while (q--) {
-    cin >> i1 >> i2 >> i3;
+    std::cin >> i1 >> i2 >> i3;
     if (i1 == 2)
-      cout << getsum(i2, i3, 1, n, 1) << endl;
+     std::cout << getsum(i2, i3, 1, n, 1) << endl;
     else
-      cin >> i4, update(i2, i3, i4, 1, n, 1);
+      std::cin >> i4, update(i2, i3, i4, 1, n, 1);
   }
   return 0;
 }
@@ -370,15 +327,8 @@ int main() {
 代码：
 
 ```cpp
-#include <algorithm>
-#include <climits>
-#include <cmath>
 #include <cstdio>
-#include <cstring>
-#include <iomanip>
-#include <iostream>
-#include <vector>
-using namespace std;
+
 #define ll long long
 ll read() {
   ll w = 1, q = 0;
@@ -466,9 +416,8 @@ void add(int l, int r, int s, int t, int i, ll z) {
 ll getans(int l, int r, int s, int t, int i) {
   int mid = (s + t) >> 1;
   ll tot = 0;
-  if (l <= s && t <= r) {
+  if (l <= s && t <= r)
     return sum[i];
-  }
   pd(i, s, t);
   if (mid >= l) tot += getans(l, r, s, mid, (i << 1));
   tot %= mod;
@@ -519,7 +468,7 @@ int main() {
 
 ```cpp
 #include <iostream>
-using namespace std;
+
 int n, a[100005], d[270000], b[270000];
 void build(int l, int r, int p) {
   if (l == r) {
@@ -536,10 +485,11 @@ void update(int l, int r, int c, int s, int t, int p) {
     return;
   }
   int m = (s + t) >> 1;
-  if (b[p] && s != t)
-    d[p << 1] = b[p] * (m - s + 1), d[(p << 1) | 1] = b[p] * (t - m),
-           b[p << 1] = b[(p << 1) | 1] = b[p];
-  b[p] = 0;
+  if (b[p]){
+    d[p << 1] = b[p] * (m - s + 1), d[(p << 1) | 1] = b[p] * (t - m);
+    b[p << 1] = b[(p << 1) | 1] = b[p];
+    b[p] = 0;
+  }
   if (l <= m) update(l, r, c, s, m, p << 1);
   if (r > m) update(l, r, c, m + 1, t, (p << 1) | 1);
   d[p] = d[p << 1] + d[(p << 1) | 1];
@@ -547,28 +497,29 @@ void update(int l, int r, int c, int s, int t, int p) {
 int getsum(int l, int r, int s, int t, int p) {
   if (l <= s && t <= r) return d[p];
   int m = (s + t) >> 1;
-  if (b[p] && s != t)
-    d[p << 1] = b[p] * (m - s + 1), d[(p << 1) | 1] = b[p] * (t - m),
-           b[p << 1] = b[(p << 1) | 1] = b[p];
-  b[p] = 0;
+  if (b[p]){
+    d[p << 1] = b[p] * (m - s + 1), d[(p << 1) | 1] = b[p] * (t - m);
+    b[p << 1] = b[(p << 1) | 1] = b[p];
+    b[p] = 0;
+  }
   int sum = 0;
   if (l <= m) sum = getsum(l, r, s, m, p << 1);
   if (r > m) sum += getsum(l, r, m + 1, t, (p << 1) | 1);
   return sum;
 }
 int main() {
-  ios::sync_with_stdio(0);
-  cin >> n;
-  for (int i = 1; i <= n; i++) cin >> a[i];
+  std::ios::sync_with_stdio(0);
+  std::cin >> n;
+  for (int i = 1; i <= n; i++) std::cin >> a[i];
   build(1, n, 1);
   int q, i1, i2, i3, i4;
-  cin >> q;
+  std::cin >> q;
   while (q--) {
-    cin >> i1 >> i2 >> i3;
+    std::cin >> i1 >> i2 >> i3;
     if (i1 == 0)
-      cout << getsum(i2, i3, 1, n, 1) << endl;
+      std::cout << getsum(i2, i3, 1, n, 1) << endl;
     else
-      cin >> i4, update(i2, i3, i4, 1, n, 1);
+      std::cin >> i4, update(i2, i3, i4, 1, n, 1);
   }
   return 0;
 }
@@ -586,13 +537,13 @@ int main() {
 
 但是有一个问题在于普通线段树的区间询问在某些毒瘤的眼里可能还是有些慢了
 
-简单来说就是线段树建树的时候需要做 $O(n)$ 次合并操作，而每一次区间询问需要做 $O(logn)$ 次合并操作，询问区间和这种东西的时候还可以忍受，但是当我们需要询问区间线性基这种合并复杂度高达 $O(log^2n)$ 的信息的话，此时就算是做 $O(logn)$ 次合并有些时候在时间上也是不可接受的
+简单来说就是线段树建树的时候需要做 $O(n)$ 次合并操作，而每一次区间询问需要做 $O(\log{n})$ 次合并操作，询问区间和这种东西的时候还可以忍受，但是当我们需要询问区间线性基这种合并复杂度高达 $O(\log^2{n})$ 的信息的话，此时就算是做 $O(\log{n})$ 次合并有些时候在时间上也是不可接受的
 
 而所谓 "猫树" 就是一种不支持修改，仅仅支持快速区间询问的一种静态线段树
 
-构造一棵这样的静态线段树需要 $O(nlogn)$ 次合并操作，但是此时的查询复杂度被加速至 $O(1)$ 次合并操作
+构造一棵这样的静态线段树需要 $O(n\log{n})$ 次合并操作，但是此时的查询复杂度被加速至 $O(1)$ 次合并操作
 
-在处理线性基这样特殊的信息的时候甚至可以将复杂度降至 $O(nlog^2n)$ 
+在处理线性基这样特殊的信息的时候甚至可以将复杂度降至 $O(n\log^2{n})$ 
 
 ### 原理
 
@@ -616,7 +567,7 @@ int main() {
 
 不同于传统线段树在这个节点里只保留 $[l,r]$ 的和，我们在这个节点里面额外保存 $（l,mid]$ 的后缀和数组和 $(mid,r]$ 的前缀和数组
 
-这样的话建树的复杂度为 $T(n)=2T(n/2)+O(n)=O(nlogn)$ 同理空间复杂度也从原来的 $O(n)$ 变成了 $O(nlogn)$ 
+这样的话建树的复杂度为 $T(n)=2T(n/2)+O(n)=O(n\log{n})$ 同理空间复杂度也从原来的 $O(n)$ 变成了 $O(n\log{n})$ 
 
 下面是最关键的询问了~
 
@@ -630,7 +581,7 @@ int main() {
 
 不过我们好像忽略了点什么？
 
-似乎求 lca 的复杂度似乎还不是 $O(1)$ ，暴力求是 $O(logn)$ 的，倍增法则是 $O(loglogn)$ 的，转 st 表的代价又太大……
+似乎求 lca 的复杂度似乎还不是 $O(1)$ ，暴力求是 $O(\log{n})$ 的，倍增法则是 $O(\log{\log{n}})$ 的，转 st 表的代价又太大……
 
 ### 堆式建树
 
@@ -638,13 +589,13 @@ int main() {
 
 此时我们发现线段树上两个节点的 lca 编号，就是两个节点二进制编号的 lcp
 
-lcp 实在是不难求，x 和 y 的二进制下 `lcp=x>>log[x^y]` 
+稍作思考即可发现发现在 x 和 y 的二进制下 `lcp(x,y)=x>>log[x^y]` 
 
 所以我们预处理一个 log 数组即可轻松完成求 lca 的工作
 
 这样我们就完成了一个猫树
 
-由于建树的时候涉及到求前缀和和求后缀和，所以对于线性基这种虽然合并是 $O(log^2n)$ 但是求前缀和却是 $O(nlogn)$ 的信息，使用猫树可以将静态区间线性基从 $O(nlog^2n+mlog^3n)$ 优化至 $O(nlog^2n+mlog^2n)$ 的复杂度
+由于建树的时候涉及到求前缀和和求后缀和，所以对于线性基这种虽然合并是 $O(\log^2{n})$ 但是求前缀和却是 $O(n\log{n})$ 的信息，使用猫树可以将静态区间线性基从 $O(n\log^2{n}+m\log^3{n})$ 优化至 $O(n\log^2{n}+m\log^2{n})$ 的复杂度
 
 ### 参考
 
