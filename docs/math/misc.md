@@ -188,7 +188,7 @@ $$
 
 设 $\vec a=(x,y)$ ，倾角为 $\theta$ ，长度为 $l=\sqrt{x^2+y^2}$。则 $x=l\cos \theta,y=l\sin\theta$。令其顺时针旋转 $\alpha$ 度角，得到向量 $\vec b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$。
 
-![](./images/misc1.PNG)
+![](./images/misc1.png)
 
 由三角恒等变换得，
 
