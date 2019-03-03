@@ -144,16 +144,20 @@ $$
 
 我们发现，这种运算得到的结果是一个实数，为标量，并不属于向量的线性运算。
 
-!!! note "判定两向量垂直" $\vec a \perp \vec b$  $\Leftrightarrow$  $\vec a\cdot \vec b=0$ 
+!!! note "判定两向量垂直"
+    $\vec a \perp \vec b$  $\Leftrightarrow$  $\vec a\cdot \vec b=0$ 
 
-!!! note "判定两向量共线" $\vec a = \lambda \vec b$  $\Leftrightarrow$  $\vec a\cdot \vec b=|\vec a||\vec b|$ 
+!!! note "判定两向量共线"
+    $\vec a = \lambda \vec b$  $\Leftrightarrow$  $\vec a\cdot \vec b=|\vec a||\vec b|$ 
 
 !!! note "数量积的坐标运算"
     若 $\vec a=(m,n),\vec b=(p,q),$ 则 $\vec a\cdot \vec b=mp+nq$ 
 
-!!! note "向量的模" $|\vec a|=\sqrt {m^2+n^2}$ 
+!!! note "向量的模"
+    $|\vec a|=\sqrt {m^2+n^2}$ 
 
-!!! note "两向量的夹角" $\cos \theta=\cfrac{\vec a\cdot\vec b}{|\vec a||\vec b|}$ 
+!!! note "两向量的夹角"
+    $\cos \theta=\cfrac{\vec a\cdot\vec b}{|\vec a||\vec b|}$ 
 
 ### 扩展
 
@@ -179,6 +183,32 @@ $$
 知道这个，多边形面积就很好算了。
 
 我们有一个不完全的坐标表示：记 $\vec a=(m,n),\vec b=(p,q)$ ，那么两个向量的向量积的竖坐标为 $mq-np$ ，我们根据右手法则和竖坐标符号可以推断出 $\vec b$ 相对于 $\vec a$ 的方向，若在逆时针方向竖坐标为正值，反之为负值，简记为 **顺负逆正** 。
+
+### 向量旋转
+
+设 $\vec a=(x,y)$ ，倾角为 $\theta$ ，长度为 $l=\sqrt{x^2+y^2}$。则 $x=l\cos \theta,y=l\sin\theta$。令其顺时针旋转 $\alpha$ 度角，得到向量 $\vec b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$。
+
+![](./images/misc1.png)
+
+由三角恒等变换得，
+
+$$
+\vec{b}=(l(\cos\theta\cos\alpha-\sin\theta\sin\alpha),l(\sin\theta\cos\alpha+\cos\theta\sin\alpha))
+$$
+
+化简，
+
+$$
+\vec b=(l\cos\theta\cos\alpha-l\sin\theta\sin\alpha,l\sin\theta\cos\alpha+l\cos\theta\sin\alpha)
+$$
+
+把上面的 $x,y$ 代回来得
+
+$$
+\vec b=(x\cos\alpha-y\sin\alpha,y\cos\alpha+x\sin\alpha)
+$$
+
+即使不知道三角恒等变换，这个式子也很容易记下来。
 
 ## 极坐标与极坐标系
 
