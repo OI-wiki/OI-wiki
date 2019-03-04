@@ -149,7 +149,7 @@ void swap(int &a, int &b) {
 -   判断一个数的奇偶性。
 
     ```cpp
-    boolean isOddNumber(int n) { return n & 1; }
+    bool isOddNumber(int n) { return n & 1; }
     ```
 
 -   取绝对值（某些机器上，效率比 `n > 0 ? n : -n` 高）。
@@ -185,7 +185,7 @@ void swap(int &a, int &b) {
 -   判断符号是否相同。
 
     ```cpp
-    boolean isSameSign(int x, int y) {  // 有 0 的情况例外
+    bool isSameSign(int x, int y) {  // 有 0 的情况例外
       return (x ^ y) >=
              0;  // true 表示 x 和 y 有相同的符号，false 表示 x,y 有相反的符号。
     }
@@ -202,8 +202,10 @@ void swap(int &a, int &b) {
 -   判断一个数是不是 2 的幂。
 
     ```cpp
-    boolean isFactorialofTwo(int n) {
-      return n > 0 && (n & (n - 1)) == 0;
+    bool isFactorialofTwo(int n) {
+      return n > 0 ? (n & (n - 1)) == 0 : false;
+      // 当然你也可以写成下面这种形式:
+      // return n > 0 && (n & (n - 1)) == 0;
       /* 如果是 2 的幂，n 一定是 100... n-1 就是 1111....
          所以做与运算结果为 0 */
     }
