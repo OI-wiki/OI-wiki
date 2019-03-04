@@ -25,6 +25,7 @@ $$\forall 2\leqslant i:\left(f\left(x\right)-f_{0}\left(x\right)\right)^{i}\equi
 则:
 
 $$\sum_{i=0}^{+\infty}\frac{g^{\left(i\right)}\left(f_{0}\left(x\right)\right)}{i!}\left(f\left(x\right)-f_{0}\left(x\right)\right)^{i}\equiv g\left(f_{0}\left(x\right)\right)+g'\left(f_{0}\left(x\right)\right)\left(f\left(x\right)-f_{0}\left(x\right)\right)\equiv 0\pmod{x^{n}}$$
+
 $$f\left(x\right)\equiv f_{0}\left(x\right)-\frac{g\left(f_{0}\left(x\right)\right)}{g'\left(f_{0}\left(x\right)\right)}\pmod{x^{n}}$$
 
 ## Examples
