@@ -187,7 +187,7 @@ int main()
 如申请动态分配 $32$ 位有符号整数数组的代码:
 
 ```cpp
-inline int* newarr(const int&sz){
+inline int* newarr(int sz){
 	static int pool[maxn],*allocp=pool;
 	return allocp+=sz,allocp-sz;
 }
