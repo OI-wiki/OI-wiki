@@ -67,11 +67,9 @@ void build(int s, int t, int p) {
 
 区间查询，比如求区间 $[l,r]$ 的总和（即 $a[l]+a[l+1]+ \cdots +a[r]$ ）、求区间最大值/最小值……还有很多很多……怎么做呢？
 
-![](./images/segt6.png)
+![](./images/segt5.png)
 
 拿上面这张图举栗！
-
-![](./images/segt7.png)
 
 如果要查询区间 $[1,5]$ 的和，那直接获取 $d[1]$ 的值（ $60$ ）即可。那如果我就不查询区间 $[1,5]$ ，我就查区间 $[3,5]$ 呢？
 
@@ -124,15 +122,15 @@ int getsum(int l, int r, int s, int t, int p) {
 
 如图：
 
+![](./images/segt6.png)
+
+![](./images/segt7.png)
+
 ![](./images/segt8.png)
 
 ![](./images/segt9.png)
 
 ![](./images/segt10.png)
-
-![](./images/segt11.png)
-
-![](./images/segt12.png)
 
 注：这里 D 表示当前节点的值（即所表示区间的区间和）。
 为什么节点 A 的 D 是 $2\times (1000000000000001\bmod 2)$ 呢？原因很简单。节点 A 表示的区间是 $[1,2]$ ，一共包含 $2$ 个元素。我们是让 $[1,2]$ 这个区间的每个元素都加上 $1000000000000001\bmod 2$ ，所以节点 A 的值就加上了 $2\times (1000000000000001\bmod 2)$ 咯。
@@ -141,15 +139,15 @@ int getsum(int l, int r, int s, int t, int p) {
 
 具体是这样操作（如图）：
 
-![](./images/segt13.png)
+![](./images/segt11.png)
 
-![](./images/segt14.png)
+![](./images/segt12.png)
 
 注：为什么是加上 $1\times (1000000000000001\bmod 2)$ 呢？
 
 原因和上面一样——B 和 C 表示的区间中只有 $1$ 个元素啊！
 
-![](./images/segt15.png)
+![](./images/segt13.png)
 
 由此我们可以得到，区间 $[1,1]$ 的区间和就是 $1$ 啦！O(∩\_∩)O 哈哈~！
 
