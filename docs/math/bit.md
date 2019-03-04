@@ -203,7 +203,7 @@ void swap(int &a, int &b) {
 
     ```cpp
     boolean isFactorialofTwo(int n) {
-      return n > 0 ? (n & (n - 1)) == 0 : false;
+      return n > 0 && (n & (n - 1)) == 0;
       /* 如果是 2 的幂，n 一定是 100... n-1 就是 1111....
          所以做与运算结果为 0 */
     }
