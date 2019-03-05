@@ -43,28 +43,29 @@
 $$
 \sum_{i=1}^n\sum_{d|i}f(d)g\left(\frac{i}{d}\right)=\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 \Leftrightarrow
-\sum_{i=1}^n(f\ast g)(i)=\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+\sum_{i=1}^n(f\times g)(i)=\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
 
 略证：
 
+$f(d)g\left(\frac{i}{d}\right)$ 就是对所有 $i\leq n$ 的做贡献，因此变换枚举顺序，枚举 $d,\frac{i}{d}$（分别对应新的 $i,j$）
+
 $$
 \begin{split}
 &\sum_{i=1}^n\sum_{d|i}f(d)g\left(\frac{i}{d}\right)\\
-=&\sum_{i=1}^n\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}g(i)f(j)&\text{【}f(d)g\left(\frac{i}{d}\right)\text{就是对所有}i\leq n\text{的做贡献，因此}\\&&\text{变换枚举顺序，枚举}d,\frac{i}{d}\text{（分别对应新的}i,j\text{）】}\\
+=&\sum_{i=1}^n\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}g(i)f(j)\\
 =&\sum_{i=1}^ng(i)\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}f(j)\\
-=&\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-&&&\square
+=&\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 \end{split}
 $$
 
 那么可以得到递推式
 
 $$
-g(1)S(n)=\sum_{i=1}^n(f\ast g)(i)-\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+g(1)S(n)=\sum_{i=1}^n(f\times g)(i)-\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
 
-那么假如我们可以快速对 $\sum_{i=1}^n(f\ast g)(i)$ 求和，并用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 就可以在较短时间内求得 $g(1)S(n)$.
+那么假如我们可以快速对 $\sum_{i=1}^n(f\times g)(i)$ 求和，并用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 就可以在较短时间内求得 $g(1)S(n)$.
 
 ## 【例 1】模板
 
@@ -204,7 +205,7 @@ $$
 \end{split}
 $$
 
-需要构造积性函数 $g$，使得 $f\ast g$ 和 $g$ 能快速求和
+需要构造积性函数 $g$，使得 $f\times g$ 和 $g$ 能快速求和
 
 单纯的 $\varphi$ 的前缀和可以用 $\varphi\ast1$ 的杜教筛处理，但是这里的 $f$ 多了一个 $ID^2$，那么我们就卷一个 $ID^2$ 上去，让它变成常数：
 
@@ -242,53 +243,52 @@ $$
 #include<cstdio>
 #include<cmath>
 #include<map>
-#define int long long
 using namespace std;
-const signed N=5e6,NP=5e6,SZ=N;
-int n,P,inv2,inv6,s[N];
-signed phi[N],p[NP],cnt,pn;
+const int N=5e6,NP=5e6,SZ=N;
+long long n,P,inv2,inv6,s[N];
+int phi[N],p[NP],cnt,pn;
 bool bp[N];
-map<int,int> s_map;
-int ksm(int a,int m){// 求逆元用
-	int res=1;
+map<long long,long long> s_map;
+long long ksm(long long a,long long m){// 求逆元用
+	long long res=1;
 	while(m){
 		if(m&1)res=res*a%P;
 		a=a*a%P,m>>=1;
 	}
 	return res;
 }
-void prime_work(signed k){// 线性筛 phi，s
+void prime_work(int k){// 线性筛 phi，s
 	bp[0]=bp[1]=1,phi[1]=1;
-	for(signed i=2;i<=k;i++){
+	for(int i=2;i<=k;i++){
 		if(!bp[i])p[++cnt]=i,phi[i]=i-1;
-		for(signed j=1;j<=cnt&&i*p[j]<=k;j++){
+		for(int j=1;j<=cnt&&i*p[j]<=k;j++){
 			bp[i*p[j]]=1;
 			if(i%p[j]==0){phi[i*p[j]]=phi[i]*p[j];break;}
 			else phi[i*p[j]]=phi[i]*phi[p[j]];
 		}
 	}
-	for(signed i=1;i<=k;i++)s[i]=(1ll*i*i%P*phi[i]%P+s[i-1])%P;
+	for(int i=1;i<=k;i++)s[i]=(1ll*i*i%P*phi[i]%P+s[i-1])%P;
 }
-int s3(int k){return k%=P,(k*(k+1)/2)%P*((k*(k+1)/2)%P)%P;}// 立方和
-int s2(int k){return k%=P,k*(k+1)%P*(k*2+1)%P*inv6%P;}// 平方和
-int calc(int k){// 计算 S(k)
+long long s3(long long k){return k%=P,(k*(k+1)/2)%P*((k*(k+1)/2)%P)%P;}// 立方和
+long long s2(long long k){return k%=P,k*(k+1)%P*(k*2+1)%P*inv6%P;}// 平方和
+long long calc(long long k){// 计算 S(k)
 	if(k<=pn)return s[k];
 	if(s_map[k])return s_map[k];// 对于超过 pn 的用 map 离散存储
-	int res=s3(k),pre=1,cur;
-	for(int i=2,j;i<=k;i=j+1)
+	long long res=s3(k),pre=1,cur;
+	for(long long i=2,j;i<=k;i=j+1)
         j=k/(k/i),cur=s2(j),res=(res-calc(k/i)*(cur-pre)%P)%P,pre=cur;
 	return s_map[k]=(res+P)%P;
 }
-int solve(){
-	int res=0,pre=0,cur;
-	for(int i=1,j;i<=n;i=j+1)
+long long solve(){
+	long long res=0,pre=0,cur;
+	for(long long i=1,j;i<=n;i=j+1)
 		j=n/(n/i),cur=calc(j),res=(res+(s3(n/i)*(cur-pre))%P)%P,pre=cur;
 	return (res+P)%P;
 }
-signed main(){
+int main(){
 	scanf("%lld%lld",&P,&n);
 	inv2=ksm(2,P-2),inv6=ksm(6,P-2);
-	pn=(int)pow(n,0.666667);//n^(2/3)
+	pn=(long long)pow(n,0.666667);//n^(2/3)
 	prime_work(pn);
 	printf("%lld",solve());
 	return 0;
