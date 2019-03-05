@@ -150,12 +150,12 @@ char buf[MAXSIZE], *p1, *p2;
        : *p1++)
 inline int rd() {
   int x = 0, f = 1;
-  char c = nc();
+  char c = gc();
   while (!isdigit(c)) {
     if (c == '-') f = -1;
-    c = nc();
+    c = gc();
   }
-  while (isdigit(c)) x = (x << 1) + (x << 3) + (c ^ 48), c = nc();
+  while (isdigit(c)) x = (x << 1) + (x << 3) + (c ^ 48), c = gc();
   return x * f;
 }
 char pbuf[1 << 20], *pp = pbuf;
