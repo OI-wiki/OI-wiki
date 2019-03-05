@@ -38,39 +38,34 @@ $$T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{
 
 ??? " `poly-sqrt.cpp` "
 
-		```cpp
-		using Z=int;
-		using mZ=long long;
-		using poly_t=Z[mxdg];
-		using poly=Z*const;
-
-		inline void cp(const Z*const&sl,const Z*const&sr,Z*const&dl,Z*const&dr){
-			std::copy(sl,sr,dl);
-			if(sr-sl<dr-dl)
-				std::fill(dl+(sr-sl),dr,0);
-		}
-
-		void polysqrt(const poly&h,poly&f,const int&n){
-			static poly_t sqrt_t,inv_t;
-			std::fill(f,f+n+n,0);
-			f[0]=root(h[0],2);
-			for(int t=1;(1<<t)<=n;++t){
-				const int deg1=1<<t,deg2=deg1<<1;
-
-				polyinv(f,inv_t,deg1);
-				cp(h,h+deg1,sqrt_t,sqrt_t+deg2);
-
-				DFT(sqrt_t,deg2);DFT(inv_t,deg2);
-				for(int i=0;i!=deg2;++i)
-					sqrt_t[i]=(mZ)inv_t[i]*sqrt_t[i]%p;
-				IDFT(sqrt_t,deg2);
-
-				for(int i=deg1>>1;i!=deg1;++i)
-					f[i]=div2(sqrt_t[i]);
-				std::fill(f+deg1,f+deg2,0);
-			}
-		}
-		```
+    ```cpp
+    using Z=int;
+    using mZ=long long;
+    using poly_t=Z[mxdg];
+    using poly=Z*const;
+    inline void cp(const Z*const&sl,const Z*const&sr,Z*const&dl,Z*const&dr){
+        std::copy(sl,sr,dl);
+        if(sr-sl<dr-dl)
+            std::fill(dl+(sr-sl),dr,0);
+    }
+    void polysqrt(const poly&h,poly&f,const int&n){
+        static poly_t sqrt_t,inv_t;
+        std::fill(f,f+n+n,0);
+        f[0]=root(h[0],2);
+        for(int t=1;(1<<t)<=n;++t){
+            const int deg1=1<<t,deg2=deg1<<1;
+            polyinv(f,inv_t,deg1);
+            cp(h,h+deg1,sqrt_t,sqrt_t+deg2);
+            DFT(sqrt_t,deg2);DFT(inv_t,deg2);
+            for(int i=0;i!=deg2;++i)
+                sqrt_t[i]=(mZ)inv_t[i]*sqrt_t[i]%p;
+            IDFT(sqrt_t,deg2);
+            for(int i=deg1>>1;i!=deg1;++i)
+                f[i]=div2(sqrt_t[i]);
+            std::fill(f+deg1,f+deg2,0);
+        }
+    }
+    ```
 
 ## Examples
 
