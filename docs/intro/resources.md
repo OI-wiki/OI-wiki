@@ -82,17 +82,17 @@
 -   [Algorithm Visualizer](http://algorithm-visualizer.org)
 -   [OEIS](https://oeis.org)（整数数列搜索引擎）
 -   [Inverse Symbolic Calculator](http://wayback.cecm.sfu.ca/projects/ISC/ISCmain.html)（实数反查表达式，专治不明常数）
--   [Try It Online](https://tio.run)（简单在线跑600+语言的代码，兹磁IO交互，超时60s，可以分享代码）
+-   [Try It Online](https://tio.run)（简单在线跑 600+ 种语言的代码，兹磁 IO 交互，超时 60s，可以分享代码）
 -   [Ubuntu Pastebin](https://paste.ubuntu.com)（可以用来分享代码）
 -   [uDebug](https://www.udebug.com)（提供一些 OJ 题目的调试辅助）
 -   [cppreference.com](https://zh.cppreference.com/w/)（提供 C++ 内语法的查询等）
--   [图论画板](https://csacademy.com/app/graph_editor/)（同时推荐[GraphViz](http://www.graphviz.org/))
+-   [图论画板](https://csacademy.com/app/graph_editor/)（同时推荐 [GraphViz](http://www.graphviz.org/))
 -   [ $\LaTeX{}$ 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm)
 -   [Godbolt](https://godbolt.org/)（在浏览器中查看编译后代码块对应的汇编语句）
 -   [《100 个 gdb 小技巧》](https://github.com/hellogcc/100-gdb-tips)
 -   [Mathpix](https://mathpix.com/)（截图转 $\LaTeX{}$ )
 -   [ $\LaTeX{}$ 手写符号识别](http://detexify.kirelabs.org/classify.html)
--   [Wolfram Alpha](https://www.wolframalpha.com/): （神奇的Wolfram A梦，可以解答各种问题）
+-   [Wolfram Alpha](https://www.wolframalpha.com/): （可以解答各种问题）
 
 ## 题集
 
