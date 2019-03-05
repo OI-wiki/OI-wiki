@@ -51,7 +51,8 @@ Miller-Rabin 素性测试（Miller–Rabin primality test）是进阶的素数�
 ```c++
 bool millerRabin(int n) {
   if (n < 3) return n == 2;
-  for (int i = 1; i <= s; ++i) {
+  // test_time 为测试次数,建议设为不小于 8 的整数以保证正确率,但也不宜过大,否则会影响效率
+  for (int i = 1; i <= test_time; ++i) {
     int a = rand() % (n - 2) + 2;
     if (quickPow(a, n - 1, n) != 1) return 0;
   }
@@ -90,7 +91,8 @@ bool millerRabbin(int n) {
   if (n < 3) return n == 2;
   int a = n - 1, b = 0;
   while (a % 2 == 0) a /= 2, ++b;
-  for (int i = 1, j; i <= s; ++i) {
+  // test_time 为测试次数,建议设为不小于 8 的整数以保证正确率,但也不宜过大,否则会影响效率
+  for (int i = 1, j; i <= test_time; ++i) {
     int x = rand() % (n - 2) + 2, v = quickPow(x, a, n);
     if (v == 1 || v == n - 1) continue;
     for (j = 0; j < b; ++j) {
