@@ -10,6 +10,22 @@
 
 #### Problem
 
+[Vladik and fractions](http://codeforces.com/problemset/problem/743/C)
+
+题目大意：构造一组 $x,y,z$，使得对于给定的 $n$，满足 $\dfrac{1}{x}+\dfrac{1}{y}+\dfrac{1}{z}=\dfrac{2}{n}$
+
+#### Solution
+
+样例二已经暴露了此题的本质~~（复读机~~
+
+显然 $n,n-1,n(n-1)$ 为一组合法解。特殊地，当 $n=1$ 时，无解。
+
+至于构造思路是怎么产生的，大概就是观察样例加上一点点数感了吧。此题对于数学直觉较强的人来说并不难
+
+### Example 2
+
+#### Problem
+
 [Luogu P3599 Koishi Loves Construction](https://www.luogu.org/problemnew/show/P3599)
 
 #### Solution
