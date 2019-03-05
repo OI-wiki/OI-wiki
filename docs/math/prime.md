@@ -14,6 +14,7 @@
 
 ```c++
 bool isPrime(a) {
+  if (a < 2) return 0;
   for (int i = 2; i < a; ++i)
     if (a % i == 0) return 0;
   return 1;
@@ -30,6 +31,7 @@ bool isPrime(a) {
 
 ```c++
 bool isPrime(a) {
+  if (a < 2) return 0;
   for (int i = 2; i * i <= a; ++i)
     if (a % i) return 0;
   return 1;
@@ -48,6 +50,7 @@ Miller-Rabin 素性测试（Miller–Rabin primality test）是进阶的素数�
 
 ```c++
 bool millerRabin(int n) {
+  if (n < 3) return n == 2;
   for (int i = 1; i <= s; ++i) {
     int a = rand() % (n - 2) + 2;
     if (quickPow(a, n - 1, n) != 1) return 0;
@@ -84,6 +87,7 @@ bool millerRabin(int n) {
 
 ```c++
 bool millerRabbin(int n) {
+  if (n < 3) return n == 2;
   int a = n - 1, b = 0;
   while (a % 2 == 0) a /= 2, ++b;
   for (int i = 1, j; i <= s; ++i) {
