@@ -239,3 +239,116 @@ int main()
 
 几乎所有点分治的题边分都能做（常数上有差距，但是不卡），所以就不放例题了。
 
+## 点分树
+
+点分树是通过更改原树形态使树的层数变为稳定 $\log n$ 的一种重构树。
+
+常用于解决与树原形态无关的待修改问题。
+
+### 算法分析
+
+我们通过点分治每次找重心的方式来对原树进行重构。
+
+将每次找到的重心与上一层的重心缔结父子关系，这样就可以形成一棵 $\log n​$ 层的树。
+
+由于树是 $\log n$ 层的，很多原来并不对劲的暴力在点分树上均有正确的复杂度。
+
+### 代码实现
+
+有一个小trick：每次用递归上一层的总大小 $tot​$ 减去上一层的点的重儿子大小，得到的就是这一层的总大小。这样求重心就只需一次dfs了
+
+```cpp
+#include<bits/stdc++.h>
+
+using namespace std;
+
+typedef vector<int>::iterator IT;
+
+struct Edge
+{
+    int to,nxt,val;
+
+    Edge(){}
+    Edge(int to,int nxt,int val):to(to),nxt(nxt),val(val){}
+}e[300010];
+int head[150010],cnt;
+
+void addedge(int u,int v,int val)
+{
+    e[++cnt]=Edge(v,head[u],val);
+    head[u]=cnt;
+}
+
+int siz[150010],son[150010];
+bool vis[150010];
+
+int tot,lasttot;
+int maxp,root;
+
+void getG(int now,int fa)
+{
+    siz[now]=1;
+    son[now]=0;
+    for(int i=head[now];i;i=e[i].nxt)
+    {
+        int vs=e[i].to;
+        if(vs==fa||vis[vs]) continue;
+        getG(vs,now);
+        siz[now]+=siz[vs];
+        son[now]=max(son[now],siz[vs]);
+    }
+    son[now]=max(son[now],tot-siz[now]);
+    if(son[now]<maxp)
+    {
+        maxp=son[now];
+        root=now;
+    }
+}
+
+struct Node
+{
+    int fa;
+    vector<int>anc;
+    vector<int>child,allchild;
+}nd[150010];
+
+int age[150010];
+int build(int now,int ntot)
+{
+    tot=ntot;
+    maxp=0x7f7f7f7f;
+    getG(now,0);
+    int g=root;
+    cout<<g<<'\n';
+    vis[g]=1;
+    for(int i=head[g];i;i=e[i].nxt)
+    {
+        int vs=e[i].to;
+        if(vis[vs]) continue;
+        int tmp=build(vs,ntot-son[vs]);
+        nd[tmp].fa=now;
+        nd[now].child.push_back(tmp);
+    }
+    return g;
+}
+
+int virtroot;
+
+int main()
+{
+    int n,Q,A;
+    cin>>n>>Q>>A;
+    for(int i=1;i<=n;i++)
+    {
+        cin>>age[i];
+    }
+    for(int i=1;i<n;i++)
+    {
+        int u,v,val;
+        cin>>u>>v>>val;
+        addedge(u,v,val);
+        addedge(v,u,val);
+    }
+    virtroot=build(1,n);
+}
+```
