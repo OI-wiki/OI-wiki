@@ -78,7 +78,7 @@ void dfz(int x,int fa)
     {
         sum=siz[p[j]];
         rt=0;maxx[rt]=inf;calcsiz(p[j],x);calcsiz(rt,-1);
-        dfz(p[j],x);
+        dfz(rt,x);
     }
 }
 int main()
