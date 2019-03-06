@@ -309,17 +309,15 @@ struct Node
 {
     int fa;
     vector<int>anc;
-    vector<int>child,allchild;
+    vector<int>child;
 }nd[150010];
 
-int age[150010];
 int build(int now,int ntot)
 {
     tot=ntot;
     maxp=0x7f7f7f7f;
     getG(now,0);
     int g=root;
-    cout<<g<<'\n';
     vis[g]=1;
     for(int i=head[g];i;i=e[i].nxt)
     {
@@ -336,12 +334,8 @@ int virtroot;
 
 int main()
 {
-    int n,Q,A;
-    cin>>n>>Q>>A;
-    for(int i=1;i<=n;i++)
-    {
-        cin>>age[i];
-    }
+    int n;
+    cin>>n;
     for(int i=1;i<n;i++)
     {
         int u,v,val;
