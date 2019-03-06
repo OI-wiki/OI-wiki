@@ -10,7 +10,7 @@
 
  $\sigma(x)=\sum_{i|n} i$ 
 
- $\varphi(x)=\sum_{i=1}^x 1[gcd(x,i)=1]$ 
+ $\varphi(x)=\sum_{i=1}^x 1[\gcd(x,i)=1]$ 
 
  $\mu(x)=\begin{cases}1&\text{n=1}\\(-1)^k& \ \prod_{i=1}^k q_i=1\\0 &\ \max\{q_i\}>1\end{cases}$ 
 
@@ -34,16 +34,16 @@
 
 杜教筛被用来处理数论函数的前缀和问题。对于求解一个前缀和，杜教筛可以在低于线性时间的复杂度内求解
 
-对于数论函数 $f$，要求我们计算 $S(n)=\sum_{i=1}^nf(i)$.
+对于数论函数 $f$，要求我们计算 $S(n)=\sum_{i=1}^{n}f(i)$.
 
 我们想办法构造一个 $S(n)$ 关于 $S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 的递推式
 
 对于任意一个数论函数 $g$，必满足
 
 $$
-\sum_{i=1}^n\sum_{d|i}f(d)g\left(\frac{i}{d}\right)=\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+\sum_{i=1}^{n}\sum_{d|i}f(d)g\left(\frac{i}{d}\right)=\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 \Leftrightarrow
-\sum_{i=1}^n(f\times g)(i)=\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+\sum_{i=1}^{n}(f\ast g)(i)=\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
 
 略证：
@@ -62,7 +62,7 @@ $$
 那么可以得到递推式
 
 $$
-g(1)S(n)=\sum_{i=1}^n(f\times g)(i)-\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+g(1)S(n)=\sum_{i=1}^n(f\ast g)(i)-\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
 
 那么假如我们可以快速对 $\sum_{i=1}^n(f\times g)(i)$ 求和，并用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 就可以在较短时间内求得 $g(1)S(n)$.
@@ -70,8 +70,7 @@ $$
 ## 【例 1】模板
 
 ??? note " [P4213【模板】杜教筛（Sum）](https://www.luogu.org/problemnew/show/P4213)"
-
-题目大意：求 $S_1(n)= \sum_{i=1}^n \mu(i)$ 和 $S_2(n)= \sum_{i=1}^n \varphi(i)$ 的值， $n\le 2^{31} -1$ 。
+    题目大意：求 $S_1(n)= \sum_{i=1}^{n} \mu(i)$ 和 $S_2(n)= \sum_{i=1}^{n} \varphi(i)$ 的值， $n\le 2^{31} -1$ 。
 
 ### 求解 $\mu$ 前缀和
 
@@ -97,11 +96,11 @@ $$
 
 当然也可以用杜教筛求出 $\varphi (x)$ 的前缀和，但是更好的方法是应用莫比乌斯反演：
 
- $\sum_{i=1}^n \sum_{j=1}^n 1[gcd(i,j)=1]=\sum_{i=1}^n \sum_{j=1}^n \sum_{d|i,d|j} \mu(d)$ 
+ $\sum_{i=1}^n \sum_{j=1}^n 1[\gcd(i,j)=1]=\sum_{i=1}^n \sum_{j=1}^n \sum_{d|i,d|j} \mu(d)$ 
 
  $=\sum_{d=1}^n \mu(d) {\lfloor \frac n d \rfloor}^2$ 
 
-由于题目所求的是 $\sum_{i=1}^n \sum_{j=1}^i 1[gcd(i,j)=1]$ ，所以我们排除掉 $i=1,j=1$ 的情况，并将结果除以 $2$ 即可。
+由于题目所求的是 $\sum_{i=1}^n \sum_{j=1}^i 1[\gcd(i,j)=1]$ ，所以我们排除掉 $i=1,j=1$ 的情况，并将结果除以 $2$ 即可。
 
 观察到，只需求出莫比乌斯函数的前缀和，就可以快速计算出欧拉函数的前缀和了。时间复杂度 $O(n^{\frac 2 3})$ 。
 
@@ -185,9 +184,10 @@ int main() {
 大意：求
 
 $$
-\sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot gcd(i,j)\bmod p\\
-n\leq10^{10},5\times10^8\leq p\leq1.1\times10^9,\text{p 是质数}
+\sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot\gcd(i,j)\pmod p
 $$
+
+其中$n\leq 10^{10},5\times 10^8\leq p\leq 1.1\times 10^9$,$p$ 是质数。
 
 利用 $\varphi\ast1=ID$ 做莫比乌斯反演化为
 
