@@ -398,6 +398,8 @@ $$
 \sum_{i=1}^n\sum_{j=1}^m\text{lcm}(i,j)\qquad (n,m\leqslant 10^7)
 $$
 
+**解法一**
+
 易知原式等价于
 
 $$
@@ -460,9 +462,9 @@ $$
 
 本题除了推式子比较复杂、代码细节较多之外，是一道很好的莫比乌斯反演练习题！（上述过程中，默认 $n\leqslant m$ ）
 
- **时间复杂度** ： $\Theta(n+m)$ （两次数论分块）
+ 时间复杂度 ： $\Theta(n+m)$ （两次数论分块）
 
- **代码** ：
+ 代码 ：
 
 ```cpp
 #include <algorithm>
@@ -519,5 +521,53 @@ int main() {
   printf("%d\n", solve(n, m));
 }
 ```
+
+**解法二**
+
+转化一下，可以将式子写成  
+
+$$
+\begin{eqnarray}
+&&\sum_{d=1}^{n}\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ijd\cdot[gcd(i,j)=1]\\
+&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t\mid gcd(i,j)}\mu(t)\\
+&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}\mu(t)[t\mid gcd(i,j)]\\
+&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij[1\mid gcd(i,j)]\\
+&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij
+\end{eqnarray}
+$$
+
+容易知道  
+
+$$\sum_{i=1}^{n}\sum_{j=1}^{m}ij=\frac{n(n+1)}{2}\cdot \frac{m(m+1)}{2}$$
+
+设 $sum(n,m)=\sum_{i=1}^{n}\sum_{j=1}^{m}ij$ ，继续接着前面的往下推  
+
+$$
+\begin{eqnarray}
+&&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij\\
+&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\cdot sum(\lfloor\frac{n}{td}\rfloor,\lfloor\frac{m}{td}\rfloor)\\
+&=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)\sum_{d\mid T}d\cdot (\frac{T}{d})^2\mu(\frac{T}{d})\\
+&=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)(T\sum_{d\mid T}d\cdot\mu(d))
+\end{eqnarray}
+$$
+
+这时我们只要对每个 $T$ 预处理出 $T\sum_{d\mid T}d\cdot\mu(d)$ 的值就行了，考虑如何快速求解  
+
+设 $f(n)=\sum_{d\mid n}d\cdot\mu(d)$   
+
+实际上 $f$ 可以用线性筛筛出，具体的是  
+
+$$
+f(n)=
+\begin{cases}
+1-n &,n\in primes \\
+f(\frac{x}{p}) &,p^2\mid n\\
+f(\frac{x}{p})\cdot f(p) &,p^2\nmid n
+\end{cases}
+$$
+
+其中 $p$ 表示 $n$ 的最小质因子
+
+总时间复杂度 $O(n+\sqrt n)$
 
 > 本文部分内容引用于[algocode 算法博客](https://algocode.net)，特别鸣谢！
