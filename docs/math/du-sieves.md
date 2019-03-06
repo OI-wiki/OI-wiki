@@ -70,8 +70,7 @@ $$
 ## 【例 1】模板
 
 ??? note " [P4213【模板】杜教筛（Sum）](https://www.luogu.org/problemnew/show/P4213)"
-
-题目大意：求 $S_1(n)= \sum_{i=1}^n \mu(i)$ 和 $S_2(n)= \sum_{i=1}^n \varphi(i)$ 的值， $n\le 2^{31} -1$ 。
+    题目大意：求 $S_1(n)= \sum_{i=1}^n \mu(i)$ 和 $S_2(n)= \sum_{i=1}^n \varphi(i)$ 的值， $n\le 2^{31} -1$ 。
 
 ### 求解 $\mu$ 前缀和
 
