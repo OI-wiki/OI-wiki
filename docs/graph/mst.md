@@ -324,6 +324,239 @@ Kruskal 算法中的「集合」，能否进一步优化？
 
 ## 次小生成树
 
+### 非严格次小生成树
+
+#### 定义
+
+在无向图中，边权和最小的满足边权和**小于等于**最小生成树边权和的生成树
+
+#### 求解方法
+
+- 求出无向图的最小生成树
+- 遍历每条未被选中的边 $(u,v,val)$，找到 $u$ 到 $v$ 路径上边权最大的一条边，尝试替换
+- 对所有替换结果取最小值即可
+
+### 严格次小生成树
+
+#### 定义
+
+在无向图中，边权和最小的满足边权和**小于**最小生成树边权和的生成树
+
+#### 求解方法
+
+考虑刚才的非严格次小生成树求解过程，为什么求得的解是非严格的？
+
+因为最小生成树保证生成树中 $u$ 到 $v$ 路径上的边权最大值一定**不大于**其他路径的边权最大值。换言之，我们用于替换的边的权值有可能与原生成树中被替换边的权值相等，则得到的次小生成树是非严格的。
+
+解决的办法很自然：我们维护最大值的同时维护**严格次大值**，当用于替换的边的权值与原生成树中路径最大边权相等时，我们替换次大值即可。
+
+这个过程可以用倍增求解，复杂度$(mlogm)$
+
+#### 代码
+
+```cpp
+#include<bits/stdc++.h>
+
+using namespace std;
+
+#define int long long
+
+struct Edge
+{
+    int u,v,val;
+
+    bool operator<(const Edge &other)const
+    {
+        return val<other.val;
+    }
+};
+
+Edge e[300010];
+bool used[300010];
+
+int n,m;
+int sum;
+
+class Tr
+{
+private:
+    struct Edge
+    {
+        int to,nxt,val;
+    }e[600010];
+    int cnt,head[100010];
+
+    int pnt[100010][22];
+    int dpth[100010];
+    int maxx[100010][22];
+    int minn[100010][22];
+
+public:
+    void addedge(int u,int v,int val)
+    {
+        e[++cnt]=(Edge){v,head[u],val};
+        head[u]=cnt;
+    }
+    
+    void insedge(int u,int v,int val)
+    {
+        addedge(u,v,val);
+        addedge(v,u,val);
+    }
+
+    void dfs(int now,int fa)
+    {
+        dpth[now]=dpth[fa]+1;
+        pnt[now][0]=fa;
+        for(int i=1;(1<<i)<=dpth[now];i++)
+        {
+            pnt[now][i]=pnt[pnt[now][i-1]][i-1];
+            int kk[4]={
+                maxx[now][i-1],
+                maxx[pnt[now][i-1]][i-1],
+                minn[now][i-1],
+                minn[pnt[now][i-1]][i-1]
+            };
+            sort(kk,kk+4);
+            maxx[now][i]=kk[3];
+            int ptr=2;
+            while(kk[ptr]==kk[3])
+            {
+                ptr--;
+            }
+            minn[now][i]=kk[ptr];
+        }
+
+
+        for(int i=head[now];i;i=e[i].nxt)
+        {
+            if(e[i].to!=fa)
+            {
+                maxx[e[i].to][0]=e[i].val;
+                dfs(e[i].to,now);
+            }
+        }
+    }
+
+    int lca(int a,int b)
+    {
+        if(dpth[a]<dpth[b])
+        {
+            swap(a,b);
+        }
+        
+        for(int i=21;i>=0;i--)
+        {
+            if(dpth[pnt[a][i]]>=dpth[b])
+            {
+                a=pnt[a][i];
+            }
+        }
+        
+        if(a==b)
+        {
+            return a;
+        }
+        for(int i=21;i>=0;i--)
+        {
+            if(pnt[a][i]!=pnt[b][i])
+            {
+                a=pnt[a][i];
+                b=pnt[b][i];
+            }
+        }
+        return pnt[a][0];
+    }
+
+    int query(int a,int b,int maxn)
+    {
+        int res=0;
+        for(int i=21;i>=0;i--)
+        {
+            if(dpth[pnt[a][i]]>=dpth[b])
+            {
+                if(maxn!=maxx[a][i])
+                {
+                    res=max(res,maxx[a][i]);
+                }
+                else
+                {
+                    res=max(res,minn[a][i]);
+                }
+                a=pnt[a][i];
+            }
+        }
+        return res;
+    }
+}tr;
+
+int fa[100010];
+int find(int x)
+{
+    return fa[x]==x?x:fa[x]=find(fa[x]);
+}
+
+
+void Kruskal()
+{
+    int tot=0;
+    sort(e+1,e+m+1);
+    for(int i=1;i<=n;i++)
+    {
+        fa[i]=i;
+    }
+    
+    for(int i=1;i<=m;i++)
+    {
+        int a=find(e[i].u);
+        int b=find(e[i].v);
+        if(a!=b)
+        {
+            fa[a]=b;
+            tot++;
+            tr.insedge(e[i].u,e[i].v,e[i].val);
+            sum+=e[i].val;
+            used[i]=1;
+        }
+        if(tot==n-1)
+        {
+            break;
+        }
+    }
+}
+
+main()
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0),cout.tie(0);
+    
+    cin>>n>>m;
+    for(int i=1;i<=m;i++)
+    {
+        int u,v,val;
+        cin>>u>>v>>val;
+        e[i]=(Edge){u,v,val};
+    }
+    
+    Kruskal();
+    int ans=0x7f7f7f7f7f7f7f7f;
+    tr.dfs(1,0);
+    
+    for(int i=1;i<=m;i++)
+    {
+        if(!used[i])
+        {
+            int _lca=tr.lca(e[i].u,e[i].v);
+            int tmpa=tr.query(e[i].u,_lca,e[i].val);
+            int tmpb=tr.query(e[i].v,_lca,e[i].val);
+            ans=min(ans,sum-max(tmpa,tmpb)+e[i].val);
+        }
+    }
+    cout<<ans<<'\n';
+    return 0;
+}
+```
+
 ## 第 k 小生成树
 
 ## 最小树形图
