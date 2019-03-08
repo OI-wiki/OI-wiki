@@ -259,6 +259,7 @@ nav:
     - 距离: misc/distance.md
     - 字节顺序: misc/endianness.md
     - 复杂度: misc/complexity.md
+    - 计算理论基础: misc/cc-basic.md
     - 读入、输出优化: misc/io.md
     - 离散化: misc/discrete.md
     - 树上启发式合并: misc/dsu-on-tree.md
