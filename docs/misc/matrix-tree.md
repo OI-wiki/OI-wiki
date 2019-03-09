@@ -9,13 +9,13 @@ Kirchhoff 矩阵树定理（简称矩阵树定理）解决了一张图的生成�
 设 $G$ 是一个有 $n$ 个顶点的无向图。定义度数矩阵 $D(G)$ 为：
 
 $$
-_{ii}(G) = \mathrm{deg}(i), D_{ij} = 0, i\neq j
+D_{ii}(G) = \mathrm{deg}(i), D_{ij} = 0, i\neq j
 $$
 
 设 $\#e(i,j)$ 为点 $i$ 与点 $j$ 相连的边数，并定义邻接矩阵 $A$ 为：
 
 $$
-A_{ij}(G)=\#e(i,j), i\neq j
+A_{ij}(G)=A_{ji}(G)=\#e(i,j), i\neq j
 $$
 
 定义 Laplace 矩阵（亦称 Kirchhoff 矩阵） $L$ 为：
@@ -34,7 +34,7 @@ $$
 D^{out}_{ii}(G) = \mathrm{deg^{out}}(i), D^{out}_{ij} = 0, i\neq j
 $$
 
-类似地定理入度矩阵 $D^{in}(G)$ 
+类似地定义入度矩阵 $D^{in}(G)$ 
 
 设 $\#e(i,j)$ 为点 $i$ 指向点 $j$ 的有向边数，并定义邻接矩阵 $A$ 为：
 
@@ -48,7 +48,11 @@ $$
 L^{out}(G) = D^{out}(G) - A(G)
 $$
 
-类似地定义入度 Laplace 矩阵 $L^{in}$ 。
+定义入度 Laplace 矩阵 $L^{in}$ 为：
+
+$$
+L^{in}(G) = D^{in}(G) - A(G)
+$$
 
 记图 $G$ 的以 $r$ 为根的所有根向树形图个数为 $t^{root}(G,r)$ 。所谓根向树形图，是说这张图的基图是一棵树，所有的边全部指向父亲。
 

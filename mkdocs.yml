@@ -121,6 +121,12 @@ nav:
       - 快速傅里叶变换: math/fft.md
       - 快速数论变换: math/ntt.md
       - 快速沃尔什变换: math/fwt.md
+      - 多项式求逆: math/poly-inv.md
+      - 多项式开方: math/poly-sqrt.md
+      - 多项式除法|取模: math/poly-div-mod.md
+      - 多项式对数函数|指数函数: math/poly-ln-exp.md
+      - 多项式牛顿迭代: math/poly-newton.md
+      - 多项式多点求值|快速插值: math/poly-multipoint-eval-interpolation.md
     - 组合数学:
       - 排列组合: math/combination.md
       - 卡特兰数: math/catalan.md
@@ -150,7 +156,7 @@ nav:
     - 链表: ds/linked-list.md
     - 哈希表: ds/hash.md
     - 并查集: ds/dsu.md
-    - 堆: 
+    - 堆:
       - 堆简介: ds/heap.md
       - 二叉堆: ds/binary-heap.md
       - 配对堆: ds/pairing-heap.md
@@ -239,6 +245,7 @@ nav:
     - 计算几何杂项: geometry/magic.md
   - 杂项:
     - 杂项简介: misc/index.md
+    - 悬线法: misc/largest-matrix.md
     - CDQ 分治: misc/cdq-divide.md
     - 莫队算法: misc/mo-algo.md
     - 爬山算法: misc/hill-climbing.md
@@ -252,6 +259,7 @@ nav:
     - 距离: misc/distance.md
     - 字节顺序: misc/endianness.md
     - 复杂度: misc/complexity.md
+    - 计算理论基础: misc/cc-basic.md
     - 读入、输出优化: misc/io.md
     - 离散化: misc/discrete.md
     - 树上启发式合并: misc/dsu-on-tree.md

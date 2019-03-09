@@ -468,6 +468,8 @@ $$
 \sum_{i=1}^n\sum_{j=1}^m\text{lcm}(i,j)\qquad (n,m\leqslant 10^7)
 $$
 
+**解法一**
+
 易知原式等价于
 
 $$
@@ -530,9 +532,9 @@ $$
 
 本题除了推式子比较复杂、代码细节较多之外，是一道很好的莫比乌斯反演练习题！（上述过程中，默认 $n\leqslant m$ ）
 
- **时间复杂度** ： $\Theta(n+m)$ （两次数论分块）
+ 时间复杂度 ： $\Theta(n+m)$ （两次数论分块）
 
- **代码** ：
+ 代码 ：
 
 ```cpp
 #include <algorithm>
@@ -593,18 +595,23 @@ int main() {
 ### [SDOI2015] 约数个数和
 
 多组数据，求
+
 $$
 \sum_{i=1}^n\sum_{j=1}^md(i\cdot j)\\
 \left(d(n)=\sum_{i|n}1\right)
 n,m,T\leq5\times10^4
 $$
-$d$ 表示约数个数
+
+其中 $d$ 表示约数个数
 
 要推这道题首先要了解 $d$ 函数的一个特殊性质
+
 $$
 d(i\cdot j)=\sum_{x|i}\sum_{y|j}[gcd(x,y)=1]
 $$
+
 再化一下这个式子
+
 $$
 \begin{split}
 d(i\cdot j)=&\sum_{x|i}\sum_{y|j}[gcd(x,y)=1]\\
@@ -615,31 +622,29 @@ d(i\cdot j)=&\sum_{x|i}\sum_{y|j}[gcd(x,y)=1]\\
 =&\sum_{p|i,p|j}\mu(p)d\left(\frac{i}{p}\right)d\left(\frac{j}{p}\right)\\
 \end{split}
 $$
+
 将上述式子代回原式
+
 $$
 \begin{split}
 &\sum_{i=1}^n\sum_{j=1}^md(i\cdot j)\\
 =&\sum_{i=1}^n\sum_{j=1}^m\sum_{p|i,p|j}\mu(p)d\left(\frac{i}{p}\right)d\left(\frac{j}{p}\right)\\
-
 =&\sum_{p=1}^{min(n,m)}
 \sum_{i=1}^n\sum_{j=1}^m
 [p|i,p|j]\cdot\mu(p)d\left(\frac{i}{p}\right)d\left(\frac{j}{p}\right)\\
-
 =&\sum_{p=1}^{min(n,m)}
 \sum_{i=1}^{\left\lfloor\frac{n}{p}\right\rfloor}\sum_{j=1}^{\left\lfloor\frac{m}{p}\right\rfloor}
 \mu(p)d(i)d(j)\\
-
 =&\sum_{p=1}^{min(n,m)}\mu(p)
 \sum_{i=1}^{\left\lfloor\frac{n}{p}\right\rfloor}d(i)
 \sum_{j=1}^{\left\lfloor\frac{m}{p}\right\rfloor}d(j)\\
-
 =&\sum_{p=1}^{min(n,m)}\mu(p)
 S\left(\left\lfloor\frac{n}{p}\right\rfloor\right)
 S\left(\left\lfloor\frac{m}{p}\right\rfloor\right)
 \left(S(n)=\sum_{i=1}^{n}d(i)\right)\\
-
 \end{split}
 $$
+
 那么 $O(n)$ 预处理 $\mu,d$ 的前缀和，$O(\sqrt{n})$ 分块处理询问，总复杂度 $O(n\sqrt{n})$.
 
 ```cpp
@@ -679,39 +684,40 @@ signed main(){
 }
 ```
 
-# [LuoguP3768] 简单的数学题
+# [Luogu P3768] 简单的数学题
 
 求
+
 $$
 \sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot gcd(i,j)\bmod p\\
 n\leq10^{10},5\times10^8\leq p\leq1.1\times10^9,\text{p 是质数}
 $$
-看似是一道和gcd有关的题，不过由于带有系数，并不容易化简
+
+看似是一道和 gcd 有关的题，不过由于带有系数，并不容易化简
 
 我们利用 $\varphi\ast1=ID$ 反演
+
 $$
 \begin{split}
 &\sum_{i=1}^n\sum_{j=1}^ni\cdot j
 \sum_{d|i,d|j}\varphi(d)\\
-
 &\sum_{d=1}^n\sum_{i=1}^n
 \sum_{j=1}^n[d|i,d|j]\cdot i\cdot j
 \cdot\varphi(d)\\
-
 &\sum_{d=1}^n
 \sum_{i=1}^{\left\lfloor\frac{n}{d}\right\rfloor}
 \sum_{j=1}^{\left\lfloor\frac{n}{d}\right\rfloor}
 d^2\cdot i\cdot j\cdot\varphi(d)\\
-
 &\sum_{d=1}^nd^2\cdot\varphi(d)
 \sum_{i=1}^{\left\lfloor\frac{n}{d}\right\rfloor}i
 \sum_{j=1}^{\left\lfloor\frac{n}{d}\right\rfloor}j\\
-
 &\sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)
 \left(F(n)=\frac{1}{2}n\left(n+1\right)\right)\\
 \end{split}
 $$
+
 对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2$ 做数论分块，$d^2\varphi(d)$ 的前缀和用杜教筛处理：
+
 $$
 \begin{split}
 &f(n)=n^2\varphi(n)=(ID^2\varphi)(n)\\
@@ -791,55 +797,96 @@ signed main(){
 放一个莫比乌斯反演非卷积形式的公式
 
 对于数论函数 $f,g$ 和完全积性函数 $t$ 且 $t(1)=1$：
+
 $$
 f(n)=\sum_{i=1}^nt(i)g\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 \Leftrightarrow g(n)=\sum_{i=1}^n\mu(i)t(i)f\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
+
 我们证明一下
+
 $$
 \begin{split}
 &g(n)=\sum_{i=1}^n\mu(i)t(i)f\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-
 =&\sum_{i=1}^n\mu(i)t(i)
 \sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}t(j)
 g\left(\left\lfloor\frac{\left\lfloor\frac{n}{i}\right\rfloor}{j}\right\rfloor\right)\\
-
 =&\sum_{i=1}^n\mu(i)t(i)
 \sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}t(j)
 g\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\\
-
 =&\sum_{T=1}^n
 \sum_{i=1}^n\mu(i)t(i)
 \sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}[ij=T]
 t(j)g\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
 &\text{【先枚举 ij 乘积】}\\
-
 =&\sum_{T=1}^n
 \sum_{i|T}\mu(i)t(i)
 t\left(\frac{T}{i}\right)g\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
 &\text{【}\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}[ij=T] \text{对答案的贡献为 1，于是省略】}\\
-
 =&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
 \sum_{i|T}\mu(i)t(i)t\left(\frac{T}{i}\right)\\
-
 =&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
 \sum_{i|T}\mu(i)t(T)
 &\text{【t 是完全积性函数】}\\
-
 =&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)t(T)
 \sum_{i|T}\mu(i)\\
-
 =&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)t(T)
 \varepsilon(T)
 &\text{【}\mu\ast 1= \varepsilon\text{】}\\
-
 =&g(n)t(1)
 &\text{【当且仅当 T=1,}\varepsilon(T)=1\text{时】}\\
-
 =&g(n)
-
 &&& \square
 \end{split}
 $$
+
+=======
+**解法二**
+
+转化一下，可以将式子写成  
+
+$$
+\begin{eqnarray}
+&&\sum_{d=1}^{n}\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ijd\cdot[gcd(i,j)=1]\\
+&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t\mid gcd(i,j)}\mu(t)\\
+&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}\mu(t)[t\mid gcd(i,j)]\\
+&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij[1\mid gcd(i,j)]\\
+&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij
+\end{eqnarray}
+$$
+
+容易知道  
+
+$$\sum_{i=1}^{n}\sum_{j=1}^{m}ij=\frac{n(n+1)}{2}\cdot \frac{m(m+1)}{2}$$
+
+设 $sum(n,m)=\sum_{i=1}^{n}\sum_{j=1}^{m}ij$ ，继续接着前面的往下推  
+
+$$
+\begin{eqnarray}
+&&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij\\
+&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\cdot sum(\lfloor\frac{n}{td}\rfloor,\lfloor\frac{m}{td}\rfloor)\\
+&=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)\sum_{d\mid T}d\cdot (\frac{T}{d})^2\mu(\frac{T}{d})\\
+&=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)(T\sum_{d\mid T}d\cdot\mu(d))
+\end{eqnarray}
+$$
+
+这时我们只要对每个 $T$ 预处理出 $T\sum_{d\mid T}d\cdot\mu(d)$ 的值就行了，考虑如何快速求解  
+
+设 $f(n)=\sum_{d\mid n}d\cdot\mu(d)$   
+
+实际上 $f$ 可以用线性筛筛出，具体的是  
+
+$$
+f(n)=
+\begin{cases}
+1-n &,n\in primes \\
+f(\frac{x}{p}) &,p^2\mid n\\
+f(\frac{x}{p})\cdot f(p) &,p^2\nmid n
+\end{cases}
+$$
+
+其中 $p$ 表示 $n$ 的最小质因子
+
+总时间复杂度 $O(n+\sqrt n)$
 
 > 本文部分内容引用于[algocode 算法博客](https://algocode.net)，特别鸣谢！
