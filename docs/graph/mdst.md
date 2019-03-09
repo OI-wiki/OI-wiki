@@ -1,4 +1,3 @@
-
 ## 最小树形图
 
 有向图上的最小生成树（Minimum Directed Spanning Tree）称为最小树形图。
