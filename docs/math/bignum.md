@@ -594,65 +594,69 @@ $$
 
 整个过程可以递归实现。为清晰起见，下面的代码通过 Karatsuba 算法实现了多项式乘法，最后再处理所有的进位问题。
 
-```cpp
-int *karatsuba_polymul(int n, int *a, int *b)
-{
-    if (n <= 32) {
-        // 规模较小时直接计算，避免继续递归带来的效率损失
-        int *r = new int[n * 2 + 1]();
-        for (int i = 0; i <= n; ++i)
-            for (int j = 0; j <= n; ++j)
-                r[i + j] += a[i] * b[j];
+??? " karatsuba_mulc.cpp "
+
+    ```cpp
+    int *karatsuba_polymul(int n, int *a, int *b)
+    {
+        if (n <= 32) {
+            // 规模较小时直接计算，避免继续递归带来的效率损失
+            int *r = new int[n * 2 + 1]();
+            for (int i = 0; i <= n; ++i)
+                for (int j = 0; j <= n; ++j)
+                    r[i + j] += a[i] * b[j];
+            return r;
+        }
+
+        int m = n / 2 + 1;
+        int *r = new int[m * 4 + 1]();
+        int *z0, *z1, *z2;
+
+        z0 = karatsuba_polymul(m - 1, a, b);
+        z2 = karatsuba_polymul(n - m, a + m, b + m);
+
+        // 计算 z1
+        // 临时更改，计算完毕后恢复
+        for (int i = 0; i + m <= n; ++i) a[i] += a[i + m];
+        for (int i = 0; i + m <= n; ++i) b[i] += b[i + m];
+        z1 = karatsuba_polymul(m - 1, a, b);
+        for (int i = 0; i + m <= n; ++i) a[i] -= a[i + m];
+        for (int i = 0; i + m <= n; ++i) b[i] -= b[i + m];
+        for (int i = 0; i <= (m - 1) * 2; ++i) z1[i] -= z0[i];
+        for (int i = 0; i <= (n - m) * 2; ++i) z1[i] -= z2[i];
+
+        // 由 z0、z1、z2 组合获得结果
+        for (int i = 0; i <= (m - 1) * 2; ++i) r[i] += z0[i];
+        for (int i = 0; i <= (m - 1) * 2; ++i) r[i + m] += z1[i];
+        for (int i = 0; i <= (n - m) * 2; ++i) r[i + m * 2] += z2[i];
+
+        delete[] z0;
+        delete[] z1;
+        delete[] z2;
         return r;
     }
 
-    int m = n / 2 + 1;
-    int *r = new int[m * 4 + 1]();
-    int *z0, *z1, *z2;
-
-    z0 = karatsuba_polymul(m - 1, a, b);
-    z2 = karatsuba_polymul(n - m, a + m, b + m);
-
-    // 计算 z1
-    // 临时更改，计算完毕后恢复
-    for (int i = 0; i + m <= n; ++i) a[i] += a[i + m];
-    for (int i = 0; i + m <= n; ++i) b[i] += b[i + m];
-    z1 = karatsuba_polymul(m - 1, a, b);
-    for (int i = 0; i + m <= n; ++i) a[i] -= a[i + m];
-    for (int i = 0; i + m <= n; ++i) b[i] -= b[i + m];
-    for (int i = 0; i <= (m - 1) * 2; ++i) z1[i] -= z0[i];
-    for (int i = 0; i <= (n - m) * 2; ++i) z1[i] -= z2[i];
-
-    // 由 z0、z1、z2 组合获得结果
-    for (int i = 0; i <= (m - 1) * 2; ++i) r[i] += z0[i];
-    for (int i = 0; i <= (m - 1) * 2; ++i) r[i + m] += z1[i];
-    for (int i = 0; i <= (n - m) * 2; ++i) r[i + m * 2] += z2[i];
-
-    delete[] z0;
-    delete[] z1;
-    delete[] z2;
-    return r;
-}
-
-void karatsuba_mul(int a[LEN], int b[LEN], int c[LEN])
-{
-    int *r = karatsuba_polymul(LEN - 1, a, b);
-    memcpy(c, r, sizeof(int) * LEN);
-    for (int i = 0; i < LEN - 1; ++i) if (c[i] >= 10) {
-        c[i + 1] += c[i] / 10;
-        c[i] %= 10;
+    void karatsuba_mul(int a[LEN], int b[LEN], int c[LEN])
+    {
+        int *r = karatsuba_polymul(LEN - 1, a, b);
+        memcpy(c, r, sizeof(int) * LEN);
+        for (int i = 0; i < LEN - 1; ++i) if (c[i] >= 10) {
+            c[i + 1] += c[i] / 10;
+            c[i] %= 10;
+        }
+        delete[] r;
     }
-    delete[] r;
-}
-```
+    ```
 
-!!! 关于 `new` 和 `delete`
+!!! " 关于 `new` 和 `delete` "
 
     见[内存池](/intro/common-tricks/#_4)。
 
 但是这样的实现存在一个问题：在 $b$ 进制下，多项式的每一个系数都有可能达到 $n \cdot b^2$ 量级，在压位高精度实现（即 $b > 10$，下文介绍）中可能造成整数溢出；而若在多项式乘法的过程中处理进位问题，则 $x_1 + x_0$ 与 $y_1 + y_0$ 的结果可能达到 $2 \cdot b^m$，增加一个位（如果采用 $x_1 - x_0$ 的计算方式，则不得不特殊处理负数的情况）。因此，需要依照实际的应用场景来决定采用何种实现方式。
 
-【本节参考了[维基百科对应页面](https://en.wikipedia.org/wiki/Karatsuba_algorithm)的说明。】
+### Reference
+
+https://en.wikipedia.org/wiki/Karatsuba_algorithm
 
 ## 封装类
 
