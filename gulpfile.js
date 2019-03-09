@@ -33,3 +33,9 @@ gulp.task('minify:css', () => {
 })
 
 gulp.task('minify', gulp.series('minify:html', 'minify:css'))
+
+gulp.task('add:doc-description', () => {
+  require('./scripts/add-description')()
+})
+
+gulp.task('preload', gulp.series('add:doc-description'))
