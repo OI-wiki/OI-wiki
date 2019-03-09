@@ -9,6 +9,9 @@ EMAIL=sirius.caffrey@gmail.com
 
 set -e
 
+# run pre-load script
+node ./scripts/preload.js
+
 # Clone Theme for Editing
 if [ ! -d "mkdocs-material" ] ; then
   git clone --depth=1 https://github.com/Ir1d/mkdocs-material.git
