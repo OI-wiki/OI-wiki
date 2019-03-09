@@ -127,7 +127,7 @@ $$
 
 考虑对区间长度使用数学归纳法。
 
-定义 $g_{k,l,r}=f_{l,k}+f_{k+1,r}+w(l,r)$ 表示当决策为 $k$ 时的状态值，任取 $l_1\leq l_2\leq r_1\leq r_2$，记 $u=\min\limits_{l_1\leq k < r_2}g_{k,l_1,r_2},v=\min\limits_{l_2\leq k < r_1}g_{k,l_2,r_1}$  分别表示状态 $f_{l_1,r_2}$ 和 $f_{l_2,r_1}$ 的最优决策点。
+定义 $g_{k,l,r}=f_{l,k}+f_{k+1,r}+w(l,r)$ 表示当决策为 $k$ 时的状态值，任取 $l_1\leq l_2\leq r_1\leq r_2$，记 $u=\mathop{\arg\min}\limits_{l_1\leq k < r_2}g_{k,l_1,r_2},v=\mathop{\arg\min}\limits_{l_2\leq k < r_1}g_{k,l_2,r_1}$  分别表示状态 $f_{l_1,r_2}$ 和 $f_{l_2,r_1}$ 的最优决策点。
 
 1. 若 $u\leq v$，则 $l_1\leq u< r_1,\ l_2\leq v< r_2$，因此
 
