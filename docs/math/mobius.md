@@ -368,9 +368,10 @@ int main() {
   init();
   for (scanf("%d", &T); T; --T) {
     scanf("%d%d%d%d%d", &a, &b, &c, &d, &k);
-    printf("%d\n", solve(b / k, d / k) - solve(b / k, (c - 1) / k) -
-                       solve((a - 1) / k, d / k) +
-                       solve((a - 1) / k, (c - 1) / k));
+    printf("%d\n", solve(b / k, d / k)
+    		 - solve(b / k, (c - 1) / k)
+                 - solve((a - 1) / k, d / k)
+                 + solve((a - 1) / k, (c - 1) / k));
   }
   return 0;
 }
@@ -442,11 +443,9 @@ void solve() {
       phi[i * p[j]] = phi[i] * (p[j] - 1);
     }
   }
-  for (int i = 1; i <= N; ++i) {
-    for (int j = 1; i * j <= N; ++j) {
+  for (int i = 1; i <= N; ++i)
+    for (int j = 1; i * j <= N; ++j)
       ans[i * j] += 1LL * j * phi[j] / 2;
-    }
-  }
   for (int i = 1; i <= N; ++i) ans[i] = 1LL * i * ans[i] + i;
 }
 int main() {
@@ -602,7 +601,7 @@ $$
 n,m,T\leq5\times10^4
 $$
 
-其中 $d$ 表示约数个数
+其中 $d(n)$ 表示 $n$ 的约数个数
 
 要推这道题首先要了解 $d$ 函数的一个特殊性质
 
@@ -693,7 +692,7 @@ $$
 n\leq10^{10},5\times10^8\leq p\leq1.1\times10^9,\text{p 是质数}
 $$
 
-看似是一道和 gcd 有关的题，不过由于带有系数，并不容易化简
+看似是一道和 $\gcd$ 有关的题，不过由于带有系数，并不容易化简
 
 我们利用 $\varphi\ast1=ID$ 反演
 
@@ -792,9 +791,7 @@ signed main(){
 
 ## 莫比乌斯反演扩展
 
-结尾补一个不常用的
-
-放一个莫比乌斯反演非卷积形式的公式
+结尾补一个不常用的莫比乌斯反演非卷积形式的公式
 
 对于数论函数 $f,g$ 和完全积性函数 $t$ 且 $t(1)=1$：
 
