@@ -646,7 +646,7 @@ void karatsuba_mul(int a[LEN], int b[LEN], int c[LEN])
 }
 ```
 
-??? 关于 `new` 和 `delete`
+!!! 关于 `new` 和 `delete`
 
     事实上使用 `new` 和 `delete` 有很大的弊端，在多次调用该函数时尤为明显，可以使用[内存池](/intro/common-tricks/#_4)来实现。
 
