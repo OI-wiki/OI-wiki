@@ -315,8 +315,8 @@ Kruskal 算法中的「集合」，能否进一步优化？
 
 #### 求解方法
 
-- 求出无向图的最小生成树
-- 遍历每条未被选中的边 $(u,v,val)$，找到 $u$ 到 $v$ 路径上边权最大的一条边，尝试替换
+- 求出无向图的最小生成树，设其权值和为 $M$
+- 遍历每条未被选中的边 $e = (u,v,w)$，找到最小生成树上 $u$ 到 $v$ 路径上边权最大的一条边 $e' = (s,t,w')$，则以 $e'$ 替换 $e$，可得一棵权值和为 $M - w + w'$ 的生成树
 - 对所有替换得到的答案取最小值即可
 
 如何求 $u,v$ 路径上的边权最大值呢？
@@ -337,13 +337,16 @@ Kruskal 算法中的「集合」，能否进一步优化？
 
 解决的办法很自然：我们维护到 $2^i$ 级祖先路径上的最大边权的同时维护**严格次大边权**，当用于替换的边的权值与原生成树中路径最大边权相等时，我们用严格次大值来替换即可。
 
-这个过程可以用倍增求解，复杂度$(m \logm)$
+这个过程可以用倍增求解，复杂度 $O(m \log m)$。
 
 #### 代码
 
 ```cpp
 #include<iostream>
 #include<algorithm>
+
+const int INF = 0x3fffffff;
+const long long INF64 = 0x3fffffffffffffffLL;
 
 struct Edge {
     int u,v,val;
@@ -368,7 +371,9 @@ private:
 
     int pnt[100010][22];
     int dpth[100010];
+    // 到祖先的路径上边权最大的边
     int maxx[100010][22];
+    // 到祖先的路径上边权次大的边，若不存在则为 -INF
     int minn[100010][22];
 
 public:
@@ -376,7 +381,7 @@ public:
         e[++cnt]=(Edge){v,head[u],val};
         head[u]=cnt;
     }
-    
+
     void insedge(int u,int v,int val){
         addedge(u,v,val);
         addedge(v,u,val);
@@ -385,6 +390,7 @@ public:
     void dfs(int now,int fa){
         dpth[now]=dpth[fa]+1;
         pnt[now][0]=fa;
+        minn[now][0]=-INF;
         for(int i=1;(1<<i)<=dpth[now];i++){
             pnt[now][i]=pnt[pnt[now][i-1]][i-1];
             int kk[4]={
@@ -393,12 +399,14 @@ public:
                 minn[now][i-1],
                 minn[pnt[now][i-1]][i-1]
             };
-            sort(kk,kk+4);
+            // 从四个值中取得最大值
+            std::sort(kk,kk+4);
             maxx[now][i]=kk[3];
+            // 取得严格次大值
             int ptr=2;
-            while(kk[ptr]==kk[3])
+            while(ptr>=0&&kk[ptr]==kk[3])
                 ptr--;
-            minn[now][i]=kk[ptr];
+            minn[now][i]=(ptr==-1?-INF:kk[ptr]);
         }
 
 
@@ -412,15 +420,15 @@ public:
 
     int lca(int a,int b){
         if(dpth[a]<dpth[b])
-            swap(a,b);
-        
+            std::swap(a,b);
+
         for(int i=21;i>=0;i--)
             if(dpth[pnt[a][i]]>=dpth[b])
                 a=pnt[a][i];
-        
+
         if(a==b)
             return a;
-	    
+
         for(int i=21;i>=0;i--){
             if(pnt[a][i]!=pnt[b][i]){
                 a=pnt[a][i];
@@ -430,14 +438,14 @@ public:
         return pnt[a][0];
     }
 
-    int query(int a,int b,int maxn){
-        int res=0;
+    int query(int a,int b,int val){
+        int res=-INF;
         for(int i=21;i>=0;i--){
             if(dpth[pnt[a][i]]>=dpth[b]){
-                if(maxn!=maxx[a][i])
-                    res=max(res,maxx[a][i]);
+                if(val!=maxx[a][i])
+                    res=std::max(res,maxx[a][i]);
                 else
-                    res=max(res,minn[a][i]);
+                    res=std::max(res,minn[a][i]);
                 a=pnt[a][i];
             }
         }
@@ -453,10 +461,10 @@ int find(int x){
 
 void Kruskal(){
     int tot=0;
-    sort(e+1,e+m+1);
+    std::sort(e+1,e+m+1);
     for(int i=1;i<=n;i++)
         fa[i]=i;
-    
+
     for(int i=1;i<=m;i++){
         int a=find(e[i].u);
         int b=find(e[i].v);
@@ -476,27 +484,31 @@ int main(){
     std::ios::sync_with_stdio(0);
     std::cin.tie(0);
     std::cout.tie(0);
-    
+
     std::cin>>n>>m;
     for(int i=1;i<=m;i++){
         int u,v,val;
         std::cin>>u>>v>>val;
         e[i]=(Edge){u,v,val};
     }
-    
+
     Kruskal();
-    long long ans=0x7f7f7f7f7f7f7f7f;
+    long long ans=INF64;
     tr.dfs(1,0);
 
     for(int i=1;i<=m;i++){
         if(!used[i]){
             int _lca=tr.lca(e[i].u,e[i].v);
+            // 找到路径上不等于 e[i].val 的最大边权
             long long tmpa=tr.query(e[i].u,_lca,e[i].val);
             long long tmpb=tr.query(e[i].v,_lca,e[i].val);
-            ans=std::min(ans,sum-max(tmpa,tmpb)+e[i].val);
+            // 这样的边可能不存在，只在这样的边存在时更新答案
+            if (std::max(tmpa,tmpb)>-INF)
+                ans=std::min(ans,sum-std::max(tmpa,tmpb)+e[i].val);
         }
     }
-    std::cout<<ans<<'\n';
+    // 次小生成树不存在时输出 -1
+    std::cout<<(ans==INF64?-1:ans)<<'\n';
     return 0;
 }
 
