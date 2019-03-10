@@ -1,6 +1,6 @@
 ## 定义
 
-（还记得这些定义吗？在阅读下列内容之前，请务必了解[图论基础](/graph/basic)部分）
+（还记得这些定义吗？在阅读下列内容之前，请务必了解[图论基础](/graph/basic)与[树基础](/graph/tree-basic)部分）
 
 生成子图
 
@@ -8,7 +8,7 @@
 
 最小生成树：边权和最小的生成树。
 
-注意：只有连通图才有生成树，而对于非连通图，只能搞出生成森林。
+注意：只有连通图才有生成树，而对于非连通图，只存在生成森林。
 
 ## Kruskal 算法
 
@@ -359,18 +359,13 @@ Kruskal 算法中的「集合」，能否进一步优化？
 #### 代码
 
 ```cpp
-#include<bits/stdc++.h>
+#include<iostream>
+#include<algorithm>
 
-using namespace std;
-
-#define int long long
-
-struct Edge
-{
+struct Edge {
     int u,v,val;
 
-    bool operator<(const Edge &other)const
-    {
+    bool operator<(const Edge &other)const {
         return val<other.val;
     }
 };
@@ -379,13 +374,11 @@ Edge e[300010];
 bool used[300010];
 
 int n,m;
-int sum;
+long long sum;
 
-class Tr
-{
+class Tr{
 private:
-    struct Edge
-    {
+    struct Edge{
         int to,nxt,val;
     }e[600010];
     int cnt,head[100010];
@@ -396,24 +389,20 @@ private:
     int minn[100010][22];
 
 public:
-    void addedge(int u,int v,int val)
-    {
+    void addedge(int u,int v,int val){
         e[++cnt]=(Edge){v,head[u],val};
         head[u]=cnt;
     }
     
-    void insedge(int u,int v,int val)
-    {
+    void insedge(int u,int v,int val){
         addedge(u,v,val);
         addedge(v,u,val);
     }
 
-    void dfs(int now,int fa)
-    {
+    void dfs(int now,int fa){
         dpth[now]=dpth[fa]+1;
         pnt[now][0]=fa;
-        for(int i=1;(1<<i)<=dpth[now];i++)
-        {
+        for(int i=1;(1<<i)<=dpth[now];i++){
             pnt[now][i]=pnt[pnt[now][i-1]][i-1];
             int kk[4]={
                 maxx[now][i-1],
@@ -425,46 +414,32 @@ public:
             maxx[now][i]=kk[3];
             int ptr=2;
             while(kk[ptr]==kk[3])
-            {
                 ptr--;
-            }
             minn[now][i]=kk[ptr];
         }
 
 
-        for(int i=head[now];i;i=e[i].nxt)
-        {
-            if(e[i].to!=fa)
-            {
+        for(int i=head[now];i;i=e[i].nxt){
+            if(e[i].to!=fa){
                 maxx[e[i].to][0]=e[i].val;
                 dfs(e[i].to,now);
             }
         }
     }
 
-    int lca(int a,int b)
-    {
+    int lca(int a,int b){
         if(dpth[a]<dpth[b])
-        {
             swap(a,b);
-        }
         
         for(int i=21;i>=0;i--)
-        {
             if(dpth[pnt[a][i]]>=dpth[b])
-            {
                 a=pnt[a][i];
-            }
-        }
         
         if(a==b)
-        {
             return a;
-        }
-        for(int i=21;i>=0;i--)
-        {
-            if(pnt[a][i]!=pnt[b][i])
-            {
+	    
+        for(int i=21;i>=0;i--){
+            if(pnt[a][i]!=pnt[b][i]){
                 a=pnt[a][i];
                 b=pnt[b][i];
             }
@@ -472,21 +447,14 @@ public:
         return pnt[a][0];
     }
 
-    int query(int a,int b,int maxn)
-    {
+    int query(int a,int b,int maxn){
         int res=0;
-        for(int i=21;i>=0;i--)
-        {
-            if(dpth[pnt[a][i]]>=dpth[b])
-            {
+        for(int i=21;i>=0;i--){
+            if(dpth[pnt[a][i]]>=dpth[b]){
                 if(maxn!=maxx[a][i])
-                {
                     res=max(res,maxx[a][i]);
-                }
                 else
-                {
                     res=max(res,minn[a][i]);
-                }
                 a=pnt[a][i];
             }
         }
@@ -495,27 +463,21 @@ public:
 }tr;
 
 int fa[100010];
-int find(int x)
-{
+int find(int x){
     return fa[x]==x?x:fa[x]=find(fa[x]);
 }
 
 
-void Kruskal()
-{
+void Kruskal(){
     int tot=0;
     sort(e+1,e+m+1);
     for(int i=1;i<=n;i++)
-    {
         fa[i]=i;
-    }
     
-    for(int i=1;i<=m;i++)
-    {
+    for(int i=1;i<=m;i++){
         int a=find(e[i].u);
         int b=find(e[i].v);
-        if(a!=b)
-        {
+        if(a!=b){
             fa[a]=b;
             tot++;
             tr.insedge(e[i].u,e[i].v,e[i].val);
@@ -523,110 +485,36 @@ void Kruskal()
             used[i]=1;
         }
         if(tot==n-1)
-        {
             break;
-        }
     }
 }
 
-main()
-{
-    ios::sync_with_stdio(0);
-    cin.tie(0),cout.tie(0);
+int main(){
+    std::ios::sync_with_stdio(0);
+    std::cin.tie(0);
+    std::cout.tie(0);
     
-    cin>>n>>m;
-    for(int i=1;i<=m;i++)
-    {
+    std::cin>>n>>m;
+    for(int i=1;i<=m;i++){
         int u,v,val;
-        cin>>u>>v>>val;
+        std::cin>>u>>v>>val;
         e[i]=(Edge){u,v,val};
     }
     
     Kruskal();
-    int ans=0x7f7f7f7f7f7f7f7f;
+    long long ans=0x7f7f7f7f7f7f7f7f;
     tr.dfs(1,0);
-    
-    for(int i=1;i<=m;i++)
-    {
-        if(!used[i])
-        {
+
+    for(int i=1;i<=m;i++){
+        if(!used[i]){
             int _lca=tr.lca(e[i].u,e[i].v);
-            int tmpa=tr.query(e[i].u,_lca,e[i].val);
-            int tmpb=tr.query(e[i].v,_lca,e[i].val);
-            ans=min(ans,sum-max(tmpa,tmpb)+e[i].val);
+            long long tmpa=tr.query(e[i].u,_lca,e[i].val);
+            long long tmpb=tr.query(e[i].v,_lca,e[i].val);
+            ans=std::min(ans,sum-max(tmpa,tmpb)+e[i].val);
         }
     }
-    cout<<ans<<'\n';
+    std::cout<<ans<<'\n';
     return 0;
 }
-```
 
-## 第 k 小生成树
-
-## 最小树形图
-
-有向图上的最小生成树（Minimum Directed Spanning Tree）称为是最小树形图。
-
-常用的是朱刘算法（也称 Edmonds 算法），可以在 $O(nm)$ 时间内解决这个问题。
-
-### 流程
-
-1.  对于每个点，选择它入度最小的那条边
-2.  如果没有环，算法终止；否则进行缩环、更新其他点到环的距离。
-
-### 代码
-
-```c++
-bool solve() {
-  ans = 0;
-  int u, v, root = 0;
-  for (;;) {
-    f(i, 0, n) in[i] = 1e100;
-    f(i, 0, m) {
-      u = e[i].s;
-      v = e[i].t;
-      if (u != v && e[i].w < in[v]) {
-        in[v] = e[i].w;
-        pre[v] = u;
-      }
-    }
-    f(i, 0, m) {
-      if (i != root && in[i] > 1e50) return 0;
-    }
-    int tn = 0;
-    memset(id, -1, sizeof id);
-    memset(vis, -1, sizeof vis);
-    in[root] = 0;
-    f(i, 0, n) {
-      ans += in[i];
-      v = i;
-      while (vis[v] != i && id[v] == -1 && v != root) {
-        vis[v] = i;
-        v = pre[v];
-      }
-      if (v != root && id[v] == -1) {
-        for (int u = pre[v]; u != v; u = pre[u]) {
-          id[u] = tn;
-        }
-        id[v] = tn++;
-      }
-    }
-    if (tn == 0) break;
-    f(i, 0, n) {
-      if (id[i] == -1) id[i] = tn++;
-    }
-    f(i, 0, m) {
-      u = e[i].s;
-      v = e[i].t;
-      e[i].s = id[u];
-      e[i].t = id[v];
-      if (e[i].s != e[i].t) {
-        e[i].w -= in[v];
-      }
-    }
-    n = tn;
-    root = id[root];
-  }
-  return ans;
-}
 ```
