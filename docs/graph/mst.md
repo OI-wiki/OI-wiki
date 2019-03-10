@@ -233,9 +233,9 @@ Kruskal 算法中的「集合」，能否进一步优化？
 
 ## 最小生成树题目
 
-[\[HAOI2006\]聪明的猴子](https://www.lydsy.com/JudgeOnline/problem.php?id=2429)
+[「HAOI2006」聪明的猴子](https://www.lydsy.com/JudgeOnline/problem.php?id=2429)
 
-[\[SCOI2005\]繁忙的都市](https://www.lydsy.com/JudgeOnline/problem.php?id=1083)
+[「SCOI2005」繁忙的都市](https://www.lydsy.com/JudgeOnline/problem.php?id=1083)
 
 ## 最小生成树的唯一性
 
@@ -248,56 +248,40 @@ Kruskal 算法中的「集合」，能否进一步优化？
 ??? note " 例题：[POJ 1679](http://poj.org/problem?id=1679)"
 
     ```cpp
-    #include <algorithm>
     #include <cstdio>
-    using namespace std;
-    struct tree
-    {
+    #include <algorithm>
+ 
+    struct Edge{
       int x,y,z;
     };
     int f[100001];
-    tree a[100001];
-    int cmp(const tree a,const tree b)
-    {
+    Edge a[100001];
+    int cmp(const Edge&a,const Edge&b){
       return a.z<b.z;
     }
-    int find(int x)
-    {
-      if (f[x]==x) return x;
-      f[x]=find(f[x]);
-      return f[x];
+    int find(int x){
+    	return f[x]==x?x:f[x]=find(f[x]);
     }
-    int main()
-    {
+    int main(){
       int t;
       scanf("%d",&t);
-      while (t--)
-      {
+      while (t--){
         int n,m;
         scanf("%d%d",&n,&m);
-        for (int i=1;i<=n;i++) f[i]=i;
+        for (int i=1;i<=n;i++)f[i]=i;
         for (int i=1;i<=m;i++)
           scanf("%d%d%d",&a[i].x,&a[i].y,&a[i].z);
         sort(a+1,a+m+1,cmp);
-        int num=0;
-        int ans=0;
-        int tail=0;
-        int sum1=0;
-        int sum2=0;
-        int flag=1;
-        for (int i=1;i<=m+1;i++)
-        {
-          if (i>tail)
-          {
-            if (sum1!=sum2)
-            {
+        int num=0,ans=0,tail=0,sum1=0,sum2=0;
+	bool flag=1;
+        for (int i=1;i<=m+1;i++){
+          if (i>tail){
+            if (sum1!=sum2){
               flag=0;break;
             }
             sum1=0;
-            for (int j=i;j<=m+1;j++)
-            {
-              if (a[j].z!=a[i].z)
-              {
+            for (int j=i;j<=m+1;j++){
+              if (a[j].z!=a[i].z){
                 tail=j-1;break;
               }
               if (find(a[j].x)!=find(a[j].y)) ++sum1;
@@ -307,8 +291,7 @@ Kruskal 算法中的「集合」，能否进一步优化？
           if (i>m) break;
           int x=find(a[i].x);
           int y=find(a[i].y);
-          if (x!=y&&num!=n-1)
-          {
+          if (x!=y&&num!=n-1){
             sum2++;
             num++;
             f[x]=f[y];
@@ -328,31 +311,31 @@ Kruskal 算法中的「集合」，能否进一步优化？
 
 #### 定义
 
-在无向图中，边权和最小的满足边权和**小于等于**最小生成树边权和的生成树
+在无向图中，边权和最小的满足边权和**大于等于**最小生成树边权和的生成树
 
 #### 求解方法
 
 - 求出无向图的最小生成树
 - 遍历每条未被选中的边 $(u,v,val)$，找到 $u$ 到 $v$ 路径上边权最大的一条边，尝试替换
-- 对所有替换结果取最小值即可
+- 对所有替换得到的答案取最小值即可
 
 如何求 $u,v$ 路径上的边权最大值呢？
 
-我们可以倍增维护，具体实现近似于倍增求 LCA 时的预处理 $2^n$ 的祖先的写法，这样在倍增求 LCA 的过程中可以直接求得。
+我们可以使用倍增来维护，预处理出每个节点的 $2^i$ 级祖先及到达其 $2^i$ 级祖先路径上最大的边权，这样在倍增求 LCA 的过程中可以直接求得。
 
 ### 严格次小生成树
 
 #### 定义
 
-在无向图中，边权和最小的满足边权和**小于**最小生成树边权和的生成树
+在无向图中，边权和最小的满足边权和**严格大于**最小生成树边权和的生成树
 
 #### 求解方法
 
 考虑刚才的非严格次小生成树求解过程，为什么求得的解是非严格的？
 
-因为最小生成树保证生成树中 $u$ 到 $v$ 路径上的边权最大值一定**不大于**其他路径的边权最大值。换言之，我们用于替换的边的权值有可能与原生成树中被替换边的权值相等，则得到的次小生成树是非严格的。
+因为最小生成树保证生成树中 $u$ 到 $v$ 路径上的边权最大值一定**不大于**其他从 $u$ 到 $v$ 路径的边权最大值。换言之，当我们用于替换的边的权值与原生成树中被替换边的权值相等时，得到的次小生成树是非严格的。
 
-解决的办法很自然：我们维护到祖先的路径上的最大边权的同时维护**严格次大边权**，当用于替换的边的权值与原生成树中路径最大边权相等时，我们替换次大值即可。
+解决的办法很自然：我们维护到 $2^i$ 级祖先路径上的最大边权的同时维护**严格次大边权**，当用于替换的边的权值与原生成树中路径最大边权相等时，我们用严格次大值来替换即可。
 
 这个过程可以用倍增求解，复杂度$(m \logm)$
 
@@ -518,5 +501,6 @@ int main(){
 }
 
 ```
+
 
 ## 第 k 小生成树
