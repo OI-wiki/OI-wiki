@@ -7,7 +7,7 @@ const packageJson = require('../package')
 const root = path.resolve(__dirname, '../')
 
 const generateDescription = (str) => {
-  return `---\ndescription: ${striptags(marked(str).toString()).split('\n').toString().substring(0, 200).trim()}\n---\n`
+  return `\ndescription: ${striptags(marked(str).toString()).split('\n').toString().substring(0, 200).trim()}\n`
 }
 
 function addDescription (doc = path.resolve(root, packageJson.directories.doc)) {
