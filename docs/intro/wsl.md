@@ -199,13 +199,13 @@ DISPLAY=:0 xterm
 xfce4-session
 ```
 
-![](./images/WSL19.png)  
-不过这是什么效果…… **（在 Xming 中使用** <kbd>Ctrl</kbd>+<kbd>C</kbd> **就可以退出这个鬼畜界面）**   
+![](./images/WSL19.png)    
+
+效果图如下：**（在 Xming 中使用** <kbd>Ctrl</kbd>+<kbd>C</kbd> **就可以退出这个鬼畜界面）**   
 ![](./images/WSL20.png)
 
 <div align='center'> 达成成就：Windows+Linux 二合一 </div>
- 感受一下两个版本融合的感觉：
-![](./images/WSL21.png)
+
 
 #### 与 Windows 内原硬盘分区交互
 
@@ -246,7 +246,9 @@ xfce4-session
 
 ## 延伸内容
 
-[Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://spencerwoo.com/dowww/)
+- [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://spencerwoo.com/dowww/)      
+
+- [Github 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL)
 
 ### 后记
 
