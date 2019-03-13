@@ -10,7 +10,7 @@
 
 ### rand
 
-用于生成一个伪随机数，使用时需要 `#include<cstdlib>`。
+用于生成一个伪随机数，缺点是比较慢，使用时需要 `#include<cstdlib>`。
 
 使用 `rand()` 需要一个随机数种子，可以使用 `srand(seed)` 函数来将随机种子更改为 `seed`，当然不初始化也是可以的。
 
@@ -21,9 +21,17 @@
 !!!+ warning
     在 `Windows` 系统下 `rand()` 返回值的取值范围为 $\left[0,2^{15}\right)$，当需要生成的数不小于 $2^{15}$ 时建议使用 `(rand() << 15 | rand())` 来生成更大的随机数。
 
+### mt19937
+
+是一个随机数生成器类，效用同 `rand`，优点是更加随机（出现循环的周期更长）且速度比 `rand()` 快很多。使用时需要 `#include<random>`。
+
+`mt19937` 基于 [Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister)，使用时用其定义一个随机数生成器即可：`std::mt19937 myrand(seed)`，`seed` 可不填，否则会使用默认随机种子。
+
+`mt19937` 重载了 `operator ()`，需要生成随机数时调用 `myrand()` 即可返回一个随机数。
+
 ### random_shuffle
 
-用于随机打乱指定序列，使用时需要 `#include<algorithm>`。
+用于随机打乱指定序列。使用时需要 `#include<algorithm>`。
 
 使用时传入指定区间的首尾指针或迭代器（左闭右开）即可：`std::random_shuffle(first, last)` 或 `std::random_shuffle(first, last, myrand)`
 
@@ -34,13 +42,9 @@
    
 ### shuffle
 
-效用同 `random_shuffle`，使用时需要 `#include<algorithm>`。
+效用同 `random_shuffle`。使用时需要 `#include<algorithm>`。
 
 区别在于必须使用自定义的随机数生成器：`std::shuffle(first, last, myrand())`。
-
-### mt19937
-
-
 
 下面是用 `rand()` 及 `random_shuffle()` 编写的一个数据生成器。生成数据为[「ZJOI2012」灾难](https://www.luogu.org/problemnew/show/P2597)的随机小数据。
 
