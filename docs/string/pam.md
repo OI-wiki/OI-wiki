@@ -1,8 +1,8 @@
 [推荐论文](https://github.com/huhaoo/OIths/blob/master/string/PalindromicTree.pdf)（baidu限速太坑，就放github上了）
 
-似乎这叫回文树，而不是回文自动机
+回文树又称回文自动机
 
-最好学习『后缀自动机，manacher』再来学习（因为太不常用了）。
+前置知识：manacher。
 
 ### 结构
 
@@ -10,75 +10,104 @@
 
 ![](./images/pam1.png)
 
-和其它自动机（但是它却叫『回文树』）类似的，它也是由转移边和fail组成，每个节点就是一个回文串，每个节点都可以代表所有对应它的回文子串。
+类似于其它自动机，每个节点都代表所有对应它的回文子串，它的每个节点也有向外的转移边和失配指针（fail 指针）。fail 指针指向的是它的最长回文后缀对应的节点，但是转移边并非单纯在后面加一个字符，而是在前后各加一个相同的字符（不难理解，因为要保证存的是回文串）。
 
-因为回文串长度分为奇数和偶数，我们可以像manacher那样加入`#`（但是因为这个已经很难调了，加个岂不会调死）
+因为回文串长度有奇偶两种情况，我们可以像 manacher 那样加入分隔符（如 `#`）来将所有回文串长度都变为奇数，但是这样太麻烦了。
 
-但是我们发现建两棵树也没什么不妥吧。
+于是我们考虑为奇数长度的回文串和偶数长度的回文串各建一棵树，但这两棵树之间又互相有连边。
 
-和其它的自动机一样，fail连向的是它的后缀，但是转移边并非单纯向后加一个字符，而是在前后各加一个相同的字符（不难理解，因为要保证存的是回文串）
+### 建树
 
-### 建造
+回文树的初始状态有两个节点，代表长度为 $-1,0$ 的回文串（分别表示奇数和偶数长度），它们代表长度为奇/偶数的空串，$0$ 的 fail 指针指向 $-1$。
 
-我们开始是有两个节点，代表长度为$-1,0$的回文串（分别表示奇数和偶数长度），它们都是空的（也就是无代表意义），仅仅方便建造，$0$的fail指向$-1$。
-
-类似后缀自动机，我们用增量法。
-
-每次建造，我们都从以上一个字符结尾的最长对应的节点开始，不断沿着fail走，直到那个节点对应以前一个位置为右端点的字符串两边字符相同，这里贴出论文中的那张图
+考虑使用增量法建树，每次向树中添加一个字符，我们都从以上一个字符结尾的最长回文串对应的节点开始，不断沿着 fail 指针走，节点对应以前一个位置为右端点的字符串两边字符相同，这里贴出论文中的那张图：
 
 ![](./images/pam2.png)
 
-我们就这么找到A，然后两边添加`X`就到了现在的回文串了（即`XAX`），很显然，这个节点就是以当前字符结尾的最长回文字串对应节点。同时，这个时候长度$-1$节点优势出来了，如果没有`X`能匹配条件就是同一个位置的`'X'=='X'`，就自然得到了代表`X`的节点。要判以下：没有这个节点，就需要新建。
+我们这样找到 A，然后在其两边添加字符 `X` 就得到了现在的回文串（即 `XAX`）。显然，这个节点就是以当前字符结尾的最长回文子串所对应的节点。同时，这个时候长度为 $-1$ 的节点的优点就体现出来了，如果没有 `X` 能匹配条件就是同一个位置的 `'X'=='X'`，就自然得到了代表 `X` 的节点。当没有这个节点时，就需要新建一个节点。
 
-然后我们连fail，从`A`出发，还是那样走，走到`B`，就是它的fail节点了。
+然后我们连 fail 指针，从 `A` 出发，还是那样走，走到 `B`，就是它的 fail 指针所应该指向的节点了。
 
-显然，这个节点是不需新建的，`A`的前$len_B$位和后$len_B$位相同，都是`B`，前$len_B$位的两端根据回文串对应关系，都是`X`，后面被钦定了是`X`，于是这个节点肯定已经被新建了。
+显然，这个节点是不需新建的，`A` 的前 $|B|$ 位和后 $|B|$ 位相同，都是 `B`，前 $|B|$ 位的两端根据回文串对应关系，都是 `X`，后面被钦定了是 `X`，于是这个节点肯定是已经存在的。
 
-如果fail没匹配到，那么将它连向长度为$0$的那个节点，显然这是可行的。
+如果 fail 指针没匹配到，那么将 fail 指针指向长度为 $0$ 的那个节点，显然这是可行的。
 
-例题：APIO2014|luogu3649 回文串
+例题：[「APIO2014」回文串](https://www.luogu.org/problemnew/show/P3649)
 
-建出树来，类似（可以说就是）后缀自动机统计出现次数即可
+建出回文树并统计每个回文串出现次数即可。
 
-```cpp
-#define N 300010
-long long n,t[N][30],w[N],l[N],f[N],c,ans;
-char s[N];
-int main()
-{
-	scanf("%s",s+1);
-	n=strlen(s+1);
-	c=2;
-	f[1]=f[2]=1;
-	l[1]=-1;
-	long long j=2;
-	s[0]='#';
-	fr(i,1,n)
-	{
-		while(s[i-l[j]-1]!=s[i])
-			j=f[j];
-		if(!t[j][s[i]-'a'])
-		{
-			c++;
-			long long k=j;
-			l[c]=l[k]+2;
-			k=f[k];
-			while(s[i-l[k]-1]!=s[i])
-				k=f[k];
-			f[c]=t[k][s[i]-'a'];
-			if(!f[c])
-				f[c]=2;
-			t[j][s[i]-'a']=c;
-		}
-		j=t[j][s[i]-'a'];
-		w[j]++;
+???+ 例题代码
+
+	```cpp
+	#include<cstdio>
+	#include<cstring>
+
+	using int64=long long;
+
+	constexpr int maxn(300000);
+
+	template<class _Tp>
+	    inline void chkMax(_Tp&x,const _Tp&y)
+		{x<y&&(x=y);}
+
+	namespace PAM{
+	    struct state_t{
+		static constexpr int sigma=26;
+
+		int len,cnt,las,nxt,del,trans[sigma];
+		state_t():len(0),cnt(0),las(0),nxt(0),del(0){}
+	    }pam_node[maxn+3];
+
+	    #define len(o) pam_node[o].len
+	    #define cnt(o) pam_node[o].cnt
+	    #define las(o) pam_node[o].las
+	    #define nxt(o) pam_node[o].nxt
+	    #define del(o) pam_node[o].del
+	    #define trans(o,c) pam_node[o].trans[c]
+
+	    int pcnt=1;
+	    char str[maxn+1];
+
+	    inline int extend(const int&c,const int&n){
+		static int las=0;
+		int p=las;
+		for(;str[n]!=str[n-len(p)-1];p=las(p));
+		if(!trans(p,c)){
+		    const int u=++pcnt;int t=las(p);
+		    for(;str[n]!=str[n-len(t)-1];t=las(t));
+
+		    len(u)=len(p)+2;
+		    las(u)=trans(t,c);
+		    trans(p,c)=u;
+		    del(u)=len(u)-len(las(u));
+		    nxt(u)=(del(u)==del(las(u))?nxt(las(u)):u);
+		} return ++cnt(las=trans(p,c));
+	    }
+
+	    inline void init(const int&n){
+		len(1)=-1;
+		las(0)=las(1)=1;
+		for(int i=1;i<=n;++i)
+		    extend(str[i]-'a',i);
+	    }
+
+	    inline int64 calc(){
+		int64 ans=0;
+		for(int u=pcnt;u!=1;--u){
+		    cnt(las(u))+=cnt(u);
+		    chkMax(ans,(int64)cnt(u)*len(u));
+		}return ans;
+	    }
 	}
-	fd(i,c,1)
-		w[f[i]]+=w[i];
-	fr(i,1,c)
-		ans=max(ans,l[i]*w[i]);
-	printf("%lld\n",ans);
-	return 0;
-}
-```
+
+	int main(){
+	    scanf("%s", PAM::str + 1);
+	    const int n = strlen(PAM::str + 1);
+
+	    PAM::init(n);
+	    printf("%lld",PAM::calc());
+
+	    return 0;
+	}
+	```
 
