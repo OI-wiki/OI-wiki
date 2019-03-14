@@ -14,6 +14,8 @@
 
 使用 `rand()` 需要一个随机数种子，可以使用 `srand(seed)` 函数来将随机种子更改为 `seed`，当然不初始化也是可以的。
 
+相同的 `seed` 两次运行同一程序随机出的结果将会是相同的
+
 有一个选择是使用当前系统时间来作为随机种子：`srand(time(0))`。
 
 调用 `rand()` 函数会返回一个随机非负整数。在 `Linux` 系统下随机范围为 $\left[0,2^{31}\right)$。可以用取模来限制它的大小。
@@ -25,9 +27,25 @@
 
 是一个随机数生成器类，效用同 `rand`，优点是更加随机（出现循环的周期更长）且速度比 `rand()` 快很多。使用时需要 `#include<random>`。
 
-`mt19937` 基于 [Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister)，使用时用其定义一个随机数生成器即可：`std::mt19937 myrand(seed)`，`seed` 可不填，否则会使用默认随机种子。
+`mt19937` 基于 [Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister)，使用时用其定义一个随机数生成器即可：`std::mt19937 myrand(seed)`，`seed` 可不填，不填 `seed` 则会使用默认随机种子。
 
 `mt19937` 重载了 `operator ()`，需要生成随机数时调用 `myrand()` 即可返回一个随机数。
+
+#### 示例
+
+```
+#include<iostream>
+#include<random>
+ 
+using namespace std;
+ 
+int main()
+{
+    mt19937 myrand(time(0));
+    cout<<myrand()<<endl;
+    return 0;
+}
+```
 
 ### random_shuffle
 
