@@ -30,7 +30,7 @@ for (int i = 1; i <= cur; i++)
     if (f[j - v[i]]) f[j] = true;
 ```
 
-## 几道练习题
+### 几道练习题
 
 [HDU 2844 Coins](http://acm.hdu.edu.cn/showproblem.php?pid=2844)
 
@@ -77,7 +77,7 @@ for (int i = 1; i <= cur; i++)
 ??? note " 例题[洛谷 P3195\[HNOI2008\]玩具装箱 TOY](https://www.luogu.org/problemnew/show/P3195)"
     令 $f_i$ 表示前 $i$ 个物品，随意分组装在任意多个容器里所能得到的最小费用。
 
-写出 **状态转移方程** ： $f_i=max\{f_j+(pre_i-pre_i+i-j-1-L)^2\}$ ，其中 $pre_i$ 表示前 $i$ 个数的前缀和。
+写出 **状态转移方程** ： $f_i=max\{f_j+(pre_i-pre_j+i-j-1-L)^2\}$ ，其中 $pre_i$ 表示前 $i$ 个数的前缀和。
 
 换元试图简化状态转移方程式：令 $s_i=pre_i+i,L'=L+1$ ，则 $f_i=f_j+(s_i-s_j-L')^2$ ，展开，移项得
 
