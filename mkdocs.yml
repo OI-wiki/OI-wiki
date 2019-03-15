@@ -71,7 +71,11 @@ nav:
     - 状压 DP: dp/state.md
     - 数位 DP: dp/number.md
     - 插头 DP: dp/plug.md
-    - DP 优化: dp/optimization.md
+    - DP 优化:
+      - 二进制分组解多重背包: dp/optimizations/binary-knapsack.md
+      - 单调队列/单调栈优化: dp/optimizations/monotonous-queue-stack.md
+      - 斜率优化: dp/optimizations/convex-hull-optimization.md
+      - 四边形不等式优化: dp/optimizations/knuth-yao-quadrangle-inequality.md
     - 其它 DP 方法: dp/misc.md
   - 字符串:
     - 字符串部分简介: string/index.md
@@ -267,7 +271,10 @@ nav:
 
 # Theme
 theme:
-  name: 'material'
+  name: null
+  custom_dir: 'mkdocs-material/material'
+  static_templates:
+    - 404.html
   language: 'zh'
   palette:
     primary: 'white'
@@ -292,12 +299,12 @@ extra:
   copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
   manifest: 'manifest.webmanifest'
-  githash: ''
+  githash: '118651f'
 
 extra_javascript:
   - 'https://cdnjs.loli.net/ajax/libs/Han/3.3.0/han.min.js'
   - '_static/js/extra.js?v=10'
-  - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
+
 
 
 extra_css:
