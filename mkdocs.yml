@@ -271,7 +271,7 @@ nav:
 
 # Theme
 theme:
-  name: null
+  name: 'material'
   custom_dir: 'mkdocs-material/material'
   static_templates:
     - 404.html
@@ -299,11 +299,12 @@ extra:
   copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
   manifest: 'manifest.webmanifest'
-  githash: '118651f'
+  githash: ''
 
 extra_javascript:
   - 'https://cdnjs.loli.net/ajax/libs/Han/3.3.0/han.min.js'
   - '_static/js/extra.js?v=10'
+  - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
 
 
 
