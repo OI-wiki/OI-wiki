@@ -35,7 +35,7 @@ function foo(response) {
   var num = response.data.length;
   if (data && data[0]) {
     var ti = new Date(data[0].commit.author.date).toLocaleString('zh-CN', { timeZone: "Asia/Shanghai", hour12: false });
-  
+
     var author_list = [];
     for (var i = 0; i < num; ++i) {
       author_list.push(data[i].author.login);

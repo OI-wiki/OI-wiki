@@ -64,14 +64,18 @@ nav:
   - 动态规划:
     - 动态规划部分简介: dp/index.md
     - 记忆化搜索: dp/memo.md
-    - 背包 DP: dp/backpack.md
+    - 背包 DP: dp/knapsack.md
     - 区间 DP: dp/interval.md
     - DAG 上的 DP: dp/dag.md
     - 树形 DP: dp/tree.md
     - 状压 DP: dp/state.md
     - 数位 DP: dp/number.md
     - 插头 DP: dp/plug.md
-    - DP 优化: dp/optimization.md
+    - DP 优化:
+      - 二进制分组解多重背包: dp/optimizations/binary-knapsack.md
+      - 单调队列/单调栈优化: dp/optimizations/monotonous-queue-stack.md
+      - 斜率优化: dp/optimizations/convex-hull-optimization.md
+      - 四边形不等式优化: dp/optimizations/knuth-yao-quadrangle-inequality.md
     - 其它 DP 方法: dp/misc.md
   - 字符串:
     - 字符串部分简介: string/index.md
