@@ -272,9 +272,6 @@ nav:
 # Theme
 theme:
   name: 'material'
-  custom_dir: 'mkdocs-material/material'
-  static_templates:
-    - 404.html
   language: 'zh'
   palette:
     primary: 'white'
@@ -305,7 +302,6 @@ extra_javascript:
   - 'https://cdnjs.loli.net/ajax/libs/Han/3.3.0/han.min.js'
   - '_static/js/extra.js?v=10'
   - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
-
 
 
 extra_css:
