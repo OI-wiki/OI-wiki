@@ -64,7 +64,7 @@ nav:
   - 动态规划:
     - 动态规划部分简介: dp/index.md
     - 记忆化搜索: dp/memo.md
-    - 背包 DP: dp/backpack.md
+    - 背包 DP: dp/knapsack.md
     - 区间 DP: dp/interval.md
     - DAG 上的 DP: dp/dag.md
     - 树形 DP: dp/tree.md
