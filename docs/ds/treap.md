@@ -1,296 +1,299 @@
-treap 是一种弱平衡的二叉搜索树。treap 这个单词是 tree 和 heap 的组合，表明 treap 是一种由树和堆组合形成的数据结构。treap 的每个结点上要额外储存一个值 $priority$ 。treap 除了要满足二叉搜索树的性质之外，还需满足父节点的 $priority$ 大于等于两个儿子的 $priority$ 。而 $priority$ 是每个结点建立时随机生成的，因此 treap 是期望平衡的。
+首先说一说 $\texttt{FHQ Treap}$ 的优点,好理解,上手快,代码一般很短,可持久化等。
 
-treap 分为旋转式和无旋式两种。两种 treap 都易于编写，但无旋式 treap 的操作方式使得它天生支持维护序列、可持久化等特性。这里以重新实现 `set<int>` （不可重集合）为例，介绍无旋式 treap。
+重要的是不用旋转。
 
-## 无旋式 treap 的核心操作
+$\texttt{FHQ Treap}$ 同时也借用了 $\texttt{Treap}$ 的特点,每一个节点拥有两个权值,一个是二叉树权值 $tree$,另一个是 $heap$。其次,它基于两个操作,一个是分裂 $\texttt{Split}$,另一个是 $\texttt{Merge}$。
 
-无旋式 treap 又称分裂合并 treap。它仅有两种核心操作，即为分裂与合并。下面逐一介绍这两种操作。
+$\texttt{Split}$ 的意思就是将这颗二叉树按某种条件掰开两半。这道题是按权值的大小掰开。假如一棵树要以 $\texttt{6}$ 来掰开,如图 : (下方都是 $tree$ 值)
 
-### 分裂（split）
+![](https://i.loli.net/2019/02/23/5c70f2d1b0d50.png)
 
-分裂过程接受两个参数：根指针 $u$ 、关键值 $key$ 。结果为将根指针指向的 treap 分裂为两个 treap，第一个 treap 所有结点的关键值小于等于 $key$ ，第二个 treap 所有结点的关键值大于 $key$ 。该过程首先判断 $key$ 是否小于 $u$ 的关键值，若小于，则说明 $u$ 及其右子树全部属于第二个 treap，否则说明 $u$ 及其左子树全部属于第一个 treap。根据此判断决定应向左子树递归还是应向右子树递归，继续分裂子树。待子树分裂完成后按刚刚的判断情况连接 $u$ 的左子树或右子树到递归分裂所得的子树中。
+然后大力开花
 
-```c++
-pair<node *, node *> split(node *u, int key) {
-  if (u == nullptr) {
-    return make_pair(nullptr, nullptr);
-  }
-  if (key < u->key) {
-    pair<node *, node *> o = split(u->lch, key);
-    u->lch = o.second;
-    return make_pair(o.first, u);
-  } else {
-    pair<node *, node *> o = split(u->rch, key);
-    u->rch = o.first;
-    return make_pair(u, o.second);
-  }
-}
+![](https://i.loli.net/2019/02/23/5c70f2f76c4dc.png)
+
+约定 : 分裂后左边的树为 $x$,右边的树为 $y$,它们的根为 $X$ 和 $Y$。
+
+那么合并呢? 就是大力将两棵树合在一起。
+
+那么这两个操作有什么用呢?
+
+$$\large\texttt{Insert}$$
+
+首先是插入一个数字 $k$。
+
+我们想,如果我们按照 $k$ 掰开整颗树,然后将 $k$ 强行套进去,然后再合起来是不是就可以呢了。
+
+图解 : (假如 $\texttt{Insert}\ 5$)
+
+![](https://i.loli.net/2019/02/23/5c70f511e0404.png)
+
+然后是 $\texttt{FHQ Treap}$ 的插入 (博主没有考虑 $heap$ 值,所以大家先感性理解)
+
+![](https://i.loli.net/2019/02/23/5c70f674ddf72.png)
+
+代码?
+
+```pascal
+procedure Insert(val:longint);
+var x,y,o:longint;
+begin
+	x:=0; y:=0; Add(val); o:=n; // 新建一个节点,左树的根为 x,右树的根诶 y
+	Split(root,x,y,val); // 这一个分裂操作会返回 x,y,还会将一些边改变
+	Merge(x,x,o); Merge(root,x,y); // 将 x 树和新节点合并,形成的新树跟 y 节点合并
+end;
+```
+我们可以依赖 $\texttt{Merge}$ 来维护堆的性质。
+ 
+
+$$\large\texttt{Delete}$$
+
+众所周知,$\texttt{BST}$ 的删除无比麻烦。
+
+$\texttt{FHQ Treap}$ 可真是嗨到不行。
+
+我们可以知道,如果我们把一个点的左儿子和右儿子合在一起,那么这个点就会变成 $\texttt{JO}$ 极生物。
+
+我们要删除节点 $k$。
+
+首先我们要把这棵树分成以 $k$ 领导的树和非 $k$ 领导的树,就是大力掰开。然后把以 $k$ 领导的树的左儿子和右儿子合起来,将 $k$ 丢入虚无。然后再合并新合成的树和非 $k$ 领导的树。
+
+图解 : (假如我们 $\texttt{Delete}\ 9$)
+
+![](https://i.loli.net/2019/02/23/5c70fa1c92768.png)
+
+```pascal
+procedure Delete(val:longint);
+var x,y,o:longint;
+begin
+	x:=0; y:=0; o:=0;
+	Split(root,x,y,val); // 分裂成 x,y 树 
+   	Split(x,x,o,val-1); // 分裂成 x',o 树
+	Merge(o,son[o,0],son[o,1]); // 将 o 树的根干掉,然后变成新的 o 树
+	Merge(x,x,o); // o+x' 树=x树
+   	Merge(root,x,y); // x+y树
+end;
 ```
 
-### 合并（merge）
+$$\large\texttt{Query}$$
 
-合并过程接受两个参数：左 treap 的根指针 $u$ 、右 treap 的根指针 $v$ 。必须满足 $u$ 中所有结点的关键值小于等于 $v$ 中左右结点的关键值。因为两个 treap 已经有序，我们只需要考虑 $priority$ 来决定哪个 treap 应与另一个 treap 的儿子合并。若 $u$ 的根结点的 $priority$ 大于 $v$ 的，那么 $u$ 即为新根结点， $v$ 应与 $u$ 的右子树合并；反之，则 $v$ 作为新根结点，然后让 $u$ 与 $v$ 的左子树合并。不难发现，这样合并所得的树依然满足 $priority$ 的大根堆性质。
+这个操作是查询第 $K$ 大,要按照普通的查询方法来搞。
 
-```c++
-node *merge(node *u, node *v) {
-  if (u == nullptr) {
-    return v;
-  }
-  if (v == nullptr) {
-    return u;
-  }
-  if (u->priority > v->priority) {
-    u->rch = merge(u->rch, v);
-    return u;
-  } else {
-    v->lch = merge(u, v->lch);
-    return v;
-  }
-}
+```pascal
+function Query(now,k:longint):longint;
+begin
+	Query:=0;
+	if size[son[now,0]]+1=k then exit(tree[now]);
+	if size[son[now,0]]>=k then Query:=Query(son[now,0],k) else
+	Query:=Query(son[now,1],k-size[son[now,0]]-1);
+end;
 ```
 
-### 建树（build）
+$$\large\texttt{Rank}$$
 
-将一个有 $n$ 个节点的序列 $a_i$ 转化为一棵 treap。
+求数字 $k$ 的排名。
 
-定义 `Merge(x,y)` 表示将根为 $x$ 和 $y$ 的两棵 Treap 合并成一棵，其根为该函数的返回值。需要保证 $x<y$ 。
+我们再次大力掰开,把 $k-1$ 这个点拿出来。这个时候根 $x$ 都是 $\leq k-1$ 的 (也就是 $< k$)。然后我们把它的 $size$ 拿出来,加个一就好了。
 
-定义 `Split(o,k,x,y)` 表示将根为 $o$ 的 Treap 分裂成 $x,y$ 两个部分，保证 $x < y$ ，即将该 Treap 分裂成权值小于等于 $k$ 的项和其他，分别为 $x$ 和 $y$ 。
-
-可以依次暴力插入这 $n$ 个节点，每次插入一个权值为 $v$ 的节点时，将整棵 treap 按照权值分裂成权值小于等于 $v$ 的和权值大于 $v$ 的两部分，然后新建一个权值为 $v$ 的节点，将两部分和新节点按从小到大的顺序依次合并，时间复杂度 $O(n\log_2 n)$ ，单点插入时间复杂度 $O(\log_2 n)$ 。
-
-```cpp
-void build(int n, int a[]) {
-  int x, y;
-  for (int i = 1; i <= n; i++) {
-    split(rt, a[i], x, y);
-    rt = merge(merge(x, newnode(a[i])), y);
-  }
-}
+```pascal
+function Rank(k:longint):longint;
+var x,y:longint;
+begin
+	x:=0; y:=0; Split(root,x,y,k-1);
+	Rank:=size[x]+1; Merge(root,x,y);
+end;
 ```
 
-在某些题目内，可能会有多次插入一段序列的操作，这是就需要在 $O(n)$ 的时间复杂度内完成建树操作。（假设这些节点已经有序）
+$$\large\texttt{Precursor}$$
 
-方法一：直接将这 $n$ 个节点构造成一棵类线段树，即每次选取最中间的节点作为一段区间的树根，这样能保证树高为 $O(\log_2 n)$ 。然后对每个节点钦定优先值，保证其满足堆的性质。
+求数字 $k$ 的前缀。
 
-方法二：直接将这 $n$ 个节点构造成一棵类线段树，即每次选取最中间的节点作为一段区间的树根，这样能保证树高为 $O(\log_2 n)$ 。然后给每个节点一个随机优先级，不保证其满足堆的性质。因为非旋式 treap 的优先级不是维护堆的性质，保证树高的，而是使 `merge` 操作更加随机一点，所以也是正确的。
+你按照 $k-1$ 掰开这棵树,就可以保证这棵树都是 $< k$ 的,然后找最大值。
 
-方法三：观察到 treap 是一个笛卡尔树，利用笛卡尔树的 $O(n)$ 建树方法即可，用单调栈维护右脊柱即可。
+图解 : ($\texttt{Precursor}\ 5$)
 
-## 将 treap 包装成为 `set<int>` 
+![](https://i.loli.net/2019/02/23/5c70fc769faf7.png)
 
-### count 函数
-
-直接依靠二叉搜索树的性质查找即可。
-
-```c++
-int find(node *u, int key) {
-  if (u == nullptr) {
-    return 0;
-  }
-  if (key == u->key) {
-    return 1;
-  }
-  if (key < u->key) {
-    return find(u->lch, key);
-  } else {
-    return find(u->rch, key);
-  }
-}
-
-int count(int key) { return find(root, key); }
+```pascal
+function Precursor(k:longint):longint;
+var x,y:longint;
+begin
+	x:=0; y:=0; Split(root,x,y,k-1);
+	Precursor:=Query(x,size[x]);
+	Merge(root,x,y);
+end;
 ```
 
-### insert 函数
+$$\large\texttt{Next}$$
 
-先在待插入的关键值处将整棵 treap 分裂，判断关键值是否已插入过之后新建一个结点，包含待插入的关键值，然后进行两次合并操作即可。
+求数字 $k$ 的后继。
 
-```c++
-void insert(int key) {
-  pair<node*, node*> o = split(root, key);
-  if (find(root, key) == 0) {
-    o.first = merge(o.first, new node(key));
-  }
-  root = merge(o.first, o.second);
-}
+你按照 $k$ 掰开这棵树,就可以保证这棵树都是 $\ge k$ 的,然后找最小值。
+
+```pascal
+function Next(k:longint):longint;
+var x,y:longint;
+begin
+	x:=0; y:=0; Split(root,x,y,k);
+	Next:=Query(y,1);
+	Merge(root,x,y);
+end;
+```
+$$\large\texttt{Split}$$
+
+激动人心的时候到了。
+
+
+$son[i,0/1]$ 为左右儿子。
+
+按照 $tree$ 来分裂。
+
+图解 : (红色圈代表现在所在的节点,蓝色、橙色代表经过红色圈后所推出这一部分在左树还是右树,灰色代表未知)
+
+![](https://i.loli.net/2019/02/23/5c7117fb8b454.png)
+
+```pascal
+procedure Split(now:longint;var a,b:longint;val:longint);
+begin
+	// now 为现在的节点,a,b 为分裂的树,val 为要掰开的值
+	if now=0 then begin a:=0; b:=0; exit; end; // 结束分裂
+	if tree[now]<=val then // 如果这个 tree 值要放在左边
+	begin a:=now; Split(son[now,1],son[a,1],b,val); end // 那么这个树 a 的右儿子还是可能会大于 val 的,所以给 b
+	else begin b:=now; Split(son[now,0],a,son[b,0],val); end; // 同理
+	size[now]:=size[son[now,0]]+size[son[now,1]]+1;
+end;
+```
+注意,$\texttt{Split}$ 会让整棵树分为两棵树 (连边上),然后会返回两个权值为两棵树的根。
+
+一次分裂的时间复杂度为 $O(Height)$,期望为 $O(\log N)$。 (如果你将大佬的生日编入随机,那么你的期望效率将会大大提升)
+
+$$\large\texttt{Merge}$$
+
+满足 $heap$ 来合并。
+
+因为分裂成 $x,y$ 树,那么 $y$ 树中的任意一个点的值肯定是大于 $x$ 树的。因此我们只需要确定父子关系,这由 $heap$ (小根堆) 决定。如果 $x$ 中的某点的 $a$ 的 $heap$ 小于 $y$ 中的 $b$ 的 $heap$,那么 $b$ 肯定是 $a$ 的右儿子,反之 $a$ 为 $b$ 的左儿子。
+
+图解 : (以下圈外是 $heap$ 值,橙色部分为被选入儿子的部分)
+
+![](https://miao.su/images/2019/02/26/311dac211f88e48ebe83f.png)
+
+
+![](https://miao.su/images/2019/02/26/5a1e4d427469dee695f95.png)
+
+这样一次的时间复杂度最多是 $O(x_{Height}+y_{Height})$,期望也是 $O(\log N)$。
+
+```pascal
+procedure Merge(var now:longint;a,b:longint);
+begin
+	if (a=0)or(b=0) then begin now:=a+b; exit; end; // 一个树为空了,另一个树整体插入
+	if (heap[a]<heap[b]) then // 如果 a 树为 b 树的父亲,
+ // 又因为 b 树肯定是大于 a 树的,所以 b 树是 a 树的右后代,继续往右边合并,而左儿子不管
+	begin now:=a; Merge(son[now,1],son[a,1],b); end 
+	else begin now:=b; Merge(son[now,0],a,son[b,0]); end; // 同理
+	size[now]:=size[son[now,0]]+size[son[now,1]]+1;
+end;
 ```
 
-### erase 函数
+$$\large\texttt{Code}$$
 
-将具有待删除的关键值的结点从整棵 treap 中孤立出来（进行两侧分裂操作），删除中间的一段（具有待删除关键值），再将左右两端合并即可。
+```pascal
+Uses math;
 
-```c++
-void erase(int key) {
-  pair<node*, node*> o = split(root, key - 1);
-  pair<node*, node*> p = split(o.second, key);
-  delete p.first;
-  root = merge(o.first, p.second);
-}
+Const
+	RP=2006212; 
+	total=100010;
+
+var
+	size,tree,heap:array[-1..total*2] of longint;
+	son:array[-1..total*2,-1..2] of longint;
+	i,m,n,k,root,order:longint;
+
+procedure Add(val:longint); begin inc(n); size[n]:=1; tree[n]:=val; heap[n]:=random(RP); end;
+
+procedure Split(now:longint;var a,b:longint;val:longint);
+begin
+	if now=0 then begin a:=0; b:=0; exit; end;
+	if tree[now]<=val then
+	begin a:=now; Split(son[now,1],son[a,1],b,val); end
+	else begin b:=now; Split(son[now,0],a,son[b,0],val); end;
+	size[now]:=size[son[now,0]]+size[son[now,1]]+1;
+end;
+
+procedure Merge(var now:longint;a,b:longint);
+begin
+	if (a=0)or(b=0) then begin now:=a+b; exit; end;
+	if (heap[a]<heap[b]) then
+	begin now:=a; Merge(son[now,1],son[a,1],b); end
+	else begin now:=b; Merge(son[now,0],a,son[b,0]); end;
+	size[now]:=size[son[now,0]]+size[son[now,1]]+1;
+end;
+
+procedure Insert(val:longint);
+var x,y,o:longint;
+begin
+	x:=0; y:=0; Add(val); o:=n;
+	Split(root,x,y,val);
+	Merge(x,x,o); Merge(root,x,y);
+end;
+
+procedure Delete(val:longint);
+var x,y,o:longint;
+begin
+	x:=0; y:=0; o:=0;
+	Split(root,x,y,val); Split(x,x,o,val-1);
+	Merge(o,son[o,0],son[o,1]);
+	Merge(x,x,o); Merge(root,x,y);
+end;
+
+function Query(now,k:longint):longint;
+begin
+	Query:=0;
+	if size[son[now,0]]+1=k then exit(tree[now]);
+	if size[son[now,0]]>=k then Query:=Query(son[now,0],k) else
+	Query:=Query(son[now,1],k-size[son[now,0]]-1);
+end;
+
+function Rank(k:longint):longint;
+var x,y:longint;
+begin
+	x:=0; y:=0; Split(root,x,y,k-1);
+	Rank:=size[x]+1; Merge(root,x,y);
+end;
+
+function Precursor(k:longint):longint;
+var x,y:longint;
+begin
+	x:=0; y:=0; Split(root,x,y,k-1);
+	Precursor:=Query(x,size[x]);
+	Merge(root,x,y);
+end;
+
+function Next(k:longint):longint;
+var x,y:longint;
+begin
+	x:=0; y:=0; Split(root,x,y,k);
+	Next:=Query(y,1);
+	Merge(root,x,y);
+end;
+
+begin
+	randomize; root:=1; Add(maxlongint); heap[root]:=-maxlongint;
+	read(m);
+	for i:=1 to m do
+	begin
+		read(order,k);
+		Case order of
+			1 : Insert(k);
+			2 : Delete(k);
+			3 : writeln(Rank(k)); // Get num's rank
+			4 : writeln(Query(root,k)); // Get rank's num
+			5 : writeln(Precursor(k));
+			6 : writeln(Next(k));
+		end;
+	end;
+end.
 ```
 
-## 旋转 treap
+本文可能会有细节错误 ~~(有锅)~~ 之类的,已有发现敬请提出。
 
-旋转 treap 在做普通平衡树题的时候，是所有平衡树中常数较小的
-
-维护平衡的方式为旋转。性质与普通二叉搜索树类似
-
-因为普通的二叉搜索树会被递增或递减的数据卡，用 treap 对每个节点定义一个权值，由 rand 得到，从而防止特殊数据卡。
-
-每次删除/插入时通过 rand 值决定要不要旋转即可，其他操作与二叉搜索树类似
-
-以下是 bzoj 普通平衡树模板代码
-
-```cpp
-#include <algorithm>
-#include <cstdio>
-#include <iostream>
-
-#define maxn 100005
-#define INF (1 << 30)
-
-int n;
-
-struct treap {
-  int l[maxn], r[maxn], val[maxn], rnd[maxn], size[maxn], w[maxn];
-  int sz, ans, rt;
-  inline void pushup(int x) { size[x] = size[l[x]] + size[r[x]] + w[x]; }
-  void lrotate(int &k) {
-    int t = r[k];
-    r[k] = l[t];
-    l[t] = k;
-    size[t] = size[k];
-    pushup(k);
-    k = t;
-  }
-  void rrotate(int &k) {
-    int t = l[k];
-    l[k] = r[t];
-    r[t] = k;
-    size[t] = size[k];
-    pushup(k);
-    k = t;
-  }
-  void insert(int &k, int x) {
-    if (!k) {
-      sz++;
-      k = sz;
-      size[k] = 1;
-      w[k] = 1;
-      val[k] = x;
-      rnd[k] = rand();
-      return;
-    }
-    size[k]++;
-    if (val[k] == x) {
-      w[k]++;
-    } else if (val[k] < x) {
-      insert(r[k], x);
-      if (rnd[r[k]] < rnd[k]) lrotate(k);
-    } else {
-      insert(l[k], x);
-      if (rnd[l[k]] < rnd[k]) rrotate(k);
-    }
-  }
-
-  void del(int &k, int x) {
-    if (!k) return;
-    if (val[k] == x) {
-      if (w[k] > 1) {
-        w[k]--;
-        size[k]--;
-        return;
-      }
-      if (l[k] == 0 || r[k] == 0)
-        k = l[k] + r[k];
-      else if (rnd[l[k]] < rnd[r[k]]) {
-        rrotate(k);
-        del(k, x);
-      } else {
-        lrotate(k);
-        del(k, x);
-      }
-    } else if (val[k] < x) {
-      size[k]--;
-      del(r[k], x);
-    } else {
-      size[k]--;
-      del(l[k], x);
-    }
-  }
-
-  int queryrank(int k, int x) {
-    if (!k) return 0;
-    if (val[k] == x)
-      return size[l[k]] + 1;
-    else if (x > val[k]) {
-      return size[l[k]] + w[k] + queryrank(r[k], x);
-    } else
-      return queryrank(l[k], x);
-  }
-
-  int querynum(int k, int x) {
-    if (!k) return 0;
-    if (x <= size[l[k]])
-      return querynum(l[k], x);
-    else if (x > size[l[k]] + w[k])
-      return querynum(r[k], x - size[l[k]] - w[k]);
-    else
-      return val[k];
-  }
-
-  void querypre(int k, int x) {
-    if (!k) return;
-    if (val[k] < x)
-      ans = k, querypre(r[k], x);
-    else
-      querypre(l[k], x);
-  }
-
-  void querysub(int k, int x) {
-    if (!k) return;
-    if (val[k] > x)
-      ans = k, querysub(l[k], x);
-    else
-      querysub(r[k], x);
-  }
-} T;
-
-int main() {
-  srand(123);
-  scanf("%d", &n);
-  int opt, x;
-  for (int i = 1; i <= n; i++) {
-    scanf("%d%d", &opt, &x);
-    if (opt == 1)
-      T.insert(T.rt, x);
-    else if (opt == 2)
-      T.del(T.rt, x);
-    else if (opt == 3) {
-      printf("%d\n", T.queryrank(T.rt, x));
-    } else if (opt == 4) {
-      printf("%d\n", T.querynum(T.rt, x));
-    } else if (opt == 5) {
-      T.ans = 0;
-      T.querypre(T.rt, x);
-      printf("%d\n", T.val[T.ans]);
-    } else if (opt == 6) {
-      T.ans = 0;
-      T.querysub(T.rt, x);
-      printf("%d\n", T.val[T.ans]);
-    }
-  }
-  return 0;
-}
-```
-
-## 练习题
-
-[luogu P3369【模板】普通平衡树](https://www.luogu.org/problemnew/show/P3369)
-
-[luogu P3391【模板】文艺平衡树（Splay）](https://www.luogu.org/problemnew/show/P3391)
-
-[luogu P2596\[ZJOI2006\]书架](https://www.luogu.org/problemnew/show/P2596)
-
-[luogu P2042\[NOI2005\]维护数列](https://www.luogu.org/problemnew/show/P2042)
-
-[CF 702F T-Shirts](http://codeforces.com/problemset/problem/702/F)
+博主书写不易,敬请单连。关于一些奇奇怪怪的东西,请看 :[关于普通平衡树的均摊复杂度的优化](https://www.luogu.org/blog/acking/guan-yu-pu-tong-ping-heng-shu-di-jun-tan-fu-za-du-di-you-hua)。
