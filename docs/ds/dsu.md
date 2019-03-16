@@ -118,6 +118,6 @@ void unionSet(int x, int y) {
 
 [最小生成树](/graph/mst)Kruskal 是基于并查集的算法。
 
-[1]Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281.
-[2]Yao, A. C. (1985). On the expected performance of path compression algorithms. SIAM Journal on Computing, 14(1), 129-133.
-[3]上面两个论文引用源自https://www.zhihu.com/question/28410263/answer/40966441
+- [1]Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281.    [ResearchGate PDF](https://www.researchgate.net/profile/Jan_Van_Leeuwen2/publication/220430653_Worst-case_Analysis_of_Set_Union_Algorithms/links/0a85e53cd28bfdf5eb000000/Worst-case-Analysis-of-Set-Union-Algorithms.pdf)
+- [2]Yao, A. C. (1985). On the expected performance of path compression algorithms. [SIAM Journal on Computing, 14(1), 129-133.](https://epubs.siam.org/doi/abs/10.1137/0214010?journalCode=smjcat)     
+- [3]上面两个论文引用源自[知乎回答：是否在并查集中真的有二分路径压缩优化？](https://www.zhihu.com/question/28410263/answer/40966441)     
