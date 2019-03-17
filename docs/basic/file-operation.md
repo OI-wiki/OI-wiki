@@ -34,7 +34,7 @@ FILE* freopen(const char* filename, const char* mode, FILE* stream);
 
 - `r`：以只读方式打开文件，文件必须存在，只允许读入数据**（常用）**
 - `r+`：以读 / 写方式打开文件，文件必须存在，允许读写数据
-- `rb`：以只读方式打卡二进制文件，文件必须存在，只允许读入数据
+- `rb`：以只读方式打开二进制文件，文件必须存在，只允许读入数据
 - `rb+`：以读写方式打开二进制文件，文件必须存在，允许读写数据
 - `rt+`：以读写方式打开文本文件，允许读写
 - `w`：以只写方式打开文件，文件不存在会新建文件，否则清空内容，只允许写入数据**（常用）**
@@ -69,7 +69,8 @@ fclose(stdin);
 fclose(stdout);
 ```
 
-!!! 注 `printf/scanf/cin/cout`等函数默认使用 `stdin/stdout`，将 `stdin/stdout`重定向后，这些函数将输入 / 输出到被定向的文件
+!!! 注
+    `printf/scanf/cin/cout`等函数默认使用 `stdin/stdout`，将 `stdin/stdout`重定向后，这些函数将输入 / 输出到被定向的文件
 
 ### 模板
 
