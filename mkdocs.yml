@@ -76,7 +76,7 @@ nav:
       - 单调队列/单调栈优化: dp/optimizations/monotonous-queue-stack.md
       - 斜率优化: dp/optimizations/convex-hull-optimization.md
       - 四边形不等式优化: dp/optimizations/knuth-yao-quadrangle-inequality.md
-      - 状态设计优化 dp/optimizations/state-optimization.md
+      - 状态设计优化: dp/optimizations/state-optimization.md
     - 其它 DP 方法: dp/misc.md
   - 字符串:
     - 字符串部分简介: string/index.md
