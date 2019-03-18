@@ -53,9 +53,11 @@ APIO2014|luogu3649 回文串
 
 
 ```cpp
+//变量名与上文基本相同，其中ptr为转移指针，数组大小应为字符集大小
 class PA
 {
     private:
+        static const int N=100010;
         struct Node
         {
             int len;
@@ -64,11 +66,13 @@ class PA
             {
                 memset(ptr,0,sizeof(ptr));
             }
-        }nd[100010];
-        int size,cnt;
-        char s[100010];
+        }nd[N];
+        
+        int size,cnt;//size为字符串长度，cnt为节点个数
+        int cur;//当前指针停留的位置，即最后插入字符所对应的节点
+        char s[N];
 
-        int getfail(int x)
+        int getfail(int x)//沿着fail指针找到第一个回文后缀
         {
             while(s[size-nd[x].len-1]!=s[size])
             {
@@ -78,7 +82,7 @@ class PA
         }
 
     public:
-        int cur;
+        
         PA():size(0),cnt(0),cur(0)
         {
             nd[cnt]=Node(0);
@@ -91,8 +95,8 @@ class PA
         void extend(char c)
         {
             s[++size]=c;
-            int now=getfail(cur);
-            if(!nd[now].ptr[c-'a'])
+            int now=getfail(cur);//找到插入的位置
+            if(!nd[now].ptr[c-'a'])//若没有这个节点，则新建并求出它的fail指针
             {
                 int tmp=++cnt;
                 nd[tmp]=Node(nd[now].len+2);
