@@ -53,46 +53,59 @@ APIO2014|luogu3649 回文串
 
 
 ```cpp
-#define fr(i,a,b) for(int i=(a),_end_=(b);i<=_end_;i++)
-#define fd(i,a,b) for(int i=(a),_end_=(b);i>=_end_;i--)
-#define N 300010
-long long n,t[N][30],w[N],l[N],f[N],c,ans;
-char s[N];
-int main()
+class PA
 {
-	scanf("%s",s+1);
-	n=strlen(s+1);
-	c=2;
-	f[1]=f[2]=1;
-	l[1]=-1;
-	long long j=2;
-	s[0]='#';
-	fr(i,1,n)
-	{
-		while(s[i-l[j]-1]!=s[i])
-			j=f[j];
-		if(!t[j][s[i]-'a'])
-		{
-			c++;
-			long long k=j;
-			l[c]=l[k]+2;
-			k=f[k];
-			while(s[i-l[k]-1]!=s[i])
-				k=f[k];
-			f[c]=t[k][s[i]-'a'];
-			if(!f[c])
-				f[c]=2;
-			t[j][s[i]-'a']=c;
-		}
-		j=t[j][s[i]-'a'];
-		w[j]++;
-	}
-	fd(i,c,1)
-		w[f[i]]+=w[i];
-	fr(i,1,c)
-		ans=max(ans,l[i]*w[i]);
-	printf("%lld\n",ans);
-	return 0;
-}
+    private:
+        struct Node
+        {
+            int len;
+            int ptr[26],fail;
+            Node(int len=0):len(len),fail(0)
+            {
+                memset(ptr,0,sizeof(ptr));
+            }
+        }nd[100010];
+        int size,cnt;
+        char s[100010];
+
+        int getfail(int x)
+        {
+            while(s[size-nd[x].len-1]!=s[size])
+            {
+                x=nd[x].fail;
+            }
+            return x;
+        }
+
+    public:
+        int cur;
+        PA():size(0),cnt(0),cur(0)
+        {
+            nd[cnt]=Node(0);
+            nd[cnt].fail=1;
+            nd[++cnt]=Node(-1);
+            nd[cnt].fail=0;
+            s[0]='$';
+        }
+
+        void extend(char c)
+        {
+            s[++size]=c;
+            int now=getfail(cur);
+            if(!nd[now].ptr[c-'a'])
+            {
+                int tmp=++cnt;
+                nd[tmp]=Node(nd[now].len+2);
+                nd[tmp].fail=nd[getfail(nd[now].fail)].ptr[c-'a'];
+                nd[now].ptr[c-'a']=tmp;
+            }
+            cur=nd[now].ptr[c-'a'];
+        }
+
+        int qlen()
+        {
+            return nd[cur].len;
+        }
+}A,B;
 ```
 
