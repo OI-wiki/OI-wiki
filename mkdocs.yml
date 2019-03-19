@@ -64,14 +64,19 @@ nav:
   - 动态规划:
     - 动态规划部分简介: dp/index.md
     - 记忆化搜索: dp/memo.md
-    - 背包 DP: dp/backpack.md
+    - 背包 DP: dp/knapsack.md
     - 区间 DP: dp/interval.md
     - DAG 上的 DP: dp/dag.md
     - 树形 DP: dp/tree.md
     - 状压 DP: dp/state.md
     - 数位 DP: dp/number.md
     - 插头 DP: dp/plug.md
-    - DP 优化: dp/optimization.md
+    - DP 优化:
+      - 二进制分组解多重背包: dp/optimizations/binary-knapsack.md
+      - 单调队列/单调栈优化: dp/optimizations/monotonous-queue-stack.md
+      - 斜率优化: dp/optimizations/convex-hull-optimization.md
+      - 四边形不等式优化: dp/optimizations/knuth-yao-quadrangle-inequality.md
+      - 状态设计优化: dp/optimizations/state-optimization.md
     - 其它 DP 方法: dp/misc.md
   - 字符串:
     - 字符串部分简介: string/index.md
@@ -209,6 +214,7 @@ nav:
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
     - 最小生成树: graph/mst.md
+    - 最小树形图: graph/mdst.md
     - 最短路: graph/shortest-path.md
     - 差分约束: graph/differential-constraints.md
     - k 短路: graph/kth-path.md
@@ -251,7 +257,6 @@ nav:
     - 爬山算法: misc/hill-climbing.md
     - 分数规划: misc/fractional-programming.md
     - 模拟退火: misc/simulated-annealing.md
-    - 朱刘算法: misc/zhu-liu-algorithm.md
     - 矩阵树定理: misc/matrix-tree.md
     - 随机增量法: misc/random-incremental.md
     - 随机化: misc/random.md
@@ -259,6 +264,7 @@ nav:
     - 距离: misc/distance.md
     - 字节顺序: misc/endianness.md
     - 复杂度: misc/complexity.md
+    - 计算理论基础: misc/cc-basic.md
     - 读入、输出优化: misc/io.md
     - 离散化: misc/discrete.md
     - 树上启发式合并: misc/dsu-on-tree.md
@@ -294,7 +300,7 @@ extra:
   githash: ''
 
 extra_javascript:
-  - 'https://cdnjs.loli.net/ajax/libs/Han/3.3.0/han.min.js'
+  - 'https://cdn.jsdelivr.net/gh/ethantw/Han@3.3.0/dist/han.min.js'
   - '_static/js/extra.js?v=10'
   - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
 
