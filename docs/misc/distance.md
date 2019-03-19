@@ -2,7 +2,7 @@
 
 ### 曼哈顿距离
 
-对于平面上两点 $A(x_1, y_1)$ , $B(x_2, y_2)$  $Dis(A, B) = |x_1-x_2| + |y_1-y_2|$ 
+对于平面上两点 $A(x_1,y_1),B(x_2,y_2)$  $Dis(A, B) = |x_1-x_2| + |y_1-y_2|$ 
 
 一般来讲，我们只会用到二维平面上的曼哈顿距离
 
@@ -160,53 +160,31 @@ $=\sum_{i = 1}^{n}|x_i - y_i|$
 **Code**
 
 ```cpp
-
 #include <bits/stdc++.h>
 
 using namespace std;
 
-  
-
-template < class T > inline void read(T &x) {
-
-x = 0;
-
-char c = getchar();
-
-bool f = 0;
-
-for (; !isdigit(c); c = getchar()) f ^= c == '-';
-
-for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
-
-x = f ? -x : x;
-
+template <class T>
+inline void read(T &x) {
+    x = 0;
+    char c = getchar();
+    bool f = 0;
+    for (; !isdigit(c); c = getchar()) f ^= c == '-';
+    for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
+    x = f ? -x : x;
 }
-
-  
 
 int n, x, y, minx = 0x7fffffff, maxx, miny = 0x7fffffff, maxy;
 
-  
-
 int main() {
-
-read(n);
-
-for (int i = 1; i <= n; i++) {
-
-read(x), read(y);
-
-minx = min(minx, x + y), maxx = max(maxx, x + y);
-
-miny = min(miny, x - y), maxy = max(maxy, x - y);
-
-}
-
-printf("%d\n", max(maxx - minx, maxy - miny));
-
-return 0;
-
+    read(n);
+    for (int i = 1; i <= n; i++) {
+        read(x), read(y);
+        minx = min(minx, x + y), maxx = max(maxx, x + y);
+        miny = min(miny, x - y), maxy = max(maxy, x - y);
+    }
+    printf("%d\n", max(maxx - minx, maxy - miny));
+    return 0;
 }
 ```
 
@@ -343,48 +321,28 @@ $=max\begin{Bmatrix} |\frac{x_1 + y_1}{2}-\frac{x_2 + y_2}{2}|+|\frac{x_1 - y_1}
 
 using namespace std;
 
-template < class T >; inline void read(T &x) {
-
-x = 0;
-
-char c = getchar();
-
-bool f = 0;
-
-for (; !isdigit(c); c = getchar()) f ^= c == '-';
-
-for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
-
-x = f ? -x : x;
-
+template <class T>
+inline void read(T &x) {
+    x = 0;
+    char c = getchar();
+    bool f = 0;
+    for (; !isdigit(c); c = getchar()) f ^= c == '-';
+    for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
+    x = f ? -x : x;
 }
-
-  
 
 int n, x, y, a, b, minx = 0x7fffffff, maxx, miny = 0x7fffffff, maxy;
 
-  
-
 int main() {
-
-read(n);
-
-for (int i = 1; i <= n; i++) {
-
-read(a), read(b);
-
-x = a + b, y = a - b;
-
-minx = min(minx, x), maxx = max(maxx, x);
-
-miny = min(miny, y), maxy = max(maxy, y);
-
-}
-
-printf("%d\n", max(maxx - minx, maxy - miny));
-
-return 0;
-
+    read(n);
+    for (int i = 1; i <= n; i++) {
+        read(a), read(b);
+        x = a + b, y = a - b;
+        minx = min(minx, x), maxx = max(maxx, x);
+        miny = min(miny, y), maxy = max(maxy, y);
+    }
+    printf("%d\n", max(maxx - minx, maxy - miny));
+    return 0;
 }
 ```
 
@@ -392,7 +350,6 @@ return 0;
 
 
 搬运自[浅谈三种常见的距离算法](https://www.luogu.org/blog/xuxing/Distance-Algorithm)，感谢作者 [xuxing](https://www.luogu.org/space/show?uid=32139) 的授权。
-
 
 ------
 当然，还有其他的一些距离，但是在 OI 中并不常用，有兴趣的话可以了解一下。
