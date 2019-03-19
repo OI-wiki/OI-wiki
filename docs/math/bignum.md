@@ -648,7 +648,7 @@ $$
     }
     ```
 
-!!! " 关于 `new` 和 `delete` "
+??? " 关于 `new` 和 `delete` "
 
     见[内存池](/intro/common-tricks/#_4)。
 
