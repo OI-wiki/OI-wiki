@@ -60,7 +60,7 @@ $|P| = \sqrt{x^2+y^2}$
 
 那么，三维空间中两点的欧氏距离公式呢？我们来观察下图。
 
-<p><img src="[https://cdn.luogu.org/upload/pic/47571.png](https://cdn.luogu.org/upload/pic/47571.png)" alt="" /></p>
+![https://cdn.luogu.org/upload/pic/47571.png](https://cdn.luogu.org/upload/pic/47571.png)
 
 我们很容易发现，在 $\triangle ADC$ 中， $\angle ADC = 90^\circ$ ；在 $\triangle ACB$ 中， $\angle ACB = 90^\circ$ 。
 
@@ -88,11 +88,11 @@ $= \sqrt{\sum_{i = 1}^{n}(x_i - y_i)^2}$
 
 在二维空间内，两个点之间的曼哈顿距离为它们横坐标之差的绝对值与纵坐标之差的绝对值之和。设点 $A(x_1,y_1),B(x_2,y_2)$ ，则 $A,B$ 之间的曼哈顿距离用公式可以表示为：
 
-<p>$$d(A,B) = |x_1 - x_2| + |y_1 - y_2|$$ 
+$$d(A,B) = |x_1 - x_2| + |y_1 - y_2|$$ 
 
 观察下图：
 
-<p><img src="[https://cdn.luogu.org/upload/pic/47609.png](https://cdn.luogu.org/upload/pic/47609.png)" alt="" /></p>
+![https://cdn.luogu.org/upload/pic/47609.png](https://cdn.luogu.org/upload/pic/47609.png)
 
 在 $A,B$ 间，
 
@@ -104,7 +104,7 @@ $\color{red}\colorbox{white}{红线}$ ， $\color{blue}\colorbox{white}{蓝线}$
 
 同样的栗子，在下图中 $A,B$ 的坐标分别为 $A(6,5),B(2,2)$ 。
 
-<p><img src="[https://cdn.luogu.org/upload/pic/47570.png](https://cdn.luogu.org/upload/pic/47570.png)" alt="" /></p>
+![https://cdn.luogu.org/upload/pic/47570.png](https://cdn.luogu.org/upload/pic/47570.png)
 
 通过公式，我们很容易得到 $A,B$ 两点间的曼哈顿距离：
 
@@ -118,85 +118,56 @@ $=\sum_{i = 1}^{n}|x_i - y_i|$
 
 除了公式之外，曼哈顿距离还具有以下数学性质：
 
-<ul>
+- **非负性**
 
-<li>
+  曼哈顿距离是一个非负数。
 
-<p><strong>非负性</strong></p>
+  $d(i,j)\geq 0$ 
 
-曼哈顿距离是一个非负数。
+- **统一性**
 
-<p>$d(i,j)\geq 0$ 
+  点到自身的曼哈顿距离为 $0$ 。
 
-</li>
+  $d(i,i) = 0$ 
 
-<li>
+- **对称性**
 
-<p><strong>统一性</strong></p>
+  $A$ 到 $B$ 与 $B$ 到 $A$ 的曼哈顿距离相等，且是对称函数。
 
-点到自身的曼哈顿距离为 $0$ 。
+  $d(i,j) = d(j,i)$ 
 
-<p>$d(i,i) = 0$ 
+- **三角不等式**
 
-</li>
+  从点 $i$ 到 $j$ 的直接距离不会大于途经的任何其它点 $k$ 的距离。
 
-<li>
+  $d(i,j)\leq d(i,k)+d(k,j)$ 
 
-<p><strong>对称性</strong></p>
+**例题：[P5098](https://www.luogu.org/problemnew/show/P5098)**
 
-<p>$A$ 到 $B$ 与 $B$ 到 $A$ 的曼哈顿距离相等，且是对称函数。
+**解析：**
 
-<p>$d(i,j) = d(j,i)$ 
-
-</li>
-
-<li>
-
-<p><strong>三角不等式</strong></p>
-
-从点 $i$ 到 $j$ 的直接距离不会大于途经的任何其它点 $k$ 的距离。
-
-<p>$d(i,j)\leq d(i,k)+d(k,j)$ 
-
-</li>
-
-</ul>
-
-<p><strong>例题：<a href="[https://www.luogu.org/problemnew/show/P5098](https://www.luogu.org/problemnew/show/P5098)">P5098</a></strong></p>
-
-<p><strong>解析：</strong></p>
-
-<p><del>（不要被难度吓住，是假的）</del></p>
+~~（不要被难度吓住，是假的）~~
 
 根据题意，对于式子 $|x_1-x_2|+|y_1-y_2|$ ，我们可以假设 $x_1 - x_2 \geq 0$ ，根据 $y_1 - y_2$ 的符号分成两种情况：
 
-<ul>
+- $(y_1 - y_2 \geq 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 + y_1 - (x_2 + y_2)$ 
 
-<li>
+- $(y_1 - y_2&lt; 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 - y_1 - (x_2 - y_2)$ 
 
-<p>$(y_1 - y_2 \geq 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 + y_1 - (x_2 + y_2)$ 
-
-</li>
-
-<li>
-
-<p>$(y_1 - y_2&lt; 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 - y_1 - (x_2 - y_2)$ 
-
-</li>
-
-</ul>
 
 只要分别求出 $x+y, x-y$ 的最大值和最小值即能得出答案。
 
-<p><strong>Code</strong></p>
+**Code**
 
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+```cpp
+
+#include <bits/stdc++.h>
 
 using namespace std;
 
   
 
-template &lt; class T &gt; inline void read(T &amp;x) {
+template < class T > inline void read(T &x) {
 
 x = 0;
 
@@ -206,7 +177,7 @@ bool f = 0;
 
 for (; !isdigit(c); c = getchar()) f ^= c == '-';
 
-for (; isdigit(c); c = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (c ^ 48);
+for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
 
 x = f ? -x : x;
 
@@ -222,7 +193,7 @@ int main() {
 
 read(n);
 
-for (int i = 1; i &lt;= n; i++) {
+for (int i = 1; i <= n; i++) {
 
 read(x), read(y);
 
@@ -236,35 +207,33 @@ printf("%d\n", max(maxx - minx, maxy - miny));
 
 return 0;
 
-}</code></pre>
+}
+```
 
 其实还有第二种做法，那就是把 曼哈顿距离 转化为 切比雪夫距离 求解，最后部分会讲到。
 
-<hr />
+## 三、切比雪夫距离
 
-<h2>三、切比雪夫距离</h2>
-
-<p><strong>切比雪夫距离 是向量空间中的一种度量，二个点之间的距离定义是其各坐标数值差绝对值的最大值。—— <em><strong>来源：<a href="[https://baike.baidu.com/item/%E5%88%87%E6%AF%94%E9%9B%AA%E5%A4%AB%E8%B7%9D%E7%A6%BB](https://baike.baidu.com/item/%E5%88%87%E6%AF%94%E9%9B%AA%E5%A4%AB%E8%B7%9D%E7%A6%BB)">百度百科</a></strong></em> 
+**切比雪夫距离 是向量空间中的一种度量，二个点之间的距离定义是其各坐标数值差绝对值的最大值。—— _**来源：![百度百科](https://baike.baidu.com/item/%E5%88%87%E6%AF%94%E9%9B%AA%E5%A4%AB%E8%B7%9D%E7%A6%BB)**_
 
 在 二维空间 内，两个点之间的切比雪夫距离为它们横坐标之差的绝对值与纵坐标之差的绝对值的最大值。设点 $A(x_1,y_1),B(x_2,y_2)$ ，则 $A,B$ 之间的切比雪夫距离用公式可以表示为：
 
-<p>$$d(A,B) = max(|x_1 - x_2|, |y_1 - y_2|)$$ 
+$$d(A,B) = max(|x_1 - x_2|, |y_1 - y_2|)$$ 
 
 仍然是这个栗子，下图中 $A,B$ 的坐标分别为 $A(6,5),B(2,2)$ 。
 
-<img src="[https://cdn.luogu.org/upload/pic/47570.png](https://cdn.luogu.org/upload/pic/47570.png)" alt="" /></p>
+![https://cdn.luogu.org/upload/pic/47570.png](https://cdn.luogu.org/upload/pic/47570.png)
 
-<p>$$d(A,B) = max(|6 - 2|, |5 - 2|)=max(4,3)=4$$ 
+$$d(A,B) = max(|6 - 2|, |5 - 2|)=max(4,3)=4$$ 
 
-<p>$n$ 维空间 中切比雪夫距离的距离公式：
+$n$ 维空间 中切比雪夫距离的距离公式：
 
-<p>$$d(x,y) = max\begin{Bmatrix} |x_1 - y_1|,|x_2 - y_2|,\cdot \cdot \cdot,|x_n - y_n|\end{Bmatrix}$$
+$$d(x,y) = max\begin{Bmatrix} |x_1 - y_1|,|x_2 - y_2|,\cdot \cdot \cdot,|x_n - y_n|\end{Bmatrix}$$
 
 $= max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in n)$ 
 
-<hr />
 
-<h2>四、（拓展）曼哈顿距离与切比雪夫距离的相互转化</h2>
+## 四、（拓展）曼哈顿距离与切比雪夫距离的相互转化
 
 首先，我们考虑画出平面直角坐标系上所有到原点的 曼哈顿距离 为 $1$ 的点。
 
@@ -272,17 +241,17 @@ $= max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in n)$
 
 将绝对值展开，得到 $4$ 个 一次函数 ，分别是：
 
-<p>$$y = x + 1(x \geq 0, y \geq 0)$$ 
+$$y = x + 1(x \geq 0, y \geq 0)$$ 
 
-<p>$$y = -x + 1(x \leq 0, y \geq 0)$$ 
+$$y = -x + 1(x \leq 0, y \geq 0)$$ 
 
-<p>$$y = x - 1(x \geq 0, y \leq 0)$$ 
+$$y = x - 1(x \geq 0, y \leq 0)$$ 
 
-<p>$$y = -x - 1(x \leq 0, y \leq 0)$$ 
+$$y = -x - 1(x \leq 0, y \leq 0)$$ 
 
 将这 $4$ 个函数画到平面直角坐标系上，得到一个边长为 $\sqrt{2}$ 的正方形，如下图所示：
 
-<p><img src="[https://cdn.luogu.org/upload/pic/47624.png](https://cdn.luogu.org/upload/pic/47624.png)" alt="" /></p>
+![https://cdn.luogu.org/upload/pic/47624.png](https://cdn.luogu.org/upload/pic/47624.png)
 
 正方形边界上所有的点到原点的 曼哈顿距离 都是 $1$ 。
 
@@ -292,17 +261,17 @@ $= max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in n)$
 
 我们将式子展开，也同样可以得到可以得到 $4$ 条 线段，分别是：
 
-<p>$$y = 1(-1\leq x \leq 1)$$ 
+$$y = 1(-1\leq x \leq 1)$$ 
 
-<p>$$y = -1(-1\leq x \leq 1)$$ 
+$$y = -1(-1\leq x \leq 1)$$ 
 
-<p>$$x = 1,(-1\leq y \leq 1)$$ 
+$$x = 1,(-1\leq y \leq 1)$$ 
 
-<p>$$x = -1,(-1\leq y \leq 1)$$ 
+$$x = -1,(-1\leq y \leq 1)$$ 
 
 画到平面直角坐标系上，可以得到一个边长为 $2$ 的正方形，如下图所示：
 
-<p><img src="[https://cdn.luogu.org/upload/pic/47626.png](https://cdn.luogu.org/upload/pic/47626.png)" alt="" /></p>
+![https://cdn.luogu.org/upload/pic/47626.png](https://cdn.luogu.org/upload/pic/47626.png)
 
 正方形边界上所有的点到原点的 切比雪夫距离 都是 $1$ 。
 
@@ -316,7 +285,7 @@ $= max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in n)$
 
 假设 $A(x_1,y_1),B(x_2,y_2)$ ，
 
-<p>$A,B$ 两点的 曼哈顿距离 为：
+$A,B$ 两点的 曼哈顿距离 为：
 
 $d(A,B)=|x_1 - x_2| + |y_1 - y_2|$
 
@@ -342,43 +311,24 @@ $=max\begin{Bmatrix} |\frac{x_1 + y_1}{2}-\frac{x_2 + y_2}{2}|+|\frac{x_1 - y_1}
 
 所以将每一个点 $(x,y)$ 转化为 $(\frac{x + y}{2},\frac{x - y}{2})$ ，新坐标系下的 曼哈顿距离 即为原坐标系下的 切比雪夫距离。
 
-<p><strong>结论：</strong></p>
+**结论：**
 
-<ul>
+- 曼哈顿坐标系是通过切比雪夫坐标系旋转 $45^\circ$ 后，再缩小到原来的一半得到的。
+- 将一个点 $(x,y)$ 的坐标变为 $(x + y, x - y)$ 后，
+- 原坐标系中的 曼哈顿距离 $=$ 新坐标系中的 切比雪夫距离
+- 将一个点 $(x,y)$ 的坐标变为 $(\frac{x + y}{2},\frac{x - y}{2})$ 后，
 
-<li>
-
-曼哈顿坐标系是通过切比雪夫坐标系旋转 $45^\circ$ 后，再缩小到原来的一半得到的。
-
-</li>
-
-<li>
-
-将一个点 $(x,y)$ 的坐标变为 $(x + y, x - y)$ 后，
-
-</li>
-
-</ul>
-
-原坐标系中的 曼哈顿距离 $=$ 新坐标系中的 切比雪夫距离</strong></p>
-
-<ul>
-
-<li>将一个点 $(x,y)$ 的坐标变为 $(\frac{x + y}{2},\frac{x - y}{2})$ 后，</li>
-
-</ul>
-
-原坐标系中的 切比雪夫距离 $=$ 新坐标系中的 曼哈顿距离</strong></p>
+原坐标系中的 切比雪夫距离 $=$ 新坐标系中的 曼哈顿距离
 
 碰到求 切比雪夫距离 或 曼哈顿距离 的题目时，我们往往可以相互转化来求解。两种距离在不同的题目中有不同的优缺点，应该灵活运用。
 
-<p><strong>例题：</strong></p>
+**例题：**
 
-<p><strong><a href="[https://www.luogu.org/problemnew/show/P4648](https://www.luogu.org/problemnew/show/P4648)">P4648</a></strong>（曼哈顿距离转切比雪夫距离）
+[**P4648**](https://www.luogu.org/problemnew/show/P4648)">（曼哈顿距离转切比雪夫距离）
 
-<p><strong><a href="[https://www.luogu.org/problemnew/show/P3964](https://www.luogu.org/problemnew/show/P3964)">P3964</a></strong>（切比雪夫距离转曼哈顿距离）
+[**P3964**](https://www.luogu.org/problemnew/show/P3964)">（切比雪夫距离转曼哈顿距离）
 
-最后给出 <strong><a href="[https://www.luogu.org/problemnew/show/P5098](https://www.luogu.org/problemnew/show/P5098)">P5098</a></strong> 的第二种解法：
+最后给出 [**P5098**](https://www.luogu.org/problemnew/show/P5098) 的第二种解法：
 
 我们考虑将题目所求的 曼哈顿距离 转化为 切比雪夫距离，即把每个点的坐标 $(x,y)$ 变为 $(x + y, x - y)$ 。
 
@@ -386,15 +336,14 @@ $=max\begin{Bmatrix} |\frac{x_1 + y_1}{2}-\frac{x_2 + y_2}{2}|+|\frac{x_1 - y_1}
 
 现要使得横坐标之差和纵坐标之差最大，只需要预处理出 $x,y$ 的最大值和最小值即可。
 
-<p><strong>Code</strong></p>
+**Code**
 
-<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+```cpp
+#include <bits/stdc++.h>
 
 using namespace std;
 
-  
-
-template &lt; class T &gt; inline void read(T &amp;x) {
+template < class T >; inline void read(T &x) {
 
 x = 0;
 
@@ -404,7 +353,7 @@ bool f = 0;
 
 for (; !isdigit(c); c = getchar()) f ^= c == '-';
 
-for (; isdigit(c); c = getchar()) x = (x &lt;&lt; 3) + (x &lt;&lt; 1) + (c ^ 48);
+for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
 
 x = f ? -x : x;
 
@@ -420,7 +369,7 @@ int main() {
 
 read(n);
 
-for (int i = 1; i &lt;= n; i++) {
+for (int i = 1; i <= n; i++) {
 
 read(a), read(b);
 
@@ -436,13 +385,11 @@ printf("%d\n", max(maxx - minx, maxy - miny));
 
 return 0;
 
-}</code></pre>
+}
+```
 
 对比两份代码，我们又能够发现，两种不同的思路，写出来的代码却是完全等价的，是不是很神奇呢？当然，更高深的东西需要大家另行研究。
 
-<br>
-
-</div>
 
 搬运自[浅谈三种常见的距离算法](https://www.luogu.org/blog/xuxing/Distance-Algorithm)，感谢作者 [xuxing](https://www.luogu.org/space/show?uid=32139) 的授权。
 
