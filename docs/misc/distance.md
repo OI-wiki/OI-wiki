@@ -2,15 +2,21 @@
 
 在平面直角坐标系中，设点 $A,B$ 的坐标分别为 $A(x_1,y_1),B(x_2,y_2)$ ，则两点间的欧氏距离为：
 
-$\left | AB \right | = \sqrt{\left ( x_2 - x_1 \right )^2 + \left ( y_2 - y_1 \right )^2}$
+$$
+\left | AB \right | = \sqrt{\left ( x_2 - x_1 \right )^2 + \left ( y_2 - y_1 \right )^2}
+$$
 
 举个例子，若在平面直角坐标系中，有两点 $A(6,5),B(2,2)$，通过公式，我们很容易得到 $A,B$ 两点间的欧氏距离：
 
-$\left | AB \right | = \sqrt{\left ( 2 - 6 \right )^2 + \left ( 2 - 5 \right )^2} = \sqrt{4^2+3^2} = 5$ 
+$$
+\left | AB \right | = \sqrt{\left ( 2 - 6 \right )^2 + \left ( 2 - 5 \right )^2} = \sqrt{4^2+3^2} = 5
+$$
 
 除此之外，$P(x,y)$ 到原点的欧氏距离可以用公式表示为：
 
-$|P| = \sqrt{x^2+y^2}$ 
+$$
+|P| = \sqrt{x^2+y^2}
+$$
 
 那么，三维空间中两点的欧氏距离公式呢？我们来观察下图。
 
@@ -18,27 +24,33 @@ $|P| = \sqrt{x^2+y^2}$
 
 我们很容易发现，在 $\triangle ADC$ 中， $\angle ADC = 90^\circ$ ；在 $\triangle ACB$ 中， $\angle ACB = 90^\circ$ 。
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 \therefore ~& |AB| &=& \sqrt{|AC|^2+|BC|^2} \\
 &&=& \sqrt{|AD|^2+|CD|^2+|BC|^2}
-\end{aligned}$$
+\end{aligned}
+$$
 
 由此可得，三维空间中欧氏距离的距离公式为：
 
-$$\begin{gathered}
+$$
+\begin{gathered}
 \left | AB \right | = \sqrt{\left ( x_2 - x_1 \right )^2 + \left ( y_2 - y_1 \right )^2 + \left ( z_2 - z_1 \right )^2} \\
 |P| = \sqrt{x^2+y^2+z^2}
-\end{gathered}$$
+\end{gathered}
+$$
 
 
 [NOIP2017 提高组 奶酪](https://www.luogu.org/problemnew/show/P3958) 就运用了这一知识，可以作为欧氏距离的例题。
 
 以此类推，我们就得到了 $n$ 维空间中欧氏距离的距离公式：对于 $\vec A(x_{11}, x_{12}, \cdots,x_{1n}) ,~ \vec B(x_{21}, x_{22}, \cdots,x_{2n})$ ，有
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 &d(x, y) &=& \sqrt{\left ( x_1 - y_1 \right )^2 + \left ( x_2 - y_2 \right )^2 + \cdot \cdot \cdot +\left ( x_n - y_n \right )^2}\\
 &&=& \sqrt{\sum_{i = 1}^{n}(x_i - y_i)^2}
-\end{aligned}$$
+\end{aligned}
+$$
 
 欧氏距离虽然很有用，但也有明显的缺点。两个整点计算其欧氏距离时，往往答案是浮点型，会存在一定误差。
 
@@ -46,7 +58,9 @@ $$\begin{aligned}
 
 在二维空间内，两个点之间的曼哈顿距离为它们横坐标之差的绝对值与纵坐标之差的绝对值之和。设点 $A(x_1,y_1),B(x_2,y_2)$ ，则 $A,B$ 之间的曼哈顿距离用公式可以表示为：
 
-$$d(A,B) = |x_1 - x_2| + |y_1 - y_2|$$ 
+$$
+d(A,B) = |x_1 - x_2| + |y_1 - y_2|
+$$
 
 观察下图：
 
@@ -60,14 +74,18 @@ $$d(A,B) = |x_1 - x_2| + |y_1 - y_2|$$
 
 通过公式，我们很容易得到 $A,B$ 两点间的曼哈顿距离：
 
-$$d(A,B) = |6 - 2| + |5 - 2| = 4 + 3 = 7$$
+$$
+d(A,B) = |6 - 2| + |5 - 2| = 4 + 3 = 7
+$$
 
 经过推导，我们得到 $n$ 维空间 的曼哈顿距离公式为：
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 &d(A,B) &=& |x_1 - y_1| + |x_2 - y_2| + \cdot \cdot \cdot + |x_n - y_n|\\
 & &=& \sum_{i = 1}^{n}|x_i - y_i|
-\end{aligned}$$
+\end{aligned}
+$$
 
 除了公式之外，曼哈顿距离还具有以下数学性质：
 
@@ -81,7 +99,7 @@ $$\begin{aligned}
 
   点到自身的曼哈顿距离为 $0$ 。
 
-  $d(i,i) = 0$ 
+  $d(i,i) = 0​$ 
 
 - **对称性**
 
@@ -149,36 +167,43 @@ int main() {
 
 在二维空间内，两个点之间的切比雪夫距离为它们横坐标之差的绝对值与纵坐标之差的绝对值的最大值。设点 $A(x_1,y_1),B(x_2,y_2)$ ，则 $A,B$ 之间的切比雪夫距离用公式可以表示为：
 
-$$d(A,B) = max(|x_1 - x_2|, |y_1 - y_2|)$$ 
+$$
+d(A,B) = max(|x_1 - x_2|, |y_1 - y_2|)
+$$
 
 仍然是这个栗子，下图中 $A,B$ 的坐标分别为 $A(6,5),B(2,2)$ 。
 
 ![https://cdn.luogu.org/upload/pic/47570.png](https://cdn.luogu.org/upload/pic/47570.png)
 
-$$d(A,B) = max(|6 - 2|, |5 - 2|)=max(4,3)=4$$ 
+$$
+d(A,B) = max(|6 - 2|, |5 - 2|)=max(4,3)=4
+$$
 
 $n$ 维空间 中切比雪夫距离的距离公式：
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 &d(x,y) &=& max\begin{Bmatrix} |x_1 - y_1|,|x_2 - y_2|,\cdot \cdot \cdot,|x_n - y_n|\end{Bmatrix} \\
-&&=& max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in n)\end{aligned}$$ 
+&&=& max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in n)\end{aligned}
+$$
 
 
 ## （拓展）曼哈顿距离与切比雪夫距离的相互转化
 
 首先，我们考虑画出平面直角坐标系上所有到原点的 曼哈顿距离 为 $1$ 的点。
 
-通过公式，我们很容易得到方程 $|x| + |y| = 1$ 。
+通过公式，我们很容易得到方程 $|x| + |y| = 1​$ 。
 
 将绝对值展开，得到 $4$ 个 一次函数 ，分别是：
 
-$$y = x + 1(x \geq 0, y \geq 0)$$ 
-
-$$y = -x + 1(x \leq 0, y \geq 0)$$ 
-
-$$y = x - 1(x \geq 0, y \leq 0)$$ 
-
-$$y = -x - 1(x \leq 0, y \leq 0)$$ 
+$$
+\begin{align}
+&y = x + 1  &(x \geq 0, y \geq 0) \\
+&y = -x + 1 &(x \leq 0, y \geq 0) \\
+&y = x - 1  &(x \geq 0, y \leq 0)  \\
+&y = -x - 1  &(x \leq 0, y \leq 0) \\
+\end{align}
+$$
 
 将这 $4$ 个函数画到平面直角坐标系上，得到一个边长为 $\sqrt{2}$ 的正方形，如下图所示：
 
@@ -192,13 +217,14 @@ $$y = -x - 1(x \leq 0, y \leq 0)$$
 
 我们将式子展开，也同样可以得到可以得到 $4$ 条 线段，分别是：
 
-$$y = 1(-1\leq x \leq 1)$$ 
-
-$$y = -1(-1\leq x \leq 1)$$ 
-
-$$x = 1,(-1\leq y \leq 1)$$ 
-
-$$x = -1,(-1\leq y \leq 1)$$ 
+$$
+\begin{align}
+&y = 1&(-1\leq x \leq 1) \\
+&y = -1&(-1\leq x \leq 1) \\
+&x = 1,&(-1\leq y \leq 1) \\
+&x = -1,&(-1\leq y \leq 1) \\
+\end{align}
+$$
 
 画到平面直角坐标系上，可以得到一个边长为 $2$ 的正方形，如下图所示：
 
