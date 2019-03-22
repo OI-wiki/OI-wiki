@@ -11,9 +11,8 @@
 
 ```cpp
 void makeSet(int size) {
-  for (int i = 0; i < size; i++) {
+  for (int i = 0; i < size; i++)
     fa[i] = i;  // i就在它本身的集合里
-  }
   return;
 }
 ```
@@ -27,8 +26,8 @@ void makeSet(int size) {
 
 ```cpp
 int fa[MAXN];  //记录某个人的爸爸是谁，特别规定，祖先的爸爸是他自己
-int find(int x)  //寻找x的祖先
-{
+int find(int x) {
+  //寻找x的祖先
   if (fa[x] == x)  //如果x是祖先则返回
     return x;
   else
@@ -57,8 +56,8 @@ int find(int x) {
 我们之前说过，并不在意祖先究竟是谁，所以只要其中一个祖先变成另一个祖先的儿子就可以了。
 
 ```cpp
-void unionSet(int x, int y)  // x与y所在家族合并
-{
+void unionSet(int x, int y) {
+  // x与y所在家族合并
   x = find(x);
   y = find(y);
   if (x == y)  //原本就在一个家族里就不管了
@@ -71,11 +70,11 @@ void unionSet(int x, int y)  // x与y所在家族合并
 
 一个祖先突然抖了个机灵：「你们家族人比较少，搬家到我们家族里比较方便，我们要是搬过去的话太费事了。」
 
-由于我们维护的只是集合的合并、查询操作，当我们需要将两个集合合二为一时，无论将哪一个集合连接到另一个集合的下面，都能得到正确的结果。但不同的连接方法存在时间复杂度的差异。具体来说，如果我们将一个点数与深度都较小的集合树连接到一个更大的集合树下，显然会比相反的连接方案带来更好的期望复杂度（也会带来更优的最坏复杂度）。
+由于需要我们支持的只有集合的合并、查询操作，当我们需要将两个集合合二为一时，无论将哪一个集合连接到另一个集合的下面，都能得到正确的结果。但不同的连接方法存在时间复杂度的差异。具体来说，如果我们将一个点数与深度都较小的集合树连接到一个更大的集合树下，显然会比相反的连接方案带来更好的期望复杂度（也会带来更优的最坏复杂度）。
 
-当然，我们不总能遇到恰好如上所述的集合————点数与深度都更小。鉴于点数与深度这两个并查集中的特征都很容易维护，我们常常从中择一，作为启发函数。而无论选择哪一个，都能带来正确的复杂度，也就是$\Theta (m\alpha(m,n))$，具体的证明。
+当然，我们不总能遇到恰好如上所述的集合————点数与深度都更小。鉴于点数与深度这两个特征都很容易维护，我们常常从中择一，作为启发函数。而无论选择哪一个，复杂度都是正确的，也就是 $\Theta (m\alpha(m,n))$，具体的证明。
 
-在算法竞赛的实际代码中，即便不使用启发式合并，代码也往往能够在规定时间内完成任务。在Tarjan的论文[1]中，证明了不使用启发式合并、只使用路径压缩会带来$\Theta (m lg n)$的最坏复杂度。在姚期智的论文[2]中，证明了不使用启发式合并、只使用路径压缩，在平均情况下，依然是$\Theta (m\alpha(m,n))$。
+在算法竞赛的实际代码中，即便不使用启发式合并，代码也往往能够在规定时间内完成任务。在 Tarjan 的论文[1]中，证明了不使用启发式合并、只使用路径压缩的最坏时间复杂度是 $\Theta (m \log n)$。在姚期智的论文[2]中，证明了不使用启发式合并、只使用路径压缩，在平均情况下，时间复杂度依然是 $\Theta (m\alpha(m,n))$。
 
 下述代码示例基于深度进行合并。
 
@@ -95,28 +94,28 @@ void unionSet(int x, int y) {
 
 ### 时间复杂度
 
-同时使用路径压缩和启发式合并之后，并查集的每个操作平均时间仅为 $O(\alpha(n))$ ，其中 $\alpha$ 为[阿克曼函数](https://en.wikipedia.org/wiki/Ackermann_function)的反函数，其增长极其缓慢，也就是说其平均运行时间可以认为是一个很小的常数。
+同时使用路径压缩和启发式合并之后，并查集的每个操作平均时间仅为 $O(\alpha(n))$ ，其中 $\alpha$ 为[阿克曼函数](https://en.wikipedia.org/wiki/Ackermann_function)的反函数，其增长极其缓慢，也就是说其单次操作的平均运行时间可以认为是一个很小的常数。
 
 ### 空间复杂度
 
 显然为 $O(n)$ 。
 
 ## 带权并查集
-我们还可以在并查集的边上定义某种权值、以及这种权值在路径压缩时产生的运算，从而解决更多的问题。比如对于经典的《食物链》（NOI2001），我们可以在边权上维护模3加法群。
+我们还可以在并查集的边上定义某种权值、以及这种权值在路径压缩时产生的运算，从而解决更多的问题。比如对于经典的「NOI2011」食物链，我们可以在边权上维护模 3 意义下的加法群。
 
 ## 经典题目
 
-[\[NOI2015\]程序自动分析](https://www.lydsy.com/JudgeOnline/problem.php?id=4195)
+[「NOI2015」程序自动分析](https://www.lydsy.com/JudgeOnline/problem.php?id=4195)
 
-[\[JSOI2008\]星球大战](https://www.lydsy.com/JudgeOnline/problem.php?id=1015)
+[「JSOI2008」星球大战](https://www.lydsy.com/JudgeOnline/problem.php?id=1015)
 
-[\[NOI2001\]食物链](https://www.luogu.org/problemnew/show/P2024)
+[「NOI2001」食物链](https://www.luogu.org/problemnew/show/P2024)
 
-[\[NOI2002\]银河英雄传说](https://www.luogu.org/problemnew/show/P1196)
+[「NOI2002」银河英雄传说](https://www.luogu.org/problemnew/show/P1196)
 
 ## 其他应用
 
-[最小生成树](/graph/mst)Kruskal 是基于并查集的算法。
+[最小生成树算法](/graph/mst)中的 Kruskal 是基于并查集的算法。
 
 - [1]Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281.    [ResearchGate PDF](https://www.researchgate.net/profile/Jan_Van_Leeuwen2/publication/220430653_Worst-case_Analysis_of_Set_Union_Algorithms/links/0a85e53cd28bfdf5eb000000/Worst-case-Analysis-of-Set-Union-Algorithms.pdf)
 - [2]Yao, A. C. (1985). On the expected performance of path compression algorithms. [SIAM Journal on Computing, 14(1), 129-133.](https://epubs.siam.org/doi/abs/10.1137/0214010?journalCode=smjcat)     
