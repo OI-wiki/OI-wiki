@@ -26,9 +26,9 @@ WC（Winter Camp）是全国青少年信息学奥林匹克竞赛冬令营，是�
 
 APIO（Asia-Pacific Informatics Olympiad）是亚太地区信息学奥林匹克竞赛，CCF 每年会在五月初举办中国赛区镜像赛。在比赛日前后会有培训活动。
 
-### CTSC
+### CTS
 
-CTSC（China Team Selection Competition）是中国队选拔赛。用来从国家候选队（15 人）中选拔国家队（6 人）准备参加当年夏天的 IOI 比赛，其中正式选手 4 人，替补选手 2 人，但是和 WC 一样的，前一年 NOIP 取得较好成绩的选手也可以参加（不参与选拔）。
+CTS （旧称 CTSC, China Team Selection Competition）是中国队选拔赛。用来从国家候选队（15 人）中选拔国家队（6 人）准备参加当年夏天的 IOI 比赛，其中正式选手 4 人，替补选手 2 人，但是和 WC 一样的，前一年 NOIP 取得较好成绩的选手也可以参加（不参与选拔）。
 
 注：APIO 和 CTSC 都是以省为单位报名，一般是按照 NOIP 成绩排序来确定谁会有机会参加 APIO 和 CTSC（二者一般时间上非常接近）。
 
