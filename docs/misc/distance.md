@@ -40,7 +40,6 @@ $$
 \end{gathered}
 $$
 
-
 [NOIP2017 提高组 奶酪](https://www.luogu.org/problemnew/show/P3958) 就运用了这一知识，可以作为欧氏距离的例题。
 
 以此类推，我们就得到了 $n$ 维空间中欧氏距离的距离公式：对于 $\vec A(x_{11}, x_{12}, \cdots,x_{1n}) ,~ \vec B(x_{21}, x_{22}, \cdots,x_{2n})$ ，有
@@ -64,7 +63,7 @@ $$
 
 观察下图：
 
-![https://cdn.luogu.org/upload/pic/47609.png](https://cdn.luogu.org/upload/pic/47609.png)
+![](./images/manhattan-dis.png)
 
 在 $A,B$ 间，黄线、橙线都表示曼哈顿距离，而红线、蓝线表示等价的曼哈顿距离，绿线表示欧氏距离。
 
@@ -93,25 +92,25 @@ $$
 
   曼哈顿距离是一个非负数。
 
-  $d(i,j)\geq 0$ 
+  $d(i,j)\geq 0$
 
 - **统一性**
 
   点到自身的曼哈顿距离为 $0$ 。
 
-  $d(i,i) = 0​$ 
+  $d(i,i) = 0​$
 
 - **对称性**
 
   $A$ 到 $B$ 与 $B$ 到 $A$ 的曼哈顿距离相等，且是对称函数。
 
-  $d(i,j) = d(j,i)$ 
+  $d(i,j) = d(j,i)$
 
 - **三角不等式**
 
   从点 $i$ 到 $j$ 的直接距离不会大于途经的任何其它点 $k$ 的距离。
 
-  $d(i,j)\leq d(i,k)+d(k,j)$ 
+  $d(i,j)\leq d(i,k)+d(k,j)$
 
 **例题：[洛谷 P5098](https://www.luogu.org/problemnew/show/P5098)**
 
@@ -121,9 +120,9 @@ $$
 
 根据题意，对于式子 $|x_1-x_2|+|y_1-y_2|$ ，我们可以假设 $x_1 - x_2 \geq 0$ ，根据 $y_1 - y_2$ 的符号分成两种情况：
 
-- $(y_1 - y_2 \geq 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 + y_1 - (x_2 + y_2)$ 
+- $(y_1 - y_2 \geq 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 + y_1 - (x_2 + y_2)$
 
-- $(y_1 - y_2 \lt 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 - y_1 - (x_2 - y_2)$ 
+- $(y_1 - y_2 \lt 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 - y_1 - (x_2 - y_2)$
 
 
 只要分别求出 $x+y, x-y$ 的最大值和最小值即能得出答案。
@@ -292,7 +291,7 @@ $$
 
 我们考虑将题目所求的 曼哈顿距离 转化为 切比雪夫距离，即把每个点的坐标 $(x,y)$ 变为 $(x + y, x - y)$ 。
 
-所求的答案就变为 $max_{i,j\in n}\begin{Bmatrix} max\begin{Bmatrix} |x_i - x_j|,|y_i - y_j|\end{Bmatrix}\end{Bmatrix}$ 
+所求的答案就变为 $max_{i,j\in n}\begin{Bmatrix} max\begin{Bmatrix} |x_i - x_j|,|y_i - y_j|\end{Bmatrix}\end{Bmatrix}$
 
 现要使得横坐标之差和纵坐标之差最大，只需要预处理出 $x,y$ 的最大值和最小值即可。
 
@@ -334,7 +333,7 @@ int main() {
 
 一般地，我们定义平面上两点 $A(x_1, y_1)$ , $B(x_2, y_2)$ 之间的 $L_m$ 距离为
 
-$d(L_m) = (|x_1-x_2|^m+|y1-y2|^m)^{\frac{1}{m}}$ 
+$d(L_m) = (|x_1-x_2|^m+|y1-y2|^m)^{\frac{1}{m}}$
 
 特殊的， $L_2$ 距离就是欧几里得距离， $L_1$ 距离就是曼哈顿距离。
 
