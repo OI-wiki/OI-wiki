@@ -23,9 +23,9 @@
 
 用排序法常见的情况是输入一个包含几个（一般一到两个）权值的数组，通过排序然后遍历模拟计算的方法求出最优值。
 
-有些题的排序方法非常显然，如[luogu P1209](https://www.luogu.org/problemnew/show/P1209)就是将输入数组差分后排序模拟求值。
+有些题的排序方法非常显然，如 [Luogu P1209](https://www.luogu.org/problemnew/show/P1209) 就是将输入数组差分后排序模拟求值。
 
-然而有些时候很难直接一下子看出排序方法，比如[luogu P1080](https://www.luogu.org/problemnew/show/P1080)就很容易凭直觉而错误地以 $a$ 或 $b$ 为关键字排序，过样例之后提交就发现 WA 了 QAQ。一个~~众所周知的~~常见办法就是尝试交换数组相邻的两个元素来 **推导** 出正确的排序方法。我们假设这题输入的俩个数用一个结构体来保存
+然而有些时候很难直接一下子看出排序方法，比如 [Luogu P1080](https://www.luogu.org/problemnew/show/P1080) 就很容易凭直觉而错误地以 $a$ 或 $b$ 为关键字排序，过样例之后提交就发现 WA 了 QAQ。一个~~众所周知的~~常见办法就是尝试交换数组相邻的两个元素来 **推导** 出正确的排序方法。我们假设这题输入的俩个数用一个结构体来保存
 
 ```c++
 struct {
@@ -86,11 +86,11 @@ struct uv {
 };
 ```
 
-~~看上去是不是很简单呢（这题高精度卡常……）~~，如果看懂了就可以尝试下一道类似的题[luogu P2123](https://www.luogu.org/problemnew/show/P2123)（请不要翻题解……。
+~~看上去是不是很简单呢（这题高精度卡常……）~~，如果看懂了就可以尝试下一道类似的题 [Luogu P2123](https://www.luogu.org/problemnew/show/P2123)（请不要翻题解……。
 
 ## 后悔法
 
-??? note " 例题[luogu P2949\[USACO09OPEN\]工作调度 Work Scheduling](https://www.luogu.org/problemnew/show/P2949)"
+??? note " 例题 [luogu P2949\[USACO09OPEN\]工作调度 Work Scheduling](https://www.luogu.org/problemnew/show/P2949)"
 
 贪心思想：
 
