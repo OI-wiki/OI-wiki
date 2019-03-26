@@ -38,7 +38,7 @@ AC 自动机一般用来解决多串匹配问题。
 
 ## AC 自动机的实现
 
-```
+```cpp
 // luogu P3808
 //注：这并不是标准的AC自动机，而是trie图。标准的AC自动机实际应用并不多
 #include<bits/stdc++.h>
@@ -67,7 +67,7 @@ class ACAM
     public:
         ACAM():cnt(0){}
 
-        void insert(string s)
+        void insert(const string &s)
         {
             int len=s.size(),now=0;
             for(int i=0;i<len;i++)
@@ -111,7 +111,7 @@ class ACAM
             }
         }
 
-        int query(string s)
+        int query(const string &s)
         {
             int now=0,ans=0;
             int len=s.size();
