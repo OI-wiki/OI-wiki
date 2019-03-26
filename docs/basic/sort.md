@@ -157,7 +157,7 @@ void merge(int ll, int rr) {
 
 注意，一般我们说的快速排序的时间复杂度是平均为 $O(N\log N)$ ，最坏是 $O(n^2)$ ，只不过实践中几乎不可能达到最坏情况。
 
-其实，在选择 m 的过程中使用[Median of Medians](https://en.wikipedia.org/wiki/Median_of_medians)算法，就可以保证最坏时间复杂度为 $O(N\log N)$ ，但是由于 j 小微复杂，实践中一般不使用。
+其实，在选择 m 的过程中使用 [Median of Medians](https://en.wikipedia.org/wiki/Median_of_medians) 算法，就可以保证最坏时间复杂度为 $O(N\log N)$ ，但是由于 j 小微复杂，实践中一般不使用。
 
 ### STL
 
@@ -167,9 +167,9 @@ C 函数模板库实现了快速排序，即 `stdlib.h` 当中的 `qsort` 。
 
 C++ 标准并未严格要求此函数的实现算法，具体实现取决于编译器。
 
-旧版 C++ 标准中仅要求它的 **平均** 时间复杂度是 $O(N\log N)$ 的，但在 C++11 中要求它的 **最坏** 时间复杂度是 $O(N\log N)$ 的。可以查阅[std::sort()](https://en.cppreference.com/w/cpp/algorithm/sort)
+旧版 C++ 标准中仅要求它的 **平均** 时间复杂度是 $O(N\log N)$ 的，但在 C++11 中要求它的 **最坏** 时间复杂度是 $O(N\log N)$ 的。可以查阅 [std::sort()](https://en.cppreference.com/w/cpp/algorithm/sort)
 
-在[libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h)和[libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm)中使用的都是[Introsort](https://en.wikipedia.org/wiki/Introsort)。
+在 [libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) 和 [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm) 中使用的都是 [Introsort](https://en.wikipedia.org/wiki/Introsort)。
 
 Introsort 限制了快速排序的分治深度，当分治达到一定深度之后，改用最坏时间复杂度为 $O(N\log N)$ 的排序算法（比如堆排序）来给子数组排序。
 
