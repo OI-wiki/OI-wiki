@@ -27,7 +27,7 @@
 
 然而有些时候很难直接一下子看出排序方法，比如 [Luogu P1080](https://www.luogu.org/problemnew/show/P1080) 就很容易凭直觉而错误地以 $a$ 或 $b$ 为关键字排序，过样例之后提交就发现 WA 了 QAQ。一个~~众所周知的~~常见办法就是尝试交换数组相邻的两个元素来 **推导** 出正确的排序方法。我们假设这题输入的俩个数用一个结构体来保存
 
-```c++
+```cpp
 struct {
   int a, b;
 } v[n];
@@ -77,7 +77,7 @@ $$
 
 于是我们就成功得到排序函数了！
 
-```c++
+```cpp
 struct uv {
   int a, b;
   bool operator<(const uv &x) const {
