@@ -18,7 +18,7 @@
 
 -  无向图边表未开 2 倍。
 
--  树状数组未开4倍空间。
+-  线段树未开 4 倍空间。
 
 -  多组数据未清空数组。
 
@@ -34,33 +34,32 @@
 
 - 存图下标从 0 开始输入节点未 -1。
 
--  Bfs不标记是否已搜过。
+-  BFS 时不标记某个状态是否已访问过。
 
--  大小于号打错/打反。
+-  大/小于号打错或打反。
 
-- 赋值运算符和`==`不分。
+- 赋值运算符和 `==` 不分。
     - 示例：
       ```cpp
-      if(n=1)puts("Yes");
+      if (n = 1) puts("Yes");
       else puts("No");
       ```
-      无论 $n$ 的值之前为多少，输出肯定是`Yes`。
+      无论 $n$ 的值之前为多少，输出肯定是 `Yes`。
       
 
 - 没有考虑数组下标出现负数的情况
 
 - scanf 读入的时候没加 & 取地址符
 
-- 在执行`ios::sync_with_stdio(false);`后混用两种IO，导致输出错乱。
+- 在执行 `ios::sync_with_stdio(false);` 后混用两种 IO，导致输出错乱。
     - 可以参考这个例子。
       ```cpp
-      //这个例子将说明，关闭与stdio的同步后，混用两种IO的后果
+      //这个例子将说明，关闭与 stdio 的同步后，混用两种 IO 的后果
       //建议单步运行来观察效果
       #include <iostream>
       #include <cstdio>
       using namespace std;
-      int main()
-      {
+      int main() {
        ios::sync_with_stdio(false);
        //关闭IO后，cin/cout将使用独立缓冲区，而不是将输出同步至scanf/printf的缓冲区，从而减少IO耗时
        cout<<"a\n";
