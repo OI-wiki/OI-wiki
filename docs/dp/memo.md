@@ -246,7 +246,8 @@ dp 状态很显然：
 ## 模板
 
 ```c++
-int g[MAXN] ； int f(传入数值) {
+int g[MAXN];
+int f(传入数值) {
   if (g[规模] != 无效数值) return g[规模];
   if (终止条件) return 最小子问题解;
   g[规模] = f(缩小规模);
