@@ -103,12 +103,12 @@ $$
 ## 例题
 
 ???+ note "例题 1"
-    「HEOI2015」小 Z 的房间，可参考<https://www.lydsy.com/JudgeOnline/problem.php?id=4031>
+    「HEOI2015」小 Z 的房间，可参考<https://www.lydsy.com/JudgeOnline/problem.php?id=4031>。
 
  **解** 矩阵树定理的裸题。将每个空房间看作一个结点，根据输入的信息建图，得到 Laplace 矩阵后，任意删掉 L 的第 $i$ 行第 $i$ 列，求这个子式的行列式即可。求行列式的方法就是高斯消元成上三角阵然后算对角线积。另外本题需要在模 $k$ 的整数子环 $\mathbb{Z}_k$ 上进行高斯消元，采用辗转相除法即可。
 
 ???+ note "例题 2"
-   「FJOI2007」轮状病毒。可参考<https://www.lydsy.com/JudgeOnline/problem.php?id=1002>
+   「FJOI2007」轮状病毒，可参考<https://www.lydsy.com/JudgeOnline/problem.php?id=1002>。
 
  **解** 本题的解法很多，这里用矩阵树定理是最直接的解法。当输入为 $n$ 时，容易写出其 $n+1$ 阶的 Laplace 矩阵为：
 
