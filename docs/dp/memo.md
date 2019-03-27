@@ -4,7 +4,7 @@
 
 ## 记忆化搜索是啥
 
-好，就以[洛谷 P1048 采药](https://www.luogu.org/problemnew/show/P1048)为例，我不会动态规划，只会搜索，我就会直接写一个粗暴的[DFS](/search/dfs):
+好，就以[「Luogu P1048」采药](https://www.luogu.org/problemnew/show/P1048)为例，我不会动态规划，只会搜索，我就会直接写一个粗暴的 [DFS](/search/dfs):
 
 -   注：为了方便食用，本文中所有代码省略头文件
 
@@ -74,7 +74,7 @@ int main() {
 
 想一想也不奇怪，因为我们的 dfs 没有依赖任何外部变量。
 
-旁白：像 $tcost[103]$ , $mget[103]$ 这种东西不算是外部变量，因为她们在 dfs 过程中不变。
+旁白：像 $tcost[103]$ , $mget[103]$ 这种东西不算是外部变量，因为它们的值在 dfs 过程中不会被改变。
 
 然后？
 
@@ -153,13 +153,13 @@ int main() {
 
 ```cpp
 int dfs(int i, int j, int k) {
-  边界条件
+  // 判断边界条件
   if (mem[i][j][k] != -1) return mem[i][j][k];
   return mem[i][j][k] = dfs(i + 1, j + 1, k - a[j]) + dfs(i + 1, j, k);
 }
 int main() {
   memset(mem, -1, sizeof(mem));
-  读入
+  // 读入部分略去
   cout << dfs(1, 0, 0) << endl;
 }
 ```
@@ -176,7 +176,7 @@ int main() {
 
 举例：
 
- $dp[i] = max\{dp[j]+1\}\quad 1 \leq j < i \text{且}a[j]<a[i]$ （最长上升子序列）
+ $dp_{i} = max\{dp_{j}+1\}\quad 1 \leq j < i and a_{j}<a_{i}$ （最长上升子序列）
 
 转为
 
@@ -190,14 +190,14 @@ int dfs(int i) {
 }
 int main() {
   memset(mem, -1, sizeof(mem));
-  读入
+  // 读入部分略去
   cout << dfs(n) << endl;
 }
 ```
 
 ### 方法 II
 
-1.  写出这道题的暴搜程序（最好是[dfs](/search/dfs))
+1.  写出这道题的暴搜程序（最好是 [dfs](/search/dfs))
 2.  将这个 dfs 改成 "无需外部变量" 的 dfs
 3.  添加记忆化数组
 
@@ -215,9 +215,9 @@ int main() {
 
 dp 状态很显然：
 
-设 $dp[pos][mask]$ 表示身处在 $pos$ 处，走过 $mask$ (mask 为一个二进制数）中的顶点后的最小花费
+设 $dp_{pos,mask}$ 表示身处在 $pos$ 处，走过 $mask$ (mask 为一个二进制数）中的顶点后的最小花费
 
-常规 $dp$ 的状态为 $O(n\cdot 2^n)$ , 转移复杂度（所有的加在一起）为 $O(m)$ 
+常规 $dp$ 的状态数为 $O(n\cdot 2^n)$ , 转移复杂度（所有的加在一起）为 $O(m)$ 
 
 但是！如果我们用记忆化搜索，就可以避免到很多无用的状态，比如 $pos$ 为起点却已经经过了 $>1$ 个点的情况。
 
@@ -245,7 +245,7 @@ dp 状态很显然：
 
 ## 模板
 
-```c++
+```cpp
 int g[MAXN];
 int f(传入数值) {
   if (g[规模] != 无效数值) return g[规模];
