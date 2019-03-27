@@ -19,8 +19,43 @@ Menci 提供了一份更新的版本在 [Menci/Lemon](https://github.com/Menci/L
 Dust1404 维护了支持子文件夹和单题测试等功能的版本在 [Dust1404/Project_LemonPlus](https://github.com/Dust1404/Project_LemonPlus)。
 
  **注意** macOS 下 Lemon 可能会出现内存测试不准确的情况，这是由于 mac 下没有一些 Linux 的监测工具，而 Lemon-Linux 也没有对于 macOS 的使用优化。
+ 
+### 食用方法
 
-### 自行编译
+首先打开,你会觉得很奇怪:
+
+![lemon1.PNG](https://i.loli.net/2019/03/27/5c9b4067833c5.png)
+
+别急,新建一个比赛:
+
+![lemon2.PNG](https://i.loli.net/2019/03/27/5c9b406781b0c.png)
+
+然后会发现在你填的目录那里多了一个文件夹:
+
+![lemon3.PNG](https://i.loli.net/2019/03/27/5c9b4067a4587.png)
+![lemon4.PNG](https://i.loli.net/2019/03/27/5c9b4067ad4b1.png)
+
+试题不见了,把他找回来!(如果你不删应该没事):
+
+![lemon5.PNG](https://i.loli.net/2019/03/27/5c9b4067af266.png)
+
+添加数据,开子文件夹,`.in` `.out`都往里头丢:
+
+![lemon6.PNG](https://i.loli.net/2019/03/27/5c9b42c044d45.png)
+![lemon7.PNG](https://i.loli.net/2019/03/27/5c9b434bbaed1.png)
+
+上交程序,丢source里:
+
+![lemon8.PNG](https://i.loli.net/2019/03/27/5c9b43fa72d77.png)
+
+测试程序:
+
+![lemon9.PNG](https://i.loli.net/2019/03/27/5c9b4478927b7.png)
+
+导出成绩:
+在控制 ——> 导出成绩里(不方便截图)
+
+#### 自行编译
 
 在 Ubuntu 下编译：
 
@@ -36,7 +71,7 @@ cp Lemon ~
 cd ..
 ```
 
-### 数据格式
+#### 数据格式
 
 首先打开 lemon 选择新建试题，而后打开新建试题的文件夹
 
