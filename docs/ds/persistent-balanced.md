@@ -4,7 +4,7 @@ Split-Merge Treap
 
 ## 对于无旋 Treap 的提示
 
-看楼上的[Treap 词条](/ds/treap/)
+看楼上的 [Treap 词条](/ds/treap/)
 
  **OI 常用的可持久化平衡树** 一般就是 **可持久化无旋转 Treap** 所以推荐首先学习楼上的 **无旋转 Treap** 
 
@@ -153,11 +153,11 @@ static int _merge(int _x, int _y) {
 
 ## 推荐的练手题
 
-1.  luogu P3919 可持久化数组（模板题）
+1.  [Luogu P3919 可持久化数组（模板题）](https://www.luogu.org/problemnew/show/P3919)
 
-2.  codeforces 702F T-shirt
+2.  [Codeforces 702F T-shirt](http://codeforces.com/problemset/problem/702/F)
 
-3.  luogu P5055 可持久化文艺平衡树
+3.  [Luogu P5055 可持久化文艺平衡树](https://www.luogu.org/problemnew/show/P5055)
 
 ## 另外
 
