@@ -244,6 +244,7 @@ nav:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
     - 三维计算几何基础: geometry/3d.md
+    - 距离: misc/distance.md
     - Pick 定理: geometry/pick.md
     - 三角剖分: geometry/triangulation.md
     - 凸包: geometry/convex-hull.md
@@ -268,7 +269,6 @@ nav:
       - 模拟退火: misc/simulated-annealing.md
       - 随机增量法: misc/random-incremental.md
     - 悬线法: misc/largest-matrix.md
-    - 距离: misc/distance.md
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
 
