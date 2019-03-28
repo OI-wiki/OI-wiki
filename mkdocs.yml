@@ -257,9 +257,9 @@ nav:
     - 杂项简介: misc/index.md
     - 读入、输出优化: misc/io.md
     - 复杂度: misc/complexity.md
+    - 离散化: misc/discrete.md
     - 离线算法: 
       - 离线算法简介: misc/offline.md
-      - 离散化: misc/discrete.md
       - CDQ 分治: misc/cdq-divide.md
       - 莫队算法: misc/mo-algo.md
     - 分数规划: misc/fractional-programming.md
