@@ -197,6 +197,7 @@ nav:
       - 可持久化块状数组: ds/persistent-block-array.md
       - 可持久化平衡树: ds/persistent-balanced.md
       - 可持久化字典树: ds/persistent-trie.md
+    - 珂朵莉树: ds/odt.md
     - Link Cut Tree: ds/lct.md
     - Euler Tour Tree: ds/ett.md
   - 图论:
@@ -211,6 +212,8 @@ nav:
       - 树链剖分: graph/heavy-light-decomposition.md
       - 树分治: graph/tree-divide.md
       - 动态树分治: graph/dynamic-tree-divide.md
+      - 树上启发式合并: graph/dsu-on-tree.md
+    - 矩阵树定理: graph/matrix-tree.md
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
     - 最小生成树: graph/mst.md
@@ -257,7 +260,6 @@ nav:
     - 爬山算法: misc/hill-climbing.md
     - 分数规划: misc/fractional-programming.md
     - 模拟退火: misc/simulated-annealing.md
-    - 矩阵树定理: misc/matrix-tree.md
     - 随机增量法: misc/random-incremental.md
     - 随机化: misc/random.md
     - 离线处理: misc/offline.md
@@ -267,8 +269,6 @@ nav:
     - 计算理论基础: misc/cc-basic.md
     - 读入、输出优化: misc/io.md
     - 离散化: misc/discrete.md
-    - 树上启发式合并: misc/dsu-on-tree.md
-    - 珂朵莉树: misc/odt.md
 
 # Theme
 theme:
