@@ -114,7 +114,7 @@ $$
 
 ### 例题 1
 
-[洛谷 P5098](https://www.luogu.org/problemnew/show/P5098)
+[Luogu P5098](https://www.luogu.org/problemnew/show/P5098)
 
 ~~（不要被难度吓住，是假的）~~
 
