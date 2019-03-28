@@ -53,16 +53,16 @@ Split-Merge Treap
 
 ### Split
 
-对于 **分裂操作** ，每次分裂路径时 **新建节点** 指向分出来的路径，用 std::pair 存新分裂出来的两棵树的根。
+对于 **分裂操作** ，每次分裂路径时 **新建节点** 指向分出来的路径，用 `std::pair` 存新分裂出来的两棵树的根。
 
-std::pair&lt;int,int> split(x,k) 返回一个 std::pair;
+`split(x,k)` 返回一个 `std::pair`;
 
 表示把 $_x$ 为根的树的前 $k$ 个元素放在 **一棵树** 中，剩下的节点构成在另一棵树中，返回这两棵树的根（first 是第一棵树的根，second 是第二棵树的）。
 
 -   如果 $x$ 的 **左子树** 的 $key ≥ k$ ，那么 **直接递归进左子树** ，把左子树分出来的第二颗树和当前的 x **右子树** 合并。
 -   否则递归 **右子树** 。
 
-```c++
+```cpp
 static std::pair<int, int> _split(int _x, int k) {
   if (_x == 0)
     return std::make_pair(0, 0);
@@ -91,7 +91,7 @@ int merge(x,y) 返回 merge 出的树的根。
 
 同样递归实现。如果 **x 的随机权值** > **y 的随机权值** ，则 $merge(x_{rc},y)$ ，否则 $merge(x,y_{lc})$ 。
 
-```c++
+```cpp
 static int _merge(int _x, int _y) {
   if (_x == 0 || _y == 0)
     return _x ^ _y;
@@ -153,11 +153,11 @@ static int _merge(int _x, int _y) {
 
 ## 推荐的练手题
 
-1.  [Luogu P3919 可持久化数组（模板题）](https://www.luogu.org/problemnew/show/P3919)
+1.  [「Luogu P3919」可持久化数组（模板题）](https://www.luogu.org/problemnew/show/P3919)
 
-2.  [Codeforces 702F T-shirt](http://codeforces.com/problemset/problem/702/F)
+2.  [「Codeforces 702F」T-shirt](http://codeforces.com/problemset/problem/702/F)
 
-3.  [Luogu P5055 可持久化文艺平衡树](https://www.luogu.org/problemnew/show/P5055)
+3.  [「Luogu P5055」可持久化文艺平衡树](https://www.luogu.org/problemnew/show/P5055)
 
 ## 另外
 
