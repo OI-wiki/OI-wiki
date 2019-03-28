@@ -255,7 +255,6 @@ nav:
     - 计算几何杂项: geometry/magic.md
   - 杂项:
     - 杂项简介: misc/index.md
-<<<<<<< HEAD
     - 悬线法: misc/largest-matrix.md
     - CDQ 分治: misc/cdq-divide.md
     - 莫队算法: misc/mo-algo.md
