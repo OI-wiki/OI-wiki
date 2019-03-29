@@ -7,16 +7,13 @@
 ### 扩展欧几里得法
 
 ```cpp
-void ex_gcd(int a, int b, int& x, int& y) {
+void exgcd(int a, int b, int& x, int& y) {
   if (b == 0) {
     x = 1, y = 0;
     return;
   }
-  ex_gcd(b, a % b, x, y);
-  int t = x;
-  x = y;
-  y = t - a / b * y;
-  return;
+  exgcd(b, a % b, y, x);
+  y -= a / b * x;
 }
 ```
 
@@ -39,16 +36,14 @@ void ex_gcd(int a, int b, int& x, int& y) {
 代码：
 
 ```cpp
-#define ll long long
-inline ll poW(ll a, ll b) {
-  long long ans = 1;
-  a %= p;
-  while (b) {
-    if (b & 1) ans = ((ans * a) % p + p) % p;
+inline int qpow(long long a, int b) {
+  int ans = 1;
+  a = (a % p + p) % p;
+  for (;b;b >>= 1) {
+    if (b & 1) ans = (a * ans) % p;
     a = (a * a) % p;
-    b >>= 1;
   }
-  return ans % p;
+  return ans;
 }
 ```
 
@@ -68,23 +63,58 @@ inline ll poW(ll a, ll b) {
 
  $i^{-1} \equiv -(\frac{p}{i}) (p \mod i)^{-1}$ ；
 
-然后我们就可以推出逆元了，代码只有一行：
+然后我们就可以推出逆元了，实现代码极短：
 
 ```cpp
-a[i] = -(p / i) * a[p % i];
+inv[1] = 1;
+for(int i = 2;i <= n;++i)
+  inv[i] = (long long)-(p / i) * inv[p % i] % p;
 ```
 
-但是，有些情况下要避免出现负数，所以我们要改改代码，让它只求正整数：
+但是有些情况下这样做会出现负数，所以我们要改改代码，让它只求正整数：
 
 ```cpp
-a[i] = (p - p / i) * a[p % i] % p;
+inv[1] = 1;
+for(int i = 2;i <= n;++i)
+  inv[i] = (long long)(p - p / i) * inv[p % i] % p;
 ```
 
-这就是线性求逆元
+这就是线性求逆元。
+
+### 线性求任意 n 个数的逆元
+
+上面的方法只能求 $1$ 到 $n$ 的逆元，如果需要求任意给定 $n$ 个数（$1 \le a_i < p$）的逆元，就需要下面的方法：
+
+首先计算 $n$ 个数的前缀积，记为 $s_i$，然后使用快速幂或扩展欧几里得法计算 $s_n$ 的逆元，记为 $sv_n$。
+
+因为 $sv_n$ 是 $n$ 个数的积的逆元，所以当我们把它乘上 $a_n$ 时，就会和 $a_n$ 的逆元抵消，于是就得到了 $a_1$ 到 $a_{n-1}$ 的积逆元，记为 $sv_{n-1}$。
+
+同理我们可以依次计算出所有的  $sv_i$，于是 $a_i^{-1}$ 就可以用 $s_{i-1} \times sv_i$ 求得。
+
+所以我们就在 $O(n + \log p)$ 的时间内计算出了 $n$ 个数的逆元。
+
+参考代码：
+
+```cpp
+s[0] = 1;
+for (int i = 1; i <= n; ++i)
+    s[i] = s[i - 1] * a[i] % p;
+sv[n] = qpow(s[n], p - 2);
+// 当然这里也可以用 exgcd 来求逆元,视个人喜好而定.
+for (int i = n; i >= 1; --i)
+    sv[i - 1] = sv[i] * a[i] % p;
+for (int i = 1; i <= n; ++i)
+    inv[i] = sv[i] * s[i - 1] % p;
+```
+
+
+
 
 ## 逆元练习题
 
 [【模板】乘法逆元](https://www.luogu.org/problemnew/show/P3811)
+
+[乘法逆元 2](https://loj.ac/problem/152)
 
 [同余方程](https://www.luogu.org/problemnew/show/P1082)
 

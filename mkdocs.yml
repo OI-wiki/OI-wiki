@@ -64,14 +64,19 @@ nav:
   - 动态规划:
     - 动态规划部分简介: dp/index.md
     - 记忆化搜索: dp/memo.md
-    - 背包 DP: dp/backpack.md
+    - 背包 DP: dp/knapsack.md
     - 区间 DP: dp/interval.md
     - DAG 上的 DP: dp/dag.md
     - 树形 DP: dp/tree.md
     - 状压 DP: dp/state.md
     - 数位 DP: dp/number.md
     - 插头 DP: dp/plug.md
-    - DP 优化: dp/optimization.md
+    - DP 优化:
+      - 二进制分组解多重背包: dp/optimizations/binary-knapsack.md
+      - 单调队列/单调栈优化: dp/optimizations/monotonous-queue-stack.md
+      - 斜率优化: dp/optimizations/convex-hull-optimization.md
+      - 四边形不等式优化: dp/optimizations/knuth-yao-quadrangle-inequality.md
+      - 状态设计优化: dp/optimizations/state-optimization.md
     - 其它 DP 方法: dp/misc.md
   - 字符串:
     - 字符串部分简介: string/index.md
@@ -121,6 +126,12 @@ nav:
       - 快速傅里叶变换: math/fft.md
       - 快速数论变换: math/ntt.md
       - 快速沃尔什变换: math/fwt.md
+      - 多项式求逆: math/poly-inv.md
+      - 多项式开方: math/poly-sqrt.md
+      - 多项式除法|取模: math/poly-div-mod.md
+      - 多项式对数函数|指数函数: math/poly-ln-exp.md
+      - 多项式牛顿迭代: math/poly-newton.md
+      - 多项式多点求值|快速插值: math/poly-multipoint-eval-interpolation.md
     - 组合数学:
       - 排列组合: math/combination.md
       - 卡特兰数: math/catalan.md
@@ -150,7 +161,7 @@ nav:
     - 链表: ds/linked-list.md
     - 哈希表: ds/hash.md
     - 并查集: ds/dsu.md
-    - 堆: 
+    - 堆:
       - 堆简介: ds/heap.md
       - 二叉堆: ds/binary-heap.md
       - 配对堆: ds/pairing-heap.md
@@ -186,6 +197,7 @@ nav:
       - 可持久化块状数组: ds/persistent-block-array.md
       - 可持久化平衡树: ds/persistent-balanced.md
       - 可持久化字典树: ds/persistent-trie.md
+    - 珂朵莉树: ds/odt.md
     - Link Cut Tree: ds/lct.md
     - Euler Tour Tree: ds/ett.md
   - 图论:
@@ -200,9 +212,12 @@ nav:
       - 树链剖分: graph/heavy-light-decomposition.md
       - 树分治: graph/tree-divide.md
       - 动态树分治: graph/dynamic-tree-divide.md
+      - 树上启发式合并: graph/dsu-on-tree.md
+    - 矩阵树定理: graph/matrix-tree.md
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
     - 最小生成树: graph/mst.md
+    - 最小树形图: graph/mdst.md
     - 最短路: graph/shortest-path.md
     - 差分约束: graph/differential-constraints.md
     - k 短路: graph/kth-path.md
@@ -245,18 +260,15 @@ nav:
     - 爬山算法: misc/hill-climbing.md
     - 分数规划: misc/fractional-programming.md
     - 模拟退火: misc/simulated-annealing.md
-    - 朱刘算法: misc/zhu-liu-algorithm.md
-    - 矩阵树定理: misc/matrix-tree.md
     - 随机增量法: misc/random-incremental.md
     - 随机化: misc/random.md
     - 离线处理: misc/offline.md
     - 距离: misc/distance.md
     - 字节顺序: misc/endianness.md
     - 复杂度: misc/complexity.md
+    - 计算理论基础: misc/cc-basic.md
     - 读入、输出优化: misc/io.md
     - 离散化: misc/discrete.md
-    - 树上启发式合并: misc/dsu-on-tree.md
-    - 珂朵莉树: misc/odt.md
 
 # Theme
 theme:
@@ -288,7 +300,7 @@ extra:
   githash: ''
 
 extra_javascript:
-  - 'https://cdnjs.loli.net/ajax/libs/Han/3.3.0/han.min.js'
+  - 'https://cdn.jsdelivr.net/gh/ethantw/Han@3.3.0/dist/han.min.js'
   - '_static/js/extra.js?v=10'
   - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
 
