@@ -304,7 +304,7 @@ insert  : -2
 
 ### 译码算法
 
-[Viterbi algorithm](https://en.wikipedia.org/wiki/Viterbi_algorithm)之前写词性标注的时候有用到，好像用在输入法里面也是类似的。
+[Viterbi algorithm](https://en.wikipedia.org/wiki/Viterbi_algorithm) 之前写词性标注的时候有用到，好像用在输入法里面也是类似的。
 
 本题中用来实现语音识别，其实就是找一条对应的概率最大的路径。
 
