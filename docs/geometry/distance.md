@@ -1,6 +1,6 @@
 ## 欧氏距离
 
-在平面直角坐标系中，设点 $A,B$ 的坐标分别为 $A(x_1,y_1),B(x_2,y_2)$ ，则两点间的欧氏距离为：
+欧氏距离，一般也称作欧几里得距离。在平面直角坐标系中，设点 $A,B$ 的坐标分别为 $A(x_1,y_1),B(x_2,y_2)$ ，则两点间的欧氏距离为：
 
 $$
 \left | AB \right | = \sqrt{\left ( x_2 - x_1 \right )^2 + \left ( y_2 - y_1 \right )^2}
@@ -20,7 +20,7 @@ $$
 
 那么，三维空间中两点的欧氏距离公式呢？我们来观察下图。
 
-![https://cdn.luogu.org/upload/pic/47571.png](https://cdn.luogu.org/upload/pic/47571.png)
+![dis-3-dimensional](./images/distance-0.png)
 
 我们很容易发现，在 $\triangle ADC$ 中， $\angle ADC = 90^\circ$ ；在 $\triangle ACB$ 中， $\angle ACB = 90^\circ$ 。
 
@@ -55,7 +55,7 @@ $$
 
 ## 曼哈顿距离
 
-在二维空间内，两个点之间的曼哈顿距离为它们横坐标之差的绝对值与纵坐标之差的绝对值之和。设点 $A(x_1,y_1),B(x_2,y_2)$ ，则 $A,B$ 之间的曼哈顿距离用公式可以表示为：
+在二维空间内，两个点之间的曼哈顿距离（ Manhattan distance ）为它们横坐标之差的绝对值与纵坐标之差的绝对值之和。设点 $A(x_1,y_1),B(x_2,y_2)$ ，则 $A,B$ 之间的曼哈顿距离用公式可以表示为：
 
 $$
 d(A,B) = |x_1 - x_2| + |y_1 - y_2|
@@ -63,18 +63,18 @@ $$
 
 观察下图：
 
-![](./images/manhattan-dis.png)
+![manhattan-dis-diff](./images/distance-1.png)
 
 在 $A,B$ 间，黄线、橙线都表示曼哈顿距离，而红线、蓝线表示等价的曼哈顿距离，绿线表示欧氏距离。
 
 同样的栗子，在下图中 $A,B$ 的坐标分别为 $A(6,5),B(2,2)$ 。
 
-![https://cdn.luogu.org/upload/pic/47570.png](https://cdn.luogu.org/upload/pic/47570.png)
+![manhattan-dis](./images/distance-2.svg)
 
 通过公式，我们很容易得到 $A,B$ 两点间的曼哈顿距离：
 
 $$
-d(A,B) = |6 - 2| + |5 - 2| = 4 + 3 = 7
+d(A,B) = |20 - 10| + |25 - 10| = 10 + 15 = 25
 $$
 
 经过推导，我们得到 $n$ 维空间 的曼哈顿距离公式为：
@@ -98,7 +98,7 @@ $$
 
   点到自身的曼哈顿距离为 $0$ 。
 
-  $d(i,i) = 0​$
+  $d(i,i) = 0$
 
 - **对称性**
 
@@ -112,9 +112,9 @@ $$
 
   $d(i,j)\leq d(i,k)+d(k,j)$
 
-**例题：[洛谷 P5098](https://www.luogu.org/problemnew/show/P5098)**
+### 例题 1
 
-**解析：**
+[Luogu P5098](https://www.luogu.org/problemnew/show/P5098)
 
 ~~（不要被难度吓住，是假的）~~
 
@@ -124,10 +124,9 @@ $$
 
 - $(y_1 - y_2 \lt 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 - y_1 - (x_2 - y_2)$
 
-
 只要分别求出 $x+y, x-y$ 的最大值和最小值即能得出答案。
 
-**Code**
+### 代码实现 1
 
 ```cpp
 #include <bits/stdc++.h>
@@ -162,7 +161,7 @@ int main() {
 
 ## 切比雪夫距离
 
-切比雪夫距离是向量空间中的一种度量，二个点之间的距离定义是其各坐标数值差绝对值的最大值。—— _来源：[百度百科](https://baike.baidu.com/item/%E5%88%87%E6%AF%94%E9%9B%AA%E5%A4%AB%E8%B7%9D%E7%A6%BB)_
+切比雪夫距离（ Chebyshev distance ）是向量空间中的一种度量，二个点之间的距离定义是其各坐标数值差绝对值的最大值。—— *来源：[维基百科](https://zh.wikipedia.org/wiki/%E5%88%87%E6%AF%94%E9%9B%AA%E5%A4%AB%E8%B7%9D%E7%A6%BB)*
 
 在二维空间内，两个点之间的切比雪夫距离为它们横坐标之差的绝对值与纵坐标之差的绝对值的最大值。设点 $A(x_1,y_1),B(x_2,y_2)$ ，则 $A,B$ 之间的切比雪夫距离用公式可以表示为：
 
@@ -172,13 +171,13 @@ $$
 
 仍然是这个栗子，下图中 $A,B$ 的坐标分别为 $A(6,5),B(2,2)$ 。
 
-![https://cdn.luogu.org/upload/pic/47570.png](https://cdn.luogu.org/upload/pic/47570.png)
+![Chebyshev-dis](./images/distance-2.svg)
 
 $$
-d(A,B) = max(|6 - 2|, |5 - 2|)=max(4,3)=4
+d(A,B) = max(|20 - 10|, |25 - 10|) = max(10, 15) = 15
 $$
 
-$n$ 维空间 中切比雪夫距离的距离公式：
+$n$ 维空间中切比雪夫距离的距离公式：
 
 $$
 \begin{aligned}
@@ -186,27 +185,26 @@ $$
 &&=& max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in n)\end{aligned}
 $$
 
+## 曼哈顿距离与切比雪夫距离的相互转化
 
-## （拓展）曼哈顿距离与切比雪夫距离的相互转化
+首先，我们考虑画出平面直角坐标系上所有到原点的曼哈顿距离为 $1$ 的点。
 
-首先，我们考虑画出平面直角坐标系上所有到原点的 曼哈顿距离 为 $1$ 的点。
-
-通过公式，我们很容易得到方程 $|x| + |y| = 1​$ 。
+通过公式，我们很容易得到方程 $|x| + |y| = 1$ 。
 
 将绝对值展开，得到 $4$ 个 一次函数 ，分别是：
 
 $$
-\begin{align}
+\begin{aligned}
 &y = x + 1  &(x \geq 0, y \geq 0) \\
 &y = -x + 1 &(x \leq 0, y \geq 0) \\
 &y = x - 1  &(x \geq 0, y \leq 0)  \\
 &y = -x - 1  &(x \leq 0, y \leq 0) \\
-\end{align}
+\end{aligned}
 $$
 
 将这 $4$ 个函数画到平面直角坐标系上，得到一个边长为 $\sqrt{2}$ 的正方形，如下图所示：
 
-![https://cdn.luogu.org/upload/pic/47624.png](https://cdn.luogu.org/upload/pic/47624.png)
+![dis-diff-square-1](./images/distance-3.svg)
 
 正方形边界上所有的点到原点的 曼哈顿距离 都是 $1$ 。
 
@@ -217,25 +215,25 @@ $$
 我们将式子展开，也同样可以得到可以得到 $4$ 条 线段，分别是：
 
 $$
-\begin{align}
+\begin{aligned}
 &y = 1&(-1\leq x \leq 1) \\
 &y = -1&(-1\leq x \leq 1) \\
 &x = 1,&(-1\leq y \leq 1) \\
 &x = -1,&(-1\leq y \leq 1) \\
-\end{align}
+\end{aligned}
 $$
 
 画到平面直角坐标系上，可以得到一个边长为 $2$ 的正方形，如下图所示：
 
-![https://cdn.luogu.org/upload/pic/47626.png](https://cdn.luogu.org/upload/pic/47626.png)
+![dis-diff-square-2](./images/distance-4.svg)
 
-正方形边界上所有的点到原点的 切比雪夫距离 都是 $1$ 。
+正方形边界上所有的点到原点的切比雪夫距离都是 $1$ 。
 
 将这两幅图对比，我们会神奇地发现：
 
-这 $2$ 个正方形是 相似图形 。
+这 $2$ 个正方形是相似图形。
 
-所以，曼哈顿距离 与 切比雪夫距离 之间会不会有联系呢？
+所以，曼哈顿距离与切比雪夫距离之间会不会有联系呢？
 
 接下来我们简略证明一下：
 
@@ -244,31 +242,30 @@ $$
 $A,B$ 两点的曼哈顿距离为：
 
 $$
-\begin{align}
+\begin{aligned}
 d(A,B)&=|x_1 - x_2| + |y_1 - y_2|\\
 &=\max\begin{Bmatrix} x_1 - x_2 + y_1 - y_2, x_1 - x_2 + y_2 - y_1,x_2 - x_1 + y_1 - y_2, x_2 - x_1 + y_2 - y_1\end{Bmatrix}\\
 &\text{（ 把绝对值拆开，能够得到四个值，这四个值中的最大值是两个非负数之和，即曼哈顿距离 ）}\\
-
 &= \max(|(x_1 + y_1) - (x_2 + y_2)|, |(x_1 - y_2) - (x_2 - y_2)|)
-\end{align}
+\end{aligned}
 $$
 
-我们很容易发现，这就是 $(x_1 + y_1,x_1 - y_1), (x_2 + y_2,x_2 - y_2)​$ 两点之间的切比雪夫距离。
+我们很容易发现，这就是 $(x_1 + y_1,x_1 - y_1), (x_2 + y_2,x_2 - y_2)$ 两点之间的切比雪夫距离。
 
 所以将每一个点 $(x,y)$ 转化为 $(x + y, x - y)$ ，新坐标系下的切比雪夫距离即为原坐标系下的曼哈顿距离。
 
 同理， $A,B$ 两点的切比雪夫距离为：
 
 $$
-\begin{align}
+\begin{aligned}
 d(A,B)&=\max\begin{Bmatrix} |x_1 - x_2|,|y_1 - y_2|\end{Bmatrix}\\
 &=\max\begin{Bmatrix} \left|\dfrac{x_1 + y_1}{2}-\dfrac{x_2 + y_2}{2}\right|+\left|\dfrac{x_1 - y_1}{2}-\dfrac{x_2 - y_2}{2}\right|\end{Bmatrix}
-\end{align}
+\end{aligned}
 $$
 
-而这就是 $(\dfrac{x_1 + y_1}{2},\dfrac{x_1 - y_1}{2}), (\dfrac{x_2 + y_2}{2},\dfrac{x_2 - y_2}{2})$ 两点之间的 曼哈顿距离。
+而这就是 $(\dfrac{x_1 + y_1}{2},\dfrac{x_1 - y_1}{2}), (\dfrac{x_2 + y_2}{2},\dfrac{x_2 - y_2}{2})$ 两点之间的曼哈顿距离。
 
-所以将每一个点 $(x,y)$ 转化为 $(\dfrac{x + y}{2},\dfrac{x - y}{2})$ ，新坐标系下的 曼哈顿距离 即为原坐标系下的 切比雪夫距离。
+所以将每一个点 $(x,y)$ 转化为 $(\dfrac{x + y}{2},\dfrac{x - y}{2})$ ，新坐标系下的曼哈顿距离即为原坐标系下的切比雪夫距离。
 
 ### 结论
 
@@ -277,11 +274,11 @@ $$
 - 原坐标系中的曼哈顿距离等于新坐标系中的切比雪夫距离
 - 将一个点 $(x,y)$ 的坐标变为 $(\dfrac{x + y}{2},\dfrac{x - y}{2})$ 后，
 
-原坐标系中的切比雪夫距离等于新坐标系中的 哈顿距离
+原坐标系中的切比雪夫距离等于新坐标系中的曼哈顿距离
 
 碰到求切比雪夫距离或曼哈顿距离的题目时，我们往往可以相互转化来求解。两种距离在不同的题目中有不同的优缺点，应该灵活运用。
 
-### 例题
+### 例题 2
 
 [**P4648**](https://www.luogu.org/problemnew/show/P4648) >（曼哈顿距离转切比雪夫距离）
 
@@ -289,13 +286,13 @@ $$
 
 最后给出 [**P5098**](https://www.luogu.org/problemnew/show/P5098) 的第二种解法：
 
-我们考虑将题目所求的 曼哈顿距离 转化为 切比雪夫距离，即把每个点的坐标 $(x,y)$ 变为 $(x + y, x - y)$ 。
+我们考虑将题目所求的曼哈顿距离转化为切比雪夫距离，即把每个点的坐标 $(x,y)$ 变为 $(x + y, x - y)$ 。
 
 所求的答案就变为 $max_{i,j\in n}\begin{Bmatrix} max\begin{Bmatrix} |x_i - x_j|,|y_i - y_j|\end{Bmatrix}\end{Bmatrix}$
 
 现要使得横坐标之差和纵坐标之差最大，只需要预处理出 $x,y$ 的最大值和最小值即可。
 
-**Code**
+### 代码实现 2
 
 ```cpp
 #include <bits/stdc++.h>
@@ -345,6 +342,6 @@ $d(L_m) = (|x_1-x_2|^m+|y1-y2|^m)^{\frac{1}{m}}$
 
 ------
 
-当然，还有其他的一些距离，但是在 OI 中并不常用，有兴趣的话可以了解一下。
+上面这两种距离在 OI 中并不常用，有兴趣的话可以深入了解一下。
 
 部分内容搬运自[浅谈三种常见的距离算法](https://www.luogu.org/blog/xuxing/Distance-Algorithm)，感谢作者 [xuxing](https://www.luogu.org/space/show?uid=32139) 的授权。
