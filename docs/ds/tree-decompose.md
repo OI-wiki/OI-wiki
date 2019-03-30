@@ -63,7 +63,7 @@ int main() {
 
 如果把两条路径上的点全部修改复杂度是和暴力一样的，所以需要做一些处理。
 
-（下文中 $T(u,v)$ 表示 $u$ 到 $v$ 的路径上除 $lca(u,v)$ 外的所有点构成的集合，$S(u,v)$ 代表 $u$ 到 $v$ 的路径，$xor$ 表示集合对称差（就跟异或差不多））
+（下文中 $T(u,v)$ 表示 $u$ 到 $v$ 的路径上除 $lca(u,v)$ 外的所有点构成的集合，$S(u,v)$ 代表 $u$ 到 $v$ 的路径，$\operatorname{xor}$ 表示集合对称差（就跟异或差不多））
 
 - 两个指针 $cu,cv$ （相当于序列莫队的 $l,r$ 两个指针）， $ans$ 记录 $T(cu,cv)$ 的答案，$vis$ 数组记录每个节点是否在 $T(cu,cv)$ 内；
 - 由 $T(cu,cv)$ 更新至 $T(tu,tv)$ 时，将 $T(cu,tu)$ 和 $T(cv,tv)$ 的 $vis$ 分别取反，并相应地更新答案；
@@ -71,15 +71,15 @@ int main() {
 
 第二步证明如下：
 
-$\quad\,T(cu,cv)\ xor\ T(tu,tv)$
+$\quad\,T(cu,cv)\operatorname{xor}T(tu,tv)$
 
-$=[S(cu,root)\ xor\ S(cv,root)]\ xor\ [S(tu,root)\ xor\ S(tv,root)]$ （lca 及以上相消）
+$=[S(cu,root)\operatorname{xor}S(cv,root)]\operatorname{xor}[S(tu,root)\operatorname{xor}S(tv,root)]$ （lca 及以上相消）
 
-$=[S(cu,root)\ xor\ S(tu,root)]\ xor\ [S(cv,root)\ xor\ S(tv,root)]$ （交换律、结合律）
+$=[S(cu,root)\operatorname{xor}S(tu,root)]\operatorname{xor}[S(cv,root)\operatorname{xor}S(tv,root)]$ （交换律、结合律）
 
-$=T(cu,tu)\ xor\ T(cv,tv)$
+$=T(cu,tu)\operatorname{xor}T(cv,tv)$
 
-之所以要把 $T(cu,cv)\ xor\ T(tu,tv)$ 转化成 $T(cu,tu)\ xor\ T(cv,tv)$，是因为这样的话就能通过对询问排序来保证复杂度。排序方式就是以 $u$ 所在块编号为第一关键字，$v$ 的编号为第二关键字排序。如果是带修莫队，还需要以时间为第三关键字。
+之所以要把 $T(cu,cv)\operatorname{xor}T(tu,tv)$ 转化成 $T(cu,tu)\operatorname{xor}T(cv,tv)$，是因为这样的话就能通过对询问排序来保证复杂度。排序方式就是以 $u$ 所在块编号为第一关键字，$v$ 的编号为第二关键字排序。如果是带修莫队，还需要以时间为第三关键字。
 
 ### 关于单点修改
 
