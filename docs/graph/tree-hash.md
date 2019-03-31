@@ -1,18 +1,16 @@
-## 树哈希
-
 我们有时需要判断一些树是否同构。这时，选择恰当的哈希方式来将树映射成一个便于储存的哈希值（一般是 32 位或 64 位整数）是一个优秀的方案。
 
-树哈希有很多种哈希方式，下面将选出几种较为常用的来加以介绍。
+树哈希有很多种哈希方式，下面将选出几种较为常用的方式来加以介绍。
 
-### Method I
+## Method I
 
-#### Formula
+### Formula
 
 $$
 f_{now}=size_{now} \times \sum f_{son_{now,i}}\times seed^{i-1}
 $$
 
-##### Notes
+#### Notes
 
 其中 $f_x$ 为以节点 $x$ 为根的子树对应的哈希值。特殊地，我们令叶子节点的哈希值为 $1$ 。
 
@@ -24,15 +22,15 @@ $seed$ 为选定的一个合适的种子（最好是质数，对字符串 hash �
 
 上述哈希过程中，可以适当取模避免溢出或加快运行速度。
 
-### Method II
+## Method II
 
-#### Formula
+### Formula
 
 $$
 f_{now}=\bigoplus f_{son_{now,i}}\times seed+size_{son_{now,i}}
 $$
 
-##### Notes
+#### Notes
 
 其中 $f_x$ 为以节点 $x$ 为根的子树对应的哈希值。特殊地，我们令叶子节点的哈希值为 $1$ 。
 
@@ -44,21 +42,21 @@ $seed$ 为选定的一个合适的质数。
 
 $\large\bigoplus$表示异或和。
 
-### Example
+## Example
 
-#### Problem
+### Problem
 
 [Luogu P5403](https://www.luogu.org/problemnew/show/P5043)
 
-#### Solution
+### Solution
 
 我们用上述方式任选其一进行哈希，注意到我们求得的是子树的 hash 值，也就是说只有当根一样时同构的两棵子树 hash 值才相同。由于数据范围较小，我们可以暴力求出以每个点为根时的哈希值，排序后比较。
 
 如果数据范围较大，我们可以通过找重心的方式来优化复杂度。（一棵树的重心最多只有两个，分别比较即可）
 
-#### Code 
+### Code 
 
-##### Method I
+#### Method I
 
 ??? " 例题参考代码 "
 
@@ -191,7 +189,7 @@ $\large\bigoplus$表示异或和。
 	```
 
 
-##### Method II
+#### Method II
 
 ??? " 例题参考代码 "
 
@@ -302,6 +300,6 @@ $\large\bigoplus$表示异或和。
 	```
 
 
-### At Last
+## At Last
 
 事实上，树哈希是可以很灵活的，可以有各种各样奇怪的姿势来进行 hash，只需保证充分性与必要性，选手完全可以设计出与上述方式不同的 hash 方式。
