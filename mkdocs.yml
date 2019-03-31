@@ -209,6 +209,7 @@ nav:
       - 最近公共祖先: graph/lca.md
       - DFS 序: graph/dfs-order.md
       - 树的其他问题: graph/tree-misc.md
+      - 树哈希: graph/tree-hash.md
       - 树链剖分: graph/heavy-light-decomposition.md
       - 树分治: graph/tree-divide.md
       - 动态树分治: graph/dynamic-tree-divide.md
