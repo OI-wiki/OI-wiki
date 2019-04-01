@@ -1,6 +1,6 @@
 ## 算法
 
-归并排序是一种采用了[分治](/basic/divide-and-conquer)思想的排序算法。
+归并排序是一种采用了[分治](/basic/divide-and-conquer)思想的排序算法，其本质是一种 [CDQ 分治](/misc/cdq-divide)。
 
 归并排序分为三个过程：
 
