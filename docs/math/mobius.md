@@ -99,10 +99,10 @@ $$
 $$
 \qquad\begin{array}
 \text{单位函数}&\displaystyle\epsilon(n)=[n=1]\\
-\text{恒等函数}&\displaystyle id_k(n)=n^k\\
-\text{恒等函数的另一种记法}&\displaystyle id(n)=id_1(n)=n\\
+\text{恒等函数}&\displaystyle\operatorname{id}_k(n)=n^k\\
+\text{恒等函数的另一种记法}&\displaystyle \operatorname{id}(n)=id_1(n)=n\\
 \text{常数函数}&\displaystyle 1(n)=1\\
-\text{约数个数函数}&d(n)=\displaystyle\sum_{d\mid n}1\\
+\text{约数个数函数}&\operatorname{d}(n)=\displaystyle\sum_{d\mid n}1\\
 \text{约数和函数}&\displaystyle\sigma(n)=\sum_{d\mid n}d\\
 \text{约数 $k$ 次幂函数}&\displaystyle\sigma_k(n)=\sum_{d\mid n}d^k\\
 \text{欧拉函数}&\displaystyle\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]\\
