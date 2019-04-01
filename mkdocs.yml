@@ -43,7 +43,19 @@ nav:
     - 模拟: basic/simulate.md
     - 递归 & 分治: basic/divide-and-conquer.md
     - 贪心: basic/greedy.md
-    - 排序: basic/sort.md
+    - 排序: 
+      - 排序简介: basic/sort-intro.md
+      - 选择排序: basic/selection-sort.md
+      - 冒泡排序: basic/bubble-sort.md
+      - 插入排序: basic/insertion-sort.md
+      - 计数排序: basic/bucket-sort.md
+      - 快速排序: basic/quick-sort.md
+      - 归并排序: basic/merge-sort.md
+      - 堆排序: basic/heap-sort.md
+      - 基数排序: basic/radix-sort.md
+      - 希尔排序: basic/shell-sort.md
+      - 排序相关 STL: basic/stl-sort.md
+      - 排序应用: basic/use-of-sort.md
     - 表达式求值: basic/expression.md
     - 二分: basic/binary.md
     - 构造: basic/construction.md
