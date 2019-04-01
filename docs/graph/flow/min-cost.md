@@ -1,169 +1,108 @@
 ## 概念
 
-### 割
+### 费用
 
-对于一个网络流图 $G=(V,E)$，其割的定义为一种**点的划分方式**：将所有的点划分为 $S$ 和 $T=V-S$ 两个集合，其中源点 $s\in S$，汇点 $t\in T$。
+我们定义一条边的费用 $w(u,v)$ 表示边 $(u,v)$ 上单位流量的费用。也就是说，当边 $(u,v)$ 的流量为 $f(u,v)$ 时，需要花费 $f(u,v)\times w(u,v)$ 的费用。
 
-### 割的容量
+### 最小费用最大流
 
-我们的定义割 $(S,T)$ 的容量 $c(S,T)$ 表示所有从 $S$ 到 $T$ 的边的容量之和，即 $c(S,T)=\sum_{u\in S,v\in T}c(u,v)$。当然我们也可以用 $c(s,t)$ 表示 $c(S,T)$。
-
-### 最小割
-
-最小割就是求得一个割 $(S,T)$ 使得割的容量 $c(S,T)$ 最小。
+网络流图中，花费最小的最大流被称为**最小费用最大流**，这也是接下来我们要研究的对象。
 
 ------
 
-## 证明
+## 求解
 
-### 最大流最小割定理
+我们可以在 $\text{Dinic}$ 算法的基础上进行改进，把 $\text{BFS}$ 求分层图改为用 $\text{SPFA}$（由于有负权边，所以不能直接用 $\text{Dijkstra}$）来求一条单位费用之和最小的路径，也就是把 $w(u,v)$ 当做边权然后在残量网络上求最短路，当然在 $\text{DFS}$ 中也要略作修改。这样就可以求得网络流图的**最小费用最大流**了。
 
-**定理**：$f(s,t)_{\max}=c(s,t)_{\min}$
+如何建**反向边**？对于一条边 $(u,v,w,c)$（其中 $w$ 和 $c$ 分别为容量和费用），我们建立正向边 $(u,v,w,c)$ 和反向边 $(v,u,0,-c)$（其中 $-c$ 是使得从反向边经过时退回原来的费用）。
 
-对于任意一个可行流 $f(s,t)$ 的割 $(S,T)$，我们可以得到：
-$$
-f(s,t)=S\text{出边的总流量}-S\text{入边的总流量}\le S\text{出边的总流量}=c(s,t)
-$$
-如果我们求出了最大流 $f$，那么残余网络中一定不存在 $s$ 到 $t$ 的増广路经，也就是 $S$ 的出边一定是满流，$S$ 的入边一定是零流，于是有：
-$$
-f(s,t)=S\text{出边的总流量}-S\text{入边的总流量}=S\text{出边的总流量}=c(s,t)
-$$
-结合前面的不等式，我们可以知道此时 $f$ 已经达到最大。
+**优化**：如果你是“关于 $\text{SPFA}$，它死了”言论的追随者，那么你可以使用 $\text{Primal-Dual}$ 原始对偶算法将 $\text{SPFA}$ 改成 $\text{Dijkstra}$！
+
+**时间复杂度**：可以证明上界为 $O(nmf)$，其中 $f$ 表示流量。
 
 ------
 
 ## 代码
 
-### 最小割
+??? " 最小费用最大流 "
 
-通过**最大流最小割定理**，我们可以直接得到如下代码：
+	```cpp
+	#include <cstdio>
+	#include <cstring>
+	#include <algorithm>
+	#include <queue>
 
-```cpp
-#include <cstdio>
-#include <cstring>
-#include <algorithm>
-#include <queue>
+	const int N=5e3+5,M=1e5+5;
+	const int INF=0x3f3f3f3f;
+	int n,m,tot=1,lnk[N],cur[N],ter[M],nxt[M],cap[M],cost[M],dis[N],ret;
+	bool vis[N];
 
-const int N=1e4+5,M=2e5+5;
-int n,m,s,t,tot=1,lnk[N],ter[M],nxt[M],val[M],dep[N],cur[N];
-
-void add(int u,int v,int w) {
-	ter[++tot]=v,nxt[tot]=lnk[u],lnk[u]=tot,val[tot]=w;
-}
-void addedge(int u,int v,int w) {
-	add(u,v,w),add(v,u,0);
-}
-int bfs(int s,int t) {
-	memset(dep,0,sizeof(dep));
-	memcpy(cur,lnk,sizeof(lnk));
-	std::queue<int> q;
-	q.push(s),dep[s]=1;
-	while(!q.empty()) {
-		int u=q.front(); q.pop();
-		for(int i=lnk[u];i;i=nxt[i]) {
+	void add(int u,int v,int w,int c) {
+		ter[++tot]=v,nxt[tot]=lnk[u],lnk[u]=tot,cap[tot]=w,cost[tot]=c;
+	}
+	void addedge(int u,int v,int w,int c) {
+		add(u,v,w,c),add(v,u,0,-c);
+	}
+	bool spfa(int s,int t) {
+		memset(dis,0x3f,sizeof(dis));
+		memcpy(cur,lnk,sizeof(lnk));
+		std::queue<int> q;
+		q.push(s),dis[s]=0,vis[s]=1;
+		while(!q.empty()) {
+			int u=q.front(); q.pop(),vis[u]=0;
+			for(int i=lnk[u];i;i=nxt[i]) {
+				int v=ter[i];
+				if(cap[i]&&dis[v]>dis[u]+cost[i]) {
+					dis[v]=dis[u]+cost[i];
+					if(!vis[v]) q.push(v),vis[v]=1;
+				}
+			}
+		}
+		return dis[t]!=INF;
+	}
+	int dfs(int u,int t,int flow) {
+		if(u==t) return flow;
+		vis[u]=1;
+		int ans=0;
+		for(int &i=cur[u];i&&ans<flow;i=nxt[i]) {
 			int v=ter[i];
-			if(val[i]&&!dep[v]) q.push(v),dep[v]=dep[u]+1;
+			if(!vis[v]&&cap[i]&&dis[v]==dis[u]+cost[i]) {
+				int x=dfs(v,t,std::min(cap[i],flow-ans));
+				if(x) ret+=x*cost[i],cap[i]-=x,cap[i^1]+=x,ans+=x;
+			}
 		}
+		vis[u]=0;
+		return ans;
 	}
-	return dep[t];
-}
-int dfs(int u,int t,int flow) {
-	if(u==t) return flow;
-	int ans=0;
-	for(int &i=cur[u];i&&ans<flow;i=nxt[i]) {
-		int v=ter[i];
-		if(val[i]&&dep[v]==dep[u]+1) {
-			int x=dfs(v,t,std::min(val[i],flow-ans));
-			if(x) val[i]-=x,val[i^1]+=x,ans+=x;
+	int mcmf(int s,int t) {
+		int ans=0;
+		while(spfa(s,t)) {
+			int x;
+			while((x=dfs(s,t,INF))) ans+=x;
 		}
+		return ans;
 	}
-	if(ans<flow) dep[u]=-1;
-	return ans;
-}
-int dinic(int s,int t) {
-	int ans=0;
-	while(bfs(s,t)) {
-		int x;
-		while((x=dfs(s,t,1<<30))) ans+=x;
+	int main() {
+		int s,t;
+		scanf("%d%d%d%d",&n,&m,&s,&t);
+		while(m--) {
+			int u,v,w,c;
+			scanf("%d%d%d%d",&u,&v,&w,&c);
+			addedge(u,v,w,c);
+		}
+		int ans=mcmf(s,t);
+		printf("%d %d\n",ans,ret);
+		return 0;
 	}
-	return ans;
-}
-int main() {
-	scanf("%d%d%d%d",&n,&m,&s,&t);
-	while(m--) {
-		int u,v,w;
-		scanf("%d%d%d",&u,&v,&w);
-		addedge(u,v,w);
-	}
-	printf("%d\n",dinic(s,t));
-	return 0;
-}
-```
-
-### 方案
-
-我们可以通过从源点 $s$ 开始 $\text{DFS}$，每次走残量大于 $0$ 的边，找到所有 $S$ 点集内的点。
-
-```cpp
-void dfs(int u) {
-	vis[u]=1;
-	for(int i=lnk[u];i;i=nxt[i]) {
-		int v=ter[i];
-		if(!vis[v]&&val[i]) dfs(v);
-	}
-}
-```
-
-### 割边数量
-
-只需要将每条边的容量变为 $1$，然后重新跑 $\text{Dinic}$ 即可。
-
-------
-
-## 问题模型
-
-有 $n$ 个物品和两个集合 $A,B$，如果将一个物品放入 $A$ 集合会花费 $a_i$，放入 $B$ 集合会花费 $b_i$；还有若干个形如 $u_i,v_i,w_i$ 限制条件，表示如果 $u_i$ 和 $v_i$ 同时不在一个集合会花费 $w_i$。每个物品必须且只能属于一个集合，求最小的代价。
-
-这是一个经典的**二者选其一**的最小割题目。我们对于每个集合设置源点 $s$ 和汇点 $t$，第 $i$ 个点由 $s$ 连一条容量为 $a_i$ 的边、向 $t$ 连一条容量为 $b_i$ 的边。对于限制条件 $u,v,w$，我们在 $u,v$ 之间连容量为 $w$ 的双向边。
-
-注意到当源点和汇点不相连时，代表这些点都选择了其中一个集合。如果将连向 $s$ 或 $t$ 的边割开，表示不放在 $A$ 或 $B$ 集合，如果把物品之间的边割开，表示这两个物品不放在同一个集合。
-
-最小割就是最小花费。
+	```
 
 ------
 
 ## 习题
 
-- [「USACO 4.4」Pollutant Control](https://www.luogu.org/problemnew/show/P1344)
-- [「USACO 5.4」Telecowmunication](https://www.luogu.org/problemnew/show/P1345)
-- [「Luogu 1361」小 M 的作物](https://www.luogu.org/problemnew/show/P1361)
-- [「SHOI 2007」善意的投票](https://www.lydsy.com/JudgeOnline/problem.php?id=1934)
-
-------
-
-## 网络流 24 题
-
-- [「Luogu 1251」餐巾计划问题](https://www.luogu.org/problemnew/show/P1251)
-- [「Luogu 2754」家园](https://www.luogu.org/problemnew/show/P2754)
-- [「Luogu 2756」飞行员配对方案问题](https://www.luogu.org/problemnew/show/P2756)
-- [「Luogu 2761」软件补丁问题](https://www.luogu.org/problemnew/show/P2761)
-- [「Luogu 2762」太空飞行计划问题](https://www.luogu.org/problemnew/show/P2762)
-- [「Luogu 2763」试题库问题](https://www.luogu.org/problemnew/show/P2763)
-- [「Luogu 2764」最小路径覆盖问题](https://www.luogu.org/problemnew/show/P2764)
-- [「Luogu 2765」魔术球问题](https://www.luogu.org/problemnew/show/P2765)
-- [「Luogu 2766」最长不下降子序列问题](https://www.luogu.org/problemnew/show/P2766)
-- [「Luogu 2770」航空路线问题](https://www.luogu.org/problemnew/show/P2770)
-- [「Luogu 2774」方格取数问题](https://www.luogu.org/problemnew/show/P2774)
-- [「Luogu 2775」机器人路径规划问题](https://www.luogu.org/problemnew/show/P2775)
-- [「Luogu 3254」圆桌问题](https://www.luogu.org/problemnew/show/P3254)
-- [「Luogu 3355」骑士共存问题](https://www.luogu.org/problemnew/show/P3355)
-- [「Luogu 3356」火星探险问题](https://www.luogu.org/problemnew/show/P3356)
-- [「Luogu 3357」最长k可重线段集问题](https://www.luogu.org/problemnew/show/P3357)
-- [「Luogu 3358」最长k可重区间集问题](https://www.luogu.org/problemnew/show/P3358)
-- [「Luogu 4009」汽车加油行驶问题](https://www.luogu.org/problemnew/show/P4009)
-- [「Luogu 4011」孤岛营救问题](https://www.luogu.org/problemnew/show/P4011)
-- [「Luogu 4012」深海机器人问题](https://www.luogu.org/problemnew/show/P4012)
-- [「Luogu 4013」数字梯形问题](https://www.luogu.org/problemnew/show/P4013)
-- [「Luogu 4014」分配问题](https://www.luogu.org/problemnew/show/P4014)
-- [「Luogu 4015」运输问题](https://www.luogu.org/problemnew/show/P4015)
-- [「Luogu 4016」负载平衡问题](https://www.luogu.org/problemnew/show/P4016)
+- [「Luogu 3381」【模板】最小费用最大流](https://www.luogu.org/problemnew/show/P3381)
+- [「Luogu 4452」航班安排](https://www.luogu.org/problemnew/show/P4452)
+- [「SDOI 2009」晨跑](https://www.lydsy.com/JudgeOnline/problem.php?id=1877)
+- [「SCOI 2007」修车](https://www.lydsy.com/JudgeOnline/problem.php?id=1070)
+- [「HAOI 2010」订货](https://www.lydsy.com/JudgeOnline/problem.php?id=2424)
+- [「NOI 2012」美食节](https://www.lydsy.com/JudgeOnline/problem.php?id=2879)
