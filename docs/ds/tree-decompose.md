@@ -1,6 +1,6 @@
 ## 树分块的方式
 
-可以参考 [OI Wiki/莫队算法/真-树上莫队](https://oi-wiki.org/misc/mo-algo/#_13)。
+可以参考 [OI Wiki/莫队算法/真-树上莫队](https://oi-wiki.org/misc/mo-algo/#_14)。
 
 也可以参考 [ouuan的博客/莫队、带修莫队、树上莫队详解/树上莫队](https://ouuan.github.io/%E8%8E%AB%E9%98%9F%E3%80%81%E5%B8%A6%E4%BF%AE%E8%8E%AB%E9%98%9F%E3%80%81%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F%E8%AF%A6%E8%A7%A3/#%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F)。
 
