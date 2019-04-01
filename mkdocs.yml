@@ -54,7 +54,7 @@ nav:
       - 堆排序: basic/heap-sort.md
       - 基数排序: basic/radix-sort.md
       - 希尔排序: basic/shell-sort.md
-      - 相关 STL: basic/stl-sort.md
+      - 排序相关 STL: basic/stl-sort.md
       - 排序应用: basic/use-of-sort.md
     - 表达式求值: basic/expression.md
     - 二分: basic/binary.md
