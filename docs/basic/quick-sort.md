@@ -1,3 +1,5 @@
+##  算法
+
 快速排序是[分治](/basic/divide-and-conquer)地来将一个数组排序。
 
 快速排序分为三个过程：
@@ -24,31 +26,7 @@
 
 其实，在选择 m 的过程中使用 [Median of Medians](https://en.wikipedia.org/wiki/Median_of_medians) 算法，就可以保证最坏时间复杂度为 $O(n\log n)$ ，但是由于其过于复杂，实践中一般不使用。
 
-### STL
-
-C 函数模板库实现了快速排序，即 `stdlib.h` 当中的 `qsort` 。
-
-但在 OI 相关比赛当中，更为常见的库排序函数是 C++ `algorithm` 库中的 `std::sort` 函数。
-
-C++ 标准并未严格要求此函数的实现算法，具体实现取决于编译器。
-
-旧版 C++ 标准中仅要求它的 **平均** 时间复杂度达到 $O(n\log n)$，但 C++11 标准要求它的 **最坏** 时间复杂度是达到 $O(n\log n)$ 。可以查阅 [std::sort()](https://en.cppreference.com/w/cpp/algorithm/sort)
-
-在 [libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) 和 [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm) 中使用的都是 [Introsort](https://en.wikipedia.org/wiki/Introsort)。
-
-Introsort 限制了快速排序的分治深度，当分治达到一定深度之后，改用最坏时间复杂度为 $O(n\log n)$ 的排序算法（比如堆排序）来给子数组排序。
-
-Introsort 的这个限制使得它的最坏时间复杂度是 $O(n\log n)$ 的。
-
-快速用法：
-
-```cpp
-// a[0] .. a[n - 1] 为需要排序的数列
-std::sort(a, a + n);
-// 这句代码直接修改 a 数组里的元素顺序，使得现在它是从小到大排列的
-```
-
-### 线性找第 k 大的数
+## 线性找第 k 大的数
 
 找第 k 大的数（K-th order statistic），最简单的方法是先排序，然后直接找到第 k 大的位置的元素。这样做的时间复杂度是 $O(n\log n)​$ ，对于这个问题来说很不划算。事实上，我们有时间复杂度 $O(n)​$ 的解法。
 
