@@ -1,279 +1,175 @@
-## 树分块
+## 树分块的方式
 
-关于树分块，可以先看一道模板题 ：[「SCOI2005」王室联邦](https://www.luogu.org/problemnew/show/P2325)。
+可以参考 [OI Wiki/莫队算法/真-树上莫队](https://oi-wiki.org/misc/mo-algo/#_13)。
 
-这道题所要求的方案就是树分块的方案。
+也可以参考 [ouuan的博客/莫队、带修莫队、树上莫队详解/树上莫队](https://ouuan.github.io/%E8%8E%AB%E9%98%9F%E3%80%81%E5%B8%A6%E4%BF%AE%E8%8E%AB%E9%98%9F%E3%80%81%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F%E8%AF%A6%E8%A7%A3/#%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F)。
 
-那么如何满足**每块的大小都在区间 $[B,3B]$ 内，块内每个点到核心点路径上的所有点都在块内**呢？
+树上莫队同样可以参考以上两篇文章。
 
-这里先提供一种构造方式，再予以证明：
+## 树分块的应用
 
-**使用 DFS 来构造，并创建一个栈，DFS 到一个点时先记录初始栈顶高度，每 DFS 完当前节点的一棵子树就判断栈内（相对于刚开始 DFS 时）新增节点的数量是否 $\geqslant B$，如果是则将栈内所有新增点分为同一块，以当前所处的点作为核心点，对当前节点的 DFS 结束时将当前节点入栈，整个 DFS 过程结束后将栈内所有剩余节点归入已经分好的最后一个块。**
+树分块除了应用于莫队，还可以灵活地运用到某些树上问题中。但可以用树分块解决的题目往往都有更优秀的做法，所以相关的题目较少。
 
-参考代码：
+顺带提一句，“gty的妹子树”的树分块做法可以被菊花图卡掉。
 
-```cpp
-void dfs(int u,int fa) {
-    int t = top;
-    for (int i = head[u]; i; i = nxt[i]) {
-        int v = to[i];
-        if (v != fa) {
-            dfs(v, u);
-            if (top - t >= B) {
-                ++tot;
-                while (top > t) bl[sta[top--]] = tot;
-            }
-        }
-    }
-    sta[++top] = u;
-}
+### [BZOJ4763 雪辉](https://www.lydsy.com/JudgeOnline/problem.php?id=4763)
 
-int main() {
-    //.......
+先进行树分块，然后对每个块的关键点，预处理出它到祖先中每个关键点的路径上颜色的 bitset，以及每个关键点的最近关键点祖先，复杂度是 $\mathcal O(n\sqrt n+\frac{nc}{32})​$，其中 $n\sqrt n​$ 是暴力从每个关键点向上跳的复杂度，$\frac{nc}{32}​$ 是把 $\mathcal O(n)​$ 个 bitset 存下来的复杂度。
 
-    dfs(1, 0);
+回答询问的时候，先从路径的端点暴力跳到所在块的关键点，再从所在块的关键点一块一块地向上跳，直到 $lca$ 所在块，然后再暴力跳到 $lca$。关键点之间的 bitset 已经预处理了，剩下的在暴力跳的过程中计算。单次询问复杂度是 $\mathcal O(\sqrt n+\frac c{32})$，其中 $\sqrt n$ 是块内暴力跳以及块直接向上跳的复杂度，$\mathcal O(\frac c{32})$ 是将预处理的结果与暴力跳的结果合并的复杂度。数颜色个数可以用 bitset 的 `count()`，求 $\operatorname{mex}$ 可以用 bitset 的 `_Find_first()`。
 
-    while (top) bl[sta[top--]] = tot;
-}
-```
-
-如果你看懂了这个方法的话，每块大小 $\geqslant B$ 是显然已经满足了的，下面证明为何每块大小均 $\leqslant 3B$：
-
-对于当前节点的每一棵子树：
-
-- 若未被分块的节点数 $\geqslant B$，那么在 DFS 这棵子树的根节点时就一定会把这棵子树的一部分分为一块直至这棵子树的剩余节点数 $\leqslant B$，所以这种情况不存在。
-- 若未被分块的节点数 $= B$，这些节点一定会和栈中所有节点分为一块，栈中之前还剩 $[0,B-1]$ 个节点，那么这一块的大小在 $[B,2B-1]$ 内。
-- 若未被分块的节点数 $< B$，当未被分块的节点数 + 栈中剩余节点数 $\geqslant B$ 时，这一块的大小在 $[B,2B-1)$ 内，否则继续对下一棵子树执行此过程。
-
-对于 DFS 结束后栈内剩余节点，其数量一定在 $[1,B]$ 内，而已经分好的每一块的大小均在 $[B,2B-1]$ 内，所以每块的大小都在 $[B,3B)$ 内。
-
-### 应用
-
-树分块常见的有两种应用（其实和序列上的分块类似），一种是用于莫队的，一种是不用于莫队的（废话..）。
-
-不用于莫队的比较灵活（就像序列上的分块比较灵（du）活（liu）一样），而用于莫队的分块有较为固定的模式。
-
-## 树上莫队
-
-前置知识点：树分块（也就是上文的内容）、莫队。
-
-### 修改方式
-
-所谓“修改”，就是由询问 $(cu,cv)$ 更新至询问 $(tu,tv)$ 。
-
-如果把两条路径上的点全部修改复杂度是和暴力一样的，所以需要做一些处理。
-
-（下文中 $T(u,v)$ 表示 $u$ 到 $v$ 的路径上除 $lca(u,v)$ 外的所有点构成的集合，$S(u,v)$ 代表 $u$ 到 $v$ 的路径，$\operatorname{xor}$ 表示集合对称差（就跟异或差不多））
-
-- 两个指针 $cu,cv$ （相当于序列莫队的 $l,r$ 两个指针）， $ans$ 记录 $T(cu,cv)$ 的答案，$vis$ 数组记录每个节点是否在 $T(cu,cv)$ 内；
-- 由 $T(cu,cv)$ 更新至 $T(tu,tv)$ 时，将 $T(cu,tu)$ 和 $T(cv,tv)$ 的 $vis$ 分别取反，并相应地更新答案；
-- 将答案记录到 $out$ 数组（离线后用于输出那个）时对 $lca(cu,cv)$ （此时的 $cu,cv$ 已更新为上一步中的 $tu,tv$） 的 $vis$ 取反并更新答案，记录完再改回来（因为 $lca$ 处理比较麻烦，这样搞比较方便）。
-
-第二步证明如下：
-
-$\quad\,T(cu,cv)\operatorname{xor}T(tu,tv)$
-
-$=[S(cu,root)\operatorname{xor}S(cv,root)]\operatorname{xor}[S(tu,root)\operatorname{xor}S(tv,root)]$ （lca 及以上相消）
-
-$=[S(cu,root)\operatorname{xor}S(tu,root)]\operatorname{xor}[S(cv,root)\operatorname{xor}S(tv,root)]$ （交换律、结合律）
-
-$=T(cu,tu)\operatorname{xor}T(cv,tv)$
-
-之所以要把 $T(cu,cv)\operatorname{xor}T(tu,tv)$ 转化成 $T(cu,tu)\operatorname{xor}T(cv,tv)$，是因为这样的话就能通过对询问排序来保证复杂度。排序方式就是以 $u$ 所在块编号为第一关键字，$v$ 的编号为第二关键字排序。如果是带修莫队，还需要以时间为第三关键字。
-
-### 关于单点修改
-
-树上莫队的单点修改和序列莫队类似，唯一不同的地方就是，修改后是否更新答案通过 $vis$ 数组判断。
-
-### 复杂度分析
-
-每块大小在 $[B,3B)$，所以两点间路径长度也在 $[B,3B)$，块内移动就是 $\mathcal O(B)$ 的；编号相邻的块位置必然是相邻的，所以两块间路径长度也是 $\mathcal O(B)$；然后就和序列莫队的复杂度分析类似了...
-
-### 例题代码
-
-[「WC2013」糖果公园](https://www.luogu.org/problemnew/show/P4074)，这题要用带修莫队，复杂度为 $\mathcal O(n^{\frac 5 3}+m\log m)$（视作 $n,m$ 同阶）。
+所以，总复杂度为 $\mathcal O((n+m)(\sqrt n+\frac c{32}))​$。
 
 ```cpp
 #include <iostream>
 #include <cstdio>
+#include <cctype>
+#include <bitset>
 #include <algorithm>
-#include <cmath>
 
 using namespace std;
 
-const int N=100010;
+int read()
+{
+	int out=0;
+	char c;
+	while (!isdigit(c=getchar()));
+	for (;isdigit(c);c=getchar()) out=out*10+c-'0';
+	return out;
+}
 
-void pathmodify(int u,int v); //将T(u,v)取反并更新答案
-void opp(int x); //将节点x取反并更新答案
-void modify(int ti); //进行或回退修改ti
-int lca(int u,int v);
-void dfs(int u); //进行分块并记录dep数组、f数组（用于求lca、两点间路径）
+const int N=100010;
+const int B=666;
+const int C=30000;
+
 void add(int u,int v);
+void dfs(int u);
 
 int head[N],nxt[N<<1],to[N<<1],cnt;
-int n,m,Q,B,bl[N],tot,V[N],W[N],a[N],sta[N],top,qcnt,ccnt,dep[N],f[20][N],num[N],now;
-long long ans,out[N];
+int n,m,type,c[N],fa[N],dep[N],sta[N],top,tot,bl[N],key[N/B+5],p[N],keyid[N];
 bool vis[N];
-
-struct Query
-{
-	int u,v,t,id;
-	bool operator<(Query& y)
-	{
-		return bl[u]==bl[y.u]?(bl[v]==bl[y.v]?t<y.t:bl[v]<bl[y.v]):bl[u]<bl[y.u];
-	}
-} q[N];
-
-struct Change
-{
-	int p,x;
-} c[N];
+bitset<C> bs[N/B+5][N/B+5],temp;
 
 int main()
 {
-	int i,j,u,v,lc,type;
+	int i,u,v,x,y,k,lastans=0;
 	
-	cin>>n>>m>>Q;
-	B=pow(n,0.666);
+	n=read();
+	m=read();
+	type=read();
 	
-	for (i=1;i<=m;++i) cin>>V[i];
-	for (i=1;i<=n;++i) cin>>W[i];
+	for (i=1;i<=n;++i) c[i]=read();
 	
 	for (i=1;i<n;++i)
 	{
-		cin>>u>>v;
+		u=read();
+		v=read();
 		add(u,v);
 		add(v,u);
 	}
 	
 	dfs(1);
 	
-	for (i=1;i<=16;++i)
-	{
-		for (j=1;j<=n;++j)
-		{
-			f[i][j]=f[i-1][f[i-1][j]];
-		}
-	}
-	
+	if (!tot) ++tot;
+	if (keyid[key[tot]]==tot) keyid[key[tot]]=0;
+	key[tot]=1;
+	keyid[1]=tot; 
 	while (top) bl[sta[top--]]=tot;
 	
-	for (i=1;i<=n;++i) cin>>a[i];
-	
-	for (i=0;i<Q;++i)
+	for (i=1;i<=tot;++i) //预处理
 	{
-		cin>>type;
-		if (type==0)
+		if (vis[key[i]]) continue;
+		vis[key[i]]=true;
+		temp.reset();
+		for (u=key[i];u;u=fa[u])
 		{
-			++ccnt;
-			cin>>c[ccnt].p>>c[ccnt].x;
-		}
-		else
-		{
-			cin>>q[qcnt].u>>q[qcnt].v;
-			q[qcnt].t=ccnt;
-			q[qcnt].id=qcnt;
-			++qcnt;
+			temp[c[u]]=1;
+			if (keyid[u])
+			{
+				if (!p[key[i]]&&u!=key[i]) p[key[i]]=u;
+				bs[keyid[key[i]]][keyid[u]]=temp;
+			}
 		}
 	}
 	
-	sort(q,q+qcnt);
-	
-	u=v=1;
-	
-	for (i=0;i<qcnt;++i)
+	while (m--)
 	{
-		pathmodify(u,q[i].u);
-		pathmodify(v,q[i].v);
-		u=q[i].u;
-		v=q[i].v;
-		while (now<q[i].t) modify(++now);
-		while (now>q[i].t) modify(now--);
-		lc=lca(u,v);
-		opp(lc);
-		out[q[i].id]=ans;
-		opp(lc);
+		k=read();
+		temp.reset();
+		while (k--)
+		{
+			u=x=read()^lastans;
+			v=y=read()^lastans;
+			
+			while (key[bl[x]]!=key[bl[y]])
+			{
+				if (dep[key[bl[x]]]>dep[key[bl[y]]])
+				{
+					if (x==u) //若是第一次跳先暴力跳到关键点
+					{
+						while (x!=key[bl[u]])
+						{
+							temp[c[x]]=1;
+							x=fa[x];
+						}
+					}
+					else x=p[x]; //否则跳一整块
+				}
+				else
+				{
+					if (y==v)
+					{
+						while (y!=key[bl[v]])
+						{
+							temp[c[y]]=1;
+							y=fa[y];
+						}
+					}
+					else y=p[y];
+				}
+			}
+			
+			if (keyid[x]) temp|=bs[keyid[key[bl[u]]]][keyid[x]];
+			if (keyid[y]) temp|=bs[keyid[key[bl[v]]]][keyid[y]];
+			
+			while (x!=y)
+			{
+				if (dep[x]>dep[y])
+				{
+					temp[c[x]]=1;
+					x=fa[x];
+				}
+				else
+				{
+					temp[c[y]]=1;
+					y=fa[y];
+				}
+			}
+			temp[c[x]]=true;
+		}
+		int ans1=temp.count(),ans2=(~temp)._Find_first();
+		printf("%d %d\n",ans1,ans2);
+		lastans=(ans1+ans2)*type;
 	}
-	
-	for (i=0;i<qcnt;++i) cout<<out[i]<<endl;
 	
 	return 0;
 }
 
-void pathmodify(int u,int v)
-{
-	if (dep[u]<dep[v]) swap(u,v);
-	while (dep[u]>dep[v])
-	{
-		opp(u);
-		u=f[0][u];
-	}
-	while (u!=v)
-	{
-		opp(u);
-		opp(v);
-		u=f[0][u];
-		v=f[0][v];
-	}
-}
-
-void opp(int x)
-{
-	if (vis[x]) ans-=1ll*V[a[x]]*W[num[a[x]]--];
-	else ans+=1ll*V[a[x]]*W[++num[a[x]]];
-	vis[x]^=1;
-}
-
-void modify(int ti)
-{
-	if (vis[c[ti].p])
-	{
-		opp(c[ti].p);
-		swap(a[c[ti].p],c[ti].x);
-		opp(c[ti].p);
-	}
-	else swap(a[c[ti].p],c[ti].x);
-}
-
-int lca(int u,int v)
-{
-	if (dep[u]<dep[v]) swap(u,v);
-	int i;
-	for (i=0;i<=16;++i)
-	{
-		if ((dep[u]-dep[v])&(1<<i))
-		{
-			u=f[i][u];
-		}
-	}
-	if (u==v) return u;
-	for (i=16;i>=0;--i)
-	{
-		if (f[i][u]!=f[i][v])
-		{
-			u=f[i][u];
-			v=f[i][v];
-		}
-	}
-	return f[0][u];
-}
-
 void dfs(int u)
 {
-	int t=top;
-	for (int i=head[u];i;i=nxt[i])
+	int i,v,t=top;
+	for (i=head[u];i;i=nxt[i])
 	{
-		int v=to[i];
-		if (v!=f[0][u])
+		v=to[i];
+		if (v==fa[u]) continue;
+		fa[v]=u;
+		dep[v]=dep[u]+1;
+		dfs(v);
+		if (top-t>=B)
 		{
-			f[0][v]=u;
-			dep[v]=dep[u]+1;
-			dfs(v);
-			if (top-t>=B)
-			{
-				++tot;
-				while (top>t) bl[sta[top--]]=tot;
-			}
+			key[++tot]=u;
+			if (!keyid[u]) keyid[u]=tot;
+			while (top>t) bl[sta[top--]]=tot;
 		}
 	}
 	sta[++top]=u;
@@ -287,10 +183,12 @@ void add(int u,int v)
 }
 ```
 
-## 其它树分块
+### [BZOJ4812 由乃打扑克](https://www.lydsy.com/JudgeOnline/problem.php?id=4812)
 
-在模拟赛遇到过一道题，并没有在线提交的地方，也找不到代码了..
+这题和上一题基本一样，唯一的区别是得到 bitset 后如何计算答案。
 
-题意大概是：给你一棵点有颜色的树，每次询问给你若干条路径，要么询问这些路径的并的颜色数，要么询问这些路径的并出现的颜色的 $\operatorname{mex}$（编号最小的未出现颜色），强制在线。节点数 $n\le10^5$，总路径条数 $m\le10^5$，颜色数 $c\le10^4$。
+~~由于BZOJ是计算所有测试点总时限，不好卡，所以可以用 `_Find_next()` 水过去。~~
 
-std 的做法是树分块+bitset：预处理出每块的关键点到祖先中每个关键点之间路径上颜色的 bitset，询问的时候把路径拆成两个端点分别到块内关键点、两个关键点分别到 $lca$ 所在块的下面一块的关键点、这两块的关键点分别到 $lca$，块内暴力，块的关键点到块的祖先关键点已经预处理了。时间复杂度是 $\mathcal O(n\sqrt n+m(\sqrt n+\frac c w))$（$w$ 为 bitset 的常数除以 $32$），空间复杂度为 $\mathcal O(\frac{nc}w)$。
+正解是每 $16$ 位一起算，先预处理出 $2^{16}$ 种可能的情况高位连续 $1$ 的个数、低位连续 $1$ 的个数以及中间的贡献。只不过这样要手写 bitset，因为标准库的 bitset 不能取某 $16$ 位..
+
+代码可以参考[这篇博客](https://www.cnblogs.com/FallDream/p/bzoj4763.html)。
