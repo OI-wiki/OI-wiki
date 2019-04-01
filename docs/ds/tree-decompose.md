@@ -2,7 +2,7 @@
 
 可以参考 [OI Wiki/莫队算法/真-树上莫队](https://oi-wiki.org/misc/mo-algo/#_14)。
 
-也可以参考 [ouuan的博客/莫队、带修莫队、树上莫队详解/树上莫队](https://ouuan.github.io/%E8%8E%AB%E9%98%9F%E3%80%81%E5%B8%A6%E4%BF%AE%E8%8E%AB%E9%98%9F%E3%80%81%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F%E8%AF%A6%E8%A7%A3/#%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F)。
+也可以参考 [ouuan的博客/莫队、带修莫队、树上莫队详解/树上莫队](https://ouuan.github.io/莫队、带修莫队、树上莫队详解/#树上莫队)。
 
 树上莫队同样可以参考以上两篇文章。
 
@@ -20,168 +20,170 @@
 
 所以，总复杂度为 $\mathcal O((n+m)(\sqrt n+\frac c{32}))​$。
 
-```cpp
-#include <iostream>
-#include <cstdio>
-#include <cctype>
-#include <bitset>
-#include <algorithm>
+??? " 参考代码 "
 
-using namespace std;
+	```cpp
+	#include <iostream>
+	#include <cstdio>
+	#include <cctype>
+	#include <bitset>
+	#include <algorithm>
 
-int read()
-{
-	int out=0;
-	char c;
-	while (!isdigit(c=getchar()));
-	for (;isdigit(c);c=getchar()) out=out*10+c-'0';
-	return out;
-}
+	using namespace std;
 
-const int N=100010;
-const int B=666;
-const int C=30000;
-
-void add(int u,int v);
-void dfs(int u);
-
-int head[N],nxt[N<<1],to[N<<1],cnt;
-int n,m,type,c[N],fa[N],dep[N],sta[N],top,tot,bl[N],key[N/B+5],p[N],keyid[N];
-bool vis[N];
-bitset<C> bs[N/B+5][N/B+5],temp;
-
-int main()
-{
-	int i,u,v,x,y,k,lastans=0;
-	
-	n=read();
-	m=read();
-	type=read();
-	
-	for (i=1;i<=n;++i) c[i]=read();
-	
-	for (i=1;i<n;++i)
+	int read()
 	{
-		u=read();
-		v=read();
-		add(u,v);
-		add(v,u);
+		int out=0;
+		char c;
+		while (!isdigit(c=getchar()));
+		for (;isdigit(c);c=getchar()) out=out*10+c-'0';
+		return out;
 	}
-	
-	dfs(1);
-	
-	if (!tot) ++tot;
-	if (keyid[key[tot]]==tot) keyid[key[tot]]=0;
-	key[tot]=1;
-	keyid[1]=tot; 
-	while (top) bl[sta[top--]]=tot;
-	
-	for (i=1;i<=tot;++i) //预处理
+
+	const int N=100010;
+	const int B=666;
+	const int C=30000;
+
+	void add(int u,int v);
+	void dfs(int u);
+
+	int head[N],nxt[N<<1],to[N<<1],cnt;
+	int n,m,type,c[N],fa[N],dep[N],sta[N],top,tot,bl[N],key[N/B+5],p[N],keyid[N];
+	bool vis[N];
+	bitset<C> bs[N/B+5][N/B+5],temp;
+
+	int main()
 	{
-		if (vis[key[i]]) continue;
-		vis[key[i]]=true;
-		temp.reset();
-		for (u=key[i];u;u=fa[u])
+		int i,u,v,x,y,k,lastans=0;
+		
+		n=read();
+		m=read();
+		type=read();
+		
+		for (i=1;i<=n;++i) c[i]=read();
+		
+		for (i=1;i<n;++i)
 		{
-			temp[c[u]]=1;
-			if (keyid[u])
+			u=read();
+			v=read();
+			add(u,v);
+			add(v,u);
+		}
+		
+		dfs(1);
+		
+		if (!tot) ++tot;
+		if (keyid[key[tot]]==tot) keyid[key[tot]]=0;
+		key[tot]=1;
+		keyid[1]=tot; 
+		while (top) bl[sta[top--]]=tot;
+		
+		for (i=1;i<=tot;++i) //预处理
+		{
+			if (vis[key[i]]) continue;
+			vis[key[i]]=true;
+			temp.reset();
+			for (u=key[i];u;u=fa[u])
 			{
-				if (!p[key[i]]&&u!=key[i]) p[key[i]]=u;
-				bs[keyid[key[i]]][keyid[u]]=temp;
+				temp[c[u]]=1;
+				if (keyid[u])
+				{
+					if (!p[key[i]]&&u!=key[i]) p[key[i]]=u;
+					bs[keyid[key[i]]][keyid[u]]=temp;
+				}
 			}
 		}
-	}
-	
-	while (m--)
-	{
-		k=read();
-		temp.reset();
-		while (k--)
+		
+		while (m--)
 		{
-			u=x=read()^lastans;
-			v=y=read()^lastans;
-			
-			while (key[bl[x]]!=key[bl[y]])
+			k=read();
+			temp.reset();
+			while (k--)
 			{
-				if (dep[key[bl[x]]]>dep[key[bl[y]]])
+				u=x=read()^lastans;
+				v=y=read()^lastans;
+				
+				while (key[bl[x]]!=key[bl[y]])
 				{
-					if (x==u) //若是第一次跳先暴力跳到关键点
+					if (dep[key[bl[x]]]>dep[key[bl[y]]])
 					{
-						while (x!=key[bl[u]])
+						if (x==u) //若是第一次跳先暴力跳到关键点
 						{
-							temp[c[x]]=1;
-							x=fa[x];
+							while (x!=key[bl[u]])
+							{
+								temp[c[x]]=1;
+								x=fa[x];
+							}
 						}
+						else x=p[x]; //否则跳一整块
 					}
-					else x=p[x]; //否则跳一整块
-				}
-				else
-				{
-					if (y==v)
+					else
 					{
-						while (y!=key[bl[v]])
+						if (y==v)
 						{
-							temp[c[y]]=1;
-							y=fa[y];
+							while (y!=key[bl[v]])
+							{
+								temp[c[y]]=1;
+								y=fa[y];
+							}
 						}
+						else y=p[y];
 					}
-					else y=p[y];
 				}
-			}
-			
-			if (keyid[x]) temp|=bs[keyid[key[bl[u]]]][keyid[x]];
-			if (keyid[y]) temp|=bs[keyid[key[bl[v]]]][keyid[y]];
-			
-			while (x!=y)
-			{
-				if (dep[x]>dep[y])
+				
+				if (keyid[x]) temp|=bs[keyid[key[bl[u]]]][keyid[x]];
+				if (keyid[y]) temp|=bs[keyid[key[bl[v]]]][keyid[y]];
+				
+				while (x!=y)
 				{
-					temp[c[x]]=1;
-					x=fa[x];
+					if (dep[x]>dep[y])
+					{
+						temp[c[x]]=1;
+						x=fa[x];
+					}
+					else
+					{
+						temp[c[y]]=1;
+						y=fa[y];
+					}
 				}
-				else
-				{
-					temp[c[y]]=1;
-					y=fa[y];
-				}
+				temp[c[x]]=true;
 			}
-			temp[c[x]]=true;
+			int ans1=temp.count(),ans2=(~temp)._Find_first();
+			printf("%d %d\n",ans1,ans2);
+			lastans=(ans1+ans2)*type;
 		}
-		int ans1=temp.count(),ans2=(~temp)._Find_first();
-		printf("%d %d\n",ans1,ans2);
-		lastans=(ans1+ans2)*type;
+		
+		return 0;
 	}
-	
-	return 0;
-}
 
-void dfs(int u)
-{
-	int i,v,t=top;
-	for (i=head[u];i;i=nxt[i])
+	void dfs(int u)
 	{
-		v=to[i];
-		if (v==fa[u]) continue;
-		fa[v]=u;
-		dep[v]=dep[u]+1;
-		dfs(v);
-		if (top-t>=B)
+		int i,v,t=top;
+		for (i=head[u];i;i=nxt[i])
 		{
-			key[++tot]=u;
-			if (!keyid[u]) keyid[u]=tot;
-			while (top>t) bl[sta[top--]]=tot;
+			v=to[i];
+			if (v==fa[u]) continue;
+			fa[v]=u;
+			dep[v]=dep[u]+1;
+			dfs(v);
+			if (top-t>=B)
+			{
+				key[++tot]=u;
+				if (!keyid[u]) keyid[u]=tot;
+				while (top>t) bl[sta[top--]]=tot;
+			}
 		}
+		sta[++top]=u;
 	}
-	sta[++top]=u;
-}
 
-void add(int u,int v)
-{
-	nxt[++cnt]=head[u];
-	head[u]=cnt;
-	to[cnt]=v;
-}
-```
+	void add(int u,int v)
+	{
+		nxt[++cnt]=head[u];
+		head[u]=cnt;
+		to[cnt]=v;
+	}
+	```
 
 ### [BZOJ4812 由乃打扑克](https://www.lydsy.com/JudgeOnline/problem.php?id=4812)
 
