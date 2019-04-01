@@ -98,7 +98,7 @@ $$
 ### 例子
 $$
 \qquad\begin{array}
-\text{单位元}&\displaystyle\epsilon(n)=[n=1]\\
+\text{单位函数}&\displaystyle\epsilon(n)=[n=1]\\
 \text{恒等函数}&\displaystyle id_k(n)=n^k\\
 \text{恒等函数的另一种记法}&\displaystyle id(n)=id_1(n)=n\\
 \text{常数函数}&\displaystyle 1(n)=1\\
