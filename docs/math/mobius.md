@@ -96,9 +96,12 @@ h(x)&=\sum_{d\mid x}f(d)g(\frac{x}{d})
 $$
 
 ### 例子
-
 $$
 \qquad\begin{array}
+\text{单位元}&\displaystyle\epsilon(n)=[n=1]\\
+\text{自身}&\displaystyle id(n)=n\\
+\text{自身$0$次}&\displaystyle 1(n)=1\\
+\text{自身$k$次}&\displaystyle id^k(n)=n^k\\
 \text{约数个数函数}&d(n)=\displaystyle\sum_{d\mid n}1\\
 \text{约数和函数}&\displaystyle\sigma(n)=\sum_{d\mid n}d\\
 \text{约数 $k$ 次幂函数}&\displaystyle\sigma_k(n)=\sum_{d\mid n}d^k\\
