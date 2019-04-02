@@ -63,7 +63,7 @@
   2. `set(pos, val = true)` : 将某一位设置成 `true`/`false`。
 - 1. `reset()` : 将整个 `bitset` 设置成 `false` 。
   2. `reset(pos)` : 将某一位设置成 `false`。相当于 `set(pos, false)`。
-- 1. `flip()` : 翻转每一位。（$0\leftrightarrow1$，相当于异或）
+- 1. `flip()` : 翻转每一位。（$0\leftrightarrow1$，相当于异或一个全是 $1$ 的 `bitset`）
   2. `flip(pos)` : 翻转某一位。
 - `to_string()` : 返回转换成的字符串表达。
 - `to_ulong()` : 返回转换成的 `unsigned long` 表达 ( `long` 在 NT 及 32 位 POSIX 系统下与 `int` 一样，在 64 位 POSIX 下与 `long long` 一样）。
