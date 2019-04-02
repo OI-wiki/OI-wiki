@@ -123,6 +123,8 @@ $$\begin{aligned}&\sum\limits_{i\in A}[\frac i x=1]\\=&\sum\limits_{i\in A}\sum\
 
 这样的话，单次询问复杂度就是 $\mathcal O(\frac v w)$（$v=7000,\,w=32$）。预处理可以写 $\mathcal O(v\log v)$ 的，也可以写 $\mathcal O(v\sqrt v)$ 的，还可以写 $\mathcal O(v^2)$ 的，~~它们甚至跑的差不多快~~。
 
+根号和平方的预处理比较简单，$\log$ 预处理就如下面代码所示，复杂度为调和级数，所以是 $\mathcal O(v\log v)$。
+
 ??? "参考代码"
 
       ```cpp
