@@ -142,8 +142,7 @@ const int maxn = 60010;
 const int inf = 2e9;
 int n, a, b, w[maxn], q, u, v;
 int cur, h[maxn], nxt[maxn], p[maxn];
-int siz[maxn], top[maxn], son[maxn], dep[maxn], fa[maxn], tid[maxn], rnk[maxn],
-cnt;
+int siz[maxn], top[maxn], son[maxn], dep[maxn], fa[maxn], tid[maxn], rnk[maxn], cnt;
 char op[10];
 inline void add_edge(int x, int y) {
     cur++;
