@@ -89,9 +89,9 @@
 
 -   原树中的虚链 : 在辅助树中，子节点所在 Splay 的 Father 指向父节点，但是父节点的两个儿子都不指向子节点。
 
--   注意：原树的根 ≠辅助树的根。
+-   注意：原树的根 ≠辅助树的根。
 
--   原树的 Father 指向 ≠辅助树的 Father 指向。
+-   原树的 Father 指向 ≠辅助树的 Father 指向。
 
 -   辅助树是可以在满足辅助树、Splay 的性质下任意换根的。
 
@@ -355,7 +355,7 @@ inline int Find(int p) {
 
 ## 一些题
 
--   BZOJ_2049
--   BZOJ_3282
--   BZOJ_2002
--   BZOJ_2631
+-   [「BZOJ 2049」](https://lydsy.com/JudgeOnline/problem.php?id=2049)
+-   [「BZOJ 3282」](https://lydsy.com/JudgeOnline/problem.php?id=3282)
+-   [「BZOJ 2002」](https://lydsy.com/JudgeOnline/problem.php?id=2002)
+-   [「BZOJ 2631」](https://lydsy.com/JudgeOnline/problem.php?id=2631)
