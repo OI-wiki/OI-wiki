@@ -14,15 +14,15 @@
   
      * [x] bitset
   
-	   * [x]栈
+     * [x] 栈
   
-	   * [x]队列
+     * [x] 队列
   
  * [x] pb_ds
 
-	   * [x] pb_ds 简介
+     * [x] pb_ds 简介
   
-	   * [x] __gnu_pbds::priority_queue
+     * [x] __gnu_pbds::priority_queue
   
  * [x] 链表
 
@@ -32,21 +32,21 @@
 
  * [x] 堆
 
-	   * [x]堆简介
+     * [x]堆简介
   
-	   * [x]二叉堆
+     * [x]二叉堆
   
-	   * [x]配对堆
+     * [x]配对堆
   
  * [x] 块状数据结构
 
-	   * [x]分块思想
+     * [x]分块思想
   
-	   * [x]块状链表
+     * [x]块状链表
   	   
      * [x]块状数组
   
-	   * [x]树分块
+     * [x]树分块
 
  * [x] 单调栈
 
@@ -73,5 +73,5 @@
  * [x] 珂朵莉树
 
  * [x] Link Cut Tree
-
-	   * [x] Euler Tour Tree
+     
+     * [x] Euler Tour Tree
