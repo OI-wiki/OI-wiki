@@ -355,7 +355,7 @@ inline int Find(int p) {
 
 ## 一些题
 
--   BZOJ_2049
--   BZOJ_3282
--   BZOJ_2002
--   BZOJ_2631
+-   [BZOJ_2049](https://lydsy.com/JudgeOnline/problem.php?id=2049)
+-   [BZOJ_3282](https://lydsy.com/JudgeOnline/problem.php?id=3282)
+-   [BZOJ_2002](https://lydsy.com/JudgeOnline/problem.php?id=2002)
+-   [BZOJ_2631](https://lydsy.com/JudgeOnline/problem.php?id=2631)
