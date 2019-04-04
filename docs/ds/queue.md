@@ -28,4 +28,4 @@ int q[SIZE],ql=1,qr;
 
 ## STL 队列
 
-参见 [OI Wiki/数据结构/STL/queue-deque](/ds/stl/queue-deque)。
+参见 [OI Wiki/语言基础/C++ 标准库/STL 容器/容器适配器](/lang/container-adapter)。
