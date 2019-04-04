@@ -37,8 +37,36 @@ nav:
     - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
-  - 基础部分:
-    - 基础部分简介: basic/index.md
+  - 语言基础:
+    - IDE 的使用: lang/ide.md
+    - C++ 基础:
+      - hello world!: lang/helloworld.md
+      - 变量: lang/variable.md
+      - 数组: lang/array.md
+      - 结构体: lang/struct.md
+      - 指针: lang/pointer.md
+      - 循环: lang/loop.md
+      - 分支: lang/branch.md
+      - 函数: lang/function.md
+      - 类: lang/class.md
+    - C++ 标准库:
+      - C++ 标准库简介: lang/cpp-standard-library.md
+      - STL 容器:
+        - STL 容器简介: lang/container.md
+        - 迭代器: lang/iterator.md
+        - 序列式容器: lang/sequence-container.md
+        - 关联式容器: lang/associative-container.md
+        - 无序关联式容器: lang/unordered-container.md
+        - 容器适配器: lang/container-adapter.md
+      - STL 算法: lang/algorithm.md
+      - bitset: lang/bitset.md
+      - string: lang/string.md
+    - pb_ds:
+      - 堆: lang/pb-ds-priority-queue.md
+      - 平衡树: lang/pb-ds-tree.md
+    - python 速成: lang/python.md
+  - 基础算法:
+    - 基础算法简介: basic/index.md
     - 枚举: basic/enumerate.md
     - 模拟: basic/simulate.md
     - 递归 & 分治: basic/divide-and-conquer.md
@@ -159,18 +187,6 @@ nav:
     - 杂项: math/misc.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
-    - STL:
-      - STL 简介: ds/stl.md
-      - vector: ds/stl/vector.md
-      - queue/deque: ds/stl/queue-deque.md
-      - priority_queue: ds/stl/priority_queue.md
-      - pair: ds/stl/pair.md
-      - set: ds/stl/set.md
-      - map: ds/stl/map.md
-      - bitset: ds/stl/bitset.md
-    - pb_ds:
-      - pb_ds 简介: ds/pb-ds/index.md
-      - __gnu_pbds::priority_queue: ds/pb-ds/priority-queue.md
     - 栈: ds/stack.md
     - 队列: ds/queue.md
     - 链表: ds/linked-list.md
@@ -289,6 +305,8 @@ nav:
     - 悬线法: misc/largest-matrix.md
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
+
+
 
 # Theme
 theme:
