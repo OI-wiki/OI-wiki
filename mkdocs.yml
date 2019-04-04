@@ -306,8 +306,6 @@ nav:
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
 
-
-
 # Theme
 theme:
   name: 'material'

@@ -224,4 +224,4 @@ $O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单，$\log$ 预处理就如下�
 
 ### 计算高维偏序
 
-详见 [FHR 课件](https://github.com/OI-wiki/libs/blob/master/ds/stl/FHR-分块bitset求高维偏序.pdf)。
+详见 [FHR 课件](https://github.com/OI-wiki/libs/blob/master/lang/FHR-分块bitset求高维偏序.pdf)。
