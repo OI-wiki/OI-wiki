@@ -179,15 +179,7 @@ int count(TreeNode node, int sum) {
 
 LeetCode 有递归专题练习，[点这里去做题](https://leetcode.com/explore/learn/card/recursion-i/)
 
-```cpp
-/*******************************************************
-* 以上内容绝大部分为我个人总结思考得来，均记录在我的公众号中。   *
-* 第一次参与开源项目，按照项目要求重新整理内容结构分享出来，     *
-* 真心希望这些内容能帮助到更多的人，发挥出更大的价值。          *
-* 请容许我留下公众号：labuladong ，有人关注是我持续输出的动力。 *
-*                       ~谢谢~                          *   
-********************************************************/
-```
+
 
 ### 递归优化
 
@@ -220,93 +212,8 @@ void merge_sort(一个数组) {
 }
 ```
 
-好了，这个算法也就这样了，完全没有任何难度。记住之前说的，相信函数的能力，传给他半个数组，那么这半个数组就已经被排好了。而且你会发现这不就是个二叉树遍历模板吗？为什么是后序遍历？因为我们分治算法的套路是 **分解 -> 解决（触底） -> 合并（回溯）** 啊，先左右分解，再处理合并，回溯就是在退栈，就相当于后序遍历了。至于`merge`函数，参考两个有序链表的合并，简直一模一样，下面直接贴代码吧。
-
-注意三点就行：
-
-1. 我给每一半数组的最后一位添加了一个哨兵位，理论上应该是正无穷，这里用INT_MAX代替。
-2. 形参 `begin`, `end`参考 C++ 迭代器，取左闭右开区间，即数组范围在 `[begin, end)`。
-3. `pivot = begin + (end - begin) / 2`实际上就是取中值，防止溢出罢了。
-
-```cpp
-// 注意，本算法是根据《算法导论》伪码改写的，请注重理解思想
-// 真让你写算法的话，请学习下面更漂亮的代码，摘自《算法4》
-void merge_sort(vector<int> &nums, int begin, int end) {
-    if (begin >= end - 1) return;
-    int pivot = begin + (end - begin) / 2;
-    merge_sort(nums, begin, pivot);
-    merge_sort(nums, pivot, end);
-    merge(nums, begin, pivot, end);
-}
-
-void merge(vector<int> &nums, int begin, int pivot, int end) {
-    vector<int> left(nums.begin() + begin, nums.begin() + pivot);
-    vector<int> right(nums.begin() + pivot, nums.begin() + end);
-    left.push_back(INT_MAX);
-    right.push_back(INT_MAX);
-    int p = 0, q = 0;
-    for (int i = begin; i < end; i++) {
-        if (left[p] < right[q]) {
-            nums[i] = left[p++];
-        } else {
-            nums[i] = right[q++];
-        }
-    }
-}
-```
-
-
-
-可以很容易看到 merge 调用中 vector 的构造和析构，边界处理比较麻烦易出错，而且不够漂亮简洁，下面参考《算法4》的 Java 代码，很漂亮，我建议背住，学习一下代码风格。
-
-```java
-public class Merge {
-    private static Comparable[] aux;
-
-     public static void sort(Comparable[] a) {
-        aux = new Comparable[a.length];
-        sort(a, 0, a.length - 1);
-    }
-
-    private static void sort(Comparable[] a, int lo, int hi) {
-        if (lo >= hi) return;
-        int mid = lo + (hi - lo) / 2;
-        sort(a, lo, mid);
-        sort(a, mid + 1, hi);
-        merge(a, lo, mid, hi);
-    }
-
-    private static void merge(Comparable[] a, int lo, int mid, int hi) {
-        int i = lo, j = mid + 1;
-        for (int k = lo; k <= hi; k++) {
-            aux[k] = a[k];
-        }
-        for (int k = lo; k <= hi; k++) {
-            if      (i > mid)               { a[k] = aux[j++]; }
-            else if (j > hi)                { a[k] = aux[i++]; }
-            else if (less(aux[j], aux[i]))  { a[k] = aux[j++]; }
-            else                            { a[k] = aux[i++]; }
-        }
-    }
-
-    private static boolean less(Comparable v, Comparable w) {
-        return v.compareTo(w) < 0;
-    }
-}
-```
+好了，这个算法也就这样了，完全没有任何难度。记住之前说的，相信函数的能力，传给他半个数组，那么这半个数组就已经被排好了。而且你会发现这不就是个二叉树遍历模板吗？为什么是后序遍历？因为我们分治算法的套路是 **分解 -> 解决（触底） -> 合并（回溯）** 啊，先左右分解，再处理合并，回溯就是在退栈，就相当于后序遍历了。至于`merge`函数，参考两个有序链表的合并，简直一模一样。
 
 LeetCode 上有分治算法的专项练习，[点这里去做题](https://leetcode.com/tag/divide-and-conquer/)
-
-```cpp
-/*******************************************************
-* 以上内容绝大部分为我个人总结思考得来，均记录在我的公众号中。   *
-* 第一次参与开源项目，按照项目要求重新整理内容结构分享出来，     *
-* 真心希望这些内容能帮助到更多的人，发挥出更大的价值。          *
-* 请容许我留下公众号：labuladong ，有人关注是我持续输出的动力。 *
-*                       ~谢谢~                          *   
-********************************************************/
-```
-
-### 
 
 
