@@ -355,7 +355,7 @@ inline int Find(int p) {
 
 ## 一些题
 
--   [「BZOJ 2049」](https://lydsy.com/JudgeOnline/problem.php?id=2049)
--   [「BZOJ 3282」](https://lydsy.com/JudgeOnline/problem.php?id=3282)
--   [「BZOJ 2002」](https://lydsy.com/JudgeOnline/problem.php?id=2002)
--   [「BZOJ 2631」](https://lydsy.com/JudgeOnline/problem.php?id=2631)
+-   [「BZOJ 2049」[SDOI2008] Cave 洞穴勘测](https://lydsy.com/JudgeOnline/problem.php?id=2049)
+-   [「BZOJ 3282」Tree](https://lydsy.com/JudgeOnline/problem.php?id=3282)
+-   [「BZOJ 2002」[HNOI2010] Bounce 弹飞绵羊](https://lydsy.com/JudgeOnline/problem.php?id=2002)
+-   [「BZOJ 2631」tree](https://lydsy.com/JudgeOnline/problem.php?id=2631)
