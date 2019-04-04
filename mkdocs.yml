@@ -162,7 +162,10 @@ nav:
     - STL:
       - STL 简介: ds/stl.md
       - vector: ds/stl/vector.md
+      - queue/deque: ds/stl/queue-deque.md
       - priority_queue: ds/stl/priority_queue.md
+      - pair: ds/stl/pair.md
+      - set: ds/stl/set.md
       - map: ds/stl/map.md
       - bitset: ds/stl/bitset.md
     - pb_ds:
@@ -177,6 +180,7 @@ nav:
       - 堆简介: ds/heap.md
       - 二叉堆: ds/binary-heap.md
       - 配对堆: ds/pairing-heap.md
+      - 左偏树: ds/leftist-tree.md
     - 块状数据结构:
       - 分块思想: ds/square-root-decomposition.md
       - 块状链表: ds/block-list.md
@@ -209,6 +213,8 @@ nav:
       - 可持久化块状数组: ds/persistent-block-array.md
       - 可持久化平衡树: ds/persistent-balanced.md
       - 可持久化字典树: ds/persistent-trie.md
+      - 可持久化左偏树: ds/persistent-leftist-tree.md
+    - 吉老师线段树: ds/segment-tree-beats.md
     - 珂朵莉树: ds/odt.md
     - Link Cut Tree: ds/lct.md
     - Euler Tour Tree: ds/ett.md

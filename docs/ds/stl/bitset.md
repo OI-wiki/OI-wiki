@@ -1,6 +1,6 @@
 ## 介绍
 
-`std::bitset` 是标准库中的一个存储 `0/1` 的大小不可变容器。
+`std::bitset` 是标准库中的一个存储 `0/1` 的大小不可变容器。严格来讲，它并不属于 STL。
 
 由于内存地址是按字节即 `byte` 寻址，而非比特 `bit`，一个 `bool` 类型的变量，虽然只能表示 `0/1` , 但是也占了 `1byte` 的内存。
 
@@ -25,6 +25,12 @@
 
 ```cpp
 #include <bitset> 
+```
+
+### 指定大小
+
+```cpp
+bitset<1000> bs; // a bitset with 1000 bits
 ```
 
 ### 构造函数
@@ -123,9 +129,9 @@ $O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单，$\log$ 预处理就如下�
       #include <bitset>
       #include <cctype>
       #include <cmath>
-
+    
       using namespace std;
-
+    
       int read()
       {
           int out=0;
@@ -134,22 +140,22 @@ $O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单，$\log$ 预处理就如下�
           for (;isdigit(c);c=getchar()) out=out*10+c-'0';
           return out;
       }
-
+    
       const int N=100005;
       const int M=1000005;
       const int V=7005;
-
+    
       bitset<V> pre[V],pre2[V],a[N],mu;
       int n,m,tot;
       char ans[M];
-
+    
       int main()
       {
           int i,j,x,y,z;
-
+    
           n=read();
           m=read();
-
+    
           mu.set();
           for (i=2;i*i<V;++i)
           {
@@ -166,7 +172,7 @@ $O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单，$\log$ 预处理就如下�
                   pre2[i][i*j]=mu[j];
               }
           }
-
+    
           while (m--)
           {
               switch (read())
@@ -195,9 +201,9 @@ $O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单，$\log$ 预处理就如下�
                       break;
               }
           }
-
+    
           printf("%s",ans);
-
+    
           return 0;
       }
       ```
