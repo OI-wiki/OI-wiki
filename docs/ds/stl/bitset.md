@@ -6,15 +6,7 @@
 
     > The C++ standard library provides some special container classes, the so-called container adapters (stack, queue, priority queue). In addition, a few classes provide a container-like interface (for example, strings, bitsets, and valarrays). All these classes are covered separately.1 Container adapters and bitsets are covered in Chapter 12.
     
-    > The C++ standard library provides not only the containers for the STL framework but also some
-    > containers that fit some special needs and provide simple, almost self-explanatory, interfaces. You
-    > can group these containers into either the so-called container adapters, which adapt standard STL
-    > containers to fit special needs, or a bitset, which is a containers for bits or Boolean values.
-    > There are three standard container adapters: stacks, queues, and priority queues. In priority
-    > queues, the elements are sorted automatically according to a sorting criterion. Thus, the “next”
-    > element of a priority queue is the element with the “highest” value.
-    > A bitset is a bitfield with an arbitrary but fixed number of bits. Note that the C++ standard library
-    > also provides a special container with a variable size for Boolean values: vector.
+    > The C++ standard library provides not only the containers for the STL framework but also some containers that fit some special needs and provide simple, almost self-explanatory, interfaces. You can group these containers into either the so-called container adapters, which adapt standard STL containers to fit special needs, or a bitset, which is a containers for bits or Boolean values. There are three standard container adapters: stacks, queues, and priority queues. In priority queues, the elements are sorted automatically according to a sorting criterion. Thus, the “next” element of a priority queue is the element with the “highest” value. A bitset is a bitfield with an arbitrary but fixed number of bits. Note that the C++ standard library also provides a special container with a variable size for Boolean values: vector.
     
     ——摘自 《The C++ Standard Library 2nd Edition》
     
