@@ -213,7 +213,6 @@ nav:
       - 可持久化块状数组: ds/persistent-block-array.md
       - 可持久化平衡树: ds/persistent-balanced.md
       - 可持久化字典树: ds/persistent-trie.md
-      - 可持久化左偏树: ds/persistent-leftist-tree.md
     - 吉老师线段树: ds/segment-tree-beats.md
     - 珂朵莉树: ds/odt.md
     - Link Cut Tree: ds/lct.md
