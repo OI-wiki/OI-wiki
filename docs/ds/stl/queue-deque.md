@@ -50,7 +50,7 @@ deque<int> dq; // a deque  which contains ints
 
 ### 相关函数
 
-详见 [C++ Reference](http://www.cplusplus.com/reference/deque/deque/)。
+详见 [C++ Reference](https://zh.cppreference.com/w/cpp/container/deque)。
 
 ### 应用
 
