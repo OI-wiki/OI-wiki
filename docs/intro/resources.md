@@ -7,7 +7,7 @@
 - [51Nod](https://www.51nod.com/)
   有许多值得尝试的数学题和思维题。
 - [BZOJ](https://www.lydsy.com/JudgeOnline/)
-  因原属衡阳八中而得简称，汇聚多种习题和真题，但可能需要联系邮箱。
+  因原属衡阳八中而得简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。
 - [CodeVS](http://www.codevs.cn/)
   面向 OI 选手的过气 OJ
 - [FZUOJ](http://acm.fzu.edu.cn/)
@@ -18,11 +18,14 @@
   面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（题面登录后可见）
 - [计蒜客](https://www.jisuanke.com/)
 - [Judge Duck Online](https://duck.ac/)
-  在 2019 年 CCFWC 时松松松推出的 OJ，特色是评测程序运行时间精确到 $\mu s$ 。
+  在 2019 年 CCFWC 时松松松宣传的 OJ，采用了松松松开发的评测系统，可以将评测程序的运行时间精确到 $\mu s$ 。（题目较少）
 - [JoyOI](http://www.joyoi.cn/)
   原 Tyvj 。
 - [LibreOJ](https://loj.ac/)
-  Libre 取自由之意，基于开源项目 SYZOJ 。目前由 Menci 维护。
+  Libre 取自由之意，基于开源项目 SYZOJ 。
+  题目所有测试数据以及提交的代码均对所有用户开放。
+  与一本通进行了合作，可以评测一本通上所有习题。
+  目前由 Menci 维护。
 - [洛谷](https://www.luogu.org/)
   始于 2013 年，社区群体庞大， OI 界的真题和习题较全，提供有偿教育服务。
 - [牛客网](https://www.nowcoder.com/)
@@ -43,11 +46,11 @@
 ### 国外
 
 - [AtCoder](https://atcoder.jp/)
-  日本 OJ ，日文版里会有日本高校的比赛，英文内不会显示。
+  日本 OJ ，日文版里会有日本高校的比赛，英文内不会显示。（题目有趣，质量较高）
 - [CodeChef](https://codechef.com/)
   印度 OJ ，周期性有比赛。
 - [Codeforces](https://codeforces.com/)
-  俄罗斯 OJ ，有多种系列的比赛，你也可以出题并申请组织比赛。
+  俄罗斯 OJ ，有多种系列的比赛，你也可以出题并申请组织比赛。（题目质量较高）
 - [CS Academy](https://csacademy.com/)
 - [DMOJ](https://dmoj.ca/)
   加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛。
