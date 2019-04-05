@@ -125,8 +125,8 @@
 #### 新操作
 
 1.  IsRoot(x) 判断当前节点是否是所在 Splay 的根
-2.  Access(x) 把从根到当前节点的所有点放在⼀条实链里，使根到它成为一条实路径，并且在同一棵 Splay 里里。
-3.  Update(x) 在 Access 操作之后，递归的从上到下 Pushdown 更更新信 息。
+2.  Access(x) 把从根到当前节点的所有点放在⼀条实链里，使根到它成为一条实路径，并且在同一棵 Splay 里。
+3.  Update(x) 在 Access 操作之后，递归的从上到下 Pushdown 更新信息。
 4.  MakeRoot(x) 使 x 点成为整个辅助树的根。
 5.  Link(x, y) 在 x, y 两点间连⼀一条边。
 6.  Cut(x, y) 把 x, y 两点间边删掉。
