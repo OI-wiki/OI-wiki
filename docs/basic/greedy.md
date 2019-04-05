@@ -86,8 +86,9 @@ struct uv {
 };
 ```
 
-~~看上去是不是很简单呢（这题高精度卡常……）~~，如果看懂了就可以尝试下一道类似的题 [Luogu P2123 皇后游戏](https://www.luogu.org/problemnew/show/P2123)    
-（请不要翻题解……。
+~~看上去是不是很简单呢（这题高精度卡常……）~~         
+如果看懂了就可以尝试下一道类似的题： [Luogu P2123 皇后游戏](https://www.luogu.org/problemnew/show/P2123)    
+
 
 ## 后悔法
 
