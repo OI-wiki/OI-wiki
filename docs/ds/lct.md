@@ -89,9 +89,9 @@
 
 -   原树中的虚链 : 在辅助树中，子节点所在 Splay 的 Father 指向父节点，但是父节点的两个儿子都不指向子节点。
 
--   注意：原树的根 ≠辅助树的根。
+-   注意：原树的根不等于辅助树的根。
 
--   原树的 Father 指向 ≠辅助树的 Father 指向。
+-   原树的 Father 指向不等于辅助树的 Father 指向。
 
 -   辅助树是可以在满足辅助树、Splay 的性质下任意换根的。
 
@@ -126,8 +126,8 @@
 
 1.  IsRoot(x) 判断当前节点是否是所在 Splay 的根
 2.  Access(x) 把从根到当前节点的所有点放在⼀条实链里，使根到它成为一条实路径，并且在同一棵 Splay 里。
-3.  Update(x) 在 Access 操作之后，递归的从上到下 Pushdown 更新信息。
-4.  MakeRoot(x) 使 x 点成为整个辅助树的根。
+3.  Update(x) 在 Access 操作之后，递归地从上到下 Pushdown 更新信息。
+4.  MakeRoot(x) 使 x 点成为整棵辅助树的根。
 5.  Link(x, y) 在 x, y 两点间连⼀一条边。
 6.  Cut(x, y) 把 x, y 两点间边删掉。
 7.  Find(x) 找到 x 所在的 Splay 的根节点编号。
@@ -179,8 +179,7 @@ inline void Rotate(int x) {
   PushUp(x), PushUp(y);
 }
 inline void Splay(int x) {
-  Update(
-      x);  // 马上就能看到啦。 在 Splay之前要把旋转会经过的路径上的点都PushDown
+  Update(x);  // 马上就能看到啦。 在 Splay之前要把旋转会经过的路径上的点都PushDown
   for (int fa; fa = f[x], !isRoot(x); Rotate(x)) {
     if (!isRoot(fa)) Rotate(Get(fa) == Get(x) ? fa : x);
   }
@@ -271,9 +270,10 @@ inline void Access(int x) {
 ###  `Update()` 
 
 ```cpp
-// 从上到下一层一层pushDown 即可
+// 从上到下一层一层 pushDown 即可
 void Update(int p) {
-  if (!isRoot(p)) Update(f[p]) pushDown(p);
+  if (!isRoot(p)) Update(f[p]);
+  pushDown(p);
 }
 ```
 
@@ -349,9 +349,9 @@ inline int Find(int p) {
 
 ### 一些提醒
 
--   干点啥一定要想一想需不需要 PushUp 或者 PushDown, LCT 由于特别灵活的原因，少 Pushdown 或者 Pushup 一次就可能把修改改到不该改的点上！
--   它的 rotate 和 splay 的不太一样，if(z) 一定要放在前面。
--   它的 splay 就是旋转到根，没有旋转到谁儿子的操作，因为不需要。
+-   干点啥前一定要想一想需不需要 PushUp 或者 PushDown, LCT 由于特别灵活的原因，少 Pushdown 或者 Pushup 一次就可能把修改改到不该改的点上！
+-   LCT 的 rotate 和 splay 的不太一样，`if (z)` 一定要放在前面。
+-   LCT 的 splay 就是旋转到根，没有旋转到谁儿子的操作，因为不需要。
 
 ## 一些题
 
