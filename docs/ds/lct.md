@@ -124,7 +124,7 @@
 
 #### 新操作
 
-1.  IsRoot(x) 判断当前节点是否是所在 Splay 的根
+1.  IsRoot(x) 判断当前节点是否是所在 Splay 的根。
 2.  Access(x) 把从根到当前节点的所有点放在⼀条实链里，使根到它成为一条实路径，并且在同一棵 Splay 里。
 3.  Update(x) 在 Access 操作之后，递归地从上到下 Pushdown 更新信息。
 4.  MakeRoot(x) 使 x 点成为整棵辅助树的根。
@@ -132,7 +132,7 @@
 6.  Cut(x, y) 把 x, y 两点间边删掉。
 7.  Find(x) 找到 x 所在的 Splay 的根节点编号。
 8.  Fix(x, v) 修改 x 的点权为 v。
-9.  Split(x, y) 提取出来 x, y 间的路路径，方便做区间操作
+9.  Split(x, y) 提取出来 x, y 间的路路径，方便做区间操作。
 
 ### 宏定义
 
