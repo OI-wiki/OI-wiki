@@ -165,7 +165,6 @@ nav:
     - 树状数组: ds/bit.md
     - 线段树: ds/segment.md
     - 划分树: ds/dividing.md
-    - 虚树: ds/virtual-tree.md
     - 平衡树:
       - 二叉搜索树简介: ds/bst.md
       - Treap: ds/treap.md
@@ -200,6 +199,7 @@ nav:
       - 树链剖分: graph/heavy-light-decomposition.md
       - 树分治: graph/tree-divide.md
       - 动态树分治: graph/dynamic-tree-divide.md
+      - 虚树: graph/virtual-tree.md
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
     - 最小生成树: graph/mst.md
