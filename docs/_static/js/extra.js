@@ -1,4 +1,4 @@
-window.addEventListener('load', function() { 
+window.addEventListener('load', function() {
     var p=localStorage.getItem("data-md-color-primary");
     if (p){
         document.body.setAttribute('data-md-color-primary',p);

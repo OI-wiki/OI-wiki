@@ -28,7 +28,7 @@
 
 ### 基本操作
 
--    $\text{maintain}(x)$ ：在改变节点位置前，将节点 $x$ 的 $\text{size}$ 更新。
+-    $\text{maintain}(x)$ ：在改变节点位置后，将节点 $x$ 的 $\text{size}$ 更新。
 -    $\text{get}(x)$ ：判断节点 $x$ 是父亲节点的左儿子还是右儿子。
 -    $\text{clear}(x)$ ：销毁节点 $x$ 。
 
