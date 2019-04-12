@@ -577,4 +577,4 @@ $$
 
 * * *
 
- **本页面主要译自博文[Суффиксный автомат](http://e-maxx.ru/algo/suffix_automata)与其英文翻译版[Suffix Automaton](https://cp-algorithms.com/string/suffix-automaton.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ **本页面主要译自博文 [Суффиксный автомат](http://e-maxx.ru/algo/suffix_automata)与其英文翻译版 [Suffix Automaton](https://cp-algorithms.com/string/suffix-automaton.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
