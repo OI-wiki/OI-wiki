@@ -18,7 +18,7 @@
     面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（题面登录后可见）
 -   [计蒜客](https://www.jisuanke.com/)
 -   [Judge Duck Online](https://duck.ac/)
-    在 2019 年 CCFWC 时松松松宣传的 OJ，采用了松松松开发的评测系统，可以将评测程序的运行时间精确到 $\mu s$ 。（题目较少）
+    松松松开发的评测系统，可以将评测程序的运行时间精确到 $\mu s$ 。（题目较少）
 -   [JoyOI](http://www.joyoi.cn/)
     原 Tyvj 。
 -   [LibreOJ](https://loj.ac/)
