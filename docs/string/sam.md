@@ -40,27 +40,27 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
 
 我们用蓝色表示初始状态，用绿色表示终止状态。
 
-对于字符串 $s=``"$ ：
+对于字符串 $s=""$ ：
 
 ![](./images/SAM/SA.svg)
 
-对于字符串 $s=``a\!"$ ：
+对于字符串 $s="a\!"$ ：
 
 ![](./images/SAM/SAa.svg)
 
-对于字符串 $s=``aa\!"$ ：
+对于字符串 $s="aa\!"$ ：
 
 ![](./images/SAM/SAaa.svg)
 
-对于字符串 $s=``ab\!"$ ：
+对于字符串 $s="ab\!"$ ：
 
 ![](./images/SAM/SAab.svg)
 
-对于字符串 $s=``abb\!"$ ：
+对于字符串 $s="abb\!"$ ：
 
 ![](./images/SAM/SAabb.svg)
 
-对于字符串 $s=``abbb\!"$ ：
+对于字符串 $s="abbb\!"$ ：
 
 ![](./images/SAM/SAabbb.svg)
 
