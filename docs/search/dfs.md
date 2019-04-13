@@ -1,4 +1,4 @@
-DFS 全称是[Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)。
+DFS 全称是 [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)。
 
 是一种图的遍历算法。
 
