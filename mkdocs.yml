@@ -43,7 +43,7 @@ nav:
     - 模拟: basic/simulate.md
     - 递归 & 分治: basic/divide-and-conquer.md
     - 贪心: basic/greedy.md
-    - 排序: 
+    - 排序:
       - 排序简介: basic/sort-intro.md
       - 选择排序: basic/selection-sort.md
       - 冒泡排序: basic/bubble-sort.md
@@ -130,20 +130,23 @@ nav:
       - 线性基: math/basis.md
     - 复数: math/complex.md
     - 分段打表: math/dictionary.md
-    - 莫比乌斯反演: math/mobius.md
-    - 杜教筛: math/du-sieves.md
+    - 数论函数相关:
+      - 莫比乌斯反演: math/mobius.md
+      - 杜教筛: math/du-sieves.md
     - 多项式:
-      - 多项式部分简介: math/poly.md
-      - 拉格朗日插值: math/lagrange-poly.md
-      - 快速傅里叶变换: math/fft.md
-      - 快速数论变换: math/ntt.md
-      - 快速沃尔什变换: math/fwt.md
-      - 多项式求逆: math/poly-inv.md
-      - 多项式开方: math/poly-sqrt.md
-      - 多项式除法|取模: math/poly-div-mod.md
-      - 多项式对数函数|指数函数: math/poly-ln-exp.md
-      - 多项式牛顿迭代: math/poly-newton.md
-      - 多项式多点求值|快速插值: math/poly-multipoint-eval-interpolation.md
+      - 多项式部分简介: math/poly/intro.md
+      - 拉格朗日插值: math/poly/lagrange-poly.md
+      - 快速傅里叶变换: math/poly/fft.md
+      - 快速数论变换: math/poly/ntt.md
+      - 快速沃尔什变换: math/poly/fwt.md
+      - 多项式求逆: math/poly/inv.md
+      - 多项式开方: math/poly/sqrt.md
+      - 多项式除法|取模: math/poly/div-mod.md
+      - 多项式对数函数|指数函数: math/poly/ln-exp.md
+      - 多项式牛顿迭代: math/poly/newton.md
+      - 多项式多点求值|快速插值: math/poly/multipoint-eval-interpolation.md
+      - 多项式三角函数: math/poly/tri-func.md
+      - 多项式反三角函数: math/poly/inv-tri-func.md
     - 组合数学:
       - 排列组合: math/combination.md
       - 卡特兰数: math/catalan.md
@@ -271,12 +274,12 @@ nav:
     - 读入、输出优化: misc/io.md
     - 复杂度: misc/complexity.md
     - 离散化: misc/discrete.md
-    - 离线算法: 
+    - 离线算法:
       - 离线算法简介: misc/offline.md
       - CDQ 分治: misc/cdq-divide.md
       - 莫队算法: misc/mo-algo.md
     - 分数规划: misc/fractional-programming.md
-    - 随机化: 
+    - 随机化:
       - 随机函数: misc/random.md
       - 爬山算法: misc/hill-climbing.md
       - 模拟退火: misc/simulated-annealing.md
