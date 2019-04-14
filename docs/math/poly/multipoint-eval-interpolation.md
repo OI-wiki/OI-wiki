@@ -35,10 +35,6 @@ $$f_{0}\left(x\right)\equiv f\left(x\right)\pmod{g_{0}\left(x\right)}$$
 
 $$T\left(n\right)=2T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log^{2}{n}\right) $$
 
-### Code
-
-~~啥?你问我要代码?不存在的，调了一万年现在还是 WA~~
-
 ## 多项式的快速插值
 
 ### Description
@@ -89,7 +85,3 @@ $$X'_{1}=\left\{\left(x,\frac{y-f_{0}\left(x\right)}{g_{0}\left(x\right)}\right)
 由于每次都需要多点求值求出新的待插值点集合 $X'_{1}$，时间复杂度为：
 
 $$T\left(n\right)=2T\left(\frac{n}{2}\right)+O\left(n\log^{2}{n}\right)=O\left(n\log^{3}{n}\right) $$
-
-### Code
-
-~~啥?你问我要代码?我多点求值都没过你问我要插值代码?~~
