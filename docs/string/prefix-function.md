@@ -14,7 +14,7 @@ $$
 
 一个直接按照定义计算前缀函数的算法如下：
 
-```c++
+```cpp
 vector<int> prefix_function(string s) {
   int n = (int)s.length();
   vector<int> pi(n);
@@ -86,7 +86,7 @@ $$
 
 该算法的实现出人意料的短且直观。
 
-```c++
+```cpp
 vector<int> prefix_function(string s) {
   int n = (int)s.length();
   vector<int> pi(n);
@@ -126,7 +126,7 @@ vector<int> prefix_function(string s) {
 
 首先让我们来解决第一个问题。考虑位置 $i$ 的前缀函数值 $\pi[i]$ 。根据定义，其意味着字符串 $s$ 一个长度为 $\pi[i]$ 的前缀在位置 $i$ 出现并以 $i$ 为右端点，同时不存在一个更长的前缀满足前述定义。与此同时，更短的前缀可能以该位置为右端点。容易看出，我们遇到了在计算前缀函数时已经回答过的问题：给定一个长度为 $j$ 的前缀，同时其也是一个右端点位于 $i$ 的后缀，下一个更小的前缀长度 $k < j$ 是多少？该长度的前缀需同时也是一个右端点为 $i$ 的后缀。因此以位置 $i$ 为右端点，有长度为 $\pi[i]$ 的前缀，有长度为 $\pi[\pi[i] - 1]$ 的前缀，有长度为 $\pi[\pi[\pi[i] - 1] - 1]$ 的前缀，等等，直到长度变为 $0$ 。故而我们可以通过下述方式计算答案。
 
-```c++
+```cpp
 vector<int> ans(n + 1);
 for (int i = 0; i < n; i++) ans[pi[i]]++;
 for (int i = n - 1; i > 0; i--) ans[pi[i - 1]] += ans[i];
@@ -196,7 +196,7 @@ $$
 
 因此，即使没有字符串 $t$ ，我们同样可以应用构造转移表的算法构造一个转移表 $( \text { old } \pi , c ) \rightarrow \text { new } _ { - } \pi$ ：
 
-```c++
+```cpp
 void compute_automaton(string s, vector<vector<int>>& aut) {
   s += '#';
   int n = s.size();
@@ -215,7 +215,7 @@ void compute_automaton(string s, vector<vector<int>>& aut) {
 
 然而在这种形式下，对于小写字母表，算法的时间复杂度为 $O(n^2 26)$ 。注意到我们可以应用动态规划来利用表中已计算过的部分。只要我们从值 $j$ 变化到 $\pi[j - 1]$ ，那么我们实际上在说转移 $(j, c)$ 所到达的状态同转移 $(\pi[j - 1], c)$ 一样，但该答案我们之前已经精确计算过了。
 
-```c++
+```cpp
 void compute_automaton(string s, vector<vector<int>>& aut) {
   s += '#';
   int n = s.size();
@@ -301,4 +301,4 @@ $$
 
 * * *
 
- **本页面主要译自博文[Префикс-функция. Алгоритм Кнута-Морриса-Пратта](http://e-maxx.ru/algo/prefix_function)与其英文翻译版[Prefix function. Knuth–Morris–Pratt algorithm](https://cp-algorithms.com/string/prefix-function.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ **本页面主要译自博文[Префикс-функция. Алгоритм Кнута-Морриса-Пратта](http://e-maxx.ru/algo/prefix_function)与其英文翻译版[Prefix function. Knuth–Morris–Pratt algorithm](https://cp-algorithms.com/string/prefix-function.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

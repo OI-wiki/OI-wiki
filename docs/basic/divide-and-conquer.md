@@ -18,7 +18,7 @@
 
 递归代码最重要的两个特征：结束条件和自我调用。自我调用是在解决子问题，而结束条件定义了最简子问题的答案。
 
-```c++
+```cpp
 int func(传入数值) {
   if (终止条件) return 最小子问题解;
   return func(缩小规模);
@@ -42,7 +42,7 @@ int func(传入数值) {
 第三，跳出细节，从整体上看问题。再说说归并排序，其实可以不用递归来划分左右区域的，但是代价就是代码极其难以理解，大概看一下代码（归并排序在后面讲，这里大致看懂意思就行，体会递归的妙处）：
 
 ```java
-void sort(Comparable[] a){    
+void sort(Comparable[] a){
     int N = a.length;
     // 这么复杂，是对排序的不尊重。我拒绝研究这样的代码。
     for (int sz = 1; sz < N; sz = sz + sz)
@@ -166,7 +166,7 @@ int count(TreeNode node, int sum) {
     // 我自己能不能独当一面，作为一条单独的路径呢？
     int isMe = (node.val == sum) ? 1 : 0;
     // 左边的小老弟，你那边能凑几个 sum - node.val 呀？
-    int leftBrother = count(node.left, sum - node.val); 
+    int leftBrother = count(node.left, sum - node.val);
     // 右边的小老弟，你那边能凑几个 sum - node.val 呀？
     int rightBrother = count(node.right, sum - node.val);
     return  isMe + leftBrother + rightBrother; // 我这能凑这么多个
@@ -215,5 +215,3 @@ void merge_sort(一个数组) {
 好了，这个算法也就这样了，完全没有任何难度。记住之前说的，相信函数的能力，传给他半个数组，那么这半个数组就已经被排好了。而且你会发现这不就是个二叉树遍历模板吗？为什么是后序遍历？因为我们分治算法的套路是 **分解 -> 解决（触底） -> 合并（回溯）** 啊，先左右分解，再处理合并，回溯就是在退栈，就相当于后序遍历了。至于`merge`函数，参考两个有序链表的合并，简直一模一样。
 
 LeetCode 上有分治算法的专项练习，[点这里去做题](https://leetcode.com/tag/divide-and-conquer/)
-
-

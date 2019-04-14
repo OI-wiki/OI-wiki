@@ -33,7 +33,7 @@ bfs(s) {
 
 C++：
 
-```c++
+```cpp
 void bfs(int u) {
   while (!Q.empty()) Q.pop();
   Q.push(u);
@@ -78,7 +78,7 @@ void restore(int x) {
 
 有了 p 数组，可以方便地还原出起点到一个点的最短路径。上面的 restore 函数就是在做这件事：restore(x) 输出的是从起点到 x 这个点所经过的点。
 
-时间复杂度 $O(n + m)$ 
+时间复杂度 $O(n + m)$
 
 空间复杂度 $O(n)$ （vis 数组和队列）
 

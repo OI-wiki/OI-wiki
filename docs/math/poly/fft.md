@@ -1,6 +1,6 @@
 （本页面部分内容转载自[桃酱的算法笔记](https://zhuanlan.zhihu.com/c_1005817911142838272)，原文戳[链接](https://zhuanlan.zhihu.com/p/41867199)，已获得作者授权）
 
-一直想学 FFT，之前牛客的多小有一道组合数学就用 FFT 写的，而且当时还傻乎乎的用唯一分解定理，但是自己好久没静下心学什么了，而且自己的数学功底又不好，导致一直学不会。看了很多人的博客也没看明白，尤其是原根。在我看了几十篇博客之后终于看懂了……所以想写一篇能够让大多数人都看得懂的教程。花费时间 3 天终于写完啦~~~~\~~
+一直想学 FFT，之前牛客的多校有一道组合数学就用 FFT 写的，而且当时还傻乎乎的用唯一分解定理，但是自己好久没静下心学什么了，而且自己的数学功底又不好，导致一直学不会。看了很多人的博客也没看明白，尤其是原根。在我看了几十篇博客之后终于看懂了……所以想写一篇能够让大多数人都看得懂的教程。花费时间 3 天终于写完啦~~~~\~~
 
 另外，本文 FFT 部分的代码实现全部参考 kuangbin 的模板（2018.7 更新）资源地址如下
 
@@ -16,7 +16,7 @@ NTT 部分代码参考 CSDN 上的模板代码附网址，感谢博主！
 
 > 离散傅里叶变换（Discrete Fourier Transform，缩写为 DFT），是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DTFT 的频域采样。
 >
-> FFT 是一种 DFT 的高效算法，称为快速傅立叶变换（fast Fourier transform）。——百度百科
+> FFT 是一种 DFT 的高效算法，称为快速傅立叶变换（Fast Fourier transform）。——百度百科
 
 在百度百科上能找到 DFT 和 FFT 这两个定义。正如定义，FFT 和 DFT 实际上按照结果来看的话是一样的，但是 FFT 比较快的计算 DFT 和 IDFT（离散反傅里叶变换）。
 
@@ -44,7 +44,7 @@ $$
 
 FFT，即为快速傅氏变换，是离散傅氏变换的快速算法，它是根据离散傅氏变换的奇、偶、虚、实等特性，对离散傅立叶变换的算法进行改进获得的。它对傅氏变换的理论并没有新的发现，但是对于在计算机系统或者说数字系统中应用离散傅立叶变换，可以说是进了一大步。——360 百科
 
-如果上一个例子用朴素算法太慢啦！所以我们要用 FFT 进行优化，复杂度会降为 $O(nlogn)$ 
+如果上一个例子用朴素算法太慢啦！所以我们要用 FFT 进行优化，复杂度会降为 $O(nlogn)$
 
 ### 多项式的系数表示法与点值表示法
 
@@ -96,11 +96,11 @@ $$
 
 ### 复数的引入
 
-复数分为实数和虚数。实数就是我们日常最常用的有理数和无理数。大家记得我们在开始学平方的时候，老师会说所有数的平方大于等于 $0$ 对不对，那么虚数就引入了。虚数一般用 $i$ 表示，对于虚数 $i$ ，有 $i=\sqrt{-1}$ 
+复数分为实数和虚数。实数就是我们日常最常用的有理数和无理数。大家记得我们在开始学平方的时候，老师会说所有数的平方大于等于 $0$ 对不对，那么虚数就引入了。虚数一般用 $i$ 表示，对于虚数 $i$ ，有 $i=\sqrt{-1}$
 
 。另外， $i$ 对于虚数的意义，与 $1$ 对于实数的意义是一样的。如果我说得不够明确，你可以看下面我引用的百科说明。
 
-> 在数学中，虚数就是形如 $a+b \times i$ 的数，其中 $a,b$ 是实数，且 $b \neq 0$ , $i^2 = - 1$ 。虚数这个名词是 17 世纪著名数学家笛卡尔创立，因为当时的观念认为这是真实不存在的数字。后来发现虚数 $a+b \times i$ 的实部 $a$ 可对应平面上的横轴，虚部 $b$ 与对应平面上的纵轴，这样虚数 $a+b \times i$ 可与平面内的点 $(a,b)$ 对应。
+> 在数学中，虚数就是形如 $a+b \times i$ 的数，其中 $a,b$ 是实数，且 $b \neq 0$ ， $i^2 = - 1$ 。虚数这个名词是 17 世纪著名数学家笛卡尔创立，因为当时的观念认为这是真实不存在的数字。后来发现虚数 $a+b \times i$ 的实部 $a$ 可对应平面上的横轴，虚部 $b$ 与对应平面上的纵轴，这样虚数 $a+b \times i$ 可与平面内的点 $(a,b)$ 对应。
 >
 > 可以将虚数 $bi$ 添加到实数 $a$ 以形成形式 $a + bi$ 的复数，其中实数 $a$ 和 $b$ 分别被称为复数的实部和虚部。一些作者使用术语纯虚数来表示所谓的虚数，虚数表示具有非零虚部的任何复数。——百度百科
 
@@ -112,9 +112,9 @@ $$
 
 接下来思考两个复数相乘是什么意义：
 
-1.   $(a+bi) \times (c+di) = (ac-bd) + (ad+bc)i$ 
+1. $(a+bi) \times (c+di) = (ac-bd) + (ad+bc)i$
 
-2.  长度相乘，角度相加： $(r_1, \theta_1)  \times  (r_2, \theta_2) = (r_1 \times r_2, \theta_1+\theta_2)$ 
+2. 长度相乘，角度相加： $(r_1, \theta_1)  \times  (r_2, \theta_2) = (r_1 \times r_2, \theta_1+\theta_2)$
 
 这么一看的话，我们很容易想到如果两个长度为 $1$ 的不同方向向量相乘，结果向量是不是一个长度依然为 $1$ 的新向量呢？
 
@@ -136,7 +136,7 @@ $$
 g(x)={(x_0, g(x_0), (x_1, g(x_1)), (x_2, g(x_2), \cdots, (x_n, g(x_n)))}
 $$
 
-如果我们设 $F(x) = f(x) \times g(x)$ 
+如果我们设 $F(x) = f(x) \times g(x)$
 
 那么很容易得到 $F(x)$ 的点值表达式：
 
@@ -156,13 +156,13 @@ $$
 
 ![img](./images/fft3.jpg)
 
-那么很容易发现当 $K = 4$ 的时候，相当于把单位圆等分 $K= 4$ 份。然后每一份按照极角编号。那么是不是（在 $K = 4$ 的时候）我们只要知道 $\omega_4^1$ 
+那么很容易发现当 $K = 4$ 的时候，相当于把单位圆等分 $K= 4$ 份。然后每一份按照极角编号。那么是不是（在 $K = 4$ 的时候）我们只要知道 $\omega_4^1$
 
 （因为他的角度是相当于单位角度），就能知道 $\omega_4^0, \omega_4^1, \omega_4^2, \omega_4^3$ 了呢？当然是这样的……
 
- $\omega_4^0$ 恒等于 $1$ ， $\omega_4^2$ 的角度是 $\omega_4^0$ 的两倍，所以 $\omega_4^2 = (\omega_4^1)^2 = i^2=-1$ , 依次以此类推。
+ $\omega_4^0$ 恒等于 $1$ ， $\omega_4^2$ 的角度是 $\omega_4^0$ 的两倍，所以 $\omega_4^2 = (\omega_4^1)^2 = i^2=-1$ ， 依次以此类推。
 
-因此，我们只要知道 $\omega_k^1$ ，就能求出 $\omega_k^n$ 。所以我们把 $\omega_k^1$ 称为单位复根，简写为 $\omega_k$ 
+因此，我们只要知道 $\omega_k^1$ ，就能求出 $\omega_k^n$ 。所以我们把 $\omega_k^1$ 称为单位复根，简写为 $\omega_k$
 
 ## FFT 的流程
 
@@ -172,7 +172,7 @@ $$
 
 FFT 之所以快，是因为他采用了分治的思想。
 
-就 DFT（将系数表达转换成点值表达）来说，它分治的来求当当前的 $x=\omega_n^k$ 
+就 DFT（将系数表达转换成点值表达）来说，它分治的来求当当前的 $x=\omega_n^k$
 
 的时候整个式子的值。他的分治思想体现在将多项式分为奇次项和偶次项处理。
 
@@ -182,7 +182,7 @@ $$
 f(x0) = y_1 = a_0 + a_1x + a_2x^2+a_3x^3+a_4x^4+a_5x^5+a_6x^6+a_7x^7
 $$
 
-按照次数的奇偶来分成两组，然后右边提出来一个 $x$ 
+按照次数的奇偶来分成两组，然后右边提出来一个 $x$
 
 $$
 f(x) = (a_0+a_2x^2+a_4x^4+a_6x^6) + (a_1x+a_3x^3+a_5x^5+a_7x^7)
@@ -216,13 +216,13 @@ $$
 
 ！前方高能：
 
-这个函数能处理的多项式长度只能是 $2^m(m \in N^ \times )$ , 否则在分治的时候左右不一样长，右边取不到系数了，程序没法进行。所以要在第一次 DFT 之前就把序列向上补成长度为 $2^m(m \in N^ \times )$ （高次系数补 $0$ ）、最高项次数为 $n-1$ 的多项式。一定要预处理哦
+这个函数能处理的多项式长度只能是 $2^m(m \in N^ \times )$ ， 否则在分治的时候左右不一样长，右边取不到系数了，程序没法进行。所以要在第一次 DFT 之前就把序列向上补成长度为 $2^m(m \in N^ \times )$ （高次系数补 $0$ ）、最高项次数为 $n-1$ 的多项式。一定要预处理哦
 
-然后我在代入值的时候，因为要代入 $n$ 个不同值，所以我们就代入 $\omega_n^0,\omega_n^1,\omega_n^2,\cdots, \omega_n^{n-1} (n=2^m(m \in N^ \times ))$ 
+然后我在代入值的时候，因为要代入 $n$ 个不同值，所以我们就代入 $\omega_n^0,\omega_n^1,\omega_n^2,\cdots, \omega_n^{n-1} (n=2^m(m \in N^ \times ))$
 
 一共 $2^m$ 个不同值。
 
-```c++
+```cpp
 /*
  * 做 FFT
  *len 必须是 2^k 形式
@@ -248,19 +248,19 @@ void fft(Complex y[], int len, int on) {
 
 但是这个算法还需要从“分治”的角度继续优化。我们每一次都会把整个多项式的奇数次项和偶数次项系数分开，一只分到只剩下一个系数。但是，这个递归的过程需要更多的内存。因此，我们可以先“模仿递归”把这些系数在原数组中“拆分”，然后再“倍增”地去合并这些算出来的值。然而我们又要如何去拆分这些数呢？
 
-设初始序列为 $\{x_0, x_1, x_2, x_3, x_4, x_5, x_6, x_7\}$ 
+设初始序列为 $\{x_0, x_1, x_2, x_3, x_4, x_5, x_6, x_7\}$
 
-一次二分之后 $\{x_0, x_2, x_4, x_6\},\{x_1, x_3,x_5, x_7 \}$ 
+一次二分之后 $\{x_0, x_2, x_4, x_6\},\{x_1, x_3,x_5, x_7 \}$
 
-两次二分之后 $\{x_0,x_4\} \{x_2, x_6\},\{x_1, x_3\},\{x_5, x_7 \}$ 
+两次二分之后 $\{x_0,x_4\} \{x_2, x_6\},\{x_1, x_3\},\{x_5, x_7 \}$
 
-三次二分之后 $\{x_0\}\{x_4\}\{x_2\}\{x_6\}\{x_1\}\{x_3\}\{x_5\}\{x_7 \}$ 
+三次二分之后 $\{x_0\}\{x_4\}\{x_2\}\{x_6\}\{x_1\}\{x_3\}\{x_5\}\{x_7 \}$
 
 有啥规律呢？其实就是原来的那个序列，每个数用二进制表示，然后把二进制翻转对称一下，就是最终那个位置的下标。比如 $x_1$ 是 001，翻转是 100，也就是 4，而且最后那个位置确实是 4，是不是很神奇啊\~\~~
 
 这里附上代码
 
-```c++
+```cpp
 /*
  * 进行 FFT 和 IFFT 前的反置变换
  * 位置 i 和 i 的二进制反转后的位置互换
@@ -295,7 +295,7 @@ $$
 1 & \omega_n^3 & \omega_n^6 & \omega_n^9 & \dots & \omega_n^{3(n-1)} \\
 \dots & \dots & \dots & \dots & \dots & \dots \\
 1 & \omega_n^{n-1} & \omega_n^{2(n-1)} & \omega_n^{3(n-1)} & \dots & \omega_n^{(n-1)^2} \end{bmatrix}
-\begin{bmatrix} a[0] \\ a[1] \\ a[2] \\ a[3] \\ \dots \\ a[n-1] \end{bmatrix} 
+\begin{bmatrix} a[0] \\ a[1] \\ a[2] \\ a[3] \\ \dots \\ a[n-1] \end{bmatrix}
 $$
 
 而且现在我们已经得到最左边的结果了，中间的 $x$ 值在目标多项式的点值表示中也是一一对应的，所以，根据矩阵的基础知识，我们只要在式子两边左乘中间那个大矩阵的逆矩阵就行了。由于这个矩阵的元素非常特殊，他的逆矩阵也有特殊的性质，就是每一项取倒数，再除以 $n$ ，就能得到他的逆矩阵（这边根据的是单位原根的两个特殊性质推出来的，具体比较麻烦。如果想知道的话私我吧。）
@@ -333,7 +333,7 @@ $$
 
 记 $S\left(\omega_n^a\right)=\sum_{i=0}^{n-1}\left(\omega_n^a\right)^i$。
 
-当 $a=0$ 时，$S\left(\omega_n^a\right)=n$.
+当 $a=0$ 时，$S\left(\omega_n^a\right)=n$。
 
 当 $a\neq 0$ 时，我们错位相减一下
 
@@ -371,7 +371,7 @@ $$
 
 所以我们 fft 函数可以集 DFT 和 IDFT 于一身。见下
 
-```c++
+```cpp
 /*
  * 做 FFT
  *len 必须是 2^k 形式
@@ -405,109 +405,109 @@ void fft(Complex y[], int len, int on) {
 
 好了现在附上全部代码（[HDU 1402](http://acm.hdu.edu.cn/showproblem.php?pid=1402)），序言说过代码来自 kuangbin 的模板~~~~~
 
-```c++
-#include <cmath>
-#include <cstdio>
-#include <cstring>
-#include <iostream>
+??? " FFT "
 
-using namespace std;
+    ```cpp
+    #include <cmath>
+    #include <cstdio>
+    #include <cstring>
+    #include <iostream>
 
-const double PI = acos(-1.0);
-struct Complex {
-  double x, y;
-  Complex(double _x = 0.0, double _y = 0.0) {
-    x = _x;
-    y = _y;
-  }
-  Complex operator-(const Complex &b) const {
-    return Complex(x - b.x, y - b.y);
-  }
-  Complex operator+(const Complex &b) const {
-    return Complex(x + b.x, y + b.y);
-  }
-  Complex operator*(const Complex &b) const {
-    return Complex(x * b.x - y * b.y, x * b.y + y * b.x);
-  }
-};
-/*
- * 进行 FFT 和 IFFT 前的反置变换
- * 位置 i 和 i 的二进制反转后的位置互换
- *len 必须为 2 的幂
- */
-void change(Complex y[], int len) {
-  int i, j, k;
-  for (int i = 1, j = len / 2; i < len - 1; i++) {
-    if (i < j) swap(y[i], y[j]);
-    // 交换互为小标反转的元素，i<j 保证交换一次
-    // i 做正常的 + 1，j 做反转类型的 + 1，始终保持 i 和 j 是反转的
-    k = len / 2;
-    while (j >= k) {
-      j = j - k;
-      k = k / 2;
-    }
-    if (j < k) j += k;
-  }
-}
-/*
- * 做 FFT
- *len 必须是 2^k 形式
- *on == 1 时是 DFT，on == -1 时是 IDFT
- */
-void fft(Complex y[], int len, int on) {
-  change(y, len);
-  for (int h = 2; h <= len; h <<= 1) {
-    Complex wn(cos(2 * PI / h), sin(on * 2 * PI / h));
-    for (int j = 0; j < len; j += h) {
-      Complex w(1, 0);
-      for (int k = j; k < j + h / 2; k++) {
-        Complex u = y[k];
-        Complex t = w * y[k + h / 2];
-        y[k] = u + t;
-        y[k + h / 2] = u - t;
-        w = w * wn;
+    const double PI = acos(-1.0);
+    struct Complex {
+      double x, y;
+      Complex(double _x = 0.0, double _y = 0.0) {
+        x = _x;
+        y = _y;
+      }
+      Complex operator-(const Complex &b) const {
+        return Complex(x - b.x, y - b.y);
+      }
+      Complex operator+(const Complex &b) const {
+        return Complex(x + b.x, y + b.y);
+      }
+      Complex operator*(const Complex &b) const {
+        return Complex(x * b.x - y * b.y, x * b.y + y * b.x);
+      }
+    };
+    /*
+    * 进行 FFT 和 IFFT 前的反置变换
+    * 位置 i 和 i 的二进制反转后的位置互换
+    *len 必须为 2 的幂
+    */
+    void change(Complex y[], int len) {
+      int i, j, k;
+      for (int i = 1, j = len / 2; i < len - 1; i++) {
+        if (i < j) swap(y[i], y[j]);
+        // 交换互为小标反转的元素，i<j 保证交换一次
+        // i 做正常的 + 1，j 做反转类型的 + 1，始终保持 i 和 j 是反转的
+        k = len / 2;
+        while (j >= k) {
+          j = j - k;
+          k = k / 2;
+        }
+        if (j < k) j += k;
       }
     }
-  }
-  if (on == -1) {
-    for (int i = 0; i < len; i++) {
-      y[i].x /= len;
+    /*
+    * 做 FFT
+    *len 必须是 2^k 形式
+    *on == 1 时是 DFT，on == -1 时是 IDFT
+    */
+    void fft(Complex y[], int len, int on) {
+      change(y, len);
+      for (int h = 2; h <= len; h <<= 1) {
+        Complex wn(cos(2 * PI / h), sin(on * 2 * PI / h));
+        for (int j = 0; j < len; j += h) {
+          Complex w(1, 0);
+          for (int k = j; k < j + h / 2; k++) {
+            Complex u = y[k];
+            Complex t = w * y[k + h / 2];
+            y[k] = u + t;
+            y[k + h / 2] = u - t;
+            w = w * wn;
+          }
+        }
+      }
+      if (on == -1) {
+        for (int i = 0; i < len; i++) {
+          y[i].x /= len;
+        }
+      }
     }
-  }
-}
 
-const int MAXN = 200020;
-Complex x1[MAXN], x2[MAXN];
-char str1[MAXN / 2], str2[MAXN / 2];
-int sum[MAXN];
+    const int MAXN = 200020;
+    Complex x1[MAXN], x2[MAXN];
+    char str1[MAXN / 2], str2[MAXN / 2];
+    int sum[MAXN];
 
-int main() {
-  while (scanf("%s%s", str1, str2) == 2) {
-    int len1 = strlen(str1);
-    int len2 = strlen(str2);
-    int len = 1;
-    while (len < len1 * 2 || len < len2 * 2) len <<= 1;
-    for (int i = 0; i < len1; i++) x1[i] = Complex(str1[len1 - 1 - i] - '0', 0);
-    for (int i = len1; i < len; i++) x1[i] = Complex(0, 0);
-    for (int i = 0; i < len2; i++) x2[i] = Complex(str2[len2 - 1 - i] - '0', 0);
-    for (int i = len2; i < len; i++) x2[i] = Complex(0, 0);
-    fft(x1, len, 1);
-    fft(x2, len, 1);
-    for (int i = 0; i < len; i++) x1[i] = x1[i] * x2[i];
-    fft(x1, len, -1);
-    for (int i = 0; i < len; i++) sum[i] = int(x1[i].x + 0.5);
-    for (int i = 0; i < len; i++) {
-      sum[i + 1] += sum[i] / 10;
-      sum[i] %= 10;
+    int main() {
+      while (scanf("%s%s", str1, str2) == 2) {
+        int len1 = strlen(str1);
+        int len2 = strlen(str2);
+        int len = 1;
+        while (len < len1 * 2 || len < len2 * 2) len <<= 1;
+        for (int i = 0; i < len1; i++) x1[i] = Complex(str1[len1 - 1 - i] - '0', 0);
+        for (int i = len1; i < len; i++) x1[i] = Complex(0, 0);
+        for (int i = 0; i < len2; i++) x2[i] = Complex(str2[len2 - 1 - i] - '0', 0);
+        for (int i = len2; i < len; i++) x2[i] = Complex(0, 0);
+        fft(x1, len, 1);
+        fft(x2, len, 1);
+        for (int i = 0; i < len; i++) x1[i] = x1[i] * x2[i];
+        fft(x1, len, -1);
+        for (int i = 0; i < len; i++) sum[i] = int(x1[i].x + 0.5);
+        for (int i = 0; i < len; i++) {
+          sum[i + 1] += sum[i] / 10;
+          sum[i] %= 10;
+        }
+        len = len1 + len2 - 1;
+        while (sum[len] == 0 && len > 0) len--;
+        for (int i = len; i >= 0; i--) printf("%c", sum[i] + '0');
+        printf("\n");
+      }
+      return 0;
     }
-    len = len1 + len2 - 1;
-    while (sum[len] == 0 && len > 0) len--;
-    for (int i = len; i >= 0; i--) printf("%c", sum[i] + '0');
-    printf("\n");
-  }
-  return 0;
-}
-```
+    ```
 
 至此，FFT 算是告一段落了。
 
