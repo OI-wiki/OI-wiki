@@ -29,7 +29,7 @@
 
 考虑将每个点做一个对于 $x$ 轴的垂线，设垂足为 $H_i(x_i,0)$ 。
 
-![sample](../images/lagrange-poly-1.png)
+![sample](./images/lagrange-poly-1.png)
 
 如上图所示，黑线等于蓝线加绿线加红线。每次我们选择 $1$ 个 $P_i$ ，并选择其他的 $H_j[j\neq i]$ ，做一条过这些点的一条至多 $n-1$ 次的线。由于有 $n-2$ 个点都在 $x$ 轴上，我们知道这条线的解析式一定是形如 $g_i(x)=y_i\times (\prod_{i=1}^{n} (x-x_i)[i\neq x])$ 的形式。
 
