@@ -2,7 +2,7 @@
 
 显然大于 $1$ 的正整数 $a$ 可以被 $1$ 和 $a$ 整除，如果除此之外 $a$ 没有其他的约数，则称 $a$ 是素数，又称质数。任何一个大于 $1$ 的整数如果不是素数，也就是有其他约数，就称为是合数。 $1$ 既不是合数也不是素数。
 
-素数计数函数：小于或等于 $x$ 的素数的个数，用 $\pi(x)$ 表示。随着 $x$ 的增大，有这样的近似结果： $\pi(x) \sim \frac{x}{\ln(x)}$ 
+素数计数函数：小于或等于 $x$ 的素数的个数，用 $\pi(x)$ 表示。随着 $x$ 的增大，有这样的近似结果： $\pi(x) \sim \frac{x}{\ln(x)}$
 
 ## 素数判定
 
@@ -12,7 +12,7 @@
 
 自然可以枚举从小到大的每个数看是否能整除
 
-```c++
+```cpp
 bool isPrime(a) {
   if (a < 2) return 0;
   for (int i = 2; i < a; ++i)
@@ -29,7 +29,7 @@ bool isPrime(a) {
 
 由于 $1$ 肯定是约数，所以不检验它。
 
-```c++
+```cpp
 bool isPrime(a) {
   if (a < 2) return 0;
   for (int i = 2; i * i <= a; ++i)
@@ -46,9 +46,9 @@ Miller-Rabin 素性测试（Miller–Rabin primality test）是进阶的素数�
 
 我们可以根据[费马小定理](/math/fermat/#_1)得出一种检验素数的思路：
 
-它的基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$ ，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$ 
+它的基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$ ，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$
 
-```c++
+```cpp
 bool millerRabin(int n) {
   if (n < 3) return n == 2;
   // test_time 为测试次数,建议设为不小于 8 的整数以保证正确率,但也不宜过大,否则会影响效率
@@ -86,7 +86,7 @@ bool millerRabin(int n) {
 
 比较正确的 Miller Rabin：（来自 fjzzq2002）
 
-```c++
+```cpp
 bool millerRabbin(int n) {
   if (n < 3) return n == 2;
   int a = n - 1, b = 0;
@@ -138,7 +138,7 @@ bool millerRabbin(int n) {
 
 1.  反素数肯定是从 $2$ 开始的连续素数的幂次形式的乘积。
 
-2.  数值小的素数的幂次大于等于数值大的素数，即 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 中，有 $k_1 \geq k_2 \geq k_3 \geq \cdots \geq k_n$ 
+2.  数值小的素数的幂次大于等于数值大的素数，即 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 中，有 $k_1 \geq k_2 \geq k_3 \geq \cdots \geq k_n$
 
 解释：
 
@@ -180,7 +180,7 @@ bool millerRabbin(int n) {
 
 上代码：
 
-```c++
+```cpp
 #include <stdio.h>
 #define ULL unsigned long long
 #define INF ~0ULL
@@ -220,7 +220,7 @@ int main() {
 
 思路同上，只不过要改改 dfs 的返回条件。注意这样的题目的数据范围，我一开始用了 int，应该是溢出了，在循环里可能就出不来了就超时了。上代码，0ms 过。注释就没必要写了上面写的很清楚了。
 
-```c++
+```cpp
 #include <cstdio>
 #include <iostream>
 #define ULL unsigned long long

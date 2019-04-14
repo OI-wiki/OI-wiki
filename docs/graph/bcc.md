@@ -28,7 +28,7 @@
 
 DFS 的代码如下：
 
-```C++
+```cpp
 void DFS(int p) {
   visited[p] = true;
   for (int to : edge[p])

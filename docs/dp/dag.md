@@ -37,7 +37,7 @@ DAG 即[有向无环图](/graph/dag)，一些实际问题中的二元关系都�
 
 某个砖块 $i$ 有三种堆叠方式分别记为 $0, 1, 2$ ，那么对于砖块 $i$ 和其堆叠方式 $r$ 来说则有如下转移方程
 
- $d(i, r) = \max\left\{d(j, r') + h'\right\}$ 
+ $d(i, r) = \max\left\{d(j, r') + h'\right\}$
 
 其中 $j$ 是所有那些在砖块 $i$ 以 $r$ 方式堆叠时可放上的砖块， $r'$ 对应 $j$ 此时的摆放方式，也就确定了此时唯一的高度 $h'$ 。
 
@@ -49,7 +49,7 @@ DAG 即[有向无环图](/graph/dag)，一些实际问题中的二元关系都�
 
 ### 题解
 
-```c++
+```cpp
 #include <cstring>
 #include <iostream>
 #define MAXN (30 + 5)

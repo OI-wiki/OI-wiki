@@ -180,7 +180,7 @@ $$
 
 在这种情况下，我们定义过程 $\textsf{DP}(l, r, k_l, k_r)$ 表示求解 $f_{l}\sim f_{r}$ 的状态值，并且已知这些状态的最优决策点必定位于 $[k_l, k_r]$ 中，然后使用分治算法如下：
 
-```C++
+```cpp
 void DP(int l, int r, int k_l, int k_r) {
 	int mid = (l + r) / 2, k = k_l;
 	// 求状态f[mid]的最优决策点

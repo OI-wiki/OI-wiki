@@ -11,7 +11,7 @@
 
 ### 代码
 
-```c++
+```cpp
 bool solve() {
   ans = 0;
   int u, v, root = 0;

@@ -83,7 +83,7 @@ bool toposort() {
 
 ## DFS 算法
 
-```c++
+```cpp
 // dfs 版本
 bool dfs(int u) {
   c[u] = -1;

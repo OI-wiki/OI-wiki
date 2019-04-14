@@ -67,7 +67,7 @@ dfs(u) {
 
 C++：
 
-```c++
+```cpp
 void dfs(int u) {
   vis[u] = 1;
   for (int i = head[u]; i; i = e[i].x) {
