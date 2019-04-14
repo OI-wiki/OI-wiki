@@ -235,7 +235,7 @@ int sz, last;
 我们定义一个函数来初始化 SAM （创建一个只有初始状态的 SAM）。
 
 ```cpp
-void sa_init() {
+void sam_init() {
   st[0].len = 0;
   st[0].link = -1;
   sz++;
@@ -246,7 +246,7 @@ void sa_init() {
 最终我们给出主函数的实现：给当前行末增加一个字符，对应地在之前的基础上建造自动机。
 
 ```cpp
-void sa_extend(char c) {
+void sam_extend(char c) {
   int cur = sz++;
   st[cur].len = st[last].len + 1;
   int p = last;
@@ -404,7 +404,7 @@ $$
 
 我们构造一个后缀自动机。我们对 SAM 中的所有状态预处理位置 $firstpos$ 。即，对每个状态 $v$ 我们想要找到第一次出现这个状态的末端的位置 $firstpos[v]$ 。换句话说，我们希望先找到每个集合 $endpos$ 中的最小的元素（显然我们不能显式地维护所有 $endpos$ 集合）。
 
-为了维护 $firstpos$ 这些位置，我们将原函数扩展为 `sa_extend()` 。当我们创建新状态 $cur$ 时，我们令：
+为了维护 $firstpos$ 这些位置，我们将原函数扩展为 `sam_extend()` 。当我们创建新状态 $cur$ 时，我们令：
 
 $$
 firstpos(cur)=len(cur)-1
@@ -503,9 +503,9 @@ $$
 代码实现：
 
 ```cpp
-string lcs(string S, string T) {
-  sa_init();
-  for (int i = 0; i < S.size(); i++) sa_extend(S[i]);
+string lcs(const string &S, const string &T) {
+  sam_init();
+  for (int i = 0; i < S.size(); i++) sam_extend(S[i]);
 
   int v = 0, l = 0, best = 0, bestpos = 0;
   for (int i = 0; i < T.size(); i++) {
