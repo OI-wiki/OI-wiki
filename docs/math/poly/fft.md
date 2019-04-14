@@ -16,7 +16,7 @@ NTT 部分代码参考 CSDN 上的模板代码附网址，感谢博主！
 
 > 离散傅里叶变换（Discrete Fourier Transform，缩写为 DFT），是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DTFT 的频域采样。
 >
-> FFT 是一种 DFT 的高效算法，称为快速傅立叶变换（fast Fourier transform）。——百度百科
+> FFT 是一种 DFT 的高效算法，称为快速傅立叶变换（Fast Fourier transform）。——百度百科
 
 在百度百科上能找到 DFT 和 FFT 这两个定义。正如定义，FFT 和 DFT 实际上按照结果来看的话是一样的，但是 FFT 比较快的计算 DFT 和 IDFT（离散反傅里叶变换）。
 
@@ -112,9 +112,9 @@ $$
 
 接下来思考两个复数相乘是什么意义：
 
-1.   $(a+bi) \times (c+di) = (ac-bd) + (ad+bc)i$
+1. $(a+bi) \times (c+di) = (ac-bd) + (ad+bc)i$
 
-2.  长度相乘，角度相加： $(r_1, \theta_1)  \times  (r_2, \theta_2) = (r_1 \times r_2, \theta_1+\theta_2)$
+2. 长度相乘，角度相加： $(r_1, \theta_1)  \times  (r_2, \theta_2) = (r_1 \times r_2, \theta_1+\theta_2)$
 
 这么一看的话，我们很容易想到如果两个长度为 $1$ 的不同方向向量相乘，结果向量是不是一个长度依然为 $1$ 的新向量呢？
 
@@ -405,109 +405,109 @@ void fft(Complex y[], int len, int on) {
 
 好了现在附上全部代码（[HDU 1402](http://acm.hdu.edu.cn/showproblem.php?pid=1402)），序言说过代码来自 kuangbin 的模板~~~~~
 
-```cpp
-#include <cmath>
-#include <cstdio>
-#include <cstring>
-#include <iostream>
+??? " FFT "
 
-using namespace std;
+    ```cpp
+    #include <cmath>
+    #include <cstdio>
+    #include <cstring>
+    #include <iostream>
 
-const double PI = acos(-1.0);
-struct Complex {
-  double x, y;
-  Complex(double _x = 0.0, double _y = 0.0) {
-    x = _x;
-    y = _y;
-  }
-  Complex operator-(const Complex &b) const {
-    return Complex(x - b.x, y - b.y);
-  }
-  Complex operator+(const Complex &b) const {
-    return Complex(x + b.x, y + b.y);
-  }
-  Complex operator*(const Complex &b) const {
-    return Complex(x * b.x - y * b.y, x * b.y + y * b.x);
-  }
-};
-/*
- * 进行 FFT 和 IFFT 前的反置变换
- * 位置 i 和 i 的二进制反转后的位置互换
- *len 必须为 2 的幂
- */
-void change(Complex y[], int len) {
-  int i, j, k;
-  for (int i = 1, j = len / 2; i < len - 1; i++) {
-    if (i < j) swap(y[i], y[j]);
-    // 交换互为小标反转的元素，i<j 保证交换一次
-    // i 做正常的 + 1，j 做反转类型的 + 1，始终保持 i 和 j 是反转的
-    k = len / 2;
-    while (j >= k) {
-      j = j - k;
-      k = k / 2;
-    }
-    if (j < k) j += k;
-  }
-}
-/*
- * 做 FFT
- *len 必须是 2^k 形式
- *on == 1 时是 DFT，on == -1 时是 IDFT
- */
-void fft(Complex y[], int len, int on) {
-  change(y, len);
-  for (int h = 2; h <= len; h <<= 1) {
-    Complex wn(cos(2 * PI / h), sin(on * 2 * PI / h));
-    for (int j = 0; j < len; j += h) {
-      Complex w(1, 0);
-      for (int k = j; k < j + h / 2; k++) {
-        Complex u = y[k];
-        Complex t = w * y[k + h / 2];
-        y[k] = u + t;
-        y[k + h / 2] = u - t;
-        w = w * wn;
+    const double PI = acos(-1.0);
+    struct Complex {
+      double x, y;
+      Complex(double _x = 0.0, double _y = 0.0) {
+        x = _x;
+        y = _y;
+      }
+      Complex operator-(const Complex &b) const {
+        return Complex(x - b.x, y - b.y);
+      }
+      Complex operator+(const Complex &b) const {
+        return Complex(x + b.x, y + b.y);
+      }
+      Complex operator*(const Complex &b) const {
+        return Complex(x * b.x - y * b.y, x * b.y + y * b.x);
+      }
+    };
+    /*
+    * 进行 FFT 和 IFFT 前的反置变换
+    * 位置 i 和 i 的二进制反转后的位置互换
+    *len 必须为 2 的幂
+    */
+    void change(Complex y[], int len) {
+      int i, j, k;
+      for (int i = 1, j = len / 2; i < len - 1; i++) {
+        if (i < j) swap(y[i], y[j]);
+        // 交换互为小标反转的元素，i<j 保证交换一次
+        // i 做正常的 + 1，j 做反转类型的 + 1，始终保持 i 和 j 是反转的
+        k = len / 2;
+        while (j >= k) {
+          j = j - k;
+          k = k / 2;
+        }
+        if (j < k) j += k;
       }
     }
-  }
-  if (on == -1) {
-    for (int i = 0; i < len; i++) {
-      y[i].x /= len;
+    /*
+    * 做 FFT
+    *len 必须是 2^k 形式
+    *on == 1 时是 DFT，on == -1 时是 IDFT
+    */
+    void fft(Complex y[], int len, int on) {
+      change(y, len);
+      for (int h = 2; h <= len; h <<= 1) {
+        Complex wn(cos(2 * PI / h), sin(on * 2 * PI / h));
+        for (int j = 0; j < len; j += h) {
+          Complex w(1, 0);
+          for (int k = j; k < j + h / 2; k++) {
+            Complex u = y[k];
+            Complex t = w * y[k + h / 2];
+            y[k] = u + t;
+            y[k + h / 2] = u - t;
+            w = w * wn;
+          }
+        }
+      }
+      if (on == -1) {
+        for (int i = 0; i < len; i++) {
+          y[i].x /= len;
+        }
+      }
     }
-  }
-}
 
-const int MAXN = 200020;
-Complex x1[MAXN], x2[MAXN];
-char str1[MAXN / 2], str2[MAXN / 2];
-int sum[MAXN];
+    const int MAXN = 200020;
+    Complex x1[MAXN], x2[MAXN];
+    char str1[MAXN / 2], str2[MAXN / 2];
+    int sum[MAXN];
 
-int main() {
-  while (scanf("%s%s", str1, str2) == 2) {
-    int len1 = strlen(str1);
-    int len2 = strlen(str2);
-    int len = 1;
-    while (len < len1 * 2 || len < len2 * 2) len <<= 1;
-    for (int i = 0; i < len1; i++) x1[i] = Complex(str1[len1 - 1 - i] - '0', 0);
-    for (int i = len1; i < len; i++) x1[i] = Complex(0, 0);
-    for (int i = 0; i < len2; i++) x2[i] = Complex(str2[len2 - 1 - i] - '0', 0);
-    for (int i = len2; i < len; i++) x2[i] = Complex(0, 0);
-    fft(x1, len, 1);
-    fft(x2, len, 1);
-    for (int i = 0; i < len; i++) x1[i] = x1[i] * x2[i];
-    fft(x1, len, -1);
-    for (int i = 0; i < len; i++) sum[i] = int(x1[i].x + 0.5);
-    for (int i = 0; i < len; i++) {
-      sum[i + 1] += sum[i] / 10;
-      sum[i] %= 10;
+    int main() {
+      while (scanf("%s%s", str1, str2) == 2) {
+        int len1 = strlen(str1);
+        int len2 = strlen(str2);
+        int len = 1;
+        while (len < len1 * 2 || len < len2 * 2) len <<= 1;
+        for (int i = 0; i < len1; i++) x1[i] = Complex(str1[len1 - 1 - i] - '0', 0);
+        for (int i = len1; i < len; i++) x1[i] = Complex(0, 0);
+        for (int i = 0; i < len2; i++) x2[i] = Complex(str2[len2 - 1 - i] - '0', 0);
+        for (int i = len2; i < len; i++) x2[i] = Complex(0, 0);
+        fft(x1, len, 1);
+        fft(x2, len, 1);
+        for (int i = 0; i < len; i++) x1[i] = x1[i] * x2[i];
+        fft(x1, len, -1);
+        for (int i = 0; i < len; i++) sum[i] = int(x1[i].x + 0.5);
+        for (int i = 0; i < len; i++) {
+          sum[i + 1] += sum[i] / 10;
+          sum[i] %= 10;
+        }
+        len = len1 + len2 - 1;
+        while (sum[len] == 0 && len > 0) len--;
+        for (int i = len; i >= 0; i--) printf("%c", sum[i] + '0');
+        printf("\n");
+      }
+      return 0;
     }
-    len = len1 + len2 - 1;
-    while (sum[len] == 0 && len > 0) len--;
-    for (int i = len; i >= 0; i--) printf("%c", sum[i] + '0');
-    printf("\n");
-  }
-  return 0;
-}
-```
+    ```
 
 至此，FFT 算是告一段落了。
 
