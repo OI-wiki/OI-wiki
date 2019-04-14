@@ -88,8 +88,8 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
 >
 > $$
 > \begin{cases}
->  endpos(w)\subseteq endpos(u) & if\ u\ is\ a\ suffix\ of\ w\\
->  endpos(w)\cap endpos(u)=\varnothing & otherwise\\
+> endpos(w) \subseteq endpos(u) & \text{if } u \text{ is a suffix of } w \\
+> endpos(w) \cap endpos(u) = \varnothing & \text{otherwise}
 > \end{cases}
 > $$
 
