@@ -38,6 +38,7 @@ nav:
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
   - 语言基础:
+    - 语言基础简介: lang/index.md
     - IDE 的使用: lang/ide.md
     - C++ 基础:
       - Hello World!: lang/helloworld.md
