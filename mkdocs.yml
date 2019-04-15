@@ -40,7 +40,7 @@ nav:
   - 语言基础:
     - IDE 的使用: lang/ide.md
     - C++ 基础:
-      - hello world!: lang/helloworld.md
+      - Hello World!: lang/helloworld.md
       - 变量: lang/variable.md
       - 数组: lang/array.md
       - 结构体: lang/struct.md
