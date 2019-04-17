@@ -164,6 +164,8 @@ pip install -U -r requirements.txt
 
 我们目前在使用[remark-lint](https://github.com/remarkjs/remark-lint)来自动化修正格式，可能还有一些[配置](https://github.com/24OI/OI-wiki/blob/master/.remarkrc)不够好的地方，欢迎指出。
 
+如果你怕打错公式,你可以参考[Typora 使用方法](https://rpdreamer.blog.luogu.org/typora-yi-kuan-jian-jie-di-markdown-bian-ji-qi)去练练手,保证没有公式问题
+
 #### remark-lint 要求怎样的格式
 
 我们现在启用的配置文件在[.remarkrc](https://github.com/24OI/OI-wiki/blob/master/.remarkrc)，它可以自动给项目内文件统一风格。
@@ -197,7 +199,7 @@ $$
 
 是的，这个是 python-markdown 的一个 bug，可能近期会修复。
 
-如果现在想要避免目录中出现双倍公式，可以参考<https://github.com/24OI/OI-wiki/blame/master/docs/string/sam.md#L82>
+如果现在想要避免目录中出现双倍公式，可以参考[这里](https://github.com/24OI/OI-wiki/blame/master/docs/string/sam.md#L82)
 
 ```text
 ### 结束位置 <script type="math/tex">endpos</script>
