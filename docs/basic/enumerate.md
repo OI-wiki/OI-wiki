@@ -55,7 +55,7 @@ bool met[MAXN * 2];
 // 初始化 met 数组为 0；
 memset(met, 0, sizeof(met));
 for (int i = 0; i < n; ++i) {
-  if (met[a[i] + MAXN]) ++ans;
+  if (met[MAXN - a[i]]) ++ans;
   // 为了避免负数下标
   met[a[i] + MAXN] = 1;
 }
