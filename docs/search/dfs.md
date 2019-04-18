@@ -1,4 +1,4 @@
-DFS 全称是[Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)。
+DFS 全称是 [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)。
 
 是一种图的遍历算法。
 
@@ -67,7 +67,7 @@ dfs(u) {
 
 C++：
 
-```c++
+```cpp
 void dfs(int u) {
   vis[u] = 1;
   for (int i = head[u]; i; i = e[i].x) {

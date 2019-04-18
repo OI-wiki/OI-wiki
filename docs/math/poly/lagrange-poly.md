@@ -1,4 +1,4 @@
-??? note " 例题[洛谷 P4781【模板】拉格朗日插值](https://www.luogu.org/problemnew/show/P4781)"
+??? note " 例题 [Luogu P4781【模板】拉格朗日插值](https://www.luogu.org/problemnew/show/P4781)"
 
 ### 题目大意
 
@@ -21,7 +21,7 @@
 
 使用 **待定系数法** 。设 $f(x)=\sum_{i=0}^{n-1} a_ix^i$ 将每个 $x_i$ 代入 $f(x)$ ，有 $f(x_i)=y_i$ ，这样就可以得到一个由 $n$ 条 $n$ 元 $1$ 次方程所组成的方程组，然后使用 **高斯消元** 求出每一项 $a_i$ ，然后将 $k$ 代入求值。
 
-如果您不知道什么是高斯消元，请看[luogu P3389 高斯消元法](https://www.luogu.org/problemnew/show/P3389)。
+如果您不知道什么是高斯消元，请看 [Luogu P3389 高斯消元法](https://www.luogu.org/problemnew/show/P3389)。
 
 时间复杂度 $O(n^3)$ ，对给出点的坐标无要求。
 
@@ -29,31 +29,30 @@
 
 考虑将每个点做一个对于 $x$ 轴的垂线，设垂足为 $H_i(x_i,0)$ 。
 
-![](./images/lagrange-poly-1.png)
+![sample](./images/lagrange-poly-1.png)
 
 如上图所示，黑线等于蓝线加绿线加红线。每次我们选择 $1$ 个 $P_i$ ，并选择其他的 $H_j[j\neq i]$ ，做一条过这些点的一条至多 $n-1$ 次的线。由于有 $n-2$ 个点都在 $x$ 轴上，我们知道这条线的解析式一定是形如 $g_i(x)=y_i\times (\prod_{i=1}^{n} (x-x_i)[i\neq x])$ 的形式。
 
-最后将所有的 $g(x)$ 相加，即 $f(x)=sum_{i=1}^{n}g_i(x)$ 。因为对于每个点 $P_i$ ，都只有一条函数经过 $P_i$ ，其余都经过 $H_i$ ，这一项的系数是 $0$ ，所以最后的和函数总是过所有 $n$ 个点的。
+最后将所有的 $g(x)$ 相加，即 $f(x)=\sum_{i=1}^{n}g_i(x)$ 。因为对于每个点 $P_i$ ，都只有一条函数经过 $P_i$ ，其余都经过 $H_i$ ，这一项的系数是 $0$ ，所以最后的和函数总是过所有 $n$ 个点的。
 
 公式整理得：
 
- $f(x)=\sum_{i=1}^{n} y_i\times(\prod_{j\neq i }\frac{x-x_j}{x_i-x_j})$ 
+$$ f(x)=\sum_{i=1}^{n} y_i\times(\prod_{j\neq i }\frac{x-x_j}{x_i-x_j}) $$
 
 如果要将每一项都算出来，时间复杂度仍是 $O(n^2)$ 的，但是本题中只用求出 $f(k)$ 的值，所以只需将 $k$ 代入进式子里得：
 
- $Ans=\sum_{i=1}^{n} y_i\times(\prod_{j\neq i }\frac{k-x_j}{x_i-x_j})$ 
+$$ \mathrm{answer}=\sum_{i=1}^{n} y_i\times(\prod_{j\neq i }\frac{k-x_j}{x_i-x_j}) $$
 
-本题中，还需要求解逆元。如果先分别计算出分子和分母，在计算分母的逆元，乘上分子，累加进最后的答案，时间复杂度的瓶颈就不会在求逆元上，时间复杂度为 $O(n^2)$ 。
+本题中，还需要求解逆元。如果先分别计算出分子和分母，再将分子乘进分母的逆元，累加进最后的答案，时间复杂度的瓶颈就不会在求逆元上，时间复杂度为 $O(n^2)$ 。
 
 ### 代码实现
 
 ```cpp
-#include <algorithm>
 #include <cstdio>
 #include <cstring>
-using namespace std;
+#include <algorithm>
 const int maxn = 2010;
-typedef long long ll;
+using ll = long long;
 ll mod = 998244353;
 ll n, k, x[maxn], y[maxn], ans, s1, s2;
 ll powmod(ll a, ll x) {
@@ -65,7 +64,9 @@ ll powmod(ll a, ll x) {
   }
   return ret;
 }
-ll inv(ll x) { return powmod(x, mod - 2); }
+ll inv(ll x) {
+  return powmod(x, mod - 2);
+}
 int main() {
   scanf("%lld%lld", &n, &k);
   for (int i = 1; i <= n; i++) scanf("%lld%lld", x + i, y + i);

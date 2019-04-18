@@ -664,7 +664,7 @@ https://en.wikipedia.org/wiki/Karatsuba_algorithm
 
 ??? 这里是另一个模板
 
-    ```c++
+    ```cpp
     #define MAXN 9999
     // MAXN 是一位中最大的数字
     #define MAXSIZE 10024

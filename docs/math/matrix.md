@@ -40,7 +40,7 @@ $$
 
 可以重新排列循环以提高空间局部性，这样的优化不会改变矩阵乘法的时间复杂度，但是会在得到常数级别的提升。
 
-```c++
+```cpp
 // 以下文的参考代码为例
 inline mat operator*(const mat& T) const {
   mat res;
@@ -70,7 +70,7 @@ inline mat operator*(const mat& T) const {
 
 一般来说，可以用一个二维数组来模拟矩阵。
 
-```c++
+```cpp
 struct mat {
   LL a[sz][sz];
   inline mat() { memset(a, 0, sizeof a); }
@@ -127,7 +127,7 @@ struct mat {
 
 怎么推呢？因为 $F_n=F_{n-1}+F_{n-2}$ ，所以 $\text{base}$ 矩阵第一列应该是 $\left[\begin{array}{ccc} 1 \\ 1 \end{array}\right]$ ，这样在进行矩阵乘法运算的时候才能令 $F_{n-1}$ 与 $F_{n-2}$ 相加，从而得出 $F_n$ 。同理，为了得出 $F_{n-1}$ ，矩阵 $\text{base}$ 的第二列应该为 $\left[\begin{array}{ccc} 1 \\ 0 \end{array}\right]$ 。
 
-综上所述： $\text{base} = \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]$ 原式化为 $\left[\begin{array}{ccc}F_{n-1} & F_{n-2}\end{array}\right] \times \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right] = \left[ \begin{array}{ccc}F_n & F_{n-1} \end{array}\right]$ 
+综上所述： $\text{base} = \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]$ 原式化为 $\left[\begin{array}{ccc}F_{n-1} & F_{n-2}\end{array}\right] \times \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right] = \left[ \begin{array}{ccc}F_n & F_{n-1} \end{array}\right]$
 
 转化为代码，应该怎么求呢？
 

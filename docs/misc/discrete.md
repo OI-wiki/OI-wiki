@@ -12,7 +12,7 @@
 
 C++ 离散化有现成的 STL 算法：
 
-```c++
+```cpp
 // vector<int> a, b; b 是 a 的一个副本
 std::sort(a.begin(), a.end());
 V.erase(std::unique(a.begin(), a.end()), a.end());
