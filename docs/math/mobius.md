@@ -591,7 +591,7 @@ int main() {
 }
 ```
 
-### [SDOI2015] 约数个数和
+### [「SDOI2015」 约数个数和](https://www.luogu.org/problemnew/show/P3327)
 
 多组数据，求
 
@@ -683,7 +683,7 @@ signed main(){
 }
 ```
 
-### [Luogu P3768] 简单的数学题
+### [「luogu 3768」简单的数学题](https://www.luogu.org/problemnew/show/P3768)
 
 求
 
