@@ -4,13 +4,13 @@
 
 大步小步算法英文名： **baby-step gaint-step (BSGS)** .
 
-该算法可以在 $O(\sqrt{q})$ 用于求解
+该算法可以在 $O(\sqrt{p})$ 用于求解
 
 $$
 a^x \equiv b \bmod p
 $$
 
-其中 $p$ 是个质数的方程的解 $x$ 满足 $0 \le x < p$ .
+其中 $p$ 是个质数，方程的解 $x$ 满足 $0 \le x < p$ .
 
 令 $x = A \lceil \sqrt p \rceil - B$ ，其中 $0\le A,B \le \lceil \sqrt p \rceil$ ，
 
@@ -18,9 +18,9 @@ $$
 
 我们已知的是 $a,b$ ，所以我们可以先算出等式右边的 $ba^B$ 的所有取值，枚举 $B$ ，用 hash/map 存下来，然后逐一计算 $a^{A\lceil \sqrt p \rceil}$ ，枚举 $A$ ，寻找是否有与之相等的 $ba^B$ ，从而我们可以得到所有的 $x$ ， $x=A \lceil \sqrt p \rceil - B$ .
 
-注意到 $A,B$ 均小于 $\lceil \sqrt p \rceil$ ，所以时间复杂度为 $O(\sqrt q)$ ，用 map 的话会多一个 $\log$ .
+注意到 $A,B$ 均小于 $\lceil \sqrt p \rceil$ ，所以时间复杂度为 $O(\sqrt p)$ ，用 map 的话会多一个 $\log$ .
 
-[BZOJ-2480](http://www.lydsy.com/JudgeOnline/problem.php?id=2480)是一道模板题（可能是权限题），[BZOJ-3122](http://www.lydsy.com/JudgeOnline/problem.php?id=3122)是一道略加变化的题，代码可以在[Steaunk 的博客](https://blog.csdn.net/Steaunk/article/details/78988376)中看到。
+[SPOJ MOD](https://www.spoj.com/problems/MOD/) 是一道模板题，[SDOI2013 随机数生成器](http://www.lydsy.com/JudgeOnline/problem.php?id=3122) 是一道略加变化的题，代码可以在 [Steaunk 的博客](https://blog.csdn.net/Steaunk/article/details/78988376)中看到。
 
 ### 略微进阶篇
 
@@ -70,7 +70,7 @@ $$
 
 由于 $p$ 是质数，所以 $p$ 有 $\varphi(p-1)$ 个原根，所以大概最小的原根为 $\frac{p}{\varphi(p-1)}=O(\log\log n)$ ，由于求每一个数时要枚举一遍 $p-1$ 所有的因数 $O(\sqrt p)$ 来判断其是否为原根，最后再算上 **BSGS** 的复杂度 $O(\sqrt{p})$ ，则复杂度约为 $O(\sqrt{p}\log \log n)$ .
 
-[BZOJ-1319](http://www.lydsy.com/JudgeOnline/problem.php?id=1319)是一道模板题，代码可以在[Steaunk 的博客](https://blog.csdn.net/Steaunk/article/details/78988376)中看到。
+[BZOJ1319 Discrete Roots](http://www.lydsy.com/JudgeOnline/problem.php?id=1319) 是一道模板题，代码可以在 [Steaunk 的博客](https://blog.csdn.net/Steaunk/article/details/78988376)中看到。
 
 ### 扩展篇
 
