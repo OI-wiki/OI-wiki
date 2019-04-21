@@ -87,6 +87,8 @@ void performance(int l, int r) {
 }
 ```
 
+**注：珂朵莉树在进行求取区间左右端点操作时，必须先 split 右端点，再 split 左端点。否则处理边界情况时，会导致 RE。**
+
 ## 习题
 
 -   [「SCOI2010」序列操作](https://www.lydsy.com/JudgeOnline/problem.php?id=1858)
