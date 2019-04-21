@@ -144,3 +144,20 @@ $$
 显然，通过上述拆分方式，可以表示任意 $\le k_i$ 个物品的等效选择方式。将每种物品按照上述方式拆分后，使用 0-1 背包的方法解决即可。
 
 时间复杂度 $O(nW\sum\log k_i)$
+
+??? 二进制分组代码
+    ```
+        index = 0;
+        for(int i = 1; i <= m; i++) {
+            int c = 1, p, h, k;
+            cin >> p >> h >> k;
+            while(k - c > 0) {
+                k -= c;
+                list[++index].w = c * p;
+                list[index].v = c * h;
+                c *= 2;
+            }
+            list[++index].w = p * k; 
+            list[index].v = h * k;
+        }
+    ```
