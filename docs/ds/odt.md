@@ -29,7 +29,7 @@ struct Node_t {
   int l, r;
   mutable int v;
   Node_t(const int &il, const int &ir, const int &iv) : l(il), r(ir), v(iv) {}
-  inline bool operator(const Node_t &o) const { return l < o.l; }
+  inline bool operator<(const Node_t &o) const { return l < o.l; }
 };
 ```
 
