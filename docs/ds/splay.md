@@ -67,8 +67,8 @@ void rotate(int x) {
   fa[y] = x;
   fa[x] = z;
   if (z) ch[z][y == ch[z][1]] = x;
-  maintain(x);
   maintain(y);
+  maintain(x);
 }
 ```
 
