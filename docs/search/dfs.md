@@ -1,21 +1,19 @@
-DFS 全称是 [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)。
+DFS 全称是 [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)，中文名是深度优先搜索，是一种图的遍历算法。
 
-是一种图的遍历算法。
-
-所谓深度优先。就是说每次都尝试向更深的节点走。
+所谓深度优先，就是说每次都尝试向更深的节点走。
 如果没有更深的节点了，就回到上一层的下一个节点继续刚才的过程。
 
 上面的解释太过高深，我们可以感性地理解一下它，在较为初级的应用（非图论）中，搜索就是一个暴力枚举，
 如这个例子：
 
-> 把正整数 n 分解为 3 个不同的数，如 6=1+2+3 排在后面的数必须大于等于前面的数
+> 把正整数 n 分解为 3 个不同的数，如 6=1+2+3 ，排在后面的数必须大于等于前面的数
 > 对于这个问题，如果不知道搜索，应该怎么办呢？
-> 当然是 3 重循环 伪代码如下
+> 当然是 3 重循环，伪代码如下：
 >
 > ```text
 > for i=1..n
 >   for j=i..n
->     for k=1..n
+>     for k=j..n
 >       if (i+j+k=n) printf("%d=%d+%d+%d",n,i,j,k);
 > ```
 >
@@ -49,6 +47,38 @@ dfs(n) {
 ```
 
 有些情况不需要标记，请自行判断。
+
+## 实现（不对与图来说）
+
+C++ 代码：
+
+```cpp
+void dfs(int step)
+{
+    if (step == n+1)
+    {
+        for (int i = 1; i <= n; i++)
+        {
+            cout << setw(5) << a[i];
+        }
+        cout << endl;
+        return;
+    }
+    for (int i = 1; i <= n; i++)
+    {
+        if (book[i] == 0)
+        {
+            book[i] = 1;
+            a[step] = i;
+            dfs(step+1);
+            book[i] = 0;
+        }
+    }
+    return;
+}
+```
+
+> 对于 [Luogu P1706 全排列问题](https://www.luogu.org/problemnew/show/P1706)
 
 ## 实现（对于图来说）
 
