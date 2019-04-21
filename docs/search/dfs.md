@@ -51,12 +51,17 @@ dfs(n) {
 
 ## 实现（不对于图来说）
 
+[Luogu P1706 全排列问题](https://www.luogu.org/problemnew/show/P1706)
+
 C++ 代码：
 
 ```cpp
+bool vis[N];//访问标记数组
+int a[N];//排列数组，按顺序储存当前搜索结果
+
 void dfs(int step)
 {
-    if (step == n+1)
+    if (step == n + 1)//边界
     {
         for (int i = 1; i <= n; i++)
         {
@@ -67,19 +72,17 @@ void dfs(int step)
     }
     for (int i = 1; i <= n; i++)
     {
-        if (book[i] == 0)
+        if (vis[i] == 0)
         {
-            book[i] = 1;
+            vis[i] = 1;
             a[step] = i;
-            dfs(step+1);
-            book[i] = 0;
+            dfs(step + 1);
+            vis[i] = 0;
         }
     }
     return;
 }
 ```
-
-> 对于 [Luogu P1706 全排列问题](https://www.luogu.org/problemnew/show/P1706)
 
 ## 实现（对于图来说）
 
