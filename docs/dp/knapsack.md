@@ -146,6 +146,7 @@ $$
 时间复杂度 $O(nW\sum\log k_i)$
 
 ??? 二进制分组代码
+
     ```
         index = 0;
         for(int i = 1; i <= m; i++) {
