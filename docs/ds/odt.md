@@ -36,11 +36,11 @@ struct Node_t {
 其中， `int v` 是你自己指定的附加数据。
 
 然后，我们定义一个 `set<Node_t> odt;` 来维护这些结点。
-为简化代码，可以 `typedef set<Node_t>::iterator iter`，当然在题目支持 C++11时也可以使用 `auto`。
+为简化代码，可以 `typedef set<Node_t>::iterator iter`，当然在题目支持 C++11 时也可以使用 `auto`。
 
 ### split
 
-最核心的操作之一 `split` ，它用于取得以 $x$ 开头的结点。
+`split` 是最核心的操作之一，它用于将原本包含点 $x$ 的区间（设为 $[l, r]$）分裂为两个区间 $[l, x)$ 和 $[x, r]$ 并返回指向后者的迭代器。
 参考代码如下：
 
 ```cpp
@@ -86,6 +86,8 @@ void performance(int l, int r) {
   }
 }
 ```
+
+**注：珂朵莉树在进行求取区间左右端点操作时，必须先 split 右端点，再 split 左端点。否则在处理边界情况时会导致 RE。**
 
 ## 习题
 
