@@ -2,11 +2,11 @@
 
 （建议学习[位运算](/math/bit/)部分的内容）
 
-### 状压 DP 简介
+## 状压 DP 简介
 
 状压 dp 是动态规划的一种，借由将状态压缩（通常压缩为某整形）以达到节约空间和时间的目的
 
-#### 常用格式
+### 常用格式
 
 ```cpp
 int maxn = 1 << n;  //规定状态的上界
@@ -26,7 +26,7 @@ for (int i = 2; i <= 层数(dp上界); i++) {
 for (int i = 1; i <= top; i++) ans += dp[上界][Type[i]];
 ```
 
-#### 典型例题
+### 典型例题
 
 [\[USACO06NOV\]玉米田 Corn Fields](https://www.luogu.org/problemnew/show/P1879)
 
@@ -37,3 +37,13 @@ for (int i = 1; i <= top; i++) ans += dp[上界][Type[i]];
 具体实现方法同上方伪代码
 
 [例题代码](https://www.luogu.org/paste/kto3ua68)
+
+### 几道练习题
+
+[NOI2001 炮兵阵地](https://www.luogu.org/problemnew/show/P2704)
+
+[SCOI2005 互不侵犯](https://www.luogu.org/problemnew/show/P1896)
+
+[AHOI2009 中国象棋](https://www.luogu.org/problemnew/show/P2051)
+
+[九省联考2018 一双木棋](https://www.luogu.org/problemnew/show/P4363)
