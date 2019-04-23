@@ -115,7 +115,7 @@ void unionSet(int x, int y) {
 
 [「JSOI2008」星球大战](https://www.lydsy.com/JudgeOnline/problem.php?id=1015)
 
-[「NOI2001」食物链](https://www.luogu.org/problemnew/show/P2024)
+[「NOI2001」食物链](http://poj.org/problem?id=1182)
 
 [「NOI2002」银河英雄传说](https://www.luogu.org/problemnew/show/P1196)
 

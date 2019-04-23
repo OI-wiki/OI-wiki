@@ -322,7 +322,7 @@ int main() {
 
 ### LUOGU P3373【模板】线段树 2
 
-[传送门](https://www.luogu.org/problem/show?pid=3372)
+[传送门](https://www.luogu.org/problem/show?pid=3373)
 
 代码：
 

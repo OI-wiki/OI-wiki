@@ -183,9 +183,7 @@ LeetCode 有递归专题练习，[点这里去做题](https://leetcode.com/explo
 
 ### 递归优化
 
-先来一道例题：[三连击](https://www.luogu.org/problemnew/show/P1618)。
-
-这道题朴素的递归写法只能得到 25 分，因为递归次数太多，所以超时。
+比较 naive 的递归实现可能递归次数太多，容易超时。
 
 怎么优化呢？详见[搜索优化](/search/optimization)和[记忆化搜索](/dp/memo/)。
 

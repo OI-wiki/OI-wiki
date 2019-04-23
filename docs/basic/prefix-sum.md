@@ -114,11 +114,9 @@ int main() {
 具体怎么搞？譬如使 $[l,r]$ 每个数加上一个 $k$ ，就是 $b_l \leftarrow b_l + k,b_{r + 1} \leftarrow b_{r + 1} - k$ 。  
 最后做一遍前缀和就好了。
 
-~~对于多维差分，自己手推一下就好了。（逃~~
-
 ### 习题
 
--   [P3368【模板】树状数组 2](https://www.luogu.org/problemnew/show/P3368)（需要掌握树状数组）
+-   [树状数组 3 ：区间修改，区间查询](https://loj.ac/problem/132)
 
 ## 树上差分
 

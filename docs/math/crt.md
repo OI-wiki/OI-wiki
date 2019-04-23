@@ -147,4 +147,4 @@ $$
 
 [\[TJOI2009\]猜数字](https://www.luogu.org/problemnew/show/P3868)
 
-[\[SDOI2010\]古代猪文](https://www.luogu.org/problemnew/show/P2480)
+[\[SDOI2010\]古代猪文](https://www.lydsy.com/JudgeOnline/problem.php?id=1951)

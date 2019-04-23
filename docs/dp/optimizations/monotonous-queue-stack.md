@@ -32,6 +32,6 @@
 
 [「Luogu P1886」滑动窗口](https://www.luogu.org/problemnew/show/P1886)
 
-[「Luogu P2254」「NOI2005」瑰丽华尔兹](https://www.luogu.org/problemnew/show/P2254)
+[「NOI2005」瑰丽华尔兹](https://www.lydsy.com/JudgeOnline/problem.php?id=1499)
 
-[「Luogu P2569」「SCOI2010」股票交易](https://www.luogu.org/problemnew/show/P2569)
+[「SCOI2010」股票交易](https://www.lydsy.com/JudgeOnline/problem.php?id=1855)
