@@ -42,8 +42,8 @@ for (int i = 1; i <= top; i++) ans += dp[上界][Type[i]];
 
 [NOI2001 炮兵阵地](https://www.luogu.org/problemnew/show/P2704)
 
-[SCOI2005 互不侵犯](https://www.luogu.org/problemnew/show/P1896)
+[SCOI2005 互不侵犯](https://www.lydsy.com/JudgeOnline/problem.php?id=1087)
 
-[AHOI2009 中国象棋](https://www.luogu.org/problemnew/show/P2051)
+[AHOI2009 中国象棋](https://www.lydsy.com/JudgeOnline/problem.php?id=1801)
 
 [九省联考2018 一双木棋](https://www.luogu.org/problemnew/show/P4363)
