@@ -2,7 +2,7 @@
 
 大部分的可持久化 Trie 题中，Trie 都是以 01-Trie 的形式出现的。
 
-??? note " 例题[洛谷 P4735 最大异或和](https://www.luogu.org/problemnew/show/P4735)"
+??? note " 例题[最大异或和](https://www.lydsy.com/JudgeOnline/problem.php?id=3261)"
 
 对一个长度为 $n$ 的数组 $a$ 维护以下操作：
 

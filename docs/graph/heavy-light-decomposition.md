@@ -276,14 +276,14 @@ int querymax(int x, int y) {
 
 [「luogu P3379」【模板】最近公共祖先（LCA）](https://www.luogu.org/problemnew/show/P3379)（树剖求 $lca$ 无需数据结构，可以用作练习）
 
-[「JLOI2014」松鼠的新家](https://www.luogu.org/problemnew/show/P3258)（当然也可以用树上差分）
+[「JLOI2014」松鼠的新家](https://www.lydsy.com/JudgeOnline/problem.php?id=3631)（当然也可以用树上差分）
 
-[「HAOI2015」树上操作](https://www.luogu.org/problemnew/show/P3178)
+[「HAOI2015」树上操作](https://www.lydsy.com/JudgeOnline/problem.php?id=4034)
 
 [「luogu P3384」【模板】树链剖分](https://www.luogu.org/problemnew/show/P3384)
 
-[「NOI2015」软件包管理器](https://www.luogu.org/problemnew/show/P2146)
+[「NOI2015」软件包管理器](https://www.lydsy.com/JudgeOnline/problem.php?id=4196)
 
-[「SDOI2011」染色](https://www.luogu.org/problemnew/show/P2486)
+[「SDOI2011」染色](https://www.lydsy.com/JudgeOnline/problem.php?id=2243)
 
-[「SDOI2014」旅行](https://www.luogu.org/problemnew/show/P3313)
+[「SDOI2014」旅行](https://www.lydsy.com/JudgeOnline/problem.php?id=3531)

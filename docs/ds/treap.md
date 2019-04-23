@@ -285,12 +285,12 @@ int main() {
 
 ## 练习题
 
-[luogu P3369【模板】普通平衡树](https://www.luogu.org/problemnew/show/P3369)
+[普通平衡树](https://loj.ac/problem/104)
 
-[luogu P3391【模板】文艺平衡树（Splay）](https://www.luogu.org/problemnew/show/P3391)
+[文艺平衡树（Splay）](https://loj.ac/problem/105)
 
-[luogu P2596\[ZJOI2006\]书架](https://www.luogu.org/problemnew/show/P2596)
+[\[ZJOI2006\]书架](https://www.lydsy.com/JudgeOnline/problem.php?id=1861)
 
-[luogu P2042\[NOI2005\]维护数列](https://www.luogu.org/problemnew/show/P2042)
+[\[NOI2005\]维护数列](https://www.lydsy.com/JudgeOnline/problem.php?id=1500)
 
 [CF 702F T-Shirts](http://codeforces.com/problemset/problem/702/F)

@@ -93,7 +93,7 @@ int main() {
 
 ## Example I
 
-先来看一道网络流题：[「TJOI2015」线性代数](https://www.luogu.org/problemnew/show/P3973)。
+先来看一道网络流题：[「TJOI2015」线性代数](https://www.lydsy.com/JudgeOnline/problem.php?id=3996)。
 
 我们并不想写网络流，于是开始偷税。建模？不存在的。
 

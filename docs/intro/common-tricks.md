@@ -1,7 +1,5 @@
 本页面主要分享一下在竞赛中的小技巧。
 
-注：本页面部分内容最初发表于[洛谷日报 #86](https://studyingfather.blog.luogu.org/some-coding-tips-for-oiers)，由原作者整理并搬运至此，略有删改。
-
 ## 利用局部性
 
 局部性是指程序倾向于引用邻近于其他最近引用过的数据项的数据项，或者最近引用过的数据项本身。局部性分为时间局部性和空间局部性。
@@ -203,3 +201,5 @@ inline Node* newnode(){
 }
 
 ```
+
+注：本页面 [部分内容](https://github.com/24OI/OI-wiki/commit/e9fa69af9d7f1583cb5ddad837c04bb1b03d7939) 最初发表于[洛谷日报 #86](https://studyingfather.blog.luogu.org/some-coding-tips-for-oiers)，由原作者整理并搬运至此，略有删改。

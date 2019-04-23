@@ -40,7 +40,7 @@ $$
 \end{gathered}
 $$
 
-[NOIP2017 提高组 奶酪](https://www.luogu.org/problemnew/show/P3958) 就运用了这一知识，可以作为欧氏距离的例题。
+[NOIP2017 提高组 奶酪](https://loj.ac/problem/2317) 就运用了这一知识，可以作为欧氏距离的例题。
 
 以此类推，我们就得到了 $n$ 维空间中欧氏距离的距离公式：对于 $\vec A(x_{11}, x_{12}, \cdots,x_{1n}) ,~ \vec B(x_{21}, x_{22}, \cdots,x_{2n})$ ，有
 
@@ -114,9 +114,7 @@ $$
 
 ### 例题 1
 
-[Luogu P5098](https://www.luogu.org/problemnew/show/P5098)
-
-~~（不要被难度吓住，是假的）~~
+[USACO2004OPEN Cave Cows 3 洞穴里的牛之三](https://www.luogu.org/problemnew/show/P5098)
 
 根据题意，对于式子 $|x_1-x_2|+|y_1-y_2|$ ，我们可以假设 $x_1 - x_2 \geq 0$ ，根据 $y_1 - y_2$ 的符号分成两种情况：
 
@@ -340,8 +338,4 @@ $d(L_m) = (|x_1-x_2|^m+|y1-y2|^m)^{\frac{1}{m}}$
 
 我们可以简单的认为对两个串进行异或运算，结果为 1 的数量就是两个串的汉明距离。
 
-------
-
-上面这两种距离在 OI 中并不常用，有兴趣的话可以深入了解一下。
-
-部分内容搬运自[浅谈三种常见的距离算法](https://www.luogu.org/blog/xuxing/Distance-Algorithm)，感谢作者 [xuxing](https://www.luogu.org/space/show?uid=32139) 的授权。
+部分内容搬运自[浅谈三种常见的距离算法](https://www.luogu.org/blog/xuxing/Distance-Algorithm)，感谢作者 xuxing 的授权。

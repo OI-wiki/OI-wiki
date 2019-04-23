@@ -418,7 +418,7 @@ int main() {
 
 以下题目都是裸的 $\text{Splay}$ 维护二叉查找树。~~（直接套板子即可）~~
 
--   [【模板】普通平衡树](https://www.luogu.org/problemnew/show/P3369)
+-   [【模板】普通平衡树](https://loj.ac/problem/104)
 -   [\[HNOI2002\]营业额统计](https://www.lydsy.com/JudgeOnline/problem.php?id=1588)
 -   [\[HNOI2004\]宠物收养所](https://www.lydsy.com/JudgeOnline/problem.php?id=1208)
 
@@ -426,7 +426,7 @@ int main() {
 
 [luogu P4402 \[Cerc2007\]robotic sort 机械排序](https://www.luogu.org/problemnew/show/P4402)/[bzoj 1552（权限题）](https://www.lydsy.com/JudgeOnline/problem.php?id=1552)
 
-[luogu P3380【模板】二逼平衡树（树套树）](https://www.luogu.org/problemnew/show/P3380)
+[二逼平衡树（树套树）](https://loj.ac/problem/106)
 
 [bzoj 2827 千山鸟飞绝](https://www.lydsy.com/JudgeOnline/problem.php?id=2827)
 
