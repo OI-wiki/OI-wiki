@@ -18,6 +18,7 @@ nav:
   - 简介:
     - Getting Started: index.md
     - OI 赛事与赛制: intro/mode.md
+    - ICPC/CCPC 赛事与赛制: intro/icpc.md
     - 学习资源: intro/resources.md
     - 常见错误: intro/common-mistakes.md
     - 常见技巧: intro/common-tricks.md
