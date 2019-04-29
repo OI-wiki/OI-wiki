@@ -146,3 +146,6 @@
 -   [北京大学 ICPC 暑期课课件例题](https://vjudge.net/article/446)
 -   [北京大学 ICPC 暑期课课件](https://lib-pku.github.io/#acm-icpc%E6%9A%91%E6%9C%9F%E8%AF%BE)
 -   [GitHub.com:OI-wiki/libs](https://github.com/OI-wiki/libs)
+-   [多校联合训练](http://acm.hdu.edu.cn) 关键词：`Multi-University Training Contest`
+-   [Vjudge](https://vjudge.net/)
+-   [开火车](http://opentrains.snarknews.info/~ejudge)
