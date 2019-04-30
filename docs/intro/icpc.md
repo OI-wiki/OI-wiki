@@ -17,7 +17,7 @@ https://ccpc.io/
 - ICPC/CCPC 网络赛（8 月底至 9 月初）
 - ICPC/CCPC 区域赛（9 月底至 11 月底）
 - ICPC EC Final/ CCPC Final （12 月中旬）
-- ICPC World Finals（次年六月）
+- ICPC World Finals（次年 4 月至 6 月）
 
 ## 训练指南
 
