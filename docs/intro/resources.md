@@ -148,4 +148,3 @@
 -   [GitHub.com:OI-wiki/libs](https://github.com/OI-wiki/libs)
 -   [多校联合训练](http://acm.hdu.edu.cn) 关键词：`Multi-University Training Contest`
 -   [Vjudge](https://vjudge.net/)
--   [开火车](http://opentrains.snarknews.info/~ejudge)
