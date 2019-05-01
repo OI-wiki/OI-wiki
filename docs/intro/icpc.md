@@ -48,6 +48,5 @@ WannaFly Camp
 
 - **OI Wiki https://oi-wiki.org**
 - CF GYM https://codeforces.com/gyms
-- 开火车 http://opentrains.snarknews.info/~ejudge
 
 
