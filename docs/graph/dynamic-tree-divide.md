@@ -50,13 +50,13 @@ int main()
 
 在查询和修改的时候，我们在点分树上暴力跳父亲修改。由于点分树的深度最多是 $O(\log_2 n)$ 的，所以这样做复杂度能得到保证。
 
-在动态点分治的过程中，需要一个结点到其点分树上的祖先的距离等其他信息，由于一个点最多有 $O(\log_2 n)$ 个祖先，我们可以在计算点分树时额外计算深度 $dep[x]$ 或使用 LCA ，预处理出这些距离或实现实时查询。
+在动态点分治的过程中，需要一个结点到其点分树上的祖先的距离等其他信息，由于一个点最多有 $O(\log_2 n)$ 个祖先，我们可以在计算点分树时额外计算深度 $dep[x]$ 或使用 LCA ，预处理出这些距离或实现实时查询。 ** 注意 ** ：一个结点到其点分树上的祖先的距离不一定递增，不能累加！
 
 在动态点分治的过程中，一个结点在其点分树上的祖先结点的信息中可能会被重复计算，这是我们需要消去重复部分的影响。一般的方法是对于一个联通块用两种方式记录：一个是其到分治中心的距离信息，另一个是其到点分树上分治中心父亲的距离信息。这一部分内容将在例题中得到展现。
 
 ??? note " 例题 [luogu P2056 \[ZJOI2007\]捉迷藏](https://www.luogu.org/problemnew/show/P2056)"
 
-给定一棵有 $n$ 个结点的树，初始时所有结点都是黑色的。你需要实现一下两种操作：
+给定一棵有 $n$ 个结点的树，初始时所有结点都是黑色的。你需要实现以下两种操作：
 
  1. 反转一个结点的颜色（白变黑，黑变白）；
  
@@ -75,7 +75,6 @@ $n\le 10^5,m\le 5\times 10^5$
 参考代码：
 
 ```cpp
-// luogu-judger-enable-o2
 #include<cstdio>
 #include<cstring>
 #include<algorithm>
@@ -237,3 +236,165 @@ int main()
 }
 ```
 
+??? note " 例题 [bzoj 3730 震波](https://www.lydsy.com/JudgeOnline/problem.php?id=3730)"
+
+给定一棵有 $n$ 个结点的树，树上每个结点都有一个权值 $v[x]$ 。实现以下两种操作：
+
+ 1. 询问与结点 $x$ 距离不超过 $y$ 的结点权值和；
+ 
+ 2. 修改结点 $x$ 的点权为 $y$ ，即 $v[x]=y$ 。
+ 
+我们用动态开点权值线段树记录距离信息。
+
+类似于上题的思路，对于每个结点，我们维护线段树 $dist[x]$ ，表示分治块 $x$ 中的所有结点到结点 $x$ 的距离信息，下标为距离，权值加上点权。线段树 $ch[x]$ 表示分治块 $x$ 中所有结点到结点 $x$ 在分治树上的父亲结点的距离信息。
+
+在本题中，所有查询和修改都需要在点分树上对所有祖先进行修改。
+
+以查询操作为例，如果我们要查询距离结点 $x$ 不超过 $y$ 的结点的权值和，我们要先将答案加上线段树 $dist[x]$ 中下标从 $0$ 到 $y$ 的权值和，然后我们遍历 $x$ 的所有祖先 $u$ ，设其低一级祖先为 $v$ ，令 $d=dist(x,u)$ ，如果我们不进入包含 $x$ 的子树，即以 $v$ 为根的子树，那么我们要将答案加上线段树 $dist[u]$ 中下标从 $0$ 到 $y-d$ 的权值和。由于我们重复计算了以 $v$ 为根的部分，我们要将答案减去线段树 $ch[v]$ 中下标从 $0$ 到 $y-d$ 的权值和。
+
+在进行修改操作时，我们要同时维护 $dist[x]$ 和 $ch[x]$ 。
+
+参考代码：
+
+```cpp
+#include<cstdio>
+#include<cstring>
+#include<algorithm>
+using namespace std;
+const int maxn=100010;
+const int inf=2e9;
+const int ddd=6000010;
+struct Segtree
+{
+    int cnt,rt[maxn],sum[ddd],lc[ddd],rc[ddd];
+    void update(int&o,int l,int r,int x,int v)
+    {
+        if(!o)o=++cnt;
+        if(l==r){sum[o]+=v;return;}
+        int mid=(l+r)>>1;
+        if(x<=mid)update(lc[o],l,mid,x,v);
+        else update(rc[o],mid+1,r,x,v);
+        sum[o]=sum[lc[o]]+sum[rc[o]]; 
+    }
+    int query(int o,int l,int r,int ql,int qr)
+    {
+        if(!o||r<ql||l>qr)return 0;
+        if(ql<=l&&r<=qr)return sum[o];
+        int mid=(l+r)>>1;
+        return query(lc[o],l,mid,ql,qr)+query(rc[o],mid+1,r,ql,qr);
+    }
+}dist,ch;
+int n,m,val[maxn],u,v,op,x,y,lstans;
+int cur,h[maxn*2],nxt[maxn*2],p[maxn*2];
+void add_edge(int x,int y)
+{
+    cur++;
+    nxt[cur]=h[x];
+    h[x]=cur;
+    p[cur]=y;
+}
+struct LCA
+{
+    int dep[maxn],lg[maxn],fa[maxn][20];
+    void dfs(int x,int f)
+    {
+        for(int j=h[x];j;j=nxt[j])if(p[j]!=f)
+        dep[p[j]]=dep[x]+1,fa[p[j]][0]=x,dfs(p[j],x);
+    }
+    void init()
+    {
+        dep[1]=1;dfs(1,-1);
+        for(int i=2;i<=n;i++)lg[i]=lg[i/2]+1;
+        for(int j=1;j<=lg[n];j++)for(int i=1;i<=n;i++)
+        fa[i][j]=fa[fa[i][j-1]][j-1];
+    }
+    int query(int x,int y)
+    {
+        if(dep[x]>dep[y])swap(x,y);
+        int k=dep[y]-dep[x];
+        for(int i=0;k;k=k/2,i++)if(k&1)y=fa[y][i];
+        if(x==y)return x;
+        k=dep[x];
+        for(int i=lg[k];i>=0;i--)if(fa[x][i]!=fa[y][i])x=fa[x][i],y=fa[y][i];
+        return fa[x][0];
+    }
+    int dist(int x,int y){return dep[x]+dep[y]-2*dep[query(x,y)];}
+}lca;
+int rt,sum,siz[maxn],maxx[maxn],fa[maxn];
+int d[maxn][20],dep[maxn];
+bool vis[maxn];
+void calcsiz(int x,int fa)
+{
+    siz[x]=1;maxx[x]=0;
+    for(int j=h[x];j;j=nxt[j])if(p[j]!=fa&&!vis[p[j]])
+    {
+        calcsiz(p[j],x);
+        siz[x]+=siz[p[j]];
+        maxx[x]=max(maxx[x],siz[p[j]]);
+    }
+    maxx[x]=max(maxx[x],sum-siz[x]);
+    if(maxx[x]<maxx[rt])rt=x;
+}
+void dfs1(int x,int fa,int y,int d)
+{
+    ch.update(ch.rt[y],0,n,d,val[x]);
+    for(int j=h[x];j;j=nxt[j])if(p[j]!=fa&&!vis[p[j]])dfs1(p[j],x,y,d+1);
+}
+void dfs2(int x,int fa,int y,int d)
+{
+    dist.update(dist.rt[y],0,n,d,val[x]);
+    for(int j=h[x];j;j=nxt[j])if(p[j]!=fa&&!vis[p[j]])dfs2(p[j],x,y,d+1);
+}
+void pre(int x)
+{
+    vis[x]=true;
+    dfs2(x,-1,x,0);
+    for(int j=h[x];j;j=nxt[j])if(!vis[p[j]])
+    {
+        rt=0;maxx[rt]=inf;sum=siz[p[j]];calcsiz(p[j],-1);calcsiz(rt,-1);
+        dfs1(p[j],-1,rt,1);
+        fa[rt]=x;dep[rt]=dep[x]+1;pre(rt);
+    }
+}
+int main()
+{
+    scanf("%d%d",&n,&m);
+    for(int i=1;i<=n;i++)scanf("%d",val+i);
+    for(int i=1;i<n;i++)scanf("%d%d",&u,&v),add_edge(u,v),add_edge(v,u);
+    lca.init();
+    rt=0;maxx[rt]=inf;sum=n;calcsiz(1,-1);calcsiz(rt,-1);
+    pre(rt);
+    //for(int i=1;i<=n;i++)printf("%d ",fa[i]);printf("\n");
+    for(int i=1;i<=n;i++)for(int j=i;j;j=fa[j])d[i][dep[i]-dep[j]]=lca.dist(i,j);
+    while(m--)
+    {
+        scanf("%d%d%d",&op,&x,&y);
+        x^=lstans;y^=lstans;
+        if(op==0)
+        {
+            lstans=dist.query(dist.rt[x],0,n,0,y);
+            int nww=0;
+            for(int i=x;fa[i];i=fa[i])
+            {
+                nww=d[x][dep[x]-dep[fa[i]]];//lca.dist(x,fa[i]);
+                lstans+=dist.query(dist.rt[fa[i]],0,n,0,y-nww);
+                lstans-=ch.query(ch.rt[i],0,n,0,y-nww);
+            }
+            printf("%d\n",lstans);
+        }
+        if(op==1)
+        {
+            int nww=0;
+            dist.update(dist.rt[x],0,n,0,y-val[x]);
+            for(int i=x;fa[i];i=fa[i])
+            {
+                nww=d[x][dep[x]-dep[fa[i]]];//lca.dist(x,fa[i]);
+                dist.update(dist.rt[fa[i]],0,n,nww,y-val[x]);
+                ch.update(ch.rt[i],0,n,nww,y-val[x]);
+            }
+            val[x]=y;
+        }
+    }
+    return 0;
+} 
+```
