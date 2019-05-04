@@ -40,7 +40,8 @@ bool isPrime(a) {
 
 ### Miller-Rabin 素性测试
 
-Miller-Rabin 素性测试（Miller–Rabin primality test）是进阶的素数判定方法，具有比暴力做法更好的时间复杂度。但是代码复杂度较高，在比赛中使用较少。
+Miller-Rabin 素性测试（Miller–Rabin primality test）是进阶的素数判定方法。
+对数 n 进行 k 轮测试的时间复杂度是 $O(k \log^3n)$，利用 FFT 等技术可以优化到 [$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)。
 
 #### Fermat 素性测试
 
