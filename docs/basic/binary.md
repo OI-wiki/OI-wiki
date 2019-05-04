@@ -76,11 +76,11 @@ bool check(int k) { //检查可行性，k为锯片高度
 int find(int x) {
   int l = 1, r = 1000000001;  //因为是左闭右开的，所以10亿要加1
   while (l + 1 < r) {         //如果两点不相邻
-    int mid = (l + r) / 2;  //取中间值
-    if (check(mid))         //如果可行
-      l = mid;              //升高锯片高度
+    int mid = (l + r) / 2;    //取中间值
+    if (check(mid))           //如果可行
+      l = mid;                //升高锯片高度
     else
-      r = mid;  //否则降低叶片高度
+      r = mid;  //否则降低锯片高度
   }
   return l;  //返回左边值
 }
