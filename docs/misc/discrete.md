@@ -12,6 +12,29 @@
 
 C++ 离散化有现成的 STL 算法：
 
+### 离散化数组
+
+将一个数组离散化，并进行查询是比较常用的应用场景：
+
+```cpp
+//a[i]为初始数组,范围为1~n
+//len为离散化后数组的有效长度
+using namespace std;
+sort(a+1,a+1+n);
+len=unique(a+1,a+1+n)-a-1;//离散化整个数组的同时求出离散化后数的个数。
+```
+
+在完成上述离散化之后可以使用getid函数查找离散化之后的排名（即新编号）：
+```cpp
+int getid(int x){
+  return lower_bound(a+1,a+1+len,x)-a;
+}
+```
+
+### 离散化vector动态数组
+
+需要对vector进行离散话可以使用：
+
 ```cpp
 // vector<int> a, b; b 是 a 的一个副本
 std::sort(a.begin(), a.end());
