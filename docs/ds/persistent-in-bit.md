@@ -2,7 +2,7 @@
 
 如果区间变成动态的呢？即，如果还要求支持一种操作：单点修改某一位上的值，又该怎么办呢？
 
-??? note " 例题[洛谷 P3380【模板】二逼平衡树（树套树）](https://www.luogu.org/problemnew/show/P3380)"
+??? note " 例题[二逼平衡树（树套树）](https://loj.ac/problem/106)"
 
 ??? note " 例题[ZOJ 2112 Dynamic Rankings](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemId=1112)"
 
