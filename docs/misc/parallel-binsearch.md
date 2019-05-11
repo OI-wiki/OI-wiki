@@ -111,3 +111,9 @@
 		return 0;
 	}
 	```
+	
+###　参考习题
+
+[[国家集训队]矩阵乘法](https://www.luogu.org/problemnew/show/P1527)
+
+[[POI2011]MET-Meteors](https://www.luogu.org/problemnew/show/P3527)
