@@ -27,7 +27,7 @@
 
 ### 代码
 
-例题：[「ZOJ2112」](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=2112)
+例题：[「ZOJ2112」 Dynamic Rankings ](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=2112)
 
 ??? " 例题参考代码 "
 
@@ -114,6 +114,6 @@
 	
 ###　参考习题
 
-[[国家集训队]矩阵乘法](https://www.luogu.org/problemnew/show/P1527)
+[「国家集训队」 矩阵乘法 ](https://www.luogu.org/problemnew/show/P1527)      
 
-[[POI2011]MET-Meteors](https://www.luogu.org/problemnew/show/P3527)
+[「POI2011 R3 Day2」流星 Meteors ](https://loj.ac/problem/2169)
