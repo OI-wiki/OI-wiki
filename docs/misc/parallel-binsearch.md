@@ -117,3 +117,7 @@
 [「国家集训队」 矩阵乘法 ](https://www.luogu.org/problemnew/show/P1527)      
 
 [「POI2011 R3 Day2」流星 Meteors ](https://loj.ac/problem/2169)
+
+## 参考资料
+
+- 许昊然《浅谈数据结构题几个非经典解法》
