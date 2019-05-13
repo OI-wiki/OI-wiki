@@ -214,7 +214,7 @@ int querymax(int x, int y) {
 		for (int j = h[o]; j; j = nxt[j])
 			if (p[j] != son[o] && p[j] != fa[o]) dfs2(p[j], p[j]);
 	}
-	int querystd::max(int x, int y) {
+	int querymax(int x, int y) {
 		int ret = -inf, fx = top[x], fy = top[y];
 		while (fx != fy) {
 			if (dep[fx] >= dep[fy])
