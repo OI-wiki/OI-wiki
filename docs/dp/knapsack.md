@@ -52,22 +52,22 @@ for (int i = 1; i <= W; i++)
 
 ??? 例题代码
 
-```cpp
-#include <iostream>
-const int maxn = 13010;
-int n, v, w[maxn], v[maxn], f[maxn];
-int main() {
-    std::cin >> n >> W;
-    for (int i = 1; i <= n; i++)
-        std::cin >> w[i] >> v[i];
-    for (int i = 1; i <= n; i++)
-        for (int l = W; l >= w[i]; l--)
-            if (f[l - w[i]] + v[i] > f[l])
-                f[l] = f[l - w[i]] + v[i];
-    std::cout << f[W];
-    return 0;
-}
-```
+    ```cpp
+    #include <iostream>
+    const int maxn = 13010;
+    int n, v, w[maxn], v[maxn], f[maxn];
+    int main() {
+        std::cin >> n >> W;
+        for (int i = 1; i <= n; i++)
+            std::cin >> w[i] >> v[i];
+        for (int i = 1; i <= n; i++)
+            for (int l = W; l >= w[i]; l--)
+                if (f[l - w[i]] + v[i] > f[l])
+                    f[l] = f[l - w[i]] + v[i];
+        std::cout << f[W];
+        return 0;
+    }
+    ```
 
 ## 完全背包
 
@@ -102,22 +102,22 @@ $$
 
 ??? 例题代码
 
-```cpp
-#include <iostream>
-const int maxn = 13010;
-int n, v, w[maxn], v[maxn], f[maxn];
-int main() {
-    std::cin >> n >> W;
-    for (int i = 1; i <= n; i++)
-        std::cin >> w[i] >> v[i];
-    for (int i = 1; i <= n; i++)
-        for (int l = w[i]; l <= W; l++)
-            if (f[l - w[i]] + v[i] > f[l])
-                f[l] = f[l - w[i]] + v[i];
-    std::cout << f[W];
-    return 0;
-}
-```
+    ```cpp
+    #include <iostream>
+    const int maxn = 13010;
+    int n, v, w[maxn], v[maxn], f[maxn];
+    int main() {
+        std::cin >> n >> W;
+        for (int i = 1; i <= n; i++)
+            std::cin >> w[i] >> v[i];
+        for (int i = 1; i <= n; i++)
+            for (int l = w[i]; l <= W; l++)
+                if (f[l - w[i]] + v[i] > f[l])
+                    f[l] = f[l - w[i]] + v[i];
+        std::cout << f[W];
+        return 0;
+    }
+    ```
 
 ## 多重背包
 
@@ -150,7 +150,7 @@ int main() {
 
 ??? 二进制分组代码
 
-```c++
+    ```cpp
     index = 0;
     for(int i = 1; i <= m; i++) {
         int c = 1, p, h, k;
@@ -164,7 +164,7 @@ int main() {
         list[++index].w = p * k; 
         list[index].v = h * k;
     }
-```
+    ```
 
 ## 混合背包
 
@@ -172,7 +172,7 @@ int main() {
 
 这种题目看起来很吓人，可是只要领悟了前面几种背包的中心思想，并将其合并在一起就可以了。下面给出伪代码：
 
-```c++
+```cpp
 for (循环物品种类)
 {
     if (是0-1背包)
@@ -196,7 +196,7 @@ for (循环物品种类)
 
 例题核心代码：
 
-```c++
+```cpp
 for (int k=1;k<=n;k++)
 {
     for (int i=m;i>=mi;i--)//对经费进行一层枚举
@@ -217,7 +217,7 @@ for (int k=1;k<=n;k++)
 
 例题核心代码：
 
-```c++
+```cpp
 for (int k=1;k<=ts;k++)//循环每一组
         for (int i=m;i>=0;i--)//循环背包容量
             for (int j=1;j<=cnt[k];j++)//循环该组的每一个物品
@@ -254,7 +254,7 @@ for (int k=1;k<=ts;k++)//循环每一组
 
 输出方案其实就是记录下来背包中的某一个状态是怎么推出来的。我们可以用$g_{i,v}$表示第$i$件物品占用空间为$v$的时候是否选择了此物品。然后在转移时记录是选用了哪一种策略（选或不选）。输出时的伪代码：
 
-```c++
+```cpp
 int v=V;//记录当前的存储空间
 for (从最后一件循环至第一件)//因为最后一件物品存储的是最终状态，所以从最后一件物品进行循环
 {
@@ -284,12 +284,12 @@ $$
 
 #### 求最优方案总数
 
-占坑待填
+巨坑待填
 
-#### 求第k优解
+#### 求第 k 优解
 
-占坑待填
+巨坑待填
 
 ### 参考资料
 
-dd大牛（崔添翼）的背包九讲，，GitHub仓库链接：[tianyicui/pack: 背包问题九讲](https://github.com/tianyicui/pack)。
+dd大牛（崔添翼）的背包九讲，GitHub仓库链接：[tianyicui/pack: 背包问题九讲](https://github.com/tianyicui/pack)。
