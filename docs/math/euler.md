@@ -14,7 +14,7 @@
 
     积性是什么意思呢？如果有 $\gcd(a, b) = 1$ ，那么 $\varphi(a \times b) = \varphi(a) \times \varphi(b)$ 。
 
-    特别地，当 $n$ 是奇数时 $\varphi(2n) = 2 \times \varphi(n)$ 。
+    特别地，当 $n$ 是奇数时 $\varphi(2n) = \varphi(n)$ 。
 
 -    $n = \sum_{d | n}{\varphi(d)}$
 
