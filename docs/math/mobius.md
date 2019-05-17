@@ -34,7 +34,7 @@ $$
 ### 引理 2
 
 $$
-\forall n,d\in\mathbb{N},\left|\left\{\left\lfloor\frac{n}{d}\right\rfloor\right\}\right|\leq\left\lfloor2\sqrt{n}\right\rfloor
+\forall n \in N,  |\left\{ \lfloor \frac{n}{d} \rfloor \mid d \in N \right\}| \leq \lfloor 2\sqrt{n} \rfloor
 $$
 
 $|V|$ 表示集合 $V$ 的元素个数
