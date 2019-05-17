@@ -372,12 +372,12 @@ int main() {
 }
 ```
 
-### [「SPOJ 5971」LCMSUM](https://www.luogu.org/problemnew/show/SP5971)
+### [「SPOJ 5971」LCMSUM](https://www.spoj.com/problems/LCMSUM/)
 
 求值（多组数据）
 
 $$
-\sum_{i=1}^n \text{lcm}(i,n)\qquad (1\leqslant T\leqslant 3\times 10^5,1\leqslant n\leqslant 10^6)
+\sum_{i=1}^n \text{lcm}(i,n)\quad  \text{s.t.}\ 1\leqslant T\leqslant 3\times 10^5,1\leqslant n\leqslant 10^6
 $$
 
 易得原式即
