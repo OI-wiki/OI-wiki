@@ -6,7 +6,7 @@
 
 * * *
 
-## 数论分块与整除相关
+## 数论分块与整除相
 
 先补一下数学小 trick
 
@@ -389,7 +389,7 @@ $$
 根据 $\gcd(a,n)=1$ 时一定有 $\gcd(n-a,n)=1$ ，可将原式化为
 
 $$
-\frac{1}{2}\cdot(\sum_{i=1}^{n-1}\frac{i\cdot n}{\gcd(i,n)}+\sum_{i=n-1}^{1}\frac{i\cdot n}{\gcd(i,n)})+n
+\frac{1}{2}\cdot \left(\sum_{i=1}^{n-1}\frac{i\cdot n}{\gcd(i,n)}+\sum_{i=n-1}^{1}\frac{i\cdot n}{\gcd(i,n)}\right)+n
 $$
 
 上述式子中括号内的两个 $\sum$ 对应的项相等，故又可以化为
