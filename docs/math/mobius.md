@@ -6,7 +6,7 @@
 
 * * *
 
-## 数论分块与整除相关
+## 数论分块与整除相
 
 先补一下数学小 trick
 
@@ -34,7 +34,7 @@ $$
 ### 引理 2
 
 $$
-\forall n,d\in\mathbb{N},\left|\left\{\left\lfloor\frac{n}{d}\right\rfloor\right\}\right|\leq\left\lfloor2\sqrt{n}\right\rfloor
+\forall n \in N,  \left|\left\{ \lfloor \frac{n}{d} \rfloor \mid d \in N \right\}\right| \leq \lfloor 2\sqrt{n} \rfloor
 $$
 
 $|V|$ 表示集合 $V$ 的元素个数
@@ -372,12 +372,12 @@ int main() {
 }
 ```
 
-### [「SPOJ 5971」LCMSUM](https://www.luogu.org/problemnew/show/SP5971)
+### [「SPOJ 5971」LCMSUM](https://www.spoj.com/problems/LCMSUM/)
 
 求值（多组数据）
 
 $$
-\sum_{i=1}^n \text{lcm}(i,n)\qquad (1\leqslant T\leqslant 3\times 10^5,1\leqslant n\leqslant 10^6)
+\sum_{i=1}^n \text{lcm}(i,n)\quad  \text{s.t.}\ 1\leqslant T\leqslant 3\times 10^5,1\leqslant n\leqslant 10^6
 $$
 
 易得原式即
@@ -389,7 +389,7 @@ $$
 根据 $\gcd(a,n)=1$ 时一定有 $\gcd(n-a,n)=1$ ，可将原式化为
 
 $$
-\frac{1}{2}\cdot(\sum_{i=1}^{n-1}\frac{i\cdot n}{\gcd(i,n)}+\sum_{i=n-1}^{1}\frac{i\cdot n}{\gcd(i,n)})+n
+\frac{1}{2}\cdot \left(\sum_{i=1}^{n-1}\frac{i\cdot n}{\gcd(i,n)}+\sum_{i=n-1}^{1}\frac{i\cdot n}{\gcd(i,n)}\right)+n
 $$
 
 上述式子中括号内的两个 $\sum$ 对应的项相等，故又可以化为
@@ -683,7 +683,7 @@ signed main(){
 求
 
 $$
-\sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot gcd(i,j)\bmod p\\
+\sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot \gcd(i,j)\bmod p\\
 n\leq10^{10},5\times10^8\leq p\leq1.1\times10^9,\text{p 是质数}
 $$
 
@@ -692,22 +692,23 @@ $$
 我们利用 $\varphi\ast1=ID$ 反演
 
 $$
-\begin{split}
-&\sum_{i=1}^n\sum_{j=1}^ni\cdot j
+\begin{eqnarray}
+&& \sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot \gcd(i,j)\\
+&=&\sum_{i=1}^n\sum_{j=1}^ni\cdot j
 \sum_{d|i,d|j}\varphi(d)\\
-&\sum_{d=1}^n\sum_{i=1}^n
+&=&\sum_{d=1}^n\sum_{i=1}^n
 \sum_{j=1}^n[d|i,d|j]\cdot i\cdot j
 \cdot\varphi(d)\\
-&\sum_{d=1}^n
+&=&\sum_{d=1}^n
 \sum_{i=1}^{\left\lfloor\frac{n}{d}\right\rfloor}
 \sum_{j=1}^{\left\lfloor\frac{n}{d}\right\rfloor}
 d^2\cdot i\cdot j\cdot\varphi(d)\\
-&\sum_{d=1}^nd^2\cdot\varphi(d)
+&=&\sum_{d=1}^nd^2\cdot\varphi(d)
 \sum_{i=1}^{\left\lfloor\frac{n}{d}\right\rfloor}i
 \sum_{j=1}^{\left\lfloor\frac{n}{d}\right\rfloor}j\\
-&\sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)
+&=&\sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)
 \left(F(n)=\frac{1}{2}n\left(n+1\right)\right)\\
-\end{split}
+\end{eqnarray}
 $$
 
 对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2$ 做数论分块，$d^2\varphi(d)$ 的前缀和用杜教筛处理：
@@ -798,41 +799,40 @@ $$
 我们证明一下
 
 $$
-\begin{split}
-&g(n)=\sum_{i=1}^n\mu(i)t(i)f\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-=&\sum_{i=1}^n\mu(i)t(i)
+\begin{eqnarray}
+&&g(n)=\sum_{i=1}^n\mu(i)t(i)f\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+&=&\sum_{i=1}^n\mu(i)t(i)
 \sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}t(j)
 g\left(\left\lfloor\frac{\left\lfloor\frac{n}{i}\right\rfloor}{j}\right\rfloor\right)\\
-=&\sum_{i=1}^n\mu(i)t(i)
+&=&\sum_{i=1}^n\mu(i)t(i)
 \sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}t(j)
 g\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\\
-=&\sum_{T=1}^n
+&=&\sum_{T=1}^n
 \sum_{i=1}^n\mu(i)t(i)
 \sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}[ij=T]
 t(j)g\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
-&\text{【先枚举 ij 乘积】}\\
-=&\sum_{T=1}^n
+&&\text{【先枚举 ij 乘积】}\\
+&=&\sum_{T=1}^n
 \sum_{i|T}\mu(i)t(i)
 t\left(\frac{T}{i}\right)g\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
-&\text{【}\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}[ij=T] \text{对答案的贡献为 1，于是省略】}\\
-=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
+&&\text{【}\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}[ij=T] \text{对答案的贡献为 1，于是省略】}\\
+&=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
 \sum_{i|T}\mu(i)t(i)t\left(\frac{T}{i}\right)\\
-=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
+&=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
 \sum_{i|T}\mu(i)t(T)
-&\text{【t 是完全积性函数】}\\
-=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)t(T)
+&&\text{【t 是完全积性函数】}\\
+&=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)t(T)
 \sum_{i|T}\mu(i)\\
-=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)t(T)
+&=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)t(T)
 \varepsilon(T)
-&\text{【}\mu\ast 1= \varepsilon\text{】}\\
-=&g(n)t(1)
-&\text{【当且仅当 T=1,}\varepsilon(T)=1\text{时】}\\
-=&g(n)
-&&& \square
-\end{split}
+&&\text{【}\mu\ast 1= \varepsilon\text{】}\\
+&=&g(n)t(1)
+&&\text{【当且仅当 T=1,}\varepsilon(T)=1\text{时】}\\
+&=&g(n)
+&& \square
+\end{eqnarray}
 $$
 
-=======
 **解法二**
 
 转化一下，可以将式子写成  
