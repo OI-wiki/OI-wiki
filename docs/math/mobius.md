@@ -833,7 +833,6 @@ t\left(\frac{T}{i}\right)g\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
 \end{eqnarray}
 $$
 
-=======
 **解法二**
 
 转化一下，可以将式子写成  
