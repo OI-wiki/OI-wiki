@@ -8,7 +8,7 @@ KMP 自动机：一个不断读入待匹配串，每次匹配时走到接受状�
 
 共有 $m$ 个状态，第 $i$ 个状态表示已经匹配了前 $i$ 个字符。
 
-定义 $trans_{i,c}$ 表示状态 $i$ 读入字符 $c$ 后到达的状态，$next_{i}$ 表示 [prefix function](../prefix-function)，则有:
+定义 $trans_{i,c}$ 表示状态 $i$ 读入字符 $c$ 后到达的状态，$next_{i}$ 表示 [prefix function](/string/prefix-function)，则有:
 
 $$
 trans_{i,c} =
@@ -20,7 +20,7 @@ $$
 
 （约定 $next_{0}=0$ ）
 
-我们发现 $trans_{i}$ 只依赖于之前的值，所以可以跟 [KMP](../prefix-function/#knuth-morris-pratt) 一起求出来。
+我们发现 $trans_{i}$ 只依赖于之前的值，所以可以跟 [KMP](/string/prefix-function/#knuth-morris-pratt) 一起求出来。
 
 时间和空间复杂度： $O(m|\Sigma|)$ 
 
