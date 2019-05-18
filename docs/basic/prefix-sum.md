@@ -54,6 +54,7 @@ int main() {
 ### 习题
 
 -   [洛谷 U53525 前缀和（例题）](https://www.luogu.org/problemnew/show/U53525)
+-   [洛谷 U69096 前缀和的逆](https://www.luogu.org/problemnew/show/U69096)
 -   [AT2412 最大の和](https://www.luogu.org/problemnew/show/AT2412)
 
 ### 参考
