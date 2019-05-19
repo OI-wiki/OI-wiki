@@ -42,6 +42,8 @@
     可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ 。
 -   [ZOJ](http://acm.zju.edu.cn/onlinejudge/)
     浙大
+-   [NOJ](http://acm.njupt.edu.cn/)
+    南京邮电大学在线测评系统，自身拥有题目两千余，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
 
 ### 国外
 
