@@ -35,7 +35,7 @@ $$T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{
 
 ### Newton's Method
 
-参见 [**Newton's Method**](../poly-newton/#inv).
+参见 [**Newton's Method**](../newton/#newtons-method).
 
 ## Code
 
