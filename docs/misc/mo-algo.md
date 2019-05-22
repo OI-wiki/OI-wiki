@@ -361,7 +361,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 push_back(x),dfs 完 x 点，�
 
 这样的话，我们就把一棵树处理成了序列。
 
-例题是[\[WC2013\]糖果公园](https://www.luogu.org/problemnew/show/P4074), 这题是带修改树上莫队
+例题是[\[WC2013\]糖果公园](http://uoj.ac/problem/58), 这题是带修改树上莫队
 
 题意是给你一棵树，每个点有颜色，每次询问
 
@@ -574,7 +574,7 @@ int main() {
 -   每个节点都要属于一个块
 -   编号相邻的块之间的距离不能太大
 
-了解了这些条件后，我们看到这样一道题[\[SCOI2005\]王室联邦](https://www.luogu.org/problemnew/show/P2325)
+了解了这些条件后，我们看到这样一道题[\[SCOI2005\]王室联邦](https://www.lydsy.com/JudgeOnline/problem.php?id=1086)
 
 在这道题的基础上我们只要保证最后一个条件就可以解决分块的问题了
 

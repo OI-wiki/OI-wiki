@@ -49,4 +49,4 @@ match(char *a, char *b, int n, int m) {
 
 ## KMP 算法
 
-参见[KMP](/string/kmp)
+参见[KMP](/string/prefix-function/#knuth-morris-pratt)

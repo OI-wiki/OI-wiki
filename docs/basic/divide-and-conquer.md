@@ -183,9 +183,7 @@ LeetCode 有递归专题练习，[点这里去做题](https://leetcode.com/explo
 
 ### 递归优化
 
-先来一道例题：[三连击](https://www.luogu.org/problemnew/show/P1618)。
-
-这道题朴素的递归写法只能得到 25 分，因为递归次数太多，所以超时。
+比较 naive 的递归实现可能递归次数太多，容易超时。
 
 怎么优化呢？详见[搜索优化](/search/optimization)和[记忆化搜索](/dp/memo/)。
 
@@ -215,3 +213,7 @@ void merge_sort(一个数组) {
 好了，这个算法也就这样了，完全没有任何难度。记住之前说的，相信函数的能力，传给他半个数组，那么这半个数组就已经被排好了。而且你会发现这不就是个二叉树遍历模板吗？为什么是后序遍历？因为我们分治算法的套路是 **分解 -> 解决（触底） -> 合并（回溯）** 啊，先左右分解，再处理合并，回溯就是在退栈，就相当于后序遍历了。至于`merge`函数，参考两个有序链表的合并，简直一模一样。
 
 LeetCode 上有分治算法的专项练习，[点这里去做题](https://leetcode.com/tag/divide-and-conquer/)
+
+
+
+本文主要贡献者：[fudonglai](https://github.com/fudonglai)

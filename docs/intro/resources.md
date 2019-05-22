@@ -42,6 +42,8 @@
     可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ 。
 -   [ZOJ](http://acm.zju.edu.cn/onlinejudge/)
     浙大
+-   [NOJ](http://acm.njupt.edu.cn/)
+    南京邮电大学在线测评系统，自身拥有题目两千余，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
 
 ### 国外
 
@@ -146,3 +148,5 @@
 -   [北京大学 ICPC 暑期课课件例题](https://vjudge.net/article/446)
 -   [北京大学 ICPC 暑期课课件](https://lib-pku.github.io/#acm-icpc%E6%9A%91%E6%9C%9F%E8%AF%BE)
 -   [GitHub.com:OI-wiki/libs](https://github.com/OI-wiki/libs)
+-   [多校联合训练](http://acm.hdu.edu.cn) 关键词：`Multi-University Training Contest`
+-   [Vjudge](https://vjudge.net/)

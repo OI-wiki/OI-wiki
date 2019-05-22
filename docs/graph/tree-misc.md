@@ -36,12 +36,12 @@ struct CenterTree {
   void dfs(int u, int pa) {
     son[u] = 1;
     int res = 0;
-    for (int i = head[u]; i != -1; i = edges[i].next) {
+    for (int i = head[u]; ~i; i = edges[i].next) {
       int v = edges[i].to;
       if (v == pa) continue;
       dfs(v, u);
       son[u] += son[v];
-      res = max(res, son[v] - 1);
+      res = max(res, son[v]);
     }
     res = max(res, n - son[u]);
     if (res < siz) {

@@ -1,6 +1,6 @@
 ## 斜率优化
 
-??? note " 例题[「Luogu P3195」「HNOI2008」玩具装箱 TOY](https://www.luogu.org/problemnew/show/P3195)"
+??? note " 例题[「HNOI2008」玩具装箱 TOY](https://www.lydsy.com/JudgeOnline/problem.php?id=1010)"
 	令 $f_i$ 表示前 $i$ 个物品，随意分组装在任意多个容器里所能得到的最小费用。
 
 写出 **状态转移方程** ： $f_i=max\{f_j+(pre_i-pre_j+i-j-1-L)^2\}$ ，其中 $pre_i$ 表示前 $i$ 个数的前缀和。
@@ -21,14 +21,14 @@
 
 ### 几道练习题
 
-[「Luogu P4072」「SDOI2016」征途](https://www.luogu.org/problemnew/show/P4072)
+[「SDOI2016」征途](https://www.lydsy.com/JudgeOnline/problem.php?id=4518)
 
-[「Luogu P2120」「ZJOI2007」仓库建设](https://www.luogu.org/problemnew/show/P2120)
+[「ZJOI2007」仓库建设](https://www.lydsy.com/JudgeOnline/problem.php?id=1096)
 
-[「Luogu P3628」「APIO2010」特别行动队](https://www.luogu.org/problemnew/show/P3628)
+[「APIO2010」特别行动队](https://www.lydsy.com/JudgeOnline/problem.php?id=1911)
 
 [「BZOJ 4709」「JSOI2011」柠檬](https://www.lydsy.com/JudgeOnline/problem.php?id=4709)
 
 [「Codeforces 311B」Cats Transport](http://codeforces.com/problemset/problem/311/B)
 
-[「Luogu P4027」「NOI2007」货币兑换](https://www.luogu.org/problemnew/show/P4027)
+[「NOI2007」货币兑换](https://www.lydsy.com/JudgeOnline/problem.php?id=1492)

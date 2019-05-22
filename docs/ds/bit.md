@@ -1,7 +1,5 @@
 ## 简介
 
-* * *
-
 树状数组和下面的线段树可是亲兄弟了，但他俩毕竟还有一些区别：  
 树状数组能有的操作，线段树一定有；  
 线段树有的操作，树状数组不一定有。
@@ -96,5 +94,8 @@ int getsum(int x)  // a[1]……a[x]的和
 
 ## 例题
 
-[传送门](https://www.luogu.org/problemnew/show/P3374)  
-[传送门 2](https://www.luogu.org/problemnew/show/P3368)
+-   [树状数组 1 ：单点修改，区间查询](https://loj.ac/problem/130)
+-   [树状数组 2 ：区间修改，单点查询](https://loj.ac/problem/131)
+-   [树状数组 3 ：区间修改，区间查询](https://loj.ac/problem/132)
+-   [二维树状数组 1：单点修改，区间查询](https://loj.ac/problem/133)
+-   [二维树状数组 3：区间修改，区间查询](https://loj.ac/problem/135)

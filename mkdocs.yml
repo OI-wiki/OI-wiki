@@ -18,6 +18,7 @@ nav:
   - 简介:
     - Getting Started: index.md
     - OI 赛事与赛制: intro/mode.md
+    - ICPC/CCPC 赛事与赛制: intro/icpc.md
     - 学习资源: intro/resources.md
     - 常见错误: intro/common-mistakes.md
     - 常见技巧: intro/common-tricks.md
@@ -277,6 +278,7 @@ nav:
     - 离线算法:
       - 离线算法简介: misc/offline.md
       - CDQ 分治: misc/cdq-divide.md
+      - 整体二分: misc/parallel-binsearch.md
       - 莫队算法: misc/mo-algo.md
     - 分数规划: misc/fractional-programming.md
     - 随机化:
@@ -318,13 +320,13 @@ extra:
   githash: ''
 
 extra_javascript:
-  - 'https://s3.pstatp.com/cdn/expire-1-M/Han/3.3.0/han.min.js'
+  - 'https://cdn.jsdelivr.net/gh/ethantw/Han@3.3.0/dist/han.min.js'
   - '_static/js/extra.js?v=10'
   - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
 
 
 extra_css:
-  - 'https://npm.elemecdn.com/ah@1.5.0/han.min.css'
+  - 'https://cdn.jsdelivr.net/npm/ah@1.5.0/han.min.css'
   - '_static/css/extra.css?v=11'
 
 # Extensions
