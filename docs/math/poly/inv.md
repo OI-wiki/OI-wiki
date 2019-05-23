@@ -71,4 +71,4 @@ $$T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{
 
 ## Examples
 
-1. 有标号简单无向连通图计数：[「poj 1737」Connected Graph](http://poj.org/problem?id=1737)
+1. 有标号简单无向连通图计数：[「POJ 1737」Connected Graph](http://poj.org/problem?id=1737)
