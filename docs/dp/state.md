@@ -66,7 +66,7 @@
     }
     ```
 
-### 几道练习题
+## 几道练习题
 
 [NOI2001 炮兵阵地](https://www.luogu.org/problemnew/show/P2704)
 
