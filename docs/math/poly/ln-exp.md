@@ -47,7 +47,7 @@ $$\left(n+1\right)\left[x^{n}\right]\exp{f\left(x\right)}=\sum_{i=0}^{n-1}\left[
 
 ### Newton's Method
 
-使用 [**Newton's Method**](../poly-newton/#exp) 即可在 $O\left(n\log{n}\right)$ 的时间复杂度内解决多项式 $\exp$。
+使用 [**Newton's Method**](/math/poly/newton/#newtons-method) 即可在 $O\left(n\log{n}\right)$ 的时间复杂度内解决多项式 $\exp$。
 
 ## Code
 
