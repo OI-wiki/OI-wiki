@@ -25,7 +25,13 @@ nav:
     - 非传统题: intro/non-traditional.md
     - 工具软件:
       - 评测工具: intro/judgers.md
-      - 编辑工具: intro/editors.md
+      - 编辑工具: 
+        - Vim: intro/editor-vim.md
+        - Emacs: intro/editor-emacs.md
+        - VS Code: intro/editor-vscode.md
+        - Atom: intro/editor-atom.md
+        - Eclipse: intro/editor-eclipse.md
+        - Notepad++: intro/editor-notepadpp.md
       - WSL (Windows 10): intro/wsl.md
       - Special Judge: intro/spj.md
       - Testlib:
