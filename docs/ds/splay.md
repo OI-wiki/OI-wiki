@@ -419,7 +419,7 @@ int main() {
 以下题目都是裸的 $\text{Splay}$ 维护二叉查找树。~~（直接套板子即可）~~
 
 -   [【模板】普通平衡树](https://loj.ac/problem/104)
--   [【模板】文艺平衡树](https://www.luogu.org/problemnew/show/P3391)
+-   [【模板】文艺平衡树](https://loj.ac/problem/105)
 -   [\[HNOI2002\]营业额统计](https://www.lydsy.com/JudgeOnline/problem.php?id=1588)
 -   [\[HNOI2004\]宠物收养所](https://www.lydsy.com/JudgeOnline/problem.php?id=1208)
 
