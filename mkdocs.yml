@@ -269,6 +269,7 @@ nav:
     - 旋转卡壳: geometry/rotating-calipers.md
     - 半平面交: geometry/half-plane-intersection.md
     - 平面最近点对: geometry/nearest-points.md
+    - 随机增量法: geometry/random-incremental.md
     - 计算几何杂项: geometry/magic.md
   - 杂项:
     - 杂项简介: misc/index.md
@@ -285,7 +286,6 @@ nav:
       - 随机函数: misc/random.md
       - 爬山算法: misc/hill-climbing.md
       - 模拟退火: misc/simulated-annealing.md
-      - 随机增量法: misc/random-incremental.md
     - 悬线法: misc/largest-matrix.md
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
