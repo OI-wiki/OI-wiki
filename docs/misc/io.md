@@ -190,23 +190,23 @@ inline void write(int x) {
 
 ## 使输入输出优化更为通用
 
-如果你的程序使用多个类型的变量，那么可能需要写多个输入输出优化的函数。下面给出的代码使用 [C++ 中的 `template` 类](http://www.cplusplus.com/doc/oldtutorial/templates)实现了对于自定类型的输入输出优化，从而简化这一步骤（注意不适用于字符）。
+如果你的程序使用多个类型的变量，那么可能需要写多个输入输出优化的函数。下面给出的代码使用 [C++ 中的 `template` 类](http://www.cplusplus.com/doc/oldtutorial/templates)实现了对于自定类型的输入输出优化，从而简化这一步骤（注意不适用于字符和实数）。
 
 ```cpp
 template <typename T> inline T read(){ //声明 template 类,要求提供输入的类型T,并以此类型定义内联函数 read()
-    T sum=0,fl=1;//将 sum,fl 和 ch 以输入的类型定义
-    int ch=getchar();
-    for(;!isdigit(ch);ch=getchar()) if(ch=='-') fl=-1;
-    for(;isdigit(ch);ch=getchar()) sum=sum*10+ch-'0';
-    return sum*fl;
+    T sum = 0,fl = 1;//将 sum,fl 和 ch 以输入的类型定义
+    int ch = getchar();
+    for(; !isdigit(ch); ch = getchar()) if(ch == '-') fl = -1;
+    for(; isdigit(ch); ch = getchar()) sum = sum * 10 + ch - '0';
+    return sum * fl;
 }
 ```
 
-如果要分别输入 `int` 类型的变量 a ， `long long` 类型的变量 b 和 `_int128` 类型的变量 c ，那么可以写成
+如果要分别输入 `int` 类型的变量 a ， `long long` 类型的变量 b 和 `__int128` 类型的变量 c ，那么可以写成
 ```cpp
-    a=read<int>();
-    b=read<long long>();
-    c=read<__int128>();
+    a = read<int>();
+    b = read<long long>();
+    c = read<__int128>();
 ```
 
 ## 参考
