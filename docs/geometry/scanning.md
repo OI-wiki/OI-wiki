@@ -133,16 +133,16 @@ int main() {
 
 ### 练习
 
-- [HDU  1542 Atlantis](http://acm.hdu.edu.cn/showproblem.php?pid=1542)
+- [「HDU1542」 Atlantis](http://acm.hdu.edu.cn/showproblem.php?pid=1542)
 
-- [HDU  1828 Picture](http://acm.hdu.edu.cn/showproblem.php?pid=1828)
+- [「HDU1828」 Picture](http://acm.hdu.edu.cn/showproblem.php?pid=1828)
 
-- [HDU  3265 Posters](http://acm.hdu.edu.cn/showproblem.php?pid=3265)
+- [「HDU3265」 Posters](http://acm.hdu.edu.cn/showproblem.php?pid=3265)
 
 ### 参考资料
 
-https://www.cnblogs.com/yangsongyi/p/8378629.html
+- <https://www.cnblogs.com/yangsongyi/p/8378629.html>  
 
-https://blog.csdn.net/riba2534/article/details/76851233
+- <https://blog.csdn.net/riba2534/article/details/76851233>
 
-https://blog.csdn.net/winddreams/article/details/38495093
+- <https://blog.csdn.net/winddreams/article/details/38495093>
