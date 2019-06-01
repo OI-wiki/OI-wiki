@@ -16,19 +16,19 @@
 
 现在假设我们有一根线，从下往上开始扫描：
 
-![](./images/scanning-1.bmp)
+![](./images/scanning-1.png)
 
-![](./images/scanning-2.bmp)
+![](./images/scanning-2.png)
 
-![](./images/scanning-3.bmp)
+![](./images/scanning-3.png)
 
-![](./images/scanning-4.bmp)
+![](./images/scanning-4.png)
 
-![](./images/scanning-5.bmp)
+![](./images/scanning-5.png)
 
-![](./images/scanning-6.bmp)
+![](./images/scanning-6.png)
 
-![](./images/scanning-7.bmp)
+![](./images/scanning-7.png)
 
 
 
@@ -47,36 +47,39 @@
 using namespace std;
 
 
-int lazy[maxn<<3] ;
-double s[maxn<<3] ;
+int lazy[maxn<<3];//标记了这条线段出现的次数
+double s[maxn<<3];
 
 struct node1 {
-	double l , r ;
-	double sum ;
-} cl[maxn<<3];
+	double l , r;
+	double sum;
+} cl[maxn<<3];//线段树 
 
 struct node2 {
-	double x , y1 , y2 ;
-	int flag ;
-} p[maxn<<3];
+	double x , y1 , y2;
+	int flag;
+} p[maxn<<3];//坐标 
 
-
+//定义sort比较
 bool cmp(node2 a,node2 b) {
-	return a.x < b.x ;
+	return a.x < b.x;
 }
 
+//上传
 void pushup(int rt) {
 	if( lazy[rt] > 0 ) 
-		cl[rt].sum = cl[rt].r - cl[rt].l ;
+		cl[rt].sum = cl[rt].r - cl[rt].l;
 	else 
-		cl[rt].sum = cl[rt*2].sum + cl[rt*2+1].sum ;
+		cl[rt].sum = cl[rt*2].sum + cl[rt*2+1].sum;
 }
-void creat(int rt,int l,int r) {
+
+//建树
+void build(int rt,int l,int r) {
 	if( r - l > 1 ) {
 		cl[rt].l = s[l] ;
 		cl[rt].r = s[r] ;
-		creat(rt*2,l,(l+r)/2);
-		creat(rt*2+1,(l+r)/2,r);
+		build(rt*2,l,(l+r)/2);
+		build(rt*2+1,(l+r)/2,r);
 		pushup(rt);
 	} else {
 		cl[rt].l = s[l] ;
@@ -85,6 +88,8 @@ void creat(int rt,int l,int r) {
 	}
 	return ;
 }
+
+//更新 
 void update(int rt,double y1,double y2,int flag) {
 	if( cl[rt].l == y1 && cl[rt].r == y2 ) {
 		lazy[rt] += flag ;
@@ -98,31 +103,32 @@ void update(int rt,double y1,double y2,int flag) {
 		pushup(rt);
 	}
 }
+
 int main() {
-	int temp = 1 , n , i , j ;
-	double x1 , y1 , x2 , y2 , ans ;
+	int temp = 1 , n , i , j;
+	double x1 , y1 , x2 , y2 , ans;
 	while(scanf("%d", &n) && n) {
-		ans = 0 ;
+		ans = 0;
 		for(i = 0 ; i < n ; i++) {
 			scanf("%lf %lf %lf %lf", &x1, &y1, &x2, &y2);
-			p[i].x = x1 ;
-			p[i].y1 = y1 ;
-			p[i].y2 = y2 ;
-			p[i].flag = 1 ;
-			p[i+n].x = x2 ;
-			p[i+n].y1 = y1 ;
-			p[i+n].y2 = y2 ;
-			p[i+n].flag = -1 ;
-			s[i+1] = y1 ;
-			s[i+n+1] = y2 ;
+			p[i].x = x1;
+			p[i].y1 = y1;
+			p[i].y2 = y2;
+			p[i].flag = 1;
+			p[i+n].x = x2;
+			p[i+n].y1 = y1;
+			p[i+n].y2 = y2;
+			p[i+n].flag = -1;
+			s[i+1] = y1;
+			s[i+n+1] = y2;
 		}
-		sort(s+1,s+(2*n+1));
-		sort(p,p+2*n,cmp);
-		creat(1,1,2*n);
+		sort(s+1,s+(2*n+1));//离散化
+		sort(p,p+2*n,cmp);//把矩形的边的纵坐标从小到大排序
+		build(1,1,2*n);//建树 
 		memset(lazy,0,sizeof(lazy));
 		update(1,p[0].y1,p[0].y2,p[0].flag);
 		for(i = 1 ; i < 2*n ; i++) {
-			ans += ( p[i].x-p[i-1].x )*cl[1].sum ;
+			ans += ( p[i].x-p[i-1].x )*cl[1].sum;
 			update(1,p[i].y1,p[i].y2,p[i].flag);
 		}
 		printf("Test case #%d\nTotal explored area: %.2lf\n\n", temp++, ans);
