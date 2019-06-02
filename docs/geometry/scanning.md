@@ -20,7 +20,7 @@
 
 ![](./images/scanning-2.png)
 
-![](./images/scanning-3.jpg)
+![](./images/scanning-3.png)
 
 ![](./images/scanning-4.png)
 
