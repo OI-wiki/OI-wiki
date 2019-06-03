@@ -32,7 +32,9 @@ nav:
         - Atom: intro/editor-atom.md
         - Eclipse: intro/editor-eclipse.md
         - Notepad++: intro/editor-notepadpp.md
-      - WSL (Windows 10): intro/wsl.md
+      - WSL (Windows 10): 
+        - WSL1: intro/wsl1.md
+        - WSL2: intro/wsl2.md
       - Special Judge: intro/spj.md
       - Testlib:
         - Testlib 简介: intro/testlib/index.md
