@@ -209,6 +209,70 @@ template <typename T> inline T read(){ //声明 template 类,要求提供输入�
     c = read<__int128>();
 ```
 
+## 完整带调试版
+
+```cpp
+namespace IO {
+#define SIZE 100000
+	inline char nc() {
+#ifdef WIN32 //调试，可显示字符
+		return getchar();
+#endif
+		static char buf[SIZE],*p1=buf+SIZE,*p2=buf+SIZE;
+		if(p1==p2) p2=(p1=buf)+fread(buf, 1, SIZE, stdin);
+		return p1==p2?-1:*p1++;
+	}
+	inline bool blank(char ch) {
+		return ch==' '||ch=='\n'||ch=='\r'||ch=='\t';
+	}
+	template<class T> inline void read(T &x) {
+		register double tmp=1;
+		register bool sign=0;
+		x=0;
+		register char ch=nc();
+		for(; ch<'0'||ch>'9'; ch=nc()) if(ch=='-') sign=1;
+		for(; ch>='0'&&ch<='9'; ch=nc()) x=x*10+ch-'0';
+		if(ch=='.') {
+			for(ch=nc(); ch>='0'&&ch<='9'; ch=nc()) tmp/=10.0, x+=tmp*(ch-48);
+		}
+		if(sign) x=-x;
+	}
+	inline void read(char *s) {
+		register char ch=nc();
+		for (; blank(ch); ch=nc());
+		for (; !blank(ch); ch=nc()) *s++=ch;
+		*s=0;
+	}
+	inline void read(char &c) {
+		for (c=nc(); blank(c); c=nc());
+	}
+	inline void push(const char &c) {
+		char pbuf[1<<20], *pp=pbuf;
+		if (pp-pbuf==1<<20) fwrite(pbuf, 1, 1<<20, stdout), pp=pbuf;
+		*pp++=c;
+	}
+	template<class T> inline void write(T x) {
+		static T sta[35];
+		T top=0;
+		do {
+			sta[top++]=x%10, x/=10;
+		} while (x);
+#ifdef WIN32 //调试，可显示字符
+		while(top) putchar(sta[--top]+'0');
+		return;
+#endif		
+		while(top) push(sta[--top]+'0');
+	}
+	template<class T> inline void write(T x,char lastChar) {
+		write(x),putchar(lastChar); //打印末尾字符 ex.'\n'
+	}
+}
+using namespace IO;
+```
+
+ 
+
+
 ## 参考
 
 <http://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html>
