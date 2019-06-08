@@ -14,6 +14,8 @@ CodeRunner是一个可以一键运行代码的插件，在工程上一般用来�
 
 打开插件商店，搜索CodeRunner并安装。或者去[Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
 
+![](./images/editor-vscode1.jpg)
+
 安装完成后，打开需要运行的文件，点击右上角的小三角图标（用过Code::Blocks或Visual Studio的童鞋肯定会有种熟悉的感觉），即可运行代码。或，按下快捷键`Ctrl+Alt+N`（在macOS下是`Control + Option + N`）也可以得到同样的效果。
 
 ???+ warning
