@@ -206,10 +206,10 @@ void dfs(ULL depth, ULL temp, ULL num, ULL up) {
 }
 
 int main() {
-  while (scanf("%I64d", &n) != EOF) {
+  while (scanf("%lld", &n) != EOF) {
     ans = INF;
     dfs(0, 1, 1, 64);
-    printf("%I64d\n", ans);
+    printf("%lld\n", ans);
   }
   return 0;
 }
