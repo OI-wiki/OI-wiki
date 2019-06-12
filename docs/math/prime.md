@@ -175,7 +175,7 @@ bool millerRabbin(int n) {
 
 #### 求因子数一定的最小数
 
-题目链接：<http://codeforces.com/problemset/problem/27/E>
+题目链接：<https://codeforces.com/problemset/problem/27/E>
 
 对于这种题，我么只要以因子数为 dfs 的返回条件基准，不断更新找到的最小值就可以了
 
@@ -185,15 +185,15 @@ bool millerRabbin(int n) {
 #include <stdio.h>
 #define ULL unsigned long long
 #define INF ~0ULL
-int p[16] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53};
+ULL p[16] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53};
 
 ULL ans;
-int n;
+ULL n;
 
 // depth: 当前在枚举第几个素数。num: 当前因子数。
 // temp: 当前因子数量为 num
 // 的时候的数值。up：上一个素数的幂，这次应该小于等于这个幂次嘛
-void dfs(int depth, int temp, int num, int up) {
+void dfs(ULL depth, ULL temp, ULL num, ULL up) {
   if (num > n || depth >= 16) return;
   if (num == n && ans > temp) {
     ans = temp;
@@ -206,10 +206,10 @@ void dfs(int depth, int temp, int num, int up) {
 }
 
 int main() {
-  while (scanf("%d", &n) != EOF) {
+  while (scanf("%lld", &n) != EOF) {
     ans = INF;
     dfs(0, 1, 1, 64);
-    printf("%d\n", ans);
+    printf("%lld\n", ans);
   }
   return 0;
 }
@@ -246,10 +246,10 @@ void dfs(int depth, ULL temp, ULL num, int up) {
 }
 
 int main() {
-  while (scanf("%lld", &n) != EOF) {
+  while (scanf("%llu", &n) != EOF) {
     ans_num = 0;
     dfs(0, 1, 1, 60);
-    printf("%lld\n", ans);
+    printf("%llu\n", ans);
   }
   return 0;
 }
