@@ -246,10 +246,10 @@ void dfs(int depth, ULL temp, ULL num, int up) {
 }
 
 int main() {
-  while (scanf("%lld", &n) != EOF) {
+  while (scanf("%llu", &n) != EOF) {
     ans_num = 0;
     dfs(0, 1, 1, 60);
-    printf("%lld\n", ans);
+    printf("%llu\n", ans);
   }
   return 0;
 }
