@@ -88,7 +88,7 @@ sudo apt upgrade -y
 
 ```bash
 sudo apt install  language-pack-zh-han* -y
-sudo locale-gen zh_CN.GB18030 && sudo locale-gen zh_CN.GB2312 && sudo locale-gen zh_CN.UTF8
+sudo locale-gen zh_CN.GB18030 && sudo locale-gen zh_CN.UTF8
 # 中文字体，别忘了同意 EULA
 sudo apt install fontconfig -y
 sudo apt install ttf-mscorefonts-installer -y
