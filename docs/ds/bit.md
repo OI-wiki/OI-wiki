@@ -132,7 +132,7 @@ long long getsum1(int l, int r) {
 }
 ```
 
-树状数组还有一些trick，如 $O(n)$ 建树、 $O(\log n)$ 查询第 $k$ 小/大元素等，下附代码。
+树状数组还有一些 trick ，如 $O(n)$ 建树、 $O(\log n)$ 查询第 $k$ 小/大元素等，下附代码。
 
 ```cpp
 //O(n)建树
