@@ -95,10 +95,12 @@ int getsum(int x)  // a[1]……a[x]的和
 若维护序列 $a$ 的差分数组 $b$ ，此时我们对 $a$ 的一个前缀 $r$ 求和， 即 $\sum_{i=1}^{r} a_i$ ，由差分数组定义得 $a_i=\sum_{j=1}^i b_j$
 
 进行推导
+
 $$
 \sum_{i=1}^{r} a_i\\=\sum_{i=1}^r\sum_{j=1}^i b_i\\=\sum_{i=1}^r b_i\times(r-i+1)
 \\=\sum_{i=1}^r b_i\times (r+1)-\sum_{i=1}^r b_i\times i
 $$
+
 区间和可以用两个前缀和相减得到，因此只需要用两个树状数组分别维护 $b_i$ 的和 和 $i \times b_i$ 的和，就能实现区间求和。
 
 代码如下
