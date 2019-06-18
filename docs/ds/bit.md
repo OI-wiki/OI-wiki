@@ -67,9 +67,8 @@ int lowbit(int x) {
 那么对于 **单点修改** 就更轻松了：
 
 ```cpp
-void change(int x, int k) {
-  while (x <= n)  //不能越界
-  {
+void add(int x, int k) {
+  while (x <= n) { //不能越界
     c[x] = c[x] + k;
     x = x + lowbit(x);
   }
@@ -79,8 +78,7 @@ void change(int x, int k) {
 每次只要在他的上级那里更新就行，自己就可以不用管了。
 
 ```cpp
-int getsum(int x)  // a[1]……a[x]的和
-{
+int getsum(int x) { // a[1]……a[x]的和
   int ans = 0;
   while (x >= 1) {
     ans = ans + c[x];
