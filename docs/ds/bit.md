@@ -105,7 +105,11 @@ $$
 
 ```cpp
 int t1[MAXN], t2[MAXN], n;
-#define lowbit(x) (x)
+
+inline int lowbit(int x) {
+  return x & (-x);
+}
+
 void add(int k, int v) {
   int v1 = k * v;
   while (k <= n) {
