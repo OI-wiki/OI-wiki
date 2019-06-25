@@ -22,7 +22,7 @@
 -   [JoyOI](http://www.joyoi.cn/)
     原 Tyvj 。
 -   [LibreOJ](https://loj.ac/)
-    Libre 取自由之意，基于开源项目 SYZOJ 。
+    Libre 取自由之意，基于开源项目 SYZOJ。
     题目所有测试数据以及提交的代码均对所有用户开放。
     与一本通进行了合作，可以评测一本通上所有习题。
     目前由 Menci 维护。
@@ -41,9 +41,11 @@
 -   [Virtual Judge](https://vjudge.net/)
     可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ 。
 -   [ZOJ](http://acm.zju.edu.cn/onlinejudge/)
-    浙大
+    浙江大学在线测评系统。
 -   [NOJ](http://acm.njupt.edu.cn/)
     南京邮电大学在线测评系统，自身拥有题目两千余，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
+-   [Lutece](https://acm.uestc.edu.cn/home)
+    电子科技大学在线测评系统，基于开源项目 [Lutece](https://github.com/lutece-awesome)。
 
 ### 国外
 
