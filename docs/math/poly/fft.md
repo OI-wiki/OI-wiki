@@ -517,4 +517,4 @@ void fft(Complex y[], int len, int on) {
 
 ## 算竞选手看过来~ NTT（数论优化的快速傅里叶变换）
 
-戳～[NTT](/math/ntt)
+戳～[NTT](/math/poly/ntt)
