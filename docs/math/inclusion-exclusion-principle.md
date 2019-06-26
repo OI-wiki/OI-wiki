@@ -10,6 +10,8 @@ $$
 |A\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|B\cap C|-|C\cap A|+|A\cap B\cap C|
 $$
 
+![容斥原理-venn图示例](./images/incexcp.png)
+
 把上述问题推广到一般情况，就是我们熟知的容斥原理。
 
 ## 容斥原理
@@ -56,8 +58,6 @@ $$
 右边使用容斥即可。
 
 可能接触过容斥的读者都清楚上述内容，而更关心的是容斥的应用
-
-<img src="https://hexo-source-1257756441.cos.ap-chengdu.myqcloud.com/exp/ydybgx.png" width=120px />
 
 那么接下来我们给出 3 个层次不同的例题来为大家展示容斥原理的应用。
 
