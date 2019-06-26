@@ -22,5 +22,22 @@
 该递推关系的解为：
 
 $$
-H_n=\frac{C_{2n}^{n}}{n+1}(n=1,2,3,\cdots)
+H_n = \frac{\binom{2n}{n}}{n+1}(n \geq 2, n \in \mathbf{N_{+}})
+$$
+
+关于 Calalan 数的常见公式：
+
+$$
+H_n = \begin{cases}
+    \sum_{i=1}^{n} H_{i-1} H_{n-i} & n \geq 2, n \in \mathbf{N_{+}}\\
+    1 & n = 0, 1
+\end{cases}
+$$
+
+$$
+H_n = \frac{H_{n-1} (4n-2)}{n+1}
+$$
+
+$$
+H_n = \binom{2n}{n} - \binom{2n}{n-1}
 $$

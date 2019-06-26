@@ -331,7 +331,7 @@ void mul_short(int a[LEN], int b, int c[LEN]) {
 
 注意这个过程与竖式乘法不尽相同，我们的算法在每一步乘的过程中并不进位，而是将所有的结果保留在对应的位置上，到最后再统一处理进位，但这不会影响结果。
 
-```c++
+```cpp
 void mul(int a[LEN], int b[LEN], int c[LEN]) {
   clear(c);
 
@@ -558,13 +558,113 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
     }
     ```
 
+## Karatsuba 乘法
+
+记高精度数字的位数为 $n$，那么高精度—高精度竖式乘法需要花费 $O(n^2)$ 的时间。本节介绍一个时间复杂度更为优秀的算法，由前苏联（俄罗斯）数学家 Anatoly Karatsuba 提出，是一种分治算法。
+
+考虑两个十进制大整数 $x$ 和 $y$，均包含 $n$ 个数码（可以有前导零）。任取 $0 < m < n$，记
+
+$$
+\begin{aligned}
+x &= x_1 \cdot 10^m + x_0, \\
+y &= y_1 \cdot 10^m + y_0, \\
+x \cdot y &= z_2 \cdot 10^{2m} + z_1 \cdot 10^m + z_0,
+\end{aligned}
+$$
+
+其中 $x_0, y_0, z_0, z_1 < 10^m$。可得
+
+$$
+\begin{aligned}
+z_2 &= x_1 \cdot y_1, \\
+z_1 &= x_1 \cdot y_0 + x_0 \cdot y_1, \\
+z_0 &= x_0 \cdot y_0.
+\end{aligned}
+$$
+
+观察知
+
+$$
+z_1 = (x_1 + x_0) \cdot (y_1 + y_0) - z_2 - z_0,
+$$
+
+于是要计算 $z_1$，只需计算 $(x_1 + x_0) \cdot (y_1 + y_0)$，再与 $z_0$、$z_2$ 相减即可。
+
+上式实际上是 Karatsuba 算法的核心，它将长度为 $n$ 的乘法问题转化为了 $3$ 个长度更小的子问题。若令 $m = \left\lceil \frac n 2 \right\rceil$，记 Karatsuba 算法计算两个 $n$ 位整数乘法的耗时为 $T(n)$，则有 $T(n) = 3 \cdot T \left(\left\lceil \frac n 2 \right\rceil\right) + O(n)$，由主定理可得 $T(n) = \Theta(n^{\log_2 3}) \approx \Theta(n^{1.585})$。
+
+整个过程可以递归实现。为清晰起见，下面的代码通过 Karatsuba 算法实现了多项式乘法，最后再处理所有的进位问题。
+
+??? " karatsuba_mulc.cpp "
+
+    ```cpp
+    int *karatsuba_polymul(int n, int *a, int *b)
+    {
+        if (n <= 32) {
+            // 规模较小时直接计算，避免继续递归带来的效率损失
+            int *r = new int[n * 2 + 1]();
+            for (int i = 0; i <= n; ++i)
+                for (int j = 0; j <= n; ++j)
+                    r[i + j] += a[i] * b[j];
+            return r;
+        }
+
+        int m = n / 2 + 1;
+        int *r = new int[m * 4 + 1]();
+        int *z0, *z1, *z2;
+
+        z0 = karatsuba_polymul(m - 1, a, b);
+        z2 = karatsuba_polymul(n - m, a + m, b + m);
+
+        // 计算 z1
+        // 临时更改，计算完毕后恢复
+        for (int i = 0; i + m <= n; ++i) a[i] += a[i + m];
+        for (int i = 0; i + m <= n; ++i) b[i] += b[i + m];
+        z1 = karatsuba_polymul(m - 1, a, b);
+        for (int i = 0; i + m <= n; ++i) a[i] -= a[i + m];
+        for (int i = 0; i + m <= n; ++i) b[i] -= b[i + m];
+        for (int i = 0; i <= (m - 1) * 2; ++i) z1[i] -= z0[i];
+        for (int i = 0; i <= (n - m) * 2; ++i) z1[i] -= z2[i];
+
+        // 由 z0、z1、z2 组合获得结果
+        for (int i = 0; i <= (m - 1) * 2; ++i) r[i] += z0[i];
+        for (int i = 0; i <= (m - 1) * 2; ++i) r[i + m] += z1[i];
+        for (int i = 0; i <= (n - m) * 2; ++i) r[i + m * 2] += z2[i];
+
+        delete[] z0;
+        delete[] z1;
+        delete[] z2;
+        return r;
+    }
+
+    void karatsuba_mul(int a[LEN], int b[LEN], int c[LEN])
+    {
+        int *r = karatsuba_polymul(LEN - 1, a, b);
+        memcpy(c, r, sizeof(int) * LEN);
+        for (int i = 0; i < LEN - 1; ++i) if (c[i] >= 10) {
+            c[i + 1] += c[i] / 10;
+            c[i] %= 10;
+        }
+        delete[] r;
+    }
+    ```
+
+??? " 关于 `new` 和 `delete` "
+
+    见[内存池](/intro/common-tricks/#_4)。
+
+但是这样的实现存在一个问题：在 $b$ 进制下，多项式的每一个系数都有可能达到 $n \cdot b^2$ 量级，在压位高精度实现（即 $b > 10$，下文介绍）中可能造成整数溢出；而若在多项式乘法的过程中处理进位问题，则 $x_1 + x_0$ 与 $y_1 + y_0$ 的结果可能达到 $2 \cdot b^m$，增加一个位（如果采用 $x_1 - x_0$ 的计算方式，则不得不特殊处理负数的情况）。因此，需要依照实际的应用场景来决定采用何种实现方式。
+
+### Reference
+
+https://en.wikipedia.org/wiki/Karatsuba_algorithm
+
 ## 封装类
 
 [这里](https://paste.ubuntu.com/p/7VKYzpC7dn/)有一个封装好的高精度整数类。
 
 ??? 这里是另一个模板
 
-    ```c++
+    ```cpp
     #define MAXN 9999
     // MAXN 是一位中最大的数字
     #define MAXSIZE 10024

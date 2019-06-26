@@ -4,7 +4,7 @@
 2.  Link/Cut Tree 又称 Link-Cut Tree，简称 LCT, 但它不叫动态树，动态树是指一类问题。
 3.  Splay Tree 是 LCT 的基础，但是 LCT ⽤的 Splay Tree 和普通的 Splay 在细节处不太一样。
 4.  这是⼀个和 Splay ⼀样只需要写⼏ (yi) 个 (dui) 核心函数就能实现一切的数据结构。
-
+    
 ## 问题引入
 
 -   维护一棵树，支持如下操作。
@@ -16,8 +16,8 @@
 
 那么我们加两个操作
 
--   断开并连接⼀一些边，保证仍是⼀一棵树。
--   在线求出上⾯面的答案。
+-   断开并连接一些边，保证仍是一棵树。
+-   在线求出上面的答案。
 
 ——动态树问题的解决方法：Link/Cut Tree!
 
@@ -29,7 +29,7 @@
 
 * * *
 
-### 从 LCT 的角度回顾一下树链剖分
+### 从 LCT 的角度回顾一下树链剖分    
 
 -   对整棵树按子树⼤小进⾏剖分，并重新标号。
 
@@ -89,9 +89,9 @@
 
 -   原树中的虚链 : 在辅助树中，子节点所在 Splay 的 Father 指向父节点，但是父节点的两个儿子都不指向子节点。
 
--   注意：原树的根 ≠辅助树的根。
+-   注意：原树的根不等于辅助树的根。
 
--   原树的 Father 指向 ≠辅助树的 Father 指向。
+-   原树的 Father 指向不等于辅助树的 Father 指向。
 
 -   辅助树是可以在满足辅助树、Splay 的性质下任意换根的。
 
@@ -107,6 +107,7 @@
 
 -    `tag[N]` 翻转标记
 -    `laz[N]` 权值标记
+-    `siz[N]` 辅助树上子树大小
 -   Other_Vars
 
 ### 函数声明
@@ -124,15 +125,15 @@
 
 #### 新操作
 
-1.  IsRoot(x) 判断当前节点是否是所在 Splay 的根
-2.  Access(x) 把从根到当前节点的所有点放在⼀条实链里，使根到它成为一条实路径，并且在同一棵 Splay 里里。
-3.  Update(x) 在 Access 操作之后，递归的从上到下 Pushdown 更更新信 息。
-4.  MakeRoot(x) 使 x 点成为整个辅助树的根。
+1.  IsRoot(x) 判断当前节点是否是所在 Splay 的根。
+2.  Access(x) 把从根到当前节点的所有点放在⼀条实链里，使根到它成为一条实路径，并且在同一棵 Splay 里。
+3.  Update(x) 在 Access 操作之后，递归地从上到下 Pushdown 更新信息。
+4.  MakeRoot(x) 使 x 点成为整棵辅助树的根。
 5.  Link(x, y) 在 x, y 两点间连⼀一条边。
 6.  Cut(x, y) 把 x, y 两点间边删掉。
 7.  Find(x) 找到 x 所在的 Splay 的根节点编号。
 8.  Fix(x, v) 修改 x 的点权为 v。
-9.  Split(x, y) 提取出来 x, y 间的路路径，⽅方便便做区间操作
+9.  Split(x, y) 提取出 x, y 间的路径，方便做区间操作。
 
 ### 宏定义
 
@@ -147,8 +148,7 @@
 
 ```cpp
 inline void PushUp(int p) {
-  __var1[p] =
-      __var1[ls] "operator 1" __var1[rs] "operator 2" __var1[p] / __siz[p];
+  // maintain other variables
   siz[p] = siz[ls] + siz[rs];
 }
 ```
@@ -157,9 +157,9 @@ inline void PushUp(int p) {
 
 ```cpp
 inline void PushDown(int p) {
-  if (__tag1[p] != std_tag1) {
-    // do ls & do rs
-    __tag1[p] = std_tag1;
+  if (tag[p] != std_tag) {
+    // pushdown the tag
+    tag[p] = std_tag;
   }
 }
 ```
@@ -179,15 +179,14 @@ inline void Rotate(int x) {
   PushUp(x), PushUp(y);
 }
 inline void Splay(int x) {
-  Update(
-      x);  // 马上就能看到啦。 在 Splay之前要把旋转会经过的路径上的点都PushDown
+  Update(x);  // 马上就能看到啦。 在 Splay之前要把旋转会经过的路径上的点都PushDown
   for (int fa; fa = f[x], !isRoot(x); Rotate(x)) {
     if (!isRoot(fa)) Rotate(Get(fa) == Get(x) ? fa : x);
   }
 }
 ```
 
-如果上面的几个函数你看不懂，请移步[Splay](/ds/splay/)
+如果上面的几个函数你看不懂，请移步 [Splay](/ds/splay/)
 
 下面要开始 LCT 独有的函数了哦
 
@@ -204,7 +203,7 @@ inline void Splay(int x) {
 ```cpp
 // Access 是 LCT
 // 的核心操作，试想我们像求解一条路径，而这条路径恰好就是我们当前的一棵 Splay，
-// 直接调用其信息即可 先来看一下代码，再结合图来看看过程
+// 直接调用其信息即可。先来看一下代码，再结合图来看看过程
 inline void Access(int x) {
   for (int p = 0; x; p = x, x = f[x]) {
     Splay(x), ch[x][1] = p, PushUp(x);
@@ -221,15 +220,15 @@ inline void Access(int x) {
 
 ![pic2](./images/lct2.png)
 
--   现在我们要 Access(N), 把 A-N 的路径都变实，拉成一棵 Splay
+-   现在我们要 Access(N), 把 A 到 N 路径上的边都变为实边，拉成一棵 Splay
 
 ![pic3](./images/lct3.png)
 
 -   实现的方法是从下到上逐步更新 Splay
 -   首先我们要把 N 旋至当前 Splay 的根。
--   为了保证 AuxTree 的性质，原来 N——O 的实边要更改为虚边。
+-   为了保证 AuxTree（辅助树）的性质，原来 N 到 O 的实边要更改为虚边。
 -   由于认父不认子的性质，我们可以单方面的把 N 的儿子改为 Null。
--   于是原来的 Aux 就从下图变成了下下图。
+-   于是原来的 AuxTree 就从下图变成了下下图。
 
 ![pic4](./images/lct4.png)
 
@@ -237,7 +236,7 @@ inline void Access(int x) {
 
 -   下一步，我们把 N 指向的 Father-> I 也旋转到它 (I) 的 Splay 树根。
 
--   原来的实边 I——K 要去掉，这时候我们把 I 的右儿子指向 N, 就得到了 I——L 这样一棵 Splay。
+-   原来的实边 I—K 要去掉，这时候我们把 I 的右儿子指向 N, 就得到了 I—L 这样一棵 Splay。
 
 ![pic](./images/lct8.png)
 
@@ -271,19 +270,20 @@ inline void Access(int x) {
 ###  `Update()` 
 
 ```cpp
-// 从上到下一层一层pushDown 即可
+// 从上到下一层一层 pushDown 即可
 void Update(int p) {
-  if (!isRoot(p)) Update(f[p]) pushDown(p);
+  if (!isRoot(p)) Update(f[p]);
+  pushDown(p);
 }
 ```
 
 ###  `makeRoot()` 
 
--   Make_Root() 的重要性丝毫不亚于 Access()。我们在需要维护路径信息的时候，一定会出现路径深度无法严格递增的情况，根据 Aux 的性质，这种路径是不能出现在一棵 Splay 中的。
+-   Make_Root() 的重要性丝毫不亚于 Access()。我们在需要维护路径信息的时候，一定会出现路径深度无法严格递增的情况，根据 AuxTree 的性质，这种路径是不能出现在一棵 Splay 中的。
 -   这时候我们需要用到 Make_Root()。
--   Make_Root()。的作用是使指定的点成为原树的根，考虑如何实现这种操作。
+-   Make_Root() 的作用是使指定的点成为原树的根，考虑如何实现这种操作。
 -   我们发现 Access(x) 后，x 在 Splay 中一定是深度最大的点（从根到 x, 深度严格递增）。
--   而变成根即是变成深度最小的点。我们 Splay(x) , 发现这时候 x 并没有右子树（即所有点深度都比它浅）。那我们把 x 的左右儿子交换一下，变成了 x 没有左子树，在 Aux 意义上就是深度最小的点了，即达到目的。
+-   而变成根即是变成深度最小的点。我们 Splay(x) , 发现这时候 x 并没有右子树（即所有点深度都比它浅）。那我们把 x 的左右儿子交换一下，变成了 x 没有左子树，在 AuxTree 意义上就是深度最小的点了，即达到目的。
 -   所以我们交换左右儿子，并给右儿子打一个翻转标记即可。（此时左儿子没有值）。
 
 ```cpp
@@ -296,7 +296,7 @@ inline void makeRoot(int p) {
 
 ###  `Link()` 
 
--   Link 两个点其实很简单，先 Make_Root(x) , 然后把 x 的父亲指向 y 即可。显然，这个操作肯定不能发生在同一棵树内 OTZ。记得先判一下。
+-   Link 两个点其实很简单，先 Make_Root(x) , 然后把 x 的父亲指向 y 即可。显然，这个操作肯定不能发生在同一棵树内，所以记得先判一下。
 
 ```cpp
 inline void Link(int x, int p) {
@@ -308,14 +308,14 @@ inline void Link(int x, int p) {
 ###  `Split()` 
 
 -   Split 操作意义很简单，就是拿出一棵 Splay , 维护的是 x 到 y 的路径。
--   先 MakeRoot(x) , 然后 Access(y)。如果要 y 做根，再 Splay(y)。
+-   先 MakeRoot(x)，然后 Access(y)。如果要 y 做根，再 Splay(y)。
 -   就这三句话，没写代码，需要的时候可以直接打这三个就好辣！
 -   另外 Split 这三个操作直接可以把需要的路径拿出到 y 的子树上，那不是随便干嘛咯。
 
 ###  `Cut()` 
 
 -   Cut 有两种情况，保证合法和不一定保证合法。（废话）
--   如果保证合法，直接 split(x, y) , 这时候 y 是根，x 一定是它的儿子，双向断开即可 , 就像这样：
+-   如果保证合法，直接 split(x, y)，这时候 y 是根，x 一定是它的儿子，双向断开即可。就像这样：
 
 ```cpp
 inline void Cut(int x, int p) {
@@ -323,14 +323,14 @@ inline void Cut(int x, int p) {
 }
 ```
 
-如果是不保证合法，我们需要判断一下是否有，我选择使用 Map 存一下，但是这里有一个利用性质的方法：
+如果是不保证合法，我们需要判断一下是否有，我选择使用 map 存一下，但是这里有一个利用性质的方法：
 
 想要删边，必须要满足如下三个条件：
 
 1.  x, y 连通。
 2.  x, y 的路径上没有其他的链。
 3.  x 没有右儿子。
-4.  总结一下，上面三句话的意思就一个：x, y 有边。
+4.  总结一下，上面三句话的意思就一个：x, y 之间有边。
 
 具体实现就留作一个思考题给大家。判断连通需要用到后面的 Find , 其他两点稍作思考分析一下结构就知道该怎么判断了。
 
@@ -349,13 +349,13 @@ inline int Find(int p) {
 
 ### 一些提醒
 
--   干点啥一定要想一想需不需要 PushUp 或者 PushDown, LCT 由于特别灵活的原因，少 Pushdown 或者 Pushup 一次就可能把修改改到不该改的点上！
--   它的 rotate 和 splay 的不太一样，if(z) 一定要放在前面。
--   它的 splay 就是旋转到根，没有旋转到谁儿子的操作，因为不需要。
+-   干点啥前一定要想一想需不需要 PushUp 或者 PushDown, LCT 由于特别灵活的原因，少 Pushdown 或者 Pushup 一次就可能把修改改到不该改的点上！
+-   LCT 的 rotate 和 splay 的不太一样，`if (z)` 一定要放在前面。
+-   LCT 的 splay 就是旋转到根，没有旋转到谁儿子的操作，因为不需要。
 
 ## 一些题
 
--   BZOJ_2049
--   BZOJ_3282
--   BZOJ_2002
--   BZOJ_2631
+-   [「SDOI2008」 Cave 洞穴勘测](https://lydsy.com/JudgeOnline/problem.php?id=2049)
+-   [「BZOJ 3282」Tree](https://lydsy.com/JudgeOnline/problem.php?id=3282)
+-   [「HNOI2010」 Bounce 弹飞绵羊](https://lydsy.com/JudgeOnline/problem.php?id=2002)
+-   [「BZOJ 2631」tree](https://lydsy.com/JudgeOnline/problem.php?id=2631)

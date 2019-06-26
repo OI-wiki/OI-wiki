@@ -8,7 +8,7 @@
 
 如果我们从小到大考虑每个数，然后同时把当前这个数的所有（比自己大的）倍数记为合数，那么运行结束的时候没有被标记的数就是素数了。
 
-```c++
+```cpp
 int Eratosthenes(int n) {
   int p = 0;
   for (int i = 0; i <= n; ++i) is_prime[i] = 1;
@@ -32,7 +32,7 @@ int Eratosthenes(int n) {
 
 如果能让每个合数都只被标记一次，那么时间复杂度就可以降到 $O(n)$ 了
 
-```c++
+```cpp
 void init() {
   phi[1] = 1;
   f(i, 2, MAXN) {
@@ -91,7 +91,7 @@ $$
 \end{aligned}
 $$
 
-```c++
+```cpp
 void phi_table(int n, int* phi) {
   for (int i = 2; i <= n; i++) phi[i] = 0;
   phi[1] = 1;
@@ -128,7 +128,7 @@ void pre() {
 
 ## 筛法求约数和
 
- $f_i$ 表示 $i$ 的约数和 $g_i$ 表示 $i$ 的最小质因子的 $p+p^1+p^2+\dots p^k$ 
+ $f_i$ 表示 $i$ 的约数和 $g_i$ 表示 $i$ 的最小质因子的 $p+p^1+p^2+\dots p^k$
 
 ```cpp
 void pre() {

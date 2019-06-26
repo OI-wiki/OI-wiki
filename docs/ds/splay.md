@@ -28,7 +28,7 @@
 
 ### 基本操作
 
--    $\text{maintain}(x)$ ：在改变节点位置前，将节点 $x$ 的 $\text{size}$ 更新。
+-    $\text{maintain}(x)$ ：在改变节点位置后，将节点 $x$ 的 $\text{size}$ 更新。
 -    $\text{get}(x)$ ：判断节点 $x$ 是父亲节点的左儿子还是右儿子。
 -    $\text{clear}(x)$ ：销毁节点 $x$ 。
 
@@ -67,8 +67,8 @@ void rotate(int x) {
   fa[y] = x;
   fa[x] = z;
   if (z) ch[z][y == ch[z][1]] = x;
-  maintain(x);
   maintain(y);
+  maintain(x);
 }
 ```
 
@@ -418,15 +418,16 @@ int main() {
 
 以下题目都是裸的 $\text{Splay}$ 维护二叉查找树。~~（直接套板子即可）~~
 
--   [【模板】普通平衡树](https://www.luogu.org/problemnew/show/P3369)
+-   [【模板】普通平衡树](https://loj.ac/problem/104)
+-   [【模板】文艺平衡树](https://loj.ac/problem/105)
 -   [\[HNOI2002\]营业额统计](https://www.lydsy.com/JudgeOnline/problem.php?id=1588)
 -   [\[HNOI2004\]宠物收养所](https://www.lydsy.com/JudgeOnline/problem.php?id=1208)
 
 ## 练习题
 
-[bzoj 1552\[Cerc2007\]robotic sort](https://www.lydsy.com/JudgeOnline/problem.php?id=1552)（权限题）
+[luogu P4402 \[Cerc2007\]robotic sort 机械排序](https://www.luogu.org/problemnew/show/P4402)/[bzoj 1552（权限题）](https://www.lydsy.com/JudgeOnline/problem.php?id=1552)
 
-[luogu P3380【模板】二逼平衡树（树套树）](https://www.luogu.org/problemnew/show/P3380)
+[二逼平衡树（树套树）](https://loj.ac/problem/106)
 
 [bzoj 2827 千山鸟飞绝](https://www.lydsy.com/JudgeOnline/problem.php?id=2827)
 

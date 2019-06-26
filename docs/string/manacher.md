@@ -40,7 +40,7 @@ $$
 
 该朴素算法的实现如下：
 
-```c++
+```cpp
 vector<int> d1(n), d2(n);
 for (int i = 0; i < n; i++) {
   d1[i] = 1;
@@ -71,18 +71,18 @@ for (int i = 0; i < n; i++) {
 -   现在考虑 $i \le r$ 的情况。我们将尝试从已计算过的 $d_1[]$ 的值中获取一些信息。首先在子回文串 $(l, r)$ 中反转位置 $i$ ，即我们得到 $j = l + (r - i)$ 。现在来考察值 $d_1[j]$ 。因为位置 $j$ 同位置 $i$ 对称，我们 **几乎总是** 可以置 $d_1[i] = d_1[j]$ 。该想法的图示如下（可认为以 $j$ 为中心的回文串被“拷贝”至以 $i$ 为中心的位置上）：
 
     $$
-    \ldots\ 
+    \ldots\
     \overbrace{
-        s_l\ \ldots\ 
+        s_l\ \ldots\
         \underbrace{
             s_{j-d_1[j]+1}\ \ldots\ s_j\ \ldots\ s_{j+d_1[j]-1}
-        }_\text{palindrome}\ 
-        \ldots\ 
+        }_\text{palindrome}\
+        \ldots\
         \underbrace{
             s_{i-d_1[j]+1}\ \ldots\ s_i\ \ldots\ s_{i+d_1[j]-1}
-        }_\text{palindrome}\ 
+        }_\text{palindrome}\
         \ldots\ s_r
-    }^\text{palindrome}\ 
+    }^\text{palindrome}\
     \ldots
     $$
 
@@ -93,16 +93,16 @@ for (int i = 0; i < n; i++) {
     该种情况的图示如下（以 $j$ 为中心的回文串已经被截断以落在“外部”回文串内）：
 
     $$
-    \ldots\ 
+    \ldots\
     \overbrace{
         \underbrace{
             s_l\ \ldots\ s_j\ \ldots\ s_{j+(j-l)}
-        }_\text{palindrome}\ 
-        \ldots\ 
+        }_\text{palindrome}\
+        \ldots\
         \underbrace{
             s_{i-(r-i)}\ \ldots\ s_i\ \ldots\ s_r
         }_\text{palindrome}
-    }^\text{palindrome}\ 
+    }^\text{palindrome}\
     \underbrace{
         \ldots \ldots \ldots \ldots \ldots
     }_\text{try moving here}
@@ -130,7 +130,7 @@ Manacher 算法的另一部分显然也是线性的，因此总复杂度为 $O(n
 
 为了计算 $d_1[]$ ，我们有以下代码：
 
-```c++
+```cpp
 vector<int> d1(n);
 for (int i = 0, l = 0, r = -1; i < n; i++) {
   int k = (i > r) ? 1 : min(d1[l + r - i], r - i);
@@ -147,7 +147,7 @@ for (int i = 0, l = 0, r = -1; i < n; i++) {
 
 计算 $d_2[]$ 的代码十分类似，但是在算术表达式上有些许不同：
 
-```c++
+```cpp
 vector<int> d2(n);
 for (int i = 0, l = 0, r = -1; i < n; i++) {
   int k = (i > r) ? 0 : min(d2[l + r - i + 1], r - i + 1);
@@ -183,4 +183,4 @@ for (int i = 0, l = 0, r = -1; i < n; i++) {
 
 * * *
 
- **本页面主要译自博文[Нахождение всех подпалиндромов](http://e-maxx.ru/algo/palindromes_count)与其英文翻译版[Finding all sub-palindromes in $O(N)$ ](https://cp-algorithms.com/string/manacher.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ **本页面主要译自博文[Нахождение всех подпалиндромов](http://e-maxx.ru/algo/palindromes_count)与其英文翻译版[Finding all sub-palindromes in $O(N)$ ](https://cp-algorithms.com/string/manacher.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
