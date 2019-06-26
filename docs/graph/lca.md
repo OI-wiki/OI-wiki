@@ -1,6 +1,6 @@
 ## 定义
 
-最近公共祖先简称 LCA（Lowest Common Ancestor）。两个节点的最近公共祖先，就是这两个点的公共祖先里面，离根最远的那个。  
+最近公共祖先简称 LCA（Lowest Common Ancestor）。两个节点的最近公共祖先，就是这两个点的公共祖先里面，离根最远的那个。
 为了方便，我们记某点集 $S={v_1,v_2,\ldots,v_n}$ 的最近公共祖先为 $\text{LCA}(v_1,v_2,\ldots,v_n)$ 或 $\text{LCA}(S)$ 。
 
 ## 性质
@@ -17,24 +17,24 @@
 
 ### 朴素算法
 
-可以每次找深度比较大的那个点，让它向上跳。显然在树上，这两个点最后一定会相遇，相遇的位置就是想要求的 LCA。  
+可以每次找深度比较大的那个点，让它向上跳。显然在树上，这两个点最后一定会相遇，相遇的位置就是想要求的 LCA。
 或者先向上调整深度较大的点，令他们深度相同，然后再共同向上跳转，最后也一定会相遇。
 
 ### 倍增算法
 
 倍增算法是最经典的 LCA 求法，他是朴素算法的改进算法。通过预处理 `fa[x][i]` 数组，游标可以快速移动，大幅减少了游标跳转次数。 `fa[x][i]` 表示点 $x$ 的第 $2^i$ 个祖先。 `fa[x][i]` 数组可以通过 dfs 预处理出来。
 
-现在我们看看如何优化这些跳转：  
-在调整游标的第一阶段中，我们可以计算出 $u,v$ 两点的深度之差，设其为 $y$ 。通过将 $y$ 进行二进制拆分，我们将 $y$ 次游标跳转优化为 `count_one_in_binary_representation(y)` 次游标跳转。  
+现在我们看看如何优化这些跳转：
+在调整游标的第一阶段中，我们可以计算出 $u,v$ 两点的深度之差，设其为 $y$ 。通过将 $y$ 进行二进制拆分，我们将 $y$ 次游标跳转优化为 `count_one_in_binary_representation(y)` 次游标跳转。
 在第二阶段中，我们从最大的 $i$ 开始循环尝试，一直尝试到 $0$ （包括 $0$ ），如果 `fa[u][i] != fa[v][i]` ，则令 `u = fa[u][i]; v = fa[v][i]` ，那么最后的 LCA 为 `fa[u][0]` 。
 
 !!! 例题
     CODEVS2370[小机房的树](http://codevs.cn/problem/2370/)树上最短路查询
 
-可先求出 LCA，再结合性质 $7$ 进行解答。也可以直接在求 LCA 时求出结果。  
+可先求出 LCA，再结合性质 $7$ 进行解答。也可以直接在求 LCA 时求出结果。
 以下代码仅供参考。
 
-```c++
+```cpp
 #include <cstdio>
 #include <cstring>
 #include <iostream>
@@ -103,11 +103,120 @@ int main() {
 
 ### Tarjan 算法
 
+`Tarjan算法` 是一种`离线算法`，需要使用`并查集`记录某个结点的祖先结点。做法如下：
+
+1.  首先接受输入（邻接链表）、查询（存储在另一个邻接链表内）。查询边其实是虚拟加上去的边，为了方便，每次输入查询边的时候，将这个边及其反向边都加入到`queryEdge`数组里。
+2.  然后对其进行一次DFS遍历，同时使用`visited`数组进行记录某个结点是否被访问过、`parent`记录当前结点的父亲结点。
+3.  其中涉及到了`回溯思想`，我们每次遍历到某个结点的时候，认为这个结点的根结点就是它本身。让以这个结点为根节点的DFS全部遍历完毕了以后，再将`这个结点的根节点`设置为`这个结点的父一级结点`。
+4.  回溯的时候，如果以该节点为起点，`queryEdge`查询边的另一个结点也恰好访问过了，则直接更新查询边的LCA结果。
+5.  最后输出结果。
+
+```cpp
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+class Edge {
+public:
+	int toVertex, fromVertex;
+	int next;
+	int LCA;
+	Edge() : toVertex(-1), fromVertex(-1), next(-1), LCA(-1) {};
+	Edge(int u, int v, int n) : fromVertex(u), toVertex(v), next(n), LCA(-1) {};
+};
+
+const int MAX = 100;
+int head[MAX], queryHead[MAX];
+Edge edge[MAX], queryEdge[MAX];
+int parent[MAX], visited[MAX];
+int vertexCount, edgeCount, queryCount;
+
+void init() {
+	for (int i = 0; i <= vertexCount;i++) {
+		parent[i] = i;
+	}
+}
+
+int find(int x) {
+	if (parent[x] == x) {
+		return x;
+	}
+	else {
+		return find(parent[x]);
+	}
+}
+
+void tarjan(int u) {
+	parent[u] = u;
+	visited[u] = 1;
+
+	for (int i = head[u]; i != -1;i=edge[i].next) {
+		Edge& e = edge[i];
+		if (!visited[e.toVertex]) {
+			tarjan(e.toVertex);
+			parent[e.toVertex] = u;
+		}
+	}
+
+	for (int i = queryHead[u]; i != -1;i=queryEdge[i].next) {
+		Edge& e = queryEdge[i];
+		if (visited[e.toVertex]) {
+			queryEdge[i ^ 1].LCA = e.LCA = find(e.toVertex);
+		}
+	}
+}
+
+int main() {
+	memset(head, 0xff, sizeof(head));
+	memset(queryHead, 0xff, sizeof(queryHead));
+
+	cin >> vertexCount >> edgeCount >> queryCount;
+	int count = 0;
+	for (int i = 0; i < edgeCount;i++) {
+		int start = 0, end = 0;
+		cin >> start >> end;
+
+		edge[count] = Edge(start, end, head[start]);
+		head[start] = count;
+		count++;
+
+		edge[count] = Edge(end, start, head[end]);
+		head[end] = count;
+		count++;
+	}
+
+	count = 0;
+	for (int i = 0; i < queryCount;i++) {
+		int start = 0, end = 0;
+		cin >> start >> end;
+
+		queryEdge[count] = Edge(start, end, queryHead[start]);
+		queryHead[start] = count;
+		count++;
+
+		queryEdge[count] = Edge(end, start, queryHead[end]);
+		queryHead[end] = count;
+		count++;
+	}
+
+
+	init();
+	tarjan(1);
+
+	for (int i = 0; i < queryCount;i++) {
+		Edge& e = queryEdge[i * 2];
+		cout << "(" << e.fromVertex << "," << e.toVertex << ") " << e.LCA << endl;
+	}
+
+	return 0;
+}
+```
+
 ### 转化为 RMQ 问题
 
 首先对树进行 dfs， `dfs(root, 1)` ，将深度和节点编号按顺序记录到数组中，并记录各个点在 dfs 序列中第一次出现的位置。
 
-```c++
+```cpp
 int depth[N * 2], id[N * 2], loc[N];
 int tot = 1;
 void dfs(int x, int dep) {

@@ -4,7 +4,7 @@ DAG 即[有向无环图](/graph/dag)，一些实际问题中的二元关系都�
 
 以这道题为例子，来分析一下 DAG 建模的过程。
 
-??? note " 例题[UVa 437 巴比伦塔 The Tower of Babylon](https://cn.vjudge.net/problem/UVA-437)"
+??? note " 例题 [UVa 437 巴比伦塔 The Tower of Babylon](https://cn.vjudge.net/problem/UVA-437)"
     有 $n (n\leqslant 30)$ 种砖块，已知三条边长，每种都有无穷多个。要求选一些立方体摞成一根尽量高的柱子（每个砖块可以自行选择一条边作为高），使得每个砖块的底面长宽分别严格小于它下方砖块的底面长宽，求塔的最大高度。
 
 ### 建立 DAG
@@ -37,7 +37,7 @@ DAG 即[有向无环图](/graph/dag)，一些实际问题中的二元关系都�
 
 某个砖块 $i$ 有三种堆叠方式分别记为 $0, 1, 2$ ，那么对于砖块 $i$ 和其堆叠方式 $r$ 来说则有如下转移方程
 
- $d(i, r) = \max\left\{d(j, r') + h'\right\}$ 
+ $d(i, r) = \max\left\{d(j, r') + h'\right\}$
 
 其中 $j$ 是所有那些在砖块 $i$ 以 $r$ 方式堆叠时可放上的砖块， $r'$ 对应 $j$ 此时的摆放方式，也就确定了此时唯一的高度 $h'$ 。
 
@@ -49,7 +49,7 @@ DAG 即[有向无环图](/graph/dag)，一些实际问题中的二元关系都�
 
 ### 题解
 
-```c++
+```cpp
 #include <cstring>
 #include <iostream>
 #define MAXN (30 + 5)

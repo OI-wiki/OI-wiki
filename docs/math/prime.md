@@ -2,7 +2,7 @@
 
 显然大于 $1$ 的正整数 $a$ 可以被 $1$ 和 $a$ 整除，如果除此之外 $a$ 没有其他的约数，则称 $a$ 是素数，又称质数。任何一个大于 $1$ 的整数如果不是素数，也就是有其他约数，就称为是合数。 $1$ 既不是合数也不是素数。
 
-素数计数函数：小于或等于 $x$ 的素数的个数，用 $\pi(x)$ 表示。随着 $x$ 的增大，有这样的近似结果： $\pi(x) \sim \frac{x}{\ln(x)}$ 
+素数计数函数：小于或等于 $x$ 的素数的个数，用 $\pi(x)$ 表示。随着 $x$ 的增大，有这样的近似结果： $\pi(x) \sim \frac{x}{\ln(x)}$
 
 ## 素数判定
 
@@ -12,8 +12,9 @@
 
 自然可以枚举从小到大的每个数看是否能整除
 
-```c++
+```cpp
 bool isPrime(a) {
+  if (a < 2) return 0;
   for (int i = 2; i < a; ++i)
     if (a % i == 0) return 0;
   return 1;
@@ -28,8 +29,9 @@ bool isPrime(a) {
 
 由于 $1$ 肯定是约数，所以不检验它。
 
-```c++
+```cpp
 bool isPrime(a) {
+  if (a < 2) return 0;
   for (int i = 2; i * i <= a; ++i)
     if (a % i) return 0;
   return 1;
@@ -38,17 +40,20 @@ bool isPrime(a) {
 
 ### Miller-Rabin 素性测试
 
-Miller-Rabin 素性测试（Miller–Rabin primality test）是进阶的素数判定方法，具有比暴力做法更好的时间复杂度。但是代码复杂度较高，在比赛中使用较少。
+Miller-Rabin 素性测试（Miller–Rabin primality test）是进阶的素数判定方法。
+对数 n 进行 k 轮测试的时间复杂度是 $O(k \log^3n)$，利用 FFT 等技术可以优化到 [$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)。
 
 #### Fermat 素性测试
 
 我们可以根据[费马小定理](/math/fermat/#_1)得出一种检验素数的思路：
 
-它的基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$ ，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$ 
+它的基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$ ，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$
 
-```c++
+```cpp
 bool millerRabin(int n) {
-  for (int i = 1; i <= s; ++i) {
+  if (n < 3) return n == 2;
+  // test_time 为测试次数,建议设为不小于 8 的整数以保证正确率,但也不宜过大,否则会影响效率
+  for (int i = 1; i <= test_time; ++i) {
     int a = rand() % (n - 2) + 2;
     if (quickPow(a, n - 1, n) != 1) return 0;
   }
@@ -82,11 +87,13 @@ bool millerRabin(int n) {
 
 比较正确的 Miller Rabin：（来自 fjzzq2002）
 
-```c++
+```cpp
 bool millerRabbin(int n) {
+  if (n < 3) return n == 2;
   int a = n - 1, b = 0;
   while (a % 2 == 0) a /= 2, ++b;
-  for (int i = 1, j; i <= s; ++i) {
+  // test_time 为测试次数,建议设为不小于 8 的整数以保证正确率,但也不宜过大,否则会影响效率
+  for (int i = 1, j; i <= test_time; ++i) {
     int x = rand() % (n - 2) + 2, v = quickPow(x, a, n);
     if (v == 1 || v == n - 1) continue;
     for (j = 0; j < b; ++j) {
@@ -132,7 +139,7 @@ bool millerRabbin(int n) {
 
 1.  反素数肯定是从 $2$ 开始的连续素数的幂次形式的乘积。
 
-2.  数值小的素数的幂次大于等于数值大的素数，即 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 中，有 $k_1 \geq k_2 \geq k_3 \geq \cdots \geq k_n$ 
+2.  数值小的素数的幂次大于等于数值大的素数，即 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 中，有 $k_1 \geq k_2 \geq k_3 \geq \cdots \geq k_n$
 
 解释：
 
@@ -168,25 +175,25 @@ bool millerRabbin(int n) {
 
 #### 求因子数一定的最小数
 
-题目链接：<http://codeforces.com/problemset/problem/27/E>
+题目链接：<https://codeforces.com/problemset/problem/27/E>
 
 对于这种题，我么只要以因子数为 dfs 的返回条件基准，不断更新找到的最小值就可以了
 
 上代码：
 
-```c++
+```cpp
 #include <stdio.h>
 #define ULL unsigned long long
 #define INF ~0ULL
-int p[16] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53};
+ULL p[16] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53};
 
 ULL ans;
-int n;
+ULL n;
 
 // depth: 当前在枚举第几个素数。num: 当前因子数。
 // temp: 当前因子数量为 num
 // 的时候的数值。up：上一个素数的幂，这次应该小于等于这个幂次嘛
-void dfs(int depth, int temp, int num, int up) {
+void dfs(ULL depth, ULL temp, ULL num, ULL up) {
   if (num > n || depth >= 16) return;
   if (num == n && ans > temp) {
     ans = temp;
@@ -199,10 +206,10 @@ void dfs(int depth, int temp, int num, int up) {
 }
 
 int main() {
-  while (scanf("%d", &n) != EOF) {
+  while (scanf("%llu", &n) != EOF) {
     ans = INF;
     dfs(0, 1, 1, 64);
-    printf("%d\n", ans);
+    printf("%llu\n", ans);
   }
   return 0;
 }
@@ -214,7 +221,7 @@ int main() {
 
 思路同上，只不过要改改 dfs 的返回条件。注意这样的题目的数据范围，我一开始用了 int，应该是溢出了，在循环里可能就出不来了就超时了。上代码，0ms 过。注释就没必要写了上面写的很清楚了。
 
-```c++
+```cpp
 #include <cstdio>
 #include <iostream>
 #define ULL unsigned long long
@@ -239,10 +246,10 @@ void dfs(int depth, ULL temp, ULL num, int up) {
 }
 
 int main() {
-  while (scanf("%lld", &n) != EOF) {
+  while (scanf("%llu", &n) != EOF) {
     ans_num = 0;
     dfs(0, 1, 1, 60);
-    printf("%lld\n", ans);
+    printf("%llu\n", ans);
   }
   return 0;
 }

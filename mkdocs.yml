@@ -18,13 +18,20 @@ nav:
   - 简介:
     - Getting Started: index.md
     - OI 赛事与赛制: intro/mode.md
+    - ICPC/CCPC 赛事与赛制: intro/icpc.md
     - 学习资源: intro/resources.md
     - 常见错误: intro/common-mistakes.md
     - 常见技巧: intro/common-tricks.md
     - 非传统题: intro/non-traditional.md
     - 工具软件:
       - 评测工具: intro/judgers.md
-      - 编辑工具: intro/editors.md
+      - 编辑工具: 
+        - Vim: intro/editor-vim.md
+        - Emacs: intro/editor-emacs.md
+        - VS Code: intro/editor-vscode.md
+        - Atom: intro/editor-atom.md
+        - Eclipse: intro/editor-eclipse.md
+        - Notepad++: intro/editor-notepadpp.md
       - WSL (Windows 10): intro/wsl.md
       - Special Judge: intro/spj.md
       - Testlib:
@@ -43,7 +50,19 @@ nav:
     - 模拟: basic/simulate.md
     - 递归 & 分治: basic/divide-and-conquer.md
     - 贪心: basic/greedy.md
-    - 排序: basic/sort.md
+    - 排序:
+      - 排序简介: basic/sort-intro.md
+      - 选择排序: basic/selection-sort.md
+      - 冒泡排序: basic/bubble-sort.md
+      - 插入排序: basic/insertion-sort.md
+      - 计数排序: basic/bucket-sort.md
+      - 快速排序: basic/quick-sort.md
+      - 归并排序: basic/merge-sort.md
+      - 堆排序: basic/heap-sort.md
+      - 基数排序: basic/radix-sort.md
+      - 希尔排序: basic/shell-sort.md
+      - 排序相关 STL: basic/stl-sort.md
+      - 排序应用: basic/use-of-sort.md
     - 表达式求值: basic/expression.md
     - 二分: basic/binary.md
     - 构造: basic/construction.md
@@ -64,14 +83,19 @@ nav:
   - 动态规划:
     - 动态规划部分简介: dp/index.md
     - 记忆化搜索: dp/memo.md
-    - 背包 DP: dp/backpack.md
+    - 背包 DP: dp/knapsack.md
     - 区间 DP: dp/interval.md
     - DAG 上的 DP: dp/dag.md
     - 树形 DP: dp/tree.md
     - 状压 DP: dp/state.md
     - 数位 DP: dp/number.md
     - 插头 DP: dp/plug.md
-    - DP 优化: dp/optimization.md
+    - DP 优化:
+      - 二进制分组解多重背包: dp/optimizations/binary-knapsack.md
+      - 单调队列/单调栈优化: dp/optimizations/monotonous-queue-stack.md
+      - 斜率优化: dp/optimizations/convex-hull-optimization.md
+      - 四边形不等式优化: dp/optimizations/knuth-yao-quadrangle-inequality.md
+      - 状态设计优化: dp/optimizations/state-optimization.md
     - 其它 DP 方法: dp/misc.md
   - 字符串:
     - 字符串部分简介: string/index.md
@@ -113,14 +137,23 @@ nav:
       - 线性基: math/basis.md
     - 复数: math/complex.md
     - 分段打表: math/dictionary.md
-    - 莫比乌斯反演: math/mobius.md
-    - 杜教筛: math/du-sieves.md
+    - 数论函数相关:
+      - 莫比乌斯反演: math/mobius.md
+      - 杜教筛: math/du-sieves.md
     - 多项式:
-      - 多项式部分简介: math/poly.md
-      - 拉格朗日插值: math/lagrange-poly.md
-      - 快速傅里叶变换: math/fft.md
-      - 快速数论变换: math/ntt.md
-      - 快速沃尔什变换: math/fwt.md
+      - 多项式部分简介: math/poly/intro.md
+      - 拉格朗日插值: math/poly/lagrange-poly.md
+      - 快速傅里叶变换: math/poly/fft.md
+      - 快速数论变换: math/poly/ntt.md
+      - 快速沃尔什变换: math/poly/fwt.md
+      - 多项式求逆: math/poly/inv.md
+      - 多项式开方: math/poly/sqrt.md
+      - 多项式除法|取模: math/poly/div-mod.md
+      - 多项式对数函数|指数函数: math/poly/ln-exp.md
+      - 多项式牛顿迭代: math/poly/newton.md
+      - 多项式多点求值|快速插值: math/poly/multipoint-eval-interpolation.md
+      - 多项式三角函数: math/poly/tri-func.md
+      - 多项式反三角函数: math/poly/inv-tri-func.md
     - 组合数学:
       - 排列组合: math/combination.md
       - 卡特兰数: math/catalan.md
@@ -133,7 +166,7 @@ nav:
     - 数值积分: math/integral.md
     - 线性规划: math/linear-programming.md
     - 博弈论: math/game-theory.md
-    - 杂项: math/misc.md
+    - 数学杂项: math/misc.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
     - STL:
@@ -150,7 +183,7 @@ nav:
     - 链表: ds/linked-list.md
     - 哈希表: ds/hash.md
     - 并查集: ds/dsu.md
-    - 堆: 
+    - 堆:
       - 堆简介: ds/heap.md
       - 二叉堆: ds/binary-heap.md
       - 配对堆: ds/pairing-heap.md
@@ -165,7 +198,6 @@ nav:
     - 树状数组: ds/bit.md
     - 线段树: ds/segment.md
     - 划分树: ds/dividing.md
-    - 虚树: ds/virtual-tree.md
     - 平衡树:
       - 二叉搜索树简介: ds/bst.md
       - Treap: ds/treap.md
@@ -186,6 +218,7 @@ nav:
       - 可持久化块状数组: ds/persistent-block-array.md
       - 可持久化平衡树: ds/persistent-balanced.md
       - 可持久化字典树: ds/persistent-trie.md
+    - 珂朵莉树: ds/odt.md
     - Link Cut Tree: ds/lct.md
     - Euler Tour Tree: ds/ett.md
   - 图论:
@@ -197,12 +230,17 @@ nav:
       - 最近公共祖先: graph/lca.md
       - DFS 序: graph/dfs-order.md
       - 树的其他问题: graph/tree-misc.md
+      - 树哈希: graph/tree-hash.md
       - 树链剖分: graph/heavy-light-decomposition.md
       - 树分治: graph/tree-divide.md
       - 动态树分治: graph/dynamic-tree-divide.md
+      - 虚树: graph/virtual-tree.md
+      - 树上启发式合并: graph/dsu-on-tree.md
+    - 矩阵树定理: graph/matrix-tree.md
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
     - 最小生成树: graph/mst.md
+    - 最小树形图: graph/mdst.md
     - 最短路: graph/shortest-path.md
     - 差分约束: graph/differential-constraints.md
     - k 短路: graph/kth-path.md
@@ -229,6 +267,7 @@ nav:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
     - 三维计算几何基础: geometry/3d.md
+    - 距离: geometry/distance.md
     - Pick 定理: geometry/pick.md
     - 三角剖分: geometry/triangulation.md
     - 凸包: geometry/convex-hull.md
@@ -236,26 +275,26 @@ nav:
     - 旋转卡壳: geometry/rotating-calipers.md
     - 半平面交: geometry/half-plane-intersection.md
     - 平面最近点对: geometry/nearest-points.md
+    - 随机增量法: geometry/random-incremental.md
     - 计算几何杂项: geometry/magic.md
   - 杂项:
     - 杂项简介: misc/index.md
-    - CDQ 分治: misc/cdq-divide.md
-    - 莫队算法: misc/mo-algo.md
-    - 爬山算法: misc/hill-climbing.md
-    - 分数规划: misc/fractional-programming.md
-    - 模拟退火: misc/simulated-annealing.md
-    - 朱刘算法: misc/zhu-liu-algorithm.md
-    - 矩阵树定理: misc/matrix-tree.md
-    - 随机增量法: misc/random-incremental.md
-    - 随机化: misc/random.md
-    - 离线处理: misc/offline.md
-    - 距离: misc/distance.md
-    - 字节顺序: misc/endianness.md
-    - 复杂度: misc/complexity.md
     - 读入、输出优化: misc/io.md
+    - 复杂度: misc/complexity.md
     - 离散化: misc/discrete.md
-    - 树上启发式合并: misc/dsu-on-tree.md
-    - 珂朵莉树: misc/odt.md
+    - 离线算法:
+      - 离线算法简介: misc/offline.md
+      - CDQ 分治: misc/cdq-divide.md
+      - 整体二分: misc/parallel-binsearch.md
+      - 莫队算法: misc/mo-algo.md
+    - 分数规划: misc/fractional-programming.md
+    - 随机化:
+      - 随机函数: misc/random.md
+      - 爬山算法: misc/hill-climbing.md
+      - 模拟退火: misc/simulated-annealing.md
+    - 悬线法: misc/largest-matrix.md
+    - 计算理论基础: misc/cc-basic.md
+    - 字节顺序: misc/endianness.md
 
 # Theme
 theme:
@@ -287,13 +326,13 @@ extra:
   githash: ''
 
 extra_javascript:
-  - 'https://cdnjs.loli.net/ajax/libs/Han/3.3.0/han.min.js'
+  - 'https://cdn.jsdelivr.net/gh/ethantw/Han@3.3.0/dist/han.min.js'
   - '_static/js/extra.js?v=10'
   - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
 
 
 extra_css:
-  - 'https://cdn.jsdelivr.net/npm/ah@1.2.0/han.min.css'
+  - 'https://cdn.jsdelivr.net/npm/ah@1.5.0/han.min.css'
   - '_static/css/extra.css?v=11'
 
 # Extensions

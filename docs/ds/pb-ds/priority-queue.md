@@ -18,7 +18,7 @@ __gnu_pbds ::priority_queue<T, Compare, Tag, Allocator>
     -    `binary_heap_tag` ：二叉堆 
         官方文档认为在原生元素中二叉堆表现最好，不过我测试的表现并没有那么好
     -    `binomial_heap_tag` ：二项堆
-        二项堆在合并操作的表现要优于配对堆\*但是其取堆顶元素的
+        二项堆在合并操作的表现要优于二叉堆，但是其取堆顶元素操作的复杂度比二叉堆高。
     -    `rc_binomial_heap_tag` ：冗余计数二项堆
     -    `thin_heap_tag` ：除了合并的复杂度都和 Fibonacci 堆一样的一个 tag
 -    `Allocator` ：空间配置器，由于 OI 中很少出现，故这里不做讲解

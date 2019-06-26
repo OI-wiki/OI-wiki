@@ -50,7 +50,7 @@
 
 （伪代码）
 
-```c++
+```cpp
 up(x) {
   while (x > 1 && h[x] > h[x / 2]) {
     swap(h[x], h[x / 2]);

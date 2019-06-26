@@ -46,8 +46,8 @@ for (len = 1; len <= n; len++)
 
 ## 几道练习题
 
-[洛谷 P1063 能量项链](https://www.luogu.org/problemnew/show/P1063)
+[NOIP 2006 能量项链](https://vijos.org/p/1312)
 
-[洛谷 P1005 矩阵取数游戏](https://www.luogu.org/problemnew/show/P1005)
+[NOIP 2007 矩阵取数游戏](https://vijos.org/p/1378)
 
 [洛谷 P4767\[IOI2000\]邮局](https://www.luogu.org/problemnew/show/P4767)
