@@ -4,6 +4,8 @@
 
 不考虑各项系数的符号，将 $x^r$ 的系数的绝对值记做 $s(n, r)$，称为第一类 Stirling 数。
 
+$s(n, r)$ 也是把 n 个不同的球排成 r 个非空循环排列的方法数。
+
 关于第一类斯特林数的性质可以阅读 [Stirling Number of the First Kind](http://mathworld.wolfram.com/StirlingNumberoftheFirstKind.html)。
 
 ### 递推形式
@@ -11,6 +13,10 @@
 $$
 s(n,r) = (n-1)s(n-1,r)+s(n-1,r-1),\ n > r \geq 1
 $$
+
+考虑最后一个球，它可以单独构成一个非空循环排列，也可以插入到前面的某一个球的一侧。
+
+若单独放，则有 $s(n-1,r-1)$ 种放法；若放在某个球的一侧，则有 $(n-1)s(n-1,r)$ 种放法。
 
 ## 第二类斯特林数（Stirling Number）
 
@@ -23,6 +29,8 @@ $$
 $$
 S(n,r) = r S(n-1,r) + S(n-1,r-1),\ n > r \geq 1
 $$
+
+考虑最后一个球，若它单独放一个盒子，有 $S(n-1,r-1)$ 种放法；若是和前面的某一个球放在同一个盒子里，则有 $r S(n-1,r)$ 种放法。
 
 ## 例题
 
@@ -59,3 +67,8 @@ $$
 $$
 S_n^3 = \frac{1}{2} \times (3^{n-1}+1) - 2^{n-1}
 $$
+
+
+## 习题
+
+[HDU3625](http://acm.hdu.edu.cn/showproblem.php?pid=3625)
