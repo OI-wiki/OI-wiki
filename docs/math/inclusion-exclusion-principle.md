@@ -147,8 +147,6 @@ signed main(){
 
 ## 错位排列计数
 
-*2019.4.27 更新*
-
 > 对于 $1\sim n$ 的排列 $P$ 如果满足 $P_i\neq i$，则称 $P$ 是 $n$ 的错位排列。求 $n$ 的错位排列数。
 
 全集 $U$ 即为 $1\sim n$ 的排列，$|U|=n!$；属性就是 $P_i\neq i$. 套用补集的公式，问题变成求 $\left|\bigcup_{i=1}^n\overline{S_i}\right|$.
