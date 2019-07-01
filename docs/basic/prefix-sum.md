@@ -93,6 +93,24 @@ int main() {
 
 -   [CodeVS 1373. 射命丸文](http://codevs.cn/problem/1373/)
 
+### 基于 DP 计算高维前缀和
+
+前一节方法本质上是基于容斥原理来计算高维前缀和，其优点在于形式较为简单，无需特别记忆，但当维数升高时，其复杂度较高。这里介绍一种基于 DP 计算高维前缀和的方法。该方法即通常语境中所称的**高维前缀和**。
+
+设高维空间 $U$ 共有 $D$ 维，需要对 $f[\cdot]$ 求高维前缀和 $\text{sum}[\cdot]$。令 $\text{sum}[i][\text{state}]$ 表示同 $\text{state}$ 后 $D - i$ 维相同的所有点对于 $\text{state}$ 点高维前缀和的贡献。由定义可知 $\text{sum}[0][\text{state}] = f[\text{state}]$，以及 $\text{sum}[\text{state}] = \text{sum}[D][\text{state}]$。
+
+其递推关系为 $\text{sum}[i][\text{state}] = \text{sum}[i - 1][\text{state}] + \text{sum}[i][\text{state}']$，其中 $\text{state}'$ 为第 $i$ 维恰好比 $\text{state}$ 少 $1$ 的点。该方法的复杂度为 $O(D \times |U|)$，其中 $|U|$ 为高维空间 $U$ 的大小。
+
+其一种实现的伪代码如下：
+
+```
+for state
+	sum[state] = f[state];
+for(i = 0;i <= D;i += 1)
+	for 以字典序从小到大枚举 state
+		sum[state] += sum[state'];
+```
+
 ## 树上前缀和
 
 设 $sum_i$ 表示结点 $i$ 到根节点的权值总和。  
