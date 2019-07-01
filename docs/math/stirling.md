@@ -4,7 +4,7 @@
 
 不考虑各项系数的符号，将 $x^r$ 的系数的绝对值记做 $s(n, r)$，称为第一类 Stirling 数。
 
-$s(n, r)$ 也是把 n 个不同的球排成 r 个非空循环排列的方法数。
+$s(n, r)$ 也是把 $n$ 个不同的球排成 $r$ 个非空循环排列的方法数。
 
 关于第一类斯特林数的性质可以阅读 [Stirling Number of the First Kind](http://mathworld.wolfram.com/StirlingNumberoftheFirstKind.html)。
 
@@ -20,7 +20,7 @@ $$
 
 ## 第二类斯特林数（Stirling Number）
 
-把 n 个不同的球放到 r 个相同的盒子里，假设没有空盒，则放球方案数记做 $S(n, r)$，称为第二类 Stirling 数。
+把 $n$ 个不同的球放到 $r$ 个相同的盒子里，假设没有空盒，则放球方案数记做 $S(n, r)$，称为第二类 Stirling 数。
 
 关于第二类斯特林数的性质可以阅读 [Stirling Number of the Second Kind](http://mathworld.wolfram.com/StirlingNumberoftheSecondKind.html)。
 
