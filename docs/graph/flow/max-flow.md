@@ -309,15 +309,15 @@ $$
 
 如图，每个结点中间表示编号，左下表示高度值 $h(u)$，右下表示超额流 $e(u)$，结点颜色的深度也表示结点的高度；边权表示 $c(u,v)-f(u,v)$，绿色的边表示满足 $h(u)=h(v)+1$ 的边 $(u,v)$（即残存网络的边 $E_f$）：
 
-![p1](https://hexo-source-1257756441.cos.ap-chengdu.myqcloud.com/2018/12/21/2148.png)
+![p1](./images/2148.png)
 
 整个算法我们大致浏览一下过程，这里笔者使用的是一个暴力算法，即暴力扫描是否有溢出的结点，有就更新
 
-![p2](https://hexo-source-1257756441.cos.ap-chengdu.myqcloud.com/2018/12/21/2149.gif)
+![p2](./images/2149.gif)
 
 最后的结果
 
-![p3](https://hexo-source-1257756441.cos.ap-chengdu.myqcloud.com/2018/12/21/2150.png)
+![p3](./images/2150.png)
 
 可以发现，最后的超额流一部分回到了 $s$，且除了源点汇点，其他结点都没有溢出；这时的流函数 $f$ 满足流守恒性，为最大流，即 $e(t)$。
 
@@ -448,6 +448,6 @@ int main(){
 
 感受一下运行过程
 
-![HLPP](https://hexo-source-1257756441.cos.ap-chengdu.myqcloud.com/2018/12/22/1152.png)
+![HLPP](./images/1152.png)
 
 其中 pic13 到 pic14 执行了 Relabel(4)，并进行了 GAP 优化
