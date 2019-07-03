@@ -8,6 +8,8 @@
     有许多值得尝试的数学题和思维题。
 -   [BZOJ](https://www.lydsy.com/JudgeOnline/)
     因原属衡阳八中而得简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。
+-   [Comet OJ](https://www.cometoj.com)
+    旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库。
 -   [CodeVS](http://www.codevs.cn/)
     面向 OI 选手的过气 OJ
 -   [FZUOJ](http://acm.fzu.edu.cn/)
