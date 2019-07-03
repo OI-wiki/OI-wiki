@@ -3,12 +3,10 @@
 大部分的可持久化 Trie 题中，Trie 都是以 01-Trie 的形式出现的。
 
 ??? note " 例题[最大异或和](https://www.lydsy.com/JudgeOnline/problem.php?id=3261)"
-
-对一个长度为 $n$ 的数组 $a$ 维护以下操作：
-
-1.  在数组的末尾添加一个数 $x$ ，数组的长度 $n$ 自增 $1$ 。
-
-2.  给出查询区间 $[l,r]$ 和一个值 $k$ ，求当 $l\le p\le r$ 时， $k \oplus \bigoplus^{n}_{i=p} a_i$ 。
+    对一个长度为 $n$ 的数组 $a$ 维护以下操作：
+    
+    1.  在数组的末尾添加一个数 $x$ ，数组的长度 $n$ 自增 $1$ 。
+    2.  给出查询区间 $[l,r]$ 和一个值 $k$ ，求当 $l\le p\le r$ 时， $k \oplus \bigoplus^{n}_{i=p} a_i$ 。
 
 这个求的值可能有些麻烦，利用常用的处理连续异或的方法，记 $s_x=\bigoplus_{i=1}^x a_i$ ，则原式等价于 $s_{p-1}\oplus s_n\oplus k$ ，观察到 $s_n \oplus k$ 在查询的过程中是固定的，题目的查询变化为查询在区间 $[l-1,r-1]$ 中异或定值（ $s_n\oplus k$ ）的最大值。
 
