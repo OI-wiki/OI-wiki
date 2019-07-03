@@ -106,9 +106,9 @@
     ```cpp
     bool operator<(const int a,const int b){
         if (block[a.l]==block[b.l])
-	    return (block[a.l]&1)^(a.r<b.r);
-	else
-	    return block[a.l]<block[b.l];
+	        return (block[a.l]&1)^(a.r<b.r);
+	    else
+	        return block[a.l]<block[b.l];
     ```
     
     上述代码中`(block[a.l]&1)^(a.r<b.r)`不满足严格弱序的要求 2。
@@ -118,7 +118,7 @@
     ```cpp
     bool operator<(const int a,const int b){
         if (block[a.l]==block[b.l])
-	    return (block[a.l]&1)?(a.r<b.r):(a.r>b.r);
-	else
-	    return block[a.l]<block[b.l];
+	        return (block[a.l]&1)?(a.r<b.r):(a.r>b.r);
+	    else
+	        return block[a.l]<block[b.l];
     ```
