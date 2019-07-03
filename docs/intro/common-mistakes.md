@@ -47,6 +47,8 @@
 
 -  读入优化未判断负数。
 
+-  所用数据类型不够大导致溢出，即常见的不开 `long long` 见祖宗
+
 -  存图下标从 0 开始输入节点未 -1。
 
 -  BFS 时不标记某个状态是否已访问过。
@@ -93,3 +95,30 @@
 
     -   对拍时未清除文件指针即 `fclose(fp)` 就又令 `fp = fopen()` , 这会使得进程出现大量的文件野指针。
     -   `freopen()` 中的文件名未加 `.in` / `.out` 。
+    
+-  排序时比较函数的错误
+    `std::sort` 要求比较函数是严格弱序：`a<a` 为 `false`；若 `a<b` 为 `true`，则 `b<a` 为 `false`；若 `a<b` 为 `true` 且 `b<c` 为 `true`，则 `a<c` 为 `true`。其中要特别注意第二点。
+    
+    如果不满足上述要求，排序时很可能会 RE。
+    
+    例如，编写莫队的奇偶性排序时，这样写是错误的：
+    
+    ```cpp
+    bool operator<(const int a,const int b){
+        if (block[a.l]==block[b.l])
+	        return (block[a.l]&1)^(a.r<b.r);
+	    else
+	        return block[a.l]<block[b.l];
+    ```
+    
+    上述代码中 `(block[a.l]&1)^(a.r<b.r)` 不满足严格弱序的要求 2。
+    
+    改成这样就正确了。
+    
+    ```cpp
+    bool operator<(const int a,const int b){
+        if (block[a.l]==block[b.l])
+	        return (block[a.l]&1)?(a.r<b.r):(a.r>b.r);
+	    else
+	        return block[a.l]<block[b.l];
+    ```
