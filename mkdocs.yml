@@ -165,6 +165,7 @@ nav:
     - 置换群: math/permutation-group.md
     - 数值积分: math/integral.md
     - 线性规划: math/linear-programming.md
+    - 单纯形: math/simplex.md
     - 博弈论: math/game-theory.md
     - 数学杂项: math/misc.md
   - 数据结构:
