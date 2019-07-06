@@ -221,6 +221,7 @@ nav:
     - 珂朵莉树: ds/odt.md
     - Link Cut Tree: ds/lct.md
     - Euler Tour Tree: ds/ett.md
+    - 析合树: ds/divide-combine.md
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论基础: graph/basic.md
