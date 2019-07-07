@@ -6,13 +6,13 @@
 
 ## 欧拉定理
 
-若 $\gcd(a, m) = 1$ ，则 $a^{\phi(m)} \equiv 1 \pmod{m}$ 。
+若 $\gcd(a, m) = 1$ ，则 $a^{\varphi(m)} \equiv 1 \pmod{m}$ 。
 
 ### 证明
 
-设 $r_1, r_2, \cdots, r_{\phi(m)}$ 为模 $m$ 意义下的一个简化剩余系，则 $ar_1, ar_2, \cdots, ar_{\phi(m)}$ 也为模 $m$ 意义下的一个简化剩余系。所以 $r_1r_2 \cdots r_{\phi(m)} \equiv ar_1 \cdot ar_2 \cdots ar_{\phi(m)} \equiv a^{\phi(m)}r_1r_2 \cdots r_{\phi(m)} \pmod{m}$ ，可约去 $r_1r_2 \cdots r_{\phi(m)}$ ，即得 $a^{\phi(m)} \equiv 1 \pmod{m}$ 。
+设 $r_1, r_2, \cdots, r_{\varphi(m)}$ 为模 $m$ 意义下的一个简化剩余系，则 $ar_1, ar_2, \cdots, ar_{\varphi(m)}$ 也为模 $m$ 意义下的一个简化剩余系。所以 $r_1r_2 \cdots r_{\varphi(m)} \equiv ar_1 \cdot ar_2 \cdots ar_{\varphi(m)} \equiv a^{\varphi(m)}r_1r_2 \cdots r_{\varphi(m)} \pmod{m}$ ，可约去 $r_1r_2 \cdots r_{\varphi(m)}$ ，即得 $a^{\varphi(m)} \equiv 1 \pmod{m}$ 。
 
-当 $m$ 为素数时，由于 $\phi(m) = m - 1$ ，代入欧拉定理可立即得到费马小定理。
+当 $m$ 为素数时，由于 $\varphi(m) = m - 1$ ，代入欧拉定理可立即得到费马小定理。
 
 ## 扩展欧拉定理
 
