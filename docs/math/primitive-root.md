@@ -5,18 +5,18 @@
 
 若 $\text{ord}_ma=l$，则 $\text{ord}_m{a^t} = \frac{l}{(t,l)}$
 
-由欧拉定理，设 $\text{ord}_ma=l$，则 $a^n \equiv 1 \pmod m$ 当且仅当 $l | n$，特别地，$l | \phi(m)$。
+由欧拉定理，设 $\text{ord}_ma=l$，则 $a^n \equiv 1 \pmod m$ 当且仅当 $l | n$，特别地，$l | \varphi(m)$。
 
-- 设 $p$ 是素数，$\text{ord}_pa=l$，那么有且仅有 $\phi(l)$ 个关于模 $p$ 的阶为 $l$ 且两两互不同余的数。
+- 设 $p$ 是素数，$\text{ord}_pa=l$，那么有且仅有 $\varphi(l)$ 个关于模 $p$ 的阶为 $l$ 且两两互不同余的数。
 - 设 $\text{ord}_ma=l$，则 $1, a, a^2, \cdots, a^{l-1}$ 关于模 $m$ 两两互不同余。
-- 设 $p$ 是素数，$l|p-1$，则存在 $\phi(l)$ 个关于模 $p$ 的阶为 $l$ 且两两互不同余的数。
+- 设 $p$ 是素数，$l|p-1$，则存在 $\varphi(l)$ 个关于模 $p$ 的阶为 $l$ 且两两互不同余的数。
 - 若 $m=p_1^{a_1}p_2^{a_2}\cdots p_k^{a_k}$，则 $\text{ord}_ma = [\text{ord}_{p_1}^{a_1}, \text{ord}_{p_2}^{a_2}, \cdots, \text{ord}_{p_k}^{a_k}]$
 
 ## 原根
 
-$(g, m)=1$，若 $\text{ord}_mg = \phi(m)$，则称 $g$ 为 $m$ 的一个原根。
+$(g, m)=1$，若 $\text{ord}_mg = \varphi(m)$，则称 $g$ 为 $m$ 的一个原根。
 
-$g$ 为 $m$ 的一个原根当且仅当 $\{g, g^2, \cdots, g^{\phi(m)}\}$ 构成模 $m$ 的一个既约剩余系。
+$g$ 为 $m$ 的一个原根当且仅当 $\{g, g^2, \cdots, g^{\varphi(m)}\}$ 构成模 $m$ 的一个既约剩余系。
 
 ### 判断是否有原根
 
@@ -24,7 +24,7 @@ $g$ 为 $m$ 的一个原根当且仅当 $\{g, g^2, \cdots, g^{\phi(m)}\}$ 构成
 
 ### 求所有原根
 
-设 $g$ 为 $m$ 的一个原根，则集合 $S = \{g^s | 1 \leq s \leq \phi(m), (s, \phi(m)) = 1\}$ 给出 $m$ 的全部原根。因此，若 $m$ 有原根，则 $m$ 有 $\phi(\phi(m))$ 个关于模 $m$ 两两互不同余的原根。
+设 $g$ 为 $m$ 的一个原根，则集合 $S = \{g^s | 1 \leq s \leq \varphi(m), (s, \varphi(m)) = 1\}$ 给出 $m$ 的全部原根。因此，若 $m$ 有原根，则 $m$ 有 $\varphi(\varphi(m))$ 个关于模 $m$ 两两互不同余的原根。
 
 ## 求一个原根
 
@@ -32,7 +32,7 @@ $g$ 为 $m$ 的一个原根当且仅当 $\{g, g^2, \cdots, g^{\phi(m)}\}$ 构成
 
 另一种表达形式：
 
-$(g,m) =1$，设 $p_1, p_2, \cdots, p_k$ 是 $\phi(m)$ 的所有不同的素因数，则 $g$ 是 $m$ 的原根，当且仅当对任意 $1 \leq i \leq k$，都有 $g^{\frac{\phi(m)}{p_i}} \not\equiv 1 \pmod m$
+$(g,m) =1$，设 $p_1, p_2, \cdots, p_k$ 是 $\varphi(m)$ 的所有不同的素因数，则 $g$ 是 $m$ 的原根，当且仅当对任意 $1 \leq i \leq k$，都有 $g^{\frac{\varphi(m)}{p_i}} \not\equiv 1 \pmod m$
 
 ### 证明
 
