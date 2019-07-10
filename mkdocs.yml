@@ -6,8 +6,8 @@ site_url: https://oi-wiki.org
 strict: true
 
 # Repository
-repo_name: '24OI/OI-wiki'
-repo_url: 'https://github.com/24OI/OI-wiki'
+repo_name: 'OI-wiki/OI-wiki'
+repo_url: 'https://github.com/OI-wiki/OI-wiki'
 edit_uri: 'blob/master/docs/'
 
 # Copyright
