@@ -39,7 +39,7 @@
 for (len = 1; len <= n; len++)
   for (i = 1; i <= 2 * n - 1; i++) {
     int j = len + i - 1;
-    for (k = i; k <= j && k <= 2 * n - 1; k++)
+    for (k = i; k < j && k <= 2 * n - 1; k++)
       f[i][j] = max(f[i][j], f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1]);
   }
 ```
