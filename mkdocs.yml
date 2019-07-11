@@ -72,7 +72,7 @@ nav:
     - pb_ds:
       - 堆: lang/pb-ds-priority-queue.md
       - 平衡树: lang/pb-ds-tree.md
-    - python 速成: lang/python.md
+    - Python 速成: lang/python.md
   - 基础算法:
     - 基础算法简介: basic/index.md
     - 枚举: basic/enumerate.md
