@@ -1,6 +1,16 @@
 ## 介绍
 
-`std::bitset` 是标准库中的一个存储 `0/1` 的大小不可变容器。
+`std::bitset` 是标准库中的一个存储 `0/1` 的大小不可变容器。严格来讲，它并不属于 STL。
+
+??? " bitset 与 STL "
+
+    > The C++ standard library provides some special container classes, the so-called container adapters (stack, queue, priority queue). In addition, a few classes provide a container-like interface (for example, strings, bitsets, and valarrays). All these classes are covered separately.1 Container adapters and bitsets are covered in Chapter 12.
+    
+    > The C++ standard library provides not only the containers for the STL framework but also some containers that fit some special needs and provide simple, almost self-explanatory, interfaces. You can group these containers into either the so-called container adapters, which adapt standard STL containers to fit special needs, or a bitset, which is a containers for bits or Boolean values. There are three standard container adapters: stacks, queues, and priority queues. In priority queues, the elements are sorted automatically according to a sorting criterion. Thus, the “next” element of a priority queue is the element with the “highest” value. A bitset is a bitfield with an arbitrary but fixed number of bits. Note that the C++ standard library also provides a special container with a variable size for Boolean values: vector.
+    
+    ——摘自 《The C++ Standard Library 2nd Edition》
+    
+    由此看来，`bitset` 并不属于 STL，而是一种标准库中的 "Special Container"。事实上，它作为一种容器，也并不满足 STL 容器的要求。说它是适配器，它也并不依赖于其它 STL 容器作为底层实现。
 
 由于内存地址是按字节即 `byte` 寻址，而非比特 `bit`，一个 `bool` 类型的变量，虽然只能表示 `0/1` , 但是也占了 `1byte` 的内存。
 
@@ -27,6 +37,12 @@
 #include <bitset> 
 ```
 
+### 指定大小
+
+```cpp
+bitset<1000> bs; // a bitset with 1000 bits
+```
+
 ### 构造函数
 
 - `bitset()` : 每一位都是 `false`。
@@ -50,7 +66,7 @@
 - `none()` : 若所有位都是 `false` 则返回 `true`，否则返回 `false`。
 - `all()` : **C++11**，若所有位都是 `true` 则返回 `true`，否则返回 `false`。
 - 1. `set()` : 将整个 `bitset` 设置成 `true` 。
-  1. `set(pos, val = true)` : 将某一位设置成 `true`/`false`。
+  2. `set(pos, val = true)` : 将某一位设置成 `true`/`false`。
 - 1. `reset()` : 将整个 `bitset` 设置成 `false` 。
   2. `reset(pos)` : 将某一位设置成 `false`。相当于 `set(pos, false)`。
 - 1. `flip()` : 翻转每一位。（$0\leftrightarrow1$，相当于异或一个全是 $1$ 的 `bitset`）
@@ -123,9 +139,9 @@ $O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单，$\log$ 预处理就如下�
       #include <bitset>
       #include <cctype>
       #include <cmath>
-
+    
       using namespace std;
-
+    
       int read()
       {
           int out=0;
@@ -134,22 +150,22 @@ $O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单，$\log$ 预处理就如下�
           for (;isdigit(c);c=getchar()) out=out*10+c-'0';
           return out;
       }
-
+    
       const int N=100005;
       const int M=1000005;
       const int V=7005;
-
+    
       bitset<V> pre[V],pre2[V],a[N],mu;
       int n,m,tot;
       char ans[M];
-
+    
       int main()
       {
           int i,j,x,y,z;
-
+    
           n=read();
           m=read();
-
+    
           mu.set();
           for (i=2;i*i<V;++i)
           {
@@ -166,7 +182,7 @@ $O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单，$\log$ 预处理就如下�
                   pre2[i][i*j]=mu[j];
               }
           }
-
+    
           while (m--)
           {
               switch (read())
@@ -195,9 +211,9 @@ $O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单，$\log$ 预处理就如下�
                       break;
               }
           }
-
+    
           printf("%s",ans);
-
+    
           return 0;
       }
       ```
@@ -208,4 +224,4 @@ $O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单，$\log$ 预处理就如下�
 
 ### 计算高维偏序
 
-详见 [FHR 课件](https://github.com/OI-wiki/libs/blob/master/ds/stl/FHR-分块bitset求高维偏序.pdf)。
+详见 [FHR 课件](https://github.com/OI-wiki/libs/blob/master/lang/FHR-分块bitset求高维偏序.pdf)。
