@@ -6,13 +6,13 @@
 
 对于一棵二叉树，我们定义 **外节点** 为左儿子或右儿子为空的节点，定义一个外节点的 $dist​$ 为 $1​$，一个不是外节点的节点 $dist​$ 为其到子树中最近的外节点的距离加一。空节点的 $dist​$ 为 $0​$。
 
-> 注：很多地方定义的 $dist​$ 都是本文中的 $dist​$ 减去 $1​$，本文这样定义是因为代码写起来方便。
+> 注：很多其它教程中定义的 $dist$ 都是本文中的 $dist$ 减去 $1$，本文这样定义是因为代码写起来方便。
 
 一棵有 $n$ 个节点的二叉树，根的 $dist$ 不超过 $\left\lceil\log (n+1)\right\rceil$，因为一棵根的 $dist$ 为 $x$ 的二叉树至少有 $x-1$ 层是满二叉树，那么就至少有 $2^x-1​$ 个节点。注意这个性质是所有二叉树都具有的，并不是左偏树所特有的。
 
 ## 左偏树的定义和性质
 
-左偏树是一棵二叉树，它不仅具有堆的性质，并且是 “左偏” 的：每个节点左儿子的 $dist​$ 都大于等于右儿子的 $dist​$。
+左偏树是一棵二叉树，它不仅具有堆的性质，并且是 “左偏” 的：每个节点左儿子的 $dist$ 都大于等于右儿子的 $dist$。
 
 因此，左偏树每个节点的 $dist​$ 都等于其右儿子的 $dist​$ 加一。
 
@@ -43,16 +43,16 @@ int merge(int x, int y)
 ```cpp
 int& rs(int x)
 {
-	return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d];
+    return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d];
 }
 
 int merge(int x, int y)
 {
-	if (!x || !y) return x | y;
-	if (t[x].val < t[y].val) swap(x, y);
-	rs(x) = merge(rs(x), y);
-	t[x].d = t[rs(x)].d + 1;
-	return x;
+    if (!x || !y) return x | y;
+    if (t[x].val < t[y].val) swap(x, y);
+    rs(x) = merge(rs(x), y);
+    t[x].d = t[rs(x)].d + 1;
+    return x;
 }
 ```
 
@@ -75,26 +75,26 @@ int merge(int x, int y)
 ```cpp
 int& rs(int x)
 {
-	return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d];
+    return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d];
 }
 
 int merge(int x, int y) //有了pushup，直接merge左右儿子就实现了删除节点并保持左偏性质
 {
-	if (!x || !y) return x | y;
-	if (t[x].val < t[y].val) swap(x, y);
-	t[rs(x) = merge(rs(x), y)].fa = x;
-	pushup(x);
-	return x;
+    if (!x || !y) return x | y;
+    if (t[x].val < t[y].val) swap(x, y);
+    t[rs(x) = merge(rs(x), y)].fa = x;
+    pushup(x);
+    return x;
 }
 
 void pushup(int x)
 {
-	if (!x) return;
-	if (t[x].d != t[rs(x)].d + 1)
-	{
-		t[x].d = t[rs(x)].d + 1;
-		pushup(t[x].fa);
-	}
+    if (!x) return;
+    if (t[x].d != t[rs(x)].d + 1)
+    {
+        t[x].d = t[rs(x)].d + 1;
+        pushup(t[x].fa);
+    }
 }
 ```
 
@@ -616,4 +616,3 @@ int pop(int x)
 ### [「BOI2004」Sequence 数字序列](https://www.luogu.org/problemnew/show/P4331)
 
 这是一道论文题，详见[《黄源河--左偏树的特点及其应用》](https://github.com/OI-wiki/libs/blob/master/ds/黄源河--左偏树的特点及其应用.pdf)。
-
