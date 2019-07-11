@@ -40,7 +40,7 @@ $$
 
 $$
 s.t \begin{cases}  
-\sum_{j = 1}^{n}a_{ij}x_j = b_j, i = 1,2,...,m\\ 
+\displaystyle \sum_{j = 1}^{n}a_{ij}x_j = b_j, i = 1,2,...,m\\ 
 xj \geq 0 , j = 1,2,...,n  \\
 \end{cases}
 $$
@@ -71,7 +71,7 @@ $$
 
 标准形的形式为：
 
-- 1）目标函数要求max
+- 1）目标函数要求 $\max$
 
 - 2）约束条件均为等式
 
@@ -136,7 +136,7 @@ $$
 还是通过上述具体的线性规划问题来说明：
 
 $$
-max \ z = x_1 + x_2
+\max \ z = x_1 + x_2
 $$
 
 $$
@@ -147,7 +147,7 @@ x_1, x_2, x_3, x_4 \geq 0
 \end{cases}
 $$
 
-如果选择 $x_2$ 、$x_3$ 为基变量，那么令 $x_1$、$x_4$ 等于 $0$ ，可以去求解基变量 $x_2$ 、$x_3$ 的值。对系数矩阵做行变换，如下所示，$x_2=9/2$ ，$x_3=15/2$。
+如果选择 $x_2​$ 、$x_3​$ 为基变量，那么令 $x_1​$、$x_4​$ 等于 $0​$ ，可以去求解基变量 $x_2​$ 、$x_3​$ 的值。对系数矩阵做行变换，如下所示，$x_2=9/2​$ ，$x_3=15/2​$。
 
 $$
 \left[\begin{array}{ccccc}{\mathrm{X}} & {x_{1}} & {x_{2}} & {x_{3}} & {x_{4}} & {b} \\ {} & {2} & {1} & {1} & {0} & {12} \\ {} & {1} & {2} & {0} & {1} & {9} \\ {\mathrm{C}} & {1} & {1} & {0} & {0} & {z}\end{array}\right] \rightarrow\left[\begin{array}{ccccc}{\mathrm{X}} & {x_{1}} & {x_{2}} & {x_{3}} & {x_{4}} & {b} \\ {} & {\frac{3}{2}} & {0} & {1} & {-\frac{1}{2}} & {\frac{15}{2}} \\ {} & {\frac{1}{2}} & {1} & {0} & {\frac{1}{2}} & {\frac{9}{2}} \\ {\mathrm{C}} & {\frac{1}{2}} & {0} & {0} & {-\frac{1}{2}} & {z-\frac{9}{2}}\end{array}\right]
@@ -293,136 +293,111 @@ double Z;
 set<int> P;
 size_t cn, bn;
 
-bool Pivot(pair<size_t, size_t> &p)//返回0表示所有的非轴元素都小于0
-{
-    int x = 0, y = 0;
-    double cmax = -INT_MAX;
-    vector<double> C = Matrix[0];
-    vector<double> B;
+bool Pivot(pair<size_t, size_t> &p) { //返回0表示所有的非轴元素都小于0
+	int x = 0, y = 0;
+	double cmax = -INT_MAX;
+	vector<double> C = Matrix[0];
+	vector<double> B;
 
-    for( size_t i = 0 ; i < bn ; i++ )
-    {
-        B.push_back(Matrix[i][cn-1]);
-    }
+	for(size_t i = 0 ; i < bn ; i++) {
+		B.push_back(Matrix[i][cn - 1]);
+	}
 
-    for( size_t i = 0 ; i < C.size(); i++ )//在非轴元素中找最大的c
-    {
-        if( cmax < C[i] && P.find(i) == P.end())
-        {
-            cmax = C[i];
-            y = i;
-        }
-    }
-    if( cmax < 0 )
-    {
-        return 0;
-    }
+	for(size_t i = 0 ; i < C.size(); i++) { //在非轴元素中找最大的c
+		if(cmax < C[i] && P.find(i) == P.end()) {
+			cmax = C[i];
+			y = i;
+		}
+	}
+	if(cmax < 0) {
+		return 0;
+	}
 
-    double bmin = INT_MAX;
-    for( size_t i = 1 ; i < bn ; i++ )
-    {
-        double tmp = B[i]/Matrix[i][y];
-       if( Matrix[i][y] != 0 && bmin > tmp )
-       {
-           bmin = tmp;
-           x = i;
-       }
-    }
+	double bmin = INT_MAX;
+	for(size_t i = 1 ; i < bn ; i++) {
+		double tmp = B[i] / Matrix[i][y];
+		if(Matrix[i][y] != 0 && bmin > tmp) {
+			bmin = tmp;
+			x = i;
+		}
+	}
 
-    p = make_pair(x, y);
+	p = make_pair(x, y);
 
-    for( set<int>::iterator it = P.begin() ; it != P.end() ; it++)
-    {
-        if( Matrix[x][*it] != 0 )
-        {
-            //cout<<"erase "<<*it<<endl;
-            P.erase(*it);
-            break;
-        }
-    }
-    P.insert(y);
-    //cout<<"add "<<y<<endl;
-    return true;
+	for(set<int>::iterator it = P.begin() ; it != P.end() ; it++) {
+		if(Matrix[x][*it] != 0) {
+			//cout<<"erase "<<*it<<endl;
+			P.erase(*it);
+			break;
+		}
+	}
+	P.insert(y);
+	//cout<<"add "<<y<<endl;
+	return true;
 }
 
-void pnt()
-{
-    for( size_t i = 0 ; i < Matrix.size() ; i++ )
-    {
-        for( size_t j = 0 ; j < Matrix[0].size() ; j++ )
-        {
-            cout<<Matrix[i][j]<<"\t";
-        }
-    cout<<endl;
-    }
-    cout<<"result z:"<<-Matrix[0][cn-1]<<endl;
+void pnt() {
+	for(size_t i = 0 ; i < Matrix.size() ; i++) {
+		for(size_t j = 0 ; j < Matrix[0].size() ; j++) {
+			cout << Matrix[i][j] << "\t";
+		}
+		cout << endl;
+	}
+	cout << "result z:" << -Matrix[0][cn - 1] << endl;
 }
 
-void Gaussian(pair<size_t, size_t> p)//行变换
-{
-    size_t  x = p.first;
-    size_t y = p.second;
-    double norm = Matrix[x][y];
-    for( size_t i = 0 ; i < cn ; i++ )//主行归一化
-    {
-        Matrix[x][i] /= norm;
-    }
-    for( size_t i = 0 ; i < bn && i != x; i++ )
-    {
-        if( Matrix[i][y] != 0)
-        {
-            double tmpnorm = Matrix[i][y];
-            for( size_t j = 0 ; j < cn ; j++ )
-            {
-                Matrix[i][j] = Matrix[i][j] - tmpnorm * Matrix[x][j];
-            }
-        }
-    }
+void Gaussian(pair<size_t, size_t> p) { //行变换
+	size_t  x = p.first;
+	size_t y = p.second;
+	double norm = Matrix[x][y];
+	for(size_t i = 0 ; i < cn ; i++) { //主行归一化
+		Matrix[x][i] /= norm;
+	}
+	for(size_t i = 0 ; i < bn && i != x; i++) {
+		if(Matrix[i][y] != 0) {
+			double tmpnorm = Matrix[i][y];
+			for(size_t j = 0 ; j < cn ; j++) {
+				Matrix[i][j] = Matrix[i][j] - tmpnorm * Matrix[x][j];
+			}
+		}
+	}
 }
 
-void solve()
-{
-    pair<size_t, size_t> t;
-    while(1)
-    {
+void solve() {
+	pair<size_t, size_t> t;
+	while(1) {
 
-        pnt();
-        if( Pivot(t) == 0 )
-        {
-            return;
-        }
-        cout<<t.first<<" "<<t.second<<endl;
-        for( set<int>::iterator it = P.begin(); it != P.end()  ; it++ )
-        {
-            cout<<*it<<" ";
-        }
-        cout<<endl;
-        Gaussian(t);
-    }
+		pnt();
+		if(Pivot(t) == 0) {
+			return;
+		}
+		cout << t.first << " " << t.second << endl;
+		for(set<int>::iterator it = P.begin(); it != P.end()  ; it++) {
+			cout << *it << " ";
+		}
+		cout << endl;
+		Gaussian(t);
+	}
 }
 
-int main(int argc, char *argv[])
-{
-    //ifstream fin;
-    //fin.open("./test");
-    cin>>cn>>bn;
-    for( size_t i = 0 ; i < bn ; i++ )
-    {
-        vector<double> vectmp;
-        for( size_t j = 0 ; j < cn ; j++)
-        {
-            double tmp = 0;
-            cin>>tmp;
-            vectmp.push_back(tmp);
-        }
-        Matrix.push_back(vectmp);
-    }
+int main(int argc, char *argv[]) {
+	//ifstream fin;
+	//fin.open("./test");
+	cin >> cn >> bn;
+	for(size_t i = 0 ; i < bn ; i++) {
+		vector<double> vectmp;
+		for(size_t j = 0 ; j < cn ; j++) {
+			double tmp = 0;
+			cin >> tmp;
+			vectmp.push_back(tmp);
+		}
+		Matrix.push_back(vectmp);
+	}
 
-    for( size_t i = 0 ; i < bn-1 ; i++ )
-    {
-        P.insert(cn-i-2);
-    }
-    solve();
+	for(size_t i = 0 ; i < bn - 1 ; i++) {
+		P.insert(cn - i - 2);
+	}
+	solve();
 }
 /////////////////////////////////////
 //glpk input:
@@ -459,7 +434,7 @@ int main(int argc, char *argv[])
 
 ### 6.1 标准型
 
-$m+n$ 个约束 $n$ 个变量用 $x$ 向量表示，$A$ 是一个 $m*n$ 的矩阵，$c$ 是一个 $n$ 的向量，$b$ 是一个 $m$ 的向量，最大化 $cx$ 满足约束 $Ax \leq b,x > 0$。
+$m+n$ 个约束 $n$ 个变量用 $x$ 向量表示，$A$ 是一个 $m\times n$ 的矩阵，$c$ 是一个 $n$ 的向量，$b$ 是一个 $m$ 的向量，最大化 $cx$ 满足约束 $Ax \leq b,x > 0$。
 
 最大化 $\sum_{j=1}^nc_jx_j$ 满足如下约束条件：
 $$
@@ -484,7 +459,7 @@ $$
 
 ### 6.2 转换为标准型
 
-若目标函数要求取最小值，那么可以对其取相反数变成取最大值。对于限制条件 $f(x_1, x_2, \ldots ,x_n) = b$，可以用两个不等式 $f(x_1, x2, \ldots, x_n) \leq b,-f(x_1,x_2,\ldots,x_n) \leq -b$ 描述，对于限制条件 $f(x_1,x_2,\ldots,x_n) \geq b$，可以用不等式 $-f(x_1,x_2,\ldots,x_n) \leq -b$ 描述。对于无限制的变量 $x$，可以将其拆为两个非负变量 $x_0,x_1$，使得 $x = x_0 - x_1$。
+若目标函数要求取最小值，那么可以对其取相反数变成取最大值。对于限制条件 $f(x_1, x_2, \ldots ,x_n) = b$，可以用两个不等式 $f(x_1, x_2, \ldots, x_n) \leq b,-f(x_1,x_2,\ldots,x_n) \leq -b$ 描述，对于限制条件 $f(x_1,x_2,\ldots,x_n) \geq b$，可以用不等式 $-f(x_1,x_2,\ldots,x_n) \leq -b$ 描述。对于无限制的变量 $x$，可以将其拆为两个非负变量 $x_0,x_1$，使得 $x = x_0 - x_1$。
 
 ### 6.3 松弛型
 
@@ -505,15 +480,15 @@ $$
 
 ### 6.5 可行解
 
-- 基本解：所有非基变量设为0，基本变量为右侧的常数
+- 基本解：所有非基变量设为 $0​$，基本变量为右侧的常数
 
-- 基本可行解：所有 $b_i \geq 0$
+- 基本可行解：所有 $b_i \geq 0​$
 
 > 注：单纯形法的过程中B和N不断交换，在n维空间中不断走，“相当于不等式上的高斯消元”。
 
 ### 6.6 转轴
 
-选取一个非基本变量 $x_e$ 为替入变量，基本变量 $x_l$ 为替出变量，将其互换，为了防止循环，根据 **Bland规则** ，选择下标最小的变量。
+选取一个非基本变量 $x_e​$ 为替入变量，基本变量 $x_l​$ 为替出变量，将其互换，为了防止循环，根据 **Bland规则** ，选择下标最小的变量。
 
 > **Bland规则** 可以参看：[最优化方法](https://github.com/AngelKitty/review_the_national_post-graduate_entrance_examination/blob/master/books_and_notes/professional_courses/data_structures_and_algorithms/sources/extra_books/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95.pdf)
 
@@ -534,24 +509,24 @@ $$
 
 基本思想就是改写 $l$ 这个约束为 $x_e$ 作为基本变量，然后把这个新 $x_e$ 的值带到其他约束和目标函数中，就消去 $x_e$ 了。改写和带入时要修改 $b$ 和 $a$，目标函数则是 $c$ 和 $v$。 
 
-转动时，$l$ 和 $e$ 并没有像算法导论上一样，$a$ 矩阵用了两行分别是 $a[l][ \ ]$和 $a[e][ \ ]$（这样占用内存大），而是用了同一行，这样 $a$ 矩阵的行数 $=|B|$，列数 $=|N|$。
+转动时，$l$ 和 $e$ 并没有像算法导论上一样，$a$ 矩阵用了两行分别是 $a_{l, \square}$ 和 $a_{e, \square}$（这样占用内存大），而是用了同一行，这样 $a$ 矩阵的行数 $=|B|$，列数 $=|N|$。
 
-也就是说，约束条件只用 $m$ 个，尽管 $B$ 和 $N$ 不断交换，但同一时间还是只有 $m$ 个约束(基本变量)，$n$ 个非基变量，注意改写成松弛型后 $a$ 矩阵实际系数为负。（一个优化 $a[i][e]$为 $0$ 的约束没必要带入了。
+也就是说，约束条件只用 $m$ 个，尽管 $B$ 和 $N$ 不断交换，但同一时间还是只有 $m$ 个约束(基本变量)，$n$ 个非基变量，注意改写成松弛型后 $a$ 矩阵实际系数为负。（一个优化为 $a_{i,e}$ 的约束没必要带入了。
 
-`simplex` 是主过程，基本思想是找到一个 $c[e]>0$ 的，然后找对这个 $e$ 限制最紧的 $l$ ，转动这组 $l,e$，注意精度控制 $eps$，$c[e]>eps$， 还有找 $l$ 的时候 $a[i][e]>eps$ 才行。
+`simplex` 是主过程，基本思想是找到一个 $c_e>0$ 的，然后找对这个 $e$ 限制最紧的 $l$ ，转动这组 $l,e$，注意精度控制 $\epsilon$，$c_e>\epsilon$， 还有找 $l$ 的时候 $a_{i,e}>\epsilon​$ 才行。
 
 ??? note " 例题 [BZOJ1061 志愿者招募](https://www.lydsy.com/JudgeOnline/problem.php?id=1061)"
-    题目大意：长度为 $n$ 的序列，第 $i$ 位至少 $b_i$，$m$ 种区间使 $[l_i,r_i] + 1$ 代价为 $a_i$。
+    题目大意：长度为 $n​$ 的序列，第 $i​$ 位至少 $b_i​$，$m​$ 种区间使 $[l_i,r_i] + 1​$ 代价为 $a_i​$。
 
-原始问题 $m$ 个变量，$n$ 个约束，当 $l_j \leq i \leq r_j$，$a_{ij} = 1$。
+原始问题 $m​$ 个变量，$n​$ 个约束，当 $l_j \leq i \leq r_j​$，$a_{ij} = 1​$。
 
-对偶问题 $n$ 个变量，$m$ 个约束
+对偶问题 $n​$ 个变量，$m​$ 个约束
 $$
 \max \ \sum_{i=1}nb_iy_i
 $$
 
 $$
-Sat \ \sum_{l_i \leq j \leq r_i}y_j \leq c_i, y_i \geq 0
+s.t \ \sum_{l_i \leq j \leq r_i}y_j \leq c_i, y_i \geq 0
 $$
 
 把对应出的系数矩阵带入到单纯形算法就可以求出最优解了。
@@ -564,57 +539,65 @@ $$
 #include<cmath>
 using namespace std;
 typedef long long ll;
-const int M=10005,N=1005,INF=1e9;
-const double eps=1e-6;
-inline int read(){
-    char c=getchar();int x=0,f=1;
-    while(c<'0'||c>'9'){if(c=='-')f=-1; c=getchar();}
-    while(c>='0'&&c<='9'){x=x*10+c-'0'; c=getchar();}
-    return x*f;
+const int M = 10005, N = 1005, INF = 1e9;
+const double eps = 1e-6;
+inline int read() {
+	char c = getchar();
+	int x = 0, f = 1;
+	while(c < '0' || c > '9') {
+		if(c == '-')f = -1;
+		c = getchar();
+	}
+	while(c >= '0' && c <= '9') {
+		x = x * 10 + c - '0';
+		c = getchar();
+	}
+	return x * f;
 }
 
-int n,m;
-double a[M][N],b[M],c[N],v;
-void pivot(int l,int e){
-    b[l]/=a[l][e];
-    for(int j=1;j<=n;j++) if(j!=e) a[l][j]/=a[l][e];
-    a[l][e]=1/a[l][e];
-    
-    for(int i=1;i<=m;i++) if(i!=l&&fabs(a[i][e])>0){
-        b[i]-=a[i][e]*b[l];
-        for(int j=1;j<=n;j++) if(j!=e) a[i][j]-=a[i][e]*a[l][j];
-        a[i][e]=-a[i][e]*a[l][e];
-    }
-    
-    v+=c[e]*b[l];
-    for(int j=1;j<=n;j++) if(j!=e) c[j]-=c[e]*a[l][j];
-    c[e]=-c[e]*a[l][e];
-    
-    //swap(B[l],N[e])
+int n, m;
+double a[M][N], b[M], c[N], v;
+void pivot(int l, int e) {
+	b[l] /= a[l][e];
+	for(int j = 1; j <= n; j++) if(j != e) a[l][j] /= a[l][e];
+	a[l][e] = 1 / a[l][e];
+
+	for(int i = 1; i <= m; i++) if(i != l && fabs(a[i][e]) > 0) {
+			b[i] -= a[i][e] * b[l];
+			for(int j = 1; j <= n; j++) if(j != e) a[i][j] -= a[i][e] * a[l][j];
+			a[i][e] = -a[i][e] * a[l][e];
+		}
+
+	v += c[e] * b[l];
+	for(int j = 1; j <= n; j++) if(j != e) c[j] -= c[e] * a[l][j];
+	c[e] = -c[e] * a[l][e];
+
+	//swap(B[l],N[e])
 }
 
-double simplex(){
-    while(true){
-        int e=0,l=0;
-        for(e=1;e<=n;e++) if(c[e]>eps) break;
-        if(e==n+1) return v;
-        double mn=INF;
-        for(int i=1;i<=m;i++)
-            if(a[i][e]>eps&&mn>b[i]/a[i][e]) mn=b[i]/a[i][e],l=i;
-        if(mn==INF) return INF;//unbounded
-        pivot(l,e);
-    }
+double simplex() {
+	while(true) {
+		int e = 0, l = 0;
+		for(e = 1; e <= n; e++) if(c[e] > eps) break;
+		if(e == n + 1) return v;
+		double mn = INF;
+		for(int i = 1; i <= m; i++)
+			if(a[i][e] > eps && mn > b[i] / a[i][e]) mn = b[i] / a[i][e], l = i;
+		if(mn == INF) return INF; //unbounded
+		pivot(l, e);
+	}
 }
 
-int main(){
-    n=read();m=read();
-    for(int i=1;i<=n;i++) c[i]=read();
-    for(int i=1;i<=m;i++){
-        int s=read(),t=read();
-        for(int j=s;j<=t;j++) a[i][j]=1;
-        b[i]=read();
-    }
-    printf("%d",(int)(simplex()+0.5));
+int main() {
+	n = read();
+	m = read();
+	for(int i = 1; i <= n; i++) c[i] = read();
+	for(int i = 1; i <= m; i++) {
+		int s = read(), t = read();
+		for(int j = s; j <= t; j++) a[i][j] = 1;
+		b[i] = read();
+	}
+	printf("%d", (int)(simplex() + 0.5));
 }
 ```
 
@@ -636,7 +619,7 @@ $$
 $$
 
 $$
-Sat \begin{cases}  
+s.t \begin{cases}  
 \sum_{(v) \in Y} d_{uv} \leq 1, u \in X \\ 
 \sum_{(u) \in X} d_{uv} \leq 1, v \in Y  \\
 d_{u,v} \in \{0,1\}
@@ -649,7 +632,7 @@ $$
 $$
 
 $$
-Sat \begin{cases}  
+s.t \begin{cases}  
 p_u + p_v \geq c_{uv} \\ 
 u \in X, v \in Y\\
 p_u, p_v \geq 0
