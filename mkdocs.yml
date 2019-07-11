@@ -329,7 +329,7 @@ extra:
   githash: ''
 
 extra_javascript:
-  - '_static/js/extra.js?v=10'
+  - '_static/js/extra.js?v=12'
   - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
 
 

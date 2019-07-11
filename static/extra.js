@@ -28,7 +28,8 @@ if (cur) {
 
 document.getElementsByTagName("html")[0].lang = "zh-Hans"; // change language to `zh-Hans` for Han.js.
 
-var url = document.URL.replace(/http\S+\.org\//gi, '').replace(/#\S+$/gi, '').slice(0, -1);
+var url = document.getElementsByClassName('page_edit_url')[0].href.split('docs')[1]
+// var url = document.URL.replace(/http\S+\.org\//gi, '').replace(/#\S+$/gi, '').slice(0, -1);
 var script = document.createElement('script');
 function foo(response) {
   var data = response.data;
@@ -61,20 +62,20 @@ function foo(response) {
   } else if (!url.endsWith('index')) {
     url += '/index';
     var script = document.createElement('script');
-    document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/OI-wiki/OI-wiki/commits/master/docs/${url}.md`);
-    script.src = `https://api.github.com/repos/OI-wiki/OI-WIki/commits?path=docs/${url}.md&callback=foo`;
+    document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/OI-wiki/OI-wiki/commits/master/docs/${url}`);
+    script.src = `https://api.github.com/repos/OI-wiki/OI-WIki/commits?path=docs/${url}&callback=foo`;
     document.getElementsByTagName('head')[0].appendChild(script);
   }
 }
 
-if (url == "") {
+if (url == "/index.md") {
   // HomePage
   document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/OI-wiki/OI-wiki/commits/master/docs/index.md`);
   script.src = `https://api.github.com/repos/OI-wiki/OI-WIki/commits?path=docs/index.md&callback=foo`;
   document.getElementsByTagName('head')[0].appendChild(script);
-} else if (url != "404.htm") {
+} else if (typeof(url) != 'undefined') {
   document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/OI-wiki/OI-wiki/commits/master/docs/${url}.md`);
-  script.src = `https://api.github.com/repos/OI-wiki/OI-WIki/commits?path=docs/${url}.md&callback=foo`;
+  script.src = `https://api.github.com/repos/OI-wiki/OI-WIki/commits?path=docs/${url}&callback=foo`;
   document.getElementsByTagName('head')[0].appendChild(script);
 } else {
   document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/OI-wiki/OI-wiki/commits/master`);
