@@ -102,7 +102,7 @@ int dp() {
     if (a[i] > a[i - 1]) {
       ans++;
     } else {
-      ans = 0;
+      ans = 1;
     }
     now = max(now, ans);
   }
