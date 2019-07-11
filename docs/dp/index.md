@@ -99,7 +99,11 @@ int a[MAXN];
 int dp() {
   int now = 0, ans = 1;
   for (int i = 2; i <= n; i++) {
-    if (a[i] > a[i - 1]) ans++;
+    if (a[i] > a[i - 1]) {
+      ans++;
+    } else {
+      ans = 0;
+    }
     now = max(now, ans);
   }
   return ans;
