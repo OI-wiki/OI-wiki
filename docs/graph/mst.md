@@ -16,7 +16,7 @@
 
 ### 前置知识
 
-并查集、[贪心](https://oi-wiki.org/basic/greedy/)、图的存储。
+[并查集](/ds/dsu/)、[贪心](/basic/greedy/)、[图的存储](/graph/basic/)。
 
 ### 证明
 
