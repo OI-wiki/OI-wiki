@@ -159,9 +159,9 @@ int pop(int x)
     #include <cstdio>
     #include <cctype>
     #include <algorithm>
-    
+
     using namespace std;
-    
+
     int read()
     {
         int out=0;
@@ -170,37 +170,37 @@ int pop(int x)
         for (;isdigit(c);c=getchar()) out=out*10+c-'0';
         return out;
     }
-    
+
     const int N=1000010;
-    
+
     struct Node
     {
         int val,ch[2],d;
     } t[N];
-    
+
     int& rs(int x);
     int merge(int x,int y);
-    
+
     int find(int x);
-    
+
     int n,m,f[N];
     bool kill[N];
     char op[10];
-    
+
     int main()
     {
         int i,x,y;
-    
+
         n=read();
-    
+
         for (i=1;i<=n;++i)
         {
             t[i].val=read();
             f[i]=i;
         }
-    
+
         m=read();
-    
+
         while (m--)
         {
             scanf("%s",op);
@@ -224,15 +224,15 @@ int pop(int x)
                 else puts("0");
             }
         }
-    
+
         return 0;
     }
-    
+
     int& rs(int x)
     {
         return t[x].ch[t[t[x].ch[1]].d<t[t[x].ch[0]].d];
     }
-    
+
     int merge(int x,int y)
     {
         if (!x||!y) return x|y;
@@ -241,7 +241,7 @@ int pop(int x)
         t[x].d=t[rs(x)].d+1;
         return x;
     }
-    
+
     int find(int x)
     {
         return x==f[x]?x:f[x]=find(f[x]);
@@ -263,11 +263,11 @@ int pop(int x)
     #include <cstdio>
     #include <cctype>
     #include <algorithm>
-    
+
     using namespace std;
-    
+
     typedef long long ll;
-    
+
     ll read()
     {
         ll out=0;
@@ -278,38 +278,38 @@ int pop(int x)
         for (;isdigit(c);c=getchar()) out=out*10+c-'0';
         return out*f;
     }
-    
+
     const int N=300010;
-    
+
     struct Node
     {
         int ls,rs,d;
         ll val,add,mul;
         Node(){ls=rs=add=0;d=mul=1;}
     } t[N];
-    
+
     int merge(int x,int y);
     int pop(int x);
     void madd(int u,ll x);
     void mmul(int u,ll x);
     void pushdown(int x);
-    
+
     void add(int u,int v);
     void dfs(int u);
-    
+
     int head[N],nxt[N],to[N],cnt;
     int n,m,p[N],f[N],a[N],dep[N],c[N],ans1[N],ans2[N]; //p是树上每个点对应的堆顶
     ll h[N],b[N];
-    
+
     int main()
     {
         int i;
-    
+
         n=read();
         m=read();
-    
+
         for (i=1;i<=n;++i) h[i]=read();
-    
+
         for (i=2;i<=n;++i)
         {
             f[i]=read();
@@ -317,22 +317,22 @@ int pop(int x)
             a[i]=read();
             b[i]=read();
         }
-    
+
         for (i=1;i<=m;++i)
         {
             t[i].val=read();
             c[i]=read();
             p[c[i]]=merge(i,p[c[i]]);
         }
-    
+
         dfs(1);
-    
+
         for (i=1;i<=n;++i) printf("%d\n",ans1[i]);
         for (i=1;i<=m;++i) printf("%d\n",ans2[i]);
-    
+
         return 0;
     }
-    
+
     void dfs(int u)
     {
         int i,v;
@@ -357,14 +357,14 @@ int pop(int x)
             p[u]=pop(p[u]);
         }
     }
-    
+
     void add(int u,int v)
     {
         nxt[++cnt]=head[u];
         head[u]=cnt;
         to[cnt]=v;
     }
-    
+
     int merge(int x,int y)
     {
         if (!x||!y) return x|y;
@@ -375,26 +375,26 @@ int pop(int x)
         t[x].d=t[t[x].rs].d+1;
         return x;
     }
-    
+
     int pop(int x)
     {
         pushdown(x);
         return merge(t[x].ls,t[x].rs);
     }
-    
+
     void madd(int u,ll x)
     {
         t[u].val+=x;
         t[u].add+=x;
     }
-    
+
     void mmul(int u,ll x)
     {
         t[u].val*=x;
         t[u].add*=x;
         t[u].mul*=x;
     }
-    
+
     void pushdown(int x)
     {
         mmul(t[x].ls,t[x].mul);
@@ -438,9 +438,9 @@ int pop(int x)
     #include <set>
     #include <cctype>
     #include <algorithm>
-    
+
     using namespace std;
-    
+
     int read()
     {
         int out=0,f=1;
@@ -450,31 +450,31 @@ int pop(int x)
         for (;isdigit(c);c=getchar()) out=out*10+c-'0';
         return out*f;
     }
-    
+
     const int N=300010;
-    
+
     struct Node
     {
         int val,ch[2],d,fa;
     } t[N];
-    
+
     int& rs(int x);
     int merge(int x,int y);
     void pushup(int x);
     void pushdown(int x,int y);
-    
+
     int find(int x);
-    
+
     int n,m,f[N],tag[N],siz[N],delta;
     char op[10];
     multiset<int> s;
-    
+
     int main()
     {
         int i,x,y;
-    
+
         n=read();
-    
+
         for (i=1;i<=n;++i)
         {
             t[i].val=read();
@@ -482,9 +482,9 @@ int pop(int x)
             siz[i]=1;
             s.insert(t[i].val);
         }
-    
+
         m=read();
-    
+
         while (m--)
         {
             scanf("%s",op);
@@ -577,15 +577,15 @@ int pop(int x)
                 else printf("%d\n",*s.rbegin()+delta);
             }
         }
-    
+
         return 0;
     }
-    
+
     int& rs(int x)
     {
         return t[x].ch[t[t[x].ch[1]].d<t[t[x].ch[0]].d];
     }
-    
+
     int merge(int x,int y)
     {
         if (!x||!y) return x|y;
@@ -594,7 +594,7 @@ int pop(int x)
         pushup(x);
         return x;
     }
-    
+
     void pushup(int x)
     {
         if (!x) return;
@@ -604,7 +604,7 @@ int pop(int x)
             pushup(t[x].fa);
         }
     }
-    
+
     void pushdown(int x,int y)
     {
         if (!x) return;
@@ -612,7 +612,7 @@ int pop(int x)
         pushdown(t[x].ch[0],y);
         pushdown(t[x].ch[1],y);
     }
-    
+
     int find(int x)
     {
         return x==f[x]?x:f[x]=find(f[x]);
