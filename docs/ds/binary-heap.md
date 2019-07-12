@@ -52,19 +52,19 @@
 
 ```cpp
 up(x) {
-  while (x > 1 && h[x] > h[x / 2]) {
-    swap(h[x], h[x / 2]);
-    x /= 2;
-  }
+    while (x > 1 && h[x] > h[x / 2]) {
+        swap(h[x], h[x / 2]);
+        x /= 2;
+    }
 }
 down(x) {
-  while (x * 2 <= n) {
-    t = x * 2;
-    if (t + 1 <= n && h[t + 1] < h[t]) t++;
-    if (h[t] >= h[x]) break;
-    swap(h[x], h[t]);
-    x = t;
-  }
+    while (x * 2 <= n) {
+        t = x * 2;
+        if (t + 1 <= n && h[t + 1] < h[t]) t++;
+        if (h[t] >= h[x]) break;
+        swap(h[x], h[t]);
+        x = t;
+    }
 }
 ```
 
@@ -80,7 +80,7 @@ down(x) {
 
 ```text
 build_heap_1() {
-	for (i = 1; i <= n; i++) up(i);
+    for (i = 1; i <= n; i++) up(i);
 }
 ```
 
@@ -96,7 +96,7 @@ build_heap_1() {
 
 ```text
 build_heap_2() {
-	for (i = n; i >= 1; i--) down(i);
+    for (i = n; i >= 1; i--) down(i);
 }
 ```
 
