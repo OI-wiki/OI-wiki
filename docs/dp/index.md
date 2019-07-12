@@ -97,10 +97,13 @@
 ```cpp
 int a[MAXN];
 int dp() {
-  int now = 0, ans = 1;
+  int now = 1, ans = 1;
   for (int i = 2; i <= n; i++) {
-    if (a[i] > a[i - 1]) ans++;
-    now = max(now, ans);
+    if (a[i] > a[i - 1])
+      now++;
+    else
+      now = 1;
+    ans = max(now, ans);
   }
   return ans;
 }
