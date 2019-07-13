@@ -198,7 +198,7 @@ nav:
     - 倍增: ds/sparse-table.md
     - 树状数组: ds/bit.md
     - 线段树: ds/segment.md
-    - 线段树与历史最值: ds/segment-tree-beats.md
+    - 线段树 & 区间历史最值: ds/segment-tree-beats.md
     - 划分树: ds/dividing.md
     - 平衡树:
       - 二叉搜索树简介: ds/bst.md
