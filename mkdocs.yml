@@ -188,6 +188,7 @@ nav:
       - 堆简介: ds/heap.md
       - 二叉堆: ds/binary-heap.md
       - 配对堆: ds/pairing-heap.md
+      - 左偏树: ds/leftist-tree.md
     - 块状数据结构:
       - 分块思想: ds/square-root-decomposition.md
       - 块状链表: ds/block-list.md
