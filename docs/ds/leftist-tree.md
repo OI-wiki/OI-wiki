@@ -107,7 +107,7 @@ void pushup(int x)
 1. $x$ 是 $y$ 的右儿子，此时 $y$ 的初始 $\mathrm{dist}$ 为 $x$ 的初始 $\mathrm{dist}$ 加一。
 2. $x$ 是 $y$ 的左儿子，只有 $y$ 的左右儿子初始 $\mathrm{dist}$ 相等时（此时左儿子 $\mathrm{dist}$ 减一会导致左右儿子互换）才会继续递归下去，因此 $y$ 的初始 $\mathrm{dist}$ 仍然是 $x$ 的初始 $\mathrm{dist}$ 加一。
 
-所以，我们得到，除了第一次 `pushup`（因为被删除节点的父亲的初始 $\mathrm{dist}$ 不一定等于被删除节点左右儿子合并后的初始 $\mathrm{dist}$ 加一），每递归一层 $x$ 的初始  $\mathrm{dist}$ 就会加一，因此最多递归 $\mathcal O(\log n)$ 层。
+所以，我们得到，除了第一次 `pushup`（因为被删除节点的父亲的初始 $\mathrm{dist}$ 不一定等于被删除节点左右儿子合并后的初始 $\mathrm{dist}$ 加一），每递归一层 $x$ 的初始 $\mathrm{dist}$ 就会加一，因此最多递归 $\mathcal O(\log n)$ 层。
 
 ### 整个堆加上 / 减去一个值、乘上一个正数
 
