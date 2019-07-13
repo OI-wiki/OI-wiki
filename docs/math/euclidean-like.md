@@ -17,19 +17,13 @@ $$
 $$
 \begin{split}
 f(a,b,c,n)&=\sum_{i=0}^n\left\lfloor \frac{ai+b}{c} \right\rfloor\\
-
 &=\sum_{i=0}^n\left\lfloor
-\frac{\left(\left\lfloor\frac{a}{c}\right\rfloor c+a\bmod c\right)i+\left(\left\lfloor\frac{b}{c}\right\rfloor c+b\bmod c\right)}{c}
-\right\rfloor\\
-
+\frac{\left(\left\lfloor\frac{a}{c}\right\rfloor c+a\bmod c\right)i+\left(\left\lfloor\frac{b}{c}\right\rfloor c+b\bmod c\right)}{c}\right\rfloor\\
 &=\frac{n(n+1)}{2}\left\lfloor\frac{a}{c}\right\rfloor+(n+1)\left\lfloor\frac{b}{c}\right\rfloor+
-\sum_{i=0}^n\left\lfloor
-\frac{\left(a\bmod c\right)i+\left(b\bmod c\right)}{c}
+\sum_{i=0}^n\left\lfloor\frac{\left(a\bmod c\right)i+\left(b\bmod c\right)}{c}
 \right\rfloor\\
-
 &=\frac{n(n+1)}{2}\left\lfloor\frac{a}{c}\right\rfloor
-+(n+1)\left\lfloor\frac{b}{c}\right\rfloor
-+f(a\bmod c,b\bmod c,c,n)
++(n+1)\left\lfloor\frac{b}{c}\right\rfloor+f(a\bmod c,b\bmod c,c,n)
 \end{split}
 $$
 
@@ -150,12 +144,12 @@ n^2=2\dfrac{n(n+1)}{2}-n=\left(2\sum_{i=0}^ni\right)-n
 $$
 
 这样做的意义在于，添加变量 $j$ 的时侯就只会变成一个求和算子，不会出现 $\sum\times \sum$ 的形式：
+
 $$
 \begin{split}
 &h(a,b,c,n)=\sum_{i=0}^n\left\lfloor \frac{ai+b}{c} \right\rfloor^2
 =\sum_{i=0}^n\left[\left(2\sum_{j=1}^{\left\lfloor \frac{ai+b}{c} \right\rfloor}j \right)-\left\lfloor\frac{ai+b}{c}\right\rfloor\right]\\
-=&\left(2\sum_{i=0}^n\sum_{j=1}^{\left\lfloor \frac{ai+b}{c} \right\rfloor}j\right) -f(a,b,c,n)
-\\
+=&\left(2\sum_{i=0}^n\sum_{j=1}^{\left\lfloor \frac{ai+b}{c} \right\rfloor}j\right) -f(a,b,c,n)\\
 \end{split}
 $$
 
