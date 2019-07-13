@@ -124,6 +124,7 @@ nav:
       - 欧拉函数: math/euler.md
       - 筛法: math/sieve.md
       - 费马小定理: math/fermat.md
+      - 类欧几里德算法: math/euclidean-like.md
     - 同余方程相关:
       - 裴蜀定理: math/bezouts.md
       - 乘法逆元: math/inverse.md
