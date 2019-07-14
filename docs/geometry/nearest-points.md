@@ -133,11 +133,11 @@ rec(0, n - 1);
 
 ## 习题
 
--   [UVA 10245 "The Closest Pair Problem" \[难度：低\]](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1186)
--   [SPOJ #8725 CLOPPAIR "Closest Point Pair" \[难度：低\]](https://www.spoj.com/problems/CLOPPAIR/)
--   [CODEFORCES Team Olympiad Saratov - 2011 "Minimum amount" \[难度：中\]](http://codeforces.com/contest/120/problem/J)
+-   [UVA 10245 "The Closest Pair Problem"\[难度：低\]](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1186)
+-   [SPOJ #8725 CLOPPAIR "Closest Point Pair"\[难度：低\]](https://www.spoj.com/problems/CLOPPAIR/)
+-   [CODEFORCES Team Olympiad Saratov - 2011 "Minimum amount"\[难度：中\]](http://codeforces.com/contest/120/problem/J)
 -   [Google CodeJam 2009 Final "Min Perimeter"\[难度：中\]](https://code.google.com/codejam/contest/311101/dashboard#s=a&a=1)
--   [SPOJ #7029 CLOSEST "Closest Triple" \[难度：中\]](https://www.spoj.com/problems/CLOSEST/)
+-   [SPOJ #7029 CLOSEST "Closest Triple"\[难度：中\]](https://www.spoj.com/problems/CLOSEST/)
 
 * * *
 
