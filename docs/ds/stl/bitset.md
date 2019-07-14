@@ -52,7 +52,7 @@ bitset<1000> bs;  // a bitset with 1000 bits
 ### 运算符
 
 -    `operator []` : 访问其特定的一位。
--    `operator ==/!=` : 比较两个 `bitset` 内容是否完全一样。
+-    `operator ==/！=` : 比较两个 `bitset` 内容是否完全一样。
 -    `operator &/&=/|/| =/^/^=/~` : 进行按位与/或/异或/取反操作。 ** `bitset` 只能与 `bitset` 进行位运算** ，若要和整型进行位运算，要先将整型转换为 `bitset` 。
 -    `operator <</>>/<<=/>>=` : 进行二进制左移/右移。
 -    `operator <</>>` : 流运算符，这意味着你可以通过 `cin/cout` 进行输入输出。

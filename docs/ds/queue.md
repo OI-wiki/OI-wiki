@@ -66,7 +66,7 @@ LOJ6515 贪玩蓝月
 > 4.  删除后端的二元组
 > 5.  给定 l,r，在当前 deque 中选择一个子集 S 使得 $\sum_{(w,v)\in S}w\bmod p\in[l,r]$ ，且最大化 $\sum_{(w,v)\in S}v$ .
 >
->  $m\leq 5\times 10^4,p\leq 500$ .
+>      $m\leq 5\times 10^4,p\leq 500$ .
 
 ### 离线算法
 
@@ -172,7 +172,7 @@ namespace DQ {       // 双栈模拟双端队列
 pii fr[M], bc[M];    // front,back; fi:w,se:v;
 int tf = 0, tb = 0;  // top
 int ff[M][P], fb[M][P];
-void update(pii* s, int f[][P], int i) {  // update f[i] from f[i-1]
+void update(pii *s, int f[][P], int i) {  // update f[i] from f[i-1]
   FOR(j, 0, p - 1) {
     f[i][j] = f[i - 1][j];
     if (~f[i - 1][_(j - s[i].fi)])
