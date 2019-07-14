@@ -2,7 +2,7 @@
 
 定义 $S$ 是一个长度为 $n$ 的字符串。字符串的 $S$ 第 $i$ 个后缀是子串 $S[i \dots n-1]$ 。
 
-一个**后缀数组**将包含一些整数，表示一个给定字符串所有排序后的后缀的**起点位置**。
+一个 **后缀数组** 将包含一些整数，表示一个给定字符串所有排序后的后缀的 **起点位置** 。
 
 例如字符串 $S=abaab$ ，它的所有后缀有：
 
@@ -48,7 +48,7 @@ $$
 
 ###  $O(n^2 \log n)$ 算法
 
-这是最朴素的算法。找出所有后缀并用快速排序或者归并排序，同时维护下标。排序时比较 $O(n\log n)$ 次，直接比较长度为 $n$ 的字符串的时间复杂度为 $O(n)$，因此时间复杂度为 $O(n^2 \log n)$ 。
+这是最朴素的算法。找出所有后缀并用快速排序或者归并排序，同时维护下标。排序时比较 $O(n\log n)$ 次，直接比较长度为 $n$ 的字符串的时间复杂度为 $O(n)$ ，因此时间复杂度为 $O(n^2 \log n)$ 。
 
 ```cpp
 int rank[123], sa[123];
@@ -93,11 +93,11 @@ $$
 \end{array}
 $$
 
-因为我们要排序循环移动，我们要考虑**循环子串**。我们将使用记号 $S[i\dots j]$ 表示 $S$ 的一个子串。即使 $i>j$ 也不例外，因为在这种情况下我们表示的字符串是 $S[i \dots n-1]+S[0\dots j]$ ，另外我们将把所有下标取模 $n$ ，但在下文中为描述简便将忽略该操作。
+因为我们要排序循环移动，我们要考虑 **循环子串** 。我们将使用记号 $S[i\dots j]$ 表示 $S$ 的一个子串。即使 $i>j$ 也不例外，因为在这种情况下我们表示的字符串是 $S[i \dots n-1]+S[0\dots j]$ ，另外我们将把所有下标取模 $n$ ，但在下文中为描述简便将忽略该操作。
 
 在我们将要讨论的算法中，将会有 $\lceil \log n \rceil + 1$ 次迭代。在第 $k(k=0\dots \lceil \log n \rceil)$ 次迭代中，我们将会排序 $n$ 个长度为 $2^k$ 的循环子串 $s$ 。在第 $\lceil \log n \rceil$ 次迭代后，长度为 $2^{\lceil \log n \rceil}\geq n$ 的子串将被排序，因此这与同时排序循环移动等价。
 
-在算法的每次迭代中，令 $p[i]$ 表示第 $i$ 个子串（起点为 $i$ ，长度为 $2^k$ ）的子串的下标，在排列 $p[0\dots n-1]$ 的基础之上，我们还会维护数组 $c[0\dots n-1]$ ，其中 $c[i]$ 表示子串隶属的**等价类**。因为某些子串可能是相同的，因此算法需要将他们同等处理。为了方便，等价类将被以 $0$ 起的计数标记。另外， $c[i]$ 中的值将被用以保留顺序信息：如果一个子串比另外一个子串的字典序小，它的等价类标记也应该小于另一个子串。等价类的数量将被储存在一个可变的类当中。
+在算法的每次迭代中，令 $p[i]$ 表示第 $i$ 个子串（起点为 $i$ ，长度为 $2^k$ ）的子串的下标，在排列 $p[0\dots n-1]$ 的基础之上，我们还会维护数组 $c[0\dots n-1]$ ，其中 $c[i]$ 表示子串隶属的 **等价类** 。因为某些子串可能是相同的，因此算法需要将他们同等处理。为了方便，等价类将被以 $0$ 起的计数标记。另外， $c[i]$ 中的值将被用以保留顺序信息：如果一个子串比另外一个子串的字典序小，它的等价类标记也应该小于另一个子串。等价类的数量将被储存在一个可变的类当中。
 
 现在来看一个例子，例如字符串 $S=aaba$ 。每次迭代时它的循环子串和对应的数组 $p[]$ 和 $c[]$ 如下所示：
 
@@ -109,38 +109,34 @@ $$
 \end{array}
 $$
 
-值得注意的是，$p$ 数组的值可以不同。例如，在第一次迭代中，该数组可以是$p = (3,~ 1,~ 0,~ 2)$ 或者 $p = (3,~ 0,~ 1,~ 2)$。同时，$c[]$ 数组的值是固定的，没有其他可能性。
+值得注意的是， $p$ 数组的值可以不同。例如，在第一次迭代中，该数组可以是 $p = (3,~ 1,~ 0,~ 2)$ 或者 $p = (3,~ 0,~ 1,~ 2)$ 。同时， $c[]$ 数组的值是固定的，没有其他可能性。
 
 现在让我们来关注算法的实现。我们要写一个函数，使得输入字符串 $s​$ 后返回它排序后的循环移动。
 
 ```cpp
 vector<int> sort_cyclic_shifts(string const& s) {
-    int n = s.size();
-    const int alphabet = 256;
+  int n = s.size();
+  const int alphabet = 256;
 ```
 
-一开始，我们要排序长度为 $1$ 的循环子串，即我们要排序字符串中所有的字符，然后将它们分入等价类，即相同字符分入相同类。这个操作可以使用朴素算法思想，例如**计数排序**。对于每个字符，我们计算它在字符串中的出现次数，然后用这个信息形成 $p$ 数组。在这之后我们遍历 $p$ 数组，然后通过比较相邻字符构造 $c$ 数组。
+一开始，我们要排序长度为 $1$ 的循环子串，即我们要排序字符串中所有的字符，然后将它们分入等价类，即相同字符分入相同类。这个操作可以使用朴素算法思想，例如 **计数排序** 。对于每个字符，我们计算它在字符串中的出现次数，然后用这个信息形成 $p$ 数组。在这之后我们遍历 $p$ 数组，然后通过比较相邻字符构造 $c$ 数组。
 
 ```cpp
-    vector<int> p(n), c(n), cnt(max(alphabet, n), 0);
-    for (int i = 0; i < n; i++)
-        cnt[s[i]]++;
-    for (int i = 1; i < alphabet; i++)
-        cnt[i] += cnt[i-1];
-    for (int i = 0; i < n; i++)
-        p[--cnt[s[i]]] = i;
-    c[p[0]] = 0;
-    int classes = 1;
-    for (int i = 1; i < n; i++) {
-        if (s[p[i]] != s[p[i-1]])
-            classes++;
-        c[p[i]] = classes - 1;
-    }
+vector<int> p(n), c(n), cnt(max(alphabet, n), 0);
+for (int i = 0; i < n; i++) cnt[s[i]]++;
+for (int i = 1; i < alphabet; i++) cnt[i] += cnt[i - 1];
+for (int i = 0; i < n; i++) p[--cnt[s[i]]] = i;
+c[p[0]] = 0;
+int classes = 1;
+for (int i = 1; i < n; i++) {
+  if (s[p[i]] != s[p[i - 1]]) classes++;
+  c[p[i]] = classes - 1;
+}
 ```
 
-接下来我们说说如何进行迭代。假设我们已经完成了前 $k-1$ 步，并且计算了 $p$ 数组和 $c$ 数组。我们接下来想在 $O(n)$ 时间复杂度内计算这两个数组在第 $k$ 步的值。因为我们总共执行这个步骤 $O(\log n)$ 次，所以算法的时间复杂度是 $O(n\log n)$。
+接下来我们说说如何进行迭代。假设我们已经完成了前 $k-1$ 步，并且计算了 $p$ 数组和 $c$ 数组。我们接下来想在 $O(n)$ 时间复杂度内计算这两个数组在第 $k$ 步的值。因为我们总共执行这个步骤 $O(\log n)$ 次，所以算法的时间复杂度是 $O(n\log n)$ 。
 
-为了完成这一目标，我们注意到长度为 $2^k$ 的循环子串包括两个长度为 $2^{k-1}$ 的子串，我们可以使用上一步 $c$ 数组的计算结果在 $O(1)$ 的时间复杂度内通过比较得出。因此，对于两个长度为 $2^k$，起点分别为 $i$ 和 $j$ 的子串，所需的用来比较信息在二元组 $(c[i],c[i+2^{k-1}])$ 和 $(c[j],c[j+2^{k-1}])$ 中已经全部包含。
+为了完成这一目标，我们注意到长度为 $2^k$ 的循环子串包括两个长度为 $2^{k-1}$ 的子串，我们可以使用上一步 $c$ 数组的计算结果在 $O(1)$ 的时间复杂度内通过比较得出。因此，对于两个长度为 $2^k$ ，起点分别为 $i$ 和 $j$ 的子串，所需的用来比较信息在二元组 $(c[i],c[i+2^{k-1}])$ 和 $(c[j],c[j+2^{k-1}])$ 中已经全部包含。
 
 $$
 \dots
@@ -158,63 +154,59 @@ $$
 \dots
 $$
 
-这就给我们带来了一个十分简单的解法：以**这些二元组**为关键字，**排序**所有长度为 $2^k$ 的子串。这给我们带来了所需要的顺序数组 $p$。然而一般的排序算法的时间复杂度为 $O(n\log n)$，这样的时间复杂度看起来不是很令人满意，因为构造后缀数组的整体时间复杂度将变成 $O(n \log^2 n)$。
+这就给我们带来了一个十分简单的解法：以 **这些二元组** 为关键字， **排序** 所有长度为 $2^k$ 的子串。这给我们带来了所需要的顺序数组 $p$ 。然而一般的排序算法的时间复杂度为 $O(n\log n)$ ，这样的时间复杂度看起来不是很令人满意，因为构造后缀数组的整体时间复杂度将变成 $O(n \log^2 n)$ 。
 
-有什么办法可以使得排序更快呢？因为这些元素值不超过 $n$，我们可以再次使用计数排序。然而直接这样做并不是最优的，因为时间复杂度后面隐藏着一个常数。为了优化常数，我们要用另外一个小技巧。
+有什么办法可以使得排序更快呢？因为这些元素值不超过 $n$ ，我们可以再次使用计数排序。然而直接这样做并不是最优的，因为时间复杂度后面隐藏着一个常数。为了优化常数，我们要用另外一个小技巧。
 
-我们这里使用了一个用在**基数排序**上的方法：为了排序这些元素，我们先以第二关键字排序，然后以第一关键字排序。另外，我们使用的排序是稳定排序，即不破坏值相同元素之间的相对位置关系。然而第二关键字已经在上一次的迭代中排序好了，因此，为了排序第二关键字，我们只需要从 $p[]$ 中的下标中减去 $2^{k-1}$ 即可。例如，长度为 $2^{k-1}$ 的最小子串在位置 $i$ 开始，那么第二关键字最小的且长度为 $2^k$ 的以 $i-2^{k-1}$为起点。
+我们这里使用了一个用在 **基数排序** 上的方法：为了排序这些元素，我们先以第二关键字排序，然后以第一关键字排序。另外，我们使用的排序是稳定排序，即不破坏值相同元素之间的相对位置关系。然而第二关键字已经在上一次的迭代中排序好了，因此，为了排序第二关键字，我们只需要从 $p[]$ 中的下标中减去 $2^{k-1}$ 即可。例如，长度为 $2^{k-1}$ 的最小子串在位置 $i$ 开始，那么第二关键字最小的且长度为 $2^k$ 的以 $i-2^{k-1}$ 为起点。
 
 因此，只有通过做简单的减法，我们才能排序 $p$ 数组里的第二关键字。现在我们要对第一关键字进行一个稳定的排序。同上，这个操作能被计数排序完成。
 
 现在就只剩计算等价类数组 $c[]$ 了，但是和之前一样，这个操作可以通过简单地迭代排序后的 $p$ 数组并比较相邻元素。
 
 以下是剩下的代码。我们使用临时数组 $pn[]$ 和 $cn[]$ 来储存第二关键字的排序和新的等价类下标。
+
 ```cpp
-    vector<int> pn(n), cn(n);
-    for (int h = 0; (1 << h) < n; ++h) {
-        for (int i = 0; i < n; i++) {
-            pn[i] = p[i] - (1 << h);
-            if (pn[i] < 0)
-                pn[i] += n;
-        }
-        fill(cnt.begin(), cnt.begin() + classes, 0);
-        for (int i = 0; i < n; i++)
-            cnt[c[pn[i]]]++;
-        for (int i = 1; i < classes; i++)
-            cnt[i] += cnt[i-1];
-        for (int i = n-1; i >= 0; i--)
-            p[--cnt[c[pn[i]]]] = pn[i];
-        cn[p[0]] = 0;
-        classes = 1;
-        for (int i = 1; i < n; i++) {
-            pair<int, int> cur = {c[p[i]], c[(p[i] + (1 << h)) % n]};
-            pair<int, int> prev = {c[p[i-1]], c[(p[i-1] + (1 << h)) % n]};
-            if (cur != prev)
-                ++classes;
-            cn[p[i]] = classes - 1;
-        }
-        c.swap(cn);
-    }
-    return p;
+vector<int> pn(n), cn(n);
+for (int h = 0; (1 << h) < n; ++h) {
+  for (int i = 0; i < n; i++) {
+    pn[i] = p[i] - (1 << h);
+    if (pn[i] < 0) pn[i] += n;
+  }
+  fill(cnt.begin(), cnt.begin() + classes, 0);
+  for (int i = 0; i < n; i++) cnt[c[pn[i]]]++;
+  for (int i = 1; i < classes; i++) cnt[i] += cnt[i - 1];
+  for (int i = n - 1; i >= 0; i--) p[--cnt[c[pn[i]]]] = pn[i];
+  cn[p[0]] = 0;
+  classes = 1;
+  for (int i = 1; i < n; i++) {
+    pair<int, int> cur = {c[p[i]], c[(p[i] + (1 << h)) % n]};
+    pair<int, int> prev = {c[p[i - 1]], c[(p[i - 1] + (1 << h)) % n]};
+    if (cur != prev) ++classes;
+    cn[p[i]] = classes - 1;
+  }
+  c.swap(cn);
+}
+return p;
 }
 ```
 
-算法整体时间复杂度为 $O(n\log n)$，空间复杂度为 $O(n)$。如果考虑字符集大小 $k$ 的影响，整体时间复杂度为 $O((n+k)\log n)$，空间复杂度为 $O(n+k)$。
+算法整体时间复杂度为 $O(n\log n)$ ，空间复杂度为 $O(n)$ 。如果考虑字符集大小 $k$ 的影响，整体时间复杂度为 $O((n+k)\log n)$ ，空间复杂度为 $O(n+k)$ 。
 
-为了简单，我们用了整个 ASCII 表范围作为了字母表，如果我们知道字符集，例如小写字母，那么这个做法能够得到优化。然而，这个优化并不大，因为字符集的复杂度影响仅仅只是 $O(\log k)$。
+为了简单，我们用了整个 ASCII 表范围作为了字母表，如果我们知道字符集，例如小写字母，那么这个做法能够得到优化。然而，这个优化并不大，因为字符集的复杂度影响仅仅只是 $O(\log k)$ 。
 
 另外一点要注意的是，这个算法只排序循环的移动。在文章的一开头已经说过了，我们可以通过在后缀末尾加一个小于字符串中任意字符的字符来生成已排序的后缀顺序，同时这样的排序通过循环的移动形成了字符串，例如排序 $s+\$$ 的循环移动。这显然会给出 $s$ 的后缀数组，但是前面会多一个等于 $|S|$ 的值。
+
 ```cpp
 vector<int> suffix_array_construction(string s) {
-    s += "$";
-    vector<int> sorted_shifts = sort_cyclic_shifts(s);
-    sorted_shifts.erase(sorted_shifts.begin());
-    return sorted_shifts;
+  s += "$";
+  vector<int> sorted_shifts = sort_cyclic_shifts(s);
+  sorted_shifts.erase(sorted_shifts.begin());
+  return sorted_shifts;
 }
 ```
 
 ### 模板
-
 
 ```cpp
 #include <bits/stdc++.h>
@@ -267,7 +259,7 @@ int main() {
 
 代码里 $x[i]$ 就是 $rank[i]$ 。
 
- $y[i]$ ：假设 $y[i]=a\ ,\  y[i+1]=b$ 那么在原串中从 $a+2^k$ 开始的 $2^k$ 个字符组成的子串**小于等于**从 $b+2^k$ 开始的 $2^k$ 个字符组成的子串。
+ $y[i]$ ：假设 $y[i]=a\ ,\  y[i+1]=b$ 那么在原串中从 $a+2^k$ 开始的 $2^k$ 个字符组成的子串 **小于等于** 从 $b+2^k$ 开始的 $2^k$ 个字符组成的子串。
 
 最好理解这个代码时，每一步都结合着基数排序来考虑。
 
@@ -279,7 +271,7 @@ int main() {
 
 ### 在字符串中找子串
 
-任务是在线地在主串 $T$ 中寻找模式串 $S$。在线的意思是，我们已经预先知道知道主串 $T$，但是当且仅当询问时才知道模式串 $S$。我们可以为字符串 $T$ 在 $O(|T|\log |T|)$ 时间复杂度内构造它的后缀数组。现在我们可以开始查找子串 $S$ 了。子串 $S$ 的出现必须是 $T$ 中一些后缀的前缀。因为我们已经将所有后缀排序了，我们可以通过在 $p$ 数组中二分 $S$ 来实现。比较子串 $S$ 和当前后缀的时间复杂度为  $O(|S|)$，因此找子串的时间复杂度为 $O(|S|\log |T|)$。注意，如果该子串在 $T$ 中出现了多次，每次出现都是在 $p$ 数组中相邻的。因此出现次数可以通过再次二分找到，输出每次出现的位置也很轻松。
+任务是在线地在主串 $T$ 中寻找模式串 $S$ 。在线的意思是，我们已经预先知道知道主串 $T$ ，但是当且仅当询问时才知道模式串 $S$ 。我们可以为字符串 $T$ 在 $O(|T|\log |T|)$ 时间复杂度内构造它的后缀数组。现在我们可以开始查找子串 $S$ 了。子串 $S$ 的出现必须是 $T$ 中一些后缀的前缀。因为我们已经将所有后缀排序了，我们可以通过在 $p$ 数组中二分 $S$ 来实现。比较子串 $S$ 和当前后缀的时间复杂度为 $O(|S|)$ ，因此找子串的时间复杂度为 $O(|S|\log |T|)$ 。注意，如果该子串在 $T$ 中出现了多次，每次出现都是在 $p$ 数组中相邻的。因此出现次数可以通过再次二分找到，输出每次出现的位置也很轻松。
 
 ### 比较一个字符串的两个子串的大小关系
 
@@ -289,7 +281,7 @@ int main() {
 
 通过这个信息，我们就可以在 $O(1)$ 时间复杂度内通过比较两个字符串的等价类比较任意两个长度为 $2$ 的正整数幂次方的子串了。现在，我们想要拓展这个算法，使得其可用于任意长度。
 
-假设有两个长度为 $l$，起点下标为 $i$ 和 $j$ 的子串。我们找到子串中长度最大的子段，即使得 $2^k\leq l$ 且 $k$ 最大。然后，比较两个子串就可以等价为比较两个重叠的，长度为 $2^k$ 的子段：一开始两个子段起点是 $i$ 和 $j$，如果这两个子段相同，就去比较两个结束点为 $i+l-1$ 和 $j+l-1$ 的子段。
+假设有两个长度为 $l$ ，起点下标为 $i$ 和 $j$ 的子串。我们找到子串中长度最大的子段，即使得 $2^k\leq l$ 且 $k$ 最大。然后，比较两个子串就可以等价为比较两个重叠的，长度为 $2^k$ 的子段：一开始两个子段起点是 $i$ 和 $j$ ，如果这两个子段相同，就去比较两个结束点为 $i+l-1$ 和 $j+l-1$ 的子段。
 
 $$
 \dots
@@ -307,19 +299,19 @@ $$
 \dots
 $$
 
-以下为比较的实现。请注意，这个代码假设你已经算好了 $k$，$k$ 可以在 $\lfloor \log l \rfloor$ 的时间复杂度中算出，但是更有效的算法是预处理每个 $l$ 的 $k$ 值，你可以通过 ST 表算法算出所有的 $k$ 值，该算法与其思路相似。
+以下为比较的实现。请注意，这个代码假设你已经算好了 $k$ ， $k$ 可以在 $\lfloor \log l \rfloor$ 的时间复杂度中算出，但是更有效的算法是预处理每个 $l$ 的 $k$ 值，你可以通过 ST 表算法算出所有的 $k$ 值，该算法与其思路相似。
 
 ```cpp
 int compare(int i, int j, int l, int k) {
-    pair<int, int> a = {c[k][i], c[k][(i+l-(1 << k))%n]};
-    pair<int, int> b = {c[k][j], c[k][(j+l-(1 << k))%n]};
-    return a == b ? 0 : a < b ? -1 : 1;
+  pair<int, int> a = {c[k][i], c[k][(i + l - (1 << k)) % n]};
+  pair<int, int> b = {c[k][j], c[k][(j + l - (1 << k)) % n]};
+  return a == b ? 0 : a < b ? -1 : 1;
 }
 ```
 
 ### 消耗额外空间复杂度的两子串最长公共前缀求解
 
-对于一个给定的字符串 $S$，我们先要计算它的任意两个后缀的最长公共前缀 **LCP**，假设这两个后缀的起点是 $i$ 和 $j$。
+对于一个给定的字符串 $S$ ，我们先要计算它的任意两个后缀的最长公共前缀 **LCP** ，假设这两个后缀的起点是 $i$ 和 $j$ 。
 
 此处的代码将额外花费 $O(|S|\log |S|)$ 的空间。下一节，我们将讨论另外一个完全不一样的做法，该做法将只花费线性的内存。
 
@@ -329,15 +321,15 @@ int compare(int i, int j, int l, int k) {
 
 ```cpp
 int lcp(int i, int j) {
-    int ans = 0;
-    for (int k = log_n; k >= 0; k--) {
-        if (c[k][i] == c[k][j]) {
-            ans += 1 << k;
-            i += 1 << k;
-            j += 1 << k;
-        }
+  int ans = 0;
+  for (int k = log_n; k >= 0; k--) {
+    if (c[k][i] == c[k][j]) {
+      ans += 1 << k;
+      i += 1 << k;
+      j += 1 << k;
     }
-    return ans;
+  }
+  return ans;
 }
 ```
 
@@ -345,51 +337,49 @@ int lcp(int i, int j) {
 
 我们的目标和前一节一样，即我们要计算一个给定字符串 $S$ 的两个后缀的最长公共前缀 LCP。
 
-与前一节不一样的是，我们在这里只消耗 $O(|S|)$ 的时间复杂度，处理结果将会是一个数组，该数组中储存了字符串的重要信息，因此也会被用于解决其他问题。LCP 的询问可以通过在数组中执行 RMQ （区间最小值询问）的询问完成，所以不同的实现可以达到 $\log$ 级别甚至常数级别的时间复杂度。（译者注：此处的 LCP 数组表示通常意义上的 height 数组）
+与前一节不一样的是，我们在这里只消耗 $O(|S|)$ 的时间复杂度，处理结果将会是一个数组，该数组中储存了字符串的重要信息，因此也会被用于解决其他问题。LCP 的询问可以通过在数组中执行 RMQ（区间最小值询问）的询问完成，所以不同的实现可以达到 $\log$ 级别甚至常数级别的时间复杂度。（译者注：此处的 LCP 数组表示通常意义上的 height 数组）
 
-这个算法的基础是，我们要计算相邻的排序后的后缀的 LCP。换言之，我们将会构造一个数组 $\text{LCP}[0\dots n-2]​$，其中 $\text{LCP}[0\dots n-2]​$ 等于 $p[i]​$ 和 $p[i+1]​$ 的 LCP 长度。这个数组将使得我们能够计算出字符串中任意两个相邻后缀的 LCP。拓展到任意两个后缀，可以从这个数组中得到。其实，查询后缀 $p[i]​$ 和 $p[j]​$ 的 LCP 答案就是 $min\{ lcp[i],~lcp[i+1],~\dots,~lcp[j-1]\}​$。
+这个算法的基础是，我们要计算相邻的排序后的后缀的 LCP。换言之，我们将会构造一个数组 $\text{LCP}[0\dots n-2]​$ ，其中 $\text{LCP}[0\dots n-2]​$ 等于 $p[i]​$ 和 $p[i+1]​$ 的 LCP 长度。这个数组将使得我们能够计算出字符串中任意两个相邻后缀的 LCP。拓展到任意两个后缀，可以从这个数组中得到。其实，查询后缀 $p[i]​$ 和 $p[j]​$ 的 LCP 答案就是 $min\{ lcp[i],~lcp[i+1],~\dots,~lcp[j-1]\}​$ 。
 
-因此当我们算出 $\text{LCP}$ 后问题就简化成了计算 $\text{RMQ}$，不同的算法有不同的时间复杂度。
+因此当我们算出 $\text{LCP}$ 后问题就简化成了计算 $\text{RMQ}$ ，不同的算法有不同的时间复杂度。
 
 所以我们的主要任务就是构造 $\text{LCP}$ 数组。我们将使用 Kasai 算法，该算法能在 $O(|S|)$ 时间复杂度内构造这个数组。
 
-现在来观察两个排序后的相邻后缀，假设他们的起点位置是 $i​$ 和 $j​$ 且他们的 LCP 等于 $k​$，其中 $k>0​$。如果我们同时移除这两个后缀的第一个字符，即起点变成 $i+1​$ 和 $j+1​$，此时这两个后缀的 LCP 是 $k-1​$。然而这个值不能直接拿来用然后写进 $\text{LCP}​$ 数组，因为这两个后缀在排序后不一定相邻。后缀 $i+1$ 显然小于后缀 $j+1$，但是他们之中可能有些后缀。然而，因为我们知道了两个后缀间的 LCP 是这两个下标间的最小值，同时，任意两对间的距离至少要是 $k-1$，特别是 $i+1$ 和下一个后缀。同时这个值可能会更大。
+现在来观察两个排序后的相邻后缀，假设他们的起点位置是 $i​$ 和 $j​$ 且他们的 LCP 等于 $k​$ ，其中 $k>0​$ 。如果我们同时移除这两个后缀的第一个字符，即起点变成 $i+1​$ 和 $j+1​$ ，此时这两个后缀的 LCP 是 $k-1​$ 。然而这个值不能直接拿来用然后写进 $\text{LCP}​$ 数组，因为这两个后缀在排序后不一定相邻。后缀 $i+1$ 显然小于后缀 $j+1$ ，但是他们之中可能有些后缀。然而，因为我们知道了两个后缀间的 LCP 是这两个下标间的最小值，同时，任意两对间的距离至少要是 $k-1$ ，特别是 $i+1$ 和下一个后缀。同时这个值可能会更大。
 
 现在我们可以开始实现这个算法了。我们将按照后缀长度进行循环，通过这种方法，我们可以重用最后一次的 $k$ 值，因为从后缀 $i$ 到后缀 $i+1$ 就是去掉第一个字符。我们要开一个 $\text{rank}​$ 数组来记录一个后缀在排序后的数组中的位置。
 
-代码如下，我们最多减去 $n$ 次 $k$（每次循环最多一次，除了 $\text{rank}[i]==n-1$，在这个情况下 $k$ 将直接被置零），并且两个子串的 LCP 最多是 $n-1$。我们增加 $k$ 的操作也是最多 $n$ 次，因此时间复杂度为 $O(n)$。
+代码如下，我们最多减去 $n$ 次 $k$ （每次循环最多一次，除了 $\text{rank}[i]==n-1$ ，在这个情况下 $k$ 将直接被置零），并且两个子串的 LCP 最多是 $n-1$ 。我们增加 $k$ 的操作也是最多 $n$ 次，因此时间复杂度为 $O(n)$ 。
+
 ```cpp
 vector<int> lcp_construction(string const& s, vector<int> const& p) {
-    int n = s.size();
-    vector<int> rank(n, 0);
-    for (int i = 0; i < n; i++)
-        rank[p[i]] = i;
+  int n = s.size();
+  vector<int> rank(n, 0);
+  for (int i = 0; i < n; i++) rank[p[i]] = i;
 
-    int k = 0;
-    vector<int> lcp(n-1, 0);
-    for (int i = 0; i < n; i++) {
-        if (rank[i] == n - 1) {
-            k = 0;
-            continue;
-        }
-        int j = p[rank[i] + 1];
-        while (i + k < n && j + k < n && s[i+k] == s[j+k])
-            k++;
-        lcp[rank[i]] = k;
-        if (k)
-            k--;
+  int k = 0;
+  vector<int> lcp(n - 1, 0);
+  for (int i = 0; i < n; i++) {
+    if (rank[i] == n - 1) {
+      k = 0;
+      continue;
     }
-    return lcp;
+    int j = p[rank[i] + 1];
+    while (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;
+    lcp[rank[i]] = k;
+    if (k) k--;
+  }
+  return lcp;
 }
 ```
 
 ### 不同子串的数目
 
-我们先预处理字符串 $S$，即计算它的后缀数组和 LCA 数组。使用这些信息，我们就可以算出字符串中有多少不同子串了。
+我们先预处理字符串 $S$ ，即计算它的后缀数组和 LCA 数组。使用这些信息，我们就可以算出字符串中有多少不同子串了。
 
 为了达到目的，我们要想一下哪个新的子串在 $p[0]$ 位置开始，然后想想哪个在 $p[1]$ 开始。其实，我们使用排序后的后缀，然后看看给新的子串什么前缀，因此我们将不会错过任何一个。
 
-因为后缀已经排序了，明显当前后缀 $p[i]​$ 将为他的所有前缀贡献一个新的子串，除了由 $p[i-1]​$ 贡献的子串。即它除了前 $\text{LCP}[i-1]​$ 个前缀的所有前缀。因为当前后缀的长度是 $n-p[i]​$，因此 $n-p[i]-\text{LCP}[i-1]​$ 个新后缀将在 $p[i]​$ 开始。对所有后缀求和即得答案，即 
+因为后缀已经排序了，明显当前后缀 $p[i]​$ 将为他的所有前缀贡献一个新的子串，除了由 $p[i-1]​$ 贡献的子串。即它除了前 $\text{LCP}[i-1]​$ 个前缀的所有前缀。因为当前后缀的长度是 $n-p[i]​$ ，因此 $n-p[i]-\text{LCP}[i-1]​$ 个新后缀将在 $p[i]​$ 开始。对所有后缀求和即得答案，即
 
 $$
 \sum_{i=0}^{n-1} (n - p[i]) - \sum_{i=0}^{n-2} \text{lcp}[i] = \frac{n^2 + n}{2} - \sum_{i=0}^{n-2} \text{lcp}[i]​
@@ -417,13 +407,13 @@ $$
 
 ### 连续的若干个相同子串
 
-我们可以枚举连续串的长度 $|s|$ ，按照 $|s|$ 对整个串进行分块，对相邻两块的块首进行 LCP 与 LCS 查询，具体可见 [ **这篇论文** ](https://wenku.baidu.com/view/5b886b1ea76e58fafab00374.html)
+我们可以枚举连续串的长度 $|s|$ ，按照 $|s|$ 对整个串进行分块，对相邻两块的块首进行 LCP 与 LCS 查询，具体可见[ **这篇论文** ](https://wenku.baidu.com/view/5b886b1ea76e58fafab00374.html)
 
 ### 并查集
 
 某些题目求解时要求你将后缀数组划分成若干个连续 LCP 长度大于等于某一值的段，亦即将 $h$ 数组划分成若干个连续最小值大于等于某一值的段并统计每一段的答案。如果有多次询问，我们可以将询问离线。观察到当给定值单调递减的时候，满足条件的区间个数总是越来越少，而新区间都是两个或多个原区间相连所得，且新区间中不包含在原区间内的部分的 $h$ 值都为减少到的这个值。我们只需要维护一个并查集，每次合并相邻的两个区间，并维护统计信息即可。
 
-经典题目： [「NOI2015」品酒大会](http://uoj.ac/problem/131)
+经典题目：[「NOI2015」品酒大会](http://uoj.ac/problem/131)
 
 ### 线段树
 
@@ -431,45 +421,45 @@ $$
 
 ### 单调栈
 
-有些题目让我们求关于一个位置与之前所有位置的 LCP 的长度情况。利用 $LCP_{i,j}=\min\{h_{i+1},h_{i+2},...,h_j\}$ 的性质，我们发现这个 $LCP$ 的值是单调递减的。那么我们可以用一个单调栈来维护这些 LCP 值: 在新加入元素 $h_{i}$ 时，我们先把所有大于等于 $h_i$ 的值弹出，统计其个数，并将 $h_{i}$ 压入单调栈，个数为弹出的值的总个数加 $1$ 。
+有些题目让我们求关于一个位置与之前所有位置的 LCP 的长度情况。利用 $LCP_{i,j}=\min\{h_{i+1},h_{i+2},...,h_j\}$ 的性质，我们发现这个 $LCP$ 的值是单调递减的。那么我们可以用一个单调栈来维护这些 LCP 值：在新加入元素 $h_{i}$ 时，我们先把所有大于等于 $h_i$ 的值弹出，统计其个数，并将 $h_{i}$ 压入单调栈，个数为弹出的值的总个数加 $1$ 。
 
-经典题目有 [「AHOI2013」差异](https://www.lydsy.com/JudgeOnline/problem.php?id=3238) 和 [「HAOI2016」找相同字符](https://www.lydsy.com/JudgeOnline/problem.php?id=4566) 。
+经典题目有[「AHOI2013」差异](https://www.lydsy.com/JudgeOnline/problem.php?id=3238)和[「HAOI2016」找相同字符](https://www.lydsy.com/JudgeOnline/problem.php?id=4566)。
 
 ## 习题
 
-* [Uva 760 - DNA Sequencing](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=701)
-* [Uva 1223 - Editor](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3664)
-* [Codechef - Tandem](https://www.codechef.com/problems/TANDEM)
-* [Codechef - Substrings and Repetitions](https://www.codechef.com/problems/ANUSAR)
-* [Codechef - Entangled Strings](https://www.codechef.com/problems/TANGLED)
-* [Codeforces - Martian Strings](http://codeforces.com/problemset/problem/149/E)
-* [Codeforces - Little Elephant and Strings](http://codeforces.com/problemset/problem/204/E)
-* [SPOJ - Ada and Terramorphing](http://www.spoj.com/problems/ADAPHOTO/)
-* [SPOJ - Ada and Substring](http://www.spoj.com/problems/ADASTRNG/)
-* [UVA - 1227 - The longest constant gene](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3668)
-* [SPOJ - Longest Common Substring](http://www.spoj.com/problems/LCS/en/)
-* [UVA 11512 - GATTACA](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2507)
-* [LA 7502 - Suffixes and Palindromes](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=720&page=show_problem&problem=5524)
-* [GYM - Por Costel and the Censorship Committee](http://codeforces.com/gym/100923/problem/D)
-* [UVA 1254 - Top 10](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3695)
-* [UVA 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343)
-* [UVA 12206 - Stammering Aliens](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3358)
-* [Codechef - Jarvis and LCP](https://www.codechef.com/problems/INSQ16F)
-* [LA 3943 - Liking's Letter](https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=1944)
-* [UVA 11107 - Life Forms](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2048)
-* [UVA 12974 - Exquisite Strings](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4853)
-* [UVA 10526 - Intellectual Property](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1467)
-* [UVA 12338 - Anti-Rhyme Pairs](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3760)
-* [DevSkills Reconstructing Blue Print of Life](https://devskill.com/CodingProblems/ViewProblem/328)
-* [UVA 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343)
-* [SPOJ - Suffix Array](http://www.spoj.com/problems/SARRAY/)
-* [LA 4513 - Stammering Aliens](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2514)
-* [SPOJ - LCS2](http://www.spoj.com/problems/LCS2/)
-* [Codeforces - Fake News (hard)](http://codeforces.com/contest/802/problem/I)
-* [SPOJ - Longest Commong Substring](http://www.spoj.com/problems/LONGCS/)
-* [SPOJ - Lexicographical Substring Search](http://www.spoj.com/problems/SUBLEX/)
-* [Codeforces - Forbidden Indices](http://codeforces.com/contest/873/problem/F)
-* [Codeforces - Tricky and Clever Password](http://codeforces.com/contest/30/problem/E)
-* [LA 6856 - Circle of digits](https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&page=show_problem&problem=4868)
+-   [Uva 760 - DNA Sequencing](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=701)
+-   [Uva 1223 - Editor](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3664)
+-   [Codechef - Tandem](https://www.codechef.com/problems/TANDEM)
+-   [Codechef - Substrings and Repetitions](https://www.codechef.com/problems/ANUSAR)
+-   [Codechef - Entangled Strings](https://www.codechef.com/problems/TANGLED)
+-   [Codeforces - Martian Strings](http://codeforces.com/problemset/problem/149/E)
+-   [Codeforces - Little Elephant and Strings](http://codeforces.com/problemset/problem/204/E)
+-   [SPOJ - Ada and Terramorphing](http://www.spoj.com/problems/ADAPHOTO/)
+-   [SPOJ - Ada and Substring](http://www.spoj.com/problems/ADASTRNG/)
+-   [UVA - 1227 - The longest constant gene](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3668)
+-   [SPOJ - Longest Common Substring](http://www.spoj.com/problems/LCS/en/)
+-   [UVA 11512 - GATTACA](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2507)
+-   [LA 7502 - Suffixes and Palindromes](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=720&page=show_problem&problem=5524)
+-   [GYM - Por Costel and the Censorship Committee](http://codeforces.com/gym/100923/problem/D)
+-   [UVA 1254 - Top 10](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3695)
+-   [UVA 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343)
+-   [UVA 12206 - Stammering Aliens](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3358)
+-   [Codechef - Jarvis and LCP](https://www.codechef.com/problems/INSQ16F)
+-   [LA 3943 - Liking's Letter](https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=1944)
+-   [UVA 11107 - Life Forms](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2048)
+-   [UVA 12974 - Exquisite Strings](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4853)
+-   [UVA 10526 - Intellectual Property](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1467)
+-   [UVA 12338 - Anti-Rhyme Pairs](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3760)
+-   [DevSkills Reconstructing Blue Print of Life](https://devskill.com/CodingProblems/ViewProblem/328)
+-   [UVA 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343)
+-   [SPOJ - Suffix Array](http://www.spoj.com/problems/SARRAY/)
+-   [LA 4513 - Stammering Aliens](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2514)
+-   [SPOJ - LCS2](http://www.spoj.com/problems/LCS2/)
+-   [Codeforces - Fake News (hard)](http://codeforces.com/contest/802/problem/I)
+-   [SPOJ - Longest Commong Substring](http://www.spoj.com/problems/LONGCS/)
+-   [SPOJ - Lexicographical Substring Search](http://www.spoj.com/problems/SUBLEX/)
+-   [Codeforces - Forbidden Indices](http://codeforces.com/contest/873/problem/F)
+-   [Codeforces - Tricky and Clever Password](http://codeforces.com/contest/30/problem/E)
+-   [LA 6856 - Circle of digits](https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&page=show_problem&problem=4868)
 
-本页面中（[4070a9b](https://github.com/24OI/OI-wiki/pull/950/commits/4070a9b3db8576db16c74d3ec33806ad10476eef)引入的部分）主要译自博文 [Суффиксный массив](http://e-maxx.ru/algo/suffix_array) 与其英文翻译版 [Suffix Array](https://cp-algorithms.com/string/suffix-array.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。
+本页面中（[4070a9b](https://github.com/24OI/OI-wiki/pull/950/commits/4070a9b3db8576db16c74d3ec33806ad10476eef)引入的部分）主要译自博文[Суффиксный массив](http://e-maxx.ru/algo/suffix_array)与其英文翻译版[Suffix Array](https://cp-algorithms.com/string/suffix-array.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。

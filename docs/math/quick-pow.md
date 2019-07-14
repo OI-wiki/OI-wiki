@@ -20,7 +20,7 @@ $$
 
 根据上式我们发现，原问题被我们转化成了形式相同的子问题的乘积。
 
-最重要的是，我们注意到， $a^{2^{i+1}} \bmod c = (a^{2^i})^2 \bmod c$ ，可以在常数时间内从 $2^i$ 项推出 $2^{i+1}$ 项。于是，原问题总的复杂度就是 $O(\log b)$
+最重要的是，我们注意到， $a^{2^{i+1}} \bmod c = (a^{2^i})^2 \bmod c$ ，可以在常数时间内从 $2^i$ 项推出 $2^{i+1}$ 项。于是，原问题总的复杂度就是 $O(\log b)$ 
 
 在算法竞赛中，快速幂的思想不仅用于整数乘法，也可用于大整数加法，矩阵幂运算等场合中。
 
@@ -28,11 +28,11 @@ $$
 
 举个栗子， $a^{10}$ 等价于下面的式子：
 
- $a \times a \times a \times a \times a \times a \times a \times a \times a \times a$
+ $a \times a \times a \times a \times a \times a \times a \times a \times a \times a$ 
 
-通过观察我们不难发现， $a^{10}$ 可以转化成 $(a \times a)^{5}$
+通过观察我们不难发现， $a^{10}$ 可以转化成 $(a \times a)^{5}$ 
 
- $\left(a \times a \right) \times\left(a \times a \right) \times \left(a \times a \right) \times \left(a \times a \right) \times \left(a \times a \right)$
+ $\left(a \times a \right) \times\left(a \times a \right) \times \left(a \times a \right) \times \left(a \times a \right) \times \left(a \times a \right)$ 
 
 这时，再进行分解，我们假设 $a' =a \times a$ ，原式就成了
 
@@ -42,11 +42,11 @@ $$
 
 可是我们发现，a 不能正好分完，于是我们单独拎出来一个 a'，就转化成了：
 
- $\left (a' \times a'\right) \times\left (a' \times a'\right) \times a'$
+ $\left (a' \times a'\right) \times\left (a' \times a'\right) \times a'$ 
 
 如此重复下去即可，终止条件：
 
- $a^0=1$ 和 $a^1=a$
+ $a^0=1$ 和 $a^1=a$ 
 
 ## 实现代码
 
