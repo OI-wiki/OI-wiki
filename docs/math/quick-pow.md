@@ -87,3 +87,62 @@ long long qpow(long long a, long long b, long long p) {
 ??? note "例题"
 
     做一做[Luogu P1226](https://www.luogu.org/problemnew/show/P1226)
+
+## 高精度快速幂
+
+??? note "前置技能"
+    请先学习[高精度](https://oi-wiki.org/math/bignum/)
+    
+??? note "例题【NOIP2003普及组改编·麦森数】（[原题在此](https://www.luogu.org/problemnew/show/P1045)）"
+    题目大意：从文件中输入P（1000<P<3100000），计算 $2^P−1$ 的最后100位数字（用十进制高精度数表示），不足100位时高位补0。
+
+### 例题代码
+
+```cpp
+ #include<bits/stdc++.h>
+using namespace std;
+int a[505],b[505],t[505],i,j;
+int mult(int x[],int y[])//高精度乘法
+{
+	memset(t,0,sizeof(t));
+	for(i=1;i<=x[0];i++)
+	{
+		for(j=1;j<=y[0];j++)
+		{
+			if(i+j-1>100) continue;
+			t[i+j-1]+=x[i]*y[j];
+			t[i+j]+=t[i+j-1]/10;
+			t[i+j-1]%=10;
+			t[0]=i+j;
+		}
+	}
+	memcpy(b,t,sizeof(b));
+}
+void ksm(int p)//快速幂
+{
+	if(p==1) 
+	{
+		memcpy(b,a,sizeof(b));
+		return;
+	}
+	ksm(p/2);
+	mult(b,b);
+	if(p%2==1) mult(b,a);
+}
+int main()
+{
+	int p;
+	scanf("%d",&p);
+	a[0]=1;a[1]=2;
+	b[0]=1;b[1]=1;
+	ksm(p);
+	for(i=100;i>=1;i--)
+	{
+		if(i==1) 
+		{
+			printf("%d\n",b[i]-1);
+		}
+		else printf("%d",b[i]);
+	}
+}
+```
