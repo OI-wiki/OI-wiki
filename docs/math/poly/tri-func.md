@@ -6,17 +6,21 @@
 
 首先由 [Euler's formula](https://en.wikipedia.org/wiki/Euler's_formula) $\left(e^{ix} = \cos{x} + i\sin{x}\right)$ 可以得到[三角函数的另一个表达式](https://en.wikipedia.org/wiki/Trigonometric_functions#Relationship_to_exponential_function_and_complex_numbers)：
 
-$$ \begin{aligned}
+$$
+\begin{aligned}
 	\sin{x} &= \frac{e^{ix} + e^{-ix}}{2i} \\
 	\cos{x} &= \frac{e^{ix} - e^{-ix}}{2}
-\end{aligned} $$
+\end{aligned}
+$$
 
 那么代入 $f\left(x\right)$ 就有：
 
-$$ \begin{aligned}
+$$
+\begin{aligned}
 	\sin{f\left(x\right)} &= \frac{\exp{\left(if\left(x\right)\right)} - \exp{\left(-if\left(x\right)\right)}}{2i} \\
 	\cos{f\left(x\right)} &= \frac{\exp{\left(if\left(x\right)\right)} + \exp{\left(-if\left(x\right)\right)}}{2}
-\end{aligned} $$
+\end{aligned}
+$$
 
 注意到我们是在 $\mathbb{Z}_{998244353}$ 上做 NTT，那么相应地，虚数单位 $i$ 应该换成 $\sqrt{-1} \equiv \sqrt{998244352} \equiv 86583718 \pmod{998244353}$。
 

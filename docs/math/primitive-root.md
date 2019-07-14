@@ -40,7 +40,9 @@ $(g,m) =1$，设 $p_1, p_2, \cdots, p_k$ 是 $\varphi(m)$ 的所有不同的素�
 
 由裴蜀定理得，一定存在一组 $k,x$ 满足 $kt=x(p-1)+\gcd(t,p-1)$；由欧拉定理/费马小定理得 $a^{p-1}\equiv 1\pmod{p}$；故有：
 
-$$1\equiv a^{kt}\equiv a^{x(p-1)+\gcd(t,p-1)}\equiv a^{\gcd(t,p-1)}\pmod{p}$$
+$$
+1\equiv a^{kt}\equiv a^{x(p-1)+\gcd(t,p-1)}\equiv a^{\gcd(t,p-1)}\pmod{p}
+$$
 
 又有 $t<p-1$，故 $\gcd(t,p-1)\leqslant t<p-1$。
 

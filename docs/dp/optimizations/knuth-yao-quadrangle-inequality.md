@@ -148,7 +148,9 @@ $$
 
 > **定理 2**    若函数 $w(l,r)$ 满足四边形不等式，记 $h_{l,r}=f_l+w(l,r)$ 表示从 $l$ 转移过来的状态 $r$,$k_{r}=\min\{l|f_{r}=h_{l,r}\}$ 表示最优决策点，则有
 >
-> $$ \forall r_1 \leq r_2:k_{r_1} \leq k_{r_2} $$
+> $$
+> \forall r_1 \leq r_2:k_{r_1} \leq k_{r_2}
+> $$
 
 记 $l_1=k_{r_1},\ l_2=k_{r_2}$，若 $l_1>l_2$，则 $l_2<l_1<r_1\leq r_2​$，根据四边形不等式有
 
@@ -199,7 +201,9 @@ void DP(int l, int r, int k_l, int k_r) {
 
 题目大意：给定一个长度为 $n\leq 500000$ 的序列 $a_1, a_2, \cdots, a_n$，要求对于每一个 $1 \leq r \leq n$，找到最小的非负整数 $f_{r}$ 满足
 
-$$\forall l\in\left[1,n\right]:a_l \leq a_r + f_{r} - \sqrt{|r-l|}$$
+$$
+\forall l\in\left[1,n\right]:a_l \leq a_r + f_{r} - \sqrt{|r-l|}
+$$
 
 显然，经过不等式变形，我们可以得到待求整数 $f_{r} = \max\limits_{l=1}^{n}\{a_l+\sqrt{r-l}-a_r\}$。不妨先考虑 $l < r$ 的情况（另外一种情况类似），此时我们可以得到状态转移方程：
 

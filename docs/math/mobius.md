@@ -849,7 +849,9 @@ $$
 
 容易知道  
 
-$$\sum_{i=1}^{n}\sum_{j=1}^{m}ij=\frac{n(n+1)}{2}\cdot \frac{m(m+1)}{2}$$
+$$
+\sum_{i=1}^{n}\sum_{j=1}^{m}ij=\frac{n(n+1)}{2}\cdot \frac{m(m+1)}{2}
+$$
 
 设 $sum(n,m)=\sum_{i=1}^{n}\sum_{j=1}^{m}ij$ ，继续接着前面的往下推  
 
