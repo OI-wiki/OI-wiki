@@ -16,7 +16,9 @@ int Eratosthenes(int n) {
   for (int i = 2; i <= n; ++i) {
     if (is_prime[i]) {
       prime[p++] = i;  // prime[p]是i,后置自增运算代表当前素数数量
-      for (int j = i * i; j <= n; j += i) // 因为从 2 到 i - 1 的倍数我们之前筛过了，这里直接从 i 的倍数开始，提高了运行速度
+      for (int j = i * i; j <= n;
+           j += i)  // 因为从 2 到 i - 1 的倍数我们之前筛过了，这里直接从 i
+                    // 的倍数开始，提高了运行速度
         is_prime[j] = 0;  //是i的倍数的均不是素数
     }
   }
@@ -128,7 +130,7 @@ void pre() {
 
 ## 筛法求约数和
 
- $f_i$ 表示 $i$ 的约数和 $g_i$ 表示 $i$ 的最小质因子的 $p+p^1+p^2+\dots p^k$
+ $f_i$ 表示 $i$ 的约数和 $g_i$ 表示 $i$ 的最小质因子的 $p+p^1+p^2+\dots p^k$ 
 
 ```cpp
 void pre() {

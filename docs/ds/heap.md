@@ -21,5 +21,4 @@
 | 减小一个元素的值 (decrease-key) |  $o(\log n) (下界\Omega(\log \log n) ，\\\\上界 O(2^{2\sqrt{\log \log n}}) )$  |   $O(\log n)$  |    $O(logn)$   |  $O(\log n)$  |  $O(1)$       |
 |         是否支持可持久化        |                                  $\times$                                 |  $\checkmark$  |  $\checkmark$  |               |  $\times$     |
 
-习惯上，不加限定提到 “堆” 时往往都指二叉堆。
-
+习惯上，不加限定提到“堆”时往往都指二叉堆。
