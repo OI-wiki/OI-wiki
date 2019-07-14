@@ -4,7 +4,7 @@
 2.  Link/Cut Tree 又称 Link-Cut Tree，简称 LCT, 但它不叫动态树，动态树是指一类问题。
 3.  Splay Tree 是 LCT 的基础，但是 LCT ⽤的 Splay Tree 和普通的 Splay 在细节处不太一样。
 4.  这是⼀个和 Splay ⼀样只需要写⼏ (yi) 个 (dui) 核心函数就能实现一切的数据结构。
-    
+
 ## 问题引入
 
 -   维护一棵树，支持如下操作。
@@ -29,7 +29,7 @@
 
 * * *
 
-### 从 LCT 的角度回顾一下树链剖分    
+### 从 LCT 的角度回顾一下树链剖分
 
 -   对整棵树按子树⼤小进⾏剖分，并重新标号。
 
@@ -38,6 +38,7 @@
 ### 转向动态树问题
 
 -   我们发现我们刚刚讲的树剖是以子树⼤小作为划分条件。
+
 -   那我们能不能重定义一种剖分，使它更适应我们的动态树问题呢？
 
 -   考虑动态树问题需要什么链。
@@ -49,6 +50,7 @@
 -   对于⼀个点连向它所有⼉子的边 , 我们⾃己选择⼀条边进行剖分，我们称被选择的边为实边，其他边则为虚边。
 
 -   对于实边，我们称它所连接的⼉子为实⼉子。
+
 -   对于⼀条由实边组成的链，我们同样称之为实链。
 
 -   请记住我们选择实链剖分的最重要的原因：它是我们选择的，灵活且可变。
@@ -60,6 +62,7 @@
 -   我们可以简单的把 LCT 理解成用⼀些 Splay 来维护动态的树链剖分，以期实现动态树上的区间操作。
 
 -   对于每条实链，我们建⼀个 Splay 来维护整个链区间的信息。
+
 -   接下来，我们来学习 LCT 的具体结构。
 
 ## - 辅助树
@@ -100,14 +103,19 @@
 ### 接下来要用到的变量声明
 
 -    `ch[N][2]` 左右⼉子
+
 -    `f[N]` ⽗亲指向
 
 -    `sum[N]` 路径权值和
+
 -    `val[N]` 点权
 
 -    `tag[N]` 翻转标记
+
 -    `laz[N]` 权值标记
+
 -    `siz[N]` 辅助树上子树大小
+
 -   Other_Vars
 
 ### 函数声明
@@ -179,14 +187,15 @@ inline void Rotate(int x) {
   PushUp(x), PushUp(y);
 }
 inline void Splay(int x) {
-  Update(x);  // 马上就能看到啦。 在 Splay之前要把旋转会经过的路径上的点都PushDown
+  Update(
+      x);  // 马上就能看到啦。 在 Splay之前要把旋转会经过的路径上的点都PushDown
   for (int fa; fa = f[x], !isRoot(x); Rotate(x)) {
     if (!isRoot(fa)) Rotate(Get(fa) == Get(x) ? fa : x);
   }
 }
 ```
 
-如果上面的几个函数你看不懂，请移步 [Splay](/ds/splay/)
+如果上面的几个函数你看不懂，请移步[Splay](/ds/splay/)
 
 下面要开始 LCT 独有的函数了哦
 
@@ -350,12 +359,12 @@ inline int Find(int p) {
 ### 一些提醒
 
 -   干点啥前一定要想一想需不需要 PushUp 或者 PushDown, LCT 由于特别灵活的原因，少 Pushdown 或者 Pushup 一次就可能把修改改到不该改的点上！
--   LCT 的 rotate 和 splay 的不太一样，`if (z)` 一定要放在前面。
+-   LCT 的 rotate 和 splay 的不太一样， `if (z)` 一定要放在前面。
 -   LCT 的 splay 就是旋转到根，没有旋转到谁儿子的操作，因为不需要。
 
 ## 一些题
 
--   [「SDOI2008」 Cave 洞穴勘测](https://lydsy.com/JudgeOnline/problem.php?id=2049)
+-   [「SDOI2008」Cave 洞穴勘测](https://lydsy.com/JudgeOnline/problem.php?id=2049)
 -   [「BZOJ 3282」Tree](https://lydsy.com/JudgeOnline/problem.php?id=3282)
--   [「HNOI2010」 Bounce 弹飞绵羊](https://lydsy.com/JudgeOnline/problem.php?id=2002)
+-   [「HNOI2010」Bounce 弹飞绵羊](https://lydsy.com/JudgeOnline/problem.php?id=2002)
 -   [「BZOJ 2631」tree](https://lydsy.com/JudgeOnline/problem.php?id=2631)

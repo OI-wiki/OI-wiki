@@ -8,7 +8,7 @@
 
 在 OI 中，最常见的情况应该是 key 为整数的情况。当 key 的范围比较小的时候，可以直接把 key 作为数组的下标，但当 key 的范围比较大，比如以 $10^9$ 范围内的整数作为 key 的时候，就需要用到哈希表。一般把 key 模一个较大的质数作为索引，也就是取 $f(x)=x \bmod M$ 作为哈希函数。另一种比较常见的情况是 key 为字符串的情况，在 OI 中，一般不直接把字符串作为 key，而是先算出字符串的哈希值，再把其哈希值作为 key 插入到哈希表里。
 
-能为 key 计算索引之后，我们就可以知道每个 value 应该放在哪里了。假设我们用数组 a 存放数据，哈希函数是 f，那键值对 (key,value) 就应该放在 a[f(key)] 上。不论 key 是什么类型，范围有多大，f(key) 都是在可接受范围内的整数，可以作为数组的下标。
+能为 key 计算索引之后，我们就可以知道每个 value 应该放在哪里了。假设我们用数组 a 存放数据，哈希函数是 f，那键值对 (key,value) 就应该放在 a[f(key)]上。不论 key 是什么类型，范围有多大，f(key) 都是在可接受范围内的整数，可以作为数组的下标。
 
 ## 冲突
 
@@ -18,7 +18,7 @@
 
 拉链发也称开散列法（open hashing）。
 
-拉链法是在每个存放数据的地方开一个链表，如果有多个 key 索引到同一个地方，只用把他们都放到那个位置的链表里就行了。查询的时候需要把对应位置的链表整个扫一遍，对其中的每个数据比较其 key 与查询的 key 是否一致。如果索引的范围是 1~M，哈希表的大小为 N，那么一次插入 / 查询需要进行期望 $O(\frac{N}{M})$ 次比较。
+拉链法是在每个存放数据的地方开一个链表，如果有多个 key 索引到同一个地方，只用把他们都放到那个位置的链表里就行了。查询的时候需要把对应位置的链表整个扫一遍，对其中的每个数据比较其 key 与查询的 key 是否一致。如果索引的范围是 1~M，哈希表的大小为 N，那么一次插入/查询需要进行期望 $O(\frac{N}{M})$ 次比较。
 
 ### 闭散列法
 
@@ -60,17 +60,24 @@ struct HashTable {
 这边再为大家提供一个封装过的模板，可以像 map 一样用，并且较短
 
 ```cpp
-struct hash_map{// 哈希表模板
-    struct data{long long u;int v,nex;};// 前向星结构
-    data e[SZ<<1];//SZ 是 const int 表示大小
-    int h[SZ],cnt;
-    int hash(long long u){return u%SZ;}
-    int & operator[](long long u){
-        int hu=hash(u);// 获取头指针
-        for(int i=h[hu];i;i=e[i].nex)if(e[i].u==u)return e[i].v;
-        return e[++cnt]=(data){u,-1,h[hu]},h[hu]=cnt,e[cnt].v;
-    }
-    hash_map(){cnt=0;memset(h,0,sizeof(h));}
+struct hash_map {  // 哈希表模板
+  struct data {
+    long long u;
+    int v, nex;
+  };                // 前向星结构
+  data e[SZ << 1];  // SZ 是 const int 表示大小
+  int h[SZ], cnt;
+  int hash(long long u) { return u % SZ; }
+  int& operator[](long long u) {
+    int hu = hash(u);  // 获取头指针
+    for (int i = h[hu]; i; i = e[i].nex)
+      if (e[i].u == u) return e[i].v;
+    return e[++cnt] = (data){u, -1, h[hu]}, h[hu] = cnt, e[cnt].v;
+  }
+  hash_map() {
+    cnt = 0;
+    memset(h, 0, sizeof(h));
+  }
 };
 ```
 
