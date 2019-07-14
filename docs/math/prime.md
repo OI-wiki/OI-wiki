@@ -2,7 +2,7 @@
 
 显然大于 $1$ 的正整数 $a$ 可以被 $1$ 和 $a$ 整除，如果除此之外 $a$ 没有其他的约数，则称 $a$ 是素数，又称质数。任何一个大于 $1$ 的整数如果不是素数，也就是有其他约数，就称为是合数。 $1$ 既不是合数也不是素数。
 
-素数计数函数：小于或等于 $x$ 的素数的个数，用 $\pi(x)$ 表示。随着 $x$ 的增大，有这样的近似结果： $\pi(x) \sim \frac{x}{\ln(x)}$
+素数计数函数：小于或等于 $x$ 的素数的个数，用 $\pi(x)$ 表示。随着 $x$ 的增大，有这样的近似结果： $\pi(x) \sim \frac{x}{\ln(x)}$ 
 
 ## 素数判定
 
@@ -41,18 +41,19 @@ bool isPrime(a) {
 ### Miller-Rabin 素性测试
 
 Miller-Rabin 素性测试（Miller–Rabin primality test）是进阶的素数判定方法。
-对数 n 进行 k 轮测试的时间复杂度是 $O(k \log^3n)$，利用 FFT 等技术可以优化到 [$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)。
+对数 n 进行 k 轮测试的时间复杂度是 $O(k \log^3n)$ ，利用 FFT 等技术可以优化到[ $O(k \log^2n \log \log n \log \log \log n)$ ](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)。
 
 #### Fermat 素性测试
 
 我们可以根据[费马小定理](/math/fermat/#_1)得出一种检验素数的思路：
 
-它的基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$ ，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$
+它的基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$ ，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$ 
 
 ```cpp
 bool millerRabin(int n) {
   if (n < 3) return n == 2;
-  // test_time 为测试次数,建议设为不小于 8 的整数以保证正确率,但也不宜过大,否则会影响效率
+  // test_time 为测试次数,建议设为不小于 8
+  // 的整数以保证正确率,但也不宜过大,否则会影响效率
   for (int i = 1; i <= test_time; ++i) {
     int a = rand() % (n - 2) + 2;
     if (quickPow(a, n - 1, n) != 1) return 0;
@@ -92,7 +93,8 @@ bool millerRabbin(int n) {
   if (n < 3) return n == 2;
   int a = n - 1, b = 0;
   while (a % 2 == 0) a /= 2, ++b;
-  // test_time 为测试次数,建议设为不小于 8 的整数以保证正确率,但也不宜过大,否则会影响效率
+  // test_time 为测试次数,建议设为不小于 8
+  // 的整数以保证正确率,但也不宜过大,否则会影响效率
   for (int i = 1, j; i <= test_time; ++i) {
     int x = rand() % (n - 2) + 2, v = quickPow(x, a, n);
     if (v == 1 || v == n - 1) continue;
@@ -139,7 +141,7 @@ bool millerRabbin(int n) {
 
 1.  反素数肯定是从 $2$ 开始的连续素数的幂次形式的乘积。
 
-2.  数值小的素数的幂次大于等于数值大的素数，即 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 中，有 $k_1 \geq k_2 \geq k_3 \geq \cdots \geq k_n$
+2.  数值小的素数的幂次大于等于数值大的素数，即 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 中，有 $k_1 \geq k_2 \geq k_3 \geq \cdots \geq k_n$ 
 
 解释：
 

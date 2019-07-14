@@ -8,7 +8,7 @@
 
 事实上，树状数组的代码要比线段树短得多，思维也更清晰，在解决一些单点修改的问题时，树状数组是不二之选。
 
-------
+* * *
 
 ## 原理
 
@@ -31,7 +31,7 @@
 
 你从 $91$ 开始往前跳，发现 $c[n]$ （ $n$ 我也不确定是多少，算起来太麻烦，就意思一下）只管 $a[91]$ 这个点，那么你就会找 $a[90]$ ，发现 $c[n - 1]$ 管的是 $a[90]$ & $a[89]$ ；那么你就会直接跳到 $a[88]$ ， $c[n - 2]$ 就会管 $a[81]$ ~ $a[88]$ 这些数，下次查询从 $a[80]$ 往前找，以此类推。
 
-------
+* * *
 
 ## 用法及操作
 
@@ -55,7 +55,7 @@ int lowbit(int x) {
 
  **你可能又问了：x & -x 是什么意思啊？** 
 
-> $-x$ 代表 $x$ 的负数，计算机中负数使用对应的正数的补码来表示。
+>  $-x$ 代表 $x$ 的负数，计算机中负数使用对应的正数的补码来表示。
 
 例如 :  
  $x =88_{(10)}=1011000_{(2)}$ ；  
@@ -68,7 +68,7 @@ int lowbit(int x) {
 
 ```cpp
 void add(int x, int k) {
-  while (x <= n) { //不能越界
+  while (x <= n) {  //不能越界
     c[x] = c[x] + k;
     x = x + lowbit(x);
   }
@@ -78,7 +78,7 @@ void add(int x, int k) {
 每次只要在他的上级那里更新就行，自己就可以不用管了。
 
 ```cpp
-int getsum(int x) { // a[1]……a[x]的和
+int getsum(int x) {  // a[1]……a[x]的和
   int ans = 0;
   while (x >= 1) {
     ans = ans + c[x];
@@ -90,7 +90,7 @@ int getsum(int x) { // a[1]……a[x]的和
 
 ## 区间加区间求和
 
-若维护序列 $a$ 的差分数组 $b$ ，此时我们对 $a$ 的一个前缀 $r$ 求和， 即 $\sum_{i=1}^{r} a_i$ ，由差分数组定义得 $a_i=\sum_{j=1}^i b_j$
+若维护序列 $a$ 的差分数组 $b$ ，此时我们对 $a$ 的一个前缀 $r$ 求和，即 $\sum_{i=1}^{r} a_i$ ，由差分数组定义得 $a_i=\sum_{j=1}^i b_j$ 
 
 进行推导
 
@@ -99,16 +99,14 @@ $$
 \\=\sum_{i=1}^r b_i\times (r+1)-\sum_{i=1}^r b_i\times i
 $$
 
-区间和可以用两个前缀和相减得到，因此只需要用两个树状数组分别维护 $\sum b_i$ 和 $\sum i \times b_i$，就能实现区间求和。
+区间和可以用两个前缀和相减得到，因此只需要用两个树状数组分别维护 $\sum b_i$ 和 $\sum i \times b_i$ ，就能实现区间求和。
 
 代码如下
 
 ```cpp
 int t1[MAXN], t2[MAXN], n;
 
-inline int lowbit(int x) {
-  return x & (-x);
-}
+inline int lowbit(int x) { return x & (-x); }
 
 void add(int k, int v) {
   int v1 = k * v;
@@ -128,18 +126,19 @@ int getsum(int *t, int k) {
 }
 
 void add1(int l, int r, int v) {
-  add(l, v), add(r + 1, -v); //将区间加差分为两个前缀加
+  add(l, v), add(r + 1, -v);  //将区间加差分为两个前缀加
 }
 
 long long getsum1(int l, int r) {
-  return (r + 1ll) * (getsum(t1, r) - getsum(t1, l - 1)) - (getsum(t2, r) - getsum(t2, l - 1));
+  return (r + 1ll) * (getsum(t1, r) - getsum(t1, l - 1)) -
+         (getsum(t2, r) - getsum(t2, l - 1));
 }
 ```
 
-树状数组还有一些 trick ，如 $O(n)$ 建树、 $O(\log n)$ 查询第 $k$ 小/大元素等，下附代码。
+树状数组还有一些 trick，如 $O(n)$ 建树、 $O(\log n)$ 查询第 $k$ 小/大元素等，下附代码。
 
 ```cpp
-//O(n)建树
+// O(n)建树
 void init() {
   for (int i = 1; i <= n; ++i) {
     t[i] += a[i];
@@ -148,21 +147,21 @@ void init() {
   }
 }
 
-int kth(int k) {//权值树状数组查询第k小
+int kth(int k) {  //权值树状数组查询第k小
   int cnt = 0, ret = 0;
   for (int i = log2(n); ~i; --i) {
     ret += 1 << i;
-    if (ret >= n || cnt + t[ret] >= k) ret -= 1 << i;
-    else cnt += t[ret];
+    if (ret >= n || cnt + t[ret] >= k)
+      ret -= 1 << i;
+    else
+      cnt += t[ret];
   }
   return ret + 1;
 }
 
 //时间戳优化
 int tag[MAXN], t[MAXN], Tag;
-void reset() {
-  ++Tag;
-}
+void reset() { ++Tag; }
 void add(int k, int v) {
   while (k <= n) {
     if (tag[k] != Tag) t[k] = 0;
@@ -182,8 +181,8 @@ int getsum(int k) {
 
 ## 例题
 
-- [树状数组 1 ：单点修改，区间查询](https://loj.ac/problem/130)
-- [树状数组 2 ：区间修改，单点查询](https://loj.ac/problem/131)
-- [树状数组 3 ：区间修改，区间查询](https://loj.ac/problem/132)
-- [二维树状数组 1：单点修改，区间查询](https://loj.ac/problem/133)
-- [二维树状数组 3：区间修改，区间查询](https://loj.ac/problem/135)
+-   [树状数组 1：单点修改，区间查询](https://loj.ac/problem/130)
+-   [树状数组 2：区间修改，单点查询](https://loj.ac/problem/131)
+-   [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132)
+-   [二维树状数组 1：单点修改，区间查询](https://loj.ac/problem/133)
+-   [二维树状数组 3：区间修改，区间查询](https://loj.ac/problem/135)

@@ -1,4 +1,4 @@
-DFS 全称是 [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)，中文名是深度优先搜索，是一种用于遍历或搜索树或图的算法。（注：这里指的树和图是抽象意义上的树和图。换言之，是对实际问题的模型转化）
+DFS 全称是[Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)，中文名是深度优先搜索，是一种用于遍历或搜索树或图的算法。（注：这里指的树和图是抽象意义上的树和图。换言之，是对实际问题的模型转化）
 
 所谓深度优先，就是说每次都尝试向更深的节点走。
 
@@ -7,7 +7,7 @@ DFS 全称是 [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_sea
 上面的解释太过高深，我们可以感性地理解一下它，在较为初级的应用（非图论）中，搜索就是一个暴力枚举，
 如这个例子：
 
-> 把正整数 n 分解为 3 个不同的数，如 6=1+2+3 ，排在后面的数必须大于等于前面的数
+> 把正整数 n 分解为 3 个不同的数，如 6=1+2+3，排在后面的数必须大于等于前面的数
 > 对于这个问题，如果不知道搜索，应该怎么办呢？
 > 当然是 3 重循环，伪代码如下：
 >
@@ -56,31 +56,27 @@ dfs(n) {
 C++ 代码：
 
 ```cpp
-bool vis[N];//访问标记数组
-int a[N];//排列数组，按顺序储存当前搜索结果
+bool vis[N];  //访问标记数组
+int a[N];     //排列数组，按顺序储存当前搜索结果
 
-void dfs(int step)
-{
-    if (step == n + 1)//边界
-    {
-        for (int i = 1; i <= n; i++)
-        {
-            cout << setw(5) << a[i];
-        }
-        cout << endl;
-        return;
+void dfs(int step) {
+  if (step == n + 1)  //边界
+  {
+    for (int i = 1; i <= n; i++) {
+      cout << setw(5) << a[i];
     }
-    for (int i = 1; i <= n; i++)
-    {
-        if (vis[i] == 0)
-        {
-            vis[i] = 1;
-            a[step] = i;
-            dfs(step + 1);
-            vis[i] = 0;
-        }
-    }
+    cout << endl;
     return;
+  }
+  for (int i = 1; i <= n; i++) {
+    if (vis[i] == 0) {
+      vis[i] = 1;
+      a[step] = i;
+      dfs(step + 1);
+      vis[i] = 0;
+    }
+  }
+  return;
 }
 ```
 
