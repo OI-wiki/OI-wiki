@@ -202,7 +202,7 @@ nav:
     - 线段树: ds/segment.md
     - 线段树 & 区间历史最值: ds/segment-tree-beats.md
     - 划分树: ds/dividing.md
-    - 平衡树:
+    - 二叉搜索树 & 平衡树:
       - 二叉搜索树简介: ds/bst.md
       - Treap: ds/treap.md
       - Splay: ds/splay.md
