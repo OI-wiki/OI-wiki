@@ -52,9 +52,7 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 ### 例子
 
-下面放一张 GIF 帮助大家理解：
-
-对字符串 `i` `he` `his` `she` `hers` 组成的字典树构建 fail 指针：
+下面放一张 GIF 帮助大家理解。对字符串 `i` `he` `his` `she` `hers` 组成的字典树构建 fail 指针：
 
 1. 黄色结点：当前的结点 $u$。
 2. 绿色结点：表示已经 BFS 遍历完毕的结点，
@@ -67,7 +65,9 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 ![AC_automation_6_9.png](./images/ac-automaton1.png)
 
-找到 6 的父结点 5，$fail[5]=10$。然而 10 结点没有字母`s`连出的边；继续跳到 10 的 fail 指针，$fail[10]=0$。发现 0 结点有字母`s`连出的边，指向 7 结点；所以 $fail[6]=7$。
+找到 6 的父结点 5，$fail[5]=10$。然而 10 结点没有字母`s`连出的边；继续跳到 10 的 fail 指针，$fail[10]=0$。发现 0 结点有字母`s`连出的边，指向 7 结点；所以 $fail[6]=7$。最后放一张建出来的图
+
+![finish](./images/ac-automaton4.png)
 
 ## 字典树与字典图
 
@@ -125,7 +125,7 @@ void build(){
 
 ## 多模式匹配
 
-接下来分析匹配函数 `query()`:
+接下来分析匹配函数 `query()`：
 
 ```cpp
 int query(char *t){
@@ -139,168 +139,148 @@ int query(char *t){
     return res;
 }
 ```
-声明 u 作为字典树上当前匹配到的结点，res 即返回的答案。循环遍历匹配串，u 在字典树上跟踪当前字符。利用 fail 指针找出所有匹配的模式串，累加到答案中。然后清 0。对 $e[j]$ 取反的操作用来判断 $e[j]$ 是否等于 -1。
+声明 $u$ 作为字典树上当前匹配到的结点，$res$ 即返回的答案。循环遍历匹配串，$u$ 在字典树上跟踪当前字符。利用 fail 指针找出所有匹配的模式串，累加到答案中。然后清 0。对 $e[j]$ 取反的操作用来判断 $e[j]$ 是否等于 -1。在上文中我们分析过，字典树的结构其实就是一个 $trans$ 函数，而构建好这个函数后，在匹配字符串的过程中，我们会舍弃部分前缀达到最低限度的匹配。fail指针则指向了更多的匹配状态。最后上一份图。对于刚才的自动机：
 
-Q- 读者可能纳闷了：你这里的 u 一直在往字典树后面走，没有跳 fail 指针啊！这和 KMP 的思想不一样啊，怎么匹配得出来啊
-
-读者表示：我 TM 一点也不纳闷 emm
-
-<img src="https://hexo-source-1257756441.cos.ap-chengdu.myqcloud.com/exp/hrwhl2.jpg" width=200px />
-
-### Answer to Q
-
-还记得刚才的字典图吗？事实上你并不是一直在往后跳，而是在图上穿梭跳动。比如，刚才的字典图：
-
-![AC_automation_b_13.png][5]
+![AC_automation_b_13.png](./images/ac-automaton3.png)
 
 我们从根结点开始尝试匹配 `ushersheishis`，那么 p 的变化将是：
 
-![AC_automation_gif_c.gif][6]
+![AC_automation_gif_c.gif](./images/ac-automaton3.gif)
 
-红色结点表示 p 结点，粉色箭头表示 p 在字典图上的跳转，浅蓝色的边表示成功匹配的模式串，深蓝色的结点表示跳 fail 指针时的结点。
-
-其中的部分跳转，我们利用的就是新构建的字典图上的边，它也满足后缀相同（sher 和 her），所以自动跳转到下一个位置。
-
-综上，$fail$ 指针的意义是，在匹配串**同一个位置**失配时的跳转指针，这样就利用 fail 指针在同一位置上进行多模式匹配，匹配完了，就在字典图上自动跳转到下一位置。
+1. 红色结点： p 结点
+2. 粉色箭头： p 在自动机上的跳转，
+3. 蓝色的边：成功匹配的模式串
+4. 蓝色结点：示跳 fail 指针时的结点（状态）。
 
 ## 总结
 
-到此，你已经理解了整个 AC 自动机的内容。我们一句话总结 AC 自动机的运行原理：
+~~希望~~大家看懂了文章。其实总结一下，你只需要知道AC自动机的板子很好背就行啦。
 
-**构建字典图实现自动跳转，构建失配指针实现多模式匹配。**
+???+ note "模板1"
 
-所以 AC 自动机到底是啥
+    [LuoguP3808【模板】AC 自动机（简单版）](https://www.luogu.org/problemnew/show/P3808) 
 
-## 模板
+    ```cpp
+    #include<bits/stdc++.h>
+    using namespace std;
+    const int N=1e6+6;
+    int n;
 
-[LuoguP3808【模板】AC 自动机（简单版）](https://www.luogu.org/problemnew/show/P3808) 
+    namespace AC{
+        int tr[N][26],tot;
+        int e[N],fail[N];
+        void insert(char *s){
+            int u=0;
+            for(int i=1;s[i];i++){
+                if(!tr[u][s[i]-'a'])tr[u][s[i]-'a']=++tot;
+                u=tr[u][s[i]-'a'];
+            }
+            e[u]++;
+        }
+        queue<int> q;
+        void build(){
+            for(int i=0;i<26;i++)if(tr[0][i])q.push(tr[0][i]);
+            while(q.size()){
+                int u=q.front();q.pop();
+                for(int i=0;i<26;i++){
+                    if(tr[u][i])fail[tr[u][i]]=tr[fail[u]][i],q.push(tr[u][i]);
+                    else tr[u][i]=tr[fail[u]][i];
+                }
+            }
+        }
+        int query(char *t){
+            int u=0,res=0;
+            for(int i=1;t[i];i++){
+                u=tr[u][t[i]-'a'];// 转移
+                for(int j=u;j&&e[j]!=-1;j=fail[j]){
+                    res+=e[j],e[j]=-1;
+                }
+            }
+            return res;
+        }
+    }
 
-```cpp
-##include<bits/stdc++.h>
-using namespace std;
-const int N=1e6+6;
-int n;
+    char s[N];
+    int main(){
+        scanf("%d",&n);
+        for(int i=1;i<=n;i++)scanf("%s",s+1),AC::insert(s);
+        scanf("%s",s+1);
+        AC::build();
+        printf("%d",AC::query(s));
+        return 0;
+    }
+    ```
 
-namespace AC{
-    int tr[N][26],tot;
-	int e[N],fail[N];
-	void insert(char *s){
-		int u=0;
-		for(int i=1;s[i];i++){
-            if(!tr[u][s[i]-'a'])tr[u][s[i]-'a']=++tot;
-			u=tr[u][s[i]-'a'];
-		}
-		e[u]++;
-	}
-	queue<int> q;
-	void build(){
-        for(int i=0;i<26;i++)if(tr[0][i])q.push(tr[0][i]);
-		while(q.size()){
-            int u=q.front();q.pop();
-			for(int i=0;i<26;i++){
-                if(tr[u][i])fail[tr[u][i]]=tr[fail[u]][i],q.push(tr[u][i]);
-				else tr[u][i]=tr[fail[u]][i];
-			}
-		}
-	}
-	int query(char *t){
-		int u=0,res=0;
-		for(int i=1;t[i];i++){
-            u=tr[u][t[i]-'a'];// 转移
-			for(int j=u;j&&e[j]!=-1;j=fail[j]){
-                res+=e[j],e[j]=-1;
-			}
-		}
-		return res;
-	}
-}
+???+ note "模板2"
 
-char s[N];
-int main(){
-    scanf("%d",&n);
-	for(int i=1;i<=n;i++)scanf("%s",s+1),AC::insert(s);
-	scanf("%s",s+1);
-	AC::build();
-	printf("%d",AC::query(s));
-	return 0;
-}
-```
+    [P3796 【模板】AC 自动机（加强版）](https://www.luogu.org/problemnew/show/P3796)
 
-## 模板 2
-
-[P3796 【模板】AC 自动机（加强版）](https://www.luogu.org/problemnew/show/P3796)
-
-```cpp
-##include<bits/stdc++.h>
-using namespace std;
-const int N=156,L=1e6+6;
-namespace AC{
-	const int SZ=N*80;
-	int tot,tr[SZ][26];
-	int fail[SZ],idx[SZ],val[SZ];
-	int cnt[N];// 记录第 i 个字符串的出现次数
-	void init(){
-        memset(fail,0,sizeof(fail));
-		memset(tr,0,sizeof(tr));
-		memset(val,0,sizeof(val));
-		memset(cnt,0,sizeof(cnt));
-		memset(idx,0,sizeof(idx));
-		tot=0;
-	}
-	void insert(char *s,int id){//id 表示原始字符串的编号
-		int u=0;
-		for(int i=1;s[i];i++){
-            if(!tr[u][s[i]-'a'])tr[u][s[i]-'a']=++tot;
-			u=tr[u][s[i]-'a'];
-		}
-		idx[u]=id;
-	}
-	queue<int> q;
-	void build(){
-        for(int i=0;i<26;i++)if(tr[0][i])q.push(tr[0][i]);
-		while(q.size()){
-            int u=q.front();q.pop();
-			for(int i=0;i<26;i++){
-                if(tr[u][i])fail[tr[u][i]]=tr[fail[u]][i],q.push(tr[u][i]);
-				else tr[u][i]=tr[fail[u]][i];
-			}
-		}
-	}
-	int query(char *t){// 返回最大的出现次数
-		int u=0,res=0;
-		for(int i=1;t[i];i++){
-            u=tr[u][t[i]-'a'];
-			for(int j=u;j;j=fail[j])val[j]++;
-		}
-		for(int i=0;i<=tot;i++)if(idx[i])res=max(res,val[i]),cnt[idx[i]]=val[i];
-		return res;
-	}
-}
-int n;
-char s[N][100],t[L];
-int main(){
-    while(~scanf("%d",&n)){if(n==0)break;
-		AC::init();
-		for(int i=1;i<=n;i++)scanf("%s",s[i]+1),AC::insert(s[i],i);
-		AC::build();
-		scanf("%s",t+1);
-		int x=AC::query(t);
-		printf("%d\n",x);
-		for(int i=1;i<=n;i++)if(AC::cnt[i]==x)printf("%s\n",s[i]+1);
-	}
-	return 0;
-}
-/*
- * BUG##1 build 的时候忘了 push(tr[u][i])
- * BUG##2 误以为倒序遍历 AC 自动机就是 BFS 的倒序，实际上不是这样
- */
-
-```
+    ```cpp
+    #include<bits/stdc++.h>
+    using namespace std;
+    const int N=156,L=1e6+6;
+    namespace AC{
+        const int SZ=N*80;
+        int tot,tr[SZ][26];
+        int fail[SZ],idx[SZ],val[SZ];
+        int cnt[N];// 记录第 i 个字符串的出现次数
+        void init(){
+            memset(fail,0,sizeof(fail));
+            memset(tr,0,sizeof(tr));
+            memset(val,0,sizeof(val));
+            memset(cnt,0,sizeof(cnt));
+            memset(idx,0,sizeof(idx));
+            tot=0;
+        }
+        void insert(char *s,int id){//id 表示原始字符串的编号
+            int u=0;
+            for(int i=1;s[i];i++){
+                if(!tr[u][s[i]-'a'])tr[u][s[i]-'a']=++tot;
+                u=tr[u][s[i]-'a'];
+            }
+            idx[u]=id;
+        }
+        queue<int> q;
+        void build(){
+            for(int i=0;i<26;i++)if(tr[0][i])q.push(tr[0][i]);
+            while(q.size()){
+                int u=q.front();q.pop();
+                for(int i=0;i<26;i++){
+                    if(tr[u][i])fail[tr[u][i]]=tr[fail[u]][i],q.push(tr[u][i]);
+                    else tr[u][i]=tr[fail[u]][i];
+                }
+            }
+        }
+        int query(char *t){// 返回最大的出现次数
+            int u=0,res=0;
+            for(int i=1;t[i];i++){
+                u=tr[u][t[i]-'a'];
+                for(int j=u;j;j=fail[j])val[j]++;
+            }
+            for(int i=0;i<=tot;i++)if(idx[i])res=max(res,val[i]),cnt[idx[i]]=val[i];
+            return res;
+        }
+    }
+    int n;
+    char s[N][100],t[L];
+    int main(){
+        while(~scanf("%d",&n)){if(n==0)break;
+            AC::init();
+            for(int i=1;i<=n;i++)scanf("%s",s[i]+1),AC::insert(s[i],i);
+            AC::build();
+            scanf("%s",t+1);
+            int x=AC::query(t);
+            printf("%d\n",x);
+            for(int i=1;i<=n;i++)if(AC::cnt[i]==x)printf("%s\n",s[i]+1);
+        }
+        return 0;
+    }
+    ```
 
 
 ## KMP 自动机
 
-为了介绍 AC 自动机这种神奇的算法，先介绍自动机和 KMP 自动机。
+最后介绍自动机和 KMP 自动机，供学有余力的朋友观赏。
 
 有限状态自动机 (DFA)：字符集，有限状态控制，初始状态，接受状态。
 
@@ -322,114 +302,7 @@ $$
 
 我们发现 $trans_{i}$ 只依赖于之前的值，所以可以跟[KMP](/string/prefix-function/##knuth-morris-pratt)一起求出来。
 
-时间和空间复杂度： $O(m|\Sigma|)$ 
+时间和空间复杂度： $O(m|\Sigma|)$。
 
-一些细节：走到接受状态之后立即转移到该状态的 $next$ 。
-
-## AC 自动机
-
-AC 自动机其实就是 Trie 上的自动机。
-
-注意在[BFS](/search/bfs)的同时求出 $trans$ 数组即可。
-
-AC 自动机一般用来解决多串匹配问题。
-
-注意细节：AC 自动机的时间复杂度在需要找到所有匹配位置时是 $O(|s|+m)$ ，其中 $|s|$ 表示文本串的长度， $m$ 表示模板串的总匹配次数；而只需要求是否匹配时时间复杂度为 $O(|s|)$ 。
-
-## AC 自动机的实现
-
-```cpp
-// luogu P3808
-//注：这并不是标准的AC自动机，而是trie图。标准的AC自动机实际应用并不多
-##include <bits/stdc++.h>
-
-using namespace std;
-
-class ACAM {
- private:
-  struct Node {
-    int ptr[26];
-    int fail;
-
-    int cnt;
-
-    Node() : fail(0), cnt(0) { memset(ptr, 0, sizeof(ptr)); }
-  } nd[1000010];
-  int cnt;
-
-  queue<int> q;
-
- public:
-  ACAM() : cnt(0) {}
-
-  void insert(const string &s) {
-    int len = s.size(), now = 0;
-    for (int i = 0; i < len; i++) {
-      int x = s[i] - 'a';
-      if (!nd[now].ptr[x]) {
-        nd[now].ptr[x] = ++cnt;
-      }
-      now = nd[now].ptr[x];
-    }
-    nd[now].cnt++;
-  }
-
-  void build() {
-    for (int i = 0; i < 26; i++) {
-      if (nd[0].ptr[i]) {
-        nd[nd[0].ptr[i]].fail = 0;
-        q.push(nd[0].ptr[i]);
-      }
-    }
-    while (!q.empty()) {
-      int now = q.front();
-      q.pop();
-      for (int i = 0; i < 26; i++) {
-        if (nd[now].ptr[i]) {
-          nd[nd[now].ptr[i]].fail = nd[nd[now].fail].ptr[i];
-          q.push(nd[now].ptr[i]);
-        } else {
-          nd[now].ptr[i] = nd[nd[now].fail].ptr[i];
-        }
-      }
-    }
-  }
-
-  int query(const string &s) {
-    int now = 0, ans = 0;
-    int len = s.size();
-    for (int i = 0; i < len; i++) {
-      int x = s[i] - 'a';
-      now = nd[now].ptr[x];
-      for (int p = now; p && ~nd[p].cnt; p = nd[p].fail) {
-        ans += nd[p].cnt;
-        nd[p].cnt = -1;
-      }
-    }
-    return ans;
-  }
-} A;
-
-int main() {
-  int n;
-  cin >> n;
-  for (int i = 1; i <= n; i++) {
-    string temp;
-    cin >> temp;
-    A.insert(temp);
-  }
-  A.build();
-  string s;
-  cin >> s;
-  cout << A.query(s) << '\n';
-}
-```
-
-[1]: https://hexo-source-1257756441.cos.ap-chengdu.myqcloud.com/2018/08/2858847684.gif
-
-[2]: https://hexo-source-1257756441.cos.ap-chengdu.myqcloud.com/2018/08/3946915055.png
-[3]: https://hexo-source-1257756441.cos.ap-chengdu.myqcloud.com/2018/08/1745118561.gif
-[4]: https://hexo-source-1257756441.cos.ap-chengdu.myqcloud.com/2018/08/1426947356.png
-[5]: https://hexo-source-1257756441.cos.ap-chengdu.myqcloud.com/2018/08/1085042377.png
-[6]: https://hexo-source-1257756441.cos.ap-chengdu.myqcloud.com/2018/08/24151497.gif
+一些细节：走到接受状态之后立即转移到该状态的 $next$。
 
