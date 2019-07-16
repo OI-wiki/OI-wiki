@@ -41,67 +41,63 @@
 EK 算法的时间复杂度为 $O(n^2m)$ （其中 $n$ 为点数， $m$ 为边数）。效率还有很大提升空间。
 
 ```cpp
-#include <algorithm>
-#include <cstdio>
-#include <cstring>
-#include <queue>
+#define maxn 250
 #define INF 0x3f3f3f3f
-using namespace std;
-struct edge {
-  int v, w, next;
-} e[200005];
-struct node {
-  int v, e;
-} p[10005];
-int head[10005], vis[10005];
-int n, m, s, t, cnt = 1;
-void addedge(int u, int v, int w) {
-  e[++cnt].v = v;
-  e[cnt].w = w;
-  e[cnt].next = head[u];
-  head[u] = cnt;
-}
-bool bfs() {
-  queue<int> q;
-  memset(p, 0, sizeof(p));
-  memset(vis, 0, sizeof(vis));
-  vis[s] = 1;
-  q.push(s);
-  while (!q.empty()) {
-    int cur = q.front();
-    q.pop();
-    for (int i = head[cur]; i; i = e[i].next)
-      if ((!vis[e[i].v]) && e[i].w) {
-        p[e[i].v].v = cur;
-        p[e[i].v].e = i;
-        if (e[i].v == t) return 1;
-        vis[e[i].v] = 1;
-        q.push(e[i].v);
+
+struct Edge {
+  int from, to, cap, flow;
+  Edge(int u, int v, int c, int f) : from(u), to(v), cap(c), flow(f) {}
+};
+
+struct EK {
+  int n, m;
+  vector<Edge> edges;
+  vector<int> G[maxn];
+  int a[maxn], p[maxn];
+
+  void init(int n) {
+    for (int i = 0; i < n; i++) G[i].clear();
+    edges.clear();
+  }
+
+  void AddEdge(int from, int to, int cap) {
+    edges.push_back(Edge(from, to, cap, 0));
+    edges.push_back(Edge(to, from, 0, 0));
+    m = edges.size();
+    G[from].push_back(m - 2);
+    G[to].push_back(m - 1);
+  }
+
+  int Maxflow(int s, int t) {
+    int flow = 0;
+    for (;;) {
+      memset(a, 0, sizeof(a));
+      queue<int> Q;
+      Q.push(s);
+      a[s] = INF;
+      while (!Q.empty()) {
+        int x = Q.front();
+        Q.pop();
+        for (int i = 0; i < G[x].size(); i++) {
+          Edge& e = edges[G[x][i]];
+          if (!a[e.to] && e.cap > e.flow) {
+            p[e.to] = G[x][i];
+            a[e.to] = min(a[x], e.cap - e.flow);
+            Q.push(e.to);
+          }
+        }
+        if (a[t]) break;
       }
-  }
-  return 0;
-}
-int main() {
-  scanf("%d%d%d%d", &n, &m, &s, &t);
-  for (int i = 1; i <= m; i++) {
-    int u, v, w;
-    scanf("%d%d%d", &u, &v, &w);
-    addedge(u, v, w);
-    addedge(v, u, 0);
-  }
-  int ans = 0;
-  while (bfs()) {
-    int minw = INF;
-    for (int i = t; i != s; i = p[i].v) minw = min(minw, e[p[i].e].w);
-    for (int i = t; i != s; i = p[i].v) {
-      e[p[i].e].w -= minw;
-      e[p[i].e ^ 1].w += minw;
+      if (!a[t]) break;
+      for (int u = t; u != s; u = edges[p[u]].from) {
+        edges[p[u]].flow += a[t];
+        edges[p[u] ^ 1].flow -= a[t];
+      }
+      flow += a[t];
     }
-    ans += minw;
+    return flow;
   }
-  printf("%d\n", ans);
-  return 0;
-}
+};
 ```
 
 ### Dinic
@@ -127,85 +123,202 @@ Dinic 算法有两个优化：
 特别地，在求解二分图最大匹配问题时，可以证明 Dinic 算法的时间复杂度是 $O(m\sqrt{n})$ 。
 
 ```cpp
-#include <algorithm>
-#include <cstdio>
-#include <cstring>
-#include <queue>
+#define maxn 250
 #define INF 0x3f3f3f3f
-using namespace std;
-struct edge {
-  int v, w, next;
-} e[200005];
-int n, m, s, t, cnt = 1;
-int head[100005], dep[100005], vis[100005], cur[100005];
-void addedge(int u, int v, int w) {
-  e[++cnt].v = v;
-  e[cnt].w = w;
-  e[cnt].next = head[u];
-  head[u] = cnt;
-}
-bool bfs() {
-  queue<int> q;
-  memset(dep, INF, sizeof(dep));
-  memset(vis, 0, sizeof(vis));
-  memcpy(cur, head, sizeof(head));
-  dep[s] = 0;
-  vis[s] = 1;
-  q.push(s);
-  while (!q.empty()) {
-    int p = q.front();
-    q.pop();
-    vis[p] = 0;
-    for (int i = head[p]; i; i = e[i].next)
-      if (dep[e[i].v] > dep[p] + 1 && e[i].w) {
-        dep[e[i].v] = dep[p] + 1;
-        if (!vis[e[i].v]) {
-          vis[e[i].v] = 1;
-          q.push(e[i].v);
+
+struct Edge {
+  int from, to, cap, flow;
+  Edge(int u, int v, int c, int f) : from(u), to(v), cap(c), flow(f) {}
+};
+
+struct Dinic {
+  int n, m, s, t;
+  vector<Edge> edges;
+  vector<int> G[maxn];
+  int d[maxn], cur[maxn];
+  bool vis[maxn];
+
+  void init(int n) {
+    for (int i = 0; i < n; i++) G[i].clear();
+    edges.clear();
+  }
+
+  void AddEdge(int from, int to, int cap) {
+    edges.push_back(Edge(from, to, cap, 0));
+    edges.push_back(Edge(to, from, 0, 0));
+    m = edges.size();
+    G[from].push_back(m - 2);
+    G[to].push_back(m - 1);
+  }
+
+  bool BFS() {
+    memset(vis, 0, sizeof(vis));
+    queue<int> Q;
+    Q.push(s);
+    d[s] = 0;
+    vis[s] = 1;
+    while (!Q.empty()) {
+      int x = Q.front();
+      Q.pop();
+      for (int i = 0; i < G[x].size(); i++) {
+        Edge& e = edges[G[x][i]];
+        if (!vis[e.to] && e.cap > e.flow) {
+          vis[e.to] = 1;
+          d[e.to] = d[x] + 1;
+          Q.push(e.to);
         }
       }
+    }
+    return vis[t];
   }
-  if (dep[t] == INF) return 0;
-  return 1;
-}
-int dfs(int p, int w) {
-  if (p == t) return w;
-  int used = 0;                           //已经使用的流量
-  for (int i = cur[p]; i; i = e[i].next)  //每条边都尝试找一次增广路
-  {
-    cur[p] = i;  //当前弧优化
-    if (dep[e[i].v] == dep[p] + 1 && e[i].w) {
-      int flow = dfs(e[i].v, min(w - used, e[i].w));
-      if (flow) {
-        used += flow;
-        e[i].w -= flow;
-        e[i ^ 1].w += flow;
-        if (used == w) break;  //残余流量用尽了就停止增广
+
+  int DFS(int x, int a) {
+    if (x == t || a == 0) return a;
+    int flow = 0, f;
+    for (int& i = cur[x]; i < G[x].size(); i++) {
+      Edge& e = edges[G[x][i]];
+      if (d[x] + 1 == d[e.to] && (f = DFS(e.to, min(a, e.cap - e.flow))) > 0) {
+        e.flow += f;
+        edges[G[x][i] ^ 1].flow -= f;
+        flow += f;
+        a -= f;
+        if (a == 0) break;
       }
     }
+    return flow;
   }
-  return used;
-}
-int main() {
-  scanf("%d%d%d%d", &n, &m, &s, &t);
-  for (int i = 1; i <= m; i++) {
-    int u, v, w;
-    scanf("%d%d%d", &u, &v, &w);
-    addedge(u, v, w);
-    addedge(v, u, 0);
+
+  int Maxflow(int s, int t) {
+    this->s = s;
+    this->t = t;
+    int flow = 0;
+    while (BFS()) {
+      memset(cur, 0, sizeof(cur));
+      flow += DFS(s, INF);
+    }
+    return flow;
   }
-  int ans = 0;
-  while (bfs()) ans += dfs(s, INF);
-  printf("%d\n", ans);
-  return 0;
-}
+};
 ```
 
 ### ISAP
 
 这个是 SAP 算法的加强版 (Improved)。
 
-## PR 预留推进算法
+```cpp
+struct Edge {
+  int from, to, cap, flow;
+  Edge(int u, int v, int c, int f) : from(u), to(v), cap(c), flow(f) {}
+};
+
+bool operator<(const Edge& a, const Edge& b) {
+  return a.from < b.from || (a.from == b.from && a.to < b.to);
+}
+
+struct ISAP {
+  int n, m, s, t;
+  vector<Edge> edges;
+  vector<int> G[maxn];
+  bool vis[maxn];
+  int d[maxn];
+  int cur[maxn];
+  int p[maxn];
+  int num[maxn];
+
+  void AddEdge(int from, int to, int cap) {
+    edges.push_back(Edge(from, to, cap, 0));
+    edges.push_back(Edge(to, from, 0, 0));
+    m = edges.size();
+    G[from].push_back(m - 2);
+    G[to].push_back(m - 1);
+  }
+
+  bool BFS() {
+    memset(vis, 0, sizeof(vis));
+    queue<int> Q;
+    Q.push(t);
+    vis[t] = 1;
+    d[t] = 0;
+    while (!Q.empty()) {
+      int x = Q.front();
+      Q.pop();
+      for (int i = 0; i < G[x].size(); i++) {
+        Edge& e = edges[G[x][i] ^ 1];
+        if (!vis[e.from] && e.cap > e.flow) {
+          vis[e.from] = 1;
+          d[e.from] = d[x] + 1;
+          Q.push(e.from);
+        }
+      }
+    }
+    return vis[s];
+  }
+
+  void init(int n) {
+    this->n = n;
+    for (int i = 0; i < n; i++) G[i].clear();
+    edges.clear();
+  }
+
+  int Augment() {
+    int x = t, a = INF;
+    while (x != s) {
+      Edge& e = edges[p[x]];
+      a = min(a, e.cap - e.flow);
+      x = edges[p[x]].from;
+    }
+    x = t;
+    while (x != s) {
+      edges[p[x]].flow += a;
+      edges[p[x] ^ 1].flow -= a;
+      x = edges[p[x]].from;
+    }
+    return a;
+  }
+
+  int Maxflow(int s, int t) {
+    this->s = s;
+    this->t = t;
+    int flow = 0;
+    BFS();
+    memset(num, 0, sizeof(num));
+    for (int i = 0; i < n; i++) num[d[i]]++;
+    int x = s;
+    memset(cur, 0, sizeof(cur));
+    while (d[s] < n) {
+      if (x == t) {
+        flow += Augment();
+        x = s;
+      }
+      int ok = 0;
+      for (int i = cur[x]; i < G[x].size(); i++) {
+        Edge& e = edges[G[x][i]];
+        if (e.cap > e.flow && d[x] == d[e.to] + 1) {
+          ok = 1;
+          p[e.to] = G[x][i];
+          cur[x] = i;
+          x = e.to;
+          break;
+        }
+      }
+      if (!ok) {
+        int m = n - 1;
+        for (int i = 0; i < G[x].size(); i++) {
+          Edge& e = edges[G[x][i]];
+          if (e.cap > e.flow) m = min(m, d[e.to]);
+        }
+        if (--num[d[x]] == 0) break;
+        num[d[x] = m + 1]++;
+        cur[x] = 0;
+        if (x != s) x = edges[p[x]].from;
+      }
+    }
+    return flow;
+  }
+};
+```
+
+## PR 预流推进算法
 
 该方法在求解过程中忽略流守恒性，并每次对一个结点更新信息，以求解最大流
 
