@@ -301,6 +301,7 @@ nav:
     - 悬线法: misc/largest-matrix.md
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
+    - 约瑟夫问题: misc/josephus.md
 
 # Theme
 theme:
