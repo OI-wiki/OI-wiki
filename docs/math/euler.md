@@ -71,5 +71,3 @@ a^{b\bmod\varphi(p)+\varphi(p)},&\gcd(a,\,p)\ne1,\,b\ge\varphi(p)
 $$
 
 证明详见[欧拉定理](/math/fermat/)
-
-
