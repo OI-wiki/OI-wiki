@@ -23,9 +23,9 @@
 这个算法的复杂度如何？使用势能分析法可以得到复杂度是 $O(m\log_2n)$ 的。具体分析过程见论文。
 
 ```cpp
-#include<cstdio>
-#include<algorithm>
-#include<cctype> 
+#include <algorithm>
+#include <cctype>
+#include <cstdio>
 using namespace std;
 const int N = 1e6 + 6;
 
@@ -148,8 +148,8 @@ signed main() {
 另外，BZOJ 这道题卡常……多数组线段树的常数比结构体线段树的常数大……在维护信息的时侯，当只有一两个数的时侯可能发生数集重合，比如一个数既是最大值又是次小值。这种要特判。
 
 ```cpp
-#include<cstdio>
-#include<iostream> 
+#include <cstdio>
+#include <iostream>
 using namespace std;
 
 int inline rd() {
