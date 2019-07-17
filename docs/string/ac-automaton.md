@@ -94,7 +94,7 @@ void build() {
 
 为~~关爱萌新~~，笔者大力~~复读~~一下代码：Build 函数将结点按 BFS 顺序入队，依次求 fail 指针。这里的字典树根结点为 0，我们将根结点的子结点一一入队。若将根结点入队，则在第一次 BFS 的时候，会将根结点儿子的 fail 指针标记为本身。因此我们将根结点的儿子。
 
-然后开始 BFS：每次取出队首的结点 u。fail[u] 指针已经求得，我们要求 u 的子结点们的 fail 指针。然后遍历字符集（这里是 0-25，对应 a-z）：
+然后开始 BFS：每次取出队首的结点 u。fail[u]指针已经求得，我们要求 u 的子结点们的 fail 指针。然后遍历字符集（这里是 0-25，对应 a-z）：
 
 1.  如果 $trans(u,i)$ 存在，我们就将 $trans(u,i)$ 的 fail 指针赋值为 $trans(fail[u],i)$ 。这里似乎有一个问题。根据之前的讲解，我们应该用 while 循环，不停的跳 fail 指针，判断是否存在字符 `i` 对应的结点，然后赋值。不过在代码中我们一句话就做完这件事了。
 2.  否则， $trans(u,i)$ 不存在，就让 $trans(u,i)$ 指向 $trans(fail[u],i)$ 的状态。
@@ -289,21 +289,21 @@ int query(char *t) {
 
 如果大家理解了上面的讲解，那么做为拓展延伸，文末我们简单介绍一下自动机与 KMP 自动机。（现在你再去看百科上自动机的定义就会好懂很多啦）
 
-有限状态自动机 （deterministic finite automaton，DFA）是由
+有限状态自动机（deterministic finite automaton，DFA）是由
 
-1. 状态集合 $Q$；
-2. 字符集 $\Sigma$；
-3. 状态转移函数 $\delta:Q\times \Sigma \to Q$，即 $\delta(q,\sigma)=q',\ q,q'\in Q,\sigma\in \Sigma$；
-4. 一个开始状态 $s\in Q$；
-5. 一个接收的状态集合 $F\subseteq Q$。
+1.  状态集合 $Q$ ；
+2.  字符集 $\Sigma$ ；
+3.  状态转移函数 $\delta:Q\times \Sigma \to Q$ ，即 $\delta(q,\sigma)=q',\ q,q'\in Q,\sigma\in \Sigma$ ；
+4.  一个开始状态 $s\in Q$ ；
+5.  一个接收的状态集合 $F\subseteq Q$ 。
 
-组成的五元组 $(Q,\Sigma,\delta,s,F)$。
+组成的五元组 $(Q,\Sigma,\delta,s,F)$ 。
 
-那这东西你用 AC 自动机理解，状态集合就是字典树（图）的结点；字符集就是`a`到`z`（或者更多）；状态转移函数就是 $trans(u,c)$ 的函数（即`tr[u,c]`）；开始状态就是字典树的根结点；接收状态就是你在字典树中标记的字符串结尾结点组成的集合。
+那这东西你用 AC 自动机理解，状态集合就是字典树（图）的结点；字符集就是 `a` 到 `z` （或者更多）；状态转移函数就是 $trans(u,c)$ 的函数（即 `tr[u,c]` ）；开始状态就是字典树的根结点；接收状态就是你在字典树中标记的字符串结尾结点组成的集合。
 
 ### KMP 自动机
 
-KMP 自动机就是一个不断读入待匹配串，每次匹配时走到接受状态的 DFA。如果共有 $m$ 个状态，第 $i$ 个状态表示已经匹配了前 $i$ 个字符。那么我们定义 $trans_{i,c}$ 表示状态 $i$ 读入字符 $c$ 后到达的状态， $next_{i}$ 表示 [prefix function](/string/prefix-function)，则有：
+KMP 自动机就是一个不断读入待匹配串，每次匹配时走到接受状态的 DFA。如果共有 $m$ 个状态，第 $i$ 个状态表示已经匹配了前 $i$ 个字符。那么我们定义 $trans_{i,c}$ 表示状态 $i$ 读入字符 $c$ 后到达的状态， $next_{i}$ 表示[prefix function](/string/prefix-function)，则有：
 
 $$
 trans_{i,c} =
@@ -315,9 +315,8 @@ $$
 
 （约定 $next_{0}=0$ ）
 
-我们发现 $trans_{i}$ 只依赖于之前的值，所以可以跟 [KMP](/string/prefix-function/#knuth-morris-pratt) 一起求出来。
+我们发现 $trans_{i}$ 只依赖于之前的值，所以可以跟[KMP](/string/prefix-function/#knuth-morris-pratt)一起求出来。
 
 时间和空间复杂度： $O(m|\Sigma|)$ 。一些细节：走到接受状态之后立即转移到该状态的 $next$ 。
 
 对比之下，AC 自动机其实就是 Trie 上的自动机。（虽然一开始丢给你这句话可能不知所措）
-
