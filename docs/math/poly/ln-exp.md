@@ -1,20 +1,20 @@
 ## Description
 
-给定多项式 $f\left(x\right)$，求模 $x^{n}$ 意义下的 $\ln{f\left(x\right)}$ 与 $\exp{f\left(x\right)}$。
+给定多项式 $f\left(x\right)$ ，求模 $x^{n}$ 意义下的 $\ln{f\left(x\right)}$ 与 $\exp{f\left(x\right)}$ 。
 
 ## Methods
 
 ### 普通方法
 
----
+* * *
 
-首先,对于多项式 $f\left(x\right)$，若 $\ln{f\left(x\right)}$ 存在，则由其[定义](../#ln-exp)，其必须满足：
+首先，对于多项式 $f\left(x\right)$ ，若 $\ln{f\left(x\right)}$ 存在，则由其[定义](../#ln-exp)，其必须满足：
 
-$$\left[x^{0}\right]f\left(x\right)=1$$
+ $\left[x^{0}\right]f\left(x\right)=1$ 
 
 对 $\ln{f\left(x\right)}$ 求导再积分，可得：
 
-$$ \begin{aligned}
+$$
     \left(\ln{f\left(x\right)}\right)'&\equiv\frac{f'\left(x\right)}{f\left(x\right)}&\pmod{x^{n}}\\
     \ln{f\left(x\right)}&\equiv\int\frac{f'\left(x\right)}{f\left(x\right)}&\pmod{x^{n}}
 \end{aligned} $$
@@ -24,38 +24,37 @@ $$ \begin{aligned}
 ---
 
 首先,对于多项式$f\left(x\right)$，若 $\exp{f\left(x\right)}$ 存在，则其必须满足：
+$$
 
-$$\left[x^{0}\right]f\left(x\right)=0$$
+否则 $\exp{f\left(x\right)}$ 的常数项不收敛。
 
-否则 $\exp{f\left(x\right)}$ 的常数项不收敛.
+对 $\exp{f\left(x\right)}$ 求导，可得：
 
-对 $\exp{f\left(x\right)}$ 求导,可得：
-
-$$\exp'{f\left(x\right)}\equiv\exp{f\left(x\right)}f'\left(x\right)\pmod{x^{n}}$$
+ $\exp'{f\left(x\right)}\equiv\exp{f\left(x\right)}f'\left(x\right)\pmod{x^{n}}$ 
 
 比较两边系数可得：
 
-$$\left(n+1\right)\left[x^{n}\right]\exp{f\left(x\right)}=\sum_{i=0}^{n}\left[x^{i}\right]\exp{f\left(x\right)}\left(n-i+1\right)\left[x^{n-i}\right]f\left(x\right) $$
+ $\left(n+1\right)\left[x^{n}\right]\exp{f\left(x\right)}=\sum_{i=0}^{n}\left[x^{i}\right]\exp{f\left(x\right)}\left(n-i+1\right)\left[x^{n-i}\right]f\left(x\right)$ 
 
-又 $\left[x^{0}\right]f\left(x\right)=0$，则：
+又 $\left[x^{0}\right]f\left(x\right)=0$ ，则：
 
-$$\left(n+1\right)\left[x^{n}\right]\exp{f\left(x\right)}=\sum_{i=0}^{n-1}\left[x^{i}\right]\exp{f\left(x\right)}\left(n-i+1\right)\left[x^{n-i}\right]f\left(x\right) $$
+ $\left(n+1\right)\left[x^{n}\right]\exp{f\left(x\right)}=\sum_{i=0}^{n-1}\left[x^{i}\right]\exp{f\left(x\right)}\left(n-i+1\right)\left[x^{n-i}\right]f\left(x\right)$ 
 
-使用分治 FFT 即可解决.
+使用分治 FFT 即可解决。
 
-时间复杂度 $O\left(n\log^{2}{n}\right)$。
+时间复杂度 $O\left(n\log^{2}{n}\right)$ 。
 
 ### Newton's Method
 
-使用 [**Newton's Method**](/math/poly/newton/#newtons-method) 即可在 $O\left(n\log{n}\right)$ 的时间复杂度内解决多项式 $\exp$。
+使用[ **Newton's Method** ](/math/poly/newton/#newtons-method)即可在 $O\left(n\log{n}\right)$ 的时间复杂度内解决多项式 $\exp$ 。
 
 ## Code
 
-??? " 多项式 ln/exp "
+??? "多项式 ln/exp"
 
     ```cpp
     constexpr int maxn = 262144;
-	constexpr int mod = 998244353;
+    constexpr int mod = 998244353;
 
     using i64 = long long;
     using poly_t = int[maxn];
@@ -118,16 +117,16 @@ $$\left(n+1\right)\left[x^{n}\right]\exp{f\left(x\right)}=\sum_{i=0}^{n-1}\left[
 
 ## Examples
 
-1. 计算 $f^{k}\left(x\right)$
+1.  计算 $f^{k}\left(x\right)$ 
 
-普通做法为多项式快速幂,时间复杂度 $O\left(n\log{n}\log{k}\right)$。
+普通做法为多项式快速幂，时间复杂度 $O\left(n\log{n}\log{k}\right)$ 。
 
 当 $\left[x^{0}\right]f\left(x\right)=1$ 时，有：
 
-$$f^{k}\left(x\right)=\exp{\left(k\ln{f\left(x\right)}\right)}$$
+ $f^{k}\left(x\right)=\exp{\left(k\ln{f\left(x\right)}\right)}$ 
 
-当 $\left[x^{0}\right]f\left(x\right)\neq 1$ 时，设 $f\left(x\right)$ 的最低次项为 $f_{i}x^{i}$，则：
+当 $\left[x^{0}\right]f\left(x\right)\neq 1$ 时，设 $f\left(x\right)$ 的最低次项为 $f_{i}x^{i}$ ，则：
 
-$$f^{k}\left(x\right)=f_{i}^{k}x^{ik}\exp{\left(k\ln{\frac{f\left(x\right)}{f_{i}x^{i}}}\right)}$$
+ $f^{k}\left(x\right)=f_{i}^{k}x^{ik}\exp{\left(k\ln{\frac{f\left(x\right)}{f_{i}x^{i}}}\right)}$ 
 
-时间复杂度 $O\left(n\log{n}\right)$。
+时间复杂度 $O\left(n\log{n}\right)$ 。

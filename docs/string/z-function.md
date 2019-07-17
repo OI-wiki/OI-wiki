@@ -14,9 +14,9 @@ Z 函数的第一个元素， $z[0]$ ，通常不是良定义的。在这篇文�
 
 下面若干样例展示了对于不同字符串的 Z 函数：
 
--    $Z(\mathtt{aaaaa}) = [0, 4, 3, 2, 1]$
--    $Z(\mathtt{aaabaab}) = [0, 2, 1, 0, 2, 1, 0]$
--    $Z(\mathtt{abacaba}) = [0, 0, 1, 0, 3, 0, 1]$
+-    $Z(\mathtt{aaaaa}) = [0, 4, 3, 2, 1]$ 
+-    $Z(\mathtt{aaabaab}) = [0, 2, 1, 0, 2, 1, 0]$ 
+-    $Z(\mathtt{abacaba}) = [0, 0, 1, 0, 3, 0, 1]$ 
 
 ## 朴素算法
 
@@ -119,17 +119,17 @@ vector<int> z_function(string s) {
 
 为了做到这一点，我们将考虑算法的所有分支：
 
--    $i > r$
+-    $i > r$ 
 
     在这种情况下，要么 `while` 循环不进行任何迭代（如果 $s[0] \neq s[i]$ ），要么其将从位置 $i$ 开始进行若干次迭代，其中每次迭代将向右移动一个字符。每次迭代后，右边界 $r$ 必定被更新。
 
     因此我们证明了，当 $i > r$ 时， `while` 循环的每轮迭代都会使新的 $r$ 增加 $1$ 。
 
--    $i \le r$
+-    $i \le r$ 
 
     在这种情况下，我们将 $z[i]$ 初始化为由前述公式给出的某个具体 $z_0$ 。将 $z_0$ 和 $r - i + 1$ 比较，可能有三种情况：
 
-    -    $z_0 < r - i + 1$
+    -    $z_0 < r - i + 1$ 
 
         我们证明在这种情况下 `while` 循环不会进行任何迭代。
 
@@ -137,11 +137,11 @@ vector<int> z_function(string s) {
 
         所以，因为 $z[i - l]$ 是正确的且其值小于 $r - i + 1$ ，故该值同所求的 $z[i]$ 是相同的。
 
-    -    $z_0 = r - i + 1$
+    -    $z_0 = r - i + 1$ 
 
         在这种情况下， `while` 循环可能会进行若干次迭代。因为我们从 $s[r + 1]$ 开始比较，而其位置已经超过了区间 $[l;r]$ ，故每次迭代都会使 $r$ 增加。
 
-    -    $z_0 > r - i + 1$
+    -    $z_0 > r - i + 1$ 
 
         根据 $z_0$ 的定义，这种情况是不可能的。
 
@@ -201,4 +201,4 @@ vector<int> z_function(string s) {
 
 * * *
 
- **本页面主要译自博文[Z-функция строки и её вычисление](http://e-maxx.ru/algo/z_function)与其英文翻译版[Z-function and its calculation](https://cp-algorithms.com/string/z-function.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+ **本页面主要译自博文[Z-функция строки и её вычисление](http://e-maxx.ru/algo/z_function)与其英文翻译版[Z-function and its calculation](https://cp-algorithms.com/string/z-function.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

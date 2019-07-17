@@ -425,7 +425,7 @@ int main() {
 
 ## 练习题
 
-[luogu P4402 \[Cerc2007\]robotic sort 机械排序](https://www.luogu.org/problemnew/show/P4402)/[bzoj 1552（权限题）](https://www.lydsy.com/JudgeOnline/problem.php?id=1552)
+[luogu P4402\[Cerc2007\]robotic sort 机械排序](https://www.luogu.org/problemnew/show/P4402)/[bzoj 1552（权限题）](https://www.lydsy.com/JudgeOnline/problem.php?id=1552)
 
 [二逼平衡树（树套树）](https://loj.ac/problem/106)
 

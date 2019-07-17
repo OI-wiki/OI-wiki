@@ -183,4 +183,4 @@ for (int i = 0, l = 0, r = -1; i < n; i++) {
 
 * * *
 
- **本页面主要译自博文[Нахождение всех подпалиндромов](http://e-maxx.ru/algo/palindromes_count)与其英文翻译版[Finding all sub-palindromes in $O(N)$ ](https://cp-algorithms.com/string/manacher.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+ **本页面主要译自博文[Нахождение всех подпалиндромов](http://e-maxx.ru/algo/palindromes_count)与其英文翻译版[Finding all sub-palindromes in $O(N)$ ](https://cp-algorithms.com/string/manacher.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

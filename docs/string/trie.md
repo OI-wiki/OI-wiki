@@ -16,6 +16,6 @@
 
 这时 $next$ 的定义：最长的等于同长度的后缀的从根开始的路径的长度。
 
-求法跟 [KMP](/string/prefix-function/#knuth-morris-pratt)中的一样，只是要改成在 Trie 上 [BFS](/search/bfs)。
+求法跟[KMP](/string/prefix-function/#knuth-morris-pratt)中的一样，只是要改成在 Trie 上[BFS](/search/bfs)。
 
 复杂度：均摊分析失效了，其实只能在每条链上均摊分析，于是总复杂度为模式串长总和。

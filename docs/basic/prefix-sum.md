@@ -3,7 +3,7 @@
 前缀和是一种重要的预处理，能大大降低查询的时间复杂度。我们可以简单理解为“数列的前 n 项的和”。
 
 !!! 例题
-    有 N 个的正整数放到数组 A 里，现在要求一个新的数组 B，新数组的第 i 个数 B[i] 是原数组 A 第 0 到第 i 个数的和。
+    有 N 个的正整数放到数组 A 里，现在要求一个新的数组 B，新数组的第 i 个数 B[i]是原数组 A 第 0 到第 i 个数的和。
 
 对于这道题，我们有两种做法：
 
@@ -95,21 +95,19 @@ int main() {
 
 ### 基于 DP 计算高维前缀和
 
-前一节方法本质上是基于容斥原理来计算高维前缀和，其优点在于形式较为简单，无需特别记忆，但当维数升高时，其复杂度较高。这里介绍一种基于 DP 计算高维前缀和的方法。该方法即通常语境中所称的**高维前缀和**。
+前一节方法本质上是基于容斥原理来计算高维前缀和，其优点在于形式较为简单，无需特别记忆，但当维数升高时，其复杂度较高。这里介绍一种基于 DP 计算高维前缀和的方法。该方法即通常语境中所称的 **高维前缀和** 。
 
-设高维空间 $U$ 共有 $D$ 维，需要对 $f[\cdot]$ 求高维前缀和 $\text{sum}[\cdot]$。令 $\text{sum}[i][\text{state}]$ 表示同 $\text{state}$ 后 $D - i$ 维相同的所有点对于 $\text{state}$ 点高维前缀和的贡献。由定义可知 $\text{sum}[0][\text{state}] = f[\text{state}]$，以及 $\text{sum}[\text{state}] = \text{sum}[D][\text{state}]$。
+设高维空间 $U$ 共有 $D$ 维，需要对 $f[\cdot]$ 求高维前缀和 $\text{sum}[\cdot]$ 。令 $\text{sum}[i][\text{state}]$ 表示同 $\text{state}$ 后 $D - i$ 维相同的所有点对于 $\text{state}$ 点高维前缀和的贡献。由定义可知 $\text{sum}[0][\text{state}] = f[\text{state}]$ ，以及 $\text{sum}[\text{state}] = \text{sum}[D][\text{state}]$ 。
 
-其递推关系为 $\text{sum}[i][\text{state}] = \text{sum}[i - 1][\text{state}] + \text{sum}[i][\text{state}']$，其中 $\text{state}'$ 为第 $i$ 维恰好比 $\text{state}$ 少 $1$ 的点。该方法的复杂度为 $O(D \times |U|)$，其中 $|U|$ 为高维空间 $U$ 的大小。
+其递推关系为 $\text{sum}[i][\text{state}] = \text{sum}[i - 1][\text{state}] + \text{sum}[i][\text{state}']$ ，其中 $\text{state}'$ 为第 $i$ 维恰好比 $\text{state}$ 少 $1$ 的点。该方法的复杂度为 $O(D \times |U|)$ ，其中 $|U|$ 为高维空间 $U$ 的大小。
 
 其一种实现的伪代码如下：
 
-```
-for state
-	sum[state] = f[state];
-for(i = 0;i <= D;i += 1)
-	for 以字典序从小到大枚举 state
-		sum[state] += sum[state'];
-```
+    for state
+    	sum[state] = f[state];
+    for(i = 0;i <= D;i += 1)
+    	for 以字典序从小到大枚举 state
+    		sum[state] += sum[state'];
 
 ## 树上前缀和
 
@@ -136,7 +134,7 @@ for(i = 0;i <= D;i += 1)
 
 ### 习题
 
--   [树状数组 3 ：区间修改，区间查询](https://loj.ac/problem/132)
+-   [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132)
 
 ## 树上差分
 
