@@ -42,7 +42,7 @@ C 标准库是在对字符数组进行操作
 
 ###  `strstr` 
 
- `char *strstr(char *str1, const char *str2)` ：若 `str2` 是 `str1` 的子串，则返回 `str2` 在 `str1`的首次出现的地址；如果 `str2` 不是 `str1` 的子串，则返回 `NULL` 。
+ `char *strstr(char *str1, const char *str2)` ：若 `str2` 是 `str1` 的子串，则返回 `str2` 在 `str1` 的首次出现的地址；如果 `str2` 不是 `str1` 的子串，则返回 `NULL` 。
 
 ###  `strchr` 
 
