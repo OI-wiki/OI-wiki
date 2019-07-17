@@ -98,7 +98,7 @@ void insertNode(int i, Node *p) {
 
 ## 从链表中删除数据
 
-## 单向（循环）链表
+### 单向（循环）链表
 
 ```c++
 void deleteNode(Node *p) {
@@ -111,7 +111,7 @@ void deleteNode(Node *p) {
 
 ![](./images/linked-list3.png)
 
-## 双向循环链表
+### 双向循环链表
 
 ```c++
 void deleteNode(Node *p) {
