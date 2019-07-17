@@ -42,9 +42,15 @@ C 标准库是在对字符数组进行操作
 
 ###  `strstr` 
 
+ `char *strstr(char *str1, const char *str2)` ：若 `str2` 是 `str1` 的子串，则返回 `str2` 在 `str1`的首次出现的地址；如果 `str2` 不是 `str1` 的子串，则返回 `NULL` 。
+
 ###  `strchr` 
 
+ `char *strchr(const char *str, int c)` ：返回在字符串 `str` 中第一次出现字符 `c` 的位置，并返回这个位置的地址，使用这个地址返回从第一个字符 `c` 到 `str` 末尾的字符串。如果未找到该字符则返回 `NULL` 。
+
 ###  `strrchr` 
+
+ `char *strrchr(const char *str, char c)` ：查找一个字符 `c` 在另一个字符串 `str` 中末次出现的位置，并返回这个位置的地址，使用这个地址返回从最后一个字符 `c` 到 `str` 末尾的字符串。如果未能找到指定字符，那么函数将返回 `NULL` 。
 
 ## C++ 标准库
 
