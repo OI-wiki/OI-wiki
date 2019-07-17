@@ -46,11 +46,11 @@ C 标准库是在对字符数组进行操作
 
 ###  `strchr` 
 
- `char *strchr(const char *str, int c)` ：返回在字符串 `str` 中第一次出现字符 `c` 的位置，并返回这个位置的地址，使用这个地址返回从第一个字符 `c` 到 `str` 末尾的字符串。如果未找到该字符则返回 `NULL` 。
+ `char *strchr(const char *str, int c)` ：找到在字符串 `str` 中第一次出现字符 `c` 的位置，并返回这个位置的地址。如果未找到该字符则返回 `NULL` 。
 
 ###  `strrchr` 
 
- `char *strrchr(const char *str, char c)` ：返回在字符串 `str` 中最后一次出现字符 `c` 的位置，并返回这个位置的地址，使用这个地址返回从最后一个字符 `c` 到 `str` 末尾的字符串。如果未找到该字符则返回 `NULL` 。
+ `char *strrchr(const char *str, char c)` ：找到在字符串 `str` 中最后一次出现字符 `c` 的位置，并返回这个位置的地址。如果未找到该字符则返回 `NULL` 。
 
 ## C++ 标准库
 
