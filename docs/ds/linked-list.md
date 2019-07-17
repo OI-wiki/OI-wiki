@@ -111,7 +111,7 @@ void deleteNode(Node *p) {
 
 ![](./images/linked-list3.png)
 
-\##2. 双向循环链表
+## 双向循环链表
 
 ```c++
 void deleteNode(Node *p) {
