@@ -335,8 +335,6 @@ int main() {
 
 ### CTSN loves segment tree
 
-CTSN？赤兔少年。吃土少年。
-
 > 两个序列 A,B：
 >
 > 1.  对 A 做区间取 $\min$ 
