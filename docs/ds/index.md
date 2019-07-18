@@ -33,15 +33,15 @@
 
     -   [x] bitset
 
-    -   [x] 栈
-
-    -   [x] 队列
-
 -   [x] pb_ds
 
     -   [x] pb_ds 简介
 
     -   [x] \_\_gnu_pbds::priority_queue
+
+-   [x] 栈
+
+-   [x] 队列
 
 -   [x] 链表
 
@@ -56,6 +56,8 @@
     -   [x] 二叉堆
 
     -   [x] 配对堆
+
+    -   [x] 左偏树
 
 -   [x] 块状数据结构
 
@@ -77,9 +79,9 @@
 
 -   [x] 线段树
 
--   [x] 划分树
+-   [x] 线段树 & 区间历史最值
 
--   [x] 虚树
+-   [x] 划分树
 
 -   [x] 平衡树
 
@@ -92,4 +94,7 @@
 -   [x] 珂朵莉树
 
 -   [x] Link Cut Tree
-    -   [x] Euler Tour Tree
+
+-   [x] Euler Tour Tree
+
+-   [x] 析合树
