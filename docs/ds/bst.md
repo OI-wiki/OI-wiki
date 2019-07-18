@@ -63,7 +63,11 @@ int findmax(int o) {
 
 ```cpp
 void insert(int o, int v) {
-  if (!o) return;
+  if (!o) {
+  	val[o = ++sum] = v; 
+    cnt[o] = siz[o] = 1;
+  	return;
+  }
   siz[o]++;
   if (val[o] > v) insert(lc[o], v);
   if (val[o] == v) {
