@@ -54,7 +54,7 @@ HDU 1506 最大子矩形
 using namespace std;
 typedef long long ll;
 const int N=100000+10,INF=0x3f3f3f3f;
- 
+
 struct node {
     int idx,val,par,ch[2];
     friend bool operator<(node a, node b){
@@ -64,7 +64,7 @@ struct node {
         idx=_idx,val=_val,par=_par,ch[0]=ch[1]=0;
     }
 } tree[N];
- 
+
 int root,top,stk[N];
 ll ans;
 int cartesian_build(int n){
