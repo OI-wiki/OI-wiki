@@ -49,3 +49,25 @@ int euler_phi(int n) {
 
 如果是多个数的欧拉函数值，可以利用后面会提到的线性筛法来求得。
 详见：[筛法求欧拉函数](/math/sieve#_2)
+
+## 欧拉定理
+
+与欧拉函数紧密相关的一个定理就是欧拉定理。其描述如下：
+
+若 $\gcd(a, m) = 1$ ，则 $a^{\varphi(m)} \equiv 1 \pmod{m}$ 。
+
+## 扩展欧拉定理
+
+当然也有扩展欧拉定理
+
+$$
+a^b\equiv
+\begin{cases}
+a^{b\bmod\varphi(p)},\,&\gcd(a,\,p)=1\\
+a^b,&\gcd(a,\,p)\ne1,\,b<\varphi(p)\\
+a^{b\bmod\varphi(p)+\varphi(p)},&\gcd(a,\,p)\ne1,\,b\ge\varphi(p)
+\end{cases}
+\pmod p
+$$
+
+证明详见[欧拉定理](/math/fermat/)
