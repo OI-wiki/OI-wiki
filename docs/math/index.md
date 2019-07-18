@@ -80,7 +80,7 @@ NOIP 对数学的考察还处在一个比较简单的范围。
 求积符号： $\prod$ 符号，表示满足特定条件的数的积。举几个例子：
 
 -    $\prod_{i=1}^ni$ 表示 $n$ 的阶乘，即 $n!$ 。在组合数学常见符号中会讲到。
--    $\prod_{i=1}^na_i$ 表示 $a_1\times a_2\times a_3\times \cdots\times a_n$。
+-    $\prod_{i=1}^na_i$ 表示 $a_1\times a_2\times a_3\times \cdots\times a_n$ 。
 -    $\prod_{x|d}x$ 表示 $d$ 的所有因数的乘积。
 
 在行间公式中，求和符号与求积符号的上下条件会放到符号的上面和下面，这一点要注意。
