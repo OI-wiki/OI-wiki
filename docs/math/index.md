@@ -83,8 +83,8 @@ NOIP 对数学的考察还处在一个比较简单的范围。
 
 ### 其他常见符号
 
-1. 阶乘符号 $!$，$n!$ 表示 $1\times 2\times 3\times \cdots\times n$。
-2. 向下取整符号：$\lfloor x\rfloor$，表示小于等于 $x$ 的最大的整数。常用于分数，比如分数的向下取整 $\left\lfloor\frac{x}{y}\right\rfloor$。
-3. 向上取整符号：$\lceil x\rceil$，与向下取整符号相对，表示大于等于 $x$ 的最小的整数。
+1.  阶乘符号 $!$ ， $n!$ 表示 $1\times 2\times 3\times \cdots\times n$ 。
+2.  向下取整符号： $\lfloor x\rfloor$ ，表示小于等于 $x$ 的最大的整数。常用于分数，比如分数的向下取整 $\left\lfloor\frac{x}{y}\right\rfloor$ 。
+3.  向上取整符号： $\lceil x\rceil$ ，与向下取整符号相对，表示大于等于 $x$ 的最小的整数。
 
 另外，还请大家学好高一数学，这样学习数论的时侯会省很多功夫。
