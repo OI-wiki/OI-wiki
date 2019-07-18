@@ -57,9 +57,9 @@ NOIP 对数学的考察还处在一个比较简单的范围。
 
 ### 复杂度函数
 
-1.  大 $\text{O}$ 符号：当且仅当存在正实数 $M$ 和实数 $x_0$ ，使得 $\forall x\geq x_0,\ |f(x)|\leq M|g(x)|$ ，我们就可以认为， $f(x)=O(g(x))$ 。
-2.  大 $\Omega$ 符号：当且仅当存在正实数 $M$ 和实数 $x_0$ ，使得 $\forall x\geq  x_0,\ f(x)\geq Mg(x)$ ，我们就可以认为， $f(x)=\Omega (g(x))$ . 大 $\text{O}$ 与大 $\Omega$ 恰好相反，即 $f(x)=\text{O}(g(x))\Leftrightarrow g(x)=\Omega(f(x))$ 。
-3.  大 $\Theta$ 符号：大 $\Theta$ 符号是大 $\text{O}$ 和大 $\Omega$ 的结合，即 $f(x)=\text{O}(g(x))\wedge f(x)=\Omega(g(x))\ \Rightarrow f(x)=\Theta(g(x))$ 。
+1.  大 $O$ 符号：当且仅当存在正实数 $M$ 和实数 $x_0$ ，使得 $\forall x\geq x_0,\ |f(x)|\leq M|g(x)|$ ，我们就可以认为， $f(x)=O(g(x))$ 。
+2.  大 $\Omega$ 符号：当且仅当存在正实数 $M$ 和实数 $x_0$ ，使得 $\forall x\geq  x_0,\ f(x)\geq Mg(x)$ ，我们就可以认为， $f(x)=\Omega (g(x))$ . 大 $O$ 与大 $\Omega$ 恰好相反，即 $f(x)=O(g(x))\Leftrightarrow g(x)=\Omega(f(x))$ 。
+3.  大 $\Theta$ 符号：大 $\Theta$ 符号是大 $\text{O}$ 和大 $\Omega$ 的结合，即 $f(x)=O(g(x))\wedge f(x)=\Omega(g(x))\ \Rightarrow f(x)=\Theta(g(x))$ 。
 
 ### 整除/同余理论常见符号
 
