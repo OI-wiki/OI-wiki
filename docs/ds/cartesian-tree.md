@@ -46,6 +46,63 @@ HDU 1506 最大子矩形
 
 这样我们枚举每个结点 $u$，把 $u_w$（即结点 u 的高度键值 $h$）作为最大子矩阵的高度。由于我们建立的笛卡尔树满足小根堆性质，因此 $u$ 的子树内的结点的高度都大于等于 $u$。而我们又知道 $u$ 子树内的下标是一段连续的区间。于是我们只需要知道子树内的下标最小值和最大值即可，换言之，就是 $u$ 子树内的左链和右链末端的结点的下标键值。我们对每个点这样求，最后取面积最大值即可。显然这个可以一次 DFS 完成，因此复杂度仍是 $O(n)$ 的。
 
+```cpp
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <algorithm>
+using namespace std;
+typedef long long ll;
+const int N=100000+10,INF=0x3f3f3f3f;
+ 
+struct node {
+    int idx,val,par,ch[2];
+    friend bool operator<(node a, node b){
+        return a.idx < b.idx;
+    }
+    void init(int _idx,int _val,int _par){
+        idx=_idx,val=_val,par=_par,ch[0]=ch[1]=0;
+    }
+} tree[N];
+ 
+int root,top,stk[N];
+ll ans;
+int cartesian_build(int n){
+    for(int i=1;i<=n;i++){
+        int k=i-1;
+        while(tree[k].val>tree[i].val)k=tree[k].par;
+        tree[i].ch[0]=tree[k].ch[1];
+        tree[k].ch[1]=i;
+        tree[i].par=k;
+        tree[tree[i].ch[0]].par=i;
+    }
+    return tree[0].ch[1];
+}
+int dfs(int x) {
+    if(!x)return 0;
+    int sz=dfs(tree[x].ch[0]);
+    sz+=dfs(tree[x].ch[1]);
+    ans=max(ans,(ll)(sz+1)*tree[x].val);
+    return sz+1;
+}
+int main()
+{
+    int n, hi;
+    while(scanf("%d",&n),n){
+        tree[0].init(0,0,0);
+        for(int i=1;i<=n;i++){
+            scanf("%d", &hi);
+            tree[i].init(i,hi,0);
+        }
+        root=cartesian_build(n);
+        ans=0;
+        dfs(root);
+        printf("%lld\n", ans);
+    }
+    return 0;
+}
+```
+
 ## 参考资料
 
 [维基百科 - 笛卡尔树](https://zh.wikipedia.org/wiki/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91)
