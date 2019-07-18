@@ -210,6 +210,7 @@ nav:
       - Size Balanced Tree: ds/sbt.md
       - AVL 树: ds/avl.md
       - 替罪羊树: ds/scapegoat.md
+      - 笛卡尔树: ds/cartesian-tree.md
     - 树套树:
       - 线段树套线段树: ds/seg-in-seg.md
       - 平衡树套线段树: ds/seg-in-balanced.md
