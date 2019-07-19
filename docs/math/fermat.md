@@ -73,3 +73,11 @@ $$
     由 $r,s$ 与 $\varphi(m)$ 的关系，依然可以得到 $a^b\equiv a^{b \mod \varphi(m)+\varphi(m)}\pmod m$ ；
 
     证毕。
+
+## 习题
+
+1.  [SPOJ #4141 "Euler Totient Function" \[Difficulty: CakeWalk\]](http://www.spoj.com/problems/ETF/)
+2.  [UVA #10179 "Irreducible Basic Fractions" \[Difficulty: Easy\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1120)
+3.  [UVA #10299 "Relatives" \[Difficulty: Easy\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1240)
+4.  [UVA #11327 "Enumerating Rational Numbers" \[Difficulty: Medium\]](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2302)
+5.  [TIMUS #1673 "Admission to Exam" \[Difficulty: High\]](http://acm.timus.ru/problem.aspx?space=1&num=1673)
