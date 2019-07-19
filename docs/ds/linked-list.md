@@ -64,8 +64,7 @@ void insertNode(int i, Node *p) {
   if (p == NULL) {
     p = node;
     node->next = node;
-  }
-  else {
+  } else {
     node->next = p->next;
     p->next = node;
   }
