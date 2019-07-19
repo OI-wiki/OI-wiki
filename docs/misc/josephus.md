@@ -1,3 +1,5 @@
+**本页面主要译自博文[Задача Иосифа](http://e-maxx.ru/algo/joseph_problem)与其英文翻译版[Josephus Problem](https://cp-algorithms.com/others/josephus_problem.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+
 约瑟夫问题由来已久，而这个问题的解法也在不断改进，只是目前仍没有一个极其高效的算法（log 以内）解决这个问题。
 
 ## 问题描述
