@@ -86,8 +86,7 @@ void insertNode(int i, Node *p) {
     p = node;
     node->left = node;
     node->right = node;
-  }
-  else {
+  } else {
     node->left = p;
     node->right = p->right;
     p->right->left = node;
