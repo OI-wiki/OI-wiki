@@ -1,5 +1,3 @@
- **本页面主要译自博文[Z-функция строки и её вычисление](http://e-maxx.ru/algo/stern_brocot_farey)与其英文翻译版[Z-function and its calculation](https://cp-algorithms.com/others/stern_brocot_tree_farey_sequences.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
-
 Stern-Brocot 树是一种维护分数的优雅的数据结构。它分别由 Moritz Stern 在 1858 年和 Achille Brocot 在 1861 年发现这个结构。
 
 # 概述
@@ -128,3 +126,5 @@ $$
 L_i=L_{i-1}+\varphi(i)\\
 L_i=1+\sum_{k=1}^i\varphi(k)
 $$
+
+**本页面主要译自博文[Дерево Штерна-Броко. Ряд Фарея](http://e-maxx.ru/algo/stern_brocot_farey)与其英文翻译版[The Stern-Brocot Tree and Farey Sequences](https://cp-algorithms.com/others/stern_brocot_tree_farey_sequences.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
