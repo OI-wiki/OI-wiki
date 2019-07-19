@@ -66,3 +66,7 @@ x=-\frac{\ln n}{\ln\left(1-\frac{1}{k}\right)}
 $$
 
 用泰勒级数~~搞一搞~~可以得到 $x\approx k\ln n$ 。于是可以近似认为该算法的复杂度是 $O(k\log_2n)$ 。
+
+
+ **本页面主要译自博文[Задача Иосифа](https://e-maxx.ru/algo/joseph_problem)与其英文翻译版[Josephus Problem](https://cp-algorithms.com/others/josephus_problem.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ 
