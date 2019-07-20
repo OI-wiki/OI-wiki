@@ -1,6 +1,6 @@
 ## 基础篇
 
-BSGS（baby-step gaint-step），即大步小步算法。常用于求解离散对数问题。形式化地说，该算法可以在 $O(\sqrt{p})$ 用于求解
+BSGS（baby-step gaint-step），即大步小步算法。常用于求解离散对数问题。形式化地说，该算法可以在 $O(\sqrt{p})$ 用于求解。
 
 $$
 a^x \equiv b \bmod p
@@ -76,7 +76,7 @@ $$
 \forall \ i\in \mathbb{Z},x\equiv g^{c+\frac{\varphi(n)}{\gcd(k,\varphi(n))}\cdot i}\mod p
 $$
 
-这就是原问题的所有解啦。
+这就是原问题的所有解。
 
 ### 实现
 
