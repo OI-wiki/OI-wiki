@@ -56,7 +56,7 @@ int main() {
 -   [洛谷 U53525 前缀和（例题）](https://www.luogu.org/problemnew/show/U53525)
 -   [洛谷 U69096 前缀和的逆](https://www.luogu.org/problemnew/show/U69096)
 -   [AT2412 最大の和](https://www.luogu.org/problemnew/show/AT2412)
--   [洛谷 P3131 \[USACO16JAN\] 子共七 Subsequences Summing to Sevens](https://www.luogu.org/problemnew/show/P3131)
+-   [洛谷 P3131\[USACO16JAN\]子共七 Subsequences Summing to Sevens](https://www.luogu.org/problemnew/show/P3131)
 
 ### 参考
 
