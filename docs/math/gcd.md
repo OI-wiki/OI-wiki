@@ -123,4 +123,4 @@ int Exgcd(int a, int b, int &x, int &y) {
 }
 ```
 
-函数返回的值为 GCD，在这个过程中计算 $x,y$ 即可
+函数返回的值为 GCD，在这个过程中计算 $x,y$ 即可。
