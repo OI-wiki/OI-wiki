@@ -6,6 +6,8 @@
 
 ## 欧拉定理
 
+在了解欧拉定理（Euler's theorem）之前，请先了解[欧拉函数](/math/euler/)。定理内容如下：
+
 若 $\gcd(a, m) = 1$ ，则 $a^{\varphi(m)} \equiv 1 \pmod{m}$ 。
 
 ### 证明

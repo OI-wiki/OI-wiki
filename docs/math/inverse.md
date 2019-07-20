@@ -1,3 +1,5 @@
+本文介绍模意义下乘法运算的逆元（Modular Multiplicative Inverse），并介绍如何使用扩展欧几里德算法（Extended Euclidean algorithm）求解乘法逆元
+
 ## 逆元简介
 
 如果一个线性同余方程 $ax \equiv 1 \pmod b$ ，则 $x$ 称为 $a \mod b$ 的逆元，记作 $a^{-1}$ 。
