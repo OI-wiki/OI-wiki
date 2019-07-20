@@ -90,9 +90,9 @@ int gcd(int a, int b) {
 
 设
 
-$ax_1+by_1=\gcd(a,b)$ 
+ $ax_1+by_1=\gcd(a,b)$ 
 
-$bx_2+(a\bmod b)y_2=\gcd(b,a\bmod b)$ 
+ $bx_2+(a\bmod b)y_2=\gcd(b,a\bmod b)$ 
 
 由欧几里得定理可知： $\gcd(a,b)=\gcd(b,a\bmod b)$ 
 
