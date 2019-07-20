@@ -82,17 +82,17 @@ int gcd(int a, int b) {
 
 可以发现，当我们求出两个数的 $gcd$ 时，求最小公倍数是 $O(1)$ 的复杂度。那么对于多个数，我们其实没有必要求一个共同的最大公约数再去处理，最直接的方法就是，当我们算出两个数的 $gcd$ ，或许在求多个数的 $gcd$ 时候，我们将它放入序列对后面的数继续求解，那么，我们转换一下，直接将最小公倍数放入序列即可
 
-## EXGCD - 扩展欧几里得定理
+## 扩展欧几里得定理
 
-目的：求 $ax+by=\gcd(a,b)$ 的一组可行解
+扩展欧几里德定理（Extended Euclidean algorithm,EXGCD），常用于求 $ax+by=\gcd(a,b)$ 的一组可行解
 
 ## 证明
 
 设
 
- $ax_1+by_1=\gcd(a,b)$ 
+$ax_1+by_1=\gcd(a,b)$ 
 
- $bx_2+(a\bmod b)y_2=\gcd(b,a\bmod b)$ 
+$bx_2+(a\bmod b)y_2=\gcd(b,a\bmod b)$ 
 
 由欧几里得定理可知： $\gcd(a,b)=\gcd(b,a\bmod b)$ 
 
