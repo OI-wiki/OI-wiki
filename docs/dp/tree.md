@@ -16,7 +16,7 @@
 -    $f(i,0) = \sum\max \{f(x,1),f(x,0)\}$ （上司不参加舞会时，下属可以参加，也可以不参加）
 -    $f(i,1) = \sum{f(x,0)} + a_i$ （上司参加舞会时，下属都不会参加）
 
-我们可以通过 DFS，在返回上一层时更新当前节点的最优解。
+我们可以通过 DFS，在返回上一层时更新当前结点的最优解。
 
 代码：
 
@@ -35,7 +35,7 @@ void addedge(int u, int v) {
 }
 void calc(int k) {
   vis[k] = 1;
-  for (int i = head[k]; i; i = e[i].next)  //枚举该节点的每个子节点
+  for (int i = head[k]; i; i = e[i].next)  //枚举该结点的每个子结点
   {
     if (vis[e[i].v]) continue;
     calc(e[i].v);
@@ -54,7 +54,7 @@ int main() {
     addedge(k, l);
   }
   for (int i = 1; i <= n; i++)
-    if (!is_h[i])  //从根节点开始DFS
+    if (!is_h[i])  //从根结点开始DFS
     {
       calc(i);
       printf("%d", max(f[i][1], f[i][0]));

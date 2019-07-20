@@ -152,7 +152,7 @@ int main() {
 
 ## 树上前缀和
 
-设 $sum_i$ 表示结点 $i$ 到根节点的权值总和。  
+设 $sum_i$ 表示结点 $i$ 到根结点的权值总和。  
 然后若是点权， $x,y$ 路径上的和为 $sum_x + sum_y - sum_{lca} - sum_{fa_{lca}}$ ；  
 否则若是边权， $x,y$ 路径上的和为 $sum_x + sum_y - 2sum_{lca}$ 。
 
