@@ -193,4 +193,4 @@ $$
 -   [Luogu4195【模板】exBSGS/Spoj3105 Mod](https://www.luogu.org/problemnew/show/P4195)目标
 -   [Codeforces - Lunar New Year and a Recursive Sequence](https://codeforces.com/contest/1106/problem/F)
 
- **本页面部分内容以及代码译自博文[Дискретное извлечение корня](http://e-maxx.ru/algo/discrete_root)与其英文翻译版[Discrete Root](https://cp-algorithms.com/algebra/discrete-root.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+     **本页面部分内容以及代码译自博文[Дискретное извлечение корня](http://e-maxx.ru/algo/discrete_root)与其英文翻译版[Discrete Root](https://cp-algorithms.com/algebra/discrete-root.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
