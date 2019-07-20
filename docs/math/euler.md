@@ -1,4 +1,4 @@
-欧拉函数是什么？ $\varphi(n)$ 表示的是小于等于 $n$ 和 $n$ 互质的数的个数。
+欧拉函数（Euler's totient function），即 $\varphi(n)$，表示的是小于等于 $n$ 和 $n$ 互质的数的个数。
 
 比如说 $\varphi(1) = 1$ 。
 
