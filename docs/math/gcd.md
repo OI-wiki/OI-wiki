@@ -1,6 +1,6 @@
 ## 最大公约数
 
-最大公约数即为 Greatest Common Divisor，常缩写为 gcd 。
+最大公约数即为 Greatest Common Divisor，常缩写为 gcd。
 
 在[素数](/math/prime)一节中，我们已经介绍了约数的概念。
 
