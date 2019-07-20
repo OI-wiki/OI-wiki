@@ -42,4 +42,3 @@
 [「NOI2016」国王饮水记](https://www.luogu.org/problemnew/show/P1721)
 
 [「NOI2014」购票](https://www.luogu.org/problemnew/show/P2305)
-
