@@ -12,7 +12,7 @@
 
 Robert E. Tarjan (1948~) 美国人。
 
-Tarjan 发明了很多算法结构。光 Tarjan 算法就有很多，比如求各种联通分量的 Tarjan 算法，求 LCA（Lowest Common Ancestor，最近公共祖先）的 Tarjan 算法。并查集、Splay、Toptree 也是 Tarjan 发明的。
+Tarjan 发明了很多算法结构。光 Tarjan 算法就有很多，比如求各种连通分量的 Tarjan 算法，求 LCA（Lowest Common Ancestor，最近公共祖先）的 Tarjan 算法。并查集、Splay、Toptree 也是 Tarjan 发明的。
 
 我们这里要介绍的是在有向图中求强连通分量的 Tarjan 算法。
 
