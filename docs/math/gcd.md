@@ -52,7 +52,7 @@ int gcd(int a, int b) {
 
 ## 最小公倍数
 
-接下来我们介绍如何求解最小公倍数（Least Common Multiple , LCM）。
+接下来我们介绍如何求解最小公倍数（Least Common Multiple, LCM）。
 
 ### 两个数的
 
@@ -84,7 +84,7 @@ int gcd(int a, int b) {
 
 ## 扩展欧几里得定理
 
-扩展欧几里德定理（Extended Euclidean algorithm , EXGCD），常用于求 $ax+by=\gcd(a,b)$ 的一组可行解。
+扩展欧几里德定理（Extended Euclidean algorithm, EXGCD），常用于求 $ax+by=\gcd(a,b)$ 的一组可行解。
 
 ## 证明
 
