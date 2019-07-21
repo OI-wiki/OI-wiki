@@ -37,7 +37,7 @@
 ```cpp
 int merge(int x, int y) {
   if (!x || !y) return x + y;
-  if (v[x] < v[y]) swap(x, y);
+  if (v[x] > v[y]) swap(x, y);
   int p = ++cnt;
   lc[p] = lc[x];
   v[p] = v[x];
