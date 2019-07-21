@@ -137,4 +137,4 @@ $$
 -   [HackerRank - Is Fibo](https://www.hackerrank.com/contests/codesprint5/challenges/is-fibo/problem)
 -   [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem)
 
- **本页面主要译自博文[Числа Фибоначчи](http://e-maxx.ru/algo/fibonacci_numbers)与其英文翻译版[Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+     **本页面主要译自博文[Числа Фибоначчи](http://e-maxx.ru/algo/fibonacci_numbers)与其英文翻译版[Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
