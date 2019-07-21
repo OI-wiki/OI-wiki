@@ -27,7 +27,7 @@ using namespace std;
 const int maxn = 5010;
 const int maxm = 400010;
 const int inf = 2e9;
-int n, m, k, u, v, ww, H[maxn], cnt[maxn], ans;
+int n, m,s,t, k, u, v, ww, H[maxn], cnt[maxn], ans;
 int cur, h[maxn], nxt[maxm], p[maxm], w[maxm];
 int cur1, h1[maxn], nxt1[maxm], p1[maxm], w1[maxm];
 bool tf[maxn];
@@ -56,14 +56,14 @@ struct node2 {
 } x;
 priority_queue<node2> Q;
 int main() {
-  scanf("%d%d%d", &n, &m, &k);
+  scanf("%d%d%d%d%d", &n, &m,&s,&t, &k);
   while (m--) {
     scanf("%d%d%d", &u, &v, &ww);
     add_edge(u, v, ww);
     add_edge1(v, u, ww);
   }
-  for (int i = 1; i < n; i++) H[i] = inf;
-  Q.push({n, 0});
+  for (int i = 1; i <= n; i++) H[i] = inf;
+  Q.push({t, 0});
   while (!Q.empty()) {
     x = Q.top();
     Q.pop();
@@ -72,12 +72,12 @@ int main() {
     H[x.x] = x.v;
     for (int j = h1[x.x]; j; j = nxt1[j]) Q.push({p1[j], x.v + w1[j]});
   }
-  q.push({1, 0});
+  q.push({s, 0});
   while (!q.empty()) {
     node x = q.top();
     q.pop();
     cnt[x.x]++;
-    if (x.x == n && cnt[x.x] == k) {
+    if (x.x == t && cnt[x.x] == k) {
       printf("%d\n", ans);
       return 0;
       ans++;
@@ -89,3 +89,11 @@ int main() {
   return 0;
 }
 ```
+
+## 可持久化可并堆优化 k 短路算法
+
+### 最短路树与任意路径的关系与性质
+
+在反向图上从 $t$ 开始跑最短路，建出 **任意** 一棵以 $t$ 为根的最短路树 $T$ 。
+
+所谓最短路径树，就是满足从树上的每个结点 $x$ 到根节点 $t$ 的简单路径都是 $x$ 到 $t$ 的 **其中** 一条最短路径。
