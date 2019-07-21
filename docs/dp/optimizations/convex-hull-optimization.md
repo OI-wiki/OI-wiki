@@ -21,7 +21,7 @@
 
 可以用单调队列维护下凸包。
 
-### 练习
+### 习题
 
 [「SDOI2016」征途](https://www.lydsy.com/JudgeOnline/problem.php?id=4518)
 
