@@ -2,9 +2,9 @@
 
 给定一个有 $n$ 个结点， $m$ 条边的有向图，求从 $s$ 到 $t$ 的所有不同路径中的第 $k$ 短路径的长度。
 
-## A\* 算法
+## A\*算法
 
-A\* 算法通过定义一个对当前状态 $x$ 的估价函数 $f(x)=g(x)+h(x)$ ，其中 $g(x)$ 为从初始状态到达当前状态的实际代价， $h(x)$ 为从当前状态到达目标状态的最佳路径的估计代价。每次取出 $f(x)$ 最优的状态 $x$ ，扩展其所有子状态，可以用 **优先队列** 来维护这个值。
+A\*算法通过定义一个对当前状态 $x$ 的估价函数 $f(x)=g(x)+h(x)$ ，其中 $g(x)$ 为从初始状态到达当前状态的实际代价， $h(x)$ 为从当前状态到达目标状态的最佳路径的估计代价。每次取出 $f(x)$ 最优的状态 $x$ ，扩展其所有子状态，可以用 **优先队列** 来维护这个值。
 
 在求解 $k$ 短路问题时，令 $h(x)$ 为从当前结点到达终点 $t$ 的最短路径长度。可以通过在反向图上对结点 $t$ 跑单源最短路预处理出对每个结点的这个值。
 
@@ -27,7 +27,7 @@ using namespace std;
 const int maxn = 5010;
 const int maxm = 400010;
 const int inf = 2e9;
-int n, m,s,t, k, u, v, ww, H[maxn], cnt[maxn], ans;
+int n, m, s, t, k, u, v, ww, H[maxn], cnt[maxn], ans;
 int cur, h[maxn], nxt[maxm], p[maxm], w[maxm];
 int cur1, h1[maxn], nxt1[maxm], p1[maxm], w1[maxm];
 bool tf[maxn];
@@ -56,7 +56,7 @@ struct node2 {
 } x;
 priority_queue<node2> Q;
 int main() {
-  scanf("%d%d%d%d%d", &n, &m,&s,&t, &k);
+  scanf("%d%d%d%d%d", &n, &m, &s, &t, &k);
   while (m--) {
     scanf("%d%d%d", &u, &v, &ww);
     add_edge(u, v, ww);
