@@ -21,7 +21,7 @@
 
 可以用单调队列维护下凸包。
 
-### 课后练习
+### 练习
 
 [「SDOI2016」征途](https://www.lydsy.com/JudgeOnline/problem.php?id=4518)
 
@@ -36,8 +36,6 @@
 [「NOI2007」货币兑换](https://www.lydsy.com/JudgeOnline/problem.php?id=1492)
 
 [「NOI2019」回家路线](https://www.luogu.org/problemnew/show/P5468)
-
-### 难题选做
 
 [「NOI2016」国王饮水记](https://www.luogu.org/problemnew/show/P1721)
 
