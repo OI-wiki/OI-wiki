@@ -67,7 +67,8 @@ $$
 
 下面我们证明该算法的复杂度是 $\Theta (k\log n)$ 的。
 
-考虑$\displaystyle \lim _{k \rightarrow \infty} k \log \left(1-\frac{1}{k}\right)$，我们有
+考虑 $\displaystyle \lim _{k \rightarrow \infty} k \log \left(1-\frac{1}{k}\right)$ ，我们有
+
 $$
 \begin{aligned}
 \lim _{k \rightarrow \infty} k \log \left(1-\frac{1}{k}\right)&=\lim _{k \rightarrow \infty} \frac{\log \left(1-\frac{1}{k}\right)}{1 / k}\\
@@ -78,6 +79,7 @@ $$
 &=-1
 \end{aligned}
 $$
-所以 $x \sim k \ln n, k\to \infty $，即 $-\dfrac{\ln n}{\ln\left(1-\frac{1}{k}\right)}= \Theta (k\log n)$
+
+所以 $x \sim k \ln n, k\to \infty$ ，即 $-\dfrac{\ln n}{\ln\left(1-\frac{1}{k}\right)}= \Theta (k\log n)$ 
 
  **本页面主要译自博文[Задача Иосифа](https://e-maxx.ru/algo/joseph_problem)与其英文翻译版[Josephus Problem](https://cp-algorithms.com/others/josephus_problem.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
