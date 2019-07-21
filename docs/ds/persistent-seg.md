@@ -2,7 +2,8 @@
 
 主席树全称是可持久化权值线段树，参见[知乎讨论](https://www.zhihu.com/question/59195374)。
 
-???+ warning "关于函数式线段树" **函数式线段树** 是指使用函数式编程思想的线段树。在函数式编程思想中，将计算机运算视为数学函数，并避免可改变的状态或变量。不难发现，函数式线段树是[完全可持久化](/ds/persistent/#_2)的。
+???+warning "关于函数式线段树"
+    函数式线段树是指使用函数式编程思想的线段树。在函数式编程思想中，将计算机运算视为数学函数，并避免可改变的状态或变量。不难发现，函数式线段树是[完全可持久化](/ds/persistent/#_2)的
 
 面对眼前的区间第 $k$ 小问题，你该何从下手？
 
@@ -88,13 +89,12 @@ int query(int u, int v, int l, int r, int k)  //查询操作
 }
 inline void init() {
   scanf("%d%d", &n, &m);
-  for (register int i = 1; i <= n; ++i) scanf("%d", a + i);
+  for (int i = 1; i <= n; ++i) scanf("%d", a + i);
   memcpy(ind, a, sizeof ind);
   sort(ind + 1, ind + n + 1);
   len = unique(ind + 1, ind + n + 1) - ind - 1;
   rt[0] = build(1, len);
-  for (register int i = 1; i <= n; ++i)
-    rt[i] = update(getid(a[i]), 1, len, rt[i - 1]);
+  for (int i = 1; i <= n; ++i) rt[i] = update(getid(a[i]), 1, len, rt[i - 1]);
 }
 int l, r, k;
 inline void work() {

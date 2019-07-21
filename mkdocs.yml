@@ -211,6 +211,7 @@ nav:
       - Size Balanced Tree: ds/sbt.md
       - AVL 树: ds/avl.md
       - 替罪羊树: ds/scapegoat.md
+      - 笛卡尔树: ds/cartesian-tree.md
     - 树套树:
       - 线段树套线段树: ds/seg-in-seg.md
       - 平衡树套线段树: ds/seg-in-balanced.md
@@ -223,6 +224,7 @@ nav:
       - 可持久化块状数组: ds/persistent-block-array.md
       - 可持久化平衡树: ds/persistent-balanced.md
       - 可持久化字典树: ds/persistent-trie.md
+      - 可持久化可并堆: ds/persistent-heap.md
     - 珂朵莉树: ds/odt.md
     - Link Cut Tree: ds/lct.md
     - Euler Tour Tree: ds/ett.md
@@ -303,6 +305,7 @@ nav:
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
     - 约瑟夫问题: misc/josephus.md
+    - Stern-Brocot 树与 Farey 序列: misc/stern-brocot.md
 
 # Theme
 theme:
