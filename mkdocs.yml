@@ -304,6 +304,7 @@ nav:
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
     - 约瑟夫问题: misc/josephus.md
+    - Stern-Brocot 树与 Farey 序列: misc/stern-brocot.md
 
 # Theme
 theme:
