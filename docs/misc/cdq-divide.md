@@ -447,7 +447,7 @@ namespace colist
 {
     struct data {int l;int r;int x;friend bool operator <(data a,data b){return a.r<b.r;}};set <data> s;
     struct nod {int l;int r;friend bool operator <(nod a,nod b){return a.r<b.r;}};set <nod> c[2*N];set <int> bd;
-    inline void split(int mid)//将一个结点拆成两个结点
+    inline void split(int mid)//将一个节点拆成两个节点
     {
         SDI it=s.lower_bound((data){0,mid,0});data p=*it;if(mid==p.r)return;
         s.erase(p);s.insert((data){p.l,mid,p.x});s.insert((data){mid+1,p.r,p.x});
@@ -458,7 +458,7 @@ namespace colist
         bd.insert(it->l);SNI it1,it2;it1=it2=c[it->x].find((nod){it->l,it->r});
         ++it2;if(it2!=c[it->x].end())bd.insert(it2->l);c[it->x].erase(it1);s.erase(it);
     }
-    inline void ins(data p)//插入一个结点
+    inline void ins(data p)//插入一个节点
     {
         s.insert(p);SNI it=c[p.x].insert((nod){p.l,p.r}).first;++it;
         if(it!=c[p.x].end()){bd.insert(it->l);}

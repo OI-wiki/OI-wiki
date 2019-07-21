@@ -59,17 +59,17 @@ int t = atoi(argv[2]);
 
 vector<int> p(n);
 
-/* 为结点 1..n-1 设置父亲 */
+/* 为节点 1..n-1 设置父亲 */
 forn(i, n) if (i > 0) p[i] = rnd.wnext(i, t);
 
 printf("%d\n", n);
 
-/* 打乱结点 1..n-1 */
+/* 打乱节点 1..n-1 */
 vector<int> perm(n);
 forn(i, n) perm[i] = i;
 shuffle(perm.begin() + 1, perm.end());
 
-/* 根据打乱的结点顺序加边 */
+/* 根据打乱的节点顺序加边 */
 vector<pair<int, int> > edges;
 for (int i = 1; i < n; i++)
   if (rnd.next(2))
