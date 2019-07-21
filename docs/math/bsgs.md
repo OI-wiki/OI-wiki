@@ -6,15 +6,15 @@ $$
 a^x \equiv b \bmod p
 $$
 
-其中 $a\perp p$ 。方程的解 $x$ 满足 $0 \le x < p$ 。（在这里一定要强调，只要 $a\perp p$ 就行了，不要求 $p$ 是素数！）
+其中 $a\perp p$ 。方程的解 $x$ 满足 $0 \le x < p$ 。（在这里需要注意，只要 $a\perp p$ 就行了，不要求 $p$ 是素数）
 
 ### 算法描述
 
-令 $x = A \lceil \sqrt p \rceil - B$ ，其中 $0\le A,B \le \lceil \sqrt p \rceil$ ，则有 $a^{A\lceil \sqrt p \rceil -B} \equiv b$ ，稍加变换，则有 $a^{A\lceil \sqrt p \rceil} \equiv ba^B$ 。
+令 $x = A \left \lceil \sqrt p \right \rceil - B$ ，其中 $0\le A,B \le \left \lceil \sqrt p \right \rceil$ ，则有 $a^{A\left \lceil \sqrt p \right \rceil -B} \equiv b $ ，稍加变换，则有 $a^{A\left \lceil \sqrt p \right \rceil} \equiv ba^B$ 。
 
-我们已知的是 $a,b$ ，所以我们可以先算出等式右边的 $ba^B$ 的所有取值，枚举 $B$ ，用 hash/map 存下来，然后逐一计算 $a^{A\lceil \sqrt p \rceil}$ ，枚举 $A$ ，寻找是否有与之相等的 $ba^B$ ，从而我们可以得到所有的 $x$ ， $x=A \lceil \sqrt p \rceil - B$ 。
+我们已知的是 $a,b$ ，所以我们可以先算出等式右边的 $ba^B$ 的所有取值，枚举 $B$ ，用 `hash`/`map` 存下来，然后逐一计算 $a^{A\left \lceil \sqrt p \right \rceil}$ ，枚举 $A$ ，寻找是否有与之相等的 $ba^B$ ，从而我们可以得到所有的 $x$ ， $x=A \left \lceil \sqrt p \right \rceil - B$ 。
 
-注意到 $A,B$ 均小于 $\lceil \sqrt p \rceil$ ，所以时间复杂度为 $O(\sqrt p)$ ，用 map 的话会多一个 $\log$ 。
+注意到 $A,B$ 均小于 $\left \lceil \sqrt p \right \rceil$ ，所以时间复杂度为 $\Theta\left  (\sqrt p\right )$ ，用 `map` 则多一个 $\log$ 。
 
 ## 进阶篇
 
@@ -70,7 +70,7 @@ $$
 \forall\ t\in \mathbb{Z},k\mid t\cdot\varphi(n),\ x\equiv g^{c+\frac{t\cdot\varphi(n)}{k}}\mod p
 $$
 
-对于上面这个式子，显然有 $\frac{k}{\gcd(k,\varphi(n))}\mid t$ 。因此我们设 $t=\frac{k}{\gcd(k,\varphi(n))}\cdot i$ ，得到
+对于上面这个式子，显然有 $\frac{k}{\gcd(k,\varphi(n))}  \mid t$ 。因此我们设 $t=\frac{k}{\gcd(k,\varphi(n))}\cdot i$ ，得到
 
 $$
 \forall \ i\in \mathbb{Z},x\equiv g^{c+\frac{\varphi(n)}{\gcd(k,\varphi(n))}\cdot i}\mod p
@@ -83,68 +83,70 @@ $$
 下面的代码实现的找原根、离散对数解和原问题所有解的过程。
 
 ```cpp
-int gcd(int a, int b) { return a ? gcd(b % a, a) : b; }
+int gcd(int a, int b) {
+	return a ? gcd(b % a, a) : b;
+}
 int powmod(int a, int b, int p) {
-  int res = 1;
-  while (b > 0) {
-    if (b & 1) res = res * a % p;
-    a = a * a % p, b >>= 1;
-  }
-  return res;
+	int res = 1;
+	while (b > 0) {
+		if (b & 1) res = res * a % p;
+		a = a * a % p, b >>= 1;
+	}
+	return res;
 }
 // Finds the primitive root modulo p
 int generator(int p) {
-  vector<int> fact;
-  int phi = p - 1, n = phi;
-  for (int i = 2; i * i <= n; ++i) {
-    if (n % i == 0) {
-      fact.push_back(i);
-      while (n % i == 0) n /= i;
-    }
-  }
-  if (n > 1) fact.push_back(n);
-  for (int res = 2; res <= p; ++res) {
-    bool ok = true;
-    for (int factor : fact) {
-      if (powmod(res, phi / factor, p) == 1) {
-        ok = false;
-        break;
-      }
-    }
-    if (ok) return res;
-  }
-  return -1;
+	vector<int> fact;
+	int phi = p - 1, n = phi;
+	for (int i = 2; i * i <= n; ++i) {
+		if (n % i == 0) {
+			fact.push_back(i);
+			while (n % i == 0) n /= i;
+		}
+	}
+	if (n > 1) fact.push_back(n);
+	for (int res = 2; res <= p; ++res) {
+		bool ok = true;
+		for (int factor : fact) {
+			if (powmod(res, phi / factor, p) == 1) {
+				ok = false;
+				break;
+			}
+		}
+		if (ok) return res;
+	}
+	return -1;
 }
 // This program finds all numbers x such that x^k=a (mod n)
 int main() {
-  int n, k, a;
-  scanf("%d %d %d", &n, &k, &a);
-  if (a == 0) return puts("1\n0"), 0;
-  int g = generator(n);
-  // Baby-step giant-step discrete logarithm algorithm
-  int sq = (int)sqrt(n + .0) + 1;
-  vector<pair<int, int>> dec(sq);
-  for (int i = 1; i <= sq; ++i)
-    dec[i - 1] = {powmod(g, i * sq * k % (n - 1), n), i};
-  sort(dec.begin(), dec.end());
-  int any_ans = -1;
-  for (int i = 0; i < sq; ++i) {
-    int my = powmod(g, i * k % (n - 1), n) * a % n;
-    auto it = lower_bound(dec.begin(), dec.end(), make_pair(my, 0));
-    if (it != dec.end() && it->first == my) {
-      any_ans = it->second * sq - i;
-      break;
-    }
-  }
-  if (any_ans == -1) return puts("0"), 0;
-  // Print all possible answers
-  int delta = (n - 1) / gcd(k, n - 1);
-  vector<int> ans;
-  for (int cur = any_ans % delta; cur < n - 1; cur += delta)
-    ans.push_back(powmod(g, cur, n));
-  sort(ans.begin(), ans.end());
-  printf("%d\n", ans.size());
-  for (int answer : ans) printf("%d ", answer);
+	int n, k, a;
+	scanf("%d %d %d", &n, &k, &a);
+	if (a == 0) return puts("1\n0"), 0;
+	int g = generator(n);
+	// Baby-step giant-step discrete logarithm algorithm
+	int sq = (int)sqrt(n + .0) + 1;
+	vector<pair<int, int>> dec(sq);
+	for (int i = 1; i <= sq; ++i)
+		dec[i - 1] = {powmod(g, i * sq * k % (n - 1), n), i};
+	sort(dec.begin(), dec.end());
+	int any_ans = -1;
+	for (int i = 0; i < sq; ++i) {
+		int my = powmod(g, i * k % (n - 1), n) * a % n;
+		auto it = lower_bound(dec.begin(), dec.end(), make_pair(my, 0));
+		if (it != dec.end() && it->first == my) {
+			any_ans = it->second * sq - i;
+			break;
+		}
+	}
+	if (any_ans == -1) return puts("0"), 0;
+	// Print all possible answers
+	int delta = (n - 1) / gcd(k, n - 1);
+	vector<int> ans;
+	for (int cur = any_ans % delta; cur < n - 1; cur += delta)
+		ans.push_back(powmod(g, cur, n));
+	sort(ans.begin(), ans.end());
+	printf("%d\n", ans.size());
+	for (int answer : ans) printf("%d ", answer);
 }
 ```
 
