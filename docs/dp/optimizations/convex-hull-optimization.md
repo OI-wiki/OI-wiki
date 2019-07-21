@@ -1,5 +1,7 @@
 ## 斜率优化
 
+### 例题选讲
+
 ??? note " 例题[「HNOI2008」玩具装箱 TOY](https://www.lydsy.com/JudgeOnline/problem.php?id=1010)"
 	令 $f_i$ 表示前 $i$ 个物品，随意分组装在任意多个容器里所能得到的最小费用。
 
@@ -19,7 +21,7 @@
 
 可以用单调队列维护下凸包。
 
-### 几道练习题
+### 习题
 
 [「SDOI2016」征途](https://www.lydsy.com/JudgeOnline/problem.php?id=4518)
 
@@ -32,3 +34,9 @@
 [「Codeforces 311B」Cats Transport](http://codeforces.com/problemset/problem/311/B)
 
 [「NOI2007」货币兑换](https://www.lydsy.com/JudgeOnline/problem.php?id=1492)
+
+[「NOI2019」回家路线](https://www.luogu.org/problemnew/show/P5468)
+
+[「NOI2016」国王饮水记](https://www.luogu.org/problemnew/show/P1721)
+
+[「NOI2014」购票](https://www.luogu.org/problemnew/show/P2305)
