@@ -128,17 +128,17 @@ int main() {
 
 每次取出堆顶的一个边集 $S$ ，有两种方法可以生成可能的新边集：
 
-1. 替换 $S$ 中的最后一条边为满足相同条件的 $\Delta e$ 更大的边。
+1.  替换 $S$ 中的最后一条边为满足相同条件的 $\Delta e$ 更大的边。
 
-2. 在最后一条边后接上一条边，设 $x$ 为 $S$ 中最后一条边的终点，由性质 $2$ 可得这条边需要满足其起点为 $x$ 或 $x$ 在 $T$ 上的祖先。
+2.  在最后一条边后接上一条边，设 $x$ 为 $S$ 中最后一条边的终点，由性质 $2$ 可得这条边需要满足其起点为 $x$ 或 $x$ 在 $T$ 上的祖先。
 
 将生成的新边集也加入小根堆。重复以上操作 $k-1$ 次后求出的就是从 $s$ 到 $t$ 的第 $k$ 短路。
 
 对于每个结点 $x$ ，我们将以其为起点的边的 $\Delta e$ 建成一个小根堆。为了方便查找一个结点 $x$ 与 $x$ 在 $T$ 上的祖先在小根堆上的信息，我们将这些信息合并在一个编号为 $x$ 的小根堆上。回顾以上生成新边集的方法，我们发现只要我们把紧接着可能的下一个边集加入小根堆，并保证这种生成方法可以覆盖所有可能的边集即可。记录最后选择的一条边在堆上对应的结点 $t$ ，有更优的方法生成新的边集：
 
-1. 替换 $S$ 中的最后一条边为 $t$ 在堆上的左右儿子对应的边。
+1.  替换 $S$ 中的最后一条边为 $t$ 在堆上的左右儿子对应的边。
 
-2. 在最后一条边后接上一条新的边，设 $x$ 为 $S$ 中最后一条边的终点，则接上编号为 $x$ 的小根堆的堆顶结点对应的边。
+2.  在最后一条边后接上一条新的边，设 $x$ 为 $S$ 中最后一条边的终点，则接上编号为 $x$ 的小根堆的堆顶结点对应的边。
 
 用这种方法，每次生成新的边集只会扩展出最多三个结点，小根堆中的结点总数是 $O(n+k)$ 。
 
@@ -146,92 +146,121 @@ int main() {
 
 ### 可持久化可并堆优化
 
-**在阅读本内容前，请先了解 [可持久化可并堆](/ds/persistent-heap) 的相关知识。**
+ **在阅读本内容前，请先了解[可持久化可并堆](/ds/persistent-heap)的相关知识。** 
 
 使用可持久化可并堆优化合并一个结点与其在 $T$ 上的祖先的信息，每次将一个结点与其在 $T$ 上的父亲合并，时间复杂度为 $O(n\log_2 m)$ ，空间复杂度为 $O((n+k)\log_2 m)$ 。这样在求出一个结点对应的堆时，无需复制结点且之后其父亲结点对应的堆仍然可以正常访问。
 
 ### 参考实现
 
 ```cpp
-#include<cstdio>
-#include<cstring>
-#include<algorithm>
-#include<queue>
+#include <algorithm>
+#include <cstdio>
+#include <cstring>
+#include <queue>
 using namespace std;
-const int maxn=200010;
-int n,m,s,t,k,x,y,ww,cnt,ans,fa[maxn];
-struct Edge
-{
-    int cur,h[maxn],nxt[maxn],p[maxn],w[maxn];
-    void add_edge(int x,int y,int z){cur++;nxt[cur]=h[x];h[x]=cur;p[cur]=y;w[cur]=z;}
-}e1,e2;
+const int maxn = 200010;
+int n, m, s, t, k, x, y, ww, cnt, ans, fa[maxn];
+struct Edge {
+  int cur, h[maxn], nxt[maxn], p[maxn], w[maxn];
+  void add_edge(int x, int y, int z) {
+    cur++;
+    nxt[cur] = h[x];
+    h[x] = cur;
+    p[cur] = y;
+    w[cur] = z;
+  }
+} e1, e2;
 int dist[maxn];
-bool tf[maxn],vis[maxn],ontree[maxn];
-struct node
-{
-    int x,v;
-    node*operator=(node a){x=a.x;v=a.v;return this;}
-    bool operator<(node a)const{return v>a.v;}
-}a;
-priority_queue<node>Q;
-void dfs(int x)
-{
-    vis[x]=true;
-    for(int j=e2.h[x];j;j=e2.nxt[j])if(!vis[e2.p[j]])
-    if(dist[e2.p[j]]==dist[x]+e2.w[j])fa[e2.p[j]]=x,ontree[j]=true,dfs(e2.p[j]);
+bool tf[maxn], vis[maxn], ontree[maxn];
+struct node {
+  int x, v;
+  node* operator=(node a) {
+    x = a.x;
+    v = a.v;
+    return this;
+  }
+  bool operator<(node a) const { return v > a.v; }
+} a;
+priority_queue<node> Q;
+void dfs(int x) {
+  vis[x] = true;
+  for (int j = e2.h[x]; j; j = e2.nxt[j])
+    if (!vis[e2.p[j]])
+      if (dist[e2.p[j]] == dist[x] + e2.w[j])
+        fa[e2.p[j]] = x, ontree[j] = true, dfs(e2.p[j]);
 }
-struct LeftistTree
-{
-    int cnt,rt[maxn],lc[maxn*20],rc[maxn*20],dist[maxn*20];
-    node v[maxn*20];
-    LeftistTree(){dist[0]=-1;}
-    int newnode(node w){cnt++;v[cnt]=w;return cnt;}
-    int merge(int x,int y)
-    {
-        if(!x||!y)return x+y;
-        if(v[x]<v[y])swap(x,y);
-        int p=++cnt;lc[p]=lc[x];v[p]=v[x];
-        rc[p]=merge(rc[x],y);
-        if(dist[lc[p]]<dist[rc[p]])swap(lc[p],rc[p]);
-        dist[p]=dist[rc[p]]+1;
-        return p;
-    }
-}st;
-void dfs2(int x)
-{
-    vis[x]=true;
-    if(fa[x]&&fa[x]!=n)st.rt[x]=st.merge(st.rt[x],st.rt[fa[x]]);
-    for(int j=e2.h[x];j;j=e2.nxt[j])if(fa[e2.p[j]]==x&&!vis[e2.p[j]])dfs2(e2.p[j]);
+struct LeftistTree {
+  int cnt, rt[maxn], lc[maxn * 20], rc[maxn * 20], dist[maxn * 20];
+  node v[maxn * 20];
+  LeftistTree() { dist[0] = -1; }
+  int newnode(node w) {
+    cnt++;
+    v[cnt] = w;
+    return cnt;
+  }
+  int merge(int x, int y) {
+    if (!x || !y) return x + y;
+    if (v[x] < v[y]) swap(x, y);
+    int p = ++cnt;
+    lc[p] = lc[x];
+    v[p] = v[x];
+    rc[p] = merge(rc[x], y);
+    if (dist[lc[p]] < dist[rc[p]]) swap(lc[p], rc[p]);
+    dist[p] = dist[rc[p]] + 1;
+    return p;
+  }
+} st;
+void dfs2(int x) {
+  vis[x] = true;
+  if (fa[x] && fa[x] != n) st.rt[x] = st.merge(st.rt[x], st.rt[fa[x]]);
+  for (int j = e2.h[x]; j; j = e2.nxt[j])
+    if (fa[e2.p[j]] == x && !vis[e2.p[j]]) dfs2(e2.p[j]);
 }
-int main()
-{
-    scanf("%d%d%d%d%d",&n,&m,&s,&t,&k);
-    for(int i=1;i<=m;i++)scanf("%d%d%d",&x,&y,&ww),e1.add_edge(x,y,ww),e2.add_edge(y,x,ww);
-    Q.push({n,0});
-    while(!Q.empty())
-    {
-        a=Q.top();Q.pop();
-        if(tf[a.x])continue;
-        tf[a.x]=true;dist[a.x]=a.v;
-        for(int j=e2.h[a.x];j;j=e2.nxt[j])Q.push({e2.p[j],a.v+e2.w[j]});
-    }
-    if(k==1){printf("%d\n",dist[1]);return 0;}
-    dfs(n);
-    for(int i=1;i<=n;i++)if(tf[i])for(int j=e1.h[i];j;j=e1.nxt[j])if(!ontree[j])
-    if(tf[e1.p[j]])st.rt[i]=st.merge(st.rt[i],st.newnode({e1.p[j],dist[e1.p[j]]+e1.w[j]-dist[i]}));
-    for(int i=1;i<=n;i++)vis[i]=false;
-    dfs2(n);
-    if(st.rt[1])Q.push({st.rt[1],dist[1]+st.v[st.rt[1]].v});
-    while(!Q.empty())
-    {
-        a=Q.top();Q.pop();
-        cnt++;
-        if(cnt==k-1){printf("%d\n",a.v);return 0;}
-        if(st.lc[a.x])Q.push({st.lc[a.x],a.v-st.v[a.x].v+st.v[st.lc[a.x]].v});
-        if(st.rc[a.x])Q.push({st.rc[a.x],a.v-st.v[a.x].v+st.v[st.rc[a.x]].v});
-        int t=st.rt[st.v[a.x].x];if(t)Q.push({t,a.v+st.v[t].v});
-    }
-    printf("%d\n",ans);
+int main() {
+  scanf("%d%d%d%d%d", &n, &m, &s, &t, &k);
+  for (int i = 1; i <= m; i++)
+    scanf("%d%d%d", &x, &y, &ww), e1.add_edge(x, y, ww), e2.add_edge(y, x, ww);
+  Q.push({n, 0});
+  while (!Q.empty()) {
+    a = Q.top();
+    Q.pop();
+    if (tf[a.x]) continue;
+    tf[a.x] = true;
+    dist[a.x] = a.v;
+    for (int j = e2.h[a.x]; j; j = e2.nxt[j]) Q.push({e2.p[j], a.v + e2.w[j]});
+  }
+  if (k == 1) {
+    printf("%d\n", dist[1]);
     return 0;
+  }
+  dfs(n);
+  for (int i = 1; i <= n; i++)
+    if (tf[i])
+      for (int j = e1.h[i]; j; j = e1.nxt[j])
+        if (!ontree[j])
+          if (tf[e1.p[j]])
+            st.rt[i] = st.merge(
+                st.rt[i],
+                st.newnode({e1.p[j], dist[e1.p[j]] + e1.w[j] - dist[i]}));
+  for (int i = 1; i <= n; i++) vis[i] = false;
+  dfs2(n);
+  if (st.rt[1]) Q.push({st.rt[1], dist[1] + st.v[st.rt[1]].v});
+  while (!Q.empty()) {
+    a = Q.top();
+    Q.pop();
+    cnt++;
+    if (cnt == k - 1) {
+      printf("%d\n", a.v);
+      return 0;
+    }
+    if (st.lc[a.x])
+      Q.push({st.lc[a.x], a.v - st.v[a.x].v + st.v[st.lc[a.x]].v});
+    if (st.rc[a.x])
+      Q.push({st.rc[a.x], a.v - st.v[a.x].v + st.v[st.rc[a.x]].v});
+    int t = st.rt[st.v[a.x].x];
+    if (t) Q.push({t, a.v + st.v[t].v});
+  }
+  printf("%d\n", ans);
+  return 0;
 }
 ```
