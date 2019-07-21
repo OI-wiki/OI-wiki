@@ -1,6 +1,6 @@
 ## 简介
 
-1.  Link/Cut Tree 是一种数据结构，我们用它来解决<font color="red">动态树问题</font> 。
+1.  Link/Cut Tree 是一种数据结构，我们用它来解决<font color="red">动态树问题</font>。
 2.  Link/Cut Tree 又称 Link-Cut Tree，简称 LCT, 但它不叫动态树，动态树是指一类问题。
 3.  Splay Tree 是 LCT 的基础，但是 LCT ⽤的 Splay Tree 和普通的 Splay 在细节处不太一样。
 4.  这是⼀个和 Splay ⼀样只需要写⼏ (yi) 个 (dui) 核心函数就能实现一切的数据结构。
@@ -122,26 +122,26 @@
 
 #### ⼀般数据结构函数（字面意思）
 
-1.  `PushUp(x)`
-2.  `PushDown(x)`
+1.   `PushUp(x)` 
+2.   `PushDown(x)` 
 
 #### Splay 系函数（不会多做解释）
 
-1.  `Get(x)` 获取 x 是父亲的哪个⼉子。
-2.  `Splay(x)` 通过和 Rotate 操作联动实现把 x 旋转到<font color = "red">当前 Splay 的根</font>。
-3.  `Rotate(x)` 将 x 向上旋转一层的操作。
+1.   `Get(x)` 获取 x 是父亲的哪个⼉子。
+2.   `Splay(x)` 通过和 Rotate 操作联动实现把 x 旋转到<font color = "red">当前 Splay 的根</font>。
+3.   `Rotate(x)` 将 x 向上旋转一层的操作。
 
 #### 新操作
 
-1.  `IsRoot(x)` 判断当前节点是否是所在 Splay 的根。
-2.  `Access(x)` 把从根到当前节点的所有点放在⼀条实链里，使根到它成为一条实路径，并且在同一棵 Splay 里。
-3.  `Update(x)` 在 Access 操作之后，递归地从上到下 Pushdown 更新信息。
-4.  `MakeRoot(x)` 使 x 点成为整棵辅助树的根。
-5.  `Link(x, y)` 在 x, y 两点间连⼀一条边。
-6.  `Cut(x, y)` 把 x, y 两点间边删掉。
-7.  `Find(x)` 找到 x 所在的 Splay 的根节点编号。
-8.  `Fix(x, v)` 修改 x 的点权为 v。
-9.  `Split(x, y)` 提取出 x, y 间的路径，方便做区间操作。
+1.   `IsRoot(x)` 判断当前节点是否是所在 Splay 的根。
+2.   `Access(x)` 把从根到当前节点的所有点放在⼀条实链里，使根到它成为一条实路径，并且在同一棵 Splay 里。
+3.   `Update(x)` 在 Access 操作之后，递归地从上到下 Pushdown 更新信息。
+4.   `MakeRoot(x)` 使 x 点成为整棵辅助树的根。
+5.   `Link(x, y)` 在 x, y 两点间连⼀一条边。
+6.   `Cut(x, y)` 把 x, y 两点间边删掉。
+7.   `Find(x)` 找到 x 所在的 Splay 的根节点编号。
+8.   `Fix(x, v)` 修改 x 的点权为 v。
+9.   `Split(x, y)` 提取出 x, y 间的路径，方便做区间操作。
 
 ### 宏定义
 
@@ -195,7 +195,7 @@ inline void Splay(int x) {
 }
 ```
 
-如果上面的几个函数你看不懂，请移步[Splay](/ds/splay/) 。
+如果上面的几个函数你看不懂，请移步[Splay](/ds/splay/)。
 
 下面要开始 LCT 独有的函数了哦。
 
@@ -229,7 +229,7 @@ inline void Access(int x) {
 
 ![pic2](./images/lct2.png)
 
--   现在我们要 `Access(N)`, 把 $A$ 到 $N$ 路径上的边都变为实边，拉成一棵 Splay。
+-   现在我们要 `Access(N)` , 把 $A$ 到 $N$ 路径上的边都变为实边，拉成一棵 Splay。
 
 ![pic3](./images/lct3.png)
 
@@ -245,17 +245,17 @@ inline void Access(int x) {
 
 -   下一步，我们把 $N$ 指向的 Father $I$ 也旋转到 $I$ 的 Splay 树根。
 
--   原来的实边 $I$ — $K$ 要去掉，这时候我们把 $I$ 的右儿子指向 $N$, 就得到了 $I$ — $L$ 这样一棵 Splay。
+-   原来的实边 $I$ — $K$ 要去掉，这时候我们把 $I$ 的右儿子指向 $N$ , 就得到了 $I$ — $L$ 这样一棵 Splay。
 
 ![pic](./images/lct8.png)
 
--   接下来，按照刚刚的操作步骤，由于 $I$ 的 Father 指向 $H$, 我们把 $H$ 旋转到他所在 Splay Tree 的根，然后把 $H$ 的 rs 设为 $I$。
+-   接下来，按照刚刚的操作步骤，由于 $I$ 的 Father 指向 $H$ , 我们把 $H$ 旋转到他所在 Splay Tree 的根，然后把 $H$ 的 rs 设为 $I$ 。
 
 -   之后的树是这样的。
 
 ![pic](./images/lct6.png)
 
--   同理我们 `Splay(A)` , 并把 $A$ 的右儿子指向 $H$。
+-   同理我们 `Splay(A)` , 并把 $A$ 的右儿子指向 $H$ 。
 -   于是我们得到了这样一棵 AuxTree。并且发现 $A$ — $N$ 的整个路径已经在同一棵 Splay 中了。大功告成！
 
 ![pic](./images/lct7.png)
@@ -288,10 +288,10 @@ void Update(int p) {
 
 ###  `makeRoot()` 
 
--   `Make_Root()` 的重要性丝毫不亚于 `Access()`。我们在需要维护路径信息的时候，一定会出现路径深度无法严格递增的情况，根据 AuxTree 的性质，这种路径是不能出现在一棵 Splay 中的。
--   这时候我们需要用到 `Make_Root()`。
--   `Make_Root()` 的作用是使指定的点成为原树的根，考虑如何实现这种操作。
--   我们发现 `Access(x)` 后，$x$ 在 Splay 中一定是深度最大的点（从根到 $x$ ， 深度严格递增）。
+-    `Make_Root()` 的重要性丝毫不亚于 `Access()` 。我们在需要维护路径信息的时候，一定会出现路径深度无法严格递增的情况，根据 AuxTree 的性质，这种路径是不能出现在一棵 Splay 中的。
+-   这时候我们需要用到 `Make_Root()` 。
+-    `Make_Root()` 的作用是使指定的点成为原树的根，考虑如何实现这种操作。
+-   我们发现 `Access(x)` 后， $x$ 在 Splay 中一定是深度最大的点（从根到 $x$ ，深度严格递增）。
 -   而变成根即是变成深度最小的点。我们 `Splay(x)` , 发现这时候 $x$ 并没有右子树（即所有点深度都比它浅）。那我们把 $x$ 的左右儿子交换一下，变成了 $x$ 没有左子树，在 AuxTree 意义上就是深度最小的点了，即达到目的。
 -   所以我们交换左右儿子，并给右儿子打一个翻转标记即可。（此时左儿子没有值）。
 
@@ -316,15 +316,15 @@ inline void Link(int x, int p) {
 
 ###  `Split()` 
 
--   `Split` 操作意义很简单，就是拿出一棵 Splay , 维护的是 $x$ 到 $y$ 的路径。
--   先 `MakeRoot(x)`，然后 `Access(y)`。如果要 $y$ 做根，再 `Splay(y)`。
+-    `Split` 操作意义很简单，就是拿出一棵 Splay , 维护的是 $x$ 到 $y$ 的路径。
+-   先 `MakeRoot(x)` ，然后 `Access(y)` 。如果要 $y$ 做根，再 `Splay(y)` 。
 -   就这三句话，没写代码，需要的时候可以直接打这三个就好辣！
 -   另外 Split 这三个操作直接可以把需要的路径拿出到 $y$ 的子树上，那不是随便干嘛咯。
 
 ###  `Cut()` 
 
--   `Cut` 有两种情况，保证合法和不一定保证合法。（废话）
--   如果保证合法，直接 `Split(x, y)`，这时候 $y$ 是根，$x$ 一定是它的儿子，双向断开即可。就像这样：
+-    `Cut` 有两种情况，保证合法和不一定保证合法。（废话）
+-   如果保证合法，直接 `Split(x, y)` ，这时候 $y$ 是根， $x$ 一定是它的儿子，双向断开即可。就像这样：
 
 ```cpp
 inline void Cut(int x, int p) {
@@ -336,17 +336,17 @@ inline void Cut(int x, int p) {
 
 想要删边，必须要满足如下三个条件：
 
-1.  $x,y$ 连通。
-2.  $x,y$ 的路径上没有其他的链。
-3.  $x$ 没有右儿子。
+1.   $x,y$ 连通。
+2.   $x,y$ 的路径上没有其他的链。
+3.   $x$ 没有右儿子。
 
-总结一下，上面三句话的意思就一个：$x,y$ 之间有边。
+总结一下，上面三句话的意思就一个： $x,y$ 之间有边。
 
 具体实现就留作一个思考题给大家。判断连通需要用到后面的 `Find` , 其他两点稍作思考分析一下结构就知道该怎么判断了。
 
 ###  `Find()` 
 
--   `Find()` 其实就是找到当前辅助树的根。在 `Access(p)` 后，再 `Splay(p)`。这样根就是树里最小的那个，一直往 ls 走，沿途 `PushDown` 即可。
+-    `Find()` 其实就是找到当前辅助树的根。在 `Access(p)` 后，再 `Splay(p)` 。这样根就是树里最小的那个，一直往 ls 走，沿途 `PushDown` 即可。
 -   一直走到没有 ls, 非常简单。
 
 ```cpp
@@ -359,7 +359,7 @@ inline int Find(int p) {
 
 ### 一些提醒
 
--   干点啥前一定要想一想需不需要 `PushUp` 或者 `PushDown`, LCT 由于特别灵活的原因，少 `Pushdown` 或者 `Pushup` 一次就可能把修改改到不该改的点上！
+-   干点啥前一定要想一想需不需要 `PushUp` 或者 `PushDown` , LCT 由于特别灵活的原因，少 `Pushdown` 或者 `Pushup` 一次就可能把修改改到不该改的点上！
 -   LCT 的 `Rotate` 和 Splay 的不太一样， `if (z)` 一定要放在前面。
 -   LCT 的 `Splay` 操作就是旋转到根，没有旋转到谁儿子的操作，因为不需要。
 
