@@ -88,12 +88,12 @@ int query(int u, int v, int l, int r, int k)  //查询操作
 }
 inline void init() {
   scanf("%d%d", &n, &m);
-  for (register int i = 1; i <= n; ++i) scanf("%d", a + i);
+  for (int i = 1; i <= n; ++i) scanf("%d", a + i);
   memcpy(ind, a, sizeof ind);
   sort(ind + 1, ind + n + 1);
   len = unique(ind + 1, ind + n + 1) - ind - 1;
   rt[0] = build(1, len);
-  for (register int i = 1; i <= n; ++i)
+  for (int i = 1; i <= n; ++i)
     rt[i] = update(getid(a[i]), 1, len, rt[i - 1]);
 }
 int l, r, k;
