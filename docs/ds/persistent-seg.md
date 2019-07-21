@@ -93,8 +93,7 @@ inline void init() {
   sort(ind + 1, ind + n + 1);
   len = unique(ind + 1, ind + n + 1) - ind - 1;
   rt[0] = build(1, len);
-  for (int i = 1; i <= n; ++i)
-    rt[i] = update(getid(a[i]), 1, len, rt[i - 1]);
+  for (int i = 1; i <= n; ++i) rt[i] = update(getid(a[i]), 1, len, rt[i - 1]);
 }
 int l, r, k;
 inline void work() {
