@@ -267,4 +267,4 @@ int main() {
 
 ## 习题
 
-[luogu P2483 \[SDOI2010\]魔法猪学院](https://www.luogu.org/problemnew/show/P2483)
+[luogu P2483\[SDOI2010\]魔法猪学院](https://www.luogu.org/problemnew/show/P2483)
