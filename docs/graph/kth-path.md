@@ -259,7 +259,6 @@ int main() {
       Q.push({st.lc[a.x], a.v - st.v[a.x].v + st.v[st.lc[a.x]].v});
     if (st.rc[a.x])
       Q.push({st.rc[a.x], a.v - st.v[a.x].v + st.v[st.rc[a.x]].v});
-    
     x = st.rt[st.v[a.x].x];
     if (x) Q.push({x, a.v + st.v[x].v});
   }
