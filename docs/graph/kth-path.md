@@ -27,7 +27,7 @@ using namespace std;
 const int maxn = 5010;
 const int maxm = 400010;
 const int inf = 2e9;
-int n, m, s, t, k, u, v, ww, H[maxn], cnt[maxn], ans;
+int n, m, s, t, k, u, v, ww, H[maxn], cnt[maxn];
 int cur, h[maxn], nxt[maxm], p[maxm], w[maxm];
 int cur1, h1[maxn], nxt1[maxm], p1[maxm], w1[maxm];
 bool tf[maxn];
@@ -78,14 +78,13 @@ int main() {
     q.pop();
     cnt[x.x]++;
     if (x.x == t && cnt[x.x] == k) {
-      printf("%d\n", ans);
+      printf("%d\n", x.v);
       return 0;
-      ans++;
     }
     if (cnt[x.x] > k) continue;
     for (int j = h[x.x]; j; j = nxt[j]) q.push({p[j], x.v + w[j]});
   }
-  printf("%d\n", ans);
+  printf("-1\n");
   return 0;
 }
 ```
@@ -159,7 +158,7 @@ int main() {
 #include <queue>
 using namespace std;
 const int maxn = 200010;
-int n, m, s, t, k, x, y, ww, cnt, ans, fa[maxn];
+int n, m, s, t, k, x, y, ww, cnt, fa[maxn];
 struct Edge {
   int cur, h[maxn], nxt[maxn], p[maxn], w[maxn];
   void add_edge(int x, int y, int z) {
@@ -212,15 +211,16 @@ struct LeftistTree {
 } st;
 void dfs2(int x) {
   vis[x] = true;
-  if (fa[x] && fa[x] != n) st.rt[x] = st.merge(st.rt[x], st.rt[fa[x]]);
+  if (fa[x]) st.rt[x] = st.merge(st.rt[x], st.rt[fa[x]]);
   for (int j = e2.h[x]; j; j = e2.nxt[j])
     if (fa[e2.p[j]] == x && !vis[e2.p[j]]) dfs2(e2.p[j]);
 }
 int main() {
   scanf("%d%d%d%d%d", &n, &m, &s, &t, &k);
   for (int i = 1; i <= m; i++)
-    scanf("%d%d%d", &x, &y, &ww), e1.add_edge(x, y, ww), e2.add_edge(y, x, ww);
-  Q.push({n, 0});
+    scanf("%d%d%d", &x, &y, &ww), 
+	e1.add_edge(x, y, ww), e2.add_edge(y, x, ww);
+  Q.push({t, 0});
   while (!Q.empty()) {
     a = Q.top();
     Q.pop();
@@ -230,10 +230,11 @@ int main() {
     for (int j = e2.h[a.x]; j; j = e2.nxt[j]) Q.push({e2.p[j], a.v + e2.w[j]});
   }
   if (k == 1) {
-    printf("%d\n", dist[1]);
+    if(tf[s])printf("%d\n", dist[s]);
+    else printf("-1\n");
     return 0;
   }
-  dfs(n);
+  dfs(t);
   for (int i = 1; i <= n; i++)
     if (tf[i])
       for (int j = e1.h[i]; j; j = e1.nxt[j])
@@ -243,8 +244,8 @@ int main() {
                 st.rt[i],
                 st.newnode({e1.p[j], dist[e1.p[j]] + e1.w[j] - dist[i]}));
   for (int i = 1; i <= n; i++) vis[i] = false;
-  dfs2(n);
-  if (st.rt[1]) Q.push({st.rt[1], dist[1] + st.v[st.rt[1]].v});
+  dfs2(t);
+  if (st.rt[s]) Q.push({st.rt[s], dist[s] + st.v[st.rt[s]].v});
   while (!Q.empty()) {
     a = Q.top();
     Q.pop();
@@ -260,7 +261,7 @@ int main() {
     int t = st.rt[st.v[a.x].x];
     if (t) Q.push({t, a.v + st.v[t].v});
   }
-  printf("%d\n", ans);
+  printf("-1\n"); 
   return 0;
 }
 ```
