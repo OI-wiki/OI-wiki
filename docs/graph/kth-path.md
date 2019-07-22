@@ -218,8 +218,7 @@ void dfs2(int x) {
 int main() {
   scanf("%d%d%d%d%d", &n, &m, &s, &t, &k);
   for (int i = 1; i <= m; i++)
-    scanf("%d%d%d", &x, &y, &ww), 
-	e1.add_edge(x, y, ww), e2.add_edge(y, x, ww);
+    scanf("%d%d%d", &x, &y, &ww), e1.add_edge(x, y, ww), e2.add_edge(y, x, ww);
   Q.push({t, 0});
   while (!Q.empty()) {
     a = Q.top();
@@ -230,8 +229,10 @@ int main() {
     for (int j = e2.h[a.x]; j; j = e2.nxt[j]) Q.push({e2.p[j], a.v + e2.w[j]});
   }
   if (k == 1) {
-    if(tf[s])printf("%d\n", dist[s]);
-    else printf("-1\n");
+    if (tf[s])
+      printf("%d\n", dist[s]);
+    else
+      printf("-1\n");
     return 0;
   }
   dfs(t);
@@ -261,7 +262,7 @@ int main() {
     int t = st.rt[st.v[a.x].x];
     if (t) Q.push({t, a.v + st.v[t].v});
   }
-  printf("-1\n"); 
+  printf("-1\n");
   return 0;
 }
 ```
