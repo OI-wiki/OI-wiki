@@ -163,6 +163,7 @@ nav:
       - 容斥原理: math/inclusion-exclusion-principle.md
       - 抽屉原理: math/drawer-principle.md
     - 概率 & 期望: math/expectation.md
+    - 斐波那契数列: math/fibonacci.md
     - 置换群: math/permutation-group.md
     - 数值积分: math/integral.md
     - 线性规划: math/linear-programming.md
