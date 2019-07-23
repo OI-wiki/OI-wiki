@@ -169,6 +169,9 @@ nav:
     - 线性规划: math/linear-programming.md
     - 单纯形: math/simplex.md
     - 博弈论: math/game-theory.md
+    - 卢卡斯定理: 
+      - 卢卡斯定理: lucas/lucas.md
+      - 拓展卢卡斯定理: lucas/exlucas.md  
     - 数学杂项: math/misc.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
@@ -309,7 +312,10 @@ nav:
 
 # Theme
 theme:
-  name: 'material'
+  name: null
+  custom_dir: 'mkdocs-material/material'
+  static_templates:
+    - 404.html
   language: 'zh'
   palette:
     primary: 'white'
@@ -334,11 +340,11 @@ extra:
   copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
   manifest: 'manifest.webmanifest'
-  githash: ''
+  githash: '0cb87573'
 
 extra_javascript:
   - '_static/js/extra.js?v=14'
-  - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
+  
 
 
 extra_css:
