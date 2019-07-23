@@ -7,7 +7,7 @@
 首先我们将 $n$ 表示为 2 进制，举一个例子：
 
 $$
-3^{13} = 3^{1101_2} = 3^8 \cdot 3^4 \cdot 3^1
+3^{13} = 3^{(1101)_2} = 3^8 \cdot 3^4 \cdot 3^1
 $$
 
 因为 $n$ 有 $\lfloor \log_2 n \rfloor + 1$ 个二进制位，因此当我们知道了 $a^1, a^2, a^4, a^8, \dots, a^{2^{\lfloor \log_2 n \rfloor}}$ 后，我们只用计算 $\Theta(\log_2n)$ 次乘法就可以计算出 $a^n$。
@@ -29,7 +29,7 @@ $$
 3^{13} = 6561 \cdot 81 \cdot 3 = 1594323
 $$
 
-将上述过程说得形式化一些，如果把 $n$ 写作二进制为 $n_tn_{t-1}\cdots n_1n_0$ ，那么有：
+将上述过程说得形式化一些，如果把 $n$ 写作二进制为 $(n_tn_{t-1}\cdots n_1n_0)_2$ ，那么有：
 
 $$
 n = n_t2^t + n_{t-1}2^{t-1} + n_{t-2}2^{t-2} + \cdots + n_12^1 + n_02^0
@@ -113,7 +113,7 @@ long long binpow(long long a, long long b, long long m) {
 
     计算斐波那契数列第 $n$ 项 $F_n$。
 
-根据斐波那契数列的递推式 $F_n = F_{n-1} + F_{n-2}$，我们可以构建一个 $2[times 2$ 的矩阵来表示从 $F_i,F_{i+1}$ 到 $F_{i+1},F_{i+2}$ 的变换。于是在计算这个矩阵的 $n$ 次幂的时侯，我们使用快速幂的思想，可以在 $O(\log n)$ 的时间内计算出结果。对于更多的细节参见 [OI-wiki 斐波那契数列](/math/fibonacci/)。
+根据斐波那契数列的递推式 $F_n = F_{n-1} + F_{n-2}$，我们可以构建一个 $2\times 2$ 的矩阵来表示从 $F_i,F_{i+1}$ 到 $F_{i+1},F_{i+2}$ 的变换。于是在计算这个矩阵的 $n$ 次幂的时侯，我们使用快速幂的思想，可以在 $\Theta(\log n)$ 的时间内计算出结果。对于更多的细节参见 [OI-wiki 斐波那契数列](/math/fibonacci/)。
 
 ### 多次置换
 
@@ -211,7 +211,7 @@ $$
 
     给一个有向图（边权为 1），求任意两点 $u,v$ 间从 $u$ 到 $v$，长度为 $k$ 的路径的条数。
 
-我们把该图的邻接矩阵 M 取 k 次幂，那么 $M_{i,j}$ 就表示从 $i$ 到 $j$ 长度为 $k$ 的路径的数目。该算法的复杂度是 $O(n^3 [log_2 k)$。有关该算法的细节参见 [Number of paths of fixed length / Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。
+我们把该图的邻接矩阵 M 取 k 次幂，那么 $M_{i,j}$ 就表示从 $i$ 到 $j$ 长度为 $k$ 的路径的数目。该算法的复杂度是 $O(n^3 \log_2 k)$。有关该算法的细节参见 [Number of paths of fixed length / Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。
 
 ### 模意义下大整数乘法
 
@@ -227,7 +227,7 @@ a \cdot b = \begin{cases}
 \end{cases}
 $$
 
-注意：你也可以利用双精度浮点数在常数时间内计算大整数乘法。因为 $a[times b\bmod m=a\times b-\left\lfloor\frac{a\times b}{m}\right\rfloor m$。由于 $a,b<m$，因此 $\left\lfloor\frac{a\times b}{m}\right\rfloor<m$，于是可以用双精度浮点数计算这个分式。作差的时侯直接自然溢出。因为两者的差是一定小于 m 的，我们只关心低位。这样再调整一下正负性就行了。更多信息参见『这里](https://cs.stackexchange.com/questions/77016/modular-multiplication)。
+注意：你也可以利用双精度浮点数在常数时间内计算大整数乘法。因为 $a\times b\bmod m=a\times b-\left\lfloor\frac{a\times b}{m}\right\rfloor m$。由于 $a,b<m$，因此 $\left\lfloor\frac{a\times b}{m}\right\rfloor<m$，于是可以用双精度浮点数计算这个分式。作差的时侯直接自然溢出。因为两者的差是一定小于 m 的，我们只关心低位。这样再调整一下正负性就行了。更多信息参见[这里](https://cs.stackexchange.com/questions/77016/modular-multiplication)。
 
 ### 高精度快速幂
 
