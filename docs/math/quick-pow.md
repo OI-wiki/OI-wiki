@@ -2,7 +2,7 @@
 
 ## 算法描述
 
-计算 $a$ 的 $n$ 次方表示将 $n$ 个 $a$ 乘在一起：$a^{n} = \underbrace{a \times a \cdots \times a}_{n\text{ 个 a}}$。然而当 $a,n$ 太大的时侯，这种方法就不太适用了。不过我们知道：$a^{b+c} = a^b \cdot a^c,\,\,a^{2b} = a^b \cdot a^b = (a^b)^2$。二进制取幂的想法是，我们将取幂的任务按照指数的**二进制表示**来分割成更小的任务。
+计算 $a$ 的 $n$ 次方表示将 $n$ 个 $a$ 乘在一起： $a^{n} = \underbrace{a \times a \cdots \times a}_{n\text{ 个 a}}$ 。然而当 $a,n$ 太大的时侯，这种方法就不太适用了。不过我们知道： $a^{b+c} = a^b \cdot a^c,\,\,a^{2b} = a^b \cdot a^b = (a^b)^2$ 。二进制取幂的想法是，我们将取幂的任务按照指数的 **二进制表示** 来分割成更小的任务。
 
 首先我们将 $n$ 表示为 2 进制，举一个例子：
 
@@ -10,7 +10,7 @@ $$
 3^{13} = 3^{1101_2} = 3^8 \cdot 3^4 \cdot 3^1
 $$
 
-因为 $n$ 有 $\lfloor \log_2 n \rfloor + 1$ 个二进制位，因此当我们知道了 $a^1, a^2, a^4, a^8, \dots, a^{2^{\lfloor \log_2 n \rfloor}}$ 后，我们只用计算 $\Theta(\log_2n)$ 次乘法就可以计算出 $a^n$。
+因为 $n$ 有 $\lfloor \log_2 n \rfloor + 1$ 个二进制位，因此当我们知道了 $a^1, a^2, a^4, a^8, \dots, a^{2^{\lfloor \log_2 n \rfloor}}$ 后，我们只用计算 $\Theta(\log_2n)$ 次乘法就可以计算出 $a^n$ 。
 
 于是我们只需要知道一个快速的方法来计算上述 3 的 $2^k$ 次幂的序列。这个问题很简单，因为序列中（除第一个）任意一个元素就是其前一个元素的平方。举一个例子：
 
@@ -23,7 +23,7 @@ $$
 \end{align}
 $$
 
-因此为了计算 $3^{13}$，我们只需要将对应二进制位为 1 的整系数幂乘起来就行了：
+因此为了计算 $3^{13}$ ，我们只需要将对应二进制位为 1 的整系数幂乘起来就行了：
 
 $$
 3^{13} = 6561 \cdot 81 \cdot 3 = 1594323
@@ -35,7 +35,7 @@ $$
 n = n_t2^t + n_{t-1}2^{t-1} + n_{t-2}2^{t-2} + \cdots + n_12^1 + n_02^0
 $$
 
-其中 $n_i\in{0,1}$。那么就有
+其中 $n_i\in{0,1}$ 。那么就有
 
 $$
 \begin{aligned}
@@ -54,10 +54,12 @@ $$
 
 ```cpp
 long long binpow(long long a, long long b) {
-    if (b == 0) return 1;
-    long long res = binpow(a, b / 2);
-    if (b % 2) return res * res * a;
-    else return res * res;
+  if (b == 0) return 1;
+  long long res = binpow(a, b / 2);
+  if (b % 2)
+    return res * res * a;
+  else
+    return res * res;
 }
 ```
 
@@ -65,13 +67,13 @@ long long binpow(long long a, long long b) {
 
 ```cpp
 long long binpow(long long a, long long b) {
-    long long res = 1;
-    while (b > 0) {
-        if (b & 1) res = res * a;
-        a = a * a;
-        b >>= 1;
-    }
-    return res;
+  long long res = 1;
+  while (b > 0) {
+    if (b & 1) res = res * a;
+    a = a * a;
+    b >>= 1;
+  }
+  return res;
 }
 ```
 
@@ -87,21 +89,20 @@ long long binpow(long long a, long long b) {
 
     计算 $x^n\bmod m$。
 
-
 这是一个非常常见的应用，例如它可以用于计算模意义下的乘法逆元。
 
 既然我们知道取模的运算不会干涉乘法运算，因此我们只需要在计算的过程中取模即可。
 
 ```cpp
 long long binpow(long long a, long long b, long long m) {
-    a %= m;
-    long long res = 1;
-    while (b > 0) {
-        if (b & 1) res = res * a % m;
-        a = a * a % m;
-        b >>= 1;
-    }
-    return res;
+  a %= m;
+  long long res = 1;
+  while (b > 0) {
+    if (b & 1) res = res * a % m;
+    a = a * a % m;
+    b >>= 1;
+  }
+  return res;
 }
 ```
 
@@ -113,7 +114,7 @@ long long binpow(long long a, long long b, long long m) {
 
     计算斐波那契数列第 $n$ 项 $F_n$。
 
-根据斐波那契数列的递推式 $F_n = F_{n-1} + F_{n-2}$，我们可以构建一个 $2[times 2$ 的矩阵来表示从 $F_i,F_{i+1}$ 到 $F_{i+1},F_{i+2}$ 的变换。于是在计算这个矩阵的 $n$ 次幂的时侯，我们使用快速幂的思想，可以在 $O(\log n)$ 的时间内计算出结果。对于更多的细节参见 [OI-wiki 斐波那契数列](/math/fibonacci/)。
+根据斐波那契数列的递推式 $F_n = F_{n-1} + F_{n-2}$ ，我们可以构建一个 $2[times 2$ 的矩阵来表示从 $F_i,F_{i+1}$ 到 $F_{i+1},F_{i+2}$ 的变换。于是在计算这个矩阵的 $n$ 次幂的时侯，我们使用快速幂的思想，可以在 $O(\log n)$ 的时间内计算出结果。对于更多的细节参见[OI-wiki 斐波那契数列](/math/fibonacci/)。
 
 ### 多次置换
 
@@ -127,19 +128,19 @@ long long binpow(long long a, long long b, long long m) {
 
 ### 加速几何中对点集的操作
 
-> 三维空间中，$n$ 个点 $p_i$，要求将 $m$ 个操作都应用于这些点。包含 3 种操作：
+> 三维空间中， $n$ 个点 $p_i$ ，要求将 $m$ 个操作都应用于这些点。包含 3 种操作：
 >
-> 1. 沿某个向量移动点的位置（Shift）。
-> 2. 按比例缩放这个点的坐标（Scale）。
-> 3. 绕某个坐标轴旋转（Rotate）。
+> 1.  沿某个向量移动点的位置（Shift）。
+> 2.  按比例缩放这个点的坐标（Scale）。
+> 3.  绕某个坐标轴旋转（Rotate）。
 >
 > 还有一个特殊的操作，就是将一个操作序列重复 $k$ 次（Loop），这个序列中也可能有 Loop 操作（Loop 操作可以嵌套）。现在要求你在低于 $O(n \cdot length)$ 的时间内将这些变换应用到这个 $n$ 个点，其中 $length$ 表示把所有的 Loop 操作展开后的操作序列的长度。
 
 让我们来观察一下这三种操作对坐标的影响：
 
-1. Shift 操作：将每一维的坐标分别加上一个常量；
-2. Scale 操作：把每一维坐标分别乘上一个常量；
-3. Rotate 操作：这个有点复杂，我们不打算深入探究，不过我们仍然可以使用一个线性组合来表示新的坐标。
+1.  Shift 操作：将每一维的坐标分别加上一个常量；
+2.  Scale 操作：把每一维坐标分别乘上一个常量；
+3.  Rotate 操作：这个有点复杂，我们不打算深入探究，不过我们仍然可以使用一个线性组合来表示新的坐标。
 
 可以看到，每一个变换可以被表示为对坐标的线性运算，因此，一个变换可以用一个 $4\times 4$ 的矩阵来表示：
 
@@ -169,41 +170,40 @@ $$
 
 接下来举一些简单的例子来说明我们的思路：
 
-1. Shift 操作：让 $x$ 坐标方向的位移为 $5$，$y$ 坐标的位移为 $7$，$z$ 坐标的位移为 $9$：
+1.  Shift 操作：让 $x$ 坐标方向的位移为 $5$ ， $y$ 坐标的位移为 $7$ ， $z$ 坐标的位移为 $9$ ：
 
-   $$
-   \begin{bmatrix}
-   1 & 0 & 0 & 5 \\
-   0 & 1 & 0 & 7 \\
-   0 & 0 & 1 & 9 \\
-   0 & 0 & 0 & 1 \\
-   \end{bmatrix}
-   $$
+    $$
+    \begin{bmatrix}
+    1 & 0 & 0 & 5 \\
+    0 & 1 & 0 & 7 \\
+    0 & 0 & 1 & 9 \\
+    0 & 0 & 0 & 1 \\
+    \end{bmatrix}
+    $$
 
-2. Scale 操作：把 $x$ 坐标拉伸 10 倍，$y,z$ 坐标拉伸 5 倍：
+2.  Scale 操作：把 $x$ 坐标拉伸 10 倍， $y,z$ 坐标拉伸 5 倍：
 
-   $$
-   \begin{bmatrix}
-   10 & 0 & 0 & 0 \\
-   0 & 5 & 0 & 0 \\
-   0 & 0 & 5 & 0 \\
-   0 & 0 & 0 & 1 \\
-   \end{bmatrix}
-   $$
+    $$
+    \begin{bmatrix}
+    10 & 0 & 0 & 0 \\
+    0 & 5 & 0 & 0 \\
+    0 & 0 & 5 & 0 \\
+    0 & 0 & 0 & 1 \\
+    \end{bmatrix}
+    $$
 
-3. Rotate 操作：绕 $x$ 轴旋转 $\theta$ 弧度，遵循右手定则（逆时针方向）
+3.  Rotate 操作：绕 $x$ 轴旋转 $\theta$ 弧度，遵循右手定则（逆时针方向）
 
-   $$
-   \begin{bmatrix}
-   1 & 0 & 0 & 0 \\
-   0 & \cos \theta & \sin \theta & 0 \\
-   0 & -\sin \theta & \cos \theta & 0 \\
-   0 & 0 & 0 & 1 \\
-   \end{bmatrix}
-   $$
+    $$
+    \begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & \cos \theta & \sin \theta & 0 \\
+    0 & -\sin \theta & \cos \theta & 0 \\
+    0 & 0 & 0 & 1 \\
+    \end{bmatrix}
+    $$
 
-现在，每一种操作都被表示为了一个矩阵，变换序列可以用矩阵的乘积来表示，而一个 Loop 操作相当于取一个矩阵的 k 次幂。这样可以用 $O(m \log_2{k})$ 计算出整个变换序列最终形成的矩阵。最后将它应用到 $n$ 个点上，总复杂度 $O(n + m \log_2k)$。
-
+现在，每一种操作都被表示为了一个矩阵，变换序列可以用矩阵的乘积来表示，而一个 Loop 操作相当于取一个矩阵的 k 次幂。这样可以用 $O(m \log_2{k})$ 计算出整个变换序列最终形成的矩阵。最后将它应用到 $n$ 个点上，总复杂度 $O(n + m \log_2k)$ 。
 
 ### 定长路径计数
 
@@ -211,11 +211,11 @@ $$
 
     给一个有向图（边权为 1），求任意两点 $u,v$ 间从 $u$ 到 $v$，长度为 $k$ 的路径的条数。
 
-我们把该图的邻接矩阵 M 取 k 次幂，那么 $M_{i,j}$ 就表示从 $i$ 到 $j$ 长度为 $k$ 的路径的数目。该算法的复杂度是 $O(n^3 [log_2 k)$。有关该算法的细节参见 [Number of paths of fixed length / Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。
+我们把该图的邻接矩阵 M 取 k 次幂，那么 $M_{i,j}$ 就表示从 $i$ 到 $j$ 长度为 $k$ 的路径的数目。该算法的复杂度是 $O(n^3 [log_2 k)$ 。有关该算法的细节参见[Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。
 
 ### 模意义下大整数乘法
 
-> 计算 $a\times b\bmod m,\,\,a,b\le m\le 10^{18}$。
+> 计算 $a\times b\bmod m,\,\,a,b\le m\le 10^{18}$ 。
 
 与二进制取幂的思想一样，这次我们将其中的一个乘数表示为若干个 2 的整数次幂的和的形式。因为在对一个数做乘 2 并取模的运算的时侯，我们可以转化为加减操作防止溢出。这样仍可以在 $O (\log_2 m)$ 的时内解决问题。递归方法如下：
 
@@ -227,7 +227,7 @@ a \cdot b = \begin{cases}
 \end{cases}
 $$
 
-注意：你也可以利用双精度浮点数在常数时间内计算大整数乘法。因为 $a[times b\bmod m=a\times b-\left\lfloor\frac{a\times b}{m}\right\rfloor m$。由于 $a,b<m$，因此 $\left\lfloor\frac{a\times b}{m}\right\rfloor<m$，于是可以用双精度浮点数计算这个分式。作差的时侯直接自然溢出。因为两者的差是一定小于 m 的，我们只关心低位。这样再调整一下正负性就行了。更多信息参见『这里](https://cs.stackexchange.com/questions/77016/modular-multiplication)。
+注意：你也可以利用双精度浮点数在常数时间内计算大整数乘法。因为 $a[times b\bmod m=a\times b-\left\lfloor\frac{a\times b}{m}\right\rfloor m$ 。由于 $a,b<m$ ，因此 $\left\lfloor\frac{a\times b}{m}\right\rfloor<m$ ，于是可以用双精度浮点数计算这个分式。作差的时侯直接自然溢出。因为两者的差是一定小于 m 的，我们只关心低位。这样再调整一下正负性就行了。更多信息参见『这里](<https://cs.stackexchange.com/questions/77016/modular-multiplication>)。
 
 ### 高精度快速幂
 
@@ -286,14 +286,13 @@ int main() {
 
 ## 习题
 
-* [UVa 1230 - MODEX](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3671)
-* [UVa 374 - Big Mod](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=310)
-* [UVa 11029 - Leading and Trailing](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1970)
-* [Codeforces - Parking Lot](http://codeforces.com/problemset/problem/630/I)
-* [SPOJ - The last digit](http://www.spoj.com/problems/LASTDIG/)
-* [SPOJ - Locker](http://www.spoj.com/problems/LOCKER/)
-* [LA - 3722 Jewel-eating Monsters](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1723)
-* [SPOJ - Just add it](http://www.spoj.com/problems/ZSUM/)
+-   [UVa 1230 - MODEX](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3671)
+-   [UVa 374 - Big Mod](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=310)
+-   [UVa 11029 - Leading and Trailing](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1970)
+-   [Codeforces - Parking Lot](http://codeforces.com/problemset/problem/630/I)
+-   [SPOJ - The last digit](http://www.spoj.com/problems/LASTDIG/)
+-   [SPOJ - Locker](http://www.spoj.com/problems/LOCKER/)
+-   [LA - 3722 Jewel-eating Monsters](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1723)
+-   [SPOJ - Just add it](http://www.spoj.com/problems/ZSUM/)
 
-**本页面部分内容译自博文 [Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow) 与其英文翻译版 [Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
-
+ **本页面部分内容译自博文[Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow)与其英文翻译版[Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
