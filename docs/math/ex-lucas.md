@@ -20,7 +20,7 @@ $$
 ## 代码实现
 
 其中 $inverse()$ 函数为模 $p$ 意义下的逆元
-
+``` cpp
     LL CRT(int n,LL* a,LL* m){
         LL M=1,p=0;
         for(int i=1;i<=n;i++) M=M*m[i];
@@ -59,3 +59,4 @@ $$
         if(P>1) p[++cnt]=P,a[cnt]=multilucas(m,n,P,P);
         return CRT(cnt,a,p);
     }
+```
