@@ -2,7 +2,7 @@
 
 > 太长不看版：结尾自取模板……
 
-什么时候需要高精度呢？有时候题目计算的中间结果，甚至输入本身，都存在超过语言内建整型（最大 64 位或 128 位）所能表示的范围。这个时候就只好自己处理它们啦。
+高精度计算（Arbitrary-Precision Arithmetic），也被称作大整数（bignum）计算，是通过一些算法结构来支持更大的整数的计算（超过语言内建整型）。
 
 高精度问题包含很多小的细节，实现上也有很多讲究。
 
@@ -872,3 +872,19 @@ $$
     }
     char s[100024];
     ```
+## 习题
+
+* [UVA - How Many Fibs?](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1124)
+* [UVA - Product](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1047)
+* [UVA - Maximum Sub-sequence Product](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=728)
+* [SPOJ - Fast Multiplication](http://www.spoj.com/problems/MUL/en/)
+* [SPOJ - GCD2](http://www.spoj.com/problems/GCD2/)
+* [UVA - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024)
+* [UVA - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436)
+* [UVA - Krakovia](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1866)
+* [UVA - Simplifying Fractions](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1755)
+* [UVA - 500!](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=564)
+* [Hackerrank - Factorial digit sum](https://www.hackerrank.com/contests/projecteuler/challenges/euler020/problem)
+* [UVA - Immortal Rabbits](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4803)
+* [SPOJ - 0110SS](http://www.spoj.com/problems/IWGBS/)
+* [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D)
