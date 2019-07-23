@@ -872,11 +872,12 @@ $$
     }
     char s[100024];
     ```
+
 ## 习题
 
-* [NOIP 2012 国王游戏](https://www.luogu.org/problemnew/show/P1080)
-* [SPOJ - Fast Multiplication](http://www.spoj.com/problems/MUL/en/)
-* [SPOJ - GCD2](http://www.spoj.com/problems/GCD2/)
-* [UVA - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024)
-* [UVA - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436)
-* [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D)
+-   [NOIP 2012 国王游戏](https://www.luogu.org/problemnew/show/P1080)
+-   [SPOJ - Fast Multiplication](http://www.spoj.com/problems/MUL/en/)
+-   [SPOJ - GCD2](http://www.spoj.com/problems/GCD2/)
+-   [UVA - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024)
+-   [UVA - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436)
+-   [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D)
