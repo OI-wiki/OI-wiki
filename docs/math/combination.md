@@ -77,6 +77,20 @@ $$
 
 证明可以采用数学归纳法，利用 $\displaystyle \binom{n}{k}+\binom{n}{k-1}=\binom{n+1}{k}$ 做归纳。
 
+二项式定理也可以很容易扩展为多项式的形式：
+
+设 n 为正整数， $x_i$ 为实数，
+
+$$
+(x_1 + x_2 + \cdots + x_t)^n = \sum_{满足 n_1 + \cdots + n_t=n 的非负整数解} \binom{n}{n_1n_2\cdots n_t} x_1^{n_1}x_2^{n_2}\cdots x_t^{n_t}
+$$
+
+其中的 $\binom{n}{n_1n_2\cdots n_t}$ 是多项式系数，它的性质也很相似：
+
+$$
+\sum{\binom{n}{n_1n_2\cdots n_t}} = t^n
+$$
+
 ## 排列与组合进阶篇
 
 接下来我们介绍一些排列组合的变种。
@@ -204,37 +218,82 @@ $$
 相当于将选出的集合对全集取补集，故数值不变。（对称性）
 
 $$
-\binom{n}{m}=\binom{n-1}{m}+\binom{n-1}{m-1}\tag{2}
+\binom{n}{k} = \frac{n}{k} \binom{n-1}{k-1}\tag{2}
+$$
+
+由定义导出的递推式。
+
+$$
+\binom{n}{m}=\binom{n-1}{m}+\binom{n-1}{m-1}\tag{3}
 $$
 
 组合数的递推式（杨辉三角的公式表达）。我们可以利用这个式子，在 $O(n^2)$ 的复杂度下推导组合数。
 
 $$
-\binom{n}{0}+\binom{n}{1}+\cdots+\binom{n}{n}=\sum_{i=0}^n\binom{n}{i}=2^n\tag{3}
+\binom{n}{0}+\binom{n}{1}+\cdots+\binom{n}{n}=\sum_{i=0}^n\binom{n}{i}=2^n\tag{4}
 $$
 
 这是二项式定理的特殊情况。取 $a=b=1$ 就得到上式。
 
+
 $$
-\sum_{i=0}^m \binom{n}{i}\binom{m}{m-i} = \binom{m+n}{m}\ \ \ (n \geq m)\tag{4}
+\sum_{i=0}^n(-1)^i\binom{n}{i}=0\tag{5}
+$$
+
+二项式定理的另一种特殊情况，可取 $a=1, b=-1$。
+
+
+$$
+\sum_{i=0}^m \binom{n}{i}\binom{m}{m-i} = \binom{m+n}{m}\ \ \ (n \geq m)\tag{6}
 $$
 
 拆组合数的式子，在处理某些数据结构题时会用到。
 
 $$
-\sum_{i=0}^n\binom{n}{i}^2=\binom{2n}{n}\tag{5}
+\sum_{i=0}^n\binom{n}{i}^2=\binom{2n}{n}\tag{7}
 $$
 
-这是 $(4)$ 的特殊情况，取 $n=m$ 即可。
+这是 $(6)$ 的特殊情况，取 $n=m$ 即可。
 
 $$
-\sum_{i=0}^ni\binom{n}{i}=n2^{n-1}\tag{6}
+\sum_{i=0}^ni\binom{n}{i}=n2^{n-1}\tag{8}
 $$
 
-带权和的一个式子。
+带权和的一个式子，通过对 $(3)$ 对应的多项式函数求导可以得证。
 
 $$
-\sum_{i=0}^n\binom{n-i}{i}=F_{n+1}\tag{7}
+\sum_{i=0}^ni^2\binom{n}{i}=n(n+1)2^{n-2}\tag{9}
+$$
+
+与上式类似，可以通过对多项式函数求导证明。
+
+$$
+\sum_{l=0}^n\binom{l}{k} = \binom{n+1}{k+1}\tag{10}
+$$
+
+可以通过组合意义证明，在恒等式证明中较常用。
+
+$$
+\binom{n}{r}\binom{r}{k} = \binom{n}{k}\binom{n-k}{r-k}\tag{11}
+$$
+
+通过定义可以证明。
+
+$$
+\sum_{k=1}^m\binom{m}{k}\binom{n}{k}=\binom{m+n}{m}\tag{12}
+$$
+
+可以通过组合意义证明。
+
+$$
+\sum_{i=0}^n\binom{n-i}{i}=F_{n+1}\tag{13}
 $$
 
 其中 $F$ 是斐波那契数列。
+
+
+$$
+\sum_{l=0}^n \binom{l}{k} = \binom{n+1}{k+1}\tag{14}
+$$
+
+通过组合分析 —— 考虑 $S={a_1, a_2, \cdots, a_{n+1}}$ 的 $k+1$ 子集数可以得证。
