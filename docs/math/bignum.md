@@ -2,7 +2,7 @@
 
 > 太长不看版：结尾自取模板……
 
-什么时候需要高精度呢？有时候题目计算的中间结果，甚至输入本身，都存在超过语言内建整型（最大 64 位或 128 位）所能表示的范围。这个时候就只好自己处理它们啦。
+高精度计算（Arbitrary-Precision Arithmetic），也被称作大整数（bignum）计算，运用了一些算法结构来支持更大整数间的运算（数字大小超过语言内建整型）。
 
 高精度问题包含很多小的细节，实现上也有很多讲究。
 
@@ -872,3 +872,12 @@ $$
     }
     char s[100024];
     ```
+
+## 习题
+
+-   [NOIP 2012 国王游戏](https://www.luogu.org/problemnew/show/P1080)
+-   [SPOJ - Fast Multiplication](http://www.spoj.com/problems/MUL/en/)
+-   [SPOJ - GCD2](http://www.spoj.com/problems/GCD2/)
+-   [UVA - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024)
+-   [UVA - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436)
+-   [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D)
