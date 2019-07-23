@@ -10,10 +10,12 @@ Lucas 定理用于求解大组合数取模的问题，其中 p 必须为素数�
 
 ## 代码实现
 
+``` cpp
     long long Lucas(long long n, long long m, long long p){
     	if(m == 0) return 1;
     	return (C(n%p, m%p, p) * Lucas(n/p, m/p, p)) % p;
     }
+```
 
 ## 时间复杂度
 
