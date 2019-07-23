@@ -227,7 +227,7 @@ a \cdot b = \begin{cases}
 \end{cases}
 $$
 
-注意：你也可以利用双精度浮点数在常数时间内计算大整数乘法。因为 $a\times b\bmod m=a\times b-\left\lfloor\frac{a\times b}{m}\right\rfloor m$ 。由于 $a,b<m$ ，因此 $\left\lfloor\frac{a\times b}{m}\right\rfloor<m$ ，于是可以用双精度浮点数计算这个分式。作差的时侯直接自然溢出。因为两者的差是一定小于 m 的，我们只关心低位。这样再调整一下正负性就行了。更多信息参见[这里](https://cs.stackexchange.com/questions/77016/modular-multiplication)。
+注意：你也可以利用双精度浮点数在常数时间内计算大整数乘法。因为 $a\times b\bmod m=a\times b-\left\lfloor\frac{a\times b}{m}\right\rfloor m$ 。由于 $a,b<m$ ，因此 $\left\lfloor\frac{a\times b}{m}\right\rfloor<m$ ，于是可以用双精度浮点数计算这个分式。作差的时侯直接自然溢出。因为两者的差是一定小于 $m$ 的，我们只关心低位。这样再调整一下正负性就行了。更多信息参见[这里](https://cs.stackexchange.com/questions/77016/modular-multiplication)。
 
 ### 高精度快速幂
 
