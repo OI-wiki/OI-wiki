@@ -1,3 +1,5 @@
+author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz
+
 ## 引子
 
 ???+ note "BZOJ - 2286 消耗战"

@@ -1,3 +1,5 @@
+author: Billchenchina, Ghastlcon, hsfzLZH1
+
 ??? note " 例题[Luogu P4781【模板】拉格朗日插值](https://www.luogu.org/problemnew/show/P4781)"
 
 ### 题目大意

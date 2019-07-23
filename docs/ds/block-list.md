@@ -1,3 +1,5 @@
+author: HeRaNO, konnyakuxzy
+
 [![./images/kuaizhuanglianbiao.png](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")
 
 大概就长这样……
