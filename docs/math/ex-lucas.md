@@ -4,7 +4,8 @@ Lucas 定理中对于模数 p 要求必须为素数，那么对于 p 不是素�
 $p=p_{1}^{k_1}*p_{2}^{k_2}*...*p_{n}^{k_n}$
 如果可以求出每个 $C_{n}^{m}\equiv a_i (mod p_{i}^{q_i})$
 那么对于同余方程组
-$$\begin{cases}
+$$
+\begin{cases}
 C_{n}^{m}\equiv a_1 (mod\ p_{1}^{q_1})\\
 C_{n}^{m}\equiv a_2 (mod\ p_{2}^{q_2})\\
 .\\
@@ -12,6 +13,7 @@ C_{n}^{m}\equiv a_2 (mod\ p_{2}^{q_2})\\
 C_{n}^{m}\equiv a_n  (mod\ p_{n}^{q_n})\\
 \end{cases}
 $$
+
 用中国剩余定理即可求出 $C_{n}^{m}$ 的值。
 但是可以发现  $p_{i}^{q_i}$ 也不是素数，接下来介绍如何计算 $C_{n}^{m}\mod\ p^t$
 可以利用求组合数的公式 $C_{n}^{m}=\frac{n!}{m!(n-m)!}$ 如果可以分别计算出 $n!\ mod\ p^t,m!\ mod\ p^t$ 和 $(n-m)!\ mod\ p^t$ 那么就可以得到答案，以第一个式子为例，$p=3,t=2,n=19$
