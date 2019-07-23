@@ -1,16 +1,19 @@
-快速幂，二进制取幂（Binary Exponentiation，也称平方法），是一个在$\Theta(\log_2n)$的时间内计算$a^n$的小技巧，而暴力的计算需要$\Theta(n)$的时间。而这个技巧也常常用在非计算的场景，因为它可以应用在任何具有结合律的运算中。其中显然的是它可以应用于模意义下取幂、矩阵幂等运算，我们接下来会讨论。
+快速幂，二进制取幂（Binary Exponentiation，也称平方法），是一个在 $\Theta(\log_2n)$ 的时间内计算 $a^n$ 的小技巧，而暴力的计算需要 $\Theta(n)$ 的时间。而这个技巧也常常用在非计算的场景，因为它可以应用在任何具有结合律的运算中。其中显然的是它可以应用于模意义下取幂、矩阵幂等运算，我们接下来会讨论。
 
 ## 算法描述
 
-计算$a$的$n$次方表示将$n$个$a$乘在一起：$a^{n} = \underbrace{a \times a \cdots \times a}_{n\text{ 个 a}}$。然而当$a,n$太大的时侯，这种方法就不太适用了。不过我们知道：$a^{b+c} = a^b \cdot a^c,\,\,a^{2b} = a^b \cdot a^b = (a^b)^2$。二进制取幂的想法是，我们将取幂的任务按照指数的**二进制表示**来分割成更小的任务。
+计算 $a$ 的 $n$ 次方表示将 $n$ 个 $a$ 乘在一起：$a^{n} = \underbrace{a \times a \cdots \times a}_{n\text{ 个 a}}$。然而当 $a,n$ 太大的时侯，这种方法就不太适用了。不过我们知道：$a^{b+c} = a^b \cdot a^c,\,\,a^{2b} = a^b \cdot a^b = (a^b)^2$。二进制取幂的想法是，我们将取幂的任务按照指数的**二进制表示**来分割成更小的任务。
 
-首先我们将$n$表示为2进制，举一个例子：
+首先我们将 $n$ 表示为 2 进制，举一个例子：
+
 $$
 3^{13} = 3^{1101_2} = 3^8 \cdot 3^4 \cdot 3^1
 $$
-因为$n$有$\lfloor \log_2 n \rfloor + 1$个二进制位，因此当我们知道了$a^1, a^2, a^4, a^8, \dots, a^{2^{\lfloor \log_2 n \rfloor}}$后，我们只用计算$\Theta(\log_2n)$次乘法就可以计算出$a^n$。
 
-于是我们只需要知道一个快速的方法来计算上述3的$2^k$次幂的序列。这个问题很简单，因为序列中（除第一个）任意一个元素就是其前一个元素的平方。举一个例子：
+因为 $n$ 有 $\lfloor \log_2 n \rfloor + 1$ 个二进制位，因此当我们知道了 $a^1, a^2, a^4, a^8, \dots, a^{2^{\lfloor \log_2 n \rfloor}}$ 后，我们只用计算 $\Theta(\log_2n)$ 次乘法就可以计算出 $a^n$。
+
+于是我们只需要知道一个快速的方法来计算上述 3 的 $2^k$ 次幂的序列。这个问题很简单，因为序列中（除第一个）任意一个元素就是其前一个元素的平方。举一个例子：
+
 $$
 \begin{align}
 3^1 &= 3 \\
@@ -19,24 +22,31 @@ $$
 3^8 &= \left(3^4\right)^2 = 81^2 = 6561
 \end{align}
 $$
-因此为了计算$3^{13}$，我们只需要将对应二进制位为1的整系数幂乘起来就行了：
+
+因此为了计算 $3^{13}$，我们只需要将对应二进制位为 1 的整系数幂乘起来就行了：
+
 $$
 3^{13} = 6561 \cdot 81 \cdot 3 = 1594323
 $$
+
 将上述过程说得形式化一些，如果把 $n$ 写作二进制为 $n_tn_{t-1}\cdots n_1n_0$ ，那么有：
+
 $$
 n = n_t2^t + n_{t-1}2^{t-1} + n_{t-2}2^{t-2} + \cdots + n_12^1 + n_02^0
 $$
+
 其中 $n_i\in{0,1}$。那么就有
+
 $$
 \begin{aligned}
 a^n & = (a^{n_t 2^t + \cdots + n_0 2^0})\\\\
 & = a^{n_0 2^0} \times a^{n_1 2^1}\times \cdots \times a^{n_t2^t}
 \end{aligned}
 $$
+
 根据上式我们发现，原问题被我们转化成了形式相同的子问题的乘积，并且我们可以在常数时间内从 $2^i$ 项推出 $2^{i+1}$ 项。
 
-这个算法的复杂度是$\Theta(\log_2n)$的，我们计算了$\Theta(\log_2n)$个$2^k$次幂的数，然后花费$\Theta(\log_2n)$的时间选择二进制为1对应的幂来相乘。
+这个算法的复杂度是 $\Theta(\log_2n)$ 的，我们计算了 $\Theta(\log_2n)$ 个 $2^k$ 次幂的数，然后花费 $\Theta(\log_2n)$ 的时间选择二进制为 1 对应的幂来相乘。
 
 ## 代码实现
 
@@ -51,7 +61,7 @@ long long binpow(long long a, long long b) {
 }
 ```
 
-第二种实现方法是非递归式的。它在循环的过程中将二进制位为1时对应的幂累乘到答案中。尽管两者的理论复杂度是相同的，但第二种在实践过程中的速度是比第一种更快的，因为递归会花费一定的开销。
+第二种实现方法是非递归式的。它在循环的过程中将二进制位为 1 时对应的幂累乘到答案中。尽管两者的理论复杂度是相同的，但第二种在实践过程中的速度是比第一种更快的，因为递归会花费一定的开销。
 
 ```cpp
 long long binpow(long long a, long long b) {
@@ -67,7 +77,7 @@ long long binpow(long long a, long long b) {
 
 ??? note "例题"
 
-    做一做[Luogu P1226](https://www.luogu.org/problemnew/show/P1226)
+    做一做 [Luogu P1226](https://www.luogu.org/problemnew/show/P1226)
 
 ## 应用
 
@@ -75,7 +85,7 @@ long long binpow(long long a, long long b) {
 
 ???+note "问题描述"
 
-    计算$x^n\bmod m$。
+    计算 $x^n\bmod m$。
 
 
 这是一个非常常见的应用，例如它可以用于计算模意义下的乘法逆元。
@@ -95,35 +105,35 @@ long long binpow(long long a, long long b, long long m) {
 }
 ```
 
-注意：根据费马小定理，如果$m$是一个质数，我们可以计算$x^{n\bmod (m-1)}$来加速算法过程。 
+注意：根据费马小定理，如果 $m$ 是一个质数，我们可以计算 $x^{n\bmod (m-1)}$ 来加速算法过程。
 
 ### 计算斐波那契数
 
 ???+note "问题描述"
 
-    计算斐波那契数列第$n$项$F_n$。
+    计算斐波那契数列第 $n$ 项 $F_n$。
 
-根据斐波那契数列的递推式$F_n = F_{n-1} + F_{n-2}$，我们可以构建一个$2\times 2$的矩阵来表示从$F_i,F_{i+1}$到$F_{i+1},F_{i+2}$的变换。于是在计算这个矩阵的$n$次幂的时侯，我们使用快速幂的思想，可以在$O(\log n)$的时间内计算出结果。对于更多的细节参见[OI-wiki 斐波那契数列](/math/fibonacci/)。
+根据斐波那契数列的递推式 $F_n = F_{n-1} + F_{n-2}$，我们可以构建一个 $2[times 2$ 的矩阵来表示从 $F_i,F_{i+1}$ 到 $F_{i+1},F_{i+2}$ 的变换。于是在计算这个矩阵的 $n$ 次幂的时侯，我们使用快速幂的思想，可以在 $O(\log n)$ 的时间内计算出结果。对于更多的细节参见 [OI-wiki 斐波那契数列](/math/fibonacci/)。
 
 ### 多次置换
 
 ???+note "问题描述"
 
-    给你一个长度为$n$的序列和一个置换，把这个序列置换$k$次。
+    给你一个长度为 $n$ 的序列和一个置换，把这个序列置换 $k$ 次。
 
-简单地把这个置换取$k$次幂，然后把它应用到序列$n$上即可。时间复杂度是$O(n \log k)$的。
+简单地把这个置换取 $k$ 次幂，然后把它应用到序列 $n$ 上即可。时间复杂度是 $O(n \log k)$ 的。
 
-注意：给这个置换建图，然后在每一个环上分别做$k$次幂（事实上做一下$k$对环长取模的运算即可）可以取得更高效的算法，达到$O(n)$的复杂度。
+注意：给这个置换建图，然后在每一个环上分别做 $k$ 次幂（事实上做一下 $k$ 对环长取模的运算即可）可以取得更高效的算法，达到 $O(n)$ 的复杂度。
 
 ### 加速几何中对点集的操作
 
-> 三维空间中，$n$个点$p_i$，要求将$m$个操作都应用于这些点。包含3种操作：
+> 三维空间中，$n$ 个点 $p_i$，要求将 $m$ 个操作都应用于这些点。包含 3 种操作：
 >
 > 1. 沿某个向量移动点的位置（Shift）。
 > 2. 按比例缩放这个点的坐标（Scale）。
 > 3. 绕某个坐标轴旋转（Rotate）。
 >
-> 还有一个特殊的操作，就是将一个操作序列重复$k$次（Loop），这个序列中也可能有Loop操作（Loop操作可以嵌套）。现在要求你在低于$O(n \cdot length)$的时间内将这些变换应用到这个$n$ 个点，其中$length$表示把所有的Loop操作展开后的操作序列的长度。
+> 还有一个特殊的操作，就是将一个操作序列重复 $k$ 次（Loop），这个序列中也可能有 Loop 操作（Loop 操作可以嵌套）。现在要求你在低于 $O(n \cdot length)$ 的时间内将这些变换应用到这个 $n$ 个点，其中 $length$ 表示把所有的 Loop 操作展开后的操作序列的长度。
 
 让我们来观察一下这三种操作对坐标的影响：
 
@@ -131,7 +141,8 @@ long long binpow(long long a, long long b, long long m) {
 2. Scale 操作：把每一维坐标分别乘上一个常量；
 3. Rotate 操作：这个有点复杂，我们不打算深入探究，不过我们仍然可以使用一个线性组合来表示新的坐标。
 
-可以看到，每一个变换可以被表示为对坐标的线性运算，因此，一个变换可以用一个$4\times 4$的矩阵来表示：
+可以看到，每一个变换可以被表示为对坐标的线性运算，因此，一个变换可以用一个 $4\times 4$ 的矩阵来表示：
+
 $$
 \begin{bmatrix}
 a_{11} & a_ {12} & a_ {13} & a_ {14} \\
@@ -140,7 +151,9 @@ a_{31} & a_ {32} & a_ {33} & a_ {34} \\
 a_{41} & a_ {42} & a_ {43} & a_ {44} \\
 \end{bmatrix}
 $$
+
 使用这个矩阵就可以将一个坐标（向量）进行变换，得到新的坐标（向量）：
+
 $$
 \begin{bmatrix}
 a_{11} & a_ {12} & a_ {13} & a_ {14} \\
@@ -151,11 +164,13 @@ a_{41} & a_ {42} & a_ {43} & a_ {44} \\
 \begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix}
  = \begin{bmatrix} x' \\ y' \\ z' \\ 1 \end{bmatrix}
 $$
-你可能会问，为什么一个三维坐标会多一个1出来？原因在于，如果没有这个多出来的1，我们没法使用矩阵的线性变换来描述Shift操作。
+
+你可能会问，为什么一个三维坐标会多一个 1 出来？原因在于，如果没有这个多出来的 1，我们没法使用矩阵的线性变换来描述 Shift 操作。
 
 接下来举一些简单的例子来说明我们的思路：
 
-1. Shift 操作：让$x$坐标方向的位移为$5$，$y$坐标的位移为$7$，$z$坐标的位移为$9$：
+1. Shift 操作：让 $x$ 坐标方向的位移为 $5$，$y$ 坐标的位移为 $7$，$z$ 坐标的位移为 $9$：
+
    $$
    \begin{bmatrix}
    1 & 0 & 0 & 5 \\
@@ -165,7 +180,8 @@ $$
    \end{bmatrix}
    $$
 
-2. Scale 操作：把$x$坐标拉伸10倍，$y,z$坐标拉伸5倍：
+2. Scale 操作：把 $x$ 坐标拉伸 10 倍，$y,z$ 坐标拉伸 5 倍：
+
    $$
    \begin{bmatrix}
    10 & 0 & 0 & 0 \\
@@ -175,7 +191,8 @@ $$
    \end{bmatrix}
    $$
 
-3. Rotate 操作：绕$x$轴旋转$\theta$弧度，遵循右手定则（逆时针方向）
+3. Rotate 操作：绕 $x$ 轴旋转 $\theta$ 弧度，遵循右手定则（逆时针方向）
+
    $$
    \begin{bmatrix}
    1 & 0 & 0 & 0 \\
@@ -185,22 +202,23 @@ $$
    \end{bmatrix}
    $$
 
-现在，每一种操作都被表示为了一个矩阵，变换序列可以用矩阵的乘积来表示，而一个Loop操作相当于取一个矩阵的k次幂。这样可以用$O(m \log_2{k})$计算出整个变换序列最终形成的矩阵。最后将它应用到$n$个点上，总复杂度$O(n + m \log_2k)$。
+现在，每一种操作都被表示为了一个矩阵，变换序列可以用矩阵的乘积来表示，而一个 Loop 操作相当于取一个矩阵的 k 次幂。这样可以用 $O(m \log_2{k})$ 计算出整个变换序列最终形成的矩阵。最后将它应用到 $n$ 个点上，总复杂度 $O(n + m \log_2k)$。
 
 
 ### 定长路径计数
 
 ???+note "问题描述"
 
-    给一个有向图（边权为1），求任意两点$u,v$间从$u$到$v$，长度为$k$的路径的条数。
+    给一个有向图（边权为 1），求任意两点 $u,v$ 间从 $u$ 到 $v$，长度为 $k$ 的路径的条数。
 
-我们把该图的邻接矩阵M取k次幂，那么$M_{i,j}$就表示从$i$到$j$长度为$k$的路径的数目。该算法的复杂度是$O(n^3 \log_2 k)$。有关该算法的细节参见[Number of paths of fixed length / Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。
+我们把该图的邻接矩阵 M 取 k 次幂，那么 $M_{i,j}$ 就表示从 $i$ 到 $j$ 长度为 $k$ 的路径的数目。该算法的复杂度是 $O(n^3 [log_2 k)$。有关该算法的细节参见 [Number of paths of fixed length / Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。
 
 ### 模意义下大整数乘法
 
-> 计算$a\times b\bmod m,\,\,a,b\le m\le 10^{18}$。
+> 计算 $a\times b\bmod m,\,\,a,b\le m\le 10^{18}$。
 
-与二进制取幂的思想一样，这次我们将其中的一个乘数表示为若干个2的整数次幂的和的形式。因为在对一个数做乘2并取模的运算的时侯，我们可以转化为加减操作防止溢出。这样仍可以在$O (\log_2 m)$的时内解决问题。递归方法如下：
+与二进制取幂的思想一样，这次我们将其中的一个乘数表示为若干个 2 的整数次幂的和的形式。因为在对一个数做乘 2 并取模的运算的时侯，我们可以转化为加减操作防止溢出。这样仍可以在 $O (\log_2 m)$ 的时内解决问题。递归方法如下：
+
 $$
 a \cdot b = \begin{cases}
 0 &\text{if }a = 0 \\\\
@@ -208,7 +226,8 @@ a \cdot b = \begin{cases}
 2 \cdot \frac{a-1}{2} \cdot b + b &\text{if }a > 0 \text{ and }a \text{ odd}
 \end{cases}
 $$
-注意：你也可以利用双精度浮点数在常数时间内计算大整数乘法。因为 $a\times b\bmod m=a\times b-\left\lfloor\frac{a\times b}{m}\right\rfloor m$。由于 $a,b<m$，因此 $\left\lfloor\frac{a\times b}{m}\right\rfloor<m$，于是可以用双精度浮点数计算这个分式。作差的时侯直接自然溢出。因为两者的差是一定小于 m 的，我们只关心低位。这样再调整一下正负性就行了。更多信息参见[这里](https://cs.stackexchange.com/questions/77016/modular-multiplication)。
+
+注意：你也可以利用双精度浮点数在常数时间内计算大整数乘法。因为 $a[times b\bmod m=a\times b-\left\lfloor\frac{a\times b}{m}\right\rfloor m$。由于 $a,b<m$，因此 $\left\lfloor\frac{a\times b}{m}\right\rfloor<m$，于是可以用双精度浮点数计算这个分式。作差的时侯直接自然溢出。因为两者的差是一定小于 m 的，我们只关心低位。这样再调整一下正负性就行了。更多信息参见『这里](https://cs.stackexchange.com/questions/77016/modular-multiplication)。
 
 ### 高精度快速幂
 
@@ -224,7 +243,7 @@ $$
 #include <bits/stdc++.h>
 using namespace std;
 int a[505], b[505], t[505], i, j;
-int mult(int x[], int y[])  //高精度乘法
+int mult(int x[], int y[])  // 高精度乘法
 {
   memset(t, 0, sizeof(t));
   for (i = 1; i <= x[0]; i++) {
@@ -238,7 +257,7 @@ int mult(int x[], int y[])  //高精度乘法
   }
   memcpy(b, t, sizeof(b));
 }
-void ksm(int p)  //快速幂
+void ksm(int p)  // 快速幂
 {
   if (p == 1) {
     memcpy(b, a, sizeof(b));
@@ -276,5 +295,5 @@ int main() {
 * [LA - 3722 Jewel-eating Monsters](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1723)
 * [SPOJ - Just add it](http://www.spoj.com/problems/ZSUM/)
 
-**本页面部分内容译自博文[Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow)与其英文翻译版[Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+**本页面部分内容译自博文 [Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow) 与其英文翻译版 [Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
 
