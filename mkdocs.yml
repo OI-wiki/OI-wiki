@@ -306,7 +306,7 @@ nav:
     - 字节顺序: misc/endianness.md
     - 约瑟夫问题: misc/josephus.md
     - Stern-Brocot 树与 Farey 序列: misc/stern-brocot.md
-    - 格雷码: misc/gray_code.md
+    - 格雷码: misc/gray-code.md
 
 # Theme
 theme:
