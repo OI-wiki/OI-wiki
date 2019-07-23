@@ -114,7 +114,7 @@ long long binpow(long long a, long long b, long long m) {
 
     计算斐波那契数列第 $n$ 项 $F_n$。
 
-根据斐波那契数列的递推式 $F_n = F_{n-1} + F_{n-2}$，我们可以构建一个 $2\times 2$ 的矩阵来表示从 $F_i,F_{i+1}$ 到 $F_{i+1},F_{i+2}$ 的变换。于是在计算这个矩阵的 $n$ 次幂的时侯，我们使用快速幂的思想，可以在 $\Theta(\log n)$ 的时间内计算出结果。对于更多的细节参见 [OI-wiki 斐波那契数列](/math/fibonacci/)。
+根据斐波那契数列的递推式 $F_n = F_{n-1} + F_{n-2}$ ，我们可以构建一个 $2\times 2$ 的矩阵来表示从 $F_i,F_{i+1}$ 到 $F_{i+1},F_{i+2}$ 的变换。于是在计算这个矩阵的 $n$ 次幂的时侯，我们使用快速幂的思想，可以在 $\Theta(\log n)$ 的时间内计算出结果。对于更多的细节参见[OI-wiki 斐波那契数列](/math/fibonacci/)。
 
 ### 多次置换
 
@@ -211,7 +211,7 @@ $$
 
     给一个有向图（边权为 1），求任意两点 $u,v$ 间从 $u$ 到 $v$，长度为 $k$ 的路径的条数。
 
-我们把该图的邻接矩阵 M 取 k 次幂，那么 $M_{i,j}$ 就表示从 $i$ 到 $j$ 长度为 $k$ 的路径的数目。该算法的复杂度是 $O(n^3 \log_2 k)$。有关该算法的细节参见 [Number of paths of fixed length / Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。
+我们把该图的邻接矩阵 M 取 k 次幂，那么 $M_{i,j}$ 就表示从 $i$ 到 $j$ 长度为 $k$ 的路径的数目。该算法的复杂度是 $O(n^3 \log_2 k)$ 。有关该算法的细节参见[Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。
 
 ### 模意义下大整数乘法
 
@@ -227,7 +227,7 @@ a \cdot b = \begin{cases}
 \end{cases}
 $$
 
-注意：你也可以利用双精度浮点数在常数时间内计算大整数乘法。因为 $a\times b\bmod m=a\times b-\left\lfloor\frac{a\times b}{m}\right\rfloor m$。由于 $a,b<m$，因此 $\left\lfloor\frac{a\times b}{m}\right\rfloor<m$，于是可以用双精度浮点数计算这个分式。作差的时侯直接自然溢出。因为两者的差是一定小于 m 的，我们只关心低位。这样再调整一下正负性就行了。更多信息参见[这里](https://cs.stackexchange.com/questions/77016/modular-multiplication)。
+注意：你也可以利用双精度浮点数在常数时间内计算大整数乘法。因为 $a\times b\bmod m=a\times b-\left\lfloor\frac{a\times b}{m}\right\rfloor m$ 。由于 $a,b<m$ ，因此 $\left\lfloor\frac{a\times b}{m}\right\rfloor<m$ ，于是可以用双精度浮点数计算这个分式。作差的时侯直接自然溢出。因为两者的差是一定小于 m 的，我们只关心低位。这样再调整一下正负性就行了。更多信息参见[这里](https://cs.stackexchange.com/questions/77016/modular-multiplication)。
 
 ### 高精度快速幂
 
@@ -295,4 +295,4 @@ int main() {
 -   [LA - 3722 Jewel-eating Monsters](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1723)
 -   [SPOJ - Just add it](http://www.spoj.com/problems/ZSUM/)
 
- **本页面部分内容译自博文[Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow)与其英文翻译版[Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+     **本页面部分内容译自博文[Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow)与其英文翻译版[Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
