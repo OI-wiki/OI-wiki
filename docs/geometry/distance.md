@@ -1,3 +1,5 @@
+author: Chrogeek, frank-xjh, ChungZH, hsfzLZH1, TrisolarisHD, Planet6174, partychicken, i-Yirannn
+
 ## 欧氏距离
 
 欧氏距离，一般也称作欧几里得距离。在平面直角坐标系中，设点 $A,B$ 的坐标分别为 $A(x_1,y_1),B(x_2,y_2)$ ，则两点间的欧氏距离为：

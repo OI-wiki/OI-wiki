@@ -1,3 +1,5 @@
+author: abc1763613206
+
 ## 一些前置约定/定义
 
 记 $\Sigma$ 为字符集，$\left|\Sigma\right|$ 为字符集大小。

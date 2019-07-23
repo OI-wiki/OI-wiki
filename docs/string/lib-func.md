@@ -1,3 +1,5 @@
+author: Frankaiyou, henrytbtrue
+
 # C/C++ 标准库中的字符串
 
 ## C 标准库

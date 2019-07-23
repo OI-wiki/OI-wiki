@@ -1,3 +1,5 @@
+author: MingqiHuang, Xeonacid, greyqz, i-Yirannn
+
 ## 为什么要用 `vector` 
 
 作为 OIer，对程序效率的追求远比对工程级别的稳定性要高得多，而 vector 由于其较静态数组复杂很多的原因，时间效率在大部分情况下都要满慢于静态数组，所以在一般的正常存储数据的时候，我们是不选择 vector 的，下面给出几个 vector 优秀的特性，在需要用到这些特性的情况下，vector 能给我们带来很大的帮助

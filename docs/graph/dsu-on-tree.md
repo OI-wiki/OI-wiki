@@ -1,3 +1,5 @@
+author: abc1763613206, cesonic, Ir1d, MingqiHuang
+
 ### 引入
 
 启发式算法是什么呢？

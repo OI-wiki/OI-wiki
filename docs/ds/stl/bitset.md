@@ -1,3 +1,5 @@
+author: i-Yirannn, Xeonacid
+
 ## 介绍
 
 `std::bitset` 是标准库中的一个存储 `0/1` 的大小不可变容器。严格来讲，它并不属于 STL。

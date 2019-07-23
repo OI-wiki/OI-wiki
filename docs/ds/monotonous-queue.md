@@ -1,3 +1,5 @@
+author: Link-cute, Xeonacid
+
 在学习单调队列前，让我们先来看一道例题。
 
 ## 例题

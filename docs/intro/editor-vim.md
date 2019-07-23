@@ -1,3 +1,5 @@
+author: akakw1, Billchenchina, ChungZH, Xeonacid, LuoshuiTianyi, Kewth, partychicken, s0cks5
+
 ## Vim -- 编辑器之神
 
 ### 历史与争端
