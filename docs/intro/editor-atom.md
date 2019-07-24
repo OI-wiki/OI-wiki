@@ -1,3 +1,5 @@
+author: ChungZH
+
 ## Atom - GitHub 家的编辑器
 
 ### 简介
