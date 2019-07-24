@@ -25,7 +25,6 @@ long long Lucas(long long n, long long m, long long p) {
 
 ## 习题
 
-- [Luogu3807 【模板】卢卡斯定理](https://www.luogu.org/problemnew/show/P3807)
+-   [Luogu3807【模板】卢卡斯定理](https://www.luogu.org/problemnew/show/P3807)
 
-- [SDOI2010 古代猪文](https://www.luogu.org/problemnew/show/P2480)
-
+-   [SDOI2010 古代猪文](https://www.luogu.org/problemnew/show/P2480)
