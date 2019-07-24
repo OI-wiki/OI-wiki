@@ -227,6 +227,7 @@ nav:
       - 可持久化可并堆: ds/persistent-heap.md
     - 珂朵莉树: ds/odt.md
     - Link Cut Tree: ds/lct.md
+    - LCT进阶: ds/lct-beats.md
     - Euler Tour Tree: ds/ett.md
     - 析合树: ds/divide-combine.md
   - 图论:
