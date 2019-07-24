@@ -49,7 +49,7 @@ author: Chrogeek
         u.deep=dep // 记录深度
         u.size=1
         for v is u's son
-            u.size+=TREE-BUILD-DFS(v)
+            u.size+=TREE-BUILD-DFS(v, dep + 1)
         return u.size // 返回该节点对应的子树的大小
 
 第二个 DFS 记录每个结点的重子结点（heavy-son）、重边优先遍历时的 DFN 序、所在链的链顶（top，且应初始化为结点本身）。
