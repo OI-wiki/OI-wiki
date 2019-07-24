@@ -1,28 +1,28 @@
 ## Extended Eratosthenes Sieve
 
-由于其由 [min25](http://min-25.hatenablog.com/) 发明并最早开始使用，故又称「min25 筛」。  
-其可以在 $O\left(\frac{n^{\frac{3}{4}}}{\log{n}}\right)$ 或 $\Theta\left(n^{1 - \epsilon}\right)$ 的时间复杂度下解决一类**积性函数**的前缀和问题。  
-要求：$f(p)$ 是一个关于 $p$ 的项数较少的多项式或可以快速求值；$f(p^{c})$ 可以快速求值。  
+由于其由[min25](http://min-25.hatenablog.com/)发明并最早开始使用，故又称「min25 筛」。  
+其可以在 $O\left(\frac{n^{\frac{3}{4}}}{\log{n}}\right)$ 或 $\Theta\left(n^{1 - \epsilon}\right)$ 的时间复杂度下解决一类 **积性函数** 的前缀和问题。  
+要求： $f(p)$ 是一个关于 $p$ 的项数较少的多项式或可以快速求值； $f(p^{c})$ 可以快速求值。
 
 ### Notations
 
-- **如无特别说明，本节中所有记为 $p$ 的变量的取值集合均为全体质数。**
-- $x / y := \left\lfloor\frac{x}{y}\right\rfloor$
-- $\operatorname{isprime}(n) := [ |\{d : d | n\}| = 2 ]$
-- $p_{k}$：全体质数中第 $k$ 小的质数（如：$p_{1} = 2, p_{2} = 3$）。特别地，令 $p_{0} = 1$。
-- $\operatorname{lpf}(n) := [1 < n] \min\{p : p | n\} + [1 = n]$
-- $F_{\mathrm{prime}}(n) := \sum_{2 \le p \le n} f(p)$
-- $F_{k}(n) := \sum_{i = 2}^{n} [p_{k} \le \operatorname{lpf}(i)] f(i)$
+-    **如无特别说明，本节中所有记为 $p$ 的变量的取值集合均为全体质数。** 
+-    $x / y := \left\lfloor\frac{x}{y}\right\rfloor$ 
+-    $\operatorname{isprime}(n) := [ |\{d : d | n\}| = 2 ]$ 
+-    $p_{k}$ ：全体质数中第 $k$ 小的质数（如： $p_{1} = 2, p_{2} = 3$ ）。特别地，令 $p_{0} = 1$ 。
+-    $\operatorname{lpf}(n) := [1 < n] \min\{p : p | n\} + [1 = n]$ 
+-    $F_{\mathrm{prime}}(n) := \sum_{2 \le p \le n} f(p)$ 
+-    $F_{k}(n) := \sum_{i = 2}^{n} [p_{k} \le \operatorname{lpf}(i)] f(i)$ 
 
 ### Method
 
-观察 $F_{k}(n)$ 的定义，可以发现答案即为 $F_{1}(n) + f(1) = F_{1}(n) + 1$。
+观察 $F_{k}(n)$ 的定义，可以发现答案即为 $F_{1}(n) + f(1) = F_{1}(n) + 1$ 。
 
----
+* * *
 
-考虑如何求出 $F_{k}(n)$。通过枚举每个 $i$ 的最小质因子及其次数可以得到递推式：
+考虑如何求出 $F_{k}(n)$ 。通过枚举每个 $i$ 的最小质因子及其次数可以得到递推式：
 
-$$ \begin{aligned}
+$$
 	F_{k}(n)
 	&= \sum_{i = 2}^{n} [p_{k} \le \operatorname{lpf}(i)] f(i) \\
 	&= \sum_{\substack{k \le i \\ p_{i}^{2} \le n}} \sum_{\substack{c \ge 1 \\ p_{i}^{c} \le n}} f\left(p_{i}^{c}\right) ([c > 1] + F_{i + 1}\left(n / p_{i}^{c}\right)) + \sum_{\substack{k \le i \\ p_{i} \le n}} f(p_{i}) \\
@@ -58,20 +58,19 @@ $$ \begin{aligned}
 3. 对于第二部分，由于 $p_{k}^{2} \le n \iff p_{k} \le n / p_{k}$，故会有 $\operatorname{lpf}(i) < p_{k}$ 的 $i$ 被减去。这部分应当加回来，即 $g(p_{k}) G_{k - 1}(p_{k - 1})$。
 
 则有：
+$$
 
-$$ G_{k}(n) = G_{k - 1}(n) - \left[p_{k}^{2} \le n\right] g(p_{k}) (G_{k - 1}(n / p_{k}) - G_{k - 1}(p_{k - 1})) $$
-
----
+* * *
 
 ### Complexity
 
-对于 $F_{k}(n)$ 的计算，其第一种方法的时间复杂度被证明为 $O\left(n^{1 - \epsilon}\right)$（见 zzt 集训队论文 2.3）；  
+对于 $F_{k}(n)$ 的计算，其第一种方法的时间复杂度被证明为 $O\left(n^{1 - \epsilon}\right)$ （见 zzt 集训队论文 2.3）；  
 对于第二种方法，其本质即为洲阁筛的第二部分，在洲阁论文中也有提及（6.5.4），其时间复杂度被证明为 $O\left(\frac{n^{\frac{3}{4}}}{\log{n}}\right)$ 。
 
 对于 $F_{\mathrm{prime}}(n)$ 的计算，事实上，其实现与洲阁筛第一部分是相同的。  
-考虑对于每个 $m = n / i$，只有在枚举满足 $p_{k}^{2} \le m$ 的 $p_{k}$ 转移时会对时间复杂度产生贡献，则时间复杂度可估计为：
+考虑对于每个 $m = n / i$ ，只有在枚举满足 $p_{k}^{2} \le m$ 的 $p_{k}$ 转移时会对时间复杂度产生贡献，则时间复杂度可估计为：
 
-$$ \begin{aligned}
+$$
 	T(n)
 	&= \sum_{i^{2} \le n} O\left(\pi\left(\sqrt{i}\right)\right) + \sum_{i^{2} \le n} O\left(\pi\left(\sqrt{\frac{n}{i}}\right)\right) \\
 	&= \sum_{i^{2} \le n} O\left(\frac{\sqrt{i}}{\ln{\sqrt{i}}}\right) + \sum_{i^{2} \le n} O\left(\frac{\sqrt{\frac{n}{i}}}{\ln{\sqrt{\frac{n}{i}}}}\right) \\
@@ -125,137 +124,137 @@ $$ \begin{aligned}
 #### [「LOJ #6053」简单的函数](https://loj.ac/problem/6053)
 
 给定 $f(n)$：
+$$
 
-$$ f(n) = \begin{cases}
-	1 & n = 1 \\
-	p \operatorname{xor} c & n = p^{c} \\
-	f(a)f(b) & n = ab \land a \perp b
-\end{cases} $$
+    1 & n = 1 \\
+    p \operatorname{xor} c & n = p^{c} \\
+    f(a)f(b) & n = ab \land a \perp b
 
-易知 $f(p) = p - 1 + 2[p = 2]$。则按照筛 $\varphi$ 的方法筛，对 $2$ 讨论一下即可。  
+\\end{cases} $$
+
+易知 $f(p) = p - 1 + 2[p = 2]$ 。则按照筛 $\varphi$ 的方法筛，对 $2$ 讨论一下即可。  
 此处给出一种 C++ 实现：
 
 ```cpp
 /* 「LOJ #6053」简单的函数 */
+#include <algorithm>
 #include <cmath>
 #include <cstdio>
-#include <algorithm>
 
 using i64 = long long;
 
-constexpr int maxs = 200000; // 2sqrt(n)
+constexpr int maxs = 200000;  // 2sqrt(n)
 constexpr int mod = 1000000007;
 
 template <typename x_t, typename y_t>
 inline void inc(x_t &x, const y_t &y) {
-	x += y; (mod <= x) && (x -= mod);
+  x += y;
+  (mod <= x) && (x -= mod);
 }
 template <typename x_t, typename y_t>
 inline void dec(x_t &x, const y_t &y) {
-	x -= y; (x < 0) && (x += mod);
+  x -= y;
+  (x < 0) && (x += mod);
 }
 template <typename x_t, typename y_t>
 inline int sum(const x_t &x, const y_t &y) {
-	return x + y < mod ? x + y : (x + y - mod);
+  return x + y < mod ? x + y : (x + y - mod);
 }
 template <typename x_t, typename y_t>
 inline int sub(const x_t &x, const y_t &y) {
-	return x < y ? x - y + mod : (x - y);
+  return x < y ? x - y + mod : (x - y);
 }
 template <typename _Tp>
 inline int div2(const _Tp &x) {
-	return ((x & 1) ? x + mod : x) >> 1;
+  return ((x & 1) ? x + mod : x) >> 1;
 }
 template <typename _Tp>
 inline i64 sqrll(const _Tp &x) {
-	return (i64)x * x;
+  return (i64)x * x;
 }
 
 inline i64 io() {
-	static i64 v;
-	return scanf("%lld", &v), v;
+  static i64 v;
+  return scanf("%lld", &v), v;
 }
 
-int pri[maxs / 7],
-	lpf[maxs + 1],
-	spri[maxs + 1],
-	pcnt;
+int pri[maxs / 7], lpf[maxs + 1], spri[maxs + 1], pcnt;
 
 inline void sieve(const int &n) {
-	for (int i = 2; i <= n; ++i) {
-		if (lpf[i] == 0)
-			pri[lpf[i] = ++pcnt] = i,
-			spri[pcnt] = sum(spri[pcnt - 1], i);
-		for (int j = 1, v; j <= lpf[i] && (v = i * pri[j]) <= n; ++j)
-			lpf[v] = j;
-	}
+  for (int i = 2; i <= n; ++i) {
+    if (lpf[i] == 0)
+      pri[lpf[i] = ++pcnt] = i, spri[pcnt] = sum(spri[pcnt - 1], i);
+    for (int j = 1, v; j <= lpf[i] && (v = i * pri[j]) <= n; ++j) lpf[v] = j;
+  }
 }
 
 const i64 global_n = io();
 const int lim = sqrt(global_n);
-int le[maxs + 1], // x \le \sqrt{n}
-	ge[maxs + 1]; // x > \sqrt{n}
+int le[maxs + 1],  // x \le \sqrt{n}
+    ge[maxs + 1];  // x > \sqrt{n}
 #define idx(v) (v <= lim ? le[v] : ge[global_n / v])
 
-int G[maxs + 1][2],
-	Fprime[maxs + 1];
+int G[maxs + 1][2], Fprime[maxs + 1];
 i64 lis[maxs + 1];
 int cnt;
 
 inline void init(const i64 &n) {
-	for (i64 i = 1, j, v; i <= n; i = n / j + 1) {
-		j = n / i; v = j % mod;
-		lis[++cnt] = j;
-		idx(j) = cnt;
-		G[cnt][0] = sub(v, 1ll);
-		G[cnt][1] = div2((i64)(v + 2ll) * (v - 1ll) % mod);
-	}
+  for (i64 i = 1, j, v; i <= n; i = n / j + 1) {
+    j = n / i;
+    v = j % mod;
+    lis[++cnt] = j;
+    idx(j) = cnt;
+    G[cnt][0] = sub(v, 1ll);
+    G[cnt][1] = div2((i64)(v + 2ll) * (v - 1ll) % mod);
+  }
 }
 
 inline void calcFprime() {
-	/* G_{k}(n) = G_{k - 1}(n) - [p_{k}^{2} \le n] g(p_{k}) (G_{k - 1}(n / p_{k}) - G_{k - 1}(p_{k - 1})) */
-	for (int k = 1; k <= pcnt; ++k) {
-		const int p = pri[k];
-		const i64 sqrp = sqrll(p);
-		for (int i = 1; lis[i] >= sqrp; ++i) {
-			const i64 v = lis[i] / p;
-			const int id = idx(v);
-			dec(G[i][0], sub(G[id][0], k - 1));
-			dec(G[i][1], (i64)p * sub(G[id][1], spri[k - 1]) % mod);
-		}
-	}
-	/* F_prime = G_1 - G_0 */
-	for (int i = 1; i <= cnt; ++i)
-		Fprime[i] = sub(G[i][1], G[i][0]);
+  /* G_{k}(n) = G_{k - 1}(n) - [p_{k}^{2} \le n] g(p_{k}) (G_{k - 1}(n / p_{k})
+   * - G_{k - 1}(p_{k - 1})) */
+  for (int k = 1; k <= pcnt; ++k) {
+    const int p = pri[k];
+    const i64 sqrp = sqrll(p);
+    for (int i = 1; lis[i] >= sqrp; ++i) {
+      const i64 v = lis[i] / p;
+      const int id = idx(v);
+      dec(G[i][0], sub(G[id][0], k - 1));
+      dec(G[i][1], (i64)p * sub(G[id][1], spri[k - 1]) % mod);
+    }
+  }
+  /* F_prime = G_1 - G_0 */
+  for (int i = 1; i <= cnt; ++i) Fprime[i] = sub(G[i][1], G[i][0]);
 }
 
 inline int f_p(const int &p, const int &c) {
-	/* f(p^{c}) = p xor c */
-	return p xor c;
+  /* f(p^{c}) = p xor c */
+  return p xor c;
 }
 
 int F(const int &k, const i64 &n) {
-	/* \sum_{i = 2}^{n} [p_{k} \le lpf(i)] f(i) */
-	/* F_{k}(n) = \sum_{k \le i, p_{i}^{2} \le n} \sum_{1 \le c, p^{c + 1} \le n} (f(p^{c}) F_{i + 1}(n / p^{c}) + f(p^{c + 1})) + F_prime(n) - F_prime(p_{k - 1}) */
-	if (n < pri[k] || n <= 1) return 0;
-	const int id = idx(n);
-	i64 ans = Fprime[id] - (spri[k - 1] - (k - 1));
-	if (k == 1) ans += 2;
-	for (int i = k; i <= pcnt && sqrll(pri[i]) <= n; ++i) {
-		i64 pw = pri[i], pw2 = sqrll(pw);
-		for (int c = 1; pw2 <= n; ++c, pw = pw2, pw2 *= pri[i])
-			ans += ((i64)f_p(pri[i], c) * F(i + 1, n / pw) + f_p(pri[i], c + 1)) % mod;
-	}
-	return ans % mod;
+  /* \sum_{i = 2}^{n} [p_{k} \le lpf(i)] f(i) */
+  /* F_{k}(n) = \sum_{k \le i, p_{i}^{2} \le n} \sum_{1 \le c, p^{c + 1} \le n}
+   * (f(p^{c}) F_{i + 1}(n / p^{c}) + f(p^{c + 1})) + F_prime(n) - F_prime(p_{k
+   * - 1}) */
+  if (n < pri[k] || n <= 1) return 0;
+  const int id = idx(n);
+  i64 ans = Fprime[id] - (spri[k - 1] - (k - 1));
+  if (k == 1) ans += 2;
+  for (int i = k; i <= pcnt && sqrll(pri[i]) <= n; ++i) {
+    i64 pw = pri[i], pw2 = sqrll(pw);
+    for (int c = 1; pw2 <= n; ++c, pw = pw2, pw2 *= pri[i])
+      ans +=
+          ((i64)f_p(pri[i], c) * F(i + 1, n / pw) + f_p(pri[i], c + 1)) % mod;
+  }
+  return ans % mod;
 }
 
 int main() {
-	sieve(lim + 1000);
-	init(global_n);
-	calcFprime();
-	printf("%lld\n", (F(1, global_n) + 1ll + mod) % mod);
+  sieve(lim + 1000);
+  init(global_n);
+  calcFprime();
+  printf("%lld\n", (F(1, global_n) + 1ll + mod) % mod);
 
-	return 0;
+  return 0;
 }
-
 ```
