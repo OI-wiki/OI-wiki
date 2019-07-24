@@ -23,12 +23,14 @@
 考虑如何求出 $F_{k}(n)$ 。通过枚举每个 $i$ 的最小质因子及其次数可以得到递推式：
 
 $$
+\begin{aligned}
 	F_{k}(n)
 	&= \sum_{i = 2}^{n} [p_{k} \le \operatorname{lpf}(i)] f(i) \\
 	&= \sum_{\substack{k \le i \\ p_{i}^{2} \le n}} \sum_{\substack{c \ge 1 \\ p_{i}^{c} \le n}} f\left(p_{i}^{c}\right) ([c > 1] + F_{i + 1}\left(n / p_{i}^{c}\right)) + \sum_{\substack{k \le i \\ p_{i} \le n}} f(p_{i}) \\
 	&= \sum_{\substack{k \le i \\ p_{i}^{2} \le n}} \sum_{\substack{c \ge 1 \\ p_{i}^{c} \le n}} f\left(p_{i}^{c}\right) ([c > 1] + F_{i + 1}\left(n / p_{i}^{c}\right)) + F_{\mathrm{prime}}(n) - F_{\mathrm{prime}}(p_{k - 1}) \\
 	&= \sum_{\substack{k \le i \\ p_{i}^{2} \le n}} \sum_{\substack{c \ge 1 \\ p_{i}^{c + 1} \le n}} \left(f\left(p_{i}^{c}\right) F_{i + 1}\left(n / p_{i}^{c}\right) + f\left(p_{i}^{c + 1}\right)\right) + F_{\mathrm{prime}}(n) - F_{\mathrm{prime}}(p_{k - 1})
-\end{aligned} $$
+\end{aligned}
+$$
 
 最后一步推导基于这样一个事实：对于满足 $p_{i}^{c} \le n < p_{i}^{c + 1}$ 的 $c$，有 $p_{i}^{c + 1} > n \iff n / p_{i}^{c} < p_{i} < p_{i + 1}$，故 $F_{i + 1}\left(n / p_{i}^{c}\right) = 0$。  
 其边界值即为 $F_{k}(n) = 0 (p_{k} > n)$。
@@ -58,6 +60,9 @@ $$
 3. 对于第二部分，由于 $p_{k}^{2} \le n \iff p_{k} \le n / p_{k}$，故会有 $\operatorname{lpf}(i) < p_{k}$ 的 $i$ 被减去。这部分应当加回来，即 $g(p_{k}) G_{k - 1}(p_{k - 1})$。
 
 则有：
+
+$$
+G_{k}(n) = G_{k - 1}(n) - \left[p_{k}^{2} \le n\right] g(p_{k}) (G_{k - 1}(n / p_{k}) - G_{k - 1}(p_{k - 1}))
 $$
 
 * * *
@@ -71,12 +76,14 @@ $$
 考虑对于每个 $m = n / i$ ，只有在枚举满足 $p_{k}^{2} \le m$ 的 $p_{k}$ 转移时会对时间复杂度产生贡献，则时间复杂度可估计为：
 
 $$
+\begin{aligned}
 	T(n)
 	&= \sum_{i^{2} \le n} O\left(\pi\left(\sqrt{i}\right)\right) + \sum_{i^{2} \le n} O\left(\pi\left(\sqrt{\frac{n}{i}}\right)\right) \\
 	&= \sum_{i^{2} \le n} O\left(\frac{\sqrt{i}}{\ln{\sqrt{i}}}\right) + \sum_{i^{2} \le n} O\left(\frac{\sqrt{\frac{n}{i}}}{\ln{\sqrt{\frac{n}{i}}}}\right) \\
 	&= O\left(\int_{1}^{\sqrt{n}} \frac{\sqrt{\frac{n}{x}}}{\log{\sqrt{\frac{n}{x}}}} \mathrm{d} x\right) \\
 	&= O\left(\frac{n^{\frac{3}{4}}}{\log{n}}\right)
-\end{aligned} $$
+\end{aligned}
+$$
 
 对于空间复杂度，可以发现不论是 $F_{k}$ 还是 $F_{\mathrm{prime}}$，其均只在 $n / i$ 处取有效点值，共 $O(\sqrt{n})$ 个。  
 则可以使用[杜教筛一节中介绍的 trick](#Implementation) 来将空间复杂度优化至 $O(\sqrt{n})$。
@@ -125,12 +132,12 @@ $$
 
 给定 $f(n)$：
 $$
-
+f(n) = \begin{cases}
     1 & n = 1 \\
     p \operatorname{xor} c & n = p^{c} \\
     f(a)f(b) & n = ab \land a \perp b
-
-\\end{cases} $$
+\end{cases}
+$$
 
 易知 $f(p) = p - 1 + 2[p = 2]$ 。则按照筛 $\varphi$ 的方法筛，对 $2$ 讨论一下即可。  
 此处给出一种 C++ 实现：
