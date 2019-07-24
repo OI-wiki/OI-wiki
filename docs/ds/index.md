@@ -1,3 +1,5 @@
+author: HeRaNO, Zhoier
+
 ## 数据结构
 
 -   Q：什么是数据结构？

@@ -1,3 +1,5 @@
+author: Dev-XYS
+
 treap 是一种弱平衡的二叉搜索树。treap 这个单词是 tree 和 heap 的组合，表明 treap 是一种由树和堆组合形成的数据结构。treap 的每个结点上要额外储存一个值 $priority$ 。treap 除了要满足二叉搜索树的性质之外，还需满足父节点的 $priority$ 大于等于两个儿子的 $priority$ 。而 $priority$ 是每个结点建立时随机生成的，因此 treap 是期望平衡的。
 
 treap 分为旋转式和无旋式两种。两种 treap 都易于编写，但无旋式 treap 的操作方式使得它天生支持维护序列、可持久化等特性。这里以重新实现 `set<int>` （不可重集合）为例，介绍无旋式 treap。

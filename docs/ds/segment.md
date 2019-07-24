@@ -1,3 +1,5 @@
+author: CJSoft, HeRaNO, konnyakuxzy
+
 ## 写在前面
 
 线段树是个好东西啊！

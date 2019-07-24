@@ -1,3 +1,5 @@
+author: HeRaNO, JuicyMio, Xeonacid, sailordiary
+
 并查集是一种树形的数据结构，顾名思义，它用于处理一些不交集的 **合并** 及 **查询** 问题。
 它支持两种操作：
 

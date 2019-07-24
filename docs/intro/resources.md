@@ -1,3 +1,5 @@
+author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
+
 ## 在线评测平台
 
 在线评测平台（英语：Online Judging System，简称 OJ），一般用于刷题训练，参与和组织比赛，以及用户之间的交流分享。

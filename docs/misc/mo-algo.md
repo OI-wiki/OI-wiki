@@ -1,3 +1,5 @@
+author: greyqz
+
 ## 普通莫队算法
 
 （主要参考了<https://blog.sengxian.com/algorithms/mo-s-algorithm>。）

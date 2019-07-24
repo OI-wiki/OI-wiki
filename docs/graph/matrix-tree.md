@@ -1,3 +1,5 @@
+author: pw384, s0cks5, Xeonacid
+
 Kirchhoff 矩阵树定理（简称矩阵树定理）解决了一张图的生成树个数计数问题。
 
 ## 本篇记号声明
