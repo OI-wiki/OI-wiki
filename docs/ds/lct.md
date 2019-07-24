@@ -368,27 +368,25 @@ inline int Find(int p) {
 -   [「BZOJ 3282」Tree](https://lydsy.com/JudgeOnline/problem.php?id=3282)
 -   [「HNOI2010」Bounce 弹飞绵羊](https://lydsy.com/JudgeOnline/problem.php?id=2002)
 
-
 ## 维护树链信息
 
 LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径提取到以 $y$ 为根的 Splay 内，树链信息的修改和统计转化为平衡树上的操作，这使得 LCT 在维护树链信息上具有优势。此外，借助 LCT 实现的在树链上二分比树链剖分少一个 $O(\log_2 n)$ 的复杂度。
 
-??? note " 例题 [luogu P1501 \[国家集训队\]Tree II
-](https://www.luogu.org/problemnew/show/P1501)"
+??? note " 例题[luogu P1501\[国家集训队\]Tree II](https://www.luogu.org/problemnew/show/P1501)"
 
 给出一棵有 $n$ 个结点的树，每个点的初始权值为 $1$ 。 $q$ 次操作，每次操作均为以下四种之一：
 
-`- u1 v1 u2 v2` ：将树上 $u_1,v_1$ 两点之间的边删除，连接 $u_2,v_2$ 两点，保证操作合法且连边后仍是一棵树。
+ `- u1 v1 u2 v2` ：将树上 $u_1,v_1$ 两点之间的边删除，连接 $u_2,v_2$ 两点，保证操作合法且连边后仍是一棵树。
 
-`+ u v c` ：将树上 $u,v$ 两点之间的路径上的点权都增加 $c$ 。
+ `+ u v c` ：将树上 $u,v$ 两点之间的路径上的点权都增加 $c$ 。
 
-`* u v c` ：将树上 $u,v$ 两点之间的路径上的点权都乘以 $c$ 。
+ `* u v c` ：将树上 $u,v$ 两点之间的路径上的点权都乘以 $c$ 。
 
-`/ u v` ：输出树上 $u,v$ 两点之间的路径上的点权之和取模 $51061$ 后的值。
+ `/u v` ：输出树上 $u,v$ 两点之间的路径上的点权之和取模 $51061$ 后的值。
 
-$1\le n,q\le 10^5,0\le c\le 10^4$
+ $1\le n,q\le 10^5,0\le c\le 10^4$ 
 
-`-` 操作可以直接 `Cut(u1,v1),Link(u2,v2)` 。
+ `-` 操作可以直接 `Cut(u1,v1),Link(u2,v2)` 。
 
 对树上 $u,v$ 两点之间的路径进行修改时，先 `Split(u,v)` 。
 
@@ -401,157 +399,157 @@ $1\le n,q\le 10^5,0\le c\le 10^4$
 ??? "参考代码"
 
     ```cpp
-	#include<cstdio>
-	#include<cstring>
-	#include<algorithm>
-	using namespace std;
-	#define int long long
-	const int maxn=100010;
-	const int mod=51061;
-	int n,q,u,v,c;
-	char op;
-	struct Splay
-	{
-	    int ch[maxn][2],fa[maxn],siz[maxn],val[maxn],sum[maxn],rev[maxn],add[maxn],mul[maxn];
-	    void clear(int x){ch[x][0]=ch[x][1]=fa[x]=siz[x]=val[x]=sum[x]=rev[x]=add[x]=0;mul[x]=1;}
-	    int getch(int x){return(ch[fa[x]][1]==x);}
-	    int isroot(int x){clear(0);return ch[fa[x]][0]!=x&&ch[fa[x]][1]!=x;}
-	    void maintain(int x)
-	    {
-	        clear(0);
-	        siz[x]=(siz[ch[x][0]]+1+siz[ch[x][1]])%mod;
-	        sum[x]=(sum[ch[x][0]]+val[x]+sum[ch[x][1]])%mod;
-	    }
-	    void pushdown(int x)
-	    {
-	        clear(0);
-	        if(mul[x]!=1)
-	        {
-	            if(ch[x][0])
-	            mul[ch[x][0]]=(mul[x]*mul[ch[x][0]])%mod,
-	            val[ch[x][0]]=(val[ch[x][0]]*mul[x])%mod,
-	            sum[ch[x][0]]=(sum[ch[x][0]]*mul[x])%mod,
-	            add[ch[x][0]]=(add[ch[x][0]]*mul[x])%mod;
-	            if(ch[x][1])
-	            mul[ch[x][1]]=(mul[x]*mul[ch[x][1]])%mod,
-	            val[ch[x][1]]=(val[ch[x][1]]*mul[x])%mod,
-	            sum[ch[x][1]]=(sum[ch[x][1]]*mul[x])%mod,
-	            add[ch[x][1]]=(add[ch[x][1]]*mul[x])%mod;
-	            mul[x]=1;
-	        }
-	        if(add[x])
-	        {
-	            if(ch[x][0])
-	            add[ch[x][0]]=(add[ch[x][0]]+add[x])%mod,
-	            val[ch[x][0]]=(val[ch[x][0]]+add[x])%mod,
-	            sum[ch[x][0]]=(sum[ch[x][0]]+add[x]*siz[ch[x][0]]%mod)%mod;
-	            if(ch[x][1])
-	            add[ch[x][1]]=(add[ch[x][1]]+add[x])%mod,
-	            val[ch[x][1]]=(val[ch[x][1]]+add[x])%mod,
-	            sum[ch[x][1]]=(sum[ch[x][1]]+add[x]*siz[ch[x][1]]%mod)%mod;
-	            add[x]=0;
-	        }
-	        if(rev[x])
-	        {
-	            if(ch[x][0])rev[ch[x][0]]^=1,swap(ch[ch[x][0]][0],ch[ch[x][0]][1]);
-	            if(ch[x][1])rev[ch[x][1]]^=1,swap(ch[ch[x][1]][0],ch[ch[x][1]][1]);
-	            rev[x]=0;
-	        }
-	    }
-	    void update(int x)
-	    {
-	        if(!isroot(x))update(fa[x]);
-	        pushdown(x);
-	    }
-	    void print(int x)
-	    {
-	        if(!x)return;
-	        pushdown(x);
-	        print(ch[x][0]);
-	        printf("%lld ",x);
-	        print(ch[x][1]);
-	    }
-	    void rotate(int x)
-	    {
-	        int y=fa[x],z=fa[y],chx=getch(x),chy=getch(y);
-	        fa[x]=z;if(!isroot(y))ch[z][chy]=x;
-	        ch[y][chx]=ch[x][chx^1];fa[ch[x][chx^1]]=y;
-	        ch[x][chx^1]=y;fa[y]=x;
-	        maintain(y);maintain(x);maintain(z);
-	    }
-	    void splay(int x)
-	    {
-	        update(x);
-	        for(int f=fa[x];f=fa[x],!isroot(x);rotate(x))
-	        if(!isroot(f))rotate(getch(x)==getch(f)?f:x);
-	    }
-	    void access(int x)
-	    {
-	        for(int f=0;x;f=x,x=fa[x])
-	        splay(x),ch[x][1]=f,maintain(x);
-	    }
-	    void makeroot(int x)
-	    {
-	        access(x);splay(x);
-	        swap(ch[x][0],ch[x][1]);
-	        rev[x]^=1;
-	    }
-	    int find(int x)
-	    {
-	        access(x);splay(x);
-	        while(ch[x][0])x=ch[x][0];
-	        splay(x);
-	        return x;
-	    }
-	}st;
-	main()
-	{
-	    scanf("%lld%lld",&n,&q);
-	    for(int i=1;i<=n;i++)st.val[i]=1,st.maintain(i);
-	    for(int i=1;i<n;i++)
-	    {
-	        scanf("%lld%lld",&u,&v);
-	        if(st.find(u)!=st.find(v))st.makeroot(u),st.fa[u]=v;
-	    }
-	    while(q--)
-	    {
-	        scanf(" %c%lld%lld",&op,&u,&v);
-	        if(op=='+')
-	        {
-	            scanf("%lld",&c);
-	            st.makeroot(u),st.access(v),st.splay(v);
-	            st.val[v]=(st.val[v]+c)%mod;
-	            st.sum[v]=(st.sum[v]+st.siz[v]*c%mod)%mod;
-	            st.add[v]=(st.add[v]+c)%mod;
-	        }
-	        if(op=='-')
-	        {
-	            st.makeroot(u);st.access(v);st.splay(v);
-	            if(st.ch[v][0]==u&&!st.ch[u][1])st.ch[v][0]=st.fa[u]=0;
-	            scanf("%lld%lld",&u,&v);
-	            if(st.find(u)!=st.find(v))st.makeroot(u),st.fa[u]=v;
-	        }
-	        if(op=='*')
-	        {
-	            scanf("%lld",&c);
-	            st.makeroot(u),st.access(v),st.splay(v);
-	            st.val[v]=st.val[v]*c%mod;
-	            st.sum[v]=st.sum[v]*c%mod;
-	            st.mul[v]=st.mul[v]*c%mod;
-	        }
-	        if(op=='/')st.makeroot(u),st.access(v),st.splay(v),printf("%lld\n",st.sum[v]);
-	    }
-	    return 0;
-	}
+    #include<cstdio>
+    #include<cstring>
+    #include<algorithm>
+    using namespace std;
+    #define int long long
+    const int maxn=100010;
+    const int mod=51061;
+    int n,q,u,v,c;
+    char op;
+    struct Splay
+    {
+        int ch[maxn][2],fa[maxn],siz[maxn],val[maxn],sum[maxn],rev[maxn],add[maxn],mul[maxn];
+        void clear(int x){ch[x][0]=ch[x][1]=fa[x]=siz[x]=val[x]=sum[x]=rev[x]=add[x]=0;mul[x]=1;}
+        int getch(int x){return(ch[fa[x]][1]==x);}
+        int isroot(int x){clear(0);return ch[fa[x]][0]!=x&&ch[fa[x]][1]!=x;}
+        void maintain(int x)
+        {
+            clear(0);
+            siz[x]=(siz[ch[x][0]]+1+siz[ch[x][1]])%mod;
+            sum[x]=(sum[ch[x][0]]+val[x]+sum[ch[x][1]])%mod;
+        }
+        void pushdown(int x)
+        {
+            clear(0);
+            if(mul[x]!=1)
+            {
+                if(ch[x][0])
+                mul[ch[x][0]]=(mul[x]*mul[ch[x][0]])%mod,
+                val[ch[x][0]]=(val[ch[x][0]]*mul[x])%mod,
+                sum[ch[x][0]]=(sum[ch[x][0]]*mul[x])%mod,
+                add[ch[x][0]]=(add[ch[x][0]]*mul[x])%mod;
+                if(ch[x][1])
+                mul[ch[x][1]]=(mul[x]*mul[ch[x][1]])%mod,
+                val[ch[x][1]]=(val[ch[x][1]]*mul[x])%mod,
+                sum[ch[x][1]]=(sum[ch[x][1]]*mul[x])%mod,
+                add[ch[x][1]]=(add[ch[x][1]]*mul[x])%mod;
+                mul[x]=1;
+            }
+            if(add[x])
+            {
+                if(ch[x][0])
+                add[ch[x][0]]=(add[ch[x][0]]+add[x])%mod,
+                val[ch[x][0]]=(val[ch[x][0]]+add[x])%mod,
+                sum[ch[x][0]]=(sum[ch[x][0]]+add[x]*siz[ch[x][0]]%mod)%mod;
+                if(ch[x][1])
+                add[ch[x][1]]=(add[ch[x][1]]+add[x])%mod,
+                val[ch[x][1]]=(val[ch[x][1]]+add[x])%mod,
+                sum[ch[x][1]]=(sum[ch[x][1]]+add[x]*siz[ch[x][1]]%mod)%mod;
+                add[x]=0;
+            }
+            if(rev[x])
+            {
+                if(ch[x][0])rev[ch[x][0]]^=1,swap(ch[ch[x][0]][0],ch[ch[x][0]][1]);
+                if(ch[x][1])rev[ch[x][1]]^=1,swap(ch[ch[x][1]][0],ch[ch[x][1]][1]);
+                rev[x]=0;
+            }
+        }
+        void update(int x)
+        {
+            if(!isroot(x))update(fa[x]);
+            pushdown(x);
+        }
+        void print(int x)
+        {
+            if(!x)return;
+            pushdown(x);
+            print(ch[x][0]);
+            printf("%lld ",x);
+            print(ch[x][1]);
+        }
+        void rotate(int x)
+        {
+            int y=fa[x],z=fa[y],chx=getch(x),chy=getch(y);
+            fa[x]=z;if(!isroot(y))ch[z][chy]=x;
+            ch[y][chx]=ch[x][chx^1];fa[ch[x][chx^1]]=y;
+            ch[x][chx^1]=y;fa[y]=x;
+            maintain(y);maintain(x);maintain(z);
+        }
+        void splay(int x)
+        {
+            update(x);
+            for(int f=fa[x];f=fa[x],!isroot(x);rotate(x))
+            if(!isroot(f))rotate(getch(x)==getch(f)?f:x);
+        }
+        void access(int x)
+        {
+            for(int f=0;x;f=x,x=fa[x])
+            splay(x),ch[x][1]=f,maintain(x);
+        }
+        void makeroot(int x)
+        {
+            access(x);splay(x);
+            swap(ch[x][0],ch[x][1]);
+            rev[x]^=1;
+        }
+        int find(int x)
+        {
+            access(x);splay(x);
+            while(ch[x][0])x=ch[x][0];
+            splay(x);
+            return x;
+        }
+    }st;
+    main()
+    {
+        scanf("%lld%lld",&n,&q);
+        for(int i=1;i<=n;i++)st.val[i]=1,st.maintain(i);
+        for(int i=1;i<n;i++)
+        {
+            scanf("%lld%lld",&u,&v);
+            if(st.find(u)!=st.find(v))st.makeroot(u),st.fa[u]=v;
+        }
+        while(q--)
+        {
+            scanf(" %c%lld%lld",&op,&u,&v);
+            if(op=='+')
+            {
+                scanf("%lld",&c);
+                st.makeroot(u),st.access(v),st.splay(v);
+                st.val[v]=(st.val[v]+c)%mod;
+                st.sum[v]=(st.sum[v]+st.siz[v]*c%mod)%mod;
+                st.add[v]=(st.add[v]+c)%mod;
+            }
+            if(op=='-')
+            {
+                st.makeroot(u);st.access(v);st.splay(v);
+                if(st.ch[v][0]==u&&!st.ch[u][1])st.ch[v][0]=st.fa[u]=0;
+                scanf("%lld%lld",&u,&v);
+                if(st.find(u)!=st.find(v))st.makeroot(u),st.fa[u]=v;
+            }
+            if(op=='*')
+            {
+                scanf("%lld",&c);
+                st.makeroot(u),st.access(v),st.splay(v);
+                st.val[v]=st.val[v]*c%mod;
+                st.sum[v]=st.sum[v]*c%mod;
+                st.mul[v]=st.mul[v]*c%mod;
+            }
+            if(op=='/')st.makeroot(u),st.access(v),st.splay(v),printf("%lld\n",st.sum[v]);
+        }
+        return 0;
+    }
     ```
 
 ### 一些题
 
--   [luogu P3690 【模板】Link Cut Tree （动态树）](https://www.luogu.org/problemnew/show/P3690)
+-   [luogu P3690【模板】Link Cut Tree（动态树）](https://www.luogu.org/problemnew/show/P3690)
 
--   [luogu P2486 \[SDOI2011\]染色](https://www.luogu.org/problemnew/show/P2486)
+-   [luogu P2486\[SDOI2011\]染色](https://www.luogu.org/problemnew/show/P2486)
 
--   [luogu P4332 \[SHOI2014\]三叉神经树](https://www.luogu.org/problemnew/show/P4332)
+-   [luogu P4332\[SHOI2014\]三叉神经树](https://www.luogu.org/problemnew/show/P4332)
 
 ## 维护连通性质
 
@@ -559,97 +557,97 @@ $1\le n,q\le 10^5,0\le c\le 10^4$
 
 借助 LCT 的 `Find()` 函数，可以判断动态森林上的两点是否连通。如果有 `Find(x)==Find(y)` ，则说明 $x,y$ 两点在一棵树上，相互连通。
 
-??? note " 例题 [luogu P2147 \[SDOI2008\]洞穴勘测](https://www.luogu.org/problemnew/show/P2147)"
+??? note " 例题[luogu P2147\[SDOI2008\]洞穴勘测](https://www.luogu.org/problemnew/show/P2147)"
 
 一开始有 $n$ 个独立的点， $m$ 次操作。每次操作为以下之一：
 
-`Connect u v` ：在 $u,v$ 两点之间连接一条边。
+ `Connect u v` ：在 $u,v$ 两点之间连接一条边。
 
-`Destroy u v` ：删除在 $u,v$ 两点之间的边，保证之前存在这样的一条边。
+ `Destroy u v` ：删除在 $u,v$ 两点之间的边，保证之前存在这样的一条边。
 
-`Query u v` ：询问 $u,v$ 两点是否连通。
+ `Query u v` ：询问 $u,v$ 两点是否连通。
 
 保证在任何时刻图的形态都是一个森林。
 
-$n\le 10^4, m\le 2\times 10^5$
+ $n\le 10^4, m\le 2\times 10^5$ 
 
 ??? "参考代码"
 
     ```cpp
-	#include<cstdio>
-	#include<cstring>
-	#include<algorithm>
-	using namespace std;
-	const int maxn=10010;
-	struct Splay
-	{
-	    int ch[maxn][2],fa[maxn],tag[maxn];
-	    void clear(int x){ch[x][0]=ch[x][1]=fa[x]=tag[x]=0;}
-	    int getch(int x){return ch[fa[x]][1]==x;}
-	    int isroot(int x){return ch[fa[x]][0]!=x&&ch[fa[x]][1]!=x;}
-	    void pushdown(int x)
-	    {
-	        if(tag[x])
-	        {
-	            if(ch[x][0])swap(ch[ch[x][0]][0],ch[ch[x][0]][1]),tag[ch[x][0]]^=1;
-	            if(ch[x][1])swap(ch[ch[x][1]][0],ch[ch[x][1]][1]),tag[ch[x][1]]^=1;
-	            tag[x]=0;
-	        }
-	    }
-	    void update(int x)
-	    {
-	        if(!isroot(x))update(fa[x]);
-	        pushdown(x);
-	    }
-	    void rotate(int x)
-	    {
-	        int y=fa[x],z=fa[y],chx=getch(x),chy=getch(y);
-	        fa[x]=z;if(!isroot(y))ch[z][chy]=x;
-	        ch[y][chx]=ch[x][chx^1];fa[ch[x][chx^1]]=y;
-	        ch[x][chx^1]=y;fa[y]=x;
-	    }
-	    void splay(int x)
-	    {
-	        update(x);
-	        for(int f=fa[x];f=fa[x],!isroot(x);rotate(x))
-	        if(!isroot(f))rotate(getch(x)==getch(f)?f:x);
-	    }
-	    void access(int x)
-	    {
-	        for(int f=0;x;f=x,x=fa[x])splay(x),ch[x][1]=f;
-	    }
-	    void makeroot(int x)
-	    {
-	        access(x);splay(x);
-	        swap(ch[x][0],ch[x][1]);
-	        tag[x]^=1;
-	    }
-	    int find(int x)
-	    {
-	        access(x);splay(x);
-	        while(ch[x][0])x=ch[x][0];
-	        splay(x);
-	        return x; 
-	    }
-	}st;
-	int n,q,x,y;
-	char op[maxn];
-	int main()
-	{
-	    scanf("%d%d",&n,&q);
-	    while(q--)
-	    {
-	        scanf("%s%d%d",op,&x,&y);
-	        if(op[0]=='Q'){if(st.find(x)==st.find(y))printf("Yes\n");else printf("No\n");}
-	        if(op[0]=='C')if(st.find(x)!=st.find(y))st.makeroot(x),st.fa[x]=y;
-	        if(op[0]=='D')
-	        {
-	            st.makeroot(x);st.access(y);st.splay(y);
-	            if(st.ch[y][0]==x&&!st.ch[x][1])st.ch[y][0]=st.fa[x]=0; 
-	        }
-	    }
-	    return 0;
-	}
+    #include<cstdio>
+    #include<cstring>
+    #include<algorithm>
+    using namespace std;
+    const int maxn=10010;
+    struct Splay
+    {
+        int ch[maxn][2],fa[maxn],tag[maxn];
+        void clear(int x){ch[x][0]=ch[x][1]=fa[x]=tag[x]=0;}
+        int getch(int x){return ch[fa[x]][1]==x;}
+        int isroot(int x){return ch[fa[x]][0]!=x&&ch[fa[x]][1]!=x;}
+        void pushdown(int x)
+        {
+            if(tag[x])
+            {
+                if(ch[x][0])swap(ch[ch[x][0]][0],ch[ch[x][0]][1]),tag[ch[x][0]]^=1;
+                if(ch[x][1])swap(ch[ch[x][1]][0],ch[ch[x][1]][1]),tag[ch[x][1]]^=1;
+                tag[x]=0;
+            }
+        }
+        void update(int x)
+        {
+            if(!isroot(x))update(fa[x]);
+            pushdown(x);
+        }
+        void rotate(int x)
+        {
+            int y=fa[x],z=fa[y],chx=getch(x),chy=getch(y);
+            fa[x]=z;if(!isroot(y))ch[z][chy]=x;
+            ch[y][chx]=ch[x][chx^1];fa[ch[x][chx^1]]=y;
+            ch[x][chx^1]=y;fa[y]=x;
+        }
+        void splay(int x)
+        {
+            update(x);
+            for(int f=fa[x];f=fa[x],!isroot(x);rotate(x))
+            if(!isroot(f))rotate(getch(x)==getch(f)?f:x);
+        }
+        void access(int x)
+        {
+            for(int f=0;x;f=x,x=fa[x])splay(x),ch[x][1]=f;
+        }
+        void makeroot(int x)
+        {
+            access(x);splay(x);
+            swap(ch[x][0],ch[x][1]);
+            tag[x]^=1;
+        }
+        int find(int x)
+        {
+            access(x);splay(x);
+            while(ch[x][0])x=ch[x][0];
+            splay(x);
+            return x; 
+        }
+    }st;
+    int n,q,x,y;
+    char op[maxn];
+    int main()
+    {
+        scanf("%d%d",&n,&q);
+        while(q--)
+        {
+            scanf("%s%d%d",op,&x,&y);
+            if(op[0]=='Q'){if(st.find(x)==st.find(y))printf("Yes\n");else printf("No\n");}
+            if(op[0]=='C')if(st.find(x)!=st.find(y))st.makeroot(x),st.fa[x]=y;
+            if(op[0]=='D')
+            {
+                st.makeroot(x);st.access(y);st.splay(y);
+                if(st.ch[y][0]==x&&!st.ch[x][1])st.ch[y][0]=st.fa[x]=0; 
+            }
+        }
+        return 0;
+    }
 
     ```
 
@@ -657,17 +655,17 @@ $n\le 10^4, m\le 2\times 10^5$
 
 如果要求将边双连通分量缩成点，每次添加一条边，所连接的树上的两点如果相互连通，那么这条路径上的所有点都会被缩成一个点。
 
-??? note " 例题 [luogu P2542 \[AHOI2005\]航线规划](https://www.luogu.org/problemnew/show/P2542)"
+??? note " 例题[luogu P2542\[AHOI2005\]航线规划](https://www.luogu.org/problemnew/show/P2542)"
 
 给出 $n$ 个点，初始时有 $m$ 条无向边， $q$ 次操作，每次操作为以下之一：
 
-`0 u v` ：删除 $u,v$ 之间的连边，保证此时存在这样的一条边。
+ `0 u v` ：删除 $u,v$ 之间的连边，保证此时存在这样的一条边。
 
-`1 u v` ：查询此时 $u,v$ 两点之间可能的所有路径必须经过的边的数量。
+ `1 u v` ：查询此时 $u,v$ 两点之间可能的所有路径必须经过的边的数量。
 
 保证图在任意时刻都连通。
 
-$1<n<3\times 10^4,1<m<10^5,0\le q\le 4\times 10^4$
+ $1<n<3\times 10^4,1<m<10^5,0\le q\le 4\times 10^4$ 
 
 可以发现， $u,v$ 两点之间的所有可能路径必须经过的边的数量为将所有边双连通分量缩成点之后 $u$ 所在点和 $v$ 所在点之间的路径上的结点数 $-1$ 。
 
@@ -681,139 +679,139 @@ $1<n<3\times 10^4,1<m<10^5,0\le q\le 4\times 10^4$
 
     ```cpp
     #include<cstdio>
-	#include<cstring>
-	#include<algorithm>
-	#include<map>
-	using namespace std;
-	const int maxn=200010;
-	int f[maxn];
-	int findp(int x){return f[x]?f[x]=findp(f[x]):x;}
-	void merge(int x,int y){x=findp(x);y=findp(y);if(x!=y)f[x]=y;}
-	struct Splay
-	{
-		int ch[maxn][2],fa[maxn],tag[maxn],siz[maxn];
-		void clear(int x){ch[x][0]=ch[x][1]=fa[x]=tag[x]=siz[x]=0;}
-		int getch(int x){return ch[findp(fa[x])][1]==x;}
-		int isroot(int x){return ch[findp(fa[x])][0]!=x&&ch[findp(fa[x])][1]!=x;}
-		void maintain(int x){clear(0);if(x)siz[x]=siz[ch[x][0]]+1+siz[ch[x][1]];}
-		void pushdown(int x)
-		{
-			if(tag[x])
-			{
-				if(ch[x][0])tag[ch[x][0]]^=1,swap(ch[ch[x][0]][0],ch[ch[x][0]][1]);
-				if(ch[x][1])tag[ch[x][1]]^=1,swap(ch[ch[x][1]][0],ch[ch[x][1]][1]);
-				tag[x]=0;
-			}
-		}
-		void print(int x)
-		{
-			if(!x)return;
-			pushdown(x);
-			print(ch[x][0]);
-			printf("%d ",x);
-			print(ch[x][1]);
-		}
-		void update(int x)
-		{
-			if(!isroot(x))update(findp(fa[x]));
-			pushdown(x);
-		}
-		void rotate(int x)
-		{
-			x=findp(x);
-			int y=findp(fa[x]),z=findp(fa[y]),chx=getch(x),chy=getch(y);
-			fa[x]=z;if(!isroot(y))ch[z][chy]=x;
-			ch[y][chx]=ch[x][chx^1];fa[ch[x][chx^1]]=y;
-			ch[x][chx^1]=y;fa[y]=x;
-			maintain(y);maintain(x);if(z)maintain(z);
-		}
-		void splay(int x)
-		{
-			x=findp(x);
-			update(x);
-			for(int f=findp(fa[x]);f=findp(fa[x]),!isroot(x);rotate(x))
-			if(!isroot(f))rotate(getch(x)==getch(f)?f:x);
-		}
-		void access(int x)
-		{
-			for(int f=0;x;f=x,x=findp(fa[x]))
-			splay(x),ch[x][1]=f,maintain(x);
-		}
-		void makeroot(int x)
-		{
-			x=findp(x);
-			access(x);splay(x);
-			tag[x]^=1;
-			swap(ch[x][0],ch[x][1]);
-		}
-		int find(int x)
-		{
-			x=findp(x);
-			access(x);splay(x);
-			while(ch[x][0])x=ch[x][0];
-			splay(x);
-			return x;
-		}
-		void dfs(int x)
-		{
-			pushdown(x);
-			if(ch[x][0])dfs(ch[x][0]),merge(ch[x][0],x);
-			if(ch[x][1])dfs(ch[x][1]),merge(ch[x][1],x);
-		}
-	}st;
-	int n,m,q,x,y,cur,ans[maxn];
-	struct oper{int op,a,b;}s[maxn];
-	map<pair<int,int>,int>mp;
-	int main()
-	{
-		scanf("%d%d",&n,&m);
-		for(int i=1;i<=n;i++)st.maintain(i);
-		for(int i=1;i<=m;i++)scanf("%d%d",&x,&y),mp[{x,y}]=mp[{y,x}]=1;
-		while(scanf("%d",&s[++q].op))
-		{
-			if(s[q].op==-1){q--;break;}
-			scanf("%d%d",&s[q].a,&s[q].b);
-			if(!s[q].op)mp[{s[q].a,s[q].b}]=mp[{s[q].b,s[q].a}]=0;
-		}
-		reverse(s+1,s+q+1);
-		for(map<pair<int,int>,int>::iterator it=mp.begin();it!=mp.end();it++)if(it->second)
-		{
-			mp[{it->first.second,it->first.first}]=0; 
-			x=findp(it->first.first);y=findp(it->first.second);
-			if(st.find(x)!=st.find(y))st.makeroot(x),st.fa[x]=y;
-			else
-			{
-				if(x==y)continue;
-				st.makeroot(x);st.access(y);st.splay(y);
-				st.dfs(y);
-				int t=findp(y);
-				st.fa[t]=findp(st.fa[y]);
-				st.ch[t][0]=st.ch[t][1]=0;
-				st.maintain(t);
-			}
-		}
-		for(int i=1;i<=q;i++)
-		{
-			if(s[i].op==0)
-			{
-				x=findp(s[i].a);y=findp(s[i].b);
-				st.makeroot(x);st.access(y);st.splay(y);
-				st.dfs(y);
-				int t=findp(y);
-				st.fa[t]=st.fa[y];
-				st.ch[t][0]=st.ch[t][1]=0;
-				st.maintain(t);
-			}
-			if(s[i].op==1)
-			{
-				x=findp(s[i].a);y=findp(s[i].b);
-				st.makeroot(x);st.access(y);st.splay(y);
-				ans[++cur]=st.siz[y]-1;
-			}
-		}
-		for(int i=cur;i>=1;i--)printf("%d\n",ans[i]);
-		return 0;
-	}
+    #include<cstring>
+    #include<algorithm>
+    #include<map>
+    using namespace std;
+    const int maxn=200010;
+    int f[maxn];
+    int findp(int x){return f[x]?f[x]=findp(f[x]):x;}
+    void merge(int x,int y){x=findp(x);y=findp(y);if(x!=y)f[x]=y;}
+    struct Splay
+    {
+    	int ch[maxn][2],fa[maxn],tag[maxn],siz[maxn];
+    	void clear(int x){ch[x][0]=ch[x][1]=fa[x]=tag[x]=siz[x]=0;}
+    	int getch(int x){return ch[findp(fa[x])][1]==x;}
+    	int isroot(int x){return ch[findp(fa[x])][0]!=x&&ch[findp(fa[x])][1]!=x;}
+    	void maintain(int x){clear(0);if(x)siz[x]=siz[ch[x][0]]+1+siz[ch[x][1]];}
+    	void pushdown(int x)
+    	{
+    		if(tag[x])
+    		{
+    			if(ch[x][0])tag[ch[x][0]]^=1,swap(ch[ch[x][0]][0],ch[ch[x][0]][1]);
+    			if(ch[x][1])tag[ch[x][1]]^=1,swap(ch[ch[x][1]][0],ch[ch[x][1]][1]);
+    			tag[x]=0;
+    		}
+    	}
+    	void print(int x)
+    	{
+    		if(!x)return;
+    		pushdown(x);
+    		print(ch[x][0]);
+    		printf("%d ",x);
+    		print(ch[x][1]);
+    	}
+    	void update(int x)
+    	{
+    		if(!isroot(x))update(findp(fa[x]));
+    		pushdown(x);
+    	}
+    	void rotate(int x)
+    	{
+    		x=findp(x);
+    		int y=findp(fa[x]),z=findp(fa[y]),chx=getch(x),chy=getch(y);
+    		fa[x]=z;if(!isroot(y))ch[z][chy]=x;
+    		ch[y][chx]=ch[x][chx^1];fa[ch[x][chx^1]]=y;
+    		ch[x][chx^1]=y;fa[y]=x;
+    		maintain(y);maintain(x);if(z)maintain(z);
+    	}
+    	void splay(int x)
+    	{
+    		x=findp(x);
+    		update(x);
+    		for(int f=findp(fa[x]);f=findp(fa[x]),!isroot(x);rotate(x))
+    		if(!isroot(f))rotate(getch(x)==getch(f)?f:x);
+    	}
+    	void access(int x)
+    	{
+    		for(int f=0;x;f=x,x=findp(fa[x]))
+    		splay(x),ch[x][1]=f,maintain(x);
+    	}
+    	void makeroot(int x)
+    	{
+    		x=findp(x);
+    		access(x);splay(x);
+    		tag[x]^=1;
+    		swap(ch[x][0],ch[x][1]);
+    	}
+    	int find(int x)
+    	{
+    		x=findp(x);
+    		access(x);splay(x);
+    		while(ch[x][0])x=ch[x][0];
+    		splay(x);
+    		return x;
+    	}
+    	void dfs(int x)
+    	{
+    		pushdown(x);
+    		if(ch[x][0])dfs(ch[x][0]),merge(ch[x][0],x);
+    		if(ch[x][1])dfs(ch[x][1]),merge(ch[x][1],x);
+    	}
+    }st;
+    int n,m,q,x,y,cur,ans[maxn];
+    struct oper{int op,a,b;}s[maxn];
+    map<pair<int,int>,int>mp;
+    int main()
+    {
+    	scanf("%d%d",&n,&m);
+    	for(int i=1;i<=n;i++)st.maintain(i);
+    	for(int i=1;i<=m;i++)scanf("%d%d",&x,&y),mp[{x,y}]=mp[{y,x}]=1;
+    	while(scanf("%d",&s[++q].op))
+    	{
+    		if(s[q].op==-1){q--;break;}
+    		scanf("%d%d",&s[q].a,&s[q].b);
+    		if(!s[q].op)mp[{s[q].a,s[q].b}]=mp[{s[q].b,s[q].a}]=0;
+    	}
+    	reverse(s+1,s+q+1);
+    	for(map<pair<int,int>,int>::iterator it=mp.begin();it!=mp.end();it++)if(it->second)
+    	{
+    		mp[{it->first.second,it->first.first}]=0; 
+    		x=findp(it->first.first);y=findp(it->first.second);
+    		if(st.find(x)!=st.find(y))st.makeroot(x),st.fa[x]=y;
+    		else
+    		{
+    			if(x==y)continue;
+    			st.makeroot(x);st.access(y);st.splay(y);
+    			st.dfs(y);
+    			int t=findp(y);
+    			st.fa[t]=findp(st.fa[y]);
+    			st.ch[t][0]=st.ch[t][1]=0;
+    			st.maintain(t);
+    		}
+    	}
+    	for(int i=1;i<=q;i++)
+    	{
+    		if(s[i].op==0)
+    		{
+    			x=findp(s[i].a);y=findp(s[i].b);
+    			st.makeroot(x);st.access(y);st.splay(y);
+    			st.dfs(y);
+    			int t=findp(y);
+    			st.fa[t]=st.fa[y];
+    			st.ch[t][0]=st.ch[t][1]=0;
+    			st.maintain(t);
+    		}
+    		if(s[i].op==1)
+    		{
+    			x=findp(s[i].a);y=findp(s[i].b);
+    			st.makeroot(x);st.access(y);st.splay(y);
+    			ans[++cur]=st.siz[y]-1;
+    		}
+    	}
+    	for(int i=cur;i>=1;i--)printf("%d\n",ans[i]);
+    	return 0;
+    }
 
     ```
 
@@ -829,14 +827,13 @@ $1<n<3\times 10^4,1<m<10^5,0\le q\le 4\times 10^4$
 
 LCT 并不能直接处理边权，此时需要对每条边建立一个对应点，方便查询链上的边信息。利用这一技巧可以动态维护生成树。
 
-
 ### 一些题
 
--   [luogu P4180 【模板】严格次小生成树\[BJWC2010\]](https://www.luogu.org/problemnew/show/P4180)
+-   [luogu P4180【模板】严格次小生成树\[BJWC2010\]](https://www.luogu.org/problemnew/show/P4180)
 
 -   [luogu P4234 最小差值生成树](https://www.luogu.org/problemnew/show/P4234)
 
--   [luogu P2387 \[NOI2014\]魔法森林](https://www.luogu.org/problemnew/show/P2387)
+-   [luogu P2387\[NOI2014\]魔法森林](https://www.luogu.org/problemnew/show/P2387)
 
 ## 维护子树信息
 
