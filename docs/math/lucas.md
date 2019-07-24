@@ -22,3 +22,10 @@ long long Lucas(long long n, long long m, long long p) {
   return (C(n % p, m % p, p) * Lucas(n / p, m / p, p)) % p;
 }
 ```
+
+## 习题
+
+- [Luogu3807 【模板】卢卡斯定理](https://www.luogu.org/problemnew/show/P3807)
+
+- [SDOI2010 古代猪文](https://www.luogu.org/problemnew/show/P2480)
+

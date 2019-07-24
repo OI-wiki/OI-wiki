@@ -1,4 +1,4 @@
-## exLucas 内容
+## 扩展Lucas定理
 
 Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是素数的情况，就需要用到 exLucas 定理。
 
@@ -78,3 +78,8 @@ LL exlucas(LL m, LL n, LL P) {
   return CRT(cnt, a, p);
 }
 ```
+
+## 习题
+
+- [Luogu4720 【模板】扩展卢卡斯](https://www.luogu.org/problemnew/show/P4720)
+
