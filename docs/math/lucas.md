@@ -36,6 +36,7 @@ $$
 $$
 
 注意过程中没有用到费马小定理，因此这一推导不仅适用于整数，亦适用于多项式。因此我们可以考虑二项式 $f(x)=(ax^n + bx^m)^p \bmod p$ 的结果
+
 $$
 \begin{align}
 (ax^n + bx^m)^p &\equiv a^p x^{pn} + b^p x^{pm} \\
@@ -43,6 +44,7 @@ $$
 &\equiv f(x^p)
 \end{align}
 $$
+
 考虑二项式 $(1+x)^n \bmod p$，那么 $\displaystyle\binom n m$ 就是求其在 $x^m$ 次项的取值。使用上述引理，我们可以得到
 
 $$
