@@ -141,6 +141,7 @@ nav:
     - 数论函数相关:
       - 莫比乌斯反演: math/mobius.md
       - 杜教筛: math/du-sieves.md
+      - Min25 筛: math/min25-sieve.md
     - 多项式:
       - 多项式部分简介: math/poly/intro.md
       - 拉格朗日插值: math/poly/lagrange-poly.md
