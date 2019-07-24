@@ -130,6 +130,8 @@ $$
 
  $p$ 的剩余系大小为 $p$ ，意味着在前 $p^2+1$ 个数对中必有两个相同的数对，于是这两个数对可以往后生成相同的斐波那契数列，那么他们就是周期性的。
 
+事实上，我们有一个远比它要强的结论。模 $n$ 意义下斐波那契数列的周期被称为[皮萨诺周期](https://en.wikipedia.org/wiki/Pisano_period)（[OEIS A001175](http://oeis.org/A001175)），该数可以证明总是不超过 $6n$ ，且只有在满足 $n=2\times 5^k$ 的形式时才取到等号。
+
 ## 习题
 
 -   [SPOJ - Euclid Algorithm Revisited](http://www.spoj.com/problems/MAIN74/)

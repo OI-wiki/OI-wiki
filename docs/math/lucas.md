@@ -12,7 +12,7 @@ $$
 
 观察上述表达式，可知 $n\bmod p$ 和 $m\bmod p$ 一定是小于 $p$ 的数，可以直接求解， $\displaystyle\binom{\left\lfloor n/p \right\rfloor}{\left\lfloor m/p\right\rfloor}$ 可以继续用 Lucas 定理求解。这也就要求 $p$ 的范围不能够太大，一般在 $10^5$ 左右。边界条件：当 $m=0$ 的时候，返回 $1$ 。
 
-时间复杂度为 $O(p\log_{p}{n})$ 。
+时间复杂度为 $O(f(p) + g(n)\log_{p}{n})$ ，其中 $f(n)$ 为预处理组合数的复杂度， $g(n)$ 为单次求组合数的复杂度。
 
 ### 代码实现
 
@@ -22,6 +22,39 @@ long long Lucas(long long n, long long m, long long p) {
   return (C(n % p, m % p, p) * Lucas(n / p, m / p, p)) % p;
 }
 ```
+
+### Lucas 定理的证明
+
+考虑 $\displaystyle\binom{p}{n} \bmod p$ 的取值，注意到 $\displaystyle\binom{p}{n} = \frac{p!}{n!(p-n)!}$ ，分子的质因子分解中 $p$ 次项恰为 $1$ ，因此只有当 $n = 0$ 或 $n = p$ 的时候 $n!(p-n)!$ 的质因子分解中含有 $p$ ，因此 $\displaystyle\binom{p}{n} \bmod p = [n = 0 \vee n = p]$ 。进而我们可以得出
+
+$$
+\begin{align}
+(a+b)^p &= \sum_{n=0}^p \binom pn a^n b^{p-n}\\
+&\equiv \sum_{n=0}^p [n=0\vee n=p] a^n b^{p-n}\\
+&\equiv a^p + b^p \pmod p
+\end{align}
+$$
+
+注意过程中没有用到费马小定理，因此这一推导不仅适用于整数，亦适用于多项式。因此我们可以考虑二项式 $f(x)=(ax^n + bx^m)^p \bmod p$ 的结果
+
+$$
+\begin{align}
+(ax^n + bx^m)^p &\equiv a^p x^{pn} + b^p x^{pm} \\
+&\equiv ax^{pn} + bx^{pm}\\
+&\equiv f(x^p)
+\end{align}
+$$
+
+考虑二项式 $(1+x)^n \bmod p$ ，那么 $\displaystyle\binom n m$ 就是求其在 $x^m$ 次项的取值。使用上述引理，我们可以得到
+
+$$
+\begin{align}
+(1+x)^n &\equiv (1+x)^{p\lfloor n/p \rfloor} (1+x)^{n\bmod p}\\
+&\equiv (1+x^p)^{\lfloor n/p \rfloor} (1+x)^{n\bmod p}
+\end{align}
+$$
+
+注意前者只有在 $p$ 的倍数位置才有取值，而后者最高次项为 $n\bmod p \le p-1$ ，因此这两部分的卷积在任何一个位置只有最多一种方式贡献取值，即在前者部分取 $p$ 的倍数次项，后者部分取剩余项，即 $\displaystyle\binom{n}{m}\bmod p = \binom{\left\lfloor n/p \right\rfloor}{\left\lfloor m/p\right\rfloor}\cdot\binom{n\bmod p}{m\bmod p}\bmod p$ 。
 
 ## exLucas 定理
 
