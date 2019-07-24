@@ -6,11 +6,11 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
 
 ## 贡献方式
 
- **我们现在在使用[Projects](https://github.com/24OI/OI-wiki/projects)，这里详细列举了正在做的事情以及待做事项。**
+ **我们现在在使用[Projects](https://github.com/24OI/OI-wiki/projects)，这里详细列举了正在做的事情以及待做事项。** 
 
- **在开始编写一段内容之前，请查阅[Issues](https://github.com/24OI/OI-wiki/issues)，确认没有别人在做相同的工作之后，**
+ **在开始编写一段内容之前，请查阅[Issues](https://github.com/24OI/OI-wiki/issues)，确认没有别人在做相同的工作之后，** 
 
- **开个[新 issue](https://github.com/24OI/OI-wiki/issues/new)记录你要编写的内容。**
+ **开个[新 issue](https://github.com/24OI/OI-wiki/issues/new)记录你要编写的内容。** 
 
 ### 我之前没怎么用过 GitHub
 
@@ -65,21 +65,20 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
     -   例子，给出 1 ~ 2 个典型的例子。
     -   题目，在该标题下， **只需要给出题目名字、题目链接** 。
 
-
 ### 文档中 LaTeX 公式的格式
 
-- 对于运算符，请使用正体；对于变量，请使用斜体。如 $\sin$，$\log$，而不是 $sin$，$log$ 。
-- 在不会引起歧义的情况下，请用 `\times` 代替星号。如 $a\times b$，而不是 $a*b$。
-- 请用 `\vdots`，`\cdots`，`\ldots` 代替 `...`。如 $a_1,a_2,\cdots a_n$，而不是 $a_1,a_2,... a_n$。
-- 请用 `=` 代替 `==`。如 $a=b$，而不是 $a==b$。
-- 请用 `a\bmod b` 代替 `a%b`。如$a\bmod b$，而不是 $a%b$。
+-   对于运算符，请使用正体；对于变量，请使用斜体。如 $\sin$ ， $\log$ ，而不是 $sin$ ， $log$ 。
+-   在不会引起歧义的情况下，请用 `\times` 代替星号。如 $a\times b$ ，而不是 $a*b$ 。
+-   请用 `\vdots` ， `\cdots` ， `\ldots` 代替 `...` 。如 $a_1,a_2,\cdots a_n$ ，而不是 $a_1,a_2,... a_n$ 。
+-   请用 `=` 代替 `==` 。如 $a=b$ ，而不是 $a==b$ 。
+-   请用 `a\bmod b` 代替 `a%b` 。如 $a\bmod b$ ，而不是 $a%b$ 。
 
 ### 文档存储的格式
 
 对于每类要编写的内容，对应的文档应该存储在合适的目录下。
 
 -   images，存储文档介绍时所使用的图片，位置为所添加的目录下（即格式为 `![](./images/xx.jpg)` ）。
--    **文件名请务必都小写，以 `-` 分割，如 `file-name` 。**
+-    **文件名请务必都小写，以 `-` 分割，如 `file-name` 。** 
 
 ## F.A.Q.
 
@@ -184,7 +183,7 @@ pip install -U -r requirements.txt
     1.  列表前要有空行，新开一段。
     2.   `1. 例子` 点号后要有空格。
 3.  行间公式不能写在一行里，否则会被当做是行内公式
-4.  伪代码请使用 ```` ```text````
+4.  伪代码请使用 ```` ```text```` 
 
 #### GitHub 是不是不显示我的数学公式？
 
