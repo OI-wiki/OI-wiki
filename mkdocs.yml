@@ -169,9 +169,7 @@ nav:
     - 线性规划: math/linear-programming.md
     - 单纯形: math/simplex.md
     - 博弈论: math/game-theory.md
-    - 卢卡斯定理: 
-      - 卢卡斯定理: math/lucas.md
-      - 拓展卢卡斯定理: math/ex-lucas.md  
+    - 卢卡斯 & 拓展卢卡斯: math/lucas.md
     - 数学杂项: math/misc.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
