@@ -19,6 +19,7 @@ nav:
     - Getting Started: index.md
     - OI 赛事与赛制: intro/mode.md
     - ICPC/CCPC 赛事与赛制: intro/icpc.md
+    - 学习路线: intro/roadmap.md
     - 学习资源: intro/resources.md
     - 常见错误: intro/common-mistakes.md
     - 常见技巧: intro/common-tricks.md
@@ -44,8 +45,40 @@ nav:
     - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
-  - 基础部分:
-    - 基础部分简介: basic/index.md
+  - 语言基础:
+    - C++ 基础:
+      - hello world!: lang/helloworld.md
+      - 变量: lang/variable.md
+      - 数组: lang/array.md
+      - 结构体: lang/struct.md
+      - 指针: lang/pointer.md
+      - 分支: lang/branch.md
+      - 循环: lang/loop.md
+      - 函数: lang/function.md
+      - 文件操作: lang/file-operation.md
+    - C++ 标准库:
+      - C++ 标准库简介: lang/csl/index.md
+      - STL 容器:
+        - STL 容器简介: lang/csl/container.md
+        - 迭代器: lang/csl/iterator.md
+        - 序列式容器: lang/csl/sequence-container.md
+        - 关联式容器: lang/csl/associative-container.md
+        - 无序关联式容器: lang/csl/unordered-container.md
+        - 容器适配器: lang/csl/container-adapter.md
+      - STL 算法: lang/csl/algorithm.md
+      - bitset: lang/csl/bitset.md
+      - string: lang/csl/string.md
+    - C++ 进阶:
+      - 类: lang/class.md
+      - 新版 C++ 特性: lang/new.md
+      - pb_ds:
+        - 堆: lang/pb-ds/priority-queue.md
+        - 平衡树: lang/pb-ds/tree.md
+    - pascal 转 C++ 急救: lang/pascaltocpp.md
+    - python 速成: lang/python.md
+    - java 速成: lang/java.md
+  - 思想方法:
+    - 思想方法简介: basic/index.md
     - 枚举: basic/enumerate.md
     - 模拟: basic/simulate.md
     - 递归 & 分治: basic/divide-and-conquer.md
@@ -63,11 +96,10 @@ nav:
       - 希尔排序: basic/shell-sort.md
       - 排序相关 STL: basic/stl-sort.md
       - 排序应用: basic/use-of-sort.md
-    - 表达式求值: basic/expression.md
     - 二分: basic/binary.md
+    - 倍增: basic/binary-acc.md
     - 构造: basic/construction.md
     - 前缀和 & 差分: basic/prefix-sum.md
-    - 文件操作: basic/file-operation.md
   - 搜索:
     - 搜索部分简介: search/index.md
     - DFS: search/dfs.md
@@ -199,7 +231,7 @@ nav:
       - 树分块: ds/tree-decompose.md
     - 单调栈: ds/monotonous-stack.md
     - 单调队列: ds/monotonous-queue.md
-    - 倍增: ds/sparse-table.md
+    - ST 表: ds/sparse-table.md
     - 树状数组: ds/bit.md
     - 线段树: ds/segment.md
     - 线段树 & 区间历史最值: ds/segment-tree-beats.md
@@ -308,6 +340,9 @@ nav:
     - 约瑟夫问题: misc/josephus.md
     - Stern-Brocot 树与 Farey 序列: misc/stern-brocot.md
     - 格雷码: misc/gray-code.md
+    - 表达式求值: misc/expression.md
+  - 专题:
+    - RMQ: topic/rmq.md
 
 # Theme
 theme:
