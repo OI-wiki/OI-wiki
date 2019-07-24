@@ -23,12 +23,6 @@ long long Lucas(long long n, long long m, long long p) {
 }
 ```
 
-### 习题
-
--   [Luogu3807【模板】卢卡斯定理](https://www.luogu.org/problemnew/show/P3807)
-
--   [SDOI2010 古代猪文](https://www.luogu.org/problemnew/show/P2480)
-
 ## exLucas 定理
 
 Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是素数的情况，就需要用到 exLucas 定理。
@@ -114,6 +108,9 @@ LL exlucas(LL m, LL n, LL P) {
 }
 ```
 
-### 习题
+## 习题
 
+-   [Luogu3807【模板】卢卡斯定理](https://www.luogu.org/problemnew/show/P3807)
+-   [SDOI2010 古代猪文  卢卡斯定理](https://www.luogu.org/problemnew/show/P2480)
 -   [Luogu4720【模板】扩展卢卡斯](https://www.luogu.org/problemnew/show/P4720)
+
