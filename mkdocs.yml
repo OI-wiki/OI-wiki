@@ -90,6 +90,7 @@ nav:
     - 状压 DP: dp/state.md
     - 数位 DP: dp/number.md
     - 插头 DP: dp/plug.md
+    - 计数 DP: dp/count.md
     - DP 优化:
       - 二进制分组解多重背包: dp/optimizations/binary-knapsack.md
       - 单调队列/单调栈优化: dp/optimizations/monotonous-queue-stack.md
