@@ -32,32 +32,32 @@ $$
 \end{aligned}
 $$
 
-最后一步推导基于这样一个事实：对于满足 $p_{i}^{c} \le n < p_{i}^{c + 1}$ 的 $c$，有 $p_{i}^{c + 1} > n \iff n / p_{i}^{c} < p_{i} < p_{i + 1}$，故 $F_{i + 1}\left(n / p_{i}^{c}\right) = 0$。  
-其边界值即为 $F_{k}(n) = 0 (p_{k} > n)$。
+最后一步推导基于这样一个事实：对于满足 $p_{i}^{c} \le n < p_{i}^{c + 1}$ 的 $c$ ，有 $p_{i}^{c + 1} > n \iff n / p_{i}^{c} < p_{i} < p_{i + 1}$ ，故 $F_{i + 1}\left(n / p_{i}^{c}\right) = 0$ 。  
+其边界值即为 $F_{k}(n) = 0 (p_{k} > n)$ 。
 
-假设现在已经求出了所有的 $F_{\mathrm{prime}}(n)$，那么有两种方式可以求出所有的 $F_{k}(n)$：
+假设现在已经求出了所有的 $F_{\mathrm{prime}}(n)$ ，那么有两种方式可以求出所有的 $F_{k}(n)$ ：
 
-1. 直接按照递推式计算。
-2. 从大到小枚举 $p$ 转移，仅当 $p^{2} < n$ 时转移增加值不为零，故按照递推式后缀和优化即可。
+1.  直接按照递推式计算。
+2.  从大到小枚举 $p$ 转移，仅当 $p^{2} < n$ 时转移增加值不为零，故按照递推式后缀和优化即可。
 
----
+* * *
 
-现在考虑如何计算 $F_{\mathrm{prime}}{(n)}$。  
+现在考虑如何计算 $F_{\mathrm{prime}}{(n)}$ 。  
 观察求 $F_{k}(n)$ 的过程，容易发现 $F_{\mathrm{prime}}$ 有且仅有 $1, 2, \dots, \left\lfloor\sqrt{n}\right\rfloor, n / \sqrt{n}, \dots, n / 2, n$ 这 $O(\sqrt{n})$ 处的点值是有用的。  
-一般情况下，$f(p)$ 是一个关于 $p$ 的低次多项式，可以表示为 $f(p) = \sum a_{i} p^{c_{i}}$。  
-那么对于每个 $p^{c_{i}}$，其对 $F_{\mathrm{prime}}(n)$ 的贡献即为 $a_{i} \sum_{2 \le p \le n} p^{c_{i}}$。  
-分开考虑每个 $p^{c_{i}}$ 的贡献，问题就转变为了：给定 $n, s, g(p) = p^{s}$，对所有的 $m = n / i$，求 $\sum_{p \le m} g(p)$。
+一般情况下， $f(p)$ 是一个关于 $p$ 的低次多项式，可以表示为 $f(p) = \sum a_{i} p^{c_{i}}$ 。  
+那么对于每个 $p^{c_{i}}$ ，其对 $F_{\mathrm{prime}}(n)$ 的贡献即为 $a_{i} \sum_{2 \le p \le n} p^{c_{i}}$ 。  
+分开考虑每个 $p^{c_{i}}$ 的贡献，问题就转变为了：给定 $n, s, g(p) = p^{s}$ ，对所有的 $m = n / i$ ，求 $\sum_{p \le m} g(p)$ 。
 
 > Notice： $g(p) = p^{s}$ 是完全积性函数！
 
-于是设 $G_{k}(n) := \sum_{i = 1}^{n} \left[p_{k} < \operatorname{lpf}(i) \lor \operatorname{isprime}(i)\right] g(i)$，即埃筛第 $k$ 轮筛完后剩下的数的 $g$ 值之和。  
-对于一个合数 $x$，必定有 $\operatorname{lpf}(x) \le \sqrt{x}$，则 $F_{\mathrm{prime}} = G_{\left\lfloor\sqrt{n}\right\rfloor}$，故只需筛到 $G_{\left\lfloor\sqrt{n}\right\rfloor}$ 即可。  
-考虑 $G$ 的边界值，显然为 $G_{0}(n) = \sum_{i = 2}^{n} g(i)$。（还记得吗？特别约定了 $p_{0} = 1$）  
+于是设 $G_{k}(n) := \sum_{i = 1}^{n} \left[p_{k} < \operatorname{lpf}(i) \lor \operatorname{isprime}(i)\right] g(i)$ ，即埃筛第 $k$ 轮筛完后剩下的数的 $g$ 值之和。  
+对于一个合数 $x$ ，必定有 $\operatorname{lpf}(x) \le \sqrt{x}$ ，则 $F_{\mathrm{prime}} = G_{\left\lfloor\sqrt{n}\right\rfloor}$ ，故只需筛到 $G_{\left\lfloor\sqrt{n}\right\rfloor}$ 即可。  
+考虑 $G$ 的边界值，显然为 $G_{0}(n) = \sum_{i = 2}^{n} g(i)$ 。（还记得吗？特别约定了 $p_{0} = 1$ ）  
 对于转移，考虑埃筛的过程，分开讨论每部分的贡献，有：
 
-1. 对于 $n < p_{k}^{2}$ 的部分，$G$ 值不变，即 $G_{k}(n) = G_{k - 1}(n)$。
-2. 对于 $p_{k}^{2} \le n$ 的部分，被筛掉的数必有质因子 $p_{k}$，即 $-g(p_{k}) G_{k - 1}(n / p_{k})$。
-3. 对于第二部分，由于 $p_{k}^{2} \le n \iff p_{k} \le n / p_{k}$，故会有 $\operatorname{lpf}(i) < p_{k}$ 的 $i$ 被减去。这部分应当加回来，即 $g(p_{k}) G_{k - 1}(p_{k - 1})$。
+1.  对于 $n < p_{k}^{2}$ 的部分， $G$ 值不变，即 $G_{k}(n) = G_{k - 1}(n)$ 。
+2.  对于 $p_{k}^{2} \le n$ 的部分，被筛掉的数必有质因子 $p_{k}$ ，即 $-g(p_{k}) G_{k - 1}(n / p_{k})$ 。
+3.  对于第二部分，由于 $p_{k}^{2} \le n \iff p_{k} \le n / p_{k}$ ，故会有 $\operatorname{lpf}(i) < p_{k}$ 的 $i$ 被减去。这部分应当加回来，即 $g(p_{k}) G_{k - 1}(p_{k - 1})$ 。
 
 则有：
 
@@ -85,8 +85,8 @@ $$
 \end{aligned}
 $$
 
-对于空间复杂度，可以发现不论是 $F_{k}$ 还是 $F_{\mathrm{prime}}$，其均只在 $n / i$ 处取有效点值，共 $O(\sqrt{n})$ 个。  
-则可以使用[杜教筛一节中介绍的 trick](#Implementation) 来将空间复杂度优化至 $O(\sqrt{n})$。
+对于空间复杂度，可以发现不论是 $F_{k}$ 还是 $F_{\mathrm{prime}}$ ，其均只在 $n / i$ 处取有效点值，共 $O(\sqrt{n})$ 个。  
+则可以使用[杜教筛一节中介绍的 trick](#Implementation)来将空间复杂度优化至 $O(\sqrt{n})$ 。
 
 ### Implementation
 
@@ -94,43 +94,43 @@ $$
 
 对于 $F_{\mathrm{prime}}(n)$ 的计算，直接按递推式实现即可。
 
-对于 $p_{k}^{2} \le n$，可以用线性筛预处理出 $s_{k} := F_{\mathrm{prime}}(p_{k})$ 来替代 $F_{k}$ 递推式中的 $F_{\mathrm{prime}}(p_{k - 1})$。  
-相应地，$G$ 递推式中的 $G_{k - 1}(p_{k - 1}) = \sum_{i = 1}^{k - 1} g(p_{i})$ 也可以用此方法预处理。
+对于 $p_{k}^{2} \le n$ ，可以用线性筛预处理出 $s_{k} := F_{\mathrm{prime}}(p_{k})$ 来替代 $F_{k}$ 递推式中的 $F_{\mathrm{prime}}(p_{k - 1})$ 。  
+相应地， $G$ 递推式中的 $G_{k - 1}(p_{k - 1}) = \sum_{i = 1}^{k - 1} g(p_{i})$ 也可以用此方法预处理。
 
-用 Extended Eratosthenes Sieve 求**积性函数** $f$ 的前缀和时，应当明确以下几点：
+用 Extended Eratosthenes Sieve 求 **积性函数**  $f$ 的前缀和时，应当明确以下几点：
 
-- 如何快速（一般是线性时间复杂度）筛出前 $\sqrt{n}$ 个 $f$ 值；
-- $f(p)$ 的多项式表示；
-- 如何快速求出 $f(p^{c})$。
+-   如何快速（一般是线性时间复杂度）筛出前 $\sqrt{n}$ 个 $f$ 值；
+-    $f(p)$ 的多项式表示；
+-   如何快速求出 $f(p^{c})$ 。
 
 明确上述几点之后按顺序实现以下几部分即可：
 
-1. 筛出 $[1, \sqrt{n}]$ 内的质数与前 $\sqrt{n}$ 个 $f$ 值；
-2. 对 $f(p)$ 多项式表示中的每一项筛出对应的 $G$，合并得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个有用点值；
-3. 按照 $F_{k}$ 的递推式实现递归，求出 $F_{1}(n)$。
+1.  筛出 $[1, \sqrt{n}]$ 内的质数与前 $\sqrt{n}$ 个 $f$ 值；
+2.  对 $f(p)$ 多项式表示中的每一项筛出对应的 $G$ ，合并得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个有用点值；
+3.  按照 $F_{k}$ 的递推式实现递归，求出 $F_{1}(n)$ 。
 
 ### Examples
 
 #### Prefix Sum of Möbius Function
 
-求 $\displaystyle \sum_{i = 1}^{n} \mu(i)$。
+求 $\displaystyle \sum_{i = 1}^{n} \mu(i)$ 。
 
-易知 $f(p) = -1$。则 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$。  
+易知 $f(p) = -1$ 。则 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$ 。  
 直接筛即可得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个所需点值。
-
 
 #### Prefix Sum of Euler's Totient Function
 
-求 $\displaystyle \sum_{i = 1}^{n} \varphi(i)$。
+求 $\displaystyle \sum_{i = 1}^{n} \varphi(i)$ 。
 
-首先易知 $f(p) = p - 1$。  
-对于 $f(p)$ 的一次项 $(p)$，有 $g(p) = p, G_{0}(n) = \sum_{i = 2}^{n} g(i) = \frac{(n + 2) (n - 1)}{2}$；  
-对于 $f(p)$ 的常数项 $(-1)$，有 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$。  
+首先易知 $f(p) = p - 1$ 。  
+对于 $f(p)$ 的一次项 $(p)$ ，有 $g(p) = p, G_{0}(n) = \sum_{i = 2}^{n} g(i) = \frac{(n + 2) (n - 1)}{2}$ ；  
+对于 $f(p)$ 的常数项 $(-1)$ ，有 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$ 。  
 筛两次加起来即可得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个所需点值。
 
 #### [「LOJ #6053」简单的函数](https://loj.ac/problem/6053)
 
-给定 $f(n)$：
+给定 $f(n)$ ：
+
 $$
 f(n) = \begin{cases}
     1 & n = 1 \\
