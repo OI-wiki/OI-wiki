@@ -232,3 +232,9 @@ copyright: SATA
 ```text
 pagetime:
 ```
+
+### 为什么作者信息统计处没有我的名字
+
+是因为 Github API 在文件目录变更后不能跟踪统计，我们在文件头手动维护了一个作者列表来解决这个问题。如果你发现自己写过一个页面中的部分内容，但是没有被记录在页面的作者去，可以把自己的 Github ID 加入到文件头的 `author` 字段，格式是 `author: Ir1d, cjsoft`，相邻两个 ID 之间用 `, ` 隔开。
+
+注：这里记录的 ID 是对应到 Github Profile 的地址（即点击 Github 页面右上角之后跳转到的个人主页的 url）
