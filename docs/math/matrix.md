@@ -261,4 +261,4 @@ $$
 -   [洛谷 P1349 广义斐波那契数列](https://www.luogu.org/problemnew/show/P1349)， $\text{base}$ 矩阵需要变化一下
 -   [洛谷 P1939【模板】矩阵加速（数列）](https://www.luogu.org/problemnew/show/P1939)， $\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
 
- **本页面部分内容译自博文[Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths)与其英文翻译版[Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+     **本页面部分内容译自博文[Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths)与其英文翻译版[Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
