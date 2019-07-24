@@ -905,7 +905,7 @@ st.siz2[y] += st.siz[x];
 ??? "参考代码"
 
     ```cpp
-    	#include<cstdio>
+    #include<cstdio>
     #include<cstring>
     #include<algorithm>
     using namespace std;
