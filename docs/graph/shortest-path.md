@@ -33,7 +33,7 @@
 
  `f[0][x][y]` ：边权，或者 $0$ ，或者 $+\infty$ （ `f[0][x][x]` 什么时候应该是 $+\infty$ ？）
 
- `f[k][x][y] = min(f[k-1][x][y], f[k-1][x][k]+f[k-1][k][y])`
+ `f[k][x][y] = min(f[k-1][x][y], f[k-1][x][k]+f[k-1][k][y])` 
 
 上面两行都显然是对的，然而这个做法空间是 $O(N^3)$ 。
 
@@ -131,7 +131,7 @@ while (1) for each edge(u, v) relax(u, v);
 
 所以最多循环 $n-1$ 次。
 
-总时间复杂度 $O(NM)$ 。 **（对于最短路存在的图）**
+总时间复杂度 $O(NM)$ 。 **（对于最短路存在的图）** 
 
 ```text
 relax(u, v) {
@@ -229,7 +229,7 @@ IPA:/ˈdikstrɑ/或/ˈdɛikstrɑ/。
 
 （注：如果使用 priority_queue，无法删除某一个旧的结点，只能插入一个权值更小的编号相同结点，这样操作导致堆中元素是 $O(m)$ 的）
 
-如果用线段树（ZKW 线段树）： $(O(n+m)\log n)$
+如果用线段树（ZKW 线段树）： $(O(n+m)\log n)$ 
 
 如果用 Fibonacci 堆： $O(n \log n + m)$ （这就是为啥优秀了）。
 
@@ -277,7 +277,7 @@ for (i = 1; i <= n; i++) {
 
 分层图最短路，一般模型为有 $k$ 次零代价通过一条路径，求总的最小花费。对于这种题目，我们可以采用 DP 相关的思想，设 $\text{dis}_{i, j}$ 表示当前从起点 $i$ 号结点，使用了 $j$ 次免费通行权限后的最短路径。显然， $\text{dis}$ 数组可以这么转移：
 
- $\text{dis}_{i, j} = \min\{\min\{\text{dis}_{from, j - 1}\}, \min\{\text{dis}_{from,j} + w\}\}$
+ $\text{dis}_{i, j} = \min\{\min\{\text{dis}_{from, j - 1}\}, \min\{\text{dis}_{from,j} + w\}\}$ 
 
 其中， $from$ 表示 $i$ 的父亲节点， $w$ 表示当前所走的边的边权。当 $j - 1 \geq k$ 时， $\text{dis}_{from, j}$ = $\infty$ 。
 

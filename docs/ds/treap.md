@@ -79,7 +79,7 @@ void build(int n, int a[]) {
 
 方法三：观察到 treap 是一个笛卡尔树，利用笛卡尔树的 $O(n)$ 建树方法即可，用单调栈维护右脊柱即可。
 
-## 将 treap 包装成为 `set<int>`
+## 将 treap 包装成为 `set<int>` 
 
 ### count 函数
 

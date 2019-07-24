@@ -4,7 +4,7 @@ Kirchhoff 矩阵树定理（简称矩阵树定理）解决了一张图的生成�
 
 ## 本篇记号声明
 
- **本篇中的图，无论无向还是有向，都允许重边，但是不允许自环。**
+ **本篇中的图，无论无向还是有向，都允许重边，但是不允许自环。** 
 
 ### 无向图情况
 
@@ -36,7 +36,7 @@ $$
 D^{out}_{ii}(G) = \mathrm{deg^{out}}(i), D^{out}_{ij} = 0, i\neq j
 $$
 
-类似地定义入度矩阵 $D^{in}(G)$
+类似地定义入度矩阵 $D^{in}(G)$ 
 
 设 $\#e(i,j)$ 为点 $i$ 指向点 $j$ 的有向边数，并定义邻接矩阵 $A$ 为：
 
@@ -74,7 +74,7 @@ $$
 
  **定理 2（矩阵树定理，无向图特征值形式）** 设 $\lambda_1, \lambda_2, \cdots, \lambda_{n-1}$ 为 $L(G)$ 的 $n - 1$ 个非零特征值，那么有
 
- $t(G) = \frac{1}{n}\lambda_1\lambda_2\cdots\lambda_{n-1}$
+ $t(G) = \frac{1}{n}\lambda_1\lambda_2\cdots\lambda_{n-1}$ 
 
  **定理 3（矩阵树定理，有向图根向形式）** 对于任意的 $k$ ，都有
 
@@ -105,12 +105,12 @@ $$
 ## 例题
 
 ???+ note "例题 1"
-    「HEOI2015」小 Z 的房间，可参考<https://www.lydsy.com/JudgeOnline/problem.php?id=4031>。
+「HEOI2015」小 Z 的房间，可参考<https://www.lydsy.com/JudgeOnline/problem.php?id=4031>。
 
  **解** 矩阵树定理的裸题。将每个空房间看作一个结点，根据输入的信息建图，得到 Laplace 矩阵后，任意删掉 $L$ 的第 $i$ 行第 $i$ 列，求这个子式的行列式即可。求行列式的方法就是高斯消元成上三角阵然后算对角线积。另外本题需要在模 $k$ 的整数子环 $\mathbb{Z}_k$ 上进行高斯消元，采用辗转相除法即可。
 
 ???+ note "例题 2"
-    「FJOI2007」轮状病毒，可参考<https://www.lydsy.com/JudgeOnline/problem.php?id=1002>。
+「FJOI2007」轮状病毒，可参考<https://www.lydsy.com/JudgeOnline/problem.php?id=1002>。
 
  **解** 本题的解法很多，这里用矩阵树定理是最直接的解法。当输入为 $n$ 时，容易写出其 $n+1$ 阶的 Laplace 矩阵为：
 
@@ -191,7 +191,7 @@ $$
     改写成 $(\det M_n+2) = 3(\det M_{n-1}+2) - (\det M_{n-2} + 2)$ 后，采用矩阵快速幂即可求出答案。
 
 ???+ note "例题 3"
-    「BZOJ3659」WHICH DREAMED IT
+「BZOJ3659」WHICH DREAMED IT
 
  **解** 本题是 BEST 定理的直接应用，但是要注意，由于题目规定“两种完成任务的方式算作不同当且仅当使用钥匙的顺序不同”，对每个欧拉回路，1 号房间可以沿着任意一条出边出发，从而答案还要乘以 1 号房间的出度。
 

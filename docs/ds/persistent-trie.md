@@ -4,7 +4,7 @@
 
 ??? note " 例题[最大异或和](https://www.lydsy.com/JudgeOnline/problem.php?id=3261)"
     对一个长度为 $n$ 的数组 $a$ 维护以下操作：
-    
+
     1.  在数组的末尾添加一个数 $x$ ，数组的长度 $n$ 自增 $1$ 。
     2.  给出查询区间 $[l,r]$ 和一个值 $k$ ，求当 $l\le p\le r$ 时， $k \oplus \bigoplus^{n}_{i=p} a_i$ 。
 

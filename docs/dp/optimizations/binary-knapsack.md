@@ -20,14 +20,12 @@ for (int i = 1; i <= n; i++) {
   scanf("%d", a + i);
   tot += c[i] * a[i];
   for (int j = 1; j <= a[i]; j *= 2)
-	if (a[i] >= j)
-		a[i] -= j, v[++cur] = c[i] * j;
+    if (a[i] >= j) a[i] -= j, v[++cur] = c[i] * j;
   if (a[i]) v[++cur] = c[i] * a[i];
 }
 for (int i = 1; i <= cur; i++)
   for (int j = m; j >= v[i]; j--)
-	if (f[j - v[i]])
-		f[j] = true;
+    if (f[j - v[i]]) f[j] = true;
 ```
 
 ### 几道练习题

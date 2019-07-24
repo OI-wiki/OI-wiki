@@ -19,14 +19,15 @@ C++ 离散化有现成的 STL 算法：
 ```cpp
 // a[i] 为初始数组,下标范围为 [1, n]
 // len 为离散化后数组的有效长度
-std::sort(a+1,a+1+n);
-len = std::unique(a + 1, a + n + 1) - a - 1 ;// 离散化整个数组的同时求出离散化后本质不同数的个数。
+std::sort(a + 1, a + 1 + n);
+len = std::unique(a + 1, a + n + 1) - a -
+      1;  // 离散化整个数组的同时求出离散化后本质不同数的个数。
 ```
 
 在完成上述离散化之后可以使用 `std::lower_bound` 函数查找离散化之后的排名（即新编号）：
 
 ```cpp
-std::lower_bound(a + 1, a + len + 1, x) - a; // 查询 x 离散化后对应的编号
+std::lower_bound(a + 1, a + len + 1, x) - a;  // 查询 x 离散化后对应的编号
 ```
 
 同样地，我们也可以对 `vector` 进行离散化：

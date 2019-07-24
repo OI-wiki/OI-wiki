@@ -12,11 +12,11 @@ title: OI Wiki
 
  **OI Wiki** 致力于成为一个免费开放且持续更新的知识整合站点，大家可以在这里获取关于 **编程竞赛 (competitive programming)** 有趣又实用的知识，我们为大家准备了竞赛中的基础知识、常见题型、解题思路以及常用工具等内容，帮助大家更快速深入地学习编程竞赛。
 
-本项目受 [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
+本项目受[CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/)的启发，在编写过程中参考了诸多资料，在此一并致谢。
 
-本项目文档内容托管于 [GitHub](https://github.com/OI-wiki/OI-wiki)，主要使用 [Issues](https://github.com/OI-wiki/OI-wiki/issues)/[QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K)/[Telegram](https://t.me/OIwiki) 进行交流沟通，期待你的加入。
+本项目文档内容托管于[GitHub](https://github.com/OI-wiki/OI-wiki)，主要使用[Issues](https://github.com/OI-wiki/OI-wiki/issues)/[QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K)/[Telegram](https://t.me/OIwiki)进行交流沟通，期待你的加入。
 
-Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki)，QQ 群号码为 [`588793226`](https://jq.qq.com/?_wv=1027&k=5EfkM6K)，欢迎加入。
+Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `588793226` ](https://jq.qq.com/?_wv=1027&k=5EfkM6K)，欢迎加入。
 
 ## Material color palette 颜色主题
 

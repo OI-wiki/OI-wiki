@@ -1,4 +1,4 @@
-欧拉函数是什么？ $\varphi(n)$ 表示的是小于等于 $n$ 和 $n$ 互质的数的个数。
+欧拉函数（Euler's totient function），即 $\varphi(n)$ ，表示的是小于等于 $n$ 和 $n$ 互质的数的个数。
 
 比如说 $\varphi(1) = 1$ 。
 
@@ -6,7 +6,7 @@
 
 利用唯一分解定理，我们可以把一个整数唯一地分解为质数幂次的乘积，
 
-设 $n = p_1^{k_1}p_2^{k_2} \cdots p_s^{k_s}$ ，其中 $p_i$ 是质数，那么定义 $\varphi(n) = n \times \prod_{i = 1}^s{\frac{p_i - 1}{p_i}}$
+设 $n = p_1^{k_1}p_2^{k_2} \cdots p_s^{k_s}$ ，其中 $p_i$ 是质数，那么定义 $\varphi(n) = n \times \prod_{i = 1}^s{\frac{p_i - 1}{p_i}}$ 
 
 ## 欧拉函数的一些神奇性质
 
@@ -16,7 +16,7 @@
 
     特别地，当 $n$ 是奇数时 $\varphi(2n) = \varphi(n)$ 。
 
--    $n = \sum_{d | n}{\varphi(d)}$
+-    $n = \sum_{d | n}{\varphi(d)}$ 
 
     利用[莫比乌斯反演](/math/mobius/)相关知识可以得出。
 
@@ -49,3 +49,25 @@ int euler_phi(int n) {
 
 如果是多个数的欧拉函数值，可以利用后面会提到的线性筛法来求得。
 详见：[筛法求欧拉函数](/math/sieve#_2)
+
+## 欧拉定理
+
+与欧拉函数紧密相关的一个定理就是欧拉定理。其描述如下：
+
+若 $\gcd(a, m) = 1$ ，则 $a^{\varphi(m)} \equiv 1 \pmod{m}$ 。
+
+## 扩展欧拉定理
+
+当然也有扩展欧拉定理
+
+$$
+a^b\equiv
+\begin{cases}
+a^{b\bmod\varphi(p)},\,&\gcd(a,\,p)=1\\
+a^b,&\gcd(a,\,p)\ne1,\,b<\varphi(p)\\
+a^{b\bmod\varphi(p)+\varphi(p)},&\gcd(a,\,p)\ne1,\,b\ge\varphi(p)
+\end{cases}
+\pmod p
+$$
+
+证明和 **习题** 详见[欧拉定理](/math/fermat/)

@@ -4,7 +4,7 @@ Split-Merge Treap
 
 ## 对于无旋 Treap 的提示
 
-看楼上的 [Treap 词条](/ds/treap/)
+看楼上的[Treap 词条](/ds/treap/)
 
  **OI 常用的可持久化平衡树** 一般就是 **可持久化无旋转 Treap** 所以推荐首先学习楼上的 **无旋转 Treap** 
 
@@ -55,7 +55,7 @@ Split-Merge Treap
 
 对于 **分裂操作** ，每次分裂路径时 **新建节点** 指向分出来的路径，用 `std::pair` 存新分裂出来的两棵树的根。
 
-`split(x,k)` 返回一个 `std::pair`;
+ `split(x,k)` 返回一个 `std::pair` ;
 
 表示把 $_x$ 为根的树的前 $k$ 个元素放在 **一棵树** 中，剩下的节点构成在另一棵树中，返回这两棵树的根（first 是第一棵树的根，second 是第二棵树的）。
 

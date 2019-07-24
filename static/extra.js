@@ -76,8 +76,8 @@ if (url == "/index.md") {
   script.src = `https://api.github.com/repos/OI-wiki/OI-WIki/commits?path=docs/index.md&callback=foo`;
   document.getElementsByTagName('head')[0].appendChild(script);
 } else if (typeof(url) != 'undefined') {
-  document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/OI-wiki/OI-wiki/commits/master/docs/${url}.md`);
-  script.src = `https://api.github.com/repos/OI-wiki/OI-WIki/commits?path=docs/${url}&callback=foo`;
+  document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/OI-wiki/OI-wiki/commits/master/docs${url}`);
+  script.src = `https://api.github.com/repos/OI-wiki/OI-WIki/commits?path=docs${url}&callback=foo`;
   document.getElementsByTagName('head')[0].appendChild(script);
 } else {
   document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/OI-wiki/OI-wiki/commits/master`);

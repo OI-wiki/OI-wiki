@@ -98,14 +98,14 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
 
 ### 我尝试访问 GitHub 的时候遇到了困难
 
-推荐在 hosts 文件中加入如下几行：（来源：[@GoogleHosts](https://github.com/googlehosts/hosts/blob/master/hosts-files/hosts#L481-L485)）
+推荐在 hosts 文件中加入如下几行：（来源：[@GoogleHosts](https://github.com/googlehosts/hosts/blob/master/hosts-files/hosts#L1380-L1384)）
 
 ```text
-## GitHub Start
+# Github Start
 192.30.253.118	gist.github.com
-192.30.253.112	github.com
-192.30.253.112	www.github.com
-## GitHub End
+192.30.255.112	github.com
+192.30.255.110	www.github.com
+# Github End
 ```
 
 可以在[@GoogleHosts 主页](https://github.com/googlehosts/hosts)上了解到更多信息。

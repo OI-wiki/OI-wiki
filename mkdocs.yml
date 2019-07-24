@@ -123,7 +123,7 @@ nav:
       - 最大公约数: math/gcd.md
       - 欧拉函数: math/euler.md
       - 筛法: math/sieve.md
-      - 费马小定理: math/fermat.md
+      - 欧拉定理 & 费马小定理: math/fermat.md
       - 类欧几里德算法: math/euclidean-like.md
     - 同余方程相关:
       - 裴蜀定理: math/bezouts.md
@@ -163,6 +163,7 @@ nav:
       - 容斥原理: math/inclusion-exclusion-principle.md
       - 抽屉原理: math/drawer-principle.md
     - 概率 & 期望: math/expectation.md
+    - 斐波那契数列: math/fibonacci.md
     - 置换群: math/permutation-group.md
     - 数值积分: math/integral.md
     - 线性规划: math/linear-programming.md
@@ -202,7 +203,7 @@ nav:
     - 线段树: ds/segment.md
     - 线段树 & 区间历史最值: ds/segment-tree-beats.md
     - 划分树: ds/dividing.md
-    - 平衡树:
+    - 二叉搜索树 & 平衡树:
       - 二叉搜索树简介: ds/bst.md
       - Treap: ds/treap.md
       - Splay: ds/splay.md
@@ -210,6 +211,7 @@ nav:
       - Size Balanced Tree: ds/sbt.md
       - AVL 树: ds/avl.md
       - 替罪羊树: ds/scapegoat.md
+      - 笛卡尔树: ds/cartesian-tree.md
     - 树套树:
       - 线段树套线段树: ds/seg-in-seg.md
       - 平衡树套线段树: ds/seg-in-balanced.md
@@ -222,6 +224,7 @@ nav:
       - 可持久化块状数组: ds/persistent-block-array.md
       - 可持久化平衡树: ds/persistent-balanced.md
       - 可持久化字典树: ds/persistent-trie.md
+      - 可持久化可并堆: ds/persistent-heap.md
     - 珂朵莉树: ds/odt.md
     - Link Cut Tree: ds/lct.md
     - Euler Tour Tree: ds/ett.md
@@ -301,6 +304,9 @@ nav:
     - 悬线法: misc/largest-matrix.md
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
+    - 约瑟夫问题: misc/josephus.md
+    - Stern-Brocot 树与 Farey 序列: misc/stern-brocot.md
+    - 格雷码: misc/gray-code.md
 
 # Theme
 theme:
@@ -332,7 +338,7 @@ extra:
   githash: ''
 
 extra_javascript:
-  - '_static/js/extra.js?v=12'
+  - '_static/js/extra.js?v=14'
   - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
 
 
