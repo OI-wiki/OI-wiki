@@ -12,7 +12,7 @@
 
  $A$ 的逆矩阵 $P$ 是使得 $A \times P = I$ 的矩阵。
 
-逆矩阵可以用[高斯消元](/math/gauss/) 的方式来求。
+逆矩阵可以用[高斯消元](/math/gauss/)的方式来求。
 
 ## 运算
 
@@ -34,7 +34,7 @@ $$
 
 矩阵乘法满足结合律，不满足一般的交换律。
 
-利用结合律，矩阵乘法可以利用[快速幂](/math/quick-pow/) 的思想来优化。
+利用结合律，矩阵乘法可以利用[快速幂](/math/quick-pow/)的思想来优化。
 
 在比赛中，由于线性递推式可以表示成矩阵乘法的形式，也通常用矩阵快速幂来求线性递推数列的某一项。
 
@@ -129,7 +129,7 @@ struct mat {
 
 怎么推呢？因为 $F_n=F_{n-1}+F_{n-2}$ ，所以 $\text{base}$ 矩阵第一列应该是 $\left[\begin{array}{ccc} 1 \\ 1 \end{array}\right]$ ，这样在进行矩阵乘法运算的时候才能令 $F_{n-1}$ 与 $F_{n-2}$ 相加，从而得出 $F_n$ 。同理，为了得出 $F_{n-1}$ ，矩阵 $\text{base}$ 的第二列应该为 $\left[\begin{array}{ccc} 1 \\ 0 \end{array}\right]$ 。
 
-综上所述： $\text{base} = \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]$ 原式化为 $\left[\begin{array}{ccc}F_{n-1} & F_{n-2}\end{array}\right] \times \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right] = \left[ \begin{array}{ccc}F_n & F_{n-1} \end{array}\right]$
+综上所述： $\text{base} = \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]$ 原式化为 $\left[\begin{array}{ccc}F_{n-1} & F_{n-2}\end{array}\right] \times \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right] = \left[ \begin{array}{ccc}F_n & F_{n-1} \end{array}\right]$ 
 
 转化为代码，应该怎么求呢？
 
@@ -185,11 +185,11 @@ int main() {
 
     给一个 $n$ 阶有向图，边权为 $1$，然后给一个整数 $k$，你的任务是对于每个点对 $(u,v)$ 找到从 $u$ 到 $v$ 长度为 $k$ 的路径的数量（不一定是简单路径，即路径上的点或者边可能走多次）。
 
-我们将这个图用邻接矩阵 $G$（对于图中的边 $(u\to v)$，令 $G[u,v]=1$，其余为 $0$ 的矩阵；如果有重边，则设 $G[u,v]$ 为重边的数量）表示这个有向图。下述算法同样适用于图有自环的情况。
+我们将这个图用邻接矩阵 $G$ （对于图中的边 $(u\to v)$ ，令 $G[u,v]=1$ ，其余为 $0$ 的矩阵；如果有重边，则设 $G[u,v]$ 为重边的数量）表示这个有向图。下述算法同样适用于图有自环的情况。
 
 显然，该邻接矩阵对应 $k=1$ 时的答案。
 
-假设我们知道长度为 $k$ 的路径条数构成的矩阵，记为矩阵 $C_k$，我们想求 $C_{k+1}$。显然有 DP 转移方程
+假设我们知道长度为 $k$ 的路径条数构成的矩阵，记为矩阵 $C_k$ ，我们想求 $C_{k+1}$ 。显然有 DP 转移方程
 
 $$
 C_{k+1}[i,j] = \sum_{p = 1}^{n} C_k[i,p] \cdot G[p,j]
@@ -215,15 +215,15 @@ $$
 
     给你一个 $n$ 阶加权有向图和一个整数 $k$。对于每个点对 $(u,v)$ 找到从 $u$ 到 $v$ 的恰好包含 $k$ 条边的最短路的长度。（不一定是简单路径，即路径上的点或者边可能走多次）
 
-我们仍构造这个图的邻接矩阵 $G$，$G[i,j]$ 表示从 $i$ 到 $j$ 的边权。如果 $i,j$ 两点之间没有边，那么 $G[i,j]=\infty$。（有重边的情况取边权的最小值）
+我们仍构造这个图的邻接矩阵 $G$ ， $G[i,j]$ 表示从 $i$ 到 $j$ 的边权。如果 $i,j$ 两点之间没有边，那么 $G[i,j]=\infty$ 。（有重边的情况取边权的最小值）
 
-显然上述矩阵对应 $k=1$ 时问题的答案。我们仍假设我们知道 $k$ 的答案，记为矩阵 $L_k$。现在我们想求 $k+1$ 的答案。显然有转移方程
+显然上述矩阵对应 $k=1$ 时问题的答案。我们仍假设我们知道 $k$ 的答案，记为矩阵 $L_k$ 。现在我们想求 $k+1$ 的答案。显然有转移方程
 
 $$
 L_{k+1}[i,j] = \min_{1\le p \le n} \left\{L_k[i,p] + G[p,j]\right\}
 $$
 
-事实上我们可以类比矩阵乘法，你发现上述转移只是把矩阵乘法的乘积求和变成相加取最小值，于是我们定义这个运算为 $\odot$，即
+事实上我们可以类比矩阵乘法，你发现上述转移只是把矩阵乘法的乘积求和变成相加取最小值，于是我们定义这个运算为 $\odot$ ，即
 
 $$
 A \odot B = C~~\Longleftrightarrow~~C[i,j]=\min_{1\le p \le n}\left\{A[i,p] + B[p,j]\right\}
@@ -241,9 +241,9 @@ $$
 L_k = \underbrace{G \odot \ldots \odot G}_{k\text{ 次}} = G^{\odot k}
 $$
 
-我们仍然可以用矩阵快速幂的方法计算上式，因为它显然是具有结合律的。时间复杂度 $O(n^3 \log_2 k)$。
+我们仍然可以用矩阵快速幂的方法计算上式，因为它显然是具有结合律的。时间复杂度 $O(n^3 \log_2 k)$ 。
 
-### 限长路径计数 / 最短路
+### 限长路径计数/最短路
 
 上述算法只适用于边数固定的情况。然而我们可以改进算法以解决边数小于等于 $k$ 的情况。具体地，考虑以下问题：
 
@@ -255,12 +255,10 @@ $$
 
 同样的方法可以用于求边数小于等于 $k$ 的最短路，即加一个边权为 $0$ 的自环。
 
-
 ## 习题
 
 -   [洛谷 P1962 斐波那契数列](https://www.luogu.org/problemnew/show/P1962)，即上面的例题，同题 POJ3070
 -   [洛谷 P1349 广义斐波那契数列](https://www.luogu.org/problemnew/show/P1349)， $\text{base}$ 矩阵需要变化一下
 -   [洛谷 P1939【模板】矩阵加速（数列）](https://www.luogu.org/problemnew/show/P1939)， $\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
 
-
-**本页面部分内容译自博文 [Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths) 与其英文翻译版 [Number of paths of fixed length / Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+ **本页面部分内容译自博文[Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths)与其英文翻译版[Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
