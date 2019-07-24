@@ -70,7 +70,7 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
 
 - 对于运算符，请使用正体；对于变量，请使用斜体。如 $\sin$，$\log$，而不是 $sin$，$log$ 。
 - 在不会引起歧义的情况下，请用 `\times` 代替星号。如 $a\times b$，而不是 $a*b$。
-- 请用 `\vdots`，`\cdots`，`\ldots` 代替 `...`。如 $a_1,a_2,\cdots a_n$，而不是 $a_1,a_2,... a_n$。
+- 请用 `\cdots`，`\ldots`，`\vdots` 代替 `...`。如 $a_1,a_2,\cdots a_n$，而不是 $a_1,a_2,... a_n$。
 - 请用 `=` 代替 `==`。如 $a=b$，而不是 $a==b$。
 - 请用 `a\bmod b` 代替 `a%b`。如$a\bmod b$，而不是 $a%b$。
 
