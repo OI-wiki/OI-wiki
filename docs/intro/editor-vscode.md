@@ -12,6 +12,8 @@ Visual Studio Code（以下简称 VSCode) 是一个免费、开源、跨平台�
 
 首先我们要在 VSCode 中安装你要使用的语言的插件。直接打开插件商店，然后在搜索栏中输入 `@category:"programming languages"`，然后找到对应的插件，安装，OK！
 
+![](./images/editor-vscode2.png)
+
 #### 使用 CodeRunner 插件
 
 VSCode 自身带有非常强大的 C/C++ 功能，但配置过程比较复杂。一个简单的编译与运行 C++ 程序的方案是安装 CodeRunner 插件。
