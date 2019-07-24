@@ -103,9 +103,7 @@ int lca(int x, int y) {
 
 树上倍增法可以在 $O(n\log n)$ 的时间内完成预处理，在 $O(\log n)$ 的时间里完成查询，是一个较高效的算法，代码量也不大，一般竞赛推荐使用。
 
-
 ### 练习
-
 
 [严格次小生成树](https://www.luogu.org/problemnew/show/P4180)
 
