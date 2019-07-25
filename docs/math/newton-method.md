@@ -84,4 +84,4 @@ public static BigInteger isqrtNewton(BigInteger n) {
 
 -   [UVa 10428 - The Roots](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=16&page=show_problem&problem=1369)
 
- **本页面主要译自博文[Метод Ньютона (касательных) для поиска корней](http://e-maxx.ru/algo/roots_newton)与其英文翻译版[Newton's method for finding roots](https://cp-algorithms.com/num_methods/roots_newton.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+     **本页面主要译自博文[Метод Ньютона (касательных) для поиска корней](http://e-maxx.ru/algo/roots_newton)与其英文翻译版[Newton's method for finding roots](https://cp-algorithms.com/num_methods/roots_newton.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
