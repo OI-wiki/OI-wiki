@@ -215,8 +215,6 @@ $$
     }
 
     inline void calcFprime() {
-      /* G_{k}(n) = G_{k - 1}(n) - [p_{k}^{2} \le n] g(p_{k}) (G_{k - 1}(n / p_{k})
-       * - G_{k - 1}(p_{k - 1})) */
       for (int k = 1; k <= pcnt; ++k) {
         const int p = pri[k];
         const i64 sqrp = sqrll(p);
