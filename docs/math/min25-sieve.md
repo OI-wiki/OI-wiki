@@ -5,7 +5,7 @@
 其可以在 $O\left(\frac{n^{\frac{3}{4}}}{\log{n}}\right)$ 或 $\Theta\left(n^{1 - \epsilon}\right)$ 的时间复杂度下解决一类 **积性函数** 的前缀和问题。  
 要求： $f(p)$ 是一个关于 $p$ 的项数较少的多项式或可以快速求值； $f(p^{c})$ 可以快速求值。
 
-## Notations
+## 记号
 
 -    **如无特别说明，本节中所有记为 $p$ 的变量的取值集合均为全体质数。** 
 -    $x / y := \left\lfloor\frac{x}{y}\right\rfloor$ 
@@ -15,7 +15,7 @@
 -    $F_{\mathrm{prime}}(n) := \sum_{2 \le p \le n} f(p)$ 
 -    $F_{k}(n) := \sum_{i = 2}^{n} [p_{k} \le \operatorname{lpf}(i)] f(i)$ 
 
-## Method
+## 具体方法
 
 观察 $F_{k}(n)$ 的定义，可以发现答案即为 $F_{1}(n) + f(1) = F_{1}(n) + 1$ 。
 
@@ -68,7 +68,7 @@ $$
 
 * * *
 
-## Complexity
+## 复杂度分析
 
 对于 $F_{k}(n)$ 的计算，其第一种方法的时间复杂度被证明为 $O\left(n^{1 - \epsilon}\right)$ （见 zzt 集训队论文 2.3）；  
 对于第二种方法，其本质即为洲阁筛的第二部分，在洲阁论文中也有提及（6.5.4），其时间复杂度被证明为 $O\left(\frac{n^{\frac{3}{4}}}{\log{n}}\right)$ 。
@@ -89,7 +89,7 @@ $$
 对于空间复杂度，可以发现不论是 $F_{k}$ 还是 $F_{\mathrm{prime}}$ ，其均只在 $n / i$ 处取有效点值，共 $O(\sqrt{n})$ 个。  
 则可以使用[杜教筛一节中介绍的 trick](#Implementation)来将空间复杂度优化至 $O(\sqrt{n})$ 。
 
-## Implementation
+## 有关代码实现
 
 对于 $F_{k}(n)$ 的计算，我们实现时一般选择实现难度较低的第一种方法，其在数据规模较小时往往比第二种方法的表现要好；
 
@@ -110,16 +110,16 @@ $$
 2.  对 $f(p)$ 多项式表示中的每一项筛出对应的 $G$ ，合并得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个有用点值；
 3.  按照 $F_{k}$ 的递推式实现递归，求出 $F_{1}(n)$ 。
 
-## Examples
+## 例题
 
-### Prefix Sum of Möbius Function
+### 求莫比乌斯函数的前缀和
 
 求 $\displaystyle \sum_{i = 1}^{n} \mu(i)$ 。
 
 易知 $f(p) = -1$ 。则 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$ 。  
 直接筛即可得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个所需点值。
 
-### Prefix Sum of Euler's Totient Function
+### 求欧拉函数的前缀和
 
 求 $\displaystyle \sum_{i = 1}^{n} \varphi(i)$ 。
 
