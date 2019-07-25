@@ -3,7 +3,7 @@
 前缀和是一种重要的预处理，能大大降低查询的时间复杂度。我们可以简单理解为“数列的前 n 项的和”。
 
 !!! 例题
-    有 N 个的正整数放到数组 A 里，现在要求一个新的数组 B，新数组的第 i 个数 B[i] 是原数组 A 第 0 到第 i 个数的和。
+    有 N 个的正整数放到数组 A 里，现在要求一个新的数组 B，新数组的第 i 个数 B[i]是原数组 A 第 0 到第 i 个数的和。
 
 对于这道题，我们有两种做法：
 
@@ -56,6 +56,7 @@ int main() {
 -   [洛谷 U53525 前缀和（例题）](https://www.luogu.org/problemnew/show/U53525)
 -   [洛谷 U69096 前缀和的逆](https://www.luogu.org/problemnew/show/U69096)
 -   [AT2412 最大の和](https://www.luogu.org/problemnew/show/AT2412)
+-   [洛谷 P3131\[USACO16JAN\]子共七 Subsequences Summing to Sevens](https://www.luogu.org/problemnew/show/P3131)
 
 ### 参考
 
@@ -89,9 +90,65 @@ int main() {
 第二个问题就是如何应用，譬如求 $(x1,y1) - (x2,y2)$ 子矩阵的和。  
 那么，根据类似的思考过程，易得答案为 $sum_{x2,y2} - sum_{x1 - 1,y2} - sum_{x2,y1 - 1} + sum_{x1 - 1,y1 - 1}$ 。
 
+下面给出[洛谷 P1387 最大正方形](https://www.luogu.org/problemnew/show/P1387)这道题目的参考程序来帮助大家理解二维前缀和。
+
+```cpp
+#include <algorithm>
+#include <iostream>
+using namespace std;
+int a[103][103];
+int b[103][103];  // 前缀和数组，相当于上文的 sum[]
+int main() {
+  int n, m;
+  cin >> n >> m;
+
+  for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= m; j++) {
+      cin >> a[i][j];
+      b[i][j] =
+          b[i][j - 1] + b[i - 1][j] - b[i - 1][j - 1] + a[i][j];  // 求前缀和
+    }
+  }
+
+  int ans = 1;
+
+  int l = 2;
+  while (l <= min(n, m)) {
+    for (int i = l; i <= n; i++) {
+      for (int j = l; j <= m; j++) {
+        if (b[i][j] - b[i - l][j] - b[i][j - l] + b[i - l][j - l] == l * l) {
+          ans = max(ans, l);
+        }
+      }
+    }
+    l++;
+  }
+
+  cout << ans << endl;
+  return 0;
+}
+```
+
 ### 习题
 
 -   [CodeVS 1373. 射命丸文](http://codevs.cn/problem/1373/)
+-   [洛谷 P1387 最大正方形](https://www.luogu.org/problemnew/show/P1387)
+
+### 基于 DP 计算高维前缀和
+
+前一节方法本质上是基于容斥原理来计算高维前缀和，其优点在于形式较为简单，无需特别记忆，但当维数升高时，其复杂度较高。这里介绍一种基于 DP 计算高维前缀和的方法。该方法即通常语境中所称的 **高维前缀和** 。
+
+设高维空间 $U$ 共有 $D$ 维，需要对 $f[\cdot]$ 求高维前缀和 $\text{sum}[\cdot]$ 。令 $\text{sum}[i][\text{state}]$ 表示同 $\text{state}$ 后 $D - i$ 维相同的所有点对于 $\text{state}$ 点高维前缀和的贡献。由定义可知 $\text{sum}[0][\text{state}] = f[\text{state}]$ ，以及 $\text{sum}[\text{state}] = \text{sum}[D][\text{state}]$ 。
+
+其递推关系为 $\text{sum}[i][\text{state}] = \text{sum}[i - 1][\text{state}] + \text{sum}[i][\text{state}']$ ，其中 $\text{state}'$ 为第 $i$ 维恰好比 $\text{state}$ 少 $1$ 的点。该方法的复杂度为 $O(D \times |U|)$ ，其中 $|U|$ 为高维空间 $U$ 的大小。
+
+其一种实现的伪代码如下：
+
+    for state
+    	sum[state] = f[state];
+    for(i = 0;i <= D;i += 1)
+    	for 以字典序从小到大枚举 state
+    		sum[state] += sum[state'];
 
 ## 树上前缀和
 
@@ -118,7 +175,8 @@ int main() {
 
 ### 习题
 
--   [树状数组 3 ：区间修改，区间查询](https://loj.ac/problem/132)
+-   [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132)
+-   [P3397 地毯](https://www.luogu.org/problemnew/show/P3397)
 
 ## 树上差分
 

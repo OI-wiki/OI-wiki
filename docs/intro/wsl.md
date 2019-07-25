@@ -69,8 +69,8 @@ Ubuntu 默认的软件源在国外，我们可以换为国内的加快速度，�
 可以访问[TUNA 的页面](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)来获得国内源的信息。
 
 ???+ warning  
-    **请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a` 查看，具体详见 `0x03` ）  
-    ** 除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！**
+ **请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a` 查看，具体详见 `0x03` ）  
+** 除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！\*\*
 
 使用的命令
 
@@ -88,7 +88,7 @@ sudo apt upgrade -y
 
 ```bash
 sudo apt install  language-pack-zh-han* -y
-sudo locale-gen zh_CN.GB18030 && sudo locale-gen zh_CN.GB2312 && sudo locale-gen zh_CN.UTF8
+sudo locale-gen zh_CN.GB18030 && sudo locale-gen zh_CN.UTF8
 # 中文字体，别忘了同意 EULA
 sudo apt install fontconfig -y
 sudo apt install ttf-mscorefonts-installer -y
@@ -199,13 +199,12 @@ DISPLAY=:0 xterm
 xfce4-session
 ```
 
-![](./images/WSL19.png)    
+![](./images/WSL19.png)
 
-效果图如下：**（在 Xming 中使用** <kbd>Ctrl</kbd>+<kbd>C</kbd> **就可以退出这个鬼畜界面）**   
+效果图如下： **（在 Xming 中使用** <kbd>Ctrl</kbd>+<kbd>C</kbd> **就可以退出这个鬼畜界面）**   
 ![](./images/WSL20.png)
 
 <div align='center'> 达成成就：Windows+Linux 二合一 </div>
-
 
 #### 与 Windows 内原硬盘分区交互
 
@@ -246,9 +245,9 @@ xfce4-session
 
 ## 延伸内容
 
-- [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://spencerwoo.com/dowww/)      
+-   [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://spencerwoo.com/dowww/)
 
-- [Github 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL)
+-   [Github 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL)
 
 ### 后记
 

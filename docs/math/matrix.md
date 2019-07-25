@@ -1,3 +1,5 @@
+本文介绍线性代数中一个非常重要的内容——矩阵（Matrix），主要讲解矩阵的性质、运算以及在常系数齐次递推式上的应用。
+
 ## 定义
 
 对于矩阵 $A$ ，主对角线是指 $A[i][i]$ 的元素。
@@ -127,7 +129,7 @@ struct mat {
 
 怎么推呢？因为 $F_n=F_{n-1}+F_{n-2}$ ，所以 $\text{base}$ 矩阵第一列应该是 $\left[\begin{array}{ccc} 1 \\ 1 \end{array}\right]$ ，这样在进行矩阵乘法运算的时候才能令 $F_{n-1}$ 与 $F_{n-2}$ 相加，从而得出 $F_n$ 。同理，为了得出 $F_{n-1}$ ，矩阵 $\text{base}$ 的第二列应该为 $\left[\begin{array}{ccc} 1 \\ 0 \end{array}\right]$ 。
 
-综上所述： $\text{base} = \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]$ 原式化为 $\left[\begin{array}{ccc}F_{n-1} & F_{n-2}\end{array}\right] \times \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right] = \left[ \begin{array}{ccc}F_n & F_{n-1} \end{array}\right]$
+综上所述： $\text{base} = \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]$ 原式化为 $\left[\begin{array}{ccc}F_{n-1} & F_{n-2}\end{array}\right] \times \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right] = \left[ \begin{array}{ccc}F_n & F_{n-1} \end{array}\right]$ 
 
 转化为代码，应该怎么求呢？
 
@@ -177,8 +179,86 @@ int main() {
 }
 ```
 
-#### 习题
+### 定长路径统计
+
+???+note "问题描述"
+
+    给一个 $n$ 阶有向图，每条边的边权均为 $1$，然后给一个整数 $k$，你的任务是对于所有点对 $(u,v)$ 求出从 $u$ 到 $v$ 长度为 $k$ 的路径的数量（不一定是简单路径，即路径上的点或者边可能走多次）。
+
+我们将这个图用邻接矩阵 $G$ （对于图中的边 $(u\to v)$ ，令 $G[u,v]=1$ ，其余为 $0$ 的矩阵；如果有重边，则设 $G[u,v]$ 为重边的数量）表示这个有向图。下述算法同样适用于图有自环的情况。
+
+显然，该邻接矩阵对应 $k=1$ 时的答案。
+
+假设我们知道长度为 $k$ 的路径条数构成的矩阵，记为矩阵 $C_k$ ，我们想求 $C_{k+1}$ 。显然有 DP 转移方程
+
+$$
+C_{k+1}[i,j] = \sum_{p = 1}^{n} C_k[i,p] \cdot G[p,j]
+$$
+
+我们可以把它看作矩阵乘法的运算，于是上述转移可以描述为
+
+$$
+C_{k+1} = C_k \cdot G
+$$
+
+那么把这个递推式展开可以得到
+
+$$
+C_k = \underbrace{G \cdot G \cdots G}_{k \text{ 次}} = G^k
+$$
+
+要计算这个矩阵幂，我们可以使用快速幂（二进制取幂）的思想，在 $O(n^3 \log_2 k)$ 的复杂度内计算结果。
+
+### 定长最短路
+
+???+note "问题描述"
+
+    给你一个 $n$ 阶加权有向图和一个整数 $k$。对于每个点对 $(u,v)$ 找到从 $u$ 到 $v$ 的恰好包含 $k$ 条边的最短路的长度。（不一定是简单路径，即路径上的点或者边可能走多次）
+
+我们仍构造这个图的邻接矩阵 $G$ ， $G[i,j]$ 表示从 $i$ 到 $j$ 的边权。如果 $i,j$ 两点之间没有边，那么 $G[i,j]=\infty$ 。（有重边的情况取边权的最小值）
+
+显然上述矩阵对应 $k=1$ 时问题的答案。我们仍假设我们知道 $k$ 的答案，记为矩阵 $L_k$ 。现在我们想求 $k+1$ 的答案。显然有转移方程
+
+$$
+L_{k+1}[i,j] = \min_{1\le p \le n} \left\{L_k[i,p] + G[p,j]\right\}
+$$
+
+事实上我们可以类比矩阵乘法，你发现上述转移只是把矩阵乘法的乘积求和变成相加取最小值，于是我们定义这个运算为 $\odot$ ，即
+
+$$
+A \odot B = C~~\Longleftrightarrow~~C[i,j]=\min_{1\le p \le n}\left\{A[i,p] + B[p,j]\right\}
+$$
+
+于是得到
+
+$$
+L_{k+1} = L_k \odot G
+$$
+
+展开递推式得到
+
+$$
+L_k = \underbrace{G \odot \ldots \odot G}_{k\text{ 次}} = G^{\odot k}
+$$
+
+我们仍然可以用矩阵快速幂的方法计算上式，因为它显然是具有结合律的。时间复杂度 $O(n^3 \log_2 k)$ 。
+
+### 限长路径计数/最短路
+
+上述算法只适用于边数固定的情况。然而我们可以改进算法以解决边数小于等于 $k$ 的情况。具体地，考虑以下问题：
+
+???+note "问题描述"
+
+    给一个 $n$ 阶有向图，边权为 $1$，然后给一个整数 $k$，你的任务是对于每个点对 $(u,v)$ 找到从 $u$ 到 $v$ 长度小于等于 $k$ 的路径的数量（不一定是简单路径，即路径上的点或者边可能走多次）。
+
+我们简单修改一下这个图，我们给每一个结点加一个权值为 $1$ 的自环。这样走的时侯就可以走自环，相当于原地走。这样就包含了小于等于 $k$ 的情况。修改后再做矩阵快速幂即可。（即使这个图在修改之前就有自环，该算法仍是成立的）。
+
+同样的方法可以用于求边数小于等于 $k$ 的最短路，即加一个边权为 $0$ 的自环。
+
+## 习题
 
 -   [洛谷 P1962 斐波那契数列](https://www.luogu.org/problemnew/show/P1962)，即上面的例题，同题 POJ3070
 -   [洛谷 P1349 广义斐波那契数列](https://www.luogu.org/problemnew/show/P1349)， $\text{base}$ 矩阵需要变化一下
 -   [洛谷 P1939【模板】矩阵加速（数列）](https://www.luogu.org/problemnew/show/P1939)， $\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
+
+     **本页面部分内容译自博文[Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths)与其英文翻译版[Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

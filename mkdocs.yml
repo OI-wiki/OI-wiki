@@ -6,8 +6,8 @@ site_url: https://oi-wiki.org
 strict: true
 
 # Repository
-repo_name: '24OI/OI-wiki'
-repo_url: 'https://github.com/24OI/OI-wiki'
+repo_name: 'OI-wiki/OI-wiki'
+repo_url: 'https://github.com/OI-wiki/OI-wiki'
 edit_uri: 'blob/master/docs/'
 
 # Copyright
@@ -19,13 +19,20 @@ nav:
     - Getting Started: index.md
     - OI 赛事与赛制: intro/mode.md
     - ICPC/CCPC 赛事与赛制: intro/icpc.md
+    - 学习路线: intro/roadmap.md
     - 学习资源: intro/resources.md
     - 常见错误: intro/common-mistakes.md
     - 常见技巧: intro/common-tricks.md
     - 非传统题: intro/non-traditional.md
     - 工具软件:
       - 评测工具: intro/judgers.md
-      - 编辑工具: intro/editors.md
+      - 编辑工具: 
+        - Vim: intro/editor-vim.md
+        - Emacs: intro/editor-emacs.md
+        - VS Code: intro/editor-vscode.md
+        - Atom: intro/editor-atom.md
+        - Eclipse: intro/editor-eclipse.md
+        - Notepad++: intro/editor-notepadpp.md
       - WSL (Windows 10): intro/wsl.md
       - Special Judge: intro/spj.md
       - Testlib:
@@ -38,8 +45,40 @@ nav:
     - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
-  - 基础部分:
-    - 基础部分简介: basic/index.md
+  - 语言基础:
+    - C++ 基础:
+      - hello world!: lang/helloworld.md
+      - 变量: lang/variable.md
+      - 数组: lang/array.md
+      - 结构体: lang/struct.md
+      - 指针: lang/pointer.md
+      - 分支: lang/branch.md
+      - 循环: lang/loop.md
+      - 函数: lang/function.md
+      - 文件操作: lang/file-operation.md
+    - C++ 标准库:
+      - C++ 标准库简介: lang/csl/index.md
+      - STL 容器:
+        - STL 容器简介: lang/csl/container.md
+        - 迭代器: lang/csl/iterator.md
+        - 序列式容器: lang/csl/sequence-container.md
+        - 关联式容器: lang/csl/associative-container.md
+        - 无序关联式容器: lang/csl/unordered-container.md
+        - 容器适配器: lang/csl/container-adapter.md
+      - STL 算法: lang/csl/algorithm.md
+      - bitset: lang/csl/bitset.md
+      - string: lang/csl/string.md
+    - C++ 进阶:
+      - 类: lang/class.md
+      - 新版 C++ 特性: lang/new.md
+      - pb_ds:
+        - 堆: lang/pb-ds/priority-queue.md
+        - 平衡树: lang/pb-ds/tree.md
+    - pascal 转 C++ 急救: lang/pascaltocpp.md
+    - python 速成: lang/python.md
+    - java 速成: lang/java.md
+  - 思想方法:
+    - 思想方法简介: basic/index.md
     - 枚举: basic/enumerate.md
     - 模拟: basic/simulate.md
     - 递归 & 分治: basic/divide-and-conquer.md
@@ -57,11 +96,10 @@ nav:
       - 希尔排序: basic/shell-sort.md
       - 排序相关 STL: basic/stl-sort.md
       - 排序应用: basic/use-of-sort.md
-    - 表达式求值: basic/expression.md
     - 二分: basic/binary.md
+    - 倍增: basic/binary-acc.md
     - 构造: basic/construction.md
     - 前缀和 & 差分: basic/prefix-sum.md
-    - 文件操作: basic/file-operation.md
   - 搜索:
     - 搜索部分简介: search/index.md
     - DFS: search/dfs.md
@@ -117,7 +155,8 @@ nav:
       - 最大公约数: math/gcd.md
       - 欧拉函数: math/euler.md
       - 筛法: math/sieve.md
-      - 费马小定理: math/fermat.md
+      - 欧拉定理 & 费马小定理: math/fermat.md
+      - 类欧几里德算法: math/euclidean-like.md
     - 同余方程相关:
       - 裴蜀定理: math/bezouts.md
       - 乘法逆元: math/inverse.md
@@ -156,11 +195,14 @@ nav:
       - 容斥原理: math/inclusion-exclusion-principle.md
       - 抽屉原理: math/drawer-principle.md
     - 概率 & 期望: math/expectation.md
+    - 斐波那契数列: math/fibonacci.md
     - 置换群: math/permutation-group.md
     - 数值积分: math/integral.md
     - 线性规划: math/linear-programming.md
+    - 单纯形: math/simplex.md
     - 博弈论: math/game-theory.md
-    - 杂项: math/misc.md
+    - 卢卡斯定理: math/lucas.md
+    - 数学杂项: math/misc.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
     - STL:
@@ -181,6 +223,7 @@ nav:
       - 堆简介: ds/heap.md
       - 二叉堆: ds/binary-heap.md
       - 配对堆: ds/pairing-heap.md
+      - 左偏树: ds/leftist-tree.md
     - 块状数据结构:
       - 分块思想: ds/square-root-decomposition.md
       - 块状链表: ds/block-list.md
@@ -188,11 +231,12 @@ nav:
       - 树分块: ds/tree-decompose.md
     - 单调栈: ds/monotonous-stack.md
     - 单调队列: ds/monotonous-queue.md
-    - 倍增: ds/sparse-table.md
+    - ST 表: ds/sparse-table.md
     - 树状数组: ds/bit.md
     - 线段树: ds/segment.md
+    - 线段树 & 区间历史最值: ds/segment-tree-beats.md
     - 划分树: ds/dividing.md
-    - 平衡树:
+    - 二叉搜索树 & 平衡树:
       - 二叉搜索树简介: ds/bst.md
       - Treap: ds/treap.md
       - Splay: ds/splay.md
@@ -200,6 +244,7 @@ nav:
       - Size Balanced Tree: ds/sbt.md
       - AVL 树: ds/avl.md
       - 替罪羊树: ds/scapegoat.md
+      - 笛卡尔树: ds/cartesian-tree.md
     - 树套树:
       - 线段树套线段树: ds/seg-in-seg.md
       - 平衡树套线段树: ds/seg-in-balanced.md
@@ -212,9 +257,11 @@ nav:
       - 可持久化块状数组: ds/persistent-block-array.md
       - 可持久化平衡树: ds/persistent-balanced.md
       - 可持久化字典树: ds/persistent-trie.md
+      - 可持久化可并堆: ds/persistent-heap.md
     - 珂朵莉树: ds/odt.md
     - Link Cut Tree: ds/lct.md
     - Euler Tour Tree: ds/ett.md
+    - 析合树: ds/divide-combine.md
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论基础: graph/basic.md
@@ -256,6 +303,7 @@ nav:
       - 最小割: graph/flow/min-cut.md
       - 费用流: graph/flow/min-cost.md
       - 上下界网络流: graph/flow/bound.md
+    - Prufer 序列: graph/prufer.md
     - 图论杂项: graph/misc.md
   - 计算几何:
     - 计算几何部分简介: geometry/index.md
@@ -269,6 +317,7 @@ nav:
     - 旋转卡壳: geometry/rotating-calipers.md
     - 半平面交: geometry/half-plane-intersection.md
     - 平面最近点对: geometry/nearest-points.md
+    - 随机增量法: geometry/random-incremental.md
     - 计算几何杂项: geometry/magic.md
   - 杂项:
     - 杂项简介: misc/index.md
@@ -285,10 +334,15 @@ nav:
       - 随机函数: misc/random.md
       - 爬山算法: misc/hill-climbing.md
       - 模拟退火: misc/simulated-annealing.md
-      - 随机增量法: misc/random-incremental.md
     - 悬线法: misc/largest-matrix.md
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
+    - 约瑟夫问题: misc/josephus.md
+    - Stern-Brocot 树与 Farey 序列: misc/stern-brocot.md
+    - 格雷码: misc/gray-code.md
+    - 表达式求值: misc/expression.md
+  - 专题:
+    - RMQ: topic/rmq.md
 
 # Theme
 theme:
@@ -320,14 +374,12 @@ extra:
   githash: ''
 
 extra_javascript:
-  - 'https://cdn.jsdelivr.net/gh/ethantw/Han@3.3.0/dist/han.min.js'
-  - '_static/js/extra.js?v=10'
+  - '_static/js/extra.js?v=15'
   - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
 
 
 extra_css:
-  - 'https://cdn.jsdelivr.net/npm/ah@1.5.0/han.min.css'
-  - '_static/css/extra.css?v=11'
+  - '_static/css/extra.css?v=12'
 
 # Extensions
 markdown_extensions:

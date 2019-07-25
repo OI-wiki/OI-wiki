@@ -1,3 +1,5 @@
+author: akakw1, Billchenchina, ChungZH, Xeonacid, LuoshuiTianyi, Kewth, partychicken, s0cks5
+
 ## Vim -- 编辑器之神
 
 ### 历史与争端
@@ -208,7 +210,7 @@ imap <RIGHT> <Nop>
 
 #### 违背常理的改变
 
-Vim​ 本便是一个与寻常 IDE 不同的编辑器。那么同样你可以为它做出不寻常的改变。
+Vim 本便是一个与寻常 IDE 不同的编辑器。那么同样你可以为它做出不寻常的改变。
 
 如果长久使用可以发现，Esc 键太远了，小拇指都按得不顺手。那么我们该怎么处理呢？诶，我又不小心碰到大小写锁定切换键了！你会发现，<kbd>CapsLock</kbd>按键实在太没用了，不仅难用到，而且这么顺手这么近，还容易错按到，我要它何用？我为什么不吧它和<kbd>Esc</kbd>换一下呢？皆大欢喜呀。对吗？
 
@@ -220,7 +222,7 @@ Vim​ 本便是一个与寻常 IDE 不同的编辑器。那么同样你可以�
 sudo vim /usr/share/X11/xkb/symbols/pc
 ```
 
-找到 `key <ESC>` 与 `key <CAPS>` 这两行，并调换两行的中括号 `[]` 中内容并注销重新进入系统，你就会发现它们换过来了！开始可能会极度极度懵逼，不大回得过神来，但是习惯了几天后，你就会接受了，这个时候你就会进一步享受 Vim​ 的模式，高速切换模式不是梦。
+找到 `key <ESC>` 与 `key <CAPS>` 这两行，并调换两行的中括号 `[]` 中内容并注销重新进入系统，你就会发现它们换过来了！开始可能会极度极度懵逼，不大回得过神来，但是习惯了几天后，你就会接受了，这个时候你就会进一步享受 Vim 的模式，高速切换模式不是梦。
 
 当然，你可能要问了，如果是在考场怎么办？没有 sudo 权限改不了啊。不用担心，还有办法，但是这个办法重启就失效了，所以考场就用这个办法。在终端输入如下语句即可哦（考场亲测）：
 
@@ -269,7 +271,7 @@ int check() {
 
 Vim 的宏功能极度可怕，它重复的可不只是一个命令，你想要指定重复多长的命令它都可以的。那么如何使用它呢？首先我们要先“录制”-- 顾名思义，把一串按键操作录下来再回放，就达到了重复的效果。
 
-录制的方法很简单，处在普通模式下先按 `q` 键，告诉 Vim​ 你要开始了。然后，宏的按键录制就像复制粘贴的内容一样是需要一个存放之处的，那么下一步就是为它指定存放处，你可以按下 26 个字母中的任意一个来指定，然后左下方会显示 `记录中 @你刚刚选择的字母` 然后你就可以开始快乐地录制了。同理普通模式下按 `q` 暂停录制。
+录制的方法很简单，处在普通模式下先按 `q` 键，告诉 Vim 你要开始了。然后，宏的按键录制就像复制粘贴的内容一样是需要一个存放之处的，那么下一步就是为它指定存放处，你可以按下 26 个字母中的任意一个来指定，然后左下方会显示 `记录中 @你刚刚选择的字母` 然后你就可以开始快乐地录制了。同理普通模式下按 `q` 暂停录制。
 
 那么如何调用呢？很简单，按下 `:` 进入命令行模式，命令为 `@选择的记录字母` 然后之前录制的按键就被调用了……听起来是不是麻烦没用？当然不是，你忘了<kbd>.</kbd>命令不成，执行一遍宏之后使用<kbd>.</kbd>命令不就可以不这么麻烦了？当然，如果这些所有重复技巧在一起就很强大了 --- 录制宏 --> 调用宏 --><kbd>.</kbd>命令重复 --> 数字 +<kbd>.</kbd>命令达到无上效果。
 
@@ -667,114 +669,3 @@ F7  ：启动 Gundo 时光机
     ```vim
     F10 ：启动 nerdtree 侧边工程目录树
     F7  ：启动 Gundo 时光机
-
-## Emacs——神的编辑器
-
-15 分钟入门 Emacs（因为是入门教程，所以比较简短）
-
-### 简介
-
-Emacs 是一款非常容易上手的编辑器，重要的快捷键不多，随便输几行配置就能较方便地使用
-
-### 入门
-
-#### 命令
-
-按下右侧 Ctrl 左边的可以输入命令，按三下 Esc 可以取消，常用的有 "es" 或 "eshell"（打开 eshell）
-
-#### 缓冲
-
-缓冲即打开的文件和进程，没什么好讲的，只要知道在缓冲区的底部点击缓冲的名字可以切换缓冲就可以了
-
-#### 编译、调试和运行
-
-在顶部的菜单栏中有一个 Tools 点开就有编译和调试
-
-运行可以使用终端或 Eshell（其实也是终端），输入文件位置就可以运行
-
-具体的调试参见 GDB 调试
-
-#### 分屏
-
-这个稍微重要一点
-
-分屏功能可以同时显示多个窗口，一般分为
-
-几个快捷键：
-
--   删除分屏 "C-x 0"：将这个分屏删去
--   横向分屏 "C-x 3"：将这个分屏横向分成两半
--   纵向分屏 "C-x 2"：将这个分屏纵向分成两半
-
-一般窗口分为四块：先横向分，调整一块的宽度约为 3/4 屏，作为编辑窗口，再将另一块横向分，一块作为调试和编译信息显示的窗口，另一块再纵向分，一块打开输入文件，一块打开输出文件
-
-![](./images/emacs.png)
-
-### 个性化
-
-打开最初的 Emacs，非常丑，并且不好用，我们需要个性化设置
-
-以下是推荐在考场使用的
-
-#### 初级
-
--   点击 Options，勾选第二项（高亮匹配括号）
--   点击 Options，点击 Show/Hide，第一行 Tool Bar 选 None
--   点击 Options，勾选第六行可以使用 Ctrl + C,Ctrl + V 等快捷键
--   点击 Options，最后一行点开再点第一行可以设置主题，勾选后要保存
--   点击 Options，点倒数第三行保存
-
-#### 配置
-
-[获取上文图片中的配置](https://www.cnblogs.com/akakw1/p/10088191.html)
-
-再 home 目录下显示隐藏文件，".emacs" 就是配置文件（如果没有说明之前没保存）
-
-几个重要的
-
-    (global-set-key [f9] 'compile);;;f9编译
-    ;(global-set-key [f9] 'compile-file);;;设置了快捷编译的用这条
-    (global-set-key [f10] 'gud-gdb);;;f10调试
-    (global-set-key (kbd "C-s") 'save-buffer);;;ctrl+s保存
-    (global-set-key (kbd "C-z") 'undo);;;ctrl+z撤销
-    (global-set-key (kbd "RET") 'newline-and-indent);;;自动缩进
-    (define-key key-translation-map (kbd "C-a") (kbd "C-x h"));;;全选
-    (global-set-key (kbd "C-y") 'kill-whole-line);;;删除一行
-    (setq c-default-style "awk");;;设置C语言风格
-
-考场把上面的需要的输进去就行了
-
-    ;;;一键编译（C++）
-    (defun compile-file ()
-      (interactive)
-      (compile (format "g++ -o %s %s -g -lm -Wall"  (file-name-sans-extension (buffer-name))(buffer-name))))
-    ;;;;;允许emacs和外部其他程序的粘贴
-    (setq x-select-enable-clipboard t)
-    ;; 显示列号
-    (setq column-number-mode t)
-    ;;;;;修改透明度
-    (set-frame-parameter (selected-frame) 'alpha (list 85 50))
-    (add-to-list 'default-frame-alist (cons 'alpha (list 85 50)))
-    (setq-default cursor-type 'bar)
-    ;;高亮
-    (set-cursor-color "wheat")
-    (set-mouse-color "wheat")
-    (global-font-lock-mode t)
-    ;;;;;滚动页面时比较舒服，不要整页的滚动
-    (setq scroll-step 1
-            scroll-margin 3
-            scroll-conservatively 10000)
-
-无脑配置请百度
-
-## Visual Studio Code - 微软家的编辑器
-
-### 简介
-
-Visual Studio Code（以下简称 VS Code) 是一个免费、开源、跨平台的由微软开发的程序编辑器。它是用 Typescript 编写的，并且采用 Electron 架构。官网是<https://code.visualstudio.com/>。它带有对 JavaScript、TypeScript 和 Node.js 的内置支持，并为其他语言（如 C++、Cype、Java、Python、PHP、GO）提供了丰富的扩展生态系统。
-
-## Atom - GitHub 家的编辑器
-
-### 简介
-
-Atom 是一个免费、开源、跨平台的由 GitHub 开发的程序编辑器。它是用 JavaScript 编写的，并且采用 Electron 架构。官网是<https://atom.io/>。它的一个较大缺点就是性能差。

@@ -1,3 +1,5 @@
+author: HeRaNO, JuicyMio, Xeonacid, sailordiary
+
 并查集是一种树形的数据结构，顾名思义，它用于处理一些不交集的 **合并** 及 **查询** 问题。
 它支持两种操作：
 
@@ -5,14 +7,13 @@
 
 -   合并（Union）：将两个子集合并成一个集合。
 
-*也就是说，不支持集合的分离、删除。  
+\*也就是说，不支持集合的分离、删除。
 
 ## 初始化
 
 ```cpp
 void makeSet(int size) {
-  for (int i = 0; i < size; i++)
-    fa[i] = i;  // i就在它本身的集合里
+  for (int i = 0; i < size; i++) fa[i] = i;  // i就在它本身的集合里
   return;
 }
 ```
@@ -53,6 +54,12 @@ int find(int x) {
 }
 ```
 
+不太懂的话我们就上两张图吧
+
+![p1](./images/dsu1.png)
+
+![p2](./images/dsu2.png)
+
 ## 合并
 
 宴会上，一个家族的祖先突然对另一个家族说：我们两个家族交情这么好，不如合成一家好了。另一个家族也欣然接受了。  
@@ -77,9 +84,9 @@ void unionSet(int x, int y) {
 
 由于需要我们支持的只有集合的合并、查询操作，当我们需要将两个集合合二为一时，无论将哪一个集合连接到另一个集合的下面，都能得到正确的结果。但不同的连接方法存在时间复杂度的差异。具体来说，如果我们将一棵点数与深度都较小的集合树连接到一棵更大的集合树下，显然相比于另一种连接方案，其期望复杂度更优（也会带来更优的最坏复杂度）。
 
-当然，我们不总能遇到恰好如上所述的集合————点数与深度都更小。鉴于点数与深度这两个特征都很容易维护，我们常常从中择一，作为估价函数。而无论选择哪一个，时间复杂度都为 $\Theta (m\alpha(m,n))$，具体的证明可参见 References 中引用的论文。
+当然，我们不总能遇到恰好如上所述的集合————点数与深度都更小。鉴于点数与深度这两个特征都很容易维护，我们常常从中择一，作为估价函数。而无论选择哪一个，时间复杂度都为 $\Theta (m\alpha(m,n))$ ，具体的证明可参见 References 中引用的论文。
 
-在算法竞赛的实际代码中，即便不使用启发式合并，代码也往往能够在规定时间内完成任务。在 Tarjan 的论文[1]中，证明了不使用启发式合并、只使用路径压缩的最坏时间复杂度是 $\Theta (m \log n)$。在姚期智的论文[2]中，证明了不使用启发式合并、只使用路径压缩，在平均情况下，时间复杂度依然是 $\Theta (m\alpha(m,n))$。
+在算法竞赛的实际代码中，即便不使用启发式合并，代码也往往能够在规定时间内完成任务。在 Tarjan 的论文[1]中，证明了不使用启发式合并、只使用路径压缩的最坏时间复杂度是 $\Theta (m \log n)$ 。在姚期智的论文[2]中，证明了不使用启发式合并、只使用路径压缩，在平均情况下，时间复杂度依然是 $\Theta (m\alpha(m,n))$ 。
 
 此处给出一种 C++ 的参考实现，其选择深度作为估价函数：
 
@@ -125,6 +132,6 @@ void unionSet(int x, int y) {
 
 ## References
 
-- [1]Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281.    [ResearchGate PDF](https://www.researchgate.net/profile/Jan_Van_Leeuwen2/publication/220430653_Worst-case_Analysis_of_Set_Union_Algorithms/links/0a85e53cd28bfdf5eb000000/Worst-case-Analysis-of-Set-Union-Algorithms.pdf)
-- [2]Yao, A. C. (1985). On the expected performance of path compression algorithms. [SIAM Journal on Computing, 14(1), 129-133.](https://epubs.siam.org/doi/abs/10.1137/0214010?journalCode=smjcat)     
-- [3][知乎回答：是否在并查集中真的有二分路径压缩优化？](https://www.zhihu.com/question/28410263/answer/40966441)     
+-   [1]Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281.[ResearchGate PDF](https://www.researchgate.net/profile/Jan_Van_Leeuwen2/publication/220430653_Worst-case_Analysis_of_Set_Union_Algorithms/links/0a85e53cd28bfdf5eb000000/Worst-case-Analysis-of-Set-Union-Algorithms.pdf)
+-   [2]Yao, A. C. (1985). On the expected performance of path compression algorithms.[SIAM Journal on Computing, 14(1), 129-133.](https://epubs.siam.org/doi/abs/10.1137/0214010?journalCode=smjcat)
+-   [3][知乎回答：是否在并查集中真的有二分路径压缩优化？](<https://www.zhihu.com/question/28410263/answer/40966441>)

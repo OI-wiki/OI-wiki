@@ -1,3 +1,5 @@
+author: Xeonacid, greyqz
+
 ## 前缀函数定义
 
 给定一个长度为 $n$ 的字符串 $s$ ，其 **前缀函数** 被定义为一个长度为 $n$ 的数组 $\pi$ 。其中 $\pi[i]$ 为既是子串 $s[0\dots i]$ 的前缀同时也是该子串的后缀的最长真前缀（proper prefix）长度。一个字符串的真前缀是其前缀但不等于该字符串自身。根据定义， $\pi[0] = 0$ 。
@@ -301,4 +303,4 @@ $$
 
 * * *
 
- **本页面主要译自博文[Префикс-функция. Алгоритм Кнута-Морриса-Пратта](http://e-maxx.ru/algo/prefix_function)与其英文翻译版[Prefix function. Knuth–Morris–Pratt algorithm](https://cp-algorithms.com/string/prefix-function.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+ **本页面主要译自博文[Префикс-функция. Алгоритм Кнута-Морриса-Пратта](http://e-maxx.ru/algo/prefix_function)与其英文翻译版[Prefix function. Knuth–Morris–Pratt algorithm](https://cp-algorithms.com/string/prefix-function.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

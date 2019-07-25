@@ -28,7 +28,7 @@ std::cin.tie(0);
 
  `scanf` 和 `printf` 依然有优化的空间，这就是本章所介绍的内容——读入和输出优化。
 
--   注意，本页面中介绍的读入和输出优化均针对整型数据，若要支持其他类型的数据（如浮点数），可自行按照本页面介绍的优化原理来编写代码.
+-   注意，本页面中介绍的读入和输出优化均针对整型数据，若要支持其他类型的数据（如浮点数），可自行按照本页面介绍的优化原理来编写代码。
 
 ### 原理
 
@@ -41,7 +41,6 @@ std::cin.tie(0);
 10 进制整数中是不含空格或除 0~9 和正负号外的其他字符的，因此在读入不应存在于整数中的字符（通常为空格）时，就可以判定已经读入结束
 
 C 和 C++ 语言分别在 ctype.h 和 cctype 头文件中，提供了函数 `isdigit` , 这个函数会检查传入的参数是否为十进制数字字符，是则返回 **true** ，否则返回 **false** 。对应的，在下面的代码中，可以使用 `isdigit(ch)` 代替 `ch >= '0' && ch <= '9'` ，而可以使用 `!isdigit(ch)` 代替 `ch <'0' || ch> '9'` 
-
 
 ### 代码实现
 
@@ -190,23 +189,95 @@ inline void write(int x) {
 
 ## 使输入输出优化更为通用
 
-如果你的程序使用多个类型的变量，那么可能需要写多个输入输出优化的函数。下面给出的代码使用 [C++ 中的 `template` 类](http://www.cplusplus.com/doc/oldtutorial/templates)实现了对于自定类型的输入输出优化，从而简化这一步骤（注意不适用于字符）。
+如果你的程序使用多个类型的变量，那么可能需要写多个输入输出优化的函数。下面给出的代码使用[C++ 中的 `template` 类](http://www.cplusplus.com/doc/oldtutorial/templates)实现了对于自定类型的输入输出优化，从而简化这一步骤（注意不适用于字符和实数）。
 
 ```cpp
-template <typename T> inline T read(){ //声明 template 类,要求提供输入的类型T,并以此类型定义内联函数 read()
-    T sum=0,fl=1;//将 sum,fl 和 ch 以输入的类型定义
-    int ch=getchar();
-    for(;!isdigit(ch);ch=getchar()) if(ch=='-') fl=-1;
-    for(;isdigit(ch);ch=getchar()) sum=sum*10+ch-'0';
-    return sum*fl;
+template <typename T>
+inline T
+read() {  //声明 template 类,要求提供输入的类型T,并以此类型定义内联函数 read()
+  T sum = 0, fl = 1;  //将 sum,fl 和 ch 以输入的类型定义
+  int ch = getchar();
+  for (; !isdigit(ch); ch = getchar())
+    if (ch == '-') fl = -1;
+  for (; isdigit(ch); ch = getchar()) sum = sum * 10 + ch - '0';
+  return sum * fl;
 }
 ```
 
-如果要分别输入 `int` 类型的变量 a ， `long long` 类型的变量 b 和 `_int128` 类型的变量 c ，那么可以写成
+如果要分别输入 `int` 类型的变量 a， `long long` 类型的变量 b 和 `__int128` 类型的变量 c，那么可以写成
+
 ```cpp
-    a=read<int>();
-    b=read<long long>();
-    c=read<__int128>();
+a = read<int>();
+b = read<long long>();
+c = read<__int128>();
+```
+
+## 完整带调试版
+
+```cpp
+#define DEBUG 1  //调试开关
+namespace IO {
+#define isdigit(x) x >= '0' && x <= '9'
+const int MAXSIZE = 1 << 20;
+inline char gc() {
+#if DEBUG  //调试，可显示字符
+  return getchar();
+#endif
+  static char buf[MAXSIZE], *p1 = buf + MAXSIZE, *p2 = buf + MAXSIZE;
+  if (p1 == p2) p2 = (p1 = buf) + fread(buf, 1, MAXSIZE, stdin);
+  return p1 == p2 ? -1 : *p1++;
+}
+inline bool blank(char ch) {
+  return ch == ' ' || ch == '\n' || ch == '\r' || ch == '\t';
+}
+template <class T>
+inline void read(T &x) {
+  register double tmp = 1;
+  register bool sign = 0;
+  x = 0;
+  register char ch = gc();
+  for (; !isdigit(ch); ch = gc())
+    if (ch == '-') sign = 1;
+  for (; isdigit(ch); ch = gc()) x = x * 10 + ch - '0';
+  if (ch == '.')
+    for (ch = gc(); isdigit(ch); ch = gc()) tmp /= 10.0, x += tmp * (ch - 48);
+  if (sign) x = -x;
+}
+inline void read(char *s) {
+  register char ch = gc();
+  for (; blank(ch); ch = gc())
+    ;
+  for (; !blank(ch); ch = gc()) *s++ = ch;
+  *s = 0;
+}
+inline void read(char &c) {
+  for (c = gc(); blank(c); c = gc())
+    ;
+}
+inline void push(const char &c) {
+  char pbuf[MAXSIZE], *pp = pbuf;
+  if (pp - pbuf == MAXSIZE) fwrite(pbuf, 1, MAXSIZE, stdout), pp = pbuf;
+  *pp++ = c;
+}
+template <class T>
+inline void write(T x) {
+  static T sta[35];
+  T top = 0;
+  do {
+    sta[top++] = x % 10, x /= 10;
+  } while (x);
+#if DEBUG  //调试，可显示字符
+  while (top) putchar(sta[--top] + '0');
+  return;
+#endif
+  while (top) push(sta[--top] + '0');
+}
+template <class T>
+inline void write(T x, char lastChar) {
+  write(x), putchar(lastChar);  //打印末尾字符 ex.'\n'
+}
+}  // namespace IO
+using namespace IO;
 ```
 
 ## 参考

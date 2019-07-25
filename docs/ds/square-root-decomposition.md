@@ -1,3 +1,5 @@
+author: HeRaNO, Xeonacid
+
 ## 简介
 
 其实，分块是一种思想，而不是一种数据结构。

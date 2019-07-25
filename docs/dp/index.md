@@ -56,7 +56,7 @@
 
 子问题图中每个定点对应一个子问题，而需要考察的选择对应关联至子问题顶点的边。
 
- **经典问题：**
+ **经典问题：** 
 
 -    **无权最短路径：** 具有最优子结构性质。
 -    **无权最长（简单）路径：** 此问题不具有，是 NPC 的。区别在于，要保证子问题无关，即同一个原问题的一个子问题的解不影响另一个子问题的解。相关：求解一个子问题时用到了某些资源，导致这些资源在求解其他子问题时不可用。
@@ -97,10 +97,13 @@
 ```cpp
 int a[MAXN];
 int dp() {
-  int now = 0, ans = 1;
+  int now = 1, ans = 1;
   for (int i = 2; i <= n; i++) {
-    if (a[i] > a[i - 1]) ans++;
-    now = max(now, ans);
+    if (a[i] > a[i - 1])
+      now++;
+    else
+      now = 1;
+    ans = max(now, ans);
   }
   return ans;
 }
@@ -122,7 +125,7 @@ int dp() {
   d[1] = 1;
   int ans = 0;
   for (int i = 2; i <= n; i++) {
-    for (int j = i - 1; j < i; j++)
+    for (int j = 1; j < i; j++)
       if (a[j] < a[i]) {
         d[i] = max(d[i], d[j] + 1);
         ans = max(ans, d[i]);
@@ -140,7 +143,7 @@ int dp() {
 
 初始化： $d_1=a_1,len=1$ 。
 
-现在我们已知最长的不下降子序列长度为 1，那么我们让 $i$ 从 2 到 $n$ 循环，依次求出前 $i$ 个元素的最长不下降子序列的长度，循环的时候我们只需要维护好 $d$ 这个数组还有 $len$ 就可以了。 **关键在于如何维护。**
+现在我们已知最长的不下降子序列长度为 1，那么我们让 $i$ 从 2 到 $n$ 循环，依次求出前 $i$ 个元素的最长不下降子序列的长度，循环的时候我们只需要维护好 $d$ 这个数组还有 $len$ 就可以了。 **关键在于如何维护。** 
 
 考虑进来一个元素 $a_i$ ：
 
@@ -165,7 +168,7 @@ while (dp[ans] != mx) ++ans;
 
 ### DAG 中的最长简单路径
 
- $dp[i] = \max(dp[j] + 1), ((j, i) \in E)$
+ $dp[i] = \max(dp[j] + 1), ((j, i) \in E)$ 
 
 ### 最长回文子序列
 
@@ -233,11 +236,11 @@ upd：其实是[程设期末推荐练习](https://ir1d.cf/2018/06/23/cssx/程设
 
 如果是分给快的那条：
 
- $dp[i][j] = \min(dp[i - 1][j] + dis[i - 1][i]),\ j = 1 \cdots i$
+ $dp[i][j] = \min(dp[i - 1][j] + dis[i - 1][i]),\ j = 1 \cdots i$ 
 
 如果是慢的，原来是慢的那条就变成了快的，所以另一条是到 $i - 1$ 那个点：
 
- $dp[i][j] = \min(dp[i - 1][j] + dis[j][i]),\ j = 1 \cdots i$
+ $dp[i][j] = \min(dp[i - 1][j] + dis[j][i]),\ j = 1 \cdots i$ 
 
 答案是 $\min(dp[n][i] + dis[n][i])$ 。
 （从一开始编号，终点是 $n$ ）
@@ -252,11 +255,11 @@ upd：其实是[程设期末推荐练习](https://ir1d.cf/2018/06/23/cssx/程设
 
 这样的转移更好写：
 
-我们记 $k = \max(i, j) + 1$
+我们记 $k = \max(i, j) + 1$ 
 
  $k$ 这个点肯定在两条路中的一个上， $dp[i][j]$ 取两种情况的最小值即可。
 
- $dp[i][j] = \min(dp[i][k] + dis[k][j], dp[k][j] + dis[i][k])$
+ $dp[i][j] = \min(dp[i][k] + dis[k][j], dp[k][j] + dis[i][k])$ 
 
 边界是： $dp[i][n] = dp[n][i] = dis[n][i]$ 。
 
@@ -266,9 +269,9 @@ upd：其实是[程设期末推荐练习](https://ir1d.cf/2018/06/23/cssx/程设
 
 希望最小化所有行的额外空格数的立方之和。
 
-注意到实际问题要求单词不能打乱顺序，所以就好做了起来。 **不要把题目看复杂。**
+注意到实际问题要求单词不能打乱顺序，所以就好做了起来。 **不要把题目看复杂。** 
 
- $dp[i] = \min(dp[j] + cost[j][i])$
+ $dp[i] = \min(dp[j] + cost[j][i])$ 
 
 不知道这样可不可做：有 $n$ 个单词，可以不按顺序打印，问怎么安排，使得把他们打印成 $m$ 行之后，每行的空格之和最小。
 
@@ -298,13 +301,13 @@ insert  : -2
 
  $dp[x][0]$ 是没去， $dp[x][1]$ 是去了。
 
- $dp[u][0] = \max(dp[v][0], dp[v][1]), v \in son(u)$
+ $dp[u][0] = \max(dp[v][0], dp[v][1]), v \in son(u)$ 
 
- $dp[u][1] = w[u] + dp[v][0], v \in son(u)$
+ $dp[u][1] = w[u] + dp[v][0], v \in son(u)$ 
 
 ### 译码算法
 
-[Viterbi algorithm](https://en.wikipedia.org/wiki/Viterbi_algorithm) 之前写词性标注的时候有用到，好像用在输入法里面也是类似的。
+[Viterbi algorithm](https://en.wikipedia.org/wiki/Viterbi_algorithm)之前写词性标注的时候有用到，好像用在输入法里面也是类似的。
 
 本题中用来实现语音识别，其实就是找一条对应的概率最大的路径。
 
@@ -318,7 +321,7 @@ ref：<https://segmentfault.com/a/1190000008720143>
 
 限制：要求相邻两行中删除的像素必须位于同一列或相邻列。
 
- $dp[i][j] = \min(dp[i - 1][j], dp[i - 1][j - 1], dp[i - 1][j + 1]) + cost[i][j]$
+ $dp[i][j] = \min(dp[i - 1][j], dp[i - 1][j - 1], dp[i - 1][j + 1]) + cost[i][j]$ 
 
 边界： $dp[1][i] = cost[1][i]$ 。
 
@@ -328,7 +331,7 @@ ref：<https://segmentfault.com/a/1190000008720143>
 
 等价于之前那个最优二叉搜索树。
 
- $dp[i][j] = \min(dp[i][k] + dp[k][j]) + l[j] - l[i] + 1,\ k = i + 1 \cdots j - 1$
+ $dp[i][j] = \min(dp[i][k] + dp[k][j]) + l[j] - l[i] + 1,\ k = i + 1 \cdots j - 1$ 
 
 注意 $l[i]$ 表示的是第 i 个切分点的位置。
 

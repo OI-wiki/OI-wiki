@@ -65,6 +65,14 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
     -   例子，给出 1 ~ 2 个典型的例子。
     -   题目，在该标题下， **只需要给出题目名字、题目链接** 。
 
+### 文档中 LaTeX 公式的格式
+
+-   对于运算符，请使用正体；对于变量，请使用斜体。如 $\sin$ ， $\log$ ，而不是 $sin$ ， $log$ 。
+-   在不会引起歧义的情况下，请用 `\times` 代替星号。如 $a\times b$ ，而不是 $a*b$ 。
+-   请用 `\cdots` ， `\ldots` ， `\vdots` 代替 `...` 。如 $a_1,a_2,\cdots a_n$ ，而不是 $a_1,a_2,... a_n$ 。
+-   请用 `=` 代替 `==` 。如 $a=b$ ，而不是 $a==b$ 。
+-   请用 `a\bmod b` 代替 `a%b` 。如 $a\bmod b$ ，而不是 $a%b$ 。
+
 ### 文档存储的格式
 
 对于每类要编写的内容，对应的文档应该存储在合适的目录下。
@@ -98,14 +106,14 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
 
 ### 我尝试访问 GitHub 的时候遇到了困难
 
-推荐在 hosts 文件中加入如下几行：（来源：[@GoogleHosts](https://github.com/googlehosts/hosts/blob/master/hosts-files/hosts#L481-L485)）
+推荐在 hosts 文件中加入如下几行：（来源：[@GoogleHosts](https://github.com/googlehosts/hosts/blob/master/hosts-files/hosts#L1380-L1384)）
 
 ```text
-## GitHub Start
+# Github Start
 192.30.253.118	gist.github.com
-192.30.253.112	github.com
-192.30.253.112	www.github.com
-## GitHub End
+192.30.255.112	github.com
+192.30.255.110	www.github.com
+# Github End
 ```
 
 可以在[@GoogleHosts 主页](https://github.com/googlehosts/hosts)上了解到更多信息。
@@ -232,3 +240,9 @@ copyright: SATA
 ```text
 pagetime:
 ```
+
+### 为什么作者信息统计处没有我的名字
+
+是因为 Github API 在文件目录变更后不能跟踪统计，我们在文件头手动维护了一个作者列表来解决这个问题。如果你发现自己写过一个页面中的部分内容，但是没有被记录在页面的作者去，可以把自己的 Github ID 加入到文件头的 `author` 字段，格式是 `author: Ir1d, cjsoft` ，相邻两个 ID 之间用 `,` 和空格隔开。
+
+注：这里记录的 ID 是对应到 Github Profile 的地址（即点击 Github 页面右上角之后跳转到的个人主页的 url）

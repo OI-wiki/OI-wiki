@@ -1,4 +1,4 @@
-BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first_search)，中文名是宽度优先搜索，也叫广度优先搜索。
+BFS 全称是[Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first_search)，中文名是宽度优先搜索，也叫广度优先搜索。
 
 是图上最基础、最重要的搜索算法之一。
 
@@ -78,7 +78,7 @@ void restore(int x) {
 
 有了 p 数组，可以方便地还原出起点到一个点的最短路径。上面的 restore 函数就是在做这件事：restore(x) 输出的是从起点到 x 这个点所经过的点。
 
-时间复杂度 $O(n + m)$
+时间复杂度 $O(n + m)$ 
 
 空间复杂度 $O(n)$ （vis 数组和队列）
 
@@ -220,4 +220,4 @@ int main() {
 
 相对于普通队列的 BFS，时间复杂度多了一个 $\log$ ，毕竟要维护这个优先队列嘛。不过普通 BFS 有可能每个结点入队、出队多次，时间复杂度会达到 $O(n^2)$ ，不是 $O(n)$ 。所以优先队列 BFS 通常还是快的。
 
-诶？这怎么听起来这么像堆优化的 [Dijkstra](/graph/shortest-path/#dijkstra) 算法呢？事实上，堆优化 Dijkstra 就是优先队列 BFS。
+诶？这怎么听起来这么像堆优化的[Dijkstra](/graph/shortest-path/#dijkstra)算法呢？事实上，堆优化 Dijkstra 就是优先队列 BFS。

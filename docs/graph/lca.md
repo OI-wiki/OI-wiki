@@ -103,26 +103,26 @@ int main() {
 
 ### Tarjan 算法
 
-`Tarjan算法` 是一种`离线算法`，需要使用`并查集`记录某个结点的祖先结点。做法如下：
+ `Tarjan 算法` 是一种 `离线算法` ，需要使用 `并查集` 记录某个结点的祖先结点。做法如下：
 
-1.  首先接受输入（邻接链表）、查询（存储在另一个邻接链表内）。查询边其实是虚拟加上去的边，为了方便，每次输入查询边的时候，将这个边及其反向边都加入到`queryEdge`数组里。
-2.  然后对其进行一次DFS遍历，同时使用`visited`数组进行记录某个结点是否被访问过、`parent`记录当前结点的父亲结点。
-3.  其中涉及到了`回溯思想`，我们每次遍历到某个结点的时候，认为这个结点的根结点就是它本身。让以这个结点为根节点的DFS全部遍历完毕了以后，再将`这个结点的根节点`设置为`这个结点的父一级结点`。
-4.  回溯的时候，如果以该节点为起点，`queryEdge`查询边的另一个结点也恰好访问过了，则直接更新查询边的LCA结果。
+1.  首先接受输入（邻接链表）、查询（存储在另一个邻接链表内）。查询边其实是虚拟加上去的边，为了方便，每次输入查询边的时候，将这个边及其反向边都加入到 `queryEdge` 数组里。
+2.  然后对其进行一次 DFS 遍历，同时使用 `visited` 数组进行记录某个结点是否被访问过、 `parent` 记录当前结点的父亲结点。
+3.  其中涉及到了 `回溯思想` ，我们每次遍历到某个结点的时候，认为这个结点的根结点就是它本身。让以这个结点为根节点的 DFS 全部遍历完毕了以后，再将 `这个结点的根节点` 设置为 `这个结点的父一级结点` 。
+4.  回溯的时候，如果以该节点为起点， `queryEdge` 查询边的另一个结点也恰好访问过了，则直接更新查询边的 LCA 结果。
 5.  最后输出结果。
 
 ```cpp
-#include<iostream>
-#include<algorithm>
+#include <algorithm>
+#include <iostream>
 using namespace std;
 
 class Edge {
-public:
-	int toVertex, fromVertex;
-	int next;
-	int LCA;
-	Edge() : toVertex(-1), fromVertex(-1), next(-1), LCA(-1) {};
-	Edge(int u, int v, int n) : fromVertex(u), toVertex(v), next(n), LCA(-1) {};
+ public:
+  int toVertex, fromVertex;
+  int next;
+  int LCA;
+  Edge() : toVertex(-1), fromVertex(-1), next(-1), LCA(-1){};
+  Edge(int u, int v, int n) : fromVertex(u), toVertex(v), next(n), LCA(-1){};
 };
 
 const int MAX = 100;
@@ -132,83 +132,81 @@ int parent[MAX], visited[MAX];
 int vertexCount, edgeCount, queryCount;
 
 void init() {
-	for (int i = 0; i <= vertexCount;i++) {
-		parent[i] = i;
-	}
+  for (int i = 0; i <= vertexCount; i++) {
+    parent[i] = i;
+  }
 }
 
 int find(int x) {
-	if (parent[x] == x) {
-		return x;
-	}
-	else {
-		return find(parent[x]);
-	}
+  if (parent[x] == x) {
+    return x;
+  } else {
+    return find(parent[x]);
+  }
 }
 
 void tarjan(int u) {
-	parent[u] = u;
-	visited[u] = 1;
+  parent[u] = u;
+  visited[u] = 1;
 
-	for (int i = head[u]; i != -1;i=edge[i].next) {
-		Edge& e = edge[i];
-		if (!visited[e.toVertex]) {
-			tarjan(e.toVertex);
-			parent[e.toVertex] = u;
-		}
-	}
+  for (int i = head[u]; i != -1; i = edge[i].next) {
+    Edge& e = edge[i];
+    if (!visited[e.toVertex]) {
+      tarjan(e.toVertex);
+      parent[e.toVertex] = u;
+    }
+  }
 
-	for (int i = queryHead[u]; i != -1;i=queryEdge[i].next) {
-		Edge& e = queryEdge[i];
-		if (visited[e.toVertex]) {
-			queryEdge[i ^ 1].LCA = e.LCA = find(e.toVertex);
-		}
-	}
+  for (int i = queryHead[u]; i != -1; i = queryEdge[i].next) {
+    Edge& e = queryEdge[i];
+    if (visited[e.toVertex]) {
+      queryEdge[i ^ 1].LCA = e.LCA = find(e.toVertex);
+    }
+  }
 }
 
 int main() {
-	memset(head, 0xff, sizeof(head));
-	memset(queryHead, 0xff, sizeof(queryHead));
+  memset(head, 0xff, sizeof(head));
+  memset(queryHead, 0xff, sizeof(queryHead));
 
-	cin >> vertexCount >> edgeCount >> queryCount;
-	int count = 0;
-	for (int i = 0; i < edgeCount;i++) {
-		int start = 0, end = 0;
-		cin >> start >> end;
+  cin >> vertexCount >> edgeCount >> queryCount;
+  int count = 0;
+  for (int i = 0; i < edgeCount; i++) {
+    int start = 0, end = 0;
+    cin >> start >> end;
 
-		edge[count] = Edge(start, end, head[start]);
-		head[start] = count;
-		count++;
+    edge[count] = Edge(start, end, head[start]);
+    head[start] = count;
+    count++;
 
-		edge[count] = Edge(end, start, head[end]);
-		head[end] = count;
-		count++;
-	}
+    edge[count] = Edge(end, start, head[end]);
+    head[end] = count;
+    count++;
+  }
 
-	count = 0;
-	for (int i = 0; i < queryCount;i++) {
-		int start = 0, end = 0;
-		cin >> start >> end;
+  count = 0;
+  for (int i = 0; i < queryCount; i++) {
+    int start = 0, end = 0;
+    cin >> start >> end;
 
-		queryEdge[count] = Edge(start, end, queryHead[start]);
-		queryHead[start] = count;
-		count++;
+    queryEdge[count] = Edge(start, end, queryHead[start]);
+    queryHead[start] = count;
+    count++;
 
-		queryEdge[count] = Edge(end, start, queryHead[end]);
-		queryHead[end] = count;
-		count++;
-	}
+    queryEdge[count] = Edge(end, start, queryHead[end]);
+    queryHead[end] = count;
+    count++;
+  }
 
+  init();
+  tarjan(1);
 
-	init();
-	tarjan(1);
+  for (int i = 0; i < queryCount; i++) {
+    Edge& e = queryEdge[i * 2];
+    cout << "(" << e.fromVertex << "," << e.toVertex << ") " << e.LCA << endl;
+  }
 
-	for (int i = 0; i < queryCount;i++) {
-		Edge& e = queryEdge[i * 2];
-		cout << "(" << e.fromVertex << "," << e.toVertex << ") " << e.LCA << endl;
-	}
-
-	return 0;
+  return 0;
 }
 ```
 
@@ -454,3 +452,9 @@ int main() {
   return 0;
 }
 ```
+
+## 习题
+
+-   [严格次小生成树](https://www.luogu.org/problemnew/show/P4180)
+-   [货车运输](https://www.luogu.org/problemnew/show/P1967)
+-   [跑路](https://www.luogu.org/problemnew/show/P1613)

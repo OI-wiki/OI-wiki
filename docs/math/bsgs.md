@@ -1,28 +1,22 @@
-## 大步小步算法
+## 基础篇
 
-### 基础篇
-
-大步小步算法英文名： **baby-step gaint-step (BSGS)** .
-
-该算法可以在 $O(\sqrt{p})$ 用于求解
+BSGS（baby-step gaint-step），即大步小步算法。常用于求解离散对数问题。形式化地说，该算法可以在 $O(\sqrt{p})$ 用于求解。
 
 $$
 a^x \equiv b \bmod p
 $$
 
-其中 $p$ 是个质数，方程的解 $x$ 满足 $0 \le x < p$ .
+其中 $a\perp p$ 。方程的解 $x$ 满足 $0 \le x < p$ 。（在这里需要注意，只要 $a\perp p$ 就行了，不要求 $p$ 是素数）
 
-令 $x = A \lceil \sqrt p \rceil - B$ ，其中 $0\le A,B \le \lceil \sqrt p \rceil$ ，
+### 算法描述
 
-则有 $a^{A\lceil \sqrt p \rceil -B} \equiv b$ ，稍加变换，则有 $a^{A\lceil \sqrt p \rceil} \equiv ba^B$ .
+令 $x = A \left \lceil \sqrt p \right \rceil - B$ ，其中 $0\le A,B \le \left \lceil \sqrt p \right \rceil$ ，则有 $a^{A\left \lceil \sqrt p \right \rceil -B} \equiv b$ ，稍加变换，则有 $a^{A\left \lceil \sqrt p \right \rceil} \equiv ba^B$ 。
 
-我们已知的是 $a,b$ ，所以我们可以先算出等式右边的 $ba^B$ 的所有取值，枚举 $B$ ，用 hash/map 存下来，然后逐一计算 $a^{A\lceil \sqrt p \rceil}$ ，枚举 $A$ ，寻找是否有与之相等的 $ba^B$ ，从而我们可以得到所有的 $x$ ， $x=A \lceil \sqrt p \rceil - B$ .
+我们已知的是 $a,b$ ，所以我们可以先算出等式右边的 $ba^B$ 的所有取值，枚举 $B$ ，用 `hash` / `map` 存下来，然后逐一计算 $a^{A\left \lceil \sqrt p \right \rceil}$ ，枚举 $A$ ，寻找是否有与之相等的 $ba^B$ ，从而我们可以得到所有的 $x$ ， $x=A \left \lceil \sqrt p \right \rceil - B$ 。
 
-注意到 $A,B$ 均小于 $\lceil \sqrt p \rceil$ ，所以时间复杂度为 $O(\sqrt p)$ ，用 map 的话会多一个 $\log$ .
+注意到 $A,B$ 均小于 $\left \lceil \sqrt p \right \rceil$ ，所以时间复杂度为 $\Theta\left  (\sqrt p\right )$ ，用 `map` 则多一个 $\log$ 。
 
-[SPOJ MOD](https://www.spoj.com/problems/MOD/) 是一道模板题，[SDOI2013 随机数生成器](http://www.lydsy.com/JudgeOnline/problem.php?id=3122) 是一道略加变化的题，代码可以在 [Steaunk 的博客](https://blog.csdn.net/Steaunk/article/details/78988376)中看到。
-
-### 略微进阶篇
+## 进阶篇
 
 求解
 
@@ -32,70 +26,171 @@ $$
 
 其中 $p$ 是个质数。
 
-该模型可以通过一系列的转化为成 **基础篇** 中的模型，你可能需要一些关于[原根](/math/primitive-root/)的概念。
+该模型可以通过一系列的转化为成 **基础篇** 中的模型，你可能需要了解关于[阶与原根](/math/primitive-root/)的知识。
 
- **原根的定义** 为：对于任意数 $a$ ，满足 $(a,p)=1$ ，且 $t$ 为最小的 **正整数** 满足 $a^t \equiv 1 \bmod p$ ，则称 $t$ 是 $a$ 模 $p$ 意义下的次数，若 $t=\varphi(p)$ ，则称 $a$ 是 $p$ 的原根。
+由于式子中的模数 $p$ 是一个质数，那么 $p$ 一定存在一个原根 $g$ 。因此对于模 $p$ 意义下的任意的数 $x\ (0\le x<p)$ 有且仅有一个数 $i\ (0\le i<p-1)$ 满足 $x = g^i$ 。
 
-首先根据 **原根存在的条件** ，对与所有的素数 $p>2$ 和正整数 $e$ ，当且仅当 $n=1,2,4,p^e,2p^e$ 时有原根，
+### 方法一
 
-那么由于式子中的模数 $p$ ，那么一定存在一个 $g$ 满足 $g$ 是 $p$ 的原根，即对于任意的数 $x$ 在模 $p$ 意义下一定有且仅有一个数 $i$ ，满足 $x = g^i$ ，且 $0 \le x,i < p$ .
+我们令 $x=g^c$ ， $g$ 是 $p$ 的原根（我们一定可以找到这个 $g$ 和 $c$ ），问题转化为求解 $(g^c)^a \equiv b \bmod p$ 。稍加变换，得到
 
-所以我们令 $x=g^c$ ， $g$ 是 $p$ 的原根（我们一定可以找到这个 $g$ 和 $c$ ），则为求 $(g^c)^a \equiv b \bmod p$ 的关于 $c$ 的解集，稍加变换，则有 $(g^a)^c \equiv b \bmod p$ ，于是就转换成了我们熟知的 **BSGS** 的基本模型了，即可在 $O(\sqrt p)$ 解决。
+$$
+(g^a)^c \equiv b \mod p
+$$
 
-那么关键的问题就在于如何找到这个 $g$ 了？
+于是就转换成了我们熟知的 **BSGS** 的基本模型了，可以在 $O(\sqrt p)$ 解出 $c$ ，这样可以得到原方程的一个特解 $x_0\equiv g^c\bmod p$ 。
 
-关于对于存在原根的数 $p$ 有这样的 **性质** ：若 $t$ 是 $a$ 模 $p$ 的次数（这里蕴含了 $(a,p)=1$ ），那么对于任意的数 $d$ ，满足 $a^d \equiv 1 \bmod p$ ，则 $t \mid d$ .
+### 方法二
 
- **PROOF** 
+我们仍令 $x=g^c$ ，并且设 $b=g^t$ ，于是我们得到
 
-记 $d = tq+r$ ， $0 \le r < t$ .
+$$
+g^{ac}\equiv g^t\mod p
+$$
 
- $\because a^d \equiv a^{xq+r} \equiv (a^t)^qa^r \equiv a^r \equiv 1$ .
+方程两边同时取离散对数得到
 
- $\because 0 \le r < t$ ， $t$ 是 $a$ 模 $p$ 的次数，即 $t$ 是最小的 **正整数** 满足 $a^t \equiv 1$ .
+$$
+ac\equiv t\mod \varphi(p)
+$$
 
- $\therefore r = 0$ .
+我们可以通过 BSGS 求解 $g^t\equiv b\bmod p$ 得到 $t$ ，于是这就转化成了一个线性同余方程的问题。这样也可以解出 $c$ ，求出 $x$ 的一个特解 $x_0\equiv g^c\bmod p$ 。
 
-即 $d = tq$ ， $t \mid d$ 
+### 找到所有解
 
- **Q.E.D.** 
+在知道 $x_0\equiv g^{c}\pmod n$ 的情况下，我们想得到原问题的所有解。首先我们知道 $g^{\varphi(n)}\equiv 1\pmod n$ ，于是可以得到
 
-由此当 $p$ 是质数的时候还有这样的推论：如果不存在小于 $p$ 且整除 $p-1$ 正整数 $t$ , 满足 $a^t \equiv 1$ ，那么又根据 **费马小定理** ，有 $a^{p-1} \equiv 1$ ，所以 $p-1$ 是 $a$ 模 $p$ 的次数，即 $a$ 是 $p$ 的原根。
+$$
+\forall\ t \in \mathbb{Z},\ x^k \equiv g^{ c \cdot k + t\cdot\varphi(n)}\equiv a \mod p
+$$
 
-于是可以得到一种基于 **原根分布** 的算法来找原根，首先把 $p-1$ 的因数全部求出来，然后从 $2$ 到 $p-1$ 枚举，判断是否为原根，如果对于数 $g$ ， $\exists g^t \equiv 1 \bmod p$ ， $t$ 是 $p-1$ 的因数，则 $g$ 一定不是 $p$ 的原根。
+于是得到所有解为
 
-看上去复杂度好像很爆炸（可能确实是爆炸的，但一般情况下，最小的原根不会很大）。
+$$
+\forall\ t\in \mathbb{Z},k\mid t\cdot\varphi(n),\ x\equiv g^{c+\frac{t\cdot\varphi(n)}{k}}\mod p
+$$
 
-~~基于一个 **假设** ，原联系根是 **均匀分布** 的，我们 **伪证明** 一下总复杂度~~：原根数量定理：数 $p$ 要么没有原根，要么有 $\varphi(\varphi(p))$ 个原根。
+对于上面这个式子，显然有 $\frac{k}{\gcd(k,\varphi(n))}  \mid t$ 。因此我们设 $t=\frac{k}{\gcd(k,\varphi(n))}\cdot i$ ，得到
 
-由于 $p$ 是质数，所以 $p$ 有 $\varphi(p-1)$ 个原根，所以大概最小的原根为 $\frac{p}{\varphi(p-1)}=O(\log\log n)$ ，由于求每一个数时要枚举一遍 $p-1$ 所有的因数 $O(\sqrt p)$ 来判断其是否为原根，最后再算上 **BSGS** 的复杂度 $O(\sqrt{p})$ ，则复杂度约为 $O(\sqrt{p}\log \log n)$ .
+$$
+\forall \ i\in \mathbb{Z},x\equiv g^{c+\frac{\varphi(n)}{\gcd(k,\varphi(n))}\cdot i}\mod p
+$$
 
-[BZOJ1319 Discrete Roots](http://www.lydsy.com/JudgeOnline/problem.php?id=1319) 是一道模板题，代码可以在 [Steaunk 的博客](https://blog.csdn.net/Steaunk/article/details/78988376)中看到。
+这就是原问题的所有解。
 
-### 扩展篇
+### 实现
 
-上文提到的情况是 $c$ 为素数的情况，如果 $c$ 不是素数呢？
-
-这就需要用到扩展 BSGS 算法，不要求 $c$ 为素数！
-
-扩展 BSGS 用到了同余的一条性质：
-
-令 $d=gcd(a,c) ,a=m \times d,b=n \times d,p=k \times d$ ；
-则 $m \times d \equiv b \times d \pmod {c \times d}$ 等价于 $m \equiv n \pmod k$ 所以我们要先消除因子：
+下面的代码实现的找原根、离散对数解和原问题所有解的过程。
 
 ```cpp
-d = 1, num = 0, t = 0;
-for (int t = gcd(a, c); t != 1; t = gcd(a, c)) {
-  if (b % t) {
-    \\无解
+int gcd(int a, int b) { return a ? gcd(b % a, a) : b; }
+int powmod(int a, int b, int p) {
+  int res = 1;
+  while (b > 0) {
+    if (b & 1) res = res * a % p;
+    a = a * a % p, b >>= 1;
   }
-  b /= t;
-  c /= t;
-  d *= a / t;
-  num++;
+  return res;
+}
+// Finds the primitive root modulo p
+int generator(int p) {
+  vector<int> fact;
+  int phi = p - 1, n = phi;
+  for (int i = 2; i * i <= n; ++i) {
+    if (n % i == 0) {
+      fact.push_back(i);
+      while (n % i == 0) n /= i;
+    }
+  }
+  if (n > 1) fact.push_back(n);
+  for (int res = 2; res <= p; ++res) {
+    bool ok = true;
+    for (int factor : fact) {
+      if (powmod(res, phi / factor, p) == 1) {
+        ok = false;
+        break;
+      }
+    }
+    if (ok) return res;
+  }
+  return -1;
+}
+// This program finds all numbers x such that x^k=a (mod n)
+int main() {
+  int n, k, a;
+  scanf("%d %d %d", &n, &k, &a);
+  if (a == 0) return puts("1\n0"), 0;
+  int g = generator(n);
+  // Baby-step giant-step discrete logarithm algorithm
+  int sq = (int)sqrt(n + .0) + 1;
+  vector<pair<int, int>> dec(sq);
+  for (int i = 1; i <= sq; ++i)
+    dec[i - 1] = {powmod(g, i * sq * k % (n - 1), n), i};
+  sort(dec.begin(), dec.end());
+  int any_ans = -1;
+  for (int i = 0; i < sq; ++i) {
+    int my = powmod(g, i * k % (n - 1), n) * a % n;
+    auto it = lower_bound(dec.begin(), dec.end(), make_pair(my, 0));
+    if (it != dec.end() && it->first == my) {
+      any_ans = it->second * sq - i;
+      break;
+    }
+  }
+  if (any_ans == -1) return puts("0"), 0;
+  // Print all possible answers
+  int delta = (n - 1) / gcd(k, n - 1);
+  vector<int> ans;
+  for (int cur = any_ans % delta; cur < n - 1; cur += delta)
+    ans.push_back(powmod(g, cur, n));
+  sort(ans.begin(), ans.end());
+  printf("%d\n", ans.size());
+  for (int answer : ans) printf("%d ", answer);
 }
 ```
 
-消除完后，就变成了 $d \times m^{x-num} \equiv n \pmod k$ ，令 $x=i \times m+j+num$ ，后面的做法就和普通 BSGS 一样了。
+## 扩展篇
 
-注意，因为 $i,j \le 0$ ，所以 $x \le num$ ，但不排除解小于等于 $num$ 的情况，所以在消因子之前做一下 $\Theta(\log_2 p)$ 枚举，直接验证 $a^i \mod c = b$ ，这样就能避免这种情况。
+接下来我们求解
+
+$$
+a^x\equiv b\mod p
+$$
+
+其中 $a,p$ 不一定互质。
+
+当 $a\perp p$ 时，在模 $p$ 意义下 $a$ 存在逆元，因此可以使用 BSGS 算法求解。于是我们想办法让他们变得互质。
+
+具体地，设 $d_1=\gcd(a,p)$ 。如果 $d_1\nmid b$ ，则原方程无解。否则我们把方程同时除以 $d_1$ ，得到
+
+$$
+\frac{a}{d_1}\cdot a^{x-1}\equiv \frac{b}{d_1}\mod \frac{p}{d_1}
+$$
+
+如果 $a$ 和 $\frac{p}{d_1}$ 仍不互质就再除，设 $d_2=\gcd\left(a,\frac{p}{d_1}\right)$ 。如果 $d_2\nmid \frac{b}{d_1}$ ，则方程无解；否则同时除以 $d_2$ 得到
+
+$$
+\frac{a^2}{d_1d_2}\cdot a^{x-2}≡\frac{b}{d_1d_2} \mod \frac{p}{d_1d_2}
+$$
+
+同理，这样不停的判断下去。直到 $a\perp \frac{p}{d_1d_2\cdots d_k}$ 。
+
+记 $D=\prod_{i=1}^kd_i$ ，于是方程就变成了这样：
+
+$$
+\frac{a^k}{D}\cdot a^{x-k}\equiv\frac{b}{D} \mod \frac{p}{D}
+$$
+
+由于 $a\perp\frac{p}{D}$ ，于是推出 $\frac{a^k}{D}\perp \frac{p}{D}$ 。这样 $\frac{a^k}{D}$ 就有逆元了，于是把它丢到方程右边，这就是一个普通的 BSGS 问题了，于是求解 $x-k$ 后再加上 $k$ 就是原方程的解啦。
+
+注意，不排除解小于等于 $k$ 的情况，所以在消因子之前做一下 $\Theta(k)$ 枚举，直接验证 $a^i\equiv b \mod p$ ，这样就能避免这种情况。
+
+## 习题
+
+-   [SPOJ MOD](https://www.spoj.com/problems/MOD/)模板
+-   [SDOI2013 随机数生成器](http://www.lydsy.com/JudgeOnline/problem.php?id=3122)
+-   [BZOJ1319 Discrete Roots](http://www.lydsy.com/JudgeOnline/problem.php?id=1319)模板
+-   [SDOI2011 计算器](https://www.luogu.org/problemnew/show/P2485)模板
+-   [Luogu4195【模板】exBSGS/Spoj3105 Mod](https://www.luogu.org/problemnew/show/P4195)目标
+-   [Codeforces - Lunar New Year and a Recursive Sequence](https://codeforces.com/contest/1106/problem/F)
+
+     **本页面部分内容以及代码译自博文[Дискретное извлечение корня](http://e-maxx.ru/algo/discrete_root)与其英文翻译版[Discrete Root](https://cp-algorithms.com/algebra/discrete-root.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

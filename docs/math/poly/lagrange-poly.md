@@ -1,4 +1,6 @@
-??? note " 例题 [Luogu P4781【模板】拉格朗日插值](https://www.luogu.org/problemnew/show/P4781)"
+author: Billchenchina, Ghastlcon, hsfzLZH1
+
+??? note " 例题[Luogu P4781【模板】拉格朗日插值](https://www.luogu.org/problemnew/show/P4781)"
 
 ### 题目大意
 
@@ -21,7 +23,7 @@
 
 使用 **待定系数法** 。设 $f(x)=\sum_{i=0}^{n-1} a_ix^i$ 将每个 $x_i$ 代入 $f(x)$ ，有 $f(x_i)=y_i$ ，这样就可以得到一个由 $n$ 条 $n$ 元 $1$ 次方程所组成的方程组，然后使用 **高斯消元** 求出每一项 $a_i$ ，然后将 $k$ 代入求值。
 
-如果您不知道什么是高斯消元，请看 [Luogu P3389 高斯消元法](https://www.luogu.org/problemnew/show/P3389)。
+如果您不知道什么是高斯消元，请看[Luogu P3389 高斯消元法](https://www.luogu.org/problemnew/show/P3389)。
 
 时间复杂度 $O(n^3)$ ，对给出点的坐标无要求。
 
@@ -37,20 +39,24 @@
 
 公式整理得：
 
-$$ f(x)=\sum_{i=1}^{n} y_i\times(\prod_{j\neq i }\frac{x-x_j}{x_i-x_j}) $$
+$$
+f(x)=\sum_{i=1}^{n} y_i\times(\prod_{j\neq i }\frac{x-x_j}{x_i-x_j})
+$$
 
 如果要将每一项都算出来，时间复杂度仍是 $O(n^2)$ 的，但是本题中只用求出 $f(k)$ 的值，所以只需将 $k$ 代入进式子里得：
 
-$$ \mathrm{answer}=\sum_{i=1}^{n} y_i\times(\prod_{j\neq i }\frac{k-x_j}{x_i-x_j}) $$
+$$
+\mathrm{answer}=\sum_{i=1}^{n} y_i\times(\prod_{j\neq i }\frac{k-x_j}{x_i-x_j})
+$$
 
 本题中，还需要求解逆元。如果先分别计算出分子和分母，再将分子乘进分母的逆元，累加进最后的答案，时间复杂度的瓶颈就不会在求逆元上，时间复杂度为 $O(n^2)$ 。
 
 ### 代码实现
 
 ```cpp
+#include <algorithm>
 #include <cstdio>
 #include <cstring>
-#include <algorithm>
 const int maxn = 2010;
 using ll = long long;
 ll mod = 998244353;
@@ -64,9 +70,7 @@ ll powmod(ll a, ll x) {
   }
   return ret;
 }
-ll inv(ll x) {
-  return powmod(x, mod - 2);
-}
+ll inv(ll x) { return powmod(x, mod - 2); }
 int main() {
   scanf("%lld%lld", &n, &k);
   for (int i = 1; i <= n; i++) scanf("%lld%lld", x + i, y + i);

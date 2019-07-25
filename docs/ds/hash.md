@@ -57,6 +57,32 @@ struct HashTable {
 };
 ```
 
+这边再为大家提供一个封装过的模板，可以像 map 一样用，并且较短
+
+```cpp
+struct hash_map {  // 哈希表模板
+  struct data {
+    long long u;
+    int v, nex;
+  };                // 前向星结构
+  data e[SZ << 1];  // SZ 是 const int 表示大小
+  int h[SZ], cnt;
+  int hash(long long u) { return u % SZ; }
+  int& operator[](long long u) {
+    int hu = hash(u);  // 获取头指针
+    for (int i = h[hu]; i; i = e[i].nex)
+      if (e[i].u == u) return e[i].v;
+    return e[++cnt] = (data){u, -1, h[hu]}, h[hu] = cnt, e[cnt].v;
+  }
+  hash_map() {
+    cnt = 0;
+    memset(h, 0, sizeof(h));
+  }
+};
+```
+
+解释一下，hash 函数是针对 key 的类型设计的，并且返回一个链表头指针用于查询。在这个模板中我们写了一个 $\text{(long long , int)}$ 式的 hash 表，并且当某个 key 不存在的时侯初始化对应的 val 成 -1。hash_map() 函数是在定义的时侯初始化用的。
+
 ## 例题
 
 [\[JLOI2011\]不重复数字](https://www.lydsy.com/JudgeOnline/problem.php?id=2761)

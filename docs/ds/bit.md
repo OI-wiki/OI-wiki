@@ -1,3 +1,5 @@
+author: HeRaNO, Zhoier
+
 ## 简介
 
 树状数组和下面的线段树可是亲兄弟了，但他俩毕竟还有一些区别：  
@@ -67,9 +69,8 @@ int lowbit(int x) {
 那么对于 **单点修改** 就更轻松了：
 
 ```cpp
-void change(int x, int k) {
-  while (x <= n)  //不能越界
-  {
+void add(int x, int k) {
+  while (x <= n) {  //不能越界
     c[x] = c[x] + k;
     x = x + lowbit(x);
   }
@@ -79,8 +80,7 @@ void change(int x, int k) {
 每次只要在他的上级那里更新就行，自己就可以不用管了。
 
 ```cpp
-int getsum(int x)  // a[1]……a[x]的和
-{
+int getsum(int x) {  // a[1]……a[x]的和
   int ans = 0;
   while (x >= 1) {
     ans = ans + c[x];
@@ -90,12 +90,101 @@ int getsum(int x)  // a[1]……a[x]的和
 }
 ```
 
- **区间和** 也不用说了吧，代码十分清真。
+## 区间加区间求和
+
+若维护序列 $a$ 的差分数组 $b$ ，此时我们对 $a$ 的一个前缀 $r$ 求和，即 $\sum_{i=1}^{r} a_i$ ，由差分数组定义得 $a_i=\sum_{j=1}^i b_j$ 
+
+进行推导
+
+$$
+\sum_{i=1}^{r} a_i\\=\sum_{i=1}^r\sum_{j=1}^i b_i\\=\sum_{i=1}^r b_i\times(r-i+1)
+\\=\sum_{i=1}^r b_i\times (r+1)-\sum_{i=1}^r b_i\times i
+$$
+
+区间和可以用两个前缀和相减得到，因此只需要用两个树状数组分别维护 $\sum b_i$ 和 $\sum i \times b_i$ ，就能实现区间求和。
+
+代码如下
+
+```cpp
+int t1[MAXN], t2[MAXN], n;
+
+inline int lowbit(int x) { return x & (-x); }
+
+void add(int k, int v) {
+  int v1 = k * v;
+  while (k <= n) {
+    t1[k] += v, t2[k] += v1;
+    k += lowbit(k);
+  }
+}
+
+int getsum(int *t, int k) {
+  int ret = 0;
+  while (k) {
+    ret += t[k];
+    k -= lowbit(k);
+  }
+  return ret;
+}
+
+void add1(int l, int r, int v) {
+  add(l, v), add(r + 1, -v);  //将区间加差分为两个前缀加
+}
+
+long long getsum1(int l, int r) {
+  return (r + 1ll) * (getsum(t1, r) - getsum(t1, l - 1)) -
+         (getsum(t2, r) - getsum(t2, l - 1));
+}
+```
+
+树状数组还有一些 trick，如 $O(n)$ 建树、 $O(\log n)$ 查询第 $k$ 小/大元素等，下附代码。
+
+```cpp
+// O(n)建树
+void init() {
+  for (int i = 1; i <= n; ++i) {
+    t[i] += a[i];
+    int j = i + lowbit(i);
+    if (j <= n) t[j] += t[i];
+  }
+}
+
+int kth(int k) {  //权值树状数组查询第k小
+  int cnt = 0, ret = 0;
+  for (int i = log2(n); ~i; --i) {
+    ret += 1 << i;
+    if (ret >= n || cnt + t[ret] >= k)
+      ret -= 1 << i;
+    else
+      cnt += t[ret];
+  }
+  return ret + 1;
+}
+
+//时间戳优化
+int tag[MAXN], t[MAXN], Tag;
+void reset() { ++Tag; }
+void add(int k, int v) {
+  while (k <= n) {
+    if (tag[k] != Tag) t[k] = 0;
+    t[k] += v, tag[k] = Tag;
+    k += lowbit(k);
+  }
+}
+int getsum(int k) {
+  int ret = 0;
+  while (k) {
+    if (tag[k] == Tag) ret += t[k];
+    k -= lowbit(k);
+  }
+  return ret;
+}
+```
 
 ## 例题
 
--   [树状数组 1 ：单点修改，区间查询](https://loj.ac/problem/130)
--   [树状数组 2 ：区间修改，单点查询](https://loj.ac/problem/131)
--   [树状数组 3 ：区间修改，区间查询](https://loj.ac/problem/132)
+-   [树状数组 1：单点修改，区间查询](https://loj.ac/problem/130)
+-   [树状数组 2：区间修改，单点查询](https://loj.ac/problem/131)
+-   [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132)
 -   [二维树状数组 1：单点修改，区间查询](https://loj.ac/problem/133)
 -   [二维树状数组 3：区间修改，区间查询](https://loj.ac/problem/135)

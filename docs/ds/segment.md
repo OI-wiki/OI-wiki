@@ -1,3 +1,5 @@
+author: CJSoft, HeRaNO, konnyakuxzy
+
 ## 写在前面
 
 线段树是个好东西啊！
@@ -6,7 +8,7 @@ OI 中最常用的数据结构之一，不学不行啊！
 
 ## 线段树是什么
 
-> 线段树是一种二叉搜索树，与区间树相似，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。使用线段树可以快速的查找某一个节点在若干条线段中出现的次数，时间复杂度为 $O(\log N)$ 。而未优化的空间复杂度为 $2N$ ，因此有时需要离散化让空间压缩。——via 百度
+> 线段树是一种二叉搜索树，与区间树相似，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。使用线段树可以快速的查找某一个节点在若干条线段中出现的次数，时间复杂度为 $O(\log N+K)$ ，其中 $k$ 是匹配条件的区间数量。而未优化的空间复杂度为 $2N$ ，因此有时需要离散化让空间压缩。——via 百度 & 维基
 
 反正就是一种可以在很短的时间内对某个区间进行操作的数据结构。
 
@@ -36,7 +38,6 @@ OI 中最常用的数据结构之一，不学不行啊！
 我们继续观察，有没有发现如果 $d[i]$ 表示的区间大小等于 $1$ （区间大小指的是区间包含的元素的个数，即 $a$ 的个数）的话（设 $d[i]$ 表示区间 $[s,t]$ ，它的区间大小就是 $t-s+1$ ，不信你看上面的图），那么 $d[i]$ 所表示的区间 $[s,t]$ 中 $s$ 肯定等于 $t$ （不信你还是看图），且 $d[i]=a[s]$ （当然也等于 $a[t]$ ）。
 为什么要讲这个东西呢？你没发现这个是个递归边界吗？
 
-
  **思路如下：** ![](./images/segt2.png)![](./images/segt3.png)![](./images/segt4.png)
 
 此处给出 C++ 的代码实现，可参考注释理解：
@@ -57,11 +58,11 @@ void build(int s, int t, int p) {
 
 上面那短短数行代码就能建立一个线段树。
 
-关于线段树的空间: 如果采用堆式存储（堆式储存可以理解为 $2p$ 是 $p$ 的左儿子，$2p+1$ 是 $p$ 的右儿子），则 d 数组的长度应为 $2^{\left\lceil\log{n}\right\rceil+1}$，亦即取 $2$ 的幂中第一个大于等于 $n$ 的幂并将其乘二作为 d 数组的长度。
+关于线段树的空间：如果采用堆式存储（堆式储存可以理解为 $2p$ 是 $p$ 的左儿子， $2p+1$ 是 $p$ 的右儿子），则 d 数组的长度应为 $2^{\left\lceil\log{n}\right\rceil+1}$ ，亦即取 $2$ 的幂中第一个大于等于 $n$ 的幂并将其乘二作为 d 数组的长度。
 
-分析: 容易知道线段树的深度是 $\left\lceil\log{n}\right\rceil$ 的，则在堆式储存情况下叶子节点(包括无用的叶子节点)数量为 $2^{\left\lceil\log{n}\right\rceil}$ 个，又由于其为一棵完全二叉树，则其总节点个数 $2^{\left\lceil\log{n}\right\rceil+1}-1$。当然如果你懒得计算的话可以直接把数组长度设为 $4n$，因为 $\frac{2^{\left\lceil\log{n}\right\rceil+1}-1}{n}$ 的最大值在 $n=2^{x}+1(x\in N_{+})$ 时取到，此时节点数为 $2^{\left\lceil\log{n}\right\rceil+1}-1=2^{x+2}-1=4n-5$。
+分析：容易知道线段树的深度是 $\left\lceil\log{n}\right\rceil$ 的，则在堆式储存情况下叶子节点（包括无用的叶子节点）数量为 $2^{\left\lceil\log{n}\right\rceil}$ 个，又由于其为一棵完全二叉树，则其总节点个数 $2^{\left\lceil\log{n}\right\rceil+1}-1$ 。当然如果你懒得计算的话可以直接把数组长度设为 $4n$ ，因为 $\frac{2^{\left\lceil\log{n}\right\rceil+1}-1}{n}$ 的最大值在 $n=2^{x}+1(x\in N_{+})$ 时取到，此时节点数为 $2^{\left\lceil\log{n}\right\rceil+1}-1=2^{x+2}-1=4n-5$ 。
 
-而如果采用动态开点的方法(动态开点即为不一次性开出全部节点的内存，而是在第一次使用到一个空节点时才开出其内存，这样可以减少空间复杂度的常数。动态开点的方法见[内存池](../../intro/common-tricks/#mempool))，由于不会存在堆式储存中空置节点的问题,故叶子节点数量为 $n$，非叶子节点数量为 $n-1$，只需要开 $2n-1$ 大小的数组即可。缺点是由于不使用堆式储存，无法知道其左右儿子的编号，故须新增两个域来储存其左右儿子的编号。
+而如果采用动态开点的方法（动态开点即为不一次性开出全部节点的内存，而是在第一次使用到一个空节点时才开出其内存，这样可以减少空间复杂度的常数。动态开点的方法见[内存池](../../intro/common-tricks/#mempool))，由于不会存在堆式储存中空置节点的问题，故叶子节点数量为 $n$ ，非叶子节点数量为 $n-1$ ，只需要开 $2n-1$ 大小的数组即可。缺点是由于不使用堆式储存，无法知道其左右儿子的编号，故须新增两个域来储存其左右儿子的编号。
 
 ### 线段树的区间查询
 
@@ -77,12 +78,13 @@ void build(int s, int t, int p) {
 
 你要查的不是 $[3,5]$ 吗？我把 $[3,5]$ 拆成 $[3,3]$ 和 $[4,5]$ 不就行了吗？
 
-此处给出 C++ 的代码实现 ，可参考注释理解：
+此处给出 C++ 的代码实现，可参考注释理解：
 
 ```cpp
 int getsum(int l, int r, int s, int t, int p) {
   // [l,r] 为查询区间,[s,t] 为当前节点包含的区间,p 为当前节点的编号
-  if (l <= s && t <= r) return d[p]; // 当前区间为询问区间的子集时直接返回当前区间的和
+  if (l <= s && t <= r)
+    return d[p];  // 当前区间为询问区间的子集时直接返回当前区间的和
   int m = (s + t) / 2, sum = 0;
   if (l <= m) sum += getsum(l, r, s, m, p * 2);
   // 如果左儿子代表的区间 [l,m] 与询问区间有交集,则递归查询左儿子
@@ -153,21 +155,22 @@ int getsum(int l, int r, int s, int t, int p) {
 
 代码如下（下面代码不知道为什么显示出来很丑，建议复制到自己的 C++ 编辑器里看……）：
 
-区间修改（区间加上某个值）:
+区间修改（区间加上某个值）：
 
 ```cpp
-void update(int l, int r, int c, int s, int t,int p){
-  // [l,r] 为修改区间,c 为被修改的元素的变化量,[s,t] 为当前节点包含的区间,p 为当前节点的编号
+void update(int l, int r, int c, int s, int t, int p) {
+  // [l,r] 为修改区间,c 为被修改的元素的变化量,[s,t] 为当前节点包含的区间,p
+  // 为当前节点的编号
   if (l <= s && t <= r) {
     d[p] += (t - s + 1) * c, b[p] += c;
     return;
-  }// 当前区间为修改区间的子集时直接修改当前节点的值,然后打标记,结束修改
-  int m = (s + t) / 2; 
-  if (b[p] && s!=t){
+  }  // 当前区间为修改区间的子集时直接修改当前节点的值,然后打标记,结束修改
+  int m = (s + t) / 2;
+  if (b[p] && s != t) {
     // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
     d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m);
-    b[p * 2] += b[p], b[p * 2 + 1] += b[p]; // 将标记下传给子节点
-    b[p] = 0; // 清空当前节点的标记
+    b[p * 2] += b[p], b[p * 2 + 1] += b[p];  // 将标记下传给子节点
+    b[p] = 0;                                // 清空当前节点的标记
   }
   if (l <= m) update(l, r, c, s, m, p * 2);
   if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
@@ -175,28 +178,27 @@ void update(int l, int r, int c, int s, int t,int p){
 }
 ```
 
-区间查询（求和）:
+区间查询（求和）：
 
 ```cpp
-int getsum(int l, int r, int s, int t,int p){
-  // [l,r] 为修改区间,c 为被修改的元素的变化量,[s,t] 为当前节点包含的区间,p 为当前节点的编号
-  if (l <= s && t <= r)
-    return d[p]; 
+int getsum(int l, int r, int s, int t, int p) {
+  // [l,r] 为修改区间,c 为被修改的元素的变化量,[s,t] 为当前节点包含的区间,p
+  // 为当前节点的编号
+  if (l <= s && t <= r) return d[p];
   // 当前区间为询问区间的子集时直接返回当前区间的和
   int m = (s + t) / 2;
-  if (b[p]){
+  if (b[p]) {
     // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
-    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m), 
-    b[p * 2] += b[p], b[p * 2 + 1] += b[p];// 将标记下传给子节点
-    b[p] = 0;// 清空当前节点的标记
+    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m),
+        b[p * 2] += b[p], b[p * 2 + 1] += b[p];  // 将标记下传给子节点
+    b[p] = 0;                                    // 清空当前节点的标记
   }
-  int sum = 0; 
+  int sum = 0;
   if (l <= m) sum = getsum(l, r, s, m, p * 2);
   if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
   return sum;
 }
 ```
-
 
 你有没有发现区间查询和区间修改很像吗？
 
@@ -211,9 +213,9 @@ void update(int l, int r, int c, int s, int t, int p) {
     return;
   }
   int m = (s + t) / 2;
-  if (b[p]){
+  if (b[p]) {
     d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
-    b[p * 2] = b[p * 2 + 1] = b[p];
+          b[p * 2] = b[p * 2 + 1] = b[p];
     b[p] = 0;
   }
   if (l <= m) update(l, r, c, s, m, p * 2);
@@ -223,9 +225,9 @@ void update(int l, int r, int c, int s, int t, int p) {
 int getsum(int l, int r, int s, int t, int p) {
   if (l <= s && t <= r) return d[p];
   int m = (s + t) / 2;
-  if (b[p]){
+  if (b[p]) {
     d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
-    b[p * 2] = b[p * 2 + 1] = b[p];
+          b[p * 2] = b[p * 2 + 1] = b[p];
     b[p] = 0;
   }
   int sum = 0;
@@ -312,7 +314,7 @@ int main() {
   while (q--) {
     std::cin >> i1 >> i2 >> i3;
     if (i1 == 2)
-     std::cout << getsum(i2, i3, 1, n, 1) << endl;
+      std::cout << getsum(i2, i3, 1, n, 1) << endl;
     else
       std::cin >> i4, update(i2, i3, i4, 1, n, 1);
   }
@@ -416,8 +418,7 @@ void add(int l, int r, int s, int t, int i, ll z) {
 ll getans(int l, int r, int s, int t, int i) {
   int mid = (s + t) >> 1;
   ll tot = 0;
-  if (l <= s && t <= r)
-    return sum[i];
+  if (l <= s && t <= r) return sum[i];
   pd(i, s, t);
   if (mid >= l) tot += getans(l, r, s, mid, (i << 1));
   tot %= mod;
@@ -458,7 +459,7 @@ int main() {
 
 [传送门](http://codevs.cn/problem/?q=%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%83%E4%B9%A0)
 
-具体题解去百度吧...
+具体题解去百度吧……
 
 ### HihoCoder 1078 线段树的区间修改
 
@@ -485,7 +486,7 @@ void update(int l, int r, int c, int s, int t, int p) {
     return;
   }
   int m = (s + t) >> 1;
-  if (b[p]){
+  if (b[p]) {
     d[p << 1] = b[p] * (m - s + 1), d[(p << 1) | 1] = b[p] * (t - m);
     b[p << 1] = b[(p << 1) | 1] = b[p];
     b[p] = 0;
@@ -497,7 +498,7 @@ void update(int l, int r, int c, int s, int t, int p) {
 int getsum(int l, int r, int s, int t, int p) {
   if (l <= s && t <= r) return d[p];
   int m = (s + t) >> 1;
-  if (b[p]){
+  if (b[p]) {
     d[p << 1] = b[p] * (m - s + 1), d[(p << 1) | 1] = b[p] * (t - m);
     b[p << 1] = b[(p << 1) | 1] = b[p];
     b[p] = 0;

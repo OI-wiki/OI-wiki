@@ -1,3 +1,5 @@
+author: abc1763613206, cesonic, Ir1d, MingqiHuang
+
 ### 引入
 
 启发式算法是什么呢？
@@ -137,7 +139,7 @@ int dfs2(int u, int fa, bool keep, bool isson) {
 
 1.  某些出题人设置的正解是 dsu on tree 的题
 
-如 [CF741D](http://codeforces.com/problemset/problem/741/D)。给一棵树，每个节点的权值是 'a' 到 'v' 的字母，每次询问要求在一个子树找一条路径，使该路径包含的字符排序后成为回文串。
+如[CF741D](http://codeforces.com/problemset/problem/741/D)。给一棵树，每个节点的权值是'a' 到'v' 的字母，每次询问要求在一个子树找一条路径，使该路径包含的字符排序后成为回文串。
 
 因为是排列后成为回文串，所以一个字符出现了两次相当于没出现，也就是说，这条路径满足 **最多有一个字符出现奇数次** 。
 

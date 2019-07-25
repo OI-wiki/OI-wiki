@@ -13,11 +13,11 @@
 
 ### 定义及相关概念
 
- **向量** ：既有大小又有方向的量称为向量。数学上研究的向量为 **自由向量** ，即只要不改变它的大小和方向，起点和终点可以任意平行移动的向量。记作 $\vec a$ 或 $\mathbf{a}$。
+ **向量** ：既有大小又有方向的量称为向量。数学上研究的向量为 **自由向量** ，即只要不改变它的大小和方向，起点和终点可以任意平行移动的向量。记作 $\vec a$ 或 $\mathbf{a}$ 。
 
  **有向线段** ：带有方向的线段称为有向线段。有向线段有三要素： **起点，方向，长度** ，知道了三要素，终点就唯一确定。我们用有向线段表示向量。
 
- **向量的模** ：有向线段 $\overrightarrow{AB}$ 的长度称为向量的模，即为这个向量的大小。记为： $|\overrightarrow{AB}|$ 或 $|\mathbf{a}|$。
+ **向量的模** ：有向线段 $\overrightarrow{AB}$ 的长度称为向量的模，即为这个向量的大小。记为： $|\overrightarrow{AB}|$ 或 $|\mathbf{a}|$ 。
 
  **零向量** ：模为 $0$ 的向量。零向量的方向任意。记为： $\vec 0$ 或 $\mathbf{0}$ 。
 
@@ -81,7 +81,8 @@ $$
 $$
 
 #### 判定两向量共线
-两个 **非零** 向量 $\mathbf a$ 与 $\mathbf b$ 共线 $\Leftrightarrow$ 有唯一实数 $\lambda$，使得 $\mathbf b=\lambda \mathbf a$ 。
+
+两个 **非零** 向量 $\mathbf a$ 与 $\mathbf b$ 共线 $\Leftrightarrow$ 有唯一实数 $\lambda$ ，使得 $\mathbf b=\lambda \mathbf a$ 。
 
 证明：由数乘的定义可知，对于 **非零** 向量 $\mathbf a$ ，如果存在实数 $\lambda$ ，使得 $\mathbf b=\lambda \mathbf a$ ，那么 $\mathbf a \parallel \mathbf b$ 。
 
@@ -93,7 +94,7 @@ $$
 
 #### 平面向量基本定理
 
-定理内容：如果两个向量 $\mathbf{e_1},\mathbf{e_2}$ 不共线，那么存在唯一实数对 $(x,y)$ ，使得与 $\mathbf{e_1},\mathbf{e_2}$ 共面的任意向量 $\mathbf p$ 满足 $\mathbf p=x\mathbf{e_1}+y\mathbf{e_2}$。
+定理内容：如果两个向量 $\mathbf{e_1},\mathbf{e_2}$ 不共线，那么存在唯一实数对 $(x,y)$ ，使得与 $\mathbf{e_1},\mathbf{e_2}$ 共面的任意向量 $\mathbf p$ 满足 $\mathbf p=x\mathbf{e_1}+y\mathbf{e_2}$ 。
 
 平面向量那么多，我们想用尽可能少的量表示出所有平面向量，怎么办呢？
 
@@ -114,6 +115,7 @@ $$
 ### 平面向量的坐标运算
 
 #### 平面向量线性运算
+
 由平面向量的线性运算，我们可以推导其坐标运算，主要方法是将坐标全部化为用基底表示，然后利用运算律进行合并，之后表示出运算结果的坐标形式。
 
 若两向量 $\mathbf a=(m,n),\mathbf b=(p,q)$ ，则：
@@ -126,12 +128,14 @@ $$
 
 #### 求一个向量的坐标表示
 
-已知两点 $A(a,b),B(c,d)$ ，易证 $\overrightarrow{AB}=(c-a,d-b)$。
+已知两点 $A(a,b),B(c,d)$ ，易证 $\overrightarrow{AB}=(c-a,d-b)$ 。
 
 #### 平移一点
+
 有时候，我们需要将一个点 $P$ 沿一定方向平移某单位长度，这样我们把要平移的方向和距离组合成一个向量，利用向量加法的三角形法则，将 $\overrightarrow{OP}$ 加上这个向量，得到的向量终点即为平移后的点。
 
 #### 三点共线的判定
+
 若 $A,B,C$ 三点共线，则 $\overrightarrow{OB}=\lambda \overrightarrow{OA}+(1-\lambda)\overrightarrow{OC}$ 。
 
 ### 向量的数量积
@@ -150,10 +154,11 @@ $$
 
 #### 判定两向量垂直
 
-$\mathbf a \perp \mathbf b$  $\Leftrightarrow$  $\mathbf a\cdot \mathbf b=0$ 
+ $\mathbf a \perp \mathbf b$  $\Leftrightarrow$  $\mathbf a\cdot \mathbf b=0$ 
 
 #### 判定两向量共线
-$\mathbf a = \lambda \mathbf b$  $\Leftrightarrow$  $\mathbf a\cdot \mathbf b=|\mathbf a||\mathbf b|$ 
+
+ $\mathbf a = \lambda \mathbf b$  $\Leftrightarrow$  $\mathbf a\cdot \mathbf b=|\mathbf a||\mathbf b|$ 
 
 #### 数量积的坐标运算
 
@@ -161,11 +166,11 @@ $\mathbf a = \lambda \mathbf b$  $\Leftrightarrow$  $\mathbf a\cdot \mathbf b=|\
 
 #### 向量的模
 
-$|\mathbf a|=\sqrt {m^2+n^2}$ 
+ $|\mathbf a|=\sqrt {m^2+n^2}$ 
 
 #### 两向量的夹角
 
-$\cos \theta=\cfrac{\mathbf a\cdot\mathbf b}{|\mathbf a||\mathbf b|}$ 
+ $\cos \theta=\cfrac{\mathbf a\cdot\mathbf b}{|\mathbf a||\mathbf b|}$ 
 
 ### 扩展
 
@@ -194,7 +199,7 @@ $\cos \theta=\cfrac{\mathbf a\cdot\mathbf b}{|\mathbf a||\mathbf b|}$
 
 #### 向量旋转
 
-设 $\mathbf a=(x,y)$ ，倾角为 $\theta$ ，长度为 $l=\sqrt{x^2+y^2}$。则 $x=l\cos \theta,y=l\sin\theta$。令其顺时针旋转 $\alpha$ 度角，得到向量 $\mathbf b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$。
+设 $\mathbf a=(x,y)$ ，倾角为 $\theta$ ，长度为 $l=\sqrt{x^2+y^2}$ 。则 $x=l\cos \theta,y=l\sin\theta$ 。令其顺时针旋转 $\alpha$ 度角，得到向量 $\mathbf b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$ 。
 
 ![](./images/misc1.png)
 
