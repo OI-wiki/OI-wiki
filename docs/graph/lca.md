@@ -452,3 +452,11 @@ int main() {
   return 0;
 }
 ```
+
+### 练习
+
+[严格次小生成树](https://www.luogu.org/problemnew/show/P4180)
+
+[货车运输](https://www.luogu.org/problemnew/show/P1967)
+
+[跑路](https://www.luogu.org/problemnew/show/P1613)
