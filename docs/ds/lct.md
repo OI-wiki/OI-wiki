@@ -825,11 +825,148 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 
 LCT 并不能直接处理边权，此时需要对每条边建立一个对应点，方便查询链上的边信息。利用这一技巧可以动态维护生成树。
 
+??? note " 例题[luogu P4234 最小差值生成树](https://www.luogu.org/problemnew/show/P4234)"
+
+给定一个 $n$ 个点， $m$ 条边的带权无向图，求其边权最大值和边权最小值的差值最小的生成树，输出这个差值。
+
+数据保证至少存在一棵生成树。
+
+$1\le n\le 5\times 10^4,1\le m\le 2\times 10^5,1\le w_i\le 10^4$
+
+将边按照边权从小到大排序，枚举选择的最右边的一条边，要得到最优解，需要使边权最小边的边权最大。
+
+每次按照顺序添加边，如果将要连接的这两个点已经连通，则删除这两点之间边权最小的一条边。如果整个图已经连通成了一棵树，则用当前边权减去最小边权更新答案。最小边权可用双指针法更新。
+
+LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
+
+记录树链上的边的信息，可以使用 **拆边** 。对每条边建立一个对应的点，从这条边向其两个端点连接一条边，原先的连边与删边操作都变成两次操作。
+
+??? "参考代码"
+
+    ```cpp
+	#include<cstdio>
+	#include<cstring>
+	#include<algorithm>
+	#include<set>
+	using namespace std;
+	const int maxn=5000010;
+	struct Splay
+	{
+		int ch[maxn][2],fa[maxn],tag[maxn],val[maxn],minn[maxn];
+		void clear(int x){ch[x][0]=ch[x][1]=fa[x]=tag[x]=val[x]=minn[x]=0;}
+		int getch(int x){return ch[fa[x]][1]==x;}
+		int isroot(int x){return ch[fa[x]][0]!=x&&ch[fa[x]][1]!=x;}
+		void maintain(int x)
+		{
+			if(!x)return;
+			minn[x]=x;
+			if(ch[x][0]){if(val[minn[ch[x][0]]]<val[minn[x]])minn[x]=minn[ch[x][0]];}
+			if(ch[x][1]){if(val[minn[ch[x][1]]]<val[minn[x]])minn[x]=minn[ch[x][1]];}
+		}
+		void pushdown(int x)
+		{
+			if(tag[x])
+			{
+				if(ch[x][0])tag[ch[x][0]]^=1,swap(ch[ch[x][0]][0],ch[ch[x][0]][1]);
+				if(ch[x][1])tag[ch[x][1]]^=1,swap(ch[ch[x][1]][0],ch[ch[x][1]][1]); 
+				tag[x]=0;
+			}
+		}
+		void update(int x)
+		{
+			if(!isroot(x))update(fa[x]);
+			pushdown(x);
+		}
+		void print(int x)
+		{
+			if(!x)return;
+			pushdown(x);
+			print(ch[x][0]);
+			printf("%d ",x);
+			print(ch[x][1]);
+		}
+		void rotate(int x)
+		{
+			int y=fa[x],z=fa[y],chx=getch(x),chy=getch(y);
+			fa[x]=z;if(!isroot(y))ch[z][chy]=x;
+			ch[y][chx]=ch[x][chx^1];fa[ch[x][chx^1]]=y;
+			ch[x][chx^1]=y;fa[y]=x;
+			maintain(y);maintain(x);if(z)maintain(z);
+		}
+		void splay(int x)
+		{
+			update(x);
+			for(int f=fa[x];f=fa[x],!isroot(x);rotate(x))
+			if(!isroot(f))rotate(getch(x)==getch(f)?f:x);
+		}
+		void access(int x)
+		{
+			for(int f=0;x;f=x,x=fa[x])
+			splay(x),ch[x][1]=f,maintain(x); 
+		}
+		void makeroot(int x)
+		{
+			access(x);splay(x);
+			tag[x]^=1;
+			swap(ch[x][0],ch[x][1]);
+		}
+		int find(int x)
+		{
+			access(x);splay(x);
+			while(ch[x][0])x=ch[x][0];
+			splay(x);
+			return x;
+		}
+		void link(int x,int y)
+		{
+			makeroot(x);
+			fa[x]=y;
+		}
+		void cut(int x,int y)
+		{
+			makeroot(x);access(y);splay(y);
+			ch[y][0]=fa[x]=0;maintain(y);
+		}
+	}st;
+	const int inf=2e9+1;
+	int n,m,ans,nww,x,y;
+	struct Edge{int u,v,w;bool operator<(Edge x)const{return w<x.w;};}s[maxn];
+	multiset<int>mp;
+	int main()
+	{
+		scanf("%d%d",&n,&m);
+		for(int i=1;i<=n;i++)st.val[i]=inf,st.maintain(i);
+		for(int i=1;i<=m;i++)scanf("%d%d%d",&s[i].u,&s[i].v,&s[i].w);
+		sort(s+1,s+m+1);
+		for(int i=1;i<=m;i++)st.val[n+i]=s[i].w,st.maintain(n+i);
+		for(int i=1;i<=m;i++)
+		{
+			x=s[i].u;y=s[i].v;
+			if(x==y)continue;
+			if(st.find(x)!=st.find(y))
+			{
+				nww++;st.link(x,n+i);st.link(n+i,y);mp.insert(s[i].w);
+				if(nww==n-1)ans=s[i].w-(*(mp.begin()++));
+			}
+			else
+			{
+				st.makeroot(x);st.access(y);st.splay(y);
+				int t=st.minn[y]-n;
+				st.cut(s[t].u,t+n);st.cut(t+n,s[t].v);mp.erase(mp.find(s[t].w));
+				st.link(x,n+i);st.link(n+i,y);mp.insert(s[i].w);
+				if(nww==n-1)ans=min(ans,s[i].w-(*(mp.begin()++)));
+			}
+		}
+		printf("%d\n",ans);
+		return 0;
+	}
+    ```
+
 ### 一些题
 
--   [luogu P4180【模板】严格次小生成树\[BJWC2010\]](https://www.luogu.org/problemnew/show/P4180)
+-   [luogu P4172 \[WC2006\]水管局长](https://www.luogu.org/problem/P4172)
 
--   [luogu P4234 最小差值生成树](https://www.luogu.org/problemnew/show/P4234)
+-   [luogu P4180【模板】严格次小生成树\[BJWC2010\]](https://www.luogu.org/problemnew/show/P4180)
 
 -   [luogu P2387\[NOI2014\]魔法森林](https://www.luogu.org/problemnew/show/P2387)
 
