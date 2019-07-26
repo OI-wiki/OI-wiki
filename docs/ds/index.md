@@ -75,8 +75,6 @@ author: HeRaNO, Zhoier
 
 -   [x] 单调队列
 
--   [x] 倍增
-
 -   [x] 树状数组
 
 -   [x] 线段树
