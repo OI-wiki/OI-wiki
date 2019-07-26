@@ -5,7 +5,7 @@
 ??? note " 例题[「HNOI2008」玩具装箱 TOY](https://www.lydsy.com/JudgeOnline/problem.php?id=1010)"
 	令 $f_i$ 表示前 $i$ 个物品，随意分组装在任意多个容器里所能得到的最小费用。
 
-写出 **状态转移方程** ： $f_i=max\{f_j+(pre_i-pre_j+i-j-1-L)^2\}$ ，其中 $pre_i$ 表示前 $i$ 个数的前缀和。
+写出 **状态转移方程** ： $f_i=min\{f_j+(pre_i-pre_j+i-j-1-L)^2\}$ ，其中 $pre_i$ 表示前 $i$ 个数的前缀和。
 
 换元试图简化状态转移方程式：令 $s_i=pre_i+i,L'=L+1$ ，则 $f_i=f_j+(s_i-s_j-L')^2$ ，展开，移项得
 
