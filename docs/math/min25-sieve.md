@@ -9,9 +9,9 @@
 
 -    **如无特别说明，本节中所有记为 $p$ 的变量的取值集合均为全体质数。** 
 -    $x / y := \left\lfloor\frac{x}{y}\right\rfloor$ 
--    $\operatorname{isprime}(n) := [ |\{d : d | n\}| = 2 ]$ ，即 $n$ 为质数时其值为 $1$ ，否则为 $0$。
+-    $\operatorname{isprime}(n) := [ |\{d : d | n\}| = 2 ]$ ，即 $n$ 为质数时其值为 $1$ ，否则为 $0$ 。
 -    $p_{k}$ ：全体质数中第 $k$ 小的质数（如： $p_{1} = 2, p_{2} = 3$ ）。特别地，令 $p_{0} = 1$ 。
--    $\operatorname{lpf}(n) := [1 < n] \min\{p : p | n\} + [1 = n]$ ，即 $n$ 的最小质因数。特别地， $n=1$ 时，其值为 $1$。
+-    $\operatorname{lpf}(n) := [1 < n] \min\{p : p | n\} + [1 = n]$ ，即 $n$ 的最小质因数。特别地， $n=1$ 时，其值为 $1$ 。
 -    $F_{\mathrm{prime}}(n) := \sum_{2 \le p \le n} f(p)$ 
 -    $F_{k}(n) := \sum_{i = 2}^{n} [p_{k} \le \operatorname{lpf}(i)] f(i)$ 
 
