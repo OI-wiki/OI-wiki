@@ -363,7 +363,7 @@ inline int Find(int p) {
 -   LCT 的 `Rotate` 和 Splay 的不太一样， `if (z)` 一定要放在前面。
 -   LCT 的 `Splay` 操作就是旋转到根，没有旋转到谁儿子的操作，因为不需要。
 
-## 一些题
+## 习题
 
 -   [「BZOJ 3282」Tree](https://lydsy.com/JudgeOnline/problem.php?id=3282)
 -   [「HNOI2010」Bounce 弹飞绵羊](https://lydsy.com/JudgeOnline/problem.php?id=2002)
@@ -540,12 +540,10 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     }
     ```
 
-### 一些题
+### 习题
 
 -   [luogu P3690【模板】Link Cut Tree（动态树）](https://www.luogu.org/problemnew/show/P3690)
-
 -   [luogu P2486\[SDOI2011\]染色](https://www.luogu.org/problemnew/show/P2486)
-
 -   [luogu P4332\[SHOI2014\]三叉神经树](https://www.luogu.org/problemnew/show/P4332)
 
 ## 维护连通性质
@@ -807,12 +805,10 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     }
     ```
 
-### 一些题
+### 习题
 
 -   [luogu P3950 部落冲突](https://www.luogu.org/problemnew/show/P3950)
-
 -   [bzoj 4998 星球联盟](https://www.lydsy.com/JudgeOnline/problem.php?id=4998)
-
 -   [bzoj 2959 长跑](https://www.lydsy.com/JudgeOnline/problem.php?id=2959)
 
 ## 维护边权
@@ -956,12 +952,10 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
     }
     ```
 
-### 一些题
+### 习题
 
 -   [luogu P4172\[WC2006\]水管局长](https://www.luogu.org/problem/P4172)
-
 -   [luogu P4180【模板】严格次小生成树\[BJWC2010\]](https://www.luogu.org/problemnew/show/P4180)
-
 -   [luogu P2387\[NOI2014\]魔法森林](https://www.luogu.org/problemnew/show/P2387)
 
 ## 维护子树信息
@@ -1124,8 +1118,7 @@ st.siz2[y] += st.siz[x];
     }
     ```
 
-### 一些题
+### 习题
 
 -   [luogu P4299 首都](https://www.luogu.org/problemnew/show/P4299)
-
 -   [SPOJ QTREE5 - Query on a tree V](https://www.luogu.org/problemnew/show/SP2939)
