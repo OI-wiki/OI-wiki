@@ -375,7 +375,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 ???+note " 例题[luogu P1501\[国家集训队\]Tree II](https://www.luogu.org/problemnew/show/P1501)"
 
     给出一棵有 $n$ 个结点的树，每个点的初始权值为 $1$ 。 $q$ 次操作，每次操作均为以下四种之一：
-  
+
     1. `- u1 v1 u2 v2` ：将树上 $u_1,v_1$ 两点之间的边删除，连接 $u_2,v_2$ 两点，保证操作合法且连边后仍是一棵树。
     2. `+ u v c` ：将树上 $u,v$ 两点之间的路径上的点权都增加 $c$ 。
     3. `* u v c` ：将树上 $u,v$ 两点之间的路径上的点权都乘以 $c$ 。
@@ -554,7 +554,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 
 借助 LCT 的 `Find()` 函数，可以判断动态森林上的两点是否连通。如果有 `Find(x)==Find(y)` ，则说明 $x,y$ 两点在一棵树上，相互连通。
 
-???+note "例题[luogu P2147\[SDOI2008\]洞穴勘测](https://www.luogu.org/problemnew/show/P2147)"
+???+note " 例题[luogu P2147\[SDOI2008\]洞穴勘测](https://www.luogu.org/problemnew/show/P2147)"
 
     一开始有 $n$ 个独立的点， $m$ 次操作。每次操作为以下之一：
 
