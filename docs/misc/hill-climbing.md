@@ -27,7 +27,7 @@
 
 关于降温：降温参数是略小于 $1$ 的常数，一般在 $[0.985, 0.999]$ 中选取。
 
-### 例 1 [「JSOI2008」球形空间产生器](https://www.luogu.org/problem/P4035)
+### 例 1[「JSOI2008」球形空间产生器](https://www.luogu.org/problem/P4035)
 
 题意：给出 $n$ 维空间中的 $n$ 个点，已知它们在同一个 $n$ 维球面上，求出球心。 $n \leq 10$ ，坐标绝对值不超过 $10000$ 。
 
@@ -90,7 +90,7 @@
 
 * * *
 
-### 例 2 [「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)
+### 例 2[「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)
 
 题意：求 $n$ 个点的带权类费马点。
 
