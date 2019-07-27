@@ -75,7 +75,7 @@ author: HeRaNO, Zhoier
 
 -   [x] 单调队列
 
--   [x] 倍增
+-   [x] ST 表
 
 -   [x] 树状数组
 
