@@ -25,7 +25,7 @@ Begin
       Elseif PathLimit >= CurrentState.g + H(CurrentState) then
         For each Child(CurrentState) do
           Push(OpenStack, Child(CurrentState));
-    until Successor empty(OpenStack);
+    until Success or empty(OpenStack);
   until Success or ResourceLimtsReached;
 end;
 ```
