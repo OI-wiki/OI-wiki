@@ -49,6 +49,7 @@ nav:
     - C++ 基础:
       - hello world!: lang/helloworld.md
       - 变量: lang/variable.md
+      - 运算: lang/operation.md
       - 数组: lang/array.md
       - 结构体: lang/struct.md
       - 指针: lang/pointer.md
