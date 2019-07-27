@@ -12,21 +12,21 @@ IDA\*，即采用迭代加深的 A\*算法。相对于 A\*算法，由于 IDA\*�
 ```text
 Procedure IDA_STAR(StartState)
 Begin
-PathLimit := H(StartState) - 1;
-Succes := False;
-Repeat
-inc(PathLimit);
-StartState.g = 0;
-Push(OpenStack , StartState);
-Repeat
-CurrentState := Pop(OpenStack);
-If Solution(CurrentState) then
-Success = True
-Elseif PathLimit >= CurrentState.g + H(CurrentState) then
-For each Child(CurrentState) do
-Push(OpenStack , Child(CurrentState));
-until Successor empty(OpenStack);
-until Success or ResourceLimtsReached;
+  PathLimit := H(StartState) - 1;
+  Succes := False;
+  Repeat
+    inc(PathLimit);
+    StartState.g = 0;
+    Push(OpenStack, StartState);
+    Repeat
+      CurrentState := Pop(OpenStack);
+      If Solution(CurrentState) then
+        Success = True
+      Elseif PathLimit >= CurrentState.g + H(CurrentState) then
+        For each Child(CurrentState) do
+          Push(OpenStack, Child(CurrentState));
+    until Success or empty(OpenStack);
+  until Success or ResourceLimtsReached;
 end;
 ```
 
