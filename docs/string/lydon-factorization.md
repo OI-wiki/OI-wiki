@@ -87,3 +87,5 @@ string min_cyclic_string(string s) {
 
 - [UVA #719 - Glass Beads](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=660)
 
+
+**本页面主要译自博文[Декомпозиция Линдона. Алгоритм Дюваля. Нахождение наименьшего циклического сдвига](http://e-maxx.ru/algo/duval_algorithm)与其英文翻译版[Lyndon factorization](https://cp-algorithms.com/string/lyndon_factorization.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
