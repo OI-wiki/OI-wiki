@@ -116,6 +116,19 @@ python2 -m SimpleHTTPServer
 换言之，使用过程中您可以自由地共享、演绎，但是必须署名、以相同方式共享、分享时没有附加限制，  
 而且需要为 GitHub 仓库点赞（Star）。
 
+而如果你想要引用这个 GitHub 仓库，可以使用如下的 bibtex：
+
+```
+@misc{oiwiki,
+  author = {OI Wiki Team},
+  title = {OI Wiki},
+  year = {2016},
+  publisher = {GitHub},
+  journal = {GitHub Repository},
+  howpublished = {\url{https://github.com/OI-wiki/OI-wiki}},
+}
+```
+
 * * *
 
 ## 鸣谢
