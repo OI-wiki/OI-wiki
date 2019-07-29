@@ -107,6 +107,18 @@ void restore(int x) {
 
 <https://cp-algorithms.com/graph/breadth-first-search.html>
 
+### BFS 序列
+
+类似 BFS 序列，BFS 序列是指在 BFS 过程中访问的节点编号的序列。
+
+### 一般图上 BFS
+
+同样，如果原图不连通，只能访问到起点所在的连通分量。
+
+BFS 序列通常也不唯一。
+
+类似的我们也可以定义 BFS 树：在 BFS 过程中，通过记录每个节点从哪个点访问而来，可以建立一个树结构，即为 BFS 树。
+
 ## 双端队列 BFS
 
 如果你不了解双端队列 `deque` 的话，请到 STL-queue 中学习。

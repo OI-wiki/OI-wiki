@@ -103,8 +103,7 @@ nav:
     - 前缀和 & 差分: basic/prefix-sum.md
   - 搜索:
     - 搜索部分简介: search/index.md
-    - DFS: search/dfs.md
-    - BFS: search/bfs.md
+    - DFS（搜索）: search/dfs.md
     - 双向搜索: search/bidirectional.md
     - 启发式搜索: search/heuristic.md
     - A*: search/astar.md
@@ -269,11 +268,11 @@ nav:
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论基础: graph/basic.md
-    - 图的遍历: graph/traverse.md
+    - DFS（图论）: graph/dfs.md
+    - BFS: graph/bfs.md
     - 树上问题:
       - 树基础: graph/tree-basic.md
       - 最近公共祖先: graph/lca.md
-      - DFS 序: graph/dfs-order.md
       - 树的其他问题: graph/tree-misc.md
       - 树哈希: graph/tree-hash.md
       - 树链剖分: graph/heavy-light-decomposition.md
@@ -350,7 +349,10 @@ nav:
 
 # Theme
 theme:
-  name: 'material'
+  name: null
+  custom_dir: 'mkdocs-material/material'
+  static_templates:
+    - 404.html
   language: 'zh'
   palette:
     primary: 'white'
@@ -375,11 +377,11 @@ extra:
   copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
   manifest: 'manifest.webmanifest'
-  githash: ''
+  githash: '7e5c3e07'
 
 extra_javascript:
   - '_static/js/extra.js?v=15'
-  - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
+  
 
 
 extra_css:
