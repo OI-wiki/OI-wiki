@@ -269,7 +269,7 @@ nav:
     - 图论部分简介: graph/index.md
     - 图论基础: graph/basic.md
     - DFS（图论）: graph/dfs.md
-    - BFS: graph/bfs.md
+    - BFS（图论）: graph/bfs.md
     - 树上问题:
       - 树基础: graph/tree-basic.md
       - 最近公共祖先: graph/lca.md
