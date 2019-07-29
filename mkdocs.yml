@@ -104,6 +104,7 @@ nav:
   - 搜索:
     - 搜索部分简介: search/index.md
     - DFS（搜索）: search/dfs.md
+    - BFS（搜索）: search/bfs.md
     - 双向搜索: search/bidirectional.md
     - 启发式搜索: search/heuristic.md
     - A*: search/astar.md
