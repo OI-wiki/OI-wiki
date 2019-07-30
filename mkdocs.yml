@@ -103,8 +103,8 @@ nav:
     - 前缀和 & 差分: basic/prefix-sum.md
   - 搜索:
     - 搜索部分简介: search/index.md
-    - DFS: search/dfs.md
-    - BFS: search/bfs.md
+    - DFS（搜索）: search/dfs.md
+    - BFS（搜索）: search/bfs.md
     - 双向搜索: search/bidirectional.md
     - 启发式搜索: search/heuristic.md
     - A*: search/astar.md
@@ -270,11 +270,11 @@ nav:
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论基础: graph/basic.md
-    - 图的遍历: graph/traverse.md
+    - DFS（图论）: graph/dfs.md
+    - BFS（图论）: graph/bfs.md
     - 树上问题:
       - 树基础: graph/tree-basic.md
       - 最近公共祖先: graph/lca.md
-      - DFS 序: graph/dfs-order.md
       - 树的其他问题: graph/tree-misc.md
       - 树哈希: graph/tree-hash.md
       - 树链剖分: graph/heavy-light-decomposition.md
