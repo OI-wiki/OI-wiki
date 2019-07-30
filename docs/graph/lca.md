@@ -245,7 +245,7 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
 
 ### [动态树](/ds/lct)
 
-设连续两次 [access](/ds/lct/#access) 操作的点分别为 `u` 和 `v`，则第二次 [access](/ds/lct/#access) 操作返回的点即为 `u` 和 `v` 的 LCA.
+设连续两次[access](/ds/lct/#access)操作的点分别为 `u` 和 `v` ，则第二次[access](/ds/lct/#access)操作返回的点即为 `u` 和 `v` 的 LCA.
 
 ### 标准 RMQ
 
