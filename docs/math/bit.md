@@ -107,7 +107,7 @@ void swap(int &a, int &b) {
 | 交集  |       $a \cap b$  |  `a & b`  |
 | 并集  |       $a \cup b$  |  `a | b`  |
 | 补集  |        $\bar{a}$  |    `~a`   |
-| 差集  |  $a \setminus b$  |    `~a`   |
+| 差集   | $a \setminus b$ | `a & (~b)` |
 | 对称差 |   $a\triangle b$  |  `a ^ b`  |
 
 * * *
