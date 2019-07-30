@@ -61,7 +61,7 @@ inline int qpow(long long a, int b) {
 
  $kj^{-1}+i^{-1} \equiv 0 \pmod p$ ；
 
- $i^{-1} \equiv -kj^{-1}+ \pmod p$ ；
+ $i^{-1} \equiv -kj^{-1} \pmod p$ ；
 
  $i^{-1} \equiv -(\frac{p}{i}) (p \mod i)^{-1}$ ；
 
@@ -81,7 +81,7 @@ for (int i = 2; i <= n; ++i) inv[i] = (long long)(p - p / i) * inv[p % i] % p;
 
 这就是线性求逆元。
 
-另外，根据线性求逆元方法的式子： $i^{-1} \equiv -kj^{-1}+ \pmod p$ 
+另外，根据线性求逆元方法的式子： $i^{-1} \equiv -kj^{-1} \pmod p$ 
 
 递归求解 $j^-1$ , 直到 $j=1$ 返回 1。
 
