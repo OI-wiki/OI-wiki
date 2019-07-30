@@ -73,6 +73,7 @@ nav:
       - 类: lang/class.md
       - 新版 C++ 特性: lang/new.md
       - pb_ds:
+        - pb_ds 简介: lang/pb-ds/index.md
         - 堆: lang/pb-ds/priority-queue.md
         - 平衡树: lang/pb-ds/tree.md
     - pascal 转 C++ 急救: lang/pascaltocpp.md
@@ -210,15 +211,6 @@ nav:
     - 数学杂项: math/misc.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
-    - STL:
-      - STL 简介: ds/stl.md
-      - vector: ds/stl/vector.md
-      - priority_queue: ds/stl/priority_queue.md
-      - map: ds/stl/map.md
-      - bitset: ds/stl/bitset.md
-    - pb_ds:
-      - pb_ds 简介: ds/pb-ds/index.md
-      - __gnu_pbds::priority_queue: ds/pb-ds/priority-queue.md
     - 栈: ds/stack.md
     - 队列: ds/queue.md
     - 链表: ds/linked-list.md
