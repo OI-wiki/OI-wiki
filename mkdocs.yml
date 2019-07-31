@@ -42,6 +42,7 @@ nav:
         - Validator: intro/testlib/validator.md
         - Interactor: intro/testlib/interactor.md
         - Checker: intro/testlib/checker.md
+      - OJ 工具: intro/oj-tool.md
     - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
