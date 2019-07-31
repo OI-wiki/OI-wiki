@@ -35,7 +35,7 @@ __gnu_pbds ::priority_queue<T, Compare, Tag, Allocator>
     __gnu_pbds ::priority_queue<int> __gnu_pbds::priority_queue<int, greater<int> >
     __gnu_pbds ::priority_queue<int, greater<int>, pairing_heap_tag>
     __gnu_pbds ::priority_queue<int>::point_iterator id; // 迭代器
-    // 迭代器是一个内存地址，在modify和push的时候都会返回一个迭代器，下文会详细的讲使用方法
+    // 在 modify 和 push 的时候都会返回一个 point_iterator，下文会详细的讲使用方法
     id = q.push(1);
 
 ## 成员函数

@@ -140,11 +140,11 @@ vector 提供了如下几种迭代器
 -    `pop_back()` 删除末尾元素。
 -    `swap()` 与另一个容器进行交换，此操作是 **常数复杂度** 而非线性的。
 
-###  `vector` 特化 `std::vector<bool>` 
+###  `vector` 特化 `vector<bool>` 
 
 标准库提供对 `bool` 的 `vector` 优化，其空间占用与 `bitset` 一样，每个 `bool` 只占 1 bit，且支持动态内存。
 
-注意， `vector<bool>` 没有 bitset 的位运算重载，所以适用情况与 `bitset` 并不完全重合，请选择食用。
+注意， `vector<bool>` 没有 `bitset` 的位运算重载，所以适用情况与 `bitset` 并不完全重合，请选择食用。
 
 ## deque
 
