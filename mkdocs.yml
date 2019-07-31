@@ -47,7 +47,7 @@ nav:
     - F.A.Q.: intro/faq.md
   - 语言基础:
     - C++ 基础:
-      - hello world!: lang/helloworld.md
+      - Hello, World!: lang/helloworld.md
       - 变量: lang/variable.md
       - 运算: lang/operation.md
       - 数组: lang/array.md
