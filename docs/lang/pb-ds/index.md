@@ -8,4 +8,4 @@ pb_ds 库封装了很多数据结构，比如哈希（Hash）表，平衡二叉�
 
 pb_ds 只在使用 libstdc++ 为标准库的编译器下可以用。
 
- **参考资料：《C++ 的 pb_ds 库在 OI 中的应用》** 
+ **参考资料：[《C++ 的 pb_ds 库在 OI 中的应用》](https://github.com/OI-Wiki/libs/blob/master/lang/pb-ds/C%2B%2B的pb_ds库在OI中的应用.pdf)** 
