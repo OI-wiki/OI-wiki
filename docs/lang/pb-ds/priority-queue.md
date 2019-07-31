@@ -40,24 +40,24 @@ __gnu_pbds ::priority_queue<T, Compare, Tag, Allocator>
 
 ## 成员函数
 
--   `push()` : 向堆中压入一个元素，返回该元素位置的迭代器。
--   `pop()` : 将堆顶元素弹出。
--   `top()` : 返回堆顶元素。
--   `size()` 返回元素个数。
--   `empty()` 返回是否非空。
--   `modify(point_iterator, const key)` : 把迭代器位置的 `key` 修改为传入的 `key`，并对底层储存结构进行排序。
--   `erase(point_iterator)` : 把迭代器位置的键值从堆中擦除。
--   `join(__gnu_pbds :: priority_queue &other)` : 把 `other` 合并到 `*this` 并把 `other` 清空。
+-    `push()` : 向堆中压入一个元素，返回该元素位置的迭代器。
+-    `pop()` : 将堆顶元素弹出。
+-    `top()` : 返回堆顶元素。
+-    `size()` 返回元素个数。
+-    `empty()` 返回是否非空。
+-    `modify(point_iterator, const key)` : 把迭代器位置的 `key` 修改为传入的 `key` ，并对底层储存结构进行排序。
+-    `erase(point_iterator)` : 把迭代器位置的键值从堆中擦除。
+-    `join(__gnu_pbds :: priority_queue &other)` : 把 `other` 合并到 `*this` 并把 `other` 清空。
 
 使用的 tag 决定了每个操作的时间复杂度：
 
-|                      | push                                 | pop                                  | modify                               | erase                                  | Join                |
-| -------------------- | ------------------------------------ | :----------------------------------- | ------------------------------------ | -------------------------------------- | ------------------- |
-| `pairing_heap_tag `    |  $O(1)$                              | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$  | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$  | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$    |  $O(1)$             |
-| `binary_heap_tag`      | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$  | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$  |  $\Theta(n)$                         |  $\Theta(n)$                           |  $\Theta(n)$        |
-| `binomial_heap_tag`    | 最坏 $\Theta(\log(n))$ 均摊 $O(1)$       |  $\Theta(\log(n))$                   |  $\Theta(\log(n))$                   |  $\Theta(\log(n))$                     |  $\Theta(\log(n))$  |
-| `rc_binomial_heap_tag` |  $O(1)$                              |  $\Theta(\log(n))$                   |  $\Theta(\log(n))$                   |  $\Theta(\log(n))$                     |  $\Theta(\log(n))$  |
-| `thin_heap_tag`        |  $O(1)$                              | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$  | 最坏 $\Theta(\log(n))$ 均摊 $O(1)$       | 最坏 $\Theta(n)$ 0 均摊 $\Theta(\log(n))$  |  $\Theta(n)$        |
+|                          | push                                 | pop                                  | modify                               | erase                                  | Join                |
+| ------------------------ | ------------------------------------ | :----------------------------------- | ------------------------------------ | -------------------------------------- | ------------------- |
+|  `pairing_heap_tag`      |  $O(1)$                              | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$  | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$  | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$    |  $O(1)$             |
+|  `binary_heap_tag`       | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$  | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$  |  $\Theta(n)$                         |  $\Theta(n)$                           |  $\Theta(n)$        |
+|  `binomial_heap_tag`     | 最坏 $\Theta(\log(n))$ 均摊 $O(1)$       |  $\Theta(\log(n))$                   |  $\Theta(\log(n))$                   |  $\Theta(\log(n))$                     |  $\Theta(\log(n))$  |
+|  `rc_binomial_heap_tag`  |  $O(1)$                              |  $\Theta(\log(n))$                   |  $\Theta(\log(n))$                   |  $\Theta(\log(n))$                     |  $\Theta(\log(n))$  |
+|  `thin_heap_tag`         |  $O(1)$                              | 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$  | 最坏 $\Theta(\log(n))$ 均摊 $O(1)$       | 最坏 $\Theta(n)$ 0 均摊 $\Theta(\log(n))$  |  $\Theta(n)$        |
 
 ## 示例
 

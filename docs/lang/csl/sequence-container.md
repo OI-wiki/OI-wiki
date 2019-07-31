@@ -1,12 +1,12 @@
 author: MingqiHuang, Xeonacid, greyqz, i-Yirannn
 
-## `array`
+##  `array` 
 
-## `vector`
+##  `vector` 
 
 ### 为什么要用 `vector` 
 
-作为 OIer，对程序效率的追求远比对工程级别的稳定性要高得多，而 `vector` 由于其较静态数组复杂很多的原因，时间效率在大部分情况下都要满慢于静态数组，所以在一般的正常存储数据的时候，我们是不选择 `vector` 的，下面给出几个 `vector` 优秀的特性，在需要用到这些特性的情况下，`vector` 能给我们带来很大的帮助。
+作为 OIer，对程序效率的追求远比对工程级别的稳定性要高得多，而 `vector` 由于其较静态数组复杂很多的原因，时间效率在大部分情况下都要满慢于静态数组，所以在一般的正常存储数据的时候，我们是不选择 `vector` 的，下面给出几个 `vector` 优秀的特性，在需要用到这些特性的情况下， `vector` 能给我们带来很大的帮助。
 
 ####  `vector` 重写了比较运算符
 
@@ -65,11 +65,11 @@ void Vector_Constructor_Test() {
 };
 ```
 
-可以利用上述的方法构造一个 `vector`，足够我们使用了。
+可以利用上述的方法构造一个 `vector` ，足够我们使用了。
 
 ###  `vector` 元素访问
 
-`vector` 提供了如下几种方法进行访问元素
+ `vector` 提供了如下几种方法进行访问元素
 
 1.   `at()` 
 
@@ -97,7 +97,7 @@ vector 提供了如下几种迭代器
 
 1.   `begin()/cbegin()` 
 
-    返回指向首元素的迭代器，其中 `*begin = front`。
+    返回指向首元素的迭代器，其中 `*begin = front` 。
 
 2.   `end()/cend()` 
 
@@ -115,11 +115,11 @@ vector 提供了如下几种迭代器
 
 ###  `vector` 容量
 
-`vector` 有如下几种返回容量的函数
+ `vector` 有如下几种返回容量的函数
 
 1.   `empty()` 
 
-    返回一个 `bool` 值，即 `v.begin() == v.end()`，`true` 为空，`false` 为非空。
+    返回一个 `bool` 值，即 `v.begin() == v.end()` ， `true` 为空， `false` 为非空。
 
 2.   `size()` 
 
