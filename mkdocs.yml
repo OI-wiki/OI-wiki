@@ -127,18 +127,19 @@ nav:
     - 插头 DP: dp/plug.md
     - 计数 DP: dp/count.md
     - DP 优化:
-      - 二进制分组解多重背包: dp/optimizations/binary-knapsack.md
-      - 单调队列/单调栈优化: dp/optimizations/monotonous-queue-stack.md
-      - 斜率优化: dp/optimizations/convex-hull-optimization.md
-      - 四边形不等式优化: dp/optimizations/knuth-yao-quadrangle-inequality.md
-      - 状态设计优化: dp/optimizations/state-optimization.md
+      - 二进制分组解多重背包: dp/optimization/binary-knapsack.md
+      - 单调队列/单调栈优化: dp/optimization/monotonous-queue-stack.md
+      - 斜率优化: dp/optimization/slope.md
+      - 四边形不等式优化: dp/optimization/quadrangle.md
+      - 状态设计优化: dp/optimization/state.md
     - 其它 DP 方法: dp/misc.md
   - 字符串:
     - 字符串部分简介: string/index.md
     - 标准库: string/lib-func.md
     - 字符串匹配: string/match.md
     - 哈希: string/hash.md
-    - 前缀函数与 KMP 算法: string/prefix-function.md
+    - 前缀函数与 KMP 算法: string/kmp.md
+    - Z 函数（扩展 KMP）: string/z-func.md
     - 字典树 (Trie): string/trie.md
     - 回文自动机: string/pam.md
     - 后缀数组 (SA): string/sa.md
@@ -147,8 +148,7 @@ nav:
     - 后缀树: string/suffix-tree.md
     - Manacher: string/manacher.md
     - 最小表示法: string/minimal-string.md
-    - Z 函数（扩展 KMP）: string/z-function.md
-    - Lyndon 分解: string/lyndon-factorization.md
+    - Lyndon 分解: string/lyndon.md
   - 数学:
     - 数学部分简介: math/index.md
     - 进制: math/base.md
@@ -178,8 +178,8 @@ nav:
     - 牛顿迭代法: math/newton-method.md
     - 数论函数相关:
       - 莫比乌斯反演: math/mobius.md
-      - 杜教筛: math/du-sieves.md
-      - Min25 筛: math/min25-sieve.md
+      - 杜教筛: math/du.md
+      - Min_25 筛: math/min-25.md
     - 多项式:
       - 多项式部分简介: math/poly/intro.md
       - 拉格朗日插值: math/poly/lagrange-poly.md
@@ -223,16 +223,16 @@ nav:
       - 配对堆: ds/pairing-heap.md
       - 左偏树: ds/leftist-tree.md
     - 块状数据结构:
-      - 分块思想: ds/square-root-decomposition.md
+      - 分块思想: ds/decompose.md
+      - 树分块: ds/tree-decompose.md
       - 块状链表: ds/block-list.md
       - 块状数组: ds/block-array.md
-      - 树分块: ds/tree-decompose.md
     - 单调栈: ds/monotonous-stack.md
     - 单调队列: ds/monotonous-queue.md
     - ST 表: ds/sparse-table.md
     - 树状数组: ds/bit.md
-    - 线段树: ds/segment.md
-    - 线段树 & 区间历史最值: ds/segment-tree-beats.md
+    - 线段树: ds/seg.md
+    - 线段树 & 区间历史最值: ds/seg-beats.md
     - 划分树: ds/dividing.md
     - 二叉搜索树 & 平衡树:
       - 二叉搜索树简介: ds/bst.md
@@ -241,14 +241,8 @@ nav:
       - WBLT: ds/wblt.md
       - Size Balanced Tree: ds/sbt.md
       - AVL 树: ds/avl.md
-      - 替罪羊树: ds/scapegoat.md
+      - 替罪羊树: ds/sgt.md
       - 笛卡尔树: ds/cartesian-tree.md
-    - 树套树:
-      - 线段树套线段树: ds/seg-in-seg.md
-      - 平衡树套线段树: ds/seg-in-balanced.md
-      - 线段树套平衡树: ds/balanced-in-seg.md
-      - 树状数组套主席树: ds/persistent-in-bit.md
-    - K-Dtree: ds/k-dtree.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
       - 可持久化线段树: ds/persistent-seg.md
@@ -256,6 +250,12 @@ nav:
       - 可持久化平衡树: ds/persistent-balanced.md
       - 可持久化字典树: ds/persistent-trie.md
       - 可持久化可并堆: ds/persistent-heap.md
+    - 树套树:
+      - 线段树套线段树: ds/seg-in-seg.md
+      - 平衡树套线段树: ds/seg-in-balanced.md
+      - 线段树套平衡树: ds/balanced-in-seg.md
+      - 树状数组套主席树: ds/persistent-in-bit.md
+    - K-Dtree: ds/kdt.md
     - 珂朵莉树: ds/odt.md
     - Link Cut Tree: ds/lct.md
     - Euler Tour Tree: ds/ett.md
@@ -270,7 +270,7 @@ nav:
       - 最近公共祖先: graph/lca.md
       - 树的其他问题: graph/tree-misc.md
       - 树哈希: graph/tree-hash.md
-      - 树链剖分: graph/heavy-light-decomposition.md
+      - 树链剖分: graph/hld.md
       - 树分治: graph/tree-divide.md
       - 动态树分治: graph/dynamic-tree-divide.md
       - 虚树: graph/virtual-tree.md
@@ -281,7 +281,7 @@ nav:
     - 最小生成树: graph/mst.md
     - 最小树形图: graph/mdst.md
     - 最短路: graph/shortest-path.md
-    - 差分约束: graph/differential-constraints.md
+    - 差分约束: graph/diff-constraints.md
     - k 短路: graph/kth-path.md
     - 连通性相关:
       - 强连通分量: graph/scc.md
@@ -313,10 +313,10 @@ nav:
     - 凸包: geometry/convex-hull.md
     - 扫描线: geometry/scanning.md
     - 旋转卡壳: geometry/rotating-calipers.md
-    - 半平面交: geometry/half-plane-intersection.md
+    - 半平面交: geometry/half-plane.md
     - 平面最近点对: geometry/nearest-points.md
     - 随机增量法: geometry/random-incremental.md
-    - 计算几何杂项: geometry/magic.md
+    - 计算几何杂项: geometry/misc.md
   - 杂项:
     - 杂项简介: misc/index.md
     - 读入、输出优化: misc/io.md
@@ -327,7 +327,7 @@ nav:
       - CDQ 分治: misc/cdq-divide.md
       - 整体二分: misc/parallel-binsearch.md
       - 莫队算法: misc/mo-algo.md
-    - 分数规划: misc/fractional-programming.md
+    - 分数规划: misc/frac-programming.md
     - 随机化:
       - 随机函数: misc/random.md
       - 爬山算法: misc/hill-climbing.md
