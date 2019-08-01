@@ -1,91 +1,72 @@
-!!! note " 例题[luogu P4322\[JSOI2016\]最佳团体](https://www.luogu.org/problemnew/show/P4322)"
-    题目大意：有一棵 $n+1$ 个结点的树，根为 $0$ 号结点。每个结点 $i$ 有一个价值 $p_i$ 和费用 $s_i$ 。你需要选择 $k$ 个结点 $a_1,a_2,\ldots,a_k$ （不包括 $0$ 号结点），使得
+分数规划用来求一个分式的极值。
 
-    $$
-    \frac{\sum_{i=1}^k p_{a_i}}{\sum_{i=1}^k s_{a_i}}
-    $$
-
-    最大。你需要保证对于你选择的一个树上结点，它的父亲一定被选中。求出这个最大的比值。
-
-如果每个点都只有一个价值（设为 $v_i$ ），我们要做的只是最大化这个最后能得到的价值，那么我们可以用树形动态规划解决这个问题。
-
-定义 $f(i,j)$ 表示以 $i$ 为根的子树中选择 $j$ 个结点的最大价值。由于要满足如果一个点被选择，其父亲也一定被选择，如果 $j\ge 1$ ，那么当前结点 $i$ 一定是已经被选中的。利用树上背包进行合并。写出状态转移方程：
-
+形象一点就是，给出 $a_i$ 和 $b_i$ ，求一组 $w_i\in\{0,1\}$，最小/大化
 $$
-f(i,j)=\left\{
+\frac{\sum\limits_{i=1}^na[i]\times w[i]}{\sum\limits_{i=1}^nb[i]\times w[i]}
+$$
+
+## 求解
+
+一般来说可以考虑二分答案。
+
+假设我们要求最大值。二分一个答案$mid$，然后推式子（为了方便少写了上下界）：
+$$
 \begin{aligned}
-& 0, & j=0, \\
-& \max\left\{\sum f(son,k)\right\}+v(i),\quad\text{where }\sum k=j-1, & j\neq 0
-\end{aligned} \right
-.
+&\frac{\sum a_i\times w_i}{\sum b_i\times w_i}>mid\\
+\Longrightarrow&\sum a_i\times w_i-mid\times \sum b_i\cdot w_i>0\\
+\Longrightarrow&\sum w_i\times(a[i]-mid\times b[i])>0
+\end{aligned}
 $$
+那么只要求出左边这个东西最大值就行了。
 
-如果 **合并方式得当** ，则可以在 $O(n^2)$ 的时间复杂度内完成状态转移，具体细节参见代码。
+如果最大值比 $0$ 要大，说明 $mid$ 是可行的，否则不可行。
 
-但是，我们是让一个分式的值最大化，然而这个分式的分母又不确定，怎么办呢？
+然后左边的极值的求解非常灵活，我们结合一系列实例来理解一下。
 
-首先我们明确一个性质：设最后最大化的答案为 $ans$ ，那么对于任意一个小于等于 $ans$ 的实数 $a$ ，都有 $v_i=p_i-a\times s_i$ ，这样的 $v$ 数组算出的 $f(0,k+1)$ 的值都大于零。该式等于零当且仅当 $a=ans$ 。
+## 实例
 
-那么，我们就可以用二分的思想解决这个问题。每次选择一个 $mid$ ，令 $v_i=p_i-mid\times s_i$ ，算出 $f(0,k+1)$ 的值，如果大于零则选择右区间，反之选择左区间。最后当区间 $[l,r]$ 的大小 $r-l$ 在可以容许的范围内时，输出最后的答案。时间复杂度为 $O(n^2\log ans)$ 。
+### POJ2976 Dropping tests
 
-这就是分数规划的基本思想。
+这是一道**模板题**。
 
-代码：
+把 $a_i-mid\times b_i$ 作为每个物品的权值，大于 $0$ 就选，这样子就能得到最大值。
 
-```cpp
-// luogu-judger-enable-o2
-#include <algorithm>
-#include <cstdio>
-#include <cstring>
-using namespace std;
-const int maxn = 2510;
-int k, n, rr, cur, h[maxn], nxt[maxn * 2], p[maxn * 2], siz[maxn];
-double s[maxn], pp[maxn], l, r, mid, v[maxn], f[maxn][maxn];
-void add_edge(int x, int y) {
-  cur++;
-  nxt[cur] = h[x];
-  h[x] = cur;
-  p[cur] = y;
-}
-void dfs(int x, int fa) {
-  siz[x] = 1;
-  f[x][0] = 0;
-  f[x][1] = v[x];
-  for (int i = h[x]; i != -1; i = nxt[i])
-    if (p[i] != fa) {
-      dfs(p[i], x);
-      for (int j = siz[x]; j >= 1; j--)
-        for (int k = 0; k <= siz[p[i]]; k++)
-          f[x][j + k] = max(f[x][j + k], f[x][j] + f[p[i]][k]);
-      siz[x] += siz[p[i]];
-    }
-}
-int main() {
-  memset(h, -1, sizeof h);
-  scanf("%d%d", &k, &n);
-  for (int i = 1; i <= n; i++)
-    scanf("%lf%lf%d", s + i, pp + i, &rr), add_edge(rr, i), add_edge(i, rr);
-  r = 10000.0;
-  while (r - l > 1e-4) {
-    mid = (l + r) * 0.5;
-    for (int i = 1; i <= n; i++) v[i] = pp[i] - mid * s[i];
-    for (int i = 0; i < maxn; i++)
-      for (int j = 0; j < maxn; j++) f[i][j] = -2e9;
-    dfs(0, -1);
-    if (f[0][k + 1] > 0)
-      l = mid;
-    else
-      r = mid;
-  }
-  printf("%.3lf\n", l);
-  return 0;
-}
-```
+### 洛谷4377 Talent Show
+
+本题和上面那题相比多了一个 $W$ 的限制。
+
+考虑 DP 。把 $b_i$作为体积，$a_i-mid\times b_i$作为价值，然后跑背包即可。
+
+### POJ2728 Desert King
+
+这个东西叫**最优比率生成树**。
+
+将 $a_i-mid\times b_i$ 作为每条边的权值，然后跑最小生成树即可。
+
+### 洛谷3199 [HNOI2009]最小圈
+
+这个东西叫**最优比率环**。
+
+将 $a_i-mid\times b_i$ 作为边权，然后检查有没有负环即可。
+
+### 洛谷3705 [SDOI2017]新生舞会
+
+~~我也不知道这个叫啥~~。
+
+将 $a_{i,j}-mid\times b_{i,j} $作为 $(i,j)$ 边的边权。
+
+然后最大权匹配就是当前的最大值，跑费用流 / KM 即可。
+
+## 总结
+
+分数规划是一种既套路又灵活的思想？
+
+说套路，是因为看到分数规划就可以往二分上想。
+
+说灵活，是因为左式极值的求解很灵活，需要具体情况具体分析。
 
 ## 习题
 
-[luogu P3705\[SDOI2017\]新生舞会](https://www.luogu.org/problemnew/show/P3705)
+- [JSOI2016 最佳团体](https://www.luogu.org/problem/P4322)
+- [UVa1389 Hard Life](https://www.luogu.org/problem/UVA1389) （这个叫做**最大密度子图**）
 
-[luogu P3288\[SCOI2014\]方伯伯运椰子](https://www.luogu.org/problemnew/show/P3288)
-
-[luogu P3199\[HNOI2009\]最小圈](https://www.luogu.org/problemnew/show/P3199)
