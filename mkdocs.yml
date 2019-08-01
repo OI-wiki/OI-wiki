@@ -48,7 +48,7 @@ nav:
     - F.A.Q.: intro/faq.md
   - 语言基础:
     - C++ 基础:
-      - hello world!: lang/helloworld.md
+      - Hello, World!: lang/helloworld.md
       - 变量: lang/variable.md
       - 运算: lang/operation.md
       - 数组: lang/array.md
@@ -77,9 +77,9 @@ nav:
         - pb_ds 简介: lang/pb-ds/index.md
         - 堆: lang/pb-ds/priority-queue.md
         - 平衡树: lang/pb-ds/tree.md
-    - pascal 转 C++ 急救: lang/pascaltocpp.md
-    - python 速成: lang/python.md
-    - java 速成: lang/java.md
+    - Pascal 转 C++ 急救: lang/pascaltocpp.md
+    - Python 速成: lang/python.md
+    - Java 速成: lang/java.md
   - 思想方法:
     - 思想方法简介: basic/index.md
     - 枚举: basic/enumerate.md
