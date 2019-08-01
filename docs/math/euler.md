@@ -22,7 +22,7 @@
 
     也可以这样考虑：如果 $\gcd(k, n) = d$ ，那么 $\gcd(\frac{k}{d},\frac{n}{d}) = 1$ 。（ $k < n$ ）
 
-    如果我们设 $f(x)$ 表示 $\gcd(k, n) = x$ 的数的个数，那么 $n = \sum_{i = 1}^n{f(x)}$ 。
+    如果我们设 $f(x)$ 表示 $\gcd(k, n) = x$ 的数的个数，那么 $n = \sum_{i = 1}^n{f(i)}$ 。
 
     根据上面的证明，我们发现， $f(x) = \varphi(\frac{n}{x})$ ，从而 $n = \sum_{d | n}\varphi(\frac{n}{d})$ 。注意到约数 $d$ 和 $\frac{n}{d}$ 具有对称性，所以上式化为 $n = \sum_{d | n}\varphi(d)$ 。
 
