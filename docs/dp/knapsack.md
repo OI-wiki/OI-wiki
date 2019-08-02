@@ -18,13 +18,17 @@ author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul
 考虑转移。假设当前已经处理好了前 $i-1$ 个物品的所有状态，那么对于第 $i$ 个物品，当其不放入背包时，背包的剩余容量不变，背包中物品的总价值也不变，故这种情况的最大价值为 $f_{i-1,j}$ ；当其放入背包时，背包的剩余容量会减小 $w_{i}$ ，背包中物品的总价值会增大 $v_{i}$ ，故这种情况的最大价值为 $f_{i-1,j-w_{i}}+v_{i}$ 。
 
 由此可以得出状态转移方程：
+
 $$
 f_{i,j}=\max(f_{i-1,j},f_{i-1,j-w_{i}}+v_{i})
 $$
+
 在程序实现的时候，由于对当前状态有影响的只有 $f_{i-1}$ ，故可以去掉第一维，直接用 $f_{i}$ 来表示处理到当前物品时背包容量为 $i$ 的最大价值，得出以下方程：
+
 $$
 f_i=\max \left(f_i,f_{i-w_i}+v_i\right)
 $$
+
  **务必牢记并理解这个转移方程，因为大部分背包问题的转移方程都是在此基础上推导出来的。** 
 
 还有一点需要注意的是，很容易写出这样的错误核心代码：
@@ -51,24 +55,22 @@ for (int i = 1; i <= W; i++)
 
 ??? 例题代码
 
-```
-​```cpp
-#include <iostream>
-const int maxn = 13010;
-int n, v, w[maxn], v[maxn], f[maxn];
-int main() {
-    std::cin >> n >> W;
-    for (int i = 1; i <= n; i++)
-        std::cin >> w[i] >> v[i];
-    for (int i = 1; i <= n; i++)
-        for (int l = W; l >= w[i]; l--)
-            if (f[l - w[i]] + v[i] > f[l])
-                f[l] = f[l - w[i]] + v[i];
-    std::cout << f[W];
-    return 0;
-}
-​```
-```
+    ​```cpp
+    #include <iostream>
+    const int maxn = 13010;
+    int n, v, w[maxn], v[maxn], f[maxn];
+    int main() {
+        std::cin >> n >> W;
+        for (int i = 1; i <= n; i++)
+            std::cin >> w[i] >> v[i];
+        for (int i = 1; i <= n; i++)
+            for (int l = W; l >= w[i]; l--)
+                if (f[l - w[i]] + v[i] > f[l])
+                    f[l] = f[l - w[i]] + v[i];
+        std::cout << f[W];
+        return 0;
+    }
+    ​```
 
 ## 完全背包
 
@@ -81,15 +83,19 @@ int main() {
 可以考虑一个朴素的做法：对于第 $i$ 件物品，枚举其选了多少个来转移。这样做的时间复杂度是 $O(n^3)$ 的。
 
 尽管这样看起来很蠢，我们还是写一下 dp 方程：
+
 $$
 f_{i,j}=\max_{k=0}^{+\infty}(f_{i-1,j-k\times w_i}+v_i\times k)
 $$
+
 然而这样显然不够优秀，我们要对它进行优化。
 
 可以发现，对于 $f_{i,j}$ ，只要通过 $f_{i,j-w_i}$ 转移就可以了。dp 方程为：
+
 $$
 f_{i,j}=\max(f_{i-1,j},f_{i,j-w_i}+v_i)
 $$
+
 理由是当我们这样转移时， $f_{i,j-w_i}$ 已经由 $f_{i,j-2\times w_i}$ 更新过，那么 $f_{i,j-w_i}$ 就是充分考虑了第 $i$ 件物品所选次数后得到的最优结果。换言之，我们通过局部最优子结构的性质重复使用了之前的枚举过程，优化了枚举的复杂度。
 
 与 0-1 背包相同地，我们可以将第一维去掉来优化空间复杂度。如果理解了 0-1 背包的优化方式，就不难明白压缩后的循环是正向的（也就是上文中提到的错误优化）。
@@ -99,24 +105,22 @@ $$
 
 ??? 例题代码
 
-```
-​```cpp
-#include <iostream>
-const int maxn = 13010;
-int n, v, w[maxn], v[maxn], f[maxn];
-int main() {
-    std::cin >> n >> W;
-    for (int i = 1; i <= n; i++)
-        std::cin >> w[i] >> v[i];
-    for (int i = 1; i <= n; i++)
-        for (int l = w[i]; l <= W; l++)
-            if (f[l - w[i]] + v[i] > f[l])
-                f[l] = f[l - w[i]] + v[i];
-    std::cout << f[W];
-    return 0;
-}
-​```
-```
+    ​```cpp
+    #include <iostream>
+    const int maxn = 13010;
+    int n, v, w[maxn], v[maxn], f[maxn];
+    int main() {
+        std::cin >> n >> W;
+        for (int i = 1; i <= n; i++)
+            std::cin >> w[i] >> v[i];
+        for (int i = 1; i <= n; i++)
+            for (int l = w[i]; l <= W; l++)
+                if (f[l - w[i]] + v[i] > f[l])
+                    f[l] = f[l - w[i]] + v[i];
+        std::cout << f[W];
+        return 0;
+    }
+    ​```
 
 ## 多重背包
 
@@ -138,10 +142,10 @@ int main() {
 
 举几个例子：
 
-- $6=1+2+3$ 
-- $8=1+2+4+1$ 
-- $18=1+2+4+8+3$ 
-- $31=1+2+4+8+16$ 
+-    $6=1+2+3$ 
+-    $8=1+2+4+1$ 
+-    $18=1+2+4+8+3$ 
+-    $31=1+2+4+8+16$ 
 
 显然，通过上述拆分方式，可以表示任意 $\le k_i$ 个物品的等效选择方式。将每种物品按照上述方式拆分后，使用 0-1 背包的方法解决即可。
 
@@ -149,25 +153,23 @@ int main() {
 
 ??? 二进制分组代码
 
-```
-​```cpp
-index = 0;
-for(int i = 1; i <= m; i++) {
-    int c = 1, p, h, k;
-    cin >> p >> h >> k;
-    while(k - c > 0) {
-        k -= c;
-        list[++index].w = c * p;
-        list[index].v = c * h;
-        c *= 2;
+    ​```cpp
+    index = 0;
+    for(int i = 1; i <= m; i++) {
+        int c = 1, p, h, k;
+        cin >> p >> h >> k;
+        while(k - c > 0) {
+            k -= c;
+            list[++index].w = c * p;
+            list[index].v = c * h;
+            c *= 2;
+        }
+        list[++index].w = p * k; 
+        list[index].v = h * k;
     }
-    list[++index].w = p * k; 
-    list[index].v = h * k;
-}
-​```
-```
+    ​```
 
-??? note "[「Luogu P1776」宝物筛选_NOI导刊2010提高（02）](https://www.luogu.org/problemnew/show/P1776)"
+??? note "[「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.org/problemnew/show/P1776)"
     题意概要：有 $n$ 种物品和一个容量为 $W$ 的背包，每种物品有重量 $w_{i}$ ，价值 $v_{i}$ 和数量 $m_v{i}$ 两种属性，要求选若干个物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量。有一点需要注意的是本题数据范围较大，情况较多。
 
 ## 混合背包
@@ -188,8 +190,7 @@ for (循环物品种类) {
 ```
 
 ??? note "[「Luogu P1833」樱花](https://www.luogu.org/problemnew/show/P1833)"
-    题意概要：有 $n$ 种樱花树和长度为 $T$ 的时间，一种樱花树看一遍过，一种樱花树最多看 $A{i}$ 遍，一种樱花树可以看无数遍。每棵樱花树都有一个美学值 $C{i}$，求在 $T$ 的时间内看哪些樱花树能使美学值最高。
-    
+    题意概要：有 $n$ 种樱花树和长度为 $T$ 的时间，一种樱花树看一遍过，一种樱花树最多看 $A{i}$ 遍，一种樱花树可以看无数遍。每棵樱花树都有一个美学值 $C{i}$ ，求在 $T$ 的时间内看哪些樱花树能使美学值最高。
 
 ## 二维费用背包
 
@@ -278,9 +279,11 @@ for (
 这种问题就是把求最大值换成求和即可。
 
 例如 0-1 背包问题的转移方程就变成了：
+
 $$
 dp_i=\sum(dp_i,dp_{i-c_i})
 $$
+
 初始条件： $dp_0=1$ 
 
 因为当容量为 $0$ 时也有一个方案：什么都不装！
