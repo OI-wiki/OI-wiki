@@ -1,4 +1,4 @@
-author: HeRaNO, Zhoier
+author: HeRaNO, Zhoier, hsfzLZH1
 
 ## 数据结构
 
@@ -95,8 +95,12 @@ author: HeRaNO, Zhoier
 
 -   [x] 珂朵莉树
 
--   [x] Link Cut Tree
+-   [x] 动态树
 
--   [x] Euler Tour Tree
+    -   [x] Link Cut Tree
+
+    -   [x] Euler Tour Tree
+
+    -   [x] Top Tree
 
 -   [x] 析合树
