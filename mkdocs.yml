@@ -175,7 +175,7 @@ nav:
       - 线性基: math/basis.md
     - 复数: math/complex.md
     - 分段打表: math/dictionary.md
-    - 牛顿迭代法: math/newton-method.md
+    - 牛顿迭代法: math/newton.md
     - 数论函数相关:
       - 莫比乌斯反演: math/mobius.md
       - 杜教筛: math/du.md
