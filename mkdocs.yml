@@ -257,8 +257,10 @@ nav:
       - 可持久化字典树: ds/persistent-trie.md
       - 可持久化可并堆: ds/persistent-heap.md
     - 珂朵莉树: ds/odt.md
-    - Link Cut Tree: ds/lct.md
-    - Euler Tour Tree: ds/ett.md
+    - 动态树:
+      - Link Cut Tree: ds/lct.md
+      - Euler Tour Tree: ds/ett.md
+      - Top Tree: ds/top-tree.md
     - 析合树: ds/divide-combine.md
   - 图论:
     - 图论部分简介: graph/index.md
