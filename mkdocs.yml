@@ -46,6 +46,7 @@ nav:
     - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - F.A.Q.: intro/faq.md
+    - 致谢: intro/thanks.md
   - 语言基础:
     - C++ 基础:
       - Hello, World!: lang/helloworld.md
