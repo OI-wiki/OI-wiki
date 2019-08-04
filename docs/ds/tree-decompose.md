@@ -14,11 +14,11 @@
 
 ### [BZOJ4763 雪辉](https://www.lydsy.com/JudgeOnline/problem.php?id=4763)
 
-先进行树分块，然后对每个块的关键点，预处理出它到祖先中每个关键点的路径上颜色的 bitset，以及每个关键点的最近关键点祖先，复杂度是 $\mathcal O(n\sqrt n+\frac{nc}{32})​$ ，其中 $n\sqrt n​$ 是暴力从每个关键点向上跳的复杂度， $\frac{nc}{32}​$ 是把 $\mathcal O(n)​$ 个 bitset 存下来的复杂度。
+先进行树分块，然后对每个块的关键点，预处理出它到祖先中每个关键点的路径上颜色的 bitset，以及每个关键点的最近关键点祖先，复杂度是 $O(n\sqrt n+\frac{nc}{32})​$ ，其中 $n\sqrt n​$ 是暴力从每个关键点向上跳的复杂度， $\frac{nc}{32}​$ 是把 $O(n)​$ 个 bitset 存下来的复杂度。
 
-回答询问的时候，先从路径的端点暴力跳到所在块的关键点，再从所在块的关键点一块一块地向上跳，直到 $lca$ 所在块，然后再暴力跳到 $lca$ 。关键点之间的 bitset 已经预处理了，剩下的在暴力跳的过程中计算。单次询问复杂度是 $\mathcal O(\sqrt n+\frac c{32})$ ，其中 $\sqrt n$ 是块内暴力跳以及块直接向上跳的复杂度， $\mathcal O(\frac c{32})$ 是将预处理的结果与暴力跳的结果合并的复杂度。数颜色个数可以用 bitset 的 `count()` ，求 $\operatorname{mex}$ 可以用 bitset 的 `_Find_first()` 。
+回答询问的时候，先从路径的端点暴力跳到所在块的关键点，再从所在块的关键点一块一块地向上跳，直到 $lca$ 所在块，然后再暴力跳到 $lca$ 。关键点之间的 bitset 已经预处理了，剩下的在暴力跳的过程中计算。单次询问复杂度是 $O(\sqrt n+\frac c{32})$ ，其中 $\sqrt n$ 是块内暴力跳以及块直接向上跳的复杂度， $O(\frac c{32})$ 是将预处理的结果与暴力跳的结果合并的复杂度。数颜色个数可以用 bitset 的 `count()` ，求 $\operatorname{mex}$ 可以用 bitset 的 `_Find_first()` 。
 
-所以，总复杂度为 $\mathcal O((n+m)(\sqrt n+\frac c{32}))​$ 。
+所以，总复杂度为 $O((n+m)(\sqrt n+\frac c{32}))​$ 。
 
 ??? "参考代码"
 
