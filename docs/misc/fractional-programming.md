@@ -49,23 +49,22 @@ $$
 //   website: http://m-sea-blog.com/
 // ===================================
 #include <algorithm>
-#include <iostream>
+#include <cmath>
+#include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include <cstdio>
-#include <cmath>
+#include <iostream>
 using namespace std;
 
 inline int read() {
-    int X = 0, w = 1;
-    char c = getchar();
-    while (c < '0' || c > '9') {
-        if (c == '-')
-            w = -1;
-        c = getchar();
-    }
-    while (c >= '0' && c <= '9') X = X * 10 + c - '0', c = getchar();
-    return X * w;
+  int X = 0, w = 1;
+  char c = getchar();
+  while (c < '0' || c > '9') {
+    if (c == '-') w = -1;
+    c = getchar();
+  }
+  while (c >= '0' && c <= '9') X = X * 10 + c - '0', c = getchar();
+  return X * w;
 }
 
 const int N = 100000 + 10;
@@ -75,34 +74,34 @@ int n;
 double a[N], b[N];
 
 inline bool check(double mid) {
-    double s = 0;
-    for (int i = 1; i <= n; ++i)
-        if (a[i] - mid * b[i] > 0) // 如果权值大于 0
-            s += a[i] - mid * b[i]; // 选这个物品
-    return s > 0;
+  double s = 0;
+  for (int i = 1; i <= n; ++i)
+    if (a[i] - mid * b[i] > 0)  // 如果权值大于 0
+      s += a[i] - mid * b[i];   // 选这个物品
+  return s > 0;
 }
 
 int main() {
-    // 输入
-    n = read();
-    for (int i = 1; i <= n; ++i) a[i] = read();
-    for (int i = 1; i <= n; ++i) b[i] = read();
-    // 二分
-    double L = 0, R = 1e9;
-    while (R - L > eps) {
-        double mid = (L + R) / 2;
-        if (check(mid)) // mid 可行，答案比 mid 大
-            L = mid;
-        else // mid 不可行，答案比 mid 小
-            R = mid;
-    }
-    // 输出
-    printf("%.6lf\n", L);
-    return 0;
+  // 输入
+  n = read();
+  for (int i = 1; i <= n; ++i) a[i] = read();
+  for (int i = 1; i <= n; ++i) b[i] = read();
+  // 二分
+  double L = 0, R = 1e9;
+  while (R - L > eps) {
+    double mid = (L + R) / 2;
+    if (check(mid))  // mid 可行，答案比 mid 大
+      L = mid;
+    else  // mid 不可行，答案比 mid 小
+      R = mid;
+  }
+  // 输出
+  printf("%.6lf\n", L);
+  return 0;
 }
 ```
 
-----
+* * *
 
 为了节省篇幅，下面的代码只保留 `check` 部分。主程序和本题是类似的。
 
@@ -110,22 +109,20 @@ int main() {
 
 > 有 $n​$ 个物品，每个物品有两个权值 $a​$ 和 $b​$ 。
 >
-> 你可以选 $k​$ 个物品 $p_1,p_2,\cdots,p_k​$，使得 $\displaystyle\frac{\sum a_{p_i}}{\sum b_{p_i}}​$ 最大。
+> 你可以选 $k​$ 个物品 $p_1,p_2,\cdots,p_k​$ ，使得 $\displaystyle\frac{\sum a_{p_i}}{\sum b_{p_i}}​$ 最大。
 >
 > 输出答案乘 $100​$ 后四舍五入到整数的值。
 
 把第 $i​$ 个物品的权值设为 $a_i-mid\times b_i​$ ，然后选最大的 $k​$ 个即可得到最大值。
 
 ```cpp
-inline bool cmp(double x,double y) { return x > y; }
+inline bool cmp(double x, double y) { return x > y; }
 inline bool check(double mid) {
-    int s = 0;
-    for (int i = 1; i <= n; ++ i)
-        c[i] = a[i] - mid * b[i];
-    sort(c + 1, c + n + 1, cmp);
-    for (int i = 1; i <= n - k + 1; ++ i)
-        s += c[i];
-    return s > 0;
+  int s = 0;
+  for (int i = 1; i <= n; ++i) c[i] = a[i] - mid * b[i];
+  sort(c + 1, c + n + 1, cmp);
+  for (int i = 1; i <= n - k + 1; ++i) s += c[i];
+  return s > 0;
 }
 ```
 
@@ -148,13 +145,13 @@ inline bool check(double mid) {
 ```cpp
 double f[1010];
 inline bool check(double mid) {
-    for (int i = 1; i <= W; i++) f[i] = -1e9;
-    for (int i = 1; i <= n; i++)
-        for (int j = W; j >= 0; j--) {
-          int k = min(W, j + b[i]);
-          f[k] = max(f[k], f[j] + a[i] - mid * b[i]);
-        }
-    return f[W] > 0;
+  for (int i = 1; i <= W; i++) f[i] = -1e9;
+  for (int i = 1; i <= n; i++)
+    for (int j = W; j >= 0; j--) {
+      int k = min(W, j + b[i]);
+      f[k] = max(f[k], f[j] + a[i] - mid * b[i]);
+    }
+  return f[W] > 0;
 }
 ```
 
@@ -179,23 +176,23 @@ inline bool check(double mid) {
 ```cpp
 inline int SPFA(int u, double mid)  //判负环 {
     vis[u] = 1;
-    for (int i = head[u]; i; i = e[i].nxt) {
-        int v = e[i].v;
-        double w = e[i].w - mid;
-        if (dis[u] + w < dis[v]) {
-          dis[v] = dis[u] + w;
-          if (vis[v] || SPFA(v, mid)) return 1;
-        }
-    }
-    vis[u] = 0;
-    return 0;
+for (int i = head[u]; i; i = e[i].nxt) {
+  int v = e[i].v;
+  double w = e[i].w - mid;
+  if (dis[u] + w < dis[v]) {
+    dis[v] = dis[u] + w;
+    if (vis[v] || SPFA(v, mid)) return 1;
+  }
+}
+vis[u] = 0;
+return 0;
 }
 
-inline bool check(double mid) { //如果有负环返回 true
-    for (int i = 1; i <= n; ++i) dis[i] = 0, vis[i] = 0;
-    for (int i = 1; i <= n; ++i)
-        if (SPFA(i, mid)) return 1;
-    return 0;
+inline bool check(double mid) {  //如果有负环返回 true
+  for (int i = 1; i <= n; ++i) dis[i] = 0, vis[i] = 0;
+  for (int i = 1; i <= n; ++i)
+    if (SPFA(i, mid)) return 1;
+  return 0;
 }
 ```
 
