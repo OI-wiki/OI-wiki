@@ -118,8 +118,7 @@ int main() {
 
 ```cpp
 inline bool cmp(double x,double y) { return x > y; }
-inline bool check(double mid)
-{
+inline bool check(double mid) {
     int s = 0;
     for (int i = 1; i <= n; ++ i)
         c[i] = a[i] - mid * b[i];
@@ -178,8 +177,7 @@ inline bool check(double mid) {
 另外本题存在一种复杂度 $O(nm)$ 的算法，如果有兴趣可以阅读[这篇文章](https://www.cnblogs.com/y-clever/p/7043553.html)。
 
 ```cpp
-inline int SPFA(int u, double mid)  //判负环
-{
+inline int SPFA(int u, double mid)  //判负环 {
     vis[u] = 1;
     for (int i = head[u]; i; i = e[i].nxt) {
         int v = e[i].v;
@@ -193,8 +191,7 @@ inline int SPFA(int u, double mid)  //判负环
     return 0;
 }
 
-inline bool check(double mid)  //如果有负环返回 true
-{
+inline bool check(double mid) { //如果有负环返回 true
     for (int i = 1; i <= n; ++i) dis[i] = 0, vis[i] = 0;
     for (int i = 1; i <= n; ++i)
         if (SPFA(i, mid)) return 1;
