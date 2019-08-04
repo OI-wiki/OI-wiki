@@ -14,11 +14,11 @@ disqus:
 
 从苹果的网站上下载 Xcode 开发环境并安装
 
-#### Linux
+#### NOI Linux
 
-使用 `g++ -v` 来检查是否安装过 `g++`，访问 https://gcc.gnu.org/install/ 来下载并安装。
+使用 `g++ -v` 来检查是否安装过 `g++`
 
-以 Ubuntu 为例，可以使用如下命令：
+使用如下命令可以安装：
 
 ```bash
 sudo apt update && sudo apt install g++
