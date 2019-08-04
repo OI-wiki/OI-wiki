@@ -57,11 +57,9 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
 
 ### 文档内容的基本格式
 
-在提交 PR 前，请先确保文档内容符合[How to contribute](https://github.com/OI-wiki/OI-wiki/wiki/How-to-contribute)中的格式要求。格式缺乏基本的规范性、严谨性可能会使你的贡献不能及时通过审核。
+在提交 PR 前，请先确保文档内容符合下文中的格式要求（如有疑问可以在 [How To Contribute](https://github.com/OI-wiki/OI-wiki/wiki/How-to-contribute) 页面中查阅相关例子）。格式缺乏基本的规范性、严谨性可能会使你的贡献不能及时通过审核。
 
-文档内容的基本格式主要是指[中文排版指南](https://github.com/ctf-wiki/ctf-wiki/wiki/%E4%B8%AD%E6%96%87%E6%8E%92%E7%89%88%E6%8C%87%E5%8D%97)与[MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。后者额外介绍了 mkdocs-material 主题的插件使用方式。
-
-如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅[cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，他有介绍 markdown 传统语法和 mkdocs-material 支持的扩展语法。
+如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅[MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E) 和 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 markdown 传统语法和 mkdocs-material 支持的扩展语法。
 
 #### remark-lint 要求怎样的格式
 
@@ -75,10 +73,13 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
     2.   `1. 例子` 点号后要有空格。
 3.  行间公式前后各要有一行空行，否则会被当做是行内公式
 4.  伪代码请使用 ```` ```text````，直接使用 ```` ``` ```` 可能导致内容被错误地缩进
+5.  涉及到目录的更改，需要改动 mkdocs.yml，另外也请注意如果影响到作者信息统计，麻烦更新 [author 字段](https://oi-wiki.org/intro/faq/#_15)。
+6.  所有比赛请使用官方正式中文/英文名称。特别注意 NOI 系列赛官方英文名称均为全大写，如 NOIP
 
 #### 文档中 LaTeX 公式的格式
 
--   对于 LaTeX 公式，请注意常见的问题，**一定要使用** `$\log$`、`$\min$`、`$\max$`、`$\gcd$` 等，而非 `$log$`、`$min$`、`$max$`、`$gcd$`。对于最小公倍数，请使用 `$\operatorname{lcm}$` 而非 `$lcm$`，省略号请使用 `$\cdots$`，叉乘请使用 `$\times$`，点乘请使用 `$\cdot$`。
+-   请不要滥用 LaTeX 公式字体（比如对一些英文单词使用公式字体）
+-   对于 LaTeX 公式，请注意常见的问题，**一定要使用** `$\log$`、`$\min$`、`$\max$`、`$\gcd$` 等，而非 `$log$`、`$min$`、`$max$`、`$gcd$`。对于最小公倍数，请使用 `$\operatorname{lcm}$` 而非 `$lcm$`，省略号请使用 `$\cdots$`，叉乘请使用 `$\times$`，点乘请使用 `$\cdot$`。其他非数学内容，包括中文、英文、特殊符号等，一律使用 `\text{}`。
 -   所有公式中的希腊字母等特殊符号，请不要使用输入法的插入特殊符号功能，而应该使用对应的 LaTeX 公式符号。如 phi 大多数情况下应该使用 `$\varphi$` 而不是 `$\phi$`。
 -   在不会引起歧义的情况下，请用 `\times` 代替星号。如 $a\times b$ ，而不是 $a*b$ 。
 -   请用 `\cdots` ， `\ldots` ， `\vdots` 代替 `...` 。如 $a_1,a_2,\cdots a_n$ ，而不是 $a_1,a_2,... a_n$ 。
