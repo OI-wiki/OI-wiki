@@ -1,4 +1,4 @@
-author: ChungZH, keepthethink, abc1763613206, partychicken
+author: ChungZH, keepthethink, abc1763613206, partychicken, Xeonacid
 
 ## Visual Studio Code - 微软家的编辑器
 
@@ -12,11 +12,11 @@ Visual Studio Code（以下简称 VS Code) 是一个免费、开源、跨平台�
 
 首先我们要在 VS Code 中安装你要使用的语言的插件。直接打开插件商店，然后在搜索栏中输入 `@category:"programming languages"` ，然后找到对应的插件，安装，OK！\`![](./images/editor-vscode2.png)
 
-#### 使用 CodeRunner 插件
+#### 使用 Code Runner 插件
 
 VS Code 自身带有非常强大的 C/C++ 功能，但配置过程比较复杂。一个简单的编译与运行 C++ 程序的方案是安装 Code Runner 插件。
 
-CodeRunner 是一个可以一键运行代码的插件，在工程上一般用来验证代码片段，支持 Node.js, Python, C, C++, Java, PHP, Perl, Ruby, Go 等超过 40 种语言。
+Code Runner 是一个可以一键运行代码的插件，在工程上一般用来验证代码片段，支持 Node.js, Python, C, C++, Java, PHP, Perl, Ruby, Go 等超过 40 种语言。
 
 打开插件商店，搜索 `Code Runner` 并安装。或者去[Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
 
