@@ -1,6 +1,6 @@
 分数规划用来求一个分式的极值。
 
-形象一点就是，给出 $a_i​$ 和 $b_i​$ ，求一组 $w_i\in[0,1]​$ ，最小化或最大化
+形象一点就是，给出 $a_i$ 和 $b_i$ ，求一组 $w_i\in[0,1]$ ，最小化或最大化
 
 $$
 \displaystyle\frac{\sum\limits_{i=1}^na_i\times w_i}{\sum\limits_{i=1}^nb_i\times w_i}
@@ -31,7 +31,7 @@ $$
 
 * * *
 
-分数规划的主要难点就在于如何求 $\displaystyle \sum w_i\times(a_i-mid\times b_i)​$ 的最大值/最小值。下面通过一系列实例来讲解该式子的最大值/最小值的求法。
+分数规划的主要难点就在于如何求 $\displaystyle \sum w_i\times(a_i-mid\times b_i)$ 的最大值/最小值。下面通过一系列实例来讲解该式子的最大值/最小值的求法。
 
 ## 实例
 
@@ -43,63 +43,65 @@ $$
 
 为了方便初学者理解，这里放上完整代码：
 
-```cpp
-// ===================================
-//   author: M_sea
-//   website: http://m-sea-blog.com/
-// ===================================
-#include <algorithm>
-#include <cmath>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <iostream>
-using namespace std;
+??? 参考代码
 
-inline int read() {
-  int X = 0, w = 1;
-  char c = getchar();
-  while (c < '0' || c > '9') {
-    if (c == '-') w = -1;
-    c = getchar();
-  }
-  while (c >= '0' && c <= '9') X = X * 10 + c - '0', c = getchar();
-  return X * w;
-}
-
-const int N = 100000 + 10;
-const double eps = 1e-6;
-
-int n;
-double a[N], b[N];
-
-inline bool check(double mid) {
-  double s = 0;
-  for (int i = 1; i <= n; ++i)
-    if (a[i] - mid * b[i] > 0)  // 如果权值大于 0
-      s += a[i] - mid * b[i];   // 选这个物品
-  return s > 0;
-}
-
-int main() {
-  // 输入
-  n = read();
-  for (int i = 1; i <= n; ++i) a[i] = read();
-  for (int i = 1; i <= n; ++i) b[i] = read();
-  // 二分
-  double L = 0, R = 1e9;
-  while (R - L > eps) {
-    double mid = (L + R) / 2;
-    if (check(mid))  // mid 可行，答案比 mid 大
-      L = mid;
-    else  // mid 不可行，答案比 mid 小
-      R = mid;
-  }
-  // 输出
-  printf("%.6lf\n", L);
-  return 0;
-}
-```
+    ```cpp
+    // ===================================
+    //   author: M_sea
+    //   website: http://m-sea-blog.com/
+    // ===================================
+    #include <algorithm>
+    #include <cmath>
+    #include <cstdio>
+    #include <cstdlib>
+    #include <cstring>
+    #include <iostream>
+    using namespace std;
+    
+    inline int read() {
+      int X = 0, w = 1;
+      char c = getchar();
+      while (c < '0' || c > '9') {
+        if (c == '-') w = -1;
+        c = getchar();
+      }
+      while (c >= '0' && c <= '9') X = X * 10 + c - '0', c = getchar();
+      return X * w;
+    }
+    
+    const int N = 100000 + 10;
+    const double eps = 1e-6;
+    
+    int n;
+    double a[N], b[N];
+    
+    inline bool check(double mid) {
+      double s = 0;
+      for (int i = 1; i <= n; ++i)
+        if (a[i] - mid * b[i] > 0)  // 如果权值大于 0
+          s += a[i] - mid * b[i];   // 选这个物品
+      return s > 0;
+    }
+    
+    int main() {
+      // 输入
+      n = read();
+      for (int i = 1; i <= n; ++i) a[i] = read();
+      for (int i = 1; i <= n; ++i) b[i] = read();
+      // 二分
+      double L = 0, R = 1e9;
+      while (R - L > eps) {
+        double mid = (L + R) / 2;
+        if (check(mid))  // mid 可行，答案比 mid 大
+          L = mid;
+        else  // mid 不可行，答案比 mid 小
+          R = mid;
+      }
+      // 输出
+      printf("%.6lf\n", L);
+      return 0;
+    }
+    ```
 
 * * *
 
@@ -107,13 +109,13 @@ int main() {
 
 ### POJ2976 Dropping tests
 
-> 有 $n​$ 个物品，每个物品有两个权值 $a​$ 和 $b​$ 。
+> 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$ 。
 >
-> 你可以选 $k​$ 个物品 $p_1,p_2,\cdots,p_k​$ ，使得 $\displaystyle\frac{\sum a_{p_i}}{\sum b_{p_i}}​$ 最大。
+> 你可以选 $k$ 个物品 $p_1,p_2,\cdots,p_k$ ，使得 $\displaystyle\frac{\sum a_{p_i}}{\sum b_{p_i}}$ 最大。
 >
-> 输出答案乘 $100​$ 后四舍五入到整数的值。
+> 输出答案乘 $100$ 后四舍五入到整数的值。
 
-把第 $i​$ 个物品的权值设为 $a_i-mid\times b_i​$ ，然后选最大的 $k​$ 个即可得到最大值。
+把第 $i$ 个物品的权值设为 $a_i-mid\times b_i$ ，然后选最大的 $k$ 个即可得到最大值。
 
 ```cpp
 inline bool cmp(double x, double y) { return x > y; }
@@ -134,13 +136,13 @@ inline bool check(double mid) {
 >
 > 要求 $\displaystyle\sum w_i\times b_i \geq W$ 。
 
-本题多了分母至少为 $W​$ 的限制，因此无法再使用上一题的贪心算法。
+本题多了分母至少为 $W$ 的限制，因此无法再使用上一题的贪心算法。
 
 可以考虑 01 背包。把 $b_i$ 作为第 $i$ 个物品的重量， $a_i-mid\times b_i$ 作为第 $i$ 个物品的价值，然后问题就转化为背包了。
 
 那么 $dp[n][W]$ 就是最大值。
 
-一个要注意的地方： $\sum w_i\times b_i​$ 可能超过 $W​$ ，此时直接视为 $W​$ 即可。（想一想，为什么？）
+一个要注意的地方： $\sum w_i\times b_i$ 可能超过 $W$ ，此时直接视为 $W$ 即可。（想一想，为什么？）
 
 ```cpp
 double f[1010];
