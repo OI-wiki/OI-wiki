@@ -8,15 +8,19 @@ disqus:
 
 #### Windows
 
-需要去 www.mingw.org 下载 MinGW 并安装
+需要去 [MinGW Distro](https://nuwen.net/mingw.html) 下载 MinGW 并安装
 
-#### Mac OS
+#### macOS
 
-从苹果的网站上下载 Xcode 开发环境并安装
+在终端中执行：
+
+```bash
+xcode-select --install`
+```
 
 #### NOI Linux
 
-使用 `g++ -v` 来检查是否安装过 `g++` 
+使用 `g++ -v` 来检查是否安装过 `g++` 。
 
 使用如下命令可以安装：
 
@@ -26,7 +30,7 @@ sudo apt update && sudo apt install g++
 
 ### 编辑器
 
-IDE 操作较为简单，一般入门玩家会选用 IDE 来编写代码。在竞赛中最常见的是 DevCpp（如果考试环境是 windows 系统，一般也会提供这一 IDE）。详情可以阅读[相关页面](/intro/editor-devcpp)。
+IDE 操作较为简单，一般入门玩家会选用 IDE 来编写代码。在竞赛中最常见的是 Dev-C++（如果考试环境是 Windows 系统，一般也会提供这一 IDE）。详情可以阅读[相关页面](/intro/editor/devcpp)。
 
 熟练之后也有玩家会使用更灵活的命令行来编译代码，这样就不依赖 IDE 了，而是使用自己熟悉的文本编辑器编写代码。
 
