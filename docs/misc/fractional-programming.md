@@ -57,7 +57,7 @@ $$
     #include <cstring>
     #include <iostream>
     using namespace std;
-    
+
     inline int read() {
       int X = 0, w = 1;
       char c = getchar();
@@ -68,13 +68,13 @@ $$
       while (c >= '0' && c <= '9') X = X * 10 + c - '0', c = getchar();
       return X * w;
     }
-    
+
     const int N = 100000 + 10;
     const double eps = 1e-6;
-    
+
     int n;
     double a[N], b[N];
-    
+
     inline bool check(double mid) {
       double s = 0;
       for (int i = 1; i <= n; ++i)
@@ -82,7 +82,7 @@ $$
           s += a[i] - mid * b[i];   // 选这个物品
       return s > 0;
     }
-    
+
     int main() {
       // 输入
       n = read();
