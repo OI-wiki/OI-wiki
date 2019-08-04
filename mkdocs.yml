@@ -33,7 +33,6 @@ nav:
         - Atom: intro/editor-atom.md
         - Eclipse: intro/editor-eclipse.md
         - Notepad++: intro/editor-notepadpp.md
-        - DevCpp: intro/editor-devcpp.md
       - WSL (Windows 10): intro/wsl.md
       - Special Judge: intro/spj.md
       - Testlib:
