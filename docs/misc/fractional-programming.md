@@ -1,91 +1,211 @@
-!!! note " 例题[luogu P4322\[JSOI2016\]最佳团体](https://www.luogu.org/problemnew/show/P4322)"
-    题目大意：有一棵 $n+1$ 个结点的树，根为 $0$ 号结点。每个结点 $i$ 有一个价值 $p_i$ 和费用 $s_i$ 。你需要选择 $k$ 个结点 $a_1,a_2,\ldots,a_k$ （不包括 $0$ 号结点），使得
+分数规划用来求一个分式的极值。
 
-    $$
-    \frac{\sum_{i=1}^k p_{a_i}}{\sum_{i=1}^k s_{a_i}}
-    $$
-
-    最大。你需要保证对于你选择的一个树上结点，它的父亲一定被选中。求出这个最大的比值。
-
-如果每个点都只有一个价值（设为 $v_i$ ），我们要做的只是最大化这个最后能得到的价值，那么我们可以用树形动态规划解决这个问题。
-
-定义 $f(i,j)$ 表示以 $i$ 为根的子树中选择 $j$ 个结点的最大价值。由于要满足如果一个点被选择，其父亲也一定被选择，如果 $j\ge 1$ ，那么当前结点 $i$ 一定是已经被选中的。利用树上背包进行合并。写出状态转移方程：
+形象一点就是，给出 $a_i$ 和 $b_i$ ，求一组 $w_i\in[0,1]$ ，最小化或最大化
 
 $$
-f(i,j)=\left\{
+\displaystyle\frac{\sum\limits_{i=1}^na_i\times w_i}{\sum\limits_{i=1}^nb_i\times w_i}
+$$
+
+另外一种描述：每种物品有两个权值 $a$ 和 $b$ ，选出若干个物品使得 $\displaystyle\frac{\sum a}{\sum b}$ 最小/最大。
+
+一般分数规划问题还会有一些奇怪的限制，比如『分母至少为 $W$ 』。
+
+## 求解
+
+分数规划问题的通用方法是二分。
+
+假设我们要求最大值。二分一个答案 $mid$ ，然后推式子（为了方便少写了上下界）：
+
+$$
+\displaystyle
 \begin{aligned}
-& 0, & j=0, \\
-& \max\left\{\sum f(son,k)\right\}+v(i),\quad\text{where }\sum k=j-1, & j\neq 0
-\end{aligned} \right
-.
+&\frac{\sum a_i\times w_i}{\sum b_i\times w_i}>mid\\
+\Longrightarrow&\sum a_i\times w_i-mid\times \sum b_i\cdot w_i>0\\
+\Longrightarrow&\sum w_i\times(a_i-mid\times b_i)>0
+\end{aligned}
 $$
 
-如果 **合并方式得当** ，则可以在 $O(n^2)$ 的时间复杂度内完成状态转移，具体细节参见代码。
+那么只要求出不等号左边的式子的最大值就行了。如果最大值比 $0$ 要大，说明 $mid$ 是可行的，否则不可行。
 
-但是，我们是让一个分式的值最大化，然而这个分式的分母又不确定，怎么办呢？
+求最小值的方法和求最大值的方法类似，读者不妨尝试着自己推一下。
 
-首先我们明确一个性质：设最后最大化的答案为 $ans$ ，那么对于任意一个小于等于 $ans$ 的实数 $a$ ，都有 $v_i=p_i-a\times s_i$ ，这样的 $v$ 数组算出的 $f(0,k+1)$ 的值都大于零。该式等于零当且仅当 $a=ans$ 。
+* * *
 
-那么，我们就可以用二分的思想解决这个问题。每次选择一个 $mid$ ，令 $v_i=p_i-mid\times s_i$ ，算出 $f(0,k+1)$ 的值，如果大于零则选择右区间，反之选择左区间。最后当区间 $[l,r]$ 的大小 $r-l$ 在可以容许的范围内时，输出最后的答案。时间复杂度为 $O(n^2\log ans)$ 。
+分数规划的主要难点就在于如何求 $\displaystyle \sum w_i\times(a_i-mid\times b_i)$ 的最大值/最小值。下面通过一系列实例来讲解该式子的最大值/最小值的求法。
 
-这就是分数规划的基本思想。
+## 实例
 
-代码：
+### 模板
+
+> 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$ 。求一组 $w_i\in[0,1]$ ，最大化 $\displaystyle\frac{\sum a_i\times w_i}{\sum b_i\times w_i}$ 的值。
+
+把 $a_i-mid\times b_i$ 作为第 $i$ 个物品的权值，贪心地选所有权值大于 $0$ 的物品即可得到最大值。
+
+为了方便初学者理解，这里放上完整代码：
+
+??? 参考代码
+
+    ```cpp
+    // ===================================
+    //   author: M_sea
+    //   website: http://m-sea-blog.com/
+    // ===================================
+    #include <algorithm>
+    #include <cmath>
+    #include <cstdio>
+    #include <cstdlib>
+    #include <cstring>
+    #include <iostream>
+    using namespace std;
+
+    inline int read() {
+      int X = 0, w = 1;
+      char c = getchar();
+      while (c < '0' || c > '9') {
+        if (c == '-') w = -1;
+        c = getchar();
+      }
+      while (c >= '0' && c <= '9') X = X * 10 + c - '0', c = getchar();
+      return X * w;
+    }
+
+    const int N = 100000 + 10;
+    const double eps = 1e-6;
+
+    int n;
+    double a[N], b[N];
+
+    inline bool check(double mid) {
+      double s = 0;
+      for (int i = 1; i <= n; ++i)
+        if (a[i] - mid * b[i] > 0)  // 如果权值大于 0
+          s += a[i] - mid * b[i];   // 选这个物品
+      return s > 0;
+    }
+
+    int main() {
+      // 输入
+      n = read();
+      for (int i = 1; i <= n; ++i) a[i] = read();
+      for (int i = 1; i <= n; ++i) b[i] = read();
+      // 二分
+      double L = 0, R = 1e9;
+      while (R - L > eps) {
+        double mid = (L + R) / 2;
+        if (check(mid))  // mid 可行，答案比 mid 大
+          L = mid;
+        else  // mid 不可行，答案比 mid 小
+          R = mid;
+      }
+      // 输出
+      printf("%.6lf\n", L);
+      return 0;
+    }
+    ```
+
+* * *
+
+为了节省篇幅，下面的代码只保留 `check` 部分。主程序和本题是类似的。
+
+### POJ2976 Dropping tests
+
+> 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$ 。
+>
+> 你可以选 $k$ 个物品 $p_1,p_2,\cdots,p_k$ ，使得 $\displaystyle\frac{\sum a_{p_i}}{\sum b_{p_i}}$ 最大。
+>
+> 输出答案乘 $100$ 后四舍五入到整数的值。
+
+把第 $i$ 个物品的权值设为 $a_i-mid\times b_i$ ，然后选最大的 $k$ 个即可得到最大值。
 
 ```cpp
-// luogu-judger-enable-o2
-#include <algorithm>
-#include <cstdio>
-#include <cstring>
-using namespace std;
-const int maxn = 2510;
-int k, n, rr, cur, h[maxn], nxt[maxn * 2], p[maxn * 2], siz[maxn];
-double s[maxn], pp[maxn], l, r, mid, v[maxn], f[maxn][maxn];
-void add_edge(int x, int y) {
-  cur++;
-  nxt[cur] = h[x];
-  h[x] = cur;
-  p[cur] = y;
+inline bool cmp(double x, double y) { return x > y; }
+inline bool check(double mid) {
+  int s = 0;
+  for (int i = 1; i <= n; ++i) c[i] = a[i] - mid * b[i];
+  sort(c + 1, c + n + 1, cmp);
+  for (int i = 1; i <= n - k + 1; ++i) s += c[i];
+  return s > 0;
 }
-void dfs(int x, int fa) {
-  siz[x] = 1;
-  f[x][0] = 0;
-  f[x][1] = v[x];
-  for (int i = h[x]; i != -1; i = nxt[i])
-    if (p[i] != fa) {
-      dfs(p[i], x);
-      for (int j = siz[x]; j >= 1; j--)
-        for (int k = 0; k <= siz[p[i]]; k++)
-          f[x][j + k] = max(f[x][j + k], f[x][j] + f[p[i]][k]);
-      siz[x] += siz[p[i]];
-    }
-}
-int main() {
-  memset(h, -1, sizeof h);
-  scanf("%d%d", &k, &n);
+```
+
+### 洛谷 4377 Talent Show
+
+> 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$ 。
+>
+> 你需要确定一组 $w_i\in[0,1]$ ，使得 $\displaystyle\frac{\sum w_i\times a_i}{\sum w_i\times b_i}$ 最大。
+>
+> 要求 $\displaystyle\sum w_i\times b_i \geq W$ 。
+
+本题多了分母至少为 $W$ 的限制，因此无法再使用上一题的贪心算法。
+
+可以考虑 01 背包。把 $b_i$ 作为第 $i$ 个物品的重量， $a_i-mid\times b_i$ 作为第 $i$ 个物品的价值，然后问题就转化为背包了。
+
+那么 $dp[n][W]$ 就是最大值。
+
+一个要注意的地方： $\sum w_i\times b_i$ 可能超过 $W$ ，此时直接视为 $W$ 即可。（想一想，为什么？）
+
+```cpp
+double f[1010];
+inline bool check(double mid) {
+  for (int i = 1; i <= W; i++) f[i] = -1e9;
   for (int i = 1; i <= n; i++)
-    scanf("%lf%lf%d", s + i, pp + i, &rr), add_edge(rr, i), add_edge(i, rr);
-  r = 10000.0;
-  while (r - l > 1e-4) {
-    mid = (l + r) * 0.5;
-    for (int i = 1; i <= n; i++) v[i] = pp[i] - mid * s[i];
-    for (int i = 0; i < maxn; i++)
-      for (int j = 0; j < maxn; j++) f[i][j] = -2e9;
-    dfs(0, -1);
-    if (f[0][k + 1] > 0)
-      l = mid;
-    else
-      r = mid;
+    for (int j = W; j >= 0; j--) {
+      int k = min(W, j + b[i]);
+      f[k] = max(f[k], f[j] + a[i] - mid * b[i]);
+    }
+  return f[W] > 0;
+}
+```
+
+### POJ2728 Desert King
+
+> 每条边有两个权值 $a_i$ 和 $b_i$ ，求一棵生成树 $T$ 使得 $\displaystyle\frac{\sum_{e\in T}a_e}{\sum_{e\in T}b_e}$ 最小。
+
+把 $a_i-mid\times b_i$ 作为每条边的权值，那么最小生成树就是最小值，
+
+代码就是求最小生成树，我就不放代码了。
+
+### [HNOI2009]最小圈
+
+> 每条边的边权为 $w$ ，求一个环 $C$ 使得 $\displaystyle\frac{\sum_{e\in C}w}{|C|}$ 最小。
+
+把 $a_i-mid$ 作为边权，那么权值最小的环就是最小值。
+
+因为我们只需要判最小值是否小于 $0$ ，所以只需要判断图中是否存在负环即可。
+
+另外本题存在一种复杂度 $O(nm)$ 的算法，如果有兴趣可以阅读[这篇文章](https://www.cnblogs.com/y-clever/p/7043553.html)。
+
+```cpp
+inline int SPFA(int u, double mid)  //判负环 {
+    vis[u] = 1;
+for (int i = head[u]; i; i = e[i].nxt) {
+  int v = e[i].v;
+  double w = e[i].w - mid;
+  if (dis[u] + w < dis[v]) {
+    dis[v] = dis[u] + w;
+    if (vis[v] || SPFA(v, mid)) return 1;
   }
-  printf("%.3lf\n", l);
+}
+vis[u] = 0;
+return 0;
+}
+
+inline bool check(double mid) {  //如果有负环返回 true
+  for (int i = 1; i <= n; ++i) dis[i] = 0, vis[i] = 0;
+  for (int i = 1; i <= n; ++i)
+    if (SPFA(i, mid)) return 1;
   return 0;
 }
 ```
 
+## 总结
+
+分数规划问题是一类既套路又灵活的题目，一般使用二分解决。
+
+分数规划问题的主要难点在于推出式子后想办法求出 $\displaystyle\sum w_i\times(a_i-mid\times b_i)$ 的最大值/最小值，而这个需要具体情况具体分析。
+
 ## 习题
 
-[luogu P3705\[SDOI2017\]新生舞会](https://www.luogu.org/problemnew/show/P3705)
-
-[luogu P3288\[SCOI2014\]方伯伯运椰子](https://www.luogu.org/problemnew/show/P3288)
-
-[luogu P3199\[HNOI2009\]最小圈](https://www.luogu.org/problemnew/show/P3199)
+-   [JSOI2016 最佳团体](https://www.luogu.org/problem/P4322)
+-   [SDOI2017 新生舞会](https://www.luogu.org/problem/P3705)
+-   [UVa1389 Hard Life](https://www.luogu.org/problem/UVA1389)
