@@ -41,11 +41,11 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
 
 ### 协作流程
 
-1. 在收到一个新的 Pull Request 之后， GitHub 会给 reviewer 发送邮件
-2. 与此同时，在 [Travis CI](https://travis-ci.org/OI-wiki/OI-wiki) 和 [Netlify](https://app.netlify.com/sites/oi-wiki) 上会运行两组测试，他们会把进度同步在 PR 页面的下方。Travis CI 主要是用来确认 PR 中内容的修改不会影响到网站构建的进程；Netlify 是用来把 PR 中的更新构建出来，方便 reviewer 审核（在测试完成后点击 Details 可以了解更多）
-3. 在足够多 reviewer 投票通过一个 PR 之后，这个 PR 才可以合并到 master 分支中
-4. 在合并到 master 分支之后，会在 Travis CI 上重新构建一遍网站内容，并更新到 gh-pages 分支
-5. 这时服务器才会拉取 gh-pages 分支的更新，并重新部署最新版本的内容
+1.  在收到一个新的 Pull Request 之后，GitHub 会给 reviewer 发送邮件
+2.  与此同时，在[Travis CI](https://travis-ci.org/OI-wiki/OI-wiki)和[Netlify](https://app.netlify.com/sites/oi-wiki)上会运行两组测试，他们会把进度同步在 PR 页面的下方。Travis CI 主要是用来确认 PR 中内容的修改不会影响到网站构建的进程；Netlify 是用来把 PR 中的更新构建出来，方便 reviewer 审核（在测试完成后点击 Details 可以了解更多）
+3.  在足够多 reviewer 投票通过一个 PR 之后，这个 PR 才可以合并到 master 分支中
+4.  在合并到 master 分支之后，会在 Travis CI 上重新构建一遍网站内容，并更新到 gh-pages 分支
+5.  这时服务器才会拉取 gh-pages 分支的更新，并重新部署最新版本的内容
 
 ## 贡献文档要求
 
@@ -57,9 +57,9 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
 
 ### 文档内容的基本格式
 
-在提交 PR 前，请先确保文档内容符合下文中的格式要求（如有疑问可以在 [How To Contribute](https://github.com/OI-wiki/OI-wiki/wiki/How-to-contribute) 页面中查阅相关例子）。格式缺乏基本的规范性、严谨性可能会使你的贡献不能及时通过审核。
+在提交 PR 前，请先确保文档内容符合下文中的格式要求（如有疑问可以在[How To Contribute](https://github.com/OI-wiki/OI-wiki/wiki/How-to-contribute)页面中查阅相关例子）。格式缺乏基本的规范性、严谨性可能会使你的贡献不能及时通过审核。
 
-如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅[MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E) 和 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 markdown 传统语法和 mkdocs-material 支持的扩展语法。
+如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅[MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)和[cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 markdown 传统语法和 mkdocs-material 支持的扩展语法。
 
 #### remark-lint 要求怎样的格式
 
@@ -72,15 +72,15 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
     1.  列表前要有空行，新开一段。
     2.   `1. 例子` 点号后要有空格。
 3.  行间公式前后各要有一行空行，否则会被当做是行内公式
-4.  伪代码请使用 ```` ```text````，直接使用 ```` ``` ```` 可能导致内容被错误地缩进
-5.  涉及到目录的更改，需要改动 mkdocs.yml，另外也请注意如果影响到作者信息统计，麻烦更新 [author 字段](https://oi-wiki.org/intro/faq/#_15)。
+4.  伪代码请使用 ```` ```text```` ，直接使用 ```` ``` ```` 可能导致内容被错误地缩进
+5.  涉及到目录的更改，需要改动 mkdocs.yml，另外也请注意如果影响到作者信息统计，麻烦更新[author 字段](https://oi-wiki.org/intro/faq/#_15)。
 6.  所有比赛请使用官方正式中文/英文名称。特别注意 NOI 系列赛官方英文名称均为全大写，如 NOIP
 
 #### 文档中 LaTeX 公式的格式
 
 -   请不要滥用 LaTeX 公式字体（比如对一些英文单词使用公式字体）
--   对于 LaTeX 公式，请注意常见的问题，**一定要使用** `$\log$`、`$\min$`、`$\max$`、`$\gcd$` 等，而非 `$log$`、`$min$`、`$max$`、`$gcd$`。对于最小公倍数，请使用 `$\operatorname{lcm}$` 而非 `$lcm$`，省略号请使用 `$\cdots$`，叉乘请使用 `$\times$`，点乘请使用 `$\cdot$`。其他非数学内容，包括中文、英文、特殊符号等，一律使用 `\text{}`。
--   所有公式中的希腊字母等特殊符号，请不要使用输入法的插入特殊符号功能，而应该使用对应的 LaTeX 公式符号。如 phi 大多数情况下应该使用 `$\varphi$` 而不是 `$\phi$`。
+-   对于 LaTeX 公式，请注意常见的问题， **一定要使用**  `$\log$` 、 `$\min$` 、 `$\max$` 、 `$\gcd$` 等，而非 `$log$` 、 `$min$` 、 `$max$` 、 `$gcd$` 。对于最小公倍数，请使用 `$\operatorname{lcm}$` 而非 `$lcm$` ，省略号请使用 `$\cdots$` ，叉乘请使用 `$\times$` ，点乘请使用 `$\cdot$` 。其他非数学内容，包括中文、英文、特殊符号等，一律使用 `\text{}` 。
+-   所有公式中的希腊字母等特殊符号，请不要使用输入法的插入特殊符号功能，而应该使用对应的 LaTeX 公式符号。如 phi 大多数情况下应该使用 `$\varphi$` 而不是 `$\phi$` 。
 -   在不会引起歧义的情况下，请用 `\times` 代替星号。如 $a\times b$ ，而不是 $a*b$ 。
 -   请用 `\cdots` ， `\ldots` ， `\vdots` 代替 `...` 。如 $a_1,a_2,\cdots a_n$ ，而不是 $a_1,a_2,... a_n$ 。
 -   请用 `=` 代替 `==` 。如 $a=b$ ，而不是 $a==b$ 。
@@ -89,9 +89,8 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
 #### 文档存储的格式
 
 -    **文件名请务必都小写，以 `-` 分割，如 `file-name` 。** 
--   请务必确保您的文档中引用的 **外链** 图片已经全部转存到了 **本库内** 对应的 `images` 文件夹中（防止触发某些网站的防盗链），建议处理成 `MD文档名称+编号` 的形式（可参考已有文档中图片的处理方式）。（即格式为 `![](./images/xx.jpg)` ）。
--   请确保您的文档中的引用链接的稳定性，**不推荐**引用**自建**服务（如OJ）中的资源（如题目）
-
+-   请务必确保您的文档中引用的 **外链** 图片已经全部转存到了 **本库内** 对应的 `images` 文件夹中（防止触发某些网站的防盗链），建议处理成 `MD 文档名称 + 编号` 的形式（可参考已有文档中图片的处理方式）。（即格式为 `![](./images/xx.jpg)` ）。
+-   请确保您的文档中的引用链接的稳定性， **不推荐** 引用 **自建** 服务（如 OJ）中的资源（如题目）
 
 ### 文档的合理性
 
