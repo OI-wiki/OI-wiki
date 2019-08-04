@@ -8,7 +8,7 @@ disqus:
 
 #### Windows
 
-需要去 [MinGW Distro](https://nuwen.net/mingw.html) 下载 MinGW 并安装
+需要去[MinGW Distro](https://nuwen.net/mingw.html)下载 MinGW 并安装
 
 #### macOS
 
