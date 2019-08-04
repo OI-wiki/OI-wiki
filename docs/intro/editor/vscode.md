@@ -10,8 +10,7 @@ Visual Studio Code（以下简称 VS Code) 是一个免费、开源、跨平台�
 
 #### 安装语言插件
 
-首先我们要在 VS Code 中安装你要使用的语言的插件。直接打开插件商店，然后在搜索栏中输入 `@category:"programming languages"` ，然后找到对应的插件，安装，OK！
-\`![](./images/editor-vscode2.png)
+首先我们要在 VS Code 中安装你要使用的语言的插件。直接打开插件商店，然后在搜索栏中输入 `@category:"programming languages"` ，然后找到对应的插件，安装，OK！\`![](./images/editor-vscode2.png)
 
 #### 使用 CodeRunner 插件
 
