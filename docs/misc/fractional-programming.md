@@ -1,17 +1,19 @@
 分数规划用来求一个分式的极值。
 
-形象一点就是，给出 $a_i$ 和 $b_i$ ，求一组 $w_i\in[0,1]$，最小化或最大化
+形象一点就是，给出 $a_i$ 和 $b_i$ ，求一组 $w_i\in[0,1]$ ，最小化或最大化
+
 $$
 \displaystyle\frac{\sum\limits_{i=1}^na_i\times w_i}{\sum\limits_{i=1}^nb_i\times w_i}
 $$
 
-另外一种描述：每种物品有两个权值 $a$ 和 $b$ ，选出若干个物品使得 $\displaystyle\frac{\sum a}{\sum b}$ 最小/最大。 
+另外一种描述：每种物品有两个权值 $a$ 和 $b$ ，选出若干个物品使得 $\displaystyle\frac{\sum a}{\sum b}$ 最小/最大。
 
 ## 求解
 
 分数规划问题的通用方法是二分。
 
-假设我们要求最大值。二分一个答案$mid$，然后推式子（为了方便少写了上下界）：
+假设我们要求最大值。二分一个答案 $mid$ ，然后推式子（为了方便少写了上下界）：
+
 $$
 \displaystyle
 \begin{aligned}
@@ -20,11 +22,12 @@ $$
 \Longrightarrow&\sum w_i\times(a_i-mid\times b_i)>0
 \end{aligned}
 $$
+
 那么只要求出不等号左边的式子的最大值就行了。如果最大值比 $0$ 要大，说明 $mid$ 是可行的，否则不可行。
 
 求最小值的方法和求最大值的方法类似，读者不妨尝试着自己推一下。
 
-----
+* * *
 
 分数规划的主要难点就在于如何求 $\displaystyle \sum w_i\times(a_i-mid\times b_i)$ 的最大值/最小值。下面通过一系列实例来讲解该式子的最大值/最小值的求法。
 
@@ -37,41 +40,36 @@ $$
 如果 $a_i-mid\times b_i>0$ ，那么把 $w_i$ 设成 $1$ ，否则把 $w_i$ 设成 $0$ ，即可求出最大值。
 
 ```cpp
-bool check(double mid)
-{
-    double sum = 0;
-    for (int i = 1; i <= n; ++ i)
-        if (a[i] - mid * b[i] > 0)
-            sum += a[i] - mid * b[i];
-    return sum > 0;
+bool check(double mid) {
+  double sum = 0;
+  for (int i = 1; i <= n; ++i)
+    if (a[i] - mid * b[i] > 0) sum += a[i] - mid * b[i];
+  return sum > 0;
 }
-
 ```
 
-### 洛谷4377 Talent Show
+### 洛谷 4377 Talent Show
 
 > 要求 $\displaystyle\sum w_i\times b_i \geq W​$ 的分数规划。
 
 本题多了分母至少为 $W​$ 的限制，因此无法再使用上一题的贪心算法。
 
-可以考虑 01 背包。把 $b_i$ 作为第 $i$ 个物品的重量，$a_i-mid\times b_i$ 作为第 $i$ 个物品的价值，然后问题就转化为背包了。
+可以考虑 01 背包。把 $b_i$ 作为第 $i$ 个物品的重量， $a_i-mid\times b_i$ 作为第 $i$ 个物品的价值，然后问题就转化为背包了。
 
 那么 $dp[n][W]$ 就是最大值。
 
-一个要注意的地方：$\sum w_i\times b_i​$ 可能超过 $W​$ ，此时直接视为 $W​$ 即可。（想一想，为什么？）
+一个要注意的地方： $\sum w_i\times b_i​$ 可能超过 $W​$ ，此时直接视为 $W​$ 即可。（想一想，为什么？）
 
 ```cpp
 double f[1010];
-inline bool check(double mid)
-{
-    for (int i = 1; i <= W; i ++) f[i] = -1e9;
-    for (int i = 1; i <= n; i ++)
-        for (int j = W; j >= 0; j --)
-        {
-            int k = min(W, j + b[i]);
-            f[k] = max(f[k], f[j] + a[i] - mid * b[i]);
-        }
-    return f[W] > 0;
+inline bool check(double mid) {
+  for (int i = 1; i <= W; i++) f[i] = -1e9;
+  for (int i = 1; i <= n; i++)
+    for (int j = W; j >= 0; j--) {
+      int k = min(W, j + b[i]);
+      f[k] = max(f[k], f[j] + a[i] - mid * b[i]);
+    }
+  return f[W] > 0;
 }
 ```
 
@@ -94,29 +92,27 @@ inline bool check(double mid)
 另外本题存在一种复杂度 $O(nm)$ 的算法，如果有兴趣可以阅读[这篇文章](https://www.cnblogs.com/y-clever/p/7043553.html)。
 
 ```cpp
-inline int SPFA(int u,double mid) //判负环
+inline int SPFA(int u, double mid)  //判负环
 {
-    vis[u]=1;
-    for (int i = head[u]; i; i = e[i].nxt)
-    {
-        int v = e[i].v;
-        double w = e[i].w - mid;
-        if (dis[u] + w < dis[v])
-        {
-            dis[v] = dis[u] + w;
-            if (vis[v] || SPFA(v,mid)) return 1;
-        }
+  vis[u] = 1;
+  for (int i = head[u]; i; i = e[i].nxt) {
+    int v = e[i].v;
+    double w = e[i].w - mid;
+    if (dis[u] + w < dis[v]) {
+      dis[v] = dis[u] + w;
+      if (vis[v] || SPFA(v, mid)) return 1;
     }
-    vis[u] = 0;
-    return 0;
+  }
+  vis[u] = 0;
+  return 0;
 }
 
-inline bool check(double mid) //如果有负环返回 true
+inline bool check(double mid)  //如果有负环返回 true
 {
-    for (int i = 1; i <= n; ++ i) dis[i] = 0, vis[i] = 0;
-    for (int i = 1; i <= n; ++ i)
-        if (SPFA(i,mid)) return 1;
-    return 0;
+  for (int i = 1; i <= n; ++i) dis[i] = 0, vis[i] = 0;
+  for (int i = 1; i <= n; ++i)
+    if (SPFA(i, mid)) return 1;
+  return 0;
 }
 ```
 
@@ -128,6 +124,6 @@ inline bool check(double mid) //如果有负环返回 true
 
 ## 习题
 
-- [JSOI2016 最佳团体](https://www.luogu.org/problem/P4322)
-- [SDOI2017 新生舞会](https://www.luogu.org/problem/P3705)
-- [UVa1389 Hard Life](https://www.luogu.org/problem/UVA1389)
+-   [JSOI2016 最佳团体](https://www.luogu.org/problem/P4322)
+-   [SDOI2017 新生舞会](https://www.luogu.org/problem/P3705)
+-   [UVa1389 Hard Life](https://www.luogu.org/problem/UVA1389)
