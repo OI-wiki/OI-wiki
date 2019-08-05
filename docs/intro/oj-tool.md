@@ -95,7 +95,7 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 ## Codeforces Visualizer
 
 网站在这<https://cfviz.netlify.com/>。  
-您可以在[Github](https://github.com/sjsakib/cfviz/)上查阅到它的源代码。
+您可以在[GitHub](https://github.com/sjsakib/cfviz/)上查阅到它的源代码。
 
 这个网站特别强大，有两大功能：
 
