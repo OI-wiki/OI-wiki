@@ -30,7 +30,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 ### 使用 C/C++ 插件编译并调试
 
 ???+ warning
-    在配置前，请确保你已经安装了 MinGW-w64 与 Clang，并已经将它们添加到了 `path` 中。
+    在配置前，请确保你已经安装了 MinGW-w64 或 Clang，并已经将它们添加到了 `path` 中。
 
 #### 配置编译与调试
 
@@ -38,13 +38,13 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 ![vscode-1](images/vscode-3.png)
 
-在 `Compiler path` 中选择你的 `g++` 的所在路径，当然也可以选择 `Clang` 。
+在 `Compiler path` 中选择你的 `g++` 的所在路径，当然也可以选择 `clang` 。
 
 至此，编译的配置已经完成。按下 `F1` ，输入 `C/C++: Build and Debug Active File` ，选择用 `g++` 编译，即可查看效果。
 
 #### 配置 IntelliSense
 
-只需要调整 IntelliSense mode，可以选择 `Clang` 或者 `gcc` 。
+只需要调整 IntelliSense mode，可以选择 `clang` 或者 `gcc` 。
 
 #### 配置调试
 
