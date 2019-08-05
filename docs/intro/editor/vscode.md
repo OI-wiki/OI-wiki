@@ -30,7 +30,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 ### 使用 C/C++ 插件编译并调试
 
 ???+ warning
-    在配置前，请确保你已经安装了 [MinGW-w64](https://mingw-w64.org/doku.php/download) 或 [Clang](https://releases.llvm.org/download.html)，并已经将它们添加到了 `path` 中。
+    在配置前，请确保你已经安装了[MinGW-w64](https://mingw-w64.org/doku.php/download)或[Clang](https://releases.llvm.org/download.html)，并已经将它们添加到了 `path` 中。
 
 #### 配置编译与调试
 
