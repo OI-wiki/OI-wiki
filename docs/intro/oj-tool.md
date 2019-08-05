@@ -94,11 +94,11 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ## Codeforces Visualizer
 
-网站在这 https://cfviz.netlify.com/ 。
+网站在这<https://cfviz.netlify.com/>。
 
 这个网站特别强大，有两大功能：
 
-- 用炫酷的图表来可视化某个用户名的各种信息（比如通过题目的难度分布）。
-- 计算一场比赛的 Rating 预测。
+-   用炫酷的图表来可视化某个用户名的各种信息（比如通过题目的难度分布）。
+-   计算一场比赛的 Rating 预测。
 
 大家自己试试就知道了。
