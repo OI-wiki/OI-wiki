@@ -91,3 +91,14 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
     使用这个工具[Infinidat/infi.docopt_completion](https://github.com/Infinidat/infi.docopt_completion)即可。
 
     注意：如果有一个新版本发布（尤其是添加了新命令），你应该重新运行 `docopt-completion cf` 。
+
+## Codeforces Visualizer
+
+网站在这 https://cfviz.netlify.com/ 。
+
+这个网站特别强大，有两大功能：
+
+- 用炫酷的图表来可视化某个用户名的各种信息（比如通过题目的难度分布）。
+- 计算一场比赛的 Rating 预测。
+
+大家自己试试就知道了。
