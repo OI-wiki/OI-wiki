@@ -23,7 +23,7 @@ vector 以字典序为关键字重载了六个比较运算符，这使得我们�
 
 ###  `vector` 的构造函数
 
-参见如下代码（假设你已经 `using` 了 `std::vector`，`std::cout`，`std::endl` 与 `std::ostream_iterator`）：
+参见如下代码（假设你已经 `using` 了 `std::vector`，`std::cout`，`std::endl`，`std::copy` 与 `std::ostream_iterator`）：
 
 ```cpp
 // 1. 创建空vector v0;  常数复杂度
