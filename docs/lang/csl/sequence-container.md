@@ -138,9 +138,7 @@ vector 提供了如下几种迭代器
 
 ###  `vector` 特化 `vector<bool>`
 
-标准库提供对 `bool` 的 `vector` 优化，其空间占用与 `bitset` 一样，每个 `bool` 只占 1 bit，且支持动态内存。
-
-注意， `vector<bool>` 没有 `bitset` 的位运算重载，所以适用情况与 `bitset` 并不完全重合，请选择食用。
+标准库提供对 `bool` 的 `vector` 特化，每个 “`bool`” 只占 1 bit，且支持动态增长。但是其 `operator[]` 的返回值的类型不是 `bool&` 而是 `vector<bool>::reference`。因此如果需要使用 `vector<bool>` 的时候请用 `deque<bool>` 或 `vector<char>` 替代。而如果你需要节省空间，请直接使用 `bitset`。
 
 ## deque
 
