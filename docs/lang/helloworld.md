@@ -28,7 +28,7 @@ xcode-select --install`
 sudo apt update && sudo apt install g++
 ```
 
-### 编辑器
+### 集成开发环境
 
 IDE 操作较为简单，一般入门玩家会选用 IDE 来编写代码。在竞赛中最常见的是 Dev-C++（如果考试环境是 Windows 系统，一般也会提供这一 IDE）。详情可以阅读[相关页面](/intro/editor/devcpp)。
 
