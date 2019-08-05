@@ -1,10 +1,10 @@
 author: MingqiHuang, Xeonacid, greyqz, i-Yirannn
 
-##  `array`
+##  `array` 
 
-##  `vector`
+##  `vector` 
 
-### 为什么要用 `vector`
+### 为什么要用 `vector` 
 
 作为 OIer，对程序效率的追求远比对工程级别的稳定性要高得多，而 `vector` 由于其较静态数组复杂很多的原因，时间效率在大部分情况下都要低于静态数组，所以在正常存储数据的时候，我们是不选择 `vector` 的，下面给出几个 `vector` 优秀的特性，在需要用到这些特性的情况下， `vector` 能给我们带来很大的帮助。
 
@@ -67,23 +67,23 @@ cout << endl;
 
  `vector` 提供了如下几种方法进行访问元素
 
-1.   `at()`
+1.   `at()` 
 
     使用方法： `v.at(pos)` 返回 vector 中下标为 `pos` 的引用。如果数组越界抛出 `std::out_of_range` 类型的异常。
 
-2.   `operator[]`
+2.   `operator[]` 
 
     使用方法： `v[pos]` 返回 vector 中下标为 `pos` 的引用。不执行越界检查。
 
-3.   `front()`
+3.   `front()` 
 
     使用方法： `v.front()` 返回首元素的引用。
 
-4.   `back()`
+4.   `back()` 
 
     使用方法： `v.back()` 返回末尾元素的引用。
 
-5.   `data()`
+5.   `data()` 
 
     使用方法： `v.data()` 返回指向数组第一个元素的指针。
 
@@ -91,19 +91,19 @@ cout << endl;
 
 vector 提供了如下几种迭代器
 
-1.   `begin()/cbegin()`
+1.   `begin()/cbegin()` 
 
     返回指向首元素的迭代器，其中 `*begin = front` 。
 
-2.   `end()/cend()`
+2.   `end()/cend()` 
 
     返回指向数组尾端占位符的迭代器，注意是没有元素的。
 
-3.   `rbegin()/rcbegin()`
+3.   `rbegin()/rcbegin()` 
 
     返回指向逆向数组的首元素的逆向迭代器，可以理解为正向容器的末元素。
 
-4.   `rend()/rcend()`
+4.   `rend()/rcend()` 
 
     返回指向逆向数组末元素后一位置的迭代器，对应容器首的前一个位置，没有元素。
 
@@ -113,11 +113,11 @@ vector 提供了如下几种迭代器
 
  `vector` 有如下几种返回容量的函数
 
-1.   `empty()`
+1.   `empty()` 
 
     返回一个 `bool` 值，即 `v.begin() == v.end()` ， `true` 为空， `false` 为非空。
 
-2.   `size()`
+2.   `size()` 
 
     返回一个元素数量，即 `std::distance(v.begin(), v.end())` 。
 
@@ -130,13 +130,13 @@ vector 提供了如下几种迭代器
 ###  `vector` 修改
 
 -    `clear()` 清除所有元素
--    `insert()` 支持在某个迭代器位置插入元素、可以插入多个 **此操作是与 `pos` 距离末尾长度成线性而非常数的**
+-    `insert()` 支持在某个迭代器位置插入元素、可以插入多个 **此操作是与 `pos` 距离末尾长度成线性而非常数的** 
 -    `erase()` 删除某个迭代器或者区间的元素，返回最后被删除的迭代器。
 -    `push_back()` 在末尾插入一个元素。
 -    `pop_back()` 删除末尾元素。
 -    `swap()` 与另一个容器进行交换，此操作是 **常数复杂度** 而非线性的。
 
-###  `vector` 特化 `vector<bool>`
+###  `vector` 特化 `vector<bool>` 
 
 标准库提供对 `bool` 的 `vector` 特化，每个“ `bool` ”只占 1 bit，且支持动态增长。但是其 `operator[]` 的返回值的类型不是 `bool&` 而是 `vector<bool>::reference` 。因此，请尽量避免使用 `vector<bool>` ，而是用 `deque<bool>` 或 `vector<char>` 替代。而如果你需要节省空间，请直接使用 `bitset` 。
 
