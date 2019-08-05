@@ -10,7 +10,7 @@ Visual Studio Code（以下简称 VS Code) 是一个免费、开源、跨平台�
 
 #### 安装语言插件
 
-首先我们要在 VS Code 中安装你要使用的语言的插件。直接打开插件商店，然后在搜索栏中输入 `@category:"programming languages"` ，然后找到对应的插件，安装，OK！\`![](./images/editor-vscode2.png)
+首先我们要在 VS Code 中安装你要使用的语言的插件。直接打开插件商店，然后在搜索栏中输入 `@category:"programming languages"` ，然后找到对应的插件，安装，OK！\`![](./images/vscode-2.png)
 
 #### 使用 Code Runner 插件
 
@@ -20,7 +20,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 打开插件商店，搜索 `Code Runner` 并安装。或者去[Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
 
-![](./images/editor-vscode1.jpg)
+![](./images/vscode-1.jpg)
 
 安装完成后，打开需要运行的文件，点击右上角的小三角图标（用过 Code::Blocks 或 Visual Studio 的童鞋肯定会有种熟悉的感觉），即可运行代码。或者按下快捷键<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd>（在 macOS 下是<kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>N</kbd>）也可以得到同样的效果。
 
@@ -38,7 +38,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 首先用 VS Code 打开一个空文件夹，然后按下 `F1` ，输入 `C/C++: Edit configurations (UI)` ，进入 `C/C++` 插件的设置界面。
 
-![vscode-1](images/vscode-1.png)
+![vscode-1](images/vscode-3.png)
 
 在 `Compiler path` 中选择你的 `g++` 的所在路径，当然也可以选择 `Clang` 。
 
@@ -52,12 +52,12 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 首先我们来新建一个文件，并随便写几行代码，然后插入一个断点。
 
-![vscode-2](images/vscode-2.png)
+![vscode-2](images/vscode-4.png)
 
 我们按照之前的操作进行编译，会得到提示：Unable to start debugging, The value of miDebuggerPath is invalid
 
 我们按照它的指引打开 launch.json，并选择 **C++(GDB/LLDB)**，但是这样会得到同样的报错信息。这时，我们再去选择 **GDB**，就可以得到生成的配置。
 
-![vscode-3](images/vscode-3.png)
+![vscode-3](images/vscode-5.png)
 
 这时只需要把 `"miDebuggerPath": "\\usr\\bin\\gdb.exe",` 这一项的值改为自己的 `gdb` 所在路径即可，由于转义序列的缘故，请使用双斜线代替单斜线。
