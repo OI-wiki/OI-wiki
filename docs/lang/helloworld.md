@@ -4,6 +4,10 @@ disqus:
 
 工欲善其事，必先利其器。
 
+### 集成开发环境
+
+IDE 操作较为简单，一般入门玩家会选用 IDE 来编写代码。在竞赛中最常见的是 Dev-C++（如果考试环境是 Windows 系统，一般也会提供这一 IDE）。详情可以阅读[相关页面](/intro/editor/devcpp)。
+
 ### 编译器
 
 #### Windows
@@ -27,10 +31,6 @@ xcode-select --install`
 ```bash
 sudo apt update && sudo apt install g++
 ```
-
-### 集成开发环境
-
-IDE 操作较为简单，一般入门玩家会选用 IDE 来编写代码。在竞赛中最常见的是 Dev-C++（如果考试环境是 Windows 系统，一般也会提供这一 IDE）。详情可以阅读[相关页面](/intro/editor/devcpp)。
 
 熟练之后也有玩家会使用更灵活的命令行来编译代码，这样就不依赖 IDE 了，而是使用自己熟悉的文本编辑器编写代码。
 
