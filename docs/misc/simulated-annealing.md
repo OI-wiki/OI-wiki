@@ -100,6 +100,24 @@ int main() {
 
 * * *
 
+## 一些技巧
+
+### 分块模拟退火
+
+有时函数的峰很多，模拟退火难以跑出最优解。
+
+此时可以把整个值域分成几段，每段跑一遍模拟退火，然后再取最优解。
+
+### 卡时
+
+有一个 `clock()` 函数，返回程序运行时间。
+
+可以把主程序中的 `simulateAnneal();` 换成 `while ((double)clock()/CLOCKS_PER_SEC < MAX_TIME) simulateAnneal();` 。这样子就会一直跑模拟退火，直到用时即将超过时间限制。
+
+这里的 `MAX_TIME` 是一个自定义的略小于时限的数。
+
+* * *
+
 ## 习题
 
 -   [「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)
