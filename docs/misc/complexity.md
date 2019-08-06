@@ -12,29 +12,17 @@ author: linehk
 
 ###  $\Theta$ 符号
 
-对于给定的一个函数 $g(n)$ , 函数集合 $\Theta(g(n))$ 定义为
-
-$$
-\Theta(g(n)) = \{f(n) : 存在常数 c_1,c_2,n_0 \in \mathbb{R^{+}}使得 0 \leq c_1g(n) \leq f(n) \leq c_2g(n), \qquad \forall n \geq n_0\}
-$$
+对于给定的一个函数 $g(n)$ ,  $f(n)\in\Theta(g(n))$ ，当且仅当 $\exists c_1,c_2,n_0\in\mathbb R^+$ ，使得 $\forall n \ge n_0, 0\le c_1g(n)\le f(n) \le c_2 g(n)$ 。
 
 也就是说，如果函数 $f(n)$ 属于 $\Theta(g(n))$ ，那么我们能找到两个正常数 $c_1, c_2$ 使得 $f(n)$ 被 $c_1g(n)$ 和 $c_2g(n)$ 夹在中间。因为 $\Theta(g(n))$ 是一个函数集合，我们可以用 $f(n) \in \Theta(g(n))$ 表达 $f(n)$ 属于 $\Theta(g(n))$ ，但是我们通常使用 $f(n) = \Theta(g(n))$ 。
 
 ###  $O$ 符号
 
- $\Theta$ 符号同时给了我们一个函数的上下界，如果我们只有一个函数的渐进上界的时候，我们使用 $O$ 符号。对于一个给定的函数 $g(n)$ , 我们把它记作 $O(g(n))$ 。
-
-$$
-O(g(n)) = \{f(n): 存在常数 c,n_0 使得 0\leq f(n) \leq cg(n), \qquad \forall n \geq n_0\}
-$$
+ $\Theta$ 符号同时给了我们一个函数的上下界，如果我们只有一个函数的渐进上界的时候，我们使用 $O$ 符号。对于一个给定的函数 $g(n)$ , 我们把它记作 $O(g(n))$ 。$f(n)\in O(g(n))$，当且仅当 $\exists c,n_0$ ，使得 $\forall n \ge n_0,0\le f(n)\le cg(n)$ 。
 
 ###  $\Omega$ 符号
 
-同样的，我们使用 $\Omega$ 符号来描述一个函数的渐进下界。
-
-$$
-\Omega(g(n)) = \{f(n): 存在常数 c,n_0 使得 0 \leq cg(n) \leq f(n) , \qquad \forall n \geq n_0\}
-$$
+同样的，我们使用 $\Omega$ 符号来描述一个函数的渐进下界。$f(n)\in \Omega(g(n))$，当且仅当 $\exists c,n_0$ ，使得 $\forall n \ge n_0,0\le cg(n)\le f(n)$ 。
 
 ![](images/order.png)
 
