@@ -4,7 +4,9 @@
 
 ??? note " 例题[二逼平衡树（树套树）](https://loj.ac/problem/106)"
 
+
 ??? note " 例题[ZOJ 2112 Dynamic Rankings](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemId=1112)"
+
 
 如果用[线段树套平衡树](/ds/balanced-in-seg/)中所论述的，用线段树套平衡树，即对于线段树的每一个节点，对于其所表示的区间维护一个平衡树，然后用二分来查找 $k$ 小值。由于每次查询操作都要覆盖多个区间，即有多个节点，但是平衡树并不能多个值一起查找，所以时间复杂度是 $O(n\log_2^3 n)$ ，并不是最优的。
 

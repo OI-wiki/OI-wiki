@@ -239,30 +239,29 @@ int getsum(int l, int r, int s, int t, int p) {
 ### [luogu P3372【模板】线段树 1](https://www.luogu.org/problem/P3372)
 
 ??? "参考代码"
-
     ```cpp
-        	#include <iostream>
-    	typedef long long LL;
-    	LL n, a[100005], d[270000], b[270000];
-    	void build(LL l, LL r, LL p) {
-    	  if (l == r) {
-    	    d[p] = a[l];
-    	    return;
-    	  }
-    	  LL m = (l + r) >> 1;
-    	  build(l, m, p << 1), build(m + 1, r, (p << 1) | 1);
-    	  d[p] = d[p << 1] + d[(p << 1) | 1];
-    	}
-    	void update(LL l, LL r, LL c, LL s, LL t, LL p) {
-    	  if (l <= s && t <= r) {
-    	    d[p] += (t - s + 1) * c, b[p] += c;
-    	    return;
-    	  }
-    	  LL m = (s + t) >> 1;
-    	  if (b[p])
-    	    d[p << 1] += b[p] * (m - s + 1), d[(p << 1) | 1] += b[p] * (t - m),
-    	        b[p << 1] += b[p], b[(p << 1) | 1] += b[p];
-     b[p] = 0;
+    #include <iostream>
+    typedef long long LL;
+    LL n, a[100005], d[270000], b[270000];
+    void build(LL l, LL r, LL p) {
+      if (l == r) {
+        d[p] = a[l];
+        return;
+      }
+      LL m = (l + r) >> 1;
+      build(l, m, p << 1), build(m + 1, r, (p << 1) | 1);
+      d[p] = d[p << 1] + d[(p << 1) | 1];
+    }
+    void update(LL l, LL r, LL c, LL s, LL t, LL p) {
+      if (l <= s && t <= r) {
+        d[p] += (t - s + 1) * c, b[p] += c;
+        return;
+      }
+      LL m = (s + t) >> 1;
+      if (b[p])
+        d[p << 1] += b[p] * (m - s + 1), d[(p << 1) | 1] += b[p] * (t - m),
+            b[p << 1] += b[p], b[(p << 1) | 1] += b[p];
+      b[p] = 0;
       if (l <= m) update(l, r, c, s, m, p << 1);
       if (r > m) update(l, r, c, m + 1, t, (p << 1) | 1);
       d[p] = d[p << 1] + d[(p << 1) | 1];
@@ -299,7 +298,6 @@ int getsum(int l, int r, int s, int t, int p) {
 ### [luogu P3373【模板】线段树 2](https://www.luogu.org/problem/P3373)
 
 ??? "参考代码"
-
     ```cpp
     #include <cstdio>
     #define ll long long
@@ -429,10 +427,9 @@ int getsum(int l, int r, int s, int t, int p) {
 ### [HihoCoder 1078 线段树的区间修改](https://cn.vjudge.net/problem/HihoCoder-1078)
 
 ??? "参考代码"
-
     ```cpp
     #include <iostream>
-
+    
     int n, a[100005], d[270000], b[270000];
     void build(int l, int r, int p) {
       if (l == r) {

@@ -3,7 +3,7 @@ author: TrisolarisHD, hsfzLZH1, abc1763613206, greyqz, Ir1d, billchenchina, Chro
 ## 例题选讲
 
 ??? note " 例题[「HNOI2008」玩具装箱 TOY](https://www.lydsy.com/JudgeOnline/problem.php?id=1010)"
-	令 $f_i$ 表示前 $i$ 个物品，随意分组装在任意多个容器里所能得到的最小费用。
+        令 $f_i$ 表示前 $i$ 个物品，随意分组装在任意多个容器里所能得到的最小费用。
 
 写出 **状态转移方程** ： $f_i=\min\{f_j+(pre_i-pre_j+i-j-1-L)^2\}$ ，其中 $pre_i$ 表示前 $i$ 个数的前缀和。
 
