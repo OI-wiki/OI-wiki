@@ -34,17 +34,16 @@
 #### 示例
 
 ```cpp
-#include<ctime>
-#include<iostream>
-#include<random>
+#include <ctime>
+#include <iostream>
+#include <random>
 
 using namespace std;
 
-int main()
-{
-    mt19937 myrand(time(0));
-    cout<<myrand()<<endl;
-    return 0;
+int main() {
+  mt19937 myrand(time(0));
+  cout << myrand() << endl;
+  return 0;
 }
 ```
 
