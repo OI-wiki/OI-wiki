@@ -22,7 +22,7 @@
 
 其实，快速排序没有指定应如何具体实现第一步，不论是选择 m 的过程还是划分的过程，都不是只有一种实现方法。
 
-注意，一般我们说的快速排序的时间复杂度是平均为 $O(n\log n)$ ，最坏是 $O(n^2)$ ，只不过实践中几乎不可能达到最坏情况。
+一般我们说的快速排序的时间复杂度是平均为 $O(n\log n)$ ，最坏是 $O(n^2)$ 。但由于快速排序的内存访问遵循局部性原理，实践中几乎不可能达到最坏情况。
 
 其实，在选择 m 的过程中使用[Median of Medians](https://en.wikipedia.org/wiki/Median_of_medians)算法，就可以保证最坏时间复杂度为 $O(n\log n)$ ，但是由于其过于复杂，实践中一般不使用。
 
@@ -39,3 +39,5 @@
 <https://stackoverflow.com/questions/22339240/what-algorithms-are-used-in-c11-stdsort-in-different-stl-implementations>
 
 <https://en.cppreference.com/w/cpp/algorithm/sort>
+
+<http://irootlee.com/juicer_locality/>
