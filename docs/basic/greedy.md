@@ -93,7 +93,6 @@ struct uv {
 
 ??? note " 例题[Luogu P2949\[USACO09OPEN\]工作调度 Work Scheduling](https://www.luogu.org/problemnew/show/P2949)"
 
-
 贪心思想：
 
 -    **1** . 先假设每一项工作都做，将各项工作按截止时间排序后入队。

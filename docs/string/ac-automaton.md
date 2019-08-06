@@ -170,7 +170,7 @@ int query(char *t) {
     using namespace std;
     const int N = 1e6 + 6;
     int n;
-    
+
     namespace AC {
     int tr[N][26], tot;
     int e[N], fail[N];
@@ -208,7 +208,7 @@ int query(char *t) {
       return res;
     }
     }  // namespace AC
-    
+
     char s[N];
     int main() {
       scanf("%d", &n);

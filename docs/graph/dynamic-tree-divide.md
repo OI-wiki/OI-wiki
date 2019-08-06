@@ -64,7 +64,6 @@ int main() {
 
 ??? note " 例题[luogu P2056\[ZJOI2007\]捉迷藏](https://www.luogu.org/problemnew/show/P2056)"
 
-
 给定一棵有 $n$ 个结点的树，初始时所有结点都是黑色的。你需要实现以下两种操作：
 
 1.  反转一个结点的颜色（白变黑，黑变白）；
@@ -246,7 +245,6 @@ int main() {
 ```
 
 ??? note " 例题[bzoj 3730 震波](https://www.lydsy.com/JudgeOnline/problem.php?id=3730)"
-
 
 给定一棵有 $n$ 个结点的树，树上每个结点都有一个权值 $v[x]$ 。实现以下两种操作：
 
