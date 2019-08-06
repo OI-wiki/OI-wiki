@@ -33,17 +33,19 @@
 
 #### 示例
 
-    #include<iostream>
-    #include<random>
-     
-    using namespace std;
-     
-    int main()
-    {
-        mt19937 myrand(time(0));
-        cout<<myrand()<<endl;
-        return 0;
-    }
+```cpp
+#include <ctime>
+#include <iostream>
+#include <random>
+
+using namespace std;
+
+int main() {
+  mt19937 myrand(time(0));
+  cout << myrand() << endl;
+  return 0;
+}
+```
 
 ### random_shuffle
 
@@ -95,8 +97,6 @@ int main() {
 
 随机一个位置，把这个位置取反，判断大小并更新答案。
 
-一直重复这个过程直到 TLE 前的最后一秒~~（那不就是没做 2333）~~，然后就 A 了。
-
 ### 代码
 
 ```cpp
@@ -141,7 +141,7 @@ int main() {
 
 当一个算法的期望复杂度正确且与输入数据无关时，我们可以通过随机化达到期望上的平衡（就是随机卡不掉的意思
 
-Treap 的随机很经典了，来一发可并堆 ^\_^
+Treap 的随机很经典了，来一发可并堆
 
 ### 做法
 

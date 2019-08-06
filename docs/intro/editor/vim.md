@@ -1,6 +1,6 @@
 author: partychicken, ChungZH, Xeonacid, LuoshuiTianyi, Kewth, s0cks5, Ir1d
 
-## Vim -- 编辑器之神
+## Vim——编辑器之神
 
 ### 历史与争端
 
@@ -115,7 +115,7 @@ g++ filename.cpp -o filename
 Vim 的命令大部分都是在普通模式下完成的，普通模式下可不能乱按，可以说每个键都是命令。
 
 ```vim
-首先是 hjkl 四个方向键。                         
+首先是 hjkl 四个方向键。
                                               k ^
                                            h <     > l
                                                 v j
@@ -187,7 +187,7 @@ vimtutor
 
 #### 从缩小控制区域开始
 
-为什么 Emacs 和 Vim 这些编辑器效率高？很重要的一点在于这些编辑器可以让你切掉你的右半部分的键盘而让你的双手始终处于主键盘区域，并且让你的双手保持合作，而不会出现一只手不停的按而另一只手摊在键盘上。  
+为什么 Emacs 和 Vim 这些编辑器效率高？很重要的一点在于这些编辑器可以让你切掉你的右半部分的键盘而让你的双手始终处于主键盘区域，并且让你的双手保持合作，而不会出现一只手不停的按而另一只手摊在键盘上。
 所以，如果你想用好 Vim , 不要去按方向键，不要去碰鼠标，建议使用这几行丧心病狂的配置：
 
 ```vim
@@ -202,9 +202,9 @@ imap <RIGHT> <Nop>
 
 但也许这还不够，你还可以进一步缩小你双手需要控制的区域。
 
--   <kbd>Backspace</kbd>（删除键）使用十分频繁，但它处在主键盘的角落，你不得不挪开手或是伸长小拇指。  
+-   <kbd>Backspace</kbd>（删除键）使用十分频繁，但它处在主键盘的角落，你不得不挪开手或是伸长小拇指。
     但在 Vim（甚至终端）里，你可以用 ctrl+h 来彻底代替<kbd>Backspace</kbd>。
--   回车键使用同样频繁，但同样不挪一挪手就得伸长小拇指。  
+-   回车键使用同样频繁，但同样不挪一挪手就得伸长小拇指。
     幸运的是在 Vim 和终端中，ctrl+m 完全等效与回车。
 -   在绝大多数的情况下，不要去按右边的 ctrl, shift, 用左边的代替。
 
@@ -236,9 +236,9 @@ xmodmap -e 'clear Lock' -e 'keycode x042=Escape'
 
 毫无疑问，对动作的重复是提高效率最直接的办法，也是对效率最直接的反映。接下来我将依次介绍 Vim 的<kbd>.</kbd>命令，简单的录制与重复宏与 `normal` 命令。
 
-##### 自行车 -- . 命令
+##### 自行车—— `.` 命令
 
-当你使用 Vim 的时候，对于重复的文本修改其实内心是绝望的，因为 Vim 注定比其他编辑器会多出两个键的按键 --<kbd>Esc</kbd>与<kbd>i</kbd>。就像走路的时候别人都是迈步子，但是你一定要跳一下再走一步，这种重复令人十分烦躁与无奈。这可以说是一个致命的缺点，但是，Vim 其实为我们提供了一台“自行车”-- `.` 命令。它令我们能直接不用迈步落步，只要往下踩就好了。
+当你使用 Vim 的时候，对于重复的文本修改其实内心是绝望的，因为 Vim 注定比其他编辑器会多出两个键的按键——<kbd>Esc</kbd>与<kbd>i</kbd>。就像走路的时候别人都是迈步子，但是你一定要跳一下再走一步，这种重复令人十分烦躁与无奈。这可以说是一个致命的缺点，但是，Vim 其实为我们提供了一台“自行车”—— `.` 命令。它令我们能直接不用迈步落步，只要往下踩就好了。
 
 要说起这个命令，其实效果也很简单，那就是重复上次执行的命令。但是，看似简单的外表，其实却是无比的强大，重点就看你如何使用它了。这个重复上次的命令，其实可以是 `数字 + 命令` 的组合，同时， `进入插入模式 + 输入文本 + Esc` 也是一个命令的范畴。那么它的用处就大起来了
 
@@ -263,23 +263,23 @@ int check() {
 
  **但是** ，这还不够优雅，移动光标太浪费时间了！那么有什么办法嘛？答案是显然的。我们可以使用查找模式！ `/book` 再按下回车，并使用 `n` 键来到第四个数组名处，然后 `4s 新数组名 <Esc>` ，接着我们只需要重复 `n.` 就行了，是不是灰常优雅！
 
- **再但是** ，其实如果你开启了搜索结果高亮的选项，查找模式其实蛮难看的，这里我们引入一个新的轻便型查找命令 -- `f` ！使用很简单，在一行中普通模式下， `f + 单个字符` 即可查找此行中出现的这个字符并将光标移至字符处，按 `;` 下一个， `,` 上一个。那么无需查找模式了，我们只需 `fb;;;` 之后进入插入模式修改，然后 `;.` 即可！所以这么说，对于行内移动，其实最常用的一般就几个命令： `h,l,0,$,f` ，而且 `$` 命令是可以被 `f` 替代的，那就是 `f;` 。所以<kbd>.</kbd>是不是炒鸡妙呀。
+ **再但是** ，其实如果你开启了搜索结果高亮的选项，查找模式其实蛮难看的，这里我们引入一个新的轻便型查找命令—— `f` ！使用很简单，在一行中普通模式下， `f + 单个字符` 即可查找此行中出现的这个字符并将光标移至字符处，按 `;` 下一个， `,` 上一个。那么无需查找模式了，我们只需 `fb;;;` 之后进入插入模式修改，然后 `;.` 即可！所以这么说，对于行内移动，其实最常用的一般就几个命令： `h,l,0,$,f` ，而且 `$` 命令是可以被 `f` 替代的，那就是 `f;` 。所以<kbd>.</kbd>是不是炒鸡妙呀。
 
 做个总结：<kbd>.</kbd>命令适用于重复的添加，修改，删除文本。就像一个自行车，踩起来蹭蹭的。
 
 ##### 飞机 -- 宏
 
-Vim 的宏功能极度可怕，它重复的可不只是一个命令，你想要指定重复多长的命令它都可以的。那么如何使用它呢？首先我们要先“录制”-- 顾名思义，把一串按键操作录下来再回放，就达到了重复的效果。
+Vim 的宏功能极度可怕，它重复的可不只是一个命令，你想要指定重复多长的命令它都可以的。那么如何使用它呢？首先我们要先“录制”——顾名思义，把一串按键操作录下来再回放，就达到了重复的效果。
 
 录制的方法很简单，处在普通模式下先按 `q` 键，告诉 Vim 你要开始了。然后，宏的按键录制就像复制粘贴的内容一样是需要一个存放之处的，那么下一步就是为它指定存放处，你可以按下 26 个字母中的任意一个来指定，然后左下方会显示 `记录中 @你刚刚选择的字母` 然后你就可以开始快乐地录制了。同理普通模式下按 `q` 暂停录制。
 
-那么如何调用呢？很简单，按下 `:` 进入命令行模式，命令为 `@选择的记录字母` 然后之前录制的按键就被调用了……听起来是不是麻烦没用？当然不是，你忘了<kbd>.</kbd>命令不成，执行一遍宏之后使用<kbd>.</kbd>命令不就可以不这么麻烦了？当然，如果这些所有重复技巧在一起就很强大了 --- 录制宏 --> 调用宏 --><kbd>.</kbd>命令重复 --> 数字 +<kbd>.</kbd>命令达到无上效果。
+那么如何调用呢？很简单，按下 `:` 进入命令行模式，命令为 `@选择的记录字母` 然后之前录制的按键就被调用了……听起来是不是麻烦没用？当然不是，你忘了<kbd>.</kbd>命令不成，执行一遍宏之后使用<kbd>.</kbd>命令不就可以不这么麻烦了？当然，如果这些所有重复技巧在一起就很强大了——录制宏 --> 调用宏 --><kbd>.</kbd>命令重复 --> 数字 +<kbd>.</kbd>命令达到无上效果。
 
 岂不快哉？
 
 ##### normal 命令
 
-顾名思义，自然有关 normal 模式，效果还是重复，但是 --- 这个命令可以选择行。
+顾名思义，自然有关 normal 模式，效果还是重复，但是——这个命令可以选择行。
 
 如何使用呢？ `:` 进入命令行模式，命令如下：
 
@@ -293,13 +293,13 @@ Vim 的宏功能极度可怕，它重复的可不只是一个命令，你想要�
 
 当命令们抱团的时候，它们才是最强大的，而绝非各自为战。我们演示一个日常即可使用的方法吧。
 
-打个比方，我下载了一本书，我需要它的每一个章节都变成 `标题` --- 对，就是 markdown 里的那种 --- 以方便转换成 mobi 之类的格式或者方便生成 TOC 目录跳转，怎么办呢？几千个章节哪里好处理哇。那么重复命令就大大的有用了。
+打个比方，我下载了一本书，我需要它的每一个章节都变成 `标题` 。以方便转换成 mobi 之类的格式或者方便生成 TOC 目录跳转，怎么办呢？几千个章节哪里好处理哇。那么重复命令就大大的有用了。
 
-    1 /正则表达式 进行查找(搜索章节名的表达式请务必上网搜一下)
-    2 q字母 开始录制宏
-    3 I# <ESC>q 进行修改操作并结束宏录制
-    4 normal n@字母 转到下一处并重复上一步操作
-    5 数字+ .   多次重复上一步
+1.  /正则表达式 进行查找（搜索章节名的表达式请务必上网搜一下）
+2.  q 字母 开始录制宏
+3.  I#<ESC>q 进行修改操作并结束宏录制
+4.  normal n@字母 转到下一处并重复上一步操作
+5.  数字 + .   多次重复上一步
 
 完成了！快吗？
 
@@ -311,7 +311,7 @@ Vim 的宏功能极度可怕，它重复的可不只是一个命令，你想要�
 
 虽然考场上基本上不能用插件，但是日常的学习中，插件将对你的效率有很大的提高，而且一些插件的部分功能可以通过 Vim 自带实现以及配置实现。
 
-首先，其实从前插件的安装必须下载之后丢到 .vim 文件夹中，删了又要下云云，十分麻烦。于是在使用者们的捣鼓下，一枚强大的插件管理器由此诞生——Vundle。
+首先，其实从前插件的安装必须下载之后丢到 .vim 文件夹中，删了又要下云云，十分麻烦。于是在使用者们的捣鼓下，一枚强大的插件管理器由此诞生——vim-plug。
 
 当然你的配置里必须有如下两行：
 
@@ -327,15 +327,13 @@ filetype plugin on
 首先是在 home 目录下建立文件夹 .vim。然后打开终端输入以下命令：
 
 ```shell
-sudo apt-get install git
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
 就安装好了。
 
-然后在 .vim 文件夹下创建文件夹 plugin。这个文件夹用于存放那种不能用 Vundle 插件下载，而在别的地方有得下载的脚本插件，名字是 xxx.vim，直接扔进这个文件夹就可以使用了。
-
-Vundle 可以很轻松的管理插件，只需要在配置中写一下，并在 Vim 中执行 `:PluginInstall` 命令，就可以自动从 github 上拉取插件，当然也拉取不了 github 上没有的。而如果不想用了什么插件也无须删去，在配置中注释掉那个插件的相关就行了。具体配置请移步配置篇，此处将会详细介绍我的各个插件。
+vim-plug 可以很轻松的管理插件，只需要在配置中写一下，并在 Vim 中执行 `:PlugInstall` 命令，就可以自动从 github 上拉取插件，当然也拉取不了 github 上没有的。而如果不想用了什么插件也无须删去，在配置中注释掉那个插件的相关就行了。具体配置请移步配置篇，此处将会详细介绍我的各个插件。
 
 #### 文件管理
 
@@ -347,7 +345,7 @@ vim filename
 
 打开文件还是在 Vim 内使用 `:e filename` 来打开文件显然都过于麻烦。那么有没有什么更好的法子？
 
-答案是显然的，Vim 的用户们开发了 nerdtree 这一插件。这个插件达到了一种类似于 VScode 中的效果——工程目录树，之需在左侧目录栏选中相应文件即可打开相应文件。这在配置篇中将会有介绍。nerdtree 的开启方式是在 Vim 中输入 `:NERDTreeToggle` ，它会在左侧打开一个侧边栏窗口。我知道这显然太过麻烦，所以在配置中我给它赋予了<kbd>F10</kbd>这个快捷键。至于具体还有什么快捷键，详请参照[此文章]([http://yang3wei.github.io/blog/2013/01/29/nerdtree-kuai-jie-jian-ji-lu/)。
+答案是显然的，Vim 的用户们开发了 nerdtree 这一插件。这个插件达到了一种类似于 VS Code 中的效果——工程目录树，之需在左侧目录栏选中相应文件即可打开相应文件。这在配置篇中将会有介绍。nerdtree 的开启方式是在 Vim 中输入 `:NERDTreeToggle` ，它会在左侧打开一个侧边栏窗口。我知道这显然太过麻烦，所以在配置中我给它赋予了<kbd>F10</kbd>这个快捷键。至于具体还有什么快捷键，详请参照[此文章]([http://yang3wei.github.io/blog/2013/01/29/nerdtree-kuai-jie-jian-ji-lu/)。
 
 也许有人要说考场上该如何呢？没关系，Vim 自带了一个稍逊一筹的文件管理器 netrw。如果你的命令是这样的
 
@@ -454,8 +452,10 @@ set statusline=\ %<%F[%1*%M%*%n%R%H]%=\ %y\ %0(%{&fileformat}\ [%{(&fenc==\"\"?&
 
 用 Vim 的一个烦恼事就是临时文件 `swap` 啥的 ...... 太烦了。以下两行配置能够禁止其生成
 
+```vim
     set nobackup            " 设置不备份
     set noswapfile          " 禁止生成临时文件
+```
 
 至于主题……只需要如下一行
 
@@ -469,7 +469,7 @@ xxx 就是你的主题名称（去掉 .vim 后缀名）
 
 其他的往我配置里看啦。
 
-那个 `zsh` 是一个 shell 的相关程序，有兴趣的可以查查，特点是补全强大。 `Tab` 补全近乎完美，因为它对于文件名的补全远强于 shell 终端。
+那个 `zsh` 是一个 shell 的相关程序，有兴趣的可以查查，特点是补全强大。 `Tab` 补全近乎完美，因为它对于文件名的补全远强于 `bash` 。
 
 还有一件事，就是文件编码，设置如下：
 
@@ -503,7 +503,7 @@ inoremap 快捷键 指令
 首先我的个人快捷键需求其实不是很多，我的<kbd>leader</kbd>键是<kbd>\`</kbd>，但是处于一种坐冷板凳的状态，就更新插件的时候用一用，不过还是很方便的，我的设置是：
 
 ```vim
-nnoremap <leader><leader>i :PluginInstall<CR>
+nnoremap <leader><leader>i :PlugInstall<CR>
 ```
 
  `<CR>` 代表回车。设置之后只需要连续按<kbd> `` i</kbd>即可更新插件，很方便。
@@ -522,9 +522,9 @@ inoremap '  ''<esc>i
 还记得进阶篇里的分屏吗？显然使用鼠标点击来选择活动窗口太慢，而移动命令前加个<kbd>Ctrl</kbd>+<kbd>w</kbd>也不习惯对不对，所以我的做法是用<kbd>Ctrl</kbd>+ 移动命令来映射前面的按键组合。
 
 ```vim
-nnoremap <c-h> <c-w>h  
-nnoremap <c-l> <c-w>l  
-nnoremap <c-j> <c-w>j  
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 ```
 
@@ -556,10 +556,10 @@ noremap k gk
 ```vim
 nnoremap <F9> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
-    exec "w" 
+    exec "w"
     exec '!g++ % -o %<'
     exec '!time ./%<'
-    endfunc  
+    endfunc
 ```
 
 第一行代表运行 `CompileRunGcc` 函数，第二行代表定义函数，三至五行代表函数运行内容，第六行代表函数结束。 `exec` 表示执行命令， `%` 表示当前文件名， `%<` 表示当前文件名去掉后缀的名字。我想你应该是看得懂函数内容的。 `time` 选项则是回显程序运行时间。
@@ -576,7 +576,7 @@ clear
 nnoremap <F12> :call Clss()<CR>
 func! Clss()
     exec '!clear'
-    endfunc   
+    endfunc
 ```
 
 还有，在 Vim 中执行外部命令纵使有 `:!` 的方法，其实还是不方便，要是能直接在 Vim 中再打开一个终端就好了，对吧。Vim 从 8.0 之后就增添了在内部分个屏来打开一个终端的功能，命令是 `:terminal` 。我个人也将它设置成了快捷键，作为强迫症还是装在了函数中。我想有了命令你应该自己会写了。
@@ -612,45 +612,41 @@ func! GDB()
 
 #### 关于插件
 
-插件篇中说到了强大的插件管理器 Vundle，那么在配置中该如何写呢？框架如下：
+插件篇中说到了强大的插件管理器 vim-plug，那么在配置中该如何写呢？框架如下：
 
 ```vim
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin('~/.vim/自己创建的用来放插件文件的文件夹')
+call plug#begin('~/.vim/plugged')
 
-call vundle#end()
+call plug#end()
 ```
 
 在两块之间来写需要安装的插件，格式如下：
 
 ```vim
-Plugin '作者 Github 上的名字/Github 上的插件仓库名'
+Plug '作者 Github 上的名字/Github 上的插件仓库名'
 ```
 
-写完保存后进入 Vim，使用 `:PluginInstall` 即可自动开始安装。
+写完保存后进入 Vim，使用 `:PlugInstall` 即可自动开始安装。
 
 我的插件列表：
 
 ```vim
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin('~/.vim/plugged')
+call plug#begin('~/.vim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'                    " 使用Vundle的必须配置
-Plugin 'chxuan/vimplus-startify'                 " 启动界面
-Plugin 'scrooloose/nerdtree'                     " 目录树
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " 目录树美化
-Plugin 'vim-airline/vim-airline'                 " 状态栏美化
-Plugin 'vim-airline/vim-airline-themes'          " 状态栏美化主题
-Plugin 'tpope/vim-commentary'                    " 快速注释
-Plugin 'scrooloose/syntastic'                    " 语法错误提示
-Plugin 'Lokaltog/vim-easymotion'                 " 快速跳转
-Plugin 'luochen1990/rainbow'                     " 彩虹括号
-"Plugin 'Raimondi/delimitMate'                   " 括号补全
-Plugin 'yianwillis/vimcdoc'                      " HELP文档中文
-Plugin 'sjl/gundo.vim'                           " 撤销树
-Plugin 'suan/vim-instant-markdown'               " markdown 实时预览
+Plug 'chxuan/vimplus-startify'                 " 启动界面
+Plug 'scrooloose/nerdtree'                     " 目录树
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " 目录树美化
+Plug 'vim-airline/vim-airline'                 " 状态栏美化
+Plug 'vim-airline/vim-airline-themes'          " 状态栏美化主题
+Plug 'tpope/vim-commentary'                    " 快速注释
+Plug 'scrooloose/syntastic'                    " 语法错误提示
+Plug 'Lokaltog/vim-easymotion'                 " 快速跳转
+Plug 'luochen1990/rainbow'                     " 彩虹括号
+Plug 'yianwillis/vimcdoc'                      " HELP文档中文
+Plug 'sjl/gundo.vim'                           " 撤销树
+Plug 'suan/vim-instant-markdown'               " markdown 实时预览
 
-call vundle#end()
+call plug#end()
 ```
 
 关于插件其实也有相关配置，但是都写在一起将会使得 `.vimrc` 十分臃肿，我们可以额外写在别的文件里，一般文件应该保存在 `home` 下，然后在配置中写下 `source $HOME/文件路径` 即可。我的 nerdtree, syntastic 和 airline 都额外写了别的文件。
@@ -666,6 +662,7 @@ F7  ：启动 Gundo 时光机
 
     同时我的配置里关于插件的快捷键如下：
 
-    ```vim
-    F10 ：启动 nerdtree 侧边工程目录树
-    F7  ：启动 Gundo 时光机
+```vim
+F10 ：启动 nerdtree 侧边工程目录树
+F7  ：启动 Gundo 时光机
+```

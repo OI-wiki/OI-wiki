@@ -59,10 +59,9 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
 ## 邻域查询
 
 ???+note " 例题[luogu P1429 平面最近点对（加强版）](https://www.luogu.org/problem/P1429)"
+    给定平面上的 $n$ 个点 $(x_i,y_i)$ ，找出平面上最近两个点对之间的[欧几里得距离](/geometry/distance/#_1)。
 
-    给定平面上的 $n$ 个点 $(x_i,y_i)$ ，找出平面上最近两个点对之间的 [欧几里得距离](/geometry/distance/#_1) 。
-
-    $2\le n\le 200000 , 0\le x_i,y_i\le 10^9$
+     $2\le n\le 200000 , 0\le x_i,y_i\le 10^9$ 
 
 首先建出关于这 $n$ 个点的 2-D Tree。
 
@@ -73,159 +72,192 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
  **注意：虽然以上使用的种种优化，但是使用 k-D Tree 单次查询最近点的时间复杂度最坏还是 $O(n)$ 的，但不失为一种优秀的骗分算法，使用时请注意。在这里对邻域查询的讲解仅限于加强对 k-D Tree 结构的认识。** 
 
 ??? "参考代码"
-
     ```cpp
-    #include<cstdio>
-    #include<cstring>
-    #include<algorithm>
-    #include<cmath>
-    #include<cstdlib> 
+    #include <algorithm>
+    #include <cmath>
+    #include <cstdio>
+    #include <cstdlib>
+    #include <cstring>
     using namespace std;
-    const int maxn=200010;
-    int n,d[maxn],lc[maxn],rc[maxn];
-    double ans=2e18;
-    struct node{double x,y;}s[maxn];
-    double L[maxn],R[maxn],D[maxn],U[maxn];
-    double dist(int a,int b){return(s[a].x-s[b].x)*(s[a].x-s[b].x)+(s[a].y-s[b].y)*(s[a].y-s[b].y);}
-    bool cmp1(node a,node b){return a.x<b.x;}
-    bool cmp2(node a,node b){return a.y<b.y;}
-    void maintain(int x)
-    {
-    	L[x]=R[x]=s[x].x;D[x]=U[x]=s[x].y;
-    	if(lc[x])L[x]=min(L[x],L[lc[x]]),R[x]=max(R[x],R[lc[x]]),D[x]=min(D[x],D[lc[x]]),U[x]=max(U[x],U[lc[x]]);
-    	if(rc[x])L[x]=min(L[x],L[rc[x]]),R[x]=max(R[x],R[rc[x]]),D[x]=min(D[x],D[rc[x]]),U[x]=max(U[x],U[rc[x]]);
+    const int maxn = 200010;
+    int n, d[maxn], lc[maxn], rc[maxn];
+    double ans = 2e18;
+    struct node {
+      double x, y;
+    } s[maxn];
+    double L[maxn], R[maxn], D[maxn], U[maxn];
+    double dist(int a, int b) {
+      return (s[a].x - s[b].x) * (s[a].x - s[b].x) +
+             (s[a].y - s[b].y) * (s[a].y - s[b].y);
     }
-    int build(int l,int r)
-    {
-    	if(l>=r)return 0;
-    	int mid=(l+r)>>1;
-    	double avx=0,avy=0,vax=0,vay=0;//average variance
-    	for(int i=l;i<=r;i++)avx+=s[i].x,avy+=s[i].y;
-    	avx/=(double)(r-l+1);avy/=(double)(r-l+1);
-    	for(int i=l;i<=r;i++)vax+=(s[i].x-avx)*(s[i].x-avx),vay+=(s[i].y-avy)*(s[i].y-avy);
-    	if(avx>=avy)d[mid]=1,nth_element(s+l,s+mid,s+r+1,cmp1);
-    	else d[mid]=2,nth_element(s+l,s+mid,s+r+1,cmp2);
-    	lc[mid]=build(l,mid-1),rc[mid]=build(mid+1,r);
-    	maintain(mid);return mid;
+    bool cmp1(node a, node b) { return a.x < b.x; }
+    bool cmp2(node a, node b) { return a.y < b.y; }
+    void maintain(int x) {
+      L[x] = R[x] = s[x].x;
+      D[x] = U[x] = s[x].y;
+      if (lc[x])
+        L[x] = min(L[x], L[lc[x]]), R[x] = max(R[x], R[lc[x]]),
+        D[x] = min(D[x], D[lc[x]]), U[x] = max(U[x], U[lc[x]]);
+      if (rc[x])
+        L[x] = min(L[x], L[rc[x]]), R[x] = max(R[x], R[rc[x]]),
+        D[x] = min(D[x], D[rc[x]]), U[x] = max(U[x], U[rc[x]]);
     }
-    double f(int a,int b)
-    {
-    	double ret=0;
-    	if(L[b]>s[a].x)ret+=(L[b]-s[a].x)*(L[b]-s[a].x);
-    	if(R[b]<s[a].x)ret+=(s[a].x-R[b])*(s[a].x-R[b]);
-    	if(D[b]>s[a].y)ret+=(D[b]-s[a].y)*(D[b]-s[a].y);
-    	if(U[b]<s[a].y)ret+=(s[a].y-U[b])*(s[a].y-U[b]);
-    	return ret;
+    int build(int l, int r) {
+      if (l >= r) return 0;
+      int mid = (l + r) >> 1;
+      double avx = 0, avy = 0, vax = 0, vay = 0;  // average variance
+      for (int i = l; i <= r; i++) avx += s[i].x, avy += s[i].y;
+      avx /= (double)(r - l + 1);
+      avy /= (double)(r - l + 1);
+      for (int i = l; i <= r; i++)
+        vax += (s[i].x - avx) * (s[i].x - avx),
+            vay += (s[i].y - avy) * (s[i].y - avy);
+      if (avx >= avy)
+        d[mid] = 1, nth_element(s + l, s + mid, s + r + 1, cmp1);
+      else
+        d[mid] = 2, nth_element(s + l, s + mid, s + r + 1, cmp2);
+      lc[mid] = build(l, mid - 1), rc[mid] = build(mid + 1, r);
+      maintain(mid);
+      return mid;
     }
-    void query(int l,int r,int x)
-    {
-    	if(l>r)return;
-    	int mid=(l+r)>>1;
-    	if(mid!=x)ans=min(ans,dist(x,mid));
-    	if(l==r)return;
-    	double distl=f(x,lc[mid]),distr=f(x,rc[mid]);
-    	if(distl<ans&&distr<ans)
-    	{
-    		if(distl<distr){query(l,mid-1,x);if(distr<ans)query(mid+1,r,x);}
-    		else{query(mid+1,r,x);if(distl<ans)query(l,mid-1,x);}
-    	}
-    	else{if(distl<ans)query(l,mid-1,x);if(distr<ans)query(mid+1,r,x);}
+    double f(int a, int b) {
+      double ret = 0;
+      if (L[b] > s[a].x) ret += (L[b] - s[a].x) * (L[b] - s[a].x);
+      if (R[b] < s[a].x) ret += (s[a].x - R[b]) * (s[a].x - R[b]);
+      if (D[b] > s[a].y) ret += (D[b] - s[a].y) * (D[b] - s[a].y);
+      if (U[b] < s[a].y) ret += (s[a].y - U[b]) * (s[a].y - U[b]);
+      return ret;
     }
-    int main()
-    {
-    	scanf("%d",&n);
-    	for(int i=1;i<=n;i++)scanf("%lf%lf",&s[i].x,&s[i].y);
-    	build(1,n);
-    	for(int i=1;i<=n;i++)query(1,n,i);
-    	printf("%.4lf\n",sqrt(ans));
-    	return 0;
+    void query(int l, int r, int x) {
+      if (l > r) return;
+      int mid = (l + r) >> 1;
+      if (mid != x) ans = min(ans, dist(x, mid));
+      if (l == r) return;
+      double distl = f(x, lc[mid]), distr = f(x, rc[mid]);
+      if (distl < ans && distr < ans) {
+        if (distl < distr) {
+          query(l, mid - 1, x);
+          if (distr < ans) query(mid + 1, r, x);
+        } else {
+          query(mid + 1, r, x);
+          if (distl < ans) query(l, mid - 1, x);
+        }
+      } else {
+        if (distl < ans) query(l, mid - 1, x);
+        if (distr < ans) query(mid + 1, r, x);
+      }
+    }
+    int main() {
+      scanf("%d", &n);
+      for (int i = 1; i <= n; i++) scanf("%lf%lf", &s[i].x, &s[i].y);
+      build(1, n);
+      for (int i = 1; i <= n; i++) query(1, n, i);
+      printf("%.4lf\n", sqrt(ans));
+      return 0;
     }
     ```
 
 ???+note " 例题[luogu P4357\[CQOI2016\]K 远点对](https://www.luogu.org/problem/P4357)"
-
     给定平面上的 $n$ 个点 $(x_i,y_i)$ ，求欧几里得距离下的第 $k$ 远无序点对之间的距离。
 
-    $n\le 100000 , 1\le k\le 100 , 0\le x_i,y_i<2^{31}$
+     $n\le 100000 , 1\le k\le 100 , 0\le x_i,y_i<2^{31}$ 
 
 和上一道例题类似，从最近点对变成了 $k$ 近点对，估价函数改成了查询点到子树对应的长方形区域的最远距离。用一个小根堆来维护当前找到的前 $k$ 远点对之间的距离，如果当前找到的点对距离大于堆顶，则弹出堆顶并插入这个距离，同样的，使用堆顶的距离来剪枝。
 
 由于题目中强调的是无序点对，即交换前后两点的顺序后仍是相同的点对，则每个有序点对会被计算两次，那么读入的 $k$ 要乘以 $2$ 。
 
 ??? "参考代码"
-
     ```cpp
-    #include<cstdio>
-    #include<cstring>
-    #include<algorithm>
-    #include<queue>
+    #include <algorithm>
+    #include <cstdio>
+    #include <cstring>
+    #include <queue>
     using namespace std;
     #define int long long
-    const int maxn=100010;
-    int n,k;
-    priority_queue<int,vector<int>,greater<int> >q;
-    struct node{int x,y;}s[maxn];
-    bool cmp1(node a,node b){return a.x<b.x;}
-    bool cmp2(node a,node b){return a.y<b.y;}
-    int lc[maxn],rc[maxn],L[maxn],R[maxn],D[maxn],U[maxn];
-    void maintain(int x)
-    {
-    	L[x]=R[x]=s[x].x;D[x]=U[x]=s[x].y;
-    	if(lc[x])L[x]=min(L[x],L[lc[x]]),R[x]=max(R[x],R[lc[x]]),D[x]=min(D[x],D[lc[x]]),U[x]=max(U[x],U[lc[x]]);
-    	if(rc[x])L[x]=min(L[x],L[rc[x]]),R[x]=max(R[x],R[rc[x]]),D[x]=min(D[x],D[rc[x]]),U[x]=max(U[x],U[rc[x]]);
+    const int maxn = 100010;
+    int n, k;
+    priority_queue<int, vector<int>, greater<int> > q;
+    struct node {
+      int x, y;
+    } s[maxn];
+    bool cmp1(node a, node b) { return a.x < b.x; }
+    bool cmp2(node a, node b) { return a.y < b.y; }
+    int lc[maxn], rc[maxn], L[maxn], R[maxn], D[maxn], U[maxn];
+    void maintain(int x) {
+      L[x] = R[x] = s[x].x;
+      D[x] = U[x] = s[x].y;
+      if (lc[x])
+        L[x] = min(L[x], L[lc[x]]), R[x] = max(R[x], R[lc[x]]),
+        D[x] = min(D[x], D[lc[x]]), U[x] = max(U[x], U[lc[x]]);
+      if (rc[x])
+        L[x] = min(L[x], L[rc[x]]), R[x] = max(R[x], R[rc[x]]),
+        D[x] = min(D[x], D[rc[x]]), U[x] = max(U[x], U[rc[x]]);
     }
-    int build(int l,int r)
-    {
-    	if(l>r)return 0;
-    	int mid=(l+r)>>1;
-    	double av1=0,av2=0,va1=0,va2=0;//average variance
-    	for(int i=l;i<=r;i++)av1+=s[i].x,av2+=s[i].y;
-    	av1/=(r-l+1);av2/=(r-l+1);
-    	for(int i=l;i<=r;i++)va1+=(av1-s[i].x)*(av1-s[i].x),va2+=(av2-s[i].y)*(av2-s[i].y);
-    	if(va1>va2)nth_element(s+l,s+mid,s+r+1,cmp1);
-    	else nth_element(s+l,s+mid,s+r+1,cmp2);
-    	lc[mid]=build(l,mid-1);rc[mid]=build(mid+1,r);
-    	maintain(mid);return mid;
+    int build(int l, int r) {
+      if (l > r) return 0;
+      int mid = (l + r) >> 1;
+      double av1 = 0, av2 = 0, va1 = 0, va2 = 0;  // average variance
+      for (int i = l; i <= r; i++) av1 += s[i].x, av2 += s[i].y;
+      av1 /= (r - l + 1);
+      av2 /= (r - l + 1);
+      for (int i = l; i <= r; i++)
+        va1 += (av1 - s[i].x) * (av1 - s[i].x),
+            va2 += (av2 - s[i].y) * (av2 - s[i].y);
+      if (va1 > va2)
+        nth_element(s + l, s + mid, s + r + 1, cmp1);
+      else
+        nth_element(s + l, s + mid, s + r + 1, cmp2);
+      lc[mid] = build(l, mid - 1);
+      rc[mid] = build(mid + 1, r);
+      maintain(mid);
+      return mid;
     }
-    int sq(int x){return x*x;}
-    int dist(int a,int b){return max(sq(s[a].x-L[b]),sq(s[a].x-R[b]))+max(sq(s[a].y-D[b]),sq(s[a].y-U[b]));}
-    void query(int l,int r,int x)
-    {
-    	if(l>r)return;
-    	int mid=(l+r)>>1,t=sq(s[mid].x-s[x].x)+sq(s[mid].y-s[x].y);
-    	if(t>q.top())q.pop(),q.push(t);
-    	int distl=dist(x,lc[mid]),distr=dist(x,rc[mid]);
-    	if(distl>q.top()&&distr>q.top())
-    	{
-    		if(distl>distr){query(l,mid-1,x);if(distr>q.top())query(mid+1,r,x);}
-    		else{query(mid+1,r,x);if(distl>q.top())query(l,mid-1,x);}
-    	}
-    	else{if(distl>q.top())query(l,mid-1,x);if(distr>q.top())query(mid+1,r,x);}
+    int sq(int x) { return x * x; }
+    int dist(int a, int b) {
+      return max(sq(s[a].x - L[b]), sq(s[a].x - R[b])) +
+             max(sq(s[a].y - D[b]), sq(s[a].y - U[b]));
     }
-    main()
-    {
-    	scanf("%lld%lld",&n,&k);k*=2;
-    	for(int i=1;i<=k;i++)q.push(0);
-    	for(int i=1;i<=n;i++)scanf("%lld%lld",&s[i].x,&s[i].y);
-    	build(1,n);
-    	for(int i=1;i<=n;i++)query(1,n,i);
-    	printf("%lld\n",q.top());
-    	return 0;
+    void query(int l, int r, int x) {
+      if (l > r) return;
+      int mid = (l + r) >> 1, t = sq(s[mid].x - s[x].x) + sq(s[mid].y - s[x].y);
+      if (t > q.top()) q.pop(), q.push(t);
+      int distl = dist(x, lc[mid]), distr = dist(x, rc[mid]);
+      if (distl > q.top() && distr > q.top()) {
+        if (distl > distr) {
+          query(l, mid - 1, x);
+          if (distr > q.top()) query(mid + 1, r, x);
+        } else {
+          query(mid + 1, r, x);
+          if (distl > q.top()) query(l, mid - 1, x);
+        }
+      } else {
+        if (distl > q.top()) query(l, mid - 1, x);
+        if (distr > q.top()) query(mid + 1, r, x);
+      }
+    }
+    main() {
+      scanf("%lld%lld", &n, &k);
+      k *= 2;
+      for (int i = 1; i <= k; i++) q.push(0);
+      for (int i = 1; i <= n; i++) scanf("%lld%lld", &s[i].x, &s[i].y);
+      build(1, n);
+      for (int i = 1; i <= n; i++) query(1, n, i);
+      printf("%lld\n", q.top());
+      return 0;
     }
     ```
 
 ## 高维空间上的操作
 
 ???+note " 例题[luogu P4148 简单题](https://www.luogu.org/problem/P4148)"
-
     在一个初始值全为 $0$ 的 $n\times n$ 的二维矩阵上，进行 $q$ 次操作，每次操作为以下两种之一：
 
-    1.  `1 x y A` ：将坐标 $(x,y)$ 上的数加上 $A$ 。
-    2.  `2 x1 y1 x2 y2` ： 输出以 $(x1,y1)$ 为左下角， $(x2,y2)$ 为右上角的矩形内（包括矩形边界）的数字和。
+    1.   `1 x y A` ：将坐标 $(x,y)$ 上的数加上 $A$ 。
+    2.   `2 x1 y1 x2 y2` ：输出以 $(x1,y1)$ 为左下角， $(x2,y2)$ 为右上角的矩形内（包括矩形边界）的数字和。
 
     强制在线。内存限制 `20M` 。保证答案及所有过程量在 `int` 范围内。
 
-    $1\le n\le 500000 , 1\le q\le 200000$
+     $1\le n\le 500000 , 1\le q\le 200000$ 
 
 20M 的空间卡掉了所有树套树，强制在线卡掉了 CDQ 分治，只能使用 k-D Tree。
 
@@ -236,79 +268,113 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
 已经证明，如果在 $2-D$ 树上进行矩阵查询操作，已经被完全覆盖的子树不会继续查询，则单次查询时间复杂度是最优 $O(\log_2 n)$ ，最坏 $O(\sqrt n)$ 的。将结论扩展到 $k$ 维的情况，则最坏时间复杂度是 $O(n^{1-\frac 1 k})$ 的。
 
 ??? "参考代码"
-
     ```cpp
-    #include<cstdio>
-    #include<cstring>
-    #include<algorithm>
+    #include <algorithm>
+    #include <cstdio>
+    #include <cstring>
     using namespace std;
-    const int maxn=200010;
-    int n,op,xl,xr,yl,yr,lstans;
-    struct node{int x,y,v;}s[maxn];
-    bool cmp1(int a,int b){return s[a].x<s[b].x;}
-    bool cmp2(int a,int b){return s[a].y<s[b].y;}
-    double a=0.725;
-    int rt,cur,d[maxn],lc[maxn],rc[maxn],L[maxn],R[maxn],D[maxn],U[maxn],siz[maxn],sum[maxn];
-    int g[maxn],t;
-    void print(int x){if(!x)return;print(lc[x]);g[++t]=x;print(rc[x]);}
-    void maintain(int x)
-    {
-    	siz[x]=siz[lc[x]]+siz[rc[x]]+1;
-    	sum[x]=sum[lc[x]]+sum[rc[x]]+s[x].v;
-    	L[x]=R[x]=s[x].x;D[x]=U[x]=s[x].y;
-    	if(lc[x])L[x]=min(L[x],L[lc[x]]),R[x]=max(R[x],R[lc[x]]),D[x]=min(D[x],D[lc[x]]),U[x]=max(U[x],U[lc[x]]);
-    	if(rc[x])L[x]=min(L[x],L[rc[x]]),R[x]=max(R[x],R[rc[x]]),D[x]=min(D[x],D[rc[x]]),U[x]=max(U[x],U[rc[x]]);
+    const int maxn = 200010;
+    int n, op, xl, xr, yl, yr, lstans;
+    struct node {
+      int x, y, v;
+    } s[maxn];
+    bool cmp1(int a, int b) { return s[a].x < s[b].x; }
+    bool cmp2(int a, int b) { return s[a].y < s[b].y; }
+    double a = 0.725;
+    int rt, cur, d[maxn], lc[maxn], rc[maxn], L[maxn], R[maxn], D[maxn], U[maxn],
+        siz[maxn], sum[maxn];
+    int g[maxn], t;
+    void print(int x) {
+      if (!x) return;
+      print(lc[x]);
+      g[++t] = x;
+      print(rc[x]);
     }
-    int build(int l,int r)
-    {
-    	if(l>r)return 0;
-    	int mid=(l+r)>>1;
-    	double av1=0,av2=0,va1=0,va2=0;
-    	for(int i=l;i<=r;i++)av1+=s[g[i]].x,av2+=s[g[i]].y;
-    	av1/=(r-l+1);av2/=(r-l+1);
-    	for(int i=l;i<=r;i++)va1+=(av1-s[g[i]].x)*(av1-s[g[i]].x),va2+=(av2-s[g[i]].y)*(av2-s[g[i]].y);
-    	if(va1>va2)nth_element(g+l,g+mid,g+r+1,cmp1),d[g[mid]]=1;
-    	else nth_element(g+l,g+mid,g+r+1,cmp2),d[g[mid]]=2;
-    	lc[g[mid]]=build(l,mid-1);rc[g[mid]]=build(mid+1,r);
-    	maintain(g[mid]);return g[mid];
+    void maintain(int x) {
+      siz[x] = siz[lc[x]] + siz[rc[x]] + 1;
+      sum[x] = sum[lc[x]] + sum[rc[x]] + s[x].v;
+      L[x] = R[x] = s[x].x;
+      D[x] = U[x] = s[x].y;
+      if (lc[x])
+        L[x] = min(L[x], L[lc[x]]), R[x] = max(R[x], R[lc[x]]),
+        D[x] = min(D[x], D[lc[x]]), U[x] = max(U[x], U[lc[x]]);
+      if (rc[x])
+        L[x] = min(L[x], L[rc[x]]), R[x] = max(R[x], R[rc[x]]),
+        D[x] = min(D[x], D[rc[x]]), U[x] = max(U[x], U[rc[x]]);
     }
-    void rebuild(int&x){t=0;print(x);x=build(1,t);}
-    bool bad(int x){return a*siz[x]<=(double)max(siz[lc[x]],siz[rc[x]]);}
-    void insert(int&x,int v)
-    {
-    	if(!x){x=v;maintain(x);return;}
-    	if(d[x]==1){if(s[v].x<=s[x].x)insert(lc[x],v);else insert(rc[x],v);}
-    	else{if(s[v].y<=s[x].y)insert(lc[x],v);else insert(rc[x],v);}
-    	maintain(x);
-    	if(bad(x))rebuild(x);
+    int build(int l, int r) {
+      if (l > r) return 0;
+      int mid = (l + r) >> 1;
+      double av1 = 0, av2 = 0, va1 = 0, va2 = 0;
+      for (int i = l; i <= r; i++) av1 += s[g[i]].x, av2 += s[g[i]].y;
+      av1 /= (r - l + 1);
+      av2 /= (r - l + 1);
+      for (int i = l; i <= r; i++)
+        va1 += (av1 - s[g[i]].x) * (av1 - s[g[i]].x),
+            va2 += (av2 - s[g[i]].y) * (av2 - s[g[i]].y);
+      if (va1 > va2)
+        nth_element(g + l, g + mid, g + r + 1, cmp1), d[g[mid]] = 1;
+      else
+        nth_element(g + l, g + mid, g + r + 1, cmp2), d[g[mid]] = 2;
+      lc[g[mid]] = build(l, mid - 1);
+      rc[g[mid]] = build(mid + 1, r);
+      maintain(g[mid]);
+      return g[mid];
     }
-    int query(int x)
-    {
-    	if(!x||xr<L[x]||xl>R[x]||yr<D[x]||yl>U[x])return 0;
-    	if(xl<=L[x]&&R[x]<=xr&&yl<=D[x]&&U[x]<=yr)return sum[x];
-    	int ret=0;
-    	if(xl<=s[x].x&&s[x].x<=xr&&yl<=s[x].y&&s[x].y<=yr)ret+=s[x].v;
-    	return query(lc[x])+query(rc[x])+ret;
+    void rebuild(int& x) {
+      t = 0;
+      print(x);
+      x = build(1, t);
     }
-    int main()
-    {
-    	scanf("%d",&n);
-    	while(~scanf("%d",&op))
-    	{
-    		if(op==1)
-    		{
-    			cur++,scanf("%d%d%d",&s[cur].x,&s[cur].y,&s[cur].v);
-    			s[cur].x^=lstans;s[cur].y^=lstans;s[cur].v^=lstans;
-    			insert(rt,cur);
-    		}
-    		if(op==2)
-    		{
-    			scanf("%d%d%d%d",&xl,&yl,&xr,&yr);
-    			xl^=lstans;yl^=lstans;xr^=lstans;yr^=lstans;
-    			printf("%d\n",lstans=query(rt));
-    		}
-    		if(op==3)return 0;
-    	}
+    bool bad(int x) { return a * siz[x] <= (double)max(siz[lc[x]], siz[rc[x]]); }
+    void insert(int& x, int v) {
+      if (!x) {
+        x = v;
+        maintain(x);
+        return;
+      }
+      if (d[x] == 1) {
+        if (s[v].x <= s[x].x)
+          insert(lc[x], v);
+        else
+          insert(rc[x], v);
+      } else {
+        if (s[v].y <= s[x].y)
+          insert(lc[x], v);
+        else
+          insert(rc[x], v);
+      }
+      maintain(x);
+      if (bad(x)) rebuild(x);
+    }
+    int query(int x) {
+      if (!x || xr < L[x] || xl > R[x] || yr < D[x] || yl > U[x]) return 0;
+      if (xl <= L[x] && R[x] <= xr && yl <= D[x] && U[x] <= yr) return sum[x];
+      int ret = 0;
+      if (xl <= s[x].x && s[x].x <= xr && yl <= s[x].y && s[x].y <= yr)
+        ret += s[x].v;
+      return query(lc[x]) + query(rc[x]) + ret;
+    }
+    int main() {
+      scanf("%d", &n);
+      while (~scanf("%d", &op)) {
+        if (op == 1) {
+          cur++, scanf("%d%d%d", &s[cur].x, &s[cur].y, &s[cur].v);
+          s[cur].x ^= lstans;
+          s[cur].y ^= lstans;
+          s[cur].v ^= lstans;
+          insert(rt, cur);
+        }
+        if (op == 2) {
+          scanf("%d%d%d%d", &xl, &yl, &xr, &yr);
+          xl ^= lstans;
+          yl ^= lstans;
+          xr ^= lstans;
+          yr ^= lstans;
+          printf("%d\n", lstans = query(rt));
+        }
+        if (op == 3) return 0;
+      }
     }
     ```
 

@@ -1,4 +1,4 @@
-author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi
+author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul
 
 在学习本章前请确认你已经学习了[动态规划部分简介](/dp/)
 
@@ -42,7 +42,7 @@ for (int i = 1; i <= W; i++)
 
 这段代码哪里错了呢？枚举顺序错了。
 
-仔细观察代码可以发现：对于当前处理的物品 $i​$ 和当前状态 $f_{i,j}​$ ，在 $j\geqslant w_{i}​$ 时， $f_{i,j}​$ 是会被 $f_{i,j-w_{i}}​$ 所影响的。这就相当于物品 $i​$ 可以多次被放入背包，与题意不符。（事实上，这正是完全背包问题的解法）
+仔细观察代码可以发现：对于当前处理的物品 $i$ 和当前状态 $f_{i,j}$ ，在 $j\geqslant w_{i}$ 时， $f_{i,j}$ 是会被 $f_{i,j-w_{i}}$ 所影响的。这就相当于物品 $i$ 可以多次被放入背包，与题意不符。（事实上，这正是完全背包问题的解法）
 
 为了避免这种情况发生，我们可以改变枚举的顺序，从 $W$ 枚举到 $w_{i}$ ，这样就不会出现上述的错误，因为 $f_{i,j}$ 总是在 $f_{i,j-w_{i}}$ 前被更新。
 
@@ -54,21 +54,18 @@ for (int i = 1; i <= W; i++)
 ```
 
 ??? 例题代码
-
     ```cpp
     #include <iostream>
     const int maxn = 13010;
     int n, v, w[maxn], v[maxn], f[maxn];
     int main() {
-        std::cin >> n >> W;
-        for (int i = 1; i <= n; i++)
-            std::cin >> w[i] >> v[i];
-        for (int i = 1; i <= n; i++)
-            for (int l = W; l >= w[i]; l--)
-                if (f[l - w[i]] + v[i] > f[l])
-                    f[l] = f[l - w[i]] + v[i];
-        std::cout << f[W];
-        return 0;
+      std::cin >> n >> W;
+      for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
+      for (int i = 1; i <= n; i++)
+        for (int l = W; l >= w[i]; l--)
+          if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];
+      std::cout << f[W];
+      return 0;
     }
     ```
 
@@ -104,21 +101,18 @@ $$
     题意概要：有 $n$ 种物品和一个容量为 $W$ 的背包，每种物品有重量 $w_{i}$ 和价值 $v_{i}$ 两种属性，要求选若干个物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量。
 
 ??? 例题代码
-
     ```cpp
     #include <iostream>
     const int maxn = 13010;
     int n, v, w[maxn], v[maxn], f[maxn];
     int main() {
-        std::cin >> n >> W;
-        for (int i = 1; i <= n; i++)
-            std::cin >> w[i] >> v[i];
-        for (int i = 1; i <= n; i++)
-            for (int l = w[i]; l <= W; l++)
-                if (f[l - w[i]] + v[i] > f[l])
-                    f[l] = f[l - w[i]] + v[i];
-        std::cout << f[W];
-        return 0;
+      std::cin >> n >> W;
+      for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
+      for (int i = 1; i <= n; i++)
+        for (int l = w[i]; l <= W; l++)
+          if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];
+      std::cout << f[W];
+      return 0;
     }
     ```
 
@@ -152,22 +146,24 @@ $$
 时间复杂度 $O(nW\sum\log k_i)$ 
 
 ??? 二进制分组代码
-
     ```cpp
     index = 0;
-    for(int i = 1; i <= m; i++) {
-        int c = 1, p, h, k;
-        cin >> p >> h >> k;
-        while(k - c > 0) {
-            k -= c;
-            list[++index].w = c * p;
-            list[index].v = c * h;
-            c *= 2;
-        }
-        list[++index].w = p * k; 
-        list[index].v = h * k;
+    for (int i = 1; i <= m; i++) {
+      int c = 1, p, h, k;
+      cin >> p >> h >> k;
+      while (k - c > 0) {
+        k -= c;
+        list[++index].w = c * p;
+        list[index].v = c * h;
+        c *= 2;
+      }
+      list[++index].w = p * k;
+      list[index].v = h * k;
     }
     ```
+
+??? note "[「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.org/problemnew/show/P1776)"
+    题意概要：有 $n$ 种物品和一个容量为 $W$ 的背包，每种物品有 $m_v{i}$ 个，同时每个物品有两种属性：重量 $w_{i}$ 和价值 $v_{i}$ 。要求选若干个物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量。有一点需要注意的是本题数据范围较大，情况较多。
 
 ## 混合背包
 
@@ -185,6 +181,9 @@ for (循环物品种类) {
     套用多重背包代码;
 }
 ```
+
+??? note "[「Luogu P1833」樱花](https://www.luogu.org/problemnew/show/P1833)"
+    题意概要：有 $n$ 种樱花树和长度为 $T$ 的时间，有的樱花树只能看一遍，有的樱花树最多看 $A{i}$ 遍，有的樱花树可以看无数遍。每棵樱花树都有一个美学值 $C{i}$ ，求在 $T$ 的时间内看哪些樱花树能使美学值最高。
 
 ## 二维费用背包
 

@@ -146,18 +146,17 @@ $$
 此处给出一种 C++ 实现：
 
 ???+ 参考代码
-
     ```cpp
     /* 「LOJ #6053」简单的函数 */
     #include <algorithm>
     #include <cmath>
     #include <cstdio>
-
+    
     using i64 = long long;
-
+    
     constexpr int maxs = 200000;  // 2sqrt(n)
     constexpr int mod = 1000000007;
-
+    
     template <typename x_t, typename y_t>
     inline void inc(x_t &x, const y_t &y) {
       x += y;
@@ -183,10 +182,10 @@ $$
     template <typename _Tp>
     inline i64 sqrll(const _Tp &x) {
       return (i64)x * x;
-    } 
-
+    }
+    
     int pri[maxs / 7], lpf[maxs + 1], spri[maxs + 1], pcnt;
-
+    
     inline void sieve(const int &n) {
       for (int i = 2; i <= n; ++i) {
         if (lpf[i] == 0)
@@ -194,17 +193,17 @@ $$
         for (int j = 1, v; j <= lpf[i] && (v = i * pri[j]) <= n; ++j) lpf[v] = j;
       }
     }
-
+    
     i64 global_n;
     int lim;
     int le[maxs + 1],  // x \le \sqrt{n}
         ge[maxs + 1];  // x > \sqrt{n}
     #define idx(v) (v <= lim ? le[v] : ge[global_n / v])
-
+    
     int G[maxs + 1][2], Fprime[maxs + 1];
     i64 lis[maxs + 1];
     int cnt;
-
+    
     inline void init(const i64 &n) {
       for (i64 i = 1, j, v; i <= n; i = n / j + 1) {
         j = n / i;
@@ -215,7 +214,7 @@ $$
         G[cnt][1] = div2((i64)(v + 2ll) * (v - 1ll) % mod);
       }
     }
-
+    
     inline void calcFprime() {
       for (int k = 1; k <= pcnt; ++k) {
         const int p = pri[k];
@@ -230,12 +229,12 @@ $$
       /* F_prime = G_1 - G_0 */
       for (int i = 1; i <= cnt; ++i) Fprime[i] = sub(G[i][1], G[i][0]);
     }
-
+    
     inline int f_p(const int &p, const int &c) {
       /* f(p^{c}) = p xor c */
       return p xor c;
     }
-
+    
     int F(const int &k, const i64 &n) {
       if (n < pri[k] || n <= 1) return 0;
       const int id = idx(n);
@@ -244,20 +243,21 @@ $$
       for (int i = k; i <= pcnt && sqrll(pri[i]) <= n; ++i) {
         i64 pw = pri[i], pw2 = sqrll(pw);
         for (int c = 1; pw2 <= n; ++c, pw = pw2, pw2 *= pri[i])
-          ans += ((i64)f_p(pri[i], c) * F(i + 1, n / pw) + f_p(pri[i], c + 1)) % mod;
+          ans +=
+              ((i64)f_p(pri[i], c) * F(i + 1, n / pw) + f_p(pri[i], c + 1)) % mod;
       }
       return ans % mod;
     }
-
+    
     int main() {
       scanf("%lld", &global_n);
       lim = sqrt(global_n);
-
+    
       sieve(lim + 1000);
       init(global_n);
       calcFprime();
       printf("%lld\n", (F(1, global_n) + 1ll + mod) % mod);
-
+    
       return 0;
     }
     ```
