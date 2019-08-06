@@ -45,17 +45,3 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 #### 配置 IntelliSense
 
 只需要调整 IntelliSense mode，可以选择 `clang` 或者 `gcc` 。
-
-#### 配置调试
-
-首先我们来新建一个文件，并随便写几行代码，然后插入一个断点。
-
-![vscode-2](images/vscode-4.png)
-
-我们按照之前的操作进行编译，会得到提示：Unable to start debugging, The value of miDebuggerPath is invalid
-
-我们按照它的指引打开 launch.json，并选择 **C++(GDB/LLDB)** ，但是这样会得到同样的报错信息。这时，我们再去选择 **GDB** ，就可以得到生成的配置。
-
-![vscode-3](images/vscode-5.png)
-
-这时只需要把 `"miDebuggerPath": "\\usr\\bin\\gdb.exe",` 这一项的值改为自己的 `gdb` 所在路径即可，由于转义序列的缘故，请使用双斜线代替单斜线。
