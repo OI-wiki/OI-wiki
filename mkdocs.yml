@@ -46,6 +46,7 @@ nav:
       - OJ 工具: intro/oj-tool.md
     - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
+    - 如何贡献: intro/htc.md
     - F.A.Q.: intro/faq.md
     - 致谢: intro/thanks.md
   - 语言基础:
