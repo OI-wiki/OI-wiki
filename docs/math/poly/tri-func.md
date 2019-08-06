@@ -31,36 +31,33 @@ $$
 ## Code
 
 ??? "多项式三角函数"
-
     ```cpp
     constexpr int maxn = 262144;
     constexpr int mod = 998244353;
     constexpr int imgunit = 86583718; /* sqrt(-1) = sqrt(998233452) */
-
+    
     using i64 = long long;
     using poly_t = int[maxn];
     using poly = int *const;
-
+    
     void polytri(const poly &h, const int n, poly &sin_t, poly &cos_t) {
-    	/* sin(f) = (exp(i * f) - exp(- i * f)) / 2i */
-    	/* cos(f) = (exp(i * f) + exp(- i * f)) / 2 */
-    	/* tan(f) = sin(f) / cos(f) */
-    	assert(h[0] == 0);
-    	static poly_t tri1_t, tri2_t;
-
-    	for (int i = 0; i != n; ++i)
-    		tri2_t[i] = (i64)h[i] * imgunit % mod;
-    	polyexp(tri2_t, n, tri1_t);
-    	polyinv(tri1_t, n, tri2_t);
-
-    	if (sin_t != nullptr) {
-    		const int invi = fpow(pls(imgunit, imgunit), mod - 2);
-    		for (int i = 0; i != n; ++i)
-    			sin_t[i] = (i64)(tri1_t[i] - tri2_t[i] + mod) * invi % mod;
-    	}
-    	if (cos_t != nullptr) {
-    		for (int i = 0; i != n; ++i)
-    			cos_t[i] = div2(pls(tri1_t[i], tri2_t[i]));
-    	}
+      /* sin(f) = (exp(i * f) - exp(- i * f)) / 2i */
+      /* cos(f) = (exp(i * f) + exp(- i * f)) / 2 */
+      /* tan(f) = sin(f) / cos(f) */
+      assert(h[0] == 0);
+      static poly_t tri1_t, tri2_t;
+    
+      for (int i = 0; i != n; ++i) tri2_t[i] = (i64)h[i] * imgunit % mod;
+      polyexp(tri2_t, n, tri1_t);
+      polyinv(tri1_t, n, tri2_t);
+    
+      if (sin_t != nullptr) {
+        const int invi = fpow(pls(imgunit, imgunit), mod - 2);
+        for (int i = 0; i != n; ++i)
+          sin_t[i] = (i64)(tri1_t[i] - tri2_t[i] + mod) * invi % mod;
+      }
+      if (cos_t != nullptr) {
+        for (int i = 0; i != n; ++i) cos_t[i] = div2(pls(tri1_t[i], tri2_t[i]));
+      }
     }
     ```

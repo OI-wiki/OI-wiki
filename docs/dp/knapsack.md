@@ -54,21 +54,18 @@ for (int i = 1; i <= W; i++)
 ```
 
 ??? 例题代码
-
     ```cpp
     #include <iostream>
     const int maxn = 13010;
     int n, v, w[maxn], v[maxn], f[maxn];
     int main() {
-        std::cin >> n >> W;
-        for (int i = 1; i <= n; i++)
-            std::cin >> w[i] >> v[i];
-        for (int i = 1; i <= n; i++)
-            for (int l = W; l >= w[i]; l--)
-                if (f[l - w[i]] + v[i] > f[l])
-                    f[l] = f[l - w[i]] + v[i];
-        std::cout << f[W];
-        return 0;
+      std::cin >> n >> W;
+      for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
+      for (int i = 1; i <= n; i++)
+        for (int l = W; l >= w[i]; l--)
+          if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];
+      std::cout << f[W];
+      return 0;
     }
     ```
 
@@ -104,21 +101,18 @@ $$
     题意概要：有 $n$ 种物品和一个容量为 $W$ 的背包，每种物品有重量 $w_{i}$ 和价值 $v_{i}$ 两种属性，要求选若干个物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量。
 
 ??? 例题代码
-
     ```cpp
     #include <iostream>
     const int maxn = 13010;
     int n, v, w[maxn], v[maxn], f[maxn];
     int main() {
-        std::cin >> n >> W;
-        for (int i = 1; i <= n; i++)
-            std::cin >> w[i] >> v[i];
-        for (int i = 1; i <= n; i++)
-            for (int l = w[i]; l <= W; l++)
-                if (f[l - w[i]] + v[i] > f[l])
-                    f[l] = f[l - w[i]] + v[i];
-        std::cout << f[W];
-        return 0;
+      std::cin >> n >> W;
+      for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
+      for (int i = 1; i <= n; i++)
+        for (int l = w[i]; l <= W; l++)
+          if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];
+      std::cout << f[W];
+      return 0;
     }
     ```
 
@@ -152,20 +146,19 @@ $$
 时间复杂度 $O(nW\sum\log k_i)$ 
 
 ??? 二进制分组代码
-
     ```cpp
     index = 0;
-    for(int i = 1; i <= m; i++) {
-        int c = 1, p, h, k;
-        cin >> p >> h >> k;
-        while(k - c > 0) {
-            k -= c;
-            list[++index].w = c * p;
-            list[index].v = c * h;
-            c *= 2;
-        }
-        list[++index].w = p * k; 
-        list[index].v = h * k;
+    for (int i = 1; i <= m; i++) {
+      int c = 1, p, h, k;
+      cin >> p >> h >> k;
+      while (k - c > 0) {
+        k -= c;
+        list[++index].w = c * p;
+        list[index].v = c * h;
+        c *= 2;
+      }
+      list[++index].w = p * k;
+      list[index].v = h * k;
     }
     ```
 

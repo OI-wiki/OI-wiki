@@ -141,92 +141,83 @@ int pop(int x) {
 2.  左偏树的深度可能达到 $O(n)$ ，因此找一个点所在的堆顶要用并查集维护，不能直接暴力跳父亲。（虽然很多题数据水，暴力跳父亲可以过……）（用并查集维护根时要保证原根指向新根，新根指向自己。）
 
 ??? "罗马游戏参考代码"
-
     ```cpp
     #include <algorithm>
     #include <cctype>
     #include <cstdio>
     #include <iostream>
-
+    
     using namespace std;
-
-    int read()
-    {
-        int out = 0;
-        char c;
-        while (!isdigit(c = getchar()));
-        for (; isdigit(c); c = getchar()) out = out * 10 + c - '0';
-        return out;
+    
+    int read() {
+      int out = 0;
+      char c;
+      while (!isdigit(c = getchar()))
+        ;
+      for (; isdigit(c); c = getchar()) out = out * 10 + c - '0';
+      return out;
     }
-
+    
     const int N = 1000010;
-
-    struct Node
-    {
-        int val, ch[2], d;
+    
+    struct Node {
+      int val, ch[2], d;
     } t[N];
-
+    
     int& rs(int x);
     int merge(int x, int y);
-
+    
     int find(int x);
-
+    
     int n, m, f[N];
     bool kill[N];
     char op[10];
-
-    int main()
-    {
-        int i, x, y;
-
-        n = read();
-
-        for (i = 1; i <= n; ++i)
-        {
-            t[i].val = read();
-            f[i] = i;
+    
+    int main() {
+      int i, x, y;
+    
+      n = read();
+    
+      for (i = 1; i <= n; ++i) {
+        t[i].val = read();
+        f[i] = i;
+      }
+    
+      m = read();
+    
+      while (m--) {
+        scanf("%s", op);
+        if (op[0] == 'M') {
+          x = read();
+          y = read();
+          if (kill[x] || kill[y] || find(x) == find(y)) continue;
+          f[find(x)] = f[find(y)] = merge(find(x), find(y));
+        } else {
+          x = read();
+          if (!kill[x]) {
+            x = find(x);
+            kill[x] = true;
+            f[x] = f[t[x].ch[0]] = f[t[x].ch[1]] = merge(
+                t[x].ch[0], t[x].ch[1]);  //由于堆中的点会find到x，所以f[x]也要修改
+            printf("%d\n", t[x].val);
+          } else
+            puts("0");
         }
-
-        m = read();
-
-        while (m--)
-        {
-            scanf("%s", op);
-            if (op[0] == 'M')
-            {
-                x = read();
-                y = read();
-                if (kill[x] || kill[y] || find(x) == find(y)) continue;
-                f[find(x)] = f[find(y)] = merge(find(x), find(y));
-            }
-            else
-            {
-                x = read();
-                if (!kill[x])
-                {
-                    x = find(x);
-                    kill[x] = true;
-                    f[x] = f[t[x].ch[0]] = f[t[x].ch[1]] = merge(t[x].ch[0], t[x].ch[1]);  //由于堆中的点会find到x，所以f[x]也要修改
-                    printf("%d\n", t[x].val);
-                }
-                else puts("0");
-            }
-        }
-
-        return 0;
+      }
+    
+      return 0;
     }
-
+    
     int& rs(int x) { return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d]; }
-
-    int merge(int x, int y)
-    {
-        if (!x || !y) return x | y;
-        if (t[x].val > t[y].val) swap(x, y);
-        rs(x) = merge(rs(x), y);
-        t[x].d = t[rs(x)].d + 1;
-        return x;
+    
+    int merge(int x, int y) {
+      if (!x || !y) return x | y;
+      if (t[x].val > t[y].val) swap(x, y);
+      rs(x) = merge(rs(x), y);
+      t[x].d = t[rs(x)].d + 1;
+      return x;
     }
-
+    
     int find(int x) { return x == f[x] ? x : f[x] = find(f[x]); }
     ```
 
@@ -239,156 +230,145 @@ int pop(int x) {
 这类题目往往是每个节点维护一个堆，与儿子合并，依题意弹出、修改、计算答案，有点像线段树合并的类似题目。
 
 ??? "城池攻占参考代码"
-
     ```cpp
     #include <algorithm>
     #include <cctype>
     #include <cstdio>
     #include <iostream>
-
+    
     using namespace std;
-
+    
     typedef long long ll;
-
-    ll read()
-    {
-        ll out = 0;
-        int f = 1;
-        char c;
-        for (c = getchar(); !isdigit(c) && c != '-'; c = getchar());
-        if (c == '-') f = -1, c = getchar();
-        for (; isdigit(c); c = getchar()) out = out * 10 + c - '0';
-        return out * f;
+    
+    ll read() {
+      ll out = 0;
+      int f = 1;
+      char c;
+      for (c = getchar(); !isdigit(c) && c != '-'; c = getchar())
+        ;
+      if (c == '-') f = -1, c = getchar();
+      for (; isdigit(c); c = getchar()) out = out * 10 + c - '0';
+      return out * f;
     }
-
+    
     const int N = 300010;
-
-    struct Node
-    {
-        int ls, rs, d;
-        ll val, add, mul;
-        Node()
-        {
-            ls = rs = add = 0;
-            d = mul = 1;
-        }
+    
+    struct Node {
+      int ls, rs, d;
+      ll val, add, mul;
+      Node() {
+        ls = rs = add = 0;
+        d = mul = 1;
+      }
     } t[N];
-
+    
     int merge(int x, int y);
     int pop(int x);
     void madd(int u, ll x);
     void mmul(int u, ll x);
     void pushdown(int x);
-
+    
     void add(int u, int v);
     void dfs(int u);
-
+    
     int head[N], nxt[N], to[N], cnt;
-    int n, m, p[N], f[N], a[N], dep[N], c[N], ans1[N], ans2[N];  // p是树上每个点对应的堆顶
+    int n, m, p[N], f[N], a[N], dep[N], c[N], ans1[N],
+        ans2[N];  // p是树上每个点对应的堆顶
     ll h[N], b[N];
-
-    int main()
-    {
-        int i;
-
-        n = read();
-        m = read();
-
-        for (i = 1; i <= n; ++i) h[i] = read();
-
-        for (i = 2; i <= n; ++i)
-        {
-            f[i] = read();
-            add(f[i], i);
-            a[i] = read();
-            b[i] = read();
-        }
-
-        for (i = 1; i <= m; ++i)
-        {
-            t[i].val = read();
-            c[i] = read();
-            p[c[i]] = merge(i, p[c[i]]);
-        }
-
-        dfs(1);
-
-        for (i = 1; i <= n; ++i) printf("%d\n", ans1[i]);
-        for (i = 1; i <= m; ++i) printf("%d\n", ans2[i]);
-
-        return 0;
+    
+    int main() {
+      int i;
+    
+      n = read();
+      m = read();
+    
+      for (i = 1; i <= n; ++i) h[i] = read();
+    
+      for (i = 2; i <= n; ++i) {
+        f[i] = read();
+        add(f[i], i);
+        a[i] = read();
+        b[i] = read();
+      }
+    
+      for (i = 1; i <= m; ++i) {
+        t[i].val = read();
+        c[i] = read();
+        p[c[i]] = merge(i, p[c[i]]);
+      }
+    
+      dfs(1);
+    
+      for (i = 1; i <= n; ++i) printf("%d\n", ans1[i]);
+      for (i = 1; i <= m; ++i) printf("%d\n", ans2[i]);
+    
+      return 0;
     }
-
-    void dfs(int u)
-    {
-        int i, v;
-        for (i = head[u]; i; i = nxt[i])
-        {
-            v = to[i];
-            dep[v] = dep[u] + 1;
-            dfs(v);
-        }
-        while (p[u] && t[p[u]].val < h[u])
-        {
-            ++ans1[u];
-            ans2[p[u]] = dep[c[p[u]]] - dep[u];
-            p[u] = pop(p[u]);
-        }
-        if (a[u]) mmul(p[u], b[u]);
-        else madd(p[u], b[u]);
-        if (u > 1) p[f[u]] = merge(p[u], p[f[u]]);
-        else while (p[u])
-        {
-            ans2[p[u]] = dep[c[p[u]]] + 1;
-            p[u] = pop(p[u]);
+    
+    void dfs(int u) {
+      int i, v;
+      for (i = head[u]; i; i = nxt[i]) {
+        v = to[i];
+        dep[v] = dep[u] + 1;
+        dfs(v);
+      }
+      while (p[u] && t[p[u]].val < h[u]) {
+        ++ans1[u];
+        ans2[p[u]] = dep[c[p[u]]] - dep[u];
+        p[u] = pop(p[u]);
+      }
+      if (a[u])
+        mmul(p[u], b[u]);
+      else
+        madd(p[u], b[u]);
+      if (u > 1)
+        p[f[u]] = merge(p[u], p[f[u]]);
+      else
+        while (p[u]) {
+          ans2[p[u]] = dep[c[p[u]]] + 1;
+          p[u] = pop(p[u]);
         }
     }
-
-    void add(int u, int v)
-    {
-        nxt[++cnt] = head[u];
-        head[u] = cnt;
-        to[cnt] = v;
+    
+    void add(int u, int v) {
+      nxt[++cnt] = head[u];
+      head[u] = cnt;
+      to[cnt] = v;
     }
-
-    int merge(int x, int y)
-    {
-        if (!x || !y) return x | y;
-        if (t[x].val > t[y].val) swap(x, y);
-        pushdown(x);
-        t[x].rs = merge(t[x].rs, y);
-        if (t[t[x].rs].d > t[t[x].ls].d) swap(t[x].ls, t[x].rs);
-        t[x].d = t[t[x].rs].d + 1;
-        return x;
+    
+    int merge(int x, int y) {
+      if (!x || !y) return x | y;
+      if (t[x].val > t[y].val) swap(x, y);
+      pushdown(x);
+      t[x].rs = merge(t[x].rs, y);
+      if (t[t[x].rs].d > t[t[x].ls].d) swap(t[x].ls, t[x].rs);
+      t[x].d = t[t[x].rs].d + 1;
+      return x;
     }
-
-    int pop(int x)
-    {
-        pushdown(x);
-        return merge(t[x].ls, t[x].rs);
+    
+    int pop(int x) {
+      pushdown(x);
+      return merge(t[x].ls, t[x].rs);
     }
-
-    void madd(int u, ll x)
-    {
-        t[u].val += x;
-        t[u].add += x;
+    
+    void madd(int u, ll x) {
+      t[u].val += x;
+      t[u].add += x;
     }
-
-    void mmul(int u, ll x)
-    {
-        t[u].val *= x;
-        t[u].add *= x;
-        t[u].mul *= x;
+    
+    void mmul(int u, ll x) {
+      t[u].val *= x;
+      t[u].add *= x;
+      t[u].mul *= x;
     }
-
-    void pushdown(int x)
-    {
-        mmul(t[x].ls, t[x].mul);
-        madd(t[x].ls, t[x].add);
-        mmul(t[x].rs, t[x].mul);
-        madd(t[x].rs, t[x].add);
-        t[x].add = 0;
-        t[x].mul = 1;
+    
+    void pushdown(int x) {
+      mmul(t[x].ls, t[x].mul);
+      madd(t[x].ls, t[x].add);
+      mmul(t[x].rs, t[x].mul);
+      madd(t[x].rs, t[x].add);
+      t[x].add = 0;
+      t[x].mul = 1;
     }
     ```
 
@@ -417,189 +397,159 @@ int pop(int x) {
 7.  查询 multiset 最大值 + 全局标记。
 
 ??? "棘手的操作参考代码"
-
     ```cpp
     #include <algorithm>
     #include <cctype>
     #include <cstdio>
     #include <iostream>
     #include <set>
-
+    
     using namespace std;
-
-    int read()
-    {
-        int out = 0, f = 1;
-        char c;
-        for (c = getchar(); !isdigit(c) && c != '-'; c = getchar());
-        if (c == '-')
-        {
-            f = -1;
-            c = getchar();
-        }
-        for (; isdigit(c); c = getchar()) out = out * 10 + c - '0';
-        return out * f;
+    
+    int read() {
+      int out = 0, f = 1;
+      char c;
+      for (c = getchar(); !isdigit(c) && c != '-'; c = getchar())
+        ;
+      if (c == '-') {
+        f = -1;
+        c = getchar();
+      }
+      for (; isdigit(c); c = getchar()) out = out * 10 + c - '0';
+      return out * f;
     }
-
+    
     const int N = 300010;
-
-    struct Node
-    {
-        int val, ch[2], d, fa;
+    
+    struct Node {
+      int val, ch[2], d, fa;
     } t[N];
-
+    
     int& rs(int x);
     int merge(int x, int y);
     void pushup(int x);
     void pushdown(int x, int y);
-
+    
     int find(int x);
-
+    
     int n, m, f[N], tag[N], siz[N], delta;
     char op[10];
     multiset<int> s;
-
-    int main()
-    {
-        int i, x, y;
-
-        n = read();
-
-        for (i = 1; i <= n; ++i)
-        {
-            t[i].val = read();
-            f[i] = i;
-            siz[i] = 1;
-            s.insert(t[i].val);
+    
+    int main() {
+      int i, x, y;
+    
+      n = read();
+    
+      for (i = 1; i <= n; ++i) {
+        t[i].val = read();
+        f[i] = i;
+        siz[i] = 1;
+        s.insert(t[i].val);
+      }
+    
+      m = read();
+    
+      while (m--) {
+        scanf("%s", op);
+        if (op[0] == 'U') {
+          x = find(read());
+          y = find(read());
+          if (x != y) {
+            if (siz[x] > siz[y]) swap(x, y);
+            pushdown(x, tag[x] - tag[y]);
+            f[x] = f[y] = merge(x, y);
+            if (f[x] == x) {
+              s.erase(s.find(t[y].val + tag[y]));
+              tag[x] = tag[y];
+              siz[x] += siz[y];
+              tag[y] = siz[y] = 0;
+            } else {
+              s.erase(s.find(t[x].val + tag[y]));
+              siz[y] += siz[x];
+              tag[x] = siz[x] = 0;
+            }
+          }
+        } else if (op[0] == 'A') {
+          if (op[1] == '1') {
+            x = read();
+            if (x == find(x)) {
+              t[t[x].ch[0]].fa = t[t[x].ch[1]].fa = 0;
+              y = merge(t[x].ch[0], t[x].ch[1]);
+              s.erase(s.find(t[x].val + tag[x]));
+              t[x].val += read();
+              t[x].fa = t[x].ch[0] = t[x].ch[1] = 0;
+              t[x].d = 1;
+              f[x] = f[y] = merge(x, y);
+              s.insert(t[f[x]].val + tag[x]);
+              if (f[x] == y) {
+                tag[y] = tag[x];
+                siz[y] = siz[x];
+                tag[x] = siz[x] = 0;
+              }
+            } else {
+              t[t[x].ch[0]].fa = t[t[x].ch[1]].fa = t[x].fa;
+              t[t[x].fa].ch[x == t[t[x].fa].ch[1]] = merge(t[x].ch[0], t[x].ch[1]);
+              t[x].val += read();
+              t[x].fa = t[x].ch[0] = t[x].ch[1] = 0;
+              t[x].d = 1;
+              y = find(x);
+              f[x] = f[y] = merge(x, y);
+              if (f[x] == x) {
+                s.erase(s.find(t[y].val + tag[y]));
+                s.insert(t[x].val + tag[y]);
+                tag[x] = tag[y];
+                siz[x] = siz[y];
+                tag[y] = siz[y] = 0;
+              }
+            }
+          } else if (op[1] == '2') {
+            x = find(read());
+            s.erase(s.find(t[x].val + tag[x]));
+            tag[x] += read();
+            s.insert(t[x].val + tag[x]);
+          } else
+            delta += read();
+        } else {
+          if (op[1] == '1') {
+            x = read();
+            printf("%d\n", t[x].val + tag[find(x)] + delta);
+          } else if (op[1] == '2') {
+            x = find(read());
+            printf("%d\n", t[x].val + tag[x] + delta);
+          } else
+            printf("%d\n", *s.rbegin() + delta);
         }
-
-        m = read();
-
-        while (m--)
-        {
-            scanf("%s", op);
-            if (op[0] == 'U')
-            {
-                x = find(read());
-                y = find(read());
-                if (x != y)
-                {
-                    if (siz[x] > siz[y]) swap(x, y);
-                    pushdown(x, tag[x] - tag[y]);
-                    f[x] = f[y] = merge(x, y);
-                    if (f[x] == x)
-                    {
-                        s.erase(s.find(t[y].val + tag[y]));
-                        tag[x] = tag[y];
-                        siz[x] += siz[y];
-                        tag[y] = siz[y] = 0;
-                    }
-                    else
-                    {
-                        s.erase(s.find(t[x].val + tag[y]));
-                        siz[y] += siz[x];
-                        tag[x] = siz[x] = 0;
-                    }
-                }
-            }
-            else if (op[0] == 'A')
-            {
-                if (op[1] == '1')
-                {
-                    x = read();
-                    if (x == find(x))
-                    {
-                        t[t[x].ch[0]].fa = t[t[x].ch[1]].fa = 0;
-                        y = merge(t[x].ch[0], t[x].ch[1]);
-                        s.erase(s.find(t[x].val + tag[x]));
-                        t[x].val += read();
-                        t[x].fa = t[x].ch[0] = t[x].ch[1] = 0;
-                        t[x].d = 1;
-                        f[x] = f[y] = merge(x, y);
-                        s.insert(t[f[x]].val + tag[x]);
-                        if (f[x] == y)
-                        {
-                            tag[y] = tag[x];
-                            siz[y] = siz[x];
-                            tag[x] = siz[x] = 0;
-                        }
-                    }
-                    else
-                    {
-                        t[t[x].ch[0]].fa = t[t[x].ch[1]].fa = t[x].fa;
-                        t[t[x].fa].ch[x == t[t[x].fa].ch[1]] = merge(t[x].ch[0], t[x].ch[1]);
-                        t[x].val += read();
-                        t[x].fa = t[x].ch[0] = t[x].ch[1] = 0;
-                        t[x].d = 1;
-                        y = find(x);
-                        f[x] = f[y] = merge(x, y);
-                        if (f[x] == x)
-                        {
-                            s.erase(s.find(t[y].val + tag[y]));
-                            s.insert(t[x].val + tag[y]);
-                            tag[x] = tag[y];
-                            siz[x] = siz[y];
-                            tag[y] = siz[y] = 0;
-                        }
-                    }
-                }
-                else if (op[1] == '2')
-                {
-                    x = find(read());
-                    s.erase(s.find(t[x].val + tag[x]));
-                    tag[x] += read();
-                    s.insert(t[x].val + tag[x]);
-                }
-                else delta += read();
-            }
-            else
-            {
-                if (op[1] == '1')
-                {
-                    x = read();
-                    printf("%d\n", t[x].val + tag[find(x)] + delta);
-                }
-                else if (op[1] == '2')
-                {
-                    x = find(read());
-                    printf("%d\n", t[x].val + tag[x] + delta);
-                }
-                else printf("%d\n", *s.rbegin() + delta);
-            }
-        }
-
-        return 0;
+      }
+    
+      return 0;
     }
-
+    
     int& rs(int x) { return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d]; }
-
-    int merge(int x, int y)
-    {
-        if (!x || !y) return x | y;
-        if (t[x].val < t[y].val) swap(x, y);
-        t[rs(x) = merge(rs(x), y)].fa = x;
-        pushup(x);
-        return x;
+    
+    int merge(int x, int y) {
+      if (!x || !y) return x | y;
+      if (t[x].val < t[y].val) swap(x, y);
+      t[rs(x) = merge(rs(x), y)].fa = x;
+      pushup(x);
+      return x;
     }
-
-    void pushup(int x)
-    {
-        if (!x) return;
-        if (t[x].d != t[rs(x)].d + 1)
-        {
-            t[x].d = t[rs(x)].d + 1;
-            pushup(t[x].fa);
-        }
+    
+    void pushup(int x) {
+      if (!x) return;
+      if (t[x].d != t[rs(x)].d + 1) {
+        t[x].d = t[rs(x)].d + 1;
+        pushup(t[x].fa);
+      }
     }
-
-    void pushdown(int x, int y)
-    {
-        if (!x) return;
-        t[x].val += y;
-        pushdown(t[x].ch[0], y);
-        pushdown(t[x].ch[1], y);
+    
+    void pushdown(int x, int y) {
+      if (!x) return;
+      t[x].val += y;
+      pushdown(t[x].ch[0], y);
+      pushdown(t[x].ch[1], y);
     }
-
+    
     int find(int x) { return x == f[x] ? x : f[x] = find(f[x]); }
     ```
 

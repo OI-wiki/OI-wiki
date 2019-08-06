@@ -5,14 +5,13 @@ author: i-Yirannn, Xeonacid, ouuan
  `std::bitset` 是标准库中的一个存储 `0/1` 的大小不可变容器。严格来讲，它并不属于 STL。
 
 ??? "bitset 与 STL"
-
     > The C++ standard library provides some special container classes, the so-called container adapters (stack, queue, priority queue). In addition, a few classes provide a container-like interface (for example, strings, bitsets, and valarrays). All these classes are covered separately.1 Container adapters and bitsets are covered in Chapter 12.
+    >
+    > The C++ standard library provides not only the containers for the STL framework but also some containers that fit some special needs and provide simple, almost self-explanatory, interfaces. You can group these containers into either the so-called container adapters, which adapt standard STL containers to fit special needs, or a bitset, which is a containers for bits or Boolean values. There are three standard container adapters: stacks, queues, and priority queues. In priority queues, the elements are sorted automatically according to a sorting criterion. Thus, the“next”element of a priority queue is the element with the“highest”value. A bitset is a bitfield with an arbitrary but fixed number of bits. Note that the C++ standard library also provides a special container with a variable size for Boolean values: vector.
 
-    > The C++ standard library provides not only the containers for the STL framework but also some containers that fit some special needs and provide simple, almost self-explanatory, interfaces. You can group these containers into either the so-called container adapters, which adapt standard STL containers to fit special needs, or a bitset, which is a containers for bits or Boolean values. There are three standard container adapters: stacks, queues, and priority queues. In priority queues, the elements are sorted automatically according to a sorting criterion. Thus, the “next” element of a priority queue is the element with the “highest” value. A bitset is a bitfield with an arbitrary but fixed number of bits. Note that the C++ standard library also provides a special container with a variable size for Boolean values: vector.
+    ——摘自《The C++ Standard Library 2nd Edition》
 
-    ——摘自 《The C++ Standard Library 2nd Edition》
-
-    由此看来，`bitset` 并不属于 STL，而是一种标准库中的 "Special Container"。事实上，它作为一种容器，也并不满足 STL 容器的要求。说它是适配器，它也并不依赖于其它 STL 容器作为底层实现。
+    由此看来， `bitset` 并不属于 STL，而是一种标准库中的 "Special Container"。事实上，它作为一种容器，也并不满足 STL 容器的要求。说它是适配器，它也并不依赖于其它 STL 容器作为底层实现。
 
 由于内存地址是按字节即 `byte` 寻址，而非比特 `bit` ，一个 `bool` 类型的变量，虽然只能表示 `0/1` , 但是也占了 1 byte 的内存。
 
@@ -136,91 +135,83 @@ $$
  $O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单， $\log$ 预处理就如下面代码所示，复杂度为调和级数，所以是 $O(v\log v)$ 。
 
 ??? "参考代码"
-
-      ```cpp
-      #include <iostream>
-      #include <cstdio>
-      #include <bitset>
-      #include <cctype>
-      #include <cmath>
-
-      using namespace std;
-
-      int read()
-      {
-          int out=0;
-          char c;
-          while (!isdigit(c=getchar()));
-          for (;isdigit(c);c=getchar()) out=out*10+c-'0';
-          return out;
+    ```cpp
+    #include <bitset>
+    #include <cctype>
+    #include <cmath>
+    #include <cstdio>
+    #include <iostream>
+    
+    using namespace std;
+    
+    int read() {
+      int out = 0;
+      char c;
+      while (!isdigit(c = getchar()))
+        ;
+      for (; isdigit(c); c = getchar()) out = out * 10 + c - '0';
+      return out;
+    }
+    
+    const int N = 100005;
+    const int M = 1000005;
+    const int V = 7005;
+    
+    bitset<V> pre[V], pre2[V], a[N], mu;
+    int n, m, tot;
+    char ans[M];
+    
+    int main() {
+      int i, j, x, y, z;
+    
+      n = read();
+      m = read();
+    
+      mu.set();
+      for (i = 2; i * i < V; ++i) {
+        for (j = 1; i * i * j < V; ++j) {
+          mu[i * i * j] = 0;
+        }
       }
-
-      const int N=100005;
-      const int M=1000005;
-      const int V=7005;
-
-      bitset<V> pre[V],pre2[V],a[N],mu;
-      int n,m,tot;
-      char ans[M];
-
-      int main()
-      {
-          int i,j,x,y,z;
-
-          n=read();
-          m=read();
-
-          mu.set();
-          for (i=2;i*i<V;++i)
-          {
-              for (j=1;i*i*j<V;++j)
-              {
-                  mu[i*i*j]=0;
-              }
-          }
-          for (i=1;i<V;++i)
-          {
-              for (j=1;i*j<V;++j)
-              {
-                  pre[i*j][i]=1;
-                  pre2[i][i*j]=mu[j];
-              }
-          }
-
-          while (m--)
-          {
-              switch (read())
-              {
-                  case 1:
-                      x=read();
-                      y=read();
-                      a[x]=pre[y];
-                      break;
-                  case 2:
-                      x=read();
-                      y=read();
-                      z=read();
-                      a[x]=a[y]^a[z];
-                      break;
-                  case 3:
-                      x=read();
-                      y=read();
-                      z=read();
-                      a[x]=a[y]&a[z];
-                      break;
-                  case 4:
-                      x=read();
-                      y=read();
-                      ans[tot++]=((a[x]&pre2[y]).count()&1)+'0';
-                      break;
-              }
-          }
-
-          printf("%s",ans);
-
-          return 0;
+      for (i = 1; i < V; ++i) {
+        for (j = 1; i * j < V; ++j) {
+          pre[i * j][i] = 1;
+          pre2[i][i * j] = mu[j];
+        }
       }
-      ```
+    
+      while (m--) {
+        switch (read()) {
+          case 1:
+            x = read();
+            y = read();
+            a[x] = pre[y];
+            break;
+          case 2:
+            x = read();
+            y = read();
+            z = read();
+            a[x] = a[y] ^ a[z];
+            break;
+          case 3:
+            x = read();
+            y = read();
+            z = read();
+            a[x] = a[y] & a[z];
+            break;
+          case 4:
+            x = read();
+            y = read();
+            ans[tot++] = ((a[x] & pre2[y]).count() & 1) + '0';
+            break;
+        }
+      }
+    
+      printf("%s", ans);
+    
+      return 0;
+    }
+    ```
 
 ### 与树分块结合
 
