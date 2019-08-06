@@ -408,13 +408,12 @@ void fft(Complex y[], int len, int on) {
 好了现在附上全部代码（[HDU 1402](http://acm.hdu.edu.cn/showproblem.php?pid=1402)），序言说过代码来自 kuangbin 的模板~~~~~
 
 ??? "FFT"
-
     ```cpp
     #include <cmath>
     #include <cstdio>
     #include <cstring>
     #include <iostream>
-
+    
     const double PI = acos(-1.0);
     struct Complex {
       double x, y;
@@ -433,10 +432,10 @@ void fft(Complex y[], int len, int on) {
       }
     };
     /*
-    * 进行 FFT 和 IFFT 前的反置变换
-    * 位置 i 和 i 的二进制反转后的位置互换
-    *len 必须为 2 的幂
-    */
+     * 进行 FFT 和 IFFT 前的反置变换
+     * 位置 i 和 i 的二进制反转后的位置互换
+     *len 必须为 2 的幂
+     */
     void change(Complex y[], int len) {
       int i, j, k;
       for (int i = 1, j = len / 2; i < len - 1; i++) {
@@ -452,10 +451,10 @@ void fft(Complex y[], int len, int on) {
       }
     }
     /*
-    * 做 FFT
-    *len 必须是 2^k 形式
-    *on == 1 时是 DFT，on == -1 时是 IDFT
-    */
+     * 做 FFT
+     *len 必须是 2^k 形式
+     *on == 1 时是 DFT，on == -1 时是 IDFT
+     */
     void fft(Complex y[], int len, int on) {
       change(y, len);
       for (int h = 2; h <= len; h <<= 1) {
@@ -477,12 +476,12 @@ void fft(Complex y[], int len, int on) {
         }
       }
     }
-
+    
     const int MAXN = 200020;
     Complex x1[MAXN], x2[MAXN];
     char str1[MAXN / 2], str2[MAXN / 2];
     int sum[MAXN];
-
+    
     int main() {
       while (scanf("%s%s", str1, str2) == 2) {
         int len1 = strlen(str1);

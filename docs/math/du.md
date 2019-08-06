@@ -188,7 +188,7 @@ int main() {
     \sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot\gcd(i,j)\pmod p
     $$
 
-    其中$n\leq 10^{10},5\times 10^8\leq p\leq 1.1\times 10^9$,$p$ 是质数。
+    其中 $n\leq 10^{10},5\times 10^8\leq p\leq 1.1\times 10^9$ , $p$ 是质数。
 
 利用 $\varphi\ast1=ID$ 做莫比乌斯反演化为
 
