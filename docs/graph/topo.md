@@ -8,7 +8,7 @@
 
 但是如果某一天排课的老师打瞌睡了，说想要学习 算法导论，还得先学 机器学习，而 机器学习 的前置课程又是 算法导论，然后你就一万脸懵逼了，我到底应该先学哪一个？当然我们在这里不考虑什么同时学几个课程的情况。在这里，算法导论 和 机器学习 间就出现了一个环，显然你现在没办法弄清楚你需要学什么了，于是你也没办法进行拓扑排序了。因而如果有向图中存在环路，那么我们就没办法进行 拓扑排序 了。
 
-因此我们可以说 在一个[DAG（有向无环图）](/graph/dag)中，我们将图中的顶点以线性方式进行排序，使得对于任何的顶点 $u$ 到 $v$ 的有向边 $(u,v)$ , 都可以有 $u$ 在 $v$ 的前面。
+因此我们可以说 在一个 [DAG（有向无环图）](/graph/dag) 中，我们将图中的顶点以线性方式进行排序，使得对于任何的顶点 $u$ 到 $v$ 的有向边 $(u,v)$ , 都可以有 $u$ 在 $v$ 的前面。
 
 还有给定一个 DAG，如果从 $i$ 到 $j$ 有边，则认为 $j$ 依赖于 $i$ 。如果 $i$ 到 $j$ 有路径（ $i$ 可达 $j$ ），则称 $j$ 间接依赖于 $i$ 。
 
@@ -22,7 +22,7 @@
 
 最后当集合为空后，就检查图中是否存在任何边。如果有，那么这个图一定有环路，否者返回 $L$ , $L$ 中顺序就是拓扑排序的结果
 
-首先看来自[Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm)的伪代码
+首先看来自 [Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm) 的伪代码
 
 ```text
 L← Empty list that will contain the sorted elements
@@ -124,5 +124,5 @@ bool toposort() {
 ## 参考
 
 1.  离散数学及其应用。ISBN:9787111555391
-2.  <https://blog.csdn.net/dm_vincent/article/details/7714519>
-3.  Topological sorting,<https://en.wikipedia.org/w/index.php?title=Topological_sorting&oldid=854351542>
+2.   <https://blog.csdn.net/dm_vincent/article/details/7714519> 
+3.  Topological sorting, <https://en.wikipedia.org/w/index.php?title=Topological_sorting&oldid=854351542> 

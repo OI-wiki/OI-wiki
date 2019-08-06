@@ -637,17 +637,17 @@ $$
     ```
 
 ??? " 关于 `new` 和 `delete` "
-    见[内存池](/intro/common-tricks/#_4)。
+    见 [内存池](/intro/common-tricks/#_4) 。
 
 但是这样的实现存在一个问题：在 $b$ 进制下，多项式的每一个系数都有可能达到 $n \cdot b^2$ 量级，在压位高精度实现（即 $b > 10$ ，下文介绍）中可能造成整数溢出；而若在多项式乘法的过程中处理进位问题，则 $x_1 + x_0$ 与 $y_1 + y_0$ 的结果可能达到 $2 \cdot b^m$ ，增加一个位（如果采用 $x_1 - x_0$ 的计算方式，则不得不特殊处理负数的情况）。因此，需要依照实际的应用场景来决定采用何种实现方式。
 
 ### Reference
 
-<https://en.wikipedia.org/wiki/Karatsuba_algorithm>
+ <https://en.wikipedia.org/wiki/Karatsuba_algorithm> 
 
 ## 封装类
 
-[这里](https://paste.ubuntu.com/p/7VKYzpC7dn/)有一个封装好的高精度整数类。
+ [这里](https://paste.ubuntu.com/p/7VKYzpC7dn/) 有一个封装好的高精度整数类。
 
 ??? 这里是另一个模板
     ```cpp
@@ -861,9 +861,9 @@ $$
 
 ## 习题
 
--   [NOIP 2012 国王游戏](https://www.luogu.org/problemnew/show/P1080)
--   [SPOJ - Fast Multiplication](http://www.spoj.com/problems/MUL/en/)
--   [SPOJ - GCD2](http://www.spoj.com/problems/GCD2/)
--   [UVA - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024)
--   [UVA - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436)
--   [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D)
+-    [NOIP 2012 国王游戏](https://www.luogu.org/problemnew/show/P1080) 
+-    [SPOJ - Fast Multiplication](http://www.spoj.com/problems/MUL/en/) 
+-    [SPOJ - GCD2](http://www.spoj.com/problems/GCD2/) 
+-    [UVA - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024) 
+-    [UVA - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436) 
+-    [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D) 

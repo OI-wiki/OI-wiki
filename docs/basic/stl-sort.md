@@ -6,9 +6,9 @@ C 标准库实现了快速排序，即 `stdlib.h` 当中的 `qsort` 。
 
 C++ 标准并未严格要求此函数的实现算法，具体实现取决于编译器。
 
-旧版 C++ 标准中仅要求它的 **平均** 时间复杂度达到 $O(n\log n)$ ，但 C++11 标准要求它的 **最坏** 时间复杂度是达到 $O(n\log n)$ 。可以查阅[std::sort()](https://en.cppreference.com/w/cpp/algorithm/sort)
+旧版 C++ 标准中仅要求它的 **平均** 时间复杂度达到 $O(n\log n)$ ，但 C++11 标准要求它的 **最坏** 时间复杂度是达到 $O(n\log n)$ 。可以查阅 [std::sort()](https://en.cppreference.com/w/cpp/algorithm/sort) 
 
-在[libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h)和[libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm)中使用的都是[Introsort](https://en.wikipedia.org/wiki/Introsort)。
+在 [libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) 和 [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm) 中使用的都是 [Introsort](https://en.wikipedia.org/wiki/Introsort) 。
 
 Introsort 限制了快速排序的分治深度，当分治达到一定深度之后，改用最坏时间复杂度为 $O(n\log n)$ 的排序算法（比如堆排序）来给子数组排序。
 
@@ -66,7 +66,7 @@ std::partial_sort(begin, begin + k, end);
 
 ## 定义运算符
 
-对于内置类型（如 `int` ）和用户定义的结构体，你都可以定义调用 STL 排序函数时使用的 **小于运算符** 。你可以在调用函数时同时传入一个比较运算符的函数（一般是最后一项），也可以直接重载该类型的默认运算符。参见[cppreference](https://zh.cppreference.com/w/cpp/language/operators)。
+对于内置类型（如 `int` ）和用户定义的结构体，你都可以定义调用 STL 排序函数时使用的 **小于运算符** 。你可以在调用函数时同时传入一个比较运算符的函数（一般是最后一项），也可以直接重载该类型的默认运算符。参见 [cppreference](https://zh.cppreference.com/w/cpp/language/operators) 。
 下面是几个例子：
 
 ```cpp
@@ -94,7 +94,7 @@ std::sort(da + 1, da + 1 + 10, cmp);  // 重载小于运算符为大于，从大
 
 ### 严格弱序
 
-进行排序的运算符必须满足严格弱序（[Strict weak orderings](https://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings)），否则会出现不可预料的情况（如运行时错误）。
+进行排序的运算符必须满足严格弱序（ [Strict weak orderings](https://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings) ），否则会出现不可预料的情况（如运行时错误）。
 严格弱序的要求：
 
 1.   $x \not< x$ （非自反性）
@@ -110,4 +110,4 @@ std::sort(da + 1, da + 1 + 10, cmp);  // 重载小于运算符为大于，从大
 
 ### Reference
 
--   [浅谈邻项交换排序的应用以及需要注意的问题](https://ouuan.github.io/浅谈邻项交换排序的应用以及需要注意的问题/)
+-    [浅谈邻项交换排序的应用以及需要注意的问题](https://ouuan.github.io/浅谈邻项交换排序的应用以及需要注意的问题/) 

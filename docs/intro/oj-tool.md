@@ -1,6 +1,6 @@
 ## cf-tool
 
-GitHub 地址：[xalanq/cf-tool](https://github.com/xalanq/cf-tool/)
+GitHub 地址： [xalanq/cf-tool](https://github.com/xalanq/cf-tool/) 
 
 cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux、OS X）工具，其支持很多常用操作。
 
@@ -24,7 +24,7 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ### 下载
 
-前往[cf-tool/releases](https://github.com/xalanq/cf-tool/releases)下载最新版。
+前往 [cf-tool/releases](https://github.com/xalanq/cf-tool/releases) 下载最新版。
 
 之后的更新可以直接使用 `upgrade` 命令获取。
 
@@ -38,7 +38,7 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
  `cf race 1136` 
 
-要开始打 1136 这场比赛了！其中 1136 可以从比赛的链接获取，比方说这个例子的比赛链接就为<https://codeforces.com/contest/1136>。
+要开始打 1136 这场比赛了！其中 1136 可以从比赛的链接获取，比方说这个例子的比赛链接就为 <https://codeforces.com/contest/1136> 。
 
 如果比赛还未开始，则该命令会进行倒计时。比赛已开始或倒计时完后，工具会自动用默认浏览器打开比赛的所有题目页面，并拉取样例到本地。
 
@@ -88,15 +88,15 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 4.  在终端里启用 tab 补全命令
 
-    使用这个工具[Infinidat/infi.docopt_completion](https://github.com/Infinidat/infi.docopt_completion)即可。
+    使用这个工具 [Infinidat/infi.docopt_completion](https://github.com/Infinidat/infi.docopt_completion) 即可。
 
     注意：如果有一个新版本发布（尤其是添加了新命令），你应该重新运行 `docopt-completion cf` 。
 
 ## Codeforces Visualizer
 
-网站：<https://cfviz.netlify.com/>。
+网站： <https://cfviz.netlify.com/> 。
 
-您可以在[GitHub](https://github.com/sjsakib/cfviz/)上查阅到它的源代码。
+您可以在 [GitHub](https://github.com/sjsakib/cfviz/) 上查阅到它的源代码。
 
 这个网站有三个功能：
 

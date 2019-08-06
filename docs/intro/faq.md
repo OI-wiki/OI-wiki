@@ -1,16 +1,16 @@
 ## 交流方式
 
-本项目主要使用[Issues](https://github.com/24OI/OI-wiki/issues)/[QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K)/[Telegram](https://t.me/OIwiki)进行交流沟通。
+本项目主要使用 [Issues](https://github.com/24OI/OI-wiki/issues) / [QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) / [Telegram](https://t.me/OIwiki) 进行交流沟通。
 
-Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `588793226` ](https://jq.qq.com/?_wv=1027&k=5EfkM6K)，欢迎加入。
+Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ，QQ 群号码为 [ `588793226` ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) ，欢迎加入。
 
 ## 贡献方式
 
- **我们现在在使用[Projects](https://github.com/24OI/OI-wiki/projects)，这里详细列举了正在做的事情以及待做事项。** 
+ **我们现在在使用 [Projects](https://github.com/24OI/OI-wiki/projects) ，这里详细列举了正在做的事情以及待做事项。** 
 
- **在开始编写一段内容之前，请查阅[Issues](https://github.com/24OI/OI-wiki/issues)，确认没有别人在做相同的工作之后，** 
+ **在开始编写一段内容之前，请查阅 [Issues](https://github.com/24OI/OI-wiki/issues) ，确认没有别人在做相同的工作之后，** 
 
- **开个[新 issue](https://github.com/24OI/OI-wiki/issues/new)记录你要编写的内容。** 
+ **开个 [新 issue](https://github.com/24OI/OI-wiki/issues/new) 记录你要编写的内容。** 
 
 ### 我之前没怎么用过 GitHub
 
@@ -27,7 +27,7 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
 
 （有木有很简单？）
 
-如果还是不放心，可以参考[这篇文章](https://juejin.im/entry/56e638591ea49300550885cc)，或者试试[Github 的官方教程](https://lab.github.com/)。
+如果还是不放心，可以参考 [这篇文章](https://juejin.im/entry/56e638591ea49300550885cc) ，或者试试 [Github 的官方教程](https://lab.github.com/) 。
 
 ### 我之前用过 GitHub
 
@@ -42,7 +42,7 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
 ### 协作流程
 
 1.  在收到一个新的 Pull Request 之后，GitHub 会给 reviewer 发送邮件
-2.  与此同时，在[Travis CI](https://travis-ci.org/OI-wiki/OI-wiki)和[Netlify](https://app.netlify.com/sites/oi-wiki)上会运行两组测试，他们会把进度同步在 PR 页面的下方。Travis CI 主要是用来确认 PR 中内容的修改不会影响到网站构建的进程；Netlify 是用来把 PR 中的更新构建出来，方便 reviewer 审核（在测试完成后点击 Details 可以了解更多）
+2.  与此同时，在 [Travis CI](https://travis-ci.org/OI-wiki/OI-wiki) 和 [Netlify](https://app.netlify.com/sites/oi-wiki) 上会运行两组测试，他们会把进度同步在 PR 页面的下方。Travis CI 主要是用来确认 PR 中内容的修改不会影响到网站构建的进程；Netlify 是用来把 PR 中的更新构建出来，方便 reviewer 审核（在测试完成后点击 Details 可以了解更多）
 3.  在足够多 reviewer 投票通过一个 PR 之后，这个 PR 才可以合并到 master 分支中
 4.  在合并到 master 分支之后，会在 Travis CI 上重新构建一遍网站内容，并更新到 gh-pages 分支
 5.  这时服务器才会拉取 gh-pages 分支的更新，并重新部署最新版本的内容
@@ -57,13 +57,13 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
 
 ### 文档内容的基本格式
 
-在提交 PR 前，请先确保文档内容符合下文中的格式要求（如有疑问可以在[How To Contribute](https://github.com/OI-wiki/OI-wiki/wiki/How-to-contribute)页面中查阅相关例子）。格式缺乏基本的规范性、严谨性可能会使你的贡献不能及时通过审核。
+在提交 PR 前，请先确保文档内容符合下文中的格式要求（如有疑问可以在 [How To Contribute](https://github.com/OI-wiki/OI-wiki/wiki/How-to-contribute) 页面中查阅相关例子）。格式缺乏基本的规范性、严谨性可能会使你的贡献不能及时通过审核。
 
-如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅[MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)和[cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 markdown 传统语法和 mkdocs-material 支持的扩展语法。
+如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E) 和 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/) ，前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 markdown 传统语法和 mkdocs-material 支持的扩展语法。
 
 #### remark-lint 要求怎样的格式
 
-我们现在启用的配置文件在[.remarkrc](https://github.com/24OI/OI-wiki/blob/master/.remarkrc)，它可以自动给项目内文件统一风格。
+我们现在启用的配置文件在 [.remarkrc](https://github.com/24OI/OI-wiki/blob/master/.remarkrc) ，它可以自动给项目内文件统一风格。
 
 在配置过程中我们也遇到了一些 remark-lint 不能很好处理的问题：
 
@@ -74,7 +74,7 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
     2.   `1. 例子` 点号后要有空格。
 4.  行间公式前后各要有一行空行，否则会被当做是行内公式。
 5.  伪代码请使用 ```` ```text```` ，直接使用 ```` ``` ```` 可能导致内容被错误地缩进。
-6.  涉及到目录的更改，需要改动 mkdocs.yml，另外也请注意如果影响到作者信息统计，麻烦更新[author 字段](https://oi-wiki.org/intro/faq/#_15)。
+6.  涉及到目录的更改，需要改动 mkdocs.yml，另外也请注意如果影响到作者信息统计，麻烦更新 [author 字段](https://oi-wiki.org/intro/faq/#_15) 。
 7.  所有比赛请使用官方正式中文/英文名称。特别注意 NOI 系列赛官方英文名称均为全大写，如 NOIP。
 
 #### 文档中 LaTeX 公式的格式
@@ -109,29 +109,29 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
 
 ### 目录在哪
 
-目录在项目根目录下的[mkdocs.yml](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17)文件中。
+目录在项目根目录下的 [mkdocs.yml](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 文件中。
 
 ### 如何修改一个 topic 的内容
 
 在对应页面右上方有一个编辑按钮<i class="md-icon">edit</i>，点击之后会跳转到 GitHub 上对应文件的位置。
 
-或者也可以自行阅读目录[(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17)查找文件位置。
+或者也可以自行阅读目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 查找文件位置。
 
 ### 如何添加一个 topic
 
 1.  可以开一个 Issue，注明希望能添加的内容。
-2.  可以开一个 Pull Request，在目录[(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17)中加上新的 topic，并在[docs](https://github.com/24OI/OI-wiki/tree/master/docs)文件夹下对应位置创建一个空的 `.md` 文件。
+2.  可以开一个 Pull Request，在目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 中加上新的 topic，并在 [docs](https://github.com/24OI/OI-wiki/tree/master/docs) 文件夹下对应位置创建一个空的 `.md` 文件。
 
 !!! warning "注意"
     写 .md 文件时，请勿在开头写上标题。
 
 ### commit message 怎么写
 
-我们推荐使用[commitizen/cz-cli](https://github.com/commitizen/cz-cli)来规范 commit message（并非强求）。
+我们推荐使用 [commitizen/cz-cli](https://github.com/commitizen/cz-cli) 来规范 commit message（并非强求）。
 
 ### 我尝试访问 GitHub 的时候遇到了困难
 
-推荐在 hosts 文件中加入如下几行：（来源：[@GoogleHosts](https://github.com/googlehosts/hosts/blob/master/hosts-files/hosts#L1380-L1384)）
+推荐在 hosts 文件中加入如下几行：（来源： [@GoogleHosts](https://github.com/googlehosts/hosts/blob/master/hosts-files/hosts#L1380-L1384) ）
 
 ```text
 # Github Start
@@ -141,11 +141,11 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
 # Github End
 ```
 
-可以在[@GoogleHosts 主页](https://github.com/googlehosts/hosts)上了解到更多信息。
+可以在 [@GoogleHosts 主页](https://github.com/googlehosts/hosts) 上了解到更多信息。
 
 ### 我这里 pip 也太慢了
 
-可以选择更换国内源，参考：[更改 pip 源至国内镜像 - L 瑜 - CSDN 博客](https://blog.csdn.net/lambert310/article/details/52412059)，或者：
+可以选择更换国内源，参考： [更改 pip 源至国内镜像 - L 瑜 - CSDN 博客](https://blog.csdn.net/lambert310/article/details/52412059) ，或者：
 
 ```bash
 pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
@@ -159,11 +159,11 @@ pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 git clone https://github.com/24OI/OI-wiki.git --depth=1 -b master
 ```
 
-参考：<https://blog.csdn.net/FreeApe/article/details/46845555>
+参考： <https://blog.csdn.net/FreeApe/article/details/46845555> 
 
 ### 我没装过 Python 3
 
-可以访问[Python 官网](https://www.python.org/downloads/)了解更多信息。
+可以访问 [Python 官网](https://www.python.org/downloads/) 了解更多信息。
 
 ### 好像提示我 pip 版本过低
 
@@ -183,7 +183,7 @@ python -m pip install --upgrade pip
 
 ### 我 clone 了很久之前的 repo，怎么更新到新版本呢
 
-参考：<https://help.github.com/articles/syncing-a-fork/>。
+参考： <https://help.github.com/articles/syncing-a-fork/> 。
 
 ### 如果是装了之前的依赖怎么更新
 
@@ -193,9 +193,9 @@ pip install -U -r requirements.txt
 
 ### 为什么我的 markdown 格式乱了
 
-可以查阅[cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，或者[MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。
+可以查阅 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/) ，或者 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E) 。
 
-我们目前在使用[remark-lint](https://github.com/remarkjs/remark-lint)来自动化修正格式，可能还有一些[配置](https://github.com/24OI/OI-wiki/blob/master/.remarkrc)不够好的地方，欢迎指出。
+我们目前在使用 [remark-lint](https://github.com/remarkjs/remark-lint) 来自动化修正格式，可能还有一些 [配置](https://github.com/24OI/OI-wiki/blob/master/.remarkrc) 不够好的地方，欢迎指出。
 
 #### GitHub 是不是不显示我的数学公式？
 
@@ -217,7 +217,7 @@ $$
 
 是的，这个是 python-markdown 的一个 bug，可能近期会修复。
 
-如果现在想要避免目录中出现双倍公式，可以参考<https://github.com/24OI/OI-wiki/blame/master/docs/string/sam.md#L82>
+如果现在想要避免目录中出现双倍公式，可以参考 <https://github.com/24OI/OI-wiki/blame/master/docs/string/sam.md#L82> 
 
 ```text
 ### 结束位置 <script type="math/tex">endpos</script>
@@ -233,7 +233,7 @@ $$
 
 ### 如何给一个页面单独声明版权信息
 
-参考[Metadata](https://squidfunk.github.io/mkdocs-material/extensions/metadata/#usage)的使用，在页面开头加一行即可。
+参考 [Metadata](https://squidfunk.github.io/mkdocs-material/extensions/metadata/#usage) 的使用，在页面开头加一行即可。
 
 比如：
 
@@ -245,7 +245,7 @@ copyright: SATA
 
 ### 如何给一个页面关闭字数统计（现已默认关闭）
 
-参考[Metadata](https://squidfunk.github.io/mkdocs-material/extensions/metadata/#usage)的使用，在页面开头加一行即可。
+参考 [Metadata](https://squidfunk.github.io/mkdocs-material/extensions/metadata/#usage) 的使用，在页面开头加一行即可。
 
 比如：
 

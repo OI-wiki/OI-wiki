@@ -52,18 +52,18 @@ int solve(int x) {
 
 ## 几道练习题
 
-[BZOJ 3679 数字之积](https://www.lydsy.com/JudgeOnline/problem.php?id=3679)
+ [BZOJ 3679 数字之积](https://www.lydsy.com/JudgeOnline/problem.php?id=3679) 
 
-[ZJOI2010 count 数字计数](https://www.lydsy.com/JudgeOnline/problem.php?id=1833)
+ [ZJOI2010 count 数字计数](https://www.lydsy.com/JudgeOnline/problem.php?id=1833) 
 
-[Ahoi2009 self 同类分布](https://www.lydsy.com/JudgeOnline/problem.php?id=1799)
+ [Ahoi2009 self 同类分布](https://www.lydsy.com/JudgeOnline/problem.php?id=1799) 
 
-[洛谷  P3413 SAC#1 - 萌数](https://www.luogu.org/problemnew/show/P3413)
+ [洛谷  P3413 SAC#1 - 萌数](https://www.luogu.org/problemnew/show/P3413) 
 
-[HDU 6148 Valley Number](http://acm.hdu.edu.cn/showproblem.php?pid=6148)
+ [HDU 6148 Valley Number](http://acm.hdu.edu.cn/showproblem.php?pid=6148) 
 
-[CF55D Beautiful numbers](http://codeforces.com/problemset/problem/55/D)
+ [CF55D Beautiful numbers](http://codeforces.com/problemset/problem/55/D) 
 
-[CF628D Magic Numbers](http://codeforces.com/problemset/problem/628/D)
+ [CF628D Magic Numbers](http://codeforces.com/problemset/problem/628/D) 
 
-[CF401D Roman and Numbers](http://codeforces.com/problemset/problem/401/D)
+ [CF401D Roman and Numbers](http://codeforces.com/problemset/problem/401/D) 

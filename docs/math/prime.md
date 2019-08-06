@@ -41,11 +41,11 @@ bool isPrime(a) {
 ### Miller-Rabin 素性测试
 
 Miller-Rabin 素性测试（Miller–Rabin primality test）是进阶的素数判定方法。
-对数 n 进行 k 轮测试的时间复杂度是 $O(k \log^3n)$ ，利用 FFT 等技术可以优化到[ $O(k \log^2n \log \log n \log \log \log n)$ ](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)。
+对数 n 进行 k 轮测试的时间复杂度是 $O(k \log^3n)$ ，利用 FFT 等技术可以优化到 [ $O(k \log^2n \log \log n \log \log \log n)$ ](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity) 。
 
 #### Fermat 素性测试
 
-我们可以根据[费马小定理](/math/fermat/#_1)得出一种检验素数的思路：
+我们可以根据 [费马小定理](/math/fermat/#_1) 得出一种检验素数的思路：
 
 它的基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$ ，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$ 
 
@@ -72,7 +72,7 @@ bool millerRabin(int n) {
 
 比如， $561 = 3 \times 11 \times 17$ 就是一个卡迈克尔数。
 
-而且我们知道，若 $n$ 为卡迈克尔数，则 $m=2^{n}-1$ 也是一个卡迈克尔数，从而卡迈克尔数的个数是无穷的。[（OEIS:A006931）](https://oeis.org/A006931)
+而且我们知道，若 $n$ 为卡迈克尔数，则 $m=2^{n}-1$ 也是一个卡迈克尔数，从而卡迈克尔数的个数是无穷的。 [（OEIS:A006931）](https://oeis.org/A006931) 
 
 #### 二次探测定理
 
@@ -110,9 +110,9 @@ bool millerRabbin(int n) {
 
 ### 参考
 
-<http://www.matrix67.com/blog/archives/234>
+ <http://www.matrix67.com/blog/archives/234> 
 
-<https://blog.bill.moe/miller-rabin-notes/>
+ <https://blog.bill.moe/miller-rabin-notes/> 
 
 ## 反素数
 
@@ -121,11 +121,11 @@ bool millerRabbin(int n) {
 如果某个正整数 $n$ 满足如下条件，则称为是反素数：
   任何小于 $n$ 的正数的约数个数都小于 $n$ 的约数个数
 
-注：注意区分[emirp](https://en.wikipedia.org/wiki/Emirp)，它是用来表示从后向前写读是素数的数。
+注：注意区分 [emirp](https://en.wikipedia.org/wiki/Emirp) ，它是用来表示从后向前写读是素数的数。
 
 ### 简介
 
-（本段转载自[桃酱的算法笔记](https://zhuanlan.zhihu.com/c_1005817911142838272)，原文戳[链接](https://zhuanlan.zhihu.com/p/41759808)，已获得作者授权）
+（本段转载自 [桃酱的算法笔记](https://zhuanlan.zhihu.com/c_1005817911142838272) ，原文戳 [链接](https://zhuanlan.zhihu.com/p/41759808) ，已获得作者授权）
 
 其实顾名思义，素数就是因子只有两个的数，那么反素数，就是因子最多的数（并且因子个数相同的时候值最小），所以反素数是相对于一个集合来说的。
 
@@ -177,7 +177,7 @@ bool millerRabbin(int n) {
 
 #### 求因子数一定的最小数
 
-题目链接：<https://codeforces.com/problemset/problem/27/E>
+题目链接： <https://codeforces.com/problemset/problem/27/E> 
 
 对于这种题，我么只要以因子数为 dfs 的返回条件基准，不断更新找到的最小值就可以了
 
@@ -219,7 +219,7 @@ int main() {
 
 #### 求 n 以内因子数最多的数
 
-<http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemId=1562>
+ <http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemId=1562> 
 
 思路同上，只不过要改改 dfs 的返回条件。注意这样的题目的数据范围，我一开始用了 int，应该是溢出了，在循环里可能就出不来了就超时了。上代码，0ms 过。注释就没必要写了上面写的很清楚了。
 

@@ -143,7 +143,7 @@ void solve(int l, int r, vector<Num> a, vector<Query> q)
 
 ### 带修区间第 k 小：整体二分的完整运用
 
->  **题 4** [Dynamic Rankings](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=2112)给定一个数列，要支持单点修改，区间查第 $k$ 小。
+>  **题 4**  [Dynamic Rankings](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=2112) 给定一个数列，要支持单点修改，区间查第 $k$ 小。
 
 修改操作可以直接理解为从原数列中删去一个数再添加一个数，为方便起见，将询问和修改统称为“操作”。因后面的操作会依附于之前的操作，不能如题 3 一样将统计和处理询问分开，故可将所有操作存于一个数组，用标识区分类型，依次处理每个操作。为便于处理树状数组，修改操作可分拆为擦除操作和插入操作。
 
@@ -205,9 +205,9 @@ void solve(int l, int r, int L, int R)
 
 ### 参考习题
 
-[「国家集训队」矩阵乘法](https://www.luogu.org/problemnew/show/P1527)
+ [「国家集训队」矩阵乘法](https://www.luogu.org/problemnew/show/P1527) 
 
-[「POI2011 R3 Day2」流星 Meteors](https://loj.ac/problem/2169)
+ [「POI2011 R3 Day2」流星 Meteors](https://loj.ac/problem/2169) 
 
 ## 参考资料
 

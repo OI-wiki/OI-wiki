@@ -48,7 +48,7 @@ sudo apt-get install vim
 
 静待安装完成即可
 
-做法二，先到[Releases - vim/vim](https://github.com/vim/vim/releases)下载源码包，然后解压，并进入解压后的文件夹，并打开终端，cd 至文件夹路径，并依次输入如下命令：
+做法二，先到 [Releases - vim/vim](https://github.com/vim/vim/releases) 下载源码包，然后解压，并进入解压后的文件夹，并打开终端，cd 至文件夹路径，并依次输入如下命令：
 
 ```bash
 sudo apt-get install python-dev
@@ -345,7 +345,7 @@ vim filename
 
 打开文件还是在 Vim 内使用 `:e filename` 来打开文件显然都过于麻烦。那么有没有什么更好的法子？
 
-答案是显然的，Vim 的用户们开发了 nerdtree 这一插件。这个插件达到了一种类似于 VS Code 中的效果——工程目录树，之需在左侧目录栏选中相应文件即可打开相应文件。这在配置篇中将会有介绍。nerdtree 的开启方式是在 Vim 中输入 `:NERDTreeToggle` ，它会在左侧打开一个侧边栏窗口。我知道这显然太过麻烦，所以在配置中我给它赋予了<kbd>F10</kbd>这个快捷键。至于具体还有什么快捷键，详请参照[此文章]([http://yang3wei.github.io/blog/2013/01/29/nerdtree-kuai-jie-jian-ji-lu/)。
+答案是显然的，Vim 的用户们开发了 nerdtree 这一插件。这个插件达到了一种类似于 VS Code 中的效果——工程目录树，之需在左侧目录栏选中相应文件即可打开相应文件。这在配置篇中将会有介绍。nerdtree 的开启方式是在 Vim 中输入 `:NERDTreeToggle` ，它会在左侧打开一个侧边栏窗口。我知道这显然太过麻烦，所以在配置中我给它赋予了<kbd>F10</kbd>这个快捷键。至于具体还有什么快捷键，详请参照 [此文章]([http://yang3wei.github.io/blog/2013/01/29/nerdtree-kuai-jie-jian-ji-lu/) 。
 
 也许有人要说考场上该如何呢？没关系，Vim 自带了一个稍逊一筹的文件管理器 netrw。如果你的命令是这样的
 
@@ -403,7 +403,7 @@ vimcdoc：汉化 Vim 在线文档。
 
 gundo：这个插件将能够显示你的文件修改树，就像 github 上一般能够回到历史版本，时光机啊。Vim 中 `:GundoToggle` 即可在左侧打开时光机。但是需要 Vim 开启 python 支持，请自行百度。
 
-vimim：这个的安装不在配置中 ( `* 那是之前 emm，现在 kuai 到了我自己的 github 上，可以直接拉了 *` )，相当于 Vim 自带中文输入法，需在 `.vim` 中创建文件夹 plugin 并把[从这里](https://www.vim.org/scripts/download_script.php?src_id=23122)下得的文件扔入此文件夹中即可。打开 Vim 并进入插入模式，按下<kbd>Ctrl</kbd>+<kbd>/</kbd>即可启用。但是使用的是云词库，若没网就会卡死。所以建议下载[本地超大词库](https://github.com/vimim/vimim/raw/master/plugin/vimim.gbk.bsddb)，也放入 plugin 文件夹中，与插件脚本同目录即可启用。
+vimim：这个的安装不在配置中 ( `* 那是之前 emm，现在 kuai 到了我自己的 github 上，可以直接拉了 *` )，相当于 Vim 自带中文输入法，需在 `.vim` 中创建文件夹 plugin 并把 [从这里](https://www.vim.org/scripts/download_script.php?src_id=23122) 下得的文件扔入此文件夹中即可。打开 Vim 并进入插入模式，按下<kbd>Ctrl</kbd>+<kbd>/</kbd>即可启用。但是使用的是云词库，若没网就会卡死。所以建议下载 [本地超大词库](https://github.com/vimim/vimim/raw/master/plugin/vimim.gbk.bsddb) ，也放入 plugin 文件夹中，与插件脚本同目录即可启用。
 
 vim-instant-markdown：这个插件可就厉害了。Vim 用习惯了之后什么都想用 Vim 来做，比如想用 Vim 来写 Markdown 并实时预览怎么办？于是这个强大的插件就诞生了，当打开 Markdown 文件时会自动在浏览器中打开一个标签页，将能够实时预览你的 Vim 中的 markdown 内容。还有额外的需要，请至 github 首页了解详情。
 
@@ -411,7 +411,7 @@ vim-instant-markdown：这个插件可就厉害了。Vim 用习惯了之后什�
 
 ### 配置篇
 
-[我的配置](https://github.com/LuoshuiTianyi/Vim-for-OIWiki)Ps: 我的 .vimrc 时刻在改，所以这只是个副本……
+ [我的配置](https://github.com/LuoshuiTianyi/Vim-for-OIWiki) Ps: 我的 .vimrc 时刻在改，所以这只是个副本……
 
 结合我的配置讲一讲一些 Vim 中的小细节和快捷键以及一些……七里八里的东西？
 
@@ -590,7 +590,7 @@ func! Term()
 
 按<kbd>F8</kbd>就能在上面分出一个窗口打开终端了。
 
-介于更各种 Vim 版本的压迫，Vim 作者也是奋发图强，Vim 8.1 又更新了调试程序，先用 `packadd termdebug` 开启此设置，然后在 Vim 中输入 `:Termdebug + 编译出的程序名称` 即可开始 GDB 的过程，具体详细操作可以参考[这篇文章](https://fzheng.me/2018/05/28/termdebug/)。这个自然也被我封装函数了 >\_&lt;。
+介于更各种 Vim 版本的压迫，Vim 作者也是奋发图强，Vim 8.1 又更新了调试程序，先用 `packadd termdebug` 开启此设置，然后在 Vim 中输入 `:Termdebug + 编译出的程序名称` 即可开始 GDB 的过程，具体详细操作可以参考 [这篇文章](https://fzheng.me/2018/05/28/termdebug/) 。这个自然也被我封装函数了 >\_&lt;。
 
 ```vim
 packadd termdebug

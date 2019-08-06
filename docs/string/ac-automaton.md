@@ -163,7 +163,7 @@ int query(char *t) {
 时间复杂度：AC 自动机的时间复杂度在需要找到所有匹配位置时是 $O(|s|+m)$ ，其中 $|s|$ 表示文本串的长度， $m$ 表示模板串的总匹配次数；而只需要求是否匹配时时间复杂度为 $O(|s|)$ 。
 
 ???+ note "模板 1"
-    [LuoguP3808【模板】AC 自动机（简单版）](https://www.luogu.org/problemnew/show/P3808)
+     [LuoguP3808【模板】AC 自动机（简单版）](https://www.luogu.org/problemnew/show/P3808) 
 
     ```cpp
     #include <bits/stdc++.h>
@@ -221,7 +221,7 @@ int query(char *t) {
     ```
 
 ???+ note "模板 2"
-    [P3796 【模板】AC 自动机（加强版）](https://www.luogu.org/problemnew/show/P3796)
+     [P3796 【模板】AC 自动机（加强版）](https://www.luogu.org/problemnew/show/P3796) 
 
     ```cpp
     #include <bits/stdc++.h>
@@ -312,7 +312,7 @@ int query(char *t) {
 
 ### KMP 自动机
 
-KMP 自动机就是一个不断读入待匹配串，每次匹配时走到接受状态的 DFA。如果共有 $m$ 个状态，第 $i$ 个状态表示已经匹配了前 $i$ 个字符。那么我们定义 $trans_{i,c}$ 表示状态 $i$ 读入字符 $c$ 后到达的状态， $next_{i}$ 表示[prefix function](/string/prefix-function)，则有：
+KMP 自动机就是一个不断读入待匹配串，每次匹配时走到接受状态的 DFA。如果共有 $m$ 个状态，第 $i$ 个状态表示已经匹配了前 $i$ 个字符。那么我们定义 $trans_{i,c}$ 表示状态 $i$ 读入字符 $c$ 后到达的状态， $next_{i}$ 表示 [prefix function](/string/prefix-function) ，则有：
 
 $$
 trans_{i,c} =
@@ -324,7 +324,7 @@ $$
 
 （约定 $next_{0}=0$ ）
 
-我们发现 $trans_{i}$ 只依赖于之前的值，所以可以跟[KMP](/string/prefix-function/#knuth-morris-pratt)一起求出来。
+我们发现 $trans_{i}$ 只依赖于之前的值，所以可以跟 [KMP](/string/prefix-function/#knuth-morris-pratt) 一起求出来。
 
 时间和空间复杂度： $O(m|\Sigma|)$ 。一些细节：走到接受状态之后立即转移到该状态的 $next$ 。
 

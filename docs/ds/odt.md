@@ -1,7 +1,7 @@
 ## 名称简介
 
 老司机树，ODT(Old Driver Tree)，又名珂朵莉树（Chtholly Tree)。
-起源自[CF896C](https://codeforces.com/problemset/problem/896/C)。
+起源自 [CF896C](https://codeforces.com/problemset/problem/896/C) 。
 
 ## 前置知识
 
@@ -18,7 +18,7 @@
 一般出题人不会 **刻意** 卡，但是不小心卡了就……
 
 如果要保证复杂度正确，必须保证数据随机。
-证明在[此](http://codeforces.com/blog/entry/56135?#comment-398940)。
+证明在 [此](http://codeforces.com/blog/entry/56135?#comment-398940) 。
 
 ## 正文
 
@@ -90,7 +90,7 @@ void performance(int l, int r) {
 
 ## 习题
 
--   [「SCOI2010」序列操作](https://www.lydsy.com/JudgeOnline/problem.php?id=1858)
--   [「SHOI2015」脑洞治疗仪](https://www.lydsy.com/JudgeOnline/problem.php?id=4592)
--   [「Luogu 2787」理理思维](https://www.luogu.org/problemnew/show/P2787)
--   [「Luogu 4979」矿洞：坍塌](https://www.luogu.org/problemnew/show/P4979)
+-    [「SCOI2010」序列操作](https://www.lydsy.com/JudgeOnline/problem.php?id=1858) 
+-    [「SHOI2015」脑洞治疗仪](https://www.lydsy.com/JudgeOnline/problem.php?id=4592) 
+-    [「Luogu 2787」理理思维](https://www.luogu.org/problemnew/show/P2787) 
+-    [「Luogu 4979」矿洞：坍塌](https://www.luogu.org/problemnew/show/P4979) 

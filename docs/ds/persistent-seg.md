@@ -1,9 +1,9 @@
 ## 主席树
 
-主席树全称是可持久化权值线段树，参见[知乎讨论](https://www.zhihu.com/question/59195374)。
+主席树全称是可持久化权值线段树，参见 [知乎讨论](https://www.zhihu.com/question/59195374) 。
 
 ???+warning "关于函数式线段树"
-    函数式线段树是指使用函数式编程思想的线段树。在函数式编程思想中，将计算机运算视为数学函数，并避免可改变的状态或变量。不难发现，函数式线段树是[完全可持久化](/ds/persistent/#_2)的
+    函数式线段树是指使用函数式编程思想的线段树。在函数式编程思想中，将计算机运算视为数学函数，并避免可改变的状态或变量。不难发现，函数式线段树是 [完全可持久化](/ds/persistent/#_2) 的
 
 面对眼前的区间第 $k$ 小问题，你该何从下手？
 
@@ -112,6 +112,6 @@ int main() {
 
 ## 参考
 
-<https://en.wikipedia.org/wiki/Persistent_data_structure>
+ <https://en.wikipedia.org/wiki/Persistent_data_structure> 
 
-<https://www.cnblogs.com/zinthos/p/3899565.html>
+ <https://www.cnblogs.com/zinthos/p/3899565.html> 

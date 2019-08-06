@@ -156,7 +156,7 @@ TREE - PATH - SUM(u, v) while u,
 
 不断向上跳链，当跳到同一条链上时，返回深度较小的结点即为 LCA。
 
-## 例题：[「ZJOI2008」树的统计](https://www.lydsy.com/JudgeOnline/problem.php?id=1036)
+## 例题： [「ZJOI2008」树的统计](https://www.lydsy.com/JudgeOnline/problem.php?id=1036) 
 
 ### 题目大意
 
@@ -360,16 +360,16 @@ int querymax(int x, int y) {
 
 ## 练习
 
-[「luogu P3379」【模板】最近公共祖先（LCA）](https://www.luogu.org/problemnew/show/P3379)（树剖求 $lca$ 无需数据结构，可以用作练习）
+ [「luogu P3379」【模板】最近公共祖先（LCA）](https://www.luogu.org/problemnew/show/P3379) （树剖求 $lca$ 无需数据结构，可以用作练习）
 
-[「JLOI2014」松鼠的新家](https://www.lydsy.com/JudgeOnline/problem.php?id=3631)（当然也可以用树上差分）
+ [「JLOI2014」松鼠的新家](https://www.lydsy.com/JudgeOnline/problem.php?id=3631) （当然也可以用树上差分）
 
-[「HAOI2015」树上操作](https://www.lydsy.com/JudgeOnline/problem.php?id=4034)
+ [「HAOI2015」树上操作](https://www.lydsy.com/JudgeOnline/problem.php?id=4034) 
 
-[「luogu P3384」【模板】树链剖分](https://www.luogu.org/problemnew/show/P3384)
+ [「luogu P3384」【模板】树链剖分](https://www.luogu.org/problemnew/show/P3384) 
 
-[「NOI2015」软件包管理器](https://www.lydsy.com/JudgeOnline/problem.php?id=4196)
+ [「NOI2015」软件包管理器](https://www.lydsy.com/JudgeOnline/problem.php?id=4196) 
 
-[「SDOI2011」染色](https://www.lydsy.com/JudgeOnline/problem.php?id=2243)
+ [「SDOI2011」染色](https://www.lydsy.com/JudgeOnline/problem.php?id=2243) 
 
-[「SDOI2014」旅行](https://www.lydsy.com/JudgeOnline/problem.php?id=3531)
+ [「SDOI2014」旅行](https://www.lydsy.com/JudgeOnline/problem.php?id=3531) 

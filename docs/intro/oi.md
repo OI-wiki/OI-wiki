@@ -10,7 +10,7 @@ OI 竞赛中允许使用的语言包括 Pascal（NOI 将于 2020 年停止使用
 
 NOIP（National Olympiad in Informatics in Provinces）是全国青少年信息学奥林匹克联赛，顾名思义，是以省为单位排名评奖，对于大部分高校来说，获得提高组省一等奖可以用于获得自主招生资格。
 
-NOIP 分为初赛和复赛两个阶段。初赛会考察一些计算机基础知识和算法基础，复赛是上机考试，也分提高组和普及组，时间上一般是 11 月的第二个周末，周六上午提高组 1 试 8:30-12:00（3.5h，共 3 题），下午 14:30-18:00 普及组（3.5h，共 4 题），周日上午提高组 2 试 8:30-12:00（3.5h，共 3 题）。全国使用同一套试卷，但是评奖规则是按照省内情况由 CCF（中国计算机学会）统一指定，并于赛后在[NOI 官方网站](http://www.noi.cn)上公布。各省的一等奖分数线略有不同。
+NOIP 分为初赛和复赛两个阶段。初赛会考察一些计算机基础知识和算法基础，复赛是上机考试，也分提高组和普及组，时间上一般是 11 月的第二个周末，周六上午提高组 1 试 8:30-12:00（3.5h，共 3 题），下午 14:30-18:00 普及组（3.5h，共 4 题），周日上午提高组 2 试 8:30-12:00（3.5h，共 3 题）。全国使用同一套试卷，但是评奖规则是按照省内情况由 CCF（中国计算机学会）统一指定，并于赛后在 [NOI 官方网站](http://www.noi.cn) 上公布。各省的一等奖分数线略有不同。
 
 ### 省选
 
@@ -62,17 +62,17 @@ IOI 赛制可以赛时任意提交，可以即时查看评测结果，APIO、IOI
 
 在 ACM/ICPC 比赛中一般是三个人使用一台机器，每个题目只有在所有数据点全部正确后才能得到分数。比赛过程中可以有多次提交机会，实时评测并返回结果。比赛排名根据做题数和罚时来评判，罚时是通过题目的用时之和加上错误提交次数乘以一个系数。在 ACM 相关赛事中，选手允许带纸质资料。
 
-参见[ICPC/CCPC 赛事与赛制](/intro/icpc)。
+参见 [ICPC/CCPC 赛事与赛制](/intro/icpc) 。
 
 ### Codeforces (CF) 赛制
 
-[Codeforces](https://codeforces.com)是一个在线评测系统，定期会举办比赛。它的比赛特点是在比赛过程中只测试一部分数据（pretests），而在比赛结束后返回完整的所有测试点的测试结果（system tests）。比赛时可以多次提交，允许 hack 别人的代码（此处 hack 的意思是提交一个测试数据，使得别人的代码无法给出正确答案）。当然，如果想要 hack，必须要锁定自己的代码（换言之，比赛时无法重新提交该题）。
+ [Codeforces](https://codeforces.com) 是一个在线评测系统，定期会举办比赛。它的比赛特点是在比赛过程中只测试一部分数据（pretests），而在比赛结束后返回完整的所有测试点的测试结果（system tests）。比赛时可以多次提交，允许 hack 别人的代码（此处 hack 的意思是提交一个测试数据，使得别人的代码无法给出正确答案）。当然，如果想要 hack，必须要锁定自己的代码（换言之，比赛时无法重新提交该题）。
 
 ## 其他国家和地区的 OI 竞赛
 
 ### 美国：USACO
 
-官网地址：<https://www.usaco.org/>
+官网地址： <https://www.usaco.org/> 
 
 USACO 或许是国内选手最熟悉的外国 OI 竞赛（因此可能也是中文题解最多的外国 OI 竞赛）。  
 每年冬季到初春，USACO 会每月举办一场网络赛。一场比赛持续 $3\sim5$ 个小时。  
@@ -87,11 +87,11 @@ USACO 或许是国内选手最熟悉的外国 OI 竞赛（因此可能也是中�
 
 ### 波兰：POI
 
-官网：<https://oi.edu.pl/>  
-官方提交地址：<https://szkopul.edu.pl/p/default/problemset/>
+官网： <https://oi.edu.pl/>   
+官方提交地址： <https://szkopul.edu.pl/p/default/problemset/> 
 
 POI 是不少省选选手最常刷的外国 OI 比赛。  
-根据（已经凉凉的）<http://main.edu.pl/en/>的描述，POI 的流程如下：
+根据（已经凉凉的） <http://main.edu.pl/en/> 的描述，POI 的流程如下：
 
 -   第一轮：五题，网络赛，公开赛。
 -   第二轮：包含一场练习赛，和两场正式比赛。
@@ -104,8 +104,8 @@ POI 是不少省选选手最常刷的外国 OI 比赛。
 
 ### 克罗地亚：COCI
 
-官网地址：<http://www.hsin.hr/coci/>  
-（有时候英文版的更新会延迟，克罗地亚语版本：<http://www.hsin.hr/honi/>）
+官网地址： <http://www.hsin.hr/coci/>   
+（有时候英文版的更新会延迟，克罗地亚语版本： <http://www.hsin.hr/honi/> ）
 
 难度跨度很大的比赛，大约是从普及 - $\sim$ 省选 -。以往 COCI 所有的题目均提供题目、数据、题解和标程，然而从 2017 年底之后，COCI 的题解和标程就断更了（不是没有英语版翻译，而是连克罗地亚语的版本都没有）。
 
@@ -113,7 +113,7 @@ POI 是不少省选选手最常刷的外国 OI 比赛。
 
 ### 日本：JOI
 
-官网地址：<https://www.ioi-jp.org/>  
+官网地址： <https://www.ioi-jp.org/>   
 日本信息学奥赛（日本情報オリンピック）一般简称为 JOI。JOI 所有的题目都提供题目、数据、题解和标程。近两年的 JOI 决赛和春训营提供了英语题面，但并没有英语题解。历年的 JOI Open 都提供了英语版题面和题解。绝大部分 JOI 题可以左转 AtCoder 提交。
 
 JOI 的流程：
@@ -139,8 +139,8 @@ JOI Final 的难度在提高 - $\sim$ 提高 + 左右。JOISC 和 JOI Open 的�
 ### 俄罗斯：ROI
 
 俄罗斯信息学奥赛（олимпиадная информатика）一般简称为 ROI。  
-官网：<http://neerc.ifmo.ru/school/archive/index.html>  
-在线提交地址：<https://contest.yandex.ru/roiarchive/>  
+官网： <http://neerc.ifmo.ru/school/archive/index.html>   
+在线提交地址： <https://contest.yandex.ru/roiarchive/>   
 一般简称为 ROI。流程：
 
 -   市级比赛（Municipal stage/Муниципальный этап）
@@ -153,15 +153,15 @@ JOI Final 的难度在提高 - $\sim$ 提高 + 左右。JOISC 和 JOI Open 的�
 
 CCC: Canadian Computing Competition  
 CCO: Canadian Computing Olympiad  
-官网地址：<https://cemc.math.uwaterloo.ca/contests/past_contests.html#ccc>  
-CCC 提交地址：[https://dmoj.ca/problems/？category=4](https://dmoj.ca/problems/?category=4)  
-CCO 提交地址：[https://dmoj.ca/problems/？category=24](https://dmoj.ca/problems/?category=24)  
+官网地址： <https://cemc.math.uwaterloo.ca/contests/past_contests.html#ccc>   
+CCC 提交地址： [https://dmoj.ca/problems/？category=4](https://dmoj.ca/problems/?category=4)   
+CCO 提交地址： [https://dmoj.ca/problems/？category=24](https://dmoj.ca/problems/?category=24)   
 CCC 在 DMOJ 有官方 (?) 题解。  
 CCC Junior/Senior 贴近 NOIP 普及组/提高组难度。CCO 想要拿到金牌可能得有 NOI 银的水平。
 
 ### 法国与澳大利亚：FARIO
 
-提交地址：<http://orac.amt.edu.au/cgi-bin/train/hub.pl>
+提交地址： <http://orac.amt.edu.au/cgi-bin/train/hub.pl> 
 
 FARIO 的题目与 NOI 的难度旗鼓相当。
 
@@ -170,7 +170,7 @@ FARIO 的题目与 NOI 的难度旗鼓相当。
 ### BalticOI
 
 BalticOI 面向的是波罗的海周边各国。BalticOI 2018 的参赛国有立陶宛、波兰、爱沙尼亚、芬兰等 9 国。
-除了 2017 年，BalticOI 每年都公开题面、测试数据和题解。然而 BalticOI 没有一个固定的官网，每年的主办方都会新建一个网站……关于历年的官网地址，Planet6174 整理出了一个[帖子](https://loj.ac/article/416)。
+除了 2017 年，BalticOI 每年都公开题面、测试数据和题解。然而 BalticOI 没有一个固定的官网，每年的主办方都会新建一个网站……关于历年的官网地址，Planet6174 整理出了一个 [帖子](https://loj.ac/article/416) 。
 目前 LibreOJ 有近十年的 BalticOI 题。
 
 ### BalkanOI
@@ -188,6 +188,6 @@ CEOI 每年都公开题面、测试数据和题解，官网地址参见上面那
 
 ### Nordic Olympiads in Informatics (NOI)
 
-官网地址：<http://nordic.progolymp.se>
+官网地址： <http://nordic.progolymp.se> 
 
 近两年才开始举办的比赛，面向北欧各国。
