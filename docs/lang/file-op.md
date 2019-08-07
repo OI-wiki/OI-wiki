@@ -71,7 +71,8 @@ fclose(stdin);
 fclose(stdout);
 ```
 
-!!! 注 `printf/scanf/cin/cout` 等函数默认使用 `stdin/stdout` ，将 `stdin/stdout` 重定向后，这些函数将输入/输出到被定向的文件
+!!! 注
+    `printf/scanf/cin/cout` 等函数默认使用 `stdin/stdout` ，将 `stdin/stdout` 重定向后，这些函数将输入/输出到被定向的文件
 
 ### 模板
 
