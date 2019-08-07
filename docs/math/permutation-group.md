@@ -37,9 +37,7 @@ $$
 
 ### 置换的乘法
 
-对于两个置换 $f=\pmatrix{a_1,a_2,\dots,a_n\\
-a_{p_1},a_{p_2},\dots,a_{p_n}}$ 和 $g=\pmatrix{a_{p_1},a_{p_2},\dots,a_{p_n}\\
-a_{q_1},a_{q_2},\dots,a_{q_n}}$ ， $f$ 和 $g$ 的乘积记为 $f\circ g$ ，其值为
+对于两个置换 $f=\pmatrix{a_1,a_2,\dots,a_n\\a_{p_1},a_{p_2},\dots,a_{p_n}}$ 和 $g=\pmatrix{a_{p_1},a_{p_2},\dots,a_{p_n}\\a_{q_1},a_{q_2},\dots,a_{q_n}}$ ， $f$ 和 $g$ 的乘积记为 $f\circ g$ ，其值为
 
 $$
 f\circ g=\pmatrix{a_1,a_2,\dots,a_n\\
