@@ -198,7 +198,7 @@ void DP(int l, int r, int k_l, int k_r) {
 
 使用递归树的方法，容易分析出该分治算法的复杂度为 $O(n\log n)$ ，因为递归树每一层的决策区间总长度不超过 $2n$ ，而递归层数显然为 $O(\log n)$ 级别。
 
-### 例题 1.[「loj2157」「POI2011」Lightning Conductor](https://loj.ac/problem/2157)
+### 例题 1. [「loj2157」「POI2011」Lightning Conductor](https://loj.ac/problem/2157) 
 
 题目大意：给定一个长度为 $n\leq 500000$ 的序列 $a_1, a_2, \cdots, a_n$ ，要求对于每一个 $1 \leq r \leq n$ ，找到最小的非负整数 $f_{r}$ 满足
 
@@ -268,7 +268,7 @@ $$
 
 回顾例题 1 中的 $w(l, r) = -a_l - \sqrt{r-l} + a_r$ ，由性质 2 可知 $-a_l+a_r$ 满足四边形不等式，而 $r-l$ 满足四边形恒等式和区间包含单调性。再根据 $-\sqrt{x}$ 的凸性以及性质 4 可知 $-\sqrt{r-l}$ 也满足四边形不等式，最终利用性质 1，即可得出 $w(l, r)$ 满足四边形不等式性质了。
 
-### 例题 2.[「BZOJ1010」「HNOI2008」玩具装箱 toy](https://www.lydsy.com/JudgeOnline/problem.php?id=1010)
+### 例题 2. [「BZOJ1010」「HNOI2008」玩具装箱 toy](https://www.lydsy.com/JudgeOnline/problem.php?id=1010) 
 
 题目大意：有 $n$ 个玩具需要装箱，要求每个箱子中的玩具编号必须是连续的。每个玩具有一个长度 $C_i$ ，如果一个箱子中有多个玩具，那么每两个玩具之间要加入一个单位长度的分隔物。形式化地说，如果将编号在 $[l,r]$ 间的玩具装在一个箱子里，那么这个箱子的长度为 $r-l+\sum_{k=l}^r C_k$ 。现在需要制定一个装箱方案，使得所有容器的长度与 $K$ 差值的平方之和最小。
 
@@ -282,8 +282,8 @@ $$
 
 ## 习题
 
-[「Luogu P4767」「IOI2000」邮局](https://www.luogu.org/problemnew/show/P4767)
+ [「Luogu P4767」「IOI2000」邮局](https://www.luogu.org/problemnew/show/P4767) 
 
 ## 参考资料
 
-[noiau 的 CSDN 博客](https://blog.csdn.net/noiau/article/details/72514812)
+ [noiau 的 CSDN 博客](https://blog.csdn.net/noiau/article/details/72514812) 

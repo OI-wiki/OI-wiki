@@ -78,7 +78,7 @@ long long binpow(long long a, long long b) {
 ```
 
 ??? note "例题"
-    做一做[Luogu P1226](https://www.luogu.org/problemnew/show/P1226)
+    做一做 [Luogu P1226](https://www.luogu.org/problemnew/show/P1226) 
 
 ## 应用
 
@@ -111,7 +111,7 @@ long long binpow(long long a, long long b, long long m) {
 ???+note "问题描述"
     计算斐波那契数列第 $n$ 项 $F_n$ 。
 
-根据斐波那契数列的递推式 $F_n = F_{n-1} + F_{n-2}$ ，我们可以构建一个 $2\times 2$ 的矩阵来表示从 $F_i,F_{i+1}$ 到 $F_{i+1},F_{i+2}$ 的变换。于是在计算这个矩阵的 $n$ 次幂的时侯，我们使用快速幂的思想，可以在 $\Theta(\log n)$ 的时间内计算出结果。对于更多的细节参见[OI-wiki 斐波那契数列](/math/fibonacci/)。
+根据斐波那契数列的递推式 $F_n = F_{n-1} + F_{n-2}$ ，我们可以构建一个 $2\times 2$ 的矩阵来表示从 $F_i,F_{i+1}$ 到 $F_{i+1},F_{i+2}$ 的变换。于是在计算这个矩阵的 $n$ 次幂的时侯，我们使用快速幂的思想，可以在 $\Theta(\log n)$ 的时间内计算出结果。对于更多的细节参见 [OI-wiki 斐波那契数列](/math/fibonacci/) 。
 
 ### 多次置换
 
@@ -206,7 +206,7 @@ $$
 ???+note "问题描述"
     给一个有向图（边权为 1），求任意两点 $u,v$ 间从 $u$ 到 $v$ ，长度为 $k$ 的路径的条数。
 
-我们把该图的邻接矩阵 M 取 k 次幂，那么 $M_{i,j}$ 就表示从 $i$ 到 $j$ 长度为 $k$ 的路径的数目。该算法的复杂度是 $O(n^3 \log_2 k)$ 。有关该算法的细节请参见[矩阵](/math/matrix/)页面。
+我们把该图的邻接矩阵 M 取 k 次幂，那么 $M_{i,j}$ 就表示从 $i$ 到 $j$ 长度为 $k$ 的路径的数目。该算法的复杂度是 $O(n^3 \log_2 k)$ 。有关该算法的细节请参见 [矩阵](/math/matrix/) 页面。
 
 ### 模意义下大整数乘法
 
@@ -222,12 +222,12 @@ a \cdot b = \begin{cases}
 \end{cases}
 $$
 
-注意：你也可以利用双精度浮点数在常数时间内计算大整数乘法。因为 $a\times b\bmod m=a\times b-\left\lfloor\frac{a\times b}{m}\right\rfloor m$ 。由于 $a,b<m$ ，因此 $\left\lfloor\frac{a\times b}{m}\right\rfloor<m$ ，于是可以用双精度浮点数计算这个分式。作差的时侯直接自然溢出。因为两者的差是一定小于 $m$ 的，我们只关心低位。这样再调整一下正负性就行了。更多信息参见[这里](https://cs.stackexchange.com/questions/77016/modular-multiplication)。
+注意：你也可以利用双精度浮点数在常数时间内计算大整数乘法。因为 $a\times b\bmod m=a\times b-\left\lfloor\frac{a\times b}{m}\right\rfloor m$ 。由于 $a,b<m$ ，因此 $\left\lfloor\frac{a\times b}{m}\right\rfloor<m$ ，于是可以用双精度浮点数计算这个分式。作差的时侯直接自然溢出。因为两者的差是一定小于 $m$ 的，我们只关心低位。这样再调整一下正负性就行了。更多信息参见 [这里](https://cs.stackexchange.com/questions/77016/modular-multiplication) 。
 
 ### 高精度快速幂
 
 ??? note "前置技能"
-    请先学习[高精度](https://oi-wiki.org/math/bignum/)
+    请先学习 [高精度](https://oi-wiki.org/math/bignum/) 
 
 ???+note " 例题【NOIP2003 普及组改编·麦森数】（[原题在此](https://www.luogu.org/problemnew/show/P1045)）"
     题目大意：从文件中输入 P（1000&lt;P&lt;3100000），计算 $2^P−1$ 的最后 100 位数字（用十进制高精度数表示），不足 100 位时高位补 0。
@@ -281,13 +281,13 @@ int main() {
 
 ## 习题
 
--   [UVa 1230 - MODEX](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3671)
--   [UVa 374 - Big Mod](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=310)
--   [UVa 11029 - Leading and Trailing](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1970)
--   [Codeforces - Parking Lot](http://codeforces.com/problemset/problem/630/I)
--   [SPOJ - The last digit](http://www.spoj.com/problems/LASTDIG/)
--   [SPOJ - Locker](http://www.spoj.com/problems/LOCKER/)
--   [LA - 3722 Jewel-eating Monsters](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1723)
--   [SPOJ - Just add it](http://www.spoj.com/problems/ZSUM/)
+-    [UVa 1230 - MODEX](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3671) 
+-    [UVa 374 - Big Mod](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=310) 
+-    [UVa 11029 - Leading and Trailing](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1970) 
+-    [Codeforces - Parking Lot](http://codeforces.com/problemset/problem/630/I) 
+-    [SPOJ - The last digit](http://www.spoj.com/problems/LASTDIG/) 
+-    [SPOJ - Locker](http://www.spoj.com/problems/LOCKER/) 
+-    [LA - 3722 Jewel-eating Monsters](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1723) 
+-    [SPOJ - Just add it](http://www.spoj.com/problems/ZSUM/) 
 
-     **本页面部分内容译自博文[Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow)与其英文翻译版[Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+     **本页面部分内容译自博文 [Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow) 与其英文翻译版 [Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

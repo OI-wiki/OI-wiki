@@ -6,7 +6,7 @@
 
 ## 欧拉定理
 
-在了解欧拉定理（Euler's theorem）之前，请先了解[欧拉函数](/math/euler/)。定理内容如下：
+在了解欧拉定理（Euler's theorem）之前，请先了解 [欧拉函数](/math/euler/) 。定理内容如下：
 
 若 $\gcd(a, m) = 1$ ，则 $a^{\varphi(m)} \equiv 1 \pmod{m}$ 。
 
@@ -30,7 +30,7 @@ $$
 
 ### 证明
 
-证明转载自[synapse7](http://blog.csdn.net/synapse7/article/details/19610361)
+证明转载自 [synapse7](http://blog.csdn.net/synapse7/article/details/19610361) 
 
 1.  在 $a$ 的 $0$ 次， $1$ 次，。。。， $b$ 次幂模 $m$ 的序列中，前 $r$ 个数（ $a^0$ 到 $a^{r-1}$ ) 互不相同，从第 $r$ 个数开始，每 $s$ 个数就循环一次。
 
@@ -78,8 +78,8 @@ $$
 
 ## 习题
 
-1.  [SPOJ #4141 "Euler Totient Function"\[Difficulty: CakeWalk\]](http://www.spoj.com/problems/ETF/)
-2.  [UVA #10179 "Irreducible Basic Fractions"\[Difficulty: Easy\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1120)
-3.  [UVA #10299 "Relatives"\[Difficulty: Easy\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1240)
-4.  [UVA #11327 "Enumerating Rational Numbers"\[Difficulty: Medium\]](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2302)
-5.  [TIMUS #1673 "Admission to Exam"\[Difficulty: High\]](http://acm.timus.ru/problem.aspx?space=1&num=1673)
+1.   [SPOJ #4141 "Euler Totient Function"\[Difficulty: CakeWalk\]](http://www.spoj.com/problems/ETF/) 
+2.   [UVA #10179 "Irreducible Basic Fractions"\[Difficulty: Easy\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1120) 
+3.   [UVA #10299 "Relatives"\[Difficulty: Easy\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1240) 
+4.   [UVA #11327 "Enumerating Rational Numbers"\[Difficulty: Medium\]](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2302) 
+5.   [TIMUS #1673 "Admission to Exam"\[Difficulty: High\]](http://acm.timus.ru/problem.aspx?space=1&num=1673) 

@@ -236,7 +236,7 @@ int getsum(int l, int r, int s, int t, int p) {
 
 ## 线段树基础题推荐
 
-### [luogu P3372【模板】线段树 1](https://www.luogu.org/problem/P3372)
+###  [luogu P3372【模板】线段树 1](https://www.luogu.org/problem/P3372) 
 
 ??? "参考代码"
     ```cpp
@@ -295,7 +295,7 @@ int getsum(int l, int r, int s, int t, int p) {
     }
     ```
 
-### [luogu P3373【模板】线段树 2](https://www.luogu.org/problem/P3373)
+###  [luogu P3373【模板】线段树 2](https://www.luogu.org/problem/P3373) 
 
 ??? "参考代码"
     ```cpp
@@ -424,7 +424,7 @@ int getsum(int l, int r, int s, int t, int p) {
     }
     ```
 
-### [HihoCoder 1078 线段树的区间修改](https://cn.vjudge.net/problem/HihoCoder-1078)
+###  [HihoCoder 1078 线段树的区间修改](https://cn.vjudge.net/problem/HihoCoder-1078) 
 
 ??? "参考代码"
     ```cpp
@@ -486,7 +486,7 @@ int getsum(int l, int r, int s, int t, int p) {
     }
     ```
 
-### [2018 Multi-University Training Contest 5 Problem G. Glad You Came](http://acm.hdu.edu.cn/showproblem.php?pid=6356)
+###  [2018 Multi-University Training Contest 5 Problem G. Glad You Came](http://acm.hdu.edu.cn/showproblem.php?pid=6356) 
 
 维护一下每个区间的永久标记就可以了，最后在线段树上跑一边 dfs 统计结果即可。注意打标记的时候加个剪枝优化，否则会 T。
 
@@ -558,4 +558,4 @@ int getsum(int l, int r, int s, int t, int p) {
 
 ### 参考
 
-[immortalCO 大爷的博客](http://immortalco.blog.uoj.ac/blog/2102)
+ [immortalCO 大爷的博客](http://immortalco.blog.uoj.ac/blog/2102) 

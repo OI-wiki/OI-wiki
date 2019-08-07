@@ -4,7 +4,7 @@ author: Link-cute, Xeonacid, ouuan
 
 ## 例题
 
-[Sliding Window](http://poj.org/problem?id=2823)
+ [Sliding Window](http://poj.org/problem?id=2823) 
 
 本题大意是给出一个长度为 $n$ 的数组，编程输出每 $k$ 个连续的数中的最大值和最小值。
 

@@ -58,7 +58,7 @@ Emacs 是一款非常容易上手的编辑器，重要的快捷键不多，随�
 
 #### 配置
 
-[获取上文图片中的配置](https://www.cnblogs.com/akakw1/p/10088191.html)
+ [获取上文图片中的配置](https://www.cnblogs.com/akakw1/p/10088191.html) 
 
 再 home 目录下显示隐藏文件，".emacs" 就是配置文件（如果没有说明之前没保存）
 

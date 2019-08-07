@@ -6,7 +6,7 @@
 
  $s(n, r)$ 也是把 $n$ 个不同的球排成 $r$ 个非空循环排列的方法数。
 
-关于第一类斯特林数的性质可以阅读[Stirling Number of the First Kind](http://mathworld.wolfram.com/StirlingNumberoftheFirstKind.html)。
+关于第一类斯特林数的性质可以阅读 [Stirling Number of the First Kind](http://mathworld.wolfram.com/StirlingNumberoftheFirstKind.html) 。
 
 ### 递推形式
 
@@ -22,7 +22,7 @@ $$
 
 把 $n$ 个不同的球放到 $r$ 个相同的盒子里，假设没有空盒，则放球方案数记做 $S(n, r)$ ，称为第二类 Stirling 数。
 
-关于第二类斯特林数的性质可以阅读[Stirling Number of the Second Kind](http://mathworld.wolfram.com/StirlingNumberoftheSecondKind.html)。
+关于第二类斯特林数的性质可以阅读 [Stirling Number of the Second Kind](http://mathworld.wolfram.com/StirlingNumberoftheSecondKind.html) 。
 
 ### 递推形式
 
@@ -70,4 +70,4 @@ $$
 
 ## 习题
 
-[HDU3625](http://acm.hdu.edu.cn/showproblem.php?pid=3625)
+ [HDU3625](http://acm.hdu.edu.cn/showproblem.php?pid=3625) 

@@ -23,7 +23,7 @@ author: Ir1d, TrisolarisHD, YanWQ-monad
 
 使用 **待定系数法** 。设 $f(x)=\sum_{i=0}^{n-1} a_ix^i$ 将每个 $x_i$ 代入 $f(x)$ ，有 $f(x_i)=y_i$ ，这样就可以得到一个由 $n$ 条 $n$ 元 $1$ 次方程所组成的方程组，然后使用 **高斯消元** 求出每一项 $a_i$ ，然后将 $k$ 代入求值。
 
-如果您不知道什么是高斯消元，请看[Luogu P3389 高斯消元法](https://www.luogu.org/problemnew/show/P3389)。
+如果您不知道什么是高斯消元，请看 [Luogu P3389 高斯消元法](https://www.luogu.org/problemnew/show/P3389) 。
 
 时间复杂度 $O(n^3)$ ，对给出点的坐标无要求。
 

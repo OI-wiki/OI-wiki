@@ -171,13 +171,13 @@ int count(TreeNode node, int sum) {
 
 总结下，PathSum 函数提供的二叉树遍历框架，在遍历中对每个节点调用 count 函数，看出先序遍历了吗（这道题什么序都是一样的）；count 函数也是一个二叉树遍历，用于寻找以该节点开头的目标值路径。好好体会吧！
 
-LeetCode 有递归专题练习，[点这里去做题](https://leetcode.com/explore/learn/card/recursion-i/)
+LeetCode 有递归专题练习， [点这里去做题](https://leetcode.com/explore/learn/card/recursion-i/) 
 
 ### 递归优化
 
 比较 naive 的递归实现可能递归次数太多，容易超时。
 
-怎么优化呢？详见[搜索优化](/search/optimization)和[记忆化搜索](/dp/memo/)。
+怎么优化呢？详见 [搜索优化](/search/optimization) 和 [记忆化搜索](/dp/memo/) 。
 
 ## 分治算法
 
@@ -202,4 +202,4 @@ void merge_sort(一个数组) {
 
 好了，这个算法也就这样了，完全没有任何难度。记住之前说的，相信函数的能力，传给他半个数组，那么这半个数组就已经被排好了。而且你会发现这不就是个二叉树遍历模板吗？为什么是后序遍历？因为我们分治算法的套路是 **分解 -> 解决（触底）-> 合并（回溯）** 啊，先左右分解，再处理合并，回溯就是在退栈，就相当于后序遍历了。至于 `merge` 函数，参考两个有序链表的合并，简直一模一样。
 
-LeetCode 上有分治算法的专项练习，[点这里去做题](https://leetcode.com/tag/divide-and-conquer/)
+LeetCode 上有分治算法的专项练习， [点这里去做题](https://leetcode.com/tag/divide-and-conquer/) 

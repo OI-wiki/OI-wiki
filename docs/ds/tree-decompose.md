@@ -2,9 +2,9 @@ author: ouuan, Ir1d, TrisolarisHD, Xeonacid
 
 ## 树分块的方式
 
-可以参考[OI Wiki/莫队算法/真 - 树上莫队](/misc/mo-algo/#_14)。
+可以参考 [OI Wiki/莫队算法/真 - 树上莫队](/misc/mo-algo/#_14) 。
 
-也可以参考[ouuan 的博客/莫队、带修莫队、树上莫队详解/树上莫队](https://ouuan.github.io/莫队、带修莫队、树上莫队详解/#树上莫队)。
+也可以参考 [ouuan 的博客/莫队、带修莫队、树上莫队详解/树上莫队](https://ouuan.github.io/莫队、带修莫队、树上莫队详解/#树上莫队) 。
 
 树上莫队同样可以参考以上两篇文章。
 
@@ -14,7 +14,7 @@ author: ouuan, Ir1d, TrisolarisHD, Xeonacid
 
 顺带提一句，“gty 的妹子树”的树分块做法可以被菊花图卡掉。
 
-### [BZOJ4763 雪辉](https://www.lydsy.com/JudgeOnline/problem.php?id=4763)
+###  [BZOJ4763 雪辉](https://www.lydsy.com/JudgeOnline/problem.php?id=4763) 
 
 先进行树分块，然后对每个块的关键点，预处理出它到祖先中每个关键点的路径上颜色的 bitset，以及每个关键点的最近关键点祖先，复杂度是 $O(n\sqrt n+\frac{nc}{32})$ ，其中 $n\sqrt n$ 是暴力从每个关键点向上跳的复杂度， $\frac{nc}{32}$ 是把 $O(n)$ 个 `bitset` 存下来的复杂度。
 
@@ -166,7 +166,7 @@ author: ouuan, Ir1d, TrisolarisHD, Xeonacid
     }
     ```
 
-### [BZOJ4812 由乃打扑克](https://www.lydsy.com/JudgeOnline/problem.php?id=4812)
+###  [BZOJ4812 由乃打扑克](https://www.lydsy.com/JudgeOnline/problem.php?id=4812) 
 
 这题和上一题基本一样，唯一的区别是得到 `bitset` 后如何计算答案。
 
@@ -174,4 +174,4 @@ author: ouuan, Ir1d, TrisolarisHD, Xeonacid
 
 正解是每 $16$ 位一起算，先预处理出 $2^{16}$ 种可能的情况高位连续 $1$ 的个数、低位连续 $1$ 的个数以及中间的贡献。只不过这样要手写 `bitset` ，因为标准库的 `bitset` 不能取某 $16$ 位……
 
-代码可以参考[这篇博客](https://www.cnblogs.com/FallDream/p/bzoj4763.html)。
+代码可以参考 [这篇博客](https://www.cnblogs.com/FallDream/p/bzoj4763.html) 。

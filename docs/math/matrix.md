@@ -12,7 +12,7 @@
 
  $A$ 的逆矩阵 $P$ 是使得 $A \times P = I$ 的矩阵。
 
-逆矩阵可以用[高斯消元](/math/gauss/)的方式来求。
+逆矩阵可以用 [高斯消元](/math/gauss/) 的方式来求。
 
 ## 运算
 
@@ -34,7 +34,7 @@ $$
 
 矩阵乘法满足结合律，不满足一般的交换律。
 
-利用结合律，矩阵乘法可以利用[快速幂](/math/quick-pow/)的思想来优化。
+利用结合律，矩阵乘法可以利用 [快速幂](/math/quick-pow/) 的思想来优化。
 
 在比赛中，由于线性递推式可以表示成矩阵乘法的形式，也通常用矩阵快速幂来求线性递推数列的某一项。
 
@@ -254,8 +254,8 @@ $$
 
 ## 习题
 
--   [洛谷 P1962 斐波那契数列](https://www.luogu.org/problemnew/show/P1962)，即上面的例题，同题 POJ3070
--   [洛谷 P1349 广义斐波那契数列](https://www.luogu.org/problemnew/show/P1349)， $\text{base}$ 矩阵需要变化一下
--   [洛谷 P1939【模板】矩阵加速（数列）](https://www.luogu.org/problemnew/show/P1939)， $\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
+-    [洛谷 P1962 斐波那契数列](https://www.luogu.org/problemnew/show/P1962) ，即上面的例题，同题 POJ3070
+-    [洛谷 P1349 广义斐波那契数列](https://www.luogu.org/problemnew/show/P1349) ， $\text{base}$ 矩阵需要变化一下
+-    [洛谷 P1939【模板】矩阵加速（数列）](https://www.luogu.org/problemnew/show/P1939) ， $\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
 
-     **本页面部分内容译自博文[Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths)与其英文翻译版[Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+     **本页面部分内容译自博文 [Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths) 与其英文翻译版 [Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

@@ -1,6 +1,6 @@
-学习状压 dp 之前，请确认你已经完成了[动态规划初步](/dp)部分内容的学习。
+学习状压 dp 之前，请确认你已经完成了 [动态规划初步](/dp) 部分内容的学习。
 
-（同时建议学习[位运算](/math/bit)部分的内容）
+（同时建议学习 [位运算](/math/bit) 部分的内容）
 
 ## 状压 DP 简介
 
@@ -61,10 +61,10 @@
 
 ## 几道练习题
 
-[NOI2001 炮兵阵地](https://www.luogu.org/problemnew/show/P2704)
+ [NOI2001 炮兵阵地](https://www.luogu.org/problemnew/show/P2704) 
 
-[\[USACO06NOV\]玉米田 Corn Fields](https://www.luogu.org/problemnew/show/P1879)
+ [\[USACO06NOV\]玉米田 Corn Fields](https://www.luogu.org/problemnew/show/P1879) 
 
-[AHOI2009 中国象棋](https://www.lydsy.com/JudgeOnline/problem.php?id=1801)
+ [AHOI2009 中国象棋](https://www.lydsy.com/JudgeOnline/problem.php?id=1801) 
 
-[九省联考 2018 一双木棋](https://www.luogu.org/problemnew/show/P4363)
+ [九省联考 2018 一双木棋](https://www.luogu.org/problemnew/show/P4363) 

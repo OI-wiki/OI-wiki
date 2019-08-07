@@ -384,4 +384,4 @@ $$
 
 王迪《容斥原理》，2013 年信息学奥林匹克中国国家队候选队员论文集
 
-[Cyhlnj《有标号的 DAG 计数系列问题》](https://blog.csdn.net/oi_konnyaku/article/details/84862271)
+ [Cyhlnj《有标号的 DAG 计数系列问题》](https://blog.csdn.net/oi_konnyaku/article/details/84862271) 
