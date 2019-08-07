@@ -97,7 +97,7 @@ int getsum(int x) {  // a[1]……a[x]的和
 进行推导
 
 $$
-\sum_{i=1}^{r} a_i\\=\sum_{i=1}^r\sum_{j=1}^i b_i\\=\sum_{i=1}^r b_i\times(r-i+1)
+\sum_{i=1}^{r} a_i\\=\sum_{i=1}^r\sum_{j=1}^i b_j\\=\sum_{i=1}^r b_i\times(r-i+1)
 \\=\sum_{i=1}^r b_i\times (r+1)-\sum_{i=1}^r b_i\times i
 $$
 

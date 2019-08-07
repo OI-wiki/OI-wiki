@@ -5,6 +5,8 @@
 
 ## 性质
 
+> 本节 **性质** 部分内容翻译自[wcipeg](http://wcipeg.com/wiki/Lowest_common_ancestor)，并做过修改。
+
 1.   $\text{LCA}({u})=u$ ；
 2.   $u$ 是 $v$ 的祖先，当且仅当 $\text{LCA}(u,v)=u$ ；
 3.  如果 $u$ 不为 $v$ 的祖先并且 $v$ 不为 $u$ 的祖先，那么 $u,v$ 分别处于 $\text{LCA}(u,v)$ 的两棵不同子树中；
@@ -241,9 +243,9 @@ void dfs(int x, int dep) {
 
 LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所指向的点。
 
-### 动态树
+### [动态树](/ds/lct)
 
-> 本节 **性质** 部分内容翻译自[wcipeg](http://wcipeg.com/wiki/Lowest_common_ancestor)，并做过修改。
+设连续两次[access](/ds/lct/#access)操作的点分别为 `u` 和 `v` ，则第二次[access](/ds/lct/#access)操作返回的点即为 `u` 和 `v` 的 LCA.
 
 ### 标准 RMQ
 

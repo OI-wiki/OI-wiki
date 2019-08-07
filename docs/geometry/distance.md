@@ -166,7 +166,7 @@ int main() {
 在二维空间内，两个点之间的切比雪夫距离为它们横坐标之差的绝对值与纵坐标之差的绝对值的最大值。设点 $A(x_1,y_1),B(x_2,y_2)$ ，则 $A,B$ 之间的切比雪夫距离用公式可以表示为：
 
 $$
-d(A,B) = max(|x_1 - x_2|, |y_1 - y_2|)
+d(A,B) = \max(|x_1 - x_2|, |y_1 - y_2|)
 $$
 
 仍然是这个栗子，下图中 $A,B$ 的坐标分别为 $A(6,5),B(2,2)$ 。
@@ -174,15 +174,15 @@ $$
 ![Chebyshev-dis](./images/distance-2.svg)
 
 $$
-d(A,B) = max(|20 - 10|, |25 - 10|) = max(10, 15) = 15
+d(A,B) = \max(|20 - 10|, |25 - 10|) = \max(10, 15) = 15
 $$
 
  $n$ 维空间中切比雪夫距离的距离公式：
 
 $$
 \begin{aligned}
-&d(x,y) &=& max\begin{Bmatrix} |x_1 - y_1|,|x_2 - y_2|,\cdot \cdot \cdot,|x_n - y_n|\end{Bmatrix} \\
-&&=& max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in n)\end{aligned}
+&d(x,y) &=& \max\begin{Bmatrix} |x_1 - y_1|,|x_2 - y_2|,\cdot \cdot \cdot,|x_n - y_n|\end{Bmatrix} \\
+&&=& \max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in n)\end{aligned}
 $$
 
 ## 曼哈顿距离与切比雪夫距离的相互转化
@@ -210,7 +210,7 @@ $$
 
 同理，我们再考虑画出平面直角坐标系上所有到原点的 切比雪夫距离 为 $1$ 的点。
 
-通过公式，我们知道 $max(|x|,|y|)=1$ 。
+通过公式，我们知道 $\max(|x|,|y|)=1$ 。
 
 我们将式子展开，也同样可以得到可以得到 $4$ 条 线段，分别是：
 
@@ -288,7 +288,7 @@ $$
 
 我们考虑将题目所求的曼哈顿距离转化为切比雪夫距离，即把每个点的坐标 $(x,y)$ 变为 $(x + y, x - y)$ 。
 
-所求的答案就变为 $max_{i,j\in n}\begin{Bmatrix} max\begin{Bmatrix} |x_i - x_j|,|y_i - y_j|\end{Bmatrix}\end{Bmatrix}$ 
+所求的答案就变为 $\max_{i,j\in n}\begin{Bmatrix} \max\begin{Bmatrix} |x_i - x_j|,|y_i - y_j|\end{Bmatrix}\end{Bmatrix}$ 
 
 现要使得横坐标之差和纵坐标之差最大，只需要预处理出 $x,y$ 的最大值和最小值即可。
 

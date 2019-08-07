@@ -42,4 +42,4 @@ int main(int argc, char* argv[]) {
 ???+ warning
     Validator 是非常严格的，它需要保证有正确的空格或换行。例如当你读入一个整数时，当前流指针位置为一个空格后接一个整数，Testlib 仍将抛出错误。
 
- **本文翻译自[Validators with testlib.h - Codeforces](https://codeforces.com/blog/entry/18426)。 `testlib.h` 的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。** 
+     **本文翻译自[Validators with testlib.h - Codeforces](https://codeforces.com/blog/entry/18426)。 `testlib.h` 的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。** 

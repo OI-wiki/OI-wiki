@@ -39,6 +39,14 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
     标题：本次 PR 的目的（做了什么工作，修复了什么问题）；
     内容：如果必要的话，请给出对修复问题的叙述。
 
+### 协作流程
+
+1.  在收到一个新的 Pull Request 之后，GitHub 会给 reviewer 发送邮件
+2.  与此同时，在[Travis CI](https://travis-ci.org/OI-wiki/OI-wiki)和[Netlify](https://app.netlify.com/sites/oi-wiki)上会运行两组测试，他们会把进度同步在 PR 页面的下方。Travis CI 主要是用来确认 PR 中内容的修改不会影响到网站构建的进程；Netlify 是用来把 PR 中的更新构建出来，方便 reviewer 审核（在测试完成后点击 Details 可以了解更多）
+3.  在足够多 reviewer 投票通过一个 PR 之后，这个 PR 才可以合并到 master 分支中
+4.  在合并到 master 分支之后，会在 Travis CI 上重新构建一遍网站内容，并更新到 gh-pages 分支
+5.  这时服务器才会拉取 gh-pages 分支的更新，并重新部署最新版本的内容
+
 ## 贡献文档要求
 
 当你打算贡献某部分的内容时，你应该尽量确保：
@@ -49,11 +57,43 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
 
 ### 文档内容的基本格式
 
-在提交 PR 前，请先确保文档内容符合[如何贡献 How to contribute](https://github.com/24OI/OI-wiki/wiki/%E5%A6%82%E4%BD%95%E8%B4%A1%E7%8C%AE---How-to-contribute)中的格式要求。格式缺乏基本的规范性、严谨性可能会使你的贡献不能及时通过审核。
+在提交 PR 前，请先确保文档内容符合下文中的格式要求（如有疑问可以在[How To Contribute](https://github.com/OI-wiki/OI-wiki/wiki/How-to-contribute)页面中查阅相关例子）。格式缺乏基本的规范性、严谨性可能会使你的贡献不能及时通过审核。
 
-文档内容的基本格式主要是指[中文排版指南](https://github.com/ctf-wiki/ctf-wiki/wiki/%E4%B8%AD%E6%96%87%E6%8E%92%E7%89%88%E6%8C%87%E5%8D%97)与[MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。后者额外介绍了 mkdocs-material 主题的插件使用方式。
+如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅[MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)和[cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 markdown 传统语法和 mkdocs-material 支持的扩展语法。
 
-如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅[cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，他有介绍 markdown 传统语法和 mkdocs-material 支持的扩展语法。
+#### remark-lint 要求怎样的格式
+
+我们现在启用的配置文件在[.remarkrc](https://github.com/24OI/OI-wiki/blob/master/.remarkrc)，它可以自动给项目内文件统一风格。
+
+在配置过程中我们也遇到了一些 remark-lint 不能很好处理的问题：
+
+1.  不要在页面中添加 `<h1>` 或者 `# 标题` 。
+2.   `## 简介` 标题要空一格（英文半角空格），也不要写成 `## 简介 ##` 。
+3.  列表
+    1.  列表前要有空行，新开一段。
+    2.   `1. 例子` 点号后要有空格。
+4.  行间公式前后各要有一行空行，否则会被当做是行内公式。
+5.  伪代码请使用 ```` ```text```` ，直接使用 ```` ``` ```` 可能导致内容被错误地缩进。
+6.  涉及到目录的更改，需要改动 mkdocs.yml，另外也请注意如果影响到作者信息统计，麻烦更新[author 字段](https://oi-wiki.org/intro/faq/#_15)。
+7.  所有比赛请使用官方正式中文/英文名称。特别注意 NOI 系列赛官方英文名称均为全大写，如 NOIP。
+
+#### 文档中 LaTeX 公式的格式
+
+-   请不要滥用 LaTeX 公式字体（比如对一些英文单词使用公式字体）
+-   对于 LaTeX 公式，请注意常见的问题， **一定要使用**  `$\log$` 、 `$\min$` 、 `$\max$` 、 `$\gcd$` 等，而非 `$log$` 、 `$min$` 、 `$max$` 、 `$gcd$` 。对于最小公倍数，请使用 `$\operatorname{lcm}$` 而非 `$lcm$` ，省略号请使用 `$\cdots$` ，叉乘请使用 `$\times$` ，点乘请使用 `$\cdot$` 。其他非数学内容，包括中文、英文、特殊符号等，一律使用 `\text{}` 。
+-   所有公式中的希腊字母等特殊符号，请不要使用输入法的插入特殊符号功能，而应该使用对应的 LaTeX 公式符号。如 phi 大多数情况下应该使用 `$\varphi$` 而不是 `$\phi$` 。
+-   在不会引起歧义的情况下，请用 `\times` 代替星号。如 $a\times b$ ，而不是 $a*b$ 。
+-   请用 `\cdots` ， `\ldots` ， `\vdots` 代替 `...` 。如 $a_1,a_2,\cdots a_n$ ，而不是 $a_1,a_2,... a_n$ 。
+-   请用 `=` 代替 `==` 。如 $a=b$ ，而不是 $a==b$ 。
+-   请用 `a\bmod b` 代替 `a%b` 。如 $a\bmod b$ ，而不是 $a%b$ 。
+-   为了统一，复杂度分析时大 $O$ 记号请直接使用 `$O()$` 而不要 `$\mathcal O()$` 。
+-   公式中尽量避免中括号而多使用下标。即 $a_{i,j,k}$ 而不是 $a[i][j][k]$ 。在公式中下标较复杂的情况下建议改用多元函数（ $f(i,j,k)$ ）或内联代码格式。
+
+#### 文档存储的格式
+
+-    **文件名请务必都小写，以 `-` 分割，如 `file-name` 。** 
+-   请务必确保您的文档中引用的 **外链** 图片已经全部转存到了 **本库内** 对应的 `images` 文件夹中（防止触发某些网站的防盗链），建议处理成 `MD 文档名称 + 编号` 的形式（可参考已有文档中图片的处理方式）。（即格式为 `![](./images/xx.jpg)` ）。
+-   请确保您的文档中的引用链接的稳定性， **不推荐** 引用 **自建** 服务（如 OJ）中的资源（如题目）
 
 ### 文档的合理性
 
@@ -64,21 +104,6 @@ Telegram 群组链接为[@OIwiki](https://t.me/OIwiki)，QQ 群号码为[ `58879
     -   原理，说明该内容对应的原理。
     -   例子，给出 1 ~ 2 个典型的例子。
     -   题目，在该标题下， **只需要给出题目名字、题目链接** 。
-
-### 文档中 LaTeX 公式的格式
-
--   对于运算符，请使用正体；对于变量，请使用斜体。如 $\sin$ ， $\log$ ，而不是 $sin$ ， $log$ 。
--   在不会引起歧义的情况下，请用 `\times` 代替星号。如 $a\times b$ ，而不是 $a*b$ 。
--   请用 `\cdots` ， `\ldots` ， `\vdots` 代替 `...` 。如 $a_1,a_2,\cdots a_n$ ，而不是 $a_1,a_2,... a_n$ 。
--   请用 `=` 代替 `==` 。如 $a=b$ ，而不是 $a==b$ 。
--   请用 `a\bmod b` 代替 `a%b` 。如 $a\bmod b$ ，而不是 $a%b$ 。
-
-### 文档存储的格式
-
-对于每类要编写的内容，对应的文档应该存储在合适的目录下。
-
--   images，存储文档介绍时所使用的图片，位置为所添加的目录下（即格式为 `![](./images/xx.jpg)` ）。
--    **文件名请务必都小写，以 `-` 分割，如 `file-name` 。** 
 
 ## F.A.Q.
 
@@ -171,19 +196,6 @@ pip install -U -r requirements.txt
 可以查阅[cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，或者[MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。
 
 我们目前在使用[remark-lint](https://github.com/remarkjs/remark-lint)来自动化修正格式，可能还有一些[配置](https://github.com/24OI/OI-wiki/blob/master/.remarkrc)不够好的地方，欢迎指出。
-
-#### remark-lint 要求怎样的格式
-
-我们现在启用的配置文件在[.remarkrc](https://github.com/24OI/OI-wiki/blob/master/.remarkrc)，它可以自动给项目内文件统一风格。
-
-在配置过程中我们也遇到了一些 remark-lint 不能很好处理的问题：
-
-1.   `## 简介` 标题要空一格（英文半角空格），也不要写成 `## 简介 ##` 。
-2.  列表
-    1.  列表前要有空行，新开一段。
-    2.   `1. 例子` 点号后要有空格。
-3.  行间公式不能写在一行里，否则会被当做是行内公式
-4.  伪代码请使用 ```` ```text```` 
 
 #### GitHub 是不是不显示我的数学公式？
 
