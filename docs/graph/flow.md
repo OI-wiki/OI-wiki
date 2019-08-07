@@ -2,13 +2,13 @@
 
 ## 网络
 
-首先，请分清楚 **网络** 与 **网络流** 的概念。
+首先，请分清楚 **网络** （或者流网络，Flow Network）与 **网络流** （Flow）的概念。
 
 网络是指一个有向图 $G=(V,E)$ 。
 
 每条边 $(u,v)\in E$ 都有一个权值 $c(u,v)$ ，称之为容量（Capacity），当 $(u,v)\notin E$ 时有 $c(u,v)=0$ 。
 
-其中有两个特殊的点：源点 $s\in V$ 和汇点 $t\in V,(s\neq t)$ 。
+其中有两个特殊的点：源点（Source） $s\in V$ 和汇点（Sink） $t\in V,(s\neq t)$ 。
 
 ## 流
 
@@ -50,4 +50,4 @@ $$
 
 ## 网络流 24 题
 
-<https://loj.ac/problems/tag/30>
+ <https://loj.ac/problems/tag/30> 

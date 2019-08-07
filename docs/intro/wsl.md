@@ -44,7 +44,7 @@ WSL 提供了一个微软开发的 Linux 兼容内核接口（不包含 Linux �
 ## 开搞
 
 去 Windows 自带的应用商店，搜索 "Ubuntu"，然后选第一个安装。  
-亦可打开<https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6>  
+亦可打开 <https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6>   
 ???+ warning
     Windows 10 商店的第一个 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。
     可使用 `sudo lsb_release -a` 查看自己的 Ubuntu 版本。
@@ -64,13 +64,12 @@ WSL 提供了一个微软开发的 Linux 兼容内核接口（不包含 Linux �
 
 ### 更换为国内软件源
 
-Ubuntu 默认的软件源在国外，我们可以换为国内的加快速度，如[清华 TUNA 的软件源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)。
+Ubuntu 默认的软件源在国外，我们可以换为国内的加快速度，如 [清华 TUNA 的软件源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/) 。
 
-可以访问[TUNA 的页面](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)来获得国内源的信息。
+可以访问 [TUNA 的页面](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/) 来获得国内源的信息。
 
 ???+ warning  
- **请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a` 查看，具体详见 `0x03` ）  
-** 除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！\*\*
+     **请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a` 查看，具体详见 `0x03` ）**  **除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！** 
 
 使用的命令
 
@@ -101,7 +100,7 @@ sudo dpkg-reconfigure locales
 使用 `sudo dpkg-reconfigure locales` 进入菜单，按空格选择带 `zh_CN` 的选项，选完后回车，下一个菜单中选 `zh_CN.UTF-8` 打回车。
 
 ![](./images/WSL10.png)![](./images/WSL11.png)之后关上 Ubuntu 重开一遍登录，是不是变中文了？
-再依次输入下列命令，把 `man` 帮助页替换为中文：[via](https://blog.csdn.net/qq_14989227/article/details/72954523)
+再依次输入下列命令，把 `man` 帮助页替换为中文： [via](https://blog.csdn.net/qq_14989227/article/details/72954523) 
 
 ```bash
 sudo apt install manpages-zh
@@ -123,7 +122,7 @@ chmod +x install.sh && ./install.sh
 ```
 
 这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install 程序名` 来安装别的。
-若想安装其他版本可以参考下[这个](https://www.cnblogs.com/EasonJim/p/7144017.html)
+若想安装其他版本可以参考下 [这个](https://www.cnblogs.com/EasonJim/p/7144017.html) 
 
 来个程序玩玩：
 
@@ -180,7 +179,7 @@ sudo apt-get install xterm -y
 
 ##### 服务端：下载 Xming Server
 
-去<https://sourceforge.net/projects/xming/>下载最新的 Xming Server，然后一路安装：  
+去 <https://sourceforge.net/projects/xming/> 下载最新的 Xming Server，然后一路安装：  
 ![](./images/WSL16.png)  
 如果你把 Launch Xming 框点掉了，记得去开始菜单再打开：  
 ![别忘了！](./images/WSL17.png)  
@@ -232,23 +231,23 @@ xfce4-session
 
 这里列举了文中提到的链接，以便查阅。
 
-1.  [NOIP 标准评测系统及相关问题，smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html)
-2.  [WSL, 百度百科](https://baike.baidu.com/item/wsl/20359185)
-3.  [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97)
-4.  [Windows Subsystem for Linux Documentation, MSDN](https://docs.microsoft.com/zh-cn/windows/wsl/about)
-5.  [NOI 系列活动标准竞赛环境，2016-11-08, NOI 官网](http://www.noi.cn/2016-11-08-03-42-01)
-6.  [购买 Ubuntu, Microsoft Store](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6)
-7.  [Ubuntu 镜像使用帮助，清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
-8.  [Ubuntu 的 man 命令帮助如何设置中文版，Frank 看庐山，2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523)
-9.  [Xming X Server for Windows, SourceForge](https://sourceforge.net/projects/xming/)
-10. [Sudo, Wikipedia](https://zh.wikipedia.org/wiki/Sudo)
+1.   [NOIP 标准评测系统及相关问题，smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html) 
+2.   [WSL, 百度百科](https://baike.baidu.com/item/wsl/20359185) 
+3.   [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97) 
+4.   [Windows Subsystem for Linux Documentation, MSDN](https://docs.microsoft.com/zh-cn/windows/wsl/about) 
+5.   [NOI 系列活动标准竞赛环境，2016-11-08, NOI 官网](http://www.noi.cn/2016-11-08-03-42-01) 
+6.   [购买 Ubuntu, Microsoft Store](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6) 
+7.   [Ubuntu 镜像使用帮助，清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/) 
+8.   [Ubuntu 的 man 命令帮助如何设置中文版，Frank 看庐山，2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523) 
+9.   [Xming X Server for Windows, SourceForge](https://sourceforge.net/projects/xming/) 
+10.  [Sudo, Wikipedia](https://zh.wikipedia.org/wiki/Sudo) 
 
 ## 延伸内容
 
--   [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://spencerwoo.com/dowww/)
+-    [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://spencerwoo.com/dowww/) 
 
--   [Github 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL)
+-    [Github 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL) 
 
 ### 后记
 
-本文最初发布于[洛谷日报 #6](https://www.luogu.org/discuss/show/48491)，现由原作者搬运至此，有删改。
+本文最初发布于 [洛谷日报 #6](https://www.luogu.org/discuss/show/48491) ，现由原作者搬运至此，有删改。

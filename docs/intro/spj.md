@@ -9,15 +9,15 @@
 
 ## Testlib
 
-Testlib 的介绍见[Testlib/简介](/intro/testlib/)页面，用法见[Testlib/Checker](/intro/testlib/checker/)页面。
+Testlib 的介绍见 [Testlib/简介](/intro/testlib/) 页面，用法见 [Testlib/Checker](/intro/testlib/checker/) 页面。
 
 必须使用 Testlib 做 spj 的 评测工具/OJ：Codeforces、洛谷、UOJ 等
 
 可以使用 Testlib 做 spj 的 评测工具/OJ：LibreOJ(SYZOJ 2)、Lemon 等
 
-SYZOJ 2 所需的修改版 Testlib 可以在[这里](https://pastebin.com/3GANXMG7)获取到，感谢[cyand1317](https://loj.ac/article/124)。
+SYZOJ 2 所需的修改版 Testlib 可以在 [这里](https://pastebin.com/3GANXMG7) 获取到，感谢 [cyand1317](https://loj.ac/article/124) 。
 
-Lemon 所需的修改版 Testlib 可以在[这里](https://paste.ubuntu.com/p/JsTspHHnmB/)获取到，感谢 matthew99。注意此版本 Testlib 注册 checker 应使用 `registerLemonChecker()` 而非 `registerTestlibCmd()` 。
+Lemon 所需的修改版 Testlib 可以在 [这里](https://paste.ubuntu.com/p/JsTspHHnmB/) 获取到，感谢 matthew99。注意此版本 Testlib 注册 checker 应使用 `registerLemonChecker()` 而非 `registerTestlibCmd()` 。
 
 其他评测工具/OJ 大部分需要按照其 spj 编写格式修改 Testlib（并将 testlib.h 与 spj 一同上传，或将 testlib.h 置于 include 目录）。
 
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
 
 ## Lemon
 
- **Lemon 有现成的修改版 Testlib，建议使用 Testlib，见[Testlib](#testlib)** 
+ **Lemon 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib) ** 
 
 ```cpp
 #include <cmath>
@@ -195,7 +195,7 @@ int main(int argc, char* argv[]) {
 
 ## LibreOJ(SYZOJ 2)
 
- **LibreOJ(SYZOJ 2) 有现成的修改版 Testlib，建议使用 Testlib，见[Testlib](#testlib)** 
+ **LibreOJ(SYZOJ 2) 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib) ** 
 
 ```cpp
 #include <cmath>

@@ -2,14 +2,14 @@
 
 由于众所周知的原因，不是所有境外网站在大陆所有地区都能够正常访问。对于 OIer 而言，进一步学习的需求往往因此难以得到满足。
 
-注：本项目在编写过程中受到[@GoogleHosts](https://github.com/GoogleHosts/hosts)的大力支持，在此表示感谢。
+注：本项目在编写过程中受到 [@GoogleHosts](https://github.com/GoogleHosts/hosts) 的大力支持，在此表示感谢。
 本页仅用于介绍，版权归服务提供者所有。
 
 ## Hosts
 
-[@GoogleHosts](https://github.com/GoogleHosts/hosts)致力于维护 `hosts` 文件，优化中国大陆对众多网站的访问。 `hosts` 文件的作用是将域名指向访问速度更优秀的对应 `ip` 地址，可以避免一定程度的干扰。
+ [@GoogleHosts](https://github.com/GoogleHosts/hosts) 致力于维护 `hosts` 文件，优化中国大陆对众多网站的访问。 `hosts` 文件的作用是将域名指向访问速度更优秀的对应 `ip` 地址，可以避免一定程度的干扰。
 
-另外，[@GoogleHosts](https://github.com/GoogleHosts/hosts)也搭建了[公益服务](https://github.com/googlehosts/hosts/wiki/%E5%AE%9E%E9%AA%8C%E5%AE%A4)，包含 防污染 DNS、Shadowsocks 服务和 Telegram 专用代理等。
+另外， [@GoogleHosts](https://github.com/GoogleHosts/hosts) 也搭建了 [公益服务](https://github.com/googlehosts/hosts/wiki/%E5%AE%9E%E9%AA%8C%E5%AE%A4) ，包含 防污染 DNS、Shadowsocks 服务和 Telegram 专用代理等。
 
 ## Shadowsocks
 
@@ -17,21 +17,21 @@ Shadowsocks 是一个安全的 `socks5` 代理，支持多种平台。
 
 ### Windows
 
-下载地址：[shadowsocks-win](https://github.com/shadowsocks/shadowsocks-windows/releases)\|[Outline Windows](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/Outline-Client.exe)
+下载地址： [shadowsocks-win](https://github.com/shadowsocks/shadowsocks-windows/releases) \| [Outline Windows](https://raw.githubusercontent.com/Jigsaw-Code/outline-releases/master/client/Outline-Client.exe) 
 
 ### Mac OS X
 
-下载地址：[ShadowsocksX-NG](https://github.com/shadowsocks/ShadowsocksX-NG/releases)\|[Outline macOS](https://itunes.apple.com/app/outline-app/id1356178125)
+下载地址： [ShadowsocksX-NG](https://github.com/shadowsocks/ShadowsocksX-NG/releases) \| [Outline macOS](https://itunes.apple.com/app/outline-app/id1356178125) 
 
 ### Linux
 
-自动安装脚本：[lrinQVQ/script](https://github.com/lrinQVQ/script)
+自动安装脚本： [lrinQVQ/script](https://github.com/lrinQVQ/script) 
 
 ### 为什么不推荐使用 ssr？
 
-ssr 在开发过程中违反了[GPL 协议](https://zh.wikipedia.org/wiki/GNU%E9%80%9A%E7%94%A8%E5%85%AC%E5%85%B1%E8%AE%B8%E5%8F%AF%E8%AF%81)，GPL 要求再分发时应开放源代码，而 ssr 的维护者并没有做到这一点。作为一个合格的 OIer， **遵守开源协议** 是最起码的要求，所以这里并不提倡使用 ssr。
+ssr 在开发过程中违反了 [GPL 协议](https://zh.wikipedia.org/wiki/GNU%E9%80%9A%E7%94%A8%E5%85%AC%E5%85%B1%E8%AE%B8%E5%8F%AF%E8%AF%81) ，GPL 要求再分发时应开放源代码，而 ssr 的维护者并没有做到这一点。作为一个合格的 OIer， **遵守开源协议** 是最起码的要求，所以这里并不提倡使用 ssr。
 
-引用 clowwindy 的一段著名的[评论](https://github.com/shadowsocks/shadowsocks-windows/issues/293#issuecomment-132253168)作为结语。
+引用 clowwindy 的一段著名的 [评论](https://github.com/shadowsocks/shadowsocks-windows/issues/293#issuecomment-132253168) 作为结语。
 
 ## 关于中国的互联网
 
@@ -51,4 +51,4 @@ ssr 在开发过程中违反了[GPL 协议](https://zh.wikipedia.org/wiki/GNU%E9
 
 * * *
 
-> [I believe you guys will make great stuff with Network Extensions.](https://github.com/shadowsocks/shadowsocks-iOS/issues/124#issuecomment-133630294)
+>  [I believe you guys will make great stuff with Network Extensions.](https://github.com/shadowsocks/shadowsocks-iOS/issues/124#issuecomment-133630294) 

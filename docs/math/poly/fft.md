@@ -1,16 +1,16 @@
 author: AndrewWayne, GavinZhengOI. ChungZH, henryrabbit, Xeonacid, sshwy, Yukimaikoriya
 
-（本页面部分内容转载自[桃酱的算法笔记](https://zhuanlan.zhihu.com/c_1005817911142838272)，原文戳[链接](https://zhuanlan.zhihu.com/p/41867199)，已获得作者授权）
+（本页面部分内容转载自 [桃酱的算法笔记](https://zhuanlan.zhihu.com/c_1005817911142838272) ，原文戳 [链接](https://zhuanlan.zhihu.com/p/41867199) ，已获得作者授权）
 
 一直想学 FFT，之前牛客的多校有一道组合数学就用 FFT 写的，而且当时还傻乎乎的用唯一分解定理，但是自己好久没静下心学什么了，而且自己的数学功底又不好，导致一直学不会。看了很多人的博客也没看明白，尤其是原根。在我看了几十篇博客之后终于看懂了……所以想写一篇能够让大多数人都看得懂的教程。花费时间 3 天终于写完啦~~~~\~~
 
 另外，本文 FFT 部分的代码实现全部参考 kuangbin 的模板（2018.7 更新）资源地址如下
 
-<https://download.csdn.net/download/qq_37136305/10562410>
+ <https://download.csdn.net/download/qq_37136305/10562410> 
 
 NTT 部分代码参考 CSDN 上的模板代码附网址，感谢博主！
 
-你搜索这个关键词就已经知道这一是个数学的东西了。只想学会用很简单，但是这远远不够。所以在看这个博客之前应该先学一下[复数](/math/complex)的基本知识。
+你搜索这个关键词就已经知道这一是个数学的东西了。只想学会用很简单，但是这远远不够。所以在看这个博客之前应该先学一下 [复数](/math/complex) 的基本知识。
 
 好了下面进入正文。
 
@@ -405,16 +405,15 @@ void fft(Complex y[], int len, int on) {
 }
 ```
 
-好了现在附上全部代码（[HDU 1402](http://acm.hdu.edu.cn/showproblem.php?pid=1402)），序言说过代码来自 kuangbin 的模板~~~~~
+好了现在附上全部代码（ [HDU 1402](http://acm.hdu.edu.cn/showproblem.php?pid=1402) ），序言说过代码来自 kuangbin 的模板~~~~~
 
 ??? "FFT"
-
     ```cpp
     #include <cmath>
     #include <cstdio>
     #include <cstring>
     #include <iostream>
-
+    
     const double PI = acos(-1.0);
     struct Complex {
       double x, y;
@@ -433,10 +432,10 @@ void fft(Complex y[], int len, int on) {
       }
     };
     /*
-    * 进行 FFT 和 IFFT 前的反置变换
-    * 位置 i 和 i 的二进制反转后的位置互换
-    *len 必须为 2 的幂
-    */
+     * 进行 FFT 和 IFFT 前的反置变换
+     * 位置 i 和 i 的二进制反转后的位置互换
+     *len 必须为 2 的幂
+     */
     void change(Complex y[], int len) {
       int i, j, k;
       for (int i = 1, j = len / 2; i < len - 1; i++) {
@@ -452,10 +451,10 @@ void fft(Complex y[], int len, int on) {
       }
     }
     /*
-    * 做 FFT
-    *len 必须是 2^k 形式
-    *on == 1 时是 DFT，on == -1 时是 IDFT
-    */
+     * 做 FFT
+     *len 必须是 2^k 形式
+     *on == 1 时是 DFT，on == -1 时是 IDFT
+     */
     void fft(Complex y[], int len, int on) {
       change(y, len);
       for (int h = 2; h <= len; h <<= 1) {
@@ -477,12 +476,12 @@ void fft(Complex y[], int len, int on) {
         }
       }
     }
-
+    
     const int MAXN = 200020;
     Complex x1[MAXN], x2[MAXN];
     char str1[MAXN / 2], str2[MAXN / 2];
     int sum[MAXN];
-
+    
     int main() {
       while (scanf("%s%s", str1, str2) == 2) {
         int len1 = strlen(str1);
@@ -519,4 +518,4 @@ void fft(Complex y[], int len, int on) {
 
 ## 算竞选手看过来~ NTT（数论优化的快速傅里叶变换）
 
-戳～[NTT](/math/poly/ntt)
+戳～ [NTT](/math/poly/ntt) 

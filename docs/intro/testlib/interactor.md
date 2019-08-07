@@ -1,9 +1,9 @@
-Interactor，即交互器，用于交互题与选手程序交互。交互题的介绍见[非传统题](/intro/non-traditional/#_3)。
+Interactor，即交互器，用于交互题与选手程序交互。交互题的介绍见 [非传统题](/intro/non-traditional/#_3) 。
 
 ???+note
     Testlib 仅支持 Codeforces 形式交互题，即两程序交互。不支持 NOI 形式的选手编写函数与其他函数交互。
 
-请在阅读下文前先阅读[通用](./general.md)。
+请在阅读下文前先阅读 [通用](./general.md) 。
 
 Testlib 为 interactor 提供了一个特殊的流 `std::fstream tout` ，它是一个 log 流，你可以在 interactor 中向它写入，并在 checker 中用 `ouf` 读取。
 
@@ -32,11 +32,11 @@ Linux:
 
     interactor 将返回：
 
-    `1`：询问与答案相同，你的程序应当停止询问。
+     `1` ：询问与答案相同，你的程序应当停止询问。
 
-    `0`：询问比答案小。
+     `0` ：询问比答案小。
 
-    `2`：询问比答案大。
+     `2` ：询问比答案大。
 
 注意在此题中我们不需要 `ans` ，因为我们不需要将标准输出与其比较；而在其他题中可能需要这么做。
 

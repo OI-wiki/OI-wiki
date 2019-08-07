@@ -4,7 +4,7 @@ author: Link-cute, Xeonacid, ouuan
 
 ## 例题
 
-[Sliding Window](http://poj.org/problem?id=2823)
+ [Sliding Window](http://poj.org/problem?id=2823) 
 
 本题大意是给出一个长度为 $n$ 的数组，编程输出每 $k$ 个连续的数中的最大值和最小值。
 
@@ -39,52 +39,51 @@ Ps. 单调队列中的 "队列" 与正常的队列有一定的区别，稍后会
 而由于查询区间长度是固定的，超出查询空间的值再大也不能输出，因此还需要 site 数组记录第 $i$ 个队中的数在原数组中的位置，以弹出越界的队头。
 
 ??? "例题参考代码"
-
     ```cpp
-    #include<cstdio>
-    #include<iostream>
-    #include<cstring>
-    #include<cstdlib>
+    #include <cstdio>
+    #include <cstdlib>
+    #include <cstring>
+    #include <iostream>
     #define maxn 1000100
     using namespace std;
-    int q[maxn],a[maxn];
-    int n,k;
-    void getmin(){
-        int head=0,tail=0;
-        for (int i=1;i<k;i++){
-            while (head<=tail&&a[q[tail]]>=a[i]) tail--;
-            q[++tail]=i;
-        }
-        for (int i=k;i<=n;i++){
-            while (head<=tail&&a[q[tail]]>=a[i]) tail--;
-            q[++tail]=i;
-            while (q[head]<=i-k) head++;
-            printf("%d ",a[q[head]]);
-        }
+    int q[maxn], a[maxn];
+    int n, k;
+    void getmin() {
+      int head = 0, tail = 0;
+      for (int i = 1; i < k; i++) {
+        while (head <= tail && a[q[tail]] >= a[i]) tail--;
+        q[++tail] = i;
+      }
+      for (int i = k; i <= n; i++) {
+        while (head <= tail && a[q[tail]] >= a[i]) tail--;
+        q[++tail] = i;
+        while (q[head] <= i - k) head++;
+        printf("%d ", a[q[head]]);
+      }
     }
-
-    void getmax(){
-        int head=0,tail=0;
-        for (int i=1;i<k;i++){
-            while (head<=tail&&a[q[tail]]<=a[i]) tail--;
-            q[++tail]=i;
-        }
-        for (int i=k;i<=n;i++){
-            while (head<=tail&&a[q[tail]]<=a[i]) tail--;
-            q[++tail]=i;
-            while (q[head]<=i-k) head++;
-            printf("%d ",a[q[head]]);
-        }
+    
+    void getmax() {
+      int head = 0, tail = 0;
+      for (int i = 1; i < k; i++) {
+        while (head <= tail && a[q[tail]] <= a[i]) tail--;
+        q[++tail] = i;
+      }
+      for (int i = k; i <= n; i++) {
+        while (head <= tail && a[q[tail]] <= a[i]) tail--;
+        q[++tail] = i;
+        while (q[head] <= i - k) head++;
+        printf("%d ", a[q[head]]);
+      }
     }
-
-    int main(){
-        scanf("%d%d",&n,&k);
-        for (int i=1;i<=n;i++) scanf("%d",&a[i]);
-        getmin();
-        printf("\n");
-        getmax();
-        printf("\n");
-        return 0;
+    
+    int main() {
+      scanf("%d%d", &n, &k);
+      for (int i = 1; i <= n; i++) scanf("%d", &a[i]);
+      getmin();
+      printf("\n");
+      getmax();
+      printf("\n");
+      return 0;
     }
     ```
 

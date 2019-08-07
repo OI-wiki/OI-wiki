@@ -18,11 +18,11 @@
 
 -    $n = \sum_{d | n}{\varphi(d)}$ 
 
-    利用[莫比乌斯反演](/math/mobius/)相关知识可以得出。
+    利用 [莫比乌斯反演](/math/mobius/) 相关知识可以得出。
 
     也可以这样考虑：如果 $\gcd(k, n) = d$ ，那么 $\gcd(\frac{k}{d},\frac{n}{d}) = 1$ 。（ $k < n$ ）
 
-    如果我们设 $f(x)$ 表示 $\gcd(k, n) = x$ 的数的个数，那么 $n = \sum_{i = 1}^n{f(x)}$ 。
+    如果我们设 $f(x)$ 表示 $\gcd(k, n) = x$ 的数的个数，那么 $n = \sum_{i = 1}^n{f(i)}$ 。
 
     根据上面的证明，我们发现， $f(x) = \varphi(\frac{n}{x})$ ，从而 $n = \sum_{d | n}\varphi(\frac{n}{d})$ 。注意到约数 $d$ 和 $\frac{n}{d}$ 具有对称性，所以上式化为 $n = \sum_{d | n}\varphi(d)$ 。
 
@@ -48,7 +48,7 @@ int euler_phi(int n) {
 ```
 
 如果是多个数的欧拉函数值，可以利用后面会提到的线性筛法来求得。
-详见：[筛法求欧拉函数](/math/sieve#_2)
+详见： [筛法求欧拉函数](/math/sieve#_2) 
 
 ## 欧拉定理
 
@@ -70,4 +70,4 @@ a^{b\bmod\varphi(p)+\varphi(p)},&\gcd(a,\,p)\ne1,\,b\ge\varphi(p)
 \pmod p
 $$
 
-证明和 **习题** 详见[欧拉定理](/math/fermat/)
+证明和 **习题** 详见 [欧拉定理](/math/fermat/) 

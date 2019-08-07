@@ -102,13 +102,13 @@ void swap(int &a, int &b) {
 
 而对应的位运算也就可以看作是对集合进行的操作。
 
-| 操作  |              集合表示 |   位运算语句   |
-| --- | ----------------: | :-------: |
-| 交集  |       $a \cap b$  |  `a & b`  |
-| 并集  |       $a \cup b$  |  `a | b`  |
-| 补集  |        $\bar{a}$  |    `~a`   |
-| 差集  |  $a \setminus b$  |    `~a`   |
-| 对称差 |   $a\triangle b$  |  `a ^ b`  |
+| 操作  |              集合表示 |     位运算语句    |
+| --- | ----------------: | :----------: |
+| 交集  |       $a \cap b$  |    `a & b`   |
+| 并集  |       $a \cup b$  |    `a | b`   |
+| 补集  |        $\bar{a}$  |     `~a`     |
+| 差集  |  $a \setminus b$  |  `a & (~b)`  |
+| 对称差 |   $a\triangle b$  |    `a ^ b`   |
 
 * * *
 
@@ -239,8 +239,8 @@ void swap(int &a, int &b) {
 
 ## 题目推荐
 
-[CODEVS 2743 黑白棋游戏](http://codevs.cn/problem/2743/)
+ [CODEVS 2743 黑白棋游戏](http://codevs.cn/problem/2743/) 
 
 ## 参考
 
-位运算技巧：<https://graphics.stanford.edu/~seander/bithacks.html>
+位运算技巧： <https://graphics.stanford.edu/~seander/bithacks.html> 

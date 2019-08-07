@@ -1,6 +1,6 @@
 ## Lucas 定理
 
-Lucas 定理用于求解大组合数取模的问题，其中 p 必须为素数。正常的组合数运算可以通过递推公式求解（详见[排列组合](/math/combination/)），但当问题规模很大，而模数是一个不大的质数的时候，就不能简单地通过递推求解来得到答案，需要用到 Lucas 定理。
+Lucas 定理用于求解大组合数取模的问题，其中 p 必须为素数。正常的组合数运算可以通过递推公式求解（详见 [排列组合](/math/combination/) ），但当问题规模很大，而模数是一个不大的质数的时候，就不能简单地通过递推求解来得到答案，需要用到 Lucas 定理。
 
 ### 求解方式
 
@@ -143,6 +143,6 @@ LL exlucas(LL m, LL n, LL P) {
 
 ## 习题
 
--   [Luogu3807【模板】卢卡斯定理](https://www.luogu.org/problemnew/show/P3807)
--   [SDOI2010 古代猪文  卢卡斯定理](https://www.luogu.org/problemnew/show/P2480)
--   [Luogu4720【模板】扩展卢卡斯](https://www.luogu.org/problemnew/show/P4720)
+-    [Luogu3807【模板】卢卡斯定理](https://www.luogu.org/problemnew/show/P3807) 
+-    [SDOI2010 古代猪文  卢卡斯定理](https://www.luogu.org/problemnew/show/P2480) 
+-    [Luogu4720【模板】扩展卢卡斯](https://www.luogu.org/problemnew/show/P4720) 

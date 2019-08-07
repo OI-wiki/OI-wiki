@@ -19,11 +19,11 @@ void exgcd(int a, int b, int& x, int& y) {
 }
 ```
 
-扩展欧几里得法和求解[线性同余方程](/math/linear-equation/)是一个原理，在这里不展开解释。
+扩展欧几里得法和求解 [线性同余方程](/math/linear-equation/) 是一个原理，在这里不展开解释。
 
 ### 快速幂法
 
-这个要运用[费马小定理](/math/fermat/)：
+这个要运用 [费马小定理](/math/fermat/) ：
 
 > 若 $p$ 为质数， $a$ 为正整数，且 $a$ 、 $p$ 互质，则 $a^{p-1} \equiv 1 \pmod p$ 。
 
@@ -51,7 +51,9 @@ inline int qpow(long long a, int b) {
 
 ### 线性求逆元
 
-但是如果要求的很多，以上两种方法就显得慢了，很有可能超时，所以下面来讲一下如何线性求逆元。
+求出 $1,2,...,n$ 中每个数关于 $p$ 的逆元。
+
+如果对于每个数进行单次求解，以上两种方法就显得慢了，很有可能超时，所以下面来讲一下如何线性（ $O(n)$ ）求逆元。
 
 首先，很显然的 $1^{-1} \equiv 1 \pmod p$ ；
 
@@ -61,7 +63,7 @@ inline int qpow(long long a, int b) {
 
  $kj^{-1}+i^{-1} \equiv 0 \pmod p$ ；
 
- $i^{-1} \equiv -kj^{-1}+ \pmod p$ ；
+ $i^{-1} \equiv -kj^{-1} \pmod p$ ；
 
  $i^{-1} \equiv -(\frac{p}{i}) (p \mod i)^{-1}$ ；
 
@@ -80,6 +82,14 @@ for (int i = 2; i <= n; ++i) inv[i] = (long long)(p - p / i) * inv[p % i] % p;
 ```
 
 这就是线性求逆元。
+
+另外，根据线性求逆元方法的式子： $i^{-1} \equiv -kj^{-1} \pmod p$ 
+
+递归求解 $j^-1$ , 直到 $j=1$ 返回 $1$ 。
+
+中间优化可以加入一个记忆化来避免多次递归导致的重复，这样求 $1,2,...,n$ 中所有数的逆元的时间复杂度仍是 $O(n)$ 。
+
+ **注意** ：如果用以上给出的式子递归进行单个数的逆元求解，目前已知的时间复杂度的上界为 $O(n^{\frac 1 3})$ ，具体请看 [知乎讨论](https://www.zhihu.com/question/59033693) 。算法竞赛中更好地求单个数的逆元的方法有扩展欧几里得法和快速幂法。
 
 ### 线性求任意 n 个数的逆元
 
@@ -106,12 +116,12 @@ for (int i = 1; i <= n; ++i) inv[i] = sv[i] * s[i - 1] % p;
 
 ## 逆元练习题
 
-[【模板】乘法逆元](https://www.luogu.org/problemnew/show/P3811)
+ [【模板】乘法逆元](https://www.luogu.org/problemnew/show/P3811) 
 
-[乘法逆元 2](https://loj.ac/problem/152)
+ [乘法逆元 2](https://loj.ac/problem/152) 
 
-[同余方程](https://www.luogu.org/problemnew/show/P1082)
+ [同余方程](https://www.luogu.org/problemnew/show/P1082) 
 
-[\[AHOI2005\]洗牌](https://www.lydsy.com/JudgeOnline/problem.php?id=1965)
+ [\[AHOI2005\]洗牌](https://www.lydsy.com/JudgeOnline/problem.php?id=1965) 
 
-[\[SDOI2016\]排列计数](https://www.luogu.org/problemnew/show/P4071)
+ [\[SDOI2016\]排列计数](https://www.luogu.org/problemnew/show/P4071) 

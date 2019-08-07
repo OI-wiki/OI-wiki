@@ -8,14 +8,14 @@
 
 ![](./images/bi-graph.png)
 
-（图源[英文维基](https://en.wikipedia.org/wiki/Bipartite_graph)）
+（图源 [英文维基](https://en.wikipedia.org/wiki/Bipartite_graph) ）
 
 ## 性质
 
 -   如果两个集合中的点分别染成黑色和白色，可以发现二分图中的每一条边都一定是连接一个黑色点和一个白色点。
 
 -   ??? question "二分图不存在长度为奇数的环"
-      因为每一条边都是从一个集合走到另一个集合，只有走偶数次才可能回到同一个集合。
+        因为每一条边都是从一个集合走到另一个集合，只有走偶数次才可能回到同一个集合。
 
 ## 判定
 

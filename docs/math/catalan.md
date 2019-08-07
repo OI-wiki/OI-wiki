@@ -27,7 +27,7 @@ $$
 H_n = \frac{\binom{2n}{n}}{n+1}(n \geq 2, n \in \mathbf{N_{+}})
 $$
 
-关于 Calalan 数的常见公式：
+关于 Catalan 数的常见公式：
 
 $$
 H_n = \begin{cases}

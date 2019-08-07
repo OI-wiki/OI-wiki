@@ -27,23 +27,25 @@
 
 是一个随机数生成器类，效用同 `rand` ，优点是更加随机（出现循环的周期更长）且速度比 `rand()` 快很多。使用时需要 `#include<random>` 。
 
- `mt19937` 基于[Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister)，使用时用其定义一个随机数生成器即可： `std::mt19937 myrand(seed)` ， `seed` 可不填，不填 `seed` 则会使用默认随机种子。
+ `mt19937` 基于 [Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister) ，使用时用其定义一个随机数生成器即可： `std::mt19937 myrand(seed)` ， `seed` 可不填，不填 `seed` 则会使用默认随机种子。
 
  `mt19937` 重载了 `operator ()` ，需要生成随机数时调用 `myrand()` 即可返回一个随机数。
 
 #### 示例
 
-    #include<iostream>
-    #include<random>
-     
-    using namespace std;
-     
-    int main()
-    {
-        mt19937 myrand(time(0));
-        cout<<myrand()<<endl;
-        return 0;
-    }
+```cpp
+#include <ctime>
+#include <iostream>
+#include <random>
+
+using namespace std;
+
+int main() {
+  mt19937 myrand(time(0));
+  cout << myrand() << endl;
+  return 0;
+}
+```
 
 ### random_shuffle
 
@@ -61,7 +63,7 @@
 
 区别在于必须使用自定义的随机数生成器： `std::shuffle(first, last, myrand())` 。
 
-下面是用 `rand()` 及 `random_shuffle()` 编写的一个数据生成器。生成数据为[「ZJOI2012」灾难](https://www.luogu.org/problemnew/show/P2597)的随机小数据。
+下面是用 `rand()` 及 `random_shuffle()` 编写的一个数据生成器。生成数据为 [「ZJOI2012」灾难](https://www.luogu.org/problemnew/show/P2597) 的随机小数据。
 
 ```cpp
 #include <algorithm>
@@ -87,15 +89,13 @@ int main() {
 
 ## Example I
 
-先来看一道网络流题：[「TJOI2015」线性代数](https://www.lydsy.com/JudgeOnline/problem.php?id=3996)。
+先来看一道网络流题： [「TJOI2015」线性代数](https://www.lydsy.com/JudgeOnline/problem.php?id=3996) 。
 
 我们并不想写网络流，于是开始偷税。建模？不存在的。
 
 ### 做法
 
 随机一个位置，把这个位置取反，判断大小并更新答案。
-
-一直重复这个过程直到 TLE 前的最后一秒~~（那不就是没做 2333）~~，然后就 A 了。
 
 ### 代码
 
@@ -141,7 +141,7 @@ int main() {
 
 当一个算法的期望复杂度正确且与输入数据无关时，我们可以通过随机化达到期望上的平衡（就是随机卡不掉的意思
 
-Treap 的随机很经典了，来一发可并堆 ^\_^
+Treap 的随机很经典了，来一发可并堆
 
 ### 做法
 

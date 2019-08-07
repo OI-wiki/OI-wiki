@@ -5,7 +5,7 @@
 
 ## 性质
 
-> 本节 **性质** 部分内容翻译自[wcipeg](http://wcipeg.com/wiki/Lowest_common_ancestor)，并做过修改。
+> 本节 **性质** 部分内容翻译自 [wcipeg](http://wcipeg.com/wiki/Lowest_common_ancestor) ，并做过修改。
 
 1.   $\text{LCA}({u})=u$ ；
 2.   $u$ 是 $v$ 的祖先，当且仅当 $\text{LCA}(u,v)=u$ ；
@@ -31,7 +31,7 @@
 在第二阶段中，我们从最大的 $i$ 开始循环尝试，一直尝试到 $0$ （包括 $0$ ），如果 `fa[u][i] != fa[v][i]` ，则令 `u = fa[u][i]; v = fa[v][i]` ，那么最后的 LCA 为 `fa[u][0]` 。
 
 !!! 例题
-    CODEVS2370[小机房的树](http://codevs.cn/problem/2370/)树上最短路查询
+    CODEVS2370 [小机房的树](http://codevs.cn/problem/2370/) 树上最短路查询
 
 可先求出 LCA，再结合性质 $7$ 进行解答。也可以直接在求 LCA 时求出结果。
 以下代码仅供参考。
@@ -243,9 +243,9 @@ void dfs(int x, int dep) {
 
 LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所指向的点。
 
-### [动态树](/ds/lct)
+###  [动态树](/ds/lct) 
 
-设连续两次 [access](/ds/lct/#access) 操作的点分别为 `u` 和 `v`，则第二次 [access](/ds/lct/#access) 操作返回的点即为 `u` 和 `v` 的 LCA.
+设连续两次 [access](/ds/lct/#access) 操作的点分别为 `u` 和 `v` ，则第二次 [access](/ds/lct/#access) 操作返回的点即为 `u` 和 `v` 的 LCA.
 
 ### 标准 RMQ
 
@@ -263,7 +263,7 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
 
 每一步的复杂度都是 $O(N)$ 的，因此总复杂度依然是 $O(N)$ 。
 
-提供 RMQ 转标准 RMQ 的代码，为洛谷上 ST 表的例题[ **P3865** 【模板】ST 表](https://www.luogu.org/problemnew/show/P3865)
+提供 RMQ 转标准 RMQ 的代码，为洛谷上 ST 表的例题 [ **P3865** 【模板】ST 表](https://www.luogu.org/problemnew/show/P3865) 
 
 ```cpp
 // Copyright (C) 2018 Skqliao. All rights served.
@@ -457,6 +457,6 @@ int main() {
 
 ## 习题
 
--   [严格次小生成树](https://www.luogu.org/problemnew/show/P4180)
--   [货车运输](https://www.luogu.org/problemnew/show/P1967)
--   [跑路](https://www.luogu.org/problemnew/show/P1613)
+-    [严格次小生成树](https://www.luogu.org/problemnew/show/P4180) 
+-    [货车运输](https://www.luogu.org/problemnew/show/P1967) 
+-    [跑路](https://www.luogu.org/problemnew/show/P1613) 

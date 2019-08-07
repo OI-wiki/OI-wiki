@@ -97,7 +97,7 @@ int getsum(int x) {  // a[1]……a[x]的和
 进行推导
 
 $$
-\sum_{i=1}^{r} a_i\\=\sum_{i=1}^r\sum_{j=1}^i b_i\\=\sum_{i=1}^r b_i\times(r-i+1)
+\sum_{i=1}^{r} a_i\\=\sum_{i=1}^r\sum_{j=1}^i b_j\\=\sum_{i=1}^r b_i\times(r-i+1)
 \\=\sum_{i=1}^r b_i\times (r+1)-\sum_{i=1}^r b_i\times i
 $$
 
@@ -183,8 +183,8 @@ int getsum(int k) {
 
 ## 例题
 
--   [树状数组 1：单点修改，区间查询](https://loj.ac/problem/130)
--   [树状数组 2：区间修改，单点查询](https://loj.ac/problem/131)
--   [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132)
--   [二维树状数组 1：单点修改，区间查询](https://loj.ac/problem/133)
--   [二维树状数组 3：区间修改，区间查询](https://loj.ac/problem/135)
+-    [树状数组 1：单点修改，区间查询](https://loj.ac/problem/130) 
+-    [树状数组 2：区间修改，单点查询](https://loj.ac/problem/131) 
+-    [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132) 
+-    [二维树状数组 1：单点修改，区间查询](https://loj.ac/problem/133) 
+-    [二维树状数组 3：区间修改，区间查询](https://loj.ac/problem/135) 

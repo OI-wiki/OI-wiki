@@ -42,7 +42,7 @@ $$
 \end{gathered}
 $$
 
-[NOIP2017 提高组 奶酪](https://loj.ac/problem/2317)就运用了这一知识，可以作为欧氏距离的例题。
+ [NOIP2017 提高组 奶酪](https://loj.ac/problem/2317) 就运用了这一知识，可以作为欧氏距离的例题。
 
 以此类推，我们就得到了 $n$ 维空间中欧氏距离的距离公式：对于 $\vec A(x_{11}, x_{12}, \cdots,x_{1n}) ,~ \vec B(x_{21}, x_{22}, \cdots,x_{2n})$ ，有
 
@@ -116,7 +116,7 @@ $$
 
 ### 例题 1
 
-[USACO2004OPEN Cave Cows 3 洞穴里的牛之三](https://www.luogu.org/problemnew/show/P5098)
+ [USACO2004OPEN Cave Cows 3 洞穴里的牛之三](https://www.luogu.org/problemnew/show/P5098) 
 
 根据题意，对于式子 $|x_1-x_2|+|y_1-y_2|$ ，我们可以假设 $x_1 - x_2 \geq 0$ ，根据 $y_1 - y_2$ 的符号分成两种情况：
 
@@ -161,12 +161,12 @@ int main() {
 
 ## 切比雪夫距离
 
-切比雪夫距离（Chebyshev distance）是向量空间中的一种度量，二个点之间的距离定义是其各坐标数值差绝对值的最大值。——_来源：[维基百科](https://zh.wikipedia.org/wiki/%E5%88%87%E6%AF%94%E9%9B%AA%E5%A4%AB%E8%B7%9D%E7%A6%BB)_
+切比雪夫距离（Chebyshev distance）是向量空间中的一种度量，二个点之间的距离定义是其各坐标数值差绝对值的最大值。——_来源： [维基百科](https://zh.wikipedia.org/wiki/%E5%88%87%E6%AF%94%E9%9B%AA%E5%A4%AB%E8%B7%9D%E7%A6%BB) _
 
 在二维空间内，两个点之间的切比雪夫距离为它们横坐标之差的绝对值与纵坐标之差的绝对值的最大值。设点 $A(x_1,y_1),B(x_2,y_2)$ ，则 $A,B$ 之间的切比雪夫距离用公式可以表示为：
 
 $$
-d(A,B) = max(|x_1 - x_2|, |y_1 - y_2|)
+d(A,B) = \max(|x_1 - x_2|, |y_1 - y_2|)
 $$
 
 仍然是这个栗子，下图中 $A,B$ 的坐标分别为 $A(6,5),B(2,2)$ 。
@@ -174,15 +174,15 @@ $$
 ![Chebyshev-dis](./images/distance-2.svg)
 
 $$
-d(A,B) = max(|20 - 10|, |25 - 10|) = max(10, 15) = 15
+d(A,B) = \max(|20 - 10|, |25 - 10|) = \max(10, 15) = 15
 $$
 
  $n$ 维空间中切比雪夫距离的距离公式：
 
 $$
 \begin{aligned}
-&d(x,y) &=& max\begin{Bmatrix} |x_1 - y_1|,|x_2 - y_2|,\cdot \cdot \cdot,|x_n - y_n|\end{Bmatrix} \\
-&&=& max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in n)\end{aligned}
+&d(x,y) &=& \max\begin{Bmatrix} |x_1 - y_1|,|x_2 - y_2|,\cdot \cdot \cdot,|x_n - y_n|\end{Bmatrix} \\
+&&=& \max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in n)\end{aligned}
 $$
 
 ## 曼哈顿距离与切比雪夫距离的相互转化
@@ -210,7 +210,7 @@ $$
 
 同理，我们再考虑画出平面直角坐标系上所有到原点的 切比雪夫距离 为 $1$ 的点。
 
-通过公式，我们知道 $max(|x|,|y|)=1$ 。
+通过公式，我们知道 $\max(|x|,|y|)=1$ 。
 
 我们将式子展开，也同样可以得到可以得到 $4$ 条 线段，分别是：
 
@@ -280,15 +280,15 @@ $$
 
 ### 例题 2
 
-[ **P4648** ](https://www.luogu.org/problemnew/show/P4648)>（曼哈顿距离转切比雪夫距离）
+ [ **P4648** ](https://www.luogu.org/problemnew/show/P4648) >（曼哈顿距离转切比雪夫距离）
 
-[ **P3964** ](https://www.luogu.org/problemnew/show/P3964)>（切比雪夫距离转曼哈顿距离）
+ [ **P3964** ](https://www.luogu.org/problemnew/show/P3964) >（切比雪夫距离转曼哈顿距离）
 
-最后给出[ **P5098** ](https://www.luogu.org/problemnew/show/P5098)的第二种解法：
+最后给出 [ **P5098** ](https://www.luogu.org/problemnew/show/P5098) 的第二种解法：
 
 我们考虑将题目所求的曼哈顿距离转化为切比雪夫距离，即把每个点的坐标 $(x,y)$ 变为 $(x + y, x - y)$ 。
 
-所求的答案就变为 $max_{i,j\in n}\begin{Bmatrix} max\begin{Bmatrix} |x_i - x_j|,|y_i - y_j|\end{Bmatrix}\end{Bmatrix}$ 
+所求的答案就变为 $\max_{i,j\in n}\begin{Bmatrix} \max\begin{Bmatrix} |x_i - x_j|,|y_i - y_j|\end{Bmatrix}\end{Bmatrix}$ 
 
 现要使得横坐标之差和纵坐标之差最大，只需要预处理出 $x,y$ 的最大值和最小值即可。
 
@@ -340,4 +340,4 @@ int main() {
 
 我们可以简单的认为对两个串进行异或运算，结果为 1 的数量就是两个串的汉明距离。
 
-部分内容搬运自[浅谈三种常见的距离算法](https://www.luogu.org/blog/xuxing/Distance-Algorithm)，感谢作者 xuxing 的授权。
+部分内容搬运自 [浅谈三种常见的距离算法](https://www.luogu.org/blog/xuxing/Distance-Algorithm) ，感谢作者 xuxing 的授权。

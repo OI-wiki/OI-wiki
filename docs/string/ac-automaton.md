@@ -163,123 +163,132 @@ int query(char *t) {
 时间复杂度：AC 自动机的时间复杂度在需要找到所有匹配位置时是 $O(|s|+m)$ ，其中 $|s|$ 表示文本串的长度， $m$ 表示模板串的总匹配次数；而只需要求是否匹配时时间复杂度为 $O(|s|)$ 。
 
 ???+ note "模板 1"
-
-    [LuoguP3808【模板】AC 自动机（简单版）](https://www.luogu.org/problemnew/show/P3808)
+     [LuoguP3808【模板】AC 自动机（简单版）](https://www.luogu.org/problemnew/show/P3808) 
 
     ```cpp
-    #include<bits/stdc++.h>
+    #include <bits/stdc++.h>
     using namespace std;
-    const int N=1e6+6;
+    const int N = 1e6 + 6;
     int n;
 
-    namespace AC{
-        int tr[N][26],tot;
-        int e[N],fail[N];
-        void insert(char *s){
-            int u=0;
-            for(int i=1;s[i];i++){
-                if(!tr[u][s[i]-'a'])tr[u][s[i]-'a']=++tot;
-                u=tr[u][s[i]-'a'];
-            }
-            e[u]++;
-        }
-        queue<int> q;
-        void build(){
-            for(int i=0;i<26;i++)if(tr[0][i])q.push(tr[0][i]);
-            while(q.size()){
-                int u=q.front();q.pop();
-                for(int i=0;i<26;i++){
-                    if(tr[u][i])fail[tr[u][i]]=tr[fail[u]][i],q.push(tr[u][i]);
-                    else tr[u][i]=tr[fail[u]][i];
-                }
-            }
-        }
-        int query(char *t){
-            int u=0,res=0;
-            for(int i=1;t[i];i++){
-                u=tr[u][t[i]-'a'];// 转移
-                for(int j=u;j&&e[j]!=-1;j=fail[j]){
-                    res+=e[j],e[j]=-1;
-                }
-            }
-            return res;
-        }
+    namespace AC {
+    int tr[N][26], tot;
+    int e[N], fail[N];
+    void insert(char *s) {
+      int u = 0;
+      for (int i = 1; s[i]; i++) {
+        if (!tr[u][s[i] - 'a']) tr[u][s[i] - 'a'] = ++tot;
+        u = tr[u][s[i] - 'a'];
+      }
+      e[u]++;
     }
+    queue<int> q;
+    void build() {
+      for (int i = 0; i < 26; i++)
+        if (tr[0][i]) q.push(tr[0][i]);
+      while (q.size()) {
+        int u = q.front();
+        q.pop();
+        for (int i = 0; i < 26; i++) {
+          if (tr[u][i])
+            fail[tr[u][i]] = tr[fail[u]][i], q.push(tr[u][i]);
+          else
+            tr[u][i] = tr[fail[u]][i];
+        }
+      }
+    }
+    int query(char *t) {
+      int u = 0, res = 0;
+      for (int i = 1; t[i]; i++) {
+        u = tr[u][t[i] - 'a'];  // 转移
+        for (int j = u; j && e[j] != -1; j = fail[j]) {
+          res += e[j], e[j] = -1;
+        }
+      }
+      return res;
+    }
+    }  // namespace AC
 
     char s[N];
-    int main(){
-        scanf("%d",&n);
-        for(int i=1;i<=n;i++)scanf("%s",s+1),AC::insert(s);
-        scanf("%s",s+1);
-        AC::build();
-        printf("%d",AC::query(s));
-        return 0;
+    int main() {
+      scanf("%d", &n);
+      for (int i = 1; i <= n; i++) scanf("%s", s + 1), AC::insert(s);
+      scanf("%s", s + 1);
+      AC::build();
+      printf("%d", AC::query(s));
+      return 0;
     }
     ```
 
 ???+ note "模板 2"
-
-    [P3796 【模板】AC 自动机（加强版）](https://www.luogu.org/problemnew/show/P3796)
+     [P3796 【模板】AC 自动机（加强版）](https://www.luogu.org/problemnew/show/P3796) 
 
     ```cpp
-    #include<bits/stdc++.h>
+    #include <bits/stdc++.h>
     using namespace std;
-    const int N=156,L=1e6+6;
-    namespace AC{
-        const int SZ=N*80;
-        int tot,tr[SZ][26];
-        int fail[SZ],idx[SZ],val[SZ];
-        int cnt[N];// 记录第 i 个字符串的出现次数
-        void init(){
-            memset(fail,0,sizeof(fail));
-            memset(tr,0,sizeof(tr));
-            memset(val,0,sizeof(val));
-            memset(cnt,0,sizeof(cnt));
-            memset(idx,0,sizeof(idx));
-            tot=0;
-        }
-        void insert(char *s,int id){//id 表示原始字符串的编号
-            int u=0;
-            for(int i=1;s[i];i++){
-                if(!tr[u][s[i]-'a'])tr[u][s[i]-'a']=++tot;
-                u=tr[u][s[i]-'a'];
-            }
-            idx[u]=id;
-        }
-        queue<int> q;
-        void build(){
-            for(int i=0;i<26;i++)if(tr[0][i])q.push(tr[0][i]);
-            while(q.size()){
-                int u=q.front();q.pop();
-                for(int i=0;i<26;i++){
-                    if(tr[u][i])fail[tr[u][i]]=tr[fail[u]][i],q.push(tr[u][i]);
-                    else tr[u][i]=tr[fail[u]][i];
-                }
-            }
-        }
-        int query(char *t){// 返回最大的出现次数
-            int u=0,res=0;
-            for(int i=1;t[i];i++){
-                u=tr[u][t[i]-'a'];
-                for(int j=u;j;j=fail[j])val[j]++;
-            }
-            for(int i=0;i<=tot;i++)if(idx[i])res=max(res,val[i]),cnt[idx[i]]=val[i];
-            return res;
-        }
+    const int N = 156, L = 1e6 + 6;
+    namespace AC {
+    const int SZ = N * 80;
+    int tot, tr[SZ][26];
+    int fail[SZ], idx[SZ], val[SZ];
+    int cnt[N];  // 记录第 i 个字符串的出现次数
+    void init() {
+      memset(fail, 0, sizeof(fail));
+      memset(tr, 0, sizeof(tr));
+      memset(val, 0, sizeof(val));
+      memset(cnt, 0, sizeof(cnt));
+      memset(idx, 0, sizeof(idx));
+      tot = 0;
     }
-    int n;
-    char s[N][100],t[L];
-    int main(){
-        while(~scanf("%d",&n)){if(n==0)break;
-            AC::init();
-            for(int i=1;i<=n;i++)scanf("%s",s[i]+1),AC::insert(s[i],i);
-            AC::build();
-            scanf("%s",t+1);
-            int x=AC::query(t);
-            printf("%d\n",x);
-            for(int i=1;i<=n;i++)if(AC::cnt[i]==x)printf("%s\n",s[i]+1);
+    void insert(char *s, int id) {  // id 表示原始字符串的编号
+      int u = 0;
+      for (int i = 1; s[i]; i++) {
+        if (!tr[u][s[i] - 'a']) tr[u][s[i] - 'a'] = ++tot;
+        u = tr[u][s[i] - 'a'];
+      }
+      idx[u] = id;
+    }
+    queue<int> q;
+    void build() {
+      for (int i = 0; i < 26; i++)
+        if (tr[0][i]) q.push(tr[0][i]);
+      while (q.size()) {
+        int u = q.front();
+        q.pop();
+        for (int i = 0; i < 26; i++) {
+          if (tr[u][i])
+            fail[tr[u][i]] = tr[fail[u]][i], q.push(tr[u][i]);
+          else
+            tr[u][i] = tr[fail[u]][i];
         }
-        return 0;
+      }
+    }
+    int query(char *t) {  // 返回最大的出现次数
+      int u = 0, res = 0;
+      for (int i = 1; t[i]; i++) {
+        u = tr[u][t[i] - 'a'];
+        for (int j = u; j; j = fail[j]) val[j]++;
+      }
+      for (int i = 0; i <= tot; i++)
+        if (idx[i]) res = max(res, val[i]), cnt[idx[i]] = val[i];
+      return res;
+    }
+    }  // namespace AC
+    int n;
+    char s[N][100], t[L];
+    int main() {
+      while (~scanf("%d", &n)) {
+        if (n == 0) break;
+        AC::init();
+        for (int i = 1; i <= n; i++) scanf("%s", s[i] + 1), AC::insert(s[i], i);
+        AC::build();
+        scanf("%s", t + 1);
+        int x = AC::query(t);
+        printf("%d\n", x);
+        for (int i = 1; i <= n; i++)
+          if (AC::cnt[i] == x) printf("%s\n", s[i] + 1);
+      }
+      return 0;
     }
     ```
 
@@ -303,7 +312,7 @@ int query(char *t) {
 
 ### KMP 自动机
 
-KMP 自动机就是一个不断读入待匹配串，每次匹配时走到接受状态的 DFA。如果共有 $m$ 个状态，第 $i$ 个状态表示已经匹配了前 $i$ 个字符。那么我们定义 $trans_{i,c}$ 表示状态 $i$ 读入字符 $c$ 后到达的状态， $next_{i}$ 表示[prefix function](/string/prefix-function)，则有：
+KMP 自动机就是一个不断读入待匹配串，每次匹配时走到接受状态的 DFA。如果共有 $m$ 个状态，第 $i$ 个状态表示已经匹配了前 $i$ 个字符。那么我们定义 $trans_{i,c}$ 表示状态 $i$ 读入字符 $c$ 后到达的状态， $next_{i}$ 表示 [prefix function](/string/prefix-function) ，则有：
 
 $$
 trans_{i,c} =
@@ -315,7 +324,7 @@ $$
 
 （约定 $next_{0}=0$ ）
 
-我们发现 $trans_{i}$ 只依赖于之前的值，所以可以跟[KMP](/string/prefix-function/#knuth-morris-pratt)一起求出来。
+我们发现 $trans_{i}$ 只依赖于之前的值，所以可以跟 [KMP](/string/prefix-function/#knuth-morris-pratt) 一起求出来。
 
 时间和空间复杂度： $O(m|\Sigma|)$ 。一些细节：走到接受状态之后立即转移到该状态的 $next$ 。
 

@@ -174,13 +174,13 @@ Node* decrease - key(Node* root, Node* x, LL v) {
 
 ### 复杂度分析
 
-见[配对堆的论文](http://www.cs.cmu.edu/~sleator/papers/pairing-heaps.pdf)。
+见 [配对堆的论文](http://www.cs.cmu.edu/~sleator/papers/pairing-heaps.pdf) 。
 
 ### 参考文献
 
-1.  [HOOCCOOH 的题解](https://hooccooh.blog.luogu.org/solution-p3377)
+1.   [HOOCCOOH 的题解](https://hooccooh.blog.luogu.org/solution-p3377) 
 2.  集训队论文《黄源河 -- 左偏树的特点及其应用》
-3.  [《配对堆中文版》](https://wenku.baidu.com/view/f2527bc2bb4cf7ec4afed06d.html)
-4.  [维基百科 pairing heap 词条](https://en.wikipedia.org/wiki/Pairing_heap)
-5.  <https://blog.csdn.net/luofeixiongsix/article/details/50640668>
-6.  <https://brilliant.org/wiki/pairing-heap/>（注：本条目所有图片均来自这里）
+3.   [《配对堆中文版》](https://wenku.baidu.com/view/f2527bc2bb4cf7ec4afed06d.html) 
+4.   [维基百科 pairing heap 词条](https://en.wikipedia.org/wiki/Pairing_heap) 
+5.   <https://blog.csdn.net/luofeixiongsix/article/details/50640668> 
+6.   <https://brilliant.org/wiki/pairing-heap/> （注：本条目所有图片均来自这里）
