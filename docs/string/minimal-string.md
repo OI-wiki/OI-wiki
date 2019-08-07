@@ -7,7 +7,7 @@
 当字符串 $S$ 中可以选定一个位置 $i$ 满足
 
 $$
-S[i\cdots n]+S[1\cdots n-1]=T
+S[i\cdots n]+S[1\cdots i-1]=T
 $$
 
 则称 $S$ 与 $T$ 循环同构
