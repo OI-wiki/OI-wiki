@@ -56,7 +56,7 @@
 
 ### LaTeX 公式的格式
 
-LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对于 Latex 的使用我们有严格的要求。如果您想要快速上手，可以阅读本章节末给出的表格。
+LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对于 LateX 的使用我们有严格的要求。如果您想要快速上手，可以阅读本章节末给出的表格。
 
 1.  首先从使用 Roman 体表示常量和函数做起。LaTeX 已经预先定义好了一些常见的常量、函数、运算符等，我们可以直接调用，包括但不限于：
 
@@ -102,7 +102,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 |  `$a==b$`           |  $a==b$           |  `$a=b$`                             |  $a=b$                          |
 |  `$f[i][j][k]$`     |  $f[i][j][k]$     |  `$f_{i,j,k}, f(i,j,k)$`             |  $f_{i,j,k},f(i,j,k)$           |
 |  `$R,N^*$` （集合）     |  $R,N^*$          |  `$\mathbf{R},\mathbf{N}^*$`         |  $\mathbf{R},\mathbf{N}^*$      |
-|  `$\empty$`         |  $\empty$         |  `$\varnothing$`                     |  $\varnothing$                  |
+|  `$\emptyset$`         |  $\emptyset$         |  `$\varnothing$`                     |  $\varnothing$                  |
 
 ### Markdown 格式
 
