@@ -2,7 +2,7 @@ author: greyqz
 
 ## 普通莫队算法
 
-（主要参考了<https://blog.sengxian.com/algorithms/mo-s-algorithm>。）
+（主要参考了 <https://blog.sengxian.com/algorithms/mo-s-algorithm> 。）
 
 ### 概述
 
@@ -87,7 +87,7 @@ $$
 
 ### 例题 & 代码
 
-[小 Z 的袜子](https://www.lydsy.com/JudgeOnline/problem.php?id=2038)
+ [小 Z 的袜子](https://www.lydsy.com/JudgeOnline/problem.php?id=2038) 
 
 思路：莫队算法模板题。
 
@@ -252,7 +252,7 @@ struct node {
 
 ### 例题
 
-[数颜色 BZOJ - 2120](https://www.lydsy.com/JudgeOnline/problem.php?id=2120)
+ [数颜色 BZOJ - 2120](https://www.lydsy.com/JudgeOnline/problem.php?id=2120) 
 
 题目大意：给你一个序列，M 个操作，有两种操作：
 
@@ -363,7 +363,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 push_back(x),dfs 完 x 点，�
 
 这样的话，我们就把一棵树处理成了序列。
 
-例题是[\[WC2013\]糖果公园](http://uoj.ac/problem/58), 这题是带修改树上莫队
+例题是 [\[WC2013\]糖果公园](http://uoj.ac/problem/58) , 这题是带修改树上莫队
 
 题意是给你一棵树，每个点有颜色，每次询问
 
@@ -576,7 +576,7 @@ int main() {
 -   每个节点都要属于一个块
 -   编号相邻的块之间的距离不能太大
 
-了解了这些条件后，我们看到这样一道题[\[SCOI2005\]王室联邦](https://www.lydsy.com/JudgeOnline/problem.php?id=1086)
+了解了这些条件后，我们看到这样一道题 [\[SCOI2005\]王室联邦](https://www.lydsy.com/JudgeOnline/problem.php?id=1086) 
 
 在这道题的基础上我们只要保证最后一个条件就可以解决分块的问题了
 

@@ -32,4 +32,4 @@ for (int i = 1; i <= cur; i++)
 
 ## 习题
 
-[HDU 2844 Coins](http://acm.hdu.edu.cn/showproblem.php?pid=2844)
+ [HDU 2844 Coins](http://acm.hdu.edu.cn/showproblem.php?pid=2844) 

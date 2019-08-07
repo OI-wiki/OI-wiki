@@ -2,7 +2,7 @@
 
 给定 $n$ 个二维平面上的点，求一组欧几里得距离最近的点对。
 
-下面我们介绍一种时间复杂度为 $O(n\log n)$ 的分治算法来解决这个问题。该算法在 1975 年由[Franco P. Preparata](https://en.wikipedia.org/wiki/Franco_P._Preparata)提出，Preparata 和[Michael Ian Shamos](https://en.wikipedia.org/wiki/Michael_Ian_Shamos)证明了该算法在决策树模型下是最优的。
+下面我们介绍一种时间复杂度为 $O(n\log n)$ 的分治算法来解决这个问题。该算法在 1975 年由 [Franco P. Preparata](https://en.wikipedia.org/wiki/Franco_P._Preparata) 提出，Preparata 和 [Michael Ian Shamos](https://en.wikipedia.org/wiki/Michael_Ian_Shamos) 证明了该算法在决策树模型下是最优的。
 
 ## 算法
 
@@ -133,12 +133,12 @@ rec(0, n - 1);
 
 ## 习题
 
--   [UVA 10245 "The Closest Pair Problem"\[难度：低\]](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1186)
--   [SPOJ #8725 CLOPPAIR "Closest Point Pair"\[难度：低\]](https://www.spoj.com/problems/CLOPPAIR/)
--   [CODEFORCES Team Olympiad Saratov - 2011 "Minimum amount"\[难度：中\]](http://codeforces.com/contest/120/problem/J)
--   [Google CodeJam 2009 Final "Min Perimeter"\[难度：中\]](https://code.google.com/codejam/contest/311101/dashboard#s=a&a=1)
--   [SPOJ #7029 CLOSEST "Closest Triple"\[难度：中\]](https://www.spoj.com/problems/CLOSEST/)
+-    [UVA 10245 "The Closest Pair Problem"\[难度：低\]](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1186) 
+-    [SPOJ #8725 CLOPPAIR "Closest Point Pair"\[难度：低\]](https://www.spoj.com/problems/CLOPPAIR/) 
+-    [CODEFORCES Team Olympiad Saratov - 2011 "Minimum amount"\[难度：中\]](http://codeforces.com/contest/120/problem/J) 
+-    [Google CodeJam 2009 Final "Min Perimeter"\[难度：中\]](https://code.google.com/codejam/contest/311101/dashboard#s=a&a=1) 
+-    [SPOJ #7029 CLOSEST "Closest Triple"\[难度：中\]](https://www.spoj.com/problems/CLOSEST/) 
 
 * * *
 
- **本页面主要译自博文[Нахождение пары ближайших точек](http://e-maxx.ru/algo/nearest_points)与其英文翻译版[Finding the nearest pair of points](https://github.com/e-maxx-eng/e-maxx-eng/blob/master/src/geometry/nearest_points.md)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ **本页面主要译自博文 [Нахождение пары ближайших точек](http://e-maxx.ru/algo/nearest_points) 与其英文翻译版 [Finding the nearest pair of points](https://github.com/e-maxx-eng/e-maxx-eng/blob/master/src/geometry/nearest_points.md) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

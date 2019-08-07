@@ -6,7 +6,7 @@
 
 ## 实现
 
-根据[爬山算法](/misc/hill-climbing/)的过程，我们发现：对于一个当前最优解附近的非最优解，爬山算法直接舍去了这个解。而很多情况下，我们需要去接受这个非最优解从而跳出这个局部最优解，即为模拟退火算法。
+根据 [爬山算法](/misc/hill-climbing/) 的过程，我们发现：对于一个当前最优解附近的非最优解，爬山算法直接舍去了这个解。而很多情况下，我们需要去接受这个非最优解从而跳出这个局部最优解，即为模拟退火算法。
 
 >  **什么是退火？** （选自百度百科）
 >
@@ -38,7 +38,7 @@ $$
 
 注意为了使得解更为精确，我们通常不直接取当前解作为答案，而是在退火过程中维护遇到的所有解的最优值。
 
-引用一张[Wiki - Simulated annealing](https://en.wikipedia.org/wiki/Simulated_annealing)的图片（随着温度的降低，跳跃越来越不随机，最优解也越来越稳定）。
+引用一张 [Wiki - Simulated annealing](https://en.wikipedia.org/wiki/Simulated_annealing) 的图片（随着温度的降低，跳跃越来越不随机，最优解也越来越稳定）。
 
 ![](./images/simulated-annealing.gif)
 
@@ -46,7 +46,7 @@ $$
 
 ## 代码
 
-此处代码以[「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)（求 $n$ 个点的带权类费马点）为例。
+此处代码以 [「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680) （求 $n$ 个点的带权类费马点）为例。
 
 ```cpp
 #include <cmath>
@@ -120,6 +120,6 @@ int main() {
 
 ## 习题
 
--   [「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680)
--   [「JSOI 2016」炸弹攻击](https://www.lydsy.com/JudgeOnline/problem.php?id=4852)
--   [「HAOI 2006」均分数据](https://www.lydsy.com/JudgeOnline/problem.php?id=2428)
+-    [「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680) 
+-    [「JSOI 2016」炸弹攻击](https://www.lydsy.com/JudgeOnline/problem.php?id=4852) 
+-    [「HAOI 2006」均分数据](https://www.lydsy.com/JudgeOnline/problem.php?id=2428) 

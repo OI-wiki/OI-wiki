@@ -189,7 +189,7 @@ inline void write(int x) {
 
 ## 使输入输出优化更为通用
 
-如果你的程序使用多个类型的变量，那么可能需要写多个输入输出优化的函数。下面给出的代码使用[C++ 中的 `template` ](http://www.cplusplus.com/doc/oldtutorial/templates)实现了对于所有整数类型的输入输出优化。
+如果你的程序使用多个类型的变量，那么可能需要写多个输入输出优化的函数。下面给出的代码使用 [C++ 中的 `template` ](http://www.cplusplus.com/doc/oldtutorial/templates) 实现了对于所有整数类型的输入输出优化。
 
 ```cpp
 template <typename T>
@@ -282,6 +282,6 @@ using namespace IO;
 
 ## 参考
 
-<http://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html>
+ <http://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html> 
 
-<http://meme.biology.tohoku.ac.jp/students/iwasaki/cxx/speed.html>
+ <http://meme.biology.tohoku.ac.jp/students/iwasaki/cxx/speed.html> 

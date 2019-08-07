@@ -1,4 +1,4 @@
-学习 IDA\*之前，请确保您已经学完了[A\*](/search/astar)算法和[迭代加深搜索](/search/iterative)。
+学习 IDA\*之前，请确保您已经学完了 [A\*](/search/astar) 算法和 [迭代加深搜索](/search/iterative) 。
 
 ## IDA\*简介
 
@@ -157,4 +157,4 @@ int main() {
 
 ## 练习题
 
-[旋转游戏 UVa1343](https://www.luogu.org/problem/show?pid=uva1343)
+ [旋转游戏 UVa1343](https://www.luogu.org/problem/show?pid=uva1343) 

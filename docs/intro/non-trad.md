@@ -21,13 +21,13 @@ author: Ir1d, hsfzLZH1, CBW2007, Xeonacid, H-J-Granger, kawa-yoiko
 
 ### STDIO 交互
 
-STDIO 交互（标准 I/O 交互）是 Codeforces、AtCoder 等在线平台的交互手段，也是 ICPC 系列赛事中的标准。[LOJ #559.「LibreOJ Round #9」ZQC 的迷宫](https://loj.ac/problem/559)是一道典型的 STDIO 交互题。[这里](https://codeforces.com/blog/entry/45307)是 Codeforces 的一个更加简要的说明。
+STDIO 交互（标准 I/O 交互）是 Codeforces、AtCoder 等在线平台的交互手段，也是 ICPC 系列赛事中的标准。 [LOJ #559.「LibreOJ Round #9」ZQC 的迷宫](https://loj.ac/problem/559) 是一道典型的 STDIO 交互题。 [这里](https://codeforces.com/blog/entry/45307) 是 Codeforces 的一个更加简要的说明。
 
 对于这类题目，选手只需像往常一样将询问写到标准输出， **刷新输出缓冲** 后从标准输入读取结果。选手程序刷新输出缓冲后，通过管道连接它的测评程序（称为交互器）才能立刻接收到这些数据。在 C/C++ 中， `fflush(stdout)` 和 `std::cout << std::flush` 可以实现这个操作；Pascal 则是 `flush(output)` 。
 
 ### Grader 交互
 
-Grader 交互方式常见于 IOI、APIO 等国际 OI 赛事（特别是 CMS 平台的竞赛）。[UOJ #206.【APIO2016】Gap](http://uoj.ac/problem/206)是一道典型的 grader 交互题。
+Grader 交互方式常见于 IOI、APIO 等国际 OI 赛事（特别是 CMS 平台的竞赛）。 [UOJ #206.【APIO2016】Gap](http://uoj.ac/problem/206) 是一道典型的 grader 交互题。
 
 对于这类题目，选手只需编写一个特定的函数完成某项任务，它通过调用给定的若干辅助函数来进行交互。为了便于选手在本地测试，题目会下发一个头文件与一个参考测评程序 `grader.cpp` （对于 Pascal 语言是一个库 `graderlib` ），选手将自己的程序与 `grader.cpp` 一同编译方可得到可执行文件。
 
@@ -48,7 +48,7 @@ STDIO 交互的一个明显优势在于它可以支持任何编程语言，但�
 
 ## 通信题
 
-在通信题中，选手需要编写 **两个** 程序，合作完成某项任务。第一个程序接收问题的输入，并产生某些输出；第二个程序的输入会与第一个的输出相关（有时是原封不动地作为一个参数，有时会由评测端处理得到），它需要产生问题的解。[UOJ #178. 新年的贺电](http://uoj.ac/problem/178)和[#454.【UER #8】打雪仗](http://uoj.ac/problem/454)都是典型的通信题。
+在通信题中，选手需要编写 **两个** 程序，合作完成某项任务。第一个程序接收问题的输入，并产生某些输出；第二个程序的输入会与第一个的输出相关（有时是原封不动地作为一个参数，有时会由评测端处理得到），它需要产生问题的解。 [UOJ #178. 新年的贺电](http://uoj.ac/problem/178) 和 [#454.【UER #8】打雪仗](http://uoj.ac/problem/454) 都是典型的通信题。
 
 本地测试的方法由于题目设定的不同而多种多样，常用的如：
 
@@ -67,10 +67,10 @@ STDIO 交互的一个明显优势在于它可以支持任何编程语言，但�
 
 其实你可以理解为一道交互题中，你变成了编写前面讲到的辅助函数，而选手代码就是给出的程序。
 
-这种题在[LeetCode](https://leetcode.com/)、[PTA - 拼题 A](https://pintia.cn/problem-sets)上比较多见，没见过的可以去看一看。
+这种题在 [LeetCode](https://leetcode.com/) 、 [PTA - 拼题 A](https://pintia.cn/problem-sets) 上比较多见，没见过的可以去看一看。
 
 ## 其他类型
 
-比如说[Quine](https://loj.ac/problem/4)，这道题要求的是编写一个程序使得你的程序能够输出它本身（要求程序包含可见字符）。
+比如说 [Quine](https://loj.ac/problem/4) ，这道题要求的是编写一个程序使得你的程序能够输出它本身（要求程序包含可见字符）。
 
 这是一道经典题，但是在绝大多数 OJ 上都很难实现。

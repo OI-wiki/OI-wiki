@@ -83,7 +83,7 @@ bitset<1000> bs;  // a bitset with 1000 bits
 
 ## 应用
 
-### [LibreOJ β Round #2」贪心只能过样例](https://loj.ac/problem/515)
+###  [LibreOJ β Round #2」贪心只能过样例](https://loj.ac/problem/515) 
 
 这题可以用 dp 做，转移方程很简单：
 
@@ -91,13 +91,13 @@ bitset<1000> bs;  // a bitset with 1000 bits
 
 但如果直接做的话是 $O(n^5)$ 的，（看起来）过不了。
 
-发现可以用 `bitset` 优化，左移再或起来就好了：[std::bitset](https://loj.ac/submission/395274)
+发现可以用 `bitset` 优化，左移再或起来就好了： [std::bitset](https://loj.ac/submission/395274) 
 
-然后发现……被加了几个剪枝的暴力艹了：[加了几个剪枝的暴力](https://loj.ac/submission/395673)
+然后发现……被加了几个剪枝的暴力艹了： [加了几个剪枝的暴力](https://loj.ac/submission/395673) 
 
-然而，可以手写 `bitset` （只需要支持左移后或起来这一种操作）压 $64$ 位（ `unsigned long long` ）来艹掉暴力：[手写 bitset](https://loj.ac/submission/395619)
+然而，可以手写 `bitset` （只需要支持左移后或起来这一种操作）压 $64$ 位（ `unsigned long long` ）来艹掉暴力： [手写 bitset](https://loj.ac/submission/395619) 
 
-### [CF1097F Alex and a TV Show](https://codeforces.com/contest/1097/problem/F)
+###  [CF1097F Alex and a TV Show](https://codeforces.com/contest/1097/problem/F) 
 
 #### 题意
 
@@ -122,7 +122,7 @@ bitset<1000> bs;  // a bitset with 1000 bits
 
 现在的问题是，如何通过一个可重集的约数构成的可重集得到该可重集中某个数的个数。
 
-令原可重集为 $A$ ，其约数构成的可重集为 $A'$ ，我们要求 $A$ 中 $x$ 的个数，用[莫比乌斯反演](/math/mobius/)推一推：
+令原可重集为 $A$ ，其约数构成的可重集为 $A'$ ，我们要求 $A$ 中 $x$ 的个数，用 [莫比乌斯反演](/math/mobius/) 推一推：
 
 $$
 \begin{aligned}&\sum\limits_{i\in A}[\frac i x=1]\\=&\sum\limits_{i\in A}\sum\limits_{d|\frac i x}\mu(d)\\=&\sum\limits_{d\in A',x|d}\mu(\frac d x)\end{aligned}
@@ -215,8 +215,8 @@ $$
 
 ### 与树分块结合
 
- `bitset` 与树分块结合可以解决一类求树上多条路径信息并的问题，详见[数据结构/树分块](/ds/tree-decompose/)。
+ `bitset` 与树分块结合可以解决一类求树上多条路径信息并的问题，详见 [数据结构/树分块](/ds/tree-decompose/) 。
 
 ### 计算高维偏序
 
-详见[FHR 课件](https://github.com/OI-wiki/libs/blob/master/lang/csl/FHR-分块bitset求高维偏序.pdf)。
+详见 [FHR 课件](https://github.com/OI-wiki/libs/blob/master/lang/csl/FHR-分块bitset求高维偏序.pdf) 。

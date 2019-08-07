@@ -8,7 +8,7 @@
 
 * * *
 
-首先，对于多项式 $f\left(x\right)$ ，若 $\ln{f\left(x\right)}$ 存在，则由其[定义](../#ln-exp)，其必须满足：
+首先，对于多项式 $f\left(x\right)$ ，若 $\ln{f\left(x\right)}$ 存在，则由其 [定义](../#ln-exp) ，其必须满足：
 
 $$
 \left[x^{0}\right]f\left(x\right)=1
@@ -59,7 +59,7 @@ $$
 
 ### Newton's Method
 
-使用[ **Newton's Method** ](/math/poly/newton/#newtons-method)即可在 $O\left(n\log{n}\right)$ 的时间复杂度内解决多项式 $\exp$ 。
+使用 [ **Newton's Method** ](/math/poly/newton/#newtons-method) 即可在 $O\left(n\log{n}\right)$ 的时间复杂度内解决多项式 $\exp$ 。
 
 ## Code
 

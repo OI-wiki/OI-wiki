@@ -1,4 +1,4 @@
-在学习之前请先学习[分块](/ds/square-root-decomposition/)。
+在学习之前请先学习 [分块](/ds/square-root-decomposition/) 。
 
 打表大家都知道，就是在比赛时把答案都输出出来，然后开个数组，把答案直接存入数组里。于是你的代码时间复杂度就是 $O(1)$ 的了。
 
@@ -27,10 +27,10 @@ $$
 
 ### 例题
 
-[「BZOJ 3798」特殊的质数](https://www.lydsy.com/JudgeOnline/problem.php?id=3798)：权限题……~~不过可以在各大 BZ 离线题库中看到。~~
+ [「BZOJ 3798」特殊的质数](https://www.lydsy.com/JudgeOnline/problem.php?id=3798) ：权限题……~~不过可以在各大 BZ 离线题库中看到。~~
 
-[题意简述](https://www.zhihu.com/question/60674478/answer/180805562)：求 $[l,r]$ 区间内有多少个质数可以分解为两个正整数的平方和。——via PoPoQQQ
+ [题意简述](https://www.zhihu.com/question/60674478/answer/180805562) ：求 $[l,r]$ 区间内有多少个质数可以分解为两个正整数的平方和。——via PoPoQQQ
 
-[「Luogu P1822」魔法指纹](https://www.luogu.org/problem/show?pid=P1822)：其实是一道暴搜，不过可以练练分段打表。
+ [「Luogu P1822」魔法指纹](https://www.luogu.org/problem/show?pid=P1822) ：其实是一道暴搜，不过可以练练分段打表。
 
-~~明明是我先写的分段打表为什么你们这么熟练 QAQ，可以对比下[我的题解](https://blog.csdn.net/HeRaNO/article/details/78379324)的发布时间和 Luogu 中的。~~
+~~明明是我先写的分段打表为什么你们这么熟练 QAQ，可以对比下 [我的题解](https://blog.csdn.net/HeRaNO/article/details/78379324) 的发布时间和 Luogu 中的。~~

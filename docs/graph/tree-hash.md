@@ -46,7 +46,7 @@ $$
 
 ### Problem
 
-[Luogu P5403](https://www.luogu.org/problemnew/show/P5043)
+ [Luogu P5403](https://www.luogu.org/problemnew/show/P5043) 
 
 ### Solution
 

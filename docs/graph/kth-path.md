@@ -145,7 +145,7 @@ int main() {
 
 ### 可持久化可并堆优化
 
- **在阅读本内容前，请先了解[可持久化可并堆](/ds/persistent-heap)的相关知识。** 
+ **在阅读本内容前，请先了解 [可持久化可并堆](/ds/persistent-heap) 的相关知识。** 
 
 使用可持久化可并堆优化合并一个结点与其在 $T$ 上的祖先的信息，每次将一个结点与其在 $T$ 上的父亲合并，时间复杂度为 $O(n\log_2 m)$ ，空间复杂度为 $O((n+k)\log_2 m)$ 。这样在求出一个结点对应的堆时，无需复制结点且之后其父亲结点对应的堆仍然可以正常访问。
 
@@ -269,4 +269,4 @@ int main() {
 
 ## 习题
 
-[luogu P2483\[SDOI2010\]魔法猪学院](https://www.luogu.org/problemnew/show/P2483)
+ [luogu P2483\[SDOI2010\]魔法猪学院](https://www.luogu.org/problemnew/show/P2483) 

@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
 
 另外，不要使用 `std::random_shuffle()` ，请使用 Testlib 中的 `shuffle()` ，它同样接受一对迭代器。它使用 `rnd` 来打乱序列，即满足如上“好的 generator”的要求。
 
-极简正则表达式：[通用](./general.md)
+极简正则表达式： [通用](./general.md) 
 
 ## 示例：生成一棵树
 
@@ -96,6 +96,6 @@ for (int i = 0; i + 1 < n; i++)
 
 ## 更多示例
 
-可以在[GitHub](https://github.com/MikeMirzayanov/testlib/tree/master/generators)中找到。
+可以在 [GitHub](https://github.com/MikeMirzayanov/testlib/tree/master/generators) 中找到。
 
- **本文翻译自[Генераторы на testlib.h - Codeforces](https://codeforces.com/blog/entry/18291)。 `testlib.h` 的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。** 
+ **本文翻译自 [Генераторы на testlib.h - Codeforces](https://codeforces.com/blog/entry/18291) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 

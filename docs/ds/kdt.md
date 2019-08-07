@@ -46,7 +46,7 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
 
 ## 插入/删除
 
-如果维护的这个 $k$ 维点集是可变的，即可能会插入或删除一些点，此时 k-D Tree 的平衡性无法保证。由于 k-D Tree 的构造，不能支持旋转，类似与 FHQ Treap 的随机优先级也不能保证其复杂度，可以保证平衡性的手段只有类似于[替罪羊树](/ds/scapegoat)的重构思想。
+如果维护的这个 $k$ 维点集是可变的，即可能会插入或删除一些点，此时 k-D Tree 的平衡性无法保证。由于 k-D Tree 的构造，不能支持旋转，类似与 FHQ Treap 的随机优先级也不能保证其复杂度，可以保证平衡性的手段只有类似于 [替罪羊树](/ds/scapegoat) 的重构思想。
 
 我们引入一个重构常数 $\alpha$ ，对于 k-D Tree 上的一个结点 $x$ ，若其有一个子树的结点数在以 $x$ 为根的子树的结点数中的占比大于 $\alpha$ ，则认为以 $x$ 为根的子树是不平衡的，需要重构。重构时，先遍历子树求出一个序列，然后用以上描述的方法建出一棵 k-D Tree，代替原来不平衡的子树。
 
@@ -59,7 +59,7 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
 ## 邻域查询
 
 ???+note " 例题[luogu P1429 平面最近点对（加强版）](https://www.luogu.org/problem/P1429)"
-    给定平面上的 $n$ 个点 $(x_i,y_i)$ ，找出平面上最近两个点对之间的[欧几里得距离](/geometry/distance/#_1)。
+    给定平面上的 $n$ 个点 $(x_i,y_i)$ ，找出平面上最近两个点对之间的 [欧几里得距离](/geometry/distance/#_1) 。
 
      $2\le n\le 200000 , 0\le x_i,y_i\le 10^9$ 
 
@@ -380,14 +380,14 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
 
 ## 习题
 
-[luogu P2479\[SDOI2010\]捉迷藏](https://www.luogu.org/problem/P2479)
+ [luogu P2479\[SDOI2010\]捉迷藏](https://www.luogu.org/problem/P2479) 
 
-[luogu P4169\[Violet\]天使玩偶/SJY 摆棋子](https://www.luogu.org/problem/P4169)
+ [luogu P4169\[Violet\]天使玩偶/SJY 摆棋子](https://www.luogu.org/problem/P4169) 
 
-[luogu P2093\[国家集训队\]JZPFAR](https://www.luogu.org/problem/P2093)
+ [luogu P2093\[国家集训队\]JZPFAR](https://www.luogu.org/problem/P2093) 
 
-[luogu P4390\[BOI2007\]Mokia 摩基亚](https://www.luogu.org/problem/P4390)
+ [luogu P4390\[BOI2007\]Mokia 摩基亚](https://www.luogu.org/problem/P4390) 
 
-[luogu P4475 巧克力王国](https://www.luogu.org/problem/P4475)
+ [luogu P4475 巧克力王国](https://www.luogu.org/problem/P4475) 
 
-[luogu P3769\[CH 弱省胡策 R2\]TATT](https://www.luogu.org/problem/P3769)
+ [luogu P3769\[CH 弱省胡策 R2\]TATT](https://www.luogu.org/problem/P3769) 
