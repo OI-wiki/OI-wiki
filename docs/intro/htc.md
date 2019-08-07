@@ -66,7 +66,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
     所以在输入常量、函数名、运算符等时，请先检查一下是否应该使用 Roman 体或其它字体，LaTeX 符号的书写可参考[此页](https://katex.org/docs/supported.html)内容（不是全部），也可以百度求解。
 
-    如果遇到没有预先定义好的需要使用 Roman 体的 **函数名** ，我们可以使用 `$\operatorname{something}$` 来产生，如我们可以使用 `$\operatorname{lcm}$` 产生正体的最小公倍数（函数）符号。同理，产生 Roman 体的 **常量** 应用 `$\mathrm{}$` ；其他非数学内容，包括中文、英文、特殊符号等，一律使用 `$\text{}$` 。
+    如果遇到没有预先定义好的需要使用 Roman 体的 **函数名** ，我们可以使用 `$\operatorname{something}$` 来产生，如我们可以使用 `$\operatorname{lcm}$` 产生正体的最小公倍数（函数）符号。同理，产生 Roman 体的 **常量** 应用 `$\mathrm{}$` ；其他非数学内容，包括英文、特殊符号等，一律使用 `$\text{}$` 。中文我们则建议不放在 LaTeX 公式中。
 
 2.  在不会引起歧义的情况下，请用 `$\times$` 代替星号，叉乘请使用 `$\times$` ，点乘请使用 `$\cdot$` 。如 $a\times b,a\cdot b$ ，而不是 $a\ast b$ 。
 
@@ -90,19 +90,19 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
 我们可以使用一个表格来总结一下上述内容。注意本表格没有举出所有符号的用法，只给出常见的错误。类似的情况类比即可。
 
-| 不符合规定的用法            | 渲染效果              | 符合规定的用法                              | 渲染效果                            |
-| ------------------- | ----------------- | ------------------------------------ | ------------------------------- |
-|  `$log, ln, lg$`    |  $log, ln, lg$    |  `$\log, \ln, \lg$`                  |  $\log, \ln, \lg$               |
-|  `$sin, cos, tan$`  |  $sin, cos, tan$  |  `$\sin, \cos, \tan$`                |  $\sin, \cos, \tan$             |
-|  `$gcd, lcm$`       |  $gcd, lcm$       |  `$\gcd, \operatorname{lcm}$`        |  $\gcd,\operatorname{lcm}$      |
-|  `$ 小于 a 的质数 $`     |  $小于a的质数$         |  `$\text{小于 a 的质数}$`                 |  $\text{小于a的质数}$                |
-|  `$...$`            |  $...$            |  `$\cdots, \ldots, \vdots, \ddots$`  |  $\cdots,\ldots,\vdots,\ddots$  |
-|  `$a*b$` （两个数相乘）    |  $a*b$            |  `$a\times b,a\cdot b$`              |  $a\times b,a\cdot b$           |
-|  `$SPFA$` （英文名称）    |  $SPFA$           |  `SPFA`                              | SPFA                            |
-|  `$a==b$`           |  $a==b$           |  `$a=b$`                             |  $a=b$                          |
-|  `$f[i][j][k]$`     |  $f[i][j][k]$     |  `$f_{i,j,k}, f(i,j,k)$`             |  $f_{i,j,k},f(i,j,k)$           |
-|  `$R,N^*$` （集合）     |  $R,N^*$          |  `$\mathbf{R},\mathbf{N}^*$`         |  $\mathbf{R},\mathbf{N}^*$      |
-|  `$\empty$`         |  $\empty$         |  `$\varnothing$`                     |  $\varnothing$                  |
+| 不符合规定的用法       | 渲染效果        | 符合规定的用法                     | 渲染效果                      |
+| ---------------------- | --------------- | ---------------------------------- | ----------------------------- |
+| `$log, ln, lg$`        | $log, ln, lg$   | `$\log, \ln, \lg$`                 | $\log, \ln, \lg$              |
+| `$sin, cos, tan$`      | $sin, cos, tan$ | `$\sin, \cos, \tan$`               | $\sin, \cos, \tan$            |
+| `$gcd, lcm$`           | $gcd, lcm$      | `$\gcd, \operatorname{lcm}$`       | $\gcd,\operatorname{lcm}$     |
+| `$ 小于 a 的质数 $`    | $小于a的质数$   | `小于 a 的质数`                    | 小于 a 的质数                 |
+| `$...$`                | $...$           | `$\cdots, \ldots, \vdots, \ddots$` | $\cdots,\ldots,\vdots,\ddots$ |
+| `$a*b$` （两个数相乘） | $a*b$           | `$a\times b,a\cdot b$`             | $a\times b,a\cdot b$          |
+| `$SPFA$` （英文名称）  | $SPFA$          | `SPFA`                             | SPFA                          |
+| `$a==b$`               | $a==b$          | `$a=b$`                            | $a=b$                         |
+| `$f[i][j][k]$`         | $f[i][j][k]$    | `$f_{i,j,k}, f(i,j,k)$`            | $f_{i,j,k},f(i,j,k)$          |
+| `$R,N^*$` （集合）     | $R,N^*$         | `$\mathbf{R},\mathbf{N}^*$`        | $\mathbf{R},\mathbf{N}^*$     |
+| `$\empty$`             | $\empty$        | `$\varnothing$`                    | $\varnothing$                 |
 
 ### Markdown 格式
 
