@@ -102,7 +102,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 |  `$a==b$`           |  $a==b$           |  `$a=b$`                             |  $a=b$                          |
 |  `$f[i][j][k]$`     |  $f[i][j][k]$     |  `$f_{i,j,k}, f(i,j,k)$`             |  $f_{i,j,k},f(i,j,k)$           |
 |  `$R,N^*$` （集合）     |  $R,N^*$          |  `$\mathbf{R},\mathbf{N}^*$`         |  $\mathbf{R},\mathbf{N}^*$      |
-|  `$\emptyset$`         |  $\emptyset$         |  `$\varnothing$`                     |  $\varnothing$                  |
+|  `$\emptyset$`      |  $\emptyset$      |  `$\varnothing$`                     |  $\varnothing$                  |
 
 ### Markdown 格式
 
