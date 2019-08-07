@@ -6,7 +6,7 @@ author: Wajov
 
 ### 群的定义
 
-若集合 $S\neq\emptyset$ 和 $S$ 上的运算 $\cdot$ 构成的代数结构 $(S,\cdot)$ 满足以下性质：
+若集合 $S\neq\varnothing$ 和 $S$ 上的运算 $\cdot$ 构成的代数结构 $(S,\cdot)$ 满足以下性质：
 
 -   封闭性： $\forall a,b\in S,a\cdot b\in S$ 
 
