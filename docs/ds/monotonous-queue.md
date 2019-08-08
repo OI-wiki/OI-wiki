@@ -28,6 +28,8 @@ Ps. 单调队列中的 "队列" 与正常的队列有一定的区别，稍后会
 
 有了上面 "单调队列" 的概念，很容易想到用单调队列进行优化。
 
+​	
+
 要求的是每连续的 $k$ 个数中的最大（最小）值，很明显，当一个数进入所要 "寻找" 最大值的范围中时，若这个数比其前面（先进队）的数要大，显然，前面的数会比这个数先出队且不再可能是最大值。
 
 也就是说——当满足以上条件时，可将前面的数 "弹出"，再将该数真正 push 进队尾。
@@ -38,53 +40,74 @@ Ps. 单调队列中的 "队列" 与正常的队列有一定的区别，稍后会
 
 而由于查询区间长度是固定的，超出查询空间的值再大也不能输出，因此还需要 site 数组记录第 $i$ 个队中的数在原数组中的位置，以弹出越界的队头。
 
+例如我们构造一个单调递增的队列会如下：
+
+原序列为：
+
+```
+1 3 -1 -3 5 3 6 7
+```
+
+因为我们始终要维护队列保证其**递增**的特点，所以会有如下的事情发生：
+
+```
+1入队  								 					队列 = {1}
+3比1大，3入队						   					  队列 = {1 3}
+-1比队列中所有元素小，所以清空队列-1入队    					 队列 = {-1}		
+-3比队列中所有元素小，所以清空队列-3入队     					队列 = {-3}		
+5比3大，直接入队									  		队列 = {-3 5}	
+3比5小，5出队，3入队										队列 = {-3 3}
+-3已经在窗体外，所以-3出队；6比3大，6入队					队列 = {3 6}	
+7比6大，7入队											队列 = {3 6 7}
+```
+
 ??? "例题参考代码"
-    ```cpp
-    #include <cstdio>
-    #include <cstdlib>
-    #include <cstring>
-    #include <iostream>
-    #define maxn 1000100
-    using namespace std;
-    int q[maxn], a[maxn];
-    int n, k;
-    void getmin() {
-      int head = 0, tail = 0;
-      for (int i = 1; i < k; i++) {
-        while (head <= tail && a[q[tail]] >= a[i]) tail--;
-        q[++tail] = i;
-      }
-      for (int i = k; i <= n; i++) {
-        while (head <= tail && a[q[tail]] >= a[i]) tail--;
-        q[++tail] = i;
-        while (q[head] <= i - k) head++;
-        printf("%d ", a[q[head]]);
-      }
-    }
-    
-    void getmax() {
-      int head = 0, tail = 0;
-      for (int i = 1; i < k; i++) {
-        while (head <= tail && a[q[tail]] <= a[i]) tail--;
-        q[++tail] = i;
-      }
-      for (int i = k; i <= n; i++) {
-        while (head <= tail && a[q[tail]] <= a[i]) tail--;
-        q[++tail] = i;
-        while (q[head] <= i - k) head++;
-        printf("%d ", a[q[head]]);
-      }
-    }
-    
-    int main() {
-      scanf("%d%d", &n, &k);
-      for (int i = 1; i <= n; i++) scanf("%d", &a[i]);
-      getmin();
-      printf("\n");
-      getmax();
-      printf("\n");
-      return 0;
-    }
-    ```
+​    ```cpp
+​    #include <cstdio>
+​    #include <cstdlib>
+​    #include <cstring>
+​    #include <iostream>
+​    #define maxn 1000100
+​    using namespace std;
+​    int q[maxn], a[maxn];
+​    int n, k;
+​    void getmin() {
+​      int head = 0, tail = 0;
+​      for (int i = 1; i < k; i++) {
+​        while (head <= tail && a[q[tail]] >= a[i]) tail--;
+​        q[++tail] = i;
+​      }
+​      for (int i = k; i <= n; i++) {
+​        while (head <= tail && a[q[tail]] >= a[i]) tail--;
+​        q[++tail] = i;
+​        while (q[head] <= i - k) head++;
+​        printf("%d ", a[q[head]]);
+​      }
+​    }
+​    
+​    void getmax() {
+​      int head = 0, tail = 0;
+​      for (int i = 1; i < k; i++) {
+​        while (head <= tail && a[q[tail]] <= a[i]) tail--;
+​        q[++tail] = i;
+​      }
+​      for (int i = k; i <= n; i++) {
+​        while (head <= tail && a[q[tail]] <= a[i]) tail--;
+​        q[++tail] = i;
+​        while (q[head] <= i - k) head++;
+​        printf("%d ", a[q[head]]);
+​      }
+​    }
+​    
+​    int main() {
+​      scanf("%d%d", &n, &k);
+​      for (int i = 1; i <= n; i++) scanf("%d", &a[i]);
+​      getmin();
+​      printf("\n");
+​      getmax();
+​      printf("\n");
+​      return 0;
+​    }
+​    ```
 
 Ps. 此处的 "队列" 跟普通队列的一大不同就在于可以从队尾进行操作，STL 中有类似的数据结构 deque。
