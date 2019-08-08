@@ -8,7 +8,7 @@
 
 * * *
 
-首先，对于多项式 $f\left(x\right)$ ，若 $\ln{f\left(x\right)}$ 存在，则由其 [定义](../#ln-exp) ，其必须满足：
+首先，对于多项式 $f\left(x\right)$ ，若 $\ln{f\left(x\right)}$ 存在，则由其 [定义](../intro/#ln-exp) ，其必须满足：
 
 $$
 \left[x^{0}\right]f\left(x\right)=1
