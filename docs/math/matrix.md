@@ -181,7 +181,7 @@ int main() {
 }
 ```
 
-* * *
+---
 
 这是一个稍微复杂一些的例子。
 
@@ -190,31 +190,36 @@ f_{1} = f_{2} = 0\\
 f_{n} = 7f_{n-1}+6f_{n-2}+5n+4\times 3^n
 $$
 
-我们发现， $f_n$ 和 $f_{n-1}, f_{n-2}, n$ 有关，于是考虑构造一个矩阵描述状态。
+我们发现，$f_n$ 和 $f_{n-1}, f_{n-2}, n$ 有关，于是考虑构造一个矩阵描述状态。
 
 但是发现如果矩阵仅有这三个元素 $\begin{bmatrix}f_n& f_{n-1}& n\end{bmatrix}$ 是难以构造出转移方程的，因为乘方运算和 $+1$ 无法用矩阵描述。
 
 于是考虑构造一个更大的矩阵。
 
 $$
-\begin{bmatrix}f_n& f_{n-1}& n& 3^n & 1\end{bmatrix}$$ 
+\begin{bmatrix}f_n& f_{n-1}& n& 3^n & 1\end{bmatrix}
+$$
 
 我们希望构造一个递推矩阵可以转移到
-$$
 
-\\begin{bmatrix}
+$$
+\begin{bmatrix}
 f_{n+1}& f_{n}& n+1& 3^{n+1} & 1
-\\end{bmatrix}
-
+\end{bmatrix}
 $$
+
 转移矩阵即为
-$$
-
-\\begin{bmatrix}
-7 & 1 & 0 & 0 & 0\\6 & 0 & 0 & 0 & 0\\5 & 0 & 1 & 0 & 0\\4 & 0 & 0 & 3 & 0\\0 & 0 & 1 & 0 & 1
-\\end{bmatrix}
 
 $$
+\begin{bmatrix}
+7 & 1 & 0 & 0 & 0\\
+6 & 0 & 0 & 0 & 0\\
+5 & 0 & 1 & 0 & 0\\
+4 & 0 & 0 & 3 & 0\\
+0 & 0 & 1 & 0 & 1
+\end{bmatrix}
+$$
+
 ### 矩阵表达修改
 
 ???note "「THUSCH 2017」大魔法师"
@@ -249,29 +254,39 @@ $$
 下面将举几个例子。
 
 $A_i = A_i + v$ 的转移
-$$
 
-\\begin{bmatrix}
+$$
+\begin{bmatrix}
 A & B & C & 1
-\\end{bmatrix}
-\\begin{bmatrix}
-1 & 0 & 0 & 0\\0 & 1 & 0 & 0\\0 & 0 & 1 & 0\\v & 0 & 0 & 1\\\\end{bmatrix}=
-\\begin{bmatrix}
-A+v & B & C & 1\\\\end{bmatrix}
-
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+v & 0 & 0 & 1\\
+\end{bmatrix}=
+\begin{bmatrix}
+A+v & B & C & 1\\
+\end{bmatrix}
 $$
+
 $B_i=B_i \cdot v$ 的转移
-$$
 
-\\begin{bmatrix}
+$$
+\begin{bmatrix}
 A & B & C & 1
-\\end{bmatrix}
-\\begin{bmatrix}
-1 & 0 & 0 & 0\\0 & v & 0 & 0\\0 & 0 & 1 & 0\\0 & 0 & 0 & 1\\\\end{bmatrix}=
-\\begin{bmatrix}
-A & B \\cdot v & C & 1\\\\end{bmatrix}
-
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0 & 0\\
+0 & v & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+\end{bmatrix}=
+\begin{bmatrix}
+A & B \cdot v & C & 1\\
+\end{bmatrix}
 $$
+
 ---
 
 ???note "「LibreOJ 6208」树上询问"
@@ -285,23 +300,28 @@ $$
     $n,~m \leq 100000, ~-10 \leq d \leq 10$
 
 若直接思考，下放操作和维护信息并不是很好想。但是矩阵可以轻松地表达。
-$$
-
-\\begin{aligned}
-\\begin{bmatrix}k & t & 1 \\end{bmatrix}
-\\begin{bmatrix}
-1 & 0 & 0\\0 & 1 & 0\\d & 0 & 1
-\\end{bmatrix}
-&=
-\\begin{bmatrix}k+d & t & 1 \\end{bmatrix}\\\\begin{bmatrix}k & t & 1 \\end{bmatrix}
-\\begin{bmatrix}
-1 & d & 0\\0 & 1 & 0\\0 & 0 & 1
-\\end{bmatrix}
-&=
-\\begin{bmatrix}k & t+d \\times k & 1 \\end{bmatrix}
-\\end{aligned}
 
 $$
+\begin{aligned}
+\begin{bmatrix}k & t & 1 \end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+d & 0 & 1
+\end{bmatrix}
+&=
+\begin{bmatrix}k+d & t & 1 \end{bmatrix}\\
+\begin{bmatrix}k & t & 1 \end{bmatrix}
+\begin{bmatrix}
+1 & d & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+&=
+\begin{bmatrix}k & t+d \times k & 1 \end{bmatrix}
+\end{aligned}
+$$
+
 ### 定长路径统计
 
 ???+note "问题描述"
@@ -312,23 +332,23 @@ $$
 显然，该邻接矩阵对应 $k=1$ 时的答案。
 
 假设我们知道长度为 $k$ 的路径条数构成的矩阵，记为矩阵 $C_k$ ，我们想求 $C_{k+1}$ 。显然有 DP 转移方程
-$$
-
-C_{k+1}[i,j]= \\sum_{p = 1}^{n} C_k[i,p]\\cdot G[p,j]
 
 $$
+C_{k+1}[i,j] = \sum_{p = 1}^{n} C_k[i,p] \cdot G[p,j]
+$$
+
 我们可以把它看作矩阵乘法的运算，于是上述转移可以描述为
-$$
-
-C\_{k+1} = C_k \\cdot G
 
 $$
+C_{k+1} = C_k \cdot G
+$$
+
 那么把这个递推式展开可以得到
-$$
-
-C_k = \\underbrace{G \\cdot G \\cdots G}_{k \\text{ 次}} = G^k
 
 $$
+C_k = \underbrace{G \cdot G \cdots G}_{k \text{ 次}} = G^k
+$$
+
 要计算这个矩阵幂，我们可以使用快速幂（二进制取幂）的思想，在 $O(n^3 \log_2 k)$ 的复杂度内计算结果。
 
 ### 定长最短路
@@ -339,29 +359,29 @@ $$
 我们仍构造这个图的邻接矩阵 $G$ ， $G[i,j]$ 表示从 $i$ 到 $j$ 的边权。如果 $i,j$ 两点之间没有边，那么 $G[i,j]=\infty$ 。（有重边的情况取边权的最小值）
 
 显然上述矩阵对应 $k=1$ 时问题的答案。我们仍假设我们知道 $k$ 的答案，记为矩阵 $L_k$ 。现在我们想求 $k+1$ 的答案。显然有转移方程
-$$
-
-L_{k+1}[i,j]= \\min_{1\\le p \\le n} \\left{L_k[i,p]+ G[p,j]\\right}
 
 $$
+L_{k+1}[i,j] = \min_{1\le p \le n} \left\{L_k[i,p] + G[p,j]\right\}
+$$
+
 事实上我们可以类比矩阵乘法，你发现上述转移只是把矩阵乘法的乘积求和变成相加取最小值，于是我们定义这个运算为 $\odot$ ，即
-$$
-
-A \\odot B = C~~\\Longleftrightarrow~~C[i,j]=\\min\_{1\\le p \\le n}\\left{A[i,p]+ B[p,j]\\right}
 
 $$
+A \odot B = C~~\Longleftrightarrow~~C[i,j]=\min_{1\le p \le n}\left\{A[i,p] + B[p,j]\right\}
+$$
+
 于是得到
-$$
-
-L\_{k+1} = L_k \\odot G
 
 $$
+L_{k+1} = L_k \odot G
+$$
+
 展开递推式得到
-$$
-
-L_k = \\underbrace{G \\odot \\ldots \\odot G}_{k\\text{ 次}} = G^{\\odot k}
 
 $$
+L_k = \underbrace{G \odot \ldots \odot G}_{k\text{ 次}} = G^{\odot k}
+$$
+
 我们仍然可以用矩阵快速幂的方法计算上式，因为它显然是具有结合律的。时间复杂度 $O(n^3 \log_2 k)$ 。
 
 ### 限长路径计数/最短路
@@ -382,4 +402,3 @@ $$
 -    [洛谷 P1939【模板】矩阵加速（数列）](https://www.luogu.org/problemnew/show/P1939) ， $\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
 
      **本页面部分内容译自博文 [Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths) 与其英文翻译版 [Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
-$$
