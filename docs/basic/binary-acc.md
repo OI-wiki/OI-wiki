@@ -6,7 +6,7 @@ author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsf
 
 RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）值。
 
-解决 RMQ 问题的主要方法有两种，分别是 ST 表和线段树，具体请参见 [ST 表](/ds/sprase-table) 页面和 [线段树](/ds/segment) 页面。
+解决 RMQ 问题的主要方法有两种，分别是 ST 表和线段树，具体请参见 [ST 表](/ds/sprase-table) 页面和 [线段树](/ds/seg) 页面。
 
 ## 树上倍增求 LCA
 
