@@ -3,7 +3,7 @@
 # 欢迎来到 **OI Wiki**！
 
 [![Travis](https://img.shields.io/travis/OI-WIKI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/OI-wiki/OI-wiki)
-[![Progress](https://img.shields.io/badge/Progress-84%25-brightgreen.svg?style=flat-square)](https://github.com/OI-wiki/OI-wiki)
+[![Progress](https://img.shields.io/badge/Progress-88%25-brightgreen.svg?style=flat-square)](https://github.com/OI-wiki/OI-wiki)
 [![Uptime Robot Status](https://img.shields.io/uptimerobot/status/m781254113-3e3bac467c64fc99eafd383e.svg?style=flat-square)](https://status.oi-wiki.org/)
 [![Telegram](https://img.shields.io/badge/OI--wiki-join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
 [![QQ](https://img.shields.io/badge/OI--wiki-join%20QQ%20group-brightgreen.svg?style=flat-square)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
@@ -104,7 +104,7 @@ python2 -m SimpleHTTPServer
 ## 如何参与完善 OI Wiki
 
 我们非常欢迎你为 **OI Wiki** 编写内容，将自己的所学所得与大家分享。
-具体的贡献方式在 [F.A.Q](https://oi-wiki.org/intro/faq/)。
+具体的贡献方式在 [如何参与](https://oi-wiki.org/intro/htc/)。
 
 * * *
 
@@ -135,7 +135,7 @@ python2 -m SimpleHTTPServer
 
 本项目受 [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
 
-非常感谢一起完善 **OI Wiki** 的 [小伙伴们](https://github.com/OI-wiki/OI-wiki/graphs/contributors)！
+非常感谢一起完善 **OI Wiki** 的 [小伙伴们](https://github.com/OI-wiki/OI-wiki/graphs/contributors) 和为 **OI Wiki** 捐赠的 [朋友们](https://oi-wiki.org/intro/thanks/) ！！
 
 <a href="https://github.com/OI-wiki/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890&button=false" /></a>
 

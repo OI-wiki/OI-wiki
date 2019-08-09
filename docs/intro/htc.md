@@ -35,7 +35,7 @@
 
 ### Remark-lint 的格式要求
 
-[remark-lint](https://github.com/remarkjs/remark-lint)可以自动给项目内文件统一风格，我们现在启用的配置文件在[.remarkrc](https://github.com/24OI/OI-wiki/blob/master/.remarkrc)。
+ [remark-lint](https://github.com/remarkjs/remark-lint) 可以自动给项目内文件统一风格，我们现在启用的配置文件在 [.remarkrc](https://github.com/24OI/OI-wiki/blob/master/.remarkrc) 。
 
 在配置过程中我们也遇到了一些 remark-lint 不能很好处理的问题：
 
@@ -48,7 +48,7 @@
 5.  伪代码请使用 ```` ```text```` ，直接使用 ```` ``` ```` 可能导致内容被错误地缩进。
 6.  涉及到目录的更改的时候：
     1.  需要改动 `mkdocs.yml` ；
-    2.  请注意如果影响到作者信息统计，麻烦更新[author 字段](https://oi-wiki.org/intro/faq/#_15)；（不改动目录的时候不需要维护 author 字段）
+    2.  请注意如果影响到作者信息统计，麻烦更新 [author 字段](https://oi-wiki.org/intro/faq/#_11) ；（不改动目录的时候不需要维护 author 字段）
     3.  需要在项目内搜索一下是否有内链需要更新。
 7.  使用 `???` 或 `!!!` 开头的 Details 语法时，需要注意：开头至少有四个空格的行才会被当做是在 Details 语法的文本框中。
 
@@ -85,7 +85,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
     \log, \ln, \lg, \sin, \cos, \tan, \sec, \csc, \cot, \gcd, \min, \max, \exp, \inf, \mod, \bmod, \pmod
     ```
 
-    所以在输入常量、函数名、运算符等时，请先检查一下是否应该使用 Roman 体或其它字体，LaTeX 符号的书写可参考[此页](https://katex.org/docs/supported.html)内容（不是全部），也可以百度求解。
+    所以在输入常量、函数名、运算符等时，请先检查一下是否应该使用 Roman 体或其它字体，LaTeX 符号的书写可参考 [此页](https://katex.org/docs/supported.html) 内容（不是全部），也可以百度求解。
 
     如果遇到没有预先定义好的需要使用 Roman 体的 **函数名** ，我们可以使用 `$\operatorname{something}$` 来产生，如我们可以使用 `$\operatorname{lcm}$` 产生正体的最小公倍数（函数）符号。同理，产生 Roman 体的 **常量** 应用 `$\mathrm{}$` ；其他非数学内容，包括英文、特殊符号等，一律使用 `$\text{}$` 。中文我们则建议不放在 LaTeX 公式中。
 
@@ -152,7 +152,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
     两种格式的区别是，带 `+` 的会默认保持展开，而不带 `+` 的会默认保持折叠。效果可以参考图例的例 7。
 
-如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅[MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)和[cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)，前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 Markdown 传统语法和 mkdocs-material 支持的扩展语法。
+如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E) 和 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/) ，前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 Markdown 传统语法和 mkdocs-material 支持的扩展语法。
 
 ## 图解
 
