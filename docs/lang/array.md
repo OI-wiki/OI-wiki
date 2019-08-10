@@ -44,4 +44,4 @@ cout << sum << endl;
 
 ### 越界访问下标
 
-数组的下标 $\mathit{idx}$ 应当满足 $0\leq \mathit{idx}\leq \mathit{size}$ ，如果下标越界，则会产生不可预料的后果，如段错误（Segment Fault）。
+数组的下标 $\mathit{idx}$ 应当满足 $0\leq \mathit{idx}< \mathit{size}$ ，如果下标越界，则会产生不可预料的后果，如段错误（Segmentation Fault）。
