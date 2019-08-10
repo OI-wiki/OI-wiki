@@ -1,10 +1,8 @@
-##  `set` 
+##  `set`
 
-##  `multiset` 
+##  `multiset`
 
-##  `map` 
-
-###  `map` 的基本使用方法
+##  `map`
 
  `map` 是有序键值对（Attribute–value pair）容器，它的元素的键是唯一的。搜索、移除和插入操作拥有对数复杂度。 `map` 通常实现为红黑树。
 
@@ -25,8 +23,8 @@ map<string, int> mp;
 
 #### 添加元素
 
-1.  直接赋值，例如 `mp["Tom"]=0` 
-2.  通过插入一个类型为 `pair<Key, T>` 的值，例如 `mp.insert(pair<string,int>("Alan",100));` 
+1.  直接赋值，例如 `mp["Tom"]=0`
+2.  通过插入一个类型为 `pair<Key, T>` 的值，例如 `mp.insert(pair<string,int>("Alan",100));`
 3.  使用 `initializer_list` ：
 
 ```cpp
@@ -63,7 +61,7 @@ it = mp.find("Tom");
 mp.erase(it)
 ```
 
-如果你想清空所有的元素，可以直接 `mp.clear()` 
+如果你想清空所有的元素，可以直接 `mp.clear()`
 
 #### 其他函数
 
@@ -72,4 +70,4 @@ mp.erase(it)
 -    `size` 返回 `map` 中元素的个数。
 -    `empty` 如果 `map` 为空则返回 `true` ，例如 `mp.empty()` 。
 
-##  `multimap` 
+##  `multimap`
