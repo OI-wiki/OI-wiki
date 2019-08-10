@@ -6,18 +6,18 @@
 
 ###  `map` 的基本使用方法
 
-`map` 是有序键值对（Attribute–value pair）容器，它的元素的键是唯一的。搜索、移除和插入操作拥有对数复杂度。 `map` 通常实现为红黑树。
+ `map` 是有序键值对（Attribute–value pair）容器，它的元素的键是唯一的。搜索、移除和插入操作拥有对数复杂度。 `map` 通常实现为红黑树。
 
 你可能需要存储一些键值对，例如存储学生姓名对应的分数： `Tom 0` ， `Bob 100` ， `Alan 100` 。
 但是由于数组下标只能为非负整数，所以无法用姓名作为下标来存储，这个时候最简单的办法就是使用 STL 中的 `map` 了！
 
- `map` 重载了 `operator[]` ,因此可以用任意类型作为下标（在 `map` 中叫做 `key` ，也就是索引）：
+ `map` 重载了 `operator[]` , 因此可以用任意类型作为下标（在 `map` 中叫做 `key` ，也就是索引）：
 
 ```cpp
 map<Key, T> yourMap;
 ```
 
-其中， `Key` 是键的类型，`T` 是值的类型，下面是使用 `map` 的实例：
+其中， `Key` 是键的类型， `T` 是值的类型，下面是使用 `map` 的实例：
 
 ```cpp
 map<string, int> mp;
@@ -27,7 +27,7 @@ map<string, int> mp;
 
 1.  直接赋值，例如 `mp["Tom"]=0` 
 2.  通过插入一个类型为 `pair<Key, T>` 的值，例如 `mp.insert(pair<string,int>("Alan",100));` 
-3. 使用 `initializer_list`：
+3.  使用 `initializer_list` ：
 
 ```cpp
 map<string, int> mp = {{"Tom", 0}, {"Bob", "100"}, {"Alan", 100}};
@@ -36,7 +36,7 @@ map<string, int> mp = {{"Tom", 0}, {"Bob", "100"}, {"Alan", 100}};
 #### 查找、修改元素
 
 1.  使用赋值语法： `int grade=mp["Tom"]` 。
-2.  使用成员函数 `iterator find( const Key& key );` 来确定一个索引是否在 `map` 中。它会返回指向该元素的迭代器；如果索引不在 `map` 中，则会返回尾后迭代器 `mp.end()`。
+2.  使用成员函数 `iterator find( const Key& key );` 来确定一个索引是否在 `map` 中。它会返回指向该元素的迭代器；如果索引不在 `map` 中，则会返回尾后迭代器 `mp.end()` 。
 3.  如果你想获得 `map` 里全部的元素，请使用迭代器，解引用迭代器会得到一个类型为 `pair<Key, T>` 的值：
 
 ```cpp
