@@ -47,14 +47,14 @@ for (int i = 0; i < N; i++) {
 为了简化这样的循环代码，我们可以使用宏定义：
 
 ```cpp
-#define _for(i, a, b) for (int i = (a); i < (b); ++i)
+#define f(x, y, z) for (int x = (y), __ = (z); x < __; ++x)
 ```
 
-这样写循环代码时，就可以简化成 `_for(i, 0, N)` 。例如：
+这样写循环代码时，就可以简化成 `f(i, 0, N)` 。例如：
 
 ```cpp
-vector b;
-_for(i, 1, a.size()) { ... }
+// b is a STL container
+f(i, 0, a.size()) { ... }
 ```
 
 另外推荐一个比较有用的宏定义：
