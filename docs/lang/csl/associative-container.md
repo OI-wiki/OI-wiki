@@ -21,7 +21,7 @@ map<Key, T> yourMap;
 map<string, int> mp;
 ```
 
-#### 添加元素
+### 添加元素
 
 1.  直接赋值，例如 `mp["Tom"]=0` 
 2.  通过插入一个类型为 `pair<Key, T>` 的值，例如 `mp.insert(pair<string,int>("Alan",100));` 
@@ -31,7 +31,7 @@ map<string, int> mp;
 map<string, int> mp = {{"Tom", 0}, {"Bob", "100"}, {"Alan", 100}};
 ```
 
-#### 查找、修改元素
+### 查找、修改元素
 
 1.  使用赋值语法： `int grade=mp["Tom"]` 。
 2.  使用成员函数 `iterator find( const Key& key );` 来确定一个索引是否在 `map` 中。它会返回指向该元素的迭代器；如果索引不在 `map` 中，则会返回尾后迭代器 `mp.end()` 。
@@ -51,7 +51,7 @@ for (auto &i : mp) {
 }
 ```
 
-#### 删除元素
+### 删除元素
 
 如果你想删除 `Tom` 这个元素，则可以利用 `find` 函数找到 `Tom` ，然后再 `erase` 如下
 
@@ -63,7 +63,7 @@ mp.erase(it)
 
 如果你想清空所有的元素，可以直接 `mp.clear()` 
 
-#### 其他函数
+### 其他函数
 
 -    `count` 返回匹配特定键的元素出现的次数，例如 `mp.count("Tom")` 。
 -    `swap` 可以交换两个 `map` ，例如 `swap(m1,m2)` 。
