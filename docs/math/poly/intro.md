@@ -33,7 +33,7 @@ $$
 \end{aligned}
 $$
 
-我们称 $Q(x)$ 为 $g(x)$ 除 $f(x)$ 的 **商（Quotient）** ，$R(x) $为$ g(x) $除$ f(x)$ 的 **余数（Remainder）** 。
+我们称 $Q(x)$ 为 $g(x)$ 除 $f(x)$ 的 **商（Quotient）** ， $R(x)$ 为 $g(x)$ 除 $f(x)$ 的 **余数（Remainder）** 。
 亦可记作
 
 $$
