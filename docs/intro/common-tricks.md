@@ -35,6 +35,36 @@
     for (int i = 0; i < n; ++i) res = res OP(a[i] OP a[i + 1]);
     ```
 
+## 循环宏定义
+
+我们写代码时，像下面这样的循环代码写得会非常多：
+
+```cpp
+for (int i = 0; i < N; i++) {
+}
+```
+
+为了简化这样的循环代码，我们可以使用宏定义：
+
+```cpp
+#define f(x, y, z) for (int x = (y), __ = (z); x < __; ++x)
+```
+
+这样写循环代码时，就可以简化成 `f(i, 0, N)` 。例如：
+
+```cpp
+// b is a STL container
+f(i, 0, a.size()) { ... }
+```
+
+另外推荐一个比较有用的宏定义：
+
+```cpp
+#define _rep(i, a, b) for (int i = (a); i <= (b); ++i)
+```
+
+> 注：参考《算法竞赛入门经典 习题与解答》
+
 ## 善用 namespace
 
 使用 namespace 能使程序可读性更好，便于调试。
