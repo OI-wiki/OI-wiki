@@ -1,6 +1,6 @@
 # Chapter 1
 
-> 用C++语言与计算机对话
+> 用 C++ 语言与计算机对话
 
 ## Level 0
 
@@ -8,118 +8,118 @@
 
 了解两种常见赛事和赛制
 
-- [OI 赛事与赛制](https://oi-wiki.org/intro/oi/)
-- [ICPC/CCPC 赛事与赛制](https://oi-wiki.org/intro/icpc/)
+-    [OI 赛事与赛制](https://oi-wiki.org/intro/oi/) 
+-    [ICPC/CCPC 赛事与赛制](https://oi-wiki.org/intro/icpc/) 
 
-## Level 1 
+## Level 1
 
 > C++ 语言入门
 
-### Subtask 1 Hello World 
+### Subtask 1 Hello World
 
 > 你好，世界！
 
-[Hello, World!](https://oi-wiki.org/lang/helloworld/)
+ [Hello, World!](https://oi-wiki.org/lang/helloworld/) 
 
-### Subtask 2 输入输出函数 Part 1 
+### Subtask 2 输入输出函数 Part 1
 
-> cin与cout的介绍
+> cin 与 cout 的介绍
 
-### Subtask 3 基本运算符 
+### Subtask 3 基本运算符
 
-> +， -， *， /， %， =
+> \+，-，\*，/，%，=
 
-[运算](https://oi-wiki.org/lang/op/)
+ [运算](https://oi-wiki.org/lang/op/) 
 
-### Subtask 4 条件运算符 
+### Subtask 4 条件运算符
 
-> ==, <=, >= ,!= &&, ||
+> ==, &lt;=,>= ,!= &&, ||
 
-## Level 2 
+## Level 2
 
-### Subtask 1 条件分支语句 
+### Subtask 1 条件分支语句
 
-> 把C++当作英文来看吧
+> 把 C++ 当作英文来看吧
 
-- if 语句
-- if-else 语句
-- if-elseif-else 语句
+-   if 语句
+-   if-else 语句
+-   if-elseif-else 语句
 
-[分支](https://oi-wiki.org/lang/branch/)
+ [分支](https://oi-wiki.org/lang/branch/) 
 
-### Subtask 2 循环语句 
+### Subtask 2 循环语句
 
 > 读代码！读出声来！
 
-- while 语句;
-- for(赋值语句; 条件语句; 追踪变量) 语句;
-- do while 语句;
-- goto 语句
+-   while 语句；
+-   for（赋值语句；条件语句；追踪变量）语句；
+-   do while 语句；
+-   goto 语句
 
-[循环](https://oi-wiki.org/lang/loop/)
+ [循环](https://oi-wiki.org/lang/loop/) 
 
-## Level 3 
+## Level 3
 
 > 函数与递归
 
 ### Subtask 1 函数
 
-- 函数的定义
-- 函数的返回值
-- 无返回值的函数
-- 为什么使用函数
-- 函数与数学中的函数
+-   函数的定义
+-   函数的返回值
+-   无返回值的函数
+-   为什么使用函数
+-   函数与数学中的函数
 
-[函数](https://oi-wiki.org/lang/func/)
+ [函数](https://oi-wiki.org/lang/func/) 
 
-### Subtask 2 递归 
+### Subtask 2 递归
 
 > 同一个函数的嵌套
 
-- 递归是什么
-- 到底是同一个函数还是不同的函数
+-   递归是什么
+-   到底是同一个函数还是不同的函数
 
-[递归 & 分治](https://oi-wiki.org/basic/divide-and-conquer/)
+ [递归 & 分治](https://oi-wiki.org/basic/divide-and-conquer/) 
 
 ### Subtask 3 标准库函数的调用
 
-- min, max, swap, abs, ceil, floor
+-   min, max, swap, abs, ceil, floor
 
 ### Subtask 4 函数的简单应用
 
-## Level 4 
+## Level 4
 
 > 条件语句、循环语句、函数的综合应用
 
 ### Subtask 1 利用循环实现排序
 
-- [冒泡排序](https://oi-wiki.org/basic/bubble-sort/)
-- [插入排序](https://oi-wiki.org/basic/insertion-sort/)
-- [选择排序](https://oi-wiki.org/basic/selection-sort/)
+-    [冒泡排序](https://oi-wiki.org/basic/bubble-sort/) 
+-    [插入排序](https://oi-wiki.org/basic/insertion-sort/) 
+-    [选择排序](https://oi-wiki.org/basic/selection-sort/) 
 
 ### Subtask 2 利用递归函数求解简单问题
 
-- 递归函数求斐波那契数列
-- 递归函数求解gcd(a, b)
+-   递归函数求斐波那契数列
+-   递归函数求解 gcd(a, b)
 
 ### Subtask 3 输入输出 Part 2
 
-> scanf与printf的运用
+> scanf 与 printf 的运用
 
 ## Level 5
 
 > 函数 Part2 与结构体
 
-### Subtask 1 结构体 
+### Subtask 1 结构体
 
 > struct node(){};
 
-[结构体](https://oi-wiki.org/lang/struct/)
+ [结构体](https://oi-wiki.org/lang/struct/) 
 
-### Subtask 2 学习更多的系统封装函数 
+### Subtask 2 学习更多的系统封装函数
 
-- sort
-- reverse
-- unique
+-   sort
+-   reverse
+-   unique
 
-[STL 算法](https://oi-wiki.org/lang/csl/algorithm/)
+ [STL 算法](https://oi-wiki.org/lang/csl/algorithm/) 
