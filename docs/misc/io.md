@@ -218,6 +218,8 @@ c = read<__int128>();
 
 开启调试开关时使用 `getchar()`,  `putchar()`，便于调试。
 
+若要开启文件读写时，请在所有读写之前加入 `freopen()` 。
+
 ```cpp
 // #define DEBUG 1  //调试开关
 struct IO {
@@ -227,7 +229,7 @@ struct IO {
     char pbuf[MAXSIZE], *pp;
 #if DEBUG
 #else
-    IO() : p1(buf), pp(pbuf) { p2 = buf + fread(buf, 1, MAXSIZE, stdin); }
+    IO() : p1(buf), p2(buf), pp(pbuf) {}
     ~IO() { fwrite(pbuf, 1, pp - pbuf, stdout); }
 #endif
     inline char gc() {
