@@ -39,15 +39,15 @@
 for (len = 1; len <= n; len++)
   for (i = 1; i <= 2 * n - 1; i++) {
     int j = len + i - 1;
-    for (k = i; k <= j && k <= 2 * n - 1; k++)
+    for (k = i; k < j && k <= 2 * n - 1; k++)
       f[i][j] = max(f[i][j], f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1]);
   }
 ```
 
 ## 几道练习题
 
-[洛谷 P1063 能量项链](https://www.luogu.org/problemnew/show/P1063)
+ [NOIP 2006 能量项链](https://vijos.org/p/1312) 
 
-[洛谷 P1005 矩阵取数游戏](https://www.luogu.org/problemnew/show/P1005)
+ [NOIP 2007 矩阵取数游戏](https://vijos.org/p/1378) 
 
-[洛谷 P4767\[IOI2000\]邮局](https://www.luogu.org/problemnew/show/P4767)
+ [洛谷 P4767\[IOI2000\]邮局](https://www.luogu.org/problemnew/show/P4767) 

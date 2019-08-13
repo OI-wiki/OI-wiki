@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
 
 ## 为什么要使用 Testlib？
 
-有人说写 generator 不需要用 Teslib，它在这没什么用。实际上这是个不正确的想法。一个好的 generator 应该满足这一点： **在任何环境下对于相同输入它给出相同输出** 。写 generator 就避免不了生成随机值，平时我们用的 `rand()` 或 C++11 的 `mt19937/uniform_int_distribution` ，当操作系统不同、使用不同编译器编译、不同时间运行等，它们的输出都可能不同（对于非常常用的 `srand(time(0))` ，这是显然的），而这就会给生成数据带来不确定性。
+有人说写 generator 不需要用 Testlib，它在这没什么用。实际上这是个不正确的想法。一个好的 generator 应该满足这一点： **在任何环境下对于相同输入它给出相同输出** 。写 generator 就避免不了生成随机值，平时我们用的 `rand()` 或 C++11 的 `mt19937/uniform_int_distribution` ，当操作系统不同、使用不同编译器编译、不同时间运行等，它们的输出都可能不同（对于非常常用的 `srand(time(0))` ，这是显然的），而这就会给生成数据带来不确定性。
 
 而 Testlib 中的随机值生成函数则保证了相同调用会输出相同值，与 generator 本身或平台均无关。另外。它给生成各种要求的随机值提供了很大便利，如 `rnd.next("[a-z]{1,10}")` 会生成一个长度在 $[1,10]$ 范围内的串，每个字符为 `a` 到 `z` ，很方便吧！
 
@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
 
 另外，不要使用 `std::random_shuffle()` ，请使用 Testlib 中的 `shuffle()` ，它同样接受一对迭代器。它使用 `rnd` 来打乱序列，即满足如上“好的 generator”的要求。
 
-极简正则表达式：[通用](./general.md)
+极简正则表达式： [通用](./general.md) 
 
 ## 示例：生成一棵树
 
@@ -96,6 +96,6 @@ for (int i = 0; i + 1 < n; i++)
 
 ## 更多示例
 
-可以在[GitHub](https://github.com/MikeMirzayanov/testlib/tree/master/generators)中找到。
+可以在 [GitHub](https://github.com/MikeMirzayanov/testlib/tree/master/generators) 中找到。
 
- **本文翻译自[Генераторы на testlib.h - Codeforces](https://codeforces.com/blog/entry/18291)。 `testlib.h` 的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。** 
+ **本文翻译自 [Генераторы на testlib.h - Codeforces](https://codeforces.com/blog/entry/18291) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 

@@ -1,3 +1,5 @@
+author: cutekibry, zj713300
+
  **博弈论** ，是经济学的一个分支，主要研究具有竞争或对抗性质的对象，在一定规则下产生的各种行为。博弈论考虑游戏中的个体的预测行为和实际行为，并研究它们的优化策略。
 
 通俗地讲，博弈论主要研究的是：在一个游戏中，进行游戏的多位玩家的策略。
@@ -112,6 +114,6 @@ $$
 
 ## 参考文献
 
-[（转载）Nim 游戏博弈（收集完全版）- exponent - 博客园](http://www.cnblogs.com/exponent/articles/2141477.html)
+ [（转载）Nim 游戏博弈（收集完全版）- exponent - 博客园](http://www.cnblogs.com/exponent/articles/2141477.html) 
 
-[\[组合游戏与博弈论\]【学习笔记】- Candy? - 博客园](https://www.cnblogs.com/candy99/p/6548836.html)
+ [\[组合游戏与博弈论\]【学习笔记】- Candy? - 博客园](https://www.cnblogs.com/candy99/p/6548836.html) 

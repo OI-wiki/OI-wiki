@@ -63,7 +63,11 @@ int findmax(int o) {
 
 ```cpp
 void insert(int o, int v) {
-  if (!o) return;
+  if (!o) {
+    val[o = ++sum] = v;
+    cnt[o] = siz[o] = 1;
+    return;
+  }
   siz[o]++;
   if (val[o] > v) insert(lc[o], v);
   if (val[o] == v) {
@@ -86,7 +90,7 @@ void insert(int o, int v) {
 
 若 $o$ 为链节点，即只有一个儿子的节点，返回这个儿子。
 
-若 $o$ 有两个非空子节点，一般是用它左子树的最小值代替它，然后将它删除。
+若 $o$ 有两个非空子节点，一般是用它左子树的最大值或右子树的最小值代替它，然后将它删除。
 
 时间复杂度 $O(h)$ 。
 

@@ -2,7 +2,7 @@
 
 Pick 定理：给定顶点座标均是整点（或正方形格子点）的简单多边形，皮克定理说明了其面积 ${\displaystyle A}$ 和内部格点数目 ${\displaystyle i}$ 、边上格点数目 ${\displaystyle b}$ 的关系： ${\displaystyle A=i+{\frac {b}{2}}-1}$ 。
 
-具体证明：[Pick's theorem](https://en.wikipedia.org/wiki/Pick%27s_theorem)
+具体证明： [Pick's theorem](https://en.wikipedia.org/wiki/Pick%27s_theorem) 
 
 它有以下推广：
 

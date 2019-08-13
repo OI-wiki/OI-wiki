@@ -1,3 +1,5 @@
+author: Chrogeek, HeRaNO, Dev-XYS, Dev-jqe
+
 ## 常见用途
 
 在算法竞赛中，我们有时需要维护多维度信息。在这种时候，我们经常需要树套树来记录信息。
@@ -17,13 +19,13 @@
 
 ## 经典例题
 
-[陌上花开](https://www.lydsy.com/JudgeOnline/problem.php?id=3262)将第一维排序处理，然后用树套树维护第二维和第三维。
+ [陌上花开](https://www.lydsy.com/JudgeOnline/problem.php?id=3262) 将第一维排序处理，然后用树套树维护第二维和第三维。
 
 ## 示例代码
 
 第二维查询
 
-```c++
+```cpp
 int tree_query(int k, int l, int r, int x) {
   if (k == 0) return 0;
   if (1 <= l && r <= sec[x].y) return vec_query(ou_root[k], 1, p, 1, sec[x].z);
@@ -36,7 +38,7 @@ int tree_query(int k, int l, int r, int x) {
 
 第二维修改
 
-```c++
+```cpp
 void tree_insert(int &k, int l, int r, int x) {
   if (k == 0) k = ++ou_tot;
   vec_insert(ou_root[k], 1, p, sec[x].z);
@@ -51,7 +53,7 @@ void tree_insert(int &k, int l, int r, int x) {
 
 第三维查询
 
-```c++
+```cpp
 int vec_query(int k, int l, int r, int x, int y) {
   if (k == 0) return 0;
   if (x <= l && r <= y) return data[k];
@@ -64,7 +66,7 @@ int vec_query(int k, int l, int r, int x, int y) {
 
 第三维修改
 
-```c++
+```cpp
 void vec_insert(int &k, int l, int r, int loc) {
   if (k == 0) k = ++tot;
   data[k]++;

@@ -45,8 +45,8 @@ match(char *a, char *b, int n, int m) {
 
 ## Hash 的方法
 
-参见[Hash](/string/hash)
+参见 [Hash](/string/hash) 
 
 ## KMP 算法
 
-参见[KMP](/string/kmp)
+参见 [KMP](/string/kmp/#knuth-morris-pratt) 

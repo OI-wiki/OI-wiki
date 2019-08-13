@@ -1,3 +1,5 @@
+author: hsfzLZH1, cesonic
+
 WBLT，全称 Weight Balanced Leafy Tree，一种不常见的平衡树写法，但是具有常数较小，可以当做可并堆使用的优点。
 
 类似于 WBL（weight-balanced trees，加权平衡树），WBLT 体现了 leafy 的性质，即节点多，怎么多呢？

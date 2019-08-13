@@ -2,13 +2,13 @@
 
 # 欢迎来到 **OI Wiki**！
 
-[![Travis](https://img.shields.io/travis/24OI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/24OI/OI-wiki)
-[![Progress](https://img.shields.io/badge/Progress-84%25-brightgreen.svg?style=flat-square)](https://github.com/24OI/OI-wiki)
+[![Travis](https://img.shields.io/travis/OI-WIKI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/OI-wiki/OI-wiki)
+[![Progress](https://img.shields.io/badge/Progress-88%25-brightgreen.svg?style=flat-square)](https://github.com/OI-wiki/OI-wiki)
 [![Uptime Robot Status](https://img.shields.io/uptimerobot/status/m781254113-3e3bac467c64fc99eafd383e.svg?style=flat-square)](https://status.oi-wiki.org/)
 [![Telegram](https://img.shields.io/badge/OI--wiki-join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
 [![QQ](https://img.shields.io/badge/OI--wiki-join%20QQ%20group-brightgreen.svg?style=flat-square)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
-[![GitHub watchers](https://img.shields.io/github/watchers/24OI/OI-Wiki.svg?style=social&label=Watch)](https://github.com/24OI/OI-wiki)
-[![GitHub stars](https://img.shields.io/github/stars/24OI/OI-Wiki.svg?style=social&label=Stars)](https://github.com/24OI/OI-wiki)
+[![GitHub watchers](https://img.shields.io/github/watchers/OI-Wiki/OI-Wiki.svg?style=social&label=Watch)](https://github.com/OI-wiki/OI-wiki)
+[![GitHub stars](https://img.shields.io/github/stars/OI-Wiki/OI-Wiki.svg?style=social&label=Stars)](https://github.com/OI-wiki/OI-wiki)
 
 * * *
 
@@ -28,7 +28,7 @@
 - 竞赛中出现的优质题目
 - 与面试、实际应用相结合的经验
 
-关于上述待完善内容，请参见 **OI Wiki** 中的 [Projects](https://github.com/24OI/OI-wiki/projects)，详细列举了正在做的事情以及待做事项。
+关于上述待完善内容，请参见 **OI Wiki** 中的 [Projects](https://github.com/OI-wiki/OI-wiki/projects)，详细列举了正在做的事情以及待做事项。
 
 与此同时， **OI Wiki** 源于社区，提倡 **知识自由**，在未来也绝不会商业化，将始终保持独立自由的性质。
 
@@ -47,7 +47,7 @@
 **如果遇到问题，可以查阅 [F.A.Q.](https://oi-wiki.org/intro/faq/) 来了解更多信息。**
 
 ```bash
-git clone https://github.com/24OI/OI-wiki.git --depth=1
+git clone https://github.com/OI-wiki/OI-wiki.git --depth=1
 
 cd OI-wiki
 
@@ -68,7 +68,7 @@ mkdocs build -v
 mkdocs --help
 ```
 
-我们现在在服务器端渲染 MathJax ，如果希望实现类似效果，可以参考 [netlify_build.sh](https://github.com/24OI/OI-wiki/blob/master/scripts/netlify_build.sh)。（需要安装 Node.js）
+我们现在在服务器端渲染 MathJax ，如果希望实现类似效果，可以参考 [netlify_build.sh](https://github.com/OI-wiki/OI-wiki/blob/master/scripts/netlify_build.sh)。（需要安装 Node.js）
 
 ### 镜像
 
@@ -104,7 +104,7 @@ python2 -m SimpleHTTPServer
 ## 如何参与完善 OI Wiki
 
 我们非常欢迎你为 **OI Wiki** 编写内容，将自己的所学所得与大家分享。
-具体的贡献方式在 [F.A.Q](https://oi-wiki.org/intro/faq/)。
+具体的贡献方式在 [如何参与](https://oi-wiki.org/intro/htc/)。
 
 * * *
 
@@ -116,15 +116,28 @@ python2 -m SimpleHTTPServer
 换言之，使用过程中您可以自由地共享、演绎，但是必须署名、以相同方式共享、分享时没有附加限制，  
 而且需要为 GitHub 仓库点赞（Star）。
 
+而如果你想要引用这个 GitHub 仓库，可以使用如下的 bibtex：
+
+```
+@misc{oiwiki,
+  author = {OI Wiki Team},
+  title = {OI Wiki},
+  year = {2016},
+  publisher = {GitHub},
+  journal = {GitHub Repository},
+  howpublished = {\url{https://github.com/OI-wiki/OI-wiki}},
+}
+```
+
 * * *
 
 ## 鸣谢
 
 本项目受 [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
 
-非常感谢一起完善 **OI Wiki** 的 [小伙伴们](https://github.com/24OI/OI-wiki/graphs/contributors)！
+非常感谢一起完善 **OI Wiki** 的 [小伙伴们](https://github.com/OI-wiki/OI-wiki/graphs/contributors) 和为 **OI Wiki** 捐赠的 [朋友们](https://oi-wiki.org/intro/thanks/) ！！
 
-<a href="https://github.com/24OI/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/OI-wiki/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890&button=false" /></a>
 
 特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
 

@@ -1,7 +1,7 @@
 ## 名称简介
 
 老司机树，ODT(Old Driver Tree)，又名珂朵莉树（Chtholly Tree)。
-起源自 [CF896C](https://codeforces.com/problemset/problem/896/C)。
+起源自 [CF896C](https://codeforces.com/problemset/problem/896/C) 。
 
 ## 前置知识
 
@@ -18,7 +18,7 @@
 一般出题人不会 **刻意** 卡，但是不小心卡了就……
 
 如果要保证复杂度正确，必须保证数据随机。
-证明在[此](http://codeforces.com/blog/entry/56135?#comment-398940)。
+证明在 [此](http://codeforces.com/blog/entry/56135?#comment-398940) 。
 
 ## 正文
 
@@ -29,24 +29,23 @@ struct Node_t {
   int l, r;
   mutable int v;
   Node_t(const int &il, const int &ir, const int &iv) : l(il), r(ir), v(iv) {}
-  inline bool operator(const Node_t &o) const { return l < o.l; }
+  inline bool operator<(const Node_t &o) const { return l < o.l; }
 };
 ```
 
 其中， `int v` 是你自己指定的附加数据。
 
 然后，我们定义一个 `set<Node_t> odt;` 来维护这些结点。
-为简化代码，可以 `typedef set<Node_t>::iterator iter`，当然在题目支持 C++11时也可以使用 `auto`。
+为简化代码，可以 `typedef set<Node_t>::iterator iter` ，当然在题目支持 C++11 时也可以使用 `auto` 。
 
 ### split
 
-最核心的操作之一 `split` ，它用于取得以 $x$ 开头的结点。
+ `split` 是最核心的操作之一，它用于将原本包含点 $x$ 的区间（设为 $[l, r]$ ）分裂为两个区间 $[l, x)$ 和 $[x, r]$ 并返回指向后者的迭代器。
 参考代码如下：
 
 ```cpp
 auto split(int x) {
-  if (x > n)
-    return odt.end();
+  if (x > n) return odt.end();
   auto it = --odt.upper_bound((Node_t){x, 0, 0});
   if (it->l == x) return it;
   int l = it->l, r = it->r, v = it->v;
@@ -87,9 +86,11 @@ void performance(int l, int r) {
 }
 ```
 
+ **注：珂朵莉树在进行求取区间左右端点操作时，必须先 split 右端点，再 split 左端点。否则在处理边界情况时会导致 RE。** 
+
 ## 习题
 
--   [「SCOI2010」序列操作](https://www.lydsy.com/JudgeOnline/problem.php?id=1858)
--   [「SHOI2015」脑洞治疗仪](https://www.lydsy.com/JudgeOnline/problem.php?id=4592)
--   [「Luogu 2787」理理思维](https://www.luogu.org/problemnew/show/P2787)
--   [「Luogu 4979」矿洞：坍塌](https://www.luogu.org/problemnew/show/P4979)
+-    [「SCOI2010」序列操作](https://www.lydsy.com/JudgeOnline/problem.php?id=1858) 
+-    [「SHOI2015」脑洞治疗仪](https://www.lydsy.com/JudgeOnline/problem.php?id=4592) 
+-    [「Luogu 2787」理理思维](https://www.luogu.org/problemnew/show/P2787) 
+-    [「Luogu 4979」矿洞：坍塌](https://www.luogu.org/problemnew/show/P4979) 

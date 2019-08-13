@@ -8,6 +8,7 @@
     ["remark-lint-code-block-style", false],
     ["remark-lint-maximum-line-length", false],
     ["remark-lint-ordered-list-marker-value", "ordered"],
+    "remark-details",
     "remark-math",
     "remark-math-space",
     "remark-lint-final-newline",

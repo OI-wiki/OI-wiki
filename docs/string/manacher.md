@@ -40,7 +40,7 @@ $$
 
 该朴素算法的实现如下：
 
-```c++
+```cpp
 vector<int> d1(n), d2(n);
 for (int i = 0; i < n; i++) {
   d1[i] = 1;
@@ -71,18 +71,18 @@ for (int i = 0; i < n; i++) {
 -   现在考虑 $i \le r$ 的情况。我们将尝试从已计算过的 $d_1[]$ 的值中获取一些信息。首先在子回文串 $(l, r)$ 中反转位置 $i$ ，即我们得到 $j = l + (r - i)$ 。现在来考察值 $d_1[j]$ 。因为位置 $j$ 同位置 $i$ 对称，我们 **几乎总是** 可以置 $d_1[i] = d_1[j]$ 。该想法的图示如下（可认为以 $j$ 为中心的回文串被“拷贝”至以 $i$ 为中心的位置上）：
 
     $$
-    \ldots\ 
+    \ldots\
     \overbrace{
-        s_l\ \ldots\ 
+        s_l\ \ldots\
         \underbrace{
             s_{j-d_1[j]+1}\ \ldots\ s_j\ \ldots\ s_{j+d_1[j]-1}
-        }_\text{palindrome}\ 
-        \ldots\ 
+        }_\text{palindrome}\
+        \ldots\
         \underbrace{
             s_{i-d_1[j]+1}\ \ldots\ s_i\ \ldots\ s_{i+d_1[j]-1}
-        }_\text{palindrome}\ 
+        }_\text{palindrome}\
         \ldots\ s_r
-    }^\text{palindrome}\ 
+    }^\text{palindrome}\
     \ldots
     $$
 
@@ -93,16 +93,16 @@ for (int i = 0; i < n; i++) {
     该种情况的图示如下（以 $j$ 为中心的回文串已经被截断以落在“外部”回文串内）：
 
     $$
-    \ldots\ 
+    \ldots\
     \overbrace{
         \underbrace{
             s_l\ \ldots\ s_j\ \ldots\ s_{j+(j-l)}
-        }_\text{palindrome}\ 
-        \ldots\ 
+        }_\text{palindrome}\
+        \ldots\
         \underbrace{
             s_{i-(r-i)}\ \ldots\ s_i\ \ldots\ s_r
         }_\text{palindrome}
-    }^\text{palindrome}\ 
+    }^\text{palindrome}\
     \underbrace{
         \ldots \ldots \ldots \ldots \ldots
     }_\text{try moving here}
@@ -118,7 +118,7 @@ for (int i = 0; i < n; i++) {
 
 因为在计算一个特定位置的答案时我们总会运行朴素算法，所以一眼看去该算法的时间复杂度为线性的事实并不显然。
 
-然而更仔细的分析显示出该算法具有线性复杂度。此处我们需要指出，[计算 Z 函数的算法](z-function.md)和该算法较为类似，并同样具有线性时间复杂度。
+然而更仔细的分析显示出该算法具有线性复杂度。此处我们需要指出， [计算 Z 函数的算法](z-func.md) 和该算法较为类似，并同样具有线性时间复杂度。
 
 实际上，注意到朴素算法的每次迭代均会使 $r$ 增加 $1$ ，以及 $r$ 在算法运行过程中从不减小。这两个观察告诉我们朴素算法总共会进行 $O(n)$ 次迭代。
 
@@ -130,7 +130,7 @@ Manacher 算法的另一部分显然也是线性的，因此总复杂度为 $O(n
 
 为了计算 $d_1[]$ ，我们有以下代码：
 
-```c++
+```cpp
 vector<int> d1(n);
 for (int i = 0, l = 0, r = -1; i < n; i++) {
   int k = (i > r) ? 1 : min(d1[l + r - i], r - i);
@@ -147,7 +147,7 @@ for (int i = 0, l = 0, r = -1; i < n; i++) {
 
 计算 $d_2[]$ 的代码十分类似，但是在算术表达式上有些许不同：
 
-```c++
+```cpp
 vector<int> d2(n);
 for (int i = 0, l = 0, r = -1; i < n; i++) {
   int k = (i > r) ? 0 : min(d2[l + r - i + 1], r - i + 1);
@@ -178,9 +178,9 @@ for (int i = 0, l = 0, r = -1; i < n; i++) {
 
 ## 练习题目
 
--   [UVA #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470)
--   [P4555\[国家集训队\]最长双回文串](https://www.luogu.org/problemnew/show/P4555)
+-    [UVA #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470) 
+-    [P4555\[国家集训队\]最长双回文串](https://www.luogu.org/problemnew/show/P4555) 
 
 * * *
 
- **本页面主要译自博文[Нахождение всех подпалиндромов](http://e-maxx.ru/algo/palindromes_count)与其英文翻译版[Finding all sub-palindromes in $O(N)$ ](https://cp-algorithms.com/string/manacher.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ **本页面主要译自博文 [Нахождение всех подпалиндромов](http://e-maxx.ru/algo/palindromes_count) 与其英文翻译版 [Finding all sub-palindromes in $O(N)$ ](https://cp-algorithms.com/string/manacher.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

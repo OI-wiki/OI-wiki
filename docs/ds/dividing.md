@@ -1,3 +1,5 @@
+author: Xarfa
+
 划分树是一种来解决区间第 $K$ 大的一种数据结构，其常数、理解难度都要比主席树低很多。同时，划分树紧贴“第 $K$ 大”，所以是一种基于排序的一种数据结构。
 
  **建议先学完主席树再看划分树哦** 
@@ -88,4 +90,4 @@ end;
 
 ## 后记
 
-大家可以试着去写非递归版哦。参考博文 :[传送门](https://blog.csdn.net/littlewhite520/article/details/70250722)。
+大家可以试着去写非递归版哦。参考博文 : [传送门](https://blog.csdn.net/littlewhite520/article/details/70250722) 。

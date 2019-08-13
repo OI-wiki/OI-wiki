@@ -21,13 +21,13 @@
 树的重心可以通过简单的两次搜索求出。
 
 1.  第一遍搜索求出以每个节点为根的子树中结点数量 $sz_{u}$ 
-2.  第二遍搜索找出使 $\max_{v\in\operatorname{son}(u)}\{n-sz_{u},sz_{v}\}$ 最小的节点 $u$。
+2.  第二遍搜索找出使 $\max_{v\in\operatorname{son}(u)}\{n-sz_{u},sz_{v}\}$ 最小的节点 $u$ 。
 
 实际上这两步操作可以在一次遍历中解决。对节点 u 的每一个儿子 v 递归处理，然后以 $sz_{v}$ 更新 $u$ 的子节点子树节点数最大值，处理完所有子结点后，判断 u 是否为重心。
 
 （代码来自叉姐）
 
-```c++
+```cpp
 struct CenterTree {
   int n;
   int ans;
@@ -36,12 +36,12 @@ struct CenterTree {
   void dfs(int u, int pa) {
     son[u] = 1;
     int res = 0;
-    for (int i = head[u]; i != -1; i = edges[i].next) {
+    for (int i = head[u]; ~i; i = edges[i].next) {
       int v = edges[i].to;
       if (v == pa) continue;
       dfs(v, u);
       son[u] += son[v];
-      res = max(res, son[v] - 1);
+      res = max(res, son[v]);
     }
     res = max(res, n - son[u]);
     if (res < siz) {
@@ -60,6 +60,6 @@ struct CenterTree {
 
 ## 参考
 
-<http://fanhq666.blog.163.com/blog/static/81943426201172472943638/>
+ <http://fanhq666.blog.163.com/blog/static/81943426201172472943638/> 
 
-<https://www.cnblogs.com/zinthos/p/3899075.html>
+ <https://www.cnblogs.com/zinthos/p/3899075.html> 

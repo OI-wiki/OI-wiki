@@ -1,4 +1,4 @@
-> SAT 是适定性（Satisfiability）问题的简称。一般形式为 k - 适定性问题，简称 k-SAT。而当 $k>2$ 时该问题为 NP 完全的。所以我们之研究 $k=2$ 的情况。
+> SAT 是适定性（Satisfiability）问题的简称。一般形式为 k - 适定性问题，简称 k-SAT。而当 $k>2$ 时该问题为 NP 完全的。所以我们只研究 $k=2$ 的情况。
 
 ## 定义
 
@@ -12,7 +12,7 @@
 
 ## 常用解决方法
 
-### Tarjan[SCC 缩点](/graph/scc)
+### Tarjan [SCC 缩点](/graph/scc) 
 
 算法考究在建图这点，我们举个例子来讲：
 
@@ -75,7 +75,7 @@ struct Twosat {
 
 ## 例题
 
-###  **HDU3062[Party](http://acm.hdu.edu.cn/showproblem.php?pid=3062)** 
+###  **HDU3062 [Party](http://acm.hdu.edu.cn/showproblem.php?pid=3062) ** 
 
 > 题面：有 n 对夫妻被邀请参加一个聚会，因为场地的问题，每对夫妻中只有 $1$ 人可以列席。在 $2n$ 个人中，某些人之间有着很大的矛盾（当然夫妻之间是没有矛盾的），有矛盾的 $2$ 个人是不会同时出现在聚会上的。有没有可能会有 $n$ 个人同时列席？
 
@@ -163,6 +163,6 @@ int main() {
 
 ## 练习题
 
-HDU1814[和平委员会](http://acm.hdu.edu.cn/showproblem.php?pid=1814)
+HDU1814 [和平委员会](http://acm.hdu.edu.cn/showproblem.php?pid=1814) 
 
-POJ3683[牧师忙碌日](http://poj.org/problem?id=3683)
+POJ3683 [牧师忙碌日](http://poj.org/problem?id=3683) 
