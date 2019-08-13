@@ -13,7 +13,7 @@ auto b = a + 0.1;  // b是double类型
 
 ## 基于范围的 `for` 循环
 
-下面是**C++20前**基于范围的 `for` 循环的语法：
+下面是 **C++20 前** 基于范围的 `for` 循环的语法：
 
 ```text
 for ( range_declaration : range_expression ) loop_statement
@@ -32,6 +32,7 @@ for ( range_declaration : range_expression ) loop_statement
 循环语句可以是任何语句，常为一条复合语句，它是循环体。
 
 这是一个例子
+
 ```cpp
 for (int i : {1, 1, 4, 5, 1, 4}) std::cout << i;
 ```
