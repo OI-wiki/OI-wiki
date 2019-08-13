@@ -2,7 +2,7 @@
 
 本文语法参照 **C++11** 标准。语义不同的将以 **C++11** 作为标准，C++14、C++17 的语法视情况提及并会特别标注。
 
-## auto 类型说明符
+## `auto` 类型说明符
 
  `auto` 类型说明符用于自动推导变量等的类型。例如：
 
@@ -37,9 +37,9 @@ for ( range_declaration : range_expression ) loop_statement
 for (int i : {1, 1, 4, 5, 1, 4}) std::cout << i;
 ```
 
-## lambda 表达式
+## Lambda 表达式
 
-lambda 表达式是能够捕获作用域中的变量的无名函数对象，我们可以将其理解为一个匿名的内联函数。下面是 lambda 表达式的语法：
+Lambda 表达式是能够捕获作用域中的变量的无名函数对象，我们可以将其理解为一个匿名的内联函数。下面是 Lambda 表达式的语法：
 
 ```text
 [capture] (parameters) mutable ->return-type {statement} 
@@ -47,20 +47,20 @@ lambda 表达式是能够捕获作用域中的变量的无名函数对象，我�
 
 ### capture 捕获子句
 
-lambda 表达式以 `capture` 子句开头，它指定哪些变量被捕获，以及捕获是通过值还是引用：有 `&` 符号前缀的变量通过引用访问，没有该前缀的变量通过值访问。空的 `capture` 子句 `[]` 指示 lambda 表达式的主体不访问封闭范围中的变量。
+Lambda 表达式以 capture 子句开头，它指定哪些变量被捕获，以及捕获是通过值还是引用：有 `&` 符号前缀的变量通过引用访问，没有该前缀的变量通过值访问。空的 capture 子句 `[]` 指示 Lambda 表达式的主体不访问封闭范围中的变量。
 
 我们也可以使用默认捕获模式： `&` 表示捕获到的所有变量都通过引用访问， `=` 表示捕获到的所有变量都通过值访问。之后我们可以为特定的变量 **显式** 指定相反的模式。
 
-例如 lambda 体要通过引用访问外部变量 `a` 并通过值访问外部变量 `b` ，则以下子句等效：
+例如 Lambda 体要通过引用访问外部变量 `a` 并通过值访问外部变量 `b` ，则以下子句等效：
 
-1.   `[&a, b]` 
-2.   `[b, &a]` 
-3.   `[&, b]` 
-4.   `[b, &]` 
-5.   `[=, &a]` 
-6.   `[&a, =]` 
+-   `[&a, b]` 
+-   `[b, &a]` 
+-   `[&, b]` 
+-   `[b, &]` 
+-   `[=, &a]` 
+-   `[&a, =]` 
 
-默认捕获时，会捕获 lambda 中提及的变量。
+默认捕获时，会捕获 Lambda 中提及的变量。
 
 ### parameters 参数列表
 
@@ -89,11 +89,11 @@ for (auto i : x) std::cout << i << " ";
 
 ### mutable 可变规范
 
-利用可变规范，lambda 表达式的主体可以修改通过值捕获的变量。若使用此关键字，则 `parameters`  **不可省略** （即使为空）。
+利用可变规范，Lambda 表达式的主体可以修改通过值捕获的变量。若使用此关键字，则 parameters  **不可省略** （即使为空）。
 
 ### return-type 返回类型
 
-若 lambda 主体只包含一个 `return` 语句或不返回值，则可以省略此部分。若 lambda 表达式主体包含一个 `return` 语句，则返回类型将被自动推导，返回类型遵循 `parameters` （除非你想指定一个）。否则编译器会将返回类型推断为 `void` 。
+若 Lambda 主体只包含一个 `return` 语句或不返回值，则可以省略此部分。若 Lambda 表达式主体包含一个 `return` 语句，则返回类型将被自动推导，返回类型遵循 parameters（除非你想指定一个）。否则编译器会将返回类型推断为 `void` 。
 
 例如，上文的 `lam` 也可以写作
 
@@ -105,12 +105,12 @@ auto lam = [](int a, int b) -> int
 
 ```cpp
 auto x1 = [](int i) { return i; };  // OK
-auto x2 = [] { return {1, 2}; };    // ERROR: 返回类型被推导为void
+auto x2 = [] { return {1, 2}; };    // ERROR: 返回类型被推导为 void
 ```
 
-### statement lambda 主体
+### statement Lambda 主体
 
-lambda 主体可包含任何函数可包含的部分。普通函数和 lambda 表达式主体均可访问以下变量类型：
+Lambda 主体可包含任何函数可包含的部分。普通函数和 Lambda 表达式主体均可访问以下变量类型：
 
 -   从封闭范围捕获变量
 -   参数
@@ -131,7 +131,7 @@ int main() {
 }
 ```
 
-最后我们得到输出 `5 0` 。这是由于 `n` 是通过值捕获的，在调用 lambda 表达式后仍保持原来的值 `0` 不变。 `mutable` 规范允许 `n` 在 lambda 主体中被修改，将 `mutable` 删去则编译不通过。
+最后我们得到输出 `5 0` 。这是由于 `n` 是通过值捕获的，在调用 Lambda 表达式后仍保持原来的值 `0` 不变。 `mutable` 规范允许 `n` 在 Lambda 主体中被修改，将 `mutable` 删去则编译不通过。
 
 ## decltype 说明符
 
@@ -166,7 +166,7 @@ int main() {
 
 ## std::tuple
 
- `std::tuple` 定义于头文件 `<tuple>` ，是固定大小的异类值汇集（在确定初始元素后不能更改，但是初始元素能有任意多个）。它是 `std::pair` 的推广。来看一个例子
+ `std::tuple` 定义于头文件 `<tuple>` ，是固定大小的异类值汇集（在确定初始元素后不能更改，但是初始元素能有任意多个）。它是 `std::pair` 的推广。来看一个例子：
 
 ```cpp
 #include <iostream>
@@ -182,9 +182,9 @@ int main() {
   std::cout << std::tuple_size<decltype(tup)>::value << std::endl;
 
   for (auto i : std::get<expr>(tup)) std::cout << i << " ";
-  // std::get<>中尖括号里面的必须是整型常量表达式
-  // expr常量的值是3，注意std::tuple的内存地址从0开始，故我们std::get到了一个std::vector
-  // <int>
+  // std::get<> 中尖括号里面的必须是整型常量表达式
+  // expr 常量的值是 3，注意 std::tuple 的内存地址从 0 开始，
+  // 故我们 std::get 到了一个 std::vector<int>
   return 0;
 }
 ```
@@ -270,7 +270,7 @@ int main() {
 |  `size`      | 返回容纳的元素数    |
 |  `max_size`  | 返回可容纳的最大元素数 |
 
-由于每个 `std::array` 都是固定大小容器， `size()` 返回的值等于 `max_size()` 返回的值。
+由于每个 `array` 都是固定大小容器， `size()` 返回的值等于 `max_size()` 返回的值。
 
 ### 操作
 
@@ -279,11 +279,13 @@ int main() {
 |  `fill`  | 以指定值填充容器 |
 |  `swap`  | 交换内容     |
 
+**注意，交换两个 `array` 是 $\Theta(\text{size})$ 的，而非与常规 STL 容器一样为 $O(1)$ 。**
+
 ### 非成员函数
 
 | 函数              | 作用                 |
 | --------------- | ------------------ |
-|  `operator==` 等 | 按照字典顺序比较 array 中的值 |
+|  `operator==` 等 | 按照字典序比较 `array` 中的值 |
 |  `std::get`     | 访问 `array` 的一个元素   |
 |  `std::swap`    | 特化 `std::swap` 算法  |
 
@@ -305,7 +307,7 @@ int main() {
 
 ## std::function
 
-类模板 `std::function` 是通用多态函数封装器，定义于头文件 `<functional>` 。 `std::function` 的实例能存储、复制及调用任何可调用（_Callable_）目标——函数、lambda 表达式或其他函数对象，还有指向成员函数指针和指向数据成员指针。
+类模板 `std::function` 是通用多态函数封装器，定义于头文件 `<functional>` 。 `std::function` 的实例能存储、复制及调用任何可调用（_Callable_）目标——函数、Lambda 表达式或其他函数对象，还有指向成员函数指针和指向数据成员指针。
 
 存储的可调用对象被称为 `std::function` 的 **目标** 。若 `std::function` 不含目标，则称它为 **空** 。调用空 `std::function` 的目标将导致抛出 `std::bad_function_call` 异常。
 
@@ -332,7 +334,7 @@ int main() {
   std::function<void(int)> f_display = print_num;
   f_display(-9);
 
-  // 存储 lambda
+  // 存储 Lambda
   std::function<void()> f_display_42 = []() { print_num(42); };
   f_display_42();
 
