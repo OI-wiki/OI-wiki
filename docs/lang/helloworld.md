@@ -19,7 +19,7 @@ IDE 操作较为简单，一般入门玩家会选用 IDE 来编写代码。在�
 在终端中执行：
 
 ```bash
-xcode-select --install`
+xcode-select --install
 ```
 
 #### NOI Linux
