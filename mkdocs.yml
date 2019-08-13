@@ -12,6 +12,9 @@ edit_uri: 'blob/master/docs/'
 
 # Copyright
 copyright: 'Copyright &copy; 2016 - 2019 OI Wiki Team'
+google_analytics:
+  - 'UA-124485594-1'
+  - 'auto'
 
 # Contents
 nav:
