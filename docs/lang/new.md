@@ -16,17 +16,17 @@ auto b = a + 0.1;  // b 是 double 类型
 下面是 **C++20 前** 基于范围的 `for` 循环的语法：
 
 ```cpp
-for ( range_declaration : range_expression ) loop_statement
+for (range_declaration : range_expression) loop_statement
 ```
 
 上述语法产生的代码等价于下列代码（ `__range` 、 `__begin` 和 `__end` 仅用于阐释）：
 
 ```cpp
-auto&& __range = range_expression; 
-for (auto __begin = begin_expr, __end = end_expr; __begin != __end; ++__begin) { 
-  range_declaration = *__begin; 
+auto&& __range = range_expression;
+for (auto __begin = begin_expr, __end = end_expr; __begin != __end; ++__begin) {
+  range_declaration = *__begin;
   loop_statement
-} 
+}
 ```
 
 ### range_declaration 范围声明
@@ -52,29 +52,26 @@ for (int i : {1, 1, 4, 5, 1, 4}) std::cout << i;
 ```cpp
 #include <iostream>
 
-struct C
-{
-    int a, b, c, d;
-    C(int a = 0, int b = 0, int c = 0, int d = 0) : a(a), b(b), c(c), d(d) {}
+struct C {
+  int a, b, c, d;
+  C(int a = 0, int b = 0, int c = 0, int d = 0) : a(a), b(b), c(c), d(d) {}
 };
 
 int* begin(C& p) { return &p.a; }
 int* end(C& p) { return &p.d + 1; }
 
-int main()
-{
-    C n = C(1, 9, 2, 6);
-    for (auto i : n)
-        std::cout << i << " ";
-    std::cout << std::endl;
-    // 下面的循环与上面的循环等价
-    auto&& __range = n;
-    for (auto __begin = begin(n), __end = end(n); __begin != __end; ++__begin) {
-        auto ind = *__begin;
-        std::cout << ind << " ";
-    }
-    std::cout << std::endl;
-    return 0;
+int main() {
+  C n = C(1, 9, 2, 6);
+  for (auto i : n) std::cout << i << " ";
+  std::cout << std::endl;
+  // 下面的循环与上面的循环等价
+  auto&& __range = n;
+  for (auto __begin = begin(n), __end = end(n); __begin != __end; ++__begin) {
+    auto ind = *__begin;
+    std::cout << ind << " ";
+  }
+  std::cout << std::endl;
+  return 0;
 }
 ```
 
@@ -184,8 +181,8 @@ int main() {
 
 int main() {
   int a = 1926;
-  decltype(a) b = a / 2 - 146;                // b 是 int 类型
-  std::vector<decltype(b)> vec = {0};         // vec 是 std::vector <int> 类型
+  decltype(a) b = a / 2 - 146;         // b 是 int 类型
+  std::vector<decltype(b)> vec = {0};  // vec 是 std::vector <int> 类型
   std::cout << a << vec[0] << b << std::endl;
   return 0;
 }
@@ -293,13 +290,13 @@ int main() {
 
 #### 元素访问
 
-| 函数             | 作用                |
-| -------------- | ----------------- |
-|  `at`          | 访问指定的元素，同时进行越界检查  |
-|  `operator[]`  | 访问指定的元素，**不**进行越界检查           |
-|  `front`       | 访问第一个元素           |
-|  `back`        | 访问最后一个元素          |
-|  `data`        | 返回指向内存中数组第一个元素的指针 |
+| 函数             | 作用                    |
+| -------------- | --------------------- |
+|  `at`          | 访问指定的元素，同时进行越界检查      |
+|  `operator[]`  | 访问指定的元素， **不** 进行越界检查 |
+|  `front`       | 访问第一个元素               |
+|  `back`        | 访问最后一个元素              |
+|  `data`        | 返回指向内存中数组第一个元素的指针     |
 
  `at` 若遇 `pos >= size()` 的情况会抛出 `std::out_of_range` 。
 
