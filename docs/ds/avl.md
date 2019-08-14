@@ -87,21 +87,19 @@ $$
 
 因此旋转后的节点 B、C、D 也满足性质 2。最后给出对于一个节点维护平衡操作的伪代码。
 
-```
-Maintain-Balanced(p)
-    if h[ls[p]] - h[rs[p]] == 2
-        if h[ls[ls[p]]] >= h[rs[ls[p]]]
-            Right-Rotate(p)
-        else
-            Left-Rotate(ls[p])
-            Right-Rotate(p)
-    else if h[ls[p]] - h[rs[p]] == -2
-        if h[ls[rs[p]]] <= h[rs[rs[p]]]
-            Left-Rotate(p)
-        else
-            Right-Rotate(rs[p])
-            Left-Rotate(p)
-```
+    Maintain-Balanced(p)
+        if h[ls[p]] - h[rs[p]] == 2
+            if h[ls[ls[p]]] >= h[rs[ls[p]]]
+                Right-Rotate(p)
+            else
+                Left-Rotate(ls[p])
+                Right-Rotate(p)
+        else if h[ls[p]] - h[rs[p]] == -2
+            if h[ls[rs[p]]] <= h[rs[rs[p]]]
+                Left-Rotate(p)
+            else
+                Right-Rotate(rs[p])
+                Left-Rotate(p)
 
 与其他平衡二叉搜索树相同，AVL 树中节点的高度、子树大小等信息需要在旋转时进行维护。
 
@@ -111,4 +109,4 @@ AVL 树的其他操作（Pred、Succ、Select、Rank 等）与普通的二叉搜
 
 ## 其他资料
 
-在[AVL Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html)可以观察 AVL 树维护平衡的过程。
+在 [AVL Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html) 可以观察 AVL 树维护平衡的过程。
