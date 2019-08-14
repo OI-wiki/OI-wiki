@@ -173,7 +173,7 @@ int main() {
 
 ## decltype 说明符
 
- `decltype` 说明符检查实体的声明类型，或表达式的类型与其值的类别。
+ `decltype` 说明符可以推断表达式的类型。
 
 ```cpp
 #include <iostream>
