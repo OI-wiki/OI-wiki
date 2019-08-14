@@ -7,16 +7,26 @@
  `auto` 类型说明符用于自动推导变量等的类型。例如：
 
 ```cpp
-auto a = 1;        // a是int类型
-auto b = a + 0.1;  // b是double类型
+auto a = 1;        // a 是 int 类型
+auto b = a + 0.1;  // b 是 double 类型
 ```
 
 ## 基于范围的 `for` 循环
 
 下面是 **C++20 前** 基于范围的 `for` 循环的语法：
 
-```text
+```cpp
 for ( range_declaration : range_expression ) loop_statement
+```
+
+上述语法产生的代码等价于下列代码（ `__range` 、 `__begin` 和 `__end` 仅用于阐释）：
+
+```cpp
+auto&& __range = range_expression; 
+for (auto __begin = begin_expr, __end = end_expr; __begin != __end; ++__begin) { 
+  range_declaration = *__begin; 
+  loop_statement
+} 
 ```
 
 ### range_declaration 范围声明
@@ -25,16 +35,47 @@ for ( range_declaration : range_expression ) loop_statement
 
 ### range_expression 范围表达式
 
-范围表达式是任何可以表示一个合适的序列（数组，或定义了 `begin` 和 `end` 成员函数或自由函数的对象）的表达式，或一个花括号初始化器列表。
+范围表达式是任何可以表示一个合适的序列（数组，或定义了 `begin` 和 `end` 成员函数或自由函数的对象）的表达式，或一个花括号初始化器列表。正因此，我们不应在循环体中修改范围表达式使其任何尚未被遍历到的“迭代器”（包括“尾后迭代器”）非法化。
+
+这里有一个例子：
+
+```cpp
+for (int i : {1, 1, 4, 5, 1, 4}) std::cout << i;
+```
 
 ### loop_statement 循环语句
 
 循环语句可以是任何语句，常为一条复合语句，它是循环体。
 
-这是一个例子
+这里有一个例子：
 
 ```cpp
-for (int i : {1, 1, 4, 5, 1, 4}) std::cout << i;
+#include <iostream>
+
+struct C
+{
+    int a, b, c, d;
+    C(int a = 0, int b = 0, int c = 0, int d = 0) : a(a), b(b), c(c), d(d) {}
+};
+
+int* begin(C& p) { return &p.a; }
+int* end(C& p) { return &p.d + 1; }
+
+int main()
+{
+    C n = C(1, 9, 2, 6);
+    for (auto i : n)
+        std::cout << i << " ";
+    std::cout << std::endl;
+    // 下面的循环与上面的循环等价
+    auto&& __range = n;
+    for (auto __begin = begin(n), __end = end(n); __begin != __end; ++__begin) {
+        auto ind = *__begin;
+        std::cout << ind << " ";
+    }
+    std::cout << std::endl;
+    return 0;
+}
 ```
 
 ## Lambda 表达式
@@ -42,7 +83,7 @@ for (int i : {1, 1, 4, 5, 1, 4}) std::cout << i;
 Lambda 表达式是能够捕获作用域中的变量的无名函数对象，我们可以将其理解为一个匿名的内联函数。下面是 Lambda 表达式的语法：
 
 ```text
-[capture] (parameters) mutable ->return-type {statement} 
+[capture] (parameters) mutable -> return-type {statement} 
 ```
 
 ### capture 捕获子句
@@ -143,8 +184,8 @@ int main() {
 
 int main() {
   int a = 1926;
-  decltype(a) b = a / 2 - 146;
-  std::vector<decltype(b)> vec = {0};
+  decltype(a) b = a / 2 - 146;                // b 是 int 类型
+  std::vector<decltype(b)> vec = {0};         // vec 是 std::vector <int> 类型
   std::cout << a << vec[0] << b << std::endl;
   return 0;
 }
@@ -183,7 +224,7 @@ int main() {
 
   for (auto i : std::get<expr>(tup)) std::cout << i << " ";
   // std::get<> 中尖括号里面的必须是整型常量表达式
-  // expr 常量的值是 3，注意 std::tuple 的内存地址从 0 开始，
+  // expr 常量的值是 3，注意 std::tuple 的首元素编号为 0，
   // 故我们 std::get 到了一个 std::vector<int>
   return 0;
 }
@@ -255,7 +296,7 @@ int main() {
 | 函数             | 作用                |
 | -------------- | ----------------- |
 |  `at`          | 访问指定的元素，同时进行越界检查  |
-|  `operator[]`  | 访问指定的元素           |
+|  `operator[]`  | 访问指定的元素，**不**进行越界检查           |
 |  `front`       | 访问第一个元素           |
 |  `back`        | 访问最后一个元素          |
 |  `data`        | 返回指向内存中数组第一个元素的指针 |
