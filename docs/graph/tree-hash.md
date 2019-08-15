@@ -434,11 +434,8 @@ $$
         uqc[u][hashval[v]]++;
         hashval[u] += hashval[v] * prime[siz[v]];
       }
-    ```
-
         srchashval[u] = hashval[u];
         hashval[u] = pack(hashval[u], siz[u]);
-
         dp[u] = mul(dp[u], ping[sz]);
         for (it = uqc[u].begin(); it != uqc[u].end(); it++) {
             dp[u] = mul(dp[u], pingv[it->second]);
@@ -452,21 +449,17 @@ $$
         }
         for (int v: edge[u]) {
             if (v == ff) continue;
-
             ull tmp = srchashrt[u] - hashval[v] * prime[siz[v]];
             tmp = pack(tmp, n - siz[v]);
-
             uqc[v][tmp]++;
             srchashrt[v] = srchashval[v] + tmp * prime[n - siz[v]];
             hashrt[v] = pack(srchashrt[v], n);
-
             int tdp = mul(rdp[u], inv(dp[v]));
             tdp = mul(tdp, inv((int)edge[u].size()));
             tdp = mul(tdp, uqc[u][hashval[v]]);
             rdp[v] = mul(dp[v], tdp);
             rdp[v] = mul(rdp[v], (int)edge[v].size());
             rdp[v] = mul(rdp[v], inv(uqc[v][tmp]));
-
             dfs(v, u);
         }
     }
@@ -484,16 +477,13 @@ $$
                 edge[u].push_back(v);
                 edge[v].push_back(u);
             }
-
             predfs(1, 0);
             ans = 0; qc.clear();
             rdp[1] = dp[1]; 
             hashrt[1] = hashval[1];
             srchashrt[1] = srchashval[1];
             dfs(1, 0);
-
             printf("%d\n", ans);
-
             for (int i = 1; i <= n; i++) {
                 edge[i].clear();
                 uqc[i].clear();
