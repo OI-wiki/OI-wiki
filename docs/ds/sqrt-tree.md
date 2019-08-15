@@ -5,13 +5,13 @@ Sqrt Tree 可以在 $O(n\log_2\log_2n)$ 的时间内预处理，并在 $O(1)$ �
 
 ## 描述
 
-### 构建一个根号分块的结构（Building sqrt decomposition）
+### 序列分块
 
 首先我们把整个序列分成 $O(\sqrt{n})$ 个块，每一块的大小为 $O(\sqrt{n})$。对于每个块，我们计算：
 
 1. $P_i$ 块内的前缀区间询问
 2. $S_i$ 块内的后缀区间询问
-3. 维护一个额外的数组 $B_{i,j}$ 表示第 $i$ 个块到第 $j$ 个块的区间答案。
+3. 维护一个额外的数组 $\left\langle B_{i,j}\right\rangle$ 表示第 $i$ 个块到第 $j$ 个块的区间答案。
 
 举个例子，假设 $\circ$ 代表加法运算 $+$，序列为 $\{1,2,3,4,5,6,7,8,9\}$。
 
@@ -43,7 +43,7 @@ $$
 
 ### 构建一棵树
 
-容易想到我们在每个块内递归地构造上述结构以支持块内的查询。对于大小为 1 的块我们可以 $O(1)$ 地回答询问。这样我们就建出了一棵树，每一个结点代表数列的一个区间，叶子结点的区间长度为 $1$ 或 $2$。一个大小为 $k$ 的结点有 $O(\sqrt{k})$ 个子节点，于是整棵树的高度是 $O(\log_2\log_2n)$ 的， 每一层的区间总长是 $O(n)$ 的，因此我们构建这棵树的复杂度是 $O(n\log_2\log_2n)$ 的。
+容易想到我们在每个块内递归地构造上述结构以支持块内的查询。对于大小为 $1$ 的块我们可以 $O(1)$ 地回答询问。这样我们就建出了一棵树，每一个结点代表序列的一个区间。叶子结点的区间长度为 $1$ 或 $2$。一个大小为 $k$ 的结点有 $O(\sqrt{k})$ 个子节点，于是整棵树的高度是 $O(\log_2\log_2n)$ 的， 每一层的区间总长是 $O(n)$ 的，因此我们构建这棵树的复杂度是 $O(n\log_2\log_2n)$ 的。
 
 现在我们可以在 $O(\log_2\log_2n)$ 的时间内回答询问。对于询问 $[l,r]$，我们只需要快速找到一个区间长度最小的结点 $u$ 使得 $u$ 能包含 $[l,r]$，这样 $[l,r]$ 在 $u$ 的分块区间中一定是跨块的，就可以 $O(1)$ 地计算答案了。查询一次的总体复杂度是 $O(\log_2\log_2n)$，因为树高是 $O(\log_2\log_2n)$ 的。不过我们仍可以优化这个过程。
 
@@ -82,21 +82,21 @@ $$
 
 考虑一次单点赋值操作 $a_x=val$，我们希望高效更新这个操作的信息。
 
-#### Naive 的实现
+#### 朴素实现
 
 首先我们来看看在做了一次单点修改后 Sqrt Tree 会变成什么样子。
 
 考虑一个长度为 $l$ 的结点以及对应的序列：$\left\langle P_i\right\rangle,\left\langle S_i\right\rangle,\left\langle B_{i,j}\right\rangle$ 。容易发现在 $\left\langle P_i\right\rangle$ 和 $\left\langle S_i \right\rangle$ 中都只有 $O(\sqrt{l})$ 个元素改变。而在 $\left\langle B_{i,j}\right\rangle$ 中则有 $O(l)$ 个元素被改变。因此有 $O(l)$ 个元素在树上被更新。因此在 Sqrt Tree 上单点修改的复杂度是 $O(n+\sqrt{n}+\sqrt{\sqrt{n}}+\cdots)=O(n)$。
 
-#### Sqrt Tree 套 Sqrt tree
+#### 使用 Sqrt Tree 替代 B 数组
 
-注意到单点更新的瓶颈在于更新根结点的 $\left\langle B_{i,j}\right\rangle$ 。因此我们尝试用另一个 Sqrt Tree 代替根结点的 $\left\langle B_{i,j}\right\rangle$ ，称其为 $index$。它的作用和原来的二维数组一样，维护整段询问的答案。其他非根结点仍然使用 $\left\langle B_{i,j}\right\rangle$ 维护。注意，如果一个 Sqrt Tree 根结点有 $index$ 结构，称其 Sqrt Tree 是含有索引的；如果一个 Sqrt Tree 的根结点有 $\left\langle B_{i,j}\right\rangle$ 结构，称其是没有索引的。而 $index$ 这棵树本身是没有索引的。
+注意到单点更新的瓶颈在于更新根结点的 $\left\langle B_{i,j}\right\rangle$ 。因此我们尝试用另一个 Sqrt Tree 代替根结点的 $\left\langle B_{i,j}\right\rangle$ ，称其为 $index$。它的作用和原来的二维数组一样，维护整段询问的答案。其他非根结点仍然使用 $\left\langle B_{i,j}\right\rangle$ 维护。注意，如果一个 Sqrt Tree 根结点有 $index$ 结构，称其 Sqrt Tree 是**含有索引**的；如果一个 Sqrt Tree 的根结点有 $\left\langle B_{i,j}\right\rangle$ 结构，称其是**没有索引**的。而 $index$ 这棵树本身是没有索引的。
 
 因此我们可以这样更新 $index$ 树：
 
 1. 在 $O(\sqrt{n})$ 的时间内更新 $\left\langle P_i\right\rangle$ 和 $\left\langle S_i\right\rangle$。
-2. 更新 $index$ ，它的长度是 $O(n)$ 的，但我们只需要更新其中的一个元素（这个元素代表了被改变的块），这一步的时间复杂度是 $O(\sqrt{n})$ 的（使用 Naive 的实现）。
-3. 进入产生变化的子节点并使用 Naive 的实现在 $O(\sqrt{n})$ 的时间内更新信息。
+2. 更新 $index$ ，它的长度是 $O(n)$ 的，但我们只需要更新其中的一个元素（这个元素代表了被改变的块），这一步的时间复杂度是 $O(\sqrt{n})$ 的（使用朴素实现的算法）。
+3. 进入产生变化的子节点并使用朴素实现的算法在 $O(\sqrt{n})$ 的时间内更新信息。
 
 注意，查询的复杂度仍是 $O(1)$ 的，因为我们最多使用 $index$ 树一次。于是单点修改的复杂度就是 $O(\sqrt{n})$ 的。Hooray! :)
 
@@ -111,15 +111,15 @@ Sqrt Tree 也支持区间覆盖操作 $\operatorname{Update}(l,r,x)$，即把区
 
 在第一种实现中，我们只会给第 $1$ 层的结点（结点区间长度为 $O(\sqrt{n})$）打懒标记，在下传标记的时侯直接更新整个子树，复杂度为 $O(\sqrt{n}\log_2\log_2n)$。操作过程如下：
 
-1. 考虑第 $1$ 层上的结点，那些被修改区间完全包含的结点就打一个懒标记；
-2. 有两个块只有部分区间被覆盖，我们直接在 $O(\sqrt{n}\log_2\log_2n)$ 的时间内重建这两个块，如果它本身带有懒标记就先下传再重建；
-3. 更新 $\left\langle P_i\right\rangle$ 和 $\left\langle S_i\right\rangle$，时间复杂度 $O(\sqrt{n})$；
-4. 重建 $index$ 树，时间复杂度 $O(\sqrt{n}\log_2\log_2n)$；
+1. 考虑第 $1$ 层上的结点，对于那些被修改区间完全包含的结点，给他们打一个懒标记；
+2. 有两个块只有部分区间被覆盖，我们直接在 $O(\sqrt{n}\log_2\log_2n)$ 的时间内**重建**这两个块。如果它本身带有之前修改的懒标记，就在重建的时侯顺便下传标记；
+3. 更新根结点的 $\left\langle P_i\right\rangle$ 和 $\left\langle S_i\right\rangle$，时间复杂度 $O(\sqrt{n})$；
+4. 重建 $index$ 树，时间复杂度 $O(\sqrt{n}\log_2\log_2n)$。
 
 现在我们可以高效完成区间修改了。那么如何利用懒标记回答询问？操作如下：
 
-1. 如果我们的询问被包含在一个有懒标记的块内，可以直接计算答案，把懒标记记录下来；
-2. 如果我们的询问包含多个块，那么我们只需要关系最左边和最右边不完整块的的懒标记。中间的块的答案可以在 $index$ 树中查询（因为 $index$ 树在每次修改完后会重建），复杂度是 $O(1)$ 。
+1. 如果我们的询问被包含在一个有懒标记的块内，可以利用懒标记计算答案；
+2. 如果我们的询问包含多个块，那么我们只需要关心最左边和最右边不完整块的答案。中间的块的答案可以在 $index$ 树中查询（因为 $index$ 树在每次修改完后会重建），复杂度是 $O(1)$ 。
 
 因此询问的复杂度仍为 $O(1)$。
 
@@ -128,7 +128,7 @@ Sqrt Tree 也支持区间覆盖操作 $\operatorname{Update}(l,r,x)$，即把区
 在这种实现中，每一个结点都可以被打上懒标记。因此在处理一个询问的时侯，我们需要考虑祖先中的懒标记，那么查询的复杂度将变成 $O(\log_2\log_2n)$。不过更新信息的复杂度就会变得更快。操作如下：
 
 1. 被修改区间完全包含的块，我们把懒标记添加到这些块上，复杂度 $O(\sqrt{n})$；
-2. 对部分覆盖的块，更新 $\left\langle P_i\right\rangle$ 和 $\left\langle S_i\right\rangle$，复杂度  $O(\sqrt{n})$（因为只有两个被修改的块）；
+2. 被修改区间部分覆盖的块，更新 $\left\langle P_i\right\rangle$ 和 $\left\langle S_i\right\rangle$，复杂度  $O(\sqrt{n})$（因为只有两个被修改的块）；
 3. 更新 $index$ 树，复杂度 $O(\sqrt{n})$（使用同样的更新算法）；
 4. 对于没有索引的子树更新他们的 $\left\langle B_{i,j}\right\rangle$ ；
 5. 递归地更新两个没有被完全覆盖的区间。
@@ -300,4 +300,5 @@ public:
 
 [CodeChef - SEGPROD](https://www.codechef.com/NOV17/problems/SEGPROD)
 
-**本页面主要译自博文[俄文标题](链接)与其英文翻译版[Sqrt Tree](https://cp-algorithms.com/data_structures/sqrt-tree.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+**本页面主要译自[Sqrt Tree](https://cp-algorithms.com/data_structures/sqrt-tree.html)，版权协议为 CC-BY-SA 4.0。**
+
