@@ -37,13 +37,13 @@ int Eratosthenes(int n) {
 ```cpp
 void init() {
   phi[1] = 1;
-  f(i, 2, MAXN) {
+  for (int i = 2; i < MAXN; ++i) {
     if (!vis[i]) {
       phi[i] = i - 1;
       pri[cnt++] = i;
     }
-    f(j, 0, cnt) {
-      if ((LL)i * pri[j] >= MAXN) break;
+    for (int j = 0; j < cnt; ++j) {
+      if (1ll * i * pri[j] >= MAXN) break;
       vis[i * pri[j]] = 1;
       if (i % pri[j]) {
         phi[i * pri[j]] = phi[i] * (pri[j] - 1);
