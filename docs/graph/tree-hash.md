@@ -413,13 +413,10 @@ $$
     using MyIO::gi;
     using sieve::prime;
     int ping[maxn], pingv[maxn];
-    ```
-
     int n, ans, siz[maxn];
     vector<int> edge[maxn];
     map<ull,int> uqc[maxn];
     map<ull,int>::iterator it;
-
     ull hashval[maxn], hashrt[maxn];
     ull srchashval[maxn], srchashrt[maxn];
     int dp[maxn], rdp[maxn];
@@ -474,7 +471,6 @@ $$
             dfs(v, u);
         }
     }
-
     int main() {
         sieve::init(); ping[0] = pingv[0] = 1;
         for (int i = 1; i < maxn; i++) {
