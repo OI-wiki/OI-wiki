@@ -415,27 +415,26 @@ $$
     int ping[maxn], pingv[maxn];
     int n, ans, siz[maxn];
     vector<int> edge[maxn];
-    map<ull,int> uqc[maxn];
-    map<ull,int>::iterator it;
+    map<ull, int> uqc[maxn];
+    map<ull, int>::iterator it;
     ull hashval[maxn], hashrt[maxn];
     ull srchashval[maxn], srchashrt[maxn];
     int dp[maxn], rdp[maxn];
-    ull pack(ull val, int sz) {
-        return 2ull + 3ull * val + 7ull * prime[sz + 1];
-    }
+    ull pack(ull val, int sz) { return 2ull + 3ull * val + 7ull * prime[sz + 1]; }
     void predfs(int u, int ff) {
-        siz[u] = dp[u] = 1;
-        hashval[u] = 1;
-        int sz = 0;
-        for (int v: edge[u]) {
-            if (v == ff) continue;
-            predfs(v, u);
-            sz++;
-            siz[u] += siz[v];
-            dp[u] = mul(dp[u], dp[v]);
-            uqc[u][hashval[v]]++;
-            hashval[u] += hashval[v] * prime[siz[v]];
-        }
+      siz[u] = dp[u] = 1;
+      hashval[u] = 1;
+      int sz = 0;
+      for (int v : edge[u]) {
+        if (v == ff) continue;
+        predfs(v, u);
+        sz++;
+        siz[u] += siz[v];
+        dp[u] = mul(dp[u], dp[v]);
+        uqc[u][hashval[v]]++;
+        hashval[u] += hashval[v] * prime[siz[v]];
+      }
+    ```
 
         srchashval[u] = hashval[u];
         hashval[u] = pack(hashval[u], siz[u]);
