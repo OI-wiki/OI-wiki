@@ -91,7 +91,7 @@ $$
 Maintain-Balanced(p)
     if h[ls[p]] - h[rs[p]] == 2
         if h[ls[ls[p]]] >= h[rs[ls[p]]]
-             Right-Rotate(p)
+            Right-Rotate(p)
         else
             Left-Rotate(ls[p])
             Right-Rotate(p)
