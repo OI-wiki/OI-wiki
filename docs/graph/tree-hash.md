@@ -412,8 +412,6 @@ $$
     }  // namespace
     using MyIO::gi;
     using sieve::prime;
-    ```
-
     int ping[maxn], pingv[maxn];
 
     int n, ans, siz[maxn];
