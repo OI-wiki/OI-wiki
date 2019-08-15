@@ -344,8 +344,6 @@ $$
     const int mod = 998244353;
     const int inf = 1 << 30;
     const int maxn = 100000 + 5;
-    ```
-
     namespace sieve{
         const int maxp = 2000000 + 5;
         int vis[maxp], prime[maxp], tot;
