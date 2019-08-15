@@ -344,72 +344,75 @@ $$
     const int mod = 998244353;
     const int inf = 1 << 30;
     const int maxn = 100000 + 5;
-    namespace sieve{
-        const int maxp = 2000000 + 5;
-        int vis[maxp], prime[maxp], tot;
-        void init() {
-            ms(vis, 0);
-            for (int i = 2; i < maxp; i++) {
-                if (!vis[i]) prime[++tot] = i;
-                for (int j = 1; j <= tot && prime[j] * i < maxp; j++) {
-                    vis[i * prime[j]] = 1;
-                    if (i % prime[j] == 0) break;
-                }
-            }
+    namespace sieve {
+    const int maxp = 2000000 + 5;
+    int vis[maxp], prime[maxp], tot;
+    void init() {
+      ms(vis, 0);
+      for (int i = 2; i < maxp; i++) {
+        if (!vis[i]) prime[++tot] = i;
+        for (int j = 1; j <= tot && prime[j] * i < maxp; j++) {
+          vis[i * prime[j]] = 1;
+          if (i % prime[j] == 0) break;
         }
+      }
     }
+    }  // namespace sieve
     namespace MyIO {
-        struct fastIO {
-            char s[100000]; int it,len;
-            fastIO() { it = len = 0; }
-            inline char get() {
-                if (it < len) return s[it++];
-                it = 0; len = fread(s, 1, 100000, stdin);
-                if (len == 0) return EOF;
-                else return s[it++];
-            }
-            bool notend() {
-                char c = get();
-                while(c == ' ' || c == '\n') c = get();
-                if (it > 0) it--;
-                return c != EOF;
-            }
-        } buff;
-        inline int gi() {
-            int r = 0; bool ng = 0; 
-            char c = buff.get();
-            while (c != '-' && (c < '0' || c > '9')) c = buff.get();
-            if (c == '-') ng = 1, c = buff.get();
-            while (c >= '0' && c <= '9') r = r * 10 + c - '0', c = buff.get();
-            return ng ? -r : r;
-        }
+    struct fastIO {
+      char s[100000];
+      int it, len;
+      fastIO() { it = len = 0; }
+      inline char get() {
+        if (it < len) return s[it++];
+        it = 0;
+        len = fread(s, 1, 100000, stdin);
+        if (len == 0)
+          return EOF;
+        else
+          return s[it++];
+      }
+      bool notend() {
+        char c = get();
+        while (c == ' ' || c == '\n') c = get();
+        if (it > 0) it--;
+        return c != EOF;
+      }
+    } buff;
+    inline int gi() {
+      int r = 0;
+      bool ng = 0;
+      char c = buff.get();
+      while (c != '-' && (c < '0' || c > '9')) c = buff.get();
+      if (c == '-') ng = 1, c = buff.get();
+      while (c >= '0' && c <= '9') r = r * 10 + c - '0', c = buff.get();
+      return ng ? -r : r;
     }
+    }  // namespace MyIO
     namespace {
-        inline int add(int x, int y) {
-            x += y;
-            return x >= mod ? x -= mod : x;
-        }
-        inline int sub(int x, int y) {
-            x -= y;
-            return x < 0 ? x += mod : x;
-        }
-        inline int mul(int x, int y) {
-            return 1ll * x * y % mod;
-        }
-        inline int qpow(int x, ll n) {
-            int r = 1;
-            while (n > 0) {
-                if (n & 1) r = 1ll * r * x % mod;
-                n >>= 1; x = 1ll * x * x % mod;
-            }
-            return r;
-        }
-        inline int inv(int x) {
-            return qpow(x, mod - 2);
-        }
+    inline int add(int x, int y) {
+      x += y;
+      return x >= mod ? x -= mod : x;
     }
-    using sieve::prime;
+    inline int sub(int x, int y) {
+      x -= y;
+      return x < 0 ? x += mod : x;
+    }
+    inline int mul(int x, int y) { return 1ll * x * y % mod; }
+    inline int qpow(int x, ll n) {
+      int r = 1;
+      while (n > 0) {
+        if (n & 1) r = 1ll * r * x % mod;
+        n >>= 1;
+        x = 1ll * x * x % mod;
+      }
+      return r;
+    }
+    inline int inv(int x) { return qpow(x, mod - 2); }
+    }  // namespace
     using MyIO::gi;
+    using sieve::prime;
+    ```
 
     int ping[maxn], pingv[maxn];
 
