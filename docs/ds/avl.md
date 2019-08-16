@@ -42,9 +42,9 @@ $$
 
 $$
 \begin{cases}
-h(B)=x+2\\
-h(A)=x+1\\
-x\leq h(C)\leq x+1
+    h(B)=x+2\\
+    h(A)=x+1\\
+    x\leq h(C)\leq x+1
 \end{cases}
 $$
 
@@ -56,9 +56,9 @@ $$
 
 $$
 \begin{cases}
-0\leq h(C)-h(E)\leq 1\\
-x+1\leq h'(D)=\max(h(C),h(E))+1=h(C)+1\leq x+2\\
-0\leq h'(D)-h(A)\leq 1
+    0\leq h(C)-h(E)\leq 1\\
+    x+1\leq h'(D)=\max(h(C),h(E))+1=h(C)+1\leq x+2\\
+    0\leq h'(D)-h(A)\leq 1
 \end{cases}
 $$
 
@@ -70,9 +70,9 @@ $$
 
 $$
 \begin{cases}
-h(B)=x+2\\
-h(C)=x+1\\
-h(A)=x
+    h(B)=x+2\\
+    h(C)=x+1\\
+    h(A)=x
 \end{cases}
 $$
 
@@ -84,12 +84,12 @@ $$
 
 $$
 \begin{cases}
-x-1\leq h'(rs_B),h'(ls_D)\leq x\\
-0\leq h(A)-h'(rs_B)\leq 1\\
-0\leq h(E)-h'(ls_D)\leq 1\\
-h'(B)=\max(h(A),h'(rs_B))+1=x+1\\
-h'(D)=\max(h(E),h'(ls_D))+1=x+1\\
-h'(B)-h'(D)=0
+    x-1\leq h'(rs_B),h'(ls_D)\leq x\\
+    0\leq h(A)-h'(rs_B)\leq 1\\
+    0\leq h(E)-h'(ls_D)\leq 1\\
+    h'(B)=\max(h(A),h'(rs_B))+1=x+1\\
+    h'(D)=\max(h(E),h'(ls_D))+1=x+1\\
+    h'(B)-h'(D)=0
 \end{cases}
 $$
 
