@@ -11,11 +11,11 @@ AVL 树，是一种平衡的二叉搜索树。由于各种算法教材上对 AVL
  **树高的证明** 设 $f_n$ 为高度为 $n$ 的 AVL 树所包含的最少节点数，则有
 
 $$
-\begin{aligned}
+\begin{cases}
    f_1&=1\\
    f_2&=2\\
    f_n&=f_{n-1}+f_{n-2}\quad (n>2)
-\end{aligned}
+\end{cases}
 $$
 
 显然 $f_n$ 是一个斐波那契数列。众所周知，斐波那契数列是以指数的速度增长的，因此 AVL 树的高度为 $O(\log n)$ 。
@@ -41,9 +41,11 @@ $$
 设 $h(E)=x$ ，则有
 
 $$
+\begin{cases}
 h(B)=x+2\\
 h(A)=x+1\\
 x\leq h(C)\leq x+1
+\end{cases}
 $$
 
 其中 $h(C)\geq x$ 是由于节点 B 满足性质 2，因此 $h(C)$ 和 $h(A)$ 的差不会超过 1。此时我们对节点 D 进行一次右旋操作（旋转操作与其它类型的平衡二叉搜索树相同），如下图所示。
@@ -53,9 +55,11 @@ $$
 显然节点 A、C、E 的高度不发生变化，并且有
 
 $$
+\begin{cases}
 0\leq h(C)-h(E)\leq 1\\
 x+1\leq h'(D)=\max(h(C),h(E))+1=h(C)+1\leq x+2\\
 0\leq h'(D)-h(A)\leq 1
+\end{cases}
 $$
 
 因此旋转后的节点 B 和 D 也满足性质 2。
@@ -65,9 +69,11 @@ $$
 设 $h(E)=x$ ，则与刚才同理，有
 
 $$
+\begin{cases}
 h(B)=x+2\\
 h(C)=x+1\\
 h(A)=x
+\end{cases}
 $$
 
 此时我们先对节点 B 进行一次左旋操作，再对节点 D 进行一次右旋操作，如下图所示。
@@ -77,12 +83,14 @@ $$
 显然节点 A、E 的高度不发生变化，并且 B 的新右儿子和 D 的新左儿子分别为 C 原来的左右儿子，则有
 
 $$
+\begin{cases}
 x-1\leq h'(rs_B),h'(ls_D)\leq x\\
 0\leq h(A)-h'(rs_B)\leq 1\\
 0\leq h(E)-h'(ls_D)\leq 1\\
 h'(B)=\max(h(A),h'(rs_B))+1=x+1\\
 h'(D)=\max(h(E),h'(ls_D))+1=x+1\\
 h'(B)-h'(D)=0
+\end{cases}
 $$
 
 因此旋转后的节点 B、C、D 也满足性质 2。最后给出对于一个节点维护平衡操作的伪代码。
