@@ -33,7 +33,7 @@ author: Ir1d,aofall
 ```text
 i=100;
 
-op1=i++; //op1=100，先赋值op1，然后i+1
+op1=i++; //op1=100，先op1=i，然后i=i+1
 
 op2=++i; //op2=101，先i+1，然后赋值op2
 
