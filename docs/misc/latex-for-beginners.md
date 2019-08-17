@@ -36,7 +36,7 @@ LaTeX 基于 TeX（Donald Knuth 在 1978 年为数字化排版设计的排版系
 
 行号并不是要素，但它可以帮助你比较代码与屏幕信息，找到错误。
 
- $\rightarrow$ 进入 **Format** 菜单，选择 **Synttax Coloring** ，然后选择 **LaTeX** 。
+ $\rightarrow$ 进入 **Format** 菜单，选择 **Syntax Coloring** ，然后选择 **LaTeX** 。
 
 语法色彩会高亮代码，使得代码更加易读。
 
