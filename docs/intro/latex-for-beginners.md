@@ -52,7 +52,7 @@ A sentence of text.
 \end{document}
 ```
 
- `\documentclass` 命令必须出现在每个 LaTeX 文档的开头。花括号内的文本指定了文档的类型。 **article** 文档类型适合较短的文章，比如期刊文章和短篇报告。其他文档类型包括 **report** （适用于更长的多章节的文档，比如博士生论文）， **proc** （会议论文集）， **book** 和 **slides** 。方括号内的文本指定了一些选项——示例中它设置纸张大小为 A4，主要文字大小为 12pt。
+ `\documentclass` 命令必须出现在每个 LaTeX 文档的开头。花括号内的文本指定了文档的类型。 **article** 文档类型适合较短的文章，比如期刊文章和短篇报告。其他文档类型包括 **report** （适用于更长的多章节的文档，比如博士生论文）， **proc** （会议论文集）， **book** 和 **beamer** 。方括号内的文本指定了一些选项——示例中它设置纸张大小为 A4，主要文字大小为 12pt。
 
  `\begin{document}` 和 `\end{document}` 命令将你的文本内容包裹起来。任何在 `\begin{documnet}` 之前的文本都被视为前导命令，会影响整个文档。任何在 `\end{document}` 之后的文本都会被忽视。
 
@@ -94,7 +94,7 @@ A sentence of text.
 
 \title{My First Document}
 \author{My Name}
-\date{\rightarrowday}
+\date{\today}
 \maketitle
 
 A sentence of text.
@@ -106,7 +106,7 @@ A sentence of text.
 
 要点笔记：
 
--    `\rightarrowday` 是插入当前时间的命令。你也可以输入一个不同的时间，比如 `\data{November 2013}` 。
+-    `\today` 是插入当前时间的命令。你也可以输入一个不同的时间，比如 `\data{November 2013}` 。
 -    **Article** 文档的正文会紧跟着标题之后在同一页上排版。 **Reports** 会将标题置为单独的一页。
 
 ### 章节
