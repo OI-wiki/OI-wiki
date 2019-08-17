@@ -62,7 +62,7 @@ A sentence of text.
 
 将不同的 LaTeX 文档放在不同的目录下，在编译的时侯组合多个文件是一个很好的想法。
 
- $\rightarrow$ 确保 typeset 菜单设置为了 **pdfLaTeX** 。 $\rightarrow$ 点击 **Typeset** 按扭。
+ $\rightarrow$ 确保 typeset 菜单设置为了 **xeLaTeX** 。 $\rightarrow$ 点击 **Typeset** 按扭。
 
 这时你的源文件会被转换为 PDF 文档，这需要花费一定的时间。在编译结束后，TeXworks 的 PDF 查看器会打开并预览生成的文件。PDF 文件会被自动地保存在与 TeX 文档相同的目录下。
 
