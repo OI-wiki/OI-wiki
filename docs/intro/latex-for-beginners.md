@@ -257,6 +257,16 @@ Here are my results. Referring to section \ref{sec1} on page \pageref{sec1}
 
 ## 文字处理
 
+### 中文字体支持
+
+阅读本文学习 LaTeX 的人，首要学会的自然是 LaTeX 的中文字体支持。事实上，让 LaTeX 支持中文字体有许多方法。在此我们仅给出最**简洁**的解决方案：使用 CTeX 宏包。只需要在文档的前导命令部分添加：
+
+```tex
+\usepackage[UTF8]{ctex}
+```
+
+就可以了。在编译文档的时侯使用 `xelatex` 命令，因为它是支持中文字体的。
+
 ### 字体效果
 
 LaTeX 有多种不同的字体效果，在此列举一部分：
