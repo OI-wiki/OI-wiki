@@ -47,6 +47,7 @@ nav:
         - Interactor: intro/testlib/interactor.md
         - Checker: intro/testlib/checker.md
       - OJ 工具: intro/oj-tool.md
+      - LaTeX 入门: intro/latex-for-beginners.md
     - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - 如何参与: intro/htc.md
@@ -348,7 +349,6 @@ nav:
     - Stern-Brocot 树与 Farey 序列: misc/stern-brocot.md
     - 格雷码: misc/gray-code.md
     - 表达式求值: misc/expression.md
-    - LaTeX 入门: misc/latex-for-beginners.md
   - 专题:
     - RMQ: topic/rmq.md
 
