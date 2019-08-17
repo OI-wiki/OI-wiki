@@ -1,4 +1,4 @@
-给你一个长度为 n 的序列 $\left\langle a_i\right\rangle_{i=1}^n$ ，再给你一个满足结合律的运算 $\circ$ （比如 $\gcd,\min,\max,+,\operatorname{and},\operatorname{or},\operatorname{xor}$ 满足结合律），然后对于若干次区间询问 $[l,r]$ ，我们需要计算 $a_l\circ a_{l+1}\circ\cdots\circ a_{r}$ 。
+给你一个长度为 n 的序列 $\left\langle a_i\right\rangle_{i=1}^n$ ，再给你一个满足结合律的运算 $\circ$ （比如 $\gcd,\min,\max,+,\operatorname{and},\operatorname{or},\operatorname{xor}$ 满足结合律），然后对于若干次区间询问 $[l,r]$ ，我们需要计算 $a_l\circ a_{l+1}\circ\dotsb\circ a_{r}$ 。
 
 Sqrt Tree 可以在 $O(n\log_2\log_2n)$ 的时间内预处理，并在 $O(1)$ 的时间内回答询问。
 
@@ -85,7 +85,7 @@ $$
 
 首先我们来看看在做了一次单点修改后 Sqrt Tree 会变成什么样子。
 
-考虑一个长度为 $l$ 的结点以及对应的序列： $\left\langle P_i\right\rangle,\left\langle S_i\right\rangle,\left\langle B_{i,j}\right\rangle$ 。容易发现在 $\left\langle P_i\right\rangle$ 和 $\left\langle S_i \right\rangle$ 中都只有 $O(\sqrt{l})$ 个元素改变。而在 $\left\langle B_{i,j}\right\rangle$ 中则有 $O(l)$ 个元素被改变。因此有 $O(l)$ 个元素在树上被更新。因此在 Sqrt Tree 上单点修改的复杂度是 $O(n+\sqrt{n}+\sqrt{\sqrt{n}}+\cdots)=O(n)$ 。
+考虑一个长度为 $l$ 的结点以及对应的序列： $\left\langle P_i\right\rangle,\left\langle S_i\right\rangle,\left\langle B_{i,j}\right\rangle$ 。容易发现在 $\left\langle P_i\right\rangle$ 和 $\left\langle S_i \right\rangle$ 中都只有 $O(\sqrt{l})$ 个元素改变。而在 $\left\langle B_{i,j}\right\rangle$ 中则有 $O(l)$ 个元素被改变。因此有 $O(l)$ 个元素在树上被更新。因此在 Sqrt Tree 上单点修改的复杂度是 $O(n+\sqrt{n}+\sqrt{\sqrt{n}}+\dotsb)=O(n)$ 。
 
 #### 使用 Sqrt Tree 替代 B 数组
 
@@ -131,7 +131,7 @@ Sqrt Tree 也支持区间覆盖操作 $\operatorname{Update}(l,r,x)$ ，即把�
 4.  对于没有索引的子树更新他们的 $\left\langle B_{i,j}\right\rangle$ ；
 5.  递归地更新两个没有被完全覆盖的区间。
 
-时间复杂度是 $O(\sqrt{n}+\sqrt{\sqrt{n}}+\cdots)=O(\sqrt{n})$ 。
+时间复杂度是 $O(\sqrt{n}+\sqrt{\sqrt{n}}+\dotsb)=O(\sqrt{n})$ 。
 
 ## 代码实现
 
