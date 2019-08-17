@@ -4,7 +4,7 @@ Split-Merge Treap
 
 ## 对于无旋 Treap 的提示
 
-看楼上的[Treap 词条](/ds/treap/)
+看楼上的 [Treap 词条](/ds/treap/) 
 
  **OI 常用的可持久化平衡树** 一般就是 **可持久化无旋转 Treap** 所以推荐首先学习楼上的 **无旋转 Treap** 
 
@@ -153,14 +153,14 @@ static int _merge(int _x, int _y) {
 
 ## 推荐的练手题
 
-1.  [「Luogu P3919」可持久化数组（模板题）](https://www.luogu.org/problemnew/show/P3919)
+1.   [「Luogu P3919」可持久化数组（模板题）](https://www.luogu.org/problemnew/show/P3919) 
 
-2.  [「Codeforces 702F」T-shirt](http://codeforces.com/problemset/problem/702/F)
+2.   [「Codeforces 702F」T-shirt](http://codeforces.com/problemset/problem/702/F) 
 
-3.  [「Luogu P5055」可持久化文艺平衡树](https://www.luogu.org/problemnew/show/P5055)
+3.   [「Luogu P5055」可持久化文艺平衡树](https://www.luogu.org/problemnew/show/P5055) 
 
 ## 另外
 
-1.  可持久化平衡树可以用来维护动态凸包，仙人掌等东西，如果读者有兴趣可以阅读相应的[ **计算几何** ](/geometry)知识，再来食用。
+1.  可持久化平衡树可以用来维护动态凸包，仙人掌等东西，如果读者有兴趣可以阅读相应的 [ **计算几何** ](/geometry) 知识，再来食用。
 
 2.  Zip Tree 作为一种新的数据结构在 2018.8 月由 Robert E. Tarjan -  Caleb C. Levy - Stephen Timmel 提出，可以去了解一下~

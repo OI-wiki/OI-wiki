@@ -1,4 +1,4 @@
-在看这篇文章前请先看[网络流简介](https://oi-wiki.org/graph/flow/)这篇 wiki 的定义部分
+在看这篇文章前请先看 [网络流简介](https://oi-wiki.org/graph/flow/) 这篇 wiki 的定义部分
 
 ## 费用流
 
@@ -158,9 +158,9 @@ void update() {
 
 ## 习题
 
--   [「Luogu 3381」【模板】最小费用最大流](https://www.luogu.org/problemnew/show/P3381)
--   [「Luogu 4452」航班安排](https://www.luogu.org/problemnew/show/P4452)
--   [「SDOI 2009」晨跑](https://www.lydsy.com/JudgeOnline/problem.php?id=1877)
--   [「SCOI 2007」修车](https://www.lydsy.com/JudgeOnline/problem.php?id=1070)
--   [「HAOI 2010」订货](https://www.lydsy.com/JudgeOnline/problem.php?id=2424)
--   [「NOI 2012」美食节](https://www.lydsy.com/JudgeOnline/problem.php?id=2879)
+-    [「Luogu 3381」【模板】最小费用最大流](https://www.luogu.org/problemnew/show/P3381) 
+-    [「Luogu 4452」航班安排](https://www.luogu.org/problemnew/show/P4452) 
+-    [「SDOI 2009」晨跑](https://www.lydsy.com/JudgeOnline/problem.php?id=1877) 
+-    [「SCOI 2007」修车](https://www.lydsy.com/JudgeOnline/problem.php?id=1070) 
+-    [「HAOI 2010」订货](https://www.lydsy.com/JudgeOnline/problem.php?id=2424) 
+-    [「NOI 2012」美食节](https://www.lydsy.com/JudgeOnline/problem.php?id=2879) 

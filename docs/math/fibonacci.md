@@ -1,4 +1,4 @@
-斐波那契数列（The Fibonacci sequence，[OEIS A000045](http://oeis.org/A000045)）的定义如下：
+斐波那契数列（The Fibonacci sequence， [OEIS A000045](http://oeis.org/A000045) ）的定义如下：
 
 $$
 F_0 = 0, F_1 = 1, F_n = F_{n-1} + F_{n-2}
@@ -20,11 +20,11 @@ $$
 4.  由上一条性质可以归纳证明， $\forall k\in \mathbb{N},F_n|F_{nk}$ 。
 5.  上述性质可逆，即 $\forall F_a|F_b,a|b$ 。
 6.  GCD 性质： $(F_m, F_n) = F_{(m, n)}$ 。
-7.  以斐波那契数列相邻两项作为输入会使欧几里德算法达到最坏复杂度（具体参见[维基 - 拉梅](https://en.wikipedia.org/wiki/Gabriel_Lam%C3%A9)）。
+7.  以斐波那契数列相邻两项作为输入会使欧几里德算法达到最坏复杂度（具体参见 [维基 - 拉梅](https://en.wikipedia.org/wiki/Gabriel_Lam%C3%A9) ）。
 
 ## 斐波那契编码
 
-我们可以利用斐波那契数列为正整数编码。根据[齐肯多夫定理](https://zh.wikipedia.org/wiki/%E9%BD%8A%E8%82%AF%E5%A4%9A%E5%A4%AB%E5%AE%9A%E7%90%86)，任何自然数 $n$ 可以被唯一地表示成一些斐波那契数的和：
+我们可以利用斐波那契数列为正整数编码。根据 [齐肯多夫定理](https://zh.wikipedia.org/wiki/%E9%BD%8A%E8%82%AF%E5%A4%9A%E5%A4%AB%E5%AE%9A%E7%90%86) ，任何自然数 $n$ 可以被唯一地表示成一些斐波那契数的和：
 
 $$
 N = F_{k_1} + F_{k_2} + \ldots + F_{k_r}
@@ -130,13 +130,13 @@ $$
 
  $p$ 的剩余系大小为 $p$ ，意味着在前 $p^2+1$ 个数对中必有两个相同的数对，于是这两个数对可以往后生成相同的斐波那契数列，那么他们就是周期性的。
 
-事实上，我们有一个远比它要强的结论。模 $n$ 意义下斐波那契数列的周期被称为[皮萨诺周期](https://en.wikipedia.org/wiki/Pisano_period)（[OEIS A001175](http://oeis.org/A001175)），该数可以证明总是不超过 $6n$ ，且只有在满足 $n=2\times 5^k$ 的形式时才取到等号。
+事实上，我们有一个远比它要强的结论。模 $n$ 意义下斐波那契数列的周期被称为 [皮萨诺周期](https://en.wikipedia.org/wiki/Pisano_period) （ [OEIS A001175](http://oeis.org/A001175) ），该数可以证明总是不超过 $6n$ ，且只有在满足 $n=2\times 5^k$ 的形式时才取到等号。
 
 ## 习题
 
--   [SPOJ - Euclid Algorithm Revisited](http://www.spoj.com/problems/MAIN74/)
--   [SPOJ - Fibonacci Sum](http://www.spoj.com/problems/FIBOSUM/)
--   [HackerRank - Is Fibo](https://www.hackerrank.com/contests/codesprint5/challenges/is-fibo/problem)
--   [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem)
+-    [SPOJ - Euclid Algorithm Revisited](http://www.spoj.com/problems/MAIN74/) 
+-    [SPOJ - Fibonacci Sum](http://www.spoj.com/problems/FIBOSUM/) 
+-    [HackerRank - Is Fibo](https://www.hackerrank.com/contests/codesprint5/challenges/is-fibo/problem) 
+-    [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem) 
 
-     **本页面主要译自博文[Числа Фибоначчи](http://e-maxx.ru/algo/fibonacci_numbers)与其英文翻译版[Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+     **本页面主要译自博文 [Числа Фибоначчи](http://e-maxx.ru/algo/fibonacci_numbers) 与其英文翻译版 [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

@@ -1,4 +1,4 @@
-本文翻译自[e-maxx Prufer Code](https://github.com/e-maxx-eng/e-maxx-eng/blob/master/src/graph/pruefer_code.md)。另外解释一下，原文的结点是从 $0$ 开始标号的，本文我按照大多数人的习惯改成了从 $1$ 标号。
+本文翻译自 [e-maxx Prufer Code](https://github.com/e-maxx-eng/e-maxx-eng/blob/master/src/graph/pruefer_code.md) 。另外解释一下，原文的结点是从 $0$ 开始标号的，本文我按照大多数人的习惯改成了从 $1$ 标号。
 
 这篇文章介绍 Prufer 序列 (Prufer code)，这是一种将带标号的树用一个唯一的整数序列表示的方法。
 
@@ -246,7 +246,7 @@ $$
 
 ## 习题
 
--   [UVA #10843 - Anne's game](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=20&page=show_problem&problem=1784)
--   [Timus #1069 - Prufer Code](http://acm.timus.ru/problem.aspx?space=1&num=1069)
--   [Codeforces - Clues](http://codeforces.com/contest/156/problem/D)
--   [Topcoder - TheCitiesAndRoadsDivTwo](https://community.topcoder.com/stat?c=problem_statement&pm=10774&rd=14146)
+-    [UVA #10843 - Anne's game](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=20&page=show_problem&problem=1784) 
+-    [Timus #1069 - Prufer Code](http://acm.timus.ru/problem.aspx?space=1&num=1069) 
+-    [Codeforces - Clues](http://codeforces.com/contest/156/problem/D) 
+-    [Topcoder - TheCitiesAndRoadsDivTwo](https://community.topcoder.com/stat?c=problem_statement&pm=10774&rd=14146) 

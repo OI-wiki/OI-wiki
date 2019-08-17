@@ -2,7 +2,7 @@
 
 ## 队列
 
-队列，英文名是 queue，在 C++ STL 中有[std::queue](https://en.cppreference.com/w/cpp/container/queue)和[std::priority_queue](https://en.cppreference.com/w/cpp/container/priority_queue)。
+队列，英文名是 queue，在 C++ STL 中有 [std::queue](https://en.cppreference.com/w/cpp/container/queue) 和 [std::priority_queue](https://en.cppreference.com/w/cpp/container/priority_queue) 。
 
 先进入队列的元素一定先出队列，因此队列通常也被称为先进先出（first in first out）表，简称 FIFO 表。
 
@@ -112,7 +112,7 @@ $$
 
 ### 丢一半的复杂度
 
-似乎可以用[势能分析法](https://yhx-12243.github.io/OI-transit/records/cf601E.html)证明。其实本蒟蒻有一个很仙的想法。我们考虑这个双栈结构的整体复杂度。m 个事件，我们希望尽可能增加这个结构的复杂度。
+似乎可以用 [势能分析法](https://yhx-12243.github.io/OI-transit/records/cf601E.html) 证明。其实本蒟蒻有一个很仙的想法。我们考虑这个双栈结构的整体复杂度。m 个事件，我们希望尽可能增加这个结构的复杂度。
 
 首先，如果全是插入操作的话显然是严格 $\Theta(m)$ 的，因为插入的复杂度是 $O(1)$ 的。
 

@@ -137,7 +137,7 @@ int dp() {
 
 ### 稍复杂的第二种
 
- $O\left(n log n\right)$ 的算法，参考了这篇文章<https://www.cnblogs.com/itlqs/p/5743114.html>。
+ $O\left(n log n\right)$ 的算法，参考了这篇文章 <https://www.cnblogs.com/itlqs/p/5743114.html> 。
 
 首先，定义 $a_1 \dots a_n$ 为原始序列， $d$ 为当前的不下降子序列， $len$ 为子序列的长度，那么 $d_{len}$ 就是长度为 $len$ 的不下降子序列末尾元素。
 
@@ -186,7 +186,7 @@ $$
 
 也可以转化为 LCS 问题，只需要把 $a$ 串反转当做 $b$ ，对 $a$ 和 $b$ 求 LCS 即可。
 
-证明在[这里](https://www.zhihu.com/question/34580085/answer/59539708)。
+证明在 [这里](https://www.zhihu.com/question/34580085/answer/59539708) 。
 
 注意区分子串（要求连续）的问题。
 
@@ -214,13 +214,13 @@ $$
 
 至于如何找是否有这么一个 $id$ 呢？递推的时候存一个 $max$ 就好了。
 
-代码在：<https://github.com/Ir1d/Fantasy/blob/master/HDU/3068.cpp>
+代码在： <https://github.com/Ir1d/Fantasy/blob/master/HDU/3068.cpp> 
 
 ### 双调欧几里得旅行商问题
 
 好像出成了某一年程设期末。
 
-upd：其实是[程设期末推荐练习](https://ir1d.cf/2018/06/23/cssx/程设期末推荐练习/)里面的。
+upd：其实是 [程设期末推荐练习](https://ir1d.cf/2018/06/23/cssx/程设期末推荐练习/) 里面的。
 
 书上的提示是：从左到右扫描，对巡游路线的两个部分分别维护可能的最优解。
 
@@ -245,7 +245,7 @@ upd：其实是[程设期末推荐练习](https://ir1d.cf/2018/06/23/cssx/程设
 答案是 $\min(dp[n][i] + dis[n][i])$ 。
 （从一开始编号，终点是 $n$ ）
 
-代码：<https://github.com/Ir1d/Fantasy/blob/master/openjudge/cssx/2018rec/11.cpp>
+代码： <https://github.com/Ir1d/Fantasy/blob/master/openjudge/cssx/2018rec/11.cpp> 
 
 #### 思路二
 
@@ -307,11 +307,11 @@ insert  : -2
 
 ### 译码算法
 
-[Viterbi algorithm](https://en.wikipedia.org/wiki/Viterbi_algorithm)之前写词性标注的时候有用到，好像用在输入法里面也是类似的。
+ [Viterbi algorithm](https://en.wikipedia.org/wiki/Viterbi_algorithm) 之前写词性标注的时候有用到，好像用在输入法里面也是类似的。
 
 本题中用来实现语音识别，其实就是找一条对应的概率最大的路径。
 
-ref：<https://segmentfault.com/a/1190000008720143>
+ref： <https://segmentfault.com/a/1190000008720143> 
 
 ### 基于接缝裁剪的图像压缩
 
@@ -345,7 +345,7 @@ ref：<https://segmentfault.com/a/1190000008720143>
 
 这是个很有趣的结论，dp 问题中很常见。
 
-<https://fogsail.github.io/2017/05/08/20170508/>
+ <https://fogsail.github.io/2017/05/08/20170508/> 
 
 剩下的就是个二维 dp，想成从 $(1, i)$ 走到 $(n, m)$ 的路径的问题，然后收益和代价就是边权，网格图只能往右下方走。
 
@@ -355,13 +355,13 @@ ref：<https://segmentfault.com/a/1190000008720143>
 
  $cost[i][j]$ 表示剩下 $i$ 个月，开始的时候有 $j$ 台库存的最小成本。
 
-<https://walkccc.github.io/CLRS/Chap15/Problems/15-11/>
+ <https://walkccc.github.io/CLRS/Chap15/Problems/15-11/> 
 
 ### 签约棒球自由球员
 
  $v[i][j]$ 是考虑 $i$ 之后的位置，总费用为 $x$ 的最大收益。
 
-<https://walkccc.github.io/CLRS/Chap15/Problems/15-12/>
+ <https://walkccc.github.io/CLRS/Chap15/Problems/15-12/> 
 
 类似于背包问题。
 

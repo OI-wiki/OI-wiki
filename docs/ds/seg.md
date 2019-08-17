@@ -1,4 +1,4 @@
-author: TrisolarisHD, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1
+author: TrisolarisHD, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina
 
 线段树是算法竞赛中常用的用来维护 **区间信息** 的数据结构。
 
@@ -94,7 +94,7 @@ int getsum(int l, int r, int s, int t, int p) {
 >
 > A 高兴地说：「我现在有 $2$ 份红包了！我又多了 $2\times 1=2$ 元了！哈哈哈~」
 >
-> 但是 A 知道，如果他不把红包给 B 和 C，那 B 和 C 肯定会不爽然后导致家庭矛盾最后崩溃，所以 A 对儿子 B 和 C 说：「我欠你们每人 $1$ 份 $1$ 元的红包，下次有新红包给过来的时候再给你们！这里我先做下记录……嗯……我钱你们各 $1$ 元……」
+> 但是 A 知道，如果他不把红包给 B 和 C，那 B 和 C 肯定会不爽然后导致家庭矛盾最后崩溃，所以 A 对儿子 B 和 C 说：「我欠你们每人 $1$ 份 $1$ 元的红包，下次有新红包给过来的时候再给你们！这里我先做下记录……嗯……我欠你们各 $1$ 元……」
 >
 > 儿子 B、C 有点恼怒：「可是如果有同学问起我们我们收到了多少红包咋办？你把我们的红包都收了，我们还怎么装？」
 >
@@ -236,7 +236,7 @@ int getsum(int l, int r, int s, int t, int p) {
 
 ## 线段树基础题推荐
 
-### [luogu P3372【模板】线段树 1](https://www.luogu.org/problem/P3372)
+###  [luogu P3372【模板】线段树 1](https://www.luogu.org/problem/P3372) 
 
 ??? "参考代码"
     ```cpp
@@ -295,7 +295,7 @@ int getsum(int l, int r, int s, int t, int p) {
     }
     ```
 
-### [luogu P3373【模板】线段树 2](https://www.luogu.org/problem/P3373)
+###  [luogu P3373【模板】线段树 2](https://www.luogu.org/problem/P3373) 
 
 ??? "参考代码"
     ```cpp
@@ -424,7 +424,7 @@ int getsum(int l, int r, int s, int t, int p) {
     }
     ```
 
-### [HihoCoder 1078 线段树的区间修改](https://cn.vjudge.net/problem/HihoCoder-1078)
+###  [HihoCoder 1078 线段树的区间修改](https://cn.vjudge.net/problem/HihoCoder-1078) 
 
 ??? "参考代码"
     ```cpp
@@ -486,7 +486,7 @@ int getsum(int l, int r, int s, int t, int p) {
     }
     ```
 
-### [2018 Multi-University Training Contest 5 Problem G. Glad You Came](http://acm.hdu.edu.cn/showproblem.php?pid=6356)
+###  [2018 Multi-University Training Contest 5 Problem G. Glad You Came](http://acm.hdu.edu.cn/showproblem.php?pid=6356) 
 
 维护一下每个区间的永久标记就可以了，最后在线段树上跑一边 dfs 统计结果即可。注意打标记的时候加个剪枝优化，否则会 T。
 
@@ -558,4 +558,4 @@ int getsum(int l, int r, int s, int t, int p) {
 
 ### 参考
 
-[immortalCO 大爷的博客](http://immortalco.blog.uoj.ac/blog/2102)
+ [immortalCO 大爷的博客](http://immortalco.blog.uoj.ac/blog/2102) 

@@ -139,7 +139,7 @@ int dfs2(int u, int fa, bool keep, bool isson) {
 
 1.  某些出题人设置的正解是 dsu on tree 的题
 
-如[CF741D](http://codeforces.com/problemset/problem/741/D)。给一棵树，每个节点的权值是'a' 到'v' 的字母，每次询问要求在一个子树找一条路径，使该路径包含的字符排序后成为回文串。
+如 [CF741D](http://codeforces.com/problemset/problem/741/D) 。给一棵树，每个节点的权值是'a' 到'v' 的字母，每次询问要求在一个子树找一条路径，使该路径包含的字符排序后成为回文串。
 
 因为是排列后成为回文串，所以一个字符出现了两次相当于没出现，也就是说，这条路径满足 **最多有一个字符出现奇数次** 。
 
@@ -151,14 +151,14 @@ int dfs2(int u, int fa, bool keep, bool isson) {
 
 ### 练习题
 
-[CF600E Lomsat gelral](http://codeforces.com/problemset/problem/600/E)
+ [CF600E Lomsat gelral](http://codeforces.com/problemset/problem/600/E) 
 
 题意翻译：树的节点有颜色，一种颜色占领了一个子树，当且仅当没有其他颜色在这个子树中出现得比它多。求占领每个子树的所有颜色之和。
 
-[UOJ284 快乐游戏鸡](http://uoj.ac/problem/284)
+ [UOJ284 快乐游戏鸡](http://uoj.ac/problem/284) 
 
 ### 参考资料/扩展阅读
 
-[CF741D 作者介绍的 dsu on tree](http://codeforces.com/blog/entry/44351)
+ [CF741D 作者介绍的 dsu on tree](http://codeforces.com/blog/entry/44351) 
 
-[这位作者的题解](http://codeforces.com/blog/entry/48871)
+ [这位作者的题解](http://codeforces.com/blog/entry/48871) 

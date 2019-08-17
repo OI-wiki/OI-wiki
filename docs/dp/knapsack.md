@@ -1,6 +1,6 @@
 author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul
 
-在学习本章前请确认你已经学习了[动态规划部分简介](/dp/)
+在学习本章前请确认你已经学习了 [动态规划部分简介](/dp/) 
 
 在具体讲何为“背包 dp”前，先来看如下的例题：
 
@@ -187,7 +187,7 @@ for (循环物品种类) {
 
 ## 二维费用背包
 
-先来一道例题：[「Luogu P1855」榨取 kkksc03](https://www.luogu.org/problemnew/show/P1855)。
+先来一道例题： [「Luogu P1855」榨取 kkksc03](https://www.luogu.org/problemnew/show/P1855) 。
 
 这道题是很明显的 0-1 背包问题，可是不同的是选一个物品会消耗两种价值（经费、时间）。这种问题其实很简单：方程基本不用变，只需再开一维数组，同时转移两个价值就行了！（完全、多重背包同理）
 
@@ -205,7 +205,7 @@ for (int k = 1; k <= n; k++) {
 
 ## 分组背包
 
-再看一道例题：[「Luogu P1757」通天之分组背包](https://www.luogu.org/problemnew/show/P1757)。
+再看一道例题： [「Luogu P1757」通天之分组背包](https://www.luogu.org/problemnew/show/P1757) 。
 
 所谓分组背包，就是将物品分组，每组的物品相互冲突，最多只能选一个物品放进去。
 
@@ -228,7 +228,7 @@ for (int k = 1; k <= ts; k++)          //循环每一组
 
 ## 有依赖的背包
 
-一道例题：[「Luogu P1064」金明的预算方案](https://www.luogu.org/problemnew/show/P1064)。
+一道例题： [「Luogu P1064」金明的预算方案](https://www.luogu.org/problemnew/show/P1064) 。
 
 这种背包问题其实就是如果选第 $i$ 件物品，就必须选第 $j$ 件物品，保证不会循环引用，一部分题目甚至会出现多叉树的引用形式。为了方便，就称不依赖于别的物品的物品称为“主件”，依赖于某主件的物品称为“附件”。
 
@@ -287,4 +287,4 @@ $$
 
 ### 参考资料
 
-dd 大牛（崔添翼）的背包九讲，GitHub 仓库链接：[tianyicui/pack: 背包问题九讲](https://github.com/tianyicui/pack)。
+dd 大牛（崔添翼）的背包九讲，GitHub 仓库链接： [tianyicui/pack: 背包问题九讲](https://github.com/tianyicui/pack) 。

@@ -1,6 +1,6 @@
-相关阅读：[双连通分量](/graph/bcc/)，
+相关阅读： [双连通分量](/graph/bcc/) ，
 
-割点和桥更严谨的定义参见[图论基础](/graph/basic#_19)。
+割点和桥更严谨的定义参见 [图论基础](/graph/basic#_19) 。
 
 ## 割点
 
@@ -44,7 +44,7 @@ low[u] = min(low[u], num[v]);
 
 ### 例题
 
-[洛谷 P3388【模板】割点（割顶）](https://www.luogu.org/problemnew/show/P3388)
+ [洛谷 P3388【模板】割点（割顶）](https://www.luogu.org/problemnew/show/P3388) 
 
 ### Code
 

@@ -60,6 +60,6 @@
 
 ## 练习题
 
-[「洛谷 1341」无序字母对](https://www.luogu.org/problemnew/show/P1341)
+ [「洛谷 1341」无序字母对](https://www.luogu.org/problemnew/show/P1341) 
 
-[「洛谷 2731」骑马修栅栏](https://www.luogu.org/problemnew/show/P2731)
+ [「洛谷 2731」骑马修栅栏](https://www.luogu.org/problemnew/show/P2731) 

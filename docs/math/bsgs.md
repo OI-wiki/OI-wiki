@@ -26,7 +26,7 @@ $$
 
 其中 $p$ 是个质数。
 
-该模型可以通过一系列的转化为成 **基础篇** 中的模型，你可能需要了解关于[阶与原根](/math/primitive-root/)的知识。
+该模型可以通过一系列的转化为成 **基础篇** 中的模型，你可能需要了解关于 [阶与原根](/math/primitive-root/) 的知识。
 
 由于式子中的模数 $p$ 是一个质数，那么 $p$ 一定存在一个原根 $g$ 。因此对于模 $p$ 意义下的任意的数 $x\ (0\le x<p)$ 有且仅有一个数 $i\ (0\le i<p-1)$ 满足 $x = g^i$ 。
 
@@ -186,11 +186,11 @@ $$
 
 ## 习题
 
--   [SPOJ MOD](https://www.spoj.com/problems/MOD/)模板
--   [SDOI2013 随机数生成器](http://www.lydsy.com/JudgeOnline/problem.php?id=3122)
--   [BZOJ1319 Discrete Roots](http://www.lydsy.com/JudgeOnline/problem.php?id=1319)模板
--   [SDOI2011 计算器](https://www.luogu.org/problemnew/show/P2485)模板
--   [Luogu4195【模板】exBSGS/Spoj3105 Mod](https://www.luogu.org/problemnew/show/P4195)目标
--   [Codeforces - Lunar New Year and a Recursive Sequence](https://codeforces.com/contest/1106/problem/F)
+-    [SPOJ MOD](https://www.spoj.com/problems/MOD/) 模板
+-    [SDOI2013 随机数生成器](http://www.lydsy.com/JudgeOnline/problem.php?id=3122) 
+-    [BZOJ1319 Discrete Roots](http://www.lydsy.com/JudgeOnline/problem.php?id=1319) 模板
+-    [SDOI2011 计算器](https://www.luogu.org/problemnew/show/P2485) 模板
+-    [Luogu4195【模板】exBSGS/Spoj3105 Mod](https://www.luogu.org/problemnew/show/P4195) 目标
+-    [Codeforces - Lunar New Year and a Recursive Sequence](https://codeforces.com/contest/1106/problem/F) 
 
-     **本页面部分内容以及代码译自博文[Дискретное извлечение корня](http://e-maxx.ru/algo/discrete_root)与其英文翻译版[Discrete Root](https://cp-algorithms.com/algebra/discrete-root.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+     **本页面部分内容以及代码译自博文 [Дискретное извлечение корня](http://e-maxx.ru/algo/discrete_root) 与其英文翻译版 [Discrete Root](https://cp-algorithms.com/algebra/discrete-root.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

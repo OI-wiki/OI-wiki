@@ -239,8 +239,8 @@ void swap(int &a, int &b) {
 
 ## 题目推荐
 
-[CODEVS 2743 黑白棋游戏](http://codevs.cn/problem/2743/)
+ [CODEVS 2743 黑白棋游戏](http://codevs.cn/problem/2743/) 
 
 ## 参考
 
-位运算技巧：<https://graphics.stanford.edu/~seander/bithacks.html>
+位运算技巧： <https://graphics.stanford.edu/~seander/bithacks.html> 

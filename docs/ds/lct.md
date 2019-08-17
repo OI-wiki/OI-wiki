@@ -195,7 +195,7 @@ inline void Splay(int x) {
 }
 ```
 
-如果上面的几个函数你看不懂，请移步[Splay](/ds/splay/)。
+如果上面的几个函数你看不懂，请移步 [Splay](/ds/splay/) 。
 
 下面要开始 LCT 独有的函数了哦。
 
@@ -376,8 +376,8 @@ inline int Find(int p) {
 
 ## 习题
 
--   [「BZOJ 3282」Tree](https://lydsy.com/JudgeOnline/problem.php?id=3282)
--   [「HNOI2010」Bounce 弹飞绵羊](https://lydsy.com/JudgeOnline/problem.php?id=2002)
+-    [「BZOJ 3282」Tree](https://lydsy.com/JudgeOnline/problem.php?id=3282) 
+-    [「HNOI2010」Bounce 弹飞绵羊](https://lydsy.com/JudgeOnline/problem.php?id=2002) 
 
 ## 维护树链信息
 
@@ -549,9 +549,9 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 
 ### 习题
 
--   [luogu P3690【模板】Link Cut Tree（动态树）](https://www.luogu.org/problemnew/show/P3690)
--   [luogu P2486\[SDOI2011\]染色](https://www.luogu.org/problemnew/show/P2486)
--   [luogu P4332\[SHOI2014\]三叉神经树](https://www.luogu.org/problemnew/show/P4332)
+-    [luogu P3690【模板】Link Cut Tree（动态树）](https://www.luogu.org/problemnew/show/P3690) 
+-    [luogu P2486\[SDOI2011\]染色](https://www.luogu.org/problemnew/show/P2486) 
+-    [luogu P4332\[SHOI2014\]三叉神经树](https://www.luogu.org/problemnew/show/P4332) 
 
 ## 维护连通性质
 
@@ -826,9 +826,9 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 
 ### 习题
 
--   [luogu P3950 部落冲突](https://www.luogu.org/problemnew/show/P3950)
--   [bzoj 4998 星球联盟](https://www.lydsy.com/JudgeOnline/problem.php?id=4998)
--   [bzoj 2959 长跑](https://www.lydsy.com/JudgeOnline/problem.php?id=2959)
+-    [luogu P3950 部落冲突](https://www.luogu.org/problemnew/show/P3950) 
+-    [bzoj 4998 星球联盟](https://www.lydsy.com/JudgeOnline/problem.php?id=4998) 
+-    [bzoj 2959 长跑](https://www.lydsy.com/JudgeOnline/problem.php?id=2959) 
 
 ## 维护边权
 
@@ -981,9 +981,9 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
 
 ### 习题
 
--   [luogu P4172\[WC2006\]水管局长](https://www.luogu.org/problem/P4172)
--   [luogu P4180【模板】严格次小生成树\[BJWC2010\]](https://www.luogu.org/problemnew/show/P4180)
--   [luogu P2387\[NOI2014\]魔法森林](https://www.luogu.org/problemnew/show/P2387)
+-    [luogu P4172\[WC2006\]水管局长](https://www.luogu.org/problem/P4172) 
+-    [luogu P4180【模板】严格次小生成树\[BJWC2010\]](https://www.luogu.org/problemnew/show/P4180) 
+-    [luogu P2387\[NOI2014\]魔法森林](https://www.luogu.org/problemnew/show/P2387) 
 
 ## 维护子树信息
 
@@ -1147,5 +1147,5 @@ st.siz2[y] += st.siz[x];
 
 ### 习题
 
--   [luogu P4299 首都](https://www.luogu.org/problemnew/show/P4299)
--   [SPOJ QTREE5 - Query on a tree V](https://www.luogu.org/problemnew/show/SP2939)
+-    [luogu P4299 首都](https://www.luogu.org/problemnew/show/P4299) 
+-    [SPOJ QTREE5 - Query on a tree V](https://www.luogu.org/problemnew/show/SP2939) 

@@ -33,7 +33,7 @@
 -   如图所示，我们可以把整个矩形分成如图各个颜色不同的小矩形，那么这个小矩形的高就是我们扫过的距离，那么剩下了一个变量，那就是矩形的长一直在变化。
 -   我们的线段树就是为了维护矩形的长，我们给每一个矩形的上下边进行标记，下面的边标记为 1，上面的边标记为 -1，每遇到一个矩形时，我们知道了标记为 1 的边，我们就加进来这一条矩形的长，等到扫描到 -1 时，证明这一条边需要删除，就删去，利用 1 和 -1 可以轻松的到这种状态。
 -   还要注意这里的线段树指的并不是线段的一个端点，而指的是一个区间，所以我们要计算的是 $r+1$ 和 $r-1$ 。
--   需要[离散化](/misc/discrete/)。
+-   需要 [离散化](/misc/discrete/) 。
 
 ### 代码
 
@@ -133,16 +133,16 @@ int main() {
 
 ## 练习
 
--   [「HDU1542」Atlantis](http://acm.hdu.edu.cn/showproblem.php?pid=1542)
+-    [「HDU1542」Atlantis](http://acm.hdu.edu.cn/showproblem.php?pid=1542) 
 
--   [「HDU1828」Picture](http://acm.hdu.edu.cn/showproblem.php?pid=1828)
+-    [「HDU1828」Picture](http://acm.hdu.edu.cn/showproblem.php?pid=1828) 
 
--   [「HDU3265」Posters](http://acm.hdu.edu.cn/showproblem.php?pid=3265)
+-    [「HDU3265」Posters](http://acm.hdu.edu.cn/showproblem.php?pid=3265) 
 
 ## 参考资料
 
--   <https://www.cnblogs.com/yangsongyi/p/8378629.html>
+-    <https://www.cnblogs.com/yangsongyi/p/8378629.html> 
 
--   <https://blog.csdn.net/riba2534/article/details/76851233>
+-    <https://blog.csdn.net/riba2534/article/details/76851233> 
 
--   <https://blog.csdn.net/winddreams/article/details/38495093>
+-    <https://blog.csdn.net/winddreams/article/details/38495093> 

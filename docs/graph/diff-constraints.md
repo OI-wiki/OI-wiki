@@ -12,7 +12,7 @@ author: Ir1d, Anguei, hsfzLZH1
 
 ## 常用变形技巧
 
-### 例题[luogu P1993 小 K 的农场](https://www.luogu.org/problemnew/show/P1993)
+### 例题 [luogu P1993 小 K 的农场](https://www.luogu.org/problemnew/show/P1993) 
 
 题目大意：求解差分约束系统，有 $m$ 条约束条件，每条都为形如 $x_a-x_b\geq c_k$ ， $x_a-x_b\leq c_k$ 或 $x_a=x_b$ 的形式，判断该差分约束系统有没有解。
 
@@ -81,7 +81,7 @@ int main() {
 }
 ```
 
-### 例题[P4926\[1007\]倍杀测量者](https://www.luogu.org/problemnew/show/P4926)
+### 例题 [P4926\[1007\]倍杀测量者](https://www.luogu.org/problemnew/show/P4926) 
 
 不考虑二分等其他的东西，这里只论述差分系统 $\frac{x_i}{x_j}\leq c_k$ 的求解方法。
 
@@ -110,10 +110,10 @@ bool Bellman_Ford() {
 
 ## 习题
 
-[bzoj 1715:\[Usaco2006 Dec\]Wormholes 虫洞](https://www.lydsy.com/JudgeOnline/problem.php?id=1715)
+ [bzoj 1715:\[Usaco2006 Dec\]Wormholes 虫洞](https://www.lydsy.com/JudgeOnline/problem.php?id=1715) 
 
-[bzoj 2330:\[SCOI2011\]糖果](https://www.lydsy.com/JudgeOnline/problem.php?id=2330)
+ [bzoj 2330:\[SCOI2011\]糖果](https://www.lydsy.com/JudgeOnline/problem.php?id=2330) 
 
-[POJ 1364 King](http://poj.org/problem?id=1364)
+ [POJ 1364 King](http://poj.org/problem?id=1364) 
 
-[POJ 2983 Is the Information Reliable?](http://poj.org/problem?id=2983)
+ [POJ 2983 Is the Information Reliable?](http://poj.org/problem?id=2983) 

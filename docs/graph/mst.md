@@ -1,6 +1,6 @@
 ## 定义
 
-（还记得这些定义吗？在阅读下列内容之前，请务必了解[图论基础](/graph/basic)与[树基础](/graph/tree-basic)部分）
+（还记得这些定义吗？在阅读下列内容之前，请务必了解 [图论基础](/graph/basic) 与 [树基础](/graph/tree-basic) 部分）
 
 生成子图
 
@@ -16,7 +16,7 @@
 
 ### 前置知识
 
-[并查集](/ds/dsu/)、[贪心](/basic/greedy/)、[图的存储](/graph/basic/)。
+ [并查集](/ds/dsu/) 、 [贪心](/basic/greedy/) 、 [图的存储](/graph/basic/) 。
 
 ### 证明
 
@@ -237,9 +237,9 @@ Kruskal 算法中的「集合」，能否进一步优化？
 
 ## 最小生成树题目
 
-[「HAOI2006」聪明的猴子](https://www.lydsy.com/JudgeOnline/problem.php?id=2429)
+ [「HAOI2006」聪明的猴子](https://www.lydsy.com/JudgeOnline/problem.php?id=2429) 
 
-[「SCOI2005」繁忙的都市](https://www.lydsy.com/JudgeOnline/problem.php?id=1083)
+ [「SCOI2005」繁忙的都市](https://www.lydsy.com/JudgeOnline/problem.php?id=1083) 
 
 ## 最小生成树的唯一性
 

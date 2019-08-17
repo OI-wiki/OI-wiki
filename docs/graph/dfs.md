@@ -1,10 +1,10 @@
 author: Ir1d, greyqz, yjl9903, partychicken, ChungZH, qq1010903229, TrisolarisHD, Acfboy
 
-DFS 全称是[Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)，中文名是深度优先搜索，是一种用于遍历或搜索树或图的算法。所谓深度优先，就是说每次都尝试向更深的节点走。
+DFS 全称是 [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search) ，中文名是深度优先搜索，是一种用于遍历或搜索树或图的算法。所谓深度优先，就是说每次都尝试向更深的节点走。
 
 该算法讲解时常常与 BFS 并列，但两者除了都能遍历图的联通块以外，用途完全不同，很少有能混用两种算法的情况。
 
-DFS 常常用来指代用递归函数实现的搜索，但实际上两者并不一样。有关该类搜索思想请参阅[DFS（搜索）](/search/dfs).
+DFS 常常用来指代用递归函数实现的搜索，但实际上两者并不一样。有关该类搜索思想请参阅 [DFS（搜索）](/search/dfs) .
 
 DFS 最显著的特征在于其 **递归调用自身** 。同时与 BFS 类似，DFS 会对其访问过的点打上访问标记，在遍历图时跳过已打过标记的点，以确保 **每个点仅访问一次** 。符合以上两条规则的函数，便是广义上的 DFS。
 
@@ -65,4 +65,4 @@ DFS 进入某个节点的时候记录一个左括号 `(` ，退出某个节点�
 
 在 DFS 过程中，通过记录每个节点从哪个点访问而来，可以建立一个树结构，称为 DFS 树。DFS 树是原图的一个生成树。
 
-DFS 树有很多[性质](/graph/scc/#dfs)，比如用来求[强连通分量](/graph/scc)
+DFS 树有很多 [性质](/graph/scc/#dfs) ，比如用来求 [强连通分量](/graph/scc) 

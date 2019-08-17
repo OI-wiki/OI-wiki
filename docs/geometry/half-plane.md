@@ -143,8 +143,8 @@ t[r + 1] = its(q[l + 1], q[r]);  //再求出新的交点
 
 ## 练习
 
-[POJ 2451 Uyuw's Concert](http://poj.org/problem?id=2451)注意边界
+ [POJ 2451 Uyuw's Concert](http://poj.org/problem?id=2451) 注意边界
 
-[POJ 1279 Art Gallery](http://poj.org/problem?id=1279)求多边形的核
+ [POJ 1279 Art Gallery](http://poj.org/problem?id=1279) 求多边形的核
 
-[\[CQOI2006\]凸多边形](https://www.lydsy.com/JudgeOnline/problem.php?id=2618)
+ [\[CQOI2006\]凸多边形](https://www.lydsy.com/JudgeOnline/problem.php?id=2618) 

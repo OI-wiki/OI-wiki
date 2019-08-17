@@ -21,7 +21,7 @@ for (int i = 1; i <= num; i++) {
 
 ## 保存与修改块内信息
 
-### 例题 1：[教主的魔法](https://www.luogu.org/problemnew/show/P2801)
+### 例题 1： [教主的魔法](https://www.luogu.org/problemnew/show/P2801) 
 
 我们要询问一个块内大于等于一个数的数的个数，所以需要一个 `t` 数组对块内排序。对于整块的修改，使用类似于标记永久化的方式保存。时间复杂度 $O(n\sqrt{n}\times log_2{\sqrt{n}})$ 
 
@@ -130,9 +130,9 @@ int Answer(int l, int r, int c) {
 
 ## 练习
 
-1.  [单点修改，区间查询](https://loj.ac/problem/130)
-2.  [区间修改，区间查询](https://loj.ac/problem/132)
-3.  [【模板】线段树 2](https://www.luogu.org/problemnew/show/P3373)
-4.  [\[Ynoi2019 模拟赛\]Yuno loves sqrt technology III](https://www.luogu.org/problemnew/show/P5048)
-5.  [\[Violet\]蒲公英](https://www.luogu.org/problemnew/show/P4168)
-6.  [作诗](https://www.luogu.org/problemnew/show/P4135)
+1.   [单点修改，区间查询](https://loj.ac/problem/130) 
+2.   [区间修改，区间查询](https://loj.ac/problem/132) 
+3.   [【模板】线段树 2](https://www.luogu.org/problemnew/show/P3373) 
+4.   [\[Ynoi2019 模拟赛\]Yuno loves sqrt technology III](https://www.luogu.org/problemnew/show/P5048) 
+5.   [\[Violet\]蒲公英](https://www.luogu.org/problemnew/show/P4168) 
+6.   [作诗](https://www.luogu.org/problemnew/show/P4135) 

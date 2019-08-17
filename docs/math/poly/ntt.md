@@ -1,6 +1,6 @@
 author: ChungZH, Yukimaikoriya
 
-（本文转载自[桃酱的算法笔记](https://zhuanlan.zhihu.com/c_1005817911142838272)，原文戳[链接](https://zhuanlan.zhihu.com/p/41867199)，已获得作者授权）
+（本文转载自 [桃酱的算法笔记](https://zhuanlan.zhihu.com/c_1005817911142838272) ，原文戳 [链接](https://zhuanlan.zhihu.com/p/41867199) ，已获得作者授权）
 
 ## 简介
 
@@ -24,7 +24,7 @@ NTT 解决的是多项式乘法带模数的情况，可以说有些受模数的�
 
 阶就是满足 $a^r \equiv 1 \pmod n$ 的最小的 $r$ ， $\operatorname{ord}(a)=r$ 
 
-### [原根](/math/primitive-root)
+###  [原根](/math/primitive-root) 
 
  $g$ 满足 $\operatorname{ord}_n(g)=\left|Z_n^\times\right|=\varphi(n)$ ，对于质数 $p$ ，也就是说 $g^i \bmod p, 0 \leq i < p$ 结果互不相同。
 
@@ -61,7 +61,7 @@ $$
 
 接下来放一个大数相乘的模板
 
-参考网址如下<https://blog.csdn.net/blackjack_/article/details/79346433>
+参考网址如下 <https://blog.csdn.net/blackjack_/article/details/79346433> 
 
 ```cpp
 #include <algorithm>

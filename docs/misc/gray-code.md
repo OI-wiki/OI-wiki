@@ -120,6 +120,6 @@ int rev_g(int g) {
 
 ## 习题
 
--   [SGU #249 Matrix](http://codeforces.com/problemsets/acmsguru/problem/99999/249)Difficulty: medium
+-    [SGU #249 Matrix](http://codeforces.com/problemsets/acmsguru/problem/99999/249) Difficulty: medium
 
-     **本页面部分内容译自博文[Код Грея](http://e-maxx.ru/algo/gray_code)与其英文翻译版[Gray code](https://cp-algorithms.com/algebra/gray-code.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+     **本页面部分内容译自博文 [Код Грея](http://e-maxx.ru/algo/gray_code) 与其英文翻译版 [Gray code](https://cp-algorithms.com/algebra/gray-code.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

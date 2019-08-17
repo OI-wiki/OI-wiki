@@ -6,7 +6,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 ## 引入
 
-[ST 表模板题](https://www.luogu.org/problemnew/show/P3865)
+ [ST 表模板题](https://www.luogu.org/problemnew/show/P3865) 
 
 题目大意：给定 $n$ 个数，有 $m$ 个询问，对于每个询问，你需要回答区间 $[x,y]$ 中的最大值
 
@@ -48,7 +48,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 ## 模板代码
 
-[ST 表模板题](https://www.luogu.org/problemnew/show/P3865)
+ [ST 表模板题](https://www.luogu.org/problemnew/show/P3865) 
 
 ```cpp
 #include <bits/stdc++.h>
@@ -96,7 +96,7 @@ int main() {
 
 1.  输入输出数据一般很多，建议开启输入输出优化
 
-2.  每次用[std::log](https://en.cppreference.com/w/cpp/numeric/math/log)重新计算 log 函数值并不值得，建议如下预处理
+2.  每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议如下预处理
 
 $$
 \left\{\begin{aligned}
@@ -111,12 +111,12 @@ $$
 
 ## 练习
 
-[RMQ 模板题](https://www.luogu.org/problemnew/show/P3865)
+ [RMQ 模板题](https://www.luogu.org/problemnew/show/P3865) 
 
-[LCA 模板题](https://www.luogu.org/problemnew/show/P3379)
+ [LCA 模板题](https://www.luogu.org/problemnew/show/P3379) 
 
-[严格次小生成树](https://www.luogu.org/problemnew/show/P4180)
+ [严格次小生成树](https://www.luogu.org/problemnew/show/P4180) 
 
-[货车运输](https://www.luogu.org/problemnew/show/P1967)
+ [货车运输](https://www.luogu.org/problemnew/show/P1967) 
 
-[跑路](https://www.luogu.org/problemnew/show/P1613)
+ [跑路](https://www.luogu.org/problemnew/show/P1613) 

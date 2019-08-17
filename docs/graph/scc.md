@@ -1,6 +1,6 @@
 ## 简介
 
-在阅读下列内容之前，请务必了解[图论基础](/graph/basic)部分。
+在阅读下列内容之前，请务必了解 [图论基础](/graph/basic) 部分。
 
 强连通的定义是：有向图 G 强连通是指，G 中任意两个结点连通。
 
@@ -150,6 +150,6 @@ DAG 好啊，能拓扑排序了就能做很多事情了。
 
 ## 推荐题目
 
-[USACO Fall/HAOI 2006 受欢迎的牛](https://www.lydsy.com/JudgeOnline/problem.php?id=1051)
+ [USACO Fall/HAOI 2006 受欢迎的牛](https://www.lydsy.com/JudgeOnline/problem.php?id=1051) 
 
-[POJ1236 Network of Schools](http://poj.org/problem?id=1236)
+ [POJ1236 Network of Schools](http://poj.org/problem?id=1236) 

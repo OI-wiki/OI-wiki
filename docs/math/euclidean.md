@@ -179,7 +179,7 @@ $$
 
 在计算的时侯，因为 $3$ 个函数各有交错递归，因此可以考虑三个一起整体递归，同步计算，否则有很多项会被多次计算。这样实现的复杂度是 $O(\log n)$ 的。
 
-模板：[luogu5170](https://www.luogu.org/problemnew/show/P5170)
+模板： [luogu5170](https://www.luogu.org/problemnew/show/P5170) 
 
 ```cpp
 #include <bits/stdc++.h>

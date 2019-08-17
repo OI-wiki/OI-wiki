@@ -1,6 +1,6 @@
 ## 什么是左偏树？
 
- **左偏树** 与[ **配对堆** ](/ds/pairing-heap)一样，是一种 **可并堆** ，具有堆的性质，并且可以快速合并。
+ **左偏树** 与 [ **配对堆** ](/ds/pairing-heap) 一样，是一种 **可并堆** ，具有堆的性质，并且可以快速合并。
 
 ## dist 的定义和性质
 
@@ -128,11 +128,11 @@ int pop(int x) {
 
 ### 模板题
 
-[luogu P3377【模板】左偏树（可并堆）](https://www.luogu.org/problemnew/show/P3377)
+ [luogu P3377【模板】左偏树（可并堆）](https://www.luogu.org/problemnew/show/P3377) 
 
-[Monkey King](https://www.luogu.org/problemnew/show/P1456)
+ [Monkey King](https://www.luogu.org/problemnew/show/P1456) 
 
-[罗马游戏](https://www.luogu.org/problemnew/show/P2713)
+ [罗马游戏](https://www.luogu.org/problemnew/show/P2713) 
 
 需要注意的是：
 
@@ -223,9 +223,9 @@ int pop(int x) {
 
 ### 树上问题
 
-[「APIO2012」派遣](https://www.luogu.org/problemnew/show/P1552)
+ [「APIO2012」派遣](https://www.luogu.org/problemnew/show/P1552) 
 
-[「JLOI2015」城池攻占](https://www.luogu.org/problemnew/show/P3261)
+ [「JLOI2015」城池攻占](https://www.luogu.org/problemnew/show/P3261) 
 
 这类题目往往是每个节点维护一个堆，与儿子合并，依题意弹出、修改、计算答案，有点像线段树合并的类似题目。
 
@@ -372,7 +372,7 @@ int pop(int x) {
     }
     ```
 
-### [「SCOI2011」棘手的操作](https://www.luogu.org/problemnew/show/P3273)
+###  [「SCOI2011」棘手的操作](https://www.luogu.org/problemnew/show/P3273) 
 
 ~~这题题如其名，非常棘手~~。
 
@@ -553,6 +553,6 @@ int pop(int x) {
     int find(int x) { return x == f[x] ? x : f[x] = find(f[x]); }
     ```
 
-### [「BOI2004」Sequence 数字序列](https://www.luogu.org/problemnew/show/P4331)
+###  [「BOI2004」Sequence 数字序列](https://www.luogu.org/problemnew/show/P4331) 
 
-这是一道论文题，详见[《黄源河 -- 左偏树的特点及其应用》](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2005%E8%AE%BA%E6%96%87%E9%9B%86/%E9%BB%84%E6%BA%90%E6%B2%B3--%E5%B7%A6%E5%81%8F%E6%A0%91%E7%9A%84%E7%89%B9%E7%82%B9%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/%E9%BB%84%E6%BA%90%E6%B2%B3.pdf)。
+这是一道论文题，详见 [《黄源河 -- 左偏树的特点及其应用》](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2005%E8%AE%BA%E6%96%87%E9%9B%86/%E9%BB%84%E6%BA%90%E6%B2%B3--%E5%B7%A6%E5%81%8F%E6%A0%91%E7%9A%84%E7%89%B9%E7%82%B9%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/%E9%BB%84%E6%BA%90%E6%B2%B3.pdf) 。

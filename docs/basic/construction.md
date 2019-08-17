@@ -14,7 +14,7 @@
 
 #### Problem
 
-[Vladik and fractions](http://codeforces.com/problemset/problem/743/C)
+ [Vladik and fractions](http://codeforces.com/problemset/problem/743/C) 
 
 题目大意：构造一组 $x,y,z$ ，使得对于给定的 $n$ ，满足 $\dfrac{1}{x}+\dfrac{1}{y}+\dfrac{1}{z}=\dfrac{2}{n}$ 
 
@@ -30,7 +30,7 @@
 
 #### Problem
 
-[Luogu P3599 Koishi Loves Construction](https://www.luogu.org/problemnew/show/P3599)
+ [Luogu P3599 Koishi Loves Construction](https://www.luogu.org/problemnew/show/P3599) 
 
 #### Solution
 
@@ -74,7 +74,7 @@ $$
 
 #### Problem
 
-[AtCoder Grand Contest 032 B](https://atcoder.jp/contests/agc032/tasks/agc032_b)
+ [AtCoder Grand Contest 032 B](https://atcoder.jp/contests/agc032/tasks/agc032_b) 
 
 #### Solution
 
@@ -94,7 +94,7 @@ $$
 
 #### Problem
 
-[BZOJ4971:\[Lydsy1708 月赛\]记忆中的背包](https://www.lydsy.com/JudgeOnline/problem.php?id=4971)
+ [BZOJ4971:\[Lydsy1708 月赛\]记忆中的背包](https://www.lydsy.com/JudgeOnline/problem.php?id=4971) 
 
 #### Solution
 

@@ -4,21 +4,21 @@ author: bear-good
 
 ## Cena
 
-Cena 是由刘其帅和李子星使用 Pascal 语言编写的开源评测工具，是流传最广泛的本地评测工具。Cena 最初开源于 Google Code 平台，由于不明原因 Google 删除了 Cena 项目，目前可以在[Web Archive](https://web.archive.org/web/20131023112258/http://code.google.com/p/cena/)上找到 Cena 的官网。
+Cena 是由刘其帅和李子星使用 Pascal 语言编写的开源评测工具，是流传最广泛的本地评测工具。Cena 最初开源于 Google Code 平台，由于不明原因 Google 删除了 Cena 项目，目前可以在 [Web Archive](https://web.archive.org/web/20131023112258/http://code.google.com/p/cena/) 上找到 Cena 的官网。
 
-Cena 的源代码可以在[这里](https://github.com/billchenchina/cena)找到。
+Cena 的源代码可以在 [这里](https://github.com/billchenchina/cena) 找到。
 
 Cena 对权限的限制不是很明确，测试的时候可以读测点 AC QAQ
 
 ## Lemon
 
-Lemon 是 zhipeng-jia 写的开源的评测工具，仓库[zhipeng-jia/project-lemon](https://github.com/zhipeng-jia/project-lemon)。
+Lemon 是 zhipeng-jia 写的开源的评测工具，仓库 [zhipeng-jia/project-lemon](https://github.com/zhipeng-jia/project-lemon) 。
 
-Ir1d 提供了一份 linux 下编译好的版本在[FreestyleOJ/Project_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built)。
+Ir1d 提供了一份 linux 下编译好的版本在 [FreestyleOJ/Project_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built) 。
 
-Menci 提供了一份更新的版本在[Menci/Lemon](https://github.com/Menci/Lemon/)。
+Menci 提供了一份更新的版本在 [Menci/Lemon](https://github.com/Menci/Lemon/) 。
 
-Dust1404 维护了支持子文件夹和单题测试等功能的版本在[Dust1404/Project_LemonPlus](https://github.com/Dust1404/Project_LemonPlus)。
+Dust1404 维护了支持子文件夹和单题测试等功能的版本在 [Dust1404/Project_LemonPlus](https://github.com/Dust1404/Project_LemonPlus) 。
 
  **注意** macOS 下 Lemon 可能会出现内存测试不准确的情况，这是由于 mac 下没有一些 Linux 的监测工具，而 Lemon-Linux 也没有对于 macOS 的使用优化。
 
@@ -232,4 +232,4 @@ players/
 
 ## CCR-Plus
 
-一款开源的界面好看的评测工具 GitHub 地址：[sxyzccr/CCR-Plus](https://github.com/sxyzccr/CCR-Plus)
+一款开源的界面好看的评测工具 GitHub 地址： [sxyzccr/CCR-Plus](https://github.com/sxyzccr/CCR-Plus) 

@@ -109,12 +109,12 @@ int main() {
 
 ## 练习
 
-[BZOJ 1337\[最小圆覆盖\]](http://www.lydsy.com/JudgeOnline/problem.php?id=1337)[BZOJ 2732\[HNOI2012 射箭\]](http://www.lydsy.com/JudgeOnline/problem.php?id=2732)
+ [BZOJ 1337\[最小圆覆盖\]](http://www.lydsy.com/JudgeOnline/problem.php?id=1337)  [BZOJ 2732\[HNOI2012 射箭\]](http://www.lydsy.com/JudgeOnline/problem.php?id=2732) 
 
 ## 参考资料
 
-<http://www.doc88.com/p-007257893177.html>
+ <http://www.doc88.com/p-007257893177.html> 
 
-<https://www.cnblogs.com/aininot260/p/9635757.html>
+ <https://www.cnblogs.com/aininot260/p/9635757.html> 
 
-<https://wenku.baidu.com/view/162699d63186bceb19e8bbe6.html>
+ <https://wenku.baidu.com/view/162699d63186bceb19e8bbe6.html> 

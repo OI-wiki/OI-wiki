@@ -273,7 +273,7 @@ $$
 
 ## 问题形式
 
-### [「HAOI 2011」Problem b](https://www.lydsy.com/JudgeOnline/problem.php?id=2301)
+###  [「HAOI 2011」Problem b](https://www.lydsy.com/JudgeOnline/problem.php?id=2301) 
 
 求值（多组数据）
 
@@ -370,7 +370,7 @@ int main() {
 }
 ```
 
-### [「SPOJ 5971」LCMSUM](https://www.spoj.com/problems/LCMSUM/)
+###  [「SPOJ 5971」LCMSUM](https://www.spoj.com/problems/LCMSUM/) 
 
 求值（多组数据）
 
@@ -451,7 +451,7 @@ int main() {
 }
 ```
 
-### [「BZOJ 2154」Crash 的数字表格](https://www.lydsy.com/JudgeOnline/problem.php?id=2154)
+###  [「BZOJ 2154」Crash 的数字表格](https://www.lydsy.com/JudgeOnline/problem.php?id=2154) 
 
 求值（对 $20101009$ 取模）
 
@@ -583,7 +583,7 @@ int main() {
 }
 ```
 
-### [「SDOI2015」约数个数和](https://www.luogu.org/problemnew/show/P3327)
+###  [「SDOI2015」约数个数和](https://www.luogu.org/problemnew/show/P3327) 
 
 多组数据，求
 
@@ -680,7 +680,7 @@ signed main() {
 }
 ```
 
-### [「luogu 3768」简单的数学题](https://www.luogu.org/problemnew/show/P3768)
+###  [「luogu 3768」简单的数学题](https://www.luogu.org/problemnew/show/P3768) 
 
 求
 
@@ -722,7 +722,7 @@ $$
 \end{split}
 $$
 
-杜教筛（见[杜教筛 - 例 3](https://sshwy.gitee.io/2019/01/11/5071/)）完了是这样的
+杜教筛（见 [杜教筛 - 例 3](https://sshwy.gitee.io/2019/01/11/5071/) ）完了是这样的
 
 $$
 S(n)=\left(\frac{1}{2}n(n+1)\right)^2-\sum_{i=2}^ni^2S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
@@ -895,4 +895,4 @@ $$
 
 总时间复杂度 $O(n+\sqrt n)$ 
 
-> 本文部分内容引用于[algocode 算法博客](https://algocode.net)，特别鸣谢！
+> 本文部分内容引用于 [algocode 算法博客](https://algocode.net) ，特别鸣谢！

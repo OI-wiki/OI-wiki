@@ -82,4 +82,4 @@ $$
 
 所以 $x \sim k \ln n, k\to \infty$ ，即 $-\dfrac{\ln n}{\ln\left(1-\frac{1}{k}\right)}= \Theta (k\log n)$ 
 
- **本页面主要译自博文[Задача Иосифа](https://e-maxx.ru/algo/joseph_problem)与其英文翻译版[Josephus Problem](https://cp-algorithms.com/others/josephus_problem.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ **本页面主要译自博文 [Задача Иосифа](https://e-maxx.ru/algo/joseph_problem) 与其英文翻译版 [Josephus Problem](https://cp-algorithms.com/others/josephus_problem.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

@@ -155,7 +155,7 @@ vector<int> z_function(string s) {
 
 我们现在来考虑在若干具体情况下 Z 函数的应用。
 
-这些应用在很大程度上同[前缀函数](./kmp.md)的应用类似。
+这些应用在很大程度上同 [前缀函数](./kmp.md) 的应用类似。
 
 ### 查找子串
 
@@ -189,18 +189,18 @@ vector<int> z_function(string s) {
 
 其中一种解法为：计算 $s$ 的 Z 函数，从小到大循环所有满足 $i$ 整除 $n$ 的 $i$ 。在找到第一个满足 $i + z[i] = n$ 的 $i$ 时终止。那么该字符串 $s$ 可被压缩为长度 $i$ 的字符串。
 
-该事实的证明同应用[前缀函数](./kmp.md)的解法证明一样。
+该事实的证明同应用 [前缀函数](./kmp.md) 的解法证明一样。
 
 ## 练习题目
 
--   [Codeforces - Password\[Difficulty: Easy\]](http://codeforces.com/problemset/problem/126/B)
--   [UVA # 455 "Periodic Strings"\[Difficulty: Medium\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
--   [UVA # 11022 "String Factoring"\[Difficulty: Medium\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
--   [UVa 11475 - Extend to Palindrome](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2470)
--   [LA 6439 - Pasti Pas!](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=588&page=show_problem&problem=4450)
--   [Codechef - Chef and Strings](https://www.codechef.com/problems/CHSTR)
--   [Codeforces - Prefixes and Suffixes](http://codeforces.com/problemset/problem/432/D)
+-    [Codeforces - Password\[Difficulty: Easy\]](http://codeforces.com/problemset/problem/126/B) 
+-    [UVA # 455 "Periodic Strings"\[Difficulty: Medium\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396) 
+-    [UVA # 11022 "String Factoring"\[Difficulty: Medium\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963) 
+-    [UVa 11475 - Extend to Palindrome](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2470) 
+-    [LA 6439 - Pasti Pas!](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=588&page=show_problem&problem=4450) 
+-    [Codechef - Chef and Strings](https://www.codechef.com/problems/CHSTR) 
+-    [Codeforces - Prefixes and Suffixes](http://codeforces.com/problemset/problem/432/D) 
 
 * * *
 
- **本页面主要译自博文[Z-функция строки и её вычисление](http://e-maxx.ru/algo/z_function)与其英文翻译版[Z-function and its calculation](https://cp-algorithms.com/string/z-function.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ **本页面主要译自博文 [Z-функция строки и её вычисление](http://e-maxx.ru/algo/z_function) 与其英文翻译版 [Z-function and its calculation](https://cp-algorithms.com/string/z-function.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

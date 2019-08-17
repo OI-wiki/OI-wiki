@@ -492,7 +492,7 @@ $$
 
 选取一个非基本变量 $x_e​$ 为替入变量，基本变量 $x_l​$ 为替出变量，将其互换，为了防止循环，根据 **Bland 规则** ，选择下标最小的变量。
 
->  **Bland 规则** 可以参看：[最优化方法](https://github.com/AngelKitty/review_the_national_post-graduate_entrance_examination/blob/master/books_and_notes/professional_courses/data_structures_and_algorithms/sources/extra_books/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95.pdf)
+>  **Bland 规则** 可以参看： [最优化方法](https://github.com/AngelKitty/review_the_national_post-graduate_entrance_examination/blob/master/books_and_notes/professional_courses/data_structures_and_algorithms/sources/extra_books/%E6%9C%80%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95.pdf) 
 
 ### 初始化
 
@@ -665,14 +665,14 @@ $$
 
 > 注： **任何最大流、最小费用最大流的线性规划都是全幺模矩阵** 
 
-更多详细的解释参看：<https://www.cnblogs.com/ECJTUACM-873284962/p/7097864.html>
+更多详细的解释参看： <https://www.cnblogs.com/ECJTUACM-873284962/p/7097864.html> 
 
 ## 习题练习
 
--   [UOJ#179. 线性规划](http://uoj.ac/problem/179)
+-    [UOJ#179. 线性规划](http://uoj.ac/problem/179) 
 
 ## 参考资料
 
--   [线性规划之单纯形法【超详解 + 图解】](https://www.cnblogs.com/ECJTUACM-873284962/p/7097864.html)
--   [2016 国家集训队论文](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2016%E8%AE%BA%E6%96%87%E9%9B%86.pdf)
+-    [线性规划之单纯形法【超详解 + 图解】](https://www.cnblogs.com/ECJTUACM-873284962/p/7097864.html) 
+-    [2016 国家集训队论文](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2016%E8%AE%BA%E6%96%87%E9%9B%86.pdf) 
 -   算法导论

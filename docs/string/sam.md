@@ -307,7 +307,7 @@ void sam_extend(char c) {
 
 ### 额外信息
 
-观察[实现](#_8)中的结构体的每个变量。实际上，尽管 SAM 本身由 `next` 组成，但 SAM 构造算法中作为辅助变量的 `link` 和 `len` 在应用中常常比 `next` 重要，甚至可以抛开 `next` 单独使用。
+观察 [实现](#_8) 中的结构体的每个变量。实际上，尽管 SAM 本身由 `next` 组成，但 SAM 构造算法中作为辅助变量的 `link` 和 `len` 在应用中常常比 `next` 重要，甚至可以抛开 `next` 单独使用。
 
 设字符串的长度为 $n$ ，考虑 `extend` 操作中 `cur` 变量的值，这个节点对应的状态是<u>执行 `extend` 操作时的当前字符串</u>，即字符串的一个前缀，每个前缀有一个终点。这样得到的 $n$ 个节点，对应了 $n$ 个不同的 **终点** 。设第 $i$ 个节点为 $v_i$ ，对应的是 $S_{1 \ldots i}$ ，终点是 $i$ 。姑且把这些节点称之为“终点节点”。
 
@@ -576,8 +576,8 @@ $$
 
 ## 例题
 
--   [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/)
--   [HihoCoder #1441 : 后缀自动机一·基本概念](http://hihocoder.com/problemset/problem/1441)
+-    [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/) 
+-    [HihoCoder #1441 : 后缀自动机一·基本概念](http://hihocoder.com/problemset/problem/1441) 
 
 ## 相关资料
 
@@ -603,10 +603,10 @@ $$
 -   《后缀自动机》，陈立杰。
 -   《后缀自动机在字典树上的拓展》，刘研绎。
 -   《后缀自动机及其应用》，张天扬。
--   <https://www.cnblogs.com/zinthos/p/3899679.html>
--   <https://codeforces.com/blog/entry/20861>
--   <https://zhuanlan.zhihu.com/p/25948077>
+-    <https://www.cnblogs.com/zinthos/p/3899679.html> 
+-    <https://codeforces.com/blog/entry/20861> 
+-    <https://zhuanlan.zhihu.com/p/25948077> 
 
 * * *
 
- **本页面主要译自博文[Суффиксный автомат](http://e-maxx.ru/algo/suffix_automata)与其英文翻译版[Suffix Automaton](https://cp-algorithms.com/string/suffix-automaton.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ **本页面主要译自博文 [Суффиксный автомат](http://e-maxx.ru/algo/suffix_automata) 与其英文翻译版 [Suffix Automaton](https://cp-algorithms.com/string/suffix-automaton.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

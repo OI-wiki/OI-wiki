@@ -168,7 +168,7 @@ $$
 
 ### 实现
 
-最后放一个实现的代码供参考。代码转自[大米饼的博客](https://www.cnblogs.com/Paul-Guderian/p/11020708.html)，被我加了一些注释。
+最后放一个实现的代码供参考。代码转自 [大米饼的博客](https://www.cnblogs.com/Paul-Guderian/p/11020708.html) ，被我加了一些注释。
 
 ```cpp
 #include <bits/stdc++.h>
@@ -400,4 +400,4 @@ int main() {
 
 刘承奥。简单的连续段数据结构。WC2019 营员交流。
 
-[大米饼的博客 -【学习笔记】析合树](https://www.cnblogs.com/Paul-Guderian/p/11020708.html)
+ [大米饼的博客 -【学习笔记】析合树](https://www.cnblogs.com/Paul-Guderian/p/11020708.html) 

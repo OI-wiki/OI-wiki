@@ -1,4 +1,4 @@
-A\*算法是[BFS](/search/bfs)的一种改进。
+A\*算法是 [BFS](/search/bfs) 的一种改进。
 
 定义起点 $s$ ，终点 $t$ 。
 
@@ -14,9 +14,9 @@ A\*算法每次从 **优先队列** 中取出一个 $f$ 最小的，然后更新
 
 上述条件下，如果 $h$  **满足三角形不等式，则 A\*算法不会将重复结点加入队列** 。
 
-其实…… $h=0$ 时就是[DFS](/search/dfs)算法， $h=0$ 并且边权为 $1$ 时就是[BFS](/search/bfs)。
+其实…… $h=0$ 时就是 [DFS](/search/dfs) 算法， $h=0$ 并且边权为 $1$ 时就是 [BFS](/search/bfs) 。
 
-## 例题[八数码](https://www.luogu.org/problemnew/show/P1379)
+## 例题 [八数码](https://www.luogu.org/problemnew/show/P1379) 
 
 题目大意：在 $3\times 3$ 的棋盘上，摆有八个棋子，每个棋子上标有 1 至 8 的某一数字。棋盘中留有一个空格，空格用 0 来表示。空格周围的棋子可以移到空格中，这样原来的位置就会变成空格。给出一种初始布局和目标布局（为了使题目简单，设目标状态为
 
@@ -104,7 +104,7 @@ int main() {
 }
 ```
 
-## 例题[k 短路](https://www.luogu.org/problemnew/show/P2483)
+## 例题 [k 短路](https://www.luogu.org/problemnew/show/P2483) 
 
 题目大意：按顺序求一个有向图上从结点 $s$ 到结点 $t$ 的所有路径最小的前任意多（不妨设为 $k$ ）个。
 

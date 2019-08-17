@@ -12,6 +12,9 @@ edit_uri: 'blob/master/docs/'
 
 # Copyright
 copyright: 'Copyright &copy; 2016 - 2019 OI Wiki Team'
+google_analytics:
+  - 'UA-124485594-1'
+  - 'auto'
 
 # Contents
 nav:
@@ -46,6 +49,7 @@ nav:
       - OJ 工具: intro/oj-tool.md
     - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
+    - 如何参与: intro/htc.md
     - F.A.Q.: intro/faq.md
     - 致谢: intro/thanks.md
   - 语言基础:

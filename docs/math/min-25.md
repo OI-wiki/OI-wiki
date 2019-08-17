@@ -1,6 +1,6 @@
 author: TrisolarisHD, Xeonacid
 
-由于其由[Min_25](http://min-25.hatenablog.com/)发明并最早开始使用，故称「Min_25 筛」。
+由于其由 [Min_25](http://min-25.hatenablog.com/) 发明并最早开始使用，故称「Min_25 筛」。
 
 > 从此种筛法的思想方法来说，其又被称为「Extended Eratosthenes Sieve」。
 
@@ -89,7 +89,7 @@ $$
 $$
 
 对于空间复杂度，可以发现不论是 $F_{k}$ 还是 $F_{\mathrm{prime}}$ ，其均只在 $n / i$ 处取有效点值，共 $O(\sqrt{n})$ 个。  
-则可以使用[杜教筛一节中介绍的 trick](#Implementation)来将空间复杂度优化至 $O(\sqrt{n})$ 。
+则可以使用 [杜教筛一节中介绍的 trick](#Implementation) 来将空间复杂度优化至 $O(\sqrt{n})$ 。
 
 ## 有关代码实现
 
@@ -130,7 +130,7 @@ $$
 对于 $f(p)$ 的常数项 $(-1)$ ，有 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$ 。  
 筛两次加起来即可得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个所需点值。
 
-### [「LOJ #6053」简单的函数](https://loj.ac/problem/6053)
+###  [「LOJ #6053」简单的函数](https://loj.ac/problem/6053) 
 
 给定 $f(n)$ ：
 

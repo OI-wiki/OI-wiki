@@ -273,12 +273,12 @@ int main() {
 
 ## 练习题
 
-[普通平衡树](https://loj.ac/problem/104)
+ [普通平衡树](https://loj.ac/problem/104) 
 
-[文艺平衡树（Splay）](https://loj.ac/problem/105)
+ [文艺平衡树（Splay）](https://loj.ac/problem/105) 
 
-[\[ZJOI2006\]书架](https://www.lydsy.com/JudgeOnline/problem.php?id=1861)
+ [\[ZJOI2006\]书架](https://www.lydsy.com/JudgeOnline/problem.php?id=1861) 
 
-[\[NOI2005\]维护数列](https://www.lydsy.com/JudgeOnline/problem.php?id=1500)
+ [\[NOI2005\]维护数列](https://www.lydsy.com/JudgeOnline/problem.php?id=1500) 
 
-[CF 702F T-Shirts](http://codeforces.com/problemset/problem/702/F)
+ [CF 702F T-Shirts](http://codeforces.com/problemset/problem/702/F) 

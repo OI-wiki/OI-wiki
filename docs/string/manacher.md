@@ -118,7 +118,7 @@ for (int i = 0; i < n; i++) {
 
 因为在计算一个特定位置的答案时我们总会运行朴素算法，所以一眼看去该算法的时间复杂度为线性的事实并不显然。
 
-然而更仔细的分析显示出该算法具有线性复杂度。此处我们需要指出，[计算 Z 函数的算法](z-func.md)和该算法较为类似，并同样具有线性时间复杂度。
+然而更仔细的分析显示出该算法具有线性复杂度。此处我们需要指出， [计算 Z 函数的算法](z-func.md) 和该算法较为类似，并同样具有线性时间复杂度。
 
 实际上，注意到朴素算法的每次迭代均会使 $r$ 增加 $1$ ，以及 $r$ 在算法运行过程中从不减小。这两个观察告诉我们朴素算法总共会进行 $O(n)$ 次迭代。
 
@@ -178,9 +178,9 @@ for (int i = 0, l = 0, r = -1; i < n; i++) {
 
 ## 练习题目
 
--   [UVA #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470)
--   [P4555\[国家集训队\]最长双回文串](https://www.luogu.org/problemnew/show/P4555)
+-    [UVA #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470) 
+-    [P4555\[国家集训队\]最长双回文串](https://www.luogu.org/problemnew/show/P4555) 
 
 * * *
 
- **本页面主要译自博文[Нахождение всех подпалиндромов](http://e-maxx.ru/algo/palindromes_count)与其英文翻译版[Finding all sub-palindromes in $O(N)$ ](https://cp-algorithms.com/string/manacher.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ **本页面主要译自博文 [Нахождение всех подпалиндромов](http://e-maxx.ru/algo/palindromes_count) 与其英文翻译版 [Finding all sub-palindromes in $O(N)$ ](https://cp-algorithms.com/string/manacher.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
