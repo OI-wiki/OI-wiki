@@ -47,6 +47,7 @@ nav:
         - Interactor: intro/testlib/interactor.md
         - Checker: intro/testlib/checker.md
       - OJ 工具: intro/oj-tool.md
+      - LaTeX 入门: intro/latex.md
     - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - 如何参与: intro/htc.md
