@@ -793,4 +793,4 @@ if (!sta.empty()) {
 
 ## 参考资料
 
-- [莫队算法学习笔记 | Sengxian's Blog](https://blog.sengxian.com/algorithms/mo-s-algorithm)
+-    [莫队算法学习笔记 | Sengxian's Blog](https://blog.sengxian.com/algorithms/mo-s-algorithm) 
