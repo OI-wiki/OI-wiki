@@ -177,7 +177,7 @@ LeetCode 有递归专题练习， [点这里去做题](https://leetcode.com/expl
 
 比较 naive 的递归实现可能递归次数太多，容易超时。
 
-怎么优化呢？详见 [搜索优化](/search/opt) 和 [记忆化搜索](/dp/memo/) 。
+怎么优化呢？详见 [搜索优化](/search/opt.md) 和 [记忆化搜索](/dp/memo.md) 。
 
 ## 分治算法
 
