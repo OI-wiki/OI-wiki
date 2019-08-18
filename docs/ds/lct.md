@@ -195,7 +195,7 @@ inline void Splay(int x) {
 }
 ```
 
-如果上面的几个函数你看不懂，请移步 [Splay](/ds/splay/) 。
+如果上面的几个函数你看不懂，请移步 [Splay](/ds/splay.md) 。
 
 下面要开始 LCT 独有的函数了哦。
 
