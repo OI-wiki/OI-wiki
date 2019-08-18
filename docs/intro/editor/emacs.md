@@ -2,7 +2,7 @@ author: akakw1, Ir1d, partychicken
 
 ## Emacs——神的编辑器
 
-15 分钟入门 Emacs（因为是入门教程，所以比较简短）
+15 分钟入门 Emacs（因为是入门教程，所以比较简短，仅介绍编写程序常用的功能），其它内容参见 emacs 官网或者百度
 
 ### 简介
 
@@ -12,25 +12,27 @@ Emacs 是一款非常容易上手的编辑器，重要的快捷键不多，随�
 
 #### 命令
 
-按下右侧 Ctrl 左边的可以输入命令，按三下 Esc 可以取消，常用的有 "es" 或 "eshell"（打开 eshell）
+按下右侧 Ctrl 左边的第一个键（据说叫鼠标右键）或者使用 Alt-x 可以输入命令，按三下 Esc 可以取消，常用的有 "es" 或 "eshell"（打开 eshell）
 
-#### 缓冲
+#### 缓冲 (buffer)
 
-缓冲即打开的文件和进程，没什么好讲的，只要知道在缓冲区的底部点击缓冲的名字可以切换缓冲就可以了
+缓冲即打开的文件和进程，在不保存的情况下，在缓冲中修改并不会修改到文件
+
+在缓冲区的底部点击缓冲的名字可以切换缓冲
 
 #### 编译、调试和运行
 
 在顶部的菜单栏中有一个 Tools 点开就有编译和调试
 
-运行可以使用终端或 Eshell（其实也是终端），输入文件位置就可以运行
+运行可以使用终端或 Eshell（其实也是终端）运行程序
 
-具体的调试参见 GDB 调试
+按下 Tools 中的调试 (gud-gdb) 后，输入程序名（一般会自动输好，但如果中途将程序另存为或者打开了两个需要调试的程序，**自动输好的文件名可能会有误**）即可开始调试
 
 #### 分屏
 
 这个稍微重要一点
 
-分屏功能可以同时显示多个窗口，一般分为
+分屏功能可以同时显示多个窗口，用鼠标拖动窗口的边缘可以缩放窗口（像平时缩放程序窗口一样）
 
 几个快捷键：
 
@@ -65,14 +67,14 @@ Emacs 是一款非常容易上手的编辑器，重要的快捷键不多，随�
 几个重要的
 
     (global-set-key [f9] 'compile);;;f9编译
-    ;(global-set-key [f9] 'compile-file);;;设置了快捷编译的用这条
+    ;(global-set-key [f9] 'compile-file);;;设置了一键编译的用这条
     (global-set-key [f10] 'gud-gdb);;;f10调试
     (global-set-key (kbd "C-s") 'save-buffer);;;ctrl+s保存
     (global-set-key (kbd "C-z") 'undo);;;ctrl+z撤销
     (global-set-key (kbd "RET") 'newline-and-indent);;;自动缩进
     (define-key key-translation-map (kbd "C-a") (kbd "C-x h"));;;全选
     (global-set-key (kbd "C-y") 'kill-whole-line);;;删除一行
-    (setq c-default-style "awk");;;设置C语言风格
+    (setq c-default-style "awk");;;设置C语言风格awk
 
 考场把上面的需要的输进去就行了
 
