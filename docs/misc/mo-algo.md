@@ -2,8 +2,6 @@ author: greyqz
 
 ## 普通莫队算法
 
-（主要参考了 <https://blog.sengxian.com/algorithms/mo-s-algorithm> ）
-
 ### 概述
 
 莫队算法是由莫涛提出的算法，可以解决一类离线区间询问问题，适用性极为广泛。同时将其加以扩展，便能轻松处理树上路径询问以及支持修改操作。
@@ -216,7 +214,7 @@ struct node {
 ```
 
 !!! warning
-    小细节：如果使用 sort 比较两个函数，不能出现 $a < b$ 和 $b < a$ 同时为真的情况，否则会运行错误
+    小细节：如果使用 sort 比较两个函数，不能出现 $a < b$ 和 $b < a$ 同时为真的情况，否则会运行错误。
 
 对于压行版，如果没有 `r == x.r` 的特判，当 l 属于同一奇数块且 r 相等时，会出现上面小细节中的问题（自己手动模拟一下），对于压行版，如果写成小于（大于）等于，则也会出现同样的问题。
 
@@ -792,3 +790,7 @@ if (!sta.empty()) {
       return 0;
     }
     ```
+
+## 参考资料
+
+- [莫队算法学习笔记 | Sengxian's Blog](https://blog.sengxian.com/algorithms/mo-s-algorithm)
