@@ -33,7 +33,7 @@ author: Dev-jqe, HeRaNO
 
 ## 示例代码
 
-平衡树部分代码请参考 Splay 等其他条目。 [传送至 Splay 条目](/ds/splay.md) 
+平衡树部分代码请参考 Splay 等其他条目。 [传送至 Splay 条目](./splay.md) 
 
 操作一
 
