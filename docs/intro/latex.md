@@ -421,7 +421,7 @@ be in want of a wife.
 \# \$ \% \^{} \& \_ \{ \} \~{}
 ```
 
-注意在使用 `^` 和 `~` 字符的时侯需要在后面紧跟一对闭合的花括号，否则他们就会被解释为字母的上标，就像 `\^ e` 会变成 $\^e$ 。上面的代码生成的效果如下：
+注意在使用 `^` 和 `~` 字符的时侯需要在后面紧跟一对闭合的花括号，否则他们就会被解释为字母的上标，就像 `\^ e` 会变成 ê。上面的代码生成的效果如下：
 
 ![p11](images/latex-for-beginners-11.png)
 
@@ -746,9 +746,9 @@ Natbib 包也有三种格式： **plainnat** ， **abbrvnat** 和 **unsrtnat** �
 
 ## 更多阅读
 
-LaTeX Project <http://www.latex-project.org/> Official website - has links to documentation, information about installing LATEX on your own computer, and information about where to look for help.
+一份（不太）简短的 LATEX 2ε 介绍 <https://mirrors.tuna.tsinghua.edu.cn/CTAN/info/lshort/chinese/lshort-zh-cn.pdf> 或 110 分钟了解 LaTeX 2.
 
-The Not So Short Introduction to LaTeX2e <http://ctan.tug.org/tex-archive/info/lshort/english/lshort.pdf> A good tutorial for beginners.
+LaTeX Project <http://www.latex-project.org/> Official website - has links to documentation, information about installing LATEX on your own computer, and information about where to look for help.
 
 LaTeX Wikibook <http://en.wikibooks.org/wiki/LaTeX/> Comprehensive and clearly written, although still a work in progress. A downloadable PDF is also available.
 
