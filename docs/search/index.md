@@ -2,25 +2,25 @@
 
 ## 深度优先搜索 (DFS)
 
-主条目： [DFS（搜索）](/search/dfs.md) 
+主条目： [DFS（搜索）](./dfs.md) 
 
 ## 宽度优先搜索 (BFS)
 
-主条目： [BFS（搜索）](/search/bfs.md) 
+主条目： [BFS（搜索）](./bfs.md) 
 
 ### 双向宽度优先搜索
 
-主条目： [双向广搜](/search/dbfs.md) 
+主条目： [双向广搜](./dbfs.md) 
 
 从状态图上起点和终点同时开始进行宽度优先搜索，如果发现相遇了，那么可以认为是获得了可行解。
 
 ## A\*搜索
 
-主条目： [A\*](/search/astar.md) 
+主条目： [A\*](./astar.md) 
 
 ## IDA\*搜索
 
-主条目： [IDA\*](/search/idastar.md) 
+主条目： [IDA\*](./idastar.md) 
 
 ## 剪枝
 

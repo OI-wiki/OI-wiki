@@ -1,4 +1,4 @@
-在看这篇文章前请先看 [网络流简介](https://oi-wiki.org/graph/flow.md) 这篇 wiki 的定义部分
+在看这篇文章前请先看 [网络流简介](../flow.md) 这篇 wiki 的定义部分
 
 ## 费用流
 

@@ -122,7 +122,7 @@ bitset<1000> bs;  // a bitset with 1000 bits
 
 现在的问题是，如何通过一个可重集的约数构成的可重集得到该可重集中某个数的个数。
 
-令原可重集为 $A$ ，其约数构成的可重集为 $A'$ ，我们要求 $A$ 中 $x$ 的个数，用 [莫比乌斯反演](/math/mobius.md) 推一推：
+令原可重集为 $A$ ，其约数构成的可重集为 $A'$ ，我们要求 $A$ 中 $x$ 的个数，用 [莫比乌斯反演](../../math/mobius.md) 推一推：
 
 $$
 \begin{aligned}&\sum\limits_{i\in A}[\frac i x=1]\\=&\sum\limits_{i\in A}\sum\limits_{d|\frac i x}\mu(d)\\=&\sum\limits_{d\in A',x|d}\mu(\frac d x)\end{aligned}
@@ -215,7 +215,7 @@ $$
 
 ### 与树分块结合
 
- `bitset` 与树分块结合可以解决一类求树上多条路径信息并的问题，详见 [数据结构/树分块](/ds/tree-decompose.md) 。
+ `bitset` 与树分块结合可以解决一类求树上多条路径信息并的问题，详见 [数据结构/树分块](../../ds/tree-decompose.md) 。
 
 ### 计算高维偏序
 

@@ -1,4 +1,4 @@
-网络流基本概念参见 [网络流简介](https://oi-wiki.org/graph/flow.md) 
+网络流基本概念参见 [网络流简介](../flow.md) 
 
 ## 概述
 
