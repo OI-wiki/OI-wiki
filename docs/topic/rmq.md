@@ -65,7 +65,7 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 ```text
 新建一个大小为n的空栈。
-For i->1 to n
+For i:=1 to n
     flag = 0
     While 栈不为空
         if 栈顶元素<当前元素
