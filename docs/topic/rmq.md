@@ -8,7 +8,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 ## ST 表
 
-由于 Oi wiki 中已有此部分的描述，本文仅给出 [链接](ds/sparse-table/index.md) 。这部分不再展开。
+由于 Oi wiki 中已有此部分的描述，本文仅给出 [链接](../ds/sparse-table.md) 。这部分不再展开。
 
 时间复杂度 $O(n\log n)-O(1)$ 
 
@@ -16,7 +16,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 ## 线段树
 
-由于 Oi wiki 中已有此部分的描述，本文仅给出 [链接](ds/seg/index.md) 。这部分不再展开。
+由于 Oi wiki 中已有此部分的描述，本文仅给出 [链接](../ds/seg.md) 。这部分不再展开。
 
 时间复杂度 $O(n)-O(\log n)$ 
 
@@ -86,7 +86,7 @@ For i->1 to n
 
 这也说明，我们现在需要去解决的是如何 $O(n)-O(1)$ 树上两个点之间的 LCA 的。
 
-树上 LCA 在 [](graph/lca/lca.md) 部分已经有描述，这里不再展开。
+树上 LCA 在 [LCA](../graph/lca.md) 部分已经有描述，这里不再展开。
 
 这里我们需要采用的是基于 RMQ 的树上 LCA 算法。
 
