@@ -46,6 +46,46 @@ std::cout << s1.empty() << " " << s2.empty() << endl;  // 1 0
 
 ## queue
 
+STL 队列 (`std::queue`) 是一种先进先出 (`FIFO`) 的容器，仅支持查询或删除第一个加入的元素（队首元素），不支持随机访问，且为了保证数据的严格有序性，不支持迭代器
+
+### 头文件和命名空间
+
+```cpp
+#include <queue>
+using std::queue
+```
+
+### 队列的定义
+
+```cpp
+queue<TypeName> q; // 使用默认底层容器 deque，数据类型为 TypeName
+queue<TypeName, Container> q; // 使用 Container 作为底层容器
+
+queue<TypeName> q2(q1); // 以 q1 为模板定义一个队列 q2
+```
+
+### 成员函数
+#### 以下所有函数均为常数复杂度
+- `front()` 访问队首元素（如果队列为空，此处会出错）
+- `push(x)` 向队列中插入元素 x
+- `pop()` 删除队首元素
+- `size()` 查询容器中的元素数量
+- `empty()` 询问容器是否为空
+
+### 简单示例
+
+```cpp
+stack<int> q1;
+q1.push(2);
+q1.push(1);
+stack<int> q2(q1);
+q1.pop();
+std::cout << q1.size() << " " << q2.size() << endl; // 1 2
+std::cout << q1.front() << " " << q2.front() << endl; // 1 2
+q1.pop();
+std::cout << q1.empty() << " " << q2.empty() << endl; // 1 0
+```
+
 ## priority_queue
 
 ```cpp
