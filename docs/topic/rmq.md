@@ -38,9 +38,9 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 在 $S=\log n$ 时候，预处理复杂度达到最优。为 $O((n\log n)\log n+n\log n\times\log n\times\log \log n)=O(n\log \log n)$ 
 
-时间复杂度 $O(n\log log n)-O(1)$ 
+时间复杂度 $O(n\log \log n)-O(1)$ 
 
-空间复杂度 $O(n\log log n)$ 
+空间复杂度 $O(n\log \log n)$ 
 
 当然询问由于要跑三个 ST 表，该实现方法的时间复杂度较大。
 
@@ -59,7 +59,7 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 下面是一个笛卡尔树的具体例子：
 
-!\[](./images/Cartesian tree.jfif)
+![](./images/Cartesian tree.jfif)
 
 接下来笔者将讲述一个构造笛卡尔树的 $O(n)$ 算法。
 
