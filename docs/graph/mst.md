@@ -287,8 +287,8 @@ Kruskal 算法中的「集合」，能否进一步优化？
     ```cpp
     #include <algorithm>
     #include <cstdio>
-    ```
-
+    
+    
     struct Edge {
         int x, y, z;
     };
