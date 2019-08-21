@@ -1,18 +1,17 @@
 ## 定义
 
-（还记得这些定义吗？在阅读下列内容之前，请务必了解 [图论基础](/graph/basic) 与 [树基础](/graph/tree-basic) 部分）
+在阅读下列内容之前，请务必阅读 [图论基础](/graph/basic) 与 [树基础](/graph/tree-basic) 部分，并了解以下定义：
 
-生成子图
+1. 生成子图
+2. 生成树
 
-生成树
-
-最小生成树：边权和最小的生成树。
+我们定义无向连通图的**最小生成树**（Minimum Spanning Tree，MST）为边权和最小的生成树。
 
 注意：只有连通图才有生成树，而对于非连通图，只存在生成森林。
 
 ## Kruskal 算法
 
-是一种常见并且好写的最小生成树算法，由 Kruskal 发明，基本思想是从小到大加入边，是个贪心算法。
+Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 发明。该算法的基本思想是从小到大加入边，是个贪心算法。
 
 ### 前置知识
 
@@ -48,13 +47,13 @@
 
 我们先啥都不管，假设已经实现了这个数据结构……
 
-（伪代码）
+伪代码描述如下：
 
 ```text
-for (edge(u, v, len) in sorted(edges)) {
-	a = find_set(u), b = find_set(v);
-	if (a != b) merge(a, b);
-}
+For edge(u, v, len) in sorted(edges)
+	a = find_set(u)
+	b = find_set(v)
+	if (a != b) merge(a, b)
 ```
 
  `find_set` 调用 $O(m)$ 次，merge 调用 $O(n)$ 次。
@@ -156,8 +155,7 @@ merge： $O(n)$ ，需要将一个集合中的所有元素移到另一个集合�
 
 ## Prim 算法
 
-是另一种常见并且好写的最小生成树算法。
-基本思想是从一个结点开始，不断加点（而不是 Kruskal 算法的加边）。
+Prim 算法是另一种常见并且好写的最小生成树算法。该算法的基本思想是从一个结点开始，不断加点（而不是 Kruskal 算法的加边）。
 
 ### 证明
 
@@ -201,27 +199,64 @@ merge： $O(n)$ ，需要将一个集合中的所有元素移到另一个集合�
 
 Fib 堆： $O(n \log n + m)$ 。
 
-（伪代码）
+伪代码描述如下：
 
 ```text
-H = new heap();
-for (i = 1; i <= n; i++) H.insert(i, inf);
-H.decrease_key(1, 0);
-for (i = 1; i <= n; i++) {
-	u = H.delete_min();
-	for each edge(u, v, len) {
-		H.decrease_key(v, len);
-	}
-}
+H = new heap()
+For i from 1 to n:
+	H.insert(i, inf)
+H.decrease_key(1, 0)
+For i from 1 to n:
+	u = H.delete_min()
+	for each edge(u, v, len)
+		H.decrease_key(v, len)
 ```
 
 注意：上述代码只是实现了 Prim 算法主体，如果要输出方案还需要记录额外的信息。
 
 注意：在遍历边表 `(u, v)` 时，如果 v 已经被 delete，就无需 decrease key。
 
-## 最小生成树小结
+## Boruvka 算法
 
-我们介绍了两种最小生成树的算法，各有特点。
+接下来介绍另一种求解最小生成树的算法——Boruvka 算法。该算法的思想是前两种算法的结合。它可以用于求解**边权互不相同**的无向连通图的最小生成树。
+
+为了描述该算法，我们需要引入一些定义：
+
+1. 对无向连通图$G=(V,E)$，定义$T=(V,E')$表示其对应的最小生成树，其中$V$表示点集（与原图的点集等价），$E'$是边集，$E'\in E$。
+2. 在算法执行过程中，我们逐步向$E'$加边，因此定义最小生成森林的**连通块**表示一个点集$V'\in V$，且这个点集中的任意两个点$u,v$在$E'$的边构成的子图上是连通的（互相可达）。
+
+初始时，$E'=\varnothing$，每个点各自是一个连通块：
+
+1. 遍历每一个连通块$U$，考虑所有与该连通块相连且不在其内部的边$(u,v),[u\in U \oplus v\in U]$（中括号内的$\oplus$即异或，表示两个条件有且仅有一个成立）。假设这些边组成的集合为$E_U$，则我们找到$E_U$中权值最小的边。根据题设条件，它是唯一的。然后我们将其标记为**已选择**。有时候你找到的边可能已被标记，那么你就直接忽略（不需要去找第二小的边什么的）；
+2. 遍历完当前状态下的所有连通块之后，就把所有标记为**已选择**的边都加到$E'$中，并更新连通块状态。
+3. 如果连通块数量大于1，返回步骤1；否则退出。
+
+下面通过一张动态图来举一个例子（图源自[维基百科](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm)）：
+
+![](./images/mst-1.gif)
+
+可以证明，算法只会迭代不超过$O(\log_2V)$次，因此算法复杂度是$O(E\log_2V)$的。给出算法的伪代码：
+
+```text
+Input: A graph G whose edges have distinct weights
+Initialize a forest F to be a set of one-vertex trees, one for each vertex of the graph.
+While T has more than one component:
+    Find the connected components of T and label each vertex u of G by its component C(u).
+    For each component U of T, initialize the cheapest edge e(U) to "None".
+    For each edge (u,v) of G:
+        If C(u) != C(v) :
+            If w(u,v) < w(e(C(u))) :
+                e(C(u)) = (u,v)
+            If w(u,v) < w(e(C(v))) :
+                e(C(v)) = (u,v)
+    For each component U whose e(U) is not "None":
+        Add e(U) to T
+Output: T is the MST of G.
+```
+
+## 小结
+
+我们介绍了三种最小生成树的算法，各有特点。
 
 然后我们来考虑这样一些问题。
 
@@ -235,11 +270,10 @@ for (i = 1; i <= n; i++) {
 
 Kruskal 算法中的「集合」，能否进一步优化？
 
-## 最小生成树题目
+## 习题
 
- [「HAOI2006」聪明的猴子](https://www.lydsy.com/JudgeOnline/problem.php?id=2429) 
-
- [「SCOI2005」繁忙的都市](https://www.lydsy.com/JudgeOnline/problem.php?id=1083) 
+- [「HAOI2006」聪明的猴子](https://www.lydsy.com/JudgeOnline/problem.php?id=2429) 
+-  [「SCOI2005」繁忙的都市](https://www.lydsy.com/JudgeOnline/problem.php?id=1083) 
 
 ## 最小生成树的唯一性
 
@@ -250,60 +284,61 @@ Kruskal 算法中的「集合」，能否进一步优化？
 寻找权值与当前边相同的边，我们只需要记录头尾指针，用单调队列即可在 $O(\alpha(m))$ （m 为边数）的时间复杂度里优秀解决这个问题（基本与原算法时间相同）。
 
 ??? note " 例题：[POJ 1679](http://poj.org/problem?id=1679)"
+
     ```cpp
     #include <algorithm>
     #include <cstdio>
     
     struct Edge {
-      int x, y, z;
+        int x, y, z;
     };
     int f[100001];
     Edge a[100001];
     int cmp(const Edge& a, const Edge& b) { return a.z < b.z; }
     int find(int x) { return f[x] == x ? x : f[x] = find(f[x]); }
     int main() {
-      int t;
-      scanf("%d", &t);
-      while (t--) {
-        int n, m;
-        scanf("%d%d", &n, &m);
-        for (int i = 1; i <= n; i++) f[i] = i;
-        for (int i = 1; i <= m; i++) scanf("%d%d%d", &a[i].x, &a[i].y, &a[i].z);
-        sort(a + 1, a + m + 1, cmp);
-        int num = 0, ans = 0, tail = 0, sum1 = 0, sum2 = 0;
-        bool flag = 1;
-        for (int i = 1; i <= m + 1; i++) {
-          if (i > tail) {
-            if (sum1 != sum2) {
-              flag = 0;
-              break;
+        int t;
+        scanf("%d", &t);
+        while (t--) {
+            int n, m;
+            scanf("%d%d", &n, &m);
+            for (int i = 1; i <= n; i++) f[i] = i;
+            for (int i = 1; i <= m; i++) scanf("%d%d%d", &a[i].x, &a[i].y, &a[i].z);
+            sort(a + 1, a + m + 1, cmp);
+            int num = 0, ans = 0, tail = 0, sum1 = 0, sum2 = 0;
+            bool flag = 1;
+            for (int i = 1; i <= m + 1; i++) {
+                if (i > tail) {
+                    if (sum1 != sum2) {
+                        flag = 0;
+                        break;
+                    }
+                    sum1 = 0;
+                    for (int j = i; j <= m + 1; j++) {
+                        if (a[j].z != a[i].z) {
+                            tail = j - 1;
+                            break;
+                        }
+                        if (find(a[j].x) != find(a[j].y)) ++sum1;
+                    }
+                    sum2 = 0;
+                }
+                if (i > m) break;
+                int x = find(a[i].x);
+                int y = find(a[i].y);
+                if (x != y && num != n - 1) {
+                    sum2++;
+                    num++;
+                    f[x] = f[y];
+                    ans += a[i].z;
+                }
             }
-            sum1 = 0;
-            for (int j = i; j <= m + 1; j++) {
-              if (a[j].z != a[i].z) {
-                tail = j - 1;
-                break;
-              }
-              if (find(a[j].x) != find(a[j].y)) ++sum1;
-            }
-            sum2 = 0;
-          }
-          if (i > m) break;
-          int x = find(a[i].x);
-          int y = find(a[i].y);
-          if (x != y && num != n - 1) {
-            sum2++;
-            num++;
-            f[x] = f[y];
-            ans += a[i].z;
-          }
+            if (flag)
+                printf("%d\n", ans);
+            else
+                printf("Not Unique!\n");
         }
-        if (flag)
-          printf("%d\n", ans);
-        else
-          printf("Not Unique!\n");
-      }
-      return 0;
+        return 0;
     }
     ```
 
@@ -351,9 +386,8 @@ const int INF = 0x3fffffff;
 const long long INF64 = 0x3fffffffffffffffLL;
 
 struct Edge {
-  int u, v, val;
-
-  bool operator<(const Edge &other) const { return val < other.val; }
+    int u, v, val;
+    bool operator<(const Edge &other) const { return val < other.val; }
 };
 
 Edge e[300010];
@@ -363,139 +397,139 @@ int n, m;
 long long sum;
 
 class Tr {
- private:
-  struct Edge {
-    int to, nxt, val;
-  } e[600010];
-  int cnt, head[100010];
+private:
+    struct Edge {
+        int to, nxt, val;
+    } e[600010];
+    int cnt, head[100010];
 
-  int pnt[100010][22];
-  int dpth[100010];
-  // 到祖先的路径上边权最大的边
-  int maxx[100010][22];
-  // 到祖先的路径上边权次大的边，若不存在则为 -INF
-  int minn[100010][22];
+    int pnt[100010][22];
+    int dpth[100010];
+    // 到祖先的路径上边权最大的边
+    int maxx[100010][22];
+    // 到祖先的路径上边权次大的边，若不存在则为 -INF
+    int minn[100010][22];
 
- public:
-  void addedge(int u, int v, int val) {
-    e[++cnt] = (Edge){v, head[u], val};
-    head[u] = cnt;
-  }
-
-  void insedge(int u, int v, int val) {
-    addedge(u, v, val);
-    addedge(v, u, val);
-  }
-
-  void dfs(int now, int fa) {
-    dpth[now] = dpth[fa] + 1;
-    pnt[now][0] = fa;
-    minn[now][0] = -INF;
-    for (int i = 1; (1 << i) <= dpth[now]; i++) {
-      pnt[now][i] = pnt[pnt[now][i - 1]][i - 1];
-      int kk[4] = {maxx[now][i - 1], maxx[pnt[now][i - 1]][i - 1],
-                   minn[now][i - 1], minn[pnt[now][i - 1]][i - 1]};
-      // 从四个值中取得最大值
-      std::sort(kk, kk + 4);
-      maxx[now][i] = kk[3];
-      // 取得严格次大值
-      int ptr = 2;
-      while (ptr >= 0 && kk[ptr] == kk[3]) ptr--;
-      minn[now][i] = (ptr == -1 ? -INF : kk[ptr]);
+public:
+    void addedge(int u, int v, int val) {
+        e[++cnt] = (Edge){v, head[u], val};
+        head[u] = cnt;
     }
 
-    for (int i = head[now]; i; i = e[i].nxt) {
-      if (e[i].to != fa) {
-        maxx[e[i].to][0] = e[i].val;
-        dfs(e[i].to, now);
-      }
+    void insedge(int u, int v, int val) {
+        addedge(u, v, val);
+        addedge(v, u, val);
     }
-  }
 
-  int lca(int a, int b) {
-    if (dpth[a] < dpth[b]) std::swap(a, b);
+    void dfs(int now, int fa) {
+        dpth[now] = dpth[fa] + 1;
+        pnt[now][0] = fa;
+        minn[now][0] = -INF;
+        for (int i = 1; (1 << i) <= dpth[now]; i++) {
+            pnt[now][i] = pnt[pnt[now][i - 1]][i - 1];
+            int kk[4] = {maxx[now][i - 1], maxx[pnt[now][i - 1]][i - 1],
+                minn[now][i - 1], minn[pnt[now][i - 1]][i - 1]};
+            // 从四个值中取得最大值
+            std::sort(kk, kk + 4);
+            maxx[now][i] = kk[3];
+            // 取得严格次大值
+            int ptr = 2;
+            while (ptr >= 0 && kk[ptr] == kk[3]) ptr--;
+            minn[now][i] = (ptr == -1 ? -INF : kk[ptr]);
+        }
 
-    for (int i = 21; i >= 0; i--)
-      if (dpth[pnt[a][i]] >= dpth[b]) a = pnt[a][i];
-
-    if (a == b) return a;
-
-    for (int i = 21; i >= 0; i--) {
-      if (pnt[a][i] != pnt[b][i]) {
-        a = pnt[a][i];
-        b = pnt[b][i];
-      }
+        for (int i = head[now]; i; i = e[i].nxt) {
+            if (e[i].to != fa) {
+                maxx[e[i].to][0] = e[i].val;
+                dfs(e[i].to, now);
+            }
+        }
     }
-    return pnt[a][0];
-  }
 
-  int query(int a, int b, int val) {
-    int res = -INF;
-    for (int i = 21; i >= 0; i--) {
-      if (dpth[pnt[a][i]] >= dpth[b]) {
-        if (val != maxx[a][i])
-          res = std::max(res, maxx[a][i]);
-        else
-          res = std::max(res, minn[a][i]);
-        a = pnt[a][i];
-      }
+    int lca(int a, int b) {
+        if (dpth[a] < dpth[b]) std::swap(a, b);
+
+        for (int i = 21; i >= 0; i--)
+            if (dpth[pnt[a][i]] >= dpth[b]) a = pnt[a][i];
+
+        if (a == b) return a;
+
+        for (int i = 21; i >= 0; i--) {
+            if (pnt[a][i] != pnt[b][i]) {
+                a = pnt[a][i];
+                b = pnt[b][i];
+            }
+        }
+        return pnt[a][0];
     }
-    return res;
-  }
+
+    int query(int a, int b, int val) {
+        int res = -INF;
+        for (int i = 21; i >= 0; i--) {
+            if (dpth[pnt[a][i]] >= dpth[b]) {
+                if (val != maxx[a][i])
+                    res = std::max(res, maxx[a][i]);
+                else
+                    res = std::max(res, minn[a][i]);
+                a = pnt[a][i];
+            }
+        }
+        return res;
+    }
 } tr;
 
 int fa[100010];
 int find(int x) { return fa[x] == x ? x : fa[x] = find(fa[x]); }
 
 void Kruskal() {
-  int tot = 0;
-  std::sort(e + 1, e + m + 1);
-  for (int i = 1; i <= n; i++) fa[i] = i;
+    int tot = 0;
+    std::sort(e + 1, e + m + 1);
+    for (int i = 1; i <= n; i++) fa[i] = i;
 
-  for (int i = 1; i <= m; i++) {
-    int a = find(e[i].u);
-    int b = find(e[i].v);
-    if (a != b) {
-      fa[a] = b;
-      tot++;
-      tr.insedge(e[i].u, e[i].v, e[i].val);
-      sum += e[i].val;
-      used[i] = 1;
+    for (int i = 1; i <= m; i++) {
+        int a = find(e[i].u);
+        int b = find(e[i].v);
+        if (a != b) {
+            fa[a] = b;
+            tot++;
+            tr.insedge(e[i].u, e[i].v, e[i].val);
+            sum += e[i].val;
+            used[i] = 1;
+        }
+        if (tot == n - 1) break;
     }
-    if (tot == n - 1) break;
-  }
 }
 
 int main() {
-  std::ios::sync_with_stdio(0);
-  std::cin.tie(0);
-  std::cout.tie(0);
+    std::ios::sync_with_stdio(0);
+    std::cin.tie(0);
+    std::cout.tie(0);
 
-  std::cin >> n >> m;
-  for (int i = 1; i <= m; i++) {
-    int u, v, val;
-    std::cin >> u >> v >> val;
-    e[i] = (Edge){u, v, val};
-  }
-
-  Kruskal();
-  long long ans = INF64;
-  tr.dfs(1, 0);
-
-  for (int i = 1; i <= m; i++) {
-    if (!used[i]) {
-      int _lca = tr.lca(e[i].u, e[i].v);
-      // 找到路径上不等于 e[i].val 的最大边权
-      long long tmpa = tr.query(e[i].u, _lca, e[i].val);
-      long long tmpb = tr.query(e[i].v, _lca, e[i].val);
-      // 这样的边可能不存在，只在这样的边存在时更新答案
-      if (std::max(tmpa, tmpb) > -INF)
-        ans = std::min(ans, sum - std::max(tmpa, tmpb) + e[i].val);
+    std::cin >> n >> m;
+    for (int i = 1; i <= m; i++) {
+        int u, v, val;
+        std::cin >> u >> v >> val;
+        e[i] = (Edge){u, v, val};
     }
-  }
-  // 次小生成树不存在时输出 -1
-  std::cout << (ans == INF64 ? -1 : ans) << '\n';
-  return 0;
+
+    Kruskal();
+    long long ans = INF64;
+    tr.dfs(1, 0);
+
+    for (int i = 1; i <= m; i++) {
+        if (!used[i]) {
+            int _lca = tr.lca(e[i].u, e[i].v);
+            // 找到路径上不等于 e[i].val 的最大边权
+            long long tmpa = tr.query(e[i].u, _lca, e[i].val);
+            long long tmpb = tr.query(e[i].v, _lca, e[i].val);
+            // 这样的边可能不存在，只在这样的边存在时更新答案
+            if (std::max(tmpa, tmpb) > -INF)
+                ans = std::min(ans, sum - std::max(tmpa, tmpb) + e[i].val);
+        }
+    }
+    // 次小生成树不存在时输出 -1
+    std::cout << (ans == INF64 ? -1 : ans) << '\n';
+    return 0;
 }
 ```
 
@@ -514,5 +548,6 @@ int main() {
 ### 例题
 
 ???+note "POJ 2395 Out of Hay"
+
     给出 n 个农场和 m 条边，农场按 1 到 n 编号，现在有一人要从编号为 1 的农场出发到其他的农场去，求在这途中他最多需要携带的水的重量，注意他每到达一个农场，可以对水进行补给，且要使总共的路径长度最小。
     题目要求的就是瓶颈树的最大边，可以通过求最小生成树来解决。
