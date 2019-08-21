@@ -57,7 +57,7 @@ $$
 \frac{m \cdot v[i + 1].a} {v[i].b}
 $$
 
-如果交前更优当且仅当
+如果交换前更优当且仅当
 
 $$
 \max (\frac{m} {v[i].b}, \frac{m \times v[i].a} {v[i + 1].b})  < \max (\frac{m} {v[i + 1].b}, \frac{m \times v[i + 1].a} {v[i].b})
