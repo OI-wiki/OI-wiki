@@ -47,6 +47,7 @@ nav:
         - Interactor: intro/testlib/interactor.md
         - Checker: intro/testlib/checker.md
       - OJ 工具: intro/oj-tool.md
+      - LaTeX 入门: intro/latex.md
     - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - 如何参与: intro/htc.md
@@ -234,6 +235,7 @@ nav:
       - 树分块: ds/tree-decompose.md
       - 块状链表: ds/block-list.md
       - 块状数组: ds/block-array.md
+      - Sqrt Tree: ds/sqrt-tree.md
     - 单调栈: ds/monotonous-stack.md
     - 单调队列: ds/monotonous-queue.md
     - ST 表: ds/sparse-table.md

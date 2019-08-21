@@ -117,7 +117,7 @@ int dp() {
 
 ### 最简单的第一种
 
- $O\left(n^2\right)$ 的算法。每一次重头扫描找出最佳答案。
+ $O\left(n^2\right)$ 的算法。每一次从头扫描找出最佳答案。
 
 ```cpp
 int a[MAXN], d[MAXN];
