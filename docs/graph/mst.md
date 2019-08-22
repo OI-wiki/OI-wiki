@@ -61,11 +61,11 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 >
 > **for** each $(u, v, w)$ in the sorted $e$
 >
-> &#160;&#160;&#160;&#160;**if** $u$ and $v$ are not connected in the union-find set
+> &emsp;&emsp;**if** $u$ and $v$ are not connected in the union-find set
 >
-> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;connect $u$ and $v$ in the union-find set
+> &emsp;&emsp;&emsp;&emsp;connect $u$ and $v$ in the union-find set
 >
-> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;$result \gets result\ \bigcup\ \{(u, v, w)\}$
+> &emsp;&emsp;&emsp;&emsp;$result \gets result\ \bigcup\ \{(u, v, w)\}$
 >
 > **return** $result$
 
@@ -135,21 +135,21 @@ Fib 堆： $O(n \log n + m)$ 。
 >
 > **for** each node $v\in(V-\{root\})$
 >
-> &#160;&#160;&#160;&#160;$dis(v)\gets\infty$
+> &emsp;&emsp;$dis(v)\gets\infty$
 >
 > $rest\gets V$
 >
 > **while** $rest\ne\varnothing$
 >
-> &#160;&#160;&#160;&#160;$cur\gets$ the node with the minimum $dis$ in $rest$
+> &emsp;&emsp;$cur\gets$ the node with the minimum $dis$ in $rest$
 >
-> &#160;&#160;&#160;&#160;$result\gets result+dis(cur)$
+> &emsp;&emsp;$result\gets result+dis(cur)$
 >
-> &#160;&#160;&#160;&#160;$rest\gets rest-\{cur\}$
+> &emsp;&emsp;$rest\gets rest-\{cur\}$
 >
-> &#160;&#160;&#160;&#160;**for** each node $v\in adj(cur)$
+> &emsp;&emsp;**for** each node $v\in adj(cur)$
 >
-> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;$dis(v)\gets\min(dis(v), g(cur, v))$
+> &emsp;&emsp;&emsp;&emsp;$dis(v)\gets\min(dis(v), g(cur, v))$
 >
 > **return** $result$
 
@@ -186,29 +186,29 @@ Fib 堆： $O(n \log n + m)$ 。
 >
 > **while** True
 >
-> &#160;&#160;&#160;&#160;Find the connected components of $F$ and label each vertex of $G$ by its component
+> &emsp;&emsp;Find the connected components of $F$ and label each vertex of $G$ by its component
 >
-> &#160;&#160;&#160;&#160;Initialize the cheapest edge for each component to "None"
+> &emsp;&emsp;Initialize the cheapest edge for each component to "None"
 >
-> &#160;&#160;&#160;&#160;**for** each edge $(u, v)$ of $G$
+> &emsp;&emsp;**for** each edge $(u, v)$ of $G$
 >
-> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;**if** $u$ and $v$ have different component labels
+> &emsp;&emsp;&emsp;&emsp;**if** $u$ and $v$ have different component labels
 >
-> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;**if** $(u, v)$ is cheaper than the cheapest edge for the component of $u$
+> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**if** $(u, v)$ is cheaper than the cheapest edge for the component of $u$
 >
-> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Set $(u, v)$ as the cheapest edge for the component of $u$
+> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Set $(u, v)$ as the cheapest edge for the component of $u$
 >
-> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;**if** $(u, v)$ is cheaper than the cheapest edge for the component of $v$
+> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;**if** $(u, v)$ is cheaper than the cheapest edge for the component of $v$
 >
-> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Set $(u, v)$ as the cheapest edge for the component of $v$
+> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Set $(u, v)$ as the cheapest edge for the component of $v$
 >
-> &#160;&#160;&#160;&#160; **if** all components' cheapest edges are "None"
+> &emsp;&emsp; **if** all components' cheapest edges are "None"
 > 
-> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; **return** $F$
+> &emsp;&emsp;&emsp;&emsp; **return** $F$
 >
-> &#160;&#160;&#160;&#160;**for** each component whose cheapest edge is not "None"
+> &emsp;&emsp;**for** each component whose cheapest edge is not "None"
 >
-> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Add its cheapest edge to $F$
+> &emsp;&emsp;&emsp;&emsp;Add its cheapest edge to $F$
 
 ## 习题
 
