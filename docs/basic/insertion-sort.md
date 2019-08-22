@@ -5,13 +5,13 @@
 ```cpp
 void insertion_sort() {
   for (int i = 1; i <= n; i++) {
-    for (int j = n - 1; j > 0; j--){
+    for (int j = n - 1; j > 0; j--) {
       if (a[j] > a[j + 1]) {
         int t = a[j];
         a[j] = a[j + 1];
         a[j + 1] = t;
-      }
-      else break; //如果没有进行交换，则说明已经插入到正确位置
+      } else
+        break;  //如果没有进行交换，则说明已经插入到正确位置
     }
   }
 }
