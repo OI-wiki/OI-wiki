@@ -161,9 +161,9 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
 在 Wiki 中，使用 Markdown 引用来书写伪代码。
 
-不缩进：`> $\,$ your codes`。
+不缩进： `> $\,$ your codes` 。
 
-两层缩进：`> $\,\qquad\qquad$ $x\gets 0$`。
+两层缩进： `> $\,\qquad\qquad$ $x\gets 0$` 。
 
 例如：
 
@@ -173,19 +173,19 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 >
 >  **Method.** 
 >
->  $\,$ $result \gets \varnothing$ 
+>  $\,$  $result \gets \varnothing$ 
 >
 >  $\,$ sort $e$ into nondecreasing order by weight $w$ 
 >
->  $\,$ **for** each $(u, v, w)$ in the sorted $e$ 
+>  $\,$  **for** each $(u, v, w)$ in the sorted $e$ 
 >
 >  $\,\qquad$  **if**  $u$ and $v$ are not connected in the union-find set
 >
 >  $\,\qquad\qquad$ connect $u$ and $v$ in the union-find set
 >
->  $\,\qquad\qquad$ $result \gets result\ \bigcup\ \{(u, v, w)\}$ 
+>  $\,\qquad\qquad$  $result \gets result\ \bigcup\ \{(u, v, w)\}$ 
 >
->  $\,$ **return**  $result$ 
+>  $\,$  **return**  $result$ 
 
 ```markdown
 >  **Input.** The edges of the graph $e$ , where each element in $e$ is $(u, v, w)$ denoting that there is an edge between $u$ and $v$ weighted $w$ .
