@@ -61,11 +61,11 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 >
 > **for** each $(u, v, w)$ in the sorted $e$
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;**if** $u$ and $v$ are not connected in the union-find set
+> &#160;&#160;&#160;&#160;**if** $u$ and $v$ are not connected in the union-find set
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connect $u$ and $v$ in the union-find set
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;connect $u$ and $v$ in the union-find set
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$result \gets result\ \bigcup\ \{(u, v, w)\}$
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;$result \gets result\ \bigcup\ \{(u, v, w)\}$
 >
 > **return** $result$
 
@@ -135,21 +135,21 @@ Fib 堆： $O(n \log n + m)$ 。
 >
 > **for** each node $v\in(V-\{root\})$
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;$dis(v)\gets\infty$
+> &#160;&#160;&#160;&#160;$dis(v)\gets\infty$
 >
 > $rest\gets V$
 >
 > **while** $rest\ne\varnothing$
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;$cur\gets$ the node with the minimum $dis$ in $rest$
+> &#160;&#160;&#160;&#160;$cur\gets$ the node with the minimum $dis$ in $rest$
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;$result\gets result+dis(cur)$
+> &#160;&#160;&#160;&#160;$result\gets result+dis(cur)$
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;$rest\gets rest-\{cur\}$
+> &#160;&#160;&#160;&#160;$rest\gets rest-\{cur\}$
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;**for** each node $v\in adj(cur)$
+> &#160;&#160;&#160;&#160;**for** each node $v\in adj(cur)$
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$dis(v)\gets\min(dis(v), g(cur, v))$
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;$dis(v)\gets\min(dis(v), g(cur, v))$
 >
 > **return** $result$
 
@@ -186,29 +186,29 @@ Fib 堆： $O(n \log n + m)$ 。
 >
 > **while** True
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;Find the connected components of $F$ and label each vertex of $G$ by its component
+> &#160;&#160;&#160;&#160;Find the connected components of $F$ and label each vertex of $G$ by its component
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;Initialize the cheapest edge for each component to "None"
+> &#160;&#160;&#160;&#160;Initialize the cheapest edge for each component to "None"
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;**for** each edge $(u, v)$ of $G$
+> &#160;&#160;&#160;&#160;**for** each edge $(u, v)$ of $G$
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**if** $u$ and $v$ have different component labels
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;**if** $u$ and $v$ have different component labels
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**if** $(u, v)$ is cheaper than the cheapest edge for the component of $u$
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;**if** $(u, v)$ is cheaper than the cheapest edge for the component of $u$
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set $(u, v)$ as the cheapest edge for the component of $u$
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Set $(u, v)$ as the cheapest edge for the component of $u$
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**if** $(u, v)$ is cheaper than the cheapest edge for the component of $v$
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;**if** $(u, v)$ is cheaper than the cheapest edge for the component of $v$
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set $(u, v)$ as the cheapest edge for the component of $v$
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Set $(u, v)$ as the cheapest edge for the component of $v$
 >
-> &nbsp;&nbsp;&nbsp;&nbsp; **if** all components' cheapest edges are "None"
+> &#160;&#160;&#160;&#160; **if** all components' cheapest edges are "None"
 > 
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **return** $F$
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; **return** $F$
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;**for** each component whose cheapest edge is not "None"
+> &#160;&#160;&#160;&#160;**for** each component whose cheapest edge is not "None"
 >
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add its cheapest edge to $F$
+> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Add its cheapest edge to $F$
 
 ## 习题
 
