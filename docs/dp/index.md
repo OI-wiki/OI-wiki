@@ -123,7 +123,7 @@ int dp() {
 int a[MAXN], d[MAXN];
 int dp() {
   d[1] = 1;
-  int ans = 0;
+  int ans = 1;
   for (int i = 2; i <= n; i++) {
     for (int j = 1; j < i; j++)
       if (a[j] < a[i]) {
