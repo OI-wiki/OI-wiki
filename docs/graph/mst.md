@@ -49,25 +49,25 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 
 伪代码：
 
-> **Input.** The edges of the graph $e$, where each element in $e$ is $(u, v, w)$ denoting that there is an edge between $u$ and $v$ weighted $w$.
+>  **Input.** The edges of the graph $e$ , where each element in $e$ is $(u, v, w)$ denoting that there is an edge between $u$ and $v$ weighted $w$ .
 >
-> **Output.** The edges of the MST of the input graph.
+>  **Output.** The edges of the MST of the input graph.
 >
-> **Method.**
+>  **Method.** 
 >
-> $result \gets \varnothing$
+>  $result \gets \varnothing$ 
 >
-> sort $e$ into nondecreasing order by weight $w$
+> sort $e$ into nondecreasing order by weight $w$ 
 >
-> **for** each $(u, v, w)$ in the sorted $e$
+>  **for** each $(u, v, w)$ in the sorted $e$ 
 >
-> $\qquad$**if** $u$ and $v$ are not connected in the union-find set
+>  $\qquad$  **if**  $u$ and $v$ are not connected in the union-find set
 >
-> $\qquad\qquad$connect $u$ and $v$ in the union-find set
+>  $\qquad\qquad$ connect $u$ and $v$ in the union-find set
 >
 > $\qquad\qquad$ $result \gets result\ \bigcup\ \{(u, v, w)\}$
 >
-> **return** $result$
+>  **return**  $result$ 
 
 其中，查询两点是否连通和连接两点可以使用并查集维护。
 
@@ -121,25 +121,25 @@ Fib 堆： $O(n \log n + m)$ 。
 
 伪代码：
 
-> **Input.** The nodes of the graph $V$; the function $g(u, v)$ which means the weight of the edge $(u, v)$; the function $adj(v)$ which means the nodes adjacent to $v$.
+>  **Input.** The nodes of the graph $V$ ; the function $g(u, v)$ which means the weight of the edge $(u, v)$ ; the function $adj(v)$ which means the nodes adjacent to $v$ .
 >
-> **Output.** The sum of weights of the MST of the input graph.
+>  **Output.** The sum of weights of the MST of the input graph.
 >
-> **Method.**
+>  **Method.** 
 >
-> $result \gets 0$
+>  $result \gets 0$ 
 >
-> choose an arbitrary node in $V$ to be the $root$
+> choose an arbitrary node in $V$ to be the $root$ 
 >
-> $dis(root)\gets 0$
+>  $dis(root)\gets 0$ 
 >
-> **for** each node $v\in(V-\{root\})$
+>  **for** each node $v\in(V-\{root\})$ 
 >
 > $\qquad$ $dis(v)\gets\infty$
 >
-> $rest\gets V$
+>  $rest\gets V$ 
 >
-> **while** $rest\ne\varnothing$
+>  **while**  $rest\ne\varnothing$ 
 >
 > $\qquad$ $cur\gets$ the node with the minimum $dis$ in $rest$
 >
@@ -147,11 +147,11 @@ Fib 堆： $O(n \log n + m)$ 。
 >
 > $\qquad$ $rest\gets rest-\{cur\}$
 >
-> $\qquad$**for** each node $v\in adj(cur)$
+>  $\qquad$  **for** each node $v\in adj(cur)$ 
 >
 > $\qquad\qquad$ $dis(v)\gets\min(dis(v), g(cur, v))$
 >
-> **return** $result$
+>  **return**  $result$ 
 
 注意：上述代码只是求出了最小生成树的权值，如果要输出方案还需要记录每个点的 $dis$ 代表的是哪条边。
 
@@ -161,54 +161,54 @@ Fib 堆： $O(n \log n + m)$ 。
 
 为了描述该算法，我们需要引入一些定义：
 
-1.  定义 $E'$ 为我们当前找到的最小生成森林的边。在算法执行过程中，我们逐步向 $E'$ 加边，定义 **连通块** 表示一个点集 $V'\subseteq V$ ，且这个点集中的任意两个点 $u$, $v$ 在 $E'$ 中的边构成的子图上是连通的（互相可达）。
-2. 定义一个连通块的 **最小边** 为它连向其它连通块的边中权值最小的那一条。
+1.  定义 $E'$ 为我们当前找到的最小生成森林的边。在算法执行过程中，我们逐步向 $E'$ 加边，定义 **连通块** 表示一个点集 $V'\subseteq V$ ，且这个点集中的任意两个点 $u$ , $v$ 在 $E'$ 中的边构成的子图上是连通的（互相可达）。
+2.  定义一个连通块的 **最小边** 为它连向其它连通块的边中权值最小的那一条。
 
 初始时， $E'=\varnothing$ ，每个点各自是一个连通块：
 
-1. 计算每个点分别属于哪个连通块。将每个连通块都设为“没有最小边”。
-2.  遍历每条边 $(u, v)$，如果 $u$ 和 $v$ 不在同一个连通块，就用这条边的边权分别更新 $u$ 和 $v$ 所在连通块的最小边。
-3.  如果所有连通块都没有最小边，退出程序，此时的 $E'$ 就是原图最小生成森林的边集。否则，将每个有最小边的连通块的最小边加入 $E'$，返回第一步。
+1.  计算每个点分别属于哪个连通块。将每个连通块都设为“没有最小边”。
+2.  遍历每条边 $(u, v)$ ，如果 $u$ 和 $v$ 不在同一个连通块，就用这条边的边权分别更新 $u$ 和 $v$ 所在连通块的最小边。
+3.  如果所有连通块都没有最小边，退出程序，此时的 $E'$ 就是原图最小生成森林的边集。否则，将每个有最小边的连通块的最小边加入 $E'$ ，返回第一步。
 
 下面通过一张动态图来举一个例子（图源自 [维基百科](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm) ）：
 
 ![](./images/mst-1.gif)
 
-当原图连通时，每次迭代连通块数量至少减半，算法只会迭代不超过 $O(\log V)$ 次，而原图不连通时相当于多个子问题，因此算法复杂度是 $O(E\log V)$ 的。给出算法的伪代码：（修改自 [维基百科](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm)）
+当原图连通时，每次迭代连通块数量至少减半，算法只会迭代不超过 $O(\log V)$ 次，而原图不连通时相当于多个子问题，因此算法复杂度是 $O(E\log V)$ 的。给出算法的伪代码：（修改自 [维基百科](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm) ）
 
-> **Input.** A graph $G$ whose edges have distinct weights.
+>  **Input.** A graph $G$ whose edges have distinct weights.
 >
-> **Output.** The minimum spanning forest of $G$.
+>  **Output.** The minimum spanning forest of $G$ .
 >
-> **Method.**
+>  **Method.** 
 >
 > Initialize a forest $F$ to be a set of one-vertex trees, one for each vertex of the graph.
 >
-> **while** True
+>  **while** True
 >
-> $\qquad$Find the connected components of $F$ and label each vertex of $G$ by its component
+>  $\qquad$ Find the connected components of $F$ and label each vertex of $G$ by its component
 >
-> $\qquad$Initialize the cheapest edge for each component to "None"
+>  $\qquad$ Initialize the cheapest edge for each component to "None"
 >
-> $\qquad$**for** each edge $(u, v)$ of $G$
+>  $\qquad$  **for** each edge $(u, v)$ of $G$ 
 >
-> $\qquad\qquad$**if** $u$ and $v$ have different component labels
+>  $\qquad\qquad$  **if**  $u$ and $v$ have different component labels
 >
-> $\qquad\qquad\qquad$**if** $(u, v)$ is cheaper than the cheapest edge for the component of $u$
+>  $\qquad\qquad\qquad$  **if**  $(u, v)$ is cheaper than the cheapest edge for the component of $u$ 
 >
-> $\qquad\qquad\qquad\qquad$Set $(u, v)$ as the cheapest edge for the component of $u$
+>  $\qquad\qquad\qquad\qquad$ Set $(u, v)$ as the cheapest edge for the component of $u$ 
 >
-> $\qquad\qquad\qquad$**if** $(u, v)$ is cheaper than the cheapest edge for the component of $v$
+>  $\qquad\qquad\qquad$  **if**  $(u, v)$ is cheaper than the cheapest edge for the component of $v$ 
 >
-> $\qquad\qquad\qquad\qquad$Set $(u, v)$ as the cheapest edge for the component of $v$
+>  $\qquad\qquad\qquad\qquad$ Set $(u, v)$ as the cheapest edge for the component of $v$ 
 >
-> $\qquad$ **if** all components' cheapest edges are "None"
-> 
-> $\qquad\qquad$ **return** $F$
+>  $\qquad$  **if** all components'cheapest edges are"None"
 >
-> $\qquad$**for** each component whose cheapest edge is not "None"
+>  $\qquad\qquad$  **return**  $F$ 
 >
-> $\qquad\qquad$Add its cheapest edge to $F$
+>  $\qquad$  **for** each component whose cheapest edge is not "None"
+>
+>  $\qquad\qquad$ Add its cheapest edge to $F$ 
 
 ## 习题
 
