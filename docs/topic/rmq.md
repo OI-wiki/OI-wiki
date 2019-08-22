@@ -36,7 +36,7 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 询问的时候，我们可以将询问区间划分为不超过 1 个数组 B 上的连续块区间和不超过 2 个数组 A 上的整块内的连续区间。显然这些问题我们通过 ST 表上的区间查询解决。
 
-在 $S=\log n$ 时候，预处理复杂度达到最优。为 $O((n\log n)\log n+n\log n\times\log n\times\log \log n)=O(n\log \log n)$ 
+在 $S=\log n$ 时候，预处理复杂度达到最优。为 $O((n / \log n)\log n+(n / \log n)\times\log n\times\log \log n)=O(n\log \log n)$ 
 
 时间复杂度 $O(n\log \log n)-O(1)$ 
 
