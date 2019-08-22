@@ -108,9 +108,10 @@ std::priority_queue<T, Container, Compare>
      * 注意：只支持小于号重载而不支持其他比较符号的重载。
      */
     // 构造方式 ：
-    std::priority_queue<int> std::priority_queue<int, vector<int>>
-        // C++11 前，请使用 vector<int> >，空格不可省略
-        std::priority_queue<int, deque<int>, greater<int>>
+    std::priority_queue<int> q1;
+    std::priority_queue<int, vector<int>> q2;
+    // C++11 前，请使用 vector<int> >，空格不可省略
+    std::priority_queue<int, deque<int>, greater<int>> q3;
     // 注意：不可跳过容器参数直接传入比较类
 ```
 
