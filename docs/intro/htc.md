@@ -163,25 +163,25 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
 例如：
 
-> **Input.** The edges of the graph $e$, where each element in $e$ is $(u, v, w)$ denoting that there is an edge between $u$ and $v$ weighted $w$.
+>  **Input.** The edges of the graph $e$ , where each element in $e$ is $(u, v, w)$ denoting that there is an edge between $u$ and $v$ weighted $w$ .
 >
-> **Output.** The edges of the MST of the input graph.
+>  **Output.** The edges of the MST of the input graph.
 >
-> **Method.**
+>  **Method.** 
 >
-> $result \gets \varnothing$
+>  $result \gets \varnothing$ 
 >
-> sort $e$ into nondecreasing order by weight $w$
+> sort $e$ into nondecreasing order by weight $w$ 
 >
-> **for** each $(u, v, w)$ in the sorted $e$
+>  **for** each $(u, v, w)$ in the sorted $e$ 
 >
-> $\qquad$**if** $u$ and $v$ are not connected in the union-find set
+>  $\qquad$  **if**  $u$ and $v$ are not connected in the union-find set
 >
-> $\qquad\qquad$connect $u$ and $v$ in the union-find set
+>  $\qquad\qquad$ connect $u$ and $v$ in the union-find set
 >
-> $\qquad\qquad result \gets result\ \bigcup\ \{(u, v, w)\}$
+>  $\qquad\qquad result \gets result\ \bigcup\ \{(u, v, w)\}$ 
 >
-> **return** $result$
+>  **return**  $result$ 
 
 ```markdown
 > **Input.** The edges of the graph $e$, where each element in $e$ is $(u, v, w)$ denoting that there is an edge between $u$ and $v$ weighted $w$.
