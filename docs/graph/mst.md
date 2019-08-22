@@ -47,111 +47,31 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 
 我们先啥都不管，假设已经实现了这个数据结构……
 
-伪代码描述如下：
+伪代码：
 
-```text
-For edge(u, v, len) in sorted(edges)
-	a = find_set(u)
-	b = find_set(v)
-	if (a != b) merge(a, b)
-```
+> **Input.** The edges of the graph $e$, where each element in $e$ is $(u, v, w)$ denoting that there is an edge between $u$ and $v$ weighted $w$.
+>
+> **Output.** The edges of the MST of the input graph.
+>
+> **Method.**
+>
+> $result \gets \varnothing$
+>
+> sort $e$ into nondecreasing order by weight $w$
+>
+> **for** each $(u, v, w)$ in the sorted $e$
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;**if** $u$ and $v$ are not connected in the union-find set
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connect $u$ and $v$ in the union-find set
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$result \gets result\ \bigcup\ \{(u, v, w)\}$
+>
+> **return** $result$
 
- `find_set` 调用 $O(m)$ 次，merge 调用 $O(n)$ 次。
+其中，查询两点是否连通和连接两点可以使用并查集维护。
 
-排序的复杂度为 $O(m \log m)$ ，或 $O(m)$ （假设能基数排序）。
-
-那么让我们模拟一下：
-
-先上数据：
-
-```text
-4 5
-1 2 2
-1 3 2
-1 4 3
-2 3 4
-3 4 3
-```
-
-图是这样的：
-
-![](./images/mst1.svg)
-
-我们用 $F$ 表示并查集， $E$ 表示排序后的结构体，下面是初始的状态：
-
- $F$ ：
-
-|  编号 |   1 |   2 |   3 |   4 |
-| --: | --: | --: | --: | --: |
-|  祖宗 |   1 |   2 |   3 |   4 |
-
- $E$ ：
-
-|    编号 |   1 |   2 |   3 |   4 |   5 |
-| ----: | --: | --: | --: | --: | --: |
-| start |   1 |   1 |   1 |   3 |   2 |
-|    to |   2 |   3 |   4 |   4 |   3 |
-|  cost |   2 |   2 |   3 |   3 |   4 |
-
-首先我们发现　1,2　是最小的，于是我们在　1　与　2　建了一条边，由于这是第一次嘛，肯定不会出现环了，并且将　1　和　2　加入一个集合：
-
-![](./images/mst2.svg)
-
- $F$ ：
-
-|  编号 |   1 |   2 |   3 |   4 |
-| --: | --: | --: | --: | --: |
-|  祖宗 |   1 |   1 |   3 |   4 |
-
-接着发现　1,3，判断　3　和　1　的是不是在一个集合？发现不是，于是将　3　加进去，并且标记　3　归属 1。
-
-![](./images/mst3.svg)
-
- $F$ ：
-
-|  编号 |   1 |   2 |   3 |   4 |
-| --: | --: | --: | --: | --: |
-|  祖宗 |   1 |   1 |   1 |   4 |
-
-发现　1,4，同时　1　和　4　不在一个集合，于是将　4　加进去，标记　4　也归属　1。
-
-![](./images/mst4.svg)
-
-|  编号 |   1 |   2 |   3 |   4 |
-| --: | --: | --: | --: | --: |
-|  祖宗 |   1 |   1 |   1 |   1 |
-
-此时，边数为点数 $-1$ ，整个最小生成树完成了，代价是 $2+2+3=7$ 。
-
-### “集合”数据结构的一种实现
-
-只要支持两个接口：find_set 和 merge。
-
-我们先考虑暴力，直接维护每个元素属于哪个集合，以及每个集合有哪些元素。
-
-find_set： $O(1)$ 
-
-merge： $O(n)$ ，需要将一个集合中的所有元素移到另一个集合中。
-
-于是考虑如何优化 merge。
-
-一个简单的思路是，将较小的集合中所有元素移到较大的集合中。
-
-复杂度是 $O(较小集合的大小)$ 。
-
-那么总时间复杂度是多少呢？
-
-我们换一个角度分析，考虑每个元素对每次合并操作的贡献。
-
-很显然，一个元素所在的集合大小，在作为较小集合被合并一次之后，至少增加一倍。
-
-所以一个元素所在的集合，最多有 $\log n$ 次，作为较小集合被合并。
-
-一共 $n$ 个元素，所以总时间复杂度为 $O(n \log n + m)$ 。
-
-这种做法或者思想，叫「启发式合并」。
-
-总之我们得到了 $O(n \log n + m \log m)$ 的 Kruskal 算法。
+如果使用 $O(m\log m)$ 的排序算法，并且使用 $O(m\alpha(m, n))$ 或 $O(m\log n)$ 的并查集，就可以得到时间复杂度为 $O(m\log m)$ 的 Kruskal 算法。
 
 ## Prim 算法
 
@@ -185,13 +105,13 @@ Prim 算法是另一种常见并且好写的最小生成树算法。该算法的
 
 ### 实现
 
-也是需要一些数据结构来支持。
-
 具体来说，每次要选择距离最小的一个结点，以及用新的边更新其他结点的距离。
 
 等等，这很像 Dijkstra 算法……
 
-其实跟 Dijkstra 算法一样，只要一个堆来维护距离即可。
+其实跟 Dijkstra 算法一样，每次找到距离最小的一个点，可以暴力找也可以用堆维护。
+
+堆优化的方式类似 Dijkstra 的堆优化，但如果使用二叉堆等不支持 $O(1)$ decrease-key 的堆，复杂度就不优于 Kruskal，常数也比 Kruskal 大。所以，一般情况下都使用 Kruskal 算法，在稠密图尤其是完全图上，暴力 Prim 的复杂度比 Kruskal 优，但 **不一定** 实际跑得更快。
 
 暴力： $O(n^2+m)$ 。
 
@@ -199,76 +119,96 @@ Prim 算法是另一种常见并且好写的最小生成树算法。该算法的
 
 Fib 堆： $O(n \log n + m)$ 。
 
-伪代码描述如下：
+伪代码：
 
-```text
-H = new heap()
-For i from 1 to n:
-	H.insert(i, inf)
-H.decrease_key(1, 0)
-For i from 1 to n:
-	u = H.delete_min()
-	for each edge(u, v, len)
-		H.decrease_key(v, len)
-```
+> **Input.** The nodes of the graph $V$; the function $g(u, v)$ which means the weight of the edge $(u, v)$; the function $adj(v)$ which means the nodes adjacent to $v$.
+>
+> **Output.** The sum of weights of the MST of the input graph.
+>
+> **Method.**
+>
+> $result \gets 0$
+>
+> choose an arbitrary node in $V$ to be the $root$
+>
+> $dis(root)\gets 0$
+>
+> **for** each node $v\in(V-\{root\})$
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;$dis(v)\gets\infty$
+>
+> $rest\gets V$
+>
+> **while** $rest\ne\varnothing$
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;$cur\gets$ the node with the minimum $dis$ in $rest$
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;$result\gets result+dis(cur)$
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;$rest\gets rest-\{cur\}$
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;**for** each node $v\in adj(cur)$
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$dis(v)\gets\min(dis(v), g(cur, v))$
+>
+> **return** $result$
 
-注意：上述代码只是实现了 Prim 算法主体，如果要输出方案还需要记录额外的信息。
-
-注意：在遍历边表 `(u, v)` 时，如果 v 已经被 delete，就无需 decrease key。
+注意：上述代码只是求出了最小生成树的权值，如果要输出方案还需要记录每个点的 $dis$ 代表的是哪条边。
 
 ## Boruvka 算法
 
-接下来介绍另一种求解最小生成树的算法——Boruvka 算法。该算法的思想是前两种算法的结合。它可以用于求解 **边权互不相同** 的无向连通图的最小生成树。
+接下来介绍另一种求解最小生成树的算法——Boruvka 算法。该算法的思想是前两种算法的结合。它可以用于求解 **边权互不相同** 的无向图的最小生成森林。（无向连通图就是最小生成树。）
 
 为了描述该算法，我们需要引入一些定义：
 
-1.  对无向连通图 $G=(V,E)$ ，定义 $T=(V,E')$ 表示其对应的最小生成树，其中 $V$ 表示点集（与原图的点集等价）， $E'$ 是边集， $E'\subseteq E$ 。
-2.  在算法执行过程中，我们逐步向 $E'$ 加边，因此定义最小生成森林的 **连通块** 表示一个点集 $V'\subseteq V$ ，且这个点集中的任意两个点 $u$ , $v$ 在 $E'$ 中的边构成的子图上是连通的（互相可达）。
+1.  定义 $E'$ 为我们当前找到的最小生成森林的边。在算法执行过程中，我们逐步向 $E'$ 加边，定义 **连通块** 表示一个点集 $V'\subseteq V$ ，且这个点集中的任意两个点 $u$, $v$ 在 $E'$ 中的边构成的子图上是连通的（互相可达）。
+2. 定义一个连通块的 **最小边** 为它连向其它连通块的边中权值最小的那一条。
 
 初始时， $E'=\varnothing$ ，每个点各自是一个连通块：
 
-1.  遍历每一个连通块 $U$ ，考虑所有与该连通块相连且不在其内部的边 $(u,v),[u\in U \oplus v\in U]$ （中括号内的 $\oplus$ 即异或，表示两个条件有且仅有一个成立）。假设这些边组成的集合为 $E_U$ ，则我们找到 $E_U$ 中权值最小的边。根据题设条件，它是唯一的。然后我们将其标记为 **已选择** 。有时候你找到的边可能已被标记，那么你就直接忽略（不需要去找第二小的边什么的）；
-2.  遍历完当前状态下的所有连通块之后，就把所有标记为 **已选择** 的边都加到 $E'$ 中，并更新连通块状态。
-3.  如果连通块数量大于 1，返回步骤 1；否则退出。
+1. 计算每个点分别属于哪个连通块。将每个连通块都设为“没有最小边”。
+2.  遍历每条边 $(u, v)$，如果 $u$ 和 $v$ 不在同一个连通块，就用这条边的边权分别更新 $u$ 和 $v$ 所在连通块的最小边。
+3.  如果所有连通块都没有最小边，退出程序，此时的 $E'$ 就是原图最小生成森林的边集。否则，将每个有最小边的连通块的最小边加入 $E'$，返回第一步。
 
 下面通过一张动态图来举一个例子（图源自 [维基百科](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm) ）：
 
 ![](./images/mst-1.gif)
 
-可以证明，算法只会迭代不超过 $O(\log_2V)$ 次，因此算法复杂度是 $O(E\log_2V)$ 的。给出算法的伪代码：
+当原图连通时，每次迭代连通块数量至少减半，算法只会迭代不超过 $O(\log V)$ 次，而原图不连通时相当于多个子问题，因此算法复杂度是 $O(E\log V)$ 的。给出算法的伪代码：（修改自 [维基百科](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm)）
 
-```text
-Input: A graph G whose edges have distinct weights
-Initialize a forest F to be a set of one-vertex trees, one for each vertex of the graph.
-While T has more than one component:
-    Find the connected components of T and label each vertex u of G by its component C(u).
-    For each component U of T, initialize the cheapest edge e(U) to "None".
-    For each edge (u,v) of G:
-        If C(u) != C(v) :
-            If w(u,v) < w(e(C(u))) :
-                e(C(u)) = (u,v)
-            If w(u,v) < w(e(C(v))) :
-                e(C(v)) = (u,v)
-    For each component U whose e(U) is not "None":
-        Add e(U) to T
-Output: T is the MST of G.
-```
-
-## 小结
-
-我们介绍了三种最小生成树的算法，各有特点。
-
-然后我们来考虑这样一些问题。
-
-一张图的最小生成树不一定是唯一的。
-
-什么时候一定唯一？
-
-考虑 Kruskal 算法，当每条边权都不一样时，一开始的排序只有一种方案，就一定唯一了。
-
-那什么时候一定不唯一？
-
-Kruskal 算法中的「集合」，能否进一步优化？
+> **Input.** A graph $G$ whose edges have distinct weights.
+>
+> **Output.** The minimum spanning forest of $G$.
+>
+> **Method.**
+>
+> Initialize a forest $F$ to be a set of one-vertex trees, one for each vertex of the graph.
+>
+> **while** True
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;Find the connected components of $F$ and label each vertex of $G$ by its component
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;Initialize the cheapest edge for each component to "None"
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;**for** each edge $(u, v)$ of $G$
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**if** $u$ and $v$ have different component labels
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**if** $(u, v)$ is cheaper than the cheapest edge for the component of $u$
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set $(u, v)$ as the cheapest edge for the component of $u$
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**if** $(u, v)$ is cheaper than the cheapest edge for the component of $v$
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set $(u, v)$ as the cheapest edge for the component of $v$
+>
+> &nbsp;&nbsp;&nbsp;&nbsp; **if** all components' cheapest edges are "None"
+> 
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **return** $F$
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;**for** each component whose cheapest edge is not "None"
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add its cheapest edge to $F$
 
 ## 习题
 
@@ -287,7 +227,6 @@ Kruskal 算法中的「集合」，能否进一步优化？
     ```cpp
     #include <algorithm>
     #include <cstdio>
-    
     struct Edge {
       int x, y, z;
     };
