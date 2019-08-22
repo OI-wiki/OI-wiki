@@ -16,20 +16,20 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 #### 前置（不会可以去看其他编辑器配置教程）
 
 下载 Java，（其实图片是 JDK 来着）  
-![](./images/eclipse1.jpg)  
+![](./images/eclipse1.png)  
 下载 MinGW 并配置。（这个步骤可以去看别的编辑器配置教程）
 
 #### 下载 Eclipse
 
 进入 Eclipse 官网，  
-![](./images/eclipse2.jpg)  
+![](./images/eclipse2.png)  
 下载 C++ 版本，（点击右面相对应系统的下载链接）  
-![](./images/eclipse3.jpg)  
+![](./images/eclipse3.png)  
 安装，然后如图建造项目。（某些条目需要填写个人文件路径）  
-![](./images/eclipse4.jpg)  
-![](./images/eclipse5.jpg)  
-![](./images/eclipse6.jpg)  
-![](./images/eclipse7.jpg)
+![](./images/eclipse4.png)  
+![](./images/eclipse5.png)  
+![](./images/eclipse6.png)  
+![](./images/eclipse7.png)
 
 #### 接下来你就可以使用这个精（）致（）的软件了 而且帮助手册也很详细
 
