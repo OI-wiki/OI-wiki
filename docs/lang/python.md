@@ -65,7 +65,7 @@ sudo apt install python3
 
 接下来的例子是[LG4779【模板】单源最短路径（标准版）](https://www.luogu.org/problem/P4779) 的代码。我们将 C++ 代码与 Python 代码做出对比：
 
-从声名一些常量开始：
+从声明一些常量开始：
 
 C++：
 
