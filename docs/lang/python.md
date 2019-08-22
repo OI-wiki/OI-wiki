@@ -58,12 +58,11 @@ sudo apt install python3
 
 ## 基本语法
 
-
 ## 对比 C++ 与 Python
 
 对于大部分算法竞赛选手，相信你们已经熟练掌握了 C++98 的语法。接下来我们展示一下 Python 语法的一些应用。
 
-接下来的例子是[LG4779【模板】单源最短路径（标准版）](https://www.luogu.org/problem/P4779) 的代码。我们将 C++ 代码与 Python 代码做出对比：
+接下来的例子是 [LG4779【模板】单源最短路径（标准版）](https://www.luogu.org/problem/P4779) 的代码。我们将 C++ 代码与 Python 代码做出对比：
 
 从声明一些常量开始：
 
@@ -94,13 +93,11 @@ C++：
 
 ```cpp
 struct qxx {
-    int nex, t, v;
+  int nex, t, v;
 };
 qxx e[M];
 int h[N], cnt;
-void add_path(int f, int t, int v) {
-    e[++cnt] = (qxx){h[f], t, v}, h[f]= cnt;
-}
+void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
 
 typedef pair<int, int> pii;
 priority_queue<pii, vector<pii>, greater<pii>> q;
@@ -141,19 +138,19 @@ C++：
 
 ```cpp
 void dijkstra(int s) {
-    memset(dist, 0x3f, sizeof(dist));
-    dist[s] = 0, q.push(make_pair(0, s));
-    while(q.size()) {
-        pii u= q.top();
-        q.pop();
-        if(dist[u.second] < u.first) continue;
-        for(int i = h[u.second]; i; i = e[i].nex) {
-            const int &v = e[i].t, &w = e[i].v;
-            if(dist[v] <= dist[u.second] + w) continue;
-            dist[v] = dist[u.second] + w;
-            q.push(make_pair(dist[v], v));
-        }
+  memset(dist, 0x3f, sizeof(dist));
+  dist[s] = 0, q.push(make_pair(0, s));
+  while (q.size()) {
+    pii u = q.top();
+    q.pop();
+    if (dist[u.second] < u.first) continue;
+    for (int i = h[u.second]; i; i = e[i].nex) {
+      const int &v = e[i].t, &w = e[i].v;
+      if (dist[v] <= dist[u.second] + w) continue;
+      dist[v] = dist[u.second] + w;
+      q.push(make_pair(dist[v], v));
     }
+  }
 }
 ```
 
@@ -189,15 +186,15 @@ C++：
 ```cpp
 int n, m, s;
 int main() {
-    scanf("%d%d%d", &n, &m, &s);
-    for(int i = 1; i <= m; i++) {
-        int u, v, w;
-        scanf("%d%d%d", &u, &v, &w);
-        add_path(u, v, w);
-    }
-    dijkstra(s);
-    for(int i = 1; i <= n; i++) printf("%d ", dist[i]);
-    return 0;
+  scanf("%d%d%d", &n, &m, &s);
+  for (int i = 1; i <= m; i++) {
+    int u, v, w;
+    scanf("%d%d%d", &u, &v, &w);
+    add_path(u, v, w);
+  }
+  dijkstra(s);
+  for (int i = 1; i <= n; i++) printf("%d ", dist[i]);
+  return 0;
 }
 ```
 
@@ -225,57 +222,53 @@ if __name__ == '__main__':
 完整的代码如下：
 
 ??? note "C++"
-    
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
     const int N = 1e5 + 5, M = 2e5 + 5;
     
     struct qxx {
-        int nex, t, v;
+      int nex, t, v;
     };
     qxx e[M];
     int h[N], cnt;
-    void add_path(int f, int t, int v) {
-        e[++cnt] = (qxx){h[f], t, v}, h[f]= cnt;
-    }
+    void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
     
     typedef pair<int, int> pii;
     priority_queue<pii, vector<pii>, greater<pii>> q;
     int dist[N];
     
     void dijkstra(int s) {
-        memset(dist, 0x3f, sizeof(dist));
-        dist[s] = 0, q.push(make_pair(0, s));
-        while(q.size()) {
-            pii u= q.top();
-            q.pop();
-            if(dist[u.second] < u.first) continue;
-            for(int i = h[u.second]; i; i = e[i].nex) {
-                const int &v = e[i].t, &w = e[i].v;
-                if(dist[v] <= dist[u.second] + w) continue;
-                dist[v] = dist[u.second] + w;
-                q.push(make_pair(dist[v], v));
-            }
+      memset(dist, 0x3f, sizeof(dist));
+      dist[s] = 0, q.push(make_pair(0, s));
+      while (q.size()) {
+        pii u = q.top();
+        q.pop();
+        if (dist[u.second] < u.first) continue;
+        for (int i = h[u.second]; i; i = e[i].nex) {
+          const int &v = e[i].t, &w = e[i].v;
+          if (dist[v] <= dist[u.second] + w) continue;
+          dist[v] = dist[u.second] + w;
+          q.push(make_pair(dist[v], v));
         }
+      }
     }
     
     int n, m, s;
     int main() {
-        scanf("%d%d%d", &n, &m, &s);
-        for(int i = 1; i <= m; i++) {
-            int u, v, w;
-            scanf("%d%d%d", &u, &v, &w);
-            add_path(u, v, w);
-        }
-        dijkstra(s);
-        for(int i = 1; i <= n; i++) printf("%d ", dist[i]);
-        return 0;
+      scanf("%d%d%d", &n, &m, &s);
+      for (int i = 1; i <= m; i++) {
+        int u, v, w;
+        scanf("%d%d%d", &u, &v, &w);
+        add_path(u, v, w);
+      }
+      dijkstra(s);
+      for (int i = 1; i <= n; i++) printf("%d ", dist[i]);
+      return 0;
     }
     ```
 
 ??? note "Python"
-    
     ```python
     try: # 引入优先队列模块
         import Queue as pq #python version < 3.0
