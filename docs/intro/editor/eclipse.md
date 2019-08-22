@@ -7,15 +7,15 @@ Eclipse 的本身只是一个框架平台，但是众多插件的支持，使得
 Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java 的下一代 IDE 开发环境，2001 年 11 月贡献给开源社区，现在它由非营利软件供应商联盟 Eclipse 基金会（Eclipse Foundation）管理。  
 （以上摘自 wikipedia）  
 实测这玩意打开速度比 VS 都慢……
-而且这个IDE更新速度玄学，插件更新速度跟不上IDE更新速度……  
+而且这个 IDE 更新速度玄学，插件更新速度跟不上 IDE 更新速度……  
 不过这个用着比较顺手，而且许多知名公司都在使用。  
-所以比较推荐OIer用这个（如果你的比赛机上会有）  
+所以比较推荐 OIer 用这个（如果你的比赛机上会有）
 
 ### 安装 & 配置指南
 
 #### 前置（不会可以去看其他编辑器配置教程）
 
-下载 Java，（其实图片是 JDK来着)  
+下载 Java，（其实图片是 JDK 来着）  
 ![](./images/eclipse1.jpg)  
 下载 MinGW 并配置。（这个步骤可以去看别的编辑器配置教程）
 
@@ -29,9 +29,9 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 ![](./images/eclipse4.jpg)  
 ![](./images/eclipse5.jpg)  
 ![](./images/eclipse6.jpg)  
-![](./images/eclipse7.jpg)  
+![](./images/eclipse7.jpg)
 
-#### 接下来你就可以使用这个精()致()的软件了 而且帮助手册也很详细
+#### 接下来你就可以使用这个精（）致（）的软件了 而且帮助手册也很详细
 
 然后这个东西用起来跟 VS 差不多，比较好用  
 如果想添加插件的话，这里推荐一篇 [CSDN 博客](https://blog.csdn.net/csdnnews/article/details/78495979) 。
