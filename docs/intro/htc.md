@@ -90,9 +90,9 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
     如果遇到没有预先定义好的需要使用 Roman 体的 **函数名** ，我们可以使用 `$\operatorname{something}$` 来产生，如我们可以使用 `$\operatorname{lcm}$` 产生正体的最小公倍数（函数）符号。同理，产生 Roman 体的 **常量** 应用 `$\mathrm{}$` ；其他非数学内容，包括英文、特殊符号等，一律使用 `$\text{}$` 。中文我们则建议不放在 LaTeX 公式中。
 
-2.  在不会引起歧义的情况下，请用 `$\times$` 代替星号，叉乘请使用 `$\times$` ，点乘请使用 `$\cdot$` 。如 $a\times b,a\cdot b$ ，而不是 $a\ast b$ 。
+2.  在不会引起歧义的情况下，请用 `$\times$` 代替星号，叉乘请使用 `$\times$` ，点乘请使用 `$\cdot$` 。如 $a\times b$, $a\cdot b$ ，而不是 $a\ast b$ 。
 
-3.  请用 `$\cdots$` （居于排版基线与顶线中间）， `$\ldots$` （居于排版基线的位置）， `$\vdots$` （竖着的省略号）代替 `$...$` 。如 $a_1,a_2,\cdots a_n$ ，而不是 $a_1,a_2,... a_n$ 。
+3.  请用 `$\cdots$` （居于排版基线与顶线中间）， `$\ldots$` （居于排版基线的位置）， `$\vdots$` （竖着的省略号）或 `$\dots$` （自动调整）代替 `$...$` 。如 `$a_1,a_2,\ldots,a_n$` ，而不是 `$a_1,a_2,...,a_n$` 。
 
 4.  请注意，不要将任何代码的表示方法使用 LaTeX 公式。例如，使用 `$=$` 而不是 `$==$` （如 $a=b$ ，而不是 $a==b$ ）、使用 `` `a<<1` `` 或者 `$a\times 2$` 而不是 `$a<<1$` 、使用 `$a\bmod b$` 代替 `$a\%b$` （如 $a\bmod b$ ，而不是 $a\%b$ ）等。
 
@@ -112,19 +112,19 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
 我们可以使用一个表格来总结一下上述内容。注意本表格没有举出所有符号的用法，只给出常见的错误。类似的情况类比即可。
 
-| 不符合规定的用法            | 渲染效果              | 符合规定的用法                              | 渲染效果                            |
-| ------------------- | ----------------- | ------------------------------------ | ------------------------------- |
-|  `$log, ln, lg$`    |  $log, ln, lg$    |  `$\log, \ln, \lg$`                  |  $\log, \ln, \lg$               |
-|  `$sin, cos, tan$`  |  $sin, cos, tan$  |  `$\sin, \cos, \tan$`                |  $\sin, \cos, \tan$             |
-|  `$gcd, lcm$`       |  $gcd, lcm$       |  `$\gcd, \operatorname{lcm}$`        |  $\gcd,\operatorname{lcm}$      |
-|  `$ 小于 a 的质数 $`     |  $小于a的质数$         |  `小于 $a$ 的质数`                        | 小于 $a$ 的质数                      |
-|  `$...$`            |  $...$            |  `$\cdots, \ldots, \vdots, \ddots$`  |  $\cdots,\ldots,\vdots,\ddots$  |
-|  `$a*b$` （两个数相乘）    |  $a*b$            |  `$a\times b,a\cdot b$`              |  $a\times b,a\cdot b$           |
-|  `$SPFA$` （英文名称）    |  $SPFA$           |  `SPFA`                              | SPFA                            |
-|  `$a==b$`           |  $a==b$           |  `$a=b$`                             |  $a=b$                          |
-|  `$f[i][j][k]$`     |  $f[i][j][k]$     |  `$f_{i,j,k}, f(i,j,k)$`             |  $f_{i,j,k},f(i,j,k)$           |
-|  `$R,N^*$` （集合）     |  $R,N^*$          |  `$\mathbf{R},\mathbf{N}^*$`         |  $\mathbf{R},\mathbf{N}^*$      |
-|  `$\emptyset$`      |  $\emptyset$      |  `$\varnothing$`                     |  $\varnothing$                  |
+| 不符合规定的用法       | 渲染效果        | 符合规定的用法                     | 渲染效果                      |
+| ---------------------- | --------------- | ---------------------------------- | ----------------------------- |
+| `$log, ln, lg$`        | $log, ln, lg$   | `$\log$, $\ln$, $\lg$`             | $\log$, $\ln$, $\lg$              |
+| `$sin, cos, tan$`      | $sin, cos, tan$ | `$\sin$, $\cos$, $\tan$`               | $\sin$, $\cos$, $\tan$            |
+| `$gcd, lcm$`           | $gcd, lcm$      | `$\gcd$, $\operatorname{lcm}$`       | $\gcd$, $\operatorname{lcm}$     |
+| `$ 小于 a 的质数 $`    | $ 小于 a 的质数 $   | `小于 $a$ 的质数`                  | 小于 $a$ 的质数               |
+| `$...$`                | $...$           | `$\cdots$, $\ldots$, $\vdots$, $\ddots$` | $\cdots$, $\ldots$, $\vdots$, $\ddots$ |
+| `$a*b$` （两个数相乘） | $a*b$           | `$a\times b$, $a\cdot b$`             | $a\times b$, $a\cdot b$          |
+| `$SPFA$` （英文名称）  | $SPFA$          | `SPFA`                             | SPFA                          |
+| `$a==b$`               | $a==b$          | `$a=b$`                            | $a=b$                         |
+| `$f[i][j][k]$`         | $f[i][j][k]$    | `$f_{i,j,k}$, $f(i,j,k)$`            | $f_{i,j,k}$, $f(i,j,k)$          |
+| `$R,N^*$` （集合）     | $R,N^*$         | `$\mathbf{R}$, $\mathbf{N}^*$`        | $\mathbf{R}$, $\mathbf{N}^*$     |
+| `$\emptyset$`          | $\emptyset$     | `$\varnothing$`                    | $\varnothing$                 |
 
 ### Markdown 格式与主题扩展格式要求
 
@@ -154,6 +154,56 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
     两种格式的区别是，带 `+` 的会默认保持展开，而不带 `+` 的会默认保持折叠。效果可以参考图例的例 7。
 
 如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E) 和 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/) ，前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 Markdown 传统语法和 mkdocs-material 支持的扩展语法。
+
+### 伪代码格式
+
+伪码具体格式没有严格要求，请参考算法导论或学术论文。注意不要写成 Python，赋值使用 `$\gets$` 表示。
+
+在 Wiki 中，使用 Markdown 引用来书写伪代码，使用 `&nbsp;&nbsp;&nbsp;&nbsp;` 表示缩进。
+
+例如：
+
+> **Input.** The edges of the graph $e$, where each element in $e$ is $(u, v, w)$ denoting that there is an edge between $u$ and $v$ weighted $w$.
+>
+> **Output.** The edges of the MST of the input graph.
+>
+> **Method.**
+>
+> $result \gets \varnothing$
+>
+> sort $e$ into nondecreasing order by weight $w$
+>
+> **for** each $(u, v, w)$ in the sorted $e$
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;**if** $u$ and $v$ are not connected in the union-find set
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connect $u$ and $v$ in the union-find set
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$result \gets result\ \bigcup\ \{(u, v, w)\}$
+>
+> **return** $result$
+
+```markdown
+> **Input.** The edges of the graph $e$, where each element in $e$ is $(u, v, w)$ denoting that there is an edge between $u$ and $v$ weighted $w$.
+>
+> **Output.** The edges of the MST of the input graph.
+>
+> **Method.**
+>
+> $result \gets \varnothing$
+>
+> sort $e$ into nondecreasing order by weight $w$
+>
+> **for** each $(u, v, w)$ in the sorted $e$
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;**if** $u$ and $v$ are not connected in the union-find set
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connect $u$ and $v$ in the union-find set
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$result \gets result\ \bigcup\ \{(u, v, w)\}$
+>
+> **return** $result$
+```
 
 ## 图解
 
