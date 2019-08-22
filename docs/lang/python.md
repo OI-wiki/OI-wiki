@@ -19,8 +19,8 @@ Python 是一种目前已在世界上广泛使用的解释型面向对象语言�
 
 ### Windows
 
-访问 <https://www.python.org/downloads/> ，下载自己需要的版本并安装。  
-另外为了方便，请务必勾选 **Add Python 3.x to PATH** 以确保将 Python 加入环境变量！  
+访问 <https://www.python.org/downloads/> ，下载自己需要的版本并安装。
+另外为了方便，请务必勾选 **Add Python 3.x to PATH** 以确保将 Python 加入环境变量！
 如在如下的 Python 3.7.4 安装界面中，应该如图勾选最下一项复选框。
 
 ![py3.7.4](./images/python1.png)
@@ -57,3 +57,294 @@ sudo apt install python3
 -    [华为开源镜像站](https://mirrors.huaweicloud.com/) 
 
 ## 基本语法
+
+
+## 对比 C++ 与 Python
+
+对于大部分算法竞赛选手，相信你们已经熟练掌握了 C++98 的语法。接下来我们展示一下 Python 语法的一些应用。
+
+接下来的例子是[LG4779【模板】单源最短路径（标准版）](https://www.luogu.org/problem/P4779) 的代码。我们将 C++ 代码与 Python 代码做出对比：
+
+从声明一些常量开始：
+
+C++：
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 1e5 + 5, M = 2e5 + 5;
+```
+
+Python：
+
+```python
+try: # 引入优先队列模块
+    import Queue as pq #python version < 3.0
+except ImportError:
+    import queue as pq #python3.*
+
+N=int(1e5+5)
+M=int(2e5+5)
+INF=0x3f3f3f3f
+```
+
+然后是声明前向星结构体和一些其他变量
+
+C++：
+
+```cpp
+struct qxx {
+    int nex, t, v;
+};
+qxx e[M];
+int h[N], cnt;
+void add_path(int f, int t, int v) {
+    e[++cnt] = (qxx){h[f], t, v}, h[f]= cnt;
+}
+
+typedef pair<int, int> pii;
+priority_queue<pii, vector<pii>, greater<pii>> q;
+int dist[N];
+```
+
+Python：
+
+```python
+class qxx: # 前向星类（结构体）
+    def __init__(self):
+        self.nex=0
+        self.t=0
+        self.v=0
+
+e = [qxx() for i in range(M)] # 链表
+h = [0 for i in range(N)]
+cnt=0
+
+dist = [INF for i in range(N)]
+q = pq.PriorityQueue() # 定义优先队列，默认第一元小根堆
+
+def add_path(f,t,v): # 在前向星中加边
+    # 如果要修改全局变量，要使用global来声名
+    global cnt, e, h
+    # 调试时的输出语句，多个变量使用元组
+    # print("add_path(%d,%d,%d)" % (f,t,v))
+    cnt+=1
+    e[cnt].nex=h[f]
+    e[cnt].t=t
+    e[cnt].v=v
+    h[f]=cnt
+```
+
+然后是求解最短路的 Dijkstra 算法代码：
+
+C++：
+
+```cpp
+void dijkstra(int s) {
+    memset(dist, 0x3f, sizeof(dist));
+    dist[s] = 0, q.push(make_pair(0, s));
+    while(q.size()) {
+        pii u= q.top();
+        q.pop();
+        if(dist[u.second] < u.first) continue;
+        for(int i = h[u.second]; i; i = e[i].nex) {
+            const int &v = e[i].t, &w = e[i].v;
+            if(dist[v] <= dist[u.second] + w) continue;
+            dist[v] = dist[u.second] + w;
+            q.push(make_pair(dist[v], v));
+        }
+    }
+}
+```
+
+Python：
+
+```python
+def nextedgeid(u): # 生成器，可以用在for循环里
+    i=h[u]
+    while i:
+        yield i
+        i = e[i].nex
+
+def dijkstra(s):
+    dist[s]=0
+    q.put((0,s))
+    while not q.empty():
+        u = q.get() # get函数会顺便删除堆中对应的元素
+        if dist[u[1]]<u[0]:
+            continue
+        for i in nextedgeid(u[1]):
+            v = e[i].t
+            w = e[i].v
+            if dist[v]<=dist[u[1]]+w:
+                continue
+            dist[v]=dist[u[1]]+w
+            q.put((dist[v],v))
+```
+
+最后是主函数部分
+
+C++：
+
+```cpp
+int n, m, s;
+int main() {
+    scanf("%d%d%d", &n, &m, &s);
+    for(int i = 1; i <= m; i++) {
+        int u, v, w;
+        scanf("%d%d%d", &u, &v, &w);
+        add_path(u, v, w);
+    }
+    dijkstra(s);
+    for(int i = 1; i <= n; i++) printf("%d ", dist[i]);
+    return 0;
+}
+```
+
+Python：
+
+```python
+# 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
+if __name__ == '__main__':
+    # 一行读入多个整数。注意它会把整行都读进来
+    n,m,s=map(int,input().split()) 
+    for i in range(m):
+        u,v,w=map(int,input().split())
+        add_path(u,v,w)
+    
+    dijkstra(s)
+
+    for i in range(1,n+1):
+        # 两种输出语法都是可以用的
+        print("{}".format(dist[i]),end=' ')
+        # print("%d" % dist[i],end=' ')
+
+    print() # 结尾换行
+```
+
+完整的代码如下：
+
+??? note "C++"
+    
+    ```cpp
+    #include <bits/stdc++.h>
+    using namespace std;
+    const int N = 1e5 + 5, M = 2e5 + 5;
+    
+    struct qxx {
+        int nex, t, v;
+    };
+    qxx e[M];
+    int h[N], cnt;
+    void add_path(int f, int t, int v) {
+        e[++cnt] = (qxx){h[f], t, v}, h[f]= cnt;
+    }
+    
+    typedef pair<int, int> pii;
+    priority_queue<pii, vector<pii>, greater<pii>> q;
+    int dist[N];
+    
+    void dijkstra(int s) {
+        memset(dist, 0x3f, sizeof(dist));
+        dist[s] = 0, q.push(make_pair(0, s));
+        while(q.size()) {
+            pii u= q.top();
+            q.pop();
+            if(dist[u.second] < u.first) continue;
+            for(int i = h[u.second]; i; i = e[i].nex) {
+                const int &v = e[i].t, &w = e[i].v;
+                if(dist[v] <= dist[u.second] + w) continue;
+                dist[v] = dist[u.second] + w;
+                q.push(make_pair(dist[v], v));
+            }
+        }
+    }
+    
+    int n, m, s;
+    int main() {
+        scanf("%d%d%d", &n, &m, &s);
+        for(int i = 1; i <= m; i++) {
+            int u, v, w;
+            scanf("%d%d%d", &u, &v, &w);
+            add_path(u, v, w);
+        }
+        dijkstra(s);
+        for(int i = 1; i <= n; i++) printf("%d ", dist[i]);
+        return 0;
+    }
+    ```
+
+??? note "Python"
+    
+    ```python
+    try: # 引入优先队列模块
+        import Queue as pq #python version < 3.0
+    except ImportError:
+        import queue as pq #python3.*
+    
+    N=int(1e5+5)
+    M=int(2e5+5)
+    INF=0x3f3f3f3f
+    
+    class qxx: # 前向星类（结构体）
+        def __init__(self):
+            self.nex=0
+            self.t=0
+            self.v=0
+    
+    e = [qxx() for i in range(M)] # 链表
+    h = [0 for i in range(N)]
+    cnt=0
+    
+    dist = [INF for i in range(N)]
+    q = pq.PriorityQueue() # 定义优先队列，默认第一元小根堆
+    
+    def add_path(f,t,v): # 在前向星中加边
+        # 如果要修改全局变量，要使用global来声名
+        global cnt, e, h
+        # 调试时的输出语句，多个变量使用元组
+        # print("add_path(%d,%d,%d)" % (f,t,v))
+        cnt+=1
+        e[cnt].nex=h[f]
+        e[cnt].t=t
+        e[cnt].v=v
+        h[f]=cnt
+    
+    def nextedgeid(u): # 生成器，可以用在for循环里
+        i=h[u]
+        while i:
+            yield i
+            i = e[i].nex
+    
+    def dijkstra(s):
+        dist[s]=0
+        q.put((0,s))
+        while not q.empty():
+            u = q.get()
+            if dist[u[1]]<u[0]:
+                continue
+            for i in nextedgeid(u[1]):
+                v = e[i].t
+                w = e[i].v
+                if dist[v]<=dist[u[1]]+w:
+                    continue
+                dist[v]=dist[u[1]]+w
+                q.put((dist[v],v))
+    
+    # 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
+    if __name__ == '__main__':
+        # 一行读入多个整数。注意它会把整行都读进来
+        n,m,s=map(int,input().split()) 
+        for i in range(m):
+            u,v,w=map(int,input().split())
+            add_path(u,v,w)
+        
+        dijkstra(s)
+    
+        for i in range(1,n+1):
+            # 两种输出语法都是可以用的
+            print("{}".format(dist[i]),end=' ')
+            # print("%d" % dist[i],end=' ')
+    
+        print() # 结尾换行
+    ```
