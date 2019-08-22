@@ -109,10 +109,10 @@ std::priority_queue<T, Container, Compare>
      */
     // 构造方式 ：
     std::priority_queue<int> q1;
-    std::priority_queue<int, vector<int>> q2;
-    // C++11 前，请使用 vector<int> >，空格不可省略
-    std::priority_queue<int, deque<int>, greater<int>> q3;
-    // 注意：不可跳过容器参数直接传入比较类
+std::priority_queue<int, vector<int>> q2;
+// C++11 前，请使用 vector<int> >，空格不可省略
+std::priority_queue<int, deque<int>, greater<int>> q3;
+// 注意：不可跳过容器参数直接传入比较类
 ```
 
 ### 成员函数
