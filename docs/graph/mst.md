@@ -65,7 +65,7 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 >
 > $\qquad\qquad$connect $u$ and $v$ in the union-find set
 >
-> $\qquad\qquad$result \gets result\ \bigcup\ \{(u, v, w)\}$
+> $\qquad\qquad$ $result \gets result\ \bigcup\ \{(u, v, w)\}$
 >
 > **return** $result$
 
@@ -135,21 +135,21 @@ Fib 堆： $O(n \log n + m)$ 。
 >
 > **for** each node $v\in(V-\{root\})$
 >
-> $\qquad$dis(v)\gets\infty$
+> $\qquad$ $dis(v)\gets\infty$
 >
 > $rest\gets V$
 >
 > **while** $rest\ne\varnothing$
 >
-> $\qquad$cur\gets$ the node with the minimum $dis$ in $rest$
+> $\qquad$ $cur\gets$ the node with the minimum $dis$ in $rest$
 >
-> $\qquad$result\gets result+dis(cur)$
+> $\qquad$ $result\gets result+dis(cur)$
 >
-> $\qquad$rest\gets rest-\{cur\}$
+> $\qquad$ $rest\gets rest-\{cur\}$
 >
 > $\qquad$**for** each node $v\in adj(cur)$
 >
-> $\qquad\qquad$dis(v)\gets\min(dis(v), g(cur, v))$
+> $\qquad\qquad$ $dis(v)\gets\min(dis(v), g(cur, v))$
 >
 > **return** $result$
 
