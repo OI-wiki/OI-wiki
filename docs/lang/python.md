@@ -1,5 +1,3 @@
-author: abc1763613206,sshwy
-
 ## 关于 Python
 
 Python 是一种目前已在世界上广泛使用的解释型面向对象语言。
