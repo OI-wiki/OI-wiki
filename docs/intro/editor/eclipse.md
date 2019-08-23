@@ -4,30 +4,29 @@ author: partychicken
 
 ### 介绍
 
-Eclipse 是著名的跨平台开源集成开发环境（ IDE ）。最初主要用来 Java 语言开发，当前亦有人通过插件使其作为 C++ 、 Python 、 PHP 等其他语言的开发工具。  
+Eclipse 是著名的跨平台开源集成开发环境（IDE）。最初主要用来 Java 语言开发，当前亦有人通过插件使其作为 C++、Python、PHP 等其他语言的开发工具。
 
-Eclipse 的本身只是一个框架平台，但是众多插件的支持，使得 Eclipse 拥有较佳的灵活性，所以许多软件开发商以 Eclipse 为框架开发自己的 IDE。  
+Eclipse 的本身只是一个框架平台，但是众多插件的支持，使得 Eclipse 拥有较佳的灵活性，所以许多软件开发商以 Eclipse 为框架开发自己的 IDE。
 
-Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java 的下一代 IDE 开发环境，2001 年 11 月贡献给开源社区，现在它由非营利软件供应商联盟 Eclipse 基金会（ Eclipse Foundation ）管理。  
+Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java 的下一代 IDE 开发环境，2001 年 11 月贡献给开源社区，现在它由非营利软件供应商联盟 Eclipse 基金会（Eclipse Foundation）管理。
 
-（以上摘自 wikipedia ）  
+（以上摘自 wikipedia）
 
-实测这个IDE打开速度比 VS 慢
+实测这个 IDE 打开速度比 VS 慢
 
 而且这个 IDE 更新速度玄学，插件更新速度跟不上 IDE 的更新速度，所以对于经常更新的同学很不友好
 
-不过这个用着比较顺手，而且许多知名公司都在使用。  
+不过这个用着比较顺手，而且许多知名公司都在使用。
 
-所以比较推荐 OIer 用这个( 如果在你的比赛机上有 )
-
+所以比较推荐 OIer 用这个（如果在你的比赛机上有 )
 
 ### 安装 & 配置指南
 
 #### 前置
 
-您需要安装 Java 和 MinGW 。
+您需要安装 Java 和 MinGW。
 
-##### 下载并安装Java
+##### 下载并安装 Java
 
 ![](./images/eclipse1-1.png)
 
@@ -35,7 +34,7 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 ![](./images/eclipse1-3.png)
 
-##### 下载并安装MinGW
+##### 下载并安装 MinGW
 
 开始安装
 
@@ -51,7 +50,7 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 选择镜像下载加速源
 
-此处可以直接用SourceForge Default
+此处可以直接用 SourceForge Default
 
 ![](./images/eclipse1-7.png)
 
@@ -63,29 +62,28 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 ##### 下载 Eclipse
 
-进入 Eclipse 官网，  
+进入 Eclipse 官网，
 
-![](./images/eclipse2.png)  
+![](./images/eclipse2.png)
 
 点击右面相对应系统的下载链接以下载 C++ 版本，
 
-![](./images/eclipse3.png)  
+![](./images/eclipse3.png)
 
 安装，然后如图填写目录信息以建造项目。
 
-![](./images/eclipse4.png)  
+![](./images/eclipse4.png)
 
-![](./images/eclipse5.png)  
+![](./images/eclipse5.png)
 
-![](./images/eclipse6.png)  
+![](./images/eclipse6.png)
 
 ![](./images/eclipse7.png)
 
-
-#### 到此，您就可以开始使用Eclipse编写及调试代码了
+#### 到此，您就可以开始使用 Eclipse 编写及调试代码了
 
 这个软件的帮助手册很详细，建议刚接触的同学多看帮助手册，多百度
 
-并且IDE的使用手感与VS相近
+并且 IDE 的使用手感与 VS 相近
 
 如果想添加插件的话，这里推荐看一篇 [CSDN 博客](https://blog.csdn.net/csdnnews/article/details/78495979) 。
