@@ -1,37 +1,91 @@
+author: partychicken
+
 ## Eclipse 编辑器指北
 
 ### 介绍
 
-Eclipse 是著名的跨平台开源集成开发环境（IDE）。最初主要用来 Java 语言开发，当前亦有人通过插件使其作为 C++、Python、PHP 等其他语言的开发工具。  
+Eclipse 是著名的跨平台开源集成开发环境（ IDE ）。最初主要用来 Java 语言开发，当前亦有人通过插件使其作为 C++ 、 Python 、 PHP 等其他语言的开发工具。  
+
 Eclipse 的本身只是一个框架平台，但是众多插件的支持，使得 Eclipse 拥有较佳的灵活性，所以许多软件开发商以 Eclipse 为框架开发自己的 IDE。  
-Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java 的下一代 IDE 开发环境，2001 年 11 月贡献给开源社区，现在它由非营利软件供应商联盟 Eclipse 基金会（Eclipse Foundation）管理。  
-（以上摘自 wikipedia）  
-实测这玩意打开速度比 VS 都慢……
-而且这个 IDE 更新速度玄学，插件更新速度跟不上 IDE 更新速度……  
+
+Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java 的下一代 IDE 开发环境，2001 年 11 月贡献给开源社区，现在它由非营利软件供应商联盟 Eclipse 基金会（ Eclipse Foundation ）管理。  
+
+（以上摘自 wikipedia ）  
+
+实测这个IDE打开速度比 VS 慢
+
+而且这个 IDE 更新速度玄学，插件更新速度跟不上 IDE 的更新速度，所以对于经常更新的同学很不友好
+
 不过这个用着比较顺手，而且许多知名公司都在使用。  
-所以比较推荐 OIer 用这个（如果你的比赛机上会有）
+
+所以比较推荐 OIer 用这个( 如果在你的比赛机上有 )
+
 
 ### 安装 & 配置指南
 
-#### 前置（不会可以去看其他编辑器配置教程）
+#### 前置
 
-下载 Java，（其实图片是 JDK 来着）  
-![](./images/eclipse1.png)  
-下载 MinGW 并配置。（这个步骤可以去看别的编辑器配置教程）
+您需要安装 Java 和 MinGW 。
 
-#### 下载 Eclipse
+##### 下载并安装Java
+
+![](./images/eclipse1-1.png)
+
+![](./images/eclipse1-2.png)
+
+![](./images/eclipse1-3.png)
+
+##### 下载并安装MinGW
+
+开始安装
+
+![](./images/eclipse1-4.png)
+
+选择版本
+
+![](./images/eclipse1-5.png)
+
+选择安装目录
+
+![](./images/eclipse1-6.png)
+
+选择镜像下载加速源
+
+此处可以直接用SourceForge Default
+
+![](./images/eclipse1-7.png)
+
+完成安装
+
+![](./images/eclipse1-8.png)
+
+#### 安装主体
+
+##### 下载 Eclipse
 
 进入 Eclipse 官网，  
+
 ![](./images/eclipse2.png)  
-下载 C++ 版本，（点击右面相对应系统的下载链接）  
+
+点击右面相对应系统的下载链接以下载 C++ 版本，
+
 ![](./images/eclipse3.png)  
-安装，然后如图建造项目。（某些条目需要填写个人文件路径）  
+
+安装，然后如图填写目录信息以建造项目。
+
 ![](./images/eclipse4.png)  
+
 ![](./images/eclipse5.png)  
+
 ![](./images/eclipse6.png)  
+
 ![](./images/eclipse7.png)
 
-#### 接下来你就可以使用这个精（）致（）的软件了 而且帮助手册也很详细
 
-然后这个东西用起来跟 VS 差不多，比较好用  
-如果想添加插件的话，这里推荐一篇 [CSDN 博客](https://blog.csdn.net/csdnnews/article/details/78495979) 。
+#### 到此，您就可以开始使用Eclipse编写及调试代码了
+
+这个软件的帮助手册很详细，建议刚接触的同学多看帮助手册，多百度
+
+并且IDE的使用手感与VS相近
+
+如果想添加插件的话，这里推荐看一篇 [CSDN 博客](https://blog.csdn.net/csdnnews/article/details/78495979) 。
