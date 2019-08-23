@@ -12,13 +12,13 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 （以上摘自 wikipedia）
 
-实测这个 IDE 打开速度比 VS 慢
+实测这个 IDE 打开速度比 Visual Studio 慢。
 
-而且这个 IDE 更新速度玄学，插件更新速度跟不上 IDE 的更新速度，所以对于经常更新的同学很不友好
+而且这个 IDE 更新速度玄学，插件更新速度跟不上 IDE 的更新速度，所以对于经常更新的同学很不友好。
 
-不过这个用着比较顺手，而且许多知名公司都在使用。
+不过这个使用体验较好，而且许多知名公司都在使用。
 
-所以比较推荐 OIer 用这个（如果在你的比赛机上有 )
+所以比较推荐 OIer 用这个。
 
 ### 安装 & 配置指南
 
@@ -84,6 +84,6 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 这个软件的帮助手册很详细，建议刚接触的同学多看帮助手册，多百度
 
-并且 IDE 的使用手感与 VS 相近
+并且 IDE 的使用手感与 Visual Studio 相近
 
 如果想添加插件的话，这里推荐看一篇 [CSDN 博客](https://blog.csdn.net/csdnnews/article/details/78495979) 。
