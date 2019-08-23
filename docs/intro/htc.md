@@ -161,7 +161,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
 Wiki 内使用 LaTeX 书写伪码，缩进使用 `$\qquad$` ，文字描述使用 `$\text$` ，关键字使用 `$\textbf$` ，赋值使用 `$\gets$` 。
 
- $\begin{aligned}\textbf{Input.}&\text{ The edges of the graph }e\text{, where each element in }e\text{ is }(u, v, w)\\&\text{ denoting that there is an edge between }u\text{ and }v\text{ weighted }w\end{aligned}$ 
+ $\begin{aligned}\textbf{Input.}&\text{ The edges of the graph }e\text{, where each element in }e\text{ is }(u, v, w)\\&\text{ denoting that there is an edge between }u\text{ and }v\text{ weighted }w\text{.}\end{aligned}$ 
 
  $\textbf{Output.}\text{ The edges of the MST of the input graph.}$ 
 
@@ -182,7 +182,7 @@ Wiki 内使用 LaTeX 书写伪码，缩进使用 `$\qquad$` ，文字描述使�
  $\textbf{return }result$ 
 
 ```latex
- $\begin{aligned}\textbf{Input.}&\text{ The edges of the graph }e\text{, where each element in }e\text{ is }(u, v, w)\\&\text{ denoting that there is an edge between }u\text{ and }v\text{ weighted }w\end{aligned}$ 
+ $\begin{aligned}\textbf{Input.}&\text{ The edges of the graph }e\text{, where each element in }e\text{ is }(u, v, w)\\&\text{ denoting that there is an edge between }u\text{ and }v\text{ weighted }w\text{.}\end{aligned}$ 
 
  $\textbf{Output.}\text{ The edges of the MST of the input graph.}$ 
 
