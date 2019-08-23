@@ -49,25 +49,21 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 
 伪代码：
 
->  **Input.** The edges of the graph $e$ , where each element in $e$ is $(u, v, w)$ denoting that there is an edge between $u$ and $v$ weighted $w$ .
->
->  **Output.** The edges of the MST of the input graph.
->
->  **Method.** 
->
->  $result \gets \varnothing$ 
->
-> sort $e$ into nondecreasing order by weight $w$ 
->
->  **for** each $(u, v, w)$ in the sorted $e$ 
->
->  $\qquad$  **if**  $u$ and $v$ are not connected in the union-find set
->
->  $\qquad\qquad$ connect $u$ and $v$ in the union-find set
->
->  $\qquad\qquad$  $result \gets result\ \bigcup\ \{(u, v, w)\}$ 
->
->  **return**  $result$ 
+$$
+\begin{array}{ll}
+1 &  \textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
+  &  \text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
+2 &  \textbf{Output. } \text{The edges of the MST of the input graph}.\\
+3 &  \textbf{Method. } \\ 
+4 &  result \gets \varnothing \\
+5 &  \text{sort } e \text{ into nondecreasing order by weight } w \\ 
+6 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\ 
+7 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
+8 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
+9 &  \qquad\qquad  result \gets result\;\bigcup\ \{(u, v, w)\} \\
+10 &  \textbf{return }  result
+\end{array}
+$$
 
 其中，查询两点是否连通和连接两点可以使用并查集维护。
 
@@ -121,37 +117,28 @@ Fib 堆： $O(n \log n + m)$ 。
 
 伪代码：
 
->  **Input.** The nodes of the graph $V$ ; the function $g(u, v)$ which means the weight of the edge $(u, v)$ ; the function $adj(v)$ which means the nodes adjacent to $v$ .
->
->  **Output.** The sum of weights of the MST of the input graph.
->
->  **Method.** 
->
->  $result \gets 0$ 
->
-> choose an arbitrary node in $V$ to be the $root$ 
->
->  $dis(root)\gets 0$ 
->
->  **for** each node $v\in(V-\{root\})$ 
->
->  $\qquad$  $dis(v)\gets\infty$ 
->
->  $rest\gets V$ 
->
->  **while**  $rest\ne\varnothing$ 
->
->  $\qquad$  $cur\gets$ the node with the minimum $dis$ in $rest$ 
->
->  $\qquad$  $result\gets result+dis(cur)$ 
->
->  $\qquad$  $rest\gets rest-\{cur\}$ 
->
->  $\qquad$  **for** each node $v\in adj(cur)$ 
->
->  $\qquad\qquad$  $dis(v)\gets\min(dis(v), g(cur, v))$ 
->
->  **return**  $result$ 
+$$
+\begin{array}{ll}
+1 &  \textbf{Input. } \text{The nodes of the graph }V\text{ ; the function }g(u, v)\text{ which}\\
+  &  \text{means the weight of the edge }(u, v)\text{; the function }adj(v)\text{ which}\\
+  &  \text{means the nodes adjacent to }v.\\
+2 &  \textbf{Output. } \text{The sum of weights of the MST of the input graph.} \\
+3 &  \textbf{Method.} \\
+4 &  result \gets 0 \\
+5 & \text{choose an arbitrary node in }V\text{ to be the }root \\
+6 &  dis(root)\gets 0 \\
+7 &  \textbf{for } \text{each node }v\in(V-\{root\}) \\
+8 &  \qquad  dis(v)\gets\infty \\
+9 &  rest\gets V \\
+10 &  \textbf{while }  rest\ne\varnothing \\
+11 &  \qquad cur\gets \text{the node with the minimum }dis\text{ in }rest \\
+12 &  \qquad  result\gets result+dis(cur) \\
+13 &  \qquad  rest\gets rest-\{cur\} \\
+14 &  \qquad  \textbf{for}\text{ each node }v\in adj(cur) \\
+15 &  \qquad\qquad  dis(v)\gets\min(dis(v), g(cur, v)) \\
+16 &  \textbf{return }  result 
+\end{array}
+$$
 
 注意：上述代码只是求出了最小生成树的权值，如果要输出方案还需要记录每个点的 $dis$ 代表的是哪条边。
 
@@ -172,43 +159,31 @@ Fib 堆： $O(n \log n + m)$ 。
 
 下面通过一张动态图来举一个例子（图源自 [维基百科](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm) ）：
 
-![](./images/mst-1.gif)
+![eg](./images/mst-1.gif)
 
 当原图连通时，每次迭代连通块数量至少减半，算法只会迭代不超过 $O(\log V)$ 次，而原图不连通时相当于多个子问题，因此算法复杂度是 $O(E\log V)$ 的。给出算法的伪代码：（修改自 [维基百科](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm) ）
 
->  **Input.** A graph $G$ whose edges have distinct weights.
->
->  **Output.** The minimum spanning forest of $G$ .
->
->  **Method.** 
->
-> Initialize a forest $F$ to be a set of one-vertex trees, one for each vertex of the graph.
->
->  **while** True
->
->  $\qquad$ Find the connected components of $F$ and label each vertex of $G$ by its component
->
->  $\qquad$ Initialize the cheapest edge for each component to "None"
->
->  $\qquad$  **for** each edge $(u, v)$ of $G$ 
->
->  $\qquad\qquad$  **if**  $u$ and $v$ have different component labels
->
->  $\qquad\qquad\qquad$  **if**  $(u, v)$ is cheaper than the cheapest edge for the component of $u$ 
->
->  $\qquad\qquad\qquad\qquad$ Set $(u, v)$ as the cheapest edge for the component of $u$ 
->
->  $\qquad\qquad\qquad$  **if**  $(u, v)$ is cheaper than the cheapest edge for the component of $v$ 
->
->  $\qquad\qquad\qquad\qquad$ Set $(u, v)$ as the cheapest edge for the component of $v$ 
->
->  $\qquad$  **if** all components'cheapest edges are"None"
->
->  $\qquad\qquad$  **return**  $F$ 
->
->  $\qquad$  **for** each component whose cheapest edge is not "None"
->
->  $\qquad\qquad$ Add its cheapest edge to $F$ 
+$$
+\begin{array}{ll}
+1 &  \textbf{Input. } \text{A graph }G\text{ whose edges have distinct weights. } \\
+2 &  \textbf{Output. } \text{The minimum spanning forest of }G .  \\
+3 &  \textbf{Method. }  \\
+4 & \text{Initialize a forest }F\text{ to be a set of one-vertex trees, one for each vertex of the graph.} \\
+5 &  \textbf{while } \text{True} \\
+6 &  \qquad \text{Find the connected components of }F\text{ and label each vertex of }G\text{ by its component } \\
+7 &  \qquad \text{Initialize the cheapest edge for each component to "None"} \\
+8 &  \qquad  \textbf{for } \text{each edge }(u, v)\text{ of }G  \\
+9 &  \qquad\qquad  \textbf{if }  u\text{ and }v\text{ have different component labels} \\
+10 &  \qquad\qquad\qquad  \textbf{if }  (u, v)\text{ is cheaper than the cheapest edge for the component of }u  \\
+11 &  \qquad\qquad\qquad\qquad\text{ Set }(u, v)\text{ as the cheapest edge for the component of }u \\
+12 &  \qquad\qquad\qquad  \textbf{if }  (u, v)\text{ is cheaper than the cheapest edge for the component of }v  \\
+13 &  \qquad\qquad\qquad\qquad\text{ Set }(u, v)\text{ as the cheapest edge for the component of }v  \\
+14 &  \qquad  \textbf{if }\text{ all components'cheapest edges are"None"} \\
+15 &  \qquad\qquad  \textbf{return }  F \\
+16 &  \qquad  \textbf{for }\text{ each component whose cheapest edge is not "None"} \\
+17 &  \qquad\qquad\text{ Add its cheapest edge to }F \\
+\end{array}
+$$
 
 ## 习题
 
