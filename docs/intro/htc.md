@@ -161,7 +161,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
 Wiki 内使用 LaTeX 书写伪码，缩进使用 `$\qquad$` ，文字描述使用 `$\text$` ，关键字使用 `$\textbf$` ，赋值使用 `$\gets$` 。
 
- $\begin{aligned}\textbf{Input.}&\text{ The edges of the graph }e,\text{ where each element in }e\text{ is }(u, v, w)\\&\text{ denoting that there is an edge between }u\text{ and }v\text{ weighted }w\end{aligned}$ 
+ $\begin{aligned}\textbf{Input.}&\text{ The edges of the graph }e\text{, where each element in }e\text{ is }(u, v, w)\\&\text{ denoting that there is an edge between }u\text{ and }v\text{ weighted }w\end{aligned}$ 
 
  $\textbf{Output.}\text{ The edges of the MST of the input graph.}$ 
 
@@ -182,25 +182,25 @@ Wiki 内使用 LaTeX 书写伪码，缩进使用 `$\qquad$` ，文字描述使�
  $\textbf{return }result$ 
 
 ```latex
-$\begin{aligned}\textbf{Input.}&\text{ The edges of the graph }e,\text{ where each element in }e\text{ is }(u, v, w)\\&\text{ denoting that there is an edge between }u\text{ and }v\text{ weighted }w\end{aligned}$
+ $\begin{aligned}\textbf{Input.}&\text{ The edges of the graph }e\text{, where each element in }e\text{ is }(u, v, w)\\&\text{ denoting that there is an edge between }u\text{ and }v\text{ weighted }w\end{aligned}$ 
 
-$\textbf{Output.}\text{ The edges of the MST of the input graph.}$
+ $\textbf{Output.}\text{ The edges of the MST of the input graph.}$ 
 
-$\textbf{Method.}$
+ $\textbf{Method.}$ 
 
-$result \gets \varnothing$ 
+ $result \gets \varnothing$ 
 
-$\text{sort }e\text{ into nondecreasing order by weight }w$
+ $\text{sort }e\text{ into nondecreasing order by weight }w$ 
 
-$\textbf{for}\text{ each }(u, v, w)\text{ in the sorted }e$
+ $\textbf{for}\text{ each }(u, v, w)\text{ in the sorted }e$ 
 
-$\qquad\textbf{if }u\text{ and }v\text{ are not connected in the union-find set}$
+ $\qquad\textbf{if }u\text{ and }v\text{ are not connected in the union-find set}$ 
 
-$\qquad\qquad\text{connect }u\text{ and }v\text{ in the union-find set}$
+ $\qquad\qquad\text{connect }u\text{ and }v\text{ in the union-find set}$ 
 
-$\qquad\qquad result \gets result\ \bigcup\ \{(u, v, w)\}$
+ $\qquad\qquad result \gets result\ \bigcup\ \{(u, v, w)\}$ 
 
-$\textbf{return }result$
+ $\textbf{return }result$ 
 ```
 
 ## 图解
