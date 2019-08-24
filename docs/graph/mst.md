@@ -16,7 +16,7 @@
 
 ### 前置知识
 
- [并查集](/ds/dsu/) 、 [贪心](/basic/greedy/) 、 [图的存储](/graph/basic/) 。
+ [并查集](../ds/dsu.md) 、 [贪心](../basic/greedy.md) 、 [图的存储](./basic.md) 。
 
 ### 证明
 
