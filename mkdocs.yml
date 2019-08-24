@@ -223,7 +223,7 @@ nav:
       - 牛顿迭代法: math/newton.md
       - 数值积分: math/integral.md
       - 高精度计算:
-        - 概述: math/bignum.md
+        - 高精度概述: math/bignum.md
       - 分段打表: math/dictionary.md
     - 斐波那契数列: math/fibonacci.md
   - 数据结构:
