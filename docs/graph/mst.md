@@ -168,9 +168,9 @@ $$
 1 &  \textbf{Input. } \text{A graph }G\text{ whose edges have distinct weights. } \\
 2 &  \textbf{Output. } \text{The minimum spanning forest of }G .  \\
 3 &  \textbf{Method. }  \\
-4 & \text{Initialize a forest }F\text{ to be a set of one-vertex trees, one for each vertex of the graph.} \\
+4 & \text{Initialize a forest }F\text{ to be a set of one-vertex trees} \\
 5 &  \textbf{while } \text{True} \\
-6 &  \qquad \text{Find the connected components of }F\text{ and label each vertex of }G\text{ by its component } \\
+6 &  \qquad \text{Find the components of }F\text{ and label each vertex of }G\text{ by its component } \\
 7 &  \qquad \text{Initialize the cheapest edge for each component to "None"} \\
 8 &  \qquad  \textbf{for } \text{each edge }(u, v)\text{ of }G  \\
 9 &  \qquad\qquad  \textbf{if }  u\text{ and }v\text{ have different component labels} \\
@@ -178,7 +178,7 @@ $$
 11 &  \qquad\qquad\qquad\qquad\text{ Set }(u, v)\text{ as the cheapest edge for the component of }u \\
 12 &  \qquad\qquad\qquad  \textbf{if }  (u, v)\text{ is cheaper than the cheapest edge for the component of }v  \\
 13 &  \qquad\qquad\qquad\qquad\text{ Set }(u, v)\text{ as the cheapest edge for the component of }v  \\
-14 &  \qquad  \textbf{if }\text{ all components'cheapest edges are"None"} \\
+14 &  \qquad  \textbf{if }\text{ all components'cheapest edges are "None"} \\
 15 &  \qquad\qquad  \textbf{return }  F \\
 16 &  \qquad  \textbf{for }\text{ each component whose cheapest edge is not "None"} \\
 17 &  \qquad\qquad\text{ Add its cheapest edge to }F \\
