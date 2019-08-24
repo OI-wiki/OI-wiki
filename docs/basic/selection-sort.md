@@ -23,21 +23,17 @@ $$
 C++ 代码：
 
 ```cpp
-void selection_sort(int* a, int n)
-{
-    for (int i = 1; i < n; ++i)
-    {
-        int ith = i;
-        for (int j = i + 1; j <= n; ++j)
-        {
-            if (a[j] < a[ith])
-            {
-                ith = j;
-            }
-        }
-        int t = a[i];
-        a[i] = a[ith];
-        a[ith] = t;
+void selection_sort(int* a, int n) {
+  for (int i = 1; i < n; ++i) {
+    int ith = i;
+    for (int j = i + 1; j <= n; ++j) {
+      if (a[j] < a[ith]) {
+        ith = j;
+      }
     }
+    int t = a[i];
+    a[i] = a[ith];
+    a[ith] = t;
+  }
 }
 ```
