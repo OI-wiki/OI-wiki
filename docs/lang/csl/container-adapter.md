@@ -91,12 +91,11 @@ std::cout << q1.empty() << " " << q2.empty() << endl;  // 1 0
 ## priority_queue
 
 ```cpp
-/* clang-format off */
 #include <queue>  // std::priority_queue
 // 本文里的所有优先队列都会加上命名空间
 // 如果不想加命名空间，需要使用：using std::priority_queue;
 // 不推荐直接使用 using namespace std;
-std::priority_queue<T, Container, Compare>
+std::priority_queue<T, Container, Compare> q;
 /*
  * T: 储存的元素类型
  * Container:
