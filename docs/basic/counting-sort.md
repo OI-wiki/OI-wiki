@@ -2,11 +2,12 @@
 
 计数排序分为三个步骤：
 
-1. 计算每个数出现了几次。
-2. 求出每个数出现次数的前缀和。
-3. 利用出现次数的前缀和，从右至左计算每个数的排名。
+1.  计算每个数出现了几次。
+2.  求出每个数出现次数的前缀和。
+3.  利用出现次数的前缀和，从右至左计算每个数的排名。
 
 伪代码：
+
 $$
 \begin{array}{ll}
 1 & \textbf{Input. } \text{An array } A \text{ consisting of }n\text{ positive integers no greater than } w. \\
@@ -24,6 +25,7 @@ $$
 13 & \textbf{return } B
 \end{array}
 $$
+
 C++ 代码：
 
 ```cpp
@@ -32,11 +34,10 @@ const int W = 100010;
 
 int n, w, a[N], cnt[W], b[N];
 
-void counting_sort()
-{
-    memset(cnt, 0, sizeof(cnt));
-    for (int i = 1; i <= n; ++i) ++cnt[a[i]];
-    for (int i = 1; i <= w; ++i) cnt[i] += cnt[i - 1];
-    for (int i = n; i >= 1; --i) b[cnt[a[i]]--] = a[i];
+void counting_sort() {
+  memset(cnt, 0, sizeof(cnt));
+  for (int i = 1; i <= n; ++i) ++cnt[a[i]];
+  for (int i = 1; i <= w; ++i) cnt[i] += cnt[i - 1];
+  for (int i = n; i >= 1; --i) b[cnt[a[i]]--] = a[i];
 }
 ```
