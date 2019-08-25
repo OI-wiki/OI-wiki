@@ -107,8 +107,8 @@ std::priority_queue<T, Container, Compare>
      * greater<T>（若支持），或者自定义类的小于号重载实现排序。
      * 注意：只支持小于号重载而不支持其他比较符号的重载。
      */
-    // 构造方式 ：
-    std::priority_queue<int> q1;
+// 构造方式 ：
+std::priority_queue<int> q1;
 std::priority_queue<int, vector<int>> q2;
 // C++11 前，请使用 vector<int> >，空格不可省略
 std::priority_queue<int, deque<int>, greater<int>> q3;
