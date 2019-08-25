@@ -3,6 +3,7 @@
 
 - 请在 commit 的时候写比较有意义的 commit message
 - 请给 PR 起比较有意义的标题。
+- 如果您的 PR 可以解决某个现有的 issue，请在这个文本框的开头部分写上 fix + issue 编号。 如：fix #1622
 - 关于文档内容的基本格式和基本内容规范，可以查阅 [如何参与](https://oi-wiki.org/intro/htc)。
 - 请确保勾选了下方允许维护者修改的候选框（lint bot 需要在 PR 环节修正格式）
 
