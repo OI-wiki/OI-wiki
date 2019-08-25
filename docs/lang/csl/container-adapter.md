@@ -96,19 +96,19 @@ std::cout << q1.empty() << " " << q2.empty() << endl;  // 1 0
 // 如果不想加命名空间，需要使用：using std::priority_queue;
 // 不推荐直接使用 using namespace std;
 std::priority_queue<T, Container, Compare>
-/*
- * T: 储存的元素类型
- * Container:
- * 储存的容器类型，且要求满足顺序容器的要求、具有随机访问迭代器的要求 且支持
- * front() / push_back() / pop_back() 三个函数， 标准容器中 std::vector /
- * std::deque 满足这些要求。 Compare: 默认为严格的弱序比较类型
- * priority_queue 是按照元素优先级大的在堆顶，根据 operator <
- * 的定义，默认是大根堆， 我们可以利用
- * greater<T>（若支持），或者自定义类的小于号重载实现排序。
- * 注意：只支持小于号重载而不支持其他比较符号的重载。
- */
-// 构造方式 ：
-std::priority_queue<int> q1;
+    /*
+     * T: 储存的元素类型
+     * Container:
+     * 储存的容器类型，且要求满足顺序容器的要求、具有随机访问迭代器的要求 且支持
+     * front() / push_back() / pop_back() 三个函数， 标准容器中 std::vector /
+     * std::deque 满足这些要求。 Compare: 默认为严格的弱序比较类型
+     * priority_queue 是按照元素优先级大的在堆顶，根据 operator <
+     * 的定义，默认是大根堆， 我们可以利用
+     * greater<T>（若支持），或者自定义类的小于号重载实现排序。
+     * 注意：只支持小于号重载而不支持其他比较符号的重载。
+     */
+    // 构造方式 ：
+    std::priority_queue<int> q1;
 std::priority_queue<int, vector<int>> q2;
 // C++11 前，请使用 vector<int> >，空格不可省略
 std::priority_queue<int, deque<int>, greater<int>> q3;
