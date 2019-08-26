@@ -137,7 +137,7 @@ int dp() {
 
 ### 稍复杂的第二种
 
- $O\left(n log n\right)$ 的算法，参考了这篇文章 <https://www.cnblogs.com/itlqs/p/5743114.html> 。
+ $O\left(n \log n\right)$ 的算法，参考了这篇文章 <https://www.cnblogs.com/itlqs/p/5743114.html> 。
 
 首先，定义 $a_1 \dots a_n$ 为原始序列， $d$ 为当前的不下降子序列， $len$ 为子序列的长度，那么 $d_{len}$ 就是长度为 $len$ 的不下降子序列末尾元素。
 

@@ -156,7 +156,7 @@ int main() {
 然后若是点权， $x,y$ 路径上的和为 $sum_x + sum_y - sum_{lca} - sum_{fa_{lca}}$ ；  
 否则若是边权， $x,y$ 路径上的和为 $sum_x + sum_y - 2sum_{lca}$ 。
 
-至于 lca 的求法请移步 [最近公共祖先](/graph/lca/) 。
+至于 lca 的求法请移步 [最近公共祖先](../graph/lca.md) 。
 
 ### 习题
 
