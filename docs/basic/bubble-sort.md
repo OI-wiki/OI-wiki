@@ -27,7 +27,7 @@ C++ 代码：
 
 ```cpp
 void bubble_sort(int *a, int n) {
-  flag = true;
+  bool flag = true;
   while (flag) {
     flag = false;
     for (int i = 1; i < n; ++i) {
