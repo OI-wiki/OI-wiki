@@ -77,7 +77,7 @@ std::partial_sort(begin, begin + k, end, cmp);
 ```cpp
 int a[1009], n = 10;
 // ......
-std::sort(a + 1, a + 1 + n);  // 从小到大排序。
+std::sort(a + 1, a + 1 + n);                  // 从小到大排序。
 std::sort(a + 1, a + 1 + n, greater<int>());  // 从大到小排序。
 ```
 
