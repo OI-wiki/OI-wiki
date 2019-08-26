@@ -18,9 +18,9 @@ Introsort 的这个限制使得它的最坏时间复杂度是 $O(n\log n)$ 的�
 
 ```cpp
 // a[0] .. a[n - 1] 为需要排序的数列
-std::sort(
-    a,
-    a + n);  // 这句代码直接修改 a 数组里的元素顺序，使得现在它是从小到大排列的
+std::sort(a, a + n);
+// 上面这句代码直接修改 a 数组里的元素顺序，使得现在它是从小到大排列的
+
 std::sort(a, a + n, cmp);  // cmp 为自定义的比较函数
 ```
 
@@ -77,9 +77,8 @@ std::partial_sort(begin, begin + k, end, cmp);
 ```cpp
 int a[1009], n = 10;
 // ......
-std::sort(a + 1, a + 1 + n);  // 不重载，从小到大排序。
-std::sort(a + 1, a + 1 + n,
-          greater<int>());  // 重载小于运算符为大于，从大到小排序。
+std::sort(a + 1, a + 1 + n);  // 从小到大排序。
+std::sort(a + 1, a + 1 + n, greater<int>());  // 从大到小排序。
 ```
 
 ```cpp
