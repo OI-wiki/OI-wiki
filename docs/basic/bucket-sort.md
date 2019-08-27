@@ -12,7 +12,7 @@ const int N = 100010;
 int n, w, a[N];
 vector<int> bucket[N];
 
-void insertion_sort(vector<int> A) {
+void insertion_sort(vector<int>& A) {
   for (int i = 1; i < A.size(); ++i) {
     int key = A[i];
     int j = i - 1;
