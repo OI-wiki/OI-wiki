@@ -10,7 +10,7 @@ Eclipse 的本身只是一个框架平台，但是众多插件的支持，使得
 
 Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java 的下一代 IDE 开发环境，2001 年 11 月贡献给开源社区，现在它由非营利软件供应商联盟 Eclipse 基金会（Eclipse Foundation）管理。
 
-（以上摘自 wikipedia[ [1] ](https://zh.wikipedia.org/wiki/Eclipse) ）
+（以上摘自 wikipedia [\[1\]](https://zh.wikipedia.org/wiki/Eclipse) ）
 
 缺点：实测这个 IDE 打开速度比 Visual Studio 慢，而且这个 IDE 更新速度玄学，插件更新速度跟不上 IDE 的更新速度，所以对于经常更新的同学很不友好。
 
@@ -78,10 +78,10 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 这个软件的帮助手册很详细，建议刚接触的同学多看帮助手册，多百度，并且这个 IDE 的使用手感与 Visual Studio 相近。
 
-如果想添加插件的话，这里推荐看一篇 CSDN 博客[ [2] ](https://blog.csdn.net/csdnnews/article/details/78495979) 。    
+如果想添加插件的话，这里推荐看一篇 CSDN 博客 [\[2\]](https://blog.csdn.net/csdnnews/article/details/78495979) 。
 
 #### 引用链接
 
-[1]:[Eclipse-维基百科]( <https://zh.wikipedia.org/wiki/Eclipse> )  
+[1]&#x3A; [Eclipse - 维基百科](https://zh.wikipedia.org/wiki/Eclipse) 
 
-[2]:[曾经的 Java IDE 王者 Eclipse 真的没落了？21 款插件让它强大起来！]( <https://blog.csdn.net/csdnnews/article/details/78495979> )  
+[2]&#x3A; [曾经的 Java IDE 王者 Eclipse 真的没落了？21 款插件让它强大起来！](https://blog.csdn.net/csdnnews/article/details/78495979) 
