@@ -28,7 +28,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [Universal Online Judge](http://uoj.ac/) Universal 取通用之意，也是开源项目。VFK 的 OJ，多原创比赛题和 CCF/THU 题，难度较高。
 -    [Vijos](https://vijos.org/) 始于 2005 年，有开源项目。
 -    [Virtual Judge](https://vjudge.net/) 可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ。
--    [ZOJ](http://acm.zju.edu.cn/onlinejudge/) 浙江大学在线测评系统。
+-    [ZOJ](https://zoj.pintia.cn/home) 浙江大学在线测评系统。
 -    [NOJ](http://acm.njupt.edu.cn/) 南京邮电大学在线测评系统，自身拥有题目两千余，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
 -    [Lutece](https://acm.uestc.edu.cn/home) 电子科技大学在线测评系统，基于开源项目 [Lutece](https://github.com/lutece-awesome) 。
 

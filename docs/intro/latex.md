@@ -2,7 +2,7 @@
 
 ### 什么是 LaTeX
 
-LaTeX（音_lay-tek_）是一个让你的文档看起来更专业的排版系统，而不是文字处理器。它尤其适合处理篇幅较长、结构严谨的文档，并且十分擅长处理公式表达。它是免费的软件，对大多数操作系统都适用。
+LaTeX（读作/ˈlɑːtɛx/或/ˈleɪtɛx/）是一个让你的文档看起来更专业的排版系统，而不是文字处理器。它尤其适合处理篇幅较长、结构严谨的文档，并且十分擅长处理公式表达。它是免费的软件，对大多数操作系统都适用。
 
 LaTeX 基于 TeX（Donald Knuth 在 1978 年为数字化排版设计的排版系统）。TeX 是一种电脑能够处理的低级语言，但大多数人发现它很难使用。LaTeX 正是为了让它变得更加易用而设计的。目前 LaTeX 的版本是 LaTeX 2e。
 
@@ -758,4 +758,4 @@ TeX Live <http://www.tug.org/texlive/> “An easy way to get up and running with
 
 Workbook Source Files <http://edin.ac/17EQPM1> Download the .tex file and other files needed to compile this workbook.
 
- **本文译自 <http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf> ** 
+ **本文译自 <http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf> ** ，依据其他文献略有修改。
