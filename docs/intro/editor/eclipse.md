@@ -10,15 +10,11 @@ Eclipse 的本身只是一个框架平台，但是众多插件的支持，使得
 
 Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java 的下一代 IDE 开发环境，2001 年 11 月贡献给开源社区，现在它由非营利软件供应商联盟 Eclipse 基金会（Eclipse Foundation）管理。
 
-（以上摘自 wikipedia）
+（以上摘自 [wikipedia](https://zh.wikipedia.org/wiki/Eclipse) ）
 
-实测这个 IDE 打开速度比 Visual Studio 慢。
+缺点：实测这个 IDE 打开速度比 Visual Studio 慢，而且这个 IDE 更新速度玄学，插件更新速度跟不上 IDE 的更新速度，所以对于经常更新的同学很不友好。
 
-而且这个 IDE 更新速度玄学，插件更新速度跟不上 IDE 的更新速度，所以对于经常更新的同学很不友好。
-
-不过这个使用体验较好，而且许多知名公司都在使用。
-
-所以比较推荐 OIer 用这个。
+优点：使用体验较好，而且许多知名公司都在使用，能够快速上手，所以比较推荐 OIer 用这个 IDE 。
 
 ### 安装 & 配置指南
 
@@ -36,25 +32,23 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 ##### 下载并安装 MinGW
 
-开始安装
+开始安装。
 
 ![](./images/eclipse1-4.png)
 
-选择版本
+选择版本。
 
 ![](./images/eclipse1-5.png)
 
-选择安装目录
+选择安装目录。
 
 ![](./images/eclipse1-6.png)
 
-选择镜像下载加速源
-
-此处可以直接用 SourceForge Default
+选择镜像下载加速源，此处可以直接用 SourceForge Default。
 
 ![](./images/eclipse1-7.png)
 
-完成安装
+完成安装。
 
 ![](./images/eclipse1-8.png)
 
@@ -80,10 +74,8 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 ![](./images/eclipse7.png)
 
-#### 到此，您就可以开始使用 Eclipse 编写及调试代码了
+#### 拓展
 
-这个软件的帮助手册很详细，建议刚接触的同学多看帮助手册，多百度
-
-并且 IDE 的使用手感与 Visual Studio 相近
+这个软件的帮助手册很详细，建议刚接触的同学多看帮助手册，多百度，并且这个 IDE 的使用手感与 Visual Studio 相近。
 
 如果想添加插件的话，这里推荐看一篇 [CSDN 博客](https://blog.csdn.net/csdnnews/article/details/78495979) 。
