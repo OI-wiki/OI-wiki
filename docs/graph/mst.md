@@ -479,7 +479,7 @@ int main() {
 
 例如下图：
 
- [](./graph/mst5.png) 
+ [](./images/mst5.png) 
 
 1 到 4 的最小瓶颈路显然有以下两条：1-2-3-4。1-3-4。
 
@@ -507,11 +507,11 @@ int main() {
 
 举个例子：
 
-![](./graph/mst5.png)
+![](./images/mst5.png)
 
 这张图的 kruscal 重构树如下：
 
-![](./graph/mst6.png)
+![](./images/mst6.png)
 
 ### 性质
 
