@@ -699,6 +699,5 @@ int main() {
     询问的根节点可以使用 kruskal 重构树上倍增的方式求出。
 
     时间复杂度 $O((n+m+Q) \log n)$
-    
 
 ??? note "[「LOJ 137」最小瓶颈路 加强版](https://loj.ac/problem/137)"
