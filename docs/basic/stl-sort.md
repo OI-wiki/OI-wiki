@@ -14,37 +14,41 @@ Introsort 限制了快速排序的分治深度，当分治达到一定深度之�
 
 Introsort 的这个限制使得它的最坏时间复杂度是 $O(n\log n)$ 的。
 
-快速用法：
+用法：
 
 ```cpp
 // a[0] .. a[n - 1] 为需要排序的数列
 std::sort(a, a + n);
-// 这句代码直接修改 a 数组里的元素顺序，使得现在它是从小到大排列的
+// 上面这句代码直接修改 a 数组里的元素顺序，使得现在它是从小到大排列的
+
+std::sort(a, a + n, cmp);  // cmp 为自定义的比较函数
 ```
 
 ## nth_element
 
 作用是找到选定区间内第 $k$ 大的数，并将所有比它小的数与比它大的数分别置于两侧，返回它的地址。
 
-原理是未完成的快速排序
+原理是未完成的快速排序。
 
-用法
+用法：
 
 ```cpp
 std::nth_element(begin, mid, end);
+std::nth_element(begin, mid, end, cmp);
 ```
 
-时间复杂度：期望 $O(n)$ 
+时间复杂度：期望 $O(n)$ 。
 
-常用于构建 K-DTree
+常用于构建 K-DTree。
 
 ## stable_sort
 
-稳定的 $O(nlogn)$ 排序，即保证相等元素排序后的相对位置与原序列相同。
+稳定的 $O(n\log n)$ 排序，即保证相等元素排序后的相对位置与原序列相同。
 
 用法
 
 ```cpp
+std::stable_sort(begin, end);
 std::stable_sort(begin, end, cmp);
 ```
 
@@ -52,12 +56,13 @@ std::stable_sort(begin, end, cmp);
 
 将序列中前 $k$ 小元素按顺序置于前 $k$ 个位置，后面的元素不保证顺序。
 
-复杂度： $O(nlogk)$ 
+复杂度： $O(n\log k)$ 
 
 用法：
 
 ```cpp
 std::partial_sort(begin, begin + k, end);
+std::partial_sort(begin, begin + k, end, cmp);
 ```
 
 原理：
@@ -72,9 +77,8 @@ std::partial_sort(begin, begin + k, end);
 ```cpp
 int a[1009], n = 10;
 // ......
-std::sort(a + 1, a + 1 + n);  // 不重载，从小到大排序。
-std::sort(a + 1, a + 1 + n,
-          greater<int>());  // 重载小于运算符为大于，从大到小排序。
+std::sort(a + 1, a + 1 + n);                  // 从小到大排序。
+std::sort(a + 1, a + 1 + n, greater<int>());  // 从大到小排序。
 ```
 
 ```cpp
@@ -88,13 +92,14 @@ bool cmp(const data u1, const data u2) {
   return (u1.a == u2.a) ? (u1.b > u2.b) : (u1.a > u2.a);
 }
 // ......
-std::sort(da + 1, da + 1 + 10, cmp);  // 不重载，从小到大排序。
-std::sort(da + 1, da + 1 + 10, cmp);  // 重载小于运算符为大于，从大到小排序。
+std::sort(da + 1, da + 1 + 10);  // 使用结构体中定义的 < 运算符，从小到大排序。
+std::sort(da + 1, da + 1 + 10, cmp);  // 使用 cmp 函数进行比较，从大到小排序。
 ```
 
 ### 严格弱序
 
-进行排序的运算符必须满足严格弱序（ [Strict weak orderings](https://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings) ），否则会出现不可预料的情况（如运行时错误）。
+进行排序的运算符必须满足严格弱序（ [Strict weak orderings](https://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings) ），否则会出现不可预料的情况（如运行时错误、无法正确排序）。
+
 严格弱序的要求：
 
 1.   $x \not< x$ （非自反性）
@@ -106,8 +111,4 @@ std::sort(da + 1, da + 1 + 10, cmp);  // 重载小于运算符为大于，从大
 
 -   使用 `<=` 来定义排序中的小于运算符。
 -   在调用排序运算符时，读取外部数值可能会改变的数组。（常见于最短路算法）
--   将多个数的最大最小值进行比较的结果作为排序运算符。
-
-### Reference
-
--    [浅谈邻项交换排序的应用以及需要注意的问题](https://ouuan.github.io/浅谈邻项交换排序的应用以及需要注意的问题/) 
+-   将多个数的最大最小值进行比较的结果作为排序运算符。（如，皇后游戏/加工生产调度 中的经典错误，可以参考文章 [浅谈邻项交换排序的应用以及需要注意的问题](https://ouuan.github.io/浅谈邻项交换排序的应用以及需要注意的问题/) ）。
