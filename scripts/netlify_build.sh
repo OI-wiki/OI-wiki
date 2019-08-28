@@ -22,5 +22,7 @@ mkdocs build -v
 
 find ./site -type f -name '*.html' -exec node --max_old_space_size=512 ./scripts/render_math.js {} \;
 
+find ./site -type f -name "*.html" -exec sed -i -E 's/([^"]*)(assets[^"]*)/https:\/\/cdn-for-oi-wiki.billchn.com\/\2/' {} +
+
 # npx gulp minify
 # try to avoid netlify timeout
