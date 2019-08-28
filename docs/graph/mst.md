@@ -696,4 +696,3 @@ int main() {
 
     时间复杂度 $O((n+m+Q) \log n)$
 
-??? note "[「LOJ 137」最小瓶颈路 加强版](https://loj.ac/problem/137)"
