@@ -521,7 +521,7 @@ int main() {
 
 我们在 kruskal 重构树上找到 $x$ 到根的路径上权值 $\leq val$ 的最浅的节点。显然这就是所有满足条件的节点所在的子树的根节点。
 
-!!! note "[NOI 2018 归程](https://www.luogu.org/problem/P4768)"
+??? note "[NOI 2018 归程](https://www.luogu.org/problem/P4768)"
     首先预处理出来每一个点到根节点的最短路。
 
     我们构造出来根据海拔的最大生成树。显然每次询问可以到达的节点是在最小生成树和询问点的最小边权 $\geq p$ 的节点。
