@@ -42,4 +42,5 @@ after_deploy:
   - find ./ -type f -name "*.html" -exec sed -i -E 's/([^"]*)(assets[^"]*)/https:\/\/cdn-for-oi-wiki.billchn.com\/\2/' {} +
   - git add .
   - git commit --author "24OI-bot <15963390+24OI-bot@users.noreply.github.com>" -m "build cdn files"
+  - git push origin cdn-pages
   - git push coding cdn-pages:cdn-pages -f
