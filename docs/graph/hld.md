@@ -386,7 +386,7 @@ int querymax(int x, int y) {
 
 把落单的结点也当作重链，那么整棵树就被剖分成若干条重链。
 
-看一张图就明白了(欸这种剖分方式既可以看成重链剖分也可以看成长链剖分QAQ
+看一张图就明白了（欸这种剖分方式既可以看成重链剖分也可以看成长链剖分 QAQ
 
 ![HLD](./images/hld.png)
 
@@ -409,17 +409,16 @@ int querymax(int x, int y) {
 
     取 $D=\sqrt{n}$ 即可。
 
+### 长链剖分优化 DP
 
-### 长链剖分优化DP
+一般情况下可以使用长链剖分来优化的 DP 会有一维状态为深度维。
 
-一般情况下可以使用长链剖分来优化的DP会有一维状态为深度维。
+我们可以考虑使用长链剖分优化树上 DP。
 
-我们可以考虑使用长链剖分优化树上DP。
-
-具体的，我们每个节点的状态直接继承其重儿子的节点状态，同时将轻儿子的DP状态暴力合并。
+具体的，我们每个节点的状态直接继承其重儿子的节点状态，同时将轻儿子的 DP 状态暴力合并。
 
 !!! note "[CF 1009F](http://codeforces.com/contest/1009/problem/F)"
-    我们设 $f_{i,j}$ 表示在子树 i 内,和 i 距离为 j 的点数。
+    我们设 $f_{i,j}$ 表示在子树 i 内，和 i 距离为 j 的点数。
 
     直接暴力转移时间复杂度为 $O(n^2)$
 
@@ -440,74 +439,73 @@ DP 数组的长度我们可以根据子树最深节点算出。
 例题参考代码：
 
 ```cpp
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-const int N=1000005;
-struct edge{
-	int to,next;
-}e[N*2];
-int head[N],tot,n;
-int d[N],fa[N],mx[N];
-int *f[N],g[N],mxp[N];
+const int N = 1000005;
+struct edge {
+  int to, next;
+} e[N * 2];
+int head[N], tot, n;
+int d[N], fa[N], mx[N];
+int *f[N], g[N], mxp[N];
 int dfn[N];
-void add(int x,int y){
-	e[++tot]=(edge){y,head[x]};
-	head[x]=tot;
+void add(int x, int y) {
+  e[++tot] = (edge){y, head[x]};
+  head[x] = tot;
 }
-void dfs1(int x){
-	d[x]=1;
-	for (int i=head[x];i;i=e[i].next)
-		if (e[i].to!=fa[x]){
-			fa[e[i].to]=x;
-			dfs1(e[i].to);
-			d[x]=max(d[x],d[e[i].to]+1);
-			if (d[e[i].to]>d[mx[x]]) mx[x]=e[i].to;
-		}
+void dfs1(int x) {
+  d[x] = 1;
+  for (int i = head[x]; i; i = e[i].next)
+    if (e[i].to != fa[x]) {
+      fa[e[i].to] = x;
+      dfs1(e[i].to);
+      d[x] = max(d[x], d[e[i].to] + 1);
+      if (d[e[i].to] > d[mx[x]]) mx[x] = e[i].to;
+    }
 }
-void dfs2(int x){
-	dfn[x]=++*dfn;
-	f[x]=g+dfn[x];
-	if (mx[x]) dfs2(mx[x]);
-	for (int i=head[x];i;i=e[i].next)
-		if (e[i].to!=fa[x]&&e[i].to!=mx[x])
-			dfs2(e[i].to);
+void dfs2(int x) {
+  dfn[x] = ++*dfn;
+  f[x] = g + dfn[x];
+  if (mx[x]) dfs2(mx[x]);
+  for (int i = head[x]; i; i = e[i].next)
+    if (e[i].to != fa[x] && e[i].to != mx[x]) dfs2(e[i].to);
 }
-void getans(int x){
-	if (mx[x]){
-		getans(mx[x]);
-		mxp[x]=mxp[mx[x]]+1;
-	}
-	f[x][0]=1;
-	if (f[x][mxp[x]]<=1) mxp[x]=0;
-	for (int i=head[x];i;i=e[i].next)
-		if (e[i].to!=fa[x]&&e[i].to!=mx[x]){
-			getans(e[i].to);
-			int len=d[e[i].to];
-			For(j,0,len-1){
-				f[x][j+1]+=f[e[i].to][j];
-				if (f[x][j+1]>f[x][mxp[x]]) mxp[x]=j+1;
-				if (f[x][j+1]==f[x][mxp[x]]&&j+1<mxp[x]) mxp[x]=j+1;
-			}
-		}
+void getans(int x) {
+  if (mx[x]) {
+    getans(mx[x]);
+    mxp[x] = mxp[mx[x]] + 1;
+  }
+  f[x][0] = 1;
+  if (f[x][mxp[x]] <= 1) mxp[x] = 0;
+  for (int i = head[x]; i; i = e[i].next)
+    if (e[i].to != fa[x] && e[i].to != mx[x]) {
+      getans(e[i].to);
+      int len = d[e[i].to];
+      For(j, 0, len - 1) {
+        f[x][j + 1] += f[e[i].to][j];
+        if (f[x][j + 1] > f[x][mxp[x]]) mxp[x] = j + 1;
+        if (f[x][j + 1] == f[x][mxp[x]] && j + 1 < mxp[x]) mxp[x] = j + 1;
+      }
+    }
 }
-int main(){
-	scanf("%d",&n);
-	for (int i=1;i<n;i++){
-		int x,y;
-		scanf("%d%d",&x,&y);
-		add(x,y); add(y,x);
-	}
-	dfs1(1);
-	dfs2(1);
-	getans(1);
-	for (int i=1;i<=n;i++)
-		printf("%d\n",mxp[i]);
+int main() {
+  scanf("%d", &n);
+  for (int i = 1; i < n; i++) {
+    int x, y;
+    scanf("%d%d", &x, &y);
+    add(x, y);
+    add(y, x);
+  }
+  dfs1(1);
+  dfs2(1);
+  getans(1);
+  for (int i = 1; i <= n; i++) printf("%d\n", mxp[i]);
 }
 ```
 
-当然长链剖分优化DP技巧非常多，包括但是不仅限于打标记等等。这里不再展开。
+当然长链剖分优化 DP 技巧非常多，包括但是不仅限于打标记等等。这里不再展开。
 
-有兴趣的读者可以自己选择例题或者可以参考[租酥雨的博客](https://www.cnblogs.com/zhoushuyu/p/9468669.html)。
+有兴趣的读者可以自己选择例题或者可以参考 [租酥雨的博客](https://www.cnblogs.com/zhoushuyu/p/9468669.html) 。
 
 ### 长链剖分求 k 级祖先
 
@@ -521,11 +519,11 @@ int main(){
 
 同时我们在预处理的时候找到每条重链的根节点的 $1$ 到 $d$ 级祖先，同样放入表格。
 
-根据长链剖分的性质，$k-2^i < 2^i < d$ ,也就是说，我们可以 $O(1)$ 在这条长链的表格上求出的这个节点的 $k$ 级祖先。
+根据长链剖分的性质， $k-2^i < 2^i < d$ , 也就是说，我们可以 $O(1)$ 在这条长链的表格上求出的这个节点的 $k$ 级祖先。
 
 预处理需要倍增出 $2^i$ 次级祖先，同时需要预处理每条重链对应的表格。
 
-预处理复杂度 $O(n\log n)$ ,询问复杂度 $O(1)$
+预处理复杂度 $O(n\log n)$ , 询问复杂度 $O(1)$ 
 
 ## 练习
 
@@ -542,7 +540,7 @@ int main(){
  [「SDOI2011」染色](https://www.lydsy.com/JudgeOnline/problem.php?id=2243) 
 
  [「SDOI2014」旅行](https://www.lydsy.com/JudgeOnline/problem.php?id=3531) 
- 
- [「POI2014」Hotel 加强版](https://www.lydsy.com/JudgeOnline/problem.php?id=4543)(长链剖分优化DP)
- 
- [攻略](https://www.lydsy.com/JudgeOnline/problem.php?id=3252)(长链剖分优化贪心)
+
+ [「POI2014」Hotel 加强版](https://www.lydsy.com/JudgeOnline/problem.php?id=4543) （长链剖分优化 DP)
+
+ [攻略](https://www.lydsy.com/JudgeOnline/problem.php?id=3252) （长链剖分优化贪心）
