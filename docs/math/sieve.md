@@ -128,6 +128,30 @@ void pre() {
 
 ## 筛法求约数个数
 
+ $d_i$ 表示 $i$ 的约数个数和 $num_i$ 表示 $i$ 的最小质因子出现次数
+
+我们知道若 $n=\prod_{i=1}^mp_i^{c_i}$ 则 $d_i=\prod_{i=1}^mc_i+1$ 同时 $d_i$ 是积性函数，所以可以线性筛
+
+```cpp
+void pre() {
+  d[1] = 1;
+  for (int i = 1; i <= n; ++i) {
+    if (!v[i]) v[i] = 1, p[++ tot] = i, d[i] = 2, num[i] = 1;
+    for (int j = 1; j <= tot && i <= n / p[j]; ++j) {
+      v[p[j] * i] = 1;
+      if (i % p[j] == 0) {
+        num[i * p[j]] = num[i] + 1;
+        d[i * p[j]] = d[i] / num[i * p[j]] * (num[i * p[j]] + 1);
+        break;
+      } else {
+        num[i * p[j]] = 1;
+        d[i * p[j]] = d[i] * 2;
+      }
+    }
+  }
+}
+```
+
 ## 筛法求约数和
 
  $f_i$ 表示 $i$ 的约数和 $g_i$ 表示 $i$ 的最小质因子的 $p+p^1+p^2+\dots p^k$ 
