@@ -46,12 +46,12 @@
     1.  列表前要有空行，新开一段；
     2.   `1. 例子` 点号后要有空格。
 4.  行间公式前后各要有一行空行，否则会被当做是行内公式。
-5.  伪代码请使用 ```` ```text```` ，直接使用 ```` ``` ```` 可能导致内容被错误地缩进。
-6.  涉及到目录的更改的时候：
+5.  涉及到目录的更改的时候：
     1.  需要改动 `mkdocs.yml` ；
     2.  请注意如果影响到作者信息统计，麻烦更新 [author 字段](https://oi-wiki.org/intro/faq/#_11) ；（不改动目录的时候不需要维护 author 字段）
     3.  需要在项目内搜索一下是否有内链需要更新。
-7.  使用 `???` 或 `!!!` 开头的 Details 语法时，需要注意：开头至少有四个空格的行才会被当做是在 Details 语法的文本框中。
+6.  使用 `???` 或 `!!!` 开头的 Details 语法时，需要注意：开头至少有四个空格的行才会被当做是在 Details 语法的文本框中。
+7.  代码样式的纯文本块请使用 ```` ```text```` ，直接使用 ```` ``` ```` 可能导致内容被错误地缩进。
 
 ### 标点符号的使用
 
@@ -78,7 +78,7 @@
 
 ### LaTeX 公式的格式要求
 
-LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对于 LateX 的使用我们有严格的要求。如果您想要快速上手，可以阅读本章节末给出的表格。
+LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对于 LaTeX 的使用我们有严格的要求。如果您想要快速上手，可以阅读本章节末给出的表格。
 
 1.  首先从使用 Roman 体表示常量和函数做起。LaTeX 已经预先定义好了一些常见的常量、函数、运算符等，我们可以直接调用，包括但不限于：
 
@@ -90,41 +90,43 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
     如果遇到没有预先定义好的需要使用 Roman 体的 **函数名** ，我们可以使用 `$\operatorname{something}$` 来产生，如我们可以使用 `$\operatorname{lcm}$` 产生正体的最小公倍数（函数）符号。同理，产生 Roman 体的 **常量** 应用 `$\mathrm{}$` ；其他非数学内容，包括英文、特殊符号等，一律使用 `$\text{}$` 。中文我们则建议不放在 LaTeX 公式中。
 
-2.  在不会引起歧义的情况下，请用 `$\times$` 代替星号，叉乘请使用 `$\times$` ，点乘请使用 `$\cdot$` 。如 $a\times b,a\cdot b$ ，而不是 $a\ast b$ 。
+2.  在行内使用分数的时侯，请使用 `$\dfrac{}{}$` 。比如 `$\dfrac{1}{2}$` ，效果 $\dfrac{1}{2}$ ，而不是 `$\frac{1}{2}$` ，效果 $\frac{1}{2}$ 。尽可能避免在行内使用巨运算符（指 $\sum$ ， $\prod$ ， $\int$ 等）。
 
-3.  请用 `$\cdots$` （居于排版基线与顶线中间）， `$\ldots$` （居于排版基线的位置）， `$\vdots$` （竖着的省略号）代替 `$...$` 。如 $a_1,a_2,\cdots a_n$ ，而不是 $a_1,a_2,... a_n$ 。
+3.  在不会引起歧义的情况下，请用 `$\times$` 代替星号，叉乘请使用 `$\times$` ，点乘请使用 `$\cdot$` 。如 $a\times b$ , $a\cdot b$ ，而不是 $a\ast b$ 。
 
-4.  请注意，不要将任何代码的表示方法使用 LaTeX 公式。例如，使用 `$=$` 而不是 `$==$` （如 $a=b$ ，而不是 $a==b$ ）、使用 `` `a<<1` `` 或者 `$a\times 2$` 而不是 `$a<<1$` 、使用 `$a\bmod b$` 代替 `$a\%b$` （如 $a\bmod b$ ，而不是 $a\%b$ ）等。
+4.  请用 `$\cdots$` （居于排版基线与顶线中间）， `$\ldots$` （居于排版基线的位置）， `$\vdots$` （竖着的省略号）代替 `$...$` 。如 $a_1,a_2,\cdots a_n$ ，而不是 $a_1,a_2,... a_n$ 。
 
-5.  公式中不要使用多中括号（即 C++ 高维数组的表示方式）而多使用下标。即 $a_{i,j,k}$ 而不是 $a[i][j][k]$ 。在公式中下标较复杂的情况下建议改用多元函数（ $f(i,j,k)$ ）或内联代码格式。对于一元简单函数使用 `$f_i$` 、 `$f(i)$` 或 `$f[i]$` 均可。
+5.  请注意，不要将任何代码的表示方法使用 LaTeX 公式。例如，使用 `$=$` 而不是 `$==$` （如 $a=b$ ，而不是 $a==b$ ）、使用 `` `a<<1` `` 或者 `$a\times 2$` 而不是 `$a<<1$` 、使用 `$a\bmod b$` 代替 `$a\%b$` （如 $a\bmod b$ ，而不是 $a\%b$ ）等。
 
-6.  为了统一，复杂度分析时大 $O$ 记号请直接使用 `$O()$` 而不要 `$\mathcal O()$` 。
+6.  公式中不要使用多中括号（即 C++ 高维数组的表示方式）而多使用下标。即 $a_{i,j,k}$ 而不是 $a[i][j][k]$ 。在公式中下标较复杂的情况下建议改用多元函数（ $f(i,j,k)$ ）或内联代码格式。对于一元简单函数使用 `$f_i$` 、 `$f(i)$` 或 `$f[i]$` 均可。
 
-7.  请不要滥用 LaTeX 公式。这不仅会造成页面加载缓慢（因为 MathJax 的效率低是出了名的），同时也会导致页面的排版混乱。我们通常使用 LaTeX 公式字体表示变量名称。我们的建议是，如非必要，尽量减少公式与普通正文字体的 **大量** 混合使用，如非必要，尽量不要使用公式，如：
+7.  为了统一，复杂度分析时大 $O$ 记号请直接使用 `$O()$` 而不要 `$\mathcal O()$` 。
+
+8.  请不要滥用 LaTeX 公式。这不仅会造成页面加载缓慢（因为 MathJax 的效率低是出了名的），同时也会导致页面的排版混乱。我们通常使用 LaTeX 公式字体表示变量名称。我们的建议是，如非必要，尽量减少公式与普通正文字体的 **大量** 混合使用，如非必要，尽量不要使用公式，如：
 
            我们将要学习 $Network-flow$ 中的 $SPFA$ 最小费用流，需要使用 $Edmonds-Karp$ 算法进行增广。
 
     就是一个典型的 **滥用公式字体** 的例子。
 
-8.  请正确使用对应的 LaTeX 符号，尤其是公式中的希腊字母等特殊符号。如欧拉函数请使用 `$\varphi$` ，圆的直径请使用 `$\Phi$` ，黄金分割请使用 `$\phi$` 。这些符号虽然同样表示希腊字母 Phi，但是在不同的环境下有不同的含义。切记 **不要使用输入法的插入特殊符号** 来插入这种符号。
+9.  请正确使用对应的 LaTeX 符号，尤其是公式中的希腊字母等特殊符号。如欧拉函数请使用 `$\varphi$` ，圆的直径请使用 `$\Phi$` ，黄金分割请使用 `$\phi$` 。这些符号虽然同样表示希腊字母 Phi，但是在不同的环境下有不同的含义。切记 **不要使用输入法的插入特殊符号** 来插入这种符号。
 
     另外，由于 LaTeX 历史原因，空集的符号应为 `$\varnothing$` 而不是 `$\emptyset$` ；由于近百年来数学符号演变，定义集合符号应使用 **人民教育出版社 A 版** 书写的版本，即 实数集 `$\mathbf{R}$` ，正整数集 `$\mathbf{N}^*$` 等。同理，其他的符号按照中国国内最常使用的版本来书写，重点参照数学和信息技术课本。
 
 我们可以使用一个表格来总结一下上述内容。注意本表格没有举出所有符号的用法，只给出常见的错误。类似的情况类比即可。
 
-| 不符合规定的用法            | 渲染效果              | 符合规定的用法                              | 渲染效果                            |
-| ------------------- | ----------------- | ------------------------------------ | ------------------------------- |
-|  `$log, ln, lg$`    |  $log, ln, lg$    |  `$\log, \ln, \lg$`                  |  $\log, \ln, \lg$               |
-|  `$sin, cos, tan$`  |  $sin, cos, tan$  |  `$\sin, \cos, \tan$`                |  $\sin, \cos, \tan$             |
-|  `$gcd, lcm$`       |  $gcd, lcm$       |  `$\gcd, \operatorname{lcm}$`        |  $\gcd,\operatorname{lcm}$      |
-|  `$ 小于 a 的质数 $`     |  $小于a的质数$         |  `小于 $a$ 的质数`                        | 小于 $a$ 的质数                      |
-|  `$...$`            |  $...$            |  `$\cdots, \ldots, \vdots, \ddots$`  |  $\cdots,\ldots,\vdots,\ddots$  |
-|  `$a*b$` （两个数相乘）    |  $a*b$            |  `$a\times b,a\cdot b$`              |  $a\times b,a\cdot b$           |
-|  `$SPFA$` （英文名称）    |  $SPFA$           |  `SPFA`                              | SPFA                            |
-|  `$a==b$`           |  $a==b$           |  `$a=b$`                             |  $a=b$                          |
-|  `$f[i][j][k]$`     |  $f[i][j][k]$     |  `$f_{i,j,k}, f(i,j,k)$`             |  $f_{i,j,k},f(i,j,k)$           |
-|  `$R,N^*$` （集合）     |  $R,N^*$          |  `$\mathbf{R},\mathbf{N}^*$`         |  $\mathbf{R},\mathbf{N}^*$      |
-|  `$\emptyset$`      |  $\emptyset$      |  `$\varnothing$`                     |  $\varnothing$                  |
+| 不符合规定的用法            | 渲染效果              | 符合规定的用法                                    | 渲染效果                                        |
+| ------------------- | ----------------- | ------------------------------------------ | ------------------------------------------- |
+|  `$log, ln, lg$`    |  $log, ln, lg$    |  `$\log$, $\ln$, $\lg$`                    |  $\log$ , $\ln$ , $\lg$                     |
+|  `$sin, cos, tan$`  |  $sin, cos, tan$  |  `$\sin$, $\cos$, $\tan$`                  |  $\sin$ , $\cos$ , $\tan$                   |
+|  `$gcd, lcm$`       |  $gcd, lcm$       |  `$\gcd$, $\operatorname{lcm}$`            |  $\gcd$ , $\operatorname{lcm}$              |
+|  `$ 小于 a 的质数 $`     |  $小于 a 的质数$       |  `小于 $a$ 的质数`                              | 小于 $a$ 的质数                                  |
+|  `$...$`            |  $...$            |  `$\cdots$, $\ldots$, $\vdots$, $\ddots$`  |  $\cdots$ , $\ldots$ , $\vdots$ , $\ddots$  |
+|  `$a*b$` （两个数相乘）    |  $a*b$            |  `$a\times b$, $a\cdot b$`                 |  $a\times b$ , $a\cdot b$                   |
+|  `$SPFA$` （英文名称）    |  $SPFA$           |  `SPFA`                                    | SPFA                                        |
+|  `$a==b$`           |  $a==b$           |  `$a=b$`                                   |  $a=b$                                      |
+|  `$f[i][j][k]$`     |  $f[i][j][k]$     |  `$f_{i,j,k}$, $f(i,j,k)$`                 |  $f_{i,j,k}$ , $f(i,j,k)$                   |
+|  `$R,N^*$` （集合）     |  $R,N^*$          |  `$\mathbf{R}$, $\mathbf{N}^*$`            |  $\mathbf{R}$ , $\mathbf{N}^*$              |
+|  `$\emptyset$`      |  $\emptyset$      |  `$\varnothing$`                           |  $\varnothing$                              |
 
 ### Markdown 格式与主题扩展格式要求
 
@@ -154,6 +156,48 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
     两种格式的区别是，带 `+` 的会默认保持展开，而不带 `+` 的会默认保持折叠。效果可以参考图例的例 7。
 
 如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E) 和 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/) ，前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 Markdown 传统语法和 mkdocs-material 支持的扩展语法。
+
+### 伪代码格式
+
+伪码具体格式没有严格要求，请参考算法导论或学术论文，注意不要写成 Python。
+
+Wiki 内使用 LaTeX 书写伪码，整体处于 array 环境中，缩进使用 `$\qquad$` ，文字描述使用 `$\text$` ，关键字使用 `$\textbf$` ，赋值使用 `$\gets$` 。
+
+参考示例：
+
+$$
+\begin{array}{ll}
+1 &  \textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
+  &  \text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
+2 &  \textbf{Output. } \text{The edges of the MST of the input graph}.\\
+3 &  \textbf{Method. } \\ 
+4 &  result \gets \varnothing \\
+5 &  \text{sort } e \text{ into nondecreasing order by weight } w \\ 
+6 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\ 
+7 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
+8 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
+9 &  \qquad\qquad  result \gets result\;\bigcup\ \{(u, v, w)\} \\
+10 &  \textbf{return }  result
+\end{array}
+$$
+
+```latex
+$$
+\begin{array}{ll}
+1 &  \textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
+  &  \text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
+2 &  \textbf{Output. } \text{The edges of the MST of the input graph}.\\
+3 &  \textbf{Method. } \\ 
+4 &  result \gets \varnothing \\
+5 &  \text{sort } e \text{ into nondecreasing order by weight } w \\ 
+6 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\ 
+7 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
+8 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
+9 &  \qquad\qquad  result \gets result\;\bigcup\ \{(u, v, w)\} \\
+10 &  \textbf{return }  result
+\end{array}
+$$
+```
 
 ## 图解
 
@@ -187,7 +231,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
 ![](./images/htc-6.png)
 
-适当引用 **图片** 可以增强文章易读性，使用 **伪代码** 的方式表达算法过程可以方便又简洁地描述算法过程，相比于直接贴模板代码更加好懂。
+适当引用 **图片** 可以增强文章易读性，使用 **伪代码** 的方式表达算法过程可以方便又简洁地描述算法过程，相比于直接贴模板代码更加好懂。（伪代码格式已更新，现在书写伪代码请参考新的伪代码格式。）
 
 ### 例 6
 
