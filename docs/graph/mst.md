@@ -519,7 +519,7 @@ int main() {
 
 ??? note "[「LOJ 137」最小瓶颈路 加强版](https://loj.ac/problem/137)"
 
-    ```
+    ```cpp
     #include<bits/stdc++.h>
 
     using namespace std;
