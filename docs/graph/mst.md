@@ -45,8 +45,6 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 
 抽象一点地说，维护一堆 **集合** ，查询两个元素是否属于同一集合，合并两个集合。
 
-我们先啥都不管，假设已经实现了这个数据结构……
-
 伪代码：
 
 $$
@@ -102,8 +100,6 @@ Prim 算法是另一种常见并且好写的最小生成树算法。该算法的
 ### 实现
 
 具体来说，每次要选择距离最小的一个结点，以及用新的边更新其他结点的距离。
-
-等等，这很像 Dijkstra 算法……
 
 其实跟 Dijkstra 算法一样，每次找到距离最小的一个点，可以暴力找也可以用堆维护。
 
@@ -464,3 +460,238 @@ int main() {
 ???+note "POJ 2395 Out of Hay"
     给出 n 个农场和 m 条边，农场按 1 到 n 编号，现在有一人要从编号为 1 的农场出发到其他的农场去，求在这途中他最多需要携带的水的重量，注意他每到达一个农场，可以对水进行补给，且要使总共的路径长度最小。
     题目要求的就是瓶颈树的最大边，可以通过求最小生成树来解决。
+
+## 最小瓶颈路
+
+### 定义
+
+无向图 $G$ 中 x 到 y 的最小瓶颈路是这样的一类简单路径，满足这条路径上的最大的边权在所有 x 到 y 的简单路径中是最小的。
+
+### 性质
+
+根据最小生成树定义，x 到 y 的最小瓶颈路上的最大边权等于最小生成树上 x 到 y 路径上的最大边权。虽然最小生成树不唯一，但是每种最小生成树 x 到 y 路径的最大边权相同且为最小值。也就是说，每种最小生成树上的 x 到 y 的路径均为最小瓶颈路。
+
+但是，并不是所有最小瓶颈路都存在一棵最小生成树满足其为树上 x 到 y 的简单路径。
+
+例如下图：
+
+![](./images/mst5.png)
+
+1 到 4 的最小瓶颈路显然有以下两条：1-2-3-4。1-3-4。
+
+但是，1-2 不会出现在任意一种最小生成树上。
+
+### 应用
+
+由于最小瓶颈路不唯一，一般情况下会询问最小瓶颈路上的最大边权。
+
+也就是说，我们需要求最小生成树链上的 max。
+
+倍增、树剖都可以解决，这里不再展开。
+
+## Kruskal 重构树
+
+### 定义
+
+在跑 Kruskal 的过程中我们会从小到大加入若干条边。现在我们仍然按照这个顺序。
+
+首先新建 n 个集合，每个集合恰有一个节点，点权为 $0$ 。
+
+每一次加边会合并两个集合，我们可以新建一个点，点权为加入边的边权，同时将两个集合的根节点分别设为新建点的左儿子和右儿子。然后我们将两个集合和新建点合并成一个集合。将新建点设为根。
+
+不难发现，在进行 $n-1$ 轮之后我们得到了一棵恰有 $n$ 个叶子的二叉树，同时每个非叶子节点恰好有两个儿子。这棵树就叫 Kruskal 重构树。
+
+举个例子：
+
+![](./images/mst5.png)
+
+这张图的 Kruskal 重构树如下：
+
+![](./images/mst6.png)
+
+### 性质
+
+不难发现，最小生成树上两个点之间的简单路径上边权最大值 = Kruskal 重构树上两点之间的 LCA 的权值。
+
+也就是说，到点 $x$ 的简单路径上边权最大值 $\leq val$ 的所有点 $y$ 均在 Kruskal 重构树上的某一棵子树内，且恰好为该子树的所有叶子节点。
+
+我们在 Kruskal 重构树上找到 $x$ 到根的路径上权值 $\leq val$ 的最浅的节点。显然这就是所有满足条件的节点所在的子树的根节点。
+
+??? note "[「LOJ 137」最小瓶颈路 加强版](https://loj.ac/problem/137)"
+
+    ```cpp
+    #include<bits/stdc++.h>
+
+    using namespace std;
+
+    const int MAX_VAL_RANGE = 280010;
+
+    int n,m,log2Values[MAX_VAL_RANGE + 1];
+
+    namespace TR
+    {
+        struct Edge
+        {
+            int to,nxt,val;
+        }e[400010];
+        int cnt,head[140010];
+
+        void addedge(int u,int v,int val=0)
+        {
+            e[++cnt]=(Edge){v,head[u],val};
+            head[u]=cnt;
+        }
+
+        int val[140010];
+        namespace LCA
+        {
+            int sec[280010],cnt;
+            int pos[140010];
+            int dpth[140010];
+
+            void dfs(int now,int fa)
+            {
+                dpth[now]=dpth[fa]+1;
+                sec[++cnt]=now;
+                pos[now]=cnt;
+
+                for(int i=head[now];i;i=e[i].nxt)
+                {
+                    if(fa!=e[i].to)
+                    {
+                        dfs(e[i].to,now); 
+                        sec[++cnt]=now;
+                    }
+                }
+            }
+
+            int dp[280010][20];
+            void init()
+            {
+                dfs(2*n-1,0);
+                for(int i=1;i<=4*n;i++)
+                {
+                    dp[i][0]=sec[i];
+                }
+                for(int j=1;j<=19;j++)
+                {
+                    for(int i=1;i+(1<<j)-1<=4*n;i++)
+                    {
+                        dp[i][j]=dpth[dp[i][j-1]]<dpth[dp[i+(1<<(j-1))][j-1]]?dp[i][j-1]:dp[i+(1<<(j-1))][j-1];
+                    }
+                }
+            }
+
+            int lca(int x,int y)
+            {
+                int l=pos[x],r=pos[y];
+                if(l>r)
+                {
+                    swap(l,r);
+                }
+                int k=log2Values[r - l + 1];
+                return dpth[dp[l][k]]<dpth[dp[r-(1<<k)+1][k]]?dp[l][k]:dp[r-(1<<k)+1][k];
+            }
+        }
+    }
+
+    using TR::addedge;
+
+    namespace GR
+    {
+        struct Edge
+        {
+            int u,v,val;
+
+            bool operator<(const Edge &other)const
+            {
+                return val<other.val;
+            }
+        }e[100010];
+
+        int fa[140010];
+
+        int find(int x)
+        {
+            return fa[x]==0?x:fa[x]=find(fa[x]);
+        }
+
+        void kruskal()
+        {
+            int tot=0,cnt=n;
+            sort(e+1,e+m+1);
+            for(int i=1;i<=m;i++)
+            {
+                int fau=find(e[i].u),fav=find(e[i].v);
+                if(fau!=fav)
+                {
+                    cnt++;
+                    fa[fau]=fa[fav]=cnt;
+                    addedge(fau,cnt);
+                    addedge(cnt,fau);
+                    addedge(fav,cnt);
+                    addedge(cnt,fav);
+                    TR::val[cnt]=e[i].val;
+                    tot++;
+                }
+                if(tot==n-1)
+                {
+                    break;
+                }
+            }
+        }
+    }
+
+    int ans;
+    int A,B,C,P;
+    inline int rnd()
+    {
+        return A=(A*B+C)%P;
+    }
+
+    void initLog2()
+    {
+        for(int i = 2;i <= MAX_VAL_RANGE;i++) {
+            log2Values[i] = log2Values[i >> 1] + 1;
+        }
+    }
+
+    int main()
+    {
+        initLog2();
+        cin>>n>>m;
+        for(int i=1;i<=m;i++)
+        {
+            int u,v,val;
+            cin>>u>>v>>val;
+            GR::e[i]=(GR::Edge){u,v,val};
+        }
+        GR::kruskal();
+        TR::LCA::init();
+        int Q;
+        cin>>Q;
+        cin>>A>>B>>C>>P;
+
+        while(Q--)
+        {
+            int u=rnd()%n+1,v=rnd()%n+1;
+            ans+=TR::val[TR::LCA::lca(u,v)];
+            ans%=1000000007;
+        }
+        cout<<ans;
+        return 0;
+    }
+    ```
+
+??? note "[NOI 2018 归程](https://www.luogu.org/problem/P4768)"
+    首先预处理出来每一个点到根节点的最短路。
+
+    我们构造出来根据海拔的最大生成树。显然每次询问可以到达的节点是在最小生成树和询问点的最小边权 $\geq p$ 的节点。
+
+    根据 Kruskal 重构树的性质，这些节点满足均在一棵子树内同时为其所有叶子节点。
+
+    也就是说，我们只需要求出 Kruskal 重构树上每一棵子树叶子的权值 min 就可以支持子树询问。
+
+    询问的根节点可以使用 Kruskal 重构树上倍增的方式求出。
+
+    时间复杂度 $O((n+m+Q) \log n)$
