@@ -543,4 +543,6 @@ int main(){
 
  [「SDOI2014」旅行](https://www.lydsy.com/JudgeOnline/problem.php?id=3531) 
  
- [「POI2014」Hotel 加强版](https://www.lydsy.com/JudgeOnline/problem.php?id=4543)
+ [「POI2014」Hotel 加强版](https://www.lydsy.com/JudgeOnline/problem.php?id=4543)(长链剖分优化DP)
+ 
+ [攻略](https://www.lydsy.com/JudgeOnline/problem.php?id=3252)(长链剖分优化贪心)
