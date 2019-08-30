@@ -184,3 +184,5 @@ void pre() {
   for (int i = 1; i <= n; ++i) f[i] = (f[i - 1] + f[i]) % Mod;
 }
 ```
+
+## 其他线性函数
