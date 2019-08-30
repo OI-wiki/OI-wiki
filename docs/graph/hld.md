@@ -45,23 +45,41 @@ author: Ir1d, TrisolarisHD, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogeek, ftxj, s
 
 第一个 DFS 记录每个结点的深度（deep）、子树大小（size）。
 
-    TREE-BUILD-DFS(u,dep)
-        u.deep=dep // 记录深度
-        u.size=1
-        for v is u's son
-            u.size+=TREE-BUILD-DFS(v, dep + 1)
-        return u.size // 返回该节点对应的子树的大小
+$$
+\begin{array}{l}
+\text{TREE-BUILD }(u,dep) \\
+\begin{array}{ll}
+1 & u.deep\gets dep \\
+2 & u.size\gets 1 \\
+3 & \textbf{for }\text{each }u\text{'s son }v \\
+4 & \qquad u.size\gets u.size + \text{TREE-BUILD }(v,dep+1) \\
+5 & \textbf{return } u.size
+\end{array}
+\end{array}
+$$
 
 第二个 DFS 记录每个结点的重子结点（heavy-son）、重边优先遍历时的 DFN 序、所在链的链顶（top，且应初始化为结点本身）。
 
-    TREE-DECOMPOSITION-DFS(u,top)
-        u.top=top // 记录所在重链的链顶
-        u.dfn=++tot // 记录结点的DFN序
-        for v is u's son //找重儿子
-            if(v.size>hvs)hvs=v.size,p=v
-        TREE-DECOMPOSITION-DFS(v,top) // 重边优先遍历
-        for v is u's son // 遍历轻边时，以自己为链顶
-            if(v!=p)TREE-DECOMPOSITION-DFS(v,v)
+$$
+\begin{array}{l}
+\text{TREE-DECOMPOSITION }(u,top) \\
+\begin{array}{ll}
+1 & \text{Initialize }hson\text{ to 0, denoting }u\text{'s heaviest son} \\
+2 & \text{Initialize }hsize\text{ to 0, denoting }u\text{'s heaviest son's size} \\
+3 & u.top\gets top \\
+4 & tot\gets tot+1\\
+5 & u.dfn\gets tot \\
+6 & \textbf{for }\text{each }u\text{'s son }v \\
+7 & \qquad \text{if }v.size> hsize \\
+8 & \qquad \qquad hsize \gets v.size\\
+9 & \qquad \qquad hson\gets v \\
+10 & \text{TREE-DECOMPOSITION }(hson,top) \\
+11 & \textbf{for }\text{each }u\text{'s son }v \\
+12 & \qquad \textbf{if }v\text{ is not }hson \\
+13 & \qquad \qquad \text{TREE-DECOMPOSITION }(v,v) 
+\end{array}
+\end{array}
+$$
 
 给一个具体的代码实现吧。
 
