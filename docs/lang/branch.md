@@ -59,4 +59,4 @@ switch (整型表达式) {
 }
 ```
 
-switch 语句的括号中的表达式就是要判断的条件（必须为/可隐式转换为整型），case 检验条件是否等于该表达式，若等于则执行其后的语句 **直到 switch 块末尾或 break**（包括其他 case/default 后的） ，若不等于所有 case 的表达式则执行 default 之后的语句。如果不需要默认执行的操作，那么 switch 中也可以没有 default 语句。
+switch 语句的括号中的表达式就是要判断的条件（必须为/可隐式转换为整型），case 检验条件是否等于该表达式，若等于则执行其后的语句 **直到 switch 块末尾或 break** （包括其他 case/default 后的），若不等于所有 case 的表达式则执行 default 之后的语句。如果不需要默认执行的操作，那么 switch 中也可以没有 default 语句。
