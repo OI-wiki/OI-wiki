@@ -70,7 +70,7 @@ switch (i) {
 ```
 
 ```cpp
-char i = 'A'; 
+char i = 'A';
 // 虽然这里 i 的数据类型是 char ，但字符是可以隐式转换为整形满足要求的
 switch (i) {
   case 'A': {
@@ -91,9 +91,7 @@ switch (i) {
   case 'B': {
     cout << "WIKI" << endl;
   }
-  default: { 
-    cout << "Hello World" << endl;
-  }
+  default: { cout << "Hello World" << endl; }
 }
 ```
 
@@ -110,9 +108,7 @@ switch (i) {
     cout << "WIKI" << endl;
     break;
   }
-  default: {
-    cout << "Hello World" << endl; 
-  }
+  default: { cout << "Hello World" << endl; }
 }
 ```
 
