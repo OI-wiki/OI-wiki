@@ -45,7 +45,7 @@ else if 语句是 if 和 else 的组合，对多个条件进行判断并选择�
 ## switch 语句
 
 ```cpp
-switch (表达式) {
+switch (整型表达式) {
   case 条件1: {
     语句1;
   }
