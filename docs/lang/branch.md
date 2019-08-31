@@ -81,6 +81,7 @@ switch (i) {
 
 switch 语句中还要根据需求加入 break 语句进行中断，否则检验条件满足后接下来的所有 case 里的语句和 default 里的语句都会被运行。具体例子可看下面的示例。
 
+```cpp
     char i = 'B';
     switch (i) {
     	case 'A': {
@@ -94,9 +95,11 @@ switch 语句中还要根据需求加入 break 语句进行中断，否则检验
     		cout << "Hello World" << endl;
     	}
     }
+ ```
 
 以上代码运行后输出的结果为 WIKI 和 Hello World，如果不想让 default 分支的内容被输出就需要 break 了，具体例子可看下面的示例。
 
+```cpp
     char i = 'B';
     switch (i) {
     	case 'A': {
@@ -111,5 +114,6 @@ switch 语句中还要根据需求加入 break 语句进行中断，否则检验
     		cout << "Hello World" << endl;
     	}
     }
+ ```
 
 以上代码运行后输出的结果为 WIKI，因为 break 的存在接下来的语句就不会继续被执行了。
