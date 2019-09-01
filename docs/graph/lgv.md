@@ -53,8 +53,9 @@ $$
 
 ??? note "参考代码"
     ```cpp
-    #include <cstdio>
     #include <algorithm>
+    #include <cstdio>
+    ```
 
     typedef long long ll;
 
