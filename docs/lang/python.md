@@ -375,20 +375,21 @@ if __name__ == '__main__':
     N = int(1e5+5)
     M = int(2e5+5)
     INF = 0x3f3f3f3f
+    ```
 
     class qxx:  # 前向星类（结构体）
         def __init__(self):
             self.nex = 0
             self.t = 0
             self.v = 0
-    
+
     e = [qxx() for i in range(M)]  # 链表
     h = [0 for i in range(N)]
     cnt = 0
-    
+
     dist = [INF for i in range(N)]
     q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
-    
+
     def add_path(f, t, v):  # 在前向星中加边
         # 如果要修改全局变量，要使用global来声名
         global cnt, e, h
@@ -399,13 +400,13 @@ if __name__ == '__main__':
         e[cnt].t = t
         e[cnt].v = v
         h[f] = cnt
-    
+
     def nextedgeid(u):  # 生成器，可以用在for循环里
         i = h[u]
         while i:
             yield i
             i = e[i].nex
-    
+
     def dijkstra(s):
         dist[s] = 0
         q.put((0, s))
@@ -420,7 +421,7 @@ if __name__ == '__main__':
                     continue
                 dist[v] = dist[u[1]]+w
                 q.put((dist[v], v))
-    
+
     # 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
     if __name__ == '__main__':
         # 一行读入多个整数。注意它会把整行都读进来
@@ -428,14 +429,14 @@ if __name__ == '__main__':
         for i in range(m):
             u, v, w = map(int, input().split())
             add_path(u, v, w)
-    
+
         dijkstra(s)
-    
+
         for i in range(1, n+1):
             # 两种输出语法都是可以用的
             print("{}".format(dist[i]), end=' ')
             # print("%d" % dist[i],end=' ')
-    
+
         print()  # 结尾换行
     ```
 
