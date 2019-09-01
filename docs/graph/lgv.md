@@ -52,7 +52,6 @@ $$
 复杂度为 $O(n+k^2(k + \log p))$ ，其中 $\log p$ 是求逆元复杂度。
 
 ??? note "参考代码"
-
     ```cpp
     #include <cstdio>
     #include <algorithm>
