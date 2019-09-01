@@ -45,7 +45,7 @@ else if 语句是 if 和 else 的组合，对多个条件进行判断并选择�
 ## switch 语句
 
 ```cpp
-switch (整数表达式) {
+switch (整数类型的表达式) {
   case 常量表达式1: {
     语句1;
   }
@@ -59,7 +59,7 @@ switch (整数表达式) {
 switch 语句的括号中的表达式就是要判断的条件必须是整数表达式（比如 int/char），case 检验条件是否等于该表达式，若等于则执行其后的语句直到 switch 块末尾；若不等于所有 case 的表达式则执行 default 之后的语句。如果不需要默认执行的操作，那么 switch 中也可以没有 default 语句。
 
 ```cpp
-int i = 1;  //这里的 i 的数据类型是整型，满足整数表达式的要求
+int i = 1;  //这里的 i 的数据类型是 int ，满足整数类型的表达式的要求
 switch (i) {
   case 1: {
     cout << "OI WIKI" << endl;
@@ -69,7 +69,7 @@ switch (i) {
 
 ```cpp
 char i = 'A';
-// 这里的 i 的数据类型是字符型，但 char 也是整数，满足整数表达式的要求
+// 这里的 i 的数据类型是 char ，但 char 也是整数，满足整数类型的表达式的要求
 switch (i) {
   case 'A': {
     cout << "OI WIKI" << endl;
