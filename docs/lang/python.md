@@ -226,7 +226,6 @@ def add_path(f, t, v):  # 在前向星中加边
     e[cnt].t = t
     e[cnt].v = v
     h[f] = cnt
-
 ```
 
 然后是求解最短路的 Dijkstra 算法代码：
@@ -372,6 +371,7 @@ if __name__ == '__main__':
         import Queue as pq  # python version < 3.0
     except ImportError:
         import queue as pq  # python3.*
+    ```
 
     N = int(1e5+5)
     M = int(2e5+5)
