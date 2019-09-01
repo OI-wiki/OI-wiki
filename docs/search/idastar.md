@@ -157,4 +157,4 @@ int main() {
 
 ## 练习题
 
- [旋转游戏 UVa1343](https://www.luogu.org/problem/show?pid=uva1343) 
+ [旋转游戏 UVa1343](https://www.luogu.org/problem/UVA12558) 
