@@ -55,16 +55,16 @@ $$
     ```cpp
     #include <algorithm>
     #include <cstdio>
-    ```
-
+    
+    
     typedef long long ll;
-
+    
     const int K = 105;
     const int N = 100005;
     const int mod = 1e9 + 7;
-
+    
     int T, n, k, a[K], b[K], fact[N << 1], m[K][K];
-
+    
     int qpow(int x, int y)
     {
     	int out = 1;
@@ -76,12 +76,10 @@ $$
     	}
     	return out;
     }
-
     int c(int x, int y)
     {
     	return (ll) fact[x] * qpow(fact[y], mod - 2) % mod * qpow(fact[x - y], mod - 2) % mod;
     }
-
     int main()
     {
     	fact[0] = 1;
