@@ -142,16 +142,16 @@ sudo apt install python3
 特别的，Python 封装了乘方（ `**` ）的算法，这也表明 Python 附有 **大整数支持** 。
 
 ```python3
->>> 5**2
+>>> 5 ** 2
 25
->>> 5**4
+>>> 5 ** 4
 625
->>> 2**16
+>>> 2 ** 16
 65536
->>> 2**512
+>>> 2 ** 512
 13407807929942597099574024998205846127479365820592393377723561443721764030073546976801874298166903427690031858186486050853753882811946569946433649006084096
 
->>> 2048**2048 # 在IDLE里试试大整数？
+>>> 2048 ** 2048 # 在IDLE里试试大整数？
 ```
 
 ## 对比 C++ 与 Python
@@ -178,9 +178,9 @@ try: # 引入优先队列模块
 except ImportError:
     import queue as pq #python3.*
 
-N=int(1e5+5)
-M=int(2e5+5)
-INF=0x3f3f3f3f
+N = int(1e5 + 5)
+M = int(2e5 + 5)
+INF = 0x3f3f3f3f
 ```
 
 然后是声明前向星结构体和一些其他变量。
@@ -203,29 +203,30 @@ int dist[N];
 Python：
 
 ```python
-class qxx: # 前向星类（结构体）
+class qxx:  # 前向星类（结构体）
     def __init__(self):
-        self.nex=0
-        self.t=0
-        self.v=0
+        self.nex = 0
+        self.t = 0
+        self.v = 0
 
-e = [qxx() for i in range(M)] # 链表
+e = [qxx() for i in range(M)]  # 链表
 h = [0 for i in range(N)]
-cnt=0
+cnt = 0
 
 dist = [INF for i in range(N)]
-q = pq.PriorityQueue() # 定义优先队列，默认第一元小根堆
+q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
 
-def add_path(f,t,v): # 在前向星中加边
+def add_path(f, t, v):  # 在前向星中加边
     # 如果要修改全局变量，要使用global来声名
     global cnt, e, h
     # 调试时的输出语句，多个变量使用元组
     # print("add_path(%d,%d,%d)" % (f,t,v))
-    cnt+=1
-    e[cnt].nex=h[f]
-    e[cnt].t=t
-    e[cnt].v=v
-    h[f]=cnt
+    cnt += 1
+    e[cnt].nex = h[f]
+    e[cnt].t = t
+    e[cnt].v = v
+    h[f] = cnt
+
 ```
 
 然后是求解最短路的 Dijkstra 算法代码：
@@ -253,26 +254,27 @@ void dijkstra(int s) {
 Python：
 
 ```python
-def nextedgeid(u): # 生成器，可以用在for循环里
-    i=h[u]
+def nextedgeid(u):  # 生成器，可以用在for循环里
+    i = h[u]
     while i:
         yield i
         i = e[i].nex
 
+
 def dijkstra(s):
-    dist[s]=0
-    q.put((0,s))
+    dist[s] = 0
+    q.put((0, s))
     while not q.empty():
-        u = q.get() # get函数会顺便删除堆中对应的元素
-        if dist[u[1]]<u[0]:
+        u = q.get()  # get函数会顺便删除堆中对应的元素
+        if dist[u[1]] < u[0]:
             continue
         for i in nextedgeid(u[1]):
             v = e[i].t
             w = e[i].v
-            if dist[v]<=dist[u[1]]+w:
+            if dist[v] <= dist[u[1]]+w:
                 continue
-            dist[v]=dist[u[1]]+w
-            q.put((dist[v],v))
+            dist[v] = dist[u[1]]+w
+            q.put((dist[v], v))
 ```
 
 最后是主函数部分
@@ -300,19 +302,19 @@ Python：
 # 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
 if __name__ == '__main__':
     # 一行读入多个整数。注意它会把整行都读进来
-    n,m,s=map(int,input().split()) 
+    n, m, s = map(int, input().split())
     for i in range(m):
-        u,v,w=map(int,input().split())
-        add_path(u,v,w)
-    
+        u, v, w = map(int, input().split())
+        add_path(u, v, w)
+
     dijkstra(s)
 
-    for i in range(1,n+1):
+    for i in range(1, n+1):
         # 两种输出语法都是可以用的
-        print("{}".format(dist[i]),end=' ')
+        print("{}".format(dist[i]), end=' ')
         # print("%d" % dist[i],end=' ')
 
-    print() # 结尾换行
+    print()  # 结尾换行
 ```
 
 完整的代码如下：
@@ -366,76 +368,76 @@ if __name__ == '__main__':
 
 ??? note "Python"
     ```python
-    try: # 引入优先队列模块
-        import Queue as pq #python version < 3.0
+    try:  # 引入优先队列模块
+        import Queue as pq  # python version < 3.0
     except ImportError:
-        import queue as pq #python3.*
-    
-    N=int(1e5+5)
-    M=int(2e5+5)
-    INF=0x3f3f3f3f
-    
-    class qxx: # 前向星类（结构体）
+        import queue as pq  # python3.*
+
+    N = int(1e5+5)
+    M = int(2e5+5)
+    INF = 0x3f3f3f3f
+
+    class qxx:  # 前向星类（结构体）
         def __init__(self):
-            self.nex=0
-            self.t=0
-            self.v=0
-    
-    e = [qxx() for i in range(M)] # 链表
+            self.nex = 0
+            self.t = 0
+            self.v = 0
+
+    e = [qxx() for i in range(M)]  # 链表
     h = [0 for i in range(N)]
-    cnt=0
-    
+    cnt = 0
+
     dist = [INF for i in range(N)]
-    q = pq.PriorityQueue() # 定义优先队列，默认第一元小根堆
-    
-    def add_path(f,t,v): # 在前向星中加边
+    q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
+
+    def add_path(f, t, v):  # 在前向星中加边
         # 如果要修改全局变量，要使用global来声名
         global cnt, e, h
         # 调试时的输出语句，多个变量使用元组
         # print("add_path(%d,%d,%d)" % (f,t,v))
-        cnt+=1
-        e[cnt].nex=h[f]
-        e[cnt].t=t
-        e[cnt].v=v
-        h[f]=cnt
-    
-    def nextedgeid(u): # 生成器，可以用在for循环里
-        i=h[u]
+        cnt += 1
+        e[cnt].nex = h[f]
+        e[cnt].t = t
+        e[cnt].v = v
+        h[f] = cnt
+
+    def nextedgeid(u):  # 生成器，可以用在for循环里
+        i = h[u]
         while i:
             yield i
             i = e[i].nex
-    
+
     def dijkstra(s):
-        dist[s]=0
-        q.put((0,s))
+        dist[s] = 0
+        q.put((0, s))
         while not q.empty():
             u = q.get()
-            if dist[u[1]]<u[0]:
+            if dist[u[1]] < u[0]:
                 continue
             for i in nextedgeid(u[1]):
                 v = e[i].t
                 w = e[i].v
-                if dist[v]<=dist[u[1]]+w:
+                if dist[v] <= dist[u[1]]+w:
                     continue
-                dist[v]=dist[u[1]]+w
-                q.put((dist[v],v))
-    
+                dist[v] = dist[u[1]]+w
+                q.put((dist[v], v))
+
     # 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
     if __name__ == '__main__':
         # 一行读入多个整数。注意它会把整行都读进来
-        n,m,s=map(int,input().split()) 
+        n, m, s = map(int, input().split())
         for i in range(m):
-            u,v,w=map(int,input().split())
-            add_path(u,v,w)
-        
+            u, v, w = map(int, input().split())
+            add_path(u, v, w)
+
         dijkstra(s)
-    
-        for i in range(1,n+1):
+
+        for i in range(1, n+1):
             # 两种输出语法都是可以用的
-            print("{}".format(dist[i]),end=' ')
+            print("{}".format(dist[i]), end=' ')
             # print("%d" % dist[i],end=' ')
-    
-        print() # 结尾换行
+
+        print()  # 结尾换行
     ```
 
 ## 参考文档
