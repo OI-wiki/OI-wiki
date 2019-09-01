@@ -115,7 +115,7 @@ void dfs1(int u) {
   vis[u] = true;
   for (int v : g[u])
     if (!vis[v]) dfs1(v);
-  s.push_back(v);
+  s.push_back(u);
 }
 
 void dfs2(int u) {
