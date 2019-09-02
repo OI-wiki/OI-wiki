@@ -12,8 +12,8 @@ Python 是一种目前已在世界上广泛使用的解释型面向对象语言�
 
 ### 学习 Python 时需要注意的事项
 
--   目前的 Python 分为 `Python 2` 和 `Python 3` 两个版本，其中 `Python 2` 虽然几近废弃，但是仍被一些老旧系统和代码所使用。我们通常不能确定在考场上可以使用的版本，因而会 **介绍较新版本的 Python** ，但还是建议读者了解一下 `Python 2` 的相关语法，并比较两者之间的差异。
--   如果您之前使用 C++ 语言，那么很遗憾地告诉您， `Python` 的语法结构与 C++ 差异还是比较大的，请注意使用的时候不要混淆。
+-   目前的 Python 分为 Python 2 和 Python 3 两个版本，其中 Python 2 虽然几近废弃，但是仍被一些老旧系统和代码所使用。我们通常不能确定在考场上可以使用的版本，因而会 **介绍较新版本的 Python** ，但还是建议读者了解一下 Python 2 的相关语法，并比较两者之间的差异。
+-   如果您之前使用 C++ 语言，那么很遗憾地告诉您， Python 的语法结构与 C++ 差异还是比较大的，请注意使用的时候不要混淆。
 
 ## 环境安装
 
@@ -45,7 +45,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 ???+ note "何谓 [**IDLE**](https://docs.python.org/zh-cn/3/glossary.html#idle)？"
     Python 的 IDE，“集成开发与学习环境”的英文缩写。是 Python 标准发行版附带的基本编程器和解释器环境。
 
-如果您还有使用 `pip` 安装其他模块的需求，请参照 [TUNA 的镜像更换帮助](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 。
+如果您还有使用 pip 安装其他模块的需求，请参照 [TUNA 的镜像更换帮助](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 。
 
 ### macOS/Linux
 
@@ -156,7 +156,7 @@ sudo apt install python3
 
 ## 对比 C++ 与 Python
 
-对于大部分算法竞赛选手，相信你们已经熟练掌握了 C++98 的语法。接下来我们展示一下 Python 语法的一些应用。
+相信大部分算法竞赛选手已经熟练掌握了 C++98 的语法。接下来我们展示一下 Python 语法的一些应用。
 
 接下来的例子是 [Luogu P4779「【模板】单源最短路径（标准版）」](https://www.luogu.org/problem/P4779) 的代码。我们将 C++ 代码与 Python 代码做出对比：
 
