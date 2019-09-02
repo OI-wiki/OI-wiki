@@ -370,7 +370,7 @@ void build() {
 
   rt = st[1];  // 栈中最后剩下的点是根结点
 }
-void query(int r, int l) {
+void query(int l, int r) {
   int x = id[l], y = id[r];
   int z = lca(x, y);
   if (typ[z] & 1)
