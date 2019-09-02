@@ -179,11 +179,11 @@ const int N = 200010;
 int n, m, a[N], st1[N], st2[N], tp1, tp2, rt;
 int L[N], R[N], M[N], id[N], cnt, typ[N], bin[20], st[N], tp;
 //本篇代码原题应为 CERC2017 Intrinsic Interval
-//a数组即为原题中对应的排列
-//st1和st2分别两个单调栈，tp1、tp2为对应的栈顶，rt为析合树的根
-//L、R数组表示该析合树节点的左右端点，M数组的作用在析合树构造时有提到
-//id存储的是排列中某一位置对应的节点编号，typ用于标记析点还是合点
-//st为存储析合树节点编号的栈，tp为其栈顶 
+// a数组即为原题中对应的排列
+// st1和st2分别两个单调栈，tp1、tp2为对应的栈顶，rt为析合树的根
+// L、R数组表示该析合树节点的左右端点，M数组的作用在析合树构造时有提到
+// id存储的是排列中某一位置对应的节点编号，typ用于标记析点还是合点
+// st为存储析合树节点编号的栈，tp为其栈顶
 struct RMQ {  // 预处理 RMQ（Max & Min）
   int lg[N], mn[N][17], mx[N][17];
   void chkmn(int& x, int y) {
@@ -244,7 +244,7 @@ struct SEG {  // 线段树
       return query(ls, l, mid);
     else
       return query(rs, mid + 1, r);
-    // 如果不存在 0 的位置就会自动返回当前你查询的位置 
+    // 如果不存在 0 的位置就会自动返回当前你查询的位置
   }
 } T;
 
@@ -313,8 +313,8 @@ void build() {
         R[st[tp]] = i, add(st[tp], now), now = st[tp--];
       } else if (judge(L[st[tp]], i)) {
         typ[++cnt] = 1;  // 合点一定是被这样建出来的
-        L[cnt] = L[st[tp]], R[cnt] = i, M[cnt] = L[now]; 
-        //这里M数组的作用是保证合点的儿子排列是单调的 
+        L[cnt] = L[st[tp]], R[cnt] = i, M[cnt] = L[now];
+        //这里M数组的作用是保证合点的儿子排列是单调的
         add(cnt, st[tp--]), add(cnt, now);
         now = cnt;
       } else {
@@ -341,26 +341,26 @@ void query(int l, int r) {
   int z = lca(x, y);
   if (typ[z] & 1)
     l = L[go(x, dep[x] - dep[z] - 1)], r = R[go(y, dep[y] - dep[z] - 1)];
-    //合点这里特判的原因是因为这个合点不一定是最小的包含l，r的连续段.
-	//具体可以在上面的例图上试一下查询7,10 
+  //合点这里特判的原因是因为这个合点不一定是最小的包含l，r的连续段.
+  //具体可以在上面的例图上试一下查询7,10
   else
     l = L[z], r = R[z];
-  printf("%d %d\n",l,r);
+  printf("%d %d\n", l, r);
 }  // 分 lca 为析或和，这里把叶子看成析的
 
 int main() {
-  scanf("%d",&n);
-  for (int i = 1; i <= n; ++i) scanf("%d",&a[i]);
+  scanf("%d", &n);
+  for (int i = 1; i <= n; ++i) scanf("%d", &a[i]);
   D.build();
   build();
   dfs(rt);
-  scanf("%d",&m);
+  scanf("%d", &m);
   for (int i = 1; i <= m; ++i) {
-  	int x,y;
-  	scanf("%d%d",&x,&y);
-  	query(x,y);
+    int x, y;
+    scanf("%d%d", &x, &y);
+    query(x, y);
   }
-  return  0;
+  return 0;
 }
 // 20190612
 // 析合树
