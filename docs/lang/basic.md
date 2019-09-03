@@ -79,11 +79,11 @@ int main() {
 
     ```cpp
     #include <iostream>
-    
+
     using std::cin;
     using std::cout;
     using std::endl;
-    
+
     int main() {
       int x, y;
       cin >> x >> y;
@@ -94,9 +94,9 @@ int main() {
 
     ```cpp
     #include <iostream>
-    
+
     using namespace std;
-    
+
     int main() {
       int x, y;
       cin >> x >> y;
