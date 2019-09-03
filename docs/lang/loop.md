@@ -182,7 +182,9 @@ for (int i = 1; i <= n; ++i) {
     // do something...
   }
 }
+```
 
+```cpp
 // for 语句判断条件复杂，没有体现“枚举”的本质
 
 for (int i = l; i <= r && i % 10 != 0; ++i) {
@@ -195,7 +197,9 @@ for (int i = l; i <= r; ++i) {
   if (i % 10 == 0) break;
   // do something...
 }
+```
 
+```cpp
 // 语句重复，顺序不自然
 
 statement1;
