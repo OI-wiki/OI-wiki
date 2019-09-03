@@ -6,7 +6,10 @@
 #include <cstdio>
 #include <iostream>
 
-int main() { return 0; }
+int main() {
+  // do something...
+  return 0;
+}
 ```
 
 ??? note "什么是 include？"
