@@ -82,7 +82,7 @@ void down(x) {
 
 ```cpp
 void build_heap_1() {
-    for (i = 1; i <= n; i++) up(i);
+  for (i = 1; i <= n; i++) up(i);
 }
 ```
 
@@ -98,7 +98,7 @@ void build_heap_1() {
 
 ```cpp
 void build_heap_2() {
-    for (i = n; i >= 1; i--) down(i);
+  for (i = n; i >= 1; i--) down(i);
 }
 ```
 
