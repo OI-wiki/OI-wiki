@@ -14,7 +14,7 @@ author: MingqiHuang, Xeonacid, greyqz, i-Yirannn
 
 ####  `vector` 重写了比较运算符及赋值运算符
 
-`vector` 重载了六个比较运算符，以字典序实现，这使得我们可以方便的判断两个容器是否相等（复杂度与容器大小成线性关系）。例如可以利用 `vector<char>` 实现字符串比较（当然，还是用 `std::string` 会更快更方便）。另外 `vector` 也重载了赋值运算符，使得数组拷贝更加方便。
+ `vector` 重载了六个比较运算符，以字典序实现，这使得我们可以方便的判断两个容器是否相等（复杂度与容器大小成线性关系）。例如可以利用 `vector<char>` 实现字符串比较（当然，还是用 `std::string` 会更快更方便）。另外 `vector` 也重载了赋值运算符，使得数组拷贝更加方便。
 
 ####  `vector` 便利的初始化
 
@@ -22,7 +22,7 @@ author: MingqiHuang, Xeonacid, greyqz, i-Yirannn
 
 ###  `vector` 的使用方法
 
-以下介绍常用用法，详细内容[请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/vector)。
+以下介绍常用用法，详细内容 [请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/vector) 。
 
 #### 构造函数
 
@@ -121,16 +121,16 @@ vector 提供了如下几种 [迭代器](./iterator.md)
 
 #### 长度和容量
 
- `vector` 有以下几个与容器长度和容量相关的函数。注意， `vector` 的长度( size )指有效元素数量，而容量( capacity )指其实际分配的内存长度，相关细节请参见后文的实现细节介绍。
+ `vector` 有以下几个与容器长度和容量相关的函数。注意， `vector` 的长度（size）指有效元素数量，而容量（capacity）指其实际分配的内存长度，相关细节请参见后文的实现细节介绍。
 
-**与长度相关**：
+ **与长度相关** ：
 
 -    `empty()` 返回一个 `bool` 值，即 `v.begin() == v.end()` ， `true` 为空， `false` 为非空。
 -    `size()` 返回容器长度（元素数量），即 `std::distance(v.begin(), v.end())` 。
 -    `resize()` 改变 `vector` 的长度，多退少补。补充元素可以由参数指定。
 -    `max_size()` 返回容器的最大可能长度。
 
-**与容量相关**：
+ **与容量相关** ：
 
 -    `reserve()` 使得 `vector` 预留一定的内存空间，避免不必要的内存拷贝。
 -    `capacity()` 返回容器的容量，即不发生拷贝的情况下容器的长度上限。
@@ -139,7 +139,7 @@ vector 提供了如下几种 [迭代器](./iterator.md)
 ### 元素增删及修改
 
 -    `clear()` 清除所有元素
--    `insert()` 支持在某个迭代器位置插入元素、可以插入多个。**复杂度与 `pos` 距离末尾长度成线性而非常数的** 
+-    `insert()` 支持在某个迭代器位置插入元素、可以插入多个。 **复杂度与 `pos` 距离末尾长度成线性而非常数的** 
 -    `erase()` 删除某个迭代器或者区间的元素，返回最后被删除的迭代器。复杂度与 `insert` 一致。
 -    `push_back()` 在末尾插入一个元素，均摊复杂度为 **常数** ，最坏为线性复杂度。
 -    `pop_back()` 删除末尾元素，常数复杂度。
@@ -154,7 +154,7 @@ vector 提供了如下几种 [迭代器](./iterator.md)
 
 标准库特别提供了对 `bool` 的 `vector` 特化，每个“ `bool` ”只占 1 bit，且支持动态增长。但是其 `operator[]` 的返回值的类型不是 `bool&` 而是 `vector<bool>::reference` 。因此，使用 `vector<bool>` 使需谨慎，可以考虑使用 `deque<bool>` 或 `vector<char>` 替代。而如果你需要节省空间，请直接使用 [ `bitset` ](./bitset.md) 。
 
-##  `array` ( C++ 11 )
+##  `array` (C++ 11)
 
  `std::array` 是 STL 提供的 **内存连续的** 、 **固定长度** 的数组数据结构。其本质是对原生数组的直接封装。
 
@@ -164,7 +164,7 @@ vector 提供了如下几种 [迭代器](./iterator.md)
 
 ###  `array` 的使用方法
 
- `array` 的使用方法与 `vector` 高度相似，仅有声明方式与 `vector` 不同，以及没有元素增删的能力（如 `push_back` ）。这里只给出一段例子，详细内容[请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/array)。
+ `array` 的使用方法与 `vector` 高度相似，仅有声明方式与 `vector` 不同，以及没有元素增删的能力（如 `push_back` ）。这里只给出一段例子，详细内容 [请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/array) 。
 
 ```cpp
 // 1. 创建空array，长度为3; 常数复杂度
@@ -180,11 +180,11 @@ for (int i = 0; i != arr.size(); ++i) cout << arr[i] << " ";
 
 ##  `deque` 
 
- `std::deque` 是 STL 提供的[双端队列](../../ds/queue.md)数据结构。能够提供线性复杂度的插入和删除，以及常数复杂度的随机访问。
+ `std::deque` 是 STL 提供的 [双端队列](../../ds/queue.md) 数据结构。能够提供线性复杂度的插入和删除，以及常数复杂度的随机访问。
 
-### `deque` 的使用方法
+###  `deque` 的使用方法
 
-以下介绍常用用法，详细内容[请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/deque)。
+以下介绍常用用法，详细内容 [请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/deque) 。
 
 #### 构造函数
 
@@ -200,7 +200,7 @@ deque<int> v2(10, 1);
 // 4. 复制已有的双端队列 v1; 线性复杂度
 deque<int> v3(v1);
 // 5. 创建一个v2的拷贝deque v4，其内容是v4[0]至v4[2]; 线性复杂度
-deque<int> v4(v2.begin(), v2.begin()+3);
+deque<int> v4(v2.begin(), v2.begin() + 3);
 // 6. 移动v2到新创建的deque v5，不发生拷贝; 常数复杂度; 需要 C++ 11
 deque<int> v5(std::move(v2));
 ```
@@ -209,10 +209,10 @@ deque<int> v5(std::move(v2));
 
 与 `vector` 一致，但无法访问底层内存。其高效的元素访问速度可参考实现细节部分。
 
--   `at()` 返回 vector 中指定位置元素的引用，执行越界检查，**常数复杂度**。
--   `operator[]` 返回 vector 中指定位置元素的引用。不执行越界检查，**常数复杂度**。
--   `front()` 返回首元素的引用。
--   `back()` 返回末尾元素的引用。
+-    `at()` 返回 vector 中指定位置元素的引用，执行越界检查， **常数复杂度** 。
+-    `operator[]` 返回 vector 中指定位置元素的引用。不执行越界检查， **常数复杂度** 。
+-    `front()` 返回首元素的引用。
+-    `back()` 返回末尾元素的引用。
 
 #### 迭代器
 
@@ -227,17 +227,17 @@ deque<int> v5(std::move(v2));
 与 `vector` 一致，并额外有向队列头部增加元素的函数。
 
 -    `clear()` 清除所有元素
--    `insert()` 支持在某个迭代器位置插入元素、可以插入多个。**复杂度与 `pos` 与两端距离较小者成线性**。
+-    `insert()` 支持在某个迭代器位置插入元素、可以插入多个。 **复杂度与 `pos` 与两端距离较小者成线性** 。
 -    `erase()` 删除某个迭代器或者区间的元素，返回最后被删除的迭代器。复杂度与 `insert` 一致。
--    `push_front()` 在头部插入一个元素， **常数复杂度**。
--    `pop_front()` 删除头部元素，**常数复杂度**。
--    `push_back()` 在末尾插入一个元素， **常数复杂度**。
--    `pop_back()` 删除末尾元素，**常数复杂度**。
+-    `push_front()` 在头部插入一个元素， **常数复杂度** 。
+-    `pop_front()` 删除头部元素， **常数复杂度** 。
+-    `push_back()` 在末尾插入一个元素， **常数复杂度** 。
+-    `pop_back()` 删除末尾元素， **常数复杂度** 。
 -    `swap()` 与另一个容器进行交换，此操作是 **常数复杂度** 而非线性的。
 
 ###  `deque` 的实现细节
 
- `deque` 的底层实现是多个不连续的缓冲区，而缓冲区中的内存是连续的。而每个缓冲区还会记录首指针和尾指针，用来标记有效数据的区间。当一个缓冲区填满之后便会在之前或者之后分配新的缓冲区来存储更多的数据。更详细的说明可以参考[STL源码剖析——deque的实现原理和使用方法详解](https://blog.csdn.net/baidu_28312631/article/details/48000123)
+ `deque` 的底层实现是多个不连续的缓冲区，而缓冲区中的内存是连续的。而每个缓冲区还会记录首指针和尾指针，用来标记有效数据的区间。当一个缓冲区填满之后便会在之前或者之后分配新的缓冲区来存储更多的数据。更详细的说明可以参考 [STL 源码剖析——deque 的实现原理和使用方法详解](https://blog.csdn.net/baidu_28312631/article/details/48000123) 
 
 ##  `list` 
 
