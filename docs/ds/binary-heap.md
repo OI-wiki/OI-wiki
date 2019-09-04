@@ -53,18 +53,18 @@ auhor: HeRaNO, Xeonacid
 （伪代码）
 
 ```cpp
-up(x) {
+void up(x) {
   while (x > 1 && h[x] > h[x / 2]) {
     swap(h[x], h[x / 2]);
     x /= 2;
   }
 }
-down(x) {
+void down(x) {
   while (x * 2 <= n) {
     t = x * 2;
     if (t + 1 <= n && h[t + 1] > h[t]) t++;
     if (h[t] <= h[x]) break;
-    swap(h[x], h[t]);
+    std::swap(h[x], h[t]);
     x = t;
   }
 }
@@ -80,8 +80,8 @@ down(x) {
 
 从根开始，按 BFS 序进行。
 
-```text
-build_heap_1() {
+```cpp
+void build_heap_1() {
     for (i = 1; i <= n; i++) up(i);
 }
 ```
@@ -96,8 +96,8 @@ build_heap_1() {
 
 这时换一种思路，从叶子开始，逐个向下调整
 
-```text
-build_heap_2() {
+```cpp
+void build_heap_2() {
     for (i = n; i >= 1; i--) down(i);
 }
 ```
