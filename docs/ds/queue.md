@@ -56,7 +56,7 @@ int q[SIZE], ql = 1, qr;
 
 ## 例题
 
-[LOJ6515 「[雅礼集训 2018 Day10] 贪玩蓝月」 ](https://loj.ac/problem/6515)
+ [LOJ6515「\[雅礼集训 2018 Day10\] 贪玩蓝月」](https://loj.ac/problem/6515) 
 
 > 一个双端队列（deque），m 个事件：
 >
