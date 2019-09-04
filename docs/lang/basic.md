@@ -188,7 +188,7 @@ int/**/x, y;  std::cin
 
 当然，这么做是不被推荐的。
 
-在 **OI Wiki** 中，代码会被格式化。然而，并不是所有人都喜欢这种码风，因此笔者在这里写一下自己的码风，仅供参考：
+一种不那么丑陋而与 **OI-Wiki** 要求的码风不同的代码风格：
 
 ```cpp
 /* clang-format off */
@@ -229,16 +229,20 @@ int main() {
 #include <iostream>
 #define sum(x, y) x + y
 // 这里应当为 #define sum(x, y) (x + y)
+#define square(x) ((x) * (x))
 
 int main() {
-  std::cout << sum(1, 2) << ' ' << 2 * sum(3, 5);
+  std::cout << sum(1, 2) << ' ' << 2 * sum(3, 5) << std::endl;
   // 输出为 3 11，因为 #define 是文本替换，后面的语句被替换为了 2 * 3 + 5
+  int i = 1;
+  std::cout << square(++i) << ' ' << i;
+  // 输出为 9 3 或 6 3，因为 ++i 被执行了两遍，而同一个语句中出现多个 ++ 是未定义行为
 }
 ```
 
-使用 `#define` 是有风险的，因此应谨慎使用。较为推荐的做法是，常量使用 `const` 限定符声明，宏使用函数代替。
+使用 `#define` 是有风险的（由于 `#define` 作用域是整个程序导致文本被意外地替换、错误地使用宏），因此应谨慎使用。较为推荐的做法是，常量使用 `const` 限定符声明，宏使用函数代替。
 
-但是，在 OI 中， `#define` 依然有用武之处：
+但是，在 OI 中， `#define` 依然有用武之处（依然是不被推荐的，会降低代码的规范性）：
 
-1.   `#define int long long` + `signed main()` 。通常用于避免忘记开 long long 导致的错误。
+1.   `#define int long long` + `signed main()` 。通常用于避免忘记开 long long 导致的错误，或是调试时排除忘开 long long 导致错误的可能性。
 2.   `#define For(i, l, r) for (int i = l; i <= r; ++i)` 、 `#define push_back pb` 、 `#define mid ((l + r) / 2)` ，用于减短代码长度。
