@@ -250,7 +250,7 @@ tupB.swap(tupA);
 |  `make_tuple`   | 创建一个 `tuple` 对象，其类型根据各实参类型定义 |
 |  `std::get`     | 元组式访问指定的元素                   |
 |  `operator==` 等 | 按字典顺序比较 `tuple` 中的值          |
-|  `std::swap`    | 特化 `std::swap` 算法            |
+|  `std::swap`    | 实例化 `std::swap` 算法            |
 
 例子
 
@@ -325,7 +325,7 @@ int main() {
 | --------------- | ------------------- |
 |  `operator==` 等 | 按照字典序比较 `array` 中的值 |
 |  `std::get`     | 访问 `array` 的一个元素    |
-|  `std::swap`    | 特化 `std::swap` 算法   |
+|  `std::swap`    | 实例化 `std::swap` 算法   |
 
 例子
 

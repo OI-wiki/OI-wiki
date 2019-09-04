@@ -1,95 +1,107 @@
 author: MingqiHuang, Xeonacid, greyqz, i-Yirannn
 
-##  `array` 
-
 ##  `vector` 
 
 ### 为什么要用 `vector` 
 
-作为 OIer，对程序效率的追求远比对工程级别的稳定性要高得多，而 `vector` 由于其较静态数组复杂很多的原因，时间效率在大部分情况下都要低于静态数组，所以在正常存储数据的时候，我们是不选择 `vector` 的，下面给出几个 `vector` 优秀的特性，在需要用到这些特性的情况下， `vector` 能给我们带来很大的帮助。
+作为 OIer，对程序效率的追求远比对工程级别的稳定性要高得多，而 `vector` 由于其对内存的动态处理，时间效率在部分情况下低于静态数组，并且在OJ服务器不一定开全优化的情况下更加糟糕。所以在正常存储数据的时候，通常不选择 `vector`。下面给出几个 `vector` 优秀的特性，在需要用到这些特性的情况下，`vector` 能给我们带来很大的帮助。
 
-####  `vector` 可以动态增长
+####  `vector` 可以动态扩容
 
-很多时候我们不能提前开好那么大的空间（eg：预处理 1~n 中所有数的约数）我们知道数据总量在空间允许的级别，但是单份数据还可能非常大，这种时候我们就需要 `vector` 来把内存占用量控制在合适的范围内。
+很多时候我们不能提前开好那么大的空间（eg：预处理 1~n 中所有数的约数）。尽管我们能知道数据总量在空间允许的级别，但是单份数据还可能非常大，这种时候我们就需要 `vector` 来把内存占用量控制在合适的范围内。这时如果善用 `reserve()` 和 `shrink_to_fit()` 函数（ C++ 11 ），就能使得 `vector` 的效率接近静态数组。
 
 ####  `vector` 重写了比较运算符
 
-vector 以字典序为关键字重载了六个比较运算符，这使得我们可以方便的判断两个容器是否相等。（复杂度与容器大小成线性关系）
+`vector` 重载了六个比较运算符，以字典序实现，这使得我们可以方便的判断两个容器是否相等（复杂度与容器大小成线性关系）。例如可以利用 `vector<char>` 实现字符串比较（当然，还是用 `std::string` 会更快更方便）。
 
-####  `vector` 可以用赋值运算符来进行初始化
+####  `vector` 便利的初始化
 
-由于 `vector` 重载了 `=` 运算符，所以我们可以方便的初始化。
+由于 `vector` 重载了 `=` 运算符，所以我们可以方便的初始化。此外从 C++11 起 `vector` 还支持[列表初始化](https://zh.cppreference.com/w/cpp/language/list_initialization)，例如`vector<int> data {1, 2, 3};`。
 
-###  `vector` 的构造函数
+####  `vector` 支持自定义数据
 
-参见如下代码（假设你已经 `using` 了 `std::vector` ， `std::cout` ， `std::endl` ， `std::copy` 与 `std::ostream_iterator` ）：
+`vector` 是模板类型，可以通过模板参数来实现自定义类型的数组。例如如果要实现大数数组，那么可以先将大数封装为一个类，然后将其作为模板参数即可实现一个大数数组。
+
+####  `vector` 支持自定义数据
+
+###  `vector` 的使用方法
+
+####  构造函数
+
+参见如下代码（假设你已经 `using` 了 `std` 命名空间）：
 
 ```cpp
-// 1. 创建空vector v0;  常数复杂度
+// 1. 创建空vector; 常数复杂度
 vector<int> v0;
-// 2. 创建一个初始空间为3的vector v1，其元素的默认值是0; 线性复杂度
+// 1+. 这句代码可以使得向vector中插入前3个元素时，保证常数时间复杂度
+v0.reserve(3);
+// 2. 创建一个初始空间为3的vector，其元素的默认值是0; 线性复杂度
 vector<int> v1(3);
-// 3. 创建一个初始空间为5的vector v2，其元素的默认值是2; 线性复杂度
-vector<int> v2(5, 2);
-// 4. 创建一个初始空间为3的vector
-// v3，其元素的默认值是1，并且使用v2的空间配置器 线性复杂度
+// 3. 创建一个初始空间为3的vector，其元素的默认值是2; 线性复杂度
+vector<int> v2(3, 2);
+// 4. 创建一个初始空间为3的vector，其元素的默认值是1，
+// 并且使用v2的空间配置器; 线性复杂度
 vector<int> v3(3, 1, v2.get_allocator());
 // 5. 创建一个v2的拷贝vector v4， 其内容元素和v2一样; 线性复杂度
 vector<int> v4(v2);
-// 6. 创建一个v4的拷贝vector v5，其内容是v4的[__First， __Last)区间 线性复杂度
+// 6. 创建一个v4的拷贝vector v5，其内容是{v4[1], v4[2]}; 线性复杂度
 vector<int> v5(v4.begin() + 1, v4.begin() + 3);
-// 以下是测试代码，有兴趣的同学可以自己编译运行一下本代码。
-cout << "v1 = ";
-copy(v1.begin(), v1.end(), ostream_iterator<int>(cout, " "));
-cout << endl;
-cout << "v2 = ";
-copy(v2.begin(), v2.end(), ostream_iterator<int>(cout, " "));
-cout << endl;
-cout << "v3 = ";
-copy(v3.begin(), v3.end(), ostream_iterator<int>(cout, " "));
-cout << endl;
-cout << "v4 = ";
-copy(v4.begin(), v4.end(), ostream_iterator<int>(cout, " "));
-cout << endl;
-cout << "v5 = ";
-copy(v5.begin(), v5.end(), ostream_iterator<int>(cout, " "));
-cout << endl;
-// 移动v2到新创建的vector v6;
-vector<int> v6(std::move(v2));
-cout << "v6 = ";
-copy(v6.begin(), v6.end(), ostream_iterator<int>(cout, " "));
-cout << endl;
+// 7. 移动v2到新创建的vector v6，不发生拷贝; 常数复杂度
+vector<int> v6(std::move(v2)); // 或者 v7 = std::move(v2);
 ```
+
+??? note "测试代码"
+    ```cpp
+    // 以下是测试代码，有兴趣的同学可以自己编译运行一下本代码。
+    cout << "v1 = ";
+    copy(v1.begin(), v1.end(), ostream_iterator<int>(cout, " "));
+    cout << endl;
+    cout << "v2 = ";
+    copy(v2.begin(), v2.end(), ostream_iterator<int>(cout, " "));
+    cout << endl;
+    cout << "v3 = ";
+    copy(v3.begin(), v3.end(), ostream_iterator<int>(cout, " "));
+    cout << endl;
+    cout << "v4 = ";
+    copy(v4.begin(), v4.end(), ostream_iterator<int>(cout, " "));
+    cout << endl;
+    cout << "v5 = ";
+    copy(v5.begin(), v5.end(), ostream_iterator<int>(cout, " "));
+    cout << endl;
+    cout << "v6 = ";
+    copy(v6.begin(), v6.end(), ostream_iterator<int>(cout, " "));
+    cout << endl;
+    ```
 
 可以利用上述的方法构造一个 `vector` ，足够我们使用了。
 
-###  `vector` 元素访问
+####  元素访问
 
- `vector` 提供了如下几种方法进行访问元素
+`vector` 提供了如下几种方法进行元素访问
 
 1.   `at()` 
 
-    使用方法： `v.at(pos)` 返回 vector 中下标为 `pos` 的引用。如果数组越界抛出 `std::out_of_range` 类型的异常。
+    `v.at(pos)` 返回 vector 中下标为 `pos` 的引用。如果数组越界抛出 `std::out_of_range` 类型的异常。
 
 2.   `operator[]` 
 
-    使用方法： `v[pos]` 返回 vector 中下标为 `pos` 的引用。不执行越界检查。
+    `v[pos]` 返回 vector 中下标为 `pos` 的引用。不执行越界检查。
 
 3.   `front()` 
 
-    使用方法： `v.front()` 返回首元素的引用。
+    `v.front()` 返回首元素的引用。
 
 4.   `back()` 
 
-    使用方法： `v.back()` 返回末尾元素的引用。
+    `v.back()` 返回末尾元素的引用。
 
 5.   `data()` 
 
-    使用方法： `v.data()` 返回指向数组第一个元素的指针。
+    `v.data()` 返回指向数组第一个元素的指针。
 
-###  `vector` 迭代器
+####  迭代器
 
-vector 提供了如下几种迭代器
+vector 提供了如下几种[迭代器](./iterator.md)
 
 1.   `begin()/cbegin()` 
 
@@ -109,25 +121,22 @@ vector 提供了如下几种迭代器
 
 以上列出的迭代器中，含有字符 `c` 的为只读迭代器，你不能通过只读迭代器去修改 `vector` 中的元素的值。如果一个 `vector` 本身就是只读的，那么它的一般迭代器和只读迭代器完全等价。只读迭代器自 C++11 开始支持。
 
-###  `vector` 容量
+#### 大小和容量
 
- `vector` 有如下几种返回容量的函数
+`vector` 有以下几个与容器数量相关的函数。注意， `vector` 的大小指有效元素数量，而容量指其实际分配的内存大小，相关细节请参见后文的实现细节介绍。
 
-1.   `empty()` 
+与大小相关：
+-    `empty()` 返回一个 `bool` 值，即 `v.begin() == v.end()` ， `true` 为空， `false` 为非空。
+-    `size()` 返回容器大小（元素数量），即 `std::distance(v.begin(), v.end())` 。
+-    `resize()` 改变 `vector` 的大小，多退少补。补充元素可以由参数指定。
+-    `max_size()` 返回容器的最大可能大小。
 
-    返回一个 `bool` 值，即 `v.begin() == v.end()` ， `true` 为空， `false` 为非空。
+与容量相关：
+-    `reserve()` 使得 `vector` 预留一定的内存空间，避免不必要的内存拷贝。
+-    `capacity()` 返回容器的容量，即不发生拷贝的情况下容器的大小上限。
+-    `shrink_to_fit()` 使得 `vector` 的容量与大小一致，多退但不会少。
 
-2.   `size()` 
-
-    返回一个元素数量，即 `std::distance(v.begin(), v.end())` 。
-
-3.   `shrink_to_fit()` （C++11）
-
-    释放未使用的内存来减少内存使用。
-
-此外，还有 `max_size()` , `reserve()` , `capacity()` 等 OIer 较少用到的函数，可自行查询。
-
-###  `vector` 修改
+###  元素增删
 
 -    `clear()` 清除所有元素
 -    `insert()` 支持在某个迭代器位置插入元素、可以插入多个 **此操作是与 `pos` 距离末尾长度成线性而非常数的** 
@@ -136,12 +145,19 @@ vector 提供了如下几种迭代器
 -    `pop_back()` 删除末尾元素。
 -    `swap()` 与另一个容器进行交换，此操作是 **常数复杂度** 而非线性的。
 
-###  `vector` 特化 `vector<bool>` 
+###  `vector` 的实现细节
 
-标准库提供对 `bool` 的 `vector` 特化，每个“ `bool` ”只占 1 bit，且支持动态增长。但是其 `operator[]` 的返回值的类型不是 `bool&` 而是 `vector<bool>::reference` 。因此，请尽量避免使用 `vector<bool>` ，而是用 `deque<bool>` 或 `vector<char>` 替代。而如果你需要节省空间，请直接使用 `bitset` 。
+`vector`的底层其实仍然是定长数组，它能够实现动态扩容的原因是增加了避免数量溢出的操作。首先需要指明的是 `vector` 中元素的数量（大小） $n$ 与它已分配内存最多能包含元素的数量（容量） $N$ 是不一致的， `vector` 会分开存储这两个量。当向 `vector` 中添加元素时，如发现 $n>N$ ，那么容器会分配一个尺寸为 $2N$ 的数组，然后将旧数据从原本的位置拷贝到新的数组中。尽管这个操作是 $O(n)$ 的，但是可以证明其分摊复杂度（即渐进复杂度）为 $O(1)$。而在末尾删除元素和访问元素则都仍然是 $O(1)$ 的开销。
+因此，只要对 `vector` 的尺寸估计得当并善用 `reserve` 函数， `vector` 的性能与定长数组不会有太大差距。
 
-## deque
+###  `vector<bool>` 
 
-## list
+标准库特别提供了对 `bool` 的 `vector` 实例化，每个“ `bool` ”只占 1 bit，且支持动态增长。但是其 `operator[]` 的返回值的类型不是 `bool&` 而是 `vector<bool>::reference` 。因此，使用 `vector<bool>` 使需谨慎，可以考虑使用 `deque<bool>` 或 `vector<char>` 替代。而如果你需要节省空间，请直接使用 [`bitset`](./bitset.md) 。
 
-## forward_list
+##  `array` 
+
+##  `deque`
+
+##  `list`
+
+##  `forward_list`
