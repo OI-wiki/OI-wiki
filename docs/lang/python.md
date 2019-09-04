@@ -12,9 +12,9 @@ Python 是一种目前已在世界上广泛使用的解释型面向对象语言�
 
 ### 学习 Python 时需要注意的事项
 
--   目前的 Python 分为 Python 2 和 Python 3 两个版本，其中 Python 2 虽然[几近废弃](https://pythonclock.org/)，但是仍被一些老旧系统和代码所使用。我们通常不能确定在考场上可以使用的版本，因而会 **介绍较新版本的 Python** ，但还是建议读者了解一下 Python 2 的相关语法，并比较两者之间的差异。
+-   目前的 Python 分为 Python 2 和 Python 3 两个版本，其中 Python 2 虽然 [几近废弃](https://pythonclock.org/) ，但是仍被一些老旧系统和代码所使用。我们通常不能确定在考场上可以使用的版本，因而会 **介绍较新版本的 Python** ，但还是建议读者了解一下 Python 2 的相关语法，并比较两者之间的差异。
 -   如果您之前使用 C++ 语言，那么很遗憾地告诉您，Python 的语法结构与 C++ 差异还是比较大的，请注意使用的时候不要混淆。
--   由于 Python 是高度动态的解释型语言，因此其程序运行有大量的额外开销。通常而言，实现同样功能时 Python 代码越少速度越快（但不要追求极端）。尤其是** for 循环在 Python 中运行的奇慢无比**。因此在使用 Python 时若想获得高性能，尽量使用 `filter`, `map` 等内置函数，或者使用[“列表理解”](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python)语法的手段来避免循环。
+-   由于 Python 是高度动态的解释型语言，因此其程序运行有大量的额外开销。通常而言，实现同样功能时 Python 代码越少速度越快（但不要追求极端）。尤其是 **for 循环在 Python 中运行的奇慢无比** 。因此在使用 Python 时若想获得高性能，尽量使用 `filter` , `map` 等内置函数，或者使用 [“列表理解”](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) 语法的手段来避免循环。
 
 ## 环境安装
 
@@ -44,11 +44,11 @@ Type "help", "copyright", "credits" or "license" for more information.
 这就是 Python 的 **IDLE** 。
 
 ???+ note "何谓 [**IDLE**](https://docs.python.org/zh-cn/3/glossary.html#idle)？"
-    Python 的 IDE，“集成开发与学习环境”的英文缩写。是 Python 标准发行版附带的基本编程器和解释器环境。在其他 Python 发行版（如Anaconda）中还包含 [IPython](https://ipython.org/) ， [Spyder](https://www.spyder-ide.org/) 等更加先进的IDE。
+    Python 的 IDE，“集成开发与学习环境”的英文缩写。是 Python 标准发行版附带的基本编程器和解释器环境。在其他 Python 发行版（如 Anaconda）中还包含 [IPython](https://ipython.org/) ， [Spyder](https://www.spyder-ide.org/) 等更加先进的 IDE。
 
 ### macOS/Linux
 
-通常情况下，正如上文所说，大部分的 Linux 发行版中已经自带了 Python，如果您只打算学学语法并无特别需求，一般情况下不用再另外安装。通常而言，运行 `python` 进入的是 Python 2 ，而运行 `python3` 进入的是 Python 3。
+通常情况下，正如上文所说，大部分的 Linux 发行版中已经自带了 Python，如果您只打算学学语法并无特别需求，一般情况下不用再另外安装。通常而言，运行 `python` 进入的是 Python 2，而运行 `python3` 进入的是 Python 3。
 
 而由于种种依赖问题（如 CentOS 的 yum )，自行编译安装后通常还要处理种种问题，这已经超出了本文的讨论范畴。
 
@@ -61,8 +61,7 @@ sudo apt install python3
 更多详情您可以直接在搜索引擎上使用关键字 `系统名称(标志版本) 安装 Python 2/3` 来找到对应教程。
 
 ???+ note "运行 `python` 还是 `python3` ？"
-    根据 [Python 3 官方文档](https://docs.python.org/zh-cn/3/tutorial/interpreter.html) 的说法，在 Unix 系统中， `Python 3.X` 解释器 **默认安装** （指使用软件包管理器安装）后的执行文件并不叫作 `python` ，这样才不会与同时安装的 `Python 2.X` 冲突。同样的，默认安装的 pip 软件也是类似的情况， Python 3 包管理器的文件名为 `pip3`
-    您可以根据自己的使用习惯自建软链或者 shell 别名，但还请注意不要与自带的冲突。
+    根据 [Python 3 官方文档](https://docs.python.org/zh-cn/3/tutorial/interpreter.html) 的说法，在 Unix 系统中， `Python 3.X` 解释器 **默认安装** （指使用软件包管理器安装）后的执行文件并不叫作 `python` ，这样才不会与同时安装的 `Python 2.X` 冲突。同样的，默认安装的 pip 软件也是类似的情况，Python 3 包管理器的文件名为 `pip3` 您可以根据自己的使用习惯自建软链或者 shell 别名，但还请注意不要与自带的冲突。
 
 ### 关于镜像和 pip
 
@@ -71,7 +70,7 @@ sudo apt install python3
 如果您还有使用 pip 安装其他模块的需求，请参照 [TUNA 的镜像更换帮助](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 。
 
 ???+ note "[**pip**](https://pypi.org/project/pip/) 是什么？"
-    Python 的默认包管理器，用来安装第三方 Python 库。它的功能很强大，能够处理版本依赖关系，还能通过 wheel 文件支持二进制安装。pip 的库现在托管在 [PyPI](https://pypi.org) （即 “Python 包索引”） 平台上，用户也可以指定第三方的包托管平台。
+    Python 的默认包管理器，用来安装第三方 Python 库。它的功能很强大，能够处理版本依赖关系，还能通过 wheel 文件支持二进制安装。pip 的库现在托管在 [PyPI](https://pypi.org) （即“Python 包索引”）平台上，用户也可以指定第三方的包托管平台。
 
 关于 PyPI 的镜像，可以使用如下大镜像站的资源：
 
@@ -82,7 +81,7 @@ sudo apt install python3
 
 ## 基本语法
 
-Python 以其简洁易懂的语法而出名。它基本的语法结构可以非常容易地在网上找到，例如[菜鸟教程](http://www.runoob.com/python/python-basic-syntax.html)就有不错的介绍。这里仅介绍一些对 OIer 比较实用的语言特性。
+Python 以其简洁易懂的语法而出名。它基本的语法结构可以非常容易地在网上找到，例如 [菜鸟教程](http://www.runoob.com/python/python-basic-syntax.html) 就有不错的介绍。这里仅介绍一些对 OIer 比较实用的语言特性。
 
 ### 关于注释
 
@@ -128,7 +127,7 @@ Python 以其简洁易懂的语法而出名。它基本的语法结构可以非�
 
 整数（比如 `5` 、 `8` 、 `16` ）有 `int` 类型，有小数部分的（如 `2.33` 、 `6.0` ）则有 `float` 类型。随着更深入的学习你可能会接触到更多的类型，但是在速成阶段这些已经足够使用。
 
-在上面的实践中你也看到了，除法运算（ `/` ）永远返回浮点类型（在Python 2中返回整数）。如果你想要整数或向下取整的结果的话，可以使用整数除法（ `//` )。同样的，你也可以像 C++ 中一样，使用模（ `%` ）来计算余数。
+在上面的实践中你也看到了，除法运算（ `/` ）永远返回浮点类型（在 Python 2 中返回整数）。如果你想要整数或向下取整的结果的话，可以使用整数除法（ `//` )。同样的，你也可以像 C++ 中一样，使用模（ `%` ）来计算余数。
 
 ```python3
 >>> 5 / 3 # 正常的运算会输出浮点数
@@ -143,7 +142,7 @@ Python 以其简洁易懂的语法而出名。它基本的语法结构可以非�
 2
 ```
 
-特别的，Python 封装了乘方（ `**` ）的算法，这也表明 Python 附有 **大整数支持** 。值得一提的是， Python 还通过内置的 `pow(a, b, mod)` 提供了[快速幂](../math/quick-pow.md)的高效实现。
+特别的，Python 封装了乘方（ `**` ）的算法，这也表明 Python 附有 **大整数支持** 。值得一提的是，Python 还通过内置的 `pow(a, b, mod)` 提供了 [快速幂](../math/quick-pow.md) 的高效实现。
 
 ```python3
 >>> 5 ** 2
@@ -160,9 +159,10 @@ Python 以其简洁易懂的语法而出名。它基本的语法结构可以非�
 
 ### 输入输出
 
-Python 中的输入输出主要通过内置函数 `raw_input` ( Python 2 ) / `input` ( Python 3 ) 和 `print` 完成，这一部分内容可以参考 [Python 的官方文档](https://docs.python.org/3/tutorial/inputoutput.html)。`input`函数用来从标准输入流中读取一行，`print`则是向标准输出流中输出一行。在 Python 3 中对 `print` 增加了 `end` 参数指定结尾符，可以用来避免 `print` 自动换行。如果需要更灵活的输入输出操作，可以在引入 `sys` 包之后利用 `sys.stdin` 和 `sys.stdout` 操标准作输入输出流。
+Python 中的输入输出主要通过内置函数 `raw_input` (Python 2)/ `input` (Python 3) 和 `print` 完成，这一部分内容可以参考 [Python 的官方文档](https://docs.python.org/3/tutorial/inputoutput.html) 。 `input` 函数用来从标准输入流中读取一行， `print` 则是向标准输出流中输出一行。在 Python 3 中对 `print` 增加了 `end` 参数指定结尾符，可以用来避免 `print` 自动换行。如果需要更灵活的输入输出操作，可以在引入 `sys` 包之后利用 `sys.stdin` 和 `sys.stdout` 操标准作输入输出流。
 
-另外，如果要进行格式化的输出的话可以利用 Python 中字符串的语法。格式化有两种方法，一种是利用 `%` 操作符，另一种是利用 `format` 函数。前者语法与C兼容，后者语法比较复杂，可以参考[官方文档](https://docs.python.org/2/library/string.html#formatstrings)。
+另外，如果要进行格式化的输出的话可以利用 Python 中字符串的语法。格式化有两种方法，一种是利用 `%` 操作符，另一种是利用 `format` 函数。前者语法与 C 兼容，后者语法比较复杂，可以参考 [官方文档](https://docs.python.org/2/library/string.html#formatstrings) 。
+
 ```python3
 >>> print(12)
 12
@@ -180,9 +180,10 @@ binary of 5 is 101
 
 从 C++ 转过来的同学可能很迷惑怎么在 Python 中开数组，这里就介绍在 Python 开数组的语法。
 
-#### 使用 `list`
+#### 使用 `list` 
 
-主要用到的是 Python 中列表（ `list` ）的特性，值得注意的是 Python 中列表的实现方式类似于 C++ 的 `vector`。
+主要用到的是 Python 中列表（ `list` ）的特性，值得注意的是 Python 中列表的实现方式类似于 C++ 的 `vector` 。
+
 ```python3
 >>> [] # 空列表
 []
@@ -225,8 +226,8 @@ binary of 5 is 101
 #### 使用 Numpy
 
 ??? note "什么是 Numpy"
-    [Numpy](https://numpy.org/) 是著名的 Python 科学计算库，提供高性能的数值及矩阵运算。在测试算法原型时可以利用 Numpy 避免手写排序、求最值等算法。`Numpy` 的核心数据结构是 `ndarray`，即 n 维数组，它在内存中连续存储，是定长的。此外由于 Numpy 核心是用 C 编写的，因此 Numpy 运算能达到 C 的速度。
-    
+     [Numpy](https://numpy.org/) 是著名的 Python 科学计算库，提供高性能的数值及矩阵运算。在测试算法原型时可以利用 Numpy 避免手写排序、求最值等算法。 `Numpy` 的核心数据结构是 `ndarray` ，即 n 维数组，它在内存中连续存储，是定长的。此外由于 Numpy 核心是用 C 编写的，因此 Numpy 运算能达到 C 的速度。
+
 下面的代码将介绍如何利用 Numpy 建立多维数组并进行访问。
 
 ```python3
