@@ -14,15 +14,11 @@ author: MingqiHuang, Xeonacid, greyqz, i-Yirannn
 
 ####  `vector` 重写了比较运算符及赋值运算符
 
- `vector` 重载了六个比较运算符，以字典序实现，这使得我们可以方便的判断两个容器是否相等（复杂度与容器大小成线性关系）。例如可以利用 `vector<char>` 实现字符串比较（当然，还是用 `std::string` 会更快更方便）。另外 `vector` 也重载了赋值运算符，使得数组拷贝更加方便。
+`vector` 重载了六个比较运算符，以字典序实现，这使得我们可以方便的判断两个容器是否相等（复杂度与容器大小成线性关系）。例如可以利用 `vector<char>` 实现字符串比较（当然，还是用 `std::string` 会更快更方便）。另外 `vector` 也重载了赋值运算符，使得数组拷贝更加方便。
 
 ####  `vector` 便利的初始化
 
 由于 `vector` 重载了 `=` 运算符，所以我们可以方便的初始化。此外从 C++11 起 `vector` 还支持 [列表初始化](https://zh.cppreference.com/w/cpp/language/list_initialization) ，例如 `vector<int> data {1, 2, 3};` 。
-
-####  `vector` 支持自定义数据和空间配置器
-
- `vector` 是模板类型，可以通过模板参数来实现自定义类型的数组。例如如果要实现大数数组，那么可以先将大数封装为一个类，然后将其作为模板参数即可实现一个大数数组。而自定义空间配置器很少会被用到，通过自定义的空间配置器可以将自定义数据结构进行补位（Padding），以实现硬件加速。
 
 ###  `vector` 的使用方法
 
@@ -47,7 +43,7 @@ vector<int> v4(v2);
 // 6. 创建一个v4的拷贝vector v5，其内容是{v4[1], v4[2]}; 线性复杂度
 vector<int> v5(v4.begin() + 1, v4.begin() + 3);
 // 7. 移动v2到新创建的vector v6，不发生拷贝; 常数复杂度
-vector<int> v6(std::move(v2));  // 或者 v7 = std::move(v2);
+vector<int> v6(std::move(v2));  // 或者 v6 = std::move(v2);
 ```
 
 ??? note "测试代码"
@@ -123,16 +119,16 @@ vector 提供了如下几种 [迭代器](./iterator.md)
 
 #### 长度和容量
 
- `vector` 有以下几个与容器数量相关的函数。注意， `vector` 的长度指有效元素数量，而容量指其实际分配的内存长度，相关细节请参见后文的实现细节介绍。
+ `vector` 有以下几个与容器长度和容量相关的函数。注意， `vector` 的长度指有效元素数量，而容量指其实际分配的内存长度，相关细节请参见后文的实现细节介绍。
 
-与长度相关：
+**与长度相关**：
 
 -    `empty()` 返回一个 `bool` 值，即 `v.begin() == v.end()` ， `true` 为空， `false` 为非空。
 -    `size()` 返回容器长度（元素数量），即 `std::distance(v.begin(), v.end())` 。
 -    `resize()` 改变 `vector` 的长度，多退少补。补充元素可以由参数指定。
 -    `max_size()` 返回容器的最大可能长度。
 
-与容量相关：
+**与容量相关**：
 
 -    `reserve()` 使得 `vector` 预留一定的内存空间，避免不必要的内存拷贝。
 -    `capacity()` 返回容器的容量，即不发生拷贝的情况下容器的长度上限。
@@ -154,7 +150,7 @@ vector 提供了如下几种 [迭代器](./iterator.md)
 
 ###  `vector<bool>` 
 
-标准库特别提供了对 `bool` 的 `vector` 实例化，每个“ `bool` ”只占 1 bit，且支持动态增长。但是其 `operator[]` 的返回值的类型不是 `bool&` 而是 `vector<bool>::reference` 。因此，使用 `vector<bool>` 使需谨慎，可以考虑使用 `deque<bool>` 或 `vector<char>` 替代。而如果你需要节省空间，请直接使用 [ `bitset` ](./bitset.md) 。
+标准库特别提供了对 `bool` 的 `vector` 特化，每个“ `bool` ”只占 1 bit，且支持动态增长。但是其 `operator[]` 的返回值的类型不是 `bool&` 而是 `vector<bool>::reference` 。因此，使用 `vector<bool>` 使需谨慎，可以考虑使用 `deque<bool>` 或 `vector<char>` 替代。而如果你需要节省空间，请直接使用 [ `bitset` ](./bitset.md) 。
 
 ##  `array` 
 

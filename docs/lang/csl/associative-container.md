@@ -15,7 +15,7 @@
 map<Key, T> yourMap;
 ```
 
-其中， `Key` 是键的类型， `T` 是值的类型，下面是使用 `map` 的实例：
+其中， `Key` 是键的类型， `T` 是值的类型，下面是使用 `map` 的特化：
 
 ```cpp
 map<string, int> mp;

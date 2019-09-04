@@ -48,7 +48,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ### macOS/Linux
 
-通常情况下，正如上文所说，大部分的 Linux 发行版中已经自带了 Python，如果您只打算学学语法并无特别需求，一般情况下不用再另外安装。通常而言，运行 `python` 进入的是 Python 2，而运行 `python3` 进入的是 Python 3。
+通常情况下，正如上文所说，大部分的 Linux 发行版中已经自带了 Python，如果您只打算学学语法并无特别需求，一般情况下不用再另外安装。通常而言，在 Linux 终端中运行 `python` 进入的是 Python 2，而运行 `python3` 进入的是 Python 3。
 
 而由于种种依赖问题（如 CentOS 的 yum )，自行编译安装后通常还要处理种种问题，这已经超出了本文的讨论范畴。
 

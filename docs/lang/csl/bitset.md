@@ -26,7 +26,7 @@ author: i-Yirannn, Xeonacid, ouuan
 3.   $O(\frac n w)$ ，其中 $w=32$ （计算机的位数），这种记法较为普遍接受。
 4.   $O(\frac n {\log w})$ ，其中 $w$ 为计算机一个整型变量的大小。
 
-当然， `vector` 的一个实例 `vector<bool>` 的储存方式同 `bitset` 一样，区别在于其支持动态开空间， `bitset` 则和我们一般的静态数组一样，是在编译时就开好了的。
+当然， `vector` 的一个特化 `vector<bool>` 的储存方式同 `bitset` 一样，区别在于其支持动态开空间， `bitset` 则和我们一般的静态数组一样，是在编译时就开好了的。
 
 然而， `bitset` 有一些好用的库函数，不仅方便，而且有时可以避免使用 for 循环而没有实质的速度优化。因此，一般不使用 `vector<bool>` 。
 
