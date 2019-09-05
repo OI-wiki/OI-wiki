@@ -56,7 +56,7 @@ int main() {
 内部使用的随机数生成器默认为 `rand()` 。当然也可以传入自定义的随机数生成器。
 
 !!! warning
-    `random_shuffle` 已于 C++14 标准中被弃用，于 C++17 标准中被移除。
+     `random_shuffle` 已于 C++14 标准中被弃用，于 C++17 标准中被移除。
 
 ### shuffle
 

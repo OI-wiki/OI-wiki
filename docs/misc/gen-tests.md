@@ -15,30 +15,29 @@
 可以使用 STL 中的 `random_shuffle` 函数，也可以手写：
 
 ```cpp
-for (int i = 1; i <= n; ++i)
-{
-    p[i] = i;
-    std::swap(p[i], p[rand() % i + 1]);
+for (int i = 1; i <= n; ++i) {
+  p[i] = i;
+  std::swap(p[i], p[rand() % i + 1]);
 }
 ```
 
 ### 生成随机区间
 
-常见错误方法：在 $[1,n]$ 中随机生成左端点 $l$，再在 $[l, n]$ 中随机生成右端点 $r$。这样的话生成的区间会比较靠右。
+常见错误方法：在 $[1,n]$ 中随机生成左端点 $l$ ，再在 $[l, n]$ 中随机生成右端点 $r$ 。这样的话生成的区间会比较靠右。
 
 较为正确的方法（推荐做法）：在 $[1, n]$ 中随机生成两个数，取较小的作为左端点，较大的作为右端点。
 
-真正均匀随机的方法：在 $[1, n(n+1)]$ 中生成一个随机数 $x$，若 $x\le n-1$，再在 $[1, n]$ 中生成一个随机数 $y$，区间为 $[y,y]$；否则按“较为正确的方法”生成。
+真正均匀随机的方法：在 $[1, n(n+1)]$ 中生成一个随机数 $x$ ，若 $x\le n-1$ ，再在 $[1, n]$ 中生成一个随机数 $y$ ，区间为 $[y,y]$ ；否则按“较为正确的方法”生成。
 
 ### 生成随机树
 
-常用方法是为 $2\sim n$ 的每个节点 $i$ 从 $[1,i-1]$ 中随机选择一个父亲。这样做的话生成的树不是均匀随机的，期望高度为 $O(\log n)$。
+常用方法是为 $2\sim n$ 的每个节点 $i$ 从 $[1,i-1]$ 中随机选择一个父亲。这样做的话生成的树不是均匀随机的，期望高度为 $O(\log n)$ 。
 
 还有一种随机方法：从 $[i\cdot low, i\cdot high]$ 中随机选择 $i$ 的父亲。若 $low$ 和 $high$ 设置得当，可以造出强度较高的树。
 
-真正均匀随机的方法是利用 [Prufer 序列](../graph/prufer.md)，先生成一个随机 Prufer 序列，再通过序列生成树。这样做的话，树的期望高度为 $O(\sqrt n)$。
+真正均匀随机的方法是利用 [Prufer 序列](../graph/prufer.md) ，先生成一个随机 Prufer 序列，再通过序列生成树。这样做的话，树的期望高度为 $O(\sqrt n)$ 。
 
-除此之外，可以随机一个排列来给节点重编号 / 打乱边的顺序。
+除此之外，可以随机一个排列来给节点重编号/打乱边的顺序。
 
 ## 构造数据
 
@@ -60,33 +59,33 @@ for (int i = 1; i <= n; ++i)
 
 ### 需要分解因数的题目
 
-可重质因数个数尽量多：$2$ 的幂。
+可重质因数个数尽量多： $2$ 的幂。
 
 去重后质因数个数尽量多：最小的若干个质数相乘。
 
-约数尽量多：http://oeis.org/A002182 。
+约数尽量多： <http://oeis.org/A002182> 。
 
 ### 树上问题
 
 常用构造：
 
-- 链
-- 菊花
-- 完全二叉树
-- 将完全二叉树的每个节点替换为一条长为 $\sqrt n$ 的链
-- 菊花上挂一条链
-- 链上挂一些单点
-- 一棵高度为 $d$ 且 $d>1$ 的树的根节点有两个儿子，左子树是一条长为 $d-1$ 的链，右子树是一棵高度为 $d-1$ 的这样的树。
+-   链
+-   菊花
+-   完全二叉树
+-   将完全二叉树的每个节点替换为一条长为 $\sqrt n$ 的链
+-   菊花上挂一条链
+-   链上挂一些单点
+-   一棵高度为 $d$ 且 $d>1$ 的树的根节点有两个儿子，左子树是一条长为 $d-1$ 的链，右子树是一棵高度为 $d-1$ 的这样的树。
 
 如果不是在考场上，还可以使用 [Tree-Generator](https://github.com/ouuan/Tree-Generator) 来生成各种各样的树。
 
 ## 批量生成数据
 
-笔者推荐使用命令行参数 + bat / sh 的方法。
+笔者推荐使用命令行参数 + bat/sh 的方法。
 
 例如：
 
-`gen.cpp`
+ `gen.cpp` 
 
 ```cpp
 #include "testlib.h"
@@ -96,27 +95,32 @@ using namespace std;
 int n, m, k;
 vector<int> p;
 
-int main(int argc, char* argv[])
-{
-    registerGen(argc, argv, 1);
+int main(int argc, char* argv[]) {
+  registerGen(argc, argv, 1);
 
-    int i;
+  int i;
 
-    n = atoi(argv[1]);
-    m = atoi(argv[2]);
-    k = rnd.next(1, n);
+  n = atoi(argv[1]);
+  m = atoi(argv[2]);
+  k = rnd.next(1, n);
 
-    for (i = 1; i <= n; ++i) p.push_back(i);
-    shuffle(p.begin(), p.end()); // testlib.h 自带的 random_shuffle，使用 rnd.next() 进行 shuffle
+  for (i = 1; i <= n; ++i) p.push_back(i);
+  shuffle(p.begin(), p.end());  // testlib.h 自带的 random_shuffle，使用
+                                // rnd.next() 进行 shuffle
 
-    printf("%d %d %d\n", n, m, k);
-    for (i = 0; i < n; ++i) printf("%d%c", p[i], " \n"[i == n - 1]); // 把字符串当作数组用，中间空格，末尾换行，是一个造数据时常用的技巧
+  printf("%d %d %d\n", n, m, k);
+  for (i = 0; i < n; ++i)
+    printf(
+        "%d%c", p[i],
+        " \n"
+            [i ==
+             n - 1]);  // 把字符串当作数组用，中间空格，末尾换行，是一个造数据时常用的技巧
 
-    return 0;
+  return 0;
 }
 ```
 
-`gen_scripts.bat`
+ `gen_scripts.bat` 
 
 ```text
 gen 10 10 > 1.in
