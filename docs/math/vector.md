@@ -112,11 +112,11 @@ $$
 
 由平面向量的线性运算，我们可以推导其坐标运算，主要方法是将坐标全部化为用基底表示，然后利用运算律进行合并，之后表示出运算结果的坐标形式。
 
-若两向量 $\mathbf a=(m,n),\mathbf b=(p,q)$ ，则：
+若两向量 $\mathbf a=(m,n)$ , $\mathbf b=(p,q)$ ，则：
 
 $$
-\mathbf a+\mathbf b=(m+n,p+q)\\
-\mathbf a-\mathbf b=(m-n,p-q)\\
+\mathbf a+\mathbf b=(m+p,n+q)\\
+\mathbf a-\mathbf b=(m-p,n-q)\\
 k\mathbf a=(km,kn)
 $$
 
