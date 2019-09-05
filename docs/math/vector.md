@@ -115,8 +115,7 @@ $$
 若两向量 $\mathbf a=(m,n)$, $\mathbf b=(p,q)$ ，则：
 
 $$
-\mathbf a+\mathbf b=(m+
-p,n+q)\\
+\mathbf a+\mathbf b=(m+p,n+q)\\
 \mathbf a-\mathbf b=(m-p,n-q)\\
 k\mathbf a=(km,kn)
 $$
