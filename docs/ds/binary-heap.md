@@ -59,7 +59,7 @@ void up(x) {
     x /= 2;
   }
 }
-void down(x) {
+void down(int x) {
   while (x * 2 <= n) {
     t = x * 2;
     if (t + 1 <= n && h[t + 1] > h[t]) t++;
