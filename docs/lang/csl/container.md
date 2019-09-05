@@ -17,7 +17,7 @@
 -    **映射** ( `map` ) 由 {键，值} 对组成的集合，以某种比较键大小关系的谓词进行排列。
 -    **多重映射** ( `multimap` ) 由 {键，值} 对组成的多重集合，亦即允许键有相等情况的映射。
 
-???+note 什么是谓词（ [ **Predicate** ](https://en.wikipedia.org/wiki/Predicate_(mathematical_logic)) ）？
+???+note "什么是谓词 ( [ **Predicate** ](https://en.wikipedia.org/wiki/Predicate_(mathematical_logic)) )？"
     谓词就是返回值为真或者假的函数。STL 容器中经常会使用到谓词，用于模板参数。
 
 ### 无序（关联式）容器

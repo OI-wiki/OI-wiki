@@ -8,7 +8,7 @@
 ```cpp
 vector<int> data(10);
 
-for (int i = 0; i < 10; i++) cout << data[i] << endl;  // 使用下标访问元素
+for (int i = 0; i < data.size(); i++) cout << data[i] << endl;  // 使用下标访问元素
 
 for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
   cout << *iter << endl;  // 使用迭代器访问元素
