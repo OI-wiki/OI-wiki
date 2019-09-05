@@ -1,4 +1,3 @@
-
 ## C++ 标准
 
 首先需要介绍的是 C++ 本身的版本。由于 C++ 本身只是一门语言，而不同的编译器对 C++ 的实现方法各不一致，因此需要标准化来约束编译器的实现，使得 C++ 代码在不同的编译器下表现一致。C++ 自1985年诞生以来，一共由国际标准化组织（ ISO ）发布了 5 个正式的 C++ 标准，依次为 C++98、C++03、C++11 （亦称 C++0x）、C++14 （亦称 C++1y）、C++17 （亦称 C++1z），最新的标准 C++20 仍在制定中。此外还有一些补充标准，例如 C++ TR1。
@@ -7,9 +6,9 @@
 
 需要指出的是，不同的 OJ 平台对 C++ 版本均不相同，例如[最新的 ACM 比赛规则](https://icpc.baylor.edu/worldfinals/programming-environment)支持 C++14 标准，而 [NOI 现行规则](http://www.noi.cn/newsview.html?id=559&hash=E4E249) 中指定的 g++ 4.8 [默认支持标准](https://gcc.gnu.org/onlinedocs/gcc-4.8.5/gcc/Standards.html#Standards)是 C++98。因此在学习 C++ 时要注意比赛支持的标准，避免在赛场上时编译报错。
 
-## 标准模板库（ STL ）
+## 标准模板库（STL）
 
-STL 即标准模板库（Standard Template Library），是 C++ 标准库的一部分，里面包含了一些模板化的通用的数据结构和算法。由于其模板化的特点，它能够兼容自定义的数据类型，避免大量的造轮子工作。NOI 和 ACM 赛事都支持STL库的使用，因此合理利用 STL 可以避免编写无用算法，并且充分利用编译器对模板库优化提高效率。STL 库的详细介绍请参见对应的页面： [STL 容器](./container.md)和 [STL 算法](./algorithm.md)。
+STL 即标准模板库（Standard Template Library），是 C++ 标准库的一部分，里面包含了一些模板化的通用的数据结构和算法。由于其模板化的特点，它能够兼容自定义的数据类型，避免大量的造轮子工作。NOI 和 ACM 赛事都支持 STL 库的使用，因此合理利用 STL 可以避免编写无用算法，并且充分利用编译器对模板库优化提高效率。STL 库的详细介绍请参见对应的页面： [STL 容器](./container.md) 和 [STL 算法](./algorithm.md) 。
 
 ??? note "什么是造轮子"
     造轮子（ [Reinventing_the_wheel](https://en.wikipedia.org/wiki/Reinventing_the_wheel) ）指的是重复发明已有的算法，或者重复编写现成优化过的代码。造轮子通常耗时耗力，同时效果还没有别人好。但若是为了学习或者练习，造轮子则是必要的。
@@ -22,6 +21,6 @@ STL 即标准模板库（Standard Template Library），是 C++ 标准库的一�
 
 1.   [C++ reference](https://en.cppreference.com/) 
 2.   [C++ 参考手册](https://zh.cppreference.com/) 
-3.   [维基百科 - C++](https://zh.wikipedia.org/wiki/C%2B%2B)
-4.   [Boost 官方网站](https://www.boost.org/)
-5.   [Boost 教程网站](https://theboostcpplibraries.com/)
+3.   [维基百科 - C++](https://zh.wikipedia.org/wiki/C%2B%2B) 
+4.   [Boost 官方网站](https://www.boost.org/) 
+5.   [Boost 教程网站](https://theboostcpplibraries.com/) 

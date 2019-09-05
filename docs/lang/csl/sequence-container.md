@@ -126,14 +126,19 @@ vector 提供了如下几种 [迭代器](./iterator.md)
  **与长度相关** ：
 
 -    `empty()` 返回一个 `bool` 值，即 `v.begin() == v.end()` ， `true` 为空， `false` 为非空。
+
 -    `size()` 返回容器长度（元素数量），即 `std::distance(v.begin(), v.end())` 。
+
 -    `resize()` 改变 `vector` 的长度，多退少补。补充元素可以由参数指定。
+
 -    `max_size()` 返回容器的最大可能长度。
 
- **与容量相关** ：
+     **与容量相关** ：
 
 -    `reserve()` 使得 `vector` 预留一定的内存空间，避免不必要的内存拷贝。
+
 -    `capacity()` 返回容器的容量，即不发生拷贝的情况下容器的长度上限。
+
 -    `shrink_to_fit()` 使得 `vector` 的容量与长度一致，多退但不会少。
 
 ### 元素增删及修改
@@ -184,7 +189,7 @@ for (int i = 0; i != arr.size(); ++i) cout << arr[i] << " ";
 
 ###  `deque` 的使用方法
 
-以下介绍常用用法，详细内容 [请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/deque) 。`deque` 的迭代器函数与 `vector` 相同，因此不作详细介绍。
+以下介绍常用用法，详细内容 [请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/deque) 。 `deque` 的迭代器函数与 `vector` 相同，因此不作详细介绍。
 
 #### 构造函数
 
@@ -245,7 +250,7 @@ deque<int> v5(std::move(v2));
 
 ###  `list` 的使用方法
 
-`list` 的使用方法与 `deque` 基本相同，但是增删操作和访问的复杂度不同。详细内容 [请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/list) 。`list` 的迭代器、长度、元素增删及修改相关的函数与 `deque` 相同，因此不作详细介绍。
+ `list` 的使用方法与 `deque` 基本相同，但是增删操作和访问的复杂度不同。详细内容 [请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/list) 。 `list` 的迭代器、长度、元素增删及修改相关的函数与 `deque` 相同，因此不作详细介绍。
 
 #### 元素访问
 
@@ -256,7 +261,7 @@ deque<int> v5(std::move(v2));
 
 #### 操作
 
-`list` 类型还提供了一些针对其特性实现的 STL 算法函数。由于这些算法需要[随机访问迭代器](./iterator.md)，因此`list`提供了特别的实现以便于使用。这些算法有`splice()`、`remove()`、`sort()`、`unique()`、`merge()`等。
+ `list` 类型还提供了一些针对其特性实现的 STL 算法函数。由于这些算法需要 [随机访问迭代器](./iterator.md) ，因此 `list` 提供了特别的实现以便于使用。这些算法有 `splice()` 、 `remove()` 、 `sort()` 、 `unique()` 、 `merge()` 等。
 
 ##  `forward_list` （C++11）
 
@@ -264,4 +269,4 @@ deque<int> v5(std::move(v2));
 
 ###  `forward_list` 的使用方法
 
-`forward_list` 的使用方法与 `list` 几乎一致，但是迭代器只有单向的，因此其具体用法不作详细介绍。详细内容 [请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/forward_list)
+ `forward_list` 的使用方法与 `list` 几乎一致，但是迭代器只有单向的，因此其具体用法不作详细介绍。详细内容 [请参见 C++ 文档](https://zh.cppreference.com/w/cpp/container/forward_list) 
