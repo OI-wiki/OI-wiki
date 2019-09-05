@@ -38,7 +38,7 @@ author: Ir1d, aofall
 |  `<<`     | 逐位左移 |
 |  `>>`     | 逐位右移 |
 
-注意，位运算符的优先级低于普通的算数运算符。
+位操作的数学原理参考[位运算](https://oi-wiki.org/math/bit/)页面。需要注意的是，位运算符的优先级低于普通的算数运算符。
 
 ## 自增/自减 运算符
 
@@ -141,7 +141,7 @@ auto result = p.q;  // 获取p对象的q成员
 
 auto result = p -> q;  // 获取p指针指向对象的q成员
 
-auto result = &v  // 获取v的指针或引用
+auto result = &v;  // 获取v的指针或引用
 
-              auto result = *v  // 获取v指针指向的对象
+auto result = *v;  // 获取v指针指向的对象
 ```

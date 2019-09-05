@@ -81,6 +81,7 @@ nav:
     - C++ 进阶:
       - 类: lang/class.md
       - 引用: lang/reference.md
+      - 常值: lang/const.md
       - 新版 C++ 特性: lang/new.md
       - pb_ds:
         - pb_ds 简介: lang/pb-ds/index.md
