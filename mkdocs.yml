@@ -46,6 +46,7 @@ nav:
         - Validator: intro/testlib/validator.md
         - Interactor: intro/testlib/interactor.md
         - Checker: intro/testlib/checker.md
+      - Polygon: intro/polygon.md
       - OJ 工具: intro/oj-tool.md
       - LaTeX 入门: intro/latex.md
     - Docker 部署: intro/docker-deploy.md
@@ -360,8 +361,10 @@ nav:
     - 格雷码: misc/gray-code.md
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
+    - 生成测试数据: misc/gen-tests.md
   - 专题:
     - RMQ: topic/rmq.md
+    - 出题: topic/problemsetting.md
 
 # Theme
 theme:
