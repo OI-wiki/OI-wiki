@@ -53,7 +53,7 @@ auhor: HeRaNO, Xeonacid
 参考代码：
 
 ```cpp
-void up(x) {
+void up(int x) {
   while (x > 1 && h[x] > h[x / 2]) {
     swap(h[x], h[x / 2]);
     x /= 2;
