@@ -105,13 +105,13 @@ int main(int argc, char* argv[]) {
   k = rnd.next(1, n);
 
   for (i = 1; i <= n; ++i) p.push_back(i);
-  
+
   shuffle(p.begin(), p.end());
   // testlib.h 自带的 random_shuffle， 使用 rnd.next() 进行 shuffle
 
   printf("%d %d %d\n", n, m, k);
   for (i = 0; i < n; ++i) {
-    printf("%d%c", p[i], " \n" [i == n - 1]);
+    printf("%d%c", p[i], " \n"[i == n - 1]);
     // 把字符串当作数组用，中间空格，末尾换行，是一个造数据时常用的技巧
   }
 
