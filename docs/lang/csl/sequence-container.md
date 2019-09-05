@@ -44,7 +44,7 @@ vector<int> v3(3, 1, v2.get_allocator());
 vector<int> v4(v2);
 // 6. 创建一个v4的拷贝vector v5，其内容是{v4[1], v4[2]}; 线性复杂度
 vector<int> v5(v4.begin() + 1, v4.begin() + 3);
-// 7. 移动v2到新创建的vector v6，不发生拷贝; 常数复杂度; 需要 C++ 11
+// 7. 移动v2到新创建的vector v6，不发生拷贝; 常数复杂度; 需要 C++11
 vector<int> v6(std::move(v2));  // 或者 v6 = std::move(v2);
 ```
 
@@ -148,19 +148,19 @@ vector 提供了如下几种 [迭代器](./iterator.md)
 ###  `vector` 的实现细节
 
  `vector` 的底层其实仍然是定长数组，它能够实现动态扩容的原因是增加了避免数量溢出的操作。首先需要指明的是 `vector` 中元素的数量（长度） $n$ 与它已分配内存最多能包含元素的数量（容量） $N$ 是不一致的， `vector` 会分开存储这两个量。当向 `vector` 中添加元素时，如发现 $n>N$ ，那么容器会分配一个尺寸为 $2N$ 的数组，然后将旧数据从原本的位置拷贝到新的数组中，再将原来的内存释放。尽管这个操作的渐进复杂度是 $O(n)$ ，但是可以证明其均摊复杂度为 $O(1)$ 。而在末尾删除元素和访问元素则都仍然是 $O(1)$ 的开销。
-因此，只要对 `vector` 的尺寸估计得当并善用 `reserve()` 和 `shrink_to_fit()` 函数（C++ 11），就能使得 `vector` 的效率与定长数组不会有太大差距。
+因此，只要对 `vector` 的尺寸估计得当并善用 `resize()` 和 `reserve()` ，就能使得 `vector` 的效率与定长数组不会有太大差距。
 
 ###  `vector<bool>` 
 
 标准库特别提供了对 `bool` 的 `vector` 特化，每个“ `bool` ”只占 1 bit，且支持动态增长。但是其 `operator[]` 的返回值的类型不是 `bool&` 而是 `vector<bool>::reference` 。因此，使用 `vector<bool>` 使需谨慎，可以考虑使用 `deque<bool>` 或 `vector<char>` 替代。而如果你需要节省空间，请直接使用 [ `bitset` ](./bitset.md) 。
 
-##  `array` (C++ 11)
+##  `array` (C++11)
 
  `std::array` 是 STL 提供的 **内存连续的** 、 **固定长度** 的数组数据结构。其本质是对原生数组的直接封装。
 
 ### 为什么要用 `array` 
 
- `array` 实际上是 STL 对数组的封装。它相比 `vector` 牺牲了动态扩容的特性，但是换来了与原生数组几乎一致的性能（在开满优化的前提下）。因此如果能使用 C++ 11 特性的情况下，能够使用原生数组的地方几乎都可以直接把定长数组都换成 `array` ，而动态分配的数组可以替换为 `vector` 。
+ `array` 实际上是 STL 对数组的封装。它相比 `vector` 牺牲了动态扩容的特性，但是换来了与原生数组几乎一致的性能（在开满优化的前提下）。因此如果能使用 C++11 特性的情况下，能够使用原生数组的地方几乎都可以直接把定长数组都换成 `array` ，而动态分配的数组可以替换为 `vector` 。
 
 ###  `array` 的使用方法
 
@@ -201,7 +201,7 @@ deque<int> v2(10, 1);
 deque<int> v3(v1);
 // 5. 创建一个v2的拷贝deque v4，其内容是v4[0]至v4[2]; 线性复杂度
 deque<int> v4(v2.begin(), v2.begin() + 3);
-// 6. 移动v2到新创建的deque v5，不发生拷贝; 常数复杂度; 需要 C++ 11
+// 6. 移动v2到新创建的deque v5，不发生拷贝; 常数复杂度; 需要 C++11
 deque<int> v5(std::move(v2));
 ```
 
@@ -258,7 +258,7 @@ deque<int> v5(std::move(v2));
 
 `list` 类型还提供了一些针对其特性实现的 STL 算法函数。由于这些算法需要[随机访问迭代器](./iterator.md)，因此`list`提供了特别的实现以便于使用。这些算法有`splice()`、`remove()`、`sort()`、`unique()`、`merge()`等。
 
-##  `forward_list` （C++ 11）
+##  `forward_list` （C++11）
 
  `std::forward_list` 是 STL 提供的 [单向链表](../../ds/linked-list.md) 数据结构，相比于 `std::list` 减小了空间开销。
 
