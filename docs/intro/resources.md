@@ -81,12 +81,12 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
     -   《信息学奥赛一本通》- 董永建
     -   《信息学奥赛一本通 - 提高篇》- 黄新军，董永建 [建议选择性阅读。](https://www.zhihu.com/question/292926937) 
 -   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein 
-    黑书，大学经典教材。英文版原名 _Introduction to Algorithms_
+    黑书，大学经典教材。英文版原名_Introduction to Algorithms_
     -    [答案解析 (English)](https://github.com/walkccc/CLRS) 
 -   《具体数学》第二版 - Ronald L. Graham/Donald E. Knuth/Oren Patashnik 
-    英文版原名 _Concrete Mathematics_
+    英文版原名_Concrete Mathematics_
 -   《组合数学》第五版 - Richard A.Brualdi 
-    英文版原名 _Introductory Conbinatorics_
+    英文版原名_Introductory Conbinatorics_
 -    [Competitive Programmer's Handbook](https://cses.fi/book/index.html) 
 -   《挑战程序设计竞赛》全套 - 秋叶拓哉，岩田阳一，北川宜稔
     通俗易懂。
@@ -127,4 +127,4 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [GitHub.com:OI-wiki/libs](https://github.com/OI-wiki/libs) 
 -    [多校联合训练](http://acm.hdu.edu.cn) 关键词： `Multi-University Training Contest` 
 -    [Vjudge](https://vjudge.net/) 
--    [Project Euler](https://projecteuler.net/)
+-    [Project Euler](https://projecteuler.net/) 
