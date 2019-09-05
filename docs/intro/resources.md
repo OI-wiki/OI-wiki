@@ -31,7 +31,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [ZOJ](https://zoj.pintia.cn/home) 浙江大学在线测评系统。
 -    [NOJ](http://acm.njupt.edu.cn/) 南京邮电大学在线测评系统，自身拥有题目两千余，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
 -    [Lutece](https://acm.uestc.edu.cn/home) 电子科技大学在线测评系统，基于开源项目 [Lutece](https://github.com/lutece-awesome) 。
--    [清澄](www.tsinsen.com) 始于 2005 年，最近挂掉了。
+-    [清澄](http://www.tsinsen.com/) 始于 2005 年，最近挂掉了。
 
 ### 国外
 

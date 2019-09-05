@@ -141,7 +141,7 @@ auto result = p.q;  // 获取p对象的q成员
 
 auto result = p -> q;  // 获取p指针指向的对象的q成员，等价于 (*p).q
 
-auto result = &v;  // 获取v的指针或引用
+auto result = &v;  // 获取指向v的指针
 
 auto result = *v;  // 获取v指针指向的对象
 ```
