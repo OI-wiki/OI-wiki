@@ -540,13 +540,13 @@ Codeforces 是全球最著名的算法竞赛网站之一，题目质量较高，
 
 ## 参考资料
 
-1. [vfk《UOJ 精神之源流》][1]
+1.  [vfk《UOJ 精神之源流》][1]
 
-2. [王天懿《论偏题的危害》][2]
+2.  [王天懿《论偏题的危害》][2]
 
-3. [cf 出题人须知][3]（ [国内可访问的图片版](https://github.com/OI-wiki/libs/blob/master/topic/rules.jpg) ）
+3.  [cf 出题人须知][3]（ [国内可访问的图片版](https://github.com/OI-wiki/libs/blob/master/topic/rules.jpg) ）
 
-4. [CF 出题人的自我修养][4]（摘自 [vfk 的博客](https://blog.csdn.net/VFleaKing/article/details/90521383) ）
+4.  [CF 出题人的自我修养][4]（摘自 [vfk 的博客](https://blog.csdn.net/VFleaKing/article/details/90521383) ）
 
 本文由作者本人自 [ouuan 的出题规范](https://ouuan.github.io/ouuan-的出题规范/) 搬运而来并有所修改、补充。
 
