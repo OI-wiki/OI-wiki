@@ -61,7 +61,7 @@
 >
 > ——[vfk《UOJ 精神之源流》][1]
 
-例子： [【XR-1】柯南家族](https://www.luogu.org/problemnew/show/P5346) ，做法的前后两部分完全割裂，前半部分为 [【模板】树上后缀排序](https://www.luogu.org/problemnew/show/P5353) ，后半部分是经典树上问题。就算是随意输入树的点权，依然可以做第二部分，前后部分没有联系。
+例子： [「XR-1」柯南家族](https://www.luogu.org/problemnew/show/P5346) ，做法的前后两部分完全割裂，前半部分为 [「模板」树上后缀排序](https://www.luogu.org/problemnew/show/P5353) ，后半部分是经典树上问题。就算是随意输入树的点权，依然可以做第二部分，前后部分没有联系。
 
 > 一类 OI 题以数学为主，无论是题目描述还是做法都是数学题的特征，并且解法中不含算法相关的知识点，这类 OI 题目统称为纯数学题。
 >
@@ -75,7 +75,7 @@
 >
 > ——[王天懿《论偏题的危害》][2]
 
-经典例子： [【清华集训 2015】多边形下海](http://uoj.ac/problem/159) 
+经典例子： [「清华集训 2015」多边形下海](http://uoj.ac/problem/159) 
 
 不止是物理，OI 题目中不应过多涉及到其它学科的知识，如果涉及应当给予详细的解释，不应使其它学科的知识作为解题的重大障碍。
 
@@ -85,7 +85,7 @@
 >
 > ——[王天懿《论偏题的危害》][2]
 
-经典例子： [\[SDOI2010\]猪国杀](https://www.luogu.org/problemnew/show/P2482) ， [【集训队互测 2015】未来程序·改](http://uoj.ac/problem/98) 
+经典例子： [「SDOI2010」猪国杀](https://www.luogu.org/problemnew/show/P2482) ， [「集训队互测 2015」未来程序·改](http://uoj.ac/problem/98) 
 
 在一般的 OI 比赛中，思维难度应占主要部分。当然，如 THUWC/THUSC 的 Day 2+ 那样的工程题也有其存在的道理——毕竟体验营的目的除了考察选手的算法设计能力，还有和大学学习对接的工程代码以及文档学习能力。但在一般的 OI 比赛中，考察更多的应当还是算法设计与思维能力。
 
@@ -125,7 +125,7 @@
 
 你需要保证你的题面不能被错误理解而自圆其说，即使这种理解是反常识、没有人会这么去想的。例如：在 [CF1172D Nauuo and Portals](https://codeforces.com/problemset/problem/1172/D) 中，之所以要繁琐地定义 "walk into" 并与 "teleport" 区分，是为了防止这种理解：通过传送门可以到另一个传送门，而到了传送门会传送，因此会反复横跳。
 
-顺着读题目描述应当能看懂每一句话，并理解题目的任务与要求。至少在紧接着的下一段话中疑惑能够得到解释，而不是需要在若干段后才能得到解释，或者要看了输入输出格式才能明白题意，甚至需要根据样例来猜题意。例如：在 [「GuOJ Round #1」琪露诺的冰雪宴会](https://guoj.icu/problem/1171) 中，在输出格式才第一次出现了题目的目标“雾之湖最终能接收到的最大水量”，再加上“灵梦当然能很快算出来清理完全部小溪的总费用是多少”这句带有误解性质的话，更容易使人读错题意，这是不可取的，应当在题目描述中就对题目的目标进行说明。（在这个例子中还存在题目背景严重影响题意理解的问题。）
+顺着读题目描述应当能看懂每一句话，并理解题目的任务与要求。至少在紧接着的下一段话中疑惑能够得到解释，而不是需要在若干段后才能得到解释，或者要看了输入输出格式才能明白题意，甚至需要根据样例来猜题意。例如：在 [「GuOJ Round #1」琪露诺的冰雪宴会](https://oi-archive.wa-am.com/#/problem/guoj/1171) 中，在输出格式才第一次出现了题目的目标“雾之湖最终能接收到的最大水量”，再加上“灵梦当然能很快算出来清理完全部小溪的总费用是多少”这句带有误解性质的话，更容易使人读错题意，这是不可取的，应当在题目描述中就对题目的目标进行说明。（在这个例子中还存在题目背景严重影响题意理解的问题。）
 
 ### 输入输出格式
 
@@ -241,7 +241,7 @@
 
 “数据有梯度”最好用多档部分分替代。
 
-特殊性质部分分的设置要依具体题目而定。理想的特殊性质部分分应当是能够引导选手思考正解的。与较小数据范围部分分不同，在你不会针对某种特殊性质的做法时，最好不要给这种特殊性质一档分。例如： [\[CTS2019\]随机立方体](https://www.luogu.org/problemnew/show/P5400) 的 $k=1$ 这档部分分在讲题时就被很多人吐槽，称这档部分分妨碍了思考正解。
+特殊性质部分分的设置要依具体题目而定。理想的特殊性质部分分应当是能够引导选手思考正解的。与较小数据范围部分分不同，在你不会针对某种特殊性质的做法时，最好不要给这种特殊性质一档分。例如： [「CTS2019」随机立方体](https://www.luogu.org/problemnew/show/P5400) 的 $k=1$ 这档部分分在讲题时就被很多人吐槽，称这档部分分妨碍了思考正解。
 
 如果题目给分方式与默认方式不同（如：在一般的 OI 赛制比赛中绑 Subtask 测试），一定要在题面中说明。
 
@@ -346,8 +346,8 @@ int main(int argc, char* argv[]) {
   for (i = 1; i <= n; ++i) p.push_back(i);
 
   shuffle(p.begin(), p.end());
-  // testlib.h 自带的用于替代 random_shuffle 的函数， 使用 rnd.next() 进行
-  // shuffle
+  // testlib.h 自带的用于替代 random_shuffle 的函数
+  // 使用 rnd.next() 进行 shuffle
 
   printf("%d %d %d\n", n, m, k);
   for (i = 0; i < n; ++i) {
@@ -387,9 +387,9 @@ gen 100000 100000 > 5.in
 
 需要特别提醒的是，如果有整型溢出的可能，一定要卡掉会溢出的做法。在有部分分的赛制中，不应使不开 long long 的人得到和暴力一样甚至更低的分数。
 
-如果有 pretests，pretests 应尽量强，（同时尽量少）。换言之，你需要在 pt 中（用尽量少的数据组数）包含该题的所有已知叉点。
+如果有 pretests，pretests 应尽量强，（同时尽量少）。换言之，你需要在 pretests 中（用尽量少的数据组数）包含该题的所有已知叉点。
 
-如果你希望出现少量而非没有 fst，你可以问问 Sooke 对这件事的看法（Sooke 曾经坚称“fst 是 CF 的灵魂”，在我的强烈要求下，在 [CF1172A Nauuo and Cards](https://codeforces.com/problemset/problem/1172/A) 中，他构造了许多数据，在 pt 中卡掉了所有已知错解，最后，这题在比赛中 Div.2 的 fst 率为 $18.5\%$ ）。
+如果你希望出现少量而非没有 FST，你可以问问 Sooke 对这件事的看法（Sooke 曾经坚称“FST 是 CF 的灵魂”，在我的强烈要求下，在 [CF1172A Nauuo and Cards](https://codeforces.com/problemset/problem/1172/A) 中，他构造了许多数据，在 pretests 中卡掉了所有已知错解，最后，这题在比赛中 Div.2 的 FST 率为 $18.5\%$ ）。
 
 ## Special Judge
 
@@ -498,15 +498,15 @@ Codeforces 是全球最著名的算法竞赛网站之一，题目质量较高，
 
 正规的联系方式是在 proposal system 中以 proposal 的形式提交申请，管理开始审核之后以 comment 的形式在 proposal 的下方进行讨论。
 
-实际上，如果 proposal 长时间没有过审，你可以私信管理（其实 CF 上写了“Don't send private messages or emails to coordinators”，但 300iq 在 [评论](http://codeforces.com/blog/entry/64077#comment-478933) 中表示可以私信他）。
+实际上，如果 proposal 长时间没有过审，可以私信联系管理（其实 CF 上写了“Don't send private messages or emails to coordinators”，但 300iq 在 [评论](http://codeforces.com/blog/entry/64077#comment-478933) 中表示可以私信他）。
 
-在进入准备阶段后，一般会使用 telegram 进行讨论，如果由于一些原因无法使用 telegram，你可以尝试邀请管理使用 qq（300iq 是会使用 qq 的）。
+在进入准备阶段后，一般会使用 Telegram 进行讨论，如果由于一些原因无法使用 Telegram，可以尝试邀请管理使用 QQ（300iq 是会使用 QQ 的）。
 
 ### Comet OJ
 
 创办时间不是很久的国内算法竞赛平台，应该算是国内平台出题的最佳选择。
 
-出题申请： <http://comet--oj.mikecrm.com/nuusLW7> 
+出题申请： <https://info.cometoj.com/contests/Questionnaire_IssuerInfo/> 
 
 ### CodeChef
 
@@ -542,11 +542,11 @@ Codeforces 是全球最著名的算法竞赛网站之一，题目质量较高，
 
 [1]: http://vfleaking.blog.uoj.ac/blog/909 "vfk《UOJ 精神之源流》"
 
-[2]: https://ouuan.github.io/ouuan-的出题规范/7-王天懿-论偏题的危害.ppt "王天懿《论偏题的危害》"
+[2]: https://github.com/OI-wiki/libs/blob/master/topic/7-%E7%8E%8B%E5%A4%A9%E6%87%BF-%E8%AE%BA%E5%81%8F%E9%A2%98%E7%9A%84%E5%8D%B1%E5%AE%B3.ppt "王天懿《论偏题的危害》"
 
 [3]: https://docs.google.com/document/d/e/2PACX-1vRhazTXxSdj7JEIC7dp-nOWcUFiY8bXi9lLju-k6vVMKf4IiBmweJoOAMI-ZEZxatXF08I9wMOQpMqC/pub "cf 出题人须知"
 
-（ [国内可访问的图片版](https://ouuan.github.io/bad-round-与出题人的坚守/rules.jpg) ）
+（ [国内可访问的图片版](https://github.com/OI-wiki/libs/blob/master/topic/rules.jpg) ）
 
 [4]: https://www.luogu.org/paste/sxvu97yz "CF 出题人的自我修养"
 
