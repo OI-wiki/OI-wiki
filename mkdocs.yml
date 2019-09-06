@@ -361,7 +361,6 @@ nav:
     - 格雷码: misc/gray-code.md
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
-    - 生成测试数据: misc/gen-tests.md
   - 专题:
     - RMQ: topic/rmq.md
     - 出题: topic/problemsetting.md
