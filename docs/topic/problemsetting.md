@@ -85,7 +85,7 @@
 >
 > ——[王天懿《论偏题的危害》][2]
 
-经典例子： [\[SDOI2010\] 猪国杀](https://www.luogu.org/problemnew/show/P2482) ， [【集训队互测 2015】未来程序·改](http://uoj.ac/problem/98) 
+经典例子： [\[SDOI2010\]猪国杀](https://www.luogu.org/problemnew/show/P2482) ， [【集训队互测 2015】未来程序·改](http://uoj.ac/problem/98) 
 
 在一般的 OI 比赛中，思维难度应占主要部分。当然，如 THUWC/THUSC 的 Day 2+ 那样的工程题也有其存在的道理——毕竟体验营的目的除了考察选手的算法设计能力，还有和大学学习对接的工程代码以及文档学习能力。但在一般的 OI 比赛中，考察更多的应当还是算法设计与思维能力。
 
@@ -241,7 +241,7 @@
 
 “数据有梯度”最好用多档部分分替代。
 
-特殊性质部分分的设置要依具体题目而定。理想的特殊性质部分分应当是能够引导选手思考正解的。与较小数据范围部分分不同，在你不会针对某种特殊性质的做法时，最好不要给这种特殊性质一档分。例如： [\[CTS2019\] 随机立方体](https://www.luogu.org/problemnew/show/P5400) 的 $k=1$ 这档部分分在讲题时就被很多人吐槽，称这档部分分妨碍了思考正解。
+特殊性质部分分的设置要依具体题目而定。理想的特殊性质部分分应当是能够引导选手思考正解的。与较小数据范围部分分不同，在你不会针对某种特殊性质的做法时，最好不要给这种特殊性质一档分。例如： [\[CTS2019\]随机立方体](https://www.luogu.org/problemnew/show/P5400) 的 $k=1$ 这档部分分在讲题时就被很多人吐槽，称这档部分分妨碍了思考正解。
 
 如果题目给分方式与默认方式不同（如：在一般的 OI 赛制比赛中绑 Subtask 测试），一定要在题面中说明。
 
@@ -346,7 +346,8 @@ int main(int argc, char* argv[]) {
   for (i = 1; i <= n; ++i) p.push_back(i);
 
   shuffle(p.begin(), p.end());
-  // testlib.h 自带的用于替代 random_shuffle 的函数， 使用 rnd.next() 进行 shuffle
+  // testlib.h 自带的用于替代 random_shuffle 的函数， 使用 rnd.next() 进行
+  // shuffle
 
   printf("%d %d %d\n", n, m, k);
   for (i = 0; i < n; ++i) {
