@@ -46,8 +46,6 @@ low[u] = min(low[u], num[v]);
 
  [洛谷 P3388【模板】割点（割顶）](https://www.luogu.org/problemnew/show/P3388) 
 
-### Code
-
 ??? "例题代码"
     ```cpp
     /*
