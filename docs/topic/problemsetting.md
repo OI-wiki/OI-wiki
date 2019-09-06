@@ -346,7 +346,7 @@ int main(int argc, char* argv[]) {
   for (i = 1; i <= n; ++i) p.push_back(i);
 
   shuffle(p.begin(), p.end());
-  // testlib.h 自带的 random_shuffle， 使用 rnd.next() 进行 shuffle
+  // testlib.h 自带的用于替代 random_shuffle 的函数， 使用 rnd.next() 进行 shuffle
 
   printf("%d %d %d\n", n, m, k);
   for (i = 0; i < n; ++i) {
