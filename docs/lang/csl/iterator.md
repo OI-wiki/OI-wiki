@@ -23,8 +23,8 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 -   InputIterator：只要求支持拷贝、自增和解引访问
 -   OutputIterator：只要求支持拷贝、自增和解引赋值
 -   ForwardIterator：即同时满足 InputIterator 和 OutputIterator 的要求
--   Bidirectional：在 ForwardIterator 的基础上支持自减（即反向访问）
--   RandomAccess：在 Bidirectional 的基础上支持加减运算和比较运算（即随机访问）
+-   BidirectionalIterator：在 ForwardIterator 的基础上支持自减（即反向访问）
+-   RandomAccessIterator：在 BidirectionalIterator 的基础上支持加减运算和比较运算（即随机访问）
 
 不同的 STL 容器支持的迭代器类型不同，在使用时需要留意。
 
