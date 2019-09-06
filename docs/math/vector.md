@@ -193,7 +193,7 @@ $$
 
 #### 向量旋转
 
-设 $\mathbf a=(x,y)$ ，倾角为 $\theta$ ，长度为 $l=\sqrt{x^2+y^2}$ 。则 $x=l\cos \theta,y=l\sin\theta$ 。令其顺时针旋转 $\alpha$ 度角，得到向量 $\mathbf b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$ 。
+设 $\mathbf a=(x,y)$ ，倾角为 $\theta$ ，长度为 $l=\sqrt{x^2+y^2}$ 。则 $x=l\cos \theta,y=l\sin\theta$ 。令其逆时针旋转 $\alpha$ 度角，得到向量 $\mathbf b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$ 。
 
 ![](./images/misc1.png)
 
