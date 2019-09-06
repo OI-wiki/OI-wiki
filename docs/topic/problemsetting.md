@@ -95,11 +95,11 @@
 
 网上有很多 LaTeX 的教程，如：
 
--    [LaTeX 入门](/intro/latex/#_22) 
+-    [LaTeX 入门](../intro/latex.md#_22) 
 -    [LaTeX 数学公式大全](https://www.luogu.org/blog/IowaBattleship/latex-gong-shi-tai-quan) 
 -    [LaTeX 各种命令，符号](https://blog.csdn.net/garfielder007/article/details/51646604) 
 
-使用时请注意 [LaTeX 公式的格式要求](/intro/htc/#latex) 。
+使用时请注意 [LaTeX 公式的格式要求](../intro/htc.md#latex) 。
 
 ### 题目背景
 
