@@ -161,7 +161,7 @@ Python 以其简洁易懂的语法而出名。它基本的语法结构可以非�
 
 Python 中的输入输出主要通过内置函数 `raw_input` (Python 2)/ `input` (Python 3) 和 `print` 完成，这一部分内容可以参考 [Python 的官方文档](https://docs.python.org/3/tutorial/inputoutput.html) 。 `input` 函数用来从标准输入流中读取一行， `print` 则是向标准输出流中输出一行。在 Python 3 中对 `print` 增加了 `end` 参数指定结尾符，可以用来避免 `print` 自动换行。如果需要更灵活的输入输出操作，可以在引入 `sys` 包之后利用 `sys.stdin` 和 `sys.stdout` 操标准作输入输出流。
 
-另外，如果要进行格式化的输出的话可以利用 Python 中字符串的语法。格式化有两种方法，一种是利用 `%` 操作符，另一种是利用 `format` 函数。前者语法与 C 兼容，后者语法比较复杂，可以参考 [官方文档](https://docs.python.org/2/library/string.html#formatstrings) 。
+另外，如果要进行格式化的输出的话可以利用 Python 中字符串的语法。格式化有两种方法，一种是利用 `%` 操作符，另一种是利用 `format` 函数。前者语法与 C 兼容，后者语法比较复杂，可以参考 [官方文档](https://docs.python.org/3/library/string.html#formatstrings) 。
 
 ```python3
 >>> print(12)
@@ -276,20 +276,20 @@ array([[0, 0, 1],
 
 | 包名              | 用途               |
 | --------------- | ---------------- |
-|  `array`        | 定长数组             |
-|  `argparse`     | 命令行参数处理          |
-|  `bisect`       | 二分查找             |
-|  `collections`  | 提供有序字典、双端队列等数据结构 |
-|  `fractions`    | 有理数              |
-|  `heapq`        | 基于堆的优先级队列        |
-|  `io`           | 文件流、内存流          |
-|  `itertools`    | 迭代器相关            |
-|  `math`         | 常用数学函数           |
-|  `os.path`      | 系统路径相关           |
-|  `random`       | 随机数              |
-|  `re`           | 正则表达式            |
-|  `struct`       | 转换结构体和二进制数据      |
-|  `sys`          | 系统信息             |
+|  [`array`](https://docs.python.org/3/library/array.html)        | 定长数组             |
+|  [`argparse`](https://docs.python.org/3/library/argparse.html)     | 命令行参数处理          |
+|  [`bisect`](https://docs.python.org/3/library/bisect.html)       | 二分查找             |
+|  [`collections`](https://docs.python.org/3/library/collections.html)  | 提供有序字典、双端队列等数据结构 |
+|  [`fractions`](https://docs.python.org/3/library/fractions.html)    | 有理数              |
+|  [`heapq`](https://docs.python.org/3/library/heapq.html)        | 基于堆的优先级队列        |
+|  [`io`](https://docs.python.org/3/library/io.html)           | 文件流、内存流          |
+|  [`itertools`](https://docs.python.org/3/library/itertools.html)    | 迭代器相关            |
+|  [`math`](https://docs.python.org/3/library/math.html)         | 常用数学函数           |
+|  [`os.path`](https://docs.python.org/3/library/os.html)      | 系统路径相关           |
+|  [`random`](https://docs.python.org/3/library/random.html)       | 随机数              |
+|  [`re`](https://docs.python.org/3/library/re.html)           | 正则表达式            |
+|  [`struct`](https://docs.python.org/3/library/struct.html)       | 转换结构体和二进制数据      |
+|  [`sys`](https://docs.python.org/3/library/sys.html)          | 系统信息             |
 
 ## 对比 C++ 与 Python
 

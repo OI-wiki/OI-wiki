@@ -10,7 +10,25 @@ C++ 中你仍然可以使用 C 风格的指针，但是对于变量传递而言�
 
 ## struct
 
-尽管在 C 和 C++ 中都有 struct 的概念，但是他们对应的东西是不能混用的！C 中的 struct 用来描述一种固定的内存组织结构，而 C++ 中的 struct 就是一种类， **唯一的区别就是它的成员默认是 public 的** ，而一般类的默认成员是 private 的。这一点在写 C/C++ 混合代码时尤其致命。
+尽管在 C 和 C++ 中都有 struct 的概念，但是他们对应的东西是不能混用的！C 中的 struct 用来描述一种固定的内存组织结构，而 C++ 中的 struct 就是一种类， **它与类唯一的区别就是它的成员和继承行为默认是 public 的** ，而一般类的默认成员是 private 的。这一点在写 C/C++ 混合代码时尤其致命。
+
+另外，声明 struct 时 C++ 也不需要像 C 那么繁琐，C 版本：
+
+```c
+typedef struct Node_t{
+    struct Node_t *next;
+    int key;
+} Node;
+```
+C++ 版本
+
+```cpp
+struct Node
+{
+    Node *next;
+    int key;
+};
+```
 
 ## const
 
