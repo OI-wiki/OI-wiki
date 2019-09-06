@@ -144,20 +144,16 @@ $$
 
 我们发现，这种运算得到的结果是一个实数，为标量，并不属于向量的线性运算。
 
-!!! note "判定两向量垂直"
-    $\vec a \perp \vec b$  $\Leftrightarrow$  $\vec a\cdot \vec b=0$ 
+!!! note "判定两向量垂直" $\vec a \perp \vec b$  $\Leftrightarrow$  $\vec a\cdot \vec b=0$ 
 
-!!! note "判定两向量共线"
-    $\vec a = \lambda \vec b$  $\Leftrightarrow$  $\vec a\cdot \vec b=|\vec a||\vec b|$ 
+!!! note "判定两向量共线" $\vec a = \lambda \vec b$  $\Leftrightarrow$  $\vec a\cdot \vec b=|\vec a||\vec b|$ 
 
 !!! note "数量积的坐标运算"
     若 $\vec a=(m,n),\vec b=(p,q),$ 则 $\vec a\cdot \vec b=mp+nq$ 
 
-!!! note "向量的模"
-    $|\vec a|=\sqrt {m^2+n^2}$ 
+!!! note "向量的模" $|\vec a|=\sqrt {m^2+n^2}$ 
 
-!!! note "两向量的夹角"
-    $\cos \theta=\cfrac{\vec a\cdot\vec b}{|\vec a||\vec b|}$ 
+!!! note "两向量的夹角" $\cos \theta=\cfrac{\vec a\cdot\vec b}{|\vec a||\vec b|}$ 
 
 ### 扩展
 
@@ -186,7 +182,7 @@ $$
 
 #### 向量旋转
 
-设 $\vec a=(x,y)$ ，倾角为 $\theta$ ，长度为 $l=\sqrt{x^2+y^2}$。则 $x=l\cos \theta,y=l\sin\theta$。令其顺时针旋转 $\alpha$ 度角，得到向量 $\vec b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$。
+设 $\vec a=(x,y)$ ，倾角为 $\theta$ ，长度为 $l=\sqrt{x^2+y^2}$ 。则 $x=l\cos \theta,y=l\sin\theta$ 。令其顺时针旋转 $\alpha$ 度角，得到向量 $\vec b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$ 。
 
 ![](./images/misc1.png)
 

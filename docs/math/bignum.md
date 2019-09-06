@@ -560,9 +560,9 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
 
 ## Karatsuba 乘法
 
-记高精度数字的位数为 $n$，那么高精度—高精度竖式乘法需要花费 $O(n^2)$ 的时间。本节介绍一个时间复杂度更为优秀的算法，由前苏联（俄罗斯）数学家 Anatoly Karatsuba 提出，是一种分治算法。
+记高精度数字的位数为 $n$ ，那么高精度—高精度竖式乘法需要花费 $O(n^2)$ 的时间。本节介绍一个时间复杂度更为优秀的算法，由前苏联（俄罗斯）数学家 Anatoly Karatsuba 提出，是一种分治算法。
 
-考虑两个十进制大整数 $x$ 和 $y$，均包含 $n$ 个数码（可以有前导零）。任取 $0 < m < n$，记
+考虑两个十进制大整数 $x$ 和 $y$ ，均包含 $n$ 个数码（可以有前导零）。任取 $0 < m < n$ ，记
 
 $$
 \begin{aligned}
@@ -572,7 +572,7 @@ x \cdot y &= z_2 \cdot 10^{2m} + z_1 \cdot 10^m + z_0,
 \end{aligned}
 $$
 
-其中 $x_0, y_0, z_0, z_1 < 10^m$。可得
+其中 $x_0, y_0, z_0, z_1 < 10^m$ 。可得
 
 $$
 \begin{aligned}
@@ -588,13 +588,13 @@ $$
 z_1 = (x_1 + x_0) \cdot (y_1 + y_0) - z_2 - z_0,
 $$
 
-于是要计算 $z_1$，只需计算 $(x_1 + x_0) \cdot (y_1 + y_0)$，再与 $z_0$、$z_2$ 相减即可。
+于是要计算 $z_1$ ，只需计算 $(x_1 + x_0) \cdot (y_1 + y_0)$ ，再与 $z_0$ 、 $z_2$ 相减即可。
 
-上式实际上是 Karatsuba 算法的核心，它将长度为 $n$ 的乘法问题转化为了 $3$ 个长度更小的子问题。若令 $m = \left\lceil \frac n 2 \right\rceil$，记 Karatsuba 算法计算两个 $n$ 位整数乘法的耗时为 $T(n)$，则有 $T(n) = 3 \cdot T \left(\left\lceil \frac n 2 \right\rceil\right) + O(n)$，由主定理可得 $T(n) = \Theta(n^{\log_2 3}) \approx \Theta(n^{1.585})$。
+上式实际上是 Karatsuba 算法的核心，它将长度为 $n$ 的乘法问题转化为了 $3$ 个长度更小的子问题。若令 $m = \left\lceil \frac n 2 \right\rceil$ ，记 Karatsuba 算法计算两个 $n$ 位整数乘法的耗时为 $T(n)$ ，则有 $T(n) = 3 \cdot T \left(\left\lceil \frac n 2 \right\rceil\right) + O(n)$ ，由主定理可得 $T(n) = \Theta(n^{\log_2 3}) \approx \Theta(n^{1.585})$ 。
 
 整个过程可以递归实现。为清晰起见，下面的代码通过 Karatsuba 算法实现了多项式乘法，最后再处理所有的进位问题。
 
-??? " karatsuba_mulc.cpp "
+??? "karatsuba_mulc.cpp"
 
     ```cpp
     int *karatsuba_polymul(int n, int *a, int *b)
@@ -652,11 +652,11 @@ $$
 
     见[内存池](/intro/common-tricks/#_4)。
 
-但是这样的实现存在一个问题：在 $b$ 进制下，多项式的每一个系数都有可能达到 $n \cdot b^2$ 量级，在压位高精度实现（即 $b > 10$，下文介绍）中可能造成整数溢出；而若在多项式乘法的过程中处理进位问题，则 $x_1 + x_0$ 与 $y_1 + y_0$ 的结果可能达到 $2 \cdot b^m$，增加一个位（如果采用 $x_1 - x_0$ 的计算方式，则不得不特殊处理负数的情况）。因此，需要依照实际的应用场景来决定采用何种实现方式。
+但是这样的实现存在一个问题：在 $b$ 进制下，多项式的每一个系数都有可能达到 $n \cdot b^2$ 量级，在压位高精度实现（即 $b > 10$ ，下文介绍）中可能造成整数溢出；而若在多项式乘法的过程中处理进位问题，则 $x_1 + x_0$ 与 $y_1 + y_0$ 的结果可能达到 $2 \cdot b^m$ ，增加一个位（如果采用 $x_1 - x_0$ 的计算方式，则不得不特殊处理负数的情况）。因此，需要依照实际的应用场景来决定采用何种实现方式。
 
 ### Reference
 
-https://en.wikipedia.org/wiki/Karatsuba_algorithm
+<https://en.wikipedia.org/wiki/Karatsuba_algorithm>
 
 ## 封装类
 

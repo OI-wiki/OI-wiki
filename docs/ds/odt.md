@@ -1,7 +1,7 @@
 ## 名称简介
 
 老司机树，ODT(Old Driver Tree)，又名珂朵莉树（Chtholly Tree)。
-起源自 [CF896C](https://codeforces.com/problemset/problem/896/C)。
+起源自[CF896C](https://codeforces.com/problemset/problem/896/C)。
 
 ## 前置知识
 
@@ -36,7 +36,7 @@ struct Node_t {
 其中， `int v` 是你自己指定的附加数据。
 
 然后，我们定义一个 `set<Node_t> odt;` 来维护这些结点。
-为简化代码，可以 `typedef set<Node_t>::iterator iter`，当然在题目支持 C++11时也可以使用 `auto`。
+为简化代码，可以 `typedef set<Node_t>::iterator iter` ，当然在题目支持 C++11 时也可以使用 `auto` 。
 
 ### split
 
@@ -45,8 +45,7 @@ struct Node_t {
 
 ```cpp
 auto split(int x) {
-  if (x > n)
-    return odt.end();
+  if (x > n) return odt.end();
   auto it = --odt.upper_bound((Node_t){x, 0, 0});
   if (it->l == x) return it;
   int l = it->l, r = it->r, v = it->v;

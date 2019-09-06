@@ -4,7 +4,7 @@
 
 ## 记忆化搜索是啥
 
-好，就以[「Luogu P1048」采药](https://www.luogu.org/problemnew/show/P1048)为例，我不会动态规划，只会搜索，我就会直接写一个粗暴的 [DFS](/search/dfs):
+好，就以[「Luogu P1048」采药](https://www.luogu.org/problemnew/show/P1048)为例，我不会动态规划，只会搜索，我就会直接写一个粗暴的[DFS](/search/dfs):
 
 -   注：为了方便食用，本文中所有代码省略头文件
 
@@ -197,7 +197,7 @@ int main() {
 
 ### 方法 II
 
-1.  写出这道题的暴搜程序（最好是 [dfs](/search/dfs))
+1.  写出这道题的暴搜程序（最好是[dfs](/search/dfs))
 2.  将这个 dfs 改成 "无需外部变量" 的 dfs
 3.  添加记忆化数组
 
