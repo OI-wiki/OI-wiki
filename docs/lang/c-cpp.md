@@ -20,13 +20,13 @@ typedef struct Node_t{
     int key;
 } Node;
 ```
+
 C++ 版本
 
 ```cpp
-struct Node
-{
-    Node *next;
-    int key;
+struct Node {
+  Node *next;
+  int key;
 };
 ```
 

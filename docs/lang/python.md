@@ -274,22 +274,22 @@ array([[0, 0, 1],
 
 在这里介绍一些写算法可能用得到的内置库，具体用法可以自行搜索或者阅读 [官方文档](https://docs.python.org/3/library/index.html) 。
 
-| 包名              | 用途               |
-| --------------- | ---------------- |
-|  [`array`](https://docs.python.org/3/library/array.html)        | 定长数组             |
-|  [`argparse`](https://docs.python.org/3/library/argparse.html)     | 命令行参数处理          |
-|  [`bisect`](https://docs.python.org/3/library/bisect.html)       | 二分查找             |
-|  [`collections`](https://docs.python.org/3/library/collections.html)  | 提供有序字典、双端队列等数据结构 |
-|  [`fractions`](https://docs.python.org/3/library/fractions.html)    | 有理数              |
-|  [`heapq`](https://docs.python.org/3/library/heapq.html)        | 基于堆的优先级队列        |
-|  [`io`](https://docs.python.org/3/library/io.html)           | 文件流、内存流          |
-|  [`itertools`](https://docs.python.org/3/library/itertools.html)    | 迭代器相关            |
-|  [`math`](https://docs.python.org/3/library/math.html)         | 常用数学函数           |
-|  [`os.path`](https://docs.python.org/3/library/os.html)      | 系统路径相关           |
-|  [`random`](https://docs.python.org/3/library/random.html)       | 随机数              |
-|  [`re`](https://docs.python.org/3/library/re.html)           | 正则表达式            |
-|  [`struct`](https://docs.python.org/3/library/struct.html)       | 转换结构体和二进制数据      |
-|  [`sys`](https://docs.python.org/3/library/sys.html)          | 系统信息             |
+| 包名                                                                      | 用途               |
+| ----------------------------------------------------------------------- | ---------------- |
+|  [ `array` ](https://docs.python.org/3/library/array.html)              | 定长数组             |
+|  [ `argparse` ](https://docs.python.org/3/library/argparse.html)        | 命令行参数处理          |
+|  [ `bisect` ](https://docs.python.org/3/library/bisect.html)            | 二分查找             |
+|  [ `collections` ](https://docs.python.org/3/library/collections.html)  | 提供有序字典、双端队列等数据结构 |
+|  [ `fractions` ](https://docs.python.org/3/library/fractions.html)      | 有理数              |
+|  [ `heapq` ](https://docs.python.org/3/library/heapq.html)              | 基于堆的优先级队列        |
+|  [ `io` ](https://docs.python.org/3/library/io.html)                    | 文件流、内存流          |
+|  [ `itertools` ](https://docs.python.org/3/library/itertools.html)      | 迭代器相关            |
+|  [ `math` ](https://docs.python.org/3/library/math.html)                | 常用数学函数           |
+|  [ `os.path` ](https://docs.python.org/3/library/os.html)               | 系统路径相关           |
+|  [ `random` ](https://docs.python.org/3/library/random.html)            | 随机数              |
+|  [ `re` ](https://docs.python.org/3/library/re.html)                    | 正则表达式            |
+|  [ `struct` ](https://docs.python.org/3/library/struct.html)            | 转换结构体和二进制数据      |
+|  [ `sys` ](https://docs.python.org/3/library/sys.html)                  | 系统信息             |
 
 ## 对比 C++ 与 Python
 
