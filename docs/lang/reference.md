@@ -90,7 +90,7 @@ int n8 = n7++;    // n8 = 1
 ### 移动语义和 `std::move` (C++11)
 
 在 C++11 之后，C++ 利用右值引用新增了移动语义的支持，用来避免对象在堆空间的复制（但是无法避免栈空间复制），STL 容器对该特性有完整支持。具体特性有 [移动构造函数](https://zh.cppreference.com/w/cpp/language/move_constructor) 、 [移动赋值](https://zh.cppreference.com/w/cpp/language/move_assignment) 和具有移动能力的函数（参数里含有右值引用）。
-另外， `std::move` 函数可以用来产生右值引用，需要引用 `<utility>` 头文件。
+另外， `std::move` 函数可以用来产生右值引用，需要包含 `<utility>` 头文件。
 
 ```cpp
 // 移动构造函数
