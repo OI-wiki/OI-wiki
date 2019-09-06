@@ -42,18 +42,18 @@ const int &r4 = b;
 另外需要区分开的是“常类型指针”和“常指针变量”（即常指针、指针常量），例如下列声明
 
 ```cpp
-int* const p1; // 类型为int的常指针，需要初始化
-const int* p2; // 类型为const int的指针
-const int* const p3; // 类型为const int的常指针
+int* const p1;        // 类型为int的常指针，需要初始化
+const int* p2;        // 类型为const int的指针
+const int* const p3;  // 类型为const int的常指针
 
-int (*f1)(int); // 普通的函数指针
+int (*f1)(int);  // 普通的函数指针
 // int (const *f2)(int); // 指向常函数的指针，不可行
-int (*const f3)(int) = some_func; // 指向函数的常指针，需要初始化
-int const *(*f4)(int); // 指向返回常指针的函数指针
-int const *(*const f5)(int) = some_func; // 指向返回常指针的函数的常指针
+int (*const f3)(int) = some_func;  // 指向函数的常指针，需要初始化
+int const* (*f4)(int);             // 指向返回常指针的函数指针
+int const* (*const f5)(int) = some_func;  // 指向返回常指针的函数的常指针
 ```
 
-我们把常类型指针又称**底层指针**、常指针变量又称**顶层指针**。另外，C++中还提供了 `const_cast` 运算符来强行去掉或者增加引用或指针类型的 const 限定，不到万不得已的时候请不要使用这个关键字。
+我们把常类型指针又称 **底层指针** 、常指针变量又称 **顶层指针** 。另外，C++ 中还提供了 `const_cast` 运算符来强行去掉或者增加引用或指针类型的 const 限定，不到万不得已的时候请不要使用这个关键字。
 
 ### 常参数
 
