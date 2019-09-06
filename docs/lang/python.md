@@ -272,7 +272,24 @@ array([[0, 0, 1],
 
 ## 常用内置库
 
-TODO
+在这里介绍一些写算法可能用得到的内置库，具体用法可以自行搜索或者阅读[官方文档](https://docs.python.org/3/library/index.html)。
+
+|   包名   |  用途   |
+| ------- | ----- |
+|`array`| 定长数组 |
+|`argparse`| 命令行参数处理 |
+|`bisect`| 二分查找 |
+|`collections`| 提供有序字典、双端队列等数据结构 |
+|`fractions`| 有理数 |
+|`heapq`| 基于堆的优先级队列 |
+|`io`| 文件流、内存流 |
+|`itertools`| 迭代器相关 |
+|`math`| 常用数学函数 |
+|`os.path`| 系统路径相关 |
+|`random`| 随机数 |
+|`re`| 正则表达式 |
+|`struct`| 转换结构体和二进制数据 |
+|`sys`| 系统信息 |
 
 ## 对比 C++ 与 Python
 
