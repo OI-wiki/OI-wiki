@@ -140,13 +140,4 @@ auto result2 = p.q;   // 获取p对象的q成员
 auto result3 = p -> q;  // 获取p指针指向的对象的q成员，等价于 (*p).q
 auto result4 = &v;      // 获取指向v的指针
 auto result5 = *v;      // 获取v指针指向的对象
-
-// 指针与引用相互转换
-int a = 1;
-int* b = &a;  // 这里的*不是运算符
-int& c = *b;  // 这里的&不是运算符
-assert(b == &c);
-
-std::vector<int> data{1, 2};
-int* d = &data[0];  // 一种获取 vector 内存的方法
 ```
