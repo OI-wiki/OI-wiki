@@ -80,11 +80,14 @@ nav:
       - string: lang/csl/string.md
     - C++ 进阶:
       - 类: lang/class.md
+      - 引用: lang/reference.md
+      - 常值: lang/const.md
       - 新版 C++ 特性: lang/new.md
       - pb_ds:
         - pb_ds 简介: lang/pb-ds/index.md
         - 堆: lang/pb-ds/pq.md
         - 平衡树: lang/pb-ds/tree.md
+    - C 与 C++ 区别: lang/c-cpp.md
     - Pascal 转 C++ 急救: lang/pas-cpp.md
     - Python 速成: lang/python.md
     - Java 速成: lang/java.md

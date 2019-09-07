@@ -12,7 +12,7 @@ IDE 操作较为简单，一般入门玩家会选用 IDE 来编写代码。在�
 
 #### Windows
 
-需要去 [MinGW Distro](https://nuwen.net/mingw.html) 下载 MinGW 并安装
+推荐使用 GNU 编译器。需要去 [MinGW Distro](https://nuwen.net/mingw.html) 下载 MinGW 并安装。此外 Windows 下也可以选择 [Microsoft Visual C++ 编译器](https://docs.microsoft.com/en-us/cpp/build/projects-and-build-systems-cpp) ，需要去 [Visual Studio 页面](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019) 下载安装。
 
 #### macOS
 
