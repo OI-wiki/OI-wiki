@@ -415,7 +415,6 @@ $$
 可以发现，最后的超额流一部分回到了 $s$ ，且除了源点汇点，其他结点都没有溢出；这时的流函数 $f$ 满足流守恒性，为最大流，即 $e(t)$ 。
 
 ???+ "核心代码"
-    
     ```cpp
     const int N = 1e4 + 4, M = 1e5 + 5, INF = 0x3f3f3f3f;
     int n, m, s, t, maxflow, tot;
@@ -463,7 +462,6 @@ HLPP 的上界为 $O(n^2\sqrt m)$ ，但在使用时卡得比较紧；我们可�
 HLPP 推送的条件是 $h(u)=h(v)+1$ ，而如果在算法的某一时刻， $h(u)=t$ 的结点个数为 $0$ ，那么对于 $h(u)>t$ 的结点就永远无法推送超额流到 $t$ ，因此只能送回 $s$ ，那么我们就在这时直接让他们的高度变成 $n+1$ ，以尽快推送回 $s$ ，减少重贴标签的操作。
 
 ??? "LuoguP4722【模板】最大流 加强版/预流推进"
-    
     ```cpp
     #include <cstdio>
     #include <cstring>
@@ -471,6 +469,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$ ，而如果在算法的某一时刻， $h
     using namespace std;
     const int N = 1e4 + 4, M = 2e5 + 5, INF = 0x3f3f3f3f;
     int n, m, s, t;
+    ```
 
     struct qxx {
       int nex, t, v;
