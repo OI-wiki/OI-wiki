@@ -121,26 +121,26 @@ numbers.push_back(std::move(s));
 char &get_val(std::string &str, int index) { return str[index]; }
 ```
 
-尽管有了右值引用，你仍然不能返回在函数中新分配的栈空间，如果一定要在函数内分配新的空间并返回，请使用堆分配。例如如下两个函数都会产生悬垂引用，导致内存错误。
+你不能返回在函数中的局部变量的引用，如果一定要在函数内的变量。请使用动态内存。例如如下两个函数都会产生悬垂引用，导致未定义行为。
 
 ```cpp
-std::vector<int>& getLVector() {
+std::vector<int>& getLVector() { // 错误：返回局部变量的左值引用
   std::vector<int> x{1};
   return x;
 }
-std::vector<int>&& getRVector() {
+std::vector<int>&& getRVector() { // 错误：返回局部变量的右值引用
   std::vector<int> x{1};
   return std::move(x);
 }
 ```
 
-右值引用只能在部分情况下可以避免返回值拷贝，前提是它指向的空间在进入函数前已经分配。
+当右值引用指向的空间在进入函数前已经分配时，右值引用可以避免返回值拷贝。
 
 ```cpp
 struct Beta {
   Beta_ab ab;
   Beta_ab const& getAB() const& { return ab; }
-  Beta_ab&& getAB() && { return move(ab); }
+  Beta_ab&& getAB() && { return std::move(ab); }
 };
 
 Beta_ab ab = Beta().getAB();  // 这里是移动语义，而非拷贝
