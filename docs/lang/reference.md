@@ -124,11 +124,11 @@ char &get_val(std::string &str, int index) { return str[index]; }
 你不能返回在函数中的局部变量的引用，如果一定要在函数内的变量。请使用动态内存。例如如下两个函数都会产生悬垂引用，导致未定义行为。
 
 ```cpp
-std::vector<int>& getLVector() { // 错误：返回局部变量的左值引用
+std::vector<int>& getLVector() {  // 错误：返回局部变量的左值引用
   std::vector<int> x{1};
   return x;
 }
-std::vector<int>&& getRVector() { // 错误：返回局部变量的右值引用
+std::vector<int>&& getRVector() {  // 错误：返回局部变量的右值引用
   std::vector<int> x{1};
   return std::move(x);
 }
