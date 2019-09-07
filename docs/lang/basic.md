@@ -210,7 +210,7 @@ int main()
 
 ### define 命令
 
- `#define` 是一种预处理命令，本质上是文本替换。例如：
+ `#define` 是一种预处理命令，用于定义宏，本质上是文本替换。例如：
 
 ```cpp
 #include <iostream>
@@ -223,7 +223,7 @@ int main() {
 }
 ```
 
- `#define` 可以像函数一样使用，又被称作“宏”：
+ 宏可以带参数，带参数的宏可以像函数一样使用：
 
 ```cpp
 #include <iostream>
@@ -241,9 +241,9 @@ int main() {
 }
 ```
 
-使用 `#define` 是有风险的（由于 `#define` 作用域是整个程序导致文本被意外地替换、错误地使用宏），因此应谨慎使用。较为推荐的做法是，常量使用 `const` 限定符声明，宏使用函数代替。
+使用 `#define` 是有风险的（由于 `#define` 作用域是整个程序，因此可能导致文本被意外地替换），因此应谨慎使用。较为推荐的做法是：使用 `const` 限定符声明常量，使用函数代替宏。
 
 但是，在 OI 中， `#define` 依然有用武之处（依然是不被推荐的，会降低代码的规范性）：
 
-1.   `#define int long long` + `signed main()` 。通常用于避免忘记开 long long 导致的错误，或是调试时排除忘开 long long 导致错误的可能性。
+1.   `#define int long long` + `signed main()` 。通常用于避免忘记开 long long 导致的错误，或是调试时排除忘开 long long 导致错误的可能性。（也可能导致增大常数甚至 MLE。）
 2.   `#define For(i, l, r) for (int i = l; i <= r; ++i)` 、 `#define push_back pb` 、 `#define mid ((l + r) / 2)` ，用于减短代码长度。
