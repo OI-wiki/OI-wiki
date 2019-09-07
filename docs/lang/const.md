@@ -36,7 +36,7 @@ int &r1 = a;
 r1 = 1;
 const int &r2 = a;
 // r2 = 2; // 报错，不能通过常引用修改变量
-// int &p3 = &b; // 报错，不能用普通引用指向 const 变量
+// int &p3 = b; // 报错，不能用普通引用指向 const 变量
 const int &r4 = b;
 ```
 
