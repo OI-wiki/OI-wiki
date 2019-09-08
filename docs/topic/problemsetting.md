@@ -121,7 +121,7 @@
 
 不应不加说明地使用与原义、常见义不同的词汇。例如：不应不加说明地用“路径”代指一条边。
 
-你需要保证你的题面不会自相矛盾。例如：在 [CF 1173A Nauuo and Votes](https://codeforces.com/problemset/problem/1173/A) 中，没有把 "?" 作为一种 "result"，是因为 "?" 的含义是 "there are more than one possible results"。
+你需要保证你的题面不会自相矛盾。例如：在 [CF1173A Nauuo and Votes](https://codeforces.com/problemset/problem/1173/A) 中，没有把 "?" 作为一种 "result"，是因为 "?" 的含义是 "there are more than one possible results"。
 
 你需要保证你的题面不能被错误理解而自圆其说，即使这种理解是反常识、没有人会这么去想的。例如：在 [CF1172D Nauuo and Portals](https://codeforces.com/problemset/problem/1172/D) 中，之所以要繁琐地定义 "walk into" 并与 "teleport" 区分，是为了防止这种理解：通过传送门可以到另一个传送门，而到了传送门会传送，因此会反复横跳。
 
@@ -197,7 +197,7 @@
 
 有多种操作的题，每种操作都应在样例中出现。
 
-有多种输出的题（如 [CF 1173A Nauuo and Votes](https://codeforces.com/problemset/problem/1173/A) ），每种输出都应在样例中出现。例外：实际上不可能无解，但要求判断是否有解的题目。
+有多种输出的题（如 [CF1173A Nauuo and Votes](https://codeforces.com/problemset/problem/1173/A) ），每种输出都应在样例中出现。例外：实际上不可能无解，但要求判断是否有解的题目。
 
 ### 样例解释
 
@@ -389,7 +389,7 @@ gen 100000 100000 > 5.in
 
 如果有 pretests，pretests 应尽量强，（同时尽量少）。换言之，你需要在 pretests 中（用尽量少的数据组数）包含该题的所有已知叉点。
 
-如果你希望出现少量而非没有 FST，你可以问问 Sooke 对这件事的看法（Sooke 曾经坚称“FST 是 CF 的灵魂”，在我的强烈要求下，在 [CF1172A Nauuo and Cards](https://codeforces.com/problemset/problem/1172/A) 中，他构造了许多数据，在 pretests 中卡掉了所有已知错解，最后，这题在比赛中 Div.2 的 FST 率为 $18.5\%$ ）。
+如果你希望出现少量而非没有 FST，你可以问问 Sooke 对这件事的看法（Sooke 曾经坚称“FST 是 CF 的灵魂”，在我的强烈要求下，在 [CF1172A Nauuo and Cards](https://codeforces.com/problemset/problem/1172/A) 中，他构造了许多数据，在 pretests 中卡掉了所有已知错解，最后，这题在比赛中 Div.2 的 FST 率为 18.5% ）。
 
 ## Special Judge
 
@@ -422,7 +422,7 @@ checker 一般使用 testlib.h 编写，不使用 testlib.h 是很难写好 chec
 
 例如：dp 的题解要解释清楚状态的定义。
 
-再例如：cy 曾经写过一版 [CF1172F Nauuo and Bug](https://codeforces.com/problemset/problem/1172/F) 的题解，其中对“分段函数”没有定义，这是绝对不可取的。
+再例如：[CF1172F Nauuo and Bug](https://codeforces.com/problemset/problem/1172/F) 的旧版题解，其中对“分段函数”没有定义，这是绝对不可取的。
 
 ### 关于细节
 
