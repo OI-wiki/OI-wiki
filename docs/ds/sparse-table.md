@@ -78,7 +78,7 @@ void pre() {
 }
 int main() {
   int n = read(), m = read();
-  for (int i = 1; i <= m; i++) f[i][0] = read();
+  for (int i = 1; i <= n; i++) f[i][0] = read();
   pre();
   for (int j = 1; j <= logn; j++)
     for (int i = 1; i + (1 << j) - 1 <= n; i++)
