@@ -389,7 +389,7 @@ gen 100000 100000 > 5.in
 
 如果有 pretests，pretests 应尽量强，（同时尽量少）。换言之，你需要在 pretests 中（用尽量少的数据组数）包含该题的所有已知叉点。
 
-如果你希望出现少量而非没有 FST，你可以问问 Sooke 对这件事的看法（Sooke 曾经坚称“FST 是 CF 的灵魂”，在我的强烈要求下，在 [CF1172A Nauuo and Cards](https://codeforces.com/problemset/problem/1172/A) 中，他构造了许多数据，在 pretests 中卡掉了所有已知错解，最后，这题在比赛中 Div.2 的 FST 率为 18.5% ）。
+如果你希望出现少量而非没有 FST，你可以问问 Sooke 对这件事的看法（Sooke 曾经坚称“FST 是 CF 的灵魂”，在我的强烈要求下，在 [CF1172A Nauuo and Cards](https://codeforces.com/problemset/problem/1172/A) 中，他构造了许多数据，在 pretests 中卡掉了所有已知错解，最后，这题在比赛中 Div.2 的 FST 率为 18.5%）。
 
 ## Special Judge
 
@@ -422,7 +422,7 @@ checker 一般使用 testlib.h 编写，不使用 testlib.h 是很难写好 chec
 
 例如：dp 的题解要解释清楚状态的定义。
 
-再例如：[CF1172F Nauuo and Bug](https://codeforces.com/problemset/problem/1172/F) 的旧版题解，其中对“分段函数”没有定义，这是绝对不可取的。
+再例如： [CF1172F Nauuo and Bug](https://codeforces.com/problemset/problem/1172/F) 的旧版题解，其中对“分段函数”没有定义，这是绝对不可取的。
 
 ### 关于细节
 
