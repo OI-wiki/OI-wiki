@@ -55,7 +55,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 using namespace std;
 const int logn = 21;
 const int maxn = 2000001;
-long long f[maxn][logn], Logn[maxn];
+int f[maxn][logn], Logn[maxn];
 inline int read() {
   char c = getchar();
   int x = 0, f = 1;
