@@ -72,7 +72,7 @@ inline int read() {
 void pre() {
   Logn[1] = 0;
   Logn[2] = 1;
-  for (int i = 3; i <= maxn; i++) {
+  for (int i = 3; i < maxn; i++) {
     Logn[i] = Logn[i / 2] + 1;
   }
 }
@@ -86,7 +86,7 @@ int main() {
   for (int i = 1; i <= m; i++) {
     int x = read(), y = read();
     int s = Logn[y - x + 1];
-    printf("%d\n", max(f[x][s], f[y - (1 << s) + 1][s]));
+    printf("%lld\n", max(f[x][s], f[y - (1 << s) + 1][s]));
   }
   return 0;
 }
