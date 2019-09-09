@@ -86,7 +86,7 @@ int main() {
   for (int i = 1; i <= m; i++) {
     int x = read(), y = read();
     int s = Logn[y - x + 1];
-    printf("%lld\n", max(f[x][s], f[y - (1 << s) + 1][s]));
+    printf("%d\n", max(f[x][s], f[y - (1 << s) + 1][s]));
   }
   return 0;
 }
