@@ -326,6 +326,7 @@ nav:
       - 费用流: graph/flow/min-cost.md
       - 上下界网络流: graph/flow/bound.md
     - Prufer 序列: graph/prufer.md
+    - LGV 引理: graph/lgv.md
     - 图论杂项: graph/misc.md
   - 计算几何:
     - 计算几何部分简介: geometry/index.md
