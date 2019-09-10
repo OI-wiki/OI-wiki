@@ -151,15 +151,17 @@ nav:
     - 标准库: string/lib-func.md
     - 字符串匹配: string/match.md
     - 哈希: string/hash.md
+    - 字典树 (Trie): string/trie.md
     - 前缀函数与 KMP 算法: string/kmp.md
     - Z 函数（扩展 KMP）: string/z-func.md
-    - 字典树 (Trie): string/trie.md
-    - 回文自动机: string/pam.md
-    - 后缀数组 (SA): string/sa.md
+    - 自动机: string/automaton.md
     - AC 自动机: string/ac-automaton.md
+    - 后缀数组 (SA): string/sa.md
     - 后缀自动机 (SAM): string/sam.md
     - 后缀树: string/suffix-tree.md
     - Manacher: string/manacher.md
+    - 回文自动机: string/pam.md
+    - 序列自动机: string/sequence-am.md
     - 最小表示法: string/minimal-string.md
     - Lyndon 分解: string/lyndon.md
   - 数学:
