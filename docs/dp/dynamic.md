@@ -30,7 +30,7 @@ $$
 则有 DP 方程：
 
 $$
-\begin{cases}f_{i,0}=\sum_{son}\max(f_{son,0},f_{son,1})\\f_{i,1}=\sum_{son}f_{son,0}\end{cases}
+\begin{cases}f_{i,0}=\sum_{son}\max(f_{son,0},f_{son,1})\\f_{i,1}=w_i+\sum_{son}f_{son,0}\end{cases}
 $$
 
 答案就是 $\max(f_{root,0},f_{root,1})$ .
