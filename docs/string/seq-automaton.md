@@ -16,7 +16,7 @@
 
 ### 转移
 
-由状态定义可以得到， $\delta(u, c)=\min\{i|i>u,s[i]=u\}$ ，也就是字符 $c$ 下一次出现的位置。
+由状态定义可以得到， $\delta(u, c)=\min\{i|i>u,s[i]=c\}$ ，也就是字符 $c$ 下一次出现的位置。
 
 为什么是“下一次”出现的位置呢？因为若 $i>j$ ，后缀 $s[i..|s|]$ 的子序列是后缀 $s[j..|s|]$ 的子序列的子集，一定是选尽量靠前的最优。
 
@@ -65,8 +65,8 @@ $$
     const int N = 2005;
     
     char s[N], t[N];
-    int n, m, a[N], b[N], na[N][26], nb[N][26], nxt[26], tot = 1, p = 1,
-                                                         f[N][N << 1];
+    int na[N][26], nb[N][26], nxt[26];
+    int n, m, a[N], b[N], tot = 1, p = 1, f[N][N << 1];
     
     struct SAM {
       int par, ch[26], len;
