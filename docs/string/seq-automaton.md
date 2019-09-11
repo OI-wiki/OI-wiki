@@ -59,19 +59,19 @@ $$
     #include <cstdio>
     #include <cstring>
     #include <iostream>
-    
+
     using namespace std;
-    
+
     const int N = 2005;
-    
+
     char s[N], t[N];
     int na[N][26], nb[N][26], nxt[26];
     int n, m, a[N], b[N], tot = 1, p = 1, f[N][N << 1];
-    
+
     struct SAM {
       int par, ch[26], len;
     } sam[N << 1];
-    
+
     void insert(int x) {
       int np = ++tot;
       while (p && !sam[p].ch[x]) {
@@ -98,32 +98,32 @@ $$
       }
       p = np;
     }
-    
+
     int main() {
       scanf("%s%s", s + 1, t + 1);
-    
+
       n = strlen(s + 1);
       m = strlen(t + 1);
-    
+
       for (int i = 1; i <= n; ++i) a[i] = s[i] - 'a';
       for (int i = 1; i <= m; ++i) b[i] = t[i] - 'a';
-    
+
       for (int i = 1; i <= m; ++i) insert(b[i]);
-    
+
       for (int i = 0; i < 26; ++i) nxt[i] = n + 1;
       for (int i = n; i >= 0; --i) {
         memcpy(na[i], nxt, sizeof(nxt));
         nxt[a[i]] = i;
       }
-    
+
       for (int i = 0; i < 26; ++i) nxt[i] = m + 1;
       for (int i = m; i >= 0; --i) {
         memcpy(nb[i], nxt, sizeof(nxt));
         nxt[b[i]] = i;
       }
-    
+
       int ans = N;
-    
+
       for (int l = 1; l <= n; ++l) {
         for (int r = l, u = 1; r <= n; ++r) {
           u = sam[u].ch[a[r]];
@@ -133,11 +133,11 @@ $$
           }
         }
       }
-    
+
       printf("%d\n", ans == N ? -1 : ans);
-    
+
       ans = N;
-    
+
       for (int l = 1; l <= n; ++l) {
         for (int r = l, u = 0; r <= n; ++r) {
           u = nb[u][a[r]];
@@ -147,9 +147,9 @@ $$
           }
         }
       }
-    
+
       printf("%d\n", ans == N ? -1 : ans);
-    
+
       for (int i = n; i >= 0; --i) {
         for (int j = 1; j <= tot; ++j) {
           f[i][j] = N;
@@ -160,11 +160,11 @@ $$
           }
         }
       }
-    
+
       printf("%d\n", f[0][1] == N ? -1 : f[0][1]);
-    
+
       memset(f, 0, sizeof(f));
-    
+
       for (int i = n; i >= 0; --i) {
         for (int j = 0; j <= m; ++j) {
           f[i][j] = N;
@@ -175,9 +175,9 @@ $$
           }
         }
       }
-    
+
       printf("%d\n", f[0][0] == N ? -1 : f[0][0]);
-    
+
       return 0;
     }
     ```
