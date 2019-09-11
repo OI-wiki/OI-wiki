@@ -40,11 +40,10 @@ $$
 \delta(i, c)=
 \begin{cases}
 i+1&s[i+1]=c\\
-\delta(\pi(i),c)&s[i+1]\ne c
+0&s[1]\ne c\land i=0\\
+\delta(\pi(i),c)&s[i+1]\ne c\land i>0
 \end{cases}
 $$
-
-（需要特别定义 $\forall c\in\Sigma,\delta(\pi(1),c)=1$ ）
 
 ### AC 自动机
 
