@@ -17,7 +17,7 @@
 
 1.  受到已有题目的启发（但不能照搬或无意义地加强，如：序列题目搬到仙人掌上）。
 2.  受到学过的知识点的启发（但不能毫无联系地拼凑知识点）。
-3.  从生活中受到启发（错误示例：把游戏出成大模拟。正确示例：游泳时想到小水题，参见杨骏昭的 IOI2019 国家候选队论文）。
+3.  从生活中受到启发（错误示例：[把游戏出成大模拟](https://www.luogu.org/problem/P2482) 。正确示例：游泳时想到 [小水题](https://loj.ac/problem/3082)）。
 4.  不知道为什么，就是想到了一道题。
 
 ### 什么样的 idea 是不好的
@@ -103,9 +103,7 @@
 
 ### 题目背景
 
-题目背景最好尽量简短。
-
-在题目背景较长时，应当与题目描述分开。
+题目背景最好尽量简短。在题目背景较长时，应当与题目描述分开。
 
 需要绝对避免的情况：题目背景严重影响题意的理解。
 
@@ -129,7 +127,7 @@
 
 ### 输入输出格式
 
-输入输出格式清晰 **完整** 即可，没有死板的要求，个人建议参照 CF 的题目来写输入输出格式，具体可以参考[cf 出题人须知][3]。
+输入输出格式清晰 **完整** 即可，没有死板的要求，个人建议参照 CF 的题目来写输入输出格式，具体可以参考[CF 出题人须知][3]。
 
 需要特别注意的是，如果输出中含有小数，请尽量使用 SPJ。如果无法使用 SPJ，请保证对精度的要求是有限的。
 
@@ -542,7 +540,7 @@ Codeforces 是全球最著名的算法竞赛网站之一，题目质量较高，
 
 2.  [王天懿《论偏题的危害》][2]
 
-3.  [cf 出题人须知][3]（ [国内可访问的图片版](https://github.com/OI-wiki/libs/blob/master/topic/rules.jpg) ）
+3.  [CF 出题人须知][3]（ [国内可访问的图片版](https://github.com/OI-wiki/libs/blob/master/topic/rules.jpg) ）
 
 4.  [CF 出题人的自我修养][4]
 
@@ -552,6 +550,6 @@ Codeforces 是全球最著名的算法竞赛网站之一，题目质量较高，
 
 [2]: https://github.com/OI-wiki/libs/blob/master/topic/7-%E7%8E%8B%E5%A4%A9%E6%87%BF-%E8%AE%BA%E5%81%8F%E9%A2%98%E7%9A%84%E5%8D%B1%E5%AE%B3.ppt "王天懿《论偏题的危害》"
 
-[3]: https://docs.google.com/document/d/e/2PACX-1vRhazTXxSdj7JEIC7dp-nOWcUFiY8bXi9lLju-k6vVMKf4IiBmweJoOAMI-ZEZxatXF08I9wMOQpMqC/pub "cf 出题人须知"
+[3]: https://docs.google.com/document/d/e/2PACX-1vRhazTXxSdj7JEIC7dp-nOWcUFiY8bXi9lLju-k6vVMKf4IiBmweJoOAMI-ZEZxatXF08I9wMOQpMqC/pub "CF 出题人须知"
 
 [4]: https://github.com/OI-wiki/libs/blob/master/topic/CF%E5%87%BA%E9%A2%98%E4%BA%BA%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB.md "CF 出题人的自我修养"
