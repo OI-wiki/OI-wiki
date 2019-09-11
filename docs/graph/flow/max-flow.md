@@ -469,8 +469,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$ ，而如果在算法的某一时刻， $h
     using namespace std;
     const int N = 1e4 + 4, M = 2e5 + 5, INF = 0x3f3f3f3f;
     int n, m, s, t;
-    ```
-
+    
     struct qxx {
       int nex, t, v;
     };
@@ -481,7 +480,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$ ，而如果在算法的某一时刻， $h
       add_path(f, t, v);
       add_path(t, f, 0);
     }
-
+    
     int ht[N], ex[N], gap[N];  // 高度；超额流；gap 优化
     bool bfs_init() {
       memset(ht, 0x3f, sizeof(ht));
