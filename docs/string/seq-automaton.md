@@ -48,9 +48,13 @@ $$
 
     (4) 需要 DP。令 $f(i, j)$ 表示在 A 的序列自动机中处于状态 $i$ ，在 B 的序列自动机中处于状态 $j$ ，需要再添加多少个字符能够不是公共子序列。
 
-     $$f(i, null)=0$$
+     $$
+     f(i, null)=0
+     $$
 
-     $$f(i, j)=\min\limits_{\delta_A(i,c)\ne null}f(\delta_A(i, c), \delta_B(j, c))$$ 
+     $$
+     f(i, j)=\min\limits_{\delta_A(i,c)\ne null}f(\delta_A(i, c), \delta_B(j, c))
+     $$ 
 
     整道题的参考代码：
 
