@@ -24,14 +24,14 @@
 
 ```cpp
 std::vector<int> match(char *a, char *b, int n, int m) {
-	std::vector<int> ans;
-	for (i = 0; i < n - m + 1; i++) {
-		for (j = 0; j < m; j++) {
-			if (a[i + j] != b[j]) break;
-		}
-		if (j == m) ans.push_back(i);
-	}
-	return ans;
+  std::vector<int> ans;
+  for (i = 0; i < n - m + 1; i++) {
+    for (j = 0; j < m; j++) {
+      if (a[i + j] != b[j]) break;
+    }
+    if (j == m) ans.push_back(i);
+  }
+  return ans;
 }
 ```
 
