@@ -38,8 +38,6 @@
       add_path(f, t, v, c);
       add_path(t, f, 0, -c);
     }
-    ```
-
     int dis[N], pre[N], incf[N];
     bool vis[N];
     bool spfa() {
