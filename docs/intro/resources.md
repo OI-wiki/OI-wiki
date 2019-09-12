@@ -28,9 +28,10 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [Universal Online Judge](http://uoj.ac/) Universal 取通用之意，也是开源项目。VFK 的 OJ，多原创比赛题和 CCF/THU 题，难度较高。
 -    [Vijos](https://vijos.org/) 始于 2005 年，有开源项目。
 -    [Virtual Judge](https://vjudge.net/) 可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ。
--    [ZOJ](http://acm.zju.edu.cn/onlinejudge/) 浙江大学在线测评系统。
+-    [ZOJ](https://zoj.pintia.cn/home) 浙江大学在线测评系统。
 -    [NOJ](http://acm.njupt.edu.cn/) 南京邮电大学在线测评系统，自身拥有题目两千余，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
 -    [Lutece](https://acm.uestc.edu.cn/home) 电子科技大学在线测评系统，基于开源项目 [Lutece](https://github.com/lutece-awesome) 。
+-    [清澄](http://www.tsinsen.com/) 始于 2005 年，最近挂掉了。
 
 ### 国外
 
@@ -85,7 +86,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -   《具体数学》第二版 - Ronald L. Graham/Donald E. Knuth/Oren Patashnik 
     英文版原名_Concrete Mathematics_
 -   《组合数学》第五版 - Richard A.Brualdi 
-    英文版原名_Concrete mathematices_
+    英文版原名_Introductory Conbinatorics_
 -    [Competitive Programmer's Handbook](https://cses.fi/book/index.html) 
 -   《挑战程序设计竞赛》全套 - 秋叶拓哉，岩田阳一，北川宜稔
     通俗易懂。
@@ -126,3 +127,4 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [GitHub.com:OI-wiki/libs](https://github.com/OI-wiki/libs) 
 -    [多校联合训练](http://acm.hdu.edu.cn) 关键词： `Multi-University Training Contest` 
 -    [Vjudge](https://vjudge.net/) 
+-    [Project Euler](https://projecteuler.net/) 

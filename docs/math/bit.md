@@ -158,7 +158,7 @@ void swap(int &a, int &b) {
     int abs(int n) {
       return (n ^ (n >> 31)) - (n >> 31);
       /* n>>31 取得 n 的符号，若 n 为正数，n>>31 等于 0，若 n 为负数，n>>31 等于 - 1
-         若 n 为正数 n^0=0, 数不变，若 n 为负数有 n^-1
+         若 n 为正数 n^0=n, 数不变，若 n 为负数有 n^(-1)
          需要计算 n 和 - 1 的补码，然后进行异或运算，
          结果 n 变号并且为 n 的绝对值减 1，再减去 - 1 就是绝对值 */
     }
@@ -186,8 +186,8 @@ void swap(int &a, int &b) {
 
     ```cpp
     bool isSameSign(int x, int y) {  // 有 0 的情况例外
-      return (x ^ y) >=
-             0;  // true 表示 x 和 y 有相同的符号，false 表示 x,y 有相反的符号。
+      return (x ^ y) >= 0;
+      // true 表示 x 和 y 有相同的符号，false 表示 x,y 有相反的符号。
     }
     ```
 

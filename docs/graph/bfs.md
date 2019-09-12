@@ -20,7 +20,7 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
 ```text
 bfs(s) {
   q = new queue()
-  q.push(s)), visited[s] = true
+  q.push(s), visited[s] = true
   while (!q.empty()) {
     u = q.pop()
     for each edge(u, v) {
