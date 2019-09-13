@@ -148,23 +148,23 @@ $$
 
 #### 判定两向量垂直
 
- $\boldsymbol a \perp \boldsymbol b$  $\Leftrightarrow$  $\boldsymbol a\cdot \boldsymbol b=0$
+ $\boldsymbol a \perp \boldsymbol b$  $\Leftrightarrow$  $\boldsymbol a\cdot \boldsymbol b=0$ 
 
 #### 判定两向量共线
 
- $\boldsymbol a = \lambda \boldsymbol b$  $\Leftrightarrow$  $\boldsymbol a\cdot \boldsymbol b=|\boldsymbol a||\boldsymbol b|$
+ $\boldsymbol a = \lambda \boldsymbol b$  $\Leftrightarrow$  $\boldsymbol a\cdot \boldsymbol b=|\boldsymbol a||\boldsymbol b|$ 
 
 #### 数量积的坐标运算
 
-若 $\boldsymbol a=(m,n),\boldsymbol b=(p,q),$ 则 $\boldsymbol a\cdot \boldsymbol b=mp+nq$
+若 $\boldsymbol a=(m,n),\boldsymbol b=(p,q),$ 则 $\boldsymbol a\cdot \boldsymbol b=mp+nq$ 
 
 #### 向量的模
 
- $|\boldsymbol a|=\sqrt {m^2+n^2}$
+ $|\boldsymbol a|=\sqrt {m^2+n^2}$ 
 
 #### 两向量的夹角
 
- $\cos \theta=\cfrac{\boldsymbol a\cdot\boldsymbol b}{|\boldsymbol a||\boldsymbol b|}$
+ $\cos \theta=\cfrac{\boldsymbol a\cdot\boldsymbol b}{|\boldsymbol a||\boldsymbol b|}$ 
 
 ### 扩展
 
