@@ -8,7 +8,7 @@
 
 可以发现，这棵字典树用边来代表字母，而从根结点到树上某一结点的路径就代表了一个字符串。举个例子， $1\to4\to 8\to 12$ 表示的就是字符串 `caa` 。
 
-Trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ 字符指向的下一个结点，或着说是结点 $u$ 代表的字符串后面添加一个字符 $c$ 形成的字符串的结点。（$c$ 的取值范围和字符集大小有关，不一定是 $0\sim 26$ 。）
+Trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ 字符指向的下一个结点，或着说是结点 $u$ 代表的字符串后面添加一个字符 $c$ 形成的字符串的结点。（ $c$ 的取值范围和字符集大小有关，不一定是 $0\sim 26$ 。）
 
 有时需要标记插入进 Trie 的是哪些字符串，每次插入完成时在这个字符串所代表的节点处打上标记即可。
 
@@ -46,9 +46,9 @@ struct trie {
 
 ### 检索字符串
 
-字典树最基础的应用 —— 查找一个字符串是否在“字典”中出现过。
+字典树最基础的应用——查找一个字符串是否在“字典”中出现过。
 
-#### [于是他错误的点名开始了](https://www.luogu.org/problemnew/show/P2580)
+####  [于是他错误的点名开始了](https://www.luogu.org/problemnew/show/P2580) 
 
 对所有名字建 Trie，再在 Trie 中查询字符串是否存在，第一次点名时标记为点过名。
 
@@ -61,44 +61,39 @@ struct trie {
     char s[60];
     int n, m, ch[N][26], tag[N], tot = 1;
     
-    int main()
-    {
+    int main() {
       scanf("%d", &n);
-      
-      for (int i = 1; i <= n; ++i)
-      {
+    
+      for (int i = 1; i <= n; ++i) {
         scanf("%s", s + 1);
         int u = 1;
-        for (int j = 1; s[j]; ++j)
-        {
+        for (int j = 1; s[j]; ++j) {
           int c = s[j] - 'a';
           if (!ch[u][c]) ch[u][c] = ++tot;
           u = ch[u][c];
         }
         tag[u] = 1;
       }
-      
+    
       scanf("%d", &m);
-      
-      while (m--)
-      {
+    
+      while (m--) {
         scanf("%s", s + 1);
         int u = 1;
-        for (int j = 1; s[j]; ++j)
-        {
+        for (int j = 1; s[j]; ++j) {
           int c = s[j] - 'a';
           u = ch[u][c];
-          if (!u) break; // 不存在对应字符的出边说明名字不存在
+          if (!u) break;  // 不存在对应字符的出边说明名字不存在
         }
-        if (tag[u] == 1)
-        {
+        if (tag[u] == 1) {
           tag[u] = 2;
           puts("OK");
-        }
-        else if (tag[u] == 2) puts("REPEAT");
-        else puts("WRONG");
+        } else if (tag[u] == 2)
+          puts("REPEAT");
+        else
+          puts("WRONG");
       }
-      
+    
       return 0;
     }
     ```
@@ -111,65 +106,58 @@ Trie 是 [AC 自动机](./ac-automaton.md) 的一部分。
 
 将数的二进制表示看做一个字符串，就可以建出字符集为 $\{0,1\}$ 的 Trie 树。
 
-#### [BZOJ1954 最长异或路径](https://www.luogu.org/problem/P4551)
-随便指定一个根 $root$，用 $T(u, v)$ 表示 $u$ 和 $v$ 之间的路径的边权异或和，那么 $T(u,v)=T(root, u)\oplus T(root,v)$，因为 [LCA](../graph/lca.md) 以上的部分异或两次抵消了。
+####  [BZOJ1954 最长异或路径](https://www.luogu.org/problem/P4551) 
 
-那么，如果将所有 $T(root, u)$ 插入到一棵 Trie 中，就可以对每个 $T(root, u)$ 快速求出和它异或和最大的 $T(root, v)$：
+随便指定一个根 $root$ ，用 $T(u, v)$ 表示 $u$ 和 $v$ 之间的路径的边权异或和，那么 $T(u,v)=T(root, u)\oplus T(root,v)$ ，因为 [LCA](../graph/lca.md) 以上的部分异或两次抵消了。
 
-从 Trie 的根开始，如果能向和 $T(root, u)$ 的当前位不同的子树走，就向那边走，否则没有选择。。
+那么，如果将所有 $T(root, u)$ 插入到一棵 Trie 中，就可以对每个 $T(root, u)$ 快速求出和它异或和最大的 $T(root, v)$ ：
 
-贪心的正确性：如果这么走，这一位为 $1$；如果不这么走，这一位就会为 $0$。而高位是需要优先尽量大的。
+从 Trie 的根开始，如果能向和 $T(root, u)$ 的当前位不同的子树走，就向那边走，否则没有选择……
+
+贪心的正确性：如果这么走，这一位为 $1$ ；如果不这么走，这一位就会为 $0$ 。而高位是需要优先尽量大的。
 
 ??? note "参考代码"
     ```cpp
-    #include <cstdio>
     #include <algorithm>
+    #include <cstdio>
     
     const int N = 100010;
     
     int head[N], nxt[N << 1], to[N << 1], weight[N << 1], cnt;
     int n, dis[N], ch[N << 5][2], tot = 1, ans;
     
-    void insert(int x)
-    {
-      for (int i = 30, u = 1; i >= 0; --i)
-      {
+    void insert(int x) {
+      for (int i = 30, u = 1; i >= 0; --i) {
         int c = ((x >> i) & 1);
         if (!ch[u][c]) ch[u][c] = ++tot;
         u = ch[u][c];
       }
     }
     
-    void get(int x)
-    {
+    void get(int x) {
       int res = 0;
-      for (int i = 30, u = 1; i >= 0; --i)
-      {
+      for (int i = 30, u = 1; i >= 0; --i) {
         int c = ((x >> i) & 1);
-        if (ch[u][c ^ 1])
-        {
+        if (ch[u][c ^ 1]) {
           u = ch[u][c ^ 1];
           res |= (1 << i);
-        }
-        else u = ch[u][c];
+        } else
+          u = ch[u][c];
       }
       ans = std::max(ans, res);
     }
     
-    void add(int u, int v, int w)
-    {
+    void add(int u, int v, int w) {
       nxt[++cnt] = head[u];
       head[u] = cnt;
       to[cnt] = v;
       weight[cnt] = w;
     }
     
-    void dfs(int u, int fa)
-    {
+    void dfs(int u, int fa) {
       insert(dis[u]);
       get(dis[u]);
-      for (int i = head[u]; i; i = nxt[i])
-      {
+      for (int i = head[u]; i; i = nxt[i]) {
         int v = to[i];
         if (v == fa) continue;
         dis[v] = dis[u] ^ weight[i];
@@ -177,22 +165,20 @@ Trie 是 [AC 自动机](./ac-automaton.md) 的一部分。
       }
     }
     
-    int main()
-    {
+    int main() {
       scanf("%d", &n);
-      
-      for (int i = 1; i < n; ++i)
-      {
+    
+      for (int i = 1; i < n; ++i) {
         int u, v, w;
         scanf("%d%d%d", &u, &v, &w);
         add(u, v, w);
         add(v, u, w);
       }
-      
+    
       dfs(1, 0);
-      
+    
       printf("%d", ans);
-      
+    
       return 0;
     }
     ```
