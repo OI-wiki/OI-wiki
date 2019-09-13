@@ -74,14 +74,14 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 ![](./images/eclipse7.png)
 
-#### 拓展
+### 拓展
 
 这个软件的帮助手册很详细，建议刚接触的同学多看帮助手册，多百度，并且这个 IDE 的使用手感与 Visual Studio 相近。
 
 如果想添加插件的话，这里推荐看一篇 CSDN 博客 [\[2\]](https://blog.csdn.net/csdnnews/article/details/78495979) 。
 
-#### 引用链接
+### 引用链接
 
-[1]&#x3A; [Eclipse - 维基百科](https://zh.wikipedia.org/wiki/Eclipse) 
+[1] : [Eclipse - 维基百科](https://zh.wikipedia.org/wiki/Eclipse) 
 
-[2]&#x3A; [曾经的 Java IDE 王者 Eclipse 真的没落了？21 款插件让它强大起来！](https://blog.csdn.net/csdnnews/article/details/78495979) 
+[2] : [曾经的 Java IDE 王者 Eclipse 真的没落了？21 款插件让它强大起来！](https://blog.csdn.net/csdnnews/article/details/78495979) 
