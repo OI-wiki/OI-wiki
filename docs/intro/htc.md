@@ -155,6 +155,21 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
     两种格式的区别是，带 `+` 的会默认保持展开，而不带 `+` 的会默认保持折叠。效果可以参考图例的例 7。
 
+    如果需要嵌套折叠框，推荐使用 [MDUI 的阴影样式](https://www.mdui.org/docs/shadow#use)，提高内层折叠框的深度。
+
+    **OI Wiki** 支持 `.mdui-shadow-[0-24]`， 一般情况下最多用到两层折叠框，外层用 `note` 即可（其实就是 `mdui-shadow-2`），内层推荐使用 `mdui-shadow-6`。
+
+    示例：
+
+    ```text
+    ??? note "题解"
+        内容
+        ??? mdui-shadow-6 "参考代码"
+            ```cpp
+            代码
+            ```
+    ```
+
 如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E) 和 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/) ，前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 Markdown 传统语法和 mkdocs-material 支持的扩展语法。
 
 ### 伪代码格式

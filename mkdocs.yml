@@ -411,7 +411,6 @@ extra_javascript:
 
 extra_css:
   - '_static/css/extra.css?v=12'
-  - '_static/css/shadow.css'
 
 # Extensions
 markdown_extensions:
