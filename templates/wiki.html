@@ -1,0 +1,106 @@
+<%inherit file="base.html"/>
+
+<%block name="title">${metadata["title"]}</%block>
+
+<main>
+<h1>${metadata["title"]}</h1>
+
+<article>
+${content | n}
+</article>
+
+</main>
+
+<footer>
+<%
+pages, = db.execute(
+'''
+SELECT json_group_array(page.metadata) AS "[JSON]"
+FROM source AS wiki
+LEFT OUTER JOIN source AS page
+ON json_extract(wiki.metadata, '$.slug') IN (
+    SELECT value
+    FROM json_each(page.metadata, '$.tags'))
+  AND json_extract(page.metadata, '$.type') = 'wiki'
+WHERE wiki.oid = ?
+GROUP BY wiki.oid
+''',
+(oid,)).fetchone()
+%>
+% if pages:
+<hr/>
+<h4>Pages tagged with "${metadata["title"]}"</h4>
+<ul>
+%   for page in pages:
+<li><a href="${urls.build('wiki.html', {'slug': page['slug']})}">${page["title"]}</a></li>
+%   endfor
+</ul>
+% endif
+
+<%
+tags, = db.execute(
+'''
+SELECT json_group_array(tag.metadata) AS "[JSON]"
+FROM source AS wiki
+LEFT OUTER JOIN source AS tag
+ON json_extract(tag.metadata, '$.slug') IN (
+    SELECT value
+    FROM json_each(wiki.metadata, '$.tags'))
+  AND json_extract(tag.metadata, '$.type') = 'wiki'
+WHERE wiki.oid = ?
+GROUP BY wiki.oid
+''',
+(oid,)).fetchone()
+tag_slugs = [tag["slug"] for tag in tags]
+%>
+
+% if metadata["tags"]:
+<hr />
+<p>
+%   for tag in tags:
+<span><a href="${urls.build('wiki.html', {'slug': tag['slug']})}">${tag["title"]}</a></span>
+%   endfor
+%   for tag in metadata["tags"]:
+%     if tag not in tag_slugs:
+<span>${tag}</span>
+<% warn("%s: tag %r not found" % (filename, tag)) %>
+%     endif
+%   endfor
+</p>
+% endif
+
+<%
+authors, = db.execute(
+'''
+SELECT json_group_array(author.metadata) AS "[JSON]"
+FROM source AS wiki
+LEFT OUTER JOIN source AS author
+ON EXISTS (
+  SELECT value
+  FROM json_each(author.metadata, '$.emails')
+  WHERE value IN (
+    SELECT value
+    FROM json_each(wiki.metadata, '$.authors')))
+  AND json_extract(author.metadata, '$.type') = 'author'
+WHERE wiki.oid = ?
+GROUP BY wiki.oid
+''',
+(oid,)).fetchone()
+author_emails = [email for author in authors for email in author["emails"]]
+%>
+
+% if metadata["authors"]:
+<hr />
+<p>By
+%   for author in authors:
+<span><a href="${urls.build('author.html', {'slug': author['slug']})}">${author["name"]}</a></span>
+%   endfor
+%   for author in metadata["authors"]:
+%     if author not in author_emails:
+<span>${author}</span>
+<% warn("%s: author %r not found" % (filename, author)) %>
+%     endif
+%   endfor
+% endif
+
+</footer>

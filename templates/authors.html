@@ -1,0 +1,17 @@
+<%inherit file="base.html"/>
+<%
+authors = db.execute(
+'''
+SELECT metadata AS "[JSON]"
+FROM source AS author
+WHERE json_extract(author.metadata, '$.type') = 'author'
+''').fetchall()
+%>
+
+<h1>Authors</h1>
+
+<ul>
+% for author, in authors:
+<li><a href="${urls.build('author.html', {'slug': author['slug']})}">${author["name"]}</a></li>
+% endfor
+</ul>

@@ -1,0 +1,32 @@
+<%inherit file="base.html"/>
+<%
+wikis, = db.execute(
+'''
+SELECT json_group_array(json(wiki.metadata)) AS "[JSON]"
+FROM source AS author
+LEFT OUTER JOIN source AS wiki
+ON EXISTS (
+  SELECT value
+  FROM json_each(wiki.metadata, '$.authors')
+  WHERE value IN (
+    SELECT value
+    FROM json_each(author.metadata, '$.emails')))
+  AND json_extract(wiki.metadata, '$.type') = 'wiki'
+WHERE author.oid = ?
+GROUP BY author.oid
+''',
+(oid,)).fetchone()
+%>
+
+<h1>${metadata["name"]}</h1>
+
+<h2>Contributions</h2>
+<ul>
+% for wiki in wikis:
+<li><a href="${urls.build('wiki.html', {'slug': wiki['slug']})}">${wiki["title"]}</a></li>
+% endfor
+</ul>
+
+<main>
+${content | n}
+</main>
