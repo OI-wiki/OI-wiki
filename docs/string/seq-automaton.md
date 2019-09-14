@@ -45,7 +45,7 @@ $$
 
 ## 例题
 
-### " [「HEOI2015」最短不公共子串](https://www.luogu.org/problem/P4112) "
+### [「HEOI2015」最短不公共子串](https://www.luogu.org/problem/P4112)
 
 这题的 (1) 和 (3) 两问需要后缀自动机，而且做法类似，在这里只讲解 (2) 和 (4) 两问。
 
