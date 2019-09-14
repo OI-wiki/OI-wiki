@@ -32,35 +32,35 @@ Dev-C++ 各版本的安装步骤大同小异，下面以最新版本 5.11 演示
 
  [下载链接](https://sourceforge.net/projects/orwelldevcpp/files/latest/download) 
 
-1.首先选择安装语言，这里选择英语，然后点击 OK。
+1\. 首先选择安装语言，这里选择英语，然后点击 OK。
 
 ![](./images/Dev-C++-1.png)
 
-2.同意使用协议，即点击 I Agree。
+2\. 同意使用协议，即点击 I Agree。
 
 ![](./images/Dev-C++-2.png)
 
-3.选择安装方式，此处直接点击 Next>。
+3\. 选择安装方式，此处直接点击 Next>。
 
 ![](./images/Dev-C++-3.png)
 
-4.选择安装路径，按需要选择，然后点击 Install。
+4\. 选择安装路径，按需要选择，然后点击 Install。
 
 ![](./images/Dev-C++-4.png)
 
-5.安装完毕后，点击 Finish 来开始初始化 Dev-C++。
+5\. 安装完毕后，点击 Finish 来开始初始化 Dev-C++。
 
 ![](./images/Dev-C++-5.png)
 
-6.选择语言为简体中文，然后点击 > Next。
+6\. 选择语言为简体中文，然后点击 > Next。
 
 ![](./images/Dev-C++-6.png)
 
-7.选择你的主题和风格，这些以后可以在编辑器选项里调整，然后点击 > Next。
+7\. 选择你的主题和风格，这些以后可以在编辑器选项里调整，然后点击 > Next。
 
 ![](./images/Dev-C++-7.png)
 
-8.点击 OK 以完成安装。
+8\. 点击 OK 以完成安装。
 
 ![](./images/Dev-C++-8.png)
 
