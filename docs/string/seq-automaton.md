@@ -78,6 +78,7 @@ $$
     
     void insert(int x) {
       int np = ++tot;
+      sam[np].len = sam[p].len + 1;
       while (p && !sam[p].ch[x]) {
         sam[p].ch[x] = np;
         p = sam[p].par;
