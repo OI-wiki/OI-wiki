@@ -276,15 +276,15 @@ void sub(int a[LEN], int b[LEN], int c[LEN]) {
 
 其实处理被减数比减数小的情况很简单。
 
-当$x<0$时，$\left| x \right|=-x$
+当 $x<0$ 时， $\left| x \right|=-x$ 
 
-$\because$ 当 $a<b$ 时，$(a-b)<0$。
+ $\because$ 当 $a<b$ 时， $(a-b)<0$ 。
 
 $$
 \therefore \left|a-b\right|=-(a-b)
 $$
 
-$\because$ 只有符号不同的两个数互为相反数。
+ $\because$ 只有符号不同的两个数互为相反数。
 
 又 $\because$ 这里的绝对值运算只是将负号变为正号。
 
