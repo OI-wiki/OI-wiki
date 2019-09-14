@@ -155,7 +155,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
     两种格式的区别是，带 `+` 的会默认保持展开，而不带 `+` 的会默认保持折叠。效果可以参考图例的例 7。
 
-    如果需要嵌套折叠框，推荐使用 [MDUI 的阴影样式](https://www.mdui.org/docs/shadow#use) ，提高内层折叠框的深度。
+    如果需要嵌套折叠框，推荐使用 [MDUI 的阴影样式](https://www.mdui.org/docs/shadow#use) ，提高内层折叠框的海拔。
 
      **OI Wiki** 支持 `.mdui-shadow-[0-24]` ，一般情况下最多用到两层折叠框，外层用 `note` 即可（其实就是 `mdui-shadow-2` ），内层推荐使用 `mdui-shadow-6` 。
 
@@ -164,6 +164,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
     ````text
     ??? note "题解"
         内容
+
         ??? mdui-shadow-6 "参考代码"
             ```cpp
             代码
