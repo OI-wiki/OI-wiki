@@ -84,18 +84,17 @@ def build_link(target, text=None):
 
     if text is None:
         _, values = urls.match(url)
-        result = database.find(values)
-        if result is None:
+        entry = registry.find(values)
+        if entry is None:
             warn("%s %r not found" % (
                 "author" if target.startswith("@") else "wiki",
                 target))
             text = target
         else:
-            _, _, _, metadata = result
             if values['type'] == 'author':
-                text = metadata["name"]
+                text = entry["name"]
             else:
-                text = metadata["title"]
+                text = entry["title"]
 
     return url, text
 
@@ -129,4 +128,8 @@ READERS = {
     'markdown': {
         'extensions': ['meta', WikiLinkExtension()]
     }
+}
+
+REGISTRIES = {
+  'default': { 'name': 'dummy' }
 }

@@ -1,24 +1,12 @@
 <%inherit file="base.html"/>
 <%
-wikis, = db.execute(
-'''
-SELECT json_group_array(json(wiki.metadata)) AS "[JSON]"
-FROM source AS author
-LEFT OUTER JOIN source AS wiki
-ON EXISTS (
-  SELECT value
-  FROM json_each(wiki.metadata, '$.authors')
-  WHERE value IN (
-    SELECT value
-    FROM json_each(author.metadata, '$.emails')))
-  AND json_extract(wiki.metadata, '$.type') = 'wiki'
-WHERE author.oid = ?
-GROUP BY author.oid
-''',
-(oid,)).fetchone()
+wikis = [
+  wiki
+  for wiki in registry.find_all({"type": "wiki"})
+  if any(author in entry["emails"] for author in wiki.get("authors", [])) ]
 %>
 
-<h1>${metadata["name"]}</h1>
+<h1>${entry["name"]}</h1>
 
 <h2>Contributions</h2>
 <ul>

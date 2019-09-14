@@ -1,9 +1,9 @@
 <%inherit file="base.html"/>
 
-<%block name="title">${metadata["title"]}</%block>
+<%block name="title">${entry["title"]}</%block>
 
 <main>
-<h1>${metadata["title"]}</h1>
+<h1>${entry["title"]}</h1>
 
 <article>
 ${content | n}
@@ -13,23 +13,14 @@ ${content | n}
 
 <footer>
 <%
-pages, = db.execute(
-'''
-SELECT json_group_array(page.metadata) AS "[JSON]"
-FROM source AS wiki
-LEFT OUTER JOIN source AS page
-ON json_extract(wiki.metadata, '$.slug') IN (
-    SELECT value
-    FROM json_each(page.metadata, '$.tags'))
-  AND json_extract(page.metadata, '$.type') = 'wiki'
-WHERE wiki.oid = ?
-GROUP BY wiki.oid
-''',
-(oid,)).fetchone()
+pages = [
+  page
+  for page in registry.find_all({"type": "wiki"})
+  if entry["slug"] in page.get("tags", [])]
 %>
 % if pages:
 <hr/>
-<h4>Pages tagged with "${metadata["title"]}"</h4>
+<h4>Pages tagged with "${entry["title"]}"</h4>
 <ul>
 %   for page in pages:
 <li><a href="${urls.build('wiki.html', {'slug': page['slug']})}">${page["title"]}</a></li>
@@ -38,29 +29,20 @@ GROUP BY wiki.oid
 % endif
 
 <%
-tags, = db.execute(
-'''
-SELECT json_group_array(tag.metadata) AS "[JSON]"
-FROM source AS wiki
-LEFT OUTER JOIN source AS tag
-ON json_extract(tag.metadata, '$.slug') IN (
-    SELECT value
-    FROM json_each(wiki.metadata, '$.tags'))
-  AND json_extract(tag.metadata, '$.type') = 'wiki'
-WHERE wiki.oid = ?
-GROUP BY wiki.oid
-''',
-(oid,)).fetchone()
+tags = [
+  tag
+  for tag in registry.find_all({"type": "wiki"})
+  if tag.get("slug", None) in entry["tags"]]
 tag_slugs = [tag["slug"] for tag in tags]
 %>
 
-% if metadata["tags"]:
+% if entry["tags"]:
 <hr />
 <p>
 %   for tag in tags:
 <span><a href="${urls.build('wiki.html', {'slug': tag['slug']})}">${tag["title"]}</a></span>
 %   endfor
-%   for tag in metadata["tags"]:
+%   for tag in entry["tags"]:
 %     if tag not in tag_slugs:
 <span>${tag}</span>
 <% warn("%s: tag %r not found" % (filename, tag)) %>
@@ -70,32 +52,20 @@ tag_slugs = [tag["slug"] for tag in tags]
 % endif
 
 <%
-authors, = db.execute(
-'''
-SELECT json_group_array(author.metadata) AS "[JSON]"
-FROM source AS wiki
-LEFT OUTER JOIN source AS author
-ON EXISTS (
-  SELECT value
-  FROM json_each(author.metadata, '$.emails')
-  WHERE value IN (
-    SELECT value
-    FROM json_each(wiki.metadata, '$.authors')))
-  AND json_extract(author.metadata, '$.type') = 'author'
-WHERE wiki.oid = ?
-GROUP BY wiki.oid
-''',
-(oid,)).fetchone()
+authors = [
+  author
+  for author in registry.find_all({"type": "author"})
+  if any(email in entry["authors"] for email in author.get("emails", []))]
 author_emails = [email for author in authors for email in author["emails"]]
 %>
 
-% if metadata["authors"]:
+% if entry["authors"]:
 <hr />
 <p>By
 %   for author in authors:
 <span><a href="${urls.build('author.html', {'slug': author['slug']})}">${author["name"]}</a></span>
 %   endfor
-%   for author in metadata["authors"]:
+%   for author in entry["authors"]:
 %     if author not in author_emails:
 <span>${author}</span>
 <% warn("%s: author %r not found" % (filename, author)) %>
