@@ -45,41 +45,37 @@ $$
 
 ## 例题
 
-???+note "[「HEOI2015」最短不公共子串](https://www.luogu.org/problem/P4112)"
-    这题的 (1) 和 (3) 两问需要后缀自动机，而且做法类似，在这里只讲解 (2) 和 (4) 两问。
+### "[「HEOI2015」最短不公共子串](https://www.luogu.org/problem/P4112)"
 
-    (2) 比较简单，枚举 A 的子串输入进 B 的序列自动机，若不接受则计入答案。
+这题的 (1) 和 (3) 两问需要后缀自动机，而且做法类似，在这里只讲解 (2) 和 (4) 两问。
 
-    (4) 需要 DP。令 $f(i, j)$ 表示在 A 的序列自动机中处于状态 $i$ ，在 B 的序列自动机中处于状态 $j$ ，需要再添加多少个字符能够不是公共子序列。
+(2) 比较简单，枚举 A 的子串输入进 B 的序列自动机，若不接受则计入答案。
 
-     $$
-     f(i, null)=0
-     $$
+(4) 需要 DP。令 $f(i, j)$ 表示在 A 的序列自动机中处于状态 $i$ ，在 B 的序列自动机中处于状态 $j$ ，需要再添加多少个字符能够不是公共子序列。
 
-     $$
-     f(i, j)=\min\limits_{\delta_A(i,c)\ne null}f(\delta_A(i, c), \delta_B(j, c))
-     $$ 
+$f(i, null)=0$
 
-    整道题的参考代码：
+$f(i, j)=\min\limits_{\delta_A(i,c)\ne null}f(\delta_A(i, c), \delta_B(j, c))$ 
 
+??? note "整道题的参考代码"
     ```cpp
     #include <algorithm>
     #include <cstdio>
     #include <cstring>
     #include <iostream>
-
+    
     using namespace std;
-
+    
     const int N = 2005;
-
+    
     char s[N], t[N];
     int na[N][26], nb[N][26], nxt[26];
     int n, m, a[N], b[N], tot = 1, p = 1, f[N][N << 1];
-
+    
     struct SAM {
       int par, ch[26], len;
     } sam[N << 1];
-
+    
     void insert(int x) {
       int np = ++tot;
       while (p && !sam[p].ch[x]) {
@@ -106,32 +102,32 @@ $$
       }
       p = np;
     }
-
+    
     int main() {
       scanf("%s%s", s + 1, t + 1);
-
+      
       n = strlen(s + 1);
       m = strlen(t + 1);
-
+      
       for (int i = 1; i <= n; ++i) a[i] = s[i] - 'a';
       for (int i = 1; i <= m; ++i) b[i] = t[i] - 'a';
-
+      
       for (int i = 1; i <= m; ++i) insert(b[i]);
-
+      
       for (int i = 0; i < 26; ++i) nxt[i] = n + 1;
       for (int i = n; i >= 0; --i) {
         memcpy(na[i], nxt, sizeof(nxt));
         nxt[a[i]] = i;
       }
-
+      
       for (int i = 0; i < 26; ++i) nxt[i] = m + 1;
       for (int i = m; i >= 0; --i) {
         memcpy(nb[i], nxt, sizeof(nxt));
         nxt[b[i]] = i;
       }
-
+      
       int ans = N;
-
+      
       for (int l = 1; l <= n; ++l) {
         for (int r = l, u = 1; r <= n; ++r) {
           u = sam[u].ch[a[r]];
@@ -141,11 +137,11 @@ $$
           }
         }
       }
-
+      
       printf("%d\n", ans == N ? -1 : ans);
-
+      
       ans = N;
-
+      
       for (int l = 1; l <= n; ++l) {
         for (int r = l, u = 0; r <= n; ++r) {
           u = nb[u][a[r]];
@@ -155,9 +151,9 @@ $$
           }
         }
       }
-
+      
       printf("%d\n", ans == N ? -1 : ans);
-
+      
       for (int i = n; i >= 0; --i) {
         for (int j = 1; j <= tot; ++j) {
           f[i][j] = N;
@@ -168,11 +164,11 @@ $$
           }
         }
       }
-
+      
       printf("%d\n", f[0][1] == N ? -1 : f[0][1]);
-
+      
       memset(f, 0, sizeof(f));
-
+      
       for (int i = n; i >= 0; --i) {
         for (int j = 0; j <= m; ++j) {
           f[i][j] = N;
@@ -183,9 +179,9 @@ $$
           }
         }
       }
-
+      
       printf("%d\n", f[0][0] == N ? -1 : f[0][0]);
-
+      
       return 0;
     }
     ```
