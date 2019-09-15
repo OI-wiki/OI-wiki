@@ -62,14 +62,14 @@ URLS = Map([
         defaults={'type': 'wiki', 'slug': 'index'},
         endpoint='wiki.html'),
     Rule(
-        '/<slug>.html',
+        '/<path:slug>',
         defaults={'type': 'wiki'},
         endpoint='wiki.html'),
     Rule(
         '/authors/',
         endpoint='authors.html'),
     Rule(
-        '/authors/<slug>.html',
+        '/authors/<slug>',
         defaults={'type': 'author'},
         endpoint='author.html')])
 
@@ -106,7 +106,7 @@ class WikiLinkExtension(Extension):
 
     def extendMarkdown(self, md, md_globals):
         self.md = md
-        WIKILINK_RE = r'\[\[(?P<target>[@\w0-9:_ -]+)(?P<text>(?:\|[\w0-9:_ -]+)?)\]\]'
+        WIKILINK_RE = r'\[\[(?P<target>[@\w/0-9:_ -]+)(?P<text>(?:\|[\w/0-9:_ -]+)?)\]\]'
         pattern = WikiLinks(WIKILINK_RE)
         pattern.md = md
         md.inlinePatterns.add('wikilink', pattern, "<not_strong")
@@ -124,9 +124,26 @@ class WikiLinks(Pattern):
         a.set('href', url)
         return a
 
+
+
 READERS = {
     'markdown': {
-        'extensions': ['meta', WikiLinkExtension()]
+        'extensions':
+        [ 'codehilite',
+          'meta',
+          WikiLinkExtension(),
+          'pymdownx.arithmatex',
+          'pymdownx.superfences',
+        ],
+        'extension_configs': {
+            'codehilite': {
+                'guess_lang': False,
+                'linenums': True,
+            },
+            'pymdownx.arithmatex': {
+                'generic': True,
+            }
+        }
     }
 }
 
