@@ -45,144 +45,154 @@ $$
 
 ## 例题
 
-###  [「HEOI2015」最短不公共子串](https://www.luogu.org/problem/P4112) 
+???+note "[「HEOI2015」最短不公共子串](https://www.luogu.org/problem/P4112)?
 
-这题的 (1) 和 (3) 两问需要后缀自动机，而且做法类似，在这里只讲解 (2) 和 (4) 两问。
+    给你两个由小写英文字母组成的串 $A$ 和 $B$，求：
 
-(2) 比较简单，枚举 A 的子串输入进 B 的序列自动机，若不接受则计入答案。
+    1. $A$ 的一个最短的子串，它不是 $B$ 的子串；
+    2. $A$ 的一个最短的子串，它不是 $B$ 的子序列；
+    3. $A$ 的一个最短的子序列，它不是 $B$ 的子串；
+    4. $A$ 的一个最短的子序列，它不是 $B$ 的子序列。
 
-(4) 需要 DP。令 $f(i, j)$ 表示在 A 的序列自动机中处于状态 $i$ ，在 B 的序列自动机中处于状态 $j$ ，需要再添加多少个字符能够不是公共子序列。
+    $1\le |A|, |B|\le 2000$。
 
- $f(i, null)=0$ 
+    ??? mdui-shadow-6 "题解"
+        这题的 (1) 和 (3) 两问需要后缀自动机，而且做法类似，在这里只讲解 (2) 和 (4) 两问。
 
- $f(i, j)=\min\limits_{\delta_A(i,c)\ne null}f(\delta_A(i, c), \delta_B(j, c))$ 
+        (2) 比较简单，枚举 A 的子串输入进 B 的序列自动机，若不接受则计入答案。
 
-??? note "整道题的参考代码"
-    ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    
-    using namespace std;
-    
-    const int N = 2005;
-    
-    char s[N], t[N];
-    int na[N][26], nb[N][26], nxt[26];
-    int n, m, a[N], b[N], tot = 1, p = 1, f[N][N << 1];
-    
-    struct SAM {
-      int par, ch[26], len;
-    } sam[N << 1];
-    
-    void insert(int x) {
-      int np = ++tot;
-      sam[np].len = sam[p].len + 1;
-      while (p && !sam[p].ch[x]) {
-        sam[p].ch[x] = np;
-        p = sam[p].par;
-      }
-      if (p == 0)
-        sam[np].par = 1;
-      else {
-        int q = sam[p].ch[x];
-        if (sam[q].len == sam[p].len + 1)
-          sam[np].par = q;
-        else {
-          int nq = ++tot;
-          sam[nq].len = sam[p].len + 1;
-          memcpy(sam[nq].ch, sam[q].ch, sizeof(sam[q].ch));
-          sam[nq].par = sam[q].par;
-          sam[q].par = sam[np].par = nq;
-          while (p && sam[p].ch[x] == q) {
-            sam[p].ch[x] = nq;
+        (4) 需要 DP。令 $f(i, j)$ 表示在 A 的序列自动机中处于状态 $i$ ，在 B 的序列自动机中处于状态 $j$ ，需要再添加多少个字符能够不是公共子序列。
+
+        $f(i, null)=0$ 
+
+        $f(i, j)=\min\limits_{\delta_A(i,c)\ne null}f(\delta_A(i, c), \delta_B(j, c))$ 
+
+    ??? mdui-shadow-6 "参考代码"
+        ```cpp
+        #include <algorithm>
+        #include <cstdio>
+        #include <cstring>
+        #include <iostream>
+        
+        using namespace std;
+        
+        const int N = 2005;
+        
+        char s[N], t[N];
+        int na[N][26], nb[N][26], nxt[26];
+        int n, m, a[N], b[N], tot = 1, p = 1, f[N][N << 1];
+        
+        struct SAM {
+          int par, ch[26], len;
+        } sam[N << 1];
+        
+        void insert(int x) {
+          int np = ++tot;
+          sam[np].len = sam[p].len + 1;
+          while (p && !sam[p].ch[x]) {
+            sam[p].ch[x] = np;
             p = sam[p].par;
           }
-        }
-      }
-      p = np;
-    }
-    
-    int main() {
-      scanf("%s%s", s + 1, t + 1);
-    
-      n = strlen(s + 1);
-      m = strlen(t + 1);
-    
-      for (int i = 1; i <= n; ++i) a[i] = s[i] - 'a';
-      for (int i = 1; i <= m; ++i) b[i] = t[i] - 'a';
-    
-      for (int i = 1; i <= m; ++i) insert(b[i]);
-    
-      for (int i = 0; i < 26; ++i) nxt[i] = n + 1;
-      for (int i = n; i >= 0; --i) {
-        memcpy(na[i], nxt, sizeof(nxt));
-        nxt[a[i]] = i;
-      }
-    
-      for (int i = 0; i < 26; ++i) nxt[i] = m + 1;
-      for (int i = m; i >= 0; --i) {
-        memcpy(nb[i], nxt, sizeof(nxt));
-        nxt[b[i]] = i;
-      }
-    
-      int ans = N;
-    
-      for (int l = 1; l <= n; ++l) {
-        for (int r = l, u = 1; r <= n; ++r) {
-          u = sam[u].ch[a[r]];
-          if (!u) {
-            ans = min(ans, r - l + 1);
-            break;
+          if (p == 0)
+            sam[np].par = 1;
+          else {
+            int q = sam[p].ch[x];
+            if (sam[q].len == sam[p].len + 1)
+              sam[np].par = q;
+            else {
+              int nq = ++tot;
+              sam[nq].len = sam[p].len + 1;
+              memcpy(sam[nq].ch, sam[q].ch, sizeof(sam[q].ch));
+              sam[nq].par = sam[q].par;
+              sam[q].par = sam[np].par = nq;
+              while (p && sam[p].ch[x] == q) {
+                sam[p].ch[x] = nq;
+                p = sam[p].par;
+              }
+            }
           }
+          p = np;
         }
-      }
-    
-      printf("%d\n", ans == N ? -1 : ans);
-    
-      ans = N;
-    
-      for (int l = 1; l <= n; ++l) {
-        for (int r = l, u = 0; r <= n; ++r) {
-          u = nb[u][a[r]];
-          if (u == m + 1) {
-            ans = min(ans, r - l + 1);
-            break;
+        
+        int main() {
+          scanf("%s%s", s + 1, t + 1);
+        
+          n = strlen(s + 1);
+          m = strlen(t + 1);
+        
+          for (int i = 1; i <= n; ++i) a[i] = s[i] - 'a';
+          for (int i = 1; i <= m; ++i) b[i] = t[i] - 'a';
+        
+          for (int i = 1; i <= m; ++i) insert(b[i]);
+        
+          for (int i = 0; i < 26; ++i) nxt[i] = n + 1;
+          for (int i = n; i >= 0; --i) {
+            memcpy(na[i], nxt, sizeof(nxt));
+            nxt[a[i]] = i;
           }
-        }
-      }
-    
-      printf("%d\n", ans == N ? -1 : ans);
-    
-      for (int i = n; i >= 0; --i) {
-        for (int j = 1; j <= tot; ++j) {
-          f[i][j] = N;
-          for (int c = 0; c < 26; ++c) {
-            int u = na[i][c];
-            int v = sam[j].ch[c];
-            if (u <= n) f[i][j] = min(f[i][j], f[u][v] + 1);
+        
+          for (int i = 0; i < 26; ++i) nxt[i] = m + 1;
+          for (int i = m; i >= 0; --i) {
+            memcpy(nb[i], nxt, sizeof(nxt));
+            nxt[b[i]] = i;
           }
-        }
-      }
-    
-      printf("%d\n", f[0][1] == N ? -1 : f[0][1]);
-    
-      memset(f, 0, sizeof(f));
-    
-      for (int i = n; i >= 0; --i) {
-        for (int j = 0; j <= m; ++j) {
-          f[i][j] = N;
-          for (int c = 0; c < 26; ++c) {
-            int u = na[i][c];
-            int v = nb[j][c];
-            if (u <= n) f[i][j] = min(f[i][j], f[u][v] + 1);
+        
+          int ans = N;
+        
+          for (int l = 1; l <= n; ++l) {
+            for (int r = l, u = 1; r <= n; ++r) {
+              u = sam[u].ch[a[r]];
+              if (!u) {
+                ans = min(ans, r - l + 1);
+                break;
+              }
+            }
           }
+        
+          printf("%d\n", ans == N ? -1 : ans);
+        
+          ans = N;
+        
+          for (int l = 1; l <= n; ++l) {
+            for (int r = l, u = 0; r <= n; ++r) {
+              u = nb[u][a[r]];
+              if (u == m + 1) {
+                ans = min(ans, r - l + 1);
+                break;
+              }
+            }
+          }
+        
+          printf("%d\n", ans == N ? -1 : ans);
+        
+          for (int i = n; i >= 0; --i) {
+            for (int j = 1; j <= tot; ++j) {
+              f[i][j] = N;
+              for (int c = 0; c < 26; ++c) {
+                int u = na[i][c];
+                int v = sam[j].ch[c];
+                if (u <= n) f[i][j] = min(f[i][j], f[u][v] + 1);
+              }
+            }
+          }
+        
+          printf("%d\n", f[0][1] == N ? -1 : f[0][1]);
+        
+          memset(f, 0, sizeof(f));
+        
+          for (int i = n; i >= 0; --i) {
+            for (int j = 0; j <= m; ++j) {
+              f[i][j] = N;
+              for (int c = 0; c < 26; ++c) {
+                int u = na[i][c];
+                int v = nb[j][c];
+                if (u <= n) f[i][j] = min(f[i][j], f[u][v] + 1);
+              }
+            }
+          }
+        
+          printf("%d\n", f[0][0] == N ? -1 : f[0][0]);
+        
+          return 0;
         }
-      }
-    
-      printf("%d\n", f[0][0] == N ? -1 : f[0][0]);
-    
-      return 0;
-    }
-    ```
+        ```
