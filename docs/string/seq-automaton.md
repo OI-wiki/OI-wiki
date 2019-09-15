@@ -45,7 +45,7 @@ $$
 
 ## 例题
 
-???+note "[「HEOI2015」最短不公共子串](https://www.luogu.org/problem/P4112)?
+???+note " [「HEOI2015」最短不公共子串](https://www.luogu.org/problem/P4112) ?
 
     给你两个由小写英文字母组成的串 $A$ 和 $B$，求：
 
