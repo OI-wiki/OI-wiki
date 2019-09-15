@@ -155,7 +155,7 @@ Notepad++ 可以自动识别当前文件编码是 `UTF-8` 还是 `GB2312` 甚至
 
 不只是编辑器！"Notepad++" 可谓神一样的存在，它可以通过傻瓜式地编译代码，甚至代替 IDE！这里以 C++ 为例
 
-1.  安装编译器并将其必要的文件目录添加到环境变量中。（C++ 需要添加 %APPPATH%\\bin）当你在 cmd 中输入 g++ 时不再提示'g++'不是内部或外部命令……即可（中间可能需要重启电脑）如果安装了 Dev-C++ 可以将程序安装目录也加一下，后面会提到。
+1.  安装编译器并将其必要的文件目录添加到PATH环境变量中。（C++ 需要添加 %APPPATH%\\bin）当你在 cmd 中输入 g++ 时不再提示'g++'不是内部或外部命令……即可（中间可能需要重启电脑）。推荐[下载ConsolPauser](https://sourceforge.net/projects/orwelldevcpp/files/Tools/ConsolePauser.exe/download)然后随便放并将其目录添加到环境变量（此为Dev-C++的插件，在Dev-C++软件根目录也有）。
 
 2.  在菜单栏中选择“运行”->“运行……”，打开“运行”窗口。
 
@@ -167,7 +167,7 @@ Notepad++ 可以自动识别当前文件编码是 `UTF-8` 还是 `GB2312` 甚至
 
     #运行命令：
     cmd /c $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH) & pause
-    #如果有Dev-C++可以使用下列代码获得更好的程序运行体验！（注意添加环境变量！）
+    #如果下载了ConsolePauser可以使用下列代码获得更好的程序运行体验！（注意添加环境变量！）
     cmd /c (start ConsolePauser "$(CURRENT_DIRECTORY)\$(NAME_PART).exe")
 
     #调试命令：
