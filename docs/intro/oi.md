@@ -6,7 +6,31 @@ OI 竞赛是一项全球的赛事，每年夏天会有世界级竞赛（IOI）�
 
 OI 竞赛中允许使用的语言包括 Pascal（NOI 将于 2020 年停止使用 Pascal，NOIP 将于 2022 年停止使用 Pascal），C 和 C++。其中 C++ 的版本不同考试有不同的规定。考试题目一般为算法或者数据结构相关的内容，题目形式包括传统题（最常见的规定输入和输出到文件的题目）和非传统题（提交答案题、交互题、补全代码题等等）。
 
+### NOIP
+
+moved to wiki/NOIP.md
+
+### NOI
+
+moved to wiki/NOI.md
+
+### WC
+
+moved to wiki/WC.md
+
+### APIO
+
+moved to wiki/APIO.md
+
+### CTS
+
+moved to wiki/CTS.md
+
 注：APIO 和 CTS 都是以省为单位报名，一般是按照 NOIP 成绩排序来确定谁会有机会参加 APIO 和 CTS（二者一般时间上非常接近）。
+
+### IOI
+
+moved to wiki/IOI.md
 
 ### 学科营
 
