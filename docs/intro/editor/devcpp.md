@@ -1,14 +1,14 @@
 ## 介绍
 
-    Dev-C++ 是一套用于开发 C/C++（C++11）的自由的集成开发环境（IDE），并以 GPL 作为散布许可。使用 MinGW 及 GDB 作为编译系统与调试系统。Dev-C++ 的 IDE 是利用 Delphi 开发的。
-
-    Dev-C++ 是一个 SourceForge 的项目，是由 Colin Laplace 这位程序员及其公司 Bloodshed Software 所开始的。当前 Dev-C++ 一般用于撰写运行于 Microsoft Windows 的程序。Dev-C++ 一度有移植到 Linux 的项目但当前被暂停了。
-
-    Bloodshed Dev-C++ 是一款全功能的 C 和 C++ 编程语言的集成开发环境（IDE）。它使用的 GCC MinGW 或 TDM-GCC 的 64 位版本作为它的编译器。DEV-C++ 也可以使用 Cygwin 或任何其他基于 GCC 编译器组合使用。
-
-    此外，Dev-C++ 较旧的版本无法在 win8 环境下编译。
-
-不过该项目已不再明显活跃，从 2005 年 2 月 22 日开始至 2011 年 6 月，Dev-C++ 的官方网站一直没有再发出新消息或是释放新版本，说明 Dev-C++ 的开发已经进入了迟滞状态。2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释：“因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发。” [\[1\]](http://sourceforge.net/projects/dev-cpp/forums/forum/33286/topic/1334635) 
+>Dev-C++ 是一套用于开发 C/C++（C++11）的自由的集成开发环境（IDE），并以 GPL 作为散布许可。使用 MinGW 及 GDB 作为编译系统与调试系统。Dev-C++ 的 IE 是利用 Delphi 开发的。
+>
+>Dev-C++ 是一个 SourceForge 的项目，是由 Colin Laplace 这位程序员及其公司 Bloodshed Software 所开始的。当前 Dev-C++ 一般用于撰写运行于 Microsoft Windows 的程序。Dev-C++ 一度有移植到 Linux 的项目但当前被暂停了。
+>
+>Bloodshed Dev-C++ 是一款全功能的 C 和 C++ 编程语言的集成开发环境（IDE）。它使用的 GCC MinGW 或 TDM-GCC 的 64 位版本作为它的编译器。DEV-C++ 也可以使用 Cygwin 或任何其他基于 GCC 编译器组合使用。
+>
+>此外，Dev-C++ 较旧的版本无法在 win8 环境下编译。
+>
+>不过该项目已不再明显活跃，从 2005 年 2 月 22 日开始至 2011 年 6 月，Dev-C++ 的官方网站一直没有再发出新消息或是释放新版本，说明 Dev-C++ 的开发已经进入了迟滞状态。2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释：“因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发。” [\[1\]](http://sourceforge.net/projects/dev-cpp/forums/forum/33286/topic/1334635) 
 
 以上摘自 Wikipedia [\[2\]](https://zh.wikipedia.org/wiki/Dev-C%2B%2B) 。
 
@@ -16,7 +16,7 @@
 
 没错，Dev-C++ 其实还有一个船新版本：
 
-    Orwell Dev-C++ 是 Dev-C++ 的一个衍生版本。Orwell 鉴于 Dev-C++ 的长时间（从 2005 年 2 月 22 日起）不再更新，对 Dev-C++ 源代码进行错误修正，并更新编译器后发布的版本。
+>Orwell Dev-C++ 是 Dev-C++ 的一个衍生版本。Orwell 鉴于 Dev-C++ 的长时间（从 2005 年 2 月 22 日起）不再更新，对 Dev-C++ 源代码进行错误修正，并更新编译器后发布的版本。
 
 以上摘自 Wikipedia [\[3\]](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B) 。
 
@@ -66,59 +66,54 @@ Dev-C++ 各版本的安装步骤大同小异，下面以最新版本 5.11 演示
 
 ## 使用教程
 
-    1、常用快捷键
+1、常用快捷键
+ 1. 文件部分
+ + Ctrl+N : 创建源代码
+ + Ctrl+O : 打开文件
+ + Ctrl+W : 关闭文件
+ + Ctrl+P : 打印文件
+ 2. 格式部分
+  + Ctrl+/ : 注释和取消注释
+  + Tab : 缩进
+  + Shift + Tab : 取消缩进
+ 3. 行操作
+  + Ctrl+E : 复制行
+  + Ctrl+D : 删除行
+  + Ctrl+Shift+Up : 向上移动  
+  + Ctrl+Shift+Down : 向下移动 
+ 4. 跳转部分
+  + Ctrl+F : 搜索
+  + Ctrl+R : 替换 
+  + F3 : 搜索下一个
+  + Shift+F3 : 搜索上一个 
+  + Ctrl+G : 到指定行号
+  + Shift+Ctrl+G : 到指定函数 
+  + Ctrl+1~9 : 设置书签
+  + Alt+1~9 : 跳转书签 
+ 5. 显示部分
+  + Ctrl+滚轮 ： 字号放大或缩小
+  + Ctrl+F11 : 全屏或恢复
+ 6. 运行部分
+  + F9 : 只编译
+  + F10 : 只运行
+  + F11 : 编译并运行
+  + F12 : 全部重新编译
+ 7. 调试部分
+  + F2 : 转到断点
+  + F4 : 设置断点或取消
+  + F5 : 调试运行
+  + F6 : 停止
+  + F7 : 逐步调试
 
-    Ctrl+N : 创建源代码
-    Ctrl+O : 打开文件
-    Ctrl+W : 关闭文件
-    Ctrl+P : 打印文件
+2、调试流程
 
-    Ctrl+/ : 注释和取消注释
-
-    Tab : 缩进
-    Shift + Tab : 取消缩进
-
-    Ctrl+E : 复制行
-    Ctrl+D : 删除行
-
-    Ctrl+Shift+Up : 向上移动
-    Ctrl+Shift+Down : 向下移动 
-
-    Ctrl+F : 搜索
-    Ctrl+R : 替换 
-
-    F3 : 搜索下一个
-    Shift+F3 : 搜索上一个 
-
-    Ctrl+G : 到指定行号
-    Shift+Ctrl+G : 到指定函数 
-
-    Ctrl+1~9 : 设置书签
-    Alt+1~9 : 跳转书签 
-
-    Ctrl+滚轮 ： 字号放大或缩小
-    Ctrl+F11 : 全屏或恢复
-
-    F9 : 只编译
-    F10 : 只运行
-    F11 : 编译并运行
-    F12 : 全部重新编译
-
-    F2 : 转到断点
-    F4 : 设置断点或取消
-    F5 : 调试运行
-    F6 : 停止
-    F7 : 逐步调试
-
-    2、调试流程
-
-    (1) 将编译器配置设定为 "TDM-GCC 4.9.2 64-bit Debug"
-    (2) 按 F4 设置或取消调试断点
-    (3) 将光标放置在变量上，按 Alt+A 向调试窗口添加监控变量
-    (4) 按 F5 启动调试
-    (5) 按 F7 或 Alt+N 逐步调试
-    (6) 按 Alt+S 跳至下一个调试断点 
-    (7) 按 F6 停止调试
+1. 将编译器配置设定为 "TDM-GCC 4.9.2 64-bit Debug"
+2. 按 F4 设置或取消调试断点
+3. 将光标放置在变量上，按 Alt+A 向调试窗口添加监控变量
+4. 按 F5 启动调试
+5. 按 F7 或 Alt+N 逐步调试
+6. 按 Alt+S 跳至下一个调试断点 
+7. 按 F6 停止调试
       
 
 引用自 Dev-C++ 使用指南 by juxq [\[4\]](https://blog.csdn.net/juxq/article/details/83515469) 。
