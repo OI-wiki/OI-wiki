@@ -165,11 +165,11 @@ sudo service xrdp restart
 ![](./images/WSL14.png)
 ![](./images/WSL15.png)
 
-#### 补充：使用 Xming 连接
+### 补充：使用 Xming 连接
 
 有网友说，这个可以用 Xming 连接，那我们就来研究一下。
 
-##### 客户端：安装 Xterm
+#### 客户端：安装 Xterm
 
 我们进入 Ubuntu 环境，安装 xterm：
 
@@ -177,7 +177,7 @@ sudo service xrdp restart
 sudo apt-get install xterm -y
 ```
 
-##### 服务端：下载 Xming Server
+#### 服务端：下载 Xming Server
 
 去 <https://sourceforge.net/projects/xming/> 下载最新的 Xming Server，然后一路安装：  
 ![](./images/WSL16.png)  
@@ -205,7 +205,7 @@ xfce4-session
 
 <div align='center'> 达成成就：Windows+Linux 二合一 </div>
 
-#### 与 Windows 内原硬盘分区交互
+### 与 Windows 内原硬盘分区交互
 
 硬盘分区作为文件夹在 `/mnt/` 里放着，因此可以直接交互，比如说直接编译个二进制文件，或者往 Ubuntu 里传文件什么的……  
 具体演示：  
