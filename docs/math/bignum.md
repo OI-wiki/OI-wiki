@@ -274,37 +274,11 @@ void sub(int a[LEN], int b[LEN], int c[LEN]) {
 
 试一试，输入 `1 2` ——输出 `/9999999` ，诶这个 OI Wiki 怎么给了我一份假的代码啊……
 
-其实处理被减数比减数小的情况很简单。
+事实上，上面的代码只能处理减数 $a$ 大于等于被减数 $b$ 的情况。处理被减数比减数小，即 $a<b$ 时的情况很简单。
 
-当 $x<0$ 时， $\left| x \right|=-x$ 
+$a-b=-(b-a)$ 
 
- $\because$ 当 $a<b$ 时， $(a-b)<0$ 。
-
-$$
-\therefore \left|a-b\right|=-(a-b)
-$$
-
- $\because$ 只有符号不同的两个数互为相反数。
-
-又 $\because$ 这里的绝对值运算只是将负号变为正号。
-
-$$
-\therefore a-b=-\left|a-b\right|
-$$
-
-$$
--\left|a-b\right|=-\left[-\left(a-b\right)\right]
-$$
-
-$$
--\left[-\left(a-b\right)\right]
-=-\left[-a+b\right]
-=-[b-a]
-$$
-
-答案不太简单明了，如果你看不懂数学公式，就来一个简单粗暴的：
-
-交换 a 和 b 的值并正常减法运算，然后在得数前加上负号！
+要计算 $b-a$ 的值，因为有 $b>a$ ，可以调用以上代码中的 `sub` 函数，写法为 `sub(b,a,c)` 。要得到 $a-b$ 的值，在得数前加上负号即可。
 
 ### 乘法
 
