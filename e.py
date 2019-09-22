@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
 
 TEMPLATE_DIRS = ['templates']
-STATICFILES_DIRS = {'/static': 'static'}
+STATICFILES_DIRS = {'/static': 'static', '/': 'wiki'}
 STATICFILES_EXCLUDE = ["*~", ".*"]
 
 def author(filename, meta):
@@ -56,14 +56,11 @@ SOURCE_FILES = [
     ("probs/**/*.md", 'markdown', prob)
 ]
 
+
 URLS = Map([
     Rule(
         '/',
         defaults={'type': 'wiki', 'slug': 'index'},
-        endpoint='wiki.html'),
-    Rule(
-        '/<path:slug>',
-        defaults={'type': 'wiki'},
         endpoint='wiki.html'),
     Rule(
         '/authors/',
@@ -71,7 +68,11 @@ URLS = Map([
     Rule(
         '/authors/<slug>',
         defaults={'type': 'author'},
-        endpoint='author.html')])
+        endpoint='author.html'),
+    Rule(
+        '/<path:slug>',
+        defaults={'type': 'wiki'},
+        endpoint='wiki.html')])
 
 
 def build_link(target, text=None):
@@ -132,6 +133,7 @@ READERS = {
         [ 'codehilite',
           'meta',
           WikiLinkExtension(),
+          'tables',
           'pymdownx.arithmatex',
           'pymdownx.superfences',
         ],
