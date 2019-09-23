@@ -10,7 +10,7 @@
 
 若 $s$ 包含 $n$ 个字符，那么序列自动机包含 $n+1$ 个状态。
 
-令 $t$ 是 $s$ 的一个子序列，那么 $\delta(start, t)=\min\{i|t\text{ 是 }s[1..i]\text{ 的子序列}\}$ 。
+令 $t$ 是 $s$ 的一个子序列，那么 $\delta(start, t)$ 是 $t$ 在 $s$ 中第一次出现时末端的位置。
 
 也就是说，一个状态 $i$ 表示前缀 $s[1..i]$ 的子序列与前缀 $s[1..i-1]$ 的子序列的差集。
 
@@ -65,7 +65,7 @@ $$
 
         $f(i, null)=0$ 
 
-        $f(i, j)=\min\limits_{\delta_A(i,c)\ne null}f(\delta_A(i, c), \delta_B(j, c))$ 
+        $f(i, j)=\min\limits_{\delta_A(i,c)\ne null}f(\delta_A(i, c), \delta_B(j, c))+1$ 
 
     ??? mdui-shadow-6 "参考代码"
         ```cpp
