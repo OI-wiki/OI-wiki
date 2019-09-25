@@ -1,4 +1,6 @@
 Title: 排序
+Author: 1609483441@qq.com
+Author: partychicken
 
 **排序算法多种多样** ，性质也大多不同。
 

@@ -12,6 +12,7 @@ if __name__ == '__main__':
 
     import elaphure.__main__
 
+import os
 
 TEMPLATE_DIRS = ['templates']
 STATICFILES_DIRS = {'/static': 'static', '/': 'wiki'}
@@ -35,7 +36,7 @@ def wiki(filename, meta):
         "tags": meta.get("tag", [])}
 
 def prob(filename, meta):
-    oj = os.path.dirname(filename[5:])
+    oj = os.path.dirname(filename[6:])
     pid = os.path.splitext(os.path.basename(filename))[0]
     slug = f"{oj}-{pid}"
     tags = meta.get("tag", [])
@@ -47,7 +48,8 @@ def prob(filename, meta):
         "slug": slug,
         "title": slug + ": " + meta.get("title", [""])[0],
         "authors": meta.get("author", []),
-        "tags": tags}
+        "tags": tags,
+        "canonical": meta.get("canonical", [None])[0]}
 
 
 SOURCE_FILES = [
@@ -83,19 +85,24 @@ def build_link(target, text=None):
     else:
         url = urls.build('wiki.html', {'slug': target})
 
+    _, values = urls.match(url)
+    entry = registry.find(values)
+    if entry is None:
+        warn("%s %r not found" % (
+            "author" if target.startswith("@") else "wiki",
+            target))
+
     if text is None:
-        _, values = urls.match(url)
-        entry = registry.find(values)
         if entry is None:
-            warn("%s %r not found" % (
-                "author" if target.startswith("@") else "wiki",
-                target))
             text = target
         else:
             if values['type'] == 'author':
                 text = entry["name"]
             else:
                 text = entry["title"]
+
+    if entry is not None and entry.get("canonical", None) is not None:
+        return build_link(entry["canonical"], text)
 
     return url, text
 

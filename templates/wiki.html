@@ -5,6 +5,26 @@
 <main>
 <h1>${entry["title"]}</h1>
 
+% if entry.get("canonical", None) is not None:
+<%     canonical = registry.find({"type": "wiki", "slug": entry["canonical"]}) %>
+<h4>Source:</h4>
+<a href="${urls.build('wiki.html', {'slug': canonical['slug']})}">${canonical["title"]}</a>
+% endif
+
+<%
+canonicals = [
+  canonical
+  for canonical in registry.find_all({"canonical": entry["slug"]})]
+%>
+% if canonicals:
+<h4>Canonicals</h4>
+<ul>
+%   for canonical in canonicals:
+<a href="${urls.build('wiki.html', {'slug': canonical['slug']})}">${canonical["title"]}</a>
+%   endfor
+</ul>
+% endif
+
 <article>
 ${content | n}
 </article>
