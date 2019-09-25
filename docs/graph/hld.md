@@ -49,23 +49,21 @@ $$
 \begin{array}{l}
 \text{TREE-BUILD }(u,dep) \\
 \begin{array}{ll}
-1 & \text{Initialize }hson\text{ to 0, denoting }u\text{'s heaviest son} \\
-2 & \text{Initialize }hsize\text{ to 0, denoting }u\text{'s heaviest son's size} \\
+1 & u.hson\gets 0 \\
+2 & u.hson.size\gets 0 \\
 3 & u.deep\gets dep \\
 4 & u.size\gets 1 \\
 5 & \textbf{for }\text{each }u\text{'s son }v \\
 6 & \qquad u.size\gets u.size + \text{TREE-BUILD }(v,dep+1) \\
 7 & \qquad v.father\gets u \\
-8 & \qquad \textbf{if }v.size> hsize \\
-9 & \qquad \qquad hsize \gets v.size\\
-10 & \qquad \qquad hson\gets v \\
-11 & u.hson\gets hson \\
-12 & \textbf{return } u.size
+8 & \qquad \textbf{if }v.size> u.hson.size \\
+9 & \qquad \qquad u.hson\gets v \\
+10 & \textbf{return } u.size
 \end{array}
 \end{array}
 $$
 
-第二个 DFS 记录所在链的链顶（top，应初始化为结点本身）、重边优先遍历时的 DFN 序（dfn）、DFN 序对应的节点编号（rank）。
+第二个 DFS 记录所在链的链顶（top，应初始化为结点本身）、重边优先遍历时的 DFS 序（dfn）、DFN 对应的节点编号（rank）。
 
 $$
 \begin{array}{l}
@@ -135,9 +133,9 @@ void dfs2(int o, int t) {
 
 重链一定是链状结构；重边不会连成一棵树。
 
-在剖分时 **重边优先遍历** ，最后树的 DFN 序上，重链内的 DFN 序是连续的。按 DFN 排序后的序列即为剖分后的链
+在剖分时 **重边优先遍历** ，最后树的 DFS 序上，重链内的 DFN 是连续的。按 DFN 排序后的序列即为剖分后的链。
 
-一颗子树内的 DFN 序是连续的
+一颗子树内的 DFN 是连续的。
 
 可以发现，当我们向下经过一条 **轻边** 时，所在子树的大小至少会除以二。
 
@@ -175,7 +173,7 @@ $$
 
 有时会要求，维护子树上的信息，譬如将以 x 为根的子树的所有结点的权值增加 v。
 
-在 DFS 搜索的时候，子树中的结点的 DFN 序是连续的。
+在 DFS 搜索的时候，子树中的结点的 DFN 是连续的。
 
 每一个结点记录 bottom 表示所在子树连续区间末端的结点。
 
