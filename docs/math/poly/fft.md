@@ -65,8 +65,6 @@ $$
 f_1(x) = y_1 = a_0 + a_1x_1+a_2x_1^2+a_3x_1^3+ \cdots + a_nx_1^n\\
 f_2(x) = y_2 = a_0 + a_1x_2+a_2x_2^2+a_3x_2^3+ \cdots + a_nx_2^n\\
 f_3(x) = y_3 = a_0 + a_1x_3+a_2x_3^2+a_3x_3^3+ \cdots + a_nx_3^n\\
-f_4(x) = y_4 = a_0 + a_1x_4+a_2x_4^2+a_3x_4^3+ \cdots + a_nx_4^n\\
-f_5(x) = y_5 = a_0 + a_1x_5+a_2x_5^2+a_3x_5^3+ \cdots + a_nx_5^n\\
 \vdots\\
 f_{n+1}(x) = y_{n+1} = a_0 + a_1x_{n+1}+a_2x_{n+1}^2+a_3x_{n+1}^3+ \cdots + a_nx_{n+1}^n
 \end{array}
