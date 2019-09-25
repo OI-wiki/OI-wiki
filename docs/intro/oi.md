@@ -10,6 +10,10 @@ OI 竞赛中允许使用的语言包括 Pascal（NOI 将于 2020 年停止使用
 
 moved to wiki/NOIP.md
 
+### CSP J/S
+
+moved to wiki/CSP.md
+
 ### NOI
 
 moved to wiki/NOI.md
