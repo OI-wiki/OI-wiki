@@ -76,7 +76,7 @@ $$
 5 & \textbf{if }u.hson\text{ is not }0 \\
 6 & \qquad \text{TREE-DECOMPOSITION }(u.hson,top) \\
 7 & \qquad \textbf{for }\text{each }u\text{'s son }v \\
-8 & \qquad \qquad \textbf{if }v\text{ is not }hson \\
+8 & \qquad \qquad \textbf{if }v\text{ is not }u.hson \\
 9 & \qquad \qquad \qquad \text{TREE-DECOMPOSITION }(v,v) 
 \end{array}
 \end{array}
