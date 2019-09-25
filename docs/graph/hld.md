@@ -56,7 +56,7 @@ $$
 5 & \textbf{for }\text{each }u\text{'s son }v \\
 6 & \qquad u.size\gets u.size + \text{TREE-BUILD }(v,dep+1) \\
 7 & \qquad v.father\gets u \\
-8 & \qquad \text{if }v.size> hsize \\
+8 & \qquad \textbf{if }v.size> hsize \\
 9 & \qquad \qquad hsize \gets v.size\\
 10 & \qquad \qquad hson\gets v \\
 11 & u.hson\gets hson \\
