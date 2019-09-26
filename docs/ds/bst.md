@@ -146,7 +146,7 @@ int queryrnk(int o, int v) {
 ```cpp
 int querykth(int o, int k) {
   if (siz[lc[o]] >= k) return querykth(lc[o], k);
-  if (siz[lc[o]] < k + cnt - 1)
+  if (siz[lc[o]] < k + cnt[o] - 1)
     return querykth(rc[o], k - siz[lc[o]] - cnt[o] + 1);
   return o;
 }
