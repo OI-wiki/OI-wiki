@@ -29,7 +29,7 @@ author: Dev-jqe, HeRaNO
 
 ## 经典例题
 
- [二逼平衡树](https://www.lydsy.com/JudgeOnline/problem.php?id=3196) 外层线段树，内层平衡树。
+ [二逼平衡树](https://loj.ac/problem/106) 外层线段树，内层平衡树。
 
 ## 示例代码
 

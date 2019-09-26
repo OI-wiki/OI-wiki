@@ -103,7 +103,7 @@ void restore(int x) {
 
 ## 例题
 
--    [LOJ#2317.「NOIP2017」奶酪](https://loj.ac/problem/2317) 
+-    [「NOIP2017」奶酪](http://uoj.ac/problem/332) 
 
 ## 参考
 

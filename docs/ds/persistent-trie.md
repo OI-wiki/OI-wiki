@@ -2,7 +2,7 @@
 
 大部分的可持久化 Trie 题中，Trie 都是以 01-Trie 的形式出现的。
 
-??? note " 例题[最大异或和](https://www.lydsy.com/JudgeOnline/problem.php?id=3261)"
+??? note " 例题[最大异或和](https://www.luogu.org/problem/P4735)"
     对一个长度为 $n$ 的数组 $a$ 维护以下操作：
 
     1.  在数组的末尾添加一个数 $x$ ，数组的长度 $n$ 自增 $1$ 。
