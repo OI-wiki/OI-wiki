@@ -109,7 +109,7 @@ int main() {
 
 ## 练习
 
- [最小圆覆盖](https://www.luogu.org/problem/P1742)
+ [最小圆覆盖](https://www.luogu.org/problem/P1742) 
 
  [「HNOI2012」射箭](https://www.luogu.org/problem/P3222) 
 
