@@ -62,7 +62,7 @@ int findmax(int o) {
 时间复杂度为 $O(h)$ 。
 
 ```cpp
-void insert(int o, int v) {
+void insert(int& o, int v) {
   if (!o) {
     val[o = ++sum] = v;
     cnt[o] = siz[o] = 1;
