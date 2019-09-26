@@ -25,7 +25,8 @@ void print(int o)  //遍历以 o 为根节点的二叉搜索树
 {
   if (!o) return;          //遇到空树，返回
   print(lc[o]);            //递归遍历左子树
-  printf("%d\n", val[o]);  //输出根节点信息
+  for(int i = 1; i <= cnt[o]; i++)
+    printf("%d\n", val[o]);//输出根节点信息
   print(rc[o]);            //递归遍历右子树
 }
 ```
@@ -80,7 +81,7 @@ void insert(int& o, int v) {
 
 ### 删除一个元素
 
-定义 `delete(o,v)` 为在以 $o$ 为根节点的二叉搜索树中删除一个值为 $v$ 的节点。
+定义 `del(o,v)` 为在以 $o$ 为根节点的二叉搜索树中删除一个值为 $v$ 的节点。
 
 先在二叉搜索树中找到权值为 $v$ 的节点，分类讨论如下：
 
@@ -97,21 +98,22 @@ void insert(int& o, int v) {
 ```cpp
 int deletemin(int o) {
   if (!lc[o])
-    int ret = val[o], o = rc[o], return ret;
+    {int ret = val[o], o = rc[o]; return ret;}
   else
     return deletemin(lc[o]);
 }
-void delete (int& o, int v) {
+void del(int& o, int v) {
   siz[o]--;
   if (val[o] == v) {
+    if (cnt[o] > 1) {cnt[o]--; return;}
     if (lc[o] && rc[o])
       o = deletemin(rc[o]);
     else
       o = lc[o] + rc[o];
     return;
   }
-  if (val[o] > v) delete (lc[o], v);
-  if (val[o] < v) delete (rc[o], v);
+  if (val[o] > v) del(lc[o], v);
+  if (val[o] < v) del(rc[o], v);
 }
 ```
 
@@ -137,16 +139,16 @@ int queryrnk(int o, int v) {
 
 若其左子树的大小大于等于 $k$ ，则该元素在左子树中；
 
-若其左子树的大小在区间 $[k-1,k+cnt-1]$ 中，则该元素为子树的根节点；
+若其左子树的大小在区间 $[k-cnt,k-1]$ 中，则该元素为子树的根节点；
 
-若其左子树的大小小于 $k+cnt-1$ ，则该元素在右子树中。
+若其左子树的大小小于 $k-cnt$ ，则该元素在右子树中。
 
 时间复杂度 $O(h)$ 。
 
 ```cpp
 int querykth(int o, int k) {
   if (siz[lc[o]] >= k) return querykth(lc[o], k);
-  if (siz[lc[o]] < k + cnt[o] - 1)
+  if (siz[lc[o]] < k - cnt[o])
     return querykth(rc[o], k - siz[lc[o]] - cnt[o] + 1);
   return o;
 }
