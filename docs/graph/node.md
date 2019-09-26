@@ -1,4 +1,4 @@
-author: Anguei
+author: Anguei, sshwy, Xeonacid, Ir1d, MonkeyOliver, hsfzLZH1
 
 拆点是一种图论建模思想，常用于 [网络流](./flow.md) ，用来处理 **点权或者点的流量限制** 的问题，也常用于 **分层图** 。
 
