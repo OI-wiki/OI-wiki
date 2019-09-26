@@ -399,4 +399,4 @@ int querymax(int x, int y) {
 
  [「SDOI2011」染色](https://www.luogu.org/problem/P2486) 
 
- [「SDOI2014」旅行](https://loj.ac/problem/2195) W
+ [「SDOI2014」旅行](https://loj.ac/problem/2195)
