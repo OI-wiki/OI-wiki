@@ -23,11 +23,10 @@
 ```cpp
 void print(int o)  //遍历以 o 为根节点的二叉搜索树
 {
-  if (!o) return;          //遇到空树，返回
-  print(lc[o]);            //递归遍历左子树
-  for(int i = 1; i <= cnt[o]; i++)
-    printf("%d\n", val[o]);//输出根节点信息
-  print(rc[o]);            //递归遍历右子树
+  if (!o) return;  //遇到空树，返回
+  print(lc[o]);    //递归遍历左子树
+  for (int i = 1; i <= cnt[o]; i++) printf("%d\n", val[o]);  //输出根节点信息
+  print(rc[o]);  //递归遍历右子树
 }
 ```
 
@@ -97,15 +96,19 @@ void insert(int& o, int v) {
 
 ```cpp
 int deletemin(int o) {
-  if (!lc[o])
-    {int ret = val[o], o = rc[o]; return ret;}
-  else
+  if (!lc[o]) {
+    int ret = val[o], o = rc[o];
+    return ret;
+  } else
     return deletemin(lc[o]);
 }
 void del(int& o, int v) {
   siz[o]--;
   if (val[o] == v) {
-    if (cnt[o] > 1) {cnt[o]--; return;}
+    if (cnt[o] > 1) {
+      cnt[o]--;
+      return;
+    }
     if (lc[o] && rc[o])
       o = deletemin(rc[o]);
     else
