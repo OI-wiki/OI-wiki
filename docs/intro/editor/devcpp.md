@@ -31,7 +31,7 @@
 Dev-C++ 各版本的安装步骤大同小异，下面以最新版本 5.11 演示。
 
  [下载链接](https://sourceforge.net/projects/orwelldevcpp/files/latest/download) 
- 
+
 1.  首先选择安装语言，这里选择英语，然后点击 OK。
 
 ![](./images/Dev-C++-1.png)
