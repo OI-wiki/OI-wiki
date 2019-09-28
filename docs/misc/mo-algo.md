@@ -85,7 +85,7 @@ $$
 
 ### 例题 & 代码
 
-???+note "例题[小 Z 的袜子](https://www.lydsy.com/JudgeOnline/problem.php?id=2038)"
+???+note "例题[小 Z 的袜子](https://www.luogu.org/problem/P1494)"
     题目大意：
 
     有一个长度为 $n$ 的序列 $\{c_i\}$ 。现在给出 $m$ 个询问，每次给出两个数 $l,r$ ，从编号在 $l$ 到 $r$ 之间的数中随机选出两个不同的数，求两个数相等的概率。
@@ -255,7 +255,7 @@ struct node {
 
 ### 例题
 
-???+note "例题[数颜色 BZOJ - 2120](https://www.lydsy.com/JudgeOnline/problem.php?id=2120)"
+???+note "例题[数颜色 BZOJ - 2120](https://www.luogu.org/problem/P1903)"
 
     题目大意：给你一个序列，M 个操作，有两种操作：
 
@@ -365,7 +365,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
 
 这样的话，我们就把一棵树处理成了序列。
 
-???+note "例题[\[WC2013\]糖果公园](http://uoj.ac/problem/58)"
+???+note "例题[「WC2013」糖果公园](http://uoj.ac/problem/58)"
     题意：给你一棵树，每个点有颜色，每次询问
 
     $$\sum_{c}val_c\sum_{i=1}^{cnt_c}w_i$$ 
@@ -572,7 +572,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
 -   每个节点都要属于一个块
 -   编号相邻的块之间的距离不能太大
 
-了解了这些条件后，我们看到这样一道题 [\[SCOI2005\]王室联邦](https://www.lydsy.com/JudgeOnline/problem.php?id=1086) 。
+了解了这些条件后，我们看到这样一道题 [「SCOI2005」王室联邦](https://loj.ac/problem/2152) 。
 
 在这道题的基础上我们只要保证最后一个条件就可以解决分块的问题了。
 

@@ -308,6 +308,7 @@ nav:
     - 最小生成树: graph/mst.md
     - 最小树形图: graph/mdst.md
     - 最短路: graph/shortest-path.md
+    - 拆点: graph/node.md
     - 差分约束: graph/diff-constraints.md
     - k 短路: graph/kth-path.md
     - 连通性相关:
@@ -323,7 +324,6 @@ nav:
     - 图的着色: graph/color.md
     - 网络流:
       - 网络流简介: graph/flow.md
-      - 拆点: graph/flow/node.md
       - 最大流: graph/flow/max-flow.md
       - 最小割: graph/flow/min-cut.md
       - 费用流: graph/flow/min-cost.md

@@ -423,7 +423,7 @@ $$
 
 有些题目让我们求关于一个位置与之前所有位置的 LCP 的长度情况。利用 $LCP_{i,j}=\min\{h_{i+1},h_{i+2},...,h_j\}$ 的性质，我们发现这个 $LCP$ 的值是单调递减的。那么我们可以用一个单调栈来维护这些 LCP 值：在新加入元素 $h_{i}$ 时，我们先把所有大于等于 $h_i$ 的值弹出，统计其个数，并将 $h_{i}$ 压入单调栈，个数为弹出的值的总个数加 $1$ 。
 
-经典题目有 [「AHOI2013」差异](https://www.lydsy.com/JudgeOnline/problem.php?id=3238) 和 [「HAOI2016」找相同字符](https://www.lydsy.com/JudgeOnline/problem.php?id=4566) 。
+经典题目有 [「AHOI2013」差异](https://loj.ac/problem/2377) 和 [「HAOI2016」找相同字符](https://loj.ac/problem/2064) 。
 
 ## 习题
 

@@ -119,11 +119,11 @@ void unionSet(int x, int y) {
 
 ## 经典题目
 
- [「NOI2015」程序自动分析](https://www.lydsy.com/JudgeOnline/problem.php?id=4195) 
+ [「NOI2015」程序自动分析](http://uoj.ac/problem/127) 
 
- [「JSOI2008」星球大战](https://www.lydsy.com/JudgeOnline/problem.php?id=1015) 
+ [「JSOI2008」星球大战](https://www.luogu.org/problem/P1197) 
 
- [「NOI2001」食物链](http://poj.org/problem?id=1182) 
+ [「NOI2001」食物链](https://www.luogu.org/problem/P2024) 
 
  [「NOI2002」银河英雄传说](https://www.luogu.org/problemnew/show/P1196) 
 
