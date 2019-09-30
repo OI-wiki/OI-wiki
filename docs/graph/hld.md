@@ -94,7 +94,7 @@ $$
 -    $dfn(x)$ 表示节点 $x$ 的 **DFS 序** ，也是其在线段树中的编号。
 -    $rnk(x)$ 表示 DFS 序所对应的节点编号，有 $rnk(dfn(x))=x$ 。
 
-我们进行两遍 DFS 预处理出这些值，其中第一次 DFS 求出 $fa(x)$, $dep(x)$, $siz(x)$, $son(x)$ ，第二次 DFS 求出 $top(x)$, $dfn(x)$, $rnk(x)$ 。
+我们进行两遍 DFS 预处理出这些值，其中第一次 DFS 求出 $fa(x)$ , $dep(x)$ , $siz(x)$ , $son(x)$ ，第二次 DFS 求出 $top(x)$ , $dfn(x)$ , $rnk(x)$ 。
 
 给出一种代码实现：
 
@@ -165,7 +165,7 @@ $$
 
 ### 子树维护
 
-有时会要求维护子树上的信息，譬如将以 $x$ 为根的子树的所有结点的权值增加 $v$。
+有时会要求维护子树上的信息，譬如将以 $x$ 为根的子树的所有结点的权值增加 $v$ 。
 
 在 DFS 搜索的时候，子树中的结点的 DFS 序是连续的。
 
@@ -184,8 +184,10 @@ $$
 ```cpp
 int lca(int u, int v) {
   while (top[u] != top[v]) {
-    if (dep[top[u]] > dep[top[v]]) u = fa[top[u]];
-    else v = fa[top[v]];
+    if (dep[top[u]] > dep[top[v]])
+      u = fa[top[u]];
+    else
+      v = fa[top[v]];
   }
   return dep[u] > dep[v] ? v : u;
 }
@@ -193,7 +195,7 @@ int lca(int u, int v) {
 
 ## 例题
 
-### [「ZJOI2008」树的统计](https://loj.ac/problem/10138) 
+###  [「ZJOI2008」树的统计](https://loj.ac/problem/10138) 
 
 #### 题目大意
 
@@ -203,7 +205,7 @@ int lca(int u, int v) {
 2.  查询 $u$ 到 $v$ 的路径上的最大权值；
 3.  查询 $u$ 到 $v$ 的路径上的权值之和。
 
-保证 $1\le n\le 30000$, $0\le q\le 200000$ 。
+保证 $1\le n\le 30000$ , $0\le q\le 200000$ 。
 
 #### 解法
 
@@ -391,7 +393,7 @@ int querymax(int x, int y) {
     }
     ```
 
-### [Nauuo and Binary Tree](https://loj.ac/problem/6669)
+###  [Nauuo and Binary Tree](https://loj.ac/problem/6669) 
 
 这是一道交互题，也是树剖的非传统应用。
 
@@ -399,7 +401,7 @@ int querymax(int x, int y) {
 
 有一棵以 $1$ 为根的二叉树，你可以询问任意两点之间的距离，求出每个点的父亲。
 
-节点数不超过 $3000$，你最多可以进行 $30000$ 次询问。
+节点数不超过 $3000$ ，你最多可以进行 $30000$ 次询问。
 
 #### 解法
 
@@ -413,11 +415,11 @@ int querymax(int x, int y) {
 
 ![](./images/hld2.png)
 
-其中红色虚线是一条重链，$d$ 是询问的结果即 $dis(k, bot[u])$，$v$ 的深度为 $(dep[k]+dep[bot[u]]-d)/2$。
+其中红色虚线是一条重链， $d$ 是询问的结果即 $dis(k, bot[u])$ ， $v$ 的深度为 $(dep[k]+dep[bot[u]]-d)/2$ 。
 
-这样的话，如果 $v$ 只有一个儿子，$k$ 的父亲就是 $v$，否则可以递归地在 $w$ 的子树中找 $k$ 的父亲。
+这样的话，如果 $v$ 只有一个儿子， $k$ 的父亲就是 $v$ ，否则可以递归地在 $w$ 的子树中找 $k$ 的父亲。
 
-时间复杂度 $O(n^2)$，询问复杂度 $O(n\log n)$。
+时间复杂度 $O(n^2)$ ，询问复杂度 $O(n\log n)$ 。
 
 具体地，设 $T(n)$ 为最坏情况下在一棵大小为 $n$ 的树中找到一个新节点的位置所需的询问次数，可以得到：
 
@@ -429,90 +431,90 @@ T\left(\left\lfloor\frac{n-1}2\right\rfloor\right)+1&n\ge2
 \end{cases}
 $$
 
-$2999+\sum_{i=1}^{2999}T(i)\le 29940$，事实上这个上界是可以通过构造数据达到的，然而只要进行一些随机扰动（如对深度进行排序时使用不稳定的排序算法），询问次数很难超过 $21000$ 次。
+ $2999+\sum_{i=1}^{2999}T(i)\le 29940$ ，事实上这个上界是可以通过构造数据达到的，然而只要进行一些随机扰动（如对深度进行排序时使用不稳定的排序算法），询问次数很难超过 $21000$ 次。
 
 ??? note "参考代码"
     ```cpp
-    #include <iostream>
-    #include <cstdio>
     #include <algorithm>
+    #include <cstdio>
+    #include <iostream>
     
     using namespace std;
     
-    const int N=3010;
+    const int N = 3010;
     
-    int n,fa[N],ch[N][2],dep[N],siz[N],son[N],bot[N],id[N];
+    int n, fa[N], ch[N][2], dep[N], siz[N], son[N], bot[N], id[N];
     
-    int query(int u,int v)
-    {
-      printf("? %d %d\n",u,v);
+    int query(int u, int v) {
+      printf("? %d %d\n", u, v);
       fflush(stdout);
       int d;
-      scanf("%d",&d);
+      scanf("%d", &d);
       return d;
     }
     
-    void setFather(int u,int v)
-    {
-      fa[v]=u;
-      if (ch[u][0]) ch[u][1]=v;
-      else ch[u][0]=v;
+    void setFather(int u, int v) {
+      fa[v] = u;
+      if (ch[u][0])
+        ch[u][1] = v;
+      else
+        ch[u][0] = v;
     }
     
-    void dfs(int u)
-    {
+    void dfs(int u) {
       if (ch[u][0]) dfs(ch[u][0]);
       if (ch[u][1]) dfs(ch[u][1]);
-      
-      siz[u]=siz[ch[u][0]]+siz[ch[u][1]]+1;
-      
-      if (ch[u][1]) son[u]=int(siz[ch[u][0]]<siz[ch[u][1]]);
-      else son[u]=0;
-      
-      if (ch[u][son[u]]) bot[u]=bot[ch[u][son[u]]];
-      else bot[u]=u;
+    
+      siz[u] = siz[ch[u][0]] + siz[ch[u][1]] + 1;
+    
+      if (ch[u][1])
+        son[u] = int(siz[ch[u][0]] < siz[ch[u][1]]);
+      else
+        son[u] = 0;
+    
+      if (ch[u][son[u]])
+        bot[u] = bot[ch[u][son[u]]];
+      else
+        bot[u] = u;
     }
     
-    void solve(int u,int k)
-    {
-      if (!ch[u][0])
-      {
-        setFather(u,k);
+    void solve(int u, int k) {
+      if (!ch[u][0]) {
+        setFather(u, k);
         return;
       }
-      int d=query(k,bot[u]);
-      int v=bot[u];
-      while (dep[v]>(dep[k]+dep[bot[u]]-d)/2) v=fa[v];
-      int w=ch[v][son[v]^1];
-      if (w) solve(w,k);
-      else setFather(v,k);
+      int d = query(k, bot[u]);
+      int v = bot[u];
+      while (dep[v] > (dep[k] + dep[bot[u]] - d) / 2) v = fa[v];
+      int w = ch[v][son[v] ^ 1];
+      if (w)
+        solve(w, k);
+      else
+        setFather(v, k);
     }
     
-    int main()
-    {
+    int main() {
       int i;
-      
-      scanf("%d",&n);
-      
-      for (i=2;i<=n;++i)
-      {
-          id[i]=i;
-          dep[i]=query(1,i);
+    
+      scanf("%d", &n);
+    
+      for (i = 2; i <= n; ++i) {
+        id[i] = i;
+        dep[i] = query(1, i);
       }
-      
-      sort(id+2,id+n+1,[](int x,int y){return dep[x]<dep[y];});
-      
-      for (i=2;i<=n;++i)
-      {
+    
+      sort(id + 2, id + n + 1, [](int x, int y) { return dep[x] < dep[y]; });
+    
+      for (i = 2; i <= n; ++i) {
         dfs(1);
-        solve(1,id[i]);
+        solve(1, id[i]);
       }
-      
+    
       printf("!");
-      for (i=2;i<=n;++i) printf(" %d",fa[i]);
+      for (i = 2; i <= n; ++i) printf(" %d", fa[i]);
       printf("\n");
       fflush(stdout);
-      
+    
       return 0;
     }
     ```
