@@ -4,7 +4,7 @@
 
 字符串下标从 $1$ 开始。
 
-“后缀 $i$ ”代指以第 $i$ 个字符开头的后缀。
+"后缀 $i$" 代指以第 $i$ 个字符开头的后缀。
 
 ## 后缀数组是什么？
 
@@ -69,11 +69,12 @@
         memcpy(oldrk, rk, sizeof(rk));
         // 由于计算 rk 的时候原来的 rk 会被覆盖，要先复制一份
         for (p = 0, i = 1; i <= n; ++i) {
-          rk[sa[i]] = oldrk[sa[i]] == oldrk[sa[i - 1]] &&
-                              oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]
-                          ? p
-                          : ++p;
-          // 若两个子串相同，它们对应的 rk 也需要相同，所以要去重
+          if (oldrk[sa[i]] == oldrk[sa[i - 1]] && 
+              oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]) {
+            rk[sa[i]] = p;
+          } else {
+            rk[sa[i]] = ++p;
+          } // 若两个子串相同，它们对应的 rk 也需要相同，所以要去重
         }
       }
     
@@ -97,26 +98,25 @@
     #include <cstdio>
     #include <cstring>
     #include <iostream>
-    ```
-
+    
     using namespace std;
-
+    
     const int N=1000010;
-
+    
     char s[N];
     int n,sa[N],rk[N<<1],oldrk[N<<1],id[N],cnt[N];
-
+    
     int main()
     {
         int i,m,p,w;
-
+    
         scanf("%s",s+1);
         n=strlen(s+1);
         m=max(n,300);
         for (i=1;i<=n;++i) ++cnt[rk[i]=s[i]];
         for (i=1;i<=m;++i) cnt[i]+=cnt[i-1];
         for (i=n;i>=1;--i) sa[cnt[rk[i]]--]=i;
-
+    
         for (w=1;w<n;w<<=1)
         {
             memset(cnt,0,sizeof(cnt));
@@ -130,11 +130,18 @@
             for (i=1;i<=m;++i) cnt[i]+=cnt[i-1];
             for (i=n;i>=1;--i) sa[cnt[rk[id[i]]]--]=id[i];
             memcpy(oldrk,rk,sizeof(rk));
-            for (p=0,i=1;i<=n;++i) rk[sa[i]]=oldrk[sa[i]]==oldrk[sa[i-1]]&&oldrk[sa[i]+w]==oldrk[sa[i-1]+w]?p:++p;
+            for (p = 0, i = 1; i <= n; ++i) {
+              if (oldrk[sa[i]] == oldrk[sa[i - 1]] && 
+                  oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]) {
+                rk[sa[i]] = p;
+              } else {
+                rk[sa[i]] = ++p;
+              }
+            }
         }
-
+    
         for (i=1;i<=n;++i) printf("%d ",sa[i]);
-
+    
         return 0;
     }
     ```
@@ -153,8 +160,9 @@
 
 ```cpp
 for (p = 0, i = n; i > n - w; --i) id[++p] = i;
-for (i = 1; i <= n; ++i)
+for (i = 1; i <= n; ++i) {
   if (sa[i] > w) id[++p] = sa[i] - w;
+}
 ```
 
 意会一下，先把 $s[i+w..i+2w-1]$ 为空串（即第二关键字为无穷小）的位置放前面，再把剩下的按排好的顺序放进去。
@@ -179,30 +187,29 @@ for (i = 1; i <= n; ++i)
     #include <cstdio>
     #include <cstring>
     #include <iostream>
-    ```
-
+    
     using namespace std;
-
+    
     const int N=1000010;
-
+    
     char s[N];
     int n,sa[N],rk[N],oldrk[N<<1],id[N],px[N],cnt[N];
     //px[i] = rk[id[i]]（用于排序的数组所以叫 px）
-
+    
     bool cmp(int x,int y,int w) {
         return oldrk[x]==oldrk[y]&&oldrk[x+w]==oldrk[y+w];
     }
-
+    
     int main()
     {
         int i,m=300,p,w;
-
+    
         scanf("%s",s+1);
         n=strlen(s+1);
         for (i=1;i<=n;++i) ++cnt[rk[i]=s[i]];
         for (i=1;i<=m;++i) cnt[i]+=cnt[i-1];
         for (i=n;i>=1;--i) sa[cnt[rk[i]]--]=i;
-
+    
         for (w=1;w<n;w<<=1,m=p) // m=p 就是优化计数排序值域
         {
             for (p=0,i=n;i>n-w;--i) id[++p]=i;
@@ -214,9 +221,9 @@ for (i = 1; i <= n; ++i)
             memcpy(oldrk,rk,sizeof(rk));
             for (p=0,i=1;i<=n;++i) rk[sa[i]]=cmp(sa[i],sa[i-1],w)?p:++p;
         }
-
+    
         for (i=1;i<=n;++i) printf("%d ",sa[i]);
-
+    
         return 0;
     }
     ```
@@ -271,26 +278,25 @@ for (i = 1; i <= n; ++i)
     
     char s[N];
     int n, sa[N], id[N], oldrk[N << 1], rk[N << 1], px[N], cnt[N];
-    ```
-
+    
     bool cmp(int x,int y,int w){ return oldrk[x]==oldrk[y]&&oldrk[x+w]==oldrk[y+w]; }
-
+    
     int main()
     {
         int i,w,m=200,p,l=1,r,tot=0;
-
+    
         cin>>n;
         r=n;
-
+    
         for (i=1;i<=n;++i) while (!isalpha(s[i]=getchar()));
         for (i=1;i<=n;++i) rk[i]=rk[2*n+2-i]=s[i];
-
+    
         n=2*n+1;
-
+    
         for (i=1;i<=n;++i) ++cnt[rk[i]];
         for (i=1;i<=m;++i) cnt[i]+=cnt[i-1];
         for (i=n;i>=1;--i) sa[cnt[rk[i]]--]=i;
-
+    
         for (w=1;w<n;w<<=1,m=p)
         {
             for (p=0,i=n;i>n-w;--i) id[++p]=i;
@@ -302,13 +308,13 @@ for (i = 1; i <= n; ++i)
             memcpy(oldrk,rk,sizeof(rk));
             for (p=0,i=1;i<=n;++i) rk[sa[i]]=cmp(sa[i],sa[i-1],w)?p:++p;
         }
-
+    
         while (l<=r)
         {
             printf("%c",rk[l]<rk[n+1-r]?s[l++]:s[r--]);
             if ((++tot)%80==0) puts("");
         }
-
+    
         return 0;
     }
     ```
@@ -416,29 +422,28 @@ for (i = 1, k = 0; i <= n; ++i) {
     #include <cstring>
     #include <iostream>
     #include <set>
-    ```
-
+    
     using namespace std;
-
+    
     const int N=40010;
-
+    
     int n,k,a[N],sa[N],rk[N],oldrk[N],id[N],px[N],cnt[1000010],ht[N],ans;
     multiset<int> t; // multiset 是最好写的实现方式
-
+    
     bool cmp(int x,int y,int w){ return oldrk[x]==oldrk[y]&&oldrk[x+w]==oldrk[y+w]; }
-
+    
     int main()
     {
         int i,j,w,p,m=1000000;
-
+    
         scanf("%d%d",&n,&k);
         --k;
-
+    
         for (i=1;i<=n;++i) scanf("%d",a+i);
         for (i=1;i<=n;++i) ++cnt[rk[i]=a[i]];
         for (i=1;i<=m;++i) cnt[i]+=cnt[i-1];
         for (i=n;i>=1;--i) sa[cnt[rk[i]]--]=i;
-
+    
         for (w=1;w<n;w<<=1,m=p)
         {
             for (p=0,i=n;i>n-w;--i) id[++p]=i;
@@ -450,23 +455,23 @@ for (i = 1, k = 0; i <= n; ++i) {
             memcpy(oldrk,rk,sizeof(rk));
             for (p=0,i=1;i<=n;++i) rk[sa[i]]=cmp(sa[i],sa[i-1],w)?p:++p;
         }
-
+    
         for (i=1,j=0;i<=n;++i)
         {
             if (j) --j;
             while (a[i+j]==a[sa[rk[i]-1]+j]) ++j;
             ht[rk[i]]=j;
         }
-
+    
         for (i=1;i<=n;++i)
         {
             t.insert(ht[i]);
             if (i>k) t.erase(t.find(ht[i-k]));
             ans=max(ans,*t.begin());
         }
-
+    
         cout<<ans;
-
+    
         return 0;
     }
     ```
@@ -507,18 +512,17 @@ for (i = 1, k = 0; i <= n; ++i) {
     #include <cstdio>
     #include <cstring>
     #include <iostream>
-    ```
-
+    
     using namespace std;
-
+    
     const int N=500010;
-
+    
     char s[N];
     int n,sa[N],rk[N<<1],oldrk[N<<1],id[N],px[N],cnt[N],ht[N],sta[N],top,l[N];
     long long ans;
-
+    
     bool cmp(int x,int y,int w){ return oldrk[x]==oldrk[y]&&oldrk[x+w]==oldrk[y+w]; }
-
+    
     int main()
     {
       int i,k,w,p,m=300;
