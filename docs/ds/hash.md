@@ -85,4 +85,4 @@ struct hash_map {  // 哈希表模板
 
 ## 例题
 
- [\[JLOI2011\]不重复数字](https://www.lydsy.com/JudgeOnline/problem.php?id=2761) 
+ [「JLOI2011」不重复数字](https://www.luogu.org/problem/P4305) 

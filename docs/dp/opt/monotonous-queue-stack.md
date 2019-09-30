@@ -35,6 +35,6 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
 
  [「Luogu P1886」滑动窗口](https://www.luogu.org/problemnew/show/P1886) 
 
- [「NOI2005」瑰丽华尔兹](https://www.lydsy.com/JudgeOnline/problem.php?id=1499) 
+ [「NOI2005」瑰丽华尔兹](https://www.luogu.org/problem/P2254) 
 
- [「SCOI2010」股票交易](https://www.lydsy.com/JudgeOnline/problem.php?id=1855) 
+ [「SCOI2010」股票交易](https://loj.ac/problem/10183) 

@@ -273,7 +273,7 @@ $$
 
 ## 问题形式
 
-###  [「HAOI 2011」Problem b](https://www.lydsy.com/JudgeOnline/problem.php?id=2301) 
+###  [「HAOI 2011」Problem b](https://www.luogu.org/problem/P2522) 
 
 求值（多组数据）
 
@@ -451,7 +451,7 @@ int main() {
 }
 ```
 
-###  [「BZOJ 2154」Crash 的数字表格](https://www.lydsy.com/JudgeOnline/problem.php?id=2154) 
+###  [「BZOJ 2154」Crash 的数字表格](https://www.luogu.org/problem/P1829) 
 
 求值（对 $20101009$ 取模）
 

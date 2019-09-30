@@ -122,6 +122,6 @@ for (int i = 1; i <= n; ++i) inv[i] = sv[i] * s[i - 1] % p;
 
  [同余方程](https://www.luogu.org/problemnew/show/P1082) 
 
- [\[AHOI2005\]洗牌](https://www.lydsy.com/JudgeOnline/problem.php?id=1965) 
+ [「AHOI2005」洗牌](https://www.luogu.org/problem/P2054) 
 
- [\[SDOI2016\]排列计数](https://www.luogu.org/problemnew/show/P4071) 
+ [「SDOI2016」排列计数](https://www.luogu.org/problemnew/show/P4071) 

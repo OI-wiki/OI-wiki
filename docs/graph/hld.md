@@ -1,4 +1,4 @@
-author: Ir1d, TrisolarisHD, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogeek, ftxj, sshwy, LuoshuiTianyi
+author: Ir1d, TrisolarisHD, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogeek, ftxj, sshwy, LuoshuiTianyi, hyp1231
 
 ## 树链剖分的思想及能解决的问题
 
@@ -43,40 +43,41 @@ author: Ir1d, TrisolarisHD, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogeek, ftxj, s
 
 树剖的实现分两个 DFS 的过程。伪代码如下：
 
-第一个 DFS 记录每个结点的深度（deep）、子树大小（size）。
+第一个 DFS 记录每个结点的父节点（father）、深度（deep）、子树大小（size）、重子节点（hson）。
 
 $$
 \begin{array}{l}
 \text{TREE-BUILD }(u,dep) \\
 \begin{array}{ll}
-1 & u.deep\gets dep \\
-2 & u.size\gets 1 \\
-3 & \textbf{for }\text{each }u\text{'s son }v \\
-4 & \qquad u.size\gets u.size + \text{TREE-BUILD }(v,dep+1) \\
-5 & \textbf{return } u.size
+1 & u.hson\gets 0 \\
+2 & u.hson.size\gets 0 \\
+3 & u.deep\gets dep \\
+4 & u.size\gets 1 \\
+5 & \textbf{for }\text{each }u\text{'s son }v \\
+6 & \qquad u.size\gets u.size + \text{TREE-BUILD }(v,dep+1) \\
+7 & \qquad v.father\gets u \\
+8 & \qquad \textbf{if }v.size> u.hson.size \\
+9 & \qquad \qquad u.hson\gets v \\
+10 & \textbf{return } u.size
 \end{array}
 \end{array}
 $$
 
-第二个 DFS 记录每个结点的重子结点（heavy-son）、重边优先遍历时的 DFN 序、所在链的链顶（top，且应初始化为结点本身）。
+第二个 DFS 记录所在链的链顶（top，应初始化为结点本身）、重边优先遍历时的 DFS 序（dfn）、DFS 序对应的节点编号（rank）。
 
 $$
 \begin{array}{l}
 \text{TREE-DECOMPOSITION }(u,top) \\
 \begin{array}{ll}
-1 & \text{Initialize }hson\text{ to 0, denoting }u\text{'s heaviest son} \\
-2 & \text{Initialize }hsize\text{ to 0, denoting }u\text{'s heaviest son's size} \\
-3 & u.top\gets top \\
-4 & tot\gets tot+1\\
-5 & u.dfn\gets tot \\
-6 & \textbf{for }\text{each }u\text{'s son }v \\
-7 & \qquad \text{if }v.size> hsize \\
-8 & \qquad \qquad hsize \gets v.size\\
-9 & \qquad \qquad hson\gets v \\
-10 & \text{TREE-DECOMPOSITION }(hson,top) \\
-11 & \textbf{for }\text{each }u\text{'s son }v \\
-12 & \qquad \textbf{if }v\text{ is not }hson \\
-13 & \qquad \qquad \text{TREE-DECOMPOSITION }(v,v) 
+1 & u.top\gets top \\
+2 & tot\gets tot+1\\
+3 & u.dfn\gets tot \\
+4 & rank(tot)\gets u \\
+5 & \textbf{if }u.hson\text{ is not }0 \\
+6 & \qquad \text{TREE-DECOMPOSITION }(u.hson,top) \\
+7 & \qquad \textbf{for }\text{each }u\text{'s son }v \\
+8 & \qquad \qquad \textbf{if }v\text{ is not }u.hson \\
+9 & \qquad \qquad \qquad \text{TREE-DECOMPOSITION }(v,v) 
 \end{array}
 \end{array}
 $$
@@ -132,9 +133,9 @@ void dfs2(int o, int t) {
 
 重链一定是链状结构；重边不会连成一棵树。
 
-在剖分时 **重边优先遍历** ，最后树的 DFN 序上，重链内的 DFN 序是连续的。按 DFN 排序后的序列即为剖分后的链
+在剖分时 **优先遍历重边** ，最后重链的 DFS 序就会是连续的。
 
-一颗子树内的 DFN 序是连续的
+一颗子树内的 DFS 序是连续的。
 
 可以发现，当我们向下经过一条 **轻边** 时，所在子树的大小至少会除以二。
 
@@ -146,15 +147,23 @@ void dfs2(int o, int t) {
 
 用树链剖分求树上两点路径权值和，伪代码如下：
 
-```cpp
-TREE - PATH - SUM(u, v) while u,
-    v 不在同一条链上 if u 所在链的链顶的深度小于 v 所在链的链顶的深度
-    swap(u, v) 将 u 到 u 所在链的链顶 之间的结点权值求和，累加到计数器中
-    u = u 所在链链顶的父节点 将 u,
-    v 之间的结点的权值求和累加，返回计数器的值
-```
+$$
+\begin{array}{l}
+\text{TREE-PATH-SUM }(u,v) \\
+\begin{array}{ll}
+1 & tot\gets 0 \\
+2 & \textbf{while }u.top\text{ is not }v.top \\
+3 & \qquad \textbf{if }u.top.deep< v.top.deep \\
+4 & \qquad \qquad \text{SWAP}(u, v) \\
+5 & \qquad tot\gets tot + \text{sum of values between }u\text{ and }u.top \\
+6 & \qquad u\gets u.top.father \\
+7 & tot\gets tot + \text{sum of values between }u\text{ and }v \\
+8 & \textbf{return } tot 
+\end{array}
+\end{array}
+$$
 
-链上的 DFN 序是连续的，可以使用线段树，树状数组维护。
+链上的 DFS 序是连续的，可以使用线段树、树状数组维护。
 
 每次选择深度较大的链往上跳，直到两点在同一条链上。
 
@@ -164,7 +173,7 @@ TREE - PATH - SUM(u, v) while u,
 
 有时会要求，维护子树上的信息，譬如将以 x 为根的子树的所有结点的权值增加 v。
 
-在 DFS 搜索的时候，子树中的结点的 DFN 序是连续的。
+在 DFS 搜索的时候，子树中的结点的 DFS 序是连续的。
 
 每一个结点记录 bottom 表示所在子树连续区间末端的结点。
 
@@ -174,7 +183,7 @@ TREE - PATH - SUM(u, v) while u,
 
 不断向上跳链，当跳到同一条链上时，返回深度较小的结点即为 LCA。
 
-## 例题： [「ZJOI2008」树的统计](https://www.lydsy.com/JudgeOnline/problem.php?id=1036) 
+## 例题： [「ZJOI2008」树的统计](https://loj.ac/problem/10138) 
 
 ### 题目大意
 
@@ -380,14 +389,14 @@ int querymax(int x, int y) {
 
  [「luogu P3379」【模板】最近公共祖先（LCA）](https://www.luogu.org/problemnew/show/P3379) （树剖求 $lca$ 无需数据结构，可以用作练习）
 
- [「JLOI2014」松鼠的新家](https://www.lydsy.com/JudgeOnline/problem.php?id=3631) （当然也可以用树上差分）
+ [「JLOI2014」松鼠的新家](https://loj.ac/problem/2236) （当然也可以用树上差分）
 
- [「HAOI2015」树上操作](https://www.lydsy.com/JudgeOnline/problem.php?id=4034) 
+ [「HAOI2015」树上操作](https://loj.ac/problem/2125) 
 
  [「luogu P3384」【模板】树链剖分](https://www.luogu.org/problemnew/show/P3384) 
 
- [「NOI2015」软件包管理器](https://www.lydsy.com/JudgeOnline/problem.php?id=4196) 
+ [「NOI2015」软件包管理器](http://uoj.ac/problem/128) 
 
- [「SDOI2011」染色](https://www.lydsy.com/JudgeOnline/problem.php?id=2243) 
+ [「SDOI2011」染色](https://www.luogu.org/problem/P2486) 
 
- [「SDOI2014」旅行](https://www.lydsy.com/JudgeOnline/problem.php?id=3531) 
+ [「SDOI2014」旅行](https://loj.ac/problem/2195) 

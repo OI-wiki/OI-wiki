@@ -61,4 +61,4 @@ for (int i = 1; i <= n; i++)
 
  [luogu P1578 奶牛浴场](https://www.luogu.org/problemnew/show/P1578) 
 
- [\[ZJOI2007\]棋盘制作](https://www.lydsy.com/JudgeOnline/problem.php?id=1057) 
+ [「ZJOI2007」棋盘制作](https://www.luogu.org/problem/P1169) 
