@@ -8,16 +8,16 @@ author: Ir1d, TrisolarisHD, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogeek, ftxj, s
 
  **树链剖分** （树剖/链剖）有多种形式，如 **重链剖分** ， **长链剖分** 和用于 Link/cut Tree 的剖分（有时被称作“实链剖分”），大多数情况下（没有特别说明时），“树链剖分”都指“重链剖分”，本文所讲的也是“重链剖分”。
 
-重链剖分可以将树上的任意一条路径划分成不超过 $O(\log n)$ 条连续的链，每条链上的点深度互不相同（即是自底向上的一条链，链上所有点的 $lca$ 为链的一个端点）。
+重链剖分可以将树上的任意一条路径划分成不超过 $O(\log n)$ 条连续的链，每条链上的点深度互不相同（即是自底向上的一条链，链上所有点的 LCA 为链的一个端点）。
 
-重链剖分还能保证划分出的每条链上的节点 dfs 序连续，因此可以方便地用一些维护序列的数据结构（如线段树）来维护树上路径的信息。
+重链剖分还能保证划分出的每条链上的节点 DFS 序连续，因此可以方便地用一些维护序列的数据结构（如线段树）来维护树上路径的信息。
 
 如：
 
 1.  修改 **树上两点之间的路径上** 所有点的值。
 2.  查询 **树上两点之间的路径上** 节点权值的 **和/极值/其它（在序列上可以用数据结构维护，便于合并的信息）** 。
 
-除了配合数据结构来维护树上路径信息，树剖还可以用来 $O(\log n)$ （且常数较小）地求 $lca$ 。在某些题目中，还可以利用其性质来灵活地运用树剖。
+除了配合数据结构来维护树上路径信息，树剖还可以用来 $O(\log n)$ （且常数较小）地求 LCA。在某些题目中，还可以利用其性质来灵活地运用树剖。
 
 ## 重链剖分
 
@@ -91,22 +91,22 @@ $$
 -    $siz(x)$ 表示节点 $x$ 的子树的节点个数。
 -    $son(x)$ 表示节点 $x$ 的 **重儿子** 。
 -    $top(x)$ 表示节点 $x$ 所在 **重链** 的顶部节点（深度最小）。
--    $tid(x)$ 表示节点 $x$ 的 **时间戳** ，也是其在线段树中的编号。
--    $rnk(x)$ 表示时间戳所对应的节点编号，有 $rnk(tid(x))=x$ 。
+-    $dfn(x)$ 表示节点 $x$ 的 **DFS 序** ，也是其在线段树中的编号。
+-    $rnk(x)$ 表示 DFS 序所对应的节点编号，有 $rnk(dfn(x))=x$ 。
 
-我们进行两遍 DFS 预处理出这些值，其中第一次 DFS 求出 $fa(x),dep(x),siz(x),son(x)$ ，第二次 DFS 求出 $top(x),tid(x),rnk(x)$ 。
+我们进行两遍 DFS 预处理出这些值，其中第一次 DFS 求出 $fa(x)$, $dep(x)$, $siz(x)$, $son(x)$ ，第二次 DFS 求出 $top(x)$, $dfn(x)$, $rnk(x)$ 。
 
 给出一种代码实现：
 
 ```cpp
-void dfs1(int o, int fat) {
+void dfs1(int o) {
   son[o] = -1;
   siz[o] = 1;
   for (int j = h[o]; j; j = nxt[j])
     if (!dep[p[j]]) {
       dep[p[j]] = dep[o] + 1;
       fa[p[j]] = o;
-      dfs1(p[j], o);
+      dfs1(p[j]);
       siz[o] += siz[p[j]];
       if (son[o] == -1 || siz[p[j]] > siz[son[o]]) son[o] = p[j];
     }
@@ -114,10 +114,10 @@ void dfs1(int o, int fat) {
 void dfs2(int o, int t) {
   top[o] = t;
   cnt++;
-  tid[o] = cnt;
+  dfn[o] = cnt;
   rnk[cnt] = o;
   if (son[o] == -1) return;
-  dfs2(son[o], t);  //优先对重儿子进行dfs，可以保证同一条重链上的点时间戳连续
+  dfs2(son[o], t);  // 优先对重儿子进行 DFS，可以保证同一条重链上的点 DFS 序连续
   for (int j = h[o]; j; j = nxt[j])
     if (p[j] != son[o] && p[j] != fa[o]) dfs2(p[j], p[j]);
 }
@@ -125,21 +125,15 @@ void dfs2(int o, int t) {
 
 ## 重链剖分的性质
 
- **树上每个节点都属于且仅属于一条重链** 。
+树上每个节点都属于且仅属于一条重链。
 
-重链开头的结点不一定是重子节点（因为重边是对于每一个结点都有定义的）
+由于每个点最多有一个重儿子，重边一定会连成链状结构，而不会连成一棵树。
 
-所有的重链将整棵树 **完全剖分** 
+在剖分时 **优先遍历重儿子** ，最后重链的 DFS 序就会是连续的。
 
-重链一定是链状结构；重边不会连成一棵树。
+可以发现，当我们向下经过一条 **轻边** 时，所在子树的大小至少会除以二。所以，从一个点出发向子树内走最多经过 $O(\log n)$ 条轻边，也就是最多经过 $O(\log n)$ 条重链。
 
-在剖分时 **优先遍历重边** ，最后重链的 DFS 序就会是连续的。
-
-一颗子树内的 DFS 序是连续的。
-
-可以发现，当我们向下经过一条 **轻边** 时，所在子树的大小至少会除以二。
-
-因此，对于树上的任意一条路径，把它拆分成从 $lca$ 分别向两边往下走，分别最多走 $O(\log n)$ 次，因此，树上的每条路径都可以被拆分成不超过 $O(\log n)$ 条重链。
+对于树上的任意一条路径，把它拆分成从两个端点的 LCA 分别向两边往下走，分别最多经过 $O(\log n)$ 条重链，因此，树上的每条路径都可以被拆分成不超过 $O(\log n)$ 条重链。
 
 ## 常见应用
 
@@ -171,7 +165,7 @@ $$
 
 ### 子树维护
 
-有时会要求，维护子树上的信息，譬如将以 x 为根的子树的所有结点的权值增加 v。
+有时会要求维护子树上的信息，譬如将以 $x$ 为根的子树的所有结点的权值增加 $v$。
 
 在 DFS 搜索的时候，子树中的结点的 DFS 序是连续的。
 
@@ -181,21 +175,37 @@ $$
 
 ### 求最近公共祖先
 
-不断向上跳链，当跳到同一条链上时，返回深度较小的结点即为 LCA。
+不断向上跳重链，当跳到同一条重链上时，深度较小的结点即为 LCA。
 
-## 例题： [「ZJOI2008」树的统计](https://loj.ac/problem/10138) 
+向上跳重链时需要先跳所在重链顶端深度较大的那个。
 
-### 题目大意
+参考代码：
+
+```cpp
+int lca(int u, int v) {
+  while (top[u] != top[v]) {
+    if (dep[top[u]] > dep[top[v]]) u = fa[top[u]];
+    else v = fa[top[v]];
+  }
+  return dep[u] > dep[v] ? v : u;
+}
+```
+
+## 例题
+
+### [「ZJOI2008」树的统计](https://loj.ac/problem/10138) 
+
+#### 题目大意
 
 对一棵有 $n$ 个节点，节点带权值的静态树，进行三种操作共 $q$ 次：
 
-1.  修改单个节点的值；
-2.  查询 $u$ 到 $v$ 的路径上的最大值；
-3.  查询 $u$ 到 $v$ 的路径上的权值和。
+1.  修改单个节点的权值；
+2.  查询 $u$ 到 $v$ 的路径上的最大权值；
+3.  查询 $u$ 到 $v$ 的路径上的权值之和。
 
-题目保证 $1\le n\le 30000,0\le q\le 200000$ 
+保证 $1\le n\le 30000$, $0\le q\le 200000$ 。
 
-### 解法
+#### 解法
 
 根据题面以及以上的性质，你的线段树需要维护三种操作：
 
@@ -205,7 +215,7 @@ $$
 
 单点修改很容易实现。
 
-由于子树的 dfs 序连续（无论是否树剖都是如此），修改一个节点的子树只用修改这一段连续的 dfs 序区间。
+由于子树的 DFS 序连续（无论是否树剖都是如此），修改一个节点的子树只用修改这一段连续的 DFS 序区间。
 
 问题是如何修改/查询两个节点之间的路径。
 
@@ -223,28 +233,24 @@ int querymax(int x, int y) {
   int ret = -inf, fx = top[x], fy = top[y];
   while (fx != fy) {
     if (dep[fx] >= dep[fy])
-      ret = max(ret, st.query1(1, 1, n, tid[fx], tid[x])), x = fa[fx];
+      ret = max(ret, st.query1(1, 1, n, dfn[fx], dfn[x])), x = fa[fx];
     else
-      ret = max(ret, st.query1(1, 1, n, tid[fy], tid[y])), y = fa[fy];
+      ret = max(ret, st.query1(1, 1, n, dfn[fy], dfn[y])), y = fa[fy];
     fx = top[x];
     fy = top[y];
   }
   if (x != y) {
-    if (tid[x] < tid[y])
-      ret = max(ret, st.query1(1, 1, n, tid[x], tid[y]));
+    if (dfn[x] < dfn[y])
+      ret = max(ret, st.query1(1, 1, n, dfn[x], dfn[y]));
     else
-      ret = max(ret, st.query1(1, 1, n, tid[y], tid[x]));
+      ret = max(ret, st.query1(1, 1, n, dfn[y], dfn[x]));
   } else
-    ret = max(ret, st.query1(1, 1, n, tid[x], tid[y]));
+    ret = max(ret, st.query1(1, 1, n, dfn[x], dfn[y]));
   return ret;
 }
 ```
 
-### 完整代码
-
-鉴于树链剖分的题目细节较多，容易打错，给出一种代码实现，以供参考。
-
-??? "树链剖分参考代码"
+??? "参考代码"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -255,7 +261,7 @@ int querymax(int x, int y) {
     const int inf = 2e9;
     int n, a, b, w[maxn], q, u, v;
     int cur, h[maxn], nxt[maxn], p[maxn];
-    int siz[maxn], top[maxn], son[maxn], dep[maxn], fa[maxn], tid[maxn], rnk[maxn],
+    int siz[maxn], top[maxn], son[maxn], dep[maxn], fa[maxn], dfn[maxn], rnk[maxn],
         cnt;
     char op[10];
     inline void add_edge(int x, int y) {
@@ -305,14 +311,14 @@ int querymax(int x, int y) {
         maxx[o] = std::max(maxx[lc], maxx[rc]);
       }
     } st;
-    void dfs1(int o, int fat) {
+    void dfs1(int o) {
       son[o] = -1;
       siz[o] = 1;
       for (int j = h[o]; j; j = nxt[j])
         if (!dep[p[j]]) {
           dep[p[j]] = dep[o] + 1;
           fa[p[j]] = o;
-          dfs1(p[j], o);
+          dfs1(p[j]);
           siz[o] += siz[p[j]];
           if (son[o] == -1 || siz[p[j]] > siz[son[o]]) son[o] = p[j];
         }
@@ -320,7 +326,7 @@ int querymax(int x, int y) {
     void dfs2(int o, int t) {
       top[o] = t;
       cnt++;
-      tid[o] = cnt;
+      dfn[o] = cnt;
       rnk[cnt] = o;
       if (son[o] == -1) return;
       dfs2(son[o], t);
@@ -331,38 +337,38 @@ int querymax(int x, int y) {
       int ret = -inf, fx = top[x], fy = top[y];
       while (fx != fy) {
         if (dep[fx] >= dep[fy])
-          ret = std::max(ret, st.query1(1, 1, n, tid[fx], tid[x])), x = fa[fx];
+          ret = std::max(ret, st.query1(1, 1, n, dfn[fx], dfn[x])), x = fa[fx];
         else
-          ret = std::max(ret, st.query1(1, 1, n, tid[fy], tid[y])), y = fa[fy];
+          ret = std::max(ret, st.query1(1, 1, n, dfn[fy], dfn[y])), y = fa[fy];
         fx = top[x];
         fy = top[y];
       }
       if (x != y) {
-        if (tid[x] < tid[y])
-          ret = std::max(ret, st.query1(1, 1, n, tid[x], tid[y]));
+        if (dfn[x] < dfn[y])
+          ret = std::max(ret, st.query1(1, 1, n, dfn[x], dfn[y]));
         else
-          ret = std::max(ret, st.query1(1, 1, n, tid[y], tid[x]));
+          ret = std::max(ret, st.query1(1, 1, n, dfn[y], dfn[x]));
       } else
-        ret = std::max(ret, st.query1(1, 1, n, tid[x], tid[y]));
+        ret = std::max(ret, st.query1(1, 1, n, dfn[x], dfn[y]));
       return ret;
     }
     int querysum(int x, int y) {
       int ret = 0, fx = top[x], fy = top[y];
       while (fx != fy) {
         if (dep[fx] >= dep[fy])
-          ret += st.query2(1, 1, n, tid[fx], tid[x]), x = fa[fx];
+          ret += st.query2(1, 1, n, dfn[fx], dfn[x]), x = fa[fx];
         else
-          ret += st.query2(1, 1, n, tid[fy], tid[y]), y = fa[fy];
+          ret += st.query2(1, 1, n, dfn[fy], dfn[y]), y = fa[fy];
         fx = top[x];
         fy = top[y];
       }
       if (x != y) {
-        if (tid[x] < tid[y])
-          ret += st.query2(1, 1, n, tid[x], tid[y]);
+        if (dfn[x] < dfn[y])
+          ret += st.query2(1, 1, n, dfn[x], dfn[y]);
         else
-          ret += st.query2(1, 1, n, tid[y], tid[x]);
+          ret += st.query2(1, 1, n, dfn[y], dfn[x]);
       } else
-        ret += st.query2(1, 1, n, tid[x], tid[y]);
+        ret += st.query2(1, 1, n, dfn[x], dfn[y]);
       return ret;
     }
     int main() {
@@ -377,7 +383,7 @@ int querymax(int x, int y) {
       scanf("%d", &q);
       while (q--) {
         scanf("%s%d%d", op, &u, &v);
-        if (!strcmp(op, "CHANGE")) st.update(1, 1, n, tid[u], v);
+        if (!strcmp(op, "CHANGE")) st.update(1, 1, n, dfn[u], v);
         if (!strcmp(op, "QMAX")) printf("%d\n", querymax(u, v));
         if (!strcmp(op, "QSUM")) printf("%d\n", querysum(u, v));
       }
@@ -385,9 +391,135 @@ int querymax(int x, int y) {
     }
     ```
 
+### [Nauuo and Binary Tree](https://loj.ac/problem/6669)
+
+这是一道交互题，也是树剖的非传统应用。
+
+#### 题目大意
+
+有一棵以 $1$ 为根的二叉树，你可以询问任意两点之间的距离，求出每个点的父亲。
+
+节点数不超过 $3000$，你最多可以进行 $30000$ 次询问。
+
+#### 解法
+
+首先可以通过 $n-1$ 次询问确定每个节点的深度。
+
+然后考虑按深度从小到大确定每个节点的父亲，这样的话确定一个节点的父亲时其所有祖先一定都是已知的。
+
+确定一个节点的父亲之前，先对树已知的部分进行重链剖分。
+
+假设我们需要在子树 $u$ 中找节点 $k$ 所在的位置，我们可以询问 $k$ 与 $u$ 所在重链的尾端的距离，就可以进一步确定 $k$ 的位置，具体见图：
+
+![](./images/hld2.png)
+
+其中红色虚线是一条重链，$d$ 是询问的结果即 $dis(k, bot[u])$，$v$ 的深度为 $(dep[k]+dep[bot[u]]-d)/2$。
+
+这样的话，如果 $v$ 只有一个儿子，$k$ 的父亲就是 $v$，否则可以递归地在 $w$ 的子树中找 $k$ 的父亲。
+
+时间复杂度 $O(n^2)$，询问复杂度 $O(n\log n)$。
+
+具体地，设 $T(n)$ 为最坏情况下在一棵大小为 $n$ 的树中找到一个新节点的位置所需的询问次数，可以得到：
+
+$$
+T(n)\le
+\begin{cases}
+0&n=1\\
+T\left(\left\lfloor\frac{n-1}2\right\rfloor\right)+1&n\ge2
+\end{cases}
+$$
+
+$2999+\sum_{i=1}^{2999}T(i)\le 29940$，事实上这个上界是可以通过构造数据达到的，然而只要进行一些随机扰动（如对深度进行排序时使用不稳定的排序算法），询问次数很难超过 $21000$ 次。
+
+??? note "参考代码"
+    ```cpp
+    #include <iostream>
+    #include <cstdio>
+    #include <algorithm>
+    
+    using namespace std;
+    
+    const int N=3010;
+    
+    int n,fa[N],ch[N][2],dep[N],siz[N],son[N],bot[N],id[N];
+    
+    int query(int u,int v)
+    {
+      printf("? %d %d\n",u,v);
+      fflush(stdout);
+      int d;
+      scanf("%d",&d);
+      return d;
+    }
+    
+    void setFather(int u,int v)
+    {
+      fa[v]=u;
+      if (ch[u][0]) ch[u][1]=v;
+      else ch[u][0]=v;
+    }
+    
+    void dfs(int u)
+    {
+      if (ch[u][0]) dfs(ch[u][0]);
+      if (ch[u][1]) dfs(ch[u][1]);
+      
+      siz[u]=siz[ch[u][0]]+siz[ch[u][1]]+1;
+      
+      if (ch[u][1]) son[u]=int(siz[ch[u][0]]<siz[ch[u][1]]);
+      else son[u]=0;
+      
+      if (ch[u][son[u]]) bot[u]=bot[ch[u][son[u]]];
+      else bot[u]=u;
+    }
+    
+    void solve(int u,int k)
+    {
+      if (!ch[u][0])
+      {
+        setFather(u,k);
+        return;
+      }
+      int d=query(k,bot[u]);
+      int v=bot[u];
+      while (dep[v]>(dep[k]+dep[bot[u]]-d)/2) v=fa[v];
+      int w=ch[v][son[v]^1];
+      if (w) solve(w,k);
+      else setFather(v,k);
+    }
+    
+    int main()
+    {
+      int i;
+      
+      scanf("%d",&n);
+      
+      for (i=2;i<=n;++i)
+      {
+          id[i]=i;
+          dep[i]=query(1,i);
+      }
+      
+      sort(id+2,id+n+1,[](int x,int y){return dep[x]<dep[y];});
+      
+      for (i=2;i<=n;++i)
+      {
+        dfs(1);
+        solve(1,id[i]);
+      }
+      
+      printf("!");
+      for (i=2;i<=n;++i) printf(" %d",fa[i]);
+      printf("\n");
+      fflush(stdout);
+      
+      return 0;
+    }
+    ```
+
 ## 练习
 
- [「luogu P3379」【模板】最近公共祖先（LCA）](https://www.luogu.org/problemnew/show/P3379) （树剖求 $lca$ 无需数据结构，可以用作练习）
+ [「luogu P3379」【模板】最近公共祖先（LCA）](https://www.luogu.org/problemnew/show/P3379) （树剖求 LCA 无需数据结构，可以用作练习）
 
  [「JLOI2014」松鼠的新家](https://loj.ac/problem/2236) （当然也可以用树上差分）
 
