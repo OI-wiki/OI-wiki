@@ -70,7 +70,7 @@
         // 由于计算 rk 的时候原来的 rk 会被覆盖，要先复制一份
         for (p = 0, i = 1; i <= n; ++i) {
           if (oldrk[sa[i]] == oldrk[sa[i - 1]] &&
-              oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]) {
+          oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]) {
             rk[sa[i]] = p;
           } else {
             rk[sa[i]] = ++p;
@@ -130,7 +130,7 @@
         memcpy(oldrk, rk, sizeof(rk));
         for (p = 0, i = 1; i <= n; ++i) {
           if (oldrk[sa[i]] == oldrk[sa[i - 1]] &&
-              oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]) {
+          oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]) {
             rk[sa[i]] = p;
           } else {
             rk[sa[i]] = ++p;
@@ -207,8 +207,7 @@ for (i = 1; i <= n; ++i) {
       for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
       for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
     
-      for (w = 1; w < n; w <<= 1, m = p)  // m=p 就是优化计数排序值域
-      {
+      for (w = 1; w < n; w <<= 1, m = p) {  // m=p 就是优化计数排序值域
         for (p = 0, i = n; i > n - w; --i) id[++p] = i;
         for (i = 1; i <= n; ++i)
           if (sa[i] > w) id[++p] = sa[i] - w;
