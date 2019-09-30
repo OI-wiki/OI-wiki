@@ -70,7 +70,7 @@
         // 由于计算 rk 的时候原来的 rk 会被覆盖，要先复制一份
         for (p = 0, i = 1; i <= n; ++i) {
           if (oldrk[sa[i]] == oldrk[sa[i - 1]] &&
-          oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]) {
+              oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]) {
             rk[sa[i]] = p;
           } else {
             rk[sa[i]] = ++p;
@@ -130,7 +130,7 @@
         memcpy(oldrk, rk, sizeof(rk));
         for (p = 0, i = 1; i <= n; ++i) {
           if (oldrk[sa[i]] == oldrk[sa[i - 1]] &&
-          oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]) {
+              oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]) {
             rk[sa[i]] = p;
           } else {
             rk[sa[i]] = ++p;
