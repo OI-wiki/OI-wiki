@@ -245,3 +245,4 @@ void swap(int &a, int &b) {
 ## 参考
 
 位运算技巧： <https://graphics.stanford.edu/~seander/bithacks.html> 
+$$
