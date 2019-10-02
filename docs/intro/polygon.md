@@ -28,7 +28,7 @@ Polygon 是一个支持多人合作的出题平台，功能非常完善。
 
 题目列表中会显示一道题目的基本信息，如题面、题解撰写情况，数据造了多少，std、validator 和 checker 有没有设置。
 
-可以双击题目列表的 "Name" 这一栏来写上 note，比如需要提醒自己做的事（need to add more tests / need to write tutorial），或者是这道题预订的 score distribution，可以根据自己的需要随意填写，当然也可以空着。
+可以双击题目列表的 "Name" 这一栏来写上 note，比如需要提醒自己做的事（need to add more tests/need to write tutorial），或者是这道题预订的 score distribution，可以根据自己的需要随意填写，当然也可以空着。
 
 "Rev." 中的 "x/y" 的 x 指当前题目版本，y 指 package 的版本。如果两者不一样 y 会显示为红色。
 
