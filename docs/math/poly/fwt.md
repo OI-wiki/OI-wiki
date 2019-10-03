@@ -1,8 +1,10 @@
-（本文转载自[桃酱的算法笔记](https://zhuanlan.zhihu.com/c_1005817911142838272)，原文戳[链接](https://zhuanlan.zhihu.com/p/41867199)，已获得作者授权）
+author: Xeonacid
+
+（本文转载自 [桃酱的算法笔记](https://zhuanlan.zhihu.com/c_1005817911142838272) ，原文戳 [链接](https://zhuanlan.zhihu.com/p/41867199) ，已获得作者授权）
 
 ## 简介
 
-> 沃尔什转换（Walsh Transform）是在频谱分析上作为离散傅立叶变换的替代方案的一种方法。——[维基百科](https://zh.wikipedia.org/zh-cn/%E6%B2%83%E7%88%BE%E4%BB%80%E8%BD%89%E6%8F%9B)
+> 沃尔什转换（Walsh Transform）是在频谱分析上作为离散傅立叶变换的替代方案的一种方法。—— [维基百科](https://zh.wikipedia.org/zh-cn/%E6%B2%83%E7%88%BE%E4%BB%80%E8%BD%89%E6%8F%9B) 
 
 其实这个变换在信号处理中应用很广泛，fft 是 double 类型的，但是 walsh 把信号在不同震荡频率方波下拆解，因此所有的系数都是绝对值大小相同的整数，这使得不需要作浮点数的乘法运算，提高了运算速度。
 
@@ -12,13 +14,13 @@
 
 我们需要一个新序列 $C$ ，由序列 $A$ 和序列 $B$ 经过某运算规则得到，即 $C = A \cdot B$ ；
 
-我们先正向得到 $FWT[A], FWT[B]$，再根据 $FWT[C]=FWT[A] \cdot FWT[B]$ 在 $O(n)$ 的时间复杂度内求出 $FWT[C]$ ；
+我们先正向得到 $FWT[A], FWT[B]$ ，再根据 $FWT[C]=FWT[A] \cdot FWT[B]$ 在 $O(n)$ 的时间复杂度内求出 $FWT[C]$ ；
 
-然后逆向运算得到原序列 $C$ 。时间复杂度为 $O(n \log{n})$。
+然后逆向运算得到原序列 $C$ 。时间复杂度为 $O(n \log{n})$ 。
 
 在算法竞赛中，FWT 是用于解决对下标进行位运算卷积问题的方法。
 
-公式： $C_{i} = \sum_{i=j \bigoplus k}A_{j} B_{k}$
+公式： $C_{i} = \sum_{i=j \bigoplus k}A_{j} B_{k}$ 
 
 （其中 $\bigoplus$ 是二元位运算中的某一种， $*$ 是普通乘法）
 
@@ -28,7 +30,7 @@
 
 与运算和或运算的本质是差不多的，所以这里讲一下或运算，与运算也是可以自己根据公式 yy 出来的。
 
-### 或运算 $A_i$
+### 或运算 $A_i$ 
 
 如果有 $k=i|j$ ，那么 $i$ 的二进制位为 $1$ 的位置和 $j$ 的二进制位为 $1$ 的位置肯定是 $k$ 的二进制位为 $1$ 的位置的子集。
 
@@ -36,7 +38,7 @@
 
 我们按照定义，显然可以构造 $FWT[A] = A' = \sum_{i=i|j}A_{j}$ ，来表示 $j$ 满足二进制中 $1$ 为 $i$ 的子集。
 
-那么显然会有 $C_{i} = \sum_{i=j|k}A_{j}*B_{k} \Rightarrow FWT[C] = FWT[A] * FWT[B]$
+那么显然会有 $C_{i} = \sum_{i=j|k}A_{j}*B_{k} \Rightarrow FWT[C] = FWT[A] * FWT[B]$ 
 
 那么我们接下来看 $FWT[A]$ 怎么求。
 

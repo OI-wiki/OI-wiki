@@ -1,12 +1,12 @@
-##  算法
+## 算法
 
-快速排序是[分治](/basic/divide-and-conquer)地来将一个数组排序。
+快速排序是 [分治](/basic/divide-and-conquer) 地来将一个数组排序。
 
 快速排序分为三个过程：
 
-1. 将数列划分为两部分（不是直接分，要求保证相对大小关系）
-2. 递归到两个子序列中分别进行快速排序
-3. 不用合并，因为此时数列已经完全有序
+1.  将数列划分为两部分（不是直接分，要求保证相对大小关系）
+2.  递归到两个子序列中分别进行快速排序
+3.  不用合并，因为此时数列已经完全有序
 
 和归并排序不同，第一步并不是直接分成前后两个序列，而是在分的过程中要保证相对大小关系。
 
@@ -22,7 +22,7 @@
 
 其实，快速排序没有指定应如何具体实现第一步，不论是选择 m 的过程还是划分的过程，都不是只有一种实现方法。
 
-注意，一般我们说的快速排序的时间复杂度是平均为 $O(n\log n)$ ，最坏是 $O(n^2)$ ，只不过实践中几乎不可能达到最坏情况。
+一般我们说的快速排序的时间复杂度是平均为 $O(n\log n)$ ，最坏是 $O(n^2)$ ，实践中几乎不可能达到最坏情况。且因为快速排序的内存访问遵循局部性原理，多数情况下快速排序的表现大幅优于堆排序等其他复杂度为 $O(n \log n)$ 的排序算法。
 
 其实，在选择 m 的过程中使用 [Median of Medians](https://en.wikipedia.org/wiki/Median_of_medians) 算法，就可以保证最坏时间复杂度为 $O(n\log n)$ ，但是由于其过于复杂，实践中一般不使用。
 
@@ -36,6 +36,8 @@
 
 ### 参考
 
-<https://stackoverflow.com/questions/22339240/what-algorithms-are-used-in-c11-stdsort-in-different-stl-implementations>
+ <https://stackoverflow.com/questions/22339240/what-algorithms-are-used-in-c11-stdsort-in-different-stl-implementations> 
 
-<https://en.cppreference.com/w/cpp/algorithm/sort>
+ <https://en.cppreference.com/w/cpp/algorithm/sort> 
+
+ <http://irootlee.com/juicer_locality/> 

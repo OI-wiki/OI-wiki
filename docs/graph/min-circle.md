@@ -20,34 +20,35 @@
 
 ### Floyd
 
-记原图中 $u,v$ 之间边的边权为 $val\left(u,v\right)$。
+记原图中 $u,v$ 之间边的边权为 $val\left(u,v\right)$ 。
 
-我们注意到 Floyd 算法有一个性质：在最外层循环到点 $k$ 时（尚未开始第 $k$ 次循环），最短路数组 $dis$ 中，$dis_{u,v}$ 表示的是从 $u$ 到 $v$ 且仅经过编号在 $\left[1, k\right)$ 区间中的点的最短路。
+我们注意到 Floyd 算法有一个性质：在最外层循环到点 $k$ 时（尚未开始第 $k$ 次循环），最短路数组 $dis$ 中， $dis_{u,v}$ 表示的是从 $u$ 到 $v$ 且仅经过编号在 $\left[1, k\right)$ 区间中的点的最短路。
 
-由最小环的定义可知其至少有三个顶点，设其中编号最大的顶点为 $w$，环上与 $w$ 相邻两侧的两个点为 $u,v$，则在最外层循环枚举到 $k=w$ 时，该环的长度即为 $dis_{u,v}+val\left(v,w\right)+val\left(w,u\right)$。
+由最小环的定义可知其至少有三个顶点，设其中编号最大的顶点为 $w$ ，环上与 $w$ 相邻两侧的两个点为 $u,v$ ，则在最外层循环枚举到 $k=w$ 时，该环的长度即为 $dis_{u,v}+val\left(v,w\right)+val\left(w,u\right)$ 。
 
-故在循环时对于每个 $k$ 枚举满足 $i<k,j<k$ 的 $(i,j)$，更新答案即可。
+故在循环时对于每个 $k$ 枚举满足 $i<k,j<k$ 的 $(i,j)$ ，更新答案即可。
 
 时间复杂度： $O(n^3)$ 
 
 下面给出 C++ 的参考实现：
 
 ```cpp
-int val[maxn + 1][maxn + 1]; // 原图的邻接矩阵
+int val[maxn + 1][maxn + 1];  // 原图的邻接矩阵
 inline int floyd(const int &n) {
-	static int dis[maxn + 1][maxn + 1]; // 最短路矩阵
-	for (int i = 1; i <= n; ++i)
-		for (int j = 1; j <= n; ++j)
-			dis[i][j] = val[i][j]; // 初始化最短路矩阵
-	int ans = inf;
-	for (int k = 1; k <= n; ++k) {
-		for (int i = 1; i < k; ++i)
-			for (int j = 1; j < i; ++j)
-				ans = std::min(ans, dis[i][j] + val[i][k] + val[k][j]); // 更新答案
-		for (int i = 1; i <= n; ++i)
-			for (int j = 1; j <= n; ++j)
-				dis[i][j] = std::min(dis[i][j], dis[i][k] + dis[k][j]); // 正常的 floyd 更新最短路矩阵
-	} return ans;
+  static int dis[maxn + 1][maxn + 1];  // 最短路矩阵
+  for (int i = 1; i <= n; ++i)
+    for (int j = 1; j <= n; ++j) dis[i][j] = val[i][j];  // 初始化最短路矩阵
+  int ans = inf;
+  for (int k = 1; k <= n; ++k) {
+    for (int i = 1; i < k; ++i)
+      for (int j = 1; j < i; ++j)
+        ans = std::min(ans, dis[i][j] + val[i][k] + val[k][j]);  // 更新答案
+    for (int i = 1; i <= n; ++i)
+      for (int j = 1; j <= n; ++j)
+        dis[i][j] = std::min(
+            dis[i][j], dis[i][k] + dis[k][j]);  // 正常的 floyd 更新最短路矩阵
+  }
+  return ans;
 }
 ```
 

@@ -2,7 +2,7 @@
 
 > 太长不看版：结尾自取模板……
 
-什么时候需要高精度呢？有时候题目计算的中间结果，甚至输入本身，都存在超过语言内建整型（最大 64 位或 128 位）所能表示的范围。这个时候就只好自己处理它们啦。
+高精度计算（Arbitrary-Precision Arithmetic），也被称作大整数（bignum）计算，运用了一些算法结构来支持更大整数间的运算（数字大小超过语言内建整型）。
 
 高精度问题包含很多小的细节，实现上也有很多讲究。
 
@@ -11,13 +11,13 @@
 ???+ note "任务"
     输入：一个形如 `a <op> b` 的表达式。
 
-    -   `a`、`b` 分别是长度不超过 $1000$ 的十进制非负整数；
-    -   `<op>` 是一个字符（`+`、`-`、`*` 或 `/`），表示运算。
+    -    `a` 、 `b` 分别是长度不超过 $1000$ 的十进制非负整数；
+    -    `<op>` 是一个字符（ `+` 、 `-` 、 `*` 或 `/` ），表示运算。
     -   整数与运算符之间由一个空格分隔。
 
     输出：运算结果。
 
-    -   对于 `+`、`-`、`*` 运算，输出一行表示结果；
+    -   对于 `+` 、 `-` 、 `*` 运算，输出一行表示结果；
     -   对于 `/` 运算，输出两行分别表示商和余数。
     -   保证结果均为非负整数。
 
@@ -65,29 +65,28 @@ void print(int a[LEN]) {
 拼起来就是一个完整的复读机程序咯。
 
 ??? " `copycat.cpp` "
-
     ```cpp
     #include <cstdio>
     #include <cstring>
-
+    
     static const int LEN = 1004;
-
+    
     int a[LEN], b[LEN];
-
+    
     void clear(int a[LEN]) {
       for (int i = 0; i < LEN; ++i) a[i] = 0;
     }
-
+    
     void read(int a[LEN]) {
       static char s[LEN + 1];
       scanf("%s", s);
-
+    
       clear(a);
-
+    
       int len = strlen(s);
       for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
     }
-
+    
     void print(int a[LEN]) {
       int i;
       for (i = LEN - 1; i >= 1; --i)
@@ -95,11 +94,11 @@ void print(int a[LEN]) {
       for (; i >= 0; --i) putchar(a[i] + '0');
       putchar('\n');
     }
-
+    
     int main() {
       read(a);
       print(a);
-
+    
       return 0;
     }
     ```
@@ -140,29 +139,28 @@ void add(int a[LEN], int b[LEN], int c[LEN]) {
 试着和上一部分结合，可以得到一个加法计算器。
 
 ??? " `adder.cpp` "
-
     ```cpp
     #include <cstdio>
     #include <cstring>
-
+    
     static const int LEN = 1004;
-
+    
     int a[LEN], b[LEN], c[LEN];
-
+    
     void clear(int a[LEN]) {
       for (int i = 0; i < LEN; ++i) a[i] = 0;
     }
-
+    
     void read(int a[LEN]) {
       static char s[LEN + 1];
       scanf("%s", s);
-
+    
       clear(a);
-
+    
       int len = strlen(s);
       for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
     }
-
+    
     void print(int a[LEN]) {
       int i;
       for (i = LEN - 1; i >= 1; --i)
@@ -170,10 +168,10 @@ void add(int a[LEN], int b[LEN], int c[LEN]) {
       for (; i >= 0; --i) putchar(a[i] + '0');
       putchar('\n');
     }
-
+    
     void add(int a[LEN], int b[LEN], int c[LEN]) {
       clear(c);
-
+    
       for (int i = 0; i < LEN - 1; ++i) {
         c[i] += a[i] + b[i];
         if (c[i] >= 10) {
@@ -182,14 +180,14 @@ void add(int a[LEN], int b[LEN], int c[LEN]) {
         }
       }
     }
-
+    
     int main() {
       read(a);
       read(b);
-
+    
       add(a, b, c);
       print(c);
-
+    
       return 0;
     }
     ```
@@ -221,68 +219,66 @@ void sub(int a[LEN], int b[LEN], int c[LEN]) {
 将上一个程序中的 `add()` 替换成 `sub()` ，就有了一个减法计算器。
 
 ??? " `subtractor.cpp` "
-
     ```cpp
     #include <cstdio>
     #include <cstring>
-
+    
     static const int LEN = 1004;
-
+    
     int a[LEN], b[LEN], c[LEN];
-
-    void clear(int a[LEN])
-    {
-        for (int i = 0; i < LEN; ++i) a[i] = 0;
+    
+    void clear(int a[LEN]) {
+      for (int i = 0; i < LEN; ++i) a[i] = 0;
     }
-
-    void read(int a[LEN])
-    {
-        static char s[LEN + 1];
-        scanf("%s", s);
-
-        clear(a);
-
-        int len = strlen(s);
-        for (int i = 0; i < len; ++i)
-            a[len - i - 1] = s[i] - '0';
+    
+    void read(int a[LEN]) {
+      static char s[LEN + 1];
+      scanf("%s", s);
+    
+      clear(a);
+    
+      int len = strlen(s);
+      for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
     }
-
-    void print(int a[LEN])
-    {
-        int i;
-        for (i = LEN - 1; i >= 1; --i) if (a[i] != 0) break;
-        for (; i >= 0; --i) putchar(a[i] + '0');
-        putchar('\n');
+    
+    void print(int a[LEN]) {
+      int i;
+      for (i = LEN - 1; i >= 1; --i)
+        if (a[i] != 0) break;
+      for (; i >= 0; --i) putchar(a[i] + '0');
+      putchar('\n');
     }
-
-    void sub(int a[LEN], int b[LEN], int c[LEN])
-    {
-        clear(c);
-
-        for (int i = 0; i < LEN - 1; ++i) {
-            c[i] += a[i] - b[i];
-            if (c[i] < 0) {
-                c[i + 1] -= 1;
-                c[i] += 10;
-            }
+    
+    void sub(int a[LEN], int b[LEN], int c[LEN]) {
+      clear(c);
+    
+      for (int i = 0; i < LEN - 1; ++i) {
+        c[i] += a[i] - b[i];
+        if (c[i] < 0) {
+          c[i + 1] -= 1;
+          c[i] += 10;
         }
+      }
     }
-
-    int main()
-    {
-        read(a);
-        read(b);
-
-        sub(a, b, c);
-        print(c);
-
-        return 0;
+    
+    int main() {
+      read(a);
+      read(b);
+    
+      sub(a, b, c);
+      print(c);
+    
+      return 0;
     }
     ```
 
 试一试，输入 `1 2` ——输出 `/9999999` ，诶这个 OI Wiki 怎么给了我一份假的代码啊……
 
-如你所见，上面的程序只能处理 $a \geq b$ 的情况，至于负数如何处理——就交给聪明的你啦。
+事实上，上面的代码只能处理减数 $a$ 大于等于被减数 $b$ 的情况。处理被减数比减数小，即 $a<b$ 时的情况很简单。
+
+ $a-b=-(b-a)$ 
+
+要计算 $b-a$ 的值，因为有 $b>a$ ，可以调用以上代码中的 `sub` 函数，写法为 `sub(b,a,c)` 。要得到 $a-b$ 的值，在得数前加上负号即可。
 
 ### 乘法
 
@@ -418,29 +414,28 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
 将上面介绍的四则运算的实现结合，即可完成开头提到的计算器程序。
 
 ??? " `calculator.cpp` "
-
     ```cpp
     #include <cstdio>
     #include <cstring>
-
+    
     static const int LEN = 1004;
-
+    
     int a[LEN], b[LEN], c[LEN], d[LEN];
-
+    
     void clear(int a[LEN]) {
       for (int i = 0; i < LEN; ++i) a[i] = 0;
     }
-
+    
     void read(int a[LEN]) {
       static char s[LEN + 1];
       scanf("%s", s);
-
+    
       clear(a);
-
+    
       int len = strlen(s);
       for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
     }
-
+    
     void print(int a[LEN]) {
       int i;
       for (i = LEN - 1; i >= 1; --i)
@@ -448,10 +443,10 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
       for (; i >= 0; --i) putchar(a[i] + '0');
       putchar('\n');
     }
-
+    
     void add(int a[LEN], int b[LEN], int c[LEN]) {
       clear(c);
-
+    
       for (int i = 0; i < LEN - 1; ++i) {
         c[i] += a[i] + b[i];
         if (c[i] >= 10) {
@@ -460,10 +455,10 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
         }
       }
     }
-
+    
     void sub(int a[LEN], int b[LEN], int c[LEN]) {
       clear(c);
-
+    
       for (int i = 0; i < LEN - 1; ++i) {
         c[i] += a[i] - b[i];
         if (c[i] < 0) {
@@ -472,20 +467,20 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
         }
       }
     }
-
+    
     void mul(int a[LEN], int b[LEN], int c[LEN]) {
       clear(c);
-
+    
       for (int i = 0; i < LEN - 1; ++i) {
         for (int j = 0; j <= i; ++j) c[i] += a[j] * b[i - j];
-
+    
         if (c[i] >= 10) {
           c[i + 1] += c[i] / 10;
           c[i] %= 10;
         }
       }
     }
-
+    
     inline bool greater_eq(int a[LEN], int b[LEN], int last_dg, int len) {
       if (a[last_dg + len] != 0) return true;
       for (int i = len - 1; i >= 0; --i) {
@@ -494,11 +489,11 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
       }
       return true;
     }
-
+    
     void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
       clear(c);
       clear(d);
-
+    
       int la, lb;
       for (la = LEN - 1; la > 0; --la)
         if (a[la - 1] != 0) break;
@@ -508,7 +503,7 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
         puts("> <");
         return;
       }
-
+    
       for (int i = 0; i < la; ++i) d[i] = a[i];
       for (int i = la - lb; i >= 0; --i) {
         while (greater_eq(d, b, i, lb)) {
@@ -523,15 +518,15 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
         }
       }
     }
-
+    
     int main() {
       read(a);
-
+    
       char op[4];
       scanf("%s", op);
-
+    
       read(b);
-
+    
       switch (op[0]) {
         case '+':
           add(a, b, c);
@@ -553,16 +548,16 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
         default:
           puts("> <");
       }
-
+    
       return 0;
     }
     ```
 
 ## Karatsuba 乘法
 
-记高精度数字的位数为 $n$，那么高精度—高精度竖式乘法需要花费 $O(n^2)$ 的时间。本节介绍一个时间复杂度更为优秀的算法，由前苏联（俄罗斯）数学家 Anatoly Karatsuba 提出，是一种分治算法。
+记高精度数字的位数为 $n$ ，那么高精度—高精度竖式乘法需要花费 $O(n^2)$ 的时间。本节介绍一个时间复杂度更为优秀的算法，由前苏联（俄罗斯）数学家 Anatoly Karatsuba 提出，是一种分治算法。
 
-考虑两个十进制大整数 $x$ 和 $y$，均包含 $n$ 个数码（可以有前导零）。任取 $0 < m < n$，记
+考虑两个十进制大整数 $x$ 和 $y$ ，均包含 $n$ 个数码（可以有前导零）。任取 $0 < m < n$ ，记
 
 $$
 \begin{aligned}
@@ -572,7 +567,7 @@ x \cdot y &= z_2 \cdot 10^{2m} + z_1 \cdot 10^m + z_0,
 \end{aligned}
 $$
 
-其中 $x_0, y_0, z_0, z_1 < 10^m$。可得
+其中 $x_0, y_0, z_0, z_1 < 10^m$ 。可得
 
 $$
 \begin{aligned}
@@ -588,82 +583,77 @@ $$
 z_1 = (x_1 + x_0) \cdot (y_1 + y_0) - z_2 - z_0,
 $$
 
-于是要计算 $z_1$，只需计算 $(x_1 + x_0) \cdot (y_1 + y_0)$，再与 $z_0$、$z_2$ 相减即可。
+于是要计算 $z_1$ ，只需计算 $(x_1 + x_0) \cdot (y_1 + y_0)$ ，再与 $z_0$ 、 $z_2$ 相减即可。
 
-上式实际上是 Karatsuba 算法的核心，它将长度为 $n$ 的乘法问题转化为了 $3$ 个长度更小的子问题。若令 $m = \left\lceil \frac n 2 \right\rceil$，记 Karatsuba 算法计算两个 $n$ 位整数乘法的耗时为 $T(n)$，则有 $T(n) = 3 \cdot T \left(\left\lceil \frac n 2 \right\rceil\right) + O(n)$，由主定理可得 $T(n) = \Theta(n^{\log_2 3}) \approx \Theta(n^{1.585})$。
+上式实际上是 Karatsuba 算法的核心，它将长度为 $n$ 的乘法问题转化为了 $3$ 个长度更小的子问题。若令 $m = \left\lceil \frac n 2 \right\rceil$ ，记 Karatsuba 算法计算两个 $n$ 位整数乘法的耗时为 $T(n)$ ，则有 $T(n) = 3 \cdot T \left(\left\lceil \frac n 2 \right\rceil\right) + O(n)$ ，由主定理可得 $T(n) = \Theta(n^{\log_2 3}) \approx \Theta(n^{1.585})$ 。
 
 整个过程可以递归实现。为清晰起见，下面的代码通过 Karatsuba 算法实现了多项式乘法，最后再处理所有的进位问题。
 
-??? " karatsuba_mulc.cpp "
-
+??? "karatsuba_mulc.cpp"
     ```cpp
-    int *karatsuba_polymul(int n, int *a, int *b)
-    {
-        if (n <= 32) {
-            // 规模较小时直接计算，避免继续递归带来的效率损失
-            int *r = new int[n * 2 + 1]();
-            for (int i = 0; i <= n; ++i)
-                for (int j = 0; j <= n; ++j)
-                    r[i + j] += a[i] * b[j];
-            return r;
-        }
-
-        int m = n / 2 + 1;
-        int *r = new int[m * 4 + 1]();
-        int *z0, *z1, *z2;
-
-        z0 = karatsuba_polymul(m - 1, a, b);
-        z2 = karatsuba_polymul(n - m, a + m, b + m);
-
-        // 计算 z1
-        // 临时更改，计算完毕后恢复
-        for (int i = 0; i + m <= n; ++i) a[i] += a[i + m];
-        for (int i = 0; i + m <= n; ++i) b[i] += b[i + m];
-        z1 = karatsuba_polymul(m - 1, a, b);
-        for (int i = 0; i + m <= n; ++i) a[i] -= a[i + m];
-        for (int i = 0; i + m <= n; ++i) b[i] -= b[i + m];
-        for (int i = 0; i <= (m - 1) * 2; ++i) z1[i] -= z0[i];
-        for (int i = 0; i <= (n - m) * 2; ++i) z1[i] -= z2[i];
-
-        // 由 z0、z1、z2 组合获得结果
-        for (int i = 0; i <= (m - 1) * 2; ++i) r[i] += z0[i];
-        for (int i = 0; i <= (m - 1) * 2; ++i) r[i + m] += z1[i];
-        for (int i = 0; i <= (n - m) * 2; ++i) r[i + m * 2] += z2[i];
-
-        delete[] z0;
-        delete[] z1;
-        delete[] z2;
+    int *karatsuba_polymul(int n, int *a, int *b) {
+      if (n <= 32) {
+        // 规模较小时直接计算，避免继续递归带来的效率损失
+        int *r = new int[n * 2 + 1]();
+        for (int i = 0; i <= n; ++i)
+          for (int j = 0; j <= n; ++j) r[i + j] += a[i] * b[j];
         return r;
+      }
+    
+      int m = n / 2 + 1;
+      int *r = new int[m * 4 + 1]();
+      int *z0, *z1, *z2;
+    
+      z0 = karatsuba_polymul(m - 1, a, b);
+      z2 = karatsuba_polymul(n - m, a + m, b + m);
+    
+      // 计算 z1
+      // 临时更改，计算完毕后恢复
+      for (int i = 0; i + m <= n; ++i) a[i] += a[i + m];
+      for (int i = 0; i + m <= n; ++i) b[i] += b[i + m];
+      z1 = karatsuba_polymul(m - 1, a, b);
+      for (int i = 0; i + m <= n; ++i) a[i] -= a[i + m];
+      for (int i = 0; i + m <= n; ++i) b[i] -= b[i + m];
+      for (int i = 0; i <= (m - 1) * 2; ++i) z1[i] -= z0[i];
+      for (int i = 0; i <= (n - m) * 2; ++i) z1[i] -= z2[i];
+    
+      // 由 z0、z1、z2 组合获得结果
+      for (int i = 0; i <= (m - 1) * 2; ++i) r[i] += z0[i];
+      for (int i = 0; i <= (m - 1) * 2; ++i) r[i + m] += z1[i];
+      for (int i = 0; i <= (n - m) * 2; ++i) r[i + m * 2] += z2[i];
+    
+      delete[] z0;
+      delete[] z1;
+      delete[] z2;
+      return r;
     }
-
-    void karatsuba_mul(int a[LEN], int b[LEN], int c[LEN])
-    {
-        int *r = karatsuba_polymul(LEN - 1, a, b);
-        memcpy(c, r, sizeof(int) * LEN);
-        for (int i = 0; i < LEN - 1; ++i) if (c[i] >= 10) {
-            c[i + 1] += c[i] / 10;
-            c[i] %= 10;
+    
+    void karatsuba_mul(int a[LEN], int b[LEN], int c[LEN]) {
+      int *r = karatsuba_polymul(LEN - 1, a, b);
+      memcpy(c, r, sizeof(int) * LEN);
+      for (int i = 0; i < LEN - 1; ++i)
+        if (c[i] >= 10) {
+          c[i + 1] += c[i] / 10;
+          c[i] %= 10;
         }
-        delete[] r;
+      delete[] r;
     }
     ```
 
 ??? " 关于 `new` 和 `delete` "
+    见 [内存池](/intro/common-tricks/#_5) 。
 
-    见[内存池](/intro/common-tricks/#_4)。
-
-但是这样的实现存在一个问题：在 $b$ 进制下，多项式的每一个系数都有可能达到 $n \cdot b^2$ 量级，在压位高精度实现（即 $b > 10$，下文介绍）中可能造成整数溢出；而若在多项式乘法的过程中处理进位问题，则 $x_1 + x_0$ 与 $y_1 + y_0$ 的结果可能达到 $2 \cdot b^m$，增加一个位（如果采用 $x_1 - x_0$ 的计算方式，则不得不特殊处理负数的情况）。因此，需要依照实际的应用场景来决定采用何种实现方式。
+但是这样的实现存在一个问题：在 $b$ 进制下，多项式的每一个系数都有可能达到 $n \cdot b^2$ 量级，在压位高精度实现（即 $b > 10$ ，下文介绍）中可能造成整数溢出；而若在多项式乘法的过程中处理进位问题，则 $x_1 + x_0$ 与 $y_1 + y_0$ 的结果可能达到 $2 \cdot b^m$ ，增加一个位（如果采用 $x_1 - x_0$ 的计算方式，则不得不特殊处理负数的情况）。因此，需要依照实际的应用场景来决定采用何种实现方式。
 
 ### Reference
 
-https://en.wikipedia.org/wiki/Karatsuba_algorithm
+ <https://en.wikipedia.org/wiki/Karatsuba_algorithm> 
 
 ## 封装类
 
-[这里](https://paste.ubuntu.com/p/7VKYzpC7dn/)有一个封装好的高精度整数类。
+ [这里](https://paste.ubuntu.com/p/7VKYzpC7dn/) 有一个封装好的高精度整数类。
 
 ??? 这里是另一个模板
-
     ```cpp
     #define MAXN 9999
     // MAXN 是一位中最大的数字
@@ -695,9 +685,9 @@ https://en.wikipedia.org/wiki/Karatsuba_algorithm
       // TODO: Big / Big;
       Big operator^(const int&) const;
       // TODO: Big ^ Big;
-
+    
       // TODO: Big 位运算;
-
+    
       int operator%(const int&) const;
       // TODO: Big ^ Big;
       bool operator<(const Big&) const;
@@ -863,7 +853,7 @@ https://en.wikipedia.org/wiki/Karatsuba_algorithm
       printf("%d", a[len - 1]);
       gd(i, len - 2, 0) { printf("%04d", a[i]); }
     }
-
+    
     inline void print(Big s) {
       // s不要是引用，要不然你怎么print(a * b);
       int len = s.len;
@@ -872,3 +862,12 @@ https://en.wikipedia.org/wiki/Karatsuba_algorithm
     }
     char s[100024];
     ```
+
+## 习题
+
+-    [NOIP 2012 国王游戏](https://www.luogu.org/problemnew/show/P1080) 
+-    [SPOJ - Fast Multiplication](http://www.spoj.com/problems/MUL/en/) 
+-    [SPOJ - GCD2](http://www.spoj.com/problems/GCD2/) 
+-    [UVA - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024) 
+-    [UVA - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436) 
+-    [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D) 

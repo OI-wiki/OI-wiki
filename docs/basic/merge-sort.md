@@ -1,12 +1,12 @@
 ## 算法
 
-归并排序是一种采用了[分治](/basic/divide-and-conquer)思想的排序算法，其本质是一种 [CDQ 分治](/misc/cdq-divide)。
+归并排序是一种采用了 [分治](./divide-and-conquer.md) 思想的排序算法，其本质是一种 [CDQ 分治](../misc/cdq-divide.md) 。
 
 归并排序分为三个过程：
 
-1. 将数列随意划分为两部分（在均匀划分时时间复杂度为 $O\left(n\log{n}\right)$ ）
-2. 递归地分别对两个子序列进行归并排序
-3. 合并两个子序列
+1.  将数列划分为两部分（在均匀划分时时间复杂度为 $O\left(n\log{n}\right)$ ）；
+2.  递归地分别对两个子序列进行归并排序；
+3.  合并两个子序列。
 
 不难发现，归并排序的核心是如何合并两个子序列，前两步都很好实现。
 
@@ -31,7 +31,7 @@ void merge(int ll, int rr) {
 }
 ```
 
-下面参考《算法4》的 Java 完整代码，很漂亮，建议背住，学习一下代码风格。
+下面参考《算法 4》的 Java 完整代码，很漂亮，建议背住，学习一下代码风格。
 
 ```java
 public class Merge {
@@ -71,15 +71,13 @@ public class Merge {
 
 关键点在于一次性创建数组，避免在每次递归调用时创建，避免了对象的无谓构造和析构。
 
-
-
 ## 逆序对
 
 归并排序还可以用来求逆序对的个数。
 
 所谓逆序对，就是满足 $a_{i} > a_{j}$ 且 $i < j$ 的数对 $(i, j)$ 。
 
-可以用[树状数组](/ds/bit)、[线段树](/ds/segment/)等数据结构来求，也可以用归并排序来求。
+可以用 [树状数组](../ds/bit.md) 、 [线段树](../ds/seg.md) 等数据结构来求，也可以用归并排序来求。
 
 具体来说，上面归并排序中间注释掉的 `ans += mid - p` 就是在统计逆序对个数。
 
@@ -89,4 +87,4 @@ public class Merge {
 
 ## 参考
 
-<https://www.geeksforgeeks.org/merge-sort/>
+ <https://www.geeksforgeeks.org/merge-sort/> 

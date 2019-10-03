@@ -1,3 +1,5 @@
+author: Chrogeek, HeRaNO, Dev-XYS, Dev-jqe
+
 ## 常见用途
 
 在算法竞赛中，我们有时需要维护多维度信息。在这种时候，我们经常需要树套树来记录信息。
@@ -17,7 +19,7 @@
 
 ## 经典例题
 
-[陌上花开](https://www.lydsy.com/JudgeOnline/problem.php?id=3262)将第一维排序处理，然后用树套树维护第二维和第三维。
+ [陌上花开](https://www.luogu.org/problem/P3810) 将第一维排序处理，然后用树套树维护第二维和第三维。
 
 ## 示例代码
 

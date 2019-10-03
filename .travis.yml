@@ -2,11 +2,11 @@ language: python
 cache:
   pip: true
   directories:
-  - node_modules
+    - node_modules
 python:
   - 3.6
 services:
-- docker
+  - docker
 before_install:
   - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
   - source ~/.nvm/nvm.sh
@@ -31,10 +31,19 @@ deploy:
 after_deploy:
   - chmod +x scripts/BaiduPusher.sh && ./scripts/BaiduPusher.sh
   - cd /tmp
-  - git clone https://github.com/24OI/OI-wiki.git
+  - git clone https://github.com/OI-wiki/OI-wiki.git
   - cd OI-wiki
   - git remote add coding https://$CODING_USER:$CODING_KEY@git.coding.net/scaffrey/OI-wiki.git
   - git push coding master:master -f
   - git fetch origin gh-pages
   - git checkout -b gh-pages origin/gh-pages
-  - git push coding gh-pages:coding-pages -f
+  - git push coding gh-pages:gh-pages -f
+  - git checkout -b cdn-pages origin/gh-pages
+  - find ./ -type f -name "*.html" -exec sed -i -E 's/([^"]*)(assets[^"]*)/https:\/\/cdn-for-oi-wiki.billchn.com\/\2/g' {} +
+  - git add .
+  - git config user.name "Travis Builder"
+  - git config user.email "hi@oi-wiki.org"
+  - git commit --author "24OI-bot <15963390+24OI-bot@users.noreply.github.com>" -m "build cdn files"
+  - git remote add gh-token "https://${GH_TOKEN}@github.com/OI-wiki/OI-wiki.git";
+  - git push gh-token cdn-pages -f
+  - git push coding cdn-pages:coding-pages -f

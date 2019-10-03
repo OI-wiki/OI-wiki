@@ -1,6 +1,6 @@
 ## 定义
 
-（还记得这些定义吗？在阅读下列内容之前，请务必了解[图论基础](/graph/basic)部分。）
+（还记得这些定义吗？在阅读下列内容之前，请务必了解 [图论基础](/graph/basic) 部分。）
 
 -   路径
 -   最短路
@@ -33,7 +33,7 @@
 
  `f[0][x][y]` ：边权，或者 $0$ ，或者 $+\infty$ （ `f[0][x][x]` 什么时候应该是 $+\infty$ ？）
 
- `f[k][x][y] = min(f[k-1][x][y], f[k-1][x][k]+f[k-1][k][y])`
+ `f[k][x][y] = min(f[k-1][x][y], f[k-1][x][k]+f[k-1][k][y])` 
 
 上面两行都显然是对的，然而这个做法空间是 $O(N^3)$ 。
 
@@ -60,27 +60,26 @@ for (k = 1; k <= n; k++) {
 
     考虑环上编号最大的结点 u。
 
-    `f[u-1][x][y]` 和 (u,x), (u,y)共同构成了环。
+     `f[u-1][x][y]` 和 (u,x), (u,y）共同构成了环。
 
-    在Floyd的过程中枚举u，计算这个和的最小值即可。
+    在 Floyd 的过程中枚举 u，计算这个和的最小值即可。
 
-    $O(n^3)$。
+     $O(n^3)$ 。
 
 ???+question "已知一个有向图中任意两点之间是否有连边，要求判断任意两点是否连通。"
-
-    该问题即是求**图的传递闭包**。
+    该问题即是求 **图的传递闭包** 。
 
     我们只需要按照 Floyd 的过程，逐个加入点判断一下。
 
-    只是此时的边的边权变为 $1/0$， 而取 $\min$ 变成了**与**运算。
+    只是此时的边的边权变为 $1/0$ ，而取 $\min$ 变成了 **与** 运算。
 
-    再进一步用 bitset 优化，复杂度可以到 $O(\frac{n^3}{w})$。
+    再进一步用 bitset 优化，复杂度可以到 $O(\frac{n^3}{w})$ 。
 
     ```cpp
-    //std::bitset<SIZE> f[SIZE];
+    // std::bitset<SIZE> f[SIZE];
     for (k = 1; k <= n; k++)
-    	for (i = 1; i <= n; i++)
-    	    if(f[i][k]) f[i] = f[i] & f[k];
+      for (i = 1; i <= n; i++)
+        if (f[i][k]) f[i] = f[i] & f[k];
     ```
 
 * * *
@@ -131,7 +130,7 @@ while (1) for each edge(u, v) relax(u, v);
 
 所以最多循环 $n-1$ 次。
 
-总时间复杂度 $O(NM)$ 。 **（对于最短路存在的图）**
+总时间复杂度 $O(NM)$ 。 **（对于最短路存在的图）** 
 
 ```text
 relax(u, v) {
@@ -229,7 +228,7 @@ IPA:/ˈdikstrɑ/或/ˈdɛikstrɑ/。
 
 （注：如果使用 priority_queue，无法删除某一个旧的结点，只能插入一个权值更小的编号相同结点，这样操作导致堆中元素是 $O(m)$ 的）
 
-如果用线段树（ZKW 线段树）： $(O(n+m)\log n)$
+如果用线段树（ZKW 线段树）： $(O(n+m)\log n)$ 
 
 如果用 Fibonacci 堆： $O(n \log n + m)$ （这就是为啥优秀了）。
 
@@ -272,67 +271,3 @@ for (i = 1; i <= n; i++) {
 开一个 `pre` 数组，在更新距离的时候记录下来后面的点是如何转移过去的，算法结束前再递归地输出路径即可。
 
 比如 Floyd 就要记录 `pre[i][j] = k;` ，Bellman-Ford 和 Dijkstra 一般记录 `pre[v] = u` 。
-
-## 拓展：分层图最短路
-
-分层图最短路，一般模型为有 $k$ 次零代价通过一条路径，求总的最小花费。对于这种题目，我们可以采用 DP 相关的思想，设 $\text{dis}_{i, j}$ 表示当前从起点 $i$ 号结点，使用了 $j$ 次免费通行权限后的最短路径。显然， $\text{dis}$ 数组可以这么转移：
-
- $\text{dis}_{i, j} = \min\{\min\{\text{dis}_{from, j - 1}\}, \min\{\text{dis}_{from,j} + w\}\}$
-
-其中， $from$ 表示 $i$ 的父亲节点， $w$ 表示当前所走的边的边权。当 $j - 1 \geq k$ 时， $\text{dis}_{from, j}$ = $\infty$ 。
-
-事实上，这个 DP 就相当于把每个结点拆分成了 $k+1$ 个结点，每个新结点代表使用不同多次免费通行后到达的原图结点。换句话说，就是每个结点 $u_i$ 表示使用 $i$ 次免费通行权限后到达 $u$ 结点。
-
-### 模板题：[\[JLOI2011\]飞行路线](https://www.lydsy.com/JudgeOnline/problem.php?id=2763)
-
-题意：有一个 $n$ 个点 $m$ 条边的无向图，你可以选择 $k$ 条道路以零代价通行，求 $s$ 到 $t$ 的最小花费。
-
-参考核心代码：
-
-```cpp
-struct State {    // 优先队列的结点结构体
-  int v, w, cnt;  // cnt 表示已经使用多少次免费通行权限
-  State() {}
-  State(int v, int w, int cnt) : v(v), w(w), cnt(cnt) {}
-  bool operator<(const State &rhs) const { return w > rhs.w; }
-};
-
-void dijkstra() {
-  memset(dis, 0x3f, sizeof dis);
-  dis[s][0] = 0;
-  pq.push(State(s, 0, 0));  // 到起点不需要使用免费通行权，距离为零
-  while (!pq.empty()) {
-    const State top = pq.top();
-    pq.pop();
-    int u = top.v, nowCnt = top.cnt;
-    if (done[u][nowCnt]) continue;
-    done[u][nowCnt] = true;
-    for (int i = head[u]; i; i = edge[i].next) {
-      int v = edge[i].v, w = edge[i].w;
-      if (nowCnt < k && dis[v][nowCnt + 1] > dis[u][nowCnt]) {  // 可以免费通行
-        dis[v][nowCnt + 1] = dis[u][nowCnt];
-        pq.push(State(v, dis[v][nowCnt + 1], nowCnt + 1));
-      }
-      if (dis[v][nowCnt] > dis[u][nowCnt] + w) {  // 不可以免费通行
-        dis[v][nowCnt] = dis[u][nowCnt] + w;
-        pq.push(State(v, dis[v][nowCnt], nowCnt));
-      }
-    }
-  }
-}
-
-int main() {
-  n = read(), m = read(), k = read();
-  // 笔者习惯从 1 到 n 编号，而这道题是从 0 到 n - 1，所以要处理一下
-  s = read() + 1, t = read() + 1;
-  while (m--) {
-    int u = read() + 1, v = read() + 1, w = read();
-    add(u, v, w), add(v, u, w);  // 这道题是双向边
-  }
-  dijkstra();
-  int ans = std::numeric_limits<int>::max();  // ans 取 int 最大值为初值
-  for (int i = 0; i <= k; ++i)
-    ans = std::min(ans, dis[t][i]);  // 对到达终点的所有情况取最优值
-  println(ans);
-}
-```

@@ -7,6 +7,7 @@ gulp.task('minify:html', () => {
   return gulp.src('site/**/*.html')
     .pipe(htmlmin({
       collapseWhitespace: true,
+      conservativeCollapse: true,
       minifyJS: true,
       minifyCSS: true,
       minifyURLs: true,

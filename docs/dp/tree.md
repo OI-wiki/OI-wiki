@@ -1,4 +1,4 @@
-在学习本章前请确认你已经学习了[动态规划部分简介](/dp)
+在学习本章前请确认你已经学习了 [动态规划部分简介](/dp) 
 
 树形 DP，即在树上进行的 DP。由于树固有的递归性质，树形 DP 一般都是递归进行的。
 
@@ -65,8 +65,8 @@ int main() {
 
 ## 习题
 
-[HDU 2196 Computer](http://acm.hdu.edu.cn/showproblem.php?pid=2196)
+ [HDU 2196 Computer](http://acm.hdu.edu.cn/showproblem.php?pid=2196) 
 
-[POJ 1463 Strategic game](http://poj.org/problem?id=1463)
+ [POJ 1463 Strategic game](http://poj.org/problem?id=1463) 
 
-[POJ 3585 Accumulation Degree](http://poj.org/problem?id=3585)
+ [POJ 3585 Accumulation Degree](http://poj.org/problem?id=3585) 

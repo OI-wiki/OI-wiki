@@ -1,8 +1,8 @@
-Checker，即[Special Judge](/intro/spj)，用于检验答案是否合法。使用 Testlib 可以让我们免去检验许多东西，使编写简单许多。
+Checker，即 [Special Judge](/intro/spj) ，用于检验答案是否合法。使用 Testlib 可以让我们免去检验许多东西，使编写简单许多。
 
 Checker 从命令行参数读取到输入文件名、选手输出文件名、标准输出文件名，并确定选手输出是否正确，并返回一个预定义的结果：
 
-请在阅读下文前先阅读[通用](./general.md)。
+请在阅读下文前先阅读 [通用](./general.md) 。
 
 ## 简单的例子
 
@@ -199,6 +199,7 @@ int main(int argc, char* argv[]) {
 ## 建议与常见错误
 
 -   编写 readAns 函数，它真的可以让你的 checker 变得很棒。
+
 -   读入选手输出时永远限定好范围，如果某些变量忘记了限定且被用于某些参数，你的 checker 可能会判定错误或 RE 等。
 
     ##### 反面教材
@@ -232,4 +233,4 @@ int main(int argc, char* argv[]) {
 
 -   使用项别名
 
-     **本文翻译自[Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431)。 `testlib.h` 的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。** 
+     **本文翻译自 [Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 

@@ -56,7 +56,7 @@
 
 子问题图中每个定点对应一个子问题，而需要考察的选择对应关联至子问题顶点的边。
 
- **经典问题：**
+ **经典问题：** 
 
 -    **无权最短路径：** 具有最优子结构性质。
 -    **无权最长（简单）路径：** 此问题不具有，是 NPC 的。区别在于，要保证子问题无关，即同一个原问题的一个子问题的解不影响另一个子问题的解。相关：求解一个子问题时用到了某些资源，导致这些资源在求解其他子问题时不可用。
@@ -97,10 +97,13 @@
 ```cpp
 int a[MAXN];
 int dp() {
-  int now = 0, ans = 1;
+  int now = 1, ans = 1;
   for (int i = 2; i <= n; i++) {
-    if (a[i] > a[i - 1]) ans++;
-    now = max(now, ans);
+    if (a[i] > a[i - 1])
+      now++;
+    else
+      now = 1;
+    ans = max(now, ans);
   }
   return ans;
 }
@@ -114,15 +117,15 @@ int dp() {
 
 ### 最简单的第一种
 
- $O\left(n^2\right)$ 的算法。每一次重头扫描找出最佳答案。
+ $O\left(n^2\right)$ 的算法。每一次从头扫描找出最佳答案。
 
 ```cpp
 int a[MAXN], d[MAXN];
 int dp() {
   d[1] = 1;
-  int ans = 0;
+  int ans = 1;
   for (int i = 2; i <= n; i++) {
-    for (int j = i - 1; j < i; j++)
+    for (int j = 1; j < i; j++)
       if (a[j] < a[i]) {
         d[i] = max(d[i], d[j] + 1);
         ans = max(ans, d[i]);
@@ -134,13 +137,13 @@ int dp() {
 
 ### 稍复杂的第二种
 
- $O\left(n log n\right)$ 的算法，参考了这篇文章<https://www.cnblogs.com/itlqs/p/5743114.html>。
+ $O\left(n \log n\right)$ 的算法，参考了这篇文章 <https://www.cnblogs.com/itlqs/p/5743114.html> 。
 
 首先，定义 $a_1 \dots a_n$ 为原始序列， $d$ 为当前的不下降子序列， $len$ 为子序列的长度，那么 $d_{len}$ 就是长度为 $len$ 的不下降子序列末尾元素。
 
 初始化： $d_1=a_1,len=1$ 。
 
-现在我们已知最长的不下降子序列长度为 1，那么我们让 $i$ 从 2 到 $n$ 循环，依次求出前 $i$ 个元素的最长不下降子序列的长度，循环的时候我们只需要维护好 $d$ 这个数组还有 $len$ 就可以了。 **关键在于如何维护。**
+现在我们已知最长的不下降子序列长度为 1，那么我们让 $i$ 从 2 到 $n$ 循环，依次求出前 $i$ 个元素的最长不下降子序列的长度，循环的时候我们只需要维护好 $d$ 这个数组还有 $len$ 就可以了。 **关键在于如何维护。** 
 
 考虑进来一个元素 $a_i$ ：
 
@@ -165,7 +168,7 @@ while (dp[ans] != mx) ++ans;
 
 ### DAG 中的最长简单路径
 
- $dp[i] = \max(dp[j] + 1), ((j, i) \in E)$
+ $dp[i] = \max(dp[j] + 1), ((j, i) \in E)$ 
 
 ### 最长回文子序列
 
@@ -183,7 +186,7 @@ $$
 
 也可以转化为 LCS 问题，只需要把 $a$ 串反转当做 $b$ ，对 $a$ 和 $b$ 求 LCS 即可。
 
-证明在[这里](https://www.zhihu.com/question/34580085/answer/59539708)。
+证明在 [这里](https://www.zhihu.com/question/34580085/answer/59539708) 。
 
 注意区分子串（要求连续）的问题。
 
@@ -211,13 +214,13 @@ $$
 
 至于如何找是否有这么一个 $id$ 呢？递推的时候存一个 $max$ 就好了。
 
-代码在：<https://github.com/Ir1d/Fantasy/blob/master/HDU/3068.cpp>
+代码在： <https://github.com/Ir1d/Fantasy/blob/master/HDU/3068.cpp> 
 
 ### 双调欧几里得旅行商问题
 
 好像出成了某一年程设期末。
 
-upd：其实是[程设期末推荐练习](https://ir1d.cf/2018/06/23/cssx/程设期末推荐练习/)里面的。
+upd：其实是 [程设期末推荐练习](https://ir1d.cf/2018/06/23/cssx/程设期末推荐练习/) 里面的。
 
 书上的提示是：从左到右扫描，对巡游路线的两个部分分别维护可能的最优解。
 
@@ -233,16 +236,16 @@ upd：其实是[程设期末推荐练习](https://ir1d.cf/2018/06/23/cssx/程设
 
 如果是分给快的那条：
 
- $dp[i][j] = \min(dp[i - 1][j] + dis[i - 1][i]),\ j = 1 \cdots i$
+ $dp[i][j] = \min(dp[i - 1][j] + dis[i - 1][i]),\ j = 1 \cdots i$ 
 
 如果是慢的，原来是慢的那条就变成了快的，所以另一条是到 $i - 1$ 那个点：
 
- $dp[i][j] = \min(dp[i - 1][j] + dis[j][i]),\ j = 1 \cdots i$
+ $dp[i][j] = \min(dp[i - 1][j] + dis[j][i]),\ j = 1 \cdots i$ 
 
 答案是 $\min(dp[n][i] + dis[n][i])$ 。
 （从一开始编号，终点是 $n$ ）
 
-代码：<https://github.com/Ir1d/Fantasy/blob/master/openjudge/cssx/2018rec/11.cpp>
+代码： <https://github.com/Ir1d/Fantasy/blob/master/openjudge/cssx/2018rec/11.cpp> 
 
 #### 思路二
 
@@ -252,11 +255,11 @@ upd：其实是[程设期末推荐练习](https://ir1d.cf/2018/06/23/cssx/程设
 
 这样的转移更好写：
 
-我们记 $k = \max(i, j) + 1$
+我们记 $k = \max(i, j) + 1$ 
 
  $k$ 这个点肯定在两条路中的一个上， $dp[i][j]$ 取两种情况的最小值即可。
 
- $dp[i][j] = \min(dp[i][k] + dis[k][j], dp[k][j] + dis[i][k])$
+ $dp[i][j] = \min(dp[i][k] + dis[k][j], dp[k][j] + dis[i][k])$ 
 
 边界是： $dp[i][n] = dp[n][i] = dis[n][i]$ 。
 
@@ -266,9 +269,9 @@ upd：其实是[程设期末推荐练习](https://ir1d.cf/2018/06/23/cssx/程设
 
 希望最小化所有行的额外空格数的立方之和。
 
-注意到实际问题要求单词不能打乱顺序，所以就好做了起来。 **不要把题目看复杂。**
+注意到实际问题要求单词不能打乱顺序，所以就好做了起来。 **不要把题目看复杂。** 
 
- $dp[i] = \min(dp[j] + cost[j][i])$
+ $dp[i] = \min(dp[j] + cost[j][i])$ 
 
 不知道这样可不可做：有 $n$ 个单词，可以不按顺序打印，问怎么安排，使得把他们打印成 $m$ 行之后，每行的空格之和最小。
 
@@ -298,17 +301,17 @@ insert  : -2
 
  $dp[x][0]$ 是没去， $dp[x][1]$ 是去了。
 
- $dp[u][0] = \max(dp[v][0], dp[v][1]), v \in son(u)$
+ $dp[u][0] = \max(dp[v][0], dp[v][1]), v \in son(u)$ 
 
- $dp[u][1] = w[u] + dp[v][0], v \in son(u)$
+ $dp[u][1] = w[u] + dp[v][0], v \in son(u)$ 
 
 ### 译码算法
 
-[Viterbi algorithm](https://en.wikipedia.org/wiki/Viterbi_algorithm) 之前写词性标注的时候有用到，好像用在输入法里面也是类似的。
+ [Viterbi algorithm](https://en.wikipedia.org/wiki/Viterbi_algorithm) 之前写词性标注的时候有用到，好像用在输入法里面也是类似的。
 
 本题中用来实现语音识别，其实就是找一条对应的概率最大的路径。
 
-ref：<https://segmentfault.com/a/1190000008720143>
+ref： <https://segmentfault.com/a/1190000008720143> 
 
 ### 基于接缝裁剪的图像压缩
 
@@ -318,7 +321,7 @@ ref：<https://segmentfault.com/a/1190000008720143>
 
 限制：要求相邻两行中删除的像素必须位于同一列或相邻列。
 
- $dp[i][j] = \min(dp[i - 1][j], dp[i - 1][j - 1], dp[i - 1][j + 1]) + cost[i][j]$
+ $dp[i][j] = \min(dp[i - 1][j], dp[i - 1][j - 1], dp[i - 1][j + 1]) + cost[i][j]$ 
 
 边界： $dp[1][i] = cost[1][i]$ 。
 
@@ -328,7 +331,7 @@ ref：<https://segmentfault.com/a/1190000008720143>
 
 等价于之前那个最优二叉搜索树。
 
- $dp[i][j] = \min(dp[i][k] + dp[k][j]) + l[j] - l[i] + 1,\ k = i + 1 \cdots j - 1$
+ $dp[i][j] = \min(dp[i][k] + dp[k][j]) + l[j] - l[i] + 1,\ k = i + 1 \cdots j - 1$ 
 
 注意 $l[i]$ 表示的是第 i 个切分点的位置。
 
@@ -342,7 +345,7 @@ ref：<https://segmentfault.com/a/1190000008720143>
 
 这是个很有趣的结论，dp 问题中很常见。
 
-<https://fogsail.github.io/2017/05/08/20170508/>
+ <https://fogsail.github.io/2017/05/08/20170508/> 
 
 剩下的就是个二维 dp，想成从 $(1, i)$ 走到 $(n, m)$ 的路径的问题，然后收益和代价就是边权，网格图只能往右下方走。
 
@@ -352,13 +355,13 @@ ref：<https://segmentfault.com/a/1190000008720143>
 
  $cost[i][j]$ 表示剩下 $i$ 个月，开始的时候有 $j$ 台库存的最小成本。
 
-<https://walkccc.github.io/CLRS/Chap15/Problems/15-11/>
+ <https://walkccc.github.io/CLRS/Chap15/Problems/15-11/> 
 
 ### 签约棒球自由球员
 
  $v[i][j]$ 是考虑 $i$ 之后的位置，总费用为 $x$ 的最大收益。
 
-<https://walkccc.github.io/CLRS/Chap15/Problems/15-12/>
+ <https://walkccc.github.io/CLRS/Chap15/Problems/15-12/> 
 
 类似于背包问题。
 

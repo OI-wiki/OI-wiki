@@ -33,31 +33,32 @@
 ### 代码展示
 
 ```cpp
-for(int i=1;i<=n;i++)for(int j=1;j<=m;j++)
-scanf(" %c",s[i]+j),lft[i][j]=rgt[i][j]=j,up[i][j]=1;
-for(int i=1;i<=n;i++)
-{
-    for(int j=1;j<=m;j++)if(s[i][j]=='0'&&s[i][j-1]=='0')lft[i][j]=lft[i][j-1];
-    for(int j=m;j>=1;j--)if(s[i][j]=='0'&&s[i][j+1]=='0')rgt[i][j]=rgt[i][j+1];
+for (int i = 1; i <= n; i++)
+  for (int j = 1; j <= m; j++)
+    scanf(" %c", s[i] + j), lft[i][j] = rgt[i][j] = j, up[i][j] = 1;
+for (int i = 1; i <= n; i++) {
+  for (int j = 1; j <= m; j++)
+    if (s[i][j] == '0' && s[i][j - 1] == '0') lft[i][j] = lft[i][j - 1];
+  for (int j = m; j >= 1; j--)
+    if (s[i][j] == '0' && s[i][j + 1] == '0') rgt[i][j] = rgt[i][j + 1];
 }
-for(int i=1;i<=n;i++)for(int j=1;j<=m;j++)
-{
-    if(i>1&&s[i][j]=='0'&&s[i-1][j]=='0')
-    {
-        lft[i][j]=max(lft[i][j],lft[i-1][j]);
-        rgt[i][j]=min(rgt[i][j],rgt[i-1][j]);
-        up[i][j]=up[i-1][j]+1;
+for (int i = 1; i <= n; i++)
+  for (int j = 1; j <= m; j++) {
+    if (i > 1 && s[i][j] == '0' && s[i - 1][j] == '0') {
+      lft[i][j] = max(lft[i][j], lft[i - 1][j]);
+      rgt[i][j] = min(rgt[i][j], rgt[i - 1][j]);
+      up[i][j] = up[i - 1][j] + 1;
     }
-    ans=max(ans,(rgt[i][j]-lft[i][j]+1)*up[i][j]);
-}
+    ans = max(ans, (rgt[i][j] - lft[i][j] + 1) * up[i][j]);
+  }
 ```
 
 最后， $ans$ 即为最大子矩阵的面积。
 
 ## 习题
 
-[luogu P4147 玉蟾宫](https://www.luogu.org/problemnew/show/P4147)
+ [luogu P4147 玉蟾宫](https://www.luogu.org/problemnew/show/P4147) 
 
-[luogu P1578 奶牛浴场](https://www.luogu.org/problemnew/show/P1578)
+ [luogu P1578 奶牛浴场](https://www.luogu.org/problemnew/show/P1578) 
 
-[\[ZJOI2007\]棋盘制作](https://www.lydsy.com/JudgeOnline/problem.php?id=1057)
+ [「ZJOI2007」棋盘制作](https://www.luogu.org/problem/P1169) 
