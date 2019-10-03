@@ -44,32 +44,26 @@ $$
 H_n = \binom{2n}{n} - \binom{2n}{n-1}
 $$
 
-```
-f[n] = f[0] * f[n - 1] + f[1] * f[n - 2] + ... + f[n - 1] * f[0]
-```
+    f[n] = f[0] * f[n - 1] + f[1] * f[n - 2] + ... + f[n - 1] * f[0]
 
-具体实例
-[https://www.luogu.org/problem/P1044](洛谷 P1044 栈)
-```
+具体实例[https://www.luogu.org/problem/P1044]（洛谷 P1044 栈）
 
-#include <iostream>
+    #include <iostream>
 
-using namespace std;
+    using namespace std;
 
-int n;
-long long f[25];
+    int n;
+    long long f[25];
 
-int main(){
-	f[0] = 1;
-	cin >> n;
-	for(int i = 1; i <= n; i++)
-		f[i] = f[i - 1] * (4 * i - 2) / (i + 1);
-    //这里用的是常见公式2
-	cout << f[n] << endl;
-	return 0;
-}
-```
-
+    int main(){
+    	f[0] = 1;
+    	cin >> n;
+    	for(int i = 1; i <= n; i++)
+    		f[i] = f[i - 1] * (4 * i - 2) / (i + 1);
+        //这里用的是常见公式2
+    	cout << f[n] << endl;
+    	return 0;
+    }
 
 ## 路径计数问题
 
