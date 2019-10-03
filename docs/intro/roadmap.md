@@ -23,7 +23,7 @@
 
 ### Subtask 2 代码习惯的养成
 
-[C++语法基础](https://oi-wiki.org/lang/basic/)
+ [C++ 语法基础](https://oi-wiki.org/lang/basic/) 
 
 ### Subtask 3 运算符
 
@@ -39,7 +39,7 @@
 -   if-else 语句
 -   if-elseif-else 语句
 
- [分支](https://oi-wiki.org/lang/branch/) 
+     [分支](https://oi-wiki.org/lang/branch/) 
 
 ### Subtask 2 循环语句
 
@@ -50,7 +50,7 @@
 -   do while 语句；
 -   goto 语句
 
- [循环](https://oi-wiki.org/lang/loop/) 
+     [循环](https://oi-wiki.org/lang/loop/) 
 
 ## Level 3
 
@@ -64,7 +64,7 @@
 -   为什么使用函数
 -   函数与数学中的函数
 
- [函数](https://oi-wiki.org/lang/func/) 
+     [函数](https://oi-wiki.org/lang/func/) 
 
 ### Subtask 2 递归
 
@@ -73,13 +73,12 @@
 -   递归是什么
 -   到底是同一个函数还是不同的函数
 
- [递归 & 分治](https://oi-wiki.org/basic/divide-and-conquer/) 
+     [递归 & 分治](https://oi-wiki.org/basic/divide-and-conquer/) 
 
 ### Subtask 3 标准库函数的调用
 
-- [了解C++的库](https://oi-wiki.org/lang/csl/)
-- [STL算法](https://oi-wiki.org/lang/csl/algorithm/)
-
+-    [了解 C++ 的库](https://oi-wiki.org/lang/csl/) 
+-    [STL 算法](https://oi-wiki.org/lang/csl/algorithm/) 
 
 ### Subtask 4 函数的简单应用
 
@@ -97,6 +96,6 @@
 
  [结构体](https://oi-wiki.org/lang/struct/) 
 
-### Subtask 3 STL封装容器
+### Subtask 3 STL 封装容器
 
  [序列式容器](https://oi-wiki.org/lang/csl/sequence-container/) 
