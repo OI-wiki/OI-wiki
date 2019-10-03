@@ -21,19 +21,13 @@
 
  [Hello, World!](https://oi-wiki.org/lang/helloworld/) 
 
-### Subtask 2 输入输出函数 Part 1
+### Subtask 2 代码习惯的养成
 
-> cin 与 cout 的介绍
+[C++语法基础](https://oi-wiki.org/lang/basic/)
 
-### Subtask 3 基本运算符
-
-> \+，-，\*，/，%，=
+### Subtask 3 运算符
 
  [运算](https://oi-wiki.org/lang/op/) 
-
-### Subtask 4 条件运算符
-
-> ==, &lt;=,>= ,!= &&, ||
 
 ## Level 2
 
@@ -83,7 +77,9 @@
 
 ### Subtask 3 标准库函数的调用
 
--   min, max, swap, abs, ceil, floor
+- [了解C++的库](https://oi-wiki.org/lang/csl/)
+- [STL算法](https://oi-wiki.org/lang/csl/algorithm/)
+
 
 ### Subtask 4 函数的简单应用
 
@@ -97,29 +93,10 @@
 -    [插入排序](https://oi-wiki.org/basic/insertion-sort/) 
 -    [选择排序](https://oi-wiki.org/basic/selection-sort/) 
 
-### Subtask 2 利用递归函数求解简单问题
-
--   递归函数求斐波那契数列
--   递归函数求解 gcd(a, b)
-
-### Subtask 3 输入输出 Part 2
-
-> scanf 与 printf 的运用
-
-## Level 5
-
-> 函数 Part2 与结构体
-
-### Subtask 1 结构体
-
-> struct node(){};
+### Subtask 2 结构体
 
  [结构体](https://oi-wiki.org/lang/struct/) 
 
-### Subtask 2 学习更多的系统封装函数
+### Subtask 3 STL封装容器
 
--   sort
--   reverse
--   unique
-
- [STL 算法](https://oi-wiki.org/lang/csl/algorithm/) 
+ [序列式容器](https://oi-wiki.org/lang/csl/sequence-container/) 
