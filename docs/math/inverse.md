@@ -19,11 +19,11 @@ void exgcd(int a, int b, int& x, int& y) {
 }
 ```
 
-扩展欧几里得法和求解 [线性同余方程](/math/linear-equation/) 是一个原理，在这里不展开解释。
+扩展欧几里得法和求解 [线性同余方程](./linear-equation.md) 是一个原理，在这里不展开解释。
 
 ### 快速幂法
 
-这个要运用 [费马小定理](/math/fermat/) ：
+这个要运用 [费马小定理](./fermat.md) ：
 
 > 若 $p$ 为质数， $a$ 为正整数，且 $a$ 、 $p$ 互质，则 $a^{p-1} \equiv 1 \pmod p$ 。
 
@@ -122,6 +122,6 @@ for (int i = 1; i <= n; ++i) inv[i] = sv[i] * s[i - 1] % p;
 
  [同余方程](https://www.luogu.org/problemnew/show/P1082) 
 
- [\[AHOI2005\]洗牌](https://www.lydsy.com/JudgeOnline/problem.php?id=1965) 
+ [「AHOI2005」洗牌](https://www.luogu.org/problem/P2054) 
 
- [\[SDOI2016\]排列计数](https://www.luogu.org/problemnew/show/P4071) 
+ [「SDOI2016」排列计数](https://www.luogu.org/problemnew/show/P4071) 

@@ -2,7 +2,7 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz
 
 ## 引子
 
-???+ note "BZOJ - 2286 消耗战"
+???+ note "[「SDOI2011」消耗战](https://www.luogu.org/problem/P2495)"
     ### Description
 
     在一场战争中，战场由 $n$ 个岛屿和 $n-1$ 个桥梁组成，保证每两个岛屿间有且仅有一条路径可达。现在，我军已经侦查到敌军的总部在编号为 $1$ 的岛屿，而且他们已经没有足够多的能源维系战斗，我军胜利在望。已知在其他 $k$ 个岛屿上有丰富能源，为了防止敌军获取能源，我军的任务是炸毁一些桥梁，使得敌军不能到达任何能源丰富的岛屿。由于不同桥梁的材质和结构不同，所以炸毁不同的桥梁有不同的代价，我军希望在满足目标的同时使得总代价最小。
@@ -53,10 +53,6 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz
     ### HINT
 
     对于 $100\%$ 的数据， $2\le n\le 2.5\times 10^5,m\ge 1,\sum k_i\le 5\times 10^5,1\le k_i\le n-1$ 。
-
-    ### Source
-
-    [Stage2 day2](http://www.lydsy.com/JudgeOnline/problemset.php?search=Stage2%20day2)
 
 ## 虚树 Virtual Tree
 
@@ -201,14 +197,14 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz
 -   此时栈中还有 3 个节点： $1, 3,7$ ，很明显它们是一条链上的，所以直接链接： $1->3$ 和 $3->7$ 的边。
 -   虚树就建完啦！
 
-其中有很多细节，比如我是用临接表存图的方式存虚树的，所以需要清空临接表。但是直接清空整个临接表是很慢的，所以我们在 **有一个从未入栈的元素入栈的时候清空该元素对应的临接表** 即可。
+其中有很多细节，比如我是用邻接表存图的方式存虚树的，所以需要清空邻接表。但是直接清空整个邻接表是很慢的，所以我们在 **有一个从未入栈的元素入栈的时候清空该元素对应的邻接表** 即可。
 
 建立虚树的 C++ 代码大概长这样：
 
 ```cpp
 sort(h + 1, h + 1 + k, cmp);
 sta[top = 1] = 1, g.sz = 0, g.head[1] = -1;
-// 1号节点入栈，清空1号节点对应的临接表，设置临接表边数为1
+// 1号节点入栈，清空1号节点对应的邻接表，设置邻接表边数为1
 for (int i = 1, l; i <= k; i += 1)
   if (h[i] != 1)  //如果1号节点是关键节点就不要重复添加
   {
@@ -222,13 +218,13 @@ for (int i = 1, l; i <= k; i += 1)
       if (id[l] > id[sta[top - 1]])
         //如果LCA不等于次大节点（这里的大于其实和不等于没有区别）
         g.head[l] = -1, g.push(l, sta[top]), sta[top] = l;
-      //说明LCA是第一次入栈，清空其临接表，连边后弹出栈顶元素，并将LCA入栈
+      //说明LCA是第一次入栈，清空其邻接表，连边后弹出栈顶元素，并将LCA入栈
       else
         g.push(l, sta[top--]);
       //说明LCA就是次大节点，直接弹出栈顶元素
     }
     g.head[h[i]] = -1, sta[++top] = h[i];
-    //当前节点必然是第一次入栈，清空临接表并入栈
+    //当前节点必然是第一次入栈，清空邻接表并入栈
   }
 for (int i = 1; i < top; i += 1)
   g.push(sta[i], sta[i + 1]);  //剩余的最后一条链连接一下

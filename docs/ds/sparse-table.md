@@ -16,17 +16,17 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 ## ST 表
 
- $ST$ 表基于倍增思想，可以做到 $O(n\log n)$ 预处理， $O(1)$ 回答每个询问。但是不支持修改操作。
+ST 表基于倍增思想，可以做到 $O(n\log n)$ 预处理， $O(1)$ 回答每个询问。但是不支持修改操作。
 
 暴力跑的慢的原因在于检索了每一个点。
 
 但是，如果我们预处理出每一段的最大值，就可以将效率提高很多。
 
-令 $f[i][j]$ 表示 $[i,i+2^j-1]$ 的最大值。
+令 $f[i,j]$ 表示 $[i,i+2^j-1]$ 的最大值。
 
-显然， $f[i][0]=a[i]$ 
+显然， $f[i,0]=a[i]$ 
 
-根据定义式，写出状态转移方程： $f[i][j]=\max(f[i][j-1],f[i+2^{j-1}][j-1])$ 
+根据定义式，写出状态转移方程： $f[i,j]=\max(f[i,j-1],f[i+2^{j-1},j-1])$ 
 
 我们可以这么理解：将区间 $[i,i+2^j-1]$ 分成相同的两部分
 
@@ -40,7 +40,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 对于每个询问 $[x,y]$ ，我们把它分成两部分
 
- $f[x][s]$  $f[y-2^s+1][s]$ 
+ $f[x,s]$  $f[y-2^s+1,s]$ 
 
 其中 $s=\log_2{(y-x+1)}$ 
 
@@ -55,7 +55,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 using namespace std;
 const int logn = 21;
 const int maxn = 2000001;
-long long a[maxn], f[maxn][logn], Logn[maxn];
+int f[maxn][logn], Logn[maxn];
 inline int read() {
   char c = getchar();
   int x = 0, f = 1;
@@ -72,13 +72,13 @@ inline int read() {
 void pre() {
   Logn[1] = 0;
   Logn[2] = 1;
-  for (int i = 3; i <= maxn; i++) {
+  for (int i = 3; i < maxn; i++) {
     Logn[i] = Logn[i / 2] + 1;
   }
 }
 int main() {
   int n = read(), m = read();
-  for (int i = 1; i <= m; i++) f[i][0] = read();
+  for (int i = 1; i <= n; i++) f[i][0] = read();
   pre();
   for (int j = 1; j <= logn; j++)
     for (int i = 1; i + (1 << j) - 1 <= n; i++)
@@ -107,7 +107,7 @@ $$
 
 ## 总结
 
- $ST$ 表能较好的维护区间信息，时间复杂度较低，代码量相对其他算法不大。但是， $ST$ 表能维护的信息非常有限，不能较好地扩展，并且不支持修改操作。
+ST 表能较好的维护区间信息，时间复杂度较低，代码量相对其他算法不大。但是，ST 表能维护的信息非常有限，不能较好地扩展，并且不支持修改操作。
 
 ## 练习
 

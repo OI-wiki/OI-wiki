@@ -92,7 +92,7 @@ $$
 \begin{bmatrix}F_n & F_{n+1} \cr\end{bmatrix} = \begin{bmatrix}F_0 & F_1 \cr\end{bmatrix} \cdot P^n
 $$
 
-于是我们可以用矩阵乘法在 $\Theta(\log_2n)$ 的时间内计算斐波那契数列。此外，前一节讲述的公式也可通过矩阵对角化的技巧来得到。
+于是我们可以用矩阵乘法在 $\Theta(\log n)$ 的时间内计算斐波那契数列。此外，前一节讲述的公式也可通过矩阵对角化的技巧来得到。
 
 ### 快速倍增法
 

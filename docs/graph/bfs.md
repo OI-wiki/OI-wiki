@@ -20,7 +20,7 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
 ```text
 bfs(s) {
   q = new queue()
-  q.push(s)), visited[s] = true
+  q.push(s), visited[s] = true
   while (!q.empty()) {
     u = q.pop()
     for each edge(u, v) {
@@ -103,7 +103,7 @@ void restore(int x) {
 
 ## 例题
 
--    [LOJ#2317.「NOIP2017」奶酪](https://loj.ac/problem/2317) 
+-    [「NOIP2017」奶酪](http://uoj.ac/problem/332) 
 
 ## 参考
 
@@ -226,7 +226,7 @@ int main() {
 
 ## 优先队列 BFS
 
-优先队列，相当于一个二叉堆，STL 中提供了 [ `std::priority_queue` ](/ds/stl/priority_queue/) ，可以方便我们使用优先队列。
+优先队列，相当于一个二叉堆，STL 中提供了 [ `std::priority_queue` ](../lang/csl/container-adapter.md) ，可以方便我们使用优先队列。
 
 在基于优先队列的 BFS 中，我们每次从队首取出代价最小的结点进行进一步搜索。容易证明这个贪心思想是正确的，因为从这个结点开始扩展的搜索，一定不会更新原来那些代价更高的结点。换句话说，其余那些代价更高的结点，我们不回去考虑更新它。
 

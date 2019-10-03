@@ -420,18 +420,18 @@ int main() {
 
 -    [【模板】普通平衡树](https://loj.ac/problem/104) 
 -    [【模板】文艺平衡树](https://loj.ac/problem/105) 
--    [\[HNOI2002\]营业额统计](https://www.lydsy.com/JudgeOnline/problem.php?id=1588) 
--    [\[HNOI2004\]宠物收养所](https://www.lydsy.com/JudgeOnline/problem.php?id=1208) 
+-    [「HNOI2002」营业额统计](https://loj.ac/problem/10143) 
+-    [「HNOI2004」宠物收养所](https://loj.ac/problem/10144) 
 
 ## 练习题
 
- [luogu P4402\[Cerc2007\]robotic sort 机械排序](https://www.luogu.org/problemnew/show/P4402) / [bzoj 1552（权限题）](https://www.lydsy.com/JudgeOnline/problem.php?id=1552) 
+ [「Cerc2007」robotic sort 机械排序](https://www.luogu.org/problemnew/show/P4402) 
 
  [二逼平衡树（树套树）](https://loj.ac/problem/106) 
 
  [bzoj 2827 千山鸟飞绝](https://www.lydsy.com/JudgeOnline/problem.php?id=2827) 
 
- [bzoj 4923\[Lydsy1706 月赛\]K 小值查询](https://www.lydsy.com/JudgeOnline/problem.php?id=4923) 
+ [「Lydsy1706 月赛」K 小值查询](https://www.lydsy.com/JudgeOnline/problem.php?id=4923) 
 
 * * *
 
