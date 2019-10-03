@@ -41,11 +41,11 @@
 // p[]存储向量或点
 tp = 0;                       //初始化栈
 std::sort(p + 1, p + 1 + n);  //对点进行排序
-stk[++tp] =
-    1;  //栈内添加第一个元素，且不更新used，使得1在最后封闭凸包时也对单调栈更新
+stk[++tp] = 1;
+//栈内添加第一个元素，且不更新used，使得1在最后封闭凸包时也对单调栈更新
 for (int i = 2; i <= n; ++i) {
-  while (tp >= 2 && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <=
-                        1)  //此处*被重载为叉积
+  while (tp >= 2  //下一行*被重载为叉积
+         && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
     used[stk[tp--]] = 0;
   used[i] = 1;  // used表示在凸壳上
   stk[++tp] = i;
