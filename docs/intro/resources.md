@@ -20,35 +20,39 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
     题目所有测试数据以及提交的代码均对所有用户开放。
     与一本通进行了合作，可以评测一本通上所有习题。
     目前由 Menci 维护。
+-    [Lutece](https://acm.uestc.edu.cn/home) 电子科技大学在线评测系统，基于开源项目 [Lutece](https://github.com/lutece-awesome) 。
 -    [洛谷](https://www.luogu.org/) 始于 2013 年，社区群体庞大，OI 界的真题和习题较全，提供有偿教育服务。
 -    [牛客网](https://www.nowcoder.com/) 
+-    [NOJ](http://acm.njupt.edu.cn/) 南京邮电大学在线评测系统，自身拥有题目两千余，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
 -    [OpenJudge](http://openjudge.cn/) 由 POJ 团队开发的小组评测平台。
 -    [POJ](http://poj.org/) PKU OJ，国内历史最悠久的 OJ 之一，很多英文题，既有基础题，也有值得一试的好题。
 -    [PTA - 拼题 A](https://pintia.cn/) 
+-    [清澄](http://www.tsinsen.com/) 始于 2005 年，由 [胡伟栋](http://www.hhwdd.com/) 开发，自 2019 年 9 月 1 日起不再对外提供服务。
 -    [Universal Online Judge](http://uoj.ac/) Universal 取通用之意，也是开源项目。VFK 的 OJ，多原创比赛题和 CCF/THU 题，难度较高。
 -    [Vijos](https://vijos.org/) 始于 2005 年，有开源项目。
--    [Virtual Judge](https://vjudge.net/) 可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ。
--    [ZOJ](https://zoj.pintia.cn/home) 浙江大学在线测评系统。
--    [NOJ](http://acm.njupt.edu.cn/) 南京邮电大学在线测评系统，自身拥有题目两千余，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
--    [Lutece](https://acm.uestc.edu.cn/home) 电子科技大学在线测评系统，基于开源项目 [Lutece](https://github.com/lutece-awesome) 。
--    [清澄](http://www.tsinsen.com/) 始于 2005 年，最近挂掉了。
+    <!---    [Virtual Judge](https://vjudge.net/) 可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ。-->
+-    [ZOJ](https://zoj.pintia.cn/home) 浙江大学在线评测系统。
 
 ### 国外
 
+-    [AizuOJ](https://onlinejudge.u-aizu.ac.jp) 始于 2004 年，日本会津大学在线评测系统；包含日本若干高中和大学编程比赛的题目，自带编程/数据结构/算法的入门课程。
 -    [AtCoder](https://atcoder.jp/) 日本 OJ，日文版里会有日本高校的比赛，英文内不会显示。（题目有趣，质量较高）
--    [CodeChef](https://codechef.com/) 印度 OJ，周期性有比赛。
--    [Codeforces](https://codeforces.com/) 俄罗斯 OJ，有多种系列的比赛，你也可以出题并申请组织比赛。（题目质量较高）
+-    [CodeChef](https://codechef.com/) 印度 OJ，周期性有比赛；系统基于 SPOJ 的 Sphere Engine。
+-    [Codeforces](https://codeforces.com/) 始于 2010 年，俄罗斯 OJ，创始人是 [Mike Mirzayanov](https://www.linkedin.com/in/mike-mirzayanov-31772a93/) ，有多种系列的比赛，你也可以出题并申请组织比赛。（题目质量较高）
 -    [CS Academy](https://csacademy.com/) 
 -    [DMOJ](https://dmoj.ca/) 加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛。
 -    [HackerRank](https://www.hackerrank.com/) 有很多比赛
--    [Kattis](https://open.kattis.com/) 
--    [LeetCode](https://leetcode.com/) 有中文分站： [LeetCode China](https://leetcode-cn.com/) 
--    [SPOJ](http://www.spoj.com) 
--    [Topcoder](https://www.topcoder.com/) 有很多比赛
--    [Ural](http://acm.timus.ru/) 
--    [UVaOJ](https://uva.onlinejudge.org/) 国际成名最早的 OJ，由 The University of Virginia 开发，刘汝佳强烈安利。
--    [Yandex](https://contest.yandex.ru/) 存档了近几年的全俄罗斯信息学奥赛
+-    [ICPC Live Archive](https://icpcarchive.ecs.baylor.edu/) 存档了 1990 年至今的 ICPC 区域赛和总决赛题目；但部分比赛的评测数据仅为样例数据，且对 Special Judge 的支持不完善。
+-    [ICPC Problem Archive](https://judge.icpc.global) 基于 Kattis 系统；存档了 2012 年至今的 ICPC 全球总决赛题目，并且会在总决赛开赛时同步发放题目（但不会有同步赛）。
+-    [Kattis](https://open.kattis.com/) 题库主要包含类似 ICPC 比赛的题目；根据用户解题情况评定用户等级，推荐适合该用户水平的 trivial/easy/medium/hard 四类难度的题目，其中题目难度采用类 ELO 等级分系统来评估。
+-    [LeetCode](https://leetcode.com/) 码农面试刷题网站，有中文分站： [LeetCode China](https://leetcode-cn.com/) 。
 -    [Light OJ](http://lightoj.com) 一个快挂了的 OJ， `www` 域名无法访问，请使用 [根域名](http://lightoj.com) 访问
+-    [opentrains](http://opentrains.snarknews.info/) 俄罗斯 [Open Cup](http://opencup.ru/) 比赛的训练平台，基于 [ejudge](https://ejudge.ru/) 开源系统搭建，支持虚拟比赛；题库包含历年 Open Cup 赛题以及 Petrozavodsk 训练营的题目。
+-    [SPOJ](http://www.spoj.com) 始于 2003 年，其后台系统 [Sphere Engine](https://sphere-engine.com/) 于 2008 年商业化；支持题目点赞和标签功能。
+-    [TopCoder](https://www.topcoder.com/) 始于 2001 年，其 [竞技编程社区](https://www.topcoder.com/community/competitive-programming/) 有很多比赛；目前主营业务是技术众包。
+-    [TimusOJ](http://acm.timus.ru/) 始于 2000 年，由 Ural Federal University 开发，拥有俄罗斯最大的在线评测题库，题目主要来自乌拉尔联邦大学校赛、乌拉尔锦标赛、ICPC 乌拉尔区域赛、以及 Petrozavodsk 训练营。
+-   Online Judge（前 [UVaOJ](https://uva.onlinejudge.org/) ）始于 1995 年，国际成名最早的 OJ，创始人是西班牙 University of Valladolid (UVa) 的 Miguel Ángel Revilla 教授；由于 [Revilla 教授于 2018 年不幸离世](https://www.elnortedecastilla.es/valladolid/muere-profesor-miguel-20180402225739-nt.html) ，且 Valladolid 大学终止维护，UVaOJ 自 2019 年 7 月起更名为 Online Judge； [刘汝佳强烈安利](http://product.dangdang.com/20637355.html) 。
+-    [Yandex](https://contest.yandex.ru/) 存档了近几年的全俄罗斯信息学奥赛
 
 ## 教程
 
