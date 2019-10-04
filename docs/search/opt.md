@@ -161,7 +161,7 @@ inline void work(int i, int count, int n) {
         //工作交给第 i + 1 个人
         work(i + 1, count + time[i][j], n);
         //在一轮迭代完成之后，返回到上一个人，要对此次的工作进行重新分配，将
-        //isWorked[j] 重设为 0
+        // isWorked[j] 重设为 0
         isWorked[j] = 0;
       }
     }
