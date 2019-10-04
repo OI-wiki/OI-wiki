@@ -98,37 +98,37 @@ void dfs(传入数值) {
      **题目描述** 
 
     有 $n$ 份工作要分配给 $n$ 个人来完成，每个人完成一份。第 $i$ 个人完成第 $k$ 份工作所用的时间为一个正整数 $t_{ik}$，其中 $1 \leq i, k \leq n$。试确定一个分配方案，使得完成这 $n$ 份工作的时间总和最小。
-
+    
     输入包含 $n + 1$ 行。
-
+    
     第 1 行为一个正整数 $n$。
-
+    
     第 2 行到第 $n + 1$ 行中每行都包含 $n$ 个正整数，形成了一个 $n \times n$ 的矩阵。在该矩阵中，第 $i$ 行第 $k$ 列元素 $t_{ik}$ 表示第 $i$ 个人完成第 $k$ 件工作所要用的时间。
-
+    
     输出为 1 行，包含一个正整数，表示所有分配方案中最小的时间总和。
-
+    
     限制范围：
-
+    
     $1 \leq n \leq  15$
-
+    
     $1 \leq t_{ik} \leq 10^4$
-
+    
     输入样例：
-
-    ​```text
+    
+    ```text
     5
     9 2 9 1 9
     1 9 8 9 6
     9 9 9 9 1
     8 8 1 8 4
     9 1 7 8 9
-    ​```
-
+    ```
+    
     输出样例：
-
-    ​```text
+    
+    ```text
     5
-    ​```
+    ```
 
  **分析** 
 
@@ -139,13 +139,12 @@ void dfs(传入数值) {
 ```c++
 #include <cstdio>
 #define N 16
-int is_working[N] = {0};  // 某项工作是否被分配
-int time[N][N];           // 完成某项工作所需的时间
-int cost_time_total_min;  // 完成 n 份工作的最小时间总和
+int is_working[N] = {0};// 某项工作是否被分配
+int time[N][N];// 完成某项工作所需的时间
+int cost_time_total_min;// 完成 n 份工作的最小时间总和
 // i 表示第几个人，count 表示工作费用总和
 inline void work(int i, int count, int n) {
-  // 如果 i 超出了所能分配的最大工作件数，表示分配完成，并且 count 比原来
-  // cost_time_total_min 花费少 则更新 cost_time_total_min 的值
+  // 如果 i 超出了所能分配的最大工作件数，表示分配完成，并且 count 比原来 cost_time_total_min 花费少，则更新 cost_time_total_min 的值
   if (i > n && count < cost_time_total_min) {
     cost_time_total_min = count;
     return;
@@ -158,10 +157,9 @@ inline void work(int i, int count, int n) {
       if (is_working[j] == 0) {
         // 分配工作 is_working = 1
         is_working[j] = 1;
-        //工作交给第 i + 1 个人
+        // 工作交给第 i + 1 个人
         work(i + 1, count + time[i][j], n);
-        //在一轮迭代完成之后，返回到上一个人，要对此次的工作进行重新分配，将
-        //is_working[j] 重设为 0
+        // 在一轮迭代完成之后，返回到上一个人，要对此次的工作进行重新分配，将 is_working[j] 重设为 0
         is_working[j] = 0;
       }
     }
