@@ -344,6 +344,7 @@ nav:
     - 半平面交: geometry/half-plane.md
     - 平面最近点对: geometry/nearest-points.md
     - 随机增量法: geometry/random-incremental.md
+    - 反演变换: geometry/inverse.md
     - 计算几何杂项: geometry/misc.md
   - 杂项:
     - 杂项简介: misc/index.md
