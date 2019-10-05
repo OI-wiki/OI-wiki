@@ -586,7 +586,7 @@ $$
 
 -    [HihoCoder #1441 : 后缀自动机一·基本概念](http://hihocoder.com/problemset/problem/1441) 
 -    [【模板】后缀自动机](https://www.luogu.org/problem/P3804) 
--    [SDOI2016 生成魔咒](https://www.luogu.org/problem/P4070) 
+-    [SDOI2016 生成魔咒](https://loj.ac/problem/2033) 
 -    [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/) 
 -    [TJOI2015 弦论](https://loj.ac/problem/2102) 
 -    [SPOJ Longest Common Substring](https://www.spoj.com/problems/LCS/en/) 
