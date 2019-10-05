@@ -590,7 +590,7 @@ $$
 -    [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/) 
 -    [TJOI2015 弦论](https://loj.ac/problem/2102) 
 -    [SPOJ Longest Common Substring](https://www.spoj.com/problems/LCS/en/) 
--    [SPOJ Longest Common Substring II](https://vjudge.net/problem/SPOJ-LCS2) 
+-    [SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/) 
 -    [Codeforces 1037H Security](https://codeforces.com/problemset/problem/1037/H) 
 -    [Codeforces 666E Forensic Examination](https://codeforces.com/problemset/problem/666/E) 
 -    [HDu4416 Good Article Good sentence](http://acm.hdu.edu.cn/showproblem.php?pid=4416) 
