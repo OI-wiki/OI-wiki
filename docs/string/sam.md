@@ -389,7 +389,7 @@ $$
 
 > 虽然该题是后缀自动机的经典题，但实际上这题由于涉及字典序，用后缀数组做最方便。
 
-例题： [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/) ， [TJOI2015 弦论](https://www.luogu.org/problem/P3975) 
+例题： [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/) ， [TJOI2015 弦论](https://loj.ac/problem/2102) 
 
 ### 最小循环移位
 
