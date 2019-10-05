@@ -576,8 +576,20 @@ $$
 
 ## 例题
 
--    [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/) 
 -    [HihoCoder #1441 : 后缀自动机一·基本概念](http://hihocoder.com/problemset/problem/1441) 
+-    [【模板】后缀自动机](https://www.luogu.org/problem/P3804)
+-    [SDOI2016 生成魔咒](https://www.luogu.org/problem/P4070)
+-    [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/) 
+-    [TJOI2015 弦论](https://www.luogu.org/problem/P3975)
+-    [SPOJ Longest Common Substring](https://www.spoj.com/problems/LCS/en/)
+-    [Codeforces 1037H Security](https://codeforces.com/problemset/problem/1037/H)
+-    [Codeforces 666E Forensic Examination](https://codeforces.com/problemset/problem/666/E)
+-    [HDu4416 Good Article Good sentence](http://acm.hdu.edu.cn/showproblem.php?pid=4416)
+-    [HDu4436 str2int](http://acm.hdu.edu.cn/showproblem.php?pid=4436)
+-    [HDu6583 Typewriter](http://acm.hdu.edu.cn/showproblem.php?pid=6583)
+-    [Codeforces 235C Cyclical Quest](https://codeforces.com/problemset/problem/235/C)
+-    [CTSC2012 熟悉的文章](https://www.luogu.org/problem/P4022)
+-    [NOI2018 你的名字](https://loj.ac/problem/2720)
 
 ## 相关资料
 
