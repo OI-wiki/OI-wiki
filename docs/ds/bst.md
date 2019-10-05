@@ -98,7 +98,7 @@ void insert(int& o, int v) {
 int deletemin(int o) {
   if (!lc[o]) {
     int ret = val[o], o = rc[o];
-    return ret;
+    return o;
   } else
     return deletemin(lc[o]);
 }
