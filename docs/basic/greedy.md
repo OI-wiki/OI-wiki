@@ -23,9 +23,9 @@
 
 用排序法常见的情况是输入一个包含几个（一般一到两个）权值的数组，通过排序然后遍历模拟计算的方法求出最优值。
 
-有些题的排序方法非常显然，如 [Luogu P1209\[USACO1.3\]修理牛棚 Barn Repair](https://www.luogu.org/problemnew/show/P1209) 就是将输入数组差分后排序模拟求值。
+有些题的排序方法非常显然，如 [「USACO1.3」修理牛棚 Barn Repair](https://www.luogu.org/problemnew/show/P1209) 就是将输入数组差分后排序模拟求值。
 
-然而有些时候很难直接一下子看出排序方法，比如 [NOIP 2012 国王游戏](https://vijos.org/p/1779) 就很容易凭直觉而错误地以 $a$ 或 $b$ 为关键字排序，过样例之后提交就发现 WA 了 QAQ。一个~~众所周知的~~常见办法就是尝试交换数组相邻的两个元素来 **推导** 出正确的排序方法。我们假设这题输入的俩个数用一个结构体来保存
+然而有些时候很难直接一下子看出排序方法，比如 [NOIP 2012 国王游戏](https://vijos.org/p/1779) 就很容易凭直觉而错误地以 $a$ 或 $b$ 为关键字排序，过样例之后提交就发现 WA 了 QAQ。一个常见办法就是尝试交换数组相邻的两个元素来 **推导** 出正确的排序方法。我们假设这题输入的俩个数用一个结构体来保存
 
 ```cpp
 struct {
@@ -57,7 +57,7 @@ $$
 \frac{m \cdot v[i + 1].a} {v[i].b}
 $$
 
-如果交前更优当且仅当
+如果交换前更优当且仅当
 
 $$
 \max (\frac{m} {v[i].b}, \frac{m \times v[i].a} {v[i + 1].b})  < \max (\frac{m} {v[i + 1].b}, \frac{m \times v[i + 1].a} {v[i].b})
@@ -91,7 +91,7 @@ struct uv {
 
 ## 后悔法
 
-??? note " 例题[Luogu P2949\[USACO09OPEN\]工作调度 Work Scheduling](https://www.luogu.org/problemnew/show/P2949)"
+??? note " 例题[「USACO09OPEN」工作调度 Work Scheduling](https://www.luogu.org/problemnew/show/P2949)"
 
 贪心思想：
 

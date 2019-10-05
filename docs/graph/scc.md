@@ -115,7 +115,7 @@ void dfs1(int u) {
   vis[u] = true;
   for (int v : g[u])
     if (!vis[v]) dfs1(v);
-  s.push_back(v);
+  s.push_back(u);
 }
 
 void dfs2(int u) {
@@ -150,6 +150,6 @@ DAG 好啊，能拓扑排序了就能做很多事情了。
 
 ## 推荐题目
 
- [USACO Fall/HAOI 2006 受欢迎的牛](https://www.lydsy.com/JudgeOnline/problem.php?id=1051) 
+ [USACO Fall/HAOI 2006 受欢迎的牛](https://loj.ac/problem/10091) 
 
  [POJ1236 Network of Schools](http://poj.org/problem?id=1236) 

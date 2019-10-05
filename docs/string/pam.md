@@ -59,7 +59,7 @@
 
 ### 例题
 
-APIO2014|luogu3649 回文串
+ [「APIO2014」回文串](https://www.luogu.org/problem/P3649) 
 
 建出树来，类似后缀自动机统计出现次数即可
 

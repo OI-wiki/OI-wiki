@@ -94,7 +94,7 @@ $$
 
 #### Problem
 
- [BZOJ4971:\[Lydsy1708 月赛\]记忆中的背包](https://www.lydsy.com/JudgeOnline/problem.php?id=4971) 
+ [「Lydsy1708 月赛」记忆中的背包](https://www.lydsy.com/JudgeOnline/problem.php?id=4971) 
 
 #### Solution
 

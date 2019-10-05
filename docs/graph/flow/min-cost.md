@@ -1,4 +1,4 @@
-在看这篇文章前请先看 [网络流简介](https://oi-wiki.org/graph/flow/) 这篇 wiki 的定义部分
+在看这篇文章前请先看 [网络流简介](../flow.md) 这篇 wiki 的定义部分
 
 ## 费用流
 
@@ -24,67 +24,61 @@
 
 相当于把 $w(u,v)$ 作为边权，在残存网络上求最短路
 
-#### 核心代码
-
-```cpp
-struct qxx {
-  int nex, t, v, c;
-};
-qxx e[M];
-int h[N], cnt = 1;
-void add_path(int f, int t, int v, int c) {
-  e[++cnt] = (qxx){h[f], t, v, c}, h[f] = cnt;
-}
-void add_flow(int f, int t, int v, int c) {
-  add_path(f, t, v, c);
-  add_path(t, f, 0, -c);
-}
-
-int dis[N], pre[N], incf[N];
-bool vis[N];
-bool spfa() {
-  memset(dis, 0x3f, sizeof(dis));
-  queue<int> q;
-  q.push(s), dis[s] = 0, incf[s] = INF, incf[t] = 0;
-  while (q.size()) {
-    int u = q.front();
-    q.pop();
-    vis[u] = 0;
-    for (int i = h[u]; i; i = e[i].nex) {
-      const int &v = e[i].t, &w = e[i].v, &c = e[i].c;
-      if (!w || dis[v] <= dis[u] + c) continue;
-      dis[v] = dis[u] + c, incf[v] = min(w, incf[u]), pre[v] = i;
-      if (!vis[v]) q.push(v), vis[v] = 1;
+???+ "核心代码"
+    ```cpp
+    struct qxx {
+      int nex, t, v, c;
+    };
+    qxx e[M];
+    int h[N], cnt = 1;
+    void add_path(int f, int t, int v, int c) {
+      e[++cnt] = (qxx){h[f], t, v, c}, h[f] = cnt;
     }
-  }
-  return incf[t];
-}
-int maxflow, mincost;
-void update() {
-  maxflow += incf[t];
-  for (int u = t; u != s; u = e[pre[u] ^ 1].t) {
-    e[pre[u]].v -= incf[t], e[pre[u] ^ 1].v += incf[t];
-    mincost += incf[t] * e[pre[u]].c;
-  }
-}
-// 调用：while(spfa())update();
-```
+    void add_flow(int f, int t, int v, int c) {
+      add_path(f, t, v, c);
+      add_path(t, f, 0, -c);
+    }
+    int dis[N], pre[N], incf[N];
+    bool vis[N];
+    bool spfa() {
+      memset(dis, 0x3f, sizeof(dis));
+      queue<int> q;
+      q.push(s), dis[s] = 0, incf[s] = INF, incf[t] = 0;
+      while (q.size()) {
+        int u = q.front();
+        q.pop();
+        vis[u] = 0;
+        for (int i = h[u]; i; i = e[i].nex) {
+          const int &v = e[i].t, &w = e[i].v, &c = e[i].c;
+          if (!w || dis[v] <= dis[u] + c) continue;
+          dis[v] = dis[u] + c, incf[v] = min(w, incf[u]), pre[v] = i;
+          if (!vis[v]) q.push(v), vis[v] = 1;
+        }
+      }
+      return incf[t];
+    }
+    int maxflow, mincost;
+    void update() {
+      maxflow += incf[t];
+      for (int u = t; u != s; u = e[pre[u] ^ 1].t) {
+        e[pre[u]].v -= incf[t], e[pre[u] ^ 1].v += incf[t];
+        mincost += incf[t] * e[pre[u]].c;
+      }
+    }
+    // 调用：while(spfa())update();
+    ```
 
 ## 类 Dinic 算法
 
-我们可以在 $\text{Dinic}$ 算法的基础上进行改进，把 $\text{BFS}$ 求分层图改为用 $\text{SPFA}$ （由于有负权边，所以不能直接用 $\text{Dijkstra}$ ）来求一条单位费用之和最小的路径，也就是把 $w(u,v)$ 当做边权然后在残量网络上求最短路，当然在 $\text{DFS}$ 中也要略作修改。这样就可以求得网络流图的 **最小费用最大流** 了。
+我们可以在 Dinic 算法的基础上进行改进，把 BFS 求分层图改为用 SPFA（由于有负权边，所以不能直接用 Dijkstra）来求一条单位费用之和最小的路径，也就是把 $w(u,v)$ 当做边权然后在残量网络上求最短路，当然在 DFS 中也要略作修改。这样就可以求得网络流图的 **最小费用最大流** 了。
 
 如何建 **反向边** ？对于一条边 $(u,v,w,c)$ （其中 $w$ 和 $c$ 分别为容量和费用），我们建立正向边 $(u,v,w,c)$ 和反向边 $(v,u,0,-c)$ （其中 $-c$ 是使得从反向边经过时退回原来的费用）。
 
- **优化** ：如果你是“关于 $\text{SPFA}$ ，它死了”言论的追随者，那么你可以使用 $\text{Primal-Dual}$ 原始对偶算法将 $\text{SPFA}$ 改成 $\text{Dijkstra}$ ！
+ **优化** ：如果你是“关于 SPFA，它死了”言论的追随者，那么你可以使用 Primal-Dual 原始对偶算法将 SPFA 改成 Dijkstra！
 
  **时间复杂度** ：可以证明上界为 $O(nmf)$ ，其中 $f$ 表示流量。
 
-* * *
-
-### 代码
-
-??? "最小费用最大流"
+???+ "代码实现"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -154,13 +148,11 @@ void update() {
     }
     ```
 
-* * *
-
 ## 习题
 
 -    [「Luogu 3381」【模板】最小费用最大流](https://www.luogu.org/problemnew/show/P3381) 
 -    [「Luogu 4452」航班安排](https://www.luogu.org/problemnew/show/P4452) 
--    [「SDOI 2009」晨跑](https://www.lydsy.com/JudgeOnline/problem.php?id=1877) 
--    [「SCOI 2007」修车](https://www.lydsy.com/JudgeOnline/problem.php?id=1070) 
--    [「HAOI 2010」订货](https://www.lydsy.com/JudgeOnline/problem.php?id=2424) 
--    [「NOI 2012」美食节](https://www.lydsy.com/JudgeOnline/problem.php?id=2879) 
+-    [「SDOI 2009」晨跑](https://www.luogu.org/problem/P2153) 
+-    [「SCOI 2007」修车](https://www.luogu.org/problem/P2053) 
+-    [「HAOI 2010」订货](https://www.luogu.org/problem/P2517) 
+-    [「NOI 2012」美食节](https://loj.ac/problem/2674) 

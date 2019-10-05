@@ -117,13 +117,13 @@ int dp() {
 
 ### 最简单的第一种
 
- $O\left(n^2\right)$ 的算法。每一次重头扫描找出最佳答案。
+ $O\left(n^2\right)$ 的算法。每一次从头扫描找出最佳答案。
 
 ```cpp
 int a[MAXN], d[MAXN];
 int dp() {
   d[1] = 1;
-  int ans = 0;
+  int ans = 1;
   for (int i = 2; i <= n; i++) {
     for (int j = 1; j < i; j++)
       if (a[j] < a[i]) {
@@ -137,7 +137,7 @@ int dp() {
 
 ### 稍复杂的第二种
 
- $O\left(n log n\right)$ 的算法，参考了这篇文章 <https://www.cnblogs.com/itlqs/p/5743114.html> 。
+ $O\left(n \log n\right)$ 的算法，参考了这篇文章 <https://www.cnblogs.com/itlqs/p/5743114.html> 。
 
 首先，定义 $a_1 \dots a_n$ 为原始序列， $d$ 为当前的不下降子序列， $len$ 为子序列的长度，那么 $d_{len}$ 就是长度为 $len$ 的不下降子序列末尾元素。
 
