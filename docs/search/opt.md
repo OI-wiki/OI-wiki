@@ -111,7 +111,7 @@ void dfs(传入数值) {
 
     $1 \leq n \leq  15$
 
-    $1 \leq t_{ik} \leq 10^4$
+    $1 \leq t_{i,k} \leq 10^4$
 
     输入样例：
 
