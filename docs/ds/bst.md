@@ -96,10 +96,9 @@ void insert(int& o, int v) {
 
 ```cpp
 int deletemin(int o) {
-  if (!lc[o]) {
-    int ret = val[o], o = rc[o];
-    return o;
-  } else
+  if (!lc[o])
+    return rc[o];
+  else
     return deletemin(lc[o]);
 }
 void del(int& o, int v) {
