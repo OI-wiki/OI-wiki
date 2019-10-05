@@ -580,7 +580,7 @@ $$
 
 因此我们需要计算可达性，即对于自动机中的每个状态和每个字符 $D_i$ ，是否存在这样的一条路径。这可以容易地通过 DFS 或 BFS 及动态规划计算。之后，问题的答案就是状态 $v$ 的字符串 $longest(v)$ 中存在所有特殊字符的路径。
 
-例题： [SPOJ Longest Common Substring II](https://vjudge.net/problem/SPOJ-LCS2) 
+例题： [SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/) 
 
 ## 例题
 
