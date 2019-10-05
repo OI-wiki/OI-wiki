@@ -588,7 +588,7 @@ $$
 -    [【模板】后缀自动机](https://www.luogu.org/problem/P3804) 
 -    [SDOI2016 生成魔咒](https://www.luogu.org/problem/P4070) 
 -    [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/) 
--    [TJOI2015 弦论](https://www.luogu.org/problem/P3975) 
+-    [TJOI2015 弦论](https://loj.ac/problem/2102) 
 -    [SPOJ Longest Common Substring](https://www.spoj.com/problems/LCS/en/) 
 -    [SPOJ Longest Common Substring II](https://vjudge.net/problem/SPOJ-LCS2) 
 -    [Codeforces 1037H Security](https://codeforces.com/problemset/problem/1037/H) 
