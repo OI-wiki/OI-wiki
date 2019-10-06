@@ -307,7 +307,7 @@ $$
 \left\{ A(b_0),A(b_1),\cdots,A(b_{n-1}) \right\}＝\left\{ a_0\cdot n,a_1\cdot n,\cdots,a_{n-1}\cdot n \right\}=n\left\{ a_0,a_1,\cdots,a_{n-1}\right\}
 $$
 
-那么事情就很好办，我们把取单位根为其倒数，对 $\{y[0],y[1],y[2],\cdots,y[n-1]\}$ 跑一遍 FFT，然后除以 n 即可得到系数序列。
+我们把取单位根为其倒数，对 $\{y[0],y[1],y[2],\cdots,y[n-1]\}$ 跑一遍 FFT，然后除以 n 即可得到系数序列。
 
 所以我们 FFT 函数可以集 DFT 和 IDFT 于一身。见下：
 
