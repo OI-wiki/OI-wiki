@@ -1,11 +1,11 @@
-前置知识：[分块](../ds/decompose.md) 。
+前置知识： [分块](../ds/decompose.md) 。
 
 打表，就是在比赛时把答案都输出出来，然后开个数组，把答案直接存入数组里。时间复杂度 $O(1)$ 。
 
 注意这个技巧只适用于表达式求值的问题。
 
 !!!+note 例题
-    规定 $f(x)$ 为整数 $x$ 的二进制表示中 $1$ 的个数。输入一个正整数 $n$ ($n\leq 10^9$)，输出 $\sum_{i=1}^n f^2(i)$ 。
+    规定 $f(x)$ 为整数 $x$ 的二进制表示中 $1$ 的个数。输入一个正整数 $n$ ( $n\leq 10^9$ )，输出 $\sum_{i=1}^n f^2(i)$ 。
 
 如果对于每一个 $n$ ，都输出 $f(n)$ 的话，那么除 MLE 之外，还有可能代码超过最大代码长度限制，导致编译不通过。
 
@@ -26,7 +26,6 @@ $$
 
 ### 例题
 
- [「BZOJ 3798」特殊的质数](https://www.lydsy.com/JudgeOnline/problem.php?id=3798)：求 $[l,r]$ 区间内有多少个质数可以分解为两个正整数的平方和。
+ [「BZOJ 3798」特殊的质数](https://www.lydsy.com/JudgeOnline/problem.php?id=3798) ：求 $[l,r]$ 区间内有多少个质数可以分解为两个正整数的平方和。
 
- [「Luogu P1822」魔法指纹](https://www.luogu.org/problem/show?pid=P1822)
- 
+ [「Luogu P1822」魔法指纹](https://www.luogu.org/problem/show?pid=P1822) 
