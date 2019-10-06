@@ -1,6 +1,6 @@
 author: AndrewWayne, GavinZhengOI. ChungZH, henryrabbit, Xeonacid, sshwy, Yukimaikoriya
 
-前置知识：[复数](../math/complex)。
+前置知识： [复数](../math/complex) 。
 
 ## 定义
 
@@ -20,7 +20,7 @@ $$
 K(x) = f(x)  \times  g(x) = a_1x^2 \times a_2x^2+a_1x^2 \times b_2x+a_1x^2 \times c_2+b_1x \times b_2x^2+b_1x \times b_2x+b_1x \times c_2+c_1 \times a_2x^2+c_1 \times b_2x+c_1 \times c_2
 $$
 
-那么很显然我们进行了 9 次运算，复杂度是 $O(n^2)$。
+那么很显然我们进行了 9 次运算，复杂度是 $O(n^2)$ 。
 
 但是如果数字足够大呢？比如 100000？那朴素算法相形见绌。
 
@@ -98,7 +98,7 @@ $$
 
 那么很容易发现当 $K = 4$ 的时候，相当于把单位圆等分 $K= 4$ 份。然后每一份按照极角编号。那么是不是（在 $K = 4$ 的时候）我们只要知道 $\omega_4^1$ 
 
-（因为他的角度是相当于单位角度），就能知道 $\omega_4^0, \omega_4^1, \omega_4^2, \omega_4^3$。
+（因为他的角度是相当于单位角度），就能知道 $\omega_4^0, \omega_4^1, \omega_4^2, \omega_4^3$ 。
 
  $\omega_4^0$ 恒等于 $1$ ， $\omega_4^2$ 的角度是 $\omega_4^0$ 的两倍，所以 $\omega_4^2 = (\omega_4^1)^2 = i^2=-1$ ，依次以此类推。
 
@@ -450,7 +450,8 @@ void fft(Complex y[], int len, int on) {
 
 若要计算的多项式系数是别的具有特殊意义的整数，那么 FFT 全部用浮点数运算，从时间上比整数运算慢，且只能用 long double 类型。
 
-可否应用数论变化从而避开浮点运算，快速求解？参见 [快速数论变换](/math/poly/ntt)。
+可否应用数论变化从而避开浮点运算，快速求解？参见 [快速数论变换](/math/poly/ntt) 。
 
 ## 参考文献
-1. [桃酱的算法笔记](https://zhuanlan.zhihu.com/p/41867199).
+
+1.   [桃酱的算法笔记](https://zhuanlan.zhihu.com/p/41867199) .
