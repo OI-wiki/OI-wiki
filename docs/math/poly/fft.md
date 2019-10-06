@@ -6,7 +6,7 @@ author: AndrewWayne, GavinZhengOI. ChungZH, henryrabbit, Xeonacid, sshwy, Yukima
 
 离散傅里叶变换（Discrete Fourier Transform，缩写为 DFT），是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DTFT 的频域采样。
 
-FFT 是一种 DFT 的高效算法，称为快速傅立叶变换（Fast Fourier transform）。快速数论变换 (NTT) 是快速傅里叶变换（FFT）在数论基础上的实现。
+FFT 是一种 DFT 的高效算法，称为快速傅立叶变换（Fast Fourier Transform）。快速数论变换 (NTT) 是快速傅里叶变换（FFT）在数论基础上的实现。
 
 ## 引入
 
