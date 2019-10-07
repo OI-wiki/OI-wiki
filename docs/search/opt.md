@@ -147,7 +147,7 @@ int is_working[N] = {0};  // 某项工作是否被分配
 int time[N][N];           // 完成某项工作所需的时间
 int cost_time_total_min;  // 完成 n 份工作的最小时间总和
 // i 表示第几个人，count 表示工作费用总和
-inline void work(int i, int count, int n) {
+void work(int i, int count, int n) {
   // 如果 i 超出了所能分配的最大工作件数，表示分配完成，并且 count 比原来
   // cost_time_total_min 花费少，则更新 cost_time_total_min 的值
   if (i > n && count < cost_time_total_min) {
