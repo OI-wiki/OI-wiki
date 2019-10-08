@@ -129,10 +129,10 @@ int main() {
 
 1.   `%s` 表示字符串。
 2.   `%c` 表示字符。
-3.   `%lf` 表示双精度浮点数（ `double` ）。
+3.   `%lf` 表示双精度浮点数 ( `double` )。
 4.   `%lld` 表示长整型 ( `long long` )。根据系统不同，也可能是 `%I64d` 。
 5.   `%u` 表示无符号整型  ( `unsigned int` )。
-6.   `%ull` 表示无符号长整型 ( `unsigned long long` )。
+6.   `%llu` 表示无符号长整型 ( `unsigned long long` )，也可能是 `%I64u` 。
 
 特殊地，还有一些控制格式的方式：
 
