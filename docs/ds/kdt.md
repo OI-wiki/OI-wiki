@@ -157,7 +157,7 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
     }
     ```
 
-???+note " 例题[「CQOI2016」K 远点对](https://www.luogu.org/problem/P4357)"
+???+note " 例题[「CQOI2016」K 远点对](https://loj.ac/problem/2043)"
     给定平面上的 $n$ 个点 $(x_i,y_i)$ ，求欧几里得距离下的第 $k$ 远无序点对之间的距离。
 
      $n\le 100000 , 1\le k\le 100 , 0\le x_i,y_i<2^{31}$ 
