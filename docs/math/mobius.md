@@ -583,7 +583,7 @@ int main() {
 }
 ```
 
-###  [「SDOI2015」约数个数和](https://www.luogu.org/problemnew/show/P3327) 
+###  [「SDOI2015」约数个数和](https://loj.ac/problem/2185) 
 
 多组数据，求
 

@@ -865,7 +865,7 @@ $$
 
 ## 习题
 
--    [NOIP 2012 国王游戏](https://www.luogu.org/problemnew/show/P1080) 
+-    [NOIP 2012 国王游戏](https://loj.ac/problem/2603) 
 -    [SPOJ - Fast Multiplication](http://www.spoj.com/problems/MUL/en/) 
 -    [SPOJ - GCD2](http://www.spoj.com/problems/GCD2/) 
 -    [UVA - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024) 

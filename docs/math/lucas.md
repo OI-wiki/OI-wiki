@@ -144,5 +144,5 @@ LL exlucas(LL m, LL n, LL P) {
 ## 习题
 
 -    [Luogu3807【模板】卢卡斯定理](https://www.luogu.org/problemnew/show/P3807) 
--    [SDOI2010 古代猪文  卢卡斯定理](https://www.luogu.org/problemnew/show/P2480) 
+-    [SDOI2010 古代猪文  卢卡斯定理](https://loj.ac/problem/10229) 
 -    [Luogu4720【模板】扩展卢卡斯](https://www.luogu.org/problemnew/show/P4720) 

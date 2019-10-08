@@ -551,7 +551,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 
 -    [luogu P3690【模板】Link Cut Tree（动态树）](https://www.luogu.org/problemnew/show/P3690) 
 -    [「SDOI2011」染色](https://www.luogu.org/problemnew/show/P2486) 
--    [「SHOI2014」三叉神经树](https://www.luogu.org/problemnew/show/P4332) 
+-    [「SHOI2014」三叉神经树](https://loj.ac/problem/2187) 
 
 ## 维护连通性质
 
@@ -982,14 +982,14 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
 ### 习题
 
 -    [「WC2006」水管局长](https://www.luogu.org/problem/P4172) 
--    [「BJWC2010」](https://www.luogu.org/problemnew/show/P4180) 
+-    [「BJWC2010」严格次小生成树](https://www.luogu.org/problemnew/show/P4180) 
 -    [「NOI2014」魔法森林](http://uoj.ac/problem/3) 
 
 ## 维护子树信息
 
 LCT 不擅长维护子树信息。统计一个结点所有虚子树的信息，就可以求得整棵树的信息。
 
-???+note " 例题[「BJOI2014」大融合](https://www.luogu.org/problem/P4219)"
+???+note " 例题[「BJOI2014」大融合](https://loj.ac/problem/2230)"
     给定 $n$ 个结点和 $q$ 次操作，每个操作为如下形式：
 
     1.   `A x y` 在结点 $x$ 和 $y$ 之间连接一条边。
