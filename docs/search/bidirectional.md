@@ -37,21 +37,20 @@ while(队列q不为空)
 如果这道题暴力 DFS 找开关灯的状态，时间复杂度就是 $O(2^{n})$ , 显然超时。不过，如果我们用 **meet-in-middle** 的话，时间复杂度可以优化至 $O(n2^{n/2})$ 。 **meet-in-middle** 就是让我们先找一半的状态，也就是找出只使用编号为 $1$ 到 $\mathrm{mid}$ 的开关能够到达的状态，再找出只使用另一半开关能到达的状态。如果前半段和后半段开启的灯互补，将这两段合并起来就得到了一种将所有灯打开的方案。具体实现时，可以把前半段的状态以及达到每种状态的最少按开关次数存储在 `map` 里面，搜索后半段时，每搜出一种方案，就把它与互补的第一段方案合并来更新答案。
 
 ??? note "参考代码"
-
     ```cpp
     #include <iostream>
     #include <cstdio>
     #include <map>
     #include <algorithm>
-
+    
     using namespace std;
-
+    
     typedef long long ll;
-
+    
     int n, m, ans = 0x7fffffff;
     map<ll, int> f;
     ll a[40];
-
+    
     int main()
     {
     	cin >> n >> m;
