@@ -356,8 +356,8 @@ nav:
     - 在一台机器上规划任务: misc/job-order.md
   - 专题:
     - RMQ: topic/rmq.md
-  - 题目相关:
-    - 题目相关简介: problem/index.md
+  - 试题:
+    - 试题简介: problem/index.md
     - 非传统题: problem/non-trad.md
     - 评测工具: problem/judgers.md
     - Special Judge: problem/spj.md
