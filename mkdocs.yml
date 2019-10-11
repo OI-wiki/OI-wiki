@@ -24,6 +24,8 @@ nav:
     - ICPC/CCPC 赛事与赛制: intro/icpc.md
     - 学习路线: intro/roadmap.md
     - 学习资源: intro/resources.md
+    - 常见错误: intro/common-mistakes.md
+    - 常见技巧: intro/common-tricks.md
     - 工具软件:
       - WSL (Windows 10): intro/wsl.md
       - OJ 工具: intro/oj-tool.md
@@ -356,8 +358,6 @@ nav:
     - RMQ: topic/rmq.md
   - 题目相关:
     - 题目相关简介: problem/index.md
-    - 常见错误: problem/common-mistakes.md
-    - 常见技巧: problem/common-tricks.md
     - 非传统题: problem/non-trad.md
     - 评测工具: problem/judgers.md
     - Special Judge: problem/spj.md
