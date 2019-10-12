@@ -10,17 +10,17 @@ author: linehk
 
 我们通常使用渐进符号来描述一个算法的复杂度。
 
-###  $\Theta$ 符号
+### $\Theta$ 符号
 
 对于给定的一个函数 $g(n)$ , $f(n)\in\Theta(g(n))$ ，当且仅当 $\exists c_1,c_2,n_0\in\mathbb R^+$ ，使得 $\forall n \ge n_0, 0\le c_1g(n)\le f(n) \le c_2 g(n)$ 。
 
 也就是说，如果函数 $f(n)$ 属于 $\Theta(g(n))$ ，那么我们能找到两个正常数 $c_1, c_2$ 使得 $f(n)$ 被 $c_1g(n)$ 和 $c_2g(n)$ 夹在中间。因为 $\Theta(g(n))$ 是一个函数集合，我们可以用 $f(n) \in \Theta(g(n))$ 表达 $f(n)$ 属于 $\Theta(g(n))$ ，但是我们通常使用 $f(n) = \Theta(g(n))$ 。
 
-###  $O$ 符号
+### $O$ 符号
 
- $\Theta$ 符号同时给了我们一个函数的上下界，如果我们只有一个函数的渐进上界的时候，我们使用 $O$ 符号。对于一个给定的函数 $g(n)$ , 我们把它记作 $O(g(n))$ 。 $f(n)\in O(g(n))$ ，当且仅当 $\exists c,n_0$ ，使得 $\forall n \ge n_0,0\le f(n)\le cg(n)$ 。
+$\Theta$ 符号同时给了我们一个函数的上下界，如果我们只有一个函数的渐进上界的时候，我们使用 $O$ 符号。对于一个给定的函数 $g(n)$ , 我们把它记作 $O(g(n))$ 。 $f(n)\in O(g(n))$ ，当且仅当 $\exists c,n_0$ ，使得 $\forall n \ge n_0,0\le f(n)\le cg(n)$ 。
 
-###  $\Omega$ 符号
+### $\Omega$ 符号
 
 同样的，我们使用 $\Omega$ 符号来描述一个函数的渐进下界。 $f(n)\in \Omega(g(n))$ ，当且仅当 $\exists c,n_0$ ，使得 $\forall n \ge n_0,0\le cg(n)\le f(n)$ 。
 
@@ -28,10 +28,10 @@ author: linehk
 
 ### 常见性质
 
--    $f(n) = \Theta(g(n))\Leftrightarrow f(n)=O(g(n))\land f(n)=\Omega(g(n))$ 
--    $f_1(n) + f_2(n) = O(\max(f_1(n), f_2(n)))$ 
--    $f_1(n) \times f_2(n) = O(f_1(n) \times f_2(n))$ 
--   任何对数函数无论底数为何，都具有相同的增长率。 $\forall a \neq 1, \log_a{n} = O(\log_2 n)$ 
+- $f(n) = \Theta(g(n))\Leftrightarrow f(n)=O(g(n))\land f(n)=\Omega(g(n))$
+- $f_1(n) + f_2(n) = O(\max(f_1(n), f_2(n)))$
+- $f_1(n) \times f_2(n) = O(f_1(n) \times f_2(n))$
+- 任何对数函数无论底数为何，都具有相同的增长率。 $\forall a \neq 1, \log_a{n} = O(\log_2 n)$
 
 ## 主定理 (Master Theorem)
 
@@ -45,7 +45,7 @@ $$
 那么
 
 $$
-T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}) \ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon}) \ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
+T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}) \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon}) \\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
 $$
 
 ## 均摊复杂度
