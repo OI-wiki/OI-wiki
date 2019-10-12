@@ -410,7 +410,7 @@ $$
  \frac{1}{2}\cdot\sum_{d\mid n}\frac{n^2\cdot\varphi(\frac{n}{d})}{d}+\frac{n}{2}
 $$
 
-变换求和顺序，设 $\displaystyle d'=\frac{n}{d}$ ，提供公因式，式子化为
+变换求和顺序，设 $\displaystyle d'=\frac{n}{d}$ ，合并公因式，式子化为
 
 $$
 \frac{1}{2}n\left(\cdot\sum_{d'\mid n}d'\cdot\varphi(d')+1\right)
