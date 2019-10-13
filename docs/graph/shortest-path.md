@@ -100,7 +100,7 @@ for (k = 1; k <= n; k++) {
 
 先定义 $dist(u)$ 为 $S$ 到 $u$ （当前）的最短路径长度。
 
- $relax(u,v)$ 操作指: $dist(v) = min(dist(v), dist(u) + edge\_len(u, v))$ .
+ $relax(u,v)$ 操作指： $dist(v) = min(dist(v), dist(u) + edge\_len(u, v))$ .
 
  $relax$ 是从哪里来的呢？
 
