@@ -100,7 +100,7 @@ for (k = 1; k <= n; k++) {
 
 先定义 $dist(u)$ 为 $S$ 到 $u$ （当前）的最短路径长度。
 
- $relax(u,v)$ : $dist(v) = min(dist(v), dist(u) + edge\_len(u, v))$ .
+ $relax(u,v)$ 操作指： $dist(v) = min(dist(v), dist(u) + edge\_len(u, v))$ .
 
  $relax$ 是从哪里来的呢？
 
@@ -220,7 +220,7 @@ IPA:/ˈdikstrɑ/或/ˈdɛikstrɑ/。
 
 时间复杂度：只用分析集合操作， $n$ 次 `delete-min` ， $m$ 次 `decrease-key` 。
 
-如果用暴力： $O(n^2 + m)$ 。
+如果用暴力： $O(n^2 + m) = O(n^2)$ 。
 
 如果用堆 $O((n+m) \log n)$ 。
 
@@ -228,9 +228,9 @@ IPA:/ˈdikstrɑ/或/ˈdɛikstrɑ/。
 
 （注：如果使用 priority_queue，无法删除某一个旧的结点，只能插入一个权值更小的编号相同结点，这样操作导致堆中元素是 $O(m)$ 的）
 
-如果用线段树（ZKW 线段树）： $(O(n+m)\log n)$ 
+如果用线段树（ZKW 线段树）： $O(m \log n + n) = O(m \log n)$ 
 
-如果用 Fibonacci 堆： $O(n \log n + m)$ （这就是为啥优秀了）。
+如果用 Fibonacci 堆： $O(n \log n + m) = O(n \log n)$ （这就是为啥优秀了）。
 
 等等，还没说正确性呢！
 
