@@ -2,9 +2,9 @@
 
 ## 基础使用
 
-迭代器听起来比较晦涩，其实迭代器本身可以看作一个数据指针。迭代器主要支持两个运算符：自增 (`++`) 和解引用（单目 `*` 运算符），其中自增用来移动迭代器，解引用可以获取或修改它指向的元素。
+迭代器听起来比较晦涩，其实迭代器本身可以看作一个数据指针。迭代器主要支持两个运算符：自增 ( `++` ) 和解引用（单目 `*` 运算符），其中自增用来移动迭代器，解引用可以获取或修改它指向的元素。
 
-指向某个 [STL 容器](./container.md) `container` 中元素的迭代器的类型一般为 `container::iterator`。
+指向某个 [STL 容器](./container.md)  `container` 中元素的迭代器的类型一般为 `container::iterator` 。
 
 迭代器可以用来遍历容器，例如，下面两个 for 循环的效果是一样的：
 
@@ -23,11 +23,11 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 
 在 STL 的定义中，迭代器根据其支持的操作依次分为以下几类：
 
--   InputIterator (输入迭代器)：只要求支持拷贝、自增和解引访问。
--   OutputIterator (输出迭代器)：只要求支持拷贝、自增和解引赋值。
--   ForwardIterator (向前迭代器)：同时满足 InputIterator 和 OutputIterator 的要求。
--   BidirectionalIterator (双向迭代器)：在 ForwardIterator 的基础上支持自减（即反向访问）。
--   RandomAccessIterator (随机访问迭代器)：在 BidirectionalIterator 的基础上支持加减运算和比较运算（即随机访问）。
+-   InputIterator（输入迭代器）：只要求支持拷贝、自增和解引访问。
+-   OutputIterator（输出迭代器）：只要求支持拷贝、自增和解引赋值。
+-   ForwardIterator（向前迭代器）：同时满足 InputIterator 和 OutputIterator 的要求。
+-   BidirectionalIterator（双向迭代器）：在 ForwardIterator 的基础上支持自减（即反向访问）。
+-   RandomAccessIterator（随机访问迭代器）：在 BidirectionalIterator 的基础上支持加减运算和比较运算（即随机访问）。
 
 ???+note "为什么输入迭代器叫输入迭代器？"
     “输入”指的是“可以从迭代器中获取输入”，而“输出”指的是“可以输出到迭代器”。
@@ -48,4 +48,4 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 
 可以使用 `prev(it)` 获取双向迭代器 `it` 的前驱。
 
-[STL 容器](./container.md) 一般支持从一端或两端开始的访问，以及对 [const 修饰符](../const.md) 的支持。例如容器的 `begin()` 函数可以获得指向容器第一个元素的迭代器， `rbegin()` 函数可以获得指向容器最后一个元素的反向迭代器，`cbegin()` 函数可以获得指向容器第一个元素的 const 迭代器，`end()` 函数可以获得指向容器尾端（“尾端”并不是最后一个元素，可以看作是最后一个元素的后继；“尾端”的前驱是容器里的最后一个元素，其本身不指向任何一个元素）的迭代器。
+ [STL 容器](./container.md) 一般支持从一端或两端开始的访问，以及对 [const 修饰符](../const.md) 的支持。例如容器的 `begin()` 函数可以获得指向容器第一个元素的迭代器， `rbegin()` 函数可以获得指向容器最后一个元素的反向迭代器， `cbegin()` 函数可以获得指向容器第一个元素的 const 迭代器， `end()` 函数可以获得指向容器尾端（“尾端”并不是最后一个元素，可以看作是最后一个元素的后继；“尾端”的前驱是容器里的最后一个元素，其本身不指向任何一个元素）的迭代器。
