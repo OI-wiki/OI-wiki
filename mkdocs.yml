@@ -231,6 +231,7 @@ nav:
         - 高精度概述: math/bignum.md
       - 分段打表: math/dictionary.md
     - 斐波那契数列: math/fibonacci.md
+    - 线性递推: math/linear-recurrence.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
     - 栈: ds/stack.md
@@ -369,7 +370,10 @@ nav:
 
 # Theme
 theme:
-  name: 'material'
+  name: null
+  custom_dir: 'mkdocs-material/material'
+  static_templates:
+    - 404.html
   language: 'zh'
   palette:
     primary: 'white'
@@ -394,11 +398,11 @@ extra:
   copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
   manifest: 'manifest.webmanifest'
-  githash: ''
+  githash: '0b782e9d'
 
 extra_javascript:
   - '_static/js/extra.js?v=15'
-  - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
+  
 
 
 extra_css:
