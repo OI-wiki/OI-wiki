@@ -8,9 +8,9 @@ Notepad++ 是 Windows 操作系统下的文本编辑器，支持多国语言、�
 
 ## 下载与安装
 
- **注意：该文章统一使用 7.7.1 版本做演示，但是最新版本与演示版本不会有太大差别，为了获得更好的使用体验，请尽量使用最新版。** 
+**注意：该文章统一使用7.7.1版本做演示，但是最新版本与演示版本不会有太大差别，为了获得更好的使用体验，请尽量使用最新版。**
 
-打开 [软件官网](https://notepad-plus-plus.org/) 或 [可靠的第三方网站](https://notepad-plus.en.softonic.com/) ，去到 [Download](https://notepad-plus-plus.org/downloads) 页面并选择版本（推荐最新版），然后进入软件下载页面。 **注意选择处理器架构** （32 位或 64 位）。如果电脑是 64 位，强烈建议下载 64 位，因为大多数插件只支持 64 位；如果渴望兼容性，请下载 32 位。如果网络不好，可以选择各种软件园（有风险）。
+打开 [软件官网](https://notepad-plus-plus.org/) 或 [可靠的第三方网站](https://notepad-plus.en.softonic.com/) ，去到 [Download](https://notepad-plus-plus.org/downloads) 页面并选择版本（推荐最新版），然后进入软件下载页面。**注意选择处理器架构**（32 位或 64 位）。如果电脑是64位，强烈建议下载64位，因为大多数插件只支持64位；如果渴望兼容性，请下载32位。如果网络不好，可以选择各种软件园（有风险）。
 
 有 3 种安装方法：
 
@@ -56,17 +56,23 @@ Notepad++ 是 Windows 操作系统下的文本编辑器，支持多国语言、�
 
 ### 查找与替换
 
+依次单击“（菜单栏）搜索”->“查找”（快捷键`CTRL`+`R`）即可打开“查找”页面（如下图）。
+
 ![npp-search](./images/npp-search.png)
+
+依次单击“（菜单栏）搜索”->“替换”（快捷键`CTRL`+`H`）即可打开“替换”页面（如下图）。
 
 ![npp-replace](./images/npp-replace.png)
 
+查找、替换之间其实是一个窗口，单击上面的标签页就可以完成切换。
+
 其功能与普通编辑器大同小异，但是支持更多，如：
 
-1.  严格匹配或大小写匹配等
-2.  跨文档匹配
-3.  转义字符，如'\\r'，'\\n'。
-4.  正则表达式
-5.  计数
+1. 严格匹配或大小写匹配等
+2. 跨文档匹配
+3. 转义字符，如'\r'，'\n'。
+4. 正则表达式
+5. 计数
 
 ### 定期备份
 
@@ -102,11 +108,11 @@ Notepad++ 是 Windows 操作系统下的文本编辑器，支持多国语言、�
 
 Notepad++ 可以自动识别当前文件编码是 `UTF-8` 还是 `GB2312` 甚至其他。再也不用担心被 `锟斤拷` 抡死或被 `烫烫烫` 烫死了。
 
-如果要使用不同的编码浏览文章，请依次单击“（菜单顶栏）编码”->“使用 XXX 编码”。如果想给文件换一个字符编码，请依次单击“（菜单顶栏）编码”->“转为 XXX 编码”。
+如果要使用不同的编码浏览文章，请依次单击“（菜单顶栏）编码”->“使用XXX编码”。如果想给文件换一个字符编码，请依次单击“（菜单顶栏）编码”->“转为XXX编码”。
 
 它还可以自动识别换行符是 `CR` 、 `LF` 或 `CRLF` 。不用担心下载下来的数据被吞换行。
 
-在底部信息栏，你可以看到 "Windows(CR LF)" 等字样，这就是当前文件的换行符。右击它，可以改变当前文件换行符。此操作配合“显示所有字符”更直观哟！
+在底部信息栏，你可以看到"Windows(CR LF)"等字样，这就是当前文件的换行符。右击它，可以改变当前文件换行符。此操作配合“显示所有字符”更直观哟！
 
 ## 高级玩法
 
@@ -153,13 +159,13 @@ Notepad++ 可以自动识别当前文件编码是 `UTF-8` 还是 `GB2312` 甚至
 
 #### 安装插件（手动）
 
-1.  下载插件（由第三方托管的官方地址： <https://sourceforge.net/projects/npp-plugins/> ）注意一定要选择 **与安装 Notepad++ 时处理器架构相同** 的插件。
+1.  下载插件（由第三方托管的官方地址： <https://sourceforge.net/projects/npp-plugins/> ）注意一定要选择**与安装Notepad++时处理器架构相同**的插件。
 2.  找到一个名为 "XXX.dll" 的文件（通常以插件名命名）。
 3.  在 Notepad++ 中的功能栏点插件，并在列表中点“打开插件文件夹”。
 4.  将刚才找到的 DLL 文件放入文件夹中，重启 Notepad++。
 5.  【可选】删除刚才拷贝的文件， **但不要删除生成的文件夹！** 
 
-Tips: 如果多次不成功，可以尝试新建一个与插件名相同的文件夹在将 ".dll" 文件放入创建的文件夹中
+Tips:如果多次不成功，可以尝试新建一个与插件名相同的文件夹在将".dll"文件放入创建的文件夹中
 
 #### 更新插件
 
@@ -177,25 +183,25 @@ Tips: 如果多次不成功，可以尝试新建一个与插件名相同的文�
 
 2.  在菜单栏中选择“运行”->“运行……”，打开“运行”窗口。
 
-3.  分别输入以下命令
+3. 分别输入以下命令
 
-    ```shell
-    #编译命令：
-    cmd /c g++.exe -o $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH)
-    #运行命令：
-    cmd /c $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH) & pause
-    #调试命令：
-    cmd /c gdb $(CURRENT_DIRECTORY)\$(NAME_PART).exe
-
-    #如果下载了ConsolePauser可以使用下列代码获得更好的程序运行体验！（注意添加环境变量！）
-
-    #编译命令：
-    cmd /c (start ConsolePauser "g++.exe -o $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH)")
-    #运行命令：
-    cmd /c (start ConsolePauser "$(CURRENT_DIRECTORY)\$(NAME_PART).exe")
-    #调试命令：
-    cmd /c (start ConsolePauser "gdb $(CURRENT_DIRECTORY)\$(NAME_PART).exe")
-    ```
+   ```shell
+   #编译命令：
+   cmd /c g++.exe -o $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH)
+   #运行命令：
+   cmd /c $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH) & pause
+   #调试命令：
+   cmd /c gdb $(CURRENT_DIRECTORY)\$(NAME_PART).exe
+   
+   #如果下载了ConsolePauser可以使用下列代码获得更好的程序运行体验！（注意添加环境变量！）
+   
+   #编译命令：
+   cmd /c (start ConsolePauser "g++.exe -o $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH)")
+   #运行命令：
+   cmd /c (start ConsolePauser "$(CURRENT_DIRECTORY)\$(NAME_PART).exe")
+   #调试命令：
+   cmd /c (start ConsolePauser "gdb $(CURRENT_DIRECTORY)\$(NAME_PART).exe")
+   ```
 
 
 4.  单击“保存”，名字可以自己取，如 "Compile","Run" 等，然后设定好你想要的快捷键（捡好记的来，如 Dev-C++ 就分别是 `F9` 和 `F10` ）。
