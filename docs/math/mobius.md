@@ -413,7 +413,7 @@ $$
 变换求和顺序，设 $\displaystyle d'=\frac{n}{d}$ ，合并公因式，式子化为
 
 $$
-\frac{1}{2}n\left(\cdot\sum_{d'\mid n}d'\cdot\varphi(d')+1\right)
+\frac{1}{2}n\cdot\left(\sum_{d'\mid n}d'\cdot\varphi(d')+1\right)
 $$
 
 设 $\displaystyle \text{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\text{g}$ 为积性函数，于是可以 $\Theta(n)$ 预处理。最后枚举 $d$ ，统计贡献即可。
