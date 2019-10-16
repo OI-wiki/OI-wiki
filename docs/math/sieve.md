@@ -143,7 +143,7 @@ void pre() {
 ```cpp
 void pre() {
   d[1] = 1;
-  for (int i = 1; i <= n; ++i) {
+  for (int i = 2; i <= n; ++i) {
     if (!v[i]) v[i] = 1, p[++tot] = i, d[i] = 2, num[i] = 1;
     for (int j = 1; j <= tot && i <= n / p[j]; ++j) {
       v[p[j] * i] = 1;
