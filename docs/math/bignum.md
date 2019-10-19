@@ -32,11 +32,11 @@
 由此不难写出读入高精度数字的代码：
 
 ```cpp
-void clear(int a[LEN]) {
+void clear(int a[]) {
   for (int i = 0; i < LEN; ++i) a[i] = 0;
 }
 
-void read(int a[LEN]) {
+void read(int a[]) {
   static char s[LEN + 1];
   scanf("%s", s);
 
@@ -53,7 +53,7 @@ void read(int a[LEN]) {
 输出也按照存储的逆序输出。由于不希望输出前导零，故这里从最高位开始向下寻找第一个非零位，从此处开始输出；终止条件 `i >= 1` 而不是 `i >= 0` 是因为当整个数字等于 $0$ 时仍希望输出一个字符 `0` 。
 
 ```cpp
-void print(int a[LEN]) {
+void print(int a[]) {
   int i;
   for (i = LEN - 1; i >= 1; --i)
     if (a[i] != 0) break;
@@ -73,11 +73,11 @@ void print(int a[LEN]) {
     
     int a[LEN], b[LEN];
     
-    void clear(int a[LEN]) {
+    void clear(int a[]) {
       for (int i = 0; i < LEN; ++i) a[i] = 0;
     }
     
-    void read(int a[LEN]) {
+    void read(int a[]) {
       static char s[LEN + 1];
       scanf("%s", s);
     
@@ -87,7 +87,7 @@ void print(int a[LEN]) {
       for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
     }
     
-    void print(int a[LEN]) {
+    void print(int a[]) {
       int i;
       for (i = LEN - 1; i >= 1; --i)
         if (a[i] != 0) break;
@@ -118,7 +118,7 @@ void print(int a[LEN]) {
 也就是从最低位开始，将两个加数对应位置上的数码相加，并判断是否达到或超过 $10$ 。如果达到，那么处理进位：将更高一位的结果上增加 $1$ ，当前位的结果减少 $10$ 。
 
 ```cpp
-void add(int a[LEN], int b[LEN], int c[LEN]) {
+void add(int a[], int b[], int c[]) {
   clear(c);
 
   // 高精度实现中，一般令数组的最大长度 LEN 比可能的输入大一些
@@ -147,11 +147,11 @@ void add(int a[LEN], int b[LEN], int c[LEN]) {
     
     int a[LEN], b[LEN], c[LEN];
     
-    void clear(int a[LEN]) {
+    void clear(int a[]) {
       for (int i = 0; i < LEN; ++i) a[i] = 0;
     }
     
-    void read(int a[LEN]) {
+    void read(int a[]) {
       static char s[LEN + 1];
       scanf("%s", s);
     
@@ -161,7 +161,7 @@ void add(int a[LEN], int b[LEN], int c[LEN]) {
       for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
     }
     
-    void print(int a[LEN]) {
+    void print(int a[]) {
       int i;
       for (i = LEN - 1; i >= 1; --i)
         if (a[i] != 0) break;
@@ -169,7 +169,7 @@ void add(int a[LEN], int b[LEN], int c[LEN]) {
       putchar('\n');
     }
     
-    void add(int a[LEN], int b[LEN], int c[LEN]) {
+    void add(int a[], int b[], int c[]) {
       clear(c);
     
       for (int i = 0; i < LEN - 1; ++i) {
@@ -201,7 +201,7 @@ void add(int a[LEN], int b[LEN], int c[LEN]) {
 从个位起逐位相减，遇到负的情况则向上一位借 $1$ 。整体思路与加法完全一致。
 
 ```cpp
-void sub(int a[LEN], int b[LEN], int c[LEN]) {
+void sub(int a[], int b[], int c[]) {
   clear(c);
 
   for (int i = 0; i < LEN - 1; ++i) {
@@ -227,11 +227,11 @@ void sub(int a[LEN], int b[LEN], int c[LEN]) {
     
     int a[LEN], b[LEN], c[LEN];
     
-    void clear(int a[LEN]) {
+    void clear(int a[]) {
       for (int i = 0; i < LEN; ++i) a[i] = 0;
     }
     
-    void read(int a[LEN]) {
+    void read(int a[]) {
       static char s[LEN + 1];
       scanf("%s", s);
     
@@ -241,7 +241,7 @@ void sub(int a[LEN], int b[LEN], int c[LEN]) {
       for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
     }
     
-    void print(int a[LEN]) {
+    void print(int a[]) {
       int i;
       for (i = LEN - 1; i >= 1; --i)
         if (a[i] != 0) break;
@@ -249,7 +249,7 @@ void sub(int a[LEN], int b[LEN], int c[LEN]) {
       putchar('\n');
     }
     
-    void sub(int a[LEN], int b[LEN], int c[LEN]) {
+    void sub(int a[], int b[], int c[]) {
       clear(c);
     
       for (int i = 0; i < LEN - 1; ++i) {
@@ -297,7 +297,7 @@ void sub(int a[LEN], int b[LEN], int c[LEN]) {
 当然，也是出于这个原因，这个方法需要特别关注乘数 $b$ 的范围。若它和 $10^9$ （或相应整型的取值上界）属于同一数量级，那么需要慎用高精度—单精度乘法。
 
 ```cpp
-void mul_short(int a[LEN], int b, int c[LEN]) {
+void mul_short(int a[], int b, int c[]) {
   clear(c);
 
   for (int i = 0; i < LEN - 1; ++i) {
@@ -328,7 +328,7 @@ void mul_short(int a[LEN], int b, int c[LEN]) {
 注意这个过程与竖式乘法不尽相同，我们的算法在每一步乘的过程中并不进位，而是将所有的结果保留在对应的位置上，到最后再统一处理进位，但这不会影响结果。
 
 ```cpp
-void mul(int a[LEN], int b[LEN], int c[LEN]) {
+void mul(int a[], int b[], int c[]) {
   clear(c);
 
   for (int i = 0; i < LEN - 1; ++i) {
@@ -360,7 +360,7 @@ void mul(int a[LEN], int b[LEN], int c[LEN]) {
 ```cpp
 // 被除数 a 以下标 last_dg 为最低位，是否可以再减去除数 b 而保持非负
 // len 是除数 b 的长度，避免反复计算
-inline bool greater_eq(int a[LEN], int b[LEN], int last_dg, int len) {
+inline bool greater_eq(int a[], int b[], int last_dg, int len) {
   // 有可能被除数剩余的部分比除数长，这个情况下最多多出 1 位，故如此判断即可
   if (a[last_dg + len] != 0) return true;
   // 从高位到低位，逐位比较
@@ -372,7 +372,7 @@ inline bool greater_eq(int a[LEN], int b[LEN], int last_dg, int len) {
   return true;
 }
 
-void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
+void div(int a[], int b[], int c[], int d[]) {
   clear(c);
   clear(d);
 
@@ -422,11 +422,11 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
     
     int a[LEN], b[LEN], c[LEN], d[LEN];
     
-    void clear(int a[LEN]) {
+    void clear(int a[]) {
       for (int i = 0; i < LEN; ++i) a[i] = 0;
     }
     
-    void read(int a[LEN]) {
+    void read(int a[]) {
       static char s[LEN + 1];
       scanf("%s", s);
     
@@ -436,7 +436,7 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
       for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
     }
     
-    void print(int a[LEN]) {
+    void print(int a[]) {
       int i;
       for (i = LEN - 1; i >= 1; --i)
         if (a[i] != 0) break;
@@ -444,7 +444,7 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
       putchar('\n');
     }
     
-    void add(int a[LEN], int b[LEN], int c[LEN]) {
+    void add(int a[], int b[], int c[]) {
       clear(c);
     
       for (int i = 0; i < LEN - 1; ++i) {
@@ -456,7 +456,7 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
       }
     }
     
-    void sub(int a[LEN], int b[LEN], int c[LEN]) {
+    void sub(int a[], int b[], int c[]) {
       clear(c);
     
       for (int i = 0; i < LEN - 1; ++i) {
@@ -468,7 +468,7 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
       }
     }
     
-    void mul(int a[LEN], int b[LEN], int c[LEN]) {
+    void mul(int a[], int b[], int c[]) {
       clear(c);
     
       for (int i = 0; i < LEN - 1; ++i) {
@@ -481,7 +481,7 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
       }
     }
     
-    inline bool greater_eq(int a[LEN], int b[LEN], int last_dg, int len) {
+    inline bool greater_eq(int a[], int b[], int last_dg, int len) {
       if (a[last_dg + len] != 0) return true;
       for (int i = len - 1; i >= 0; --i) {
         if (a[last_dg + i] > b[i]) return true;
@@ -490,7 +490,7 @@ void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
       return true;
     }
     
-    void div(int a[LEN], int b[LEN], int c[LEN], int d[LEN]) {
+    void div(int a[], int b[], int c[], int d[]) {
       clear(c);
       clear(d);
     
@@ -628,7 +628,7 @@ $$
       return r;
     }
     
-    void karatsuba_mul(int a[LEN], int b[LEN], int c[LEN]) {
+    void karatsuba_mul(int a[], int b[], int c[]) {
       int *r = karatsuba_polymul(LEN - 1, a, b);
       memcpy(c, r, sizeof(int) * LEN);
       for (int i = 0; i < LEN - 1; ++i)
