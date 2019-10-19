@@ -26,12 +26,12 @@
 
 ```cpp
 int merge(int x, int y) {
-  if (!x || !y) return x | y;  //若一个堆为空则返回另一个堆
-  if (t[x].val > t[y].val) swap(x, y);  //取值较小的作为根
-  t[x].rs = merge(t[x].rs, y);          //递归合并右儿子与另一个堆
+  if (!x || !y) return x | y;  // 若一个堆为空则返回另一个堆
+  if (t[x].val > t[y].val) swap(x, y);  // 取值较小的作为根
+  t[x].rs = merge(t[x].rs, y);          // 递归合并右儿子与另一个堆
   if (t[t[x].rs].d > t[t[x].ls].d)
-    swap(t[x].ls, t[x].rs);   //若不满足左偏性质则交换左右儿子
-  t[x].d = t[t[x].rs].d + 1;  //更新dist
+    swap(t[x].ls, t[x].rs);   // 若不满足左偏性质则交换左右儿子
+  t[x].d = t[t[x].rs].d + 1;  // 更新dist
   return x;
 }
 ```
@@ -71,9 +71,8 @@ int merge(int x, int y) {
 ```cpp
 int& rs(int x) { return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d]; }
 
-int merge(int x,
-          int y)  //有了pushup，直接merge左右儿子就实现了删除节点并保持左偏性质
-{
+// 有了 pushup，直接 merge 左右儿子就实现了删除节点并保持左偏性质
+int merge(int x, int y) {
   if (!x || !y) return x | y;
   if (t[x].val < t[y].val) swap(x, y);
   t[rs(x) = merge(rs(x), y)].fa = x;
@@ -197,8 +196,8 @@ int pop(int x) {
           if (!kill[x]) {
             x = find(x);
             kill[x] = true;
-            f[x] = f[t[x].ch[0]] = f[t[x].ch[1]] = merge(
-                t[x].ch[0], t[x].ch[1]);  //由于堆中的点会find到x，所以f[x]也要修改
+            f[x] = f[t[x].ch[0]] = f[t[x].ch[1]] = merge(t[x].ch[0], t[x].ch[1]);
+            // 由于堆中的点会 find 到 x，所以 f[x] 也要修改
             printf("%d\n", t[x].val);
           } else
             puts("0");
@@ -225,7 +224,7 @@ int pop(int x) {
 
  [「APIO2012」派遣](https://www.luogu.org/problemnew/show/P1552) 
 
- [「JLOI2015」城池攻占](https://www.luogu.org/problemnew/show/P3261) 
+ [「JLOI2015」城池攻占](https://loj.ac/problem/2107) 
 
 这类题目往往是每个节点维护一个堆，与儿子合并，依题意弹出、修改、计算答案，有点像线段树合并的类似题目。
 
@@ -372,9 +371,7 @@ int pop(int x) {
     }
     ```
 
-###  [「SCOI2011」棘手的操作](https://www.luogu.org/problemnew/show/P3273) 
-
-~~这题题如其名，非常棘手~~。
+###  [「SCOI2011」棘手的操作](https://loj.ac/problem/2441) 
 
 首先，找一个节点所在堆的堆顶要用并查集，而不能暴力向上跳。
 

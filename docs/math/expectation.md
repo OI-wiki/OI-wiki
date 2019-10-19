@@ -52,4 +52,4 @@
 
  [NOIP2017 初赛 T14, T15](https://ti.luogu.com.cn/problemset/1022) 
 
- [NOIP2016 换教室](https://www.luogu.org/problemnew/show/P1850) （概率期望 DP）
+ [NOIP2016 换教室](http://uoj.ac/problem/262) （概率期望 DP）

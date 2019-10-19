@@ -90,7 +90,7 @@ void performance(int l, int r) {
 
 ## 习题
 
--    [「SCOI2010」序列操作](https://www.lydsy.com/JudgeOnline/problem.php?id=1858) 
--    [「SHOI2015」脑洞治疗仪](https://www.lydsy.com/JudgeOnline/problem.php?id=4592) 
+-    [「SCOI2010」序列操作](https://www.luogu.org/problem/P2572) 
+-    [「SHOI2015」脑洞治疗仪](https://loj.ac/problem/2037) 
 -    [「Luogu 2787」理理思维](https://www.luogu.org/problemnew/show/P2787) 
 -    [「Luogu 4979」矿洞：坍塌](https://www.luogu.org/problemnew/show/P4979) 

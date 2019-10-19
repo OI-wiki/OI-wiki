@@ -109,7 +109,9 @@ int main() {
 
 ## 练习
 
- [BZOJ 1337\[最小圆覆盖\]](http://www.lydsy.com/JudgeOnline/problem.php?id=1337)  [BZOJ 2732\[HNOI2012 射箭\]](http://www.lydsy.com/JudgeOnline/problem.php?id=2732) 
+ [最小圆覆盖](https://www.luogu.org/problem/P1742) 
+
+ [「HNOI2012」射箭](https://www.luogu.org/problem/P3222) 
 
 ## 参考资料
 

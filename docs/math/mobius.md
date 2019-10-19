@@ -23,7 +23,7 @@ $$
 $$
 \begin{split}
 &\frac{a}{b}=\left\lfloor\frac{a}{b}\right\rfloor+r(0\leq r<1)\\
-\Rightarrow
+\implies
 &\left\lfloor\frac{a}{bc}\right\rfloor
 =\left\lfloor\frac{a}{b}\cdot\frac{1}{c}\right\rfloor
 =\left\lfloor \frac{1}{c}\left(\left\lfloor\frac{a}{b}\right\rfloor+r\right)\right\rfloor
@@ -62,11 +62,11 @@ $$
 $$
 \begin{split}
 &\left\lfloor\frac{n}{i}\right\rfloor \leq \frac{n}{i}\\
-\Rightarrow
+\implies
 &\left\lfloor\frac{n}{ \left\lfloor\frac{n}{i}\right\rfloor }\right\rfloor
 \geq \left\lfloor\frac{n}{ \frac{n}{i} }\right\rfloor
 = \left\lfloor i \right\rfloor=i \\
-\Rightarrow
+\implies
 &i\leq \left\lfloor\frac{n}{ \left\lfloor\frac{n}{i}\right\rfloor }\right\rfloor\\
 &&\square
 \end{split}
@@ -128,10 +128,10 @@ $$
 
 $$
 \begin{aligned}
-\varepsilon=\mu*1&\Leftrightarrow\varepsilon(n)=\sum_{d\mid n}\mu(d)\\
-d=1*1&\Leftrightarrow d(n)=\sum_{d\mid n}1\\
-\sigma=d*1&\Leftrightarrow\varepsilon(n)=\sum_{d\mid n}d\\
-\varphi=\mu*\text{ID}&\Leftrightarrow\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
+\varepsilon=\mu*1&\iff\varepsilon(n)=\sum_{d\mid n}\mu(d)\\
+d=1*1&\iff d(n)=\sum_{d\mid n}1\\
+\sigma=d*1&\iff\varepsilon(n)=\sum_{d\mid n}d\\
+\varphi=\mu*\text{ID}&\iff\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
 \end{aligned}
 $$
 
@@ -176,11 +176,11 @@ $$
 
 ### 补充结论
 
-反演结论： $\displaystyle [gcd(i,j)=1] \Leftrightarrow\sum_{d\mid\gcd(i,j)}\mu(d)$ 
+反演结论： $\displaystyle [gcd(i,j)=1] \iff\sum_{d\mid\gcd(i,j)}\mu(d)$ 
 
 -    **直接推导** ：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$ ，也就是式子的值是 $1$ ，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值： $0$ 
 
--    **利用 $\varepsilon$ 函数** ：根据上一结论， $[\gcd(i,j)=1]\Rightarrow \varepsilon(\gcd(i,j))$ ，将 $\varepsilon$ 展开即可。
+-    **利用 $\varepsilon$ 函数** ：根据上一结论， $[\gcd(i,j)=1]\implies \varepsilon(\gcd(i,j))$ ，将 $\varepsilon$ 展开即可。
 
 ### 线性筛
 
@@ -267,13 +267,13 @@ $$
 
 原问题为：已知 $f=g*1$ ，证明 $g=f*\mu$ 
 
-易知如下转化： $f*\mu=g*1*\mu\Rightarrow f*\mu=g$ （其中 $1*\mu=\varepsilon$ ）
+易知如下转化： $f*\mu=g*1*\mu\implies f*\mu=g$ （其中 $1*\mu=\varepsilon$ ）
 
 * * *
 
 ## 问题形式
 
-###  [「HAOI 2011」Problem b](https://www.lydsy.com/JudgeOnline/problem.php?id=2301) 
+###  [「HAOI 2011」Problem b](https://www.luogu.org/problem/P2522) 
 
 求值（多组数据）
 
@@ -451,7 +451,7 @@ int main() {
 }
 ```
 
-###  [「BZOJ 2154」Crash 的数字表格](https://www.lydsy.com/JudgeOnline/problem.php?id=2154) 
+###  [「BZOJ 2154」Crash 的数字表格](https://www.luogu.org/problem/P1829) 
 
 求值（对 $20101009$ 取模）
 
@@ -583,7 +583,7 @@ int main() {
 }
 ```
 
-###  [「SDOI2015」约数个数和](https://www.luogu.org/problemnew/show/P3327) 
+###  [「SDOI2015」约数个数和](https://loj.ac/problem/2185) 
 
 多组数据，求
 
@@ -805,7 +805,7 @@ signed main() {
 
 $$
 f(n)=\sum_{i=1}^nt(i)g\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-\Leftrightarrow g(n)=\sum_{i=1}^n\mu(i)t(i)f\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+\iff g(n)=\sum_{i=1}^n\mu(i)t(i)f\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
 
 我们证明一下

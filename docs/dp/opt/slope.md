@@ -2,7 +2,7 @@ author: TrisolarisHD, hsfzLZH1, abc1763613206, greyqz, Ir1d, billchenchina, Chro
 
 ## 例题选讲
 
-??? note " 例题[「HNOI2008」玩具装箱 TOY](https://www.lydsy.com/JudgeOnline/problem.php?id=1010)"
+??? note " 例题[「HNOI2008」玩具装箱 TOY](https://loj.ac/problem/10188)"
     令 $f_i$ 表示前 $i$ 个物品，随意分组装在任意多个容器里所能得到的最小费用。
 
 写出 **状态转移方程** ： $f_i=\min\{f_j+(pre_i-pre_j+i-j-1-L)^2\}$ ，其中 $pre_i$ 表示前 $i$ 个数的前缀和。
@@ -23,20 +23,20 @@ author: TrisolarisHD, hsfzLZH1, abc1763613206, greyqz, Ir1d, billchenchina, Chro
 
 ## 习题
 
- [「SDOI2016」征途](https://www.lydsy.com/JudgeOnline/problem.php?id=4518) 
+ [「SDOI2016」征途](https://loj.ac/problem/2035) 
 
- [「ZJOI2007」仓库建设](https://www.lydsy.com/JudgeOnline/problem.php?id=1096) 
+ [「ZJOI2007」仓库建设](https://loj.ac/problem/10189) 
 
- [「APIO2010」特别行动队](https://www.lydsy.com/JudgeOnline/problem.php?id=1911) 
+ [「APIO2010」特别行动队](https://loj.ac/problem/10190) 
 
- [「BZOJ 4709」「JSOI2011」柠檬](https://www.lydsy.com/JudgeOnline/problem.php?id=4709) 
+ [「JSOI2011」柠檬](https://www.luogu.org/problem/P5504) 
 
  [「Codeforces 311B」Cats Transport](http://codeforces.com/problemset/problem/311/B) 
 
- [「NOI2007」货币兑换](https://www.lydsy.com/JudgeOnline/problem.php?id=1492) 
+ [「NOI2007」货币兑换](https://loj.ac/problem/2353) 
 
- [「NOI2019」回家路线](https://www.luogu.org/problemnew/show/P5468) 
+ [「NOI2019」回家路线](https://loj.ac/problem/3156) 
 
- [「NOI2016」国王饮水记](https://www.luogu.org/problemnew/show/P1721) 
+ [「NOI2016」国王饮水记](http://uoj.ac/problem/223) 
 
- [「NOI2014」购票](https://www.luogu.org/problemnew/show/P2305) 
+ [「NOI2014」购票](http://uoj.ac/problem/7) 

@@ -14,9 +14,9 @@ author: HeRaNO, Zhoier, hsfzLZH1
 
 -   A：算法竞赛中，数据结构的考察主要分为两类：
 
-    ​	1. 考察对于特定信息的检索与维护和对特定操作的支持，例如 [「SCOI2010」序列操作](https://www.lydsy.com/JudgeOnline/problem.php?id=1858) 
+    ​	1. 考察对于特定信息的检索与维护和对特定操作的支持，例如 [「SCOI2010」序列操作](https://www.luogu.org/problem/P2572) 
 
-    ​	2. 使用合适数据结构加速信息检索，优化算法复杂度，例如 [「APIO2012」派遣](https://www.lydsy.com/JudgeOnline/problem.php?id=2809) 
+    ​	2. 使用合适数据结构加速信息检索，优化算法复杂度，例如 [「APIO2012」派遣](https://www.luogu.org/problem/P1552) 
 
 -   Q：有没有一种完美的数据结构可以搞定所有事情啊？
 

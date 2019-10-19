@@ -157,7 +157,7 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
     }
     ```
 
-???+note " 例题[luogu P4357\[CQOI2016\]K 远点对](https://www.luogu.org/problem/P4357)"
+???+note " 例题[「CQOI2016」K 远点对](https://loj.ac/problem/2043)"
     给定平面上的 $n$ 个点 $(x_i,y_i)$ ，求欧几里得距离下的第 $k$ 远无序点对之间的距离。
 
      $n\le 100000 , 1\le k\le 100 , 0\le x_i,y_i<2^{31}$ 
@@ -380,14 +380,14 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
 
 ## 习题
 
- [luogu P2479\[SDOI2010\]捉迷藏](https://www.luogu.org/problem/P2479) 
+ [「SDOI2010」捉迷藏](https://www.luogu.org/problem/P2479) 
 
- [luogu P4169\[Violet\]天使玩偶/SJY 摆棋子](https://www.luogu.org/problem/P4169) 
+ [「Violet」天使玩偶/SJY 摆棋子](https://www.luogu.org/problem/P4169) 
 
- [luogu P2093\[国家集训队\]JZPFAR](https://www.luogu.org/problem/P2093) 
+ [「国家集训队」JZPFAR](https://www.luogu.org/problem/P2093) 
 
- [luogu P4390\[BOI2007\]Mokia 摩基亚](https://www.luogu.org/problem/P4390) 
+ [「BOI2007」Mokia 摩基亚](https://www.luogu.org/problem/P4390) 
 
  [luogu P4475 巧克力王国](https://www.luogu.org/problem/P4475) 
 
- [luogu P3769\[CH 弱省胡策 R2\]TATT](https://www.luogu.org/problem/P3769) 
+ [「CH 弱省胡策 R2」TATT](https://www.luogu.org/problem/P3769) 

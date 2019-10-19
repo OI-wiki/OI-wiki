@@ -46,6 +46,7 @@ nav:
         - Validator: intro/testlib/validator.md
         - Interactor: intro/testlib/interactor.md
         - Checker: intro/testlib/checker.md
+      - Polygon: intro/polygon.md
       - OJ 工具: intro/oj-tool.md
       - LaTeX 入门: intro/latex.md
     - Docker 部署: intro/docker-deploy.md
@@ -150,16 +151,19 @@ nav:
     - 字符串部分简介: string/index.md
     - 标准库: string/lib-func.md
     - 字符串匹配: string/match.md
-    - 哈希: string/hash.md
+    - 字符串哈希: string/hash.md
+    - 字典树 (Trie): string/trie.md
     - 前缀函数与 KMP 算法: string/kmp.md
     - Z 函数（扩展 KMP）: string/z-func.md
-    - 字典树 (Trie): string/trie.md
-    - 回文自动机: string/pam.md
-    - 后缀数组 (SA): string/sa.md
+    - 自动机: string/automaton.md
     - AC 自动机: string/ac-automaton.md
+    - 后缀数组 (SA): string/sa.md
     - 后缀自动机 (SAM): string/sam.md
+    - 广义后缀自动机: string/general-sam.md
     - 后缀树: string/suffix-tree.md
     - Manacher: string/manacher.md
+    - 回文自动机: string/pam.md
+    - 序列自动机: string/seq-automaton.md
     - 最小表示法: string/minimal-string.md
     - Lyndon 分解: string/lyndon.md
   - 数学:
@@ -254,7 +258,7 @@ nav:
     - ST 表: ds/sparse-table.md
     - 树状数组: ds/bit.md
     - 线段树: ds/seg.md
-    - 线段树 & 区间历史最值: ds/seg-beats.md
+    - 区间最值操作 & 区间历史最值: ds/seg-beats.md
     - 划分树: ds/dividing.md
     - 二叉搜索树 & 平衡树:
       - 二叉搜索树简介: ds/bst.md
@@ -305,6 +309,7 @@ nav:
     - 最小生成树: graph/mst.md
     - 最小树形图: graph/mdst.md
     - 最短路: graph/shortest-path.md
+    - 拆点: graph/node.md
     - 差分约束: graph/diff-constraints.md
     - k 短路: graph/kth-path.md
     - 连通性相关:
@@ -320,7 +325,6 @@ nav:
     - 图的着色: graph/color.md
     - 网络流:
       - 网络流简介: graph/flow.md
-      - 拆点: graph/flow/node.md
       - 最大流: graph/flow/max-flow.md
       - 最小割: graph/flow/min-cut.md
       - 费用流: graph/flow/min-cost.md
@@ -341,6 +345,7 @@ nav:
     - 半平面交: geometry/half-plane.md
     - 平面最近点对: geometry/nearest-points.md
     - 随机增量法: geometry/random-incremental.md
+    - 反演变换: geometry/inverse.md
     - 计算几何杂项: geometry/misc.md
   - 杂项:
     - 杂项简介: misc/index.md
@@ -367,6 +372,7 @@ nav:
     - 在一台机器上规划任务: misc/job-order.md
   - 专题:
     - RMQ: topic/rmq.md
+    - 出题: topic/problemsetting.md
 
 # Theme
 theme:

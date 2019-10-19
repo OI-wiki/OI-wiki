@@ -77,8 +77,7 @@ long long binpow(long long a, long long b) {
 }
 ```
 
-??? note "例题"
-    做一做 [Luogu P1226](https://www.luogu.org/problemnew/show/P1226) 
+模板： [Luogu P1226](https://www.luogu.org/problemnew/show/P1226) 
 
 ## 应用
 

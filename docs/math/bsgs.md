@@ -187,9 +187,9 @@ $$
 ## 习题
 
 -    [SPOJ MOD](https://www.spoj.com/problems/MOD/) 模板
--    [SDOI2013 随机数生成器](http://www.lydsy.com/JudgeOnline/problem.php?id=3122) 
+-    [SDOI2013 随机数生成器](https://www.luogu.org/problem/P3306) 
 -    [BZOJ1319 Discrete Roots](http://www.lydsy.com/JudgeOnline/problem.php?id=1319) 模板
--    [SDOI2011 计算器](https://www.luogu.org/problemnew/show/P2485) 模板
+-    [SDOI2011 计算器](https://loj.ac/problem/10214) 模板
 -    [Luogu4195【模板】exBSGS/Spoj3105 Mod](https://www.luogu.org/problemnew/show/P4195) 目标
 -    [Codeforces - Lunar New Year and a Recursive Sequence](https://codeforces.com/contest/1106/problem/F) 
 

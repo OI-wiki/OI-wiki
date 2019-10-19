@@ -90,7 +90,7 @@ int getsum(int x) {  // a[1]……a[x]的和
 }
 ```
 
-## 区间加区间求和
+## 区间加 & 区间求和
 
 若维护序列 $a$ 的差分数组 $b$ ，此时我们对 $a$ 的一个前缀 $r$ 求和，即 $\sum_{i=1}^{r} a_i$ ，由差分数组定义得 $a_i=\sum_{j=1}^i b_j$ 
 
@@ -132,7 +132,7 @@ void add1(int l, int r, int v) {
 }
 
 long long getsum1(int l, int r) {
-  return (r + 1ll) * (getsum(t1, r) - getsum(t1, l - 1)) -
+  return (r + 1ll) * getsum(t1, r) - 1ll * l * getsum(t1, l - 1) -
          (getsum(t2, r) - getsum(t2, l - 1));
 }
 ```
