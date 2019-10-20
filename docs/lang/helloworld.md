@@ -48,7 +48,7 @@ C++ 语言
 using namespace std;
 
 int main() {               // 定义 main 函数
-  cout << "Hello, world!"  // 输出 Hello, world!
+  cout << "Hello, world!";  // 输出 Hello, world!
       return 0;            // 返回 0，结束 main 函数
 }
 ```
