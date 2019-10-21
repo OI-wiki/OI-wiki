@@ -61,7 +61,7 @@
 
 我们在残量网络上再跑一次 T 到 S 的最大流，将可行流流量减去最大流流量即为答案。
 
-??? note "[AHOI 2014 支线剧情](https://www.luogu.org/problem/P4043)"
+??? note "[AHOI 2014 支线剧情](https://loj.ac/problem/2226)"
 
     对于每条 x 到 y 花费 v 的剧情边设上界为 $\inf$ , 下界为 1。
 

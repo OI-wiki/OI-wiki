@@ -33,7 +33,7 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
 
 ## 习题
 
- [「Luogu P1886」滑动窗口](https://www.luogu.org/problemnew/show/P1886) 
+ [「Luogu P1886」滑动窗口](https://loj.ac/problem/10175) 
 
  [「NOI2005」瑰丽华尔兹](https://www.luogu.org/problem/P2254) 
 
