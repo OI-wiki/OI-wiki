@@ -8,30 +8,31 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 
 -    [51Nod](https://www.51nod.com/) 有许多值得尝试的数学题和思维题。
 -    [BZOJ](https://www.lydsy.com/JudgeOnline/) 因原属衡阳八中而得简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。
--    [Comet OJ](https://www.cometoj.com) 旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库。
--    [CodeVS](http://www.codevs.cn/) 面向 OI 选手的过气 OJ
--    [FZUOJ](http://acm.fzu.edu.cn/) 福州大学
--    [HDU Online Judge](http://acm.hdu.edu.cn/) 杭电的 OJ，有多校训练的题目。
--    [hihoCoder](https://hihocoder.com/) 面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（题面登录后可见）
--    [计蒜客](https://www.jisuanke.com/) 
--    [Judge Duck Online](https://duck.ac/) 松松松开发的评测系统，可以将评测程序的运行时间精确到 $\mu s$ 。（题目较少）
--    [JoyOI](http://www.joyoi.cn/) 原 Tyvj。
--    [LibreOJ](https://loj.ac/) Libre 取自由之意，基于开源项目 SYZOJ。
+-    [Comet OJ](https://www.cometoj.com) 始于 2018 年，旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库。
+-    [CodeVS](http://www.codevs.cn/) 面向 OI 选手的过气 OJ。
+-    [FZUOJ](http://acm.fzu.edu.cn/) 始于 2008 年，福州大学在线评测系统。
+-    [HDU Online Judge](http://acm.hdu.edu.cn/) 始于 2005 年，杭州电子科技大学在线评测系统，有多校训练的题目。
+-    [hihoCoder](https://hihocoder.com/) 始于 2012 年，面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（题面登录后可见）
+-    [计蒜客](https://www.jisuanke.com/) 北京矩道优达网络科技有限公司旗下的核心产品，提供按知识点和难度筛选的信息学题库和 ICPC 题库。
+-    [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck) ，可以将评测程序的运行时间精确到 $\mu s$ 。（题目较少）
+-    [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。
+-    [LibreOJ](https://loj.ac/) Libre 取自由之意，基于开源项目 [SYZOJ](https://github.com/syzoj/syzoj) 。
     题目所有测试数据以及提交的代码均对所有用户开放。
     与一本通进行了合作，可以评测一本通上所有习题。
-    目前由 Menci 维护。
--    [Lutece](https://acm.uestc.edu.cn/home) 电子科技大学在线评测系统，基于开源项目 [Lutece](https://github.com/lutece-awesome) 。
+    目前由 [Menci](https://github.com/Menci) 维护。
+-    [Lutece](https://acm.uestc.edu.cn/home) 始于 2018 年，电子科技大学在线评测系统， [项目开源](https://github.com/lutece-awesome) 。
 -    [洛谷](https://www.luogu.org/) 始于 2013 年，社区群体庞大，OI 界的真题和习题较全，提供有偿教育服务。
--    [牛客网](https://www.nowcoder.com/) 
--    [NOJ](http://acm.njupt.edu.cn/) 南京邮电大学在线评测系统，自身拥有题目两千余，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
--    [OpenJudge](http://openjudge.cn/) 由 POJ 团队开发的小组评测平台。
--    [POJ](http://poj.org/) PKU OJ，国内历史最悠久的 OJ 之一，很多英文题，既有基础题，也有值得一试的好题。
--    [PTA - 拼题 A](https://pintia.cn/) 
+-    [牛客网](https://www.nowcoder.com/) 始于 2014 年，提供技术类求职备考、社群交流、企业招聘等服务。
+-    [NOJ](http://acm.njupt.edu.cn/) 始于 2018 年，南京邮电大学在线评测系统， [项目开源](https://github.com/ZsgsDesign/NOJ) ，自身拥有题目两千余，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
+-    [NTUOJ](http://acm.csie.ntu.edu.tw) 始于 2007 年，台湾大学在线评测系统，基于开源项目 [Judge Girl](http://judgegirl.github.io/) 。
+-    [OpenJudge](http://openjudge.cn/) 始于 2005 年，由 POJ 团队开发的小组评测平台。
+-    [POJ](http://poj.org/) 始于 2003 年，北京大学在线评测系统，国内历史最悠久的 OJ 之一，很多英文题，既有基础题，也有值得一试的好题。
+-    [PTA（拼题 A）](https://pintia.cn/) 始于 2016 年，浙江大学衍生的杭州百腾教育科技有限公司产品。
 -    [清澄](http://www.tsinsen.com/) 始于 2005 年，由 [胡伟栋](http://www.hhwdd.com/) 开发，自 2019 年 9 月 1 日起不再对外提供服务。
--    [Universal Online Judge](http://uoj.ac/) Universal 取通用之意，也是开源项目。VFK 的 OJ，多原创比赛题和 CCF/THU 题，难度较高。
--    [Vijos](https://vijos.org/) 始于 2005 年，有开源项目。
+-    [Universal Online Judge](http://uoj.ac/) Universal 取通用之意， [项目开源](https://github.com/UniversalOJ/UOJ-System) ； [VFK](https://github.com/vfleaking) 的 OJ，多原创比赛题和 CCF/THU 题，难度较高。
+-    [Vijos](https://vijos.org/) 始于 2005 年， [服务端](https://github.com/vijos/vj4) 和 [评测机](https://github.com/vijos/jd4) 等项目开源。
     <!---    [Virtual Judge](https://vjudge.net/) 可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ。-->
--    [ZOJ](https://zoj.pintia.cn/home) 浙江大学在线评测系统。
+-    [ZOJ](https://zoj.pintia.cn/home) 始于 2001 年，浙江大学在线评测系统。
 
 ### 国外
 
