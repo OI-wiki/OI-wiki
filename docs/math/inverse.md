@@ -116,9 +116,9 @@ for (int i = 1; i <= n; ++i) inv[i] = sv[i] * s[i - 1] % p;
 
 ## 逆元练习题
 
- [【模板】乘法逆元](https://www.luogu.org/problemnew/show/P3811) 
+ [乘法逆元](https://loj.ac/problem/110) 
 
- [乘法逆元 2](https://loj.ac/problem/152) 
+ [乘法逆元 2](https://loj.ac/problem/161) 
 
  [「NOIP2012」同余方程](https://loj.ac/problem/2605) 
 
