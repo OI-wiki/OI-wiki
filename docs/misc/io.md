@@ -258,12 +258,14 @@ struct IO {
   }
   inline void read(char *s) {
     register char ch = gc();
-    for (; blank(ch); ch = gc());
+    for (; blank(ch); ch = gc())
+      ;
     for (; !blank(ch); ch = gc()) *s++ = ch;
     *s = 0;
   }
   inline void read(char &c) {
-    for (c = gc(); blank(c); c = gc());
+    for (c = gc(); blank(c); c = gc())
+      ;
   }
   inline void push(const char &c) {
 #if DEBUG  //调试，可显示字符
