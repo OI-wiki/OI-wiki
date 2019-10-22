@@ -130,24 +130,24 @@ mp.erase(it)
 
 ##  `multimap` 
 
-和 `map` 类似，`multimap` 是有序键值对容器，但允许多个元素拥有同一键。其搜索、插入和移除操作拥有对数复杂度。
+和 `map` 类似， `multimap` 是有序键值对容器，但允许多个元素拥有同一键。其搜索、插入和移除操作拥有对数复杂度。
 
 !!! warning
-    正是因为 `multimap` 允许多个元素拥有同一键的特点，`multimap` 并没有提供给出键访问其对应值的方法。
+    正是因为 `multimap` 允许多个元素拥有同一键的特点， `multimap` 并没有提供给出键访问其对应值的方法。
 
 ### 插入与删除操作
 
-- 通过向 `multimap` 中插入一个类型为 `pair<Key, T>` 的值可以达到插入元素的目的，例如 `mp.insert(pair<string,int>("Alan",100));`；
-- `erase(x)` 删除值为 x 的 **所有** 元素，返回删除元素的个数。
-- `erase(pos)` 删除迭代器为 pos 的元素，要求迭代器必须合法。
-- `erase(first,last)` 删除迭代器在 $[first,last)$ 范围内的所有元素。
-- `clear()` 清空 `multimap` 。
+-   通过向 `multimap` 中插入一个类型为 `pair<Key, T>` 的值可以达到插入元素的目的，例如 `mp.insert(pair<string,int>("Alan",100));` ；
+-    `erase(x)` 删除值为 x 的 **所有** 元素，返回删除元素的个数。
+-    `erase(pos)` 删除迭代器为 pos 的元素，要求迭代器必须合法。
+-    `erase(first,last)` 删除迭代器在 $[first,last)$ 范围内的所有元素。
+-    `clear()` 清空 `multimap` 。
 
 ### 查找操作
 
-- `count(x)` 返回 `multimap` 内键为 x 的元素数量。
-- `find(x)` 在 `multimap` 内存在键为 x 的元素时会返回该元素的迭代器，否则返回 `end()` 。
-- `lower_bound(x)` 返回指向首个不小于给定键的元素的迭代器。
-- `upper_bound(x)` 返回指向首个大于给定键的元素的迭代器。
-- `empty()` 返回容器是否为空。
-- `size()` 返回容器内元素个数。
+-    `count(x)` 返回 `multimap` 内键为 x 的元素数量。
+-    `find(x)` 在 `multimap` 内存在键为 x 的元素时会返回该元素的迭代器，否则返回 `end()` 。
+-    `lower_bound(x)` 返回指向首个不小于给定键的元素的迭代器。
+-    `upper_bound(x)` 返回指向首个大于给定键的元素的迭代器。
+-    `empty()` 返回容器是否为空。
+-    `size()` 返回容器内元素个数。
