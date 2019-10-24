@@ -141,7 +141,7 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz
 
 首先我们在栈中添加节点 $1$ 。
 
-然后接下来按照 DFS 序从小到达添加关键节点。
+然后接下来按照 DFS 序从小到大添加关键节点。
 
 假如当前的节点与栈顶节点的 LCA 就是栈顶节点的话，则说明它们是在一条链上的。所以直接把当前节点入栈就行了。
 
