@@ -216,45 +216,45 @@ int main() {
 
 对一棵树进行 DFS，无论是第一次访问还是回溯，每次到达一个结点时都将编号记录下来，可以得到一个长度为 $2n-1$ 的序列，这个序列被称作这棵树的欧拉序列（可以看成是这棵树的一条欧拉回路所经过的节点构成的序列）。
 
-在下文中，把结点 $u$ 在欧拉序列中第一次出现的位置编号记为 $pos(u)$（也称作节点 $u$ 的欧拉序），把欧拉序列本身记作 $E[1..2n-1]$。
+在下文中，把结点 $u$ 在欧拉序列中第一次出现的位置编号记为 $pos(u)$ （也称作节点 $u$ 的欧拉序），把欧拉序列本身记作 $E[1..2n-1]$ 。
 
-有了欧拉序列，LCA 问题可以在线性时间内转化为 RMQ 问题，即 $pos(LCA(u, v))=\min\{pos(k)|k\in E[pos(u)..pos(v)]\}$。
+有了欧拉序列，LCA 问题可以在线性时间内转化为 RMQ 问题，即 $pos(LCA(u, v))=\min\{pos(k)|k\in E[pos(u)..pos(v)]\}$ 。
 
-这个等式不难理解：从 $u$ 走到 $v$ 的过程中一定会经过 $LCA(u,v)$，但不会经过 $LCA(u,v)$ 的祖先。因此，从 $u$ 走到 $v$ 的过程中经过的欧拉序最小的结点就是 $LCA(u, v)$。
+这个等式不难理解：从 $u$ 走到 $v$ 的过程中一定会经过 $LCA(u,v)$ ，但不会经过 $LCA(u,v)$ 的祖先。因此，从 $u$ 走到 $v$ 的过程中经过的欧拉序最小的结点就是 $LCA(u, v)$ 。
 
-用 DFS 计算欧拉序列的时间复杂度是 $O(n)$，且欧拉序列的长度也是 $O(n)$，所以 LCA 问题可以在 $O(n)$ 的时间内转化成等规模的 RMQ 问题。
+用 DFS 计算欧拉序列的时间复杂度是 $O(n)$ ，且欧拉序列的长度也是 $O(n)$ ，所以 LCA 问题可以在 $O(n)$ 的时间内转化成等规模的 RMQ 问题。
 
 参考代码：
 
 ```cpp
-int dfsxu[N << 1], deep[N << 1], tail_dfsxu=0;
+int dfsxu[N << 1], deep[N << 1], tail_dfsxu = 0;
 void dfs(int t, int depth) {
+  dfsxu[++tail_dfsxu] = t;
+  pos[t] = tail_dfsxu;
+  deep[tail_dfsxu] = depth;
+  for (int i = head[t]; i; i = side[i].next) {
+    dfs(side[i].to, t, deepth + 1);
     dfsxu[++tail_dfsxu] = t;
-    pos[t] = tail_dfsxu;
-    deep[tail_dfsxu] = depth;
-    for (int i = head[t]; i; i = side[i].next) {
-      dfs(side[i].to, t, deepth + 1);
-      dfsxu[++tail_dfsxu] = t;
-      deep[tail_dfsxu] = deepth;
-    }
+    deep[tail_dfsxu] = deepth;
+  }
 }
 void st_ready() {
-    lg[0]=-1; mi[0]=1;//// 预处理 lg 代替库函数 log2 来优化常数
-    for (int i = 1; i <= (N << 1); ++i) 
-      lg[i] = lg[i >> 1] + 1;
-    for (int i = 1; i <= 18; ++i) 
-      mi[i] = (mi[i - 1] << 1);
-    for(int i=1;i<=(N << 1) - 1;++i)
-      st[0][i] = dfsxu[i];
-    for (int i = 1; i <= lg[(N << 1) - 1]; ++i)
-      for (int j = 1; j + mi[i] - 1 <= ((N << 1) - 1); ++j)
-        st[i][j] = deep[st[i - 1][j]] < deep[st[i - 1][j + mi[i - 1]]] ? st[i - 1][j] :  st[i - 1][j + mi[i - 1]];
+  lg[0] = -1;
+  mi[0] = 1;  //// 预处理 lg 代替库函数 log2 来优化常数
+  for (int i = 1; i <= (N << 1); ++i) lg[i] = lg[i >> 1] + 1;
+  for (int i = 1; i <= 18; ++i) mi[i] = (mi[i - 1] << 1);
+  for (int i = 1; i <= (N << 1) - 1; ++i) st[0][i] = dfsxu[i];
+  for (int i = 1; i <= lg[(N << 1) - 1]; ++i)
+    for (int j = 1; j + mi[i] - 1 <= ((N << 1) - 1); ++j)
+      st[i][j] = deep[st[i - 1][j]] < deep[st[i - 1][j + mi[i - 1]]]
+                     ? st[i - 1][j]
+                     : st[i - 1][j + mi[i - 1]];
 }
 ```
 
-当我们需要查询某点对 $(u, v)$ 的 LCA 时,查询区间 $[\min\{pos[u], pos[v]\}, \max\{pos[u], pos[v]\}]$ 上最小值的所代表的节点即可。
+当我们需要查询某点对 $(u, v)$ 的 LCA 时，查询区间 $[\min\{pos[u], pos[v]\}, \max\{pos[u], pos[v]\}]$ 上最小值的所代表的节点即可。
 
-若使用 ST 表来解决 RMQ 问题，那么该算法不支持在线修改，预处理的时间复杂度为 $O(n\log n)$，每次查询 LCA 的时间复杂度为 $O(1)$。
+若使用 ST 表来解决 RMQ 问题，那么该算法不支持在线修改，预处理的时间复杂度为 $O(n\log n)$ ，每次查询 LCA 的时间复杂度为 $O(1)$ 。
 
 ### 树链剖分
 
