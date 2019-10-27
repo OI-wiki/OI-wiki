@@ -227,28 +227,26 @@ int main() {
 参考代码：
 
 ```cpp
-int dfsxu[N << 1], deep[N << 1], tail_dfsxu = 0;
+int dfn[N << 1], dep[N << 1], dfntot = 0;
 void dfs(int t, int depth) {
-  dfsxu[++tail_dfsxu] = t;
-  pos[t] = tail_dfsxu;
-  deep[tail_dfsxu] = depth;
+  dfsxu[++dfntot] = t;
+  pos[t] = dfntot;
+  dep[dfntot] = depth;
   for (int i = head[t]; i; i = side[i].next) {
-    dfs(side[i].to, t, deepth + 1);
-    dfsxu[++tail_dfsxu] = t;
-    deep[tail_dfsxu] = deepth;
+    dfs(side[i].to, t, depth + 1);
+    dfsxu[++dfntot] = t;
+    dep[dfntot] = depth;
   }
 }
 void st_ready() {
-  lg[0] = -1;
-  mi[0] = 1;  //// 预处理 lg 代替库函数 log2 来优化常数
+  lg[0] = -1; // 预处理 lg 代替库函数 log2 来优化常数
   for (int i = 1; i <= (N << 1); ++i) lg[i] = lg[i >> 1] + 1;
-  for (int i = 1; i <= 18; ++i) mi[i] = (mi[i - 1] << 1);
   for (int i = 1; i <= (N << 1) - 1; ++i) st[0][i] = dfsxu[i];
   for (int i = 1; i <= lg[(N << 1) - 1]; ++i)
-    for (int j = 1; j + mi[i] - 1 <= ((N << 1) - 1); ++j)
-      st[i][j] = deep[st[i - 1][j]] < deep[st[i - 1][j + mi[i - 1]]]
+    for (int j = 1; j + (1 << n) - 1 <= ((N << 1) - 1); ++j)
+      st[i][j] = deep[st[i - 1][j]] < deep[st[i - 1][j + (1<<i - 1)]
                      ? st[i - 1][j]
-                     : st[i - 1][j + mi[i - 1]];
+                     : st[i - 1][j + (1<< i - 1)];
 }
 ```
 
