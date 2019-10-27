@@ -37,16 +37,18 @@ For i:=1 to n
     当前元素入栈
     top=k
 ```
+
 ```cpp
-for(int i=1;i<=n;i++) {
-    int  k=cnt;
-    while(k>0&&h[stk[k]]>h[i])k--;
-    if(k)rs[stk[k]]=i;//rs代表笛卡尔树每个节点的右儿子
-    if(k<cnt)ls[i]=stk[k+1];//ls代表笛卡尔树每个节点的左儿子
-    stk[++k]=i;
-    cnt=k;
+for (int i = 1; i <= n; i++) {
+  int k = cnt;
+  while (k > 0 && h[stk[k]] > h[i]) k--;
+  if (k) rs[stk[k]] = i;  // rs代表笛卡尔树每个节点的右儿子
+  if (k < cnt) ls[i] = stk[k + 1];  // ls代表笛卡尔树每个节点的左儿子
+  stk[++k] = i;
+  cnt = k;
 }
 ```
+
 ## 笛卡尔树与 Treap
 
 谈到笛卡尔树，很容易让人想到一种家喻户晓的结构——Treap。没错，Treap 是笛卡尔树的一种，只不过 w 的值完全随机。Treap 也有线性的构建算法，如果提前将元素排好序，显然可以使用上述单调栈算法完成构建过程，只不过很少会这么用。
