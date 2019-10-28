@@ -35,7 +35,7 @@ $$
 
 ```cpp
 for (int i = 1; i <= W; i++)
-  for (int l = 0; l <= W - i; l++) f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
+  for (int l = 0; l <= W - w[i]; l++) f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
 // 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]],f[i - 1][l] + w[i]),f[i][l +
 // w[i]]); 简化而来
 ```
@@ -49,15 +49,15 @@ for (int i = 1; i <= W; i++)
 因此实际核心代码为
 
 ```cpp
-for (int i = 1; i <= W; i++)
-  for (int l = W - i; l >= 0; l--) f[l + i] = max(f[l] + w[i], f[l + i]);
+for (int i = 1; i <= n; i++)
+  for (int l = W ; l >= w[i]; l--) f[l] = max(f[l], f[l - w[i]] + v[i]);
 ```
 
 ??? 例题代码
     ```cpp
     #include <iostream>
     const int maxn = 13010;
-    int n, v, w[maxn], v[maxn], f[maxn];
+    int n,W, w[maxn], v[maxn], f[maxn];
     int main() {
       std::cin >> n >> W;
       for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
@@ -65,6 +65,36 @@ for (int i = 1; i <= W; i++)
         for (int l = W; l >= w[i]; l--)
           if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];
       std::cout << f[W];
+      return 0;
+    }
+    ```
+### 为什么不用记忆化搜索
+是不是看着这个题目和前面的记忆化搜索很相似,前面是总采药时间,这里是总背包大小,前面是每种药的采集时间,这里是每个物品的体积,所以[wolfdan666](https://github.com/wolfdan666)同学尝试了一发,然后很荣幸得MLE,因为这里可以滚动数组(见上面的例题代码),以及可以看看MLE的记忆化搜索代码
+??? 记忆化搜索代码会MLE
+    ```cpp
+    #include<bits/stdc++.h>
+    using namespace std;
+    // 魔改解决01背包问题
+    const int N = 3403;
+    const int M = 12881;
+
+    int n, t;
+    int tcost[N], mget[N];
+    int mem[N][M];
+    int dfs(int pos, int tleft) {
+      if (mem[pos][tleft] != -1) return mem[pos][tleft];
+      if (pos == n + 1) return mem[pos][tleft] = 0;
+      int dfs1, dfs2 = -2;
+      dfs1 = dfs(pos + 1, tleft);
+      if (tleft >= tcost[pos]) dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];
+      return mem[pos][tleft] = max(dfs1, dfs2);
+    }
+    int main() {
+      memset(mem, -1, sizeof(mem));
+      // cin >> t >> n;
+      cin >> n >> t;
+      for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
+      cout << dfs(1, t) << endl;
       return 0;
     }
     ```
@@ -103,10 +133,10 @@ $$
 ??? 例题代码
     ```cpp
     #include <iostream>
-    const int maxn = 13010;
-    int n, v, w[maxn], v[maxn], f[maxn];
+    const int maxn = 1e5+10;
+    int n, W, w[maxn], v[maxn], f[maxn];
     int main() {
-      std::cin >> n >> W;
+      std::cin >> W >> n;
       for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
       for (int i = 1; i <= n; i++)
         for (int l = w[i]; l <= W; l++)
