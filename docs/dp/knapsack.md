@@ -35,7 +35,8 @@ $$
 
 ```cpp
 for (int i = 1; i <= W; i++)
-  for (int l = 0; l <= W - w[i]; l++) f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
+  for (int l = 0; l <= W - w[i]; l++)
+    f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
 // 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]],f[i - 1][l] + w[i]),f[i][l +
 // w[i]]); 简化而来
 ```
@@ -50,14 +51,14 @@ for (int i = 1; i <= W; i++)
 
 ```cpp
 for (int i = 1; i <= n; i++)
-  for (int l = W ; l >= w[i]; l--) f[l] = max(f[l], f[l - w[i]] + v[i]);
+  for (int l = W; l >= w[i]; l--) f[l] = max(f[l], f[l - w[i]] + v[i]);
 ```
 
 ??? 例题代码
     ```cpp
     #include <iostream>
     const int maxn = 13010;
-    int n,W, w[maxn], v[maxn], f[maxn];
+    int n, W, w[maxn], v[maxn], f[maxn];
     int main() {
       std::cin >> n >> W;
       for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
@@ -68,9 +69,12 @@ for (int i = 1; i <= n; i++)
       return 0;
     }
     ```
+
 ### 为什么不用记忆化搜索
-是不是看着这个题目和前面的记忆化搜索很相似,前面是总采药时间,这里是总背包大小,前面是每种药的采集时间,这里是每个物品的体积,所以[wolfdan666](https://github.com/wolfdan666)同学尝试了一发,然后很荣幸得MLE,因为这里可以滚动数组(见上面的例题代码),以及可以看看MLE的记忆化搜索代码
-??? 记忆化搜索代码会MLE
+
+是不是看着这个题目和前面的记忆化搜索很相似，前面是总采药时间，这里是总背包大小，前面是每种药的采集时间，这里是每个物品的体积，所以 [wolfdan666](https://github.com/wolfdan666) 同学尝试了一发，然后很荣幸得 MLE, 因为这里可以滚动数组（见上面的例题代码）, 以及可以看看 MLE 的记忆化搜索代码
+??? 记忆化搜索代码会 MLE
+
     ```cpp
     #include<bits/stdc++.h>
     using namespace std;
@@ -133,7 +137,7 @@ $$
 ??? 例题代码
     ```cpp
     #include <iostream>
-    const int maxn = 1e5+10;
+    const int maxn = 1e5 + 10;
     int n, W, w[maxn], v[maxn], f[maxn];
     int main() {
       std::cin >> W >> n;
