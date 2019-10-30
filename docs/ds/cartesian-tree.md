@@ -40,12 +40,12 @@ For i:=1 to n
 
 ```cpp
 for (int i = 1; i <= n; i++) {
-  int k = cnt;
+  int k = top;
   while (k > 0 && h[stk[k]] > h[i]) k--;
   if (k) rs[stk[k]] = i;  // rs代表笛卡尔树每个节点的右儿子
   if (k < cnt) ls[i] = stk[k + 1];  // ls代表笛卡尔树每个节点的左儿子
   stk[++k] = i;
-  cnt = k;
+  top = k;
 }
 ```
 
