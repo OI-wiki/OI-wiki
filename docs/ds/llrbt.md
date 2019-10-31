@@ -8,13 +8,13 @@
 
 一棵红黑树满足如下性质：
 
-1. 节点是红色或黑色；
-2. 从每个叶子到根的所有路径上不能有两个连续的红色节点；
-3. 从任一节点到其每个叶子的所有简单路径上都包含相同数目的黑色节点。（黑高平衡）
+1.  节点是红色或黑色；
+2.  从每个叶子到根的所有路径上不能有两个连续的红色节点；
+3.  从任一节点到其每个叶子的所有简单路径上都包含相同数目的黑色节点。（黑高平衡）
 
 这保证了从根节点到任意叶子的最长路径（红黑交替）不会超过最短路径（全黑）的二倍。从而保证了树的平衡性。
 
-维护这些性质是比较复杂的，如果我们要插入一个节点，首先，它一定会被染色成红色，否则会破坏性质 3 。即使这样，我们还是有可能会破坏性质 2。因此需要进行调整。而删除节点就更加麻烦，与插入类似，我们不能删除黑色节点，否则会破坏黑高的平衡。如何方便地解决这些问题呢？
+维护这些性质是比较复杂的，如果我们要插入一个节点，首先，它一定会被染色成红色，否则会破坏性质 3。即使这样，我们还是有可能会破坏性质 2。因此需要进行调整。而删除节点就更加麻烦，与插入类似，我们不能删除黑色节点，否则会破坏黑高的平衡。如何方便地解决这些问题呢？
 
 ## 左偏红黑树（Left Leaning Red Black Tree）
 
@@ -22,8 +22,8 @@
 
 左偏红黑树对红黑树进行了进一步限制，一个黑色节点的左右儿子：
 
-- 要么全是黑色；
-- 要么左儿子是红色，右儿子是黑色。
+-   要么全是黑色；
+-   要么左儿子是红色，右儿子是黑色。
 
 符合条件的情况：
 
@@ -41,7 +41,7 @@
 
 ![llrbt3](./images/llrbt-3.png)
 
-插入后， 可能会产生一条右偏的红色边，因此需要对红边右偏的情况进行一次左旋：
+插入后，可能会产生一条右偏的红色边，因此需要对红边右偏的情况进行一次左旋：
 
 ![llrbt4](./images/llrbt-4.png)
 
@@ -56,13 +56,14 @@
 从而消灭右偏的红边。
 
 ??? note "参考代码（部分）"
-    ``` cpp
-    template<class Key, class Compare>
-    typename Set<Key, Compare>::Node *
-    Set<Key, Compare>::fix_up(Set::Node *root) const {
-      if (is_red(root->rc) && !is_red(root->lc)) // fix right leaned red link
+    ```cpp
+    template <class Key, class Compare>
+    typename Set<Key, Compare>::Node *Set<Key, Compare>::fix_up(
+        Set::Node *root) const {
+      if (is_red(root->rc) && !is_red(root->lc))  // fix right leaned red link
         root = rotate_left(root);
-      if (is_red(root->lc) && is_red(root->lc->lc)) // fix doubly linked left leaned red link
+      if (is_red(root->lc) &&
+          is_red(root->lc->lc))  // fix doubly linked left leaned red link
         // if (root->lc == nullptr), then the second expr won't be evaluated
         root = rotate_right(root);
       if (is_red(root->lc) && is_red(root->rc))
@@ -71,6 +72,7 @@
       root->size = size(root->lc) + size(root->rc) + 1;
       return root;
     }
+    ```
 
     template<class Key, class Compare>
     typename Set<Key, Compare>::Node *
@@ -94,11 +96,11 @@
 
 首先来试一下删除整棵树里的最小值。
 
-怎么才能保证最后删除的节点是红色的呢？我们需要在向下递归的过程中保证一个性质：如果当前节点是 `h`，那么需要保证 `h` 是红色，或者 `h->lc` 是红色。
+怎么才能保证最后删除的节点是红色的呢？我们需要在向下递归的过程中保证一个性质：如果当前节点是 `h` ，那么需要保证 `h` 是红色，或者 `h->lc` 是红色。
 
 考虑这样做的正确性，如果我们能够通过各种旋转和反转颜色操作成功维护这个性质，那么当我们到达最小的节点 `h_min` 的时候，有 `h_min` 是红色，或者 `h_min` 的左子树——但是 `h_min` 根本没有左子树！所以这就保证了最小值节点一定是红的，既然它是红色的，我们就可以大胆的删除它，然后用与插入操作相同的调整思路对树进行调整。
 
-下面我们来考虑怎么满足这个性质，注意，我们会在向下递归的时候**临时地**破坏左偏红黑树的若干性质，但是当我们从递归中返回时还会将其恢复。
+下面我们来考虑怎么满足这个性质，注意，我们会在向下递归的时候 **临时地** 破坏左偏红黑树的若干性质，但是当我们从递归中返回时还会将其恢复。
 
 ![llrbt-7](./images/llrbt-7.png)
 
@@ -113,10 +115,10 @@
 然后就可以进行删除了：
 
 ??? note "参考代码（部分）"
-    ``` cpp
-    template<class Key, class Compare>
-    typename Set<Key, Compare>::Node *
-    Set<Key, Compare>::move_red_left(Set::Node *root) const {
+    ```cpp
+    template <class Key, class Compare>
+    typename Set<Key, Compare>::Node *Set<Key, Compare>::move_red_left(
+        Set::Node *root) const {
       color_flip(root);
       if (is_red(root->rc->lc)) {
         // assume that root->rc != nullptr when calling this function
@@ -126,6 +128,7 @@
       }
       return root;
     }
+    ```
 
     template<class Key, class Compare>
     typename Set<Key, Compare>::Node *
@@ -147,7 +150,7 @@
 
 #### 删除任意节点
 
-我们首先考虑删除叶子：与删最小值类似，我们在删除任意值的过程中也要维护一个性质，不过这次比较特殊，因为我们不是只向左边走，而是可以向左右两个方向走，因此在删除过程中维护的性质是这样的：如果往左走，当前节点是 `h`，那么需要保证 `h` 是红色，或者 `h->lc` 是红色；如果往右走，当前节点是 `h`，那么需要保证 `h` 是红色，或者 `h->rc` 是红色。这样可以保证我们最后总会删掉一个红色节点。
+我们首先考虑删除叶子：与删最小值类似，我们在删除任意值的过程中也要维护一个性质，不过这次比较特殊，因为我们不是只向左边走，而是可以向左右两个方向走，因此在删除过程中维护的性质是这样的：如果往左走，当前节点是 `h` ，那么需要保证 `h` 是红色，或者 `h->lc` 是红色；如果往右走，当前节点是 `h` ，那么需要保证 `h` 是红色，或者 `h->rc` 是红色。这样可以保证我们最后总会删掉一个红色节点。
 
 下面考虑删除非叶子节点，我们只需要找到其右子树（如果有）里的最大节点，然后用右子树的最大节点的值代替该节点的值，最后删除右子树里的最大节点。
 
@@ -156,27 +159,27 @@
 那如果没有右子树怎么办？我们需要把左子树旋转过来，这样就不会出现这个问题了。
 
 ??? note "参考代码（部分）"
-    ``` cpp
-    template<class Key, class Compare>
-    typename Set<Key, Compare>::Node *
-    Set<Key, Compare>::delete_arbitrary(Set::Node *root, Key key) const {
+    ```cpp
+    template <class Key, class Compare>
+    typename Set<Key, Compare>::Node *Set<Key, Compare>::delete_arbitrary(
+        Set::Node *root, Key key) const {
       if (cmp_(key, root->key)) {
         // key < root->key
         if (!is_red(root->lc) && !(is_red(root->lc->lc)))
           root = move_red_left(root);
-        // ensure the invariant: either root->lc or root->lc->lc (or root and root->lc after dive into the function) is red,
-        // to ensure we will eventually delete a red node. therefore we will not break the black height balance
+        // ensure the invariant: either root->lc or root->lc->lc (or root and
+        // root->lc after dive into the function) is red, to ensure we will
+        // eventually delete a red node. therefore we will not break the black
+        // height balance
         root->lc = delete_arbitrary(root->lc, key);
       } else {
         // key >= root->key
-        if (is_red(root->lc))
-          root = rotate_right(root);
+        if (is_red(root->lc)) root = rotate_right(root);
         if (key == root->key && root->rc == nullptr) {
           delete root;
           return nullptr;
         }
-        if (!is_red(root->rc) && !is_red(root->rc->lc))
-          root = move_red_right(root);
+        if (!is_red(root->rc) && !is_red(root->rc->lc)) root = move_red_right(root);
         if (key == root->key) {
           root->key = get_min(root->rc);
           root->rc = delete_min(root->rc);
@@ -185,19 +188,21 @@
         }
       }
       return fix_up(root);
+    ```
 
     }
     ```
 
 ## 参考代码
 
-下面的代码是用左偏红黑树实现的 `Set`，即有序不可重集合：
+下面的代码是用左偏红黑树实现的 `Set` ，即有序不可重集合：
 
 ??? note "参考代码"
-    ``` cpp
+    ```cpp
     #include <algorithm>
     #include <memory>
     #include <vector>
+    ```
 
     template<class Key, class Compare = std::less<Key>>
     class Set {
@@ -529,5 +534,5 @@
 
 ## 参考资料与拓展阅读
 
--  [Left-Leaning Red-Black Trees]( https://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf ) -  Robert Sedgewick Princeton University
--  [Balanced Search Trees]( https://algs4.cs.princeton.edu/lectures/33BalancedSearchTrees-2x2.pdf ) -  *Algorithms* Robert Sedgewick | Kevin Wayne
+-    [Left-Leaning Red-Black Trees](https://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf) -  Robert Sedgewick Princeton University
+-    [Balanced Search Trees](https://algs4.cs.princeton.edu/lectures/33BalancedSearchTrees-2x2.pdf) -_Algorithms_Robert Sedgewick | Kevin Wayne
