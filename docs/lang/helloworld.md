@@ -47,7 +47,7 @@ g++ 是 C++ 语言的编译器，C 语言的编译器为 gcc。
 C++ 语言
 
 ```c++
-#include <cstdio>           // 引用头文件
+#include <cstdio>  // 引用头文件
 
 int main() {                // 定义 main 函数
   printf("Hello, world!");  // 输出 Hello, world!
@@ -56,7 +56,7 @@ int main() {                // 定义 main 函数
 ```
 
 ```c++
-#include <iostream>         // 引用头文件
+#include <iostream>  // 引用头文件
 
 using namespace std;
 
