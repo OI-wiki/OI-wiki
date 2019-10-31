@@ -34,6 +34,10 @@ sudo apt update && sudo apt install g++
 
 熟练之后也有玩家会使用更灵活的命令行来编译代码，这样就不依赖 IDE 了，而是使用自己熟悉的文本编辑器编写代码。
 
+```bash
+g++ test.cpp -o test -lm
+```
+
 g++ 是 C++ 语言的编译器，C 语言的编译器为 gcc。
 
 ## 第一行代码
@@ -43,7 +47,7 @@ g++ 是 C++ 语言的编译器，C 语言的编译器为 gcc。
 C++ 语言
 
 ```c++
-#include <cstdio>  // 引用头文件
+#include <cstdio>           // 引用头文件
 
 int main() {                // 定义 main 函数
   printf("Hello, world!");  // 输出 Hello, world!
@@ -52,20 +56,20 @@ int main() {                // 定义 main 函数
 ```
 
 ```c++
-#include <iostream>  // 引用头文件
+#include <iostream>         // 引用头文件
 
 using namespace std;
 
-int main() {               // 定义 main 函数
-  cout << "Hello, world!"  // 输出 Hello, world!
-      return 0;            // 返回 0，结束 main 函数
+int main() {                // 定义 main 函数
+  cout << "Hello, world!";  // 输出 Hello, world!
+  return 0;                 // 返回 0，结束 main 函数
 }
 ```
 
 C 语言
 
 ```c
-#include <stdio.h>  // 引用头文件
+#include <stdio.h>          // 引用头文件
 
 int main() {                // 定义 main 函数
   printf("Hello, world!");  // 输出 Hello, world!
