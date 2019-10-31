@@ -39,7 +39,7 @@ sudo apt update && sudo apt install g++
 g++ test.cpp -o test -lm
 ```
 
- `g++` 是 C++ 语言的编译器，C 语言的编译器为 `gcc` 。编译选项 `-lm` 用于链接数学库 `libm` ，从而使得使用 `math.h` 的代码可以正常编译运行。
+ `g++` 是 C++ 语言的编译器（C 语言的编译器为 `gcc`），`-o` 用于指定可执行文件的文件名，编译选项 `-lm` 用于链接数学库 `libm` ，从而使得使用 `math.h` 的代码可以正常编译运行。
 
 ## 第一行代码
 
