@@ -26,7 +26,7 @@ nav:
     - 非传统题: intro/non-trad.md
     - 工具软件:
       - 评测工具: intro/judgers.md
-      - 编辑工具: 
+      - 编辑工具:
         - Vim: intro/editor/vim.md
         - Emacs: intro/editor/emacs.md
         - VS Code: intro/editor/vscode.md
@@ -247,6 +247,7 @@ nav:
       - AVL 树: ds/avl.md
       - 替罪羊树: ds/sgt.md
       - 笛卡尔树: ds/cartesian-tree.md
+      - 左偏红黑树: ds/llrbt.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
       - 可持久化线段树: ds/persistent-seg.md
