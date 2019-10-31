@@ -4,7 +4,7 @@
 
 ### 做法
 
-定义 $F(A(x))=\sum_{i=0}^nA_if_i$ ，那么答案就是 $F(x^n)$ 。
+定义 $F(\sum c_ix^i)=\sum c_if_i$ ，那么答案就是 $F(x^n)$ 。
 
 由于 $f_n=\sum_{i=1}^{k}f_{n-i}a_i$ ，对于 $F(x^n)=F(\sum_{i=1}^{k}a_ix^{n-i})$ ，所以 $F(x^n-\sum_{i=1}^k a_ix^{n-i})=F(x^{n-k}(x^k-\sum_{i=0}^{k-1}a_{k-i}x^i))=0$ 。
 
