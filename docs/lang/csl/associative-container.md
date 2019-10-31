@@ -86,7 +86,8 @@ map<string, int> mp;
 ```cpp
 map<string, int> mp = {{"Tom", 0}, {"Bob", "100"}, {"Alan", 100}};
 ```
-（注：在使用insert函数时将返回一个类型为`pair <iterator，bool>`的值，其中iterator是一个新元素的迭代器，而bool则是判断元素是否插入成功，由于`map`中的元素具有唯一性质，所以如果再`map`中若已有等效元素，则可能插入失败，返回false，反之则返回true，`set`中的insert也是如此）
+
+（注：在使用 insert 函数时将返回一个类型为 `pair <iterator，bool>` 的值，其中 iterator 是一个新元素的迭代器，而 bool 则是判断元素是否插入成功，由于 `map` 中的元素具有唯一性质，所以如果再 `map` 中若已有等效元素，则可能插入失败，返回 false，反之则返回 true， `set` 中的 insert 也是如此）
 
 ### 查找、修改元素
 
