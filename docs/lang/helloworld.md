@@ -31,6 +31,7 @@ xcode-select --install
 ```bash
 sudo apt update && sudo apt install g++
 ```
+#### 在命令行中编译代码
 
 熟练之后也有玩家会使用更灵活的命令行来编译代码，这样就不依赖 IDE 了，而是使用自己熟悉的文本编辑器编写代码。
 
