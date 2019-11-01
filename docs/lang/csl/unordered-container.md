@@ -35,4 +35,22 @@ struct my_hash {
 
 当然，为了确保哈希函数不会被迅速破解（例如 Codeforces 中对使用无序关联式容器的提交进行 hack），可以试着在哈希函数中加入一些随机化函数（如时间）来增加破解的难度。
 
+例如，在 [这篇博客](https://codeforces.com/blog/entry/62393) 中给出了如下哈希函数：
+
+```cpp
+struct my_hash {
+    static uint64_t splitmix64(uint64_t x) {
+        x += 0x9e3779b97f4a7c15;
+        x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
+        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
+        return x ^ (x >> 31);
+    }
+
+    size_t operator()(uint64_t x) const {
+        static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();
+        return splitmix64(x + FIXED_RANDOM);
+    }
+};
+```
+
 写完自定义的哈希函数后，就可以通过 `unordered_map<int, int, my_hash> my_map;` 的定义方式将自定义的哈希函数传入容器了。
