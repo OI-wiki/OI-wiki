@@ -35,7 +35,7 @@ For i:=1 to n
     if k<top
         当前元素.左儿子 = 栈顶元素
     当前元素入栈
-    top=k
+    top = k
 ```
 
 ```cpp
