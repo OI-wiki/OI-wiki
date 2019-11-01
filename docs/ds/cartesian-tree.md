@@ -27,7 +27,7 @@ author: sshwy, zhouyuyang2002, StudyingFather, Ir1d, ouuan, Enter-tainer
 ```text
 新建一个大小为 n 的空栈。用 top 来标操作前的栈顶，k 来标记当前栈顶。
 For i:=1 to n
-    int k=top
+    int k = top
     While 栈非空且栈顶元素>当前元素 
         k--
     if 栈非空
