@@ -32,7 +32,7 @@ For i:=1 to n
         k--
     if 栈非空
         栈顶元素.右儿子 = 当前元素
-    if k<top
+    if k < top
         当前元素.左儿子 = 栈顶元素
     当前元素入栈
     top = k
