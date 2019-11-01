@@ -235,6 +235,7 @@ nav:
         - 高精度概述: math/bignum.md
       - 分段打表: math/dictionary.md
     - 斐波那契数列: math/fibonacci.md
+    - 常系数齐次线性递推: math/linear-recurrence.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
     - 栈: ds/stack.md
