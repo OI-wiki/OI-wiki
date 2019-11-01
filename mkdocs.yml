@@ -8,7 +8,7 @@ strict: true
 # Repository
 repo_name: 'OI-wiki/OI-wiki'
 repo_url: 'https://github.com/OI-wiki/OI-wiki'
-edit_uri: 'blob/master/docs/'
+edit_uri: 'https://oi-wiki.org/edit-landing/?ref='
 
 # Copyright
 copyright: 'Copyright &copy; 2016 - 2019 OI Wiki Team'
