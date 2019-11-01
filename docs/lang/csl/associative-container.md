@@ -12,6 +12,9 @@
 -    `erase(first,last)` 删除迭代器在 $[first,last)$ 范围内的所有元素。
 -    `clear()` 清空 `set` 。
 
+???+note "insert 函数的返回值"
+    insert 函数的返回值类型为 `pair<iterator, bool>` ，其中 iterator 是一个指向所插入元素（或者是指向等于所插入值的原本就在容器中的元素）的迭代器，而 bool 则代表元素是否插入成功，由于 `map` 中的元素具有唯一性质，所以如果在 `map` 中若已有等值元素，则插入会失败，返回 false，若插入成功则返回 true； `map` 中的 insert 也是如此。
+
 ### 迭代器
 
  `set` 提供了以下几种迭代器：
@@ -86,9 +89,6 @@ map<string, int> mp;
 ```cpp
 map<string, int> mp = {{"Tom", 0}, {"Bob", "100"}, {"Alan", 100}};
 ```
-
-关于 insert 函数的返回值
-    insert 函数的返回值类型为 `pair<iterator, bool>` ，其中 iterator 是一个指向所插入元素（或者是指向等于所插入值的原本就在容器中的元素）的迭代器，而 bool 则代表元素是否插入成功，由于 `map` 中的元素具有唯一性质，所以如果在 `map` 中若已有等值元素，则插入会失败，返回 false，若插入成功则返回 true； `set` 中的 insert 也是如此。
 
 ### 查找、修改元素
 
