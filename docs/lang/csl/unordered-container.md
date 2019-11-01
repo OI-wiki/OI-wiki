@@ -9,52 +9,34 @@
 !!! warning
      **在最坏情况下，对无序关联式容器的操作时间复杂度会与容器大小成线性！** 这一情况往往在容器内出现大量哈希冲突时产生，因此在不保证数据随机的场合应谨慎使用无序关联式容器存储数据。
 
-由于无序关联式容器与相应的关联式容器有很多共同点，这里主要对无序关联式容器的一些特殊之处进行介绍，而对于无序关联式容器与关联式容器的共同点则略去，这些内容读者可以参考 [OI-wiki](./associative-container/) 的介绍。
+由于无序关联式容器与相应的关联式容器在用途和操作中有很多共同点，这里不再介绍无序关联式容器的各种操作，这些内容读者可以参考 [OI-wiki](./associative-container/) 的介绍。
 
-##  `unordered_set` 
+## 制造哈希冲突
 
-### 插入与删除操作
+之前就已经提到过，在最坏情况下，对无序关联式容器的操作时间复杂度会与容器大小成线性。
 
- `unordered_set` 的插入与删除操作与 `set` 的 [插入与删除操作](./associative-container/#_2) 相同，这里不再赘述。
+在哈希函数确定的情况下，很容易构造出数据使得容器内产生大量哈希冲突，导致复杂度达到上界。
 
-### 迭代器
+在标准库实现里，每个元素的散列值是将值对一个质数取模得到的，更具体地说，是 [这个列表](https://github.com/gcc-mirror/gcc/blob/gcc-8_1_0-release/libstdc++-v3/src/shared/hashtable-aux.cc) 中的质数（g++ 6 及以前版本的编译器，这个质数一般是 $126271$，g++ 7 及之后版本的编译器，这个质数一般是 $107897$）。
 
- `unordered_set` 提供了以下几种迭代器：
+因此可以通过向容器中插入这些模数的倍数来达到制造大量哈希冲突的目的。
 
-1.   `begin()/cbegin()`   
-    返回指向首元素的迭代器，其中 `*begin = front` 。
-2.   `end()/cend()`   
-    返回指向数组尾端占位符的迭代器，注意是没有元素的。
+## 自定义哈希函数
 
-!!! note
-    因为内部采用哈希存储， `begin()` 并不一定指向容器中最小的元素。
+使用自定义哈希函数可以有效避免构造数据产生的大量哈希冲突。
 
-以上列出的迭代器中，含有字符 `c` 的为只读迭代器，你不能通过只读迭代器去修改 `unordered_set` 中的元素的值。如果一个 `unordered_set` 本身就是只读的，那么它的一般迭代器和只读迭代器完全等价。只读迭代器自 C++11 开始支持。
+要想使用自定义哈希函数，需要定义一个结构体，并在结构体中重载 `()` 运算符，像这样：
 
-### 查找操作
+```cpp
+struct my_hash
+{
+ size_t operator()(int x)const
+ {
+  return x;
+ }
+};
+```
 
- `unordered_set` 的查找操作与 `set` 的 [查找操作](./associative-container/#_2) 相比，除了不提供 `lower_bound(x)` 和 `upper_bound(x)` 以外，其余均完全相同，这里不再赘述。
+当然，为了确保哈希函数不会被迅速破解（例如 Codeforces 中对使用无序关联式容器的提交进行 hack），可以试着在哈希函数中加入一些随机化函数（如时间）来增加破解的难度。
 
-##  `unordered_multiset` 
-
-### 插入与删除操作
-
- `unordered_multiset` 的插入与删除操作与 `multiset` 的 [插入与删除操作](./associative-container/#_4) 相同，这里不再赘述。
-
-### 迭代器
-
- `unordered_multiset` 的迭代器和 `unordered_set` 的 [迭代器](#_3) 类似，这里不再赘述。
-
-### 查找操作
-
- `unordered_multiset` 的查找操作与 `multiset` 的 [查找操作](./associative-container/#_6) 相比，除了不提供 `lower_bound(x)` 和 `upper_bound(x)` 以外，其余均完全相同，这里不再赘述。
-
-##  `unordered_map` 
-
-和 `map` 一样， `unordered_map` 也重载了 `[]` 运算符，这使得我们可以直接用键作为下标访问对应的值。
-
-因 `unordered_map` 和 `map` 的函数功能类似，这里不再赘述，可以直接参考 [OI-wiki 对 `map` 的介绍](./associative-container/#map) 。
-
-##  `unordered_multimap` 
-
-因 `unordered_multimap` 和 `multimap` 的函数功能类似，这里不再赘述，可以直接参考 [OI-wiki 对 `multimap` 的介绍](./associative-container/#multimap) 。
+写完自定义的哈希函数后，就可以通过 `unordered_map<int, int, my_hash> my_map;` 的定义方式将自定义的哈希函数传入容器了。
