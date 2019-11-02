@@ -88,7 +88,7 @@ void restore(int x) {
 
 在实现 BFS 的时候，我们把未被访问过的节点放在一个称为 open 的容器中，而把已经访问过了的节点放在 closed 容器中。
 
-##  在树/图上 BFS
+## 在树/图上 BFS
 
 ### BFS 序列
 
@@ -120,7 +120,6 @@ BFS 序列通常也不唯一。
 ## 参考
 
  <https://cp-algorithms.com/graph/breadth-first-search.html> 
-
 
 ## 双端队列 BFS
 
