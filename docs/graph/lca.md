@@ -239,7 +239,7 @@ void dfs(int t, int depth) {
   }
 }
 void st_preprocess() {
-  lg[0] = -1; // 预处理 lg 代替库函数 log2 来优化常数
+  lg[0] = -1;  // 预处理 lg 代替库函数 log2 来优化常数
   for (int i = 1; i <= (N << 1); ++i) lg[i] = lg[i >> 1] + 1;
   for (int i = 1; i <= (N << 1) - 1; ++i) st[0][i] = dfn[i];
   for (int i = 1; i <= lg[(N << 1) - 1]; ++i)
