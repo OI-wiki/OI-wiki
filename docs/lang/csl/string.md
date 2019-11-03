@@ -28,12 +28,12 @@ string s;
 
 #### 转 char 数组
 
-在 C 语言里，也有很多字符串的函数，但是它们的参数都是 char 指针类型的，所以在 C++ 里有两个函数能够转换 string 为 char 指针—— `data()` / `c_str()`（它们几乎是一样的，但最好使用 `c_str()`，因为 `c_str()` 保证末尾有空字符，而 `data()` 则不保证），如：
+在 C 语言里，也有很多字符串的函数，但是它们的参数都是 char 指针类型的，所以在 C++ 里有两个函数能够转换 string 为 char 指针—— `data()` / `c_str()` （它们几乎是一样的，但最好使用 `c_str()` ，因为 `c_str()` 保证末尾有空字符，而 `data()` 则不保证），如：
 
 ```cpp
-printf("%s", s);  // 编译错误
-printf("%s", s.data())  // 编译通过，但是是 undefined behavior
-printf("%s", s.c_str())  // 一定能够正确输出
+printf("%s", s);             // 编译错误
+printf("%s", s.data())       // 编译通过，但是是 undefined behavior
+    printf("%s", s.c_str())  // 一定能够正确输出
 ```
 
 #### 大小
@@ -54,7 +54,7 @@ printf("字符a在%d位置出现", s.find('a'));
 
 #### 截取子串
 
-`substr(pos, len)`，这个函数的参数是从哪个位置开始截取最多几个字符（如果从 `pos` 开始的后缀长度不足 `len` 则截取这个后缀）。
+ `substr(pos, len)` ，这个函数的参数是从哪个位置开始截取最多几个字符（如果从 `pos` 开始的后缀长度不足 `len` 则截取这个后缀）。
 
 ```cpp
 printf("这个字符串第1位开始的2个字符构成的子串是%s", s.substr(0, 2).c_str());
