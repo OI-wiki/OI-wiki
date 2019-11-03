@@ -42,7 +42,7 @@ printf("%s", s.c_str())  // 一定能够正确输出
 
 ```cpp
 printf("string的长度为%d", s.size());
-printf("string的长度为%d", strlen(s.data()));
+printf("string的长度为%d", strlen(s.c_str()));
 printf("string的长度为%d", s.length());
 ```
 
@@ -57,5 +57,5 @@ printf("字符a在%d位置出现", s.find('a'));
 `substr(pos, len)`，这个函数的参数是从哪个位置开始截取最多几个字符（如果从 `pos` 开始的后缀长度不足 `len` 则截取这个后缀）。
 
 ```cpp
-printf("这个字符串第1位开始的2个字符构成的子串是%s", s.substr(0, 2).data());
+printf("这个字符串第1位开始的2个字符构成的子串是%s", s.substr(0, 2).c_str());
 ```
