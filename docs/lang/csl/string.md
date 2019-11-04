@@ -20,7 +20,7 @@ author: johnvp22, lr1d
 
 下面介绍 `string` 的基本操作，具体可看 [C++ 文档](https://zh.cppreference.com/w/cpp/string/basic_string) 
 
-#### 定义
+### 声明
 
 ```cpp
 string s;
