@@ -16,7 +16,7 @@ author: johnvp22, lr1d
 
 和 `std::vector` 类似， `string` 重载了比较运算符，同样是按字典序比较的，所以我们可以直接调用 `std::sort` 对很多字符串进行排序。 `string` 的加法运算符可以直接拼接两个字符串或一个字符串和一个字符。
 
-###  使用方法
+### 使用方法
 
 下面介绍 `string` 的基本操作，具体可看 [C++ 文档](https://zh.cppreference.com/w/cpp/string/basic_string) 
 
@@ -31,9 +31,9 @@ string s;
 在 C 语言里，也有很多字符串的函数，但是它们的参数都是 char 指针类型的，所以在 C++ 里有两个函数能够转换 string 为 char 指针—— `data()` / `c_str()` （它们几乎是一样的，但最好使用 `c_str()` ，因为 `c_str()` 保证末尾有空字符，而 `data()` 则不保证），如：
 
 ```cpp
-printf("%s", s);             // 编译错误
-printf("%s", s.data());      // 编译通过，但是是 undefined behavior
-printf("%s", s.c_str());     // 一定能够正确输出
+printf("%s", s);          // 编译错误
+printf("%s", s.data());   // 编译通过，但是是 undefined behavior
+printf("%s", s.c_str());  // 一定能够正确输出
 ```
 
 #### 大小
@@ -57,5 +57,6 @@ printf("字符a在%d位置出现", s.find('a'));
  `substr(pos, len)` ，这个函数的参数是从哪个位置开始截取最多几个字符（如果从 `pos` 开始的后缀长度不足 `len` 则截取这个后缀）。
 
 ```cpp
-printf("从这个字符串的第二位开始的最多三个字符构成的子串是 %s", s.substr(1, 3).c_str());
+printf("从这个字符串的第二位开始的最多三个字符构成的子串是 %s",
+       s.substr(1, 3).c_str());
 ```
