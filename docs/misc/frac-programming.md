@@ -39,7 +39,7 @@ $$
 
 ### 模板
 
-> 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$ 。求一组 $w_i\in[0,1]$ ，最大化 $\displaystyle\frac{\sum a_i\times w_i}{\sum b_i\times w_i}$ 的值。
+> 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$ 。求一组 $w_i\in\{0,1\}$ ，最大化 $\displaystyle\frac{\sum a_i\times w_i}{\sum b_i\times w_i}$ 的值。
 
 把 $a_i-mid\times b_i$ 作为第 $i$ 个物品的权值，贪心地选所有权值大于 $0$ 的物品即可得到最大值。
 
@@ -133,7 +133,7 @@ inline bool check(double mid) {
 
 > 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$ 。
 >
-> 你需要确定一组 $w_i\in[0,1]$ ，使得 $\displaystyle\frac{\sum w_i\times a_i}{\sum w_i\times b_i}$ 最大。
+> 你需要确定一组 $w_i\in\{0,1\}$ ，使得 $\displaystyle\frac{\sum w_i\times a_i}{\sum w_i\times b_i}$ 最大。
 >
 > 要求 $\displaystyle\sum w_i\times b_i \geq W$ 。
 
