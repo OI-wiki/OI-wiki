@@ -2,7 +2,7 @@ author: greyqz, Ir1d, hsfzLZH1
 
 分数规划用来求一个分式的极值。
 
-形象一点就是，给出 $a_i$ 和 $b_i$ ，求一组 $w_i\in[0,1]$ ，最小化或最大化
+形象一点就是，给出 $a_i$ 和 $b_i$ ，求一组 $w_i\in\{0,1\}$ ，最小化或最大化
 
 $$
 \displaystyle\frac{\sum\limits_{i=1}^na_i\times w_i}{\sum\limits_{i=1}^nb_i\times w_i}
