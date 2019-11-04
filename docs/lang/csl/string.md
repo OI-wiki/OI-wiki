@@ -43,7 +43,7 @@ printf("%s", s.c_str());  // 一定能够正确输出
 ```cpp
 printf("string的长度为%d", s.size());
 printf("string的长度为%d", strlen(s.c_str()));
-printf("string的长度为%d", s.length());
+printf("s 的长度为 %d", s.length());
 ```
 
 #### 寻找某字符第一次出现的位置
