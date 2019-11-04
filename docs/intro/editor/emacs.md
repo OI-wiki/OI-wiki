@@ -89,6 +89,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
 在 home 目录下显示隐藏文件（Windows 系统在用户目录的 `AppData\Roaming` 目录下），".emacs" 就是配置文件（如果没有说明之前没保存），打开修改即可，如果有打开的 Emacs 需要重启 Emacs 生效。
 
 考场必备
+
 ```text
     ;;设置一键编译 可以自行添加参数 难背考场不建议使用 不建议依赖一键编译
     (defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))
@@ -112,6 +113,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
 ```
 
 ??? "完整配置"
+
 ```text
     ;;设置一键编译
     (defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))
