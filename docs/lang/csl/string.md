@@ -1,22 +1,22 @@
 author: johnvp22, lr1d
 
-##  `string` 
+##  `string` 是什么
 
- `std::string` 是在标准库 `<string>` （注意不是 C 语言中的 `<string.h>` 库）中提供的一个类，在库中的定义为 `basic_string<char>` 。
+ `std::string` 是在标准库 `<string>` （注意不是 C 语言中的 `<string.h>` 库）中提供的一个类，本质上是 `std::basic_string<char>` 的别称。
 
 ## 为什么要使用 `string` 
 
 在 C 语言中，提供了字符串的操作，但只能通过字符数组的方式来实现字符串。而 `string` 则是一个简单的类，使用简单，在 OI 竞赛中被广泛使用。并且相较于其他 STL 容器， `string` 的常数可以算是非常优秀的，基本与字符数组不相上下。
 
-####  `string` 可以动态分配空间
+###  `string` 可以动态分配空间
 
 和许多 STL 容器相同， `string` 能动态分配空间，这使得我们可以直接使用 `std::cin` 来输入，但其速度则同样较慢。这一点也同样让我们不必为内存而忧愁。
 
-####  `string` 重载了加法运算符和比较运算符
+###  `string` 重载了加法运算符和比较运算符
 
 和 `std::vector` 类似， `string` 重载了比较运算符，同样是按字典序比较的，所以我们可以直接调用 `std::sort` 对很多字符串进行排序。 `string` 的加法运算符可以直接拼接两个字符串或一个字符串和一个字符。
 
-###  `string` 操作
+###  使用方法
 
 下面介绍 `string` 的基本操作，具体可看 [C++ 文档](https://zh.cppreference.com/w/cpp/string/basic_string) 
 
@@ -32,8 +32,8 @@ string s;
 
 ```cpp
 printf("%s", s);             // 编译错误
-printf("%s", s.data())       // 编译通过，但是是 undefined behavior
-    printf("%s", s.c_str())  // 一定能够正确输出
+printf("%s", s.data());      // 编译通过，但是是 undefined behavior
+printf("%s", s.c_str());     // 一定能够正确输出
 ```
 
 #### 大小
@@ -57,5 +57,5 @@ printf("字符a在%d位置出现", s.find('a'));
  `substr(pos, len)` ，这个函数的参数是从哪个位置开始截取最多几个字符（如果从 `pos` 开始的后缀长度不足 `len` 则截取这个后缀）。
 
 ```cpp
-printf("这个字符串第1位开始的2个字符构成的子串是%s", s.substr(0, 2).c_str());
+printf("从这个字符串的第二位开始的最多三个字符构成的子串是 %s", s.substr(1, 3).c_str());
 ```
