@@ -1,6 +1,6 @@
 author: akakw1, Ir1d, partychicken
 
-## Emacs入门教程
+## Emacs 入门教程
 
 15 分钟入门 Emacs
 
@@ -20,7 +20,7 @@ Emacs 是一款非常容易上手的编辑器，只需要简短的几行配置�
 
 使用快捷键 M-x（Alt+x）或者右 Ctrl 左边的第一个键（不是 windows 键）可以打开命令输入，输入完按下回车可以执行命令。
 
-通常我们使用`es`或者`eshell`命令来打开 eshell（类似一个终端）。
+通常我们使用 `es` 或者 `eshell` 命令来打开 eshell（类似一个终端）。
 
 #### 缓冲 (buffer)
 
@@ -58,16 +58,16 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
 
 由于快捷键过多，所以 Emacs 快捷键的使用不同于我们的操作系统，一般有以下三种：
 
--   `F?`、`ESC`：直接按下对应的功能键
--   `M-?`、`C-?`、`C-M-?`：按下`Alt`或者`Ctrl`（`M-`对应`Alt`，`C-`对应`Ctrl`）的同时按下`?`
--   `? ?`：先按下第一个`?`代表的键，松开再按下第二个`?`代表的键
+-    `F?` 、 `ESC` ：直接按下对应的功能键
+-    `M-?` 、 `C-?` 、 `C-M-?` ：按下 `Alt` 或者 `Ctrl` （ `M-` 对应 `Alt` ， `C-` 对应 `Ctrl` ）的同时按下 `?` 
+-    `? ?` ：先按下第一个 `?` 代表的键，松开再按下第二个 `?` 代表的键
 
 下面是一些常用的快捷键：
 
--   `C-x h`：全选
--   `C-x left`、`C-x right`：切换到上/下一个缓冲
--   `C-x d`：打开一个目录
--   `C-x C-f`：打开一个文件（如果不存在文件则新建文件）
+-    `C-x h` ：全选
+-    `C-x left` 、 `C-x right` ：切换到上/下一个缓冲
+-    `C-x d` ：打开一个目录
+-    `C-x C-f` ：打开一个文件（如果不存在文件则新建文件）
 
 ### 个性化
 
@@ -77,119 +77,117 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
 
 #### 直接设置
 
--   Options：`Highlight Matching Parentheses`高亮匹配括号
--   Options：`Blink Cursor`设置光标闪烁
--   Options Show/Hide：`Tool Bar`显示/不显示工具栏（默认显示，建议不显示）
--   Options：`Use CUA Keys`勾选后可以使用 Ctrl + C,Ctrl + V 等快捷键进行复制粘贴
--   Options Customize-Emacs：`Custom Theme`选择配色方案，选择完后需要点击保存
--   Options：`Save Options`**保存配置**
+-   Options： `Highlight Matching Parentheses` 高亮匹配括号
+-   Options： `Blink Cursor` 设置光标闪烁
+-   Options Show/Hide： `Tool Bar` 显示/不显示工具栏（默认显示，建议不显示）
+-   Options： `Use CUA Keys` 勾选后可以使用 Ctrl + C,Ctrl + V 等快捷键进行复制粘贴
+-   Options Customize-Emacs： `Custom Theme` 选择配色方案，选择完后需要点击保存
+-   Options： `Save Options`  **保存配置** 
 
 #### 配置
 
-在 home 目录下显示隐藏文件（Windows 系统在用户目录的`AppData\Roaming`目录下），".emacs" 就是配置文件（如果没有说明之前没保存），打开修改即可，如果有打开的 Emacs 需要重启 Emacs 生效。
+在 home 目录下显示隐藏文件（Windows 系统在用户目录的 `AppData\Roaming` 目录下），".emacs" 就是配置文件（如果没有说明之前没保存），打开修改即可，如果有打开的 Emacs 需要重启 Emacs 生效。
 
 考场必备
-```
-;;设置一键编译 可以自行添加参数 难背考场不建议使用 不建议依赖一键编译
-(defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))
-(global-set-key [f9] 'compile-file)
-;;;;设置编译快捷键（如果设置了一键编译不要与一键编译冲突）
-;;(global-set-key [f9] 'compile)
 
-(global-set-key (kbd "C-a") 'mark-whole-buffer) ;;全选快捷键
-(global-set-key (kbd "C-z") 'undo) ;;撤销快捷键
-(global-set-key [f10] 'gud-gdb) ;;GDB调试快捷键
-(global-set-key (kbd "RET") 'newline-and-indent) ;;换行自动缩进
-(global-set-key (kbd "C-s") 'save-buffer) ;;设置保存快捷键
-(setq-default kill-ring-max 65535) ;;扩大可撤销记录
+    ;;设置一键编译 可以自行添加参数 难背考场不建议使用 不建议依赖一键编译
+    (defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))
+    (global-set-key [f9] 'compile-file)
+    ;;;;设置编译快捷键（如果设置了一键编译不要与一键编译冲突）
+    ;;(global-set-key [f9] 'compile)
 
-;;C++ 代码风格 一般控制缩进规则
-;;;"bsd" 所有大括号换行
-;;;"java" 所有大括号不换行。else 接在右大括号后面
-;;;"awk" 只有命名空间旁、定义类、定义函数时的大括号换行。else 接在右大括号后面
-;;;"linux" 只有命名空间旁、定义类、定义函数时的大括号换行。else 接在右大括号后面。一般来说，这个风格应该有 8 格的空格缩进
-(setq-default c-default-style "awk")
-```
+    (global-set-key (kbd "C-a") 'mark-whole-buffer) ;;全选快捷键
+    (global-set-key (kbd "C-z") 'undo) ;;撤销快捷键
+    (global-set-key [f10] 'gud-gdb) ;;GDB调试快捷键
+    (global-set-key (kbd "RET") 'newline-and-indent) ;;换行自动缩进
+    (global-set-key (kbd "C-s") 'save-buffer) ;;设置保存快捷键
+    (setq-default kill-ring-max 65535) ;;扩大可撤销记录
+
+    ;;C++ 代码风格 一般控制缩进规则
+    ;;;"bsd" 所有大括号换行
+    ;;;"java" 所有大括号不换行。else 接在右大括号后面
+    ;;;"awk" 只有命名空间旁、定义类、定义函数时的大括号换行。else 接在右大括号后面
+    ;;;"linux" 只有命名空间旁、定义类、定义函数时的大括号换行。else 接在右大括号后面。一般来说，这个风格应该有 8 格的空格缩进
+    (setq-default c-default-style "awk")
 
 ??? "完整配置"
-```
-;;设置一键编译
-(defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))
-(global-set-key [f9] 'compile-file)
-;;;;设置编译快捷键（如果设置了一键编译不要与一键编译冲突）
-;;(global-set-key [f9] 'compile)
 
-;;考场必备
-(global-set-key (kbd "C-a") 'mark-whole-buffer) ;;全选快捷键
-(global-set-key (kbd "C-z") 'undo) ;;撤销快捷键
-(global-set-key [f10] 'gud-gdb) ;;GDB调试快捷键
-(global-set-key (kbd "RET") 'newline-and-indent) ;;换行自动缩进
-(global-set-key (kbd "C-s") 'save-buffer) ;;设置保存快捷键
-(setq-default kill-ring-max 65535) ;;扩大可撤销记录
+    ;;设置一键编译
+    (defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))
+    (global-set-key [f9] 'compile-file)
+    ;;;;设置编译快捷键（如果设置了一键编译不要与一键编译冲突）
+    ;;(global-set-key [f9] 'compile)
 
-;;设置缩进
-;;;C++ 代码缩进长度。
-(setq-default c-basic-offset 4)
-;;;使用 tab 缩进
-(setq-default indent-tabs-mode t)
-;;;tab 的长度。务必和缩进长度一致
-(setq-default default-tab-width 4)
-(setq-default tab-width 4)
+    ;;考场必备
+    (global-set-key (kbd "C-a") 'mark-whole-buffer) ;;全选快捷键
+    (global-set-key (kbd "C-z") 'undo) ;;撤销快捷键
+    (global-set-key [f10] 'gud-gdb) ;;GDB调试快捷键
+    (global-set-key (kbd "RET") 'newline-and-indent) ;;换行自动缩进
+    (global-set-key (kbd "C-s") 'save-buffer) ;;设置保存快捷键
+    (setq-default kill-ring-max 65535) ;;扩大可撤销记录
 
-;;设置默认编码环境
-(set-language-environment "UTF-8")
-(set-default-coding-systems 'utf-8)
+    ;;设置缩进
+    ;;;C++ 代码缩进长度。
+    (setq-default c-basic-offset 4)
+    ;;;使用 tab 缩进
+    (setq-default indent-tabs-mode t)
+    ;;;tab 的长度。务必和缩进长度一致
+    (setq-default default-tab-width 4)
+    (setq-default tab-width 4)
 
-;;不显示欢迎页面
-(setq-default inhibit-startup-screen t)
+    ;;设置默认编码环境
+    (set-language-environment "UTF-8")
+    (set-default-coding-systems 'utf-8)
 
-;;设置标题
-(setq-default frame-title-format "")
+    ;;不显示欢迎页面
+    (setq-default inhibit-startup-screen t)
 
-;;显示行号
-(global-linum-mode t)
+    ;;设置标题
+    (setq-default frame-title-format "")
 
-;;高亮
-(global-hl-line-mode 1);;高亮当前行
-(show-paren-mode t);;高亮匹配括号
-(global-font-lock-mode t);;语法高亮
+    ;;显示行号
+    (global-linum-mode t)
 
-;;允许emacs和外部其他程序的粘贴 好像默认允许
-(setq-default x-select-enable-clipboard t)
+    ;;高亮
+    (global-hl-line-mode 1);;高亮当前行
+    (show-paren-mode t);;高亮匹配括号
+    (global-font-lock-mode t);;语法高亮
 
-;;设置字体是 Ubuntu Mono 的 16 号
-(set-default-font "Ubuntu Mono-16")
+    ;;允许emacs和外部其他程序的粘贴 好像默认允许
+    (setq-default x-select-enable-clipboard t)
 
-;;鼠标滚轮支持
-(mouse-wheel-mode t)
+    ;;设置字体是 Ubuntu Mono 的 16 号
+    (set-default-font "Ubuntu Mono-16")
 
-;;设置光标形状为竖线（默认为方块）
-(setq-default cursor-type 'bar)
+    ;;鼠标滚轮支持
+    (mouse-wheel-mode t)
 
-;;回答 yes/no 改成回答 y/n
-(fset 'yes-or-no-p 'y-or-n-p)
+    ;;设置光标形状为竖线（默认为方块）
+    (setq-default cursor-type 'bar)
 
-;;透明度
-(set-frame-parameter (selected-frame) 'alpha (list 85 60))
-(add-to-list 'default-frame-alist (cons 'alpha (list 85 60)))
+    ;;回答 yes/no 改成回答 y/n
+    (fset 'yes-or-no-p 'y-or-n-p)
 
-;;优化页面滚动
-(setq-default scroll-margin 3 scroll-conservatively 10000)
+    ;;透明度
+    (set-frame-parameter (selected-frame) 'alpha (list 85 60))
+    (add-to-list 'default-frame-alist (cons 'alpha (list 85 60)))
 
-;;优化文件树结构
-(ido-mode t)
+    ;;优化页面滚动
+    (setq-default scroll-margin 3 scroll-conservatively 10000)
 
-;;deeper-blue 配色方案
-(custom-set-variables
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
-;;启动 Ctrl-x Ctrl-c Ctrl-v = 剪切 复制 粘贴
- '(cua-mode t nil (cua-base))
- '(custom-enabled-themes (quote (deeper-blue)))
- '(show-paren-mode t)
-;;隐藏工具栏
- '(tool-bar-mode nil))
-(custom-set-faces)
-```
+    ;;优化文件树结构
+    (ido-mode t)
+
+    ;;deeper-blue 配色方案
+    (custom-set-variables
+     '(ansi-color-faces-vector
+       [default default default italic underline success warning error])
+     '(ansi-color-names-vector
+       ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
+    ;;启动 Ctrl-x Ctrl-c Ctrl-v = 剪切 复制 粘贴
+     '(cua-mode t nil (cua-base))
+     '(custom-enabled-themes (quote (deeper-blue)))
+     '(show-paren-mode t)
+    ;;隐藏工具栏
+     '(tool-bar-mode nil))
+    (custom-set-faces)
