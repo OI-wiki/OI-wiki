@@ -42,7 +42,7 @@ printf("%s", s.c_str());  // 一定能够正确输出
 
 ```cpp
 printf("s 的长度为 %d", s.size());
-printf("string的长度为%d", strlen(s.c_str()));
+printf("s 的长度为 %d", strlen(s.c_str()));
 printf("s 的长度为 %d", s.length());
 ```
 
