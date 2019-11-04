@@ -49,7 +49,9 @@ printf("s 的长度为 %d", s.length());
 #### 寻找某字符第一次出现的位置
 
 ```cpp
-printf("字符a在%d位置出现", s.find('a'));
+printf("字符 a 在 s 的 %d 位置第一次出现", s.find('a'));
+printf("字符串 t 在 s 的 %d 位置第一次出现", s.find(t));
+printf("在 s 中自 pos 位置起字符串 t 第一次出现在 %d 位置", s.find(t, pos));
 ```
 
 #### 截取子串
