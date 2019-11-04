@@ -41,7 +41,7 @@ printf("%s", s.c_str());  // 一定能够正确输出
 很多函数可以返回 string 的长度：
 
 ```cpp
-printf("string的长度为%d", s.size());
+printf("s 的长度为 %d", s.size());
 printf("string的长度为%d", strlen(s.c_str()));
 printf("s 的长度为 %d", s.length());
 ```
