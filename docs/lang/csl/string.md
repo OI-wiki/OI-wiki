@@ -23,7 +23,7 @@ author: johnvp22, lr1d
 ### 声明
 
 ```cpp
-string s;
+std::string s;
 ```
 
 #### 转 char 数组
