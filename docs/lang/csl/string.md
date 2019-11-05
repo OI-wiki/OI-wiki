@@ -36,7 +36,7 @@ printf("%s", s.data());   // 编译通过，但是是 undefined behavior
 printf("%s", s.c_str());  // 一定能够正确输出
 ```
 
-#### 大小
+### 获取长度
 
 很多函数可以返回 string 的长度：
 
