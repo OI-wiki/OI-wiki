@@ -26,7 +26,7 @@ author: johnvp22, lr1d
 std::string s;
 ```
 
-#### 转 char 数组
+### 转 char 数组
 
 在 C 语言里，也有很多字符串的函数，但是它们的参数都是 char 指针类型的，所以在 C++ 里有两个函数能够转换 string 为 char 指针—— `data()` / `c_str()` （它们几乎是一样的，但最好使用 `c_str()` ，因为 `c_str()` 保证末尾有空字符，而 `data()` 则不保证），如：
 
