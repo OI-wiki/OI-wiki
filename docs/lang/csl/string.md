@@ -10,15 +10,15 @@ author: johnvp22, lr1d
 
 ###  `string` 可以动态分配空间
 
-和许多 STL 容器相同， `string` 能动态分配空间，这使得我们可以直接使用 `std::cin` 来输入，但其速度则同样较慢。这一点也同样让我们不必为内存而忧愁。
+和许多 STL 容器相同， `string` 能动态分配空间，这使得我们可以直接使用 `std::cin` 来输入，但其速度则同样较慢。这一点也同样让我们不必为内存而烦恼。
 
 ###  `string` 重载了加法运算符和比较运算符
 
-和 `std::vector` 类似， `string` 重载了比较运算符，同样是按字典序比较的，所以我们可以直接调用 `std::sort` 对很多字符串进行排序。 `string` 的加法运算符可以直接拼接两个字符串或一个字符串和一个字符。
+ `string` 的加法运算符可以直接拼接两个字符串或一个字符串和一个字符。和 `std::vector` 类似， `string` 重载了比较运算符，同样是按字典序比较的，所以我们可以直接调用 `std::sort` 对若干字符串进行排序。
 
-### 使用方法
+## 使用方法
 
-下面介绍 `string` 的基本操作，具体可看 [C++ 文档](https://zh.cppreference.com/w/cpp/string/basic_string) 
+下面介绍 `string` 的基本操作，具体可看 [C++ 文档](https://zh.cppreference.com/w/cpp/string/basic_string) 。
 
 ### 声明
 
@@ -28,7 +28,7 @@ std::string s;
 
 ### 转 char 数组
 
-在 C 语言里，也有很多字符串的函数，但是它们的参数都是 char 指针类型的，所以在 C++ 里有两个函数能够转换 string 为 char 指针—— `data()` / `c_str()` （它们几乎是一样的，但最好使用 `c_str()` ，因为 `c_str()` 保证末尾有空字符，而 `data()` 则不保证），如：
+在 C 语言里，也有很多字符串的函数，但是它们的参数都是 char 指针类型的，为了方便使用，`string` 有两个成员函数能够将自己转换为 char 指针—— `data()` / `c_str()` （它们几乎是一样的，但最好使用 `c_str()` ，因为 `c_str()` 保证末尾有空字符，而 `data()` 则不保证），如：
 
 ```cpp
 printf("%s", s);          // 编译错误
@@ -38,12 +38,12 @@ printf("%s", s.c_str());  // 一定能够正确输出
 
 ### 获取长度
 
-很多函数可以返回 string 的长度：
+很多函数都可以返回 string 的长度：
 
 ```cpp
 printf("s 的长度为 %d", s.size());
-printf("s 的长度为 %d", strlen(s.c_str()));
 printf("s 的长度为 %d", s.length());
+printf("s 的长度为 %d", strlen(s.c_str()));
 ```
 
 ???+note "这些函数的复杂度"
@@ -61,7 +61,7 @@ printf("在 s 中自 pos 位置起字符串 t 第一次出现在 %d 位置", s.f
 
 #### 截取子串
 
- `substr(pos, len)` ，这个函数的参数是从哪个位置开始截取最多几个字符（如果从 `pos` 开始的后缀长度不足 `len` 则截取这个后缀）。
+ `substr(pos, len)` ，这个函数的参数是从 `pos` 位置开始截取最多 `len` 个字符（如果从 `pos` 开始的后缀长度不足 `len` 则截取这个后缀）。
 
 ```cpp
 printf("从这个字符串的第二位开始的最多三个字符构成的子串是 %s",
