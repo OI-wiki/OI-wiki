@@ -72,36 +72,7 @@ for (int i = 1; i <= n; i++)
 
 ### 为什么不用记忆化搜索
 
-是不是看着这个题目和前面的记忆化搜索很相似，前面是总采药时间，这里是总背包大小，前面是每种药的采集时间，这里是每个物品的体积，所以采用二维数组进行记录，然后很荣幸得 MLE, **因为这里可以滚动数组** （见上面的例题代码），以及可以看看 MLE 的记忆化搜索代码
-??? 记忆化搜索代码会 MLE
-
-    ```cpp
-    #include<bits/stdc++.h>
-    using namespace std;
-    // 魔改解决01背包问题
-    const int N = 3403;
-    const int M = 12881;
-
-    int n, t;
-    int tcost[N], mget[N];
-    int mem[N][M];
-    int dfs(int pos, int tleft) {
-      if (mem[pos][tleft] != -1) return mem[pos][tleft];
-      if (pos == n + 1) return mem[pos][tleft] = 0;
-      int dfs1, dfs2 = -2;
-      dfs1 = dfs(pos + 1, tleft);
-      if (tleft >= tcost[pos]) dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];
-      return mem[pos][tleft] = max(dfs1, dfs2);
-    }
-    int main() {
-      memset(mem, -1, sizeof(mem));
-      // cin >> t >> n;
-      cin >> n >> t;
-      for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
-      cout << dfs(1, t) << endl;
-      return 0;
-    }
-    ```
+是不是看着这个题目和前面的记忆化搜索很相似，前面是总采药时间，这里是总背包大小，前面是每种药的采集时间，这里是每个物品的体积，所以采用二维数组进行记录，然后会 MLE, **因为这里可以滚动数组** （见上面的例题代码）
 
 ## 完全背包
 
