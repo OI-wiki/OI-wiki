@@ -18,7 +18,7 @@ Emacs 是一款非常容易上手的编辑器，只需要简短的几行配置�
 
 命令在 Emacs 中有很大的作用，但是由于一般用快捷键代替输入命令，所以这里只简单介绍一下。
 
-使用快捷键 M-x（Alt+x）或者右 Ctrl 左边的第一个键（不是 windows 键）可以打开命令输入，输入完按下回车可以执行命令。
+使用右 Ctrl 左边的第一个键（不是 windows 键，在 windows 系统下需要手动设置这个键）或者快捷键 M-x（Alt+x）可以打开命令输入，输入完按下回车可以执行命令。
 
 通常我们使用 `es` 或者 `eshell` 命令来打开 eshell（类似一个终端）。
 
@@ -54,7 +54,7 @@ Emacs 是一款非常容易上手的编辑器，只需要简短的几行配置�
 
 #### 快捷键
 
-Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，同时你也可以在配置中自定义快捷键或者设置键盘的映射。
+Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，同时你也可以在配置中自定义快捷键或者设置快捷键的映射。
 
 由于快捷键过多，所以 Emacs 快捷键的使用不同于我们的操作系统，一般有以下三种：
 
@@ -86,7 +86,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
 
 #### 配置
 
-在 home 目录下显示隐藏文件（Windows 系统在用户目录的 `AppData\Roaming` 目录下），".emacs" 就是配置文件（如果没有说明之前没保存），打开修改即可，如果有打开的 Emacs 需要重启 Emacs 生效。
+在 home 目录下显示隐藏文件（Windows 系统在**用户目录**的 `AppData\Roaming` 目录下），".emacs" 就是配置文件（如果没有说明之前没保存），打开修改即可，如果有打开的 Emacs 需要重启 Emacs 生效。
 
 考场必备
 
@@ -128,6 +128,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
     (global-set-key (kbd "RET") 'newline-and-indent) ;;换行自动缩进
     (global-set-key (kbd "C-s") 'save-buffer) ;;设置保存快捷键
     (setq-default kill-ring-max 65535) ;;扩大可撤销记录
+    ;;(define-key key-translation-map [apps] (kbd "M-x")) ;; windows 系统下设置命令快捷键
 
     ;;设置缩进
     ;;;C++ 代码缩进长度。
@@ -159,8 +160,9 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
     ;;允许emacs和外部其他程序的粘贴 好像默认允许
     (setq-default x-select-enable-clipboard t)
 
-    ;;设置字体是 Ubuntu Mono 的 16 号
+    ;;设置字体是 Ubuntu Mono 的 16 号，如果字体不存在会报错
     (set-default-font "Ubuntu Mono-16")
+    ;(set-default-font "Consolas-16") ;; windows 系统请用这条
 
     ;;鼠标滚轮支持
     (mouse-wheel-mode t)
@@ -175,23 +177,46 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
     (set-frame-parameter (selected-frame) 'alpha (list 85 60))
     (add-to-list 'default-frame-alist (cons 'alpha (list 85 60)))
 
-    ;;优化页面滚动
+    ;;减少页面滚动的行数，防止整页地滚动
     (setq-default scroll-margin 3 scroll-conservatively 10000)
 
     ;;优化文件树结构
     (ido-mode t)
 
-    ;;deeper-blue 配色方案
+    ;;配色方案
+    (setq default-frame-alist
+             '((vertical-scroll-bars)
+               (top . 25)
+               (left . 45)
+               (width . 120)
+               (height . 40)
+               (background-color . "grey15")
+               (foreground-color . "grey")
+               (cursor-color . "gold1")
+               (mouse-color . "gold1")
+               (tool-bar-lines . 0)
+               (menu-bar-lines . 1)
+               (scroll-bar-lines . 0)
+               (right-fringe)
+               (left-fringe)))
+
+    (set-face-background 'highlight "gray5")
+    (set-face-foreground 'region "cyan")
+    (set-face-background 'region "blue")
+    (set-face-foreground 'secondary-selection "skyblue")
+    (set-face-background 'secondary-selection "darkblue")
+    (set-cursor-color "wheat")
+    (set-mouse-color "wheat")
+    
     (custom-set-variables
      '(ansi-color-faces-vector
        [default default default italic underline success warning error])
-     '(ansi-color-names-vector
-       ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
     ;;启动 Ctrl-x Ctrl-c Ctrl-v = 剪切 复制 粘贴
      '(cua-mode t nil (cua-base))
-     '(custom-enabled-themes (quote (deeper-blue)))
      '(show-paren-mode t)
     ;;隐藏工具栏
      '(tool-bar-mode nil))
+    ;;关闭光标闪烁
+     '(blink-cursor-mode nil)
     (custom-set-faces)
 ```
