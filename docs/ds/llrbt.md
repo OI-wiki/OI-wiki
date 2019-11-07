@@ -130,8 +130,6 @@
       }
       return root;
     }
-    ```
-
     template<class Key, class Compare>
     typename Set<Key, Compare>::Node *
     Set<Key, Compare>::delete_min(Set::Node *root) const {
@@ -205,7 +203,6 @@
     template <class Key, class Compare = std::less<Key>>
     class Set {
      private:
-    ```
 
       enum NodeColor {
         kBlack = 0, kRed = 1
