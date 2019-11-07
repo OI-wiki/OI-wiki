@@ -403,13 +403,13 @@ extra:
   pagetime: 'on'
   manifest: 'manifest.webmanifest'
   githash: ''
-  notice:
-    title: 'Hi'
-    message: '欢迎点击这里对 OI Wiki 提一点建议'
-    url: 'https://wj.qq.com/s2/4467592/b1e9'
-    position: 'topCenter'
-    progressBar: false
-    timeout: false
+  # notice:
+  #   title: 'Hi'
+  #   message: '欢迎点击这里对 OI Wiki 提一点建议'
+  #   url: 'https://wj.qq.com/s2/4467592/b1e9'
+  #   position: 'topCenter'
+  #   progressBar: false
+  #   timeout: false
 
 extra_javascript:
   - '_static/js/extra.js?v=15'
