@@ -19,7 +19,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ，QQ 群号码为 [ `58
 举个栗子，假如我想要修改一个页面内容，应该怎么操作呢？
 
 1.  在 OI Wiki 网站上找到对应页面。
-2.  点击 正文右上方、目录左侧的 **“编辑此页”** <i class="md-icon">edit</i>按钮。
+2.  点击 正文右上方、目录左侧的 **“编辑此页”** <i class="md-icon">edit</i>按钮，在阅读了 [如何贡献](./htc.md) 后点击“开始编辑”按钮。
 3.  （应该已经跳转到了 GitHub 上的对应页面吧？）这时候右上方还会有一个 **“编辑此页”** <i class="md-icon">edit</i>的按钮，点击它就可以在线编辑了。
 4.  写好了之后点下方的绿色按钮（Propose file change），可能会提示没有权限。不必担心！GitHub 会自动帮你 fork 一份项目的文件并创建 Pull Request。
 5.  之后点上方的绿色按钮（Create pull request）后，再点一下出现的绿色按钮（Create pull request）。
@@ -64,7 +64,7 @@ PR 标题示例：
 
 ### 如何修改一个 topic 的内容
 
-在对应页面右上方有一个编辑按钮<i class="md-icon">edit</i>，点击之后会跳转到 GitHub 上对应文件的位置。
+在对应页面右上方有一个编辑按钮<i class="md-icon">edit</i>，点击并确认阅读了 [如何贡献](./htc.md) 之后会跳转到 GitHub 上对应文件的位置。
 
 或者也可以自行阅读目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 查找文件位置。
 
