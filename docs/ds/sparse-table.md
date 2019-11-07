@@ -2,7 +2,7 @@
 
 ST 表是用于解决 `可重复贡献问题` 的数据结构，例如区间 RMQ。
 
-RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）值。解决 RMQ 问题的主要方法有两种，除本文所讲的 ST 表以外，也可用 [线段树](https://oi-wiki.org/ds/seg/) 解决。
+RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）值。解决 RMQ 问题有很多种方法，可以参考 [RMQ 专题](../topic/rmq.md)
 
 ## 引入
 
