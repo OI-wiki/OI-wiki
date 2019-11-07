@@ -16,7 +16,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 ## ST 表
 
-ST 表基于 [倍增](https://oi-wiki.org/basic/binary-acc/) 思想，可以做到 $\Theta(n\log n)$ 预处理， $\Theta(1)$ 回答每个询问。但是不支持修改操作。
+ST 表基于 [倍增](../basic/binary-acc.md) 思想，可以做到 $\Theta(n\log n)$ 预处理， $\Theta(1)$ 回答每个询问。但是不支持修改操作。
 
 基于倍增思想，我们考虑如何求出区间最大值。可以发现，如果按照一般的倍增流程，每次跳 $2^i$ 步的话，询问时的复杂度仍旧是 $\Theta(\log n)$ ，并没有比线段树更优，反而预处理一步还比线段树慢。
 
