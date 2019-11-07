@@ -74,7 +74,6 @@
       root->size = size(root->lc) + size(root->rc) + 1;
       return root;
     }
-    ```
 
     template<class Key, class Compare>
     typename Set<Key, Compare>::Node *
@@ -130,7 +129,6 @@
       }
       return root;
     }
-    ```
 
     template<class Key, class Compare>
     typename Set<Key, Compare>::Node *
@@ -190,8 +188,6 @@
         }
       }
       return fix_up(root);
-    ```
-
     }
     ```
 
@@ -204,8 +200,6 @@
     #include <algorithm>
     #include <memory>
     #include <vector>
-    ```
-
     template<class Key, class Compare = std::less<Key>>
     class Set {
     private:
