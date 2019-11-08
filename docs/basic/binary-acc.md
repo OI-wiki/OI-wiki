@@ -73,7 +73,7 @@ int main() {
   int ans = 0;
   int curx = 1;
   for (int i = 0; m; ++i) {
-    if (m & (1 << i))  //参见位运算的相关内容，意为m的第i位是否为1
+    if (m & (1 << i))  // 参见位运算的相关内容，意为 m 的第 i 位是否为 1
     {
       ans = modadd(ans, sum[i][curx]);
       curx = go[i][curx];
