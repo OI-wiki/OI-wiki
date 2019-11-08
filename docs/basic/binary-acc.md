@@ -62,7 +62,7 @@ int main() {
   for (int i = 1; i <= logn; ++i) {
     for (int j = 1; j <= n; ++j)
     {
-      go[i][x] = go[i - 1][go[i - 1][x]];
+      go[i][j] = go[i - 1][go[i - 1][j]];
       sum[i][x] = modadd(sum[i - 1][x], sum[i - 1][go[i - 1][x]]);
     }
   }
