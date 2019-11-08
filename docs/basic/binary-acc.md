@@ -54,7 +54,7 @@ int main() {
   }
 
   for (int i = 1; i <= n; ++i) {
-    go[0][i] = (i + k) % n;
+    go[0][i] = (i + k) % n + 1;
     sum[0][i] = vi[i];
   }
 
