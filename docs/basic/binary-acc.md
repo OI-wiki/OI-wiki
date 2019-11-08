@@ -6,7 +6,7 @@ author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsf
 
 > 给出一个长度为 $n$ 的环和一个常数 $k$ ，每次会从第 $i$ 个点跳到第 $(i+k)\bmod n+1$ 个点，总共跳了 $m$ 次。每个点都有一个权值，记为 $a_i$ ，求 $m$ 次跳跃的起点的权值之和对 $10^9+7$ 取模的结果。
 >
-> 数据范围： $1\leq n\leq 10^6$, $1\leq m\leq 10^{18}$, $1\leq k\leq n$ , $0\le a_i\le 10^9$ 。
+> 数据范围： $1\leq n\leq 10^6$ , $1\leq m\leq 10^{18}$ , $1\leq k\leq n$ , $0\le a_i\le 10^9$ 。
 
 这里，显然不能暴力模拟跳 $m$ 次。因为 $m$ 最大可到 $10^{18}$ 级别，如果暴力模拟的话，时间承受不住。
 
@@ -28,18 +28,17 @@ author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsf
 
 当然，还有一些实现细节需要注意。为了保证统计的时候不重不漏，我们一般预处理出“左闭右开”的点权和。亦即，对于跳 1 步的情况，我们只记录该点的点权和；对于跳 2 步的情况，我们只记录该点及其下一个点的点权和。相当于，总是不将终点的点权和计入 sum。这样，在预处理的时候，只需要将两部分的点权和直接相加就可以了，不需要担心第一段的终点和第二段的起点会被重复计算。
 
-??? note “样例代码”
+??? note“样例代码”
+
 ```cpp
 #include <cstdio>
 using namespace std;
 
 #define mod 1000000007
 
-int modadd(int a,int b)
-{
-	if(a+b>=mod)
-		return a+b-mod; //减法代替取模，加快运算
-	return a+b;
+int modadd(int a, int b) {
+  if (a + b >= mod) return a + b - mod;  //减法代替取模，加快运算
+  return a + b;
 }
 
 int vi[1000005];
@@ -47,51 +46,46 @@ int vi[1000005];
 int go[75][1000005];  //将数组稍微开大以避免越界，小的一维尽量定义在前面
 int sum[75][1000005];
 
-int main()
-{
-	int n,k;
-	scanf("%d%d",&n,&k);
-	for(int i=1; i<=n; ++i)
-	{
-		scanf("%d",vi+i);
-	}
+int main() {
+  int n, k;
+  scanf("%d%d", &n, &k);
+  for (int i = 1; i <= n; ++i) {
+    scanf("%d", vi + i);
+  }
 
-	for(int i=1; i<=n; ++i)
-	{
-		go[0][i] = (i+k)%n;
-		sum[0][i] = vi[i];
-	}
+  for (int i = 1; i <= n; ++i) {
+    go[0][i] = (i + k) % n;
+    sum[0][i] = vi[i];
+  }
 
-	int logn = 31-__builtin_clz(n); //一个快捷的取对数的方法
-	for(int i=1; i<=logn; ++i)
-	{
-		for(int x=1; x<=n; ++x) //实际上很少使用x作为循环变量，更多的是使用j
-		{
-			go[i][x] = go[i-1][go[i-1][x]];
-			sum[i][x] = modadd(sum[i-1][x], sum[i-1][go[i-1][x]]);
-		}
-	}
+  int logn = 31 - __builtin_clz(n);  //一个快捷的取对数的方法
+  for (int i = 1; i <= logn; ++i) {
+    for (int x = 1; x <= n; ++x)  //实际上很少使用x作为循环变量，更多的是使用j
+    {
+      go[i][x] = go[i - 1][go[i - 1][x]];
+      sum[i][x] = modadd(sum[i - 1][x], sum[i - 1][go[i - 1][x]]);
+    }
+  }
 
-	long long m;
-	scanf("%lld",&m);
-	
-	int ans = 0;
-	int curx = 1;
-	for(int i=0; m; ++i)
-	{
-		if(m&(1<<i)) //参见位运算的相关内容，意为m的第i位是否为1
-		{
-			ans = modadd(ans,sum[i][curx]);
-			curx = go[i][curx];
-			m ^= 1<<i; //将第i位置零
-		}
-	}
+  long long m;
+  scanf("%lld", &m);
 
-	printf("%d\n",ans);
+  int ans = 0;
+  int curx = 1;
+  for (int i = 0; m; ++i) {
+    if (m & (1 << i))  //参见位运算的相关内容，意为m的第i位是否为1
+    {
+      ans = modadd(ans, sum[i][curx]);
+      curx = go[i][curx];
+      m ^= 1 << i;  //将第i位置零
+    }
+  }
+
+  printf("%d\n", ans);
 }
 ```
 
-这题的 $m\leq 10^{18}$ ，虽然看似恐怖，但是实际上只需要预处理出 $65$ 以内的 $i$，就可以轻松解决，比起暴力枚举快了很多。用行话讲，这个做法的 [时间复杂度](../misc/complexity.md) 是预处理 $\Theta(n\log m)$ ，查询每次 $\Theta(\log m)$ 。
+这题的 $m\leq 10^{18}$ ，虽然看似恐怖，但是实际上只需要预处理出 $65$ 以内的 $i$ ，就可以轻松解决，比起暴力枚举快了很多。用行话讲，这个做法的 [时间复杂度](../misc/complexity.md) 是预处理 $\Theta(n\log m)$ ，查询每次 $\Theta(\log m)$ 。
 
 倍增除了作为一种独立的思想以外，还经常被应用到各种算法里面，例如 LCA 和 RMQ 问题，可以在下面查看。
 
