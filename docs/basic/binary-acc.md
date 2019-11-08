@@ -77,7 +77,7 @@ int main() {
     {
       ans = modadd(ans, sum[i][curx]);
       curx = go[i][curx];
-      m ^= 1 << i;  //将第i位置零
+      m ^= 1ll << i;  // 将第 i 位置零
     }
   }
 
