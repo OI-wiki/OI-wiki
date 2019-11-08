@@ -34,7 +34,7 @@ author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsf
 #include <cstdio>
 using namespace std;
 
-#define mod 1000000007
+const int mod = 1000000007;
 
 int modadd(int a, int b) {
   if (a + b >= mod) return a + b - mod;  //减法代替取模，加快运算
