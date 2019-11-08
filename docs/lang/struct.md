@@ -1,5 +1,5 @@
 author: Ir1d, cjsoft, Lans1ot
-结构体（struct)，可以看做是一系列称为成员元素（变量、指针）的组合体。
+结构体（struct），可以看做是一系列称为成员元素（变量、指针）的组合体。
 
 可以看做是自定义的 [数据类型](./var.md) 。
 
@@ -21,7 +21,7 @@ Edge* c,C[];
 
 上例中定义了一个名为_Edge_的类型，有四个成员元素_u,v,w,nxt_。其中_u,v_的数据类型都为_int_，_nxt_是_int_型的指针，_w_的类型为_long long_。
 
-并在 **"}"** 后，定义了一个数据类型为_Edge_的数组_e_。当然，对于某种已经存在的类型，也可以使用第七行后中的方法进行定义 [常量](./var.md) 、 [变量](./var.md) 、 [指针](./pointer.md) 。
+并在 `}` 后，定义了一个数据类型为_Edge_的数组_e_。当然，对于某种已经存在的类型，也可以使用第七行后中的方法进行定义 [常量](./var.md) 、 [变量](./var.md) 、 [指针](./pointer.md) 。
 
 ### 定义结构体指针
 
@@ -40,96 +40,13 @@ struct Edge{
 
 ## 访问/修改成员元素
 
-对于数据类型为_Edge_的变量_var_，可以使用 **变量名 + "." + 成员元素名** 进行访问。
+对于数据类型为_Edge_的变量_var_，可以使用 `变量名 + "." + 成员元素名` 进行访问。
 
-如 : 打印_var_的_v_变量： **"cout&lt;&lt;val.v ;"。** 
+如 : 打印_var_的_v_变量： `cout<<val.v`。 
 
-对于数据类型为_Edge_的指针_ned_，可以使用 **指针名 + "->" + 成员元素名** 或者 使用 **(\*指针名）+ "." + 成员元素名** 进行访问。
+对于数据类型为_Edge_的指针_ned_，可以使用 `指针名 + "->" + 成员元素名` 或者 使用 `(*指针名） + "." + 成员元素名` 进行访问。
 
-如 : 修改_ned_的成员元素_nxt_，并将其赋值为_tmp_： **"(\*ned).nxt = tmp"或者"ned->nxt = tmp"** 。
-
-### 在实例化变量时设定初始值
-
-_以下内容属于类，请查看 [类](./class.md) 了解更多_
-
-为了完成这种操作，需要重载 **默认构造函数** (Default constructor)。
-
-```text
-struct Function_Name{
-    ...
-    Function_Name(...) ... {
-        ...
-    }
-};
-//Example:
-struct Edge{
-    int u,v;
-    long long w;
-    int* nxt;
-    Edge(){
-        u = 0; v = 0;
-        w = 0ll;
-        nxt = NULL;
-    }
-};
-```
-
-上例中重载了一个_Edge_的默认构造函数，该函数能够在我们实例化_Edge_类型变量时，将所有的成员元素初始化为 0 或者 NULL。
-
-若无重载默认构造函数，则编译器会自动定义一个默认构造函数（Default constructor)。
-
-如果需要自定义初始化的值，可以在重载默认构造函数时增加参数。
-
-```text
-struct Edge{
-    int u,v;
-    long long w;
-    int* nxt;
-    Edge(){
-        u = 0; v = 0;
-        w = 0ll;
-        nxt = NULL;
-    }
-    Edge(int _u, int _v, long long _w,int* _nxt){
-        u = _u; v = _v;
-        w = _w;
-        nxt = _nxt;
-    }
-};
-
-Edge A;
-Edge B(1,2,5ll,NULL);
-```
-
-如两个函数名相同但参数不相同，且在调用时不会出现混淆时，则编译器认为两个函数时不同的。
-
-并会根据调用时所填参数判断应调用函数。
-
-### 销毁
-
-这是一个不可避免的问题。每一个变量都将在作用范围结束走向销毁。
-
-但对于指针，如果用指针动态申请内存，则在指针销毁时，则不会返还之前申请的内存，便造成了内存泄漏（memory leak)。需要手动使用 delete 进行销毁。
-
-如果结构体的成员元素包含指针，同样会遇到这种问题。需要用到析构函数。
-
- **析构** 函数（Destructor）将会在该变量被销毁时被调用。重载的方法形同构造函数，但需要在前加 "~"
-
-```text
-struct Edge{
-    int u,v;
-    long long w;
-    int* nxt;
-    Edge(){
-        u = 0; v = 0;
-        w = 0ll;
-        nxt = NULL;
-    }
-    ~Edge(){
-        delete nxt;
-    }
-};
-```
+如 : 修改_ned_的成员元素_nxt_，并将其赋值为_tmp_： `(*ned).nxt = tmp`或者`ned->nxt = tmp` 。
 
 ## 更多的操作？
 
@@ -138,6 +55,4 @@ struct Edge{
 ## 参考资料
 
 1.   [cppreference class](https://zh.cppreference.com/w/cpp/language/class) 
-2.   [cppreference default_constructor](https://zh.cppreference.com/w/cpp/language/default_constructor) 
-3.   [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/) 
-4.   [cplusplus Special members](http://www.cplusplus.com/doc/tutorial/classes2/) 
+2.   [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/) 
