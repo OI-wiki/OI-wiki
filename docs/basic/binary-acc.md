@@ -36,7 +36,7 @@ author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsf
 
 RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）值。
 
-使用倍增解决 RMQ 问题的方法就是 [ST 表](/ds/sparse-table) ，除了 ST 表，还有 [线段树](/ds/seg) 也可以解决 RMQ 问题。
+使用倍增思想解决 RMQ 问题的方法是 [ST 表](../ds/sparse-table.md) ，解决 RMQ 问题的其它方法还可以参见 [RMQ 专题](../topic/rmq.md) 。
 
 ## 树上倍增求 LCA
 
