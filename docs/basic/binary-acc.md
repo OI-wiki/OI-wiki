@@ -4,7 +4,7 @@ author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsf
 
 ## 例题
 
-> 给出一个长度为 $n$ 的环和一个常数 $k$ ，第 $i$ 个点会跳到第 $(i+k)\bmod n+1$ 个点，总共跳了 $m$ 次。每个点都有一个权值，记为 $a_i$ ，可正可负，初始时权值为 $0$ ，求 $m$ 次跳跃之后的总权值。
+> 给出一个长度为 $n$ 的环和一个常数 $k$ ，每次会从第 $i$ 个点跳到第 $(i+k)\bmod n+1$ 个点，总共跳了 $m$ 次。每个点都有一个权值，记为 $a_i$ ，求 $m$ 次跳跃的起点的权值之和对 $10^9+7$ 取模的结果。
 >
 > 数据范围， $1\leq n\leq 10^6,1\leq m\leq 10^{18},1\leq k<n$ 
 
