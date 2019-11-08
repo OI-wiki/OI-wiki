@@ -10,21 +10,21 @@ Ps：C++ 中 `struct` 关键字定义的也是类，上文中的 **结构体** �
 类使用关键字 `class` 或者 `struct` 定义，下文以 `class` 举例。
 
 ```cpp
-class Class_Name{
-    ...
+class Class_Name {
+  ...
 };
 
-//Example:
-class Edge{
-    public:
-    int u,v;
-    long long w;
-    int* nxt;
-}e[];
+// Example:
+class Edge {
+ public:
+  int u, v;
+  long long w;
+  int* nxt;
+} e[];
 
 const Edge a;
-Edge b,B[];
-Edge* c,C[];
+Edge b, B[];
+Edge *c, C[];
 ```
 
 该例定义了一个名为 `Edge` 的类。该类拥有四个成员元素，其中 `u,v` 的数据类型都为 `int` ， `nxt` 是 `int` 型的指针， `w` 的类型为 `long long` 。
@@ -39,7 +39,7 @@ Edge* c,C[];
 -    `protected` ：该访问符之后的各个成员可以被 **类内** 或者派生类或者友元的成员访问，但类外 **不能访问** 。
 -    `private` ：该访问符之后的各个成员 **只能** 被 **类内** 成员或者友元的成员访问。
 
-对于 `struct` ，它的所有成员都是默认 `public` 。对于 `class` ， 它的所有成员都是默认 ` private ` 。
+对于 `struct` ，它的所有成员都是默认 `public` 。对于 `class` ，它的所有成员都是默认 `private` 。
 
 ### 定义同种类型的类指针
 
@@ -49,10 +49,10 @@ Edge* c,C[];
 
 ```cpp
 class Edge;
-class Edge{
-    int u,v;
-    long long w;
-    Edge* nxt;
+class Edge {
+  int u, v;
+  long long w;
+  Edge* nxt;
 };
 ```
 
@@ -72,35 +72,30 @@ class Edge{
 
 ??? note "常见成员函数举例。"
     ```cpp
-    vector.push_back()
-    set.insert()
-    queue.empty()
+    vector.push_back() set.insert() queue.empty()
     ```
 
 ```cpp
-class Class_Name{
-    ...
-    type Funciton_Name(...){
-        ...
-    }
+class Class_Name {
+  ... type Funciton_Name(...) { ... }
 };
 
-//Example:
-class Edge{
-    public:
-    int u,v;
-    long long w;
-    int* nxt;
-    void print(){
-        cout<<u<<" "<<v<<" "<<w<<" "<<nxt;
-        return ;
-    }
-    void change_w(int);
+// Example:
+class Edge {
+ public:
+  int u, v;
+  long long w;
+  int* nxt;
+  void print() {
+    cout << u << " " << v << " " << w << " " << nxt;
+    return;
+  }
+  void change_w(int);
 };
 
-void Edge::change_w(int _w){
-    w=_w;
-    return ;
+void Edge::change_w(int _w) {
+  w = _w;
+  return;
 }
 ```
 
@@ -115,28 +110,26 @@ void Edge::change_w(int _w){
 为完成这种操作，需要重载 **默认构造函数** (Default constructor)。
 
 ```cpp
-class Class_Name{
-    ...
-    Class_Name(...)...{
-        ...
-    }
+class Class_Name {
+  ... Class_Name(...)... { ... }
 };
 
-//Example:
-class Edge{
-    public:
-   	int u,v;
-    long long w;
-    int* nxt ;
-    Edge(){
-        u = 0; v = 0;
-        w = 0ll;
-        nxt = NU::
-    }
+// Example:
+class Edge {
+ public:
+  int u, v;
+  long long w;
+  int* nxt;
+  Edge() {
+    u = 0;
+    v = 0;
+    w = 0ll;
+    nxt = NU::
+  }
 };
 ```
 
-该例 **重载** 了 `Edge`的默认构造函数，该函数能够在我们实例化 `Edge` 类型变量时，将所有的成员元素初始化为 `0` 或者 `NULL` 。
+该例 **重载** 了 `Edge` 的默认构造函数，该函数能够在我们实例化 `Edge` 类型变量时，将所有的成员元素初始化为 `0` 或者 `NULL` 。
 
 若无显式的默认构造函数，则编译器认为该类有隐式的默认构造函数。换言之，若无重载构造函数，则编译器会自动定义一个默认构造函数，并会根据成员元素的类型进行初始化（与定义 [内置类型](./var.md) 变量相同）。
 
@@ -151,36 +144,39 @@ class Edge{
 若要在为一个类变量赋值非同等类型值（常为 [内置类型](./var.md) ）时进行报错，请使用 `explicit` 关键字。
 
 ```cpp
-class Edge{
-    public:
-    int u,v;
-    long long w;
-    int* nxt;
-    Edge(){
-        u = 0; v = 0;
-        w = 0ll;
-        nxt = NULL;
-    }
-    explicit Edge(int _u, int _v, long long _w, int* _nxt){
-        u = _u; v = _v;
-        w = _w;
-        nxt = _nxt;
-    }
-    //the same as
-    //Edge(int _u, int _v, long long _w, int* _nxt):u（_u), v(_v), w(_w), nxt(_nxt) {}
+class Edge {
+ public:
+  int u, v;
+  long long w;
+  int* nxt;
+  Edge() {
+    u = 0;
+    v = 0;
+    w = 0ll;
+    nxt = NULL;
+  }
+  explicit Edge(int _u, int _v, long long _w, int* _nxt) {
+    u = _u;
+    v = _v;
+    w = _w;
+    nxt = _nxt;
+  }
+  // the same as
+  // Edge(int _u, int _v, long long _w, int* _nxt):u（_u), v(_v), w(_w),
+  // nxt(_nxt) {}
 };
 
-//the same as
-//Edge::Edge(int _u, int _v, long long _w, int* _nxt){
+// the same as
+// Edge::Edge(int _u, int _v, long long _w, int* _nxt){
 //        u = _u; v = _v;
 //        w = _w;
 //        nxt = _nxt;
 //}
 
-Edge A;                //ok
-Edge B(1,2,5ll,NULL);  //ok
-Edge C=1;              //error
-Edge D{1,2,5ll,NULL};  // ok,c++11
+Edge A;                   // ok
+Edge B(1, 2, 5ll, NULL);  // ok
+Edge C = 1;               // error
+Edge D{1, 2, 5ll, NULL};  // ok,c++11
 ```
 
 ### 销毁
@@ -198,19 +194,18 @@ Edge D{1,2,5ll,NULL};  // ok,c++11
 _默认定义的析构函数对于指针使用十分少见的算法竞赛已经足够使用。只有在成员元素包含指针时才可能会重载析构函数。_
 
 ```cpp
-class Edge{
-    public:
-    int u,v;
-    long long w;
-    int* nxt;
-    Edge(){
-        u = 0; v = 0;
-        w = 0ll;
-        nxt = NULL;
-    }
-    ~Edge(){
-        delete nxt;
-    }
+class Edge {
+ public:
+  int u, v;
+  long long w;
+  int* nxt;
+  Edge() {
+    u = 0;
+    v = 0;
+    w = 0ll;
+    nxt = NULL;
+  }
+  ~Edge() { delete nxt; }
 };
 ```
 
@@ -219,9 +214,9 @@ class Edge{
 默认情况下，赋值时会按照对应成员元素赋值的规则进行。也可以使用 `类名称()` 或 `类名称{}` 作为临时变量来进行赋值。前者需要重载相应默认构造函数，后者则需要支持 `C++11` 标准或以上。
 
 ```cpp
-Edge tmp1=A;
-Edge tmp2=Edge{...},tmp3;
-tmp3=Edge(...);
+Edge tmp1 = A;
+Edge tmp2 = Edge{...}, tmp3;
+tmp3 = Edge(...);
 ```
 
 默认情况下，进行的赋值都是 **浅拷贝** ，如果成员元素中有指针，则在赋值完成后，两个变量的成员指针具有相同的地址。
@@ -237,34 +232,34 @@ _更多 constructor/destructor，参见“参考资料”第六条。_
 下面给出重载运算符的例子。
 
 ```cpp
-class Vector{
-    public:
-    int x,y;
-    Vector():x(_x),y(_y) {}
-    Vector(int _x,int _y):x(_x),y(_y) {}
-    int operator* (const Vector& other){
-        return x * other.y + y * other.x;
-    }
-    Vector operator+ (const Vector&);
-    Vector operator- (const Vector&);
+class Vector {
+ public:
+  int x, y;
+  Vector() : x(_x), y(_y) {}
+  Vector(int _x, int _y) : x(_x), y(_y) {}
+  int operator*(const Vector& other) { return x * other.y + y * other.x; }
+  Vector operator+(const Vector&);
+  Vector operator-(const Vector&);
 };
 
-Vector Vector::operator+ (const Vector& other){
-    return Vector(x + other.x ,y + other.y );
+Vector Vector::operator+(const Vector& other) {
+  return Vector(x + other.x, y + other.y);
 }
 
-Vector Vector::operator- (const Vector& other){
-    return Vector(x - other.x ,y - other.y );
+Vector Vector::operator-(const Vector& other) {
+  return Vector(x - other.x, y - other.y);
 }
 ```
 
-该例定义了一个向量类，并重载了 ` * + -` 运算符，并分别代表向量内积，向量加，向量减。
+该例定义了一个向量类，并重载了 `* + -` 运算符，并分别代表向量内积，向量加，向量减。
 
 重载运算符的模板大致可分为下面几部分。
 
 ```cpp
-类定义内重载： 返回类型 operator符号 （参数）{...}
-类定义内声明，在外部定义： 返回类型 类名称::operator符号 （参数）{...}
+类定义内重载： 返回类型 operator符号 （参数）{
+    ...} 类定义内声明，在外部定义： 返回类型 类名称::operator符号 （参数） {
+  ...
+}
 ```
 
 对于自定义的类，如果重载了某些运算符，便可以使用相应的 stl 容器或算法，如 [ `sort` ](../basic/stl-sort.md) 。

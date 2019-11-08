@@ -3,20 +3,20 @@ author: Ir1d, cjsoft, Lans1ot
 
 可以看做是自定义的 [数据类型](./var.md) 。
 
-_事实上在 C++ 中 ` struct ` 被扩展为类似 [`class`](./class.md) 的类说明符_。
+_事实上在 C++ 中 `struct` 被扩展为类似 [ `class` ](./class.md) 的类说明符_。
 
 ## 定义结构体
 
 ```cpp
-struct Edge{
-    int u,v;
-    long long w;
-    int* nxt;
-}e[];
+struct Edge {
+  int u, v;
+  long long w;
+  int* nxt;
+} e[];
 
 const Edge a;
-Edge b,B[];
-Edge* c,C[];
+Edge b, B[];
+Edge *c, C[];
 ```
 
 上例中定义了一个名为 `Edge` 的类型，有四个成员元素 `u,v,w,nxt` 。其中 `u,v` 的数据类型都为 `int` ， `nxt` 是 `int` 型的指针， `w` 的类型为 `long long` 。
@@ -31,10 +31,10 @@ Edge* c,C[];
 
 ```cpp
 struct Edge;
-struct Edge{
-    int u,v;
-    long long w;
-    Edge* nxt;
+struct Edge {
+  int u, v;
+  long long w;
+  Edge* nxt;
 };
 ```
 
@@ -46,7 +46,7 @@ struct Edge{
 
 对于数据类型为 `Edge` 的指针 `ned` ，可以使用 `指针名 + "->" + 成员元素名` 或者 使用 `(*指针名） + "." + 成员元素名` 进行访问。
 
-如 : 修改` ned `的成员元素 `nxt` ，并将其赋值为 `tmp` ： `(*ned).nxt = tmp` 或者 `ned->nxt = tmp` 。
+如 : 修改 `ned` 的成员元素 `nxt` ，并将其赋值为 `tmp` ： `(*ned).nxt = tmp` 或者 `ned->nxt = tmp` 。
 
 ## 更多的操作？
 
