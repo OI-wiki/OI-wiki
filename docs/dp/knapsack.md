@@ -23,7 +23,9 @@ $$
 f_{i,j}=\max(f_{i-1,j},f_{i-1,j-w_{i}}+v_{i})
 $$
 
-在程序实现的时候，由于对当前状态有影响的只有 $f_{i-1}$ ，故可以去掉第一维，直接用 $f_{i}$ 来表示处理到当前物品时背包容量为 $i$ 的最大价值，得出以下方程：
+这里如果直接采用二维数组对状态进行记录，会出现 MLE。可以考虑改用滚动数组的形式来优化。
+
+由于对 $f_i$ 有影响的只有 $f_{i-1}$ ，可以去掉第一维，直接用 $f_{i}$ 来表示处理到当前物品时背包容量为 $i$ 的最大价值，得出以下方程：
 
 $$
 f_i=\max \left(f_i,f_{i-w_i}+v_i\right)
@@ -35,7 +37,8 @@ $$
 
 ```cpp
 for (int i = 1; i <= W; i++)
-  for (int l = 0; l <= W - i; l++) f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
+  for (int l = 0; l <= W - w[i]; l++)
+    f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
 // 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]],f[i - 1][l] + w[i]),f[i][l +
 // w[i]]); 简化而来
 ```
@@ -49,15 +52,15 @@ for (int i = 1; i <= W; i++)
 因此实际核心代码为
 
 ```cpp
-for (int i = 1; i <= W; i++)
-  for (int l = W - i; l >= 0; l--) f[l + i] = max(f[l] + w[i], f[l + i]);
+for (int i = 1; i <= n; i++)
+  for (int l = W; l >= w[i]; l--) f[l] = max(f[l], f[l - w[i]] + v[i]);
 ```
 
 ??? 例题代码
     ```cpp
     #include <iostream>
     const int maxn = 13010;
-    int n, v, w[maxn], v[maxn], f[maxn];
+    int n, W, w[maxn], v[maxn], f[maxn];
     int main() {
       std::cin >> n >> W;
       for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
@@ -103,10 +106,10 @@ $$
 ??? 例题代码
     ```cpp
     #include <iostream>
-    const int maxn = 13010;
-    int n, v, w[maxn], v[maxn], f[maxn];
+    const int maxn = 1e5 + 10;
+    int n, W, w[maxn], v[maxn], f[maxn];
     int main() {
-      std::cin >> n >> W;
+      std::cin >> W >> n;
       for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
       for (int i = 1; i <= n; i++)
         for (int l = w[i]; l <= W; l++)

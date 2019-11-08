@@ -207,6 +207,10 @@ C++ 中还有一些用于位运算的内建函数：
 
 如果需要操作的集合非常大，可以使用 [bitset](../lang/csl/bitset.md) 。
 
+## 题目推荐
+
+ [CodeVS 2743. 黑白棋游戏](http://www.joyoi.cn/problem/codevs-2743) 。
+
 ## 参考
 
 位运算技巧： <https://graphics.stanford.edu/~seander/bithacks.html> 
