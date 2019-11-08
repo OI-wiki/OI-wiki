@@ -2,11 +2,9 @@ author: sshwy, hsfzLZH1, Enter-tainer
 
 在学习数学的过程中大家会见到许多复杂的公式符号。因此在学习具体内容之前，建议大家首先理解下列常见符号的含义。一些特殊的符号会在对应的章节中讲到，而这里则有一些极为常见的符号需要大家提前掌握。
 
-### 复杂度函数
+### 渐进符号
 
-1.  大 $O$ 符号：当且仅当存在正实数 $M$ 和实数 $x_0$ ，使得 $\forall x\geq x_0,\ |f(x)|\leq M|g(x)|$ ，我们就可以认为， $f(x)=O(g(x))$ 。
-2.  大 $\Omega$ 符号：当且仅当存在正实数 $M$ 和实数 $x_0$ ，使得 $\forall x\geq  x_0,\ f(x)\geq Mg(x)$ ，我们就可以认为， $f(x)=\Omega (g(x))$ . 大 $O$ 与大 $\Omega$ 恰好相反，即 $f(x)=O(g(x))\Leftrightarrow g(x)=\Omega(f(x))$ 。
-3.  大 $\Theta$ 符号：大 $\Theta$ 符号是大 $\text{O}$ 和大 $\Omega$ 的结合，即 $f(x)=O(g(x))\wedge f(x)=\Omega(g(x))\ \Rightarrow f(x)=\Theta(g(x))$ 。
+请参见 [复杂度](../misc/complexity.md#_1) 。
 
 ### 整除/同余理论常见符号
 
