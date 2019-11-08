@@ -21,5 +21,5 @@ disqus:
 		}
 		return dft;
 	}
-	document.getElementById("btn-startedit").href = "https://github.com/OI-wiki/OI-wiki/blob/master/docs" + getQueryVariable("ref", "");
+	document.getElementById("btn-startedit").href = "https://github.com/OI-wiki/OI-wiki/edit/master/docs" + getQueryVariable("ref", "");
 </script>
