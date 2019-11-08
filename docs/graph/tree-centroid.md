@@ -22,22 +22,19 @@ author: Ir1d, TrisolarisHD, LucienShui, Anguei
 
 ???+note "参考代码"
     ```cpp
-    void getCentroid(int u,int fa)
-    {
-      siz[u]=1;
-      wt[u]=0;
-      for (int i=head[u];~i;i=nxt[i])
-      {
-        int v=to[i];
-        if (v!=fa)
-        {
-          getCentroid(v,u);
-          siz[u]+=siz[v];
-          wt[u]=max(wt[u],siz[v]);
+    void getCentroid(int u, int fa) {
+      siz[u] = 1;
+      wt[u] = 0;
+      for (int i = head[u]; ~i; i = nxt[i]) {
+        int v = to[i];
+        if (v != fa) {
+          getCentroid(v, u);
+          siz[u] += siz[v];
+          wt[u] = max(wt[u], siz[v]);
         }
       }
-      wt[u]=max(wt[u],n-siz[u]);
-      if (rt==0||wt[u]<wt[rt]) rt=u; // rt 为重心编号
+      wt[u] = max(wt[u], n - siz[u]);
+      if (rt == 0 || wt[u] < wt[rt]) rt = u;  // rt 为重心编号
     }
     ```
 
