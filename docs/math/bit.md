@@ -239,7 +239,7 @@ void swap(int &a, int &b) {
 
 ## 题目推荐
 
- [CODEVS 2743 黑白棋游戏](http://codevs.cn/problem/2743/) 
+ [CodeVS 2743. 黑白棋游戏](http://www.joyoi.cn/problem/codevs-2743) 
 
 ## 参考
 
