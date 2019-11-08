@@ -29,60 +29,59 @@ author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsf
 当然，还有一些实现细节需要注意。为了保证统计的时候不重不漏，我们一般预处理出“左闭右开”的点权和。亦即，对于跳 1 步的情况，我们只记录该点的点权和；对于跳 2 步的情况，我们只记录该点及其下一个点的点权和。相当于，总是不将终点的点权和计入 sum。这样，在预处理的时候，只需要将两部分的点权和直接相加就可以了，不需要担心第一段的终点和第二段的起点会被重复计算。
 
 ??? note "例题代码"
-
-```cpp
-#include <cstdio>
-using namespace std;
-
-const int mod = 1000000007;
-
-int modadd(int a, int b) {
-  if (a + b >= mod) return a + b - mod;  // 减法代替取模，加快运算
-  return a + b;
-}
-
-int vi[1000005];
-
-int go[75][1000005];  // 将数组稍微开大以避免越界，小的一维尽量定义在前面
-int sum[75][1000005];
-
-int main() {
-  int n, k;
-  scanf("%d%d", &n, &k);
-  for (int i = 1; i <= n; ++i) {
-    scanf("%d", vi + i);
-  }
-
-  for (int i = 1; i <= n; ++i) {
-    go[0][i] = (i + k) % n + 1;
-    sum[0][i] = vi[i];
-  }
-
-  int logn = 31 - __builtin_clz(n);  // 一个快捷的取对数的方法
-  for (int i = 1; i <= logn; ++i) {
-    for (int j = 1; j <= n; ++j) {
-      go[i][j] = go[i - 1][go[i - 1][j]];
-      sum[i][j] = modadd(sum[i - 1][j], sum[i - 1][go[i - 1][j]]);
+    ```cpp
+    #include <cstdio>
+    using namespace std;
+    
+    const int mod = 1000000007;
+    
+    int modadd(int a, int b) {
+      if (a + b >= mod) return a + b - mod;  // 减法代替取模，加快运算
+      return a + b;
     }
-  }
-
-  long long m;
-  scanf("%lld", &m);
-
-  int ans = 0;
-  int curx = 1;
-  for (int i = 0; m; ++i) {
-    if (m & (1 << i))  // 参见位运算的相关内容，意为 m 的第 i 位是否为 1
-    {
-      ans = modadd(ans, sum[i][curx]);
-      curx = go[i][curx];
-      m ^= 1ll << i;  // 将第 i 位置零
+    
+    int vi[1000005];
+    
+    int go[75][1000005];  // 将数组稍微开大以避免越界，小的一维尽量定义在前面
+    int sum[75][1000005];
+    
+    int main() {
+      int n, k;
+      scanf("%d%d", &n, &k);
+      for (int i = 1; i <= n; ++i) {
+        scanf("%d", vi + i);
+      }
+    
+      for (int i = 1; i <= n; ++i) {
+        go[0][i] = (i + k) % n + 1;
+        sum[0][i] = vi[i];
+      }
+    
+      int logn = 31 - __builtin_clz(n);  // 一个快捷的取对数的方法
+      for (int i = 1; i <= logn; ++i) {
+        for (int j = 1; j <= n; ++j) {
+          go[i][j] = go[i - 1][go[i - 1][j]];
+          sum[i][j] = modadd(sum[i - 1][j], sum[i - 1][go[i - 1][j]]);
+        }
+      }
+    
+      long long m;
+      scanf("%lld", &m);
+    
+      int ans = 0;
+      int curx = 1;
+      for (int i = 0; m; ++i) {
+        if (m & (1 << i))  // 参见位运算的相关内容，意为 m 的第 i 位是否为 1
+        {
+          ans = modadd(ans, sum[i][curx]);
+          curx = go[i][curx];
+          m ^= 1ll << i;  // 将第 i 位置零
+        }
+      }
+    
+      printf("%d\n", ans);
     }
-  }
-
-  printf("%d\n", ans);
-}
-```
+    ```
 
 这题的 $m\leq 10^{18}$ ，虽然看似恐怖，但是实际上只需要预处理出 $65$ 以内的 $i$ ，就可以轻松解决，比起暴力枚举快了很多。用行话讲，这个做法的 [时间复杂度](../misc/complexity.md) 是预处理 $\Theta(n\log m)$ ，查询每次 $\Theta(\log m)$ 。
 
