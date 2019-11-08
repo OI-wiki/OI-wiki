@@ -60,7 +60,7 @@ int main() {
 
   int logn = 31 - __builtin_clz(n);  // 一个快捷的取对数的方法
   for (int i = 1; i <= logn; ++i) {
-    for (int x = 1; x <= n; ++x)  //实际上很少使用x作为循环变量，更多的是使用j
+    for (int j = 1; j <= n; ++j)
     {
       go[i][x] = go[i - 1][go[i - 1][x]];
       sum[i][x] = modadd(sum[i - 1][x], sum[i - 1][go[i - 1][x]]);
