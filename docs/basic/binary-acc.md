@@ -60,8 +60,7 @@ int main() {
 
   int logn = 31 - __builtin_clz(n);  // 一个快捷的取对数的方法
   for (int i = 1; i <= logn; ++i) {
-    for (int j = 1; j <= n; ++j)
-    {
+    for (int j = 1; j <= n; ++j) {
       go[i][j] = go[i - 1][go[i - 1][j]];
       sum[i][j] = modadd(sum[i - 1][j], sum[i - 1][go[i - 1][j]]);
     }
