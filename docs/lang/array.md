@@ -33,13 +33,12 @@ using namespace std;
 
 int arr[1001];  // 数组 arr 的下标范围是 [0, 1000]
 
-int main()
-{
-    int n;
-    cin >> n;
-    for (int i = 1; i <= n; ++i) {
-        cin >> arr[i];
-    }
+int main() {
+  int n;
+  cin >> n;
+  for (int i = 1; i <= n; ++i) {
+    cin >> arr[i];
+  }
 }
 ```
 
@@ -51,21 +50,20 @@ using namespace std;
 
 int arr[1001];
 
-int main()
-{
-    int n;
-    cin >> n;
-    for (int i = 1; i <= n; ++i) {
-        cin >> arr[i];
-    }
-    
-    long long sum = 0; //为了防止超出 int 的范围（溢出），必须使用 long long 类型
-    for(int i = 1; i <= n; ++i) {
-        sum += i;
-    }
-    
-    printf("%lld\n",sum);
-    // 默认 return 0;
+int main() {
+  int n;
+  cin >> n;
+  for (int i = 1; i <= n; ++i) {
+    cin >> arr[i];
+  }
+
+  long long sum = 0;  //为了防止超出 int 的范围（溢出），必须使用 long long 类型
+  for (int i = 1; i <= n; ++i) {
+    sum += i;
+  }
+
+  printf("%lld\n", sum);
+  // 默认 return 0;
 }
 ```
 
@@ -78,11 +76,12 @@ int main()
 多维数组的实质是「数组的数组」，即外层数组的元素是数组。一个二维数组需要两个维度来定义：数组的长度和数组内元素的长度。访问二维数组时需要写出两个索引：
 
 ```cpp
-int arr[3][4];  // 一个长度为 3 的数组，它的元素是「元素为 int 的长度为的 4 的数组」
+int arr[3][4];  // 一个长度为 3 的数组，它的元素是「元素为 int 的长度为的 4
+                // 的数组」
 arr[2][1] = 1;  // 访问二维数组
 ```
 
-我们经常使用嵌套的 `for` [循环](/loop.md) 来处理二维数组。
+我们经常使用嵌套的 `for`  [循环](/loop.md) 来处理二维数组。
 
 例：从标准输入中读取两个数 $n$ 和 $m$ ，分别表示黑白图片的高与宽，满足 $n,m\leq 1000$ 。对于接下来的 $n$ 行数据，每行有用空格分隔开的 $m$ 个数，代表这一位置的亮度值。现在我们读取这张图片，并将其存入二维数组中。
 

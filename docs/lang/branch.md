@@ -50,11 +50,11 @@ else if 语句是 if 和 else 的组合，对多个条件进行判断并选择�
 
 ```cpp
 switch (选择句) {
-  case 标签1: 
+  case 标签1:
     主体1;
-  case 标签2: 
+  case 标签2:
     主体2;
-  default: 
+  default:
     主体3;
 }
 ```
@@ -87,11 +87,11 @@ switch (i) {
   case 'A':
     cout << "OI" << endl;
     break;
-    
-  case 'B': 
+
+  case 'B':
     cout << "WIKI" << endl;
-    
-  default: 
+
+  default:
     cout << "Hello World" << endl;
 }
 ```
@@ -104,14 +104,14 @@ switch (i) {
   case 'A':
     cout << "OI" << endl;
     break;
-    
+
   case 'B':
     cout << "WIKI" << endl;
     break;
-    
-  default: 
+
+  default:
     cout << "Hello World" << endl;
 }
 ```
 
-以上代码运行后输出的结果为 WIKI，因为 break 的存在，接下来的语句就不会继续被执行了。 default 语句不需要 break，因为下面没有语句了。
+以上代码运行后输出的结果为 WIKI，因为 break 的存在，接下来的语句就不会继续被执行了。default 语句不需要 break，因为下面没有语句了。
