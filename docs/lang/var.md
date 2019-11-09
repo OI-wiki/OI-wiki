@@ -69,7 +69,3 @@ a = 3;
 ```
 
 如果修改了常量的值，在编译环节就会报错： `error: assignment of read-only variable‘a’` 。
-
-## 变量的类型
-
-（大坑）
