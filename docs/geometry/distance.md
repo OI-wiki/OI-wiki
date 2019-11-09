@@ -48,8 +48,8 @@ $$
 
 $$
 \begin{aligned}
-&d(x, y) &=& \sqrt{\left ( x_1 - y_1 \right )^2 + \left ( x_2 - y_2 \right )^2 + \cdot \cdot \cdot +\left ( x_n - y_n \right )^2}\\
-&&=& \sqrt{\sum_{i = 1}^{n}(x_i - y_i)^2}
+&\lVert\overrightarrow{AB}\rVert &=& \sqrt{\left ( x_{11} - x_{21} \right )^2 + \left ( x_{12} - x_{22} \right )^2 + \cdot \cdot \cdot +\left ( x_{1n} - x_{2n} \right )^2}\\
+&&=& \sqrt{\sum_{i = 1}^{n}(x_{1i} - x_{2i})^2}
 \end{aligned}
 $$
 

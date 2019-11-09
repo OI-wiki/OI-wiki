@@ -26,6 +26,7 @@ author: linehk
 
 ### 常见性质
 
+-    $f(n) = \Theta(g(n))\Leftrightarrow f(n)=O(g(n))\land f(n)=\Omega(g(n))$ 
 -    $f_1(n) + f_2(n) = O(\max(f_1(n), f_2(n)))$ 
 -    $f_1(n) \times f_2(n) = O(f_1(n) \times f_2(n))$ 
 -    $\forall a \neq 1, \log_a{n} = O(\log_2 n)$ 。由换底公式可以得知，任何对数函数无论底数为何，都具有相同的增长率，因此渐进时间复杂度中对数的底数一般省略不写。
@@ -36,13 +37,13 @@ author: linehk
 假设我们有递推关系式
 
 $$
-T(n) = AT\left(\frac{n}{b}\right)＋cn^k, \qquad \forall n > b
+T(n) = a T\left(\frac{n}{b}\right)＋f(n)\qquad \forall n > b
 $$
 
 那么
 
 $$
-T(n) = \begin{cases}\Theta(n^{\log_b a}) & a > b^k \\ \Theta(n^k) & a< b^k \\ \Theta(n^k\log n ) & a = b^k \end{cases}
+T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}) \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon}) \\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
 $$
 
 ## 均摊复杂度

@@ -117,6 +117,6 @@ ST 表能较好的维护区间信息，时间复杂度较低，代码量相对�
 
  [严格次小生成树](https://www.luogu.org/problemnew/show/P4180) 
 
- [货车运输](https://www.luogu.org/problemnew/show/P1967) 
+ [货车运输](https://loj.ac/problem/2610) 
 
  [跑路](https://www.luogu.org/problemnew/show/P1613) 
