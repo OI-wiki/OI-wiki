@@ -130,7 +130,7 @@ $$
 \begin{aligned}
 \varepsilon=\mu*1&\iff\varepsilon(n)=\sum_{d\mid n}\mu(d)\\
 d=1*1&\iff d(n)=\sum_{d\mid n}1\\
-\sigma=d*1&\iff\varepsilon(n)=\sum_{d\mid n}d\\
+\sigma=d*1&\iff\sigma(n)=\sum_{d\mid n}d\\
 \varphi=\mu*\text{ID}&\iff\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
 \end{aligned}
 $$
