@@ -29,9 +29,9 @@ Edge *c, C[array_length];
 
 该例定义了一个名为 `Edge` 的类。该类拥有四个成员元素，其中 `u,v` 的数据类型都为 `int` ， `nxt` 是 `int` 型的指针， `w` 的类型为 `long long` 。
 
-并在 `}` 后定义了一个数据类型为 `Edge` 的数组 `e` 。当然，对于某种已经存在的类型，也可以使用第十三行后中的方法进行定义 常量 、 变量 、 指针。
+并在 `}` 后定义了一个数据类型为 `Edge` 的数组 `e` 。当然，对于某种已经存在的类型，也可以使用第十三行后中的方法进行定义 常量、变量、指针。
 
-Ps: 定义类的指针形同[`struct`](./struct.md)。
+Ps: 定义类的指针形同 [ `struct` ](./struct.md) 。
 
 ### 访问说明符
 
@@ -46,14 +46,12 @@ Ps: 定义类的指针形同[`struct`](./struct.md)。
 ??? note "关于友元以及派生类的基本概念"
 
     友元（`friend`）: 使用`friend`关键字修饰某个函数或者类。可以使得在**被修饰者**在不成为成员函数或者成员类的情况下，访问该类的私有（`private`）或者受保护（`protected`）成员。简单来说就是只要带有这个类的`friend`标记，就可以访问私有或受保护的成员元素。
-    
+
     派生类（`derived class`）: C++允许使用一个类作为**基类**，并通过基类**派生**出**派生类**。其中派生类（根据特定规则）继承基类中的成员变量和成员函数。可以提高代码的复用率。
-    
+
     派生类似" is "的关系。如猫（派生类）" is " 哺乳动物（基类）。
         
     Ps:更多相关知识请参见"参考资料"第八条。
-
-
 
 ## 访问与修改成员元素的值
 
@@ -141,15 +139,14 @@ class Edge {
 使用 C++11 或以上时，可以使用 `{}` 进行变量的初始化。
 
 ??? note "关于`{}`"
-    使用`{}`进行初始化，实际上是调用了std::initializer_list这一个容器进行初始化。
-    
+    使用 `{}` 进行初始化，实际上是调用了 std::initializer_list 这一个容器进行初始化。
 
     具体的初始化步骤如下
-    
+
     1. 尝试寻找参数中有`std::initializer_list`的默认构造函数，如果有则调用（调用完后不再进行下面的查找，下同）。
-    
+
     2. 尝试将`std::initializer_list`中的元素填入其他默认构造参数，如果能将参数按照顺序填满（默认参数也算在内），则调用该默认构造函数
-    
+
     3. 尝试在**类外**按照元素定义顺序依次赋值。
 
 ```cpp
@@ -189,29 +186,31 @@ Edge C{1, 2, 5ll, NULL};  // ok,(C++11)
 
 ??? note "关于隐式类型转换"
     有时候会写出如下的代码
+
     ```cpp
-    class node{
-        public:
-        int var;
-        node(int _var):var(_var){}
+    class node {
+     public:
+      int var;
+      node(int _var) : var(_var) {}
     };
-    node a=1;
+    node a = 1;
     ```
-    看上去十分不符合逻辑，一个`int`类型不可能转化为`node`类型。但是编译器不会进行`error`提示。
-    
-    原因是在进行赋值时，首先会将`1`作为参数调用`node::node(int)`，然后调用默认的复制函数进行赋值。
-    
-    但大多数情况下，编写者会希望编译器进行报错。这时便可以在构造函数前追加`explicit`关键字。这会告诉编译器必须显式进行调用。
-    
+
+    看上去十分不符合逻辑，一个 `int` 类型不可能转化为 `node` 类型。但是编译器不会进行 `error` 提示。
+
+    原因是在进行赋值时，首先会将 `1` 作为参数调用 `node::node(int)` ，然后调用默认的复制函数进行赋值。
+
+    但大多数情况下，编写者会希望编译器进行报错。这时便可以在构造函数前追加 `explicit` 关键字。这会告诉编译器必须显式进行调用。
+
     ```cpp
-    class node{
-        public:
-        int var;
-        explicit node(int _var):var(_var){}
+    class node {
+     public:
+      int var;
+      explicit node(int _var) : var(_var) {}
     };
     ```
-    
-    也就是说`node a=1`将会报错，但`node a=node(1)`不会。因为后者显式调用了构造函数。当然大多数人不会写出后者的代码，但此例足以说明explicit的作用。
+
+    也就是说 `node a=1` 将会报错，但 `node a=node(1)` 不会。因为后者显式调用了构造函数。当然大多数人不会写出后者的代码，但此例足以说明 explicit 的作用。
 
 ### 销毁
 
@@ -290,12 +289,10 @@ Vector Vector::operator-(const Vector& other) {
 重载运算符的模板大致可分为下面几部分。
 
 ```cpp
-类定义内重载： 返回类型 operator符号 （参数）{
-    ...
-}
+类定义内重载： 返回类型 operator符号 （参数）{...}
 
 类定义内声明，在外部定义： 返回类型 类名称::operator符号 （参数） {
-    ...
+  ...
 }
 ```
 
@@ -329,4 +326,4 @@ _如要了解更多，参见“参考资料”第四条。_
 5.   [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/) 
 6.   [cplusplus Special members](http://www.cplusplus.com/doc/tutorial/classes2/) 
 7.   [C++11 FAQ](http://www.stroustrup.com/C++11FAQ.html) 
-8.   [cppreference Friendship and inheritance](http://www.cplusplus.com/doc/tutorial/inheritance/)
+8.   [cppreference Friendship and inheritance](http://www.cplusplus.com/doc/tutorial/inheritance/) 
