@@ -42,9 +42,11 @@ String str = "Hello,OI-wiki"; //申明字符串变量str
 char ch = "W";
 double PI = 3.1415926;  
 ```
-### final关键字
 
-`final`其含义是这是最终的结果,不可更改的结果，被final修饰的变量只能被赋值一次，赋值后不再改变
+### final 关键字
+
+ `final` 其含义是这是最终的结果，不可更改的结果，被 final 修饰的变量只能被赋值一次，赋值后不再改变
+
 ```java
 final double PI  = 3.1415926; 
 ```
@@ -58,7 +60,9 @@ int[] ary = new int[10];
 ```
 
 ### 字符串
-* 字符串是`Java`一个内置的类。
+
+-   字符串是 `Java` 一个内置的类。
+
 ```java
 //最为简单的额构造一个字符串变量方法如下
 String a = "Hello";
@@ -66,14 +70,17 @@ String a = "Hello";
 char[] stringArray = {'H','e','l','l','o'};
 String s = new String(stringArray);
 ```
+
 ### 输出
+
 输出可以对变量进行格式化
-|符号|意义|
-|:--:|:---:|
-|`%f`|浮点类型型|
-|`%s`|字符串类型
-|`%d`|整数型|
-|`%c`|字符类型|
+| 符号 | 意义 |
+\|:--:\|:---:\|
+\| `%f` | 浮点类型型 |
+\| `%s` | 字符串类型
+\| `%d` | 整数型 |
+\| `%c` | 字符类型 |
+
 ```java
 class test{
     public static void main(String[] args) {
