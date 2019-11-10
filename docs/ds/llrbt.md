@@ -75,19 +75,20 @@
       return root;
     }
     ```
-    
-    template<class Key, class Compare>
-    typename Set<Key, Compare>::Node *
-    Set<Key, Compare>::insert(Set::Node *root, const Key &key) const {
-      if (root == nullptr)
+
+    template&lt;class Key, class Compare>
+    typename Set&lt;Key, Compare>::Node_Set&lt;Key, Compare>::insert(Set::Node_root, const Key &key) const {if (root == nullptr)
         return new Node(key, kRed, 1);
       if (root->key == key);
-      else if (cmp_(key, root->key)) // if (key < root->key)
+      else if (cmp\_(key, root->key))//if (key &lt; root->key)
         root->lc = insert(root->lc, key);
       else
         root->rc = insert(root->rc, key);
       return fix_up(root);
     }
+
+    ```
+    
     ```
 
 ### 删除
@@ -130,9 +131,9 @@
       }
       return root;
     }
-    template<class Key, class Compare>
-    typename Set<Key, Compare>::Node *
-    Set<Key, Compare>::delete_min(Set::Node *root) const {
+    template <class Key, class Compare>
+    typename Set<Key, Compare>::Node *Set<Key, Compare>::delete_min(
+        Set::Node *root) const {
       if (root->lc == nullptr) {
         delete root;
         return nullptr;
@@ -145,7 +146,6 @@
       root->lc = delete_min(root->lc);
       return fix_up(root);
     }
-    
     ```
 
 #### 删除任意节点
@@ -203,6 +203,7 @@
     template <class Key, class Compare = std::less<Key>>
     class Set {
      private:
+    ```
 
       enum NodeColor {
         kBlack = 0, kRed = 1
