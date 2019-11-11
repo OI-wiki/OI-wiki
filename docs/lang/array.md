@@ -63,7 +63,7 @@ int main() {
   }
 
   printf("%lld\n", sum);
-  // 默认 return 0;
+  return 0;
 }
 ```
 
