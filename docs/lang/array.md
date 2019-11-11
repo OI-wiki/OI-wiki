@@ -57,7 +57,7 @@ int main() {
     cin >> arr[i];
   }
 
-  long long sum = 0;  //为了防止超出 int 的范围（溢出），必须使用 long long 类型
+  int sum = 0;
   for (int i = 1; i <= n; ++i) {
     sum += i;
   }
