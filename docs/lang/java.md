@@ -100,5 +100,85 @@ class test{
 ### 控制语句
 
 #### 选择
+    * if
+
+    ```java
+    class test{
+        public static void main(String[] args) {
+            if(/*判断条件*/){
+                //条件成立时执行这里面的代码
+            }
+        }
+    }
+    ```
+    * if...else
+
+    ```java
+    class test{
+        public static void main(String[] args) {
+            if(/*判断条件*/){
+                //条件成立时执行这里面的代码
+            }else{
+                //条件不成立时执行这里面的代码
+            }
+        }
+    }
+    ```
+
+    * if...else if...else
+    
+
+    ```java
+    class test{
+        public static void main(String[] args) {
+            if(/*判断条件*/){
+               //判断条件成立执行这里面的代码
+            }else if(/*判断条件2*/){
+               //判断条件2成立执行这里面的代码
+            }else{
+              //上述条件都不成立执行这里面的代码
+            }
+        }
+    }
+    ```
 
 #### 循环
+
+    * for  
+
+    ```java
+    class test{
+        public static void main(String[] args) {
+               for(/*初始化*/;/*循环的判断条件*/;/*每次循环后执行的步骤*/){
+                   //当循环的条件成立执行循环体内代码
+               }
+        }
+    }
+    ```
+
+    * while
+
+    ```java
+    class test{
+       public static void main(String[] args) {
+           while(/*判定条件*/){
+               //条件成立时执行循环体内代码
+           }
+       } 
+    }
+    ```
+
+
+    * do...while
+
+    ```java
+    class test{
+        public static void main(String[] args) {
+            do{
+              //需要执行的代码
+            }while(/*循环判断条件*/);
+        }
+    }
+    ```
+#### switch...case
+      
