@@ -88,7 +88,7 @@ class test{
         int a =12;
         char b = 'A';
         double s = 3.14;
-        String str = "Hello world"
+        String str = "Hello world";
         System.out.println("%f",s);
         System.out.println("%d",a);
         system.out.println("%c",b);
