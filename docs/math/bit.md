@@ -209,7 +209,7 @@ C++ 中还有一些用于位运算的内建函数：
 
 ## 题目推荐
 
- [CodeVS 2743. 黑白棋游戏](http://www.joyoi.cn/problem/codevs-2743) 。
+ [CodeVS 2743. 黑白棋游戏](http://www.joyoi.cn/problem/codevs-2743) 
 
 ## 参考
 
