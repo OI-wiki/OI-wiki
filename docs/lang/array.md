@@ -62,7 +62,7 @@ int main() {
     sum += i;
   }
 
-  printf("%lld\n", sum);
+  printf("%d\n", sum);
   return 0;
 }
 ```
