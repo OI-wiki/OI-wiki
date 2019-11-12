@@ -113,14 +113,12 @@ class test{
     }
     ```
 
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 
 -   # if...else
 
 
 -   if...else
 
-    > > > > > > > origin/master
 
         ```java
         class test{
