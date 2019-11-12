@@ -101,7 +101,7 @@ class test{
 
 #### 选择
 
-* if
+-   if
 
     ```java
     class test{
@@ -112,7 +112,8 @@ class test{
         }
     }
     ```
-* if...else
+
+-   if...else
 
     ```java
     class test{
@@ -126,7 +127,7 @@ class test{
     }
     ```
 
-* if...else if...else
+-   if...else if...else
 
 
     ```java
@@ -145,7 +146,7 @@ class test{
 
 #### 循环
 
-* for  
+-   for
 
     ```java
     class test{
@@ -157,7 +158,7 @@ class test{
     }
     ```
 
-* while
+-   while
 
     ```java
     class test{
@@ -170,7 +171,7 @@ class test{
     ```
 
 
-* do...while
+-   do...while
 
     ```java
     class test{
