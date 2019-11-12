@@ -115,17 +115,11 @@ ST 表能较好的维护“可重复贡献”的区间信息（同时也应满�
 
 ## 练习
 
-以下例题有一些不是关于 ST 表的，有许多都是关于倍增的。因为 ST 表只是倍增思想的简单应用，掌握了倍增就掌握了 ST 表。
-
  [RMQ 模板题](https://www.luogu.org/problemnew/show/P3865) 
 
- [LCA 模板题](https://www.luogu.org/problemnew/show/P3379) 
-
- [严格次小生成树](https://www.luogu.org/problemnew/show/P4180) 
-
- [货车运输](https://loj.ac/problem/2610) 
-
- [跑路](https://www.luogu.org/problemnew/show/P1613) 
+ [「SCOI2007」降雨量](https://loj.ac/problem/2279)
+ 
+ [\[USACO07JAN\]平衡的阵容Balanced Lineup](https://www.luogu.org/problem/P2880)
 
 ## 附录：ST 表求区间 GCD 的时间复杂度分析
 
