@@ -117,9 +117,9 @@ ST 表能较好的维护“可重复贡献”的区间信息（同时也应满�
 
  [RMQ 模板题](https://www.luogu.org/problemnew/show/P3865) 
 
- [「SCOI2007」降雨量](https://loj.ac/problem/2279)
- 
- [\[USACO07JAN\]平衡的阵容Balanced Lineup](https://www.luogu.org/problem/P2880)
+ [「SCOI2007」降雨量](https://loj.ac/problem/2279) 
+
+ [\[USACO07JAN\]平衡的阵容 Balanced Lineup](https://www.luogu.org/problem/P2880) 
 
 ## 附录：ST 表求区间 GCD 的时间复杂度分析
 
