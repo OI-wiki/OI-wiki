@@ -113,23 +113,26 @@ class test{
     }
     ```
 
-<<<<<<< HEAD
-* if...else
-=======
--   if...else
->>>>>>> origin/master
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 
-    ```java
-    class test{
-        public static void main(String[] args) {
-            if(/*判断条件*/){
-                //条件成立时执行这里面的代码
-            }else{
-                //条件不成立时执行这里面的代码
+-   # if...else
+
+
+-   if...else
+
+    > > > > > > > origin/master
+
+        ```java
+        class test{
+            public static void main(String[] args) {
+                if(/*判断条件*/){
+                    //条件成立时执行这里面的代码
+                }else{
+                    //条件不成立时执行这里面的代码
+                }
             }
         }
-    }
-    ```
+        ```
 
 -   if...else if...else
 
