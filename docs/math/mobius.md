@@ -1,4 +1,4 @@
-author: hydingsy
+author: hydingsy, hyp1231
 
 ## 简介
 
@@ -23,7 +23,7 @@ $$
 $$
 \begin{split}
 &\frac{a}{b}=\left\lfloor\frac{a}{b}\right\rfloor+r(0\leq r<1)\\
-\Rightarrow
+\implies
 &\left\lfloor\frac{a}{bc}\right\rfloor
 =\left\lfloor\frac{a}{b}\cdot\frac{1}{c}\right\rfloor
 =\left\lfloor \frac{1}{c}\left(\left\lfloor\frac{a}{b}\right\rfloor+r\right)\right\rfloor
@@ -62,11 +62,11 @@ $$
 $$
 \begin{split}
 &\left\lfloor\frac{n}{i}\right\rfloor \leq \frac{n}{i}\\
-\Rightarrow
+\implies
 &\left\lfloor\frac{n}{ \left\lfloor\frac{n}{i}\right\rfloor }\right\rfloor
 \geq \left\lfloor\frac{n}{ \frac{n}{i} }\right\rfloor
 = \left\lfloor i \right\rfloor=i \\
-\Rightarrow
+\implies
 &i\leq \left\lfloor\frac{n}{ \left\lfloor\frac{n}{i}\right\rfloor }\right\rfloor\\
 &&\square
 \end{split}
@@ -128,10 +128,10 @@ $$
 
 $$
 \begin{aligned}
-\varepsilon=\mu*1&\Leftrightarrow\varepsilon(n)=\sum_{d\mid n}\mu(d)\\
-d=1*1&\Leftrightarrow d(n)=\sum_{d\mid n}1\\
-\sigma=d*1&\Leftrightarrow\varepsilon(n)=\sum_{d\mid n}d\\
-\varphi=\mu*\text{ID}&\Leftrightarrow\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
+\varepsilon=\mu*1&\iff\varepsilon(n)=\sum_{d\mid n}\mu(d)\\
+d=1*1&\iff d(n)=\sum_{d\mid n}1\\
+\sigma=d*1&\iff\sigma(n)=\sum_{d\mid n}d\\
+\varphi=\mu*\text{ID}&\iff\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
 \end{aligned}
 $$
 
@@ -176,11 +176,11 @@ $$
 
 ### 补充结论
 
-反演结论： $\displaystyle [gcd(i,j)=1] \Leftrightarrow\sum_{d\mid\gcd(i,j)}\mu(d)$ 
+反演结论： $\displaystyle [gcd(i,j)=1] \iff\sum_{d\mid\gcd(i,j)}\mu(d)$ 
 
 -    **直接推导** ：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$ ，也就是式子的值是 $1$ ，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值： $0$ 
 
--    **利用 $\varepsilon$ 函数** ：根据上一结论， $[\gcd(i,j)=1]\Rightarrow \varepsilon(\gcd(i,j))$ ，将 $\varepsilon$ 展开即可。
+-    **利用 $\varepsilon$ 函数** ：根据上一结论， $[\gcd(i,j)=1]\implies \varepsilon(\gcd(i,j))$ ，将 $\varepsilon$ 展开即可。
 
 ### 线性筛
 
@@ -267,7 +267,7 @@ $$
 
 原问题为：已知 $f=g*1$ ，证明 $g=f*\mu$ 
 
-易知如下转化： $f*\mu=g*1*\mu\Rightarrow f*\mu=g$ （其中 $1*\mu=\varepsilon$ ）
+易知如下转化： $f*\mu=g*1*\mu\implies f*\mu=g$ （其中 $1*\mu=\varepsilon$ ）
 
 * * *
 
@@ -396,18 +396,24 @@ $$
 \frac{1}{2}\cdot \sum_{i=1}^{n-1}\frac{n^2}{\gcd(i,n)}+n
 $$
 
+即
+
+$$
+\frac{1}{2}\cdot \sum_{i=1}^{n}\frac{n^2}{\gcd(i,n)}+\frac{n}{2}
+$$
+
 可以将相同的 $\gcd(i,n)$ 合并在一起计算，故只需要统计 $\gcd(i,n)=d$ 的个数。当 $\gcd(i,n)=d$ 时， $\displaystyle\gcd(\frac{i}{d},\frac{n}{d})=1$ ，所以 $\gcd(i,n)=d$ 的个数有 $\displaystyle\varphi(\frac{n}{d})$ 个。
 
 故答案为
 
 $$
- \frac{1}{2}\cdot\sum_{d\mid n}\frac{n^2\cdot\varphi(\frac{n}{d})}{d}+n
+ \frac{1}{2}\cdot\sum_{d\mid n}\frac{n^2\cdot\varphi(\frac{n}{d})}{d}+\frac{n}{2}
 $$
 
-变换求和顺序，设 $\displaystyle d'=\frac{n}{d}$ ，式子化为
+变换求和顺序，设 $\displaystyle d'=\frac{n}{d}$ ，合并公因式，式子化为
 
 $$
-\frac{1}{2}n\cdot\sum_{d'\mid n}d'\cdot\varphi(d')+n
+\frac{1}{2}n\cdot\left(\sum_{d'\mid n}d'\cdot\varphi(d')+1\right)
 $$
 
 设 $\displaystyle \text{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\text{g}$ 为积性函数，于是可以 $\Theta(n)$ 预处理。最后枚举 $d$ ，统计贡献即可。
@@ -458,8 +464,6 @@ int main() {
 $$
 \sum_{i=1}^n\sum_{j=1}^m\text{lcm}(i,j)\qquad (n,m\leqslant 10^7)
 $$
-
- **解法一** 
 
 易知原式等价于
 
@@ -583,7 +587,7 @@ int main() {
 }
 ```
 
-###  [「SDOI2015」约数个数和](https://www.luogu.org/problemnew/show/P3327) 
+###  [「SDOI2015」约数个数和](https://loj.ac/problem/2185) 
 
 多组数据，求
 
@@ -805,7 +809,7 @@ signed main() {
 
 $$
 f(n)=\sum_{i=1}^nt(i)g\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-\Leftrightarrow g(n)=\sum_{i=1}^n\mu(i)t(i)f\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+\iff g(n)=\sum_{i=1}^n\mu(i)t(i)f\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
 
 我们证明一下
