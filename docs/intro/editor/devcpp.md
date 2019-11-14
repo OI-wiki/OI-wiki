@@ -223,4 +223,4 @@ Dev-C++ 各版本的安装步骤大同小异，下面以最新版本 5.11 演示
 
 [2]&#x3A; [Dev-C++- 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B) 
 
-[3]&#x3A; [Orwell Dev-C++- 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B)  
+[3]&#x3A; [Orwell Dev-C++- 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B) 
