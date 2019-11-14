@@ -113,7 +113,7 @@
 
 ### 会导致 RE
 
--   数组开小，包括：
+-   数组开小[^1]，包括：
 
     -   无向图边表未开 2 倍。
 
@@ -128,6 +128,28 @@
     -   对 $0$ 求逆元。
 
 -   没删文操（某些 OJ）。
+
+-   排序时比较函数的错误 `std::sort` 要求比较函数是严格弱序： `a<a` 为 `false` ；若 `a<b` 为 `true` ，则 `b<a` 为 `false` ；若 `a<b` 为 `true` 且 `b<c` 为 `true` ，则 `a<c` 为 `true` 。其中要特别注意第二点。
+    如果不满足上述要求，排序时很可能会 RE。
+    例如，编写莫队的奇偶性排序时，这样写是错误的：
+    ```cpp
+    bool operator<(const int a, const int b) {
+      if (block[a.l] == block[b.l])
+        return (block[a.l] & 1) ^ (a.r < b.r);
+      else
+        return block[a.l] < block[b.l];
+    ```
+    上述代码中 `(block[a.l]&1)^(a.r<b.r)` 不满足严格弱序的要求 2。
+    改成这样就正确了。
+    ```cpp
+    bool operator<(const int a, const int b) {
+      if (block[a.l] == block[b.l])
+        return (block[a.l] & 1) ? (a.r < b.r) : (a.r > b.r);
+      else
+        return block[a.l] < block[b.l];
+    ```
+
+-   解引用空指针。
 
 ### 会导致 TLE
 
@@ -158,26 +180,6 @@
 
 -   没删文操（另一些 OJ）。
 
--   排序时比较函数的错误 `std::sort` 要求比较函数是严格弱序： `a<a` 为 `false` ；若 `a<b` 为 `true` ，则 `b<a` 为 `false` ；若 `a<b` 为 `true` 且 `b<c` 为 `true` ，则 `a<c` 为 `true` 。其中要特别注意第二点。
-    如果不满足上述要求，排序时很可能会 RE。
-    例如，编写莫队的奇偶性排序时，这样写是错误的：
-    ```cpp
-    bool operator<(const int a, const int b) {
-      if (block[a.l] == block[b.l])
-        return (block[a.l] & 1) ^ (a.r < b.r);
-      else
-        return block[a.l] < block[b.l];
-    ```
-    上述代码中 `(block[a.l]&1)^(a.r<b.r)` 不满足严格弱序的要求 2。
-    改成这样就正确了。
-    ```cpp
-    bool operator<(const int a, const int b) {
-      if (block[a.l] == block[b.l])
-        return (block[a.l] & 1) ? (a.r < b.r) : (a.r > b.r);
-      else
-        return block[a.l] < block[b.l];
-    ```
-
 ### 会导致 MLE
 
 -   数组过大。
@@ -191,8 +193,16 @@
 ### 会随机 TLE 或者 RE 或者 WA 或者 MLE
 
 -   数组越界。上下都算。
+    
+    -   未正确设置循环的初值导致访问了下标为 -1 的值。
+    
+    -   数组开小[^1]，见 “会导致 RE” 的相关项。
+    
+-   解引用野指针。
 
-    -   对线段树的叶节点 `pushup` 或 `pushdown` 。
+    -   未初始化就使用指针。
+    
+    -   指针指向的区域已经 `free` 或 `delete`。
 
 ### 会导致常数过大
 
@@ -215,4 +225,7 @@
     -   对拍时未清除文件指针即 `fclose(fp)` 就又令 `fp = fopen()` , 这会使得进程出现大量的文件野指针。
 
     -    `freopen()` 中的文件名未加 `.in` / `.out` 。
+    
 -   使用堆空间忘记 `delete` 或 `free` 。
+
+[^1]: 在某些 OJ 上，越界访问会 RE，在另一些，越界访问是未定义行为。
