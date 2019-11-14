@@ -104,8 +104,8 @@
 -   误加了 `;` 。
     -   可以参考这个例子：
         ```cpp
-        while (1)
-          ;
+        /* clang-format off */
+        while (1);
         printf("OI Wiki!\n");
         ```
 
