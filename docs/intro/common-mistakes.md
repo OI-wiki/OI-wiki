@@ -52,16 +52,6 @@
 
 -   未初始化变量。
 
--   在类或结构体的构造函数中，使用 `:` 初始化变量，并且变量初始化的顺序与定义的顺序不同。
-    -   示例：
-        ```cpp
-        struct foo {
-          int a;
-          int b;
-          foo(int thea, int theb) : b(theb), a(thea) {}
-        };
-        ```
-
 ## 既不会引起 Compile Error 也不会引发 Warning 的错误
 
 这类错误无法被编译器发现，所以在调试时只能依靠你自己。
