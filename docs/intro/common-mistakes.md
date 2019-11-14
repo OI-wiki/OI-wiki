@@ -106,7 +106,7 @@
         ```cpp
         /* clang-format off */
         while (1);
-        printf("OI Wiki!\n");
+            printf("OI Wiki!\n");
         ```
 
 -   没有正确设置哨兵值。例如，平衡树的 `0` 节点。
