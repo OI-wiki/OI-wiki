@@ -25,7 +25,7 @@ Edge *c, C[array_length];
 
 ### 定义结构体指针
 
-在定义中使用`ClassName*`进行定义。
+在定义中使用 `ClassName*` 进行定义。
 
 ```cpp
 struct Edge;
