@@ -81,6 +81,7 @@ nav:
       - string: lang/csl/string.md
     - C++ 进阶:
       - 类: lang/class.md
+      - 命名空间: lang/namespace.md
       - 引用: lang/reference.md
       - 常值: lang/const.md
       - 新版 C++ 特性: lang/new.md
