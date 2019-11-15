@@ -291,7 +291,8 @@ nav:
     - 析合树: ds/divide-combine.md
   - 图论:
     - 图论部分简介: graph/index.md
-    - 图论基础: graph/basic.md
+    - 图论相关概念: graph/concept.md
+    - 图的存储: graph/save.md
     - DFS（图论）: graph/dfs.md
     - BFS（图论）: graph/bfs.md
     - 树上问题:
@@ -316,8 +317,8 @@ nav:
     - 连通性相关:
       - 强连通分量: graph/scc.md
       - 双连通分量: graph/bcc.md
-      - 割点和桥: graph/bridge.md
-      - 2-SAT: graph/2-sat.md
+      - 割点和桥: graph/cut.md
+    - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
     - 二分图: graph/bi-graph.md
@@ -332,7 +333,6 @@ nav:
       - 上下界网络流: graph/flow/bound.md
     - Prufer 序列: graph/prufer.md
     - LGV 引理: graph/lgv.md
-    - 图论杂项: graph/misc.md
   - 计算几何:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
