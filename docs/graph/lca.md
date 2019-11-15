@@ -31,7 +31,7 @@
 在第二阶段中，我们从最大的 $i$ 开始循环尝试，一直尝试到 $0$ （包括 $0$ ），如果 `fa[u][i] != fa[v][i]` ，则令 `u = fa[u][i]; v = fa[v][i]` ，那么最后的 LCA 为 `fa[u][0]` 。
 
 !!! 例题
-    CODEVS2370 [小机房的树](http://codevs.cn/problem/2370/) 树上最短路查询
+     [CodeVS 2370. 小机房的树](http://www.joyoi.cn/problem/codevs-2370) 树上最短路查询
 
 可先求出 LCA，再结合性质 $7$ 进行解答。也可以直接在求 LCA 时求出结果。
 以下代码仅供参考。
@@ -212,32 +212,47 @@ int main() {
 }
 ```
 
-### 转化为 RMQ 问题
+### 用欧拉序列转化为 RMQ 问题
 
-首先对树进行 dfs， `dfs(root, 1)` ，将深度和节点编号按顺序记录到数组中，并记录各个点在 dfs 序列中第一次出现的位置。
+对一棵树进行 DFS，无论是第一次访问还是回溯，每次到达一个结点时都将编号记录下来，可以得到一个长度为 $2n-1$ 的序列，这个序列被称作这棵树的欧拉序列（可以看成是这棵树的一条欧拉回路所经过的节点构成的序列）。
+
+在下文中，把结点 $u$ 在欧拉序列中第一次出现的位置编号记为 $pos(u)$ （也称作节点 $u$ 的欧拉序），把欧拉序列本身记作 $E[1..2n-1]$ 。
+
+有了欧拉序列，LCA 问题可以在线性时间内转化为 RMQ 问题，即 $pos(LCA(u, v))=\min\{pos(k)|k\in E[pos(u)..pos(v)]\}$ 。
+
+这个等式不难理解：从 $u$ 走到 $v$ 的过程中一定会经过 $LCA(u,v)$ ，但不会经过 $LCA(u,v)$ 的祖先。因此，从 $u$ 走到 $v$ 的过程中经过的欧拉序最小的结点就是 $LCA(u, v)$ 。
+
+用 DFS 计算欧拉序列的时间复杂度是 $O(n)$ ，且欧拉序列的长度也是 $O(n)$ ，所以 LCA 问题可以在 $O(n)$ 的时间内转化成等规模的 RMQ 问题。
+
+参考代码：
 
 ```cpp
-int depth[N * 2], id[N * 2], loc[N];
-int tot = 1;
-void dfs(int x, int dep) {
-  loc[x] = tot;
-  depth[tot] = dep;
-  id[tot] = x;
-  tot++;
-  for (int i = 0; i < v[x].size(); i++) {
-    dfs(v[x][i], dep + 1);
-    depth[tot] = dep;
-    id[tot] = x;
-    tot++;
+int dfn[N << 1], dep[N << 1], dfntot = 0;
+void dfs(int t, int depth) {
+  dfn[++dfntot] = t;
+  pos[t] = dfntot;
+  dep[dfntot] = depth;
+  for (int i = head[t]; i; i = side[i].next) {
+    dfs(side[i].to, t, depth + 1);
+    dfn[++dfntot] = t;
+    dep[dfntot] = depth;
   }
+}
+void st_preprocess() {
+  lg[0] = -1;  // 预处理 lg 代替库函数 log2 来优化常数
+  for (int i = 1; i <= (N << 1); ++i) lg[i] = lg[i >> 1] + 1;
+  for (int i = 1; i <= (N << 1) - 1; ++i) st[0][i] = dfn[i];
+  for (int i = 1; i <= lg[(N << 1) - 1]; ++i)
+    for (int j = 1; j + (1 << n) - 1 <= ((N << 1) - 1); ++j)
+      st[i][j] = dep[st[i - 1][j]] < dep[st[i - 1][j + (1 << i - 1)]
+                     ? st[i - 1][j]
+                     : st[i - 1][j + (1 << i - 1)];
 }
 ```
 
-然后对 depth 数组建立支持 RMQ 查询的数据结构，需要支持查询最小值所处位置。
+当我们需要查询某点对 $(u, v)$ 的 LCA 时，查询区间 $[\min\{pos[u], pos[v]\}, \max\{pos[u], pos[v]\}]$ 上最小值的所代表的节点即可。
 
-当我们需要查询某点对 `(u, v)` 的 LCA 时，需要先查询区间 `[min(loc[u], loc[v]), max(loc[u], loc[v])]` 上最小值的出现位置，设其为 `pos` ，则 `(u, v)` 的 LCA 为 `id[pos]` 。
-
-本算法不支持在线修改。
+若使用 ST 表来解决 RMQ 问题，那么该算法不支持在线修改，预处理的时间复杂度为 $O(n\log n)$ ，每次查询 LCA 的时间复杂度为 $O(1)$ 。
 
 ### 树链剖分
 
@@ -457,6 +472,6 @@ int main() {
 
 ## 习题
 
--    [严格次小生成树](https://www.luogu.org/problemnew/show/P4180) 
+-    [祖孙询问](https://loj.ac/problem/10135) 
 -    [货车运输](https://loj.ac/problem/2610) 
--    [跑路](https://www.luogu.org/problemnew/show/P1613) 
+-    [点的距离](https://loj.ac/problem/10130) 

@@ -1,4 +1,4 @@
-author: hydingsy
+author: hydingsy, hyp1231
 
 ## 简介
 
@@ -130,7 +130,7 @@ $$
 \begin{aligned}
 \varepsilon=\mu*1&\iff\varepsilon(n)=\sum_{d\mid n}\mu(d)\\
 d=1*1&\iff d(n)=\sum_{d\mid n}1\\
-\sigma=d*1&\iff\varepsilon(n)=\sum_{d\mid n}d\\
+\sigma=d*1&\iff\sigma(n)=\sum_{d\mid n}d\\
 \varphi=\mu*\text{ID}&\iff\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
 \end{aligned}
 $$
@@ -396,18 +396,24 @@ $$
 \frac{1}{2}\cdot \sum_{i=1}^{n-1}\frac{n^2}{\gcd(i,n)}+n
 $$
 
+即
+
+$$
+\frac{1}{2}\cdot \sum_{i=1}^{n}\frac{n^2}{\gcd(i,n)}+\frac{n}{2}
+$$
+
 可以将相同的 $\gcd(i,n)$ 合并在一起计算，故只需要统计 $\gcd(i,n)=d$ 的个数。当 $\gcd(i,n)=d$ 时， $\displaystyle\gcd(\frac{i}{d},\frac{n}{d})=1$ ，所以 $\gcd(i,n)=d$ 的个数有 $\displaystyle\varphi(\frac{n}{d})$ 个。
 
 故答案为
 
 $$
- \frac{1}{2}\cdot\sum_{d\mid n}\frac{n^2\cdot\varphi(\frac{n}{d})}{d}+n
+ \frac{1}{2}\cdot\sum_{d\mid n}\frac{n^2\cdot\varphi(\frac{n}{d})}{d}+\frac{n}{2}
 $$
 
-变换求和顺序，设 $\displaystyle d'=\frac{n}{d}$ ，式子化为
+变换求和顺序，设 $\displaystyle d'=\frac{n}{d}$ ，合并公因式，式子化为
 
 $$
-\frac{1}{2}n\cdot\sum_{d'\mid n}d'\cdot\varphi(d')+n
+\frac{1}{2}n\cdot\left(\sum_{d'\mid n}d'\cdot\varphi(d')+1\right)
 $$
 
 设 $\displaystyle \text{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\text{g}$ 为积性函数，于是可以 $\Theta(n)$ 预处理。最后枚举 $d$ ，统计贡献即可。
@@ -458,8 +464,6 @@ int main() {
 $$
 \sum_{i=1}^n\sum_{j=1}^m\text{lcm}(i,j)\qquad (n,m\leqslant 10^7)
 $$
-
- **解法一** 
 
 易知原式等价于
 
