@@ -4,12 +4,10 @@
 
 [![Travis](https://img.shields.io/travis/OI-WIKI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/OI-wiki/OI-wiki)
 [![Uptime Robot Status](https://img.shields.io/uptimerobot/status/m781254113-3e3bac467c64fc99eafd383e.svg?style=flat-square)](https://status.oi-wiki.org/)
-[![Telegram](https://img.shields.io/badge/join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
-[![QQ](https://img.shields.io/badge/join%20QQ%20group-brightgreen.svg?style=flat-square)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
-[![Feature Requests](https://img.shields.io/badge/-new%20Feature()-brightgreen?style=flat-square)](https://feathub.com/OI-wiki/OI-wiki)
+[![Telegram](https://img.shields.io/badge/OI--wiki-join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
+[![QQ](https://img.shields.io/badge/OI--wiki-join%20QQ%20group-brightgreen.svg?style=flat-square)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
 [![GitHub watchers](https://img.shields.io/github/watchers/OI-Wiki/OI-Wiki.svg?style=social&label=Watch)](https://github.com/OI-wiki/OI-wiki)
 [![GitHub stars](https://img.shields.io/github/stars/OI-Wiki/OI-Wiki.svg?style=social&label=Stars)](https://github.com/OI-wiki/OI-wiki)
-<!-- [![Progress](https://img.shields.io/badge/progress-88%25-brightgreen.svg?style=flat-square)](https://github.com/OI-wiki/OI-wiki) -->
 
 * * *
 
@@ -23,7 +21,7 @@
 
 目前，**OI Wiki** 的内容还有很多不完善的地方，知识点覆盖不够全面，存在一些低质量页面需要修改。**OI Wiki** 团队以及参与贡献的小伙伴们正在积极完善这些内容。
 
-关于上述待完善内容，请参见 **OI Wiki** 的 [Issues](https://github.com/OI-wiki/OI-wiki/issues)、 [迭代计划](https://github.com/OI-wiki/OI-wiki/labels/%E8%BF%AD%E4%BB%A3%E8%AE%A1%E5%88%92%20%2F%20Iteration%20Plan) 和 [FeatHub 页面](https://feathub.com/OI-wiki/OI-wiki)。
+关于上述待完善内容，请参见 **OI Wiki** 的 [Issues](https://github.com/OI-wiki/OI-wiki/issues) 以及 [迭代计划](https://github.com/OI-wiki/OI-wiki/labels/%E8%BF%AD%E4%BB%A3%E8%AE%A1%E5%88%92%20%2F%20Iteration%20Plan)。
 
 与此同时， **OI Wiki** 源于社区，提倡 **知识自由**，在未来也绝不会商业化，将始终保持独立自由的性质。
 
