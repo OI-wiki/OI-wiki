@@ -103,7 +103,7 @@ class test{
 
 -   if
 
-    ```java
+```java
     class test{
         public static void main(String[] args) {
             if(/*判断条件*/){
@@ -111,13 +111,11 @@ class test{
             }
         }
     }
-    ```
-
+```
 
 -   if...else
 
-
-        ```java
+```java
         class test{
             public static void main(String[] args) {
                 if(/*判断条件*/){
@@ -127,12 +125,11 @@ class test{
                 }
             }
         }
-        ```
+```
 
 -   if...else if...else
 
-
-    ```java
+```java
     class test{
         public static void main(String[] args) {
             if(/*判断条件*/){
@@ -144,13 +141,13 @@ class test{
             }
         }
     }
-    ```
+```
 
 #### 循环
 
 -   for
 
-    ```java
+```java
     class test{
         public static void main(String[] args) {
                for(/*初始化*/;/*循环的判断条件*/;/*每次循环后执行的步骤*/){
@@ -158,11 +155,11 @@ class test{
                }
         }
     }
-    ```
+```
 
 -   while
 
-    ```java
+```java
     class test{
        public static void main(String[] args) {
            while(/*判定条件*/){
@@ -170,12 +167,12 @@ class test{
            }
        } 
     }
-    ```
+```
 
 
 -   do...while
 
-    ```java
+```java
     class test{
         public static void main(String[] args) {
             do{
@@ -183,6 +180,6 @@ class test{
             }while(/*循环判断条件*/);
         }
     }
-    ```
+```
 
 #### switch...case
