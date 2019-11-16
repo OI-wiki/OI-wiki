@@ -3,7 +3,7 @@ author: Ir1d, cjsoft, Lans1ot
 
 可以看做是自定义的数据类型。
 
-_事实上不同于C中`struct`，在 C++ 中 `struct` 被扩展为类似 [ `class` ](./class.md) 的类说明符_。
+_事实上不同于 C 中 `struct` ，在 C++ 中 `struct` 被扩展为类似 [ `class` ](./class.md) 的类说明符_。
 
 ## 定义结构体
 
@@ -16,7 +16,7 @@ struct Edge {
 
 const Edge a;
 Edge b, B[array_length];
-Edge *c;
+Edge* c;
 ```
 
 上例中定义了一个名为 `Edge` 的类型，有四个成员元素 `u,v,w,nxt` 。其中 `u,v` 的数据类型都为 `int` ， `nxt` 是 `int` 型的指针， `w` 的类型为 `long long` 。
@@ -27,7 +27,7 @@ _关于指针：不必强求掌握。_
 
 ### 定义结构体指针
 
-在定义中使用`ClassName*`进行定义。
+在定义中使用 `ClassName*` 进行定义。
 
 ```cpp
 struct Edge {
