@@ -168,7 +168,7 @@ nav:
     - Lyndon 分解: string/lyndon.md
   - 数学:
     - 数学部分简介: math/index.md
-    - 符号: math/sign.md
+    - 符号: math/notation.md
     - 复数: math/complex.md
     - 位运算: math/bit.md
     - 快速幂: math/quick-pow.md
