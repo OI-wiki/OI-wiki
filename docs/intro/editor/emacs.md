@@ -91,25 +91,25 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
 考场必备
 
 ```text
-    ;;设置一键编译 可以自行添加参数 难背考场不建议使用 不建议依赖一键编译
-    (defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))
-    (global-set-key [f9] 'compile-file)
-    ;;;;设置编译快捷键（如果设置了一键编译不要与一键编译冲突）
-    ;;(global-set-key [f9] 'compile)
+;;设置一键编译 可以自行添加参数 难背考场不建议使用 不建议依赖一键编译
+(defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))
+(global-set-key [f9] 'compile-file)
+;;;;设置编译快捷键（如果设置了一键编译不要与一键编译冲突）
+;;(global-set-key [f9] 'compile)
 
-    (global-set-key (kbd "C-a") 'mark-whole-buffer) ;;全选快捷键
-    (global-set-key (kbd "C-z") 'undo) ;;撤销快捷键
-    (global-set-key [f10] 'gud-gdb) ;;GDB调试快捷键
-    (global-set-key (kbd "RET") 'newline-and-indent) ;;换行自动缩进
-    (global-set-key (kbd "C-s") 'save-buffer) ;;设置保存快捷键
-    (setq-default kill-ring-max 65535) ;;扩大可撤销记录
+(global-set-key (kbd "C-a") 'mark-whole-buffer) ;;全选快捷键
+(global-set-key (kbd "C-z") 'undo) ;;撤销快捷键
+(global-set-key [f10] 'gud-gdb) ;;GDB调试快捷键
+(global-set-key (kbd "RET") 'newline-and-indent) ;;换行自动缩进
+(global-set-key (kbd "C-s") 'save-buffer) ;;设置保存快捷键
+(setq-default kill-ring-max 65535) ;;扩大可撤销记录
 
-    ;;C++ 代码风格 一般控制缩进规则
-    ;;;"bsd" 所有大括号换行
-    ;;;"java" 所有大括号不换行。else 接在右大括号后面
-    ;;;"awk" 只有命名空间旁、定义类、定义函数时的大括号换行。else 接在右大括号后面
-    ;;;"linux" 只有命名空间旁、定义类、定义函数时的大括号换行。else 接在右大括号后面。一般来说，这个风格应该有 8 格的空格缩进
-    (setq-default c-default-style "awk")
+;;C++ 代码风格 一般控制缩进规则
+;;;"bsd" 所有大括号换行
+;;;"java" 所有大括号不换行。else 接在右大括号后面
+;;;"awk" 只有命名空间旁、定义类、定义函数时的大括号换行。else 接在右大括号后面
+;;;"linux" 只有命名空间旁、定义类、定义函数时的大括号换行。else 接在右大括号后面。一般来说，这个风格应该有 8 格的空格缩进
+(setq-default c-default-style "awk")
 ```
 
 ??? "完整配置"
