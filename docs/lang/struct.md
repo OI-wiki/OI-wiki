@@ -3,7 +3,7 @@ author: Ir1d, cjsoft, Lans1ot
 
 可以看做是自定义的数据类型。
 
-_事实上不同于C中`struct`，在 C++ 中 `struct` 被扩展为类似 [ `class` ](./class.md) 的类说明符_。
+_事实上不同于 C 中 `struct` ，在 C++ 中 `struct` 被扩展为类似 [ `class` ](./class.md) 的类说明符_。
 
 ## 定义结构体
 
