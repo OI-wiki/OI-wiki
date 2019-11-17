@@ -119,8 +119,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
     (global-set-key [f9] 'compile-file)
     ;;;;设置编译快捷键（如果设置了一键编译不要与一键编译冲突）
     ;;(global-set-key [f9] 'compile)
-    ```
-
+    
     ;;考场必备
     (global-set-key (kbd "C-a") 'mark-whole-buffer) ;;全选快捷键
     (global-set-key (kbd "C-z") 'undo) ;;撤销快捷键
@@ -129,7 +128,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
     (global-set-key (kbd "C-s") 'save-buffer) ;;设置保存快捷键
     (setq-default kill-ring-max 65535) ;;扩大可撤销记录
     ;;(define-key key-translation-map [apps] (kbd "M-x")) ;; windows 系统下设置命令快捷键
-
+    
     ;;设置缩进
     ;;;C++ 代码缩进长度。
     (setq-default c-basic-offset 4)
@@ -138,51 +137,51 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
     ;;;tab 的长度。务必和缩进长度一致
     (setq-default default-tab-width 4)
     (setq-default tab-width 4)
-
+    
     ;;设置默认编码环境
     (set-language-environment "UTF-8")
     (set-default-coding-systems 'utf-8)
-
+    
     ;;不显示欢迎页面
     (setq-default inhibit-startup-screen t)
-
+    
     ;;设置标题
     (setq-default frame-title-format "")
-
+    
     ;;显示行号
     (global-linum-mode t)
-
+    
     ;;高亮
     (global-hl-line-mode 1);;高亮当前行
     (show-paren-mode t);;高亮匹配括号
     (global-font-lock-mode t);;语法高亮
-
+    
     ;;允许emacs和外部其他程序的粘贴 好像默认允许
     (setq-default x-select-enable-clipboard t)
-
+    
     ;;设置字体是 Ubuntu Mono 的 16 号，如果字体不存在会报错
     (set-default-font "Ubuntu Mono-16")
     ;(set-default-font "Consolas-16") ;; windows 系统请用这条
-
+    
     ;;鼠标滚轮支持
     (mouse-wheel-mode t)
-
+    
     ;;设置光标形状为竖线（默认为方块）
     (setq-default cursor-type 'bar)
-
+    
     ;;回答 yes/no 改成回答 y/n
     (fset 'yes-or-no-p 'y-or-n-p)
-
+    
     ;;透明度
     (set-frame-parameter (selected-frame) 'alpha (list 85 60))
     (add-to-list 'default-frame-alist (cons 'alpha (list 85 60)))
-
+    
     ;;减少页面滚动的行数，防止整页地滚动
     (setq-default scroll-margin 3 scroll-conservatively 10000)
-
+    
     ;;优化文件树结构
     (ido-mode t)
-
+    
     ;;配色方案
     (setq default-frame-alist
              '((vertical-scroll-bars)
@@ -199,7 +198,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
                (scroll-bar-lines . 0)
                (right-fringe)
                (left-fringe)))
-
+    
     (set-face-background 'highlight "gray5")
     (set-face-foreground 'region "cyan")
     (set-face-background 'region "blue")
@@ -207,7 +206,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
     (set-face-background 'secondary-selection "darkblue")
     (set-cursor-color "wheat")
     (set-mouse-color "wheat")
-
+    
     (custom-set-variables
      '(ansi-color-faces-vector
        [default default default italic underline success warning error])
