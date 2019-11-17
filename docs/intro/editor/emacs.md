@@ -119,6 +119,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
     (global-set-key [f9] 'compile-file)
     ;;;;设置编译快捷键（如果设置了一键编译不要与一键编译冲突）
     ;;(global-set-key [f9] 'compile)
+    ```
 
     ;;考场必备
     (global-set-key (kbd "C-a") 'mark-whole-buffer) ;;全选快捷键
@@ -206,7 +207,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高写工作的效率，�
     (set-face-background 'secondary-selection "darkblue")
     (set-cursor-color "wheat")
     (set-mouse-color "wheat")
-    
+
     (custom-set-variables
      '(ansi-color-faces-vector
        [default default default italic underline success warning error])
