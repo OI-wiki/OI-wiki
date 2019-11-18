@@ -297,13 +297,13 @@ nav:
     - 树上问题:
       - 树基础: graph/tree-basic.md
       - 最近公共祖先: graph/lca.md
-      - 树的其他问题: graph/tree-misc.md
-      - 树哈希: graph/tree-hash.md
+      - 树的重心: graph/tree-centroid.md
       - 树链剖分: graph/hld.md
+      - 树上启发式合并: graph/dsu-on-tree.md
+      - 虚树: graph/virtual-tree.md
       - 树分治: graph/tree-divide.md
       - 动态树分治: graph/dynamic-tree-divide.md
-      - 虚树: graph/virtual-tree.md
-      - 树上启发式合并: graph/dsu-on-tree.md
+      - 树哈希: graph/tree-hash.md
     - 矩阵树定理: graph/matrix-tree.md
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
