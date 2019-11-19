@@ -192,7 +192,6 @@ CCC Junior/Senior 贴近 NOIP 普及组/提高组难度。CCO 想要拿到金牌
 
 罗马尼亚：Olimpiada Nationala de Informatica： <http://olimpiada.info/>   
 题面、测试数据、题解请在含有 Subiecte 字样的标签页中寻找。  
-没做过，难度不做评价。
 
 ## 其它国际 OI 竞赛
 
