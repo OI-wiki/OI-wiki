@@ -131,10 +131,10 @@ JOI 的流程：
 -   决赛（本選/JOI Final）
 -   春训营（春季トレーニング合宿/JOI Spring Camp/JOISC）
 -   公开赛（通信教育/JOI Open Contest）
-预赛难度较低，自 2019/2020 赛季起，预赛分为多轮。
-目前 LibreOJ 和 BZOJ 有近些年的 JOI Final、JOISC 和 JOI Open 的题目。
-JOI Final 的难度在提高 - $\sim$ 提高 + 左右。JOISC 和 JOI Open 的题目的难度在提高 $\sim$ NOI - 不等。
-你可以在 JOI 官网或者 AtCoder 上找到更多的 JOI 题（日文题面）
+    预赛难度较低，自 2019/2020 赛季起，预赛分为多轮。
+    目前 LibreOJ 和 BZOJ 有近些年的 JOI Final、JOISC 和 JOI Open 的题目。
+    JOI Final 的难度在提高 - $\sim$ 提高 + 左右。JOISC 和 JOI Open 的题目的难度在提高 $\sim$ NOI - 不等。
+    你可以在 JOI 官网或者 AtCoder 上找到更多的 JOI 题（日文题面）
 
 ### 俄罗斯：ROI
 
@@ -188,10 +188,10 @@ CCC Junior/Senior 贴近 NOIP 普及组/提高组难度。CCO 想要拿到金牌
 英国 British Informatics Olympiad： <https://www.olympiad.org.uk/>   
 难度太低。
 
-捷克：Matematická olympiáda–kategorie P： <http://mo.mff.cuni.cz/p/archiv.html>
+捷克：Matematická olympiáda–kategorie P： <http://mo.mff.cuni.cz/p/archiv.html> 
 
 罗马尼亚：Olimpiada Nationala de Informatica： <http://olimpiada.info/>   
-题面、测试数据、题解请在含有 Subiecte 字样的标签页中寻找。  
+题面、测试数据、题解请在含有 Subiecte 字样的标签页中寻找。
 
 ## 其它国际 OI 竞赛
 
