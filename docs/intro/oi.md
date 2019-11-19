@@ -132,7 +132,7 @@ JOI 的流程：
 -   春训营（春季トレーニング合宿/JOI Spring Camp/JOISC）
 -   公开赛（通信教育/JOI Open Contest）
 预赛难度较低，自 2019/2020 赛季起，预赛分为多轮。
-目前 LibreOJ 和 BZOJ 有近些年的 JOI Final、JOISC 和 JOI Open 的题目。  
+目前 LibreOJ 和 BZOJ 有近些年的 JOI Final、JOISC 和 JOI Open 的题目。
 JOI Final 的难度在提高 - $\sim$ 提高 + 左右。JOISC 和 JOI Open 的题目的难度在提高 $\sim$ NOI - 不等。  
 你可以在 JOI 官网或者 AtCoder 上找到更多的 JOI 题（日文题面）
 
