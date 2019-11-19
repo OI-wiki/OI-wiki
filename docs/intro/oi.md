@@ -188,7 +188,7 @@ CCC Junior/Senior 贴近 NOIP 普及组/提高组难度。CCO 想要拿到金牌
 英国 British Informatics Olympiad： <https://www.olympiad.org.uk/>   
 难度太低。
 
-捷克：Matematická olympiáda–kategorie P： <http://mo.mff.cuni.cz/p/archiv.html> 没做过，难度不做评价。
+捷克：Matematická olympiáda–kategorie P： <http://mo.mff.cuni.cz/p/archiv.html>
 
 罗马尼亚：Olimpiada Nationala de Informatica： <http://olimpiada.info/>   
 题面、测试数据、题解请在含有 Subiecte 字样的标签页中寻找。  
