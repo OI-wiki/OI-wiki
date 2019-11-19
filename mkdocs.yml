@@ -144,6 +144,7 @@ nav:
       - 二进制分组解多重背包: dp/opt/binary-knapsack.md
       - 单调队列/单调栈优化: dp/opt/monotonous-queue-stack.md
       - 斜率优化: dp/opt/slope.md
+      - 分治优化: dp/opt/divide-and-conquer-dp.md
       - 四边形不等式优化: dp/opt/quadrangle.md
       - 状态设计优化: dp/opt/state.md
     - 其它 DP 方法: dp/misc.md
