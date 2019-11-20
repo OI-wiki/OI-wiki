@@ -74,8 +74,7 @@
       root->size = size(root->lc) + size(root->rc) + 1;
       return root;
     }
-    ```
-
+    
     template<class Key, class Compare>
     typename Set<Key, Compare>::Node_Set<Key, Compare>::insert(Set::Node_root, const Key &key) const {if (root == nullptr)
         return new Node(key, kRed, 1);
@@ -86,9 +85,6 @@
         root->rc = insert(root->rc, key);
       return fix_up(root);
     }
-
-    ```
-
     ```
 
 ### 删除
