@@ -75,11 +75,13 @@
       return root;
     }
     
-    template<class Key, class Compare>
-    typename Set<Key, Compare>::Node_Set<Key, Compare>::insert(Set::Node_root, const Key &key) const {if (root == nullptr)
-        return new Node(key, kRed, 1);
-      if (root->key == key);
-      else if (cmp\_(key, root->key))//if (key < root->key)
+    template <class Key, class Compare>
+    typename Set<Key, Compare>::Node_Set<Key, Compare>::insert(
+        Set::Node_root, const Key &key) const {
+      if (root == nullptr) return new Node(key, kRed, 1);
+      if (root->key == key)
+        ;
+      else if (cmp\_(key, root->key))  // if (key < root->key)
         root->lc = insert(root->lc, key);
       else
         root->rc = insert(root->rc, key);
