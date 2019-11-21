@@ -50,7 +50,7 @@
 -    $\Sigma\subseteq(\Gamma\setminus\{b\})$ 是 **输入符号集** ，是可以出现在初始磁带（即输入）上的字符；
 -    $q_0\in Q$ 是 **初始状态** ；
 -    $F\subseteq Q$ 是 **接受状态** ，如果一个图灵机在某个接受状态停机，则称初始磁带上的内容被这个图灵机 **接受** 。
--    $\delta :(Q\setminus F)\times \Gamma \not \to Q\times \Gamma \times \{L,R\}$ 是一个被称作 **转移函数** 的偏函数（偏函数就是只对定义域的一个子集有定义的函数）。如果 $\delta$ 在当前状态下没有定义，则图灵机停机。
+-    $\delta :(Q\setminus F)\times \Gamma \not \to Q\times \Gamma \times \{L,R\}$ 是一个被称作 **转移函数** 的 partial function（即只对定义域的一个子集有定义的函数）。如果 $\delta$ 在当前状态下没有定义，则图灵机停机。
 
 图灵机从初始状态与纸带起点起，每次根据当前的内部状态 $x$ 和当前磁针指向的纸带上的单元格中的字符 $y$ 进行操作：若 $\delta(x, y)$ 没有定义则停机，否则若 $\delta(x, y)=(a, b, c)$ ，则将内部状态修改为 $a$ ，将磁针指向的格子中的字符修改为 $b$ ，若 $c$ 为 $L$ 则向左移动一格，为 $R$ 则向右移动一格。
 
