@@ -28,13 +28,13 @@ author: linehk
 
 如果说 $O$ 符号相当于小于等于号，那么 $o$ 符号就相当于小于号。
 
-$f(n)=o(g(n))$ ，当且仅当对于任意给定的正数 $c$ ， $\exists n_0$ ，使得 $\forall n \ge n_0,0\le f(n)< c\cdot g(n)$ 。
+ $f(n)=o(g(n))$ ，当且仅当对于任意给定的正数 $c$ ， $\exists n_0$ ，使得 $\forall n \ge n_0,0\le f(n)< c\cdot g(n)$ 。
 
 ### 小 ω 符号
 
 如果说 $\Omega$ 符号相当于大于等于号，那么 $\omega$ 符号就相当于大于号。
 
-$f(n)=\omega(g(n))$ ，当且仅当对于任意给定的正数 $c$ ， $\exists n_0$ ，使得 $\forall n \ge n_0,0\le c\cdot g(n)< f(n)$ 。
+ $f(n)=\omega(g(n))$ ，当且仅当对于任意给定的正数 $c$ ， $\exists n_0$ ，使得 $\forall n \ge n_0,0\le c\cdot g(n)< f(n)$ 。
 
 ![](images/order.png)
 
