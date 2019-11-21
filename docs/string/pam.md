@@ -161,7 +161,7 @@ int main() {
 
 ## 相关资料
 
--    [EERTREE: An Efficient Data Structure for Processing Palindromes in Strings](https://arxiv.org/pdf/1506.04862)
+-    [EERTREE: An Efficient Data Structure for Processing Palindromes in Strings](https://arxiv.org/pdf/1506.04862) 
 
 -    [Palindromic tree](http://adilet.org/blog/palindromic-tree/) 
 
