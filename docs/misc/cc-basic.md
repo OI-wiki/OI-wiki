@@ -183,7 +183,7 @@ $$
 \mathsf{NP}=\bigcup\limits_{k\in\mathbb{N}}\mathsf{NTIME}(n^k)
 $$
 
-所有 $\mathsf P$ 类问题都是 $\mathsf{NP}$ 类问题。更多 $\mathsf{NP}$ 类问题请参见下文中的 NPC 问题。
+所有 $\mathsf P$ 类问题都是 $\mathsf{NP}$ 类问题。更多 $\mathsf{NP}$ 类问题请参见下文中的 NPC 问题以及 NP-intermediate 问题。
 
 #### NP-hard
 
