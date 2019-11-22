@@ -39,7 +39,7 @@ $$
 因此
 
 $$
-f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \Leftrightarrow f(x) = \{y_0, y_1, \cdots,y_{n}\}
+f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \Leftrightarrow f(x) = \{(x_0,y_0),(x_1,y_1), \cdots,(x_n,y_{n})\}
 $$
 
 一个非常通俗易懂的解释：
