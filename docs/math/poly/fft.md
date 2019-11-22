@@ -40,7 +40,7 @@ f(x_{n}) = y_{n} = a_0 + a_1x_{n}+a_2x_{n}^2+a_3x_{n}^3+ \cdots + a_nx_{n}^n
 \end{array}
 $$
 
-那么用点值表示法表示$f(x)$如下
+那么用点值表示法表示 $f(x)$ 如下
 
 $$
 f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \Leftrightarrow f(x) = \{(x_0,y_0),(x_1,y_1), \cdots,(x_n,y_{n})\}
@@ -61,7 +61,7 @@ f(x)={(x_0, f(x_0)), (x_1, f(x_1)), (x_2, f(x_2)), \cdots, (x_n, f(x_n))}\\
 g(x)={(x_0, g(x_0)), (x_1, g(x_1)), (x_2, g(x_2)), \cdots, (x_n, g(x_n))}
 $$
 
-如果我们设 $F(x) = f(x) \times g(x)$，那么很容易得到 $F(x)$ 的点值表达式：
+如果我们设 $F(x) = f(x) \times g(x)$ ，那么很容易得到 $F(x)$ 的点值表达式：
 
 $$
 F(x) = {(x_0, f(x_0)g(x_0)), (x_1, f(x_1)g(x_1)), (x_2, f(x_2)g(x_2)), \cdots, (x_n, f(x_n)g(x_n))}
@@ -79,7 +79,7 @@ $$
 
 严谨地，我们称 $x^n=1$ 在复数意义下的解是 $n$ 次复根。显然，这样的解有 $n$ 个，设 $\omega_n=e^{\frac{2\pi i}{n}}$ ，则 $x^n=1$ 的解集表示为 $\{w_n^k\mid k=0,1\cdots,n-1\}$ 。我们称 $w_n$ 是 $n$ 次单位复根（The $n$ -th roots of unity）。根据复平面的知识， $n$ 次单位复根是复平面把单位圆 $n$ 等分的第一个角所对应的向量。其他复根均可以用单位复根的幂表示。
 
-另一方面，根据欧拉公式，还可以得到$\omega_n=e^{\frac{2\pi i}{n}}=\cos\left(\dfrac{2\pi i}{n}\right)+i\cdot \sin\left(\dfrac{2\pi i}{n}\right)$。
+另一方面，根据欧拉公式，还可以得到 $\omega_n=e^{\frac{2\pi i}{n}}=\cos\left(\dfrac{2\pi i}{n}\right)+i\cdot \sin\left(\dfrac{2\pi i}{n}\right)$ 。
 
 举个例子，当 $n=4$ 时， $w_n=i$ ，即 $i$ 就是 $4$ 次单位复根：
 
@@ -91,7 +91,7 @@ $$
 
 ### 性质
 
-单位复根有三个重要的性质。对于任意正整数$n$和整数$k$：
+单位复根有三个重要的性质。对于任意正整数 $n$ 和整数 $k$ ：
 
 $$
 \omega_n^n=1\\
@@ -101,7 +101,7 @@ $$
 
 ## 快速傅里叶变换
 
-FFT 算法的基本思想是分治。就 DFT 来说，它分治的来求当 $x=\omega_n^k$ 的时候$f(x)$的值。他的分治思想体现在将多项式分为奇次项和偶次项处理。
+FFT 算法的基本思想是分治。就 DFT 来说，它分治的来求当 $x=\omega_n^k$ 的时候 $f(x)$ 的值。他的分治思想体现在将多项式分为奇次项和偶次项处理。
 
 举个例子，对于一共 $8$ 项的多项式
 
@@ -153,48 +153,49 @@ $$
 \end{split}
 $$
 
-因此我们求出了$\operatorname{DFT}(G(\omega_{n/2}^k))$和$\operatorname{DFT}(H(\omega_{n/2}^k))$后，就可以同时求出$\operatorname{DFT}(f(\omega_n^k))$和$\operatorname{DFT}(f(\omega_n^{k+n/2}))$。于是对$G$和$H$分别递归DFT即可。
+因此我们求出了 $\operatorname{DFT}(G(\omega_{n/2}^k))$ 和 $\operatorname{DFT}(H(\omega_{n/2}^k))$ 后，就可以同时求出 $\operatorname{DFT}(f(\omega_n^k))$ 和 $\operatorname{DFT}(f(\omega_n^{k+n/2}))$ 。于是对 $G$ 和 $H$ 分别递归 DFT 即可。
 
-考虑到分治DFT能处理的多项式长度只能是 $2^m(m \in N^ \times )$ ，否则在分治的时候左右不一样长，右边就取不到系数了。所以要在第一次 DFT 之前就把序列向上补成长度为 $2^m(m \in N^ \times )$ （高次系数补 $0$ ）、最高项次数为 $n-1$ 的多项式。需要预处理。
+考虑到分治 DFT 能处理的多项式长度只能是 $2^m(m \in N^ \times )$ ，否则在分治的时候左右不一样长，右边就取不到系数了。所以要在第一次 DFT 之前就把序列向上补成长度为 $2^m(m \in N^ \times )$ （高次系数补 $0$ ）、最高项次数为 $n-1$ 的多项式。需要预处理。
 
 在代入值的时候，因为要代入 $n$ 个不同值，所以我们代入 $\omega_n^0,\omega_n^1,\omega_n^2,\cdots, \omega_n^{n-1} (n=2^m(m \in N^ \times ))$ 一共 $2^m$ 个不同值。
 
-代码实现方面，STL提供了虚数的模板，当然也可以手动实现。两者区别在于，使用STL的`complex`可以调用`exp`函数求出$\omega_n$。但事实上使用欧拉公式得到的虚数来求$\omega_n$也是等价的。
+代码实现方面，STL 提供了虚数的模板，当然也可以手动实现。两者区别在于，使用 STL 的 `complex` 可以调用 `exp` 函数求出 $\omega_n$ 。但事实上使用欧拉公式得到的虚数来求 $\omega_n$ 也是等价的。
 
 ???+ note "递归版 FFT"
-    
     ```cpp
-    #include <complex>
     #include <cmath>
+    #include <complex>
     
-    typedef std::complex<double> Comp;//STL complex
+    typedef std::complex<double> Comp;  // STL complex
     
-    const Comp I(0, 1);// i
+    const Comp I(0, 1);  // i
     const int MAX_N = 1 << 20;
     
     Comp tmp[MAX_N];
     
-    void DFT(Comp * f, int n, int rev) {//rev=1,DFT; rev=-1,IDFT
-        if (n == 1) return;
-        for(int i=0;i<n;++i)tmp[i]=f[i];
-        for(int i=0;i<n;++i){//偶数放左边，奇数放右边
-            if(i&1)f[n/2+i/2]=tmp[i];
-            else f[i/2]=tmp[i];
-        }
-        Comp *g=f, *h=f+n/2;
-        DFT(g, n/2, rev), DFT(h, n/2, rev);//递归DFT
-        Comp cur(1, 0),step(cos(2*M_PI/n),sin(2*M_PI*rev/n));
-        //Comp step=exp(I*(2*M_PI/n*rev));//两个step定义是等价的
-        for(int k=0;k<n/2;++k) {
-            tmp[k]=g[k]+cur*h[k];
-            tmp[k+n/2]=g[k]-cur*h[k];
-            cur*=step;
-        }
-        for(int i=0;i<n;++i)f[i]=tmp[i];
+    void DFT(Comp *f, int n, int rev) {  // rev=1,DFT; rev=-1,IDFT
+      if (n == 1) return;
+      for (int i = 0; i < n; ++i) tmp[i] = f[i];
+      for (int i = 0; i < n; ++i) {  //偶数放左边，奇数放右边
+        if (i & 1)
+          f[n / 2 + i / 2] = tmp[i];
+        else
+          f[i / 2] = tmp[i];
+      }
+      Comp *g = f, *h = f + n / 2;
+      DFT(g, n / 2, rev), DFT(h, n / 2, rev);  //递归DFT
+      Comp cur(1, 0), step(cos(2 * M_PI / n), sin(2 * M_PI * rev / n));
+      // Comp step=exp(I*(2*M_PI/n*rev));//两个step定义是等价的
+      for (int k = 0; k < n / 2; ++k) {
+        tmp[k] = g[k] + cur * h[k];
+        tmp[k + n / 2] = g[k] - cur * h[k];
+        cur *= step;
+      }
+      for (int i = 0; i < n; ++i) f[i] = tmp[i];
     }
     ```
 
-时间复杂度$O(n\log_2n)$。
+时间复杂度 $O(n\log_2n)$ 。
 
 ### 蝴蝶变换
 
@@ -208,10 +209,9 @@ $$
 
 三次二分之后 $\{x_0\}\{x_4\}\{x_2\}\{x_6\}\{x_1\}\{x_5\}\{x_3\}\{x_7 \}$ 
 
-有啥规律呢？其实就是原来的那个序列，每个数用二进制表示，然后把二进制翻转对称一下，就是最终那个位置的下标。比如 $x_1$ 是 001，翻转是 100，也就是 4，而且最后那个位置确实是 4。我们称这个变换为蝴蝶变换。根据它的定义，我们可以在$O(n\log_2n)$的时间内求出每个数蝴蝶变换的结果：
+有啥规律呢？其实就是原来的那个序列，每个数用二进制表示，然后把二进制翻转对称一下，就是最终那个位置的下标。比如 $x_1$ 是 001，翻转是 100，也就是 4，而且最后那个位置确实是 4。我们称这个变换为蝴蝶变换。根据它的定义，我们可以在 $O(n\log_2n)$ 的时间内求出每个数蝴蝶变换的结果：
 
 ???+ note "蝴蝶变换实现"
-    
     ```cpp
     /*
      * 进行 FFT 和 IFFT 前的反置变换
@@ -270,9 +270,9 @@ $$
 A(x)=\sum_{i=0}^{n-1}y_ix^i
 $$
 
-相当于把 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 当做多项式 $A$ 的系数表示法。设 $b_i=\omega_n^{-i}$ ，则多项式 $A$ 在 $x=b_0,b_1,\cdots,b_{n-1}$ 处的点值表示法为 $\left\{ A(b_0),A(b_1),\cdots,A(b_{n-1}) \right\}$。
+相当于把 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 当做多项式 $A$ 的系数表示法。设 $b_i=\omega_n^{-i}$ ，则多项式 $A$ 在 $x=b_0,b_1,\cdots,b_{n-1}$ 处的点值表示法为 $\left\{ A(b_0),A(b_1),\cdots,A(b_{n-1}) \right\}$ 。
 
-对$A(x)$的定义式做一下变换，可以将$A(b_k)$表示为
+对 $A(x)$ 的定义式做一下变换，可以将 $A(b_k)$ 表示为
 
 $$
 \begin{split}
@@ -317,12 +317,11 @@ $$
 \left\{ A(b_0),A(b_1),\cdots,A(b_{n-1}) \right\}＝\left\{ a_0\cdot n,a_1\cdot n,\cdots,a_{n-1}\cdot n \right\}=n\left\{ a_0,a_1,\cdots,a_{n-1}\right\}
 $$
 
-综上所述，我们取单位根为其倒数，对 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 跑一遍 FFT，然后除以 $n$ 即可得到$f(x)$的系数序列，这就是IDFT操作的过程。
+综上所述，我们取单位根为其倒数，对 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 跑一遍 FFT，然后除以 $n$ 即可得到 $f(x)$ 的系数序列，这就是 IDFT 操作的过程。
 
 所以我们 FFT 函数可以集 DFT 和 IDFT 于一身。代码实现如下：
 
 ???+ note "非递归版 FFT"
-    
     ```cpp
     /*
      * 做 FFT
