@@ -176,16 +176,15 @@ $$
 
 反演结论： $\displaystyle [gcd(i,j)=1] \iff\sum_{d\mid\gcd(i,j)}\mu(d)$ 
 
-**直接推导** ：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$ ，也就是式子的值是 $1$ ，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值： $0$ 
+ **直接推导** ：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$ ，也就是式子的值是 $1$ ，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值： $0$ 
 
-**利用 $\varepsilon$ 函数** ：根据上一结论， $[\gcd(i,j)=1]\implies \varepsilon(\gcd(i,j))$ ，将 $\varepsilon$ 展开即可。
+ **利用 $\varepsilon$ 函数** ：根据上一结论， $[\gcd(i,j)=1]\implies \varepsilon(\gcd(i,j))$ ，将 $\varepsilon$ 展开即可。
 
 ### 线性筛
 
 由于 $\mu$ 函数为积性函数，因此可以线性筛莫比乌斯函数（线性筛基本可以求所有的积性函数，尽管方法不尽相同）。
 
 ???+ note "线性筛实现"
-    
     ```cpp
     void getMu() {
       mu[1] = 1;
@@ -318,10 +317,9 @@ $$
 
 很显然，式子可以数论分块求解（注意：过程中默认 $n\leqslant m$ ）。
 
-**时间复杂度 $\Theta(N+T\sqrt{n})$ **
+ **时间复杂度 $\Theta(N+T\sqrt{n})$ ** 
 
 ??? note "代码实现"
-    
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -419,7 +417,6 @@ $$
  **时间复杂度** ： $\Theta(n\log n)$ 
 
 ??? note "代码实现"
-    
     ```cpp
     #include <cstdio>
     const int N = 1000000;
@@ -528,7 +525,6 @@ $$
 时间复杂度： $\Theta(n+m)$ （两次数论分块）
 
 ??? note "代码实现"
-    
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -641,7 +637,6 @@ $$
 那么 $O(n)$ 预处理 $\mu,d$ 的前缀和， $O(\sqrt{n})$ 分块处理询问，总复杂度 $O(n\sqrt{n})$ .
 
 ??? note "代码实现"
-    
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -735,7 +730,6 @@ $$
 分块递归求解即可，复杂度 $O(n^{\frac{2}{3}})$ .
 
 ??? note "代码实现"
-    
     ```cpp
     #include <cmath>
     #include <cstdio>
@@ -802,6 +796,7 @@ $$
       return 0;
     }  //不要为了省什么内存把数组开小。。。卡了好几次80
     ```
+
  **解法二** 
 
 转化一下，可以将式子写成
@@ -848,7 +843,7 @@ f(\frac{x}{p})\cdot f(p) &,p^2\nmid n
 \end{cases}
 $$
 
-其中 $p$ 表示 $n$ 的最小质因子，总时间复杂度 $O(n+\sqrt n)$。
+其中 $p$ 表示 $n$ 的最小质因子，总时间复杂度 $O(n+\sqrt n)$ 。
 
 ## 莫比乌斯反演扩展
 
@@ -900,4 +895,4 @@ $$
 
 ## 参考文献
 
-[algocode 算法博客](https://algocode.net)
+ [algocode 算法博客](https://algocode.net) 
