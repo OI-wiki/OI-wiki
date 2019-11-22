@@ -65,7 +65,7 @@ f(x)={(x_0, f(x_0)), (x_1, f(x_1)), (x_2, f(x_2)), \cdots, (x_n, f(x_n))}
 $$
 
 $$
-g(x)={(x_0, g(x_0), (x_1, g(x_1)), (x_2, g(x_2), \cdots, (x_n, g(x_n)))}
+g(x)={(x_0, g(x_0)), (x_1, g(x_1)), (x_2, g(x_2)), \cdots, (x_n, g(x_n))}
 $$
 
 如果我们设 $F(x) = f(x) \times g(x)$ 
