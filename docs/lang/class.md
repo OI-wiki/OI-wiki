@@ -15,19 +15,18 @@ class ClassName {
 };
 
 // Example:
-class Edge {
+class Object {
  public:
-  int u, v;
-  long long w;
-  int nxt;
+  int weight;
+  int value;
 } e[array_length];
 
-const Edge a;
-Edge b, B[array_length];
-Edge *c, C[array_length];
+const Object a;
+Object b, B[array_length];
+Object *c;
 ```
 
-与使用 `struct` 大同小异。该例定义了一个名为 `Edge` 的类。该类拥有四个成员元素，分别为 `u,v,w,nxt` 。
+与使用 `struct` 大同小异。该例定义了一个名为 `Object` 的类。该类拥有四个成员元素，分别为 `weight,value` 。
 
 并在 `}` 后定义了一个数组 `e` ，也可以使用第十三行后中的方法进行定义。
 
@@ -50,16 +49,16 @@ _对于算法竞赛来说，友元和派生类并不是必须要掌握的知识�
 ??? note "关于友元以及派生类的基本概念"
 
     友元（`friend`）: 使用`friend`关键字修饰某个函数或者类。可以使得在**被修饰者**在不成为成员函数或者成员类的情况下，访问该类的私有（`private`）或者受保护（`protected`）成员。简单来说就是只要带有这个类的`friend`标记，就可以访问私有或受保护的成员元素。
-
+    
     派生类（`derived class`）: C++允许使用一个类作为**基类**，并通过基类**派生**出**派生类**。其中派生类（根据特定规则）继承基类中的成员变量和成员函数。可以提高代码的复用率。
-
+    
     派生类似" is "的关系。如猫（派生类）" is " 哺乳动物（基类）。
-
+    
      对于上面`private`和`protected`的区别，可以看做派生类可以访问基类的`protected`的元素（`public`同），但不能访问`private`元素。
 
 ## 访问与修改成员元素的值
 
-方法形同 [ `struct` ](./struct.md) 
+方法形同 [ `struct` ](./struct.md)
 
 -   对于变量，使用 `.` 符号。
 -   对于指针，使用 `->` 符号。
@@ -81,22 +80,21 @@ class Class_Name {
 };
 
 // Example:
-class Edge {
+class Object {
  public:
-  int u, v;
-  long long w;
-  int nxt;
+  int weight;
+  int value;
   void print() {
-    cout << u << " " << v << " " << w << " " << nxt;
+    cout << weight << endl;
     return;
   }
   void change_w(int);
 };
 
-void Edge::change_w(int _w) { w = _w; }
+void Object::change_w(int _weight) { weight = _weight; }
 ```
 
-该类有一个打印 `Edge` 成员元素的函数，以及更改成员元素 `w` 的函数。
+该类有一个打印 `Object` 成员元素的函数，以及更改成员元素 `weight` 的函数。
 
 和函数类似，对于成员函数，也可以先声明，在定义，如第十八行（声明处）以及二十一行后（定义处）。
 
@@ -108,9 +106,9 @@ void Edge::change_w(int _w) { w = _w; }
     C++ 允许编写者为名称相同的函数或者运算符指定不同的定义。这称为 **重载** （overload）。
 
     如果同名函数的参数种类、数量、返回类型不相同其中一者或多者两两不相同，则这些同名函数被看做是不同的。
-
+    
     如果在调用时不会出现混淆（指调用某些同名函数时，无法根据所填参数种类和数量唯一地判断出被调用函数。常发生在具有默认参数的函数中），则编译器会根据调用时所填参数判断应调用函数。
-
+    
     而上述过程被称作重载解析。
 
 重载运算符，可以部分程度上代替函数，简化代码。
@@ -158,13 +156,13 @@ _如要了解更多，参见“参考资料”第四条。_
          =
          +  -  *  /  =  %
          +=  -=  *=  /=  %=
-         <  >  ==  !=  <=  >=  
+         <  >  ==  !=  <=  >=
          &  |  !  ^  ~
-         &=  |=  ^= 
+         &=  |=  ^=
          //----------
          <<  <<=  >>  >>=
-         ++  -- 
-         &&  ||  
+         ++  --
+         &&  ||
          []  ()  ,
          ->*  ->  new  delete  new[]  delete[]
       ```
@@ -179,21 +177,18 @@ class ClassName {
 };
 
 // Example:
-class Edge {
+class Object {
  public:
-  int u, v;
-  long long w;
-  int nxt;
-  Edge() {
-    u = 0;
-    v = 0;
-    w = 0ll;
-    nxt = 0;
+  int weight;
+  int value;
+  Object() {
+    weight = 0;
+    value = 0;
   }
 };
 ```
 
-该例定义了 `Edge` 的默认构造函数，该函数能够在我们实例化 `Edge` 类型变量时，将所有的成员元素初始化为 `0` 。
+该例定义了 `Object` 的默认构造函数，该函数能够在我们实例化 `Object` 类型变量时，将所有的成员元素初始化为 `0` 。
 
 若无显式的构造函数，则编译器认为该类有隐式的默认构造函数。换言之，若无定义任何构造函数，则编译器会自动生成一个默认构造函数，并会根据成员元素的类型进行初始化（与定义 内置类型 变量相同）。
 
@@ -212,48 +207,42 @@ class Edge {
     使用 `{}` 进行初始化，会用到 std::initializer_list 这一个轻量代理对象进行初始化。
 
     初始化步骤大概如下
-
+    
     1. 尝试寻找参数中有`std::initializer_list`的默认构造函数，如果有则调用（调用完后不再进行下面的查找，下同）。
-
+    
     2. 尝试将`{}`中的元素填入其他构造参数，如果能将参数按照顺序填满（默认参数也算在内），则调用该默认构造函数。
-
+    
     3. 若无`private`成员元素，则尝试在**类外**按照元素定义顺序或者下标顺序依次赋值。
-
+    
     _上述过程只是完整过程的简化版本，详细内容参见"参考资料九"_
 
 ```cpp
-class Edge {
+class Object {
  public:
-  int u, v;
-  long long w;
-  int nxt;
-  Edge() {
-    u = 0;
-    v = 0;
-    w = 0ll;
-    nxt = 0;
+  int weight;
+  int value;
+  Object() {
+    weight = 0;
+    value = 0;
   }
-  Edge(int _u, int _v, long long _w, int _nxt) {
-    u = _u;
-    v = _v;
-    w = _w;
-    nxt = _nxt;
+  Object(int _weight=0,int _value=0) {
+    weight = _weight;
+    value = _value;
   }
   // the same as
-  // Edge(int _u, int _v, long long _w, int* _nxt):u（_u), v(_v), w(_w),
-  // nxt(_nxt) {}
+  // Object(int _weight,int _value):weight(_weight),value(_value) {}
 };
 
 // the same as
-// Edge::Edge(int _u, int _v, long long _w, int* _nxt){
-//        u = _u; v = _v;
-//        w = _w;
-//        nxt = _nxt;
+// Object::Object(int _weight,int _value){
+//   weight = _weight;
+//   value = _value;
+// }
 //}
 
-Edge A;                // ok
-Edge B(1, 2, 5ll, 0);  // ok
-Edge C{1, 2, 5ll, 0};  // ok,(C++11)
+Object A;                // ok
+Object B(1, 2);  // ok
+Object C{1, 2};  // ok,(C++11)
 ```
 
 ??? note "关于隐式类型转换"
@@ -267,13 +256,13 @@ Edge C{1, 2, 5ll, 0};  // ok,(C++11)
     };
     Node a = 1;
     ```
-
+    
     看上去十分不符合逻辑，一个 `int` 类型不可能转化为 `node` 类型。但是编译器不会进行 `error` 提示。
-
+    
     原因是在进行赋值时，首先会将 `1` 作为参数调用 `node::node(int)` ，然后调用默认的复制函数进行赋值。
-
+    
     但大多数情况下，编写者会希望编译器进行报错。这时便可以在构造函数前追加 `explicit` 关键字。这会告诉编译器必须显式进行调用。
-
+    
     ```cpp
     class Node {
      public:
@@ -281,9 +270,9 @@ Edge C{1, 2, 5ll, 0};  // ok,(C++11)
       explicit Node(int _var) : var(_var) {}
     };
     ```
-
+    
     也就是说 `node a=1` 将会报错，但 `node a=node(1)` 不会。因为后者显式调用了构造函数。当然大多数人不会写出后者的代码，但此例足以说明 explicit 的作用。
-
+    
     _不过在算法竞赛中，为了避免此类情况常用的是"加强对代码的规范程度"，从源头上避免_
 
 ### 销毁
@@ -294,23 +283,21 @@ Edge C{1, 2, 5ll, 0};  // ok,(C++11)
 
 如果结构体的成员元素包含指针，同样会遇到这种问题。需要用到析构函数来手动释放动态内存。
 
- **析构** 函数（Destructor）将会在该变量被销毁时被调用。重载的方法形同构造函数，但需要在前加 `~` 
+ **析构** 函数（Destructor）将会在该变量被销毁时被调用。重载的方法形同构造函数，但需要在前加 `~`
 
 _默认定义的析构函数通常对于算法竞赛已经足够使用，通常我们只有在成员元素包含指针时才会重载析构函数。_
 
 ```cpp
-class Edge {
+class Object {
  public:
-  int u, v;
-  long long w;
-  int* nxt;  //指针
-  Edge() {
-    u = 0;
-    v = 0;
-    w = 0ll;
-    nxt = NULL;
+  int weight;
+  int value;
+  int* ned;
+  Object() {
+    weight = 0;
+    value = 0;
   }
-  ~Edge() { delete nxt; }
+  ~Object() { delete ned; }
 };
 ```
 
@@ -323,9 +310,9 @@ class Edge {
 另外默认情况下，进行的赋值都是对应元素间进行 **浅拷贝** ，如果成员元素中有指针，则在赋值完成后，两个变量的成员指针具有相同的地址。
 
 ```cpp
-// A,tmp1,tmp2,tmp3类型为Edge
+// A,tmp1,tmp2,tmp3类型为Object
 tmp1 = A;
-tmp2 = Edge(...);
+tmp2 = Object(...);
 tmp3 = {...};
 ```
 
@@ -335,12 +322,12 @@ _更多 构造函数（constructor）内容，参见“参考资料”第六条�
 
 ## 参考资料
 
-1.   [cppreference class](https://zh.cppreference.com/w/cpp/language/class) 
-2.   [cppreference access](https://zh.cppreference.com/w/cpp/language/access) 
-3.   [cppreference default_constructor](https://zh.cppreference.com/w/cpp/language/default_constructor) 
-4.   [cppreference operator](https://zh.cppreference.com/w/cpp/language/operators) 
-5.   [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/) 
-6.   [cplusplus Special members](http://www.cplusplus.com/doc/tutorial/classes2/) 
-7.   [C++11 FAQ](http://www.stroustrup.com/C++11FAQ.html) 
-8.   [cppreference Friendship and inheritance](http://www.cplusplus.com/doc/tutorial/inheritance/) 
-9.   [cppreference value initialization](https://zh.cppreference.com/w/cpp/language/value_initialization) 
+1.   [cppreference class](https://zh.cppreference.com/w/cpp/language/class)
+2.   [cppreference access](https://zh.cppreference.com/w/cpp/language/access)
+3.   [cppreference default_constructor](https://zh.cppreference.com/w/cpp/language/default_constructor)
+4.   [cppreference operator](https://zh.cppreference.com/w/cpp/language/operators)
+5.   [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/)
+6.   [cplusplus Special members](http://www.cplusplus.com/doc/tutorial/classes2/)
+7.   [C++11 FAQ](http://www.stroustrup.com/C++11FAQ.html)
+8.   [cppreference Friendship and inheritance](http://www.cplusplus.com/doc/tutorial/inheritance/)
+9.   [cppreference value initialization](https://zh.cppreference.com/w/cpp/language/value_initialization)
