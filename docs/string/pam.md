@@ -82,7 +82,7 @@
 
 例题： [「APIO2014」回文串](https://www.luogu.org/problem/P3649) 
 
-定义 $s$ 的一个子串的存在值为这个子串在 $s$ 中出现的次数乘以这个子串的长度。对于给定的字符串 $s$，求所有回文子串中的最大存在值。
+定义 $s$ 的一个子串的存在值为这个子串在 $s$ 中出现的次数乘以这个子串的长度。对于给定的字符串 $s$ ，求所有回文子串中的最大存在值。
 
 ??? note "参考代码"
     ```cpp
@@ -90,6 +90,7 @@
     using namespace std;
     typedef long long ll;
     const int maxn = 300000 + 5;
+    ```
 
     namespace pam {
     int sz, tot, last;
@@ -248,11 +249,10 @@ border：若 $0 \le r < |s|$ ， $pre(s,r)=suf(s,r)$ ，就称 $pre(s,r)$ 是 $s
 
 例题： [Codeforces 932G Palindrome Partition](https://codeforces.com/problemset/problem/932/G) 
 
-给定一个字符串 $s$，要求将 $s$ 划分为 $t_1, t_2, \dots, t_k$，其中 $k$ 是偶数，且 $t_i=t_{k-i}$，求这样的划分方案数。
-
+给定一个字符串 $s$ ，要求将 $s$ 划分为 $t_1, t_2, \dots, t_k$ ，其中 $k$ 是偶数，且 $t_i=t_{k-i}$ ，求这样的划分方案数。
 
 ??? note "题解"
-    构造字符串 $t= s[0]s[n - 1]s[1]s[n - 2]s[2]s[n - 3] \dots s[n / 2 - 1]s[n / 2]$ ，问题等价于求 $t$ 的偶回文划分方案数，把上面的转移方程改成求和形式并且只在偶数位置更新 $dp$ 数组即可。时间复杂度 $O(n \log n)$，空间复杂度 $O(n)$。
+    构造字符串 $t= s[0]s[n - 1]s[1]s[n - 2]s[2]s[n - 3] \dots s[n / 2 - 1]s[n / 2]$ ，问题等价于求 $t$ 的偶回文划分方案数，把上面的转移方程改成求和形式并且只在偶数位置更新 $dp$ 数组即可。时间复杂度 $O(n \log n)$ ，空间复杂度 $O(n)$ 。
 
 ??? note "参考代码"
     ```cpp
@@ -261,6 +261,7 @@ border：若 $0 \le r < |s|$ ， $pre(s,r)=suf(s,r)$ ，就称 $pre(s,r)$ 是 $s
     typedef long long ll;
     const int mod = 1e9 + 7;
     const int maxn = 1000000 + 5;
+    ```
 
     inline int add(int x, int y) {
       x += y;
