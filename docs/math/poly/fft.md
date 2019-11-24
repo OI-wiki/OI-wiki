@@ -1,6 +1,6 @@
 author: AndrewWayne, GavinZhengOI. ChungZH, henryrabbit, Xeonacid, sshwy, Yukimaikoriya
 
-前置知识： [复数](../math/complex) 。
+前置知识： [复数](../complex.md) 。
 
 本文将介绍一种算法，它支持在 $O(n\log n)$ 的时间内计算两个 $n$ 度的多项式的乘法，比朴素的 $O(n^2)$ 算法更高效。由于两个整数的乘法也可以被当作多项式乘法，因此这个算法也可以用来加速大整数的乘法计算。
 
@@ -157,7 +157,7 @@ $$
 
 考虑到分治 DFT 能处理的多项式长度只能是 $2^m(m \in N^ \ast )$ ，否则在分治的时候左右不一样长，右边就取不到系数了。所以要在第一次 DFT 之前就把序列向上补成长度为 $2^m(m \in N^\ast )$ （高次系数补 $0$ ）、最高项次数为 $2^m-1$ 的多项式。
 
-在代入值的时候，因为要代入 $n$ 个不同值，所以我们代入 $\omega_n^0,\omega_n^1,\omega_n^2,\cdots, \omega_n^{n-1} (n=2^m(m \in N^ \times ))$ 一共 $2^m$ 个不同值。
+在代入值的时候，因为要代入 $n$ 个不同值，所以我们代入 $\omega_n^0,\omega_n^1,\omega_n^2,\cdots, \omega_n^{n-1} (n=2^m(m \in N^ \ast ))$ 一共 $2^m$ 个不同值。
 
 代码实现方面，STL 提供了虚数的模板，当然也可以手动实现。两者区别在于，使用 STL 的 `complex` 可以调用 `exp` 函数求出 $\omega_n$ 。但事实上使用欧拉公式得到的虚数来求 $\omega_n$ 也是等价的。
 
@@ -195,7 +195,7 @@ $$
     }
     ```
 
-时间复杂度 $O(n\log_2n)$ 。
+时间复杂度 $O(n\log n)$ 。
 
 ### 蝴蝶变换
 
@@ -209,7 +209,7 @@ $$
 
 三次二分之后 $\{x_0\}\{x_4\}\{x_2\}\{x_6\}\{x_1\}\{x_5\}\{x_3\}\{x_7 \}$ 
 
-有啥规律呢？其实就是原来的那个序列，每个数用二进制表示，然后把二进制翻转对称一下，就是最终那个位置的下标。比如 $x_1$ 是 001，翻转是 100，也就是 4，而且最后那个位置确实是 4。我们称这个变换为蝴蝶变换。根据它的定义，我们可以在 $O(n\log_2n)$ 的时间内求出每个数蝴蝶变换的结果：
+有啥规律呢？其实就是原来的那个序列，每个数用二进制表示，然后把二进制翻转对称一下，就是最终那个位置的下标。比如 $x_1$ 是 001，翻转是 100，也就是 4，而且最后那个位置确实是 4。我们称这个变换为蝴蝶变换。根据它的定义，我们可以在 $O(n\log n)$ 的时间内求出每个数蝴蝶变换的结果：
 
 ???+ note "蝴蝶变换实现"
     ```cpp
@@ -239,15 +239,15 @@ $$
 这一步 IDFT（傅里叶反变换）的作用我说的已经很清楚啦，就是把上一步获得的目标多项式的点值形式转换成系数形式。但是似乎并不简单呢……但是，我们把单位复根代入多项式之后，就是下面这个样子（矩阵表示方程组）
 
 $$
- \begin{bmatrix}y_0 \\ y_1 \\ y_2 \\ y_3 \\ \dots \\ y_{n-1} \end{bmatrix}
-\begin{matrix}= \\ = \\ = \\ = \\ \\ = \end{matrix}
-\begin{bmatrix}1 & 1 & 1 & 1 & \dots & 1 \\
-1 & \omega_n^1 & \omega_n^2 & \omega_n^3 & \dots & \omega_n^{n-1} \\
-1 & \omega_n^2 & \omega_n^4 & \omega_n^6 & \dots & \omega_n^{2(n-1)} \\
-1 & \omega_n^3 & \omega_n^6 & \omega_n^9 & \dots & \omega_n^{3(n-1)} \\
-\dots & \dots & \dots & \dots & \dots & \dots \\
-1 & \omega_n^{n-1} & \omega_n^{2(n-1)} & \omega_n^{3(n-1)} & \dots & \omega_n^{(n-1)^2} \end{bmatrix}
-\begin{bmatrix} a_0 \\ a_1 \\ a_2 \\ a_3 \\ \dots \\ a_{n-1} \end{bmatrix}
+\begin{bmatrix}y_0 \\ y_1 \\ y_2 \\ y_3 \\ \vdots \\ y_{n-1} \end{bmatrix}
+=
+\begin{bmatrix}1 & 1 & 1 & 1 & \cdots & 1 \\
+1 & \omega_n^1 & \omega_n^2 & \omega_n^3 & \cdots & \omega_n^{n-1} \\
+1 & \omega_n^2 & \omega_n^4 & \omega_n^6 & \cdots & \omega_n^{2(n-1)} \\
+1 & \omega_n^3 & \omega_n^6 & \omega_n^9 & \cdots & \omega_n^{3(n-1)} \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & \omega_n^{n-1} & \omega_n^{2(n-1)} & \omega_n^{3(n-1)} & \cdots & \omega_n^{(n-1)^2} \end{bmatrix}
+\begin{bmatrix} a_0 \\ a_1 \\ a_2 \\ a_3 \\ \vdots \\ a_{n-1} \end{bmatrix}
 $$
 
 而且现在我们已经得到最左边的结果了，中间的 $x$ 值在目标多项式的点值表示中也是一一对应的，所以，根据矩阵的基础知识，我们只要在式子两边左乘中间那个大矩阵的逆矩阵就行了。由于这个矩阵的元素非常特殊，他的逆矩阵也有特殊的性质，就是每一项取倒数，再除以 $n$ ，就能得到他的逆矩阵。
@@ -314,7 +314,10 @@ $$
 也就是说给定点 $b_i=\omega_n^{-i}$ ，则 $A$ 的点值表示法为
 
 $$
-\left\{ A(b_0),A(b_1),\cdots,A(b_{n-1}) \right\}＝\left\{ a_0\cdot n,a_1\cdot n,\cdots,a_{n-1}\cdot n \right\}=n\left\{ a_0,a_1,\cdots,a_{n-1}\right\}
+\begin{split}
+&\left\{ (b_0,A(b_0)),(b_1,A(b_1)),\cdots,(b_{n-1},A(b_{n-1})) \right\}\\
+=&\left\{ (b_0,a_0\cdot n),(b_1,a_1\cdot n),\cdots,(b_{n-1},a_{n-1}\cdot n) \right\}
+\end{split}
 $$
 
 综上所述，我们取单位根为其倒数，对 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 跑一遍 FFT，然后除以 $n$ 即可得到 $f(x)$ 的系数序列，这就是 IDFT 操作的过程。
