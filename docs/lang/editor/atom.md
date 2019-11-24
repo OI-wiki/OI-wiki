@@ -1,4 +1,4 @@
-author: ChungZH, partychicken
+author: ChungZH, partychicken, Xeonacid
 
 ## Atom - GitHub 家的编辑器
 
