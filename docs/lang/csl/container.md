@@ -22,8 +22,8 @@
 
 ### 无序（关联式）容器
 
--    **无序（多重）集合** ( `unordered_set` / `unordered_multiset` ) 与 `set` / `multiset` 的区别在与元素无序，只关心”元素是否存在“，使用哈希实现。
--    **无序（多重）映射** ( `unordered_map` / `unordered_multimap` ) 与 `map` / `multimap` 的区别在与键 (key) 无序，只关心 "键与值的对应关系"，使用哈希实现。
+-    **无序（多重）集合** ( `unordered_set` / `unordered_multiset` ) **C++11** ，与 `set` / `multiset` 的区别在与元素无序，只关心”元素是否存在“，使用哈希实现。
+-    **无序（多重）映射** ( `unordered_map` / `unordered_multimap` ) **C++11** ，与 `map` / `multimap` 的区别在与键 (key) 无序，只关心 "键与值的对应关系"，使用哈希实现。
 
 ### 容器适配器
 

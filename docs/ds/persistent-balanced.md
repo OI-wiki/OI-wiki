@@ -158,9 +158,3 @@ static int _merge(int _x, int _y) {
 2.   [「Codeforces 702F」T-shirt](http://codeforces.com/problemset/problem/702/F) 
 
 3.   [「Luogu P5055」可持久化文艺平衡树](https://www.luogu.org/problemnew/show/P5055) 
-
-## 另外
-
-1.  可持久化平衡树可以用来维护动态凸包，仙人掌等东西，如果读者有兴趣可以阅读相应的 [ **计算几何** ](/geometry) 知识，再来食用。
-
-2.  Zip Tree 作为一种新的数据结构在 2018.8 月由 Robert E. Tarjan -  Caleb C. Levy - Stephen Timmel 提出，可以去了解一下~

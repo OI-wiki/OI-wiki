@@ -38,7 +38,7 @@ $$
 
 ### Newton's Method
 
-参见 [ **Newton's Method** ](/math/poly/newton/#newtons-method) .
+参见 [ **Newton's Method** ](./newton.md#newtons-method) .
 
 ## Examples
 
