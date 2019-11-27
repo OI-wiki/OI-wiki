@@ -10,7 +10,7 @@ author: AndrewWayne, GavinZhengOI. ChungZH, henryrabbit, Xeonacid, sshwy, Yukima
 
 NTT 部分代码参考 CSDN 上的模板代码附网址，感谢博主！
 
-你搜索这个关键词就已经知道这一是个数学的东西了。只想学会用很简单，但是这远远不够。所以在看这个博客之前应该先学一下 [复数](/math/complex) 的基本知识。
+你搜索这个关键词就已经知道这一是个数学的东西了。只想学会用很简单，但是这远远不够。所以在看这个博客之前应该先学一下 [复数](../complex.md) 的基本知识。
 
 好了下面进入正文。
 

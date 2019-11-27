@@ -29,14 +29,6 @@ nav:
     - 非传统题: intro/non-trad.md
     - 工具软件:
       - 评测工具: intro/judgers.md
-      - 编辑工具:
-        - Vim: intro/editor/vim.md
-        - Emacs: intro/editor/emacs.md
-        - VS Code: intro/editor/vscode.md
-        - Atom: intro/editor/atom.md
-        - Eclipse: intro/editor/eclipse.md
-        - Notepad++: intro/editor/npp.md
-        - Dev-C++: intro/editor/devcpp.md
       - WSL (Windows 10): intro/wsl.md
       - Special Judge: intro/spj.md
       - Testlib:
@@ -55,6 +47,15 @@ nav:
     - F.A.Q.: intro/faq.md
     - 致谢: intro/thanks.md
   - 语言基础:
+    - 语言基础简介: lang/index.md
+    - 编辑工具:
+      - Vim: lang/editor/vim.md
+      - Emacs: lang/editor/emacs.md
+      - VS Code: lang/editor/vscode.md
+      - Atom: lang/editor/atom.md
+      - Eclipse: lang/editor/eclipse.md
+      - Notepad++: lang/editor/npp.md
+      - Dev-C++: lang/editor/devcpp.md
     - C++ 基础:
       - Hello, World!: lang/helloworld.md
       - C++ 语法基础: lang/basic.md
@@ -81,6 +82,7 @@ nav:
       - string: lang/csl/string.md
     - C++ 进阶:
       - 类: lang/class.md
+      - 命名空间: lang/namespace.md
       - 引用: lang/reference.md
       - 常值: lang/const.md
       - 新版 C++ 特性: lang/new.md

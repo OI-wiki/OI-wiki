@@ -1,4 +1,4 @@
-学习 IDA\*之前，请确保您已经学完了 [A\*](/search/astar) 算法和 [迭代加深搜索](/search/iterative) 。
+学习 IDA\*之前，请确保您已经学完了 [A\*](./astar.md) 算法和 [迭代加深搜索](./iterative.md) 。
 
 ## IDA\*简介
 
