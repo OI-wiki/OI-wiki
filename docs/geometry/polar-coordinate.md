@@ -1,3 +1,5 @@
+author: Ir1d, HeRaNO, Chrogeek, abc1763613206
+
 ## 极坐标与极坐标系
 
 （为人教版高中数学选修 4-4 内容）

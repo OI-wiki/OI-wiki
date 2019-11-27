@@ -1,3 +1,5 @@
+author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy
+
 ## 介绍
 
 > Dev-C++ 是一套用于开发 C/C++（C++11）的自由的集成开发环境（IDE），并以 GPL 作为散布许可。使用 MinGW 及 GDB 作为编译系统与调试系统。Dev-C++ 的 IDE 是利用 Delphi 开发的。

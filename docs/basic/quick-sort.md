@@ -1,6 +1,6 @@
 ## 算法
 
-快速排序是 [分治](/basic/divide-and-conquer) 地来将一个数组排序。
+快速排序是 [分治](./divide-and-conquer.md) 地来将一个数组排序。
 
 快速排序分为三个过程：
 

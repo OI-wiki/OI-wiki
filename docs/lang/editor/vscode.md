@@ -1,4 +1,4 @@
-author: ChungZH, keepthethink, abc1763613206, partychicken, Xeonacid
+author: Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Ir1d
 
 ## 简介
 
