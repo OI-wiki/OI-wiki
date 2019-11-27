@@ -236,12 +236,7 @@ Whitney 定理：对任意的图 $G$ ，有 $\kappa(G)\le \lambda(G)\le \delta(G
 
 对于无向图 $G=(V, E)$ ，若 $V'\subseteq V$ 且 $\forall v\in(V\setminus V')$ 存在边 $(u, v)\in E$ 满足 $u\in V'$ ，则 $V'$ 是图 $G$ 的一个 **支配集 (Dominating set)** 。
 
-无向图 $G$ 最小的支配集的大小记作 $\gamma(G)$ 。求一张图的最小支配集是 NP 困难的。
-
-??? note "什么是 NP 困难？"
-    如果所有 NP 问题都可以在多项式时间内规约到问题 $H$ ，则问题 $H$ 是 NP 困难的。需要注意的是，NPC 问题必须是判定问题，因此求一张图的最小支配集 **不是** NPC 问题。实际上，NPC 问题是 NP 问题和 NP 困难问题的交，而 NP 问题必须是判定问题。NP 困难的最优化问题往往有一个对应的判定版本是 NPC 问题，如最小支配集问题的判定版本是给定一张图和一个数 $K$ ，判定是否存在一个大小不超过 $K$ 的支配集，这个问题是一个 NPC 问题。
-
-    详见 [计算理论基础](../misc/cc-basic.md) 。
+无向图 $G$ 最小的支配集的大小记作 $\gamma(G)$ 。求一张图的最小支配集是 [NP 困难](../misc/cc-basic.md#np-hard) 的。
 
 对于有向图 $G=(V, E)$ ，若 $V'\subseteq V$ 且 $\forall v\in(V\setminus V')$ 存在边 $(u, v)\in E$ 满足 $u\in V'$ ，则 $V'$ 是图 $G$ 的一个 **出 - 支配集 (Out-dominating set)** 。类似地，可以定义有向图的 **入 - 支配集 (In-dominating set)** 。
 
@@ -251,13 +246,13 @@ Whitney 定理：对任意的图 $G$ ，有 $\kappa(G)\le \lambda(G)\le \delta(G
 
 对于图 $G=(V, E)$ ，若 $E'\subseteq E$ 且 $\forall e\in(E\setminus E')$ 存在 $E'$ 中的边与其有公共点，则称 $E'$ 是图 $G$ 的一个 **边支配集 (Edge dominating set)** 。
 
-求一张图的最小边支配集是 NP 困难的。
+求一张图的最小边支配集是 [NP 困难](../misc/cc-basic.md#np-hard) 的。
 
 ### 独立集
 
 对于图 $G=(V, E)$ ，若 $V'\subseteq V$ 且 $V'$ 中任意两点都不相邻，则 $V'$ 是图 $G$ 的一个 **独立集 (Independent set)** 。
 
-图 $G$ 最大的独立集的大小记作 $\alpha(G)$ 。求一张图的最大独立集是 NP 困难的。
+图 $G$ 最大的独立集的大小记作 $\alpha(G)$ 。求一张图的最大独立集是 [NP 困难](../misc/cc-basic.md#np-hard) 的。
 
 ### 匹配
 
@@ -271,7 +266,7 @@ Whitney 定理：对任意的图 $G$ ，有 $\kappa(G)\le \lambda(G)\le \delta(G
 
 如果在一个匹配中所有点都是被匹配的，那么这个匹配是一个 **完美匹配 (Perfect matching)** 。如果在一个匹配中只有一个点不被匹配，那么这个匹配是一个 **准完美匹配 (Near-perfect matching)** 。
 
-求一张普通图或二分图的匹配或完美匹配个数都是 #P 完全的。
+求一张普通图或二分图的匹配或完美匹配个数都是 [#P 完全](../misc/cc-basic.md#p_1) 的。
 
 对于一个匹配 $M$ ，若一条路径以非匹配点为起点，每相邻两条边的其中一条在匹配中而另一条不在匹配中，则这条路径被称作一条 **交替路径 (Alternating path)** ；一条在非匹配点终止的交替路径，被称作一条 **增广路径 (Augmenting path)** 。
 
@@ -281,7 +276,7 @@ Whitney 定理：对任意的图 $G$ ，有 $\kappa(G)\le \lambda(G)\le \delta(G
 
 点覆盖集必为支配集，但极小点覆盖集不一定是极小支配集。
 
-一个点集是点覆盖的充要条件是其补集是独立集，因此最小点覆盖的补集是最大独立集。求一张图的最小点覆盖是 NP 困难的。
+一个点集是点覆盖的充要条件是其补集是独立集，因此最小点覆盖的补集是最大独立集。求一张图的最小点覆盖是 [NP 困难](../misc/cc-basic.md#np-hard) 的。
 
 一张图的任何一个匹配的大小都不超过其任何一个点覆盖的大小。完全二分图 $K_{n, m}$ 的最大匹配和最小点覆盖大小都为 $\min(n, m)$ 。
 
@@ -305,7 +300,7 @@ Whitney 定理：对任意的图 $G$ ，有 $\kappa(G)\le \lambda(G)\le \delta(G
 
 如果一个团在加入任何一个顶点后都不再是一个团，则这个团是一个 **极大团 (Maximal clique)** 。
 
-一张图的最大团的大小记作 $\omega(G)$ ，最大团的大小等于其补图最大独立集的大小，即 $\omega(G)=\alpha(\bar{G})$ 。求一张图的最大团是 NP 困难的。
+一张图的最大团的大小记作 $\omega(G)$ ，最大团的大小等于其补图最大独立集的大小，即 $\omega(G)=\alpha(\bar{G})$ 。求一张图的最大团是 [NP 困难](../misc/cc-basic.md#np-hard) 的。
 
 ## 参考资料
 
