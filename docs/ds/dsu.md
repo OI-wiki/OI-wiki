@@ -129,7 +129,7 @@ void unionSet(int x, int y) {
 
 ## 其他应用
 
- [最小生成树算法](/graph/mst) 中的 Kruskal 是基于并查集的算法。
+ [最小生成树算法](../graph/mst.md) 中的 Kruskal 是基于并查集的算法。
 
 ## References
 
