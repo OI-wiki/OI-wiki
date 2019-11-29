@@ -4,10 +4,13 @@ Java 是一种广泛使用的计算机编程语言，拥有 **跨平台** 、 **
 
 ## 环境安装
 
-使用[OpenJDK](https://jdk.java.net/)作为实例,下载下来的都是压缩包,解压缩此处略过
+使用 [OpenJDK](https://jdk.java.net/) 作为实例，下载下来的都是压缩包，解压缩此处略过
+
 ### Windows
 
-将解压缩后的文件夹放到你想放的位置,假设你解压后放到了`C:\Program Files\Java\jdk-14`,
+将解压缩后的文件夹放到你想放的位置，假设你解压后放到了 `C:\Program Files\Java\jdk-14` ,
+
+![第一步](images/java1.png)![第二步](images/java2.png)![第三步](images/java3.png)![第四步](images/java4.png)![第五步](images/java5.png)![第六步](images/java6.png)
 
 ![第一步](images/java1.png)    
 ![第二步](images/java2.png)    
@@ -17,21 +20,24 @@ Java 是一种广泛使用的计算机编程语言，拥有 **跨平台** 、 **
 ![第六步](images/java6.png)    
 ### macOS/Linux
 
-此处以Ubuntu举例,在下载完成后执行以下命令
+
 
 ```bash
 sudo mv jdk-14 /opt
 ```
-然后打开`.bashrc`文件在文件末尾添加一些命令
+
+然后打开 `.bashrc` 文件在文件末尾添加一些命令
+
 ```bash
 export JAVA_HOME="/opt/jdk-14/bin"
 export Path=${JAVA_HOME}:$Path
 ```
-然后在控制台当中输入一些命令`source ~/.bashrc`,如果是使用的zsh,那么同样的在`~/.zshrc`当中添加上面的内容
+
+然后在控制台当中输入一些命令 `source ~/.bashrc` , 如果是使用的 zsh, 那么同样的在 `~/.zshrc` 当中添加上面的内容
 
 ## 基本语法
 
- **_注意_**  `Java` 类似 `C/C++` 语言，有一个函数作为程序执行的起始点，所有的程序只有一个主函数，每次执行的时候都会从主类开始,主函数是整个程序的入口,一切从此处开始。
+ **_注意_**  `Java` 类似 `C/C++` 语言，有一个函数作为程序执行的起始点，所有的程序只有一个主函数，每次执行的时候都会从主类开始，主函数是整个程序的入口，一切从此处开始。
 
 ### 注释
 
@@ -217,12 +223,12 @@ class test{
 }
 ```
 
-
 #### 注意事项
 
-- 1.创建Java源程序需要类名和文件名一致才能编译通过,否则编译器会提示找不到`类`,例子:
+-   1\. 创建 Java 源程序需要类名和文件名一致才能编译通过，否则编译器会提示找不到 `类` , 例子：
 
 Add.java
+
 ```java
 class Add{
   Add(int x,int y){
@@ -230,4 +236,5 @@ class Add{
   }
 }
 ```
-上面的类中的方法和类名一致,这被称为构造函数,所以在调用此类的时候可以直接使用`int number = new Add(12,12)`;
+
+上面的类中的方法和类名一致，这被称为构造函数，所以在调用此类的时候可以直接使用 `int number = new Add(12,12)` ;
