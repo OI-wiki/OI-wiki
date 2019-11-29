@@ -20,8 +20,7 @@ Java 是一种广泛使用的计算机编程语言，拥有 **跨平台** 、 **
 
 ![第四步](images/java4.png)</br>
 
-![第五步](images/java5.png)</br>
-![第六步](images/java6.png)</br>
+![第五步](images/java5.png)</br>![第六步](images/java6.png)</br>
 
 ### macOS/Linux
 
@@ -228,7 +227,7 @@ class test{
 
 #### 注意事项
 
--   1.创建 Java 源程序需要类名和文件名一致才能编译通过，否则编译器会提示找不到 `类` , 例子：
+-   1\. 创建 Java 源程序需要类名和文件名一致才能编译通过，否则编译器会提示找不到 `类` , 例子：
 
 Add.java
 
