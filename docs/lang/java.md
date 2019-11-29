@@ -12,15 +12,14 @@ Java 是一种广泛使用的计算机编程语言，拥有 **跨平台** 、 **
 
 ![第一步](images/java1.png)![第二步](images/java2.png)![第三步](images/java3.png)![第四步](images/java4.png)![第五步](images/java5.png)![第六步](images/java6.png)
 
-![第一步](images/java1.png)    
-![第二步](images/java2.png)    
-![第三步](images/java3.png)    
-![第四步](images/java4.png)    
-![第五步](images/java5.png)    
-![第六步](images/java6.png)    
+![第一步](images/java1.png)  
+![第二步](images/java2.png)  
+![第三步](images/java3.png)  
+![第四步](images/java4.png)  
+![第五步](images/java5.png)  
+![第六步](images/java6.png)
+
 ### macOS/Linux
-
-
 
 ```bash
 sudo mv jdk-14 /opt
@@ -225,7 +224,7 @@ class test{
 
 #### 注意事项
 
--   1\. 创建 Java 源程序需要类名和文件名一致才能编译通过，否则编译器会提示找不到 `类` , 例子：
+-   1.创建 Java 源程序需要类名和文件名一致才能编译通过，否则编译器会提示找不到 `类` , 例子：
 
 Add.java
 
