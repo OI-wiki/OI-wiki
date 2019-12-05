@@ -332,8 +332,8 @@ $$
 
 ## 参考资料
 
-1.   [计算复杂性（1) Warming Up: 自动机模型](https://lingeros-tot.github.io/2019/03/05/Warming-Up-自动机模型/) ；
+1.   [计算复杂性（1） Warming Up: 自动机模型](https://lingeros-tot.github.io/2019/03/05/Warming-Up-自动机模型/) ；
 
-2.   [计算复杂性（2) 图灵机计算模型](https://lingeros-tot.github.io/2019/03/05/图灵机模型与可计算性/) ；
+2.   [计算复杂性（2） 图灵机计算模型](https://lingeros-tot.github.io/2019/03/05/图灵机模型与可计算性/) ；
 
 3.   [Wikipedia](https://en.wikipedia.org/) 的相关词条以及这些词条的参考资料。
