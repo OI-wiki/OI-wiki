@@ -112,7 +112,7 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
       for (int i = l; i <= r; i++)
         vax += (s[i].x - avx) * (s[i].x - avx),
             vay += (s[i].y - avy) * (s[i].y - avy);
-      if (avx >= avy)
+      if (vax >= vay)
         d[mid] = 1, nth_element(s + l, s + mid, s + r + 1, cmp1);
       else
         d[mid] = 2, nth_element(s + l, s + mid, s + r + 1, cmp2);
