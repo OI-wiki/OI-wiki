@@ -75,9 +75,9 @@ Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周
 
 ???+ warning
     Microsoft Store 的 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。
-
+    
     如果你想获取稳定的 Ubuntu 长期支持版，可以在 Microsoft Store 安装 Ubuntu 的 LTS 版本。
-
+    
     如本次演示中使用的是 **Ubuntu 16.04 LTS** 。
 
 ### 运行 Ubuntu
