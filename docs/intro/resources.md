@@ -16,7 +16,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [hihoCoder](https://hihocoder.com/) 始于 2012 年，面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（登录后方可查看题面）
 -    [计蒜客](https://www.jisuanke.com/) 北京矩道优达网络科技有限公司旗下的核心产品，提供按知识点和难度筛选的信息学题库和 ICPC 题库。
 -    [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck) ，可以将评测程序的运行时间精确到 $\mu s$ 。（题目较少）
--    [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。  
+-    [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。
 -    [LibreOJ](https://loj.ac/) 始于 2017 年。
     目前由 [Menci](https://github.com/Menci) 维护。
     Libre 取自由之意，基于开源项目 [SYZOJ](https://github.com/syzoj/syzoj) 。
@@ -82,8 +82,8 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
     -    [配套资源仓库](https://github.com/lydrainbowcat/tedukuri) 
 -   《啊哈算法》- 纪磊  
     面向初学者或有初步兴趣的人群，有幽默配图。
-- CCF 中学生计算机程序设计系列
-    -   《CCF 中学生计算机程序设计 - 入门篇》- 陈颖，邱桂香，朱全民 [建议配合勘误使用。](https://zhuanlan.zhihu.com/p/85215961)
+-   CCF 中学生计算机程序设计系列
+    -   《CCF 中学生计算机程序设计 - 入门篇》- 陈颖，邱桂香，朱全民 [建议配合勘误使用。](https://zhuanlan.zhihu.com/p/85215961) 
     -   《CCF 中学生计算机程序设计 - 基础篇》- 江涛，宋新波，朱全民
     -   《CCF 中学生计算机程序设计 - 提高篇》- 徐先友，朱全民
     -   《CCF 中学生计算机程序设计 - 专业篇》（未出）
