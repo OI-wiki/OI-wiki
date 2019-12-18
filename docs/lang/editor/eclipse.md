@@ -1,4 +1,4 @@
-author: partychicken
+author: Doveqise, partychicken, Xeonacid
 
 ## Eclipse 编辑器指北
 

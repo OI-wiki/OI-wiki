@@ -1,4 +1,4 @@
-author: partychicken
+author: CBW2007, partychicken, StudyingFather, Xeonacid
 
 ## 软件简介
 
