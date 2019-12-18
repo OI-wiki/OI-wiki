@@ -8,7 +8,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 
 -    [51Nod](https://www.51nod.com/) 有许多值得尝试的数学题和思维题。
 -    [BZOJ](https://www.lydsy.com/JudgeOnline/) 因原属衡阳八中而得简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。  
-    BZOJ 上有大量题目只有付费用户才能提交，这曾经引发不满。2018 年 BZOJ 测试数据泄露，催生了一些 DarkBZOJ。
+    BZOJ 上有大量题目只有付费用户才能提交。2018 年 BZOJ 测试数据泄露，催生了 DarkBZOJ。
 -    [Comet OJ](https://www.cometoj.com) 始于 2018 年，旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库。
 -    [CodeVS](http://www.codevs.cn/) 面向 OI 选手的过气 OJ。
 -    [FZUOJ](http://acm.fzu.edu.cn/) 始于 2008 年，福州大学在线评测系统。
