@@ -7,19 +7,20 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 ### 国内
 
 -    [51Nod](https://www.51nod.com/) 有许多值得尝试的数学题和思维题。
--    [BZOJ](https://www.lydsy.com/JudgeOnline/) 因原属衡阳八中而得简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。
+-    [BZOJ](https://www.lydsy.com/JudgeOnline/) 因原属衡阳八中而得简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。  
+    BZOJ 上有大量题目只有付费用户才能提交。2018 年 BZOJ 测试数据泄露，催生了 DarkBZOJ。
 -    [Comet OJ](https://www.cometoj.com) 始于 2018 年，旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库。
 -    [CodeVS](http://www.codevs.cn/) 面向 OI 选手的过气 OJ。
 -    [FZUOJ](http://acm.fzu.edu.cn/) 始于 2008 年，福州大学在线评测系统。
 -    [HDU Online Judge](http://acm.hdu.edu.cn/) 始于 2005 年，杭州电子科技大学在线评测系统，有多校训练的题目。
--    [hihoCoder](https://hihocoder.com/) 始于 2012 年，面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（题面登录后可见）
+-    [hihoCoder](https://hihocoder.com/) 始于 2012 年，面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（登录后方可查看题面）
 -    [计蒜客](https://www.jisuanke.com/) 北京矩道优达网络科技有限公司旗下的核心产品，提供按知识点和难度筛选的信息学题库和 ICPC 题库。
 -    [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck) ，可以将评测程序的运行时间精确到 $\mu s$ 。（题目较少）
 -    [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。
--    [LibreOJ](https://loj.ac/) Libre 取自由之意，基于开源项目 [SYZOJ](https://github.com/syzoj/syzoj) 。
-    题目所有测试数据以及提交的代码均对所有用户开放。
-    与一本通进行了合作，可以评测一本通上所有习题。
+-    [LibreOJ](https://loj.ac/) 始于 2017 年。
     目前由 [Menci](https://github.com/Menci) 维护。
+    Libre 取自由之意，基于开源项目 [SYZOJ](https://github.com/syzoj/syzoj) 。
+    题目所有测试数据以及提交的代码均对所有用户开放。
 -    [Lutece](https://acm.uestc.edu.cn/home) 始于 2018 年，电子科技大学在线评测系统， [项目开源](https://github.com/lutece-awesome) 。
 -    [洛谷](https://www.luogu.org/) 始于 2013 年，社区群体庞大，OI 界的真题和习题较全，提供有偿教育服务。
 -    [牛客网](https://www.nowcoder.com/) 始于 2014 年，提供技术类求职备考、社群交流、企业招聘等服务。
@@ -29,9 +30,8 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [POJ](http://poj.org/) 始于 2003 年，北京大学在线评测系统，国内历史最悠久的 OJ 之一，很多英文题，既有基础题，也有值得一试的好题。
 -    [PTA（拼题 A）](https://pintia.cn/) 始于 2016 年，浙江大学衍生的杭州百腾教育科技有限公司产品。
 -    [清澄](http://www.tsinsen.com/) 始于 2005 年，由 [胡伟栋](http://www.hhwdd.com/) 开发，自 2019 年 9 月 1 日起不再对外提供服务。
--    [Universal Online Judge](http://uoj.ac/) Universal 取通用之意， [项目开源](https://github.com/UniversalOJ/UOJ-System) ； [VFK](https://github.com/vfleaking) 的 OJ，多原创比赛题和 CCF/THU 题，难度较高。
+-    [Universal Online Judge](http://uoj.ac/) 始于 2014 年，Universal 取通用之意， [项目开源](https://github.com/UniversalOJ/UOJ-System) ； [VFK](https://github.com/vfleaking) 的 OJ，多原创比赛题和 CCF/THU 题，难度较高。
 -    [Vijos](https://vijos.org/) 始于 2005 年， [服务端](https://github.com/vijos/vj4) 和 [评测机](https://github.com/vijos/jd4) 等项目开源。
-    <!---    [Virtual Judge](https://vjudge.net/) 可以方便的在 Vjudge 上提交别的 OJ 的题，尤其是一些国内不太方便的 OJ。-->
 -    [ZOJ](https://zoj.pintia.cn/home) 始于 2001 年，浙江大学在线评测系统。
 
 ### 国外
@@ -80,11 +80,23 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
     -   《算法艺术与信息学竞赛》（蓝/黑）
 -   《算法竞赛进阶指南》- 李煜东
     -    [配套资源仓库](https://github.com/lydrainbowcat/tedukuri) 
--   《啊哈算法》- 纪磊
+-   《啊哈算法》- 纪磊  
     面向初学者或有初步兴趣的人群，有幽默配图。
--   教练圈推荐
+-   CCF 中学生计算机程序设计系列
+    -   《CCF 中学生计算机程序设计 - 入门篇》- 陈颖，邱桂香，朱全民 [建议配合勘误使用。](https://zhuanlan.zhihu.com/p/85215961) 
+    -   《CCF 中学生计算机程序设计 - 基础篇》- 江涛，宋新波，朱全民
+    -   《CCF 中学生计算机程序设计 - 提高篇》- 徐先友，朱全民
+    -   《CCF 中学生计算机程序设计 - 专业篇》（未出）
+-   一本通系列
     -   《信息学奥赛一本通》- 董永建
     -   《信息学奥赛一本通 - 提高篇》- 黄新军，董永建 [建议选择性阅读。](https://www.zhihu.com/question/292926937) 
+    -   《信息学奥赛一本通 - 高手训练》- 黄新军，董永建
+-   其他由国内著名 OI 教练写的教材
+    -   《信息学奥赛课课通》- 林厚从
+    -   《聪明人的游戏：信息学探秘 - 提高篇》- 江涛，陈茂贤
+    -   《计算概论：C++ 编程与信息学竞赛入门》- 金靖
+    -   《算法竞赛宝典》- 张新华
+-   《算法竞赛入门到进阶》- 罗勇军，郭卫斌
 -   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein 
     黑书，大学经典教材。英文版原名_Introduction to Algorithms_
     -    [答案解析 (English)](https://github.com/walkccc/CLRS) 
