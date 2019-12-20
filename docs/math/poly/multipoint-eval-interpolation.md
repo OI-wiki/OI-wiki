@@ -65,7 +65,7 @@ $$
 f(x) = \sum_{i=1}^{n} \prod_{j\neq i }\frac{x-x_j}{x_i-x_j} y_i
 $$
 
-记多项式 $M(x) = \prod_{i=1}^n (x - x_i)$，由洛必达法则可知
+记多项式 $M(x) = \prod_{i=1}^n (x - x_i)$ ，由洛必达法则可知
 
 $$
 \prod_{j\neq i} (x_i - x_j) = \lim_{x\rightarrow x_i} \frac{\prod_{j=1}^n (x - x_j)}{x - x_i} = M'(x_i)
@@ -77,9 +77,9 @@ $$
 f(x) = \sum_{i = 1}^n \frac{y_i}{M'(x_i)}\prod_{j \neq i}(x - x_j)
 $$
 
-我们首先通过分治计算出 $M(x)$ 的系数表示，接着可以通过多点求值在 $O(n\log^2 n)$ 时间内计算出所有的 $M'(x_i)$。
+我们首先通过分治计算出 $M(x)$ 的系数表示，接着可以通过多点求值在 $O(n\log^2 n)$ 时间内计算出所有的 $M'(x_i)$ 。
 
-我们令 $v_i = \frac{y_i}{M'(x_i)}$，接下来考虑计算出 $f(x)$。对于 $n = 1$ 的情况，有 $f(x) = v_1, M(x) = x - x_1$。否则令
+我们令 $v_i = \frac{y_i}{M'(x_i)}$ ，接下来考虑计算出 $f(x)$ 。对于 $n = 1$ 的情况，有 $f(x) = v_1, M(x) = x - x_1$ 。否则令
 
 $$
 \begin{aligned}
@@ -90,4 +90,4 @@ M_1(x) & = \prod_{i = \left\lfloor \frac n2 \right \rfloor+1}^n (x - x_i)
 \end{aligned}
 $$
 
-可得 $f(x) = f_0(x)M_1(x) + f_1(x)M_0(x), M(x) = M_0(x)M_1(x)$，因此可以分治计算，这一部分的复杂度同样是 $O(n\log^2 n)$。
+可得 $f(x) = f_0(x)M_1(x) + f_1(x)M_0(x), M(x) = M_0(x)M_1(x)$ ，因此可以分治计算，这一部分的复杂度同样是 $O(n\log^2 n)$ 。
