@@ -8,9 +8,7 @@ author: hydingsy, hyp1231
 
 * * *
 
-## 数论分块与整除相
-
-先补一下数学小 trick
+## 前置知识
 
 ### 引理 1
 
@@ -178,32 +176,31 @@ $$
 
 反演结论： $\displaystyle [gcd(i,j)=1] \iff\sum_{d\mid\gcd(i,j)}\mu(d)$ 
 
--    **直接推导** ：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$ ，也就是式子的值是 $1$ ，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值： $0$ 
+ **直接推导** ：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$ ，也就是式子的值是 $1$ ，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值： $0$ 
 
--    **利用 $\varepsilon$ 函数** ：根据上一结论， $[\gcd(i,j)=1]\implies \varepsilon(\gcd(i,j))$ ，将 $\varepsilon$ 展开即可。
+ **利用 $\varepsilon$ 函数** ：根据上一结论， $[\gcd(i,j)=1]\implies \varepsilon(\gcd(i,j))$ ，将 $\varepsilon$ 展开即可。
 
 ### 线性筛
 
 由于 $\mu$ 函数为积性函数，因此可以线性筛莫比乌斯函数（线性筛基本可以求所有的积性函数，尽管方法不尽相同）。
 
- **代码** ：
-
-```cpp
-void getMu() {
-  mu[1] = 1;
-  for (int i = 2; i <= n; ++i) {
-    if (!flg[i]) p[++tot] = i, mu[i] = -1;
-    for (int j = 1; j <= tot && i * p[j] <= n; ++j) {
-      flg[i * p[j]] = 1;
-      if (i % p[j] == 0) {
-        mu[i * p[j]] = 0;
-        break;
+???+ note "线性筛实现"
+    ```cpp
+    void getMu() {
+      mu[1] = 1;
+      for (int i = 2; i <= n; ++i) {
+        if (!flg[i]) p[++tot] = i, mu[i] = -1;
+        for (int j = 1; j <= tot && i * p[j] <= n; ++j) {
+          flg[i * p[j]] = 1;
+          if (i % p[j] == 0) {
+            mu[i * p[j]] = 0;
+            break;
+          }
+          mu[i * p[j]] = -mu[i];
+        }
       }
-      mu[i * p[j]] = -mu[i];
     }
-  }
-}
-```
+    ```
 
 ### 拓展
 
@@ -255,7 +252,7 @@ $$
 
 ### 证明
 
--    **暴力计算** ：
+方法一：对原式做数论变换。
 
 $$
 \sum_{d\mid n}\mu(d)f(\frac{n}{d})=\sum_{d\mid n}\mu(d)\sum_{k\mid \frac{n}{d}}g(k)=\sum_{k\mid n}g(k)\sum_{d\mid \frac{n}{k}}\mu(d)=g(n)
@@ -263,7 +260,7 @@ $$
 
 用 $\displaystyle\sum_{d\mid n}g(d)$ 来替换 $f(\dfrac{n}{d})$ ，再变换求和顺序。最后一步转为的依据： $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]$ ，因此在 $\dfrac{n}{k}=1$ 时第二个和式的值才为 $1$ 。此时 $n=k$ ，故原式等价于 $\displaystyle\sum_{k\mid n}[n=k]\cdot g(k)=g(n)$ 
 
--    **运用卷积** ：
+方法二：运用卷积。
 
 原问题为：已知 $f=g*1$ ，证明 $g=f*\mu$ 
 
@@ -320,55 +317,54 @@ $$
 
 很显然，式子可以数论分块求解（注意：过程中默认 $n\leqslant m$ ）。
 
- **时间复杂度** ： $\Theta(N+T\sqrt{n})$ 
+ **时间复杂度 $\Theta(N+T\sqrt{n})$ ** 
 
- **代码** ：
-
-```cpp
-#include <algorithm>
-#include <cstdio>
-const int N = 50000;
-int mu[N + 5], p[N + 5];
-bool flg[N + 5];
-void init() {
-  int tot = 0;
-  mu[1] = 1;
-  for (int i = 2; i <= N; ++i) {
-    if (!flg[i]) {
-      p[++tot] = i;
-      mu[i] = -1;
-    }
-    for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
-      flg[i * p[j]] = 1;
-      if (i % p[j] == 0) {
-        mu[i * p[j]] = 0;
-        break;
+??? note "代码实现"
+    ```cpp
+    #include <algorithm>
+    #include <cstdio>
+    const int N = 50000;
+    int mu[N + 5], p[N + 5];
+    bool flg[N + 5];
+    void init() {
+      int tot = 0;
+      mu[1] = 1;
+      for (int i = 2; i <= N; ++i) {
+        if (!flg[i]) {
+          p[++tot] = i;
+          mu[i] = -1;
+        }
+        for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
+          flg[i * p[j]] = 1;
+          if (i % p[j] == 0) {
+            mu[i * p[j]] = 0;
+            break;
+          }
+          mu[i * p[j]] = -mu[i];
+        }
       }
-      mu[i * p[j]] = -mu[i];
+      for (int i = 1; i <= N; ++i) mu[i] += mu[i - 1];
     }
-  }
-  for (int i = 1; i <= N; ++i) mu[i] += mu[i - 1];
-}
-int solve(int n, int m) {
-  int res = 0;
-  for (int i = 1, j; i <= std::min(n, m); i = j + 1) {
-    j = std::min(n / (n / i), m / (m / i));
-    res += (mu[j] - mu[i - 1]) * (n / i) * (m / i);
-  }
-  return res;
-}
-int main() {
-  int T, a, b, c, d, k;
-  init();
-  for (scanf("%d", &T); T; --T) {
-    scanf("%d%d%d%d%d", &a, &b, &c, &d, &k);
-    printf("%d\n", solve(b / k, d / k) - solve(b / k, (c - 1) / k) -
-                       solve((a - 1) / k, d / k) +
-                       solve((a - 1) / k, (c - 1) / k));
-  }
-  return 0;
-}
-```
+    int solve(int n, int m) {
+      int res = 0;
+      for (int i = 1, j; i <= std::min(n, m); i = j + 1) {
+        j = std::min(n / (n / i), m / (m / i));
+        res += (mu[j] - mu[i - 1]) * (n / i) * (m / i);
+      }
+      return res;
+    }
+    int main() {
+      int T, a, b, c, d, k;
+      init();
+      for (scanf("%d", &T); T; --T) {
+        scanf("%d%d%d%d%d", &a, &b, &c, &d, &k);
+        printf("%d\n", solve(b / k, d / k) - solve(b / k, (c - 1) / k) -
+                           solve((a - 1) / k, d / k) +
+                           solve((a - 1) / k, (c - 1) / k));
+      }
+      return 0;
+    }
+    ```
 
 ###  [「SPOJ 5971」LCMSUM](https://www.spoj.com/problems/LCMSUM/) 
 
@@ -420,42 +416,41 @@ $$
 
  **时间复杂度** ： $\Theta(n\log n)$ 
 
- **代码** ：
-
-```cpp
-#include <cstdio>
-const int N = 1000000;
-int tot, p[N + 5], phi[N + 5];
-long long ans[N + 5];
-bool flg[N + 5];
-
-void solve() {
-  phi[1] = 1;
-  for (int i = 2; i <= N; ++i) {
-    if (!flg[i]) p[++tot] = i, phi[i] = i - 1;
-    for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
-      flg[i * p[j]] = 1;
-      if (i % p[j] == 0) {
-        phi[i * p[j]] = phi[i] * p[j];
-        break;
+??? note "代码实现"
+    ```cpp
+    #include <cstdio>
+    const int N = 1000000;
+    int tot, p[N + 5], phi[N + 5];
+    long long ans[N + 5];
+    bool flg[N + 5];
+    
+    void solve() {
+      phi[1] = 1;
+      for (int i = 2; i <= N; ++i) {
+        if (!flg[i]) p[++tot] = i, phi[i] = i - 1;
+        for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
+          flg[i * p[j]] = 1;
+          if (i % p[j] == 0) {
+            phi[i * p[j]] = phi[i] * p[j];
+            break;
+          }
+          phi[i * p[j]] = phi[i] * (p[j] - 1);
+        }
       }
-      phi[i * p[j]] = phi[i] * (p[j] - 1);
+      for (int i = 1; i <= N; ++i)
+        for (int j = 1; i * j <= N; ++j) ans[i * j] += 1LL * j * phi[j] / 2;
+      for (int i = 1; i <= N; ++i) ans[i] = 1LL * i * ans[i] + i;
     }
-  }
-  for (int i = 1; i <= N; ++i)
-    for (int j = 1; i * j <= N; ++j) ans[i * j] += 1LL * j * phi[j] / 2;
-  for (int i = 1; i <= N; ++i) ans[i] = 1LL * i * ans[i] + i;
-}
-int main() {
-  int T, n;
-  solve();
-  for (scanf("%d", &T); T; --T) {
-    scanf("%d", &n);
-    printf("%lld\n", ans[n]);
-  }
-  return 0;
-}
-```
+    int main() {
+      int T, n;
+      solve();
+      for (scanf("%d", &T); T; --T) {
+        scanf("%d", &n);
+        printf("%lld\n", ans[n]);
+      }
+      return 0;
+    }
+    ```
 
 ###  [「BZOJ 2154」Crash 的数字表格](https://www.luogu.org/problem/P1829) 
 
@@ -529,63 +524,62 @@ $$
 
 时间复杂度： $\Theta(n+m)$ （两次数论分块）
 
-代码：
-
-```cpp
-#include <algorithm>
-#include <cstdio>
-using std::min;
-
-const int N = 1e7;
-const int mod = 20101009;
-int n, m, mu[N + 5], p[N / 10 + 5], sum[N + 5];
-bool flg[N + 5];
-
-void init() {
-  mu[1] = 1;
-  int tot = 0, k = min(n, m);
-  for (int i = 2; i <= k; ++i) {
-    if (!flg[i]) p[++tot] = i, mu[i] = -1;
-    for (int j = 1; j <= tot && i * p[j] <= k; ++j) {
-      flg[i * p[j]] = 1;
-      if (i % p[j] == 0) {
-        mu[i * p[j]] = 0;
-        break;
+??? note "代码实现"
+    ```cpp
+    #include <algorithm>
+    #include <cstdio>
+    using std::min;
+    
+    const int N = 1e7;
+    const int mod = 20101009;
+    int n, m, mu[N + 5], p[N / 10 + 5], sum[N + 5];
+    bool flg[N + 5];
+    
+    void init() {
+      mu[1] = 1;
+      int tot = 0, k = min(n, m);
+      for (int i = 2; i <= k; ++i) {
+        if (!flg[i]) p[++tot] = i, mu[i] = -1;
+        for (int j = 1; j <= tot && i * p[j] <= k; ++j) {
+          flg[i * p[j]] = 1;
+          if (i % p[j] == 0) {
+            mu[i * p[j]] = 0;
+            break;
+          }
+          mu[i * p[j]] = -mu[i];
+        }
       }
-      mu[i * p[j]] = -mu[i];
+      for (int i = 1; i <= k; ++i)
+        sum[i] = (sum[i - 1] + 1LL * i * i % mod * (mu[i] + mod)) % mod;
     }
-  }
-  for (int i = 1; i <= k; ++i)
-    sum[i] = (sum[i - 1] + 1LL * i * i % mod * (mu[i] + mod)) % mod;
-}
-int Sum(int x, int y) {
-  return (1LL * x * (x + 1) / 2 % mod) * (1LL * y * (y + 1) / 2 % mod) % mod;
-}
-int func(int x, int y) {
-  int res = 0;
-  for (int i = 1, j; i <= min(x, y); i = j + 1) {
-    j = min(x / (x / i), y / (y / i));
-    res = (res + 1LL * (sum[j] - sum[i - 1] + mod) * Sum(x / i, y / i) % mod) %
-          mod;
-  }
-  return res;
-}
-int solve(int x, int y) {
-  int res = 0;
-  for (int i = 1, j; i <= min(x, y); i = j + 1) {
-    j = min(x / (x / i), y / (y / i));
-    res = (res +
-           1LL * (j - i + 1) * (i + j) / 2 % mod * func(x / i, y / i) % mod) %
-          mod;
-  }
-  return res;
-}
-int main() {
-  scanf("%d%d", &n, &m);
-  init();
-  printf("%d\n", solve(n, m));
-}
-```
+    int Sum(int x, int y) {
+      return (1LL * x * (x + 1) / 2 % mod) * (1LL * y * (y + 1) / 2 % mod) % mod;
+    }
+    int func(int x, int y) {
+      int res = 0;
+      for (int i = 1, j; i <= min(x, y); i = j + 1) {
+        j = min(x / (x / i), y / (y / i));
+        res = (res + 1LL * (sum[j] - sum[i - 1] + mod) * Sum(x / i, y / i) % mod) %
+              mod;
+      }
+      return res;
+    }
+    int solve(int x, int y) {
+      int res = 0;
+      for (int i = 1, j; i <= min(x, y); i = j + 1) {
+        j = min(x / (x / i), y / (y / i));
+        res = (res +
+               1LL * (j - i + 1) * (i + j) / 2 % mod * func(x / i, y / i) % mod) %
+              mod;
+      }
+      return res;
+    }
+    int main() {
+      scanf("%d%d", &n, &m);
+      init();
+      printf("%d\n", solve(n, m));
+    }
+    ```
 
 ###  [「SDOI2015」约数个数和](https://loj.ac/problem/2185) 
 
@@ -642,47 +636,48 @@ $$
 
 那么 $O(n)$ 预处理 $\mu,d$ 的前缀和， $O(\sqrt{n})$ 分块处理询问，总复杂度 $O(n\sqrt{n})$ .
 
-```cpp
-#include <algorithm>
-#include <cstdio>
-#define int long long
-using namespace std;
-const int N = 5e4 + 5;
-int n, m, T, pr[N], mu[N], d[N], t[N], cnt;  // t 表示 i 的最小质因子出现的次数
-bool bp[N];
-void prime_work(int k) {
-  bp[0] = bp[1] = 1, mu[1] = 1, d[1] = 1;
-  for (int i = 2; i <= k; i++) {
-    if (!bp[i]) pr[++cnt] = i, mu[i] = -1, d[i] = 2, t[i] = 1;
-    for (int j = 1; j <= cnt && i * pr[j] <= k; j++) {
-      bp[i * pr[j]] = 1;
-      if (i % pr[j] == 0) {
-        mu[i * pr[j]] = 0, d[i * pr[j]] = d[i] / (t[i] + 1) * (t[i] + 2),
-               t[i * pr[j]] = t[i] + 1;
-        break;
-      } else
-        mu[i * pr[j]] = -mu[i], d[i * pr[j]] = d[i] << 1, t[i * pr[j]] = 1;
+??? note "代码实现"
+    ```cpp
+    #include <algorithm>
+    #include <cstdio>
+    #define int long long
+    using namespace std;
+    const int N = 5e4 + 5;
+    int n, m, T, pr[N], mu[N], d[N], t[N], cnt;  // t 表示 i 的最小质因子出现的次数
+    bool bp[N];
+    void prime_work(int k) {
+      bp[0] = bp[1] = 1, mu[1] = 1, d[1] = 1;
+      for (int i = 2; i <= k; i++) {
+        if (!bp[i]) pr[++cnt] = i, mu[i] = -1, d[i] = 2, t[i] = 1;
+        for (int j = 1; j <= cnt && i * pr[j] <= k; j++) {
+          bp[i * pr[j]] = 1;
+          if (i % pr[j] == 0) {
+            mu[i * pr[j]] = 0, d[i * pr[j]] = d[i] / (t[i] + 1) * (t[i] + 2),
+                   t[i * pr[j]] = t[i] + 1;
+            break;
+          } else
+            mu[i * pr[j]] = -mu[i], d[i * pr[j]] = d[i] << 1, t[i * pr[j]] = 1;
+        }
+      }
+      for (int i = 2; i <= k; i++) mu[i] += mu[i - 1], d[i] += d[i - 1];
     }
-  }
-  for (int i = 2; i <= k; i++) mu[i] += mu[i - 1], d[i] += d[i - 1];
-}
-int solve() {
-  int res = 0, mxi = min(n, m);
-  for (int i = 1, j; i <= mxi; i = j + 1)
-    j = min(n / (n / i), m / (m / i)),
-    res += d[n / i] * d[m / i] * (mu[j] - mu[i - 1]);
-  return res;
-}
-signed main() {
-  scanf("%lld", &T);
-  prime_work(50000);
-  while (T--) {
-    scanf("%lld%lld", &n, &m);
-    printf("%lld\n", solve());
-  }
-  return 0;
-}
-```
+    int solve() {
+      int res = 0, mxi = min(n, m);
+      for (int i = 1, j; i <= mxi; i = j + 1)
+        j = min(n / (n / i), m / (m / i)),
+        res += d[n / i] * d[m / i] * (mu[j] - mu[i - 1]);
+      return res;
+    }
+    signed main() {
+      scanf("%lld", &T);
+      prime_work(50000);
+      while (T--) {
+        scanf("%lld%lld", &n, &m);
+        printf("%lld\n", solve());
+      }
+      return 0;
+    }
+    ```
 
 ###  [「luogu 3768」简单的数学题](https://www.luogu.org/problemnew/show/P3768) 
 
@@ -734,72 +729,121 @@ $$
 
 分块递归求解即可，复杂度 $O(n^{\frac{2}{3}})$ .
 
-```cpp
-#include <cmath>
-#include <cstdio>
-#include <map>
-#define int long long
-using namespace std;
-const signed N = 5e6, NP = 5e6, SZ = N;
-int n, P, inv2, inv6, s[N];
-signed phi[N], p[NP], cnt, pn;
-bool bp[N];
-map<int, int> s_map;
-int ksm(int a, int m) {  //求逆元用
-  int res = 1;
-  while (m) {
-    if (m & 1) res = res * a % P;
-    a = a * a % P, m >>= 1;
-  }
-  return res;
-}
-void prime_work(signed k) {  //线性筛phi，s
-  bp[0] = bp[1] = 1, phi[1] = 1;
-  for (signed i = 2; i <= k; i++) {
-    if (!bp[i]) p[++cnt] = i, phi[i] = i - 1;
-    for (signed j = 1; j <= cnt && i * p[j] <= k; j++) {
-      bp[i * p[j]] = 1;
-      if (i % p[j] == 0) {
-        phi[i * p[j]] = phi[i] * p[j];
-        break;
-      } else
-        phi[i * p[j]] = phi[i] * phi[p[j]];
+??? note "代码实现"
+    ```cpp
+    #include <cmath>
+    #include <cstdio>
+    #include <map>
+    #define int long long
+    using namespace std;
+    const signed N = 5e6, NP = 5e6, SZ = N;
+    int n, P, inv2, inv6, s[N];
+    signed phi[N], p[NP], cnt, pn;
+    bool bp[N];
+    map<int, int> s_map;
+    int ksm(int a, int m) {  //求逆元用
+      int res = 1;
+      while (m) {
+        if (m & 1) res = res * a % P;
+        a = a * a % P, m >>= 1;
+      }
+      return res;
     }
-  }
-  for (signed i = 1; i <= k; i++)
-    s[i] = (1ll * i * i % P * phi[i] % P + s[i - 1]) % P;
-}
-int s3(int k) {
-  return k %= P, (k * (k + 1) / 2) % P * ((k * (k + 1) / 2) % P) % P;
-}  //立方和
-int s2(int k) {
-  return k %= P, k * (k + 1) % P * (k * 2 + 1) % P * inv6 % P;
-}  //平方和
-int calc(int k) {  //计算S(k)
-  if (k <= pn) return s[k];
-  if (s_map[k]) return s_map[k];  //对于超过pn的用map离散存储
-  int res = s3(k), pre = 1, cur;
-  for (int i = 2, j; i <= k; i = j + 1)
-    j = k / (k / i), cur = s2(j),
-    res = (res - calc(k / i) * (cur - pre) % P) % P, pre = cur;
-  return s_map[k] = (res + P) % P;
-}
-int solve() {
-  int res = 0, pre = 0, cur;
-  for (int i = 1, j; i <= n; i = j + 1)
-    j = n / (n / i), cur = calc(j),
-    res = (res + (s3(n / i) * (cur - pre)) % P) % P, pre = cur;
-  return (res + P) % P;
-}
-signed main() {
-  scanf("%lld%lld", &P, &n);
-  inv2 = ksm(2, P - 2), inv6 = ksm(6, P - 2);
-  pn = (int)pow(n, 0.666667);  // n^(2/3)
-  prime_work(pn);
-  printf("%lld", solve());
-  return 0;
-}  //不要为了省什么内存把数组开小。。。卡了好几次80
-```
+    void prime_work(signed k) {  //线性筛phi，s
+      bp[0] = bp[1] = 1, phi[1] = 1;
+      for (signed i = 2; i <= k; i++) {
+        if (!bp[i]) p[++cnt] = i, phi[i] = i - 1;
+        for (signed j = 1; j <= cnt && i * p[j] <= k; j++) {
+          bp[i * p[j]] = 1;
+          if (i % p[j] == 0) {
+            phi[i * p[j]] = phi[i] * p[j];
+            break;
+          } else
+            phi[i * p[j]] = phi[i] * phi[p[j]];
+        }
+      }
+      for (signed i = 1; i <= k; i++)
+        s[i] = (1ll * i * i % P * phi[i] % P + s[i - 1]) % P;
+    }
+    int s3(int k) {
+      return k %= P, (k * (k + 1) / 2) % P * ((k * (k + 1) / 2) % P) % P;
+    }  //立方和
+    int s2(int k) {
+      return k %= P, k * (k + 1) % P * (k * 2 + 1) % P * inv6 % P;
+    }  //平方和
+    int calc(int k) {  //计算S(k)
+      if (k <= pn) return s[k];
+      if (s_map[k]) return s_map[k];  //对于超过pn的用map离散存储
+      int res = s3(k), pre = 1, cur;
+      for (int i = 2, j; i <= k; i = j + 1)
+        j = k / (k / i), cur = s2(j),
+        res = (res - calc(k / i) * (cur - pre) % P) % P, pre = cur;
+      return s_map[k] = (res + P) % P;
+    }
+    int solve() {
+      int res = 0, pre = 0, cur;
+      for (int i = 1, j; i <= n; i = j + 1)
+        j = n / (n / i), cur = calc(j),
+        res = (res + (s3(n / i) * (cur - pre)) % P) % P, pre = cur;
+      return (res + P) % P;
+    }
+    signed main() {
+      scanf("%lld%lld", &P, &n);
+      inv2 = ksm(2, P - 2), inv6 = ksm(6, P - 2);
+      pn = (int)pow(n, 0.666667);  // n^(2/3)
+      prime_work(pn);
+      printf("%lld", solve());
+      return 0;
+    }  //不要为了省什么内存把数组开小。。。卡了好几次80
+    ```
+
+ **解法二** 
+
+转化一下，可以将式子写成
+
+$$
+\begin{eqnarray}
+&&\sum_{d=1}^{n}\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ijd\cdot[gcd(i,j)=1]\\
+&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t\mid gcd(i,j)}\mu(t)\\
+&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}\mu(t)[t\mid gcd(i,j)]\\
+&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij[1\mid gcd(i,j)]\\
+&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij
+\end{eqnarray}
+$$
+
+容易知道
+
+$$
+\sum_{i=1}^{n}\sum_{j=1}^{m}ij=\frac{n(n+1)}{2}\cdot \frac{m(m+1)}{2}
+$$
+
+设 $sum(n,m)=\sum_{i=1}^{n}\sum_{j=1}^{m}ij$ ，继续接着前面的往下推
+
+$$
+\begin{eqnarray}
+&&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij\\
+&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\cdot sum(\lfloor\frac{n}{td}\rfloor,\lfloor\frac{m}{td}\rfloor)\\
+&=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)\sum_{d\mid T}d\cdot (\frac{T}{d})^2\mu(\frac{T}{d})\\
+&=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)(T\sum_{d\mid T}d\cdot\mu(d))
+\end{eqnarray}
+$$
+
+这时我们只要对每个 $T$ 预处理出 $T\sum_{d\mid T}d\cdot\mu(d)$ 的值就行了，考虑如何快速求解
+
+设 $f(n)=\sum_{d\mid n}d\cdot\mu(d)$ 
+
+实际上 $f$ 可以用线性筛筛出，具体的是
+
+$$
+f(n)=
+\begin{cases}
+1-n &,n\in primes \\
+f(\frac{x}{p}) &,p^2\mid n\\
+f(\frac{x}{p})\cdot f(p) &,p^2\nmid n
+\end{cases}
+$$
+
+其中 $p$ 表示 $n$ 的最小质因子，总时间复杂度 $O(n+\sqrt n)$ 。
 
 ## 莫比乌斯反演扩展
 
@@ -849,54 +893,6 @@ t\left(\frac{T}{i}\right)g\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
 \end{eqnarray}
 $$
 
- **解法二** 
+## 参考文献
 
-转化一下，可以将式子写成
-
-$$
-\begin{eqnarray}
-&&\sum_{d=1}^{n}\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ijd\cdot[gcd(i,j)=1]\\
-&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t\mid gcd(i,j)}\mu(t)\\
-&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}\mu(t)[t\mid gcd(i,j)]\\
-&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij[1\mid gcd(i,j)]\\
-&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij
-\end{eqnarray}
-$$
-
-容易知道
-
-$$
-\sum_{i=1}^{n}\sum_{j=1}^{m}ij=\frac{n(n+1)}{2}\cdot \frac{m(m+1)}{2}
-$$
-
-设 $sum(n,m)=\sum_{i=1}^{n}\sum_{j=1}^{m}ij$ ，继续接着前面的往下推
-
-$$
-\begin{eqnarray}
-&&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij\\
-&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\cdot sum(\lfloor\frac{n}{td}\rfloor,\lfloor\frac{m}{td}\rfloor)\\
-&=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)\sum_{d\mid T}d\cdot (\frac{T}{d})^2\mu(\frac{T}{d})\\
-&=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)(T\sum_{d\mid T}d\cdot\mu(d))
-\end{eqnarray}
-$$
-
-这时我们只要对每个 $T$ 预处理出 $T\sum_{d\mid T}d\cdot\mu(d)$ 的值就行了，考虑如何快速求解
-
-设 $f(n)=\sum_{d\mid n}d\cdot\mu(d)$ 
-
-实际上 $f$ 可以用线性筛筛出，具体的是
-
-$$
-f(n)=
-\begin{cases}
-1-n &,n\in primes \\
-f(\frac{x}{p}) &,p^2\mid n\\
-f(\frac{x}{p})\cdot f(p) &,p^2\nmid n
-\end{cases}
-$$
-
-其中 $p$ 表示 $n$ 的最小质因子
-
-总时间复杂度 $O(n+\sqrt n)$ 
-
-> 本文部分内容引用于 [algocode 算法博客](https://algocode.net) ，特别鸣谢！
+ [algocode 算法博客](https://algocode.net) 
