@@ -10,17 +10,18 @@ Java 是一种广泛使用的计算机编程语言，拥有 **跨平台** 、 **
 
 将解压缩后的文件夹放到你想放的位置，假设你解压后放到了 `C:\Program Files\Java\jdk-14` ,
 
-![第一步](images/java1.png)![第二步](images/java2.png)![第三步](images/java3.png)![第四步](images/java4.png)![第五步](images/java5.png)![第六步](images/java6.png)
 
-![第一步](images/java1.png)</br>
+![第一步](images/java1.png)
 
-![第二步](images/java2.png)</br>
+![第二步](images/java2.png)
 
-![第三步](images/java3.png)</br>
+![第三步](images/java3.png)
 
-![第四步](images/java4.png)</br>
+![第四步](images/java4.png)
 
-![第五步](images/java5.png)</br>![第六步](images/java6.png)</br>
+![第五步](images/java5.png)
+
+![第六步](images/java6.png)
 
 ### macOS/Linux
 
