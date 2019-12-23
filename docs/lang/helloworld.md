@@ -58,7 +58,7 @@ using namespace std;
 
 int main() {               // 定义 main 函数
   cout << "Hello, world!"  // 输出 Hello, world!
-      return 0;            // 返回 0，结束 main 函数
+  return 0;                // 返回 0，结束 main 函数
 }
 ```
 
@@ -72,3 +72,5 @@ int main() {                // 定义 main 函数
   return 0;                 // 返回 0，结束 main 函数
 }
 ```
+
+注意：C语言在这里仅做参考（它基本上已经过时）， C++完全兼容C语言， 并且拥有许多新的功能，可以让选手在赛场上事半功倍。
