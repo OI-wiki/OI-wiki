@@ -11,7 +11,7 @@ geany 是一个轻量、便捷的编辑器，与 Dev-C++ 一样，它可以编�
 
 （来源：deepin Wiki <https://wiki.deepin.org/）> 
 
-在Linux下自行编译geany 1.36时， 如遇到 “No package 'gtk+-2.0' found”
-可能需要安装libgtk2.0-dev （apt-get即可）
+在 Linux 下自行编译 geany 1.36 时，如遇到“No package 'gtk+-2.0' found”
+可能需要安装 libgtk2.0-dev（apt-get 即可）
 
 其官网为： <https://geany.org/> 
