@@ -35,27 +35,31 @@ export JAVA_HOME="/opt/jdk-14/bin"
 export PATH=${JAVA_HOME}:$PATH
 ```
 
-
 然后在控制台当中输入命令 `source ~/.bashrc` , 如果是使用的 zsh, 那么同样的在 `~/.zshrc` 当中添加上面的内容
 
-以上是手动安装的方式,嫌麻烦可以使用在线安装命令如下
+以上是手动安装的方式，嫌麻烦可以使用在线安装命令如下
 
 ```bash
 sudo apt install default-jre
 sudo apt install default-jdk
 ```
-如果`CentOS`则使用的是`yum`安装，命令如下：
+
+如果 `CentOS` 则使用的是 `yum` 安装，命令如下：
+
 ```bash
 sudo yum install java-1.8.0-openjdk
 ```
-在稍后询问是否安装时按下`y`继续安装
-或是你已经下好了`rpm`文件，可以使用以下命令安装
+
+在稍后询问是否安装时按下 `y` 继续安装
+或是你已经下好了 `rpm` 文件，可以使用以下命令安装
+
 ```bash
 sudo yum localinstall jre-9.0.4_linux_x64_bin.rpm #安装jre-9.0
 sudo yum localinstall jdk-9.0.4_linux-x64_bin.rpm #安装jdk-9.0
 ```
 
-如果是MacOS，你可以使用以下命令安装包
+如果是 MacOS，你可以使用以下命令安装包
+
 ```bash
 cd ~/Downloads
 curl -v -j -k -L -H "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-macosx-x64.dmg > jdk-8u121-macosx-x64.dmg
@@ -64,7 +68,8 @@ sudo installer -pkg /Volumes/JDK\ 8\ Update\ 121/JDK\ 8\ Update\ 121.pkg -target
 diskutil umount /Volumes/JDK\ 8\ Update\ 121
 rm jdk-8u121-macosx-x64.dmg
 ```
-或者直接在官方网站下载`pkg`包或是`dmg`包安装
+
+或者直接在官方网站下载 `pkg` 包或是 `dmg` 包安装
 
 ## 基本语法
 
@@ -256,7 +261,7 @@ class test{
 
 #### 注意事项
 
--   1\. 创建 Java 源程序需要类名和文件名一致才能编译通过，否则编译器会提示找不到 `类` , 例子：
+-   1.创建 Java 源程序需要类名和文件名一致才能编译通过，否则编译器会提示找不到 `类` , 例子：
 
 Add.java
 
