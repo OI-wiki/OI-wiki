@@ -35,7 +35,7 @@ export JAVA_HOME="/opt/jdk-14/bin"
 export Path=${JAVA_HOME}:$Path
 ```
 
-然后在控制台当中输入一些命令 `source ~/.bashrc` , 如果是使用的 zsh, 那么同样的在 `~/.zshrc` 当中添加上面的内容
+然后在控制台当中输入命令 `source ~/.bashrc` , 如果是使用的 zsh, 那么同样的在 `~/.zshrc` 当中添加上面的内容
 
 ## 基本语法
 
