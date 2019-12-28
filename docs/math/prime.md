@@ -45,7 +45,7 @@ Miller-Rabin 素性测试（Miller–Rabin primality test）是进阶的素数�
 
 #### Fermat 素性测试
 
-我们可以根据 [费马小定理](/math/fermat/#_1) 得出一种检验素数的思路：
+我们可以根据 [费马小定理](./fermat.md#_1) 得出一种检验素数的思路：
 
 它的基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$ ，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$ 
 

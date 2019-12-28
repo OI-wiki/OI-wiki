@@ -314,7 +314,7 @@ int query(char *t) {
 
 ### KMP 自动机
 
-KMP 自动机就是一个不断读入待匹配串，每次匹配时走到接受状态的 DFA。如果共有 $m$ 个状态，第 $i$ 个状态表示已经匹配了前 $i$ 个字符。那么我们定义 $trans_{i,c}$ 表示状态 $i$ 读入字符 $c$ 后到达的状态， $next_{i}$ 表示 [prefix function](/string/kmp) ，则有：
+KMP 自动机就是一个不断读入待匹配串，每次匹配时走到接受状态的 DFA。如果共有 $m$ 个状态，第 $i$ 个状态表示已经匹配了前 $i$ 个字符。那么我们定义 $trans_{i,c}$ 表示状态 $i$ 读入字符 $c$ 后到达的状态， $next_{i}$ 表示 [prefix function](./kmp.md) ，则有：
 
 $$
 trans_{i,c} =
@@ -326,7 +326,7 @@ $$
 
 （约定 $next_{0}=0$ ）
 
-我们发现 $trans_{i}$ 只依赖于之前的值，所以可以跟 [KMP](/string/kmp/#knuth-morris-pratt) 一起求出来。
+我们发现 $trans_{i}$ 只依赖于之前的值，所以可以跟 [KMP](./kmp.md) 一起求出来。
 
 时间和空间复杂度： $O(m|\Sigma|)$ 。一些细节：走到接受状态之后立即转移到该状态的 $next$ 。
 

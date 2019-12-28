@@ -68,45 +68,7 @@ int main() {
 ??? note "什么是 std？"
      `std` 是 C++ 标准库所使用的 **命名空间** 。使用命名空间是为了避免重名。
 
-    例如：你定义了一个名为 `cin` 的变量，有了命名空间后，就可以通过 `cin` 和 `std::cin` 区分它们。
-
-    访问命名空间内的成员有三种方式：
-
-    1.  在成员名称前加上 `命名空间::` 。
-    2.  使用指令 `using 命名空间::成员名;` ，这样的话，可以直接通过成员名访问成员，但如果定义了和成员同名的变量或函数，就会产生冲突。
-    3.  使用指令 `using namespace 命名空间;` ，这样的话，可以直接通过成员名访问命名空间中的任何成员，但一旦定义了和命名空间中任何一个成员同名的变量或函数，就会产生冲突。
-
-    在工程开发中，是不推荐使用 `using namespace 命名空间` 的。在 OI 中，很多人为了方便，总是使用 `using namespace std;` ，但这样做会有导致编译错误的风险。
-
-    上面的代码还可以写成下面两种样子：
-
-    ```cpp
-    #include <iostream>
-
-    using std::cin;
-    using std::cout;
-    using std::endl;
-
-    int main() {
-      int x, y;
-      cin >> x >> y;
-      cout << y << endl << x;
-      return 0;
-    }
-    ```
-
-    ```cpp
-    #include <iostream>
-
-    using namespace std;
-
-    int main() {
-      int x, y;
-      cin >> x >> y;
-      cout << y << endl << x;
-      return 0;
-    }
-    ```
+    关于命名空间的详细知识，可以参考 [命名空间](./namespace.md) 页面。
 
 ### scanf 与 printf
 
@@ -129,10 +91,10 @@ int main() {
 
 1.   `%s` 表示字符串。
 2.   `%c` 表示字符。
-3.   `%lf` 表示双精度浮点数（ `double` ）。
+3.   `%lf` 表示双精度浮点数 ( `double` )。
 4.   `%lld` 表示长整型 ( `long long` )。根据系统不同，也可能是 `%I64d` 。
 5.   `%u` 表示无符号整型  ( `unsigned int` )。
-6.   `%ull` 表示无符号长整型 ( `unsigned long long` )。
+6.   `%llu` 表示无符号长整型 ( `unsigned long long` )，也可能是 `%I64u` 。
 
 特殊地，还有一些控制格式的方式：
 

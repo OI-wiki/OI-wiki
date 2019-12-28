@@ -116,12 +116,12 @@ for (int i = 1; i <= n; ++i) inv[i] = sv[i] * s[i - 1] % p;
 
 ## 逆元练习题
 
- [【模板】乘法逆元](https://www.luogu.org/problemnew/show/P3811) 
+ [乘法逆元](https://loj.ac/problem/110) 
 
- [乘法逆元 2](https://loj.ac/problem/152) 
+ [乘法逆元 2](https://loj.ac/problem/161) 
 
- [同余方程](https://www.luogu.org/problemnew/show/P1082) 
+ [「NOIP2012」同余方程](https://loj.ac/problem/2605) 
 
  [「AHOI2005」洗牌](https://www.luogu.org/problem/P2054) 
 
- [「SDOI2016」排列计数](https://www.luogu.org/problemnew/show/P4071) 
+ [「SDOI2016」排列计数](https://loj.ac/problem/2034) 
