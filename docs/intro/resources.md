@@ -112,6 +112,8 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
     提纲挚领，但内容较少。
 -    [Legend-K 的数据结构与算法的笔记](http://www.legend-k.com/Algorithm/Algorithm.pdf) 
 -    [acm-cheat-sheet](https://github.com/soulmachine/acm-cheat-sheet) 
+-    [Competitive Programmer’s Handbook](https://cses.fi/book/book.pdf) - Antti Laaksonen
+    作者花了三年个人时间完成。面向算法竞赛，覆盖面广，详略得当。
 
 ## 工具
 
@@ -139,6 +141,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [USACO](http://train.usaco.org/usacogate) 
 -    [洛谷试炼场](https://www.luogu.org/training/mainpage) 
 -    [-Morass- 贴在 Codeforces 上的一份题单](https://codeforces.com/blog/entry/55274) 
+-   Codeforces 社区高质量算法文章合集 [之一](https://codeforces.com/blog/entry/57282)  [之二](https://codeforces.com/blog/entry/13529) 
 -    [北京大学 ICPC 暑期课课件例题](https://vjudge.net/article/446) 
 -    [北京大学 ICPC 暑期课课件](https://lib-pku.github.io/#acm-icpc%E6%9A%91%E6%9C%9F%E8%AF%BE) 
 -    [GitHub.com:OI-wiki/libs](https://github.com/OI-wiki/libs) 
