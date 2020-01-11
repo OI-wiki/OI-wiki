@@ -3,7 +3,6 @@
 # 欢迎来到 **OI Wiki**！
 
 [![Travis](https://img.shields.io/travis/OI-WIKI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/OI-wiki/OI-wiki)
-[![Progress](https://img.shields.io/badge/Progress-88%25-brightgreen.svg?style=flat-square)](https://github.com/OI-wiki/OI-wiki)
 [![Uptime Robot Status](https://img.shields.io/uptimerobot/status/m781254113-3e3bac467c64fc99eafd383e.svg?style=flat-square)](https://status.oi-wiki.org/)
 [![Telegram](https://img.shields.io/badge/OI--wiki-join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
 [![QQ](https://img.shields.io/badge/OI--wiki-join%20QQ%20group-brightgreen.svg?style=flat-square)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
@@ -20,15 +19,9 @@
 
 **OI Wiki** 致力于成为一个免费开放且持续更新的知识整合站点，大家可以在这里获取关于 **编程竞赛 (competitive programming)** 有趣又实用的知识，我们为大家准备了竞赛中的基础知识、常见题型、解题思路以及常用工具等内容，帮助大家更快速深入地学习编程竞赛。
 
-目前，**OI Wiki** 正在完善各大方向的基础知识，以便于初学者更好地学习。
+目前，**OI Wiki** 的内容还有很多不完善的地方，知识点覆盖不够全面，存在一些低质量页面需要修改。**OI Wiki** 团队以及参与贡献的小伙伴们正在积极完善这些内容。
 
-**OI Wiki** 基于 **OI**，却不会局限于 **OI**。**OI Wiki** 会努力完善以下内容：
-
-- 应用在 **ICPC** 竞赛中的进阶知识
-- 竞赛中出现的优质题目
-- 与面试、实际应用相结合的经验
-
-关于上述待完善内容，请参见 **OI Wiki** 中的 [Projects](https://github.com/OI-wiki/OI-wiki/projects)，详细列举了正在做的事情以及待做事项。
+关于上述待完善内容，请参见 **OI Wiki** 的 [Issues](https://github.com/OI-wiki/OI-wiki/issues) 以及 [迭代计划](https://github.com/OI-wiki/OI-wiki/labels/%E8%BF%AD%E4%BB%A3%E8%AE%A1%E5%88%92%20%2F%20Iteration%20Plan)。
 
 与此同时， **OI Wiki** 源于社区，提倡 **知识自由**，在未来也绝不会商业化，将始终保持独立自由的性质。
 
@@ -104,6 +97,7 @@ python2 -m SimpleHTTPServer
 ## 如何参与完善 OI Wiki
 
 我们非常欢迎你为 **OI Wiki** 编写内容，将自己的所学所得与大家分享。
+
 具体的贡献方式在 [如何参与](https://oi-wiki.org/intro/htc/)。
 
 * * *
@@ -141,6 +135,5 @@ python2 -m SimpleHTTPServer
 
 特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
 
-<img src='https://i.loli.net/2018/12/07/5c0a6e4c31b30.png' alt='QVQNetWork' width=233>
-
-鸣谢 QVQNetwork 赞助的服务器。
+<!-- <img src='https://i.loli.net/2018/12/07/5c0a6e4c31b30.png' alt='QVQNetWork' width=233> 
+鸣谢 QVQNetwork 赞助的服务器。 -->

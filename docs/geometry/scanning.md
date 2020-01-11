@@ -99,11 +99,11 @@ void update(int rt, double y1, double y2, int flag) {
 }
 
 int main() {
-  int temp = 1, n, i, j;
+  int temp = 1, n;
   double x1, y1, x2, y2, ans;
   while (scanf("%d", &n) && n) {
     ans = 0;
-    for (i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
       scanf("%lf %lf %lf %lf", &x1, &y1, &x2, &y2);
       p[i].x = x1;
       p[i].y1 = y1;
@@ -121,7 +121,7 @@ int main() {
     build(1, 1, 2 * n);       //建树
     memset(lazy, 0, sizeof(lazy));
     update(1, p[0].y1, p[0].y2, p[0].flag);
-    for (i = 1; i < 2 * n; i++) {
+    for (int i = 1; i < 2 * n; i++) {
       ans += (p[i].x - p[i - 1].x) * cl[1].sum;
       update(1, p[i].y1, p[i].y2, p[i].flag);
     }

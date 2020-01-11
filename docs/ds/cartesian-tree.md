@@ -25,18 +25,28 @@ author: sshwy, zhouyuyang2002, StudyingFather, Ir1d, ouuan, Enter-tainer
 显然每个数最多进出右链一次（或者说每个点在右链中存在的是一段连续的时间）。这个过程我们可以用栈维护，栈中维护当前笛卡尔树的右链上的结点。一个点不在右链上了就把它弹掉。这样每个点最多进出一次，复杂度 $O(n)$ 。伪代码如下：
 
 ```text
-新建一个大小为n的空栈。
-For i:=1 to n
-    flag = 0
-    While 栈不为空
-        if 栈顶元素<当前元素
-            栈顶元素.右儿子=当前元素
-            break
-        else
-            栈顶元素.右儿子=当前元素.左儿子。
-            当前元素.左儿子=栈顶元素
-            栈顶元素出栈
-        当前元素入栈。
+新建一个大小为 n 的空栈。用 top 来标操作前的栈顶，k 来标记当前栈顶。
+For i := 1 to n
+    k := top
+    While 栈非空 且 栈顶元素 > 当前元素 
+        k--
+    if 栈非空
+        栈顶元素.右儿子 := 当前元素
+    if k < top
+        当前元素.左儿子 := 栈顶元素
+    当前元素入栈
+    top := k
+```
+
+```cpp
+for (int i = 1; i <= n; i++) {
+  int k = top;
+  while (k > 0 && h[stk[k]] > h[i]) k--;
+  if (k) rs[stk[k]] = i;  // rs代表笛卡尔树每个节点的右儿子
+  if (k < top) ls[i] = stk[k + 1];  // ls代表笛卡尔树每个节点的左儿子
+  stk[++k] = i;
+  top = k;
+}
 ```
 
 ## 笛卡尔树与 Treap

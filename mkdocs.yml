@@ -8,7 +8,7 @@ strict: true
 # Repository
 repo_name: 'OI-wiki/OI-wiki'
 repo_url: 'https://github.com/OI-wiki/OI-wiki'
-edit_uri: 'blob/master/docs/'
+edit_uri: 'https://oi-wiki.org/edit-landing/?ref='
 
 # Copyright
 copyright: 'Copyright &copy; 2016 - 2019 OI Wiki Team'
@@ -29,14 +29,6 @@ nav:
     - 非传统题: intro/non-trad.md
     - 工具软件:
       - 评测工具: intro/judgers.md
-      - 编辑工具: 
-        - Vim: intro/editor/vim.md
-        - Emacs: intro/editor/emacs.md
-        - VS Code: intro/editor/vscode.md
-        - Atom: intro/editor/atom.md
-        - Eclipse: intro/editor/eclipse.md
-        - Notepad++: intro/editor/npp.md
-        - Dev-C++: intro/editor/devcpp.md
       - WSL (Windows 10): intro/wsl.md
       - Special Judge: intro/spj.md
       - Testlib:
@@ -55,6 +47,15 @@ nav:
     - F.A.Q.: intro/faq.md
     - 致谢: intro/thanks.md
   - 语言基础:
+    - 语言基础简介: lang/index.md
+    - 编辑工具:
+      - Vim: lang/editor/vim.md
+      - Emacs: lang/editor/emacs.md
+      - VS Code: lang/editor/vscode.md
+      - Atom: lang/editor/atom.md
+      - Eclipse: lang/editor/eclipse.md
+      - Notepad++: lang/editor/npp.md
+      - Dev-C++: lang/editor/devcpp.md
     - C++ 基础:
       - Hello, World!: lang/helloworld.md
       - C++ 语法基础: lang/basic.md
@@ -81,6 +82,7 @@ nav:
       - string: lang/csl/string.md
     - C++ 进阶:
       - 类: lang/class.md
+      - 命名空间: lang/namespace.md
       - 引用: lang/reference.md
       - 常值: lang/const.md
       - 新版 C++ 特性: lang/new.md
@@ -130,6 +132,7 @@ nav:
     - 优化: search/opt.md
   - 动态规划:
     - 动态规划部分简介: dp/index.md
+    - 动态规划基础: dp/basic.md
     - 记忆化搜索: dp/memo.md
     - 背包 DP: dp/knapsack.md
     - 区间 DP: dp/interval.md
@@ -149,6 +152,7 @@ nav:
     - 其它 DP 方法: dp/misc.md
   - 字符串:
     - 字符串部分简介: string/index.md
+    - 字符串基础: string/basic.md
     - 标准库: string/lib-func.md
     - 字符串匹配: string/match.md
     - 字符串哈希: string/hash.md
@@ -168,33 +172,29 @@ nav:
     - Lyndon 分解: string/lyndon.md
   - 数学:
     - 数学部分简介: math/index.md
-    - 基础知识:
-      - 向量: math/vector.md
-      - 复数: math/complex.md
-      - 极坐标系: math/polar-coordinate.md
-      - 位运算: math/bit.md
-      - 快速幂: math/quick-pow.md
-    - 数论与数论函数:
-      - 整除及其性质:
-        - 素数: math/prime.md
-        - 最大公约数: math/gcd.md
-        - 欧拉函数: math/euler.md
-        - 筛法: math/sieve.md
-        - 欧拉定理 & 费马小定理: math/fermat.md
-        - 类欧几里德算法: math/euclidean.md
-      - 同余与同余方程:
-        - 裴蜀定理: math/bezouts.md
-        - 乘法逆元: math/inverse.md
-        - 线性同余方程: math/linear-equation.md
-        - 中国剩余定理: math/crt.md
-        - BSGS: math/bsgs.md
-        - 原根: math/primitive-root.md
-        - 卢卡斯定理: math/lucas.md
-      - 进位制: math/base.md
-      - 数论函数:
-        - 莫比乌斯反演: math/mobius.md
-        - 杜教筛: math/du.md
-        - Min_25 筛: math/min-25.md
+    - 符号: math/notation.md
+    - 复数: math/complex.md
+    - 位运算: math/bit.md
+    - 快速幂: math/quick-pow.md
+    - 进位制: math/base.md
+    - 高精度计算: math/bignum.md
+    - 数论:
+      - 素数: math/prime.md
+      - 最大公约数: math/gcd.md
+      - 欧拉函数: math/euler.md
+      - 筛法: math/sieve.md
+      - 欧拉定理 & 费马小定理: math/fermat.md
+      - 类欧几里德算法: math/euclidean.md
+      - 裴蜀定理: math/bezouts.md
+      - 乘法逆元: math/inverse.md
+      - 线性同余方程: math/linear-equation.md
+      - 中国剩余定理: math/crt.md
+      - BSGS: math/bsgs.md
+      - 原根: math/primitive-root.md
+      - 卢卡斯定理: math/lucas.md
+      - 莫比乌斯反演: math/mobius.md
+      - 杜教筛: math/du.md
+      - Min_25 筛: math/min-25.md
     - 多项式:
       - 多项式部分简介: math/poly/intro.md
       - 拉格朗日插值: math/poly/lagrange.md
@@ -209,12 +209,15 @@ nav:
       - 多项式多点求值|快速插值: math/poly/multipoint-eval-interpolation.md
       - 多项式三角函数: math/poly/tri-func.md
       - 多项式反三角函数: math/poly/inv-tri-func.md
+      - 常系数齐次线性递推: math/linear-recurrence.md
     - 线性代数:
+      - 向量: math/vector.md
       - 矩阵: math/matrix.md
       - 高斯消元: math/gauss.md
       - 线性基: math/basis.md
-    - 抽象代数:
-      - 置换群: math/permutation-group.md
+    - 线性规划:
+      - 线性规划简介: math/linear-programming.md
+      - 单纯形算法: math/simplex.md
     - 组合数学:
       - 排列组合: math/combination.md
       - 卡特兰数: math/catalan.md
@@ -222,20 +225,13 @@ nav:
       - 康托展开: math/cantor.md
       - 容斥原理: math/inclusion-exclusion-principle.md
       - 抽屉原理: math/drawer-principle.md
-      - 概率 & 期望: math/expectation.md
-    - 线性规划:
-      - 线性规划简介: math/linear-programming.md
-      - 单纯形算法: math/simplex.md
-    - 博弈论:
-      - 博弈论简介: math/game-theory.md
-    - 常用算法与应试技巧:
-      - 牛顿迭代法: math/newton.md
-      - 数值积分: math/integral.md
-      - 高精度计算:
-        - 高精度概述: math/bignum.md
-      - 分段打表: math/dictionary.md
+    - 概率 & 期望: math/expectation.md
+    - 置换群: math/permutation-group.md
     - 斐波那契数列: math/fibonacci.md
-    - 常系数齐次线性递推: math/linear-recurrence.md
+    - 博弈论: math/game-theory.md
+    - 牛顿迭代法: math/newton.md
+    - 数值积分: math/integral.md
+    - 分段打表: math/dictionary.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
     - 栈: ds/stack.md
@@ -270,6 +266,7 @@ nav:
       - AVL 树: ds/avl.md
       - 替罪羊树: ds/sgt.md
       - 笛卡尔树: ds/cartesian-tree.md
+      - 左偏红黑树: ds/llrbt.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
       - 可持久化线段树: ds/persistent-seg.md
@@ -297,13 +294,13 @@ nav:
     - 树上问题:
       - 树基础: graph/tree-basic.md
       - 最近公共祖先: graph/lca.md
-      - 树的其他问题: graph/tree-misc.md
-      - 树哈希: graph/tree-hash.md
+      - 树的重心: graph/tree-centroid.md
       - 树链剖分: graph/hld.md
+      - 树上启发式合并: graph/dsu-on-tree.md
+      - 虚树: graph/virtual-tree.md
       - 树分治: graph/tree-divide.md
       - 动态树分治: graph/dynamic-tree-divide.md
-      - 虚树: graph/virtual-tree.md
-      - 树上启发式合并: graph/dsu-on-tree.md
+      - 树哈希: graph/tree-hash.md
     - 矩阵树定理: graph/matrix-tree.md
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
@@ -332,11 +329,13 @@ nav:
       - 上下界网络流: graph/flow/bound.md
     - Prufer 序列: graph/prufer.md
     - LGV 引理: graph/lgv.md
+    - 弦图: graph/chord.md
     - 图论杂项: graph/misc.md
   - 计算几何:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
     - 三维计算几何基础: geometry/3d.md
+    - 极坐标系: geometry/polar-coordinate.md
     - 距离: geometry/distance.md
     - Pick 定理: geometry/pick.md
     - 三角剖分: geometry/triangulation.md
@@ -403,16 +402,16 @@ extra:
   pagetime: 'on'
   manifest: 'manifest.webmanifest'
   githash: ''
-  notice:
-    title: 'Hi'
-    message: '欢迎点击这里对 OI Wiki 提一点建议'
-    url: 'https://wj.qq.com/s2/4467592/b1e9'
-    position: 'topCenter'
-    progressBar: false
-    timeout: false
+  # notice:
+  #   title: 'Hi'
+  #   message: '欢迎点击这里对 OI Wiki 提一点建议'
+  #   url: 'https://wj.qq.com/s2/4467592/b1e9'
+  #   position: 'topCenter'
+  #   progressBar: false
+  #   timeout: false
 
 extra_javascript:
-  - '_static/js/extra.js?v=15'
+  - '_static/js/extra.js?v=16'
   - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
 
 

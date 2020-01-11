@@ -59,53 +59,35 @@ $$
 
 ### Method
 
-仍然考虑使用分治来将问题规模减半。
+考虑拉格朗日插值公式
 
-将给定的点分为两部分：
+$$
+f(x) = \sum_{i=1}^{n} \prod_{j\neq i }\frac{x-x_j}{x_i-x_j} y_i
+$$
+
+记多项式 $M(x) = \prod_{i=1}^n (x - x_i)$ ，由洛必达法则可知
+
+$$
+\prod_{j\neq i} (x_i - x_j) = \lim_{x\rightarrow x_i} \frac{\prod_{j=1}^n (x - x_j)}{x - x_i} = M'(x_i)
+$$
+
+因此多项式被表示为
+
+$$
+f(x) = \sum_{i = 1}^n \frac{y_i}{M'(x_i)}\prod_{j \neq i}(x - x_j)
+$$
+
+我们首先通过分治计算出 $M(x)$ 的系数表示，接着可以通过多点求值在 $O(n\log^2 n)$ 时间内计算出所有的 $M'(x_i)$ 。
+
+我们令 $v_i = \frac{y_i}{M'(x_i)}$ ，接下来考虑计算出 $f(x)$ 。对于 $n = 1$ 的情况，有 $f(x) = v_1, M(x) = x - x_1$ 。否则令
 
 $$
 \begin{aligned}
-	X_{0}&=\left\{x_{0},x_{1},...,x_{\left\lfloor\frac{n}{2}\right\rfloor}\right\}\\
-	X_{1}&=\left\{x_{\left\lfloor\frac{n}{2}\right\rfloor+1},x_{\left\lfloor\frac{n}{2}\right\rfloor+2},...,x_{n}\right\}
+f_0(x) & = \sum_{i = 1}^{\left\lfloor \frac n2 \right \rfloor} v_i\prod_{j \neq i \wedge j \le \left\lfloor \frac n2 \right \rfloor}(x - x_j)\\
+M_0(x) & = \prod_{i = 1}^{\left\lfloor \frac n2 \right \rfloor} (x - x_i)\\
+f_1(x) & = \sum_{i = \left\lfloor \frac n2 \right \rfloor+1}^n v_i\prod_{j \neq i \wedge \left\lfloor \frac n2 \right \rfloor < j \le n}(x - x_j) \\
+M_1(x) & = \prod_{i = \left\lfloor \frac n2 \right \rfloor+1}^n (x - x_i)
 \end{aligned}
 $$
 
-假设已经求出了 $X_{0}$ 中的点插值出的多项式 $f_{0}\left(x\right)$ ，考虑如何使其变为所求的 $f\left(x\right)$ 。
-
-构造多项式
-
-$$
-g_{0}\left(x\right)=\prod_{x_{i}\in X_{0}}\left(x-x_{i}\right)
-$$
-
-则有 $\forall\left(x,y\right)\in X_{0}:g_{0}\left(x\right)=0$ 。
-
-考虑将 $f\left(x\right)$ 表示为 $g_{0}\left(x\right)f_{1}\left(x\right)+f_{0}\left(x\right)$ 的形式。
-
-由于 $\forall\left(x,y\right)\in X_{0}:f\left(x\right)=g_{0}\left(x\right)f_{1}\left(x\right)+f_{0}\left(x\right)=f_{0}\left(x\right)=y$ ，故 $X_{0}$ 中的点都在 $f\left(x\right)$ 上。
-
-考虑构造 $f_{1}\left(x\right)$ 使得 $X_{1}$ 中的点也在 $f\left(x\right)$ 上，即：
-
-$$
-\forall\left(x,y\right)\in X_{1}:f_{1}\left(x\right)g_{0}\left(x\right)+f_{0}\left(x\right)=y
-$$
-
-变形可得：
-
-$$
-\forall\left(x,y\right)\in X_{1}:f_{1}\left(x\right)=\frac{y-f_{0}\left(x\right)}{g_{0}\left(x\right)}
-$$
-
-这样就得到了新的待插值点集合：
-
-$$
-X'_{1}=\left\{\left(x,\frac{y-f_{0}\left(x\right)}{g_{0}\left(x\right)}\right):\left(x,y\right)\in X_{1}\right\}
-$$
-
-递归对 $X'_{1}$ 插值出 $f_{1}\left(x\right)$ 即可。
-
-由于每次都需要多点求值求出新的待插值点集合 $X'_{1}$ ，时间复杂度为：
-
-$$
-T\left(n\right)=2T\left(\frac{n}{2}\right)+O\left(n\log^{2}{n}\right)=O\left(n\log^{3}{n}\right)
-$$
+可得 $f(x) = f_0(x)M_1(x) + f_1(x)M_0(x), M(x) = M_0(x)M_1(x)$ ，因此可以分治计算，这一部分的复杂度同样是 $O(n\log^2 n)$ 。

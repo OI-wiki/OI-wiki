@@ -59,7 +59,7 @@ $$
 
 ### Newton's Method
 
-使用 [ **Newton's Method** ](/math/poly/newton/#newtons-method) 即可在 $O\left(n\log{n}\right)$ 的时间复杂度内解决多项式 $\exp$ 。
+使用 [ **Newton's Method** ](./newton.md#newtons-method) 即可在 $O\left(n\log{n}\right)$ 的时间复杂度内解决多项式 $\exp$ 。
 
 ## Code
 
