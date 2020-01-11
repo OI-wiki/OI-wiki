@@ -373,6 +373,8 @@ nav:
   - 专题:
     - RMQ: topic/rmq.md
     - 出题: topic/problemsetting.md
+  - 关于 Hulu:
+    -  关于 Hulu: intro/hulu.md
 
 # Theme
 theme:

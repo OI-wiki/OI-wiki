@@ -137,3 +137,7 @@ python2 -m SimpleHTTPServer
 
 <!-- <img src='https://i.loli.net/2018/12/07/5c0a6e4c31b30.png' alt='QVQNetWork' width=233> 
 鸣谢 QVQNetwork 赞助的服务器。 -->
+
+感谢 北大算协 和 Hulu 的支持！
+
+![](https://assets.pcmag.com/media/images/560767-hulu.png?width=333&height=245)
