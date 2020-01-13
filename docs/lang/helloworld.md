@@ -6,7 +6,7 @@ disqus:
 
 ### 集成开发环境
 
-IDE 操作较为简单，一般入门玩家会选用 IDE 来编写代码。在竞赛中最常见的是 Dev-C++（如果考试环境是 Windows 系统，一般也会提供这一 IDE）。详情可以阅读 [相关页面](/intro/editor/devcpp) 。
+IDE 操作较为简单，一般入门玩家会选用 IDE 来编写代码。在竞赛中最常见的是 [Dev-C++](./editor/devcpp.md) （如果考试环境是 Windows 系统，一般也会提供这一 IDE）。
 
 ### 编译器
 
@@ -56,9 +56,9 @@ int main() {                // 定义 main 函数
 
 using namespace std;
 
-int main() {               // 定义 main 函数
-  cout << "Hello, world!"  // 输出 Hello, world!
-      return 0;            // 返回 0，结束 main 函数
+int main() {                // 定义 main 函数
+  cout << "Hello, world!";  // 输出 Hello, world!
+  return 0;                 // 返回 0，结束 main 函数
 }
 ```
 
