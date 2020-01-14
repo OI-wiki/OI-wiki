@@ -26,11 +26,12 @@ $$
 C++ 代码：
 
 ```cpp
+// 假设数组的大小是n+1，冒泡排序从数组下标1开始
 void bubble_sort(int *a, int n) {
   bool flag = true;
   while (flag) {
     flag = false;
-    for (int i = 0; i < n - 1; ++i) {
+    for (int i = 1; i < n; ++i) {
       if (a[i] > a[i + 1]) {
         flag = true;
         int t = a[i];
