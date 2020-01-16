@@ -43,18 +43,10 @@ g++ 是 C++ 语言的编译器，C 语言的编译器为 gcc。
 C++ 语言
 
 ```c++
-#include <cstdio>  // 引用头文件
-
-int main() {                // 定义 main 函数
-  printf("Hello, world!");  // 输出 Hello, world!
-  return 0;                 // 返回 0，结束 main 函数
-}
-```
-
-```c++
 #include <iostream>  // 引用头文件
 
 using namespace std;
+// 引入命名空间（相关阅读 https://oi-wiki.org/lang/namespace/#using ）
 
 int main() {                // 定义 main 函数
   cout << "Hello, world!";  // 输出 Hello, world!
