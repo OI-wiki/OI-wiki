@@ -32,9 +32,17 @@ xcode-select --install
 sudo apt update && sudo apt install g++
 ```
 
+#### 在命令行中编译代码
+
 熟练之后也有玩家会使用更灵活的命令行来编译代码，这样就不依赖 IDE 了，而是使用自己熟悉的文本编辑器编写代码。
 
-g++ 是 C++ 语言的编译器，C 语言的编译器为 gcc。
+```bash
+g++ test.cpp -o test -lm
+```
+
+ `g++` 是 C++ 语言的编译器（C 语言的编译器为 `gcc` ）， `-o` 用于指定可执行文件的文件名，编译选项 `-lm` 用于链接数学库 `libm` ，从而使得使用 `math.h` 的代码可以正常编译运行。
+
+注：C++ 程序不需要 `-lm` 即可正常编译运行，需要 `-lm` 的是 `libstdc++` 。历年 `NOI/NOIP` 试题的 C++ 编译选项中都带着 `-lm` ，故这里也一并加上。
 
 ## 第一行代码
 
@@ -57,7 +65,7 @@ int main() {                // 定义 main 函数
 C 语言
 
 ```c
-#include <stdio.h>  // 引用头文件
+#include <stdio.h>          // 引用头文件
 
 int main() {                // 定义 main 函数
   printf("Hello, world!");  // 输出 Hello, world!
