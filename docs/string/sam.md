@@ -359,6 +359,8 @@ $$
 
 另一种方法是利用上述后缀自动机的树形结构。每个节点对应的子串数量是 $len(i)-len(link(i))$ ，对自动机所有节点求和即可。
 
+例题： [【模板】后缀自动机](https://www.luogu.org/problem/P3804) ， [SDOI2016 生成魔咒](https://loj.ac/problem/2033) 
+
 ### 所有不同子串的总长度
 
 > 给定一个字符串 $S$ ，计算所有不同子串的总长度。
@@ -386,6 +388,8 @@ $$
 预处理的时间复杂度为 $O(\left|S\right|)$ ，单次查询的复杂度为 $O(\left|ans\right|\cdot\left|\Sigma\right|)$ （其中 $ans$ 是查询的答案， $\left|\Sigma\right|$ 为字符集的大小）。
 
 > 虽然该题是后缀自动机的经典题，但实际上这题由于涉及字典序，用后缀数组做最方便。
+
+例题： [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/) ， [TJOI2015 弦论](https://loj.ac/problem/2102) 
 
 ### 最小循环移位
 
@@ -558,6 +562,8 @@ string lcs(const string &S, const string &T) {
 }
 ```
 
+例题： [SPOJ Longest Common Substring](https://www.spoj.com/problems/LCS/en/) 
+
 ### 多个字符串间的最长公共子串
 
 > 给定 $k$ 个字符串 $S_i$ 。我们需要找到它们的最长公共子串，即作为子串出现在每个字符串中的字符串 $X$ 。
@@ -574,10 +580,25 @@ $$
 
 因此我们需要计算可达性，即对于自动机中的每个状态和每个字符 $D_i$ ，是否存在这样的一条路径。这可以容易地通过 DFS 或 BFS 及动态规划计算。之后，问题的答案就是状态 $v$ 的字符串 $longest(v)$ 中存在所有特殊字符的路径。
 
+例题： [SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/) 
+
 ## 例题
 
--    [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/) 
 -    [HihoCoder #1441 : 后缀自动机一·基本概念](http://hihocoder.com/problemset/problem/1441) 
+-    [【模板】后缀自动机](https://www.luogu.org/problem/P3804) 
+-    [SDOI2016 生成魔咒](https://loj.ac/problem/2033) 
+-    [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/) 
+-    [TJOI2015 弦论](https://loj.ac/problem/2102) 
+-    [SPOJ Longest Common Substring](https://www.spoj.com/problems/LCS/en/) 
+-    [SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/) 
+-    [Codeforces 1037H Security](https://codeforces.com/problemset/problem/1037/H) 
+-    [Codeforces 666E Forensic Examination](https://codeforces.com/problemset/problem/666/E) 
+-    [HDu4416 Good Article Good sentence](http://acm.hdu.edu.cn/showproblem.php?pid=4416) 
+-    [HDu4436 str2int](http://acm.hdu.edu.cn/showproblem.php?pid=4436) 
+-    [HDu6583 Typewriter](http://acm.hdu.edu.cn/showproblem.php?pid=6583) 
+-    [Codeforces 235C Cyclical Quest](https://codeforces.com/problemset/problem/235/C) 
+-    [CTSC2012 熟悉的文章](https://www.luogu.org/problem/P4022) 
+-    [NOI2018 你的名字](http://uoj.ac/problem/395) 
 
 ## 相关资料
 

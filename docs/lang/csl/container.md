@@ -22,8 +22,8 @@
 
 ### 无序（关联式）容器
 
--    **无序（多重）集合** ( `unordered_set` / `unordered_multiset` ) 与 `set` / `multiset` 的区别在与元素无序，只关心”元素是否存在“，使用哈希实现。
--    **无序（多重）映射** ( `unordered_map` / `unordered_multimap` ) 与 `map` / `multimap` 的区别在与键 (key) 无序，只关心 "键与值的对应关系"，使用哈希实现。
+-    **无序（多重）集合** ( `unordered_set` / `unordered_multiset` ) **C++11** ，与 `set` / `multiset` 的区别在与元素无序，只关心”元素是否存在“，使用哈希实现。
+-    **无序（多重）映射** ( `unordered_map` / `unordered_multimap` ) **C++11** ，与 `map` / `multimap` 的区别在与键 (key) 无序，只关心 "键与值的对应关系"，使用哈希实现。
 
 ### 容器适配器
 
@@ -45,11 +45,7 @@
 
 ### 迭代器
 
-STL 容器中的元素都可以用迭代器指向。
-
-迭代器是一种类似指针的东西，可以通过 `containerName<typeName,...>::iterator` 来声明，通过 `*it` 来访问所指向的元素，通过 `++` / `--` 来访问下一个/上一个元素（向前迭代器不能 `--` ）。
-
-迭代器分为输入/输出/向前/双向/随机访问迭代器、正向/反向迭代器。
+请参考 [迭代器](./iterator.md) 。
 
 ### 共有函数
 

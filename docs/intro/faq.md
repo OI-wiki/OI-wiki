@@ -19,11 +19,11 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ，QQ 群号码为 [ `58
 举个栗子，假如我想要修改一个页面内容，应该怎么操作呢？
 
 1.  在 OI Wiki 网站上找到对应页面。
-2.  点击 正文右上方、目录左侧的 **“编辑此页”** <i class="md-icon">edit</i>按钮。
-3.  （应该已经跳转到了 GitHub 上的对应页面吧？）这时候右上方还会有一个 **“编辑此页”** <i class="md-icon">edit</i>的按钮，点击它就可以在线编辑了。
-4.  写好了之后点下方的绿色按钮（Propose file change），可能会提示没有权限。不必担心！GitHub 会自动帮你 fork 一份项目的文件并创建 Pull Request。
-5.  之后点上方的绿色按钮（Create pull request）后，再点一下出现的绿色按钮（Create pull request）。
-6.  提交之后就可以等待他人合并或者指出还要修改的地方，当然你也可以给他人的 PR 提出修改意见，或者只是点赞/踩。如果有消息，会有邮件通知和/或网页上的提醒（取决于在你个人 Settings 中的设置）。
+2.  点击 正文右上方、目录左侧的 **“编辑此页”** <i class="md-icon">edit</i>按钮，在阅读了 [如何贡献](./htc.md) 后点击“开始编辑”按钮。
+    <!-- 3.  （应该已经跳转到了 GitHub 上的对应页面吧？）这时候右上方还会有一个 **“编辑此页”** <i class="md-icon">edit</i>的按钮，点击它就可以在线编辑了。 -->
+3.  写好了之后点下方的绿色按钮（Propose file change），可能会提示没有权限。不必担心！GitHub 会自动帮你 fork 一份项目的文件并创建 Pull Request。
+4.  之后点上方的绿色按钮（Create pull request）后，再点一下出现的绿色按钮（Create pull request）。
+5.  提交之后就可以等待他人合并或者指出还要修改的地方，当然你也可以给他人的 PR 提出修改意见，或者只是点赞/踩。如果有消息，会有邮件通知和/或网页上的提醒（取决于在你个人 Settings 中的设置）。
 
 （有木有很简单？）
 
@@ -64,7 +64,7 @@ PR 标题示例：
 
 ### 如何修改一个 topic 的内容
 
-在对应页面右上方有一个编辑按钮<i class="md-icon">edit</i>，点击之后会跳转到 GitHub 上对应文件的位置。
+在对应页面右上方有一个编辑按钮<i class="md-icon">edit</i>，点击并确认阅读了 [如何贡献](./htc.md) 之后会跳转到 GitHub 上对应文件的位置。
 
 或者也可以自行阅读目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 查找文件位置。
 
@@ -82,17 +82,18 @@ PR 标题示例：
 
 ### 我尝试访问 GitHub 的时候遇到了困难
 
-推荐在 hosts 文件中加入如下几行：（来源： [@GoogleHosts](https://github.com/googlehosts/hosts/blob/master/hosts-files/hosts#L1451-L1453) ）
+推荐在 hosts 文件中加入如下几行：（来源： [GoogleHosts-919f34e](https://github.com/googlehosts/hosts/blob/919f34e53c1099241af7d0b5e730b60899af7d18/hosts-files/hosts#L1467-#L1472) ）
 
 ```text
 # Github Start
 13.250.177.223	gist.github.com
 13.250.177.223	github.com
 13.229.188.59	www.github.com
+151.101.56.133	raw.githubusercontent.com
 # Github End
 ```
 
-可以在 [@GoogleHosts 主页](https://github.com/googlehosts/hosts) 上了解到更多信息。
+可以在 [GoogleHosts 主页](https://github.com/googlehosts/hosts) 上了解到更多信息。
 
 ### 我这里 pip 也太慢了
 

@@ -46,7 +46,7 @@ for i = 1 to k
 for i = 1 to k
 	n / n[i] → m
 	inv(m, n[i]) → b               // b * m mod n[i] = 1
-	(ans + m * b) mod n → ans
+	(ans + a[i] * m * b) mod n → ans
 return ans
 ```
 
@@ -143,8 +143,8 @@ $$
 
  [【模板】扩展中国剩余定理](https://www.luogu.org/problemnew/show/P4777) 
 
- [\[NOI2018\]屠龙勇士](https://www.luogu.org/problemnew/show/P4774) 
+ [「NOI2018」屠龙勇士](http://uoj.ac/problem/396) 
 
- [\[TJOI2009\]猜数字](https://www.luogu.org/problemnew/show/P3868) 
+ [「TJOI2009」猜数字](https://www.luogu.org/problemnew/show/P3868) 
 
- [\[SDOI2010\]古代猪文](https://www.lydsy.com/JudgeOnline/problem.php?id=1951) 
+ [「SDOI2010」古代猪文](https://loj.ac/problem/10229) 

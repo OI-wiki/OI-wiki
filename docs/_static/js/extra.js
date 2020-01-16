@@ -28,7 +28,8 @@ if (cur) {
 
 document.getElementsByTagName("html")[0].lang = "zh-Hans"; // change language to `zh-Hans` for Han.js.
 
-var url = document.getElementsByClassName('page_edit_url')[0].href.split('docs')[1]
+var url = document.getElementsByClassName('page_edit_url')[0].href.split('?ref=')[1]
+// var url = document.getElementsByClassName('page_edit_url')[0].href.split('docs')[1]
 // var url = document.URL.replace(/http\S+\.org\//gi, '').replace(/#\S+$/gi, '').slice(0, -1);
 var script = document.createElement('script');
 function foo(response) {

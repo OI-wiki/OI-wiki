@@ -2,7 +2,7 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz
 
 ## 引子
 
-???+ note "BZOJ - 2286 消耗战"
+???+ note "[「SDOI2011」消耗战](https://www.luogu.org/problem/P2495)"
     ### Description
 
     在一场战争中，战场由 $n$ 个岛屿和 $n-1$ 个桥梁组成，保证每两个岛屿间有且仅有一条路径可达。现在，我军已经侦查到敌军的总部在编号为 $1$ 的岛屿，而且他们已经没有足够多的能源维系战斗，我军胜利在望。已知在其他 $k$ 个岛屿上有丰富能源，为了防止敌军获取能源，我军的任务是炸毁一些桥梁，使得敌军不能到达任何能源丰富的岛屿。由于不同桥梁的材质和结构不同，所以炸毁不同的桥梁有不同的代价，我军希望在满足目标的同时使得总代价最小。
@@ -53,10 +53,6 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz
     ### HINT
 
     对于 $100\%$ 的数据， $2\le n\le 2.5\times 10^5,m\ge 1,\sum k_i\le 5\times 10^5,1\le k_i\le n-1$ 。
-
-    ### Source
-
-    [Stage2 day2](http://www.lydsy.com/JudgeOnline/problemset.php?search=Stage2%20day2)
 
 ## 虚树 Virtual Tree
 
@@ -145,7 +141,7 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz
 
 首先我们在栈中添加节点 $1$ 。
 
-然后接下来按照 DFS 序从小到达添加关键节点。
+然后接下来按照 DFS 序从小到大添加关键节点。
 
 假如当前的节点与栈顶节点的 LCA 就是栈顶节点的话，则说明它们是在一条链上的。所以直接把当前节点入栈就行了。
 

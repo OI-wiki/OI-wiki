@@ -2,7 +2,7 @@ author: ouuan, Ir1d, TrisolarisHD, Xeonacid
 
 ## 树分块的方式
 
-可以参考 [OI Wiki/莫队算法/真 - 树上莫队](/misc/mo-algo/#_14) 。
+可以参考 [真 - 树上莫队](../misc/mo-algo.md#_14) 。
 
 也可以参考 [ouuan 的博客/莫队、带修莫队、树上莫队详解/树上莫队](https://ouuan.github.io/莫队、带修莫队、树上莫队详解/#树上莫队) 。
 
@@ -14,7 +14,7 @@ author: ouuan, Ir1d, TrisolarisHD, Xeonacid
 
 顺带提一句，“gty 的妹子树”的树分块做法可以被菊花图卡掉。
 
-###  [BZOJ4763 雪辉](https://www.lydsy.com/JudgeOnline/problem.php?id=4763) 
+###  [BZOJ4763 雪辉](https://www.luogu.org/problem/P3603) 
 
 先进行树分块，然后对每个块的关键点，预处理出它到祖先中每个关键点的路径上颜色的 bitset，以及每个关键点的最近关键点祖先，复杂度是 $O(n\sqrt n+\frac{nc}{32})$ ，其中 $n\sqrt n$ 是暴力从每个关键点向上跳的复杂度， $\frac{nc}{32}$ 是把 $O(n)$ 个 `bitset` 存下来的复杂度。
 

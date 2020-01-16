@@ -110,9 +110,9 @@ bool Bellman_Ford() {
 
 ## 习题
 
- [bzoj 1715:\[Usaco2006 Dec\]Wormholes 虫洞](https://www.lydsy.com/JudgeOnline/problem.php?id=1715) 
+ [Usaco2006 Dec Wormholes 虫洞](https://loj.ac/problem/10085) 
 
- [bzoj 2330:\[SCOI2011\]糖果](https://www.lydsy.com/JudgeOnline/problem.php?id=2330) 
+ [「SCOI2011」糖果](https://loj.ac/problem/2436) 
 
  [POJ 1364 King](http://poj.org/problem?id=1364) 
 

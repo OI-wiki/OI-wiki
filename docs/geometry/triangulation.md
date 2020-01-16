@@ -278,7 +278,7 @@ Voronoi 图是 Delaunay 三角剖分的对偶图，可以使用构造 Delaunay �
 
  [SGU 383 Caravans](https://codeforces.com/problemsets/acmsguru/problem/99999/383) 三角剖分 + 倍增
 
- [CodeVS 2819 无尽的毁灭](http://codevs.cn/problem/2819/) 三角剖分求对偶图建 Voronoi 图
+ [CodeVS 2819. 无尽的毁灭](http://www.joyoi.cn/problem/codevs-2819) 三角剖分求对偶图建 Voronoi 图
 
 ## References
 
