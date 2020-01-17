@@ -1,6 +1,6 @@
 ## cf-tool
 
-GitHub 地址： [xalanq/cf-tool](https://github.com/xalanq/cf-tool/) 
+GitHub 地址： [xalanq/cf-tool](https://github.com/xalanq/cf-tool/)
 
 cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux、OS X）工具，其支持很多常用操作。
 
@@ -36,37 +36,37 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 以下简单模拟一场比赛的流程。
 
- `cf race 1136` 
+ `cf race 1136`
 
 要开始打 1136 这场比赛了！其中 1136 可以从比赛的链接获取，比方说这个例子的比赛链接就为 <https://codeforces.com/contest/1136> 。
 
 如果比赛还未开始，则该命令会进行倒计时。比赛已开始或倒计时完后，工具会自动用默认浏览器打开比赛的所有题目页面，并拉取样例到本地。
 
- `cd 1136/a` 
+ `cd 1136/a`
 
 进入 A 题的目录，此时该目录下会包含该题的样例。
 
- `cf gen` 
+ `cf gen`
 
 用默认模板生成一份代码，在这里不妨设为 `a.cpp` 。
 
- `vim a.cpp` 
+ `vim a.cpp`
 
 用 Vim 写代码（或者用其他的编辑器或 IDE 进行）。
 
- `cf test` 
+ `cf test`
 
 编译并测试样例。
 
- `cf submit` 
+ `cf submit`
 
 提交代码。
 
- `cf list` 
+ `cf list`
 
 查看当前比赛各个题目的信息。
 
- `cf stand` 
+ `cf stand`
 
 用浏览器打开榜单，查看排名。
 
@@ -105,3 +105,23 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 -   计算一场比赛的 Rating 预测。
 
 大家可以自行尝试一下。
+
+## Competitive companion
+
+网站：https://github.com/jmerle/competitive-companion
+
+功能介绍：
+
+-  这个工具是一个浏览器插件 用来解析网页里面的测例数据
+-  支持解析几乎所有的主流oj平台（比如codeforces atcoder）
+
+推荐理由：使用这个插件后 再也不用手动复制任何的测例数据
+
+使用方法：
+
+1. 在谷歌或者火狐浏览器上安装插件 该工具会将解析到的测例数据以JSON格式的形式发到指定的端口
+2. 在本地安装任何可以从端口监听读取数据的工具即可 可参考https://github.com/jmerle/competitive-companion-example
+
+图片演示：
+
+![演示](images/cf-tool3.gif)
