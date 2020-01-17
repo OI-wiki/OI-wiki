@@ -169,22 +169,9 @@ $$
 
 ### 单调队列优化
 
-考虑优化 $f_i$ 的转移。为方便表述，设 $g_{x,y}=f_{i,x\times w_i+y},g'_{x,y}=f_{i-1,x\times w_i+y}$ ，则转移方程可以表示为：
+见 [单调队列/单调栈优化](opt/monotonous-queue-stack.md)。
 
-$$
-g_{x,y}=\max_{k=0}^{k_i}(g'_{x-k,y}+v_i\times k)
-$$
-
-设 $G_{x,y}=g'_{x,y}-v_i\times x$ 。则方程可以表示为：
-
-$$
-g_{x,y}=\max_{k=0}^{k_i}(G_{x-k,y})+v_i\times x
-$$
-
-这样就转化为一个经典的 [单调队列优化](./opt/monotonous-queue-stack.md) 形式了。 $G_{x,y}$ 可以 $O(1)$ 计算，因此对于固定的 $y$ ，我们可以在 $O\left( \left\lfloor \dfrac{W}{w_i} \right\rfloor \right)$ 的时间内计算出 $g_{x,y}$ 。因此求出所有 $g_{x,y}$ 的复杂度为 $O\left( \left\lfloor \dfrac{W}{w_i} \right\rfloor \right)\times O(w_i)=O(W)$ 。这样转移的总复杂度就降为 $O(nW)$ 。
-
-??? note "[「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.org/problemnew/show/P1776)"
-    题意概要：有 $n$ 种物品和一个容量为 $W$ 的背包，每种物品有 $m_{i}$ 个，同时每个物品有两种属性：重量 $w_{i}$ 和价值 $v_{i}$ 。要求选若干个物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量。有一点需要注意的是本题数据范围较大，情况较多。
+习题：[「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.org/problemnew/show/P1776)
 
 ## 混合背包
 
