@@ -116,9 +116,11 @@ low[u] = min(low[u], num[v]);
 和割点差不多，还叫做割桥。
 
 > 对于一个无向图，如果删掉一条边后图中的连通分量数增加了，则称这条边为桥或者割边。严谨来说，就是：假设有连通图G=\{V,E\}，e是其中一条边（即e \in E），如果G-e是不连通的，则边e是图G的一条割边（桥）。
+
 比如说，下图中，
 
-pic
+![割边示例图](./images/bridge4.png)
+
 红色箭头指向的就是割边。
 
 
@@ -156,5 +158,11 @@ void tarjan(int u, int fa) {
 }
 ```
 
+## 练习
+- [P3388 【模板】割点（割顶）](https://www.luogu.org/problem/P3388)
+- [POJ2117 Electricity](https://vjudge.net/problem/POJ-2117)
+- [HDU4738 Caocao's Bridges](https://vjudge.net/problem/HDU-4738)
+- [HDU2460 Network](https://vjudge.net/problem/HDU-2460)
+- [POJ1523 SPF](https://vjudge.net/problem/POJ-1523)
 
 Tarjan 算法还有许多用途，常用的例如求强连通分量，缩点，还有求 2-SAT 的用途等。
