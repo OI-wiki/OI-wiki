@@ -60,7 +60,7 @@ export JAVA_HOME="/opt/jdk-14/bin"
 export PATH=${JAVA_HOME}:$PATH
 ```
 
-在控制台中输入命令 `source ~/.bashrc` 即可重载。如果是使用的 zsh 或其他命令行, 在 `~/.zshrc` 或对应的文件中添加上面的内容
+在控制台中输入命令 `source ~/.bashrc` 即可重载。如果是使用的 zsh 或其他命令行，在 `~/.zshrc` 或对应的文件中添加上面的内容
 
 ### MacOS
 
@@ -79,7 +79,7 @@ rm jdk-8u121-macosx-x64.dmg
 
 ## 基本语法
 
-**_注意_** `Java` 类似 `C/C++` 语言，有一个函数作为程序执行的起始点，所有的程序只有一个主函数，每次执行的时候都会从主类开始，主函数是整个程序的入口，一切从此处开始。
+ **_注意_**  `Java` 类似 `C/C++` 语言，有一个函数作为程序执行的起始点，所有的程序只有一个主函数，每次执行的时候都会从主类开始，主函数是整个程序的入口，一切从此处开始。
 
 ### 注释
 
@@ -87,17 +87,17 @@ rm jdk-8u121-macosx-x64.dmg
 
 ### 基本数据类型
 
-| 类型名  |    意义    |
-| :-----: | :--------: |
-| boolean |  布尔类型  |
-|  byte   |  字节类型  |
-|  char   |   字符型   |
-| double  | 双精度浮点 |
+|   类型名   |   意义  |
+| :-----: | :---: |
+| boolean |  布尔类型 |
+|   byte  |  字节类型 |
+|   char  |  字符型  |
+|  double | 双精度浮点 |
 |  float  | 单精度浮点 |
-|   int   |    整型    |
-|  long   |   长整型   |
-|  short  |   短整型   |
-|  null   |     空     |
+|   int   |   整型  |
+|   long  |  长整型  |
+|  short  |  短整型  |
+|   null  |   空   |
 
 ### 申明变量
 
@@ -110,7 +110,7 @@ double PI = 3.1415926;
 
 ### final 关键字
 
-`final` 含义是这是最终的、不可更改的结果，被 final 修饰的变量只能被赋值一次，赋值后不再改变。
+ `final` 含义是这是最终的、不可更改的结果，被 final 修饰的变量只能被赋值一次，赋值后不再改变。
 
 ```java
 final double PI = 3.1415926;
@@ -126,7 +126,7 @@ int[] ary = new int[10];
 
 ### 字符串
 
-- 字符串是 `Java` 一个内置的类。
+-   字符串是 `Java` 一个内置的类。
 
 ```java
 //最为简单的构造一个字符串变量的方法如下
@@ -140,12 +140,12 @@ String s = new String(stringArray);
 
 可以对变量进行格式化输出
 
-| 符号 |    意义    |
-| :--: | :--------: |
-| `%f` |  浮点类型  |
-| `%s` | 字符串类型 |
-| `%d` |  整数类型  |
-| `%c` |  字符类型  |
+|   符号   |   意义  |
+| :----: | :---: |
+|  `%f`  |  浮点类型 |
+|  `%s`  | 字符串类型 |
+|  `%d`  |  整数类型 |
+|  `%c`  |  字符类型 |
 
 ```java
 class test{
@@ -166,7 +166,7 @@ class test{
 
 #### 选择
 
-- if
+-   if
 
 ```java
 class test{
@@ -178,7 +178,7 @@ class test{
 }
 ```
 
-- if...else
+-   if...else
 
 ```java
 class test{
@@ -192,7 +192,7 @@ class test{
 }
 ```
 
-- if...else if...else
+-   if...else if...else
 
 ```java
 class test{
@@ -210,7 +210,7 @@ class test{
 
 #### 循环
 
-- for
+-   for
 
 ```java
 class test{
@@ -221,8 +221,8 @@ class test{
     }
 }
 ```
-% 
-- while
+
+-   while
 
 ```java
 class test{
@@ -234,7 +234,7 @@ class test{
 }
 ```
 
-- do...while
+-   do...while
 
 ```java
 class test{
@@ -246,7 +246,7 @@ class test{
 }
 ```
 
-- switch...case
+-   switch...case
 
 ```java
 class test{
@@ -269,7 +269,7 @@ class test{
 
 ###### 类名与文件名一致
 
-创建 Java 源程序需要类名和文件名一致才能编译通过，否则编译器会提示找不到 `类`。通常该文件名会在具体 OJ 中指定。
+创建 Java 源程序需要类名和文件名一致才能编译通过，否则编译器会提示找不到 `类` 。通常该文件名会在具体 OJ 中指定。
 
 例：
 
