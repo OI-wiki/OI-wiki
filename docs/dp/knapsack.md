@@ -36,7 +36,7 @@ $$
 还有一点需要注意的是，很容易写出这样的错误核心代码：
 
 ```cpp
-for (int i = 1; i <= W; i++)
+for (int i = 1; i <= n; i++)
   for (int l = 0; l <= W - w[i]; l++)
     f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
 // 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]],f[i - 1][l] + w[i]),f[i][l +

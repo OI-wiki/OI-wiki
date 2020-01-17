@@ -107,7 +107,6 @@ low[u] = min(low[u], num[v]);
       cout << res << endl;
       for (int i = 1; i <= n; i++)
         if (flag[i]) cout << i << " ";  // 输出结果
-      for (int i = 1; i <= n; i++) cout << low[i] << endl;
       return 0;
     }
     ```
