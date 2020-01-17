@@ -22,22 +22,11 @@ Java 是一种广泛使用的计算机编程语言，拥有 **跨平台** 、 **
 
 ![第六步](images/java6.png)
 
-### macOS/Linux
+### Linux
 
-```bash
-sudo mv jdk-14 /opt
-```
+#### 使用包管理器安装
 
-然后打开 `.bashrc` 文件在文件末尾添加一些命令
-
-```bash
-export JAVA_HOME="/opt/jdk-14/bin"
-export PATH=${JAVA_HOME}:$PATH
-```
-
-然后在控制台当中输入命令 `source ~/.bashrc` , 如果是使用的 zsh, 那么同样的在 `~/.zshrc` 当中添加上面的内容
-
-以上是手动安装的方式，嫌麻烦可以使用在线安装命令如下
+可以使用包管理器提供的 JDK。具体指令如下
 
 ```bash
 sudo apt install default-jre
@@ -58,6 +47,23 @@ sudo yum localinstall jre-9.0.4_linux_x64_bin.rpm #安装jre-9.0
 sudo yum localinstall jdk-9.0.4_linux-x64_bin.rpm #安装jdk-9.0
 ```
 
+#### 手动安装
+
+```bash
+sudo mv jdk-14 /opt
+```
+
+并在 `.bashrc` 文件末尾添加
+
+```bash
+export JAVA_HOME="/opt/jdk-14/bin"
+export PATH=${JAVA_HOME}:$PATH
+```
+
+在控制台中输入命令 `source ~/.bashrc` 即可重载。如果是使用的 zsh 或其他命令行，在 `~/.zshrc` 或对应的文件中添加上面的内容
+
+### MacOS
+
 如果是 MacOS，你可以使用以下命令安装包
 
 ```bash
@@ -69,7 +75,7 @@ diskutil umount /Volumes/JDK\ 8\ Update\ 121
 rm jdk-8u121-macosx-x64.dmg
 ```
 
-或者直接在官方网站下载 `pkg` 包或是 `dmg` 包安装
+或者直接在官方网站下载 `pkg` 包或 `dmg` 包安装
 
 ## 基本语法
 
@@ -99,15 +105,15 @@ rm jdk-8u121-macosx-x64.dmg
 int a = 12;//设置a为整数类型,并给a赋值12
 String str = "Hello, OI-wiki"; //申明字符串变量str
 char ch = "W";
-double PI = 3.1415926;  
+double PI = 3.1415926;
 ```
 
 ### final 关键字
 
- `final` 含义是这是最终的、不可更改的结果，被 final 修饰的变量只能被赋值一次，赋值后不再改变
+ `final` 含义是这是最终的、不可更改的结果，被 final 修饰的变量只能被赋值一次，赋值后不再改变。
 
 ```java
-final double PI  = 3.1415926; 
+final double PI = 3.1415926;
 ```
 
 ### 数组
@@ -144,7 +150,7 @@ String s = new String(stringArray);
 ```java
 class test{
     public static void main(String[] args) {
-        int a =12;
+        int a = 12;
         char b = 'A';
         double s = 3.14;
         String str = "Hello world";
@@ -224,7 +230,7 @@ class test{
         while(/*判定条件*/){
             //条件成立时执行循环体内代码
         }
-    } 
+    }
 }
 ```
 
@@ -259,18 +265,22 @@ class test{
 }
 ```
 
-#### 注意事项
+## 注意事项
 
--   1.创建 Java 源程序需要类名和文件名一致才能编译通过，否则编译器会提示找不到 `类` , 例子：
+### 类名与文件名一致
+
+创建 Java 源程序需要类名和文件名一致才能编译通过，否则编译器会提示找不到 `类` 。通常该文件名会在具体 OJ 中指定。
+
+例：
 
 Add.java
 
 ```java
 class Add{
-  Add(int x,int y){
-    return x+y;
-  }
+    public static void main(String[] args) {
+        // ...
+    }
 }
 ```
 
-上面的类中的方法和类名一致，这被称为构造函数，所以在调用此类的时候可以直接使用 `int number = new Add(12,12)` ;
+在该文件中需使用 Add 为类名方可编译通过。
