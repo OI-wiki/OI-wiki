@@ -28,7 +28,7 @@ for (; j < n; j++) {
   if (sec[(i + k) % n] == sec[(j + k) % n]) {
     k++;
   } else {
-    if (sec[(i + k) % n] > sec[(j + k) % n] % n) {
+    if (sec[(i + k) % n] > sec[(j + k) % n]) {
       i = j;
     }
     k = 0;
