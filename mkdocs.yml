@@ -11,7 +11,7 @@ repo_url: 'https://github.com/OI-wiki/OI-wiki'
 edit_uri: 'https://oi-wiki.org/edit-landing/?ref='
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2019 OI Wiki Team'
+copyright: 'Copyright &copy; 2016 - 2020 OI Wiki Team'
 google_analytics:
   - 'UA-124485594-1'
   - 'auto'
@@ -152,6 +152,7 @@ nav:
     - 其它 DP 方法: dp/misc.md
   - 字符串:
     - 字符串部分简介: string/index.md
+    - 字符串基础: string/basic.md
     - 标准库: string/lib-func.md
     - 字符串匹配: string/match.md
     - 字符串哈希: string/hash.md
@@ -165,7 +166,7 @@ nav:
     - 广义后缀自动机: string/general-sam.md
     - 后缀树: string/suffix-tree.md
     - Manacher: string/manacher.md
-    - 回文自动机: string/pam.md
+    - 回文树: string/pam.md
     - 序列自动机: string/seq-automaton.md
     - 最小表示法: string/minimal-string.md
     - Lyndon 分解: string/lyndon.md
@@ -372,6 +373,8 @@ nav:
   - 专题:
     - RMQ: topic/rmq.md
     - 出题: topic/problemsetting.md
+  - 关于 Hulu:
+    -  关于 Hulu: intro/hulu.md
 
 # Theme
 theme:

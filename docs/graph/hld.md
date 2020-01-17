@@ -379,7 +379,7 @@ int querymax(int x, int y) {
         scanf("%d%d", &a, &b), add_edge(a, b), add_edge(b, a);
       for (int i = 1; i <= n; i++) scanf("%d", w + i);
       dep[1] = 1;
-      dfs1(1, -1);
+      dfs1(1);
       dfs2(1, 1);
       st.build(1, 1, n);
       scanf("%d", &q);

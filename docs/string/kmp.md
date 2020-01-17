@@ -54,7 +54,7 @@ $$
 现在考虑计算位置 $i + 1$ 的前缀函数 $\pi$ 的值。如果 $s[i + 1] = s[\pi[i]]$ ，那么我们可以断言 $\pi[i + 1] = \pi[i] + 1$ ，因为我们已经知道位于位置 $i$ 的长度为 $\pi[i]$ 的后缀同长度为 $\pi[i]$ 的前缀相等。参照下述图例：
 
 $$
-\underbrace{\overbrace{s_0 ~ s_1 ~ s_2}^{\pi[i]} ~ \overbrace{s_3}^{s_3 = s_{i+1}}}_{\pi[i+1] = \pi[i] + 1} ~ \dots ~ \underbrace{\overbrace{s_{i-2} ~ s_{i-1} ~ s_{i}}^{\pi[i]} ~ \overbrace{s_{i+1}}^{s_3 = s_i + 1}}_{\pi[i+1] = \pi[i] + 1}
+\underbrace{\overbrace{s_0 ~ s_1 ~ s_2}^{\pi[i]} ~ \overbrace{s_3}^{s_3 = s_{i+1}}}_{\pi[i+1] = \pi[i] + 1} ~ \dots ~ \underbrace{\overbrace{s_{i-2} ~ s_{i-1} ~ s_{i}}^{\pi[i]} ~ \overbrace{s_{i+1}}^{s_3 = s_{i + 1}}}_{\pi[i+1] = \pi[i] + 1}
 $$
 
 如果不是上述情况，即 $s[i + 1] \neq s[\pi[i]]$ ，那么我们需要尝试更短的字符串。为了加速，我们希望直接移动到最长的长度 $j < \pi[i]$ ，使得在位置 $i$ 的前缀性质仍得以保持，也即 $s[0 \dots j - 1] = s[i - j + 1 \dots i]$ ：
