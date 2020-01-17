@@ -171,9 +171,9 @@ $$
 
 ### 单调队列优化
 
-见 [单调队列/单调栈优化](opt/monotonous-queue-stack.md)。
+见 [单调队列/单调栈优化](opt/monotonous-queue-stack.md) 。
 
-习题：[「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.org/problemnew/show/P1776)
+习题： [「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.org/problemnew/show/P1776) 
 
 ## 混合背包
 
