@@ -144,7 +144,6 @@ nav:
     - 计数 DP: dp/count.md
     - 动态 DP: dp/dynamic.md
     - DP 优化:
-      - 二进制分组解多重背包: dp/opt/binary-knapsack.md
       - 单调队列/单调栈优化: dp/opt/monotonous-queue-stack.md
       - 斜率优化: dp/opt/slope.md
       - 四边形不等式优化: dp/opt/quadrangle.md
