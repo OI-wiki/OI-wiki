@@ -44,13 +44,17 @@ $$
 比较两边系数可得：
 
 $$
-\left(n+1\right)\left[x^{n}\right]\exp{f\left(x\right)}=\sum_{i=0}^{n}\left[x^{i}\right]\exp{f\left(x\right)}\left(n-i+1\right)\left[x^{n-i}\right]f\left(x\right)
+\left[x^{n-1}\right]\exp'{f\left(x\right)}=\sum_{i=0}^{n-1}\left[x^{i}\right]\exp{f\left(x\right)}\left[x^{n-i-1}\right]f'\left(x\right)
+$$
+
+$$
+n\left[x^{n}\right]\exp{f\left(x\right)}=\sum_{i=0}^{n}\left[x^{i}\right]\exp{f\left(x\right)}\left(n-i+1\right)\left[x^{n-i}\right]f\left(x\right)
 $$
 
 又 $\left[x^{0}\right]f\left(x\right)=0$ ，则：
 
 $$
-\left(n+1\right)\left[x^{n}\right]\exp{f\left(x\right)}=\sum_{i=0}^{n-1}\left[x^{i}\right]\exp{f\left(x\right)}\left(n-i+1\right)\left[x^{n-i}\right]f\left(x\right)
+n\left[x^{n}\right]\exp{f\left(x\right)}=\sum_{i=0}^{n-1}\left[x^{i}\right]\exp{f\left(x\right)}\left(n-i+1\right)\left[x^{n-i}\right]f\left(x\right)
 $$
 
 使用分治 FFT 即可解决。
