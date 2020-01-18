@@ -1,4 +1,4 @@
-[![Word Art](https://raw.githubusercontent.com/24OI/OI-wiki/master/docs/images/wordArt.png)](https://oi-wiki.org/)
+[![Word Art](docs/images/OI_wiki_new_year_ver.png)](https://oi-wiki.org/)
 
 # 欢迎来到 **OI Wiki**！
 
