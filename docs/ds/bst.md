@@ -57,9 +57,9 @@ int findmax(int o) {
 
 若 $o$ 为空，直接返回一个值为 $v$ 的新节点。
 
-若 $o$ 的权值大于 $v$ ，在 $o$ 的左子树中插入权值为 $v$ 的节点。
-
 若 $o$ 的权值等于 $v$ ，该节点的附加域该值出现的次数自增 $1$ 。
+
+若 $o$ 的权值大于 $v$ ，在 $o$ 的左子树中插入权值为 $v$ 的节点。
 
 若 $o$ 的权值小于 $v$ ，在 $o$ 的右子树中插入权值为 $v$ 的节点。
 
@@ -73,11 +73,11 @@ void insert(int& o, int v) {
     return;
   }
   siz[o]++;
-  if (val[o] > v) insert(lc[o], v);
   if (val[o] == v) {
     cnt[o]++;
     return;
   }
+  if (val[o] > v) insert(lc[o], v);
   if (val[o] < v) insert(rc[o], v);
 }
 ```
@@ -87,6 +87,8 @@ void insert(int& o, int v) {
 定义 `del(o,v)` 为在以 $o$ 为根节点的二叉搜索树中删除一个值为 $v$ 的节点。
 
 先在二叉搜索树中找到权值为 $v$ 的节点，分类讨论如下：
+
+若该节点的附加 $cnt$ 大于 $1$，只需要减少 $cnt$。
 
 若该节点的附加 $cnt$ 为 $1$ ：
 
@@ -99,13 +101,20 @@ void insert(int& o, int v) {
 时间复杂度 $O(h)$ 。
 
 ```cpp
-int deletemin(int o) {
-  if (!lc[o])
-    return rc[o];
-  else
-    return deletemin(lc[o]);
+int deletemin(int &o) {
+  if (!lc[o]) {
+    int u = o;
+    o = rc[o];
+    return u;
+  }
+  else {
+    int u = deletemin(lc[o]);
+    siz[o] -= cnt[u];
+    return u;
+  }
 }
 void del(int& o, int v) {
+  // 注意 o 有可能会被修改
   siz[o]--;
   if (val[o] == v) {
     if (cnt[o] > 1) {
@@ -114,6 +123,7 @@ void del(int& o, int v) {
     }
     if (lc[o] && rc[o])
       o = deletemin(rc[o]);
+      // 这里以找右子树的最小值为例
     else
       o = lc[o] + rc[o];
     return;
@@ -145,7 +155,7 @@ int queryrnk(int o, int v) {
 
 若其左子树的大小大于等于 $k$ ，则该元素在左子树中；
 
-若其左子树的大小在区间 $[k-cnt,k-1]$ 中，则该元素为子树的根节点；
+若其左子树的大小在区间 $[k-cnt,k-1]$ ($cnt$ 为当前结点的值的出现次数)中，则该元素为子树的根节点；
 
 若其左子树的大小小于 $k-cnt$ ，则该元素在右子树中。
 
@@ -156,6 +166,7 @@ int querykth(int o, int k) {
   if (siz[lc[o]] >= k) return querykth(lc[o], k);
   if (siz[lc[o]] < k - cnt[o])
     return querykth(rc[o], k - siz[lc[o]] - cnt[o] + 1);
-  return o;
+  return val[o];
+  // 如要找排名为 k 的元素所对应的结点，直接 return o 即可
 }
 ```
