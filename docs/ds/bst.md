@@ -88,7 +88,7 @@ void insert(int& o, int v) {
 
 先在二叉搜索树中找到权值为 $v$ 的节点，分类讨论如下：
 
-若该节点的附加 $cnt$ 大于 $1$，只需要减少 $cnt$。
+若该节点的附加 $cnt$ 大于 $1$ ，只需要减少 $cnt$ 。
 
 若该节点的附加 $cnt$ 为 $1$ ：
 
@@ -101,13 +101,12 @@ void insert(int& o, int v) {
 时间复杂度 $O(h)$ 。
 
 ```cpp
-int deletemin(int &o) {
+int deletemin(int& o) {
   if (!lc[o]) {
     int u = o;
     o = rc[o];
     return u;
-  }
-  else {
+  } else {
     int u = deletemin(lc[o]);
     siz[o] -= cnt[u];
     return u;
@@ -121,9 +120,8 @@ void del(int& o, int v) {
       cnt[o]--;
       return;
     }
-    if (lc[o] && rc[o])
-      o = deletemin(rc[o]);
-      // 这里以找右子树的最小值为例
+    if (lc[o] && rc[o]) o = deletemin(rc[o]);
+    // 这里以找右子树的最小值为例
     else
       o = lc[o] + rc[o];
     return;
@@ -155,7 +153,7 @@ int queryrnk(int o, int v) {
 
 若其左子树的大小大于等于 $k$ ，则该元素在左子树中；
 
-若其左子树的大小在区间 $[k-cnt,k-1]$ ($cnt$ 为当前结点的值的出现次数)中，则该元素为子树的根节点；
+若其左子树的大小在区间 $[k-cnt,k-1]$ ( $cnt$ 为当前结点的值的出现次数）中，则该元素为子树的根节点；
 
 若其左子树的大小小于 $k-cnt$ ，则该元素在右子树中。
 
