@@ -44,11 +44,29 @@ $$
 H_n = \binom{2n}{n} - \binom{2n}{n-1}
 $$
 
+??? note " 例题[洛谷 P1044 栈](https://www.luogu.org/problem/P1044)"
+    题目大意：入栈顺序为 $1,2,\ldots ,n$ ，求所有可能的出栈顺序的总数。
+
+```cpp
+#include <iostream>
+using namespace std;
+int n;
+long long f[25];
+int main() {
+  f[0] = 1;
+  cin >> n;
+  for (int i = 1; i <= n; i++) f[i] = f[i - 1] * (4 * i - 2) / (i + 1);
+  //这里用的是常见公式2
+  cout << f[n] << endl;
+  return 0;
+}
+```
+
 ## 路径计数问题
 
 非降路径是指只能向上或向右走的路径。
 
-1.  从 $(0,0)$ 到 $(m,n)$ 的非降路径数等于 m 个 x 和 n 个 y 的排列数，即 ${n + m \choose m}$ 。
+1.  从 $(0,0)$ 到 $(m,n)$ 的非降路径数等于 $m$ 个 $x$ 和 $n$ 个 $y$ 的排列数，即 ${n + m \choose m}$ 。
 
 2.  从 $(0,0)$ 到 $(n,n)$ 的除端点外不接触直线 $y=x$ 的非降路径数：
 

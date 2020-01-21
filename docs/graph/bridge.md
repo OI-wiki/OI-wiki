@@ -22,9 +22,9 @@
 
 这些信息被我们保存在一个叫做 `num` 的数组中。
 
-还需要另外一个数组 `low` ，用它来存储不经过其父亲（你有多个那么就看你遍历到了哪个）能到达的时间戳。
+还需要另外一个数组 `low` ，用它来存储不经过其父亲能到达的最小的时间戳。
 
-例如 2 的话是 1，5 和 6 是 3。
+例如 `low[2]` 的话是 1， `low[5]` 和 `low[6]` 是 3。
 
 然后我们开始 DFS，我们判断某个点是否是割点的根据是：对于某个顶点 $u$ ，如果存在至少一个顶点 $v$ （ $u$ 的儿子），使得 $low_v>=num_u$ ，即不能回到祖先，那么 $u$ 点为割点。
 
@@ -45,8 +45,6 @@ low[u] = min(low[u], num[v]);
 ### 例题
 
  [洛谷 P3388【模板】割点（割顶）](https://www.luogu.org/problemnew/show/P3388) 
-
-### Code
 
 ??? "例题代码"
     ```cpp
@@ -109,7 +107,6 @@ low[u] = min(low[u], num[v]);
       cout << res << endl;
       for (int i = 1; i <= n; i++)
         if (flag[i]) cout << i << " ";  // 输出结果
-      for (int i = 1; i <= n; i++) cout << low[i] << endl;
       return 0;
     }
     ```
@@ -118,12 +115,56 @@ low[u] = min(low[u], num[v]);
 
 和割点差不多，还叫做割桥。
 
-> 对于一个无向图，如果删掉一条边后图中的连通分量数增加了，则称这条边为桥或者割边。
+> 对于一个无向图，如果删掉一条边后图中的连通分量数增加了，则称这条边为桥或者割边。严谨来说，就是：假设有连通图 $G=\{V,E\}$ ， $e$ 是其中一条边（即 $e \in E$ ），如果 $G-e$ 是不连通的，则边 $e$ 是图 $G$ 的一条割边（桥）。
+
+比如说，下图中，
+
+![割边示例图](./images/bridge4.png)
+
+红色箭头指向的就是割边。
 
 ### 实现
 
 和割点差不多，只要改一处： $low_v>num_u$ 就可以了，而且不需要考虑根节点的问题。
 
 割边是和是不是根节点没关系的，原来我们求割点的时候是指点 $v$ 是不可能不经过父节点 $u$ 为回到祖先节点（包括父节点），所以顶点 $u$ 是割点。如果 $low_v=num_u$ 表示还可以回到父节点，如果顶点 $v$ 不能回到祖先也没有另外一条回到父亲的路，那么 $u-v$ 这条边就是割边。
+
+### 代码实现
+
+下面代码实现了求割边，其中，当 `isbridge[x]` 为真时， `(father[x],x)` 为一条割边。
+
+```cpp
+int low[MAXN], dfn[MAXN], iscut[MAXN], dfs_clock;
+bool isbridge[MAXN];
+vector<int> G[MAXN];
+int cnt_bridge;
+int father[MAXN];
+
+void tarjan(int u, int fa) {
+  father[u] = fa;
+  low[u] = dfn[u] = ++dfs_clock;
+  for (int i = 0; i < G[u].size(); i++) {
+    int v = G[u][i];
+    if (!dfn[v]) {
+      tarjan(v, u);
+      low[u] = min(low[u], low[v]);
+      if (low[v] > dfn[u]) {
+        isbridge[v] = true;
+        ++cnt_bridge;
+      }
+    } else if (dfn[v] < dfn[u] && v != fa) {
+      low[u] = min(low[u], dfn[v]);
+    }
+  }
+}
+```
+
+## 练习
+
+-    [P3388【模板】割点（割顶）](https://www.luogu.org/problem/P3388) 
+-    [POJ2117 Electricity](https://vjudge.net/problem/POJ-2117) 
+-    [HDU4738 Caocao's Bridges](https://vjudge.net/problem/HDU-4738) 
+-    [HDU2460 Network](https://vjudge.net/problem/HDU-2460) 
+-    [POJ1523 SPF](https://vjudge.net/problem/POJ-1523) 
 
 Tarjan 算法还有许多用途，常用的例如求强连通分量，缩点，还有求 2-SAT 的用途等。

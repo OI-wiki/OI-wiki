@@ -377,13 +377,13 @@ inline int Find(int p) {
 ## 习题
 
 -    [「BZOJ 3282」Tree](https://lydsy.com/JudgeOnline/problem.php?id=3282) 
--    [「HNOI2010」Bounce 弹飞绵羊](https://lydsy.com/JudgeOnline/problem.php?id=2002) 
+-    [「HNOI2010」弹飞绵羊](https://www.luogu.org/problem/P3203) 
 
 ## 维护树链信息
 
 LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径提取到以 $y$ 为根的 Splay 内，树链信息的修改和统计转化为平衡树上的操作，这使得 LCT 在维护树链信息上具有优势。此外，借助 LCT 实现的在树链上二分比树链剖分少一个 $O(\log n)$ 的复杂度。
 
-???+note " 例题[luogu P1501\[国家集训队\]Tree II](https://www.luogu.org/problemnew/show/P1501)"
+???+note " 例题[「国家集训队」Tree II](https://www.luogu.org/problemnew/show/P1501)"
     给出一棵有 $n$ 个结点的树，每个点的初始权值为 $1$ 。 $q$ 次操作，每次操作均为以下四种之一：
 
     1.   `- u1 v1 u2 v2` ：将树上 $u_1,v_1$ 两点之间的边删除，连接 $u_2,v_2$ 两点，保证操作合法且连边后仍是一棵树。
@@ -550,8 +550,8 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 ### 习题
 
 -    [luogu P3690【模板】Link Cut Tree（动态树）](https://www.luogu.org/problemnew/show/P3690) 
--    [luogu P2486\[SDOI2011\]染色](https://www.luogu.org/problemnew/show/P2486) 
--    [luogu P4332\[SHOI2014\]三叉神经树](https://www.luogu.org/problemnew/show/P4332) 
+-    [「SDOI2011」染色](https://www.luogu.org/problemnew/show/P2486) 
+-    [「SHOI2014」三叉神经树](https://loj.ac/problem/2187) 
 
 ## 维护连通性质
 
@@ -559,7 +559,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 
 借助 LCT 的 `Find()` 函数，可以判断动态森林上的两点是否连通。如果有 `Find(x)==Find(y)` ，则说明 $x,y$ 两点在一棵树上，相互连通。
 
-???+note " 例题[luogu P2147\[SDOI2008\]洞穴勘测](https://www.luogu.org/problemnew/show/P2147)"
+???+note " 例题[「SDOI2008」洞穴勘测](https://www.luogu.org/problemnew/show/P2147)"
     一开始有 $n$ 个独立的点， $m$ 次操作。每次操作为以下之一：
 
     1.   `Connect u v` ：在 $u,v$ 两点之间连接一条边。
@@ -653,7 +653,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 
 如果要求将边双连通分量缩成点，每次添加一条边，所连接的树上的两点如果相互连通，那么这条路径上的所有点都会被缩成一个点。
 
-???+note " 例题[luogu P2542\[AHOI2005\]航线规划](https://www.luogu.org/problemnew/show/P2542)"
+???+note " 例题[「AHOI2005」航线规划](https://www.luogu.org/problemnew/show/P2542)"
     给出 $n$ 个点，初始时有 $m$ 条无向边， $q$ 次操作，每次操作为以下之一：
 
     1.   `0 u v` ：删除 $u,v$ 之间的连边，保证此时存在这样的一条边。
@@ -981,15 +981,15 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
 
 ### 习题
 
--    [luogu P4172\[WC2006\]水管局长](https://www.luogu.org/problem/P4172) 
--    [luogu P4180【模板】严格次小生成树\[BJWC2010\]](https://www.luogu.org/problemnew/show/P4180) 
--    [luogu P2387\[NOI2014\]魔法森林](https://www.luogu.org/problemnew/show/P2387) 
+-    [「WC2006」水管局长](https://www.luogu.org/problem/P4172) 
+-    [「BJWC2010」严格次小生成树](https://www.luogu.org/problemnew/show/P4180) 
+-    [「NOI2014」魔法森林](http://uoj.ac/problem/3) 
 
 ## 维护子树信息
 
 LCT 不擅长维护子树信息。统计一个结点所有虚子树的信息，就可以求得整棵树的信息。
 
-???+note " 例题[luogu P4219\[BJOI2014\]大融合](https://www.luogu.org/problem/P4219)"
+???+note " 例题[「BJOI2014」大融合](https://loj.ac/problem/2230)"
     给定 $n$ 个结点和 $q$ 次操作，每个操作为如下形式：
 
     1.   `A x y` 在结点 $x$ 和 $y$ 之间连接一条边。

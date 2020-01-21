@@ -22,7 +22,7 @@ if (*stk) --*stk;
 *stk = 0;
 ```
 
-同时 STL 也提供了一个方法 `std :: stack` 
+同时 STL 也提供了一个方法 `std::stack` 
 
 ```cpp
 #include <stack>
@@ -33,12 +33,12 @@ if (*stk) --*stk;
  * back()
  * push_back()
  * pop_back()
- * 标准容器 std :: vector / deque / list 满足这些要求
+ * 标准容器 std::vector / deque / list 满足这些要求
  * 如使用 1 方式构造，默认容器使用 deque
  */
 ```
 
- `std :: stack` 支持赋值运算符 `=` 
+ `std::stack` 支持赋值运算符 `=` 
 
 元素访问：
 

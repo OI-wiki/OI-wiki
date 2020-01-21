@@ -517,7 +517,7 @@ $$
 
  `simplex` 是主过程，基本思想是找到一个 $c_e>0$ 的，然后找对这个 $e$ 限制最紧的 $l$ ，转动这组 $l,e$ ，注意精度控制 $\epsilon$ ， $c_e>\epsilon$ ，还有找 $l$ 的时候 $a_{i,e}>\epsilon​$ 才行。
 
-??? note " 例题[BZOJ1061 志愿者招募](https://www.lydsy.com/JudgeOnline/problem.php?id=1061)"
+??? note " 例题[「NOI2008」志愿者招募](https://www.luogu.org/problem/P3980)"
     题目大意：长度为 $n​$ 的序列，第 $i​$ 位至少 $b_i​$ ， $m​$ 种区间使 $[l_i,r_i] + 1​$ 代价为 $a_i​$ 。
 
 原始问题 $m​$ 个变量， $n​$ 个约束，当 $l_j \leq i \leq r_j​$ ， $a_{ij} = 1​$ 。

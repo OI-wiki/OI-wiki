@@ -181,7 +181,7 @@ int main() {
 
 ## 问题二
 
-??? note "[\[LuoguP3768\]简单的数学题](https://www.luogu.org/problemnew/show/P3768)"
+??? note "[「LuoguP3768」简单的数学题](https://www.luogu.org/problemnew/show/P3768)"
     大意：求
 
     $$

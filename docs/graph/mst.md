@@ -183,8 +183,8 @@ $$
 
 ## 习题
 
--    [「HAOI2006」聪明的猴子](https://www.lydsy.com/JudgeOnline/problem.php?id=2429) 
--    [「SCOI2005」繁忙的都市](https://www.lydsy.com/JudgeOnline/problem.php?id=1083) 
+-    [「HAOI2006」聪明的猴子](https://www.luogu.org/problem/P2504) 
+-    [「SCOI2005」繁忙的都市](https://loj.ac/problem/2149) 
 
 ## 最小生成树的唯一性
 
@@ -683,7 +683,7 @@ int main() {
     }
     ```
 
-??? note "[NOI 2018 归程](https://www.luogu.org/problem/P4768)"
+??? note "[NOI 2018 归程](http://uoj.ac/problem/393)"
     首先预处理出来每一个点到根节点的最短路。
 
     我们构造出来根据海拔的最大生成树。显然每次询问可以到达的节点是在最小生成树和询问点的最小边权 $\geq p$ 的节点。

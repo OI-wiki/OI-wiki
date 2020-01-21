@@ -19,7 +19,7 @@ author: Chrogeek, HeRaNO, Dev-XYS, Dev-jqe
 
 ## 经典例题
 
- [陌上花开](https://www.lydsy.com/JudgeOnline/problem.php?id=3262) 将第一维排序处理，然后用树套树维护第二维和第三维。
+ [陌上花开](https://www.luogu.org/problem/P3810) 将第一维排序处理，然后用树套树维护第二维和第三维。
 
 ## 示例代码
 

@@ -46,7 +46,7 @@ $$
 
 ## 代码
 
-此处代码以 [「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680) （求 $n$ 个点的带权类费马点）为例。
+此处代码以 [「BZOJ 3680」吊打 XXX](https://www.luogu.org/problem/P1337) （求 $n$ 个点的带权类费马点）为例。
 
 ```cpp
 #include <cmath>
@@ -120,6 +120,6 @@ int main() {
 
 ## 习题
 
--    [「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680) 
--    [「JSOI 2016」炸弹攻击](https://www.lydsy.com/JudgeOnline/problem.php?id=4852) 
--    [「HAOI 2006」均分数据](https://www.lydsy.com/JudgeOnline/problem.php?id=2428) 
+-    [「BZOJ 3680」吊打 XXX](https://www.luogu.org/problem/P1337) 
+-    [「JSOI 2016」炸弹攻击](https://loj.ac/problem/2076) 
+-    [「HAOI 2006」均分数据](https://www.luogu.org/problem/P2503) 

@@ -85,7 +85,7 @@
 
 * * *
 
-### 例 2 [「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680) 
+### 例 2 [「BZOJ 3680」吊打 XXX](https://www.luogu.org/problem/P1337) 
 
 题意：求 $n$ 个点的带权类费马点。
 

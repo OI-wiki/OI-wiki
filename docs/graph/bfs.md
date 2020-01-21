@@ -88,7 +88,19 @@ void restore(int x) {
 
 在实现 BFS 的时候，我们把未被访问过的节点放在一个称为 open 的容器中，而把已经访问过了的节点放在 closed 容器中。
 
-##  [在树/图上 BFS](/graph/traverse) 
+## 在树/图上 BFS
+
+### BFS 序列
+
+类似 BFS 序列，BFS 序列是指在 BFS 过程中访问的节点编号的序列。
+
+### 一般图上 BFS
+
+如果原图不连通，只能访问到从起点出发能够到达的点。
+
+BFS 序列通常也不唯一。
+
+类似的我们也可以定义 BFS 树：在 BFS 过程中，通过记录每个节点从哪个点访问而来，可以建立一个树结构，即为 BFS 树。
 
 ## 应用
 
@@ -103,23 +115,11 @@ void restore(int x) {
 
 ## 例题
 
--    [LOJ#2317.「NOIP2017」奶酪](https://loj.ac/problem/2317) 
+-    [「NOIP2017」奶酪](http://uoj.ac/problem/332) 
 
 ## 参考
 
  <https://cp-algorithms.com/graph/breadth-first-search.html> 
-
-### BFS 序列
-
-类似 BFS 序列，BFS 序列是指在 BFS 过程中访问的节点编号的序列。
-
-### 一般图上 BFS
-
-同样，如果原图不连通，只能访问到起点所在的连通分量。
-
-BFS 序列通常也不唯一。
-
-类似的我们也可以定义 BFS 树：在 BFS 过程中，通过记录每个节点从哪个点访问而来，可以建立一个树结构，即为 BFS 树。
 
 ## 双端队列 BFS
 
@@ -234,4 +234,4 @@ int main() {
 
 相对于普通队列的 BFS，时间复杂度多了一个 $\log$ ，毕竟要维护这个优先队列嘛。不过普通 BFS 有可能每个结点入队、出队多次，时间复杂度会达到 $O(n^2)$ ，不是 $O(n)$ 。所以优先队列 BFS 通常还是快的。
 
-诶？这怎么听起来这么像堆优化的 [Dijkstra](/graph/shortest-path/#dijkstra) 算法呢？事实上，堆优化 Dijkstra 就是优先队列 BFS。
+诶？这怎么听起来这么像堆优化的 [Dijkstra](./shortest-path.md#dijkstra) 算法呢？事实上，堆优化 Dijkstra 就是优先队列 BFS。

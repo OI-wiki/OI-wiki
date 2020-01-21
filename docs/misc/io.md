@@ -237,7 +237,7 @@ struct IO {
     return getchar();
 #endif
     if (p1 == p2) p2 = (p1 = buf) + fread(buf, 1, MAXSIZE, stdin);
-    return p1 == p2 ? -1 : *p1++;
+    return p1 == p2 ? ' ' : *p1++;
   }
   inline bool blank(char ch) {
     return ch == ' ' || ch == '\n' || ch == '\r' || ch == '\t';
