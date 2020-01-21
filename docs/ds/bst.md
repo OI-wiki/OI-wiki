@@ -14,6 +14,8 @@
 
 ## 基本操作
 
+在接下来的代码块中，我们约定 $n$ 为结点个数， $h$ 为高度， `val[x]` 为结点 $x$ 处存的数值，`cnt[x]` 为结点 $x$ 存的值所出现的次数，`lc[x]` 和 `rc[x]` 分别为结点 $x$ 的左子结点和右子结点。
+
 ### 遍历二叉搜索树
 
 由二叉搜索树的递归定义可得，二叉搜索树的中序遍历权值的序列为非降的序列。时间复杂度为 $O(n)$ 。
@@ -21,8 +23,8 @@
 遍历一棵二叉搜索树的代码如下：
 
 ```cpp
-void print(int o)  //遍历以 o 为根节点的二叉搜索树
-{
+void print(int o) {
+//遍历以 o 为根节点的二叉搜索树
   if (!o) return;  //遇到空树，返回
   print(lc[o]);    //递归遍历左子树
   for (int i = 1; i <= cnt[o]; i++) printf("%d\n", val[o]);  //输出根节点信息
@@ -34,13 +36,15 @@ void print(int o)  //遍历以 o 为根节点的二叉搜索树
 
 由二叉搜索树的性质可得，二叉搜索树上的最小值为二叉搜索树左链的顶点，最大值为二叉搜索树右链的顶点。时间复杂度为 $O(h)$ 。
 
+findmin 和 findmax 函数分别返回最小值和最大值所对应的结点编号 $o$，用 `val[o]` 可以获得相应的最小/最大值。
+
 ```cpp
 int findmin(int o) {
-  if (!lc[o]) return val[o];
+  if (!lc[o]) return o;
   return findmin(lc[o]);  //一直向左儿子跳
 }
 int findmax(int o) {
-  if (!rc[o]) return val[o];
+  if (!rc[o]) return o;
   return findmax(rc[o]);  //一直向右儿子跳
 }
 ```
