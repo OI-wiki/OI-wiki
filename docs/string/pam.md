@@ -90,8 +90,6 @@
     using namespace std;
     typedef long long ll;
     const int maxn = 300000 + 5;
-    ```
-
     namespace pam {
     int sz, tot, last;
     int cnt[maxn], ch[maxn][26], len[maxn], fail[maxn];
@@ -137,9 +135,7 @@
       return ans;
     }
     }  // namespace pam
-
     char s[maxn];
-
     int main() {
       pam::clear();
       scanf("%s", s + 1);
