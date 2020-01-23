@@ -152,12 +152,12 @@ $$
 
 详细解释一下：
 
-令 $n=\prod_{i=1}^kp_i^{c_i}$，其中 $p_i$ 为质因子，$c_i\ge 1$ 。上述定义表示：
+令 $n=\prod_{i=1}^kp_i^{c_i}$ ，其中 $p_i$ 为质因子， $c_i\ge 1$ 。上述定义表示：
 
-1. $n=1​$ 时，$\mu(n)=1​$ ；
-2. 对于 $n\not= 1$ 时：
-   1. 当存在 $i\in [1,k]​$ ，使得 $c_i > 1​$ 时，$\mu(n)=0​$，也就是说只要某个质因子出现的次数超过一次，$\mu(n)​$ 就等于 $0​$；
-   2. 当任意 $i\in[1,k]​$，都有 $c_i=1​$ 时，$\mu(n)=(-1)^k​$ ，也就是说每个质因子都仅仅只出现过一次时，即 $n=\prod_{i=1}^kp_i​$ ，$\{p_i\}_{i=1}^k​$ 中个元素唯一时，$\mu(n)​$ 等于 $-1​$ 的 $k​$ 次幂，此处 $k​$ 指的便是仅仅只出现过一次的质因子的总个数。
+1.   $n=1​$ 时， $\mu(n)=1​$ ；
+2.  对于 $n\not= 1$ 时：
+    1.  当存在 $i\in [1,k]​$ ，使得 $c_i > 1​$ 时， $\mu(n)=0​$ ，也就是说只要某个质因子出现的次数超过一次， $\mu(n)​$ 就等于 $0​$ ；
+    2.  当任意 $i\in[1,k]​$ ，都有 $c_i=1​$ 时， $\mu(n)=(-1)^k​$ ，也就是说每个质因子都仅仅只出现过一次时，即 $n=\prod_{i=1}^kp_i​$ ， $\{p_i\}_{i=1}^k​$ 中个元素唯一时， $\mu(n)​$ 等于 $-1​$ 的 $k​$ 次幂，此处 $k​$ 指的便是仅仅只出现过一次的质因子的总个数。
 
 ### 性质
 
@@ -171,15 +171,15 @@ $$
 \end{cases}
 $$
 
-即 $\sum_{d\mid n}\mu(d)=\varepsilon(n)$ ，即 $\mu * 1 =\varepsilon$
+即 $\sum_{d\mid n}\mu(d)=\varepsilon(n)$ ，即 $\mu * 1 =\varepsilon$ 
 
 ### 证明
 
 设 $\displaystyle n=\prod_{i=1}^k{p_i}^{c_i},n'=\prod_{i=1}^k p_i​$ 
 
-那么 $\displaystyle\sum_{d\mid n}\mu(d)=\sum_{d\mid n'}\mu(d)=\sum_{i=0}^k C_k^i\cdot(-1)^i=(1+(-1))^k$  
+那么 $\displaystyle\sum_{d\mid n}\mu(d)=\sum_{d\mid n'}\mu(d)=\sum_{i=0}^k C_k^i\cdot(-1)^i=(1+(-1))^k$ 
 
-根据二项式定理，易知该式子的值在 $k=0​$ 即 $n=1​$ 时值为 $1​$ 否则为 $0​$ ，这也同时证明了 $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]=\varepsilon(n)​$ 以及 $\mu*1=\varepsilon​$  
+根据二项式定理，易知该式子的值在 $k=0​$ 即 $n=1​$ 时值为 $1​$ 否则为 $0​$ ，这也同时证明了 $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]=\varepsilon(n)​$ 以及 $\mu*1=\varepsilon​$ 
 
 ### 补充结论
 
