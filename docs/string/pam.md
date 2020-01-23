@@ -90,8 +90,6 @@
     using namespace std;
     typedef long long ll;
     const int maxn = 300000 + 5;
-    ```
-
     namespace pam {
     int sz, tot, last;
     int cnt[maxn], ch[maxn][26], len[maxn], fail[maxn];
@@ -137,9 +135,7 @@
       return ans;
     }
     }  // namespace pam
-
     char s[maxn];
-
     int main() {
       pam::clear();
       scanf("%s", s + 1);
@@ -261,13 +257,10 @@ border：若 $0 \le r < |s|$ ， $pre(s,r)=suf(s,r)$ ，就称 $pre(s,r)$ 是 $s
     typedef long long ll;
     const int mod = 1e9 + 7;
     const int maxn = 1000000 + 5;
-    ```
-
     inline int add(int x, int y) {
       x += y;
       return x >= mod ? x -= mod : x;
     }
-
     namespace pam {
     int sz, tot, last;
     int ch[maxn][26], len[maxn], fail[maxn];
@@ -302,7 +295,6 @@ border：若 $0 \le r < |s|$ ， $pre(s,r)=suf(s,r)$ ，就称 $pre(s,r)$ 是 $s
         fail[x] = ch[getfail(fail[now])][c - 'a'];
         dep[x] = dep[fail[x]] + 1;
         ch[now][c - 'a'] = x;
-
         dif[x] = len[x] - len[fail[x]];
         if (dif[x] == dif[fail[x]])
           slink[x] = slink[fail[x]];
@@ -317,10 +309,8 @@ border：若 $0 \le r < |s|$ ， $pre(s,r)=suf(s,r)$ ，就称 $pre(s,r)$ 是 $s
     using pam::fail;
     using pam::len;
     using pam::slink;
-
     int n, dp[maxn], g[maxn];
     char s[maxn], t[maxn];
-
     int main() {
       pam::clear();
       scanf("%s", s + 1);
