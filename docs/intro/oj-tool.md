@@ -105,3 +105,23 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 -   计算一场比赛的 Rating 预测。
 
 大家可以自行尝试一下。
+
+## Competitive companion
+
+网站： <https://github.com/jmerle/competitive-companion> 
+
+功能介绍：
+
+-   这个工具是一个浏览器插件 用来解析网页里面的测例数据
+-   支持解析几乎所有的主流 oj 平台（比如 codeforces atcoder）
+
+推荐理由：使用这个插件后 再也不用手动复制任何的测例数据
+
+使用方法：
+
+1.  在谷歌或者火狐浏览器上安装插件 该工具会将解析到的测例数据以 JSON 格式的形式发到指定的端口
+2.  在本地安装任何可以从端口监听读取数据的工具即可 可参考 <https://github.com/jmerle/competitive-companion-example> 
+
+图片演示：
+
+![演示](images/cf-tool3.gif)

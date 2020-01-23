@@ -47,10 +47,6 @@ $$
 
 ??? 参考代码
     ```cpp
-    // ===================================
-    //   author: M_sea
-    //   website: http://m-sea-blog.com/
-    // ===================================
     #include <algorithm>
     #include <cmath>
     #include <cstdio>
@@ -177,18 +173,18 @@ inline bool check(double mid) {
 另外本题存在一种复杂度 $O(nm)$ 的算法，如果有兴趣可以阅读 [这篇文章](https://www.cnblogs.com/y-clever/p/7043553.html) 。
 
 ```cpp
-inline int SPFA(int u, double mid)  //判负环 {
-    vis[u] = 1;
-for (int i = head[u]; i; i = e[i].nxt) {
-  int v = e[i].v;
-  double w = e[i].w - mid;
-  if (dis[u] + w < dis[v]) {
-    dis[v] = dis[u] + w;
-    if (vis[v] || SPFA(v, mid)) return 1;
+inline int SPFA(int u, double mid) {  //判负环
+  vis[u] = 1;
+  for (int i = head[u]; i; i = e[i].nxt) {
+    int v = e[i].v;
+    double w = e[i].w - mid;
+    if (dis[u] + w < dis[v]) {
+      dis[v] = dis[u] + w;
+      if (vis[v] || SPFA(v, mid)) return 1;
+    }
   }
-}
-vis[u] = 0;
-return 0;
+  vis[u] = 0;
+  return 0;
 }
 
 inline bool check(double mid) {  //如果有负环返回 true
