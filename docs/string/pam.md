@@ -295,8 +295,6 @@ border：若 $0 \le r < |s|$ ， $pre(s,r)=suf(s,r)$ ，就称 $pre(s,r)$ 是 $s
         fail[x] = ch[getfail(fail[now])][c - 'a'];
         dep[x] = dep[fail[x]] + 1;
         ch[now][c - 'a'] = x;
-    ```
-
         dif[x] = len[x] - len[fail[x]];
         if (dif[x] == dif[fail[x]])
           slink[x] = slink[fail[x]];
