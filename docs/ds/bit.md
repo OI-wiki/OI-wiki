@@ -207,8 +207,6 @@ int getsum(int k) {
 }
 ```
 
-
-
 ## 例题
 
 -    [树状数组 1：单点修改，区间查询](https://loj.ac/problem/130) 
