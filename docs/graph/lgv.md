@@ -2,7 +2,7 @@
 
 Lindström–Gessel–Viennot lemma，即 LGV 引理，可以用来处理有向无环图上不相交路径计数等问题。
 
-前置知识： [图论简介](./index.md) 、 [图论基础](./basic.md) 、 [矩阵](../math/matrix.md) 、 [高斯消元求行列式](../math/gauss.md) 。
+前置知识： [图论相关概念](./concept.md) 中的基础部分、 [矩阵](../math/matrix.md) 、 [高斯消元求行列式](../math/gauss.md) 。
 
 LGV 引理仅适用于 **有向无环图** 。
 

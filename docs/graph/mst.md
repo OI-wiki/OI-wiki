@@ -1,6 +1,6 @@
 ## 定义
 
-在阅读下列内容之前，请务必阅读 [图论基础](/graph/basic) 与 [树基础](/graph/tree-basic) 部分，并了解以下定义：
+在阅读下列内容之前，请务必阅读 [图论相关概念](./concept.md) 与 [树基础](./tree-basic.md) 部分，并了解以下定义：
 
 1.  生成子图
 2.  生成树
@@ -15,7 +15,7 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 
 ### 前置知识
 
- [并查集](../ds/dsu.md) 、 [贪心](../basic/greedy.md) 、 [图的存储](./basic.md) 。
+ [并查集](../ds/dsu.md) 、 [贪心](../basic/greedy.md) 、 [图的存储](./save.md) 。
 
 ### 证明
 

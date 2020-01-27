@@ -53,9 +53,9 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [TopCoder](https://www.topcoder.com/) 始于 2001 年，其 [竞技编程社区](https://www.topcoder.com/community/competitive-programming/) 有很多比赛；目前主营业务是技术众包。
 -    [TimusOJ](http://acm.timus.ru/) 始于 2000 年，由 Ural Federal University 开发，拥有俄罗斯最大的在线评测题库，题目主要来自乌拉尔联邦大学校赛、乌拉尔锦标赛、ICPC 乌拉尔区域赛、以及 Petrozavodsk 训练营。
 -   Online Judge（前 [UVaOJ](https://uva.onlinejudge.org/) ）始于 1995 年，国际成名最早的 OJ，创始人是西班牙 University of Valladolid (UVa) 的 Miguel Ángel Revilla 教授；由于 [Revilla 教授于 2018 年不幸离世](https://www.elnortedecastilla.es/valladolid/muere-profesor-miguel-20180402225739-nt.html) ，且 Valladolid 大学终止维护，UVaOJ 自 2019 年 7 月起更名为 Online Judge； [刘汝佳强烈安利](http://product.dangdang.com/20637355.html) 。
--    [Yandex](https://contest.yandex.ru/) 存档了近几年的全俄罗斯信息学奥赛
+-    [Yandex](https://contest.yandex.ru/) 存档了近几年的全俄罗斯信息学奥赛。
 
-## 教程
+## 教程资料
 
 -    [OI Wiki](https://oi-wiki.org) 
 -    [Codeforces 上网友整理的一份教程合集](http://codeforces.com/blog/entry/57282) 
@@ -66,6 +66,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [如何为 ACM-ICPC 做准备？- geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/) 
 -    [Topcoder 整理的教程](https://www.topcoder.com/community/competitive-programming/tutorials/) 
 -    [校招面试指南](https://github.com/jwasham/coding-interview-university) 
+-    [由 hzwer 收集整理自互联网的课件](https://github.com/hzwer/sharePPT) 
 
 ## 书籍
 

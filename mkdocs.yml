@@ -144,7 +144,6 @@ nav:
     - 计数 DP: dp/count.md
     - 动态 DP: dp/dynamic.md
     - DP 优化:
-      - 二进制分组解多重背包: dp/opt/binary-knapsack.md
       - 单调队列/单调栈优化: dp/opt/monotonous-queue-stack.md
       - 斜率优化: dp/opt/slope.md
       - 四边形不等式优化: dp/opt/quadrangle.md
@@ -166,7 +165,7 @@ nav:
     - 广义后缀自动机: string/general-sam.md
     - 后缀树: string/suffix-tree.md
     - Manacher: string/manacher.md
-    - 回文自动机: string/pam.md
+    - 回文树: string/pam.md
     - 序列自动机: string/seq-automaton.md
     - 最小表示法: string/minimal-string.md
     - Lyndon 分解: string/lyndon.md
@@ -288,7 +287,8 @@ nav:
     - 析合树: ds/divide-combine.md
   - 图论:
     - 图论部分简介: graph/index.md
-    - 图论基础: graph/basic.md
+    - 图论相关概念: graph/concept.md
+    - 图的存储: graph/save.md
     - DFS（图论）: graph/dfs.md
     - BFS（图论）: graph/bfs.md
     - 树上问题:
@@ -313,8 +313,8 @@ nav:
     - 连通性相关:
       - 强连通分量: graph/scc.md
       - 双连通分量: graph/bcc.md
-      - 割点和桥: graph/bridge.md
-      - 2-SAT: graph/2-sat.md
+      - 割点和桥: graph/cut.md
+    - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
     - 二分图: graph/bi-graph.md
@@ -330,7 +330,6 @@ nav:
     - Prufer 序列: graph/prufer.md
     - LGV 引理: graph/lgv.md
     - 弦图: graph/chord.md
-    - 图论杂项: graph/misc.md
   - 计算几何:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
