@@ -55,7 +55,7 @@ int main() {
     }
     if (sum < 0) sum = -sum;
     printf("Scenario #%d:\n", ncase++);
-    printf("%d %d %.1f\n\n", (sum - num + 2) >> 1, num, sum \* 0.5);
+    printf("%d %d %.1f\n\n", (sum - num + 2) >> 1, num, sum * 0.5);
   }
   return 0;
 }
