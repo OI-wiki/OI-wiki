@@ -14,7 +14,7 @@ author: morris821028
 
 所有版本都既可以访问又可以修改。
 
-若支持將兩個歷史版本合併，則又稱為 Confluently Persistent 
+若支持將兩個歷史版本合併，則又稱為 Confluently Persistent
 
 ## 實際應用
 
@@ -28,7 +28,7 @@ author: morris821028
 
 ### 版本回溯
 
-實際上就是對應大部分的應用軟體中的 redo/undo。如果資料庫/操作變動為了高效率操作而會配上複雜的結構 (並不像 hash, set 反轉操作只需要常數或對數時間)，那麼為了快速回推變動結果，持久化結構就是要減少 redo/undo 的花費。
+實際上就是對應大部分的應用軟體中的 redo/undo。如果資料庫/操作變動為了高效率操作而會配上複雜的結構（並不像 hash, set 反轉操作只需要常數或對數時間），那麼為了快速回推變動結果，持久化結構就是要減少 redo/undo 的花費。
 
 資料庫本身可以常數回推，紀錄變動的部分情況即可。而應用層的計算，大部分實作都是砍掉快取，並且重新計算出一份新的結構，有時候回推的變動大小為 m，為了重新計算結構而消耗了 n+m，如果 n 和 m 的差距非常大，那連續回推的體感就很糟糕。
 
@@ -38,5 +38,5 @@ author: morris821028
 
 ## 参考
 
-* <https://en.wikipedia.org/wiki/Persistent_data_structure> 
-* MIT 課程 https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-854j-advanced-algorithms-fall-2005/lecture-notes/persistent.pdf
+-    <https://en.wikipedia.org/wiki/Persistent_data_structure> 
+-   MIT 課程 <https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-854j-advanced-algorithms-fall-2005/lecture-notes/persistent.pdf> 
