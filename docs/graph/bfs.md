@@ -43,7 +43,7 @@ void bfs(int u) {
   d[u] = 0;
   p[u] = -1;
   while (!Q.empty()) {
-    u = Q.pop() {
+    u = Q.front();
       for (int i = head[u]; i; i = e[i].x) {
         if (!vis[e[i].t]) {
           Q.push(e[i].t);
@@ -51,9 +51,8 @@ void bfs(int u) {
           d[e[i].t] = d[u] + 1;
           p[e[i].t] = u;
         }
-      }
-    }
-  }
+     }
+   }
 }
 void restore(int x) {
   vector<int> res;
