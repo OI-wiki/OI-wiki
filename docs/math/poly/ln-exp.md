@@ -71,6 +71,7 @@ $$
     ```cpp
     constexpr int maxn = 262144;
     constexpr int mod = 998244353;
+    ```
 
     using i64 = long long;
     using poly_t = int[maxn];
@@ -130,7 +131,7 @@ $$
 
 ## Examples
 
-1.  计算 $f^{k}(x)$
+1.  计算 $f^{k}(x)$ 
 
 普通做法为多项式快速幂，时间复杂度 $O(n\log{n}\log{k})$ 。
 
