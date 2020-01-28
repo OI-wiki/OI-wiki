@@ -71,7 +71,7 @@ $$
     ```cpp
     constexpr int maxn = 262144;
     constexpr int mod = 998244353;
-     
+    
     using i64 = long long;
     using poly_t = int[maxn];
     using poly = int *const;
