@@ -92,7 +92,7 @@ void unionSet(int x, int y) {
 此处给出一种 C++ 的参考实现，其选择点数作为估价函数：
 
 ```cpp
-int size[N];  //记录子树的大小
+std::vector<int> size(N, 1);  //记录并初始化子树的大小为 1
 void unionSet(int x, int y) {
   int xx = find(x), yy = find(y);
   if (xx == yy) return;
