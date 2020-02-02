@@ -430,7 +430,7 @@ $$
 
 这个函数筛的时候比较特殊，当 $p_j\mid i$ 的时候，需要根据 $p_j\mid (i/p_j)$ 进行分类讨论。具体可以见代码。
 
-**时间复杂度** ： $\Theta(n+T)$ 
+ **时间复杂度** ： $\Theta(n+T)$ 
 
 ??? note "代码实现"
     ```cpp
@@ -441,21 +441,24 @@ $$
     bool flg[N + 5];
     
     void solve() {
-      g[1] = 1; phi[1] = 1;
-      for (int i = 2; i <= N; ++i) {;
-        if (!flg[i]) p[++tot] = i, g[i] = i * (i - 1) + 1
-        for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
-          flg[i * p[j]] = 1;
-          if (i % p[j] == 0) {
-            if((i / p[j]) % p[j] == 0) {
+      g[1] = 1;
+      phi[1] = 1;
+      for (int i = 2; i <= N; ++i) {
+        ;
+        if (!flg[i])
+          p[++tot] = i,
+          g[i] = i * (i - 1) + 1 for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
+            flg[i * p[j]] = 1;
+            if (i % p[j] == 0) {
+              if ((i / p[j]) % p[j] == 0) {
                 g[i * p[j]] = g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];
-            } else {
+              } else {
                 g[i * p[j]] = g[i] + g[i / p[j]] * p[j] * p[j] * p[j] * p[j];
+              }
+              break;
             }
-            break;
+            g[i * p[j]] = g[i] * g[p[j]];
           }
-          g[i * p[j]] = g[i] * g[p[j]];
-        }
       }
     }
     int main() {
