@@ -22,9 +22,6 @@ $$
 \because n=\Pi_{i=1}^{n} p_i^{k_i} \\ 	\begin{align}\therefore \varphi(x) &= \prod_{i=1}^{n} \varphi(p_i^{k_i}) \\&= \prod_{i=1}^{n} (p_i-1)\times {p_i}^{k_i-1}\\&=\prod_{i=1}^{n} {p_i}^{k_i} \times(1 - \frac{1}{p_i})\\&=x~ \prod_{i=1}^{n} (1- \frac{1}{p_i})\end{align}
 $$
 
-$$
-
-$$
 
 ## 欧拉函数的一些性质
 
