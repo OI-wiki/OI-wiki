@@ -10,13 +10,14 @@
 
 #### 证明：
 
-引理(1) : 设$x=p^k$,那么$\varphi(x)=p^{k-1}\times(p-1)$
+引理（1) : 设 $x=p^k$ , 那么 $\varphi(x)=p^{k-1}\times(p-1)$ 
 
 证明：
 
-容易发现$x\perp y (y\mod p \ne 0)$。我们试着将$x$划分为长度为$p$的$\dfrac{p^k}{p}=p^{k-1}$段，每一段都有$p-1$个数与$x$互质。所以与$x$互质的数个数即为：$p^{k-1}\times(p-1)$
+容易发现 $x\perp y (y\mod p \ne 0)$ 。我们试着将 $x$ 划分为长度为 $p$ 的 $\dfrac{p^k}{p}=p^{k-1}$ 段，每一段都有 $p-1$ 个数与 $x$ 互质。所以与 $x$ 互质的数个数即为： $p^{k-1}\times(p-1)$ 
 
-接下来我们证明$\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$
+接下来我们证明 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$ 
+
 $$
 \because n=\Pi_{i=1}^{n} p_i^{k_i} \\ 	\begin{align}\therefore \varphi(x) &= \prod_{i=1}^{n} \varphi(p_i^{k_i}) \\&= \prod_{i=1}^{n} (p_i-1)\times {p_i}^{k_i-1}\\&=\prod_{i=1}^{n} {p_i}^{k_i} \times(1 - \frac{1}{p_i})\\&=x~ \prod_{i=1}^{n} (1- \frac{1}{p_i})\end{align}
 $$
@@ -25,31 +26,30 @@ $$
 
 $$
 
-
 ## 欧拉函数的一些性质
 
-- 欧拉函数是积性函数。
+-   欧拉函数是积性函数。
 
-  积性是什么意思呢？如果有 $\gcd(a, b) = 1$ ，那么 $\varphi(a \times b) = \varphi(a) \times \varphi(b)$ 。
+    积性是什么意思呢？如果有 $\gcd(a, b) = 1$ ，那么 $\varphi(a \times b) = \varphi(a) \times \varphi(b)$ 。
 
-  特别地，当 $n$ 是奇数时 $\varphi(2n) = \varphi(n)$ 。
+    特别地，当 $n$ 是奇数时 $\varphi(2n) = \varphi(n)$ 。
 
-- $n = \sum_{d | n}{\varphi(d)}$ 
+-    $n = \sum_{d | n}{\varphi(d)}$ 
 
-  利用 [莫比乌斯反演](./mobius.md) 相关知识可以得出。
+    利用 [莫比乌斯反演](./mobius.md) 相关知识可以得出。
 
-  也可以这样考虑：如果 $\gcd(k, n) = d$ ，那么 $\gcd(\frac{k}{d},\frac{n}{d}) = 1$ 。（ $k < n$ ）
+    也可以这样考虑：如果 $\gcd(k, n) = d$ ，那么 $\gcd(\frac{k}{d},\frac{n}{d}) = 1$ 。（ $k < n$ ）
 
-  如果我们设 $f(x)$ 表示 $\gcd(k, n) = x$ 的数的个数，那么 $n = \sum_{i = 1}^n{f(i)}$ 。
+    如果我们设 $f(x)$ 表示 $\gcd(k, n) = x$ 的数的个数，那么 $n = \sum_{i = 1}^n{f(i)}$ 。
 
-  根据上面的证明，我们发现， $f(x) = \varphi(\frac{n}{x})$ ，从而 $n = \sum_{d | n}\varphi(\frac{n}{d})$ 。注意到约数 $d$ 和 $\frac{n}{d}$ 具有对称性，所以上式化为 $n = \sum_{d | n}\varphi(d)$ 。
+    根据上面的证明，我们发现， $f(x) = \varphi(\frac{n}{x})$ ，从而 $n = \sum_{d | n}\varphi(\frac{n}{d})$ 。注意到约数 $d$ 和 $\frac{n}{d}$ 具有对称性，所以上式化为 $n = \sum_{d | n}\varphi(d)$ 。
 
-- 若 $n = p^k$ ，其中 $p$ 是质数，那么 $\varphi(n) = p^k - p^{k - 1}$ 。
-  （根据定义可知）
+-   若 $n = p^k$ ，其中 $p$ 是质数，那么 $\varphi(n) = p^k - p^{k - 1}$ 。
+    （根据定义可知）
 
 ## 如何求欧拉函数值
 
-如果只要求一个数的欧拉函数值，那么直接根据定义质因数分解的同时求就好了。这个过程可以用*Pollard Rho*算法优化。
+如果只要求一个数的欧拉函数值，那么直接根据定义质因数分解的同时求就好了。这个过程可以用_Pollard Rho_算法优化。
 
 ```cpp
 int euler_phi(int n) {
