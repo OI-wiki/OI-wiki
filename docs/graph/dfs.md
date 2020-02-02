@@ -14,7 +14,7 @@ DFS 最显著的特征在于其 **递归调用自身** 。同时与 BFS 类似�
       在 v 上打访问标记
       for u in v 的相邻节点
         if u 没有打过访问标记 then
-          DFS(i)
+          DFS(u)
         end
       end
     end
