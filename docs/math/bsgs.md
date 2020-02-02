@@ -1,6 +1,6 @@
 ## 基础篇
 
-BSGS（baby-step gaint-step），即大步小步算法。常用于求解离散对数问题。形式化地说，该算法可以在 $O(\sqrt{p})$ 用于求解。
+BSGS（baby-step gaint-step），即大步小步算法。常用于求解离散对数问题。形式化地说，该算法可以在 $O(\sqrt{p})$ 的时间内求解
 
 $$
 a^x \equiv b \pmod p
