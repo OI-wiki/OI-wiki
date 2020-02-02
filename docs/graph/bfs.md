@@ -44,6 +44,7 @@ void bfs(int u) {
   p[u] = -1;
   while (!Q.empty()) {
     u = Q.front();
+    Q.pop();
     for (int i = head[u]; i; i = e[i].x) {
       if (!vis[e[i].t]) {
         Q.push(e[i].t);
