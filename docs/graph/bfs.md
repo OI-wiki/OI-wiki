@@ -43,14 +43,14 @@ void bfs(int u) {
   d[u] = 0;
   p[u] = -1;
   while (!Q.empty()) {
-    u = Q.pop() {
-      for (int i = head[u]; i; i = e[i].x) {
-        if (!vis[e[i].t]) {
-          Q.push(e[i].t);
-          vis[e[i].t] = 1;
-          d[e[i].t] = d[u] + 1;
-          p[e[i].t] = u;
-        }
+    u = Q.front();
+    Q.pop();
+    for (int i = head[u]; i; i = e[i].x) {
+      if (!vis[e[i].t]) {
+        Q.push(e[i].t);
+        vis[e[i].t] = 1;
+        d[e[i].t] = d[u] + 1;
+        p[e[i].t] = u;
       }
     }
   }
