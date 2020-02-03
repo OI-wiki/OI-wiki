@@ -28,7 +28,7 @@ $$
 \because (A_i,p)=1,(A_i\times a,p)=1\\
 $$
 
-又 $\because$ 每一个 $A_i\times a \pmod p$ 都是独一无二的，且 $A_i\times a \pmod p < p$ 
+又因为每一个 $A_i\times a \pmod p$ 都是独一无二的，且 $A_i\times a \pmod p < p$ 
 
 得证（每一个 $A_i\times a$ 都对应了一个 $A_i$ )
 
