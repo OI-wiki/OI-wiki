@@ -25,8 +25,12 @@ $$
 证明：
 
 $$
-\because (A_i,p)=1,(A_i\times a,p)=1\\	又 \because 每一个A_i\times a \pmod p 都是独一无二的,且A_i\times a \pmod p < p \\ 	得证（每一个A_i\times a都对应了一个A_i)
+\because (A_i,p)=1,(A_i\times a,p)=1\\
 $$
+又 $\because$ 每一个$A_i\times a \pmod p$ 都是独一无二的,且$A_i\times a \pmod p < p$
+
+得证（每一个$A_i\times a$都对应了一个$A_i$)
+
 
 设 $f=(p-1)!$ ,
 
