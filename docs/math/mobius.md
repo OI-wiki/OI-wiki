@@ -323,7 +323,7 @@ $$
 \displaystyle\sum_{d=1}\mu(d)\lfloor\frac{n}{kd}\rfloor\lfloor\frac{m}{kd}\rfloor
 $$
 
-很显然，式子可以数论分块求解（注意：过程中默认 $n\leqslant m$ ）。
+很显然，式子可以数论分块求解。
 
  **时间复杂度 $\Theta(N+T\sqrt{n})$ ** 
 
