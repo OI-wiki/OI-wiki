@@ -6,7 +6,7 @@
 
 利用唯一分解定理，我们可以把一个整数唯一地分解为质数幂次的乘积，
 
-设 $n = \Pi_{i=1}^{n}p_i^{k_i}$ ，其中 $p_i$ 是质数，那么 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$ 
+设 $n = \prod_{i=1}^{n}p_i^{k_i}$ ，其中 $p_i$ 是质数，那么 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$ 
 
 #### 证明：
 
