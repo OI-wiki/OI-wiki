@@ -329,46 +329,38 @@ $$
 
 ??? note "代码实现"
     ```cpp
-    #include <algorithm>
     #include <cstdio>
-    const int N = 50000;
-    int mu[N + 5], p[N + 5];
+    const int N = 1000000;
+    int tot, p[N + 5];
+    long long g[N + 5];
     bool flg[N + 5];
-    void init() {
-      int tot = 0;
-      mu[1] = 1;
+
+    void solve() {
+      g[1] = 1;
       for (int i = 2; i <= N; ++i) {
-        if (!flg[i]) {
-          p[++tot] = i;
-          mu[i] = -1;
-        }
+        if (!flg[i])
+          p[++tot] = i,
+          g[i] = i * (i - 1) + 1;
         for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
           flg[i * p[j]] = 1;
           if (i % p[j] == 0) {
-            mu[i * p[j]] = 0;
+            if ((i / p[j]) % p[j] == 0) {
+              g[i * p[j]] = g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];
+            } else {
+              g[i * p[j]] = g[i] + g[i / p[j]] * (p[j] - 1) * p[j] * p[j] * p[j];
+            }
             break;
           }
-          mu[i * p[j]] = -mu[i];
+          g[i * p[j]] = g[i] * g[p[j]];
         }
       }
-      for (int i = 1; i <= N; ++i) mu[i] += mu[i - 1];
-    }
-    int solve(int n, int m) {
-      int res = 0;
-      for (int i = 1, j; i <= std::min(n, m); i = j + 1) {
-        j = std::min(n / (n / i), m / (m / i));
-        res += (mu[j] - mu[i - 1]) * (n / i) * (m / i);
-      }
-      return res;
     }
     int main() {
-      int T, a, b, c, d, k;
-      init();
+      int T, n;
+      solve();
       for (scanf("%d", &T); T; --T) {
-        scanf("%d%d%d%d%d", &a, &b, &c, &d, &k);
-        printf("%d\n", solve(b / k, d / k) - solve(b / k, (c - 1) / k) -
-                           solve((a - 1) / k, d / k) +
-                           solve((a - 1) / k, (c - 1) / k));
+        scanf("%d", &n);
+        printf("%lld\n", (g[n] + 1) * n / 2);
       }
       return 0;
     }
