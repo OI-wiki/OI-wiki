@@ -14,7 +14,7 @@
 
 证明：
 
-容易发现 $x\perp y (y\mod p \ne 0)$ 。我们试着将 $x$ 划分为长度为 $p$ 的 $\dfrac{p^k}{p}=p^{k-1}$ 段，每一段都有 $p-1$ 个数与 $x$ 互质。所以与 $x$ 互质的数个数即为： $p^{k-1}\times(p-1)$ 
+容易发现 $x\perp y (y\bmod p \ne 0)$ 。我们试着将 $x$ 划分为长度为 $p$ 的 $\dfrac{p^k}{p}=p^{k-1}$ 段，每一段都有 $p-1$ 个数与 $x$ 互质。所以与 $x$ 互质的数个数即为： $p^{k-1}\times(p-1)$ 
 
 接下来我们证明 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$ 
 
