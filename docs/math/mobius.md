@@ -334,6 +334,7 @@ $$
     int tot, p[N + 5];
     long long g[N + 5];
     bool flg[N + 5];
+    ```
 
     void solve() {
       g[1] = 1;
