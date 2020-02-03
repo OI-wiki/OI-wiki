@@ -329,36 +329,46 @@ $$
 
 ??? note "代码实现"
     ```cpp
+    #include <algorithm>
     #include <cstdio>
-    const int N = 1000000;
-    int tot, p[N + 5];
-    long long g[N + 5];
+    const int N = 50000;
+    int mu[N + 5], p[N + 5];
     bool flg[N + 5];
-    
-    void solve() {
-      g[1] = 1;
+    void init() {
+      int tot = 0;
+      mu[1] = 1;
       for (int i = 2; i <= N; ++i) {
-        if (!flg[i]) p[++tot] = i, g[i] = i * (i - 1) + 1;
+        if (!flg[i]) {
+          p[++tot] = i;
+          mu[i] = -1;
+        }
         for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
           flg[i * p[j]] = 1;
           if (i % p[j] == 0) {
-            if ((i / p[j]) % p[j] == 0) {
-              g[i * p[j]] = g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];
-            } else {
-              g[i * p[j]] = g[i] + g[i / p[j]] * (p[j] - 1) * p[j] * p[j] * p[j];
-            }
+            mu[i * p[j]] = 0;
             break;
           }
-          g[i * p[j]] = g[i] * g[p[j]];
+          mu[i * p[j]] = -mu[i];
         }
       }
+      for (int i = 1; i <= N; ++i) mu[i] += mu[i - 1];
+    }
+    int solve(int n, int m) {
+      int res = 0;
+      for (int i = 1, j; i <= std::min(n, m); i = j + 1) {
+        j = std::min(n / (n / i), m / (m / i));
+        res += (mu[j] - mu[i - 1]) * (n / i) * (m / i);
+      }
+      return res;
     }
     int main() {
-      int T, n;
-      solve();
+      int T, a, b, c, d, k;
+      init();
       for (scanf("%d", &T); T; --T) {
-        scanf("%d", &n);
-        printf("%lld\n", (g[n] + 1) * n / 2);
+        scanf("%d%d%d%d%d", &a, &b, &c, &d, &k);
+        printf("%d\n", solve(b / k, d / k) - solve(b / k, (c - 1) / k) -
+                           solve((a - 1) / k, d / k) +
+                           solve((a - 1) / k, (c - 1) / k));
       }
       return 0;
     }
@@ -418,7 +428,7 @@ $$
 
 设 $\displaystyle \text{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\text{g}$ 为积性函数，于是可以 $\Theta(n)$ 筛出。每次询问 $\Theta(1)$ 计算即可。
 
-这个函数筛的时候比较特殊，当 $p_j\mid i$ 的时候，需要根据 $p_j\mid (i/p_j)$ 进行分类讨论。具体可以见代码。
+这个函数筛的时候比较特殊，当 $p_j\mid i$ 的时候，需要根据 $p_j\mid\dfrac{i}{p_j}$ 进行分类讨论。具体可以见代码。
 
  **时间复杂度** ： $\Theta(n+T)$ 
 
@@ -432,23 +442,20 @@ $$
     
     void solve() {
       g[1] = 1;
-      phi[1] = 1;
       for (int i = 2; i <= N; ++i) {
-        ;
-        if (!flg[i])
-          p[++tot] = i,
-          g[i] = i * (i - 1) + 1 for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
-            flg[i * p[j]] = 1;
-            if (i % p[j] == 0) {
-              if ((i / p[j]) % p[j] == 0) {
-                g[i * p[j]] = g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];
-              } else {
-                g[i * p[j]] = g[i] + g[i / p[j]] * p[j] * p[j] * p[j] * p[j];
-              }
-              break;
+        if (!flg[i]) p[++tot] = i, g[i] = i * (i - 1) + 1;
+        for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
+          flg[i * p[j]] = 1;
+          if (i % p[j] == 0) {
+            if ((i / p[j]) % p[j] == 0) {
+              g[i * p[j]] = g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];
+            } else {
+              g[i * p[j]] = g[i] + g[i / p[j]] * (p[j] - 1) * p[j] * p[j] * p[j];
             }
-            g[i * p[j]] = g[i] * g[p[j]];
+            break;
           }
+          g[i * p[j]] = g[i] * g[p[j]];
+        }
       }
     }
     int main() {
