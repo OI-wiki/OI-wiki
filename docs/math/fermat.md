@@ -19,7 +19,7 @@ $$
 构造一个序列： $A=\{1,2,3\dots,n-1\}$ ，这个序列有着这样一个性质：
 
 $$
-\Pi_{i=1}^{n}\space A_i\equiv\Pi_{i=1}^{n} (A_i\times a) \pmod p
+\prod_{i=1}^{n}\space A_i\equiv\prod_{i=1}^{n} (A_i\times a) \pmod p
 $$
 
 证明：
