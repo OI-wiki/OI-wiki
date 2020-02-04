@@ -110,17 +110,17 @@ $$
 
 ### 定义
 
-定义两个数论函数 $f,g$ 的 $\text{Dirichlet}$ 卷积为
+定义两个数论函数 $f,g$ 的 Dirichlet 卷积为
 
 $$
-(f*g)(n)=\sum_{d\mid n}f(d)g(\frac{n}{d})
+(f\ast g)(n)=\sum_{d\mid n}f(d)g(\frac{n}{d})
 $$
 
 ### 性质
 
- $\text{Dirichlet}$ 卷积满足交换律和结合律。
+Dirichlet 卷积满足交换律和结合律。
 
-其中 $\varepsilon$ 为 $\text{Dirichlet}$ 卷积的单位元（任何函数卷 $\varepsilon$ 都为其本身）
+其中 $\varepsilon$ 为 Dirichlet 卷积的单位元（任何函数卷 $\varepsilon$ 都为其本身）
 
 ### 例子
 
@@ -154,10 +154,10 @@ $$
 
 令 $n=\prod_{i=1}^kp_i^{c_i}$ ，其中 $p_i$ 为质因子， $c_i\ge 1$ 。上述定义表示：
 
-1.   $n=1​$ 时， $\mu(n)=1​$ ；
+1.   $n=1$ 时， $\mu(n)=1$ ；
 2.  对于 $n\not= 1$ 时：
-    1.  当存在 $i\in [1,k]​$ ，使得 $c_i > 1​$ 时， $\mu(n)=0​$ ，也就是说只要某个质因子出现的次数超过一次， $\mu(n)​$ 就等于 $0​$ ；
-    2.  当任意 $i\in[1,k]​$ ，都有 $c_i=1​$ 时， $\mu(n)=(-1)^k​$ ，也就是说每个质因子都仅仅只出现过一次时，即 $n=\prod_{i=1}^kp_i​$ ， $\{p_i\}_{i=1}^k​$ 中个元素唯一时， $\mu(n)​$ 等于 $-1​$ 的 $k​$ 次幂，此处 $k​$ 指的便是仅仅只出现过一次的质因子的总个数。
+    1.  当存在 $i\in [1,k]$ ，使得 $c_i > 1$ 时， $\mu(n)=0$ ，也就是说只要某个质因子出现的次数超过一次， $\mu(n)$ 就等于 $0$ ；
+    2.  当任意 $i\in[1,k]$ ，都有 $c_i=1$ 时， $\mu(n)=(-1)^k$ ，也就是说每个质因子都仅仅只出现过一次时，即 $n=\prod_{i=1}^kp_i$ ， $\{p_i\}_{i=1}^k$ 中个元素唯一时， $\mu(n)$ 等于 $-1$ 的 $k$ 次幂，此处 $k$ 指的便是仅仅只出现过一次的质因子的总个数。
 
 ### 性质
 
@@ -175,11 +175,11 @@ $$
 
 ### 证明
 
-设 $\displaystyle n=\prod_{i=1}^k{p_i}^{c_i},n'=\prod_{i=1}^k p_i​$ 
+设 $\displaystyle n=\prod_{i=1}^k{p_i}^{c_i},n'=\prod_{i=1}^k p_i$ 
 
 那么 $\displaystyle\sum_{d\mid n}\mu(d)=\sum_{d\mid n'}\mu(d)=\sum_{i=0}^k C_k^i\cdot(-1)^i=(1+(-1))^k$ 
 
-根据二项式定理，易知该式子的值在 $k=0​$ 即 $n=1​$ 时值为 $1​$ 否则为 $0​$ ，这也同时证明了 $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]=\varepsilon(n)​$ 以及 $\mu*1=\varepsilon​$ 
+根据二项式定理，易知该式子的值在 $k=0$ 即 $n=1$ 时值为 $1$ 否则为 $0$ ，这也同时证明了 $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]=\varepsilon(n)$ 以及 $\mu\ast 1=\varepsilon$ 
 
 ### 补充结论
 
@@ -267,13 +267,13 @@ $$
 \sum_{d\mid n}\mu(d)f(\frac{n}{d})=\sum_{d\mid n}\mu(d)\sum_{k\mid \frac{n}{d}}g(k)=\sum_{k\mid n}g(k)\sum_{d\mid \frac{n}{k}}\mu(d)=g(n)
 $$
 
-用 $\displaystyle\sum_{d\mid n}g(d)$ 来替换 $f(\dfrac{n}{d})$ ，再变换求和顺序。最后一步转为的依据： $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]$ ，因此在 $\dfrac{n}{k}=1$ 时第二个和式的值才为 $1$ 。此时 $n=k$ ，故原式等价于 $\displaystyle\sum_{k\mid n}[n=k]\cdot g(k)=g(n)$ 
+用 $\displaystyle\sum_{d\mid n}g(d)$ 来替换 $f(\dfrac{n}{d})$ ，再变换求和顺序。最后一步变换的依据： $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]$ ，因此在 $\dfrac{n}{k}=1$ 时第二个和式的值才为 $1$ 。此时 $n=k$ ，故原式等价于 $\displaystyle\sum_{k\mid n}[n=k]\cdot g(k)=g(n)$ 
 
 方法二：运用卷积。
 
-原问题为：已知 $f=g*1$ ，证明 $g=f*\mu$ 
+原问题为：已知 $f=g\ast1$ ，证明 $g=f\ast\mu$ 
 
-易知如下转化： $f*\mu=g*1*\mu\implies f*\mu=g$ （其中 $1*\mu=\varepsilon$ ）
+易知如下转化： $f\ast\mu=g*1*\mu\implies f\ast\mu=g$ （其中 $1\ast\mu=\varepsilon$ ）。
 
 * * *
 
@@ -314,17 +314,16 @@ $$
 变换求和顺序，先枚举 $d\mid gcd(i,j)$ 可得
 
 $$
-\displaystyle\sum_{d=1}^{\lfloor\frac{n}{k}\rfloor}\mu(d)\sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}d\mid i\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}d\mid j
+\displaystyle\sum_{d=1}\mu(d)\sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}[d\mid i]\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}[d\mid j]
 $$
 
-（其中 $d\mid i$ 表示 $i$ 是 $d$ 的倍数时对答案有 $1$ 的贡献）
 易知 $1\sim\lfloor\dfrac{n}{k}\rfloor$ 中 $d$ 的倍数有 $\lfloor\dfrac{n}{kd}\rfloor$ 个，故原式化为
 
 $$
-\displaystyle\sum_{d=1}^{\lfloor\frac{n}{k}\rfloor}\mu(d) \lfloor\frac{n}{kd}\rfloor\lfloor\frac{m}{kd}\rfloor
+\displaystyle\sum_{d=1}\mu(d)\lfloor\frac{n}{kd}\rfloor\lfloor\frac{m}{kd}\rfloor
 $$
 
-很显然，式子可以数论分块求解（注意：过程中默认 $n\leqslant m$ ）。
+很显然，式子可以数论分块求解。
 
  **时间复杂度 $\Theta(N+T\sqrt{n})$ ** 
 
@@ -389,13 +388,19 @@ $$
 \sum_{i=1}^n \frac{i\cdot n}{\gcd(i,n)}
 $$
 
-根据 $\gcd(a,n)=1$ 时一定有 $\gcd(n-a,n)=1$ ，可将原式化为
+将原式复制一份并且颠倒顺序，然后将 n 一项单独提出，可得
 
 $$
 \frac{1}{2}\cdot \left(\sum_{i=1}^{n-1}\frac{i\cdot n}{\gcd(i,n)}+\sum_{i=n-1}^{1}\frac{i\cdot n}{\gcd(i,n)}\right)+n
 $$
 
-上述式子中括号内的两个 $\sum$ 对应的项相等，故又可以化为
+根据 $gcd(i,n)=gcd(n-i,n)$ ，可将原式化为
+
+$$
+\frac{1}{2}\cdot \left(\sum_{i=1}^{n-1}\frac{i\cdot n}{\gcd(i,n)}+\sum_{i=n-1}^{1}\frac{i\cdot n}{\gcd(n-i,n)}\right)+n
+$$
+
+两个求和式中分母相同的项可以合并。
 
 $$
 \frac{1}{2}\cdot \sum_{i=1}^{n-1}\frac{n^2}{\gcd(i,n)}+n
@@ -421,41 +426,44 @@ $$
 \frac{1}{2}n\cdot\left(\sum_{d'\mid n}d'\cdot\varphi(d')+1\right)
 $$
 
-设 $\displaystyle \text{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\text{g}$ 为积性函数，于是可以 $\Theta(n)$ 预处理。最后枚举 $d$ ，统计贡献即可。
+设 $\displaystyle \text{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\text{g}$ 为积性函数，于是可以 $\Theta(n)$ 筛出。每次询问 $\Theta(1)$ 计算即可。
 
- **时间复杂度** ： $\Theta(n\log n)$ 
+这个函数筛的时候比较特殊，当 $p_j\mid i$ 的时候，需要根据 $p_j\mid\dfrac{i}{p_j}$ 进行分类讨论。具体可以见代码。
+
+ **时间复杂度** ： $\Theta(n+T)$ 
 
 ??? note "代码实现"
     ```cpp
     #include <cstdio>
     const int N = 1000000;
-    int tot, p[N + 5], phi[N + 5];
-    long long ans[N + 5];
+    int tot, p[N + 5];
+    long long g[N + 5];
     bool flg[N + 5];
     
     void solve() {
-      phi[1] = 1;
+      g[1] = 1;
       for (int i = 2; i <= N; ++i) {
-        if (!flg[i]) p[++tot] = i, phi[i] = i - 1;
+        if (!flg[i]) p[++tot] = i, g[i] = i * (i - 1) + 1;
         for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
           flg[i * p[j]] = 1;
           if (i % p[j] == 0) {
-            phi[i * p[j]] = phi[i] * p[j];
+            if ((i / p[j]) % p[j] == 0) {
+              g[i * p[j]] = g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];
+            } else {
+              g[i * p[j]] = g[i] + g[i / p[j]] * (p[j] - 1) * p[j] * p[j] * p[j];
+            }
             break;
           }
-          phi[i * p[j]] = phi[i] * (p[j] - 1);
+          g[i * p[j]] = g[i] * g[p[j]];
         }
       }
-      for (int i = 1; i <= N; ++i)
-        for (int j = 1; i * j <= N; ++j) ans[i * j] += 1LL * j * phi[j] / 2;
-      for (int i = 1; i <= N; ++i) ans[i] = 1LL * i * ans[i] + i;
     }
     int main() {
       int T, n;
       solve();
       for (scanf("%d", &T); T; --T) {
         scanf("%d", &n);
-        printf("%lld\n", ans[n]);
+        printf("%lld\n", (g[n] + 1) * n / 2);
       }
       return 0;
     }
@@ -531,7 +539,7 @@ $$
 
 本题除了推式子比较复杂、代码细节较多之外，是一道很好的莫比乌斯反演练习题！（上述过程中，默认 $n\leqslant m$ ）
 
-时间复杂度： $\Theta(n+m)$ （两次数论分块）
+时间复杂度： $\Theta(n+m)$ （瓶颈为线性筛）
 
 ??? note "代码实现"
     ```cpp
@@ -643,7 +651,7 @@ S\left(\left\lfloor\frac{m}{p}\right\rfloor\right)
 \end{split}
 $$
 
-那么 $O(n)$ 预处理 $\mu,d$ 的前缀和， $O(\sqrt{n})$ 分块处理询问，总复杂度 $O(n\sqrt{n})$ .
+那么 $O(n)$ 预处理 $\mu,d$ 的前缀和， $O(\sqrt{n})$ 分块处理询问，总复杂度 $O(n+T\sqrt{n})$ .
 
 ??? note "代码实现"
     ```cpp
@@ -730,7 +738,7 @@ $$
 \end{split}
 $$
 
-杜教筛（见 [杜教筛 - 例 3](https://sshwy.gitee.io/2019/01/11/5071/) ）完了是这样的
+杜教筛（见 [杜教筛 - 例 3](../du/#_8) ）完了是这样的
 
 $$
 S(n)=\left(\frac{1}{2}n(n+1)\right)^2-\sum_{i=2}^ni^2S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
@@ -856,7 +864,7 @@ $$
 
 ## 莫比乌斯反演扩展
 
-结尾补一个不常用的莫比乌斯反演非卷积形式的公式
+结尾补充一个莫比乌斯反演的非卷积形式。
 
 对于数论函数 $f,g$ 和完全积性函数 $t$ 且 $t(1)=1$ ：
 
