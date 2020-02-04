@@ -132,7 +132,8 @@ int main() {
 ### 习题
 
 -    [CodeVS 1373. 射命丸文](http://www.joyoi.cn/problem/codevs-1373) 
--    [洛谷 P1387 最大正方形](https://www.luogu.org/problemnew/show/P1387) 
+-    [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387) 
+-    [P2280 [HNOI2003]激光炸弹](https://www.luogu.com.cn/problem/P2280)
 
 ### 基于 DP 计算高维前缀和
 
@@ -176,7 +177,8 @@ int main() {
 ### 习题
 
 -    [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132) 
--    [P3397 地毯](https://www.luogu.org/problemnew/show/P3397) 
+-    [P3397 地毯](https://www.luogu.com.cn/problem/P3397) 
+-    [P4552 [Poetize6] IncDec Sequence](https://www.luogu.com.cn/problem/P4552)
 
 ## 树上差分
 
