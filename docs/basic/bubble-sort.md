@@ -26,6 +26,7 @@ $$
 C++ 代码：
 
 ```cpp
+// 假设数组的大小是n+1，冒泡排序从数组下标1开始
 void bubble_sort(int *a, int n) {
   bool flag = true;
   while (flag) {

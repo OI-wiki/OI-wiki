@@ -6,9 +6,23 @@
 
 利用唯一分解定理，我们可以把一个整数唯一地分解为质数幂次的乘积，
 
-设 $n = p_1^{k_1}p_2^{k_2} \cdots p_s^{k_s}$ ，其中 $p_i$ 是质数，那么定义 $\varphi(n) = n \times \prod_{i = 1}^s{\frac{p_i - 1}{p_i}}$ 
+设 $n = \prod_{i=1}^{n}p_i^{k_i}$ ，其中 $p_i$ 是质数，那么 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$ 
 
-## 欧拉函数的一些神奇性质
+#### 证明：
+
+引理（1）：设 $x=p^k$ , 那么 $\varphi(x)=p^{k-1}\times(p-1)$ 
+
+证明：
+
+容易发现 $x\perp y (y\bmod p \ne 0)$ 。我们试着将 $x$ 划分为长度为 $p$ 的 $\dfrac{p^k}{p}=p^{k-1}$ 段，每一段都有 $p-1$ 个数与 $x$ 互质。所以与 $x$ 互质的数个数即为： $p^{k-1}\times(p-1)$ 
+
+接下来我们证明 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$ 
+
+$$
+\because n=\prod_{i=1}^{n} p_i^{k_i} \\ 	\begin{align}\therefore \varphi(x) &= \prod_{i=1}^{n} \varphi(p_i^{k_i}) \\&= \prod_{i=1}^{n} (p_i-1)\times {p_i}^{k_i-1}\\&=\prod_{i=1}^{n} {p_i}^{k_i} \times(1 - \frac{1}{p_i})\\&=x~ \prod_{i=1}^{n} (1- \frac{1}{p_i})\end{align}
+$$
+
+## 欧拉函数的一些性质
 
 -   欧拉函数是积性函数。
 
@@ -31,7 +45,7 @@
 
 ## 如何求欧拉函数值
 
-如果只要求一个数的欧拉函数值，那么直接根据定义质因数分解的同时求就好了。
+如果只要求一个数的欧拉函数值，那么直接根据定义质因数分解的同时求就好了。这个过程可以用_Pollard Rho_算法优化。
 
 ```cpp
 int euler_phi(int n) {
@@ -48,7 +62,7 @@ int euler_phi(int n) {
 ```
 
 如果是多个数的欧拉函数值，可以利用后面会提到的线性筛法来求得。
-详见： [筛法求欧拉函数](/math/sieve#_2) 
+详见： [筛法求欧拉函数](./sieve.md#_2) 
 
 ## 欧拉定理
 

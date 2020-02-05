@@ -32,7 +32,7 @@ LaTeX 基于 TeX（Donald Knuth 在 1978 年为数字化排版设计的排版系
 
 一个新的文档会被自动打开。
 
- $\rightarrow$ 进入 **Fomart** 菜单，选择 **Line Numbers** 。
+ $\rightarrow$ 进入 **Format** 菜单，选择 **Line Numbers** 。
 
 行号并不是要素，但它可以帮助你比较代码与屏幕信息，找到错误。
 
@@ -107,7 +107,7 @@ A sentence of text.
 要点笔记：
 
 -    `\today` 是插入当前时间的命令。你也可以输入一个不同的时间，比如 `\data{November 2013}` 。
--    **Article** 文档的正文会紧跟着标题之后在同一页上排版。 **Reports** 会将标题置为单独的一页。
+-    **article** 文档的正文会紧跟着标题之后在同一页上排版。 **report** 会将标题置为单独的一页。
 
 ### 章节
 
@@ -187,7 +187,7 @@ Here are my results.
 
 \title{My First Document}
 \author{My Name}
-\date{\rightarrowday}
+\date{\today}
 \maketitle
 
 \section{Introduction}
@@ -236,7 +236,7 @@ Here are my results. Referring to section \ref{sec1} on page \pageref{sec1}
 
 \title{My First Document}
 \author{My Name}
-\date{\rightarrowday}
+\date{\today}
 \maketitle
 
 \pagenumbering{roman}

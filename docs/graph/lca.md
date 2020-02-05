@@ -31,7 +31,7 @@
 在第二阶段中，我们从最大的 $i$ 开始循环尝试，一直尝试到 $0$ （包括 $0$ ），如果 `fa[u][i] != fa[v][i]` ，则令 `u = fa[u][i]; v = fa[v][i]` ，那么最后的 LCA 为 `fa[u][0]` 。
 
 !!! 例题
-    CODEVS2370 [小机房的树](http://codevs.cn/problem/2370/) 树上最短路查询
+     [CodeVS 2370. 小机房的树](http://www.joyoi.cn/problem/codevs-2370) 树上最短路查询
 
 可先求出 LCA，再结合性质 $7$ 进行解答。也可以直接在求 LCA 时求出结果。
 以下代码仅供参考。
@@ -258,9 +258,9 @@ void st_preprocess() {
 
 LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所指向的点。
 
-###  [动态树](/ds/lct) 
+###  [动态树](../ds/lct.md) 
 
-设连续两次 [access](/ds/lct/#access) 操作的点分别为 `u` 和 `v` ，则第二次 [access](/ds/lct/#access) 操作返回的点即为 `u` 和 `v` 的 LCA.
+设连续两次 [access](../ds/lct.md#access) 操作的点分别为 `u` 和 `v` ，则第二次 [access](../ds/lct.md#access) 操作返回的点即为 `u` 和 `v` 的 LCA.
 
 ### 标准 RMQ
 

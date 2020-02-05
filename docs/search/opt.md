@@ -23,7 +23,7 @@ void dfs(传入数值) {
 
 其中的 ans 可以是解的记录，那么从当前解与已有解中选最优就变成了输出解。
 
-## 优化与剪枝
+## 剪枝方法
 
 最常用的剪枝有三种，记忆化搜索、最优性剪枝、可行性剪枝。
 
@@ -92,7 +92,17 @@ void dfs(传入数值) {
 }
 ```
 
-#### 经典例题
+## 剪枝思路
+
+剪枝思路有很多种，大多需要对于具体问题来分析，在此简要介绍几种常见的剪枝思路。
+
+-   极端法：考虑极端情况，如果最极端（最理想）的情况都无法满足，那么肯定实际情况搜出来的结果不会更优了。
+
+-   调整法：通过对子树的比较剪掉重复子树和明显不是最有“前途”的子树。
+
+-   数学方法：比如在图论中借助连通分量，数论中借助模方程的分析，借助不等式的放缩来估计下界等等。
+
+## 例题
 
 ???+note "工作分配问题"
      **题目描述** 
@@ -130,58 +140,55 @@ void dfs(传入数值) {
     5
     ```
 
- **分析** 
-
 由于每个人都必须分配到工作，在这里可以建一个二维数组 `time[i][j]` ，用以表示 $i$ 个人完成 $j$ 号工作所花费的时间。给定一个循环，从第 1 个人开始循环分配工作，直到所有人都分配到。为第 $i$ 个人分配工作时，再循环检查每个工作是否已被分配，没有则分配给 $i$ 个人，否则检查下一个工作。可以用一个一维数组 `is_working[j]` 来表示第 $j$ 号工作是否已被分配，未分配则 `is_working[j]=0` ，否则 `is_working[j]=1` 。利用回溯思想，在工人循环结束后回到上一工人，取消此次分配的工作，而去分配下一工作直到可以分配为止。这样，一直回溯到第 1 个工人后，就能得到所有的可行解。
 
 检查工作分配，其实就是判断取得可行解时的二维数组的第一维下标各不相同并且第二维下标各不相同。而我们是要得到完成这 $n$ 份工作的最小时间总和，即可行解中时间总和最小的一个，故需要再定义一个全局变量 `cost_time_total_min` 表示目前找到的解中最小的时间总和，初始 `cost_time_total_min` 为 `time[i][i]` 之和，即对角线工作时间相加之和。在所有人分配完工作时，比较 `count` 与 `cost_time_total_min` 的大小，如果 `count` 小于 `cost_time_total_min` ，说明找到了一个最优解，此时就把 `count` 赋给 `cost_time_total_min` 。
 
 但考虑到算法的效率，这里还有一个剪枝优化的工作可以做。就是在每次计算局部费用变量 `count​` 的值时，如果判断 `count` 已经大于 `cost_time_total_min` ，就没必要再往下分配了，因为这时得到的解必然不是最优解。
 
-#### 经典例题代码
-
-```c++
-#include <cstdio>
-#define N 16
-int is_working[N] = {0};  // 某项工作是否被分配
-int time[N][N];           // 完成某项工作所需的时间
-int cost_time_total_min;  // 完成 n 份工作的最小时间总和
-// i 表示第几个人，count 表示工作费用总和
-void work(int i, int count, int n) {
-  // 如果 i 超出了所能分配的最大工作件数，表示分配完成，并且 count 比原来
-  // cost_time_total_min 花费少，则更新 cost_time_total_min 的值
-  if (i > n && count < cost_time_total_min) {
-    cost_time_total_min = count;
-    return;
-  }
-  // 回溯思想
-  if (count < cost_time_total_min) {
-    // j 表示第几件工作
-    for (int j = 1; j <= n; j++) {
-      // 如果工作未被分配 is_working = 0
-      if (is_working[j] == 0) {
-        // 分配工作 is_working = 1
-        is_working[j] = 1;
-        // 工作交给第 i + 1 个人
-        work(i + 1, count + time[i][j], n);
-        // 在一轮迭代完成之后，返回到上一个人，要对此次的工作进行重新分配
-        // 将 is_working[j] 重设为 0
-        is_working[j] = 0;
+??? note "参考代码"
+    ```C++
+    #include <cstdio>
+    #define N 16
+    int is_working[N] = {0};  // 某项工作是否被分配
+    int time[N][N];           // 完成某项工作所需的时间
+    int cost_time_total_min;  // 完成 n 份工作的最小时间总和
+    // i 表示第几个人，count 表示工作费用总和
+    void work(int i, int count, int n) {
+      // 如果 i 超出了所能分配的最大工作件数，表示分配完成，并且 count 比原来
+      // cost_time_total_min 花费少，则更新 cost_time_total_min 的值
+      if (i > n && count < cost_time_total_min) {
+        cost_time_total_min = count;
+        return;
+      }
+      // 回溯思想
+      if (count < cost_time_total_min) {
+        // j 表示第几件工作
+        for (int j = 1; j <= n; j++) {
+          // 如果工作未被分配 is_working = 0
+          if (is_working[j] == 0) {
+            // 分配工作 is_working = 1
+            is_working[j] = 1;
+            // 工作交给第 i + 1 个人
+            work(i + 1, count + time[i][j], n);
+            // 在一轮迭代完成之后，返回到上一个人，要对此次的工作进行重新分配
+            // 将 is_working[j] 重设为 0
+            is_working[j] = 0;
+          }
+        }
       }
     }
-  }
-}
-int main() {
-  int n;
-  scanf("%d", &n);
-  for (int i = 1; i <= n; i++) {
-    for (int j = 1; j <= n; j++) {
-      scanf("%d", &time[i][j]);
+    int main() {
+      int n;
+      scanf("%d", &n);
+      for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+          scanf("%d", &time[i][j]);
+        }
+        cost_time_total_min += time[i][i];
+      }
+      work(1, 0, n);
+      printf("%d\n", cost_time_total_min);
+      return 0;
     }
-    cost_time_total_min += time[i][i];
-  }
-  work(1, 0, n);
-  printf("%d\n", cost_time_total_min);
-  return 0;
-}
-```
+    ```
