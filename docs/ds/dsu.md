@@ -110,7 +110,7 @@ void unionSet(int x, int y) {
 
 同时使用路径压缩和启发式合并之后，并查集的每个操作平均时间仅为 $O(\alpha(n))$ ，其中 $\alpha$ 为 [阿克曼函数](https://en.wikipedia.org/wiki/Ackermann_function) 的反函数，其增长极其缓慢，也就是说其单次操作的平均运行时间可以认为是一个很小的常数。
 
-时间复杂度的证明 [在这个页面中](./dsu_complexy.md) 
+时间复杂度的证明 [在这个页面中](./dsu_complexy.md) 。
 
 ### 空间复杂度
 
