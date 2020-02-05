@@ -61,11 +61,13 @@ nav:
       - C++ 语法基础: lang/basic.md
       - 变量: lang/var.md
       - 运算: lang/op.md
-      - 数组: lang/array.md
-      - 结构体: lang/struct.md
-      - 指针: lang/pointer.md
-      - 分支: lang/branch.md
-      - 循环: lang/loop.md
+      - 流程控制语句:
+        - 分支: lang/branch.md
+        - 循环: lang/loop.md
+      - 高级数据类型:
+        - 数组: lang/array.md
+        - 结构体: lang/struct.md
+        - 指针: lang/pointer.md
       - 函数: lang/func.md
       - 文件操作: lang/file-op.md
     - C++ 标准库:
