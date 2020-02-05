@@ -48,9 +48,9 @@
 
 ### 逐步插入回路法（Hierholzer 算法）
 
-算法流程为从一条回路开始，每次任取一条目前回路中的点，将其替换为一条简单回路，寻找到一条欧拉回路。如果从路开始的话，就寻找到一条欧拉路。
+算法流程为从一条回路开始，每次任取一条目前回路中的点，将其替换为一条简单回路，以此寻找到一条欧拉回路。如果从路开始的话，就可以寻找到一条欧拉路。
 
-寻找欧拉回路的暴力实现如下：
+Hierholzer 算法的暴力实现如下：
 
 $$
 \begin{array}{ll}
@@ -63,9 +63,9 @@ $$
 7 &  \qquad\qquad \textbf{return } v \\
 8 &  \qquad e \gets e-circle \\
 9 &  \qquad \textbf{for} \text{ each } v \in circle \\
-10 &  \qquad\qquad v \gets \text{Hierholzer}(v) \\
+10&  \qquad\qquad v \gets \text{Hierholzer}(v) \\
 11&  \qquad \textbf{return } circle \\
-12&  \\
+12&  \textbf{Endfunction}
 13&  \textbf{return } \text{Hierholzer}(\text{any vertex})
 \end{array}
 $$
