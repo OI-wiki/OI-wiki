@@ -68,37 +68,38 @@ $$
 \end{array}
 $$
 
-这个算法的时间复杂度约为 $O(nm+m^2)$。实际上还有复杂度更低的实现方法，就是将找回路的 Dfs 和 Hierholzer 的递归合并，边找回路边 Hierholzer，保存答案可以使用 `stack<int>`，因为如果找的不是回路的话必须将那一部分条放在最后。
+这个算法的时间复杂度约为 $O(nm+m^2)$ 。实际上还有复杂度更低的实现方法，就是将找回路的 Dfs 和 Hierholzer 的递归合并，边找回路边 Hierholzer，保存答案可以使用 `stack<int>` ，因为如果找的不是回路的话必须将那一部分条放在最后。
 
-如果需要输出字典序最小的欧拉路或欧拉回路的话，因为需要将边排序，时间复杂度是 $\Theta(n+m\log m)$（计数排序或者基数排序可以优化至 $\Theta(n+m)$）。如果不需要排序，时间复杂度是 $\Theta(n+m)$。
+如果需要输出字典序最小的欧拉路或欧拉回路的话，因为需要将边排序，时间复杂度是 $\Theta(n+m\log m)$ （计数排序或者基数排序可以优化至 $\Theta(n+m)$ ）。如果不需要排序，时间复杂度是 $\Theta(n+m)$ 。
 
-对于这道例题的一个代码实现如下。注意，不能使用邻接矩阵存图，否则时间复杂度会退化为 $\Theta(nm)$。由于需要将边排序，建议使用前向星或者 vector 存图。示例代码使用 vector。
+对于这道例题的一个代码实现如下。注意，不能使用邻接矩阵存图，否则时间复杂度会退化为 $\Theta(nm)$ 。由于需要将边排序，建议使用前向星或者 vector 存图。示例代码使用 vector。
 
 ???+note "代码实现"
     ```cpp
-    #include <stack>
-    #include <cstdio>
-    #include <vector>
     #include <algorithm>
+    #include <cstdio>
+    #include <stack>
+    #include <vector>
     using namespace std;
     
     struct edge {
-        int to;
-        bool exists;
-        int revref;
+      int to;
+      bool exists;
+      int revref;
+    ```
 
         bool operator< (const edge& b) const
         {
             return to < b.to;
         }
     };
-    
+
     vector<edge> beg[505];
     int cnt[505];
-    
+
     const int dn = 500;
     stack<int> ans;
-    
+
     void Hierholzer(int x) // 关键函数
     {
         for(int& i=cnt[x]; i<(int)beg[x].size();)
@@ -109,7 +110,7 @@ $$
                 beg[x][i].exists = 0;
                 beg[e.to][e.revref].exists = 0;
                 ++i;
-    
+
                 Hierholzer(e.to);
             }
             else
@@ -119,17 +120,17 @@ $$
         }
         ans.push(x);
     }
-    
+
     int deg[505];
     int reftop[505];
-    
+
     int main()
     {
         for(int i=1; i<=dn; ++i)
         {
             beg[i].reserve(1050); // vector 用 reserve 避免动态分配空间，加快速度
         }
-    
+
         int m;
         scanf("%d",&m);
         for(int i=1; i<=m; ++i)
@@ -140,7 +141,7 @@ $$
             beg[b].push_back((edge){ a,1,0 });
             ++deg[a]; ++deg[b];
         }
-    
+
         for(int i=1; i<=dn; ++i)
         {
             if(!beg[i].empty())
@@ -148,7 +149,7 @@ $$
                 sort(beg[i].begin(),beg[i].end()); // 为了要按字典序贪心，必须排序
             }
         }
-    
+
         for(int i=1; i<=dn; ++i)
         {
             for(int j=0; j<(int)beg[i].size(); ++j)
@@ -156,7 +157,7 @@ $$
                 beg[i][j].revref = reftop[beg[i][j].to]++;
             }
         }
-    
+
         int bv = 0;
         for(int i=1; i<=dn; ++i)
         {
@@ -169,9 +170,9 @@ $$
                 bv = i;
             }
         }
-    
+
         Hierholzer(bv);
-    
+
         while(!ans.empty())
         {
             printf("%d\n",ans.top());
