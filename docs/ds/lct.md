@@ -360,10 +360,13 @@ inline void Cut(int x, int p) {
 -    `Find()` 其实就是找到当前辅助树的根。在 `Access(p)` 后，再 `Splay(p)` 。这样根就是树里最小的那个，一直往 ls 走，沿途 `PushDown` 即可。
 -   一直走到没有 ls, 非常简单。
 
+-   注意，每次查询之后需要把查询到的答案Splay上去以保证复杂度。
+
 ```cpp
 inline int Find(int p) {
   Access(p), Splay(p);
   while (ls) pushDown(p), p = ls;
+  Splay(p);
   return p;
 }
 ```
