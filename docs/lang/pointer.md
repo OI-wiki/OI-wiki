@@ -10,7 +10,7 @@
 
 ![example2](./images/pointer2.png)
 
-### 代码实现
+### 代码示例
 
 ```cpp
 int i = 3;
@@ -27,7 +27,7 @@ cout << q << " " << *q << " " << **q;
 0x22fec4 0x22fec8 3
 ```
 
-Hint:
+提示:
 0x22fec8 就是变量 i 的地址
 0x22fec4 就是指针 \* p 的地址
 
