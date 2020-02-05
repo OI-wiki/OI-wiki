@@ -59,14 +59,14 @@ $$
 3 &  \textbf{Method. } \\ 
 4 &  \textbf{Function } \text{Hierholzer } (v) \\
 5 &  \qquad circle \gets \text{Find a Circle in } e \text{ Begin with } v \\
-6 &  \qquad \textbf{if } circle=\varempty
-7 &  \qquad\qquad \textbf{return } v
-7 &  \qquad e \gets e-circle \\
-8 &  \qquad \textbf{for} \text{ each } v \in circle \\
-9 &  \qquad\qquad v \gets \text{Hierholzer}(v) \\
-10&  \qquad \textbf{return } circle \\
-11&  \\
-12&  \textbf{return } \text{Hierholzer}(\text{any vertex})
+6 &  \qquad \textbf{if } circle=\varnothing \\
+7 &  \qquad\qquad \textbf{return } v \\
+8 &  \qquad e \gets e-circle \\
+9 &  \qquad \textbf{for} \text{ each } v \in circle \\
+10 &  \qquad\qquad v \gets \text{Hierholzer}(v) \\
+11&  \qquad \textbf{return } circle \\
+12&  \\
+13&  \textbf{return } \text{Hierholzer}(\text{any vertex})
 \end{array}
 $$
 
