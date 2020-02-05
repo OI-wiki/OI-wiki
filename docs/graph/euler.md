@@ -86,8 +86,7 @@ $$
       int to;
       bool exists;
       int revref;
-    ```
-
+    
         bool operator< (const edge& b) const
         {
             return to < b.to;
