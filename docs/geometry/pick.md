@@ -1,6 +1,6 @@
 ## Pick 定理
 
-Pick 定理：给定顶点座标均是整点（或正方形格子点）的简单多边形，皮克定理说明了其面积 ${\displaystyle A}$ 和内部格点数目 ${\displaystyle i}$ 、边上格点数目 ${\displaystyle b}$ 的关系： ${\displaystyle A=i+{\frac {b}{2}}-1}$ 。
+Pick 定理：给定顶点坐标均是整点（或正方形格子点）的简单多边形，皮克定理说明了其面积 ${\displaystyle A}$ 和内部格点数目 ${\displaystyle i}$ 、边上格点数目 ${\displaystyle b}$ 的关系： ${\displaystyle A=i+{\frac {b}{2}}-1}$ 。
 
 具体证明： [Pick's theorem](https://en.wikipedia.org/wiki/Pick%27s_theorem) 
 
@@ -44,18 +44,18 @@ int main() {
     int n, dx, dy, x, y, num = 0, sum = 0;
     scanf("%d", &n);
     p[0].x = 0, p[0].y = 0;
-    for (int i = 1; i &lt; = n; i++) {
+    for (int i = 1; i <= n; i++) {
       scanf("%d%d", &x, &y);
       p[i].x = x + p[i - 1].x, p[i].y = y + p[i - 1].y;
       dx = x, dy = y;
-      if (x & lt; 0) dx = -x;
-      if (y & lt; 0) dy = -y;
+      if (x < 0) dx = -x;
+      if (y < 0) dy = -y;
       num += gcd(dx, dy);
       sum += area(i - 1, i);
     }
-    if (sum & lt; 0) sum = -sum;
-    printf("Scenario #%d:\\n", ncase++);
-    printf("%d %d %.1f\\n\\n", (sum - num + 2) >> 1, num, sum \* 0.5);
+    if (sum < 0) sum = -sum;
+    printf("Scenario #%d:\n", ncase++);
+    printf("%d %d %.1f\n\n", (sum - num + 2) >> 1, num, sum * 0.5);
   }
   return 0;
 }

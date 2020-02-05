@@ -131,7 +131,7 @@ int main() {
 
 ### 习题
 
--    [CodeVS 1373. 射命丸文](http://codevs.cn/problem/1373/) 
+-    [CodeVS 1373. 射命丸文](http://www.joyoi.cn/problem/codevs-1373) 
 -    [洛谷 P1387 最大正方形](https://www.luogu.org/problemnew/show/P1387) 
 
 ### 基于 DP 计算高维前缀和

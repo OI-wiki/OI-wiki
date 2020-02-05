@@ -31,6 +31,33 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
 
 讲完了，让我们归纳一下单调队列优化动态规划问题的基本形态：当前状态的所有值可以从上一个状态的某个连续的段的值得到，要对这个连续的段进行 RMQ 操作，相邻状态的段的左右区间满足非降的关系。
 
+## 单调队列优化多重背包
+
+???+note "问题描述"
+    你有 $n$ 个物品，每个物品重量为 $w_i$ ，价值为 $v_i$ ，数量为 $k_i$ 。你有一个承重上限为 $m$ 的背包，现在要求你在不超过重量上限的情况下选取价值和尽可能大的物品放入背包。求最大价值。
+
+不了解背包 DP 的请先阅读 [背包 DP](../knapsack.md) 。设 $f_{i,j}$ 表示前 $i$ 个物品装入承重为 $j$ 的背包的最大价值，朴素的转移方程为
+
+$$
+f_{i,j}=\max_{k=0}^{k_i}(f_{i-1,j-k\times w_i}+v_i\times k)
+$$
+
+时间复杂度 $O(nW\sum k_i)$ 。
+
+考虑优化 $f_i$ 的转移。为方便表述，设 $g_{x,y}=f_{i,x\times w_i+y},g'_{x,y}=f_{i-1,x\times w_i+y}$ ，则转移方程可以表示为：
+
+$$
+g_{x,y}=\max_{k=0}^{k_i}(g'_{x-k,y}+v_i\times k)
+$$
+
+设 $G_{x,y}=g'_{x,y}-v_i\times x$ 。则方程可以表示为：
+
+$$
+g_{x,y}=\max_{k=0}^{k_i}(G_{x-k,y})+v_i\times x
+$$
+
+这样就转化为一个经典的单调队列优化形式了。 $G_{x,y}$ 可以 $O(1)$ 计算，因此对于固定的 $y$ ，我们可以在 $O\left( \left\lfloor \dfrac{W}{w_i} \right\rfloor \right)$ 的时间内计算出 $g_{x,y}$ 。因此求出所有 $g_{x,y}$ 的复杂度为 $O\left( \left\lfloor \dfrac{W}{w_i} \right\rfloor \right)\times O(w_i)=O(W)$ 。这样转移的总复杂度就降为 $O(nW)$ 。
+
 ## 习题
 
  [「Luogu P1886」滑动窗口](https://loj.ac/problem/10175) 
