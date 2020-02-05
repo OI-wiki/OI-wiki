@@ -28,14 +28,14 @@
 
 ## 求欧拉回路或欧拉路
 
-例题：[Luogu P2731 骑马修栅栏](https://www.luogu.com.cn/problem/P2731)
+例题： [Luogu P2731 骑马修栅栏](https://www.luogu.com.cn/problem/P2731) 
 
 ???+note "题面"
     给定一张有 500 个顶点的无向图，求这张图的一条欧拉路或欧拉回路。如果有多组解，输出最小的那一组。
-    
+
     在本题中，欧拉路或欧拉回路不需要经过所有顶点。
-    
-    边的数量 m 满足 $1\leq m \leq 1024$。
+
+    边的数量 m 满足 $1\leq m \leq 1024$ 。
 
 ### Fleury 算法
 
