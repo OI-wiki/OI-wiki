@@ -87,11 +87,9 @@ $$
       bool exists;
       int revref;
     
-        bool operator< (const edge& b) const
-        {
-            return to < b.to;
-        }
+      bool operator<(const edge& b) const { return to < b.to; }
     };
+    ```
 
     vector<edge> beg[505];
     int cnt[505];
