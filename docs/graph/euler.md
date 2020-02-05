@@ -58,11 +58,11 @@ $$
 2 &  \textbf{Output. } \text{The vertex of the Euler Road of the input graph}.\\
 3 &  \textbf{Method. } \\ 
 4 &  \textbf{Function } \text{Hierholzer } (v) \\
-5 &  \quuad circle \gets \text{Find a Circle in e Begin with v} \\
-6 &  \quuad e \gets e-circle \\
-7 &  \quuad \textbf{for} \text{ each } v \in circle \\
-8 &  \quuad\quuad v \gets \text{Hierholzer}(v) \\
-9 &  \quuad \textbf{return } circle \\
+5 &  \qquad circle \gets \text{Find a Circle in e Begin with v} \\
+6 &  \qquad e \gets e-circle \\
+7 &  \qquad \textbf{for} \text{ each } v \in circle \\
+8 &  \qquad\qquad v \gets \text{Hierholzer}(v) \\
+9 &  \qquad \textbf{return } circle \\
 10&  \\
 11&  \textbf{return } \text{Hierholzer}(\text{any vertex})
 \end{array}
