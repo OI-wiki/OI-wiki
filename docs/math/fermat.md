@@ -32,7 +32,7 @@ $$
 
 得证（每一个 $A_i\times a$ 都对应了一个 $A_i$ )
 
-设 $f=(p-1)!$ ,则 $f\equiv a\times A_1\times a\times A_2\times a \times A_3 \dots \times  A_{p-1} \pmod p$ 
+设 $f=(p-1)!$ , 则 $f\equiv a\times A_1\times a\times A_2\times a \times A_3 \dots \times  A_{p-1} \pmod p$ 
 
 $$
 a^{p-1}\times f \equiv f \mod p \\ 	a^{p-1} \equiv 1 \pmod p
