@@ -33,7 +33,7 @@ after_deploy:
   - cd /tmp
   - git clone https://github.com/OI-wiki/OI-wiki.git
   - cd OI-wiki
-  - git remote add coding https://$CODING_USER:$CODING_KEY@git.coding.net/scaffrey/OI-wiki.git
+  - git remote add coding https://$CODING_USER:$CODING_KEY@git@e.coding.net:scaffrey/OI-wiki.git
   - git push coding master:master -f
   - git fetch origin gh-pages
   - git checkout -b gh-pages origin/gh-pages
