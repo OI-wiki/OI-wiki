@@ -67,7 +67,7 @@ mkdocs --help
 
 ```bash
 # Coding 上的镜像仓库和 GitHub 仓库的内容相同
-git clone https://git.dev.tencent.com/scaffrey/OI-wiki.git
+git clone https://e.coding.net/scaffrey/OI-wiki.git
 ```
 
 ### 离线版
@@ -75,7 +75,7 @@ git clone https://git.dev.tencent.com/scaffrey/OI-wiki.git
 可以使用 `gh-pages` 分支的内容（CODING 上面的分支名叫 `coding-pages`）
 
 ```bash
-git clone https://git.dev.tencent.com/scaffrey/OI-wiki.git -b coding-pages
+git clone https://e.coding.net/scaffrey/OI-wiki.git -b coding-pages
 ```
 
 本地启动一个 http 服务器可能会更方便一些。
