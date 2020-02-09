@@ -51,7 +51,7 @@ $$
 方程两边同时取离散对数得到
 
 $$
-ac\equiv t\pmod \varphi(p)
+ac\equiv t\pmod{\varphi(p)}
 $$
 
 我们可以通过 BSGS 求解 $g^t\equiv b\pmod p$ 得到 $t$ ，于是这就转化成了一个线性同余方程的问题。这样也可以解出 $c$ ，求出 $x$ 的一个特解 $x_0\equiv g^c\pmod p$ 。
@@ -164,13 +164,13 @@ $$
 具体地，设 $d_1=\gcd(a,p)$ 。如果 $d_1\nmid b$ ，则原方程无解。否则我们把方程同时除以 $d_1$ ，得到
 
 $$
-\frac{a}{d_1}\cdot a^{x-1}\equiv \frac{b}{d_1}\pmod \frac{p}{d_1}
+\frac{a}{d_1}\cdot a^{x-1}\equiv \frac{b}{d_1}\pmod{\frac{p}{d_1}}
 $$
 
 如果 $a$ 和 $\frac{p}{d_1}$ 仍不互质就再除，设 $d_2=\gcd\left(a,\frac{p}{d_1}\right)$ 。如果 $d_2\nmid \frac{b}{d_1}$ ，则方程无解；否则同时除以 $d_2$ 得到
 
 $$
-\frac{a^2}{d_1d_2}\cdot a^{x-2}≡\frac{b}{d_1d_2} \pmod \frac{p}{d_1d_2}
+\frac{a^2}{d_1d_2}\cdot a^{x-2}≡\frac{b}{d_1d_2} \pmod{\frac{p}{d_1d_2}}
 $$
 
 同理，这样不停的判断下去。直到 $a\perp \frac{p}{d_1d_2\cdots d_k}$ 。
@@ -178,7 +178,7 @@ $$
 记 $D=\prod_{i=1}^kd_i$ ，于是方程就变成了这样：
 
 $$
-\frac{a^k}{D}\cdot a^{x-k}\equiv\frac{b}{D} \pmod \frac{p}{D}
+\frac{a^k}{D}\cdot a^{x-k}\equiv\frac{b}{D} \pmod{\frac{p}{D}}
 $$
 
 由于 $a\perp\frac{p}{D}$ ，于是推出 $\frac{a^k}{D}\perp \frac{p}{D}$ 。这样 $\frac{a^k}{D}$ 就有逆元了，于是把它丢到方程右边，这就是一个普通的 BSGS 问题了，于是求解 $x-k$ 后再加上 $k$ 就是原方程的解啦。
