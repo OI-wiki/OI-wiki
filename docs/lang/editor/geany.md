@@ -1,6 +1,6 @@
 # Geany
 
-Geany 是一个轻量、便捷的编辑器，对于Linux环境下的初学者较为友好。
+Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者较为友好。
 
 与 Dev-C++ 一样，它可以编译运行单个文件。
 
@@ -47,7 +47,7 @@ Geany 是一个轻量、便捷的编辑器，对于Linux环境下的初学者较
     sudo make install
 ```
 
-如遇到 `No package 'gtk+-2.0' found` 可能需要安装 `libgtk2.0-dev` （使用 `apt`等包管理器 即可）
+如遇到 `No package 'gtk+-2.0' found` 可能需要安装 `libgtk2.0-dev` （使用 `apt` 等包管理器 即可）
 
 ## 常见问题
 
