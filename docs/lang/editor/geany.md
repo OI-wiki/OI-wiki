@@ -1,12 +1,10 @@
-# geany
+# Geany
 
-geany 是一个轻量、便捷的编辑器，
+Geany 是一个轻量、便捷的编辑器，对于
 
 与 Dev-C++ 一样，它可以编译运行单个文件。
 
 不过，它可以在 Linux/Windows/macOS 下运行。
-
-目前最新版本为 1.36。
 
 其官网为： <https://geany.org/> 
 
@@ -23,7 +21,7 @@ geany 是一个轻量、便捷的编辑器，
 
 1.  没有太多人使用；
 2.  在 macOS Catalina 下有一些权限问题；
-3.  新建文件时，默认不会有语法高亮，需要保存为 cpp 文件后才会有；
+3.  新建文件时，默认不会有语法高亮，需要保存为 C++ 文件后才会有；
 4.  如果从模板新建 C++ 文件，后缀名为\*.cxx，而不是我们所熟悉的\*.cpp。
 
 ## 安装
@@ -49,7 +47,7 @@ geany 是一个轻量、便捷的编辑器，
     sudo make install
 ```
 
-如遇到 `No package 'gtk+-2.0' found` 可能需要安装 `libgtk2.0-dev` （ `apt` 即可）
+如遇到 `No package 'gtk+-2.0' found` 可能需要安装 `libgtk2.0-dev` （使用 `apt`等包管理器 即可）
 
 ## 常见问题
 
