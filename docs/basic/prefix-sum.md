@@ -133,7 +133,7 @@ int main() {
 
 -    [CodeVS 1373. 射命丸文](http://www.joyoi.cn/problem/codevs-1373) 
 -    [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387) 
--    [P2280 \[HNOI2003\] 激光炸弹](https://www.luogu.com.cn/problem/P2280) 
+-    [「HNOI2003」 激光炸弹](https://www.luogu.com.cn/problem/P2280) 
 
 ### 基于 DP 计算高维前缀和
 
