@@ -191,7 +191,7 @@ for (i = 1; i <= n; ++i) {
     const int N = 1000010;
     
     char s[N];
-    int n, sa[N], rk[N], oldrk[N << 1], id[N], px[N], cnt[N];
+    int n, sa[N], rk[N], oldrk[N << 1], id[N], px[N], cnt[M];
     // px[i] = rk[id[i]]（用于排序的数组所以叫 px）
     
     bool cmp(int x, int y, int w) {
