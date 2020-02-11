@@ -14,7 +14,7 @@ author: hsfzLZH1, sshwy, StudyingFather, TrisolarisHD
 
  $\varphi(x)=\sum_{i=1}^x 1[\gcd(x,i)=1]$ 
 
- $\mu(x)=\begin{cases}1&\text{n=1}\\(-1)^k& \ \prod_{i=1}^k q_i=1\\0 &\ \max\{q_i\}>1\end{cases}$ 
+ $\mu(x)=\begin{cases}1&\ x=1 \\(-1)^k& \ \prod_{i=1}^k q_i=1\\0 &\ \max\{q_i\}>1\end{cases}$ 
 
 积性函数有如下性质：
 
