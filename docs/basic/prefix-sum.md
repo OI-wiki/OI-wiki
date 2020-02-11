@@ -178,7 +178,7 @@ int main() {
 
 -    [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132) 
 -    [P3397 地毯](https://www.luogu.com.cn/problem/P3397) 
--    [P4552 \[Poetize6\] IncDec Sequence](https://www.luogu.com.cn/problem/P4552) 
+-    [「Poetize6」 IncDec Sequence](https://www.luogu.com.cn/problem/P4552) 
 
 ## 树上差分
 
