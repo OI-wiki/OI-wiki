@@ -2,7 +2,7 @@
 name: 添加新内容
 about: 申请添加某个 topic
 title: add
-labels: 内容请求 / Content Request, 需要帮助 / help wanted
+labels: Content Request / 内容请求, help wanted / 需要帮助
 assignees: ''
 
 ---

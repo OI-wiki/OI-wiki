@@ -2,7 +2,7 @@
 name: 页面内容有误
 about: 指出出现的问题
 title: "[BUG]"
-labels: 锅 / bug, 需要帮助 / help wanted
+labels: Content Bug / 页面内容有误, help wanted / 需要帮助
 assignees: ''
 
 ---

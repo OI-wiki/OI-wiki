@@ -2,7 +2,7 @@
 name: 内容无关的 bug
 about: 指出出现的问题
 title: "[BUG]"
-labels: 锅 / bug, 需要帮助 / help wanted
+labels: Other Bug / 内容无关的 Bug
 assignees: ''
 
 ---
