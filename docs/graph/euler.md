@@ -65,7 +65,7 @@ $$
 9 &  \qquad \textbf{for} \text{ each } v \in circle \\
 10&  \qquad\qquad v \gets \text{Hierholzer}(v) \\
 11&  \qquad \textbf{return } circle \\
-12&  \textbf{Endfunction}
+12&  \textbf{Endfunction}\\
 13&  \textbf{return } \text{Hierholzer}(\text{any vertex})
 \end{array}
 $$
