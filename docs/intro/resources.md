@@ -10,13 +10,13 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [BZOJ](https://www.lydsy.com/JudgeOnline/) 因原属衡阳八中而得简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。  
     BZOJ 上有大量题目只有付费用户才能提交。2018 年 BZOJ 测试数据泄露，催生了 DarkBZOJ。
 -    [Comet OJ](https://www.cometoj.com) 始于 2018 年，旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库。
--    [CodeVS](http://www.codevs.cn/) 面向 OI 选手的过气 OJ。
+    <!-- - [CodeVS](http://www.codevs.cn/) 面向 OI 选手的过气 OJ。 -->
 -    [FZUOJ](http://acm.fzu.edu.cn/) 始于 2008 年，福州大学在线评测系统。
 -    [HDU Online Judge](http://acm.hdu.edu.cn/) 始于 2005 年，杭州电子科技大学在线评测系统，有多校训练的题目。
 -    [hihoCoder](https://hihocoder.com/) 始于 2012 年，面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（登录后方可查看题面）
 -    [计蒜客](https://www.jisuanke.com/) 北京矩道优达网络科技有限公司旗下的核心产品，提供按知识点和难度筛选的信息学题库和 ICPC 题库。
 -    [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck) ，可以将评测程序的运行时间精确到 $\mu s$ 。（题目较少）
--    [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。
+    <!--  - [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。-->
 -    [LibreOJ](https://loj.ac/) 始于 2017 年。
     目前由 [Menci](https://github.com/Menci) 维护。
     Libre 取自由之意，基于开源项目 [SYZOJ](https://github.com/syzoj/syzoj) 。
@@ -67,6 +67,8 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [Topcoder 整理的教程](https://www.topcoder.com/community/competitive-programming/tutorials/) 
 -    [校招面试指南](https://github.com/jwasham/coding-interview-university) 
 -    [由 hzwer 收集整理自互联网的课件](https://github.com/hzwer/sharePPT) 
+-    [Trinkle23897 的课件](https://github.com/Trinkle23897/oi_slides) 
+-    [huzecong 的课件](https://github.com/huzecong/oi-slides) 
 
 ## 书籍
 
