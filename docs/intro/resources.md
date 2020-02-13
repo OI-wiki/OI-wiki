@@ -67,8 +67,8 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [Topcoder 整理的教程](https://www.topcoder.com/community/competitive-programming/tutorials/) 
 -    [校招面试指南](https://github.com/jwasham/coding-interview-university) 
 -    [由 hzwer 收集整理自互联网的课件](https://github.com/hzwer/sharePPT) 
--    [Trinkle23897 的课件](https://github.com/Trinkle23897/oi_slides)
--    [huzecong 的课件](https://github.com/huzecong/oi-slides)
+-    [Trinkle23897 的课件](https://github.com/Trinkle23897/oi_slides) 
+-    [huzecong 的课件](https://github.com/huzecong/oi-slides) 
 
 ## 书籍
 
