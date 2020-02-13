@@ -16,7 +16,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [hihoCoder](https://hihocoder.com/) 始于 2012 年，面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（登录后方可查看题面）
 -    [计蒜客](https://www.jisuanke.com/) 北京矩道优达网络科技有限公司旗下的核心产品，提供按知识点和难度筛选的信息学题库和 ICPC 题库。
 -    [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck) ，可以将评测程序的运行时间精确到 $\mu s$ 。（题目较少）
-    &lt;-- - [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。-->
+    <!--  - [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。-->
 -    [LibreOJ](https://loj.ac/) 始于 2017 年。
     目前由 [Menci](https://github.com/Menci) 维护。
     Libre 取自由之意，基于开源项目 [SYZOJ](https://github.com/syzoj/syzoj) 。
@@ -67,6 +67,8 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [Topcoder 整理的教程](https://www.topcoder.com/community/competitive-programming/tutorials/) 
 -    [校招面试指南](https://github.com/jwasham/coding-interview-university) 
 -    [由 hzwer 收集整理自互联网的课件](https://github.com/hzwer/sharePPT) 
+-    [Trinkle23897 的课件](https://github.com/Trinkle23897/oi_slides)
+-    [huzecong 的课件](https://github.com/huzecong/oi-slides)
 
 ## 书籍
 
