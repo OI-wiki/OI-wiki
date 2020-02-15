@@ -113,7 +113,7 @@ void unionSet(int x, int y) {
 
  $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0\\A(m-1,A(m,n-1))&\text{otherwise}\end{cases}$ 
 
-而反 Ackermann 函数 $\alpha(n)$ 的定义是最大的整数 $m$ 使得 $A(m, m) \leqslant n$ 。
+而反 Ackermann 函数 $\alpha(n)$ 的定义是阿克曼函数的反函数，即为最大的整数 $m$ 使得 $A(m, m) \leqslant n$ 。
 
 ### 空间复杂度
 
