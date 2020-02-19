@@ -63,3 +63,5 @@ int main(int argc, char** argv) {
   quitf(_ok, "guessed the number with %d questions!", 50 - left);
 }
 ```
+
+ **本文主要翻译自 [Interactors with testlib.h - Codeforces](https://codeforces.com/blog/entry/18455) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 
