@@ -39,11 +39,11 @@ int main(int argc, char* argv[]) {
 ### 不好的实现
 
 ```cpp
-/* clang-format off */
+// clang-format off
 
+#include "testlib.h"
 #include <map>
 #include <vector>
-#include "testlib.h"
 using namespace std;
 
 map<pair<int, int>, int> edges;
@@ -117,11 +117,11 @@ int main(int argc, char* argv[]) {
 ### 好的实现
 
 ```cpp
-/* clang-format off */
+// clang-format off
 
+#include "testlib.h"
 #include <map>
 #include <vector>
-#include "testlib.h"
 using namespace std;
 
 map<pair<int, int>, int> edges;
