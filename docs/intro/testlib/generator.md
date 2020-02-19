@@ -5,8 +5,10 @@ Generator，即数据生成器。当数据很大，手造会累死的时候，�
 生成两个 $[1,n]$ 范围内的整数：
 
 ```cpp
-#include <iostream>
+/* clang-format off */
+
 #include "testlib.h"
+#include <iostream>
 
 using namespace std;
 
