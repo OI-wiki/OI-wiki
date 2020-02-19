@@ -16,7 +16,7 @@ $$
 
 设一个质数为 $p$ ，我们取一个不为 $p$ 倍数的数 $a$ 。
 
-构造一个序列： $A=\{1,2,3\dots,n-1\}$ ，这个序列有着这样一个性质：
+构造一个序列： $A=\{1,2,3\dots,p-1\}$ ，这个序列有着这样一个性质：
 
 $$
 \prod_{i=1}^{n}\space A_i\equiv\prod_{i=1}^{n} (A_i\times a) \pmod p
@@ -35,7 +35,7 @@ $$
 设 $f=(p-1)!$ , 则 $f\equiv a\times A_1\times a\times A_2\times a \times A_3 \dots \times  A_{p-1} \pmod p$ 
 
 $$
-a^{p-1}\times f \equiv f \mod p \\ 	a^{p-1} \equiv 1 \pmod p
+a^{p-1}\times f \equiv f \pmod p \\ 	a^{p-1} \equiv 1 \pmod p
 $$
 
 证毕。
