@@ -24,8 +24,8 @@ Lemon 所需的修改版 Testlib 可以在 [这里](https://paste.ubuntu.com/p/J
 ```cpp
 /* clang-format off */
 
-#include "testlib.h"
 #include <cmath>
+#include "testlib.h"
 int main(int argc, char *argv[]) {
   /*
    * inf：输入

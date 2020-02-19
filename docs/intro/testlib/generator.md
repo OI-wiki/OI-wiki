@@ -7,8 +7,8 @@ Generator，即数据生成器。当数据很大，手造会累死的时候，�
 ```cpp
 /* clang-format off */
 
-#include "testlib.h"
 #include <iostream>
+#include "testlib.h"
 
 using namespace std;
 
