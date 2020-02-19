@@ -94,7 +94,7 @@ for (int i = 0; i + 1 < n; i++)
 
 -   严格遵循题目的格式要求，如空格和换行，注意文件的末尾应有一个换行。
 -   对于大数据首选 `printf` 而非 `cout` ，以提高性能。（不建议在使用 Testlib 时关闭流同步）
--   不使用 UB（Undefined Behavior，未定义行为），如本文开头的那个示例，输出如果写成 `cout <<rnd.next(1, n) << " " << rnd.next(1, n) << endl;` ，则 `rnd.next()` 的调用顺序没有定义。
+-   不使用 UB（Undefined Behavior，未定义行为），如本文开头的那个示例，输出如果写成 `cout << rnd.next(1, n) << " " << rnd.next(1, n) << endl;` ，则 `rnd.next()` 的调用顺序没有定义。
 
 ## 更多示例
 

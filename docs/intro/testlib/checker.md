@@ -218,14 +218,14 @@ int main(int argc, char* argv[]) {
     // ....
     int pos = ouf.readInt();
     int x = A[pos];
-    // 100% 会 RE。一定会有人输出 -42, 2147483456 或其他一些非法数字
+    // 可能会有人输出 -42, 2147483456 或其他一些非法数字导致 checker RE
     ```
 
     ##### 正面教材
 
     ```cpp
     // ....
-    int k = ouf.readInt(0, n);  // 负数会 WA
+    int k = ouf.readInt(0, n);  // 长度不合法会立刻判 WA 而不会继续 check 导致 RE
     vector<int> lst;
     for (int i = 0; i < k; i++) lst.push_back(ouf.readInt());
     // ....
