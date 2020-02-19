@@ -39,9 +39,9 @@ int main(int argc, char* argv[]) {
 ### 不好的实现
 
 ```cpp
-#include "testlib.h"
 #include <map>
 #include <vector>
+#include "testlib.h"
 using namespace std;
 
 map<pair<int, int>, int> edges;
@@ -115,9 +115,9 @@ int main(int argc, char* argv[]) {
 ### 好的实现
 
 ```cpp
-#include "testlib.h"
 #include <map>
 #include <vector>
+#include "testlib.h"
 using namespace std;
 
 map<pair<int, int>, int> edges;
@@ -210,10 +210,10 @@ int main(int argc, char* argv[]) {
     vector<int> lst;
     for (int i = 0; i < k; i++)  // k = 0 和 k = -5 在这里作用相同（不会进入循环体）
       lst.push_back(ouf.readInt());
-      // 但是我们并不想接受一个长度为 -5 的 list，不是吗？
+    // 但是我们并不想接受一个长度为 -5 的 list，不是吗？
     // ....
     int pos = ouf.readInt();
-    int x = A[pos];  
+    int x = A[pos];
     // 100% 会 RE。一定会有人输出 -42, 2147483456 或其他一些非法数字
     ```
 
@@ -223,8 +223,7 @@ int main(int argc, char* argv[]) {
     // ....
     int k = ouf.readInt(0, n);  // 负数会 WA
     vector<int> lst;
-    for (int i = 0; i < k; i++)
-      lst.push_back(ouf.readInt());
+    for (int i = 0; i < k; i++) lst.push_back(ouf.readInt());
     // ....
     int pos = ouf.readInt(0, (int)A.size() - 1);  // 防止 out of range
     int x = A[pos];
@@ -235,10 +234,10 @@ int main(int argc, char* argv[]) {
 
 ## 使用方法
 
-通常我们不需要本地运行它，评测工具 / OJ 会帮我们做好这一切。但是如果需要的话，以以下格式在命令行运行：
+通常我们不需要本地运行它，评测工具/OJ 会帮我们做好这一切。但是如果需要的话，以以下格式在命令行运行：
 
 ```bash
 ./checker <input-file> <output-file> <answer-file> [<report-file> [<-appes>]]
 ```
 
-**本文主要翻译自 [Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 
+ **本文主要翻译自 [Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 

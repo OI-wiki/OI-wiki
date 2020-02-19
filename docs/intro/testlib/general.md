@@ -73,7 +73,7 @@
 
 ## 首先 include testlib.h
 
-请确保 testlib.h 是你 include 的 **第一个** 头文件，Testlib 会重写/禁用（通过名字冲突的方式）一些与随机有关的函数（如 `random()`），保证随机结果与环境无关，这对于 generator 非常重要，[generator 页面](./generator.md)会详细说明这一点。
+请确保 testlib.h 是你 include 的 **第一个** 头文件，Testlib 会重写/禁用（通过名字冲突的方式）一些与随机有关的函数（如 `random()` ），保证随机结果与环境无关，这对于 generator 非常重要， [generator 页面](./generator.md) 会详细说明这一点。
 
 ## 使用项别名
 
@@ -104,5 +104,4 @@ ensuref(s.length() % 2 == 0,
 
     成员函数 `InStream::ensuref/ensure()` 一般用于判断选手和参考程序的输出是否合法。当 `InStream` 为 `ouf` 时，返回 `_wa` ；为 `inf` （一般不使用）或 `ans` 时，返回 `_fail` 。详见[Checker - 编写 readAns 函数](./checker.md#_3)。
 
-
-**本文主要翻译并综合自 [Testlib - Codeforces](https://codeforces.com/testlib) 系列。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。** 
+ **本文主要翻译并综合自 [Testlib - Codeforces](https://codeforces.com/testlib) 系列。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 

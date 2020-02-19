@@ -2,8 +2,6 @@
 
 Testlib 库仅有 `testlib.h` 一个文件，使用时仅需在所编写的程序开头添加 `#include "testlib.h"` 即可。
 
-
-
 Testlib 的具体用途：
 
 -   编写 [Generator](./generator.md) ，即数据生成器。
