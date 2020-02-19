@@ -374,7 +374,11 @@ nav:
     - 在一台机器上规划任务: misc/job-order.md
   - 专题:
     - RMQ: topic/rmq.md
-    - 带花树算法: topic/blossom.md
+    - 图的匹配:
+      - 图匹配定义: topic/graph-matching/graph-matching.md
+      - 增广路: topic/graph-matching/augmenting-path.md
+      - 二分图最大匹配: topic/graph-matching/bipartite-matching.md
+      - 一般图最大匹配: topic/graph-matching/general-matching.md
     - 出题: topic/problemsetting.md
   - 关于 Hulu:
     -  关于 Hulu: intro/hulu.md
