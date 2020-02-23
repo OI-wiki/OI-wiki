@@ -278,19 +278,13 @@ $$
 通过定义可以证明。
 
 $$
-\sum_{k=1}^m\binom{m}{k}\binom{n}{k}=\binom{m+n}{m}\tag{12}
-$$
-
-可以通过组合意义证明。
-
-$$
-\sum_{i=0}^n\binom{n-i}{i}=F_{n+1}\tag{13}
+\sum_{i=0}^n\binom{n-i}{i}=F_{n+1}\tag{12}
 $$
 
 其中 $F$ 是斐波那契数列。
 
 $$
-\sum_{l=0}^n \binom{l}{k} = \binom{n+1}{k+1}\tag{14}
+\sum_{l=0}^n \binom{l}{k} = \binom{n+1}{k+1}\tag{13}
 $$
 
 通过组合分析——考虑 $S={a_1, a_2, \cdots, a_{n+1}}$ 的 $k+1$ 子集数可以得证。
