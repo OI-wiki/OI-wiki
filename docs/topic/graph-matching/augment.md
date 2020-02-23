@@ -11,7 +11,7 @@ author: accelsao
 
 ![augment-1](./images/augment-1.png)
 
-如图 匹配数从 2 增加为 3，我们称此过程为**增广**。
+如图 匹配数从 2 增加为 3，我们称此过程为 **增广** 。
 
 根据 Berge's lemma 当找不到增广路的时候，得到最大匹配。
 

@@ -41,7 +41,7 @@ author: accelsao
 
 # 算法
 
-组合优化中的一个基本问题是求**最大匹配（maximum matching)**。
+组合优化中的一个基本问题是求 **最大匹配（maximum matching)** 。
 
 ## 二分图最大匹配
 
