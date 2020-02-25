@@ -211,7 +211,7 @@ pagetime:
 
 注：这里记录的 ID 是对应到 Github Profile 的地址（即点击 Github 页面右上角之后跳转到的个人主页的 url）
 
-### \_redirects 文件怎么用
+### 重定向文件怎么用
 
  `_redirects` 文件用于生成 [netlify 的配置](https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file) 和 [nginx 的配置](https://github.com/OI-wiki/OI-wiki/blob/master/scripts/gen_redirect.py) 
 

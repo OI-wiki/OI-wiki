@@ -3,5 +3,5 @@ nginx = open('site/redirect-nginx.conf', 'w')
 for cur in f.readlines():
     s, t = cur.strip().split(' ')
     s = s.rstrip('/') + '(\/?(index\.html)?)'
-    t += ';'
+    t = 'https://oi-wiki.org' + t + ';'
     nginx.write('~' + s + ' ' + t + "\n")
