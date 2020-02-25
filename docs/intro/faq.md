@@ -217,7 +217,7 @@ pagetime:
 
 每一行表示一个重定向规则，分别写跳转的起点和终点的 url（不包含域名）：
 
-```
+```text
 /path/to/src /path/to/desc
 ```
 
