@@ -210,3 +210,15 @@ pagetime:
 是因为 Github API 在文件目录变更后不能跟踪统计，我们在文件头手动维护了一个作者列表来解决这个问题。如果你发现自己写过一个页面中的部分内容，但是没有被记录在页面的作者去，可以把自己的 Github ID 加入到文件头的 `author` 字段，格式是 `author: Ir1d, cjsoft` ，相邻两个 ID 之间用 `,·` （逗号和空格）隔开。
 
 注：这里记录的 ID 是对应到 Github Profile 的地址（即点击 Github 页面右上角之后跳转到的个人主页的 url）
+
+### _redirects 文件怎么用
+
+`_redirects` 文件用于生成 [netlify 的配置](https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file) 和 [nginx 的配置](https://github.com/OI-wiki/OI-wiki/blob/master/scripts/gen_redirect.py)
+
+每一行表示一个重定向规则，分别写跳转的起点和终点的 url（不包含域名）：
+
+```
+/path/to/src /path/to/desc
+```
+
+注：所有跳转均为 301 跳转，只有在修改目录中 url 造成死链的时候需要修改。
