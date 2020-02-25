@@ -20,6 +20,7 @@ script:
   - mkdocs build -v
   - find ./site -type f -name '*.html' -exec node --max_old_space_size=512 ./scripts/render_math.js {} \;
   - npx gulp minify
+  - python scripts/gen_redirect.py
   - set +e
 deploy:
   provider: pages
