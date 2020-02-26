@@ -255,7 +255,7 @@ nav:
     - 单调栈: ds/monotonous-stack.md
     - 单调队列: ds/monotonous-queue.md
     - ST 表: ds/sparse-table.md
-    - 树状数组: ds/bit.md
+    - 树状数组: ds/fenwick.md
     - 线段树: ds/seg.md
     - 区间最值操作 & 区间历史最值: ds/seg-beats.md
     - 划分树: ds/dividing.md

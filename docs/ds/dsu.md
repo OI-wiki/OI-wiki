@@ -116,7 +116,7 @@ void unionSet(int x, int y) {
 
 而反 Ackermann 函数 $\alpha(n)$ 的定义是阿克曼函数的反函数，即为最大的整数 $m$ 使得 $A(m, m) \leqslant n$ 。
 
-时间复杂度的证明 [在这个页面中](./dsu_complexy.md) 。
+时间复杂度的证明 [在这个页面中](./dsu_complexity.md) 。
 
 ### 空间复杂度
 

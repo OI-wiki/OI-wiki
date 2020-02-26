@@ -1,3 +1,5 @@
+author: orzAtalod
+
 ## 并查集时间复杂度证明
 
 本部分内容转载并修改自 [时间复杂度 - 势能分析浅谈](https://www.luogu.com.cn/blog/Atalod/shi-jian-fu-za-du-shi-neng-fen-xi-qian-tan) ，已取得原作者授权同意。
