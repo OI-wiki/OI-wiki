@@ -213,7 +213,7 @@ pagetime:
 
 ### 重定向文件怎么用
 
- `_redirects` 文件用于生成 [netlify 的配置](https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file) 和 [nginx 的配置](https://github.com/OI-wiki/OI-wiki/blob/master/scripts/gen_redirect.py) 
+ `_redirects` 文件用于生成 [netlify 的配置](https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file) 和 [用于跳转的文件](https://github.com/OI-wiki/OI-wiki/blob/master/scripts/gen_redirect.py) 
 
 每一行表示一个重定向规则，分别写跳转的起点和终点的 url（不包含域名）：
 

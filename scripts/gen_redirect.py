@@ -9,6 +9,6 @@ for cur in f.readlines():
     html_path = os.path.join('site', s.lstrip('/'), 'index.html')
     os.makedirs(os.path.dirname(html_path), exist_ok=True)
     with open(html_path, 'w') as html_file:
-        # print(f"<script type=\"text/javascript>location.href=\"{t}\"</script>")
-        html_file.write(f"<script type=\"text/javascript>location.href=\"{t}\"</script>\n")
+        # print(f"<script type=\"text/javascript\">location.href=\"{t}\"</script>")
+        html_file.write(f"<script type=\"text/javascript\">location.href=\"{t}\"</script>\n")
         # print(html_path)
