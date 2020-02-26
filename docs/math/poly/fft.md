@@ -242,25 +242,23 @@ $$
 
 ???+ note "蝴蝶变换实现（O(n) 递推版）"
     ```cpp
-    	//同样需要保证 len 是 2 的幂
-    	//记 rev[i] 为 i 翻转后的值
-    	void change(Complex y[], int len)
-    	{
-    		for(int i=0;i<len;++i) {
-    			rev[i]=rev[i>>1]>>1;
-    			if(i&1) {	//如果最后一位是 1，则翻转成 len/2
-    				rev[i]|=len>>1;
-    			}
-    		}
-    		for(int i=0;i<len;++i) {
-    			if(i<rev[i]) {	//保证每对数只翻转一次
-    				swap(y[i],y[rev[i]]);
-    			}
-    		}
-    		return;
+    //同样需要保证 len 是 2 的幂
+    //记 rev[i] 为 i 翻转后的值
+    void change(Complex y[], int len) {
+      for (int i = 0; i < len; ++i) {
+        rev[i] = rev[i >> 1] >> 1;
+        if (i & 1) {  //如果最后一位是 1，则翻转成 len/2
+          rev[i] |= len >> 1;
         }
+      }
+      for (int i = 0; i < len; ++i) {
+        if (i < rev[i]) {  //保证每对数只翻转一次
+          swap(y[i], y[rev[i]]);
+        }
+      }
+      return;
+    }
     ```
-
 
 ## 快速傅里叶逆变换
 
