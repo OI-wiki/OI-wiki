@@ -67,7 +67,7 @@ $$
 g(1)S(n)=\sum_{i=1}^n(f\ast g)(i)-\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
 
-那么假如我们可以快速对 $\sum_{i=1}^n(f\times g)(i)$ 求和，并用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 就可以在较短时间内求得 $g(1)S(n)$ .
+那么假如我们可以快速对 $\sum_{i=1}^n(f \ast g)(i)$ 求和，并用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 就可以在较短时间内求得 $g(1)S(n)$ .
 
 ## 问题一
 
@@ -78,7 +78,7 @@ $$
 
 由 **狄利克雷卷积** ，我们知道：
 
- $\because \epsilon =\mu * 1$ （ $\epsilon(n)=~[n=1]$ ）
+ $\because \epsilon =\mu \ast 1$ （ $\epsilon(n)=~[n=1]$ ）
 
  $\therefore \epsilon (n)=\sum_{d|n} \mu(d)$ 
 

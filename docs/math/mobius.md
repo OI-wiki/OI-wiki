@@ -126,10 +126,10 @@ Dirichlet 卷积满足交换律和结合律。
 
 $$
 \begin{aligned}
-\varepsilon=\mu*1&\iff\varepsilon(n)=\sum_{d\mid n}\mu(d)\\
-d=1*1&\iff d(n)=\sum_{d\mid n}1\\
-\sigma=d*1&\iff\sigma(n)=\sum_{d\mid n}d\\
-\varphi=\mu*\text{ID}&\iff\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
+\varepsilon=\mu \ast 1&\iff\varepsilon(n)=\sum_{d\mid n}\mu(d)\\
+d=1 \ast 1&\iff d(n)=\sum_{d\mid n}1\\
+\sigma=d \ast 1&\iff\sigma(n)=\sum_{d\mid n}d\\
+\varphi=\mu \ast \text{ID}&\iff\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
 \end{aligned}
 $$
 
@@ -216,12 +216,12 @@ $$
 证明
 
 $$
-\varphi*1=\text{ID}\text{（ID 函数即 } f(x)=x\text{）}
+\varphi \ast 1=\text{ID}\text{（ID 函数即 } f(x)=x\text{）}
 $$
 
 将 $n$ 分解质因数： $\displaystyle n=\prod_{i=1}^k {p_i}^{c_i}$ 
 
-首先，因为 $\varphi$ 是积性函数，故只要证明当 $n'=p^c$ 时 $\displaystyle\varphi*1=\sum_{d\mid n'}\varphi(\frac{n'}{d})=\text{ID}$ 成立即可。
+首先，因为 $\varphi$ 是积性函数，故只要证明当 $n'=p^c$ 时 $\displaystyle\varphi \ast 1=\sum_{d\mid n'}\varphi(\frac{n'}{d})=\text{ID}$ 成立即可。
 
 因为 $p$ 是质数，于是 $d=p^0,p^1,p^2,\cdots,p^c$ 
 
@@ -229,7 +229,7 @@ $$
 
 $$
 \begin{aligned}
-\varphi*1&=\sum_{d\mid n}\varphi(\frac{n}{d})\\
+\varphi \ast 1&=\sum_{d\mid n}\varphi(\frac{n}{d})\\
 &=\sum_{i=0}^c\varphi(p^i)\\
 &=1+p^0\cdot(p-1)+p^1\cdot(p-1)+\cdots+p^{c-1}\cdot(p-1)\\
 &=p^c\\
