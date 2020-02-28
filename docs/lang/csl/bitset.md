@@ -83,7 +83,7 @@ bitset<1000> bs;  // a bitset with 1000 bits
 
 ## 应用
 
-###  [LibreOJ β Round #2」贪心只能过样例](https://loj.ac/problem/515) 
+###  [「LibreOJ β Round #2」贪心只能过样例](https://loj.ac/problem/515) 
 
 这题可以用 dp 做，转移方程很简单：
 
