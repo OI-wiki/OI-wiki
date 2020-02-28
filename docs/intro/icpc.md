@@ -37,13 +37,11 @@ OJ 里查询用的关键词： `Multi-University Training Contest`
 
 寒假的时候头条/清华/CCPC(Wannafly Camp) 都办 Camp
 
-WannaFly Camp
+Wannafly Camp
 
 ### 队伍维基
 
 -   叉姐的 ICPCCamp Wiki <https://icpc.camp/> 
-
-> OI Wiki 这边也在筹备类似的功能，有需求的队伍可以来联系
 
 ## 训练资源
 

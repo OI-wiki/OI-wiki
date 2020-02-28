@@ -3,7 +3,7 @@
 ???+ warning
     spj 还应当判断文件尾是否有多余内容，及输出格式是否正确（如题目要求数字间用一个空格隔开，而选手却使用了换行）。但是，目前前者只有 Testlib 可以方便地做到这一点，而后者几乎无人去特意进行这种判断。
 
-    浮点数时应注意 nan，不合理的判断方式会导致输出 nan 即可 AC。
+    判断浮点数时应注意 nan，不合理的判断方式会导致输出 nan 即可 AC。
 
 以下均使用 C++，以“要求标准答案与选手答案差值小于 1e-3，文件名为 num”为例。
 
@@ -13,7 +13,7 @@ Testlib 的介绍见 [Testlib/简介](./testlib/index.md) 页面，用法见 [Te
 
 必须使用 Testlib 做 spj 的 评测工具/OJ：Codeforces、洛谷、UOJ 等
 
-可以使用 Testlib 做 spj 的 评测工具/OJ：LibreOJ(SYZOJ 2)、Lemon 等
+可以使用 Testlib 做 spj 的 评测工具/OJ：LibreOJ (SYZOJ 2)、Lemon、牛客网等
 
 SYZOJ 2 所需的修改版 Testlib 可以在 [这里](https://pastebin.com/3GANXMG7) 获取到，感谢 [cyand1317](https://loj.ac/article/124) 。
 
@@ -22,8 +22,10 @@ Lemon 所需的修改版 Testlib 可以在 [这里](https://paste.ubuntu.com/p/J
 其他评测工具/OJ 大部分需要按照其 spj 编写格式修改 Testlib（并将 testlib.h 与 spj 一同上传，或将 testlib.h 置于 include 目录）。
 
 ```cpp
-#include <cmath>
+// clang-format off
+
 #include "testlib.h"
+#include <cmath>
 int main(int argc, char *argv[]) {
   /*
    * inf：输入
@@ -52,7 +54,7 @@ int main(int argc, char* argv[]) {
    * argv[2]：选手输出
    * argv[3]：标准输出
    * argv[4]：单个测试点分值
-   * argv[5]：输出最终得分
+   * argv[5]：输出最终得分 (0 ~ argv[4])
    * argv[6]：输出错误报告
    */
   FILE* fin = fopen(argv[1], "r");
@@ -84,7 +86,7 @@ int main(int argc, char* argv[]) {
    * FILENAME.out：选手输出
    * argv[2]：标准输出
    * argv[1]：单个测试点分值
-   * score.log：输出最终得分
+   * score.log：输出最终得分 (0 ~ argv[1])
    * report.log：输出错误报告
    */
   FILE* fin = fopen("num.in", "r");
@@ -115,7 +117,7 @@ int main(int argc, char* argv[]) {
    * stdin：输入
    * argv[3]：选手输出
    * argv[2]：标准输出
-   * stdout:L1：输出最终得分比率
+   * stdout:L1：输出最终得分比率 (0 ~ 1)
    * stdout:L2：输出错误报告
    */
   FILE* fout = fopen(argv[3], "r");
@@ -149,6 +151,7 @@ int main(int argc, char* argv[]) {
    * argv[2]：标准输出
    * exit code：返回判断结果
    */
+  FILE* fin = fopen(argv[1], "r");
   FILE* fout = fopen(argv[3], "r");
   FILE* fstd = fopen(argv[2], "r");
   double pans, jans;
@@ -193,9 +196,9 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-## LibreOJ(SYZOJ 2)
+## LibreOJ (SYZOJ 2)
 
- **LibreOJ(SYZOJ 2) 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib) ** 
+ **LibreOJ (SYZOJ 2) 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib) ** 
 
 ```cpp
 #include <cmath>
@@ -206,7 +209,7 @@ int main(int argc, char* argv[]) {
    * user_out：选手输出
    * answer：标准输出
    * code：选手代码
-   * stdout：输出最终得分
+   * stdout：输出最终得分 (0 ~ 100)
    * stderr：输出错误报告
    */
   FILE* fin = fopen("in", "r");
@@ -223,5 +226,36 @@ int main(int argc, char* argv[]) {
     printf("%d", 0);
     fprintf(stderr, "Too big or too small, expected %f, found %f", jans, pans);
   }
+}
+```
+
+## 牛客网
+
+ **牛客网有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib) ** 
+
+牛客网的官方教程： <https://www.nowcoder.com/discuss/84666> 
+
+```cpp
+#include <cmath>
+#include <cstdio>
+#define AC 0
+#define WA 1
+int main(int argc, char* argv[]) {
+  /*
+   * input：输入
+   * user_output：选手输出
+   * output：标准输出
+   * exit code：返回判断结果
+   */
+  FILE* fin = fopen("input", "r");
+  FILE* fout = fopen("user_output", "r");
+  FILE* fstd = fopen("output", "r");
+  double pans, jans;
+  fscanf(fout, "%lf", &pans);
+  fscanf(fstd, "%lf", &jans);
+  if (abs(pans - jans) < 1e-3)
+    return AC;
+  else
+    return WA;
 }
 ```

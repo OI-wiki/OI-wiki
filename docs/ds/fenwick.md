@@ -1,4 +1,4 @@
-author: HeRaNO, Zhoier
+author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicun, Ycrpro
 
 ## 简介
 
@@ -16,7 +16,7 @@ author: HeRaNO, Zhoier
 
 如果要具体了解树状数组的工作原理，请看下面这张图：
 
-![](./images/bit1.png)
+![](./images/fenwick1.png)
 
 这个结构的思想和线段树有些类似：用一个大节点表示一些小节点的信息，进行查询的时候只需要查询一些大节点而不是更多的小节点。
 

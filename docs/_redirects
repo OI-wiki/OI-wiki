@@ -1,0 +1,12 @@
+/intro/editor/vim /lang/editor/vim
+/intro/editor/emacs /lang/editor/emacs
+/intro/editor/vscode /lang/editor/vscode
+/intro/editor/atom /lang/editor/atom
+/intro/editor/eclipse /lang/editor/eclipse
+/intro/editor/npp /lang/editor/npp
+/intro/editor/devcpp /lang/editor/devcpp
+/math/sign /math/notation
+/graph/tree-misc /graph/tree-centroid
+/graph/bridge /graph/cut
+/graph/misc /graph/concept
+/graph/basic /graph/save
