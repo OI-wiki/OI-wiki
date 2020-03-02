@@ -20,34 +20,35 @@ Prufer 是这样建立的：每次选择一个编号最小的叶结点并删掉�
 
 显然使用堆可以做到 $O(n\log n)$ 的复杂度
 
-```cpp
-// 代码摘自原文，结点是从 0 标号的
-vector<vector<int>> adj;
-
-vector<int> pruefer_code() {
-  int n = adj.size();
-  set<int> leafs;
-  vector<int> degree(n);
-  vector<bool> killed(n, false);
-  for (int i = 0; i < n; i++) {
-    degree[i] = adj[i].size();
-    if (degree[i] == 1) leafs.insert(i);
-  }
-
-  vector<int> code(n - 2);
-  for (int i = 0; i < n - 2; i++) {
-    int leaf = *leafs.begin();
-    leafs.erase(leafs.begin());
-    killed[leaf] = true;
-    int v;
-    for (int u : adj[leaf])
-      if (!killed[u]) v = u;
-    code[i] = v;
-    if (--degree[v] == 1) leafs.insert(v);
-  }
-  return code;
-}
-```
+??? "参考代码"
+    ```cpp
+    // 代码摘自原文，结点是从 0 标号的
+    vector<vector<int>> adj;
+    
+    vector<int> pruefer_code() {
+      int n = adj.size();
+      set<int> leafs;
+      vector<int> degree(n);
+      vector<bool> killed(n, false);
+      for (int i = 0; i < n; i++) {
+        degree[i] = adj[i].size();
+        if (degree[i] == 1) leafs.insert(i);
+      }
+    
+      vector<int> code(n - 2);
+      for (int i = 0; i < n - 2; i++) {
+        int leaf = *leafs.begin();
+        leafs.erase(leafs.begin());
+        killed[leaf] = true;
+        int v;
+        for (int u : adj[leaf])
+          if (!killed[u]) v = u;
+        code[i] = v;
+        if (--degree[v] == 1) leafs.insert(v);
+      }
+      return code;
+    }
+    ```
 
 给一个例子吧，这是一棵 7 个结点的树的 Prufer 序列构建过程：
 
@@ -76,45 +77,46 @@ vector<int> pruefer_code() {
 
 算法复杂度分析，发现每条边最多被访问一次（在删度数的时侯），而指针最多遍历每个结点一次，因此复杂度是 $O(n)$ 的。
 
-```cpp
-// 从原文摘的代码，同样以 0 为起点
-vector<vector<int>> adj;
-vector<int> parent;
-
-void dfs(int v) {
-  for (int u : adj[v]) {
-    if (u != parent[v]) parent[u] = v, dfs(u);
-  }
-}
-
-vector<int> pruefer_code() {
-  int n = adj.size();
-  parent.resize(n), parent[n - 1] = -1;
-  dfs(n - 1);
-
-  int ptr = -1;
-  vector<int> degree(n);
-  for (int i = 0; i < n; i++) {
-    degree[i] = adj[i].size();
-    if (degree[i] == 1 && ptr == -1) ptr = i;
-  }
-
-  vector<int> code(n - 2);
-  int leaf = ptr;
-  for (int i = 0; i < n - 2; i++) {
-    int next = parent[leaf];
-    code[i] = next;
-    if (--degree[next] == 1 && next < ptr) {
-      leaf = next;
-    } else {
-      ptr++;
-      while (degree[ptr] != 1) ptr++;
-      leaf = ptr;
+??? "参考代码"
+    ```cpp
+    // 从原文摘的代码，同样以 0 为起点
+    vector<vector<int>> adj;
+    vector<int> parent;
+    
+    void dfs(int v) {
+      for (int u : adj[v]) {
+        if (u != parent[v]) parent[u] = v, dfs(u);
+      }
     }
-  }
-  return code;
-}
-```
+    
+    vector<int> pruefer_code() {
+      int n = adj.size();
+      parent.resize(n), parent[n - 1] = -1;
+      dfs(n - 1);
+    
+      int ptr = -1;
+      vector<int> degree(n);
+      for (int i = 0; i < n; i++) {
+        degree[i] = adj[i].size();
+        if (degree[i] == 1 && ptr == -1) ptr = i;
+      }
+    
+      vector<int> code(n - 2);
+      int leaf = ptr;
+      for (int i = 0; i < n - 2; i++) {
+        int next = parent[leaf];
+        code[i] = next;
+        if (--degree[next] == 1 && next < ptr) {
+          leaf = next;
+        } else {
+          ptr++;
+          while (degree[ptr] != 1) ptr++;
+          leaf = ptr;
+        }
+      }
+      return code;
+    }
+    ```
 
 ### Prufer 序列的性质
 

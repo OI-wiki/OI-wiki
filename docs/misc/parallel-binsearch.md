@@ -102,44 +102,45 @@ void solve(int l, int r, vector<Query> q) {
 
 参考代码（关键部分）
 
-```cpp
-struct Num {
-  int p, x;
-};  // 位于数列中第 p 项的数的值为 x
-struct Query {
-  int l, r, k, id;
-};  // 一个编号为 id, 询问 [l,r] 中第 k 大数的询问
-int ans[N];
-void add(int p, int x);  // 树状数组, 在 p 位置加上 x
-int query(int p);        // 树状数组, 求 [1,p] 的和
-void clear();            // 树状数组, 清空
-void solve(int l, int r, vector<Num> a, vector<Query> q)
-// a中为给定数列中值在值域区间 [l,r] 中的数
-{
-  int m = (l + r) / 2;
-  if (l == r) {
-    for (unsigned i = 0; i < q.size(); i++) ans[q[i].id] = l;
-    return;
-  }
-  vector<Num> a1, a2;
-  vector<Query> q1, q2;
-  for (unsigned i = 0; i < a.size(); i++)
-    if (a[i].x <= m)
-      a1.push_back(a[i]), add(a[i].p, 1);
-    else
-      a2.push_back(a[i]);
-  for (unsigned i = 0; i < q.size(); i++) {
-    int t = query(q[i].r) - query(q[i].l - 1);
-    if (q[i].k <= t)
-      q1.push_back(q[i]);
-    else
-      q[i].k -= t, q2.push_back(q[i]);
-  }
-  clear();
-  solve(l, m, a1, q1), solve(m + 1, r, a2, q2);
-  return;
-}
-```
+??? "参考代码"
+    ```cpp
+    struct Num {
+      int p, x;
+    };  // 位于数列中第 p 项的数的值为 x
+    struct Query {
+      int l, r, k, id;
+    };  // 一个编号为 id, 询问 [l,r] 中第 k 大数的询问
+    int ans[N];
+    void add(int p, int x);  // 树状数组, 在 p 位置加上 x
+    int query(int p);        // 树状数组, 求 [1,p] 的和
+    void clear();            // 树状数组, 清空
+    void solve(int l, int r, vector<Num> a, vector<Query> q)
+    // a中为给定数列中值在值域区间 [l,r] 中的数
+    {
+      int m = (l + r) / 2;
+      if (l == r) {
+        for (unsigned i = 0; i < q.size(); i++) ans[q[i].id] = l;
+        return;
+      }
+      vector<Num> a1, a2;
+      vector<Query> q1, q2;
+      for (unsigned i = 0; i < a.size(); i++)
+        if (a[i].x <= m)
+          a1.push_back(a[i]), add(a[i].p, 1);
+        else
+          a2.push_back(a[i]);
+      for (unsigned i = 0; i < q.size(); i++) {
+        int t = query(q[i].r) - query(q[i].l - 1);
+        if (q[i].k <= t)
+          q1.push_back(q[i]);
+        else
+          q[i].k -= t, q2.push_back(q[i]);
+      }
+      clear();
+      solve(l, m, a1, q1), solve(m + 1, r, a2, q2);
+      return;
+    }
+    ```
 
 ### 带修区间第 k 小：整体二分的完整运用
 
@@ -155,53 +156,54 @@ void solve(int l, int r, vector<Num> a, vector<Query> q)
 
 关键部分参考代码
 
-```cpp
-struct Opt {
-  int x, y, k, type, id;
-  // 对于询问, type = 1, x, y 表示区间左右边界, k 表示询问第 k 小
-  // 对于修改, type = 0, x 表示修改位置, y 表示修改后的值,
-  // k 表示当前操作是插入(1)还是擦除(-1), 更新树状数组时使用.
-  // id 记录每个操作原先的编号, 因二分过程中操作顺序会被打散
-};
-Opt q[N], q1[N], q2[N];
-// q 为所有操作,
-// 二分过程中, 分到左边的操作存到 q1 中, 分到右边的操作存到 q2 中.
-int ans[N];
-void add(int p, int x);
-int query(int p);  // 树状数组函数, 含义见题3
-void solve(int l, int r, int L, int R)
-// 当前的值域范围为 [l,r], 处理的操作的区间为 [L,R]
-{
-  if (l > r || L > R) return;
-  int cnt1 = 0, cnt2 = 0, m = (l + r) / 2;
-  // cnt1, cnt2 分别为分到左边, 分到右边的操作数
-  if (l == r) {
-    for (int i = L; i <= R; i++)
-      if (q[i].type == 1) ans[q[i].id] = l;
-    return;
-  }
-  for (int i = L; i <= R; i++)
-    if (q[i].type == 1) {  // 是询问: 进行分类
-      int t = query(q[i].y) - query(q[i].x - 1);
-      if (q[i].k <= t)
-        q1[++cnt1] = q[i];
-      else
-        q[i].k -= t, q2[++cnt2] = q[i];
-    } else
-        // 是修改: 更新树状数组 & 分类
-        if (q[i].y <= m)
-      add(q[i].x, q[i].k), q1[++cnt1] = q[i];
-    else
-      q2[++cnt2] = q[i];
-  for (int i = 1; i <= cnt1; i++)
-    if (q1[i].type == 0) add(q1[i].pos, -q1[i].k);  // 清空树状数组
-  for (int i = 1; i <= cnt1; i++) q[L + i - 1] = q1[i];
-  for (int i = 1; i <= cnt2; i++)
-    q[L + cnt1 + i - 1] = q2[i];  // 将临时数组中的元素合并回原数组
-  solve(l, m, L, L + cnt1 - 1), solve(m + 1, r, L + cnt1, R);
-  return;
-}
-```
+??? "参考代码"
+    ```cpp
+    struct Opt {
+      int x, y, k, type, id;
+      // 对于询问, type = 1, x, y 表示区间左右边界, k 表示询问第 k 小
+      // 对于修改, type = 0, x 表示修改位置, y 表示修改后的值,
+      // k 表示当前操作是插入(1)还是擦除(-1), 更新树状数组时使用.
+      // id 记录每个操作原先的编号, 因二分过程中操作顺序会被打散
+    };
+    Opt q[N], q1[N], q2[N];
+    // q 为所有操作,
+    // 二分过程中, 分到左边的操作存到 q1 中, 分到右边的操作存到 q2 中.
+    int ans[N];
+    void add(int p, int x);
+    int query(int p);  // 树状数组函数, 含义见题3
+    void solve(int l, int r, int L, int R)
+    // 当前的值域范围为 [l,r], 处理的操作的区间为 [L,R]
+    {
+      if (l > r || L > R) return;
+      int cnt1 = 0, cnt2 = 0, m = (l + r) / 2;
+      // cnt1, cnt2 分别为分到左边, 分到右边的操作数
+      if (l == r) {
+        for (int i = L; i <= R; i++)
+          if (q[i].type == 1) ans[q[i].id] = l;
+        return;
+      }
+      for (int i = L; i <= R; i++)
+        if (q[i].type == 1) {  // 是询问: 进行分类
+          int t = query(q[i].y) - query(q[i].x - 1);
+          if (q[i].k <= t)
+            q1[++cnt1] = q[i];
+          else
+            q[i].k -= t, q2[++cnt2] = q[i];
+        } else
+            // 是修改: 更新树状数组 & 分类
+            if (q[i].y <= m)
+          add(q[i].x, q[i].k), q1[++cnt1] = q[i];
+        else
+          q2[++cnt2] = q[i];
+      for (int i = 1; i <= cnt1; i++)
+        if (q1[i].type == 0) add(q1[i].pos, -q1[i].k);  // 清空树状数组
+      for (int i = 1; i <= cnt1; i++) q[L + i - 1] = q1[i];
+      for (int i = 1; i <= cnt2; i++)
+        q[L + cnt1 + i - 1] = q2[i];  // 将临时数组中的元素合并回原数组
+      solve(l, m, L, L + cnt1 - 1), solve(m + 1, r, L + cnt1, R);
+      return;
+    }
+    ```
 
 ### 参考习题
 

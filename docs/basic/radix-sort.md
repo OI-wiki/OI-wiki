@@ -20,36 +20,37 @@ $$
 
 C++ 代码：
 
-```cpp
-const int N = 100010;
-const int W = 100010;
-const int K = 100;
-
-int n, w[K], k, cnt[W];
-
-struct Element {
-  int key[K];
-  bool operator<(const Element& y) const  // shows how two elements are compared
-  {
-    for (int i = 1; i <= k; ++i) {
-      if (key[i] == y.key[i]) continue;
-      return key[i] < y.key[i];
+??? "参考代码"
+    ```cpp
+    const int N = 100010;
+    const int W = 100010;
+    const int K = 100;
+    
+    int n, w[K], k, cnt[W];
+    
+    struct Element {
+      int key[K];
+      bool operator<(const Element& y) const  // shows how two elements are compared
+      {
+        for (int i = 1; i <= k; ++i) {
+          if (key[i] == y.key[i]) continue;
+          return key[i] < y.key[i];
+        }
+        return false;
+      }
+    } a[N], b[N];
+    
+    void counting_sort(int p) {
+      memset(cnt, 0, sizeof(cnt));
+      for (int i = 1; i <= n; ++i) ++cnt[a[i].key[p]];
+      for (int i = 1; i <= w[p]; ++i) cnt[i] += cnt[i - 1];
+      for (int i = 1; i <= n; ++i) b[cnt[a[i].key[p]]--] = a[i];
+      memcpy(a, b, sizeof(a));
     }
-    return false;
-  }
-} a[N], b[N];
-
-void counting_sort(int p) {
-  memset(cnt, 0, sizeof(cnt));
-  for (int i = 1; i <= n; ++i) ++cnt[a[i].key[p]];
-  for (int i = 1; i <= w[p]; ++i) cnt[i] += cnt[i - 1];
-  for (int i = 1; i <= n; ++i) b[cnt[a[i].key[p]]--] = a[i];
-  memcpy(a, b, sizeof(a));
-}
-
-void radix_sort() {
-  for (int i = k; i >= 1; --i) {
-    counting_sort(i);
-  }
-}
-```
+    
+    void radix_sort() {
+      for (int i = k; i >= 1; --i) {
+        counting_sort(i);
+      }
+    }
+    ```

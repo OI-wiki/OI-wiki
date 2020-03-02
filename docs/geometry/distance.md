@@ -128,34 +128,35 @@ $$
 
 ### 代码实现 1
 
-```cpp
-#include <bits/stdc++.h>
-
-using namespace std;
-
-template <class T>
-inline void read(T &x) {
-  x = 0;
-  char c = getchar();
-  bool f = 0;
-  for (; !isdigit(c); c = getchar()) f ^= c == '-';
-  for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
-  x = f ? -x : x;
-}
-
-int n, x, y, minx = 0x7fffffff, maxx, miny = 0x7fffffff, maxy;
-
-int main() {
-  read(n);
-  for (int i = 1; i <= n; i++) {
-    read(x), read(y);
-    minx = min(minx, x + y), maxx = max(maxx, x + y);
-    miny = min(miny, x - y), maxy = max(maxy, x - y);
-  }
-  printf("%d\n", max(maxx - minx, maxy - miny));
-  return 0;
-}
-```
+??? "参考代码"
+    ```cpp
+    #include <bits/stdc++.h>
+    
+    using namespace std;
+    
+    template <class T>
+    inline void read(T &x) {
+      x = 0;
+      char c = getchar();
+      bool f = 0;
+      for (; !isdigit(c); c = getchar()) f ^= c == '-';
+      for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
+      x = f ? -x : x;
+    }
+    
+    int n, x, y, minx = 0x7fffffff, maxx, miny = 0x7fffffff, maxy;
+    
+    int main() {
+      read(n);
+      for (int i = 1; i <= n; i++) {
+        read(x), read(y);
+        minx = min(minx, x + y), maxx = max(maxx, x + y);
+        miny = min(miny, x - y), maxy = max(maxy, x - y);
+      }
+      printf("%d\n", max(maxx - minx, maxy - miny));
+      return 0;
+    }
+    ```
 
 其实还有第二种做法，那就是把曼哈顿距离转化为切比雪夫距离求解，最后部分会讲到。
 
@@ -294,35 +295,36 @@ $$
 
 ### 代码实现 2
 
-```cpp
-#include <bits/stdc++.h>
-
-using namespace std;
-
-template <class T>
-inline void read(T &x) {
-  x = 0;
-  char c = getchar();
-  bool f = 0;
-  for (; !isdigit(c); c = getchar()) f ^= c == '-';
-  for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
-  x = f ? -x : x;
-}
-
-int n, x, y, a, b, minx = 0x7fffffff, maxx, miny = 0x7fffffff, maxy;
-
-int main() {
-  read(n);
-  for (int i = 1; i <= n; i++) {
-    read(a), read(b);
-    x = a + b, y = a - b;
-    minx = min(minx, x), maxx = max(maxx, x);
-    miny = min(miny, y), maxy = max(maxy, y);
-  }
-  printf("%d\n", max(maxx - minx, maxy - miny));
-  return 0;
-}
-```
+??? "参考代码"
+    ```cpp
+    #include <bits/stdc++.h>
+    
+    using namespace std;
+    
+    template <class T>
+    inline void read(T &x) {
+      x = 0;
+      char c = getchar();
+      bool f = 0;
+      for (; !isdigit(c); c = getchar()) f ^= c == '-';
+      for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
+      x = f ? -x : x;
+    }
+    
+    int n, x, y, a, b, minx = 0x7fffffff, maxx, miny = 0x7fffffff, maxy;
+    
+    int main() {
+      read(n);
+      for (int i = 1; i <= n; i++) {
+        read(a), read(b);
+        x = a + b, y = a - b;
+        minx = min(minx, x), maxx = max(maxx, x);
+        miny = min(miny, y), maxy = max(maxy, y);
+      }
+      printf("%d\n", max(maxx - minx, maxy - miny));
+      return 0;
+    }
+    ```
 
 对比两份代码，我们又能够发现，两种不同的思路，写出来的代码却是完全等价的，是不是很神奇呢？当然，更高深的东西需要大家另行研究。
 

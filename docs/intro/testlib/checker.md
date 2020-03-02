@@ -38,74 +38,75 @@ int main(int argc, char* argv[]) {
 
 ### 不好的实现
 
-```cpp
-// clang-format off
-
-#include "testlib.h"
-#include <map>
-#include <vector>
-using namespace std;
-
-map<pair<int, int>, int> edges;
-
-int main(int argc, char* argv[]) {
-  registerTestlibCmd(argc, argv);
-  int n = inf.readInt();  // 不需要 readSpace() 或 readEoln()
-  int m = inf.readInt();  // 因为不需要在 checker 中检查标准输入合法性（有
-                          // validator）
-  for (int i = 0; i < m; i++) {
-    int a = inf.readInt();
-    int b = inf.readInt();
-    int w = inf.readInt();
-    edges[make_pair(a, b)] = edges[make_pair(b, a)] = w;
-  }
-  int s = inf.readInt();
-  int t = inf.readInt();
-
-  // 读入标准输出
-  int jvalue = 0;
-  vector<int> jpath;
-  int jlen = ans.readInt();
-  for (int i = 0; i < jlen; i++) {
-    jpath.push_back(ans.readInt());
-  }
-  for (int i = 0; i < jlen - 1; i++) {
-    jvalue += edges[make_pair(jpath[i], jpath[i + 1])];
-  }
-
-  // 读入选手输出
-  int pvalue = 0;
-  vector<int> ppath;
-  vector<bool> used(n, false);
-  int plen = ouf.readInt(2, n, "number of vertices");  // 至少包含 s 和 t 两个点
-  for (int i = 0; i < plen; i++) {
-    int v = ouf.readInt(1, n, format("path[%d]", i + 1).c_str());
-    if (used[v - 1])  // 检查每条边是否只用到一次
-      quitf(_wa, "vertex %d was used twice", v);
-    used[v - 1] = true;
-    ppath.push_back(v);
-  }
-  // 检查起点终点合法性
-  if (ppath.front() != s)
-    quitf(_wa, "path doesn't start in s: expected s = %d, found %d", s,
-          ppath.front());
-  if (ppath.back() != t)
-    quitf(_wa, "path doesn't finish in t: expected t = %d, found %d", t,
-          ppath.back());
-  // 检查相邻点间是否有边
-  for (int i = 0; i < plen - 1; i++) {
-    if (edges.find(make_pair(ppath[i], ppath[i + 1])) == edges.end())
-      quitf(_wa, "there is no edge (%d, %d) in the graph", ppath[i],
-            ppath[i + 1]);
-    pvalue += edges[make_pair(ppath[i], ppath[i + 1])];
-  }
-
-  if (jvalue != pvalue)
-    quitf(_wa, "jury has answer %d, participant has answer %d", jvalue, pvalue);
-  else
-    quitf(_ok, "answer = %d", pvalue);
-}
-```
+??? "参考代码"
+    ```cpp
+    // clang-format off
+    
+    #include "testlib.h"
+    #include <map>
+    #include <vector>
+    using namespace std;
+    
+    map<pair<int, int>, int> edges;
+    
+    int main(int argc, char* argv[]) {
+      registerTestlibCmd(argc, argv);
+      int n = inf.readInt();  // 不需要 readSpace() 或 readEoln()
+      int m = inf.readInt();  // 因为不需要在 checker 中检查标准输入合法性（有
+                              // validator）
+      for (int i = 0; i < m; i++) {
+        int a = inf.readInt();
+        int b = inf.readInt();
+        int w = inf.readInt();
+        edges[make_pair(a, b)] = edges[make_pair(b, a)] = w;
+      }
+      int s = inf.readInt();
+      int t = inf.readInt();
+    
+      // 读入标准输出
+      int jvalue = 0;
+      vector<int> jpath;
+      int jlen = ans.readInt();
+      for (int i = 0; i < jlen; i++) {
+        jpath.push_back(ans.readInt());
+      }
+      for (int i = 0; i < jlen - 1; i++) {
+        jvalue += edges[make_pair(jpath[i], jpath[i + 1])];
+      }
+    
+      // 读入选手输出
+      int pvalue = 0;
+      vector<int> ppath;
+      vector<bool> used(n, false);
+      int plen = ouf.readInt(2, n, "number of vertices");  // 至少包含 s 和 t 两个点
+      for (int i = 0; i < plen; i++) {
+        int v = ouf.readInt(1, n, format("path[%d]", i + 1).c_str());
+        if (used[v - 1])  // 检查每条边是否只用到一次
+          quitf(_wa, "vertex %d was used twice", v);
+        used[v - 1] = true;
+        ppath.push_back(v);
+      }
+      // 检查起点终点合法性
+      if (ppath.front() != s)
+        quitf(_wa, "path doesn't start in s: expected s = %d, found %d", s,
+              ppath.front());
+      if (ppath.back() != t)
+        quitf(_wa, "path doesn't finish in t: expected t = %d, found %d", t,
+              ppath.back());
+      // 检查相邻点间是否有边
+      for (int i = 0; i < plen - 1; i++) {
+        if (edges.find(make_pair(ppath[i], ppath[i + 1])) == edges.end())
+          quitf(_wa, "there is no edge (%d, %d) in the graph", ppath[i],
+                ppath[i + 1]);
+        pvalue += edges[make_pair(ppath[i], ppath[i + 1])];
+      }
+    
+      if (jvalue != pvalue)
+        quitf(_wa, "jury has answer %d, participant has answer %d", jvalue, pvalue);
+      else
+        quitf(_ok, "answer = %d", pvalue);
+    }
+    ```
 
 这个 checker 主要有两个问题：
 
@@ -116,77 +117,78 @@ int main(int argc, char* argv[]) {
 
 ### 好的实现
 
-```cpp
-// clang-format off
-
-#include "testlib.h"
-#include <map>
-#include <vector>
-using namespace std;
-
-map<pair<int, int>, int> edges;
-int n, m, s, t;
-
-// 这个函数接受一个流，从其中读入
-// 检查路径的合法性并返回路径长度
-// 当 stream 为 ans 时，所有 stream.quitf(_wa, ...)
-// 和失败的 readXxx() 均会返回 _fail 而非 _wa
-// 也就是说，如果输出非法，对于选手输出流它将返回 _wa，
-// 对于标准输出流它将返回 _fail
-int readAns(InStream& stream) {
-  // 读入输出
-  int value = 0;
-  vector<int> path;
-  vector<bool> used(n, false);
-  int len = stream.readInt(2, n, "number of vertices");
-  for (int i = 0; i < len; i++) {
-    int v = stream.readInt(1, n, format("path[%d]", i + 1).c_str());
-    if (used[v - 1]) {
-      stream.quitf(_wa, "vertex %d was used twice", v);
+??? "参考代码"
+    ```cpp
+    // clang-format off
+    
+    #include "testlib.h"
+    #include <map>
+    #include <vector>
+    using namespace std;
+    
+    map<pair<int, int>, int> edges;
+    int n, m, s, t;
+    
+    // 这个函数接受一个流，从其中读入
+    // 检查路径的合法性并返回路径长度
+    // 当 stream 为 ans 时，所有 stream.quitf(_wa, ...)
+    // 和失败的 readXxx() 均会返回 _fail 而非 _wa
+    // 也就是说，如果输出非法，对于选手输出流它将返回 _wa，
+    // 对于标准输出流它将返回 _fail
+    int readAns(InStream& stream) {
+      // 读入输出
+      int value = 0;
+      vector<int> path;
+      vector<bool> used(n, false);
+      int len = stream.readInt(2, n, "number of vertices");
+      for (int i = 0; i < len; i++) {
+        int v = stream.readInt(1, n, format("path[%d]", i + 1).c_str());
+        if (used[v - 1]) {
+          stream.quitf(_wa, "vertex %d was used twice", v);
+        }
+        used[v - 1] = true;
+        path.push_back(v);
+      }
+      if (path.front() != s)
+        stream.quitf(_wa, "path doesn't start in s: expected s = %d, found %d", s,
+                     path.front());
+      if (path.back() != t)
+        stream.quitf(_wa, "path doesn't finish in t: expected t = %d, found %d", t,
+                     path.back());
+      for (int i = 0; i < len - 1; i++) {
+        if (edges.find(make_pair(path[i], path[i + 1])) == edges.end())
+          stream.quitf(_wa, "there is no edge (%d, %d) in the graph", path[i],
+                       path[i + 1]);
+        value += edges[make_pair(path[i], path[i + 1])];
+      }
+      return value;
     }
-    used[v - 1] = true;
-    path.push_back(v);
-  }
-  if (path.front() != s)
-    stream.quitf(_wa, "path doesn't start in s: expected s = %d, found %d", s,
-                 path.front());
-  if (path.back() != t)
-    stream.quitf(_wa, "path doesn't finish in t: expected t = %d, found %d", t,
-                 path.back());
-  for (int i = 0; i < len - 1; i++) {
-    if (edges.find(make_pair(path[i], path[i + 1])) == edges.end())
-      stream.quitf(_wa, "there is no edge (%d, %d) in the graph", path[i],
-                   path[i + 1]);
-    value += edges[make_pair(path[i], path[i + 1])];
-  }
-  return value;
-}
-
-int main(int argc, char* argv[]) {
-  registerTestlibCmd(argc, argv);
-  n = inf.readInt();
-  m = inf.readInt();
-  for (int i = 0; i < m; i++) {
-    int a = inf.readInt();
-    int b = inf.readInt();
-    int w = inf.readInt();
-    edges[make_pair(a, b)] = edges[make_pair(b, a)] = w;
-  }
-  int s = inf.readInt();
-  int t = inf.readInt();
-
-  int jans = readAns(ans);
-  int pans = readAns(ouf);
-  if (jans > pans)
-    quitf(_wa, "jury has the better answer: jans = %d, pans = %d\n", jans,
-          pans);
-  else if (jans == pans)
-    quitf(_ok, "answer = %d\n", pans);
-  else  // (jans < pans)
-    quitf(_fail, ":( participant has the better answer: jans = %d, pans = %d\n",
-          jans, pans);
-}
-```
+    
+    int main(int argc, char* argv[]) {
+      registerTestlibCmd(argc, argv);
+      n = inf.readInt();
+      m = inf.readInt();
+      for (int i = 0; i < m; i++) {
+        int a = inf.readInt();
+        int b = inf.readInt();
+        int w = inf.readInt();
+        edges[make_pair(a, b)] = edges[make_pair(b, a)] = w;
+      }
+      int s = inf.readInt();
+      int t = inf.readInt();
+    
+      int jans = readAns(ans);
+      int pans = readAns(ouf);
+      if (jans > pans)
+        quitf(_wa, "jury has the better answer: jans = %d, pans = %d\n", jans,
+              pans);
+      else if (jans == pans)
+        quitf(_ok, "answer = %d\n", pans);
+      else  // (jans < pans)
+        quitf(_fail, ":( participant has the better answer: jans = %d, pans = %d\n",
+              jans, pans);
+    }
+    ```
 
 注意到这种写法我们同时也检查了标准输出是否合法，这样写 checker 让程序更短，且易于理解和 debug。此种写法也适用于输出 YES（并输出方案什么的），或 NO 的题目。
 
