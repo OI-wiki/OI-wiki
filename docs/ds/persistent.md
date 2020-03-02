@@ -28,9 +28,9 @@ author: morris821028
 
 ### 版本回溯
 
-实际上就是对应大部分的应用软体中的 redo/undo。如果资料库/操作变动为了高效率操作而会配上复杂的结构（并不像hash, set 反转操作只需要常数或对数时间），那么为了快速回推变动结果，持久化结构就是要减少redo /undo 的花费。
+实际上就是对应大部分的应用软体中的 redo/undo。如果资料库/操作变动为了高效率操作而会配上复杂的结构（并不像 hash, set 反转操作只需要常数或对数时间），那么为了快速回推变动结果，持久化结构就是要减少 redo/undo 的花费。
 
-资料库本身可以常数回推，纪录变动的部分情况即可。而应用层的计算，大部分实作都是砍掉快取，并且重新计算出一份新的结构，有时候回推的变动大小为m，为了重新计算结构而消耗了n+m，如果n和m 的差距非常大，那连续回推的体感就很糟糕。
+资料库本身可以常数回推，纪录变动的部分情况即可。而应用层的计算，大部分实作都是砍掉快取，并且重新计算出一份新的结构，有时候回推的变动大小为 m，为了重新计算结构而消耗了 n+m，如果 n 和 m 的差距非常大，那连续回推的体感就很糟糕。
 
 ### 函数式编程
 
@@ -38,5 +38,5 @@ author: morris821028
 
 ## 参考
 
-- <https://en.wikipedia.org/wiki/Persistent_data_structure>
-- MIT 课程 <https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-854j-advanced-algorithms-fall-2005/lecture-notes/persistent.pdf>
+-    <https://en.wikipedia.org/wiki/Persistent_data_structure> 
+-   MIT 课程 <https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-854j-advanced-algorithms-fall-2005/lecture-notes/persistent.pdf> 
