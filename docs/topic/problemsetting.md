@@ -335,37 +335,38 @@ for (int i = 1; i <= n; ++i) {
 
  `gen.cpp` :
 
-```cpp
-#include "testlib.h"
-
-using namespace std;
-
-int n, m, k;
-vector<int> p;
-
-int main(int argc, char* argv[]) {
-  registerGen(argc, argv, 1);
-
-  int i;
-
-  n = atoi(argv[1]);
-  m = atoi(argv[2]);
-  k = rnd.next(1, n);
-
-  for (i = 1; i <= n; ++i) p.push_back(i);
-
-  shuffle(p.begin(), p.end());
-  // 使用 rnd.next() 进行 shuffle
-
-  printf("%d %d %d\n", n, m, k);
-  for (i = 0; i < n; ++i) {
-    printf("%d%c", p[i], " \n"[i == n - 1]);
-    // 把字符串当作数组用，中间空格，末尾换行，是一个造数据时常用的技巧
-  }
-
-  return 0;
-}
-```
+??? "参考代码"
+    ```cpp
+    #include "testlib.h"
+    
+    using namespace std;
+    
+    int n, m, k;
+    vector<int> p;
+    
+    int main(int argc, char* argv[]) {
+      registerGen(argc, argv, 1);
+    
+      int i;
+    
+      n = atoi(argv[1]);
+      m = atoi(argv[2]);
+      k = rnd.next(1, n);
+    
+      for (i = 1; i <= n; ++i) p.push_back(i);
+    
+      shuffle(p.begin(), p.end());
+      // 使用 rnd.next() 进行 shuffle
+    
+      printf("%d %d %d\n", n, m, k);
+      for (i = 0; i < n; ++i) {
+        printf("%d%c", p[i], " \n"[i == n - 1]);
+        // 把字符串当作数组用，中间空格，末尾换行，是一个造数据时常用的技巧
+      }
+    
+      return 0;
+    }
+    ```
 
  `gen_scripts.bat` :
 

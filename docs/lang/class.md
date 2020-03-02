@@ -214,64 +214,66 @@ class Object {
 
     _上述过程只是完整过程的简化版本，详细内容参见"参考资料九"_
 
-```cpp
-class Object {
- public:
-  int weight;
-  int value;
-  Object() {
-    weight = 0;
-    value = 0;
-  }
-  Object(int _weight = 0, int _value = 0) {
-    weight = _weight;
-    value = _value;
-  }
-  // the same as
-  // Object(int _weight,int _value):weight(_weight),value(_value) {}
-};
-
-// the same as
-// Object::Object(int _weight,int _value){
-//   weight = _weight;
-//   value = _value;
-// }
-//}
-
-Object A;        // ok
-Object B(1, 2);  // ok
-Object C{1, 2};  // ok,(C++11)
-```
+??? "参考代码"
+    ```cpp
+    class Object {
+     public:
+      int weight;
+      int value;
+      Object() {
+        weight = 0;
+        value = 0;
+      }
+      Object(int _weight = 0, int _value = 0) {
+        weight = _weight;
+        value = _value;
+      }
+      // the same as
+      // Object(int _weight,int _value):weight(_weight),value(_value) {}
+    };
+    
+    // the same as
+    // Object::Object(int _weight,int _value){
+    //   weight = _weight;
+    //   value = _value;
+    // }
+    //}
+    
+    Object A;        // ok
+    Object B(1, 2);  // ok
+    Object C{1, 2};  // ok,(C++11)
+    ```
 
 ??? note "关于隐式类型转换"
     有时候会写出如下的代码
 
-    ```cpp
-    class Node {
-     public:
-      int var;
-      Node(int _var) : var(_var) {}
-    };
-    Node a = 1;
-    ```
-
-    看上去十分不符合逻辑，一个 `int` 类型不可能转化为 `node` 类型。但是编译器不会进行 `error` 提示。
-
-    原因是在进行赋值时，首先会将 `1` 作为参数调用 `node::node(int)` ，然后调用默认的复制函数进行赋值。
-
-    但大多数情况下，编写者会希望编译器进行报错。这时便可以在构造函数前追加 `explicit` 关键字。这会告诉编译器必须显式进行调用。
-
-    ```cpp
-    class Node {
-     public:
-      int var;
-      explicit Node(int _var) : var(_var) {}
-    };
-    ```
-
-    也就是说 `node a=1` 将会报错，但 `node a=node(1)` 不会。因为后者显式调用了构造函数。当然大多数人不会写出后者的代码，但此例足以说明 explicit 的作用。
-
-    _不过在算法竞赛中，为了避免此类情况常用的是"加强对代码的规范程度"，从源头上避免_
+??? "参考代码"
+        ```cpp
+        class Node {
+         public:
+          int var;
+          Node(int _var) : var(_var) {}
+        };
+        Node a = 1;
+        ```
+    
+        看上去十分不符合逻辑，一个 `int` 类型不可能转化为 `node` 类型。但是编译器不会进行 `error` 提示。
+    
+        原因是在进行赋值时，首先会将 `1` 作为参数调用 `node::node(int)` ，然后调用默认的复制函数进行赋值。
+    
+        但大多数情况下，编写者会希望编译器进行报错。这时便可以在构造函数前追加 `explicit` 关键字。这会告诉编译器必须显式进行调用。
+    
+        ```cpp
+        class Node {
+         public:
+          int var;
+          explicit Node(int _var) : var(_var) {}
+        };
+        ```
+    
+        也就是说 `node a=1` 将会报错，但 `node a=node(1)` 不会。因为后者显式调用了构造函数。当然大多数人不会写出后者的代码，但此例足以说明 explicit 的作用。
+    
+        _不过在算法竞赛中，为了避免此类情况常用的是"加强对代码的规范程度"，从源头上避免_
 
 ### 销毁
 

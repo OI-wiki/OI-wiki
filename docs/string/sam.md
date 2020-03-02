@@ -246,36 +246,37 @@ void sam_init() {
 
 最终我们给出主函数的实现：给当前行末增加一个字符，对应地在之前的基础上建造自动机。
 
-```cpp
-void sam_extend(char c) {
-  int cur = sz++;
-  st[cur].len = st[last].len + 1;
-  int p = last;
-  while (p != -1 && !st[p].next.count(c)) {
-    st[p].next[c] = cur;
-    p = st[p].link;
-  }
-  if (p == -1) {
-    st[cur].link = 0;
-  } else {
-    int q = st[p].next[c];
-    if (st[p].len + 1 == st[q].len) {
-      st[cur].link = q;
-    } else {
-      int clone = sz++;
-      st[clone].len = st[p].len + 1;
-      st[clone].next = st[q].next;
-      st[clone].link = st[q].link;
-      while (p != -1 && st[p].next[c] == q) {
-        st[p].next[c] = clone;
+??? "参考代码"
+    ```cpp
+    void sam_extend(char c) {
+      int cur = sz++;
+      st[cur].len = st[last].len + 1;
+      int p = last;
+      while (p != -1 && !st[p].next.count(c)) {
+        st[p].next[c] = cur;
         p = st[p].link;
       }
-      st[q].link = st[cur].link = clone;
+      if (p == -1) {
+        st[cur].link = 0;
+      } else {
+        int q = st[p].next[c];
+        if (st[p].len + 1 == st[q].len) {
+          st[cur].link = q;
+        } else {
+          int clone = sz++;
+          st[clone].len = st[p].len + 1;
+          st[clone].next = st[q].next;
+          st[clone].link = st[q].link;
+          while (p != -1 && st[p].next[c] == q) {
+            st[p].next[c] = clone;
+            p = st[p].link;
+          }
+          st[q].link = st[cur].link = clone;
+        }
+      }
+      last = cur;
     }
-  }
-  last = cur;
-}
-```
+    ```
 
 正如之前提到的一样，如果你用内存换时间（空间复杂度为 $O(n\left|\Sigma\right|)$ ，其中 $\left|\Sigma\right|$ 为字符集大小），你可以在 $O(n)$ 的时间内构造字符集大小任意的 SAM。但是这样你需要为每一个状态储存一个大小为 $\left|\Sigma\right|$ 的数组（用于快速跳转到转移的字符），和另外一个所有转移的链表（用于快速在转移中迭代）。
 

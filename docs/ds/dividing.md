@@ -19,39 +19,40 @@ tree[log(N),N]   : 也就是树,要存下所有的值,空间复杂度 $O(n\log n
 toleft[log(N),n] : 也就是每一层 1~i 进入左儿子的数量,这里需要理解一下,这是一个前缀和。
 ```
 
-```pascal
-procedure Build(left,right,deep:longint); // left,right 是左右区间,deep是第几层
-var
-	i,mid,same,ls,rs,flag:longint; // 其中 flag 是用来平衡左右两边的数量的
-begin
-	if left=right then exit; // 到底层了
-	mid:=(left+right) >> 1;
-	same:=mid-left+1;
-	for i:=left to right do 
-		if tree[deep,i]<num[mid] then
-			dec(same);
-
-	ls:=left; // 分配到左儿子的第一个指针
-	rs:=mid+1; // 分配到右儿子的第一个指针
-	for i:=left to right do
-	begin
-		flag:=0;
-		if (tree[deep,i]<num[mid])or((tree[deep,i]=num[mid])and(same>0)) then // 分配到左边的条件
-		begin
-			flag:=1; tree[deep+1,ls]:=tree[deep,i]; inc(ls);
-			if tree[deep,i]=num[mid] then // 平衡左右个数
-				dec(same);
-		end
-		else
-		begin
-			tree[deep+1,rs]:=tree[deep,i]; inc(rs);
-		end;
-		toleft[deep,i]:=toleft[deep,i-1]+flag;
-	end;
-	Build(left,mid,deep+1); // 继续
-	Build(mid+1,right,deep+1);
-end;
-```
+??? "参考代码"
+    ```pascal
+    procedure Build(left,right,deep:longint); // left,right 是左右区间,deep是第几层
+    var
+    	i,mid,same,ls,rs,flag:longint; // 其中 flag 是用来平衡左右两边的数量的
+    begin
+    	if left=right then exit; // 到底层了
+    	mid:=(left+right) >> 1;
+    	same:=mid-left+1;
+    	for i:=left to right do 
+    		if tree[deep,i]<num[mid] then
+    			dec(same);
+    
+    	ls:=left; // 分配到左儿子的第一个指针
+    	rs:=mid+1; // 分配到右儿子的第一个指针
+    	for i:=left to right do
+    	begin
+    		flag:=0;
+    		if (tree[deep,i]<num[mid])or((tree[deep,i]=num[mid])and(same>0)) then // 分配到左边的条件
+    		begin
+    			flag:=1; tree[deep+1,ls]:=tree[deep,i]; inc(ls);
+    			if tree[deep,i]=num[mid] then // 平衡左右个数
+    				dec(same);
+    		end
+    		else
+    		begin
+    			tree[deep+1,rs]:=tree[deep,i]; inc(rs);
+    		end;
+    		toleft[deep,i]:=toleft[deep,i-1]+flag;
+    	end;
+    	Build(left,mid,deep+1); // 继续
+    	Build(mid+1,right,deep+1);
+    end;
+    ```
 
 ## 查询
 

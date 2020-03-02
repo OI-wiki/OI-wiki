@@ -33,41 +33,42 @@ void merge(int ll, int rr) {
 
 下面参考《算法 4》的 Java 完整代码，很漂亮，建议背住，学习一下代码风格。
 
-```java
-public class Merge {
-    private static Comparable[] aux;
-
-     public static void sort(Comparable[] a) {
-        aux = new Comparable[a.length];
-        sort(a, 0, a.length - 1);
-    }
-
-    private static void sort(Comparable[] a, int lo, int hi) {
-        if (lo >= hi) return;
-        int mid = lo + (hi - lo) / 2;
-        sort(a, lo, mid);
-        sort(a, mid + 1, hi);
-        merge(a, lo, mid, hi);
-    }
-
-    private static void merge(Comparable[] a, int lo, int mid, int hi) {
-        int i = lo, j = mid + 1;
-        for (int k = lo; k <= hi; k++) {
-            aux[k] = a[k];
+??? "参考代码"
+    ```java
+    public class Merge {
+        private static Comparable[] aux;
+    
+         public static void sort(Comparable[] a) {
+            aux = new Comparable[a.length];
+            sort(a, 0, a.length - 1);
         }
-        for (int k = lo; k <= hi; k++) {
-            if      (i > mid)               { a[k] = aux[j++]; }
-            else if (j > hi)                { a[k] = aux[i++]; }
-            else if (less(aux[j], aux[i]))  { a[k] = aux[j++]; }
-            else                            { a[k] = aux[i++]; }
+    
+        private static void sort(Comparable[] a, int lo, int hi) {
+            if (lo >= hi) return;
+            int mid = lo + (hi - lo) / 2;
+            sort(a, lo, mid);
+            sort(a, mid + 1, hi);
+            merge(a, lo, mid, hi);
+        }
+    
+        private static void merge(Comparable[] a, int lo, int mid, int hi) {
+            int i = lo, j = mid + 1;
+            for (int k = lo; k <= hi; k++) {
+                aux[k] = a[k];
+            }
+            for (int k = lo; k <= hi; k++) {
+                if      (i > mid)               { a[k] = aux[j++]; }
+                else if (j > hi)                { a[k] = aux[i++]; }
+                else if (less(aux[j], aux[i]))  { a[k] = aux[j++]; }
+                else                            { a[k] = aux[i++]; }
+            }
+        }
+    
+        private static boolean less(Comparable v, Comparable w) {
+            return v.compareTo(w) < 0;
         }
     }
-
-    private static boolean less(Comparable v, Comparable w) {
-        return v.compareTo(w) < 0;
-    }
-}
-```
+    ```
 
 关键点在于一次性创建数组，避免在每次递归调用时创建，避免了对象的无谓构造和析构。
 
