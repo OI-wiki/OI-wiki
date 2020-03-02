@@ -100,36 +100,37 @@ void insert(int& o, int v) {
 
 时间复杂度 $O(h)$ 。
 
-```cpp
-int deletemin(int& o) {
-  if (!lc[o]) {
-    int u = o;
-    o = rc[o];
-    return u;
-  } else {
-    int u = deletemin(lc[o]);
-    siz[o] -= cnt[u];
-    return u;
-  }
-}
-void del(int& o, int v) {
-  // 注意 o 有可能会被修改
-  siz[o]--;
-  if (val[o] == v) {
-    if (cnt[o] > 1) {
-      cnt[o]--;
-      return;
+??? "参考代码"
+    ```cpp
+    int deletemin(int& o) {
+      if (!lc[o]) {
+        int u = o;
+        o = rc[o];
+        return u;
+      } else {
+        int u = deletemin(lc[o]);
+        siz[o] -= cnt[u];
+        return u;
+      }
     }
-    if (lc[o] && rc[o]) o = deletemin(rc[o]);
-    // 这里以找右子树的最小值为例
-    else
-      o = lc[o] + rc[o];
-    return;
-  }
-  if (val[o] > v) del(lc[o], v);
-  if (val[o] < v) del(rc[o], v);
-}
-```
+    void del(int& o, int v) {
+      // 注意 o 有可能会被修改
+      siz[o]--;
+      if (val[o] == v) {
+        if (cnt[o] > 1) {
+          cnt[o]--;
+          return;
+        }
+        if (lc[o] && rc[o]) o = deletemin(rc[o]);
+        // 这里以找右子树的最小值为例
+        else
+          o = lc[o] + rc[o];
+        return;
+      }
+      if (val[o] > v) del(lc[o], v);
+      if (val[o] < v) del(rc[o], v);
+    }
+    ```
 
 ### 求元素的排名
 

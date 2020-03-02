@@ -36,33 +36,34 @@ inline bool CanRbu(int k) {
 
 重构分为两个步骤——先前序遍历展开存入数组，再二分重建成树。
 
-```cpp
-void Rbu_Flatten(int& ldc, int k) {
-  // 前序遍历展开以 k 节点为根子树
-  if (!k) return;
-  Rbu_Flatten(ldc, lc[k]);
-  if (wn[k]) ldr[ldc++] = k;
-  // 若当前节点已删除则不保留
-  Rbu_Flatten(ldc, rc[k]);
-}
-
-int Rbu_Build(int l, int r) {
-  // 将 ldr[] 数组内 [l, r) 区间重建成树，返回根节点
-  int mid = l + r >> 1;  // 选取中间为根使其平衡
-  if (l >= r) return 0;
-  lc[ldr[mid]] = Rbu_Build(l, mid);
-  rc[ldr[mid]] = Rbu_Build(mid + 1, r);  // 建左右子树
-  Calc(ldr[mid]);
-  return ldr[mid];
-}
-
-void Rbu(int& k) {
-  // 重构节点 k 的全过程
-  int ldc = 0;
-  Rbu_Flatten(ldc, k);
-  k = Rbu_Build(0, ldc);
-}
-```
+??? "参考代码"
+    ```cpp
+    void Rbu_Flatten(int& ldc, int k) {
+      // 前序遍历展开以 k 节点为根子树
+      if (!k) return;
+      Rbu_Flatten(ldc, lc[k]);
+      if (wn[k]) ldr[ldc++] = k;
+      // 若当前节点已删除则不保留
+      Rbu_Flatten(ldc, rc[k]);
+    }
+    
+    int Rbu_Build(int l, int r) {
+      // 将 ldr[] 数组内 [l, r) 区间重建成树，返回根节点
+      int mid = l + r >> 1;  // 选取中间为根使其平衡
+      if (l >= r) return 0;
+      lc[ldr[mid]] = Rbu_Build(l, mid);
+      rc[ldr[mid]] = Rbu_Build(mid + 1, r);  // 建左右子树
+      Calc(ldr[mid]);
+      return ldr[mid];
+    }
+    
+    void Rbu(int& k) {
+      // 重构节点 k 的全过程
+      int ldc = 0;
+      Rbu_Flatten(ldc, k);
+      k = Rbu_Build(0, ldc);
+    }
+    ```
 
 ## 基本操作
 

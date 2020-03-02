@@ -180,33 +180,34 @@ Here are my results.
 
 你的文档会变成这样：
 
-```tex
-\documentclass[a4paper,12pt]{article}
-
-\begin{document}
-
-\title{My First Document}
-\author{My Name}
-\date{\today}
-\maketitle
-
-\section{Introduction}
-This is the introduction.
-
-\section{Methods}
-
-\subsection{Stage 1}
-\label{sec1}
-The first part of the methods.
-
-\subsection{Stage 2}
-The second part of the methods.
-
-\section{Results}
-Here are my results. Referring to section \ref{sec1} on page \pageref{sec1}
-
-\end{document}
-```
+??? "参考代码"
+    ```tex
+    \documentclass[a4paper,12pt]{article}
+    
+    \begin{document}
+    
+    \title{My First Document}
+    \author{My Name}
+    \date{\today}
+    \maketitle
+    
+    \section{Introduction}
+    This is the introduction.
+    
+    \section{Methods}
+    
+    \subsection{Stage 1}
+    \label{sec1}
+    The first part of the methods.
+    
+    \subsection{Stage 2}
+    The second part of the methods.
+    
+    \section{Results}
+    Here are my results. Referring to section \ref{sec1} on page \pageref{sec1}
+    
+    \end{document}
+    ```
 
  $\rightarrow$ 编译并检查 PDF 文档（你可能需要连续编译两次）：
 

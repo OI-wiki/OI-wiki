@@ -180,36 +180,37 @@ int getsum(int l, int r, int s, int t, int p) {
 
 如果你是要实现区间修改为某一个值而不是加上某一个值的话，代码如下：
 
-```cpp
-void update(int l, int r, int c, int s, int t, int p) {
-  if (l <= s && t <= r) {
-    d[p] = (t - s + 1) * c, b[p] = c;
-    return;
-  }
-  int m = (s + t) / 2;
-  if (b[p]) {
-    d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
-          b[p * 2] = b[p * 2 + 1] = b[p];
-    b[p] = 0;
-  }
-  if (l <= m) update(l, r, c, s, m, p * 2);
-  if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
-  d[p] = d[p * 2] + d[p * 2 + 1];
-}
-int getsum(int l, int r, int s, int t, int p) {
-  if (l <= s && t <= r) return d[p];
-  int m = (s + t) / 2;
-  if (b[p]) {
-    d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
-          b[p * 2] = b[p * 2 + 1] = b[p];
-    b[p] = 0;
-  }
-  int sum = 0;
-  if (l <= m) sum = getsum(l, r, s, m, p * 2);
-  if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
-  return sum;
-}
-```
+??? "参考代码"
+    ```cpp
+    void update(int l, int r, int c, int s, int t, int p) {
+      if (l <= s && t <= r) {
+        d[p] = (t - s + 1) * c, b[p] = c;
+        return;
+      }
+      int m = (s + t) / 2;
+      if (b[p]) {
+        d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
+              b[p * 2] = b[p * 2 + 1] = b[p];
+        b[p] = 0;
+      }
+      if (l <= m) update(l, r, c, s, m, p * 2);
+      if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
+      d[p] = d[p * 2] + d[p * 2 + 1];
+    }
+    int getsum(int l, int r, int s, int t, int p) {
+      if (l <= s && t <= r) return d[p];
+      int m = (s + t) / 2;
+      if (b[p]) {
+        d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
+              b[p * 2] = b[p * 2 + 1] = b[p];
+        b[p] = 0;
+      }
+      int sum = 0;
+      if (l <= m) sum = getsum(l, r, s, m, p * 2);
+      if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
+      return sum;
+    }
+    ```
 
 ## 一些优化
 

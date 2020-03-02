@@ -74,48 +74,49 @@ inline mat operator*(const mat& T) const {
 
 一般来说，可以用一个二维数组来模拟矩阵。
 
-```cpp
-struct mat {
-  LL a[sz][sz];
-  inline mat() { memset(a, 0, sizeof a); }
-  inline mat operator+(const mat& T) const {
-    mat res;
-    for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j)
-        res.a[i][j] = (a[i][j] - T.a[i][j] + MOD) % MOD;
-    return res;
-  }
-  inline mat operator-(const mat& T) const {
-    mat res;
-    for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j) res.a[i][j] = (a[i][j] + T.a[i][j]) % MOD;
-    return res;
-  }
-  inline mat operator*(const mat& T) const {
-    mat res;
-    int r;
-    for (int i = 0; i < sz; ++i)
-      for (int k = 0; k < sz; ++k) {
-        r = a[i][k];
-        for (int j = 0; j < sz; ++j) res.a[i][j] += T.a[k][j] * r;
-        res.a[i][j] %= MOD;
+??? "参考代码"
+    ```cpp
+    struct mat {
+      LL a[sz][sz];
+      inline mat() { memset(a, 0, sizeof a); }
+      inline mat operator+(const mat& T) const {
+        mat res;
+        for (int i = 0; i < sz; ++i)
+          for (int j = 0; j < sz; ++j)
+            res.a[i][j] = (a[i][j] - T.a[i][j] + MOD) % MOD;
+        return res;
       }
-    return res;
-  }
-  inline mat operator^(LL x) const {
-    mat res, bas;
-    for (int i = 0; i < sz; ++i) res.a[i][i] = 1;
-    for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j) bas.a[i][j] = a[i][j];
-    while (x) {
-      if (x & 1) res = res * bas;
-      bas = bas * bas;
-      x >>= 1;
-    }
-    return res;
-  }
-};
-```
+      inline mat operator-(const mat& T) const {
+        mat res;
+        for (int i = 0; i < sz; ++i)
+          for (int j = 0; j < sz; ++j) res.a[i][j] = (a[i][j] + T.a[i][j]) % MOD;
+        return res;
+      }
+      inline mat operator*(const mat& T) const {
+        mat res;
+        int r;
+        for (int i = 0; i < sz; ++i)
+          for (int k = 0; k < sz; ++k) {
+            r = a[i][k];
+            for (int j = 0; j < sz; ++j) res.a[i][j] += T.a[k][j] * r;
+            res.a[i][j] %= MOD;
+          }
+        return res;
+      }
+      inline mat operator^(LL x) const {
+        mat res, bas;
+        for (int i = 0; i < sz; ++i) res.a[i][i] = 1;
+        for (int i = 0; i < sz; ++i)
+          for (int j = 0; j < sz; ++j) bas.a[i][j] = a[i][j];
+        while (x) {
+          if (x & 1) res = res * bas;
+          bas = bas * bas;
+          x >>= 1;
+        }
+        return res;
+      }
+    };
+    ```
 
 ## 应用
 
@@ -143,43 +144,44 @@ struct mat {
 
 下面是求斐波那契数列第 $n$ 项对 $10^9+7$ 取模的示例代码（核心部分）。
 
-```cpp
-const int mod = 1000000007;
-
-struct Matrix {
-  int a[3][3];
-  Matrix() { memset(a, 0, sizeof a); }
-  Matrix operator*(const Matrix &b) const {
-    Matrix res;
-    for (int i = 1; i <= 2; ++i)
-      for (int j = 1; j <= 2; ++j)
-        for (int k = 1; k <= 2; ++k)
-          res.a[i][j] = (res.a[i][j] + a[i][k] * b.a[k][j]) % mod;
-    return res;
-  }
-} ans, base;
-
-void init() {
-  base.a[1][1] = base.a[1][2] = base.a[2][1] = 1;
-  ans.a[1][1] = ans.a[1][2] = 1;
-}
-
-void qpow(int b) {
-  while (b) {
-    if (b & 1) ans = ans * base;
-    base = base * base;
-    b >>= 1;
-  }
-}
-
-int main() {
-  int n = read();
-  if (n <= 2) return puts("1"), 0;
-  init();
-  qpow(n - 2);
-  println(ans.a[1][1] % mod);
-}
-```
+??? "参考代码"
+    ```cpp
+    const int mod = 1000000007;
+    
+    struct Matrix {
+      int a[3][3];
+      Matrix() { memset(a, 0, sizeof a); }
+      Matrix operator*(const Matrix &b) const {
+        Matrix res;
+        for (int i = 1; i <= 2; ++i)
+          for (int j = 1; j <= 2; ++j)
+            for (int k = 1; k <= 2; ++k)
+              res.a[i][j] = (res.a[i][j] + a[i][k] * b.a[k][j]) % mod;
+        return res;
+      }
+    } ans, base;
+    
+    void init() {
+      base.a[1][1] = base.a[1][2] = base.a[2][1] = 1;
+      ans.a[1][1] = ans.a[1][2] = 1;
+    }
+    
+    void qpow(int b) {
+      while (b) {
+        if (b & 1) ans = ans * base;
+        base = base * base;
+        b >>= 1;
+      }
+    }
+    
+    int main() {
+      int n = read();
+      if (n <= 2) return puts("1"), 0;
+      init();
+      qpow(n - 2);
+      println(ans.a[1][1] % mod);
+    }
+    ```
 
 * * *
 

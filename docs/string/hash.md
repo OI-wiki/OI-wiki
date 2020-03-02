@@ -89,78 +89,79 @@ void cmp(const string& s, const string& t) {
 ???+note "[CF1200E Compress Words](http://codeforces.com/contest/1200/problem/E)"
     给你若干个字符串，答案串初始为空。第 $i$ 步将第 $i$ 个字符串加到答案串的后面，但是尽量地去掉重复部分（即去掉一个最长的、是原答案串的后缀、也是第 $i$ 个串的前缀的字符串），求最后得到的字符串。
 
-    字符串个数不超过 $10^5$，总长不超过 $10^6$。
-
-    ??? mdui-shadow-6 "题解"
-        每次需要求最长的、是原答案串的后缀、也是第 $i$ 个串的前缀的字符串。枚举这个串的长度，哈希比较即可。
-
-        当然，这道题也可以使用 [KMP 算法](./kmp.md) 解决。
-
-    ??? mdui-shadow-6 "参考代码"
-        ```cpp
-        #include <algorithm>
-        #include <cstdio>
-        #include <cstring>
-        
-        const int N = 1000010;
-        const int m1 = 998244353;
-        const int m2 = 1000001011;
-        const int K = 233;
-        
-        typedef long long ll;
-        
-        int m, h1[N], h2[N], len, i1[N], i2[N];
-        char s[N];
-        
-        void add(char x) {
-          h1[len + 1] = ((ll)h1[len] * K + x) % m1;
-          h2[len + 1] = ((ll)h2[len] * K + x) % m2;
-          ++len;
-        }
-        
-        int get1(int l, int r) { return (ll)(h1[r] - h1[l - 1] + m1) * i1[l - 1] % m1; }
-        int get2(int l, int r) { return (ll)(h2[r] - h2[l - 1] + m2) * i2[l - 1] % m2; }
-        
-        bool cmp(int l1, int r1, int l2, int r2) {
-          return get1(l1, r1) == get1(l2, r2) && get2(l1, r1) == get2(l2, r2);
-        }
-        
-        int qpow(int x, int y, int mod) {
-          int out = 1;
-          while (y) {
-            if (y & 1) out = (ll)out * x % mod;
-            x = (ll)x * x % mod;
-            y >>= 1;
-          }
-          return out;
-        }
-        
-        int main() {
-          i1[0] = i2[0] = 1;
-          int k1 = qpow(K, m1 - 2, m1);  // 求逆元
-          int k2 = qpow(K, m2 - 2, m2);
-          for (int i = 1; i < N; ++i) {
-            i1[i] = (ll)i1[i - 1] * k1 % m1;
-            i2[i] = (ll)i2[i - 1] * k2 % m2;
-          }
-        
-          scanf("%d", &m);
-        
-          while (m--) {
-            scanf("%s", s + 1);
-            int n = strlen(s + 1);
-            for (int i = 1; i <= n; ++i) add(s[i]);
-            // 先把当前串加到答案串的后面，可以方便地求哈希
-            for (int i = std::min(n, len - n); i >= 0; --i) {
-              if (cmp(len - n - i + 1, len - n, len - n + 1, len - n + i)) {
-                len -= n;  // 确定了要加多长再真正地加进去
-                for (int j = i + 1; j <= n; ++j) add(s[j]);
-                printf("%s", s + i + 1);
-                break;
-              }
+??? "参考代码"
+        字符串个数不超过 $10^5$，总长不超过 $10^6$。
+    
+        ??? mdui-shadow-6 "题解"
+            每次需要求最长的、是原答案串的后缀、也是第 $i$ 个串的前缀的字符串。枚举这个串的长度，哈希比较即可。
+    
+            当然，这道题也可以使用 [KMP 算法](./kmp.md) 解决。
+    
+        ??? mdui-shadow-6 "参考代码"
+            ```cpp
+            #include <algorithm>
+            #include <cstdio>
+            #include <cstring>
+            
+            const int N = 1000010;
+            const int m1 = 998244353;
+            const int m2 = 1000001011;
+            const int K = 233;
+            
+            typedef long long ll;
+            
+            int m, h1[N], h2[N], len, i1[N], i2[N];
+            char s[N];
+            
+            void add(char x) {
+              h1[len + 1] = ((ll)h1[len] * K + x) % m1;
+              h2[len + 1] = ((ll)h2[len] * K + x) % m2;
+              ++len;
             }
-          }
-        
-          return 0;
-        }
-        ```
+            
+            int get1(int l, int r) { return (ll)(h1[r] - h1[l - 1] + m1) * i1[l - 1] % m1; }
+            int get2(int l, int r) { return (ll)(h2[r] - h2[l - 1] + m2) * i2[l - 1] % m2; }
+            
+            bool cmp(int l1, int r1, int l2, int r2) {
+              return get1(l1, r1) == get1(l2, r2) && get2(l1, r1) == get2(l2, r2);
+            }
+            
+            int qpow(int x, int y, int mod) {
+              int out = 1;
+              while (y) {
+                if (y & 1) out = (ll)out * x % mod;
+                x = (ll)x * x % mod;
+                y >>= 1;
+              }
+              return out;
+            }
+            
+            int main() {
+              i1[0] = i2[0] = 1;
+              int k1 = qpow(K, m1 - 2, m1);  // 求逆元
+              int k2 = qpow(K, m2 - 2, m2);
+              for (int i = 1; i < N; ++i) {
+                i1[i] = (ll)i1[i - 1] * k1 % m1;
+                i2[i] = (ll)i2[i - 1] * k2 % m2;
+              }
+            
+              scanf("%d", &m);
+            
+              while (m--) {
+                scanf("%s", s + 1);
+                int n = strlen(s + 1);
+                for (int i = 1; i <= n; ++i) add(s[i]);
+                // 先把当前串加到答案串的后面，可以方便地求哈希
+                for (int i = std::min(n, len - n); i >= 0; --i) {
+                  if (cmp(len - n - i + 1, len - n, len - n + 1, len - n + i)) {
+                    len -= n;  // 确定了要加多长再真正地加进去
+                    for (int j = i + 1; j <= n; ++j) add(s[j]);
+                    printf("%s", s + i + 1);
+                    break;
+                  }
+                }
+              }
+            
+              return 0;
+            }
+            ```

@@ -603,70 +603,71 @@ DP 数组的长度我们可以根据子树最深节点算出。
 
 例题参考代码：
 
-```cpp
-#include <bits/stdc++.h>
-using namespace std;
-const int N = 1000005;
-struct edge {
-  int to, next;
-} e[N * 2];
-int head[N], tot, n;
-int d[N], fa[N], mx[N];
-int *f[N], g[N], mxp[N];
-int dfn[N];
-void add(int x, int y) {
-  e[++tot] = (edge){y, head[x]};
-  head[x] = tot;
-}
-void dfs1(int x) {
-  d[x] = 1;
-  for (int i = head[x]; i; i = e[i].next)
-    if (e[i].to != fa[x]) {
-      fa[e[i].to] = x;
-      dfs1(e[i].to);
-      d[x] = max(d[x], d[e[i].to] + 1);
-      if (d[e[i].to] > d[mx[x]]) mx[x] = e[i].to;
+??? "参考代码"
+    ```cpp
+    #include <bits/stdc++.h>
+    using namespace std;
+    const int N = 1000005;
+    struct edge {
+      int to, next;
+    } e[N * 2];
+    int head[N], tot, n;
+    int d[N], fa[N], mx[N];
+    int *f[N], g[N], mxp[N];
+    int dfn[N];
+    void add(int x, int y) {
+      e[++tot] = (edge){y, head[x]};
+      head[x] = tot;
     }
-}
-void dfs2(int x) {
-  dfn[x] = ++*dfn;
-  f[x] = g + dfn[x];
-  if (mx[x]) dfs2(mx[x]);
-  for (int i = head[x]; i; i = e[i].next)
-    if (e[i].to != fa[x] && e[i].to != mx[x]) dfs2(e[i].to);
-}
-void getans(int x) {
-  if (mx[x]) {
-    getans(mx[x]);
-    mxp[x] = mxp[mx[x]] + 1;
-  }
-  f[x][0] = 1;
-  if (f[x][mxp[x]] <= 1) mxp[x] = 0;
-  for (int i = head[x]; i; i = e[i].next)
-    if (e[i].to != fa[x] && e[i].to != mx[x]) {
-      getans(e[i].to);
-      int len = d[e[i].to];
-      For(j, 0, len - 1) {
-        f[x][j + 1] += f[e[i].to][j];
-        if (f[x][j + 1] > f[x][mxp[x]]) mxp[x] = j + 1;
-        if (f[x][j + 1] == f[x][mxp[x]] && j + 1 < mxp[x]) mxp[x] = j + 1;
+    void dfs1(int x) {
+      d[x] = 1;
+      for (int i = head[x]; i; i = e[i].next)
+        if (e[i].to != fa[x]) {
+          fa[e[i].to] = x;
+          dfs1(e[i].to);
+          d[x] = max(d[x], d[e[i].to] + 1);
+          if (d[e[i].to] > d[mx[x]]) mx[x] = e[i].to;
+        }
+    }
+    void dfs2(int x) {
+      dfn[x] = ++*dfn;
+      f[x] = g + dfn[x];
+      if (mx[x]) dfs2(mx[x]);
+      for (int i = head[x]; i; i = e[i].next)
+        if (e[i].to != fa[x] && e[i].to != mx[x]) dfs2(e[i].to);
+    }
+    void getans(int x) {
+      if (mx[x]) {
+        getans(mx[x]);
+        mxp[x] = mxp[mx[x]] + 1;
       }
+      f[x][0] = 1;
+      if (f[x][mxp[x]] <= 1) mxp[x] = 0;
+      for (int i = head[x]; i; i = e[i].next)
+        if (e[i].to != fa[x] && e[i].to != mx[x]) {
+          getans(e[i].to);
+          int len = d[e[i].to];
+          For(j, 0, len - 1) {
+            f[x][j + 1] += f[e[i].to][j];
+            if (f[x][j + 1] > f[x][mxp[x]]) mxp[x] = j + 1;
+            if (f[x][j + 1] == f[x][mxp[x]] && j + 1 < mxp[x]) mxp[x] = j + 1;
+          }
+        }
     }
-}
-int main() {
-  scanf("%d", &n);
-  for (int i = 1; i < n; i++) {
-    int x, y;
-    scanf("%d%d", &x, &y);
-    add(x, y);
-    add(y, x);
-  }
-  dfs1(1);
-  dfs2(1);
-  getans(1);
-  for (int i = 1; i <= n; i++) printf("%d\n", mxp[i]);
-}
-```
+    int main() {
+      scanf("%d", &n);
+      for (int i = 1; i < n; i++) {
+        int x, y;
+        scanf("%d%d", &x, &y);
+        add(x, y);
+        add(y, x);
+      }
+      dfs1(1);
+      dfs2(1);
+      getans(1);
+      for (int i = 1; i <= n; i++) printf("%d\n", mxp[i]);
+    }
+    ```
 
 当然长链剖分优化 DP 技巧非常多，包括但是不仅限于打标记等等。这里不再展开。
 

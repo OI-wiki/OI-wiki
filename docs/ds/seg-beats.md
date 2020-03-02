@@ -22,115 +22,116 @@
 
 这个算法的复杂度如何？使用势能分析法可以得到复杂度是 $O(m\log n)$ 的。具体分析过程见论文。
 
-```cpp
-#include <algorithm>
-#include <cctype>
-#include <cstdio>
-using namespace std;
-const int N = 1e6 + 6;
-
-char nc() {
-  static char buf[1000000], *p = buf, *q = buf;
-  return p == q && (q = (p = buf) + fread(buf, 1, 1000000, stdin), p == q)
-             ? EOF
-             : *p++;
-}
-int rd() {
-  int res = 0;
-  char c = nc();
-  while (!isdigit(c)) c = nc();
-  while (isdigit(c)) res = res * 10 + c - '0', c = nc();
-  return res;
-}
-
-int t, n, m;
-int a[N];
-int mx[N << 2], se[N << 2], cn[N << 2], tag[N << 2];
-long long sum[N << 2];
-inline void pushup(int u) {  // 向上更新标记
-  const int ls = u << 1, rs = u << 1 | 1;
-  sum[u] = sum[ls] + sum[rs];
-  if (mx[ls] == mx[rs]) {
-    mx[u] = mx[rs];
-    se[u] = max(se[ls], se[rs]);
-    cn[u] = cn[ls] + cn[rs];
-  } else if (mx[ls] > mx[rs]) {
-    mx[u] = mx[ls];
-    se[u] = max(se[ls], mx[rs]);
-    cn[u] = cn[ls];
-  } else {
-    mx[u] = mx[rs];
-    se[u] = max(mx[ls], se[rs]);
-    cn[u] = cn[rs];
-  }
-}
-inline void pushtag(int u, int tg) {  // 单纯地打标记，不暴搜
-  if (mx[u] <= tg) return;
-  sum[u] += (1ll * tg - mx[u]) * cn[u];
-  mx[u] = tag[u] = tg;
-}
-inline void pushdown(int u) {
-  if (tag[u] == -1) return;
-  pushtag(u << 1, tag[u]), pushtag(u << 1 | 1, tag[u]);
-  tag[u] = -1;
-}
-void build(int u = 1, int l = 1, int r = n) {
-  tag[u] = -1;
-  if (l == r) {
-    sum[u] = mx[u] = a[l], se[u] = -1, cn[u] = 1;
-    return;
-  }
-  int mid = (l + r) >> 1;
-  build(u << 1, l, mid), build(u << 1 | 1, mid + 1, r);
-  pushup(u);
-}
-void modify_min(int L, int R, int v, int u = 1, int l = 1, int r = n) {
-  if (mx[u] <= v) return;
-  if (L <= l && r <= R && se[u] < v) return pushtag(u, v);
-  int mid = (l + r) >> 1;
-  pushdown(u);
-  if (L <= mid) modify_min(L, R, v, u << 1, l, mid);
-  if (mid < R) modify_min(L, R, v, u << 1 | 1, mid + 1, r);
-  pushup(u);
-}
-int query_max(int L, int R, int u = 1, int l = 1, int r = n) {
-  if (L <= l && r <= R) return mx[u];
-  int mid = (l + r) >> 1, r1 = -1, r2 = -1;
-  pushdown(u);
-  if (L <= mid) r1 = query_max(L, R, u << 1, l, mid);
-  if (mid < R) r2 = query_max(L, R, u << 1 | 1, mid + 1, r);
-  return max(r1, r2);
-}
-long long query_sum(int L, int R, int u = 1, int l = 1, int r = n) {
-  if (L <= l && r <= R) return sum[u];
-  int mid = (l + r) >> 1;
-  long long res = 0;
-  pushdown(u);
-  if (L <= mid) res += query_sum(L, R, u << 1, l, mid);
-  if (mid < R) res += query_sum(L, R, u << 1 | 1, mid + 1, r);
-  return res;
-}
-void go() {
-  n = rd(), m = rd();
-  for (int i = 1; i <= n; i++) a[i] = rd();
-  build();
-  for (int i = 1; i <= m; i++) {
-    int op, x, y, z;
-    op = rd(), x = rd(), y = rd();
-    if (op == 0)
-      z = rd(), modify_min(x, y, z);
-    else if (op == 1)
-      printf("%d\n", query_max(x, y));
-    else
-      printf("%lld\n", query_sum(x, y));
-  }
-}
-signed main() {
-  t = rd();
-  while (t--) go();
-  return 0;
-}
-```
+??? "参考代码"
+    ```cpp
+    #include <algorithm>
+    #include <cctype>
+    #include <cstdio>
+    using namespace std;
+    const int N = 1e6 + 6;
+    
+    char nc() {
+      static char buf[1000000], *p = buf, *q = buf;
+      return p == q && (q = (p = buf) + fread(buf, 1, 1000000, stdin), p == q)
+                 ? EOF
+                 : *p++;
+    }
+    int rd() {
+      int res = 0;
+      char c = nc();
+      while (!isdigit(c)) c = nc();
+      while (isdigit(c)) res = res * 10 + c - '0', c = nc();
+      return res;
+    }
+    
+    int t, n, m;
+    int a[N];
+    int mx[N << 2], se[N << 2], cn[N << 2], tag[N << 2];
+    long long sum[N << 2];
+    inline void pushup(int u) {  // 向上更新标记
+      const int ls = u << 1, rs = u << 1 | 1;
+      sum[u] = sum[ls] + sum[rs];
+      if (mx[ls] == mx[rs]) {
+        mx[u] = mx[rs];
+        se[u] = max(se[ls], se[rs]);
+        cn[u] = cn[ls] + cn[rs];
+      } else if (mx[ls] > mx[rs]) {
+        mx[u] = mx[ls];
+        se[u] = max(se[ls], mx[rs]);
+        cn[u] = cn[ls];
+      } else {
+        mx[u] = mx[rs];
+        se[u] = max(mx[ls], se[rs]);
+        cn[u] = cn[rs];
+      }
+    }
+    inline void pushtag(int u, int tg) {  // 单纯地打标记，不暴搜
+      if (mx[u] <= tg) return;
+      sum[u] += (1ll * tg - mx[u]) * cn[u];
+      mx[u] = tag[u] = tg;
+    }
+    inline void pushdown(int u) {
+      if (tag[u] == -1) return;
+      pushtag(u << 1, tag[u]), pushtag(u << 1 | 1, tag[u]);
+      tag[u] = -1;
+    }
+    void build(int u = 1, int l = 1, int r = n) {
+      tag[u] = -1;
+      if (l == r) {
+        sum[u] = mx[u] = a[l], se[u] = -1, cn[u] = 1;
+        return;
+      }
+      int mid = (l + r) >> 1;
+      build(u << 1, l, mid), build(u << 1 | 1, mid + 1, r);
+      pushup(u);
+    }
+    void modify_min(int L, int R, int v, int u = 1, int l = 1, int r = n) {
+      if (mx[u] <= v) return;
+      if (L <= l && r <= R && se[u] < v) return pushtag(u, v);
+      int mid = (l + r) >> 1;
+      pushdown(u);
+      if (L <= mid) modify_min(L, R, v, u << 1, l, mid);
+      if (mid < R) modify_min(L, R, v, u << 1 | 1, mid + 1, r);
+      pushup(u);
+    }
+    int query_max(int L, int R, int u = 1, int l = 1, int r = n) {
+      if (L <= l && r <= R) return mx[u];
+      int mid = (l + r) >> 1, r1 = -1, r2 = -1;
+      pushdown(u);
+      if (L <= mid) r1 = query_max(L, R, u << 1, l, mid);
+      if (mid < R) r2 = query_max(L, R, u << 1 | 1, mid + 1, r);
+      return max(r1, r2);
+    }
+    long long query_sum(int L, int R, int u = 1, int l = 1, int r = n) {
+      if (L <= l && r <= R) return sum[u];
+      int mid = (l + r) >> 1;
+      long long res = 0;
+      pushdown(u);
+      if (L <= mid) res += query_sum(L, R, u << 1, l, mid);
+      if (mid < R) res += query_sum(L, R, u << 1 | 1, mid + 1, r);
+      return res;
+    }
+    void go() {
+      n = rd(), m = rd();
+      for (int i = 1; i <= n; i++) a[i] = rd();
+      build();
+      for (int i = 1; i <= m; i++) {
+        int op, x, y, z;
+        op = rd(), x = rd(), y = rd();
+        if (op == 0)
+          z = rd(), modify_min(x, y, z);
+        else if (op == 1)
+          printf("%d\n", query_max(x, y));
+        else
+          printf("%lld\n", query_sum(x, y));
+      }
+    }
+    signed main() {
+      t = rd();
+      while (t--) go();
+      return 0;
+    }
+    ```
 
 ### BZOJ4695 最假女选手
 
@@ -147,174 +148,175 @@ signed main() {
 
 另外，BZOJ 这道题卡常……多数组线段树的常数比结构体线段树的常数大……在维护信息的时侯，当只有一两个数的时侯可能发生数集重合，比如一个数既是最大值又是次小值。这种要特判。
 
-```cpp
-#include <cstdio>
-#include <iostream>
-using namespace std;
-
-int inline rd() {
-  register char act = 0;
-  register int f = 1, x = 0;
-  while (act = getchar(), act < '0' && act != '-')
-    ;
-  if (act == '-') f = -1, act = getchar();
-  x = act - '0';
-  while (act = getchar(), act >= '0') x = x * 10 + act - '0';
-  return x * f;
-}
-
-const int N = 5e5 + 5, SZ = N << 2, INF = 0x7fffffff;
-
-int n, m;
-int a[N];
-
-struct data {
-  int mx, mx2, mn, mn2, cmx, cmn, tmx, tmn, tad;
-  long long sum;
-};
-data t[SZ];
-
-void pushup(int u) {
-  const int lu = u << 1, ru = u << 1 | 1;
-  t[u].sum = t[lu].sum + t[ru].sum;
-  if (t[lu].mx == t[ru].mx) {
-    t[u].mx = t[lu].mx, t[u].cmx = t[lu].cmx + t[ru].cmx;
-    t[u].mx2 = max(t[lu].mx2, t[ru].mx2);
-  } else if (t[lu].mx > t[ru].mx) {
-    t[u].mx = t[lu].mx, t[u].cmx = t[lu].cmx;
-    t[u].mx2 = max(t[lu].mx2, t[ru].mx);
-  } else {
-    t[u].mx = t[ru].mx, t[u].cmx = t[ru].cmx;
-    t[u].mx2 = max(t[lu].mx, t[ru].mx2);
-  }
-  if (t[lu].mn == t[ru].mn) {
-    t[u].mn = t[lu].mn, t[u].cmn = t[lu].cmn + t[ru].cmn;
-    t[u].mn2 = min(t[lu].mn2, t[ru].mn2);
-  } else if (t[lu].mn < t[ru].mn) {
-    t[u].mn = t[lu].mn, t[u].cmn = t[lu].cmn;
-    t[u].mn2 = min(t[lu].mn2, t[ru].mn);
-  } else {
-    t[u].mn = t[ru].mn, t[u].cmn = t[ru].cmn;
-    t[u].mn2 = min(t[lu].mn, t[ru].mn2);
-  }
-}
-void push_add(int u, int l, int r, int v) {
-  // 更新加法标记的同时，更新 $\min$ 和 $\max$ 标记
-  t[u].sum += (r - l + 1ll) * v;
-  t[u].mx += v, t[u].mn += v;
-  if (t[u].mx2 != -INF) t[u].mx2 += v;
-  if (t[u].mn2 != INF) t[u].mn2 += v;
-  if (t[u].tmx != -INF) t[u].tmx += v;
-  if (t[u].tmn != INF) t[u].tmn += v;
-  t[u].tad += v;
-}
-void push_min(int u, int tg) {
-  // 注意比较 $\max$ 标记
-  if (t[u].mx <= tg) return;
-  t[u].sum += (tg * 1ll - t[u].mx) * t[u].cmx;
-  if (t[u].mn2 == t[u].mx) t[u].mn2 = tg;  //!!!
-  if (t[u].mn == t[u].mx) t[u].mn = tg;    //!!!!!
-  if (t[u].tmx > tg) t[u].tmx = tg;        // 更新取 $\max$ 标记
-  t[u].mx = tg, t[u].tmn = tg;
-}
-void push_max(int u, int tg) {
-  if (t[u].mn > tg) return;
-  t[u].sum += (tg * 1ll - t[u].mn) * t[u].cmn;
-  if (t[u].mx2 == t[u].mn) t[u].mx2 = tg;
-  if (t[u].mx == t[u].mn) t[u].mx = tg;
-  if (t[u].tmn < tg) t[u].tmn = tg;
-  t[u].mn = tg, t[u].tmx = tg;
-}
-void pushdown(int u, int l, int r) {
-  const int lu = u << 1, ru = u << 1 | 1, mid = (l + r) >> 1;
-  if (t[u].tad)
-    push_add(lu, l, mid, t[u].tad), push_add(ru, mid + 1, r, t[u].tad);
-  if (t[u].tmx != -INF) push_max(lu, t[u].tmx), push_max(ru, t[u].tmx);
-  if (t[u].tmn != INF) push_min(lu, t[u].tmn), push_min(ru, t[u].tmn);
-  t[u].tad = 0, t[u].tmx = -INF, t[u].tmn = INF;
-}
-void build(int u = 1, int l = 1, int r = n) {
-  t[u].tmn = INF, t[u].tmx = -INF;  // 取极限
-  if (l == r) {
-    t[u].sum = t[u].mx = t[u].mn = a[l];
-    t[u].mx2 = -INF, t[u].mn2 = INF;
-    t[u].cmx = t[u].cmn = 1;
-    return;
-  }
-  int mid = (l + r) >> 1;
-  build(u << 1, l, mid), build(u << 1 | 1, mid + 1, r);
-  pushup(u);
-}
-void add(int L, int R, int v, int u = 1, int l = 1, int r = n) {
-  if (R < l || r < L) return;
-  if (L <= l && r <= R) return push_add(u, l, r, v);  //!!! 忘 return
-  int mid = (l + r) >> 1;
-  pushdown(u, l, r);
-  add(L, R, v, u << 1, l, mid), add(L, R, v, u << 1 | 1, mid + 1, r);
-  pushup(u);
-}
-void tomin(int L, int R, int v, int u = 1, int l = 1, int r = n) {
-  if (R < l || r < L || t[u].mx <= v) return;
-  if (L <= l && r <= R && t[u].mx2 < v) return push_min(u, v);  // BUG: 忘了返回
-  int mid = (l + r) >> 1;
-  pushdown(u, l, r);
-  tomin(L, R, v, u << 1, l, mid), tomin(L, R, v, u << 1 | 1, mid + 1, r);
-  pushup(u);
-}
-void tomax(int L, int R, int v, int u = 1, int l = 1, int r = n) {
-  if (R < l || r < L || t[u].mn >= v) return;
-  if (L <= l && r <= R && t[u].mn2 > v) return push_max(u, v);
-  int mid = (l + r) >> 1;
-  pushdown(u, l, r);
-  tomax(L, R, v, u << 1, l, mid), tomax(L, R, v, u << 1 | 1, mid + 1, r);
-  pushup(u);
-}
-long long qsum(int L, int R, int u = 1, int l = 1, int r = n) {
-  if (R < l || r < L) return 0;
-  if (L <= l && r <= R) return t[u].sum;
-  int mid = (l + r) >> 1;
-  pushdown(u, l, r);
-  return qsum(L, R, u << 1, l, mid) + qsum(L, R, u << 1 | 1, mid + 1, r);
-}
-long long qmax(int L, int R, int u = 1, int l = 1, int r = n) {
-  if (R < l || r < L) return -INF;
-  if (L <= l && r <= R) return t[u].mx;
-  int mid = (l + r) >> 1;
-  pushdown(u, l, r);
-  return max(qmax(L, R, u << 1, l, mid), qmax(L, R, u << 1 | 1, mid + 1, r));
-}
-long long qmin(int L, int R, int u = 1, int l = 1, int r = n) {
-  if (R < l || r < L) return INF;
-  if (L <= l && r <= R) return t[u].mn;
-  int mid = (l + r) >> 1;
-  pushdown(u, l, r);
-  return min(qmin(L, R, u << 1, l, mid), qmin(L, R, u << 1 | 1, mid + 1, r));
-}
-int main() {
-  n = rd();
-  for (int i = 1; i <= n; i++) a[i] = rd();
-  build();
-  m = rd();
-  for (int i = 1; i <= m; i++) {
-    int op, l, r, x;
-    op = rd(), l = rd(), r = rd();
-    if (op <= 3) x = rd();  // scanf("%d",&x);
-    if (op == 1)
-      add(l, r, x);
-    else if (op == 2)
-      tomax(l, r, x);
-    else if (op == 3)
-      tomin(l, r, x);
-    else if (op == 4)
-      printf("%lld\n", qsum(l, r));
-    else if (op == 5)
-      printf("%lld\n", qmax(l, r));
-    else
-      printf("%lld\n", qmin(l, r));
-  }
-  return 0;
-}
-```
+??? "参考代码"
+    ```cpp
+    #include <cstdio>
+    #include <iostream>
+    using namespace std;
+    
+    int inline rd() {
+      register char act = 0;
+      register int f = 1, x = 0;
+      while (act = getchar(), act < '0' && act != '-')
+        ;
+      if (act == '-') f = -1, act = getchar();
+      x = act - '0';
+      while (act = getchar(), act >= '0') x = x * 10 + act - '0';
+      return x * f;
+    }
+    
+    const int N = 5e5 + 5, SZ = N << 2, INF = 0x7fffffff;
+    
+    int n, m;
+    int a[N];
+    
+    struct data {
+      int mx, mx2, mn, mn2, cmx, cmn, tmx, tmn, tad;
+      long long sum;
+    };
+    data t[SZ];
+    
+    void pushup(int u) {
+      const int lu = u << 1, ru = u << 1 | 1;
+      t[u].sum = t[lu].sum + t[ru].sum;
+      if (t[lu].mx == t[ru].mx) {
+        t[u].mx = t[lu].mx, t[u].cmx = t[lu].cmx + t[ru].cmx;
+        t[u].mx2 = max(t[lu].mx2, t[ru].mx2);
+      } else if (t[lu].mx > t[ru].mx) {
+        t[u].mx = t[lu].mx, t[u].cmx = t[lu].cmx;
+        t[u].mx2 = max(t[lu].mx2, t[ru].mx);
+      } else {
+        t[u].mx = t[ru].mx, t[u].cmx = t[ru].cmx;
+        t[u].mx2 = max(t[lu].mx, t[ru].mx2);
+      }
+      if (t[lu].mn == t[ru].mn) {
+        t[u].mn = t[lu].mn, t[u].cmn = t[lu].cmn + t[ru].cmn;
+        t[u].mn2 = min(t[lu].mn2, t[ru].mn2);
+      } else if (t[lu].mn < t[ru].mn) {
+        t[u].mn = t[lu].mn, t[u].cmn = t[lu].cmn;
+        t[u].mn2 = min(t[lu].mn2, t[ru].mn);
+      } else {
+        t[u].mn = t[ru].mn, t[u].cmn = t[ru].cmn;
+        t[u].mn2 = min(t[lu].mn, t[ru].mn2);
+      }
+    }
+    void push_add(int u, int l, int r, int v) {
+      // 更新加法标记的同时，更新 $\min$ 和 $\max$ 标记
+      t[u].sum += (r - l + 1ll) * v;
+      t[u].mx += v, t[u].mn += v;
+      if (t[u].mx2 != -INF) t[u].mx2 += v;
+      if (t[u].mn2 != INF) t[u].mn2 += v;
+      if (t[u].tmx != -INF) t[u].tmx += v;
+      if (t[u].tmn != INF) t[u].tmn += v;
+      t[u].tad += v;
+    }
+    void push_min(int u, int tg) {
+      // 注意比较 $\max$ 标记
+      if (t[u].mx <= tg) return;
+      t[u].sum += (tg * 1ll - t[u].mx) * t[u].cmx;
+      if (t[u].mn2 == t[u].mx) t[u].mn2 = tg;  //!!!
+      if (t[u].mn == t[u].mx) t[u].mn = tg;    //!!!!!
+      if (t[u].tmx > tg) t[u].tmx = tg;        // 更新取 $\max$ 标记
+      t[u].mx = tg, t[u].tmn = tg;
+    }
+    void push_max(int u, int tg) {
+      if (t[u].mn > tg) return;
+      t[u].sum += (tg * 1ll - t[u].mn) * t[u].cmn;
+      if (t[u].mx2 == t[u].mn) t[u].mx2 = tg;
+      if (t[u].mx == t[u].mn) t[u].mx = tg;
+      if (t[u].tmn < tg) t[u].tmn = tg;
+      t[u].mn = tg, t[u].tmx = tg;
+    }
+    void pushdown(int u, int l, int r) {
+      const int lu = u << 1, ru = u << 1 | 1, mid = (l + r) >> 1;
+      if (t[u].tad)
+        push_add(lu, l, mid, t[u].tad), push_add(ru, mid + 1, r, t[u].tad);
+      if (t[u].tmx != -INF) push_max(lu, t[u].tmx), push_max(ru, t[u].tmx);
+      if (t[u].tmn != INF) push_min(lu, t[u].tmn), push_min(ru, t[u].tmn);
+      t[u].tad = 0, t[u].tmx = -INF, t[u].tmn = INF;
+    }
+    void build(int u = 1, int l = 1, int r = n) {
+      t[u].tmn = INF, t[u].tmx = -INF;  // 取极限
+      if (l == r) {
+        t[u].sum = t[u].mx = t[u].mn = a[l];
+        t[u].mx2 = -INF, t[u].mn2 = INF;
+        t[u].cmx = t[u].cmn = 1;
+        return;
+      }
+      int mid = (l + r) >> 1;
+      build(u << 1, l, mid), build(u << 1 | 1, mid + 1, r);
+      pushup(u);
+    }
+    void add(int L, int R, int v, int u = 1, int l = 1, int r = n) {
+      if (R < l || r < L) return;
+      if (L <= l && r <= R) return push_add(u, l, r, v);  //!!! 忘 return
+      int mid = (l + r) >> 1;
+      pushdown(u, l, r);
+      add(L, R, v, u << 1, l, mid), add(L, R, v, u << 1 | 1, mid + 1, r);
+      pushup(u);
+    }
+    void tomin(int L, int R, int v, int u = 1, int l = 1, int r = n) {
+      if (R < l || r < L || t[u].mx <= v) return;
+      if (L <= l && r <= R && t[u].mx2 < v) return push_min(u, v);  // BUG: 忘了返回
+      int mid = (l + r) >> 1;
+      pushdown(u, l, r);
+      tomin(L, R, v, u << 1, l, mid), tomin(L, R, v, u << 1 | 1, mid + 1, r);
+      pushup(u);
+    }
+    void tomax(int L, int R, int v, int u = 1, int l = 1, int r = n) {
+      if (R < l || r < L || t[u].mn >= v) return;
+      if (L <= l && r <= R && t[u].mn2 > v) return push_max(u, v);
+      int mid = (l + r) >> 1;
+      pushdown(u, l, r);
+      tomax(L, R, v, u << 1, l, mid), tomax(L, R, v, u << 1 | 1, mid + 1, r);
+      pushup(u);
+    }
+    long long qsum(int L, int R, int u = 1, int l = 1, int r = n) {
+      if (R < l || r < L) return 0;
+      if (L <= l && r <= R) return t[u].sum;
+      int mid = (l + r) >> 1;
+      pushdown(u, l, r);
+      return qsum(L, R, u << 1, l, mid) + qsum(L, R, u << 1 | 1, mid + 1, r);
+    }
+    long long qmax(int L, int R, int u = 1, int l = 1, int r = n) {
+      if (R < l || r < L) return -INF;
+      if (L <= l && r <= R) return t[u].mx;
+      int mid = (l + r) >> 1;
+      pushdown(u, l, r);
+      return max(qmax(L, R, u << 1, l, mid), qmax(L, R, u << 1 | 1, mid + 1, r));
+    }
+    long long qmin(int L, int R, int u = 1, int l = 1, int r = n) {
+      if (R < l || r < L) return INF;
+      if (L <= l && r <= R) return t[u].mn;
+      int mid = (l + r) >> 1;
+      pushdown(u, l, r);
+      return min(qmin(L, R, u << 1, l, mid), qmin(L, R, u << 1 | 1, mid + 1, r));
+    }
+    int main() {
+      n = rd();
+      for (int i = 1; i <= n; i++) a[i] = rd();
+      build();
+      m = rd();
+      for (int i = 1; i <= m; i++) {
+        int op, l, r, x;
+        op = rd(), l = rd(), r = rd();
+        if (op <= 3) x = rd();  // scanf("%d",&x);
+        if (op == 1)
+          add(l, r, x);
+        else if (op == 2)
+          tomax(l, r, x);
+        else if (op == 3)
+          tomin(l, r, x);
+        else if (op == 4)
+          printf("%lld\n", qsum(l, r));
+        else if (op == 5)
+          printf("%lld\n", qmax(l, r));
+        else
+          printf("%lld\n", qmin(l, r));
+      }
+      return 0;
+    }
+    ```
 
 吉老师证出来这个算法的复杂度是 $O(m\log^2 n)$ 的。
 

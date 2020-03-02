@@ -119,33 +119,34 @@ $$
 
 也就是无限背包问题。这个问题可以预处理，算上询问，总复杂度 $O(4S+2^4n)$ .
 
-```cpp
-#include <bits/stdc++.h>
-#define int long long
-using namespace std;
-const int S = 1e5 + 5;
-int c[5], d[5], n, s;
-int f[S];
-signed main() {
-  scanf("%lld%lld%lld%lld%lld", &c[1], &c[2], &c[3], &c[4], &n);
-  f[0] = 1;
-  for (int j = 1; j <= 4; j++)
-    for (int i = 1; i < S; i++)
-      if (i >= c[j]) f[i] += f[i - c[j]];
-  for (int i = 1; i <= n; i++) {
-    scanf("%lld%lld%lld%lld%lld", &d[1], &d[2], &d[3], &d[4], &s);
-    int ans = 0;
-    for (int i = 1; i < 16; i++) {
-      int m = s, bit = 0;
+??? "参考代码"
+    ```cpp
+    #include <bits/stdc++.h>
+    #define int long long
+    using namespace std;
+    const int S = 1e5 + 5;
+    int c[5], d[5], n, s;
+    int f[S];
+    signed main() {
+      scanf("%lld%lld%lld%lld%lld", &c[1], &c[2], &c[3], &c[4], &n);
+      f[0] = 1;
       for (int j = 1; j <= 4; j++)
-        if ((i >> (j - 1)) & 1) m -= (d[j] + 1) * c[j], bit++;
-      if (m >= 0) ans += (bit % 2 * 2 - 1) * f[m];
+        for (int i = 1; i < S; i++)
+          if (i >= c[j]) f[i] += f[i - c[j]];
+      for (int i = 1; i <= n; i++) {
+        scanf("%lld%lld%lld%lld%lld", &d[1], &d[2], &d[3], &d[4], &s);
+        int ans = 0;
+        for (int i = 1; i < 16; i++) {
+          int m = s, bit = 0;
+          for (int j = 1; j <= 4; j++)
+            if ((i >> (j - 1)) & 1) m -= (d[j] + 1) * c[j], bit++;
+          if (m >= 0) ans += (bit % 2 * 2 - 1) * f[m];
+        }
+        printf("%lld\n", f[s] - ans);
+      }
+      return 0;
     }
-    printf("%lld\n", f[s] - ans);
-  }
-  return 0;
-}
-```
+    ```
 
 ## 错位排列计数
 
