@@ -32,6 +32,7 @@
     "gulp-purifycss": "^0.2.0",
     "mathjax-node-page": "^3.0.1",
     "remark-clang-format": "^1.0.1",
+    "remark-code-wrap": "^1.0.0",
     "remark-copywriting-correct": "^0.5.0",
     "remark-details": "^2.0.0",
     "remark-lint-final-newline": "^1.0.2",
