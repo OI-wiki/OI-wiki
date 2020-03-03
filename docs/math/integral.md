@@ -1,8 +1,8 @@
 ## 定积分的定义
 
-简单来说，函数 $f(x)$ 在区间 $[l,r]$ 上的定积分 $\int_{l}^{r}f(x)\mathrm{d}x$ 指的是 $f(x)$ 在区间 $[l,r]$ 中与 $x$ 轴围成的区域的面积（其中 $x$ 轴上方的部分为正值，$x$ 轴下方的部分为负值）。
+简单来说，函数 $f(x)$ 在区间 $[l,r]$ 上的定积分 $\int_{l}^{r}f(x)\mathrm{d}x$ 指的是 $f(x)$ 在区间 $[l,r]$ 中与 $x$ 轴围成的区域的面积（其中 $x$ 轴上方的部分为正值， $x$ 轴下方的部分为负值）。
 
-很多情况下，我们需要高效，准确地求出一个积分的近似值。下面介绍的**自适应辛普森法**，就是这样一种求数值积分的方法。
+很多情况下，我们需要高效，准确地求出一个积分的近似值。下面介绍的 **自适应辛普森法** ，就是这样一种求数值积分的方法。
 
 ## 自适应辛普森法
 
@@ -11,11 +11,11 @@
 ??? note "二次函数积分公式（辛普森公式）"
 
     对于一个二次函数 $f(x)=Ax^2+Bx+C$，有：
-    
+
     $$
     \int_l^r f(x) {\mathrm d}x = \frac{(r-l)(f(l)+f(r)+4 f(\frac{l+r}{2}))}{6}
     $$
-    
+
     推导过程较为繁琐，这里略去。
 
 现在唯一的问题就是如何进行分段。如果段数少了计算误差就大，段数多了时间效率又会低。我们需要找到一个准确度和效率的平衡点。
@@ -33,16 +33,16 @@
 参考代码如下：
 
 ```cpp
-double simpson(double l,double r)
-{
- double mid=(l+r)/2;
- return (r-l)*(f(l)+4*f(mid)+f(r))/6;//辛普森公式
+double simpson(double l, double r) {
+  double mid = (l + r) / 2;
+  return (r - l) * (f(l) + 4 * f(mid) + f(r)) / 6;  //辛普森公式
 }
-double asr(double l,double r,double eqs,double ans)
-{
- double mid=(l+r)/2;
- double fl=simpson(l,mid),fr=simpson(mid,r);
- if(abs(fl+fr-ans)<=15*eqs)return fl+fr-(fl+fr-ans)/15;//足够相似的话就直接返回
- return asr(l,mid,eqs/2,fl)+asr(mid,r,eqs/2,fr);//否则分割成两段递归求解
+double asr(double l, double r, double eqs, double ans) {
+  double mid = (l + r) / 2;
+  double fl = simpson(l, mid), fr = simpson(mid, r);
+  if (abs(fl + fr - ans) <= 15 * eqs)
+    return fl + fr - (fl + fr - ans) / 15;  //足够相似的话就直接返回
+  return asr(l, mid, eqs / 2, fl) +
+         asr(mid, r, eqs / 2, fr);  //否则分割成两段递归求解
 }
 ```
