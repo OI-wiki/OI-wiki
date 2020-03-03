@@ -132,11 +132,74 @@ $$
 
 事实上，我们有一个远比它要强的结论。模 $n$ 意义下斐波那契数列的周期被称为 [皮萨诺周期](https://en.wikipedia.org/wiki/Pisano_period) （ [OEIS A001175](http://oeis.org/A001175) ），该数可以证明总是不超过 $6n$ ，且只有在满足 $n=2\times 5^k$ 的形式时才取到等号。
 
+## 斐波那契公因数的证明
+
+$$
+\gcd(F_m,F_n) = F_{\gcd(m,n)}
+$$
+
+下面证明这个定理。
+
+我们先假定 $n > m$ .
+
+首先我们考虑 $\gcd$ 的两个性质，后面要用：
+
+$$\gcd(a,b) = \gcd(b,a-b) = \gcd(a-k \cdot b)$$
+
+$$\gcd(a \times b,c) = \gcd(a ,c ) \times \gcd(b,c)$$
+
+再考虑 $F$ 数列的一个性质：
+
+$$F_{n+1} - F_n = F_{n-1}$$
+
+下面先求另一个东西：
+
+$$\gcd(F_n,F_{n+1}) = \gcd(F_n,F_{n+1}-F_n) = \gcd(F_{n-1},F_n) = \cdots = \gcd(F_1,F_2)=1$$
+
+得出结论：相邻两个 $F$  的数，其 $\gcd$ 为 $1$.
+
+可以推论：
+
+$$F_{n+m}=F_{n+m-1}+F_{n+m-2} = 2 \times F_{n+m-2} + F_{n+m-3} = 3\times F_{n+m-3}  +2 \times F_{n+m-4} = \cdots = F_{n+1} \cdot F_m + F_n \cdot F_{m-1}$$
+
+如果还不懂，可以从上面这个式子进行推论：
+
+$$F_{n+m}=F_2 \cdot F_{n+m-1}+F_1 \cdot F_{n+m-2} = F_3 \cdot \times F_{n+m-2} + F_2 \cdot F_{n+m-3} = F_4 \cdot F_{n+m-3}  +F_3 \cdot F_{n+m-4} = \cdots = F_{n+1} \cdot F_m + F_n \cdot F_{m-1}$$
+
+（因为每次你会发现，$F$ 的系数就是 $F$本身！）
+
+下面可以得出：
+
+$$\gcd(F_{n+m},F_n) = \gcd(F_{n+1} \cdot F_m + F_n \cdot F_{m-1} ,F_n)$$
+
+下面由于 $\gcd$ 的性质，约去 $F_n$ 一项，再拆开做乘法，可得：
+
+$$ = \gcd(F_{n+1} \cdot F_m , F_n) = \gcd(F_{n+1},F_n) \times \gcd(F_m,F_n) $$
+
+由上面所说结论 $\gcd(F_{n+1},F_n=1)$ 可推断：
+
+$$ \gcd(F_{n+m},F_n) = \gcd(F_m,F_n)$$
+
+由此不断迭代：
+
+$$\gcd(F_{n+m},F_n) = \gcd(F_m,F_n) = \gcd(F_{n-m},F_m) = \cdots$$
+
+你会发现，这其实就是在实施 **辗转相减法** 。
+
+那么，辗转相减法的本质就是在求 $\gcd$ ！
+
+所以可以得出：
+
+$$\gcd(F_n,F_m) = F_{\gcd(n,m)}$$
+
+至此得证。
+
 ## 习题
 
 -    [SPOJ - Euclid Algorithm Revisited](http://www.spoj.com/problems/MAIN74/) 
 -    [SPOJ - Fibonacci Sum](http://www.spoj.com/problems/FIBOSUM/) 
 -    [HackerRank - Is Fibo](https://www.hackerrank.com/contests/codesprint5/challenges/is-fibo/problem) 
 -    [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem) 
+-    [洛谷 - 斐波那契公因数](https://www.luogu.com.cn/problem/P1306)
 
      **本页面主要译自博文 [Числа Фибоначчи](http://e-maxx.ru/algo/fibonacci_numbers) 与其英文翻译版 [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
