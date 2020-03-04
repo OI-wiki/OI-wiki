@@ -10,7 +10,7 @@
     我们考虑这样一个栈
     
     ```text
-    push (1)
+    push(1)
     pop(1)
     push(2)
     pop(2)
