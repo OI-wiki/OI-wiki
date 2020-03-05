@@ -42,11 +42,10 @@ inline void insert(long long x) {
 
 查询某个数是否能被异或出来，类似于插入，如果最后插入的数 $p$ 被异或成了 0，则能被异或出来。
 
-
 ## 线性基练习题
 
  [SGU 275 to xor or not xor](https://vjudge.net/problem/SGU-275) 
 
  [HDU 3949 XOR](https://loj.ac/problem/161) 
 
- [Luogu P4151 [WC2011]最大XOR和路径](https://www.luogu.com.cn/problem/P4151)
+ [Luogu P4151 \[WC2011\] 最大 XOR 和路径](https://www.luogu.com.cn/problem/P4151) 
