@@ -48,4 +48,4 @@ inline void insert(long long x) {
 
  [HDU 3949 XOR](https://loj.ac/problem/161) 
 
- [Luogu P4151 \[WC2011\] 最大 XOR 和路径](https://www.luogu.com.cn/problem/P4151) 
+ [Luogu P4151\[WC2011\]最大 XOR 和路径](https://www.luogu.com.cn/problem/P4151) 
