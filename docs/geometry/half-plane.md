@@ -122,7 +122,7 @@ friend bool operator<(seg x, seg y) {
 //求的是向量左侧的半平面
 int l = 0, r = 0;
 for (int i = 1; i <= n; ++i)
-  if ((s[i] == s[i - 1]) == false) {
+  if (s[i] != s[i - 1]) {
     //注意要先检查队尾
     while (r - l > 1 && (s[i].b - t[r]) * (s[i].a - t[r]) >
                             eps)  //如果上一个交点在向量右侧则弹出队尾
