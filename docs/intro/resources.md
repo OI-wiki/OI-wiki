@@ -131,7 +131,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [uDebug](https://www.udebug.com) （提供一些 OJ 题目的调试辅助）
 -    [cppreference.com](https://zh.cppreference.com/w/) （提供 C++ 内语法的查询等）
 -    [图论画板](https://csacademy.com/app/graph_editor/) （同时推荐 [GraphViz](http://www.graphviz.org/) )
--    [ $\rm\LaTeX{}$ 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm) 
+-    [ $\rm\LaTeX$ 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm) 
 -    [Godbolt](https://godbolt.org/) （在浏览器中查看编译后代码块对应的汇编语句）
 -    [《100 个 gdb 小技巧》](https://github.com/hellogcc/100-gdb-tips) 
 -    [Mathpix](https://mathpix.com/) （截图转 $\rm\LaTeX{}$ )
