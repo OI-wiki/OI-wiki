@@ -136,4 +136,4 @@ bool increment = opt<bool>("increment");
 
 可以在 [GitHub](https://github.com/MikeMirzayanov/testlib/tree/master/generators) 中找到。
 
- **本文主要翻译自 [Генераторы на testlib.h - Codeforces](https://codeforces.com/blog/entry/18291) 。新特性翻译自 [Testlib: Opts — parsing command line options](https://codeforces.com/blog/entry/72702)。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 
+ **本文主要翻译自 [Генераторы на testlib.h - Codeforces](https://codeforces.com/blog/entry/18291) 。新特性翻译自 [Testlib: Opts—parsing command line options](https://codeforces.com/blog/entry/72702) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 
