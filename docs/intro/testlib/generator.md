@@ -127,10 +127,12 @@ bool increment = opt<bool>("increment");
 
 下面是一些例子：
 
-    g1 -n1
-    g2 --len=4 --s=oops
-    g3 -inc -shuffle -n=5
-    g4 --length 5 --total 21 -ord
+```text
+g1 -n1
+g2 --len=4 --s=oops
+g3 -inc -shuffle -n=5
+g4 --length 5 --total 21 -ord
+```
 
 ## 更多示例
 
