@@ -96,8 +96,46 @@ for (int i = 0; i + 1 < n; i++)
 -   对于大数据首选 `printf` 而非 `cout` ，以提高性能。（不建议在使用 Testlib 时关闭流同步）
 -   不使用 UB（Undefined Behavior，未定义行为），如本文开头的那个示例，输出如果写成 `cout << rnd.next(1, n) << " " << rnd.next(1, n) << endl;` ，则 `rnd.next()` 的调用顺序没有定义。
 
+## 新特性：解析命令行参数
+
+在之前，我们通常使用类似 `int n = atoi(argv[3]);` 的代码，但是这样并不好。有以下几点原因：
+
+-   不存在第三个命令行参数的时候是不安全的；
+-   第三个命令行参数可能不是有效的 32 位整数。
+
+现在，你可以这样写： `int n = opt<int>(3)` 。与此同时，你也可以使用 `int64_t m = opt<int64_t>(1);` ， `bool t = opt<bool>(2);` 和 `string s = opt(4);` 等。
+
+另外，testlib 同时也支持命名参数。如果有很多参数，这样 `g 10 20000 a true` 的可读性就会比 `g -n10 -m200000 -t=a -increment` 差。
+
+在这种情况下，现在你可以在 generator 中使用以下代码：
+
+```cpp
+int n = opt<int>("n");
+long long n = opt<long long>("m");
+string t = opt("t");
+bool increment = opt<bool>("increment");
+```
+
+你可以自由地混合使用按下标和按名称读取参数的方式。
+
+支持的用于编写命名参数的方案有以下几种：
+
+-    `--key=value` 或 `-key=value` ；
+-    `--key value` 或 `-key value` ——如果 `value` 不是新参数的开头（不以连字符 `-` 开头或一个/两个连字符后没有跟随字母）；
+-    `--k12345` 或 `-k12345` ——如果 key `k` 是一个字母，且后面是一个数字；
+-    `-prop` 或 `--prop` ——启用 bool 属性。
+
+下面是一些例子：
+
+```text
+g1 -n1
+g2 --len=4 --s=oops
+g3 -inc -shuffle -n=5
+g4 --length 5 --total 21 -ord
+```
+
 ## 更多示例
 
 可以在 [GitHub](https://github.com/MikeMirzayanov/testlib/tree/master/generators) 中找到。
 
- **本文主要翻译自 [Генераторы на testlib.h - Codeforces](https://codeforces.com/blog/entry/18291) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 
+ **本文主要翻译自 [Генераторы на testlib.h - Codeforces](https://codeforces.com/blog/entry/18291) 。新特性翻译自 [Testlib: Opts—parsing command line options](https://codeforces.com/blog/entry/72702) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 
