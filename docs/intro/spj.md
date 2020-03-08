@@ -4,7 +4,7 @@
     spj 还应当判断文件尾是否有多余内容，及输出格式是否正确（如题目要求数字间用一个空格隔开，而选手却使用了换行）。但是，目前前者只有 Testlib 可以方便地做到这一点，而后者几乎无人去特意进行这种判断。
 
     判断浮点数时应注意 nan，不合理的判断方式会导致输出 nan 即可 AC。
-    
+
     在对选手文件进行读入操作时应该要检查是否正确读入了所需的内容，防止造成 spj 的运行错误。（部分 OJ 会将 spj 的运行错误作为系统错误处理）
 
 以下均使用 C++，以“要求标准答案与选手答案差值小于 1e-3，文件名为 num”为例。
@@ -266,13 +266,13 @@ int main(int argc, char* argv[]) {
 
 ## DOMJudge
 
- **DOMJudge 支持任何语言编写的 spj，参考 [problemarchive.org output validator 格式](https://www.problemarchive.org/wiki/index.php/Output_validator)。 **
- 
-  **DOMJudge 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib) ** 
-  
-  DOMJudge 使用的 Testlib 及导入 polygon 题目包方式的文档：<https://github.com/cn-xcpc-tools/testlib-for-domjudge>
- 
-  DOMJudge 的[默认比较器](https://github.com/Kattis/problemtools/blob/master/support/default_validator/)自带了浮点数带精度比较，只需要在题目配置的 `validator_flags` 中添加 `float_tolerance 1e-3` 即可。
+ **DOMJudge 支持任何语言编写的 spj，参考 [problemarchive.org output validator 格式](https://www.problemarchive.org/wiki/index.php/Output_validator) 。** 
+
+ **DOMJudge 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib) ** 
+
+DOMJudge 使用的 Testlib 及导入 polygon 题目包方式的文档： <https://github.com/cn-xcpc-tools/testlib-for-domjudge> 
+
+DOMJudge 的 [默认比较器](https://github.com/Kattis/problemtools/blob/master/support/default_validator/) 自带了浮点数带精度比较，只需要在题目配置的 `validator_flags` 中添加 `float_tolerance 1e-3` 即可。
 
 ```cpp
 #include <cmath>
@@ -284,7 +284,7 @@ int main(int argc, char* argv[]) {
   /*
    * argv[1]: 输入
    * argv[2]: 标准输出
-   * argv[3]: 评测信息输出的文件夹 
+   * argv[3]: 评测信息输出的文件夹
    * stdin: 选手输出
    */
   FILE* fin = fopen(argv[1], "r");
@@ -297,13 +297,11 @@ int main(int argc, char* argv[]) {
   if (abs(pans - jans) < 1e-3) {
     fprintf("Too big or too small, expected %f, found %f", jans, pans);
     return WA;
-  }
-  else {
+  } else {
     fprintf(freport, "Good job");
     return AC;
   }
 }
 ```
- 
- 也可以使用 Kattis Problem Tools 提供的头文件 [validate.h](https://github.com/Kattis/problemtools/blob/master/examples/different/output_validators/different_validator/validate.h) 编写，以实现更加复杂的功能。
 
+也可以使用 Kattis Problem Tools 提供的头文件 [validate.h](https://github.com/Kattis/problemtools/blob/master/examples/different/output_validators/different_validator/validate.h) 编写，以实现更加复杂的功能。
