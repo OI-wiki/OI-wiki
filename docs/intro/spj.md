@@ -4,6 +4,8 @@
     spj 还应当判断文件尾是否有多余内容，及输出格式是否正确（如题目要求数字间用一个空格隔开，而选手却使用了换行）。但是，目前前者只有 Testlib 可以方便地做到这一点，而后者几乎无人去特意进行这种判断。
 
     判断浮点数时应注意 nan，不合理的判断方式会导致输出 nan 即可 AC。
+    
+    在对选手文件进行读入操作时应该要检查是否正确读入了所需的内容，防止造成 spj 的运行错误。（部分 OJ 会将 spj 的运行错误作为系统错误处理）
 
 以下均使用 C++，以“要求标准答案与选手答案差值小于 1e-3，文件名为 num”为例。
 
@@ -18,6 +20,8 @@ Testlib 的介绍见 [Testlib/简介](./testlib/index.md) 页面，用法见 [Te
 SYZOJ 2 所需的修改版 Testlib 可以在 [这里](https://pastebin.com/3GANXMG7) 获取到，感谢 [cyand1317](https://loj.ac/article/124) 。
 
 Lemon 所需的修改版 Testlib 可以在 [这里](https://paste.ubuntu.com/p/JsTspHHnmB/) 获取到，感谢 matthew99。注意此版本 Testlib 注册 checker 应使用 `registerLemonChecker()` 而非 `registerTestlibCmd()` 。
+
+DOMJudge 所需的修改版 Testlib 可以在 [这里](https://github.com/cn-xcpc-tools/testlib-for-domjudge) 获取到。此版本 Testlib 同时兼容做 Special Judge 的 checker 和交互题的 interactor。
 
 其他评测工具/OJ 大部分需要按照其 spj 编写格式修改 Testlib（并将 testlib.h 与 spj 一同上传，或将 testlib.h 置于 include 目录）。
 
@@ -259,3 +263,47 @@ int main(int argc, char* argv[]) {
     return WA;
 }
 ```
+
+## DOMJudge
+
+ **DOMJudge 支持任何语言编写的 spj，参考 [problemarchive.org output validator 格式](https://www.problemarchive.org/wiki/index.php/Output_validator)。 **
+ 
+  **DOMJudge 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib) ** 
+  
+  DOMJudge 使用的 Testlib 及导入 polygon 题目包方式的文档：<https://github.com/cn-xcpc-tools/testlib-for-domjudge>
+ 
+  DOMJudge 的[默认比较器](https://github.com/Kattis/problemtools/blob/master/support/default_validator/)自带了浮点数带精度比较，只需要在题目配置的 `validator_flags` 中添加 `float_tolerance 1e-3` 即可。
+
+```cpp
+#include <cmath>
+#include <cstdio>
+#define AC 42
+#define WA 43
+char reportfile[50];
+int main(int argc, char* argv[]) {
+  /*
+   * argv[1]: 输入
+   * argv[2]: 标准输出
+   * argv[3]: 评测信息输出的文件夹 
+   * stdin: 选手输出
+   */
+  FILE* fin = fopen(argv[1], "r");
+  FILE* fstd = fopen(argv[2], "r");
+  sprintf(reportfile, "%s/judgemessage.txt", argv[3]);
+  FILE* freport = fopen(reportfile, "w");
+  double pans, jans;
+  scanf("%lf", &pans);
+  fscanf(fstd, "%lf", &jans);
+  if (abs(pans - jans) < 1e-3) {
+    fprintf("Too big or too small, expected %f, found %f", jans, pans);
+    return WA;
+  }
+  else {
+    fprintf(freport, "Good job");
+    return AC;
+  }
+}
+```
+ 
+ 也可以使用 Kattis Problem Tools 提供的头文件 [validate.h](https://github.com/Kattis/problemtools/blob/master/examples/different/output_validators/different_validator/validate.h) 编写，以实现更加复杂的功能。
+
