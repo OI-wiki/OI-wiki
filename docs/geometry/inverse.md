@@ -26,7 +26,7 @@ author: hyp1231
     -   记圆 $A$ 半径为 $r_1$ ，其反演图形圆 $B$ 半径为 $r_2$ ，则有：
 
         $$
-        r_2 = \frac{1}{2}\left(\frac{1}{|OA| - r_1} - \frac{1}{|OA| + r_2}\right) R^2
+        r_2 = \frac{1}{2}\left(\frac{1}{|OA| - r_1} - \frac{1}{|OA| + r_1}\right) R^2
         $$
 
          **证明：** 
