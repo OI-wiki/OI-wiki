@@ -298,7 +298,7 @@ int main(int argc, char* argv[]) {
     fprintf(freport, "Good job");
     return AC;
   } else {
-    fprintf("Too big or too small, expected %f, found %f", jans, pans);
+    fprintf(freport, "Too big or too small, expected %f, found %f", jans, pans);
     return WA;
   }
 }
