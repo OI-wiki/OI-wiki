@@ -295,11 +295,11 @@ int main(int argc, char* argv[]) {
   scanf("%lf", &pans);
   fscanf(fstd, "%lf", &jans);
   if (abs(pans - jans) < 1e-3) {
-    fprintf("Too big or too small, expected %f, found %f", jans, pans);
-    return WA;
-  } else {
     fprintf(freport, "Good job");
     return AC;
+  } else {
+    fprintf("Too big or too small, expected %f, found %f", jans, pans);
+    return WA;
   }
 }
 ```
