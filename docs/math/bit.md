@@ -209,10 +209,10 @@ C++ 中还有一些用于位运算的内建函数：
 
 ## 题目推荐
 
- [CodeVS 2743. 黑白棋游戏](http://www.joyoi.cn/problem/codevs-2743) 
+ [Luogu P1225 黑白棋游戏](https://www.luogu.com.cn/problem/P1225) 
 
 ## 参考
 
-位运算技巧： <https://graphics.stanford.edu/~seander/bithacks.html> 
+位运算技巧： <https://graphics.stanford.edu/~seander/bithacks.html>
 
-c++ 位运算函数之\_\_builtin\_： <https://blog.csdn.net/qq_40679299/article/details/80224547> 
+c++ 位运算函数之\_\_builtin\_： <https://blog.csdn.net/qq_40679299/article/details/80224547>
