@@ -99,6 +99,10 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
     -   《聪明人的游戏：信息学探秘 - 提高篇》- 江涛，陈茂贤
     -   《计算概论：C++ 编程与信息学竞赛入门》- 金靖
     -   《算法竞赛宝典》- 张新华
+-   ACM 国际大学生程序设计竞赛系列
+    -   《ACM 国际大学生程序设计竞赛系列 知识与入门》- 俞勇
+    -   《ACM 国际大学生程序设计竞赛系列 算法与实现》- 俞勇
+    -   《ACM 国际大学生程序设计竞赛系列 题目与解读》- 俞勇
 -   《算法竞赛入门到进阶》- 罗勇军，郭卫斌
 -   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein 
     黑书，大学经典教材。英文版原名_Introduction to Algorithms_
