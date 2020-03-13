@@ -80,7 +80,8 @@ int main(int argc, char* argv[]) {
     fprintf(freport, "Good job\n");
   } else {
     fprintf(fscore, "%d", 0);
-    fprintf(freport, "Too big or too small, expected %f, found %f\n", jans, pans);
+    fprintf(freport, "Too big or too small, expected %f, found %f\n", jans,
+            pans);
   }
 }
 ```
@@ -115,7 +116,8 @@ int main(int argc, char* argv[]) {
     fprintf(freport, "Good job\n");
   } else {
     fprintf(fscore, "%d", 0);
-    fprintf(freport, "Too big or too small, expected %f, found %f\n", jans, pans);
+    fprintf(freport, "Too big or too small, expected %f, found %f\n", jans,
+            pans);
   }
 }
 ```
@@ -177,7 +179,8 @@ int main(int argc, char* argv[]) {
     fprintf(fscore, "Good job\n");
     fprintf(fscore, "%d", 10);
   } else {
-    fprintf(fscore, "Too big or too small, expected %f, found %f\n", jans, pans);
+    fprintf(fscore, "Too big or too small, expected %f, found %f\n", jans,
+            pans);
     fprintf(fscore, "%d", 0);
   }
 }
@@ -281,7 +284,8 @@ int main(int argc, char* argv[]) {
     fprintf(stderr, "Good job\n");
   } else {
     printf("%d", 0);
-    fprintf(stderr, "Too big or too small, expected %f, found %f\n", jans, pans);
+    fprintf(stderr, "Too big or too small, expected %f, found %f\n", jans,
+            pans);
   }
 }
 ```
@@ -359,7 +363,8 @@ int main(int argc, char* argv[]) {
     fprintf(freport, "Good job\n");
     return AC;
   } else {
-    fprintf(freport, "Too big or too small, expected %f, found %f\n", jans, pans);
+    fprintf(freport, "Too big or too small, expected %f, found %f\n", jans,
+            pans);
     return WA;
   }
 }
