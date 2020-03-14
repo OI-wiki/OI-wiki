@@ -7,7 +7,6 @@
 
 ## 如何参与协作
 
-
  **在开始编写一段内容之前，请查阅 [Issues](https://github.com/OI-wiki/OI-wiki/issues) ，确认没有别人在做相同的工作之后，** 
 
  **开个 [新 issue](https://github.com/OI-wiki/OI-wiki/issues/new) 记录你要编写的内容。** 
