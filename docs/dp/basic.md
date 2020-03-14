@@ -11,7 +11,7 @@ author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Tris
 
 斐波那契数列是一个人尽皆知的数列。用 $F_n$ 表示其中的第 $n$ 项，则有：
 
-$$F_n=
+$$
 \begin{cases}
 1,n \leq 2 \\
 F_{i-1}+F_{i-1} , n>2 \\
@@ -22,24 +22,26 @@ $$
 
 ```cpp
 int fbnq(int n) {
-    if(n<=2) return 1;
-    return fbnq(n-1) + fbnq(n-2);
+  if (n <= 2) return 1;
+  return fbnq(n - 1) + fbnq(n - 2);
 }
 ```
 
-测试后发现， **该程序连 $n = 50$ 都跑不过！**
+测试后发现， **该程序连 $n = 50$ 都跑不过！** 
 
 那么，我们分析原因：因为同一个 $F_i$ 可能会被重复计算会多遍，导致时间浪费。
 
-所以，就产生了 **记忆化搜索。**
+所以，就产生了 **记忆化搜索。** 
 
 ```cpp
 int F[1000001];
 int fbnq(int n) {
-    if(F[n]) return F[n]; //已经计算过，直接输出
-    if(n<=2) F[n]=1;
-    else F[n]=fbnq(n-1) + fbnq(n-2);
-    return F[n];
+  if (F[n]) return F[n];  //已经计算过，直接输出
+  if (n <= 2)
+    F[n] = 1;
+  else
+    F[n] = fbnq(n - 1) + fbnq(n - 2);
+  return F[n];
 }
 ```
 
@@ -47,12 +49,12 @@ int fbnq(int n) {
 
 那么，你会发现：这完全可以通过一个类似递推的方式来实现啊！
 
-于是，**动态规划应运而生** ：
+于是， **动态规划应运而生** ：
 
 ```cpp
 int F[1000001];
-F[1]=F[2]=1;
-for(int i=3;i<=n;i++) F[i]=F[i-1]+F[i-2];
+F[1] = F[2] = 1;
+for (int i = 3; i <= n; i++) F[i] = F[i - 1] + F[i - 2];
 ```
 
 这个代码，就是动态规划的入门代码。
