@@ -178,8 +178,7 @@ int kth(int k) {
       cnr = ch[cnr][0];
     } else {
       k -= cnt[cnr] + sz[ch[cnr][0]];
-      if (k <= 0)
-      {
+      if (k <= 0) {
         splay(cnr);
         return val[cnr];
       }
@@ -347,8 +346,7 @@ struct Splay {
         cnr = ch[cnr][0];
       } else {
         k -= cnt[cnr] + sz[ch[cnr][0]];
-        if (k <= 0)
-        {
+        if (k <= 0) {
           splay(cnr);
           return val[cnr];
         }
