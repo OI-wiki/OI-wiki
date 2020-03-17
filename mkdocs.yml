@@ -185,7 +185,7 @@ nav:
       - 最大公约数: math/gcd.md
       - 欧拉函数: math/euler.md
       - 筛法: math/sieve.md
-      - 埃氏筛法: sieve-of-eratosthenes.md
+      - 埃氏筛法: math/sieve-of-eratosthenes.md
       - 欧拉定理 & 费马小定理: math/fermat.md
       - 类欧几里德算法: math/euclidean.md
       - 裴蜀定理: math/bezouts.md
