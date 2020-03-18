@@ -128,72 +128,17 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ## CP Editor
 
-### 简介
+CP Editor 是一款专门为算法竞赛（Competitive Programming）设计的轻量级跨平台自由软件 IDE，有自动获取网页上的样例，一键编译运行并测试样例，在 IDE 内提交至 CF 等功能。
 
-CP Editor 是一款专门为算法竞赛（Competitive Programming）设计的 IDE，其核心特性有：
+[![Latest Stable](https://img.shields.io/github/v/release/coder3101/cp-editor?label=latest%20stable)](https://github.com/coder3101/cp-editor/releases/latest)
+[![Latest Release](https://img.shields.io/github/v/release/coder3101/cp-editor?include_prereleases&label=latest%20release&sort=semver)](https://github.com/coder3101/cp-editor/releases)
 
--   一键编译 + 测试所有测试点。这里的测试点可以是从 Competitive Companion 获取的，也可以是手动输入的，还可以是从文件中读取的，还能和代码一起保存，下次打开时不需要重新输入。
--   如果没有通过某个测试点，可以通过 Diff Viewer 快速找到错误的地方。
--   可以在 IDE 内提交至 CF 并查看评测结果。
--   自定义代码模板，既可以定义新建文件时使用的模板（如各种 define 还有快读之类的），也可以定义一键插入的模板（如快速幂、树状数组、NTT 之类的）。
--   一键代码格式化，可以全文格式化也可以只格式化选中部分，支持自定义风格。
--   支持退出时保存窗口状态，下次打开时自动加载。
--   可以设置主窗口的透明度。
--   多种可选的编辑器主题（Light, Drakula, Monkai, Solarised, Solarised Dark）。
--   支持 Window，Linux 和 Mac OS。
+- [项目主页](https://cpeditor.github.io/)（含 feature 介绍）
+- [GitHub Repo](https://github.com/cpeditor/cpeditor)（含使用说明、贡献指南等文档）
+- [Gitee 镜像](https://gitee.com/ouuan/cpeditor)（手动同步自 GitHub，不一定是最新的）
+- [GitHub Releases](https://github.com/cpeditor/cpeditor/releases)
+- [国内网盘下载地址](https://pan.wzf2000.top/s/md70l8h0)
+- [Telegram 群组](https://t.me/cpeditor)
+- [QQ 群入群链接](https://jq.qq.com/?_wv=1027&k=50eq8yF)（1081647997）
 
-功能展示图：
-
-![功能展示图](./images/oj-tool4.png)
-
-（注：该图是在 Manjaro KDE 的暗色微风主题下的截图，在其它系统/主题下可能有所不同。）
-
-### 安装
-
-下载地址： <https://github.com/coder3101/cp-editor/releases> 。
-
-国内用户还可以在 [这里](https://pan.wzf2000.top/s/md70l8h0) 下载，应该会比 Github 上下载快一些，但不保证这个链接始终保持更新。
-
-由于这个项目还处于开发初期，很多时候有了一些修改却没有发布。如果想体验最新的 feature，还可以自己从源码编译，这部分可以参考 [README](https://github.com/coder3101/cp-editor#build-from-source) 。
-
-安装完成后，你可能还要安装 [Competitive Companion](https://github.com/jmerle/competitive-companion) 以从 OJ 获取样例，安装 [CF Tool](https://github.com/xalanq/cf-tool/releases) 以在 IDE 内提交代码至 CF，安装 [Clang Format](https://releases.llvm.org/download.html) 以格式化代码。CP Editor 并没有自带编译器，所以你还需要安装 `g++` （如果安装过其它带编译器的 IDE 可以直接使用它的 `g++` ）。
-
-### 优点
-
-1.  有很多为算法竞赛设计的 feature，写题并进行测试非常方便。
-2.  安装、配置简单，体积小，运行时占用空间小。
-3.  正如 OI Wiki 专为 OI 创办从而会逐渐变得比 Wikipedia 更适合 OI，专为算法竞赛设计的 CP Editor 也会逐渐变得比其它 IDE 更适合 OI。
-
-### 缺点
-
-1.  目前仍处于开发初期，功能不是很完善，也有少量的 bug。由于用户和维护者的人数都较少，所以开发进度较慢，功能的完善和程序的稳定都需要一定的时间。
-2.  虽然有很多为算法竞赛而设计的 feature，但缺少一些代码编辑器的基本 feature，如自动补全、函数参数提示等。
-3.  目前还未汉化，界面上只有英文。但由于配置简单，这并不会给国内用户带来太大的障碍。
-
-### 如何变得更好？
-
-#### 使用它！
-
-CP Editor 现在一个很大的问题是用户数量少，如果用户数量增加了，bug 就更容易被发现，稳定性就会增加。
-
-同时，用户数量的增加也是开发者的动力，越来越多的开发者投入更多的时间，它就会变得越来越好。
-
-如果你在使用时发现了 bug，或者有什么想要的 feature，可以在 Github 上 [提 issue](https://github.com/coder3101/cp-editor/issues) 。
-
-如果你觉得它不错，别忘了在 [Github](https://github.com/coder3101/cp-editor) 上给它一个 star，并且向周围人推荐。
-
-#### 参与贡献
-
-正如 OI Wiki 一样，CP Editor 也是 Github 上的一个开源项目，人人都能参与其中。
-
-参与的方式多种多样，你可以阅读 [README.md](https://github.com/coder3101/cp-editor/blob/master/README.md) ， [CONTRIBUTING.md](https://github.com/coder3101/cp-editor/blob/master/CONTRIBUTING.md) ，完善它们的内容，修改其中的 typo。
-
-如果你对工程开发感兴趣，你可以参与到代码编写中。具体可以参考 [贡献指南](https://github.com/coder3101/cp-editor/blob/master/CONTRIBUTING.md) ，其中，Qt 可以在 [清华镜像](https://mirrors.tuna.tsinghua.edu.cn/qt/official_releases/qt/5.14/5.14.1/) 下载，Windows 下推荐安装 [Visual Studio](https://visualstudio.microsoft.com/) 及其 CMake 组件。
-
-如果你是初次参与开发，可以试着先去解决那些 [good first issues](https://github.com/coder3101/cp-editor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) ，它们被认为是对新手友好的。
-
-#### 交流
-
-欢迎加入 Telegram 群组参与交流： <https://t.me/cpeditor> 
-
-无法上 tg？不要紧，大多数的对话都是发生在 [Github](https://github.com/coder3101/cp-editor) 上的，你可以在那里报告 bug，请求 feature，参与贡献，就像在 OI Wiki 一样。
+大家在使用之余还可以在 GitHub 上报告 bug，请求 feature，或是入群讨论，参与贡献。如果觉得不错的话，可以在 [GitHub](https://github.com/cpeditor/cpeditor) 上给开发者们一个 star。
