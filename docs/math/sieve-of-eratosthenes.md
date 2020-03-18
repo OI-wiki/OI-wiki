@@ -65,7 +65,7 @@ $$
 -   小于等于 n 的素数数量大约是 $\dfrac n {\ln n}$ 
 -   第 k 个素数大约等于 $k \ln k$ （基于上一条导出）
 
-然后我们可以将求合表示为：
+然后我们可以将求和表示为：
 
 $$
 \sum_{\substack{p \le n, \\ p \text{ prime}}} \frac 1 p 
