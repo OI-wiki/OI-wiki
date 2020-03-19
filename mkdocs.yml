@@ -281,6 +281,7 @@ nav:
       - 动态树分治: graph/dynamic-tree-divide.md
       - 虚树: graph/virtual-tree.md
       - 树上启发式合并: graph/dsu-on-tree.md
+      - AHU算法: graph/tree-ahu.md
     - 矩阵树定理: graph/matrix-tree.md
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
