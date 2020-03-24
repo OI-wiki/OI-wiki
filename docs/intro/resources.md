@@ -146,7 +146,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 
 -    [POJ 训练计划](http://blog.csdn.net/skywalkert/article/details/46594541) 
 -    [USACO](http://train.usaco.org/usacogate) 
--    [洛谷试炼场](https://www.luogu.org/training/mainpage) 
+-    [洛谷题单](https://www.luogu.com.cn/training/list) 
 -    [-Morass- 贴在 Codeforces 上的一份题单](https://codeforces.com/blog/entry/55274) 
 -   Codeforces 社区高质量算法文章合集 [之一](https://codeforces.com/blog/entry/57282)  [之二](https://codeforces.com/blog/entry/13529) 
 -    [北京大学 ICPC 暑期课课件例题](https://vjudge.net/article/446) 
