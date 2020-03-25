@@ -130,13 +130,13 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 CP Editor 是一款专门为算法竞赛（Competitive Programming）设计的轻量级跨平台自由软件 IDE，有自动获取网页上的样例，一键编译运行并测试样例，在 IDE 内提交至 CF 等功能。
 
- [![Latest Stable](https://img.shields.io/github/v/release/coder3101/cp-editor?label=latest%20stable)](https://github.com/coder3101/cp-editor/releases/latest)  [![Latest Release](https://img.shields.io/github/v/release/coder3101/cp-editor?include_prereleases&label=latest%20release&sort=semver)](https://github.com/coder3101/cp-editor/releases) 
+ [![Latest Stable](https://img.shields.io/github/v/release/cpeditor/cpeditor?label=latest%20stable)](https://github.com/coder3101/cp-editor/releases/latest)  [![Latest Release](https://img.shields.io/github/v/release/cpeditor/cpeditor?include_prereleases&label=latest%20release&sort=semver)](https://github.com/coder3101/cp-editor/releases) 
 
 -    [项目主页](https://cpeditor.github.io/) （含 feature 介绍）
 -    [GitHub Repo](https://github.com/cpeditor/cpeditor) （含使用说明、贡献指南等文档）
--    [Gitee 镜像](https://gitee.com/ouuan/cpeditor) （手动同步自 GitHub，不一定是最新的）
+-    [Gitee 镜像](https://gitee.com/ouuan/cpeditor) （同步自 GitHub，不一定是最新的）
 -    [GitHub Releases](https://github.com/cpeditor/cpeditor/releases) 
--    [国内网盘下载地址](https://pan.wzf2000.top/s/md70l8h0) 
+-    [Gitee 发行版](https://gitee.com/ouuan/cpeditor/releases) 
 -    [Telegram 群组](https://t.me/cpeditor) 
 -    [QQ 群入群链接](https://jq.qq.com/?_wv=1027&k=50eq8yF) （1081647997）
 
