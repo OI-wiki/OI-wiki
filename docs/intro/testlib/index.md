@@ -12,5 +12,7 @@ Testlib 的具体用途：
 Testlib 与 Codeforces 开发的 [Polygon](https://polygon.codeforces.com/) 出题平台完全兼容。
 
  `testlib.h` 在 2005 年移植自 `testlib.pas` ，并一直在更新。Testlib 与绝大多数编译器兼容，如 VC++ 和 GCC g++，并兼容 C++11。
+ 
+ 从官方 GitHub 存储库所获取的 `testlib.h` 并没有适配本地评测机 ，知名OIer matthew99 对 0.9.5 版本的 `testlib.h` 进行了魔改使之适配了本地评测机，它在 **OI Wiki** 上的存储库为 [OI-wiki/libs/tree/master/杂项/支持本地评测机的testlib](https://github.com/OI-wiki/libs/tree/master/杂项/支持本地评测机的testlib) 。
 
  **本文主要翻译自 [Testlib - Codeforces](https://codeforces.com/testlib) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 
