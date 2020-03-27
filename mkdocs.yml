@@ -56,16 +56,19 @@ nav:
       - Eclipse: lang/editor/eclipse.md
       - Notepad++: lang/editor/npp.md
       - Dev-C++: lang/editor/devcpp.md
+      - Geany: lang/editor/geany.md
     - C++ 基础:
       - Hello, World!: lang/helloworld.md
       - C++ 语法基础: lang/basic.md
       - 变量: lang/var.md
       - 运算: lang/op.md
-      - 数组: lang/array.md
-      - 结构体: lang/struct.md
-      - 指针: lang/pointer.md
-      - 分支: lang/branch.md
-      - 循环: lang/loop.md
+      - 流程控制语句:
+        - 分支: lang/branch.md
+        - 循环: lang/loop.md
+      - 高级数据类型:
+        - 数组: lang/array.md
+        - 结构体: lang/struct.md
+        - 指针: lang/pointer.md
       - 函数: lang/func.md
       - 文件操作: lang/file-op.md
     - C++ 标准库:
@@ -252,7 +255,7 @@ nav:
     - 单调栈: ds/monotonous-stack.md
     - 单调队列: ds/monotonous-queue.md
     - ST 表: ds/sparse-table.md
-    - 树状数组: ds/bit.md
+    - 树状数组: ds/fenwick.md
     - 线段树: ds/seg.md
     - 区间最值操作 & 区间历史最值: ds/seg-beats.md
     - 划分树: ds/dividing.md

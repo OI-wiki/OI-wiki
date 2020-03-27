@@ -72,7 +72,7 @@ bool check(int k) {  //检查可行性，k为锯片高度
       sum += (long long)(a[i] - k);  //累加树木长度
   return sum >= m;                   //如果满足最少长度代表可行
 }
-int find(int x) {
+int find() {
   int l = 1, r = 1000000001;  //因为是左闭右开的，所以10亿要加1
   while (l + 1 < r) {         //如果两点不相邻
     int mid = (l + r) / 2;    //取中间值
@@ -86,7 +86,7 @@ int find(int x) {
 int main() {
   cin >> n >> m;
   for (int i = 1; i <= n; i++) cin >> a[i];
-  cout << find(m);
+  cout << find();
   return 0;
 }
 ```
@@ -135,36 +135,4 @@ else
 
 经典的例子有 最优比率环、最优比率生成树 等等。
 
-### 二分法
-
-比如说我们要求的是最小的，记 $L$ 为最优的答案，对这个式子做一些变换：
-
-$$
-L \geq \frac{\sum{c_i}}{\sum{d_i}}
-$$
-
-把分母乘过去，把右侧化为 $0$ ：
-
-$$
-{\sum{d_i}} \times L - {\sum{c_i}} \geq 0
-$$
-
-即：
-
-$$
-{\sum_{i=1}^N{d_i}} \times L - {\sum_{i=1}^N{c_i}} \geq 0
-$$
-
-$$
-\sum_{i=1}^N{d_i \times L - c_i} \geq 0
-$$
-
-不难发现，如果 $L'$ 比 $L$ 要小，上式左端的值会更大一些。
-
-所以要求得最小的 $L$ ，我们要求的就变成了让上式左端最接近 $0$ 的 $L$ 。
-
-不难发现左端的式子是随 $L$ 变化而单调变化的，所以可以通过二分法来解决。
-
-### Dinkelbach 算法
-
-Dinkelbach 算法的大概思想是每次用上一轮的答案当做新的 $L$ 来输入，不断地迭代，直至答案收敛。
+分数规划可以用二分法来解决，详情参见 [分数规划](../misc/frac-programming.md) 页面。

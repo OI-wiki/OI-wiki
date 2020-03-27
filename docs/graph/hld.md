@@ -257,13 +257,10 @@ int querymax(int x, int y) {
     fx = top[x];
     fy = top[y];
   }
-  if (x != y) {
-    if (dfn[x] < dfn[y])
-      ret = max(ret, st.query1(1, 1, n, dfn[x], dfn[y]));
-    else
-      ret = max(ret, st.query1(1, 1, n, dfn[y], dfn[x]));
-  } else
+  if (dfn[x] < dfn[y])
     ret = max(ret, st.query1(1, 1, n, dfn[x], dfn[y]));
+  else
+    ret = max(ret, st.query1(1, 1, n, dfn[y], dfn[x]));
   return ret;
 }
 ```
@@ -361,13 +358,10 @@ int querymax(int x, int y) {
         fx = top[x];
         fy = top[y];
       }
-      if (x != y) {
-        if (dfn[x] < dfn[y])
-          ret = std::max(ret, st.query1(1, 1, n, dfn[x], dfn[y]));
-        else
-          ret = std::max(ret, st.query1(1, 1, n, dfn[y], dfn[x]));
-      } else
+      if (dfn[x] < dfn[y])
         ret = std::max(ret, st.query1(1, 1, n, dfn[x], dfn[y]));
+      else
+        ret = std::max(ret, st.query1(1, 1, n, dfn[y], dfn[x]));
       return ret;
     }
     int querysum(int x, int y) {
@@ -380,13 +374,10 @@ int querymax(int x, int y) {
         fx = top[x];
         fy = top[y];
       }
-      if (x != y) {
-        if (dfn[x] < dfn[y])
-          ret += st.query2(1, 1, n, dfn[x], dfn[y]);
-        else
-          ret += st.query2(1, 1, n, dfn[y], dfn[x]);
-      } else
+      if (dfn[x] < dfn[y])
         ret += st.query2(1, 1, n, dfn[x], dfn[y]);
+      else
+        ret += st.query2(1, 1, n, dfn[y], dfn[x]);
       return ret;
     }
     int main() {
@@ -574,7 +565,7 @@ $$
 
     取 $D=\sqrt{n}$ 即可。
 
-### 长链剖分优化 DP
+#### 长链剖分优化 DP
 
 一般情况下可以使用长链剖分来优化的 DP 会有一维状态为深度维。
 
@@ -672,7 +663,7 @@ int main() {
 
 参考 [租酥雨的博客](https://www.cnblogs.com/zhoushuyu/p/9468669.html) 。
 
-### 长链剖分求 k 级祖先
+#### 长链剖分求 k 级祖先
 
 即询问一个点向父亲跳 $k$ 次跳到的节点。
 

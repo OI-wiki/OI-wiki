@@ -10,13 +10,13 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [BZOJ](https://www.lydsy.com/JudgeOnline/) 因原属衡阳八中而得简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。  
     BZOJ 上有大量题目只有付费用户才能提交。2018 年 BZOJ 测试数据泄露，催生了 DarkBZOJ。
 -    [Comet OJ](https://www.cometoj.com) 始于 2018 年，旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库。
--    [CodeVS](http://www.codevs.cn/) 面向 OI 选手的过气 OJ。
+    <!-- - [CodeVS](http://www.codevs.cn/) 面向 OI 选手的过气 OJ。 -->
 -    [FZUOJ](http://acm.fzu.edu.cn/) 始于 2008 年，福州大学在线评测系统。
 -    [HDU Online Judge](http://acm.hdu.edu.cn/) 始于 2005 年，杭州电子科技大学在线评测系统，有多校训练的题目。
 -    [hihoCoder](https://hihocoder.com/) 始于 2012 年，面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（登录后方可查看题面）
 -    [计蒜客](https://www.jisuanke.com/) 北京矩道优达网络科技有限公司旗下的核心产品，提供按知识点和难度筛选的信息学题库和 ICPC 题库。
 -    [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck) ，可以将评测程序的运行时间精确到 $\mu s$ 。（题目较少）
--    [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。
+    <!--  - [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。-->
 -    [LibreOJ](https://loj.ac/) 始于 2017 年。
     目前由 [Menci](https://github.com/Menci) 维护。
     Libre 取自由之意，基于开源项目 [SYZOJ](https://github.com/syzoj/syzoj) 。
@@ -67,6 +67,8 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [Topcoder 整理的教程](https://www.topcoder.com/community/competitive-programming/tutorials/) 
 -    [校招面试指南](https://github.com/jwasham/coding-interview-university) 
 -    [由 hzwer 收集整理自互联网的课件](https://github.com/hzwer/sharePPT) 
+-    [Trinkle23897 的课件](https://github.com/Trinkle23897/oi_slides) 
+-    [huzecong 的课件](https://github.com/huzecong/oi-slides) 
 
 ## 书籍
 
@@ -97,6 +99,10 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
     -   《聪明人的游戏：信息学探秘 - 提高篇》- 江涛，陈茂贤
     -   《计算概论：C++ 编程与信息学竞赛入门》- 金靖
     -   《算法竞赛宝典》- 张新华
+-   ACM 国际大学生程序设计竞赛系列
+    -   《ACM 国际大学生程序设计竞赛系列 知识与入门》- 俞勇
+    -   《ACM 国际大学生程序设计竞赛系列 算法与实现》- 俞勇
+    -   《ACM 国际大学生程序设计竞赛系列 题目与解读》- 俞勇
 -   《算法竞赛入门到进阶》- 罗勇军，郭卫斌
 -   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein 
     黑书，大学经典教材。英文版原名_Introduction to Algorithms_
@@ -129,18 +135,18 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [uDebug](https://www.udebug.com) （提供一些 OJ 题目的调试辅助）
 -    [cppreference.com](https://zh.cppreference.com/w/) （提供 C++ 内语法的查询等）
 -    [图论画板](https://csacademy.com/app/graph_editor/) （同时推荐 [GraphViz](http://www.graphviz.org/) )
--    [ $\LaTeX{}$ 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm) 
+-    [ $\rm\LaTeX$ 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm) 
 -    [Godbolt](https://godbolt.org/) （在浏览器中查看编译后代码块对应的汇编语句）
 -    [《100 个 gdb 小技巧》](https://github.com/hellogcc/100-gdb-tips) 
--    [Mathpix](https://mathpix.com/) （截图转 $\LaTeX{}$ )
--    [ $\LaTeX$ 手写符号识别](http://detexify.kirelabs.org/classify.html) 
+-    [Mathpix](https://mathpix.com/) （截图转 $\rm\LaTeX{}$ )
+-    [ $\rm\LaTeX$ 手写符号识别](http://detexify.kirelabs.org/classify.html) 
 -    [Wolfram Alpha](https://www.wolframalpha.com/) :（可以解答各种问题）
 
 ## 题集和资源
 
 -    [POJ 训练计划](http://blog.csdn.net/skywalkert/article/details/46594541) 
 -    [USACO](http://train.usaco.org/usacogate) 
--    [洛谷试炼场](https://www.luogu.org/training/mainpage) 
+-    [洛谷题单](https://www.luogu.com.cn/training/list) 
 -    [-Morass- 贴在 Codeforces 上的一份题单](https://codeforces.com/blog/entry/55274) 
 -   Codeforces 社区高质量算法文章合集 [之一](https://codeforces.com/blog/entry/57282)  [之二](https://codeforces.com/blog/entry/13529) 
 -    [北京大学 ICPC 暑期课课件例题](https://vjudge.net/article/446) 

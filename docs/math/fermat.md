@@ -4,6 +4,42 @@
 
 另一个形式：对于任意整数 $a$ ，有 $a^p \equiv a \pmod{p}$ 。
 
+## 费马小定理
+
+定理：( $p$ 为质数， $p\nmid a$ )
+
+$$
+a^{p-1}\equiv1\pmod p
+$$
+
+### 证明
+
+设一个质数为 $p$ ，我们取一个不为 $p$ 倍数的数 $a$ 。
+
+构造一个序列： $A=\{1,2,3\dots,p-1\}$ ，这个序列有着这样一个性质：
+
+$$
+\prod_{i=1}^{n}\space A_i\equiv\prod_{i=1}^{n} (A_i\times a) \pmod p
+$$
+
+证明：
+
+$$
+\because (A_i,p)=1,(A_i\times a,p)=1
+$$
+
+又因为每一个 $A_i\times a \pmod p$ 都是独一无二的，且 $A_i\times a \pmod p < p$ 
+
+得证（每一个 $A_i\times a$ 都对应了一个 $A_i$ )
+
+设 $f=(p-1)!$ , 则 $f\equiv a\times A_1\times a\times A_2\times a \times A_3 \dots \times  A_{p-1} \pmod p$ 
+
+$$
+a^{p-1}\times f \equiv f \pmod p \\ 	a^{p-1} \equiv 1 \pmod p
+$$
+
+证毕。
+
 ## 欧拉定理
 
 在了解欧拉定理（Euler's theorem）之前，请先了解 [欧拉函数](./euler.md) 。定理内容如下：
@@ -11,6 +47,8 @@
 若 $\gcd(a, m) = 1$ ，则 $a^{\varphi(m)} \equiv 1 \pmod{m}$ 。
 
 ### 证明
+
+实际上这个证明过程跟上文费马小定理的证明过程是非常相似的： **构造一个与 $m$ 互质的数列** ，再进行操作。
 
 设 $r_1, r_2, \cdots, r_{\varphi(m)}$ 为模 $m$ 意义下的一个简化剩余系，则 $ar_1, ar_2, \cdots, ar_{\varphi(m)}$ 也为模 $m$ 意义下的一个简化剩余系。所以 $r_1r_2 \cdots r_{\varphi(m)} \equiv ar_1 \cdot ar_2 \cdots ar_{\varphi(m)} \equiv a^{\varphi(m)}r_1r_2 \cdots r_{\varphi(m)} \pmod{m}$ ，可约去 $r_1r_2 \cdots r_{\varphi(m)}$ ，即得 $a^{\varphi(m)} \equiv 1 \pmod{m}$ 。
 

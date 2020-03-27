@@ -16,9 +16,11 @@ Lemon 是 zhipeng-jia 写的开源的评测工具，仓库 [zhipeng-jia/project-
 
 Ir1d 提供了一份 linux 下编译好的版本在 [FreestyleOJ/Project_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built) 。
 
-Menci 提供了一份更新的版本在 [Menci/Lemon](https://github.com/Menci/Lemon/) 。
+Menci 提供了一份更新的版本在 [Menci/Lemon](https://github.com/Menci/Lemon/) 。（已存档，停止维护）
 
-Dust1404 维护了支持子文件夹和单题测试等功能的版本在 [Dust1404/Project_LemonPlus](https://github.com/Dust1404/Project_LemonPlus) 。
+Dust1404 维护了支持子文件夹和单题测试等功能的版本在 [Dust1404/Project_LemonPlus](https://github.com/Dust1404/Project_LemonPlus) 。（作者 AFO，停止维护）
+
+iotang 维护了支持子文件夹和单题测试等功能的版本在 [iotang/Project_LemonLime](https://github.com/iotang/Project_LemonLime) 。
 
  **注意** macOS 下 Lemon 可能会出现内存测试不准确的情况，这是由于 mac 下没有一些 Linux 的监测工具，而 Lemon-Linux 也没有对于 macOS 的使用优化。
 
@@ -63,6 +65,8 @@ cd ..
 ## Arbiter
 
 Arbiter 为北京航空航天大学为 NOI Linux 开发的评测工具，现已用于各大 NOI 系列程序设计竞赛的评测。据吕凯风在 2016 年冬令营上的讲稿《下一代测评系统》，Arbiter 是由北京航空航天大学的团队（貌似叫 GAIT）在尹宝林老师的带领下开发完成的。不过该测评工具在开发完成后就一直没有维护与更新，导致测评体验极差，和 NOI Linux 自带的 GUIDE 一样沦为选手与教练疯狂吐槽的对象。但是 NOIP 与 NOI 的题目测评是在 Arbiter 下进行的，因此仍然需要了解 Arbiter 的使用方法。
+
+此测评软件仅能在 NOI Linux 下找到，不过市面上有热心群众 [提取出了 Arbiter](https://github.com/leedagee/arbiter-distro) 供其他操作系统使用，不过仍建议使用 NOI Linux 及相关配套编译器。
 
 ### 使用方法
 
@@ -193,6 +197,8 @@ players/
 据说不定时闪退，和 Anjuta 一样，需要注意。
 
 据说配置时需要注意权限问题（但是我并未遇到）。
+
+由于 Linux 运行时栈限制，如果要开无限栈，应在终端先输入 `ulimit -s unlimited` 后执行 `arbiter` 打开测评器。
 
 ……
 
