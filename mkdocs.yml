@@ -20,7 +20,7 @@ google_analytics:
 nav:
   - 简介:
     - Getting Started: index.md
-    - OI 评测基础知识: intro/test-results.md
+    - OI 评测基础知识: intro/judgement.md
     - OI 赛事与赛制: intro/oi.md
     - ICPC/CCPC 赛事与赛制: intro/icpc.md
     - 学习路线: intro/roadmap.md
