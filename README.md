@@ -66,16 +66,16 @@ mkdocs --help
 ### 镜像
 
 ```bash
-# Coding 上的镜像仓库和 GitHub 仓库的内容相同
-git clone https://e.coding.net/scaffrey/OI-wiki.git
+# Gitee 码云 上的镜像仓库和 GitHub 仓库的内容相同
+git clone https://gitee.com/OI-wiki/OI-wiki.git
 ```
 
 ### 离线版
 
-可以使用 `gh-pages` 分支的内容（CODING 上面的分支名叫 `coding-pages`）
+可以使用 `gh-pages` 分支的内容
 
 ```bash
-git clone https://e.coding.net/scaffrey/OI-wiki.git -b coding-pages
+git clone https://gitee.com/OI-wiki/OI-wiki.git -b gh-pages
 ```
 
 本地启动一个 http 服务器可能会更方便一些。
