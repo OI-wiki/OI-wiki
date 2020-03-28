@@ -21,7 +21,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Single repo mirror
-      uses: Yikun/hub-mirror-action
+      uses: Yikun/hub-mirror-action@master
       with:
         src: github/OI-wiki
         dst: gitee/OI-wiki
