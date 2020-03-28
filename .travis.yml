@@ -34,6 +34,7 @@ after_deploy:
   - cd /tmp
   - git clone https://github.com/OI-wiki/OI-wiki.git
   - cd OI-wiki
+  - git fetch origin gh-pages
   - git checkout -b cdn-pages origin/gh-pages
   - find ./ -type f -name "*.html" -exec sed -i -E 's/([^"]*)(assets[^"]*)/https:\/\/cdn-for-oi-wiki.billchn.com\/\2/g' {} +
   - git add .
