@@ -31,3 +31,5 @@ deploy:
     branch: master
 after_deploy:
   - chmod +x scripts/BaiduPusher.sh && ./scripts/BaiduPusher.sh
+  - find ./ -type f -name "*.html" -exec sed -i -E 's/([^"]*)(assets[^"]*)/https:\/\/cdn-for-oi-wiki.billchn.com\/\2/g' {} +
+
