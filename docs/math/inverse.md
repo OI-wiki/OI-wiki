@@ -2,7 +2,7 @@
 
 ## 逆元简介
 
-如果一个线性同余方程 $ax \equiv 1 \pmod b$ ，则 $x$ 称为 $a \mod b$ 的逆元，记作 $a^{-1}$ 。
+如果一个线性同余方程 $ax \equiv 1 \pmod b$ ，则 $x$ 称为 $a \bmod b$ 的逆元，记作 $a^{-1}$ 。
 
 ## 如何求逆元
 
@@ -65,7 +65,7 @@ inline int qpow(long long a, int b) {
 
  $i^{-1} \equiv -kj^{-1} \pmod p$ ；
 
- $i^{-1} \equiv -(\frac{p}{i}) (p \mod i)^{-1}$ ；
+ $i^{-1} \equiv -(\frac{p}{i}) (p \bmod i)^{-1}$ ；
 
 然后我们就可以推出逆元了，实现代码极短：
 
