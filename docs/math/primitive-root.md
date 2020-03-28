@@ -4,11 +4,11 @@
 
 若 $\text{ord}_ma=l$ ，则 $\text{ord}_m{a^t} = \frac{l}{(t,l)}$ 
 
-由欧拉定理，设 $\text{ord}_ma=l$ ，则 $a^n \equiv 1 \pmod m$ 当且仅当 $l | n$ ，特别地， $l | \varphi(m)$ 。
+由欧拉定理，设 $\text{ord}_ma=l$ ，则 $a^n \equiv 1 \pmod m$ 当且仅当 $l \mid n$ ，特别地， $l \mid \varphi(m)$ 。
 
 -   设 $p$ 是素数， $\text{ord}_pa=l$ ，那么有且仅有 $\varphi(l)$ 个关于模 $p$ 的阶为 $l$ 且两两互不同余的数。
 -   设 $\text{ord}_ma=l$ ，则 $1, a, a^2, \cdots, a^{l-1}$ 关于模 $m$ 两两互不同余。
--   设 $p$ 是素数， $l|p-1$ ，则存在 $\varphi(l)$ 个关于模 $p$ 的阶为 $l$ 且两两互不同余的数。
+-   设 $p$ 是素数， $l \mid p-1$ ，则存在 $\varphi(l)$ 个关于模 $p$ 的阶为 $l$ 且两两互不同余的数。
 -   若 $m=p_1^{a_1}p_2^{a_2}\cdots p_k^{a_k}$ ，则 $\text{ord}_ma = [\text{ord}_{p_1}^{a_1}, \text{ord}_{p_2}^{a_2}, \cdots, \text{ord}_{p_k}^{a_k}]$ 
 
 ## 原根
@@ -23,7 +23,7 @@
 
 ### 求所有原根
 
-设 $g$ 为 $m$ 的一个原根，则集合 $S = \{g^s | 1 \leq s \leq \varphi(m), (s, \varphi(m)) = 1\}$ 给出 $m$ 的全部原根。因此，若 $m$ 有原根，则 $m$ 有 $\varphi(\varphi(m))$ 个关于模 $m$ 两两互不同余的原根。
+设 $g$ 为 $m$ 的一个原根，则集合 $S = \{g^s \mid 1 \leq s \leq \varphi(m), (s, \varphi(m)) = 1\}$ 给出 $m$ 的全部原根。因此，若 $m$ 有原根，则 $m$ 有 $\varphi(\varphi(m))$ 个关于模 $m$ 两两互不同余的原根。
 
 ## 求一个原根
 
