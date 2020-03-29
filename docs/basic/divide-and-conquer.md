@@ -1,4 +1,4 @@
-author: fudonglai, AngelKitty
+author: fudonglai, AngelKitty, LeverImmy
 
 首先简单阐述一下递归，分治算法，动态规划，贪心算法这几个东西的区别和联系，心里有个印象就好。
 
@@ -12,7 +12,7 @@ author: fudonglai, AngelKitty
 
 递归的基本思想是某个函数直接或者间接地调用自身，这样就把原问题的求解转换为许多性质相同但是规模更小的子问题。我们只需要关注如何把原问题划分成符合条件的子问题，而不需要去研究这个子问题是如何被解决的。递归和枚举的区别在于：枚举是横向地把问题划分，然后依次求解子问题，而递归是把问题逐级分解，是纵向的拆分。
 
-以下会举例说明我对递归的一点理解， **如果你不想看下去了，请记住这几个问题怎么回答：** 
+以下会举例说明我对递归的一点理解， **如果你不想看下去了，请记住这几个问题怎么回答：**
 
 1.  如何给一堆数字排序？答：分成两半，先排左半边再排右半边，最后合并就行了，至于怎么排左边和右边，请重新阅读这句话。
 2.  孙悟空身上有多少根毛？答：一根毛加剩下的毛。
@@ -41,17 +41,17 @@ int func(传入数值) {
 
 第三，跳出细节，从整体上看问题。再说说归并排序，其实可以不用递归来划分左右区域的，但是代价就是代码极其难以理解，大概看一下代码（归并排序在后面讲，这里大致看懂意思就行，体会递归的妙处）：
 
-```java
-void sort(Comparable[] a){
-    int N = a.length;
+```cpp
+void sort(int *a, int len){
+    int N = len;
     // 这么复杂，是对排序的不尊重。我拒绝研究这样的代码。
     for (int sz = 1; sz < N; sz = sz + sz)
         for (int lo = 0; lo < N - sz; lo += sz + sz)
-            merge(a, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, N - 1));
+            merge(a, lo, lo + sz - 1, std::min(lo + sz + sz - 1, N - 1));
 }
 
 /* 我还是选择递归，简单，漂亮 */
-void sort(Comparable[] a, int lo, int hi) {
+void sort(int *a, int lo, int hi) {
     if (lo >= hi) return;
     int mid = lo + (hi - lo) / 2;
     sort(a, lo, mid);
@@ -64,15 +64,15 @@ void sort(Comparable[] a, int lo, int hi) {
 
 显然有时候递归处理是高效的，比如归并排序， **有时候是低效的** ，比如数孙悟空身上的毛，因为堆栈会消耗额外空间，而简单的递推不会消耗空间。比如这个例子，给一个链表头，计算它的长度：
 
-```java
+```cpp
 /* 典型的递推遍历框架 */
-public int size(Node head) {
+int size(Node head) {
     int size = 0;
     for (Node p = head; p != null; p = p.next) size++;
     return size;
 }
 /* 我偏要递归，万物皆递归 */
-public int size(Node head) {
+int size(Node head) {
     if (head == null) return 0;
     return size(head.next) + 1;
 }
@@ -167,11 +167,11 @@ int count(TreeNode node, int sum) {
 }
 ```
 
-还是那句话， **明白每个函数能做的事，并相信它们能够完成。** 
+还是那句话， **明白每个函数能做的事，并相信它们能够完成。**
 
 总结下，PathSum 函数提供的二叉树遍历框架，在遍历中对每个节点调用 count 函数，看出先序遍历了吗（这道题什么序都是一样的）；count 函数也是一个二叉树遍历，用于寻找以该节点开头的目标值路径。好好体会吧！
 
-LeetCode 有递归专题练习， [点这里去做题](https://leetcode.com/explore/learn/card/recursion-i/) 
+LeetCode 有递归专题练习， [点这里去做题](https://leetcode.com/explore/learn/card/recursion-i/)
 
 ### 递归优化
 
@@ -202,4 +202,4 @@ void merge_sort(一个数组) {
 
 好了，这个算法也就这样了，完全没有任何难度。记住之前说的，相信函数的能力，传给它半个数组，那么这半个数组就已经被排好了。而且你会发现这不就是个二叉树遍历模板吗？为什么是后序遍历？因为我们分治算法的套路是 **分解 -> 解决（触底）-> 合并（回溯）** 啊，先左右分解，再处理合并，回溯就是在退栈，就相当于后序遍历了。至于 `merge` 函数，参考两个有序链表的合并，简直一模一样。
 
-LeetCode 上有分治算法的专项练习， [点这里去做题](https://leetcode.com/tag/divide-and-conquer/) 
+LeetCode 上有分治算法的专项练习， [点这里去做题](https://leetcode.com/tag/divide-and-conquer/)
