@@ -6,11 +6,11 @@ author: LeverImmy
 
 精确覆盖问题 (Exact Cover Problem) 是指给定许多集合 $S_i (1 \le i \le n)$ 以及一个集合 $X$ ，求满足以下条件的无序多元组 $(T_1, T_2, \cdots , T_m)$ ：
 
-(1) $\forall i, j \in [1, m],T_i\bigcap T_j = \varnothing (i \neq j)$
+(1) $\forall i, j \in [1, m],T_i\bigcap T_j = \varnothing (i \neq j)$ 
 
-(2) $X = \bigcup\limits_{i = 1}^{m}T_i$
+(2) $X = \bigcup\limits_{i = 1}^{m}T_i$ 
 
-(3) $\forall i \in[1, m], T_i \in \{S_1, S_2, \cdots, S_n\}$
+(3) $\forall i \in[1, m], T_i \in \{S_1, S_2, \cdots, S_n\}$ 
 
 例如，若给出
 
@@ -33,7 +33,7 @@ $$
 我们将 $\bigcup\limits_{i = 1}^{n}S_i$ 中的所有数离散化，那么可以得到这么一个模型：
 
 > 给定一个 01 矩阵，你可以选择一些行，使得最终每列都恰好有一个 1。
-举个例子，我们对上文中的例子进行建模，可以得到这么一个矩阵：
+> 举个例子，我们对上文中的例子进行建模，可以得到这么一个矩阵：
 
 $$
 \begin{pmatrix}
@@ -88,8 +88,7 @@ $$
 
 因此被转化为了
 
-> 给你 $n$ 个 $m$ 位二进制数，要求选择一些数，使得任意两个数的与都为 0，且所有数的或为 $2^m - 1$ 。
- `tmp` 表示的是截至目前的所有被选择了的 $m$ 位二进制数的或。
+> 给你 $n$ 个 $m$ 位二进制数，要求选择一些数，使得任意两个数的与都为 0，且所有数的或为 $2^m - 1$ 。 `tmp` 表示的是截至目前的所有被选择了的 $m$ 位二进制数的或。
 
 因为每一行都有选或者不选两种状态，所以枚举行的时间复杂度为 $O(2^n)$ ；
 
@@ -287,7 +286,7 @@ $$
 
     答案即为我们删除的三行： $1, 4, 5$ 。
 
--    **强烈建议自己模拟一遍矩阵删除、还原与回溯的过程后再接着阅读下文。**
+-    **强烈建议自己模拟一遍矩阵删除、还原与回溯的过程后再接着阅读下文。** 
 
 我们可以概括出 X 算法的过程：
 
@@ -394,7 +393,7 @@ void remove(const int &c) {
 
  $\text{recover(c)}$ 即 $\text{remove(c)}$ 的逆操作，在这里就不多赘述了。
 
- **值得注意的是，**  $\text{recover(c)}$  **的所有操作的顺序与**  $\text{remove(c)}$  **的操作恰好相反。**
+ **值得注意的是，**  $\text{recover(c)}$  **的所有操作的顺序与**  $\text{remove(c)}$  **的操作恰好相反。** 
 
 在这里给出 $\text{recover(c)}$ 的代码实现：
 
@@ -466,7 +465,7 @@ void build(const int &r, const int &c) {
     U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
     ```
 
-     **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。**
+     **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。** 
 
 -   我们把 $idx$ 插入到 $first(r)$ 的正右方，此时：
 
@@ -483,7 +482,7 @@ void build(const int &r, const int &c) {
     R[first[r]] = idx, L[R[first[r]]] = idx;
     ```
 
-     **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。**
+     **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。** 
 
 对于 $\text{insert(r, c)}$ 这个操作，我们可以画图来辅助理解：
 
@@ -548,7 +547,7 @@ bool dance(int dep) {
 
 ## 模板
 
- [【模板】舞蹈链（DLX）](https://www.luogu.com.cn/problem/P4929)
+ [【模板】舞蹈链（DLX）](https://www.luogu.com.cn/problem/P4929) 
 
 ??? note "模板代码"
 
@@ -650,7 +649,7 @@ DLX 的时间复杂度是 **指数级** 的，它递归及回溯的次数与矩�
 
 DLX 的难点，不全在于链表的建立，而在于建模。
 
- **请确保已经完全掌握 DLX 模板后再继续阅读本文。**
+ **请确保已经完全掌握 DLX 模板后再继续阅读本文。** 
 
 我们每拿到一个题，应该考虑行和列所表示的意义：
 
@@ -660,7 +659,7 @@ DLX 的难点，不全在于链表的建立，而在于建模。
 
 对于某一行而言，由于不同的列的值不尽相同，我们 **由不同的状态，定义了一个决策** 。
 
-1.   [数独](https://www.luogu.com.cn/problem/P1784)
+1.   [数独](https://www.luogu.com.cn/problem/P1784) 
 
     ??? note "解题思路"
 
@@ -799,7 +798,7 @@ DLX 的难点，不全在于链表的建立，而在于建模。
         }
         ```
 
-2.   [靶形数独](https://www.luogu.com.cn/problem/P1074)
+2.   [靶形数独](https://www.luogu.com.cn/problem/P1074) 
 
     ??? note "解题思路"
 
@@ -925,7 +924,7 @@ DLX 的难点，不全在于链表的建立，而在于建模。
         }
         ```
 
-3.   [「NOI2005」智慧珠游戏](https://www.luogu.com.cn/problem/P4205)
+3.   [「NOI2005」智慧珠游戏](https://www.luogu.com.cn/problem/P4205) 
 
     ??? note "解题思路"
 
@@ -1111,8 +1110,8 @@ DLX 的难点，不全在于链表的建立，而在于建模。
 
 ## 练习
 
-1.   [SUDOKU - Sudoku](https://www.spoj.com/problems/SUDOKU/)
-2.   [「kuangbin 带你飞」专题三 Dancing Links](https://vjudge.net/contest/65998#overview)
+1.   [SUDOKU - Sudoku](https://www.spoj.com/problems/SUDOKU/) 
+2.   [「kuangbin 带你飞」专题三 Dancing Links](https://vjudge.net/contest/65998#overview) 
 
 ## 总结
 
@@ -1120,8 +1119,8 @@ DLX 能用来解决精确覆盖问题，适当地建立起模型后能解决一�
 
 ## References
 
--   [1]英雄哪里出来 的 [《夜深人静写算法（九）- Dancing Links X（跳舞链）》](https://blog.csdn.net/whereisherofrom/article/details/79220897)
--   [2]万仓一黍 的 [《跳跃的舞者，舞蹈链（Dancing Links）算法——求解精确覆盖问题》](https://www.cnblogs.com/grenet/p/3145800.html)
--   [3]zhangjianjunab 的 [《DLX 算法一览》](https://blog.csdn.net/zhangjianjunab/article/details/83688681)
--   [4]静听风吟。的 [《搜索：DLX 算法》](https://www.cnblogs.com/aininot260/p/9629926.html)
+-   [1]英雄哪里出来 的 [《夜深人静写算法（九）- Dancing Links X（跳舞链）》](https://blog.csdn.net/whereisherofrom/article/details/79220897) 
+-   [2]万仓一黍 的 [《跳跃的舞者，舞蹈链（Dancing Links）算法——求解精确覆盖问题》](https://www.cnblogs.com/grenet/p/3145800.html) 
+-   [3]zhangjianjunab 的 [《DLX 算法一览》](https://blog.csdn.net/zhangjianjunab/article/details/83688681) 
+-   [4]静听风吟。的 [《搜索：DLX 算法》](https://www.cnblogs.com/aininot260/p/9629926.html) 
 -   [5]刘汝佳，陈锋 的 [《算法竞赛进阶指南》](https://item.jd.com/11111050.html) 
