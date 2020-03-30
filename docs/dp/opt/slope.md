@@ -37,6 +37,6 @@ author: TrisolarisHD, hsfzLZH1, abc1763613206, greyqz, Ir1d, billchenchina, Chro
 
  [「NOI2019」回家路线](https://loj.ac/problem/3156) 
 
- [「NOI2016」国王饮水记](http://uoj.ac/problem/223) 
+ [「NOI2016」国王饮水记](https://uoj.ac/problem/223) 
 
- [「NOI2014」购票](http://uoj.ac/problem/7) 
+ [「NOI2014」购票](https://uoj.ac/problem/7) 
