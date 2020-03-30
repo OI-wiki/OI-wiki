@@ -33,7 +33,7 @@
 -   如图所示，我们可以把整个矩形分成如图各个颜色不同的小矩形，那么这个小矩形的高就是我们扫过的距离，那么剩下了一个变量，那就是矩形的长一直在变化。
 -   我们的线段树就是为了维护矩形的长，我们给每一个矩形的上下边进行标记，下面的边标记为 1，上面的边标记为 -1，每遇到一个矩形时，我们知道了标记为 1 的边，我们就加进来这一条矩形的长，等到扫描到 -1 时，证明这一条边需要删除，就删去，利用 1 和 -1 可以轻松的到这种状态。
 -   还要注意这里的线段树指的并不是线段的一个端点，而指的是一个区间，所以我们要计算的是 $r+1$ 和 $r-1$ 。
--   需要 [离散化](/misc/discrete/) 。
+-   需要 [离散化](../misc/discrete.md) 。
 
 ### 代码
 
@@ -99,11 +99,11 @@ void update(int rt, double y1, double y2, int flag) {
 }
 
 int main() {
-  int temp = 1, n, i, j;
+  int temp = 1, n;
   double x1, y1, x2, y2, ans;
   while (scanf("%d", &n) && n) {
     ans = 0;
-    for (i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
       scanf("%lf %lf %lf %lf", &x1, &y1, &x2, &y2);
       p[i].x = x1;
       p[i].y1 = y1;
@@ -121,7 +121,7 @@ int main() {
     build(1, 1, 2 * n);       //建树
     memset(lazy, 0, sizeof(lazy));
     update(1, p[0].y1, p[0].y2, p[0].flag);
-    for (i = 1; i < 2 * n; i++) {
+    for (int i = 1; i < 2 * n; i++) {
       ans += (p[i].x - p[i - 1].x) * cl[1].sum;
       update(1, p[i].y1, p[i].y2, p[i].flag);
     }

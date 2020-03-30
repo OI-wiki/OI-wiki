@@ -2,7 +2,7 @@
 
 ## 逆元简介
 
-如果一个线性同余方程 $ax \equiv 1 \pmod b$ ，则 $x$ 称为 $a \mod b$ 的逆元，记作 $a^{-1}$ 。
+如果一个线性同余方程 $ax \equiv 1 \pmod b$ ，则 $x$ 称为 $a \bmod b$ 的逆元，记作 $a^{-1}$ 。
 
 ## 如何求逆元
 
@@ -19,11 +19,11 @@ void exgcd(int a, int b, int& x, int& y) {
 }
 ```
 
-扩展欧几里得法和求解 [线性同余方程](/math/linear-equation/) 是一个原理，在这里不展开解释。
+扩展欧几里得法和求解 [线性同余方程](./linear-equation.md) 是一个原理，在这里不展开解释。
 
 ### 快速幂法
 
-这个要运用 [费马小定理](/math/fermat/) ：
+这个要运用 [费马小定理](./fermat.md) ：
 
 > 若 $p$ 为质数， $a$ 为正整数，且 $a$ 、 $p$ 互质，则 $a^{p-1} \equiv 1 \pmod p$ 。
 
@@ -65,7 +65,7 @@ inline int qpow(long long a, int b) {
 
  $i^{-1} \equiv -kj^{-1} \pmod p$ ；
 
- $i^{-1} \equiv -(\frac{p}{i}) (p \mod i)^{-1}$ ；
+ $i^{-1} \equiv -(\frac{p}{i}) (p \bmod i)^{-1}$ ；
 
 然后我们就可以推出逆元了，实现代码极短：
 
@@ -116,12 +116,12 @@ for (int i = 1; i <= n; ++i) inv[i] = sv[i] * s[i - 1] % p;
 
 ## 逆元练习题
 
- [【模板】乘法逆元](https://www.luogu.org/problemnew/show/P3811) 
+ [乘法逆元](https://loj.ac/problem/110) 
 
- [乘法逆元 2](https://loj.ac/problem/152) 
+ [乘法逆元 2](https://loj.ac/problem/161) 
 
- [同余方程](https://www.luogu.org/problemnew/show/P1082) 
+ [「NOIP2012」同余方程](https://loj.ac/problem/2605) 
 
- [\[AHOI2005\]洗牌](https://www.lydsy.com/JudgeOnline/problem.php?id=1965) 
+ [「AHOI2005」洗牌](https://www.luogu.org/problem/P2054) 
 
- [\[SDOI2016\]排列计数](https://www.luogu.org/problemnew/show/P4071) 
+ [「SDOI2016」排列计数](https://loj.ac/problem/2034) 

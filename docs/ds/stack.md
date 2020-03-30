@@ -5,7 +5,20 @@
 栈的修改是按照后进先出的原则进行的，因此栈通常被称为是后进先出（last in first out）表，简称 LIFO 表。
 
 !!! warning
-    为什么不是 FILO 呢？
+    LIFO 表达的是 **当前在容器** 内最后进来的最先出去。
+    
+    我们考虑这样一个栈
+    
+    ```text
+    push(1)
+    pop(1)
+    push(2)
+    pop(2)
+    ```
+    
+    如果从整体考虑，1 最先入栈，最先出栈，2 最后入栈，最后出栈，这样就成了一个先进先出表，显然是错误的。
+    
+    所以，在考虑数据结构是 LIFO 还是 FIFO 的时候，应当考虑在当前容器内的情况。
 
 我们可以方便的使用数组来模拟一个栈，如下：
 
@@ -22,7 +35,7 @@ if (*stk) --*stk;
 *stk = 0;
 ```
 
-同时 STL 也提供了一个方法 `std :: stack` 
+同时 STL 也提供了一个方法 `std::stack` 
 
 ```cpp
 #include <stack>
@@ -33,12 +46,12 @@ if (*stk) --*stk;
  * back()
  * push_back()
  * pop_back()
- * 标准容器 std :: vector / deque / list 满足这些要求
+ * 标准容器 std::vector / deque / list 满足这些要求
  * 如使用 1 方式构造，默认容器使用 deque
  */
 ```
 
- `std :: stack` 支持赋值运算符 `=` 
+ `std::stack` 支持赋值运算符 `=` 
 
 元素访问：
 

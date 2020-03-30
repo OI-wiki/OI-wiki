@@ -1,4 +1,4 @@
-Interactor，即交互器，用于交互题与选手程序交互。交互题的介绍见 [非传统题](/intro/non-trad/#_3) 。
+Interactor，即交互器，用于交互题与选手程序交互。交互题的介绍见 [非传统题](../non-trad.md#_3) 。
 
 ???+note
     Testlib 仅支持 Codeforces 形式交互题，即两程序交互。不支持 NOI 形式的选手编写函数与其他函数交互。
@@ -63,3 +63,5 @@ int main(int argc, char** argv) {
   quitf(_ok, "guessed the number with %d questions!", 50 - left);
 }
 ```
+
+ **本文主要翻译自 [Interactors with testlib.h - Codeforces](https://codeforces.com/blog/entry/18455) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 

@@ -12,7 +12,7 @@
 
 ## 常用解决方法
 
-### Tarjan [SCC 缩点](/graph/scc) 
+### Tarjan [SCC 缩点](./scc.md) 
 
 算法考究在建图这点，我们举个例子来讲：
 

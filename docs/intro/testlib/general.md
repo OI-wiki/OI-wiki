@@ -1,4 +1,4 @@
-本页面介绍 Testlib checker/interactor/validator 的一些通用状态/对象/函数。
+本页面介绍 Testlib checker/interactor/validator 的一些通用状态/对象/函数、一些用法及注意事项。请在阅读其他页面前完整阅读本页面的内容。
 
 ## 通用状态
 
@@ -62,25 +62,29 @@
 
 ## 极简正则表达式
 
-一些函数允许使用“极简正则表达式”特性，如下所示：
+上面的输入函数中的一部分允许使用“极简正则表达式”特性，如下所示：
 
 -   字符集。如 `[a-z]` 表示所有小写英文字母， `[^a-z]` 表示除小写英文字母外任何字符。
 -   范围。如 `[a-z]{1,5}` 表示一个长度在 $[1,5]$ 范围内且只包含小写英文字母的串。
 -   “或”标识符。如 `mike|john` 表示 `mike` 或 `john` 其一。
--   “可选”标识符。如 `-?[1-9][0-9]{0,3}` 表示 $[-9999,9999]$ 范围内的整数（注意那个可选的负号）。
--   “重复”标识符。如 `[0-9]*` 表示 $0$ 个或更多数字， `[0-9]+` 表示 $1$ 个或更多数字。
+-   “可选”标识符。如 `-?[1-9][0-9]{0,3}` 表示 $[-9999,9999]$ 范围内的非零整数（注意那个可选的负号）。
+-   “重复”标识符。如 `[0-9]*` 表示零个或更多数字， `[0-9]+` 表示一个或更多数字。
 -   注意这里的正则表达式是“贪婪”的（“重复”会尽可能匹配）。如 `[0-9]?1` 将不会匹配 `1` （因为 `[0-9]?` 将 `1` 匹配上，导致模板串剩余的那个 `1` 无法匹配）。
+
+## 首先 include testlib.h
+
+请确保 testlib.h 是你 include 的 **第一个** 头文件，Testlib 会重写/禁用（通过名字冲突的方式）一些与随机有关的函数（如 `random()` ），保证随机结果与环境无关，这对于 generator 非常重要， [generator 页面](./generator.md) 会详细说明这一点。
 
 ## 使用项别名
 
 推荐给 `readInt/readInteger/readLong/readDouble/readWord/readToken/readString/readLine` 等的有限制调用最后多传入一个 `string` 参数，即当前读入的项的别名，使报错易读。例如使用 `inf.readInt(1, 100, "n")` 而非 `inf.readInt(1, 100)` ，报错信息将为 `FAIL Integer parameter [name=n] equals to 0, violates the range [1, 100]` 。
 
-## 使用 `ensure/ensuref()` 
+## 使用 `ensuref/ensure()` 
 
 这两个函数用于检查条件是否成立（类似于 `assert()` ）。例如检查 $x_i \neq y_i$ ，我们可以使用
 
 ```cpp
-ensuref(x_i != y_i, "Graph can't contain loops");
+ensuref(x[i] != y[i], "Graph can't contain loops");
 ```
 
 还可以使用 C 风格占位符如
@@ -91,13 +95,13 @@ ensuref(s.length() % 2 == 0,
         int(s.length()));
 ```
 
-方便地，我们可以使用 `ensure(x> y)` ，如果条件不满足报错将为 `FAIL Condition failed: "x > y"` 。
+它有一个简化版 `ensure()` ，我们可以直接使用 `ensure(x> y)` 而不添加说明内容（也不支持添加说明内容），如果条件不满足报错将为 `FAIL Condition failed: "x > y"` 。很多情况下不加额外的说明的这种报错很不友好，所以我们通常使用 `ensuref()` 并加以说明内容，而非使用 `ensure()` 。
 
 ???+ warning
-    注意全局与成员 `ensure/ensuref()` 的区别
+    注意全局与成员 `ensuref/ensure()` 的区别
 
-    全局函数 `::ensure/ensuref()` 多用于 generator 和 validator 中，如果检查失败将统一返回 `_fail` 。
+    全局函数 `::ensuref/ensure()` 多用于 generator 和 validator 中，如果检查失败将统一返回 `_fail` 。
 
-    成员函数 `InStream::ensure/ensuref()` 一般用于判断选手和参考程序的输出是否合法。当 `Stream` 为 `ouf` 时，返回 `_wa` ；为 `inf` （一般不使用）或 `ans` 时，返回 `_fail` 。详见[Checker - 编写 readAns 函数](/intro/testlib/checker/#_3)。
+    成员函数 `InStream::ensuref/ensure()` 一般用于判断选手和参考程序的输出是否合法。当 `InStream` 为 `ouf` 时，返回 `_wa` ；为 `inf` （一般不在 checker 中检查输入数据，这应当在 validator 中完成）或 `ans` 时，返回 `_fail` 。详见[Checker - 编写 readAns 函数](./checker.md#_3)。
 
-     **本文翻译并综合自[Testlib - Codeforces](https://codeforces.com/testlib)系列。 `testlib.h` 的 GitHub 存储库为[MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。** 
+ **本文主要翻译并综合自 [Testlib - Codeforces](https://codeforces.com/testlib) 系列。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 

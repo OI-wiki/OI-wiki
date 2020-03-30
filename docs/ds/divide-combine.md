@@ -48,7 +48,7 @@ $$
 
 ### 连续段的性质
 
-连续段的一些显而易见的性质。我们定义 $A,B\in I_P$ ，那么有 $A\cup B,A\cap B,A\setminus B,B\setminus A\in I_P$ 。
+连续段的一些显而易见的性质。我们定义 $A,B\in I_P,A \cap B \neq \varnothing$ ，那么有 $A\cup B,A\cap B,A\setminus B,B\setminus A\in I_P$ 。
 
 证明？证明的本质就是集合的交并差的运算。
 
@@ -70,7 +70,7 @@ $$
 
 ![p1](./images/div-com1.png)
 
-在图中我们没有标明本原段。而图中 **每个结点都代表一个本原段** 。我们只标明了每个本原段的值域。举个例子，结点 $[5,8]$ 代表的本原段就是 $(P,[6,9])=\{5,7,6,8,4\}$ 。于是这里就有一个问题： **什么是析点合点？** 
+在图中我们没有标明本原段。而图中 **每个结点都代表一个本原段** 。我们只标明了每个本原段的值域。举个例子，结点 $[5,8]$ 代表的本原段就是 $(P,[6,9])=\{5,7,6,8\}$ 。于是这里就有一个问题： **什么是析点合点？** 
 
 ### 析点与合点
 
@@ -88,9 +88,9 @@ $$
 
 析点与合点的命名来源于他们的性质。首先我们有一个非常显然的性质：对于析合树中任何的结点 $u$ ，其儿子序列区间的并集就是结点 $u$ 的值域区间。即 $\bigcup_{i=1}^{|S_u|}S_u[i]=[u_l,u_r]$ 。
 
-对于一个合点 $u$ ：其儿子序列的任意 **子区间** 都构成一个 **连续段** 。形式化地说，对于 $S_u[l\sim r]$ ，有 $\bigcup_{i=l}^rS_u[i]\in I_P$ 。
+对于一个合点 $u$ ：其儿子序列的任意 **子区间** 都构成一个 **连续段** 。形式化地说， $\forall S_u[l\sim r]$ ，有 $\bigcup_{i=l}^rS_u[i]\in I_P$ 。
 
-对于一个析点 $u$ ：其儿子序列的任意 **长度大于 1（这里的长度是指儿子序列中的元素数，不是下标区间的长度）** 的子区间都 **不** 构成一个 **连续段** 。形式化地说，对于 $S_u[l\sim r]$ ，有 $\bigcup_{i=l}^rS_u[i]\in I_P$ 。
+对于一个析点 $u$ ：其儿子序列的任意 **长度大于 1（这里的长度是指儿子序列中的元素数，不是下标区间的长度）** 的子区间都 **不** 构成一个 **连续段** 。形式化地说， $\forall S_u[l\sim r],l<r$ ，有 $\bigcup_{i=l}^rS_u[i]\notin I_P$ 。
 
 合点的性质不难~~口糊~~证明。因为合点的儿子排列要么是顺序，要么是倒序，而值域区间也是首位相接，因此只要是连续的一段子序列（区间）都是一个连续段。
 
@@ -100,7 +100,7 @@ $$
 
 ### 析合树的构造
 
-前面讲了这么多零零散散的东西，现在就来具体地讲如何构造析合树。LCA 大佬的线性构造算法我是没看懂的，今天就讲一下比较好懂的 $O(n\log_2n)$ 的算法。
+前面讲了这么多零零散散的东西，现在就来具体地讲如何构造析合树。LCA 大佬的线性构造算法我是没看懂的，今天就讲一下比较好懂的 $O(n\log n)$ 的算法。
 
 #### 增量法
 
@@ -116,16 +116,15 @@ $$
 
 我们认为，如果当前点能够成为栈顶结点的儿子，那么栈顶结点是一个合点。如果是析点，那么你合并后这个析点就存在一个子连续段，不满足析点的性质。因此一定是合点。
 
-如果无法成为栈顶结点的儿子，那么我们就看栈顶连续的若干个点能否与当前点一起合并。我们预处理一个数组 $L$ ， $L_i$ 表示右端点下标为 $i$ 的连续段中，左端点的最小值。当前结点为 $P_i$ ，栈顶结点记为 $t$ 。
+如果无法成为栈顶结点的儿子，那么我们就看栈顶连续的若干个点能否与当前点一起合并。设 $l$ 为当前点所在区间的左端点。我们计算 $L$ 表示右端点下标为 $i$ 的连续段中，左端点 $\lt l$ 的最大值。当前结点为 $P_i$ ，栈顶结点记为 $t$ 。
 
-1.  如果 $t_l<L_i$ 那么显然当前结点无法合并；
+1.  如果 $L$ 不存在，那么显然当前结点无法合并；
 2.  如果 $t_l=L$ ，那么这就是两个结点合并，合并后就是一个 **合点** ；
-3.  如果在栈中存在一个点 $t'$ 的左端点 ${t'}_l=L_i$ ，那么一定可以从当前结点合并到 $t’$ 形成一个 **析点** ；
-4.  否则，我们找到栈中的一个点 $t'$ 使得 ${t'}_l<L_i\le {t'}_r$ 。由连续段的差运算可知 $(P,[{t'}_r+1,i])$ 也是连续段，于是合并 $t'$ 之后的结点到当前结点成一个 **析点** 即可。
+3.  否则在栈中一定存在一个点 $t'$ 的左端点 ${t'}_l=L$ ，那么一定可以从当前结点合并到 $t’$ 形成一个 **析点** ；
 
 #### 判断能否合并
 
-最后，我们考虑如何处理 $L$ 数组。事实上，一个连续段 $(P,[l,r])$ 等价于区间极差与区间长度 -1 相等。即
+最后，我们考虑如何处理 $L$ 。事实上，一个连续段 $(P,[l,r])$ 等价于区间极差与区间长度 -1 相等。即
 
 $$
 \max_{l\le i\le r}P_i-\min_{l\le i\le r}P_i=r-l
@@ -178,46 +177,12 @@ const int N = 200010;
 
 int n, m, a[N], st1[N], st2[N], tp1, tp2, rt;
 int L[N], R[N], M[N], id[N], cnt, typ[N], bin[20], st[N], tp;
-
-char gc() {
-  static char *p1, *p2, s[1000000];
-  if (p1 == p2) p2 = (p1 = s) + fread(s, 1, 1000000, stdin);
-  return (p1 == p2) ? EOF : *p1++;
-}
-int rd() {
-  int x = 0;
-  char c = gc();
-  while (c < '0' || c > '9') c = gc();
-  while (c >= '0' && c <= '9') x = (x << 1) + (x << 3) + c - '0', c = gc();
-  return x;
-}
-char ps[1000000], *pp = ps;
-void flush() {
-  fwrite(ps, 1, pp - ps, stdout);
-  pp = ps;
-}
-void push(char x) {
-  if (pp == ps + 1000000) flush();
-  *pp++ = x;
-}
-void write(int l, int r) {
-  static int sta[N], top;
-  if (!l)
-    push('0');
-  else {
-    while (l) sta[++top] = l % 10, l /= 10;
-    while (top) push(sta[top--] ^ '0');
-  }
-  push(' ');
-  if (!r)
-    push('0');
-  else {
-    while (r) sta[++top] = r % 10, r /= 10;
-    while (top) push(sta[top--] ^ '0');
-  }
-  push('\n');
-}
-
+//本篇代码原题应为 CERC2017 Intrinsic Interval
+// a数组即为原题中对应的排列
+// st1和st2分别两个单调栈，tp1、tp2为对应的栈顶，rt为析合树的根
+// L、R数组表示该析合树节点的左右端点，M数组的作用在析合树构造时有提到
+// id存储的是排列中某一位置对应的节点编号，typ用于标记析点还是合点
+// st为存储析合树节点编号的栈，tp为其栈顶
 struct RMQ {  // 预处理 RMQ（Max & Min）
   int lg[N], mn[N][17], mx[N][17];
   void chkmn(int& x, int y) {
@@ -278,7 +243,7 @@ struct SEG {  // 线段树
       return query(ls, l, mid);
     else
       return query(rs, mid + 1, r);
-    // 如果不存在 0 的位置就会自动返回一个极大值
+    // 如果不存在 0 的位置就会自动返回当前你查询的位置
   }
 } T;
 
@@ -289,7 +254,6 @@ struct Edge {
 void add(int u, int v) {  // 树结构加边
   E[o] = (Edge){v, hd[u]};
   hd[u] = o++;
-  // printf("%d %d\n",u,v);
 }
 void dfs(int u) {
   for (int i = 1; bin[i] <= dep[u]; ++i) fa[u][i] = fa[fa[u][i - 1]][i - 1];
@@ -349,6 +313,7 @@ void build() {
       } else if (judge(L[st[tp]], i)) {
         typ[++cnt] = 1;  // 合点一定是被这样建出来的
         L[cnt] = L[st[tp]], R[cnt] = i, M[cnt] = L[now];
+        //这里M数组的作用是保证合点的儿子排列是单调的
         add(cnt, st[tp--]), add(cnt, now);
         now = cnt;
       } else {
@@ -370,27 +335,31 @@ void build() {
 
   rt = st[1];  // 栈中最后剩下的点是根结点
 }
-void query(int r, int l) {
+void query(int l, int r) {
   int x = id[l], y = id[r];
   int z = lca(x, y);
   if (typ[z] & 1)
     l = L[go(x, dep[x] - dep[z] - 1)], r = R[go(y, dep[y] - dep[z] - 1)];
+  //合点这里特判的原因是因为这个合点不一定是最小的包含l，r的连续段.
+  //具体可以在上面的例图上试一下查询7,10
   else
     l = L[z], r = R[z];
-  write(l, r);
+  printf("%d %d\n", l, r);
 }  // 分 lca 为析或和，这里把叶子看成析的
 
 int main() {
-  freopen("c.in", "r", stdin);
-  freopen("c.out", "w", stdout);
-  n = rd();
-  for (int i = 1; i <= n; ++i) a[i] = rd();
+  scanf("%d", &n);
+  for (int i = 1; i <= n; ++i) scanf("%d", &a[i]);
   D.build();
   build();
   dfs(rt);
-  m = rd();
-  for (int i = 1; i <= m; ++i) query(rd(), rd());
-  return flush(), 0;
+  scanf("%d", &m);
+  for (int i = 1; i <= m; ++i) {
+    int x, y;
+    scanf("%d%d", &x, &y);
+    query(x, y);
+  }
+  return 0;
 }
 // 20190612
 // 析合树

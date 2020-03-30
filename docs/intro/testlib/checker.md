@@ -1,4 +1,4 @@
-Checker，即 [Special Judge](/intro/spj) ，用于检验答案是否合法。使用 Testlib 可以让我们免去检验许多东西，使编写简单许多。
+Checker，即 [Special Judge](../spj.md) ，用于检验答案是否合法。使用 Testlib 可以让我们免去检验许多东西，使编写简单许多。
 
 Checker 从命令行参数读取到输入文件名、选手输出文件名、标准输出文件名，并确定选手输出是否正确，并返回一个预定义的结果：
 
@@ -39,9 +39,11 @@ int main(int argc, char* argv[]) {
 ### 不好的实现
 
 ```cpp
+// clang-format off
+
+#include "testlib.h"
 #include <map>
 #include <vector>
-#include "testlib.h"
 using namespace std;
 
 map<pair<int, int>, int> edges;
@@ -115,9 +117,11 @@ int main(int argc, char* argv[]) {
 ### 好的实现
 
 ```cpp
+// clang-format off
+
+#include "testlib.h"
 #include <map>
 #include <vector>
-#include "testlib.h"
 using namespace std;
 
 map<pair<int, int>, int> edges;
@@ -187,18 +191,18 @@ int main(int argc, char* argv[]) {
 注意到这种写法我们同时也检查了标准输出是否合法，这样写 checker 让程序更短，且易于理解和 debug。此种写法也适用于输出 YES（并输出方案什么的），或 NO 的题目。
 
 ???+ note
-    对于某些限制的检查可以用 `InStream::ensure/ensuref()` 函数更简洁地实现。如上例第 21 至 23 行也可以等价地写成如下形式：
+    对于某些限制的检查可以用 `InStream::ensure/ensuref()` 函数更简洁地实现。如上例第 23 至 25 行也可以等价地写成如下形式：
 
     ```cpp
     stream.ensuref(!used[v - 1], "vertex %d was used twice", v);
     ```
 
 ???+ warning
-    请在 `readAns` 中避免调用 **全局** 函数 `::ensure/ensuref()` ，这会导致在某些应判为 Wrong Answer 的选手输出下返回 `_fail` ，产生错误。
+    请在 `readAns` 中避免调用 **全局** 函数 `::ensure/ensuref()` ，这会导致在某些应判为 WA 的选手输出下返回 `_fail` ，产生错误。
 
 ## 建议与常见错误
 
--   编写 readAns 函数，它真的可以让你的 checker 变得很棒。
+-   编写 `readAns` 函数，它真的可以让你的 checker 变得很棒。
 
 -   读入选手输出时永远限定好范围，如果某些变量忘记了限定且被用于某些参数，你的 checker 可能会判定错误或 RE 等。
 
@@ -209,20 +213,19 @@ int main(int argc, char* argv[]) {
     int k = ouf.readInt();
     vector<int> lst;
     for (int i = 0; i < k; i++)  // k = 0 和 k = -5 在这里作用相同（不会进入循环体）
-      lst.push_back(
-          ouf.readInt());  // 但是我们并不想接受一个长度为 -5 的 list，不是吗？
+      lst.push_back(ouf.readInt());
+    // 但是我们并不想接受一个长度为 -5 的 list，不是吗？
     // ....
     int pos = ouf.readInt();
-    int x =
-        A[pos];  // 100% 会 RE。一定会有人输出 -42, 2147483456 或其他一些非法数字。
-                 // ....
+    int x = A[pos];
+    // 可能会有人输出 -42, 2147483456 或其他一些非法数字导致 checker RE
     ```
 
     ##### 正面教材
 
     ```cpp
     // ....
-    int k = ouf.readInt(0, n);  // 负数会 PE
+    int k = ouf.readInt(0, n);  // 长度不合法会立刻判 WA 而不会继续 check 导致 RE
     vector<int> lst;
     for (int i = 0; i < k; i++) lst.push_back(ouf.readInt());
     // ....
@@ -233,4 +236,12 @@ int main(int argc, char* argv[]) {
 
 -   使用项别名
 
-     **本文翻译自 [Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 
+## 使用方法
+
+通常我们不需要本地运行它，评测工具/OJ 会帮我们做好这一切。但是如果需要的话，以以下格式在命令行运行：
+
+```bash
+./checker <input-file> <output-file> <answer-file> [<report-file> [<-appes>]]
+```
+
+ **本文主要翻译自 [Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 

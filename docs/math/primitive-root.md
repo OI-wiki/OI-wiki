@@ -4,11 +4,11 @@
 
 若 $\text{ord}_ma=l$ ，则 $\text{ord}_m{a^t} = \frac{l}{(t,l)}$ 
 
-由欧拉定理，设 $\text{ord}_ma=l$ ，则 $a^n \equiv 1 \pmod m$ 当且仅当 $l | n$ ，特别地， $l | \varphi(m)$ 。
+由欧拉定理，设 $\text{ord}_ma=l$ ，则 $a^n \equiv 1 \pmod m$ 当且仅当 $l \mid n$ ，特别地， $l \mid \varphi(m)$ 。
 
 -   设 $p$ 是素数， $\text{ord}_pa=l$ ，那么有且仅有 $\varphi(l)$ 个关于模 $p$ 的阶为 $l$ 且两两互不同余的数。
 -   设 $\text{ord}_ma=l$ ，则 $1, a, a^2, \cdots, a^{l-1}$ 关于模 $m$ 两两互不同余。
--   设 $p$ 是素数， $l|p-1$ ，则存在 $\varphi(l)$ 个关于模 $p$ 的阶为 $l$ 且两两互不同余的数。
+-   设 $p$ 是素数， $l \mid p-1$ ，则存在 $\varphi(l)$ 个关于模 $p$ 的阶为 $l$ 且两两互不同余的数。
 -   若 $m=p_1^{a_1}p_2^{a_2}\cdots p_k^{a_k}$ ，则 $\text{ord}_ma = [\text{ord}_{p_1}^{a_1}, \text{ord}_{p_2}^{a_2}, \cdots, \text{ord}_{p_k}^{a_k}]$ 
 
 ## 原根
@@ -23,7 +23,7 @@
 
 ### 求所有原根
 
-设 $g$ 为 $m$ 的一个原根，则集合 $S = \{g^s | 1 \leq s \leq \varphi(m), (s, \varphi(m)) = 1\}$ 给出 $m$ 的全部原根。因此，若 $m$ 有原根，则 $m$ 有 $\varphi(\varphi(m))$ 个关于模 $m$ 两两互不同余的原根。
+设 $g$ 为 $m$ 的一个原根，则集合 $S = \{g^s \mid 1 \leq s \leq \varphi(m), (s, \varphi(m)) = 1\}$ 给出 $m$ 的全部原根。因此，若 $m$ 有原根，则 $m$ 有 $\varphi(\varphi(m))$ 个关于模 $m$ 两两互不同余的原根。
 
 ## 求一个原根
 
@@ -45,10 +45,12 @@ $$
 
 又有 $t<p-1$ ，故 $\gcd(t,p-1)\leqslant t<p-1$ 。
 
-又 $\gcd(t,p-1)\mid(p-1)$ ，故 $\gcd(t,p-1)$ 必至少整除 $a^{\frac{p-1}{d_{1}}},a^{\frac{p-1}{d_{2}}},\ldots,a^{\frac{p-1}{d_{m}}}$ 中的至少一个，设 $\gcd(t,p-1)\mid a^{\frac{p-1}{d_{i}}$ ，则 $a^{\frac{p-1}{d_{i}}}\equiv a^{\gcd(t,p-1)}\equiv 1\pmod{p}$ 。
+又 $\gcd(t,p-1)\mid(p-1)$ ，故 $\gcd(t,p-1)$ 必至少整除 $a^{\frac{p-1}{d_{1}}},a^{\frac{p-1}{d_{2}}},\ldots,a^{\frac{p-1}{d_{m}}}$ 中的至少一个，设 $\gcd(t,p-1)\mid a^{\frac{p-1}{d_{i}}}$ ，则 $a^{\frac{p-1}{d_{i}}}\equiv a^{\gcd(t,p-1)}\equiv 1\pmod{p}$ 。
 
 故假设不成立。
 
 ## 用途
 
-我们发现原根 $g$ 拥有所有 FFT 所需的单位根 $\omega$ 的性质，于是我们用 $g^{\frac{p-1}{n}}\bmod{p}$ 来代替 $\omega_{n}$ ，就能把复数对应到一个整数，在模 $p$ 意义下进行快速变换了。
+我们发现原根 $g$ 拥有所有 DFT 所需的单位根 $\omega$ 的性质，于是我们用 $g^{\frac{p-1}{n}}\bmod{p}$ 来代替 $\omega_{n}$ ，理论上就能把复数对应到一个整数，在模 $p$ 意义下进行快速变换了。
+
+但实际上由于快速傅里叶变换（FFT）实现的多项式乘法的过程中要求序列长度是 $2$ 的幂次，因此这里模数 $p$ 还需要保证 $p-1$ 的标准分解式中素因子 $2$ 的幂次足够大，参见 [快速数论变换](./poly/ntt.md) ，

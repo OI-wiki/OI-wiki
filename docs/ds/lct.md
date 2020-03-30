@@ -1,9 +1,9 @@
 ## 简介
 
 1.  Link/Cut Tree 是一种数据结构，我们用它来解决<font color="red">动态树问题</font>。
-2.  Link/Cut Tree 又称 Link-Cut Tree，简称 LCT, 但它不叫动态树，动态树是指一类问题。
+2.  Link/Cut Tree 又称 Link-Cut Tree，简称 LCT，但它不叫动态树，动态树是指一类问题。
 3.  Splay Tree 是 LCT 的基础，但是 LCT ⽤的 Splay Tree 和普通的 Splay 在细节处不太一样（进行了一些扩展）。
-4.  这是⼀个和 Splay ⼀样只需要写⼏ (yi) 个 (dui) 核心函数就能实现一切的数据结构。
+4.  这是⼀个和 Splay ⼀样只需要写几 (yi) 个 (dui) 核心函数就能实现一切的数据结构。
 
 ## 问题引入
 
@@ -25,7 +25,6 @@
 ## 动态树问题
 
 -   维护一个<font color="red">森林</font>, 支持删除某条边，加⼊某条边，并保证加边，删边之后仍是森林。我们要维护这个森林的一些信息。
-
 -   一般的操作有两点连通性，两点路径权值和，连接两点和切断某条边、修改信息等。
 
 * * *
@@ -33,43 +32,32 @@
 ### 从 LCT 的角度回顾一下树链剖分
 
 -   对整棵树按子树⼤小进⾏剖分，并重新标号。
-
 -   我们发现重新标号之后，在树上形成了一些以链为单位的连续区间，并且可以用线段树进⾏区间操作。
 
 ### 转向动态树问题
 
 -   我们发现我们刚刚讲的树剖是以子树⼤小作为划分条件。
-
 -   那我们能不能重定义一种剖分，使它更适应我们的动态树问题呢？
-
 -   考虑动态树问题需要什么链。
-
--   由于动态维护⼀个森林，显然我们希望这个链是我们指定的链，以便利⽤来求解。
+-   由于动态维护⼀个森林，显然我们希望这个链是我们指定的链，以便利用来求解。
 
 ## <font color = "red">实链剖分</font>
 
--   对于⼀个点连向它所有⼉子的边 , 我们⾃己选择⼀条边进行剖分，我们称被选择的边为实边，其他边则为虚边。
-
--   对于实边，我们称它所连接的⼉子为实⼉子。
-
+-   对于⼀个点连向它所有儿子的边 , 我们自己选择⼀条边进行剖分，我们称被选择的边为实边，其他边则为虚边。
+-   对于实边，我们称它所连接的儿子为实儿子。
 -   对于⼀条由实边组成的链，我们同样称之为实链。
-
 -   请记住我们选择实链剖分的最重要的原因：它是我们选择的，灵活且可变。
-
 -   正是它的这种灵活可变性，我们采用 Splay Tree 来维护这些实链。
 
 ## LCT！
 
 -   我们可以简单的把 LCT 理解成用⼀些 Splay 来维护动态的树链剖分，以期实现动态树上的区间操作。
-
 -   对于每条实链，我们建⼀个 Splay 来维护整个链区间的信息。
-
 -   接下来，我们来学习 LCT 的具体结构。
 
 ## - 辅助树
 
 -   我们先来看⼀看辅助树的一些性质，再通过一张图实际了解一下辅助树的具体结构。
-
 -   在本文里，你可以认为一些 Splay 构成了一个辅助树，每棵辅助树维护的是一棵树，一些辅助树构成了 LCT，其维护的是整个森林。
 
 1.  辅助树由多棵 Splay 组成，每棵 Splay 维护原树中的一条路径，且中序遍历这棵 Splay 得到的点序列，从前到后对应原树“从上到下”的一条路径。
@@ -89,33 +77,21 @@
 ### 考虑原树和辅助树的结构关系
 
 -   原树中的实链 : 在辅助树中节点都在一棵 Splay 中。
-
 -   原树中的虚链 : 在辅助树中，子节点所在 Splay 的 Father 指向父节点，但是父节点的两个儿子都不指向子节点。
-
 -   注意：原树的根不等于辅助树的根。
-
 -   原树的 Father 指向不等于辅助树的 Father 指向。
-
 -   辅助树是可以在满足辅助树、Splay 的性质下任意换根的。
-
 -   虚实链变换可以轻松在辅助树上完成，这也就是实现了动态维护树链剖分。
 
 ### 接下来要用到的变量声明
 
--    `ch[N][2]` 左右⼉子
-
+-    `ch[N][2]` 左右儿子
 -    `f[N]` ⽗亲指向
-
 -    `sum[N]` 路径权值和
-
 -    `val[N]` 点权
-
 -    `tag[N]` 翻转标记
-
 -    `laz[N]` 权值标记
-
 -    `siz[N]` 辅助树上子树大小
-
 -   Other_Vars
 
 ### 函数声明
@@ -127,7 +103,7 @@
 
 #### Splay 系函数（不会多做解释）
 
-1.   `Get(x)` 获取 $x$ 是父亲的哪个⼉子。
+1.   `Get(x)` 获取 $x$ 是父亲的哪个儿子。
 2.   `Splay(x)` 通过和 Rotate 操作联动实现把 $x$ 旋转到<font color = "red">当前 Splay 的根</font>。
 3.   `Rotate(x)` 将 $x$ 向上旋转一层的操作。
 
@@ -195,7 +171,7 @@ inline void Splay(int x) {
 }
 ```
 
-如果上面的几个函数你看不懂，请移步 [Splay](/ds/splay/) 。
+如果上面的几个函数你看不懂，请移步 [Splay](./splay.md) 。
 
 下面要开始 LCT 独有的函数了哦。
 
@@ -246,13 +222,11 @@ inline int Access(int x) {
 ![pic](./images/lct5.png)
 
 -   下一步，我们把 $N$ 指向的 Father $I$ 也旋转到 $I$ 的 Splay 树根。
-
 -   原来的实边 $I$ — $K$ 要去掉，这时候我们把 $I$ 的右儿子指向 $N$ , 就得到了 $I$ — $L$ 这样一棵 Splay。
 
 ![pic](./images/lct8.png)
 
 -   接下来，按照刚刚的操作步骤，由于 $I$ 的 Father 指向 $H$ , 我们把 $H$ 旋转到他所在 Splay Tree 的根，然后把 $H$ 的 rs 设为 $I$ 。
-
 -   之后的树是这样的。
 
 ![pic](./images/lct6.png)
@@ -283,7 +257,6 @@ inline int Access(int x) {
 这里提供的 Access 还有一个返回值。这个返回值相当于最后一次虚实链变换时虚边父亲节点的值。该值有两个含义：
 
 -   连续两次 Access 操作时，第二次 Access 操作的返回值等于这两个节点的 LCA.
-
 -   表示 $x$ 到根的链所在的 Splay 树的根。这个节点一定已经被旋转到了根节点，且父亲一定为空。
 
 ###  `Update()` 
@@ -359,11 +332,13 @@ inline void Cut(int x, int p) {
 
 -    `Find()` 其实就是找到当前辅助树的根。在 `Access(p)` 后，再 `Splay(p)` 。这样根就是树里最小的那个，一直往 ls 走，沿途 `PushDown` 即可。
 -   一直走到没有 ls, 非常简单。
+-   注意，每次查询之后需要把查询到的答案对应的结点 `Splay` 上去以保证复杂度。
 
 ```cpp
 inline int Find(int p) {
   Access(p), Splay(p);
   while (ls) pushDown(p), p = ls;
+  Splay(p);
   return p;
 }
 ```
@@ -377,13 +352,13 @@ inline int Find(int p) {
 ## 习题
 
 -    [「BZOJ 3282」Tree](https://lydsy.com/JudgeOnline/problem.php?id=3282) 
--    [「HNOI2010」Bounce 弹飞绵羊](https://lydsy.com/JudgeOnline/problem.php?id=2002) 
+-    [「HNOI2010」弹飞绵羊](https://www.luogu.org/problem/P3203) 
 
 ## 维护树链信息
 
-LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径提取到以 $y$ 为根的 Splay 内，树链信息的修改和统计转化为平衡树上的操作，这使得 LCT 在维护树链信息上具有优势。此外，借助 LCT 实现的在树链上二分比树链剖分少一个 $O(\log_2 n)$ 的复杂度。
+LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径提取到以 $y$ 为根的 Splay 内，树链信息的修改和统计转化为平衡树上的操作，这使得 LCT 在维护树链信息上具有优势。此外，借助 LCT 实现的在树链上二分比树链剖分少一个 $O(\log n)$ 的复杂度。
 
-???+note " 例题[luogu P1501\[国家集训队\]Tree II](https://www.luogu.org/problemnew/show/P1501)"
+???+note " 例题[「国家集训队」Tree II](https://www.luogu.org/problemnew/show/P1501)"
     给出一棵有 $n$ 个结点的树，每个点的初始权值为 $1$ 。 $q$ 次操作，每次操作均为以下四种之一：
 
     1.   `- u1 v1 u2 v2` ：将树上 $u_1,v_1$ 两点之间的边删除，连接 $u_2,v_2$ 两点，保证操作合法且连边后仍是一棵树。
@@ -550,8 +525,8 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 ### 习题
 
 -    [luogu P3690【模板】Link Cut Tree（动态树）](https://www.luogu.org/problemnew/show/P3690) 
--    [luogu P2486\[SDOI2011\]染色](https://www.luogu.org/problemnew/show/P2486) 
--    [luogu P4332\[SHOI2014\]三叉神经树](https://www.luogu.org/problemnew/show/P4332) 
+-    [「SDOI2011」染色](https://www.luogu.org/problemnew/show/P2486) 
+-    [「SHOI2014」三叉神经树](https://loj.ac/problem/2187) 
 
 ## 维护连通性质
 
@@ -559,7 +534,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 
 借助 LCT 的 `Find()` 函数，可以判断动态森林上的两点是否连通。如果有 `Find(x)==Find(y)` ，则说明 $x,y$ 两点在一棵树上，相互连通。
 
-???+note " 例题[luogu P2147\[SDOI2008\]洞穴勘测](https://www.luogu.org/problemnew/show/P2147)"
+???+note " 例题[「SDOI2008」洞穴勘测](https://www.luogu.org/problemnew/show/P2147)"
     一开始有 $n$ 个独立的点， $m$ 次操作。每次操作为以下之一：
 
     1.   `Connect u v` ：在 $u,v$ 两点之间连接一条边。
@@ -653,7 +628,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 
 如果要求将边双连通分量缩成点，每次添加一条边，所连接的树上的两点如果相互连通，那么这条路径上的所有点都会被缩成一个点。
 
-???+note " 例题[luogu P2542\[AHOI2005\]航线规划](https://www.luogu.org/problemnew/show/P2542)"
+???+note " 例题[「AHOI2005」航线规划](https://www.luogu.org/problemnew/show/P2542)"
     给出 $n$ 个点，初始时有 $m$ 条无向边， $q$ 次操作，每次操作为以下之一：
 
     1.   `0 u v` ：删除 $u,v$ 之间的连边，保证此时存在这样的一条边。
@@ -981,15 +956,15 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
 
 ### 习题
 
--    [luogu P4172\[WC2006\]水管局长](https://www.luogu.org/problem/P4172) 
--    [luogu P4180【模板】严格次小生成树\[BJWC2010\]](https://www.luogu.org/problemnew/show/P4180) 
--    [luogu P2387\[NOI2014\]魔法森林](https://www.luogu.org/problemnew/show/P2387) 
+-    [「WC2006」水管局长](https://www.luogu.org/problem/P4172) 
+-    [「BJWC2010」严格次小生成树](https://www.luogu.org/problemnew/show/P4180) 
+-    [「NOI2014」魔法森林](https://uoj.ac/problem/3) 
 
 ## 维护子树信息
 
 LCT 不擅长维护子树信息。统计一个结点所有虚子树的信息，就可以求得整棵树的信息。
 
-???+note " 例题[luogu P4219\[BJOI2014\]大融合](https://www.luogu.org/problem/P4219)"
+???+note " 例题[「BJOI2014」大融合](https://loj.ac/problem/2230)"
     给定 $n$ 个结点和 $q$ 次操作，每个操作为如下形式：
 
     1.   `A x y` 在结点 $x$ 和 $y$ 之间连接一条边。

@@ -8,17 +8,30 @@ OI 竞赛中允许使用的语言包括 Pascal（NOI 将于 2020 年停止使用
 
 ### NOIP
 
-NOIP（National Olympiad in Informatics in Provinces）是全国青少年信息学奥林匹克联赛，顾名思义，是以省为单位排名评奖，对于大部分高校来说，获得提高组省一等奖可以用于获得自主招生资格。
+NOIP（National Olympiad in Informatics in Provinces）是全国青少年信息学奥林匹克联赛，顾名思义，是以省为单位排名评奖，截至 2019 年，对于大部分高校来说，获得提高组省一等奖可以用于获得自主招生资格。
 
-NOIP 分为初赛和复赛两个阶段。初赛会考察一些计算机基础知识和算法基础，复赛是上机考试，也分提高组和普及组，时间上一般是 11 月的第二个周末，周六上午提高组 1 试 8:30-12:00（3.5h，共 3 题），下午 14:30-18:00 普及组（3.5h，共 4 题），周日上午提高组 2 试 8:30-12:00（3.5h，共 3 题）。全国使用同一套试卷，但是评奖规则是按照省内情况由 CCF（中国计算机学会）统一指定，并于赛后在 [NOI 官方网站](http://www.noi.cn) 上公布。各省的一等奖分数线略有不同。
+NOIP 分为初赛和复赛两个阶段。初赛会考察一些计算机基础知识和算法基础，复赛是上机考试，也分提高组和普及组（2018 年于上海试点入门组），时间上一般是 11 月的第二个周末，周六上午提高组一试 8:30-12:00（3.5 小时，共 3 题），下午 14:30-18:00 普及组（3.5 小时，共 4 题），周日上午提高组二试 8:30-12:00（3.5 小时，共 3 题）。全国使用同一套试卷，但是评奖规则是按照省内情况由 CCF（中国计算机学会）统一指定，并于赛后在 [NOI 官方网站](http://www.noi.cn) 上公布。各省的一等奖分数线略有不同。
+
+NOIP 于 2019 年 8 月 16 日 [被 CCF 暂停](http://www.noi.cn/newsview.html?id=932&hash=72F731&type=1) ，于 2020 年 1 月 21 日 [被宣布恢复](http://www.noi.cn/newsview.html?id=1172&hash=AC7D99&type=1) 。
+
+### CSP J/S
+
+CSP (Certified Software Professional Junior/Senior) 是继 NOIP 在 2019 年被取消之后 CCF 开设的非专业级软件能力认证，面向全年龄段。
+具体赛制、时间基本同 NOIP 一致。在部分地区，CSP 2019 设有小学组。
+
+目前暂不清楚获得 CSP J/S 认证对自主招生资格的获取是否有帮助。
 
 ### 省选
 
 省队选拔赛是用于选拔各省参加全国赛的代表队，各个省队的名额有复杂的计算公式，一般和之前的成绩和参赛人数有关。省选由各个省自行决定，目前的趋势是很多省份选择联合命题。通常来讲，NOIP 分数需要在省选中占一定比例。根据规则，初中选手只能选拔成为 E 类选手，不参加 A、B 类选拔。A 类选手 5 人（4 男一女），其他选手根据给定名额和所得分数依次进入 B 队。一个学校参加 NOI 的名额不超过本省 A、B 名额总数的三分之一（四舍五入），得分最高且入选 A 队的女选手不占该比例。（简称 1/3 限制或 1/3 淘汰）
 
+自 2020 年起，NOI 省队选拔由 CCF 统一命题和评测，有能力命题的省可自行命题，但选拔方式需得到 CCF 的批准。
+
 ### NOI
 
 NOI（National Olympiad in Informatics）是全国信息学奥林匹克竞赛，一般在七月份举行，有现场赛和网络赛。现场赛选手分为五类，其中 A、B、C 类为正式选手，D、E 类选手为邀请赛选手。A、B 类对应省队的 A、B 类选手（其中 A 类在计算成绩时会有 5 分加分），C 类名义上是学校对 CCF 做出突出贡献后的奖励名额，D 类名义上是个人对 CCF 做出突出贡献后的奖励名额（基本为大额捐款），E 类选手为初中组选手，如果成绩超过分数线的话，只有成绩证明而没有奖牌（同等分数含金量要低一些）。正式选手前 50 名组成国家集训队，获得保送资格。网络赛报名形式上没有门槛。
+
+在国际平台上，为了与其他同样称作 NOI 的比赛区分，有时会被称作 CNOI。
 
 ### WC
 
@@ -58,15 +71,17 @@ NOIP、NOI、省选都是 OI 赛制。
 目前国内比赛也在逐渐向 IOI 赛制靠拢。
 IOI 赛制可以赛时任意提交，可以即时查看评测结果，APIO、IOI 都是 IOI 赛制。
 
-### ACM/ICPC 赛制
+### ICPC 赛制
 
-在 ACM/ICPC 比赛中一般是三个人使用一台机器，每个题目只有在所有数据点全部正确后才能得到分数。比赛过程中可以有多次提交机会，实时评测并返回结果。比赛排名根据做题数和罚时来评判，罚时是通过题目的用时之和加上错误提交次数乘以一个系数。在 ACM 相关赛事中，选手允许带纸质资料。
+在 ICPC 比赛中一般是三个人使用一台机器，每个题目只有在所有数据点全部正确后才能得到分数。比赛过程中可以有多次提交机会，实时评测并返回结果。比赛排名根据做题数和罚时来评判，罚时是通过题目的用时之和加上错误提交次数乘以一个系数。在 ICPC 相关赛事中，选手允许带一定量的纸质资料。
 
-参见 [ICPC/CCPC 赛事与赛制](/intro/icpc) 。
+参见 [ICPC/CCPC 赛事与赛制](./icpc.md) 。
 
 ### Codeforces (CF) 赛制
 
- [Codeforces](https://codeforces.com) 是一个在线评测系统，定期会举办比赛。它的比赛特点是在比赛过程中只测试一部分数据（pretests），而在比赛结束后返回完整的所有测试点的测试结果（system tests）。比赛时可以多次提交，允许 hack 别人的代码（此处 hack 的意思是提交一个测试数据，使得别人的代码无法给出正确答案）。当然，如果想要 hack，必须要锁定自己的代码（换言之，比赛时无法重新提交该题）。
+ [Codeforces](https://codeforces.com) 是一个在线评测系统，定期会举办比赛。它的比赛特点是在比赛过程中只测试一部分数据（pretests），而在比赛结束后返回完整的所有测试点的测试结果（system tests）。比赛时可以多次提交，允许 hack 别人的代码（此处 hack 的意思是提交一个测试数据，使得别人的代码无法给出正确答案）。当然，如果想要 hack，必须要锁定自己的代码（换言之，比赛时无法重新提交该题）。Hack 时不允许将选手程序拷贝到本地进行测试（你看到的会是代码转换成图片的版本）。
+
+Codeforces 同时提供另外一种赛制，称作扩展 ICPC（extended ICPC）。在这一赛制中，在比赛过程中会测试全部数据，但比赛结束以后会有 12 小时的全网 Hack 时间。Hack 时允许将选手程序拷贝到本地进行测试。
 
 ## 其他国家和地区的 OI 竞赛
 
@@ -74,14 +89,14 @@ IOI 赛制可以赛时任意提交，可以即时查看评测结果，APIO、IOI
 
 官网地址： <https://www.usaco.org/> 
 
-USACO 或许是国内选手最熟悉的外国 OI 竞赛（因此可能也是中文题解最多的外国 OI 竞赛）。  
+USACO 或许是国内选手最熟悉的外国 OI 竞赛（可能也是中文题解最多的外国 OI 竞赛）。  
 每年冬季到初春，USACO 会每月举办一场网络赛。一场比赛持续 $3\sim5$ 个小时。  
 根据官网的介绍，USACO 的比赛分成这 4 档难度（2015~2016 学年之前为 3 档）：
 
 -   铜牌组，适合编程初学者，尤其是只学了最最基础的算法（如：排序，二分查找）的学生。
 -   银牌组，适合开始学习基本的算法技巧（如：递归，搜索，贪心算法）和基础数据结构的学生。
 -   金牌组，学生会遇到更复杂的算法（如：最短路径，DP）和更高级的数据结构。
--   铂金组，适合有着扎实的算法设计能力的选手，铂金组可以帮助他们以复杂且更开放的问题来~~放飞~~挑战自我。
+-   铂金组，适合有着扎实的算法设计能力的选手，铂金组可以帮助他们以复杂且更开放的问题来挑战自我。
 
 在国内，目前 USACO 题目最齐全的是洛谷。
 
@@ -107,7 +122,7 @@ POI 是不少省选选手最常刷的外国 OI 比赛。
 官网地址： <http://www.hsin.hr/coci/>   
 （有时候英文版的更新会延迟，克罗地亚语版本： <http://www.hsin.hr/honi/> ）
 
-难度跨度很大的比赛，大约是从普及 - $\sim$ 省选 -。以往 COCI 所有的题目均提供题目、数据、题解和标程，然而从 2017 年底之后，COCI 的题解和标程就断更了（不是没有英语版翻译，而是连克罗地亚语的版本都没有）。
+难度跨度很大的比赛，大约是从普及 - $\sim$ 省选 -。以往 COCI 所有的题目均提供题目、数据、题解和标程，然而从 2017 年底之后，COCI 的题解和标程就断更了（不是没有英语版翻译，而是连克罗地亚语的版本都没有）。2019-2020 赛季重新开始更新题解和标程。
 
 洛谷、BZOJ 和 LibreOJ 都有少量的 COCI 题目。
 
@@ -122,32 +137,30 @@ JOI 的流程：
 -   决赛（本選/JOI Final）
 -   春训营（春季トレーニング合宿/JOI Spring Camp/JOISC）
 -   公开赛（通信教育/JOI Open Contest）
-
-目前 LibreOJ 和 BZOJ 有近些年的 JOI Final、JOISC 和 JOI Open 的题目。UOJ 有部分 JOISC 2017 的题目。
-JOI Final 的难度在提高 - $\sim$ 提高 + 左右。JOISC 和 JOI Open 的题目的难度在提高 $\sim$ NOI - 不等。
-你可以在 JOI 官网或者 AtCoder 上找到更多的 JOI 题（日文题面）
-
-### 台湾地区：資訊奧林匹亞競賽
-
-台湾地区把 OI 中的 informatics 翻译成“资讯”而非大陆通用的翻译“信息”。  
-台湾地区的选手如果想去参加 IOI，需要经过这几场比赛的洗礼：
-
--   區域資訊學科能力競賽
--   全國資訊學科能力競賽
--   資訊研習營（TOI）
+    预赛难度较低，自 2019/2020 赛季起，预赛分为多轮。
+    目前 LibreOJ 和 BZOJ 有近些年的 JOI Final、JOISC 和 JOI Open 的题目。
+    JOI Final 的难度在提高 - $\sim$ 提高 + 左右。JOISC 和 JOI Open 的题目的难度在提高 $\sim$ NOI - 不等。
+    你可以在 JOI 官网或者 AtCoder 上找到更多的 JOI 题（日文题面）
 
 ### 俄罗斯：ROI
 
 俄罗斯信息学奥赛（олимпиадная информатика）一般简称为 ROI。  
 官网： <http://neerc.ifmo.ru/school/archive/index.html>   
-在线提交地址： <https://contest.yandex.ru/roiarchive/>   
+在线提交地址： <https://contest.yandex.ru/roiarchive/> ，Codeforces 上也有一些  
 一般简称为 ROI。流程：
 
 -   市级比赛（Municipal stage/Муниципальный этап）
--   地区级比赛（Regional Stage/Региональный этап）
+-   州级比赛（Regional Stage/Региональный этап）
 -   决赛（Final Stage/Заключительный этап）
 
-你可能已经在 Codeforces 上见过了一些 ROI 题。目前 LibreOJ 有近两年的 ROI 决赛题（包括翻译）。
+目前 LibreOJ 有近几年的 ROI 决赛题的译文。  
+除此之外，俄罗斯较大型的、面向中学生的比赛还有：
+
+-   信息学网络奥赛（Интернет-олимпиады по информатике）： <http://neerc.ifmo.ru/school/io/index.html> 。该比赛由 ROI 出题人举办；
+-   全国中学生团队信息学竞赛（Всероссийской командной олимпиады школьников）： <http://neerc.ifmo.ru/school/russia-team/index.html> ；
+-   上面这个比赛的预选赛 Moscow Team Olympiad 可以在 Codeforces 上提交；
+-   Innopolis Open： <https://olymp.innopolis.ru/en/ooui/information/> 
+-   中学生编程公开赛（Открытая олимпиада школьников по программированию）： <https://olympiads.ru/zaoch/> 。官网称该比赛对标 ROI。
 
 ### 加拿大：CCC & CCO
 
@@ -159,35 +172,64 @@ CCO 提交地址： [https://dmoj.ca/problems/？category=24](https://dmoj.ca/pr
 CCC 在 DMOJ 有官方 (?) 题解。  
 CCC Junior/Senior 贴近 NOIP 普及组/提高组难度。CCO 想要拿到金牌可能得有 NOI 银的水平。
 
-### 法国与澳大利亚：FARIO
+### 台湾地区：資訊奧林匹亞競賽
 
-提交地址： <http://orac.amt.edu.au/cgi-bin/train/hub.pl> 
+台湾地区把 OI 中的 informatics 翻译成“资讯”而非大陆通用的翻译“信息”。  
+台湾地区的选手如果想去参加 IOI，需要经过这几轮比赛：
 
-FARIO 的题目与 NOI 的难度旗鼓相当。
+-   區域資訊學科能力競賽
+-   全國資訊學科能力競賽
+-   資訊研習營（TOI）
 
-## 其它大洲级 OI 竞赛
+### 其他国家
+
+法国与澳大利亚：FARIO <http://orac.amt.edu.au/cgi-bin/train/hub.pl>   
+难度与 NOI 类似。
+
+韩国：한국 정보 올림 피아드： <https://www.digitalculture.or.kr/koi/>   
+ <https://www.digitalculture.or.kr/koi/selectOlymPiadDissentList.do>   
+ <https://www.acmicpc.net/problemset>   
+难度太低。
+
+英国 British Informatics Olympiad： <https://www.olympiad.org.uk/>   
+难度太低。
+
+捷克：Matematická olympiáda–kategorie P： <http://mo.mff.cuni.cz/p/archiv.html> 
+
+罗马尼亚：Olimpiada Nationala de Informatica： <http://olimpiada.info/>   
+题面、测试数据、题解请在含有 Subiecte 字样的标签页中寻找。
+
+## 其它国际 OI 竞赛
 
 ### BalticOI
 
-BalticOI 面向的是波罗的海周边各国。BalticOI 2018 的参赛国有立陶宛、波兰、爱沙尼亚、芬兰等 9 国。
-除了 2017 年，BalticOI 每年都公开题面、测试数据和题解。然而 BalticOI 没有一个固定的官网，每年的主办方都会新建一个网站……关于历年的官网地址，Planet6174 整理出了一个 [帖子](https://loj.ac/article/416) 。
+BalticOI 面向的是波罗的海周边各国。BalticOI 2018 的参赛国有立陶宛、波兰、爱沙尼亚、芬兰等 9 国。题目难度大。  
+除了 2017 年，BalticOI 每年都公开题面、测试数据和题解。然而 BalticOI 没有一个固定的官网，每年的主办方都会新建一个网站……  
+关于历年的官网地址，Planet6174 整理出了一个 [帖子](https://loj.ac/article/416) 。  
 目前 LibreOJ 有近十年的 BalticOI 题。
 
 ### BalkanOI
 
-BalkanOI 面向巴尔干地区周边各国。BalkanOI 2018 的参赛国有罗马尼亚、希腊、保加利亚、塞尔维亚等 12 国。
+BalkanOI 面向巴尔干地区周边各国。BalkanOI 2018 的参赛国有罗马尼亚、希腊、保加利亚、塞尔维亚等 12 国。题目难度大。  
 BalkanOI 只有某几年公开题面、测试数据和题解，官网地址参见上面那个帖子。
 
 ### CEOI
 
-CEOI 2018 的参赛国与上面两个比赛有部分重叠，包括波兰、罗马尼亚、格鲁吉亚、克罗地亚等国。
-
-CEOI 每年都公开题面、测试数据和题解，官网地址参见上面那个帖子。
-
+CEOI 2018 的参赛国与上面两个比赛有部分重叠，包括波兰、罗马尼亚、格鲁吉亚、克罗地亚等国。题目难度大。  
+CEOI 每年都公开题面、测试数据和题解，官网地址参见上面那个帖子。  
 在国内 OJ 中，BZOJ 的 CEOI 题相对最齐。
+
+### European Junior Olympiad in Informatics (eJOI)
+
+参赛国包含俄罗斯、亚美尼亚、保加利亚、波兰等国。题目难度较大。  
+eJOI 每年都公开题面、测试数据和题解，官网地址参见上面那个帖子。
+
+### International School for Informatics“Junior”(ISIJ)
+
+似乎没有官网。见 CCF 新闻 <http://www.noi.cn/newsview.html?id=911&hash=2D52A8&type=1> 。  
+据 300iq 说题目质量很糟糕。
 
 ### Nordic Olympiads in Informatics (NOI)
 
-官网地址： <http://nordic.progolymp.se> 
-
+官网地址： <http://nordic.progolymp.se>   
 近两年才开始举办的比赛，面向北欧各国。

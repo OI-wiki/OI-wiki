@@ -155,7 +155,7 @@ int dfs2(int u, int fa, bool keep, bool isson) {
 
 题意翻译：树的节点有颜色，一种颜色占领了一个子树，当且仅当没有其他颜色在这个子树中出现得比它多。求占领每个子树的所有颜色之和。
 
- [UOJ284 快乐游戏鸡](http://uoj.ac/problem/284) 
+ [UOJ284 快乐游戏鸡](https://uoj.ac/problem/284) 
 
 ### 参考资料/扩展阅读
 

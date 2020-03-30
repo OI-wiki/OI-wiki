@@ -20,7 +20,7 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
 ```text
 bfs(s) {
   q = new queue()
-  q.push(s)), visited[s] = true
+  q.push(s), visited[s] = true
   while (!q.empty()) {
     u = q.pop()
     for each edge(u, v) {
@@ -43,14 +43,14 @@ void bfs(int u) {
   d[u] = 0;
   p[u] = -1;
   while (!Q.empty()) {
-    u = Q.pop() {
-      for (int i = head[u]; i; i = e[i].x) {
-        if (!vis[e[i].t]) {
-          Q.push(e[i].t);
-          vis[e[i].t] = 1;
-          d[e[i].t] = d[u] + 1;
-          p[e[i].t] = u;
-        }
+    u = Q.front();
+    Q.pop();
+    for (int i = head[u]; i; i = e[i].x) {
+      if (!vis[e[i].t]) {
+        Q.push(e[i].t);
+        vis[e[i].t] = 1;
+        d[e[i].t] = d[u] + 1;
+        p[e[i].t] = u;
       }
     }
   }
@@ -88,7 +88,19 @@ void restore(int x) {
 
 在实现 BFS 的时候，我们把未被访问过的节点放在一个称为 open 的容器中，而把已经访问过了的节点放在 closed 容器中。
 
-##  [在树/图上 BFS](/graph/traverse) 
+## 在树/图上 BFS
+
+### BFS 序列
+
+类似 BFS 序列，BFS 序列是指在 BFS 过程中访问的节点编号的序列。
+
+### 一般图上 BFS
+
+如果原图不连通，只能访问到从起点出发能够到达的点。
+
+BFS 序列通常也不唯一。
+
+类似的我们也可以定义 BFS 树：在 BFS 过程中，通过记录每个节点从哪个点访问而来，可以建立一个树结构，即为 BFS 树。
 
 ## 应用
 
@@ -103,23 +115,11 @@ void restore(int x) {
 
 ## 例题
 
--    [LOJ#2317.「NOIP2017」奶酪](https://loj.ac/problem/2317) 
+-    [「NOIP2017」奶酪](http://uoj.ac/problem/332) 
 
 ## 参考
 
  <https://cp-algorithms.com/graph/breadth-first-search.html> 
-
-### BFS 序列
-
-类似 BFS 序列，BFS 序列是指在 BFS 过程中访问的节点编号的序列。
-
-### 一般图上 BFS
-
-同样，如果原图不连通，只能访问到起点所在的连通分量。
-
-BFS 序列通常也不唯一。
-
-类似的我们也可以定义 BFS 树：在 BFS 过程中，通过记录每个节点从哪个点访问而来，可以建立一个树结构，即为 BFS 树。
 
 ## 双端队列 BFS
 
@@ -168,14 +168,15 @@ while (队列不为空) {
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
+
 #define INF (1 << 29)
 int n, m;
 char grid[1001][1001];
 int dist[1001][1001][4];
-int vis[1001][1001][4];
 int fx[] = {1, -1, 0, 0};
 int fy[] = {0, 0, 1, -1};
 deque<int> q;
+
 void add_front(int x, int y, int dir, int d) {
   if (d < dist[x][y][dir]) {
     dist[x][y][dir] = d;
@@ -184,6 +185,7 @@ void add_front(int x, int y, int dir, int d) {
     q.push_front(x);
   }
 }
+
 void add_back(int x, int y, int dir, int d) {
   if (d < dist[x][y][dir]) {
     dist[x][y][dir] = d;
@@ -192,6 +194,7 @@ void add_back(int x, int y, int dir, int d) {
     q.push_back(dir);
   }
 }
+
 int main() {
   cin >> n >> m;
   for (int i = 0; i < n; i++) cin >> grid[i];
@@ -207,8 +210,6 @@ int main() {
     q.pop_front();
     q.pop_front();
     q.pop_front();
-    if (vis[x][y][dir]) continue;
-    vis[x][y][dir] = true;
     int d = dist[x][y][dir];
     int nx = x + fx[dir], ny = y + fy[dir];
     if (nx >= 0 && nx < n && ny >= 0 && ny < m) add_front(nx, ny, dir, d);
@@ -226,7 +227,7 @@ int main() {
 
 ## 优先队列 BFS
 
-优先队列，相当于一个二叉堆，STL 中提供了 [ `std::priority_queue` ](/ds/stl/priority_queue/) ，可以方便我们使用优先队列。
+优先队列，相当于一个二叉堆，STL 中提供了 [ `std::priority_queue` ](../lang/csl/container-adapter.md) ，可以方便我们使用优先队列。
 
 在基于优先队列的 BFS 中，我们每次从队首取出代价最小的结点进行进一步搜索。容易证明这个贪心思想是正确的，因为从这个结点开始扩展的搜索，一定不会更新原来那些代价更高的结点。换句话说，其余那些代价更高的结点，我们不回去考虑更新它。
 
@@ -234,4 +235,4 @@ int main() {
 
 相对于普通队列的 BFS，时间复杂度多了一个 $\log$ ，毕竟要维护这个优先队列嘛。不过普通 BFS 有可能每个结点入队、出队多次，时间复杂度会达到 $O(n^2)$ ，不是 $O(n)$ 。所以优先队列 BFS 通常还是快的。
 
-诶？这怎么听起来这么像堆优化的 [Dijkstra](/graph/shortest-path/#dijkstra) 算法呢？事实上，堆优化 Dijkstra 就是优先队列 BFS。
+诶？这怎么听起来这么像堆优化的 [Dijkstra](./shortest-path.md#dijkstra) 算法呢？事实上，堆优化 Dijkstra 就是优先队列 BFS。

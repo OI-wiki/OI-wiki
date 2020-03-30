@@ -36,7 +36,7 @@ auhor: HeRaNO, Xeonacid
 
 于是直接删掉（在最后一个结点处的）根结点，但是新的根结点可能不满足堆性质……
 
- **向下调整** ：在该结点的所有儿子中，找一个最小的，与该结点交换，重复此过程直到底层。
+ **向下调整** ：在该结点的儿子中，找一个最大的，与该结点交换，重复此过程直到底层。
 
 可以证明，删除并向下调整后，没有其他结点不满足堆性质。
 
@@ -50,21 +50,21 @@ auhor: HeRaNO, Xeonacid
 
 我们发现，上面介绍的几种操作主要依赖于两个核心：向上调整和向下调整。
 
-（伪代码）
+参考代码：
 
 ```cpp
-up(x) {
+void up(int x) {
   while (x > 1 && h[x] > h[x / 2]) {
     swap(h[x], h[x / 2]);
     x /= 2;
   }
 }
-down(x) {
+void down(int x) {
   while (x * 2 <= n) {
     t = x * 2;
-    if (t + 1 <= n && h[t + 1] < h[t]) t++;
-    if (h[t] >= h[x]) break;
-    swap(h[x], h[t]);
+    if (t + 1 <= n && h[t + 1] > h[t]) t++;
+    if (h[t] <= h[x]) break;
+    std::swap(h[x], h[t]);
     x = t;
   }
 }
@@ -80,9 +80,9 @@ down(x) {
 
 从根开始，按 BFS 序进行。
 
-```text
-build_heap_1() {
-    for (i = 1; i <= n; i++) up(i);
+```cpp
+void build_heap_1() {
+  for (i = 1; i <= n; i++) up(i);
 }
 ```
 
@@ -96,9 +96,9 @@ build_heap_1() {
 
 这时换一种思路，从叶子开始，逐个向下调整
 
-```text
-build_heap_2() {
-    for (i = n; i >= 1; i--) down(i);
+```cpp
+void build_heap_2() {
+  for (i = n; i >= 1; i--) down(i);
 }
 ```
 

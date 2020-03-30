@@ -56,7 +56,7 @@ int main() {
 -    [洛谷 U53525 前缀和（例题）](https://www.luogu.org/problemnew/show/U53525) 
 -    [洛谷 U69096 前缀和的逆](https://www.luogu.org/problemnew/show/U69096) 
 -    [AT2412 最大の和](https://www.luogu.org/problemnew/show/AT2412) 
--    [洛谷 P3131\[USACO16JAN\]子共七 Subsequences Summing to Sevens](https://www.luogu.org/problemnew/show/P3131) 
+-    [「USACO16JAN」子共七 Subsequences Summing to Sevens](https://www.luogu.org/problemnew/show/P3131) 
 
 ### 参考
 
@@ -131,8 +131,9 @@ int main() {
 
 ### 习题
 
--    [CodeVS 1373. 射命丸文](http://codevs.cn/problem/1373/) 
--    [洛谷 P1387 最大正方形](https://www.luogu.org/problemnew/show/P1387) 
+-    [CodeVS 1373. 射命丸文](http://www.joyoi.cn/problem/codevs-1373) 
+-    [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387) 
+-    [「HNOI2003」激光炸弹](https://www.luogu.com.cn/problem/P2280) 
 
 ### 基于 DP 计算高维前缀和
 
@@ -156,7 +157,7 @@ int main() {
 然后若是点权， $x,y$ 路径上的和为 $sum_x + sum_y - sum_{lca} - sum_{fa_{lca}}$ ；  
 否则若是边权， $x,y$ 路径上的和为 $sum_x + sum_y - 2sum_{lca}$ 。
 
-至于 lca 的求法请移步 [最近公共祖先](/graph/lca/) 。
+至于 lca 的求法请移步 [最近公共祖先](../graph/lca.md) 。
 
 ### 习题
 
@@ -176,7 +177,8 @@ int main() {
 ### 习题
 
 -    [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132) 
--    [P3397 地毯](https://www.luogu.org/problemnew/show/P3397) 
+-    [P3397 地毯](https://www.luogu.com.cn/problem/P3397) 
+-    [「Poetize6」IncDec Sequence](https://www.luogu.com.cn/problem/P4552) 
 
 ## 树上差分
 

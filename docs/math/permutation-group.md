@@ -14,9 +14,9 @@ author: Wajov
 
 -   单位元： $\exists e\in S,\forall a\in S,e\cdot a=a\cdot e=a$ 
 
--   逆元： $\forall a\in S,\exists b\in S,a\cdot b=e$ ，称 $b$ 为 $a$ 的逆元，记为 $a^{-1}$ 
+-   逆元： $\forall a\in S,\exists b\in S,a\cdot b=b\cdot a=e$ ，称 $b$ 为 $a$ 的逆元，记为 $a^{-1}$ 
 
-则称 $(S,\cdot)$ 为一个 **群** 。例如，整数集和整数间的加法 $(\mathbb{R},+)$ 构成一个群，单位元是 0，一个整数的逆元是它的相反数。
+则称 $(S,\cdot)$ 为一个 **群** 。例如，整数集和整数间的加法 $(\mathbb{Z},+)$ 构成一个群，单位元是 0，一个整数的逆元是它的相反数。
 
 ### 子群的定义
 

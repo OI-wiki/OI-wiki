@@ -4,33 +4,46 @@ author: linehk
 
 一般来说，复杂度是一个关于数据规模的函数。对于某些算法来说，相同数据规模的不同数据依然会造成算法的运行时间/空间的不同，因此我们通常使用算法的最坏时间复杂度，记为 $T(n)$ 。对于一些特殊的情况，我们可能会关心它的平均情况复杂度（特别是对于随机算法 (randomized algorithm)），这个时候我们通过使用随机分析 (probabilistic analysis) 来得到期望的复杂度。
 
-另外请读者们注意（尤其是刚入门的 OIer），由于在算法竞赛中，算法复杂度带对数时，对数的底通常为 $2$ ，因此常将对数的底数省略不写（即将 $\log_2{n}$ 简写为 $\log n$ ）。当底数不为 $2$ 时一般会标明，所以当读者看到复杂度中出现 $\log n$ 的时侯就要知道它的底数是 $2$ 。
-
 ## 渐进符号
 
 我们通常使用渐进符号来描述一个算法的复杂度。
 
-###  $\Theta$ 符号
+### 大 Θ 符号
 
-对于给定的一个函数 $g(n)$ , $f(n)\in\Theta(g(n))$ ，当且仅当 $\exists c_1,c_2,n_0\in\mathbb R^+$ ，使得 $\forall n \ge n_0, 0\le c_1g(n)\le f(n) \le c_2 g(n)$ 。
+对于给定的一个函数 $g(n)$ , $f(n)=\Theta(g(n))$ ，当且仅当 $\exists c_1,c_2,n_0>0$ ，使得 $\forall n \ge n_0, 0\le c_1\cdot g(n)\le f(n) \le c_2\cdot g(n)$ 。
 
-也就是说，如果函数 $f(n)$ 属于 $\Theta(g(n))$ ，那么我们能找到两个正常数 $c_1, c_2$ 使得 $f(n)$ 被 $c_1g(n)$ 和 $c_2g(n)$ 夹在中间。因为 $\Theta(g(n))$ 是一个函数集合，我们可以用 $f(n) \in \Theta(g(n))$ 表达 $f(n)$ 属于 $\Theta(g(n))$ ，但是我们通常使用 $f(n) = \Theta(g(n))$ 。
+也就是说，如果函数 $f(n)=\Theta(g(n))$ ，那么我们能找到两个正数 $c_1, c_2$ 使得 $f(n)$ 被 $c_1\cdot g(n)$ 和 $c_2\cdot g(n)$ 夹在中间。
 
-###  $O$ 符号
+### 大 O 符号
 
- $\Theta$ 符号同时给了我们一个函数的上下界，如果我们只有一个函数的渐进上界的时候，我们使用 $O$ 符号。对于一个给定的函数 $g(n)$ , 我们把它记作 $O(g(n))$ 。 $f(n)\in O(g(n))$ ，当且仅当 $\exists c,n_0$ ，使得 $\forall n \ge n_0,0\le f(n)\le cg(n)$ 。
+ $\Theta$ 符号同时给了我们一个函数的上下界，如果我们只有一个函数的渐进上界的时候，我们使用 $O$ 符号。对于一个给定的函数 $g(n)$ , 我们把它记作 $O(g(n))$ 。 $f(n)=O(g(n))$ ，当且仅当 $\exists c,n_0$ ，使得 $\forall n \ge n_0,0\le f(n)\le c\cdot g(n)$ 。
 
-###  $\Omega$ 符号
+研究时间复杂度时通常会使用 $O$ 符号，因为我们关注的通常是程序用时的上界，而不关心其用时的下界。
 
-同样的，我们使用 $\Omega$ 符号来描述一个函数的渐进下界。 $f(n)\in \Omega(g(n))$ ，当且仅当 $\exists c,n_0$ ，使得 $\forall n \ge n_0,0\le cg(n)\le f(n)$ 。
+### 大 Ω 符号
+
+同样的，我们使用 $\Omega$ 符号来描述一个函数的渐进下界。 $f(n)=\Omega(g(n))$ ，当且仅当 $\exists c,n_0$ ，使得 $\forall n \ge n_0,0\le c\cdot g(n)\le f(n)$ 。
+
+### 小 o 符号
+
+如果说 $O$ 符号相当于小于等于号，那么 $o$ 符号就相当于小于号。
+
+ $f(n)=o(g(n))$ ，当且仅当对于任意给定的正数 $c$ ， $\exists n_0$ ，使得 $\forall n \ge n_0,0\le f(n)< c\cdot g(n)$ 。
+
+### 小 ω 符号
+
+如果说 $\Omega$ 符号相当于大于等于号，那么 $\omega$ 符号就相当于大于号。
+
+ $f(n)=\omega(g(n))$ ，当且仅当对于任意给定的正数 $c$ ， $\exists n_0$ ，使得 $\forall n \ge n_0,0\le c\cdot g(n)< f(n)$ 。
 
 ![](images/order.png)
 
 ### 常见性质
 
+-    $f(n) = \Theta(g(n))\Leftrightarrow f(n)=O(g(n))\land f(n)=\Omega(g(n))$ 
 -    $f_1(n) + f_2(n) = O(\max(f_1(n), f_2(n)))$ 
 -    $f_1(n) \times f_2(n) = O(f_1(n) \times f_2(n))$ 
--   任何对数函数无论底数为何，都具有相同的增长率。 $\forall a \neq 1, \log_a{n} = O(\log_2 n)$ 
+-    $\forall a \neq 1, \log_a{n} = O(\log_2 n)$ 。由换底公式可以得知，任何对数函数无论底数为何，都具有相同的增长率，因此渐进时间复杂度中对数的底数一般省略不写。
 
 ## 主定理 (Master Theorem)
 
@@ -38,13 +51,13 @@ author: linehk
 假设我们有递推关系式
 
 $$
-T(n) = AT\left(\frac{n}{b}\right)＋cn^k, \qquad \forall n > b
+T(n) = a T\left(\frac{n}{b}\right)＋f(n)\qquad \forall n > b
 $$
 
 那么
 
 $$
-T(n) = \begin{cases}\Theta(n^{\log_b a}) & a > b^k \\ \Theta(n^k) & a< b^k \\ \Theta(n^k\log n ) & a = b^k \end{cases}
+T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}) \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon}) \\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
 $$
 
 ## 均摊复杂度
@@ -52,7 +65,7 @@ $$
 算法往往是会对内存中的数据进行修改的，而同一个算法的多次执行，就会通过对数据的修改而互相影响。
 
 例如快速排序中的“按大小分类”操作，单次执行的最坏时间复杂度，看似是 $O(n)$ 的。
-但是由于快排的分治过程，先前的“分类”操作每次都减小了数组长度，所以实际的总复杂度 $O(n \log_2 n)$ ，分摊在每一次“分类”操作上，是 $O(\log_2 n)$ 。
+但是由于快排的分治过程，先前的“分类”操作每次都减小了数组长度，所以实际的总复杂度 $O(n \log n)$ ，分摊在每一次“分类”操作上，是 $O(\log n)$ 。
 
 多次操作的总复杂度除以操作次数，就是这种操作的 **均摊复杂度** 。
 

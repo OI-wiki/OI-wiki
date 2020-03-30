@@ -178,7 +178,10 @@ int kth(int k) {
       cnr = ch[cnr][0];
     } else {
       k -= cnt[cnr] + sz[ch[cnr][0]];
-      if (k <= 0) return val[cnr];
+      if (k <= 0) {
+        splay(cnr);
+        return val[cnr];
+      }
       cnr = ch[cnr][1];
     }
   }
@@ -193,6 +196,7 @@ int kth(int k) {
 int pre() {
   int cnr = ch[rt][0];
   while (ch[cnr][1]) cnr = ch[cnr][1];
+  splay(cnr);
   return cnr;
 }
 ```
@@ -205,6 +209,7 @@ int pre() {
 int nxt() {
   int cnr = ch[rt][1];
   while (ch[cnr][0]) cnr = ch[cnr][0];
+  splay(cnr);
   return cnr;
 }
 ```
@@ -341,7 +346,10 @@ struct Splay {
         cnr = ch[cnr][0];
       } else {
         k -= cnt[cnr] + sz[ch[cnr][0]];
-        if (k <= 0) return val[cnr];
+        if (k <= 0) {
+          splay(cnr);
+          return val[cnr];
+        }
         cnr = ch[cnr][1];
       }
     }
@@ -349,11 +357,13 @@ struct Splay {
   int pre() {
     int cnr = ch[rt][0];
     while (ch[cnr][1]) cnr = ch[cnr][1];
+    splay(cnr);
     return cnr;
   }
   int nxt() {
     int cnr = ch[rt][1];
     while (ch[cnr][0]) cnr = ch[cnr][0];
+    splay(cnr);
     return cnr;
   }
   void del(int k) {
@@ -382,7 +392,8 @@ struct Splay {
       clear(cnr);
       return;
     }
-    int x = pre(), cnr = rt;
+    int cnr = rt;
+    int x = pre();
     splay(x);
     fa[ch[cnr][1]] = x;
     ch[x][1] = ch[cnr][1];
@@ -420,18 +431,18 @@ int main() {
 
 -    [【模板】普通平衡树](https://loj.ac/problem/104) 
 -    [【模板】文艺平衡树](https://loj.ac/problem/105) 
--    [\[HNOI2002\]营业额统计](https://www.lydsy.com/JudgeOnline/problem.php?id=1588) 
--    [\[HNOI2004\]宠物收养所](https://www.lydsy.com/JudgeOnline/problem.php?id=1208) 
+-    [「HNOI2002」营业额统计](https://loj.ac/problem/10143) 
+-    [「HNOI2004」宠物收养所](https://loj.ac/problem/10144) 
 
 ## 练习题
 
- [luogu P4402\[Cerc2007\]robotic sort 机械排序](https://www.luogu.org/problemnew/show/P4402) / [bzoj 1552（权限题）](https://www.lydsy.com/JudgeOnline/problem.php?id=1552) 
+ [「Cerc2007」robotic sort 机械排序](https://www.luogu.org/problemnew/show/P4402) 
 
  [二逼平衡树（树套树）](https://loj.ac/problem/106) 
 
  [bzoj 2827 千山鸟飞绝](https://www.lydsy.com/JudgeOnline/problem.php?id=2827) 
 
- [bzoj 4923\[Lydsy1706 月赛\]K 小值查询](https://www.lydsy.com/JudgeOnline/problem.php?id=4923) 
+ [「Lydsy1706 月赛」K 小值查询](https://www.lydsy.com/JudgeOnline/problem.php?id=4923) 
 
 * * *
 

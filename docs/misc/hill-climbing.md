@@ -85,7 +85,7 @@
 
 * * *
 
-### 例 2 [「BZOJ 3680」吊打 XXX](https://www.lydsy.com/JudgeOnline/problem.php?id=3680) 
+### 例 2 [「BZOJ 3680」吊打 XXX](https://www.luogu.org/problem/P1337) 
 
 题意：求 $n$ 个点的带权类费马点。
 
@@ -138,4 +138,4 @@
 
 ## 劣势
 
-其实爬山算法的劣势上文已经提及：它容易陷入一个局部最优解。当目标函数不是单峰函数时，这个劣势是致命的。因此我们要引进 [ **模拟退火** ](/misc/simulated-annealing/) 。
+其实爬山算法的劣势上文已经提及：它容易陷入一个局部最优解。当目标函数不是单峰函数时，这个劣势是致命的。因此我们要引进 [ **模拟退火** ](./simulated-annealing.md) 。

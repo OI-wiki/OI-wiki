@@ -2,7 +2,7 @@
 
 最大公约数即为 Greatest Common Divisor，常缩写为 gcd。
 
-在 [素数](/math/prime) 一节中，我们已经介绍了约数的概念。
+在 [素数](./prime.md) 一节中，我们已经介绍了约数的概念。
 
 一组数的公约数，是指同时是这组数中每一个数的约数的数。而最大公约数，则是指所有公约数里面最大的一个。
 
@@ -21,11 +21,11 @@
 
 * * *
 
-设 $a=bk+c$ ，显然有 $c=a \bmod b$ 。设 $d|a\ \ \ d|b$ ，则 $c=a-bk$  $\frac{c}{d}=\frac{a}{d}-\frac{b}{d}k$ 由右边的式子可知 $\frac{c}{d}$ 为整数，即 $d|c$ 所以对于 $a,b$ 的公约数，它也会是 $a \bmod b$ 的公约数。
+设 $a=bk+c$ ，显然有 $c=a \bmod b$ 。设 $d \mid a\ \ \ d \mid b$ ，则 $c=a-bk$  $\frac{c}{d}=\frac{a}{d}-\frac{b}{d}k$ 由右边的式子可知 $\frac{c}{d}$ 为整数，即 $d \mid c$ 所以对于 $a,b$ 的公约数，它也会是 $a \bmod b$ 的公约数。
 
 反过来也需要证明
 
-设 $d|b\ \ \ d|(a \bmod b)$ ，我们还是可以像之前一样得到以下式子 $\frac{a\bmod b}{d}=\frac{a}{d}-\frac{b}{d}k$  $\frac{a\bmod b}{d}+\frac{b}{d}k=\frac{a}{d}$ 因为左边式子显然为整数，所以 $\frac{a}{d}$ 也为整数，即 $d|a$ ，所以 $b,a\bmod b$ 的公约数也是 $a,b$ 的公约数。
+设 $d \mid b\ \ \ d \mid (a \bmod b)$ ，我们还是可以像之前一样得到以下式子 $\frac{a\bmod b}{d}=\frac{a}{d}-\frac{b}{d}k$  $\frac{a\bmod b}{d}+\frac{b}{d}k=\frac{a}{d}$ 因为左边式子显然为整数，所以 $\frac{a}{d}$ 也为整数，即 $d \mid a$ ，所以 $b,a\bmod b$ 的公约数也是 $a,b$ 的公约数。
 
 既然两式公约数都是相同的，那么最大公约数也会相同。
 
@@ -62,17 +62,17 @@ int gcd(int a, int b) {
 
 用数学公式来表示就是 $x = p_1^{k_1}p_2^{k_2} \cdots p_s^{k_s}$ 
 
-设 $a = p_{a_1}^{k_{a_1}}p_{a_2}^{k_{a_2}} \cdots p_{a_s}^{k_{a_s}}$ , $b = p_{b_1}^{k_{b_1}}p_{b_2}^{k_{b_2}} \cdots p_{b_s}^{k_{b_s}}$ 
+设 $a = p_1^{k_{a_1}}p_2^{k_{a_2}} \cdots p_s^{k_{a_s}}$ , $b = p_1^{k_{b_1}}p_2^{k_{b_2}} \cdots p_s^{k_{b_s}}$ 
 
 我们发现，对于 $a$ 和 $b$ 的情况，二者的最大公约数等于
 
- $p_1^{k_{\min(a_1, b_1)}}p_2^{k_{\min(a_2, b_2)}} \cdots p_s^{k_{\min(a_s, b_s)}}$ 
+ $p_1^{\min(k_{a_1}, k_{b_1})}p_2^{\min(k_{a_2}, k_{b_2})} \cdots p_s^{\min(k_{a_s}, k_{b_s})}$ 
 
 最小公倍数等于
 
- $p_1^{k_{\max(a_1, b_1)}}p_2^{k_{\max(a_2, b_2)}} \cdots p_s^{k_{\max(a_s, b_s)}}$ 
+ $p_1^{\max(k_{a_1}, k_{b_1})}p_2^{\max(k_{a_2}, k_{b_2})} \cdots p_s^{\max(k_{a_s}, k_{b_s})}$ 
 
-由于 $a + b = \max(a, b) + \min(a, b)$ 
+由于 $k_a + k_b = \max(k_a, k_b) + \min(k_a, k_b)$ 
 
 所以得到结论是 $\gcd(a, b) \times \operatorname{lcm}(a, b) = a \times b$ 
 

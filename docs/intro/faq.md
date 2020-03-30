@@ -19,11 +19,11 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ，QQ 群号码为 [ `58
 举个栗子，假如我想要修改一个页面内容，应该怎么操作呢？
 
 1.  在 OI Wiki 网站上找到对应页面。
-2.  点击 正文右上方、目录左侧的 **“编辑此页”** <i class="md-icon">edit</i>按钮。
-3.  （应该已经跳转到了 GitHub 上的对应页面吧？）这时候右上方还会有一个 **“编辑此页”** <i class="md-icon">edit</i>的按钮，点击它就可以在线编辑了。
-4.  写好了之后点下方的绿色按钮（Propose file change），可能会提示没有权限。不必担心！GitHub 会自动帮你 fork 一份项目的文件并创建 Pull Request。
-5.  之后点上方的绿色按钮（Create pull request）后，再点一下出现的绿色按钮（Create pull request）。
-6.  提交之后就可以等待他人合并或者指出还要修改的地方，当然你也可以给他人的 PR 提出修改意见，或者只是点赞/踩。如果有消息，会有邮件通知和/或网页上的提醒（取决于在你个人 Settings 中的设置）。
+2.  点击 正文右上方、目录左侧的 **“编辑此页”** <i class="md-icon">edit</i>按钮，在阅读了 [如何贡献](./htc.md) 后点击“开始编辑”按钮。
+    <!-- 3.  （应该已经跳转到了 GitHub 上的对应页面吧？）这时候右上方还会有一个 **“编辑此页”** <i class="md-icon">edit</i>的按钮，点击它就可以在线编辑了。 -->
+3.  写好了之后点下方的绿色按钮（Propose file change），可能会提示没有权限。不必担心！GitHub 会自动帮你 fork 一份项目的文件并创建 Pull Request。
+4.  之后点上方的绿色按钮（Create pull request）后，再点一下出现的绿色按钮（Create pull request）。
+5.  提交之后就可以等待他人合并或者指出还要修改的地方，当然你也可以给他人的 PR 提出修改意见，或者只是点赞/踩。如果有消息，会有邮件通知和/或网页上的提醒（取决于在你个人 Settings 中的设置）。
 
 （有木有很简单？）
 
@@ -36,8 +36,17 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ，QQ 群号码为 [ `58
 1.  Fork 主仓库到自己的仓库中。
 2.  当想要贡献某部分内容时，请务必仔细查看 **Issues** ，以便确定是否有人已经开始了这项工作。当然，我们更希望你可以加入 QQ/Telegram 群组，方便交流。
 3.  在决定将内容推送到本仓库时， **请你首先拉取本仓库代码进行合并，自行处理好冲突，同时确保在本地可以正常生成文档** ，然后再将分支 PR 到主仓库的 master 分支上。其中，PR 需要包含以下基本信息：
-    标题：本次 PR 的目的（做了什么工作，修复了什么问题）；
-    内容：如果必要的话，请给出对修复问题的叙述。
+
+    标题：本次 PR 的目的（做了 **什么** 工作，修复了 **什么** 问题）；
+
+    内容：如果必要的话，请给出对修复问题的叙述。如果修复了某个 issue 中的问题，请写上 `fix #xxxx` ，其中 `xxxx` 是 issue 的编号。
+
+PR 标题示例：
+
+-   修复了一个 bug（错误）
+-   修复了动态 dp 页面的一个公式 typo（正确）
+-   添加了新内容（错误）
+-   为时间复杂度页面添加了证明（正确）
 
 ### 协作流程
 
@@ -55,7 +64,7 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ，QQ 群号码为 [ `58
 
 ### 如何修改一个 topic 的内容
 
-在对应页面右上方有一个编辑按钮<i class="md-icon">edit</i>，点击之后会跳转到 GitHub 上对应文件的位置。
+在对应页面右上方有一个编辑按钮<i class="md-icon">edit</i>，点击并确认阅读了 [如何贡献](./htc.md) 之后会跳转到 GitHub 上对应文件的位置。
 
 或者也可以自行阅读目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 查找文件位置。
 
@@ -73,17 +82,18 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ，QQ 群号码为 [ `58
 
 ### 我尝试访问 GitHub 的时候遇到了困难
 
-推荐在 hosts 文件中加入如下几行：（来源： [@GoogleHosts](https://github.com/googlehosts/hosts/blob/master/hosts-files/hosts#L1380-L1384) ）
+推荐在 hosts 文件中加入如下几行：（来源： [GoogleHosts-919f34e](https://github.com/googlehosts/hosts/blob/919f34e53c1099241af7d0b5e730b60899af7d18/hosts-files/hosts#L1467-#L1472) ）
 
 ```text
 # Github Start
-192.30.253.118	gist.github.com
-192.30.255.112	github.com
-192.30.255.110	www.github.com
+13.250.177.223	gist.github.com
+13.250.177.223	github.com
+13.229.188.59	www.github.com
+151.101.56.133	raw.githubusercontent.com
 # Github End
 ```
 
-可以在 [@GoogleHosts 主页](https://github.com/googlehosts/hosts) 上了解到更多信息。
+可以在 [GoogleHosts 主页](https://github.com/googlehosts/hosts) 上了解到更多信息。
 
 ### 我这里 pip 也太慢了
 
@@ -200,3 +210,15 @@ pagetime:
 是因为 Github API 在文件目录变更后不能跟踪统计，我们在文件头手动维护了一个作者列表来解决这个问题。如果你发现自己写过一个页面中的部分内容，但是没有被记录在页面的作者去，可以把自己的 Github ID 加入到文件头的 `author` 字段，格式是 `author: Ir1d, cjsoft` ，相邻两个 ID 之间用 `,·` （逗号和空格）隔开。
 
 注：这里记录的 ID 是对应到 Github Profile 的地址（即点击 Github 页面右上角之后跳转到的个人主页的 url）
+
+### 重定向文件怎么用
+
+ `_redirects` 文件用于生成 [netlify 的配置](https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file) 和 [用于跳转的文件](https://github.com/OI-wiki/OI-wiki/blob/master/scripts/gen_redirect.py) 
+
+每一行表示一个重定向规则，分别写跳转的起点和终点的 url（不包含域名）：
+
+```text
+/path/to/src /path/to/desc
+```
+
+注：所有跳转均为 301 跳转，只有在修改目录中 url 造成死链的时候需要修改。

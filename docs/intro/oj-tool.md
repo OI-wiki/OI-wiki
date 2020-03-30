@@ -30,7 +30,7 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ### 使用
 
-将下载好的可执行文件 `cf` （或者 `cf.exe` ）放置到合适的位置后（见常见问题的第二条），然后打开命令行，用 `cf config login` 、 `cf config add` 命令来配置一下自己的用户信息和模板。
+将下载好的可执行文件 `cf` （或者 `cf.exe` ）放置到合适的位置后（见常见问题的第二条），然后打开命令行，用 `cf config` 命令来配置一下用户名、密码和代码模板。
 
 ### 例子
 
@@ -105,3 +105,39 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 -   计算一场比赛的 Rating 预测。
 
 大家可以自行尝试一下。
+
+## Competitive companion
+
+网站： <https://github.com/jmerle/competitive-companion> 
+
+功能介绍：
+
+-   这个工具是一个浏览器插件 用来解析网页里面的测例数据
+-   支持解析几乎所有的主流 oj 平台（比如 codeforces atcoder）
+
+推荐理由：使用这个插件后 再也不用手动复制任何的测例数据
+
+使用方法：
+
+1.  在谷歌或者火狐浏览器上安装插件 该工具会将解析到的测例数据以 JSON 格式的形式发到指定的端口
+2.  在本地安装任何可以从端口监听读取数据的工具即可 可参考 <https://github.com/jmerle/competitive-companion-example> 
+
+图片演示：
+
+![演示](images/cf-tool3.gif)
+
+## CP Editor
+
+CP Editor 是一款专门为算法竞赛（Competitive Programming）设计的轻量级跨平台自由软件 IDE，有自动获取网页上的样例，一键编译运行并测试样例，在 IDE 内提交至 CF 等功能。
+
+ [![Latest Stable](https://img.shields.io/github/v/release/cpeditor/cpeditor?label=latest%20stable)](https://github.com/coder3101/cp-editor/releases/latest)  [![Latest Release](https://img.shields.io/github/v/release/cpeditor/cpeditor?include_prereleases&label=latest%20release&sort=semver)](https://github.com/coder3101/cp-editor/releases) 
+
+-    [项目主页](https://cpeditor.github.io/) （含 feature 介绍）
+-    [GitHub Repo](https://github.com/cpeditor/cpeditor) （含使用说明、贡献指南等文档）
+-    [Gitee 镜像](https://gitee.com/ouuan/cpeditor) （同步自 GitHub，不一定是最新的）
+-    [GitHub Releases](https://github.com/cpeditor/cpeditor/releases) 
+-    [Gitee 发行版](https://gitee.com/ouuan/cpeditor/releases) 
+-    [Telegram 群组](https://t.me/cpeditor) 
+-    [QQ 群入群链接](https://jq.qq.com/?_wv=1027&k=50eq8yF) （1081647997）
+
+大家在使用之余还可以在 GitHub 上报告 bug，请求 feature，或是入群讨论，参与贡献。如果觉得不错的话，可以在 [GitHub](https://github.com/cpeditor/cpeditor) 上给开发者们一个 star。
