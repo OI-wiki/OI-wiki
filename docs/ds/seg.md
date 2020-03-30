@@ -558,4 +558,4 @@ int getsum(int l, int r, int s, int t, int p) {
 
 ### 参考
 
- [immortalCO 大爷的博客](http://immortalco.blog.uoj.ac/blog/2102) 
+ [immortalCO 大爷的博客](https://immortalco.blog.uoj.ac/blog/2102) 
