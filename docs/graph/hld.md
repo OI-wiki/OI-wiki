@@ -691,7 +691,7 @@ int main() {
 
  [「luogu P3384」【模板】树链剖分](https://www.luogu.org/problemnew/show/P3384) 
 
- [「NOI2015」软件包管理器](http://uoj.ac/problem/128) 
+ [「NOI2015」软件包管理器](https://uoj.ac/problem/128) 
 
  [「SDOI2011」染色](https://www.luogu.org/problem/P2486) 
 
