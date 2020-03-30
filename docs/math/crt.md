@@ -143,7 +143,7 @@ $$
 
  [【模板】扩展中国剩余定理](https://www.luogu.org/problemnew/show/P4777) 
 
- [「NOI2018」屠龙勇士](http://uoj.ac/problem/396) 
+ [「NOI2018」屠龙勇士](https://uoj.ac/problem/396) 
 
  [「TJOI2009」猜数字](https://www.luogu.org/problemnew/show/P3868) 
 
