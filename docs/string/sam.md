@@ -598,7 +598,7 @@ $$
 -    [HDu6583 Typewriter](http://acm.hdu.edu.cn/showproblem.php?pid=6583) 
 -    [Codeforces 235C Cyclical Quest](https://codeforces.com/problemset/problem/235/C) 
 -    [CTSC2012 熟悉的文章](https://www.luogu.org/problem/P4022) 
--    [NOI2018 你的名字](http://uoj.ac/problem/395) 
+-    [NOI2018 你的名字](https://uoj.ac/problem/395) 
 
 ## 相关资料
 
