@@ -958,7 +958,7 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
 
 -    [「WC2006」水管局长](https://www.luogu.org/problem/P4172) 
 -    [「BJWC2010」严格次小生成树](https://www.luogu.org/problemnew/show/P4180) 
--    [「NOI2014」魔法森林](http://uoj.ac/problem/3) 
+-    [「NOI2014」魔法森林](https://uoj.ac/problem/3) 
 
 ## 维护子树信息
 
