@@ -128,7 +128,7 @@ void unionSet(int x, int y) {
 
 ## 经典题目
 
- [「NOI2015」程序自动分析](http://uoj.ac/problem/127) 
+ [「NOI2015」程序自动分析](https://uoj.ac/problem/127) 
 
  [「JSOI2008」星球大战](https://www.luogu.org/problem/P1197) 
 
