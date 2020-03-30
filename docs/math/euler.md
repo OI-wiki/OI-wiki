@@ -30,7 +30,7 @@ $$
 
     特别地，当 $n$ 是奇数时 $\varphi(2n) = \varphi(n)$ 。
 
--    $n = \sum_{d | n}{\varphi(d)}$ 
+-    $n = \sum_{d \mid n}{\varphi(d)}$ 
 
     利用 [莫比乌斯反演](./mobius.md) 相关知识可以得出。
 
@@ -38,7 +38,7 @@ $$
 
     如果我们设 $f(x)$ 表示 $\gcd(k, n) = x$ 的数的个数，那么 $n = \sum_{i = 1}^n{f(i)}$ 。
 
-    根据上面的证明，我们发现， $f(x) = \varphi(\frac{n}{x})$ ，从而 $n = \sum_{d | n}\varphi(\frac{n}{d})$ 。注意到约数 $d$ 和 $\frac{n}{d}$ 具有对称性，所以上式化为 $n = \sum_{d | n}\varphi(d)$ 。
+    根据上面的证明，我们发现， $f(x) = \varphi(\frac{n}{x})$ ，从而 $n = \sum_{d \mid n}\varphi(\frac{n}{d})$ 。注意到约数 $d$ 和 $\frac{n}{d}$ 具有对称性，所以上式化为 $n = \sum_{d \mid n}\varphi(d)$ 。
 
 -   若 $n = p^k$ ，其中 $p$ 是质数，那么 $\varphi(n) = p^k - p^{k - 1}$ 。
     （根据定义可知）

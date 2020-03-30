@@ -183,7 +183,7 @@ $$
 
 ### 补充结论
 
-反演结论： $\displaystyle [gcd(i,j)=1] \iff\sum_{d\mid\gcd(i,j)}\mu(d)$ 
+反演结论： $\displaystyle [\gcd(i,j)=1] \iff\sum_{d\mid\gcd(i,j)}\mu(d)$ 
 
  **直接推导** ：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$ ，也就是式子的值是 $1$ ，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值： $0$ 
 
@@ -311,7 +311,7 @@ $$
 \displaystyle\sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}\sum_{d\mid  \gcd(i,j)}\mu(d)
 $$
 
-变换求和顺序，先枚举 $d\mid gcd(i,j)$ 可得
+变换求和顺序，先枚举 $d\mid \gcd(i,j)$ 可得
 
 $$
 \displaystyle\sum_{d=1}\mu(d)\sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}[d\mid i]\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}[d\mid j]
@@ -394,7 +394,7 @@ $$
 \frac{1}{2}\cdot \left(\sum_{i=1}^{n-1}\frac{i\cdot n}{\gcd(i,n)}+\sum_{i=n-1}^{1}\frac{i\cdot n}{\gcd(i,n)}\right)+n
 $$
 
-根据 $gcd(i,n)=gcd(n-i,n)$ ，可将原式化为
+根据 $\gcd(i,n)=\gcd(n-i,n)$ ，可将原式化为
 
 $$
 \frac{1}{2}\cdot \left(\sum_{i=1}^{n-1}\frac{i\cdot n}{\gcd(i,n)}+\sum_{i=n-1}^{1}\frac{i\cdot n}{\gcd(n-i,n)}\right)+n
@@ -604,7 +604,7 @@ $$
 
 $$
 \sum_{i=1}^n\sum_{j=1}^md(i\cdot j)\\
-\left(d(n)=\sum_{i|n}1\right)
+\left(d(n)=\sum_{i \mid n}1\right)
 n,m,T\leq5\times10^4
 $$
 
@@ -613,19 +613,19 @@ $$
 要推这道题首先要了解 $d$ 函数的一个特殊性质
 
 $$
-d(i\cdot j)=\sum_{x|i}\sum_{y|j}[gcd(x,y)=1]
+d(i\cdot j)=\sum_{x \mid i}\sum_{y \mid j}[\gcd(x,y)=1]
 $$
 
 再化一下这个式子
 
 $$
 \begin{split}
-d(i\cdot j)=&\sum_{x|i}\sum_{y|j}[gcd(x,y)=1]\\
-=&\sum_{x|i}\sum_{y|j}\sum_{p|gcd(x,y)}\mu(p)\\
-=&\sum_{p=1}^{min(i,j)}\sum_{x|i}\sum_{y|j}[p|gcd(x,y)]\cdot\mu(p)\\
-=&\sum_{p|i,p|j}\mu(p)\sum_{x|i}\sum_{y|j}[p|gcd(x,y)]\\
-=&\sum_{p|i,p|j}\mu(p)\sum_{x|\frac{i}{p}}\sum_{y|\frac{j}{p}}1\\
-=&\sum_{p|i,p|j}\mu(p)d\left(\frac{i}{p}\right)d\left(\frac{j}{p}\right)\\
+d(i\cdot j)=&\sum_{x \mid i}\sum_{y \mid j}[\gcd(x,y)=1]\\
+=&\sum_{x \mid i}\sum_{y \mid j}\sum_{p \mid \gcd(x,y)}\mu(p)\\
+=&\sum_{p=1}^{min(i,j)}\sum_{x \mid i}\sum_{y \mid j}[p \mid \gcd(x,y)]\cdot\mu(p)\\
+=&\sum_{p \mid i,p \mid j}\mu(p)\sum_{x \mid i}\sum_{y \mid j}[p \mid \gcd(x,y)]\\
+=&\sum_{p \mid i,p \mid j}\mu(p)\sum_{x \mid \frac{i}{p}}\sum_{y \mid \frac{j}{p}}1\\
+=&\sum_{p \mid i,p \mid j}\mu(p)d\left(\frac{i}{p}\right)d\left(\frac{j}{p}\right)\\
 \end{split}
 $$
 
@@ -634,10 +634,10 @@ $$
 $$
 \begin{split}
 &\sum_{i=1}^n\sum_{j=1}^md(i\cdot j)\\
-=&\sum_{i=1}^n\sum_{j=1}^m\sum_{p|i,p|j}\mu(p)d\left(\frac{i}{p}\right)d\left(\frac{j}{p}\right)\\
+=&\sum_{i=1}^n\sum_{j=1}^m\sum_{p \mid i,p \mid j}\mu(p)d\left(\frac{i}{p}\right)d\left(\frac{j}{p}\right)\\
 =&\sum_{p=1}^{min(n,m)}
 \sum_{i=1}^n\sum_{j=1}^m
-[p|i,p|j]\cdot\mu(p)d\left(\frac{i}{p}\right)d\left(\frac{j}{p}\right)\\
+[p \mid i,p \mid j]\cdot\mu(p)d\left(\frac{i}{p}\right)d\left(\frac{j}{p}\right)\\
 =&\sum_{p=1}^{min(n,m)}
 \sum_{i=1}^{\left\lfloor\frac{n}{p}\right\rfloor}\sum_{j=1}^{\left\lfloor\frac{m}{p}\right\rfloor}
 \mu(p)d(i)d(j)\\
@@ -713,9 +713,9 @@ $$
 \begin{eqnarray}
 && \sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot \gcd(i,j)\\
 &=&\sum_{i=1}^n\sum_{j=1}^ni\cdot j
-\sum_{d|i,d|j}\varphi(d)\\
+\sum_{d \mid i,d \mid j}\varphi(d)\\
 &=&\sum_{d=1}^n\sum_{i=1}^n
-\sum_{j=1}^n[d|i,d|j]\cdot i\cdot j
+\sum_{j=1}^n[d \mid i,d \mid j]\cdot i\cdot j
 \cdot\varphi(d)\\
 &=&\sum_{d=1}^n
 \sum_{i=1}^{\left\lfloor\frac{n}{d}\right\rfloor}
@@ -820,10 +820,10 @@ $$
 
 $$
 \begin{eqnarray}
-&&\sum_{d=1}^{n}\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ijd\cdot[gcd(i,j)=1]\\
-&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t\mid gcd(i,j)}\mu(t)\\
-&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}\mu(t)[t\mid gcd(i,j)]\\
-&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij[1\mid gcd(i,j)]\\
+&&\sum_{d=1}^{n}\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ijd\cdot[\gcd(i,j)=1]\\
+&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t\mid \gcd(i,j)}\mu(t)\\
+&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}\mu(t)[t\mid \gcd(i,j)]\\
+&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij[1\mid \gcd(i,j)]\\
 &=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij
 \end{eqnarray}
 $$
@@ -890,16 +890,16 @@ g\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\\
 t(j)g\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
 &&\text{【先枚举 ij 乘积】}\\
 &=&\sum_{T=1}^n
-\sum_{i|T}\mu(i)t(i)
+\sum_{i \mid T}\mu(i)t(i)
 t\left(\frac{T}{i}\right)g\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
 &&\text{【}\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}[ij=T] \text{对答案的贡献为 1，于是省略】}\\
 &=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
-\sum_{i|T}\mu(i)t(i)t\left(\frac{T}{i}\right)\\
+\sum_{i \mid T}\mu(i)t(i)t\left(\frac{T}{i}\right)\\
 &=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
-\sum_{i|T}\mu(i)t(T)
+\sum_{i \mid T}\mu(i)t(T)
 &&\text{【t 是完全积性函数】}\\
 &=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)t(T)
-\sum_{i|T}\mu(i)\\
+\sum_{i \mid T}\mu(i)\\
 &=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)t(T)
 \varepsilon(T)
 &&\text{【}\mu\ast 1= \varepsilon\text{】}\\
