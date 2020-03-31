@@ -24,6 +24,9 @@ $$
 直观地说，如果 $f(x)$ 比较平滑，那么随着迭代次数的增加， $x_i$ 会越来越逼近方程的解。
 
 牛顿迭代法的收敛率是平方级别的，这意味着每次迭代后近似解的精确数位会翻倍。
+关于牛顿迭代法的收敛性证明可参考 [citizendium - Newton method Convergence analysis](http://en.citizendium.org/wiki/Newton%27s_method#Convergence_analysis)
+
+当然牛顿迭代法也同样存在着缺陷，详情参考 [Xiaolin Wu - Roots of Equations 第18 - 20页分析](https://www.ece.mcmaster.ca/~xwu/part2.pdf)
 
 ## 求解平方根
 
