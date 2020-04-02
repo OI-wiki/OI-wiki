@@ -1,4 +1,5 @@
 author: Backl1ght
+
 AHU 算法用于判断两棵有根树是否同构。
 
 判断树同构外还有一种常见的做法是 [树哈希](/graph/tree-hash) 。
