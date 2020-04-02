@@ -293,7 +293,8 @@ inline void makeRoot(int p) {
 
 ```cpp
 inline void Link(int x, int p) {
-  makeRoot(x); splay(x);
+  makeRoot(x);
+  splay(x);
   f[x] = p;
 }
 ```
