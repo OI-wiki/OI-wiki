@@ -303,8 +303,6 @@ nav:
       - 虚树: graph/virtual-tree.md
       - 树分治: graph/tree-divide.md
       - 动态树分治: graph/dynamic-tree-divide.md
-      - 虚树: graph/virtual-tree.md
-      - 树上启发式合并: graph/dsu-on-tree.md
       - AHU算法: graph/tree-ahu.md
       - 树哈希: graph/tree-hash.md
     - 矩阵树定理: graph/matrix-tree.md
