@@ -40,10 +40,9 @@
 -    `size()` 返回容器内元素个数。
 
 ???+warning "`lower_bound` 和 `upper_bound` 的时间复杂度"
+     `set` 自带的 `lower_bound` 和 `upper_bound` 的时间复杂度为 $O(\log n)$ 。
     
-    `set` 自带的 `lower_bound` 和 `upper_bound` 的时间复杂度为 $O(\log n)$。
-    
-    但使用 `algorithm` 库中的 `lower_bound` 和 `upper_bound` 函数对 `set` 中的元素进行查询，时间复杂度为 $O(n)$。 
+    但使用 `algorithm` 库中的 `lower_bound` 和 `upper_bound` 函数对 `set` 中的元素进行查询，时间复杂度为 $O(n)$ 。
 
 ##  `multiset` 
 
