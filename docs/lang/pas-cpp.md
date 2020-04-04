@@ -609,7 +609,7 @@ C++ 标准库中 `<algorithm>` 有很多有用的函数比如快排、二分查�
 如果要找关于字符串操作的函数见
 
 -    [std::basic_string - cppreference.com](https://zh.cppreference.com/w/cpp/string/basic_string) 
--    [<string>- C++ Reference](https://www.cplusplus.com/reference/string/) 
+-    [`<string>`- C++ Reference](https://www.cplusplus.com/reference/string/) 
 
 C/C++ 的指针是很灵活的东西，如果想要彻底理解指针，建议找本书或者参考手册仔细阅读。
 
