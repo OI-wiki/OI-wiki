@@ -18,7 +18,7 @@ author: kexplorning, Ir1d
 
 如果愿意折腾就去配吧，此处略，需要注意配置环境变量。
 
-<h2 id = "start"> C++ 语法快速提要 </h2>
+## C++ 语法快速提要 Start Here
 
 C++ 程序都是从 `main` 这个部分开始运行的。
 
@@ -148,9 +148,9 @@ int a = 0, b = 0, c = 0;
 
 ## 对应语法
 
-<h3 id = "var"> 变量 </h3>
+### 变量 Variable
 
-<h4 id = "data_type"> 数据类型 </h4>
+#### 基本数据类型 Fundamental types
 
 C++ 与 Pascal 基本上差不多，常见的有
 
@@ -170,7 +170,7 @@ C++ 还要很多额外的数据类型，请参考更多资料。
 
 -    [基础类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/types) 
 
-<h4 id = "constant"> 常量声明 </h4>
+#### 常量声明 Constant
 
 ```cpp
 const double PI = 3.1415926;
@@ -178,7 +178,7 @@ const double PI = 3.1415926;
 
 若不清楚有关宏展开的问题，建议使用常量，而不用宏定义。
 
-<h3 id = "operator"> 运算符 </h3>
+### 运算符 Operator
 
 请直接参考
 
@@ -187,7 +187,7 @@ const double PI = 3.1415926;
 
 ### 条件
 
-<h4 id = "if">  `if` 语句 </h4>
+####  `if` 语句
 
 ```pas
 if (a = b) and (a > 0) and (b > 0) then
@@ -235,11 +235,11 @@ if (a == b && a > 0 && b > 0) {
 
 需要注意：C++ 没有 `1..n` ，也没有连续不等式（比如 `1 < x < 2` ）。
 
-<h3 id = "loop"> 循环 </h3>
+### 循环 Loop
 
 以下三种循环、六份代码实现的功能是一样的。
 
-<h4 id = "while"> `while` 循环 </h4>
+####  `while` 循环
 
  `while` 很相似。（C++ 此处并非完整程序，省略一些框架模板，后同）
 
@@ -264,7 +264,7 @@ while (i <= 10) {
 }
 ```
 
-<h4 id = "for"> <code>for</code> 循环 </h4>
+####  `for` 循环
 
 C++ 的 `for` 语句非常不同。
 
@@ -292,7 +292,7 @@ for (int i = 1; i <= 10; i++) {
 3.  第二个语句 `i <= 10;` 作为判断循环是否继续的标准。
 4.  第三个语句 `i++` ，在每次循环结尾执行，意思大约就是 Pascal 中的 `inc(i)` ，此处写成 `++i` 也是一样的。 `i++` 与 `++i` 的区别请参考其他资料。
 
-<h4 id = "do_while"> <code>repeat until</code> 与 <code>while</code> 循环 </h4>
+####  `repeat until` 与 `do while` 循环
 
 注意， `repeat unitl` 与 `do while` 是不同的，请对比以下代码
 
@@ -316,15 +316,15 @@ do {
 } while (i <= 10);
 ```
 
-<h4 id="break_continue"> 循环控制 </h4>
+#### 循环控制 Loop Control
 
 C++ 中 `break` 的作用与 Pascal 是一样的，退出循环。
 
 而 `continue` 也是一样的，跳过当前循环，进入下一次循环（回到开头）。
 
-<h3 id="array"> 数组与字符串 </h3>
+### 数组与字符串 Array and String
 
-<h4 id="vector">不定长数组：标准库类型 Vector</h4>
+#### 不定长数组：标准库类型 Vector
 
 C++ 标准库中提供了 `vector` ，相当于不定长数组，调用前需导入库文件。
 
@@ -364,7 +364,7 @@ C++ 访问数组成员，与 Pascal 类似，不过有很重要的区别：数�
 
 -    [序列式容器 - OI Wiki](../csl/sequence-container/) 
 
-<h4 id="string">字符串：标准库类型 String</h4>
+#### 字符串：标准库类型 String
 
 C++ 标准库中提供了 `string` ，与 `vector` 可以进行的操作有些相同，同样需要导入库文件。
 
@@ -388,7 +388,7 @@ int main(int argc, char const *argv[]) {
 
 -    [string - OI Wiki](../csl/string/) 
 
-<h4 id="C_array">C 风格数组</h4>
+#### C 风格数组 Array
 
 如果要用不定长的数组请用 Vector，不要用 C 风格的数组。
 
@@ -400,7 +400,7 @@ C 风格的数组与指针有密切关系，所以此处不多展开。
 
 ## 重要不同之处
 
-<h3 id="scope">变量作用域：全局变量与局部变量</h3>
+### 变量作用域 Scope：全局变量与局部变量
 
 C++ 几乎可以在 **任何地方** 声明变量。
 
@@ -486,7 +486,7 @@ int main(int argc, char const *argv[]) {
 
 实现原理： `while (std::cin >> a)` 中 `std::cin >> a` 若在输入有问题或遇到文件结尾时，会返回 false，使得循环中断。
 
-<h3 id = "function"> 函数：C++ 只有函数没有过程但有 `void` ，没有函数值变量但有 `return` 。</h3>
+### 函数 Function：C++ 只有函数没有过程但有 `void` ，没有函数值变量但有 `return` 。
 
 Pascal 函数与 C++ 函数对比示例：
 
@@ -549,7 +549,7 @@ C++ 把函数和过程统统视作函数，连 `main` 都不放过，比如写 `
 
 也许你已经猜到了， `main(int argc, char const *argv[])` 中的参数就是 `int argc` 与 `char const *argv[]` ，不过意义请参考其他资料。
 
-<h3 id = "function_trans"> 在函数中传递参数 </h3>
+### 在函数中传递参数 Passing Parameters to Functions
 
 C++ 中没有 Pascal 的 `var` 关键字可以改变传递的参数
 
@@ -594,7 +594,7 @@ int main(int argc, char const* argv[]) {
 
 C++ 中函数传递参数还有其他方法，其中一种是 **直接使用全局变量传递参数** ，如果不会用指针，可以先用这种方法。
 
-<h2 id = "reference"> C++ 标准库与参考资料 </h2>
+## C++ 标准库与参考资料 Reference
 
 千万不要重复造轮子（除非为了练习），想要自己动手写一个功能出来之前，先去看看有没有这个函数或者数据结构。
 
@@ -638,8 +638,8 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 
 最后，Pascal 的圈子其实很小，C/C++ 的圈子很大，帮助手册与教程很多很全，一定要掌握好英语。世界上还有很多很多编程语言，而计算机这门学科与技术不光是信息竞赛和编程语言。
 
-<h2 id = "table"> 附 A：Pascal 与 C++ 语法对比表 </h2>
- 
+## 附 A：Pascal 与 C++ 语法对比表 Pascal vs C++ Syntax Table
+
 ### 基本算术
 
 |      | Pascal      | C++       |
@@ -683,14 +683,14 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 
 ### 自增/自减
 
-|     | Pascal     | C++     |
-| --- | ---------- | ------- |
-| 自增  |  `inc(a)`  |  `a++`  |
-| 自增  |  `inc(a)`  |  `++a`  |
-| 自减  |  `dec(a)`  |  `a--`  |
-| 自减  |  `dec(a)`  |  `--a`  |
+|      | Pascal   | C++   |
+| ---- | -------- | ----- |
+| 自增 | `inc(a)` | `a++` |
+| 自增 | `inc(a)` | `++a` |
+| 自减 | `dec(a)` | `a--` |
+| 自减 | `dec(a)` | `--a` |
 
-<h2 id = "index"> 附B：文章检索 </h2>
+## 附 B：文章检索 Index
 
 -    [基本语法](#start) 
 -    [变量](#var) 
