@@ -18,7 +18,7 @@ author: kexplorning, Ir1d
 
 如果愿意折腾就去配吧，此处略，需要注意配置环境变量。
 
-## C++ 语法快速提要 {#start}
+<h2 id = "start"> C++ 语法快速提要 </h2>
 
 C++ 程序都是从 `main` 这个部分开始运行的。
 
@@ -239,7 +239,7 @@ if (a == b && a > 0 && b > 0) {
 
 以下三种循环、六份代码实现的功能是一样的。
 
-####  `while` 循环 {#while}
+<h4 id = "while"> `while` 循环 </h4>
 
  `while` 很相似。（C++ 此处并非完整程序，省略一些框架模板，后同）
 
@@ -264,7 +264,7 @@ while (i <= 10) {
 }
 ```
 
-####  `for` 循环 {#for}
+<h4 id = "for"> <code>for</code> 循环 </h4>
 
 C++ 的 `for` 语句非常不同。
 
@@ -292,7 +292,7 @@ for (int i = 1; i <= 10; i++) {
 3.  第二个语句 `i <= 10;` 作为判断循环是否继续的标准。
 4.  第三个语句 `i++` ，在每次循环结尾执行，意思大约就是 Pascal 中的 `inc(i)` ，此处写成 `++i` 也是一样的。 `i++` 与 `++i` 的区别请参考其他资料。
 
-####  `repeat until` 与 `do while` 循环 {#do_while}
+<h4 id = "do_while"> <code>repeat until</code> 与 <code>while</code> 循环 </h4>
 
 注意， `repeat unitl` 与 `do while` 是不同的，请对比以下代码
 
@@ -316,15 +316,15 @@ do {
 } while (i <= 10);
 ```
 
-#### 循环控制 {#break_continue}
+<h4 id="break_continue"> 循环控制 </h4>
 
 C++ 中 `break` 的作用与 Pascal 是一样的，退出循环。
 
 而 `continue` 也是一样的，跳过当前循环，进入下一次循环（回到开头）。
 
-### 数组与字符串 {#array}
+<h3 id="array"> 数组与字符串 </h3>
 
-#### 不定长数组：标准库类型 Vector {#vector}
+<h4 id="vector">不定长数组：标准库类型 Vector</h4>
 
 C++ 标准库中提供了 `vector` ，相当于不定长数组，调用前需导入库文件。
 
@@ -364,7 +364,7 @@ C++ 访问数组成员，与 Pascal 类似，不过有很重要的区别：数�
 
 -    [序列式容器 - OI Wiki](../csl/sequence-container/) 
 
-#### 字符串：标准库类型 String {#string}
+<h4 id="string">字符串：标准库类型 String</h4>
 
 C++ 标准库中提供了 `string` ，与 `vector` 可以进行的操作有些相同，同样需要导入库文件。
 
@@ -388,7 +388,7 @@ int main(int argc, char const *argv[]) {
 
 -    [string - OI Wiki](../csl/string/) 
 
-#### C 风格数组 {#C_array}
+<h4 id="C_array">C 风格数组</h4>
 
 如果要用不定长的数组请用 Vector，不要用 C 风格的数组。
 
@@ -400,7 +400,7 @@ C 风格的数组与指针有密切关系，所以此处不多展开。
 
 ## 重要不同之处
 
-### 变量作用域：全局变量与局部变量 {#scope}
+<h3 id="scope">变量作用域：全局变量与局部变量</h3>
 
 C++ 几乎可以在 **任何地方** 声明变量。
 
@@ -486,7 +486,7 @@ int main(int argc, char const *argv[]) {
 
 实现原理： `while (std::cin >> a)` 中 `std::cin >> a` 若在输入有问题或遇到文件结尾时，会返回 false，使得循环中断。
 
-### 函数：C++ 只有函数没有过程但有 `void` ，没有函数值变量但有 `return` 。{#function}
+<h3 id = "function"> 函数：C++ 只有函数没有过程但有 `void` ，没有函数值变量但有 `return` 。</h3>
 
 Pascal 函数与 C++ 函数对比示例：
 
@@ -549,7 +549,7 @@ C++ 把函数和过程统统视作函数，连 `main` 都不放过，比如写 `
 
 也许你已经猜到了， `main(int argc, char const *argv[])` 中的参数就是 `int argc` 与 `char const *argv[]` ，不过意义请参考其他资料。
 
-### 在函数中传递参数 {#function_trans}
+<h3 id = "function_trans"> 在函数中传递参数 </h3>
 
 C++ 中没有 Pascal 的 `var` 关键字可以改变传递的参数
 
@@ -594,7 +594,7 @@ int main(int argc, char const* argv[]) {
 
 C++ 中函数传递参数还有其他方法，其中一种是 **直接使用全局变量传递参数** ，如果不会用指针，可以先用这种方法。
 
-## C++ 标准库与参考资料 {#reference}
+<h2 id = "reference"> C++ 标准库与参考资料 </h2>
 
 千万不要重复造轮子（除非为了练习），想要自己动手写一个功能出来之前，先去看看有没有这个函数或者数据结构。
 
@@ -638,8 +638,8 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 
 最后，Pascal 的圈子其实很小，C/C++ 的圈子很大，帮助手册与教程很多很全，一定要掌握好英语。世界上还有很多很多编程语言，而计算机这门学科与技术不光是信息竞赛和编程语言。
 
-## 附 A：Pascal 与 C++ 语法对比表 {#table}
-
+<h2 id = "table"> 附 A：Pascal 与 C++ 语法对比表 </h2>
+ 
 ### 基本算术
 
 |      | Pascal      | C++       |
@@ -690,7 +690,7 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 | 自减  | null       |  `a--`  |
 | 自减  | null       |  `--a`  |
 
-## 附 B：文章检索 {#index}
+<h2 id = "index"> 附B：文章检索 </h2>
 
 -    [基本语法](#start) 
 -    [变量](#var) 
