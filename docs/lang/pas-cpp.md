@@ -49,7 +49,7 @@ int main(int argc, char const *argv[])  // main 部分
 
 第一行， `#include <iostream>` 的意思是，导入 `iostream` 这个库。[^pascal-lib]
 
-[^pascal-lib]&#x3A; Pascal 其实是有库文件的，只不过，很多同学从来都没有用过……
+[^pascal-lib]: Pascal 其实是有库文件的，只不过，很多同学从来都没有用过……
 
 看到第三行的 `main` 吗？程序从 `main` 开始执行。
 
@@ -61,7 +61,7 @@ std::cout << "Hello World!" << std::endl;
 
  `std::cout` 是输出（ `cout` 即 C-out）的命令。你可能看过有些 C++ 程序中直接写的是 `cout` 。[^namespace]
 
-[^namespace]&#x3A; 有关 `std::` 这个前缀的问题，请见 [这节](../basic/#cin-cout) 底下的注释「什么是 std？」。
+[^namespace]: 有关 `std::` 这个前缀的问题，请见 [这节](../basic/#cin-cout) 底下的注释「什么是 std？」。
 
 中间的 `<<` 很形象地表示流动，其实它就是表示输出怎么「流动」的。这句代码的意思就是， `"Hello World!"` 会先被推到输出流，之后 `std::endl` 再被推到输出流。
 
@@ -464,7 +464,7 @@ float b = 32.0 / 10;  // 32.0/10 的结果是 3.2；b = 3.2
 
 有些时候需要读取到数据结束，比如，求一组不定数量的数之和（数据可以多行），直到文件末尾[^EOF]，实现方式是
 
-[^EOF]&#x3A; EOF，文件末尾标识符，在命令行中 Windows 上以<kbd>Ctrl</kbd>+<kbd>Z</kbd>输入（还需按<kbd>Enter</kbd>），\*unix 系统以<kbd>Ctrl</kbd>+<kbd>D</kbd>输入。
+[^EOF]: EOF，文件末尾标识符，在命令行中 Windows 上以<kbd>Ctrl</kbd>+<kbd>Z</kbd>输入（还需按<kbd>Enter</kbd>），\*unix 系统以<kbd>Ctrl</kbd>+<kbd>D</kbd>输入。
 
 ```cpp
 #include <iostream>
