@@ -148,9 +148,9 @@ int a = 0, b = 0, c = 0;
 
 ## 对应语法
 
-### 变量 {#var}
+<h3 id = "var"> 变量 </h3>
 
-#### 数据类型 {#data_type}
+<h4 id = "data_type"> 数据类型 </h4>
 
 C++ 与 Pascal 基本上差不多，常见的有
 
@@ -170,7 +170,7 @@ C++ 还要很多额外的数据类型，请参考更多资料。
 
 -    [基础类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/types) 
 
-#### 常量声明 {#constant}
+<h4 id = "constant"> 常量声明 </h4>
 
 ```cpp
 const double PI = 3.1415926;
@@ -178,7 +178,7 @@ const double PI = 3.1415926;
 
 若不清楚有关宏展开的问题，建议使用常量，而不用宏定义。
 
-### 运算符 {#operator}
+<h3 id = "operator"> 运算符 </h3>
 
 请直接参考
 
@@ -187,7 +187,7 @@ const double PI = 3.1415926;
 
 ### 条件
 
-####  `if` 语句 {#if}
+<h4 id = "if">  `if` 语句 </h4>
 
 ```pas
 if (a = b) and (a > 0) and (b > 0) then
@@ -235,7 +235,7 @@ if (a == b && a > 0 && b > 0) {
 
 需要注意：C++ 没有 `1..n` ，也没有连续不等式（比如 `1 < x < 2` ）。
 
-### 循环 {#loop}
+<h3 id = "loop"> 循环 </h3>
 
 以下三种循环、六份代码实现的功能是一样的。
 
