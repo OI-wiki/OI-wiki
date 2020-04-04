@@ -374,10 +374,10 @@ C++ 标准库中提供了 `string` ，与 `vector` 可以进行的操作有些�
 #include <iostream>
 #include <string>
 
-int main(int argc, char const *argv[]){
-  std::string s; // 声明 string s
+int main(int argc, char const *argv[]) {
+  std::string s;  // 声明 string s
 
-  std::cin >> s; // 读入 s；
+  std::cin >> s;  // 读入 s；
   // 读入时会忽略开头所有空格符（空格、换行符、制表符），读入的字串直到下一个空格符为止。
 
   std::cout << s << std::endl;
