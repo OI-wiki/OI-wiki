@@ -182,7 +182,7 @@ const double PI = 3.1415926;
 
 请直接参考
 
--    [附：Pascal 与 C++ 语法对比表](#table) 
+-    [附：Pascal 与 C++ 语法对比表](#apascal-c-pascal-vs-c-syntax-table) 
 -    [运算 - OI Wiki](../op/) 
 
 ### 条件
@@ -683,34 +683,34 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 
 ### 自增/自减
 
-|     | Pascal     | C++     |
-| --- | ---------- | ------- |
-| 自增  |  `inc(a)`  |  `a++`  |
-| 自增  |  `inc(a)`  |  `++a`  |
-| 自减  |  `dec(a)`  |  `a--`  |
-| 自减  |  `dec(a)`  |  `--a`  |
+|      | Pascal   | C++   |
+| ---- | -------- | ----- |
+| 自增 | `inc(a)` | `a++` |
+| 自增 | `inc(a)` | `++a` |
+| 自减 | `dec(a)` | `a--` |
+| 自减 | `dec(a)` | `--a` |
 
 ## 附 B：文章检索 Index
 
--    [基本语法](#start) 
--    [变量](#var) 
-    -    [数据类型](#data_type) 
+-    [基本语法](#c_start_here) 
+-    [变量](#variable) 
+    -    [数据类型](#fundamental-types) 
     -    [常量声明](#constant) 
     -    [作用域](#scope) 
 -    [运算符](#operator) 
 -    [if 语句](#if) 
     -   if
     -   else
--    [循环语句](#loop) 
+-    [循环语句](#loop)
     -    [for 语句](#for) 
     -    [while 语句](#while) 
-    -    [do while 语句](#do_while) 
+    -    [do while 语句](#repeat-until-do-while) 
     -    [break, continue](#break_continue) 
--    [函数](#function) 
+-    [函数](#functionc-void-return) 
     -    [函数定义](#function) 
-    -    [函数传参](#function_trans) 
--    [数组与字符串](#array) 
+    -    [函数传参](#passing-parameters-to-functions) 
+-    [数组与字符串](#array_and_string) 
     -    [不定长数组 Vector](#vector) 
-    -    [C 风格数组](#C_array) 
+    -    [C 风格数组](#c_array) 
     -    [字符串 String](#string) 
--    [资料](#reference) 
+-    [资料](#c-reference) 
