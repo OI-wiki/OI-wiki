@@ -683,16 +683,16 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 
 ### 自增/自减
 
-|     | Pascal     | C++     |
-| --- | ---------- | ------- |
-| 自增  |  `inc(a)`  |  `a++`  |
-| 自增  |  `inc(a)`  |  `++a`  |
-| 自减  |  `dec(a)`  |  `a--`  |
-| 自减  |  `dec(a)`  |  `--a`  |
+|      | Pascal   | C++   |
+| ---- | -------- | ----- |
+| 自增 | `inc(a)` | `a++` |
+| 自增 | `inc(a)` | `++a` |
+| 自减 | `dec(a)` | `a--` |
+| 自减 | `dec(a)` | `--a` |
 
 ## 附 B：文章检索 Index
 
--    [基本语法](#c_start_here) 
+-    [基本语法](#c-start-here) 
 -    [变量](#variable) 
     -    [数据类型](#fundamental-types) 
     -    [常量声明](#constant) 
@@ -701,16 +701,16 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 -    [if 语句](#if) 
     -   if
     -   else
--    [循环语句](#loop) 
+-    [循环语句](#loop)
     -    [for 语句](#for) 
     -    [while 语句](#while) 
     -    [do while 语句](#repeat-until-do-while) 
-    -    [break, continue](#break_continue) 
+    -    [break, continue](#loop-control) 
 -    [函数](#functionc-void-return) 
     -    [函数定义](#function) 
     -    [函数传参](#passing-parameters-to-functions) 
--    [数组与字符串](#array_and_string) 
+-    [数组与字符串](#array-and-string) 
     -    [不定长数组 Vector](#vector) 
-    -    [C 风格数组](#c_array) 
+    -    [C 风格数组](#c-array) 
     -    [字符串 String](#string) 
 -    [资料](#c-reference) 
