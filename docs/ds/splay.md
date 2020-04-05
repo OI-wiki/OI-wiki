@@ -178,7 +178,10 @@ int kth(int k) {
       cnr = ch[cnr][0];
     } else {
       k -= cnt[cnr] + sz[ch[cnr][0]];
-      if (k <= 0) return val[cnr];
+      if (k <= 0) {
+        splay(cnr);
+        return val[cnr];
+      }
       cnr = ch[cnr][1];
     }
   }
@@ -193,6 +196,7 @@ int kth(int k) {
 int pre() {
   int cnr = ch[rt][0];
   while (ch[cnr][1]) cnr = ch[cnr][1];
+  splay(cnr);
   return cnr;
 }
 ```
@@ -205,6 +209,7 @@ int pre() {
 int nxt() {
   int cnr = ch[rt][1];
   while (ch[cnr][0]) cnr = ch[cnr][0];
+  splay(cnr);
   return cnr;
 }
 ```
@@ -341,7 +346,10 @@ struct Splay {
         cnr = ch[cnr][0];
       } else {
         k -= cnt[cnr] + sz[ch[cnr][0]];
-        if (k <= 0) return val[cnr];
+        if (k <= 0) {
+          splay(cnr);
+          return val[cnr];
+        }
         cnr = ch[cnr][1];
       }
     }
@@ -349,11 +357,13 @@ struct Splay {
   int pre() {
     int cnr = ch[rt][0];
     while (ch[cnr][1]) cnr = ch[cnr][1];
+    splay(cnr);
     return cnr;
   }
   int nxt() {
     int cnr = ch[rt][1];
     while (ch[cnr][0]) cnr = ch[cnr][0];
+    splay(cnr);
     return cnr;
   }
   void del(int k) {
@@ -382,7 +392,8 @@ struct Splay {
       clear(cnr);
       return;
     }
-    int x = pre(), cnr = rt;
+    int cnr = rt;
+    int x = pre();
     splay(x);
     fa[ch[cnr][1]] = x;
     ch[x][1] = ch[cnr][1];

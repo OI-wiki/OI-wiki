@@ -44,7 +44,7 @@ typedef long long ll;
 int get_hash(const string& s) {
   int res = 0;
   for (int i = 0; i < s.size(); ++i) {
-    res = (ll)(res * B + s[i]) % mod;
+    res = (ll)(res * B + s[i]) % M;
   }
   return res;
 }

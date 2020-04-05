@@ -10,15 +10,15 @@
 
 ## 例题：
 
-### Example 1
+### 例题 1
 
-#### Problem
+#### 题面
 
  [Vladik and fractions](http://codeforces.com/problemset/problem/743/C) 
 
 题目大意：构造一组 $x,y,z$ ，使得对于给定的 $n$ ，满足 $\dfrac{1}{x}+\dfrac{1}{y}+\dfrac{1}{z}=\dfrac{2}{n}$ 
 
-#### Solution
+#### 做法
 
 样例二已经暴露了此题的本质~~（复读机~~
 
@@ -26,13 +26,13 @@
 
 至于构造思路是怎么产生的，大概就是观察样例加上一点点数感了吧。此题对于数学直觉较强的人来说并不难。
 
-### Example 2
+### 例题 2
 
-#### Problem
+#### 题面
 
  [Luogu P3599 Koishi Loves Construction](https://www.luogu.org/problemnew/show/P3599) 
 
-#### Solution
+#### 做法
 
 对于 task1：
 
@@ -70,13 +70,13 @@ $$
 
 我们发现这些数均为 $1 \cdots n-2$ 的逆元 $+1$ ，因此各不相同，此题得解。
 
-### Example 3
+### 例题 3
 
-#### Problem
+#### 题面
 
  [AtCoder Grand Contest 032 B](https://atcoder.jp/contests/agc032/tasks/agc032_b) 
 
-#### Solution
+#### 做法
 
 手玩一下 $n=3,4,5$ 的情况，我们可以找到一个构造思路。
 
@@ -88,15 +88,15 @@ $$
 
 这样构造出的图在 $n\ge 3$ 时连通性易证，在此不加赘述。
 
-此题得解
+此题得解。
 
-### Example 4
+### 例题 4
 
-#### Problem
+#### 题面
 
- [「Lydsy1708 月赛」记忆中的背包](https://www.lydsy.com/JudgeOnline/problem.php?id=4971) 
+ [「Lydsy1708 月赛」记忆中的背包](http://www.lydsy.com/JudgeOnline/problem.php?id=4971) 
 
-#### Solution
+#### 做法
 
 这道题是自由度最高的构造题之一了。这就导致了没有头绪，难以入手。
 
@@ -110,4 +110,4 @@ $$
 
 用 dp 预处理出 $f$ ，通过计算可知只需预处理 $i\le 20$ 的所有值即可。
 
-此题得解
+此题得解。

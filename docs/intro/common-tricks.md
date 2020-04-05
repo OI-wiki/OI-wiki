@@ -53,7 +53,7 @@ for (int i = 0; i < N; i++) {
 这样写循环代码时，就可以简化成 `f(i, 0, N)` 。例如：
 
 ```cpp
-// b is a STL container
+// a is a STL container
 f(i, 0, a.size()) { ... }
 ```
 

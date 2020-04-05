@@ -14,8 +14,8 @@ blockquote.page-time{
 #myBtn {
     display: none;
     position: fixed; 
-    bottom: 3rem; 
-    right: 4rem; 
+    bottom: 100px; 
+    right: 16px; 
     z-index: 99; 
     border: none;
     outline: none; 

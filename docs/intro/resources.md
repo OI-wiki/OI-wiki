@@ -30,7 +30,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [POJ](http://poj.org/) 始于 2003 年，北京大学在线评测系统，国内历史最悠久的 OJ 之一，很多英文题，既有基础题，也有值得一试的好题。
 -    [PTA（拼题 A）](https://pintia.cn/) 始于 2016 年，浙江大学衍生的杭州百腾教育科技有限公司产品。
 -    [清澄](http://www.tsinsen.com/) 始于 2005 年，由 [胡伟栋](http://www.hhwdd.com/) 开发，自 2019 年 9 月 1 日起不再对外提供服务。
--    [Universal Online Judge](http://uoj.ac/) 始于 2014 年，Universal 取通用之意， [项目开源](https://github.com/UniversalOJ/UOJ-System) ； [VFK](https://github.com/vfleaking) 的 OJ，多原创比赛题和 CCF/THU 题，难度较高。
+-    [Universal Online Judge](https://uoj.ac/) 始于 2014 年，Universal 取通用之意， [项目开源](https://github.com/UniversalOJ/UOJ-System) ； [VFK](https://github.com/vfleaking) 的 OJ，多原创比赛题和 CCF/THU 题，难度较高。
 -    [Vijos](https://vijos.org/) 始于 2005 年， [服务端](https://github.com/vijos/vj4) 和 [评测机](https://github.com/vijos/jd4) 等项目开源。
 -    [ZOJ](https://zoj.pintia.cn/home) 始于 2001 年，浙江大学在线评测系统。
 
@@ -99,6 +99,10 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
     -   《聪明人的游戏：信息学探秘 - 提高篇》- 江涛，陈茂贤
     -   《计算概论：C++ 编程与信息学竞赛入门》- 金靖
     -   《算法竞赛宝典》- 张新华
+-   ACM 国际大学生程序设计竞赛系列
+    -   《ACM 国际大学生程序设计竞赛系列 知识与入门》- 俞勇
+    -   《ACM 国际大学生程序设计竞赛系列 算法与实现》- 俞勇
+    -   《ACM 国际大学生程序设计竞赛系列 题目与解读》- 俞勇
 -   《算法竞赛入门到进阶》- 罗勇军，郭卫斌
 -   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein 
     黑书，大学经典教材。英文版原名_Introduction to Algorithms_
@@ -131,18 +135,18 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [uDebug](https://www.udebug.com) （提供一些 OJ 题目的调试辅助）
 -    [cppreference.com](https://zh.cppreference.com/w/) （提供 C++ 内语法的查询等）
 -    [图论画板](https://csacademy.com/app/graph_editor/) （同时推荐 [GraphViz](http://www.graphviz.org/) )
--    [ $\LaTeX{}$ 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm) 
+-    [ $\rm\LaTeX$ 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm) 
 -    [Godbolt](https://godbolt.org/) （在浏览器中查看编译后代码块对应的汇编语句）
 -    [《100 个 gdb 小技巧》](https://github.com/hellogcc/100-gdb-tips) 
--    [Mathpix](https://mathpix.com/) （截图转 $\LaTeX{}$ )
--    [ $\LaTeX$ 手写符号识别](http://detexify.kirelabs.org/classify.html) 
+-    [Mathpix](https://mathpix.com/) （截图转 $\rm\LaTeX{}$ )
+-    [ $\rm\LaTeX$ 手写符号识别](http://detexify.kirelabs.org/classify.html) 
 -    [Wolfram Alpha](https://www.wolframalpha.com/) :（可以解答各种问题）
 
 ## 题集和资源
 
 -    [POJ 训练计划](http://blog.csdn.net/skywalkert/article/details/46594541) 
 -    [USACO](http://train.usaco.org/usacogate) 
--    [洛谷试炼场](https://www.luogu.org/training/mainpage) 
+-    [洛谷题单](https://www.luogu.com.cn/training/list) 
 -    [-Morass- 贴在 Codeforces 上的一份题单](https://codeforces.com/blog/entry/55274) 
 -   Codeforces 社区高质量算法文章合集 [之一](https://codeforces.com/blog/entry/57282)  [之二](https://codeforces.com/blog/entry/13529) 
 -    [北京大学 ICPC 暑期课课件例题](https://vjudge.net/article/446) 

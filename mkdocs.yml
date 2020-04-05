@@ -303,6 +303,7 @@ nav:
       - 虚树: graph/virtual-tree.md
       - 树分治: graph/tree-divide.md
       - 动态树分治: graph/dynamic-tree-divide.md
+      - AHU算法: graph/tree-ahu.md
       - 树哈希: graph/tree-hash.md
     - 矩阵树定理: graph/matrix-tree.md
     - 有向无环图: graph/dag.md
@@ -420,7 +421,7 @@ extra_javascript:
 
 
 extra_css:
-  - '_static/css/extra.css?v=12'
+  - '_static/css/extra.css?v=13'
 
 # Extensions
 markdown_extensions:

@@ -565,7 +565,7 @@ $$
 
     取 $D=\sqrt{n}$ 即可。
 
-### 长链剖分优化 DP
+#### 长链剖分优化 DP
 
 一般情况下可以使用长链剖分来优化的 DP 会有一维状态为深度维。
 
@@ -663,7 +663,7 @@ int main() {
 
 参考 [租酥雨的博客](https://www.cnblogs.com/zhoushuyu/p/9468669.html) 。
 
-### 长链剖分求 k 级祖先
+#### 长链剖分求 k 级祖先
 
 即询问一个点向父亲跳 $k$ 次跳到的节点。
 
@@ -691,7 +691,7 @@ int main() {
 
  [「luogu P3384」【模板】树链剖分](https://www.luogu.org/problemnew/show/P3384) 
 
- [「NOI2015」软件包管理器](http://uoj.ac/problem/128) 
+ [「NOI2015」软件包管理器](https://uoj.ac/problem/128) 
 
  [「SDOI2011」染色](https://www.luogu.org/problem/P2486) 
 

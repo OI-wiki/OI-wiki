@@ -287,7 +287,7 @@ int getsum(int l, int r, int s, int t, int p) {
       while (q--) {
         std::cin >> i1 >> i2 >> i3;
         if (i1 == 2)
-          std::cout << getsum(i2, i3, 1, n, 1) << endl;
+          std::cout << getsum(i2, i3, 1, n, 1) << std::endl;
         else
           std::cin >> i4, update(i2, i3, i4, 1, n, 1);
       }
@@ -558,4 +558,4 @@ int getsum(int l, int r, int s, int t, int p) {
 
 ### 参考
 
- [immortalCO 大爷的博客](http://immortalco.blog.uoj.ac/blog/2102) 
+ [immortalCO 大爷的博客](https://immortalco.blog.uoj.ac/blog/2102) 
