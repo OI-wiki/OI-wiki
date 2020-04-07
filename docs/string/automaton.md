@@ -26,7 +26,7 @@
 
 例如，完成“判断一个二进制数是不是偶数”的自动机如下：
 
-!()[./images/automaton2.png]
+![example automaton](./images/automaton2.png)
 
 从起始结点开始，从高到低接受这个数的二进制序列，然后看最终停在哪里。如果最终停在红圈结点，则是偶数，否则不是。
 
