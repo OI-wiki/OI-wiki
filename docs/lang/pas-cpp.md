@@ -3,9 +3,10 @@ author: kexplorning, Ir1d
 > 用来急救，不多废话。
 
 ???+note "药方食用提示"
-    本急救贴可以让您充分了解以下内容（对应 [C++ 语法快速提要](#c-start-here)）：
-    - 基本语法（块语句、注释、导入库、简单输入输出、声明变量、赋值……）
-    - C++ 的 Hello World 与 A+B Problem 写法与解释
+    本急救贴可以让您充分了解以下内容（对应 [C++ 语法快速提要](#c-start-here) ）：
+    
+    -   基本语法（块语句、注释、导入库、简单输入输出、声明变量、赋值……）
+    -   C++ 的 Hello World 与 A+B Problem 写法与解释
 
     [对应语法](#syntax) 部分较为紧凑，正式食用可能需要额外参考资料（已给出）。此部分不包括指针与 C 风格数组的介绍，也没有结构体、运算符重载等等。
 
@@ -177,7 +178,7 @@ int a = 0, b = 0, c = 0;
 
 不过在此之前，强烈建议先看 [变量作用域：全局变量与局部变量](#scope) ，也可使用 [附 B：文章检索](#index) 查阅阅读。
 
-请善用 <kbd>Alt</kbd> + <kbd>←</kbd> 与 <kbd>Alt</kbd> + <kbd>→</kbd> 返回跳转。
+请善用<kbd>Alt</kbd>+<kbd>←</kbd>与<kbd>Alt</kbd>+<kbd>→</kbd>返回跳转。
 
 ## 对应语法 Syntax
 
@@ -405,10 +406,10 @@ C++ 标准库中提供了 `string` ，与 `vector` 可以进行的操作有些�
 #include <iostream>
 #include <string>
 
-int main(int argc, char const *argv[]){
-  std::string s; // 声明 string s
+int main(int argc, char const *argv[]) {
+  std::string s;  // 声明 string s
 
-  std::cin >> s; // 读入 s；
+  std::cin >> s;  // 读入 s；
   // 读入时会忽略开头所有空格符（空格、换行符、制表符），读入的字串直到下一个空格符为止。
 
   std::cout << s << std::endl;
@@ -538,18 +539,18 @@ end;
 ```
 
 ```cpp
-int abs(int x){
-    if (x < 0){
-        return -x;
-    } else {
-        return x;
-    }
+int abs(int x) {
+  if (x < 0) {
+    return -x;
+  } else {
+    return x;
+  }
 }
 ```
 
-C++ 中函数声明 `int abs`，就定义了 `abs()` 函数且返回值为 `int` 型（整型），函数的返回值就是 `return` 语句给出的值。
+C++ 中函数声明 `int abs` ，就定义了 `abs()` 函数且返回值为 `int` 型（整型），函数的返回值就是 `return` 语句给出的值。
 
-如果不想有返回值（即 Pascal 的「过程」），就用 `void`。`void` 即「空」，什么都不返回。
+如果不想有返回值（即 Pascal 的「过程」），就用 `void` 。 `void` 即「空」，什么都不返回。
 
 ```pas
 var ans: integer;
@@ -568,43 +569,39 @@ end.
 ```cpp
 #include <iostream>
 
-void printAns(int ans)
-{
-    std::cout << ans << std::endl;
+void printAns(int ans) {
+  std::cout << ans << std::endl;
 
-    return;
+  return;
 }
 
-int main(int argc, char const *argv[])
-{
-    int ans = 10;
-    printAns(ans);
+int main(int argc, char const *argv[]) {
+  int ans = 10;
+  printAns(ans);
 
-    return 0;
+  return 0;
 }
 ```
 
-C++ 的 `return` 与 Pascal 中给函数变量赋值有一点非常大的不同。C++ 的 `return` 即返回一个值，执行完这个语句，函数就执行结束了；而 Pascal 中给函数变量赋值并不会跳出函数本身，而是继续执行。于是，如果 Pascal 需要某处中断函数/过程，就需要一个额外的命令，即 `exit`。而 C++ 则不需要，如果需要在某处中断，可以直接使用 `return`。比如（由于实在想不出来简短且实用的代码，所以就先这样）
+C++ 的 `return` 与 Pascal 中给函数变量赋值有一点非常大的不同。C++ 的 `return` 即返回一个值，执行完这个语句，函数就执行结束了；而 Pascal 中给函数变量赋值并不会跳出函数本身，而是继续执行。于是，如果 Pascal 需要某处中断函数/过程，就需要一个额外的命令，即 `exit` 。而 C++ 则不需要，如果需要在某处中断，可以直接使用 `return` 。比如（由于实在想不出来简短且实用的代码，所以就先这样）
 
 ```cpp
 #include <iostream>
 
-void printWarning(int x)
-{
-    if (x >= 0){
-        return; // 该语句在此处相当于 Pascal 中的 `exit;`
-    }
-    std::cout << "Warning: input a negative number.";
+void printWarning(int x) {
+  if (x >= 0) {
+    return;  // 该语句在此处相当于 Pascal 中的 `exit;`
+  }
+  std::cout << "Warning: input a negative number.";
 }
 
-int main(int argc, char const *argv[])
-{
-    int a;
+int main(int argc, char const *argv[]) {
+  int a;
 
-    std::cin >> a;
-    printWarning(a);
+  std::cin >> a;
+  printWarning(a);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -625,17 +622,17 @@ end;
 ```
 
 ```cpp
-int abs(int x){
-    if (x < 0){
-        return -x;
-    } else {
-        return x;
-    }
+int abs(int x) {
+  if (x < 0) {
+    return -x;
+  } else {
+    return x;
+  }
 }
 ```
 
 ???+note "特别提醒"
-    C++ 中 `exit` 是退出程序；不要顺手把 `exit` 打上去，要用 `return`！
+    C++ 中 `exit` 是退出程序；不要顺手把 `exit` 打上去，要用 `return` ！
 
 C++ 把函数和过程统统视作函数，连 `main` 都不放过，比如写 `int main` ，C++ 视 `main` 为一个整型的函数，这里返回值是 `0` 。它是一种习惯约定，返回 `0` 代表程序正常退出。
 
@@ -699,7 +696,7 @@ C++ 标准库中 `<algorithm>` 有很多有用的函数比如快排、二分查�
 如果要找关于字符串操作的函数见
 
 -    [std::basic_string - cppreference.com](https://zh.cppreference.com/w/cpp/string/basic_string) 
--    [`<string>`- C++ Reference](https://www.cplusplus.com/reference/string/) 
+-    [ `<string>` - C++ Reference](https://www.cplusplus.com/reference/string/) 
 
 C/C++ 的指针是很灵活的东西，如果想要彻底理解指针，建议找本书或者参考手册仔细阅读。
 
@@ -777,12 +774,12 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 
 ### 自增/自减
 
-|      | Pascal   | C++   |
-| ---- | -------- | ----- |
-| 自增 | `inc(a)` | `a++` |
-| 自增 | `inc(a)` | `++a` |
-| 自减 | `dec(a)` | `a--` |
-| 自减 | `dec(a)` | `--a` |
+|     | Pascal     | C++     |
+| --- | ---------- | ------- |
+| 自增  |  `inc(a)`  |  `a++`  |
+| 自增  |  `inc(a)`  |  `++a`  |
+| 自减  |  `dec(a)`  |  `a--`  |
+| 自减  |  `dec(a)`  |  `--a`  |
 
 ## 附 B：文章检索 Index
 
@@ -795,13 +792,13 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 -    [if 语句](#if) 
     -   if
     -   else
--    [循环语句](#loop)
+-    [循环语句](#loop) 
     -    [for 语句](#for) 
     -    [while 语句](#while) 
     -    [do while 语句](#repeat-until-do-while) 
     -    [break, continue](#loop-control) 
 -    [函数](#functionc-void-return) 
-    -    [函数定义, return](#functionc-void-return) 
+    -    [函数定义，return](#functionc-void-return) 
     -    [函数传参](#passing-parameters-to-functions) 
 -    [数组与字符串](#array-and-string) 
     -    [不定长数组 Vector](#vector) 
