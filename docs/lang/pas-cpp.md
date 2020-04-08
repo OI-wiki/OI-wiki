@@ -13,7 +13,7 @@ author: kexplorning, Ir1d
     [重要不同之处](#differences) 部分为 C++ 的语法特点，也是 Pascal 转 C++ 时会碰到的坑。
 
     如要快速查找，请见附录：
-    
+
     - [附 A：Pascal 与 C++ 运算符语法对比表](#apascal-c-pascal-vs-c-operator-syntax-table)
     - [附 B：文章检索](#b-index) - 按 C++ 语句语法索引
 
