@@ -32,6 +32,6 @@ author: sshwy, hsfzLZH1, Enter-tainer
 
 ### 其他常见符号
 
-1.  阶乘符号 $!$ ， $n!$ 表示 $1\times 2\times 3\times \dotsb \times n$ 。
+1.  阶乘符号 $!$ ， $n!$ 表示 $1\times 2\times 3\times \dotsb \times n$ 。特别地， $0!=1$ 。
 2.  向下取整符号： $\lfloor x\rfloor$ ，表示小于等于 $x$ 的最大的整数。常用于分数，比如分数的向下取整 $\left\lfloor\frac{x}{y}\right\rfloor$ 。
 3.  向上取整符号： $\lceil x\rceil$ ，与向下取整符号相对，表示大于等于 $x$ 的最小的整数。
