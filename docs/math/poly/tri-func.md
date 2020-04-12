@@ -1,8 +1,8 @@
-## Description
+## 描述
 
 给定多项式 $f\left(x\right)$ ，求模 $x^{n}$ 意义下的 $\sin{f\left(x\right)}, \cos{f\left(x\right)}$ 与 $\tan{f\left(x\right)}$ 。
 
-## Method
+## 解法
 
 首先由 [Euler's formula](https://en.wikipedia.org/wiki/Euler's_formula)  $\left(e^{ix} = \cos{x} + i\sin{x}\right)$ 可以得到 [三角函数的另一个表达式](https://en.wikipedia.org/wiki/Trigonometric_functions#Relationship_to_exponential_function_and_complex_numbers) ：
 
@@ -28,7 +28,7 @@ $$
 
 ~~啥？你问 $\tan{f\left(x\right)}$ 怎么求？回去学高中数学必修四吧。webp~~
 
-## Code
+## 代码
 
 ??? "多项式三角函数"
     ```cpp

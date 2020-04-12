@@ -1,8 +1,8 @@
-## Description
+## 描述
 
 给定多项式 $f(x)$ ，求模 $x^{n}$ 意义下的 $\ln{f(x)}$ 与 $\exp{f(x)}$ 。
 
-## Methods
+## 解法
 
 ### 普通方法
 
@@ -65,7 +65,7 @@ $$
 
 使用 [ **Newton's Method** ](./newton.md#newtons-method) 即可在 $O(n\log{n})$ 的时间复杂度内解决多项式 $\exp$ 。
 
-## Code
+## 代码
 
 ??? "多项式 ln/exp"
     ```cpp
@@ -128,7 +128,7 @@ $$
     }
     ```
 
-## Examples
+## 例题
 
 1.  计算 $f^{k}(x)$ 
 

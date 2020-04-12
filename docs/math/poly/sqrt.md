@@ -1,4 +1,4 @@
-## Description
+## 描述
 
 给定多项式 $g\left(x\right)$ ，求 $f\left(x\right)$ ，满足：
 
@@ -6,7 +6,7 @@ $$
 f^{2}\left(x\right)\equiv g\left(x\right) \pmod{x^{n}}
 $$
 
-## Methods
+## 解法
 
 ### 倍增法
 
@@ -181,6 +181,6 @@ $$
 
 参见 [ **Newton's Method** ](./newton.md#newtons-method) .
 
-## Examples
+## 例题
 
 1.   [ **「Codeforces Round #250」E. The Child and Binary Tree** ](https://codeforces.com/contest/438/problem/E) 
