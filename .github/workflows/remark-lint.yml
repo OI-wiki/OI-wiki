@@ -46,4 +46,3 @@ jobs:
       run: |
         git remote add token https://${GITHUB_ACTOR}:${{ secrets.BOT_PUSH_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
         git push token HEAD:${GITHUB_REF}
-    # git push token HEAD:${GITHUB_REF} --force-with-lease=${GITHUB_REF}:${GITHUB_SHA}
