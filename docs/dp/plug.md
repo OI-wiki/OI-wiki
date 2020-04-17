@@ -179,96 +179,105 @@ void decode(int s) {
     using namespace std;
     #define REP(i, n) for (int i = 0; i < n; ++i)
     const int M = 10;
-    const int offset = 3, mask = (1 << offset)-1;
+    const int offset = 3, mask = (1 << offset) - 1;
     int n, m;
     long long ans, d;
     const int MaxSZ = 16796, Prime = 9973;
     struct hashTable {
-        int head[Prime], next[MaxSZ], sz;
-        int state[MaxSZ];
-        long long key[MaxSZ];
-        inline void clear() {
-            sz = 0;
-            memset(head, -1, sizeof(head));
+      int head[Prime], next[MaxSZ], sz;
+      int state[MaxSZ];
+      long long key[MaxSZ];
+      inline void clear() {
+        sz = 0;
+        memset(head, -1, sizeof(head));
+      }
+      inline void push(int s) {
+        int x = s % Prime;
+        for (int i = head[x]; ~i; i = next[i]) {
+          if (state[i] == s) {
+            key[i] += d;
+            return;
+          }
         }
-        inline void push(int s) {
-            int x = s % Prime;
-            for (int i=head[x];~i;i=next[i]) {
-                if (state[i] == s) {
-                    key[i] += d;
-                    return;
-                }
-            }
-            state[sz] = s, key[sz] = d;
-            next[sz] = head[x];
-            head[x] = sz++;
-        }
-        void roll() {
-            REP(i, sz) state[i] <<= offset;
-        }
+        state[sz] = s, key[sz] = d;
+        next[sz] = head[x];
+        head[x] = sz++;
+      }
+      void roll() { REP(i, sz) state[i] <<= offset; }
     } H[2], *H0, *H1;
-    int b[M+1], bb[M+1];
+    int b[M + 1], bb[M + 1];
     int encode() {
-        int s = 0; memset(bb, -1, sizeof(bb)); int bn = 1; bb[0] = 0;
-        for (int i=m;i>=0;--i) {
+      int s = 0;
+      memset(bb, -1, sizeof(bb));
+      int bn = 1;
+      bb[0] = 0;
+      for (int i = m; i >= 0; --i) {
     #define bi bb[b[i]]
-            if (!~bi) bi = bn++;
-            s <<= offset; s |= bi;
-        }
-        return s;
+        if (!~bi) bi = bn++;
+        s <<= offset;
+        s |= bi;
+      }
+      return s;
     }
     void decode(int s) {
-        REP(i, m+1) {
-            b[i] = s & mask;
-            s >>= offset;
-        }
+      REP(i, m + 1) {
+        b[i] = s & mask;
+        s >>= offset;
+      }
     }
     void push(int j, int dn, int rt) {
-        b[j] = dn; b[j+1] = rt;
-        H1->push(encode());
+      b[j] = dn;
+      b[j + 1] = rt;
+      H1->push(encode());
     }
-    int main(){
+    int main() {
     #ifdef ONLINE_JUDGE
-        freopen("pipe.in", "r", stdin);
-        freopen("pipe.out", "w", stdout);
+      freopen("pipe.in", "r", stdin);
+      freopen("pipe.out", "w", stdout);
     #endif
-        cin >> n >> m; if (m > n) swap(n, m);
-        H0 = H, H1 = H+1; H1->clear(); d = 1; H1->push(0);
-        REP(i, n) {
-            REP(j, m) {
-                swap(H0, H1); H1->clear();
-                REP(ii, H0->sz) {
-                    decode(H0->state[ii]); d = H0->key[ii];
-                    int lt = b[j], up = b[j+1];
-                    bool dn = i != n-1, rt = j != m-1;
-                    if (lt && up) {
-                        if (lt == up) {
-                            if (i == n-1 && j == m-1) {
-                                push(j, 0, 0);
-                            }
-                        } else {
-                            REP(i, m+1) if (b[i] == lt) b[i] = up;
-                            push(j, 0, 0);
-                        }
-                    } else if (lt || up) {
-                        int t = lt | up;
-                        if (dn) {
-                            push(j, t, 0);
-                        }
-                        if (rt) {
-                            push(j, 0, t);
-                        }
-                    } else {
-                        if (dn && rt) {
-                            push(j, m, m);
-                        }
-                    }
+      cin >> n >> m;
+      if (m > n) swap(n, m);
+      H0 = H, H1 = H + 1;
+      H1->clear();
+      d = 1;
+      H1->push(0);
+      REP(i, n) {
+        REP(j, m) {
+          swap(H0, H1);
+          H1->clear();
+          REP(ii, H0->sz) {
+            decode(H0->state[ii]);
+            d = H0->key[ii];
+            int lt = b[j], up = b[j + 1];
+            bool dn = i != n - 1, rt = j != m - 1;
+            if (lt && up) {
+              if (lt == up) {
+                if (i == n - 1 && j == m - 1) {
+                  push(j, 0, 0);
                 }
+              } else {
+                REP(i, m + 1) if (b[i] == lt) b[i] = up;
+                push(j, 0, 0);
+              }
+            } else if (lt || up) {
+              int t = lt | up;
+              if (dn) {
+                push(j, t, 0);
+              }
+              if (rt) {
+                push(j, 0, t);
+              }
+            } else {
+              if (dn && rt) {
+                push(j, m, m);
+              }
             }
-            H1->roll();
+          }
         }
-        assert(H1->sz <= 1);
-        cout << (H1->sz == 1 ? H1->key[0] : 0) << endl;
+        H1->roll();
+      }
+      assert(H1->sz <= 1);
+      cout << (H1->sz == 1 ? H1->key[0] : 0) << endl;
     }
     ```
 
