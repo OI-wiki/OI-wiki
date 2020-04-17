@@ -27,30 +27,35 @@ if (s >> j & 1) {       // 如果已被覆盖
 观察到这里不放和竖放的方程可以合并。
 
 ??? 例题代码
+
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
 const int N = 11;
-long long f[2][1<<N], *f0, *f1;
+long long f[2][1 << N], *f0, *f1;
 int n, m;
 
 int main() {
-    while (cin >> n >> m && n) {
-        f0 = f[0]; f1 = f[1];
-        fill(f1, f1+(1<<m), 0); f1[0] = 1;
-        for (int i=0;i<n;++i) {
-            for (int j=0;j<m;++j) {
-                swap(f0, f1); fill(f1, f1+(1<<m), 0);
+  while (cin >> n >> m && n) {
+    f0 = f[0];
+    f1 = f[1];
+    fill(f1, f1 + (1 << m), 0);
+    f1[0] = 1;
+    for (int i = 0; i < n; ++i) {
+      for (int j = 0; j < m; ++j) {
+        swap(f0, f1);
+        fill(f1, f1 + (1 << m), 0);
 #define u f0[s]
-                for (int s=0;s<1<<m;++s) if (u) {
-                    if (j != m-1 && (!(s>>j&3))) f1[s^1<<j+1] += u; // 横放
-                    f1[s^1<<j] += u; // 竖放或不放
-                }
-            }
-        }
-        cout << f1[0] << endl;
+        for (int s = 0; s < 1 << m; ++s)
+          if (u) {
+            if (j != m - 1 && (!(s >> j & 3))) f1[s ^ 1 << j + 1] += u;  // 横放
+            f1[s ^ 1 << j] += u;  // 竖放或不放
+          }
+      }
     }
+    cout << f1[0] << endl;
+  }
 }
 ```
 
@@ -66,43 +71,53 @@ int main() {
 严格来说，多条回路问题并不属于插头 DP，因为我们只需要和上面的骨牌覆盖问题一样，记录插头是否存在，然后成对的合并和生成插头就可以了。当然，你也可以用我们后面例题的套路，解决这个问题。
 
 ??? 例题代码
+
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
 const int N = 11;
-long long f[2][1<<(N+1)], *f0, *f1;
+long long f[2][1 << (N + 1)], *f0, *f1;
 int n, m;
 
 int main() {
-    int T; cin >> T; for (int Case=1;Case<=T;++Case) {
-        cin >> n >> m;
-        f0 = f[0]; f1 = f[1];
-        fill(f1, f1+(1<<m+1), 0); f1[0] = 1;
+  int T;
+  cin >> T;
+  for (int Case = 1; Case <= T; ++Case) {
+    cin >> n >> m;
+    f0 = f[0];
+    f1 = f[1];
+    fill(f1, f1 + (1 << m + 1), 0);
+    f1[0] = 1;
 
-        for (int i=0;i<n;++i) {
-            for (int j=0;j<m;++j) {
-                bool bad; cin >> bad; bad ^= 1;
-                swap(f0, f1); fill(f1, f1+(1<<m+1), 0);
+    for (int i = 0; i < n; ++i) {
+      for (int j = 0; j < m; ++j) {
+        bool bad;
+        cin >> bad;
+        bad ^= 1;
+        swap(f0, f1);
+        fill(f1, f1 + (1 << m + 1), 0);
 #define u f0[s]
-                for (int s=0;s<1<<m+1;++s) if (u) {
-                    bool lt = s>>j&1, up = s>>j+1&1;
+        for (int s = 0; s < 1 << m + 1; ++s)
+          if (u) {
+            bool lt = s >> j & 1, up = s >> j + 1 & 1;
 
-                    if (bad) {
-                        if (!lt && !up) f1[s] += u;
-                    } else {
-                        f1[s^3<<j] += u;
-                        if (lt != up) f1[s] += u;
-                    }
-                }
+            if (bad) {
+              if (!lt && !up) f1[s] += u;
+            } else {
+              f1[s ^ 3 << j] += u;
+              if (lt != up) f1[s] += u;
             }
+          }
+      }
 
-            swap(f0, f1); fill(f1, f1+(1<<m+1), 0);
-            for (int s=0;s<1<<m;++s) f1[s<<1] = u;
-        }
-
-        printf("Case %d: There are %lld ways to eat the trees.\n", Case, f1[0]);
+      swap(f0, f1);
+      fill(f1, f1 + (1 << m + 1), 0);
+      for (int s = 0; s < 1 << m; ++s) f1[s << 1] = u;
     }
+
+    printf("Case %d: There are %lld ways to eat the trees.\n", Case, f1[0]);
+  }
 }
 ```
 
@@ -186,11 +201,11 @@ int main() {
 
 当限定 m = 2 时，多米诺骨牌覆盖等价于斐波那契数列。 [《具体数学》](https://www.csie.ntu.edu.tw/~r97002/temp/Concrete%20Mathematics%202e.pdf) 中使用了该问题以引出斐波那契数列，并使用了多种方法得到其解析解。
 
-当 m &lt;= 10, n &lt;= 1e9 时，可以将转移方程预处理成矩阵形式，并使用 [矩阵乘法进行加速](http://www.matrix67.com/blog/archives/276) 。
+当 m&lt;= 10, n&lt;= 1e9 时，可以将转移方程预处理成矩阵形式，并使用 [矩阵乘法进行加速](http://www.matrix67.com/blog/archives/276) 。
 
 ![domino_v2_transform_matrix](./images/domino_v2_transform_matrix.gif)
 
-当 n, m &lt;= 100，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数。
+当 n, m&lt;= 100，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数。
 
 -    [「51nod 1031」骨牌覆盖](http://www.51nod.com/Challenge/Problem.html#problemId=1031) 
 -    [「51nod 1033」骨牌覆盖 V2](http://www.51nod.com/Challenge/Problem.html#problemId=1033) \| [「Vijos 1194」Domino](https://vijos.org/p/1194) 
