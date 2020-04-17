@@ -27,36 +27,32 @@ if (s >> j & 1) {       // 如果已被覆盖
 观察到这里不放和竖放的方程可以合并。
 
 ??? 例题代码
-    ```cpp
-    #include <bits/stdc++.h>
-    using namespace std;
-    ```
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
-    const int N = 11;
-    long long f[2][1<<N], *f0, *f1;
-    int n, m;
+const int N = 11;
+long long f[2][1<<N], *f0, *f1;
+int n, m;
 
-    int main() {
-        while (cin >> n >> m && n) {
-
-            f0 = f[0]; f1 = f[1];
-            fill(f1, f1+(1<<m), 0); f1[0] = 1;
-
-            for (int i=0;i<n;++i) {
-                for (int j=0;j<m;++j) {
-                    swap(f0, f1); fill(f1, f1+(1<<m), 0);
-    #define u f0[s]
-                    for (int s=0;s<1<<m;++s) if (u) {
-                        if (j != m-1 && (!(s>>j&3))) f1[s^1<<j+1] += u; // 横放
-                        f1[s^1<<j] += u; // 竖放或不放
-                    }
+int main() {
+    while (cin >> n >> m && n) {
+        f0 = f[0]; f1 = f[1];
+        fill(f1, f1+(1<<m), 0); f1[0] = 1;
+        for (int i=0;i<n;++i) {
+            for (int j=0;j<m;++j) {
+                swap(f0, f1); fill(f1, f1+(1<<m), 0);
+#define u f0[s]
+                for (int s=0;s<1<<m;++s) if (u) {
+                    if (j != m-1 && (!(s>>j&3))) f1[s^1<<j+1] += u; // 横放
+                    f1[s^1<<j] += u; // 竖放或不放
                 }
             }
-
-            cout << f1[0] << endl;
         }
+        cout << f1[0] << endl;
     }
-    ```
+}
+```
 
 在后面的小节中，我们会看到两种方法各有千秋，虽然在本题中她们并没有太大不同。逐行 DP 更容易将转移函数转化为矩阵形式，从而使用矩阵乘法进行加速；逐格 DP 则转移函数更加局部，从而更容易应对转移函数错综复杂的情况。
 
@@ -70,47 +66,45 @@ if (s >> j & 1) {       // 如果已被覆盖
 严格来说，多条回路问题并不属于插头 DP，因为我们只需要和上面的骨牌覆盖问题一样，记录插头是否存在，然后成对的合并和生成插头就可以了。当然，你也可以用我们后面例题的套路，解决这个问题。
 
 ??? 例题代码
-    ```cpp
-    #include <bits/stdc++.h>
-    using namespace std;
-    ```
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
-    const int N = 11;
-    long long f[2][1<<(N+1)], *f0, *f1;
-    int n, m;
+const int N = 11;
+long long f[2][1<<(N+1)], *f0, *f1;
+int n, m;
 
-    int main() {
-        int T; cin >> T; for (int Case=1;Case<=T;++Case) {
-            cin >> n >> m;
-            f0 = f[0]; f1 = f[1];
-            fill(f1, f1+(1<<m+1), 0); f1[0] = 1;
+int main() {
+    int T; cin >> T; for (int Case=1;Case<=T;++Case) {
+        cin >> n >> m;
+        f0 = f[0]; f1 = f[1];
+        fill(f1, f1+(1<<m+1), 0); f1[0] = 1;
 
-            for (int i=0;i<n;++i) {
-                for (int j=0;j<m;++j) {
-                    //bool bad; cin >> bad; bad ^= 1;
-                    bool bad = 0;
-                    swap(f0, f1); fill(f1, f1+(1<<m+1), 0);
-    #define u f0[s]
-                    for (int s=0;s<1<<m+1;++s) if (u) {
-                        bool lt = s>>j&1, up = s>>j+1&1;
+        for (int i=0;i<n;++i) {
+            for (int j=0;j<m;++j) {
+                bool bad; cin >> bad; bad ^= 1;
+                swap(f0, f1); fill(f1, f1+(1<<m+1), 0);
+#define u f0[s]
+                for (int s=0;s<1<<m+1;++s) if (u) {
+                    bool lt = s>>j&1, up = s>>j+1&1;
 
-                        if (bad) {
-                            if (!lt && !up) f1[s] += u;
-                        } else {
-                            f1[s^3<<j] += u;
-                            if (lt != up) f1[s] += u;
-                        }
+                    if (bad) {
+                        if (!lt && !up) f1[s] += u;
+                    } else {
+                        f1[s^3<<j] += u;
+                        if (lt != up) f1[s] += u;
                     }
                 }
-
-                swap(f0, f1); fill(f1, f1+(1<<m+1), 0);
-                for (int s=0;s<1<<m;++s) f1[s<<1] = u;
             }
 
-            printf("Case %d: There are %lld ways to eat the trees.\n", Case, f1[0]);
+            swap(f0, f1); fill(f1, f1+(1<<m+1), 0);
+            for (int s=0;s<1<<m;++s) f1[s<<1] = u;
         }
+
+        printf("Case %d: There are %lld ways to eat the trees.\n", Case, f1[0]);
     }
-    ```
+}
+```
 
 ??? note " 习题[「ZJU 4231」The Hive II](https://vjudge.net/problem/ZOJ-3466)"
     题目大意：同上题，但格子变成了六边形。
