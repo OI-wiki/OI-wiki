@@ -27,48 +27,51 @@ if (s >> j & 1) {       // 如果已被覆盖
 观察到这里不放和竖放的方程可以合并。
 
 ??? 例题代码
+    ```cpp
+    #include <bits/stdc++.h>
+    using namespace std;
 
-```cpp
-#include <bits/stdc++.h>
-using namespace std;
+    const int N = 11;
+    long long f[2][1 << N], *f0, *f1;
+    int n, m;
 
-const int N = 11;
-long long f[2][1 << N], *f0, *f1;
-int n, m;
-
-int main() {
-  while (cin >> n >> m && n) {
-    f0 = f[0];
-    f1 = f[1];
-    fill(f1, f1 + (1 << m), 0);
-    f1[0] = 1;
-    for (int i = 0; i < n; ++i) {
-      for (int j = 0; j < m; ++j) {
-        swap(f0, f1);
+    int main() {
+      while (cin >> n >> m && n) {
+        f0 = f[0];
+        f1 = f[1];
         fill(f1, f1 + (1 << m), 0);
-#define u f0[s]
-        for (int s = 0; s < 1 << m; ++s)
-          if (u) {
-            if (j != m - 1 && (!(s >> j & 3))) f1[s ^ 1 << j + 1] += u;  // 横放
-            f1[s ^ 1 << j] += u;  // 竖放或不放
+        f1[0] = 1;
+        for (int i = 0; i < n; ++i) {
+          for (int j = 0; j < m; ++j) {
+            swap(f0, f1);
+            fill(f1, f1 + (1 << m), 0);
+    #define u f0[s]
+            for (int s = 0; s < 1 << m; ++s)
+              if (u) {
+                if (j != m - 1 && (!(s >> j & 3))) f1[s ^ 1 << j + 1] += u;  // 横放
+                f1[s ^ 1 << j] += u;  // 竖放或不放
+              }
           }
+        }
+        cout << f1[0] << endl;
       }
     }
-    cout << f1[0] << endl;
-  }
-}
-```
+    ```
 
-在后面的小节中，我们会看到两种方法各有千秋，虽然在本题中她们并没有太大不同。逐行 DP 更容易将转移函数转化为矩阵形式，从而使用矩阵乘法进行加速；逐格 DP 则转移函数更加局部，从而更容易应对转移函数错综复杂的情况。
+在后面的小节中，我们会看到不同的阶段划分方法各有优势，虽然在本题中她们并没有太大不同。逐行 DP 更容易将转移函数转化为矩阵形式，从而使用矩阵乘法进行加速；逐格 DP 则转移函数更加局部，从而更容易应对转移函数错综复杂的情况。
 
 ### 术语
 
 阶段：动态规划执行的顺序，后续阶段的结果只与前序阶段的结果有关（无后效性）。很多 DP 问题可以有多种划分阶段的方式。例如在背包问题中，我们通常既可以按照物品划分阶段，也可以按照背包容量划分阶段（外层循环先枚举什么）。而在多米诺骨牌问题中，我们可以按照行、列、格子以及对角线等特征划分阶段。
 
-轮廓线：已决策状态和未决策状态的分界线
-。![contour line](./images/contour_line.png)
+轮廓线：已决策状态和未决策状态的分界线。
+
+![contour line](./images/contour_line.png)
+
 
 插头：一个格子某个方向的插头存在，表示这个格子在这个方向与相邻格子相连。
+
+![contour line](./images/plug.png)
 
 ## 路径模型
 
@@ -80,55 +83,54 @@ int main() {
 严格来说，多条回路问题并不属于插头 DP，因为我们只需要和上面的骨牌覆盖问题一样，记录插头是否存在，然后成对的合并和生成插头就可以了。当然，你也可以用我们后面例题的套路，解决这个问题。
 
 ??? 例题代码
+    ```cpp
+    #include <bits/stdc++.h>
+    using namespace std;
 
-```cpp
-#include <bits/stdc++.h>
-using namespace std;
+    const int N = 11;
+    long long f[2][1 << (N + 1)], *f0, *f1;
+    int n, m;
 
-const int N = 11;
-long long f[2][1 << (N + 1)], *f0, *f1;
-int n, m;
-
-int main() {
-  int T;
-  cin >> T;
-  for (int Case = 1; Case <= T; ++Case) {
-    cin >> n >> m;
-    f0 = f[0];
-    f1 = f[1];
-    fill(f1, f1 + (1 << m + 1), 0);
-    f1[0] = 1;
-
-    for (int i = 0; i < n; ++i) {
-      for (int j = 0; j < m; ++j) {
-        bool bad;
-        cin >> bad;
-        bad ^= 1;
-        swap(f0, f1);
+    int main() {
+      int T;
+      cin >> T;
+      for (int Case = 1; Case <= T; ++Case) {
+        cin >> n >> m;
+        f0 = f[0];
+        f1 = f[1];
         fill(f1, f1 + (1 << m + 1), 0);
-#define u f0[s]
-        for (int s = 0; s < 1 << m + 1; ++s)
-          if (u) {
-            bool lt = s >> j & 1, up = s >> j + 1 & 1;
+        f1[0] = 1;
 
-            if (bad) {
-              if (!lt && !up) f1[s] += u;
-            } else {
-              f1[s ^ 3 << j] += u;
-              if (lt != up) f1[s] += u;
-            }
+        for (int i = 0; i < n; ++i) {
+          for (int j = 0; j < m; ++j) {
+            bool bad;
+            cin >> bad;
+            bad ^= 1;
+            swap(f0, f1);
+            fill(f1, f1 + (1 << m + 1), 0);
+    #define u f0[s]
+            for (int s = 0; s < 1 << m + 1; ++s)
+              if (u) {
+                bool lt = s >> j & 1, up = s >> j + 1 & 1;
+
+                if (bad) {
+                  if (!lt && !up) f1[s] += u;
+                } else {
+                  f1[s ^ 3 << j] += u;
+                  if (lt != up) f1[s] += u;
+                }
+              }
           }
+
+          swap(f0, f1);
+          fill(f1, f1 + (1 << m + 1), 0);
+          for (int s = 0; s < 1 << m; ++s) f1[s << 1] = u;
+        }
+
+        printf("Case %d: There are %lld ways to eat the trees.\n", Case, f1[0]);
       }
-
-      swap(f0, f1);
-      fill(f1, f1 + (1 << m + 1), 0);
-      for (int s = 0; s < 1 << m; ++s) f1[s << 1] = u;
     }
-
-    printf("Case %d: There are %lld ways to eat the trees.\n", Case, f1[0]);
-  }
-}
-```
+    ```
 
 ??? note " 习题[「ZJU 4231」The Hive II](https://vjudge.net/problem/ZOJ-3466)"
     题目大意：同上题，但格子变成了六边形。
@@ -136,143 +138,164 @@ int main() {
 ### 一条回路
 
 ??? note " 例题[「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
-    题目大意：求用一条回路覆盖 N×M 棋盘的方案数。
+    题目大意：求用一条回路覆盖 `N×M` 棋盘的方案数。
 
 在上面的状态表示中我们每合并一组连通的插头，就会生成一条独立的回路，因而在本题中，我们还需要区分插头之间的连通性（出现了！）。这需要我们对状态进行额外的编码。
 
 #### 状态编码
 
-通常的编码方案有括号表示和最小表示，这里我们介绍后者，因为最小表示的适用范围通常更广。
+通常的编码方案有括号表示和最小表示，我们首先介绍后者。我们用长度 `m+1` 的整形数组，记录轮廓线上每个插头的状态，0 表示没有插头，并约定连通的插头用相同的数字进行标记。
+
+那么下面两组编码方式表示的是相同的状态：
+
+- `0 3 1 0 1 3`
+- `0 1 2 0 2 1`
+
+我们将相同的状态都映射成字典序最小表示，例如在上例中的 `0 1 2 0 2 1` 就是一组最小表示。
+
+我们用 `b[]` 数组表示轮廓线上插头的状态。`bb[]` 表示在最小表示的编码的过程中，每个数字被映射到的最小数字。注意 `0` 表示插头不存在，不能被映射成其他值。
+
+```cpp
+  int b[M+1], bb[M+1];
+  int encode() {
+      int s = 0; memset(bb, -1, sizeof(bb)); int bn = 1; bb[0] = 0;
+      for (int i=m;i>=0;--i) {
+  #define bi bb[b[i]]
+          if (!~bi) bi = bn++;
+          s <<= offset; s |= bi;
+      }
+      return s;
+  }
+  void decode(int s) {
+      REP(i, m+1) {
+          b[i] = s & mask;
+          s >>= offset;
+      }
+  }
+```
+
+我们注意到插头总是成对出现，成对消失的。因而 `0 1 2 0 1 2` 这样的状态是不合法的。因而合法的状态构成一组括号序列，这提示我们合法状态实际非常稀疏，我们可以利用 `Catalan 序列` 估计状态的规模。另一方面也启发了我们直接使用括号表示进行编码。
 
 #### 手写哈希
 
 ??? 例题代码
+    ```cpp
+    #include <bits/stdc++.h>
+    using namespace std;
+    #define REP(i, n) for (int i=0;i<n;++i)
 
-```cpp
-#include <bits/stdc++.h>
-using namespace std;
-#define REP(i, n) for (int i = 0; i < n; ++i)
+    const int M = 10;
+    const int offset = 3, mask = (1<<offset)-1;
 
-const int M = 10;
-const int offset = 3, mask = (1 << offset) - 1;
+    int n, m;
+    long long ans, d;
 
-int n, m;
-long long ans, d;
+    const int MaxSZ = 16796, Prime = 9973;
+    struct hashTable {
+        int head[Prime], next[MaxSZ], sz;
+        int state[MaxSZ];
+        long long key[MaxSZ];
 
-const int MaxSZ = 16796, Prime = 9973;
-struct hashTable {
-  int head[Prime], next[MaxSZ], sz;
-  int state[MaxSZ];
-  long long key[MaxSZ];
-
-  inline void clear() {
-    sz = 0;
-    memset(head, -1, sizeof(head));
-  }
-  inline void push(int s) {
-    int x = s % Prime;
-    for (int i = head[x]; ~i; i = next[i]) {
-      if (state[i] == s) {
-        key[i] += d;
-        return;
-      }
-    }
-    state[sz] = s, key[sz] = d;
-    next[sz] = head[x];
-    head[x] = sz++;
-  }
-  void roll() { REP(i, sz) state[i] <<= offset; }
-} H[2], *H0, *H1;
-
-int b[M + 1], bb[M + 1];
-int encode() {
-  int s = 0;
-  memset(bb, -1, sizeof(bb));
-  int bn = 1;
-  bb[0] = 0;
-  for (int i = m; i >= 0; --i) {
-#define bi bb[b[i]]
-    if (!~bi) bi = bn++;
-    s <<= offset;
-    s |= bi;
-  }
-  return s;
-}
-void decode(int s) {
-  REP(i, m + 1) {
-    b[i] = s & mask;
-    s >>= offset;
-  }
-}
-void push(int j, int dn, int rt) {
-  b[j] = dn;
-  b[j + 1] = rt;
-  H1->push(encode());
-}
-
-int main() {
-#ifdef ONLINE_JUDGE
-  freopen("pipe.in", "r", stdin);
-  freopen("pipe.out", "w", stdout);
-#endif
-
-  cin >> n >> m;
-  if (m > n) swap(n, m);
-  H0 = H, H1 = H + 1;
-  H1->clear();
-  d = 1;
-  H1->push(0);
-
-  REP(i, n) {
-    REP(j, m) {
-      swap(H0, H1);
-      H1->clear();
-
-      REP(ii, H0->sz) {
-        decode(H0->state[ii]);
-        d = H0->key[ii];
-        int lt = b[j], up = b[j + 1];
-        bool dn = i != n - 1, rt = j != m - 1;
-
-        if (lt && up) {
-          if (lt == up) {
-            if (i == n - 1 && j == m - 1) {
-              push(j, 0, 0);
-            }
-          } else {
-            REP(i, m + 1) if (b[i] == lt) b[i] = up;
-            push(j, 0, 0);
-          }
-        } else if (lt || up) {
-          int t = lt | up;
-          if (dn) {
-            push(j, t, 0);
-          }
-          if (rt) {
-            push(j, 0, t);
-          }
-        } else {
-          if (dn && rt) {
-            push(j, m, m);
-          }
+        inline void clear() {
+            sz = 0;
+            memset(head, -1, sizeof(head));
         }
-      }
+        inline void push(int s) {
+            int x = s % Prime;
+            for (int i=head[x];~i;i=next[i]) {
+                if (state[i] == s) {
+                    key[i] += d;
+                    return;
+                }
+            }
+            state[sz] = s, key[sz] = d;
+            next[sz] = head[x];
+            head[x] = sz++;
+        }
+        void roll() {
+            REP(i, sz) state[i] <<= offset;
+        }
+    } H[2], *H0, *H1;
+
+    int b[M+1], bb[M+1];
+    int encode() {
+        int s = 0; memset(bb, -1, sizeof(bb)); int bn = 1; bb[0] = 0;
+        for (int i=m;i>=0;--i) {
+    #define bi bb[b[i]]
+            if (!~bi) bi = bn++;
+            s <<= offset; s |= bi;
+        }
+        return s;
     }
-    H1->roll();
-  }
+    void decode(int s) {
+        REP(i, m+1) {
+            b[i] = s & mask;
+            s >>= offset;
+        }
+    }
+    void push(int j, int dn, int rt) {
+        b[j] = dn; b[j+1] = rt;
+        H1->push(encode());
+    }
 
-  assert(H1->sz <= 1);
-  cout << (H1->sz == 1 ? H1->key[0] : 0) << endl;
-}
-```
+    int main(){
+    #ifdef ONLINE_JUDGE
+        freopen("pipe.in", "r", stdin);
+        freopen("pipe.out", "w", stdout);
+    #endif
 
-在一些 [状压 DP](./state.md) 问题中，合法的状态可能是稀疏的，为了优化时空复杂度，我们可以使用哈希表存储 DP 状态。对于 cpp 选手，我们可以使用 [std::unordered_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/) ，也可以直接手写，以将状态转移函数也封装于其中。
+        cin >> n >> m; if (m > n) swap(n, m);
+        H0 = H, H1 = H+1; H1->clear(); d = 1; H1->push(0);
+
+        REP(i, n) {
+            REP(j, m) {
+                swap(H0, H1); H1->clear();
+
+                REP(ii, H0->sz) {
+                    decode(H0->state[ii]); d = H0->key[ii];
+                    int lt = b[j], up = b[j+1];
+                    bool dn = i != n-1, rt = j != m-1;
+
+                    if (lt && up) {
+                        if (lt == up) {
+                            if (i == n-1 && j == m-1) {
+                                push(j, 0, 0);
+                            }
+                        } else {
+                            REP(i, m+1) if (b[i] == lt) b[i] = up;
+                            push(j, 0, 0);
+                        }
+                    } else if (lt || up) {
+                        int t = lt | up;
+                        if (dn) {
+                            push(j, t, 0);
+                        }
+                        if (rt) {
+                            push(j, 0, t);
+                        }
+                    } else {
+                        if (dn && rt) {
+                            push(j, m, m);
+                        }
+                    }
+                }
+            }
+            H1->roll();
+        }
+
+        assert(H1->sz <= 1);
+        cout << (H1->sz == 1 ? H1->key[0] : 0) << endl;
+    }
+    ```
+
+
+在一些 [状压 DP](./state.md) 问题中，合法的状态可能是稀疏的，为了优化时空复杂度，我们可以使用哈希表存储 `DP` 状态。对于 `cpp` 选手，我们可以使用 [std::unordered_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/) ，也可以直接手写，以将状态转移函数也封装于其中。
 
 ??? note " 例题[「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
     题目大意：同上题，但有些格子有障碍。
 
 ??? note " 例题[「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
-    题目大意：对于每一个有 m 条回路的方案，对答案的贡献是 2^m，求所有方案的和。
+    题目大意：对于每一个有 `m` 条回路的方案，对答案的贡献是 `2^m`，求所有方案的和。
 
 ### 一条路径
 
