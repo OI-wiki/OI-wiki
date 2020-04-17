@@ -112,7 +112,7 @@ $$
 
 算法总复杂度： $O(n\sqrt{n} )$ 
 
-下面的代码中 `mot` 表示答案的分母 (mother)， `sub` 表示分子， `sqn` 表示块的大小： $\sqrt{n}$ ， `arr` 是输入的数组， `node` 是存储询问的结构体， `tab` 是询问序列（排序后的）， `col` 同上所述。
+下面的代码中 `deno` 表示答案的分母 (denominator)， `nume` 表示分子(numerator)， `sqn` 表示块的大小： $\sqrt{n}$ ， `arr` 是输入的数组， `node` 是存储询问的结构体， `tab` 是询问序列（排序后的）， `col` 同上所述。
 
  **注意：由于 `++l` 和 `--r` 的存在，下面代码中的移动区间的 4 个 for 循环的位置很关键，不能改变它们之间的位置关系。** 
 
@@ -132,7 +132,7 @@ $$
     struct node {
       LL l, r, i;
     };
-    LL n, m, sqn, arr[50005], l, r, ans, col[50005], sub[50005], mot[50005];
+    LL n, m, sqn, arr[50005], l, r, ans, col[50005], nume[50005], deno[50005];
     vector<node> tab;
     bool cmp(node a, node b) {
       if (bi(a.l) == bi(b.l)) return a.r < b.r;
@@ -150,12 +150,12 @@ $$
         for (--l; l >= tab[i].l; l--) ans += col[arr[l]], col[arr[l]]++;
         for (; r > tab[i].r; r--) col[arr[r]]--, ans -= col[arr[r]];
         for (++r; r <= tab[i].r; r++) ans += col[arr[r]], col[arr[r]]++;
-        sub[tab[i].i] = ans, l = tab[i].l, r = tab[i].r;
-        mot[tab[i].i] = ((r - l) * (r - l + 1)) >> 1;
+        nume[tab[i].i] = ans, l = tab[i].l, r = tab[i].r;
+        deno[tab[i].i] = ((r - l) * (r - l + 1)) >> 1;
       }
       for (LL i = 1, gcdn; i <= m; i++)
-        gcdn = gcd(sub[i], mot[i]),
-        printf("%lld/%lld\n", sub[i] / gcdn, mot[i] / gcdn);
+        gcdn = gcd(nume[i], deno[i]),
+        printf("%lld/%lld\n", nume[i] / gcdn, deno[i] / gcdn);
       return 0;
     }
     ```
