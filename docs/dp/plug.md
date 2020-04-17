@@ -215,7 +215,7 @@ struct hashTable {
 
 关于哈希表的复杂度分析，以及开哈希和闭哈希的不同，可以参见《算法导论》中关于散列表的相关章节。
 
-## 状态转移讨论
+#### 状态转移讨论
 
 ```cpp
 REP(ii, H0->sz) {
@@ -357,6 +357,8 @@ REP(ii, H0->sz) {
     }
     ```
 
+#### 习题
+
 ??? note " 习题[「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
     题目大意：有障碍。
 
@@ -381,10 +383,58 @@ REP(ii, H0->sz) {
 
 我们需要在状态中额外记录这两类事件发生的总次数，可以将这个信息编码进状态里（注意，类似这样的额外信息在调整轮廓线的时候，不需要跟着滚动），也可以在 `hashTable` 数组的外面加维。下面的范例程序中我们选择后者。
 
-## 状态转移讨论
+#### 状态转移讨论
 
 ```cpp
-
+REP(i, n) {
+  REP(j, m) {
+    checkMax(ans, A[i][j]); // 需要单独处理一个格子的情况
+    if (!A[i][j]) continue; // 如果有障碍，则跳过，注意这时状态数组不需要滚动
+    swap(H0, H1);
+    REP(c, 3) H1[c].clear(); // c 表示生成和消失事件发生的总次数，最多不超过 2 次
+    REP(c, 3) REP(ii, H0[c].sz) {
+      decode(H0[c].state[ii]); 
+      d = H0[c].key[ii] + A[i][j];
+      int lt = b[j], up = b[j + 1];
+      bool dn = A[i + 1][j], rt = A[i][j + 1];
+      if (lt && up) {
+        if (lt == up) { // 在一条路径问题中，我们不能合并相同的插头。
+          // Cannot deploy here...
+        } else { // 有可能参与合并的两者中有独立插头，但是也可以用同样的代码片段处理
+          REP(i, m + 1) if (b[i] == lt) b[i] = up;
+          push(c, j, 0, 0);
+        }
+      } else if (lt || up) {
+        int t = lt | up;
+        if (dn) {
+          push(c, j, t, 0);
+        }
+        if (rt) {
+          push(c, j, 0, t);
+        }
+        if (c < 2) { // 一个插头消失的情况，如果是独立插头则意味着消失，如果是成对出现的插头则相当于生成了一个独立插头，无论哪一类事件都需要将 c + 1。
+          push(c + 1, j, 0, 0);
+        }
+      } else {
+        d -= A[i][j];
+        H1[c].push(H0[c].state[ii]);
+        d += A[i][j];  // skip，注意本题中不要求覆盖，因而此处可以跳过
+        if (dn && rt) { // 生成一对插头
+          push(c, j, m, m);
+        }
+        if (c < 2) { // 生成一个独立插头
+          if (dn) {
+            push(c + 1, j, m, 0);
+          }
+          if (rt) {
+            push(c + 1, j, 0, m);
+          }
+        }
+      }
+    }
+  }
+  REP(c, 3) H1[c].roll(); // 一行结束，调整轮廓线
+}
 ```
 
 ??? 例题代码
@@ -525,6 +575,16 @@ REP(ii, H0->sz) {
     }
     ```
 
+
+#### 习题
+
+??? note " 习题[「NOI 2010 Day2」旅行路线](https://www.luogu.com.cn/problem/P1933)"
+    题目大意：n × m 的棋盘，棋盘的每个格子有一个 01 权值 T[x][y]，要求寻找一个路径覆盖，满足：
+    - 第 i 个参观的格点 (x, y)，满足 T[x][y] = L[i]
+    - 路径的一端在棋盘的边界上
+    求可行的方案数 mod 11192869。
+
+
 ## 染色模型
 
 ??? note " 例题[「UVA 10572」Black & White](https://vjudge.net/problem/POJ-2411)"
@@ -538,10 +598,7 @@ REP(ii, H0->sz) {
 ## 图论模型
 
 ??? note " 例题[「NOI 2007 Day2」生成树计数](https://www.luogu.com.cn/problem/P2109)"
-    题目大意：。
-
-??? note " 例题[「NOI 2010 Day2」旅行路线](https://www.luogu.com.cn/problem/P1933)"
-    题目大意：。
+    题目大意：给定一个 n 个结点的无向图，每个节点与其前 k 个节点之间有边相连，求该图的生成树个数。
 
 ??? note " 例题[「2015 ACM-ICPC Asia Shenyang Regional Contest - Problem E」Efficient Tree](https://vjudge.net/problem/HDU-5513)"
     题目大意：。
