@@ -30,6 +30,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
+    ```
 
     const int N = 11;
     long long f[2][1 << N], *f0, *f1;
@@ -68,7 +69,6 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ![contour line](./images/contour_line.png)
 
-
 插头：一个格子某个方向的插头存在，表示这个格子在这个方向与相邻格子相连。
 
 ![contour line](./images/plug.png)
@@ -86,6 +86,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
+    ```
 
     const int N = 11;
     long long f[2][1 << (N + 1)], *f0, *f1;
@@ -148,30 +149,34 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 那么下面两组编码方式表示的是相同的状态：
 
-- `0 3 1 0 1 3`
-- `0 1 2 0 2 1`
+-    `0 3 1 0 1 3` 
+-    `0 1 2 0 2 1` 
 
 我们将相同的状态都映射成字典序最小表示，例如在上例中的 `0 1 2 0 2 1` 就是一组最小表示。
 
-我们用 `b[]` 数组表示轮廓线上插头的状态。`bb[]` 表示在最小表示的编码的过程中，每个数字被映射到的最小数字。注意 `0` 表示插头不存在，不能被映射成其他值。
+我们用 `b[]` 数组表示轮廓线上插头的状态。 `bb[]` 表示在最小表示的编码的过程中，每个数字被映射到的最小数字。注意 `0` 表示插头不存在，不能被映射成其他值。
 
 ```cpp
-  int b[M+1], bb[M+1];
-  int encode() {
-      int s = 0; memset(bb, -1, sizeof(bb)); int bn = 1; bb[0] = 0;
-      for (int i=m;i>=0;--i) {
-  #define bi bb[b[i]]
-          if (!~bi) bi = bn++;
-          s <<= offset; s |= bi;
-      }
-      return s;
+int b[M + 1], bb[M + 1];
+int encode() {
+  int s = 0;
+  memset(bb, -1, sizeof(bb));
+  int bn = 1;
+  bb[0] = 0;
+  for (int i = m; i >= 0; --i) {
+#define bi bb[b[i]]
+    if (!~bi) bi = bn++;
+    s <<= offset;
+    s |= bi;
   }
-  void decode(int s) {
-      REP(i, m+1) {
-          b[i] = s & mask;
-          s >>= offset;
-      }
+  return s;
+}
+void decode(int s) {
+  REP(i, m + 1) {
+    b[i] = s & mask;
+    s >>= offset;
   }
+}
 ```
 
 我们注意到插头总是成对出现，成对消失的。因而 `0 1 2 0 1 2` 这样的状态是不合法的。因而合法的状态构成一组括号序列，这提示我们合法状态实际非常稀疏，我们可以利用 `Catalan 序列` 估计状态的规模。另一方面也启发了我们直接使用括号表示进行编码。
@@ -182,7 +187,8 @@ if (s >> j & 1) {       // 如果已被覆盖
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
-    #define REP(i, n) for (int i=0;i<n;++i)
+    #define REP(i, n) for (int i = 0; i < n; ++i)
+    ```
 
     const int M = 10;
     const int offset = 3, mask = (1<<offset)-1;
@@ -288,14 +294,13 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-
 在一些 [状压 DP](./state.md) 问题中，合法的状态可能是稀疏的，为了优化时空复杂度，我们可以使用哈希表存储 `DP` 状态。对于 `cpp` 选手，我们可以使用 [std::unordered_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/) ，也可以直接手写，以将状态转移函数也封装于其中。
 
 ??? note " 例题[「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
     题目大意：同上题，但有些格子有障碍。
 
 ??? note " 例题[「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
-    题目大意：对于每一个有 `m` 条回路的方案，对答案的贡献是 `2^m`，求所有方案的和。
+    题目大意：对于每一个有 `m` 条回路的方案，对答案的贡献是 `2^m` ，求所有方案的和。
 
 ### 一条路径
 
