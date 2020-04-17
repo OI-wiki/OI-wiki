@@ -203,52 +203,51 @@ struct hashTable {
 
 上面的代码中：
 
-- `MaxSZ` 表示合法状态的上界，不必是精确值。
-- `Prime` 是一个小于 MaxSZ 的大素数。
-- `head[]` 表头节点的指针。
-- `next[]` 后续状态的指针。
-- `state[]` 节点的状态。
-- `key[]` 节点的关键字，在本题中是方案数。
-- `clear()` 初始化函数，和手写邻接表类似，我们只需要初始化表头节点的指针。
-- `push()` 状态转移函数，其中 `d` 是一个全局变量（偷懒），表示每次状态转移所带来的增量。如果找到的话就 `+=`，否则就创建一个状态为 `s`，关键字为 `d` 的新节点。
-- `roll()` 迭代完一整行之后，调整轮廓线。
+-    `MaxSZ` 表示合法状态的上界，不必是精确值。
+-    `Prime` 是一个小于 MaxSZ 的大素数。
+-    `head[]` 表头节点的指针。
+-    `next[]` 后续状态的指针。
+-    `state[]` 节点的状态。
+-    `key[]` 节点的关键字，在本题中是方案数。
+-    `clear()` 初始化函数，和手写邻接表类似，我们只需要初始化表头节点的指针。
+-    `push()` 状态转移函数，其中 `d` 是一个全局变量（偷懒），表示每次状态转移所带来的增量。如果找到的话就 `+=` ，否则就创建一个状态为 `s` ，关键字为 `d` 的新节点。
+-    `roll()` 迭代完一整行之后，调整轮廓线。
 
 关于哈希表的复杂度分析，开哈希和闭哈希的不同，可以参见《算法导论》中关于散列表的相关章节。
-
 
 ## 状态转移讨论
 
 ```cpp
 REP(ii, H0->sz) {
-  decode(H0->state[ii]); // 取出状态，并解码
-  d = H0->key[ii]; // 得到增量 delta
-  int lt = b[j], up = b[j + 1]; // 左插头，上插头
-  bool dn = i != n - 1, rt = j != m - 1; // 下插头，右插头
-  if (lt && up) { // 如果左、上均有插头
-    if (lt == up) { // 来自同一个连通块
-      if (i == n - 1 && j == m - 1) { // 只有在最后一个格子时，才能合并，封闭回路。
+  decode(H0->state[ii]);                  // 取出状态，并解码
+  d = H0->key[ii];                        // 得到增量 delta
+  int lt = b[j], up = b[j + 1];           // 左插头，上插头
+  bool dn = i != n - 1, rt = j != m - 1;  // 下插头，右插头
+  if (lt && up) {                         // 如果左、上均有插头
+    if (lt == up) {                       // 来自同一个连通块
+      if (i == n - 1 &&
+          j == m - 1) {  // 只有在最后一个格子时，才能合并，封闭回路。
         push(j, 0, 0);
       }
-    } else { // 否则，必须合并这两个连通块，因为需要本题中需要回路覆盖
-      REP(i, m + 1) if (b[i] == lt) b[i] = up; 
+    } else {  // 否则，必须合并这两个连通块，因为需要本题中需要回路覆盖
+      REP(i, m + 1) if (b[i] == lt) b[i] = up;
       push(j, 0, 0);
     }
-  } else if (lt || up) { // 如果左、上中有一个插头
-    int t = lt | up; // 得到这个插头
-    if (dn) { // 如果可以向下延伸
+  } else if (lt || up) {  // 如果左、上中有一个插头
+    int t = lt | up;      // 得到这个插头
+    if (dn) {             // 如果可以向下延伸
       push(j, t, 0);
     }
-    if (rt) { // 如果可以向右延伸
+    if (rt) {  // 如果可以向右延伸
       push(j, 0, t);
     }
-  } else { // 如果左、上均没有插头
-    if (dn && rt) { //生成一对新插头
+  } else {           // 如果左、上均没有插头
+    if (dn && rt) {  //生成一对新插头
       push(j, m, m);
     }
   }
 }
 ```
-
 
 ??? 例题代码
     ```cpp
@@ -368,15 +367,15 @@ REP(ii, H0->sz) {
     题目大意：著名的男人八题系列之一。解法同上。
 
 ??? note " 习题[「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
-    题目大意：n <= 1000，m = 4，每个回路需要统计两次（逆时针和顺时针），需要高精度。
+    题目大意：n &lt;= 1000，m = 4，每个回路需要统计两次（逆时针和顺时针），需要高精度。
 
 ??? note " 习题[「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
     题目大意：对于每一个有 `m` 条回路的方案，对答案的贡献是 `2^m` ，求所有方案的贡献和。
-    
+
 ### 一条路径
 
 ??? note " 例题[「ZOJ 3213」Beautiful Meadow](https://vjudge.net/problem/ZOJ-3213)"
-    题目大意：一个 N\*M 的方阵（N, M &lt;=8），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和。
+    题目大意：一个 N\*M 的方阵（N, M&lt;=8），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和。
 
 本题是标准的一条路径问题，在一条路径问题中，编码的状态中还会存在不能配对的独立插头。需要在状态转移函数中，额外讨论独立插头的生成、合并与消失的情况。独立插头的生成和消失对应着路径的一端，因而这类事件不会发生超过两次（一次生成一次消失，或者两次生成一次合并），否则最终结果会出现多个连通块的情况。
 
@@ -384,12 +383,15 @@ REP(ii, H0->sz) {
 
 ??? 例题代码
     ```cpp
-#include <bits/stdc++.h>
+    
+    ```
+
+\#include &lt;bits/stdc++.h>
 using namespace std;
-#define REP(i, n) for (int i = 0; i < n; ++i)
-template<class T> inline bool checkMax(T &a,const T b){return a < b ? a = b, 1 : 0;}
+\#define REP(i, n) for (int i = 0; i &lt; n; ++i)
+template<class T>inline bool checkMax(T &a,const T b){return a &lt; b ? a = b, 1 : 0;}
 const int N = 8, M = 8;
-const int offset = 3, mask = (1 << offset) - 1;
+const int offset = 3, mask = (1 &lt;&lt; offset) - 1;
 int A[N+1][M+1];
 int n, m;
 int ans, d;
@@ -405,40 +407,40 @@ struct hashTable {
   inline void push(int s) {
     int x = s % Prime;
     for (int i = head[x]; ~i; i = next[i]) {
-      if (state[i] == s) {
+      if (state[i]== s) {
         checkMax(key[i], d);
         return;
       }
     }
-    state[sz] = s, key[sz] = d;
-    next[sz] = head[x];
-    head[x] = sz++;
+    state[sz]= s, key[sz]= d;
+    next[sz]= head[x];
+    head[x]= sz++;
   }
-  void roll() { REP(i, sz) state[i] <<= offset; }
-} H[2][3], *H0, *H1;
+  void roll() { REP(i, sz) state[i]&lt;&lt;= offset;}
+} H[2][3],_H0,_H1;
 int b[M + 1], bb[M + 1];
 int encode() {
   int s = 0;
   memset(bb, -1, sizeof(bb));
   int bn = 1;
-  bb[0] = 0;
-  for (int i = m; i >= 0; --i) {
-#define bi bb[b[i]]
+  bb[0]= 0;
+  for (int i = m; i>= 0; --i) {
+\#define bi bb\[b[i]]
     if (!~bi) bi = bn++;
-    s <<= offset;
+    s &lt;&lt;= offset;
     s |= bi;
   }
   return s;
 }
 void decode(int s) {
   REP(i, m + 1) {
-    b[i] = s & mask;
+    b[i]= s & mask;
     s >>= offset;
   }
 }
 void push(int c, int j, int dn, int rt) {
-  b[j] = dn;
-  b[j + 1] = rt;
+  b[j]= dn;
+  b[j + 1]= rt;
   H1[c].push(encode());
 }
 void init() {
@@ -460,8 +462,7 @@ void solve() {
       REP(c, 3) H1[c].clear();
       REP(c, 3) REP(ii, H0[c].sz) {
         decode(H0[c].state[ii]);
-        d = H0[c].key[ii] + A[i][j];
-
+        d = H0[c].key[ii]+ A[i][j];
 
         int lt = b[j], up = b[j + 1];
         bool dn = A[i+1][j], rt = A[i][j+1];
@@ -501,19 +502,20 @@ void solve() {
       }
     }
     REP(c, 3) H1[c].roll();
-  }
-  REP(ii, H1[2].sz) checkMax(ans, H1[2].key[ii]);
-  cout << ans << endl;
+
 }
+  REP(ii, H1[2].sz) checkMax(ans, H1[2].key[ii]);
+  cout &lt;&lt;ans &lt;&lt; endl;}
 int main() {
-#ifndef ONLINE_JUDGE
+\#ifndef ONLINE_JUDGE
   freopen("in.txt", "r", stdin);
-#endif
+\#endif
     int T; cin >> T; while (T--){
         init();
         solve();
     }
 }
+
     ```
 
 ## 染色模型
