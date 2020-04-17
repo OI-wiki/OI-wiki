@@ -61,6 +61,16 @@ int main() {
 
 在后面的小节中，我们会看到两种方法各有千秋，虽然在本题中她们并没有太大不同。逐行 DP 更容易将转移函数转化为矩阵形式，从而使用矩阵乘法进行加速；逐格 DP 则转移函数更加局部，从而更容易应对转移函数错综复杂的情况。
 
+### 术语
+阶段：动态规划执行的顺序，后续阶段的结果只与前序阶段的结果有关（无后效性）。很多 DP 问题可以有多种划分阶段的方式。例如在背包问题中，我们通常既可以按照物品划分阶段，也可以按照背包容量划分阶段（外层循环先枚举什么）。而在多米诺骨牌问题中，我们可以按照行、列、格子以及对角线等特征划分阶段。
+
+轮廓线：已决策状态和未决策状态的分界线
+。
+![contour line](./images/contour_line.png)
+
+
+插头：一个格子某个方向的插头存在，表示这个格子在这个方向与相邻格子相连。
+
 ## 路径模型
 
 ### 多条回路问题
@@ -136,6 +146,118 @@ int main() {
 通常的编码方案有括号表示和最小表示，这里我们介绍后者，因为最小表示的适用范围通常更广。
 
 #### 手写哈希
+
+??? 例题代码
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define REP(i, n) for (int i=0;i<n;++i)
+
+const int M = 10;
+const int offset = 3, mask = (1<<offset)-1;
+
+int n, m;
+long long ans, d;
+
+const int MaxSZ = 16796, Prime = 9973;
+struct hashTable {
+    int head[Prime], next[MaxSZ], sz;
+    int state[MaxSZ];
+    long long key[MaxSZ];
+
+    inline void clear() {
+        sz = 0;
+        memset(head, -1, sizeof(head));
+    }
+    inline void push(int s) {
+        int x = s % Prime;
+        for (int i=head[x];~i;i=next[i]) {
+            if (state[i] == s) {
+                key[i] += d;
+                return;
+            }
+        }
+        state[sz] = s, key[sz] = d;
+        next[sz] = head[x];
+        head[x] = sz++;
+    }
+    void roll() {
+        REP(i, sz) state[i] <<= offset;
+    }
+} H[2], *H0, *H1;
+
+int b[M+1], bb[M+1];
+int encode() {
+    int s = 0; memset(bb, -1, sizeof(bb)); int bn = 1; bb[0] = 0;
+    for (int i=m;i>=0;--i) {
+#define bi bb[b[i]]
+        if (!~bi) bi = bn++;
+        s <<= offset; s |= bi;
+    }
+    return s;
+}
+void decode(int s) {
+    REP(i, m+1) {
+        b[i] = s & mask;
+        s >>= offset;
+    }
+}
+void push(int j, int dn, int rt) {
+    b[j] = dn; b[j+1] = rt;
+    H1->push(encode());
+}
+
+int main(){
+#ifdef ONLINE_JUDGE
+    freopen("pipe.in", "r", stdin);
+    freopen("pipe.out", "w", stdout);
+#endif
+
+    cin >> n >> m; if (m > n) swap(n, m);
+    H0 = H, H1 = H+1; H1->clear(); d = 1; H1->push(0);
+
+    REP(i, n) {
+        REP(j, m) {
+            swap(H0, H1); H1->clear();
+
+            REP(ii, H0->sz) {
+                decode(H0->state[ii]); d = H0->key[ii];
+                int lt = b[j], up = b[j+1];
+                bool dn = i != n-1, rt = j != m-1;
+
+                if (lt && up) {
+                    if (lt == up) {
+                        if (i == n-1 && j == m-1) {
+                            push(j, 0, 0);
+                        }
+                    } else {
+                        REP(i, m+1) if (b[i] == lt) b[i] = up;
+                        push(j, 0, 0);
+                    }
+                } else if (lt || up) {
+                    int t = lt | up;
+                    if (dn) {
+                        push(j, t, 0);
+                    }
+                    if (rt) {
+                        push(j, 0, t);
+                    }
+                } else {
+                    if (dn && rt) {
+                        push(j, m, m);
+                    }
+                }
+            }
+        }
+        H1->roll();
+    }
+
+    assert(H1->sz <= 1);
+    cout << (H1->sz == 1 ? H1->key[0] : 0) << endl;
+}
+```
+
 
 在一些 [状压 DP](./state.md) 问题中，合法的状态可能是稀疏的，为了优化时空复杂度，我们可以使用哈希表存储 DP 状态。对于 cpp 选手，我们可以使用 [std::unordered_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/) ，也可以直接手写，以将状态转移函数也封装于其中。
 
