@@ -72,7 +72,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ## 路径模型
 
-### 多条回路问题
+### 多条回路
 
 ??? note " 例题[「HDU 1693」Eat the Trees](https://vjudge.net/problem/HDU-1693)"
     题目大意：求用若干条回路覆盖 N×M 棋盘的方案数，有些位置有障碍。
@@ -135,7 +135,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 状态编码
 
-通常的编码方案有括号表示和最小表示，我们首先介绍后者。我们用长度 `m+1` 的整形数组，记录轮廓线上每个插头的状态，0 表示没有插头，并约定连通的插头用相同的数字进行标记。
+通常的编码方案有括号表示和最小表示，这里着重介绍泛用性更好的最小表示。我们用长度 `m+1` 的整形数组，记录轮廓线上每个插头的状态，0 表示没有插头，并约定连通的插头用相同的数字进行标记。
 
 那么下面两组编码方式表示的是相同的状态：
 
@@ -169,7 +169,7 @@ void decode(int s) {
 }
 ```
 
-我们注意到插头总是成对出现，成对消失的。因而 `0 1 2 0 1 2` 这样的状态是不合法的。因而合法的状态构成一组括号序列，这提示我们合法状态实际非常稀疏，我们可以利用 `Catalan 序列` 估计状态的规模。另一方面也启发了我们直接使用括号表示进行编码。
+我们注意到插头总是成对出现，成对消失的。因而 `0 1 2 0 1 2` 这样的状态是不合法的。合法的状态构成一组括号序列，实际中合法状态可能是非常稀疏的。
 
 #### 手写哈希
 
@@ -203,8 +203,8 @@ struct hashTable {
 
 上面的代码中：
 
--    `MaxSZ` 表示合法状态的上界，不必是精确值。
--    `Prime` 是一个小于 MaxSZ 的大素数。
+-    `MaxSZ` 表示合法状态的上界，可以估计，也可以预处理出较为精确的值。
+-    `Prime` 一个小于 `MaxSZ` 的大素数。
 -    `head[]` 表头节点的指针。
 -    `next[]` 后续状态的指针。
 -    `state[]` 节点的状态。
@@ -213,7 +213,7 @@ struct hashTable {
 -    `push()` 状态转移函数，其中 `d` 是一个全局变量（偷懒），表示每次状态转移所带来的增量。如果找到的话就 `+=` ，否则就创建一个状态为 `s` ，关键字为 `d` 的新节点。
 -    `roll()` 迭代完一整行之后，调整轮廓线。
 
-关于哈希表的复杂度分析，开哈希和闭哈希的不同，可以参见《算法导论》中关于散列表的相关章节。
+关于哈希表的复杂度分析，以及开哈希和闭哈希的不同，可以参见《算法导论》中关于散列表的相关章节。
 
 ## 状态转移讨论
 
@@ -379,143 +379,142 @@ REP(ii, H0->sz) {
 
 本题是标准的一条路径问题，在一条路径问题中，编码的状态中还会存在不能配对的独立插头。需要在状态转移函数中，额外讨论独立插头的生成、合并与消失的情况。独立插头的生成和消失对应着路径的一端，因而这类事件不会发生超过两次（一次生成一次消失，或者两次生成一次合并），否则最终结果会出现多个连通块的情况。
 
-我们需要在状态中额外记录这两类事件发生的总次数，可以将这个信息编码进状态里，也可以在 hashTable 数组的外面加维。下面的范例程序中我们选择后者。
+我们需要在状态中额外记录这两类事件发生的总次数，可以将这个信息编码进状态里（注意，类似这样的额外信息在调整轮廓线的时候，不需要跟着滚动），也可以在 `hashTable` 数组的外面加维。下面的范例程序中我们选择后者。
+
+## 状态转移讨论
+
+```cpp
+```
 
 ??? 例题代码
     ```cpp
-    
-    ```
-
-\#include &lt;bits/stdc++.h>
-using namespace std;
-\#define REP(i, n) for (int i = 0; i &lt; n; ++i)
-template<class T>inline bool checkMax(T &a,const T b){return a &lt; b ? a = b, 1 : 0;}
-const int N = 8, M = 8;
-const int offset = 3, mask = (1 &lt;&lt; offset) - 1;
-int A[N+1][M+1];
-int n, m;
-int ans, d;
-const int MaxSZ = 16796, Prime = 9973;
-struct hashTable {
-  int head[Prime], next[MaxSZ], sz;
-  int state[MaxSZ];
-  int key[MaxSZ];
-  inline void clear() {
-    sz = 0;
-    memset(head, -1, sizeof(head));
-  }
-  inline void push(int s) {
-    int x = s % Prime;
-    for (int i = head[x]; ~i; i = next[i]) {
-      if (state[i]== s) {
-        checkMax(key[i], d);
-        return;
+    #include <bits/stdc++.h>
+    using namespace std;
+    #define REP(i, n) for (int i = 0; i < n; ++i)
+    template<class T> inline bool checkMax(T &a,const T b){return a < b ? a = b, 1 : 0;}
+    const int N = 8, M = 8;
+    const int offset = 3, mask = (1 << offset) - 1;
+    int A[N+1][M+1];
+    int n, m;
+    int ans, d;
+    const int MaxSZ = 16796, Prime = 9973;
+    struct hashTable {
+      int head[Prime], next[MaxSZ], sz;
+      int state[MaxSZ];
+      int key[MaxSZ];
+      inline void clear() {
+        sz = 0;
+        memset(head, -1, sizeof(head));
+      }
+      inline void push(int s) {
+        int x = s % Prime;
+        for (int i = head[x]; ~i; i = next[i]) {
+          if (state[i] == s) {
+            checkMax(key[i], d);
+            return;
+          }
+        }
+        state[sz] = s, key[sz] = d;
+        next[sz] = head[x];
+        head[x] = sz++;
+      }
+      void roll() { REP(i, sz) state[i] <<= offset; }
+    } H[2][3], *H0, *H1;
+    int b[M + 1], bb[M + 1];
+    int encode() {
+      int s = 0;
+      memset(bb, -1, sizeof(bb));
+      int bn = 1;
+      bb[0] = 0;
+      for (int i = m; i >= 0; --i) {
+    #define bi bb[b[i]]
+        if (!~bi) bi = bn++;
+        s <<= offset;
+        s |= bi;
+      }
+      return s;
+    }
+    void decode(int s) {
+      REP(i, m + 1) {
+        b[i] = s & mask;
+        s >>= offset;
       }
     }
-    state[sz]= s, key[sz]= d;
-    next[sz]= head[x];
-    head[x]= sz++;
-  }
-  void roll() { REP(i, sz) state[i]&lt;&lt;= offset;}
-} H[2][3],_H0,_H1;
-int b[M + 1], bb[M + 1];
-int encode() {
-  int s = 0;
-  memset(bb, -1, sizeof(bb));
-  int bn = 1;
-  bb[0]= 0;
-  for (int i = m; i>= 0; --i) {
-\#define bi bb\[b[i]]
-    if (!~bi) bi = bn++;
-    s &lt;&lt;= offset;
-    s |= bi;
-  }
-  return s;
-}
-void decode(int s) {
-  REP(i, m + 1) {
-    b[i]= s & mask;
-    s >>= offset;
-  }
-}
-void push(int c, int j, int dn, int rt) {
-  b[j]= dn;
-  b[j + 1]= rt;
-  H1[c].push(encode());
-}
-void init() {
-    cin >> n >> m;
-    H0 = H[0], H1 = H[1];
-    REP(c, 3) H1[c].clear();
-    d = 0;
-    H1[0].push(0);
-    memset(A, 0, sizeof(A));
-    REP(i, n) REP(j, m) cin >> A[i][j];
-}
-void solve() {
-    ans = 0;
-  REP(i, n) {
-    REP(j, m) {
-        checkMax(ans, A[i][j]);
-        if (!A[i][j]) continue;
-      swap(H0, H1);
-      REP(c, 3) H1[c].clear();
-      REP(c, 3) REP(ii, H0[c].sz) {
-        decode(H0[c].state[ii]);
-        d = H0[c].key[ii]+ A[i][j];
-
-        int lt = b[j], up = b[j + 1];
-        bool dn = A[i+1][j], rt = A[i][j+1];
-
-        if (lt && up) {
-          if (lt == up) {
-              // Cannot deploy here...
-          } else {
-            REP(i, m + 1) if (b[i] == lt) b[i] = up;
-            push(c, j, 0, 0);
-          }
-        } else if (lt || up) {
-          int t = lt | up;
-          if (dn) {
-            push(c, j, t, 0);
-          }
-          if (rt) {
-            push(c, j, 0, t);
-          }
-          if (c < 2) {
-            push(c+1, j, 0, 0);
-          }
-        } else {
-            d -= A[i][j]; H1[c].push(H0[c].state[ii]); d += A[i][j]; // skip
-          if (dn && rt) {
-            push(c, j, m, m);
-          }
-          if (c < 2) {
-            if (dn) {
-                push(c+1, j, m, 0);
-            }
-            if (rt) {
-                push(c+1, j, 0, m);
+    void push(int c, int j, int dn, int rt) {
+      b[j] = dn;
+      b[j + 1] = rt;
+      H1[c].push(encode());
+    }
+    void init() {
+        cin >> n >> m;
+        H0 = H[0], H1 = H[1];
+        REP(c, 3) H1[c].clear();
+        d = 0;
+        H1[0].push(0);
+        memset(A, 0, sizeof(A));
+        REP(i, n) REP(j, m) cin >> A[i][j];
+    }
+    void solve() {
+        ans = 0;
+      REP(i, n) {
+        REP(j, m) {
+            checkMax(ans, A[i][j]);
+            if (!A[i][j]) continue;
+          swap(H0, H1);
+          REP(c, 3) H1[c].clear();
+          REP(c, 3) REP(ii, H0[c].sz) {
+            decode(H0[c].state[ii]);
+            d = H0[c].key[ii] + A[i][j];
+            int lt = b[j], up = b[j + 1];
+            bool dn = A[i+1][j], rt = A[i][j+1];
+            if (lt && up) {
+              if (lt == up) {
+                  // Cannot deploy here...
+              } else {
+                REP(i, m + 1) if (b[i] == lt) b[i] = up;
+                push(c, j, 0, 0);
+              }
+            } else if (lt || up) {
+              int t = lt | up;
+              if (dn) {
+                push(c, j, t, 0);
+              }
+              if (rt) {
+                push(c, j, 0, t);
+              }
+              if (c < 2) {
+                push(c+1, j, 0, 0);
+              }
+            } else {
+                d -= A[i][j]; H1[c].push(H0[c].state[ii]); d += A[i][j]; // skip
+              if (dn && rt) {
+                push(c, j, m, m);
+              }
+              if (c < 2) {
+                if (dn) {
+                    push(c+1, j, m, 0);
+                }
+                if (rt) {
+                    push(c+1, j, 0, m);
+                }
+              }
             }
           }
         }
+        REP(c, 3) H1[c].roll();
       }
+      REP(ii, H1[2].sz) checkMax(ans, H1[2].key[ii]);
+      cout << ans << endl;
     }
-    REP(c, 3) H1[c].roll();
-
-}
-  REP(ii, H1[2].sz) checkMax(ans, H1[2].key[ii]);
-  cout &lt;&lt;ans &lt;&lt; endl;}
-int main() {
-\#ifndef ONLINE_JUDGE
-  freopen("in.txt", "r", stdin);
-\#endif
-    int T; cin >> T; while (T--){
-        init();
-        solve();
+    int main() {
+    #ifndef ONLINE_JUDGE
+      freopen("in.txt", "r", stdin);
+    #endif
+        int T; cin >> T; while (T--){
+            init();
+            solve();
+        }
     }
-}
-
     ```
 
 ## 染色模型
