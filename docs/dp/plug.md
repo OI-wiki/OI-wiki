@@ -367,7 +367,7 @@ REP(ii, H0->sz) {
     题目大意：著名的男人八题系列之一。解法同上。
 
 ??? note " 习题[「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
-    题目大意：n &lt;= 1000，m = 4，每个回路需要统计两次（逆时针和顺时针），需要高精度。
+    题目大意：n&lt;= 1000，m = 4，每个回路需要统计两次（逆时针和顺时针），需要高精度。
 
 ??? note " 习题[「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
     题目大意：对于每一个有 `m` 条回路的方案，对答案的贡献是 `2^m` ，求所有方案的贡献和。
@@ -384,6 +384,7 @@ REP(ii, H0->sz) {
 ## 状态转移讨论
 
 ```cpp
+
 ```
 
 ??? 例题代码
@@ -391,10 +392,13 @@ REP(ii, H0->sz) {
     #include <bits/stdc++.h>
     using namespace std;
     #define REP(i, n) for (int i = 0; i < n; ++i)
-    template<class T> inline bool checkMax(T &a,const T b){return a < b ? a = b, 1 : 0;}
+    template <class T>
+    inline bool checkMax(T &a, const T b) {
+      return a < b ? a = b, 1 : 0;
+    }
     const int N = 8, M = 8;
     const int offset = 3, mask = (1 << offset) - 1;
-    int A[N+1][M+1];
+    int A[N + 1][M + 1];
     int n, m;
     int ans, d;
     const int MaxSZ = 16796, Prime = 9973;
@@ -446,30 +450,30 @@ REP(ii, H0->sz) {
       H1[c].push(encode());
     }
     void init() {
-        cin >> n >> m;
-        H0 = H[0], H1 = H[1];
-        REP(c, 3) H1[c].clear();
-        d = 0;
-        H1[0].push(0);
-        memset(A, 0, sizeof(A));
-        REP(i, n) REP(j, m) cin >> A[i][j];
+      cin >> n >> m;
+      H0 = H[0], H1 = H[1];
+      REP(c, 3) H1[c].clear();
+      d = 0;
+      H1[0].push(0);
+      memset(A, 0, sizeof(A));
+      REP(i, n) REP(j, m) cin >> A[i][j];
     }
     void solve() {
-        ans = 0;
+      ans = 0;
       REP(i, n) {
         REP(j, m) {
-            checkMax(ans, A[i][j]);
-            if (!A[i][j]) continue;
+          checkMax(ans, A[i][j]);
+          if (!A[i][j]) continue;
           swap(H0, H1);
           REP(c, 3) H1[c].clear();
           REP(c, 3) REP(ii, H0[c].sz) {
             decode(H0[c].state[ii]);
             d = H0[c].key[ii] + A[i][j];
             int lt = b[j], up = b[j + 1];
-            bool dn = A[i+1][j], rt = A[i][j+1];
+            bool dn = A[i + 1][j], rt = A[i][j + 1];
             if (lt && up) {
               if (lt == up) {
-                  // Cannot deploy here...
+                // Cannot deploy here...
               } else {
                 REP(i, m + 1) if (b[i] == lt) b[i] = up;
                 push(c, j, 0, 0);
@@ -483,19 +487,21 @@ REP(ii, H0->sz) {
                 push(c, j, 0, t);
               }
               if (c < 2) {
-                push(c+1, j, 0, 0);
+                push(c + 1, j, 0, 0);
               }
             } else {
-                d -= A[i][j]; H1[c].push(H0[c].state[ii]); d += A[i][j]; // skip
+              d -= A[i][j];
+              H1[c].push(H0[c].state[ii]);
+              d += A[i][j];  // skip
               if (dn && rt) {
                 push(c, j, m, m);
               }
               if (c < 2) {
                 if (dn) {
-                    push(c+1, j, m, 0);
+                  push(c + 1, j, m, 0);
                 }
                 if (rt) {
-                    push(c+1, j, 0, m);
+                  push(c + 1, j, 0, m);
                 }
               }
             }
@@ -510,10 +516,12 @@ REP(ii, H0->sz) {
     #ifndef ONLINE_JUDGE
       freopen("in.txt", "r", stdin);
     #endif
-        int T; cin >> T; while (T--){
-            init();
-            solve();
-        }
+      int T;
+      cin >> T;
+      while (T--) {
+        init();
+        solve();
+      }
     }
     ```
 
