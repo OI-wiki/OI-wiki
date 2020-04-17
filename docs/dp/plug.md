@@ -30,12 +30,9 @@ if (s >> j & 1) {       // 如果已被覆盖
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
-    ```
-
     const int N = 11;
     long long f[2][1 << N], *f0, *f1;
     int n, m;
-
     int main() {
       while (cin >> n >> m && n) {
         f0 = f[0];
@@ -86,12 +83,9 @@ if (s >> j & 1) {       // 如果已被覆盖
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
-    ```
-
     const int N = 11;
     long long f[2][1 << (N + 1)], *f0, *f1;
     int n, m;
-
     int main() {
       int T;
       cin >> T;
@@ -101,7 +95,6 @@ if (s >> j & 1) {       // 如果已被覆盖
         f1 = f[1];
         fill(f1, f1 + (1 << m + 1), 0);
         f1[0] = 1;
-
         for (int i = 0; i < n; ++i) {
           for (int j = 0; j < m; ++j) {
             bool bad;
@@ -113,7 +106,6 @@ if (s >> j & 1) {       // 如果已被覆盖
             for (int s = 0; s < 1 << m + 1; ++s)
               if (u) {
                 bool lt = s >> j & 1, up = s >> j + 1 & 1;
-
                 if (bad) {
                   if (!lt && !up) f1[s] += u;
                 } else {
@@ -122,12 +114,10 @@ if (s >> j & 1) {       // 如果已被覆盖
                 }
               }
           }
-
           swap(f0, f1);
           fill(f1, f1 + (1 << m + 1), 0);
           for (int s = 0; s < 1 << m; ++s) f1[s << 1] = u;
         }
-
         printf("Case %d: There are %lld ways to eat the trees.\n", Case, f1[0]);
       }
     }
@@ -188,20 +178,15 @@ void decode(int s) {
     #include <bits/stdc++.h>
     using namespace std;
     #define REP(i, n) for (int i = 0; i < n; ++i)
-    ```
-
     const int M = 10;
-    const int offset = 3, mask = (1<<offset)-1;
-
+    const int offset = 3, mask = (1 << offset)-1;
     int n, m;
     long long ans, d;
-
     const int MaxSZ = 16796, Prime = 9973;
     struct hashTable {
         int head[Prime], next[MaxSZ], sz;
         int state[MaxSZ];
         long long key[MaxSZ];
-
         inline void clear() {
             sz = 0;
             memset(head, -1, sizeof(head));
@@ -222,7 +207,6 @@ void decode(int s) {
             REP(i, sz) state[i] <<= offset;
         }
     } H[2], *H0, *H1;
-
     int b[M+1], bb[M+1];
     int encode() {
         int s = 0; memset(bb, -1, sizeof(bb)); int bn = 1; bb[0] = 0;
@@ -243,25 +227,20 @@ void decode(int s) {
         b[j] = dn; b[j+1] = rt;
         H1->push(encode());
     }
-
     int main(){
     #ifdef ONLINE_JUDGE
         freopen("pipe.in", "r", stdin);
         freopen("pipe.out", "w", stdout);
     #endif
-
         cin >> n >> m; if (m > n) swap(n, m);
         H0 = H, H1 = H+1; H1->clear(); d = 1; H1->push(0);
-
         REP(i, n) {
             REP(j, m) {
                 swap(H0, H1); H1->clear();
-
                 REP(ii, H0->sz) {
                     decode(H0->state[ii]); d = H0->key[ii];
                     int lt = b[j], up = b[j+1];
                     bool dn = i != n-1, rt = j != m-1;
-
                     if (lt && up) {
                         if (lt == up) {
                             if (i == n-1 && j == m-1) {
@@ -288,7 +267,6 @@ void decode(int s) {
             }
             H1->roll();
         }
-
         assert(H1->sz <= 1);
         cout << (H1->sz == 1 ? H1->key[0] : 0) << endl;
     }
