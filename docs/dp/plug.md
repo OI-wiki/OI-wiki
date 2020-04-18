@@ -424,7 +424,7 @@ REP(i, n) {
         }
         // 一个插头消失的情况，如果是独立插头则意味着消失，如果是成对出现的插头则相当于生成了一个独立插头，
         // 无论哪一类事件都需要将 c + 1。
-        if (c < 2) {                  
+        if (c < 2) {
           push(c + 1, j, 0, 0);
         }
       } else {
@@ -604,7 +604,7 @@ REP(i, n) {
 
     ![black_and_white1](./images/black_and_white1.png)
 
-不考虑连通性的性质，那么就是 [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197)，不难用 [状压 DP](./state.md) 解决。现在，我们需要在状态中同时体现颜色和连通性的信息，我们对轮廓线的状态进行编码，二进制的低位表示轮廓线上的连通性信息，高位表示轮廓线上的颜色信息即可。
+不考虑连通性的性质，那么就是 [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197) ，不难用 [状压 DP](./state.md) 解决。现在，我们需要在状态中同时体现颜色和连通性的信息，我们对轮廓线的状态进行编码，二进制的低位表示轮廓线上的连通性信息，高位表示轮廓线上的颜色信息即可。
 
 这样虽然状态中会有冗余信息，连通的区域颜色一定相同，但是因为用了哈希表和最小表示，相同的状态会被映射在一起，所以问题不大。
 
@@ -613,6 +613,7 @@ REP(i, n) {
     const int N = 8, M = 1 << (20), _Mc = 2, _Mb = 4;
     int A[N][N];
     int n, m;
+    ```
 
     int c[N+2];
     int b[N+2], bb[N+3];
@@ -831,7 +832,6 @@ REP(i, n) {
         }
     }
     ```
-
 
 ??? note " 例题[「HDU 4796」Winter's Coming](https://vjudge.net/problem/HDU-4796)"
     题目大意：在 N×M 的棋盘内对未染色的格点进行黑白灰染色，要求所有黑色区域和白色区域连通，且黑色区域与白色区域分别与棋盘的上下边界连通，且其中黑色区域与白色区域不能相邻。每个格子有对应的代价，求一组染色方案，最小化灰色区域的代价。
