@@ -1,4 +1,4 @@
-有些 [状压 DP](./state.md) 问题要求我们记录状态的连通性信息，这类问题一般被形象的称为插头 DP 或连通性状态压缩 DP。例如格点图的哈密顿路径总数，求、棋盘的黑白染色方案使得相同颜色之间连通，特定图的生成树计数等。她们通常需要我们对状态的连通性进行编码，逐格讨论状态转移中连通性的变化。
+有些 [状压 DP](./state.md) 问题要求我们记录状态的连通性信息，这类问题一般被形象的称为插头 DP 或连通性状态压缩 DP。例如格点图的哈密顿路径计数，求棋盘的黑白染色方案满足相同颜色之间形成一个连通块的方案数，以及特定图的生成树计数等等。这些问题通常需要我们对状态的连通性进行编码，讨论状态转移过程中连通性的变化。
 
 ## 骨牌覆盖与轮廓线 DP
 
@@ -136,6 +136,8 @@ if (s >> j & 1) {       // 如果已被覆盖
     题目大意：同上题，但格子变成了六边形。
 
 ### 一条回路
+
+#### 例题 「Andrew Stankevich Contest 16 - Problem F」Pipe Layout
 
 ??? note " 例题[「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
     题目大意：求用一条回路覆盖 `N×M` 棋盘的方案数。
@@ -385,6 +387,8 @@ REP(ii, H0->sz) {
 
 ### 一条路径
 
+#### 例题「ZOJ 3213」Beautiful Meadow
+
 ??? note " 例题[「ZOJ 3213」Beautiful Meadow](https://vjudge.net/problem/ZOJ-3213)"
     题目大意：一个 N\*M 的方阵（N, M&lt;=8），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和。
 
@@ -392,7 +396,7 @@ REP(ii, H0->sz) {
 
 我们需要在状态中额外记录这两类事件发生的总次数，可以将这个信息编码进状态里（注意，类似这样的额外信息在调整轮廓线的时候，不需要跟着滚动），也可以在 `hashTable` 数组的外面加维。下面的范例程序中我们选择后者。
 
-#### 状态转移讨论
+#### 状态转移
 
 ```cpp
 REP(i, n) {
@@ -599,148 +603,203 @@ REP(i, n) {
 
 ## 染色模型
 
+除了路径模型之外，还有一类常见的模型，需要我们对棋盘进行染色，相邻的相同颜色节点被视为连通。在路径类问题中，状态转移的时候我们枚举当前路径的方向，而在染色类问题中，我们枚举当前节点染何种颜色。在染色模型中，状态中处在相同连通性的节点可能不止两个。但总体来说依然大同小异。我们不妨来看一个经典的例题。
+
+### 例题 「UVA 10572」Black & White
+
 ??? note " 例题[「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572)"
-    题目大意：在 N×M 的棋盘内对未染色的格点进行黑白染色，要求所有黑色区域和白色区域连通，且任意一个 2x2 的子矩形内的颜色不能完全相同（例如下图中的情况非法），求合法的方案数。
+    题目大意：在 N×M 的棋盘内对未染色的格点进行黑白染色，要求所有黑色区域和白色区域连通，且任意一个 2x2 的子矩形内的颜色不能完全相同（例如下图中的情况非法），求合法的方案数，并构造一组合法的方案。
 
     ![black_and_white1](./images/black_and_white1.png)
 
-不考虑连通性的性质，那么就是 [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197) ，不难用 [状压 DP](./state.md) 解决。现在，我们需要在状态中同时体现颜色和连通性的信息，我们对轮廓线的状态进行编码，二进制的低位表示轮廓线上的连通性信息，高位表示轮廓线上的颜色信息即可。
 
-这样虽然状态中会有冗余信息，连通的区域颜色一定相同，但是因为用了哈希表和最小表示，相同的状态会被映射在一起，所以问题不大。
+#### 状态编码
+我们先考虑状态编码。不考虑连通性的性质，那么就是 [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197) ，不难用 [状压 DP](./state.md) 直接解决。现在我们需要在状态中同时体现颜色和连通性的信息，考察轮廓线上每个位置的状态，二进制的每 `Offset` 位描述轮廓线上的一个位置，因为只有黑白两种颜色，我们用最低位的奇偶性表示颜色，其余部分示连通性。
+
+考虑第一行上面的节点，和第一列左侧节点，如果要避免特判的话，可以考虑引入第三种颜色区分它们，这里我们观察到这些边界状态的连通性信息一定为 0，所以不需要对第三种颜色再进行额外编码。
+
+在路径问题中我们的轮廓线是由 `m` 个上插头与 `1` 个左插头组成的。本题中，由于我们还需要判断当前格点为右下角的 `2x2` 子矩形是否合法，所以需要记录左上角格子的颜色，因此轮廓线的长度依然是 `m+1`。
+
+这样的编码方案中依然保留了很多冗余信息，（连通的区域颜色一定相同，且左上角的格子只需要颜色信息不需要连通性），但是因为已经用了哈希表和最小表示，对时间复杂度的影响不大，为了降低编程压力，就不再细化了。
+
+在最多情况下（例如第一行黑白相间），每个插头的连通性信息都不一样，因此我们需要 `4` 位二进制位记录连通性，再加上颜色信息，本题的 `Offset` 为 `5` 位。
+
+#### 手写哈希
+
+
+#### 方案构造
+有了上面的信息，我们就可以容易的构造方案了。首先遍历当前哈希表中的状态，如果连通块数目不超过 `2`，那么统计方案数。如果方案数不为 `0`，我们倒序用 `pre` 数组构造出方案，注意每一行的末尾因为我们执行了 `Roll()` 操作，颜色需要取 `c[j+1]`。
+
+```cpp
+void print() {
+    T_key z = 0; int u; REP(i, H1->sz) {
+        decode(H1->state[i]);
+        if (*max_element(b+1, b+m+1) <= 2) {
+            z += H1->key[i];
+            u = i;
+        }
+    }
+    cout << z << endl;
+    if (z) {
+        DWN(i, n, 0) {
+            B[i][m] = 0;
+            DWN(j, m, 0) {
+                decode(H[i][j].state[u]);
+                int cc = j == m-1 ? c[j+1] : c[j];
+                B[i][j] = cc ? 'o' : '#';
+                u = H[i][j].pre[u];
+            }
+        }
+        REP(i, n) puts(B[i]);
+    }
+    puts("");
+}
+```
+
+#### 状态转移
+
+我们记：
+
+- `cc` 当前正在染色的格子的颜色
+- `lf` 左边格子的颜色
+- `up` 上边格子的颜色
+- `lu` 左上格子的颜色
+
+我们有：
+
+```cpp
+    int lf = j ? c[j-1] : -1, lu = b[j] ? c[j] : -1, up = b[j+1] ? c[j+1] : -1;
+```    
+
+这里 `-1` 表示颜色不存在（没有颜色也是颜色的一种！）。接下来讨论状态转移，一共有三种情况，合并，继承与生成：
+
+```cpp
+    if (lf == cc && up == cc){ // 合并，如果和两侧的颜色均一致
+        if (lu == cc) return; // 判掉 2x2 子矩形均相同的情况
+        int lf_b = b[j-1], up_b = b[j+1];
+        REP(i, m+1) if (b[i] == up_b){
+            b[i] = lf_b;
+        }
+        b[j] = lf_b;
+    }
+    else if (lf == cc || up == cc){ // 继承，如果和一个方向的颜色一致
+        if (lf == cc) b[j] = b[j-1]; else b[j] = b[j+1]; // 继承其连通性信息
+    }
+    else{ // 生成，如果均不一样，那么生成一个新的连通块
+        if (i == n-1 && j == m-1 && lu == cc) return; // 特判
+        b[j] = m+2;
+    }
+```
+
+对于最后一种情况需要注意的是，如果已经生成了一个封闭的连通区域，那么我们不能再使用她的颜色染色，否则这种颜色会出现两个连通块。我们似乎需要额度记录这种事件，可以参考 [「ZOJ 3213」Beautiful Meadow](#zoj-3213beautiful-meadow) 中的做法，再开一维记录这个事件。不过利用本题的特殊性，我们也可以特判掉。
+
+```cpp
+bool legal(int cc){
+    if (cc == c[j+1]) return true;
+    //if (i == 0) return true;
+    int up = b[j+1]; if (!up) return true;
+    int c1 = 0, c2 = 0;
+
+    REP(i, m+1) if (i != j+1){
+        if (b[i] == b[j+1]){
+            assert(c[i] == c[j+1]);
+        }
+        if (c[i] == c[j+1] && b[i] == b[j+1]) ++c1;
+        if (c[i] == c[j+1]) ++c2;
+    }
+
+    if (!c1){ // 如果会生成新的封闭连通块
+        if (c2) return false; // 如果轮廓线上还有相同的颜色
+        if (i < n-1 || j < m-2) return false;
+    }
+    return true;
+}
+```
+
+进一步讨论连通块消失的情况。每当我们对一个格子进行染色后，如果没有其他格子与其上侧的格子连通，那么会形成一个封闭的连通块。这个事件仅在最后一行的最后两列时可以发生，否则后续为了不出现 `2x2` 的同色连通块，这个颜色一定会再次出现，除了下面的情况：
+
+```
+2 2
+o#
+#o
+```
+
+我们特判掉这种，这样在本题中，就可以偷懒不用记录之前是否已经生成了封闭的连通块了。
 
 ??? 例题代码
     ```cpp
-    const int N = 8, M = 1 << (20), _Mc = 2, _Mb = 4;
-    int A[N][N];
+    #include <bits/stdc++.h>
+    using namespace std;
+    #define REP(i, n) for (int i=0;i<n;++i)
+    #define DWN(i, b, a) for (int i=b-1;i>=a;--i)
+    typedef long long T_state;
+    typedef int T_key;
+    const int N = 8;
     int n, m;
-    ```
-
-    int c[N+2];
-    int b[N+2], bb[N+3];
-
-    LL encode(){
-        FLC(bb, -1); int n = 1; bb[0] = 0; LL s = 0;
-        DWN(i, m+1, 0){
-            if (!~bb[b[i]]) bb[b[i]] = n++;
-            b[i] = bb[b[i]];
-            s <<= _Mb; s |= b[i];
-        }
-        DWN(i, m+1, 0){
-            s <<= _Mc; s |= c[i];
+    char A[N+1][N+1], B[N+1][N+1];
+    const int Offset = 5, Mask = (1 << Offset) - 1;
+    int c[N+2]; int b[N+2], bb[N+3];
+    T_state encode(){
+        T_state s = 0; memset(bb, -1, sizeof(bb)); int bn = 1; bb[0] = 0;
+        for (int i = m; i >= 0; --i) {
+    #define bi bb[b[i]]
+            if (!~bi) bi = bn++;
+            s <<= Offset; s |= (bi<<1)|c[i];
         }
         return s;
     }
-
-    void decode(LL s){
+    void decode(T_state s){
         REP(i, m+1){
-            c[i] = s & _U(_Mc);
-            s >>= _Mc;
-        }
-        REP(i, m+1){
-            b[i] = s & _U(_Mb);
-            s >>= _Mb;
+            b[i] = s & Mask;
+            c[i] = b[i] & 1; b[i] >>= 1;
+            s >>= Offset;
         }
     }
-
-    const int Prime = 9979, MaxSize = M;
-
-    LL sta[N*N+9][MaxSize];
-    int pre[N*N+9][MaxSize];
-
-    LL d; int u; int i, j; struct hashMap{
-        
-        LL state[MaxSize], key[MaxSize]; int sz;
-        int hd[Prime], nxt[MaxSize];
-        
-        void clear(){
+    const int Prime = 9979, MaxSZ = 1 << 20;
+    template<class T_state, class T_key> struct hashTable {
+        int head[Prime]; int next[MaxSZ], sz;
+        T_state state[MaxSZ]; T_key key[MaxSZ]; int pre[MaxSZ];
+        void clear() {
             sz = 0;
-            FLC(hd, -1);
+            memset(head, -1, sizeof(head));
         }
-        
-        void push(){
-            
-            LL s = encode();
+        void push(T_state s, T_key d, T_state u) {
             int x = s % Prime;
-            
-            for (int i=hd[x];~i;i=nxt[i]){
-                if (state[i] == s){
-                    key[i] += d;
-                    return;
-                }
+            for (int i = head[x]; ~i; i = next[i]) {
+              if (state[i] == s) {
+                key[i] += d;
+                return;
+              }
             }
-            state[sz] = s; key[sz] = d;
-            nxt[sz] = hd[x], hd[x] = sz;
-            
-            sta[i*m+j][sz] = s;
-            pre[i*m+j][sz] = u;
-            
-            ++sz;
-            assert(sz < MaxSize);
-            return;
+            state[sz] = s, key[sz] = d, pre[sz] = u;
+            next[sz] = head[x], head[x] = sz++;
         }
-        
-        void roll(){
-            
-            LL Uc = _U(_Mc*(m+1)), Ub = _U(_Mb*(m+1)) << (_Mc*(m+1));
-            
-            REP(ii, sz){
-                LL s = state[ii], sc = s & Uc, sb = s & Ub;
-                sc <<= _Mc; sc &= Uc; sb <<= _Mb; sb &= Ub;
-                state[ii] = sc | sb;
-            }
+        void roll() {
+            REP(ii, sz) state[ii] <<= Offset;
         }
-        
-        void display(){
-            cout << sz << ": ";
-            cout << endl;
-            REP(ii, sz){
-                cout << state[ii] << " " << key[ii] << endl;
-                decode(state[ii]);
-                REP(i, m+1) cout << c[i] << " "; cout << endl;
-                REP(i, m+1) cout << b[i] << " "; cout << endl;
-            }
-            cout << endl;
-        }
-        
-        
-    } H[2]; int src, des;
-
-
-    int cc(char c){
-        if (c == '#') return 1;
-        if (c == 'o') return 2;
-        return 0;
-    }
-
-    bool legal(int cc){
-        
+    };
+    hashTable<T_state, T_key> _H, H[N][N], *H0, *H1;
+    bool ok(int i, int j, int cc){
         if (cc == c[j+1]) return true;
-        //if (i == 0) return true;
         int up = b[j+1]; if (!up) return true;
         int c1 = 0, c2 = 0;
-        
         REP(i, m+1) if (i != j+1){
-            if (b[i] == b[j+1]){
+            if (b[i] == b[j+1]) {
                 assert(c[i] == c[j+1]);
             }
             if (c[i] == c[j+1] && b[i] == b[j+1]) ++c1;
             if (c[i] == c[j+1]) ++c2;
         }
-        
-        if (!c1){
-            if (c2) return false;
+
+        if (!c1){ // 如果会生成新的封闭连通块
+            if (c2) return false; // 如果轮廓线上还有相同的颜色
             if (i < n-1 || j < m-2) return false;
         }
         return true;
     }
-
-    void trans(int ii, int cc){
-        
-        LL s = H[src].state[ii]; d = H[src].key[ii]; u = ii; decode(s);
-        
-        int lf = j ? c[j-1] : 0, lu = c[j], up = c[j+1];
-        c[j] = cc;
-        
+    void trans(int i, int j, int u, int cc) {
+        decode(H0->state[u]);
+        int lf = j ? c[j-1] : -1, lu = b[j] ? c[j] : -1, up = b[j+1] ? c[j+1] : -1;
         if (lf == cc && up == cc){
             if (lu == cc) return;
             int lf_b = b[j-1], up_b = b[j+1];
@@ -756,79 +815,57 @@ REP(i, n) {
             if (i == n-1 && j == m-1 && lu == cc) return;
             b[j] = m+2;
         }
-        
-        if (!legal(cc)) return;
-        H[des].push();
-        return;
+        c[j] = cc;
+        if (!ok(i, j, cc)) return;
+        H1->push(encode(), H0->key[u], u);
     }
-
-    char Board[N+1][N+1];
-
-    void print(int u){
-        RST(Board); DWN(i, n*m, 0){
-            decode(sta[i][u]);
-            Board[i/m][i%m] = (c[i%m] == 1 ? '#' : 'o');
-            u = pre[i][u];
-        }
-        REP(i, n) puts(Board[i]);
+    void init() {
+        cin >> n >> m;
+        REP(i, n) scanf("%s", A[i]);
     }
-
-
-    void solve(){
-        
-        RD(n, m); RST(A); REP_2(i, j, n, m) A[i][j] = cc(RC());
-        src = 0, des = 1; H[des].clear(); RST(b); RST(c); d = 1; H[des].push();
-        
-        REP_N(i, n){
-            REP_N(j, m){
-                
-                swap(src, des); H[des].clear();
-                
-                // cout << " " << i << " " << j << ": " << endl;
-                // H[src].display();
-                
-                REP(ii, H[src].sz){
-                    
-                    if (!A[i][j]){
-                        trans(ii, 1);
-                        trans(ii, 2);
-                    }
-                    else if (A[i][j] == 1){
-                        trans(ii, 1);
-                    }
-                    else if (A[i][j] == 2){
-                        trans(ii, 2);
-                    }
+    void solve() {
+        H1 = &_H, H1->clear(), H1->push(0, 1, 0);
+        REP(i, n) {
+            REP(j, m) {
+                H0 = H1, H1 = &H[i][j], H1->clear();
+                REP(u, H0->sz) {
+                    if (A[i][j] == '.' || A[i][j] == '#') trans(i, j, u, 0);
+                    if (A[i][j] == '.' || A[i][j] == 'o') trans(i, j, u, 1);
                 }
             }
-            
-            H[des].roll();
+            H1->roll();
         }
-        
-        //H[des].display();
-        
-        LL z = 0; int t; REP(ii, H[des].sz){
-            decode(H[des].state[ii]);
-            
-            //int cnt = 0; RST(bb); REP_1(i, m) if (!bb[b[i]]) bb[b[i]] = 1, ++cnt;
-            int cnt = 0; REP(i, m+1) if (b[i] > cnt) checkMax(cnt, b[i]);
-            
-            if (cnt <= 2){
-                z += H[des].key[ii];
-                t = ii;
+    }
+    void print() {
+        T_key z = 0; int u; REP(i, H1->sz) {
+            decode(H1->state[i]);
+            if (*max_element(b+1, b+m+1) <= 2) {
+                z += H1->key[i];
+                u = i;
             }
         }
-        
-        OT(z); if (z) print(t);
+        cout << z << endl;
+        if (z) {
+            DWN(i, n, 0) {
+                B[i][m] = 0;
+                DWN(j, m, 0) {
+                    decode(H[i][j].state[u]);
+                    int cc = j == m-1 ? c[j+1] : c[j];
+                    B[i][j] = cc ? 'o' : '#';
+                    u = H[i][j].pre[u];
+                }
+            }
+            REP(i, n) puts(B[i]);
+        }
         puts("");
-        return;
     }
-
-
-    int main(){    
-        Rush{
-            solve();
-            //break;
+    int main(){
+    #ifndef ONLINE_JUDGE
+        freopen("in.txt", "r", stdin);
+    #endif
+        int T; cin >> T; while (T--) {
+            init(); solve();
+            print();
         }
     }
     ```
