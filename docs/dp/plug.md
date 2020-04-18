@@ -729,26 +729,26 @@ void print() {
 
 ```cpp
 void trans(int i, int j, int u, int cc) {
-    decode(H0->state[u]);
-    int lf = j ? c[j-1] : -1, lu = b[j] ? c[j] : -1, up = b[j+1] ? c[j+1] : -1;
-    if (lf == cc && up == cc){
-        if (lu == cc) return;
-        int lf_b = b[j-1], up_b = b[j+1];
-        REP(i, m+1) if (b[i] == up_b){
-            b[i] = lf_b;
-        }
-        b[j] = lf_b;
-    }
-    else if (lf == cc || up == cc){
-        if (lf == cc) b[j] = b[j-1]; else b[j] = b[j+1];
-    }
-    else{
-        if (i == n-1 && j == m-1 && lu == cc) return;
-        b[j] = m+2;
-    }
-    c[j] = cc;
-    if (!ok(i, j, cc)) return;
-    H1->push(encode(), H0->key[u], u);
+  decode(H0->state[u]);
+  int lf = j ? c[j - 1] : -1, lu = b[j] ? c[j] : -1,
+      up = b[j + 1] ? c[j + 1] : -1;
+  if (lf == cc && up == cc) {
+    if (lu == cc) return;
+    int lf_b = b[j - 1], up_b = b[j + 1];
+    REP(i, m + 1) if (b[i] == up_b) { b[i] = lf_b; }
+    b[j] = lf_b;
+  } else if (lf == cc || up == cc) {
+    if (lf == cc)
+      b[j] = b[j - 1];
+    else
+      b[j] = b[j + 1];
+  } else {
+    if (i == n - 1 && j == m - 1 && lu == cc) return;
+    b[j] = m + 2;
+  }
+  c[j] = cc;
+  if (!ok(i, j, cc)) return;
+  H1->push(encode(), H0->key[u], u);
 }
 ```
 
@@ -767,15 +767,14 @@ bool ok(int i, int j, int cc) {
     if (c[i] == c[j + 1] && b[i] == b[j + 1]) ++c1;
     if (c[i] == c[j + 1]) ++c2;
   }
-  if (!c1){ // 如果会生成新的封闭连通块
-      if (c2) return false; // 如果轮廓线上还有相同的颜色
-      if (i < n-1 || j < m-2) return false;
+  if (!c1) {               // 如果会生成新的封闭连通块
+    if (c2) return false;  // 如果轮廓线上还有相同的颜色
+    if (i < n - 1 || j < m - 2) return false;
   }
   re
 ```
 
 进一步讨论连通块消失的情况。每当我们对一个格子进行染色后，如果没有其他格子与其上侧的格子连通，那么会形成一个封闭的连通块。这个事件仅在最后一行的最后两列时可以发生，否则后续为了不出现 `2x2` 的同色连通块，这个颜色一定会再次出现，除了下面的情况：
-
 
     2 2
     o#
@@ -856,82 +855,87 @@ bool ok(int i, int j, int cc) {
         if (c[i] == c[j + 1] && b[i] == b[j + 1]) ++c1;
         if (c[i] == c[j + 1]) ++c2;
       }
-      if (!c1){ // 如果会生成新的封闭连通块
-          if (c2) return false; // 如果轮廓线上还有相同的颜色
-          if (i < n-1 || j < m-2) return false;
+      if (!c1) {               // 如果会生成新的封闭连通块
+        if (c2) return false;  // 如果轮廓线上还有相同的颜色
+        if (i < n - 1 || j < m - 2) return false;
       }
       return true;
     }
     void trans(int i, int j, int u, int cc) {
-        decode(H0->state[u]);
-        int lf = j ? c[j-1] : -1, lu = b[j] ? c[j] : -1, up = b[j+1] ? c[j+1] : -1;
-        if (lf == cc && up == cc){
-            if (lu == cc) return;
-            int lf_b = b[j-1], up_b = b[j+1];
-            REP(i, m+1) if (b[i] == up_b){
-                b[i] = lf_b;
-            }
-            b[j] = lf_b;
-        }
-        else if (lf == cc || up == cc){
-            if (lf == cc) b[j] = b[j-1]; else b[j] = b[j+1];
-        }
-        else{
-            if (i == n-1 && j == m-1 && lu == cc) return;
-            b[j] = m+2;
-        }
-        c[j] = cc;
-        if (!ok(i, j, cc)) return;
-        H1->push(encode(), H0->key[u], u);
+      decode(H0->state[u]);
+      int lf = j ? c[j - 1] : -1, lu = b[j] ? c[j] : -1,
+          up = b[j + 1] ? c[j + 1] : -1;
+      if (lf == cc && up == cc) {
+        if (lu == cc) return;
+        int lf_b = b[j - 1], up_b = b[j + 1];
+        REP(i, m + 1) if (b[i] == up_b) { b[i] = lf_b; }
+        b[j] = lf_b;
+      } else if (lf == cc || up == cc) {
+        if (lf == cc)
+          b[j] = b[j - 1];
+        else
+          b[j] = b[j + 1];
+      } else {
+        if (i == n - 1 && j == m - 1 && lu == cc) return;
+        b[j] = m + 2;
+      }
+      c[j] = cc;
+      if (!ok(i, j, cc)) return;
+      H1->push(encode(), H0->key[u], u);
     }
     void init() {
-        cin >> n >> m;
-        REP(i, n) scanf("%s", A[i]);
+      cin >> n >> m;
+      REP(i, n) scanf("%s", A[i]);
     }
     void solve() {
-        H1 = &_H, H1->clear(), H1->push(0, 1, 0);
-        REP(i, n) {
-            REP(j, m) {
-                H0 = H1, H1 = &H[i][j], H1->clear();
-                REP(u, H0->sz) {
-                    if (A[i][j] == '.' || A[i][j] == '#') trans(i, j, u, 0);
-                    if (A[i][j] == '.' || A[i][j] == 'o') trans(i, j, u, 1);
-                }
-            }
-            H1->roll();
+      H1 = &_H, H1->clear(), H1->push(0, 1, 0);
+      REP(i, n) {
+        REP(j, m) {
+          H0 = H1, H1 = &H[i][j], H1->clear();
+          REP(u, H0->sz) {
+            if (A[i][j] == '.' || A[i][j] == '#') trans(i, j, u, 0);
+            if (A[i][j] == '.' || A[i][j] == 'o') trans(i, j, u, 1);
+          }
         }
+        H1->roll();
+      }
     }
     void print() {
-        T_key z = 0; int u; REP(i, H1->sz) {
-            decode(H1->state[i]);
-            if (*max_element(b+1, b+m+1) <= 2) {
-                z += H1->key[i];
-                u = i;
-            }
+      T_key z = 0;
+      int u;
+      REP(i, H1->sz) {
+        decode(H1->state[i]);
+        if (*max_element(b + 1, b + m + 1) <= 2) {
+          z += H1->key[i];
+          u = i;
         }
-        cout << z << endl;
-        if (z) {
-            DWN(i, n, 0) {
-                B[i][m] = 0;
-                DWN(j, m, 0) {
-                    decode(H[i][j].state[u]);
-                    int cc = j == m-1 ? c[j+1] : c[j];
-                    B[i][j] = cc ? 'o' : '#';
-                    u = H[i][j].pre[u];
-                }
-            }
-            REP(i, n) puts(B[i]);
+      }
+      cout << z << endl;
+      if (z) {
+        DWN(i, n, 0) {
+          B[i][m] = 0;
+          DWN(j, m, 0) {
+            decode(H[i][j].state[u]);
+            int cc = j == m - 1 ? c[j + 1] : c[j];
+            B[i][j] = cc ? 'o' : '#';
+            u = H[i][j].pre[u];
+          }
         }
-        puts("");
+        REP(i, n) puts(B[i]);
+      }
+      puts("");
     }
-    int main(){
+    int main() {
     #ifndef ONLINE_JUDGE
-        freopen("in.txt", "r", stdin);
+      freopen("in.txt", "r", stdin);
     #endif
-        int T; cin >> T; while (T--) {
-            init(); solve();
-            print();
-        }
+      int T;
+      cin >> T;
+      while (T--) {
+        init();
+        solve();
+        print();
+      }
     }
     ```
 
