@@ -10,6 +10,8 @@
 当 n 或 m 规模不大的时候，这类问题通常可以使用 [状压 DP](./state.md) 解决。逐行划分阶段，状态 dp[i][s]表示当前已考虑过前 i 行，且第 i 行的状态为 s 的方案数。这里的状态 s 的每一位可以表示这个这个位置是否已被上一行覆盖。
 
 ![domino](./images/domino.png)
+> Cridits: 图片来自 [这里](https://blog.csdn.net/u014634338/article/details/50015825) 。
+
 
 另一种划分阶段的方法是逐格 DP，或者称之为轮廓线 DP。dp[i][j][s]表示已经考虑到第 i 行第 j 列，且当前轮廓线上的状态为 s 的方案数。
 
@@ -86,7 +88,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 严格来说，多条回路问题并不属于插头 DP，因为我们只需要和上面的骨牌覆盖问题一样，记录插头是否存在，然后成对的合并和生成插头就可以了。
 
-注意对于一个宽度为 m 的棋盘，轮廓线的宽度为 m+1，因为包含 m 个上插头，和 1 个左插头。注意，当一行迭代完成之后，最右边的左插头通常是不合法的状态，同时我们需要补上下一行第一个左插头，这需要我们调整当前轮廓线的状态，通常是所有状态进行左移，我们把这个操作成为滚动 `roll()` 。
+注意对于一个宽度为 `m` 的棋盘，轮廓线的宽度为 `m+1`，因为包含 `m` 个上插头，和 `1` 个左插头。注意，当一行迭代完成之后，最右边的左插头通常是不合法的状态，同时我们需要补上下一行第一个左插头，这需要我们调整当前轮廓线的状态，通常是所有状态进行左移，我们把这个操作称为滚动 `roll()` 。
 
 ??? 例题代码
     ```cpp
@@ -184,7 +186,7 @@ void decode(int s) {
 
 #### 手写哈希
 
-在一些 [状压 DP](./state.md) 的问题中，合法的状态可能是稀疏的（例如本题），为了优化时空复杂度，我们可以使用哈希表存储合法的 `DP` 状态。对于 `cpp` 选手，我们可以使用 [std::unordered_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/) ，当然也可以直接手写，可以灵活的将状态转移函数也封装于其中。
+在一些 [状压 DP](./state.md) 的问题中，合法的状态可能是稀疏的（例如本题），为了优化时空复杂度，我们可以使用哈希表存储合法的 `DP` 状态。对于 `cpp` 选手，我们可以使用 [std::unordered_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/) ，当然也可以直接手写，这样可以灵活的将状态转移函数也封装于其中。
 
 ```cpp
 const int MaxSZ = 16796, Prime = 9973;
@@ -755,23 +757,23 @@ void trans(int i, int j, int u, int cc) {
 对于最后一种情况需要注意的是，如果已经生成了一个封闭的连通区域，那么我们不能再使用她的颜色染色，否则这种颜色会出现两个连通块。我们似乎需要额度记录这种事件，可以参考 [「ZOJ 3213」Beautiful Meadow](#zoj-3213beautiful-meadow) 中的做法，再开一维记录这个事件。不过利用本题的特殊性，我们也可以特判掉。
 
 ```cpp
-bool ok(int i, int j, int cc) {
-  if (cc == c[j + 1]) return true;
-  int up = b[j + 1];
-  if (!up) return true;
-  int c1 = 0, c2 = 0;
-  REP(i, m + 1) if (i != j + 1) {
-    if (b[i] == b[j + 1]) {
-      assert(c[i] == c[j + 1]);
+bool ok(int i, int j, int cc){
+    if (cc == c[j+1]) return true;
+    int up = b[j+1]; if (!up) return true;
+    int c1 = 0, c2 = 0;
+    REP(i, m+1) if (i != j+1){
+        if (b[i] == b[j+1]) { // 连通性相同，颜色一定相同
+            assert(c[i] == c[j+1]);
+        }
+        if (c[i] == c[j+1] && b[i] == b[j+1]) ++c1;
+        if (c[i] == c[j+1]) ++c2;
     }
-    if (c[i] == c[j + 1] && b[i] == b[j + 1]) ++c1;
-    if (c[i] == c[j + 1]) ++c2;
-  }
-  if (!c1) {               // 如果会生成新的封闭连通块
-    if (c2) return false;  // 如果轮廓线上还有相同的颜色
-    if (i < n - 1 || j < m - 2) return false;
-  }
-  re
+    if (!c1){ // 如果会生成新的封闭连通块
+        if (c2) return false; // 如果轮廓线上还有相同的颜色
+        if (i < n-1 || j < m-2) return false;
+    }
+    return true;
+}
 ```
 
 进一步讨论连通块消失的情况。每当我们对一个格子进行染色后，如果没有其他格子与其上侧的格子连通，那么会形成一个封闭的连通块。这个事件仅在最后一行的最后两列时可以发生，否则后续为了不出现 `2x2` 的同色连通块，这个颜色一定会再次出现，除了下面的情况：
@@ -939,11 +941,6 @@ bool ok(int i, int j, int cc) {
     }
     ```
 
-??? note " 例题[「HDU 4796」Winter's Coming](https://vjudge.net/problem/HDU-4796)"
-    题目大意：在 N×M 的棋盘内对未染色的格点进行黑白灰染色，要求所有黑色区域和白色区域连通，且黑色区域与白色区域分别与棋盘的上下边界连通，且其中黑色区域与白色区域不能相邻。每个格子有对应的代价，求一组染色方案，最小化灰色区域的代价。
-
-    ![4796](./images/4796.jpg)
-
 ## 图论模型
 
 ??? note " 例题[「NOI 2007 Day2」生成树计数](https://www.luogu.com.cn/problem/P2109)"
@@ -961,14 +958,19 @@ bool ok(int i, int j, int cc) {
 
 ## 实战篇
 
-??? note " 例题[「HDU 4113」Construct the Great Wall](https://vjudge.net/problem/HDU-4113)"
-    题目大意：。
+??? note " 习题[「HDU 4113」Construct the Great Wall](https://vjudge.net/problem/HDU-4113)"
+    题目大意：在 N×M 的棋盘内构造一组回路，分割所有的 `x` 和 `o`。
 
-??? note " 例题[「ZOJ 2125」Rocket Mania](https://vjudge.net/problem/ZOJ-2125)"
+??? note " 习题[「HDU 4796」Winter's Coming](https://vjudge.net/problem/HDU-4796)"
+    题目大意：在 N×M 的棋盘内对未染色的格点进行黑白灰染色，要求所有黑色区域和白色区域连通，且黑色区域与白色区域分别与棋盘的上下边界连通，且其中黑色区域与白色区域不能相邻。每个格子有对应的代价，求一组染色方案，最小化灰色区域的代价。
 
-??? note " 例题[「ZOJ 2126」Rocket Mania Plus](https://vjudge.net/problem/ZOJ-2126)"
+    ![4796](./images/4796.jpg)
 
-??? note " 例题[「World Finals 2009/2010 Harbin」Channel](https://vjudge.net/problem/UVALive-4789)"
+??? note " 习题[「ZOJ 2125」Rocket Mania](https://vjudge.net/problem/ZOJ-2125)"
+
+??? note " 习题[「ZOJ 2126」Rocket Mania Plus](https://vjudge.net/problem/ZOJ-2126)"
+
+??? note " 习题[「World Finals 2009/2010 Harbin」Channel](https://vjudge.net/problem/UVALive-4789)"
     题目大意：。
 
 ## 本章注记
@@ -1006,5 +1008,3 @@ bool ok(int i, int j, int cc) {
 -    [【动画】从方格这头走向那头有多少种走法呢～【结尾迷之感动】](https://www.bilibili.com/video/BV1Cx411D74e) \| [Youtube](https://www.youtube.com/watch?v=Q4gTV4r0zRs) \| [Niconico](<>) 
 -    [Wikipedia, Hamiltonian path](https://en.wikipedia.org/wiki/Hamiltonian_path) 
 -    [Wolfram MathWorld, Grid Graph](https://mathworld.wolfram.com/GridGraph.html) 
-
-Cridits: 该图片来自 [这里](https://blog.csdn.net/u014634338/article/details/50015825) 。
