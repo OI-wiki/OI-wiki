@@ -942,6 +942,12 @@ bool ok(int i, int j, int cc) {
     }
     ```
 
+??? note " 习题[「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://competitiveprogramming.info/topcoder/srm/round/9992/div/1)"
+    题目大意：给一个棋盘图，每个格子有权值，求权值之和最小的连通块。
+
+??? note " 习题[「JLOI 2009」神秘的生物](https://www.luogu.com.cn/problem/P3886)"
+    题目大意：给一个棋盘图，每个格子有权值，求权值之和最大的连通块。
+
 ## 图论模型
 
 ??? note " 例题[「NOI 2007 Day2」生成树计数](https://www.luogu.com.cn/problem/P2109)"
