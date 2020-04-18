@@ -614,7 +614,7 @@ REP(i, n) {
 
 #### 状态编码
 
-我们先考虑状态编码。不考虑连通性的性质，那么就是 [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197) ，不难用 [状压 DP](./state.md) 直接解决。现在我们需要在状态中同时体现颜色和连通性的信息，考察轮廓线上每个位置的状态，二进制的每 `Offset` 位描述轮廓线上的一个位置，因为只有黑白两种颜色，我们用最低位的奇偶性表示颜色，其余部分示连通性。
+我们先考虑状态编码。不考虑连通性，那么就是 [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197) ，不难用 [状压 DP](./state.md) 直接解决。现在我们需要在状态中同时体现颜色和连通性的信息，考察轮廓线上每个位置的状态，二进制的每 `Offset` 位描述轮廓线上的一个位置，因为只有黑白两种颜色，我们用最低位的奇偶性表示颜色，其余部分示连通性。
 
 考虑第一行上面的节点，和第一列左侧节点，如果要避免特判的话，可以考虑引入第三种颜色区分它们，这里我们观察到这些边界状态的连通性信息一定为 0，所以不需要对第三种颜色再进行额外编码。
 
@@ -987,17 +987,15 @@ bool ok(int i, int j, int cc) {
 
 ### 多米诺骨牌覆盖
 
- [「HDU 1400」Mondriaan’s Dream](https://vjudge.net/problem/HDU-1400) 也出现在《算法竞赛入门经典训练指南》中，并作为《轮廓线上的动态规划》一节的例题。
+ [「HDU 1400」Mondriaan’s Dream](https://vjudge.net/problem/HDU-1400) 也出现在 [《算法竞赛入门经典训练指南》](https://oi-wiki.org/intro/resources/#_5) 中，并作为《轮廓线上的动态规划》一节的例题。[多米诺骨牌覆盖（Domino tiling）](https://en.wikipedia.org/wiki/Domino_tiling) 是一组非常经典的数学问题，稍微修改其数据范围就可以得到不同难度，需要应用不同的算法解决的子问题。
 
- [多米诺骨牌覆盖（Domino tiling）](https://en.wikipedia.org/wiki/Domino_tiling) 是一组非常经典的数学问题，稍微修改其数据范围就可以得到不同难度，需要应用不同的算法解决的子问题。
+当限定 `m = 2` 时，多米诺骨牌覆盖等价于斐波那契数列。 [《具体数学》](https://www.csie.ntu.edu.tw/~r97002/temp/Concrete%20Mathematics%202e.pdf) 中使用了该问题以引出斐波那契数列，并使用了多种方法得到其解析解。
 
-当限定 m = 2 时，多米诺骨牌覆盖等价于斐波那契数列。 [《具体数学》](https://www.csie.ntu.edu.tw/~r97002/temp/Concrete%20Mathematics%202e.pdf) 中使用了该问题以引出斐波那契数列，并使用了多种方法得到其解析解。
-
-当 m&lt;= 10, n&lt;= 1e9 时，可以将转移方程预处理成矩阵形式，并使用 [矩阵乘法进行加速](http://www.matrix67.com/blog/archives/276) 。
+当 `m&lt;= 10, n&lt;= 1e9` 时，可以将转移方程预处理成矩阵形式，并使用 [矩阵乘法进行加速](http://www.matrix67.com/blog/archives/276) 。
 
 ![domino_v2_transform_matrix](./images/domino_v2_transform_matrix.gif)
 
-当 n, m&lt;= 100，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数。
+当 `n, m&lt;= 100`，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数。
 
 -    [「51nod 1031」骨牌覆盖](http://www.51nod.com/Challenge/Problem.html#problemId=1031) 
 -    [「51nod 1033」骨牌覆盖 V2](http://www.51nod.com/Challenge/Problem.html#problemId=1033) \| [「Vijos 1194」Domino](https://vijos.org/p/1194) 
@@ -1006,10 +1004,8 @@ bool ok(int i, int j, int cc) {
 
 ### 一条路径
 
-「一条路径」是哈密度路径（Hamiltonian Path）问题在格点图（Grid Graph）中的一种特殊情况。哈密顿路径的判定性是 NP-complete 家族中的重要成员。Niconico 上有一个『フカシギの数え方』おねえさんといっしょ！みんなで数えてみよう（和大姐姐一起学习计算系列）的科普向视频，就使用这个问题作为例子，来阐述 NPC 问题计算时间如何随着问题的规模指数增长。
+「一条路径」是 [哈密度路径（Hamiltonian Path）]((https://en.wikipedia.org/wiki/Hamiltonian_path) ) 问题在 [格点图（Grid Graph）](https://mathworld.wolfram.com/GridGraph.html) 中的一种特殊情况。哈密顿路径的判定性问题是 [NP-complete](https://en.wikipedia.org/wiki/NP-completeness) 家族中的重要成员。Niconico 上有一个『フカシギの数え方』おねえさんといっしょ！みんなで数えてみよう（和大姐姐一起学习计算系列）的科普向视频，就使用这个问题作为例子，来说明 NPC 问题的计算时间如何随着问题的规模的线性增长而指数增长。
 
 ![sm18847458](./images/sm18847458.png)
 
 -    [【动画】从方格这头走向那头有多少种走法呢～【结尾迷之感动】](https://www.bilibili.com/video/BV1Cx411D74e) \| [Youtube](https://www.youtube.com/watch?v=Q4gTV4r0zRs) \| [Niconico](<>) 
--    [Wikipedia, Hamiltonian path](https://en.wikipedia.org/wiki/Hamiltonian_path) 
--    [Wolfram MathWorld, Grid Graph](https://mathworld.wolfram.com/GridGraph.html) 
