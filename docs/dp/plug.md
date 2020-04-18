@@ -1,4 +1,4 @@
-有些 [状压 DP](./state.md) 问题要求我们记录状态的连通性信息，这类问题一般被形象的称为插头 DP 或连通性状态压缩 DP，她们通常需要我们对状态的连通性进行编码，逐格讨论状态转移中连通性的变化。
+有些 [状压 DP](./state.md) 问题要求我们记录状态的连通性信息，这类问题一般被形象的称为插头 DP 或连通性状态压缩 DP。例如格点图的哈密顿路径总数，求、棋盘的黑白染色方案使得相同颜色之间连通，特定图的生成树计数等。她们通常需要我们对状态的连通性进行编码，逐格讨论状态转移中连通性的变化。
 
 ## 骨牌覆盖与轮廓线 DP
 
@@ -422,9 +422,9 @@ REP(i, n) {
         if (rt) {
           push(c, j, 0, t);
         }
-        if (c <
-            2) {  // 一个插头消失的情况，如果是独立插头则意味着消失，如果是成对出现的插头则相当于生成了一个独立插头，
-                  // 无论哪一类事件都需要将 c + 1。
+        // 一个插头消失的情况，如果是独立插头则意味着消失，如果是成对出现的插头则相当于生成了一个独立插头，
+        // 无论哪一类事件都需要将 c + 1。
+        if (c < 2) {                  
           push(c + 1, j, 0, 0);
         }
       } else {
@@ -604,6 +604,235 @@ REP(i, n) {
 
     ![black_and_white1](./images/black_and_white1.png)
 
+不考虑连通性的性质，那么就是 [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197)，不难用 [状压 DP](./state.md) 解决。现在，我们需要在状态中同时体现颜色和连通性的信息，我们对轮廓线的状态进行编码，二进制的低位表示轮廓线上的连通性信息，高位表示轮廓线上的颜色信息即可。
+
+这样虽然状态中会有冗余信息，连通的区域颜色一定相同，但是因为用了哈希表和最小表示，相同的状态会被映射在一起，所以问题不大。
+
+??? 例题代码
+    ```cpp
+    const int N = 8, M = 1 << (20), _Mc = 2, _Mb = 4;
+    int A[N][N];
+    int n, m;
+
+    int c[N+2];
+    int b[N+2], bb[N+3];
+
+    LL encode(){
+        FLC(bb, -1); int n = 1; bb[0] = 0; LL s = 0;
+        DWN(i, m+1, 0){
+            if (!~bb[b[i]]) bb[b[i]] = n++;
+            b[i] = bb[b[i]];
+            s <<= _Mb; s |= b[i];
+        }
+        DWN(i, m+1, 0){
+            s <<= _Mc; s |= c[i];
+        }
+        return s;
+    }
+
+    void decode(LL s){
+        REP(i, m+1){
+            c[i] = s & _U(_Mc);
+            s >>= _Mc;
+        }
+        REP(i, m+1){
+            b[i] = s & _U(_Mb);
+            s >>= _Mb;
+        }
+    }
+
+    const int Prime = 9979, MaxSize = M;
+
+    LL sta[N*N+9][MaxSize];
+    int pre[N*N+9][MaxSize];
+
+    LL d; int u; int i, j; struct hashMap{
+        
+        LL state[MaxSize], key[MaxSize]; int sz;
+        int hd[Prime], nxt[MaxSize];
+        
+        void clear(){
+            sz = 0;
+            FLC(hd, -1);
+        }
+        
+        void push(){
+            
+            LL s = encode();
+            int x = s % Prime;
+            
+            for (int i=hd[x];~i;i=nxt[i]){
+                if (state[i] == s){
+                    key[i] += d;
+                    return;
+                }
+            }
+            state[sz] = s; key[sz] = d;
+            nxt[sz] = hd[x], hd[x] = sz;
+            
+            sta[i*m+j][sz] = s;
+            pre[i*m+j][sz] = u;
+            
+            ++sz;
+            assert(sz < MaxSize);
+            return;
+        }
+        
+        void roll(){
+            
+            LL Uc = _U(_Mc*(m+1)), Ub = _U(_Mb*(m+1)) << (_Mc*(m+1));
+            
+            REP(ii, sz){
+                LL s = state[ii], sc = s & Uc, sb = s & Ub;
+                sc <<= _Mc; sc &= Uc; sb <<= _Mb; sb &= Ub;
+                state[ii] = sc | sb;
+            }
+        }
+        
+        void display(){
+            cout << sz << ": ";
+            cout << endl;
+            REP(ii, sz){
+                cout << state[ii] << " " << key[ii] << endl;
+                decode(state[ii]);
+                REP(i, m+1) cout << c[i] << " "; cout << endl;
+                REP(i, m+1) cout << b[i] << " "; cout << endl;
+            }
+            cout << endl;
+        }
+        
+        
+    } H[2]; int src, des;
+
+
+    int cc(char c){
+        if (c == '#') return 1;
+        if (c == 'o') return 2;
+        return 0;
+    }
+
+    bool legal(int cc){
+        
+        if (cc == c[j+1]) return true;
+        //if (i == 0) return true;
+        int up = b[j+1]; if (!up) return true;
+        int c1 = 0, c2 = 0;
+        
+        REP(i, m+1) if (i != j+1){
+            if (b[i] == b[j+1]){
+                assert(c[i] == c[j+1]);
+            }
+            if (c[i] == c[j+1] && b[i] == b[j+1]) ++c1;
+            if (c[i] == c[j+1]) ++c2;
+        }
+        
+        if (!c1){
+            if (c2) return false;
+            if (i < n-1 || j < m-2) return false;
+        }
+        return true;
+    }
+
+    void trans(int ii, int cc){
+        
+        LL s = H[src].state[ii]; d = H[src].key[ii]; u = ii; decode(s);
+        
+        int lf = j ? c[j-1] : 0, lu = c[j], up = c[j+1];
+        c[j] = cc;
+        
+        if (lf == cc && up == cc){
+            if (lu == cc) return;
+            int lf_b = b[j-1], up_b = b[j+1];
+            REP(i, m+1) if (b[i] == up_b){
+                b[i] = lf_b;
+            }
+            b[j] = lf_b;
+        }
+        else if (lf == cc || up == cc){
+            if (lf == cc) b[j] = b[j-1]; else b[j] = b[j+1];
+        }
+        else{
+            if (i == n-1 && j == m-1 && lu == cc) return;
+            b[j] = m+2;
+        }
+        
+        if (!legal(cc)) return;
+        H[des].push();
+        return;
+    }
+
+    char Board[N+1][N+1];
+
+    void print(int u){
+        RST(Board); DWN(i, n*m, 0){
+            decode(sta[i][u]);
+            Board[i/m][i%m] = (c[i%m] == 1 ? '#' : 'o');
+            u = pre[i][u];
+        }
+        REP(i, n) puts(Board[i]);
+    }
+
+
+    void solve(){
+        
+        RD(n, m); RST(A); REP_2(i, j, n, m) A[i][j] = cc(RC());
+        src = 0, des = 1; H[des].clear(); RST(b); RST(c); d = 1; H[des].push();
+        
+        REP_N(i, n){
+            REP_N(j, m){
+                
+                swap(src, des); H[des].clear();
+                
+                // cout << " " << i << " " << j << ": " << endl;
+                // H[src].display();
+                
+                REP(ii, H[src].sz){
+                    
+                    if (!A[i][j]){
+                        trans(ii, 1);
+                        trans(ii, 2);
+                    }
+                    else if (A[i][j] == 1){
+                        trans(ii, 1);
+                    }
+                    else if (A[i][j] == 2){
+                        trans(ii, 2);
+                    }
+                }
+            }
+            
+            H[des].roll();
+        }
+        
+        //H[des].display();
+        
+        LL z = 0; int t; REP(ii, H[des].sz){
+            decode(H[des].state[ii]);
+            
+            //int cnt = 0; RST(bb); REP_1(i, m) if (!bb[b[i]]) bb[b[i]] = 1, ++cnt;
+            int cnt = 0; REP(i, m+1) if (b[i] > cnt) checkMax(cnt, b[i]);
+            
+            if (cnt <= 2){
+                z += H[des].key[ii];
+                t = ii;
+            }
+        }
+        
+        OT(z); if (z) print(t);
+        puts("");
+        return;
+    }
+
+
+    int main(){    
+        Rush{
+            solve();
+            //break;
+        }
+    }
+    ```
+
+
 ??? note " 例题[「HDU 4796」Winter's Coming](https://vjudge.net/problem/HDU-4796)"
     题目大意：在 N×M 的棋盘内对未染色的格点进行黑白灰染色，要求所有黑色区域和白色区域连通，且黑色区域与白色区域分别与棋盘的上下边界连通，且其中黑色区域与白色区域不能相邻。每个格子有对应的代价，求一组染色方案，最小化灰色区域的代价。
 
@@ -615,7 +844,7 @@ REP(i, n) {
     题目大意：某类特殊图的生成树计数，每个节点恰好与其前 k 个节点之间有边相连。
 
 ??? note " 例题[「2015 ACM-ICPC Asia Shenyang Regional Contest - Problem E」Efficient Tree](https://vjudge.net/problem/HDU-5513)"
-    题目大意：给出一个 n∗m 的网格图，以及相邻四联通格子之间的边权。
+    题目大意：给出一个 N×M 的网格图，以及相邻四联通格子之间的边权。
     对于一颗生成树，每个节点的得分为 1+[有一条连向上的边]+[有一条连向左的边]。
     生成树的得分为所有节点的得分之积。
     
