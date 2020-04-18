@@ -624,7 +624,65 @@ REP(i, n) {
 
 在最多情况下（例如第一行黑白相间），每个插头的连通性信息都不一样，因此我们需要 `4` 位二进制位记录连通性，再加上颜色信息，本题的 `Offset` 为 `5` 位。
 
+```cpp
+const int Offset = 5, Mask = (1 << Offset) - 1;
+int c[N + 2];
+int b[N + 2], bb[N + 3];
+T_state encode() {
+  T_state s = 0;
+  memset(bb, -1, sizeof(bb));
+  int bn = 1;
+  bb[0] = 0;
+  for (int i = m; i >= 0; --i) {
+#define bi bb[b[i]]
+    if (!~bi) bi = bn++;
+    s <<= Offset;
+    s |= (bi << 1) | c[i];
+  }
+  return s;
+}
+void decode(T_state s) {
+  REP(i, m + 1) {
+    b[i] = s & Mask;
+    c[i] = b[i] & 1;
+    b[i] >>= 1;
+    s >>= Offset;
+  }
+}
+```
+
 #### 手写哈希
+
+因为需要构造任意一组方案，这里的哈希表我们需要添加一组域 `pre[]` 来记录每个状态在上一阶段的任意一个前驱。
+
+```cpp
+const int Prime = 9979, MaxSZ = 1 << 20;
+template <class T_state, class T_key>
+struct hashTable {
+  int head[Prime];
+  int next[MaxSZ], sz;
+  T_state state[MaxSZ];
+  T_key key[MaxSZ];
+  int pre[MaxSZ];
+  void clear() {
+    sz = 0;
+    memset(head, -1, sizeof(head));
+  }
+  void push(T_state s, T_key d, T_state u) {
+    int x = s % Prime;
+    for (int i = head[x]; ~i; i = next[i]) {
+      if (state[i] == s) {
+        key[i] += d;
+        return;
+      }
+    }
+    state[sz] = s, key[sz] = d, pre[sz] = u;
+    next[sz] = head[x], head[x] = sz++;
+  }
+  void roll() { REP(ii, sz) state[ii] <<= Offset; }
+};
+hashTable<T_state, T_key> _H, H[N][N], *H0, *H1;
+```
 
 #### 方案构造
 
@@ -667,42 +725,41 @@ void print() {
 -    `up` 上边格子的颜色
 -    `lu` 左上格子的颜色
 
-我们有：
+我们用 `-1` 表示颜色不存在（没有颜色也是颜色的一种！）。接下来讨论状态转移，一共有三种情况，合并，继承与生成：
 
 ```cpp
-int lf = j ? c[j - 1] : -1, lu = b[j] ? c[j] : -1,
-    up = b[j + 1] ? c[j + 1] : -1;
-```
-
-这里 `-1` 表示颜色不存在（没有颜色也是颜色的一种！）。接下来讨论状态转移，一共有三种情况，合并，继承与生成：
-
-```cpp
-if (lf == cc && up == cc) {  // 合并，如果和两侧的颜色均一致
-  if (lu == cc) return;      // 判掉 2x2 子矩形均相同的情况
-  int lf_b = b[j - 1], up_b = b[j + 1];
-  REP(i, m + 1) if (b[i] == up_b) { b[i] = lf_b; }
-  b[j] = lf_b;
-} else if (lf == cc || up == cc) {  // 继承，如果和一个方向的颜色一致
-  if (lf == cc)
-    b[j] = b[j - 1];
-  else
-    b[j] = b[j + 1];  // 继承其连通性信息
-} else {  // 生成，如果均不一样，那么生成一个新的连通块
-  if (i == n - 1 && j == m - 1 && lu == cc) return;  // 特判
-  b[j] = m + 2;
+void trans(int i, int j, int u, int cc) {
+    decode(H0->state[u]);
+    int lf = j ? c[j-1] : -1, lu = b[j] ? c[j] : -1, up = b[j+1] ? c[j+1] : -1;
+    if (lf == cc && up == cc){
+        if (lu == cc) return;
+        int lf_b = b[j-1], up_b = b[j+1];
+        REP(i, m+1) if (b[i] == up_b){
+            b[i] = lf_b;
+        }
+        b[j] = lf_b;
+    }
+    else if (lf == cc || up == cc){
+        if (lf == cc) b[j] = b[j-1]; else b[j] = b[j+1];
+    }
+    else{
+        if (i == n-1 && j == m-1 && lu == cc) return;
+        b[j] = m+2;
+    }
+    c[j] = cc;
+    if (!ok(i, j, cc)) return;
+    H1->push(encode(), H0->key[u], u);
 }
 ```
 
 对于最后一种情况需要注意的是，如果已经生成了一个封闭的连通区域，那么我们不能再使用她的颜色染色，否则这种颜色会出现两个连通块。我们似乎需要额度记录这种事件，可以参考 [「ZOJ 3213」Beautiful Meadow](#zoj-3213beautiful-meadow) 中的做法，再开一维记录这个事件。不过利用本题的特殊性，我们也可以特判掉。
 
 ```cpp
-bool legal(int cc) {
+bool ok(int i, int j, int cc) {
   if (cc == c[j + 1]) return true;
-  // if (i == 0) return true;
   int up = b[j + 1];
   if (!up) return true;
   int c1 = 0, c2 = 0;
-
   REP(i, m + 1) if (i != j + 1) {
     if (b[i] == b[j + 1]) {
       assert(c[i] == c[j + 1]);
@@ -710,16 +767,15 @@ bool legal(int cc) {
     if (c[i] == c[j + 1] && b[i] == b[j + 1]) ++c1;
     if (c[i] == c[j + 1]) ++c2;
   }
-
-  if (!c1) {               // 如果会生成新的封闭连通块
-    if (c2) return false;  // 如果轮廓线上还有相同的颜色
-    if (i < n - 1 || j < m - 2) return false;
+  if (!c1){ // 如果会生成新的封闭连通块
+      if (c2) return false; // 如果轮廓线上还有相同的颜色
+      if (i < n-1 || j < m-2) return false;
   }
-  return true;
-}
+  re
 ```
 
 进一步讨论连通块消失的情况。每当我们对一个格子进行染色后，如果没有其他格子与其上侧的格子连通，那么会形成一个封闭的连通块。这个事件仅在最后一行的最后两列时可以发生，否则后续为了不出现 `2x2` 的同色连通块，这个颜色一定会再次出现，除了下面的情况：
+
 
     2 2
     o#
@@ -800,13 +856,11 @@ bool legal(int cc) {
         if (c[i] == c[j + 1] && b[i] == b[j + 1]) ++c1;
         if (c[i] == c[j + 1]) ++c2;
       }
-    ```
-
-        if (!c1){ // 如果会生成新的封闭连通块
-            if (c2) return false; // 如果轮廓线上还有相同的颜色
-            if (i < n-1 || j < m-2) return false;
-        }
-        return true;
+      if (!c1){ // 如果会生成新的封闭连通块
+          if (c2) return false; // 如果轮廓线上还有相同的颜色
+          if (i < n-1 || j < m-2) return false;
+      }
+      return true;
     }
     void trans(int i, int j, int u, int cc) {
         decode(H0->state[u]);
