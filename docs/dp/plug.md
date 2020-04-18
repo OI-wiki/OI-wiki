@@ -249,7 +249,7 @@ REP(ii, H0->sz) {
     if (dn) {             // 如果可以向下延伸
       push(j, t, 0);
     }
-    if (rt) {             // 如果可以向右延伸
+    if (rt) {  // 如果可以向右延伸
       push(j, 0, t);
     }
   } else {           // 如果左、上均没有插头
@@ -731,23 +731,23 @@ void print() {
 void trans(int i, int j, int u, int cc) {
   decode(H0->state[u]);
   int lf = j ? c[j - 1] : -1, lu = b[j] ? c[j] : -1,
-      up = b[j + 1] ? c[j + 1] : -1; // 没有颜色也是颜色的一种！
-  if (lf == cc && up == cc) { // 合并
-    if (lu == cc) return; // 2x2 子矩形相同的情况
+      up = b[j + 1] ? c[j + 1] : -1;  // 没有颜色也是颜色的一种！
+  if (lf == cc && up == cc) {         // 合并
+    if (lu == cc) return;             // 2x2 子矩形相同的情况
     int lf_b = b[j - 1], up_b = b[j + 1];
     REP(i, m + 1) if (b[i] == up_b) { b[i] = lf_b; }
     b[j] = lf_b;
-  } else if (lf == cc || up == cc) { // 继承
+  } else if (lf == cc || up == cc) {  // 继承
     if (lf == cc)
       b[j] = b[j - 1];
     else
       b[j] = b[j + 1];
-  } else { // 生成
-    if (i == n - 1 && j == m - 1 && lu == cc) return; // 特判
+  } else {                                             // 生成
+    if (i == n - 1 && j == m - 1 && lu == cc) return;  // 特判
     b[j] = m + 2;
   }
   c[j] = cc;
-  if (!ok(i, j, cc)) return; // 判断是否会因生成封闭的连通块导致不合法
+  if (!ok(i, j, cc)) return;  // 判断是否会因生成封闭的连通块导致不合法
   H1->push(encode(), H0->key[u], u);
 }
 ```
