@@ -1137,8 +1137,7 @@ bool ok(int i, int j, int cc) {
     题目大意：。
 
 ??? note " 习题[「UVA 10531」Maze Statistics](https://vjudge.net/problem/UVA-10531)"
-    题目大意：。    
-
+    题目大意：。
 
 ??? note " 习题[「AIZU 2452」Pipeline Plans](https://vjudge.net/problem/Aizu-2452)"
     题目大意：。
@@ -1149,7 +1148,7 @@ bool ok(int i, int j, int cc) {
 ??? note " 习题[「SPOJ CAKE3」Delicious Cake](https://vjudge.net/problem/SPOJ-CAKE3)"
     题目大意：。
 
-.     
+.
 
 ## 本章注记
 
