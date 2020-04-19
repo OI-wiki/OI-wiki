@@ -963,147 +963,154 @@ bool ok(int i, int j, int cc) {
 
 ## 实战篇
 
-### 例题「「HDU 4113」Construct the Great Wall
+### 例题「HDU 4113」Construct the Great Wall
 
 ??? note " 例题[「HDU 4113」Construct the Great Wall](https://vjudge.net/problem/HDU-4113)"
     题目大意：在 N×M 的棋盘内构造一组回路，分割所有的 `x` 和 `o` 。
 
-有一类问题中，要求我们在棋盘上构造一些墙，以分割棋盘上的某些元素。这类问题既可视作染色模型，也可视作路径模型。在本题中，如果视作染色模型的话，不仅需要额外讨论染色区域的周长，还要额外判断在角上触碰而导致不合法的情况（图 2）。因而我们使用路径模型，转换为一条回路问题。
+有一修墙问题，要求我们在棋盘上构造一组墙，以分割棋盘上的某些元素。这类问题有时既可视作染色模型，也可视作路径模型。
 
 ![greatwall](./images/greatwall.jpg)
 
-我们沿着棋盘的交叉点 DP，因而长宽需要增加 1，每次转移时，需要保证所有的 `x` 在回路之外， `o` 在回路之内。类比计算几何中判断点是否在一般多边形内部时所用的射线法，判断当前格点是否属于回路的内部，可以看轮廓线上到这个位置之前出现下插头次数的奇偶性。
+在本题中，如果视作染色模型的话，不仅需要额外讨论染色区域的周长，还要额外判断在角上触碰而导致不合法的情况（图 2）。另外与 [「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572) 不同的是，本题中要求围墙为简单多边形，因而对于下面的回字形的情况，在本题中是不合法的。
+
+```
+3 3
+ooo
+oxo
+ooo
+```
+
+因而我们使用路径模型，转化为 [一条回路](#一条回路)。
+
+我们沿着棋盘的交叉点进行 DP，因而长宽需要增加 1，每次转移时，需要保证所有的 `x` 在回路之外， `o` 在回路之内，因此我们还需要维护当前位置是否在回路内部。对于这个信息我们可以加维，也可以观察轮廓线上到这个位置之前出现下插头次数的奇偶性（射线法）。
 
 ??? 例题代码
     ```cpp
-    
-    ```
-
-\#include &lt;bits/stdc++.h>
-using namespace std;
-\#define REP(i, n) for (int i = 0; i &lt; n; ++i)
-template<class T>inline bool checkMin(T &a,const T b){return b &lt; a ? a = b, 1 : 0;}
-const int N = 10, M = N;
-const int offset = 3, mask = (1 &lt;&lt; offset) - 1;
-int n, m;
-int d;
-const int INF = 0x3f3f3f3f;
-int b[M + 1], bb[M + 1];
-int encode() {
-  int s = 0;
-  memset(bb, -1, sizeof(bb));
-  int bn = 1;
-  bb[0]= 0;
-  for (int i = m; i>= 0; --i) {
-\#define bi bb\[b[i]]
-    if (!~bi) bi = bn++;
-    s &lt;&lt;= offset;
-    s |= bi;
-  }
-  return s;
-}
-void decode(int s) {
-  REP(i, m + 1) {
-    b[i]= s & mask;
-    s >>= offset;
-  }
-}
-const int MaxSZ = 16796, Prime = 9973;
-struct hashTable {
-  int head[Prime], next[MaxSZ], sz;
-  int state[MaxSZ];
-  int key[MaxSZ];
-  inline void clear() {
-    sz = 0;
-    memset(head, -1, sizeof(head));
-  }
-  inline void push(int s) {
-    int x = s % Prime;
-    for (int i = head[x]; ~i; i = next[i]) {
-      if (state[i]== s) {
-        checkMin(key[i], d);
-        return;
+    #include <bits/stdc++.h>
+    using namespace std;
+    #define REP(i, n) for (int i = 0; i < n; ++i)
+    template<class T> inline bool checkMin(T &a,const T b){return b < a ? a = b, 1 : 0;}
+    const int N = 10, M = N;
+    const int offset = 3, mask = (1 << offset) - 1;
+    int n, m;
+    int d;
+    const int INF = 0x3f3f3f3f;
+    int b[M + 1], bb[M + 1];
+    int encode() {
+      int s = 0;
+      memset(bb, -1, sizeof(bb));
+      int bn = 1;
+      bb[0] = 0;
+      for (int i = m; i >= 0; --i) {
+    #define bi bb[b[i]]
+        if (!~bi) bi = bn++;
+        s <<= offset;
+        s |= bi;
+      }
+      return s;
+    }
+    void decode(int s) {
+      REP(i, m + 1) {
+        b[i] = s & mask;
+        s >>= offset;
       }
     }
-    state[sz]= s, key[sz]= d;
-    next[sz]= head[x];
-    head[x]= sz++;
-  }
-  void roll() { REP(i, sz) state[i]&lt;&lt;= offset;}
-} H[2],_H0,_H1;
-char A[N+1][M+1];
-void push(int i, int j, int dn, int rt) {
-  b[j]= dn; b[j + 1]= rt;
-  if (A[i][j]!= '.') {
-    bool bad = A[i][j]== 'o';
-    REP(jj, j+1) if (b[jj]) bad ^= 1;
-    if (bad) return;
-  }
-  H1->push(encode());
-}
-int solve() {
-  cin >> n >> m; int ti, tj;
-  REP(i, n) {
-      scanf("%s", A[i]);
-      REP(j, m) if (A[i][j]== 'o') ti = i, tj = j;
-      A[i][m]= '.';
-  }
-  REP(j, m+1) A[n][j]= '.';
-  \++n, ++m, ++ti, ++tj;
-  H0 = H, H1 = H + 1;
-  H1->clear();
-  d = 0;
-  H1->push(0);
-  int z = INF;
-  REP(i, n) {
-    REP(j, m) {
-      swap(H0, H1);
-      H1->clear();
-      REP(ii, H0->sz) {
-        decode(H0->state[ii]);
-        d = H0->key[ii]+ 1;
-        int lt = b[j], up = b[j + 1];
-        bool dn = i != n - 1, rt = j != m - 1;
-        if (lt && up) {
-          if (lt == up) {
-            int cnt = 0; REP(i, m+1) if (b[i]) ++cnt;
-            if (cnt == 2 && (i == ti && j == tj)) {
-                checkMin(z, d);
-            }
-          } else {
-            REP(i, m + 1) if (b[i]== lt) b[i]= up;
-            push(i, j, 0, 0);
-          }
-        } else if (lt || up) {
-          int t = lt | up;
-          if (dn) {
-            push(i, j, t, 0);
-          }
-          if (rt) {
-            push(i, j, 0, t);
-          }
-        } else {
-            \--d; push(i, j, 0, 0); ++d;
-          if (dn && rt) {
-            push(i, j, m, m);
+    const int MaxSZ = 16796, Prime = 9973;
+    struct hashTable {
+      int head[Prime], next[MaxSZ], sz;
+      int state[MaxSZ];
+      int key[MaxSZ];
+      inline void clear() {
+        sz = 0;
+        memset(head, -1, sizeof(head));
+      }
+      inline void push(int s) {
+        int x = s % Prime;
+        for (int i = head[x]; ~i; i = next[i]) {
+          if (state[i] == s) {
+            checkMin(key[i], d);
+            return;
           }
         }
+        state[sz] = s, key[sz] = d;
+        next[sz] = head[x];
+        head[x] = sz++;
       }
+      void roll() { REP(i, sz) state[i] <<= offset; }
+    } H[2], *H0, *H1;
+    char A[N+1][M+1];
+    void push(int i, int j, int dn, int rt) {
+      b[j] = dn; b[j + 1] = rt;
+      if (A[i][j] != '.') {
+        bool bad = A[i][j] == 'o';
+        REP(jj, j+1) if (b[jj]) bad ^= 1;
+        if (bad) return;
+      }
+      H1->push(encode());
     }
-    H1->roll();
-  }
-  if (z == INF) z = -1;
-  return z;
-}
-int main() {
-\#ifndef ONLINE_JUDGE
-  freopen("in.txt", "r", stdin);
-\#endif
-    int T; cin >> T; for (int Case=1;Case&lt;=T;++Case) {
-        printf("Case #%d: %d\\n", Case, solve());
+    int solve() {
+      cin >> n >> m; int ti, tj;
+      REP(i, n) {
+          scanf("%s", A[i]);
+          REP(j, m) if (A[i][j] == 'o') ti = i, tj = j;
+          A[i][m] = '.';
+      }
+      REP(j, m+1) A[n][j] = '.';
+      ++n, ++m, ++ti, ++tj;
+      H0 = H, H1 = H + 1;
+      H1->clear();
+      d = 0;
+      H1->push(0);
+      int z = INF;
+      REP(i, n) {
+        REP(j, m) {
+          swap(H0, H1);
+          H1->clear();
+          REP(ii, H0->sz) {
+            decode(H0->state[ii]);
+            d = H0->key[ii] + 1;
+            int lt = b[j], up = b[j + 1];
+            bool dn = i != n - 1, rt = j != m - 1;
+            if (lt && up) {
+              if (lt == up) {
+                int cnt = 0; REP(i, m+1) if (b[i]) ++cnt;
+                if (cnt == 2 && i == ti && j == tj) {
+                    checkMin(z, d);
+                }
+              } else {
+                REP(i, m + 1) if (b[i] == lt) b[i] = up;
+                push(i, j, 0, 0);
+              }
+            } else if (lt || up) {
+              int t = lt | up;
+              if (dn) {
+                push(i, j, t, 0);
+              }
+              if (rt) {
+                push(i, j, 0, t);
+              }
+            } else {
+                --d; push(i, j, 0, 0); ++d;
+              if (dn && rt) {
+                push(i, j, m, m);
+              }
+            }
+          }
+        }
+        H1->roll();
+      }
+      if (z == INF) z = -1;
+      return z;
     }
-}
-
+    int main() {
+    #ifndef ONLINE_JUDGE
+      freopen("in.txt", "r", stdin);
+    #endif
+        int T; cin >> T; for (int Case=1;Case<=T;++Case) {
+            printf("Case #%d: %d\n", Case, solve());
+        }
+    }
     ```
 
 ??? note " 习题[「HDU 4796」Winter's Coming](https://vjudge.net/problem/HDU-4796)"
