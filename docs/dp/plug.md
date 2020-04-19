@@ -974,14 +974,12 @@ bool ok(int i, int j, int cc) {
 
 在本题中，如果视作染色模型的话，不仅需要额外讨论染色区域的周长，还要额外判断在角上触碰而导致不合法的情况（图 2）。另外与 [「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572) 不同的是，本题中要求围墙为简单多边形，因而对于下面的回字形的情况，在本题中是不合法的。
 
-```
-3 3
-ooo
-oxo
-ooo
-```
+    3 3
+    ooo
+    oxo
+    ooo
 
-因而我们使用路径模型，转化为 [一条回路](#一条回路)。
+因而我们使用路径模型，转化为 [一条回路](#一条回路) 。
 
 我们沿着棋盘的交叉点进行 DP，因而长宽需要增加 1，每次转移时，需要保证所有的 `x` 在回路之外， `o` 在回路之内，因此我们还需要维护当前位置是否在回路内部。对于这个信息我们可以加维，也可以观察轮廓线上到这个位置之前出现下插头次数的奇偶性（射线法）。
 
@@ -990,7 +988,10 @@ ooo
     #include <bits/stdc++.h>
     using namespace std;
     #define REP(i, n) for (int i = 0; i < n; ++i)
-    template<class T> inline bool checkMin(T &a,const T b){return b < a ? a = b, 1 : 0;}
+    template <class T>
+    inline bool checkMin(T &a, const T b) {
+      return b < a ? a = b, 1 : 0;
+    }
     const int N = 10, M = N;
     const int offset = 3, mask = (1 << offset) - 1;
     int n, m;
@@ -1039,24 +1040,26 @@ ooo
       }
       void roll() { REP(i, sz) state[i] <<= offset; }
     } H[2], *H0, *H1;
-    char A[N+1][M+1];
+    char A[N + 1][M + 1];
     void push(int i, int j, int dn, int rt) {
-      b[j] = dn; b[j + 1] = rt;
+      b[j] = dn;
+      b[j + 1] = rt;
       if (A[i][j] != '.') {
         bool bad = A[i][j] == 'o';
-        REP(jj, j+1) if (b[jj]) bad ^= 1;
+        REP(jj, j + 1) if (b[jj]) bad ^= 1;
         if (bad) return;
       }
       H1->push(encode());
     }
     int solve() {
-      cin >> n >> m; int ti, tj;
+      cin >> n >> m;
+      int ti, tj;
       REP(i, n) {
-          scanf("%s", A[i]);
-          REP(j, m) if (A[i][j] == 'o') ti = i, tj = j;
-          A[i][m] = '.';
+        scanf("%s", A[i]);
+        REP(j, m) if (A[i][j] == 'o') ti = i, tj = j;
+        A[i][m] = '.';
       }
-      REP(j, m+1) A[n][j] = '.';
+      REP(j, m + 1) A[n][j] = '.';
       ++n, ++m, ++ti, ++tj;
       H0 = H, H1 = H + 1;
       H1->clear();
@@ -1074,9 +1077,10 @@ ooo
             bool dn = i != n - 1, rt = j != m - 1;
             if (lt && up) {
               if (lt == up) {
-                int cnt = 0; REP(i, m+1) if (b[i]) ++cnt;
+                int cnt = 0;
+                REP(i, m + 1) if (b[i])++ cnt;
                 if (cnt == 2 && i == ti && j == tj) {
-                    checkMin(z, d);
+                  checkMin(z, d);
                 }
               } else {
                 REP(i, m + 1) if (b[i] == lt) b[i] = up;
@@ -1091,7 +1095,9 @@ ooo
                 push(i, j, 0, t);
               }
             } else {
-                --d; push(i, j, 0, 0); ++d;
+              --d;
+              push(i, j, 0, 0);
+              ++d;
               if (dn && rt) {
                 push(i, j, m, m);
               }
@@ -1107,9 +1113,11 @@ ooo
     #ifndef ONLINE_JUDGE
       freopen("in.txt", "r", stdin);
     #endif
-        int T; cin >> T; for (int Case=1;Case<=T;++Case) {
-            printf("Case #%d: %d\n", Case, solve());
-        }
+      int T;
+      cin >> T;
+      for (int Case = 1; Case <= T; ++Case) {
+        printf("Case #%d: %d\n", Case, solve());
+      }
     }
     ```
 
