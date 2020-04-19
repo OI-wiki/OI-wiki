@@ -968,20 +968,20 @@ bool ok(int i, int j, int cc) {
 ??? note " 例题[「HDU 4113」Construct the Great Wall](https://vjudge.net/problem/HDU-4113)"
     题目大意：在 N×M 的棋盘内构造一组回路，分割所有的 `x` 和 `o` 。
 
-有一修墙问题，要求我们在棋盘上构造一组墙，以分割棋盘上的某些元素。这类问题有时既可视作染色模型，也可视作路径模型。
+有一类插头 DP 问题要求我们在棋盘上构造一组墙，以分割棋盘上的某些元素。不妨称之为修墙问题，这类问题既可视作染色模型，也可视作路径模型。
 
 ![greatwall](./images/greatwall.jpg)
 
-在本题中，如果视作染色模型的话，不仅需要额外讨论染色区域的周长，还要额外判断在角上触碰而导致不合法的情况（图 2）。另外与 [「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572) 不同的是，本题中要求围墙为简单多边形，因而对于下面的回字形的情况，在本题中是不合法的。
+在本题中，如果视作染色模型的话，不仅需要额外讨论染色区域的周长，还要判断在角上触碰而导致不合法的情况（图 2）。另外与 [「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572) 不同的是，本题中要求围墙为简单多边形，因而对于下面的回字形的情况，在本题中是不合法的。
 
     3 3
     ooo
     oxo
     ooo
 
-因而我们使用路径模型，转化为 [一条回路](#一条回路) 。
+因而我们使用路径模型，转化为 [一条回路](#一条回路) 来处理。
 
-我们沿着棋盘的交叉点进行 DP，因而长宽需要增加 1，每次转移时，需要保证所有的 `x` 在回路之外， `o` 在回路之内，因此我们还需要维护当前位置是否在回路内部。对于这个信息我们可以加维，也可以观察轮廓线上到这个位置之前出现下插头次数的奇偶性（射线法）。
+我们沿着棋盘的交叉点进行 DP（因而长宽需要增加 1），每次转移时，需要保证所有的 `x` 在回路之外， `o` 在回路之内。因此我们还需要维护当前位置是否在回路内部。对于这个信息我们可以加维，也可以直接统计轮廓线上到这个位置之前出现下插头次数的奇偶性（射线法）。
 
 ??? 例题代码
     ```cpp
@@ -1132,6 +1132,24 @@ bool ok(int i, int j, int cc) {
 
 ??? note " 习题[「World Finals 2009/2010 Harbin」Channel](https://vjudge.net/problem/UVALive-4789)"
     题目大意：。
+
+??? note " 习题[「HDU 3958」Tower Defence](https://vjudge.net/problem/HDU-3958)"
+    题目大意：。
+
+??? note " 习题[「UVA 10531」Maze Statistics](https://vjudge.net/problem/UVA-10531)"
+    题目大意：。    
+
+
+??? note " 习题[「AIZU 2452」Pipeline Plans](https://vjudge.net/problem/Aizu-2452)"
+    题目大意：。
+
+??? note " 习题[「SDOI 2014」电路板](https://www.luogu.com.cn/problem/P3314)"
+    题目大意：。
+
+??? note " 习题[「SPOJ CAKE3」Delicious Cake](https://vjudge.net/problem/SPOJ-CAKE3)"
+    题目大意：。
+
+.     
 
 ## 本章注记
 
