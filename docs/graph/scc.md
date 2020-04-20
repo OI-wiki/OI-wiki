@@ -83,7 +83,7 @@ void tarjan(int u) {
     const int &v = e[i].t;
     if (!dfn[v])
       tarjan(v), low[u] = min(low[u], low[v]);
-    else if (!in_stack[v])
+    else if (in_stack[v])
       low[u] = min(low[u], dfn[v]);
   }
   if (dfn[u] == low[u]) {
