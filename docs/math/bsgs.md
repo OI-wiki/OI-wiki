@@ -58,22 +58,22 @@ $$
 
 ### 找到所有解
 
-在知道 $x_0\equiv g^{c}\pmod n$ 的情况下，我们想得到原问题的所有解。首先我们知道 $g^{\varphi(n)}\equiv 1\pmod n$ ，于是可以得到
+在知道 $x_0\equiv g^{c}\pmod p$ 的情况下，我们想得到原问题的所有解。首先我们知道 $g^{\varphi(p)}\equiv 1\pmod p$ ，于是可以得到
 
 $$
-\forall\ t \in \mathbb{Z},\ x^k \equiv g^{ c \cdot k + t\cdot\varphi(n)}\equiv a \pmod p
+\forall\ t \in \mathbb{Z},\ x^a \equiv g^{ c \cdot a + t\cdot\varphi(p)}\equiv b \pmod p
 $$
 
 于是得到所有解为
 
 $$
-\forall\ t\in \mathbb{Z},k\mid t\cdot\varphi(n),\ x\equiv g^{c+\frac{t\cdot\varphi(n)}{k}}\pmod p
+\forall\ t\in \mathbb{Z},a\mid t\cdot\varphi(p),\ x\equiv g^{c+\frac{t\cdot\varphi(p)}{a}}\pmod p
 $$
 
-对于上面这个式子，显然有 $\frac{k}{\gcd(k,\varphi(n))}  \mid t$ 。因此我们设 $t=\frac{k}{\gcd(k,\varphi(n))}\cdot i$ ，得到
+对于上面这个式子，显然有 $\frac{a}{\gcd(a,\varphi(p))}  \mid t$ 。因此我们设 $t=\frac{a}{\gcd(a,\varphi(p))}\cdot i$ ，得到
 
 $$
-\forall \ i\in \mathbb{Z},x\equiv g^{c+\frac{\varphi(n)}{\gcd(k,\varphi(n))}\cdot i}\pmod p
+\forall \ i\in \mathbb{Z},x\equiv g^{c+\frac{\varphi(p)}{\gcd(a,\varphi(p))}\cdot i}\pmod p
 $$
 
 这就是原问题的所有解。
@@ -191,7 +191,7 @@ $$
 -    [SDOI2013 随机数生成器](https://www.luogu.org/problem/P3306) 
 -    [BZOJ1319 Discrete Roots](http://www.lydsy.com/JudgeOnline/problem.php?id=1319) 模板
 -    [SDOI2011 计算器](https://loj.ac/problem/10214) 模板
--    [Luogu4195【模板】exBSGS/Spoj3105 Mod](https://www.luogu.org/problemnew/show/P4195) 目标
+-    [Luogu4195【模板】exBSGS/Spoj3105 Mod](https://www.luogu.org/problemnew/show/P4195) 模板
 -    [Codeforces - Lunar New Year and a Recursive Sequence](https://codeforces.com/contest/1106/problem/F) 
 
      **本页面部分内容以及代码译自博文 [Дискретное извлечение корня](http://e-maxx.ru/algo/discrete_root) 与其英文翻译版 [Discrete Root](https://cp-algorithms.com/algebra/discrete-root.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
