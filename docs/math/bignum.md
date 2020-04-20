@@ -692,7 +692,7 @@ $$
       // TODO: Big ^ Big;
       bool operator<(const Big&) const;
       bool operator<(const int& t) const;
-      inline void print();
+      inline void print() const;
     };
     // README::不要随随便便把参数都变成引用，那样没办法传值
     Big::Big(const int b) {
@@ -849,7 +849,7 @@ $$
       Big tee(t);
       return *this < tee;
     }
-    inline void Big::print() {
+    inline void Big::print() const {
       printf("%d", a[len - 1]);
       gd(i, len - 2, 0) { printf("%04d", a[i]); }
     }

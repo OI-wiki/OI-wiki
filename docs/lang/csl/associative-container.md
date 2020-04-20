@@ -34,10 +34,15 @@
 
 -    `count(x)` 返回 `set` 内键为 x 的元素数量。
 -    `find(x)` 在 `set` 内存在键为 x 的元素时会返回该元素的迭代器，否则返回 `end()` 。
--    `lower_bound(x)` 返回指向首个不小于给定键的元素的迭代器。
--    `upper_bound(x)` 返回指向首个大于给定键的元素的迭代器。
+-    `lower_bound(x)` 返回指向首个不小于给定键的元素的迭代器。如果不存在这样的元素，返回 `end()` 。
+-    `upper_bound(x)` 返回指向首个大于给定键的元素的迭代器。如果不存在这样的元素，返回 `end()` 。
 -    `empty()` 返回容器是否为空。
 -    `size()` 返回容器内元素个数。
+
+???+warning "`lower_bound` 和 `upper_bound` 的时间复杂度"
+     `set` 自带的 `lower_bound` 和 `upper_bound` 的时间复杂度为 $O(\log n)$ 。
+    
+    但使用 `algorithm` 库中的 `lower_bound` 和 `upper_bound` 函数对 `set` 中的元素进行查询，时间复杂度为 $O(n)$ 。
 
 ##  `multiset` 
 

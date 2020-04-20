@@ -6,7 +6,7 @@ author: sshwy, StudyingFather
 
 Lyndon 串：对于字符串 $s$ ，如果 $s$ 的字典序严格小于 $s$ 的所有后缀的字典序，我们称 $s$ 是简单串，或者 **Lyndon 串** 。举一些例子， $a$ , $b$ , $ab$ , $aab$ , $abb$ , $ababb$ , $abcd$ 都是 Lyndon 串。如果 $s$ 是 Lyndon 串，当且仅当 $s$ 的字典序严格小于它的所有非平凡的循环同构串。
 
-Lyndon 分解：串 $s$ 的 Lyndon 分解记为 $s=w_1w_2\cdots w_k$ ，并且他们的字典序按照非严格单减排序，即 $w_1\ge w_2\ge\cdots\ge w_k$ 。可以发现，这样的分解存在且唯一。
+Lyndon 分解：串 $s$ 的 Lyndon 分解记为 $s=w_1w_2\cdots w_k$ ，其中所有 $w_i$ 为简单串，并且他们的字典序按照非严格单减排序，即 $w_1\ge w_2\ge\cdots\ge w_k$ 。可以发现，这样的分解存在且唯一。
 
 ## Duval 算法
 
