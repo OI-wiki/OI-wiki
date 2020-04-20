@@ -131,7 +131,7 @@ void kosaraju() {
   for (int i = n; i >= 1; --i)
     if (!color[s[i]]) {
       ++sccCnt;
-      dfs2(s[i])
+      dfs2(s[i]);
     }
 }
 ```
