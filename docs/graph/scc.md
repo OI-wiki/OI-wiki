@@ -84,18 +84,17 @@ void tarjan(int u) {
     if (!dfn[v]) {
       tarjan(v);
       low[u] = min(low[u], low[v]);
-    }
-    else if (in_stack[v]) {
+    } else if (in_stack[v]) {
       low[u] = min(low[u], dfn[v]);
     }
   }
   if (dfn[u] == low[u]) {
     ++sc;
-    while (s[tp] != u) { 
-        scc[s[tp]] = sc;
-        sz[sc]++; 
-        in_stack[s[tp]] = 0;
-        --tp;
+    while (s[tp] != u) {
+      scc[s[tp]] = sc;
+      sz[sc]++;
+      in_stack[s[tp]] = 0;
+      --tp;
     }
     scc[s[tp]] = sc;
     sz[sc]++;
