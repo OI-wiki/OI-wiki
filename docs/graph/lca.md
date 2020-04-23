@@ -120,7 +120,7 @@ int main() {
 
 Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(n)$ ，Tarjan 算法处理所有询问的时间复杂度为 $O(n + m)$ 。但是 Tarjan 算法的常数比倍增算法大。
 
-需要注意的是，Tarjan 算法中使用的并查集性质比较特殊，在仅使用路径压缩优化的情况下，单次调用 `find()` 函数的时间复杂度为均摊 $O(1)$ ，而不是 $O(\log n)$ 。具体可以见 [并查集部分的引用：A Linear-Time Algorithm for a Special Case of Disjoint Set Union](../ds/dsu.md/#references) 。
+需要注意的是，Tarjan 算法中使用的并查集性质比较特殊，在仅使用路径压缩优化的情况下，单次调用 `find()` 函数的时间复杂度为均摊 $O(1)$ ，而不是 $O(\log n)$ 。具体可以见 [并查集部分的引用：A Linear-Time Algorithm for a Special Case of Disjoint Set Union](../ds/dsu.md#references) 。
 
 ```cpp
 #include <algorithm>
