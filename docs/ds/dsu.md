@@ -8,7 +8,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 -   合并（Union）：将两个子集合并成一个集合。
 
 !!! warning
-    并查集不支持集合的分离、删除。
+    并查集不支持集合的分离，但是并查集在经过修改后可以支持集合中单个元素的删除操作（详见 UVA11987 Almost Union-Find）。使用动态开点线段树还可以实现可持久化并查集。
 
 ## 初始化
 
@@ -136,12 +136,15 @@ void unionSet(int x, int y) {
 
  [「NOI2002」银河英雄传说](https://www.luogu.org/problemnew/show/P1196) 
 
+ [UVA11987 Almost Union-Find](https://www.luogu.com.cn/problem/UVA11987)
+
 ## 其他应用
 
- [最小生成树算法](../graph/mst.md) 中的 Kruskal 是基于并查集的算法。
+ [最小生成树算法](../graph/mst.md) 中的 Kruskal 和[最近公共祖先](../graph/lca.md)中的 Tarjan 算法是基于并查集的算法。
 
 ## References
 
 -   [1]Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281. [ResearchGate PDF](https://www.researchgate.net/profile/Jan_Van_Leeuwen2/publication/220430653_Worst-case_Analysis_of_Set_Union_Algorithms/links/0a85e53cd28bfdf5eb000000/Worst-case-Analysis-of-Set-Union-Algorithms.pdf) 
 -   [2]Yao, A. C. (1985). On the expected performance of path compression algorithms. [SIAM Journal on Computing, 14(1), 129-133.](https://epubs.siam.org/doi/abs/10.1137/0214010?journalCode=smjcat) 
 -   [3][知乎回答：是否在并查集中真的有二分路径压缩优化？]( <https://www.zhihu.com/question/28410263/answer/40966441> )
+-   [4]Gabow, H. N., & Tarjan, R. E. (1985). A Linear-Time Algorithm for a Special Case of Disjoint Set Union. JOURNAL OF COMPUTER AND SYSTEM SCIENCES, 30, 209-221. [CORE PDF](https://core.ac.uk/download/pdf/82125836.pdf)
