@@ -1,4 +1,4 @@
-author: greyqz
+author: greyqz, Backl1ght
 
 ## 普通莫队算法
 
