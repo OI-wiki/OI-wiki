@@ -97,7 +97,7 @@ struct mat {
     for (int i = 0; i < sz; ++i)
       for (int k = 0; k < sz; ++k) {
         r = a[i][k];
-        for (int j = 0; j < sz; ++j) res.a[i][j] += T.a[k][j] * r;
+        for (int j = 0; j < sz; ++j) res.a[i][j] += T.a[k][j] * r,
         res.a[i][j] %= MOD;
       }
     return res;
