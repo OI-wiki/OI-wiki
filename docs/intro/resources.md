@@ -52,7 +52,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [SPOJ](http://www.spoj.com) 始于 2003 年，其后台系统 [Sphere Engine](https://sphere-engine.com/) 于 2008 年商业化；支持题目点赞和标签功能。
 -    [TopCoder](https://www.topcoder.com/) 始于 2001 年，其 [竞技编程社区](https://www.topcoder.com/community/competitive-programming/) 有很多比赛；目前主营业务是技术众包。
 -    [TimusOJ](http://acm.timus.ru/) 始于 2000 年，由 Ural Federal University 开发，拥有俄罗斯最大的在线评测题库，题目主要来自乌拉尔联邦大学校赛、乌拉尔锦标赛、ICPC 乌拉尔区域赛、以及 Petrozavodsk 训练营。
--   Online Judge（前 [UVaOJ](https://uva.onlinejudge.org/) ）始于 1995 年，国际成名最早的 OJ，创始人是西班牙 University of Valladolid (UVa) 的 Miguel Ángel Revilla 教授；由于 [Revilla 教授于 2018 年不幸离世](https://www.elnortedecastilla.es/valladolid/muere-profesor-miguel-20180402225739-nt.html) ，且 Valladolid 大学终止维护，UVaOJ 自 2019 年 7 月起更名为 Online Judge； [刘汝佳强烈安利](http://product.dangdang.com/20637355.html) 。
+-   Online Judge（前 [UVaOJ](https://uva.onlinejudge.org/) ）始于 1995 年，国际成名最早的 OJ，创始人是西班牙 University of Valladolid (UVa) 的 Miguel Ángel Revilla 教授；由于 [Revilla 教授于 2018 年不幸离世](https://www.elnortedecastilla.es/valladolid/muere-profesor-miguel-20180402225739-nt.html) ，且 Valladolid 大学终止维护，UVaOJ 自 2019 年 7 月起更名为 Online Judge。现在该平台的维护者[正在 Github 上构建新的评测平台](https://github.com/TheOnlineJudge/ojudge)。
 -    [Yandex](https://contest.yandex.ru/) 存档了近几年的全俄罗斯信息学奥赛。
 
 ## 教程资料
@@ -114,13 +114,17 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [Competitive Programmer's Handbook](https://cses.fi/book/index.html) 
 -   《挑战程序设计竞赛》全套 - 秋叶拓哉，岩田阳一，北川宜稔
     通俗易懂。
-    -    [译者博客介绍页](http://blog.watashi.ws/2382/pccb-etc/) 
+    -    [译者博客介绍页](http://blog.watashi.ws/2382/pccb-etc/)
 -   《算法概论》- Sanjoy Dasgupta/Christos Papadimitriou/Umesh Vazirani
     提纲挚领，但内容较少。
 -    [Legend-K 的数据结构与算法的笔记](http://www.legend-k.com/Algorithm/Algorithm.pdf) 
 -    [acm-cheat-sheet](https://github.com/soulmachine/acm-cheat-sheet) 
 -    [Competitive Programmer’s Handbook](https://cses.fi/book/book.pdf) - Antti Laaksonen
     作者花了三年个人时间完成。面向算法竞赛，覆盖面广，详略得当。
+-   [《挑战编程：程序设计竞赛训练手册》](http://acm.cs.buap.mx/downloads/Programming_Challenges.pdf) - Steven S. Skiena/Miguel A. Revilla
+    由西班牙 University of Valladolid 的两位教授编写。
+    -    [阅读经过翻译的在线电子版图书](http://www.tup.com.cn/upload/books/yz/030502-01.pdf)
+    -    [购买纸质版图书](http://www.tup.tsinghua.edu.cn/booksCenter/book_03050201.html)
 
 ## 工具
 
