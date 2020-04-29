@@ -85,7 +85,7 @@ $$
 
 ### 例题 & 代码
 
-???+note "例题[小 Z 的袜子](https://www.luogu.org/problem/P1494)"
+???+note "例题[「国家集训队」小 Z 的袜子](https://www.luogu.com.cn/problem/P1494)"
     题目大意：
 
     有一个长度为 $n$ 的序列 $\{c_i\}$ 。现在给出 $m$ 个询问，每次给出两个数 $l,r$ ，从编号在 $l$ 到 $r$ 之间的数中随机选出两个不同的数，求两个数相等的概率。
@@ -118,45 +118,60 @@ $$
 
 ??? 参考代码
     ```cpp
-    #include <bits/stdc++.h>
-    #define bi(a) ((a - 1) / sqn + 1)
+    #include<cstdio>
+    #include<cmath>
+    #include<algorithm>
     using namespace std;
-    typedef long long LL;
-    template <typename tp>
-    void read(tp& dig) {
-      char c = getchar();
-      dig = 0;
-      while (!isdigit(c)) c = getchar();
-      while (isdigit(c)) dig = dig * 10 + c - '0', c = getchar();
+    const int N = 50005;
+    int n, m, maxn;
+    int c[N];
+    long long sum;
+    int cnt[N];
+    long long ans1[N], ans2[N];
+    struct query {
+    	int l, r, id;
+    	bool operator < (const query &x) const {
+    		if (l / maxn != x.l / maxn) return l < x.l;
+    		return (l / maxn) & 1 ? r < x.r : r > x.r;
+    	}
+    } a[N];
+    void add(int i) {
+    	sum += cnt[i];
+    	cnt[i]++;
     }
-    struct node {
-      LL l, r, i;
-    };
-    LL n, m, sqn, arr[50005], l, r, ans, col[50005], nume[50005], deno[50005];
-    vector<node> tab;
-    bool cmp(node a, node b) {
-      if (bi(a.l) == bi(b.l)) return a.r < b.r;
-      return a.l < b.l;
+    void del(int i) {
+    	cnt[i]--;
+    	sum -= cnt[i];
     }
-    LL gcd(LL a, LL b) { return !b ? a : gcd(b, a % b); }
+    long long gcd(long long a, long long b) {
+    	return b ? gcd(b, a % b) : a;
+    }
     int main() {
-      read(n), read(m), sqn = sqrt(n);
-      for (LL i = 1; i <= n; i++) read(arr[i]);
-      for (LL i = 1, a, b; i <= m; i++)
-        read(a), read(b), tab.push_back((node){a, b, i});
-      sort(tab.begin(), tab.end(), cmp), l = r = tab[0].l, col[arr[l]]++;
-      for (LL i = 0, gcdnum; i < tab.size(); i++) {
-        for (; l < tab[i].l; l++) col[arr[l]]--, ans -= col[arr[l]];
-        for (--l; l >= tab[i].l; l--) ans += col[arr[l]], col[arr[l]]++;
-        for (; r > tab[i].r; r--) col[arr[r]]--, ans -= col[arr[r]];
-        for (++r; r <= tab[i].r; r++) ans += col[arr[r]], col[arr[r]]++;
-        nume[tab[i].i] = ans, l = tab[i].l, r = tab[i].r;
-        deno[tab[i].i] = ((r - l) * (r - l + 1)) >> 1;
-      }
-      for (LL i = 1, gcdn; i <= m; i++)
-        gcdn = gcd(nume[i], deno[i]),
-        printf("%lld/%lld\n", nume[i] / gcdn, deno[i] / gcdn);
-      return 0;
+    	scanf("%d%d", &n, &m);
+    	maxn = sqrt(n);
+    	for (int i = 1; i <= n; i++) scanf("%d", &c[i]);
+    	for (int i = 0; i < m; i++) scanf("%d%d", &a[i].l, &a[i].r), a[i].id = i;
+    	sort(a, a + m);
+    	for (int i = 0, l = 1, r = 0; i < m; i++) {
+    		if (a[i].l == a[i].r) {
+    			ans1[a[i].id] = 0, ans2[a[i].id] = 1;
+    			continue;
+    		}
+    		while (l < a[i].l) del(c[l++]);
+    		while (l > a[i].l) add(c[--l]);
+    		while (r < a[i].r) add(c[++r]);
+    		while (r > a[i].r) del(c[r--]);
+    		ans1[a[i].id] = sum;
+    		ans2[a[i].id] = (long long)(r - l + 1) * (r - l) / 2;
+    	}
+    	for (int i = 0; i < m; i++) {
+    		if (ans1[i] != 0) {
+    			long long g = gcd(ans1[i], ans2[i]);
+    			ans1[i] /= g, ans2[i] /= g;
+    		} else ans2[i] = 1;
+    		printf("%lld/%lld\n", ans1[i], ans2[i]);
+    	}
+    	return 0;
     }
     ```
 
@@ -250,7 +265,7 @@ struct node {
 
 ### 例题
 
-???+note "例题[数颜色 BZOJ - 2120](https://www.luogu.org/problem/P1903)"
+???+note "例题[「国家集训队」数颜色 / 维护队列](https://www.luogu.org/problem/P1903)"
 
     题目大意：给你一个序列，M 个操作，有两种操作：
 
@@ -643,9 +658,9 @@ if (!sta.empty()) {
 
 加起来大概在根号处取得最小值（由于树上莫队块的大小不固定，所以不一定要严格按照）。
 
-### 例题[WC2013]糖果公园
+### 例题「WC2013」糖果公园
 
-由于多了时间维，块的大小取到 0.6 的样子就差不多了。
+由于多了时间维，块的大小取到 $0.6n$ 的样子就差不多了。
 
 ??? 参考代码
     ```cpp
