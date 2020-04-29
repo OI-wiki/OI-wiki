@@ -122,7 +122,7 @@ $$
 
 也就是无限背包问题。这个问题可以预处理，算上询问，总复杂度 $O(4S+2^4n)$ 。
 
-???+note "代码实现"
+??? note "代码实现"
     ```cpp
     #include <bits/stdc++.h>
     #define int long long
