@@ -40,6 +40,7 @@
           puts("No");
         ```
         无论 $n$ 的值之前为多少，输出肯定是 `Yes` 。
+    Tips: 如果你的确是想在 `if`/`while` 直接用赋值运算符（比如 `while (foo = bar)`），又不想收到 Warning，可以使用 **双括号**：`while ((foo = bar))`。
 
 -   使用 `scanf` 读入的时候没加取地址符 `&` 。更一般地，使用 `scanf` 或 `printf` 的时候参数类型与格式指定符不符。
 
