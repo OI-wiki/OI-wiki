@@ -90,39 +90,39 @@ $$
 
 除了公式之外，曼哈顿距离还具有以下数学性质：
 
--    **非负性**
+-    **非负性** 
 
     曼哈顿距离是一个非负数。
 
-     $d(i,j)\geq 0$
+     $d(i,j)\geq 0$ 
 
--    **统一性**
+-    **统一性** 
 
     点到自身的曼哈顿距离为 $0$ 。
 
-     $d(i,i) = 0$
+     $d(i,i) = 0$ 
 
--    **对称性**
+-    **对称性** 
 
      $A$ 到 $B$ 与 $B$ 到 $A$ 的曼哈顿距离相等，且是对称函数。
 
-     $d(i,j) = d(j,i)$
+     $d(i,j) = d(j,i)$ 
 
--    **三角不等式**
+-    **三角不等式** 
 
     从点 $i$ 到 $j$ 的直接距离不会大于途经的任何其它点 $k$ 的距离。
 
-     $d(i,j)\leq d(i,k)+d(k,j)$
+     $d(i,j)\leq d(i,k)+d(k,j)$ 
 
 ### 例题 1
 
-[P5098 「USACO04OPEN」Cave Cows 3](https://www.luogu.com.cn/problem/P5098)
+ [P5098「USACO04OPEN」Cave Cows 3](https://www.luogu.com.cn/problem/P5098) 
 
 根据题意，对于式子 $|x_1-x_2|+|y_1-y_2|$ ，我们可以假设 $x_1 - x_2 \geq 0$ ，根据 $y_1 - y_2$ 的符号分成两种情况：
 
--    $(y_1 - y_2 \geq 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 + y_1 - (x_2 + y_2)$
+-    $(y_1 - y_2 \geq 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 + y_1 - (x_2 + y_2)$ 
 
--    $(y_1 - y_2 \lt 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 - y_1 - (x_2 - y_2)$
+-    $(y_1 - y_2 \lt 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 - y_1 - (x_2 - y_2)$ 
 
 只要分别求出 $x+y, x-y$ 的最大值和最小值即能得出答案。
 
@@ -279,15 +279,15 @@ $$
 
 ### 例题 2
 
-[P4648 「IOI2007」pairs 动物对数](https://www.luogu.com.cn/problem/P4648)（曼哈顿距离转切比雪夫距离）
+ [P4648「IOI2007」pairs 动物对数](https://www.luogu.com.cn/problem/P4648) （曼哈顿距离转切比雪夫距离）
 
-[P3964 「TJOI2013」松鼠聚会](https://www.luogu.com.cn/problem/P3964)（切比雪夫距离转曼哈顿距离）
+ [P3964「TJOI2013」松鼠聚会](https://www.luogu.com.cn/problem/P3964) （切比雪夫距离转曼哈顿距离）
 
-最后给出 [P5098 「USACO04OPEN」Cave Cows 3](https://www.luogu.com.cn/problem/P5098) 的第二种解法：
+最后给出 [P5098「USACO04OPEN」Cave Cows 3](https://www.luogu.com.cn/problem/P5098) 的第二种解法：
 
 我们考虑将题目所求的曼哈顿距离转化为切比雪夫距离，即把每个点的坐标 $(x,y)$ 变为 $(x + y, x - y)$ 。
 
-所求的答案就变为 $\max_{i,j\in n}\begin{Bmatrix} \max\begin{Bmatrix} |x_i - x_j|,|y_i - y_j|\end{Bmatrix}\end{Bmatrix}$
+所求的答案就变为 $\max_{i,j\in n}\begin{Bmatrix} \max\begin{Bmatrix} |x_i - x_j|,|y_i - y_j|\end{Bmatrix}\end{Bmatrix}$ 
 
 现要使得横坐标之差和纵坐标之差最大，只需要预处理出 $x,y$ 的最大值和最小值即可。
 
@@ -329,7 +329,7 @@ $$
 
 一般地，我们定义平面上两点 $A(x_1, y_1)$ , $B(x_2, y_2)$ 之间的 $L_m$ 距离为
 
- $d(L_m) = (|x_1-x_2|^m+|y1-y2|^m)^{\frac{1}{m}}$
+ $d(L_m) = (|x_1-x_2|^m+|y1-y2|^m)^{\frac{1}{m}}$ 
 
 特殊的， $L_2$ 距离就是欧几里得距离， $L_1$ 距离就是曼哈顿距离。
 
