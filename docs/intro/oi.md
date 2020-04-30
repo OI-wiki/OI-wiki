@@ -1,4 +1,4 @@
-author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, TrisolarisHD, luoguyuntianming, ChungZH, Xeonacid, yizr-cnyali, i-Yirannn
+author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, TrisolarisHD, luoguyuntianming, ChungZH, Xeonacid, yizr-cnyali, i-Yirannn, H-J-Granger
 
 ## 赛事介绍
 
@@ -90,7 +90,7 @@ Codeforces 同时提供另外一种赛制，称作扩展 ICPC（extended ICPC）
 官网地址： <https://www.usaco.org/> 
 
 USACO 或许是国内选手最熟悉的外国 OI 竞赛（可能也是中文题解最多的外国 OI 竞赛）。  
-每年冬季到初春，USACO 会每月举办一场网络赛。一场比赛持续 $3\sim5$ 个小时。  
+每年冬季到初春，USACO 会每月举办一场网络赛。一场比赛持续 3~5 个小时。  
 根据官网的介绍，USACO 的比赛分成这 4 档难度（2015~2016 学年之前为 3 档）：
 
 -   铜牌组，适合编程初学者，尤其是只学了最最基础的算法（如：排序，二分查找）的学生。
@@ -174,7 +174,7 @@ CCC Junior/Senior 贴近 NOIP 普及组/提高组难度。CCO 想要拿到金牌
 
 ### 台湾地区：資訊奧林匹亞競賽
 
-台湾地区把 OI 中的 informatics 翻译成“资讯”而非大陆通用的翻译“信息”。  
+台湾地区把 OI 中的 informatics 翻译成“資訊”而非大陆通用的翻译“信息”。  
 台湾地区的选手如果想去参加 IOI，需要经过这几轮比赛：
 
 -   區域資訊學科能力競賽
@@ -227,7 +227,7 @@ eJOI 每年都公开题面、测试数据和题解，官网地址参见上面那
 ### International School for Informatics“Junior”(ISIJ)
 
 似乎没有官网。见 CCF 新闻 <http://www.noi.cn/newsview.html?id=911&hash=2D52A8&type=1> 。  
-据 300iq 说题目质量很糟糕。
+300iq 认为题目质量很糟糕。
 
 ### Nordic Olympiads in Informatics (NOI)
 
