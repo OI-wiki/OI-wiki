@@ -101,7 +101,9 @@ void insertNode(int i, Node *p) {
 ```c++
 void deleteNode(Node *p) {
   p->value = p->next->value;
+  Node *t = p->next;
   p->next = p->next->next;
+  delete t;
 }
 ```
 
@@ -112,10 +114,11 @@ void deleteNode(Node *p) {
 ### 双向循环链表
 
 ```c++
-void deleteNode(Node *p) {
-  p->value = p->right->value;
+void deleteNode(Node *&p) {
   p->left->right = p->right;
   p->right->left = p->left;
+  Node *t = p;
   p = p->right;
+  delete t;
 }
 ```
