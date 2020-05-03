@@ -85,7 +85,7 @@ $$
 
 ### 例题 & 代码
 
-???+note "例题[小 Z 的袜子](https://www.luogu.org/problem/P1494)"
+???+note "例题[「国家集训队」小 Z 的袜子](https://www.luogu.com.cn/problem/P1494)"
     题目大意：
 
     有一个长度为 $n$ 的序列 $\{c_i\}$ 。现在给出 $m$ 个询问，每次给出两个数 $l,r$ ，从编号在 $l$ 到 $r$ 之间的数中随机选出两个不同的数，求两个数相等的概率。
@@ -118,44 +118,58 @@ $$
 
 ??? 参考代码
     ```cpp
-    #include <bits/stdc++.h>
-    #define bi(a) ((a - 1) / sqn + 1)
+    #include <algorithm>
+    #include <cmath>
+    #include <cstdio>
     using namespace std;
-    typedef long long LL;
-    template <typename tp>
-    void read(tp& dig) {
-      char c = getchar();
-      dig = 0;
-      while (!isdigit(c)) c = getchar();
-      while (isdigit(c)) dig = dig * 10 + c - '0', c = getchar();
-    }
-    struct node {
-      LL l, r, i;
-    };
-    LL n, m, sqn, arr[50005], l, r, ans, col[50005], nume[50005], deno[50005];
-    vector<node> tab;
-    bool cmp(node a, node b) {
-      if (bi(a.l) == bi(b.l)) return a.r < b.r;
-      return a.l < b.l;
-    }
-    LL gcd(LL a, LL b) { return !b ? a : gcd(b, a % b); }
-    int main() {
-      read(n), read(m), sqn = sqrt(n);
-      for (LL i = 1; i <= n; i++) read(arr[i]);
-      for (LL i = 1, a, b; i <= m; i++)
-        read(a), read(b), tab.push_back((node){a, b, i});
-      sort(tab.begin(), tab.end(), cmp), l = r = tab[0].l, col[arr[l]]++;
-      for (LL i = 0, gcdnum; i < tab.size(); i++) {
-        for (; l < tab[i].l; l++) col[arr[l]]--, ans -= col[arr[l]];
-        for (--l; l >= tab[i].l; l--) ans += col[arr[l]], col[arr[l]]++;
-        for (; r > tab[i].r; r--) col[arr[r]]--, ans -= col[arr[r]];
-        for (++r; r <= tab[i].r; r++) ans += col[arr[r]], col[arr[r]]++;
-        nume[tab[i].i] = ans, l = tab[i].l, r = tab[i].r;
-        deno[tab[i].i] = ((r - l) * (r - l + 1)) >> 1;
+    const int N = 50005;
+    int n, m, maxn;
+    int c[N];
+    long long sum;
+    int cnt[N];
+    long long ans1[N], ans2[N];
+    struct query {
+      int l, r, id;
+      bool operator<(const query &x) const {
+        if (l / maxn != x.l / maxn) return l < x.l;
+        return (l / maxn) & 1 ? r < x.r : r > x.r;
       }
-      for (LL i = 1, gcdn; i <= m; i++)
-        gcdn = gcd(nume[i], deno[i]),
-        printf("%lld/%lld\n", nume[i] / gcdn, deno[i] / gcdn);
+    } a[N];
+    void add(int i) {
+      sum += cnt[i];
+      cnt[i]++;
+    }
+    void del(int i) {
+      cnt[i]--;
+      sum -= cnt[i];
+    }
+    long long gcd(long long a, long long b) { return b ? gcd(b, a % b) : a; }
+    int main() {
+      scanf("%d%d", &n, &m);
+      maxn = sqrt(n);
+      for (int i = 1; i <= n; i++) scanf("%d", &c[i]);
+      for (int i = 0; i < m; i++) scanf("%d%d", &a[i].l, &a[i].r), a[i].id = i;
+      sort(a, a + m);
+      for (int i = 0, l = 1, r = 0; i < m; i++) {
+        if (a[i].l == a[i].r) {
+          ans1[a[i].id] = 0, ans2[a[i].id] = 1;
+          continue;
+        }
+        while (l < a[i].l) del(c[l++]);
+        while (l > a[i].l) add(c[--l]);
+        while (r < a[i].r) add(c[++r]);
+        while (r > a[i].r) del(c[r--]);
+        ans1[a[i].id] = sum;
+        ans2[a[i].id] = (long long)(r - l + 1) * (r - l) / 2;
+      }
+      for (int i = 0; i < m; i++) {
+        if (ans1[i] != 0) {
+          long long g = gcd(ans1[i], ans2[i]);
+          ans1[i] /= g, ans2[i] /= g;
+        } else
+          ans2[i] = 1;
+        printf("%lld/%lld\n", ans1[i], ans2[i]);
+      }
       return 0;
     }
     ```
@@ -250,7 +264,7 @@ struct node {
 
 ### 例题
 
-???+note "例题[数颜色 BZOJ - 2120](https://www.luogu.org/problem/P1903)"
+???+note "例题[「国家集训队」数颜色 / 维护队列](https://www.luogu.org/problem/P1903)"
 
     题目大意：给你一个序列，M 个操作，有两种操作：
 
@@ -643,9 +657,9 @@ if (!sta.empty()) {
 
 加起来大概在根号处取得最小值（由于树上莫队块的大小不固定，所以不一定要严格按照）。
 
-### 例题[WC2013]糖果公园
+### 例题「WC2013」糖果公园
 
-由于多了时间维，块的大小取到 0.6 的样子就差不多了。
+由于多了时间维，块的大小取到 $0.6n$ 的样子就差不多了。
 
 ??? 参考代码
     ```cpp
@@ -916,6 +930,99 @@ if (!sta.empty()) {
       return 0;
     }
     ```
+
+## 莫队配合 bitset
+
+bitset 常用于常规数据结构难以维护的的判定、统计问题，而莫队可以维护常规数据结构难以维护的区间信息。把两者结合起来使用可以同时利用两者的优势。
+
+### 例题 [「Ynoi2016」掉进兔子洞](https://www.luogu.com.cn/problem/P4688) 
+
+本题刚好符合上面提到的莫队配合 bitset 的特征。不难想到我们可以分别用 bitset 存储每一个区间内的出现过的所有权值，一组询问的答案即所有区间的长度和减去三者的并集元素个数 $\times 3$ 。
+
+但是在莫队中使用 bitset 也需要针对 bitset 的特性调整算法：
+
+1.  bitset 不能很好地处理同时出现多个权值的情况。我们可以把当前元素离散化后的权值与当前区间的的出现次数之和作为往 bitset 中插入的对象。
+2.  我们平常使用莫队时，可能会不注意 4 种移动指针的方法顺序，所以指针移动的过程中可能会出现区间的左端点在右端点右边，区间长度为负值的情况，导致元素的个数为负数。这在其他情况下并没有什么影响，但是本题中在 bitset 中插入的元素与元素个数有关，所以我们需要注意 4 种移动指针的方法顺序，将左右指针分别往左边和右边移动的语句写在前面，避免往 bitset 中插入负数。
+3.  虽然 bitset 用空间小，但是仍然难以承受 $10 ^ 5 \times 10 ^ 5$ 的数据规模。所以我们需要将询问划分成常数块分别处理，保证空间刚好足够的情况下时间复杂度不变。
+
+??? 参考代码
+    ```cpp
+    #include <algorithm>
+    #include <bitset>
+    #include <cmath>
+    #include <cstdio>
+    #include <cstring>
+    using namespace std;
+    const int N = 100005, M = N / 3 + 10;
+    int n, m, maxn;
+    int a[N], ans[M], cnt[N];
+    bitset<N> sum[M], now;
+    struct query {
+      int l, r, id;
+      bool operator<(const query& x) const {
+        if (l / maxn != x.l / maxn) return l < x.l;
+        return (l / maxn) & 1 ? r < x.r : r > x.r;
+      }
+    } q[M * 3];
+    void static_set() {
+      static int tmp[N];
+      memcpy(tmp, a, sizeof(a));
+      sort(tmp + 1, tmp + n + 1);
+      for (int i = 1; i <= n; i++)
+        a[i] = lower_bound(tmp + 1, tmp + n + 1, a[i]) - tmp;
+    }
+    void add(int x) {
+      now.set(x + cnt[x]);
+      cnt[x]++;
+    }
+    void del(int x) {
+      cnt[x]--;
+      now.reset(x + cnt[x]);
+    }
+    void solve() {
+      int cnt = 0, tot = 0;
+      now.reset();
+      for (tot = 0; tot < M - 5 && m; tot++) {
+        m--;
+        ans[tot] = 0;
+        sum[tot].set();
+        for (int j = 0; j < 3; j++) {
+          scanf("%d%d", &q[cnt].l, &q[cnt].r);
+          q[cnt].id = tot;
+          ans[tot] += q[cnt].r - q[cnt].l + 1;
+          cnt++;
+        }
+      }
+      sort(q, q + cnt);
+      for (int i = 0, l = 1, r = 0; i < cnt; i++) {
+        while (l > q[i].l) add(a[--l]);
+        while (r < q[i].r) add(a[++r]);
+        while (l < q[i].l) del(a[l++]);
+        while (r > q[i].r) del(a[r--]);
+        sum[q[i].id] &= now;
+      }
+      for (int i = 0; i < tot; i++)
+        printf("%d\n", ans[i] - (int)sum[i].count() * 3);
+    }
+    int main() {
+      scanf("%d%d", &n, &m);
+      for (int i = 1; i <= n; i++) scanf("%d", &a[i]);
+      static_set();
+      maxn = sqrt(n);
+      solve();
+      memset(cnt, 0, sizeof(cnt));
+      solve();
+      memset(cnt, 0, sizeof(cnt));
+      solve();
+      return 0;
+    }
+    ```
+
+### 习题
+
+-    [小清新人渣的本愿](https://www.luogu.com.cn/problem/P3674) 
+-    [「Ynoi2017」由乃的玉米田](https://www.luogu.com.cn/problem/P5355) 
+-    [「Ynoi2011」WBLT](https://www.luogu.com.cn/problem/P5313) 
 
 ## 参考资料
 
