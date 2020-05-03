@@ -1,8 +1,8 @@
-## Description
+## 描述
 
 给定多项式 $f\left(x\right)$ ，求 $f^{-1}\left(x\right)$ 。
 
-## Methods
+## 解法
 
 ### 倍增法
 
@@ -47,7 +47,7 @@ $$
 
 参见 [ **Newton's Method** ](./newton.md#newtons-method) .
 
-## Code
+## 代码
 
 ??? "多项式求逆"
     ```cpp
@@ -79,6 +79,6 @@ $$
     }
     ```
 
-## Examples
+## 例题
 
 1.  有标号简单无向连通图计数： [「POJ 1737」Connected Graph](http://poj.org/problem?id=1737) 

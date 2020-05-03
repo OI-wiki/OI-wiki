@@ -74,22 +74,32 @@ Tarjan 发明了很多算法结构。光 Tarjan 算法就有很多，比如求�
 ### 实现
 
 ```cpp
-int dfn[N], low[N], dfncnt, s[N], tp;
+int dfn[N], low[N], dfncnt, s[N], in_stack[N], tp;
 int scc[N], sc;  // 结点 i 所在 scc 的编号
 int sz[N];       // 强连通 i 的大小
 void tarjan(int u) {
-  low[u] = dfn[u] = ++dfncnt, s[++tp] = u;
+  low[u] = dfn[u] = ++dfncnt, s[++tp] = u, in_stack[u] = 1;
   for (int i = h[u]; i; i = e[i].nex) {
     const int &v = e[i].t;
-    if (!dfn[v])
-      tarjan(v), low[u] = min(low[u], low[v]);
-    else if (!scc[v])
+    if (!dfn[v]) {
+      tarjan(v);
+      low[u] = min(low[u], low[v]);
+    } else if (in_stack[v]) {
       low[u] = min(low[u], dfn[v]);
+    }
   }
   if (dfn[u] == low[u]) {
     ++sc;
-    while (s[tp] != u) scc[s[tp]] = sc, sz[sc]++, --tp;
-    scc[s[tp]] = sc, sz[sc]++, --tp;
+    while (s[tp] != u) {
+      scc[s[tp]] = sc;
+      sz[sc]++;
+      in_stack[s[tp]] = 0;
+      --tp;
+    }
+    scc[s[tp]] = sc;
+    sz[sc]++;
+    in_stack[s[tp]] = 0;
+    --tp;
   }
 }
 ```
@@ -131,7 +141,7 @@ void kosaraju() {
   for (int i = n; i >= 1; --i)
     if (!color[s[i]]) {
       ++sccCnt;
-      dfs2(s[i])
+      dfs2(s[i]);
     }
 }
 ```

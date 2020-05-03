@@ -42,7 +42,7 @@ $$
 \end{gathered}
 $$
 
- [NOIP2017 提高组 奶酪](http://uoj.ac/problem/332) 就运用了这一知识，可以作为欧氏距离的例题。
+ [NOIP2017 提高组 奶酪](https://uoj.ac/problem/332) 就运用了这一知识，可以作为欧氏距离的例题。
 
 以此类推，我们就得到了 $n$ 维空间中欧氏距离的距离公式：对于 $\vec A(x_{11}, x_{12}, \cdots,x_{1n}) ,~ \vec B(x_{21}, x_{22}, \cdots,x_{2n})$ ，有
 
@@ -69,7 +69,7 @@ $$
 
 在 $A,B$ 间，黄线、橙线都表示曼哈顿距离，而红线、蓝线表示等价的曼哈顿距离，绿线表示欧氏距离。
 
-同样的栗子，在下图中 $A,B$ 的坐标分别为 $A(6,5),B(2,2)$ 。
+同样的栗子，在下图中 $A,B$ 的坐标分别为 $A(25,20),B(10,10)$ 。
 
 ![manhattan-dis](./images/distance-2.svg)
 
@@ -116,7 +116,7 @@ $$
 
 ### 例题 1
 
- [USACO2004OPEN Cave Cows 3 洞穴里的牛之三](https://www.luogu.org/problemnew/show/P5098) 
+ [P5098「USACO04OPEN」Cave Cows 3](https://www.luogu.com.cn/problem/P5098) 
 
 根据题意，对于式子 $|x_1-x_2|+|y_1-y_2|$ ，我们可以假设 $x_1 - x_2 \geq 0$ ，根据 $y_1 - y_2$ 的符号分成两种情况：
 
@@ -126,42 +126,42 @@ $$
 
 只要分别求出 $x+y, x-y$ 的最大值和最小值即能得出答案。
 
-### 代码实现 1
+??? 参考代码 1
 
-```cpp
-#include <bits/stdc++.h>
+    ```cpp
+    #include <bits/stdc++.h>
 
-using namespace std;
+    using namespace std;
 
-template <class T>
-inline void read(T &x) {
-  x = 0;
-  char c = getchar();
-  bool f = 0;
-  for (; !isdigit(c); c = getchar()) f ^= c == '-';
-  for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
-  x = f ? -x : x;
-}
+    template <class T>
+    inline void read(T &x) {
+      x = 0;
+      char c = getchar();
+      bool f = 0;
+      for (; !isdigit(c); c = getchar()) f ^= c == '-';
+      for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
+      x = f ? -x : x;
+    }
 
-int n, x, y, minx = 0x7fffffff, maxx, miny = 0x7fffffff, maxy;
+    int n, x, y, minx = 0x7fffffff, maxx, miny = 0x7fffffff, maxy;
 
-int main() {
-  read(n);
-  for (int i = 1; i <= n; i++) {
-    read(x), read(y);
-    minx = min(minx, x + y), maxx = max(maxx, x + y);
-    miny = min(miny, x - y), maxy = max(maxy, x - y);
-  }
-  printf("%d\n", max(maxx - minx, maxy - miny));
-  return 0;
-}
-```
+    int main() {
+      read(n);
+      for (int i = 1; i <= n; i++) {
+        read(x), read(y);
+        minx = min(minx, x + y), maxx = max(maxx, x + y);
+        miny = min(miny, x - y), maxy = max(maxy, x - y);
+      }
+      printf("%d\n", max(maxx - minx, maxy - miny));
+      return 0;
+    }
+    ```
 
 其实还有第二种做法，那就是把曼哈顿距离转化为切比雪夫距离求解，最后部分会讲到。
 
 ## 切比雪夫距离
 
-切比雪夫距离（Chebyshev distance）是向量空间中的一种度量，二个点之间的距离定义是其各坐标数值差绝对值的最大值。——_来源： [维基百科](https://zh.wikipedia.org/wiki/%E5%88%87%E6%AF%94%E9%9B%AA%E5%A4%AB%E8%B7%9D%E7%A6%BB) _
+切比雪夫距离（Chebyshev distance）是向量空间中的一种度量，二个点之间的距离定义是其各坐标数值差绝对值的最大值。——_来源： [切比雪夫距离](https://zh.wikipedia.org/wiki/%E5%88%87%E6%AF%94%E9%9B%AA%E5%A4%AB%E8%B7%9D%E7%A6%BB) - 维基百科_
 
 在二维空间内，两个点之间的切比雪夫距离为它们横坐标之差的绝对值与纵坐标之差的绝对值的最大值。设点 $A(x_1,y_1),B(x_2,y_2)$ ，则 $A,B$ 之间的切比雪夫距离用公式可以表示为：
 
@@ -182,7 +182,7 @@ $$
 $$
 \begin{aligned}
 &d(x,y) &=& \max\begin{Bmatrix} |x_1 - y_1|,|x_2 - y_2|,\cdot \cdot \cdot,|x_n - y_n|\end{Bmatrix} \\
-&&=& \max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in n)\end{aligned}
+&&=& \max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in [1, n])\end{aligned}
 $$
 
 ## 曼哈顿距离与切比雪夫距离的相互转化
@@ -239,13 +239,12 @@ $$
 
 假设 $A(x_1,y_1),B(x_2,y_2)$ ，
 
- $A,B$ 两点的曼哈顿距离为：
+我们把曼哈顿距离中的绝对值拆开，能够得到四个值，这四个值中的最大值是两个非负数之和，即曼哈顿距离。则 $A,B$ 两点的曼哈顿距离为：
 
 $$
 \begin{aligned}
 d(A,B)&=|x_1 - x_2| + |y_1 - y_2|\\
 &=\max\begin{Bmatrix} x_1 - x_2 + y_1 - y_2, x_1 - x_2 + y_2 - y_1,x_2 - x_1 + y_1 - y_2, x_2 - x_1 + y_2 - y_1\end{Bmatrix}\\
-&\text{（ 把绝对值拆开，能够得到四个值，这四个值中的最大值是两个非负数之和，即曼哈顿距离 ）}\\
 &= \max(|(x_1 + y_1) - (x_2 + y_2)|, |(x_1 - y_2) - (x_2 - y_2)|)
 \end{aligned}
 $$
@@ -280,11 +279,11 @@ $$
 
 ### 例题 2
 
- [ **P4648** ](https://www.luogu.org/problemnew/show/P4648) >（曼哈顿距离转切比雪夫距离）
+ [P4648「IOI2007」pairs 动物对数](https://www.luogu.com.cn/problem/P4648) （曼哈顿距离转切比雪夫距离）
 
- [ **P3964** ](https://www.luogu.org/problemnew/show/P3964) >（切比雪夫距离转曼哈顿距离）
+ [P3964「TJOI2013」松鼠聚会](https://www.luogu.com.cn/problem/P3964) （切比雪夫距离转曼哈顿距离）
 
-最后给出 [ **P5098** ](https://www.luogu.org/problemnew/show/P5098) 的第二种解法：
+最后给出 [P5098「USACO04OPEN」Cave Cows 3](https://www.luogu.com.cn/problem/P5098) 的第二种解法：
 
 我们考虑将题目所求的曼哈顿距离转化为切比雪夫距离，即把每个点的坐标 $(x,y)$ 变为 $(x + y, x - y)$ 。
 
@@ -292,37 +291,37 @@ $$
 
 现要使得横坐标之差和纵坐标之差最大，只需要预处理出 $x,y$ 的最大值和最小值即可。
 
-### 代码实现 2
+??? 参考代码 2
 
-```cpp
-#include <bits/stdc++.h>
+    ```cpp
+    #include <bits/stdc++.h>
 
-using namespace std;
+    using namespace std;
 
-template <class T>
-inline void read(T &x) {
-  x = 0;
-  char c = getchar();
-  bool f = 0;
-  for (; !isdigit(c); c = getchar()) f ^= c == '-';
-  for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
-  x = f ? -x : x;
-}
+    template <class T>
+    inline void read(T &x) {
+      x = 0;
+      char c = getchar();
+      bool f = 0;
+      for (; !isdigit(c); c = getchar()) f ^= c == '-';
+      for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
+      x = f ? -x : x;
+    }
 
-int n, x, y, a, b, minx = 0x7fffffff, maxx, miny = 0x7fffffff, maxy;
+    int n, x, y, a, b, minx = 0x7fffffff, maxx, miny = 0x7fffffff, maxy;
 
-int main() {
-  read(n);
-  for (int i = 1; i <= n; i++) {
-    read(a), read(b);
-    x = a + b, y = a - b;
-    minx = min(minx, x), maxx = max(maxx, x);
-    miny = min(miny, y), maxy = max(maxy, y);
-  }
-  printf("%d\n", max(maxx - minx, maxy - miny));
-  return 0;
-}
-```
+    int main() {
+      read(n);
+      for (int i = 1; i <= n; i++) {
+        read(a), read(b);
+        x = a + b, y = a - b;
+        minx = min(minx, x), maxx = max(maxx, x);
+        miny = min(miny, y), maxy = max(maxy, y);
+      }
+      printf("%d\n", max(maxx - minx, maxy - miny));
+      return 0;
+    }
+    ```
 
 对比两份代码，我们又能够发现，两种不同的思路，写出来的代码却是完全等价的，是不是很神奇呢？当然，更高深的东西需要大家另行研究。
 

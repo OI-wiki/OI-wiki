@@ -111,15 +111,15 @@ $$
 
 $$
 \begin{aligned}
-b_1&=a_1 \mod n_1\\
-b_2&=(a_2-b_1)c_{1,2} \mod n_2\\
-b_3&=((a_3-b_1')c_{1,3}-x_2')c_{2,3} \mod n_3\\
+b_1&=a_1 \bmod n_1\\
+b_2&=(a_2-b_1)c_{1,2} \bmod n_2\\
+b_3&=((a_3-b_1')c_{1,3}-x_2')c_{2,3} \bmod n_3\\
 &...\\
-b_k&=(...((a_k-b_1)c_{1,k}-b_2)c_{2,k})-...)c_{k-1,k} \mod n_k
+b_k&=(...((a_k-b_1)c_{1,k}-b_2)c_{2,k})-...)c_{k-1,k} \bmod n_k
 \end{aligned}
 $$
 
-其中 $c_{i,j}$ 表示 $n_i$ 对 $n_j$ 的逆元， $c_{i,j}n_i=1 \mod n_j$ 
+其中 $c_{i,j}$ 表示 $n_i$ 对 $n_j$ 的逆元， $c_{i,j}n_i \equiv 1 \pmod {n_j}$ 
 
 ## 扩展：模数不互质的情况
 
@@ -143,7 +143,7 @@ $$
 
  [【模板】扩展中国剩余定理](https://www.luogu.org/problemnew/show/P4777) 
 
- [「NOI2018」屠龙勇士](http://uoj.ac/problem/396) 
+ [「NOI2018」屠龙勇士](https://uoj.ac/problem/396) 
 
  [「TJOI2009」猜数字](https://www.luogu.org/problemnew/show/P3868) 
 

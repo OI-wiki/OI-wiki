@@ -241,6 +241,7 @@ nav:
     - 链表: ds/linked-list.md
     - 哈希表: ds/hash.md
     - 并查集: ds/dsu.md
+    - 并查集时间复杂度证明: ds/dsu-complexity.md
     - 堆:
       - 堆简介: ds/heap.md
       - 二叉堆: ds/binary-heap.md
@@ -303,6 +304,7 @@ nav:
       - 虚树: graph/virtual-tree.md
       - 树分治: graph/tree-divide.md
       - 动态树分治: graph/dynamic-tree-divide.md
+      - AHU算法: graph/tree-ahu.md
       - 树哈希: graph/tree-hash.md
     - 矩阵树定理: graph/matrix-tree.md
     - 有向无环图: graph/dag.md
@@ -374,6 +376,13 @@ nav:
     - 在一台机器上规划任务: misc/job-order.md
   - 专题:
     - RMQ: topic/rmq.md
+    - 图的匹配:
+      - 图匹配: topic/graph-matching/graph-match.md
+      - 增广路: topic/graph-matching/augment.md
+      - 二分图最大匹配: topic/graph-matching/bigraph-match.md
+      - 一般图匹配: topic/graph-matching/general-match.md
+      - 二分图最大权匹配: topic/graph-matching/bigraph-weight-match.md
+      - 一般图最大权匹配: topic/graph-matching/general-weight-match.md
     - 出题: topic/problemsetting.md
   - 关于 Hulu:
     -  关于 Hulu: intro/hulu.md
@@ -420,7 +429,7 @@ extra_javascript:
 
 
 extra_css:
-  - '_static/css/extra.css?v=12'
+  - '_static/css/extra.css?v=13'
 
 # Extensions
 markdown_extensions:

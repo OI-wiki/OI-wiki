@@ -158,7 +158,7 @@ inline void Rotate(int x) {
   int y = f[x], z = f[y], k = Get(x);
   if (!isRoot(y)) ch[z][ch[z][1] == y] = x;
   // 上面这句一定要写在前面，普通的Splay是不用的，因为 isRoot  (后面会讲)
-  ch[y][k] = ch[x][!k], f[ch[y][k]] = y;
+  ch[y][k] = ch[x][!k], f[ch[x][!k]] = y;
   ch[x][!k] = y, f[y] = x, f[x] = z;
   PushUp(x), PushUp(y);
 }
@@ -254,7 +254,7 @@ inline int Access(int x) {
 3.  更新当前点的信息。
 4.  把当前点换成当前点的父亲，继续操作。
 
-这里提供的 Access 还有一个返回值。这个返回值相当于最后一次虚实链变换时虚边父亲节点的值。该值有两个含义：
+这里提供的 Access 还有一个返回值。这个返回值相当于最后一次虚实链变换时虚边父亲节点的编号。该值有两个含义：
 
 -   连续两次 Access 操作时，第二次 Access 操作的返回值等于这两个节点的 LCA.
 -   表示 $x$ 到根的链所在的 Splay 树的根。这个节点一定已经被旋转到了根节点，且父亲一定为空。
@@ -294,6 +294,7 @@ inline void makeRoot(int p) {
 ```cpp
 inline void Link(int x, int p) {
   makeRoot(x);
+  splay(x);
   f[x] = p;
 }
 ```
@@ -958,7 +959,7 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
 
 -    [「WC2006」水管局长](https://www.luogu.org/problem/P4172) 
 -    [「BJWC2010」严格次小生成树](https://www.luogu.org/problemnew/show/P4180) 
--    [「NOI2014」魔法森林](http://uoj.ac/problem/3) 
+-    [「NOI2014」魔法森林](https://uoj.ac/problem/3) 
 
 ## 维护子树信息
 

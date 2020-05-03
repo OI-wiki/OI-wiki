@@ -8,9 +8,9 @@ author: hsfzLZH1, sshwy, StudyingFather, TrisolarisHD
 
 常见的积性函数有：
 
- $d(x)=\sum_{i|n} 1$ 
+ $d(x)=\sum_{i \mid n} 1$ 
 
- $\sigma(x)=\sum_{i|n} i$ 
+ $\sigma(x)=\sum_{i \mid n} i$ 
 
  $\varphi(x)=\sum_{i=1}^x 1[\gcd(x,i)=1]$ 
 
@@ -26,7 +26,7 @@ author: hsfzLZH1, sshwy, StudyingFather, TrisolarisHD
 
  $h(x)=f(x)g(x)$ 
 
- $h(x)=\sum_{d|x} f(d)g(\frac x d)$ 
+ $h(x)=\sum_{d \mid x} f(d)g(\frac x d)$ 
 
 中的 $h(x)$ 也为积性函数。
 
@@ -43,7 +43,7 @@ author: hsfzLZH1, sshwy, StudyingFather, TrisolarisHD
 对于任意一个数论函数 $g$ ，必满足
 
 $$
-\sum_{i=1}^{n}\sum_{d|i}f(d)g\left(\frac{i}{d}\right)=\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+\sum_{i=1}^{n}\sum_{d \mid i}f(d)g\left(\frac{i}{d}\right)=\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 \Leftrightarrow
 \sum_{i=1}^{n}(f\ast g)(i)=\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
@@ -54,7 +54,7 @@ $$
 
 $$
 \begin{split}
-&\sum_{i=1}^n\sum_{d|i}f(d)g\left(\frac{i}{d}\right)\\
+&\sum_{i=1}^n\sum_{d \mid i}f(d)g\left(\frac{i}{d}\right)\\
 =&\sum_{i=1}^n\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}g(i)f(j)\\
 =&\sum_{i=1}^ng(i)\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}f(j)\\
 =&\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
@@ -80,7 +80,7 @@ $$
 
  $\because \epsilon =\mu \ast 1$ （ $\epsilon(n)=~[n=1]$ ）
 
- $\therefore \epsilon (n)=\sum_{d|n} \mu(d)$ 
+ $\therefore \epsilon (n)=\sum_{d \mid n} \mu(d)$ 
 
  $S_1(n)=\sum_{i=1}^n \epsilon (i)-\sum_{i=2}^n S_1(\lfloor \frac n i \rfloor)$ 
 
@@ -98,7 +98,7 @@ $$
 
 当然也可以用杜教筛求出 $\varphi (x)$ 的前缀和，但是更好的方法是应用莫比乌斯反演：
 
- $\sum_{i=1}^n \sum_{j=1}^n 1[\gcd(i,j)=1]=\sum_{i=1}^n \sum_{j=1}^n \sum_{d|i,d|j} \mu(d)$ 
+ $\sum_{i=1}^n \sum_{j=1}^n 1[\gcd(i,j)=1]=\sum_{i=1}^n \sum_{j=1}^n \sum_{d \mid i,d \mid j} \mu(d)$ 
 
  $=\sum_{d=1}^n \mu(d) {\lfloor \frac n d \rfloor}^2$ 
 
@@ -218,9 +218,9 @@ $$
 $$
 \begin{split}
 &(ID^2\varphi)\ast ID^2)(i)\\
-=&\sum_{d|i}(ID^2\varphi)(d)ID^2\left(\frac{i}{d}\right)\\
-=&\sum_{d|i}d^2\varphi(d)\left(\frac{i}{d}\right)^2\\
-=&\sum_{d|i}i^2\varphi(d)=i^2\sum_{d|i}\varphi(d)\\
+=&\sum_{d \mid i}(ID^2\varphi)(d)ID^2\left(\frac{i}{d}\right)\\
+=&\sum_{d \mid i}d^2\varphi(d)\left(\frac{i}{d}\right)^2\\
+=&\sum_{d \mid i}i^2\varphi(d)=i^2\sum_{d \mid i}\varphi(d)\\
 =&i^2(\varphi\ast1)(i)=i^3
 \end{split}
 $$

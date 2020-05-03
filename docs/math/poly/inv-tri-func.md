@@ -1,8 +1,8 @@
-## Description
+## 描述
 
 给定多项式 $f\left(x\right)$ ，求模 $x^{n}$ 意义下的 $\arcsin{f\left(x\right)}, \arccos{f\left(x\right)}$ 与 $\arctan{f\left(x\right)}$ 。
 
-## Method
+## 解法
 
 仿照求多项式 $\ln$ 的方法，对反三角函数求导再积分可得：
 
@@ -32,7 +32,7 @@ $$
 
 直接按式子求就可以了。
 
-## Code
+## 代码
 
 ??? "多项式反三角函数"
     ```cpp

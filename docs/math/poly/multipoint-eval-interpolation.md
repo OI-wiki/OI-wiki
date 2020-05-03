@@ -1,6 +1,6 @@
 ## 多项式的多点求值
 
-### Description
+### 描述
 
 给出一个多项式 $f\left(x\right)$ 和 $n$ 个点 $x_{1},x_{2},...,x_{n}$ ，求
 
@@ -8,7 +8,7 @@ $$
 f\left(x_{1}\right),f\left(x_{2}\right),...,f\left(x_{n}\right)
 $$
 
-### Method
+### 解法
 
 考虑使用分治来将问题规模减半。
 
@@ -47,7 +47,7 @@ $$
 
 ## 多项式的快速插值
 
-### Description
+### 描述
 
 给出一个 $n+1$ 个点的集合
 
@@ -57,7 +57,7 @@ $$
 
 求一个 $n$ 次多项式 $f\left(x\right)$ 使得其满足 $\forall\left(x,y\right)\in X:f\left(x\right)=y$ 。
 
-### Method
+### 解法
 
 考虑拉格朗日插值公式
 
