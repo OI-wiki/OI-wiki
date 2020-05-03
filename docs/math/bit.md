@@ -186,19 +186,21 @@ for (int s = u; s; s = (s - 1) & u) {
 
 ## 内建函数
 
-C++ 中还有一些用于位运算的内建函数：
+GCC 中还有一些用于位运算的内建函数：
 
-1.   `__builtin_popcount(unsigned int n)` ：计算 $n$ 的二进制中有多少个 1。
+1. `int __builtin_ffs(int x)` ：返回 $x$ 的二进制末尾最后一个 $1$ 的位置，位置的编号从 $1$ 开始（最低位编号为 $1$）。当 $x$ 为 $0$ 时返回 $0$。
 
-2.   `__builtin_parity(unsigned int n)` ：判断 $n$ 的二进制中 1 的个数的奇偶性。
+2. `int __builtin_clz(unsigned int x)` ：返回 $x$ 的二进制的前导 $0$ 的个数。当 $x$ 为 $0$ 时，结果未定义。
 
-3.   `__builtin_ffs(unsigned int n)` ：计算 $n$ 的二进制末尾最后一个 $1$ 的位置，位置的编号从 1 开始（最低位编号为 1）。
+3. `int __builtin_ctz(unsigned int x)` ：返回 $x$ 的二进制末尾连续 $0$ 的个数。当 $x$ 为 $0$ 时，结果未定义。
 
-4.   `__builtin_ctz(unsigned int n)` ：计算 $n$ 的二进制末尾连续 0 的个数。
+4. `int __builtin_clrsb(int x)` ：当 $x$ 的符号位为 $0$ 时返回 $x$ 的二进制的前导 $0$ 的个数减一，否则返回 $x$ 的二进制的前导 $1$ 的个数减一。
 
-5.   `__builtin_clz(unsigned int x)` ：返回前导 0 的个数。
+5. `int __builtin_popcount(unsigned int x)` ：返回 $x$ 的二进制中 $1$ 的个数。
 
-这些函数都可以在函数名末尾添加 `ll` （如 `__builtin_popcountll` ）来使参数类型变为 `unsigned long long` 。
+6. `int __builtin_parity(unsigned int x)` ：判断 $x$ 的二进制中 $1$ 的个数的奇偶性。
+
+这些函数都可以在函数名末尾添加 `l` 或 `ll` （如 `__builtin_popcountll` ）来使参数类型变为 (`unsigned`) `long` 或 (`unsigned`) `long long`（返回值仍然是 `int` 类型）。
 例如，我们有时候希望求出一个数以二为底的对数，如果不考虑 `0` 的特殊情况，就相当于这个数二进制的位数 `-1` ，而一个数 `n` 的二进制表示的位数可以使用 `32-__builtin_clz(n)` 表示，因此 `31-__builtin_clz(n)` 就可以求出 `n` 以二为底的对数。
 
 由于这些函数是内建函数，经过了编译器的高度优化，运行速度十分快（有些甚至只需要一条指令）。
@@ -215,4 +217,4 @@ C++ 中还有一些用于位运算的内建函数：
 
 位运算技巧： <https://graphics.stanford.edu/~seander/bithacks.html> 
 
-C++ 位运算函数之\_\_builtin\_： <https://blog.csdn.net/qq_40679299/article/details/80224547> 
+Other Builtins of GCC：<https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html> 
