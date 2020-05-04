@@ -43,11 +43,6 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
     #include <algorithm>
     #include <cmath>
     #include <cstdio>
-    #include <iostream>
-    ```
-
-    #define DEBUG printf("line:%d func:%s\n", __LINE__, __FUNCTION__);
-
     using namespace std;
 
     const int maxn = 200010;
@@ -87,13 +82,6 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
         }
       }
       id[g[x] = ++index] = x;  // 括号序
-    }
-
-    inline void swap(int &x, int &y) {
-      int t;
-      t = x;
-      x = y;
-      y = t;
     }
 
     inline int lca(int x, int y) {
