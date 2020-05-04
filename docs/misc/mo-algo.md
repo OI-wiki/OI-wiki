@@ -1,4 +1,4 @@
-author: greyqz
+author: greyqz, Backl1ght
 
 ## 普通莫队算法
 
@@ -85,7 +85,7 @@ $$
 
 ### 例题 & 代码
 
-???+note "例题[小 Z 的袜子](https://www.luogu.org/problem/P1494)"
+???+note "例题[「国家集训队」小 Z 的袜子](https://www.luogu.com.cn/problem/P1494)"
     题目大意：
 
     有一个长度为 $n$ 的序列 $\{c_i\}$ 。现在给出 $m$ 个询问，每次给出两个数 $l,r$ ，从编号在 $l$ 到 $r$ 之间的数中随机选出两个不同的数，求两个数相等的概率。
@@ -118,44 +118,58 @@ $$
 
 ??? 参考代码
     ```cpp
-    #include <bits/stdc++.h>
-    #define bi(a) ((a - 1) / sqn + 1)
+    #include <algorithm>
+    #include <cmath>
+    #include <cstdio>
     using namespace std;
-    typedef long long LL;
-    template <typename tp>
-    void read(tp& dig) {
-      char c = getchar();
-      dig = 0;
-      while (!isdigit(c)) c = getchar();
-      while (isdigit(c)) dig = dig * 10 + c - '0', c = getchar();
-    }
-    struct node {
-      LL l, r, i;
-    };
-    LL n, m, sqn, arr[50005], l, r, ans, col[50005], nume[50005], deno[50005];
-    vector<node> tab;
-    bool cmp(node a, node b) {
-      if (bi(a.l) == bi(b.l)) return a.r < b.r;
-      return a.l < b.l;
-    }
-    LL gcd(LL a, LL b) { return !b ? a : gcd(b, a % b); }
-    int main() {
-      read(n), read(m), sqn = sqrt(n);
-      for (LL i = 1; i <= n; i++) read(arr[i]);
-      for (LL i = 1, a, b; i <= m; i++)
-        read(a), read(b), tab.push_back((node){a, b, i});
-      sort(tab.begin(), tab.end(), cmp), l = r = tab[0].l, col[arr[l]]++;
-      for (LL i = 0, gcdnum; i < tab.size(); i++) {
-        for (; l < tab[i].l; l++) col[arr[l]]--, ans -= col[arr[l]];
-        for (--l; l >= tab[i].l; l--) ans += col[arr[l]], col[arr[l]]++;
-        for (; r > tab[i].r; r--) col[arr[r]]--, ans -= col[arr[r]];
-        for (++r; r <= tab[i].r; r++) ans += col[arr[r]], col[arr[r]]++;
-        nume[tab[i].i] = ans, l = tab[i].l, r = tab[i].r;
-        deno[tab[i].i] = ((r - l) * (r - l + 1)) >> 1;
+    const int N = 50005;
+    int n, m, maxn;
+    int c[N];
+    long long sum;
+    int cnt[N];
+    long long ans1[N], ans2[N];
+    struct query {
+      int l, r, id;
+      bool operator<(const query &x) const {
+        if (l / maxn != x.l / maxn) return l < x.l;
+        return (l / maxn) & 1 ? r < x.r : r > x.r;
       }
-      for (LL i = 1, gcdn; i <= m; i++)
-        gcdn = gcd(nume[i], deno[i]),
-        printf("%lld/%lld\n", nume[i] / gcdn, deno[i] / gcdn);
+    } a[N];
+    void add(int i) {
+      sum += cnt[i];
+      cnt[i]++;
+    }
+    void del(int i) {
+      cnt[i]--;
+      sum -= cnt[i];
+    }
+    long long gcd(long long a, long long b) { return b ? gcd(b, a % b) : a; }
+    int main() {
+      scanf("%d%d", &n, &m);
+      maxn = sqrt(n);
+      for (int i = 1; i <= n; i++) scanf("%d", &c[i]);
+      for (int i = 0; i < m; i++) scanf("%d%d", &a[i].l, &a[i].r), a[i].id = i;
+      sort(a, a + m);
+      for (int i = 0, l = 1, r = 0; i < m; i++) {
+        if (a[i].l == a[i].r) {
+          ans1[a[i].id] = 0, ans2[a[i].id] = 1;
+          continue;
+        }
+        while (l < a[i].l) del(c[l++]);
+        while (l > a[i].l) add(c[--l]);
+        while (r < a[i].r) add(c[++r]);
+        while (r > a[i].r) del(c[r--]);
+        ans1[a[i].id] = sum;
+        ans2[a[i].id] = (long long)(r - l + 1) * (r - l) / 2;
+      }
+      for (int i = 0; i < m; i++) {
+        if (ans1[i] != 0) {
+          long long g = gcd(ans1[i], ans2[i]);
+          ans1[i] /= g, ans2[i] /= g;
+        } else
+          ans2[i] = 1;
+        printf("%lld/%lld\n", ans1[i], ans2[i]);
+      }
       return 0;
     }
     ```
@@ -250,7 +264,7 @@ struct node {
 
 ### 例题
 
-???+note "例题[数颜色 BZOJ - 2120](https://www.luogu.org/problem/P1903)"
+???+note "例题[「国家集训队」数颜色 / 维护队列](https://www.luogu.org/problem/P1903)"
 
     题目大意：给你一个序列，M 个操作，有两种操作：
 
@@ -643,9 +657,9 @@ if (!sta.empty()) {
 
 加起来大概在根号处取得最小值（由于树上莫队块的大小不固定，所以不一定要严格按照）。
 
-### 例题[WC2013]糖果公园
+### 例题「WC2013」糖果公园
 
-由于多了时间维，块的大小取到 0.6 的样子就差不多了。
+由于多了时间维，块的大小取到 $0.6n$ 的样子就差不多了。
 
 ??? 参考代码
     ```cpp
@@ -786,6 +800,231 @@ if (!sta.empty()) {
     }
     ```
 
+## 回滚莫队
+
+有些题目在区间转移时，可能会出现增加或者删除无法实现的问题。在只有增加不可实现或者只有删除不可实现的时候，就可以使用回滚莫队在 $O(n \sqrt n)$ 的时间内解决问题。回滚莫队的核心思想就是既然我只能实现一个操作，那么我就只使用一个操作，剩下的交给回滚解决。
+
+回滚莫队分为只使用增加操作的回滚莫队和只使用删除操作的回滚莫队。以下仅介绍只使用增加操作的回滚莫队，只使用删除操作的回滚莫队和只使用增加操作的回滚莫队只在算法实现上有一点区别，故不再赘述。
+
+### 例题 [JOISC 2014 Day1 历史研究](https://loj.ac/problem/2874) 
+
+给你一个长度为 $n$ 的数组 $A$ 和 $m$ 个询问 $(1 \leq n, m \leq 10^5)$ ，每次询问一个区间 $[L, R]$ 内重要度最大的数字，要求 **输出其重要度** 。一个数字 $i$ 重要度的定义为 $i$ 乘上 $i$ 在区间内出现的次数。
+
+在这个问题中，在增加的过程中更新答案是很好实现的，但是在删除的过程中更新答案是不好实现的。因为如果增加会影响答案，那么新答案必定是刚刚增加的数字的重要度，而如果删除过后区间重要度最大的数字改变，我们很难确定新的重要度最大的数字是哪一个。所以，普通的莫队很难解决这个问题。
+
+### 具体算法
+
+-   对原序列进行分块，对询问按以左端点所属块编号升序为第一关键字，右端点升序为第二关键字的方式排序
+-   按顺序处理询问
+    -   如果询问左端点所属块 $B$ 和上一个询问左端点所属块的不同，那么将莫队区间的左端点初始化为 $B$ 的右端点加 1, 将莫队区间的右端点初始化为 $B$ 的右端点
+    -   如果询问的左右端点所属的块相同，那么直接扫描区间回答询问
+    -   如果询问的左右端点所属的块不同
+        -   如果询问的右端点大于莫队区间的右端点，那么不断扩展右端点直至莫队区间的右端点等于询问的右端点
+        -   不断扩展莫队区间的左端点直至莫队区间的左端点等于询问的左端点
+        -   回答询问
+        -   撤销莫队区间左端点的改动，使莫队区间的左端点回滚到 $B$ 的右端点加 1
+
+### 复杂度证明
+
+假设左右端点同属于一个块的询问个个数为 $C_1$ ，左右端点不属于同一个块的询问的个数为 $C_2$ 。
+
+回答一个左右端点同属于一个块的询问的时间复杂度为 $O(\sqrt n)$ ，回答所有左右端点同属于一个块的询问的时间复杂度为 $O(C_1\sqrt n)$ 。
+
+对于左右端点不属于同一个块的询问，将其按左端点所属块分类。对于一类询问，假设属于这一类询问的个数为 $c_i$ 。在回答这一类询问的时候莫队区间右端点至多扩展 $n$ 次；回答这一类问题中的一个的时候，左端点扩展和回滚的复杂度为 $O(\sqrt n)$ 。由此，回答一类问题的复杂度为 $O(n + c_i\sqrt n)$ 。总共有 $\sqrt n$ 类询问，所以回答左右端点不属于同一个块的询问的时间复杂度为 $O(C_2\sqrt n + n\sqrt n)$ 。
+
+综上，这个算法的复杂度 $T(n) = O(C_2\sqrt n + n\sqrt n) + O(C_1\sqrt n) = O(n\sqrt n + m\sqrt n)$ 。
+
+??? 参考代码
+    ```cpp
+    #include <bits/stdc++.h>
+    using namespace std;
+    
+    typedef long long ll;
+    const int N = 1e5 + 5;
+    int n, q;
+    int x[N], t[N], m;
+    
+    struct Query {
+      int l, r, id;
+    } Q[N];
+    int pos[N], L[N], R[N], sz, tot;
+    int cnt[N], __cnt[N];
+    ll ans[N];
+    
+    inline bool cmp(const Query& A, const Query& B) {
+      if (pos[A.l] == pos[B.l]) return A.r < B.r;
+      return pos[A.l] < pos[B.l];
+    }
+    
+    void build() {
+      sz = sqrt(n);
+      tot = n / sz;
+      for (int i = 1; i <= tot; i++) {
+        L[i] = (i - 1) * sz + 1;
+        R[i] = i * sz;
+      }
+      if (R[tot] < n) {
+        ++tot;
+        L[tot] = R[tot - 1] + 1;
+        R[tot] = n;
+      }
+    }
+    
+    inline void Add(int v, ll& Ans) {
+      ++cnt[v];
+      Ans = max(Ans, 1LL * cnt[v] * t[v]);
+    }
+    
+    inline void Del(int v) { --cnt[v]; }
+    
+    int main() {
+      scanf("%d %d", &n, &q);
+      for (int i = 1; i <= n; i++) scanf("%d", &x[i]), t[++m] = x[i];
+      for (int i = 1; i <= q; i++) scanf("%d %d", &Q[i].l, &Q[i].r), Q[i].id = i;
+    
+      build();
+    
+      // 对询问进行排序
+      for (int i = 1; i <= tot; i++)
+        for (int j = L[i]; j <= R[i]; j++) pos[j] = i;
+      sort(Q + 1, Q + 1 + q, cmp);
+    
+      // 离散化
+      sort(t + 1, t + 1 + m);
+      m = unique(t + 1, t + 1 + m) - (t + 1);
+      for (int i = 1; i <= n; i++) x[i] = lower_bound(t + 1, t + 1 + m, x[i]) - t;
+    
+      int l = 1, r = 0, last_block = 0, __l;
+      ll Ans = 0, tmp;
+      for (int i = 1; i <= q; i++) {
+        // 询问的左右端点同属于一个块则暴力扫描回答
+        if (pos[Q[i].l] == pos[Q[i].r]) {
+          for (int j = Q[i].l; j <= Q[i].r; j++) ++__cnt[x[j]];
+          for (int j = Q[i].l; j <= Q[i].r; j++)
+            ans[Q[i].id] = max(ans[Q[i].id], 1LL * t[x[j]] * __cnt[x[j]]);
+          for (int j = Q[i].l; j <= Q[i].r; j++) --__cnt[x[j]];
+          continue;
+        }
+    
+        // 访问到了新的块则重新初始化莫队区间
+        if (pos[Q[i].l] != last_block) {
+          while (r > R[pos[Q[i].l]]) Del(x[r]), --r;
+          while (l < R[pos[Q[i].l]] + 1) Del(x[l]), ++l;
+          Ans = 0;
+          last_block = pos[Q[i].l];
+        }
+    
+        // 扩展右端点
+        while (r < Q[i].r) ++r, Add(x[r], Ans);
+        __l = l;
+        tmp = Ans;
+    
+        // 扩展左端点
+        while (__l > Q[i].l) --__l, Add(x[__l], tmp);
+        ans[Q[i].id] = tmp;
+    
+        // 回滚
+        while (__l < l) Del(x[__l]), ++__l;
+      }
+      for (int i = 1; i <= q; i++) printf("%lld\n", ans[i]);
+      return 0;
+    }
+    ```
+
+## 莫队配合 bitset
+
+bitset 常用于常规数据结构难以维护的的判定、统计问题，而莫队可以维护常规数据结构难以维护的区间信息。把两者结合起来使用可以同时利用两者的优势。
+
+### 例题 [「Ynoi2016」掉进兔子洞](https://www.luogu.com.cn/problem/P4688) 
+
+本题刚好符合上面提到的莫队配合 bitset 的特征。不难想到我们可以分别用 bitset 存储每一个区间内的出现过的所有权值，一组询问的答案即所有区间的长度和减去三者的并集元素个数 $\times 3$ 。
+
+但是在莫队中使用 bitset 也需要针对 bitset 的特性调整算法：
+
+1.  bitset 不能很好地处理同时出现多个权值的情况。我们可以把当前元素离散化后的权值与当前区间的的出现次数之和作为往 bitset 中插入的对象。
+2.  我们平常使用莫队时，可能会不注意 4 种移动指针的方法顺序，所以指针移动的过程中可能会出现区间的左端点在右端点右边，区间长度为负值的情况，导致元素的个数为负数。这在其他情况下并没有什么影响，但是本题中在 bitset 中插入的元素与元素个数有关，所以我们需要注意 4 种移动指针的方法顺序，将左右指针分别往左边和右边移动的语句写在前面，避免往 bitset 中插入负数。
+3.  虽然 bitset 用空间小，但是仍然难以承受 $10 ^ 5 \times 10 ^ 5$ 的数据规模。所以我们需要将询问划分成常数块分别处理，保证空间刚好足够的情况下时间复杂度不变。
+
+??? 参考代码
+    ```cpp
+    #include <algorithm>
+    #include <bitset>
+    #include <cmath>
+    #include <cstdio>
+    #include <cstring>
+    using namespace std;
+    const int N = 100005, M = N / 3 + 10;
+    int n, m, maxn;
+    int a[N], ans[M], cnt[N];
+    bitset<N> sum[M], now;
+    struct query {
+      int l, r, id;
+      bool operator<(const query& x) const {
+        if (l / maxn != x.l / maxn) return l < x.l;
+        return (l / maxn) & 1 ? r < x.r : r > x.r;
+      }
+    } q[M * 3];
+    void static_set() {
+      static int tmp[N];
+      memcpy(tmp, a, sizeof(a));
+      sort(tmp + 1, tmp + n + 1);
+      for (int i = 1; i <= n; i++)
+        a[i] = lower_bound(tmp + 1, tmp + n + 1, a[i]) - tmp;
+    }
+    void add(int x) {
+      now.set(x + cnt[x]);
+      cnt[x]++;
+    }
+    void del(int x) {
+      cnt[x]--;
+      now.reset(x + cnt[x]);
+    }
+    void solve() {
+      int cnt = 0, tot = 0;
+      now.reset();
+      for (tot = 0; tot < M - 5 && m; tot++) {
+        m--;
+        ans[tot] = 0;
+        sum[tot].set();
+        for (int j = 0; j < 3; j++) {
+          scanf("%d%d", &q[cnt].l, &q[cnt].r);
+          q[cnt].id = tot;
+          ans[tot] += q[cnt].r - q[cnt].l + 1;
+          cnt++;
+        }
+      }
+      sort(q, q + cnt);
+      for (int i = 0, l = 1, r = 0; i < cnt; i++) {
+        while (l > q[i].l) add(a[--l]);
+        while (r < q[i].r) add(a[++r]);
+        while (l < q[i].l) del(a[l++]);
+        while (r > q[i].r) del(a[r--]);
+        sum[q[i].id] &= now;
+      }
+      for (int i = 0; i < tot; i++)
+        printf("%d\n", ans[i] - (int)sum[i].count() * 3);
+    }
+    int main() {
+      scanf("%d%d", &n, &m);
+      for (int i = 1; i <= n; i++) scanf("%d", &a[i]);
+      static_set();
+      maxn = sqrt(n);
+      solve();
+      memset(cnt, 0, sizeof(cnt));
+      solve();
+      memset(cnt, 0, sizeof(cnt));
+      solve();
+      return 0;
+    }
+    ```
+
+### 习题
+
+-    [小清新人渣的本愿](https://www.luogu.com.cn/problem/P3674) 
+-    [「Ynoi2017」由乃的玉米田](https://www.luogu.com.cn/problem/P5355) 
+-    [「Ynoi2011」WBLT](https://www.luogu.com.cn/problem/P5313) 
+
 ## 参考资料
 
 -    [莫队算法学习笔记 | Sengxian's Blog](https://blog.sengxian.com/algorithms/mo-s-algorithm) 
+-    [回滚莫队及其简单运用 | Parsnip's Blog](https://www.cnblogs.com/Parsnip/p/10969989.html) 
