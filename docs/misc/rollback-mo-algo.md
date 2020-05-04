@@ -38,7 +38,6 @@
     const int N = 1e5 + 5;
     int n, q;
     int x[N], t[N], m;
-    ```
 
     struct Query {
       int l, r, id;
