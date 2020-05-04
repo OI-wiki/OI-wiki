@@ -44,6 +44,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
     #include <cmath>
     #include <cstdio>
     #include <iostream>
+    ```
 
     #define DEBUG printf("line:%d func:%s\n", __LINE__, __FUNCTION__);
 
