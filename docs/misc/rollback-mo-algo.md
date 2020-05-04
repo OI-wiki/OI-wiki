@@ -2,7 +2,7 @@
 
 回滚莫队分为只使用增加操作的回滚莫队和只使用删除操作的回滚莫队。以下仅介绍只使用增加操作的回滚莫队，只使用删除操作的回滚莫队和只使用增加操作的回滚莫队只在算法实现上有一点区别，故不再赘述。
 
-## 例题 [JOISC 2014 Day1 历史研究](https://loj.ac/problem/2874)
+## 例题 [JOISC 2014 Day1 历史研究](https://loj.ac/problem/2874) 
 
 给你一个长度为 $n$ 的数组 $A$ 和 $m$ 个询问 $(1 \leq n, m \leq 10^5)$ ，每次询问一个区间 $[L, R]$ 内重要度最大的数字，要求 **输出其重要度** 。一个数字 $i$ 重要度的定义为 $i$ 乘上 $i$ 在区间内出现的次数。
 
@@ -34,6 +34,7 @@
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
+    ```
 
     typedef long long ll;
     const int N = 1e5 + 5;
@@ -129,4 +130,4 @@
 
 ## 参考资料
 
--    [回滚莫队及其简单运用 | Parsnip's Blog](https://www.cnblogs.com/Parsnip/p/10969989.html)
+-    [回滚莫队及其简单运用 | Parsnip's Blog](https://www.cnblogs.com/Parsnip/p/10969989.html) 

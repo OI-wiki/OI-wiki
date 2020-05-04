@@ -8,10 +8,10 @@
 
 dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点，就直接 `push_back(-x)` ，然后我们在挪动指针的时候，
 
--   新加入的值是 x  ---> `add(x)`
--   新加入的值是 - x ---> `del(x)`
--   新删除的值是 x  ---> `del(x)`
--   新删除的值是 - x ---> `add(x)`
+-   新加入的值是 x  ---> `add(x)` 
+-   新加入的值是 - x ---> `del(x)` 
+-   新删除的值是 x  ---> `del(x)` 
+-   新删除的值是 - x ---> `add(x)` 
 
 这样的话，我们就把一棵树处理成了序列。
 
@@ -22,7 +22,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
 
     其中：$val$ 表示该颜色的价值，$cnt$ 表示颜色出现的次数，$w$ 表示该颜色出现 $i$ 次后的价值
 
-先把树变成序列，然后每次添加/删除一个点，这个点的对答案的的贡献是可以在 $O(1)$ 时间内获得的，即 $val_c\times w_{cnt_{c+1}}$
+先把树变成序列，然后每次添加/删除一个点，这个点的对答案的的贡献是可以在 $O(1)$ 时间内获得的，即 $val_c\times w_{cnt_{c+1}}$ 
 
 发现因为他会把起点的子树也扫了一遍，产生多余的贡献，怎么办呢？
 
@@ -44,6 +44,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
     #include <cmath>
     #include <cstdio>
     #include <iostream>
+    ```
 
     #define DEBUG printf("line:%d func:%s\n", __LINE__, __FUNCTION__);
 

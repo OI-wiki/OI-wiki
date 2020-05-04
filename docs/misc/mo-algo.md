@@ -102,11 +102,11 @@ $$
 
 所以 $C_{col[k]+1}^2-C_{col[k]}^2=col[k]$ 。
 
-算法总复杂度： $O(n\sqrt{n} )$
+算法总复杂度： $O(n\sqrt{n} )$ 
 
 下面的代码中 `deno` 表示答案的分母 (denominator)， `nume` 表示分子（numerator)， `sqn` 表示块的大小： $\sqrt{n}$ ， `arr` 是输入的数组， `node` 是存储询问的结构体， `tab` 是询问序列（排序后的）， `col` 同上所述。
 
- **注意：由于 `++l` 和 `--r` 的存在，下面代码中的移动区间的 4 个 for 循环的位置很关键，不能改变它们之间的位置关系。**
+ **注意：由于 `++l` 和 `--r` 的存在，下面代码中的移动区间的 4 个 for 循环的位置很关键，不能改变它们之间的位置关系。** 
 
 ??? 参考代码
     ```cpp
@@ -221,4 +221,4 @@ struct node {
 
 ## 参考资料
 
--    [莫队算法学习笔记 | Sengxian's Blog](https://blog.sengxian.com/algorithms/mo-s-algorithm)
+-    [莫队算法学习笔记 | Sengxian's Blog](https://blog.sengxian.com/algorithms/mo-s-algorithm) 
