@@ -2,6 +2,42 @@ author: kexplorning, Ir1d
 
 > 用来急救，不多废话。
 
+???+note "药方食用提示"
+    本急救贴可以让您充分了解以下内容（对应 [C++ 语法快速提要](#c-start-here) ）：
+
+    - 基本语法（块语句、注释、导入库、简单输入输出、声明变量、赋值……）
+    - C++ 的 Hello World 与 A+B Problem 写法与解释
+
+    [对应语法](#syntax) 部分较为紧凑，正式食用可能需要额外参考资料（已给出）。此部分不包括指针与 C 风格数组的介绍，也没有结构体、运算符重载等等。
+
+    [重要不同之处](#differences) 部分为 C++ 的语法特点，也是 Pascal 转 C++ 时会碰到的坑。
+
+    如要快速查找，请见附录：
+
+    - [附 A：Pascal 与 C++ 运算符与数学函数语法对比表](#apascal-c-pascal-vs-c-operator-syntax-table)
+    - [附 B：文章检索](#b-index) - 按 C++ 语句语法索引
+
+<!-- 
+
+INFO: 恭喜你找到了隐藏彩蛋！
+
+> ！！⚠️ **警告** ⚠️！！
+> 
+> ~~☠ **有毒物品警告**~~  ~~☣️ **腐化身心警告**~~
+> 
+> ~~此药方仅适用于 Pascal 中毒症状早期；若您是晚期，本药方不能使您快速康复（不能让您理解指针），请节哀顺变（顺其自然），或遵循本 Wiki 其他页面等医嘱，或删除技能树重练。~~
+> 
+> ~~本药方治疗机理为**以毒攻毒**，故副作用是 C++ 中毒症状，请服用此方前再三确认。本药方贡献者与本 Wiki 不承担您使用发生意外时的任何责任。~~
+> 
+> 欢迎对本药方进行小白鼠测试（可在初具规模之后，使用猿类进行实验），也非常欢迎通过发评论、发 issue、提交 PR 进行实验结果反馈与药方改进。
+> ~~若您想要特效药，本 Wiki 有[一剂](./python)：~~
+> 
+> > 人生苦短，我用 Python。
+> 
+> 可以让您超脱世间，驾鹤西去，再也不用因 OI 而困扰。 
+
+-->
+
 ## C++ 快速安装与环境配置
 
 > 注意：这里假设使用的系统是 Windows。
@@ -148,7 +184,7 @@ int a = 0, b = 0, c = 0;
 
 请善用<kbd>Alt</kbd>+<kbd>←</kbd>与<kbd>Alt</kbd>+<kbd>→</kbd>返回跳转。
 
-## 对应语法
+## 对应语法 Syntax
 
 ### 变量 Variable
 
@@ -184,7 +220,7 @@ const double PI = 3.1415926;
 
 请直接参考
 
--    [附：Pascal 与 C++ 语法对比表](#apascal-c-pascal-vs-c-syntax-table) 
+-    [附 A：Pascal 与 C++ 运算符与数学函数语法对比表](#apascal-c-pascal-vs-c-operator-syntax-table) 
 -    [运算 - OI Wiki](../op/) 
 
 ### 条件
@@ -400,7 +436,7 @@ C 风格的数组与指针有密切关系，所以此处不多展开。
 
 -    [数组 - OI Wiki](../array/) 
 
-## 重要不同之处
+## 重要不同之处 Differences
 
 ### 变量作用域 Scope：全局变量与局部变量
 
@@ -447,7 +483,7 @@ if (i) {  // i = 0 会返回 false，其余返回 true
 }
 ```
 
-不光是 `int` 转成 `bool` ，还有 `int` 与 `float` 相互转换
+不光是 `int` 转成 `bool` ，还有 `int` 与 `float` 相互转换。在 Pascal 中可以把整型赋给浮点型，但不能反过来。C++ 没有这个问题。
 
 ```cpp
 int a;
@@ -462,7 +498,25 @@ float a = 32 / 10;    // 32/10 的结果是 3（整除）；a = 3.0
 float b = 32.0 / 10;  // 32.0/10 的结果是 3.2；b = 3.2
 ```
 
+ `pow(a, b)` 计算 $a^b$ ，该函数返回的是浮点型，如果直接用来计算整数的幂，由于有自动转换，不需要担心它会报错
+
+```cpp
+int a = pow(2, 3);  // 计算 2^3
+```
+
 还有 `char` 与 `int` 之间相互转换。
+
+```cpp
+char a = 48;              // ASCII 48 是 '0'
+int b = a + 1;            // b = 49
+std::cout << (a == '0');  // true 输出 1
+```
+
+其实 C++ 中的 `char` 与 `bool` 本质上是整型。
+
+扩展阅读：
+
+-    [隐式转换 - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion) 注意内容可能过于专业
 
 ### C++ 很多语句有返回值：以如何实现读取数量不定数据为例
 
@@ -537,7 +591,11 @@ end.
 ```cpp
 #include <iostream>
 
-void printAns(int ans) { std::cout << ans << std::endl; }
+void printAns(int ans) {
+  std::cout << ans << std::endl;
+
+  return;
+}
 
 int main(int argc, char const *argv[]) {
   int ans = 10;
@@ -546,6 +604,57 @@ int main(int argc, char const *argv[]) {
   return 0;
 }
 ```
+
+C++ 的 `return` 与 Pascal 中给函数变量赋值有一点非常大的不同。C++ 的 `return` 即返回一个值，执行完这个语句，函数就执行结束了；而 Pascal 中给函数变量赋值并不会跳出函数本身，而是继续执行。于是，如果 Pascal 需要某处中断函数/过程，就需要一个额外的命令，即 `exit` 。而 C++ 则不需要，如果需要在某处中断，可以直接使用 `return` 。比如（由于实在想不出来简短且实用的代码，所以就先这样）
+
+```cpp
+#include <iostream>
+
+void printWarning(int x) {
+  if (x >= 0) {
+    return;  // 该语句在此处相当于 Pascal 中的 `exit;`
+  }
+  std::cout << "Warning: input a negative number.";
+}
+
+int main(int argc, char const *argv[]) {
+  int a;
+
+  std::cin >> a;
+  printWarning(a);
+
+  return 0;
+}
+```
+
+而在某种意义上，前面的 `abs` 函数，这样才是严格等效的
+
+```pas
+function abs(x:integer):integer;
+begin
+    if x < 0 then
+        begin
+            abs := -x; exit; // !注意此处
+        end
+    else
+        begin
+            abs := x;  exit; // !注意此处
+        end;
+end;
+```
+
+```cpp
+int abs(int x) {
+  if (x < 0) {
+    return -x;
+  } else {
+    return x;
+  }
+}
+```
+
+???+note "特别提醒"
+    C++ 中 `exit` 是退出程序；不要顺手把 `exit` 打上去，要用 `return` ！
 
 C++ 把函数和过程统统视作函数，连 `main` 都不放过，比如写 `int main` ，C++ 视 `main` 为一个整型的函数，这里返回值是 `0` 。它是一种习惯约定，返回 `0` 代表程序正常退出。
 
@@ -613,6 +722,8 @@ C++ 标准库中 `<algorithm>` 有很多有用的函数比如快排、二分查�
 
 C/C++ 的指针是很灵活的东西，如果想要彻底理解指针，建议找本书或者参考手册仔细阅读。
 
+-    [指针 - OI Wiki](../pointer) 
+
 ### 错误排查与技巧
 
 -    [常见错误 - OI Wiki](../../intro/common-mistakes/) 
@@ -622,6 +733,7 @@ C/C++ 的指针是很灵活的东西，如果想要彻底理解指针，建议�
 
 -    [学习资源 - OI Wiki](../../intro/resources/) 
 -    [cppreference.com](https://zh.cppreference.com/) - 最重要的 C/C++ 参考资料
+-    [C++ 教程 - 菜鸟教程](https://www.runoob.com/cplusplus/cpp-tutorial.html) 
 -    [C++ Language - C++ Tutorials](https://www.cplusplus.com/doc/tutorial/) 
 -    [Reference - C++ Reference](https://www.cplusplus.com/reference/) 
 -    [C++ Standard Library - Wikipedia](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library) 
@@ -636,11 +748,18 @@ C/C++ 的指针是很灵活的东西，如果想要彻底理解指针，建议�
 
 需要指出的一点是，上面说 C++ 的语法，其实有很多语法是从 C 语言来的，标题这么写比较好——《Pascal 转 C/C++ 急救帖》。
 
-Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，不过随着 UNIX 系统的普及，微软使用 C 语言，现在 Pascal 已经成为历史了。Pascal 后期发展也是有的，比如 Free Pascal 这个开源编译器项目，增加面向对象的特性（Delphi 语言）。Pascal 目前的用处除了在信息竞赛外，有一个特点是其他语言没有的——编译支持非常非常多老旧机器，比如 Gameboy 这种上个世纪的任天堂游戏机。
+Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，不过随着 UNIX 系统的普及，微软使用 C 语言，现在 Pascal 已经成为历史了。Pascal 后期发展也是有的，比如 Free Pascal 这个开源编译器项目，增加面向对象的特性（Delphi 语言）。Pascal 目前的用处除了在信息竞赛外，有一个特点是其他语言没有的——编译支持非常非常多老旧机器，比如 Gameboy 这种上个世纪的任天堂游戏机，还有一个用处就是以伪代码的形式（Pascal 风格的伪代码）出现在各种教科书中。
 
 最后，Pascal 的圈子其实很小，C/C++ 的圈子很大，帮助手册与教程很多很全，一定要掌握好英语。世界上还有很多很多编程语言，而计算机这门学科与技术不光是信息竞赛和编程语言。
 
-## 附 A：Pascal 与 C++ 语法对比表 Pascal vs C++ Syntax Table
+### 本文 Pascal 语言的参考文献
+
+-    [Lazarus wiki](https://wiki.freepascal.org/) 
+-    [Free Pascal Reference guide](https://freepascal.org/docs-html/current/ref/ref.html) 
+
+## 附 A：Pascal 与 C++ 运算符与数学函数语法对比表 Pascal vs C++ Operator Syntax Table
+
+> 仅包括最常用的运算符与函数。
 
 ### 基本算术
 
@@ -692,7 +811,27 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 | 自减  |  `dec(a)`  |  `a--`  |
 | 自减  |  `dec(a)`  |  `--a`  |
 
+### 数学函数
+
+> 使用需要导入 `<cmath>` 库。
+
+|         | Pascal       | C++              |
+| ------- | ------------ | ---------------- |
+| 绝对值     |  `abs(a)`    |  `abs(a)` （整数）   |
+| 绝对值     |  `abs(a)`    |  `fabs(a)` （浮点数） |
+|  $a^b$  | N/A (\*)     |  `pow(a, b)`     |
+| 截断取整    |  `trunc(a)`  |  `trunc(a)`      |
+| 近似取整    |  `round(a)`  |  `round(a)`      |
+
+\*Extended Pascal 中有 `a**b` 不过需要导入 `Math` 库。
+
+其他函数请参考：
+
+-    [常用数学函数 - cppreference.com](https://zh.cppreference.com/w/cpp/numeric/math) 
+
 ## 附 B：文章检索 Index
+
+> 按 C++ 语句语法索引。
 
 -    [基本语法](#c-start-here) 
 -    [变量](#variable) 
@@ -709,7 +848,7 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
     -    [do while 语句](#repeat-until-do-while) 
     -    [break, continue](#loop-control) 
 -    [函数](#functionc-void-return) 
-    -    [函数定义](#functionc-void-return) 
+    -    [函数定义，return](#functionc-void-return) 
     -    [函数传参](#passing-parameters-to-functions) 
 -    [数组与字符串](#array-and-string) 
     -    [不定长数组 Vector](#vector) 

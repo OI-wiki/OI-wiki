@@ -34,7 +34,7 @@ inline bool CanRbu(int k) {
 }
 ```
 
-重构分为两个步骤——先前序遍历展开存入数组，再二分重建成树。
+重构分为两个步骤——先中序遍历展开存入数组，再二分重建成树。
 
 ```cpp
 void Rbu_Flatten(int& ldc, int k) {
