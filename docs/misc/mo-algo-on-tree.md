@@ -44,22 +44,21 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
     #include <cmath>
     #include <cstdio>
     using namespace std;
-    ```
-
+    
     const int maxn = 200010;
-
+    
     int f[maxn], g[maxn], id[maxn], head[maxn], cnt, last[maxn], dep[maxn],
         fa[maxn][22], v[maxn], w[maxn];
     int block, index, n, m, q;
     int pos[maxn], col[maxn], app[maxn];
     bool vis[maxn];
     long long ans[maxn], cur;
-
+    
     struct edge {
       int to, nxt;
     } e[maxn];
     int cnt1 = 0, cnt2 = 0;  // 时间戳
-
+    
     struct query {
       int l, r, t, id;
       bool operator<(const query &b) const {
@@ -67,12 +66,12 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
                (pos[l] == pos[b.l] && pos[r] == pos[b.r] && t < b.t);
       }
     } a[maxn], b[maxn];
-
+    
     inline void addedge(int x, int y) {
       e[++cnt] = (edge){y, head[x]};
       head[x] = cnt;
     }
-
+    
     void dfs(int x) {
       id[f[x] = ++index] = x;
       for (int i = head[x]; i; i = e[i].nxt) {
@@ -84,7 +83,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
       }
       id[g[x] = ++index] = x;  // 括号序
     }
-
+    
     inline int lca(int x, int y) {
       if (dep[x] < dep[y]) swap(x, y);
       if (dep[x] != dep[y]) {
@@ -98,7 +97,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
       }
       return fa[x][0];
     }
-
+    
     inline void add(int x) {
       if (vis[x])
         cur -= (long long)v[col[x]] * w[app[col[x]]--];
@@ -106,7 +105,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
         cur += (long long)v[col[x]] * w[++app[col[x]]];
       vis[x] ^= 1;
     }
-
+    
     inline void modify(int x, int t) {
       if (vis[x]) {
         add(x);
@@ -115,7 +114,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
       } else
         col[x] = t;
     }  // 在时间维上移动
-
+    
     int main() {
       scanf("%d%d%d", &n, &m, &q);
       for (int i = 1; i <= m; i++) scanf("%d", &v[i]);
