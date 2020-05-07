@@ -1,3 +1,5 @@
+author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan
+
 ## 括号序树上莫队
 
 一般的莫队只能处理线性问题，我们要把树强行压成序列。

@@ -1,3 +1,5 @@
+author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan
+
 bitset 常用于常规数据结构难以维护的的判定、统计问题，而莫队可以维护常规数据结构难以维护的区间信息。把两者结合起来使用可以同时利用两者的优势。
 
 ## 例题 [「Ynoi2016」掉进兔子洞](https://www.luogu.com.cn/problem/P4688) 
