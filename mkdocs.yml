@@ -249,9 +249,9 @@ nav:
       - 左偏树: ds/leftist-tree.md
     - 块状数据结构:
       - 分块思想: ds/decompose.md
-      - 树分块: ds/tree-decompose.md
-      - 块状链表: ds/block-list.md
       - 块状数组: ds/block-array.md
+      - 块状链表: ds/block-list.md
+      - 树分块: ds/tree-decompose.md
       - Sqrt Tree: ds/sqrt-tree.md
     - 单调栈: ds/monotonous-stack.md
     - 单调队列: ds/monotonous-queue.md
@@ -360,7 +360,13 @@ nav:
       - 离线算法简介: misc/offline.md
       - CDQ 分治: misc/cdq-divide.md
       - 整体二分: misc/parallel-binsearch.md
-      - 莫队算法: misc/mo-algo.md
+      - 莫队算法:
+        - 莫队算法简介: misc/mo-algo-intro.md
+        - 普通莫队算法: misc/mo-algo.md
+        - 带修改莫队: misc/modifiable-mo-algo.md
+        - 树上莫队: misc/mo-algo-on-tree.md
+        - 回滚莫队: misc/rollback-mo-algo.md
+        - 莫队配合bitset: misc/mo-algo-with-bitset.md
     - 分数规划: misc/frac-programming.md
     - 随机化:
       - 随机函数: misc/random.md

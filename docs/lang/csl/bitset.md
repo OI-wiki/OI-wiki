@@ -219,7 +219,7 @@ $$
 
 ### 与莫队结合
 
-详见 [杂项/莫队](../../misc/mo-algo.md) 。
+详见 [杂项/莫队配合 bitset](../../misc/mo-algo-with-bitset.md) 。
 
 ### 计算高维偏序
 
