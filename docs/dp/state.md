@@ -63,7 +63,7 @@
 
  [NOI2001 炮兵阵地](https://loj.ac/problem/10173) 
 
- [「USACO06NOV」玉米田 Corn Fields](https://www.luogu.com.cn/problemnew/show/P1879) 
+ [「USACO06NOV」玉米田 Corn Fields](https://www.luogu.com.cn/problem/P1879) 
 
  [AHOI2009 中国象棋](https://www.luogu.com.cn/problem/P2051) 
 

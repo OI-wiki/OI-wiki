@@ -134,7 +134,7 @@ void unionSet(int x, int y) {
 
  [「NOI2001」食物链](https://www.luogu.com.cn/problem/P2024) 
 
- [「NOI2002」银河英雄传说](https://www.luogu.com.cn/problemnew/show/P1196) 
+ [「NOI2002」银河英雄传说](https://www.luogu.com.cn/problem/P1196) 
 
  [UVA11987 Almost Union-Find](https://www.luogu.com.cn/problem/UVA11987) 
 

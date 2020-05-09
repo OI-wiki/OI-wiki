@@ -141,10 +141,10 @@ $$
 
 推荐练习：POJ 2891
 
- [【模板】扩展中国剩余定理](https://www.luogu.com.cn/problemnew/show/P4777) 
+ [【模板】扩展中国剩余定理](https://www.luogu.com.cn/problem/P4777) 
 
  [「NOI2018」屠龙勇士](https://uoj.ac/problem/396) 
 
- [「TJOI2009」猜数字](https://www.luogu.com.cn/problemnew/show/P3868) 
+ [「TJOI2009」猜数字](https://www.luogu.com.cn/problem/P3868) 
 
  [「SDOI2010」古代猪文](https://loj.ac/problem/10229) 

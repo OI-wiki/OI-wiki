@@ -95,5 +95,5 @@ void performance(int l, int r) {
 
 -    [「SCOI2010」序列操作](https://www.luogu.com.cn/problem/P2572) 
 -    [「SHOI2015」脑洞治疗仪](https://loj.ac/problem/2037) 
--    [「Luogu 2787」理理思维](https://www.luogu.com.cn/problemnew/show/P2787) 
--    [「Luogu 4979」矿洞：坍塌](https://www.luogu.com.cn/problemnew/show/P4979) 
+-    [「Luogu 2787」理理思维](https://www.luogu.com.cn/problem/P2787) 
+-    [「Luogu 4979」矿洞：坍塌](https://www.luogu.com.cn/problem/P4979) 

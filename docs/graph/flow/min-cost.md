@@ -150,8 +150,8 @@
 
 ## 习题
 
--    [「Luogu 3381」【模板】最小费用最大流](https://www.luogu.com.cn/problemnew/show/P3381) 
--    [「Luogu 4452」航班安排](https://www.luogu.com.cn/problemnew/show/P4452) 
+-    [「Luogu 3381」【模板】最小费用最大流](https://www.luogu.com.cn/problem/P3381) 
+-    [「Luogu 4452」航班安排](https://www.luogu.com.cn/problem/P4452) 
 -    [「SDOI 2009」晨跑](https://www.luogu.com.cn/problem/P2153) 
 -    [「SCOI 2007」修车](https://www.luogu.com.cn/problem/P2053) 
 -    [「HAOI 2010」订货](https://www.luogu.com.cn/problem/P2517) 

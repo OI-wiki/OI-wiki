@@ -436,7 +436,7 @@ int main() {
 
 ## 练习题
 
- [「Cerc2007」robotic sort 机械排序](https://www.luogu.com.cn/problemnew/show/P4402) 
+ [「Cerc2007」robotic sort 机械排序](https://www.luogu.com.cn/problem/P4402) 
 
  [二逼平衡树（树套树）](https://loj.ac/problem/106) 
 

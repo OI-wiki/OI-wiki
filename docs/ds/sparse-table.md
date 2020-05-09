@@ -10,7 +10,7 @@ ST 表是用于解决 **可重复贡献问题** 的数据结构。
 
 ## 引入
 
- [ST 表模板题](https://www.luogu.com.cn/problemnew/show/P3865) 
+ [ST 表模板题](https://www.luogu.com.cn/problem/P3865) 
 
 题目大意：给定 $n$ 个数，有 $m$ 个询问，对于每个询问，你需要回答区间 $[l,r]$ 中的最大值。
 
@@ -48,7 +48,7 @@ ST 表基于 [倍增](../basic/binary-acc.md) 思想，可以做到 $\Theta(n\lo
 
 ## 模板代码
 
- [ST 表模板题](https://www.luogu.com.cn/problemnew/show/P3865) 
+ [ST 表模板题](https://www.luogu.com.cn/problem/P3865) 
 
 ```cpp
 #include <bits/stdc++.h>
@@ -119,7 +119,7 @@ ST 表能较好的维护“可重复贡献”的区间信息（同时也应满�
 
 ## 练习
 
- [RMQ 模板题](https://www.luogu.com.cn/problemnew/show/P3865) 
+ [RMQ 模板题](https://www.luogu.com.cn/problem/P3865) 
 
  [「SCOI2007」降雨量](https://loj.ac/problem/2279) 
 

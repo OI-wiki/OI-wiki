@@ -696,7 +696,7 @@ $$
     }
     ```
 
-###  [「luogu 3768」简单的数学题](https://www.luogu.com.cn/problemnew/show/P3768) 
+###  [「luogu 3768」简单的数学题](https://www.luogu.com.cn/problem/P3768) 
 
 求
 

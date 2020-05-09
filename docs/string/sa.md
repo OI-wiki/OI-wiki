@@ -408,7 +408,7 @@ for (i = 1, k = 0; i <= n; ++i) {
 
 ### 出现至少 k 次的子串的最大长度
 
-例题： [「USACO06DEC」Milk Patterns](https://www.luogu.com.cn/problemnew/show/P2852) 。
+例题： [「USACO06DEC」Milk Patterns](https://www.luogu.com.cn/problem/P2852) 。
 
 ??? note "题解"
     出现至少 $k$ 次意味着后缀排序后有至少连续 $k$ 个后缀的 LCP 是这个子串。
