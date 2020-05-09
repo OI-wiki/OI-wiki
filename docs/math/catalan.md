@@ -44,7 +44,7 @@ $$
 H_n = \binom{2n}{n} - \binom{2n}{n-1}
 $$
 
-??? note " 例题[洛谷 P1044 栈](https://www.luogu.org/problem/P1044)"
+??? note " 例题[洛谷 P1044 栈](https://www.luogu.com.cn/problem/P1044)"
     题目大意：入栈顺序为 $1,2,\ldots ,n$ ，求所有可能的出栈顺序的总数。
 
 ```cpp

@@ -130,11 +130,11 @@ void unionSet(int x, int y) {
 
  [「NOI2015」程序自动分析](https://uoj.ac/problem/127) 
 
- [「JSOI2008」星球大战](https://www.luogu.org/problem/P1197) 
+ [「JSOI2008」星球大战](https://www.luogu.com.cn/problem/P1197) 
 
- [「NOI2001」食物链](https://www.luogu.org/problem/P2024) 
+ [「NOI2001」食物链](https://www.luogu.com.cn/problem/P2024) 
 
- [「NOI2002」银河英雄传说](https://www.luogu.org/problemnew/show/P1196) 
+ [「NOI2002」银河英雄传说](https://www.luogu.com.cn/problemnew/show/P1196) 
 
  [UVA11987 Almost Union-Find](https://www.luogu.com.cn/problem/UVA11987) 
 

@@ -122,6 +122,6 @@ for (int i = 1; i <= n; ++i) inv[i] = sv[i] * s[i - 1] % p;
 
  [「NOIP2012」同余方程](https://loj.ac/problem/2605) 
 
- [「AHOI2005」洗牌](https://www.luogu.org/problem/P2054) 
+ [「AHOI2005」洗牌](https://www.luogu.com.cn/problem/P2054) 
 
  [「SDOI2016」排列计数](https://loj.ac/problem/2034) 

@@ -192,6 +192,6 @@ $$
 
 ## 练习题
 
- [「洛谷 1341」无序字母对](https://www.luogu.org/problem/P1341) 
+ [「洛谷 1341」无序字母对](https://www.luogu.com.cn/problem/P1341) 
 
- [「洛谷 2731」骑马修栅栏](https://www.luogu.org/problem/P2731) 
+ [「洛谷 2731」骑马修栅栏](https://www.luogu.com.cn/problem/P2731) 

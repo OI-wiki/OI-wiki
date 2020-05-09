@@ -46,7 +46,7 @@ low[u] = min(low[u], num[v]);
 
 ### 例题
 
- [洛谷 P3388【模板】割点（割顶）](https://www.luogu.org/problemnew/show/P3388) 
+ [洛谷 P3388【模板】割点（割顶）](https://www.luogu.com.cn/problemnew/show/P3388) 
 
 ??? "例题代码"
     ```cpp
@@ -163,7 +163,7 @@ void tarjan(int u, int fa) {
 
 ## 练习
 
--    [P3388【模板】割点（割顶）](https://www.luogu.org/problem/P3388) 
+-    [P3388【模板】割点（割顶）](https://www.luogu.com.cn/problem/P3388) 
 -    [POJ2117 Electricity](https://vjudge.net/problem/POJ-2117) 
 -    [HDU4738 Caocao's Bridges](https://vjudge.net/problem/HDU-4738) 
 -    [HDU2460 Network](https://vjudge.net/problem/HDU-2460) 

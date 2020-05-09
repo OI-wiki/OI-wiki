@@ -56,9 +56,9 @@ int solve(int x) {
 
  [ZJOI2010 count 数字计数](https://loj.ac/problem/10169) 
 
- [Ahoi2009 self 同类分布](https://www.luogu.org/problem/P4127) 
+ [Ahoi2009 self 同类分布](https://www.luogu.com.cn/problem/P4127) 
 
- [洛谷  P3413 SAC#1 - 萌数](https://www.luogu.org/problemnew/show/P3413) 
+ [洛谷  P3413 SAC#1 - 萌数](https://www.luogu.com.cn/problemnew/show/P3413) 
 
  [HDU 6148 Valley Number](http://acm.hdu.edu.cn/showproblem.php?pid=6148) 
 

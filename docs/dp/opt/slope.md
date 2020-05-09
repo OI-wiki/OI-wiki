@@ -29,7 +29,7 @@ author: TrisolarisHD, hsfzLZH1, abc1763613206, greyqz, Ir1d, billchenchina, Chro
 
  [「APIO2010」特别行动队](https://loj.ac/problem/10190) 
 
- [「JSOI2011」柠檬](https://www.luogu.org/problem/P5504) 
+ [「JSOI2011」柠檬](https://www.luogu.com.cn/problem/P5504) 
 
  [「Codeforces 311B」Cats Transport](http://codeforces.com/problemset/problem/311/B) 
 

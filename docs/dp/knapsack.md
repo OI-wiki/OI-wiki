@@ -4,7 +4,7 @@ author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul
 
 在具体讲何为“背包 dp”前，先来看如下的例题：
 
-??? note "[「USACO07 DEC」Charm Bracelet](https://www.luogu.org/problemnew/show/P2871)"
+??? note "[「USACO07 DEC」Charm Bracelet](https://www.luogu.com.cn/problemnew/show/P2871)"
     题意概要：有 $n$ 个物品和一个容量为 $W$ 的背包，每个物品有重量 $w_{i}$ 和价值 $v_{i}$ 两种属性，要求选若干物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量。
 
 在上述例题中，由于每个物体只有 $2$ 种可能的状态（取与不取），正如二进制中的 $0$ 和 $1$ ，这类问题便被称为“0-1 背包问题”。
@@ -98,7 +98,7 @@ $$
 
 与 0-1 背包相同地，我们可以将第一维去掉来优化空间复杂度。如果理解了 0-1 背包的优化方式，就不难明白压缩后的循环是正向的（也就是上文中提到的错误优化）。
 
-??? note "[「Luogu P1616」疯狂的采药](https://www.luogu.org/problemnew/show/P1616)"
+??? note "[「Luogu P1616」疯狂的采药](https://www.luogu.com.cn/problemnew/show/P1616)"
     题意概要：有 $n$ 种物品和一个容量为 $W$ 的背包，每种物品有重量 $w_{i}$ 和价值 $v_{i}$ 两种属性，要求选若干个物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量。
 
 ??? 例题代码
@@ -173,7 +173,7 @@ $$
 
 见 [单调队列/单调栈优化](opt/monotonous-queue-stack.md) 。
 
-习题： [「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.org/problemnew/show/P1776) 
+习题： [「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.com.cn/problemnew/show/P1776) 
 
 ## 混合背包
 
@@ -192,12 +192,12 @@ for (循环物品种类) {
 }
 ```
 
-??? note "[「Luogu P1833」樱花](https://www.luogu.org/problemnew/show/P1833)"
+??? note "[「Luogu P1833」樱花](https://www.luogu.com.cn/problemnew/show/P1833)"
     题意概要：有 $n$ 种樱花树和长度为 $T$ 的时间，有的樱花树只能看一遍，有的樱花树最多看 $A{i}$ 遍，有的樱花树可以看无数遍。每棵樱花树都有一个美学值 $C{i}$ ，求在 $T$ 的时间内看哪些樱花树能使美学值最高。
 
 ## 二维费用背包
 
-先来一道例题： [「Luogu P1855」榨取 kkksc03](https://www.luogu.org/problemnew/show/P1855) 。
+先来一道例题： [「Luogu P1855」榨取 kkksc03](https://www.luogu.com.cn/problemnew/show/P1855) 。
 
 这道题是很明显的 0-1 背包问题，可是不同的是选一个物品会消耗两种价值（经费、时间）。这种问题其实很简单：方程基本不用变，只需再开一维数组，同时转移两个价值就行了！（完全、多重背包同理）
 
@@ -215,7 +215,7 @@ for (int k = 1; k <= n; k++) {
 
 ## 分组背包
 
-再看一道例题： [「Luogu P1757」通天之分组背包](https://www.luogu.org/problemnew/show/P1757) 。
+再看一道例题： [「Luogu P1757」通天之分组背包](https://www.luogu.com.cn/problemnew/show/P1757) 。
 
 所谓分组背包，就是将物品分组，每组的物品相互冲突，最多只能选一个物品放进去。
 
@@ -238,7 +238,7 @@ for (int k = 1; k <= ts; k++)          //循环每一组
 
 ## 有依赖的背包
 
-一道例题： [「Luogu P1064」金明的预算方案](https://www.luogu.org/problemnew/show/P1064) 。
+一道例题： [「Luogu P1064」金明的预算方案](https://www.luogu.com.cn/problemnew/show/P1064) 。
 
 这种背包问题其实就是如果选第 $i$ 件物品，就必须选第 $j$ 件物品，保证不会循环引用，一部分题目甚至会出现多叉树的引用形式。为了方便，就称不依赖于别的物品的物品称为“主件”，依赖于某主件的物品称为“附件”。
 

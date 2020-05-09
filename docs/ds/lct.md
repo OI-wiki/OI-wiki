@@ -353,13 +353,13 @@ inline int Find(int p) {
 ## 习题
 
 -    [「BZOJ 3282」Tree](https://lydsy.com/JudgeOnline/problem.php?id=3282) 
--    [「HNOI2010」弹飞绵羊](https://www.luogu.org/problem/P3203) 
+-    [「HNOI2010」弹飞绵羊](https://www.luogu.com.cn/problem/P3203) 
 
 ## 维护树链信息
 
 LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径提取到以 $y$ 为根的 Splay 内，树链信息的修改和统计转化为平衡树上的操作，这使得 LCT 在维护树链信息上具有优势。此外，借助 LCT 实现的在树链上二分比树链剖分少一个 $O(\log n)$ 的复杂度。
 
-???+note " 例题[「国家集训队」Tree II](https://www.luogu.org/problemnew/show/P1501)"
+???+note " 例题[「国家集训队」Tree II](https://www.luogu.com.cn/problemnew/show/P1501)"
     给出一棵有 $n$ 个结点的树，每个点的初始权值为 $1$ 。 $q$ 次操作，每次操作均为以下四种之一：
 
     1.   `- u1 v1 u2 v2` ：将树上 $u_1,v_1$ 两点之间的边删除，连接 $u_2,v_2$ 两点，保证操作合法且连边后仍是一棵树。
@@ -525,8 +525,8 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 
 ### 习题
 
--    [luogu P3690【模板】Link Cut Tree（动态树）](https://www.luogu.org/problemnew/show/P3690) 
--    [「SDOI2011」染色](https://www.luogu.org/problemnew/show/P2486) 
+-    [luogu P3690【模板】Link Cut Tree（动态树）](https://www.luogu.com.cn/problemnew/show/P3690) 
+-    [「SDOI2011」染色](https://www.luogu.com.cn/problemnew/show/P2486) 
 -    [「SHOI2014」三叉神经树](https://loj.ac/problem/2187) 
 
 ## 维护连通性质
@@ -535,7 +535,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 
 借助 LCT 的 `Find()` 函数，可以判断动态森林上的两点是否连通。如果有 `Find(x)==Find(y)` ，则说明 $x,y$ 两点在一棵树上，相互连通。
 
-???+note " 例题[「SDOI2008」洞穴勘测](https://www.luogu.org/problemnew/show/P2147)"
+???+note " 例题[「SDOI2008」洞穴勘测](https://www.luogu.com.cn/problemnew/show/P2147)"
     一开始有 $n$ 个独立的点， $m$ 次操作。每次操作为以下之一：
 
     1.   `Connect u v` ：在 $u,v$ 两点之间连接一条边。
@@ -629,7 +629,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 
 如果要求将边双连通分量缩成点，每次添加一条边，所连接的树上的两点如果相互连通，那么这条路径上的所有点都会被缩成一个点。
 
-???+note " 例题[「AHOI2005」航线规划](https://www.luogu.org/problemnew/show/P2542)"
+???+note " 例题[「AHOI2005」航线规划](https://www.luogu.com.cn/problemnew/show/P2542)"
     给出 $n$ 个点，初始时有 $m$ 条无向边， $q$ 次操作，每次操作为以下之一：
 
     1.   `0 u v` ：删除 $u,v$ 之间的连边，保证此时存在这样的一条边。
@@ -802,7 +802,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 
 ### 习题
 
--    [luogu P3950 部落冲突](https://www.luogu.org/problemnew/show/P3950) 
+-    [luogu P3950 部落冲突](https://www.luogu.com.cn/problemnew/show/P3950) 
 -    [bzoj 4998 星球联盟](https://www.lydsy.com/JudgeOnline/problem.php?id=4998) 
 -    [bzoj 2959 长跑](https://www.lydsy.com/JudgeOnline/problem.php?id=2959) 
 
@@ -810,7 +810,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 
 LCT 并不能直接处理边权，此时需要对每条边建立一个对应点，方便查询链上的边信息。利用这一技巧可以动态维护生成树。
 
-???+note " 例题[luogu P4234 最小差值生成树](https://www.luogu.org/problemnew/show/P4234)"
+???+note " 例题[luogu P4234 最小差值生成树](https://www.luogu.com.cn/problemnew/show/P4234)"
     给定一个 $n$ 个点， $m$ 条边的带权无向图，求其边权最大值和边权最小值的差值最小的生成树，输出这个差值。
 
     数据保证至少存在一棵生成树。
@@ -957,8 +957,8 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
 
 ### 习题
 
--    [「WC2006」水管局长](https://www.luogu.org/problem/P4172) 
--    [「BJWC2010」严格次小生成树](https://www.luogu.org/problemnew/show/P4180) 
+-    [「WC2006」水管局长](https://www.luogu.com.cn/problem/P4172) 
+-    [「BJWC2010」严格次小生成树](https://www.luogu.com.cn/problemnew/show/P4180) 
 -    [「NOI2014」魔法森林](https://uoj.ac/problem/3) 
 
 ## 维护子树信息
@@ -1123,5 +1123,5 @@ st.siz2[y] += st.siz[x];
 
 ### 习题
 
--    [luogu P4299 首都](https://www.luogu.org/problemnew/show/P4299) 
--    [SPOJ QTREE5 - Query on a tree V](https://www.luogu.org/problemnew/show/SP2939) 
+-    [luogu P4299 首都](https://www.luogu.com.cn/problemnew/show/P4299) 
+-    [SPOJ QTREE5 - Query on a tree V](https://www.luogu.com.cn/problemnew/show/SP2939) 
