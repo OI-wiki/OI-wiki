@@ -34,42 +34,44 @@ author: mwsht
 
 ### 代码展示
 
-以 LeetCode 85 / 221 为例
+以 LeetCode 85/221 为例
 
 ```cpp
 int maximalRectangle(vector<vector<char>>& matrix) {
-        int ans=0;
-        int n = matrix.size();
-        if (n == 0) return 0;
-        int m = matrix[0].size();
-        if (m == 0) return 0;
-        vector<vector<int>> lft(n, vector<int>(m, 0));
-        vector<vector<int>> rgt(n, vector<int>(m, 0));
-        vector<vector<int>> up(n, vector<int>(m, 0));
-        for (int i = 0; i < n; i++) {
-            for (int j = 1; j < m; j++){
-                    if (matrix[i][j] == '1' && matrix[i][j - 1] == '1') lft[i][j] = lft[i][j - 1] + 1;
-                }
-            for (int j = m - 1; j > 0; j--){
-                    if (matrix[i][j - 1] == '1' && matrix[i][j] == '1') rgt[i][j - 1] = rgt[i][j] + 1;
-                }
-        }
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (matrix[i][j] == '1') {
-                    if (i >= 1 && matrix[i - 1][j] == '1'){
-                        lft[i][j] = min(lft[i][j], lft[i - 1][j]);
-                        rgt[i][j] = min(rgt[i][j], rgt[i - 1][j]);
-                        up[i][j] = up[i - 1][j] + 1;
-                    }else{
-                        up[i][j] = 1;
-                    }
-                }
-                ans = max(ans, (rgt[i][j] + lft[i][j] + 1) * up[i][j]);
-            }
-        }
-        return ans;
+  int ans = 0;
+  int n = matrix.size();
+  if (n == 0) return 0;
+  int m = matrix[0].size();
+  if (m == 0) return 0;
+  vector<vector<int>> lft(n, vector<int>(m, 0));
+  vector<vector<int>> rgt(n, vector<int>(m, 0));
+  vector<vector<int>> up(n, vector<int>(m, 0));
+  for (int i = 0; i < n; i++) {
+    for (int j = 1; j < m; j++) {
+      if (matrix[i][j] == '1' && matrix[i][j - 1] == '1')
+        lft[i][j] = lft[i][j - 1] + 1;
     }
+    for (int j = m - 1; j > 0; j--) {
+      if (matrix[i][j - 1] == '1' && matrix[i][j] == '1')
+        rgt[i][j - 1] = rgt[i][j] + 1;
+    }
+  }
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      if (matrix[i][j] == '1') {
+        if (i >= 1 && matrix[i - 1][j] == '1') {
+          lft[i][j] = min(lft[i][j], lft[i - 1][j]);
+          rgt[i][j] = min(rgt[i][j], rgt[i - 1][j]);
+          up[i][j] = up[i - 1][j] + 1;
+        } else {
+          up[i][j] = 1;
+        }
+      }
+      ans = max(ans, (rgt[i][j] + lft[i][j] + 1) * up[i][j]);
+    }
+  }
+  return ans;
+}
 ```
 
 如果是最大正方形，改成
