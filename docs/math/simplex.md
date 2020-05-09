@@ -669,7 +669,7 @@ $$
 
 ## 习题练习
 
--    [UOJ#179. 线性规划](http://uoj.ac/problem/179) 
+-    [UOJ#179. 线性规划](https://uoj.ac/problem/179) 
 
 ## 参考资料
 

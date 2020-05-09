@@ -227,7 +227,7 @@ struct hungarian {  // km
 
 ## 习题
 
-??? note "[UOJ #78. 二分图最大匹配](http://uoj.ac/problem/78) "
+??? note "[UOJ #78. 二分图最大匹配](https://uoj.ac/problem/78) "
 
     模板题
     ```cpp
