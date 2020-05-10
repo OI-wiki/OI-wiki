@@ -6,15 +6,16 @@ author: Anti-Li, H-J-Granger
 
 ## 引言
 
-众所周知，尽管现在大部分学校的竞赛练习环境都是构建 XP 等 Windows 系操作系统，但是在 NOI 系列赛中，早已用上了 NOI Linux 这个 Ubuntu 操作系统的阉割版。  
+众所周知，尽管现在大部分学校的竞赛练习环境都是构建 XP 等 Windows 系操作系统，但是在 NOI 系列赛中，早已用上了 NOI Linux 这个 Ubuntu 操作系统的阉割版。
+
 <!-- ![NOI 竞赛的环境要求](./images/WSL2.png) -->
 
 <!-- <div align='center'> NOI 竞赛的环境要求 </div> -->
-> ![NOI竞赛的环境要求，可去官网查看](./images/WSL21.png)
->
-> [——NOI系列官方环境要求](http://www.noi.cn/newsview.html?id=559&hash=E4E249&type=11)
-或许大家对自己 Windows 环境下的 Dev-C++ 等都已熟识，但是当场景突然切换到 Linux 的时候，你会不会不知所措？
 
+> ![NOI 竞赛的环境要求，可去官网查看](./images/WSL21.png)
+>
+>  [——NOI 系列官方环境要求](http://www.noi.cn/newsview.html?id=559&hash=E4E249&type=11) 或许大家对自己 Windows 环境下的 Dev-C++ 等都已熟识，但是当场景突然切换到 Linux 的时候，你会不会不知所措？
+>
 > 「想用<kbd>Ctrl</kbd>+<kbd>C</kbd>复制，结果退出了程序」  
 > 「平时 AC 的程序模板到了 Linux 上就 WA」……
 
@@ -27,7 +28,7 @@ author: Anti-Li, H-J-Granger
 
 Windows 10 作为微软的新一代操作系统，紧跟时代潮流，在一周年更新时推出了 Linux 子系统（WSL），可以供装不起 VMware 等虚拟机的同学食用。  
 缺点是没有 NOI 评测用的 **Arbiter** ，但是在各大 OJ 辈出的情况下谁在乎呢……
-???+ note "补充资料：何为 Linux 子系统（WSL）？(via [维基百科](https://zh.wikipedia.org/wiki/%E9%80%82%E7%94%A8%E4%BA%8E_Linux_%E7%9A%84_Windows_%E5%AD%90%E7%B3%BB%E7%BB%9F)）"
+???+ note " 补充资料：何为 Linux 子系统（WSL）？(via [维基百科](https://zh.wikipedia.org/wiki/%E9%80%82%E7%94%A8%E4%BA%8E_Linux_%E7%9A%84_Windows_%E5%AD%90%E7%B3%BB%E7%BB%9F) ）"
     适用于 Linux 的 Windows 子系统（英语：Windows Subsystem for Linux，简称 WSL）是一个为在 Windows 10 和 Windows Server 2019 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。
 
     WSL 提供了一个由微软开发的 Linux 兼容的内核接口（不包含 Linux 内核代码），然后可以在其上运行 GNU 用户空间，例如 Ubuntu，openSUSE，SUSE Linux Enterprise Server，Debian 和 Kali Linux。这样的用户空间可能包含 Bash shell 和命令语言，使用本机 GNU/Linux 命令行工具（sed，awk 等），编程语言解释器（Ruby，Python 等），甚至是图形应用程序（使用主机端的 X 窗口系统）。
