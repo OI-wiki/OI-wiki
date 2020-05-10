@@ -217,6 +217,10 @@ $$
 
  `bitset` 与树分块结合可以解决一类求树上多条路径信息并的问题，详见 [数据结构/树分块](../../ds/tree-decompose.md) 。
 
+### 与莫队结合
+
+详见 [杂项/莫队配合 bitset](../../misc/mo-algo-with-bitset.md) 。
+
 ### 计算高维偏序
 
 详见 [FHR 课件](https://github.com/OI-wiki/libs/blob/master/lang/csl/FHR-分块bitset求高维偏序.pdf) 。

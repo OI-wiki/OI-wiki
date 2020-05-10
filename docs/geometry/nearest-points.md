@@ -131,6 +131,68 @@ rec(0, n - 1);
 
 算法大体保持不变，每次尝试找到一个比当前答案周长 $d$ 更小的三角形，将所有横坐标与 $x_m$ 的差小于 $\frac{d}{2}$ 的点放入集合 $B$ ，尝试更新答案。（周长为 $d$ 的三角形的最长边小于 $\frac{d}{2}$ ）
 
+## 非分治算法
+
+其实，除了上面提到的分治算法，还有另一种时间复杂度同样是 $O(n \log n)$ 的非分治算法。
+
+我们可以考虑一种常见的统计序列的思想：对于每一个元素，将它和它的左边所有元素的贡献加入到答案中。平面最近点对问题同样可以使用这种思想。
+
+具体地，我们把所有点按照 $x_i$ 为第一关键字、 $y_i$ 为第二关键字排序，并建立一个以 $y_i$ 为第一关键字、 $x_i$ 为第二关键字排序的 multiset。对于每一个位置 $i$ ，我们执行以下操作：
+
+1.  将所有满足 $x_i - x_j >= d$ 的点从集合中删除。它们不会再对答案有贡献。
+2.  对于集合内满足 $\lvert y_i - y_j \rvert < d$ 的所有点，统计它们和 $p_i$ 的距离。
+3.  将 $p_i$ 插入到集合中。
+
+由于每个点最多会被插入和删除一次，所以插入和删除点的时间复杂度为 $O(n \log n)$ ，而统计答案部分的时间复杂度证明与分治算法的时间复杂度证明方法类似，读者不妨一试。
+
+??? "参考代码"
+    ```cpp
+    #include <algorithm>
+    #include <cmath>
+    #include <cstdio>
+    #include <set>
+    const int N = 200005;
+    int n;
+    double ans = 1e20;
+    struct point {
+      double x, y;
+      point(double x = 0, double y = 0) : x(x), y(y) {}
+    };
+    
+    struct cmp_x {
+      bool operator()(const point &a, const point &b) const {
+        return a.x < b.x || (a.x == b.x && a.y < b.y);
+      }
+    };
+    
+    struct cmp_y {
+      bool operator()(const point &a, const point &b) const { return a.y < b.y; }
+    };
+    
+    inline void upd_ans(const point &a, const point &b) {
+      double dist = sqrt(pow((a.x - b.x), 2) + pow((a.y - b.y), 2));
+      if (ans > dist) ans = dist;
+    }
+    
+    point a[N];
+    std::multiset<point, cmp_y> s;
+    
+    int main() {
+      scanf("%d", &n);
+      for (int i = 0; i < n; i++) scanf("%lf%lf", &a[i].x, &a[i].y);
+      std::sort(a, a + n, cmp_x());
+      for (int i = 0, l = 0; i < n; i++) {
+        while (l < i && a[i].x - a[l].x >= ans) s.erase(s.find(a[l++]));
+        for (auto it = s.lower_bound(point(a[i].x, a[i].y - ans));
+             it != s.end() && it->y - a[i].y < ans; it++)
+          upd_ans(*it, a[i]);
+        s.insert(a[i]);
+      }
+      printf("%.4lf", ans);
+      return 0;
+    }
+    ```
+
 ## 习题
 
 -    [UVA 10245 "The Closest Pair Problem"\[难度：低\]](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1186) 
@@ -141,4 +203,8 @@ rec(0, n - 1);
 
 * * *
 
- **本页面主要译自博文 [Нахождение пары ближайших точек](http://e-maxx.ru/algo/nearest_points) 与其英文翻译版 [Finding the nearest pair of points](https://github.com/e-maxx-eng/e-maxx-eng/blob/master/src/geometry/nearest_points.md) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+## References
+
+ **本页面中的分治算法部分主要译自博文 [Нахождение пары ближайших точек](http://e-maxx.ru/algo/nearest_points) 与其英文翻译版 [Finding the nearest pair of points](https://github.com/e-maxx-eng/e-maxx-eng/blob/master/src/geometry/nearest_points.md) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+
+ [知乎专栏：计算几何 - 最近点对问题](https://zhuanlan.zhihu.com/p/74905629) 
