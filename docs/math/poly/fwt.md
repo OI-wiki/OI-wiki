@@ -95,7 +95,7 @@ FWT[A] = merge(FWT[A_0] + FWT[A_1], FWT[A_0] - FWT[A_1])
 $$
 
 $$
-UFWT[A'] - merge(\frac{FWT[A_0'] + FWT[A_1']}{2}, \frac{FWT[A_0'] - FWT[A_1']}{2})
+UFWT[A'] = merge(\frac{FWT[A_0'] + FWT[A_1']}{2}, \frac{FWT[A_0'] - FWT[A_1']}{2})
 $$
 
 ### 同或运算
