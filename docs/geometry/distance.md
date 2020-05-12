@@ -339,4 +339,4 @@ $$
 
 我们可以简单的认为对两个串进行异或运算，结果为 1 的数量就是两个串的汉明距离。
 
-部分内容搬运自 [浅谈三种常见的距离算法](https://www.luogu.org/blog/xuxing/Distance-Algorithm) ，感谢作者 xuxing 的授权。
+部分内容搬运自 [浅谈三种常见的距离算法](https://www.luogu.com.cn/blog/xuxing/Distance-Algorithm) ，感谢作者 xuxing 的授权。

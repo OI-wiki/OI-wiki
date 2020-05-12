@@ -85,11 +85,11 @@ return ans * ans;
 
 ## 习题
 
- [luogu P4147 玉蟾宫](https://www.luogu.org/problemnew/show/P4147) 
+ [luogu P4147 玉蟾宫](https://www.luogu.com.cn/problem/P4147) 
 
- [luogu P1578 奶牛浴场](https://www.luogu.org/problemnew/show/P1578) 
+ [luogu P1578 奶牛浴场](https://www.luogu.com.cn/problem/P1578) 
 
- [「ZJOI2007」棋盘制作](https://www.luogu.org/problem/P1169) 
+ [「ZJOI2007」棋盘制作](https://www.luogu.com.cn/problem/P1169) 
 
  [LeetCode 85. 最大矩形](https://leetcode-cn.com/problems/maximal-rectangle/) 
 

@@ -77,7 +77,7 @@ long long binpow(long long a, long long b) {
 }
 ```
 
-模板： [Luogu P1226](https://www.luogu.org/problemnew/show/P1226) 
+模板： [Luogu P1226](https://www.luogu.com.cn/problem/P1226) 
 
 ## 应用
 
@@ -228,7 +228,7 @@ $$
 ??? note "前置技能"
     请先学习 [高精度](./bignum.md) 
 
-???+note " 例题【NOIP2003 普及组改编·麦森数】（[原题在此](https://www.luogu.org/problemnew/show/P1045)）"
+???+note " 例题【NOIP2003 普及组改编·麦森数】（[原题在此](https://www.luogu.com.cn/problem/P1045)）"
     题目大意：从文件中输入 P（1000&lt;P&lt;3100000），计算 $2^P−1$ 的最后 100 位数字（用十进制高精度数表示），不足 100 位时高位补 0。
 
 代码实现如下：

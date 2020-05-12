@@ -2,7 +2,7 @@
 
 点分治适合处理大规模的树上路径信息问题。
 
-??? note " 例题[luogu P3806【模板】点分治 1](https://www.luogu.org/problemnew/show/P3806)"
+??? note " 例题[luogu P3806【模板】点分治 1](https://www.luogu.com.cn/problem/P3806)"
     给定一棵有 $n$ 个点的带点权树， $m$ 次询问，每次询问给出 $k$ ，询问树上距离为 $k$ 的点对是否存在。
 
      $n\le 10000,m\le 100,k\le 10000000$ 
@@ -105,7 +105,7 @@ int main() {
 }
 ```
 
-??? note " 例题[luogu  P4178 Tree](https://www.luogu.org/problemnew/show/P4178)"
+??? note " 例题[luogu  P4178 Tree](https://www.luogu.com.cn/problem/P4178)"
     给定一棵有 $n$ 个点的带权树，给出 $k$ ，询问树上距离为 $k$ 的点对数量。
 
      $n\le 40000,k\le 20000,w_i\le 1000$ 

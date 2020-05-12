@@ -282,7 +282,7 @@ $$
 
 ## 习题
 
- [「IOI2000」邮局](https://www.luogu.org/problemnew/show/P4767) 
+ [「IOI2000」邮局](https://www.luogu.com.cn/problem/P4767) 
 
 ## 参考资料
 

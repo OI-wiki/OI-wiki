@@ -71,7 +71,7 @@ $$
 
 ## 问题一
 
-???+note "[P4213【模板】杜教筛（Sum）](https://www.luogu.org/problemnew/show/P4213)"
+???+note "[P4213【模板】杜教筛（Sum）](https://www.luogu.com.cn/problem/P4213)"
     题目大意：求 $S_1(n)= \sum_{i=1}^{n} \mu(i)$ 和 $S_2(n)= \sum_{i=1}^{n} \varphi(i)$ 的值， $n\le 2^{31} -1$ 。
 
 ### 莫比乌斯函数前缀和
@@ -180,7 +180,7 @@ $$
 
 ## 问题二
 
-???+note "[「LuoguP3768」简单的数学题](https://www.luogu.org/problemnew/show/P3768)"
+???+note "[「LuoguP3768」简单的数学题](https://www.luogu.com.cn/problem/P3768)"
     大意：求
     
     $$

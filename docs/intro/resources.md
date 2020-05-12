@@ -22,7 +22,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
     Libre 取自由之意，基于开源项目 [SYZOJ](https://github.com/syzoj/syzoj) 。
     题目所有测试数据以及提交的代码均对所有用户开放。
 -    [Lutece](https://acm.uestc.edu.cn/home) 始于 2018 年，电子科技大学在线评测系统， [项目开源](https://github.com/lutece-awesome) 。
--    [洛谷](https://www.luogu.org/) 始于 2013 年，社区群体庞大，OI 界的真题和习题较全，提供有偿教育服务。
+-    [洛谷](https://www.luogu.com.cn/) 始于 2013 年，社区群体庞大，OI 界的真题和习题较全，提供有偿教育服务。
 -    [牛客网](https://www.nowcoder.com/) 始于 2014 年，提供技术类求职备考、社群交流、企业招聘等服务。
 -    [NOJ](http://acm.njupt.edu.cn/) 始于 2018 年，南京邮电大学在线评测系统， [项目开源](https://github.com/ZsgsDesign/NOJ) ，自身拥有题目两千余，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
 -    [NTUOJ](http://acm.csie.ntu.edu.tw) 始于 2007 年，台湾大学在线评测系统，基于开源项目 [Judge Girl](http://judgegirl.github.io/) 。

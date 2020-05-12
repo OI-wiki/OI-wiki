@@ -287,4 +287,4 @@ xfce4-session
 
 ### 后记
 
-本文最初发布于 [洛谷日报 #6](https://www.luogu.org/discuss/show/48491) ，现由原作者搬运至此，有删改。
+本文最初发布于 [洛谷日报 #6](https://www.luogu.com.cn/discuss/show/48491) ，现由原作者搬运至此，有删改。

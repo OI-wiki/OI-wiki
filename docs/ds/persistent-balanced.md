@@ -153,8 +153,8 @@ static int _merge(int _x, int _y) {
 
 ## 推荐的练手题
 
-1.   [「Luogu P3919」可持久化数组（模板题）](https://www.luogu.org/problemnew/show/P3919) 
+1.   [「Luogu P3919」可持久化数组（模板题）](https://www.luogu.com.cn/problem/P3919) 
 
 2.   [「Codeforces 702F」T-shirt](http://codeforces.com/problemset/problem/702/F) 
 
-3.   [「Luogu P5055」可持久化文艺平衡树](https://www.luogu.org/problemnew/show/P5055) 
+3.   [「Luogu P5055」可持久化文艺平衡树](https://www.luogu.com.cn/problem/P5055) 

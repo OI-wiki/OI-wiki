@@ -112,7 +112,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
 ## 习题
 
-??? note "[UOJ #78. 二分图最大匹配](http://uoj.ac/problem/78) "
+??? note "[UOJ #78. 二分图最大匹配](https://uoj.ac/problem/78) "
 
     模板题
     ```cpp

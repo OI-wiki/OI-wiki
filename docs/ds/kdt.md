@@ -58,7 +58,7 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
 
 ## 邻域查询
 
-???+note " 例题[luogu P1429 平面最近点对（加强版）](https://www.luogu.org/problem/P1429)"
+???+note " 例题[luogu P1429 平面最近点对（加强版）](https://www.luogu.com.cn/problem/P1429)"
     给定平面上的 $n$ 个点 $(x_i,y_i)$ ，找出平面上最近两个点对之间的 [欧几里得距离](../geometry/distance.md#_1) 。
 
      $2\le n\le 200000 , 0\le x_i,y_i\le 10^9$ 
@@ -249,7 +249,7 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
 
 ## 高维空间上的操作
 
-???+note " 例题[luogu P4148 简单题](https://www.luogu.org/problem/P4148)"
+???+note " 例题[luogu P4148 简单题](https://www.luogu.com.cn/problem/P4148)"
     在一个初始值全为 $0$ 的 $n\times n$ 的二维矩阵上，进行 $q$ 次操作，每次操作为以下两种之一：
 
     1.   `1 x y A` ：将坐标 $(x,y)$ 上的数加上 $A$ 。
@@ -380,14 +380,14 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
 
 ## 习题
 
- [「SDOI2010」捉迷藏](https://www.luogu.org/problem/P2479) 
+ [「SDOI2010」捉迷藏](https://www.luogu.com.cn/problem/P2479) 
 
- [「Violet」天使玩偶/SJY 摆棋子](https://www.luogu.org/problem/P4169) 
+ [「Violet」天使玩偶/SJY 摆棋子](https://www.luogu.com.cn/problem/P4169) 
 
- [「国家集训队」JZPFAR](https://www.luogu.org/problem/P2093) 
+ [「国家集训队」JZPFAR](https://www.luogu.com.cn/problem/P2093) 
 
- [「BOI2007」Mokia 摩基亚](https://www.luogu.org/problem/P4390) 
+ [「BOI2007」Mokia 摩基亚](https://www.luogu.com.cn/problem/P4390) 
 
- [luogu P4475 巧克力王国](https://www.luogu.org/problem/P4475) 
+ [luogu P4475 巧克力王国](https://www.luogu.com.cn/problem/P4475) 
 
- [「CH 弱省胡策 R2」TATT](https://www.luogu.org/problem/P3769) 
+ [「CH 弱省胡策 R2」TATT](https://www.luogu.com.cn/problem/P3769) 

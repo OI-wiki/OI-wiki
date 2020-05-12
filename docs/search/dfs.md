@@ -55,7 +55,7 @@ dfs(n, 1, 1);
 
 ## 例题
 
- [Luogu P1706 全排列问题](https://www.luogu.org/problemnew/show/P1706) 
+ [Luogu P1706 全排列问题](https://www.luogu.com.cn/problem/P1706) 
 
 C++ 代码：
 

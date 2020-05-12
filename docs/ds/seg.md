@@ -223,7 +223,7 @@ int getsum(int l, int r, int s, int t, int p) {
 
 ## 线段树基础题推荐
 
-###  [luogu P3372【模板】线段树 1](https://www.luogu.org/problem/P3372) 
+###  [luogu P3372【模板】线段树 1](https://www.luogu.com.cn/problem/P3372) 
 
 ??? "参考代码"
     ```cpp
@@ -282,7 +282,7 @@ int getsum(int l, int r, int s, int t, int p) {
     }
     ```
 
-###  [luogu P3373【模板】线段树 2](https://www.luogu.org/problem/P3373) 
+###  [luogu P3373【模板】线段树 2](https://www.luogu.com.cn/problem/P3373) 
 
 ??? "参考代码"
     ```cpp

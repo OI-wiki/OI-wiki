@@ -215,7 +215,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
 
 ## 习题
 
-??? note "[UOJ #79. 一般图最大匹配](http://uoj.ac/problem/79) "
+??? note "[UOJ #79. 一般图最大匹配](https://uoj.ac/problem/79) "
 
     ```cpp
     #include <bits/stdc++.h>
