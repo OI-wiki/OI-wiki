@@ -160,8 +160,7 @@ void update(int l, int r, int c, int s, int t, int p) {
 
 ```cpp
 int getsum(int l, int r, int s, int t, int p) {
-  // [l,r] 为查询区间,c 为被修改的元素的变化量,[s,t] 为当前节点包含的区间,p
-  // 为当前节点的编号
+  // [l,r] 为查询区间,[s,t] 为当前节点包含的区间,p为当前节点的编号
   if (l <= s && t <= r) return d[p];
   // 当前区间为询问区间的子集时直接返回当前区间的和
   int m = (s + t) / 2;
