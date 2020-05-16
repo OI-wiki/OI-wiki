@@ -69,6 +69,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [由 hzwer 收集整理自互联网的课件](https://github.com/hzwer/sharePPT) 
 -    [Trinkle23897 的课件](https://github.com/Trinkle23897/oi_slides) 
 -    [huzecong 的课件](https://github.com/huzecong/oi-slides) 
+-    [Open Data Structure](https://opendatastructures.org/) 内含众多数据结构讲稿
 
 ## 书籍
 
