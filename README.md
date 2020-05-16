@@ -22,7 +22,7 @@
 
 目前，**OI Wiki** 的内容还有很多不完善的地方，知识点覆盖不够全面，存在一些低质量页面需要修改。**OI Wiki** 团队以及参与贡献的小伙伴们正在积极完善这些内容。
 
-关于上述待完善内容，请参见 **OI Wiki** 的 [Issues](https://github.com/OI-wiki/OI-wiki/issues) 以及 [迭代计划](https://github.com/OI-wiki/OI-wiki/labels/%E8%BF%AD%E4%BB%A3%E8%AE%A1%E5%88%92%20%2F%20Iteration%20Plan)。
+关于上述待完善内容，请参见 **OI Wiki** 的 [Issues](https://github.com/OI-wiki/OI-wiki/issues) 以及 [迭代计划](https://github.com/OI-wiki/OI-wiki/labels/Iteration%20Plan%20%2F%20%E8%BF%AD%E4%BB%A3%E8%AE%A1%E5%88%92)。
 
 与此同时， **OI Wiki** 源于社区，提倡 **知识自由**，在未来也绝不会商业化，将始终保持独立自由的性质。
 
