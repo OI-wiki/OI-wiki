@@ -214,7 +214,7 @@ f[find(a)] = find(b);  // 正确
 
     -   也有可能被卡了。
 
-###  [UB（Undefined Behaviour，未定义行为）](https://zh.cppreference.com/w/cpp/language/ub) 
+###  [未定义行为](https://zh.cppreference.com/w/cpp/language/ub) 
 
 -   数组越界。上下都算。（多数是 RE。）
 
