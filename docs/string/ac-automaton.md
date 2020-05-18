@@ -209,7 +209,7 @@ int query(char *t) {
       }
       return res;
     }
-    }  // Namespace AC Ends
+    }  // namespace AC
 
     char s[N];
     int main() {
@@ -275,7 +275,7 @@ int query(char *t) {
         if (idx[i]) res = max(res, val[i]), cnt[idx[i]] = val[i];
       return res;
     }
-    }  // Namespace AC Ends
+    }  // namespace AC
     int n;
     char s[N][100], t[L];
     int main() {
