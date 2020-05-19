@@ -8,7 +8,7 @@ STL 栈 ( `std::stack` ) 是一种后进先出 (Last In, First Out) 的容器适
 
 ```cpp
 #include <stack>
-using std::stack
+using std::stack;
 ```
 
 ### 栈的定义
