@@ -1,3 +1,5 @@
+author: sshwy
+
 序列 $a$ 的普通生成函数（ordinary generating function）定义为形式幂级数：
 
 $$
