@@ -582,6 +582,6 @@ if __name__ == '__main__':
 
 1.  Python 官方中文文档， <https://docs.python.org/zh-cn/3/tutorial/> 
 2.  Learn Python3 In Y Minutes, <https://learnxinyminutes.com/docs/python3/> 
-3.  Real Python Tutorials, <https://realpython.com/>
-4.  廖雪峰的 Python 教程, <https://www.liaoxuefeng.com/wiki/1016959663602400/>
-5.  GeeksforGeeks: Python Tutorials, <https://www.geeksforgeeks.org/python-programming-language/>
+3.  Real Python Tutorials, <https://realpython.com/> 
+4.  廖雪峰的 Python 教程， <https://www.liaoxuefeng.com/wiki/1016959663602400/> 
+5.  GeeksforGeeks: Python Tutorials, <https://www.geeksforgeeks.org/python-programming-language/> 
