@@ -50,6 +50,7 @@
     using namespace std;
     std::vector<int> v[MXN];
     std::vector<int> w[MXN];
+    ```
 
     int fa[MXN][31], cost[MXN][31], dep[MXN];
     int n, m;
@@ -127,6 +128,7 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
     #include <algorithm>
     #include <iostream>
     using namespace std;
+    ```
 
     class Edge {
     public:
@@ -238,20 +240,20 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
     ```cpp
     int dfn[N << 1], dep[N << 1], dfntot = 0;
     void dfs(int t, int depth) {
-    dfn[++dfntot] = t;
-    pos[t] = dfntot;
-    dep[dfntot] = depth;
-    for (int i = head[t]; i; i = side[i].next) {
+      dfn[++dfntot] = t;
+      pos[t] = dfntot;
+      dep[dfntot] = depth;
+      for (int i = head[t]; i; i = side[i].next) {
         dfs(side[i].to, t, depth + 1);
         dfn[++dfntot] = t;
         dep[dfntot] = depth;
-    }
+      }
     }
     void st_preprocess() {
-    lg[0] = -1;  // 预处理 lg 代替库函数 log2 来优化常数
-    for (int i = 1; i <= (N << 1); ++i) lg[i] = lg[i >> 1] + 1;
-    for (int i = 1; i <= (N << 1) - 1; ++i) st[0][i] = dfn[i];
-    for (int i = 1; i <= lg[(N << 1) - 1]; ++i)
+      lg[0] = -1;  // 预处理 lg 代替库函数 log2 来优化常数
+      for (int i = 1; i <= (N << 1); ++i) lg[i] = lg[i >> 1] + 1;
+      for (int i = 1; i <= (N << 1) - 1; ++i) st[0][i] = dfn[i];
+      for (int i = 1; i <= lg[(N << 1) - 1]; ++i)
         for (int j = 1; j + (1 << n) - 1 <= ((N << 1) - 1); ++j)
         st[i][j] = dep[st[i - 1][j]] < dep[st[i - 1][j + (1 << i - 1)]
                         ? st[i - 1][j]
@@ -297,6 +299,7 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
     ```cpp
     // Copyright (C) 2018 Skqliao. All rights served.
     #include <bits/stdc++.h>
+    ```
 
     #define rep(i, l, r) for (int i = (l), _##i##_ = (r); i < _##i##_; ++i)
     #define rof(i, l, r) for (int i = (l)-1, _##i##_ = (r); i >= _##i##_; --i)
