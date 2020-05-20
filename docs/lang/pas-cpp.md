@@ -109,7 +109,7 @@ std::cout << "Hello World!" << std::endl;
 
 好了，到这里 Hello World 应该解释的差不多了。
 
-可能有同学会问，后面那个 `return 0` 是什么意思？那个 `int main()` 是啥意思？ **先别管它** ，一开始写程序的时候先把它当作模板来写吧（这里也是用模板写的）。因为入门时并不会用到 `main` 中参数，所以不需要写成 `int main(int argc, char const *argv[])`。
+可能有同学会问，后面那个 `return 0` 是什么意思？那个 `int main()` 是啥意思？ **先别管它** ，一开始写程序的时候先把它当作模板来写吧（这里也是用模板写的）。因为入门时并不会用到 `main` 中参数，所以不需要写成 `int main(int argc, char const *argv[])` 。
 
 #### 简单练习
 
