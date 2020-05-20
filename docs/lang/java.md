@@ -4,23 +4,11 @@ Java 是一种广泛使用的计算机编程语言，拥有 **跨平台** 、 **
 
 ## 环境安装
 
-使用 [OpenJDK](https://jdk.java.net/) 作为实例，下载下来的都是压缩包，解压缩此处略过
-
 ### Windows
 
-将解压缩后的文件夹放到你想放的位置，假设你解压后放到了 `C:\Program Files\Java\jdk-14` ,
+可以在 [Oracle 官网](https://www.oracle.com/java/technologies/javase-downloads.html) 下载 Oracle JDK（需要登录 Oracle 账号）。推荐下载 EXE 安装包来自动配置环境变量。
 
-![第一步](images/java1.png)
-
-![第二步](images/java2.png)
-
-![第三步](images/java3.png)
-
-![第四步](images/java4.png)
-
-![第五步](images/java5.png)
-
-![第六步](images/java6.png)
+如果需要使用 OpenJDK，可以使用 [AdoptOpenJDK](https://adoptopenjdk.net/) 提供的预编译包。如果下载较慢，可以使用 [清华大学 TUNA 镜像站](https://mirrors.tuna.tsinghua.edu.cn/AdoptOpenJDK/)。推荐下载 MSI 安装包来自动配置环境变量。
 
 ### Linux
 
