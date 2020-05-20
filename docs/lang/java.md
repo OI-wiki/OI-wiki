@@ -8,7 +8,7 @@ Java 是一种广泛使用的计算机编程语言，拥有 **跨平台** 、 **
 
 可以在 [Oracle 官网](https://www.oracle.com/java/technologies/javase-downloads.html) 下载 Oracle JDK（需要登录 Oracle 账号）。推荐下载 EXE 安装包来自动配置环境变量。
 
-如果需要使用 OpenJDK，可以使用 [AdoptOpenJDK](https://adoptopenjdk.net/) 提供的预编译包。如果下载较慢，可以使用 [清华大学 TUNA 镜像站](https://mirrors.tuna.tsinghua.edu.cn/AdoptOpenJDK/)。推荐下载 MSI 安装包来自动配置环境变量。
+如果需要使用 OpenJDK，可以使用 [AdoptOpenJDK](https://adoptopenjdk.net/) 提供的预编译包。如果下载较慢，可以使用 [清华大学 TUNA 镜像站](https://mirrors.tuna.tsinghua.edu.cn/AdoptOpenJDK/) 。推荐下载 MSI 安装包来自动配置环境变量。
 
 ### Linux
 
