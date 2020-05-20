@@ -119,4 +119,4 @@ $$
 
 在计算复杂性领域中，自动机是一个经典的模型。并且，自动机与正则语言有着密不可分的关系。
 
-如果对相关内容感兴趣的话，推荐阅读博客 [计算复杂性（1) Warming Up: 自动机模型](https://lingeros-tot.github.io/2019/03/05/Warming-Up-自动机模型/) 。
+如果对相关内容感兴趣的话，推荐阅读博客 [计算复杂性（1） Warming Up: 自动机模型](https://lingeros-tot.github.io/2019/03/05/Warming-Up-自动机模型/) 。
