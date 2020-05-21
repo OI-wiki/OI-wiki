@@ -299,8 +299,7 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
     ```cpp
     // Copyright (C) 2018 Skqliao. All rights served.
     #include <bits/stdc++.h>
-    ```
-
+    
     #define rep(i, l, r) for (int i = (l), _##i##_ = (r); i < _##i##_; ++i)
     #define rof(i, l, r) for (int i = (l)-1, _##i##_ = (r); i >= _##i##_; --i)
     #define ALL(x) (x).begin(), (x).end()
