@@ -308,12 +308,13 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
     typedef std::pair<int, int> pii;
     template <typename T>
     inline bool chkMin(T &a, const T &b) {
-    return a > b ? a = b, 1 : 0;
+      return a > b ? a = b, 1 : 0;
     }
     template <typename T>
     inline bool chkMax(T &a, const T &b) {
-    return a < b ? a = b, 1 : 0;
+      return a < b ? a = b, 1 : 0;
     }
+    ```
 
     const int MAXN = 1e5 + 5;
 
