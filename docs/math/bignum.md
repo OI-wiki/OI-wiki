@@ -825,7 +825,6 @@ $$
     }
     Big Big::operator^(const int& n) const {
       Big t(n), res(1);
-      // TODO::快速幂这样写好丑= =// DONE:)
       int y = n;
       while (y) {
         if (y & 1) res = res * t;
