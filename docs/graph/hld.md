@@ -298,15 +298,13 @@ int querymax(int x, int y) {
         sum[o] = sum[lc] + sum[rc];
         maxx[o] = std::max(maxx[lc], maxx[rc]);
       }
-      int query1(int o, int l, int r, int ql, int qr)  // max
-      {
+      int query1(int o, int l, int r, int ql, int qr) { // max
         if (l > qr || r < ql) return -inf;
         if (ql <= l && r <= qr) return maxx[o];
         int mid = (l + r) >> 1;
         return std::max(query1(lc, l, mid, ql, qr), query1(rc, mid + 1, r, ql, qr));
       }
-      int query2(int o, int l, int r, int ql, int qr)  // sum
-      {
+      int query2(int o, int l, int r, int ql, int qr) { // sum
         if (l > qr || r < ql) return 0;
         if (ql <= l && r <= qr) return sum[o];
         int mid = (l + r) >> 1;

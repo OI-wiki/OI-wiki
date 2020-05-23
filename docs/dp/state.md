@@ -29,8 +29,7 @@
     long long sta[2005], sit[2005], f[15][2005][105];
     int n, k, cnt;
     void dfs(int x, int num, int cur) {
-      if (cur >= n)  // 有新的合法状态
-      {
+      if (cur >= n) { // 有新的合法状态
         sit[++cnt] = x;
         sta[cnt] = num;
         return;
