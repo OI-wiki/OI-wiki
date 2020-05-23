@@ -176,16 +176,16 @@ $$
     void DFT(Comp *f, int n, int rev) {  // rev=1,DFT; rev=-1,IDFT
       if (n == 1) return;
       for (int i = 0; i < n; ++i) tmp[i] = f[i];
-      for (int i = 0; i < n; ++i) {  //偶数放左边，奇数放右边
+      for (int i = 0; i < n; ++i) {  // 偶数放左边，奇数放右边
         if (i & 1)
           f[n / 2 + i / 2] = tmp[i];
         else
           f[i / 2] = tmp[i];
       }
       Comp *g = f, *h = f + n / 2;
-      DFT(g, n / 2, rev), DFT(h, n / 2, rev);  //递归DFT
+      DFT(g, n / 2, rev), DFT(h, n / 2, rev);  // 递归DFT
       Comp cur(1, 0), step(cos(2 * M_PI / n), sin(2 * M_PI * rev / n));
-      // Comp step=exp(I*(2*M_PI/n*rev));//两个step定义是等价的
+      // Comp step=exp(I*(2*M_PI/n*rev));// 两个step定义是等价的
       for (int k = 0; k < n / 2; ++k) {
         tmp[k] = g[k] + cur * h[k];
         tmp[k + n / 2] = g[k] - cur * h[k];
@@ -243,17 +243,17 @@ $$
 
 ???+ note "蝴蝶变换实现（$O(n)$ 递推版）"
     ```cpp
-    //同样需要保证 len 是 2 的幂
-    //记 rev[i] 为 i 翻转后的值
+    // 同样需要保证 len 是 2 的幂
+    // 记 rev[i] 为 i 翻转后的值
     void change(Complex y[], int len) {
       for (int i = 0; i < len; ++i) {
         rev[i] = rev[i >> 1] >> 1;
-        if (i & 1) {  //如果最后一位是 1，则翻转成 len/2
+        if (i & 1) {  // 如果最后一位是 1，则翻转成 len/2
           rev[i] |= len >> 1;
         }
       }
       for (int i = 0; i < len; ++i) {
-        if (i < rev[i]) {  //保证每对数只翻转一次
+        if (i < rev[i]) {  // 保证每对数只翻转一次
           swap(y[i], y[rev[i]]);
         }
       }
@@ -370,7 +370,7 @@ $$
             y[k] = u + t;  // 这就是吧两部分分治的结果加起来
             y[k + h / 2] = u - t;
             // 后半个 “step” 中的ω一定和 “前半个” 中的成相反数
-            //“红圈”上的点转一整圈“转回来”，转半圈正好转成相反数
+            // “红圈”上的点转一整圈“转回来”，转半圈正好转成相反数
             // 一个数相反数的平方与这个数自身的平方相等
             w = w * wn;
           }

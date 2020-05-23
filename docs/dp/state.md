@@ -29,7 +29,7 @@
     long long sta[2005], sit[2005], f[15][2005][105];
     int n, k, cnt;
     void dfs(int x, int num, int cur) {
-      if (cur >= n)  //有新的合法状态
+      if (cur >= n)  // 有新的合法状态
       {
         sit[++cnt] = x;
         sta[cnt] = num;
@@ -41,7 +41,7 @@
     }
     int main() {
       cin >> n >> k;
-      dfs(0, 0, 0);  //先预处理一行的所有合法状态
+      dfs(0, 0, 0);  // 先预处理一行的所有合法状态
       for (int i = 1; i <= cnt; i++) f[1][i][sta[i]] = 1;
       for (int i = 2; i <= n; i++)
         for (int j = 1; j <= cnt; j++)
@@ -49,11 +49,11 @@
             if (sit[j] & sit[l]) continue;
             if ((sit[j] << 1) & sit[l]) continue;
             if (sit[j] & (sit[l] << 1)) continue;
-            //排除不合法转移
+            // 排除不合法转移
             for (int p = sta[j]; p <= k; p++) f[i][j][p] += f[i - 1][l][p - sta[j]];
           }
       long long ans = 0;
-      for (int i = 1; i <= cnt; i++) ans += f[n][i][k];  //累加答案
+      for (int i = 1; i <= cnt; i++) ans += f[n][i][k];  // 累加答案
       cout << ans << endl;
       return 0;
     }

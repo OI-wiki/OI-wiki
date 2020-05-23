@@ -103,14 +103,14 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     aux_time++;
     while (true) {
       if (v != -1) {
-        if (aux[v] == aux_time) {  //找到拜访过的点 也就是LCA
+        if (aux[v] == aux_time) {  // 找到拜访过的点 也就是LCA
           return v;
         }
         aux[v] = aux_time;
         if (match[v] == -1) {
           v = -1;
         } else {
-          v = orig[parent[match[v]]];  //以匹配点的父节点继续寻找
+          v = orig[parent[match[v]]];  // 以匹配点的父节点继续寻找
         }
       }
       swap(v, u);
@@ -155,10 +155,10 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       for (int id : g.g[v]) {
         auto &e = g.edges[id];
         int u = e.from ^ e.to ^ v;
-        if (label[u] == -1) {  //找到未拜访点
+        if (label[u] == -1) {  // 找到未拜访点
           label[u] = 1;        // 标记 "i"
           parent[u] = v;
-          if (match[u] == -1) {  //找到未匹配点
+          if (match[u] == -1) {  // 找到未匹配点
             augment(u);          // 寻找增广路径
             return true;
           }
@@ -168,7 +168,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
           continue;
         } else if (label[u] == 0 &&
                    orig[v] !=
-                       orig[u]) {  //找到已拜访点 且标记同为"o" 代表找到"花"
+                       orig[u]) {  // 找到已拜访点 且标记同为"o" 代表找到"花"
           int a = lca(orig[v], orig[u]);
           // 找LCA 然后缩花
           blossom(u, v, a);
@@ -272,14 +272,14 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     	aux_time++;
     	while (true) {
     	  if (v != -1) {
-    		if (aux[v] == aux_time) {  //找到拜访过的点 也就是LCA
+    		if (aux[v] == aux_time) {  // 找到拜访过的点 也就是LCA
     		  return v;
     		}
     		aux[v] = aux_time;
     		if (match[v] == -1) {
     		  v = -1;
     		} else {
-    		  v = orig[parent[match[v]]];  //以匹配点的父节点继续寻找
+    		  v = orig[parent[match[v]]];  // 以匹配点的父节点继续寻找
     		}
     	  }
     	  swap(v, u);
@@ -324,10 +324,10 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     	  for (int id : g.g[v]) {
     		auto &e = g.edges[id];
     		int u = e.from ^ e.to ^ v;
-    		if (label[u] == -1) {  //找到未拜访点
+    		if (label[u] == -1) {  // 找到未拜访点
     		  label[u] = 1;        // 标记 "i"
     		  parent[u] = v;
-    		  if (match[u] == -1) {  //找到未匹配点
+    		  if (match[u] == -1) {  // 找到未匹配点
     			augment(u);          // 寻找增广路径
     			return true;
     		  }
@@ -337,7 +337,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     		  continue;
     		} else if (label[u] == 0 &&
     				   orig[v] !=
-    					   orig[u]) {  //找到已拜访点 且标记同为"o" 代表找到"花"
+    					   orig[u]) {  // 找到已拜访点 且标记同为"o" 代表找到"花"
     		  int a = lca(orig[v], orig[u]);
     		  // 找LCA 然后缩花
     		  blossom(u, v, a);

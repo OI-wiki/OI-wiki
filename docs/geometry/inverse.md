@@ -88,46 +88,46 @@ author: hyp1231
     #include <vector>
     using namespace std;
     
-    const double EPS = 1e-8;       //精度系数
-    const double PI = acos(-1.0);  //π
+    const double EPS = 1e-8;       // 精度系数
+    const double PI = acos(-1.0);  // π
     const int N = 4;
     
     struct Point {
       double x, y;
       Point(double x = 0, double y = 0) : x(x), y(y) {}
       const bool operator<(Point A) const { return x == A.x ? y < A.y : x < A.x; }
-    };  //点的定义
+    };  // 点的定义
     
-    typedef Point Vector;  //向量的定义
+    typedef Point Vector;  // 向量的定义
     
     Vector operator+(Vector A, Vector B) {
       return Vector(A.x + B.x, A.y + B.y);
-    }  //向量加法
+    }  // 向量加法
     Vector operator-(Vector A, Vector B) {
       return Vector(A.x - B.x, A.y - B.y);
-    }  //向量减法
+    }  // 向量减法
     Vector operator*(Vector A, double p) {
       return Vector(A.x * p, A.y * p);
-    }  //向量数乘
+    }  // 向量数乘
     Vector operator/(Vector A, double p) {
       return Vector(A.x / p, A.y / p);
-    }  //向量数除
+    }  // 向量数除
     
     int dcmp(double x) {
       if (fabs(x) < EPS)
         return 0;
       else
         return x < 0 ? -1 : 1;
-    }  //与0的关系
+    }  // 与0的关系
     
-    double Dot(Vector A, Vector B) { return A.x * B.x + A.y * B.y; }  //向量点乘
-    double Length(Vector A) { return sqrt(Dot(A, A)); }               //向量长度
-    double Cross(Vector A, Vector B) { return A.x * B.y - A.y * B.x; }  //向量叉乘
+    double Dot(Vector A, Vector B) { return A.x * B.x + A.y * B.y; }  // 向量点乘
+    double Length(Vector A) { return sqrt(Dot(A, A)); }               // 向量长度
+    double Cross(Vector A, Vector B) { return A.x * B.y - A.y * B.x; }  // 向量叉乘
     
     Point GetLineProjection(Point P, Point A, Point B) {
       Vector v = B - A;
       return A + v * (Dot(v, P - A) / Dot(v, v));
-    }  //点在直线上投影
+    }  // 点在直线上投影
     
     struct Circle {
       Point c;
@@ -136,8 +136,8 @@ author: hyp1231
       Circle(Point c, double r = 0) : c(c), r(r) {}
       Point point(double a) {
         return Point(c.x + cos(a) * r, c.y + sin(a) * r);
-      }  //输入极角返回点坐标
-    };   //圆
+      }  // 输入极角返回点坐标
+    };   // 圆
     
     // a[i] 和 b[i] 分别是第i条切线在圆A和圆B上的切点
     int getTangents(Circle A, Circle B, Point* a, Point* b) {
@@ -150,17 +150,17 @@ author: hyp1231
           (A.c.x - B.c.x) * (A.c.x - B.c.x) + (A.c.y - B.c.y) * (A.c.y - B.c.y);
       double rdiff = A.r - B.r;
       double rsum = A.r + B.r;
-      if (dcmp(d2 - rdiff * rdiff) < 0) return 0;  //内含
+      if (dcmp(d2 - rdiff * rdiff) < 0) return 0;  // 内含
     
       double base = atan2(B.c.y - A.c.y, B.c.x - A.c.x);
-      if (dcmp(d2) == 0 && dcmp(A.r - B.r) == 0) return -1;  //无限多条切线
-      if (dcmp(d2 - rdiff * rdiff) == 0) {                   //内切，一条切线
+      if (dcmp(d2) == 0 && dcmp(A.r - B.r) == 0) return -1;  // 无限多条切线
+      if (dcmp(d2 - rdiff * rdiff) == 0) {                   // 内切，一条切线
         a[cnt] = A.point(base);
         b[cnt] = B.point(base);
         ++cnt;
         return 1;
       }
-      //有外公切线
+      // 有外公切线
       double ang = acos(rdiff / sqrt(d2));
       a[cnt] = A.point(base + ang);
       b[cnt] = B.point(base + ang);
@@ -168,11 +168,11 @@ author: hyp1231
       a[cnt] = A.point(base - ang);
       b[cnt] = B.point(base - ang);
       ++cnt;
-      if (dcmp(d2 - rsum * rsum) == 0) {  //一条内公切线
+      if (dcmp(d2 - rsum * rsum) == 0) {  // 一条内公切线
         a[cnt] = A.point(base);
         b[cnt] = B.point(PI + base);
         ++cnt;
-      } else if (dcmp(d2 - rsum * rsum) > 0) {  //两条内公切线
+      } else if (dcmp(d2 - rsum * rsum) > 0) {  // 两条内公切线
         double ang = acos(rsum / sqrt(d2));
         a[cnt] = A.point(base + ang);
         b[cnt] = B.point(PI + base + ang);
