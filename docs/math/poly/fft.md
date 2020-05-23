@@ -185,7 +185,7 @@ $$
       Comp *g = f, *h = f + n / 2;
       DFT(g, n / 2, rev), DFT(h, n / 2, rev);  // 递归DFT
       Comp cur(1, 0), step(cos(2 * M_PI / n), sin(2 * M_PI * rev / n));
-      // Comp step=exp(I*(2*M_PI/n*rev));// 两个step定义是等价的
+      // Comp step=exp(I*(2*M_PI/n*rev)); // 两个step定义是等价的
       for (int k = 0; k < n / 2; ++k) {
         tmp[k] = g[k] + cur * h[k];
         tmp[k + n / 2] = g[k] - cur * h[k];
