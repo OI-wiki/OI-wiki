@@ -89,11 +89,11 @@ f(i, 0, a.size()) { ... }
     }  // namespace one_game
     namespace p_1 {
     void solve() {
-      if (atk[1] == 1) { // solve 1-2
+      if (atk[1] == 1) {  // solve 1-2
         sort(a + 1, a + n + 1);
         cout << a[n] << endl;
         return;
-      } else if (m == 1) { // solve 3-4
+      } else if (m == 1) {  // solve 3-4
         long long k = atk[1], kt = ceil(a[1] * 1.0 / k);
         for (int i = 2; i <= n; i++)
           k = aw[i - 1], kt = max(kt, (long long)ceil(a[i] * 1.0 / k));

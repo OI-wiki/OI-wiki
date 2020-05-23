@@ -73,7 +73,7 @@ author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsf
       int ans = 0;
       int curx = 1;
       for (int i = 0; m; ++i) {
-        if (m & (1 << i)) { // 参见位运算的相关内容，意为 m 的第 i 位是否为 1
+        if (m & (1 << i)) {  // 参见位运算的相关内容，意为 m 的第 i 位是否为 1
           ans = modadd(ans, sum[i][curx]);
           curx = go[i][curx];
           m ^= 1ll << i;  // 将第 i 位置零
