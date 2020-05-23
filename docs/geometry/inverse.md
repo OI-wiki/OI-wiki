@@ -121,7 +121,7 @@ author: hyp1231
     }  // 与0的关系
     
     double Dot(Vector A, Vector B) { return A.x * B.x + A.y * B.y; }  // 向量点乘
-    double Length(Vector A) { return sqrt(Dot(A, A)); }               // 向量长度
+    double Length(Vector A) { return sqrt(Dot(A, A)); }  // 向量长度
     double Cross(Vector A, Vector B) { return A.x * B.y - A.y * B.x; }  // 向量叉乘
     
     Point GetLineProjection(Point P, Point A, Point B) {
@@ -154,7 +154,7 @@ author: hyp1231
     
       double base = atan2(B.c.y - A.c.y, B.c.x - A.c.x);
       if (dcmp(d2) == 0 && dcmp(A.r - B.r) == 0) return -1;  // 无限多条切线
-      if (dcmp(d2 - rdiff * rdiff) == 0) {                   // 内切，一条切线
+      if (dcmp(d2 - rdiff * rdiff) == 0) {  // 内切，一条切线
         a[cnt] = A.point(base);
         b[cnt] = B.point(base);
         ++cnt;

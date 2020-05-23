@@ -48,7 +48,8 @@ struct Trie {
       // printf("%d %d %d\n",o1,o2,val[o1]-val[o2]);
       int t = ((v & (1 << i)) ? 1 : 0);
       if (val[ch[o1][!t]] - val[ch[o2][!t]])
-        ret += (1 << i), o1 = ch[o1][!t], o2 = ch[o2][!t];  // 尽量向不同的地方跳
+        ret += (1 << i), o1 = ch[o1][!t],
+                         o2 = ch[o2][!t];  // 尽量向不同的地方跳
       else
         o1 = ch[o1][t], o2 = ch[o2][t];
     }
