@@ -4,13 +4,13 @@
 
  **ICPC** （International Collegiate Programming Contest, 国际大学生程序设计竞赛）由 ICPC 基金会（ICPC Foundation）举办，是最具影响力的大学生计算机竞赛。ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分。由于以前 ACM 赞助这个竞赛，也有很多人习惯叫它 ACM 竞赛。
 
- <https://icpc.baylor.edu/> 
+官网地址： <https://icpc.baylor.edu/> 
 
 ### CCPC
 
 中国大学生程序设计竞赛，和 ICPC 显著的区别是很多学校是不报销的。
 
- <https://ccpc.io/> 
+官网地址： <https://ccpc.io/> 
 
 ## 赛季赛程
 
