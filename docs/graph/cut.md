@@ -28,7 +28,7 @@ author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, TrisolarisHD, ylxmf2005
 
 例如 `low[2]` 的话是 1， `low[5]` 和 `low[6]` 是 3。
 
-然后我们开始 DFS，我们判断某个点是否是割点的根据是：对于某个顶点 $u$ ，如果存在至少一个顶点 $v$ （ $u$ 的儿子），使得 $low_v>=num_u$ ，即不能回到祖先，那么 $u$ 点为割点。
+然后我们开始 DFS，我们判断某个点是否是割点的根据是：对于某个顶点 $u$ ，如果存在至少一个顶点 $v$ （ $u$ 的儿子），使得 $low_v \geq num_u$ ，即不能回到祖先，那么 $u$ 点为割点。
 
 另外，如果搜到了自己（在环中），如果他有两个及以上的儿子，那么他一定是割点了，如果只有一个儿子，那么把它删掉，不会有任何的影响。比如下面这个图，此处形成了一个环，从树上来讲它有 2 个儿子：
 
@@ -46,7 +46,7 @@ low[u] = min(low[u], num[v]);
 
 ### 例题
 
- [洛谷 P3388【模板】割点（割顶）](https://www.luogu.org/problemnew/show/P3388) 
+ [洛谷 P3388【模板】割点（割顶）](https://www.luogu.com.cn/problem/P3388) 
 
 ??? "例题代码"
     ```cpp
@@ -163,7 +163,7 @@ void tarjan(int u, int fa) {
 
 ## 练习
 
--    [P3388【模板】割点（割顶）](https://www.luogu.org/problem/P3388) 
+-    [P3388【模板】割点（割顶）](https://www.luogu.com.cn/problem/P3388) 
 -    [POJ2117 Electricity](https://vjudge.net/problem/POJ-2117) 
 -    [HDU4738 Caocao's Bridges](https://vjudge.net/problem/HDU-4738) 
 -    [HDU2460 Network](https://vjudge.net/problem/HDU-2460) 

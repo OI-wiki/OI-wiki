@@ -50,4 +50,4 @@ for (len = 1; len <= n; len++)
 
  [NOIP 2007 矩阵取数游戏](https://vijos.org/p/1378) 
 
- [「IOI2000」邮局](https://www.luogu.org/problemnew/show/P4767) 
+ [「IOI2000」邮局](https://www.luogu.com.cn/problem/P4767) 

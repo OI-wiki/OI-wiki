@@ -1,12 +1,12 @@
 ## 介绍
 
-形如 $ax \equiv b \pmod c$ 的方程被称为 **线性同余方程** (Congruence Equation)。
+形如 $ax \equiv c \pmod b$ 的方程被称为 **线性同余方程** (Congruence Equation)。
 
  [「NOIP2012」同余方程](https://loj.ac/problem/2605) 
 
 ## 求解方法
 
-根据以下两个定理，我们可以求出同余方程 $ax \equiv b \pmod c$ 的解。
+根据以下两个定理，我们可以求出同余方程 $ax \equiv c \pmod b$ 的解。
 
 定理 1：
 

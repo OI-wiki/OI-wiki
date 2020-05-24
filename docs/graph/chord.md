@@ -275,11 +275,11 @@ for (int i = 1; i <= n; i++)
 
 ## 习题
 
- [SP5446 FISHNET - Fishing Net](https://www.luogu.org/problem/SP5446) 
+ [SP5446 FISHNET - Fishing Net](https://www.luogu.com.cn/problem/SP5446) 
 
- [P3196\[HNOI2008\]神奇的国度](https://www.luogu.org/problem/P3196) 
+ [P3196\[HNOI2008\]神奇的国度](https://www.luogu.com.cn/problem/P3196) 
 
- [P3852\[TJOI2007\]小朋友](https://www.luogu.org/problem/P3852) 
+ [P3852\[TJOI2007\]小朋友](https://www.luogu.com.cn/problem/P3852) 
 
 ## 参考资料
 

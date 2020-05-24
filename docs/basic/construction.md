@@ -30,7 +30,7 @@
 
 #### 题面
 
- [Luogu P3599 Koishi Loves Construction](https://www.luogu.org/problemnew/show/P3599) 
+ [Luogu P3599 Koishi Loves Construction](https://www.luogu.com.cn/problem/P3599) 
 
 #### 做法
 

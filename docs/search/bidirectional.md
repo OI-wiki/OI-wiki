@@ -30,7 +30,7 @@ while(队列q不为空)
 
 也称 meet in the middle，主要思想是将整个搜索过程分成两半，分别搜索，最后将两半的结果合并。由于搜索的复杂度往往是指数级的，而折半搜索可以使指数减半，也就能使复杂度开方。
 
-???+note "例题 [「USACO09NOV」灯 Lights](https://www.luogu.org/problemnew/show/P2962)"
+???+note "例题 [「USACO09NOV」灯 Lights](https://www.luogu.com.cn/problem/P2962)"
 
     有 $n$ 盏灯，每盏灯与若干盏灯相连，每盏灯上都有一个开关，如果按下一盏灯上的开关，这盏灯以及与之相连的所有灯的开关状态都会改变。一开始所有灯都是关着的，你需要将所有灯打开，求最小的按开关次数。
 

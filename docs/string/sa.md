@@ -246,7 +246,7 @@ for (i = 1; i <= n; ++i) {
 
 将字符串 $S$ 复制一份变成 $SS$ 就转化成了后缀排序问题。
 
-例题： [「JSOI2007」字符加密](https://www.luogu.org/problem/P4051) 。
+例题： [「JSOI2007」字符加密](https://www.luogu.com.cn/problem/P4051) 。
 
 ### 在字符串中找子串
 
@@ -254,7 +254,7 @@ for (i = 1; i <= n; ++i) {
 
 ### 从字符串首尾取字符最小化字典序
 
-例题： [「USACO07DEC」Best Cow Line](https://www.luogu.org/problem/P2870) 。
+例题： [「USACO07DEC」Best Cow Line](https://www.luogu.com.cn/problem/P2870) 。
 
 题意：给你一个字符串，每次从首或尾取一个字符组成字符串，问所有能够组成的字符串中字典序最小的一个。
 
@@ -408,7 +408,7 @@ for (i = 1, k = 0; i <= n; ++i) {
 
 ### 出现至少 k 次的子串的最大长度
 
-例题： [「USACO06DEC」Milk Patterns](https://www.luogu.org/problemnew/show/P2852) 。
+例题： [「USACO06DEC」Milk Patterns](https://www.luogu.com.cn/problem/P2852) 。
 
 ??? note "题解"
     出现至少 $k$ 次意味着后缀排序后有至少连续 $k$ 个后缀的 LCP 是这个子串。
@@ -506,7 +506,7 @@ for (i = 1, k = 0; i <= n; ++i) {
 
     考虑每个位置对答案的贡献是哪些后缀的 LCP，其实就是从它开始向左若干个连续的 $height$ 大于它的后缀中选一个，再从向右若干个连续的 $height$ 不小于它的后缀中选一个。这个东西可以用 [单调栈](../ds/monotonous-stack.md) 计算。
 
-    单调栈部分类似于 [Luogu P2659 美丽的序列](https://www.luogu.org/problem/P2659) 以及 [悬线法](../misc/largest-matrix.md)。
+    单调栈部分类似于 [Luogu P2659 美丽的序列](https://www.luogu.com.cn/problem/P2659) 以及 [悬线法](../misc/largest-matrix.md)。
 
 ??? note "参考代码"
     ```cpp

@@ -17,7 +17,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
 
 这样的话，我们就把一棵树处理成了序列。
 
-???+note "例题[「WC2013」糖果公园](http://uoj.ac/problem/58)"
+???+note "例题[「WC2013」糖果公园](https://uoj.ac/problem/58)"
     题意：给你一棵树，每个点有颜色，每次询问
 
     $$\sum_{c}val_c\sum_{i=1}^{cnt_c}w_i$$

@@ -48,7 +48,7 @@ struct trie {
 
 字典树最基础的应用——查找一个字符串是否在“字典”中出现过。
 
-???+note "[于是他错误的点名开始了](https://www.luogu.org/problemnew/show/P2580)"
+???+note "[于是他错误的点名开始了](https://www.luogu.com.cn/problem/P2580)"
     给你 $n$ 个名字串，然后进行 $m$ 次点名，每次你需要回答“名字不存在”、“第一次点到这个名字”、“已经点过这个名字”之一。
 
     $1\le n\le 10^4$, $1\le m\le 10^5$，所有字符串长度不超过 $50$。
@@ -110,7 +110,7 @@ Trie 是 [AC 自动机](./ac-automaton.md) 的一部分。
 
 将数的二进制表示看做一个字符串，就可以建出字符集为 $\{0,1\}$ 的 Trie 树。
 
-???+note "[BZOJ1954 最长异或路径](https://www.luogu.org/problem/P4551)"
+???+note "[BZOJ1954 最长异或路径](https://www.luogu.com.cn/problem/P4551)"
     给你一棵带边权的树，求 $(u, v)$ 使得 $u$ 到 $v$ 的路径上的边权异或和最大，输出这个最大值。
 
     点数不超过 $10^5$，边权在 $[0,2^{31})$ 内。

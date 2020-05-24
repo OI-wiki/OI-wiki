@@ -115,7 +115,7 @@ BFS 序列通常也不唯一。
 
 ## 例题
 
--    [「NOIP2017」奶酪](http://uoj.ac/problem/332) 
+-    [「NOIP2017」奶酪](https://uoj.ac/problem/332) 
 
 ## 参考
 

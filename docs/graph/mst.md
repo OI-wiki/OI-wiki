@@ -183,7 +183,7 @@ $$
 
 ## 习题
 
--    [「HAOI2006」聪明的猴子](https://www.luogu.org/problem/P2504) 
+-    [「HAOI2006」聪明的猴子](https://www.luogu.com.cn/problem/P2504) 
 -    [「SCOI2005」繁忙的都市](https://loj.ac/problem/2149) 
 
 ## 最小生成树的唯一性

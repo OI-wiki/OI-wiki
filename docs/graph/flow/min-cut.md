@@ -138,9 +138,9 @@ void dfs(int u) {
 
 ## 习题
 
--    [「USACO 4.4」Pollutant Control](https://www.luogu.org/problemnew/show/P1344) 
--    [「USACO 5.4」Telecowmunication](https://www.luogu.org/problemnew/show/P1345) 
--    [「Luogu 1361」小 M 的作物](https://www.luogu.org/problemnew/show/P1361) 
--    [「SHOI 2007」善意的投票](https://www.luogu.org/problem/P2057) 
+-    [「USACO 4.4」Pollutant Control](https://www.luogu.com.cn/problem/P1344) 
+-    [「USACO 5.4」Telecowmunication](https://www.luogu.com.cn/problem/P1345) 
+-    [「Luogu 1361」小 M 的作物](https://www.luogu.com.cn/problem/P1361) 
+-    [「SHOI 2007」善意的投票](https://www.luogu.com.cn/problem/P2057) 
 
 * * *

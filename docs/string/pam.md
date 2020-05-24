@@ -80,7 +80,7 @@
 
 由于回文树的构造过程中，节点本身就是按照拓扑序插入，因此只需要逆序枚举所有状态，将当前状态的出现次数加到其 fail 指针对应状态的出现次数上即可。
 
-例题： [「APIO2014」回文串](https://www.luogu.org/problem/P3649) 
+例题： [「APIO2014」回文串](https://www.luogu.com.cn/problem/P3649) 
 
 定义 $s$ 的一个子串的存在值为这个子串在 $s$ 中出现的次数乘以这个子串的长度。对于给定的字符串 $s$ ，求所有回文子串中的最大存在值。
 
@@ -332,11 +332,11 @@ border：若 $0 \le r < |s|$ ， $pre(s,r)=suf(s,r)$ ，就称 $pre(s,r)$ 是 $s
 
 ## 例题
 
--    [最长双回文串](https://www.luogu.org/problem/P4555) 
+-    [最长双回文串](https://www.luogu.com.cn/problem/P4555) 
 
--    [拉拉队排练](https://www.luogu.org/problem/P1659) 
+-    [拉拉队排练](https://www.luogu.com.cn/problem/P1659) 
 
--    [「SHOI2011」双倍回文](https://www.luogu.org/problem/P4287) 
+-    [「SHOI2011」双倍回文](https://www.luogu.com.cn/problem/P4287) 
 
 -    [HDU 5421 Victor and String](http://acm.hdu.edu.cn/showproblem.php?pid=5421) 
 
