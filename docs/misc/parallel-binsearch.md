@@ -205,7 +205,7 @@ void solve(int l, int r, int L, int R)
 
 ### 参考习题
 
- [「国家集训队」矩阵乘法](https://www.luogu.org/problemnew/show/P1527) 
+ [「国家集训队」矩阵乘法](https://www.luogu.com.cn/problem/P1527) 
 
  [「POI2011 R3 Day2」流星 Meteors](https://loj.ac/problem/2169) 
 

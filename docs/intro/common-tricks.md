@@ -9,8 +9,7 @@
     for (int i = 0; i < strlen(s); ++i)
       ;
     // 不如
-    int len = strlen(s);
-    for (int i = 0; i < len; ++i)
+    for (int i = 0, len = strlen(s); i < len; ++i)
       ;
     ```
 -   循环展开。通过适当的循环展开可以减少整个计算中关键路径上的操作数量

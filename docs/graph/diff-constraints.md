@@ -12,7 +12,7 @@ author: Ir1d, Anguei, hsfzLZH1
 
 ## 常用变形技巧
 
-### 例题 [luogu P1993 小 K 的农场](https://www.luogu.org/problemnew/show/P1993) 
+### 例题 [luogu P1993 小 K 的农场](https://www.luogu.com.cn/problem/P1993) 
 
 题目大意：求解差分约束系统，有 $m$ 条约束条件，每条都为形如 $x_a-x_b\geq c_k$ ， $x_a-x_b\leq c_k$ 或 $x_a=x_b$ 的形式，判断该差分约束系统有没有解。
 
@@ -81,7 +81,7 @@ int main() {
 }
 ```
 
-### 例题 [P4926\[1007\]倍杀测量者](https://www.luogu.org/problemnew/show/P4926) 
+### 例题 [P4926\[1007\]倍杀测量者](https://www.luogu.com.cn/problem/P4926) 
 
 不考虑二分等其他的东西，这里只论述差分系统 $\frac{x_i}{x_j}\leq c_k$ 的求解方法。
 

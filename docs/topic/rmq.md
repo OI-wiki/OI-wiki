@@ -72,7 +72,7 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
     这是一种期望时间复杂度达到下界，并且代码实现难度和算法常数均较小的算法，因此在算法竞赛中比较实用。
 
-    以上做法参考了[P3793 由乃救爷爷](https://www.luogu.com.cn/problemnew/show/P3793)中的题解。
+    以上做法参考了[P3793 由乃救爷爷](https://www.luogu.com.cn/problem/P3793)中的题解。
 
 ## 笛卡尔树在 RMQ 上的应用
 

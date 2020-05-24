@@ -122,7 +122,7 @@ int rev_g(int g) {
 
 ## 习题
 
--    [CSP S2 2019 D1T1](https://www.luogu.org/problem/P5657) Difficulty: easy
+-    [CSP S2 2019 D1T1](https://www.luogu.com.cn/problem/P5657) Difficulty: easy
 
 -    [SGU #249 Matrix](http://codeforces.com/problemsets/acmsguru/problem/99999/249) Difficulty: medium
 

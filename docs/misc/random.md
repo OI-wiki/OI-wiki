@@ -64,7 +64,7 @@ int main() {
 
 区别在于必须使用自定义的随机数生成器： `std::shuffle(first, last, myrand())` 。
 
-下面是用 `rand()` 及 `random_shuffle()` 编写的一个数据生成器。生成数据为 [「ZJOI2012」灾难](https://www.luogu.org/problemnew/show/P2597) 的随机小数据。
+下面是用 `rand()` 及 `random_shuffle()` 编写的一个数据生成器。生成数据为 [「ZJOI2012」灾难](https://www.luogu.com.cn/problem/P2597) 的随机小数据。
 
 ```cpp
 #include <algorithm>

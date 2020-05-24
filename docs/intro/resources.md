@@ -22,7 +22,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
     Libre 取自由之意，基于开源项目 [SYZOJ](https://github.com/syzoj/syzoj) 。
     题目所有测试数据以及提交的代码均对所有用户开放。
 -    [Lutece](https://acm.uestc.edu.cn/home) 始于 2018 年，电子科技大学在线评测系统， [项目开源](https://github.com/lutece-awesome) 。
--    [洛谷](https://www.luogu.org/) 始于 2013 年，社区群体庞大，OI 界的真题和习题较全，提供有偿教育服务。
+-    [洛谷](https://www.luogu.com.cn/) 始于 2013 年，社区群体庞大，OI 界的真题和习题较全，提供有偿教育服务。
 -    [牛客网](https://www.nowcoder.com/) 始于 2014 年，提供技术类求职备考、社群交流、企业招聘等服务。
 -    [NOJ](http://acm.njupt.edu.cn/) 始于 2018 年，南京邮电大学在线评测系统， [项目开源](https://github.com/ZsgsDesign/NOJ) ，自身拥有题目两千余，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
 -    [NTUOJ](http://acm.csie.ntu.edu.tw) 始于 2007 年，台湾大学在线评测系统，基于开源项目 [Judge Girl](http://judgegirl.github.io/) 。
@@ -45,7 +45,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [HackerRank](https://www.hackerrank.com/) 有很多比赛
 -    [ICPC Live Archive](https://icpcarchive.ecs.baylor.edu/) 存档了 1990 年至今的 ICPC 区域赛和总决赛题目；但部分比赛的评测数据仅为样例数据，且对 Special Judge 的支持不完善。
 -    [ICPC Problem Archive](https://judge.icpc.global) 基于 Kattis 系统；存档了 2012 年至今的 ICPC 全球总决赛题目，并且会在总决赛开赛时同步发放题目（但不会有同步赛）。
--    [Kattis](https://open.kattis.com/) 题库主要包含类似 ICPC 比赛的题目；根据用户解题情况评定用户等级，推荐适合该用户水平的 trivial/easy/medium/hard 四类难度的题目，其中题目难度采用类 ELO 等级分系统来评估。
+-    [Kattis](https://open.kattis.com/) 题库主要包含类似 ICPC 比赛的题目；根据用户解题情况评定用户等级，推荐适合该用户水平的 trivial/easy/medium/hard 四类难度的题目，其中题目难度采用类 [ELO 等级分](https://zh.wikipedia.org/wiki/%E7%AD%89%E7%BA%A7%E5%88%86) 系统来评估。
 -    [LeetCode](https://leetcode.com/) 码农面试刷题网站，有中文分站： [LeetCode China](https://leetcode-cn.com/) 。
 -    [Light OJ](http://lightoj.com) 一个快挂了的 OJ， `www` 域名无法访问，请使用 [根域名](http://lightoj.com) 访问
 -    [opentrains](http://opentrains.snarknews.info/) 俄罗斯 [Open Cup](http://opencup.ru/) 比赛的训练平台，基于 [ejudge](https://ejudge.ru/) 开源系统搭建，支持虚拟比赛；题库包含历年 Open Cup 赛题以及 Petrozavodsk 训练营的题目。
@@ -69,6 +69,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [由 hzwer 收集整理自互联网的课件](https://github.com/hzwer/sharePPT) 
 -    [Trinkle23897 的课件](https://github.com/Trinkle23897/oi_slides) 
 -    [huzecong 的课件](https://github.com/huzecong/oi-slides) 
+-    [Open Data Structure](https://opendatastructures.org/) 内含众多数据结构讲稿
 
 ## 书籍
 

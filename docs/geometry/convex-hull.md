@@ -74,10 +74,10 @@ $$
 
  [UVA11626 Convex Hull](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=78&page=show_problem&problem=2673) 
 
- [「USACO5.1」圈奶牛 Fencing the Cows](https://www.luogu.org/problemnew/show/P2742) 
+ [「USACO5.1」圈奶牛 Fencing the Cows](https://www.luogu.com.cn/problem/P2742) 
 
  [POJ1873 The Fortified Forest](http://poj.org/problem?id=1873) 
 
  [POJ1113 Wall](http://poj.org/problem?id=1113) 
 
- [「SHOI2012」信用卡凸包](https://www.luogu.org/problemnew/show/P3829) 
+ [「SHOI2012」信用卡凸包](https://www.luogu.com.cn/problem/P3829) 

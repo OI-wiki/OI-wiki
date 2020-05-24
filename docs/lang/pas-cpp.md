@@ -71,7 +71,7 @@ C++ 程序都是从 `main` 这个部分开始运行的。
 ```cpp
 #include <iostream>  // 导入 iostream 库
 
-int main(int argc, char const *argv[])  // main 部分
+int main()  // main 部分
 {
   std::cout << "Hello World!" << std::endl;
 
@@ -109,7 +109,7 @@ std::cout << "Hello World!" << std::endl;
 
 好了，到这里 Hello World 应该解释的差不多了。
 
-可能有同学会问，后面那个 `return 0` 是什么意思？那个 `int main(int argc, char const *argv[])` 是啥意思？ **先别管它** ，一开始写程序的时候先把它当作模板来写吧（这里也是用模板写的）。不过，入门时并不会用到 `main` 中参数，所以写成 `int main()` 也是没有关系的。
+可能有同学会问，后面那个 `return 0` 是什么意思？那个 `int main()` 是啥意思？ **先别管它** ，一开始写程序的时候先把它当作模板来写吧（这里也是用模板写的）。因为入门时并不会用到 `main` 中参数，所以不需要写成 `int main(int argc, char const *argv[])` 。
 
 #### 简单练习
 
@@ -123,7 +123,7 @@ std::cout << "Hello World!" << std::endl;
 ```cpp
 #include <iostream>
 
-int main(int argc, char const *argv[]) {
+int main() {
   int a, b, c;
 
   std::cin >> a >> b;
@@ -370,7 +370,7 @@ C++ 标准库中提供了 `vector` ，相当于不定长数组，调用前需导
 #include <iostream>
 #include <vector>  // 导入 vector 库
 
-int main(int argc, char const *argv[]) {
+int main() {
   std::vector<int> a;  // 声明 vector a 并定义 a 为空 vector 对象
   int n;
 
@@ -410,7 +410,7 @@ C++ 标准库中提供了 `string` ，与 `vector` 可以进行的操作有些�
 #include <iostream>
 #include <string>
 
-int main(int argc, char const *argv[]) {
+int main() {
   std::string s;  // 声明 string s
 
   std::cin >> s;  // 读入 s；
@@ -528,7 +528,7 @@ std::cout << (a == '0');  // true 输出 1
 ```cpp
 #include <iostream>
 
-int main(int argc, char const *argv[]) {
+int main() {
   int sum = 0, a = 0;
 
   while (std::cin >> a) {
@@ -597,7 +597,7 @@ void printAns(int ans) {
   return;
 }
 
-int main(int argc, char const *argv[]) {
+int main() {
   int ans = 10;
   printAns(ans);
 
@@ -617,7 +617,7 @@ void printWarning(int x) {
   std::cout << "Warning: input a negative number.";
 }
 
-int main(int argc, char const *argv[]) {
+int main() {
   int a;
 
   std::cin >> a;
@@ -692,7 +692,7 @@ void swap(int* x, int* y) {
   *y = temp;
 }
 
-int main(int argc, char const* argv[]) {
+int main() {
   int a = 10, b = 20;
   swap(&a, &b);
   std::cout << a << " " << b;

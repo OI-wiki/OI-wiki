@@ -3,7 +3,7 @@
 主席树全称是可持久化权值线段树，参见 [知乎讨论](https://www.zhihu.com/question/59195374) 。
 
 ???+warning "关于函数式线段树"
-     **函数式线段树** 是指使用函数式编程思想的线段树。在函数式编程思想中，将计算机运算视为数学函数，并避免可改变的状态或变量。不难发现，函数式线段树是 [完全可持久化](./persistent.md#_2) 的
+     **函数式线段树** 是指使用函数式编程思想的线段树。在函数式编程思想中，将计算机运算视为数学函数，并避免可改变的状态或变量。不难发现，函数式线段树是 [完全可持久化](./persistent/#fully-persistent) 的
 
 面对眼前的区间第 $k$ 小问题，你该何从下手？
 
@@ -52,12 +52,10 @@ int tot, n, m;
 int sum[(maxn << 5) + 10], rt[maxn + 10], ls[(maxn << 5) + 10],
     rs[(maxn << 5) + 10];
 int a[maxn + 10], ind[maxn + 10], len;
-inline int getid(const int &val)  //离散化
-{
+inline int getid(const int &val) {  //离散化
   return lower_bound(ind + 1, ind + len + 1, val) - ind;
 }
-int build(int l, int r)  //建树
-{
+int build(int l, int r) {  //建树
   int root = ++tot;
   if (l == r) return root;
   int mid = l + r >> 1;
@@ -65,8 +63,7 @@ int build(int l, int r)  //建树
   rs[root] = build(mid + 1, r);
   return root;  //返回该子树的根节点
 }
-int update(int k, int l, int r, int root)  //插入操作
-{
+int update(int k, int l, int r, int root) {  //插入操作
   int dir = ++tot;
   ls[dir] = ls[root], rs[dir] = rs[root], sum[dir] = sum[root] + 1;
   if (l == r) return dir;
@@ -77,8 +74,7 @@ int update(int k, int l, int r, int root)  //插入操作
     rs[dir] = update(k, mid + 1, r, rs[dir]);
   return dir;
 }
-int query(int u, int v, int l, int r, int k)  //查询操作
-{
+int query(int u, int v, int l, int r, int k) {  //查询操作
   int mid = l + r >> 1,
       x = sum[ls[v]] - sum[ls[u]];  //通过区间减法得到左儿子的信息
   if (l == r) return l;

@@ -1,3 +1,5 @@
+author: mwsht
+
 ## 适用问题
 
 给定一个 $n\times m$ 的 01 矩阵 $a$ ，求其面积最大的子矩阵，使得这个子矩阵中的每一位的值都为 $0$ 。
@@ -32,33 +34,63 @@
 
 ### 代码展示
 
+以 LeetCode 85/221 为例
+
 ```cpp
-for (int i = 1; i <= n; i++)
-  for (int j = 1; j <= m; j++)
-    scanf(" %c", s[i] + j), lft[i][j] = rgt[i][j] = j, up[i][j] = 1;
-for (int i = 1; i <= n; i++) {
-  for (int j = 1; j <= m; j++)
-    if (s[i][j] == '0' && s[i][j - 1] == '0') lft[i][j] = lft[i][j - 1];
-  for (int j = m; j >= 1; j--)
-    if (s[i][j] == '0' && s[i][j + 1] == '0') rgt[i][j] = rgt[i][j + 1];
-}
-for (int i = 1; i <= n; i++)
-  for (int j = 1; j <= m; j++) {
-    if (i > 1 && s[i][j] == '0' && s[i - 1][j] == '0') {
-      lft[i][j] = max(lft[i][j], lft[i - 1][j]);
-      rgt[i][j] = min(rgt[i][j], rgt[i - 1][j]);
-      up[i][j] = up[i - 1][j] + 1;
+int maximalRectangle(vector<vector<char>>& matrix) {
+  int ans = 0;
+  int n = matrix.size();
+  if (n == 0) return 0;
+  int m = matrix[0].size();
+  if (m == 0) return 0;
+  vector<vector<int>> lft(n, vector<int>(m, 0));
+  vector<vector<int>> rgt(n, vector<int>(m, 0));
+  vector<vector<int>> up(n, vector<int>(m, 0));
+  for (int i = 0; i < n; i++) {
+    for (int j = 1; j < m; j++) {
+      if (matrix[i][j] == '1' && matrix[i][j - 1] == '1')
+        lft[i][j] = lft[i][j - 1] + 1;
     }
-    ans = max(ans, (rgt[i][j] - lft[i][j] + 1) * up[i][j]);
+    for (int j = m - 1; j > 0; j--) {
+      if (matrix[i][j - 1] == '1' && matrix[i][j] == '1')
+        rgt[i][j - 1] = rgt[i][j] + 1;
+    }
   }
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      if (matrix[i][j] == '1') {
+        if (i >= 1 && matrix[i - 1][j] == '1') {
+          lft[i][j] = min(lft[i][j], lft[i - 1][j]);
+          rgt[i][j] = min(rgt[i][j], rgt[i - 1][j]);
+          up[i][j] = up[i - 1][j] + 1;
+        } else {
+          up[i][j] = 1;
+        }
+      }
+      ans = max(ans, (rgt[i][j] + lft[i][j] + 1) * up[i][j]);
+    }
+  }
+  return ans;
+}
 ```
 
-最后， $ans$ 即为最大子矩阵的面积。
+如果是最大正方形，改成
+
+```cpp
+ans = max(ans, min((rgt[i][j] + lft[i][j] + 1), up[i][j]));
+return ans * ans;
+```
+
+最后的返回值即为所求面积。
 
 ## 习题
 
- [luogu P4147 玉蟾宫](https://www.luogu.org/problemnew/show/P4147) 
+ [luogu P4147 玉蟾宫](https://www.luogu.com.cn/problem/P4147) 
 
- [luogu P1578 奶牛浴场](https://www.luogu.org/problemnew/show/P1578) 
+ [luogu P1578 奶牛浴场](https://www.luogu.com.cn/problem/P1578) 
 
- [「ZJOI2007」棋盘制作](https://www.luogu.org/problem/P1169) 
+ [「ZJOI2007」棋盘制作](https://www.luogu.com.cn/problem/P1169) 
+
+ [LeetCode 85. 最大矩形](https://leetcode-cn.com/problems/maximal-rectangle/) 
+
+ [LeetCode 221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/) 

@@ -18,7 +18,7 @@ author: TrisolarisHD, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan
 
 图中 $d_1$ 表示根节点，紫色方框是数组 $a$ ，红色方框是数组 $d$ ，红色方框中的括号中的黄色数字表示它所在的那个红色方框表示的线段树节点所表示的区间，如 $d_1$ 所表示的区间就是 $[1,5]$ （ $a_1,a_2, \cdots ,a_5$ ），即 $d_1$ 所保存的值是 $a_1+a_2+ \cdots +a_5$ ， $d_1=60$ 表示的是 $a_1+a_2+ \cdots +a_5=60$ 。
 
-通过观察不难发现， $d_i$ 的左儿子节点就是 $d_{2\times i}$ ， $d_i$ 的右儿子节点就是 $d{2\times i+1}$ 。如果 $d_i$ 表示的是区间 $[s,t]$ （即 $d_i=a_s+a_{s+1}+ \cdots +a_t$ ) 的话，那么 $d_i$ 的左儿子节点表示的是区间 $[ s, \frac{s+t}{2} ]$ ， $d_i$ 的右儿子表示的是区间 $[ \frac{s+t}{2} +1,t ]$ 。
+通过观察不难发现， $d_i$ 的左儿子节点就是 $d_{2\times i}$ ， $d_i$ 的右儿子节点就是 $d_{2\times i+1}$ 。如果 $d_i$ 表示的是区间 $[s,t]$ （即 $d_i=a_s+a_{s+1}+ \cdots +a_t$ ) 的话，那么 $d_i$ 的左儿子节点表示的是区间 $[ s, \frac{s+t}{2} ]$ ， $d_i$ 的右儿子表示的是区间 $[ \frac{s+t}{2} +1,t ]$ 。
 
 具体要怎么用代码实现呢？
 
@@ -160,8 +160,7 @@ void update(int l, int r, int c, int s, int t, int p) {
 
 ```cpp
 int getsum(int l, int r, int s, int t, int p) {
-  // [l,r] 为修改区间,c 为被修改的元素的变化量,[s,t] 为当前节点包含的区间,p
-  // 为当前节点的编号
+  // [l,r] 为查询区间,[s,t] 为当前节点包含的区间,p为当前节点的编号
   if (l <= s && t <= r) return d[p];
   // 当前区间为询问区间的子集时直接返回当前区间的和
   int m = (s + t) / 2;
@@ -223,7 +222,7 @@ int getsum(int l, int r, int s, int t, int p) {
 
 ## 线段树基础题推荐
 
-###  [luogu P3372【模板】线段树 1](https://www.luogu.org/problem/P3372) 
+###  [luogu P3372【模板】线段树 1](https://www.luogu.com.cn/problem/P3372) 
 
 ??? "参考代码"
     ```cpp
@@ -282,7 +281,7 @@ int getsum(int l, int r, int s, int t, int p) {
     }
     ```
 
-###  [luogu P3373【模板】线段树 2](https://www.luogu.org/problem/P3373) 
+###  [luogu P3373【模板】线段树 2](https://www.luogu.com.cn/problem/P3373) 
 
 ??? "参考代码"
     ```cpp

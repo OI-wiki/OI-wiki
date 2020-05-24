@@ -359,7 +359,7 @@ $$
 
 另一种方法是利用上述后缀自动机的树形结构。每个节点对应的子串数量是 $len(i)-len(link(i))$ ，对自动机所有节点求和即可。
 
-例题： [【模板】后缀自动机](https://www.luogu.org/problem/P3804) ， [SDOI2016 生成魔咒](https://loj.ac/problem/2033) 
+例题： [【模板】后缀自动机](https://www.luogu.com.cn/problem/P3804) ， [SDOI2016 生成魔咒](https://loj.ac/problem/2033) 
 
 ### 所有不同子串的总长度
 
@@ -585,7 +585,7 @@ $$
 ## 例题
 
 -    [HihoCoder #1441 : 后缀自动机一·基本概念](http://hihocoder.com/problemset/problem/1441) 
--    [【模板】后缀自动机](https://www.luogu.org/problem/P3804) 
+-    [【模板】后缀自动机](https://www.luogu.com.cn/problem/P3804) 
 -    [SDOI2016 生成魔咒](https://loj.ac/problem/2033) 
 -    [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/) 
 -    [TJOI2015 弦论](https://loj.ac/problem/2102) 
@@ -597,7 +597,7 @@ $$
 -    [HDu4436 str2int](http://acm.hdu.edu.cn/showproblem.php?pid=4436) 
 -    [HDu6583 Typewriter](http://acm.hdu.edu.cn/showproblem.php?pid=6583) 
 -    [Codeforces 235C Cyclical Quest](https://codeforces.com/problemset/problem/235/C) 
--    [CTSC2012 熟悉的文章](https://www.luogu.org/problem/P4022) 
+-    [CTSC2012 熟悉的文章](https://www.luogu.com.cn/problem/P4022) 
 -    [NOI2018 你的名字](https://uoj.ac/problem/395) 
 
 ## 相关资料

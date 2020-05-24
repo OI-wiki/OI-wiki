@@ -20,7 +20,7 @@ $$
 x &\equiv& a_1 \pmod {n_1} \\
 x &\equiv& a_2 \pmod {n_2} \\
   &\vdots& \\
-x &\equiv& a_n \pmod {n_k} \\
+x &\equiv& a_k \pmod {n_k} \\
 \end{array}
 \right.
 $$
@@ -98,7 +98,7 @@ $$
 考虑 CRT, 不妨假设 $n_1\leq n_2 \leq ... \leq n_k$ 
 
 $$
-\left\{ \begin{array} { r l } { x } & { \equiv a _ { 1 } \left( \bmod n _ { 1 } \right) } \\ { x } & { \equiv a _ { 2 } \left( \bmod n _ { 2 } \right) } \\ { } & { \vdots } \\ { x } & { \equiv a _ { n } \left( \bmod n _ { k } \right) } \end{array} \right.
+\left\{ \begin{array} { r l } { x } & { \equiv a _ { 1 } \left( \bmod n _ { 1 } \right) } \\ { x } & { \equiv a _ { 2 } \left( \bmod n _ { 2 } \right) } \\ { } & { \vdots } \\ { x } & { \equiv a _ { k } \left( \bmod n _ { k } \right) } \end{array} \right.
 $$
 
 与 PMR(Primorial Mixed Radix) 表示
@@ -141,10 +141,10 @@ $$
 
 推荐练习：POJ 2891
 
- [【模板】扩展中国剩余定理](https://www.luogu.org/problemnew/show/P4777) 
+ [【模板】扩展中国剩余定理](https://www.luogu.com.cn/problem/P4777) 
 
  [「NOI2018」屠龙勇士](https://uoj.ac/problem/396) 
 
- [「TJOI2009」猜数字](https://www.luogu.org/problemnew/show/P3868) 
+ [「TJOI2009」猜数字](https://www.luogu.com.cn/problem/P3868) 
 
  [「SDOI2010」古代猪文](https://loj.ac/problem/10229) 

@@ -43,7 +43,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 这就是 Python 的 **IDLE** 。
 
-???+ note "何谓 [**IDLE**](https://docs.python.org/zh-cn/3/glossary.html#idle)？"
+???+ note "何谓 [**IDLE**](https://docs.python.org/zh-cn/3/glossary.html#term-idle)？"
     Python 的 IDE，“集成开发与学习环境”的英文缩写。是 Python 标准发行版附带的基本编程器和解释器环境。在其他 Python 发行版（如 Anaconda）中还包含 [IPython](https://ipython.org/) ， [Spyder](https://www.spyder-ide.org/) 等更加先进的 IDE。
 
 ### macOS/Linux
@@ -65,7 +65,7 @@ sudo apt install python3
 
 ### 关于镜像和 pip
 
-目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学](https://mirror.bjtu.edu.cn/python/) 和 [华为开源镜像站](https://mirrors.huaweicloud.com/python/) 在做，如果您有下载问题的话可以到那里尝试一下。
+目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学](https://mirror.bjtu.edu.cn/python/) 、 [华为开源镜像站](https://mirrors.huaweicloud.com/python/) 和 [淘宝开源镜像站](https://npm.taobao.org/mirrors/python/) 在做，如果您有下载问题的话可以到那里尝试一下。
 
 如果您还有使用 pip 安装其他模块的需求，请参照 [TUNA 的镜像更换帮助](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 。
 
@@ -297,7 +297,7 @@ array([[0, 0, 1],
 
 相信大部分算法竞赛选手已经熟练掌握了 C++98 的语法。接下来我们展示一下 Python 语法的一些应用。
 
-接下来的例子是 [Luogu P4779「【模板】单源最短路径（标准版）」](https://www.luogu.org/problem/P4779) 的代码。我们将 C++ 代码与 Python 代码做出对比：
+接下来的例子是 [Luogu P4779「【模板】单源最短路径（标准版）」](https://www.luogu.com.cn/problem/P4779) 的代码。我们将 C++ 代码与 Python 代码做出对比：
 
 从声明一些常量开始：
 
@@ -582,3 +582,6 @@ if __name__ == '__main__':
 
 1.  Python 官方中文文档， <https://docs.python.org/zh-cn/3/tutorial/> 
 2.  Learn Python3 In Y Minutes, <https://learnxinyminutes.com/docs/python3/> 
+3.  Real Python Tutorials, <https://realpython.com/> 
+4.  廖雪峰的 Python 教程， <https://www.liaoxuefeng.com/wiki/1016959663602400/> 
+5.  GeeksforGeeks: Python Tutorials, <https://www.geeksforgeeks.org/python-programming-language/> 

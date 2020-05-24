@@ -1,4 +1,4 @@
-author: Ir1d, TrisolarisHD, LucienShui, Anguei
+author: Ir1d, TrisolarisHD, LucienShui, Anguei, H-J-Granger
 
 ## 定义
 
@@ -43,3 +43,7 @@ author: Ir1d, TrisolarisHD, LucienShui, Anguei
  <http://fanhq666.blog.163.com/blog/static/81943426201172472943638/> 
 
  <https://www.cnblogs.com/zinthos/p/3899075.html> 
+
+## 习题
+
+-    [POJ 1655 Balancing Art](http://poj.org/problem?id=1655) （模板题）
