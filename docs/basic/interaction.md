@@ -16,7 +16,7 @@
 
 -    [CF679A Bear and Prime 100](https://www.luogu.com.cn/problem/CF679A) 
 -    [CF843B Interactive LowerBound](https://www.luogu.com.cn/problem/CF843B) 
--    [UOJ206 \[APIO2016\]Gap](http://uoj.ac/problem/206) 
+-    [UOJ206\[APIO2016\]Gap](http://uoj.ac/problem/206) 
 -    [CF750F New Year and Finding Roots](https://www.luogu.com.cn/problem/CF750F) 
 -    [UVA12731 太空站之谜 Mysterious Space Station](https://www.luogu.com.cn/problem/UVA12731) 
 
@@ -539,8 +539,8 @@
 ## 习题
 
 -    [刘汝佳的交互题专场比赛 Rujia Liu's Present 7 质量非常高，推荐一做。](https://onlinejudge.org/contests/328-9976a2e2/) 
--    [P5473 \[NOI2019\]I 君的探险](https://www.luogu.com.cn/problem/P5473) 
--    [P5208 \[WC2019\] I 君的商店](https://www.luogu.com.cn/problem/P5208) 
+-    [P5473\[NOI2019\]I 君的探险](https://www.luogu.com.cn/problem/P5473) 
+-    [P5208\[WC2019\]I 君的商店](https://www.luogu.com.cn/problem/P5208) 
 
 ## References
 
