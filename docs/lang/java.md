@@ -154,10 +154,10 @@ class test{
         char b = 'A';
         double s = 3.14;
         String str = "Hello world";
-        System.out.println("%f",s);
-        System.out.println("%d",a);
-        system.out.println("%c",b);
-        system.out.println("%s",str);
+        System.out.format("%f\n",s);
+        System.out.format("%d\n",a);
+        System.out.format("%c\n",b);
+        System.out.format("%s\n",str);
     }
 }
 ```
