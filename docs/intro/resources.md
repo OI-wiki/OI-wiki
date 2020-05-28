@@ -1,4 +1,4 @@
-author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
+author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo, Suyun514
 
 ## 在线评测平台
 
@@ -7,8 +7,8 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 ### 国内
 
 -    [51Nod](https://www.51nod.com/) 有许多值得尝试的数学题和思维题。
--    [BZOJ](https://www.lydsy.com/JudgeOnline/) 因原属衡阳八中而得简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。  
-    BZOJ 上有大量题目只有付费用户才能提交。2018 年 BZOJ 测试数据泄露，催生了 DarkBZOJ。
+-    [BZOJ](https://www.lydsy.com/JudgeOnline/) 因原属衡阳八中而得简称，汇聚多种习题和真题，题目质量相对较高。但是 BZOJ 上有大量题目只有付费用户才能提交。  
+    因为用户体验较差，BZOJ 常年受到选手的诟病，因此催生了 [new_bzoj](https://vijos.org/d/newbzoj/)（测试数据来源为作者收集和选手众筹）和 [DarkBZOJ](http://darkbzoj4e24q4c4.onion/)（搭建在暗网上，测试数据疑似使用技术手段获得）。2018 年 BZOJ 测试数据泄露，催生了 [黑暗爆炸 OJ](https://darkbzoj.tk/)。如果只需要题面，可以使用 [BZOJCH](https://github.com/Ruanxingzhi/bzojch) 或 [BZPRO](https://remmina.github.io/BZPRO/)。
 -    [Comet OJ](https://www.cometoj.com) 始于 2018 年，旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库。
     <!-- - [CodeVS](http://www.codevs.cn/) 面向 OI 选手的过气 OJ。 -->
 -    [FZUOJ](http://acm.fzu.edu.cn/) 始于 2008 年，福州大学在线评测系统。
