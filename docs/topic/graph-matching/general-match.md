@@ -216,11 +216,10 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
 ## 习题
 
 ??? note "[UOJ #79. 一般图最大匹配](https://uoj.ac/problem/79) "
-
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
-
+    
     // graph
     template <typename T>
     class graph {
@@ -236,7 +235,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       graph(int _n) : n(_n) { g.resize(n); }
       virtual int add(int from, int to, T cost) = 0;
     };
-
+    
     // undirectedgraph
     template <typename T>
     class undirectedgraph : public graph<T> {
@@ -255,7 +254,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       return id;
       }
     };
-
+    
     // blossom / find_max_unweighted_matching
     template <typename T>
     vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
@@ -267,7 +266,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       vector<int> parent(g.n, -1);  // 父节点
       queue<int> q;
       int aux_time = -1;
-
+    
       auto lca = [&](int v, int u) {
       aux_time++;
       while (true) {
@@ -285,7 +284,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
         swap(v, u);
       }
       };  // lca
-
+    
       auto blossom = [&](int v, int u, int a) {
       while (orig[v] != a) {
         parent[v] = u;
@@ -298,7 +297,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
         v = parent[u];
       }
       };  // blossom
-
+    
       auto augment = [&](int v) {
       while (v != -1) {
         int pv = parent[v];
@@ -308,7 +307,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
         v = next_v;
       }
       };  // augment
-
+    
       auto bfs = [&](int root) {
       fill(label.begin(), label.end(), -1);
       iota(orig.begin(), orig.end(), 0);
@@ -347,13 +346,13 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       }
       return false;
       };  // bfs
-
+    
       auto greedy = [&]() {
       vector<int> order(g.n);
       // 随机打乱 order
       iota(order.begin(), order.end(), 0);
       shuffle(order.begin(), order.end(), rng);
-
+    
       // 将可以匹配的点匹配
       for (int i : order) {
         if (match[i] == -1) {
@@ -369,7 +368,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
         }
       }
       };  // greedy
-
+    
       // 一开始先随机匹配
       greedy();
       // 对未匹配点找增广路
