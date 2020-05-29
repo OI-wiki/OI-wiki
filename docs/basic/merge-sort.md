@@ -24,8 +24,7 @@ void merge(int ll, int rr) {
     if (p >= mid || (q < rr && a[p] > a[q])) {
       t[s++] = a[q++];
       // ans += mid - p;
-    } else
-      t[s++] = a[p++];
+    } else t[s++] = a[p++];
   }
   for (int i = ll; i < rr; ++i) a[i] = t[i];
 }

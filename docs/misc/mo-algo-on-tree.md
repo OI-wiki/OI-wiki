@@ -296,7 +296,6 @@ if (!sta.empty()) {
 ??? 参考代码
     ```cpp
     #include <bits/stdc++.h>
-    // #pragma GCC optimize(2)
     using namespace std;
     inline int gi() {
       register int x, c, op = 1;
