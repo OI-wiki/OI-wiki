@@ -2,7 +2,7 @@ author: accelsao
 
 # 一般图最大匹配
 
-## 带花树算法（Blossom Algorithm)
+## 带花树算法（Blossom Algorithm）
 
 开花算法（Blossom Algorithm，也被称做带花树）可以解决一般图最大匹配问题（maximum cardinality matchings)。此算法由 Jack Edmonds 在 1961 年提出。
 经过一些修改后也可以解决一般图最大权匹配问题。
@@ -32,7 +32,7 @@ case 2: $u$ 已拜访过，遇到标记 "o" 代表需要 **缩花** ，否则代
 
 ![general-matching-3](./images/general-matching-3.png)
 
-设非树边（形成环的那条边）为（u, v)，定义花根 $h=LCA(u,v)$ 。
+设非树边（形成环的那条边）为 $(u,v)$，定义花根 $h=LCA(u,v)$ 。
 奇环是交替的，有且仅有 $h$ 的两条邻边类型相同，都是非匹配边。
 那么进入 $h$ 的树边肯定是匹配边，环上除了 $h$ 以外其他点往环外的边都是非匹配边。
 
