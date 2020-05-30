@@ -118,7 +118,7 @@ nav:
       - 排序相关 STL: basic/stl-sort.md
       - 排序应用: basic/use-of-sort.md
     - 二分: basic/binary.md
-    - 倍增: basic/binary-acc.md
+    - 倍增: basic/binary-lifting.md
     - 构造: basic/construction.md
     - 前缀和 & 差分: basic/prefix-sum.md
   - 搜索:
