@@ -84,8 +84,6 @@
     	return 0;
     }
 
-## 最大子矩形
-
 ???+note [P4147 玉蟾宫](https://www.luogu.com.cn/problem/P4147)
     给定一个 $n \times m$ 的包含 `'F'` 和 `'R'` 的矩阵，求其面积最大的子矩阵的面积 $\times 3$，使得这个子矩阵中的每一位的值都为 `'F'` 。
 
