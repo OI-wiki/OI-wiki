@@ -166,9 +166,8 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
           label[match[u]] = 0;
           q.push(match[u]);
           continue;
-        } else if (label[u] == 0 &&
-                   orig[v] !=
-                       orig[u]) {  // 找到已拜访点 且标记同为"o" 代表找到"花"
+        } else if (label[u] == 0 && orig[v] != orig[u]) {
+          // 找到已拜访点 且标记同为"o" 代表找到"花"
           int a = lca(orig[v], orig[u]);
           // 找LCA 然后缩花
           blossom(u, v, a);
