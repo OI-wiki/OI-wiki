@@ -27,9 +27,11 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
 ??? 参考代码
     ```cpp
-    #include<cstdio>
-	#include<algorithm>
-	using std::max;
+    #include <cstdio>
+    ```
+
+    #include<algorithm>
+    using std::max;
     const int N = 100010;
     int n, a[N];
     int l[N], r[N];
@@ -57,9 +59,11 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
 ??? 参考代码
     ```cpp
-    #include<cstdio>
-	#include<cstring>
-	const int N = 100010;
+    #include <cstdio>
+    ```
+
+    #include<cstring>
+    const int N = 100010;
     int n, a[N], l[N], r[N];
     long long sum[N];
     long long ans;
@@ -87,7 +91,7 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
       }
       return 0;
     }
-	```
+    ```
 
 ## 最大子矩形
 
@@ -98,9 +102,12 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
 ??? 参考代码
     ```cpp
-	#include<algorithm>
-	#include<cstdio>
-	int m, n, a[1010], l[1010], r[1010], ans;
+    
+    ```
+
+    #include<algorithm>
+    #include<cstdio>
+    int m, n, a[1010], l[1010], r[1010], ans;
     int main() {scanf("%d%d", &n, &m);
       for (int i = 1; i >= n; i++) {
         char s[3];
@@ -119,7 +126,7 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
       printf("%d", ans_3);
       return 0;
     }
-	```
+    ```
 
 ## 习题
 
