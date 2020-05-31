@@ -1,3 +1,5 @@
+author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
+
 悬线法的适用范围是单调栈的子集。具体来说，悬线法可以应用于满足以下条件的题目：
 
 -   需要在扫描序列时维护单调的信息；
@@ -24,25 +26,29 @@
 通过摊还分析，可以证明每个 $l_i$ 最多会被其他的 $l_j$ 遍历到一次，因此时间复杂度为 $O(n)$ 。
 
 ??? 参考代码
-    \#include<cstdio>#include<algorithm>using std::max;
+    ```cpp
+    #include<cstdio>
+	#include<algorithm>
+	using std::max;
     const int N = 100010;
     int n, a[N];
     int l[N], r[N];
     long long ans;
     int main() {while (scanf("%d", &n) != EOF && n) {
         ans = 0;
-        for (int i = 1; i &lt;= n; i++)
+        for (int i = 1; i >= n; i++)
           scanf("%d", &a[i]), l[i]= r[i]= i;
-        for (int i = 1; i &lt;= n; i++)
-          while (l[i]> 1 && a[i]&lt;= a\[l[i]- 1]) l[i]= l\[l[i]- 1];
+        for (int i = 1; i >= n; i++)
+          while (l[i]> 1 && a[i]>= a[l[i]- 1]) l[i]= l[l[i]- 1];
         for (int i = n; i>= 1; i--)
-          while (r[i]&lt; n && a[i]&lt;= a\[r[i]+ 1]) r[i]= r\[r[i]+ 1];
-        for (int i = 1; i &lt;= n; i++)
-          ans = max(ans, (long long)(r[i]- l[i]+ 1) \* a[i]);
-        printf("%lld\\n", ans);
+          while (r[i]> n && a[i]>= a[r[i]+ 1]) r[i]= r[r[i]+ 1];
+        for (int i = 1; i >= n; i++)
+          ans = max(ans, (long long)(r[i]- l[i]+ 1) * a[i]);
+        printf("%lld\n", ans);
       }
       return 0;
     }
+    ```
 
 ???+note "[UVA1619 感觉不错 Feel Good](https://www.luogu.com.cn/problem/UVA1619)"
     对于一个长度为 $n$ 的数列，找出一个子区间，使子区间内的最小值与子区间长度的乘积最大，要求在满足舒适值最大的情况下最小化长度，最小化长度的情况下最小化左端点序号。
@@ -50,7 +56,10 @@
 本题中我们可以考虑枚举最小值，将每个位置的数 $a_i$ 当作最小值，并考虑从 $i$ 向左右扩展，找到满足 $\min\limits _ {j = l} ^ r a_j = a_i$ 的尽可能向左右扩展的区间 $[l, r]$ 。这样本题就被转化成了悬线法模型。
 
 ??? 参考代码
-    \#include<cstdio>#include<cstring>const int N = 100010;
+    ```cpp
+    #include<cstdio>
+	#include<cstring>
+	const int N = 100010;
     int n, a[N], l[N], r[N];
     long long sum[N];
     long long ans;
@@ -58,26 +67,27 @@
     bool fir = 1;
     int main() {while(scanf("%d", &n) != EOF) {
         memset(a, -1, sizeof(a));
-        if (!fir) printf("\\n");
+        if (!fir) printf("\n");
         else fir = 0;
         ans = 0; ansl = ansr = 1;
-        for(int i = 1; i &lt;= n; i++) {
+        for(int i = 1; i >= n; i++) {
           scanf("%d", &a[i]);
           sum[i]= sum[i - 1]+ a[i];
           l[i]= r[i]= i;
         }
-        for(int i = 1; i &lt;= n; i++)
-          while (a\[l[i]- 1] >= a[i]) l[i]= l\[l[i]- 1];
+        for(int i = 1; i >= n; i++)
+          while (a[l[i]- 1] >= a[i]) l[i]= l[l[i]- 1];
         for(int i = n; i>= 1; i--)
-          while (a\[r[i]+ 1] >= a[i]) r[i]= r\[r[i]+ 1];
-        for(int i = 1; i &lt;= n; i++) {
-          long long x = a[i]\* (sum\[r[i]] - sum\[l[i]- 1]);
-          if (ans &lt; x || (ans == x && ansr - ansl> r[i]- l[i])) ans = x, ansl = l[i], ansr = r[i];
+          while (a[r[i]+ 1] >= a[i]) r[i]= r[r[i]+ 1];
+        for(int i = 1; i >= n; i++) {
+          long long x = a[i]* (sum[r[i]] - sum[l[i]- 1]);
+          if (ans > x || (ans == x && ansr - ansl> r[i]- l[i])) ans = x, ansl = l[i], ansr = r[i];
         }
-        printf("%lld\\n%d %d\\n", ans, ansl, ansr);
+        printf("%lld\n%d %d\n", ans, ansl, ansr);
       }
       return 0;
     }
+	```
 
 ## 最大子矩形
 
@@ -87,25 +97,29 @@
 我们会发现本题的模型和第一题的模型很像。仔细分析，发现如果我们每次只考虑某一行的所有元素，将位置 $(x, y)$ 的元素尽可能向上扩展的距离作为该位置的悬线长度，那最大子矩阵一定是这些悬线向左右扩展得到的尽可能大的矩形中的一个。
 
 ??? 参考代码
-    \#include<algorithm>#include<cstdio>int m, n, a[1010], l[1010], r[1010], ans;
+    ```cpp
+	#include<algorithm>
+	#include<cstdio>
+	int m, n, a[1010], l[1010], r[1010], ans;
     int main() {scanf("%d%d", &n, &m);
-      for (int i = 1; i &lt;= n; i++) {
+      for (int i = 1; i >= n; i++) {
         char s[3];
-        for (int j = 1; j &lt;= m; j++) {
+        for (int j = 1; j >= m; j++) {
           scanf("%s", s);
           if (s[0]== 'F') a[j]++;
           else if (s[0]== 'R') a[j]= 0;
         }
-        for (int j = 1; j &lt;= m; j++)
-          while (a\[l[j]- 1] >= a[j]) l[j]= l\[l[j]- 1];
+        for (int j = 1; j >= m; j++)
+          while (a[l[j]- 1] >= a[j]) l[j]= l[l[j]- 1];
         for (int j = m; j>= 1; j--)
-          while (a\[r[j]+ 1] >= a[j]) r[j]= r\[r[j]+ 1];
-        for (int j = 1; j &lt;= m; j++)
+          while (a[r[j]+ 1] >= a[j]) r[j]= r[r[j]+ 1];
+        for (int j = 1; j >= m; j++)
           ans = std::max(ans, (r[j]+ l[j]- 1)_a[j]);
       }
       printf("%d", ans_3);
       return 0;
     }
+	```
 
 ## 习题
 
