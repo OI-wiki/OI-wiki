@@ -324,8 +324,8 @@ $$
         mat[2][1] = mat[2][3] = 1;
         mat[3][0] = mat[3][2] = 1;
         mat[0][0] = mat[1][1] = mat[2][2] = mat[3][3] = -2;
-        this->n--;  //去一行
-        this->m--;  //去一列
+        this->n--;  // 去一行
+        this->m--;  // 去一列
       }
       double gauss() {
         double ans = 1;

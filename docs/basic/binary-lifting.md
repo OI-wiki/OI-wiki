@@ -1,4 +1,4 @@
-author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsfzLZH1, orzAtalod, H-J-Granger
+author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsfzLZH1, orzAtalod
 
 倍增法，通过字面意思来看就是翻倍。这个方法在很多算法中均有应用，其中最常用的就是 RMQ 问题和求 LCA 了。
 
@@ -73,8 +73,7 @@ author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsf
       int ans = 0;
       int curx = 1;
       for (int i = 0; m; ++i) {
-        if (m & (1 << i))  // 参见位运算的相关内容，意为 m 的第 i 位是否为 1
-        {
+        if (m & (1 << i)) {  // 参见位运算的相关内容，意为 m 的第 i 位是否为 1
           ans = modadd(ans, sum[i][curx]);
           curx = go[i][curx];
           m ^= 1ll << i;  // 将第 i 位置零

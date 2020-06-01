@@ -22,34 +22,34 @@ toleft[log(N),n] : 也就是每一层 1~i 进入左儿子的数量,这里需要�
 ```pascal
 procedure Build(left,right,deep:longint); // left,right 是左右区间,deep是第几层
 var
-	i,mid,same,ls,rs,flag:longint; // 其中 flag 是用来平衡左右两边的数量的
+  i,mid,same,ls,rs,flag:longint; // 其中 flag 是用来平衡左右两边的数量的
 begin
-	if left=right then exit; // 到底层了
-	mid:=(left+right) >> 1;
-	same:=mid-left+1;
-	for i:=left to right do 
-		if tree[deep,i]<num[mid] then
-			dec(same);
+  if left=right then exit; // 到底层了
+  mid:=(left+right) >> 1;
+  same:=mid-left+1;
+  for i:=left to right do 
+    if tree[deep,i]<num[mid] then
+      dec(same);
 
-	ls:=left; // 分配到左儿子的第一个指针
-	rs:=mid+1; // 分配到右儿子的第一个指针
-	for i:=left to right do
-	begin
-		flag:=0;
-		if (tree[deep,i]<num[mid])or((tree[deep,i]=num[mid])and(same>0)) then // 分配到左边的条件
-		begin
-			flag:=1; tree[deep+1,ls]:=tree[deep,i]; inc(ls);
-			if tree[deep,i]=num[mid] then // 平衡左右个数
-				dec(same);
-		end
-		else
-		begin
-			tree[deep+1,rs]:=tree[deep,i]; inc(rs);
-		end;
-		toleft[deep,i]:=toleft[deep,i-1]+flag;
-	end;
-	Build(left,mid,deep+1); // 继续
-	Build(mid+1,right,deep+1);
+  ls:=left; // 分配到左儿子的第一个指针
+  rs:=mid+1; // 分配到右儿子的第一个指针
+  for i:=left to right do
+  begin
+    flag:=0;
+    if (tree[deep,i]<num[mid])or((tree[deep,i]=num[mid])and(same>0)) then // 分配到左边的条件
+    begin
+      flag:=1; tree[deep+1,ls]:=tree[deep,i]; inc(ls);
+      if tree[deep,i]=num[mid] then // 平衡左右个数
+        dec(same);
+    end
+    else
+    begin
+      tree[deep+1,rs]:=tree[deep,i]; inc(rs);
+    end;
+    toleft[deep,i]:=toleft[deep,i-1]+flag;
+  end;
+  Build(left,mid,deep+1); // 继续
+  Build(mid+1,right,deep+1);
 end;
 ```
 
@@ -64,19 +64,19 @@ end;
 ```pascal
 function Query(left,right,k,l,r,deep:longint):longint;
 var
-	mid,x,y,cnt,rx,ry:longint;
+  mid,x,y,cnt,rx,ry:longint;
 begin
-	if left=right then // 写成 l=r 也无妨,因为目标区间也一定有答案
-		exit(tree[deep,left]);
-	mid:=(l+r) >> 1;
-	x:=toleft[deep,left-1]-toleft[deep,l-1]; // l 到 left 的去左儿子的个数
-	y:=toleft[deep,right]-toleft[deep,l-1]; // l 到 right 的去左儿子的个数
-	ry:=right-l-y; rx:=left-l-x; // ry 是 l 到 right 去右儿子的个数,rx 则是 l 到 lefr 去右儿子的个数
-	cnt:=y-x; // left 到 right 左儿子的个数
-	if cnt>=k then // 主席树常识啦
-		Query:=Query(l+x,l+y-1,k,l,mid,deep+1) // l+x 就是缩小左边界,l+y-1 就是缩小右区间。对于上图来说,就是把 1 和 2 放弃了。
-	else
-		Query:=Query(mid+rx+1,mid+ry+1,k-cnt,mid+1,r,deep+1); // 同样是缩小区间,只不过变成了右边而已。注意要 k-cnt。
+  if left=right then // 写成 l=r 也无妨,因为目标区间也一定有答案
+    exit(tree[deep,left]);
+  mid:=(l+r) >> 1;
+  x:=toleft[deep,left-1]-toleft[deep,l-1]; // l 到 left 的去左儿子的个数
+  y:=toleft[deep,right]-toleft[deep,l-1]; // l 到 right 的去左儿子的个数
+  ry:=right-l-y; rx:=left-l-x; // ry 是 l 到 right 去右儿子的个数,rx 则是 l 到 lefr 去右儿子的个数
+  cnt:=y-x; // left 到 right 左儿子的个数
+  if cnt>=k then // 主席树常识啦
+    Query:=Query(l+x,l+y-1,k,l,mid,deep+1) // l+x 就是缩小左边界,l+y-1 就是缩小右区间。对于上图来说,就是把 1 和 2 放弃了。
+  else
+    Query:=Query(mid+rx+1,mid+ry+1,k-cnt,mid+1,r,deep+1); // 同样是缩小区间,只不过变成了右边而已。注意要 k-cnt。
 end;
 ```
 

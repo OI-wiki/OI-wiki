@@ -28,13 +28,13 @@ void makeSet(int size) {
 此处给出一种 C++ 的参考实现：
 
 ```cpp
-int fa[MAXN];  //记录某个人的爸爸是谁，特别规定，祖先的爸爸是他自己
+int fa[MAXN];  // 记录某个人的爸爸是谁，特别规定，祖先的爸爸是他自己
 int find(int x) {
-  //寻找x的祖先
-  if (fa[x] == x)  //如果x是祖先则返回
+  // 寻找x的祖先
+  if (fa[x] == x)  // 如果x是祖先则返回
     return x;
   else
-    return find(fa[x]);  //如果不是则x的爸爸问x的爷爷
+    return find(fa[x]);  // 如果不是则x的爸爸问x的爷爷
 }
 ```
 
@@ -49,7 +49,7 @@ int find(int x) {
 ```cpp
 int find(int x) {
   if (x != fa[x])  // x不是自身的父亲，即x不是该集合的代表
-    fa[x] = find(fa[x]);  //查找x的祖先直到找到代表,于是顺手路径压缩
+    fa[x] = find(fa[x]);  // 查找x的祖先直到找到代表,于是顺手路径压缩
   return fa[x];
 }
 ```
@@ -72,9 +72,9 @@ void unionSet(int x, int y) {
   // x 与 y 所在家族合并
   x = find(x);
   y = find(y);
-  if (x == y)  //原本就在一个家族里就不管了
+  if (x == y)  // 原本就在一个家族里就不管了
     return;
-  fa[x] = y;  //把 x 的祖先变成 y 的祖先的儿子
+  fa[x] = y;  // 把 x 的祖先变成 y 的祖先的儿子
 }
 ```
 
@@ -93,11 +93,11 @@ void unionSet(int x, int y) {
 此处给出一种 C++ 的参考实现，其选择点数作为估价函数：
 
 ```cpp
-std::vector<int> size(N, 1);  //记录并初始化子树的大小为 1
+std::vector<int> size(N, 1);  // 记录并初始化子树的大小为 1
 void unionSet(int x, int y) {
   int xx = find(x), yy = find(y);
   if (xx == yy) return;
-  if (size[xx] > size[yy])  //保证小的合到大的里
+  if (size[xx] > size[yy])  // 保证小的合到大的里
     swap(xx, yy);
   fa[xx] = yy;
   size[yy] += size[xx];
