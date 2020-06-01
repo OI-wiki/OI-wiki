@@ -4,15 +4,15 @@ author: NachtgeistW
 
 ### ICPC
 
-**ICPC** （英文：International Collegiate Programming Contest, 中文：国际大学生程序设计竞赛）由 ICPC 基金会（英文：ICPC Foundation）举办，是最具影响力的大学生计算机竞赛。由于以前 ACM 赞助这个竞赛，也有很多人习惯叫它 ACM 竞赛。
+ **ICPC** （英文：International Collegiate Programming Contest, 中文：国际大学生程序设计竞赛）由 ICPC 基金会（英文：ICPC Foundation）举办，是最具影响力的大学生计算机竞赛。由于以前 ACM 赞助这个竞赛，也有很多人习惯叫它 ACM 竞赛。
 
 ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分。
 
-官网地址：<https://icpc.baylor.edu>
+官网地址： <https://icpc.baylor.edu> 
 
 ### CCPC
 
-官网地址：<https://ccpc.io>
+官网地址： <https://ccpc.io> 
 
 中国大学生程序设计竞赛。
 
@@ -26,10 +26,10 @@ ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分
 
 ## 赛季赛程
 
-- ICPC/CCPC 网络赛（8 月底至 9 月初）
-- ICPC/CCPC 区域赛（9 月底至 11 月底）
-- ICPC EC Final/CCPC Final（12 月中旬）
-- ICPC World Finals（次年 4 月至 6 月）
+-   ICPC/CCPC 网络赛（8 月底至 9 月初）
+-   ICPC/CCPC 区域赛（9 月底至 11 月底）
+-   ICPC EC Final/CCPC Final（12 月中旬）
+-   ICPC World Finals（次年 4 月至 6 月）
 
 ## 训练指南
 
@@ -37,7 +37,7 @@ ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分
 
 暑期在 [HDU OJ](http://acm.hdu.edu.cn) 举行的训练赛。有奖金，题目质量高，历经多年积累已有丰富资源。
 
-OJ 里查询用的关键词： `Multi-University Training Contest`。
+OJ 里查询用的关键词： `Multi-University Training Contest` 。
 
 ### 国内区域赛
 
@@ -45,10 +45,10 @@ OJ 里查询用的关键词： `Multi-University Training Contest`。
 
 ### 训练营
 
-- 寒假的时候头条/清华/CCPC (Wannafly Camp) 举办的 Camp
-- Wannafly Camp
+-   寒假的时候头条/清华/CCPC (Wannafly Camp) 举办的 Camp
+-   Wannafly Camp
 
 ## 训练资源
 
-- OI Wiki：<https://oi-wiki.org>
-- Codeforces Gym：<https://codeforces.com/gyms>
+-   OI Wiki： <https://oi-wiki.org> 
+-   Codeforces Gym： <https://codeforces.com/gyms> 
