@@ -372,7 +372,7 @@ nav:
       - 随机函数: misc/random.md
       - 爬山算法: misc/hill-climbing.md
       - 模拟退火: misc/simulated-annealing.md
-    - 悬线法: misc/largest-matrix.md
+    - 悬线法: misc/hoverline.md
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
     - 约瑟夫问题: misc/josephus.md
