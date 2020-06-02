@@ -8,11 +8,15 @@ author: NachtgeistW
 
 例：
 
--   `int main()` 写为 `int mian()` 。
+-    `int main()` 写为 `int mian()` 。
+
 -   写完 `struct` 或 `class` 忘记写分号。
+
 -   数组开太大，（在 OJ 上）使用了不合法的函数（例如多线程），或者函数声明但未定义，会引起链接错误。
+
 -   函数参数类型不匹配。
-    -   示例（头文件、using 声明和函数主体略）：如使用 [`<algorithm>`](https://zh.cppreference.com/w/cpp/header/algorithm) 头文件中的 [`max`](https://zh.cppreference.com/w/cpp/algorithm/max) 函数时，传入了一个 `int` 类型参数和一个 `long long` 类型参数。
+
+    -   示例（头文件、using 声明和函数主体略）：如使用 [ `<algorithm>` ](https://zh.cppreference.com/w/cpp/header/algorithm) 头文件中的 [ `max` ](https://zh.cppreference.com/w/cpp/algorithm/max) 函数时，传入了一个 `int` 类型参数和一个 `long long` 类型参数。
 
         ```cpp
         printf("%lld\n", max(0, query(1, 1, n, l, r)); // query 为返回 long long 类型的自定义函数
@@ -27,42 +31,52 @@ author: NachtgeistW
 犯这类错误时写下的程序虽然能通过编译，但大概率会得到错误的程序运行结果。这类错误会在使用 `-W{warningtype}` 参数编译时被编译器指出。
 
 -   赋值运算符 `=` 和比较运算符 `==` 不分。
+
     -   示例（头文件、using 声明和函数主体略）：
 
         ```cpp
         std::srand(std::time(nullptr));
         int n = std::rand();
         if (n = 1)
-            printf("Yes");
+          printf("Yes");
         else
-            printf("No");
+          printf("No");
 
         //输出：4
         //警告    运算符不正确: 在 Boolean 上下文中执行了常量赋值。应考虑改用“==”。
         ```
 
-    -   如果确实想在原应使用 `==` 的语句里使用 `=`（比如 `while (foo = bar)`），又不想收到 Warning，可以使用**双括号**：`while ((foo = bar))`。
+    -   如果确实想在原应使用 `==` 的语句里使用 `=` （比如 `while (foo = bar)` ），又不想收到 Warning，可以使用 **双括号** ： `while ((foo = bar))` 。
+
 -   由于运算符优先级产生的错误。
+
     -   示例（头文件、using 声明和函数主体略）：
 
         ```cpp
-        std::cout << (1 << 1 + 1);      //错误
-        //std::cout << ((1 << 1) + 1);  //正确
+        std::cout << (1 << 1 + 1);  //错误
+                                    // std::cout << ((1 << 1) + 1);  //正确
 
         //警告    “<<”: 检查运算符优先级是否存在的可能的错误；使用括号阐明优先级
         ```
 
 -   不正确地使用 `static` 修饰符。
--   使用 `scanf` 读入的时候没加取地址符 `&`。
+
+-   使用 `scanf` 读入的时候没加取地址符 `&` 。
+
 -   使用 `scanf` 或 `printf` 的时候参数类型与格式指定符不符。
+
 -   同时使用位运算和逻辑运算符 `==` 并且未加括号。
-    -   示例：`(x >> j) & 3 == 2`
--   `int` 字面量溢出。
+    -   示例： `(x >> j) & 3 == 2` 
+
+-    `int` 字面量溢出。
     -   示例： `long long x = 0x7f7f7f7f7f7f7f7f` ， `1<<62` 。
+
 -   未初始化局部变量，导致局部变量被赋予垃圾初值。
+
 -   局部变量与全局变量重名，导致全局变量被意外覆盖。
+
 -   运算符重载后引发的输出错误。
-    -   示例：`std::cout << 1 << 1;`
+    -   示例： `std::cout << 1 << 1;` 
 
 ## 既不会引起 Compile Error 也不会引发 Warning 的错误
 
@@ -71,12 +85,18 @@ author: NachtgeistW
 ### 会导致 WA
 
 -   上一组数据处理完毕，读入下一组数据前，未清空数组。
+
 -   读入优化未判断负数。
+
 -   所用数据类型位宽不足，导致溢出。
-    -   如习语“三年 OI 一场空，不开 `long long` 见祖宗”所描述的场景。选手因为没有在正确的地方开 `long long`（将整数类型标记为 `long long`），导致大量丢分，进而导致赛季作废。
+    -   如习语“三年 OI 一场空，不开 `long long` 见祖宗”所描述的场景。选手因为没有在正确的地方开 `long long` （将整数类型标记为 `long long` ），导致大量丢分，进而导致赛季作废。
+
 -   存图时，节点编号 0 开始，而题目给的边中两个端点的编号从 1 开始，读入的时候忘记 -1。
+
 -   大/小于号打错或打反。
+
 -   在执行 `ios::sync_with_stdio(false);` 后混用 `scanf/printf` 和 `std::cin/std::cout` 两种 IO，导致输入/输出错乱。
+
     -   示例：
 
         ```cpp
@@ -85,22 +105,23 @@ author: NachtgeistW
         #include <cstdio>
         #include <iostream>
         int main() {
-            // 关闭同步后，cin/cout 将使用独立缓冲区，而不是将输出同步至 scanf/printf
-            // 的缓冲区，从而减少 IO 耗时
-            std::ios::sync_with_stdio(false);
-            // cout 下，使用'\n'换行时，内容会被缓冲而不会被立刻输出
-            std::cout << "a\n";
-            // printf 的 '\n' 会刷新 printf 的缓冲区，导致输出错位
-            printf("b\n");
-            std::cout << "c\n";
-            //程序结束时，cout 的缓冲区才会被输出
-            return 0;
+          // 关闭同步后，cin/cout 将使用独立缓冲区，而不是将输出同步至 scanf/printf
+          // 的缓冲区，从而减少 IO 耗时
+          std::ios::sync_with_stdio(false);
+          // cout 下，使用'\n'换行时，内容会被缓冲而不会被立刻输出
+          std::cout << "a\n";
+          // printf 的 '\n' 会刷新 printf 的缓冲区，导致输出错位
+          printf("b\n");
+          std::cout << "c\n";
+          //程序结束时，cout 的缓冲区才会被输出
+          return 0;
         }
         ```
 
-    -   特别的，也不能在执行 `ios::sync_with_stdio(false);` 后使用 `freopen`。
+    -   特别的，也不能在执行 `ios::sync_with_stdio(false);` 后使用 `freopen` 。
 
 -   由于宏的展开，且未加括号导致的错误。
+
     -   示例（头文件、using 声明和函数主体略）：该宏返回的值并非 $4^2 = 16$ 而是 $2+2\times 2+2 = 8$ 。
 
         ```cpp
@@ -109,11 +130,12 @@ author: NachtgeistW
         ```
 
 -   哈希的时候没有使用 `unsigned` 导致的运算错误。
-    -   对负数的右移运算会在最高位补 1。参见：[位运算](../math/bit.md)
+    -   对负数的右移运算会在最高位补 1。参见： [位运算](../math/bit.md) 
 
 -   没有删除调试信息。
 
 -   误加了 `;` 。
+
     -   示例（头文件、using 声明和函数主体略）：
 
         ```cpp
@@ -125,28 +147,30 @@ author: NachtgeistW
 -   哨兵值设置错误。例如，平衡树的 `0` 节点。
 
 -   在类或结构体的构造函数中使用 `:` 初始化变量时，变量声明顺序不符合初始化时候的依赖关系。
-    -   因为成员变量的初始化顺序与它们在类中声明的顺序有关，而与初始化列表中的顺序无关。参见：[构造函数与成员初始化器列表](https://zh.cppreference.com/w/cpp/language/constructor)的“初始化顺序”
+
+    -   因为成员变量的初始化顺序与它们在类中声明的顺序有关，而与初始化列表中的顺序无关。参见： [构造函数与成员初始化器列表](https://zh.cppreference.com/w/cpp/language/constructor) 的“初始化顺序”
     -   示例：
 
         ```cpp
         #include <iostream>
 
         class Foo {
-        public:
-            int a, b;
-            // a 将在 b 前初始化，其值不确定
-            Foo(int x) : b(x), a(b + 1) {}
+         public:
+          int a, b;
+          // a 将在 b 前初始化，其值不确定
+          Foo(int x) : b(x), a(b + 1) {}
         };
 
         int main() {
-            Foo bar(1, 2);
-            std::cout << bar.a << ' ' << bar.b;
+          Foo bar(1, 2);
+          std::cout << bar.a << ' ' << bar.b;
         }
 
         //可能的输出结果：-858993459 1
         ```
 
 -   并查集合并集合时没有把两个元素的祖先合并。
+
     -   示例（头文件、using 声明和函数主体略）：
 
         ```cpp
@@ -161,8 +185,9 @@ author: NachtgeistW
 
 -   没删文件操作（某些 OJ）。
 
--   排序时比较函数的错误。如 [`std::sort`](https://zh.cppreference.com/w/cpp/algorithm/sort) 要求比较函数是严格弱序。如果不满足要求，排序时很可能会 RE。
-    -   严格弱序：`a < a` 为 `false`；若 `a < b` 为 `true` ，则 `b < a` 为 `false` ；若 `a < b` 为 `true` 且 `b < c` 为 `true` ，则 `a < c` 为 `true` 。参见：[C++ 具名要求：比较 (Compare)](https://zh.cppreference.com/w/cpp/named_req/Compare)
+-   排序时比较函数的错误。如 [ `std::sort` ](https://zh.cppreference.com/w/cpp/algorithm/sort) 要求比较函数是严格弱序。如果不满足要求，排序时很可能会 RE。
+
+    -   严格弱序： `a < a` 为 `false` ；若 `a < b` 为 `true` ，则 `b < a` 为 `false` ；若 `a < b` 为 `true` 且 `b < c` 为 `true` ，则 `a < c` 为 `true` 。参见： [C++ 具名要求：比较 (Compare)](https://zh.cppreference.com/w/cpp/named_req/Compare) 
     -   示例（头文件、using 声明和函数主体略）：莫队的奇偶性排序
 
     ```cpp
@@ -208,20 +233,19 @@ author: NachtgeistW
     #define max(x, y) ((x) > (y) ? (x) : (y))
 
     int query(int t, int l, int r, int ql, int qr) {
-    if (ql <= l && qr >= r) {
+      if (ql <= l && qr >= r) {
         ++ti[t];  // 记录结点访问次数方便测试
         return vi[t];
-    }
+      }
 
-    int mid = (l + r) >> 1;
-    if (mid >= qr)
-        return query(lt(t), l, mid, ql, qr);
-    if (mid < ql)
-        return query(rt(t), mid + 1, r, ql, qr);
-        return max(query(lt(t), l, mid, ql, qr), query(rt(t), mid + 1, r, ql, qr));
+      int mid = (l + r) >> 1;
+      if (mid >= qr) return query(lt(t), l, mid, ql, qr);
+      if (mid < ql) return query(rt(t), mid + 1, r, ql, qr);
+      return max(query(lt(t), l, mid, ql, qr), query(rt(t), mid + 1, r, ql, qr));
     ```
 
 -   没删文件操作（某些 OJ）。
+
 -   在 `for/while` 循环中重复执行复杂度非 $O(1)$ 的函数。严格来说，这可能会引起时间复杂度的改变
 
 ### 会导致 MLE
@@ -234,7 +258,7 @@ author: NachtgeistW
 
     -   也有可能被卡了。
 
-### [未定义行为](https://zh.cppreference.com/w/cpp/language/ub)
+###  [未定义行为](https://zh.cppreference.com/w/cpp/language/ub) 
 
 -   数组越界。多数会引发 RE。
 
@@ -259,11 +283,12 @@ author: NachtgeistW
 ### 会导致常数过大
 
 -   定义模数的时候，使用了全局变量。
+
     -   示例：
 
         ```cpp
-        //int mod = 998244353;      //错误
-        const int mod = 998244353   //正确，方便编译器按常量处理
+        // int mod = 998244353;      //错误
+        const int mod = 998244353  //正确，方便编译器按常量处理
         ```
 
 -   使用了不必要的递归（尾递归不在此列）。
@@ -274,8 +299,8 @@ author: NachtgeistW
 
 -   文件操作有可能会发生的错误：
 
-    -   对拍时未清除文件指针 `fclose(fp)` 就又令 `fp = fopen()`。这会使得进程出现大量的文件野指针。
+    -   对拍时未清除文件指针 `fclose(fp)` 就又令 `fp = fopen()` 。这会使得进程出现大量的文件野指针。
 
-    -   `freopen()` 中的文件名未加 `.in` / `.out` 。
+    -    `freopen()` 中的文件名未加 `.in` / `.out` 。
 
 -   使用堆空间后忘记 `delete` 或 `free` 。

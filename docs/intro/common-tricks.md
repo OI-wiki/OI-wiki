@@ -9,7 +9,7 @@ author: NachtgeistW
 -   循环展开。通过适当的循环展开可以减少整个计算中关键路径上的操作数量
 
     ```cpp
-    //for (int i = 0; i < n; ++i) {
+    // for (int i = 0; i < n; ++i) {
     //  res = res OP a[i];
     //}
     // 不如
@@ -26,7 +26,7 @@ author: NachtgeistW
 -   重新结合变换，增加了可以并行执行的运算数量。
 
     ```cpp
-    //for (int i = 0; i < n; ++i) res = (res OP a[i])OP a[i + 1];
+    // for (int i = 0; i < n; ++i) res = (res OP a[i])OP a[i + 1];
     // 不如
     for (int i = 0; i < n; ++i) res = res OP(a[i] OP a[i + 1]);
     ```
@@ -37,7 +37,7 @@ author: NachtgeistW
 
 ```cpp
 for (int i = 0; i < N; i++) {
-    // 循环内容略
+  // 循环内容略
 }
 
 // 使用宏简化
@@ -134,7 +134,7 @@ f(i, 0, a.size()) { ... }
 
  `#ifdef` 会检查程序中是否有 `#define` 定义的对应标识符，如果有定义，就会执行后面的语句。而 `#ifndef` 会在没有定义相应标识符的情况下执行后面的语句。
 
-这样，只需在 `#ifdef DEBUG` 里写好调试用代码，`#ifndef DEBUG` 里写好真正提交的代码，就能方便地进行本地测试。提交程序的时候，只需要将 `#define DEBUG` 一行注释掉即可。也可以不在程序中定义标识符，而是通过 `-DDEBUG` 的编译选项在编译的时候定义 `DEBUG` 标识符。这样就可以在提交的时候不用修改程序了。
+这样，只需在 `#ifdef DEBUG` 里写好调试用代码， `#ifndef DEBUG` 里写好真正提交的代码，就能方便地进行本地测试。提交程序的时候，只需要将 `#define DEBUG` 一行注释掉即可。也可以不在程序中定义标识符，而是通过 `-DDEBUG` 的编译选项在编译的时候定义 `DEBUG` 标识符。这样就可以在提交的时候不用修改程序了。
 
 不少 OJ 都开启了 `-DONLINE_JUDGE` 这一编译选项，善用这一特性可以节约不少时间。
 
@@ -144,7 +144,7 @@ f(i, 0, a.size()) { ... }
 
 由于对拍过程要多次进行，因此需要通过批处理的方法来实现对拍的自动化。
 
-具体而言，对拍需要一个[数据生成器](../intro/testlib/generator)和两个要进行对拍的程序。
+具体而言，对拍需要一个 [数据生成器](../intro/testlib/generator) 和两个要进行对拍的程序。
 
 每次运行一次数据生成器都将生成的数据写入输入文件，通过重定向的方法使两个程序读入数据，并将输出写入指定文件，最后利用 Windows 下的 `fc` 命令比对文件（Linux 下为 `diff` 命令）检验程序的正确性。如果发现程序出错，可以直接利用刚刚生成的数据进行调试。
 
@@ -174,7 +174,7 @@ int main() {
 
 ## 内存池
 
-当动态分配内存时，频繁使用 `new`/`malloc` 会占用大量的时间和空间，甚至生成大量的内存碎片从而降低程序的性能，可能会使原本正确的程序 TLE/MLE。
+当动态分配内存时，频繁使用 `new` / `malloc` 会占用大量的时间和空间，甚至生成大量的内存碎片从而降低程序的性能，可能会使原本正确的程序 TLE/MLE。
 
 这时候需要使用到“内存池”这种技巧：在真正使用内存之前，先申请分配一定大小的内存作为备用。当需要动态分配时直接从备用内存中分配一块即可。
 
@@ -198,6 +198,6 @@ inline Node* newnode() {
 
 ## 参考资料
 
-[洛谷日报 #86](https://studyingfather.blog.luogu.org/some-coding-tips-for-oiers)
+ [洛谷日报 #86](https://studyingfather.blog.luogu.org/some-coding-tips-for-oiers) 
 
 《算法竞赛入门经典 习题与解答》
