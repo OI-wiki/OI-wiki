@@ -50,5 +50,5 @@ OJ 里查询用的关键词： `Multi-University Training Contest` 。
 
 ## 训练资源
 
--   **OI Wiki： <https://oi-wiki.org> **
+-    **OI Wiki： <https://oi-wiki.org> ** 
 -   Codeforces Gym： <https://codeforces.com/gyms> 
