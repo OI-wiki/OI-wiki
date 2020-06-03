@@ -19,7 +19,7 @@ author: NachtgeistW
     -   示例（头文件、using 声明和函数主体略）：如使用 [ `<algorithm>` ](https://zh.cppreference.com/w/cpp/header/algorithm) 头文件中的 [ `max` ](https://zh.cppreference.com/w/cpp/algorithm/max) 函数时，传入了一个 `int` 类型参数和一个 `long long` 类型参数。
 
         ```cpp
-         // query 为返回 long long 类型的自定义函数
+        // query 为返回 long long 类型的自定义函数
         printf("%lld\n", max(0, query(1, 1, n, l, r));
 
         //错误    没有与参数列表匹配的 重载函数 "std::max" 实例
@@ -39,9 +39,9 @@ author: NachtgeistW
         std::srand(std::time(nullptr));
         int n = std::rand();
         if (n = 1)
-            printf("Yes");
+          printf("Yes");
         else
-            printf("No");
+          printf("No");
 
         // 输出：4
         // 警告    运算符不正确: 在 Boolean 上下文中执行了常量赋值。应考虑改用“==”。
@@ -108,16 +108,16 @@ author: NachtgeistW
         #include <cstdio>
         #include <iostream>
         int main() {
-            // 关闭同步后，cin/cout 将使用独立缓冲区，而不是将输出同步至 scanf/printf
-            // 的缓冲区，从而减少 IO 耗时
-            std::ios::sync_with_stdio(false);
-            // cout 下，使用'\n'换行时，内容会被缓冲而不会被立刻输出
-            std::cout << "a\n";
-            // printf 的 '\n' 会刷新 printf 的缓冲区，导致输出错位
-            printf("b\n");
-            std::cout << "c\n";
-            //程序结束时，cout 的缓冲区才会被输出
-            return 0;
+          // 关闭同步后，cin/cout 将使用独立缓冲区，而不是将输出同步至 scanf/printf
+          // 的缓冲区，从而减少 IO 耗时
+          std::ios::sync_with_stdio(false);
+          // cout 下，使用'\n'换行时，内容会被缓冲而不会被立刻输出
+          std::cout << "a\n";
+          // printf 的 '\n' 会刷新 printf 的缓冲区，导致输出错位
+          printf("b\n");
+          std::cout << "c\n";
+          //程序结束时，cout 的缓冲区才会被输出
+          return 0;
         }
         ```
 
@@ -158,15 +158,15 @@ author: NachtgeistW
         #include <iostream>
 
         class Foo {
-        public:
-            int a, b;
-            // a 将在 b 前初始化，其值不确定
-            Foo(int x) : b(x), a(b + 1) {}
+         public:
+          int a, b;
+          // a 将在 b 前初始化，其值不确定
+          Foo(int x) : b(x), a(b + 1) {}
         };
 
         int main() {
-            Foo bar(1, 2);
-            std::cout << bar.a << ' ' << bar.b;
+          Foo bar(1, 2);
+          std::cout << bar.a << ' ' << bar.b;
         }
 
         // 可能的输出结果：-858993459 1
@@ -195,13 +195,13 @@ author: NachtgeistW
 
     ```cpp
     bool operator<(const int a, const int b) {
-        if (block[a.l] == block[b.l])
-            // 错误：不满足严格弱序的要求
-            // return (block[a.l] & 1) ^ (a.r < b.r);
-            // 正确
-            return (block[a.l] & 1) ? (a.r < b.r) : (a.r > b.r);
-        else
-            return block[a.l] < block[b.l];
+      if (block[a.l] == block[b.l])
+        // 错误：不满足严格弱序的要求
+        // return (block[a.l] & 1) ^ (a.r < b.r);
+        // 正确
+        return (block[a.l] & 1) ? (a.r < b.r) : (a.r > b.r);
+      else
+        return block[a.l] < block[b.l];
     }
     ```
 
@@ -293,7 +293,7 @@ author: NachtgeistW
 
         ```cpp
         // int mod = 998244353;      // 错误
-        const int mod = 998244353    // 正确，方便编译器按常量处理
+        const int mod = 998244353  // 正确，方便编译器按常量处理
         ```
 
 -   使用了不必要的递归（尾递归不在此列）。
