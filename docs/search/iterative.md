@@ -21,7 +21,7 @@ IDDFS(u,d)
     else
         for each edge (u,v)
             IDDFS(v,d+1)
-	return
+  return
 ```
 
 ## 注意事项

@@ -293,7 +293,7 @@ double Z;
 set<int> P;
 size_t cn, bn;
 
-bool Pivot(pair<size_t, size_t> &p) {  //返回0表示所有的非轴元素都小于0
+bool Pivot(pair<size_t, size_t> &p) {  // 返回0表示所有的非轴元素都小于0
   int x = 0, y = 0;
   double cmax = -INT_MAX;
   vector<double> C = Matrix[0];
@@ -303,7 +303,7 @@ bool Pivot(pair<size_t, size_t> &p) {  //返回0表示所有的非轴元素都�
     B.push_back(Matrix[i][cn - 1]);
   }
 
-  for (size_t i = 0; i < C.size(); i++) {  //在非轴元素中找最大的c
+  for (size_t i = 0; i < C.size(); i++) {  // 在非轴元素中找最大的c
     if (cmax < C[i] && P.find(i) == P.end()) {
       cmax = C[i];
       y = i;
@@ -346,11 +346,11 @@ void pnt() {
   cout << "result z:" << -Matrix[0][cn - 1] << endl;
 }
 
-void Gaussian(pair<size_t, size_t> p) {  //行变换
+void Gaussian(pair<size_t, size_t> p) {  // 行变换
   size_t x = p.first;
   size_t y = p.second;
   double norm = Matrix[x][y];
-  for (size_t i = 0; i < cn; i++) {  //主行归一化
+  for (size_t i = 0; i < cn; i++) {  // 主行归一化
     Matrix[x][i] /= norm;
   }
   for (size_t i = 0; i < bn && i != x; i++) {

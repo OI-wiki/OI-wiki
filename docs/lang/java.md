@@ -160,7 +160,7 @@ class Test {
 ```java
 class Test {
     public static void main(String[] args) {
-        if( /* 判断条件 */ ){
+        if ( /* 判断条件 */ ){
               // 条件成立时执行这里面的代码
           }
       }
@@ -172,7 +172,7 @@ class Test {
 ```java
 class Test {
     public static void main(String[] args) {
-        if( /* 判断条件 */ ){
+        if ( /* 判断条件 */ ){
             // 条件成立时执行这里面的代码
         } else {
             // 条件不成立时执行这里面的代码
@@ -186,11 +186,11 @@ class Test {
 ```java
 class Test {
     public static void main(String[] args) {
-        if( /* 判断条件 */ ){
+        if ( /* 判断条件 */ ){
             //判断条件成立执行这里面的代码
         } else if ( /* 判断条件2 */ ){
             // 判断条件2成立执行这里面的代码
-        }else {
+        } else {
           // 上述条件都不成立执行这里面的代码
         }
     }
@@ -204,7 +204,7 @@ class Test {
 ```java
 class Test {
     public static void main(String[] args) {
-            for( /* 初始化 */; /* 循环的判断条件 */; /* 每次循环后执行的步骤 */ ){
+            for ( /* 初始化 */; /* 循环的判断条件 */; /* 每次循环后执行的步骤 */ ){
                 // 当循环的条件成立执行循环体内代码
             }
     }
@@ -216,7 +216,7 @@ class Test {
 ```java
 class Test {
     public static void main(String[] args) {
-        while( /* 判定条件 */ ){
+        while ( /* 判定条件 */ ){
             // 条件成立时执行循环体内代码
         }
     }
@@ -228,9 +228,9 @@ class Test {
 ```java
 class Test {
     public static void main(String[] args) {
-        do{
+        do {
           // 需要执行的代码
-        } while( /* 循环判断条件 */ );
+        } while ( /* 循环判断条件 */ );
     }
 }
 ```
@@ -240,7 +240,7 @@ class Test {
 ```java
 class Test {
       public static void main(String[] args) {
-        switch( /* 表达式 */ ){
+        switch ( /* 表达式 */ ){
           case /* 值 1 */:
               // 当表达式取得的值符合值 1 执行此段代码
           break; // 如果不加上 break 语句,会让程序按顺序往下执行,执行所有的 case 语句
