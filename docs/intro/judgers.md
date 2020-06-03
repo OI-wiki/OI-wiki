@@ -1,14 +1,14 @@
 author: bear-good, NachtgeistW
 
-**评测软件**是用于本地测试分数的软件。使用者在将代码提交到 OJ 前，可以使用评测软件对自己的程序估分。
+ **评测软件** 是用于本地测试分数的软件。使用者在将代码提交到 OJ 前，可以使用评测软件对自己的程序估分。
 
 ## Arbiter
 
-**Arbiter** 为北京航空航天大学为 NOI Linux 开发的评测工具，现已用于各大 NOI 系列程序设计竞赛的评测。据吕凯风在 2016 年冬令营上的讲稿《下一代测评系统》，Arbiter 是由北京航空航天大学的团队（貌似叫 GAIT）在尹宝林老师的带领下开发完成的。
+ **Arbiter** 为北京航空航天大学为 NOI Linux 开发的评测工具，现已用于各大 NOI 系列程序设计竞赛的评测。据吕凯风在 2016 年冬令营上的讲稿《下一代测评系统》，Arbiter 是由北京航空航天大学的团队（貌似叫 GAIT）在尹宝林老师的带领下开发完成的。
 
 此测评软件仅能在 NOI Linux 下找到。
 
-leedagee 提取出了 Arbiter 供其他 Linux 发行版使用，源代码托管于 [leedagee/arbiter-distro](https://github.com/leedagee/arbiter-distro)。不过仍建议使用 NOI Linux 及相关配套编译器。
+leedagee 提取出了 Arbiter 供其他 Linux 发行版使用，源代码托管于 [leedagee/arbiter-distro](https://github.com/leedagee/arbiter-distro) 。不过仍建议使用 NOI Linux 及相关配套编译器。
 
 ### 使用方法
 
@@ -32,7 +32,7 @@ players/
 ...
 ```
 
-其中， `<contestant_x's ID>` 指的是选手编号，形如 `<省份>-<编号>` ，例如 HL-001，JL-125 等等；`<problem_x>` 指的是题目名称。在自测时可以使用字母、短线（即 `-` ）和数字的组合作为选手编号。
+其中， `<contestant_x's ID>` 指的是选手编号，形如 `<省份>-<编号>` ，例如 HL-001，JL-125 等等； `<problem_x>` 指的是题目名称。在自测时可以使用字母、短线（即 `-` ）和数字的组合作为选手编号。
 
 选手名单格式如下：
 
@@ -42,7 +42,7 @@ players/
 ...
 ```
 
-其中，`<contestant_x's name>` 表示选手姓名。保存这个文件为纯文本文件，文件编码是 `GB2312`。
+其中， `<contestant_x's name>` 表示选手姓名。保存这个文件为纯文本文件，文件编码是 `GB2312` 。
 
 选手名单也可以在启动 Arbiter 后手动添加。
 
@@ -58,7 +58,7 @@ players/
 
 然后开始测评文件夹的配置。
 
-“工具栏” - “应用程序” - “编程” - “Arbiter 测评系统”，启动 Arbiter。
+“工具栏”-“应用程序”-“编程”-“Arbiter 测评系统”，启动 Arbiter。
 
 ![Arbiter_Home](./images/arbiter_home.png)
 
@@ -66,13 +66,13 @@ players/
 
 ![add_problem](./images/arbiter_addproblem.png)
 
-在左边试题概要里“右键” - “添加考试”，再在考试标签上“右键” - “添加试题”，新建出试题即可。
+在左边试题概要里“右键”-“添加考试”，再在考试标签上“右键”-“添加试题”，新建出试题即可。
 
 单击考试左边的 `+` 即可全部显示，单击试题标签对试题名称进行修改，改为题目的英文名称，同时修改题目时间与空间限制和比较方式。比较方式十分不推荐用“全文完全直接比较”，对于 Windows 下制作的数据十分不友好。比较方式不选的话默认为“字符串比较”中的“单行单字符串比较”方式。如果测试数据不同的话一定要注意比较方式的选择。
 
 ![problem_list](./images/arbiter_problem.png)
 
-点击“文件” - “保存”。该操作不可省略，否则程序将不会生成题目配置文件。注意每一次对题目配置的修改都要保存。
+点击“文件”-“保存”。该操作不可省略，否则程序将不会生成题目配置文件。注意每一次对题目配置的修改都要保存。
 
 此时，打开考试文件夹，会发现有如下内容。
 
@@ -94,7 +94,7 @@ players/
 `-- team.info
 ```
 
-`filter` 文件夹放置了一些比较器及其源代码，写自定义比较器时可以参考；`result` 文件夹存放选手的测评结果；`tmp` 文件夹是测评时的缓存文件夹。
+ `filter` 文件夹放置了一些比较器及其源代码，写自定义比较器时可以参考； `result` 文件夹存放选手的测评结果； `tmp` 文件夹是测评时的缓存文件夹。
 
 把已经建好的选手程序文件夹放在 `players/` 目录下，将所有测试数据（不放在文件夹里）放在 `evaldata` 中。
 
@@ -120,7 +120,7 @@ players/
 
 可以参考 `filter` 下的源代码编写。
 
-编译后自定义校验器的名称为 `<problem>_e`，其中 `<problem>` 为题目名称，必须放在 `filter` 文件夹下。在配置题目时选择自定义校验器，然后选择需要的自定义校验器即可。
+编译后自定义校验器的名称为 `<problem>_e` ，其中 `<problem>` 为题目名称，必须放在 `filter` 文件夹下。在配置题目时选择自定义校验器，然后选择需要的自定义校验器即可。
 
 在试题管理中题目配置的地方将提交方式由源代码改为答案文件，然后选择自定义校验器，可以测试提交答案题。
 
@@ -135,7 +135,7 @@ players/
 
 ### 漏洞
 
-由于长期缺乏维护，系统存在一些漏洞，如可以使用 `bits/stdc++.h`、`#pragma G++ optimize("O2")` 和 `__attribute__((__optimize__("-O2")))`。
+由于长期缺乏维护，系统存在一些漏洞，如可以使用 `bits/stdc++.h` 、 `#pragma G++ optimize("O2")` 和 `__attribute__((__optimize__("-O2")))` 。
 
 ### 评价
 
@@ -143,31 +143,31 @@ Arbiter 在开发完成后就一直没有维护与更新，导致测评体验极
 
 ## Cena
 
-**Cena** 是由刘其帅和李子星使用 Pascal 语言编写的开源评测工具，是流传最广泛的本地评测工具。Cena 最初开源于 Google Code 平台，由于不明原因 Google 删除了 Cena 项目。目前可以在 [Web Archive](https://web.archive.org/web/20131023112258/http://code.google.com/p/cena/) 上找到 Cena 的官网。
+ **Cena** 是由刘其帅和李子星使用 Pascal 语言编写的开源评测工具，是流传最广泛的本地评测工具。Cena 最初开源于 Google Code 平台，由于不明原因 Google 删除了 Cena 项目。目前可以在 [Web Archive](https://web.archive.org/web/20131023112258/http://code.google.com/p/cena/) 上找到 Cena 的官网。
 
 Cena 对权限的限制不是很明确，测试的时候可以读测点 AC。
 
-Cena 的源代码托管于 [oi-archive/cena](https://github.com/oi-archive/cena)。
+Cena 的源代码托管于 [oi-archive/cena](https://github.com/oi-archive/cena) 。
 
 ## CCR Plus
 
-**CCR Plus** 是一款适用于 NOI 系列比赛的开源的跨平台测评环境，使用 Qt 编写，目前支持 Windows 和 Linux。
+ **CCR Plus** 是一款适用于 NOI 系列比赛的开源的跨平台测评环境，使用 Qt 编写，目前支持 Windows 和 Linux。
 
-源代码托管于 [sxyzccr/CCR-Plus](https://github.com/sxyzccr/CCR-Plus)。
+源代码托管于 [sxyzccr/CCR-Plus](https://github.com/sxyzccr/CCR-Plus) 。
 
 ## Lemon
 
 ???+ warning
     macOS 下 Lemon 可能会出现内存测试不准确的情况，因为 macOS 缺少部分 Linux 的监测工具，且 Lemon-Linux 也没有针对 macOS 进行优化。
 
-**Lemon** 是 zhipeng-jia 编写的开源评测工具，源代码托管于 [zhipeng-jia/project-lemon](https://github.com/zhipeng-jia/project-lemon)。
+ **Lemon** 是 zhipeng-jia 编写的开源评测工具，源代码托管于 [zhipeng-jia/project-lemon](https://github.com/zhipeng-jia/project-lemon) 。
 
 ### 可直接运行的版本
 
 -   Ir1d 提供了一份 Linux 下编译好的版本，源代码托管于 [FreestyleOJ/Project_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built) 。
--   （已停止维护）Menci 提供了一份更新的版本，源代码托管于 [Menci/Lemon](https://github.com/Menci/Lemon/)。
--   （已停止维护）Dust1404 维护了一份支持子文件夹和单题测试等功能的版本，源代码托管于 [Dust1404/Project_LemonPlus](https://github.com/Dust1404/Project_LemonPlus)。
--   iotang 维护了一份支持子文件夹和单题测试等功能的版本，源代码托管于 [iotang/Project_LemonLime](https://github.com/iotang/Project_LemonLime)。
+-   （已停止维护）Menci 提供了一份更新的版本，源代码托管于 [Menci/Lemon](https://github.com/Menci/Lemon/) 。
+-   （已停止维护）Dust1404 维护了一份支持子文件夹和单题测试等功能的版本，源代码托管于 [Dust1404/Project_LemonPlus](https://github.com/Dust1404/Project_LemonPlus) 。
+-   iotang 维护了一份支持子文件夹和单题测试等功能的版本，源代码托管于 [iotang/Project_LemonLime](https://github.com/iotang/Project_LemonLime) 。
 
 ### 自行编译
 

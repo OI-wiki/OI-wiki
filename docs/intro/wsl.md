@@ -14,7 +14,7 @@ author: Anti-Li, H-J-Granger, NachtgeistW
 
 > ![NOI 竞赛的环境要求](./images/WSL21.png)
 >
-> [NOI 系列官方环境要求](http://www.noi.cn/newsview.html?id=559&hash=E4E249&type=11) 或许大家对自己 Windows 环境下的 Dev-C++ 等都已熟识，但是当场景突然切换到 Linux 的时候，你会不会不知所措？
+>  [NOI 系列官方环境要求](http://www.noi.cn/newsview.html?id=559&hash=E4E249&type=11) 或许大家对自己 Windows 环境下的 Dev-C++ 等都已熟识，但是当场景突然切换到 Linux 的时候，你会不会不知所措？
 >
 > 「想用<kbd>Ctrl</kbd>+<kbd>C</kbd>复制，结果退出了程序」  
 > 「平时 AC 的程序模板到了 Linux 上就 WA」……
@@ -38,7 +38,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 ## WSL 还是 WSL 2
 
-参见：[比较 WSL 2 和 WSL 1](https://docs.microsoft.com/zh-cn/windows/wsl/compare-versions)
+参见： [比较 WSL 2 和 WSL 1](https://docs.microsoft.com/zh-cn/windows/wsl/compare-versions) 
 
 如果系统已经安装了 2020 年 5 月更新（内部版本 19041）或更高版本，则可以考虑开启 WSL 2。建议权衡自己的需求选择适合的版本。
 
@@ -51,27 +51,27 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 ### 使用 Powershell
 
-1.   以管理员身份打开 PowerShell 并运行：
+1.  以管理员身份打开 PowerShell 并运行：
 
     ```powershell
     Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
     ```
 
-2.   出现提示时，重启计算机。
+2.  出现提示时，重启计算机。
 
 ### 使用 GUI
 
 ![Windows 功能](./images/WSL4.png)
 
-1.   打开“控制面板”
+1.  打开“控制面板”
 
-2.   访问“程序和功能”子菜单“打开或关闭 Windows 功能”
+2.  访问“程序和功能”子菜单“打开或关闭 Windows 功能”
 
-3.   选择“适用于 Linux 的 Windows 子系统”
+3.  选择“适用于 Linux 的 Windows 子系统”
 
-4.   点击确定
+4.  点击确定
 
-5.   重启
+5.  重启
 
 ## 安装与使用 Ubuntu
 
@@ -81,7 +81,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 ![搜索页](./images/WSL5.png)
 
-进入 Microsoft Store，搜索 "Ubuntu"，然后选择“Ubuntu”，点击“安装”进行安装。也可打开 <https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6>
+进入 Microsoft Store，搜索 "Ubuntu"，然后选择“Ubuntu”，点击“安装”进行安装。也可打开 <https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6> 
 
 ???+ warning
     Microsoft Store 的 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。如果想获取稳定的 Ubuntu 长期支持版，可以在 Microsoft Store 安装 Ubuntu 的 LTS 版本。
@@ -141,13 +141,13 @@ sudo apt install -y --force-yes --no-install-recommends ttf-wqy-zenhei
 sudo dpkg-reconfigure locales
 ```
 
-使用 `sudo dpkg-reconfigure locales` 进入菜单，按空格选择带 `zh_CN` 的选项（推荐 `zh_CN, UTF-8 UTF-8`），选完后回车，
+使用 `sudo dpkg-reconfigure locales` 进入菜单，按空格选择带 `zh_CN` 的选项（推荐 `zh_CN, UTF-8 UTF-8` ），选完后回车，
 
-![安装中文环境1](./images/WSL10.png)
+![安装中文环境 1](./images/WSL10.png)
 
 下一个菜单中选择 `zh_CN.UTF-8` 回车。
 
-![安装中文环境2](./images/WSL11.png)
+![安装中文环境 2](./images/WSL11.png)
 
 之后关闭 Ubuntu 并重启，系统就会变成中文。
 
@@ -173,7 +173,7 @@ chmod +x install.sh && ./install.sh
 ```
 
 这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install 程序名` 来安装别的。
-若想安装其他版本可以参考 [这个](https://www.cnblogs.com/EasonJim/p/7144017.html)。
+若想安装其他版本可以参考 [这个](https://www.cnblogs.com/EasonJim/p/7144017.html) 。
 
 以下为一个示例程序：
 
@@ -213,11 +213,11 @@ sudo service xrdp restart
 
 ![不换端口的结果](./images/WSL12.png)
 
- 运行命令 `vim /etc/xrdp/xrdp.ini`，把 `port=3389` 改为其他端口（如 `port=3390`），然后保存即可。
+运行命令 `vim /etc/xrdp/xrdp.ini` ，把 `port=3389` 改为其他端口（如 `port=3390` ），然后保存即可。
 
 ![](./images/WSL13.png)
 
-运行 `sudo service xrdp restart`，然后去开始菜单，用 `localhost: 配置的端口 ` 来访问。
+运行 `sudo service xrdp restart` ，然后去开始菜单，用 `localhost: 配置的端口` 来访问。
 
 ![](./images/WSL14.png)
 
@@ -239,7 +239,7 @@ sudo apt-get install xterm -y
 
 如果安装完后忘记勾选 Launch Xming，需在开始菜单里打开 Xming：
 
-![别忘了！](./images/WSL17.png)  
+![别忘了！](./images/WSL17.png)
 
 之后再回到 Ubuntu，键入如下指令：
 
@@ -259,7 +259,7 @@ xfce4-session
 
 ![](./images/WSL19.png)
 
-运行结果如图。（在 Xming 中使用 <kbd>Ctrl</kbd>+<kbd>C</kbd> 就可以退出该界面。）
+运行结果如图。（在 Xming 中使用<kbd>Ctrl</kbd>+<kbd>C</kbd>就可以退出该界面。）
 
 ![](./images/WSL20.png)
 
@@ -267,13 +267,13 @@ xfce4-session
 
 硬盘分区作为文件夹在 `/mnt/` 里存放，因此可以直接交互，如直接编译二进制文件，或者往 Ubuntu 里传文件。
 
-![与 Windows 内原硬盘分区交互1](./images/WSL22.png)  
+![与 Windows 内原硬盘分区交互 1](./images/WSL22.png)
 
-![与 Windows 内原硬盘分区交互2](./images/WSL23.png)
+![与 Windows 内原硬盘分区交互 2](./images/WSL23.png)
 
 ## FAQ
 
-参见：[常见问题](https://docs.microsoft.com/zh-cn/windows/wsl/faq)，[WSL 2 常见问题解答](https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-faq)
+参见： [常见问题](https://docs.microsoft.com/zh-cn/windows/wsl/faq) ， [WSL 2 常见问题解答](https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-faq) 
 
 -   如何在子系统下进行 xxx？
 
@@ -289,25 +289,25 @@ xfce4-session
 
 ## 参考资料
 
-1.   [洛谷日报 #6](https://www.luogu.com.cn/discuss/show/48491)
-2.   [适用于 Linux 的 Windows 子系统安装指南 (Windows 10), Microsoft Docs](https://docs.microsoft.com/zh-cn/windows/wsl/install-win10)
+1.   [洛谷日报 #6](https://www.luogu.com.cn/discuss/show/48491) 
+2.   [适用于 Linux 的 Windows 子系统安装指南 (Windows 10), Microsoft Docs](https://docs.microsoft.com/zh-cn/windows/wsl/install-win10) 
 3.   [适用于 Linux 的 Windows 子系统，Wikipedia](https://zh.wikipedia.org/zh-hans/%E9%80%82%E7%94%A8%E4%BA%8E_Linux_%E7%9A%84_Windows_%E5%AD%90%E7%B3%BB%E7%BB%9F) 
 4.   [WSL-Ubuntu 维基，ubuntu wiki](https://wiki.ubuntu.com/WSL) 
-5.   [Windows 10 版本 1803 中命令行的新增功能，Microsoft Devblogs](https://devblogs.microsoft.com/commandline/windows10v1803/)
-6.   [NOIP 标准评测系统及相关问题，smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html)
+5.   [Windows 10 版本 1803 中命令行的新增功能，Microsoft Devblogs](https://devblogs.microsoft.com/commandline/windows10v1803/) 
+6.   [NOIP 标准评测系统及相关问题，smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html) 
 7.   [WSL, 百度百科](https://baike.baidu.com/item/wsl/20359185) 
-8.   [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97)
-9.   [Windows Subsystem for Linux Documentation, MSDN](https://docs.microsoft.com/zh-cn/windows/wsl/about)
-10.   [NOI 系列活动标准竞赛环境，2016-11-08, NOI 官网](http://www.noi.cn/2016-11-08-03-42-01)
-11.   [购买 Ubuntu, Microsoft Store](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6)
-12.   [Ubuntu 镜像使用帮助，清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
-13.   [Ubuntu 的 man 命令帮助如何设置中文版，Frank 看庐山，2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523)
-14.   [Xming X Server for Windows, SourceForge](https://sourceforge.net/projects/xming/)
-15.   [Sudo, Wikipedia](https://zh.wikipedia.org/wiki/Sudo)
-16.   [ubuntu的man命令帮助如何设置中文版](https://blog.csdn.net/qq_14989227/article/details/72954523)
+8.   [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97) 
+9.   [Windows Subsystem for Linux Documentation, MSDN](https://docs.microsoft.com/zh-cn/windows/wsl/about) 
+10.  [NOI 系列活动标准竞赛环境，2016-11-08, NOI 官网](http://www.noi.cn/2016-11-08-03-42-01) 
+11.  [购买 Ubuntu, Microsoft Store](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6) 
+12.  [Ubuntu 镜像使用帮助，清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/) 
+13.  [Ubuntu 的 man 命令帮助如何设置中文版，Frank 看庐山，2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523) 
+14.  [Xming X Server for Windows, SourceForge](https://sourceforge.net/projects/xming/) 
+15.  [Sudo, Wikipedia](https://zh.wikipedia.org/wiki/Sudo) 
+16.  [ubuntu 的 man 命令帮助如何设置中文版](https://blog.csdn.net/qq_14989227/article/details/72954523) 
 
 ## 延伸内容
 
--   [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://dowww.spencerwoo.com)
+-    [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://dowww.spencerwoo.com) 
 
--   [Github 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL)
+-    [Github 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL) 
