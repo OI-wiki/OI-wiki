@@ -10,16 +10,16 @@ author: NachtgeistW
 
     ```cpp
     // for (int i = 0; i < n; ++i) {
-    //  res = res OP a[i];
+    //     res = res OP a[i];
     //}
     // 不如
     int i;
     for (i = 0; i < n; i += 2) {
-      res = res OP a[i];
-      res = res OP a[i + 1];
+        res = res OP a[i];
+        res = res OP a[i + 1];
     }
     for (; i < n; ++i) {
-      res = res OP a[i];
+        res = res OP a[i];
     }
     ```
 
@@ -59,7 +59,7 @@ f(i, 0, a.size()) { ... }
 
 使用 namespace 能使程序可读性更好，便于调试。
 
-??? note "示例代码"
+??? note "例题：NOI 2018 屠龙勇士"
     ```cpp
     // NOI 2018 屠龙勇士 40分部分分代码
     #include <algorithm>
@@ -143,7 +143,7 @@ f(i, 0, a.size()) { ... }
 
 由于对拍过程要多次进行，因此需要通过批处理的方法来实现对拍的自动化。
 
-具体而言，对拍需要一个 [数据生成器](../intro/testlib/generator) 和两个要进行对拍的程序。
+具体而言，对拍需要一个 [数据生成器](../testlib/generator) 和两个要进行对拍的程序。
 
 每次运行一次数据生成器都将生成的数据写入输入文件，通过重定向的方法使两个程序读入数据，并将输出写入指定文件，最后利用 Windows 下的 `fc` 命令比对文件（Linux 下为 `diff` 命令）检验程序的正确性。如果发现程序出错，可以直接利用刚刚生成的数据进行调试。
 
@@ -153,27 +153,27 @@ f(i, 0, a.size()) { ... }
 #include <stdio.h>
 #include <stdlib.h>
 int main() {
-  // For Windows
-  //对拍时不开文件输入输出
-  //当然，这段程序也可以改写成批处理的形式
-  while (true) {
-    system("gen > test.in");  //数据生成器将生成数据写入输入文件
-    system("test1.exe < test.in > a.out");  //获取程序1输出
-    system("test2.exe < test.in > b.out");  //获取程序2输出
-    if (system("fc a.out b.out")) {
-      // 该行语句比对输入输出
-      // fc返回0时表示输出一致，否则表示有不同处
-      system("pause");  // 方便查看不同处
-      return 0;
-      // 该输入数据已经存放在test.in文件中，可以直接利用进行调试
+    // For Windows
+    //对拍时不开文件输入输出
+    //当然，这段程序也可以改写成批处理的形式
+    while (true) {
+        system("gen > test.in");  //数据生成器将生成数据写入输入文件
+        system("test1.exe < test.in > a.out");  //获取程序1输出
+        system("test2.exe < test.in > b.out");  //获取程序2输出
+        if (system("fc a.out b.out")) {
+          // 该行语句比对输入输出
+          // fc返回0时表示输出一致，否则表示有不同处
+          system("pause");  // 方便查看不同处
+          return 0;
+          // 该输入数据已经存放在test.in文件中，可以直接利用进行调试
+        }
     }
-  }
 }
 ```
 
 ## 内存池
 
-当动态分配内存时，频繁使用 `new` / `malloc` 会占用大量的时间和空间，甚至生成大量的内存碎片从而降低程序的性能，可能会使原本正确的程序 TLE/MLE。
+当动态分配内存时，频繁使用 `new`/`malloc` 会占用大量的时间和空间，甚至生成大量的内存碎片从而降低程序的性能，可能会使原本正确的程序 TLE/MLE。
 
 这时候需要使用到“内存池”这种技巧：在真正使用内存之前，先申请分配一定大小的内存作为备用。当需要动态分配时直接从备用内存中分配一块即可。
 
@@ -184,14 +184,14 @@ int main() {
 ```cpp
 // 申请动态分配 32 位有符号整数数组：
 inline int* newarr(int sz) {
-  static int pool[maxn], *allocp = pool;
-  return allocp += sz, allocp - sz;
+    static int pool[maxn], *allocp = pool;
+    return allocp += sz, allocp - sz;
 }
 
 // 线段树动态开点的代码：
 inline Node* newnode() {
-  static Node pool[maxn << 1], *allocp = pool - 1;
-  return ++allocp;
+    static Node pool[maxn << 1], *allocp = pool - 1;
+    return ++allocp;
 }
 ```
 
