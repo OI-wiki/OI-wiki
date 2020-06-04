@@ -61,13 +61,12 @@ low[u] = min(low[u], num[v]);
     // low：能不经过父亲到达最小的编号，inde：时间戳，res：答案数量
     bool vis[100001], flag[100001];  // flag: 答案 vis：标记是否重复
     vector<int> edge[100001];        // 存图用的
-    void Tarjan(int u, int father)  // u 当前点的编号，father 自己爸爸的编号
-    {
-      vis[u] = true;             // 标记
+    void Tarjan(int u, int father) {  // u 当前点的编号，father 自己爸爸的编号
+      vis[u] = true;                  // 标记
       low[u] = num[u] = ++inde;  // 打上时间戳
       int child = 0;             // 每一个点儿子数量
-      for (auto v : edge[u])     // 访问这个点的所有邻居 （C++11）
-      {
+      for (auto v : edge[u]) {   // 访问这个点的所有邻居 （C++11）
+    
         if (!vis[v]) {
           child++;                       // 多了一个儿子
           Tarjan(v, u);                  // 继续
@@ -86,16 +85,14 @@ low[u] = min(low[u], num[v]);
               min(low[u], num[v]);  // 如果这个点不是自己，更新能到的最小节点编号
       }
       if (father == u && child >= 2 &&
-          !flag[u])  // 主要代码，自己的话需要 2 个儿子才可以
-      {
+          !flag[u]) {  // 主要代码，自己的话需要 2 个儿子才可以
         flag[u] = true;
         res++;  // 记录答案
       }
     }
     int main() {
-      cin >> n >> m;                // 读入数据
-      for (int i = 1; i <= m; i++)  // 注意点是从 1 开始的
-      {
+      cin >> n >> m;                  // 读入数据
+      for (int i = 1; i <= m; i++) {  // 注意点是从 1 开始的
         int x, y;
         cin >> x >> y;
         edge[x].push_back(y);

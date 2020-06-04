@@ -38,7 +38,7 @@ inline bool CanRbu(int k) {
 
 ```cpp
 void Rbu_Flatten(int& ldc, int k) {
-  // 前序遍历展开以 k 节点为根子树
+  // 中序遍历展开以 k 节点为根子树
   if (!k) return;
   Rbu_Flatten(ldc, lc[k]);
   if (wn[k]) ldr[ldc++] = k;

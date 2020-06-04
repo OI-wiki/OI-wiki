@@ -37,7 +37,7 @@ int n, m, a[maxn], u[maxn], x[maxn], l[maxn], r[maxn], k[maxn], cur, cur1, cur2,
 char op[maxn];
 set<int> ST;
 map<int, int> mp;
-struct segment_tree  //封装的动态开点权值线段树
+struct segment_tree  // 封装的动态开点权值线段树
 {
   int cur, rt[maxn * 4], sum[maxn * 60], lc[maxn * 60], rc[maxn * 60];
   void build(int& o) { o = ++cur; }

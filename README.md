@@ -103,6 +103,10 @@ python2 -m SimpleHTTPServer
 
 * * *
 
+## 开源软件供应链点亮计划 —— 暑期 2020
+
+OI Wiki 社区正在参加由中科院软件所与华为 openEuler 项目共同举办的 [“开源软件供应链点亮计划——暑期2020”](https://isrc.iscas.ac.cn/summer2020/) 项目。 OI Wiki 也准备好了若干需求等待大家积极参与，详情请见 [「“开源软件供应链点亮计划——暑期2020”项目提案」](https://github.com/OI-wiki/OI-wiki/wiki/Open-Source-Promotion-Plan---Summer-2020#) 。如有意愿，请加入 Telegram 群组 [Project OI Wiki Summer2020](https://t.me/joinchat/GaEGzht3n19XgNcd3giLSA) 。
+
 ## 版权声明
 
 <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />

@@ -25,7 +25,7 @@ author: Ir1d, hsfzLZH1, CBW2007, Xeonacid, H-J-Granger, kawa-yoiko
 
 STDIO 交互（标准 I/O 交互）是 Codeforces、AtCoder 等在线平台的交互手段，也是 ICPC 系列赛事中的标准。 [LOJ #559.「LibreOJ Round #9」ZQC 的迷宫](https://loj.ac/problem/559) 是一道典型的 STDIO 交互题。 [这里](https://codeforces.com/blog/entry/45307) 是 Codeforces 的一个更加简要的说明。
 
-对于这类题目，选手只需像往常一样将询问写到标准输出， **刷新输出缓冲** 后从标准输入读取结果。选手程序刷新输出缓冲后，通过管道连接它的测评程序（称为交互器）才能立刻接收到这些数据。在 C/C++ 中， `fflush(stdout)` 和 `std::cout << std::flush` 可以实现这个操作；Pascal 则是 `flush(output)` 。
+对于这类题目，选手只需像往常一样将询问写到标准输出， **刷新输出缓冲** 后从标准输入读取结果。选手程序刷新输出缓冲后，通过管道连接它的测评程序（称为交互器）才能立刻接收到这些数据。在 C/C++ 中， `fflush(stdout)` 和 `std::cout << std::flush` 可以实现这个操作（使用 `std::cout << std::endl` 换行时也会自动刷新缓冲区，但是 `std::cout << '\n'` 不会）；Pascal 则是 `flush(output)` 。
 
 ### Grader 交互
 

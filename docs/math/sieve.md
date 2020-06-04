@@ -19,7 +19,7 @@ int Eratosthenes(int n) {
       for (int j = i * i; j <= n;
            j += i)  // 因为从 2 到 i - 1 的倍数我们之前筛过了，这里直接从 i
                     // 的倍数开始，提高了运行速度
-        is_prime[j] = 0;  //是i的倍数的均不是素数
+        is_prime[j] = 0;  // 是i的倍数的均不是素数
     }
   }
   return p;

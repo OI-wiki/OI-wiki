@@ -444,9 +444,9 @@ int main() {
 
  [二逼平衡树（树套树）](https://loj.ac/problem/106) 
 
- [bzoj 2827 千山鸟飞绝](https://www.lydsy.com/JudgeOnline/problem.php?id=2827) 
+ [bzoj 2827 千山鸟飞绝](http://www.lydsy.com/JudgeOnline/problem.php?id=2827) 
 
- [「Lydsy1706 月赛」K 小值查询](https://www.lydsy.com/JudgeOnline/problem.php?id=4923) 
+ [「Lydsy1706 月赛」K 小值查询](http://www.lydsy.com/JudgeOnline/problem.php?id=4923) 
 
 * * *
 
