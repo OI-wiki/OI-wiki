@@ -212,6 +212,10 @@ nav:
       - 多项式三角函数: math/poly/tri-func.md
       - 多项式反三角函数: math/poly/inv-tri-func.md
       - 常系数齐次线性递推: math/linear-recurrence.md
+    - 生成函数:
+      - 生成函数简介: math/gen-func/intro.md
+      - 普通生成函数: math/gen-func/ogf.md
+      - 指数生成函数: math/gen-func/egf.md
     - 线性代数:
       - 向量: math/vector.md
       - 矩阵: math/matrix.md
