@@ -206,7 +206,7 @@ int main(int argc, char* argv[]) {
 
 -   读入选手输出时永远限定好范围，如果某些变量忘记了限定且被用于某些参数，你的 checker 可能会判定错误或 RE 等。
 
-    ##### 反面教材
+    ### 反面教材
 
     ```cpp
     // ....
@@ -221,7 +221,7 @@ int main(int argc, char* argv[]) {
     // 可能会有人输出 -42, 2147483456 或其他一些非法数字导致 checker RE
     ```
 
-    ##### 正面教材
+    ### 正面教材
 
     ```cpp
     // ....
@@ -234,7 +234,9 @@ int main(int argc, char* argv[]) {
     // ....
     ```
 
--   使用项别名
+-   使用项别名。
+
+-   和 validator 不同，checker 不用特意检查非空字符。例如对于一个按顺序比较整数的 checker，我们只需判断选手输出的整数和答案整数是否对应相等，而选手是每行输出一个整数，还是在一行中输出所有整数等格式问题，我们的 checker 不必关心。
 
 ## 使用方法
 
@@ -243,5 +245,16 @@ int main(int argc, char* argv[]) {
 ```bash
 ./checker <input-file> <output-file> <answer-file> [<report-file> [<-appes>]]
 ```
+
+## 一些预设的 checker
+
+很多时候我们的 checker 完成的工作很简单（如判断输出的整数是否正确，输出的浮点数是否满足精度要求），[Testlib](https://github.com/MikeMirzayanov/testlib/tree/master/checkers) 已经为我们给出了这些 checker 的实现，我们可以直接使用。
+
+一些常用的 checker 有：
+
+- ncmp：按顺序比较 64 位整数。
+- rcmp4：按顺序比较浮点数，最大可接受误差（绝对误差或相对误差）不超过 $10^{-4}$（还有 rcmp6，rcmp9 等对精度要求不同的 checker，用法和 rcmp4 类似）。
+- wcmp：按顺序比较字符串（不带空格，换行符等非空字符）。
+- yesno：比较 YES 和 NO，大小写不敏感。
 
  **本文主要翻译自 [Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 
