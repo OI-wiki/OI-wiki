@@ -44,7 +44,7 @@ author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicu
 
 ```cpp
 int lowbit(int x) {
-  // 算出x二进制的从右往左出现第一个1以及这个1之后的那些0组成数的二进制对应的十进制的数
+  //算出x二进制的从右往左出现第一个1以及这个1之后的那些0组成数的二进制对应的十进制的数
   return x & -x;
 }
 ```
@@ -70,7 +70,7 @@ int lowbit(int x) {
 
 ```cpp
 void add(int x, int k) {
-  while (x <= n) {  // 不能越界
+  while (x <= n) {  //不能越界
     c[x] = c[x] + k;
     x = x + lowbit(x);
   }
@@ -128,7 +128,7 @@ int getsum(int *t, int k) {
 }
 
 void add1(int l, int r, int v) {
-  add(l, v), add(r + 1, -v);  // 将区间加差分为两个前缀加
+  add(l, v), add(r + 1, -v);  //将区间加差分为两个前缀加
 }
 
 long long getsum1(int l, int r) {
@@ -171,11 +171,11 @@ void init() {
 int kth(int k) {
   int cnt = 0, ret = 0;
   for (int i = log2(n); ~i; --i) {      // i与上文depth含义相同
-    ret += 1 << i;                      // 尝试扩展
-    if (ret >= n || cnt + t[ret] >= k)  // 如果扩展失败
+    ret += 1 << i;                      //尝试扩展
+    if (ret >= n || cnt + t[ret] >= k)  //如果扩展失败
       ret -= 1 << i;
     else
-      cnt += t[ret];  // 扩展成功后 要更新之前求和的值
+      cnt += t[ret];  //扩展成功后 要更新之前求和的值
   }
   return ret + 1;
 }
