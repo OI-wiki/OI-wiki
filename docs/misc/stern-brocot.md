@@ -84,7 +84,7 @@ $$
 ```cpp
 void build(int a = 0, int b = 1, int c = 1, int d = 0, int level = 1) {
   int x = a + c, y = b + d;
-  // ... output the current fraction x/y
+  //... output the current fraction x/y
   // at the current level in the tree
   build(a, b, x, y, level + 1);
   build(x, y, c, d, level + 1);

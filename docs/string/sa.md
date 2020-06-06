@@ -506,7 +506,7 @@ for (i = 1, k = 0; i <= n; ++i) {
 
     考虑每个位置对答案的贡献是哪些后缀的 LCP，其实就是从它开始向左若干个连续的 $height$ 大于它的后缀中选一个，再从向右若干个连续的 $height$ 不小于它的后缀中选一个。这个东西可以用 [单调栈](../ds/monotonous-stack.md) 计算。
 
-    单调栈部分类似于 [Luogu P2659 美丽的序列](https://www.luogu.com.cn/problem/P2659) 以及 [悬线法](../misc/hoverline.md)。
+    单调栈部分类似于 [Luogu P2659 美丽的序列](https://www.luogu.com.cn/problem/P2659) 以及 [悬线法](../misc/largest-matrix.md)。
 
 ??? note "参考代码"
     ```cpp

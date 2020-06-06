@@ -146,10 +146,10 @@ int main() {
 其一种实现的伪代码如下：
 
     for state
-      sum[state] = f[state];
+    	sum[state] = f[state];
     for(i = 0;i <= D;i += 1)
-      for 以字典序从小到大枚举 state
-        sum[state] += sum[state'];
+    	for 以字典序从小到大枚举 state
+    		sum[state] += sum[state'];
 
 ## 树上前缀和
 

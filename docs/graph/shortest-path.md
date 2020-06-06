@@ -132,15 +132,15 @@ while (1) for each edge(u, v) relax(u, v);
 
 ```text
 relax(u, v) {
-  dist[v] = min(dist[v], dist[u] + edge_len(u, v));
+	dist[v] = min(dist[v], dist[u] + edge_len(u, v));
 }
 for (i = 1; i <= n; i++) {
-  dist[i] = edge_len(S, i);
+	dist[i] = edge_len(S, i);
 }
 for (i = 1; i < n; i++) {
-  for each edge(u, v) {
-    relax(u, v);
-  }
+	for each edge(u, v) {
+		relax(u, v);
+	}
 }
 ```
 
@@ -169,14 +169,14 @@ q = new queue();
 q.push(S);
 in_queue[S] = true;
 while (!q.empty()) {
-  u = q.pop();
-  in_queue[u] = false;
-  for each edge(u, v) {
-    if (relax(u, v) && !in_queue[v]) {
-      q.push(v);
-      in_queue[v] = true;
-    }
-  }
+	u = q.pop();
+	in_queue[u] = false;
+	for each edge(u, v) {
+		if (relax(u, v) && !in_queue[v]) {
+			q.push(v);
+			in_queue[v] = true;
+		}
+	}
 }
 ```
 
@@ -244,12 +244,12 @@ H = new heap();
 H.insert(S, 0);
 dist[S] = 0;
 for (i = 1; i <= n; i++) {
-  u = H.delete_min();
-  for each edge(u, v) {
-    if (relax(u, v)) {
-      H.decrease_key(v, dist[v]);
-    }
-  }
+	u = H.delete_min();
+	for each edge(u, v) {
+		if (relax(u, v)) {
+			H.decrease_key(v, dist[v]);
+		}
+	}
 }
 ```
 
