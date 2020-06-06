@@ -95,5 +95,7 @@ int main() {
 ## 习题
 
 -    [CodeChef, Diameter of Tree](https://www.codechef.com/problems/DTREE) 
+-    [Educational Codeforces Round 35, Problem F, Tree Destruction](https://codeforces.com/contest/911/problem/F)
+-    [ZOJ 3820, Building Fire Stations](https://vjudge.net/problem/ZOJ-3820)
 -    [CEOI2019/CodeForces 1192B. Dynamic Diameter](https://codeforces.com/contest/1192/problem/B) 
 -    [IPSC 2019 网络赛，Lightning Routing I](https://nanti.jisuanke.com/t/41398) 
