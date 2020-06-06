@@ -81,15 +81,13 @@ struct mat {
   inline mat operator-(const mat& T) const {
     mat res;
     for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j)
-        res.a[i][j] = (a[i][j] - T.a[i][j]) % MOD;
+      for (int j = 0; j < sz; ++j) res.a[i][j] = (a[i][j] - T.a[i][j]) % MOD;
     return res;
   }
   inline mat operator+(const mat& T) const {
     mat res;
     for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j)
-        res.a[i][j] = (a[i][j] + T.a[i][j]) % MOD;
+      for (int j = 0; j < sz; ++j) res.a[i][j] = (a[i][j] + T.a[i][j]) % MOD;
     return res;
   }
   inline mat operator*(const mat& T) const {
