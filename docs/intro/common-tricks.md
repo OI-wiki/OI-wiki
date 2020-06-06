@@ -6,11 +6,10 @@
 
 -   消除循环中的低效率，比如遍历字符串的时候：
     ```cpp
-    for (int i = 0; i < strlen(s); ++i)
-      ;
+    /* clang-format off */
+    for (int i = 0; i < strlen(s); ++i);
     // 不如
-    for (int i = 0, len = strlen(s); i < len; ++i)
-      ;
+    for (int i = 0, len = strlen(s); i < len; ++i);
     ```
 -   循环展开。通过适当的循环展开可以减少整个计算中关键路径上的操作数量
     ```cpp
@@ -29,9 +28,10 @@
     ```
 -   重新结合变换，增加了可以并行执行的运算数量
     ```cpp
-    for (int i = 0; i < n; ++i) res = (res OP a[i])OP a[i + 1];
+    // 当然，加号可以换成其他的运算符
+    for (int i = 0; i < n; ++i) res = (res + a[i]) + a[i + 1];
     // 不如
-    for (int i = 0; i < n; ++i) res = res OP(a[i] OP a[i + 1]);
+    for (int i = 0; i < n; ++i) res = res + (a[i] + a[i + 1]);
     ```
 
 ## 循环宏定义
@@ -78,7 +78,7 @@ f(i, 0, a.size()) { ... }
     using namespace std;
     long long n, m, a[100005], p[100005], aw[100005], atk[100005];
     namespace one_game {
-    //其实namespace里也可以声明变量
+    // 其实namespace里也可以声明变量
     void solve() {
       for (int y = 0;; y++)
         if ((a[1] + p[1] * y) % atk[1] == 0) {
@@ -89,13 +89,11 @@ f(i, 0, a.size()) { ... }
     }  // namespace one_game
     namespace p_1 {
     void solve() {
-      if (atk[1] == 1)  // solve 1-2
-      {
+      if (atk[1] == 1) {  // solve 1-2
         sort(a + 1, a + n + 1);
         cout << a[n] << endl;
         return;
-      } else if (m == 1)  // solve 3-4
-      {
+      } else if (m == 1) {  // solve 3-4
         long long k = atk[1], kt = ceil(a[1] * 1.0 / k);
         for (int i = 2; i <= n; i++)
           k = aw[i - 1], kt = max(kt, (long long)ceil(a[i] * 1.0 / k));
@@ -175,18 +173,18 @@ f(i, 0, a.size()) { ... }
 #include <stdlib.h>
 int main() {
   // For Windows
-  //对拍时不开文件输入输出
-  //当然，这段程序也可以改写成批处理的形式
+  // 对拍时不开文件输入输出
+  // 当然，这段程序也可以改写成批处理的形式
   while (1) {
-    system("gen > test.in");  //数据生成器将生成数据写入输入文件
-    system("test1.exe < test.in > a.out");  //获取程序1输出
-    system("test2.exe < test.in > b.out");  //获取程序2输出
+    system("gen > test.in");  // 数据生成器将生成数据写入输入文件
+    system("test1.exe < test.in > a.out");  // 获取程序1输出
+    system("test2.exe < test.in > b.out");  // 获取程序2输出
     if (system("fc a.out b.out")) {
-      //该行语句比对输入输出
+      // 该行语句比对输入输出
       // fc返回0时表示输出一致，否则表示有不同处
-      system("pause");  //方便查看不同处
+      system("pause");  // 方便查看不同处
       return 0;
-      //该输入数据已经存放在test.in文件中，可以直接利用进行调试
+      // 该输入数据已经存放在test.in文件中，可以直接利用进行调试
     }
   }
 }

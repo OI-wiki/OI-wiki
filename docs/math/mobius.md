@@ -758,7 +758,7 @@ $$
     signed phi[N], p[NP], cnt, pn;
     bool bp[N];
     map<int, int> s_map;
-    int ksm(int a, int m) {  //求逆元用
+    int ksm(int a, int m) {  // 求逆元用
       int res = 1;
       while (m) {
         if (m & 1) res = res * a % P;
@@ -766,7 +766,7 @@ $$
       }
       return res;
     }
-    void prime_work(signed k) {  //线性筛phi，s
+    void prime_work(signed k) {  // 线性筛phi，s
       bp[0] = bp[1] = 1, phi[1] = 1;
       for (signed i = 2; i <= k; i++) {
         if (!bp[i]) p[++cnt] = i, phi[i] = i - 1;
@@ -784,13 +784,13 @@ $$
     }
     int s3(int k) {
       return k %= P, (k * (k + 1) / 2) % P * ((k * (k + 1) / 2) % P) % P;
-    }  //立方和
+    }  // 立方和
     int s2(int k) {
       return k %= P, k * (k + 1) % P * (k * 2 + 1) % P * inv6 % P;
-    }  //平方和
-    int calc(int k) {  //计算S(k)
+    }  // 平方和
+    int calc(int k) {  // 计算S(k)
       if (k <= pn) return s[k];
-      if (s_map[k]) return s_map[k];  //对于超过pn的用map离散存储
+      if (s_map[k]) return s_map[k];  // 对于超过pn的用map离散存储
       int res = s3(k), pre = 1, cur;
       for (int i = 2, j; i <= k; i = j + 1)
         j = k / (k / i), cur = s2(j),
@@ -811,7 +811,7 @@ $$
       prime_work(pn);
       printf("%lld", solve());
       return 0;
-    }  //不要为了省什么内存把数组开小。。。卡了好几次80
+    }  // 不要为了省什么内存把数组开小。。。卡了好几次80
     ```
 
  **解法二** 
