@@ -4,7 +4,7 @@ author: NachtgeistW
 
 ### ICPC
 
- **ICPC** （英文：International Collegiate Programming Contest, 中文：国际大学生程序设计竞赛）由 ICPC 基金会（英文：ICPC Foundation）举办，是最具影响力的大学生计算机竞赛。由于以前 ACM 赞助这个竞赛，也有很多人习惯叫它 ACM 竞赛。
+ **ICPC** （英文：International Collegiate Programming Contest，中文：国际大学生程序设计竞赛）由 ICPC 基金会（英文：ICPC Foundation）举办，是最具影响力的大学生计算机竞赛。由于以前 ACM 赞助这个竞赛，也有很多人习惯叫它 ACM 竞赛。
 
 ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分。
 
@@ -50,5 +50,5 @@ OJ 里查询用的关键词： `Multi-University Training Contest` 。
 
 ## 训练资源
 
--   OI Wiki： <https://oi-wiki.org> 
+-    **OI Wiki： <https://oi-wiki.org> ** 
 -   Codeforces Gym： <https://codeforces.com/gyms> 
