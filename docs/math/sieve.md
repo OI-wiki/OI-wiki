@@ -42,15 +42,24 @@ int Eratosthenes(int n) {
 
 我们两边同时取 $\ln$ ，得：
 
- $\ln \sum_n {\frac{1}{n}}=\ln \prod_p {\frac{p}{p-1}}$ 
-
- $\ln\ln n=\sum_p {(\ln p-\ln {(p-1)})}$ 
+$$
+\begin{aligned}
+\ln \sum_n {\frac{1}{n}}&=\ln \prod_p {\frac{p}{p-1}}\\
+\ln\ln n&=\sum_p {(\ln p-\ln {(p-1)})}
+\end{aligned}
+$$
 
 又发现 $\int {\frac{1}{x}dx}=\ln x$ ，所以由微积分基本定理：
 
- $\sum_p {(\ln p-\ln {(p-1)})}=\sum_p {\int_{p-1}^p {\frac{1}{x}dx}}$ 
+$$
+\sum_p {(\ln p-\ln {(p-1)})}=\sum_p {\int_{p-1}^p {\frac{1}{x}dx}}
+$$
 
-画图可以发现， $\int_{p-1}^p {\frac{1}{x}dx}>\frac{1}{p}$ ，所以 $\ln\ln n=\sum_p {\int_{p-1}^p {\frac{1}{x}dx}}>\sum_p {\frac{1}{p}}$ 。
+画图可以发现， $\int_{p-1}^p {\frac{1}{x}dx}>\frac{1}{p}$ ，所以：
+
+$$
+\ln\ln n=\sum_p {\int_{p-1}^p {\frac{1}{x}dx}}>\sum_p {\frac{1}{p}}
+$$
 
 所以 $\sum_p {\frac{1}{p}}$ 是 $O(\log\log n)$ 的，所以 **Eratosthenes 筛法** 的复杂度是 $O(n\log\log n)$ 的。
 
