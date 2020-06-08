@@ -117,10 +117,11 @@ nav:
       - 希尔排序: basic/shell-sort.md
       - 排序相关 STL: basic/stl-sort.md
       - 排序应用: basic/use-of-sort.md
+    - 前缀和 & 差分: basic/prefix-sum.md
     - 二分: basic/binary.md
     - 倍增: basic/binary-lifting.md
     - 构造: basic/construction.md
-    - 前缀和 & 差分: basic/prefix-sum.md
+    - 交互题: basic/interaction.md
   - 搜索:
     - 搜索部分简介: search/index.md
     - DFS（搜索）: search/dfs.md
