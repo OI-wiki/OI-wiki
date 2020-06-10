@@ -10,15 +10,15 @@ services:
 before_install:
   - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
   - source ~/.nvm/nvm.sh
-  - nvm install 12
+  - nvm install 14
 install:
   - pip install -r requirements.txt
-  - npm install .
+  - npm install
 script:
   - set -e
   - chmod +x ./scripts/build.sh && ./scripts/build.sh
   - mkdocs build -v
-  - node --max_old_space_size=2048 ./scripts/render_math.js
+  - node --max_old_space_size=4096 ./scripts/render_math.js
   - npx gulp minify
   - python scripts/gen_redirect.py
   - set +e
