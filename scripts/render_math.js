@@ -13,8 +13,8 @@ async function main() {
 
   const items = await listDir(distDir).map(item => {
     return () => {
-      const START_TIME = +new Date();
       if (item.endsWith('.html')) {
+        const START_TIME = +new Date();
         const filename = join(distDir, item);
 
         readFile(filename).then(content => {
@@ -36,7 +36,7 @@ async function main() {
           return result;
         }).then(result => {
           log(`${green('INFO')}  ${yellow(item)} rendered finished (${+new Date() - START_TIME}ms).`);
-          return writeFile(filename, result)
+          return writeFile(filename, result);
         }, e => {
           throw new Error(e);
         }).catch(e => {
