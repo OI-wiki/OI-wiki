@@ -14,7 +14,6 @@ async function main() {
   const items = await listDir(distDir).map(item => {
     return () => {
       if (item.endsWith('.html')) {
-        const START_TIME = +new Date();
         const filename = join(distDir, item);
 
         readFile(filename).then(content => {
@@ -22,6 +21,7 @@ async function main() {
             .replace(/<span class="MathJax_Preview">.+?<\/span><script type="math\/tex">/gi, '<script type="math/tex">')
             .replace(/<div class="MathJax_Preview">[\s\S]*?<\/div>/gi, '');
 
+          const START_TIME = +new Date();
           let result = null;
 
           mjpage(
@@ -33,9 +33,11 @@ async function main() {
             output => { result = output; }
           );
 
-          return result;
-        }).then(result => {
-          log(`${green('INFO')}  ${yellow(item)} rendered finished (${+new Date() - START_TIME}ms).`);
+          const END_TIME = +new Date();
+
+          return { result, START_TIME, END_TIME };
+        }).then(({ result, START_TIME, END_TIME }) => {
+          log(`${green('INFO')}  ${yellow(item)} rendered finished (${END_TIME - START_TIME}ms).`);
           return writeFile(filename, result);
         }, e => {
           throw new Error(e);
@@ -49,7 +51,7 @@ async function main() {
     }
   });
 
-  Promise.all(Promise.map(items, doTask, { concurrency: 3 }));
+  Promise.all(Promise.each(items, doTask));
 }
 
 main();
