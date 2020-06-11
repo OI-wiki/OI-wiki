@@ -5,7 +5,7 @@ const { listDir } = require('hexo-fs');
 const { cpus } = require('os');
 const WorkerPool = require('./worker-pool');
 
-const distDir = join(dirname(__dirname) + '/site');
+const distDir = join(dirname(__dirname) + '/site-cdn-pages');
 const workerPath = join(__dirname + '/replace_cdn_worker.js');
 
 // Maxmize CPU performance
