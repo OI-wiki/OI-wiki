@@ -36,7 +36,7 @@ after_deploy:
   - git clone -b gh-pages https://github.com/OI-wiki/OI-wiki.git
   - cd OI-wiki
   - git checkout -b cdn-pages
-  - find ./ -type f -name "*.html" -exec sed -i -E 's/([^"]*)(assets[^"]*)/https:\/\/cdn-for-oi-wiki.billchn.com\/\2/g' {} +
+  - node ./scripts/replace_cdn.js
   - git add .
   - git config user.name "Travis Builder"
   - git config user.email "hi@oi-wiki.org"
