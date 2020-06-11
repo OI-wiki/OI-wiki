@@ -21,6 +21,7 @@ script:
   - node --max_old_space_size=3072 ./scripts/render_math.js
   - npx gulp minify
   - python scripts/gen_redirect.py
+  - touch ./site/.nojekyll # Stop GitHub Pages from ignoring files with underscores prefixed
   - set +e
 deploy:
   provider: pages
