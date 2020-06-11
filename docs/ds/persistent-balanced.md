@@ -67,7 +67,7 @@ static std::pair<int, int> _split(int _x, int k) {
   if (_x == 0)
     return std::make_pair(0, 0);
   else {
-    int _vs = ++_cnt;  //新建节点（可持久化的精髓）
+    int _vs = ++_cnt;  // 新建节点（可持久化的精髓）
     _trp[_vs] = _trp[_x];
     std::pair<int, int> _y;
     if (_trp[_vs].key <= k) {

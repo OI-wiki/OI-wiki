@@ -184,13 +184,9 @@ vector<pair<int, int>> pruefer_decode(vector<int> const& code) {
 
 通过这些过程其实可以理解，Prufer 序列与带标号无根树建立了双射关系。
 
-## Cayley 定理
+## Cayley 公式 (Cayley's formula)
 
-凯莱定理描述如下：所有群 $G$ 同构于在 $G$ 上的对称群的子群。
-
-是不是一脸懵逼不知所措
-
-还有另一种表述：完全图 $K_n$ 有 $n^{n-2}$ 棵生成树。
+完全图 $K_n$ 有 $n^{n-2}$ 棵生成树。
 
 怎么证明？方法很多，但是用 Prufer 序列证是很简单的。任意一个长度为 $n-2$ 的值域 $[1,n]$ 的整数序列都可以通过 Prufer 序列双射对应一个生成树，于是方案数就是 $n^{n-2}$ 。
 

@@ -74,7 +74,7 @@ author: cutekibry, zj713300
 
 对于定理 1，没有后继状态的状态只有一个，即全 $0$ 局面。此时 $a_1 \oplus a_2 \oplus \ldots \oplus a_n = 0$ 。
 
-对于定理 2，不放假设 $a_1 \oplus a_2 \oplus \ldots a_n = k \neq 0$ 。如果我们要将 $a_i$ 改为 $a_i'$ ，则 $a_i'=a_i \oplus k$ 。
+对于定理 2，不妨假设 $a_1 \oplus a_2 \oplus \ldots a_n = k \neq 0$ 。如果我们要将 $a_i$ 改为 $a_i'$ ，则 $a_i'=a_i \oplus k$ 。
 
 根据异或定义，一定有奇数个 $a_i$ 在 $k$ 在二进制下的最高位为 $1$ 。满足这个条件的 $a_i$ 一定也满足 $a_i > a_i \oplus k$ ，因而这也是个合法的移动。
 
