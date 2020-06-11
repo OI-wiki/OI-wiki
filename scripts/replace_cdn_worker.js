@@ -9,7 +9,7 @@ const { readFile, writeFile } = require('hexo-fs');
 async function replaceStaticFilesCdn(filename) {
   const content = await readFile(filename);
 
-  const result = content.replace(/[^"']?assets[^"']*/g, s => {
+  const result = content.replace(/[^"']*assets[^"']*/g, s => {
     return 'https://cdn-for-oi-wiki.billchn.com/' + s;
   });
 
