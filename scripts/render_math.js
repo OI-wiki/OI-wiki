@@ -3,6 +3,7 @@ const Promise = require('bluebird');
 const { join, dirname } = require('path');
 const { green } = require('chalk');
 const { listDir } = require('hexo-fs');
+const { cpus } = require('os');
 
 class WorkerPool {
   _workers = [];
@@ -112,7 +113,11 @@ class WorkerPool {
 const distDir = join(dirname(__dirname) + '/site');
 const workerPath = join(__dirname + '/render_math_worker.js');
 
-const pool = new WorkerPool(workerPath, 4);
+// Maxmize CPU performance
+const cpuNums = cpus().length;
+console.log(`${green('INFO')}  ${cpuNums} CPU Threads detected, using ${cpuNums} threads`);
+
+const pool = new WorkerPool(workerPath, cpuNums);
 const START_TIME = +new Date();
 
 Promise.all(listDir(distDir).map(async item => {
