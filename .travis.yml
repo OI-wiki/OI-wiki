@@ -22,6 +22,8 @@ script:
   - npx gulp minify
   - python scripts/gen_redirect.py
   - touch ./site/.nojekyll # Stop GitHub Pages from ignoring files with underscores prefixed
+  - cp -r site/ site-cdn-pages
+  - node ./scripts/replace_cdn.js
   - set +e
 deploy:
   provider: pages
@@ -32,11 +34,8 @@ deploy:
     branch: master
 after_deploy:
   - chmod +x scripts/BaiduPusher.sh && ./scripts/BaiduPusher.sh
-  - cd /tmp
-  - git clone -b gh-pages https://github.com/OI-wiki/OI-wiki.git
-  - cd OI-wiki
+  - cd site-cdn-pages && git init
   - git checkout -b cdn-pages
-  - node ./scripts/replace_cdn.js
   - git add .
   - git config user.name "Travis Builder"
   - git config user.email "hi@oi-wiki.org"
