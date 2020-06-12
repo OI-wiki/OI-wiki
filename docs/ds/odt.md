@@ -16,7 +16,7 @@
 
 如果要保证复杂度正确，必须保证数据随机。详见 [Codeforces 上关于珂朵莉树的复杂度的证明](http://codeforces.com/blog/entry/56135?#comment-398940) 。
 
-更详细的严格证明见[珂朵莉树的复杂度分析](https://zhuanlan.zhihu.com/p/102786071) 。对于 add，assign 和 sum 操作，用 set 实现的珂朵莉树的复杂度为 $O(n \log \log n)$ ，而用链表实现的复杂度为 $O(n \log n)$ 。
+更详细的严格证明见 [珂朵莉树的复杂度分析](https://zhuanlan.zhihu.com/p/102786071) 。对于 add，assign 和 sum 操作，用 set 实现的珂朵莉树的复杂度为 $O(n \log \log n)$ ，而用链表实现的复杂度为 $O(n \log n)$ 。
 
 ## 正文
 
