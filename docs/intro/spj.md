@@ -1,29 +1,38 @@
-一道题如果有多组解，我们就需要一个程序来判断答案合法性，这便是 Special Judge (spj)，又常被称作 checker，下面介绍部分评测工具/OJ 的 spj 编写方法。
+author: NachtgeistW
+
+本页面主要介绍部分评测工具/OJ 的 spj 编写方法。
+
+## 简介
+
+ **Special Judge** （简称：spj，别名：checker）是当一道题有多组解时，用来判断答案合法性的程序。
 
 ???+ warning
     spj 还应当判断文件尾是否有多余内容，及输出格式是否正确（如题目要求数字间用一个空格隔开，而选手却使用了换行）。但是，目前前者只有 Testlib 可以方便地做到这一点，而后者几乎无人去特意进行这种判断。
 
-    判断浮点数时应注意 nan，不合理的判断方式会导致输出 nan 即可 AC。
+    判断浮点数时应注意 NaN。不合理的判断方式会导致输出 NaN 即可 AC 的情况。
 
     在对选手文件进行读入操作时应该要检查是否正确读入了所需的内容，防止造成 spj 的运行错误。（部分 OJ 会将 spj 的运行错误作为系统错误处理）
 
-以下均使用 C++，以“要求标准答案与选手答案差值小于 1e-3，文件名为 num，单个测试点满分为 10 分”为例。
+???+ note
+    以下均以 C++ 作为编程语言，以“要求标准答案与选手答案差值小于 1e-3，文件名为 num，单个测试点满分为 10 分”为例。
 
 ## Testlib
 
-Testlib 的介绍见 [Testlib/简介](./testlib/index.md) 页面，用法见 [Testlib/Checker](./testlib/checker.md) 页面。
+参见： [Testlib/简介](./testlib/index.md) ， [Testlib/Checker](./testlib/checker.md) 
 
-必须使用 Testlib 做 spj 的 评测工具/OJ：Codeforces、洛谷、UOJ 等
+Testlib 是一个 C++ 的库，用于辅助出题人使用 C++ 编写算法竞赛题。
 
-可以使用 Testlib 做 spj 的 评测工具/OJ：LibreOJ (SYZOJ 2)、Lemon、牛客网等
+必须使用 Testlib 作为 spj 的 评测工具/OJ：Codeforces、洛谷、UOJ 等。
 
-SYZOJ 2 所需的修改版 Testlib 可以在 [这里](https://pastebin.com/3GANXMG7) 获取到，感谢 [cyand1317](https://loj.ac/article/124) 。
+可以使用 Testlib 作为 spj 的 评测工具/OJ：LibreOJ (SYZOJ 2)、Lemon、牛客网等。
 
-Lemon 所需的修改版 Testlib 可以在 [这里](https://paste.ubuntu.com/p/JsTspHHnmB/) 获取到，感谢 matthew99。注意此版本 Testlib 注册 checker 应使用 `registerLemonChecker()` 而非 `registerTestlibCmd()` 。
+SYZOJ 2 所需的修改版 Testlib 托管于 [pastebin](https://pastebin.com/3GANXMG7) [^1]。
 
-DOMJudge 所需的修改版 Testlib 可以在 [这里](https://github.com/cn-xcpc-tools/testlib-for-domjudge) 获取到。此版本 Testlib 同时兼容做 Special Judge 的 checker 和交互题的 interactor。
+Lemon 所需的修改版 Testlib 托管于 [ubuntu pastebin](https://paste.ubuntu.com/p/JsTspHHnmB/) 。注意此版本 Testlib 注册 checker 时应使用 `registerLemonChecker()` ，而非 `registerTestlibCmd()` 。
 
-其他评测工具/OJ 大部分需要按照其 spj 编写格式修改 Testlib（并将 testlib.h 与 spj 一同上传，或将 testlib.h 置于 include 目录）。
+DOMJudge 所需的修改版 Testlib 托管于 [cn-xcpc-tools/testlib-for-domjudge](https://github.com/cn-xcpc-tools/testlib-for-domjudge) 。此版本 Testlib 同时可作为 Special Judge 的 checker 和交互题的 interactor。
+
+其他评测工具/OJ 大部分需要按照其 spj 编写格式修改 Testlib，并将 testlib.h 与 spj 一同上传；或将 testlib.h 置于 include 目录。
 
 ```cpp
 // clang-format off
@@ -50,7 +59,8 @@ int main(int argc, char *argv[]) {
 
 ## Lemon
 
- **Lemon 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib) ** 
+???+ note
+    Lemon 有现成的修改版 [Testlib](#testlib) ，建议使用 Testlib。
 
 ```cpp
 #include <cmath>
@@ -219,7 +229,7 @@ int main(int argc, char* argv[]) {
 
 ## QDUOJ
 
-QDUOJ 就麻烦一点，因为它的带 spj 的题目没有标准输出，只能把 std 写进 spj 跑出标准输出再判断。
+相较之下，QDUOJ 略为麻烦。它带 spj 的题目没有标准输出，只能把 std 写进 spj，待跑出标准输出后再判断。
 
 ```cpp
 #include <cmath>
@@ -255,7 +265,8 @@ int main(int argc, char* argv[]) {
 
 ## LibreOJ (SYZOJ 2)
 
- **LibreOJ (SYZOJ 2) 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib) ** 
+???+ note
+    LibreOJ (SYZOJ 2) 有现成的修改版 [Testlib](#testlib) ，建议使用 Testlib。
 
 ```cpp
 #include <cmath>
@@ -292,9 +303,10 @@ int main(int argc, char* argv[]) {
 
 ## 牛客网
 
- **牛客网有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib) ** 
+???+ note
+    牛客网有现成的修改版 [Testlib](#testlib) ，建议使用 Testlib。
 
-牛客网的官方教程： <https://www.nowcoder.com/discuss/84666> 
+参见： [如何在牛客网出 Special Judge 的编程题](https://www.nowcoder.com/discuss/84666) 
 
 ```cpp
 #include <cmath>
@@ -327,9 +339,10 @@ int main(int argc, char* argv[]) {
 
 ## DOMJudge
 
- **DOMJudge 支持任何语言编写的 spj，参考 [problemarchive.org output validator 格式](https://www.problemarchive.org/wiki/index.php/Output_validator) 。** 
+???+ note
+    DOMJudge 支持任何语言编写的 spj，参见： [problemarchive.org output validator 格式](https://www.problemarchive.org/wiki/index.php/Output_validator) 。
 
- **DOMJudge 有现成的修改版 Testlib，建议使用 Testlib，见 [Testlib](#testlib) ** 
+    DOMJudge 有现成的修改版 [Testlib](#testlib)，建议使用 Testlib。
 
 DOMJudge 使用的 Testlib 及导入 Polygon 题目包方式的文档： <https://github.com/cn-xcpc-tools/testlib-for-domjudge> 
 
@@ -371,3 +384,7 @@ int main(int argc, char* argv[]) {
 ```
 
 也可以使用 Kattis Problem Tools 提供的头文件 [validate.h](https://github.com/Kattis/problemtools/blob/master/examples/different/output_validators/different_validator/validate.h) 编写，以实现更加复杂的功能。
+
+## 参考资料
+
+[^1]&#x3A; [LibreOJ 支持 testlib 检查器啦！](https://loj.ac/article/124) 

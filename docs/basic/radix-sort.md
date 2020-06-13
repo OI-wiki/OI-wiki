@@ -29,8 +29,8 @@ int n, w[K], k, cnt[W];
 
 struct Element {
   int key[K];
-  bool operator<(const Element& y) const  // shows how two elements are compared
-  {
+  bool operator<(const Element& y) const {
+    // shows how two elements are compared
     for (int i = 1; i <= k; ++i) {
       if (key[i] == y.key[i]) continue;
       return key[i] < y.key[i];

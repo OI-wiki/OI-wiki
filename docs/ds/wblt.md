@@ -106,7 +106,7 @@ int rnk(int cur, int x) {
 }
 int main() {
   scanf("%d", &n);
-  newnode(root, 2147383647);  //使根不改变
+  newnode(root, 2147383647);  // 使根不改变
   while (n--) {
     int s, a;
     scanf("%d %d", &s, &a);
