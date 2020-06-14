@@ -97,7 +97,7 @@ author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy, ksyx
 
 ### 增加编译选项
 
-点击工具 ->编译选项，然后选择 "代码生成/优化" 选项卡，下面介绍我自己常用的几个编译选项。
+点击工具 -> 编译选项，然后选择 "代码生成/优化" 选项卡，下面介绍我自己常用的几个编译选项。
 
 #### 开启优化
 
@@ -133,7 +133,7 @@ author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy, ksyx
 
 ### 编译小 trick
 
-点击工具 ->编译选项，然后选择 "编译器" 选项卡，接下来介绍几个常用 trick。
+点击工具 -> 编译选项，然后选择 "编译器" 选项卡，接下来介绍几个常用 trick。
 
 #### 开大栈
 
@@ -168,24 +168,24 @@ freopen("test.out", "w", stdout);
 
 #### 代码格式化
 
-点击 Astyle->格式化当前文件 或 按 Ctrl+Shift+A 进行代码格式化。
+点击 Astyle-> 格式化当前文件 或 按 Ctrl+Shift+A 进行代码格式化。
 
 ![](./images/Dev-C++-17.png)
 
 #### 字体
 
-点击工具 ->编辑器选项，然后选择 "显示" 选项卡。
+点击工具 -> 编辑器选项，然后选择 "显示" 选项卡。
 
 ![](./images/Dev-C++-9.png)
 
 #### 主题
 
-点击工具 ->编辑器选项，然后选择 "语法" 选项卡，可以使用预设主题，也可以自行调整。
+点击工具 -> 编辑器选项，然后选择 "语法" 选项卡，可以使用预设主题，也可以自行调整。
 
 ![](./images/Dev-C++-10.png)
 
 ## 参考资料
 
-[^1]\: [Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B) 
+[^1]\\: [Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B) 
 
-[^2]\: [Orwell Dev-C++- 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B) 
+[^2]\\: [Orwell Dev-C++- 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B) 
