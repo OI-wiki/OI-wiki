@@ -188,4 +188,4 @@ freopen("test.out", "w", stdout);
 
 [^1]&#x3A; [Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B) 
 
-[^2]&#x3A; [Orwell Dev-C++- 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B) 
+[^2]&#x3A; [Orwell Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B) 
