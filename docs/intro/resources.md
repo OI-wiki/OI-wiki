@@ -105,12 +105,12 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo, Suyun514
     -   《ACM 国际大学生程序设计竞赛系列 算法与实现》- 俞勇
     -   《ACM 国际大学生程序设计竞赛系列 题目与解读》- 俞勇
 -   《算法竞赛入门到进阶》- 罗勇军，郭卫斌
--   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein 
+-   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein  
     黑书，大学经典教材。英文版原名_Introduction to Algorithms_
     -    [答案解析 (English)](https://github.com/walkccc/CLRS) 
--   《具体数学》第二版 - Ronald L. Graham/Donald E. Knuth/Oren Patashnik 
+-   《具体数学》第二版 - Ronald L. Graham/Donald E. Knuth/Oren Patashnik  
     英文版原名_Concrete Mathematics_
--   《组合数学》第五版 - Richard A.Brualdi 
+-   《组合数学》第五版 - Richard A.Brualdi  
     英文版原名_Introductory Conbinatorics_
 -    [Competitive Programmer's Handbook](https://cses.fi/book/index.html) 
 -   《挑战程序设计竞赛》全套 - 秋叶拓哉，岩田阳一，北川宜稔
