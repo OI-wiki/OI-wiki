@@ -161,7 +161,7 @@ void init() {
 因此可以想到算法：如果已经找到 $x$ 满足 $\sum_{i=1}^{x}a_i \le k$ ，考虑能不能让 $x$ 继续增加，使其仍然满足这个条件。找到最大的 $x$ 后， $x+1$ 就是所要的值。
 在树状数组中，节点是根据 2 的幂划分的，每次可以扩大 2 的幂的长度。令 $sum$ 表示当前的 $x$ 所代表的前缀和，有如下算法找到最大的 $x$ ：
 
-1.  求出 $depth=\left \lfloor log_2n \right \rfloor$ 
+1.  求出 $depth=\left \lfloor \log_2n \right \rfloor$ 
 2.  计算 $t=\sum_{i=x+1}^{x+2^{depth}}a_i$ 
 3.  如果 $sum+t \le k$ ，则此时扩展成功，将 $2^{depth}$ 累加到 $x$ 上；否则扩展失败，对 $x$ 不进行操作
 4.  将 $depth$ 减 1，回到步骤 2，直至 $depth$ 为 0
