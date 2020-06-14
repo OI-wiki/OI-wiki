@@ -228,9 +228,9 @@ CCO（英文：Canadian Computing Olympiad）
 
 官网地址： <https://cemc.math.uwaterloo.ca/contests/past_contests.html#ccc> 
 
-CCC 提交地址： [https://dmoj.ca/problems/?category=4](https://dmoj.ca/problems/?category=4) 
+CCC 提交地址： [https://dmoj.ca/problems/？category=4](https://dmoj.ca/problems/?category=4) 
 
-CCO 提交地址： [https://dmoj.ca/problems/?category=24](https://dmoj.ca/problems/?category=24) 
+CCO 提交地址： [https://dmoj.ca/problems/？category=24](https://dmoj.ca/problems/?category=24) 
 
 CCC 在 DMOJ 有题解。
 
