@@ -12,7 +12,7 @@ author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy, ksyx
 >
 > 该项目已不再明显活跃，从 2005 年 2 月 22 日开始至 2011 年 6 月，Dev-C++ 的官方网站一直没有再发出新消息或是释放新版本，说明 Dev-C++ 的开发已经进入了迟滞状态。2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释："因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发。"
 
-以上摘自 Wikipedia[^1]。
+以上摘自 Wikipedia [^1]。
 
 不过，你在使用的版本是不是我说的这个版本呢？
 
@@ -20,7 +20,7 @@ author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy, ksyx
 
 > Orwell Dev-C++ 是 Dev-C++ 的一个衍生版本。Orwell 鉴于 Dev-C++ 的长时间（从 2005 年 2 月 22 日起）不再更新，对 Dev-C++ 源代码进行错误修正，并更新编译器后发布的版本。
 
-以上摘自 Wikipedia[^2]。
+以上摘自 Wikipedia [^2]。
 
 自 2011 年的 Dev-C++ 4.9.9.3 版本之后，你使用的版本均为 Orewell Dev-C++。
 
