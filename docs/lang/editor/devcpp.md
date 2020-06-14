@@ -10,9 +10,9 @@ author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy, ksyx
 >
 > 此外，Dev-C++ 较旧的版本无法在 win8 环境下编译。
 >
-> 该项目已不再明显活跃，从 2005 年 2 月 22 日开始至 2011 年 6 月，Dev-C++ 的官方网站一直没有再发出新消息或是释放新版本，说明 Dev-C++ 的开发已经进入了迟滞状态。2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释："因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发。" 
+> 该项目已不再明显活跃，从 2005 年 2 月 22 日开始至 2011 年 6 月，Dev-C++ 的官方网站一直没有再发出新消息或是释放新版本，说明 Dev-C++ 的开发已经进入了迟滞状态。2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释："因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发。"
 
-以上摘自 Wikipedia [^1] 。
+以上摘自 Wikipedia[^1]。
 
 不过，你在使用的版本是不是我说的这个版本呢？
 
@@ -20,7 +20,7 @@ author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy, ksyx
 
 > Orwell Dev-C++ 是 Dev-C++ 的一个衍生版本。Orwell 鉴于 Dev-C++ 的长时间（从 2005 年 2 月 22 日起）不再更新，对 Dev-C++ 源代码进行错误修正，并更新编译器后发布的版本。
 
-以上摘自 Wikipedia [^2] 。
+以上摘自 Wikipedia[^2]。
 
 自 2011 年的 Dev-C++ 4.9.9.3 版本之后，你使用的版本均为 Orewell Dev-C++。
 
@@ -34,54 +34,54 @@ author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy, ksyx
 
 #### 文件部分
 
--   `Ctrl + N` : 创建源代码
--   `Ctrl + O` : 打开文件
--   `Ctrl + W` : 关闭文件
--   `Ctrl + P` : 打印文件
+-    `Ctrl + N` : 创建源代码
+-    `Ctrl + O` : 打开文件
+-    `Ctrl + W` : 关闭文件
+-    `Ctrl + P` : 打印文件
 
 #### 格式部分
 
--   `Ctrl + /` ：注释和取消注释
--   `Tab` : 缩进
--   `Shift + Tab` : 取消缩进
+-    `Ctrl + /` ：注释和取消注释
+-    `Tab` : 缩进
+-    `Shift + Tab` : 取消缩进
 
 #### 行操作
 
--   `Ctrl + E` : 复制行
--   `Ctrl + D` : 删除行
--   `Ctrl + Shift + Up` : 向上移动
--   `Ctrl + Shift + Down` : 向下移动
+-    `Ctrl + E` : 复制行
+-    `Ctrl + D` : 删除行
+-    `Ctrl + Shift + Up` : 向上移动
+-    `Ctrl + Shift + Down` : 向下移动
 
 #### 跳转部分
 
--   `Ctrl + F` : 搜索
--   `Ctrl + R` : 替换
--   `F3` : 搜索下一个
--   `Shift + F3` : 搜索上一个
--   `Ctrl + G` : 到指定行号
--   `Shift + Ctrl + G` : 到指定函数
--   `Ctrl +[1 ~ 9]` : 设置书签
--   `Alt +[1 ~ 9]` : 跳转书签
+-    `Ctrl + F` : 搜索
+-    `Ctrl + R` : 替换
+-    `F3` : 搜索下一个
+-    `Shift + F3` : 搜索上一个
+-    `Ctrl + G` : 到指定行号
+-    `Shift + Ctrl + G` : 到指定函数
+-    `Ctrl +[1 ~ 9]` : 设置书签
+-    `Alt +[1 ~ 9]` : 跳转书签
 
 #### 显示部分
 
--   `Ctrl + 滚轮` ：字号放大或缩小
--   `Ctrl + F11` : 全屏或恢复
+-    `Ctrl + 滚轮` ：字号放大或缩小
+-    `Ctrl + F11` : 全屏或恢复
 
 #### 运行部分
 
--   `F9` : 只编译
--   `F10` : 只运行
--   `F11` : 编译并运行
--   `F12` : 全部重新编译
+-    `F9` : 只编译
+-    `F10` : 只运行
+-    `F11` : 编译并运行
+-    `F12` : 全部重新编译
 
 #### 调试部分
 
--   `F2` : 转到断点
--   `F4` : 设置断点或取消
--   `F5` : 调试运行
--   `F6` : 停止
--   `F7` : 逐步调试
+-    `F2` : 转到断点
+-    `F4` : 设置断点或取消
+-    `F5` : 调试运行
+-    `F6` : 停止
+-    `F7` : 逐步调试
 
 ### 调试流程
 
@@ -97,7 +97,7 @@ author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy, ksyx
 
 ### 增加编译选项
 
-点击工具 -\> 编译选项，然后选择 "代码生成/优化" 选项卡，下面介绍我自己常用的几个编译选项。
+点击工具 ->编译选项，然后选择 "代码生成/优化" 选项卡，下面介绍我自己常用的几个编译选项。
 
 #### 开启优化
 
@@ -133,7 +133,7 @@ author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy, ksyx
 
 ### 编译小 trick
 
-点击工具 -\> 编译选项，然后选择 "编译器" 选项卡，接下来介绍几个常用 trick。
+点击工具 ->编译选项，然后选择 "编译器" 选项卡，接下来介绍几个常用 trick。
 
 #### 开大栈
 
@@ -159,8 +159,8 @@ author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy, ksyx
 
 ```cpp
 #ifdef LOCAL
-freopen("test.in","r",stdin);
-freopen("test.out","w",stdout);
+freopen("test.in", "r", stdin);
+freopen("test.out", "w", stdout);
 #endif
 ```
 
@@ -168,24 +168,24 @@ freopen("test.out","w",stdout);
 
 #### 代码格式化
 
-点击 Astyle-\> 格式化当前文件 或 按 Ctrl+Shift+A 进行代码格式化。
+点击 Astyle->格式化当前文件 或 按 Ctrl+Shift+A 进行代码格式化。
 
 ![](./images/Dev-C++-17.png)
 
 #### 字体
 
-点击工具 -\> 编辑器选项，然后选择 "显示" 选项卡。
+点击工具 ->编辑器选项，然后选择 "显示" 选项卡。
 
 ![](./images/Dev-C++-9.png)
 
 #### 主题
 
-点击工具 -\> 编辑器选项，然后选择 "语法" 选项卡，可以使用预设主题，也可以自行调整。
+点击工具 ->编辑器选项，然后选择 "语法" 选项卡，可以使用预设主题，也可以自行调整。
 
 ![](./images/Dev-C++-10.png)
 
 ## 参考资料
 
-[^1]: [Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B)
+[^1]&#x3A; [Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B) 
 
-[^2]: [Orwell Dev-C++- 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B)
+[^2]&#x3A; [Orwell Dev-C++- 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B) 
