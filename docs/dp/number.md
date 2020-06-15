@@ -66,4 +66,3 @@ int solve(int x) {
 
  [CF628D Magic Numbers](http://codeforces.com/problemset/problem/628/D) 
 
- [CF401D Roman and Numbers](http://codeforces.com/problemset/problem/401/D) 
