@@ -99,5 +99,5 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ，QQ 群号码为 [ `58
 
 <div align="center">
 <a href="https://www.hulu.com/" target="_blank"><img height="40px" src="https://cdn.jsdelivr.net/npm/oicdn@0.0.1/hulu-black.png"></a>
-<a href="https://www.netlify.com/" target="_blank" style="margin-left: 60px;"><img height="40px" src="https://cdn.jsdelivr.net/npm/oicdn@0.0.1/netlify.png"></a>
+<a href="https://www.netlify.com/" target="_blank" style="margin-left: 60px;"><img height="40px" src="https://cdn.jsdelivr.net/npm/oicdn@0.0.2/netlify.png"></a>
 </div>
