@@ -65,4 +65,3 @@ int solve(int x) {
  [CF55D Beautiful numbers](http://codeforces.com/problemset/problem/55/D) 
 
  [CF628D Magic Numbers](http://codeforces.com/problemset/problem/628/D) 
-
