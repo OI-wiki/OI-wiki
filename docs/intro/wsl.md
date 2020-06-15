@@ -310,4 +310,4 @@ xfce4-session
 
 -    [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://dowww.spencerwoo.com) 
 
--    [Github 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL) 
+-    [GitHub 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL) 
