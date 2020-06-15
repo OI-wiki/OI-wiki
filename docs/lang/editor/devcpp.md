@@ -10,7 +10,7 @@ author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy, ksyx
 >
 > 此外，Dev-C++ 较旧的版本无法在 win8 环境下编译。
 >
-> 该项目已不再明显活跃，从 2005 年 2 月 22 日开始至 2011 年 6 月，Dev-C++ 的官方网站一直没有再发出新消息或是释放新版本，说明 Dev-C++ 的开发已经进入了迟滞状态。2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释："因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发。"
+> 该项目已不再明显活跃，从 2005 年 2 月 22 日开始至 2011 年 6 月，Dev-C++ 的官方网站一直没有再发出新消息或是释放新版本，说明 Dev-C++ 的开发已经进入了迟滞状态。2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释：“因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发。”
 
 以上摘自 Wikipedia[^1]。
 
@@ -186,6 +186,6 @@ freopen("test.out", "w", stdout);
 
 ## 参考资料
 
-[^1]&#x3A; [Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B) 
+[^1]: [Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B) 
 
-[^2]&#x3A; [Orwell Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B) 
+[^2]: [Orwell Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B) 
