@@ -26,7 +26,7 @@
 
 （有木有很简单？）
 
-如果还是不放心，可以参考 [这篇文章](https://juejin.im/entry/56e638591ea49300550885cc) ，或者试试 [Github 的官方教程](https://lab.github.com/) 。
+如果还是不放心，可以参考 [这篇文章](https://juejin.im/entry/56e638591ea49300550885cc) ，或者试试 [GitHub 的官方教程](https://lab.github.com/) 。
 
 ### 我之前用过 GitHub
 
