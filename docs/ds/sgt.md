@@ -106,15 +106,14 @@ void Del(int& k, int p) {
   else {
     if (w[k] == p) {
       if (wn[k]) wn[k]--;
-    } else {
-      if (w[k] < p)
-        Del(rc[k], p);
-      else
-        Del(lc[k], p);
-      Calc(k);
     }
+    else if (w[k] < p)
+      Del(rc[k], p);
+    else
+      Del(lc[k], p);
+    Calc(k);
+    if (CanRbu(k)) Rbu(k);
   }
-  if (CanRbu(k)) Rbu(k);
 }
 ```
 
