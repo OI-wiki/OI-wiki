@@ -15,7 +15,7 @@ int cnt,                 // 树中元素总数
 
 void Calc(int k) {
   // 重新计算以 k 为根的子树大小
-  s[k] = s[lc[k]] + s[rc[k]] + wn[k];
+  s[k] = s[lc[k]] + s[rc[k]] + 1;
   sd[k] = sd[lc[k]] + sd[rc[k]] + wn[k];
 }
 ```
@@ -104,7 +104,6 @@ void Del(int& k, int p) {
   if (!k)
     return;
   else {
-    sd[k]--;
     if (w[k] == p) {
       if (wn[k]) wn[k]--;
     } else {
