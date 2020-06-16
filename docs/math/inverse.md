@@ -28,7 +28,7 @@
 
 所以 $ax \equiv a^{b-1} \pmod b$ （根据 [费马小定理](./fermat.md) ）；
 
-所以 $x \equiv a^{b-2} \pmod b$。
+所以 $x \equiv a^{b-2} \pmod b$ 。
 
 然后我们就可以用快速幂来求了。
 
@@ -71,7 +71,7 @@
     for (int i = 2; i <= n; ++i) inv[i] = (long long)(p - p / i) * inv[p % i] % p;
     ```
 
-使用$p-\dfrac{p}{i}$来防止出现负数。
+使用 $p-\dfrac{p}{i}$ 来防止出现负数。
 
 另外，根据线性求逆元方法的式子： $i^{-1} \equiv -kj^{-1} \pmod p$ 
 

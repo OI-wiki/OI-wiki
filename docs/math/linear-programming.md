@@ -79,11 +79,11 @@
 
 满足
 
- $x+2y\leq8 $ 
+ $x+2y\leq8$ 
 
- $x\leq4 $ 
+ $x\leq4$ 
 
- $y\geq3 $ 
+ $y\geq3$ 
 
  $x,y\in N$ 
 
