@@ -196,7 +196,7 @@ $$
 \left(F(n)=\frac{1}{2}n\left(n+1\right)\right)\\
 $$
 
-对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2​$ 做数论分块， $d^2\varphi(d)​$ 的前缀和用杜教筛处理：
+对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2$ 做数论分块， $d^2\varphi(d)$ 的前缀和用杜教筛处理：
 
 $$
 \begin{split}
