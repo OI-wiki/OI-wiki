@@ -106,8 +106,7 @@ void Del(int& k, int p) {
   else {
     if (w[k] == p) {
       if (wn[k]) wn[k]--;
-    }
-    else if (w[k] < p)
+    } else if (w[k] < p)
       Del(rc[k], p);
     else
       Del(lc[k], p);
