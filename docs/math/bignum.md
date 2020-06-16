@@ -663,7 +663,7 @@ $$
     // DLEN 记录压几位
     struct Big {
       int a[MAXSIZE], len;
-      bool flag;  // 标记符号'-'
+      bool flag;  //标记符号'-'
       Big() {
         len = 1;
         memset(a, 0, sizeof a);
@@ -672,12 +672,12 @@ $$
       Big(const int);
       Big(const char*);
       Big(const Big&);
-      Big& operator=(const Big&);  // 注意这里operator有&，因为赋值有修改……
-      // 由于OI中要求效率
-      // 此处不使用泛型函数
-      // 故不重载
-      // istream& operator>>(istream&,  BigNum&);   // 重载输入运算符
-      // ostream& operator<<(ostream&,  BigNum&);   // 重载输出运算符
+      Big& operator=(const Big&);  //注意这里operator有&，因为赋值有修改……
+      //由于OI中要求效率
+      //此处不使用泛型函数
+      //故不重载
+      // istream& operator>>(istream&,  BigNum&);   //重载输入运算符
+      // ostream& operator<<(ostream&,  BigNum&);   //重载输出运算符
       Big operator+(const Big&) const;
       Big operator-(const Big&) const;
       Big operator*(const Big&)const;
@@ -825,6 +825,7 @@ $$
     }
     Big Big::operator^(const int& n) const {
       Big t(n), res(1);
+      // TODO::快速幂这样写好丑= =//DONE:)
       int y = n;
       while (y) {
         if (y & 1) res = res * t;

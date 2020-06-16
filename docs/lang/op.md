@@ -98,11 +98,11 @@ op4 = --i;  // op4 = 99，先 i = i - 1，然后赋值 op4
 |  `!`   | 逻辑非 |
 
 ```cpp
-Result = op1 && op2;  // 当 op1 与 op2 都为真时则 Result 为真
+Result = op1 && op2;  //当 op1 与 op2 都为真时则 Result 为真
 
-Result = op1 || op2;  // 当 op1 或 op2 其中一个为真时则 Result 为真
+Result = op1 || op2;  //当 op1 或 op2 其中一个为真时则 Result 为真
 
-Result = !op1;  // 当 op1 为假时则 Result 为真
+Result = !op1;  //当 op1 为假时则 Result 为真
 ```
 
 ## 逗号运算符
@@ -110,7 +110,7 @@ Result = !op1;  // 当 op1 为假时则 Result 为真
 逗号运算符可将多个表达式分隔开来，被分隔开的表达式按从左至右的顺序依次计算，整个表达式的值是最后的表达式的值。逗号表达式的优先级在所有运算符中的优先级是 **最低** 的。
 
 ```cpp
-exp1, exp2, exp3;  // 最后的值为 exp3 的运算结果。
+exp1, exp2, exp3;  //最后的值为 exp3 的运算结果。
 
 Result = 1 + 2, 3 + 4, 5 + 6;
 //得到 Result 的值为 3 而不是 11，因为赋值运算符 "="

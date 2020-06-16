@@ -119,7 +119,7 @@ nav:
       - 排序应用: basic/use-of-sort.md
     - 前缀和 & 差分: basic/prefix-sum.md
     - 二分: basic/binary.md
-    - 倍增: basic/binary-lifting.md
+    - 倍增: basic/binary-acc.md
     - 构造: basic/construction.md
     - 交互题: basic/interaction.md
   - 搜索:
@@ -213,10 +213,6 @@ nav:
       - 多项式三角函数: math/poly/tri-func.md
       - 多项式反三角函数: math/poly/inv-tri-func.md
       - 常系数齐次线性递推: math/linear-recurrence.md
-    - 生成函数:
-      - 生成函数简介: math/gen-func/intro.md
-      - 普通生成函数: math/gen-func/ogf.md
-      - 指数生成函数: math/gen-func/egf.md
     - 线性代数:
       - 向量: math/vector.md
       - 矩阵: math/matrix.md
@@ -302,7 +298,6 @@ nav:
     - BFS（图论）: graph/bfs.md
     - 树上问题:
       - 树基础: graph/tree-basic.md
-      - 树的直径: graph/tree-diameter.md      
       - 最近公共祖先: graph/lca.md
       - 树的重心: graph/tree-centroid.md
       - 树链剖分: graph/hld.md
@@ -378,7 +373,7 @@ nav:
       - 随机函数: misc/random.md
       - 爬山算法: misc/hill-climbing.md
       - 模拟退火: misc/simulated-annealing.md
-    - 悬线法: misc/hoverline.md
+    - 悬线法: misc/largest-matrix.md
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
     - 约瑟夫问题: misc/josephus.md
@@ -408,7 +403,7 @@ theme:
     accent: 'red'
   include_search_page: false
   search_index_only: true
-  favicon: 'https://cdn.jsdelivr.net/npm/oicdn@0.0.1/favicon.ico'
+  favicon: 'favicon.ico'
 
   logo:
     icon: 'school'
@@ -437,7 +432,7 @@ extra:
 
 extra_javascript:
   - '_static/js/extra.js?v=16'
-  - 'https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
+  - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
 
 
 extra_css:

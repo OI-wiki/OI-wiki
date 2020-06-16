@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
 
 有人说写 generator 不需要用 Testlib，它在这没什么用。实际上这是个不正确的想法。一个好的 generator 应该满足这一点： **在任何环境下对于相同输入它给出相同输出** 。写 generator 就避免不了生成随机值，平时我们用的 `rand()` 或 C++11 的 `mt19937/uniform_int_distribution` ，当操作系统不同、使用不同编译器编译、不同时间运行等，它们的输出都可能不同（对于非常常用的 `srand(time(0))` ，这是显然的），而这就会给生成数据带来不确定性。
 
-需要注意的是，一旦使用了 Testlib，就不能再使用标准库中的 `srand()` ， `rand()` 等随机数函数，否则在编译时会报错。因此， **请确保所有与随机相关的函数均使用 Testlib 而非标准库提供的。** 
+ **请确保所有与随机相关的函数均使用 Testlib 而非标准库提供的。** 
 
 而 Testlib 中的随机值生成函数则保证了相同调用会输出相同值，与 generator 本身或平台均无关。另外。它给生成各种要求的随机值提供了很大便利，如 `rnd.next("[a-z]{1,10}")` 会生成一个长度在 $[1,10]$ 范围内的串，每个字符为 `a` 到 `z` ，很方便吧！
 
@@ -44,12 +44,6 @@ int main(int argc, char* argv[]) {
 |  `rnd.next("one | two | three")`  | 等概率从 `one` , `two` , `three` 三个串中返回一个                                                                                                                                                                                                                   |
 |  `rnd.wnext(4, t)`                |  `wnext()` 是一个生成不等分布（具有偏移期望）的函数， $t$ 表示调用 `next()` 的次数，并取生成值的最大值。例如 `rnd.wnext(3, 1)` 等同于 `max({rnd.next(3), rnd.next(3)})` ； `rnd.wnext(4, 2)` 等同于 `max({rnd.next(4), rnd.next(4), rnd.next(4)})` 。如果 $t<0$ ，则为调用 $-t$ 次，取最小值；如果 $t=0$ ，等同于 `next()` 。 |
 |  `rnd.any(container)`             | 等概率返回一个具有随机访问迭代器（如 `std::vector` 和 `std::string` ）的容器内的某一元素的引用                                                                                                                                                                                          |
-
-附：关于 `rnd.wnext(i,t)` 的形式化定义：
-
-$$
-\operatorname{wnext}(i,t)=\begin{cases}\operatorname{next}(i) & t=0 \\\max(\operatorname{next}(i),\operatorname{wnext}(i,t-1)) & t>0 \\\min(\operatorname{next}(i),\operatorname{wnext}(i,t+1)) & t<0\end{cases}
-$$
 
 另外，不要使用 `std::random_shuffle()` ，请使用 Testlib 中的 `shuffle()` ，它同样接受一对迭代器。它使用 `rnd` 来打乱序列，即满足如上“好的 generator”的要求。
 

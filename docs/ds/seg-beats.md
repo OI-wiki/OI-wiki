@@ -212,8 +212,8 @@ void push_min(int u, int tg) {
   // 注意比较 $\max$ 标记
   if (t[u].mx <= tg) return;
   t[u].sum += (tg * 1ll - t[u].mx) * t[u].cmx;
-  if (t[u].mn2 == t[u].mx) t[u].mn2 = tg;  // !!!
-  if (t[u].mn == t[u].mx) t[u].mn = tg;    // !!!!!
+  if (t[u].mn2 == t[u].mx) t[u].mn2 = tg;  //!!!
+  if (t[u].mn == t[u].mx) t[u].mn = tg;    //!!!!!
   if (t[u].tmx > tg) t[u].tmx = tg;        // 更新取 $\max$ 标记
   t[u].mx = tg, t[u].tmn = tg;
 }
@@ -247,7 +247,7 @@ void build(int u = 1, int l = 1, int r = n) {
 }
 void add(int L, int R, int v, int u = 1, int l = 1, int r = n) {
   if (R < l || r < L) return;
-  if (L <= l && r <= R) return push_add(u, l, r, v);  // !!! 忘 return
+  if (L <= l && r <= R) return push_add(u, l, r, v);  //!!! 忘 return
   int mid = (l + r) >> 1;
   pushdown(u, l, r);
   add(L, R, v, u << 1, l, mid), add(L, R, v, u << 1 | 1, mid + 1, r);
