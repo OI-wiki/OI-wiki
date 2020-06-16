@@ -24,11 +24,11 @@
 
 ```cpp
 void print(int o) {
-  // 遍历以 o 为根节点的二叉搜索树
-  if (!o) return;  // 遇到空树，返回
-  print(lc[o]);    // 递归遍历左子树
-  for (int i = 1; i <= cnt[o]; i++) printf("%d\n", val[o]);  // 输出根节点信息
-  print(rc[o]);  // 递归遍历右子树
+  //遍历以 o 为根节点的二叉搜索树
+  if (!o) return;  //遇到空树，返回
+  print(lc[o]);    //递归遍历左子树
+  for (int i = 1; i <= cnt[o]; i++) printf("%d\n", val[o]);  //输出根节点信息
+  print(rc[o]);  //递归遍历右子树
 }
 ```
 
@@ -41,11 +41,11 @@ findmin 和 findmax 函数分别返回最小值和最大值所对应的结点编
 ```cpp
 int findmin(int o) {
   if (!lc[o]) return o;
-  return findmin(lc[o]);  // 一直向左儿子跳
+  return findmin(lc[o]);  //一直向左儿子跳
 }
 int findmax(int o) {
   if (!rc[o]) return o;
-  return findmax(rc[o]);  // 一直向右儿子跳
+  return findmax(rc[o]);  //一直向右儿子跳
 }
 ```
 

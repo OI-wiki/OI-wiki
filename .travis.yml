@@ -10,7 +10,7 @@ services:
 before_install:
   - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
   - source ~/.nvm/nvm.sh
-  - nvm install 12
+  - nvm install 10.9
 install:
   - pip install -r requirements.txt
   - npm install .
@@ -18,12 +18,9 @@ script:
   - set -e
   - chmod +x ./scripts/build.sh && ./scripts/build.sh
   - mkdocs build -v
-  - node --max_old_space_size=3072 ./scripts/render_math.js
+  - find ./site -type f -name '*.html' -exec node --max_old_space_size=512 ./scripts/render_math.js {} \;
   - npx gulp minify
   - python scripts/gen_redirect.py
-  - touch ./site/.nojekyll # Stop GitHub Pages from ignoring files with underscores prefixed
-  - cp -r site/ site-cdn-pages
-  - node ./scripts/replace_cdn.js
   - set +e
 deploy:
   provider: pages
@@ -34,8 +31,12 @@ deploy:
     branch: master
 after_deploy:
   - chmod +x scripts/BaiduPusher.sh && ./scripts/BaiduPusher.sh
-  - cd site-cdn-pages && git init
-  - git checkout -b cdn-pages
+  - cd /tmp
+  - git clone https://github.com/OI-wiki/OI-wiki.git
+  - cd OI-wiki
+  - git fetch origin gh-pages
+  - git checkout -b cdn-pages origin/gh-pages
+  - find ./ -type f -name "*.html" -exec sed -i -E 's/([^"]*)(assets[^"]*)/https:\/\/cdn-for-oi-wiki.billchn.com\/\2/g' {} +
   - git add .
   - git config user.name "Travis Builder"
   - git config user.email "hi@oi-wiki.org"

@@ -2,7 +2,7 @@ author: accelsao
 
 # 一般图最大匹配
 
-## 带花树算法（Blossom Algorithm）
+## 带花树算法（Blossom Algorithm)
 
 开花算法（Blossom Algorithm，也被称做带花树）可以解决一般图最大匹配问题（maximum cardinality matchings)。此算法由 Jack Edmonds 在 1961 年提出。
 经过一些修改后也可以解决一般图最大权匹配问题。
@@ -32,7 +32,7 @@ case 2: $u$ 已拜访过，遇到标记 "o" 代表需要 **缩花** ，否则代
 
 ![general-matching-3](./images/general-matching-3.png)
 
-设非树边（形成环的那条边）为 $(u,v)$ ，定义花根 $h=LCA(u,v)$ 。
+设非树边（形成环的那条边）为（u, v)，定义花根 $h=LCA(u,v)$ 。
 奇环是交替的，有且仅有 $h$ 的两条邻边类型相同，都是非匹配边。
 那么进入 $h$ 的树边肯定是匹配边，环上除了 $h$ 以外其他点往环外的边都是非匹配边。
 
@@ -103,14 +103,14 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     aux_time++;
     while (true) {
       if (v != -1) {
-        if (aux[v] == aux_time) {  // 找到拜访过的点 也就是LCA
+        if (aux[v] == aux_time) {  //找到拜访过的点 也就是LCA
           return v;
         }
         aux[v] = aux_time;
         if (match[v] == -1) {
           v = -1;
         } else {
-          v = orig[parent[match[v]]];  // 以匹配点的父节点继续寻找
+          v = orig[parent[match[v]]];  //以匹配点的父节点继续寻找
         }
       }
       swap(v, u);
@@ -155,10 +155,10 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       for (int id : g.g[v]) {
         auto &e = g.edges[id];
         int u = e.from ^ e.to ^ v;
-        if (label[u] == -1) {  // 找到未拜访点
+        if (label[u] == -1) {  //找到未拜访点
           label[u] = 1;        // 标记 "i"
           parent[u] = v;
-          if (match[u] == -1) {  // 找到未匹配点
+          if (match[u] == -1) {  //找到未匹配点
             augment(u);          // 寻找增广路径
             return true;
           }
@@ -166,8 +166,9 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
           label[match[u]] = 0;
           q.push(match[u]);
           continue;
-        } else if (label[u] == 0 && orig[v] != orig[u]) {
-          // 找到已拜访点 且标记同为"o" 代表找到"花"
+        } else if (label[u] == 0 &&
+                   orig[v] !=
+                       orig[u]) {  //找到已拜访点 且标记同为"o" 代表找到"花"
           int a = lca(orig[v], orig[u]);
           // 找LCA 然后缩花
           blossom(u, v, a);
@@ -215,18 +216,19 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
 ## 习题
 
 ??? note "[UOJ #79. 一般图最大匹配](https://uoj.ac/problem/79) "
+
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
-    
+
     // graph
     template <typename T>
     class graph {
      public:
       struct edge {
-        int from;
-        int to;
-        T cost;
+    	int from;
+    	int to;
+    	T cost;
       };
       vector<edge> edges;
       vector<vector<int> > g;
@@ -234,7 +236,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       graph(int _n) : n(_n) { g.resize(n); }
       virtual int add(int from, int to, T cost) = 0;
     };
-    
+
     // undirectedgraph
     template <typename T>
     class undirectedgraph : public graph<T> {
@@ -242,18 +244,18 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       using graph<T>::edges;
       using graph<T>::g;
       using graph<T>::n;
-    
+
       undirectedgraph(int _n) : graph<T>(_n) {}
       int add(int from, int to, T cost = 1) {
-        assert(0 <= from && from < n && 0 <= to && to < n);
-        int id = (int)edges.size();
-        g[from].push_back(id);
-        g[to].push_back(id);
-        edges.push_back({from, to, cost});
-        return id;
+    	assert(0 <= from && from < n && 0 <= to && to < n);
+    	int id = (int)edges.size();
+    	g[from].push_back(id);
+    	g[to].push_back(id);
+    	edges.push_back({from, to, cost});
+    	return id;
       }
     };
-    
+
     // blossom / find_max_unweighted_matching
     template <typename T>
     vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
@@ -265,143 +267,144 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       vector<int> parent(g.n, -1);  // 父节点
       queue<int> q;
       int aux_time = -1;
-    
+
       auto lca = [&](int v, int u) {
-        aux_time++;
-        while (true) {
-          if (v != -1) {
-            if (aux[v] == aux_time) {  // 找到拜访过的点 也就是LCA
-              return v;
-            }
-            aux[v] = aux_time;
-            if (match[v] == -1) {
-              v = -1;
-            } else {
-              v = orig[parent[match[v]]];  // 以匹配点的父节点继续寻找
-            }
-          }
-          swap(v, u);
-        }
+    	aux_time++;
+    	while (true) {
+    	  if (v != -1) {
+    		if (aux[v] == aux_time) {  //找到拜访过的点 也就是LCA
+    		  return v;
+    		}
+    		aux[v] = aux_time;
+    		if (match[v] == -1) {
+    		  v = -1;
+    		} else {
+    		  v = orig[parent[match[v]]];  //以匹配点的父节点继续寻找
+    		}
+    	  }
+    	  swap(v, u);
+    	}
       };  // lca
-    
+
       auto blossom = [&](int v, int u, int a) {
-        while (orig[v] != a) {
-          parent[v] = u;
-          u = match[v];
-          if (label[u] == 1) {  // 初始点设为"o" 找增广路
-            label[u] = 0;
-            q.push(u);
-          }
-          orig[v] = orig[u] = a;  // 缩花
-          v = parent[u];
-        }
+    	while (orig[v] != a) {
+    	  parent[v] = u;
+    	  u = match[v];
+    	  if (label[u] == 1) {  // 初始点设为"o" 找增广路
+    		label[u] = 0;
+    		q.push(u);
+    	  }
+    	  orig[v] = orig[u] = a;  // 缩花
+    	  v = parent[u];
+    	}
       };  // blossom
-    
+
       auto augment = [&](int v) {
-        while (v != -1) {
-          int pv = parent[v];
-          int next_v = match[pv];
-          match[v] = pv;
-          match[pv] = v;
-          v = next_v;
-        }
+    	while (v != -1) {
+    	  int pv = parent[v];
+    	  int next_v = match[pv];
+    	  match[v] = pv;
+    	  match[pv] = v;
+    	  v = next_v;
+    	}
       };  // augment
-    
+
       auto bfs = [&](int root) {
-        fill(label.begin(), label.end(), -1);
-        iota(orig.begin(), orig.end(), 0);
-        while (!q.empty()) {
-          q.pop();
-        }
-        q.push(root);
-        // 初始点设为 "o", 这里以"0"代替"o", "1"代替"i"
-        label[root] = 0;
-        while (!q.empty()) {
-          int v = q.front();
-          q.pop();
-          for (int id : g.g[v]) {
-            auto &e = g.edges[id];
-            int u = e.from ^ e.to ^ v;
-            if (label[u] == -1) {  // 找到未拜访点
-              label[u] = 1;        // 标记 "i"
-              parent[u] = v;
-              if (match[u] == -1) {  // 找到未匹配点
-                augment(u);          // 寻找增广路径
-                return true;
-              }
-              // 找到已匹配点 将与她匹配的点丢入queue 延伸交错树
-              label[match[u]] = 0;
-              q.push(match[u]);
-              continue;
-            } else if (label[u] == 0 &&
-                       orig[v] !=
-                           orig[u]) {  // 找到已拜访点 且标记同为"o" 代表找到"花"
-              int a = lca(orig[v], orig[u]);
-              // 找LCA 然后缩花
-              blossom(u, v, a);
-              blossom(v, u, a);
-            }
-          }
-        }
-        return false;
+    	fill(label.begin(), label.end(), -1);
+    	iota(orig.begin(), orig.end(), 0);
+    	while (!q.empty()) {
+    	  q.pop();
+    	}
+    	q.push(root);
+    	// 初始点设为 "o", 这里以"0"代替"o", "1"代替"i"
+    	label[root] = 0;
+    	while (!q.empty()) {
+    	  int v = q.front();
+    	  q.pop();
+    	  for (int id : g.g[v]) {
+    		auto &e = g.edges[id];
+    		int u = e.from ^ e.to ^ v;
+    		if (label[u] == -1) {  //找到未拜访点
+    		  label[u] = 1;        // 标记 "i"
+    		  parent[u] = v;
+    		  if (match[u] == -1) {  //找到未匹配点
+    			augment(u);          // 寻找增广路径
+    			return true;
+    		  }
+    		  // 找到已匹配点 将与她匹配的点丢入queue 延伸交错树
+    		  label[match[u]] = 0;
+    		  q.push(match[u]);
+    		  continue;
+    		} else if (label[u] == 0 &&
+    				   orig[v] !=
+    					   orig[u]) {  //找到已拜访点 且标记同为"o" 代表找到"花"
+    		  int a = lca(orig[v], orig[u]);
+    		  // 找LCA 然后缩花
+    		  blossom(u, v, a);
+    		  blossom(v, u, a);
+    		}
+    	  }
+    	}
+    	return false;
       };  // bfs
-    
+
       auto greedy = [&]() {
-        vector<int> order(g.n);
-        // 随机打乱 order
-        iota(order.begin(), order.end(), 0);
-        shuffle(order.begin(), order.end(), rng);
-    
-        // 将可以匹配的点匹配
-        for (int i : order) {
-          if (match[i] == -1) {
-            for (auto id : g.g[i]) {
-              auto &e = g.edges[id];
-              int to = e.from ^ e.to ^ i;
-              if (match[to] == -1) {
-                match[i] = to;
-                match[to] = i;
-                break;
-              }
-            }
-          }
-        }
+    	vector<int> order(g.n);
+    	// 随机打乱 order
+    	iota(order.begin(), order.end(), 0);
+    	shuffle(order.begin(), order.end(), rng);
+
+    	// 将可以匹配的点匹配
+    	for (int i : order) {
+    	  if (match[i] == -1) {
+    		for (auto id : g.g[i]) {
+    		  auto &e = g.edges[id];
+    		  int to = e.from ^ e.to ^ i;
+    		  if (match[to] == -1) {
+    			match[i] = to;
+    			match[to] = i;
+    			break;
+    		  }
+    		}
+    	  }
+    	}
       };  // greedy
-    
+
       // 一开始先随机匹配
       greedy();
       // 对未匹配点找增广路
       for (int i = 0; i < g.n; i++) {
-        if (match[i] == -1) {
-          bfs(i);
-        }
+    	if (match[i] == -1) {
+    	  bfs(i);
+    	}
       }
       return match;
     }
-    int main() {
+    int main(){
       ios::sync_with_stdio(0), cin.tie(0);
       int n, m;
       cin >> n >> m;
       undirectedgraph<int> g(n);
       int u, v;
-      for (int i = 0; i < m; i++) {
-        cin >> u >> v;
-        u--;
-        v--;
-        g.add(u, v, 1);
+      for(int i = 0; i < m; i++) {
+    	cin >> u >> v;
+    	u--;
+    	v--;
+    	g.add(u, v, 1);
       }
       auto blossom_match = find_max_unweighted_matching(g);
       vector<int> ans;
       int tot = 0;
-      for (int i = 0; i < blossom_match.size(); i++) {
-        ans.push_back(blossom_match[i]);
-        if (blossom_match[i] != -1) {
-          tot++;
-        }
+      for(int i = 0; i < blossom_match.size(); i++) {
+    	ans.push_back(blossom_match[i]);
+    	if(blossom_match[i] != -1) {
+    	  tot++;
+    	}
       }
       cout << (tot >> 1) << "\n";
-      for (auto x : ans) {
-        cout << x + 1 << " ";
+      for(auto x : ans) {
+    	cout << x + 1 << " ";
       }
     }
+
     ```

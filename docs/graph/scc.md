@@ -63,7 +63,7 @@ Tarjan 发明了很多算法结构。光 Tarjan 算法就有很多，比如求�
         for each (u,v) then do
             if v hasn't been search then
                 TARJAN_SEARCH(v) // 搜索
-                low[u]=min(low[u],low[v]) // 回溯
+                low[u]=min(low[u],low[v])// 回溯
             else if v has been in the stack then
                 low[u]=min(low[u],dfn[v])
 

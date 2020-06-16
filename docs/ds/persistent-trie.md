@@ -26,7 +26,7 @@ struct Trie {
   int cnt, rt[maxn], ch[maxn * 33][2], val[maxn * 33];
   void insert(int o, int lst, int v) {
     for (int i = 28; i >= 0; i--) {
-      val[o] = val[lst] + 1;  // 在原版本的基础上更新
+      val[o] = val[lst] + 1;  //在原版本的基础上更新
       if ((v & (1 << i)) == 0) {
         if (!ch[o][0]) ch[o][0] = ++cnt;
         ch[o][1] = ch[lst][1];
@@ -48,8 +48,7 @@ struct Trie {
       // printf("%d %d %d\n",o1,o2,val[o1]-val[o2]);
       int t = ((v & (1 << i)) ? 1 : 0);
       if (val[ch[o1][!t]] - val[ch[o2][!t]])
-        ret += (1 << i), o1 = ch[o1][!t],
-                         o2 = ch[o2][!t];  // 尽量向不同的地方跳
+        ret += (1 << i), o1 = ch[o1][!t], o2 = ch[o2][!t];  //尽量向不同的地方跳
       else
         o1 = ch[o1][t], o2 = ch[o2][t];
     }
@@ -75,7 +74,7 @@ int main() {
       l--;
       r--;
       if (l == r && l == 0)
-        printf("%d\n", s[n] ^ x);  // 记得处理 l=r=1 的情况
+        printf("%d\n", s[n] ^ x);  //记得处理 l=r=1 的情况
       else
         printf("%d\n", st.query(st.rt[r], st.rt[max(l - 1, 0)], x ^ s[n]));
     }

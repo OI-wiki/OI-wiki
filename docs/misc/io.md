@@ -194,8 +194,8 @@ inline void write(int x) {
 ```cpp
 template <typename T>
 inline T
-read() {  // 声明 template 类,要求提供输入的类型T,并以此类型定义内联函数 read()
-  T sum = 0, fl = 1;  // 将 sum,fl 和 ch 以输入的类型定义
+read() {  //声明 template 类,要求提供输入的类型T,并以此类型定义内联函数 read()
+  T sum = 0, fl = 1;  //将 sum,fl 和 ch 以输入的类型定义
   int ch = getchar();
   for (; !isdigit(ch); ch = getchar())
     if (ch == '-') fl = -1;
@@ -221,7 +221,7 @@ c = read<__int128>();
 若要开启文件读写时，请在所有读写之前加入 `freopen()` 。
 
 ```cpp
-// #define DEBUG 1  // 调试开关
+// #define DEBUG 1  //调试开关
 struct IO {
 #define MAXSIZE (1 << 20)
 #define isdigit(x) (x >= '0' && x <= '9')
@@ -233,7 +233,7 @@ struct IO {
   ~IO() { fwrite(pbuf, 1, pp - pbuf, stdout); }
 #endif
   inline char gc() {
-#if DEBUG  // 调试，可显示字符
+#if DEBUG  //调试，可显示字符
     return getchar();
 #endif
     if (p1 == p2) p2 = (p1 = buf) + fread(buf, 1, MAXSIZE, stdin);
@@ -268,7 +268,7 @@ struct IO {
       ;
   }
   inline void push(const char &c) {
-#if DEBUG  // 调试，可显示字符
+#if DEBUG  //调试，可显示字符
     putchar(c);
 #else
     if (pp - pbuf == MAXSIZE) fwrite(pbuf, 1, MAXSIZE, stdout), pp = pbuf;

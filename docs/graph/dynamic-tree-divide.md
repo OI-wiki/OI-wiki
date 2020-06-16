@@ -29,19 +29,19 @@ void calcsiz(int x, int f) {
   maxx[x] =
       max(maxx[x], sum - siz[x]);  // maxx[x] 表示以 x 为根时的最大子树大小
   if (maxx[x] < maxx[rt])
-    rt = x;  // 这里不能写 <= ，保证在第二次 calcsiz 时 rt 不改变
+    rt = x;  //这里不能写 <= ，保证在第二次 calcsiz 时 rt 不改变
 }
 void pre(int x) {
-  vis[x] = true;  // 表示在之后的过程中不考虑 x 这个点
+  vis[x] = true;  //表示在之后的过程中不考虑 x 这个点
   for (int j = h[x]; j; j = nxt[j])
     if (!vis[p[j]]) {
       sum = siz[p[j]];
       rt = 0;
       maxx[rt] = inf;
       calcsiz(p[j], -1);
-      calcsiz(rt, -1);  // 计算两次，第二次求出以 rt 为根时的各子树大小
+      calcsiz(rt, -1);  //计算两次，第二次求出以 rt 为根时的各子树大小
       fa[rt] = x;
-      pre(rt);  // 记录点分树上的父亲
+      pre(rt);  //记录点分树上的父亲
     }
 }
 int main() {

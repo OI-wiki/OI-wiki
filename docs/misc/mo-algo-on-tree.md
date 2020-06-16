@@ -249,8 +249,8 @@ void move(int x, int y) {
 对于求 LCA，我们可以用树剖，然后我们就可以把分块的步骤放到树剖的第一次 dfs 里面，时间戳也可以直接用第二次 dfs 的 dfs 序。
 
 ```cpp
-int bl[100002], bls = 0;  // 属于的块，块的数量
-unsigned step;            // 块大小
+int bl[100002], bls = 0;  //属于的块，块的数量
+unsigned step;            //块大小
 int fa[100002], dp[100002], hs[100002] = {0}, sz[100002] = {0};
 //父节点，深度，重儿子，大小
 stack<int> sta;
@@ -273,7 +273,7 @@ void dfs1(int x) {
 }
 // main
 if (!sta.empty()) {
-  bls++;  // 这一行可写可不写
+  bls++;  //这一行可写可不写
   while (!sta.empty()) bl[sta.top()] = bls, sta.pop();
 }
 ```
@@ -296,6 +296,7 @@ if (!sta.empty()) {
 ??? 参考代码
     ```cpp
     #include <bits/stdc++.h>
+    //#pragma GCC optimize(2)
     using namespace std;
     inline int gi() {
       register int x, c, op = 1;

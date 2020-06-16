@@ -313,7 +313,7 @@ void build() {
       } else if (judge(L[st[tp]], i)) {
         typ[++cnt] = 1;  // 合点一定是被这样建出来的
         L[cnt] = L[st[tp]], R[cnt] = i, M[cnt] = L[now];
-        // 这里M数组的作用是保证合点的儿子排列是单调的
+        //这里M数组的作用是保证合点的儿子排列是单调的
         add(cnt, st[tp--]), add(cnt, now);
         now = cnt;
       } else {
@@ -340,8 +340,8 @@ void query(int l, int r) {
   int z = lca(x, y);
   if (typ[z] & 1)
     l = L[go(x, dep[x] - dep[z] - 1)], r = R[go(y, dep[y] - dep[z] - 1)];
-  // 合点这里特判的原因是因为这个合点不一定是最小的包含l，r的连续段.
-  // 具体可以在上面的例图上试一下查询7,10
+  //合点这里特判的原因是因为这个合点不一定是最小的包含l，r的连续段.
+  //具体可以在上面的例图上试一下查询7,10
   else
     l = L[z], r = R[z];
   printf("%d %d\n", l, r);

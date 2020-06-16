@@ -44,18 +44,18 @@
 #define maxn 300
 using namespace std;
 
-int lazy[maxn << 3];  // 标记了这条线段出现的次数
+int lazy[maxn << 3];  //标记了这条线段出现的次数
 double s[maxn << 3];
 
 struct node1 {
   double l, r;
   double sum;
-} cl[maxn << 3];  // 线段树
+} cl[maxn << 3];  //线段树
 
 struct node2 {
   double x, y1, y2;
   int flag;
-} p[maxn << 3];  // 坐标
+} p[maxn << 3];  //坐标
 
 //定义sort比较
 bool cmp(node2 a, node2 b) { return a.x < b.x; }
@@ -116,9 +116,9 @@ int main() {
       s[i + 1] = y1;
       s[i + n + 1] = y2;
     }
-    sort(s + 1, s + (2 * n + 1));  // 离散化
-    sort(p, p + 2 * n, cmp);  // 把矩形的边的纵坐标从小到大排序
-    build(1, 1, 2 * n);       // 建树
+    sort(s + 1, s + (2 * n + 1));  //离散化
+    sort(p, p + 2 * n, cmp);  //把矩形的边的纵坐标从小到大排序
+    build(1, 1, 2 * n);       //建树
     memset(lazy, 0, sizeof(lazy));
     update(1, p[0].y1, p[0].y2, p[0].flag);
     for (int i = 1; i < 2 * n; i++) {

@@ -97,7 +97,8 @@ $$
     const int dn = 500;
     stack<int> ans;
     
-    void Hierholzer(int x) {  // 关键函数
+    void Hierholzer(int x)  // 关键函数
+    {
       for (int& i = cnt[x]; i < (int)beg[x].size();) {
         if (beg[x][i].exists) {
           edge e = beg[x][i];

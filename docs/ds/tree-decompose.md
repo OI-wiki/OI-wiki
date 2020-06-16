@@ -78,7 +78,8 @@ author: ouuan, Ir1d, TrisolarisHD, Xeonacid
       keyid[1] = tot;
       while (top) bl[sta[top--]] = tot;
     
-      for (i = 1; i <= tot; ++i) {  // 预处理
+      for (i = 1; i <= tot; ++i)  //预处理
+      {
         if (vis[key[i]]) continue;
         vis[key[i]] = true;
         temp.reset();
@@ -100,13 +101,14 @@ author: ouuan, Ir1d, TrisolarisHD, Xeonacid
     
           while (key[bl[x]] != key[bl[y]]) {
             if (dep[key[bl[x]]] > dep[key[bl[y]]]) {
-              if (x == u) {  // 若是第一次跳先暴力跳到关键点
+              if (x == u)  //若是第一次跳先暴力跳到关键点
+              {
                 while (x != key[bl[u]]) {
                   temp[c[x]] = 1;
                   x = fa[x];
                 }
               } else
-                x = p[x];  // 否则跳一整块
+                x = p[x];  //否则跳一整块
             } else {
               if (y == v) {
                 while (y != key[bl[v]]) {
