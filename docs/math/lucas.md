@@ -14,14 +14,13 @@ $$
 
 时间复杂度为 $O(f(p) + g(n)\log n)$ ，其中 $f(n)$ 为预处理组合数的复杂度， $g(n)$ 为单次求组合数的复杂度。
 
-### 代码实现
-
-```cpp
-long long Lucas(long long n, long long m, long long p) {
-  if (m == 0) return 1;
-  return (C(n % p, m % p, p) * Lucas(n / p, m / p, p)) % p;
-}
-```
+???+note "代码实现"
+    ```cpp
+    long long Lucas(long long n, long long m, long long p) {
+      if (m == 0) return 1;
+      return (C(n % p, m % p, p) * Lucas(n / p, m / p, p)) % p;
+    }
+    ```
 
 ### Lucas 定理的证明
 
@@ -93,53 +92,52 @@ $$
 
 前面一部分是以 $p^t$ 为周期的，也就是 $(1\cdot 2\cdot 4\cdot 5\cdot 7\cdot 8)\equiv (10\cdot 11\cdot 13\cdot 14\cdot 16\cdot 17)\ \pmod{3^2}$ ，所以只需要计算最后不满足一个周期的数是哪些就可以了（这个例子中就只要计算 $19$ ）。显然，不满足一个周期的数的个数不超过 $p^t$ 个。
 
-### 代码实现
-
-其中 `int inverse(int x)` 函数返回 $x$ 在模 $p$ 意义下的逆元。
-
-```cpp
-LL CRT(int n, LL* a, LL* m) {
-  LL M = 1, p = 0;
-  for (int i = 1; i <= n; i++) M = M * m[i];
-  for (int i = 1; i <= n; i++) {
-    LL w = M / m[i], x, y;
-    exgcd(w, m[i], x, y);
-    p = (p + a[i] * w * x % mod) % mod;
-  }
-  return (p % mod + mod) % mod;
-}
-LL calc(LL n, LL x, LL P) {
-  if (!n) return 1;
-  LL s = 1;
-  for (int i = 1; i <= P; i++)
-    if (i % x) s = s * i % P;
-  s = Pow(s, n / P, P);
-  for (int i = n / P * P + 1; i <= n; i++)
-    if (i % x) s = s * i % P;
-  return s * calc(n / x, x, P) % P;
-}
-LL multilucas(LL m, LL n, LL x, LL P) {
-  int cnt = 0;
-  for (int i = m; i; i /= x) cnt += i / x;
-  for (int i = n; i; i /= x) cnt -= i / x;
-  for (int i = m - n; i; i /= x) cnt -= i / x;
-  return Pow(x, cnt, P) % P * calc(m, x, P) % P * inverse(calc(n, x, P), P) %
-         P * inverse(calc(m - n, x, P), P) % P;
-}
-LL exlucas(LL m, LL n, LL P) {
-  int cnt = 0;
-  LL p[20], a[20];
-  for (LL i = 2; i * i <= P; i++) {
-    if (P % i == 0) {
-      p[++cnt] = 1;
-      while (P % i == 0) p[cnt] = p[cnt] * i, P /= i;
-      a[cnt] = multilucas(m, n, i, p[cnt]);
+???+note "代码实现"
+    其中 `int inverse(int x)` 函数返回 $x$ 在模 $p$ 意义下的逆元。
+    
+    ```cpp
+    LL CRT(int n, LL* a, LL* m) {
+      LL M = 1, p = 0;
+      for (int i = 1; i <= n; i++) M = M * m[i];
+      for (int i = 1; i <= n; i++) {
+        LL w = M / m[i], x, y;
+        exgcd(w, m[i], x, y);
+        p = (p + a[i] * w * x % mod) % mod;
+      }
+      return (p % mod + mod) % mod;
     }
-  }
-  if (P > 1) p[++cnt] = P, a[cnt] = multilucas(m, n, P, P);
-  return CRT(cnt, a, p);
-}
-```
+    LL calc(LL n, LL x, LL P) {
+      if (!n) return 1;
+      LL s = 1;
+      for (int i = 1; i <= P; i++)
+        if (i % x) s = s * i % P;
+      s = Pow(s, n / P, P);
+      for (int i = n / P * P + 1; i <= n; i++)
+        if (i % x) s = s * i % P;
+      return s * calc(n / x, x, P) % P;
+    }
+    LL multilucas(LL m, LL n, LL x, LL P) {
+      int cnt = 0;
+      for (int i = m; i; i /= x) cnt += i / x;
+      for (int i = n; i; i /= x) cnt -= i / x;
+      for (int i = m - n; i; i /= x) cnt -= i / x;
+      return Pow(x, cnt, P) % P * calc(m, x, P) % P * inverse(calc(n, x, P), P) %
+             P * inverse(calc(m - n, x, P), P) % P;
+    }
+    LL exlucas(LL m, LL n, LL P) {
+      int cnt = 0;
+      LL p[20], a[20];
+      for (LL i = 2; i * i <= P; i++) {
+        if (P % i == 0) {
+          p[++cnt] = 1;
+          while (P % i == 0) p[cnt] = p[cnt] * i, P /= i;
+          a[cnt] = multilucas(m, n, i, p[cnt]);
+        }
+      }
+      if (P > 1) p[++cnt] = P, a[cnt] = multilucas(m, n, P, P);
+      return CRT(cnt, a, p);
+    }
+    ```
 
 ## 习题
 
