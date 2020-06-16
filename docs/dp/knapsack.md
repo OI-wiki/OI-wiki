@@ -4,7 +4,7 @@ author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul
 
 在具体讲何为“背包 dp”前，先来看如下的例题：
 
-??? note "[「USACO07 DEC」Charm Bracelet](https://www.luogu.com.cn/problem/P2871)"
+???+note "[「USACO07 DEC」Charm Bracelet](https://www.luogu.com.cn/problem/P2871)"
     题意概要：有 $n$ 个物品和一个容量为 $W$ 的背包，每个物品有重量 $w_{i}$ 和价值 $v_{i}$ 两种属性，要求选若干物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量。
 
 在上述例题中，由于每个物体只有 $2$ 种可能的状态（取与不取），正如二进制中的 $0$ 和 $1$ ，这类问题便被称为“0-1 背包问题”。
