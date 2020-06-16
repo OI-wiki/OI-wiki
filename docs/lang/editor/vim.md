@@ -624,7 +624,7 @@ call plug#end()
 在两块之间来写需要安装的插件，格式如下：
 
 ```vim
-Plug '作者 Github 上的名字/Github 上的插件仓库名'
+Plug '作者 GitHub 上的名字/GitHub 上的插件仓库名'
 ```
 
 写完保存后进入 Vim，使用 `:PlugInstall` 即可自动开始安装。

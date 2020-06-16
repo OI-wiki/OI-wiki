@@ -144,7 +144,9 @@ Python 以其简洁易懂的语法而出名。它基本的语法结构可以非�
 1
 ```
 
-特别的，Python 封装了乘方（ `**` ）的算法，这也表明 Python 附有 **大整数支持** 。值得一提的是，Python 还通过内置的 `pow(a, b, mod)` 提供了 [快速幂](../math/quick-pow.md) 的高效实现。
+特别的，Python 封装了乘方（ `**` ）的算法，还通过内置的 `pow(a, b, mod)` 提供了 [快速幂](../math/quick-pow.md) 的高效实现。
+
+同时 Python 还提供大整数支持，但是浮点数与 C/C++ 一样存在误差。
 
 ```python3
 >>> 5 ** 2
@@ -271,6 +273,126 @@ array([[0, 0, 1],
        [0, 0, 0]])
 >>> a1.sort(axis=1) # 沿行方向对数组进行原地排序
 ```
+
+## 类型检查和提示
+
+无论是打比赛还是做项目，使用类型提示可以让你更容易地推断代码、发现细微的错误并维护干净的体系结构。Python 最新的几个版本允许你指定明确的类型进行提示，有些工具可以使用这些提示来帮助你更有效地开发代码。Python 的类型检查主要是用类型标注和类型注释进行类型提示和检查。对于 OIer 来说，掌握 Python 类型检查系统的基本操作就足够了，项目实操中，如果你想写出风格更好的、易于类型检查的代码，你可以参考 [Mypy 的文档](https://mypy.readthedocs.io/) 。
+
+### 动态类型检查
+
+Python 是一个动态类型检查的语言，以灵活但隐式的方式处理类型。Python 解释器仅仅在运行时检查类型是否正确，并且允许在运行时改变变量类型。
+
+```python
+>>> if False:
+...     1 + "two"  # This line never runs, so no TypeError is raised
+... else:
+...     1 + 2
+...
+3
+
+>>> 1 + "two"  # Now this is type checked, and a TypeError is raised
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+```
+
+### 类型提示简例
+
+我们首先通过一个例子来简要说明。假如我们要向函数中添加关于类型的信息，首先需要按如下方式对它的参数和返回值设置类型标注：
+
+```python
+# headlines.py
+
+def headline(text: str, align: bool = True) -> str:
+    if align:
+        return f"{text.title()}\n{'-' * len(text)}"
+    else:
+        return f" {text.title()} ".center(50, "o")
+
+print(headline("python type checking"))
+print(headline("use mypy", centered=True))
+```
+
+但是这样添加类型提示没有运行时的效果——如果我们用错误类型的 `align` 参数，程序依然可以在不报错、不警告的情况下正常运行。
+
+```bash
+$ python headlines.py
+Python Type Checking
+--------------------
+oooooooooooooooooooo Use Mypy oooooooooooooooooooo
+```
+
+因此，我们需要静态检查工具来排除这类错误（例如 [PyCharm](https://www.jetbrains.com/pycharm/) 中就包含这种检查）。最常用的静态类型检查工具是 [Mypy](http://mypy-lang.org/) 。
+
+```bash
+$ pip install mypy
+Successfully installed mypy.
+
+$ mypy headlines.py
+Success: no issues found in 1 source file
+```
+
+如果没有报错，说明类型检查通过；否则，会提示出问题的地方。_值得注意的是，类型检查可以向下（subtype  not subclass）兼容，比如整数就可以在 Mypy 中通过浮点数类型标注的检查（int 是 double 的 subtype，但不是其 subclass）。_
+
+这种检查对于写出可读性较好的代码是十分有帮助的——Bernát Gábor 曾在他的 [The State of Type Hints in Python](https://www.bernat.tech/the-state-of-type-hints-in-python/) 中说过，“类型提示应当出现在任何值得单元测试的代码里”。
+
+### 类型标注
+
+类型标注是自 Python 3.0 引入的特征，是添加类型提示的重要方法。例如这段代码就引入了类型标注，你可以通过调用 `circumference.__annotations__` 来查看函数中所有的类型标注。
+
+```python
+import math
+
+def circumference(radius: float) -> float:
+    return 2 * math.pi * radius
+```
+
+当然，除了函数函数，变量也是可以类型标注的，你可以通过调用 `__annotations__` 来查看函数中所有的类型标注。
+
+```python
+pi: float = 3.142
+
+def circumference(radius: float) -> float:
+    return 2 * pi * radius
+```
+
+变量类型标注赋予了 Python 静态语言的性质，即声明与赋值分离：
+
+```python
+>>> nothing: str
+>>> nothing
+NameError: name 'nothing' is not defined
+
+>>> __annotations__
+{'nothing': <class 'str'>}
+```
+
+### 类型注释
+
+如上所述，Python 的类型标注是 3.0 之后才支持的，这说明如果你需要编写支持遗留 Python 的代码，就不能使用标注。为了应对这个问题，你可以尝试使用类型注释——一种特殊格式的代码注释——作为你代码的类型提示。
+
+```python
+import math
+
+pi = 3.142  # type: float
+
+def circumference(radius):
+    # type: (float) -> float
+    return 2 * pi * radius
+  
+def headline(text, width=80, fill_char="-"):
+    # type: (str, int, str) -> str
+    return f" {text.title()} ".center(width, fill_char)
+
+def headline(
+    text,           # type: str
+    width=80,       # type: int
+    fill_char="-",  # type: str
+):                  # type: (...) -> str
+    return f" {text.title()} ".center(width, fill_char)
+
+print(headline("type comments work", width=40))
+```
+
+这种注释不包含在类型标注中，你无法通过 `__annotations__` 找到它，同类型标注一样，你仍然可以通过 Mypy 运行得到类型检查结果。
 
 ## 常用内置库
 
@@ -580,8 +702,9 @@ if __name__ == '__main__':
 
 ## 参考文档
 
-1.  Python 官方中文文档， <https://docs.python.org/zh-cn/3/tutorial/> 
-2.  Learn Python3 In Y Minutes, <https://learnxinyminutes.com/docs/python3/> 
-3.  Real Python Tutorials, <https://realpython.com/> 
-4.  廖雪峰的 Python 教程， <https://www.liaoxuefeng.com/wiki/1016959663602400/> 
-5.  GeeksforGeeks: Python Tutorials, <https://www.geeksforgeeks.org/python-programming-language/> 
+1.  Python Documentation, <https://www.python.org/doc/> 
+2.  Python 官方中文教程， <https://docs.python.org/zh-cn/3/tutorial/> 
+3.  Learn Python3 In Y Minutes, <https://learnxinyminutes.com/docs/python3/> 
+4.  Real Python Tutorials, <https://realpython.com/> 
+5.  廖雪峰的 Python 教程， <https://www.liaoxuefeng.com/wiki/1016959663602400/> 
+6.  GeeksforGeeks: Python Tutorials, <https://www.geeksforgeeks.org/python-programming-language/> 

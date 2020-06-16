@@ -1,4 +1,4 @@
-author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
+author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo, Suyun514
 
 ## 在线评测平台
 
@@ -7,15 +7,15 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 ### 国内
 
 -    [51Nod](https://www.51nod.com/) 有许多值得尝试的数学题和思维题。
--    [BZOJ](https://www.lydsy.com/JudgeOnline/) 因原属衡阳八中而得简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。  
-    BZOJ 上有大量题目只有付费用户才能提交。2018 年 BZOJ 测试数据泄露，催生了 DarkBZOJ。
+-    [BZOJ](https://www.lydsy.com/JudgeOnline/) 因原属衡阳八中而得简称，汇聚多种习题和真题，题目质量相对较高。但是 BZOJ 上有大量题目只有付费用户才能提交。  
+    因为用户体验较差，BZOJ 常年受到选手的诟病，因此催生了 [new_bzoj](https://vijos.org/d/newbzoj/) （测试数据来源为作者收集和选手众筹）和 [DarkBZOJ](http://darkbzoj4e24q4c4.onion/) （搭建在暗网上，测试数据疑似使用技术手段获得）。2018 年 BZOJ 测试数据泄露，催生了 [黑暗爆炸 OJ](https://darkbzoj.tk/) 。如果只需要题面，可以使用 [BZOJCH](https://github.com/Ruanxingzhi/bzojch) 或 [BZPRO](https://remmina.github.io/BZPRO/) 。
 -    [Comet OJ](https://www.cometoj.com) 始于 2018 年，旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库。
     <!-- - [CodeVS](http://www.codevs.cn/) 面向 OI 选手的过气 OJ。 -->
 -    [FZUOJ](http://acm.fzu.edu.cn/) 始于 2008 年，福州大学在线评测系统。
 -    [HDU Online Judge](http://acm.hdu.edu.cn/) 始于 2005 年，杭州电子科技大学在线评测系统，有多校训练的题目。
 -    [hihoCoder](https://hihocoder.com/) 始于 2012 年，面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（登录后方可查看题面）
 -    [计蒜客](https://www.jisuanke.com/) 北京矩道优达网络科技有限公司旗下的核心产品，提供按知识点和难度筛选的信息学题库和 ICPC 题库。
--    [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck) ，可以将评测程序的运行时间精确到 $\mu s$ 。（题目较少）
+-    [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck) ，可以将评测程序的运行时间精确到微秒。（题目较少）
     <!--  - [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。-->
 -    [LibreOJ](https://loj.ac/) 始于 2017 年。
     目前由 [Menci](https://github.com/Menci) 维护。
@@ -52,7 +52,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
 -    [SPOJ](http://www.spoj.com) 始于 2003 年，其后台系统 [Sphere Engine](https://sphere-engine.com/) 于 2008 年商业化；支持题目点赞和标签功能。
 -    [TopCoder](https://www.topcoder.com/) 始于 2001 年，其 [竞技编程社区](https://www.topcoder.com/community/competitive-programming/) 有很多比赛；目前主营业务是技术众包。
 -    [TimusOJ](http://acm.timus.ru/) 始于 2000 年，由 Ural Federal University 开发，拥有俄罗斯最大的在线评测题库，题目主要来自乌拉尔联邦大学校赛、乌拉尔锦标赛、ICPC 乌拉尔区域赛、以及 Petrozavodsk 训练营。
--   Online Judge（前 [UVaOJ](https://uva.onlinejudge.org/) ）始于 1995 年，国际成名最早的 OJ，创始人是西班牙 University of Valladolid (UVa) 的 Miguel Ángel Revilla 教授；由于 [Revilla 教授于 2018 年不幸离世](https://www.elnortedecastilla.es/valladolid/muere-profesor-miguel-20180402225739-nt.html) ，且 Valladolid 大学终止维护，UVaOJ 自 2019 年 7 月起更名为 Online Judge。现在该平台的维护者 [正在 Github 上构建新的评测平台](https://github.com/TheOnlineJudge/ojudge) 。
+-   Online Judge（前 [UVaOJ](https://uva.onlinejudge.org/) ）始于 1995 年，国际成名最早的 OJ，创始人是西班牙 University of Valladolid (UVa) 的 Miguel Ángel Revilla 教授；由于 [Revilla 教授于 2018 年不幸离世](https://www.elnortedecastilla.es/valladolid/muere-profesor-miguel-20180402225739-nt.html) ，且 Valladolid 大学终止维护，UVaOJ 自 2019 年 7 月起更名为 Online Judge。现在该平台的维护者 [正在 GitHub 上构建新的评测平台](https://github.com/TheOnlineJudge/ojudge) 。
 -    [Yandex](https://contest.yandex.ru/) 存档了近几年的全俄罗斯信息学奥赛。
 
 ## 教程资料
@@ -105,12 +105,12 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo
     -   《ACM 国际大学生程序设计竞赛系列 算法与实现》- 俞勇
     -   《ACM 国际大学生程序设计竞赛系列 题目与解读》- 俞勇
 -   《算法竞赛入门到进阶》- 罗勇军，郭卫斌
--   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein 
+-   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein  
     黑书，大学经典教材。英文版原名_Introduction to Algorithms_
     -    [答案解析 (English)](https://github.com/walkccc/CLRS) 
--   《具体数学》第二版 - Ronald L. Graham/Donald E. Knuth/Oren Patashnik 
+-   《具体数学》第二版 - Ronald L. Graham/Donald E. Knuth/Oren Patashnik  
     英文版原名_Concrete Mathematics_
--   《组合数学》第五版 - Richard A.Brualdi 
+-   《组合数学》第五版 - Richard A.Brualdi  
     英文版原名_Introductory Conbinatorics_
 -    [Competitive Programmer's Handbook](https://cses.fi/book/index.html) 
 -   《挑战程序设计竞赛》全套 - 秋叶拓哉，岩田阳一，北川宜稔

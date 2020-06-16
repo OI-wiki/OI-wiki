@@ -3,15 +3,15 @@
   "name": "OI Wiki",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "https://cdn.jsdelivr.net/npm/oicdn@0.0.1/favicon.ico",
       "sizes": "48x48"
     },
     {
-      "src": "favicon_192x192.png",
+      "src": "https://cdn.jsdelivr.net/npm/oicdn@0.0.1/favicon_192x192.png",
       "sizes": "192x192"
     },
     {
-      "src": "favicon_512x512.png",
+      "src": "https://cdn.jsdelivr.net/npm/oicdn@0.0.2/favicon_512x512.png",
       "sizes": "512x512"
     }
   ],

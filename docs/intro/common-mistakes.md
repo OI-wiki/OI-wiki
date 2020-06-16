@@ -87,7 +87,7 @@
           printf("b\n");
           // printf 的 '\n' 会刷新 printf 的缓冲区，导致输出错位
           std::cout << "c\n";
-          return 0;  //程序结束时，cout 的缓冲区才会被输出
+          return 0;  // 程序结束时，cout 的缓冲区才会被输出
         }
         ```
     -   特别的，也不能在执行 `ios::sync_with_stdio(false);` 后使用 `freopen` 。
@@ -118,7 +118,7 @@
 -   并查集合并集合时没有把两个元素的祖先合并：
 
 ```cpp
-f[a] = b;              //错误
+f[a] = b;              // 错误
 f[find(a)] = find(b);  // 正确
 ```
 

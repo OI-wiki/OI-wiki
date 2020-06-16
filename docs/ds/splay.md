@@ -14,7 +14,7 @@
 
 首先肯定是一棵二叉树！
 
-能够在这棵树上查找某个值的性质：左儿子的值 $<$ 根节点的值 $<$ 右儿子的值。
+能够在这棵树上查找某个值的性质：左子树任意节点的值 $<$ 根节点的值 $<$ 右子树任意节点的值。
 
 ### 节点维护信息
 
@@ -444,9 +444,9 @@ int main() {
 
  [二逼平衡树（树套树）](https://loj.ac/problem/106) 
 
- [bzoj 2827 千山鸟飞绝](https://www.lydsy.com/JudgeOnline/problem.php?id=2827) 
+ [bzoj 2827 千山鸟飞绝](http://www.lydsy.com/JudgeOnline/problem.php?id=2827) 
 
- [「Lydsy1706 月赛」K 小值查询](https://www.lydsy.com/JudgeOnline/problem.php?id=4923) 
+ [「Lydsy1706 月赛」K 小值查询](http://www.lydsy.com/JudgeOnline/problem.php?id=4923) 
 
 * * *
 

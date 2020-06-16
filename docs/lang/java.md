@@ -4,23 +4,11 @@ Java 是一种广泛使用的计算机编程语言，拥有 **跨平台** 、 **
 
 ## 环境安装
 
-使用 [OpenJDK](https://jdk.java.net/) 作为实例，下载下来的都是压缩包，解压缩此处略过
-
 ### Windows
 
-将解压缩后的文件夹放到你想放的位置，假设你解压后放到了 `C:\Program Files\Java\jdk-14` ,
+可以在 [Oracle 官网](https://www.oracle.com/java/technologies/javase-downloads.html) 下载 Oracle JDK（需要登录 Oracle 账号）。推荐下载 EXE 安装包来自动配置环境变量。
 
-![第一步](images/java1.png)
-
-![第二步](images/java2.png)
-
-![第三步](images/java3.png)
-
-![第四步](images/java4.png)
-
-![第五步](images/java5.png)
-
-![第六步](images/java6.png)
+如果需要使用 OpenJDK，可以使用 [AdoptOpenJDK](https://adoptopenjdk.net/) 提供的预编译包。如果下载较慢，可以使用 [清华大学 TUNA 镜像站](https://mirrors.tuna.tsinghua.edu.cn/AdoptOpenJDK/) 。推荐下载 MSI 安装包来自动配置环境变量。
 
 ### Linux
 
@@ -56,8 +44,8 @@ sudo mv jdk-14 /opt
 并在 `.bashrc` 文件末尾添加
 
 ```bash
-export JAVA_HOME="/opt/jdk-14/bin"
-export PATH=${JAVA_HOME}:$PATH
+export JAVA_HOME="/opt/jdk-14"
+export PATH=$JAVA_HOME/bin:$PATH
 ```
 
 在控制台中输入命令 `source ~/.bashrc` 即可重载。如果是使用的 zsh 或其他命令行，在 `~/.zshrc` 或对应的文件中添加上面的内容
@@ -102,8 +90,8 @@ rm jdk-8u121-macosx-x64.dmg
 ### 申明变量
 
 ```java
-int a = 12;//设置a为整数类型,并给a赋值12
-String str = "Hello, OI-wiki"; //申明字符串变量str
+int a = 12; // 设置a为整数类型,并给a赋值12
+String str = "Hello, OI-wiki"; // 申明字符串变量str
 char ch = "W";
 double PI = 3.1415926;
 ```
@@ -119,9 +107,9 @@ final double PI = 3.1415926;
 ### 数组
 
 ```java
+// 有十个元素的整数类型数组
+// 其语法格式为 数据类型[] 变量名 = new 数据类型[数组大小]
 int[] ary = new int[10];
-//有十个元素的整数类型数组
-//其语法格式为 数据类型[] 变量名 = new 数据类型[数组大小]
 ```
 
 ### 字符串
@@ -129,10 +117,11 @@ int[] ary = new int[10];
 -   字符串是 `Java` 一个内置的类。
 
 ```java
-//最为简单的构造一个字符串变量的方法如下
+// 最为简单的构造一个字符串变量的方法如下
 String a = "Hello";
-//还可以使用字符数组构造一个字符串变量
-char[] stringArray = {'H','e','l','l','o'};
+
+// 还可以使用字符数组构造一个字符串变量
+char[] stringArray = { 'H', 'e', 'l', 'l', 'o' };
 String s = new String(stringArray);
 ```
 
@@ -148,16 +137,16 @@ String s = new String(stringArray);
 |  `%c`  |  字符类型 |
 
 ```java
-class test{
+class Test {
     public static void main(String[] args) {
         int a = 12;
         char b = 'A';
         double s = 3.14;
         String str = "Hello world";
-        System.out.println("%f",s);
-        System.out.println("%d",a);
-        system.out.println("%c",b);
-        system.out.println("%s",str);
+        System.out.printf("%f\n", s);
+        System.out.printf("%d\n", a);
+        System.out.printf("%c\n", b);
+        System.out.printf("%s\n", str);
     }
 }
 ```
@@ -169,10 +158,10 @@ class test{
 -   if
 
 ```java
-class test{
+class Test {
     public static void main(String[] args) {
-        if(/*判断条件*/){
-              //条件成立时执行这里面的代码
+        if ( /* 判断条件 */ ){
+              // 条件成立时执行这里面的代码
           }
       }
 }
@@ -181,12 +170,12 @@ class test{
 -   if...else
 
 ```java
-class test{
+class Test {
     public static void main(String[] args) {
-        if(/*判断条件*/){
-            //条件成立时执行这里面的代码
-        }else{
-            //条件不成立时执行这里面的代码
+        if ( /* 判断条件 */ ){
+            // 条件成立时执行这里面的代码
+        } else {
+            // 条件不成立时执行这里面的代码
         }
     }
 }
@@ -195,14 +184,14 @@ class test{
 -   if...else if...else
 
 ```java
-class test{
+class Test {
     public static void main(String[] args) {
-        if(/*判断条件*/){
+        if ( /* 判断条件 */ ){
             //判断条件成立执行这里面的代码
-        }else if(/*判断条件2*/){
-            //判断条件2成立执行这里面的代码
-        }else{
-          //上述条件都不成立执行这里面的代码
+        } else if ( /* 判断条件2 */ ){
+            // 判断条件2成立执行这里面的代码
+        } else {
+          // 上述条件都不成立执行这里面的代码
         }
     }
 }
@@ -213,10 +202,10 @@ class test{
 -   for
 
 ```java
-class test{
+class Test {
     public static void main(String[] args) {
-            for(/*初始化*/;/*循环的判断条件*/;/*每次循环后执行的步骤*/){
-                //当循环的条件成立执行循环体内代码
+            for ( /* 初始化 */; /* 循环的判断条件 */; /* 每次循环后执行的步骤 */ ){
+                // 当循环的条件成立执行循环体内代码
             }
     }
 }
@@ -225,10 +214,10 @@ class test{
 -   while
 
 ```java
-class test{
+class Test {
     public static void main(String[] args) {
-        while(/*判定条件*/){
-            //条件成立时执行循环体内代码
+        while ( /* 判定条件 */ ){
+            // 条件成立时执行循环体内代码
         }
     }
 }
@@ -237,11 +226,11 @@ class test{
 -   do...while
 
 ```java
-class test{
+class Test {
     public static void main(String[] args) {
-        do{
-          //需要执行的代码
-        }while(/*循环判断条件*/);
+        do {
+          // 需要执行的代码
+        } while ( /* 循环判断条件 */ );
     }
 }
 ```
@@ -249,17 +238,17 @@ class test{
 -   switch...case
 
 ```java
-class test{
+class Test {
       public static void main(String[] args) {
-        switch(/*表达式*/){
-          case /*值-1*/:
-              //当表达式取得的值符合值-1执行此段代码
-          break; //如果不加上break语句,会让程序按顺序往下执行,执行所有的case语句
-          case /*值-2*/:
-              //当表达式取得的值符合值-2执行此段代码
+        switch ( /* 表达式 */ ){
+          case /* 值 1 */:
+              // 当表达式取得的值符合值 1 执行此段代码
+          break; // 如果不加上 break 语句,会让程序按顺序往下执行,执行所有的 case 语句
+          case /* 值 2 */:
+              // 当表达式取得的值符合值 2 执行此段代码
           break;
           default:
-              //当表达式不符合上面列举的值的时候执行这里面的代码
+              // 当表达式不符合上面列举的值的时候执行这里面的代码
         }
       }
 }
@@ -276,7 +265,7 @@ class test{
 Add.java
 
 ```java
-class Add{
+class Add {
     public static void main(String[] args) {
         // ...
     }
