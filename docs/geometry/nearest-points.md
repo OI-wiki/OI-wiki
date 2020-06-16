@@ -55,75 +55,79 @@ $$
 
 我们使用一个结构体来存储点，并定义用于排序的函数对象：
 
-```cpp
-struct pt {
-  int x, y, id;
-};
-
-struct cmp_x {
-  bool operator()(const pt& a, const pt& b) const {
-    return a.x < b.x || (a.x == b.x && a.y < b.y);
-  }
-};
-
-struct cmp_y {
-  bool operator()(const pt& a, const pt& b) const { return a.y < b.y; }
-};
-
-int n;
-vector<pt> a;
-```
+???+note "结构体定义"
+    ```cpp
+    struct pt {
+      int x, y, id;
+    };
+    
+    struct cmp_x {
+      bool operator()(const pt& a, const pt& b) const {
+        return a.x < b.x || (a.x == b.x && a.y < b.y);
+      }
+    };
+    
+    struct cmp_y {
+      bool operator()(const pt& a, const pt& b) const { return a.y < b.y; }
+    };
+    
+    int n;
+    vector<pt> a;
+    ```
 
 为了方便实现递归，我们引入 `upd_ans()` 辅助函数来计算两点间距离并尝试更新答案：
 
-```cpp
-double mindist;
-int ansa, ansb;
-
-inline void upd_ans(const pt& a, const pt& b) {
-  double dist =
-      sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y) + .0);
-  if (dist < mindist) mindist = dist, ansa = a.id, ansb = b.id;
-}
-```
+???+note "答案更新函数"
+    ```cpp
+    double mindist;
+    int ansa, ansb;
+    
+    inline void upd_ans(const pt& a, const pt& b) {
+      double dist =
+          sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y) + .0);
+      if (dist < mindist) mindist = dist, ansa = a.id, ansb = b.id;
+    }
+    ```
 
 下面是递归本身：假设在调用前 `a[]` 已按 $x_i$ 排序。如果 $r-l$ 过小，使用暴力算法计算 $h$ ，终止递归。
 
 我们使用 `std::merge()` 来执行归并排序，并创建辅助缓冲区 `t[]` ， $B$ 存储在其中。
 
-```cpp
-void rec(int l, int r) {
-  if (r - l <= 3) {
-    for (int i = l; i <= r; ++i)
-      for (int j = i + 1; j <= r; ++j) upd_ans(a[i], a[j]);
-    sort(a + l, a + r + 1, &cmp_y);
-    return;
-  }
-
-  int m = (l + r) >> 1;
-  int midx = a[m].x;
-  rec(l, m), rec(m + 1, r);
-  static pt t[MAXN];
-  merge(a + l, a + m + 1, a + m + 1, a + r + 1, t, &cmp_y);
-  copy(t, t + r - l + 1, a + l);
-
-  int tsz = 0;
-  for (int i = l; i <= r; ++i)
-    if (abs(a[i].x - midx) < mindist) {
-      for (int j = tsz - 1; j >= 0 && a[i].y - t[j].y < mindist; --j)
-        upd_ans(a[i], t[j]);
-      t[tsz++] = a[i];
+???+note "主体函数"
+    ```cpp
+    void rec(int l, int r) {
+      if (r - l <= 3) {
+        for (int i = l; i <= r; ++i)
+          for (int j = i + 1; j <= r; ++j) upd_ans(a[i], a[j]);
+        sort(a + l, a + r + 1, &cmp_y);
+        return;
+      }
+    
+      int m = (l + r) >> 1;
+      int midx = a[m].x;
+      rec(l, m), rec(m + 1, r);
+      static pt t[MAXN];
+      merge(a + l, a + m + 1, a + m + 1, a + r + 1, t, &cmp_y);
+      copy(t, t + r - l + 1, a + l);
+    
+      int tsz = 0;
+      for (int i = l; i <= r; ++i)
+        if (abs(a[i].x - midx) < mindist) {
+          for (int j = tsz - 1; j >= 0 && a[i].y - t[j].y < mindist; --j)
+            upd_ans(a[i], t[j]);
+          t[tsz++] = a[i];
+        }
     }
-}
-```
+    ```
 
 在主函数中，这样开始递归即可：
 
-```cpp
-sort(a, a + n, &cmp_x);
-mindist = 1E20;
-rec(0, n - 1);
-```
+???+note "调用接口"
+    ```cpp
+    sort(a, a + n, &cmp_x);
+    mindist = 1E20;
+    rec(0, n - 1);
+    ```
 
 ## 推广：平面最小周长三角形
 
