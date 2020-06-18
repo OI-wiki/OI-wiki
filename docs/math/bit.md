@@ -148,12 +148,6 @@ bool isSameSign(int x, int y) {  // 有 0 的情况例外
 }
 ```
 
-### 交换两个数
-
-```cpp
-void swap(int &a, int &b) { a ^= b ^= a ^= b; }
-```
-
 ### 获取一个数二进制的某一位
 
 ```cpp
