@@ -30,11 +30,9 @@
 
 ### 计算
 
- **全概率公式** ：若事件 $A_1,A_2,\ldots,A_n$ 构成一个完备的事件且都有正概率，即 $\forall i,j, A_i\cap A_j=\varnothing$ 且 $\displaystyle \sum_{i=1}^n A_i=1$ ，有 $\displaystyle P(B)=\sum_{i=1}^n P(A_i)P(B|A_i)$ 。
-
- **贝叶斯定理** ： $\displaystyle P(B_i|A)=\frac{P(B_i)P(A|B_i)}{\displaystyle \sum_{j=1}^n P(B_j)P(A|B_j)}$ 
-
-公式中，事件 $B_i$ 的概率为 $P(B_i)$ ，事件 $B_i$ 已发生条件下事件 $A$ 的概率为 $P(A|B_i)$ ，事件 $A$ 发生条件下事件 $B_i$ 的概率为 $P(B_i|A)$ 。
+- **条件概率** : 记 $P(B|A)$ 表示在 $A$ 事件发生的前提下，$B$ 事件发生的概率，则 $P(B|A)=\dfrac{P(AB)}{P(A)}$（其中 $P(AB)$ 为事件 $A$ 和事件 $B$ 同时发生的概率）。
+- **全概率公式** ：若事件 $A_1,A_2,\ldots,A_n$ 构成一个完备的事件且都有正概率，即 $\forall i,j, A_i\cap A_j=\varnothing$ 且 $\displaystyle \sum_{i=1}^n A_i=1$ ，有 $\displaystyle P(B)=\sum_{i=1}^n P(A_i)P(B|A_i)$ 。
+- **贝叶斯定理** ： $\displaystyle P(B_i|A)=\frac{P(B_i)P(A|B_i)}{\displaystyle \sum_{j=1}^n P(B_j)P(A|B_j)}$ 
 
 ## 期望
 
@@ -44,9 +42,8 @@
 
 ### 性质
 
- **全期望公式** ： $E(Y)=E[E(Y|X)]$ 。可由全概率公式证明。
-
- **线性性质** : 对于任意两个随机事件 $x,y$ （ **不要求相互独立** ），有 $E(X+Y)=E(X)+E(Y)$ 。
+- **全期望公式** ： $E(Y)=E[E(Y|X)]$ 。可由全概率公式证明。
+- **线性性质** : 对于任意两个随机事件 $x,y$ （ **不要求相互独立** ），有 $E(X+Y)=E(X)+E(Y)$ 。利用这个性质，可以将一个变量拆分成若干个互相独立的变量，分别求这些变量的期望值，最后相加得到所求变量的值。
 
 ## 例题
 
