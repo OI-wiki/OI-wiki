@@ -26,7 +26,7 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
  **真后缀** 指除了 $S$ 本身的 $S$ 的后缀。
 
-举例来说，字符串 `abcabcd` 的所有前缀为 `{a, ab, abc, abca, abcab, abcabc, abcabcd}` , 而它的真前缀为 `{a, ab, abc, abca, abcab, abcabc}` 。
+举例来说，字符串 `abcabcd` 的所有后缀为 `{d, cd, bcd, abcd, cabcd, bcabcd, abcabcd}` ，而它的真后缀为 `{d, cd, bcd, abcd, cabcd, bcabcd}` 。
 
 ### 前缀
 
@@ -34,7 +34,7 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
  **真前缀** 指除了 $S$ 本身的 $S$ 的前缀。
 
-举例来说，字符串 `abcabcd` 的后缀有 `{d, cd, bcd, abcd, cabcd, bcabcd, abcabcd}` ，而它的真后缀有 `{d, cd, bcd, abcd, cabcd, bcabcd}` 。
+举例来说，字符串 `abcabcd` 的所有前缀为 `{a, ab, abc, abca, abcab, abcabc, abcabcd}` , 而它的真前缀为 `{a, ab, abc, abca, abcab, abcabc}` 。
 
 ### 字典序
 
