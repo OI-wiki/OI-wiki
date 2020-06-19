@@ -8,7 +8,7 @@
 
 -   设 $p$ 是素数， $\text{ord}_pa=l$ ，那么有且仅有 $\varphi(l)$ 个关于模 $p$ 的阶为 $l$ 且两两互不同余的数。
 -   设 $\text{ord}_ma=l$ ，则 $1, a, a^2, \cdots, a^{l-1}$ 关于模 $m$ 两两互不同余。
--   设 $p$ 是素数， $l \mid p-1$ ，则存在 $\varphi(l)$ 个关于模 $p$ 的阶为 $l$ 且两两互不同余的数。
+-   设 $p$ 是素数， $l \mid \varphi(p)$ ，则存在 $\varphi(l)$ 个关于模 $p$ 的阶为 $l$ 且两两互不同余的数。
 -   若 $m=p_1^{a_1}p_2^{a_2}\cdots p_k^{a_k}$ ，则 $\text{ord}_ma = [\text{ord}_{p_1}^{a_1}, \text{ord}_{p_2}^{a_2}, \cdots, \text{ord}_{p_k}^{a_k}]$ 
 
 ## 原根
@@ -27,17 +27,17 @@
 
 #### 证明
 
-假设存在一个 $t<\varphi(p)=p-1$ 使得 $a^t\equiv 1\pmod{p}$ 且 $\forall i\in\left[1,m\right]:a^{\frac{p-1}{d_{i}}}\not\equiv 1\pmod{p}$ 。
+假设存在一个 $t<\varphi(p)$ 使得 $a^t\equiv 1\pmod{p}$ 且 $\forall i\in\left[1,m\right]:a^{\frac{\varphi(p)}{d_{i}}}\not\equiv 1\pmod{p}$ 。
 
-由裴蜀定理得，一定存在一组 $k,x$ 满足 $kt=x(p-1)+\gcd(t,p-1)$ ；由欧拉定理/费马小定理得 $a^{p-1}\equiv 1\pmod{p}$ ；故有：
+由裴蜀定理得，一定存在一组 $k,x$ 满足 $kt=x\varphi(p)+\gcd(t,\varphi(p))$ ；由欧拉定理/费马小定理得 $a^{\varphi(p)}\equiv 1\pmod{p}$ ；故有：
 
 $$
-1\equiv a^{kt}\equiv a^{x(p-1)+\gcd(t,p-1)}\equiv a^{\gcd(t,p-1)}\pmod{p}
+1\equiv a^{kt}\equiv a^{x\varphi(p)+\gcd(t,\varphi(p))}\equiv a^{\gcd(t,\varphi(p))}\pmod{p}
 $$
 
-又有 $t<p-1$ ，故 $\gcd(t,p-1)\leqslant t<p-1$ 。
+又有 $t<\varphi(p)$ ，故 $\gcd(t,\varphi(p))\leqslant t<\varphi(p)$ 。
 
-又 $\gcd(t,p-1)\mid(p-1)$ ，故 $\gcd(t,p-1)$ 必至少整除 $a^{\frac{p-1}{d_{1}}},a^{\frac{p-1}{d_{2}}},\ldots,a^{\frac{p-1}{d_{m}}}$ 中的至少一个，设 $\gcd(t,p-1)\mid a^{\frac{p-1}{d_{i}}}$ ，则 $a^{\frac{p-1}{d_{i}}}\equiv a^{\gcd(t,p-1)}\equiv 1\pmod{p}$ 。
+又 $\gcd(t,\varphi(p))\mid(\varphi(p))$ ，故 $\gcd(t,\varphi(p))$ 必至少整除 $a^{\frac{\varphi(p)}{d_{1}}},a^{\frac{\varphi(p)}{d_{2}}},\ldots,a^{\frac{\varphi(p)}{d_{m}}}$ 中的至少一个，设 $\gcd(t,\varphi(p))\mid a^{\frac{\varphi(p)}{d_{i}}}$ ，则 $a^{\frac{\varphi(p)}{d_{i}}}\equiv a^{\gcd(t,\varphi(p))}\equiv 1\pmod{p}$ 。
 
 故假设不成立。
 
@@ -52,6 +52,6 @@ $$
 
 ## 用途
 
-我们发现原根 $g$ 拥有所有 DFT 所需的单位根 $\omega$ 的性质，于是我们用 $g^{\frac{p-1}{n}}\bmod{p}$ 来代替 $\omega_{n}$ ，理论上就能把复数对应到一个整数，在模 $p$ 意义下进行快速变换了。
+我们发现原根 $g$ 拥有所有 DFT 所需的单位根 $\omega$ 的性质，于是我们用 $g^{\frac{\varphi(p)}{n}}\bmod{p}$ 来代替 $\omega_{n}$ ，理论上就能把复数对应到一个整数，在模 $p$ 意义下进行快速变换了。
 
-但实际上由于快速傅里叶变换（FFT）实现的多项式乘法的过程中要求序列长度是 $2$ 的幂次，因此这里模数 $p$ 还需要保证 $p-1$ 的标准分解式中素因子 $2$ 的幂次足够大，参见 [快速数论变换](./poly/ntt.md) 。
+但实际上由于快速傅里叶变换（FFT）实现的多项式乘法的过程中要求序列长度是 $2$ 的幂次，因此这里模数 $p$ 还需要保证 $\varphi(p)$ 的标准分解式中素因子 $2$ 的幂次足够大，参见 [快速数论变换](./poly/ntt.md) 。
