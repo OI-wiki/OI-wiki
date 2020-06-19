@@ -13,9 +13,9 @@
 
 ## 原根
 
-$(g, m)=1$ ，若 $\text{ord}_mg = \varphi(m)$ ，则称 $g$ 为 $m$ 的一个原根。
+ $(g, m)=1$ ，若 $\text{ord}_mg = \varphi(m)$ ，则称 $g$ 为 $m$ 的一个原根。
 
-$g$ 为 $m$ 的一个原根当且仅当 $\{g, g^2, \cdots, g^{\varphi(m)}\}$ 构成模 $m$ 的一个既约剩余系。
+ $g$ 为 $m$ 的一个原根当且仅当 $\{g, g^2, \cdots, g^{\varphi(m)}\}$ 构成模 $m$ 的一个既约剩余系。
 
 ### 判断是否有原根
 
@@ -23,7 +23,7 @@ $g$ 为 $m$ 的一个原根当且仅当 $\{g, g^2, \cdots, g^{\varphi(m)}\}$ 构
 
 ### 求一个原根
 
-$(g,m) =1$ ，设 $p_1, p_2, \cdots, p_k$ 是 $\varphi(m)$ 的所有不同的素因数，则 $g$ 是 $m$ 的原根，当且仅当对任意 $1 \leq i \leq k$ ，都有 $g^{\frac{\varphi(m)}{p_i}} \not\equiv 1 \pmod m$。
+ $(g,m) =1$ ，设 $p_1, p_2, \cdots, p_k$ 是 $\varphi(m)$ 的所有不同的素因数，则 $g$ 是 $m$ 的原根，当且仅当对任意 $1 \leq i \leq k$ ，都有 $g^{\frac{\varphi(m)}{p_i}} \not\equiv 1 \pmod m$ 。
 
 #### 证明
 
