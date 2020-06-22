@@ -20,7 +20,7 @@ $$
 
 $$
 \begin{aligned}
-    x^{n}f\left(\frac{1}{x}\right)&=x^{n-m}Q\left(x\right)x^{m}g\left(x\right)+x^{n-m+1}x^{m-1}R\left(x\right)\\
+    x^{n}f\left(\frac{1}{x}\right)&=x^{n-m}Q\left(\frac{1}{x}\right)x^{m}g\left(\frac{1}{x}\right)+x^{n-m+1}x^{m-1}R\left(\frac{1}{x}\right)\\
     f^{R}\left(x\right)&=Q^{R}\left(x\right)g^{R}\left(x\right)+x^{n-m+1}R^{R}\left(x\right)
 \end{aligned}
 $$
