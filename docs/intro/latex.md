@@ -20,7 +20,7 @@ LaTeX 基于 TeX（Donald Knuth 在 1978 年为数字化排版设计的排版系
 
 ### 一些概念
 
-如果需要编写 LaTeX 文档，你需要安装一个「发行版」，常用的发行版有 [TeX Live](http://tug.org/texlive/)、[MikTeX](https://miktex.org/) 和适用于 macOS 用户的 MacTeX（实际上是 TeX Live 的 macOS 版本），至于 [CTeX](http://www.ctex.org/) 则现在不推荐使用。TeX Live 和 MaxTeX 带有几乎所有的 LaTeX 宏包；而 MikTeX 不带有任何宏包，而是在需要使用某个宏包时自动安装。
+如果需要编写 LaTeX 文档，你需要安装一个「发行版」，常用的发行版有 [TeX Live](http://tug.org/texlive/) 、 [MikTeX](https://miktex.org/) 和适用于 macOS 用户的 MacTeX（实际上是 TeX Live 的 macOS 版本），至于 [CTeX](http://www.ctex.org/) 则现在不推荐使用。TeX Live 和 MaxTeX 带有几乎所有的 LaTeX 宏包；而 MikTeX 不带有任何宏包，而是在需要使用某个宏包时自动安装。
 
 TeX Live 和 MikTeX 都带有 TeXworks 编辑器，你也可以安装功能更多的 TeXstudio 编译器，或者自行配置 Visual Studio Code 或 Notepad++ 等编译器。下文所使用编译器的是运行在 Windows 7 上的 TeXworks。
 
@@ -28,11 +28,11 @@ TeX Live 和 MikTeX 都带有 TeXworks 编辑器，你也可以安装功能更�
 
 TeX 有多种格式，如 Plain TeX 和 LaTeX。现在一般使用 LaTeX 格式。所以，你需要使用与你所使用的格式打包在一起的引擎。如对于 pdfTeX，你需要使用 pdfLaTeX，对于 XeTeX 则是 XeLaTeX。
 
-扩展阅读：[TeX 引擎、格式、发行版之介绍](https://liam.page/2018/11/26/introduction-to-TeX-engine-format-and-distribution/)。
+扩展阅读： [TeX 引擎、格式、发行版之介绍](https://liam.page/2018/11/26/introduction-to-TeX-engine-format-and-distribution/) 。
 
 ### 环境配置
 
-对于 Windows 用户，你需要下载 TeX Live 或 MikTeX。国内用户可以使用 [清华大学 TUNA 镜像站](https://mirrors.tuna.tsinghua.edu.cn/)，请点击页面右侧的「获取下载链接」按钮，并选择「应用软件」标签下的「TeX 排版系统」即可下载 TeX Live 或 MikTeX 的安装包，其中 TeX Live 的安装包是一个 ISO 文件，需要挂载后以管理员权限执行 `install-tl-advanced.bat`。
+对于 Windows 用户，你需要下载 TeX Live 或 MikTeX。国内用户可以使用 [清华大学 TUNA 镜像站](https://mirrors.tuna.tsinghua.edu.cn/) ，请点击页面右侧的「获取下载链接」按钮，并选择「应用软件」标签下的「TeX 排版系统」即可下载 TeX Live 或 MikTeX 的安装包，其中 TeX Live 的安装包是一个 ISO 文件，需要挂载后以管理员权限执行 `install-tl-advanced.bat` 。
 
 对于 macOS 用户，清华大学 TUNA 镜像站同样提供 MacTeX 的下载。
 
