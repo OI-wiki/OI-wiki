@@ -34,7 +34,7 @@ TeX 有多种格式，如 Plain TeX 和 LaTeX。现在一般使用 LaTeX 格式�
 
 对于 Windows 用户，你需要下载 TeX Live 或 MikTeX。国内用户可以使用 [清华大学 TUNA 镜像站](https://mirrors.tuna.tsinghua.edu.cn/) ，请点击页面右侧的「获取下载链接」按钮，并选择「应用软件」标签下的「TeX 排版系统」即可下载 TeX Live 或 MikTeX 的安装包，其中 TeX Live 的安装包是一个 ISO 文件，需要挂载后以管理员权限执行 `install-tl-advanced.bat` 。
 
-对于 macOS 用户，清华大学 TUNA 镜像站同样提供 MacTeX 的下载。
+对于 macOS 用户，清华大学 TUNA 镜像站同样提供 MacTeX 和 macOS 版 MikTeX 的下载。
 
 对于 Linux 用户，如果使用 TeX Live，则同样下载 ISO 文件，执行 `install-tl` 脚本；如果使用 MikTeX，则按照 [官方文档](https://miktex.org/download#unx) 进行安装。
 
