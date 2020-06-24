@@ -97,26 +97,26 @@ $$
     给出 $G,n$ （ $1 \leq G,n \leq 10^9$ ），求：
     
     $$
-    G^{\sum_{k\mid n}\binom{n}{k}} \bmod 999\ 911\ 659
+    G^{\sum_{k\mid n}\binom{n}{k}} \bmod 999~911~659
     $$
 
-首先，当 $G=999\ 911\ 659$ 时，所求显然为 $0$ 。
+首先，当 $G=999~911~659$ 时，所求显然为 $0$ 。
 
 否则，根据 [欧拉定理](./fermat.md) ，可知所求为：
 
 $$
-G^{\sum_{k\mid n}\binom{n}{k} \bmod 999\ 911\ 658} \bmod 999\ 911\ 659
+G^{\sum_{k\mid n}\binom{n}{k} \bmod 999~911~658} \bmod 999~911~659
 $$
 
 现在考虑如何计算：
 
 $$
-\sum_{k\mid n}\binom{n}{k} \bmod 999\ 911\ 658
+\sum_{k\mid n}\binom{n}{k} \bmod 999~911~658
 $$
 
-因为 $999\ 911\ 658$ 不是质数，无法保证 $\forall x \in [1,999\ 911\ 657]$ ， $x$ 都有逆元存在，上面这个式子我们无法直接计算。
+因为 $999~911~658$ 不是质数，无法保证 $\forall x \in [1,999~911~657]$ ， $x$ 都有逆元存在，上面这个式子我们无法直接计算。
 
-注意到 $999\ 911\ 658=2 \times 3 \times 4679 \times 35617$ ，其中每个质因子的最高次数均为一，我们可以考虑分别求出 $\sum_{k\mid n}\binom{n}{k}$ 在模 $2$ ， $3$ ， $4679$ ， $35617$ 这几个质数下的结果，最后用中国剩余定理来合并答案。
+注意到 $999~911~658=2 \times 3 \times 4679 \times 35617$ ，其中每个质因子的最高次数均为一，我们可以考虑分别求出 $\sum_{k\mid n}\binom{n}{k}$ 在模 $2$ ， $3$ ， $4679$ ， $35617$ 这几个质数下的结果，最后用中国剩余定理来合并答案。
 
 也就是说，我们实际上要求下面一个线性方程组的解：
 
@@ -136,7 +136,7 @@ $$
 考虑 CRT, 不妨假设 $n_1\leq n_2 \leq ... \leq n_k$ 
 
 $$
-\left\{ \begin{array} { r l } { x } & { \equiv a _ { 1 } \left( \bmod n _ { 1 } \right) } \\ { x } & { \equiv a _ { 2 } \left( \bmod n _ { 2 } \right) } \\ { } & { \vdots } \\ { x } & { \equiv a _ { k } \left( \bmod n _ { k } \right) } \end{array} \right.
+\left\{ \begin{array} { r l } { x } & { \equiv a _ { 1 } \left( \bmod n _ { 1 } \right) } \~{ x } & { \equiv a _ { 2 } \left( \bmod n _ { 2 } \right) } \~{ } & { \vdots } \~{ x } & { \equiv a _ { k } \left( \bmod n _ { k } \right) } \end{array} \right.
 $$
 
 与 PMR(Primorial Mixed Radix) 表示
