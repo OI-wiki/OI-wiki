@@ -221,7 +221,6 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 于是这题很简单就过了。
 
-代码看下面。
 
 ## 推荐习题
 
