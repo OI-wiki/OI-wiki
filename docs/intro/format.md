@@ -14,29 +14,34 @@
 
 ## 文档引用与存储的格式
 
--   **文件名请务必都小写，以 `-` 分割。** 例如： `file-name.md`。
--   请务必确保文档中引用的 **外链** 图片已经全部转存到了 **本库内** 对应的 `images` 文件夹中（防止触发某些网站的防盗链），建议处理成 `MD 文档名称 + 编号` 的形式（可参考已有文档中图片的处理方式）。例如：`format1.jpg`（本篇文档的名称为 format)。
+-    **文件名请务必都小写，以 `-` 分割。** 例如： `file-name.md` 。
+
+-   请务必确保文档中引用的 **外链** 图片已经全部转存到了 **本库内** 对应的 `images` 文件夹中（防止触发某些网站的防盗链），建议处理成 `MD 文档名称 + 编号` 的形式（可参考已有文档中图片的处理方式）。例如： `format1.jpg` （本篇文档的名称为 format)。
 
 -   请确保您的文档中的引用链接的稳定性， **不推荐** 引用 **自建** 服务中的资源（如自建 OJ 里的题目）。
+
 -   站内链接请去掉网站域名，并且使用相对路径链接对应 `.md` 文件。例如，在本页面（ `intro/format` ）中链接杂项简介（ `misc` ），应使用 `[杂项简介](../misc/index.md)` 。
 
 ## 文档的合理性
 
-**合理性**，指所编写的 **内容** 必须具有如下的特性：
+ **合理性** ，指所编写的 **内容** 必须具有如下的特性：
 
 -   由浅入深，内容的难度应该具有渐进性。
 -   逻辑性。
-    -   对于算法或数学概念类内容的撰写应该尽量包含以下的内容：
-        1.   原理：说明该内容对应的原理；
-        2.   例子：给出 1 ~ 2 个典型的例子；
-        3.   题目：在该标题下， **只需要给出题目名字和题目链接** 。题目链接 OJ 的优先级为：原 OJ（国外 OJ 要求国内可流畅访问）> UOJ > LOJ > 洛谷 > BZOJ。
 
-        示例页面：[IDA*](../search/idastar.md)
+    -   对于算法或数学概念类内容的撰写应该尽量包含以下的内容：
+
+        1.  原理：说明该内容对应的原理；
+        2.  例子：给出 1 ~ 2 个典型的例子；
+        3.  题目：在该标题下， **只需要给出题目名字和题目链接** 。题目链接 OJ 的优先级为：原 OJ（国外 OJ 要求国内可流畅访问）> UOJ > LOJ > 洛谷 > BZOJ。
+
+        示例页面： [IDA\*](../search/idastar.md) 
     -   对于工具类内容的撰写应该尽量包含以下的内容：
+
         -   简介：阐明该工具的背景与用途。
         -   配置方式：详细给出下载、安装、配置环境与使用的过程。
 
-        示例页面：[WSL (Windows 10)](./wsl.md)
+        示例页面： [WSL (Windows 10)](./wsl.md) 
 
 除现有内容质量较低的情况外，建议尽量从 **补充** 的角度来做贡献，而非采取直接覆盖的方式。如果拿不准主意，可以加群讨论细节。
 
@@ -44,26 +49,31 @@
 
 ### Remark-lint 的格式要求
 
- [remark-lint](https://github.com/remarkjs/remark-lint) 可以自动给项目内文件统一风格。**OI Wiki** 现在启用的配置文件托管在 [.remarkrc](https://github.com/24OI/OI-wiki/blob/master/.remarkrc) 。
+ [remark-lint](https://github.com/remarkjs/remark-lint) 可以自动给项目内文件统一风格。 **OI Wiki** 现在启用的配置文件托管在 [.remarkrc](https://github.com/24OI/OI-wiki/blob/master/.remarkrc) 。
 
 在配置过程中 **OI Wiki** 项目组也遇到了一些 remark-lint 不能很好处理的问题，所以请严格按照下列要求编辑文档：
 
 -   不要在页面中添加 `<h1>` 或者 `# 标题` 。
+
 -   标题要空一个英文半角空格，例如： `## 简介` 。不要写成 `## 简介 ##` 。
+
 -   列表：
     -   列表前要有空行，新开一段。
-    -   使用有序列表（如 `1. 例子`）时，点号后要有空格。
+    -   使用有序列表（如 `1. 例子` ）时，点号后要有空格。
+
 -   行间公式前后各要有一行空行，否则会被当做是行内公式。
+
 -   涉及到目录的更改的时候：
     -   需要改动 `mkdocs.yml` ；
     -   请注意如果影响到作者信息统计，麻烦更新 [author 字段](faq.md#_11) ；（不改动目录的时候不需要维护 author 字段）
     -   需要在项目内搜索一下是否有内链需要更新。
     -   如果造成了死链，麻烦更新 [重定向文件](https://github.com/OI-wiki/OI-wiki/blob/master/docs/_redirects) 。详见 [重定向文件](faq.md#_12) 。
+
 -   使用 `???` 或 `!!!` 开头的 Details 语法时，每一行要包括在 Details 语法的文本框的文本，开头必须至少有 4 个空格。
 
     示例：
 
-    ``` text
+    ```text
     ???+ warning
         请记得在文本前面添加 4 个空格。其他的语法还是与 Markdown 语法一致。
 
@@ -79,7 +89,7 @@
 
         这个`???`和`!!!`是什么的问题会在下文解答。
 
--   代码样式的纯文本块请使用 ` ```text` 。直接使用 ` ``` ` 而不指定纯文本块里的语言，可能会导致内容被错误地缩进。
+-   代码样式的纯文本块请使用 ```` ```text```` 。直接使用 ```` ``` ```` 而不指定纯文本块里的语言，可能会导致内容被错误地缩进。
 
 ### 标点符号的使用
 
@@ -89,7 +99,7 @@
 -   注意 **括号** 的位置。句内括号与句外括号的位置不同。
 -   通常使用 **分号** 来表示列表环境中各复句之间的关系。
 -   请特别注意，我们通常习惯使用 `「` 与 `」` 来提高 **中文引号** 的辨识度。
--   对于有序列表，推荐在每一项的后面添加**分号**，在列表最后一项的后面添加**句号**；对于无序列表，推荐在每一项的后面添加**句号**。
+-   对于有序列表，推荐在每一项的后面添加 **分号** ，在列表最后一项的后面添加 **句号** ；对于无序列表，推荐在每一项的后面添加 **句号** 。
 
 示例：
 
@@ -116,10 +126,11 @@
 
     示例：
 
-    在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h`。
+    在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h` 。
+
     ```cpp
     // #include<stdio.h>    //不好的写法
-    #include<cstdio>        //好的写法
+    #include <cstdio>  //好的写法
     ```
 
 -   「参考资料」使用 Markdown 的脚注功能进行编写。格式为：
@@ -138,7 +149,7 @@
     [^1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace)
     ```
 
-    在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h`。[^1]
+    在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h` 。[^1]
 
 -   所有用作序号的数字建议使用中文。示例：
 
@@ -159,13 +170,11 @@
         而且推荐以这种方式标注原题链接。
     ```
 
-    ???+note ["标题"](题目链接)
-        内容
+    ???+note ["标题"](题目链接) 内容
 
         多行内容
 
-    ???+note ["标题"](http://acm.hdu.edu.cn/showproblem.php?pid=1000)
-        标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的 “A + B Problem”。
+    ???+note ["标题"](http://acm.hdu.edu.cn/showproblem.php?pid=1000) 标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
 
         而且推荐以这种方式标注原题链接。
 
@@ -187,8 +196,7 @@
             ```
     ````
 
-    ???+note ["题解"]()
-        内容
+    ???+note ["题解"](<>) 内容
 
         ??? mdui-shadow-6 "参考代码"
             ```cpp
@@ -353,12 +361,12 @@ $$
 
 ## 参考资料
 
-[^1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace)
+[^1]&#x3A; [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace) 
 
 ## 外部链接
 
--   [标点符号用法（GB/T 15834—2011）](http://www.moe.gov.cn/s78/A19/yxs_left/moe_810/s230/201001/W020190128580990138234.pdf)
--   [维基百科:格式手册/标点符号](https://zh.wikipedia.org/wiki/Wikipedia:%E6%A0%BC%E5%BC%8F%E6%89%8B%E5%86%8C/%E6%A0%87%E7%82%B9%E7%AC%A6%E5%8F%B7)
--   [中文文案排版指北（简体中文版）](https://mazhuang.org/wiki/chinese-copywriting-guidelines/)
--   [中文文案风格指南 - PDFE GUIDELINE](https://pdfe.github.io/GUIDELINE/#/others/copywriter)
--   [Releases · CTeX-org/lshort-zh-cn](https://github.com/CTeX-org/lshort-zh-cn/releases)
+-    [标点符号用法（GB/T 15834—2011）](http://www.moe.gov.cn/s78/A19/yxs_left/moe_810/s230/201001/W020190128580990138234.pdf) 
+-    [维基百科：格式手册/标点符号](https://zh.wikipedia.org/wiki/Wikipedia:%E6%A0%BC%E5%BC%8F%E6%89%8B%E5%86%8C/%E6%A0%87%E7%82%B9%E7%AC%A6%E5%8F%B7) 
+-    [中文文案排版指北（简体中文版）](https://mazhuang.org/wiki/chinese-copywriting-guidelines/) 
+-    [中文文案风格指南 - PDFE GUIDELINE](https://pdfe.github.io/GUIDELINE/#/others/copywriter) 
+-    [Releases·CTeX-org/lshort-zh-cn](https://github.com/CTeX-org/lshort-zh-cn/releases) 
