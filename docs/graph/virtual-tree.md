@@ -221,7 +221,6 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 于是这题很简单就过了。
 
-
 ## 推荐习题
 
 -    [「SDOI2011」消耗战](https://darkbzoj.tk/problem/2286) 
