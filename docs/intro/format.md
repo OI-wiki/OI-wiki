@@ -125,26 +125,29 @@
 -   请正确使用 Markdown 的区块功能。插入行内代码请使用一对反引号包围代码区块；行间代码请使用一对 ```` ``` ```` 包围代码区块，其中反引号就是键盘左上角波浪线下面那个符号，行间代码请在第一个 ```` ``` ```` 的后面加上语言名称（如： ```` ```cpp```` ）。
 
     示例：
+    
+    在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h` 。
 
+    ```cpp
+    // #include<stdio.h>    //不好的写法
+    #include <cstdio>  //好的写法
+    ```
+    
     ````text
     在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h` 。
 
     ```cpp
     // #include<stdio.h>    //不好的写法
     #include <cstdio>  //好的写法
+    ```
+    
     ````
-
-        在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h` 。
-
-        ```cpp
-        // #include<stdio.h>    //不好的写法
-        #include <cstdio>  //好的写法
 
 -   「参考资料与注释」使用 Markdown 的脚注功能进行编写。格式为：
 
     ```text
     文本内容。[^脚注名]
-    [^脚注名]: 参考资料内容。这行内容应放在「参考资料」目录下。注意：冒号是英文冒号，冒号后面跟着一个空格。
+    [^脚注名]: 参考资料内容。注意：冒号是英文冒号，冒号后面跟着一个空格。
     ```
 
     脚注名既可以使用数字也可以使用文本。脚注名摆放的位置与括号的用法一致。
@@ -152,7 +155,11 @@
     脚注的内容统一放在 `## 参考资料与注释` 二级标题下。
 
     示例：
+    
+    在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h` 。[^1]
 
+     **OI Wiki** 是一个与编程竞赛相关的，免费开放且持续更新的知识整合站点。[^footnote2]
+     
     ```text
     在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h`。[^1]
     **OI Wiki** 是一个与编程竞赛相关的，免费开放且持续更新的知识整合站点。[^footnote2]
@@ -162,10 +169,6 @@
     [^1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace)
     [^footnote2]: OI Wiki 的创立受到了 CTF Wiki 的启发。
     ```
-
-    在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h` 。[^1]
-
-     **OI Wiki** 是一个与编程竞赛相关的，免费开放且持续更新的知识整合站点。[^footnote2]
 
 -   所有用作序号的数字建议使用中文。示例：
 
@@ -180,7 +183,7 @@
 
         推荐将解题代码放在折叠文本框内。
 
-    !!!+note ["标题"](http://acm.hdu.edu.cn/showproblem.php?pid=1000)
+    ???+note [标题](http://acm.hdu.edu.cn/showproblem.php?pid=1000)
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的 “A + B Problem”。
 
         而且推荐以这种方式标注原题链接。
@@ -191,7 +194,8 @@
 
         推荐将解题代码放在折叠文本框内。
 
-    !!!+note ["标题"](http://acm.hdu.edu.cn/showproblem.php?pid=1000) 标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
+    ???+note [标题](http://acm.hdu.edu.cn/showproblem.php?pid=1000)
+        标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
 
         而且推荐以这种方式标注原题链接。
 
@@ -203,6 +207,14 @@
 
     示例：
 
+    ???+note "题解"
+        内容
+
+        ??? mdui-shadow-6 "参考代码"
+            ```cpp
+            代码
+            ```
+    
     ````text
     ???+note "题解"
         内容
@@ -212,14 +224,6 @@
             代码
             ```
     ````
-
-    ???+note "题解"
-        内容
-
-        ??? mdui-shadow-6 "参考代码"
-            ```cpp
-            代码
-            ```
 
 如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E) 和 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/) 。前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 Markdown 传统语法和 mkdocs-material 支持的扩展语法。
 
