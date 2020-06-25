@@ -180,7 +180,7 @@
 
         推荐将解题代码放在折叠文本框内。
 
-    ???+note ["标题"](http://acm.hdu.edu.cn/showproblem.php?pid=1000)
+    !!!+note ["标题"](http://acm.hdu.edu.cn/showproblem.php?pid=1000)
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的 “A + B Problem”。
 
         而且推荐以这种方式标注原题链接。
@@ -191,8 +191,7 @@
 
         推荐将解题代码放在折叠文本框内。
 
-    ???+note ["标题"](http://acm.hdu.edu.cn/showproblem.php?pid=1000) 
-
+    !!!+note ["标题"](http://acm.hdu.edu.cn/showproblem.php?pid=1000) 
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
 
         而且推荐以这种方式标注原题链接。
@@ -206,7 +205,7 @@
     示例：
 
     ````text
-    ???+note ["题解"]()
+    ???+note "题解"
         内容
 
         ??? mdui-shadow-6 "参考代码"
@@ -215,8 +214,7 @@
             ```
     ````
 
-    ???+note ["题解"](<>) 
-
+    ???+note "题解"
         内容
 
         ??? mdui-shadow-6 "参考代码"
