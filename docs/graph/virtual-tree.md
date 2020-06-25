@@ -76,8 +76,6 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 ![vtree5](./images/vtree5.png)
 
-看明白了吗？
-
 因为任意两个关键点的 LCA 也是需要保存重要信息的，所以我们需要保存它们的 LCA，也就是虚树中不一定只有关键点。
 
 不难发现虚树中祖先 -> 后代的关系并不会改变。（就是不会出现原本 $a$ 是 $b$ 的祖先结果后面 $a$ 变成 $b$ 的后代了之类的鬼事）
@@ -94,9 +92,7 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 ……
 
-感觉很不可做的样子。&lt;(=┘~Д~)┘╧═╧
-
-所以，这里我们提出一种用单调栈的做法。
+朴素算法的复杂度较高。因此我们提出一种单调栈做法。
 
 在提出方案之前，我们先确认一个事实——在虚树里，只要保证祖先 -> 后代的关系没有改变，就可以随意添加节点。
 
@@ -124,8 +120,6 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 ![vtree9](./images/vtree9.png)
 
-那就……非常尴尬了
-
 显然，当前单调栈维护的链是：
 
 ![vtree10](./images/vtree10.png)
@@ -146,7 +140,7 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 再把当前节点入栈就行了。
 
-打个比方吧。
+下面给出一个具体的例子。
 
 假如那棵树长这样（其中加粗的点为关键点）：
 
