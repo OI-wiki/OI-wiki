@@ -36,7 +36,6 @@
         3.  题目：在该标题下， **只需要给出题目名字和题目链接** 。题目链接 OJ 的优先级为：原 OJ（国外 OJ 要求国内可流畅访问）> UOJ > LOJ > 洛谷 > BZOJ。
 
         示例页面： [IDA\*](../search/idastar.md) 
-        
     -   对于工具类内容的撰写应该尽量包含以下的内容：
 
         -   简介：阐明该工具的背景与用途。
@@ -192,8 +191,8 @@
 
         推荐将解题代码放在折叠文本框内。
 
-    ???+note ["标题"](http://acm.hdu.edu.cn/showproblem.php?pid=1000)
-        
+    ???+note ["标题"](http://acm.hdu.edu.cn/showproblem.php?pid=1000) 
+
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
 
         而且推荐以这种方式标注原题链接。
@@ -216,8 +215,8 @@
             ```
     ````
 
-    ???+note ["题解"](<>)
-    
+    ???+note ["题解"](<>) 
+
         内容
 
         ??? mdui-shadow-6 "参考代码"
@@ -392,4 +391,4 @@ $$
 
 [^1]&#x3A; [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace) 
 
-[^footnote2]&#x3A; OI Wiki 的创立受到了 CTF Wiki 的启发。
+[^footnote2]&#x3A;OI Wiki 的创立受到了 CTF Wiki 的启发。
