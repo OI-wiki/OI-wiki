@@ -183,33 +183,34 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 建立虚树的 C++ 代码大概长这样：
 
-```cpp
-sort(h + 1, h + 1 + k, cmp);
-sta[top = 1] = 1, g.sz = 0, g.head[1] = -1;
-// 1号节点入栈，清空1号节点对应的邻接表，设置邻接表边数为1
-for (int i = 1, l; i <= k; i += 1)
-  if (h[i] != 1) {  // 如果1号节点是关键节点就不要重复添加
-    l = lca(h[i], sta[top]);  // 计算当前节点与栈顶节点的LCA
-    if (l != sta[top]) {
-      // 如果LCA和栈顶元素不同，则说明当前节点不再当前栈所存的链上
-      while (id[l] < id[sta[top - 1]])
-        // 当次大节点的Dfs序大于LCA的Dfs序
-        g.push(sta[top - 1], sta[top]), top--;
-      // 把与当前节点所在的链不重合的链连接掉并且弹出
-      if (id[l] > id[sta[top - 1]])
-        // 如果LCA不等于次大节点（这里的大于其实和不等于没有区别）
-        g.head[l] = -1, g.push(l, sta[top]), sta[top] = l;
-      // 说明LCA是第一次入栈，清空其邻接表，连边后弹出栈顶元素，并将LCA入栈
-      else
-        g.push(l, sta[top--]);
-      // 说明LCA就是次大节点，直接弹出栈顶元素
-    }
-    g.head[h[i]] = -1, sta[++top] = h[i];
-    // 当前节点必然是第一次入栈，清空邻接表并入栈
-  }
-for (int i = 1; i < top; i += 1)
-  g.push(sta[i], sta[i + 1]);  // 剩余的最后一条链连接一下
-```
+???+note "代码实现"
+    ```cpp
+    sort(h + 1, h + 1 + k, cmp);
+    sta[top = 1] = 1, g.sz = 0, g.head[1] = -1;
+    // 1号节点入栈，清空1号节点对应的邻接表，设置邻接表边数为1
+    for (int i = 1, l; i <= k; i += 1)
+      if (h[i] != 1) {  // 如果1号节点是关键节点就不要重复添加
+        l = lca(h[i], sta[top]);  // 计算当前节点与栈顶节点的LCA
+        if (l != sta[top]) {
+          // 如果LCA和栈顶元素不同，则说明当前节点不再当前栈所存的链上
+          while (id[l] < id[sta[top - 1]])
+            // 当次大节点的Dfs序大于LCA的Dfs序
+            g.push(sta[top - 1], sta[top]), top--;
+          // 把与当前节点所在的链不重合的链连接掉并且弹出
+          if (id[l] > id[sta[top - 1]])
+            // 如果LCA不等于次大节点（这里的大于其实和不等于没有区别）
+            g.head[l] = -1, g.push(l, sta[top]), sta[top] = l;
+          // 说明LCA是第一次入栈，清空其邻接表，连边后弹出栈顶元素，并将LCA入栈
+          else
+            g.push(l, sta[top--]);
+          // 说明LCA就是次大节点，直接弹出栈顶元素
+        }
+        g.head[h[i]] = -1, sta[++top] = h[i];
+        // 当前节点必然是第一次入栈，清空邻接表并入栈
+      }
+    for (int i = 1; i < top; i += 1)
+      g.push(sta[i], sta[i + 1]);  // 剩余的最后一条链连接一下
+    ```
 
 于是我们就学会了虚树的建立了！
 
