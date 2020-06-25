@@ -37,7 +37,7 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 设 $w(a,b)$ 表示 $a$ 与 $b$ 之间的边的权值。
 
-则枚举$i$的儿子$v$：
+则枚举 $i$ 的儿子 $v$ ：
 
 -   若 $v$ 不是关键点： $Dp(i)=Dp(i) + \min \{Dp(v),w(i,v)\}$ ；
 -   若 $v$ 是关键点： $Dp(i)=Dp(i) + w(i,v)$ 。
@@ -214,7 +214,7 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 于是我们就学会了虚树的建立了！
 
-对于消耗战这题，直接在虚树上跑最开始讲的那个 DP 就行了，我们等于利用了虚树排除了那些没用的非关键节点！仍然考虑$i$的所有儿子$v$：
+对于消耗战这题，直接在虚树上跑最开始讲的那个 DP 就行了，我们等于利用了虚树排除了那些没用的非关键节点！仍然考虑 $i$ 的所有儿子 $v$ ：
 
 -   若 $v$ 不是关键点： $Dp(i)=Dp(i) + \min \{Dp(v),w(i,v)\}$ 
 -   若 $v$ 是关键点： $Dp(i)=Dp(i) + w(i,v)$ 
@@ -225,8 +225,7 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 ## 推荐习题
 
-- [「SDOI2011」消耗战](https://darkbzoj.tk/problem/2286)
-- [「HEOI2014」大工程](https://darkbzoj.tk/problem/3611)
-- [CF613D Kingdom and its Cities](http://codeforces.com/contest/613/problem/D/)
-- [「HNOI2014」世界树](https://darkbzoj.tk/problem/3572)
-
+-    [「SDOI2011」消耗战](https://darkbzoj.tk/problem/2286) 
+-    [「HEOI2014」大工程](https://darkbzoj.tk/problem/3611) 
+-    [CF613D Kingdom and its Cities](http://codeforces.com/contest/613/problem/D/) 
+-    [「HNOI2014」世界树](https://darkbzoj.tk/problem/3572) 
