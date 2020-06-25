@@ -133,23 +133,26 @@
     #include <cstdio>  //好的写法
     ```
 
--   「参考资料」使用 Markdown 的脚注功能进行编写。格式为：
+-   「参考资料与注释」使用 Markdown 的脚注功能进行编写。格式为：
 
     ```text
-    文本内容。[^脚注编号]
-    [^脚注编号]: 参考资料内容。这行内容应放在「参考资料」目录下。注意：冒号是英文冒号，冒号后面跟着一个空格。
+    文本内容。[^脚注内容]
+    [^脚注内容]: 参考资料内容。这行内容应放在「参考资料」目录下。注意：冒号是英文冒号，冒号后面跟着一个空格。
+    （另一种写法）文本[^脚注内容]内容。
     ```
 
-    脚注编号的位置与括号的用法一致。
+    脚注内容既可以使用数字也可以使用文本。脚注内容位置的用法与括号的用法一致。
 
     示例：
 
     ```text
     在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h`。[^1]
     [^1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace)
+    **OI Wiki** 是一个与编程竞赛相关的，免费开放且持续更新的知识整合站点。[^OI Wiki 的创立受到了 CTF Wiki 的启发。]
     ```
 
     在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h` 。[^1]
+    **OI Wiki** 是一个与编程竞赛相关的，免费开放且持续更新的知识整合站点。[^OI Wiki 的创立受到了 CTF Wiki 的启发。]
 
 -   所有用作序号的数字建议使用中文。示例：
 
@@ -302,6 +305,7 @@ $$
 ### 其他格式要求
 
 -   所有 **OI Wiki** 文本都应使用粗体标记。
+-   “参考资料与注释”的二级标题必须放在文末。
 
 ## 图解
 
@@ -355,14 +359,6 @@ $$
 
 在文末罗列出参考文献，可以使页面的内容更严谨，真实可信。
 
-## 注释
-
-[^note1]: （冒号）表示总结上文。
-
-## 参考资料
-
-[^1]&#x3A; [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace) 
-
 ## 外部链接
 
 -    [标点符号用法（GB/T 15834—2011）](http://www.moe.gov.cn/s78/A19/yxs_left/moe_810/s230/201001/W020190128580990138234.pdf) 
@@ -370,3 +366,8 @@ $$
 -    [中文文案排版指北（简体中文版）](https://mazhuang.org/wiki/chinese-copywriting-guidelines/) 
 -    [中文文案风格指南 - PDFE GUIDELINE](https://pdfe.github.io/GUIDELINE/#/others/copywriter) 
 -    [Releases·CTeX-org/lshort-zh-cn](https://github.com/CTeX-org/lshort-zh-cn/releases) 
+
+## 参考资料与注释
+
+[^note1]: （冒号）表示总结上文。
+[^1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace) 
