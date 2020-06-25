@@ -36,7 +36,6 @@
         3.  题目：在该标题下， **只需要给出题目名字和题目链接** 。题目链接 OJ 的优先级为：原 OJ（国外 OJ 要求国内可流畅访问）> UOJ > LOJ > 洛谷 > BZOJ。
 
         示例页面： [IDA\*](../search/idastar.md) 
-        
     -   对于工具类内容的撰写应该尽量包含以下的内容：
 
         -   简介：阐明该工具的背景与用途。
@@ -110,12 +109,12 @@
 > -   「苟利国家生死以，岂因祸福避趋之！」
 > -   张华考上了大学；李萍进了技校；我当了工人：我们都有美好的前途。[^note1]
 > -   以下是这个算法的基本流程：
->     1.   初始化到各点的距离为无穷大，将所有点设置为未被访问过，初始化一个队列；
->     2.   将起点放入队列，将起点设置为已被访问过，更新到起点的距离为 $0$ ；
->     3.   取出队首元素，将该元素设置为未被访问过；
->     4.   遍历所有与此元素相连的边，若到这个点存在更短的距离，则进行松弛操作；
->     5.   若这个点未被访问过，则将这个点放入队列，且设置这个点为已经访问过；
->     6.   回到第三步，直到队列为空。
+>     1.  初始化到各点的距离为无穷大，将所有点设置为未被访问过，初始化一个队列；
+>     2.  将起点放入队列，将起点设置为已被访问过，更新到起点的距离为 $0$ ；
+>     3.  取出队首元素，将该元素设置为未被访问过；
+>     4.  遍历所有与此元素相连的边，若到这个点存在更短的距离，则进行松弛操作；
+>     5.  若这个点未被访问过，则将这个点放入队列，且设置这个点为已经访问过；
+>     6.  回到第三步，直到队列为空。
 
 ### Markdown 格式与主题扩展格式要求
 
@@ -127,21 +126,19 @@
 
     示例：
 
-    ```text
+    ````text
     在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h` 。
 
     ```cpp
     // #include<stdio.h>    //不好的写法
     #include <cstdio>  //好的写法
-    ```
-    ```
-    
-    在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h` 。
-    
-    ```cpp
-    // #include<stdio.h>    //不好的写法
-    #include <cstdio>  //好的写法
-    ```
+    ````
+
+        在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h` 。
+
+        ```cpp
+        // #include<stdio.h>    //不好的写法
+        #include <cstdio>  //好的写法
 
 -   「参考资料与注释」使用 Markdown 的脚注功能进行编写。格式为：
 
@@ -151,7 +148,7 @@
     ```
 
     脚注名既可以使用数字也可以使用文本。脚注名摆放的位置与括号的用法一致。
-    
+
     脚注的内容统一放在 `## 参考资料与注释` 二级标题下。
 
     示例：
@@ -159,16 +156,16 @@
     ```text
     在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h`。[^1]
     **OI Wiki** 是一个与编程竞赛相关的，免费开放且持续更新的知识整合站点。[^footnote2]
-    
+
     ## 参考资料与注释
-    
+
     [^1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace)
     [^footnote2]: OI Wiki 的创立受到了 CTF Wiki 的启发。
     ```
 
     在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h` 。[^1]
-    
-    **OI Wiki** 是一个与编程竞赛相关的，免费开放且持续更新的知识整合站点。[^footnote2]
+
+     **OI Wiki** 是一个与编程竞赛相关的，免费开放且持续更新的知识整合站点。[^footnote2]
 
 -   所有用作序号的数字建议使用中文。示例：
 
@@ -194,8 +191,7 @@
 
         推荐将解题代码放在折叠文本框内。
 
-    ???+note ["标题"](http://acm.hdu.edu.cn/showproblem.php?pid=1000)
-        标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的 “A + B Problem”。
+    ???+note ["标题"](http://acm.hdu.edu.cn/showproblem.php?pid=1000) 标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
 
         而且推荐以这种方式标注原题链接。
 
@@ -217,8 +213,7 @@
             ```
     ````
 
-    ???+note ["题解"](<>) 
-        内容
+    ???+note ["题解"](<>) 内容
 
         ??? mdui-shadow-6 "参考代码"
             ```cpp
@@ -390,6 +385,6 @@ $$
 
 [^note1]: （冒号）表示总结上文。
 
-[^1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace) 
+[^1]&#x3A; [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace) 
 
-[^footnote2]: OI Wiki 的创立受到了 CTF Wiki 的启发。
+[^footnote2]&#x3A; OI Wiki 的创立受到了 CTF Wiki 的启发。
