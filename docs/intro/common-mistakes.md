@@ -304,7 +304,7 @@ author: NachtgeistW
 
 -   文件操作有可能会发生的错误：
 
-    -   对拍时未清除文件指针 `fclose(fp)` 就又令 `fp = fopen()` 。这会使得进程出现大量的文件野指针。
+    -   对拍时未关闭文件指针 `fclose(fp)` 就又令 `fp = fopen()` 。这会使得进程出现大量的文件野指针。
 
     -    `freopen()` 中的文件名未加 `.in` / `.out` 。
 
