@@ -117,10 +117,11 @@ nav:
       - 希尔排序: basic/shell-sort.md
       - 排序相关 STL: basic/stl-sort.md
       - 排序应用: basic/use-of-sort.md
+    - 前缀和 & 差分: basic/prefix-sum.md
     - 二分: basic/binary.md
     - 倍增: basic/binary-lifting.md
     - 构造: basic/construction.md
-    - 前缀和 & 差分: basic/prefix-sum.md
+    - 交互题: basic/interaction.md
   - 搜索:
     - 搜索部分简介: search/index.md
     - DFS（搜索）: search/dfs.md
@@ -260,8 +261,8 @@ nav:
     - 单调栈: ds/monotonous-stack.md
     - 单调队列: ds/monotonous-queue.md
     - ST 表: ds/sparse-table.md
-    - 树状数组: ds/fenwick.md
     - 线段树: ds/seg.md
+    - 树状数组: ds/fenwick.md
     - 区间最值操作 & 区间历史最值: ds/seg-beats.md
     - 划分树: ds/dividing.md
     - 二叉搜索树 & 平衡树:
@@ -301,6 +302,7 @@ nav:
     - BFS（图论）: graph/bfs.md
     - 树上问题:
       - 树基础: graph/tree-basic.md
+      - 树的直径: graph/tree-diameter.md      
       - 最近公共祖先: graph/lca.md
       - 树的重心: graph/tree-centroid.md
       - 树链剖分: graph/hld.md
@@ -406,7 +408,7 @@ theme:
     accent: 'red'
   include_search_page: false
   search_index_only: true
-  favicon: 'favicon.ico'
+  favicon: 'https://cdn.jsdelivr.net/npm/oicdn@0.0.1/favicon.ico'
 
   logo:
     icon: 'school'
@@ -435,7 +437,7 @@ extra:
 
 extra_javascript:
   - '_static/js/extra.js?v=16'
-  - 'https://cdnjs.loli.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
+  - 'https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
 
 
 extra_css:

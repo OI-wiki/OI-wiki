@@ -2,7 +2,7 @@
 
 GitHub 地址： [xalanq/cf-tool](https://github.com/xalanq/cf-tool/) 
 
-cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux、OS X）工具，其支持很多常用操作。
+cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux、macOS）工具，其支持很多常用操作。
 
 ![](./images/cf-tool1.jpg)
 
@@ -11,7 +11,7 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 ### 特点
 
 -   支持 Codeforces 中的所有编程语言。
--   支持 contests 和 gym。
+-   支持 Contests 和 Gym。
 -   提交代码。
 -   动态刷新提交后的情况。
 -   拉取问题的样例。
@@ -128,7 +128,7 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ## CP Editor
 
-CP Editor 是一款专门为算法竞赛（Competitive Programming）设计的轻量级跨平台自由软件 IDE，有自动获取网页上的样例，一键编译运行并测试样例，在 IDE 内提交至 CF 等功能。
+CP Editor 是一款专门为算法竞赛（Competitive Programming）设计的轻量级跨平台自由软件 IDE，有自动获取网页上的样例，一键编译运行并测试样例，在 IDE 内提交至 Codeforces 等功能。
 
  [![Latest Stable](https://img.shields.io/github/v/release/cpeditor/cpeditor?label=latest%20stable)](https://github.com/coder3101/cp-editor/releases/latest)  [![Latest Release](https://img.shields.io/github/v/release/cpeditor/cpeditor?include_prereleases&label=latest%20release&sort=semver)](https://github.com/coder3101/cp-editor/releases) 
 

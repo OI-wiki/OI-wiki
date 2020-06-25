@@ -40,34 +40,19 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo, NachtgeistW
 -    [CodeChef](https://codechef.com/) ：印度 OJ，周期举办比赛。系统基于 SPOJ 的 Sphere Engine。
 -    [Codeforces](https://codeforces.com/) ：俄罗斯 OJ，始于 2010 年，创始人是 [Mike Mirzayanov](https://www.linkedin.com/in/mike-mirzayanov-31772a93/) 。有多种系列的比赛，并支持个人出题、申请组织比赛。题目质量较高。
 -    [CS Academy](https://csacademy.com/) 
--    [DMOJ](https://dmoj.ca/) ：加拿大开源的 OJ，语言支持广。题库是各大比赛的存档，也有定期自行举办的比赛。
--    [HackerRank](https://www.hackerrank.com/) ：有很多比赛。
--    [ICPC Live Archive](https://icpcarchive.ecs.baylor.edu/) ：存档了 1990 年至今的 ICPC 区域赛和总决赛题目，但部分比赛的评测数据仅为样例数据，且对 Special Judge 的支持不完善。
--    [ICPC Problem Archive](https://judge.icpc.global) ：存档了 2012 年至今的 ICPC 全球总决赛题目，并且会在总决赛开赛时同步发放题目（但不会有同步赛）。基于 Kattis 系统。
--    [Kattis](https://open.kattis.com/) ：题库主要包含类似 ICPC 比赛的题目。系统会根据用户解题情况评定用户等级，推荐适合该用户水平的 trivial/easy/medium/hard 四类难度的题目，其中题目难度采用类 [ELO 等级分](https://zh.wikipedia.org/wiki/%E7%AD%89%E7%BA%A7%E5%88%86) 系统来评估。
--    [LeetCode](https://leetcode.com/) ：码农面试刷题网站，有中文分站： [力扣（LeetCode）官网](https://leetcode-cn.com/) 。
--    [Light OJ](http://lightoj.com) ：一个快挂了的 OJ， `www` 域名无法访问，请使用 [根域名](http://lightoj.com) 访问。
--    [opentrains](http://opentrains.snarknews.info/) ：俄罗斯 [Open Cup](http://opencup.ru/) 比赛的训练平台，基于 [ejudge](https://ejudge.ru/) 开源系统搭建，支持虚拟比赛。题库包含历年 Open Cup 赛题以及 Petrozavodsk 训练营的题目。
--    [SPOJ](http://www.spoj.com) ：始于 2003 年。支持题目点赞和标签功能。其后台系统 [Sphere Engine](https://sphere-engine.com/) 于 2008 年商业化。
--    [TopCoder](https://www.topcoder.com/) ：始于 2001 年，其 [竞技编程社区](https://www.topcoder.com/community/competitive-programming/) 有很多比赛。目前主营业务是技术众包。
--    [TimusOJ](http://acm.timus.ru/) ：始于 2000 年，由 Ural Federal University 开发，拥有俄罗斯最大的在线评测题库，题目主要来自乌拉尔联邦大学校赛、乌拉尔锦标赛、ICPC 乌拉尔区域赛以及 Petrozavodsk 训练营。
--   Online Judge（前 [UVaOJ](https://uva.onlinejudge.org/) ）：始于 1995 年，国际成名最早的 OJ，创始人是西班牙 University of Valladolid (UVa) 的 Miguel Ángel Revilla 教授。由于 [Revilla 教授于 2018 年不幸离世](https://www.elnortedecastilla.es/valladolid/muere-profesor-miguel-20180402225739-nt.html) ，且 Valladolid 大学终止维护，UVaOJ 自 2019 年 7 月起更名为 Online Judge。现在该平台的维护者 [正在 Github 上构建新的评测平台](https://github.com/TheOnlineJudge/ojudge) 。
--    [Yandex](https://contest.yandex.ru/) ：存档了近几年的全俄罗斯信息学奥赛题目。
-
-## 题集
-
--    [-Morass- 贴在 Codeforces 上的一份题单](https://codeforces.com/blog/entry/55274) 
--    [北京大学 ICPC 暑期课课件例题](https://vjudge.net/article/446) 
--    [北京大学 ICPC 暑期课课件](https://lib-pku.github.io/#acm-icpc%E6%9A%91%E6%9C%9F%E8%AF%BE) 
--   Codeforces 社区高质量算法文章合集 [之一](https://codeforces.com/blog/entry/57282)  [之二](https://codeforces.com/blog/entry/13529) 
--    [各大 OJ 题目分类](http://www.pythontip.com/acm/problemCategory) ：对 POJ、HDU、ZOJ、SOJ、HOJ 和 FOJ 的题目做了分类。
--    [GitHub.com:OI-wiki/libs](https://github.com/OI-wiki/libs) 
--    [HDU 多校联合训练](http://acm.hdu.edu.cn) ：搜索关键词： `Multi-University Training Contest` 
--    [洛谷题单](https://www.luogu.com.cn/training/list) 
--    [POJ 训练计划](http://blog.csdn.net/skywalkert/article/details/46594541) 
--    [Project Euler](https://projecteuler.net/) 
--    [USACO](http://train.usaco.org/usacogate) 
--    [Vjudge](https://vjudge.net/) 
+-    [DMOJ](https://dmoj.ca/) 加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛。
+-    [HackerRank](https://www.hackerrank.com/) 有很多比赛
+-    [ICPC Live Archive](https://icpcarchive.ecs.baylor.edu/) 存档了 1990 年至今的 ICPC 区域赛和总决赛题目；但部分比赛的评测数据仅为样例数据，且对 Special Judge 的支持不完善。
+-    [ICPC Problem Archive](https://judge.icpc.global) 基于 Kattis 系统；存档了 2012 年至今的 ICPC 全球总决赛题目，并且会在总决赛开赛时同步发放题目（但不会有同步赛）。
+-    [Kattis](https://open.kattis.com/) 题库主要包含类似 ICPC 比赛的题目；根据用户解题情况评定用户等级，推荐适合该用户水平的 trivial/easy/medium/hard 四类难度的题目，其中题目难度采用类 [ELO 等级分](https://zh.wikipedia.org/wiki/%E7%AD%89%E7%BA%A7%E5%88%86) 系统来评估。
+-    [LeetCode](https://leetcode.com/) 码农面试刷题网站，有中文分站： [LeetCode China](https://leetcode-cn.com/) 。
+-    [Light OJ](http://lightoj.com) 一个快挂了的 OJ， `www` 域名无法访问，请使用 [根域名](http://lightoj.com) 访问
+-    [opentrains](http://opentrains.snarknews.info/) 俄罗斯 [Open Cup](http://opencup.ru/) 比赛的训练平台，基于 [ejudge](https://ejudge.ru/) 开源系统搭建，支持虚拟比赛；题库包含历年 Open Cup 赛题以及 Petrozavodsk 训练营的题目。
+-    [SPOJ](http://www.spoj.com) 始于 2003 年，其后台系统 [Sphere Engine](https://sphere-engine.com/) 于 2008 年商业化；支持题目点赞和标签功能。
+-    [TopCoder](https://www.topcoder.com/) 始于 2001 年，其 [竞技编程社区](https://www.topcoder.com/community/competitive-programming/) 有很多比赛；目前主营业务是技术众包。
+-    [TimusOJ](http://acm.timus.ru/) 始于 2000 年，由 Ural Federal University 开发，拥有俄罗斯最大的在线评测题库，题目主要来自乌拉尔联邦大学校赛、乌拉尔锦标赛、ICPC 乌拉尔区域赛、以及 Petrozavodsk 训练营。
+-   Online Judge（前 [UVaOJ](https://uva.onlinejudge.org/) ）始于 1995 年，国际成名最早的 OJ，创始人是西班牙 University of Valladolid (UVa) 的 Miguel Ángel Revilla 教授；由于 [Revilla 教授于 2018 年不幸离世](https://www.elnortedecastilla.es/valladolid/muere-profesor-miguel-20180402225739-nt.html) ，且 Valladolid 大学终止维护，UVaOJ 自 2019 年 7 月起更名为 Online Judge。现在该平台的维护者 [正在 GitHub 上构建新的评测平台](https://github.com/TheOnlineJudge/ojudge) 。
+-    [Yandex](https://contest.yandex.ru/) 存档了近几年的全俄罗斯信息学奥赛。
 
 ## 教程资料
 
@@ -121,14 +106,14 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo, NachtgeistW
     -   《ACM 国际大学生程序设计竞赛系列 算法与实现》- 俞勇
     -   《ACM 国际大学生程序设计竞赛系列 题目与解读》- 俞勇
 -   《算法竞赛入门到进阶》- 罗勇军，郭卫斌
--   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein
-    -   俗称黑书，大学经典教材。英文版原名_Introduction to Algorithms_
-    -    [答案解析（英文）](https://github.com/walkccc/CLRS) 
--   《具体数学》第二版 - Ronald L. Graham/Donald E. Knuth/Oren Patashnik
-    -   英文版原名_Concrete Mathematics_
--   《组合数学》第五版 - Richard A.Brualdi
-    -   英文版原名_Introductory Conbinatorics_
--    [_Competitive Programmer's Handbook_](https://cses.fi/book/index.html) 
+-   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein  
+    黑书，大学经典教材。英文版原名_Introduction to Algorithms_
+    -    [答案解析 (English)](https://github.com/walkccc/CLRS) 
+-   《具体数学》第二版 - Ronald L. Graham/Donald E. Knuth/Oren Patashnik  
+    英文版原名_Concrete Mathematics_
+-   《组合数学》第五版 - Richard A.Brualdi  
+    英文版原名_Introductory Conbinatorics_
+-    [Competitive Programmer's Handbook](https://cses.fi/book/index.html) 
 -   《挑战程序设计竞赛》全套 - 秋叶拓哉，岩田阳一，北川宜稔
     通俗易懂。
     -    [译者博客的介绍页](http://blog.watashi.ws/2382/pccb-etc/) 

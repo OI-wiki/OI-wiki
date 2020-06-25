@@ -5,6 +5,12 @@ STL 提供了大约 100 个实现算法的模版函数，基本都包含在 `<al
 -    `reverse` ：翻转数组、字符串。 `reverse(v.begin(), v.end())` 或 `reverse(a + begin, a + end)` 。
 -    `unique` ：去除容器中相邻的重复元素。 `unique(ForwardIterator first, ForwardIterator last)` ，返回值为指向 **去重后** 容器结尾的迭代器，原容器大小不变。与 `sort` 结合使用可以实现完整容器去重。
 -    `random_shuffle` ：随机地打乱数组。 `random_shuffle(v.begin(), v.end())` 或 `random_shuffle(v + begin, v + end)` 。
+
+???+warning "`random_shuffle` 函数在最新 C++ 标准中已被移除"
+     `random_shuffle` 自 C++14 起被弃用，C++17 起被移除。
+    
+    在 C++11 以及更新的标准中，您可以使用 `shuffle` 函数代替原来的 `random_shuffle` 。使用方法为 `shuffle(v.begin(),v.end(),rand)` （最后一个参数传入的是使用的随机数生成器，一般情况下传入 `rand` 即可）。
+
 -    `sort` ：排序。 `sort(v.begin(), v.end(), cmp)` 或 `sort(a + begin, a + end, cmp)` ，其中 `end` 是排序的数组最后一个元素的后一位， `cmp` 为自定义的比较函数。
 -    `stable_sort` ：稳定排序，用法同 `sort()` 。
 -    `nth_element` ：按指定范围进行分类，即找出序列中第 $n$ 大的元素，使其左边均为小于它的数，右边均为大于它的数。 `nth_element(v.begin(), v.begin() + mid, v.end(), cmp)` 或 `nth_element(a + begin, a + begin + mid, a + end, cmp)` 。
