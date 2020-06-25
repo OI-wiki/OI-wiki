@@ -151,8 +151,7 @@
     **OI Wiki** 是一个与编程竞赛相关的，免费开放且持续更新的知识整合站点。[^OI Wiki 的创立受到了 CTF Wiki 的启发。]
     ```
 
-    在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h` 。[^1]
-    **OI Wiki** 是一个与编程竞赛相关的，免费开放且持续更新的知识整合站点。[^OI Wiki 的创立受到了 CTF Wiki 的启发。]
+    在 C++ 中使用 C 的头文件时应使用 `cxxx` 而不是 `xxxx.h` 。[^1] **OI Wiki** 是一个与编程竞赛相关的，免费开放且持续更新的知识整合站点。[^OI Wiki 的创立受到了 CTF Wiki 的启发。]
 
 -   所有用作序号的数字建议使用中文。示例：
 
@@ -370,4 +369,5 @@ $$
 ## 参考资料与注释
 
 [^note1]: （冒号）表示总结上文。
-[^1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace) 
+
+[^1]&#x3A; [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace) 
