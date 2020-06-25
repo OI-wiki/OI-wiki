@@ -25,7 +25,7 @@
 
 在你的分支被合并 (merge) 到主分支 (master) 之前，你对 **OI Wiki** 所做的任何修改都不会出现在 **OI Wiki** 上。所以请不用担心“你的编辑会破坏 **OI Wiki** 正在显示的页面”一事。
 
-如果还是担心做错，可以参考 [如何使用 GitHub？](https://www.zhihu.com/question/20070065/answer/79557687) ；或者试试 [GitHub 的官方教程（英文）](https://lab.github.com/) ，GitHub 会逐步教你熟悉 GitHub 的操作步骤。
+如果还是不放心，可以参考 [这篇文章](https://juejin.im/entry/56e638591ea49300550885cc) ，或者试试 [GitHub 的官方教程](https://lab.github.com/) 。
 
 ### 我之前用过 GitHub
 

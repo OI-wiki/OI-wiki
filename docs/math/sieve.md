@@ -28,6 +28,43 @@ int Eratosthenes(int n) {
 
 以上为 **Eratosthenes 筛法** （埃拉托斯特尼筛法），时间复杂度是 $O(n\log\log n)$ 。
 
+怎么证明这个复杂度呢？我们先列出复杂度的数学表达式。
+
+发现数学表达式显然就是素数的倒数和乘上 $n$ ，即 $n\sum_p {\frac{1}{p}}$ 。
+
+我们相当于要证明 $\sum_p {\frac{1}{p}}$ 是 $O(\log\log n)$ 的。我们考虑一个很巧妙的构造来证明这个式子是 $O(\log\log n)$ 的：
+
+证明：
+
+注意到调和级数 $\sum_n {\frac{1}{n}}=\ln n$ 。
+
+而又由唯一分解定理可得： $\sum_n {\frac{1}{n}}=\prod_p {(1+\frac{1}{p}+\frac{1}{p^2}+\cdots)}=\prod_p {\frac{p}{p-1}}$ 。
+
+我们两边同时取 $\ln$ ，得：
+
+$$
+\begin{aligned}
+\ln \sum_n {\frac{1}{n}}&=\ln \prod_p {\frac{p}{p-1}}\\
+\ln\ln n&=\sum_p {(\ln p-\ln {(p-1)})}
+\end{aligned}
+$$
+
+又发现 $\int {\frac{1}{x}dx}=\ln x$ ，所以由微积分基本定理：
+
+$$
+\sum_p {(\ln p-\ln {(p-1)})}=\sum_p {\int_{p-1}^p {\frac{1}{x}dx}}
+$$
+
+画图可以发现， $\int_{p-1}^p {\frac{1}{x}dx}>\frac{1}{p}$ ，所以：
+
+$$
+\ln\ln n=\sum_p {\int_{p-1}^p {\frac{1}{x}dx}}>\sum_p {\frac{1}{p}}
+$$
+
+所以 $\sum_p {\frac{1}{p}}$ 是 $O(\log\log n)$ 的，所以 **Eratosthenes 筛法** 的复杂度是 $O(n\log\log n)$ 的。
+
+证毕
+
 以上做法仍有优化空间，我们发现这里面似乎会对某些数标记了很多次其为合数。有没有什么办法省掉无意义的步骤呢？
 
 答案当然是：有！

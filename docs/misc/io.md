@@ -80,7 +80,7 @@ int read() {
 ### 代码实现
 
 ```cpp
-int write(int x) {
+void write(int x) {
   if (x < 0) {  // 判负 + 输出负号 + 变原数为正数
     x = -x;
     putchar('-');

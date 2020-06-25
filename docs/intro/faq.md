@@ -37,12 +37,12 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ，QQ 群号码为 [ `58
 推荐在 hosts 文件中加入如下几行：（来源： [GoogleHosts-919f34e](https://github.com/googlehosts/hosts/blob/919f34e53c1099241af7d0b5e730b60899af7d18/hosts-files/hosts#L1467-#L1472) ）
 
 ```text
-# Github Start
+# GitHub Start
 13.250.177.223	gist.github.com
 13.250.177.223	github.com
 13.229.188.59	www.github.com
 151.101.56.133	raw.githubusercontent.com
-# Github End
+# GitHub End
 ```
 
 可以在 [GoogleHosts 主页](https://github.com/googlehosts/hosts) 上了解到更多信息。
@@ -159,9 +159,9 @@ pagetime:
 
 ### 为什么作者信息统计处没有我的名字
 
-是因为 Github API 在文件目录变更后不能跟踪统计，我们在文件头手动维护了一个作者列表来解决这个问题。如果你发现自己写过一个页面中的部分内容，但是没有被记录在页面的作者去，可以把自己的 Github ID 加入到文件头的 `author` 字段，格式是 `author: Ir1d, cjsoft` ，相邻两个 ID 之间用 `,·` （逗号和空格）隔开。
+是因为 GitHub API 在文件目录变更后不能跟踪统计，我们在文件头手动维护了一个作者列表来解决这个问题。如果你发现自己写过一个页面中的部分内容，但是没有被记录在页面的作者去，可以把自己的 GitHub ID 加入到文件头的 `author` 字段，格式是 `author: Ir1d, cjsoft` ，相邻两个 ID 之间用 `,·` （逗号和空格）隔开。
 
-注：这里记录的 ID 是对应到 Github Profile 的地址（即点击 Github 页面右上角之后跳转到的个人主页的 url）
+注：这里记录的 ID 是对应到 GitHub Profile 的地址（即点击 GitHub 页面右上角之后跳转到的个人主页的 url）
 
 ### 重定向文件怎么用
 

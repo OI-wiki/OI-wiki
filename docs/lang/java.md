@@ -44,8 +44,8 @@ sudo mv jdk-14 /opt
 并在 `.bashrc` 文件末尾添加
 
 ```bash
-export JAVA_HOME="/opt/jdk-14/bin"
-export PATH=${JAVA_HOME}:$PATH
+export JAVA_HOME="/opt/jdk-14"
+export PATH=$JAVA_HOME/bin:$PATH
 ```
 
 在控制台中输入命令 `source ~/.bashrc` 即可重载。如果是使用的 zsh 或其他命令行，在 `~/.zshrc` 或对应的文件中添加上面的内容
