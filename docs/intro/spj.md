@@ -387,4 +387,4 @@ int main(int argc, char* argv[]) {
 
 ## 参考资料
 
-[^1]: [LibreOJ 支持 testlib 检查器啦！](https://loj.ac/article/124) 
+[^1]:  [LibreOJ 支持 testlib 检查器啦！](https://loj.ac/article/124) 
