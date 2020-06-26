@@ -1,4 +1,4 @@
-author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy
+author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy, ksyx
 
 ## 介绍
 
@@ -10,9 +10,9 @@ author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy
 >
 > 此外，Dev-C++ 较旧的版本无法在 win8 环境下编译。
 >
-> 该项目已不再明显活跃，从 2005 年 2 月 22 日开始至 2011 年 6 月，Dev-C++ 的官方网站一直没有再发出新消息或是释放新版本，说明 Dev-C++ 的开发已经进入了迟滞状态。2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释：“因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发。” [\[1\]](http://sourceforge.net/projects/dev-cpp/forums/forum/33286/topic/1334635) 
+> 该项目已不再明显活跃，从 2005 年 2 月 22 日开始至 2011 年 6 月，Dev-C++ 的官方网站一直没有再发出新消息或是释放新版本，说明 Dev-C++ 的开发已经进入了迟滞状态。2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释：“因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发。”
 
-以上摘自 Wikipedia [\[2\]](https://zh.wikipedia.org/wiki/Dev-C%2B%2B) 。
+以上摘自 Wikipedia[^1]。
 
 不过，你在使用的版本是不是我说的这个版本呢？
 
@@ -20,51 +20,13 @@ author: Doveqise, hsfzLZH1, wangqingshiyu, ouuan, sshwy
 
 > Orwell Dev-C++ 是 Dev-C++ 的一个衍生版本。Orwell 鉴于 Dev-C++ 的长时间（从 2005 年 2 月 22 日起）不再更新，对 Dev-C++ 源代码进行错误修正，并更新编译器后发布的版本。
 
-以上摘自 Wikipedia [\[3\]](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B) 。
+以上摘自 Wikipedia[^2]。
 
 自 2011 年的 Dev-C++ 4.9.9.3 版本之后，你使用的版本均为 Orewell Dev-C++。
 
 目前最新版本为 2015 年 4 月 27 日的 Dev-C++ 5.11 版本。
 
 该应用界面简洁友好，安装便捷，适合初学者使用。
-
-## 部署教程
-
-Dev-C++ 各版本的安装步骤大同小异，下面以最新版本 5.11 演示。
-
- [下载链接](https://sourceforge.net/projects/orwelldevcpp/files/latest/download) 
-
-1.  首先选择安装语言，这里选择英语，然后点击 OK。
-
-![](./images/Dev-C++-1.png)
-
-2.  同意使用协议，即点击 I Agree。
-
-![](./images/Dev-C++-2.png)
-
-3.  选择安装方式，此处直接点击 Next>。
-
-![](./images/Dev-C++-3.png)
-
-4.  选择安装路径，按需要选择，然后点击 Install。
-
-![](./images/Dev-C++-4.png)
-
-5.  安装完毕后，点击 Finish 来开始初始化 Dev-C++。
-
-![](./images/Dev-C++-5.png)
-
-6.  选择语言为简体中文，然后点击 > Next。
-
-![](./images/Dev-C++-6.png)
-
-7.  选择你的主题和风格，这些以后可以在编辑器选项里调整，然后点击 > Next。
-
-![](./images/Dev-C++-7.png)
-
-8.  点击 OK 以完成安装。
-
-![](./images/Dev-C++-8.png)
 
 ## 使用教程
 
@@ -191,9 +153,16 @@ Dev-C++ 各版本的安装步骤大同小异，下面以最新版本 5.11 演示
 
 其中 `[String]` 改为你需要的宏名。
 
-如图，当开启编译选项后便可从 `test.in` 文件读入数据并在 `test.out` 文件中输出。
+如图，当开启编译选项后便可将以下代码从 `test.in` 文件读入数据并在 `test.out` 文件中输出。
 
 ![](./images/Dev-C++-16.png)
+
+```cpp
+#ifdef LOCAL
+freopen("test.in", "r", stdin);
+freopen("test.out", "w", stdout);
+#endif
+```
 
 ### 美化
 
@@ -202,10 +171,6 @@ Dev-C++ 各版本的安装步骤大同小异，下面以最新版本 5.11 演示
 点击 Astyle-> 格式化当前文件 或 按 Ctrl+Shift+A 进行代码格式化。
 
 ![](./images/Dev-C++-17.png)
-
-格式化后效果：
-
-![](./images/Dev-C++-18.png)
 
 #### 字体
 
@@ -219,10 +184,8 @@ Dev-C++ 各版本的安装步骤大同小异，下面以最新版本 5.11 演示
 
 ![](./images/Dev-C++-10.png)
 
-## 引用链接
+## 参考资料
 
-[1]&#x3A; [SourceForge 论坛的帖子](http://sourceforge.net/projects/dev-cpp/forums/forum/33286/topic/1334635) 
+[^1]: [Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B) 
 
-[2]&#x3A; [Dev-C++- 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B) 
-
-[3]&#x3A; [Orwell Dev-C++- 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B) 
+[^2]: [Orwell Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B) 
