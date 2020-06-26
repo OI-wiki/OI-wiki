@@ -13,6 +13,7 @@
     "remark-math-space",
     "remark-lint-final-newline",
     "remark-lint-no-tabs",
-    "remark-clang-format"
+    "remark-clang-format",
+    "remark-footnotes"
   ]
 }
