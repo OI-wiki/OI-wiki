@@ -186,6 +186,6 @@ freopen("test.out", "w", stdout);
 
 ## 参考资料
 
-[^1]: [Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B) 
+[^1]:  [Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B) 
 
-[^2]: [Orwell Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B) 
+[^2]:  [Orwell Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B) 
