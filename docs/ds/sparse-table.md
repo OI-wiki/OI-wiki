@@ -119,7 +119,7 @@ ST 表能较好的维护“可重复贡献”的区间信息（同时也应满�
 
 ## 练习
 
- [RMQ 模板题](https://www.luogu.com.cn/problem/P3865) 
+ [RMQ 模板题](https://loj.ac/problem/10119) 
 
  [「SCOI2007」降雨量](https://loj.ac/problem/2279) 
 
