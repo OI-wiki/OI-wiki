@@ -87,11 +87,7 @@ $$
 $$
 \begin{array}{ll}
 \textbf{int}\ delta2(\textbf{int}\ j) \quad\textbf{\\\\}\ \text{j为失配字符在pat上对应字符的位置} \\
-
 \qquad\qquad\textbf{return}\ patlastpos-rpr(j) \\
-
-
-
 \end{array}
 $$
 
