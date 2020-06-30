@@ -180,7 +180,6 @@ $$
 \begin{array}{ll}
 i \gets patlastpos. \\
 j \gets patlastpos. \\
-
 \textbf{loop}\\
 \qquad \textbf{if}\ j < 0 \\
 \qquad \qquad \textbf{return}\ i+1 \\
@@ -303,17 +302,14 @@ i \gets patlastpos \\
 \\
 \qquad i \gets i-large \\
 \qquad j \gets patlastpos. \\
-
 \qquad\textbf{while}\ j \geqslant\ 0 \ and \  string[i]=pat[j]\\
 \qquad \qquad j \gets j-1 \\
 \qquad \qquad i \gets i-1 \\
-
 \\
 \qquad \textbf{if}\ j < 0 \\
 \qquad \qquad \textbf{return}\ i+1 \\
 \qquad i \gets i+max(delta_1(string[i]), delta_2(j)) \\
 \\
-
 \end{array}
 $$
 
