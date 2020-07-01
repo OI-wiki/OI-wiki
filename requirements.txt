@@ -1,3 +1,2 @@
 mkdocs>=1
-mkdocs-material
 pymdown-extensions
