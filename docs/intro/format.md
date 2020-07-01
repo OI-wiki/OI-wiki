@@ -182,8 +182,9 @@
 
         推荐将解题代码放在折叠文本框内。
 
-    !!!+note [标题](http://acm.hdu.edu.cn/showproblem.php?pid=1000)
-        标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的 “A + B Problem”。
+    !!!+note [标题](http://acm.hdu.edu.cn/showproblem.php?pid=1000)  
+        
+        标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
 
         而且推荐以这种方式标注原题链接。
     ```
@@ -193,7 +194,9 @@
 
         推荐将解题代码放在折叠文本框内。
 
-    !!!+note [标题](http://acm.hdu.edu.cn/showproblem.php?pid=1000) 标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
+    !!!+note [标题](http://acm.hdu.edu.cn/showproblem.php?pid=1000) 
+
+        标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
 
         而且推荐以这种方式标注原题链接。
 
@@ -390,4 +393,4 @@ $$
 
 [^1]&#x3A; [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace) 
 
-[^footnote2]&#x3A;OI Wiki 的创立受到了 CTF Wiki 的启发。
+[^footnote2]&#x3A; **OI Wiki** 的创立受到了 **CTF Wiki** 的启发。
