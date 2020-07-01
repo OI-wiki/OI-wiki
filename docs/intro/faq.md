@@ -1,6 +1,6 @@
 ## 交流方式
 
-本项目主要使用 [Issues](https://github.com/24OI/OI-wiki/issues) / [QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) / [Telegram](https://t.me/OIwiki) 进行交流沟通。
+本项目主要使用 [Issues](https://github.com/OI-wiki/OI-wiki/issues) / [QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) / [Telegram](https://t.me/OIwiki) 进行交流沟通。
 
 Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ，QQ 群号码为 [ `588793226` ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) ，欢迎加入。
 
@@ -12,18 +12,18 @@ Telegram 群组链接为 [@OIwiki](https://t.me/OIwiki) ，QQ 群号码为 [ `58
 
 ### 目录在哪
 
-目录在项目根目录下的 [mkdocs.yml](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 文件中。
+目录在项目根目录下的 [mkdocs.yml](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml#L17) 文件中。
 
 ### 如何修改一个 topic 的内容
 
 在对应页面右上方有一个编辑按钮<i class="md-icon">edit</i>，点击并确认阅读了 [如何贡献](./htc.md) 之后会跳转到 GitHub 上对应文件的位置。
 
-或者也可以自行阅读目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 查找文件位置。
+或者也可以自行阅读目录 [(mkdocs.yml)](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml#L17) 查找文件位置。
 
 ### 如何添加一个 topic
 
 1.  可以开一个 Issue，注明希望能添加的内容。
-2.  可以开一个 Pull Request，在目录 [(mkdocs.yml)](https://github.com/24OI/OI-wiki/blob/master/mkdocs.yml#L17) 中加上新的 topic，并在 [docs](https://github.com/24OI/OI-wiki/tree/master/docs) 文件夹下对应位置创建一个空的 `.md` 文件。
+2.  可以开一个 Pull Request，在目录 [(mkdocs.yml)](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml#L17) 中加上新的 topic，并在 [docs](https://github.com/OI-wiki/OI-wiki/tree/master/docs) 文件夹下对应位置创建一个空的 `.md` 文件。
 
 !!! warning "注意"
     写 .md 文件时，请勿在开头写上标题。
@@ -60,7 +60,7 @@ pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 如果有安装 `git bash` ，可以加几个限制来减少下载量：
 
 ```bash
-git clone https://github.com/24OI/OI-wiki.git --depth=1 -b master
+git clone https://github.com/OI-wiki/OI-wiki.git --depth=1 -b master
 ```
 
 参考： <https://blog.csdn.net/FreeApe/article/details/46845555> 
@@ -99,7 +99,7 @@ pip install -U -r requirements.txt
 
 可以查阅 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/) ，或者 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E) 。
 
-我们目前在使用 [remark-lint](https://github.com/remarkjs/remark-lint) 来自动化修正格式，可能还有一些 [配置](https://github.com/24OI/OI-wiki/blob/master/.remarkrc) 不够好的地方，欢迎指出。
+我们目前在使用 [remark-lint](https://github.com/remarkjs/remark-lint) 来自动化修正格式，可能还有一些 [配置](https://github.com/OI-wiki/OI-wiki/blob/master/.remarkrc) 不够好的地方，欢迎指出。
 
 #### GitHub 是不是不显示我的数学公式？
 
@@ -121,7 +121,7 @@ $$
 
 是的，这个是 python-markdown 的一个 bug，可能近期会修复。
 
-如果现在想要避免目录中出现双倍公式，可以参考 <https://github.com/24OI/OI-wiki/blame/master/docs/string/sam.md#L82> 
+如果现在想要避免目录中出现双倍公式，可以参考 <https://github.com/OI-wiki/OI-wiki/blame/master/docs/string/sam.md#L82> 
 
 ```text
 ### 结束位置 <script type="math/tex">endpos</script>

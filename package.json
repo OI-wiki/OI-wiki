@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/24OI/OI-wiki.git"
+    "url": "git+https://github.com/OI-wiki/OI-wiki.git"
   },
   "keywords": [
     "OI",
@@ -21,9 +21,9 @@
   "author": "OI Wiki Team",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/24OI/OI-wiki/issues"
+    "url": "https://github.com/OI-wiki/OI-wiki/issues"
   },
-  "homepage": "https://github.com/24OI/OI-wiki#readme",
+  "homepage": "https://github.com/OI-wiki/OI-wiki#readme",
   "dependencies": {
     "bluebird": "^3.7.2",
     "chalk": "^4.1.0",

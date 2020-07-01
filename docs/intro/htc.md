@@ -91,7 +91,7 @@ PR 标题示例：
 
 ### Remark-lint 的格式要求
 
- [remark-lint](https://github.com/remarkjs/remark-lint) 可以自动给项目内文件统一风格，我们现在启用的配置文件在 [.remarkrc](https://github.com/24OI/OI-wiki/blob/master/.remarkrc) 。
+ [remark-lint](https://github.com/remarkjs/remark-lint) 可以自动给项目内文件统一风格，我们现在启用的配置文件在 [.remarkrc](https://github.com/OI-wiki/OI-wiki/blob/master/.remarkrc) 。
 
 在配置过程中我们也遇到了一些 remark-lint 不能很好处理的问题：
 
