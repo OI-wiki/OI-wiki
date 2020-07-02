@@ -427,8 +427,8 @@ PR 需要包含以下基本信息：
 
 [^note1]: （冒号）表示总结上文。
 
-[^ref1]&#x3A; [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace) 
+[^ref1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace) 
 
-[^ref2]&#x3A; [CCF 关于恢复 NOIP 竞赛的公告 - 中国计算机学会](https://www.ccf.org.cn/c/2020-01-21/694716.shtml) 
+[^ref2]: [CCF 关于恢复 NOIP 竞赛的公告 - 中国计算机学会](https://www.ccf.org.cn/c/2020-01-21/694716.shtml) 
 
-[^ref3]&#x3A; [我的公式为什么在目录里没有正常显示？好像双倍了](faq.md) 
+[^ref3]: [我的公式为什么在目录里没有正常显示？好像双倍了](faq.md) 
