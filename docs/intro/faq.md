@@ -76,6 +76,8 @@ A：在对应页面右上方有一个编辑按钮<i class="md-icon">edit</i>，�
 
 Q：如何添加一个 topic？
 
+A：有两种选择：
+
 -   可以开一个 Issue，注明希望能添加的内容。
 -   可以开一个 Pull Request，在目录 [(mkdocs.yml)](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml) 中加上新的 topic，并在 [docs](https://github.com/OI-wiki/OI-wiki/tree/master/docs) 文件夹下对应位置创建一个空的 `.md` 文件。文档的格式细节请参考 [格式手册](format.md#贡献文档要求) 。
 
@@ -148,7 +150,7 @@ A：检查一下是否安装好了依赖？
 
 Q：我 clone 了很久之前的 repo，怎么更新到新版本呢
 
-请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork) 。
+A：请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork) 。
 
 * * *
 
