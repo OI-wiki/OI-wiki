@@ -1,6 +1,6 @@
 在文章开始之前， **OI Wiki** 项目组全体成员十分欢迎您为本项目贡献页面。正因为有了上百位像您一样的人，才有了 **OI Wiki** 的今天！
 
-本页面将主要叙述在 **OI Wiki** 编写过程时推荐使用的格式规范与编辑方针。请您在撰稿或者修正 Wiki 页面以前，仔细阅读以下内容，以帮助您完成更高质量的内容。
+本页面将列出在 **OI Wiki** 编写过程时推荐使用的格式规范与编辑方针。请您在撰稿或者修正 Wiki 页面以前，仔细阅读以下内容，以帮助您完成更高质量的内容。
 
 如果您已迫不及待，想要快速上手，建议先阅读图片举例的章节。
 
@@ -166,8 +166,6 @@
 
     2020 年 1 月 21 日，CCF 宣布恢复 NOIP。[^ref2]
 
-     [点击这里跳到文末查看脚注效果](format.md#参考资料与注释)
-
 -   建议使用主题扩展的 `???+note` 格式来描述题面和参考代码。具体格式如下：
 
     ```text
@@ -228,21 +226,33 @@
 
 -   所有的 **OI Wiki** 文本都应使用粗体标记。
 
--   在页面的开头应有一段简短的文字（如「本页面主要介绍……」），用于概述页面内容。
+-   在页面的开头应有一段简短的文字（如「本页面将介绍……」），用于概述页面内容。
 
     例：
 
-    > 本页面将主要叙述在 **OI Wiki** 编写过程时推荐使用的格式规范与编辑方针。
+    > 本页面将列出在 **OI Wiki** 编写过程时推荐使用的格式规范与编辑方针。
+
+-   涉及到“前置知识”的页面，请在开头添加一行 **前置知识：……**。格式如下：
+
+    `前置知识：[站内页面1](url1)、[站内页面2](url2)和[站内页面3](url3)`
+
+    例：
+
+    > 前置知识： [时间复杂度](../misc/complexity.md) 。
+    >
+    > 本页面将介绍基础的计算理论的知识。
 
 -   请注意文档结构。文档结构应当十分条理，层次清晰。请不要让诸如「五级标题」这种事情再次发生了，一篇正常的文章是用不到如此复杂的结构层次的。
 
--   请尽量避免使用裸地址。每一个超链接都应尽量对其加以描述，方便读者明白该超链接将指向何处。建议使用源文章或者标签页的标题。
+-   请尽量避免使用裸地址和“这”、“此”之类的模糊不清的描述。每一个超链接都应尽量对其加以清楚明确的描述，方便读者明白该超链接将指向何处。建议使用源文章或者标签页的标题。
 
     ```markdown
     <!-- 不推荐的写法 -->
-    请参考 GitHub 官方的帮助页面：<https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
+    请参考[这个页面](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+    <!-- 不推荐的写法 -->
+    请参考 <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
     <!-- 推荐的写法 -->
-    请参考 GitHub 官方的帮助页面：[Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+    请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
     ```
 
 -   受 Markdown 格式限制， `## 参考资料与注释` 二级标题必须放在文末。
@@ -252,6 +262,7 @@
     -   输入文件的第一行。
 
 -   请尽量避免在标题中使用 MathJax 公式，无论是几级标题。在标题中使用公式有可能会导致目录显示错误。[^ref3]
+-   出于节省篇幅的考虑，请在编写 C/C++ 语言的代码时使用 **大括号不换行** 的代码风格。
 
 #### LaTeX 公式的格式要求
 
