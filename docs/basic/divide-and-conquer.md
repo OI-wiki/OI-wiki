@@ -1,4 +1,4 @@
-author: fudonglai, AngelKitty
+author: fudonglai, AngelKitty, labuladong
 
 首先简单阐述一下递归，分治算法，动态规划，贪心算法这几个东西的区别和联系，心里有个印象就好。
 
