@@ -238,7 +238,7 @@
 
     例：
 
-    > 前置知识：[时间复杂度](../misc/complexity.md)
+    > 前置知识： [时间复杂度](../misc/complexity.md) 
     >
     > 本页面将介绍基础的计算理论的知识。
 
@@ -257,7 +257,7 @@
     请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
     ```
 
-    > 请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+    > 请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork) 
 
 -   受 Markdown 格式限制， `## 参考资料与注释` 二级标题必须放在文末。
 
@@ -284,6 +284,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
     如果遇到没有预先定义好的需要使用 Roman 体的 **函数名** ，我们可以使用 `$\operatorname{something}$` 来产生，如我们可以使用 `$\operatorname{lcm}$` 产生正体的最小公倍数（函数）符号。同理，产生 Roman 体的 **常量** 应用 `$\mathrm{}$` ；产生 Roman 体粗体符号应用 `$\mathbf{}$` ；产生 Italic 体粗体符号应用 `$\boldsymbol{}$` （如向量 $\boldsymbol{a}$ ）。其他非数学内容，包括英文、特殊符号等，一律使用 `$\text{}$` 。中文我们则建议不放在 LaTeX 公式中。
 
 -   在行内使用分数的时侯，请使用 `$\dfrac{}{}$` 。比如 `$\dfrac{1}{2}$` ，效果 $\dfrac{1}{2}$ ，而不是 `$\frac{1}{2}$` ，效果 $\frac{1}{2}$ 。
+
 -   尽可能避免在行内使用巨运算符（如 $\sum$ ， $\prod$ ， $\int$ 等）。
 
 -   在不会引起歧义的情况下，请用 `$\times$` 代替星号，叉乘请使用 `$\times$` ，点乘请使用 `$\cdot$` 。如 $a\times b$ , $a\cdot b$ ，而不是 $a\ast b$ 。
@@ -442,7 +443,7 @@ PR 需要包含以下基本信息：
 -    [维基百科：格式手册/标点符号](https://zh.wikipedia.org/wiki/Wikipedia:%E6%A0%BC%E5%BC%8F%E6%89%8B%E5%86%8C/%E6%A0%87%E7%82%B9%E7%AC%A6%E5%8F%B7) 
 -    [中文文案排版指北（简体中文版）](https://mazhuang.org/wiki/chinese-copywriting-guidelines/) 
 -    [中文文案风格指南 - PDFE GUIDELINE](https://pdfe.github.io/GUIDELINE/#/others/copywriter) 
--    [一份（不太）简短的 LATEX2ε 介绍或 106 分钟了解 LATEX2ε](https://github.com/CTeX-org/lshort-zh-cn/releases)
+-    [一份（不太）简短的 LATEX2ε 介绍或 106 分钟了解 LATEX2ε](https://github.com/CTeX-org/lshort-zh-cn/releases) 
 
 ## 参考资料与注释
 
