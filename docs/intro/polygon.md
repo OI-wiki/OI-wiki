@@ -1,24 +1,28 @@
+author: ouuan, NachtgeistW
+
+本页面将简要介绍多人协作出题平台 Polygon。
+
 ## 简介
 
-### 什么是 Polygon?
+### 什么是 Polygon
 
-网址： <https://polygon.codeforces.com/> 
+网址： [Index Page - Polygon](https://polygon.codeforces.com)
 
-Polygon 是一个支持多人合作的出题平台，功能非常完善。
+Polygon 是一个支持多人协作的出题平台，功能非常完善。官网描述为“Polygon 的使命是为创建编程竞赛题目提供平台。”
 
-在 Codeforces (CF) 出题是必须使用 Polygon 的，在其它地方出题，尤其是多人合作出题时，使用 Polygon 也是不错的选择。
+在 Codeforces (CF) 出题必须使用 Polygon。在其它地方出题，尤其是多人合作出题时，使用 Polygon 也是不错的选择。
 
-### 为什么要使用 Polygon？
+### 优点
 
 -   有版本管理系统，多人合作时不会乱成一团，也不需要互相传文件。
 
 -   出题系统完善，validator、generator、checker、solutions 环环相扣，输出自动生成。
 
--   可以为 solutions 设置标签，错解 AC、正解未 AC 都会警告，可以方便地逐一卡掉错解。
+-   可以为 solutions 设置标签，错解 AC、正解未 AC 都会警告，方便地逐一卡掉错解。
 
 -   可以方便地对拍，拍出来的数据可以直接添加到题目数据中。
 
--   发现问题可以提 issue，而不会随着消息刷屏而一直没有 fix。
+-   发现问题可以提 issue，而不会被消息刷屏却一直没有 fix。
 
 -   为日后出 CF 做准备。
 
@@ -26,7 +30,7 @@ Polygon 是一个支持多人合作的出题平台，功能非常完善。
 
 ## 题目列表
 
-题目列表中会显示一道题目的基本信息，如题面、题解撰写情况，数据造了多少，std、validator 和 checker 有没有设置。
+题目列表中会显示一道题目的基本信息，如题面、题解撰写情况、数据生成情况以及 std、validator 和 checker 的设置。
 
 可以双击题目列表的 "Name" 这一栏来写上 note，比如需要提醒自己做的事（need to add more tests/need to write tutorial），或者是这道题预订的 score distribution，可以根据自己的需要随意填写，当然也可以空着。
 
@@ -38,11 +42,9 @@ Polygon 是一个支持多人合作的出题平台，功能非常完善。
 
 ## 题目管理
 
-### 简述
-
 Polygon 的大部分功能都不需要学，能看懂英文就基本能用了。
 
-需要特别提醒的：
+特别提醒：
 
 -   题面不能使用 Markdown，只能用 TeX。
 
@@ -54,9 +56,9 @@ Polygon 的大部分功能都不需要学，能看懂英文就基本能用了。
 
 ### General Info
 
-在这个页面中可以设置题目的时间限制，空间限制，是否是交互题。
+在这个页面中可以设置题目的时间限制、空间限制、是交互题或否。
 
-需要注意 "Statement description" 和 "Problem tutorial" 并不是用来写题面和题解的，这两个输入框可能是历史遗留原因。
+需要注意，"Statement description" 和 "Problem tutorial" 并不是用来写题面和题解的，这两个输入框可能是历史遗留原因。
 
 ### Statement
 
@@ -122,7 +124,7 @@ Tests 页面的下方是用来输入生成数据的脚本的，如 `generator-na
 
 ### Solution Files
 
-这个页面是用来放解这道题的代码的，可以是正解也可以是错解，将错解传上来可以便捷地卡掉它们，也可以提醒自己需要卡掉它们。
+这个页面是用来放解这道题的代码的，可以是正解也可以是错解。将错解传上来可以便捷地卡掉它们，也可以提醒自己需要卡掉它们。
 
 ### Invocations
 
