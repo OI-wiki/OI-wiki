@@ -82,7 +82,7 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
     你应该将 `cf` 这个程序放到一个已经加入到系统变量 PATH 的路径里（比如说 Linux 里的 `/usr/bin/` )。
 
-    不明白的话请直接搜索 “PATH 添加路径”。
+    不明白的话请直接搜索“PATH 添加路径”。
 
 3.  如何加一个新的测试数据
 
@@ -96,7 +96,7 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ## Codeforces Visualizer
 
-官网：[Codeforces Visualizer](https://cfviz.netlify.app)
+官网： [Codeforces Visualizer](https://cfviz.netlify.app) 
 
 源码托管在 [sjsakib/cfviz](https://github.com/sjsakib/cfviz/) 上。
 
@@ -115,7 +115,7 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 使用方法：
 
 -   在谷歌或者火狐浏览器上安装插件。该工具会将解析到的测例数据以 JSON 格式的形式发到指定的端口。
--   在本地安装任何可以从端口监听读取数据的工具即可，可以参考[官方给出的示例](https://github.com/jmerle/competitive-companion-example)。
+-   在本地安装任何可以从端口监听读取数据的工具即可，可以参考 [官方给出的示例](https://github.com/jmerle/competitive-companion-example) 。
 
 图片演示：
 
@@ -123,10 +123,10 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ## CP Editor
 
-官网：[CP EDITOR](https://cpeditor.org)
+官网： [CP EDITOR](https://cpeditor.org) 
 
 CP Editor 是一款专门为算法竞赛（Competitive Programming）设计的轻量级跨平台自由软件 IDE，有自动获取网页上的样例，一键编译运行并测试样例，在 IDE 内提交至 Codeforces 等功能。
 
 源码托管在 [cpeditor/cpeditor](https://github.com/cpeditor/cpeditor) 上，另有 [Gitee 镜像](https://gitee.com/ouuan/cpeditor) （同步自 GitHub，不一定是最新的）。
 
-下载链接：[GitHub Released](https://github.com/cpeditor/cpeditor/releases) 或 [Gitee 发行版](https://gitee.com/ouuan/cpeditor/releases)
+下载链接： [GitHub Released](https://github.com/cpeditor/cpeditor/releases) 或 [Gitee 发行版](https://gitee.com/ouuan/cpeditor/releases) 
