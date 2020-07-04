@@ -584,7 +584,7 @@ void div(int a[], int b[], int c[], int d[]) {
     
       for (int i = 0; i < LEN - 1; ++i) {
         c[i] += a[i] + b[i];
-        if (c[i] >= p) { //在普通高精度运算下，p=10
+        if (c[i] >= p) {  //在普通高精度运算下，p=10
           c[i + 1] += 1;
           c[i] -= p;
         }
