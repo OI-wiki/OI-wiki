@@ -101,7 +101,7 @@
 
 -   哈希的时候没有使用 `unsigned` ，因为对负数的右移运算会在最高位补 1，详见 [位运算](../math/bit.md) 
 
--   没有删除调试信息。
+-   没有删除调试输出。
 
 -   误加了 `;` 。
     -   可以参考这个例子：
@@ -140,7 +140,7 @@ f[find(a)] = find(b);  // 正确
         return block[a.l] < block[b.l];
     ```
     上述代码中 `(block[a.l]&1)^(a.r<b.r)` 不满足上述要求的第二点。
-    改成这样就正确了。
+    改成这样就正确了：
     ```cpp
     bool operator<(const int a, const int b) {
       if (block[a.l] == block[b.l])
