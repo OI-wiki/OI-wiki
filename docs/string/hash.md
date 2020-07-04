@@ -49,7 +49,7 @@ int get_hash(const string& s) {
   return res;
 }
 
-void cmp(const string& s, const string& t) {
+bool cmp(const string& s, const string& t) {
   return get_hash(s) == get_hash(t);
 }
 ```
