@@ -46,9 +46,9 @@ INFO: 恭喜你找到了隐藏彩蛋！
 
 以下 IDE 选择一个即可：
 
--    [Dev-C++](https://sourceforge.net/projects/orwelldevcpp/) 
--    [Code::Blocks](https://sourceforge.net/projects/codeblocks/) 
--    [Visual Studio](https://visualstudio.microsoft.com/) （Community 版本够用）
+-  [Dev-C++](https://sourceforge.net/projects/orwelldevcpp/) 
+-  [Code::Blocks](https://sourceforge.net/projects/codeblocks/) 
+-  [Visual Studio](https://visualstudio.microsoft.com/) （Community 版本够用）
 
 ### 方式二：使用 代码编辑器 + 编译器 + 调试器
 
@@ -113,8 +113,8 @@ std::cout << "Hello World!" << std::endl;
 
 #### 简单练习
 
-1.  试着换个字符串输出。
-2.  试着了解转义字符。
+1. 试着换个字符串输出。
+2. 试着了解转义字符。
 
 ### A+B Problem：第二个 C++ 程序
 
@@ -173,8 +173,8 @@ int a = 0, b = 0, c = 0;
 
 #### 简单练习
 
-1.  重写一遍代码，提交到 OJ 上，并且 AC。
-2.  更多的输入输出语法参考 [这节内容](../basic/#scanf-printf) ，并试着了解 C++ 的格式化输出。
+1. 重写一遍代码，提交到 OJ 上，并且 AC。
+2. 更多的输入输出语法参考 [这节内容](../basic/#scanf-printf) ，并试着了解 C++ 的格式化输出。
 
 ### 结束语与下一步
 
@@ -192,13 +192,13 @@ int a = 0, b = 0, c = 0;
 
 C++ 与 Pascal 基本上差不多，常见的有
 
--    `bool` Boolean 类型
--    `int` 整型
+-  `bool` Boolean 类型
+-  `int` 整型
 -   浮点型
-    -    `float` 
-    -    `double` 
--    `char` 字符型
--    `void` 无类型
+    -  `float` 
+    -  `double` 
+-  `char` 字符型
+-  `void` 无类型
 
 C++ 的单引号是专门用于表示单个字符的（字符型），比如 `'a'` ，而字符串（字符型数组）必须要用双引号。
 
@@ -206,7 +206,7 @@ C++ 还要很多额外的数据类型，请参考更多资料。
 
 扩展阅读：
 
--    [基础类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/types) 
+-  [基础类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/types) 
 
 #### 常量声明 Constant
 
@@ -220,8 +220,8 @@ const double PI = 3.1415926;
 
 请直接参考
 
--    [附 A：Pascal 与 C++ 运算符与数学函数语法对比表](#apascal-c-pascal-vs-c-operator-syntax-table) 
--    [运算 - OI Wiki](../op/) 
+-  [附 A：Pascal 与 C++ 运算符与数学函数语法对比表](#apascal-c-pascal-vs-c-operator-syntax-table) 
+-  [运算 - OI Wiki](../op/) 
 
 ### 条件
 
@@ -248,19 +248,19 @@ if (a == b && a > 0 && b > 0) {
 
 布尔运算与比较
 
--    `and` -> `&&` 
--    `or` -> `||` 
--    `not` -> `!` 
--    `=` -> `==` 
--    `<>` -> `!=` 
+-  `and` -> `&&` 
+-  `or` -> `||` 
+-  `not` -> `!` 
+-  `=` -> `==` 
+-  `<>` -> `!=` 
 
 注释：
 
-1.  Pascal 中 `and` 与 C++ 中 `&&` 优先级不同，C++ 不需要给判断条件加括号。
-2.  Pascal 中判断相等是 `=` ，赋值是 `:=` ；C++ 中判断相等是 `==` ，赋值是 `=` 。
-3.  如果在 `if` 语句的括号内写了 `a = b` 而不是 `a == b` ，程序不会报错，而且会把 `b` 赋值给 `a` ， `a = b` 这个语句的返回结果是 `true` 。
-4.  C++ 不需要思考到底要不要在 `end` 后面加分号。
-5.  C++ 布尔运算中，非布尔值可以自动转化为布尔值。
+1. Pascal 中 `and` 与 C++ 中 `&&` 优先级不同，C++ 不需要给判断条件加括号。
+2. Pascal 中判断相等是 `=` ，赋值是 `:=` ；C++ 中判断相等是 `==` ，赋值是 `=` 。
+3. 如果在 `if` 语句的括号内写了 `a = b` 而不是 `a == b` ，程序不会报错，而且会把 `b` 赋值给 `a` ， `a = b` 这个语句的返回结果是 `true` 。
+4. C++ 不需要思考到底要不要在 `end` 后面加分号。
+5. C++ 布尔运算中，非布尔值可以自动转化为布尔值。
 
 ???+note "易错提醒"
     特别注意： **不要把 `==` 写成 `=` ！** 
@@ -325,10 +325,10 @@ for (int i = 1; i <= 10; i++) {
 
 注释：
 
-1.   `for (int i = 1; i <= 10; i++){` 这一行语句很多， `for` 中有三个语句。
-2.  第一个语句 `int i = 1;` 此时声明一局部变量 `i` 并初始化。（这个设计比 Pascal 要合理得多。）
-3.  第二个语句 `i <= 10;` 作为判断循环是否继续的标准。
-4.  第三个语句 `i++` ，在每次循环结尾执行，意思大约就是 Pascal 中的 `inc(i)` ，此处写成 `++i` 也是一样的。 `i++` 与 `++i` 的区别请参考其他资料。
+1.  `for (int i = 1; i <= 10; i++){` 这一行语句很多， `for` 中有三个语句。
+2. 第一个语句 `int i = 1;` 此时声明一局部变量 `i` 并初始化。（这个设计比 Pascal 要合理得多。）
+3. 第二个语句 `i <= 10;` 作为判断循环是否继续的标准。
+4. 第三个语句 `i++` ，在每次循环结尾执行，意思大约就是 Pascal 中的 `inc(i)` ，此处写成 `++i` 也是一样的。 `i++` 与 `++i` 的区别请参考其他资料。
 
 ####  `repeat until` 与 `do while` 循环
 
@@ -400,7 +400,7 @@ C++ 访问数组成员，与 Pascal 类似，不过有很重要的区别：数�
 
 扩展阅读：
 
--    [序列式容器 - OI Wiki](../csl/sequence-container/) 
+-  [序列式容器 - OI Wiki](../csl/sequence-container/) 
 
 #### 字符串：标准库类型 String
 
@@ -424,7 +424,7 @@ int main() {
 
 扩展阅读：
 
--    [string - OI Wiki](../csl/string/) 
+-  [string - OI Wiki](../csl/string/) 
 
 #### C 风格数组 Array
 
@@ -434,7 +434,7 @@ C 风格的数组与指针有密切关系，所以此处不多展开。
 
 扩展阅读：
 
--    [数组 - OI Wiki](../array/) 
+-  [数组 - OI Wiki](../array/) 
 
 ## 重要不同之处 Differences
 
@@ -516,7 +516,7 @@ std::cout << (a == '0');  // true 输出 1
 
 扩展阅读：
 
--    [隐式转换 - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion) 注意内容可能过于专业
+-  [隐式转换 - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion) 注意内容可能过于专业
 
 ### C++ 很多语句有返回值：以如何实现读取数量不定数据为例
 
@@ -717,28 +717,28 @@ C++ 标准库中 `<algorithm>` 有很多有用的函数比如快排、二分查�
 
 如果要找关于字符串操作的函数见
 
--    [std::basic_string - cppreference.com](https://zh.cppreference.com/w/cpp/string/basic_string) 
--    [ `<string>` - C++ Reference](https://www.cplusplus.com/reference/string/) 
+-  [std::basic_string - cppreference.com](https://zh.cppreference.com/w/cpp/string/basic_string) 
+-  [ `<string>` - C++ Reference](https://www.cplusplus.com/reference/string/) 
 
 C/C++ 的指针是很灵活的东西，如果想要彻底理解指针，建议找本书或者参考手册仔细阅读。
 
--    [指针 - OI Wiki](../pointer) 
+-  [指针 - OI Wiki](../pointer) 
 
 ### 错误排查与技巧
 
--    [常见错误 - OI Wiki](../../intro/common-mistakes/) 
--    [常见技巧 - OI Wiki](../../intro/common-tricks/) 
+-  [常见错误 - OI Wiki](../../intro/common-mistakes/) 
+-  [常见技巧 - OI Wiki](../../intro/common-tricks/) 
 
 ### C++ 语言资料
 
--    [学习资源 - OI Wiki](../../intro/resources/) 
--    [cppreference.com](https://zh.cppreference.com/) - 最重要的 C/C++ 参考资料
--    [C++ 教程 - 菜鸟教程](https://www.runoob.com/cplusplus/cpp-tutorial.html) 
--    [C++ Language - C++ Tutorials](https://www.cplusplus.com/doc/tutorial/) 
--    [Reference - C++ Reference](https://www.cplusplus.com/reference/) 
--    [C++ Standard Library - Wikipedia](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library) 
--    [The Ultimate Question of Programming, Refactoring, and Everything](https://www.gitbook.com/book/alexastva/the-ultimate-question-of-programming-refactoring-/details) 
--    [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) 
+-  [学习资源 - OI Wiki](../../intro/resources/) 
+-  [cppreference.com](https://zh.cppreference.com/) - 最重要的 C/C++ 参考资料
+-  [C++ 教程 - 菜鸟教程](https://www.runoob.com/cplusplus/cpp-tutorial.html) 
+-  [C++ Language - C++ Tutorials](https://www.cplusplus.com/doc/tutorial/) 
+-  [Reference - C++ Reference](https://www.cplusplus.com/reference/) 
+-  [C++ Standard Library - Wikipedia](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library) 
+-  [The Ultimate Question of Programming, Refactoring, and Everything](https://www.gitbook.com/book/alexastva/the-ultimate-question-of-programming-refactoring-/details) 
+-  [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) 
 
 ## 后记
 
@@ -754,8 +754,8 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 
 ### 本文 Pascal 语言的参考文献
 
--    [Lazarus wiki](https://wiki.freepascal.org/) 
--    [Free Pascal Reference guide](https://freepascal.org/docs-html/current/ref/ref.html) 
+-  [Lazarus wiki](https://wiki.freepascal.org/) 
+-  [Free Pascal Reference guide](https://freepascal.org/docs-html/current/ref/ref.html) 
 
 ## 附 A：Pascal 与 C++ 运算符与数学函数语法对比表 Pascal vs C++ Operator Syntax Table
 
@@ -827,31 +827,31 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 
 其他函数请参考：
 
--    [常用数学函数 - cppreference.com](https://zh.cppreference.com/w/cpp/numeric/math) 
+-  [常用数学函数 - cppreference.com](https://zh.cppreference.com/w/cpp/numeric/math) 
 
 ## 附 B：文章检索 Index
 
 > 按 C++ 语句语法索引。
 
--    [基本语法](#c-start-here) 
+-  [基本语法](#c-start-here) 
 -    [变量](#variable) 
-    -    [数据类型](#fundamental-types) 
-    -    [常量声明](#constant) 
-    -    [作用域](#scope) 
--    [运算符](#operator) 
+    -  [数据类型](#fundamental-types) 
+    -  [常量声明](#constant) 
+    -  [作用域](#scope) 
+-  [运算符](#operator) 
 -    [if 语句](#if) 
-    -   if
-    -   else
+    - if
+    - else
 -    [循环语句](#loop) 
-    -    [for 语句](#for) 
-    -    [while 语句](#while) 
-    -    [do while 语句](#repeat-until-do-while) 
-    -    [break, continue](#loop-control) 
+    -  [for 语句](#for) 
+    -  [while 语句](#while) 
+    -  [do while 语句](#repeat-until-do-while) 
+    -  [break, continue](#loop-control) 
 -    [函数](#functionc-void-return) 
-    -    [函数定义，return](#functionc-void-return) 
-    -    [函数传参](#passing-parameters-to-functions) 
+    -  [函数定义，return](#functionc-void-return) 
+    -  [函数传参](#passing-parameters-to-functions) 
 -    [数组与字符串](#array-and-string) 
-    -    [不定长数组 Vector](#vector) 
-    -    [C 风格数组](#c-array) 
-    -    [字符串 String](#string) 
--    [资料](#c-reference) 
+    -  [不定长数组 Vector](#vector) 
+    -  [C 风格数组](#c-array) 
+    -  [字符串 String](#string) 
+-  [资料](#c-reference) 

@@ -10,17 +10,17 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ### 特点
 
--   支持 Codeforces 中的所有编程语言。
--   支持 Contests 和 Gym。
--   提交代码。
--   动态刷新提交后的情况。
--   拉取问题的样例。
--   本地编译和测试样例。
--   拉取某人的所有代码。
--   从指定模板生成代码（包括时间戳，作者等信息）。
--   列出某场比赛的所有题目的整体信息。
--   用默认的网页浏览器打开题目页面、榜单、提交页面等。
--   丰富多彩的命令行。
+- 支持 Codeforces 中的所有编程语言。
+- 支持 Contests 和 Gym。
+- 提交代码。
+- 动态刷新提交后的情况。
+- 拉取问题的样例。
+- 本地编译和测试样例。
+- 拉取某人的所有代码。
+- 从指定模板生成代码（包括时间戳，作者等信息）。
+- 列出某场比赛的所有题目的整体信息。
+- 用默认的网页浏览器打开题目页面、榜单、提交页面等。
+- 丰富多彩的命令行。
 
 ### 下载
 
@@ -100,9 +100,9 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 这个网站有三个功能：
 
--   用炫酷的图表来可视化某个用户名的各种信息（比如通过题目的难度分布）。
--   对比两个用户。
--   计算一场比赛的 Rating 预测。
+- 用炫酷的图表来可视化某个用户名的各种信息（比如通过题目的难度分布）。
+- 对比两个用户。
+- 计算一场比赛的 Rating 预测。
 
 大家可以自行尝试一下。
 
@@ -112,15 +112,15 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 功能介绍：
 
--   这个工具是一个浏览器插件 用来解析网页里面的测例数据
--   支持解析几乎所有的主流 oj 平台（比如 codeforces atcoder）
+- 这个工具是一个浏览器插件 用来解析网页里面的测例数据
+- 支持解析几乎所有的主流 oj 平台（比如 codeforces atcoder）
 
 推荐理由：使用这个插件后 再也不用手动复制任何的测例数据
 
 使用方法：
 
-1.  在谷歌或者火狐浏览器上安装插件 该工具会将解析到的测例数据以 JSON 格式的形式发到指定的端口
-2.  在本地安装任何可以从端口监听读取数据的工具即可 可参考 <https://github.com/jmerle/competitive-companion-example> 
+1. 在谷歌或者火狐浏览器上安装插件 该工具会将解析到的测例数据以 JSON 格式的形式发到指定的端口
+2. 在本地安装任何可以从端口监听读取数据的工具即可 可参考 <https://github.com/jmerle/competitive-companion-example> 
 
 图片演示：
 
@@ -132,12 +132,12 @@ CP Editor 是一款专门为算法竞赛（Competitive Programming）设计的�
 
  [![Latest Stable](https://img.shields.io/github/v/release/cpeditor/cpeditor?label=latest%20stable)](https://github.com/coder3101/cp-editor/releases/latest)  [![Latest Release](https://img.shields.io/github/v/release/cpeditor/cpeditor?include_prereleases&label=latest%20release&sort=semver)](https://github.com/coder3101/cp-editor/releases) 
 
--    [项目主页](https://cpeditor.github.io/) （含 feature 介绍）
--    [GitHub Repo](https://github.com/cpeditor/cpeditor) （含使用说明、贡献指南等文档）
--    [Gitee 镜像](https://gitee.com/ouuan/cpeditor) （同步自 GitHub，不一定是最新的）
--    [GitHub Releases](https://github.com/cpeditor/cpeditor/releases) 
--    [Gitee 发行版](https://gitee.com/ouuan/cpeditor/releases) 
--    [Telegram 群组](https://t.me/cpeditor) 
--    [QQ 群入群链接](https://jq.qq.com/?_wv=1027&k=50eq8yF) （1081647997）
+-  [项目主页](https://cpeditor.github.io/) （含 feature 介绍）
+-  [GitHub Repo](https://github.com/cpeditor/cpeditor) （含使用说明、贡献指南等文档）
+-  [Gitee 镜像](https://gitee.com/ouuan/cpeditor) （同步自 GitHub，不一定是最新的）
+-  [GitHub Releases](https://github.com/cpeditor/cpeditor/releases) 
+-  [Gitee 发行版](https://gitee.com/ouuan/cpeditor/releases) 
+-  [Telegram 群组](https://t.me/cpeditor) 
+-  [QQ 群入群链接](https://jq.qq.com/?_wv=1027&k=50eq8yF) （1081647997）
 
 大家在使用之余还可以在 GitHub 上报告 bug，请求 feature，或是入群讨论，参与贡献。如果觉得不错的话，可以在 [GitHub](https://github.com/cpeditor/cpeditor) 上给开发者们一个 star。

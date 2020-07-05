@@ -46,4 +46,4 @@ author: Ir1d, TrisolarisHD, LucienShui, Anguei, H-J-Granger
 
 ## 习题
 
--    [POJ 1655 Balancing Art](http://poj.org/problem?id=1655) （模板题）
+-  [POJ 1655 Balancing Art](http://poj.org/problem?id=1655) （模板题）

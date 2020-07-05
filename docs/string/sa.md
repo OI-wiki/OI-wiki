@@ -580,40 +580,40 @@ for (i = 1, k = 0; i <= n; ++i) {
 
 ## 习题
 
--    [Uva 760 - DNA Sequencing](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=701) 
--    [Uva 1223 - Editor](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3664) 
--    [Codechef - Tandem](https://www.codechef.com/problems/TANDEM) 
--    [Codechef - Substrings and Repetitions](https://www.codechef.com/problems/ANUSAR) 
--    [Codechef - Entangled Strings](https://www.codechef.com/problems/TANGLED) 
--    [Codeforces - Martian Strings](http://codeforces.com/problemset/problem/149/E) 
--    [Codeforces - Little Elephant and Strings](http://codeforces.com/problemset/problem/204/E) 
--    [SPOJ - Ada and Terramorphing](http://www.spoj.com/problems/ADAPHOTO/) 
--    [SPOJ - Ada and Substring](http://www.spoj.com/problems/ADASTRNG/) 
--    [UVA - 1227 - The longest constant gene](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3668) 
--    [SPOJ - Longest Common Substring](http://www.spoj.com/problems/LCS/en/) 
--    [UVA 11512 - GATTACA](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2507) 
--    [LA 7502 - Suffixes and Palindromes](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=720&page=show_problem&problem=5524) 
--    [GYM - Por Costel and the Censorship Committee](http://codeforces.com/gym/100923/problem/D) 
--    [UVA 1254 - Top 10](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3695) 
--    [UVA 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343) 
--    [UVA 12206 - Stammering Aliens](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3358) 
--    [Codechef - Jarvis and LCP](https://www.codechef.com/problems/INSQ16F) 
--    [LA 3943 - Liking's Letter](https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=1944) 
--    [UVA 11107 - Life Forms](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2048) 
--    [UVA 12974 - Exquisite Strings](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4853) 
--    [UVA 10526 - Intellectual Property](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1467) 
--    [UVA 12338 - Anti-Rhyme Pairs](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3760) 
--    [DevSkills Reconstructing Blue Print of Life](https://devskill.com/CodingProblems/ViewProblem/328) 
--    [UVA 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343) 
--    [SPOJ - Suffix Array](http://www.spoj.com/problems/SARRAY/) 
--    [LA 4513 - Stammering Aliens](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2514) 
--    [SPOJ - LCS2](http://www.spoj.com/problems/LCS2/) 
--    [Codeforces - Fake News (hard)](http://codeforces.com/contest/802/problem/I) 
--    [SPOJ - Longest Commong Substring](http://www.spoj.com/problems/LONGCS/) 
--    [SPOJ - Lexicographical Substring Search](http://www.spoj.com/problems/SUBLEX/) 
--    [Codeforces - Forbidden Indices](http://codeforces.com/contest/873/problem/F) 
--    [Codeforces - Tricky and Clever Password](http://codeforces.com/contest/30/problem/E) 
--    [LA 6856 - Circle of digits](https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&page=show_problem&problem=4868) 
+-  [Uva 760 - DNA Sequencing](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=701) 
+-  [Uva 1223 - Editor](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3664) 
+-  [Codechef - Tandem](https://www.codechef.com/problems/TANDEM) 
+-  [Codechef - Substrings and Repetitions](https://www.codechef.com/problems/ANUSAR) 
+-  [Codechef - Entangled Strings](https://www.codechef.com/problems/TANGLED) 
+-  [Codeforces - Martian Strings](http://codeforces.com/problemset/problem/149/E) 
+-  [Codeforces - Little Elephant and Strings](http://codeforces.com/problemset/problem/204/E) 
+-  [SPOJ - Ada and Terramorphing](http://www.spoj.com/problems/ADAPHOTO/) 
+-  [SPOJ - Ada and Substring](http://www.spoj.com/problems/ADASTRNG/) 
+-  [UVA - 1227 - The longest constant gene](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3668) 
+-  [SPOJ - Longest Common Substring](http://www.spoj.com/problems/LCS/en/) 
+-  [UVA 11512 - GATTACA](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2507) 
+-  [LA 7502 - Suffixes and Palindromes](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=720&page=show_problem&problem=5524) 
+-  [GYM - Por Costel and the Censorship Committee](http://codeforces.com/gym/100923/problem/D) 
+-  [UVA 1254 - Top 10](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3695) 
+-  [UVA 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343) 
+-  [UVA 12206 - Stammering Aliens](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3358) 
+-  [Codechef - Jarvis and LCP](https://www.codechef.com/problems/INSQ16F) 
+-  [LA 3943 - Liking's Letter](https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=1944) 
+-  [UVA 11107 - Life Forms](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2048) 
+-  [UVA 12974 - Exquisite Strings](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4853) 
+-  [UVA 10526 - Intellectual Property](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1467) 
+-  [UVA 12338 - Anti-Rhyme Pairs](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3760) 
+-  [DevSkills Reconstructing Blue Print of Life](https://devskill.com/CodingProblems/ViewProblem/328) 
+-  [UVA 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343) 
+-  [SPOJ - Suffix Array](http://www.spoj.com/problems/SARRAY/) 
+-  [LA 4513 - Stammering Aliens](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2514) 
+-  [SPOJ - LCS2](http://www.spoj.com/problems/LCS2/) 
+-  [Codeforces - Fake News (hard)](http://codeforces.com/contest/802/problem/I) 
+-  [SPOJ - Longest Commong Substring](http://www.spoj.com/problems/LONGCS/) 
+-  [SPOJ - Lexicographical Substring Search](http://www.spoj.com/problems/SUBLEX/) 
+-  [Codeforces - Forbidden Indices](http://codeforces.com/contest/873/problem/F) 
+-  [Codeforces - Tricky and Clever Password](http://codeforces.com/contest/30/problem/E) 
+-  [LA 6856 - Circle of digits](https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&page=show_problem&problem=4868) 
 
 ## 参考资料
 
@@ -621,9 +621,9 @@ for (i = 1, k = 0; i <= n; ++i) {
 
 论文：
 
-1.  [\[2004\]后缀数组 by. 徐智磊][1]
+1. [\[2004\]后缀数组 by. 徐智磊][1]
 
-2.  [\[2009\]后缀数组——处理字符串的有力工具 by. 罗穗骞][2]
+2. [\[2009\]后缀数组——处理字符串的有力工具 by. 罗穗骞][2]
 
 [1]: https://wenku.baidu.com/view/0dc03d2b1611cc7931b765ce0508763230127479.html "[2004] 后缀数组 by. 徐智磊"
 

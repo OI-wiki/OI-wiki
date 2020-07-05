@@ -7,8 +7,8 @@
 
 对于这道题，我们有两种做法：
 
--   把对数组 A 的累加依次放入数组 B 中。
--   递推： `B[i] = B[i-1] + A[i]` ，前提 `B[0] = A[0]` 。
+- 把对数组 A 的累加依次放入数组 B 中。
+- 递推： `B[i] = B[i-1] + A[i]` ，前提 `B[0] = A[0]` 。
 
 参考程序：
 
@@ -53,10 +53,10 @@ int main() {
 
 ### 习题
 
--    [洛谷 U53525 前缀和（例题）](https://www.luogu.com.cn/problem/U53525) 
--    [洛谷 U69096 前缀和的逆](https://www.luogu.com.cn/problem/U69096) 
--    [AT2412 最大の和](https://www.luogu.com.cn/problem/AT2412) 
--    [「USACO16JAN」子共七 Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131) 
+-  [洛谷 U53525 前缀和（例题）](https://www.luogu.com.cn/problem/U53525) 
+-  [洛谷 U69096 前缀和的逆](https://www.luogu.com.cn/problem/U69096) 
+-  [AT2412 最大の和](https://www.luogu.com.cn/problem/AT2412) 
+-  [「USACO16JAN」子共七 Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131) 
 
 ### 参考
 
@@ -131,9 +131,9 @@ int main() {
 
 ### 习题
 
--    [CodeVS 1373. 射命丸文](http://www.joyoi.cn/problem/codevs-1373) 
--    [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387) 
--    [「HNOI2003」激光炸弹](https://www.luogu.com.cn/problem/P2280) 
+-  [CodeVS 1373. 射命丸文](http://www.joyoi.cn/problem/codevs-1373) 
+-  [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387) 
+-  [「HNOI2003」激光炸弹](https://www.luogu.com.cn/problem/P2280) 
 
 ### 基于 DP 计算高维前缀和
 
@@ -161,8 +161,8 @@ int main() {
 
 ### 习题
 
--    [LOJ 10134.Dis](https://loj.ac/problem/10134) 
--    [LOJ 2491. 求和](https://loj.ac/problem/2491) 
+-  [LOJ 10134.Dis](https://loj.ac/problem/10134) 
+-  [LOJ 2491. 求和](https://loj.ac/problem/2491) 
 
 ## 差分
 
@@ -176,9 +176,9 @@ int main() {
 
 ### 习题
 
--    [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132) 
--    [P3397 地毯](https://www.luogu.com.cn/problem/P3397) 
--    [「Poetize6」IncDec Sequence](https://www.luogu.com.cn/problem/P4552) 
+-  [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132) 
+-  [P3397 地毯](https://www.luogu.com.cn/problem/P3397) 
+-  [「Poetize6」IncDec Sequence](https://www.luogu.com.cn/problem/P4552) 
 
 ## 树上差分
 
@@ -195,4 +195,4 @@ int main() {
 
 ### 习题
 
--    [洛谷 3128. 最大流](https://www.luogu.com.cn/problem/P3128) 
+-  [洛谷 3128. 最大流](https://www.luogu.com.cn/problem/P3128) 
