@@ -135,7 +135,7 @@ author: NachtgeistW
 -   哈希的时候没有使用 `unsigned` 导致的运算错误。
     -   对负数的右移运算会在最高位补 1。参见： [位运算](../math/bit.md) 
 
--   没有删除调试信息。
+-   没有删除或注释掉调试输出语句。
 
 -   误加了 `;` 。
 
@@ -188,11 +188,18 @@ author: NachtgeistW
 
 -   没删文件操作（某些 OJ）。
 
--   排序时比较函数的错误。如 [ `std::sort` ](https://zh.cppreference.com/w/cpp/algorithm/sort) 要求比较函数是严格弱序。如果不满足要求，排序时很可能会 RE。
-
-    -   严格弱序： `a < a` 为 `false` ；若 `a < b` 为 `true` ，则 `b < a` 为 `false` ；若 `a < b` 为 `true` 且 `b < c` 为 `true` ，则 `a < c` 为 `true` 。参见： [C++ 具名要求：比较 (Compare)](https://zh.cppreference.com/w/cpp/named_req/Compare) 
-    -   示例（头文件、using 声明和函数主体略）：莫队的奇偶性排序
-
+-   排序时比较函数的错误 `std::sort` 要求比较函数是严格弱序： `a<a` 为 `false` ；若 `a<b` 为 `true` ，则 `b<a` 为 `false` ；若 `a<b` 为 `true` 且 `b<c` 为 `true` ，则 `a<c` 为 `true` 。其中要特别注意第二点。
+    如果不满足上述要求，排序时很可能会 RE。
+    例如，编写莫队的奇偶性排序时，这样写是错误的：
+    ```cpp
+    bool operator<(const int a, const int b) {
+      if (block[a.l] == block[b.l])
+        return (block[a.l] & 1) ^ (a.r < b.r);
+      else
+        return block[a.l] < block[b.l];
+    ```
+    上述代码中 `(block[a.l]&1)^(a.r<b.r)` 不满足上述要求的第二点。
+    改成这样就正确了：
     ```cpp
     bool operator<(const int a, const int b) {
       if (block[a.l] == block[b.l])
@@ -230,7 +237,7 @@ author: NachtgeistW
     #define Max(x, y) ((x) > (y) ? (x) : (y))
     ```
 
-    这样写虽然在正确性上没有问题，但是如果直接对函数的返回值取 max，如 `a = Max(func1(), func2())` ，而这个函数的运行时间较长，则会大大影响程序的性能，因为宏展开后是 `a = func1() > func2() ? func1() : func2()` 的形式，调用了三次函数，比正常的 max 函数多调用了一次。
+    这样写虽然在正确性上没有问题，但是如果你直接对函数的返回值取 max，如 `a = Max(func1(), func2())` ，而这个函数的运行时间较长，则会大大影响程序的性能，因为宏展开后是 `a = func1() > func2() ? func1() : func2()` 的形式，调用了三次函数，比正常的 max 函数多调用了一次。注意这里如果 `func1()` 每次返回的答案不一样的话还会导致这种 `max` 的写法出现错误，例如 `func1()` 为 `return ++a;` 而 `a` 为全局变量。
 
     示例（头文件、using 声明和函数主体略）：如下代码会被卡到单次查询 $\Theta(n)$ 导致 TLE。
 
@@ -239,7 +246,7 @@ author: NachtgeistW
 
     int query(int t, int l, int r, int ql, int qr) {
       if (ql <= l && qr >= r) {
-        ++ti[t];  // 记录结点访问次数方便测试
+        ++ti[t];  // 记录结点访问次数方便调试
         return vi[t];
       }
 
@@ -283,7 +290,7 @@ author: NachtgeistW
 
     -   未初始化就解引用指针。
 
-    -   指针指向的区域已经 `free` 或 `delete` 。
+    -   指针指向的内存区域已经释放。
 
 ### 会导致常数过大
 
