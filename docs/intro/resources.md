@@ -9,7 +9,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo, NachtgeistW
 ### 国内
 
 -    [51Nod](https://www.51nod.com/) ：有许多值得尝试的数学题和思维题。
-     <!-- -    [BZOJ](https://www.lydsy.com/JudgeOnline/) ：因原属衡阳八中而得此简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。BZOJ 上有大量只有付费用户才能提交的题目。2018 年 BZOJ 测试数据泄露，催生了 DarkBZOJ。 -->
+    <!-- -    [BZOJ](https://www.lydsy.com/JudgeOnline/) ：因原属衡阳八中而得此简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。BZOJ 上有大量只有付费用户才能提交的题目。2018 年 BZOJ 测试数据泄露，催生了 DarkBZOJ。 -->
 -    [Comet OJ](https://www.cometoj.com) ：始于 2018 年，旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库。
     <!-- - [CodeVS](http://www.codevs.cn/) 面向 OI 选手的过气 OJ。 -->
 -    [FZUOJ](http://acm.fzu.edu.cn/) 始于 2008 年，福州大学在线评测系统。
@@ -56,7 +56,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo, NachtgeistW
 
 ## 教程资料
 
--    [**OI Wiki** ](https://oi-wiki.org)
+-    [ **OI Wiki** ](https://oi-wiki.org) 
 -    [Codeforces 上网友整理的一份教程合集](http://codeforces.com/blog/entry/57282) 
 -    [英文版 E-Maxx 算法教程](https://cp-algorithms.com/) 
 -    [演算法笔记](http://www.csie.ntnu.edu.tw/~u91029/) ：台湾师范大学总结的教程
@@ -107,12 +107,12 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo, NachtgeistW
     -   《ACM 国际大学生程序设计竞赛系列 题目与解读》- 俞勇
 -   《算法竞赛入门到进阶》- 罗勇军，郭卫斌
 -   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein  
-    黑书，大学经典教材。英文版原名 *Introduction to Algorithms*
+    黑书，大学经典教材。英文版原名_Introduction to Algorithms_
     -    [答案解析 (English)](https://github.com/walkccc/CLRS) 
 -   《具体数学》第二版 - Ronald L. Graham/Donald E. Knuth/Oren Patashnik  
-    英文版原名 *Concrete Mathematics*
+    英文版原名_Concrete Mathematics_
 -   《组合数学》第五版 - Richard A.Brualdi  
-    英文版原名 *Introductory Conbinatorics*
+    英文版原名_Introductory Conbinatorics_
 -    [Competitive Programmer's Handbook](https://cses.fi/book/index.html) 
 -   《挑战程序设计竞赛》全套 - 秋叶拓哉，岩田阳一，北川宜稔
     通俗易懂。
