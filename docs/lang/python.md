@@ -4,17 +4,17 @@ Python 是一种目前已在世界上广泛使用的解释型面向对象语言�
 
 ### 为什么要学习 Python
 
--   Python 是一种 **解释型** 语言：类似于 PHP 与 Perl，它在开发过程中无需编译，即开即用，跨平台兼容性好。
--   Python 是一种 **交互式** 语言：您可以在命令行的提示符 `>>>` 后直接输入代码，这将使您的代码更易于调试。
--   Python 易学易用，且覆盖面广：从简单的输入输出到科学计算甚至于大型 WEB 应用，Python 可以帮助您在 **极低的学习成本** 下快速写出适合自己的程序，从而让您的程序生涯如虎添翼，为以后的学习和工作增加一项实用能力。
--   Python 易读性强，且在世界广泛使用：这意味着您能够在使用过程中比其他语言 **更快获得支持** ， **更快解决问题** 。
--   哦，还有一个最重要的：它在各平台下的环境易于配置，并且目前市面上大部分流行的 Linux 发行版（甚至于 `NOI Linux` ）中也大都 **内置** 了个版本比较旧的 Python，这意味着您能真正在考场上使用它，让它成为您的最佳拍档。
+- Python 是一种 **解释型** 语言：类似于 PHP 与 Perl，它在开发过程中无需编译，即开即用，跨平台兼容性好。
+- Python 是一种 **交互式** 语言：您可以在命令行的提示符 `>>>` 后直接输入代码，这将使您的代码更易于调试。
+- Python 易学易用，且覆盖面广：从简单的输入输出到科学计算甚至于大型 WEB 应用，Python 可以帮助您在 **极低的学习成本** 下快速写出适合自己的程序，从而让您的程序生涯如虎添翼，为以后的学习和工作增加一项实用能力。
+- Python 易读性强，且在世界广泛使用：这意味着您能够在使用过程中比其他语言 **更快获得支持** ， **更快解决问题** 。
+- 哦，还有一个最重要的：它在各平台下的环境易于配置，并且目前市面上大部分流行的 Linux 发行版（甚至于 `NOI Linux` ）中也大都 **内置** 了个版本比较旧的 Python，这意味着您能真正在考场上使用它，让它成为您的最佳拍档。
 
 ### 学习 Python 时需要注意的事项
 
--   目前的 Python 分为 Python 2 和 Python 3 两个版本，其中 Python 2 虽然 [几近废弃](https://pythonclock.org/) ，但是仍被一些老旧系统和代码所使用。我们通常不能确定在考场上可以使用的版本，因而会 **介绍较新版本的 Python** ，但还是建议读者了解一下 Python 2 的相关语法，并比较两者之间的差异。
--   如果您之前使用 C++ 语言，那么很遗憾地告诉您，Python 的语法结构与 C++ 差异还是比较大的，请注意使用的时候不要混淆。
--   由于 Python 是高度动态的解释型语言，因此其程序运行有大量的额外开销。通常而言，实现同样功能时 Python 代码越少速度越快（但不要追求极端）。尤其是 **for 循环在 Python 中运行的奇慢无比** 。因此在使用 Python 时若想获得高性能，尽量使用 `filter` , `map` 等内置函数，或者使用 [“列表理解”](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) 语法的手段来避免循环。
+- 目前的 Python 分为 Python 2 和 Python 3 两个版本，其中 Python 2 虽然 [几近废弃](https://pythonclock.org/) ，但是仍被一些老旧系统和代码所使用。我们通常不能确定在考场上可以使用的版本，因而会 **介绍较新版本的 Python** ，但还是建议读者了解一下 Python 2 的相关语法，并比较两者之间的差异。
+- 如果您之前使用 C++ 语言，那么很遗憾地告诉您，Python 的语法结构与 C++ 差异还是比较大的，请注意使用的时候不要混淆。
+- 由于 Python 是高度动态的解释型语言，因此其程序运行有大量的额外开销。通常而言，实现同样功能时 Python 代码越少速度越快（但不要追求极端）。尤其是 **for 循环在 Python 中运行的奇慢无比** 。因此在使用 Python 时若想获得高性能，尽量使用 `filter` , `map` 等内置函数，或者使用 [“列表理解”](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) 语法的手段来避免循环。
 
 ## 环境安装
 
@@ -74,10 +74,10 @@ sudo apt install python3
 
 关于 PyPI 的镜像，可以使用如下大镜像站的资源：
 
--    [清华大学 TUNA 镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 
--    [中国科学技术大学镜像站](http://mirrors.ustc.edu.cn/help/pypi.html) 
--    [豆瓣的 PyPI 源](https://pypi.douban.com/simple) 
--    [华为开源镜像站](https://mirrors.huaweicloud.com/) 
+-  [清华大学 TUNA 镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 
+-  [中国科学技术大学镜像站](http://mirrors.ustc.edu.cn/help/pypi.html) 
+-  [豆瓣的 PyPI 源](https://pypi.douban.com/simple) 
+-  [华为开源镜像站](https://mirrors.huaweicloud.com/) 
 
 ## 基本语法
 
@@ -330,7 +330,7 @@ $ mypy headlines.py
 Success: no issues found in 1 source file
 ```
 
-如果没有报错，说明类型检查通过；否则，会提示出问题的地方。_值得注意的是，类型检查可以向下（subtype  not subclass）兼容，比如整数就可以在 Mypy 中通过浮点数类型标注的检查（int 是 double 的 subtype，但不是其 subclass）。_
+如果没有报错，说明类型检查通过；否则，会提示出问题的地方。*值得注意的是，类型检查可以向下（subtype  not subclass）兼容，比如整数就可以在 Mypy 中通过浮点数类型标注的检查（int 是 double 的 subtype，但不是其 subclass）。*
 
 这种检查对于写出可读性较好的代码是十分有帮助的——Bernát Gábor 曾在他的 [The State of Type Hints in Python](https://www.bernat.tech/the-state-of-type-hints-in-python/) 中说过，“类型提示应当出现在任何值得单元测试的代码里”。
 
@@ -702,9 +702,9 @@ if __name__ == '__main__':
 
 ## 参考文档
 
-1.  Python Documentation, <https://www.python.org/doc/> 
-2.  Python 官方中文教程， <https://docs.python.org/zh-cn/3/tutorial/> 
-3.  Learn Python3 In Y Minutes, <https://learnxinyminutes.com/docs/python3/> 
-4.  Real Python Tutorials, <https://realpython.com/> 
-5.  廖雪峰的 Python 教程， <https://www.liaoxuefeng.com/wiki/1016959663602400/> 
-6.  GeeksforGeeks: Python Tutorials, <https://www.geeksforgeeks.org/python-programming-language/> 
+1. Python Documentation, <https://www.python.org/doc/> 
+2. Python 官方中文教程， <https://docs.python.org/zh-cn/3/tutorial/> 
+3. Learn Python3 In Y Minutes, <https://learnxinyminutes.com/docs/python3/> 
+4. Real Python Tutorials, <https://realpython.com/> 
+5. 廖雪峰的 Python 教程， <https://www.liaoxuefeng.com/wiki/1016959663602400/> 
+6. GeeksforGeeks: Python Tutorials, <https://www.geeksforgeeks.org/python-programming-language/> 

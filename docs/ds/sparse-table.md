@@ -94,9 +94,9 @@ int main() {
 
 ## 注意点
 
-1.  输入输出数据一般很多，建议开启输入输出优化。
+1. 输入输出数据一般很多，建议开启输入输出优化。
 
-2.  每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议进行如下的预处理：
+2. 每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议进行如下的预处理：
 
 $$
 \left\{\begin{aligned}

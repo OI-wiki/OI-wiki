@@ -126,12 +126,12 @@ players/
 
 ### 注意事项
 
--   据说很容易死机。
--   据说大量测评时移动鼠标会导致死机。
--   据说不定时闪退，和 Anjuta 一样，需要注意。
--   据说配置时需要注意权限问题（但是我并未遇到）。
--   由于 Linux 运行时栈限制，如果要开无限栈，应在终端先输入 `ulimit -s unlimited` 后执行 `arbiter` 打开测评器。
--   ……
+- 据说很容易死机。
+- 据说大量测评时移动鼠标会导致死机。
+- 据说不定时闪退，和 Anjuta 一样，需要注意。
+- 据说配置时需要注意权限问题（但是我并未遇到）。
+- 由于 Linux 运行时栈限制，如果要开无限栈，应在终端先输入 `ulimit -s unlimited` 后执行 `arbiter` 打开测评器。
+- ……
 
 ### 漏洞
 
@@ -164,10 +164,10 @@ Cena 的源代码托管于 [oi-archive/cena](https://github.com/oi-archive/cena)
 
 ### 可直接运行的版本
 
--   Ir1d 提供了一份 Linux 下编译好的版本，源代码托管于 [FreestyleOJ/Project_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built) 。
--   （已停止维护）Menci 提供了一份更新的版本，源代码托管于 [Menci/Lemon](https://github.com/Menci/Lemon/) 。
--   （已停止维护）Dust1404 维护了一份支持子文件夹和单题测试等功能的版本，源代码托管于 [Dust1404/Project_LemonPlus](https://github.com/Dust1404/Project_LemonPlus) 。
--   iotang 维护了一份支持子文件夹和单题测试等功能的版本，源代码托管于 [iotang/Project_LemonLime](https://github.com/iotang/Project_LemonLime) 。
+- Ir1d 提供了一份 Linux 下编译好的版本，源代码托管于 [FreestyleOJ/Project_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built) 。
+- （已停止维护）Menci 提供了一份更新的版本，源代码托管于 [Menci/Lemon](https://github.com/Menci/Lemon/) 。
+- （已停止维护）Dust1404 维护了一份支持子文件夹和单题测试等功能的版本，源代码托管于 [Dust1404/Project_LemonPlus](https://github.com/Dust1404/Project_LemonPlus) 。
+- iotang 维护了一份支持子文件夹和单题测试等功能的版本，源代码托管于 [iotang/Project_LemonLime](https://github.com/iotang/Project_LemonLime) 。
 
 ### 自行编译
 

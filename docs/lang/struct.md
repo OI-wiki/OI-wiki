@@ -3,7 +3,7 @@ author: Ir1d, cjsoft, Lans1ot
 
 可以看做是自定义的数据类型。
 
-_本页描述的 `struct` 不同于 C 中 `struct` ，在 C++ 中 `struct` 被扩展为类似 [ `class` ](./class.md) 的类说明符_。
+*本页描述的 `struct` 不同于 C 中 `struct` ，在 C++ 中 `struct` 被扩展为类似 [ `class` ](./class.md) 的类说明符*。
 
 ## 定义结构体
 
@@ -22,7 +22,7 @@ Object *c;
 
 在 `}` 后，定义了数据类型为 `Object` 的常量 `a` ，变量 `b` ，变量 `tmp` ，数组 `B` ，指针 `c` 。对于某种已经存在的类型，都可以使用这里的方法进行定义常量、变量、指针、数组等。
 
-_关于指针：不必强求掌握。_
+*关于指针：不必强求掌握。*
 
 ### 定义指针
 
@@ -59,7 +59,7 @@ struct Edge {
 并且不同的结构体（结构体类型，如 `Object` 这个结构体）或者不同的结构体变量（结构体的实例，如上方的 `e` 数组）可以拥有相同名字的成员元素（如 `tmp.value,b.value` ），同名的成员元素相互独立（拥有独自的内存，比如说修改 `tmp.value` 不会影响 `b.value` 的值）。  
 这样的好处是可以使用尽可能相同或者相近的变量去描述一个物品。比如说 `Object` 里有 `value` 这个成员变量；我们还可以定义一个 `Car` 结构体，同时也拥有 `value` 这个成员；如果不使用结构体，或许我们就需要定义 `valueOfObject[],valueOfCar[]` 等不同名称的数组来区分。
 
-_如果想要更详细的描述一种事物，还可以定义成员函数。请参考 [类](./class.md) 获取详细内容。_
+*如果想要更详细的描述一种事物，还可以定义成员函数。请参考 [类](./class.md) 获取详细内容。*
 
 ## 更多的操作？
 
@@ -67,5 +67,5 @@ _如果想要更详细的描述一种事物，还可以定义成员函数。请�
 
 ## 参考资料
 
-1.   [cppreference class](https://zh.cppreference.com/w/cpp/language/class) 
-2.   [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/) 
+1.  [cppreference class](https://zh.cppreference.com/w/cpp/language/class) 
+2.  [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/) 

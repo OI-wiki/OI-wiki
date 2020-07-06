@@ -34,15 +34,15 @@ Object *c;
 
 不同于 [ `struct` ](./struct.md) 中的举例，本例中出现了 `public` ，这属于访问说明符。
 
--    `public` ：该访问说明符之后的各个成员都可以被公开访问，简单来说就是无论 **类内** 还是 **类外** 都可以访问。
--    `protected` ：该访问说明符之后的各个成员可以被 **类内** 、派生类或者友元的成员访问，但类外 **不能访问** 。
--    `private` ：该访问说明符之后的各个成员 **只能** 被 **类内** 成员或者友元的成员访问， **不能** 被从类外或者派生类中访问。
+-  `public` ：该访问说明符之后的各个成员都可以被公开访问，简单来说就是无论 **类内** 还是 **类外** 都可以访问。
+-  `protected` ：该访问说明符之后的各个成员可以被 **类内** 、派生类或者友元的成员访问，但类外 **不能访问** 。
+-  `private` ：该访问说明符之后的各个成员 **只能** 被 **类内** 成员或者友元的成员访问， **不能** 被从类外或者派生类中访问。
 
 对于 `struct` ，它的所有成员都是默认 `public` 。对于 `class` ，它的所有成员都是默认 `private` 。
 
-_关于 "友元" 和 "派生类"，可以参考下方折叠框，或者查询网络资料进行详细了解。_
+*关于 "友元" 和 "派生类"，可以参考下方折叠框，或者查询网络资料进行详细了解。*
 
-_对于算法竞赛来说，友元和派生类并不是必须要掌握的知识点。_
+*对于算法竞赛来说，友元和派生类并不是必须要掌握的知识点。*
 
 ??? note "关于友元以及派生类的基本概念"
 
@@ -58,8 +58,8 @@ _对于算法竞赛来说，友元和派生类并不是必须要掌握的知识�
 
 方法形同 [ `struct` ](./struct.md) 
 
--   对于变量，使用 `.` 符号。
--   对于指针，使用 `->` 符号。
+- 对于变量，使用 `.` 符号。
+- 对于指针，使用 `->` 符号。
 
 ## 成员函数
 
@@ -146,7 +146,7 @@ Vector Vector::operator-(const Vector& other) {
 
 对于自定义的类，如果重载了某些运算符（一般来说只需要重载 `<` 这个比较运算符），便可以使用相应的 STL 容器或算法，如 [ `sort` ](../basic/stl-sort.md) 。
 
-_如要了解更多，参见“参考资料”第四条。_
+*如要了解更多，参见“参考资料”第四条。*
 
 ??? note " 可以被重载的运算符"
 
@@ -283,7 +283,7 @@ Object C{1, 2};  // ok,(C++11)
 
  **析构** 函数（Destructor）将会在该变量被销毁时被调用。重载的方法形同构造函数，但需要在前加 `~` 
 
-_默认定义的析构函数通常对于算法竞赛已经足够使用，通常我们只有在成员元素包含指针时才会重载析构函数。_
+*默认定义的析构函数通常对于算法竞赛已经足够使用，通常我们只有在成员元素包含指针时才会重载析构函数。*
 
 ```cpp
 class Object {
@@ -316,16 +316,16 @@ tmp3 = {...};
 
 如需解决指针问题或更多操作，需要重载相应的构造函数。
 
-_更多 构造函数（constructor）内容，参见“参考资料”第六条。_
+*更多 构造函数（constructor）内容，参见“参考资料”第六条。*
 
 ## 参考资料
 
-1.   [cppreference class](https://zh.cppreference.com/w/cpp/language/class) 
-2.   [cppreference access](https://zh.cppreference.com/w/cpp/language/access) 
-3.   [cppreference default_constructor](https://zh.cppreference.com/w/cpp/language/default_constructor) 
-4.   [cppreference operator](https://zh.cppreference.com/w/cpp/language/operators) 
-5.   [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/) 
-6.   [cplusplus Special members](http://www.cplusplus.com/doc/tutorial/classes2/) 
-7.   [C++11 FAQ](http://www.stroustrup.com/C++11FAQ.html) 
-8.   [cppreference Friendship and inheritance](http://www.cplusplus.com/doc/tutorial/inheritance/) 
-9.   [cppreference value initialization](https://zh.cppreference.com/w/cpp/language/value_initialization) 
+1.  [cppreference class](https://zh.cppreference.com/w/cpp/language/class) 
+2.  [cppreference access](https://zh.cppreference.com/w/cpp/language/access) 
+3.  [cppreference default_constructor](https://zh.cppreference.com/w/cpp/language/default_constructor) 
+4.  [cppreference operator](https://zh.cppreference.com/w/cpp/language/operators) 
+5.  [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/) 
+6.  [cplusplus Special members](http://www.cplusplus.com/doc/tutorial/classes2/) 
+7.  [C++11 FAQ](http://www.stroustrup.com/C++11FAQ.html) 
+8.  [cppreference Friendship and inheritance](http://www.cplusplus.com/doc/tutorial/inheritance/) 
+9.  [cppreference value initialization](https://zh.cppreference.com/w/cpp/language/value_initialization) 

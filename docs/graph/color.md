@@ -71,8 +71,8 @@
 
 在无向无环图 $G$ 中，
 
-1.   $e=(v_i, v_j) \notin E(G)$ ，则 $f(G, k) = f(G \cup (v_i, v_j), k)+f(G\backslash(v_i, v_j), k)$ 
-2.   $e=(v_i, v_j) \in E(G)$ ，则 $f(G,k)=f(G-e,k)-f(G\backslash e,k)$ 
+1.  $e=(v_i, v_j) \notin E(G)$ ，则 $f(G, k) = f(G \cup (v_i, v_j), k)+f(G\backslash(v_i, v_j), k)$ 
+2.  $e=(v_i, v_j) \in E(G)$ ，则 $f(G,k)=f(G-e,k)-f(G\backslash e,k)$ 
 
 定理：设 $V_1$ 是 $G$ 的点割集，且 $G[V_1]$ 是 $G$ 的 $|V_1|$ 阶完全子图， $G-V_1$ 有 $p(p \geq 2)$ 个连通分支，则：
 

@@ -75,5 +75,5 @@ $$
 
 ## References
 
--    [ **Picks's Blog** ](https://picks.logdown.com) 
--    [ **Miskcoo's Space** ](https://blog.miskcoo.com) 
+-  [ **Picks's Blog** ](https://picks.logdown.com) 
+-  [ **Miskcoo's Space** ](https://blog.miskcoo.com) 

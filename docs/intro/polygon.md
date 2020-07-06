@@ -10,19 +10,19 @@ Polygon 是一个支持多人合作的出题平台，功能非常完善。
 
 ### 为什么要使用 Polygon？
 
--   有版本管理系统，多人合作时不会乱成一团，也不需要互相传文件。
+- 有版本管理系统，多人合作时不会乱成一团，也不需要互相传文件。
 
--   出题系统完善，validator、generator、checker、solutions 环环相扣，输出自动生成。
+- 出题系统完善，validator、generator、checker、solutions 环环相扣，输出自动生成。
 
--   可以为 solutions 设置标签，错解 AC、正解未 AC 都会警告，可以方便地逐一卡掉错解。
+- 可以为 solutions 设置标签，错解 AC、正解未 AC 都会警告，可以方便地逐一卡掉错解。
 
--   可以方便地对拍，拍出来的数据可以直接添加到题目数据中。
+- 可以方便地对拍，拍出来的数据可以直接添加到题目数据中。
 
--   发现问题可以提 issue，而不会随着消息刷屏而一直没有 fix。
+- 发现问题可以提 issue，而不会随着消息刷屏而一直没有 fix。
 
--   为日后出 CF 做准备。
+- 为日后出 CF 做准备。
 
--   ……
+- ……
 
 ## 题目列表
 
@@ -44,13 +44,13 @@ Polygon 的大部分功能都不需要学，能看懂英文就基本能用了。
 
 需要特别提醒的：
 
--   题面不能使用 Markdown，只能用 TeX。
+- 题面不能使用 Markdown，只能用 TeX。
 
--   Invocation 是用来测试 solution 的。
+- Invocation 是用来测试 solution 的。
 
--   Stress 是用来对拍的。
+- Stress 是用来对拍的。
 
--   数据在 Tests 中用 generator 造，generator 在 Files 中上传。
+- 数据在 Tests 中用 generator 造，generator 在 Files 中上传。
 
 ### General Info
 

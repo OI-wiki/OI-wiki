@@ -120,6 +120,6 @@ int main() {
 
 ## 习题
 
--    [「BZOJ 3680」吊打 XXX](https://www.luogu.com.cn/problem/P1337) 
--    [「JSOI 2016」炸弹攻击](https://loj.ac/problem/2076) 
--    [「HAOI 2006」均分数据](https://www.luogu.com.cn/problem/P2503) 
+-  [「BZOJ 3680」吊打 XXX](https://www.luogu.com.cn/problem/P1337) 
+-  [「JSOI 2016」炸弹攻击](https://loj.ac/problem/2076) 
+-  [「HAOI 2006」均分数据](https://www.luogu.com.cn/problem/P2503) 
