@@ -101,8 +101,7 @@ i^p &\equiv i^{p-1} \cdot i \\
 \end{aligned}
 $$
 
--   定理 3： $a^p\equiv a \pmod p$ 
-这是 [费马小定理](./fermat.md) 的另一种表达形式
+-   定理 3： $a^p\equiv a \pmod p$ 这是 [费马小定理](./fermat.md) 的另一种表达形式
 
 有了这三条定理之后可以开始推导
 
@@ -154,7 +153,7 @@ ll binpow_real(ll a, ll b, ll p) {  //实部快速幂
   return ans % p;
 }
 
-ll binpow_imag(num a, ll b, ll p){//虚部快速幂
+ll binpow_imag(num a, ll b, ll p) {  //虚部快速幂
   num ans = {1, 0};
   while (b) {
     if (b & 1) ans = mul(ans, a, p);
