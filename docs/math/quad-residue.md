@@ -102,7 +102,6 @@ i^p &\equiv i^{p-1} \cdot i \\
 $$
 
 -   定理 3： $a^p\equiv a \pmod p$ 
-
 这是 [费马小定理](./fermat.md) 的另一种表达形式
 
 有了这三条定理之后可以开始推导
@@ -112,10 +111,10 @@ $$
 x &\equiv (a+i)^{\frac{p+1}{2}} \\
 &\equiv ((a+i)^{p+1})^{\frac{1}{2}} \\
 &\equiv ((a+i)^p\cdot (a+i))^{\frac{1}{2}} \\
-&\equiv ((a^p+i^p)\cdot(a+i)) \\
+&\equiv ((a^p+i^p)\cdot(a+i))^{\frac{1}{2}} \\
 &\equiv ((a-i)\cdot(a+i))^{\frac{1}{2}} \\
 &\equiv (a^2-i^2)^{\frac{1}{2}} \\
-&\equiv (a^2-(a^2-n^2))^{\frac{1}{2}} \\
+&\equiv (a^2-(a^2-n))^{\frac{1}{2}} \\
 &\equiv n^{\frac{1}{2}}\pmod p
 \end{aligned}
 $$
@@ -155,8 +154,7 @@ ll binpow_real(ll a, ll b, ll p) {  //实部快速幂
   return ans % p;
 }
 
-ll binpow_imag(num a, ll b, ll p)  //虚部快速幂
-{
+ll binpow_imag(num a, ll b, ll p){//虚部快速幂
   num ans = {1, 0};
   while (b) {
     if (b & 1) ans = mul(ans, a, p);
