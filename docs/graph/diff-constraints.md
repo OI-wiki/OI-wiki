@@ -24,62 +24,82 @@ author: Ir1d, Anguei, hsfzLZH1
 
 跑判断负环，如果不存在负环，输出 `Yes` ，否则输出 `No` 。
 
-给出一种用 DFS-SPFA 实现的判负环（时间复杂度极度不稳定）：
-
 ```cpp
-#include <algorithm>
 #include <cstdio>
 #include <cstring>
+#include <algorithm>
+#include <queue>
 using namespace std;
-const int maxn = 400010;
-int n, m, op, u, v, we, cur, h[maxn], nxt[maxn], p[maxn], w[maxn], dist[maxn];
-bool tf[maxn], ans;
-inline void add_edge(int x, int y, int z) {
-  cur++;
-  nxt[cur] = h[x];
-  h[x] = cur;
-  p[cur] = y;
-  w[cur] = z;
+struct edge
+{
+ int v,w,next;
+}e[40005];
+int head[10005],vis[10005],tot[10005],cnt;
+long long ans,dist[10005];
+queue<int> q;
+inline void addedge(int u,int v,int w)
+{
+ e[++cnt].v=v;
+ e[cnt].w=w;
+ e[cnt].next=head[u];
+ head[u]=cnt;
 }
-void dfs(int x) {
-  tf[x] = true;
-  for (int j = h[x]; j != -1; j = nxt[j])
-    if (dist[p[j]] > dist[x] + w[j]) {
-      if (tf[p[j]] || ans) {
-        ans = 1;
-        break;
-      }
-      dist[p[j]] = dist[x] + w[j];
-      dfs(p[j]);
-    }
-  tf[x] = false;
-}
-int main() {
-  cur = 0;
-  ans = false;
-  memset(h, -1, sizeof h);
-  memset(dist, 127, sizeof dist);
-  scanf("%d%d", &n, &m);
-  while (m--) {
-    scanf("%d%d%d", &op, &u, &v);
-    if (op == 1)
-      scanf("%d", &we), add_edge(u, v, -we);
-    else if (op == 2)
-      scanf("%d", &we), add_edge(v, u, we);
-    else if (op == 3)
-      add_edge(u, v, 0), add_edge(v, u, 0);
+int main()
+{
+ int n,m;
+ scanf("%d%d",&n,&m);
+ for(int i=1;i<=m;i++)
+ {
+  int op,x,y,z;
+  scanf("%d",&op);
+  if(op==1)
+  {
+   scanf("%d%d%d",&x,&y,&z);
+   addedge(y,x,z);
   }
-  for (int i = 1; i <= n; i++) {
-    dfs(i);
-    if (ans) break;
+  else if(op==2)
+  {
+   scanf("%d%d%d",&x,&y,&z);
+   addedge(x,y,-z);
   }
-  if (ans)
-    printf("No\n");
   else
-    printf("Yes\n");
-  return 0;
+  {
+   scanf("%d%d",&x,&y);
+   addedge(x,y,0);
+   addedge(y,x,0);
+  }
+ }
+ for(int i=1;i<=n;i++)
+  addedge(0,i,0);
+ memset(dist,-0x3f,sizeof(dist));
+ dist[0]=0;
+ vis[0]=1;
+ q.push(0);
+ while(!q.empty())
+ {
+  int cur=q.front();
+  q.pop();
+  vis[cur]=0;
+  for(int i=head[cur];i;i=e[i].next)
+   if(dist[cur]+e[i].w>dist[e[i].v])
+   {
+   	dist[e[i].v]=dist[cur]+e[i].w;
+   	if(!vis[e[i].v])
+   	{
+   	 vis[e[i].v]=1;
+   	 q.push(e[i].v);
+   	 tot[e[i].v]++;
+   	 if(tot[e[i].v]>=n)
+   	 {
+   	  puts("No");
+   	  return 0;
+   	 }
+   	}
+   }
+ }
+ puts("Yes");
+ return 0;
 }
-```
 
 ### 例题 [P4926\[1007\]倍杀测量者](https://www.luogu.com.cn/problem/P4926) 
 
