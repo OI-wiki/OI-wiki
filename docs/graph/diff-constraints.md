@@ -100,6 +100,7 @@ int main()
  puts("Yes");
  return 0;
 }
+```
 
 ### 例题 [P4926\[1007\]倍杀测量者](https://www.luogu.com.cn/problem/P4926) 
 
