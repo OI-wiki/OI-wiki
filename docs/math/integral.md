@@ -32,7 +32,6 @@
     \end{aligned}
     $$
 
-
 现在唯一的问题就是如何进行分段。如果段数少了计算误差就大，段数多了时间效率又会低。我们需要找到一个准确度和效率的平衡点。
 
 我们这样考虑：假如有一段图像已经很接近二次函数的话，直接带入公式求积分，得到的值精度就很高了，不需要再继续分割这一段了。
@@ -63,7 +62,7 @@ double asr(double l, double r, double eqs, double ans) {
 ```
 
 ## 习题
--    [Luogu4525【模板】自适应辛普森法1](https://www.luogu.com.cn/problem/P4525)
--    [HDU1724 Ellipse](http://acm.hdu.edu.cn/showproblem.php?pid=1724)
--    [NOI2005 月下柠檬树](https://www.luogu.com.cn/problem/P4207)
 
+-  [Luogu4525【模板】自适应辛普森法 1](https://www.luogu.com.cn/problem/P4525) 
+-  [HDU1724 Ellipse](http://acm.hdu.edu.cn/showproblem.php?pid=1724) 
+-  [NOI2005 月下柠檬树](https://www.luogu.com.cn/problem/P4207) 
