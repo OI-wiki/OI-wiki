@@ -193,6 +193,7 @@ nav:
       - 乘法逆元: math/inverse.md
       - 线性同余方程: math/linear-equation.md
       - 中国剩余定理: math/crt.md
+      - 二次剩余: math/quad-residue.md
       - BSGS: math/bsgs.md
       - 原根: math/primitive-root.md
       - 卢卡斯定理: math/lucas.md
