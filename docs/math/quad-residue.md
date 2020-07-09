@@ -78,7 +78,7 @@ $$
 
 ### 证明
 
--   定理 1: $(a+b)^p\equiv a^p+b^p\pmod p$ 
+- 定理 1: $(a+b)^p\equiv a^p+b^p\pmod p$ 
 
 $$
 \begin{aligned}
@@ -90,7 +90,7 @@ $$
 
 可以发现只有当 $i=0$ 和 $i=p$ 时由于没有因子 $p$ 不会因为模 $p$ 被消去，其他的项都因为有 $p$ 因子被消去了。
 
--   定理 2： $i^p\equiv -i\pmod p$ 
+- 定理 2： $i^p\equiv -i\pmod p$ 
 
 $$
 \begin{aligned}
@@ -101,7 +101,7 @@ i^p &\equiv i^{p-1} \cdot i \\
 \end{aligned}
 $$
 
--   定理 3： $a^p\equiv a \pmod p$ 这是 [费马小定理](./fermat.md) 的另一种表达形式
+- 定理 3： $a^p\equiv a \pmod p$ 这是 [费马小定理](./fermat.md) 的另一种表达形式
 
 有了这三条定理之后可以开始推导
 

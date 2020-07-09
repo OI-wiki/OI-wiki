@@ -13,12 +13,12 @@
 
 假如我想要修改一个页面内容，应该怎么操作呢？
 
-1.  在 **OI Wiki** 网站上找到对应页面；
-2.  点击正文右上方、目录左侧的 **“编辑此页”** <i class="md-icon">edit</i>按钮，在阅读了 [如何参与](./htc.md) 和 [格式手册](./format.md) 后点击“开始编辑”按钮；
-3.  在编辑框里编写你想修改的内容。另外，由于 **OI Wiki** 使用 Markdown 进行编写，如果想进行一些比较大的更改（比如扩充页面内容），你需要掌握一些 [Markdown 语法](https://markdown.tw/) ；
-4.  写好了之后点下方的绿色按钮 Propose changes 提交修改。但是，GitHub 可能会提示你没有权限。不必担心！GitHub 会自动帮你将 **OI Wiki** 的所有文件复制一份，放到你的仓库中（fork）并创建申请合并更改的请求 (Pull Request)；
-5.  之后，点上方的绿色按钮 (Create pull request) 后，GitHub 会跳转到一个新的页面 Open a pull request。删掉方框里的文字，简单写写你做的修改，然后再点一下下面的绿色按钮 (Create pull request)；
-6.  不出意外的话，你的 PR 就顺利提交到仓库，等待合并了。之后，你就可以等待项目组合并你的分支，或者指出还要修改的地方。当然，你也可以给他人的 PR 提出修改意见，或者只是点赞/踩。如果有消息，会有邮件通知和/或出现在网页右上角的提醒（取决于你个人 Settings 中的设置）。
+1. 在 **OI Wiki** 网站上找到对应页面；
+2. 点击正文右上方、目录左侧的 **“编辑此页”** <i class="md-icon">edit</i>按钮，在阅读了 [如何参与](./htc.md) 和 [格式手册](./format.md) 后点击“开始编辑”按钮；
+3. 在编辑框里编写你想修改的内容。另外，由于 **OI Wiki** 使用 Markdown 进行编写，如果想进行一些比较大的更改（比如扩充页面内容），你需要掌握一些 [Markdown 语法](https://markdown.tw/) ；
+4. 写好了之后点下方的绿色按钮 Propose changes 提交修改。但是，GitHub 可能会提示你没有权限。不必担心！GitHub 会自动帮你将 **OI Wiki** 的所有文件复制一份，放到你的仓库中（fork）并创建申请合并更改的请求 (Pull Request)；
+5. 之后，点上方的绿色按钮 (Create pull request) 后，GitHub 会跳转到一个新的页面 Open a pull request。删掉方框里的文字，简单写写你做的修改，然后再点一下下面的绿色按钮 (Create pull request)；
+6. 不出意外的话，你的 PR 就顺利提交到仓库，等待合并了。之后，你就可以等待项目组合并你的分支，或者指出还要修改的地方。当然，你也可以给他人的 PR 提出修改意见，或者只是点赞/踩。如果有消息，会有邮件通知和/或出现在网页右上角的提醒（取决于你个人 Settings 中的设置）。
 
 引用维基百科的一句话：
 
@@ -32,18 +32,18 @@
 
 基本协作方式如下：
 
-1.  Fork 主仓库到自己的仓库中；
-2.  当想要贡献某部分内容时，请务必仔细查看 **Issues** ，以便确定是否有人已经开始了这项工作。当然，我们更希望你可以加入 QQ/Telegram 群组以方便交流；
-3.  依据 [格式手册](format.md) 编写内容；
-4.  在决定将内容推送到本仓库时， **请首先拉取本仓库代码进行合并，自行处理好冲突，同时确保在本地可以正常生成文档** ，然后再将分支 PR 到主仓库的 master 分支上。
+1. Fork 主仓库到自己的仓库中；
+2. 当想要贡献某部分内容时，请务必仔细查看 **Issues** ，以便确定是否有人已经开始了这项工作。当然，我们更希望你可以加入 QQ/Telegram 群组以方便交流；
+3. 依据 [格式手册](format.md) 编写内容；
+4. 在决定将内容推送到本仓库时， **请首先拉取本仓库代码进行合并，自行处理好冲突，同时确保在本地可以正常生成文档** ，然后再将分支 PR 到主仓库的 master 分支上。
 
 ### 协作流程
 
-1.  在收到一个新的 Pull Request 之后，GitHub 会给 reviewer 发送邮件；
-2.  与此同时，在 [Travis CI](https://travis-ci.org/OI-wiki/OI-wiki) 和 [Netlify](https://app.netlify.com/sites/oi-wiki) 上会运行两组测试，它们会把进度同步在 PR 页面的下方。Travis CI 主要用来确认 PR 中内容的修改不会影响到网站构建的进程；Netlify 用来把 PR 中的更新构建出来，方便 reviewer 审核（在测试完成后点击 Details 可以了解更多）；
-3.  在足够多 reviewer 投票通过一个 PR 之后，这个 PR 才可以合并到 master 分支中；
-4.  在合并到 master 分支之后，Travis CI 会重新构建一遍网站内容，并更新到 gh-pages 分支；
-5.  这时服务器才会拉取 gh-pages 分支的更新，并重新部署最新版本的内容。
+1. 在收到一个新的 Pull Request 之后，GitHub 会给 reviewer 发送邮件；
+2. 与此同时，在 [Travis CI](https://travis-ci.org/OI-wiki/OI-wiki) 和 [Netlify](https://app.netlify.com/sites/oi-wiki) 上会运行两组测试，它们会把进度同步在 PR 页面的下方。Travis CI 主要用来确认 PR 中内容的修改不会影响到网站构建的进程；Netlify 用来把 PR 中的更新构建出来，方便 reviewer 审核（在测试完成后点击 Details 可以了解更多）；
+3. 在足够多 reviewer 投票通过一个 PR 之后，这个 PR 才可以合并到 master 分支中；
+4. 在合并到 master 分支之后，Travis CI 会重新构建一遍网站内容，并更新到 gh-pages 分支；
+5. 这时服务器才会拉取 gh-pages 分支的更新，并重新部署最新版本的内容。
 
 ## 参考资料与注释
 
