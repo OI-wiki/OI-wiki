@@ -97,12 +97,12 @@ $$
 
 ### 例子
 
--   单位函数： $\epsilon(n)=[n=1]$ 
--   恒等函数： $\operatorname{id}_k(n)=n^k$  $\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$ 。
--   常数函数： $1(n)=1$ 
--   除数函数： $\sigma_{k}(n)=\sum_{d\mid n}d^{k}$  $\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$ ， $\sigma_{1}(n)$ 通常简记作 $\sigma(n)$ 。
--   欧拉函数： $\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$ 
--   莫比乌斯函数： $\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1:d^{2} \mid n \\ (-1)^{\omega(n)} & otherwise\end{cases}$ 其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，是一个积性函数。
+- 单位函数： $\epsilon(n)=[n=1]$ 
+- 恒等函数： $\operatorname{id}_k(n)=n^k$  $\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$ 。
+- 常数函数： $1(n)=1$ 
+- 除数函数： $\sigma_{k}(n)=\sum_{d\mid n}d^{k}$  $\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$ ， $\sigma_{1}(n)$ 通常简记作 $\sigma(n)$ 。
+- 欧拉函数： $\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$ 
+- 莫比乌斯函数： $\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1:d^{2} \mid n \\ (-1)^{\omega(n)} & otherwise\end{cases}$ 其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，是一个积性函数。
 
 * * *
 
@@ -154,10 +154,10 @@ $$
 
 令 $n=\prod_{i=1}^kp_i^{c_i}$ ，其中 $p_i$ 为质因子， $c_i\ge 1$ 。上述定义表示：
 
-1.   $n=1$ 时， $\mu(n)=1$ ；
+1.  $n=1$ 时， $\mu(n)=1$ ；
 2.  对于 $n\not= 1$ 时：
-    1.  当存在 $i\in [1,k]$ ，使得 $c_i > 1$ 时， $\mu(n)=0$ ，也就是说只要某个质因子出现的次数超过一次， $\mu(n)$ 就等于 $0$ ；
-    2.  当任意 $i\in[1,k]$ ，都有 $c_i=1$ 时， $\mu(n)=(-1)^k$ ，也就是说每个质因子都仅仅只出现过一次时，即 $n=\prod_{i=1}^kp_i$ ， $\{p_i\}_{i=1}^k$ 中个元素唯一时， $\mu(n)$ 等于 $-1$ 的 $k$ 次幂，此处 $k$ 指的便是仅仅只出现过一次的质因子的总个数。
+    1. 当存在 $i\in [1,k]$ ，使得 $c_i > 1$ 时， $\mu(n)=0$ ，也就是说只要某个质因子出现的次数超过一次， $\mu(n)$ 就等于 $0$ ；
+    2. 当任意 $i\in[1,k]$ ，都有 $c_i=1$ 时， $\mu(n)=(-1)^k$ ，也就是说每个质因子都仅仅只出现过一次时，即 $n=\prod_{i=1}^kp_i$ ， $\{p_i\}_{i=1}^k$ 中个元素唯一时， $\mu(n)$ 等于 $-1$ 的 $k$ 次幂，此处 $k$ 指的便是仅仅只出现过一次的质因子的总个数。
 
 ### 性质
 

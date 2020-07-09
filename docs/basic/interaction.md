@@ -4,9 +4,9 @@
 
 交互题的特殊错误：
 
--   选手每一次输出后都需要刷新缓冲区，否则会引起 Idleness limit exceeded 错误。另外，如果题目含多组数据并且程序可以在未读入所有数据前就知道答案，也仍然要读入所有数据，否则同样会因为读入混乱引起 ILE（可以一次提出多次询问，一次接收所有询问的回答）。同时尽量不要使用快读。
--   如果程序查询次数过多，则在 Codeforces 上会给出 Wrong Answer 的评测结果（不过评测系统会说明 Wrong Answer 的原因），而 UVA 会给出 Protocol Limit Exceeded (PLE) 的评测结果。
--   如果程序交互格式错误，UVa 会给出 Protocol Violation (PV) 的评测结果。
+- 选手每一次输出后都需要刷新缓冲区，否则会引起 Idleness limit exceeded 错误。另外，如果题目含多组数据并且程序可以在未读入所有数据前就知道答案，也仍然要读入所有数据，否则同样会因为读入混乱引起 ILE（可以一次提出多次询问，一次接收所有询问的回答）。同时尽量不要使用快读。
+- 如果程序查询次数过多，则在 Codeforces 上会给出 Wrong Answer 的评测结果（不过评测系统会说明 Wrong Answer 的原因），而 UVA 会给出 Protocol Limit Exceeded (PLE) 的评测结果。
+- 如果程序交互格式错误，UVa 会给出 Protocol Violation (PV) 的评测结果。
 
 由于交互题输入输出较为繁琐，所以建议分别封装输入和输出函数。
 
@@ -14,11 +14,11 @@
 
 例题：
 
--    [CF679A Bear and Prime 100](https://www.luogu.com.cn/problem/CF679A) 
--    [CF843B Interactive LowerBound](https://www.luogu.com.cn/problem/CF843B) 
--    [UOJ206\[APIO2016\]Gap](http://uoj.ac/problem/206) 
--    [CF750F New Year and Finding Roots](https://www.luogu.com.cn/problem/CF750F) 
--    [UVA12731 太空站之谜 Mysterious Space Station](https://www.luogu.com.cn/problem/UVA12731) 
+-  [CF679A Bear and Prime 100](https://www.luogu.com.cn/problem/CF679A) 
+-  [CF843B Interactive LowerBound](https://www.luogu.com.cn/problem/CF843B) 
+-  [UOJ206\[APIO2016\]Gap](http://uoj.ac/problem/206) 
+-  [CF750F New Year and Finding Roots](https://www.luogu.com.cn/problem/CF750F) 
+-  [UVA12731 太空站之谜 Mysterious Space Station](https://www.luogu.com.cn/problem/UVA12731) 
 
 ## CF679A Bear and Prime 100
 
@@ -273,8 +273,8 @@
 
 由于唯一的反馈是移动时是否撞墙，所以我们应该考虑在机器人不走丢的情况下，尽量接近墙边走路，这样有几个好处：
 
--   靠近墙边走路时，很容易知道自己会不会撞墙，获取到尽量多的信息。
--   墙边都是不会出现传送门的格子，可以避免机器人走丢。
+- 靠近墙边走路时，很容易知道自己会不会撞墙，获取到尽量多的信息。
+- 墙边都是不会出现传送门的格子，可以避免机器人走丢。
 
 所以，我们如果已知机器人可能在墙边的某个位置，要确定机器人是不是真的在这个位置，就可以通过 [“单手扶墙法”](https://en.wikipedia.org/wiki/Maze_solving_algorithm) 确定自己是不是真的在这个位置。根据拓扑学原理，在两边都是墙的迷宫中，如果从入口进入，并且总是用一只手扶着同一边墙，就可以保证找到出口。由于本题中的墙是闭合的，所以只需要沿着墙边的道路走，就可以保证可以回到原点而不会撞墙。另外，由于墙边的道路是地图上的最大闭合回路，所以实际代码中并不需要特意撞墙以保证机器人在墙边，可以使用标记在地图中标明墙边道路。而且一旦撞了墙，就需要赶快沿着原路返回，可以在避免机器人走丢的同时减少步数。
 
@@ -538,10 +538,10 @@
 
 ## 习题
 
--    [刘汝佳的交互题专场比赛 Rujia Liu's Present 7 质量非常高，推荐一做。](https://onlinejudge.org/contests/328-9976a2e2/) 
--    [P5473\[NOI2019\]I 君的探险](https://www.luogu.com.cn/problem/P5473) 
--    [P5208\[WC2019\]I 君的商店](https://www.luogu.com.cn/problem/P5208) 
+-  [刘汝佳的交互题专场比赛 Rujia Liu's Present 7 质量非常高，推荐一做。](https://onlinejudge.org/contests/328-9976a2e2/) 
+-  [P5473\[NOI2019\]I 君的探险](https://www.luogu.com.cn/problem/P5473) 
+-  [P5208\[WC2019\]I 君的商店](https://www.luogu.com.cn/problem/P5208) 
 
 ## References
 
--    [用 Linux 管道实现 online judge 的交互题功能](https://www.cnblogs.com/tsreaper/p/pipe-interactive.html) 
+-  [用 Linux 管道实现 online judge 的交互题功能](https://www.cnblogs.com/tsreaper/p/pipe-interactive.html) 

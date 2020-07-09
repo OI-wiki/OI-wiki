@@ -141,6 +141,6 @@ $$
 
 ## 习题
 
--    [Luogu3807【模板】卢卡斯定理](https://www.luogu.com.cn/problem/P3807) 
--    [SDOI2010 古代猪文  卢卡斯定理](https://loj.ac/problem/10229) 
--    [Luogu4720【模板】扩展卢卡斯](https://www.luogu.com.cn/problem/P4720) 
+-  [Luogu3807【模板】卢卡斯定理](https://www.luogu.com.cn/problem/P3807) 
+-  [SDOI2010 古代猪文  卢卡斯定理](https://loj.ac/problem/10229) 
+-  [Luogu4720【模板】扩展卢卡斯](https://www.luogu.com.cn/problem/P4720) 

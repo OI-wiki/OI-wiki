@@ -6,11 +6,11 @@
 
 ### 插入与删除操作
 
--    `insert(x)` 当容器中没有等价元素的时候，将元素 x 插入到 `set` 中。
--    `erase(x)` 删除值为 x 的元素，返回删除元素的个数。
--    `erase(pos)` 删除迭代器为 pos 的元素，要求迭代器必须合法。
--    `erase(first,last)` 删除迭代器在 $[first,last)$ 范围内的所有元素。
--    `clear()` 清空 `set` 。
+-  `insert(x)` 当容器中没有等价元素的时候，将元素 x 插入到 `set` 中。
+-  `erase(x)` 删除值为 x 的元素，返回删除元素的个数。
+-  `erase(pos)` 删除迭代器为 pos 的元素，要求迭代器必须合法。
+-  `erase(first,last)` 删除迭代器在 $[first,last)$ 范围内的所有元素。
+-  `clear()` 清空 `set` 。
 
 ???+note "insert 函数的返回值"
     insert 函数的返回值类型为 `pair<iterator, bool>` ，其中 iterator 是一个指向所插入元素（或者是指向等于所插入值的原本就在容器中的元素）的迭代器，而 bool 则代表元素是否插入成功，由于 `set` 中的元素具有唯一性质，所以如果在 `set` 中已有等值元素，则插入会失败，返回 false，否则插入成功，返回 true； `map` 中的 insert 也是如此。
@@ -32,12 +32,12 @@
 
 ### 查找操作
 
--    `count(x)` 返回 `set` 内键为 x 的元素数量。
--    `find(x)` 在 `set` 内存在键为 x 的元素时会返回该元素的迭代器，否则返回 `end()` 。
--    `lower_bound(x)` 返回指向首个不小于给定键的元素的迭代器。如果不存在这样的元素，返回 `end()` 。
--    `upper_bound(x)` 返回指向首个大于给定键的元素的迭代器。如果不存在这样的元素，返回 `end()` 。
--    `empty()` 返回容器是否为空。
--    `size()` 返回容器内元素个数。
+-  `count(x)` 返回 `set` 内键为 x 的元素数量。
+-  `find(x)` 在 `set` 内存在键为 x 的元素时会返回该元素的迭代器，否则返回 `end()` 。
+-  `lower_bound(x)` 返回指向首个不小于给定键的元素的迭代器。如果不存在这样的元素，返回 `end()` 。
+-  `upper_bound(x)` 返回指向首个大于给定键的元素的迭代器。如果不存在这样的元素，返回 `end()` 。
+-  `empty()` 返回容器是否为空。
+-  `size()` 返回容器内元素个数。
 
 ???+warning "`lower_bound` 和 `upper_bound` 的时间复杂度"
      `set` 自带的 `lower_bound` 和 `upper_bound` 的时间复杂度为 $O(\log n)$ 。
@@ -52,11 +52,11 @@
 
 ### 插入与删除操作
 
--    `insert(x)` 将元素 x 插入到 `multiset` 中。
--    `erase(x)` 删除值为 x 的 **所有** 元素，返回删除元素的个数。
--    `erase(pos)` 删除迭代器为 pos 的元素，要求迭代器必须合法。
--    `erase(first,last)` 删除迭代器在 $[first,last)$ 范围内的所有元素。
--    `clear()` 清空 `multiset` 。
+-  `insert(x)` 将元素 x 插入到 `multiset` 中。
+-  `erase(x)` 删除值为 x 的 **所有** 元素，返回删除元素的个数。
+-  `erase(pos)` 删除迭代器为 pos 的元素，要求迭代器必须合法。
+-  `erase(first,last)` 删除迭代器在 $[first,last)$ 范围内的所有元素。
+-  `clear()` 清空 `multiset` 。
 
 ### 迭代器
 
@@ -87,9 +87,9 @@ map<string, int> mp;
 
 ### 添加元素
 
-1.  直接赋值，例如 `mp["Tom"]=0` 
-2.  通过插入一个类型为 `pair<Key, T>` 的值，例如 `mp.insert(pair<string,int>("Alan",100));` 
-3.  使用 `initializer_list` ：
+1. 直接赋值，例如 `mp["Tom"]=0` 
+2. 通过插入一个类型为 `pair<Key, T>` 的值，例如 `mp.insert(pair<string,int>("Alan",100));` 
+3. 使用 `initializer_list` ：
 
 ```cpp
 map<string, int> mp = {{"Tom", 0}, {"Bob", "100"}, {"Alan", 100}};
@@ -97,9 +97,9 @@ map<string, int> mp = {{"Tom", 0}, {"Bob", "100"}, {"Alan", 100}};
 
 ### 查找、修改元素
 
-1.  使用赋值语法： `int grade=mp["Tom"]` 。
-2.  使用成员函数 `iterator find( const Key& key );` 来确定一个索引是否在 `map` 中。它会返回指向该元素的迭代器；如果索引不在 `map` 中，则会返回尾后迭代器 `mp.end()` 。
-3.  如果你想获得 `map` 里全部的元素，请使用迭代器，解引用迭代器会得到一个类型为 `pair<Key, T>` 的值：
+1. 使用赋值语法： `int grade=mp["Tom"]` 。
+2. 使用成员函数 `iterator find( const Key& key );` 来确定一个索引是否在 `map` 中。它会返回指向该元素的迭代器；如果索引不在 `map` 中，则会返回尾后迭代器 `mp.end()` 。
+3. 如果你想获得 `map` 里全部的元素，请使用迭代器，解引用迭代器会得到一个类型为 `pair<Key, T>` 的值：
 
 ```cpp
 for (iter = mp.begin(); iter != mp.end(); ++iter)
@@ -131,10 +131,10 @@ mp.erase(it)
 
 ### 其他函数
 
--    `count` 返回匹配特定键的元素出现的次数，例如 `mp.count("Tom")` 。
--    `swap` 可以交换两个 `map` ，例如 `swap(m1,m2)` 。
--    `size` 返回 `map` 中元素的个数。
--    `empty` 如果 `map` 为空则返回 `true` ，例如 `mp.empty()` 。
+-  `count` 返回匹配特定键的元素出现的次数，例如 `mp.count("Tom")` 。
+-  `swap` 可以交换两个 `map` ，例如 `swap(m1,m2)` 。
+-  `size` 返回 `map` 中元素的个数。
+-  `empty` 如果 `map` 为空则返回 `true` ，例如 `mp.empty()` 。
 
 ##  `multimap` 
 
@@ -145,17 +145,17 @@ mp.erase(it)
 
 ### 插入与删除操作
 
--   通过向 `multimap` 中插入一个类型为 `pair<Key, T>` 的值可以达到插入元素的目的，例如 `mp.insert(pair<string,int>("Alan",100));` ；
--    `erase(x)` : 删除键为 x 的 **所有** 元素，返回删除元素的个数。
--    `erase(pos)` : 删除迭代器为 pos 的元素，要求迭代器必须合法。
--    `erase(first,last)` : 删除迭代器在 $[first,last)$ 范围内的所有元素。
--    `clear()` : 清空容器。
+- 通过向 `multimap` 中插入一个类型为 `pair<Key, T>` 的值可以达到插入元素的目的，例如 `mp.insert(pair<string,int>("Alan",100));` ；
+-  `erase(x)` : 删除键为 x 的 **所有** 元素，返回删除元素的个数。
+-  `erase(pos)` : 删除迭代器为 pos 的元素，要求迭代器必须合法。
+-  `erase(first,last)` : 删除迭代器在 $[first,last)$ 范围内的所有元素。
+-  `clear()` : 清空容器。
 
 ### 查找操作
 
--    `count(x)` : 返回容器内键为 x 的元素数量。复杂度为 $O(\log(size)+ans)$ （关于容器大小对数复杂度，加上匹配个数）。
--    `find(x)` : 若容器内存在键为 x 的元素，会返回该元素的迭代器（如果有多个键为 x 的元素会返回任意一个）；否则返回 `end()` 。
--    `lower_bound(x)` : 返回指向首个不小于给定键的元素的迭代器。
--    `upper_bound(x)` : 返回指向首个大于给定键的元素的迭代器。若容器内所有元素均小于或等于给定键，返回 `end()` 。
--    `empty()` : 返回容器是否为空。
--    `size()` : 返回容器内元素个数。
+-  `count(x)` : 返回容器内键为 x 的元素数量。复杂度为 $O(\log(size)+ans)$ （关于容器大小对数复杂度，加上匹配个数）。
+-  `find(x)` : 若容器内存在键为 x 的元素，会返回该元素的迭代器（如果有多个键为 x 的元素会返回任意一个）；否则返回 `end()` 。
+-  `lower_bound(x)` : 返回指向首个不小于给定键的元素的迭代器。
+-  `upper_bound(x)` : 返回指向首个大于给定键的元素的迭代器。若容器内所有元素均小于或等于给定键，返回 `end()` 。
+-  `empty()` : 返回容器是否为空。
+-  `size()` : 返回容器内元素个数。
