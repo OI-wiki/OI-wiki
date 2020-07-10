@@ -131,7 +131,7 @@ int main() {
 
 ### 习题
 
--  [HUD 6514 Monitor ](http://acm.hdu.edu.cn/showproblem.php?pid=6514) 
+-  [HUD 6514 Monitor](http://acm.hdu.edu.cn/showproblem.php?pid=6514) 
 -  [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387) 
 -  [「HNOI2003」激光炸弹](https://www.luogu.com.cn/problem/P2280) 
 
@@ -167,21 +167,21 @@ int main() {
 ## 差分
 
 差分，是一种和前缀和相对的策略，可以当做是求和的逆运算。  
-这种策略是，令 $b_i=\begin{cases}a_i-a_{i-1}\,&i \in[2,n] \\ a_1\,&i=1\end{cases}$   
+这种策略是，令 $b_i=\begin{cases}a_i-a_{i-1}\,&i \in[2,n] \\ a_1\,&i=1\end{cases}$ 
 
 简单性质：
--  $a_i$ 的值是 $b_i$ 的前缀和，即 $a_i=\sum\limits_{i=1}^nf_i$
--  计算 $a_i$ 的前缀和 $sum=\sum\limits_{i=1}^na_i=\sum\limits_{i=1}^n\sum\limits_{j=1}^{i}f_j=\sum\limits_{i}^n(n-i+1)f_i$
+
+-  $a_i$ 的值是 $b_i$ 的前缀和，即 $a_i=\sum\limits_{i=1}^nf_i$ 
+- 计算 $a_i$ 的前缀和 $sum=\sum\limits_{i=1}^na_i=\sum\limits_{i=1}^n\sum\limits_{j=1}^{i}f_j=\sum\limits_{i}^n(n-i+1)f_i$ 
 
 它可以维护多次对序列的一个区间加上一个数，并在最后询问某一位的数或是多次询问某一位的数。（总之修改操作一定要在查询操作之前）  
-具体怎么搞？譬如使 $[l,r]$ 中的每个数加上一个 $k$ ，就是 
+具体怎么搞？譬如使 $[l,r]$ 中的每个数加上一个 $k$ ，就是
 
 $$
 b_l \leftarrow b_l + k,b_{r + 1} \leftarrow b_{r + 1} - k
-$$ 
+$$
 
-其中 $b_l+k=a_l+k-a_{l-1}$, $b_{r+1}-k=a_{r+1}-(a_r+k)$
-最后做一遍前缀和就好了。
+其中 $b_l+k=a_l+k-a_{l-1}$ , $b_{r+1}-k=a_{r+1}-(a_r+k)$ 最后做一遍前缀和就好了。
 
 ### 习题
 
@@ -193,7 +193,7 @@ $$
 
 树上差分可以理解为对树上的某一段路径进行差分操作，这里的路径可以类比一维数组的区间进行理解。例如在对树上的一些路径进行频繁操作，并且询问某条边或者某个点在经过操作后的值的时候，就可以运用树上差分思想了。
 
-树上差分通常会结合[树基础](../graph/tree-basic.md)和[最近公共祖先](../graph/lca.md)来进行考察。树上差分又分为 **点差分** 与 **边差分** ，在实现上会稍有不同。
+树上差分通常会结合 [树基础](../graph/tree-basic.md) 和 [最近公共祖先](../graph/lca.md) 来进行考察。树上差分又分为 **点差分** 与 **边差分** ，在实现上会稍有不同。
 
 ### 点差分
 
@@ -210,14 +210,13 @@ $$
 \end{aligned}
 $$
 
-其中 $f$ 表示生成 $lca$ 的父亲节点，$d_i$ 为点权 $a_i$ 的差分数组。
+其中 $f$ 表示生成 $lca$ 的父亲节点， $d_i$ 为点权 $a_i$ 的差分数组。
 
 ![](./images/prefix_sum1.png)
 
 可以认为公式中的前两条是对蓝色方框内的路径进行操作，后两条是对红色方框内的路径进行操作。不妨将 $lca$ 左侧的直系子节点命名为 $left$ 。那么就有 $d_{lca}-1=a_{lca}-(a_{left}+1)$ ， $d_{f(lca)}-1=a_{f(lca)}-(a_{lca}+1)$ 。可以发现实际上点差分的操作和上文一维数组的差分操作是类似的。
 
-下面给出 [洛谷3128 最大流](https://www.luogu.com.cn/problem/P3128) 的参考程序帮助理解。
-
+下面给出 [洛谷 3128 最大流](https://www.luogu.com.cn/problem/P3128) 的参考程序帮助理解。
 
 ??? note "参考程序"
 
@@ -303,7 +302,7 @@ $$
         }
     ```
 
-###　边差分
+\###　边差分
 
 若是对路径中的边进行访问，就需要采用边差分策略了，使用以下公式：
 
@@ -321,7 +320,7 @@ $$
 
 ### 习题
 
--  [洛谷3128 最大流](https://www.luogu.com.cn/problem/P3128) 
--  [JLOI2014 松鼠的新家](https://loj.ac/problem/2236)
--  [NOIP2015 运输计划](http://uoj.ac/problem/150)
--  [NOIP2016 天天爱跑步](http://uoj.ac/problem/261)
+-  [洛谷 3128 最大流](https://www.luogu.com.cn/problem/P3128) 
+-  [JLOI2014 松鼠的新家](https://loj.ac/problem/2236) 
+-  [NOIP2015 运输计划](http://uoj.ac/problem/150) 
+-  [NOIP2016 天天爱跑步](http://uoj.ac/problem/261) 
