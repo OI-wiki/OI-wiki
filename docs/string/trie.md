@@ -313,14 +313,13 @@ void addall(int o) {
 int marge(int a, int b) {
   if (!a) return b;  // 如果 a 没有这个位置上的结点，返回 b
   if (!b) return a;  // 如果 b 没有这个位置上的结点，返回 a
-  // 如果 a, b 都健在，那就把 b 的信息合并到 a 上，然后递归操作。
-  // 如果需要的合并是将 a，b
-  // 合并到一棵新树上，这里可以新建结点，然后进行合并。这里的代码实现仅仅是将b的信息合并到
-  // a 上。
+  /*
+  如果 a, b 都健在，那就把 b 的信息合并到 a 上，然后递归操作。
+  如果需要的合并是将 a，b 合并到一棵新树上，这里可以新建结点，然后进行合并。这里的代码实现仅仅是将b的信息合并到 a 上。
+  */
   w[a] = w[a] + w[b];
   xorv[a] ^= xorv[b];
-  // 不要使用 maintain，maintain 是根据 a
-  // 的两个儿子的数值进行信息合并，而这里需要 a b 两个节点进行信息合并
+  /* 不要使用 maintain，maintain 是根据 a 的两个儿子的数值进行信息合并，而这里需要 a b 两个节点进行信息合并 */
   ch[a][0] = marge(ch[a][0], ch[b][0]);
   ch[a][1] = marge(ch[a][1], ch[b][1]);
   return a;
@@ -328,6 +327,198 @@ int marge(int a, int b) {
 ```
 
 其实 `trie` 都可以合并，换句话说， `trie` 合并不仅仅限于 `01-trie` 。
+
+
+
+???+note "[【luogu-P6018】【Ynoi2010】Fusion tree](https://www.luogu.com.cn/problem/P6018)"
+    给你一棵$n$个结点的树，每个结点有权值。$m$次操作。
+    需要支持以下操作。
+     - 将树上与一个节点 $x$ 距离为 $1$ 的节点上的权值 $+1$。这里树上两点间的距离定义为从一点出发到另外一点的最短路径上边的条数。
+     - 在一个节点 $x$ 上的权值 $-v$ 。
+     - 询问树上与一个节点 $x$ 距离为 $1$ 的所有节点上的权值的异或和。
+    对于 $100\%$ 的数据，满足 $1\le n \le 5\times 10^5$，$1\le m \le 5\times 10^5$，$0\le a_i \le 10^5$，$1 \le x \le n$，$opt\in\{1,2,3\}$。
+    保证任意时刻每个节点的权值非负。
+
+    ??? mdui-shadow-6 "题解"
+        每个结点建立一棵trie树维护其儿子的权值，trie树应该支持全局加一。
+        可以使用在每一个结点上设置懒标记来标记儿子的权值的增加量。
+
+    ??? mdui-shadow-6 "参考代码"
+        ```cpp
+        const int _ = 5e5 + 10;
+        namespace trie{
+            const int _n = _ * 25;
+            int rt[_];
+            int ch[_n][2];
+            int w[_n]; 
+            int xorv[_n];
+        /* w[i] is in order to save the weight of edge which is connect `i` and its `parent`.*/
+            int tot = 0;
+            void maintain(int o){
+                w[o] = xorv[o] = 0;
+                if(ch[o][0]){ w[o] += w[ch[o][0]]; xorv[o] ^=  xorv[ch[o][0]] << 1; }
+                if(ch[o][1]){ w[o] += w[ch[o][1]]; xorv[o] ^= (xorv[ch[o][1]] << 1) | (w[ch[o][1]] & 1); }
+            }
+            inline int mknode(){ ++tot; ch[tot][0] = ch[tot][1] = 0; w[tot] = 0; return tot; }
+            void insert(int &o, int x, int dp){
+                if(!o) o = mknode();
+                if(dp > 20) return (void)(w[o] ++);
+                insert(ch[o][ x&1 ], x >> 1, dp + 1);
+                maintain(o); 
+            }
+            void erase(int o, int x, int dp){
+                if(dp > 20) return (void )(w[o]--);
+                erase(ch[o][ x&1 ], x >> 1, dp + 1);
+                maintain(o);
+            }
+            void addall(int o){
+                swap(ch[o][1], ch[o][0]);
+                if(ch[o][0]) addall(ch[o][0]);
+                maintain(o);
+            }
+        }
+
+        int head[_];
+        struct edges{
+            int node;
+            int nxt;
+        }edge[_ << 1];
+        int tot = 0;
+        void add(int u, int v){
+            edge[++tot].nxt = head[u];
+            head[u] = tot;
+            edge[tot].node = v;
+        }
+
+        int n, m;
+        int rt;
+        int lztar[_];
+        int fa[_];
+        void dfs0(int o, int f){
+            fa[o] = f;
+            for(int i = head[o];i;i = edge[i].nxt){
+                int node = edge[i].node;
+                if(node == f) continue;
+                dfs0(node, o);
+            }
+        }
+        int V[_];
+        inline int get(int x){ return (fa[x] == -1 ? 0 : lztar[fa[x]]) + V[x]; }
+        int main()
+        {
+            n = read(), m = read();
+            for(int i = 1;i < n;i++){
+                int u = read(), v = read(); 
+                add(u, v); add(rt = v, u);
+            }
+            dfs0(rt, -1);
+            for(int i = 1;i <= n;i++) { V[i] = read(); if(fa[i] != -1)trie::insert(trie::rt[fa[i]], V[i], 0);  }
+            while(m--){
+                int opt = read(), x = read(); 
+                if(opt == 1){
+                    lztar[x] ++;
+                    if(x != rt) {
+                        if(fa[fa[x]])trie::erase(trie::rt[fa[fa[x]]], get(fa[x]), 0);
+                        V[fa[x]] ++;
+                        if(fa[fa[x]])trie::insert(trie::rt[fa[fa[x]]], get(fa[x]), 0);
+                    }
+                    trie::addall(trie::rt[x]);
+                } else if(opt == 2){
+                    int v = read();
+                    if(x != rt) trie::erase(trie::rt[fa[x]], get(x), 0);
+                    V[x] -= v;
+                    if(x != rt) trie::insert(trie::rt[fa[x]], get(x), 0);
+                } else {
+                    int res = 0;
+                    res = trie::xorv[trie::rt[x]];
+                    res ^= get(fa[x]);
+                    printf("%d\n", res);
+                }
+            }
+            return 0;
+        }
+        ```
+
+
+
+???+note "[【luogu-P6018】【Ynoi2010】Fusion tree](https://www.luogu.com.cn/problem/P6018)"
+    给定一棵 $n$ 个结点的有根树 $T$，结点从 $1$ 开始编号，根结点为 $1$ 号结点，每个结点有一个正整数权值 $v_i$。
+    设 $x$ 号结点的子树内（包含 $x$ 自身）的所有结点编号为 $c_1,c_2,\dots,c_k$，定义 $x$ 的价值为：
+    $$val(x)=(v_{c_1}+d(c_1,x)) \oplus (v_{c_2}+d(c_2,x)) \oplus \cdots \oplus (v_{c_k}+d(c_k, x))$$
+    其中 $d(x,y)$ 表示树上 $x$ 号结点与 $y$ 号结点间唯一简单路径所包含的边数，$d(x,x) = 0$。$\oplus$ 表示异或运算。
+    请你求出 $\sum\limits_{i=1}^n val(i)$ 的结果。
+
+    ??? mdui-shadow-6 "题解"
+        考虑每个结点对其所有祖先的贡献。
+        每个结点建立`trie`树，初始先只存这个结点的权值，然后从底向上合并每个儿子结点上的`trie`树，然后再全局加一，完成后统计答案。
+    ??? mdui-shadow-6 "参考代码"
+        ```cpp
+        const int _ = 526010;
+        int n;
+        int V[_];
+        int debug  = 0;
+        int cnt = 0; 
+        namespace trie{
+            const int MAXH = 21; 
+            int ch[_ * (MAXH + 1)][2], w[_ * (MAXH + 1)], xorv[_ * (MAXH + 1)];
+            int tot = 0;
+            int mknode(){ ++tot; ch[tot][1] = ch[tot][0] = w[tot] = xorv[tot] = 0; return tot;}
+            void maintain(int o){
+                w[o] = xorv[o] = 0;
+                if(ch[o][0]){ w[o] += w[ch[o][0]]; xorv[o] ^=  xorv[ch[o][0]] << 1; }
+                if(ch[o][1]){ w[o] += w[ch[o][1]]; xorv[o] ^= (xorv[ch[o][1]] << 1) | (w[ch[o][1]] & 1); }
+                w[o] = w[o] & 1;
+            }
+            void insert(int &o, int x, int dp){
+                if(!o) o = mknode();
+                if(dp > MAXH) return (void)(w[o] ++);
+                insert(ch[o][ x&1 ], x >> 1, dp + 1);
+                maintain(o);
+            }
+            int marge(int a, int b){
+                cnt++;
+                if(!a) return b;
+                if(!b) return a;
+                w[a] = w[a] + w[b];
+                xorv[a] ^= xorv[b];
+        /*不要使用maintain，maintain是根据a的两个儿子的数值进行信息合并，而这里需要a b两个节点进行信息合并 */
+                ch[a][0] = marge(ch[a][0], ch[b][0]);
+                ch[a][1] = marge(ch[a][1], ch[b][1]);
+                return a;
+            }
+            void addall(int o){
+                swap(ch[o][0], ch[o][1]);
+                if(ch[o][0]) addall(ch[o][0]);
+                maintain(o);
+            }
+        }
+        int rt[_];
+        long long Ans = 0;
+        vector<int>E[_];
+        void dfs0(int o){
+            for(int i = 0;i < E[o].size();i++){
+                int node = E[o][i];
+                dfs0(node);
+                rt[o] = trie::marge(rt[o], rt[node]);
+            }
+            trie::addall(rt[o]);
+            trie::insert(rt[o], V[o], 0);
+            Ans += trie::xorv[rt[o]];
+        }
+        int main()
+        {
+            n = read();
+            for(int i = 1;i <= n;i++) V[i] = read();
+            for(int i = 2;i <= n;i++) E[read()].push_back(i);
+            dfs0(1); 
+            printf("%lld", Ans);
+            return 0;
+        }
+        ```
+
+
+
+
 
 ### 可持久化字典树
 
