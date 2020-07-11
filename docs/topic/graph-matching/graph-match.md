@@ -8,16 +8,21 @@ author: accelsao
 ## 图的匹配
 
 在图论中，假设图 $G=(V,E)$ ，其中 $V$ 是点集， $E$ 是边集。
+
 一组两两没有公共点的边集 $(M(M\in E))$ 称为这张图的 **匹配** 。
-定义匹配的大小为其中边的数量 $|M|$ ，边数最大的 $M$ 为 **最大匹配** 。
-当图中带权的时候，边权和最大的为 **最大权匹配** 。
+
+定义匹配的大小为其中边的数量 $|M|$ ，其中边数最大的 $M$ 为 **最大匹配** 。
+
+当图中的边带权的时候，边权和最大的为 **最大权匹配** 。
+
 匹配中的边称为 **匹配边** ，反之称为 **未匹配边** 。
+
 一个点如果属于 $M$ 且为至多一条边的端点，称为 **匹配点** ，反之称为 **未匹配点** 。
 
-> maximal matching: 无法再增加匹配边的匹配。不见得是最大匹配。
-> 最大匹配（maximum matching): 匹配数最多的匹配。
-> 完美匹配（perfect matching): 所有点都属于匹配，同时也符合最大匹配。
-> 近完美匹配（near-perfect matching): 发生在图的点数为奇数，刚好只有一个点不在匹配中，扣掉此点以后的图称为 factor-critical graph。
+- maximal matching: 无法再增加匹配边的匹配。不见得是最大匹配。
+- 最大匹配（maximum matching): 匹配数最多的匹配。
+- 完美匹配（perfect matching): 所有点都属于匹配，同时也符合最大匹配。
+- 近完美匹配（near-perfect matching): 发生在图的点数为奇数，刚好只有一个点不在匹配中，扣掉此点以后的图称为 factor-critical graph。
 
  **maximal matching** ![graph-match-1](./images/graph-match-1.png) **最大匹配** ![graph-match-2](./images/graph-match-2.png)
 
