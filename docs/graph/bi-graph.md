@@ -33,7 +33,7 @@
 
 #### 二分图最大匹配
 
-详见 [二分图最大匹配](../topic/graph-matching/bigraph-match.md) 页面。 
+详见 [二分图最大匹配](../topic/graph-matching/bigraph-match.md) 页面。
 
 #### 二分图最大权匹配
 
