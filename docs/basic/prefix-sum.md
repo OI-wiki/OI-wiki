@@ -131,7 +131,7 @@ int main() {
 
 ### 习题
 
--  [CodeVS 1373. 射命丸文](http://www.joyoi.cn/problem/codevs-1373) 
+-  [HUD 6514 Monitor](http://acm.hdu.edu.cn/showproblem.php?pid=6514) 
 -  [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387) 
 -  [「HNOI2003」激光炸弹](https://www.luogu.com.cn/problem/P2280) 
 
@@ -166,13 +166,22 @@ int main() {
 
 ## 差分
 
-差分，是一种和前缀和相对的策略。  
-这种策略是，令 $b_i = a_i - a_{i - 1}$ ，即相邻两数的差。  
-易得对这个序列做一遍前缀和就得到了原来的 $a$ 序列。
+差分，是一种和前缀和相对的策略，可以当做是求和的逆运算。  
+这种策略是，令 $b_i=\begin{cases}a_i-a_{i-1}\,&i \in[2,n] \\ a_1\,&i=1\end{cases}$ 
+
+简单性质：
+
+-  $a_i$ 的值是 $b_i$ 的前缀和，即 $a_i=\sum\limits_{i=1}^nf_i$ 
+- 计算 $a_i$ 的前缀和 $sum=\sum\limits_{i=1}^na_i=\sum\limits_{i=1}^n\sum\limits_{j=1}^{i}f_j=\sum\limits_{i}^n(n-i+1)f_i$ 
 
 它可以维护多次对序列的一个区间加上一个数，并在最后询问某一位的数或是多次询问某一位的数。（总之修改操作一定要在查询操作之前）  
-具体怎么搞？譬如使 $[l,r]$ 每个数加上一个 $k$ ，就是 $b_l \leftarrow b_l + k,b_{r + 1} \leftarrow b_{r + 1} - k$ 。  
-最后做一遍前缀和就好了。
+具体怎么搞？譬如使 $[l,r]$ 中的每个数加上一个 $k$ ，就是
+
+$$
+b_l \leftarrow b_l + k,b_{r + 1} \leftarrow b_{r + 1} - k
+$$
+
+其中 $b_l+k=a_l+k-a_{l-1}$ , $b_{r+1}-k=a_{r+1}-(a_r+k)$ 最后做一遍前缀和就好了。
 
 ### 习题
 
@@ -182,17 +191,136 @@ int main() {
 
 ## 树上差分
 
-我以前一直以为树上差分也是树上前缀和相对的策略，但是不知道怎么搞。
+树上差分可以理解为对树上的某一段路径进行差分操作，这里的路径可以类比一维数组的区间进行理解。例如在对树上的一些路径进行频繁操作，并且询问某条边或者某个点在经过操作后的值的时候，就可以运用树上差分思想了。
 
-后来发现还是有点区别的。
+树上差分通常会结合 [树基础](../graph/tree-basic.md) 和 [最近公共祖先](../graph/lca.md) 来进行考察。树上差分又分为 **点差分** 与 **边差分** ，在实现上会稍有不同。
 
-至少人家是基于子树和而非到根的和。
+### 点差分
 
-如果使 $x,y$ 路径上的点权增加 $k$ ， $b_x \leftarrow b_x + k,b_y \leftarrow b_y + k,b_{lca} \leftarrow b_{lca} - k,b_{fa_{lca}} \leftarrow b_{fa_{lca}} - k$ ，
-如果是边权， $b_x \leftarrow b_x + k,b_y \leftarrow b_y + k,b_{lca} \leftarrow b_{lca} - 2k$ 。
+举个例子：对域树上的一些路径 $\delta(s_1,t_1), \delta(s_2,t_2), \delta(s_3,t_3)\dots$ 进行访问，问一条路径 $\delta(s,t)$ 上的点被访问的次数。
 
-然后一遍搜索求一下子树和答案就出来了。
+对于一次 $\delta(s,t)$ 的访问，需要找到 $s$ 与 $t$ 的公共祖先，然后对这条路径上的点进行访问（点的权值加一），若采用 DFS 算法对每个点进行访问，由于有太多的路径需要访问，时间上承受不了。这里进行差分操作：
+
+$$
+\begin{aligned}
+&d_s\leftarrow d_s+1\\
+&d_{lca}\leftarrow d_{lca}-1\\
+&d_t\leftarrow d_t+1\\
+&d_{f(lca)}\leftarrow d_{f(lca)}-1\\
+\end{aligned}
+$$
+
+其中 $f$ 表示生成 $lca$ 的父亲节点， $d_i$ 为点权 $a_i$ 的差分数组。
+
+![](./images/prefix_sum1.png)
+
+可以认为公式中的前两条是对蓝色方框内的路径进行操作，后两条是对红色方框内的路径进行操作。不妨将 $lca$ 左侧的直系子节点命名为 $left$ 。那么就有 $d_{lca}-1=a_{lca}-(a_{left}+1)$ ， $d_{f(lca)}-1=a_{f(lca)}-(a_{lca}+1)$ 。可以发现实际上点差分的操作和上文一维数组的差分操作是类似的。
+
+下面给出 [洛谷 3128 最大流](https://www.luogu.com.cn/problem/P3128) 的参考程序帮助理解。
+
+??? note "参考程序"
+
+      需要统计每个点经过了多少次，那么就用树上差分将每一次的路径上的点加一，可以很快得到每个点经过的次数。这里采用倍增法进行 lca 的计算。最后对 DFS 遍历整棵树，在回溯时对差分数组求和就能求得答案了。
+
+    ```cpp
+        #include <bits/stdc++.h>
+
+        using namespace std;
+        #define maxn 50010
+
+        struct node 
+        {
+            int to, next;
+        }edge[maxn<<1];
+
+        int fa[maxn][30], head[maxn<<1];
+        int power[maxn];
+        int depth[maxn], lg[maxn];
+        int n, k, ans = 0, tot = 0;
+
+        void add(int x, int y){
+            edge[++tot].to = y;
+            edge[tot].next = head[x];
+            head[x] = tot;
+        }
+
+        void dfs( int now, int father ){ 
+            fa[now][0] = father;
+            depth[now] = depth[father] + 1;
+            for ( int i = 1; i <= lg[depth[now]]; ++i )
+                fa[now][i] = fa[fa[now][i-1]][i-1];
+            for ( int i = head[now]; i; i = edge[i].next )
+                if ( edge[i].to != father ) dfs(edge[i].to, now);
+        }
+
+        int lca( int x, int y ) {
+            if ( depth[x] < depth[y] ) swap(x, y);
+            while ( depth[x] > depth[y] ) 
+                x = fa[x][lg[depth[x]-depth[y]]-1];
+            if ( x == y ) return x;
+            for ( int k = lg[depth[x]] - 1; k >= 0; k -- ) {
+                if ( fa[x][k] != fa[y][k] )
+                    x = fa[x][k], y = fa[y][k];
+            }
+            return fa[x][0];
+        }
+
+        //用dfs求最大压力，回溯时将子树的权值加上
+        void get_ans( int u, int father ) {
+            for ( int i = head[u]; i; i = edge[i].next ) {
+                int to = edge[i].to;
+                if ( to == father ) continue;
+                get_ans( to, u );
+                power[u] += power[to];
+            }
+            ans = max( ans, power[u] );
+        }
+
+        int main() {
+            scanf("%d %d", &n, &k);
+            int x, y;
+            for ( int i = 1; i <= n; i ++ ) {
+                lg[i] = lg[i-1] + ( 1 << lg[i-1] == i );
+            }
+            for ( int i = 1; i <= n - 1; i ++ ) {
+                scanf("%d %d", &x, &y);
+                add(x, y); add(y, x);
+            }
+            dfs(1, 0);
+            int s, t;
+            for ( int i = 1; i <= k; i ++ ) {
+                scanf("%d %d", &s, &t);
+                int ancestor = lca( s, t );
+                // 树上差分
+                power[s] ++; power[t] ++;
+                power[ancestor] --;
+                power[fa[ancestor][0]] --;
+            }
+            get_ans(1, 0);
+            printf("%d\n", ans);
+            return 0;
+        }
+    ```
+
+\###　边差分
+
+若是对路径中的边进行访问，就需要采用边差分策略了，使用以下公式：
+
+$$
+\begin{aligned}
+&d_s\leftarrow d_s+1\\
+&d_t\leftarrow d_t+1\\
+&d_{lca}\leftarrow d_{lca}-２\\
+\end{aligned}
+$$
+
+![](./images/prefix_sum2.png)
+
+由于在边上直接进行差分比较困难，所以将本来应当累加到红色边上的值向下移动到附近的点里，那么操作起来也就方便了。对于公式，有了点差分的理解基础后也不难推导，同样是对两段区间进行差分。
 
 ### 习题
 
--  [洛谷 3128. 最大流](https://www.luogu.com.cn/problem/P3128) 
+-  [洛谷 3128 最大流](https://www.luogu.com.cn/problem/P3128) 
+-  [JLOI2014 松鼠的新家](https://loj.ac/problem/2236) 
+-  [NOIP2015 运输计划](http://uoj.ac/problem/150) 
+-  [NOIP2016 天天爱跑步](http://uoj.ac/problem/261) 
