@@ -12,7 +12,7 @@
 
 如果我们已知两个数 $a$ 和 $b$ ，如何求出二者的最大公约数呢？
 
-不妨设 $a > b$ 
+不妨设 $a > b$
 
 我们发现如果 $b$ 是 $a$ 的约数，那么 $b$ 就是二者的最大公约数。
 下面讨论不能整除的情况，即 $a = b \times q + r$ ，其中 $r < b$ 。
@@ -29,7 +29,7 @@
 
 既然两式公约数都是相同的，那么最大公约数也会相同。
 
-所以得到式子 $\gcd(a,b)=\gcd(b,a\bmod b)$ 
+所以得到式子 $\gcd(a,b)=\gcd(b,a\bmod b)$
 
 既然得到了 $\gcd(a, b) = \gcd(b, r)$ ，这里两个数的大小是不会增大的，那么我们也就得到了关于两个数的最大公约数的一个递归求法。
 
@@ -52,7 +52,7 @@ int gcd(int a, int b) {
 
 当我们求 $\gcd(a,b)$ 的时候，会遇到两种情况：
 
--  $a \lt b$ ，这时候 $\gcd(a,b)=\gcd(b,a)$ ；
+-  $a < b$ ，这时候 $\gcd(a,b)=\gcd(b,a)$ ；
 -  $a \geq b$ ，这时候 $\gcd(a,b)=\gcd(b,a \bmod b)$ ，而对 $a$ 取模会让 $a$ 至少折半。这意味着这一过程最多发生 $O(\log n)$ 次。
 
 第一种情况发生后一定会发生第二种情况，因此第一种情况的发生次数一定 **不多于** 第二种情况的发生次数。
@@ -75,21 +75,21 @@ int gcd(int a, int b) {
 
 > 每一个正整数都可以表示成若干整数的乘积，这种分解方式在忽略排列次序的条件下是唯一的。
 
-用数学公式来表示就是 $x = p_1^{k_1}p_2^{k_2} \cdots p_s^{k_s}$ 
+用数学公式来表示就是 $x = p_1^{k_1}p_2^{k_2} \cdots p_s^{k_s}$
 
-设 $a = p_1^{k_{a_1}}p_2^{k_{a_2}} \cdots p_s^{k_{a_s}}$ , $b = p_1^{k_{b_1}}p_2^{k_{b_2}} \cdots p_s^{k_{b_s}}$ 
+设 $a = p_1^{k_{a_1}}p_2^{k_{a_2}} \cdots p_s^{k_{a_s}}$ , $b = p_1^{k_{b_1}}p_2^{k_{b_2}} \cdots p_s^{k_{b_s}}$
 
 我们发现，对于 $a$ 和 $b$ 的情况，二者的最大公约数等于
 
- $p_1^{\min(k_{a_1}, k_{b_1})}p_2^{\min(k_{a_2}, k_{b_2})} \cdots p_s^{\min(k_{a_s}, k_{b_s})}$ 
+ $p_1^{\min(k_{a_1}, k_{b_1})}p_2^{\min(k_{a_2}, k_{b_2})} \cdots p_s^{\min(k_{a_s}, k_{b_s})}$
 
 最小公倍数等于
 
- $p_1^{\max(k_{a_1}, k_{b_1})}p_2^{\max(k_{a_2}, k_{b_2})} \cdots p_s^{\max(k_{a_s}, k_{b_s})}$ 
+ $p_1^{\max(k_{a_1}, k_{b_1})}p_2^{\max(k_{a_2}, k_{b_2})} \cdots p_s^{\max(k_{a_s}, k_{b_s})}$
 
-由于 $k_a + k_b = \max(k_a, k_b) + \min(k_a, k_b)$ 
+由于 $k_a + k_b = \max(k_a, k_b) + \min(k_a, k_b)$
 
-所以得到结论是 $\gcd(a, b) \times \operatorname{lcm}(a, b) = a \times b$ 
+所以得到结论是 $\gcd(a, b) \times \operatorname{lcm}(a, b) = a \times b$
 
 要求两个数的最小公倍数，先求出最大公约数即可。
 
@@ -105,21 +105,21 @@ int gcd(int a, int b) {
 
 设
 
- $ax_1+by_1=\gcd(a,b)$ 
+ $ax_1+by_1=\gcd(a,b)$
 
- $bx_2+(a\bmod b)y_2=\gcd(b,a\bmod b)$ 
+ $bx_2+(a\bmod b)y_2=\gcd(b,a\bmod b)$
 
-由欧几里得定理可知： $\gcd(a,b)=\gcd(b,a\bmod b)$ 
+由欧几里得定理可知： $\gcd(a,b)=\gcd(b,a\bmod b)$
 
-所以 $ax_1+by_1=bx_2+(a\bmod b)y_2$ 
+所以 $ax_1+by_1=bx_2+(a\bmod b)y_2$
 
-又因为 $a\bmod b=a-(\lfloor\frac{a}{b}\rfloor\times b)$ 
+又因为 $a\bmod b=a-(\lfloor\frac{a}{b}\rfloor\times b)$
 
-所以 $ax_1+by_1=bx_2+(a-(\lfloor\frac{a}{b}\rfloor\times b))y_2$ 
+所以 $ax_1+by_1=bx_2+(a-(\lfloor\frac{a}{b}\rfloor\times b))y_2$
 
- $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\frac{a}{b}\rfloor y_2)$ 
+ $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\frac{a}{b}\rfloor y_2)$
 
-因为 $a=a,b=b$ ，所以 $x_1=y_2,y_1=x_2-\lfloor\frac{a}{b}\rfloor y_2$ 
+因为 $a=a,b=b$ ，所以 $x_1=y_2,y_1=x_2-\lfloor\frac{a}{b}\rfloor y_2$
 
 将 $x_2,y_2$ 不断代入递归求解直至 GCD（最大公约数，下同）为 `0` 递归 `x=1,y=0` 回去求解。
 
