@@ -2,13 +2,13 @@ author: accelsao
 
 # 二分图最大权匹配
 
-最大权匹配是指边权和最大的匹配。
-首先，将两个集合中点数比较少的补点，使得两边点数相同，再将不存在的边权重设为 $0$ ，问题就转换成求 **最大权完美匹配问题** 。
-即找一个匹配使得边权和最大且所有点都在匹配内。
+二分图的最大权匹配是指二分图中边权和最大的匹配。
 
 ## Hungarian Algorithm（Kuhn-Munkres Algorithm）
 
-匈牙利算法又称为 **KM** 算法，可以在 $O(n^3)$ 时间内求出最大权完美匹配。
+匈牙利算法又称为 **KM** 算法，可以在 $O(n^3)$ 时间内求出二分图的 **最大权完美匹配** 。
+
+考虑到二分图中两个集合中的点并不总是相同，为了能应用 KM 算法解决二分图的最大权匹配，需要先作如下处理：将两个集合中点数比较少的补点，使得两边点数相同，再将不存在的边权重设为 $0$ ，这种情况下，问题就转换成求 **最大权完美匹配问题** ，从而能应用 KM 算法求解。
 
 ??? note "可行顶标"
 
@@ -39,8 +39,8 @@ author: accelsao
 
  $lx(i)$ = max { $w(i, j)$ for j = 1 to n}, $ly(i) = 0$ 
 
-然后选一个未匹配点，如同最大匹配一样求增广路。
-找到增广路就增广，否则，会得到一个交错树。
+然后选一个未匹配点，如同最大匹配一样求增广路。找到增广路就增广，否则，会得到一个交错树。
+
 令 $S$ , $T$ 表示二分图左边右边在交错树中的点， $S'$ , $T'$ 表示不在交错树中的点。
 
 ![bigraph-weight-match-1](./images/bigraph-weight-match-1.png)
@@ -50,8 +50,7 @@ author: accelsao
 -  $S-T'$ 的边不存在，否则交错树会增长。
 -  $S'-T$ 一定是非匹配边，否则他就属于 $S$ 。
 
-假设给 $S$ 中的顶标 $-a$ ，给 $T$ 中的顶标 $+a$ ，
-可以发现
+假设给 $S$ 中的顶标 $-a$ ，给 $T$ 中的顶标 $+a$ ，可以发现
 
 -  $S-T$ 边依然存在相等子图中。
 -  $S'-T'$ 没变化。
@@ -79,151 +78,157 @@ author: accelsao
 
  $a$ = min { $slack(v)$ \| $v\in{T'}$ }
 
-交错树新增一个点进入 $S$ 的时候需要 $O(n)$ 更新 $slack(v)$ 。
-修改顶标需要 $O(n)$ 给每个 $slack(v)$ 减去 $a$ 。
-只要交错树找到一个未匹配点，就找到增广路。
+交错树新增一个点进入 $S$ 的时候需要 $O(n)$ 更新 $slack(v)$ 。修改顶标需要 $O(n)$ 给每个 $slack(v)$ 减去 $a$ 。只要交错树找到一个未匹配点，就找到增广路。
+
 一开始枚举 $n$ 个点找增广路，为了找增广路需要延伸 $n$ 次交错树，每次延伸需要 $n$ 次维护，共 $O(n^3)$ 。
 
-### 代码
-
-这里是 $O(n^3)$ 的代码
-
-```cpp
-template <typename T>
-struct hungarian {  // km
-  int n;
-  vector<int> matchx;  // 左集合对应的匹配点
-  vector<int> matchy;  // 右集合对应的匹配点
-  vector<int> pre;     // 连接右集合的左点
-  vector<bool> visx;   // 拜访数组 左
-  vector<bool> visy;   // 拜访数组 右
-  vector<T> lx;
-  vector<T> ly;
-  vector<vector<T> > g;
-  vector<T> slack;
-  T inf;
-  T res;
-  queue<int> q;
-  int org_n;
-  int org_m;
-
-  hungarian(int _n, int _m) {
-    org_n = _n;
-    org_m = _m;
-    n = max(_n, _m);
-    inf = numeric_limits<T>::max();
-    res = 0;
-    g = vector<vector<T> >(n, vector<T>(n));
-    matchx = vector<int>(n, -1);
-    matchy = vector<int>(n, -1);
-    pre = vector<int>(n);
-    visx = vector<bool>(n);
-    visy = vector<bool>(n);
-    lx = vector<T>(n, -inf);
-    ly = vector<T>(n);
-    slack = vector<T>(n);
-  }
-
-  void addEdge(int u, int v, int w) {
-    g[u][v] = max(w, 0);  // 负值还不如不匹配 因此设为0不影响
-  }
-
-  bool check(int v) {
-    visy[v] = true;
-    if (matchy[v] != -1) {
-      q.push(matchy[v]);
-      visx[matchy[v]] = true;  // in S
-      return false;
-    }
-    // 找到新的未匹配点 更新匹配点 pre 数组记录着"非匹配边"上与之相连的点
-    while (v != -1) {
-      matchy[v] = pre[v];
-      swap(v, matchx[pre[v]]);
-    }
-    return true;
-  }
-
-  void bfs(int i) {
-    while (!q.empty()) {
-      q.pop();
-    }
-    q.push(i);
-    visx[i] = true;
-    while (true) {
-      while (!q.empty()) {
-        int u = q.front();
-        q.pop();
-        for (int v = 0; v < n; v++) {
-          if (!visy[v]) {
-            T delta = lx[u] + ly[v] - g[u][v];
-            if (slack[v] >= delta) {
-              pre[v] = u;
-              if (delta) {
-                slack[v] = delta;
-              } else if (check(v)) {  // delta=0 代表有机会加入相等子图 找增广路
-                                      // 找到就return 重建交错树
-                return;
+??? note "参考代码"
+    ```cpp
+    template <typename T>
+    struct hungarian {  // km
+      int n;
+      vector<int> matchx;  // 左集合对应的匹配点
+      vector<int> matchy;  // 右集合对应的匹配点
+      vector<int> pre;     // 连接右集合的左点
+      vector<bool> visx;   // 拜访数组 左
+      vector<bool> visy;   // 拜访数组 右
+      vector<T> lx;
+      vector<T> ly;
+      vector<vector<T> > g;
+      vector<T> slack;
+      T inf;
+      T res;
+      queue<int> q;
+      int org_n;
+      int org_m;
+    
+      hungarian(int _n, int _m) {
+        org_n = _n;
+        org_m = _m;
+        n = max(_n, _m);
+        inf = numeric_limits<T>::max();
+        res = 0;
+        g = vector<vector<T> >(n, vector<T>(n));
+        matchx = vector<int>(n, -1);
+        matchy = vector<int>(n, -1);
+        pre = vector<int>(n);
+        visx = vector<bool>(n);
+        visy = vector<bool>(n);
+        lx = vector<T>(n, -inf);
+        ly = vector<T>(n);
+        slack = vector<T>(n);
+      }
+    
+      void addEdge(int u, int v, int w) {
+        g[u][v] = max(w, 0);  // 负值还不如不匹配 因此设为0不影响
+      }
+    
+      bool check(int v) {
+        visy[v] = true;
+        if (matchy[v] != -1) {
+          q.push(matchy[v]);
+          visx[matchy[v]] = true;  // in S
+          return false;
+        }
+        // 找到新的未匹配点 更新匹配点 pre 数组记录着"非匹配边"上与之相连的点
+        while (v != -1) {
+          matchy[v] = pre[v];
+          swap(v, matchx[pre[v]]);
+        }
+        return true;
+      }
+    
+      void bfs(int i) {
+        while (!q.empty()) {
+          q.pop();
+        }
+        q.push(i);
+        visx[i] = true;
+        while (true) {
+          while (!q.empty()) {
+            int u = q.front();
+            q.pop();
+            for (int v = 0; v < n; v++) {
+              if (!visy[v]) {
+                T delta = lx[u] + ly[v] - g[u][v];
+                if (slack[v] >= delta) {
+                  pre[v] = u;
+                  if (delta) {
+                    slack[v] = delta;
+                  } else if (check(v)) {  // delta=0 代表有机会加入相等子图 找增广路
+                                          // 找到就return 重建交错树
+                    return;
+                  }
+                }
               }
+            }
+          }
+          // 没有增广路 修改顶标
+          T a = inf;
+          for (int j = 0; j < n; j++) {
+            if (!visy[j]) {
+              a = min(a, slack[j]);
+            }
+          }
+          for (int j = 0; j < n; j++) {
+            if (visx[j]) {  // S
+              lx[j] -= a;
+            }
+            if (visy[j]) {  // T
+              ly[j] += a;
+            } else {  // T'
+              slack[j] -= a;
+            }
+          }
+          for (int j = 0; j < n; j++) {
+            if (!visy[j] && slack[j] == 0 && check(j)) {
+              return;
             }
           }
         }
       }
-      // 没有增广路 修改顶标
-      T a = inf;
-      for (int j = 0; j < n; j++) {
-        if (!visy[j]) {
-          a = min(a, slack[j]);
+    
+      void solve() {
+        // 初始顶标
+        for (int i = 0; i < n; i++) {
+          for (int j = 0; j < n; j++) {
+            lx[i] = max(lx[i], g[i][j]);
+          }
         }
+    
+        for (int i = 0; i < n; i++) {
+          fill(slack.begin(), slack.end(), inf);
+          fill(visx.begin(), visx.end(), false);
+          fill(visy.begin(), visy.end(), false);
+          bfs(i);
+        }
+    
+        // custom
+        for (int i = 0; i < n; i++) {
+          if (g[i][matchx[i]] > 0) {
+            res += g[i][matchx[i]];
+          } else {
+            matchx[i] = -1;
+          }
+        }
+        cout << res << "\n";
+        for (int i = 0; i < org_n; i++) {
+          cout << matchx[i] + 1 << " ";
+        }
+        cout << "\n";
       }
-      for (int j = 0; j < n; j++) {
-        if (visx[j]) {  // S
-          lx[j] -= a;
-        }
-        if (visy[j]) {  // T
-          ly[j] += a;
-        } else {  // T'
-          slack[j] -= a;
-        }
-      }
-      for (int j = 0; j < n; j++) {
-        if (!visy[j] && slack[j] == 0 && check(j)) {
-          return;
-        }
-      }
-    }
-  }
+    };
+    ```
 
-  void solve() {
-    // 初始顶标
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < n; j++) {
-        lx[i] = max(lx[i], g[i][j]);
-      }
-    }
+## 转化为费用流模型
 
-    for (int i = 0; i < n; i++) {
-      fill(slack.begin(), slack.end(), inf);
-      fill(visx.begin(), visx.end(), false);
-      fill(visy.begin(), visy.end(), false);
-      bfs(i);
-    }
+在图中新增一个源点和一个汇点。
 
-    // custom
-    for (int i = 0; i < n; i++) {
-      if (g[i][matchx[i]] > 0) {
-        res += g[i][matchx[i]];
-      } else {
-        matchx[i] = -1;
-      }
-    }
-    cout << res << "\n";
-    for (int i = 0; i < org_n; i++) {
-      cout << matchx[i] + 1 << " ";
-    }
-    cout << "\n";
-  }
-};
-```
+从源点向二分图的每个左部点连一条流量为 $1$ ，费用为 $0$ 的边，从二分图的每个右部点向汇点连一条流量为 $1$ ，费用为 $0$ 的边。
+
+接下来对于二分图中每一条连接左部点 $u$ 和右部点 $v$ ，边权为 $w$ 的边，则连一条从 $u$ 到 $v$ ，流量为 $1$ ，费用为 $w$ 的边。
+
+求这个网络的 [最大费用最大流](../../graph/flow/min-cost.md) 即可得到答案。
 
 ## 习题
 
