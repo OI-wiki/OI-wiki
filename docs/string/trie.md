@@ -201,7 +201,7 @@ trie 是 [AC 自动机](./ac-automaton.md) 的一部分。
 
 #### 插入 & 删除
 
-如果要维护异或和，我们只需要知道某一位上 `0` 和 `1` 个数的奇偶性即可，也就是对于数字 `1` 来说，当且仅当这一位上数字 `1` 的个数为奇数时，这一位上的数字才是 `1` 。
+如果要维护异或和，我们**只需要**知道某一位上 `0` 和 `1` 个数的**奇偶性**即可，也就是对于数字 `1` 来说，当且仅当这一位上数字 `1` 的个数为奇数时，这一位上的数字才是 `1` ，请时刻记住这段文字：如果只是维护异或和，我们只需要知道某一位上`1`的数量即可，而不需要知道 trie 到底维护了哪些数字。
 
 对于每一个节点，我们需要记录以下三个量：
 
@@ -275,7 +275,7 @@ void erase(int o, int x, int dp) {
 
 所谓全局加一就是指，让这颗 trie 中所有的数值 `+1` 。
 
-形式化的讲，设 trie 中维护的数值有 $V_1, V_2, V_3 ... V_n$ , 全局加一后 其中维护的值应该变成 $V_1+1, V_2+1, V_3+1 ... V_n+1$ 
+形式化的讲，设 trie 中维护的数值有 $V_1, V_2, V_3 \dots V_n$ , 全局加一后 其中维护的值应该变成 $V_1+1, V_2+1, V_3+1 \dots V_n+1$ 
 
 ```cpp
 void addall(int o) {
@@ -312,21 +312,27 @@ void addall(int o) {
 其实合并 trie 非常简单，就是考虑一下我们有一个 `int marge(int a, int b)` 函数，这个函数传入两个 trie 树位于同一相对位置的结点编号，然后合并完成后返回合并完成的结点编号。
 
 考虑怎么实现？
-
+分三种情况：
+ - 如果 `a` 没有这个位置上的结点，新合并的结点就是`b`
+ - 如果 `b` 没有这个位置上的结点，新合并的结点就是`a`
+ - 如果 `a`, `b` 都存在，那就把 `b` 的信息合并到 `a` 上，新合并的结点就是`a` ，然后递归操作处理a的左右儿子。
+ 
+ **提示**：如果需要的合并是将 a，b合并到一棵新树上，这里可以新建结点，然后合并到这个新结点上，这里的代码实现仅仅是将b的信息合并到 a 上。
+ 
 ```cpp
 int marge(int a, int b) {
   if (!a) return b;  // 如果 a 没有这个位置上的结点，返回 b
   if (!b) return a;  // 如果 b 没有这个位置上的结点，返回 a
   /*
-  如果 a, b 都健在，那就把 b 的信息合并到 a 上，然后递归操作。
-  如果需要的合并是将 a，b
-  合并到一棵新树上，这里可以新建结点，然后进行合并。这里的代码实现仅仅是将b的信息合并到
-  a 上。
+    如果 `a`, `b` 都存在，
+    那就把 `b` 的信息合并到 `a` 上。
   */
   w[a] = w[a] + w[b];
   xorv[a] ^= xorv[b];
-  /* 不要使用 maintain，maintain 是根据 a
-   * 的两个儿子的数值进行信息合并，而这里需要 a b 两个节点进行信息合并 */
+  /* 不要使用 maintain()，
+    maintain() 是合并a的两个儿子的信息
+    而这里需要 a b 两个节点进行信息合并 
+   */
   ch[a][0] = marge(ch[a][0], ch[b][0]);
   ch[a][1] = marge(ch[a][1], ch[b][1]);
   return a;
@@ -356,9 +362,8 @@ int marge(int a, int b) {
             const int _n = _ * 25;
             int rt[_];
             int ch[_n][2];
-            int w[_n]; 
+            int w[_n]; //`w[o]` 指节点 `o` 到其父亲节点这条边上数值的数量（权值）。
             int xorv[_n];
-        /* w[i] is in order to save the weight of edge which is connect `i` and its `parent`.*/
             int tot = 0;
             void maintain(int o){
                 w[o] = xorv[o] = 0;
@@ -445,9 +450,11 @@ int marge(int a, int b) {
         }
         ```
 
-???+note "[【luogu-P6018】【Ynoi2010】Fusion tree](https://www.luogu.com.cn/problem/P6018)"
+???+note "[【luogu-P6623】 【省选联考 2020 A 卷】 树](https://www.luogu.com.cn/problem/P6623)"
     给定一棵 $n$ 个结点的有根树 $T$ ，结点从 $1$ 开始编号，根结点为 $1$ 号结点，每个结点有一个正整数权值 $v_i$ 。
-    设 $x$ 号结点的子树内（包含 $x$ 自身）的所有结点编号为 $c_1,c_2,\dots,c_k$ ，定义 $x$ 的价值为： $val(x)=(v_{c_1}+d(c_1,x)) \oplus (v_{c_2}+d(c_2,x)) \oplus \cdots \oplus (v_{c_k}+d(c_k, x))$ 其中 $d(x,y)$ 表示树上 $x$ 号结点与 $y$ 号结点间唯一简单路径所包含的边数， $d(x,x) = 0$ 。 $\oplus$ 表示异或运算。
+    设 $x$ 号结点的子树内（包含 $x$ 自身）的所有结点编号为 $c_1,c_2,\dots,c_k$ ，定义 $x$ 的价值为：  
+    $val(x)=(v_{c_1}+d(c_1,x)) \oplus (v_{c_2}+d(c_2,x)) \oplus \cdots \oplus (v_{c_k}+d(c_k, x))$ 其中 $d(x,y)$ 。  
+    表示树上 $x$ 号结点与 $y$ 号结点间唯一简单路径所包含的边数， $d(x,x) = 0$ 。 $\oplus$ 表示异或运算。
     请你求出 $\sum\limits_{i=1}^n val(i)$ 的结果。
 
     ??? mdui-shadow-6 "题解"
@@ -459,7 +466,6 @@ int marge(int a, int b) {
         int n;
         int V[_];
         int debug  = 0;
-        int cnt = 0; 
         namespace trie{
             const int MAXH = 21; 
             int ch[_ * (MAXH + 1)][2], w[_ * (MAXH + 1)], xorv[_ * (MAXH + 1)];
@@ -478,12 +484,10 @@ int marge(int a, int b) {
                 maintain(o);
             }
             int marge(int a, int b){
-                cnt++;
                 if(!a) return b;
                 if(!b) return a;
                 w[a] = w[a] + w[b];
                 xorv[a] ^= xorv[b];
-        /*不要使用maintain，maintain是根据a的两个儿子的数值进行信息合并，而这里需要a b两个节点进行信息合并 */
                 ch[a][0] = marge(ch[a][0], ch[b][0]);
                 ch[a][1] = marge(ch[a][1], ch[b][1]);
                 return a;
