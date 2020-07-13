@@ -229,7 +229,7 @@ $$
 
 从定义可知，若 $G \cong H$ ，必须满足：
 
--  $|V(G)|=|V(H)|,|E(G)|=|E(H)|$
+-  $|V(G)|=|V(H)|,|E(G)|=|E(H)|$ 
 -  $G$ 和 $H$ 结点度的非增序列相同
 -  $G$ 和 $H$ 存在同构的导出子图
 
@@ -330,7 +330,7 @@ $$
 
 ## 参考资料
 
- [OI 中转站 - 图论概念梳理](https://yhx-12243.github.io/OI-transit/memos/14.html)
+ [OI 中转站 - 图论概念梳理](https://yhx-12243.github.io/OI-transit/memos/14.html) 
 
  [Wikipedia](https://en.wikipedia.org/wiki/Glossary_of_graph_theory_terms) （以及相关概念的对应词条）
 
