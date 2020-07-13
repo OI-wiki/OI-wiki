@@ -29,19 +29,20 @@ author: Wajov
 有限集合到自身的双射（即一一对应）称为置换。集合 $S=\{a_1,a_2,\dots,a_n\}$ 上的置换可以表示为
 
 $$
-f=\pmatrix{a_1,a_2,\dots,a_n\\
-a_{p_1},a_{p_2},\dots,a_{p_n}}
+f=\begin{pmatrix}a_1,a_2,\dots,a_n\\
+a_{p_1},a_{p_2},\dots,a_{p_n}
+\end{pmatrix}
 $$
 
 意为将 $a_i$ 映射为 $a_{p_i}$ ，其中 $p_1,p_2,\dots,p_n$ 是 $1,2,\dots,n$ 的一个排列。显然 $S$ 上所有置换的数量为 $n!$ 。
 
 ### 置换的乘法
 
-对于两个置换 $f=\pmatrix{a_1,a_2,\dots,a_n\\a_{p_1},a_{p_2},\dots,a_{p_n}}$ 和 $g=\pmatrix{a_{p_1},a_{p_2},\dots,a_{p_n}\\a_{q_1},a_{q_2},\dots,a_{q_n}}$ ， $f$ 和 $g$ 的乘积记为 $f\circ g$ ，其值为
+对于两个置换 $f=\begin{pmatrix}a_1,a_2,\dots,a_n\\a_{p_1},a_{p_2},\dots,a_{p_n}\end{pmatrix}$ 和 $g=\begin{pmatrix}a_{p_1},a_{p_2},\dots,a_{p_n}\\a_{q_1},a_{q_2},\dots,a_{q_n}\end{pmatrix}$ ， $f$ 和 $g$ 的乘积记为 $f\circ g$ ，其值为
 
 $$
-f\circ g=\pmatrix{a_1,a_2,\dots,a_n\\
-a_{q_1},a_{q_2},\dots,a_{q_n}}
+f\circ g=\begin{pmatrix}a_1,a_2,\dots,a_n\\
+a_{q_1},a_{q_2},\dots,a_{q_n}\end{pmatrix}
 $$
 
 简单来说就是先后经过 $f$ 的映射，再经过 $g$ 的映射。
@@ -55,8 +56,8 @@ $$
 循环置换是一类特殊的置换，可表示为
 
 $$
-(a_1,a_2,\dots,a_m)=\pmatrix{a_1,a_2,\dots,a_{m-1},a_m\\
-a_2,a_3,\dots,a_m,a_1}
+(a_1,a_2,\dots,a_m)=\begin{pmatrix}a_1,a_2,\dots,a_{m-1},a_m\\
+a_2,a_3,\dots,a_m,a_1\end{pmatrix}
 $$
 
 若两个循环置换不含有相同的元素，则称它们是 **不相交** 的。有如下定理：
@@ -64,8 +65,8 @@ $$
 任意一个置换都可以分解为若干不相交的循环置换的乘积，例如
 
 $$
-\pmatrix{a_1,a_2,a_3,a_4,a_5\\
-a_3,a_1,a_2,a_5,a_4}=(a_1,a_3,a_2)\circ(a_4,a_5)
+\begin{pmatrix}a_1,a_2,a_3,a_4,a_5\\
+a_3,a_1,a_2,a_5,a_4\end{pmatrix}=(a_1,a_3,a_2)\circ(a_4,a_5)
 $$
 
 该定理的证明也非常简单。如果把元素视为图的节点，映射关系视为有向边，则每个节点的入度和出度都为 1，因此形成的图形必定是若干个环的集合，而一个环即可用一个循环置换表示。
@@ -187,8 +188,8 @@ $$
 依然考虑立方体染色问题。分析刚才提到的以相对棱的中点连线为轴的 $180^\circ$ 旋转，如果将前、后、上、下、左、右 6 个面依次编号为 1 到 6，则该置换可以表示为（翻转后原来编号为 1 的面的位置变为了编号为 3 的面，以此类推）
 
 $$
-\pmatrix{1,3,2,4,5,6\\
-3,1,4,2,6,5}=(1,3)\circ(2,4)\circ(5,6)
+\begin{pmatrix}1,3,2,4,5,6\\
+3,1,4,2,6,5\end{pmatrix}=(1,3)\circ(2,4)\circ(5,6)
 $$
 
 因此 $c(g)=3,|B|^{c(g)}=3^3$ ，与刚才在 Burnside 引理中分析的结果相同。
