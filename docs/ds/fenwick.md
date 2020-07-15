@@ -97,8 +97,10 @@ int getsum(int x) {  // a[1]……a[x]的和
 进行推导
 
 $$
-\sum_{i=1}^{r} a_i\\=\sum_{i=1}^r\sum_{j=1}^i b_j\\=\sum_{i=1}^r b_i\times(r-i+1)
-\\=\sum_{i=1}^r b_i\times (r+1)-\sum_{i=1}^r b_i\times i
+\begin{aligned}
+&\sum_{i=1}^{r} a_i\\=&\sum_{i=1}^r\sum_{j=1}^i b_j\\=&\sum_{i=1}^r b_i\times(r-i+1)
+\\=&\sum_{i=1}^r b_i\times (r+1)-\sum_{i=1}^r b_i\times i
+\end{aligned}
 $$
 
 区间和可以用两个前缀和相减得到，因此只需要用两个树状数组分别维护 $\sum b_i$ 和 $\sum i \times b_i$ ，就能实现区间求和。
