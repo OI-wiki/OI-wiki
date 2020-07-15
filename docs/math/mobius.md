@@ -80,7 +80,7 @@ $$
 
 ### 定义
 
-$\forall x,y \in N_{+},\gcd(x,y)=1$，都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为积性函数。
+ $\forall x,y \in N_{+},\gcd(x,y)=1$ ，都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为积性函数。
 
 ### 性质
 
