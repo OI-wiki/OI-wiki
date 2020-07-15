@@ -216,7 +216,7 @@ $$
 证明
 
 $$
-\varphi \ast 1=\text{\operatorname{id}}
+\varphi \ast 1=\operatorname{id}
 $$
 
 将 $n$ 分解质因数： $\displaystyle n=\prod_{i=1}^k {p_i}^{c_i}$ 
