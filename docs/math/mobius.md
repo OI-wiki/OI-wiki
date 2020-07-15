@@ -80,7 +80,7 @@ $$
 
 ### 定义
 
-若 $\gcd(x,y)=1$ 且 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为积性函数。
+若 $\gcd(x,y)=1$ 则 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为积性函数。
 
 ### 性质
 
@@ -216,12 +216,12 @@ $$
 证明
 
 $$
-\varphi \ast 1=\text{ID}\text{（ID 函数即 } f(x)=x\text{）}
+\varphi \ast 1=\text{\operatorname{id}}
 $$
 
 将 $n$ 分解质因数： $\displaystyle n=\prod_{i=1}^k {p_i}^{c_i}$ 
 
-首先，因为 $\varphi$ 是积性函数，故只要证明当 $n'=p^c$ 时 $\displaystyle\varphi \ast 1=\sum_{d\mid n'}\varphi(\frac{n'}{d})=\text{ID}$ 成立即可。
+首先，因为 $\varphi$ 是积性函数，故只要证明当 $n'=p^c$ 时 $\displaystyle\varphi \ast 1=\sum_{d\mid n'}\varphi(\frac{n'}{d})=\text{\operatorname{id}}$ 成立即可。
 
 因为 $p$ 是质数，于是 $d=p^0,p^1,p^2,\cdots,p^c$ 
 
@@ -233,7 +233,7 @@ $$
 &=\sum_{i=0}^c\varphi(p^i)\\
 &=1+p^0\cdot(p-1)+p^1\cdot(p-1)+\cdots+p^{c-1}\cdot(p-1)\\
 &=p^c\\
-&=\text{ID}\\
+&=\text{\operatorname{id}}\\
 \end{aligned}
 $$
 
@@ -707,7 +707,7 @@ $$
 
 看似是一道和 $\gcd$ 有关的题，不过由于带有系数，并不容易化简
 
-我们利用 $\varphi\ast1=ID$ 反演
+我们利用 $\varphi\ast1=\operatorname{id}$ 反演
 
 $$
 \begin{eqnarray}
@@ -733,8 +733,8 @@ $$
 
 $$
 \begin{split}
-&f(n)=n^2\varphi(n)=(ID^2\varphi)(n)\\
-&S(n)=\sum_{i=1}^nf(i)=\sum_{i=1}^n(ID^2\varphi)(i)
+&f(n)=n^2\varphi(n)=(\operatorname{id}^2\varphi)(n)\\
+&S(n)=\sum_{i=1}^nf(i)=\sum_{i=1}^n(\operatorname{id}^2\varphi)(i)
 \end{split}
 $$
 
