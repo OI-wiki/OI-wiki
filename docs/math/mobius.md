@@ -55,7 +55,7 @@ $$
 
 此时 $j=\left\lfloor\frac{n}{\left\lfloor\frac{n}{i}\right\rfloor}\right\rfloor$ .
 
-显然$j\leq n$，考虑证明$j\geq i$：
+显然 $j\leq n$ ，考虑证明 $j\geq i$ ：
 
 $$
 \begin{split}
@@ -70,7 +70,8 @@ $$
 \end{split}
 $$
 
-不妨设$k=\left\lfloor\frac{n}{i}\right\rfloor$，考虑证明当$\left\lfloor\frac{n}{j}\right\rfloor=k$时，$j$的最大值为$\left\lfloor\frac{n}{k}\right\rfloor $：
+不妨设 $k=\left\lfloor\frac{n}{i}\right\rfloor$ ，考虑证明当 $\left\lfloor\frac{n}{j}\right\rfloor=k$ 时， $j$ 的最大值为 $\left\lfloor\frac{n}{k}\right\rfloor$ ：
+
 $$
 \left\lfloor\frac{n}{j}\right\rfloor=k
 \iff
@@ -80,16 +81,15 @@ k\leq\frac{n}{j}<k+1
 \iff
 \frac{n}{k+1}<j\leq\frac{n}{k}
 $$
-又因为$j$为整数 所以$j_{max}=\left\lfloor\frac{n}{k}\right\rfloor $
+
+又因为 $j$ 为整数 所以 $j_{max}=\left\lfloor\frac{n}{k}\right\rfloor$ 
 
 利用上述结论，我们每次以 $[i,j]$ 为一块，分块求和即可
 
+例如 [「luogu P2261」\[CQOI2007\] 余数求和](https://www.luogu.com.cn/problem/P2261) 
 
+ $ans=\sum_{i=1}^n(k\bmod i)=\sum_{i=1}^nk-i\left\lfloor\frac{k}{i}\right\rfloor$ ??? note "代码实现"
 
-例如[「luogu P2261」[CQOI2007]余数求和](https://www.luogu.com.cn/problem/P2261) 
-
-$ans=\sum_{i=1}^n(k\bmod i)=\sum_{i=1}^nk-i\left\lfloor\frac{k}{i}\right\rfloor$
-??? note "代码实现"
     ```cpp
     long long ans=n*k;
     for(long long l=1,r;l<=n;l=r+1) {//此处l意同i,r意同j,下个计算区间的l应为上个区间的r+1
@@ -98,8 +98,6 @@ $ans=\sum_{i=1}^n(k\bmod i)=\sum_{i=1}^nk-i\left\lfloor\frac{k}{i}\right\rfloor$
         ans-=(k/l)*(r-l+1)*(l+r)/2;//这个区间内k/i均相等,对i求和是等差数列求和
     }
     ```
-
-
 
 * * *
 
