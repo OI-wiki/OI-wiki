@@ -1,4 +1,4 @@
-author: hydingsy, hyp1231
+author: hydingsy, hyp1231, ranwen
 
 ## 简介
 
@@ -31,10 +31,13 @@ $$
 \end{split}
 $$
 
+??? note "关于证明最后的小方块"
+    QED 是拉丁词组“Quod Erat Demonstrandum”（这就是所要证明的）的缩写，代表证明完毕。现在的 QED 符号通常是 $\blacksquare$ 或者 $\square$ 。（ [维基百科](https://zh.wikipedia.org/wiki/%E8%AD%89%E6%98%8E%E5%AE%8C%E7%95%A2) ）
+
 ### 引理 2
 
 $$
-\forall n \in N,  \left|\left\{ \lfloor \frac{n}{d} \rfloor \mid d \in N \right\}\right| \leq \lfloor 2\sqrt{n} \rfloor
+\forall n \in \mathbb{N}_{+},  \left|\left\{ \lfloor \frac{n}{d} \rfloor \mid d \in \mathbb{N}_{+},d\leq n \right\}\right| \leq \lfloor 2\sqrt{n} \rfloor
 $$
 
  $|V|$ 表示集合 $V$ 的元素个数
@@ -53,9 +56,9 @@ $$
 
 对于任意一个 $i(i\leq n)$ ，我们需要找到一个最大的 $j(i\leq j\leq n)$ ，使得 $\left\lfloor\frac{n}{i}\right\rfloor = \left\lfloor\frac{n}{j}\right\rfloor$ .
 
-而 $j=\left\lfloor\frac{n}{\left\lfloor\frac{n}{i}\right\rfloor}\right\rfloor$ .
+此时 $j=\left\lfloor\frac{n}{\left\lfloor\frac{n}{i}\right\rfloor}\right\rfloor$ .
 
-略证：
+显然 $j\leq n$ ，考虑证明 $j\geq i$ ：
 
 $$
 \begin{split}
@@ -65,14 +68,42 @@ $$
 \geq \left\lfloor\frac{n}{ \frac{n}{i} }\right\rfloor
 = \left\lfloor i \right\rfloor=i \\
 \implies
-&i\leq \left\lfloor\frac{n}{ \left\lfloor\frac{n}{i}\right\rfloor }\right\rfloor\\
+&i\leq \left\lfloor\frac{n}{ \left\lfloor\frac{n}{i}\right\rfloor }\right\rfloor=j\\
 &&\square
 \end{split}
 $$
 
-即 $j=\left\lfloor\frac{n}{\left\lfloor\frac{n}{i}\right\rfloor}\right\rfloor$ .
+不妨设 $k=\left\lfloor\frac{n}{i}\right\rfloor$ ，考虑证明当 $\left\lfloor\frac{n}{j}\right\rfloor=k$ 时， $j$ 的最大值为 $\left\lfloor\frac{n}{k}\right\rfloor$ ：
+
+$$
+\left\lfloor\frac{n}{j}\right\rfloor=k
+\iff
+k\leq\frac{n}{j}<k+1
+\iff
+\frac{1}{k+1}<\frac{j}{n}\leq\frac{1}{k}
+\iff
+\frac{n}{k+1}<j\leq\frac{n}{k}
+$$
+
+又因为 $j$ 为整数 所以 $j_{max}=\left\lfloor\frac{n}{k}\right\rfloor$ 
 
 利用上述结论，我们每次以 $[i,j]$ 为一块，分块求和即可
+
+例如 [「luogu P2261」\[CQOI2007\]余数求和](https://www.luogu.com.cn/problem/P2261) , $ans=\sum_{i=1}^n(k\bmod i)=\sum_{i=1}^nk-i\left\lfloor\frac{k}{i}\right\rfloor$ .
+
+??? note "代码实现"
+    ```cpp
+    long long ans = n * k;
+    for (long long l = 1, r; l <= n;
+         l = r + 1) {  //此处l意同i,r意同j,下个计算区间的l应为上个区间的r+1
+      if (k / l != 0)
+        r = min(k / (k / l), n);
+      else
+        r = n;  // l大于k时
+      ans -= (k / l) * (r - l + 1) * (l + r) /
+             2;  //这个区间内k/i均相等,对i求和是等差数列求和
+    }
+    ```
 
 * * *
 
@@ -128,8 +159,8 @@ $$
 \begin{aligned}
 \varepsilon=\mu \ast 1&\iff\varepsilon(n)=\sum_{d\mid n}\mu(d)\\
 d=1 \ast 1&\iff d(n)=\sum_{d\mid n}1\\
-\sigma=\text{id} \ast 1&\iff\sigma(n)=\sum_{d\mid n}d\\
-\varphi=\mu \ast \text{id}&\iff\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
+\sigma=\operatorname{id} \ast 1&\iff\sigma(n)=\sum_{d\mid n}d\\
+\varphi=\mu \ast \operatorname{id}&\iff\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
 \end{aligned}
 $$
 
@@ -221,7 +252,7 @@ $$
 
 将 $n$ 分解质因数： $\displaystyle n=\prod_{i=1}^k {p_i}^{c_i}$ 
 
-首先，因为 $\varphi$ 是积性函数，故只要证明当 $n'=p^c$ 时 $\displaystyle\varphi \ast 1=\sum_{d\mid n'}\varphi(\frac{n'}{d})=\text{\operatorname{id}}$ 成立即可。
+首先，因为 $\varphi$ 是积性函数，故只要证明当 $n'=p^c$ 时 $\displaystyle\varphi \ast 1=\sum_{d\mid n'}\varphi(\frac{n'}{d})=\operatorname{id}$ 成立即可。
 
 因为 $p$ 是质数，于是 $d=p^0,p^1,p^2,\cdots,p^c$ 
 
@@ -233,7 +264,7 @@ $$
 &=\sum_{i=0}^c\varphi(p^i)\\
 &=1+p^0\cdot(p-1)+p^1\cdot(p-1)+\cdots+p^{c-1}\cdot(p-1)\\
 &=p^c\\
-&=\text{\operatorname{id}}\\
+&=\operatorname{id}\\
 \end{aligned}
 $$
 
@@ -379,7 +410,7 @@ $$
 求值（多组数据）
 
 $$
-\sum_{i=1}^n \text{lcm}(i,n)\quad  \text{s.t.}\ 1\leqslant T\leqslant 3\times 10^5,1\leqslant n\leqslant 10^6
+\sum_{i=1}^n \operatorname{lcm}(i,n)\quad  \text{s.t.}\ 1\leqslant T\leqslant 3\times 10^5,1\leqslant n\leqslant 10^6
 $$
 
 易得原式即
@@ -426,7 +457,7 @@ $$
 \frac{1}{2}n\cdot\left(\sum_{d'\mid n}d'\cdot\varphi(d')+1\right)
 $$
 
-设 $\displaystyle \text{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\text{g}$ 为积性函数，于是可以 $\Theta(n)$ 筛出。每次询问 $\Theta(1)$ 计算即可。
+设 $\displaystyle \operatorname{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\operatorname{g}$ 为积性函数，于是可以 $\Theta(n)$ 筛出。每次询问 $\Theta(1)$ 计算即可。
 
 这个函数筛的时候比较特殊，当 $p_j\mid i$ 的时候，需要根据 $p_j\mid\dfrac{i}{p_j}$ 进行分类讨论。具体可以见代码。
 
@@ -474,7 +505,7 @@ $$
 求值（对 $20101009$ 取模）
 
 $$
-\sum_{i=1}^n\sum_{j=1}^m\text{lcm}(i,j)\qquad (n,m\leqslant 10^7)
+\sum_{i=1}^n\sum_{j=1}^m\operatorname{lcm}(i,j)\qquad (n,m\leqslant 10^7)
 $$
 
 易知原式等价于
@@ -498,10 +529,10 @@ $$
 后半段式子中，出现了互质数对之积的和，为了让式子更简洁就把它拿出来单独计算。于是我们记
 
 $$
-\text{sum}(n,m)=\sum_{i=1}^n\sum_{j=1}^m [\gcd(i,j)=1]\  i\cdot j
+\operatorname{sum}(n,m)=\sum_{i=1}^n\sum_{j=1}^m [\gcd(i,j)=1]\  i\cdot j
 $$
 
-接下来对 $\text{sum}(n,m)$ 进行化简。首先枚举约数，并将 $[\gcd(i,j)=1]$ 表示为 $\varepsilon(\gcd(i,j))$ 
+接下来对 $\operatorname{sum}(n,m)$ 进行化简。首先枚举约数，并将 $[\gcd(i,j)=1]$ 表示为 $\varepsilon(\gcd(i,j))$ 
 
 $$
 \sum_{d=1}^n\sum_{d\mid i}^n\sum_{d\mid j}^m\mu(d)\cdot i\cdot j
@@ -524,15 +555,15 @@ $$
 至此
 
 $$
-\text{sum}(n,m)=\sum_{d=1}^n\mu(d)\cdot d^2\cdot g(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)
+\operatorname{sum}(n,m)=\sum_{d=1}^n\mu(d)\cdot d^2\cdot g(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)
 $$
 
-我们可以 $\lfloor\frac{n}{\lfloor\frac{n}{d}\rfloor}\rfloor$ 数论分块求解 $\text{sum}(n,m)$ 函数。
+我们可以 $\lfloor\frac{n}{\lfloor\frac{n}{d}\rfloor}\rfloor$ 数论分块求解 $\operatorname{sum}(n,m)$ 函数。
 
-在求出 $\text{sum}(n,m)$ 后，回到定义 $\text{sum}$ 的地方，可得原式为
+在求出 $\operatorname{sum}(n,m)$ 后，回到定义 $\operatorname{sum}$ 的地方，可得原式为
 
 $$
-\sum_{d=1}^n d\cdot\text{sum}(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)
+\sum_{d=1}^n d\cdot\operatorname{sum}(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)
 $$
 
 可见这又是一个可以数论分块求解的式子！
