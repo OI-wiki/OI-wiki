@@ -159,8 +159,8 @@ $$
 \begin{aligned}
 \varepsilon=\mu \ast 1&\iff\varepsilon(n)=\sum_{d\mid n}\mu(d)\\
 d=1 \ast 1&\iff d(n)=\sum_{d\mid n}1\\
-\sigma=\text{id} \ast 1&\iff\sigma(n)=\sum_{d\mid n}d\\
-\varphi=\mu \ast \text{id}&\iff\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
+\sigma=\operatorname{id} \ast 1&\iff\sigma(n)=\sum_{d\mid n}d\\
+\varphi=\mu \ast \operatorname{id}&\iff\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
 \end{aligned}
 $$
 
@@ -252,7 +252,7 @@ $$
 
 将 $n$ 分解质因数： $\displaystyle n=\prod_{i=1}^k {p_i}^{c_i}$ 
 
-首先，因为 $\varphi$ 是积性函数，故只要证明当 $n'=p^c$ 时 $\displaystyle\varphi \ast 1=\sum_{d\mid n'}\varphi(\frac{n'}{d})=\text{\operatorname{id}}$ 成立即可。
+首先，因为 $\varphi$ 是积性函数，故只要证明当 $n'=p^c$ 时 $\displaystyle\varphi \ast 1=\sum_{d\mid n'}\varphi(\frac{n'}{d})=\operatorname{id}$ 成立即可。
 
 因为 $p$ 是质数，于是 $d=p^0,p^1,p^2,\cdots,p^c$ 
 
@@ -264,7 +264,7 @@ $$
 &=\sum_{i=0}^c\varphi(p^i)\\
 &=1+p^0\cdot(p-1)+p^1\cdot(p-1)+\cdots+p^{c-1}\cdot(p-1)\\
 &=p^c\\
-&=\text{\operatorname{id}}\\
+&=\operatorname{id}\\
 \end{aligned}
 $$
 
@@ -410,7 +410,7 @@ $$
 求值（多组数据）
 
 $$
-\sum_{i=1}^n \text{lcm}(i,n)\quad  \text{s.t.}\ 1\leqslant T\leqslant 3\times 10^5,1\leqslant n\leqslant 10^6
+\sum_{i=1}^n \operatorname{lcm}(i,n)\quad  \text{s.t.}\ 1\leqslant T\leqslant 3\times 10^5,1\leqslant n\leqslant 10^6
 $$
 
 易得原式即
@@ -457,7 +457,7 @@ $$
 \frac{1}{2}n\cdot\left(\sum_{d'\mid n}d'\cdot\varphi(d')+1\right)
 $$
 
-设 $\displaystyle \text{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\text{g}$ 为积性函数，于是可以 $\Theta(n)$ 筛出。每次询问 $\Theta(1)$ 计算即可。
+设 $\displaystyle \operatorname{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\operatorname{g}$ 为积性函数，于是可以 $\Theta(n)$ 筛出。每次询问 $\Theta(1)$ 计算即可。
 
 这个函数筛的时候比较特殊，当 $p_j\mid i$ 的时候，需要根据 $p_j\mid\dfrac{i}{p_j}$ 进行分类讨论。具体可以见代码。
 
@@ -505,7 +505,7 @@ $$
 求值（对 $20101009$ 取模）
 
 $$
-\sum_{i=1}^n\sum_{j=1}^m\text{lcm}(i,j)\qquad (n,m\leqslant 10^7)
+\sum_{i=1}^n\sum_{j=1}^m\operatorname{lcm}(i,j)\qquad (n,m\leqslant 10^7)
 $$
 
 易知原式等价于
@@ -529,10 +529,10 @@ $$
 后半段式子中，出现了互质数对之积的和，为了让式子更简洁就把它拿出来单独计算。于是我们记
 
 $$
-\text{sum}(n,m)=\sum_{i=1}^n\sum_{j=1}^m [\gcd(i,j)=1]\  i\cdot j
+\operatorname{sum}(n,m)=\sum_{i=1}^n\sum_{j=1}^m [\gcd(i,j)=1]\  i\cdot j
 $$
 
-接下来对 $\text{sum}(n,m)$ 进行化简。首先枚举约数，并将 $[\gcd(i,j)=1]$ 表示为 $\varepsilon(\gcd(i,j))$ 
+接下来对 $\operatorname{sum}(n,m)$ 进行化简。首先枚举约数，并将 $[\gcd(i,j)=1]$ 表示为 $\varepsilon(\gcd(i,j))$ 
 
 $$
 \sum_{d=1}^n\sum_{d\mid i}^n\sum_{d\mid j}^m\mu(d)\cdot i\cdot j
@@ -555,15 +555,15 @@ $$
 至此
 
 $$
-\text{sum}(n,m)=\sum_{d=1}^n\mu(d)\cdot d^2\cdot g(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)
+\operatorname{sum}(n,m)=\sum_{d=1}^n\mu(d)\cdot d^2\cdot g(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)
 $$
 
-我们可以 $\lfloor\frac{n}{\lfloor\frac{n}{d}\rfloor}\rfloor$ 数论分块求解 $\text{sum}(n,m)$ 函数。
+我们可以 $\lfloor\frac{n}{\lfloor\frac{n}{d}\rfloor}\rfloor$ 数论分块求解 $\operatorname{sum}(n,m)$ 函数。
 
-在求出 $\text{sum}(n,m)$ 后，回到定义 $\text{sum}$ 的地方，可得原式为
+在求出 $\operatorname{sum}(n,m)$ 后，回到定义 $\operatorname{sum}$ 的地方，可得原式为
 
 $$
-\sum_{d=1}^n d\cdot\text{sum}(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)
+\sum_{d=1}^n d\cdot\operatorname{sum}(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)
 $$
 
 可见这又是一个可以数论分块求解的式子！
