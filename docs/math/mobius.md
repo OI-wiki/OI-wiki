@@ -1,4 +1,4 @@
-author: hydingsy, hyp1231,ranwen
+author: hydingsy, hyp1231, ranwen
 
 ## 简介
 
@@ -86,10 +86,9 @@ $$
 
 利用上述结论，我们每次以 $[i,j]$ 为一块，分块求和即可
 
-例如 [「luogu P2261」\[CQOI2007\] 余数求和](https://www.luogu.com.cn/problem/P2261) 
+例如 [「luogu P2261」\[CQOI2007\] 余数求和](https://www.luogu.com.cn/problem/P2261), $ans=\sum_{i=1}^n(k\bmod i)=\sum_{i=1}^nk-i\left\lfloor\frac{k}{i}\right\rfloor$.
 
- $ans=\sum_{i=1}^n(k\bmod i)=\sum_{i=1}^nk-i\left\lfloor\frac{k}{i}\right\rfloor$ ??? note "代码实现"
-
+??? note "代码实现"
     ```cpp
     long long ans=n*k;
     for(long long l=1,r;l<=n;l=r+1) {//此处l意同i,r意同j,下个计算区间的l应为上个区间的r+1
