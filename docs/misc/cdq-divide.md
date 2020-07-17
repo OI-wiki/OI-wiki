@@ -286,7 +286,7 @@ int main() {
 
 一道二维最长上升子序列的题，为了确定某一个元素是否在最长上升子序列中可以正反跑两遍 CDQ
 
-```C
+```cpp
 #include<cstdio>
 #include<algorithm>
 using namespace std;
