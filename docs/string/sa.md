@@ -59,10 +59,9 @@
     
       scanf("%s", s + 1);
       n = strlen(s + 1);
-      for (i = 1; i <= n; ++i) rk[i] = s[i];
+      for (i = 1; i <= n; ++i) sa[i] = i, rk[i] = s[i];
     
       for (w = 1; w < n; w <<= 1) {
-        for (i = 1; i <= n; ++i) sa[i] = i;
         sort(sa + 1, sa + n + 1, [](int x, int y) {
           return rk[x] == rk[y] ? rk[x + w] < rk[y + w] : rk[x] < rk[y];
         });  // 这里用到了 lambda
