@@ -22,8 +22,8 @@ $$
 
 $$
 \left(\frac{n}{p}\right)=\begin{cases}
-1,\,&p\nmid n 且n是p的二次剩余\\
--1,\,&p\nmid n 且n不是p的二次剩余\\
+1,\,&p\nmid n \text{且}n\text{是}p\text{的二次剩余}\\
+-1,\,&p\nmid n \text{且}n\text{不是}p\text{的二次剩余}\\
 0,\,&p\mid n
 \end{cases}
 $$
