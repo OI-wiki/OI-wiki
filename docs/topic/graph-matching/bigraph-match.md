@@ -114,12 +114,12 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 ## 习题
 
 ??? note "[UOJ #78. 二分图最大匹配](https://uoj.ac/problem/78) "
-
+    
     模板题
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
-
+    
     struct augment_path {
       vector< vector<int> > g;
       vector<int> pa; // 匹配
@@ -128,7 +128,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
       int n, m; // 顶点和边的数量
       int dfn; // 时间戳记
       int res; // 匹配数
-
+      
       augment_path(int _n, int _m) : n(_n), m(_m) {
       assert(0 <= n && 0 <= m);
       pa = vector<int> (n, -1);
@@ -138,12 +138,12 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
       res = 0;
       dfn = 0;
       }
-
+      
       void add(int from, int to) {
       assert(0 <= from && from < n && 0 <= to && to < m);
       g[from].push_back(to);
       }
-
+      
       bool dfs(int v) {
       vis[v] = dfn;
       for(int u: g[v]) {
@@ -162,7 +162,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
       }
       return false;
       }
-
+      
       int solve() {
       while(true) {
         dfn++;
@@ -180,7 +180,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
       return res;
       }
     };
-
+    
     int main(){
       int n, m, e;
       cin >> n >> m >> e;
@@ -197,13 +197,13 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
       }
       cout << "\n";
     }
-
+    
     ```
 
 ??? note "[P1640 [SCOI2010]连续攻击游戏](https://www.luogu.com.cn/problem/P1640) "
-
+    
     None
 
 ??? note "[Codeforces 1139E - Maximize Mex](https://codeforces.com/problemset/problem/1139/E) "
-
+    
     None
