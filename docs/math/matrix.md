@@ -236,9 +236,9 @@ $$
     
         - 火元素激发水元素能量：令 $A_i = A_i + B_i$ 。
         - 土元素激发火元素能量：令 $B_i = B_i + C_i$ 。
-        - 水元素激发土元素能量：令 $C_i = C_i + A_i$ 。
+        -   水元素激发土元素能量：令 $C_i = C_i + A_i$ 。
     
-         **需要注意的是，增强一种属性的能量并不会改变另一种属性的能量，例如 $A_i = A_i + B_i$ 并不会使 $B_i$ 增加或减少。** 
+             **需要注意的是，增强一种属性的能量并不会改变另一种属性的能量，例如 $A_i = A_i + B_i$ 并不会使 $B_i$ 增加或减少。** 
     
     2.  魔力增强：小 L 挥舞法杖，消耗自身 $v$ 点法力值，来改变区间里每个水晶球的 **特定属性** 的能量。具体来说，有以下三种可能的表现形式：
     
@@ -296,7 +296,7 @@ $$
     有一棵 $n$ 节点的树，根为 $1$ 号节点。每个节点有两个权值 $k_i, t_i$ ，初始值均为 $0$ 。
     
     给出三种操作：
-    1\. $\operatorname{Add}( x , d )$ 操作：将 $x$ 到根的路径上所有点的 $k_i\leftarrow k_i + d$ 2. $\operatorname{Mul}( x , d )$ 操作：将 $x$ 到根的路径上所有点的 $t_i\leftarrow t_i + d \times k_i$ 3. $\operatorname{Query}( x )$ 操作：询问点 $x$ 的权值 $t_x$ 
+    1. $\operatorname{Add}( x , d )$ 操作：将 $x$ 到根的路径上所有点的 $k_i\leftarrow k_i + d$ 2. $\operatorname{Mul}( x , d )$ 操作：将 $x$ 到根的路径上所有点的 $t_i\leftarrow t_i + d \times k_i$ 3. $\operatorname{Query}( x )$ 操作：询问点 $x$ 的权值 $t_x$ 
     
      $n,~m \leq 100000, ~-10 \leq d \leq 10$ 
 
