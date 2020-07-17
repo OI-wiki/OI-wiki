@@ -166,13 +166,13 @@ int query(char *t) {
 
 ???+ note "模板 1"
      [LuoguP3808【模板】AC 自动机（简单版）](https://www.luogu.com.cn/problem/P3808) 
-
+    
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
     const int N = 1e6 + 6;
     int n;
-
+    
     namespace AC {
     int tr[N][26], tot;
     int e[N], fail[N];
@@ -210,7 +210,7 @@ int query(char *t) {
       return res;
     }
     }  // namespace AC
-
+    
     char s[N];
     int main() {
       scanf("%d", &n);
@@ -224,7 +224,7 @@ int query(char *t) {
 
 ???+ note "模板 2"
      [P3796【模板】AC 自动机（加强版）](https://www.luogu.com.cn/problem/P3796) 
-
+    
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;

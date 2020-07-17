@@ -50,12 +50,12 @@ struct trie {
 
 ???+note "[于是他错误的点名开始了](https://www.luogu.com.cn/problem/P2580)"
     给你 $n$ 个名字串，然后进行 $m$ 次点名，每次你需要回答“名字不存在”、“第一次点到这个名字”、“已经点过这个名字”之一。
-
+    
     $1\le n\le 10^4$, $1\le m\le 10^5$，所有字符串长度不超过 $50$。
-
+    
     ??? mdui-shadow-6 "题解"
         对所有名字建 trie，再在 trie 中查询字符串是否存在、是否已经点过名，第一次点名时标记为点过名。
-
+    
     ??? mdui-shadow-6 "参考代码"
         ```cpp
         #include <cstdio>
@@ -112,18 +112,18 @@ trie 是 [AC 自动机](./ac-automaton.md) 的一部分。
 
 ???+note "[BZOJ1954 最长异或路径](https://www.luogu.com.cn/problem/P4551)"
     给你一棵带边权的树，求 $(u, v)$ 使得 $u$ 到 $v$ 的路径上的边权异或和最大，输出这个最大值。
-
+    
     点数不超过 $10^5$，边权在 $[0,2^{31})$ 内。
-
+    
     ??? mdui-shadow-6 "题解"
         随便指定一个根 $root$ ，用 $T(u, v)$ 表示 $u$ 和 $v$ 之间的路径的边权异或和，那么 $T(u,v)=T(root, u)\oplus T(root,v)$ ，因为 [LCA](../graph/lca.md) 以上的部分异或两次抵消了。
-
+        
         那么，如果将所有 $T(root, u)$ 插入到一棵 trie 中，就可以对每个 $T(root, u)$ 快速求出和它异或和最大的 $T(root, v)$ ：
-
+        
         从 trie 的根开始，如果能向和 $T(root, u)$ 的当前位不同的子树走，就向那边走，否则没有选择。
-
+        
         贪心的正确性：如果这么走，这一位为 $1$ ；如果不这么走，这一位就会为 $0$ 。而高位是需要优先尽量大的。
-
+    
     ??? mdui-shadow-6 "参考代码"
         ```cpp
         #include <algorithm>
@@ -351,11 +351,11 @@ int marge(int a, int b) {
     -   询问树上与一个节点 $x$ 距离为 $1$ 的所有节点上的权值的异或和。
         对于 $100\%$ 的数据，满足 $1\le n \le 5\times 10^5$ ， $1\le m \le 5\times 10^5$ ， $0\le a_i \le 10^5$ ， $1 \le x \le n$ ， $opt\in\{1,2,3\}$ 。
         保证任意时刻每个节点的权值非负。
-
+    
     ??? mdui-shadow-6 "题解"
         每个结点建立一棵 trie 维护其儿子的权值，trie 应该支持全局加一。
         可以使用在每一个结点上设置懒标记来标记儿子的权值的增加量。
-
+    
     ??? mdui-shadow-6 "参考代码"
         ```cpp
         const int _ = 5e5 + 10;
@@ -389,7 +389,7 @@ int marge(int a, int b) {
                 maintain(o);
             }
         }
-
+        
         int head[_];
         struct edges{
             int node;
@@ -401,7 +401,7 @@ int marge(int a, int b) {
             head[u] = tot;
             edge[tot].node = v;
         }
-
+        
         int n, m;
         int rt;
         int lztar[_];
@@ -457,7 +457,7 @@ int marge(int a, int b) {
      $val(x)=(v_{c_1}+d(c_1,x)) \oplus (v_{c_2}+d(c_2,x)) \oplus \cdots \oplus (v_{c_k}+d(c_k, x))$ 其中 $d(x,y)$ 。  
     表示树上 $x$ 号结点与 $y$ 号结点间唯一简单路径所包含的边数， $d(x,x) = 0$ 。 $\oplus$ 表示异或运算。
     请你求出 $\sum\limits_{i=1}^n val(i)$ 的结果。
-
+    
     ??? mdui-shadow-6 "题解"
         考虑每个结点对其所有祖先的贡献。
         每个结点建立 trie ，初始先只存这个结点的权值，然后从底向上合并每个儿子结点上的 trie ，然后再全局加一，完成后统计答案。
