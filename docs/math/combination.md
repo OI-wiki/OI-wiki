@@ -145,18 +145,18 @@ $$
 根据容斥原理，有：
 
 $$
-\begin{split}
+\begin{aligned}
 \left|\bigcup_{i=1}^k\overline{S_i}\right|
-&=&\sum_i\left|\overline{S_i}\right|
+=&\sum_i\left|\overline{S_i}\right|
 -\sum_{i,j}\left|\overline{S_i}\cap\overline{S_j}\right|
 +\sum_{i,j,k}\left|\overline{S_i}\cap\overline{S_j}\cap\overline{S_k}\right|
 -\cdots\\
-&&+(-1)^{k-1}\left|\bigcap_{i=1}^k\overline{S_i}\right|\\
-&=&\sum_i\binom{k+r-n_i-2}{k-1}
+&+(-1)^{k-1}\left|\bigcap_{i=1}^k\overline{S_i}\right|\\
+=&\sum_i\binom{k+r-n_i-2}{k-1}
 -\sum_{i,j}\binom{k+r-n_i-n_j-3}{k-1}+\sum_{i,j,k}\binom{k+r-n_i-n_j-n_k-4}{k-1}
 -\cdots\\
-&&+(-1)^{k-1}\binom{k+r-\sum_{i=1}^kn_i-k-1}{k-1}
-\end{split}
+&+(-1)^{k-1}\binom{k+r-\sum_{i=1}^kn_i-k-1}{k-1}
+\end{aligned}
 $$
 
 拿全集 $\displaystyle |U|=\binom{k+r-1}{k-1}$ 减去上式，得到多重集的组合数

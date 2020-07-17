@@ -19,7 +19,7 @@ $$
 略证：
 
 $$
-\begin{split}
+\begin{aligned}
 &\frac{a}{b}=\left\lfloor\frac{a}{b}\right\rfloor+r(0\leq r<1)\\
 \implies
 &\left\lfloor\frac{a}{bc}\right\rfloor
@@ -28,7 +28,7 @@ $$
 =\left\lfloor \frac{\left\lfloor\frac{a}{b}\right\rfloor}{c} +\frac{r}{c}\right\rfloor
 =\left\lfloor \frac{\left\lfloor\frac{a}{b}\right\rfloor}{c}\right\rfloor\\
 &&\square
-\end{split}
+\end{aligned}
 $$
 
 ??? note "关于证明最后的小方块"
@@ -61,7 +61,7 @@ $$
 显然 $j\leq n$ ，考虑证明 $j\geq i$ ：
 
 $$
-\begin{split}
+\begin{aligned}
 &\left\lfloor\frac{n}{i}\right\rfloor \leq \frac{n}{i}\\
 \implies
 &\left\lfloor\frac{n}{ \left\lfloor\frac{n}{i}\right\rfloor }\right\rfloor
@@ -70,7 +70,7 @@ $$
 \implies
 &i\leq \left\lfloor\frac{n}{ \left\lfloor\frac{n}{i}\right\rfloor }\right\rfloor=j\\
 &&\square
-\end{split}
+\end{aligned}
 $$
 
 不妨设 $k=\left\lfloor\frac{n}{i}\right\rfloor$ ，考虑证明当 $\left\lfloor\frac{n}{j}\right\rfloor=k$ 时， $j$ 的最大值为 $\left\lfloor\frac{n}{k}\right\rfloor$ ：
@@ -650,20 +650,20 @@ $$
 再化一下这个式子
 
 $$
-\begin{split}
+\begin{aligned}
 d(i\cdot j)=&\sum_{x \mid i}\sum_{y \mid j}[\gcd(x,y)=1]\\
 =&\sum_{x \mid i}\sum_{y \mid j}\sum_{p \mid \gcd(x,y)}\mu(p)\\
 =&\sum_{p=1}^{min(i,j)}\sum_{x \mid i}\sum_{y \mid j}[p \mid \gcd(x,y)]\cdot\mu(p)\\
 =&\sum_{p \mid i,p \mid j}\mu(p)\sum_{x \mid i}\sum_{y \mid j}[p \mid \gcd(x,y)]\\
 =&\sum_{p \mid i,p \mid j}\mu(p)\sum_{x \mid \frac{i}{p}}\sum_{y \mid \frac{j}{p}}1\\
 =&\sum_{p \mid i,p \mid j}\mu(p)d\left(\frac{i}{p}\right)d\left(\frac{j}{p}\right)\\
-\end{split}
+\end{aligned}
 $$
 
 将上述式子代回原式
 
 $$
-\begin{split}
+\begin{aligned}
 &\sum_{i=1}^n\sum_{j=1}^md(i\cdot j)\\
 =&\sum_{i=1}^n\sum_{j=1}^m\sum_{p \mid i,p \mid j}\mu(p)d\left(\frac{i}{p}\right)d\left(\frac{j}{p}\right)\\
 =&\sum_{p=1}^{min(n,m)}
@@ -679,7 +679,7 @@ $$
 S\left(\left\lfloor\frac{n}{p}\right\rfloor\right)
 S\left(\left\lfloor\frac{m}{p}\right\rfloor\right)
 \left(S(n)=\sum_{i=1}^{n}d(i)\right)\\
-\end{split}
+\end{aligned}
 $$
 
 那么 $O(n)$ 预处理 $\mu,d$ 的前缀和， $O(\sqrt{n})$ 分块处理询问，总复杂度 $O(n+T\sqrt{n})$ .
@@ -741,7 +741,7 @@ $$
 我们利用 $\varphi\ast1=\operatorname{id}$ 反演
 
 $$
-\begin{eqnarray}
+\begin{aligned}
 && \sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot \gcd(i,j)\\
 &=&\sum_{i=1}^n\sum_{j=1}^ni\cdot j
 \sum_{d \mid i,d \mid j}\varphi(d)\\
@@ -757,16 +757,16 @@ d^2\cdot i\cdot j\cdot\varphi(d)\\
 \sum_{j=1}^{\left\lfloor\frac{n}{d}\right\rfloor}j\\
 &=&\sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)
 \left(F(n)=\frac{1}{2}n\left(n+1\right)\right)\\
-\end{eqnarray}
+\end{aligned}
 $$
 
 对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2$ 做数论分块， $d^2\varphi(d)$ 的前缀和用杜教筛处理：
 
 $$
-\begin{split}
+\begin{aligned}
 &f(n)=n^2\varphi(n)=(\operatorname{id}^2\varphi)(n)\\
 &S(n)=\sum_{i=1}^nf(i)=\sum_{i=1}^n(\operatorname{id}^2\varphi)(i)
-\end{split}
+\end{aligned}
 $$
 
 杜教筛（见 [杜教筛 - 例 3](../du/#_8) ）完了是这样的
@@ -850,13 +850,13 @@ $$
 转化一下，可以将式子写成
 
 $$
-\begin{eqnarray}
+\begin{aligned}
 &&\sum_{d=1}^{n}\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ijd\cdot[\gcd(i,j)=1]\\
 &=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t\mid \gcd(i,j)}\mu(t)\\
 &=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}\mu(t)[t\mid \gcd(i,j)]\\
 &=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij[1\mid \gcd(i,j)]\\
 &=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij
-\end{eqnarray}
+\end{aligned}
 $$
 
 容易知道
@@ -868,12 +868,12 @@ $$
 设 $sum(n,m)=\sum_{i=1}^{n}\sum_{j=1}^{m}ij$ ，继续接着前面的往下推
 
 $$
-\begin{eqnarray}
+\begin{aligned}
 &&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij\\
 &=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\cdot sum(\lfloor\frac{n}{td}\rfloor,\lfloor\frac{m}{td}\rfloor)\\
 &=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)\sum_{d\mid T}d\cdot (\frac{T}{d})^2\mu(\frac{T}{d})\\
 &=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)(T\sum_{d\mid T}d\cdot\mu(d))
-\end{eqnarray}
+\end{aligned}
 $$
 
 这时我们只要对每个 $T$ 预处理出 $T\sum_{d\mid T}d\cdot\mu(d)$ 的值就行了，考虑如何快速求解
@@ -907,7 +907,7 @@ $$
 我们证明一下
 
 $$
-\begin{eqnarray}
+\begin{aligned}
 &&g(n)=\sum_{i=1}^n\mu(i)t(i)f\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 &=&\sum_{i=1}^n\mu(i)t(i)
 \sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}t(j)
@@ -938,7 +938,7 @@ t\left(\frac{T}{i}\right)g\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
 &&\text{【当且仅当 T=1,}\varepsilon(T)=1\text{时】}\\
 &=&g(n)
 && \square
-\end{eqnarray}
+\end{aligned}
 $$
 
 ## 参考文献

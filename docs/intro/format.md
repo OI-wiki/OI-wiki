@@ -10,7 +10,7 @@
 
 - 文档存储的格式
 - 文档的合理性
-- remark-lint 和 $\mathrm \LaTeX$ 公式的格式要求
+- remark-lint 和 $\rm{\LaTeX}$ 公式的格式要求
 
 ### 文档引用与存储的格式
 
