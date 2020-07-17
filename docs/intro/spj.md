@@ -342,7 +342,7 @@ int main(int argc, char* argv[]) {
 ???+ note
     DOMJudge 支持任何语言编写的 spj，参见： [problemarchive.org output validator 格式](https://www.problemarchive.org/wiki/index.php/Output_validator) 。
     
-    DOMJudge 有现成的修改版 [Testlib](#testlib)，建议使用 Testlib。
+    DOMJudge 有现成的修改版 [Testlib](#testlib) ，建议使用 Testlib。
 
 DOMJudge 使用的 Testlib 及导入 Polygon 题目包方式的文档： <https://github.com/cn-xcpc-tools/testlib-for-domjudge> 
 

@@ -49,9 +49,9 @@
     
     下界的构造方法是对二分图进行拆点。
     
-    若 $degree \bmod k \neq 0$ ,我们将其拆为 $degree/k$ 个度数为 k 的节点和一个度数为 $degree \bmod k$ 的节点 。
+    若 $degree \bmod k \neq 0$ , 我们将其拆为 $degree/k$ 个度数为 k 的节点和一个度数为 $degree \bmod k$ 的节点。
     
-    若 $degree \bmod k = 0$ ,我们将其拆为 $degree/k$ 个度数为 k 的节点。
+    若 $degree \bmod k = 0$ , 我们将其拆为 $degree/k$ 个度数为 k 的节点。
     
     拆出来的点在原图中的意义相同，也就是说，在满足度数限制的情况下，一条边端点可以连接任意一个拆出来的点。
     

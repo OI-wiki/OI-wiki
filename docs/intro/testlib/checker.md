@@ -255,6 +255,6 @@ int main(int argc, char* argv[]) {
 - ncmp：按顺序比较 64 位整数。
 - rcmp4：按顺序比较浮点数，最大可接受误差（绝对误差或相对误差）不超过 $10^{-4}$ （还有 rcmp6，rcmp9 等对精度要求不同的 checker，用法和 rcmp4 类似）。
 - wcmp：按顺序比较字符串（不带空格，换行符等非空字符）。
--   yesno：比较 YES 和 NO，大小写不敏感。
+- yesno：比较 YES 和 NO，大小写不敏感。
 
-**本文主要翻译自 [Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 
+ **本文主要翻译自 [Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431) 。 `testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib) 。** 

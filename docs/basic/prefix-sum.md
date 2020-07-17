@@ -219,7 +219,6 @@ $$
 下面给出 [洛谷 3128 最大流](https://www.luogu.com.cn/problem/P3128) 的参考程序帮助理解。
 
 ??? note "参考程序"
-    
     需要统计每个点经过了多少次，那么就用树上差分将每一次的路径上的点加一，可以很快得到每个点经过的次数。这里采用倍增法进行 lca 的计算。最后对 DFS 遍历整棵树，在回溯时对差分数组求和就能求得答案了。
     
     ```cpp
@@ -228,77 +227,76 @@ $$
     using namespace std;
     #define maxn 50010
     
-    struct node 
-    {
-        int to, next;
-    }edge[maxn<<1];
+    struct node {
+      int to, next;
+    } edge[maxn << 1];
     
-    int fa[maxn][30], head[maxn<<1];
+    int fa[maxn][30], head[maxn << 1];
     int power[maxn];
     int depth[maxn], lg[maxn];
     int n, k, ans = 0, tot = 0;
     
-    void add(int x, int y){
-        edge[++tot].to = y;
-        edge[tot].next = head[x];
-        head[x] = tot;
+    void add(int x, int y) {
+      edge[++tot].to = y;
+      edge[tot].next = head[x];
+      head[x] = tot;
     }
     
-    void dfs( int now, int father ){ 
-        fa[now][0] = father;
-        depth[now] = depth[father] + 1;
-        for ( int i = 1; i <= lg[depth[now]]; ++i )
-            fa[now][i] = fa[fa[now][i-1]][i-1];
-        for ( int i = head[now]; i; i = edge[i].next )
-            if ( edge[i].to != father ) dfs(edge[i].to, now);
+    void dfs(int now, int father) {
+      fa[now][0] = father;
+      depth[now] = depth[father] + 1;
+      for (int i = 1; i <= lg[depth[now]]; ++i)
+        fa[now][i] = fa[fa[now][i - 1]][i - 1];
+      for (int i = head[now]; i; i = edge[i].next)
+        if (edge[i].to != father) dfs(edge[i].to, now);
     }
     
-    int lca( int x, int y ) {
-        if ( depth[x] < depth[y] ) swap(x, y);
-        while ( depth[x] > depth[y] ) 
-            x = fa[x][lg[depth[x]-depth[y]]-1];
-        if ( x == y ) return x;
-        for ( int k = lg[depth[x]] - 1; k >= 0; k -- ) {
-            if ( fa[x][k] != fa[y][k] )
-                x = fa[x][k], y = fa[y][k];
-        }
-        return fa[x][0];
+    int lca(int x, int y) {
+      if (depth[x] < depth[y]) swap(x, y);
+      while (depth[x] > depth[y]) x = fa[x][lg[depth[x] - depth[y]] - 1];
+      if (x == y) return x;
+      for (int k = lg[depth[x]] - 1; k >= 0; k--) {
+        if (fa[x][k] != fa[y][k]) x = fa[x][k], y = fa[y][k];
+      }
+      return fa[x][0];
     }
     
     //用dfs求最大压力，回溯时将子树的权值加上
-    void get_ans( int u, int father ) {
-        for ( int i = head[u]; i; i = edge[i].next ) {
-            int to = edge[i].to;
-            if ( to == father ) continue;
-            get_ans( to, u );
-            power[u] += power[to];
-        }
-        ans = max( ans, power[u] );
+    void get_ans(int u, int father) {
+      for (int i = head[u]; i; i = edge[i].next) {
+        int to = edge[i].to;
+        if (to == father) continue;
+        get_ans(to, u);
+        power[u] += power[to];
+      }
+      ans = max(ans, power[u]);
     }
     
     int main() {
-        scanf("%d %d", &n, &k);
-        int x, y;
-        for ( int i = 1; i <= n; i ++ ) {
-            lg[i] = lg[i-1] + ( 1 << lg[i-1] == i );
-        }
-        for ( int i = 1; i <= n - 1; i ++ ) {
-            scanf("%d %d", &x, &y);
-            add(x, y); add(y, x);
-        }
-        dfs(1, 0);
-        int s, t;
-        for ( int i = 1; i <= k; i ++ ) {
-            scanf("%d %d", &s, &t);
-            int ancestor = lca( s, t );
-            // 树上差分
-            power[s] ++; power[t] ++;
-            power[ancestor] --;
-            power[fa[ancestor][0]] --;
-        }
-        get_ans(1, 0);
-        printf("%d\n", ans);
-        return 0;
+      scanf("%d %d", &n, &k);
+      int x, y;
+      for (int i = 1; i <= n; i++) {
+        lg[i] = lg[i - 1] + (1 << lg[i - 1] == i);
+      }
+      for (int i = 1; i <= n - 1; i++) {
+        scanf("%d %d", &x, &y);
+        add(x, y);
+        add(y, x);
+      }
+      dfs(1, 0);
+      int s, t;
+      for (int i = 1; i <= k; i++) {
+        scanf("%d %d", &s, &t);
+        int ancestor = lca(s, t);
+        // 树上差分
+        power[s]++;
+        power[t]++;
+        power[ancestor]--;
+        power[fa[ancestor][0]]--;
+      }
+      get_ans(1, 0);
+      printf("%d\n", ans);
+      return 0;
     }
     ```
 

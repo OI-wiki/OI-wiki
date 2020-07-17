@@ -24,7 +24,7 @@ author: Ir1d, hsfzLZH1, CBW2007, Xeonacid, H-J-Granger, kawa-yoiko, NachtgeistW
 STDIO 交互（标准 I/O 交互）是 Codeforces、AtCoder 等在线平台的交互手段，也是 ICPC 系列赛事中的标准。Codeforces 提供了一个更加简要的 [说明（英文）](https://codeforces.com/blog/entry/45307) 。
 
 ??? 例题 "ZQC 的迷宫"
-    [LOJ #559.「LibreOJ Round #9」ZQC 的迷宫](https://loj.ac/problem/559) 
+     [LOJ #559.「LibreOJ Round #9」ZQC 的迷宫](https://loj.ac/problem/559) 
     
     请注意最下方添加内容。
     
@@ -45,9 +45,9 @@ STDIO 交互（标准 I/O 交互）是 Codeforces、AtCoder 等在线平台的�
 Grader 交互方式常见于 IOI、APIO 等国际 OI 赛事（特别是 CMS 平台的竞赛）。
 
 ??? 例题 "Gap"
-    [UOJ #206.【APIO2016】Gap](https://uoj.ac/problem/206) 
+     [UOJ #206.【APIO2016】Gap](https://uoj.ac/problem/206) 
     
-    有 $N$ 个严格递增的非负整数 $a_1,a_2,\cdots,a_N (0\leq a_1<a2<\cdots<a_N\leq 10^{18})$。你需要找出 $a_{i+1}−a_i (0\leq i\leq N−1)$ 里的最大的值。
+    有 $N$ 个严格递增的非负整数 $a_1,a_2,\cdots,a_N (0\leq a_1<a2<\cdots<a_N\leq 10^{18})$ 。你需要找出 $a_{i+1}−a_i (0\leq i\leq N−1)$ 里的最大的值。
     
     你的程序不能直接读入这个整数序列，但是你可以通过给定的函数来查询该序列的信息。关于查询函数的细节，请根据你所使用的语言，参考下面的实现细节部分。
     
