@@ -8,9 +8,9 @@ author: NachtgeistW
 
 ???+ warning
     spj 还应当判断文件尾是否有多余内容，及输出格式是否正确（如题目要求数字间用一个空格隔开，而选手却使用了换行）。但是，目前前者只有 Testlib 可以方便地做到这一点，而后者几乎无人去特意进行这种判断。
-
+    
     判断浮点数时应注意 NaN。不合理的判断方式会导致输出 NaN 即可 AC 的情况。
-
+    
     在对选手文件进行读入操作时应该要检查是否正确读入了所需的内容，防止造成 spj 的运行错误。（部分 OJ 会将 spj 的运行错误作为系统错误处理）
 
 ???+ note
@@ -341,7 +341,7 @@ int main(int argc, char* argv[]) {
 
 ???+ note
     DOMJudge 支持任何语言编写的 spj，参见： [problemarchive.org output validator 格式](https://www.problemarchive.org/wiki/index.php/Output_validator) 。
-
+    
     DOMJudge 有现成的修改版 [Testlib](#testlib)，建议使用 Testlib。
 
 DOMJudge 使用的 Testlib 及导入 Polygon 题目包方式的文档： <https://github.com/cn-xcpc-tools/testlib-for-domjudge> 
