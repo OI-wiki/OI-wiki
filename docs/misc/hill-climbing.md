@@ -72,7 +72,7 @@
           cin >> f[i][j];
           ans[j] += f[i][j];
         }
-      for (int i = 1; i <= n; i++) ans[i] /= (n + 1);     // 初始化
+      for (int i = 1; i <= n; i++) ans[i] /= (n + 1);      // 初始化
       for (double t = 10001; t >= 0.0001; t *= 0.99995) {  // 不断降温
         check();
         for (int i = 1; i <= n; i++) ans[i] += cans[i] * t;  // 修改
