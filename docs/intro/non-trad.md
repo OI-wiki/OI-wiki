@@ -24,7 +24,7 @@ author: Ir1d, hsfzLZH1, CBW2007, Xeonacid, H-J-Granger, kawa-yoiko, NachtgeistW
 STDIO 交互（标准 I/O 交互）是 Codeforces、AtCoder 等在线平台的交互手段，也是 ICPC 系列赛事中的标准。Codeforces 提供了一个更加简要的 [说明（英文）](https://codeforces.com/blog/entry/45307) 。
 
 ??? 例题 "ZQC 的迷宫"
-     [LOJ #559.「LibreOJ Round #9」ZQC 的迷宫](https://loj.ac/problem/559) 
+    [LOJ #559.「LibreOJ Round #9」ZQC 的迷宫](https://loj.ac/problem/559) 
     
     请注意最下方添加内容。
     
@@ -45,7 +45,7 @@ STDIO 交互（标准 I/O 交互）是 Codeforces、AtCoder 等在线平台的�
 Grader 交互方式常见于 IOI、APIO 等国际 OI 赛事（特别是 CMS 平台的竞赛）。
 
 ??? 例题 "Gap"
-     [UOJ #206.【APIO2016】Gap](https://uoj.ac/problem/206) 
+    [UOJ #206.【APIO2016】Gap](https://uoj.ac/problem/206) 
     
     有 $N$ 个严格递增的非负整数 $a_1,a_2,\cdots,a_N (0\leq a_1<a2<\cdots<a_N\leq 10^{18})$ 。你需要找出 $a_{i+1}−a_i (0\leq i\leq N−1)$ 里的最大的值。
     
@@ -75,9 +75,9 @@ STDIO 交互的一个明显优势在于它可以支持任何编程语言，但�
  **通信题** 是需要两个选手程序进行通信，合作完成某项任务的题目。第一个程序接收问题的输入，并产生某些输出；第二个程序的输入会与第一个的输出相关（有时是原封不动地作为一个参数，有时会由评测端处理得到），它需要产生问题的解。
 
 ??? 例题
-     [UOJ #178. 新年的贺电](https://uoj.ac/problem/178) 
+    [UOJ #178. 新年的贺电](https://uoj.ac/problem/178) 
     
-     [#454.【UER #8】打雪仗](https://uoj.ac/problem/454) 
+    [#454.【UER #8】打雪仗](https://uoj.ac/problem/454) 
 
 本地测试的方法由于题目设定的不同而多种多样，常用的形式如：
 
@@ -101,7 +101,7 @@ STDIO 交互的一个明显优势在于它可以支持任何编程语言，但�
 ## 其他类型
 
 ??? 例题 "Quine"
-     [Quine](https://loj.ac/problem/4) 
+    [Quine](https://loj.ac/problem/4) 
     
     写一个程序，使其能输出自己的源代码。
     
