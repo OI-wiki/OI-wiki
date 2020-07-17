@@ -26,9 +26,9 @@
     \int_l^r f(x) {\mathrm d}x &= F(r)-F(l) \\
     &= \frac{a}{3}(r^3-l^3)+\frac{b}{2}(r^2-l^2)+c(r-l) \\
     &=(r-l)(\frac{a}{3}(l^2+r^2+lr)+\frac{b}{2}(l+r)+c) \\
-    &=\frac{b-a}{6}(2al^2+2ar^2+2alr+3bl+3br+6c)\\
-    &=\frac{b-a}{6}((al^2+bl+c)+(ar^2+br+c)+4(a(\frac{l+r}{2})^2+b(\frac{l+r}{2})+c)) \\
-    &=\frac{b-a}{6}(f(l)+f(r)+4f(\frac{l+r}{2}))
+    &=\frac{r-l}{6}(2al^2+2ar^2+2alr+3bl+3br+6c)\\
+    &=\frac{r-l}{6}((al^2+bl+c)+(ar^2+br+c)+4(a(\frac{l+r}{2})^2+b(\frac{l+r}{2})+c)) \\
+    &=\frac{r-l}{6}(f(l)+f(r)+4f(\frac{l+r}{2}))
     \end{aligned}
     $$
 
