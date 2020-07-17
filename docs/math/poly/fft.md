@@ -117,10 +117,10 @@ $$
 按照次数的奇偶来分成两组，然后右边提出来一个 $x$ 
 
 $$
-\begin{split}
+\begin{aligned}
 f(x) &= (a_0+a_2x^2+a_4x^4+a_6x^6) + (a_1x+a_3x^3+a_5x^5+a_7x^7)\\
      &= (a_0+a_2x^2+a_4x^4+a_6x^6) + x(a_1+a_3x^2+a_5x^4+a_7x^6)
-\end{split}
+\end{aligned}
 $$
 
 分别用奇偶次次项数建立新的函数
@@ -141,23 +141,23 @@ $$
 利用单位复根的性质得到
 
 $$
-\begin{split}
+\begin{aligned}
 \operatorname{DFT}(f(\omega_n^k))
 &=\operatorname{DFT}(G((\omega_n^k)^2)) + \omega_n^k  \times \operatorname{DFT}(H((\omega_n^k)^2))\\
 &=\operatorname{DFT}(G(\omega_n^{2k})) + \omega_n^k  \times \operatorname{DFT}(H(\omega_n^{2k}))\\
 &=\operatorname{DFT}(G(\omega_{n/2}^k)) + \omega_n^k  \times \operatorname{DFT}(H(\omega_{n/2}^k))
-\end{split}
+\end{aligned}
 $$
 
 同理可得
 
 $$
-\begin{split}
+\begin{aligned}
 \operatorname{DFT}(f(\omega_n^{k+n/2}))
 &=\operatorname{DFT}(G(\omega_n^{2k+n})) + \omega_n^{k+n/2}  \times \operatorname{DFT}(H(\omega_n^{2k+n}))\\
 &=\operatorname{DFT}(G(\omega_n^{2k})) - \omega_n^k  \times \operatorname{DFT}(H(\omega_n^{2k}))\\
 &=\operatorname{DFT}(G(\omega_{n/2}^k)) - \omega_n^k  \times \operatorname{DFT}(H(\omega_{n/2}^k))
-\end{split}
+\end{aligned}
 $$
 
 因此我们求出了 $\operatorname{DFT}(G(\omega_{n/2}^k))$ 和 $\operatorname{DFT}(H(\omega_{n/2}^k))$ 后，就可以同时求出 $\operatorname{DFT}(f(\omega_n^k))$ 和 $\operatorname{DFT}(f(\omega_n^{k+n/2}))$ 。于是对 $G$ 和 $H$ 分别递归 DFT 即可。
@@ -320,10 +320,10 @@ $$
 对 $A(x)$ 的定义式做一下变换，可以将 $A(b_k)$ 表示为
 
 $$
-\begin{split}
+\begin{aligned}
 A(b_k)&=\sum_{i=0}^{n-1}f(\omega_n^i)\omega_n^{-ik}=\sum_{i=0}^{n-1}\omega_n^{-ik}\sum_{j=0}^{n-1}a_j(\omega_n^i)^{j}\\
 &=\sum_{i=0}^{n-1}\sum_{j=0}^{n-1}a_j\omega_n^{i(j-k)}=\sum_{j=0}^{n-1}a_j\sum_{i=0}^{n-1}\left(\omega_n^{j-k}\right)^i\\
-\end{split}
+\end{aligned}
 $$
 
 记 $S\left(\omega_n^a\right)=\sum_{i=0}^{n-1}\left(\omega_n^a\right)^i$ 。
@@ -333,21 +333,21 @@ $$
 当 $a\neq 0$ 时，我们错位相减
 
 $$
-\begin{split}
+\begin{aligned}
 S\left(\omega_n^a\right)&=\sum_{i=0}^{n-1}\left(\omega_n^a\right)^i\\
 \omega_n^a S\left(\omega_n^a\right)&=\sum_{i=1}^{n}\left(\omega_n^a\right)^i\\
 S\left(\omega_n^a\right)&=\frac{\left(\omega_n^a\right)^n-\left(\omega_n^a\right)^0}{\omega_n^a-1}=0\\
-\end{split}
+\end{aligned}
 $$
 
 也就是说
 
 $$
 S\left(\omega_n^a\right)=
-\left\{\begin{split}
+\left\{\begin{aligned}
 n,a=0\\
 0,a\neq 0
-\end{split}\right.
+\end{aligned}\right.
 $$
 
 那么代回原式
@@ -359,10 +359,10 @@ $$
 也就是说给定点 $b_i=\omega_n^{-i}$ ，则 $A$ 的点值表示法为
 
 $$
-\begin{split}
+\begin{aligned}
 &\left\{ (b_0,A(b_0)),(b_1,A(b_1)),\cdots,(b_{n-1},A(b_{n-1})) \right\}\\
 =&\left\{ (b_0,a_0\cdot n),(b_1,a_1\cdot n),\cdots,(b_{n-1},a_{n-1}\cdot n) \right\}
-\end{split}
+\end{aligned}
 $$
 
 综上所述，我们取单位根为其倒数，对 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 跑一遍 FFT，然后除以 $n$ 即可得到 $f(x)$ 的系数表示。
