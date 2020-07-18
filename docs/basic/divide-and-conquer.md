@@ -190,7 +190,7 @@ void traverse(TreeNode* root) {
     1.  5 -> 3
     2.  5 -> 2 -> 1
     3. -3 -> 11
-
+    ```
     ```cpp
     /**
     * 二叉树结点的定义
@@ -201,7 +201,6 @@ void traverse(TreeNode* root) {
     *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
     * };
     */
-    ```
     ```
 
 ??? note "参考代码"
