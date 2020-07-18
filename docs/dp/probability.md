@@ -34,7 +34,6 @@
       for (int i = 1; i <= w; i++) {
         for (int j = 1; j <= b; j++) {
           dp[i][j] += (double)i / (i + j);
-          // dp[i][j] += (double) i / (i + j) * i / ( i + j - 1 );
           if (j >= 3) {
             dp[i][j] += (double)j / (i + j) * (j - 1) / (i + j - 1) * (j - 2) /
                         (i + j - 2) * dp[i][j - 3];
@@ -189,7 +188,7 @@ $$
 
 ## 有后效性 DP
 
-??? note " [CodeForces 24 D Broken robot](https://codeforces.com/problemset/problem/24/D) "
+??? note " [CodeForces 24 D Broken robot](https://codeforces.com/problemset/problem/24/D) 
     题目大意：给出一个 $n*m$ 的矩阵区域，一个机器人初始在第 $x$ 行第 $y$ 列，每一步机器人会等概率地选择停在原地，左移一步，右移一步，下移一步，如果机器人在边界则不会往区域外移动，问机器人到达最后一行的期望步数。
 
 在 $m=1$ 时每次有 $\frac{1}{2}$ 的概率不动，有 $\frac{1}{2}$ 的概率向下移动一格，答案为 $2\cdot (n-x)$ 。
