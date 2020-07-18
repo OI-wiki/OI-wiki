@@ -162,7 +162,7 @@ void traverse(TreeNode* root) {
 
 ## 例题详解
 
-???+note " [437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)" 给定一个二叉树，它的每个结点都存放着一个整数值。
+???+note " [437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/) " 给定一个二叉树，它的每个结点都存放着一个整数值。
 
     找出路径和等于给定数值的路径总数。
 
