@@ -211,10 +211,10 @@ void traverse(TreeNode* root) {
              pathSum(root->right, sum);
     }
     
-    
     int count(TreeNode *node, int sum) {
-        if (node == nullptr) return 0;
-        return (node->val == sum) + count(node->left, sum - node->val) + count(node->right, sum - node->val);
+      if (node == nullptr) return 0;
+      return (node->val == sum) + count(node->left, sum - node->val) +
+             count(node->right, sum - node->val);
     }
     ```
 
