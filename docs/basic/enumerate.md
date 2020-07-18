@@ -37,8 +37,8 @@ author: frank-xjh
 
 ```cpp
 for (int i = 0; i < n; ++i)
-    for (int j = 0; j < n; ++j)
-        if (a[i] + a[j] == 0)   ++ans;
+  for (int j = 0; j < n; ++j)
+    if (a[i] + a[j] == 0) ++ans;
 ```
 
 来看看枚举的范围如何优化。原问题的答案由两部分构成：两个数相等的情况和不相等的情况。相等的情况只需要枚举每一个数判断一下是否合法。至于不相等的情况，由于题中没要求数对是有序的，答案就是有序的情况的两倍（考虑如果 `(a, b)` 是答案，那么 `(b, a)` 也是答案）。对于这种情况，只需统计人为要求有顺序之后的答案，最后再乘上 $2$ 就好了。
@@ -47,8 +47,8 @@ for (int i = 0; i < n; ++i)
 
 ```cpp
 for (int i = 0; i < n; ++i)
-    for (int j = 0; j < i; ++j)
-        if (a[i] + a[j] == 0)   ++ans;
+  for (int j = 0; j < i; ++j)
+    if (a[i] + a[j] == 0) ++ans;
 ```
 
 不难发现这里已经减少了 $j$ 的枚举范围，减少了这段代码的时间开销。
@@ -63,12 +63,12 @@ bool met[MAXN * 2];
 // 初始化 met 数组为 0；
 memset(met, 0, sizeof(met));
 for (int i = 0; i < n; ++i) {
-    if (met[MAXN - a[i]])   ++ans;
-    // 为了避免负数下标
-    met[a[i] + MAXN] = 1;
+  if (met[MAXN - a[i]]) ++ans;
+  // 为了避免负数下标
+  met[a[i] + MAXN] = 1;
 }
 ```
 
 ## 习题
 
-- [2811:熄灯问题 - OpenJudge](http://bailian.openjudge.cn/practice/2811/)
+-  [2811: 熄灯问题 - OpenJudge](http://bailian.openjudge.cn/practice/2811/) 

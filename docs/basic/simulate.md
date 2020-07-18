@@ -30,30 +30,26 @@
 
 ??? note "参考代码"
     ```cpp
-    #include<cstdio>
-    int main(void)
-    {
-        int n = 0, u = 0, d = 0;
-        while(scanf("%d %d %d", &n, &u, &d) && n != 0)
-        {
-            int time = 0, dist = 0;
-            while(true)
-            {
-                dist += u;
-                time++;
-                if (dist >= n)
-                    break;
-                dist -= d;
-                time++;
-            }
-            printf("%d\n", time);
+    #include <cstdio>
+    int main(void) {
+      int n = 0, u = 0, d = 0;
+      while (scanf("%d %d %d", &n, &u, &d) && n != 0) {
+        int time = 0, dist = 0;
+        while (true) {
+          dist += u;
+          time++;
+          if (dist >= n) break;
+          dist -= d;
+          time++;
         }
-        return 0;
+        printf("%d\n", time);
+      }
+      return 0;
     }
     ```
 
 ## 习题
 
-- [【NOIP2014】生活大爆炸版石头剪刀布 - Universal Online Judge](https://uoj.ac/problem/15)
-- [3750:魔兽世界 - OpenJudge](http://bailian.openjudge.cn/practice/3750/)
-- [「SDOI2010」猪国杀 - LibreOJ](https://loj.ac/problem/2885)
+-  [【NOIP2014】生活大爆炸版石头剪刀布 - Universal Online Judge](https://uoj.ac/problem/15) 
+-  [3750: 魔兽世界 - OpenJudge](http://bailian.openjudge.cn/practice/3750/) 
+-  [「SDOI2010」猪国杀 - LibreOJ](https://loj.ac/problem/2885) 
