@@ -105,7 +105,7 @@ int size_recurison(Node *head) {
 - 该问题可以分解为若干个规模较小的相同问题，即该问题具有最优子结构性质，利用该问题分解出的子问题的解可以合并为该问题的解。
 - 该问题所分解出的各个子问题是相互独立的，即子问题之间不包含公共的子问题。
 
-??? warning "注意"
+???+warning "注意"
     如果各子问题是不独立的，则分治法要重复地解公共的子问题，也就做了许多不必要的工作。此时虽然也可用分治法，但一般用 [动态规划](../dp/basic.md) 较好。
 
 以归并排序为例。假设实现归并排序的函数名为 `merge_sort` 。明确该函数的职责，即 **对传入的一个数组排序** 。这个问题显然可以分解。给一个数组排序等于给该数组的左右两半分别排序，然后合并成一个数组。
@@ -162,7 +162,7 @@ void traverse(TreeNode* root) {
 
 ## 例题详解
 
-???+note " [437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/) 给定一个二叉树，它的每个结点都存放着一个整数值。
+???+note " [437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)" 给定一个二叉树，它的每个结点都存放着一个整数值。
 
     找出路径和等于给定数值的路径总数。
 
@@ -217,43 +217,44 @@ void traverse(TreeNode* root) {
     }
     ```
 
-题目看起来很复杂，不过代码却极其简洁。
+??? note "题解"
+    题目看起来很复杂，不过代码却极其简洁。
 
-首先明确，递归求解树的问题必然是要遍历整棵树的，所以二叉树的遍历框架（分别对左右子树递归调用函数本身）必然要出现在主函数 pathSum 中。那么对于每个节点，它们应该干什么呢？它们应该看看，自己和它们的子树包含多少条符合条件的路径。好了，这道题就结束了。
+    首先明确，递归求解树的问题必然是要遍历整棵树的，所以二叉树的遍历框架（分别对左右子树递归调用函数本身）必然要出现在主函数 pathSum 中。那么对于每个节点，它们应该干什么呢？它们应该看看，自己和它们的子树包含多少条符合条件的路径。好了，这道题就结束了。
 
-按照前面说的技巧，根据刚才的分析来定义清楚每个递归函数应该做的事：
+    按照前面说的技巧，根据刚才的分析来定义清楚每个递归函数应该做的事：
 
- `PathSum` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，和为目标值的路径总数。
+     `PathSum` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，和为目标值的路径总数。
 
- `count` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，能凑出几个以该节点为路径开头，和为目标值的路径总数。
+     `count` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，能凑出几个以该节点为路径开头，和为目标值的路径总数。
 
-??? note "参考代码（附注释）"
-    ```cpp
-    int pathSum(TreeNode *root, int sum) {
-      if (root == nullptr) return 0;
-      int pathImLeading = count(root, sum);  // 自己为开头的路径数
-      int leftPathSum = pathSum(root->left, sum);  // 左边路径总数（相信它能算出来）
-      int rightPathSum =
-          pathSum(root->right, sum);  // 右边路径总数（相信它能算出来）
-      return leftPathSum + rightPathSum + pathImLeading;
-    }
-    ```
+    ??? note "参考代码（附注释）"
+        ```cpp
+        int pathSum(TreeNode *root, int sum) {
+          if (root == nullptr) return 0;
+          int pathImLeading = count(root, sum);  // 自己为开头的路径数
+          int leftPathSum = pathSum(root->left, sum);  // 左边路径总数（相信它能算出来）
+          int rightPathSum =
+              pathSum(root->right, sum);  // 右边路径总数（相信它能算出来）
+          return leftPathSum + rightPathSum + pathImLeading;
+        }
+        ```
 
-    int count(TreeNode *node, int sum) {
-        if (node == nullptr) return 0;
-        // 能不能作为一条单独的路径呢？
-        int isMe = (node->val == sum) ? 1 : 0;
-        // 左边的，你那边能凑几个 sum - node.val ？
-        int leftNode = count(node->left, sum - node->val);
-        // 右边的，你那边能凑几个 sum - node.val ？
-        int rightNode = count(node->right, sum - node->val);
-        return isMe + leftNode + rightNode;  // 我这能凑这么多个
-    }
-    ```
+        int count(TreeNode *node, int sum) {
+            if (node == nullptr) return 0;
+            // 能不能作为一条单独的路径呢？
+            int isMe = (node->val == sum) ? 1 : 0;
+            // 左边的，你那边能凑几个 sum - node.val ？
+            int leftNode = count(node->left, sum - node->val);
+            // 右边的，你那边能凑几个 sum - node.val ？
+            int rightNode = count(node->right, sum - node->val);
+            return isMe + leftNode + rightNode;  // 我这能凑这么多个
+        }
+        ```
 
-还是那句话， **明白每个函数能做的事，并相信它们能够完成。** 
+    还是那句话， **明白每个函数能做的事，并相信它们能够完成。** 
 
-总结下， `PathSum` 函数提供了二叉树遍历框架，在遍历中对每个节点调用 `count` 函数（这里用的是先序遍历，不过中序遍历和后序遍历也可以）。 `count` 函数也是一个二叉树遍历，用于寻找以该节点开头的目标值路径。
+    总结下， `PathSum` 函数提供了二叉树遍历框架，在遍历中对每个节点调用 `count` 函数（这里用的是先序遍历，不过中序遍历和后序遍历也可以）。 `count` 函数也是一个二叉树遍历，用于寻找以该节点开头的目标值路径。
 
 ## 习题
 
