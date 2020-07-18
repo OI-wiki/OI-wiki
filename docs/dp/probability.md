@@ -26,30 +26,27 @@
     int w, b;
     double dp[1010][1010];
     
-    int main()
-    {
-        scanf("%d %d", &w, &b);
-        memset(dp, 0, sizeof(dp));
-        for ( int i = 1; i <= w; i ++ ) dp[i][0] = 1;
-        for ( int i = 1; i <= b; i ++ ) dp[0][i] = 0;
-        for ( int i = 1; i <= w; i ++ )
-        {
-        for ( int j = 1; j <= b; j ++ )
-        {
-            dp[i][j] += (double) i / ( i + j );
-            //dp[i][j] += (double) i / (i + j) * i / ( i + j - 1 );
-            if ( j >= 3 )
-            {
-                dp[i][j] += (double) j / (i + j) * (j - 1) / ( i + j - 1 ) * (j - 2) / ( i + j - 2 )*dp[i][j-3];
-            }
-            if ( i >= 1 && j >= 2 )
-            {
-                dp[i][j] += (double) j / (i + j)* (j-1)/(i+j-1)*i/(i+j-2)*dp[i-1][j-2];
-            }
+    int main() {
+      scanf("%d %d", &w, &b);
+      memset(dp, 0, sizeof(dp));
+      for (int i = 1; i <= w; i++) dp[i][0] = 1;
+      for (int i = 1; i <= b; i++) dp[0][i] = 0;
+      for (int i = 1; i <= w; i++) {
+        for (int j = 1; j <= b; j++) {
+          dp[i][j] += (double)i / (i + j);
+          // dp[i][j] += (double) i / (i + j) * i / ( i + j - 1 );
+          if (j >= 3) {
+            dp[i][j] += (double)j / (i + j) * (j - 1) / (i + j - 1) * (j - 2) /
+                        (i + j - 2) * dp[i][j - 3];
+          }
+          if (i >= 1 && j >= 2) {
+            dp[i][j] += (double)j / (i + j) * (j - 1) / (i + j - 1) * i /
+                        (i + j - 2) * dp[i - 1][j - 2];
+          }
         }
-        }
-        printf("%.9lf\n",dp[w][b]);
-        return 0;
+      }
+      printf("%.9lf\n", dp[w][b]);
+      return 0;
     }
     ```
 
@@ -133,49 +130,50 @@ $$
     int f[maxn][maxn], c[maxn], d[maxn];
     double dp[maxn][maxn][2], p[maxn];
     
-    int main()
-    {
-        scanf("%d %d %d %d", &n, &m, &v, &e);
-        for ( int i = 1; i <= n; i ++ ) scanf("%d", &c[i]);
-        for ( int i = 1; i <= n; i ++ ) scanf("%d", &d[i]);
-        for ( int i = 1; i <= n; i ++ ) scanf("%lf", &p[i]);
-        for ( int i = 1; i <= v; i ++ ) 
-            for ( int j = 1; j < i; j ++ ) 
-                f[i][j] = f[j][i] = 1e9;
+    int main() {
+      scanf("%d %d %d %d", &n, &m, &v, &e);
+      for (int i = 1; i <= n; i++) scanf("%d", &c[i]);
+      for (int i = 1; i <= n; i++) scanf("%d", &d[i]);
+      for (int i = 1; i <= n; i++) scanf("%lf", &p[i]);
+      for (int i = 1; i <= v; i++)
+        for (int j = 1; j < i; j++) f[i][j] = f[j][i] = 1e9;
     
-        int u, V, w;
-        for ( int i = 1; i<= e; i ++ ) {
-            scanf("%d %d %d", &u, &V, &w);
-            f[u][V] = f[V][u] = min(w, f[u][V]);
+      int u, V, w;
+      for (int i = 1; i <= e; i++) {
+        scanf("%d %d %d", &u, &V, &w);
+        f[u][V] = f[V][u] = min(w, f[u][V]);
+      }
+    
+      for (int k = 1; k <= v; k++)
+        for (int i = 1; i <= v; i++)
+          for (int j = 1; j < i; j++)
+            if (f[i][k] + f[k][j] < f[i][j]) f[i][j] = f[j][i] = f[i][k] + f[k][j];
+    
+      for (int i = 1; i <= n; i++)
+        for (int j = 0; j <= m; j++) dp[i][j][0] = dp[i][j][1] = 1e9;
+    
+      dp[1][0][0] = dp[1][1][1] = 0;
+      for (int i = 2; i <= n; i++)
+        for (int j = 0; j <= min(i, m); j++) {
+          dp[i][j][0] = min(dp[i - 1][j][0] + f[c[i - 1]][c[i]],
+                            dp[i - 1][j][1] + f[c[i - 1]][c[i]] * (1 - p[i - 1]) +
+                                f[d[i - 1]][c[i]] * p[i - 1]);
+          if (j != 0) {
+            dp[i][j][1] = min(dp[i - 1][j - 1][0] + f[c[i - 1]][d[i]] * p[i] +
+                                  f[c[i - 1]][c[i]] * (1 - p[i]),
+                              dp[i - 1][j - 1][1] +
+                                  f[c[i - 1]][c[i]] * (1 - p[i - 1]) * (1 - p[i]) +
+                                  f[c[i - 1]][d[i]] * (1 - p[i - 1]) * p[i] +
+                                  f[d[i - 1]][c[i]] * (1 - p[i]) * p[i - 1] +
+                                  f[d[i - 1]][d[i]] * p[i - 1] * p[i]);
+          }
         }
     
-        for ( int k = 1; k <= v; k ++ )
-            for ( int i = 1; i <= v; i ++ )
-                for ( int j = 1; j < i; j ++ ) 
-                    if ( f[i][k] + f[k][j] < f[i][j] )  
-                        f[i][j] = f[j][i] = f[i][k] + f[k][j];
+      double ans = 1e9;
+      for (int i = 0; i <= m; i++) ans = min(dp[n][i][0], min(dp[n][i][1], ans));
+      printf("%.2lf", ans);
     
-        for (int i = 1; i <= n; i ++)
-            for (int j = 0; j <= m; j ++) 
-                dp[i][j][0] = dp[i][j][1] = 1e9;
-    
-        dp[1][0][0] = dp[1][1][1] = 0;
-        for (int i = 2; i <= n; i ++ ) 
-            for (int j = 0; j <= min( i, m ); j ++ ) {
-                dp[i][j][0] = min(dp[i-1][j][0] + f[c[i-1]][c[i]],  
-                dp[i-1][j][1] + f[c[i-1]][c[i]] * (1 - p[i-1]) + f[d[i-1]][c[i]] * p[i-1]);
-                if ( j != 0 ) {
-                    dp[i][j][1] = min (dp[i-1][j-1][0] + f[c[i-1]][d[i]]*p[i] + f[c[i-1]][c[i]]*(1-p[i]),
-                    dp[i-1][j-1][1] + f[c[i-1]][c[i]] * (1-p[i-1])*(1-p[i]) + f[c[i-1]][d[i]] * (1-p[i-1]) * p[i]
-                    + f[d[i-1]][c[i]] * (1 - p[i]) * p[i-1] + f[d[i-1]][d[i]] * p[i-1] * p[i]);
-                }
-            }
-        
-        double ans=1e9;
-        for(int i = 0; i <= m; i ++) ans = min(dp[n][i][0], min(dp[n][i][1], ans));
-        printf("%.2lf",ans);
-         
-        return 0;
+      return 0;
     }
     ```
 
@@ -217,59 +215,56 @@ $$
     #include <bits/stdc++.h>
     using namespace std;
     
-    const int maxn=1e3 + 10;
+    const int maxn = 1e3 + 10;
     
-    double a[maxn][maxn],f[maxn];
-    int n,m;
+    double a[maxn][maxn], f[maxn];
+    int n, m;
     
-    void solve (int x)
-    {
-        memset (a, 0, sizeof a);
-        for (int i = 1; i <= m; i ++) {
-            if (i == 1) {
-                a[i][i] = 2;
-                a[i][i + 1] = -1;
-                a[i][m + 1]=3 + f[i];
-                continue;
-            }
-            else if (i == m) {
-                a[i][i] = 2;
-                a[i][i - 1] = -1;
-                a[i][m + 1] = 3 + f[i];
-                continue;
-            }
-            a[i][i] = 3;
-            a[i][i + 1]= -1;
-            a[i][i - 1] = -1;
-            a[i][m + 1] = 4 + f[i];
+    void solve(int x) {
+      memset(a, 0, sizeof a);
+      for (int i = 1; i <= m; i++) {
+        if (i == 1) {
+          a[i][i] = 2;
+          a[i][i + 1] = -1;
+          a[i][m + 1] = 3 + f[i];
+          continue;
+        } else if (i == m) {
+          a[i][i] = 2;
+          a[i][i - 1] = -1;
+          a[i][m + 1] = 3 + f[i];
+          continue;
         }
+        a[i][i] = 3;
+        a[i][i + 1] = -1;
+        a[i][i - 1] = -1;
+        a[i][m + 1] = 4 + f[i];
+      }
     
-        for (int i = 1; i < m; i ++) {
-            double p = a[i + 1][i] / a[i][i];
-            a[i + 1][i] = 0;
-            a[i + 1][i + 1] -= a[i][i + 1] * p;
-            a[i + 1][m + 1] -= a[i][m+1] * p;
-        }
+      for (int i = 1; i < m; i++) {
+        double p = a[i + 1][i] / a[i][i];
+        a[i + 1][i] = 0;
+        a[i + 1][i + 1] -= a[i][i + 1] * p;
+        a[i + 1][m + 1] -= a[i][m + 1] * p;
+      }
     
-        f[m] = a[m][m + 1] / a[m][m];
-        for (int i = m - 1; i >= 1; i --)
-            f[i] = (a[i][m + 1] - f[i + 1] * a[i][i + 1]) / a[i][i];
+      f[m] = a[m][m + 1] / a[m][m];
+      for (int i = m - 1; i >= 1; i--)
+        f[i] = (a[i][m + 1] - f[i + 1] * a[i][i + 1]) / a[i][i];
     }
     
-    int main()
-    {
-        scanf("%d %d", &n, &m);
-        int st,ed;
-        scanf("%d %d", &st, &ed);
-        if (m == 1) {
-            printf("%.10f\n",2.0 * (n - st)); 
-            return 0;
-        }
-        for (int i = n - 1; i >= st; i --) {
-            solve (i);
-        }
-        printf("%.10f\n", f[ed]);
+    int main() {
+      scanf("%d %d", &n, &m);
+      int st, ed;
+      scanf("%d %d", &st, &ed);
+      if (m == 1) {
+        printf("%.10f\n", 2.0 * (n - st));
         return 0;
+      }
+      for (int i = n - 1; i >= st; i--) {
+        solve(i);
+      }
+      printf("%.10f\n", f[ed]);
+      return 0;
     }
     ```
 
