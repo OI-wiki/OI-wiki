@@ -4,7 +4,7 @@
 
 这类题目采用顺推，也就是从初始状态推向结果。同一般的 DP 类似的，难点依然是对状态转移方程的刻画，只是这类题目经过了概率论知识的包装。
 
-??? note " 例题 [Codeforces 148 D Bag of mice](https://codeforces.com/problemset/problem/148/D)"
+??? note "例题 [Codeforces 148 D Bag of mice](https://codeforces.com/problemset/problem/148/D)"
     题目大意：袋子里有 w 只白鼠和 b 只黑鼠，公主和龙轮流从袋子里抓老鼠。谁先抓到白色老鼠谁就赢，如果袋子里没有老鼠了并且没有谁抓到白色老鼠，那么算龙赢。公主每次抓一只老鼠，龙每次抓完一只老鼠之后会有一只老鼠跑出来。每次抓的老鼠和跑出来的老鼠都是随机的。公主先抓。问公主赢的概率。
 
 设 $f_{i,j}$ 为轮到公主时袋子里有 $i$ 只白鼠， $j$ 只黑鼠，公主赢的概率。初始化边界， $f_{0,j}=0$ 因为没有白鼠了算龙赢， $f_{i,0}=1$ 因为抓一只就是白鼠，公主赢。
@@ -51,7 +51,7 @@
 
 ### 习题
 
--  [CodeForces 148 D Bag of mice](https://codeforces.com/problemset/problem/148/D) "
+-  [CodeForces 148 D Bag of mice](https://codeforces.com/problemset/problem/148/D) 
 -  [POJ3071 Football](http://poj.org/problem?id=3071) 
 -  [CodeForces 768 D Jon and Orbs](https://codeforces.com/problemset/problem/768/D) 
 
@@ -188,7 +188,8 @@ $$
 
 ## 有后效性 DP
 
-??? note " [CodeForces 24 D Broken robot](https://codeforces.com/problemset/problem/24/D) 题目大意：给出一个 $n*m$ 的矩阵区域，一个机器人初始在第 $x$ 行第 $y$ 列，每一步机器人会等概率地选择停在原地，左移一步，右移一步，下移一步，如果机器人在边界则不会往区域外移动，问机器人到达最后一行的期望步数。
+??? note "[CodeForces 24 D Broken robot](https://codeforces.com/problemset/problem/24/D)"
+    题目大意：给出一个 $n*m$ 的矩阵区域，一个机器人初始在第 $x$ 行第 $y$ 列，每一步机器人会等概率地选择停在原地，左移一步，右移一步，下移一步，如果机器人在边界则不会往区域外移动，问机器人到达最后一行的期望步数。
 
 在 $m=1$ 时每次有 $\frac{1}{2}$ 的概率不动，有 $\frac{1}{2}$ 的概率向下移动一格，答案为 $2\cdot (n-x)$ 。
 设 $f_{i,j}$ 为机器人机器人从第 i 行第 j 列出发到达第 $n$ 行的期望步数，最终状态为 $f_{n,j}=0$ 。
