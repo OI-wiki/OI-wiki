@@ -192,7 +192,7 @@ int main(int argc, char* argv[]) {
 
 ???+ note
     对于某些限制的检查可以用 `InStream::ensure/ensuref()` 函数更简洁地实现。如上例第 23 至 25 行也可以等价地写成如下形式：
-
+    
     ```cpp
     stream.ensuref(!used[v - 1], "vertex %d was used twice", v);
     ```
@@ -206,7 +206,7 @@ int main(int argc, char* argv[]) {
 
 -   读入选手输出时永远限定好范围，如果某些变量忘记了限定且被用于某些参数，你的 checker 可能会判定错误或 RE 等。
 
-    ### 反面教材
+    - 反面教材
 
     ```cpp
     // ....
@@ -221,7 +221,7 @@ int main(int argc, char* argv[]) {
     // 可能会有人输出 -42, 2147483456 或其他一些非法数字导致 checker RE
     ```
 
-    ### 正面教材
+    - 正面教材
 
     ```cpp
     // ....

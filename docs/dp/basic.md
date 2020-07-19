@@ -177,7 +177,7 @@ while (dp[ans] != mx) ++ans;
 $$
 dp[i][i + len] =
 \begin{cases}
-dp[i + 1][i + len - 1] + 2,  & \text{if $s[i] = s[i + len]$} \\[2ex]
+dp[i + 1][i + len - 1] + 2,  & \text{if}\ s[i] = s[i + len] \\[2ex]
 \max(dp[i + 1][i + len], dp[i][i + len - 1]), & \text{else}
 \end{cases}
 $$

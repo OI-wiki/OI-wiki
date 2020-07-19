@@ -4,18 +4,18 @@ author: kexplorning, Ir1d
 
 ???+note "药方食用提示"
     本急救贴可以让您充分了解以下内容（对应 [C++ 语法快速提要](#c-start-here) ）：
-
+    
     - 基本语法（块语句、注释、导入库、简单输入输出、声明变量、赋值……）
-    - C++ 的 Hello World 与 A+B Problem 写法与解释
-
-    [对应语法](#syntax) 部分较为紧凑，正式食用可能需要额外参考资料（已给出）。此部分不包括指针与 C 风格数组的介绍，也没有结构体、运算符重载等等。
-
-    [重要不同之处](#differences) 部分为 C++ 的语法特点，也是 Pascal 转 C++ 时会碰到的坑。
-
+    -   C++ 的 Hello World 与 A+B Problem 写法与解释
+    
+         [对应语法](#syntax) 部分较为紧凑，正式食用可能需要额外参考资料（已给出）。此部分不包括指针与 C 风格数组的介绍，也没有结构体、运算符重载等等。
+    
+         [重要不同之处](#differences) 部分为 C++ 的语法特点，也是 Pascal 转 C++ 时会碰到的坑。
+    
     如要快速查找，请见附录：
-
-    - [附 A：Pascal 与 C++ 运算符与数学函数语法对比表](#apascal-c-pascal-vs-c-operator-syntax-table)
-    - [附 B：文章检索](#b-index) - 按 C++ 语句语法索引
+    
+    -  [附 A：Pascal 与 C++ 运算符与数学函数语法对比表](#apascal-c-pascal-vs-c-operator-syntax-table) 
+    -  [附 B：文章检索](#b-index) - 按 C++ 语句语法索引
 
 <!-- 
 
@@ -264,8 +264,8 @@ if (a == b && a > 0 && b > 0) {
 
 ???+note "易错提醒"
     特别注意： **不要把 `==` 写成 `=` ！** 
-
-    由于 C/C++ 比 Pascal 语法灵活，如果在判断语句中写了 `if (a=b) {`，那么程序会顺利运行下去，因为 C++ 中 `a=b` 是有返回值的。
+    
+    由于 C/C++ 比 Pascal 语法灵活，如果在判断语句中写了 `if (a=b) {` ，那么程序会顺利运行下去，因为 C++ 中 `a=b` 是有返回值的。
 
 ####  `case` 与 `switch` 
 

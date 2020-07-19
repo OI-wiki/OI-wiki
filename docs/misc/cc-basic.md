@@ -105,19 +105,19 @@
 
 ??? note "停机问题是图灵不可计算的证明"
     定义函数 $\mathsf{UC}:\{0,1\}^\ast\to\{0,1\}$ 为：
-
+    
     $$
     \mathsf{UC}(\alpha)=\begin{cases}0&M_\alpha(\alpha)=1\\1&\text{otherwise}\end{cases}
     $$
-
+    
     我们先证明 $\mathsf{UC}$ 函数是图灵不可计算的：
-
+    
     假设存在一台图灵机 $M_{\beta}$ 能够计算 $\mathsf{UC}$ ，那么根据 $\mathsf{UC}$ 的定义可以得到 $\mathsf{UC}(\beta)=1\iff M_\beta(\beta)\neq 1$ ，而根据 $M_{\beta}$ 能够计算 $\mathsf{UC}$ 可以得到 $M_{\beta}(\beta)=\mathsf{UC}(\beta)$ ，产生了矛盾，所以假设不成立，不存在可以计算 $\mathsf{UC}$ 的图灵机。
-
+    
     令 $M_{\mathsf{HALT}}$ 是一个可以解决停机问题的图灵机， $M_{\mathsf{HALT}}(x,\alpha)$ 的值是判定问题 $M_\alpha$ 在输入为 $x$ 时是否会在有限步内停机的解，那么我们可以构造出一台能够计算 $\mathsf{UC}$ 函数的图灵机 $M_{\mathsf{UC}}$ ：
-
+    
      $M_\mathsf{UC}$ 首先调用 $M_\mathsf{HALT}(α,α)$ , 如果它输出 $0$ , 则 $M_\mathsf{UC}(α)=1$ ；否则， $M_\mathsf{UC}$ 使用通用图灵机模拟计算得到答案。
-
+    
     由于 $\mathsf{UC}$ 函数是图灵不可计算的，所以 $M_\mathsf{HALT}$ 不存在，也就是说停机问题是图灵不可计算的。
 
 ## 丘奇 - 图灵论题
@@ -287,12 +287,12 @@ $$
 
 ??? note "确定性时间谱系定理的证明"
     定义语言 $L=\{(x, y)|\mathcal{U}((x, y), x)\text{ 在 }f(|x|+|y|)\text{ 时间内停机并拒绝}\}$ ，由于 $f(n)$ 是一个时间可构造函数，可以根据定义进行计算来判定 $L$ ，用时为 $O(f(|x|+|y|))$ ，所以 $L\in\mathsf{DTIME}(f(n))$ 。
-
+    
     现在假设 $L\in\mathsf{DTIME}(o\left({\dfrac {f(n)}{\log f(n)}}\right))$ ，设 $M_z$ 就是那台在 $o\left({\dfrac {f(n)}{\log f(n)}}\right)$ 的时间内判定 $L$ 的图灵机。
-
-    令通用图灵机 $\mathcal{U}(x, z)$ 关于 $x$ 的用时为 $g(|x|)$ ，由上文关于通用图灵机的介绍可以得到 $g(n)=o(f(n))$ ，所以，当 $y$ 足够大时，$g(|z|+|y|)<f(|z|+|y|)$ 。
-
-    令 $y'$ 是一个足够大的 $y$ ，那么 $\mathcal{U}((z, y'), z)$ 一定能在 $f(|z|+|y'|)$ 时间内停机，从而 $M_z(z, y')\ne M_z(z, y')$，产生矛盾，所以假设不成立，确定性时间谱系定理证毕。
+    
+    令通用图灵机 $\mathcal{U}(x, z)$ 关于 $x$ 的用时为 $g(|x|)$ ，由上文关于通用图灵机的介绍可以得到 $g(n)=o(f(n))$ ，所以，当 $y$ 足够大时， $g(|z|+|y|)<f(|z|+|y|)$ 。
+    
+    令 $y'$ 是一个足够大的 $y$ ，那么 $\mathcal{U}((z, y'), z)$ 一定能在 $f(|z|+|y'|)$ 时间内停机，从而 $M_z(z, y')\ne M_z(z, y')$ ，产生矛盾，所以假设不成立，确定性时间谱系定理证毕。
 
 #### 非确定性时间谱系定理
 

@@ -36,11 +36,10 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 ## 例题
 
 ???+note "例题[「国家集训队」数颜色 / 维护队列](https://www.luogu.com.cn/problem/P1903)"
-
     题目大意：给你一个序列，M 个操作，有两种操作：
-
-    1.  修改序列上某一位的数字
-    2.  询问区间 $[l,r]$ 中数字的种类数（多个相同的数字只算一个）
+    
+    1. 修改序列上某一位的数字
+    2. 询问区间 $[l,r]$ 中数字的种类数（多个相同的数字只算一个）
 
 我们不难发现，如果不带操作 1（修改）的话，我们就能轻松用普通莫队解决。
 

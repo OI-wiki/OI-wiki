@@ -29,9 +29,9 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 ???+ note "[Linux 子系统（WSL）](https://zh.wikipedia.org/wiki/%E9%80%82%E7%94%A8%E4%BA%8E_Linux_%E7%9A%84_Windows_%E5%AD%90%E7%B3%BB%E7%BB%9F) "
     适用于 Linux 的 Windows 子系统（英语：Windows Subsystem for Linux，简称 WSL）是一个为在 Windows 10 和 Windows Server 2019 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。
-
+    
     WSL 可让开发人员按原样运行 GNU/Linux 环境 - 包括大多数命令行工具、实用工具和应用程序 - 且不会产生虚拟机开销。
-
+    
     WSL 仅在版本 1607 之后的 64 位版本的 Windows 10 中可用。它也可在 Windows Server 2019 中使用。
 
 * * *
@@ -112,7 +112,7 @@ Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速�
 
 ???+ warning  "使用与自己系统版本匹配的软件源"
     请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a` 查看 Ubuntu 版本）。
-
+    
     除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！
 
 使用以下命令更新软件和软件源：

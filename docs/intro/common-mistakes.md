@@ -10,7 +10,7 @@
 
 - 数组开太大，（在 OJ 上）使用了不合法的函数（例如多线程），或者函数声明但未定义，会引起链接错误。
 
--   使用 `algorithm` 中的 `max` 函数时，一个参数类型为 `int` 而另一个参数类型为 `long long` 
+-   使用 `algorithm` 中的 `max` 函数时，一个参数类型为 `int` 而另一个参数类型为 `long long` 。
     -   示例：
         ```cpp
         printf("%lld\n", max(0, query(1, 1, n, l, r)); // query 返回 long long 类型
@@ -32,14 +32,18 @@
 -  `-1 >> 1 == 1` 。
 
 -   赋值运算符和 `==` 不分。
+
     -   示例：
-            ```cpp
-            if (n = 1)
-              puts("Yes");
-            else
-              puts("No");
-            ```
-            无论 $n$ 的值之前为多少，输出肯定是 `Yes` 。
+
+        ```cpp
+        if (n = 1)
+          puts("Yes");
+        else
+          puts("No");
+        ```
+
+        无论 $n$ 的值之前为多少，输出肯定是 `Yes` 。
+
         Tips: 如果你的确是想在 `if` / `while` 直接用赋值运算符（比如 `while (foo = bar)` ），又不想收到 Warning，可以使用 **双括号** ： `while ((foo = bar))` 。
 
 - 使用 `scanf` 读入的时候没加取地址符 `&` 。更一般地，使用 `scanf` 或 `printf` 的时候参数类型与格式指定符不符。
@@ -115,12 +119,11 @@
 
 - 在类或结构体的构造函数中，使用 : 初始化变量，且变量声明顺序不符合初始化时候的依赖关系。因为成员变量的初始化顺序只与它们在类中声明的顺序有关，而与在初始化列表中的顺序无关。
 
-- 并查集合并集合时没有把两个元素的祖先合并：
-
-```cpp
-f[a] = b;              // 错误
-f[find(a)] = find(b);  // 正确
-```
+-   并查集合并集合时没有把两个元素的祖先合并：
+    ```cpp
+    f[a] = b;              // 错误
+    f[find(a)] = find(b);  // 正确
+    ```
 
 ### 会导致 RE
 
@@ -138,6 +141,7 @@ f[find(a)] = find(b);  // 正确
         return (block[a.l] & 1) ^ (a.r < b.r);
       else
         return block[a.l] < block[b.l];
+    }
     ```
     上述代码中 `(block[a.l]&1)^(a.r<b.r)` 不满足上述要求的第二点。
     改成这样就正确了：
@@ -147,6 +151,7 @@ f[find(a)] = find(b);  // 正确
         return (block[a.l] & 1) ? (a.r < b.r) : (a.r > b.r);
       else
         return block[a.l] < block[b.l];
+    }
     ```
 
 - 解引用空指针。
