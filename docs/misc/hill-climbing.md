@@ -47,7 +47,7 @@
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
-    double ans[10001], cans[100001], dis[10001], tot, f[1001][1001], seed = 718;
+    double ans[10001], cans[100001], dis[10001], tot, f[1001][1001];
     int n;
     double check() {
       tot = 0;
@@ -66,15 +66,14 @@
                      tot;  // 对于每个维度把修改值更新掉，欧氏距离差*差值贡献
     }
     int main() {
-      srand(seed);
       cin >> n;
       for (int i = 1; i <= n + 1; i++)
         for (int j = 1; j <= n; j++) {
           cin >> f[i][j];
           ans[j] += f[i][j];
         }
-      for (int i = 1; i <= n; i++) ans[i] /= (n + 1);     // 初始化
-      for (double t = 10001; t >= 0.0001; t *= 0.9999) {  // 不断降温
+      for (int i = 1; i <= n; i++) ans[i] /= (n + 1);      // 初始化
+      for (double t = 10001; t >= 0.0001; t *= 0.99995) {  // 不断降温
         check();
         for (int i = 1; i <= n; i++) ans[i] += cans[i] * t;  // 修改
       }
