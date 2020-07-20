@@ -163,7 +163,7 @@ int queryrnk(int o, int v) {
 int querykth(int o, int k) {
   if (siz[lc[o]] >= k) return querykth(lc[o], k);
   if (siz[lc[o]] < k - cnt[o])
-    return querykth(rc[o], k - siz[lc[o]] - cnt[o] + 1);
+    return querykth(rc[o], k - siz[lc[o]] - cnt[o]);
   return val[o];
   // 如要找排名为 k 的元素所对应的结点，直接 return o 即可
 }
