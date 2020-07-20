@@ -74,9 +74,9 @@ Node* merges(Node* x) {
 
 最后一句话是该函数的核心，这句话分三部分：
 
-1.   `merge(x,a)` “配对”了 x 和 a。
-2.   `merges(b)` 递归合并 b 和他的兄弟们。
-3.  将上面 2 个操作产生的 2 个新树合并。
+1.  `merge(x,a)` “配对”了 x 和 a。
+2.  `merges(b)` 递归合并 b 和他的兄弟们。
+3. 将上面 2 个操作产生的 2 个新树合并。
 
 需要注意到的是，上文提到了配对方向和合并方向是有要求的（从左往右配对，从右往左合并），该递归函数的实现已保证了这个顺序，如果读者需要自行实现迭代版本的话请务必注意保证该顺序，否则复杂度将失去保证。
 
@@ -157,9 +157,9 @@ Node* decrease - key(Node* root, Node* x, LL v) {
 
 ### 参考文献
 
-1.   [HOOCCOOH 的题解](https://hooccooh.blog.luogu.org/solution-p3377) 
-2.  集训队论文《黄源河 -- 左偏树的特点及其应用》
-3.   [《配对堆中文版》](https://wenku.baidu.com/view/f2527bc2bb4cf7ec4afed06d.html) 
-4.   [维基百科 pairing heap 词条](https://en.wikipedia.org/wiki/Pairing_heap) 
-5.   <https://blog.csdn.net/luofeixiongsix/article/details/50640668> 
-6.   <https://brilliant.org/wiki/pairing-heap/> （注：本条目所有图片均来自这里）
+1.  [HOOCCOOH 的题解](https://hooccooh.blog.luogu.org/solution-p3377) 
+2. 集训队论文《黄源河 -- 左偏树的特点及其应用》
+3.  [《配对堆中文版》](https://wenku.baidu.com/view/f2527bc2bb4cf7ec4afed06d.html) 
+4.  [维基百科 pairing heap 词条](https://en.wikipedia.org/wiki/Pairing_heap) 
+5.  <https://blog.csdn.net/luofeixiongsix/article/details/50640668> 
+6.  <https://brilliant.org/wiki/pairing-heap/> （注：本条目所有图片均来自这里）

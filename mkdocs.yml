@@ -44,6 +44,7 @@ nav:
     - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - 如何参与: intro/htc.md
+    - 格式手册: intro/format.md
     - F.A.Q.: intro/faq.md
     - 致谢: intro/thanks.md
   - 语言基础:
@@ -147,6 +148,7 @@ nav:
     - 插头 DP: dp/plug.md
     - 计数 DP: dp/count.md
     - 动态 DP: dp/dynamic.md
+    - 概率 DP: dp/probability.md
     - DP 优化:
       - 单调队列/单调栈优化: dp/opt/monotonous-queue-stack.md
       - 斜率优化: dp/opt/slope.md
@@ -193,6 +195,7 @@ nav:
       - 乘法逆元: math/inverse.md
       - 线性同余方程: math/linear-equation.md
       - 中国剩余定理: math/crt.md
+      - 二次剩余: math/quad-residue.md
       - BSGS: math/bsgs.md
       - 原根: math/primitive-root.md
       - 卢卡斯定理: math/lucas.md
@@ -388,6 +391,7 @@ nav:
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
   - 专题:
+    - 命令行使用方法: topic/cmd.md
     - RMQ: topic/rmq.md
     - 图的匹配:
       - 图匹配: topic/graph-matching/graph-match.md

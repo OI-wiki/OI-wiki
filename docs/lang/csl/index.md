@@ -19,8 +19,8 @@ STL 即标准模板库（Standard Template Library），是 C++ 标准库的一�
 
 ## 参考资料
 
-1.   [C++ reference](https://en.cppreference.com/) 
-2.   [C++ 参考手册](https://zh.cppreference.com/) 
-3.   [维基百科 - C++](https://zh.wikipedia.org/wiki/C%2B%2B) 
-4.   [Boost 官方网站](https://www.boost.org/) 
-5.   [Boost 教程网站](https://theboostcpplibraries.com/) 
+1.  [C++ reference](https://en.cppreference.com/) 
+2.  [C++ 参考手册](https://zh.cppreference.com/) 
+3.  [维基百科 - C++](https://zh.wikipedia.org/wiki/C%2B%2B) 
+4.  [Boost 官方网站](https://www.boost.org/) 
+5.  [Boost 教程网站](https://theboostcpplibraries.com/) 

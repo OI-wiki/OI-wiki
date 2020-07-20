@@ -91,12 +91,12 @@ Lambda 表达式以 capture 子句开头，它指定哪些变量被捕获，以�
 
 例如 Lambda 体要通过引用访问外部变量 `a` 并通过值访问外部变量 `b` ，则以下子句等效：
 
--    `[&a, b]` 
--    `[b, &a]` 
--    `[&, b]` 
--    `[b, &]` 
--    `[=, &a]` 
--    `[&a, =]` 
+-  `[&a, b]` 
+-  `[b, &a]` 
+-  `[&, b]` 
+-  `[b, &]` 
+-  `[=, &a]` 
+-  `[&a, =]` 
 
 默认捕获时，会捕获 Lambda 中提及的变量。
 
@@ -150,11 +150,11 @@ auto x2 = [] { return {1, 2}; };    // ERROR: 返回类型被推导为 void
 
 Lambda 主体可包含任何函数可包含的部分。普通函数和 Lambda 表达式主体均可访问以下变量类型：
 
--   从封闭范围捕获变量
--   参数
--   本地声明的变量
--   在一个 `class` 中声明时，捕获 `this` 
--   具有静态存储时间的任何变量，如全局变量
+- 从封闭范围捕获变量
+- 参数
+- 本地声明的变量
+- 在一个 `class` 中声明时，捕获 `this` 
+- 具有静态存储时间的任何变量，如全局变量
 
 下面是一个例子
 
@@ -263,7 +263,7 @@ std::cout << std::get<1>(tupA) << std::endl;
 
 ## std::function
 
-类模板 `std::function` 是通用多态函数封装器，定义于头文件 `<functional>` 。 `std::function` 的实例能存储、复制及调用任何可调用（_Callable_）目标——函数、Lambda 表达式或其他函数对象，还有指向成员函数指针和指向数据成员指针。
+类模板 `std::function` 是通用多态函数封装器，定义于头文件 `<functional>` 。 `std::function` 的实例能存储、复制及调用任何可调用（*Callable*）目标——函数、Lambda 表达式或其他函数对象，还有指向成员函数指针和指向数据成员指针。
 
 存储的可调用对象被称为 `std::function` 的 **目标** 。若 `std::function` 不含目标，则称它为 **空** 。调用空 `std::function` 的目标将导致抛出 `std::bad_function_call` 异常。
 
@@ -312,6 +312,6 @@ int main() {
 
 ## 参考
 
-1.   [C++ reference](https://en.cppreference.com/) 
-2.   [C++ 参考手册](https://zh.cppreference.com/) 
-3.   [C++ in Visual Studio](https://docs.microsoft.com/en-us/cpp/overview/visual-cpp-in-visual-studio?view=vs-2019) 
+1.  [C++ reference](https://en.cppreference.com/) 
+2.  [C++ 参考手册](https://zh.cppreference.com/) 
+3.  [C++ in Visual Studio](https://docs.microsoft.com/en-us/cpp/overview/visual-cpp-in-visual-studio?view=vs-2019) 

@@ -117,10 +117,10 @@ $$
 按照次数的奇偶来分成两组，然后右边提出来一个 $x$ 
 
 $$
-\begin{split}
+\begin{aligned}
 f(x) &= (a_0+a_2x^2+a_4x^4+a_6x^6) + (a_1x+a_3x^3+a_5x^5+a_7x^7)\\
      &= (a_0+a_2x^2+a_4x^4+a_6x^6) + x(a_1+a_3x^2+a_5x^4+a_7x^6)
-\end{split}
+\end{aligned}
 $$
 
 分别用奇偶次次项数建立新的函数
@@ -141,23 +141,23 @@ $$
 利用单位复根的性质得到
 
 $$
-\begin{split}
+\begin{aligned}
 \operatorname{DFT}(f(\omega_n^k))
 &=\operatorname{DFT}(G((\omega_n^k)^2)) + \omega_n^k  \times \operatorname{DFT}(H((\omega_n^k)^2))\\
 &=\operatorname{DFT}(G(\omega_n^{2k})) + \omega_n^k  \times \operatorname{DFT}(H(\omega_n^{2k}))\\
 &=\operatorname{DFT}(G(\omega_{n/2}^k)) + \omega_n^k  \times \operatorname{DFT}(H(\omega_{n/2}^k))
-\end{split}
+\end{aligned}
 $$
 
 同理可得
 
 $$
-\begin{split}
+\begin{aligned}
 \operatorname{DFT}(f(\omega_n^{k+n/2}))
 &=\operatorname{DFT}(G(\omega_n^{2k+n})) + \omega_n^{k+n/2}  \times \operatorname{DFT}(H(\omega_n^{2k+n}))\\
 &=\operatorname{DFT}(G(\omega_n^{2k})) - \omega_n^k  \times \operatorname{DFT}(H(\omega_n^{2k}))\\
 &=\operatorname{DFT}(G(\omega_{n/2}^k)) - \omega_n^k  \times \operatorname{DFT}(H(\omega_{n/2}^k))
-\end{split}
+\end{aligned}
 $$
 
 因此我们求出了 $\operatorname{DFT}(G(\omega_{n/2}^k))$ 和 $\operatorname{DFT}(H(\omega_{n/2}^k))$ 后，就可以同时求出 $\operatorname{DFT}(f(\omega_n^k))$ 和 $\operatorname{DFT}(f(\omega_n^{k+n/2}))$ 。于是对 $G$ 和 $H$ 分别递归 DFT 即可。
@@ -210,10 +210,10 @@ $$
 
 以 $8$ 项多项式为例，模拟拆分的过程：
 
--   初始序列为 $\{x_0, x_1, x_2, x_3, x_4, x_5, x_6, x_7\}$ 
--   一次二分之后 $\{x_0, x_2, x_4, x_6\},\{x_1, x_3,x_5, x_7 \}$ 
--   两次二分之后 $\{x_0,x_4\} \{x_2, x_6\},\{x_1, x_3\},\{x_5, x_7 \}$ 
--   三次二分之后 $\{x_0\}\{x_4\}\{x_2\}\{x_6\}\{x_1\}\{x_5\}\{x_3\}\{x_7 \}$ 
+- 初始序列为 $\{x_0, x_1, x_2, x_3, x_4, x_5, x_6, x_7\}$ 
+- 一次二分之后 $\{x_0, x_2, x_4, x_6\},\{x_1, x_3,x_5, x_7 \}$ 
+- 两次二分之后 $\{x_0,x_4\} \{x_2, x_6\},\{x_1, x_3\},\{x_5, x_7 \}$ 
+- 三次二分之后 $\{x_0\}\{x_4\}\{x_2\}\{x_6\}\{x_1\}\{x_5\}\{x_3\}\{x_7 \}$ 
 
 规律：其实就是原来的那个序列，每个数用二进制表示，然后把二进制翻转对称一下，就是最终那个位置的下标。比如 $x_1$ 是 001，翻转是 100，也就是 4，而且最后那个位置确实是 4。我们称这个变换为蝴蝶变换。
 
@@ -256,8 +256,8 @@ $$
 
 举个例子：设 $k=5$ ， $len=(100000)_2$ 。为了翻转 $(11001)_2$ ：
 
-1.  考虑 $(1100)_2$ ，我们知道 $R((1100)_2)=R((01100)_2)=(00110)_2$ ，再右移一位就得到了 $(00011)_2$ 。
-2.  考虑个位，如果是 $1$ ，它就要翻转到数的最高位，即翻转数加上 $(10000)_2=2^{k-1}$ ，如果是 $0$ 则不用更改。
+1. 考虑 $(1100)_2$ ，我们知道 $R((1100)_2)=R((01100)_2)=(00110)_2$ ，再右移一位就得到了 $(00011)_2$ 。
+2. 考虑个位，如果是 $1$ ，它就要翻转到数的最高位，即翻转数加上 $(10000)_2=2^{k-1}$ ，如果是 $0$ 则不用更改。
 
 ???+ note "蝴蝶变换实现（$O(n)$）"
     ```cpp
@@ -320,10 +320,10 @@ $$
 对 $A(x)$ 的定义式做一下变换，可以将 $A(b_k)$ 表示为
 
 $$
-\begin{split}
+\begin{aligned}
 A(b_k)&=\sum_{i=0}^{n-1}f(\omega_n^i)\omega_n^{-ik}=\sum_{i=0}^{n-1}\omega_n^{-ik}\sum_{j=0}^{n-1}a_j(\omega_n^i)^{j}\\
 &=\sum_{i=0}^{n-1}\sum_{j=0}^{n-1}a_j\omega_n^{i(j-k)}=\sum_{j=0}^{n-1}a_j\sum_{i=0}^{n-1}\left(\omega_n^{j-k}\right)^i\\
-\end{split}
+\end{aligned}
 $$
 
 记 $S\left(\omega_n^a\right)=\sum_{i=0}^{n-1}\left(\omega_n^a\right)^i$ 。
@@ -333,21 +333,21 @@ $$
 当 $a\neq 0$ 时，我们错位相减
 
 $$
-\begin{split}
+\begin{aligned}
 S\left(\omega_n^a\right)&=\sum_{i=0}^{n-1}\left(\omega_n^a\right)^i\\
 \omega_n^a S\left(\omega_n^a\right)&=\sum_{i=1}^{n}\left(\omega_n^a\right)^i\\
 S\left(\omega_n^a\right)&=\frac{\left(\omega_n^a\right)^n-\left(\omega_n^a\right)^0}{\omega_n^a-1}=0\\
-\end{split}
+\end{aligned}
 $$
 
 也就是说
 
 $$
 S\left(\omega_n^a\right)=
-\left\{\begin{split}
+\left\{\begin{aligned}
 n,a=0\\
 0,a\neq 0
-\end{split}\right.
+\end{aligned}\right.
 $$
 
 那么代回原式
@@ -359,10 +359,10 @@ $$
 也就是说给定点 $b_i=\omega_n^{-i}$ ，则 $A$ 的点值表示法为
 
 $$
-\begin{split}
+\begin{aligned}
 &\left\{ (b_0,A(b_0)),(b_1,A(b_1)),\cdots,(b_{n-1},A(b_{n-1})) \right\}\\
 =&\left\{ (b_0,a_0\cdot n),(b_1,a_1\cdot n),\cdots,(b_{n-1},a_{n-1}\cdot n) \right\}
-\end{split}
+\end{aligned}
 $$
 
 综上所述，我们取单位根为其倒数，对 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 跑一遍 FFT，然后除以 $n$ 即可得到 $f(x)$ 的系数表示。
@@ -515,4 +515,4 @@ $$
 
 ## 参考文献
 
-1.   [桃酱的算法笔记](https://zhuanlan.zhihu.com/p/41867199) .
+1.  [桃酱的算法笔记](https://zhuanlan.zhihu.com/p/41867199) .

@@ -20,10 +20,10 @@
 
 证明：假设这条直径是 $\delta(s,t)$ 。分两种情况：
 
--   当出发结点 $y$ 在 $\delta(s,t)$ 时，假设到达的最远结点 $z$ 不是 $s,t$ 中的任一个。这时将 $\delta(y,z)$ 与不与之重合的 $\delta(y,s)$ 拼接（也可以假设不与之重合的是直径的另一个方向），可以得到一条更长的直径，与前提矛盾。
+- 当出发结点 $y$ 在 $\delta(s,t)$ 时，假设到达的最远结点 $z$ 不是 $s,t$ 中的任一个。这时将 $\delta(y,z)$ 与不与之重合的 $\delta(y,s)$ 拼接（也可以假设不与之重合的是直径的另一个方向），可以得到一条更长的直径，与前提矛盾。
 -   当出发结点 $y$ 不在 $\delta(s,t)$ 上时，分两种情况：
-    -   当 $y$ 到达的最远结点 $z$ 横穿 $\delta(s,t)$ 时，记与之相交的结点为 $x$ 。此时有 $\delta(y,z)=\delta(y,x)+\delta(x,z)$ 。而此时 $\delta(y,z)>\delta(y,t)$ ，故可得 $\delta(x,z)>\delta(x,t)$ 。由 1 的结论可知该假设不成立。
-    -   当 $y$ 到达的最远结点 $z$ 与 $\delta(s,t)$ 不相交时，记 $y$ 到 $t$ 的最短路首先与 $\delta(s,t)$ 相交的结点是 $x$ 。由假设 $\delta(y,z)>\delta(y,x)+\delta(x,t)$ 。而 $\delta(y,z)+\delta(y,x)+\delta(x,s)$ 又可以形成 $\delta(z,s)$ ，而 $\delta(z,s)>\delta(x,s)+\delta(x,t)+2\delta(y,x)=\delta(s,t)+2\delta(y,x)$ ，与题意矛盾。
+    - 当 $y$ 到达的最远结点 $z$ 横穿 $\delta(s,t)$ 时，记与之相交的结点为 $x$ 。此时有 $\delta(y,z)=\delta(y,x)+\delta(x,z)$ 。而此时 $\delta(y,z)>\delta(y,t)$ ，故可得 $\delta(x,z)>\delta(x,t)$ 。由 1 的结论可知该假设不成立。
+    - 当 $y$ 到达的最远结点 $z$ 与 $\delta(s,t)$ 不相交时，记 $y$ 到 $t$ 的最短路首先与 $\delta(s,t)$ 相交的结点是 $x$ 。由假设 $\delta(y,z)>\delta(y,x)+\delta(x,t)$ 。而 $\delta(y,z)+\delta(y,x)+\delta(x,s)$ 又可以形成 $\delta(z,s)$ ，而 $\delta(z,s)>\delta(x,s)+\delta(x,t)+2\delta(y,x)=\delta(s,t)+2\delta(y,x)$ ，与题意矛盾。
 
 因此定理成立。
 
@@ -94,8 +94,8 @@ int main() {
 
 ## 习题
 
--    [CodeChef, Diameter of Tree](https://www.codechef.com/problems/DTREE) 
--    [Educational Codeforces Round 35, Problem F, Tree Destruction](https://codeforces.com/contest/911/problem/F) 
--    [ZOJ 3820, Building Fire Stations](https://vjudge.net/problem/ZOJ-3820) 
--    [CEOI2019/CodeForces 1192B. Dynamic Diameter](https://codeforces.com/contest/1192/problem/B) 
--    [IPSC 2019 网络赛，Lightning Routing I](https://nanti.jisuanke.com/t/41398) 
+-  [CodeChef, Diameter of Tree](https://www.codechef.com/problems/DTREE) 
+-  [Educational Codeforces Round 35, Problem F, Tree Destruction](https://codeforces.com/contest/911/problem/F) 
+-  [ZOJ 3820, Building Fire Stations](https://vjudge.net/problem/ZOJ-3820) 
+-  [CEOI2019/CodeForces 1192B. Dynamic Diameter](https://codeforces.com/contest/1192/problem/B) 
+-  [IPSC 2019 网络赛，Lightning Routing I](https://nanti.jisuanke.com/t/41398) 

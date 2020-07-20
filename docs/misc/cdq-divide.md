@@ -34,9 +34,9 @@
 
  **4. 想方设法处理一下第二类点对的信息** 
 
-_实际应用的时候我们通常都是写一个函数 $solve(l,r)$ 表示我们正在处理 $l \leq i \leq r,l \leq j \leq r$ 的点对_
+*实际应用的时候我们通常都是写一个函数 $solve(l,r)$ 表示我们正在处理 $l \leq i \leq r,l \leq j \leq r$ 的点对*
 
-_所以刚才的算法流程中的递归部分我们就是通过 $solve(l,mid),solve(mid,r)$ 来实现的_
+*所以刚才的算法流程中的递归部分我们就是通过 $solve(l,mid),solve(mid,r)$ 来实现的*
 
 所以说 cdq 分治只是一种十分模糊的思想，可以看到这种思想就是不断的把点对通过递归~~（甩锅）~~的方式分给左右两个区间
 
@@ -204,7 +204,7 @@ int main() {
 
  $dp_{i}=1+ \max_{j=1}^{i-1}dp_{j}[a_{j}<a_{i}][b_{j}<b_{i}]$ 
 
-_如果你足够熟练的话可以看出这就是一个二维最长上升子序列的 $dp$ 方程_
+*如果你足够熟练的话可以看出这就是一个二维最长上升子序列的 $dp$ 方程*
 
 解释一下上面的式子就是说只有 $i<j,a_{i}<a_{j},b_{i}<b_{j}$ 的点 $j$ 可以去更新点 $i$ 的 dp 值
 
@@ -286,61 +286,152 @@ _如果你足够熟练的话可以看出这就是一个二维最长上升子序�
 
 一道二维最长上升子序列的题，为了确定某一个元素是否在最长上升子序列中可以正反跑两遍 CDQ
 
-```C
-#include<cstdio>
-#include<algorithm>
+```cpp
+#include <algorithm>
+#include <cstdio>
 using namespace std;
-typedef double db;const int N=1e6+10;
-struct data{int h;int v;int p;int ma;db ca;}a[2][N];int n;bool tr;
-inline bool cmp1(const data& a,const data& b){if(tr)return a.h>b.h;else return a.h<b.h;}
-inline bool cmp2(const data& a,const data& b){if(tr)return a.v>b.v;else return a.v<b.v;}
-inline bool cmp3(const data& a,const data& b){if(tr)return a.p<b.p;else return a.p>b.p;}
-inline bool cmp4(const data& a,const data& b){return a.v==b.v;}
-struct treearray
-{
-    int ma[2*N];db ca[2*N];
-    inline void c(int x,int t,db c)
-    {for(;x<=n;x+=x&(-x)){if(ma[x]==t){ca[x]+=c;}else if(ma[x]<t){ca[x]=c;ma[x]=t;}}}
-    inline void d(int x){for(;x<=n;x+=x&(-x)){ma[x]=0;ca[x]=0;}}
-    inline void q(int x,int& m,db& c)
-    {for(;x>0;x-=x&(-x)){if(ma[x]==m){c+=ca[x];}else if(m<ma[x]){c=ca[x];m=ma[x];}}}
-}ta;int rk[2][N];
-inline void solve(int l,int r,int t)
-{
-    if(r-l==1){return;}int mid=(l+r)/2;
-    solve(l,mid,t);sort(a[t]+mid+1,a[t]+r+1,cmp1);int p=l+1;
-    for(int i=mid+1;i<=r;i++)
-    {
-        for(;(cmp1(a[t][p],a[t][i])||a[t][p].h==a[t][i].h)&&p<=mid;p++)
-        {ta.c(a[t][p].v,a[t][p].ma,a[t][p].ca);}db c=0;int m=0;ta.q(a[t][i].v,m,c);
-        if(a[t][i].ma<m+1){a[t][i].ma=m+1;a[t][i].ca=c;}else if(a[t][i].ma==m+1){a[t][i].ca+=c;}
-    }for(int i=l+1;i<=mid;i++){ta.d(a[t][i].v);}
-    sort(a[t]+mid,a[t]+r+1,cmp3);solve(mid,r,t);
-    sort(a[t]+l+1,a[t]+r+1,cmp1);
+typedef double db;
+const int N = 1e6 + 10;
+struct data {
+  int h;
+  int v;
+  int p;
+  int ma;
+  db ca;
+} a[2][N];
+int n;
+bool tr;
+inline bool cmp1(const data& a, const data& b) {
+  if (tr)
+    return a.h > b.h;
+  else
+    return a.h < b.h;
 }
-inline void ih(int t)
-{
-    sort(a[t]+1,a[t]+n+1,cmp2);rk[t][1]=1;
-    for(int i=2;i<=n;i++){rk[t][i]=(cmp4(a[t][i],a[t][i-1]))?rk[t][i-1]:i;}
-    for(int i=1;i<=n;i++){a[t][i].v=rk[t][i];}sort(a[t]+1,a[t]+n+1,cmp3);
-    for(int i=1;i<=n;i++){a[t][i].ma=1;a[t][i].ca=1;}
-}int len;db ans;
-int main()
-{
-    scanf("%d",&n);
-    for(int i=1;i<=n;i++)
-    {
-        scanf("%d%d",&a[0][i].h,&a[0][i].v);a[0][i].p=i;
-        a[1][i].h=a[0][i].h;a[1][i].v=a[0][i].v;a[1][i].p=i;
-    }ih(0);solve(0,n,0);tr=1;ih(1);solve(0,n,1);tr=1;
-    sort(a[0]+1,a[0]+n+1,cmp3);sort(a[1]+1,a[1]+n+1,cmp3);
-    for(int i=1;i<=n;i++){len=max(len,a[0][i].ma);}printf("%d\n",len);
-    for(int i=1;i<=n;i++){if(a[0][i].ma==len){ans+=a[0][i].ca;}}
-    for(int i=1;i<=n;i++)
-    {
-        if(a[0][i].ma+a[1][i].ma-1==len){printf("%.5lf ",(a[0][i].ca*a[1][i].ca)/ans);}
-        else {printf("0.00000 ");}
-    }return 0;
+inline bool cmp2(const data& a, const data& b) {
+  if (tr)
+    return a.v > b.v;
+  else
+    return a.v < b.v;
+}
+inline bool cmp3(const data& a, const data& b) {
+  if (tr)
+    return a.p < b.p;
+  else
+    return a.p > b.p;
+}
+inline bool cmp4(const data& a, const data& b) { return a.v == b.v; }
+struct treearray {
+  int ma[2 * N];
+  db ca[2 * N];
+  inline void c(int x, int t, db c) {
+    for (; x <= n; x += x & (-x)) {
+      if (ma[x] == t) {
+        ca[x] += c;
+      } else if (ma[x] < t) {
+        ca[x] = c;
+        ma[x] = t;
+      }
+    }
+  }
+  inline void d(int x) {
+    for (; x <= n; x += x & (-x)) {
+      ma[x] = 0;
+      ca[x] = 0;
+    }
+  }
+  inline void q(int x, int& m, db& c) {
+    for (; x > 0; x -= x & (-x)) {
+      if (ma[x] == m) {
+        c += ca[x];
+      } else if (m < ma[x]) {
+        c = ca[x];
+        m = ma[x];
+      }
+    }
+  }
+} ta;
+int rk[2][N];
+inline void solve(int l, int r, int t) {
+  if (r - l == 1) {
+    return;
+  }
+  int mid = (l + r) / 2;
+  solve(l, mid, t);
+  sort(a[t] + mid + 1, a[t] + r + 1, cmp1);
+  int p = l + 1;
+  for (int i = mid + 1; i <= r; i++) {
+    for (; (cmp1(a[t][p], a[t][i]) || a[t][p].h == a[t][i].h) && p <= mid;
+         p++) {
+      ta.c(a[t][p].v, a[t][p].ma, a[t][p].ca);
+    }
+    db c = 0;
+    int m = 0;
+    ta.q(a[t][i].v, m, c);
+    if (a[t][i].ma < m + 1) {
+      a[t][i].ma = m + 1;
+      a[t][i].ca = c;
+    } else if (a[t][i].ma == m + 1) {
+      a[t][i].ca += c;
+    }
+  }
+  for (int i = l + 1; i <= mid; i++) {
+    ta.d(a[t][i].v);
+  }
+  sort(a[t] + mid, a[t] + r + 1, cmp3);
+  solve(mid, r, t);
+  sort(a[t] + l + 1, a[t] + r + 1, cmp1);
+}
+inline void ih(int t) {
+  sort(a[t] + 1, a[t] + n + 1, cmp2);
+  rk[t][1] = 1;
+  for (int i = 2; i <= n; i++) {
+    rk[t][i] = (cmp4(a[t][i], a[t][i - 1])) ? rk[t][i - 1] : i;
+  }
+  for (int i = 1; i <= n; i++) {
+    a[t][i].v = rk[t][i];
+  }
+  sort(a[t] + 1, a[t] + n + 1, cmp3);
+  for (int i = 1; i <= n; i++) {
+    a[t][i].ma = 1;
+    a[t][i].ca = 1;
+  }
+}
+int len;
+db ans;
+int main() {
+  scanf("%d", &n);
+  for (int i = 1; i <= n; i++) {
+    scanf("%d%d", &a[0][i].h, &a[0][i].v);
+    a[0][i].p = i;
+    a[1][i].h = a[0][i].h;
+    a[1][i].v = a[0][i].v;
+    a[1][i].p = i;
+  }
+  ih(0);
+  solve(0, n, 0);
+  tr = 1;
+  ih(1);
+  solve(0, n, 1);
+  tr = 1;
+  sort(a[0] + 1, a[0] + n + 1, cmp3);
+  sort(a[1] + 1, a[1] + n + 1, cmp3);
+  for (int i = 1; i <= n; i++) {
+    len = max(len, a[0][i].ma);
+  }
+  printf("%d\n", len);
+  for (int i = 1; i <= n; i++) {
+    if (a[0][i].ma == len) {
+      ans += a[0][i].ca;
+    }
+  }
+  for (int i = 1; i <= n; i++) {
+    if (a[0][i].ma + a[1][i].ma - 1 == len) {
+      printf("%.5lf ", (a[0][i].ca * a[1][i].ca) / ans);
+    } else {
+      printf("0.00000 ");
+    }
+  }
+  return 0;
 }
 ```
 
@@ -414,7 +505,7 @@ int main()
 
 通过将连续的一段颜色看成一个点的方式我们可以证明 $pre$ 的变化量是 $O(n+m)$ 的，换句话说单次操作仅仅引起 $O(1)$ 的 $pre$ 值变化，那么我们可以用 cdq 分治来解决动态的单点加矩形求和问题
 
- $pre$ 数组的具体变化可以使用 $std::set$ 来进行处理（这个用 set 维护连续的区间的技巧也被称之为_old driver tree_)
+ $pre$ 数组的具体变化可以使用 $std::set$ 来进行处理（这个用 set 维护连续的区间的技巧也被称之为*old driver tree*)
 
 ```cpp
 #include <algorithm>
