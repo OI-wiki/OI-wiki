@@ -391,6 +391,7 @@ nav:
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
   - 专题:
+    - 命令行使用方法: topic/cmd.md
     - RMQ: topic/rmq.md
     - 图的匹配:
       - 图匹配: topic/graph-matching/graph-match.md
