@@ -106,9 +106,9 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 -   对比两个用户。
 -   计算一场比赛的 Rating 预测。
 
-## Competitive companion
+## Competitive Companion
 
-这个工具是一个浏览器插件，用于解析网页里面的测例数据。它支持解析几乎所有的主流 oj 平台（比如 codeforces atcoder）。使用这个插件后，再也不用手动复制任何的测例数据。
+这个工具是一个浏览器插件，用于解析网页里面的测例数据。它支持解析几乎所有的主流 oj 平台（比如 Codeforces、AtCoder）。使用这个插件后，再也不用手动复制任何的测例数据。
 
 源码托管在 [jmerle/competitive-companion](https://github.com/jmerle/competitive-companion) 上。
 
@@ -129,4 +129,4 @@ CP Editor 是一款专门为算法竞赛（Competitive Programming）设计的�
 
 源码托管在 [cpeditor/cpeditor](https://github.com/cpeditor/cpeditor) 上，另有 [Gitee 镜像](https://gitee.com/ouuan/cpeditor) （同步自 GitHub，不一定是最新的）。
 
-下载链接： [GitHub Released](https://github.com/cpeditor/cpeditor/releases) 或 [Gitee 发行版](https://gitee.com/ouuan/cpeditor/releases) 
+下载链接： [GitHub Releases](https://github.com/cpeditor/cpeditor/releases) 或 [Gitee 发行版](https://gitee.com/ouuan/cpeditor/releases) 
