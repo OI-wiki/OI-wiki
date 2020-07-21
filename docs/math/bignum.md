@@ -10,16 +10,16 @@
 
 ???+ note "任务"
     输入：一个形如 `a <op> b` 的表达式。
-
-    -    `a` 、 `b` 分别是长度不超过 $1000$ 的十进制非负整数；
-    -    `<op>` 是一个字符（ `+` 、 `-` 、 `*` 或 `/` ），表示运算。
-    -   整数与运算符之间由一个空格分隔。
-
+    
+    -  `a` 、 `b` 分别是长度不超过 $1000$ 的十进制非负整数；
+    -  `<op>` 是一个字符（ `+` 、 `-` 、 `*` 或 `/` ），表示运算。
+    - 整数与运算符之间由一个空格分隔。
+    
     输出：运算结果。
-
-    -   对于 `+` 、 `-` 、 `*` 运算，输出一行表示结果；
-    -   对于 `/` 运算，输出两行分别表示商和余数。
-    -   保证结果均为非负整数。
+    
+    - 对于 `+` 、 `-` 、 `*` 运算，输出一行表示结果；
+    - 对于 `/` 运算，输出两行分别表示商和余数。
+    - 保证结果均为非负整数。
 
 ## 存储
 
@@ -272,7 +272,7 @@ void sub(int a[], int b[], int c[]) {
     }
     ```
 
-试一试，输入 `1 2` ——输出 `/9999999` ，诶这个 OI Wiki 怎么给了我一份假的代码啊……
+试一试，输入 `1 2` ——输出 `/9999999` ，诶这个 **OI Wiki** 怎么给了我一份假的代码啊……
 
 事实上，上面的代码只能处理减数 $a$ 大于等于被减数 $b$ 的情况。处理被减数比减数小，即 $a<b$ 时的情况很简单。
 
@@ -903,9 +903,9 @@ $$
 
 ## 习题
 
--    [NOIP 2012 国王游戏](https://loj.ac/problem/2603) 
--    [SPOJ - Fast Multiplication](http://www.spoj.com/problems/MUL/en/) 
--    [SPOJ - GCD2](http://www.spoj.com/problems/GCD2/) 
--    [UVA - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024) 
--    [UVA - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436) 
--    [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D) 
+-  [NOIP 2012 国王游戏](https://loj.ac/problem/2603) 
+-  [SPOJ - Fast Multiplication](http://www.spoj.com/problems/MUL/en/) 
+-  [SPOJ - GCD2](http://www.spoj.com/problems/GCD2/) 
+-  [UVA - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024) 
+-  [UVA - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436) 
+-  [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D) 

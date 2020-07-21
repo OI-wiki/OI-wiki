@@ -29,9 +29,9 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 ???+ note "[Linux 子系统（WSL）](https://zh.wikipedia.org/wiki/%E9%80%82%E7%94%A8%E4%BA%8E_Linux_%E7%9A%84_Windows_%E5%AD%90%E7%B3%BB%E7%BB%9F) "
     适用于 Linux 的 Windows 子系统（英语：Windows Subsystem for Linux，简称 WSL）是一个为在 Windows 10 和 Windows Server 2019 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。
-
+    
     WSL 可让开发人员按原样运行 GNU/Linux 环境 - 包括大多数命令行工具、实用工具和应用程序 - 且不会产生虚拟机开销。
-
+    
     WSL 仅在版本 1607 之后的 64 位版本的 Windows 10 中可用。它也可在 Windows Server 2019 中使用。
 
 * * *
@@ -57,21 +57,21 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
     Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
     ```
 
-2.  出现提示时，重启计算机。
+2. 出现提示时，重启计算机。
 
 ### 使用 GUI
 
 ![Windows 功能](./images/WSL4.png)
 
-1.  打开“控制面板”
+1. 打开“控制面板”
 
-2.  访问“程序和功能”子菜单“打开或关闭 Windows 功能”
+2. 访问“程序和功能”子菜单“打开或关闭 Windows 功能”
 
-3.  选择“适用于 Linux 的 Windows 子系统”
+3. 选择“适用于 Linux 的 Windows 子系统”
 
-4.  点击确定
+4. 点击确定
 
-5.  重启
+5. 重启
 
 ## 安装与使用 Ubuntu
 
@@ -112,7 +112,7 @@ Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速�
 
 ???+ warning  "使用与自己系统版本匹配的软件源"
     请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a` 查看 Ubuntu 版本）。
-
+    
     除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！
 
 使用以下命令更新软件和软件源：
@@ -289,15 +289,15 @@ xfce4-session
 
 ## 参考资料
 
-1.   [洛谷日报 #6](https://www.luogu.com.cn/discuss/show/48491) 
-2.   [适用于 Linux 的 Windows 子系统安装指南 (Windows 10), Microsoft Docs](https://docs.microsoft.com/zh-cn/windows/wsl/install-win10) 
-3.   [适用于 Linux 的 Windows 子系统，Wikipedia](https://zh.wikipedia.org/zh-hans/%E9%80%82%E7%94%A8%E4%BA%8E_Linux_%E7%9A%84_Windows_%E5%AD%90%E7%B3%BB%E7%BB%9F) 
-4.   [WSL-Ubuntu 维基，ubuntu wiki](https://wiki.ubuntu.com/WSL) 
-5.   [Windows 10 版本 1803 中命令行的新增功能，Microsoft Devblogs](https://devblogs.microsoft.com/commandline/windows10v1803/) 
-6.   [NOIP 标准评测系统及相关问题，smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html) 
-7.   [WSL, 百度百科](https://baike.baidu.com/item/wsl/20359185) 
-8.   [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97) 
-9.   [Windows Subsystem for Linux Documentation, MSDN](https://docs.microsoft.com/zh-cn/windows/wsl/about) 
+1.  [洛谷日报 #6](https://www.luogu.com.cn/discuss/show/48491) 
+2.  [适用于 Linux 的 Windows 子系统安装指南 (Windows 10), Microsoft Docs](https://docs.microsoft.com/zh-cn/windows/wsl/install-win10) 
+3.  [适用于 Linux 的 Windows 子系统，Wikipedia](https://zh.wikipedia.org/zh-hans/%E9%80%82%E7%94%A8%E4%BA%8E_Linux_%E7%9A%84_Windows_%E5%AD%90%E7%B3%BB%E7%BB%9F) 
+4.  [WSL-Ubuntu 维基，ubuntu wiki](https://wiki.ubuntu.com/WSL) 
+5.  [Windows 10 版本 1803 中命令行的新增功能，Microsoft Devblogs](https://devblogs.microsoft.com/commandline/windows10v1803/) 
+6.  [NOIP 标准评测系统及相关问题，smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html) 
+7.  [WSL, 百度百科](https://baike.baidu.com/item/wsl/20359185) 
+8.  [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97) 
+9.  [Windows Subsystem for Linux Documentation, MSDN](https://docs.microsoft.com/zh-cn/windows/wsl/about) 
 10.  [NOI 系列活动标准竞赛环境，2016-11-08, NOI 官网](http://www.noi.cn/2016-11-08-03-42-01) 
 11.  [购买 Ubuntu, Microsoft Store](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6) 
 12.  [Ubuntu 镜像使用帮助，清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/) 
@@ -308,6 +308,6 @@ xfce4-session
 
 ## 延伸内容
 
--    [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://dowww.spencerwoo.com) 
+-  [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://dowww.spencerwoo.com) 
 
--    [GitHub 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL) 
+-  [GitHub 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL) 

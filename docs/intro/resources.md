@@ -12,10 +12,10 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo, NachtgeistW
     <!-- -    [BZOJ](https://www.lydsy.com/JudgeOnline/) ：因原属衡阳八中而得此简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。BZOJ 上有大量只有付费用户才能提交的题目。2018 年 BZOJ 测试数据泄露，催生了 DarkBZOJ。 -->
 -    [Comet OJ](https://www.cometoj.com) ：始于 2018 年，旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库。
     <!-- - [CodeVS](http://www.codevs.cn/) 面向 OI 选手的过气 OJ。 -->
--    [FZUOJ](http://acm.fzu.edu.cn/) 始于 2008 年，福州大学在线评测系统。
--    [HDU Online Judge](http://acm.hdu.edu.cn/) 始于 2005 年，杭州电子科技大学在线评测系统，有多校训练的题目。
--    [hihoCoder](https://hihocoder.com/) 始于 2012 年，面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（登录后方可查看题面）
--    [计蒜客](https://www.jisuanke.com/) 北京矩道优达网络科技有限公司旗下的核心产品，提供按知识点和难度筛选的信息学题库和 ICPC 题库。
+-  [FZUOJ](http://acm.fzu.edu.cn/) 始于 2008 年，福州大学在线评测系统。
+-  [HDU Online Judge](http://acm.hdu.edu.cn/) 始于 2005 年，杭州电子科技大学在线评测系统，有多校训练的题目。
+-  [hihoCoder](https://hihocoder.com/) 始于 2012 年，面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（登录后方可查看题面）
+-  [计蒜客](https://www.jisuanke.com/) 北京矩道优达网络科技有限公司旗下的核心产品，提供按知识点和难度筛选的信息学题库和 ICPC 题库。
 -    [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck) ，可以将评测程序的运行时间精确到微秒。（题目较少）
     <!--  - [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。-->
 -    [LibreOJ](https://loj.ac/) ：始于 2017 年。基于开源项目 [SYZOJ](https://github.com/syzoj/syzoj) ，Libre 取自由之意。题目所有测试数据以及提交的代码均对所有用户开放。目前由 [Menci](https://github.com/Menci) 维护。
@@ -76,11 +76,11 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo, NachtgeistW
 
 -   刘汝佳系列
     -   《算法竞赛入门经典》（紫）
-        -    [第一版 配套资源仓库（镜像）](https://github.com/sukhoeing/aoapc-book/) 
-        -    [第二版 配套资源仓库](https://github.com/aoapc-book/aoapc-bac2nd) 
-        -    [第二版 习题选解](https://github.com/sukhoeing/aoapc-bac2nd-keys) 
-    -   《算法竞赛入门经典 - 训练指南》（白/蓝）- 陈锋 合著
-    -   《算法艺术与信息学竞赛》（蓝/黑）
+        -  [第一版 配套资源仓库（镜像）](https://github.com/sukhoeing/aoapc-book/) 
+        -  [第二版 配套资源仓库](https://github.com/aoapc-book/aoapc-bac2nd) 
+        -  [第二版 习题选解](https://github.com/sukhoeing/aoapc-bac2nd-keys) 
+    - 《算法竞赛入门经典 - 训练指南》（白/蓝）- 陈锋 合著
+    - 《算法艺术与信息学竞赛》（蓝/黑）
 -   《算法竞赛进阶指南》- 李煜东
     -    [配套资源仓库](https://github.com/lydrainbowcat/tedukuri) 
 -   《啊哈算法》- 纪磊
@@ -97,23 +97,23 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo, NachtgeistW
         -    [建议选择性阅读。](https://www.zhihu.com/question/292926937) 
     -   《信息学奥赛一本通 - 高手训练》- 黄新军，董永建
 -   其他由国内著名 OI 教练写的教材
-    -   《信息学奥赛课课通》- 林厚从
-    -   《聪明人的游戏：信息学探秘 - 提高篇》- 江涛，陈茂贤
-    -   《计算概论：C++ 编程与信息学竞赛入门》- 金靖
-    -   《算法竞赛宝典》- 张新华
+    - 《信息学奥赛课课通》- 林厚从
+    - 《聪明人的游戏：信息学探秘 - 提高篇》- 江涛，陈茂贤
+    - 《计算概论：C++ 编程与信息学竞赛入门》- 金靖
+    - 《算法竞赛宝典》- 张新华
 -   ACM 国际大学生程序设计竞赛系列
-    -   《ACM 国际大学生程序设计竞赛系列 知识与入门》- 俞勇
-    -   《ACM 国际大学生程序设计竞赛系列 算法与实现》- 俞勇
-    -   《ACM 国际大学生程序设计竞赛系列 题目与解读》- 俞勇
--   《算法竞赛入门到进阶》- 罗勇军，郭卫斌
+    - 《ACM 国际大学生程序设计竞赛系列 知识与入门》- 俞勇
+    - 《ACM 国际大学生程序设计竞赛系列 算法与实现》- 俞勇
+    - 《ACM 国际大学生程序设计竞赛系列 题目与解读》- 俞勇
+- 《算法竞赛入门到进阶》- 罗勇军，郭卫斌
 -   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein  
-    黑书，大学经典教材。英文版原名_Introduction to Algorithms_
-    -    [答案解析 (English)](https://github.com/walkccc/CLRS) 
+    黑书，大学经典教材。英文版原名*Introduction to Algorithms*
+    -  [答案解析 (English)](https://github.com/walkccc/CLRS) 
 -   《具体数学》第二版 - Ronald L. Graham/Donald E. Knuth/Oren Patashnik  
-    英文版原名_Concrete Mathematics_
+    英文版原名*Concrete Mathematics*
 -   《组合数学》第五版 - Richard A.Brualdi  
-    英文版原名_Introductory Conbinatorics_
--    [Competitive Programmer's Handbook](https://cses.fi/book/index.html) 
+    英文版原名*Introductory Conbinatorics*
+-  [Competitive Programmer's Handbook](https://cses.fi/book/index.html) 
 -   《挑战程序设计竞赛》全套 - 秋叶拓哉，岩田阳一，北川宜稔
     通俗易懂。
     -    [译者博客的介绍页](http://blog.watashi.ws/2382/pccb-etc/) 
@@ -140,9 +140,24 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo, NachtgeistW
 -    [ $\rm\LaTeX$ 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm) 
 -    [Mathpix](https://mathpix.com/) ：截图转 $\rm\LaTeX{}$ 
 -    [OEIS](https://oeis.org) ：整数数列搜索引擎
+-    [Quick C++ Benchmark](https://quick-bench.com/)：在线比较两个及以上函数的运行速度
 -    [Try It Online](https://tio.run) ：在线运行 600+ 种语言的代码，支持 IO 交互，超时 60s，可以分享代码
 -    [图论画板](https://csacademy.com/app/graph_editor/) 与 [GraphViz](http://www.graphviz.org/) 
 -    [Ubuntu Pastebin](https://paste.ubuntu.com) ：可用于分享代码
 -    [uDebug](https://www.udebug.com) ：提供一些 OJ 题目的调试辅助
 -    [USF](https://www.cs.usfca.edu/~galles/visualization/) 与 [VisuAlgo](https://visualgo.net/zh) ：算法可视化
 -    [Wolfram Alpha](https://www.wolframalpha.com/) ：可以计算包括数学、科学技术、社会文化……等多个主题的问题
+
+## 题集和资源
+
+-  [POJ 训练计划](http://blog.csdn.net/skywalkert/article/details/46594541) 
+-  [USACO](http://train.usaco.org/usacogate) 
+-  [洛谷题单](https://www.luogu.com.cn/training/list) 
+-  [-Morass- 贴在 Codeforces 上的一份题单](https://codeforces.com/blog/entry/55274) 
+- Codeforces 社区高质量算法文章合集 [之一](https://codeforces.com/blog/entry/57282)  [之二](https://codeforces.com/blog/entry/13529) 
+-  [北京大学 ICPC 暑期课课件例题](https://vjudge.net/article/446) 
+-  [北京大学 ICPC 暑期课课件](https://lib-pku.github.io/#acm-icpc%E6%9A%91%E6%9C%9F%E8%AF%BE) 
+-  [GitHub.com:OI-wiki/libs](https://github.com/OI-wiki/libs) 
+-  [多校联合训练](http://acm.hdu.edu.cn) 关键词： `Multi-University Training Contest` 
+-  [Vjudge](https://vjudge.net/) 
+-  [Project Euler](https://projecteuler.net/) 

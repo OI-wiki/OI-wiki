@@ -45,7 +45,7 @@ $$
 就行了。这个很容易，直接做一下代数变换即可
 
 $$
-\begin{array}{l}
+\begin{array}{rl}
 &\frac{a}{b}\le \frac{c}{d}\\
 \Rightarrow &ad\le bc\\
 \Rightarrow &ad+ab\le bc+ab\\
@@ -109,7 +109,7 @@ string find(int x, int y, int a = 0, int b = 1, int c = 1, int d = 0) {
 Stern-Brocot 树与 Farey 序列有着极其相似的特征。第 $i$ 个 Farey 序列记作 $F_i$ ，表示把分母小于等于 $i$ 的所有最简真分数按大小顺序排列形成的序列。
 
 $$
-\begin{array}{l}
+\begin{array}{lllllllllllll}
 F_1=\{&\frac{0}{1},&&&&&&&&&&\frac{1}{1}&\}\\
 F_2=\{&\frac{0}{1},&&&&&\frac{1}{2},&&&&&\frac{1}{1}&\}\\
 F_3=\{&\frac{0}{1},&&&\frac{1}{3},&&\frac{1}{2},&&\frac{2}{3},&&&\frac{1}{1}&\}\\

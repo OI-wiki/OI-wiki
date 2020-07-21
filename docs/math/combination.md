@@ -133,8 +133,8 @@ $$
 
 于是很自然地想到了容斥原理。容斥的模型如下：
 
-1.  全集： $\displaystyle \sum_{i=1}^kx_i=r$ 的非负整数解。
-2.  属性： $x_i\le n_i$ 。
+1. 全集： $\displaystyle \sum_{i=1}^kx_i=r$ 的非负整数解。
+2. 属性： $x_i\le n_i$ 。
 
 于是设满足属性 $i$ 的集合是 $S_i$ ， $\overline{S_i}$ 表示不满足属性 $i$ 的集合，即满足 $x_i\ge n_i+1$ 的集合。那么答案即为
 
@@ -145,18 +145,18 @@ $$
 根据容斥原理，有：
 
 $$
-\begin{split}
+\begin{aligned}
 \left|\bigcup_{i=1}^k\overline{S_i}\right|
-&=&\sum_i\left|\overline{S_i}\right|
+=&\sum_i\left|\overline{S_i}\right|
 -\sum_{i,j}\left|\overline{S_i}\cap\overline{S_j}\right|
 +\sum_{i,j,k}\left|\overline{S_i}\cap\overline{S_j}\cap\overline{S_k}\right|
 -\cdots\\
-&&+(-1)^{k-1}\left|\bigcap_{i=1}^k\overline{S_i}\right|\\
-&=&\sum_i\binom{k+r-n_i-2}{k-1}
+&+(-1)^{k-1}\left|\bigcap_{i=1}^k\overline{S_i}\right|\\
+=&\sum_i\binom{k+r-n_i-2}{k-1}
 -\sum_{i,j}\binom{k+r-n_i-n_j-3}{k-1}+\sum_{i,j,k}\binom{k+r-n_i-n_j-n_k-4}{k-1}
 -\cdots\\
-&&+(-1)^{k-1}\binom{k+r-\sum_{i=1}^kn_i-k-1}{k-1}
-\end{split}
+&+(-1)^{k-1}\binom{k+r-\sum_{i=1}^kn_i-k-1}{k-1}
+\end{aligned}
 $$
 
 拿全集 $\displaystyle |U|=\binom{k+r-1}{k-1}$ 减去上式，得到多重集的组合数
@@ -179,8 +179,8 @@ $$
 
 假设我们考虑到第 $n$ 个信封，初始时我们暂时把第 n 封信放在第 n 个信封中，然后考虑两种情况的递推：
 
--   前面 $n-1$ 个信封全部装错；
--   前面 $n-1$ 个信封有一个没有装错其余全部装错。
+- 前面 $n-1$ 个信封全部装错；
+- 前面 $n-1$ 个信封有一个没有装错其余全部装错。
 
 对于第一种情况，前面 $n-1$ 个信封全部装错：因为前面 $n-1$ 个已经全部装错了，所以第 n 封只需要与前面任一一个位置交换即可，总共有 $f(n-1)\times (n-1)$ 种情况。
 

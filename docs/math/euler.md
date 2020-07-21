@@ -19,7 +19,7 @@
 接下来我们证明 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$ 
 
 $$
-\because n=\prod_{i=1}^{n} p_i^{k_i} \\ 	\begin{align}\therefore \varphi(x) &= \prod_{i=1}^{n} \varphi(p_i^{k_i}) \\&= \prod_{i=1}^{n} (p_i-1)\times {p_i}^{k_i-1}\\&=\prod_{i=1}^{n} {p_i}^{k_i} \times(1 - \frac{1}{p_i})\\&=x~ \prod_{i=1}^{n} (1- \frac{1}{p_i})\end{align}
+\because n=\prod_{i=1}^{n} p_i^{k_i} \\ 	\begin{aligned}\therefore \varphi(x) &= \prod_{i=1}^{n} \varphi(p_i^{k_i}) \\&= \prod_{i=1}^{n} (p_i-1)\times {p_i}^{k_i-1}\\&=\prod_{i=1}^{n} {p_i}^{k_i} \times(1 - \frac{1}{p_i})\\&=x~ \prod_{i=1}^{n} (1- \frac{1}{p_i})\end{aligned}
 $$
 
 ## 欧拉函数的一些性质
@@ -45,7 +45,7 @@ $$
 
 ## 如何求欧拉函数值
 
-如果只要求一个数的欧拉函数值，那么直接根据定义质因数分解的同时求就好了。这个过程可以用_Pollard Rho_算法优化。
+如果只要求一个数的欧拉函数值，那么直接根据定义质因数分解的同时求就好了。这个过程可以用*Pollard Rho*算法优化。
 
 ```cpp
 int euler_phi(int n) {

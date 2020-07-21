@@ -1,4 +1,4 @@
-author: hydingsy, hyp1231
+author: hydingsy, hyp1231, ranwen
 
 ## 简介
 
@@ -19,7 +19,7 @@ $$
 略证：
 
 $$
-\begin{split}
+\begin{aligned}
 &\frac{a}{b}=\left\lfloor\frac{a}{b}\right\rfloor+r(0\leq r<1)\\
 \implies
 &\left\lfloor\frac{a}{bc}\right\rfloor
@@ -28,13 +28,16 @@ $$
 =\left\lfloor \frac{\left\lfloor\frac{a}{b}\right\rfloor}{c} +\frac{r}{c}\right\rfloor
 =\left\lfloor \frac{\left\lfloor\frac{a}{b}\right\rfloor}{c}\right\rfloor\\
 &&\square
-\end{split}
+\end{aligned}
 $$
+
+??? note "关于证明最后的小方块"
+    QED 是拉丁词组“Quod Erat Demonstrandum”（这就是所要证明的）的缩写，代表证明完毕。现在的 QED 符号通常是 $\blacksquare$ 或者 $\square$ 。（ [维基百科](https://zh.wikipedia.org/wiki/%E8%AD%89%E6%98%8E%E5%AE%8C%E7%95%A2) ）
 
 ### 引理 2
 
 $$
-\forall n \in N,  \left|\left\{ \lfloor \frac{n}{d} \rfloor \mid d \in N \right\}\right| \leq \lfloor 2\sqrt{n} \rfloor
+\forall n \in \mathbb{N}_{+},  \left|\left\{ \lfloor \frac{n}{d} \rfloor \mid d \in \mathbb{N}_{+},d\leq n \right\}\right| \leq \lfloor 2\sqrt{n} \rfloor
 $$
 
  $|V|$ 表示集合 $V$ 的元素个数
@@ -53,26 +56,54 @@ $$
 
 对于任意一个 $i(i\leq n)$ ，我们需要找到一个最大的 $j(i\leq j\leq n)$ ，使得 $\left\lfloor\frac{n}{i}\right\rfloor = \left\lfloor\frac{n}{j}\right\rfloor$ .
 
-而 $j=\left\lfloor\frac{n}{\left\lfloor\frac{n}{i}\right\rfloor}\right\rfloor$ .
+此时 $j=\left\lfloor\frac{n}{\left\lfloor\frac{n}{i}\right\rfloor}\right\rfloor$ .
 
-略证：
+显然 $j\leq n$ ，考虑证明 $j\geq i$ ：
 
 $$
-\begin{split}
+\begin{aligned}
 &\left\lfloor\frac{n}{i}\right\rfloor \leq \frac{n}{i}\\
 \implies
 &\left\lfloor\frac{n}{ \left\lfloor\frac{n}{i}\right\rfloor }\right\rfloor
 \geq \left\lfloor\frac{n}{ \frac{n}{i} }\right\rfloor
 = \left\lfloor i \right\rfloor=i \\
 \implies
-&i\leq \left\lfloor\frac{n}{ \left\lfloor\frac{n}{i}\right\rfloor }\right\rfloor\\
+&i\leq \left\lfloor\frac{n}{ \left\lfloor\frac{n}{i}\right\rfloor }\right\rfloor=j\\
 &&\square
-\end{split}
+\end{aligned}
 $$
 
-即 $j=\left\lfloor\frac{n}{\left\lfloor\frac{n}{i}\right\rfloor}\right\rfloor$ .
+不妨设 $k=\left\lfloor\frac{n}{i}\right\rfloor$ ，考虑证明当 $\left\lfloor\frac{n}{j}\right\rfloor=k$ 时， $j$ 的最大值为 $\left\lfloor\frac{n}{k}\right\rfloor$ ：
+
+$$
+\left\lfloor\frac{n}{j}\right\rfloor=k
+\iff
+k\leq\frac{n}{j}<k+1
+\iff
+\frac{1}{k+1}<\frac{j}{n}\leq\frac{1}{k}
+\iff
+\frac{n}{k+1}<j\leq\frac{n}{k}
+$$
+
+又因为 $j$ 为整数 所以 $j_{max}=\left\lfloor\frac{n}{k}\right\rfloor$ 
 
 利用上述结论，我们每次以 $[i,j]$ 为一块，分块求和即可
+
+例如 [「luogu P2261」\[CQOI2007\]余数求和](https://www.luogu.com.cn/problem/P2261) , $ans=\sum_{i=1}^n(k\bmod i)=\sum_{i=1}^nk-i\left\lfloor\frac{k}{i}\right\rfloor$ .
+
+??? note "代码实现"
+    ```cpp
+    long long ans = n * k;
+    for (long long l = 1, r; l <= n;
+         l = r + 1) {  //此处l意同i,r意同j,下个计算区间的l应为上个区间的r+1
+      if (k / l != 0)
+        r = min(k / (k / l), n);
+      else
+        r = n;  // l大于k时
+      ans -= (k / l) * (r - l + 1) * (l + r) /
+             2;  //这个区间内k/i均相等,对i求和是等差数列求和
+    }
+    ```
 
 * * *
 
@@ -80,7 +111,7 @@ $$
 
 ### 定义
 
-若 $\gcd(x,y)=1$ 且 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为积性函数。
+ $\forall x,y \in \mathbb{N}_{+},\gcd(x,y)=1$ ，都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为积性函数。
 
 ### 性质
 
@@ -97,12 +128,12 @@ $$
 
 ### 例子
 
--   单位函数： $\epsilon(n)=[n=1]$ 
--   恒等函数： $\operatorname{id}_k(n)=n^k$  $\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$ 。
--   常数函数： $1(n)=1$ 
--   除数函数： $\sigma_{k}(n)=\sum_{d\mid n}d^{k}$  $\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$ ， $\sigma_{1}(n)$ 通常简记作 $\sigma(n)$ 。
--   欧拉函数： $\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$ 
--   莫比乌斯函数： $\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1:d^{2} \mid n \\ (-1)^{\omega(n)} & otherwise\end{cases}$ 其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，是一个积性函数。
+- 单位函数： $\epsilon(n)=[n=1]$ 
+- 恒等函数： $\operatorname{id}_k(n)=n^k$  $\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$ 。
+- 常数函数： $1(n)=1$ 
+- 除数函数： $\sigma_{k}(n)=\sum_{d\mid n}d^{k}$  $\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$ ， $\sigma_{1}(n)$ 通常简记作 $\sigma(n)$ 。
+- 欧拉函数： $\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$ 
+- 莫比乌斯函数： $\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1:d^{2} \mid n \\ (-1)^{\omega(n)} & otherwise\end{cases}$ 其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，是一个积性函数。
 
 * * *
 
@@ -128,8 +159,8 @@ $$
 \begin{aligned}
 \varepsilon=\mu \ast 1&\iff\varepsilon(n)=\sum_{d\mid n}\mu(d)\\
 d=1 \ast 1&\iff d(n)=\sum_{d\mid n}1\\
-\sigma=\text{id} \ast 1&\iff\sigma(n)=\sum_{d\mid n}d\\
-\varphi=\mu \ast \text{id}&\iff\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
+\sigma=\operatorname{id} \ast 1&\iff\sigma(n)=\sum_{d\mid n}d\\
+\varphi=\mu \ast \operatorname{id}&\iff\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
 \end{aligned}
 $$
 
@@ -154,10 +185,10 @@ $$
 
 令 $n=\prod_{i=1}^kp_i^{c_i}$ ，其中 $p_i$ 为质因子， $c_i\ge 1$ 。上述定义表示：
 
-1.   $n=1$ 时， $\mu(n)=1$ ；
+1.  $n=1$ 时， $\mu(n)=1$ ；
 2.  对于 $n\not= 1$ 时：
-    1.  当存在 $i\in [1,k]$ ，使得 $c_i > 1$ 时， $\mu(n)=0$ ，也就是说只要某个质因子出现的次数超过一次， $\mu(n)$ 就等于 $0$ ；
-    2.  当任意 $i\in[1,k]$ ，都有 $c_i=1$ 时， $\mu(n)=(-1)^k$ ，也就是说每个质因子都仅仅只出现过一次时，即 $n=\prod_{i=1}^kp_i$ ， $\{p_i\}_{i=1}^k$ 中个元素唯一时， $\mu(n)$ 等于 $-1$ 的 $k$ 次幂，此处 $k$ 指的便是仅仅只出现过一次的质因子的总个数。
+    1. 当存在 $i\in [1,k]$ ，使得 $c_i > 1$ 时， $\mu(n)=0$ ，也就是说只要某个质因子出现的次数超过一次， $\mu(n)$ 就等于 $0$ ；
+    2. 当任意 $i\in[1,k]$ ，都有 $c_i=1$ 时， $\mu(n)=(-1)^k$ ，也就是说每个质因子都仅仅只出现过一次时，即 $n=\prod_{i=1}^kp_i$ ， $\{p_i\}_{i=1}^k$ 中个元素唯一时， $\mu(n)$ 等于 $-1$ 的 $k$ 次幂，此处 $k$ 指的便是仅仅只出现过一次的质因子的总个数。
 
 ### 性质
 
@@ -216,12 +247,12 @@ $$
 证明
 
 $$
-\varphi \ast 1=\text{ID}\text{（ID 函数即 } f(x)=x\text{）}
+\varphi \ast 1=\operatorname{id}
 $$
 
 将 $n$ 分解质因数： $\displaystyle n=\prod_{i=1}^k {p_i}^{c_i}$ 
 
-首先，因为 $\varphi$ 是积性函数，故只要证明当 $n'=p^c$ 时 $\displaystyle\varphi \ast 1=\sum_{d\mid n'}\varphi(\frac{n'}{d})=\text{ID}$ 成立即可。
+首先，因为 $\varphi$ 是积性函数，故只要证明当 $n'=p^c$ 时 $\displaystyle\varphi \ast 1=\sum_{d\mid n'}\varphi(\frac{n'}{d})=\operatorname{id}$ 成立即可。
 
 因为 $p$ 是质数，于是 $d=p^0,p^1,p^2,\cdots,p^c$ 
 
@@ -233,7 +264,7 @@ $$
 &=\sum_{i=0}^c\varphi(p^i)\\
 &=1+p^0\cdot(p-1)+p^1\cdot(p-1)+\cdots+p^{c-1}\cdot(p-1)\\
 &=p^c\\
-&=\text{ID}\\
+&=\operatorname{id}\\
 \end{aligned}
 $$
 
@@ -379,7 +410,7 @@ $$
 求值（多组数据）
 
 $$
-\sum_{i=1}^n \text{lcm}(i,n)\quad  \text{s.t.}\ 1\leqslant T\leqslant 3\times 10^5,1\leqslant n\leqslant 10^6
+\sum_{i=1}^n \operatorname{lcm}(i,n)\quad  \text{s.t.}\ 1\leqslant T\leqslant 3\times 10^5,1\leqslant n\leqslant 10^6
 $$
 
 易得原式即
@@ -426,7 +457,7 @@ $$
 \frac{1}{2}n\cdot\left(\sum_{d'\mid n}d'\cdot\varphi(d')+1\right)
 $$
 
-设 $\displaystyle \text{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\text{g}$ 为积性函数，于是可以 $\Theta(n)$ 筛出。每次询问 $\Theta(1)$ 计算即可。
+设 $\displaystyle \operatorname{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\operatorname{g}$ 为积性函数，于是可以 $\Theta(n)$ 筛出。每次询问 $\Theta(1)$ 计算即可。
 
 这个函数筛的时候比较特殊，当 $p_j\mid i$ 的时候，需要根据 $p_j\mid\dfrac{i}{p_j}$ 进行分类讨论。具体可以见代码。
 
@@ -474,7 +505,7 @@ $$
 求值（对 $20101009$ 取模）
 
 $$
-\sum_{i=1}^n\sum_{j=1}^m\text{lcm}(i,j)\qquad (n,m\leqslant 10^7)
+\sum_{i=1}^n\sum_{j=1}^m\operatorname{lcm}(i,j)\qquad (n,m\leqslant 10^7)
 $$
 
 易知原式等价于
@@ -498,10 +529,10 @@ $$
 后半段式子中，出现了互质数对之积的和，为了让式子更简洁就把它拿出来单独计算。于是我们记
 
 $$
-\text{sum}(n,m)=\sum_{i=1}^n\sum_{j=1}^m [\gcd(i,j)=1]\  i\cdot j
+\operatorname{sum}(n,m)=\sum_{i=1}^n\sum_{j=1}^m [\gcd(i,j)=1]\  i\cdot j
 $$
 
-接下来对 $\text{sum}(n,m)$ 进行化简。首先枚举约数，并将 $[\gcd(i,j)=1]$ 表示为 $\varepsilon(\gcd(i,j))$ 
+接下来对 $\operatorname{sum}(n,m)$ 进行化简。首先枚举约数，并将 $[\gcd(i,j)=1]$ 表示为 $\varepsilon(\gcd(i,j))$ 
 
 $$
 \sum_{d=1}^n\sum_{d\mid i}^n\sum_{d\mid j}^m\mu(d)\cdot i\cdot j
@@ -524,15 +555,15 @@ $$
 至此
 
 $$
-\text{sum}(n,m)=\sum_{d=1}^n\mu(d)\cdot d^2\cdot g(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)
+\operatorname{sum}(n,m)=\sum_{d=1}^n\mu(d)\cdot d^2\cdot g(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)
 $$
 
-我们可以 $\lfloor\frac{n}{\lfloor\frac{n}{d}\rfloor}\rfloor$ 数论分块求解 $\text{sum}(n,m)$ 函数。
+我们可以 $\lfloor\frac{n}{\lfloor\frac{n}{d}\rfloor}\rfloor$ 数论分块求解 $\operatorname{sum}(n,m)$ 函数。
 
-在求出 $\text{sum}(n,m)$ 后，回到定义 $\text{sum}$ 的地方，可得原式为
+在求出 $\operatorname{sum}(n,m)$ 后，回到定义 $\operatorname{sum}$ 的地方，可得原式为
 
 $$
-\sum_{d=1}^n d\cdot\text{sum}(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)
+\sum_{d=1}^n d\cdot\operatorname{sum}(\lfloor\frac{n}{d}\rfloor,\lfloor\frac{m}{d}\rfloor)
 $$
 
 可见这又是一个可以数论分块求解的式子！
@@ -619,20 +650,20 @@ $$
 再化一下这个式子
 
 $$
-\begin{split}
+\begin{aligned}
 d(i\cdot j)=&\sum_{x \mid i}\sum_{y \mid j}[\gcd(x,y)=1]\\
 =&\sum_{x \mid i}\sum_{y \mid j}\sum_{p \mid \gcd(x,y)}\mu(p)\\
 =&\sum_{p=1}^{min(i,j)}\sum_{x \mid i}\sum_{y \mid j}[p \mid \gcd(x,y)]\cdot\mu(p)\\
 =&\sum_{p \mid i,p \mid j}\mu(p)\sum_{x \mid i}\sum_{y \mid j}[p \mid \gcd(x,y)]\\
 =&\sum_{p \mid i,p \mid j}\mu(p)\sum_{x \mid \frac{i}{p}}\sum_{y \mid \frac{j}{p}}1\\
 =&\sum_{p \mid i,p \mid j}\mu(p)d\left(\frac{i}{p}\right)d\left(\frac{j}{p}\right)\\
-\end{split}
+\end{aligned}
 $$
 
 将上述式子代回原式
 
 $$
-\begin{split}
+\begin{aligned}
 &\sum_{i=1}^n\sum_{j=1}^md(i\cdot j)\\
 =&\sum_{i=1}^n\sum_{j=1}^m\sum_{p \mid i,p \mid j}\mu(p)d\left(\frac{i}{p}\right)d\left(\frac{j}{p}\right)\\
 =&\sum_{p=1}^{min(n,m)}
@@ -648,7 +679,7 @@ $$
 S\left(\left\lfloor\frac{n}{p}\right\rfloor\right)
 S\left(\left\lfloor\frac{m}{p}\right\rfloor\right)
 \left(S(n)=\sum_{i=1}^{n}d(i)\right)\\
-\end{split}
+\end{aligned}
 $$
 
 那么 $O(n)$ 预处理 $\mu,d$ 的前缀和， $O(\sqrt{n})$ 分块处理询问，总复杂度 $O(n+T\sqrt{n})$ .
@@ -707,10 +738,10 @@ $$
 
 看似是一道和 $\gcd$ 有关的题，不过由于带有系数，并不容易化简
 
-我们利用 $\varphi\ast1=ID$ 反演
+我们利用 $\varphi\ast1=\operatorname{id}$ 反演
 
 $$
-\begin{eqnarray}
+\begin{aligned}
 && \sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot \gcd(i,j)\\
 &=&\sum_{i=1}^n\sum_{j=1}^ni\cdot j
 \sum_{d \mid i,d \mid j}\varphi(d)\\
@@ -726,16 +757,16 @@ d^2\cdot i\cdot j\cdot\varphi(d)\\
 \sum_{j=1}^{\left\lfloor\frac{n}{d}\right\rfloor}j\\
 &=&\sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)
 \left(F(n)=\frac{1}{2}n\left(n+1\right)\right)\\
-\end{eqnarray}
+\end{aligned}
 $$
 
 对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2$ 做数论分块， $d^2\varphi(d)$ 的前缀和用杜教筛处理：
 
 $$
-\begin{split}
-&f(n)=n^2\varphi(n)=(ID^2\varphi)(n)\\
-&S(n)=\sum_{i=1}^nf(i)=\sum_{i=1}^n(ID^2\varphi)(i)
-\end{split}
+\begin{aligned}
+&f(n)=n^2\varphi(n)=(\operatorname{id}^2\varphi)(n)\\
+&S(n)=\sum_{i=1}^nf(i)=\sum_{i=1}^n(\operatorname{id}^2\varphi)(i)
+\end{aligned}
 $$
 
 杜教筛（见 [杜教筛 - 例 3](../du/#_8) ）完了是这样的
@@ -819,13 +850,13 @@ $$
 转化一下，可以将式子写成
 
 $$
-\begin{eqnarray}
+\begin{aligned}
 &&\sum_{d=1}^{n}\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ijd\cdot[\gcd(i,j)=1]\\
 &=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t\mid \gcd(i,j)}\mu(t)\\
 &=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}\mu(t)[t\mid \gcd(i,j)]\\
 &=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij[1\mid \gcd(i,j)]\\
 &=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij
-\end{eqnarray}
+\end{aligned}
 $$
 
 容易知道
@@ -837,12 +868,12 @@ $$
 设 $sum(n,m)=\sum_{i=1}^{n}\sum_{j=1}^{m}ij$ ，继续接着前面的往下推
 
 $$
-\begin{eqnarray}
+\begin{aligned}
 &&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij\\
 &=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\cdot sum(\lfloor\frac{n}{td}\rfloor,\lfloor\frac{m}{td}\rfloor)\\
 &=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)\sum_{d\mid T}d\cdot (\frac{T}{d})^2\mu(\frac{T}{d})\\
 &=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)(T\sum_{d\mid T}d\cdot\mu(d))
-\end{eqnarray}
+\end{aligned}
 $$
 
 这时我们只要对每个 $T$ 预处理出 $T\sum_{d\mid T}d\cdot\mu(d)$ 的值就行了，考虑如何快速求解
@@ -876,7 +907,7 @@ $$
 我们证明一下
 
 $$
-\begin{eqnarray}
+\begin{aligned}
 &&g(n)=\sum_{i=1}^n\mu(i)t(i)f\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 &=&\sum_{i=1}^n\mu(i)t(i)
 \sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}t(j)
@@ -907,7 +938,7 @@ t\left(\frac{T}{i}\right)g\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
 &&\text{【当且仅当 T=1,}\varepsilon(T)=1\text{时】}\\
 &=&g(n)
 && \square
-\end{eqnarray}
+\end{aligned}
 $$
 
 ## 参考文献

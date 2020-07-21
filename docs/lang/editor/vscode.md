@@ -26,7 +26,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 ???+ warning
     如果安装了 VS Code 与 Code Runner 后，代码仍然无法运行，很有可能是因为系统尚未安装 C/C++ 的运行环境。
-
+    
     - 在 Windows 环境下运行 C/C++ 程序，需要先安装 [MinGW](http://www.mingw.org/) 或 MinGW-w64；
     - MacOS 可运行 `xcode-select --install` 进行安装；
     - Linux 系统已经带有 C/C++ 运行环境，无需额外配置。

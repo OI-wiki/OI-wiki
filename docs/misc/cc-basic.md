@@ -44,13 +44,13 @@
 
 正式地说，图灵机是一个七元组 $M=<Q,\Gamma,b,\Sigma,\delta,q_0,F>$ ，其中：
 
--    $Q$ 是一个有限非空的 **状态集合** ；
--    $\Gamma$ 是一个有限非空的 **磁带字母表** ；
--    $b\in\Gamma$ 是 **空字符** ，它是唯一一个在计算过程中可以在磁带上无限频繁地出现的字符；
--    $\Sigma\subseteq(\Gamma\setminus\{b\})$ 是 **输入符号集** ，是可以出现在初始磁带（即输入）上的字符；
--    $q_0\in Q$ 是 **初始状态** ；
--    $F\subseteq Q$ 是 **接受状态** ，如果一个图灵机在某个接受状态停机，则称初始磁带上的内容被这个图灵机 **接受** 。
--    $\delta :(Q\setminus F)\times \Gamma \not \to Q\times \Gamma \times \{L,R\}$ 是一个被称作 **转移函数** 的 partial function（即只对定义域的一个子集有定义的函数）。如果 $\delta$ 在当前状态下没有定义，则图灵机停机。
+-  $Q$ 是一个有限非空的 **状态集合** ；
+-  $\Gamma$ 是一个有限非空的 **磁带字母表** ；
+-  $b\in\Gamma$ 是 **空字符** ，它是唯一一个在计算过程中可以在磁带上无限频繁地出现的字符；
+-  $\Sigma\subseteq(\Gamma\setminus\{b\})$ 是 **输入符号集** ，是可以出现在初始磁带（即输入）上的字符；
+-  $q_0\in Q$ 是 **初始状态** ；
+-  $F\subseteq Q$ 是 **接受状态** ，如果一个图灵机在某个接受状态停机，则称初始磁带上的内容被这个图灵机 **接受** 。
+-  $\delta :(Q\setminus F)\times \Gamma \not \to Q\times \Gamma \times \{L,R\}$ 是一个被称作 **转移函数** 的 partial function（即只对定义域的一个子集有定义的函数）。如果 $\delta$ 在当前状态下没有定义，则图灵机停机。
 
 图灵机从初始状态与纸带起点起，每次根据当前的内部状态 $x$ 和当前磁针指向的纸带上的单元格中的字符 $y$ 进行操作：若 $\delta(x, y)$ 没有定义则停机，否则若 $\delta(x, y)=(a, b, c)$ ，则将内部状态修改为 $a$ ，将磁针指向的格子中的字符修改为 $b$ ，若 $c$ 为 $L$ 则向左移动一格，为 $R$ 则向右移动一格。
 
@@ -86,8 +86,8 @@
 
 存在一台图灵机 $\mathcal U$ 满足：
 
-1.  若 $M_{\alpha}$ 在输入 $x$ 下在有限时间内停机，则 $\mathcal{U}(x, \alpha)=M_{\alpha}(x)$ ，否则 $\mathcal{U}(x, \alpha)$ 不会在有限时间内停机；
-2.  如果对于任意 $x\in\{0, 1\}^\ast$ ， $M_\alpha$ 在输入 $x$ 下在 $T(|x|)$ 时间内停机，则对于任意 $x\in\{0, 1\}^\ast$ ， $\mathcal{U}(x, \alpha)$ 在 $O(T(|x|)\log T(|x|))$ 时间内停机。
+1. 若 $M_{\alpha}$ 在输入 $x$ 下在有限时间内停机，则 $\mathcal{U}(x, \alpha)=M_{\alpha}(x)$ ，否则 $\mathcal{U}(x, \alpha)$ 不会在有限时间内停机；
+2. 如果对于任意 $x\in\{0, 1\}^\ast$ ， $M_\alpha$ 在输入 $x$ 下在 $T(|x|)$ 时间内停机，则对于任意 $x\in\{0, 1\}^\ast$ ， $\mathcal{U}(x, \alpha)$ 在 $O(T(|x|)\log T(|x|))$ 时间内停机。
 
 即：存在一台通用图灵机，它能模拟任何一台图灵机，且花费的时间只会比这台被模拟的图灵机慢其运行时间的对数。
 
@@ -105,19 +105,19 @@
 
 ??? note "停机问题是图灵不可计算的证明"
     定义函数 $\mathsf{UC}:\{0,1\}^\ast\to\{0,1\}$ 为：
-
+    
     $$
     \mathsf{UC}(\alpha)=\begin{cases}0&M_\alpha(\alpha)=1\\1&\text{otherwise}\end{cases}
     $$
-
+    
     我们先证明 $\mathsf{UC}$ 函数是图灵不可计算的：
-
+    
     假设存在一台图灵机 $M_{\beta}$ 能够计算 $\mathsf{UC}$ ，那么根据 $\mathsf{UC}$ 的定义可以得到 $\mathsf{UC}(\beta)=1\iff M_\beta(\beta)\neq 1$ ，而根据 $M_{\beta}$ 能够计算 $\mathsf{UC}$ 可以得到 $M_{\beta}(\beta)=\mathsf{UC}(\beta)$ ，产生了矛盾，所以假设不成立，不存在可以计算 $\mathsf{UC}$ 的图灵机。
-
+    
     令 $M_{\mathsf{HALT}}$ 是一个可以解决停机问题的图灵机， $M_{\mathsf{HALT}}(x,\alpha)$ 的值是判定问题 $M_\alpha$ 在输入为 $x$ 时是否会在有限步内停机的解，那么我们可以构造出一台能够计算 $\mathsf{UC}$ 函数的图灵机 $M_{\mathsf{UC}}$ ：
-
+    
      $M_\mathsf{UC}$ 首先调用 $M_\mathsf{HALT}(α,α)$ , 如果它输出 $0$ , 则 $M_\mathsf{UC}(α)=1$ ；否则， $M_\mathsf{UC}$ 使用通用图灵机模拟计算得到答案。
-
+    
     由于 $\mathsf{UC}$ 函数是图灵不可计算的，所以 $M_\mathsf{HALT}$ 不存在，也就是说停机问题是图灵不可计算的。
 
 ## 丘奇 - 图灵论题
@@ -126,8 +126,8 @@
 
 其中，“有效的方法”需要满足：
 
-1.  包含有限条清晰的指令；
-2.  当用其解决这类问题的其中一个时，这个方法需要在有限步骤内结束，且得到正确的答案。
+1. 包含有限条清晰的指令；
+2. 当用其解决这类问题的其中一个时，这个方法需要在有限步骤内结束，且得到正确的答案。
 
 这个论题没有被证明，但其是计算理论的一条基本公理。
 
@@ -233,27 +233,27 @@ $$
 
 如果存在一台确定性图灵机能够在输入为 $x$ 时在 $O(f(|x|))$ 的空间内判定一个语言，那么这个语言属于 $\mathsf{DSPACE}(f(n))$ 类。
 
--    $\mathsf{REG}=\mathsf{DSPACE}(O(1))$ ，即正则语言，也就是自动机能够判定的语言。
+-  $\mathsf{REG}=\mathsf{DSPACE}(O(1))$ ，即正则语言，也就是自动机能够判定的语言。
 
--    $\mathsf{L}=\mathsf{DSPACE}(O(\log n))$ ，需要注意的是图灵机使用的空间不包括输入占用的空间。
+-  $\mathsf{L}=\mathsf{DSPACE}(O(\log n))$ ，需要注意的是图灵机使用的空间不包括输入占用的空间。
 
--    $\mathsf{PSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{DSPACE}(n^k)$ 
+-  $\mathsf{PSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{DSPACE}(n^k)$ 
 
--    $\mathsf{EXPSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{DSPACE}(2^{n^k})$ 
+-  $\mathsf{EXPSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{DSPACE}(2^{n^k})$ 
 
 ### NSPACE
 
 如果存在一台非确定性图灵机能够在输入为 $x$ 时在 $O(f(|x|))$ 的空间内判定一个语言，那么这个语言属于 $\mathsf{NSPACE}(f(n))$ 类。
 
--    $\mathsf{REG}=\mathsf{DSPACE}(O(1))=\mathsf{NSPACE}(O(1))$ 
+-  $\mathsf{REG}=\mathsf{DSPACE}(O(1))=\mathsf{NSPACE}(O(1))$ 
 
--    $\mathsf{NL}=\mathsf{NSPACE}(O(\log n))$ 
+-  $\mathsf{NL}=\mathsf{NSPACE}(O(\log n))$ 
 
--    $\mathsf{CSL}=\mathsf{NSPACE}(O(n))$ ，即上下文相关语言。
+-  $\mathsf{CSL}=\mathsf{NSPACE}(O(n))$ ，即上下文相关语言。
 
--    $\mathsf{PSPACE}=\mathsf{NPSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{NSPACE}(n^k)$ 
+-  $\mathsf{PSPACE}=\mathsf{NPSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{NSPACE}(n^k)$ 
 
--    $\mathsf{EXPSPACE}=\mathsf{NEXPSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{NSPACE}(2^{n^k})$ 
+-  $\mathsf{EXPSPACE}=\mathsf{NEXPSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{NSPACE}(2^{n^k})$ 
 
 ## 可构造函数
 
@@ -287,12 +287,12 @@ $$
 
 ??? note "确定性时间谱系定理的证明"
     定义语言 $L=\{(x, y)|\mathcal{U}((x, y), x)\text{ 在 }f(|x|+|y|)\text{ 时间内停机并拒绝}\}$ ，由于 $f(n)$ 是一个时间可构造函数，可以根据定义进行计算来判定 $L$ ，用时为 $O(f(|x|+|y|))$ ，所以 $L\in\mathsf{DTIME}(f(n))$ 。
-
+    
     现在假设 $L\in\mathsf{DTIME}(o\left({\dfrac {f(n)}{\log f(n)}}\right))$ ，设 $M_z$ 就是那台在 $o\left({\dfrac {f(n)}{\log f(n)}}\right)$ 的时间内判定 $L$ 的图灵机。
-
-    令通用图灵机 $\mathcal{U}(x, z)$ 关于 $x$ 的用时为 $g(|x|)$ ，由上文关于通用图灵机的介绍可以得到 $g(n)=o(f(n))$ ，所以，当 $y$ 足够大时，$g(|z|+|y|)<f(|z|+|y|)$ 。
-
-    令 $y'$ 是一个足够大的 $y$ ，那么 $\mathcal{U}((z, y'), z)$ 一定能在 $f(|z|+|y'|)$ 时间内停机，从而 $M_z(z, y')\ne M_z(z, y')$，产生矛盾，所以假设不成立，确定性时间谱系定理证毕。
+    
+    令通用图灵机 $\mathcal{U}(x, z)$ 关于 $x$ 的用时为 $g(|x|)$ ，由上文关于通用图灵机的介绍可以得到 $g(n)=o(f(n))$ ，所以，当 $y$ 足够大时， $g(|z|+|y|)<f(|z|+|y|)$ 。
+    
+    令 $y'$ 是一个足够大的 $y$ ，那么 $\mathcal{U}((z, y'), z)$ 一定能在 $f(|z|+|y'|)$ 时间内停机，从而 $M_z(z, y')\ne M_z(z, y')$ ，产生矛盾，所以假设不成立，确定性时间谱系定理证毕。
 
 #### 非确定性时间谱系定理
 
@@ -332,8 +332,8 @@ $$
 
 ## 参考资料
 
-1.   [计算复杂性（1）Warming Up: 自动机模型](https://lingeros-tot.github.io/2019/03/05/Warming-Up-自动机模型/) ；
+1.  [计算复杂性（1）Warming Up: 自动机模型](https://lingeros-tot.github.io/2019/03/05/Warming-Up-自动机模型/) ；
 
-2.   [计算复杂性（2）图灵机计算模型](https://lingeros-tot.github.io/2019/03/05/图灵机模型与可计算性/) ；
+2.  [计算复杂性（2）图灵机计算模型](https://lingeros-tot.github.io/2019/03/05/图灵机模型与可计算性/) ；
 
-3.   [Wikipedia](https://en.wikipedia.org/) 的相关词条以及这些词条的参考资料。
+3.  [Wikipedia](https://en.wikipedia.org/) 的相关词条以及这些词条的参考资料。

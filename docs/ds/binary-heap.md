@@ -10,7 +10,7 @@ auhor: HeRaNO, Xeonacid
 
 ### 插入操作
 
-插入操作是指向二插堆中插入一个元素，要保证插入后也是一棵完全二叉树。
+插入操作是指向二叉堆中插入一个元素，要保证插入后也是一棵完全二叉树。
 
 最简单的方法就是，最下一层最右边的叶子之后插入。
 
@@ -112,7 +112,7 @@ void build_heap_2() {
 
 $$
 \begin{aligned}
-总复杂度 & = n \log n - \log 1 - \log 2 - \cdots - \log n \\
+\text{总复杂度} & = n \log n - \log 1 - \log 2 - \cdots - \log n \\
 & \leq n \log n - 0 \times 2^0 - 1 \times 2^1 -\cdots - (\log n - 1) \times \frac{n}{2} \\\
 & = n \log n - (n-1) - (n-2) - (n-4) - \cdots - (n-\frac{n}{2}) \\
 & = n \log n - n \log n + 1 + 2 + 4 + \cdots + \frac{n}{2} \\

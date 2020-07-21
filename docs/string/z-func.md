@@ -16,9 +16,9 @@ Z 函数的第一个元素， $z[0]$ ，通常不是良定义的。在这篇文�
 
 下面若干样例展示了对于不同字符串的 Z 函数：
 
--    $Z(\mathtt{aaaaa}) = [0, 4, 3, 2, 1]$ 
--    $Z(\mathtt{aaabaab}) = [0, 2, 1, 0, 2, 1, 0]$ 
--    $Z(\mathtt{abacaba}) = [0, 0, 1, 0, 3, 0, 1]$ 
+-  $Z(\mathtt{aaaaa}) = [0, 4, 3, 2, 1]$ 
+-  $Z(\mathtt{aaabaab}) = [0, 2, 1, 0, 2, 1, 0]$ 
+-  $Z(\mathtt{abacaba}) = [0, 0, 1, 0, 3, 0, 1]$ 
 
 ## 朴素算法
 
@@ -195,13 +195,13 @@ vector<int> z_function(string s) {
 
 ## 练习题目
 
--    [CF126B Password](http://codeforces.com/problemset/problem/126/B) 
--    [UVA # 455 Periodic Strings](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396) 
--    [UVA # 11022 String Factoring](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963) 
--    [UVa 11475 - Extend to Palindrome](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2470) 
--    [LA 6439 - Pasti Pas!](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=588&page=show_problem&problem=4450) 
--    [Codechef - Chef and Strings](https://www.codechef.com/problems/CHSTR) 
--    [Codeforces - Prefixes and Suffixes](http://codeforces.com/problemset/problem/432/D) 
+-  [CF126B Password](http://codeforces.com/problemset/problem/126/B) 
+-  [UVA # 455 Periodic Strings](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396) 
+-  [UVA # 11022 String Factoring](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963) 
+-  [UVa 11475 - Extend to Palindrome](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2470) 
+-  [LA 6439 - Pasti Pas!](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=588&page=show_problem&problem=4450) 
+-  [Codechef - Chef and Strings](https://www.codechef.com/problems/CHSTR) 
+-  [Codeforces - Prefixes and Suffixes](http://codeforces.com/problemset/problem/432/D) 
 
 * * *
 
