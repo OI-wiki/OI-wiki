@@ -49,7 +49,7 @@
 ### 排序法的例题
 
 ???+note "[NOIP 2012 国王游戏](https://vijos.org/p/1779)"
-    恰逢H国国庆，国王邀请n位大臣来玩一个有奖游戏。首先，他让每个大臣在左、右手上面分别写下一个整数，国王自己也在左、右手上各写一个整数。然后，让这n位大臣排成一排，国王站在队伍的最前面。排好队后，所有的大臣都会获得国王奖赏的若干金币，每位大臣获得的金币数分别是：排在该大臣前面的所有人的左手上的数的乘积除以他自己右手上的数，然后向下取整得到的结果。
+    恰逢 H 国国庆，国王邀请 n 位大臣来玩一个有奖游戏。首先，他让每个大臣在左、右手上面分别写下一个整数，国王自己也在左、右手上各写一个整数。然后，让这 n 位大臣排成一排，国王站在队伍的最前面。排好队后，所有的大臣都会获得国王奖赏的若干金币，每位大臣获得的金币数分别是：排在该大臣前面的所有人的左手上的数的乘积除以他自己右手上的数，然后向下取整得到的结果。
 
     国王不希望某一个大臣获得特别多的奖赏，所以他想请你帮他重新安排一下队伍的顺序，使得获得奖赏最多的大臣，所获奖赏尽可能的少。注意，国王的位置始终在队伍的最前面。
 
@@ -58,7 +58,7 @@
     
     ```cpp
     struct {
-    int a, b;
+      int a, b;
     } v[n];
     ```
     
@@ -108,10 +108,10 @@
     
     ```cpp
     struct uv {
-    int a, b;
-    bool operator<(const uv &x) const {
+      int a, b;
+      bool operator<(const uv &x) const {
         return max(x.b, a * b) < max(b, x.a * x.b);
-    }
+      }
     };
     ```
 
@@ -122,8 +122,8 @@
 
 ??? note "解题思路"
     1. 先假设每一项工作都做，将各项工作按截止时间排序后入队；
-    2. 在判断第 i 项工作做与不做时，若其截至时间符合条件，则将其与队中报酬最小的元素比较，若第 i 项工作报酬较高（后悔），则 `ans += a[i].p - q.top()`。  
-    用优先队列（小根堆）来维护队首元素最小。
+    2.  在判断第 i 项工作做与不做时，若其截至时间符合条件，则将其与队中报酬最小的元素比较，若第 i 项工作报酬较高（后悔），则 `ans += a[i].p - q.top()` 。  
+        用优先队列（小根堆）来维护队首元素最小。
 
 ??? note "参考代码"
     ```cpp
@@ -135,9 +135,10 @@
     #include <queue>
     using namespace std;
     struct f {
-    long long d;
-    long long x;
+      long long d;
+      long long x;
     } a[100005];
+    ```
 
     bool cmp(f A, f B) { return A.d < B.d; }
     priority_queue<long long, vector<long long>, greater<long long> > q;
@@ -169,10 +170,10 @@
 
 ## 习题
 
-- [P1209 [USACO1.3]修理牛棚 Barn Repair - 洛谷](https://www.luogu.com.cn/problem/P1209)
-- [P2123 皇后游戏 - 洛谷](https://www.luogu.com.cn/problem/P2123)
-- [LeetCode 上标签为贪心算法的题目](https://leetcode-cn.com/tag/greedy/)
+-  [P1209 \[USACO1.3\] 修理牛棚 Barn Repair - 洛谷](https://www.luogu.com.cn/problem/P1209) 
+-  [P2123 皇后游戏 - 洛谷](https://www.luogu.com.cn/problem/P2123) 
+-  [LeetCode 上标签为贪心算法的题目](https://leetcode-cn.com/tag/greedy/) 
 
 ## 参考资料与注释
 
-[^ref1]: [贪心算法 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95)
+[^ref1]:  [贪心算法 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95) 
