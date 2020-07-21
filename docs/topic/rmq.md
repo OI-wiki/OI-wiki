@@ -8,7 +8,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 ## 单调栈
 
-由于 Oi wiki 中已有此部分的描述，本文仅给出 [链接](../ds/monotonous-stack.md) 。这部分不再展开。
+由于 **OI Wiki** 中已有此部分的描述，本文仅给出 [链接](../ds/monotonous-stack.md) 。这部分不再展开。
 
 时间复杂度 $O(m\log m)-O(\log n)$ 
 
@@ -16,7 +16,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 ## ST 表
 
-由于 Oi wiki 中已有此部分的描述，本文仅给出 [链接](../ds/sparse-table.md) 。这部分不再展开。
+由于 **OI Wiki** 中已有此部分的描述，本文仅给出 [链接](../ds/sparse-table.md) 。这部分不再展开。
 
 时间复杂度 $O(n\log n)-O(1)$ 
 
@@ -24,7 +24,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 ## 线段树
 
-由于 Oi wiki 中已有此部分的描述，本文仅给出 [链接](../ds/seg.md) 。这部分不再展开。
+由于 **OI Wiki** 中已有此部分的描述，本文仅给出 [链接](../ds/seg.md) 。这部分不再展开。
 
 时间复杂度 $O(n)-O(\log n)$ 
 
