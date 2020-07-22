@@ -142,27 +142,27 @@
     priority_queue<long long, vector<long long>, greater<long long> > q;
     
     int main() {
-    long long n, i, j;
-    cin >> n;
-    for (i = 1; i <= n; i++) {
+      long long n, i, j;
+      cin >> n;
+      for (i = 1; i <= n; i++) {
         scanf("%d%d", &a[i].d, &a[i].x);
-    }
-    sort(a + 1, a + n + 1, cmp);
-    long long ans = 0;
-    for (i = 1; i <= n; i++) {
+      }
+      sort(a + 1, a + n + 1, cmp);
+      long long ans = 0;
+      for (i = 1; i <= n; i++) {
         if (a[i].d <= q.size()) {
-        if (q.top() < a[i].x) {
+          if (q.top() < a[i].x) {
             ans += a[i].x - q.top();
             q.pop();
             q.push(a[i].x);
-        }
+          }
         } else {
-        ans += a[i].x;
-        q.push(a[i].x);
+          ans += a[i].x;
+          q.push(a[i].x);
         }
-    }
-    cout << ans << endl;
-    return 0;
+      }
+      cout << ans << endl;
+      return 0;
     }
     ```
 
