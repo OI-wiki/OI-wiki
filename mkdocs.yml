@@ -233,6 +233,7 @@ nav:
       - 排列组合: math/combination.md
       - 卡特兰数: math/catalan.md
       - 斯特林数: math/stirling.md
+      - 贝尔数: math/bell.md
       - 康托展开: math/cantor.md
       - 容斥原理: math/inclusion-exclusion-principle.md
       - 抽屉原理: math/drawer-principle.md
