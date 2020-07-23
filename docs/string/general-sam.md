@@ -50,6 +50,7 @@
     ```cpp
     #define MAXN 2000000
     #define CHAR_NUM 30
+    ```
 
     struct Trie {
       int next[MAXN][CHAR_NUM];  // 转移
@@ -119,6 +120,7 @@
       int link[MAXN];            // 后缀链接，link
       int next[MAXN][CHAR_NUM];  // 转移
       int tot;                   // 节点总数：[0, tot)
+    ```
 
       int insertSAM(int last, int c) {
         int cur = next[last][c];
@@ -192,6 +194,7 @@
 ??? note "参考代码"
     ```cpp
     #include <bits/stdc++.h>
+    ```
 
     using namespace std;
 
@@ -310,6 +313,7 @@
 ??? note "参考代码"
     ```cpp
     #include <bits/stdc++.h>
+    ```
 
     using namespace std;
 
