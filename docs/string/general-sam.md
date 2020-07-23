@@ -188,7 +188,6 @@ struct GSA {
 例题： [【模板】广义后缀自动机（广义 SAM）](https://www.luogu.com.cn/problem/P6139) 
 
 ??? note "参考代码"
-
 ```cpp
 #include <bits/stdc++.h>
 
@@ -307,7 +306,6 @@ int main() {
 例题： [SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/) 
 
 ??? note "参考代码"
-
 ```cpp
 #include <bits/stdc++.h>
 
