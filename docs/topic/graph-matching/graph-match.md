@@ -79,7 +79,7 @@ author: accelsao
 - [1][Wikiwand - Matching (graph theory)]( <https://www.wikiwand.com/en/Matching_(graph_theory)> )
 - [2][Wikiwand - Blossom algorithm]( <https://www.wikiwand.com/en/Blossom_algorithm> )
 - [3]2015 年《浅谈图的匹配算法及其应用》- 陈胤伯
-- [4][演算法笔记 - Matching]( <http://www.csie.ntnu.edu.tw/~u91029/Matching.html> )
+- [4][演算法笔记 - Matching]( <http://web.ntnu.edu.tw/~algo/Matching.html> )
 - [5][the-tourist/algo]( <https://github.com/the-tourist/algo> )
 - [6][Bill Yang's Blog - 带花树学习笔记]( <https://blog.bill.moe/blossom-algorithm-notes/> )
 - [7][二分图的最大匹配、完美匹配和匈牙利算法]( <https://www.renfei.org/blog/bipartite-matching.html> )
