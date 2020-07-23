@@ -20,11 +20,11 @@ google_analytics:
 nav:
   - 简介:
     - Getting Started: index.md
-    - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - 如何参与: intro/htc.md
     - 格式手册: intro/format.md
     - F.A.Q.: intro/faq.md
+    - 用 Docker 部署 OI Wiki: intro/docker-deploy.md
     - 致谢: intro/thanks.md
   - 竞赛相关:
     - 赛制:
@@ -37,7 +37,7 @@ nav:
     - 学习资源: contest/resources.md
     - 常见错误: contest/common-mistakes.md
     - 常见技巧: contest/common-tricks.md
-    - 出题:
+    - 出题相关:
       - 出题: contest/problemsetting.md
   - 工具软件:
     - 代码编辑工具:
