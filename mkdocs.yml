@@ -26,7 +26,7 @@ nav:
     - F.A.Q.: intro/faq.md
     - 用 Docker 部署 OI Wiki: intro/docker-deploy.md
     - 致谢: intro/thanks.md
-  - 竞赛相关:
+  - 比赛相关:
     - 赛制:
       - OI 赛事与赛制: contest/oi.md
       - ICPC/CCPC 赛事与赛制: contest/icpc.md
@@ -35,8 +35,10 @@ nav:
       - 交互题: contest/interaction.md
     - 学习路线: contest/roadmap.md
     - 学习资源: contest/resources.md
-    - 常见错误: contest/common-mistakes.md
-    - 常见技巧: contest/common-tricks.md
+    - 技巧:
+      - 读入、输出优化: contest/io.md
+      - 常见错误: contest/common-mistakes.md
+      - 常见技巧: contest/common-tricks.md
     - 出题相关:
       - 出题: contest/problemsetting.md
   - 工具软件:
@@ -368,10 +370,8 @@ nav:
     - 随机增量法: geometry/random-incremental.md
     - 反演变换: geometry/inverse.md
     - 计算几何杂项: geometry/misc.md
-
   - 杂项:
     - 杂项简介: misc/index.md
-    - 读入、输出优化: misc/io.md
     - 复杂度: misc/complexity.md
     - 离散化: misc/discrete.md
     - 离线算法:
