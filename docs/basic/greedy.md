@@ -138,39 +138,37 @@
       long long d;
       long long x;
     } a[100005];
-    ```
-
     bool cmp(f A, f B) { return A.d < B.d; }
     priority_queue<long long, vector<long long>, greater<long long> > q;
-
+    
     int main() {
-    long long n, i, j;
-    cin >> n;
-    for (i = 1; i <= n; i++) {
+      long long n, i, j;
+      cin >> n;
+      for (i = 1; i <= n; i++) {
         scanf("%d%d", &a[i].d, &a[i].x);
-    }
-    sort(a + 1, a + n + 1, cmp);
-    long long ans = 0;
-    for (i = 1; i <= n; i++) {
+      }
+      sort(a + 1, a + n + 1, cmp);
+      long long ans = 0;
+      for (i = 1; i <= n; i++) {
         if (a[i].d <= q.size()) {
-        if (q.top() < a[i].x) {
+          if (q.top() < a[i].x) {
             ans += a[i].x - q.top();
             q.pop();
             q.push(a[i].x);
-        }
+          }
         } else {
-        ans += a[i].x;
-        q.push(a[i].x);
+          ans += a[i].x;
+          q.push(a[i].x);
         }
-    }
-    cout << ans << endl;
-    return 0;
+      }
+      cout << ans << endl;
+      return 0;
     }
     ```
 
 ## 习题
 
--  [P1209 \[USACO1.3\] 修理牛棚 Barn Repair - 洛谷](https://www.luogu.com.cn/problem/P1209) 
+-  [P1209\[USACO1.3\]修理牛棚 Barn Repair - 洛谷](https://www.luogu.com.cn/problem/P1209) 
 -  [P2123 皇后游戏 - 洛谷](https://www.luogu.com.cn/problem/P2123) 
 -  [LeetCode 上标签为贪心算法的题目](https://leetcode-cn.com/tag/greedy/) 
 
