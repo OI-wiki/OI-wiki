@@ -50,19 +50,14 @@
     ```cpp
     #define MAXN 2000000
     #define CHAR_NUM 30
-    ```
-
     struct Trie {
       int next[MAXN][CHAR_NUM];  // 转移
       int tot;                   // 节点总数：[0, tot)
-
       void init() { tot = 1; }
-
       int insertTrie(int cur, int c) {
         if (next[cur][c]) return next[cur][c];
         return next[cur][c] = tot++;
       }
-
       void insert(const string &s) {
         int root = 0;
         for (auto ch : s) root = insertTrie(root, ch - 'a');
@@ -120,8 +115,6 @@
       int link[MAXN];            // 后缀链接，link
       int next[MAXN][CHAR_NUM];  // 转移
       int tot;                   // 节点总数：[0, tot)
-    ```
-
       int insertSAM(int last, int c) {
         int cur = next[last][c];
         len[cur] = len[last] + 1;
@@ -153,10 +146,8 @@
         link[clone] = link[q];
         link[cur] = clone;
         link[q] = clone;
-
         return cur;
       }
-
       void build() {
         queue<pair<int, int>> q;
         for (int i = 0; i < 26; ++i)
@@ -194,24 +185,18 @@
 ??? note "参考代码"
     ```cpp
     #include <bits/stdc++.h>
-    ```
-
     using namespace std;
-
     #define MAXN 2000000  // 双倍字符串长度
     #define CHAR_NUM 30   // 字符集个数，注意修改下方的 (-'a')
-
     struct exSAM {
       int len[MAXN];             // 节点长度
       int link[MAXN];            // 后缀链接，link
       int next[MAXN][CHAR_NUM];  // 转移
       int tot;                   // 节点总数：[0, tot)
-
       void init() {
         tot = 1;
         link[0] = -1;
       }
-
       int insertSAM(int last, int c) {
         int cur = next[last][c];
         if (len[cur]) return cur;
@@ -244,25 +229,20 @@
         link[clone] = link[q];
         link[cur] = clone;
         link[q] = clone;
-
         return cur;
       }
-
       int insertTrie(int cur, int c) {
         if (next[cur][c]) return next[cur][c];
         return next[cur][c] = tot++;
       }
-
       void insert(const string &s) {
         int root = 0;
         for (auto ch : s) root = insertTrie(root, ch - 'a');
       }
-
       void insert(const char *s, int n) {
         int root = 0;
         for (int i = 0; i < n; ++i) root = insertTrie(root, s[i] - 'a');
       }
-
       void build() {
         queue<pair<int, int>> q;
         for (int i = 0; i < 26; ++i)
@@ -276,9 +256,7 @@
         }
       }
     } exSam;
-
     char s[1000100];
-
     int main() {
       int n;
       cin >> n;
@@ -289,7 +267,6 @@
         exSam.insert(s, len);
       }
       exSam.build();
-
       long long ans = 0;
       for (int i = 1; i < exSam.tot; ++i) {
         ans += exSam.len[i] - exSam.len[exSam.link[i]];
@@ -313,34 +290,26 @@
 ??? note "参考代码"
     ```cpp
     #include <bits/stdc++.h>
-    ```
-
     using namespace std;
-
     #define MAXN 2000000  // 双倍字符串长度
     #define CHAR_NUM 30   // 字符集个数，注意修改下方的 (-'a')
     #define NUM 15        // 字符串个数
-
     struct exSAM {
       int len[MAXN];             // 节点长度
       int link[MAXN];            // 后缀链接，link
       int next[MAXN][CHAR_NUM];  // 转移
       int tot;                   // 节点总数：[0, tot)
-
-      int lenSorted[MAXN];   // 按照 len 排序后的数组，仅排序 [1, tot)
-                             // 部分，最终下标范围 [0, tot - 1)
-      int sizeC[MAXN][NUM];  // 表示某个字符串的子串个数
-      int curString;         // 字符串实际个数
+      int lenSorted[MAXN];       // 按照 len 排序后的数组，仅排序 [1, tot) 部分，最终下标范围 [0, tot - 1)
+      int sizeC[MAXN][NUM];      // 表示某个字符串的子串个数
+      int curString;             // 字符串实际个数
       /**
        * 计数排序使用的辅助空间数组
        */
       int lc[MAXN];  // 统计个数
-
       void init() {
         tot = 1;
         link[0] = -1;
       }
-
       int insertSAM(int last, int c) {
         int cur = next[last][c];
         len[cur] = len[last] + 1;
@@ -372,28 +341,23 @@
         link[clone] = link[q];
         link[cur] = clone;
         link[q] = clone;
-
         return cur;
       }
-
       int insertTrie(int cur, int c) {
         if (!next[cur][c]) next[cur][c] = tot++;
         sizeC[next[cur][c]][curString]++;
         return next[cur][c];
       }
-
       void insert(const string &s) {
         int root = 0;
         for (auto ch : s) root = insertTrie(root, ch - 'a');
         curString++;
       }
-
       void insert(const char *s, int n) {
         int root = 0;
         for (int i = 0; i < n; ++i) root = insertTrie(root, s[i] - 'a');
         curString++;
       }
-
       void build() {
         queue<pair<int, int>> q;
         for (int i = 0; i < 26; ++i)
@@ -406,20 +370,17 @@
             if (next[last][i]) q.push({i, last});
         }
       }
-
       void sortLen() {
         for (int i = 1; i < tot; ++i) lc[i] = 0;
         for (int i = 1; i < tot; ++i) lc[len[i]]++;
         for (int i = 2; i < tot; ++i) lc[i] += lc[i - 1];
         for (int i = 1; i < tot; ++i) lenSorted[--lc[len[i]]] = i;
       }
-
       void getSizeLen() {
         for (int i = tot - 2; i >= 0; --i)
           for (int j = 0; j < curString; ++j)
             sizeC[link[lenSorted[i]]][j] += sizeC[lenSorted[i]][j];
       }
-
       void debug() {
         cout << "     i      len      link       ";
         for (int i = 0; i < 26; ++i) cout << "  " << (char)('a' + i);
@@ -434,13 +395,10 @@
         }
       }
     } exSam;
-
     int main() {
       exSam.init();
       string s;
-      while (cin >> s) {
-        exSam.insert(s);
-      }
+      while (cin >> s) exSam.insert(s);
       exSam.build();
       exSam.sortLen();
       exSam.getSizeLen();
