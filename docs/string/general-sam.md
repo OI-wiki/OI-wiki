@@ -4,8 +4,8 @@
 
 广义后缀自动机基于下面的知识点
 
--  [字典树（Trie 树）](https://oi-wiki.org/string/trie/) 
--  [后缀自动机](https://oi-wiki.org/string/sam/) 
+-  [字典树（Trie 树）](./trie.md) 
+-  [后缀自动机](./sam.md) 
 
 请务必对上述两个知识点非常熟悉之后，再来阅读本文，特别是对于 **后缀自动机** 中的 **后缀链接** 能够有一定的理解
 
@@ -17,7 +17,7 @@
 
 ## 约定
 
-参考 [字符串约定](https://oi-wiki.org/string/basic/) 
+参考 [字符串约定](./basic.md) 
 
 字符串个数为 $k$ 个，即 $S_1, S_2, S_3 ... S_k$ 
 
@@ -34,7 +34,7 @@
 1. 通过用特殊符号将多个串直接连接后，再建立 SAM
 2. 对每个串，重复在同一个 SAM 上进行建立，每次建立前，将 `last` 指针置零
 
-方法 1 和方法 2 的实现方式简单，而且在面对题目时通常可以达到和广义后缀自动机一样的正确性。所以在网络上很多人会选择此类写法，例如在后缀自动机一文中最后一个应用，便使用了方法 1 [（原文链接）](https://oi-wiki.org/string/sam/#_23) 
+方法 1 和方法 2 的实现方式简单，而且在面对题目时通常可以达到和广义后缀自动机一样的正确性。所以在网络上很多人会选择此类写法，例如在后缀自动机一文中最后一个应用，便使用了方法 1 [（原文链接）](./sam.md) 
 
 但是无论方法 1 还是方法 2，其时间复杂度较为危险
 
@@ -46,27 +46,28 @@
 
 首先应对多个串创建一棵字典树，这不是什么难事，如果你已经掌握了前置知识的前提下，可以很快的建立完毕。这里为了统一上下文的代码，给出一个可能的字典树代码。
 
-```cpp
-#define MAXN 2000000
-#define CHAR_NUM 30
+??? note "参考代码"
+    ```cpp
+    #define MAXN 2000000
+    #define CHAR_NUM 30
 
-struct Trie {
-  int next[MAXN][CHAR_NUM];  // 转移
-  int tot;                   // 节点总数：[0, tot)
+    struct Trie {
+      int next[MAXN][CHAR_NUM];  // 转移
+      int tot;                   // 节点总数：[0, tot)
 
-  void init() { tot = 1; }
+      void init() { tot = 1; }
 
-  int insertTrie(int cur, int c) {
-    if (next[cur][c]) return next[cur][c];
-    return next[cur][c] = tot++;
-  }
+      int insertTrie(int cur, int c) {
+        if (next[cur][c]) return next[cur][c];
+        return next[cur][c] = tot++;
+      }
 
-  void insert(const string &s) {
-    int root = 0;
-    for (auto ch : s) root = insertTrie(root, ch - 'a');
-  }
-};
-```
+      void insert(const string &s) {
+        int root = 0;
+        for (auto ch : s) root = insertTrie(root, ch - 'a');
+      }
+    };
+    ```
 
 这里我们得到了一棵依赖于 `next` 数组建立的一棵字典树。
 
@@ -101,7 +102,7 @@ struct Trie {
 
 对于最坏情况，考虑字典树本身节点个数最多的情况，即任意两个字符串没有相同的前缀，则节点个数为 $\sum_{i=1}^{k}|S_i|$ ，即所有的字符串长度之和。
 
-而在后缀自动机的更新操作的复杂度已经在 [后缀自动机](https://oi-wiki.org/string/sam/#_7) 中证明
+而在后缀自动机的更新操作的复杂度已经在 [后缀自动机](./sam.md) 中证明
 
 所以可以证明其最坏复杂度为线性
 
@@ -111,62 +112,63 @@ struct Trie {
 
 对插入函数进行少量必要的修改即可得到所需要的函数
 
-```cpp
-struct GSA {
-  int len[MAXN];             // 节点长度
-  int link[MAXN];            // 后缀链接，link
-  int next[MAXN][CHAR_NUM];  // 转移
-  int tot;                   // 节点总数：[0, tot)
+??? note "参考代码"
+    ```cpp
+    struct GSA {
+      int len[MAXN];             // 节点长度
+      int link[MAXN];            // 后缀链接，link
+      int next[MAXN][CHAR_NUM];  // 转移
+      int tot;                   // 节点总数：[0, tot)
 
-  int insertSAM(int last, int c) {
-    int cur = next[last][c];
-    len[cur] = len[last] + 1;
-    int p = link[last];
-    while (p != -1) {
-      if (!next[p][c])
-        next[p][c] = cur;
-      else
-        break;
-      p = link[p];
-    }
-    if (p == -1) {
-      link[cur] = 0;
-      return cur;
-    }
-    int q = next[p][c];
-    if (len[p] + 1 == len[q]) {
-      link[cur] = q;
-      return cur;
-    }
-    int clone = tot++;
-    for (int i = 0; i < CHAR_NUM; ++i)
-      next[clone][i] = len[next[q][i]] != 0 ? next[q][i] : 0;
-    len[clone] = len[p] + 1;
-    while (p != -1 && next[p][c] == q) {
-      next[p][c] = clone;
-      p = link[p];
-    }
-    link[clone] = link[q];
-    link[cur] = clone;
-    link[q] = clone;
+      int insertSAM(int last, int c) {
+        int cur = next[last][c];
+        len[cur] = len[last] + 1;
+        int p = link[last];
+        while (p != -1) {
+          if (!next[p][c])
+            next[p][c] = cur;
+          else
+            break;
+          p = link[p];
+        }
+        if (p == -1) {
+          link[cur] = 0;
+          return cur;
+        }
+        int q = next[p][c];
+        if (len[p] + 1 == len[q]) {
+          link[cur] = q;
+          return cur;
+        }
+        int clone = tot++;
+        for (int i = 0; i < CHAR_NUM; ++i)
+          next[clone][i] = len[next[q][i]] != 0 ? next[q][i] : 0;
+        len[clone] = len[p] + 1;
+        while (p != -1 && next[p][c] == q) {
+          next[p][c] = clone;
+          p = link[p];
+        }
+        link[clone] = link[q];
+        link[cur] = clone;
+        link[q] = clone;
 
-    return cur;
-  }
+        return cur;
+      }
 
-  void build() {
-    queue<pair<int, int>> q;
-    for (int i = 0; i < 26; ++i)
-      if (next[0][i]) q.push({i, 0});
-    while (!q.empty()) {
-      auto item = q.front();
-      q.pop();
-      auto last = insertSAM(item.second, item.first);
-      for (int i = 0; i < 26; ++i)
-        if (next[last][i]) q.push({i, last});
+      void build() {
+        queue<pair<int, int>> q;
+        for (int i = 0; i < 26; ++i)
+          if (next[0][i]) q.push({i, 0});
+        while (!q.empty()) {
+          auto item = q.front();
+          q.pop();
+          auto last = insertSAM(item.second, item.first);
+          for (int i = 0; i < 26; ++i)
+            if (next[last][i]) q.push({i, last});
+        }
+      }
     }
-  }
-}
-```
+    ```
 
 - 由于整个 $BFS$ 的过程得到的顺序，其父节点始终在变化，所以并不需要保存 `last` 指针。
 - 插入操作中， `int cur = next[last][c];` 与正常后缀自动机的 `int cur = tot++;` 有差异，因为我们插入的节点已经在树型结构中完成了，所以只需要直接获取即可
@@ -174,7 +176,7 @@ struct GSA {
 
 ## 性质
 
-1. 广义后缀自动机与后缀自动机的结构一致，在后缀自动机上的性质绝大部分均可在广义后缀自动机上生效（ [后缀自动机的性质](https://oi-wiki.org/string/sam/#_9) ）
+1. 广义后缀自动机与后缀自动机的结构一致，在后缀自动机上的性质绝大部分均可在广义后缀自动机上生效（ [后缀自动机的性质](./sam.md) ）
 2. 当广义后缀自动机建立后，通常字典树结构将会被破坏，即通常不可以用广义后缀自动机来解决字典树问题。当然也可以选择准备双倍的空间，将后缀自动机建立在另外一个空间上。
 
 ## 应用
@@ -188,110 +190,110 @@ struct GSA {
 例题： [【模板】广义后缀自动机（广义 SAM）](https://www.luogu.com.cn/problem/P6139) 
 
 ??? note "参考代码"
-```cpp
-#include <bits/stdc++.h>
+    ```cpp
+    #include <bits/stdc++.h>
 
-using namespace std;
+    using namespace std;
 
-#define MAXN 2000000  // 双倍字符串长度
-#define CHAR_NUM 30   // 字符集个数，注意修改下方的 (-'a')
+    #define MAXN 2000000  // 双倍字符串长度
+    #define CHAR_NUM 30   // 字符集个数，注意修改下方的 (-'a')
 
-struct exSAM {
-  int len[MAXN];             // 节点长度
-  int link[MAXN];            // 后缀链接，link
-  int next[MAXN][CHAR_NUM];  // 转移
-  int tot;                   // 节点总数：[0, tot)
+    struct exSAM {
+      int len[MAXN];             // 节点长度
+      int link[MAXN];            // 后缀链接，link
+      int next[MAXN][CHAR_NUM];  // 转移
+      int tot;                   // 节点总数：[0, tot)
 
-  void init() {
-    tot = 1;
-    link[0] = -1;
-  }
+      void init() {
+        tot = 1;
+        link[0] = -1;
+      }
 
-  int insertSAM(int last, int c) {
-    int cur = next[last][c];
-    if (len[cur]) return cur;
-    len[cur] = len[last] + 1;
-    int p = link[last];
-    while (p != -1) {
-      if (!next[p][c])
-        next[p][c] = cur;
-      else
-        break;
-      p = link[p];
+      int insertSAM(int last, int c) {
+        int cur = next[last][c];
+        if (len[cur]) return cur;
+        len[cur] = len[last] + 1;
+        int p = link[last];
+        while (p != -1) {
+          if (!next[p][c])
+            next[p][c] = cur;
+          else
+            break;
+          p = link[p];
+        }
+        if (p == -1) {
+          link[cur] = 0;
+          return cur;
+        }
+        int q = next[p][c];
+        if (len[p] + 1 == len[q]) {
+          link[cur] = q;
+          return cur;
+        }
+        int clone = tot++;
+        for (int i = 0; i < CHAR_NUM; ++i)
+          next[clone][i] = len[next[q][i]] != 0 ? next[q][i] : 0;
+        len[clone] = len[p] + 1;
+        while (p != -1 && next[p][c] == q) {
+          next[p][c] = clone;
+          p = link[p];
+        }
+        link[clone] = link[q];
+        link[cur] = clone;
+        link[q] = clone;
+
+        return cur;
+      }
+
+      int insertTrie(int cur, int c) {
+        if (next[cur][c]) return next[cur][c];
+        return next[cur][c] = tot++;
+      }
+
+      void insert(const string &s) {
+        int root = 0;
+        for (auto ch : s) root = insertTrie(root, ch - 'a');
+      }
+
+      void insert(const char *s, int n) {
+        int root = 0;
+        for (int i = 0; i < n; ++i) root = insertTrie(root, s[i] - 'a');
+      }
+
+      void build() {
+        queue<pair<int, int>> q;
+        for (int i = 0; i < 26; ++i)
+          if (next[0][i]) q.push({i, 0});
+        while (!q.empty()) {
+          auto item = q.front();
+          q.pop();
+          auto last = insertSAM(item.second, item.first);
+          for (int i = 0; i < 26; ++i)
+            if (next[last][i]) q.push({i, last});
+        }
+      }
+    } exSam;
+
+    char s[1000100];
+
+    int main() {
+      int n;
+      cin >> n;
+      exSam.init();
+      for (int i = 0; i < n; ++i) {
+        cin >> s;
+        int len = strlen(s);
+        exSam.insert(s, len);
+      }
+      exSam.build();
+
+      long long ans = 0;
+      for (int i = 1; i < exSam.tot; ++i) {
+        ans += exSam.len[i] - exSam.len[exSam.link[i]];
+      }
+      cout << ans << endl;
     }
-    if (p == -1) {
-      link[cur] = 0;
-      return cur;
-    }
-    int q = next[p][c];
-    if (len[p] + 1 == len[q]) {
-      link[cur] = q;
-      return cur;
-    }
-    int clone = tot++;
-    for (int i = 0; i < CHAR_NUM; ++i)
-      next[clone][i] = len[next[q][i]] != 0 ? next[q][i] : 0;
-    len[clone] = len[p] + 1;
-    while (p != -1 && next[p][c] == q) {
-      next[p][c] = clone;
-      p = link[p];
-    }
-    link[clone] = link[q];
-    link[cur] = clone;
-    link[q] = clone;
-
-    return cur;
-  }
-
-  int insertTrie(int cur, int c) {
-    if (next[cur][c]) return next[cur][c];
-    return next[cur][c] = tot++;
-  }
-
-  void insert(const string &s) {
-    int root = 0;
-    for (auto ch : s) root = insertTrie(root, ch - 'a');
-  }
-
-  void insert(const char *s, int n) {
-    int root = 0;
-    for (int i = 0; i < n; ++i) root = insertTrie(root, s[i] - 'a');
-  }
-
-  void build() {
-    queue<pair<int, int>> q;
-    for (int i = 0; i < 26; ++i)
-      if (next[0][i]) q.push({i, 0});
-    while (!q.empty()) {
-      auto item = q.front();
-      q.pop();
-      auto last = insertSAM(item.second, item.first);
-      for (int i = 0; i < 26; ++i)
-        if (next[last][i]) q.push({i, last});
-    }
-  }
-} exSam;
-
-char s[1000100];
-
-int main() {
-  int n;
-  cin >> n;
-  exSam.init();
-  for (int i = 0; i < n; ++i) {
-    cin >> s;
-    int len = strlen(s);
-    exSam.insert(s, len);
-  }
-  exSam.build();
-
-  long long ans = 0;
-  for (int i = 1; i < exSam.tot; ++i) {
-    ans += exSam.len[i] - exSam.len[exSam.link[i]];
-  }
-  cout << ans << endl;
-}
-```
+    ```
 
 ### 多个字符串间的最长公共子串
 
@@ -306,149 +308,149 @@ int main() {
 例题： [SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/) 
 
 ??? note "参考代码"
-```cpp
-#include <bits/stdc++.h>
+    ```cpp
+    #include <bits/stdc++.h>
 
-using namespace std;
+    using namespace std;
 
-#define MAXN 2000000  // 双倍字符串长度
-#define CHAR_NUM 30   // 字符集个数，注意修改下方的 (-'a')
-#define NUM 15        // 字符串个数
+    #define MAXN 2000000  // 双倍字符串长度
+    #define CHAR_NUM 30   // 字符集个数，注意修改下方的 (-'a')
+    #define NUM 15        // 字符串个数
 
-struct exSAM {
-  int len[MAXN];             // 节点长度
-  int link[MAXN];            // 后缀链接，link
-  int next[MAXN][CHAR_NUM];  // 转移
-  int tot;                   // 节点总数：[0, tot)
+    struct exSAM {
+      int len[MAXN];             // 节点长度
+      int link[MAXN];            // 后缀链接，link
+      int next[MAXN][CHAR_NUM];  // 转移
+      int tot;                   // 节点总数：[0, tot)
 
-  int lenSorted[MAXN];   // 按照 len 排序后的数组，仅排序 [1, tot)
-                         // 部分，最终下标范围 [0, tot - 1)
-  int sizeC[MAXN][NUM];  // 表示某个字符串的子串个数
-  int curString;         // 字符串实际个数
-  /**
-   * 计数排序使用的辅助空间数组
-   */
-  int lc[MAXN];  // 统计个数
+      int lenSorted[MAXN];   // 按照 len 排序后的数组，仅排序 [1, tot)
+                             // 部分，最终下标范围 [0, tot - 1)
+      int sizeC[MAXN][NUM];  // 表示某个字符串的子串个数
+      int curString;         // 字符串实际个数
+      /**
+       * 计数排序使用的辅助空间数组
+       */
+      int lc[MAXN];  // 统计个数
 
-  void init() {
-    tot = 1;
-    link[0] = -1;
-  }
-
-  int insertSAM(int last, int c) {
-    int cur = next[last][c];
-    len[cur] = len[last] + 1;
-    int p = link[last];
-    while (p != -1) {
-      if (!next[p][c])
-        next[p][c] = cur;
-      else
-        break;
-      p = link[p];
-    }
-    if (p == -1) {
-      link[cur] = 0;
-      return cur;
-    }
-    int q = next[p][c];
-    if (len[p] + 1 == len[q]) {
-      link[cur] = q;
-      return cur;
-    }
-    int clone = tot++;
-    for (int i = 0; i < CHAR_NUM; ++i)
-      next[clone][i] = len[next[q][i]] != 0 ? next[q][i] : 0;
-    len[clone] = len[p] + 1;
-    while (p != -1 && next[p][c] == q) {
-      next[p][c] = clone;
-      p = link[p];
-    }
-    link[clone] = link[q];
-    link[cur] = clone;
-    link[q] = clone;
-
-    return cur;
-  }
-
-  int insertTrie(int cur, int c) {
-    if (!next[cur][c]) next[cur][c] = tot++;
-    sizeC[next[cur][c]][curString]++;
-    return next[cur][c];
-  }
-
-  void insert(const string &s) {
-    int root = 0;
-    for (auto ch : s) root = insertTrie(root, ch - 'a');
-    curString++;
-  }
-
-  void insert(const char *s, int n) {
-    int root = 0;
-    for (int i = 0; i < n; ++i) root = insertTrie(root, s[i] - 'a');
-    curString++;
-  }
-
-  void build() {
-    queue<pair<int, int>> q;
-    for (int i = 0; i < 26; ++i)
-      if (next[0][i]) q.push({i, 0});
-    while (!q.empty()) {
-      auto item = q.front();
-      q.pop();
-      auto last = insertSAM(item.second, item.first);
-      for (int i = 0; i < 26; ++i)
-        if (next[last][i]) q.push({i, last});
-    }
-  }
-
-  void sortLen() {
-    for (int i = 1; i < tot; ++i) lc[i] = 0;
-    for (int i = 1; i < tot; ++i) lc[len[i]]++;
-    for (int i = 2; i < tot; ++i) lc[i] += lc[i - 1];
-    for (int i = 1; i < tot; ++i) lenSorted[--lc[len[i]]] = i;
-  }
-
-  void getSizeLen() {
-    for (int i = tot - 2; i >= 0; --i)
-      for (int j = 0; j < curString; ++j)
-        sizeC[link[lenSorted[i]]][j] += sizeC[lenSorted[i]][j];
-  }
-
-  void debug() {
-    cout << "     i      len      link       ";
-    for (int i = 0; i < 26; ++i) cout << "  " << (char)('a' + i);
-    cout << endl;
-    for (int i = 0; i < tot; ++i) {
-      cout << "i: " << setw(3) << i << " len: " << setw(3) << len[i]
-           << " link: " << setw(3) << link[i] << " Next: ";
-      for (int j = 0; j < CHAR_NUM; ++j) {
-        cout << setw(3) << next[i][j];
+      void init() {
+        tot = 1;
+        link[0] = -1;
       }
-      cout << endl;
-    }
-  }
-} exSam;
 
-int main() {
-  exSam.init();
-  string s;
-  while (cin >> s) {
-    exSam.insert(s);
-  }
-  exSam.build();
-  exSam.sortLen();
-  exSam.getSizeLen();
-  int ans = 0;
-  for (int i = 0; i < exSam.tot; ++i) {
-    bool flag = true;
-    for (int j = 0; j < exSam.curString; ++j) {
-      if (!exSam.sizeC[i][j]) {
-        flag = false;
-        break;
+      int insertSAM(int last, int c) {
+        int cur = next[last][c];
+        len[cur] = len[last] + 1;
+        int p = link[last];
+        while (p != -1) {
+          if (!next[p][c])
+            next[p][c] = cur;
+          else
+            break;
+          p = link[p];
+        }
+        if (p == -1) {
+          link[cur] = 0;
+          return cur;
+        }
+        int q = next[p][c];
+        if (len[p] + 1 == len[q]) {
+          link[cur] = q;
+          return cur;
+        }
+        int clone = tot++;
+        for (int i = 0; i < CHAR_NUM; ++i)
+          next[clone][i] = len[next[q][i]] != 0 ? next[q][i] : 0;
+        len[clone] = len[p] + 1;
+        while (p != -1 && next[p][c] == q) {
+          next[p][c] = clone;
+          p = link[p];
+        }
+        link[clone] = link[q];
+        link[cur] = clone;
+        link[q] = clone;
+
+        return cur;
       }
+
+      int insertTrie(int cur, int c) {
+        if (!next[cur][c]) next[cur][c] = tot++;
+        sizeC[next[cur][c]][curString]++;
+        return next[cur][c];
+      }
+
+      void insert(const string &s) {
+        int root = 0;
+        for (auto ch : s) root = insertTrie(root, ch - 'a');
+        curString++;
+      }
+
+      void insert(const char *s, int n) {
+        int root = 0;
+        for (int i = 0; i < n; ++i) root = insertTrie(root, s[i] - 'a');
+        curString++;
+      }
+
+      void build() {
+        queue<pair<int, int>> q;
+        for (int i = 0; i < 26; ++i)
+          if (next[0][i]) q.push({i, 0});
+        while (!q.empty()) {
+          auto item = q.front();
+          q.pop();
+          auto last = insertSAM(item.second, item.first);
+          for (int i = 0; i < 26; ++i)
+            if (next[last][i]) q.push({i, last});
+        }
+      }
+
+      void sortLen() {
+        for (int i = 1; i < tot; ++i) lc[i] = 0;
+        for (int i = 1; i < tot; ++i) lc[len[i]]++;
+        for (int i = 2; i < tot; ++i) lc[i] += lc[i - 1];
+        for (int i = 1; i < tot; ++i) lenSorted[--lc[len[i]]] = i;
+      }
+
+      void getSizeLen() {
+        for (int i = tot - 2; i >= 0; --i)
+          for (int j = 0; j < curString; ++j)
+            sizeC[link[lenSorted[i]]][j] += sizeC[lenSorted[i]][j];
+      }
+
+      void debug() {
+        cout << "     i      len      link       ";
+        for (int i = 0; i < 26; ++i) cout << "  " << (char)('a' + i);
+        cout << endl;
+        for (int i = 0; i < tot; ++i) {
+          cout << "i: " << setw(3) << i << " len: " << setw(3) << len[i]
+               << " link: " << setw(3) << link[i] << " Next: ";
+          for (int j = 0; j < CHAR_NUM; ++j) {
+            cout << setw(3) << next[i][j];
+          }
+          cout << endl;
+        }
+      }
+    } exSam;
+
+    int main() {
+      exSam.init();
+      string s;
+      while (cin >> s) {
+        exSam.insert(s);
+      }
+      exSam.build();
+      exSam.sortLen();
+      exSam.getSizeLen();
+      int ans = 0;
+      for (int i = 0; i < exSam.tot; ++i) {
+        bool flag = true;
+        for (int j = 0; j < exSam.curString; ++j) {
+          if (!exSam.sizeC[i][j]) {
+            flag = false;
+            break;
+          }
+        }
+        if (flag) ans = max(ans, exSam.len[i]);
+      }
+      cout << ans << endl;
     }
-    if (flag) ans = max(ans, exSam.len[i]);
-  }
-  cout << ans << endl;
-}
-```
+    ```
