@@ -299,9 +299,10 @@
       int link[MAXN];            // 后缀链接，link
       int next[MAXN][CHAR_NUM];  // 转移
       int tot;                   // 节点总数：[0, tot)
-      int lenSorted[MAXN];       // 按照 len 排序后的数组，仅排序 [1, tot) 部分，最终下标范围 [0, tot - 1)
-      int sizeC[MAXN][NUM];      // 表示某个字符串的子串个数
-      int curString;             // 字符串实际个数
+      int lenSorted[MAXN];   // 按照 len 排序后的数组，仅排序 [1, tot)
+                             // 部分，最终下标范围 [0, tot - 1)
+      int sizeC[MAXN][NUM];  // 表示某个字符串的子串个数
+      int curString;         // 字符串实际个数
       /**
        * 计数排序使用的辅助空间数组
        */
