@@ -102,11 +102,11 @@ OI 中的数学题与其它数学题的区别，也是体现 OI 本质的一个�
 
 网上有很多 LaTeX 的教程，如：
 
--  [LaTeX 入门](../intro/latex.md#_22) 
+-  [LaTeX 入门](../tools/latex.md#_22) 
 -  [LaTeX 数学公式大全](https://www.luogu.com.cn/blog/IowaBattleship/latex-gong-shi-tai-quan) 
 -  [LaTeX 各种命令，符号](https://blog.csdn.net/garfielder007/article/details/51646604) 
 
-使用时请注意 [LaTeX 公式的格式要求](../intro/htc.md#latex) 。
+使用时请注意 [LaTeX 公式的格式要求](../intro/format.md) 。
 
 ### 题目背景
 
@@ -401,7 +401,7 @@ gen 100000 100000 > 5.in
 
 ## Special Judge
 
- [SPJ 编写教程](../intro/spj.md) 
+ [SPJ 编写教程](../tools/special-judge.md) 
 
 输出方案题和输出浮点数题是两种较为常见的需要使用 SPJ 的题型，其它题目视情况也需要使用 SPJ。在 CF 上，所有题目都必须使用基于 testlib.h 的 checker，例如：题目要求输出若干个整数时，你可以任意输出空白字符（既可以空格也可以换行）。
 
@@ -495,7 +495,7 @@ Codeforces 是全球最著名的算法竞赛网站之一，题目质量较高，
 
 #### 在 Polygon 上准备题目
 
-参考 [Polygon 简介](../intro/polygon.md) 。
+参考 [Polygon 简介](../tools/polygon.md) 。
 
 #### 与管理之间的联系
 

@@ -20,44 +20,51 @@ google_analytics:
 nav:
   - 简介:
     - Getting Started: index.md
-    - OI 赛事与赛制: intro/oi.md
-    - ICPC/CCPC 赛事与赛制: intro/icpc.md
-    - 学习路线: intro/roadmap.md
-    - 学习资源: intro/resources.md
-    - 常见错误: intro/common-mistakes.md
-    - 常见技巧: intro/common-tricks.md
-    - 非传统题: intro/non-trad.md
-    - 工具软件:
-      - 评测工具: intro/judgers.md
-      - WSL (Windows 10): intro/wsl.md
-      - Special Judge: intro/spj.md
-      - Testlib:
-        - Testlib 简介: intro/testlib/index.md
-        - 通用: intro/testlib/general.md
-        - Generator: intro/testlib/generator.md
-        - Validator: intro/testlib/validator.md
-        - Interactor: intro/testlib/interactor.md
-        - Checker: intro/testlib/checker.md
-      - Polygon: intro/polygon.md
-      - OJ 工具: intro/oj-tool.md
-      - LaTeX 入门: intro/latex.md
     - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - 如何参与: intro/htc.md
     - 格式手册: intro/format.md
     - F.A.Q.: intro/faq.md
     - 致谢: intro/thanks.md
+  - 竞赛相关:
+    - 赛制:
+      - OI 赛事与赛制: contest/oi.md
+      - ICPC/CCPC 赛事与赛制: contest/icpc.md
+    - 题型: 
+      - 非传统题: contest/non-trad.md
+      - 交互题: contest/interaction.md
+    - 学习路线: contest/roadmap.md
+    - 学习资源: contest/resources.md
+    - 常见错误: contest/common-mistakes.md
+    - 常见技巧: contest/common-tricks.md
+    - 出题:
+      - 出题: contest/problemsetting.md
+  - 工具软件:
+    - 代码编辑工具:
+      - Vim: tools/editor/vim.md
+      - Emacs: tools/editor/emacs.md
+      - VS Code: tools/editor/vscode.md
+      - Atom: tools/editor/atom.md
+      - Eclipse: tools/editor/eclipse.md
+      - Notepad++: tools/editor/npp.md
+      - Dev-C++: tools/editor/devcpp.md
+      - Geany: tools/editor/geany.md
+    - 评测工具: tools/judgers.md
+    - 命令行: tools/cmd.md
+    - WSL (Windows 10): tools/wsl.md
+    - Special Judge: tools/special-judge.md
+    - Testlib:
+      - Testlib 简介: tools/testlib/index.md
+      - 通用: tools/testlib/general.md
+      - Generator: tools/testlib/generator.md
+      - Validator: tools/testlib/validator.md
+      - Interactor: tools/testlib/interactor.md
+      - Checker: tools/testlib/checker.md
+    - Polygon: tools/polygon.md
+    - OJ 工具: tools/oj-tool.md
+    - LaTeX 入门: tools/latex.md
   - 语言基础:
     - 语言基础简介: lang/index.md
-    - 编辑工具:
-      - Vim: lang/editor/vim.md
-      - Emacs: lang/editor/emacs.md
-      - VS Code: lang/editor/vscode.md
-      - Atom: lang/editor/atom.md
-      - Eclipse: lang/editor/eclipse.md
-      - Notepad++: lang/editor/npp.md
-      - Dev-C++: lang/editor/devcpp.md
-      - Geany: lang/editor/geany.md
     - C++ 基础:
       - Hello, World!: lang/helloworld.md
       - C++ 语法基础: lang/basic.md
@@ -122,7 +129,6 @@ nav:
     - 二分: basic/binary.md
     - 倍增: basic/binary-lifting.md
     - 构造: basic/construction.md
-    - 交互题: basic/interaction.md
   - 搜索:
     - 搜索部分简介: search/index.md
     - DFS（搜索）: search/dfs.md
@@ -362,6 +368,7 @@ nav:
     - 随机增量法: geometry/random-incremental.md
     - 反演变换: geometry/inverse.md
     - 计算几何杂项: geometry/misc.md
+
   - 杂项:
     - 杂项简介: misc/index.md
     - 读入、输出优化: misc/io.md
@@ -392,7 +399,6 @@ nav:
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
   - 专题:
-    - 命令行使用方法: topic/cmd.md
     - RMQ: topic/rmq.md
     - 图的匹配:
       - 图匹配: topic/graph-matching/graph-match.md
@@ -401,7 +407,6 @@ nav:
       - 一般图匹配: topic/graph-matching/general-match.md
       - 二分图最大权匹配: topic/graph-matching/bigraph-weight-match.md
       - 一般图最大权匹配: topic/graph-matching/general-weight-match.md
-    - 出题: topic/problemsetting.md
   - 关于 Hulu:
     -  关于 Hulu: intro/hulu.md
 
