@@ -27,7 +27,7 @@ nav:
     - 用 Docker 部署 OI Wiki: intro/docker-deploy.md
     - 致谢: intro/thanks.md
   - 比赛相关:
-    - 赛制:
+    - 赛事:
       - OI 赛事与赛制: contest/oi.md
       - ICPC/CCPC 赛事与赛制: contest/icpc.md
     - 题型: 
