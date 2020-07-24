@@ -16,7 +16,7 @@ Java 是一种广泛使用的计算机编程语言，拥有 **跨平台** 、 **
 
 可以使用包管理器提供的 JDK。
 
-如果是 Debian 及其衍生发行版（包括 Ubuntu ），命令如下
+如果是 Debian 及其衍生发行版（包括 Ubuntu），命令如下
 
 ```bash
 sudo apt install default-jre
@@ -53,7 +53,7 @@ sudo dnf install jre-9.0.4_linux_x64_bin.rpm #安装jre-9.0
 sudo dnf install jdk-9.0.4_linux-x64_bin.rpm #安装jdk-9.0
 ```
 
-如果是 Arch 及其衍生发行版（如 Manjaro ），命令如下：
+如果是 Arch 及其衍生发行版（如 Manjaro），命令如下：
 
 ```bash
 sudo pacman -S jdk8-openjdk # 8可以替换为其他版本，不加则为最新版
