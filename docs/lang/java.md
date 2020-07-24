@@ -14,14 +14,18 @@ Java 是一种广泛使用的计算机编程语言，拥有 **跨平台** 、 **
 
 #### 使用包管理器安装
 
-可以使用包管理器提供的 JDK。具体指令如下
+可以使用包管理器提供的 JDK。
+
+如果是 `Debian` 及其衍生发行版（包括 `Ubuntu`），命令如下
 
 ```bash
 sudo apt install default-jre
 sudo apt install default-jdk
 ```
 
-如果 `CentOS` 则使用的是 `yum` 安装，命令如下：
+如同时安装了多个版本，可通过 `update-java-alternatives -l` 查看目前使用的版本，通过 `update-java-alternatives -s <status 中显示的名字>` 更改使用的版本
+
+如果 `CentOS` 7 及以前则使用的是 `yum` 安装，命令如下：
 
 ```bash
 sudo yum install java-1.8.0-openjdk
@@ -34,6 +38,28 @@ sudo yum install java-1.8.0-openjdk
 sudo yum localinstall jre-9.0.4_linux_x64_bin.rpm #安装jre-9.0
 sudo yum localinstall jdk-9.0.4_linux-x64_bin.rpm #安装jdk-9.0
 ```
+
+如果 `CentOS` 8则使用的是 `dnf` 安装，命令如下：
+
+```bash
+sudo dnf install java-1.8.0-openjdk
+```
+
+在稍后询问是否安装时按下 `y` 继续安装
+或是你已经下好了 `rpm` 文件，可以使用以下命令安装
+
+```bash
+sudo dnf install jre-9.0.4_linux_x64_bin.rpm #安装jre-9.0
+sudo dnf install jdk-9.0.4_linux-x64_bin.rpm #安装jdk-9.0
+```
+
+如果是 `Arch` 及其衍生发行版（如 `Manjaro`），命令如下：
+
+```bash
+sudo pacman -S jdk8-openjdk # 8可以替换为其他版本，不加则为最新版
+```
+
+如同时安装了多个版本，可通过 `archlinux-java status` 查看目前使用的版本，通过 `archlinux-java set <status 中显示的名字>` 更改使用的版本
 
 #### 手动安装
 
