@@ -71,7 +71,7 @@ begin
   mid:=(l+r) >> 1;
   x:=toleft[deep,left-1]-toleft[deep,l-1]; // l 到 left 的去左儿子的个数
   y:=toleft[deep,right]-toleft[deep,l-1]; // l 到 right 的去左儿子的个数
-  ry:=right-l-y; rx:=left-l-x; // ry 是 l 到 right 去右儿子的个数,rx 则是 l 到 lefr 去右儿子的个数
+  ry:=right-l-y; rx:=left-l-x; // ry 是 l 到 right 去右儿子的个数,rx 则是 l 到 left 去右儿子的个数
   cnt:=y-x; // left 到 right 左儿子的个数
   if cnt>=k then // 主席树常识啦
     Query:=Query(l+x,l+y-1,k,l,mid,deep+1) // l+x 就是缩小左边界,l+y-1 就是缩小右区间。对于上图来说,就是把 1 和 2 放弃了。
