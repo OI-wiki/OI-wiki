@@ -24,10 +24,10 @@ author: Ir1d, Anguei, hsfzLZH1, siger-young, HeRaNO
 
 所以说，对于普通中缀表达式的计算，我们可以将其转化为后缀表达式再进行计算。转换方法也十分简单。只要建立一个用于存放运算符的栈，扫描该中缀表达式：
 
-1. 如果遇到数字，直接将该数字输出到后缀表达式（以下部分用「输出」表示输出到后缀表达式）;
-2. 如果遇到左括号，入栈;
-3. 如果遇到右括号，不断输出栈顶元素，直至遇到左括号。（左括号出栈，但不输出）;
-4. 如果遇到其他运算符，不断去除所有运算优先级大于等于当前运算符的运算符，输出。最后，新的符号入栈;
+1. 如果遇到数字，直接将该数字输出到后缀表达式（以下部分用「输出」表示输出到后缀表达式）；
+2. 如果遇到左括号，入栈；
+3. 如果遇到右括号，不断输出栈顶元素，直至遇到左括号。（左括号出栈，但不输出）；
+4. 如果遇到其他运算符，不断去除所有运算优先级大于等于当前运算符的运算符，输出。最后，新的符号入栈；
 5. 把栈中剩下的符号依次输出，表达式转换结束。
 
 时间复杂度 $O(n)$ 。
@@ -36,36 +36,38 @@ author: Ir1d, Anguei, hsfzLZH1, siger-young, HeRaNO
     ```cpp
     // 下面代码摘自笔者 NOIP2005 等价表达式
     std::string convert(const std::string &s) {  // 把中缀表达式转换为后缀表达式
-        std::stack<char> oper;
-        std::stringstream ss;    
-        ss << s;    
-        std::string t, tmp;    
-        while (ss >> tmp) {    
-        if (isdigit(tmp[0]))    
-            t += tmp + " ";  // 1. 如果遇到一个数，输出该数        
-        else if (tmp[0] == '(')    
-            oper.push(tmp[0]);       // 2. 如果遇到左括号，把左括号入栈
-        else if (tmp[0] == ')') {  // 3. 如果遇到右括号，    
-            while (!oper.empty() && oper.top() != '(')         
-                t += std::string(1, oper.top()) + " ", oper.pop();  // 不断取出栈顶并输出，直到栈顶为左括号，
-            oper.pop();        // 然后把左括号出栈        
-        } else {             // 4. 如果遇到运算符    
-            while (!oper.empty() && level[oper.top()] >= level[tmp[0]])
-                t += std::string(1, oper.top()) + " ", oper.pop();  // 只要栈顶符号的优先级不低于新符号，就不断取出栈顶并输出
-            oper.push(tmp[0]);  // 最后把新符号进栈
+      std::stack<char> oper;
+      std::stringstream ss;
+      ss << s;
+      std::string t, tmp;
+      while (ss >> tmp) {
+        if (isdigit(tmp[0]))
+          t += tmp + " ";  // 1. 如果遇到一个数，输出该数
+        else if (tmp[0] == '(')
+          oper.push(tmp[0]);       // 2. 如果遇到左括号，把左括号入栈
+        else if (tmp[0] == ')') {  // 3. 如果遇到右括号，
+          while (!oper.empty() && oper.top() != '(')
+            t += std::string(1, oper.top()) + " ",
+                oper.pop();  // 不断取出栈顶并输出，直到栈顶为左括号，
+          oper.pop();        // 然后把左括号出栈
+        } else {             // 4. 如果遇到运算符
+          while (!oper.empty() && level[oper.top()] >= level[tmp[0]])
+            t += std::string(1, oper.top()) + " ",
+                oper.pop();  // 只要栈顶符号的优先级不低于新符号，就不断取出栈顶并输出
+          oper.push(tmp[0]);  // 最后把新符号进栈
         }
         while (!oper.empty()) t += std::string(1, oper.top()) + " ", oper.pop();
         return t;
-    }
-    int calc(const std::string &s) {  // 计算转换好的后缀表达式
+      }
+      int calc(const std::string &s) {  // 计算转换好的后缀表达式
         std::stack<int> num;
         std::stringstream ss;
         ss << s;
         std::string t, tmp;
         while (ss >> tmp) {
-        if (isdigit(tmp[0]))
+          if (isdigit(tmp[0]))
             num.push(stoi(tmp));
-        else {
+          else {
             int b, a;  // 取出栈顶元素，注意顺序
             if (!num.empty()) b = num.top();
             num.pop();
@@ -75,10 +77,10 @@ author: Ir1d, Anguei, hsfzLZH1, siger-young, HeRaNO
             if (tmp[0] == '-') num.push(a - b);
             if (tmp[0] == '*') num.push(a * b);
             if (tmp[0] == '^') num.push(qpow(a, b));
-            }
+          }
         }
         return num.top();
-    }
+      }
     ```
 
 ## 习题
