@@ -78,7 +78,7 @@
     double calc(int id, int d) { return p[id].b + p[id].k * d; }
     void add(int x0, int y0, int x1, int y1) {
       cnt++;
-      if (x0 == x1) // 特判直线斜率不存在的情况
+      if (x0 == x1)  // 特判直线斜率不存在的情况
         p[cnt].k = 0, p[cnt].b = max(y0, y1);
       else
         p[cnt].k = 1.0 * (y1 - y0) / (x1 - x0), p[cnt].b = y0 - p[cnt].k * x0;
