@@ -113,7 +113,7 @@ $$
 
  $\forall x,y \in \mathbb{N}_{+},\gcd(x,y)=1$ ， $f(1)=1$ 且都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为积性函数。
 
- $\forall x,y \in \mathbb{N}_{+}$，$f(1)=1$ 且都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为完全积性函数。
+ $\forall x,y \in \mathbb{N}_{+}$ ， $f(1)=1$ 且都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为完全积性函数。
 
 ### 性质
 
@@ -153,9 +153,9 @@ $$
 
 Dirichlet 卷积满足以下运算规律：
 
--  交换律 $(f * g=g * f)$ ；
--  结合律 $(f * g) * h=f * (g * h)$；
--  分配率 $f * (g+h)=f * g+f * h$；
+- 交换律 $(f * g=g * f)$ ；
+- 结合律 $(f * g) * h=f * (g * h)$ ；
+- 分配率 $f * (g+h)=f * g+f * h$ ；
 -  $f*\varepsilon=f$ ，其中 $\varepsilon$ 为 Dirichlet 卷积的单位元（任何函数卷 $\varepsilon$ 都为其本身）
 
 ### 例子
@@ -949,4 +949,3 @@ $$
 ## 参考文献
 
  [algocode 算法博客](https://algocode.net) 
-
