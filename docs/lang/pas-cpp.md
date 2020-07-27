@@ -48,7 +48,7 @@ INFO: 恭喜你找到了隐藏彩蛋！
 
 -  [Dev-C++](./editor/devcpp.md) 
 -  [Code::Blocks](https://sourceforge.net/projects/codeblocks/) 
--  [VS Code](./editor/vscode.md)
+-  [VS Code](./editor/vscode.md) 
 
 ### 方式二：使用 代码编辑器 + 编译器 + 调试器
 
