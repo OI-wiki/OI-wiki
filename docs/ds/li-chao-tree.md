@@ -34,9 +34,9 @@
 
 结合图片理解一下（红色线段代表原来的最优线段，黑色线段代表新插入的线段，绿色直线则代表 $x=mid$ 这条直线）：
 
-![](./image/li-chao-tree1.png)
+![](./images/li-chao-tree1.png)
 
-![](./image/li-chao-tree2.png)
+![](./images/li-chao-tree2.png)
 
 接下来考虑新线段斜率小于原线段的情况，
 
@@ -45,9 +45,9 @@
 
 再来两张图：
 
-![](./image/li-chao-tree3.png)
+![](./images/li-chao-tree3.png)
 
-![](./image/li-chao-tree4.png)
+![](./images/li-chao-tree4.png)
 
 最后考虑新线段和旧线段斜率相同的情况，此时只需比较截距即可，截距大的一定在整个区间内更优。
 
