@@ -1,4 +1,4 @@
-??? warning
+???+ warning
     本页面不是 [**基数排序**](radix-sort.md)。
 
 本页面将简要介绍计数排序。
