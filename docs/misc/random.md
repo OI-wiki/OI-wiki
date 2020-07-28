@@ -88,6 +88,52 @@ int main() {
 }
 ```
 
+### 非确定随机数的均匀分布整数随机数生成器
+
+`random_device`是一个基于硬件的均匀分布随机数生成器，**在熵池耗尽**前们可以高速生成随机数。该类在`C++11`定义，需要`random`头文件。由于熵池耗尽后性能急剧下降，所以建议用此方法生成`mt19937`等伪随机数的种子，而不是直接生成。
+
+参考代码如下。
+
+```cpp
+#include <iostream>
+#include <string>
+#include <map>
+#include <random>
+ 
+int main()
+{
+    std::random_device rd;
+    std::map<int, int> hist;
+    std::uniform_int_distribution<int> dist(0, 9);
+    for (int n = 0; n < 20000; ++n) {
+        ++hist[dist(rd)]; // 注意：仅用于演示：一旦熵池耗尽，
+                          // 许多 random_device 实现的性能就急剧下滑
+                          // 对于实践使用， random_device 通常仅用于
+                          // 播种类似 mt19937 的伪随机数生成器
+    }
+    for (auto p : hist) {
+        std::cout << p.first << " : " << std::string(p.second/100, '*') << '\n';
+    }
+}
+```
+
+可能的输出如下。
+
+```plain
+0 : ********************
+1 : *******************
+2 : ********************
+3 : ********************
+4 : ********************
+5 : *******************
+6 : ********************
+7 : ********************
+8 : *******************
+9 : ********************
+```
+
+阅读[cppreference](https://zh.cppreference.com/w/cpp/numeric/random/random_device)以获得更多信息。
+
 ## Example I
 
 先来看一道网络流题： [「TJOI2015」线性代数](https://loj.ac/problem/2100) 。
