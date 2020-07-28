@@ -16,10 +16,10 @@
 
 $$
 \begin{cases}
-x &\equiv& a_1 \pmod {n_1} \\
-x &\equiv& a_2 \pmod {n_2} \\
-  &\vdots& \\
-x &\equiv& a_k \pmod {n_k} \\
+x &\equiv a_1 \pmod {n_1} \\
+x &\equiv a_2 \pmod {n_2} \\
+  &\vdots \\
+x &\equiv a_k \pmod {n_k} \\
 \end{cases}
 $$
 
@@ -135,10 +135,10 @@ $$
 
 $$
 \begin{cases}
-x &\equiv& a_1 \pmod {n_1} \\
-x &\equiv& a_2 \pmod {n_2} \\
-  &\vdots& \\
-x &\equiv& a_k \pmod {n_k} \\
+x &\equiv a_1 \pmod {n_1} \\
+x &\equiv a_2 \pmod {n_2} \\
+  &\vdots \\
+x &\equiv a_k \pmod {n_k} \\
 \end{cases}
 $$
 
