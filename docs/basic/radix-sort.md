@@ -31,7 +31,7 @@
 
 ### 空间复杂度
 
-基数排序的空间复杂度为 $O(k+n)$。
+基数排序的空间复杂度为 $O(k+n)$ 。
 
 ## 算法实现
 
@@ -86,4 +86,4 @@ void radix_sort() {
 
 ## 参考资料与注释
 
-[^ref1]: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. *Introduction to Algorithms* (3rd ed.). MIT Press and McGraw-Hill, 2009. ISBN 978-0-262-03384-8. "8.3 Radix sort", pp. 199.
+[^ref1]: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein.*Introduction to Algorithms*(3rd ed.). MIT Press and McGraw-Hill, 2009. ISBN 978-0-262-03384-8. "8.3 Radix sort", pp. 199.
