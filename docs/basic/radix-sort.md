@@ -10,7 +10,8 @@
 它的工作原理是将待排序的元素拆分为 $k$ 个关键字（比较两个元素时，先比较第一关键字，如果相同再比较第二关键字……），然后先对第 $k$ 关键字进行稳定排序，再对第 $k-1$ 关键字进行稳定排序，再对第 $k-2$ 关键字进行稳定排序……最后对第一关键字进行稳定排序，这样就完成了对整个待排序序列的稳定排序。
 
 ![一个基数排序的流程](images/radix-sort-1.png)
-<p style="text-align:center"><i>一个基数排序的流程</i></p>
+
+*一个基数排序的流程*
 
 基数排序需要借助一种 **稳定算法** 完成内层对关键字的排序。
 
@@ -58,7 +59,7 @@ int n, w[K], k, cnt[W];
 struct Element {
   int key[K];
   bool operator<(const Element& y) const {
-    // shows how two elements are compared
+    // 两个元素的比较流程
     for (int i = 1; i <= k; ++i) {
       if (key[i] == y.key[i]) continue;
       return key[i] < y.key[i];
