@@ -478,7 +478,7 @@ dist = [INF for i in range(N)]
 q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
 
 def add_path(f, t, v):  # 在前向星中加边
-    # 如果要修改全局变量，要使用global来声名
+    # 如果要修改全局变量，要使用global来声明
     global cnt, e, h
     # 调试时的输出语句，多个变量使用元组
     # print("add_path(%d,%d,%d)" % (f,t,v))
