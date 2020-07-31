@@ -21,7 +21,7 @@ author: fudonglai, AngelKitty, labuladong
 1.  [什么是递归？](divide-and-conquer.md) 
 2. 如何给一堆数字排序？答：分成两半，先排左半边再排右半边，最后合并就行了，至于怎么排左边和右边，请重新阅读这句话。
 3. 你今年几岁？答：去年的岁数加一岁，1999 年我出生。
-4. 
+4.
 
 ![一个用于理解递归的例子](images/divide-and-conquer-1.png)
 
@@ -38,26 +38,26 @@ int func(传入数值) {
 
 #### 为什么要写递归
 
-1. 结构清晰，可读性强。例如，分别用不同的方法实现[归并排序](merge-sort.md)：
+1.  结构清晰，可读性强。例如，分别用不同的方法实现 [归并排序](merge-sort.md) ：
 
     ```cpp
     //不使用递归的归并排序算法
-    template<typename T>
-    void merge_sort(vector<T> a){
-        int n = a.size();
-        for (int seg = 1; seg < n; seg = seg + seg)
-            for (int start = 0; start < n - seg; start += seg + seg)
-                merge(a, start, start + seg - 1, std::min(start + seg + seg - 1, n - 1));
+    template <typename T>
+    void merge_sort(vector<T> a) {
+      int n = a.size();
+      for (int seg = 1; seg < n; seg = seg + seg)
+        for (int start = 0; start < n - seg; start += seg + seg)
+          merge(a, start, start + seg - 1, std::min(start + seg + seg - 1, n - 1));
     }
 
     //使用递归的归并排序算法
-    template<typename T>
+    template <typename T>
     void merge_sort(vector<T> a, int front, int end) {
-        if (front >= end) return;
-        int mid = front + (end - front) / 2;
-        merge_sort(a, front, mid);
-        merge_sort(a, mid + 1, end);
-        merge(a, front, mid, end);
+      if (front >= end) return;
+      int mid = front + (end - front) / 2;
+      merge_sort(a, front, mid);
+      merge_sort(a, mid + 1, end);
+      merge(a, front, mid, end);
     }
     ```
 
