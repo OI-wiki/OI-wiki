@@ -6,7 +6,7 @@
 
 模拟题目通常具有码量大、操作多、思路繁复的特点。由于它码量大，经常会出现难以查错的情况，如果在考试中写错是相当浪费时间的。
 
-## 要点
+## 技巧
 
 写模拟题时，遵循以下的建议有可能会提升做题速度：
 
@@ -20,7 +20,7 @@
 
 ## 例题详解
 
-???+note " [Climbing Worm - HDU](http://acm.hdu.edu.cn/showproblem.php?pid=1000)"
+???+note " [Climbing Worm - HDU](http://acm.hdu.edu.cn/showproblem.php?pid=1049)"
 
     一只一英寸的蠕虫位于 n 英寸深的井的底部。它每分钟向上爬 u 英寸，但是必须休息一分钟才能再次向上爬。在休息的时候，它滑落了 d 英寸。之后它将重复向上爬和休息的过程。蠕虫爬出井口花费了多长时间？我们将不足一分钟的部分算作一整分钟。如果蠕虫爬完后刚好到达井的顶部，我们也设作蠕虫已经爬出井口。
 
@@ -30,30 +30,26 @@
 
 ??? note "参考代码"
     ```cpp
-    #include<cstdio>
-    int main(void)
-    {
-        int n = 0, u = 0, d = 0;
-        while(scanf("%d %d %d", &n, &u, &d) && n != 0)
-        {
-            int time = 0, dist = 0;
-            while(true)
-            {
-                dist += u;
-                time++;
-                if (dist >= n)
-                    break;
-                dist -= d;
-                time++;
-            }
-            printf("%d\n", time);
+    #include <cstdio>
+    int main(void) {
+      int n = 0, u = 0, d = 0;
+      while (scanf("%d %d %d", &n, &u, &d) && n != 0) {
+        int time = 0, dist = 0;
+        while (true) {
+          dist += u;
+          time++;
+          if (dist >= n) break;
+          dist -= d;
+          time++;
         }
-        return 0;
+        printf("%d\n", time);
+      }
+      return 0;
     }
     ```
 
 ## 习题
 
-- [【NOIP2014】生活大爆炸版石头剪刀布 - Universal Online Judge](https://uoj.ac/problem/15)
-- [3750:魔兽世界 - OpenJudge](http://bailian.openjudge.cn/practice/3750/)
-- [「SDOI2010」猪国杀 - LibreOJ](https://loj.ac/problem/2885)
+-  [【NOIP2014】生活大爆炸版石头剪刀布 - Universal Online Judge](https://uoj.ac/problem/15) 
+-  [3750: 魔兽世界 - OpenJudge](http://bailian.openjudge.cn/practice/3750/) 
+-  [「SDOI2010」猪国杀 - LibreOJ](https://loj.ac/problem/2885) 
