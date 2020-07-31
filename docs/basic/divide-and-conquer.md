@@ -4,7 +4,7 @@ author: fudonglai, AngelKitty, labuladong
 
 ## 简介
 
-递归，在数学和计算机科学中是指在函数的定义中使用函数自身的方法，在计算机科学中还额外指一种通过重复将问题分解为同类的子问题而解决问题的方法。
+递归（英语：Recursion），在数学和计算机科学中是指在函数的定义中使用函数自身的方法，在计算机科学中还额外指一种通过重复将问题分解为同类的子问题而解决问题的方法。
 
 分治字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。
 
@@ -21,6 +21,9 @@ author: fudonglai, AngelKitty, labuladong
 1. [什么是递归？](divide-and-conquer.md)
 2. 如何给一堆数字排序？答：分成两半，先排左半边再排右半边，最后合并就行了，至于怎么排左边和右边，请重新阅读这句话。
 3. 你今年几岁？答：去年的岁数加一岁，1999 年我出生。
+4. 
+
+![一个用于理解递归的例子](images/divide-and-conquer-1.png)
 
 递归在数学中非常常见。例如，集合论对自然数的正式定义是：1 是一个自然数，每个自然数都有一个后继，这一个后继也是自然数。
 
@@ -35,24 +38,26 @@ int func(传入数值) {
 
 #### 为什么要写递归
 
-1. 结构清晰，可读性强。例如，分别用不同的方法实现归并排序：
+1. 结构清晰，可读性强。例如，分别用不同的方法实现[归并排序](merge-sort.md)：
 
-    ```java
+    ```cpp
     //不使用递归的归并排序算法
-    void sort(Comparable[] a){
-        int N = a.length;
-        for (int sz = 1; sz < N; sz = sz + sz)
-            for (int lo = 0; lo < N - sz; lo += sz + sz)
-                merge(a, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, N - 1));
+    template<typename T>
+    void merge_sort(vector<T> a){
+        int n = a.size();
+        for (int seg = 1; seg < n; seg = seg + seg)
+            for (int start = 0; start < n - seg; start += seg + seg)
+                merge(a, start, start + seg - 1, std::min(start + seg + seg - 1, n - 1));
     }
 
     //使用递归的归并排序算法
-    void sort(Comparable[] a, int lo, int hi) {
-        if (lo >= hi) return;
-        int mid = lo + (hi - lo) / 2;
-        sort(a, lo, mid);
-        sort(a, mid + 1, hi);
-        merge(a, lo, mid, hi);
+    template<typename T>
+    void merge_sort(vector<T> a, int front, int end) {
+        if (front >= end) return;
+        int mid = front + (end - front) / 2;
+        merge_sort(a, front, mid);
+        merge_sort(a, mid + 1, end);
+        merge(a, front, mid, end);
     }
     ```
 
@@ -62,7 +67,7 @@ int func(传入数值) {
 
 #### 递归的缺点
 
-在程序执行中，递归是利用堆栈来实现的。每当进入一个函数调用，栈就会增加一层栈帧，每次函数返回，栈就会减少一层栈帧。而栈不是无限大的，当递归层数过多时，就会造成**栈溢出**的后果。
+在程序执行中，递归是利用堆栈来实现的。每当进入一个函数调用，栈就会增加一层栈帧，每次函数返回，栈就会减少一层栈帧。而栈不是无限大的，当递归层数过多时，就会造成**栈溢出**的结果。
 
 显然有时候递归处理是高效的，比如归并排序； **有时候是低效的** ，比如数孙悟空身上的毛，因为堆栈会消耗额外空间，而简单的递推不会消耗空间。比如这个例子，给一个链表头，计算它的长度：
 
@@ -81,7 +86,7 @@ int size_recurison(Node *head) {
 }
 ```
 
-![[二者的对比，compiler 设为 Clang 10.0，优化设为 O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-1.png)
+![[二者的对比，compiler 设为 Clang 10.0，优化设为 O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.png)
 
 #### 递归优化
 
@@ -216,41 +221,42 @@ void traverse(TreeNode* root) {
     }
     ```
 
-题目看起来很复杂，不过代码却极其简洁。
+??? note "题目解析"
+    题目看起来很复杂，不过代码却极其简洁。
 
-首先明确，递归求解树的问题必然是要遍历整棵树的，所以二叉树的遍历框架（分别对左右子树递归调用函数本身）必然要出现在主函数 pathSum 中。那么对于每个节点，它们应该干什么呢？它们应该看看，自己和它们的子树包含多少条符合条件的路径。好了，这道题就结束了。
+    首先明确，递归求解树的问题必然是要遍历整棵树的，所以二叉树的遍历框架（分别对左右子树递归调用函数本身）必然要出现在主函数 pathSum 中。那么对于每个节点，它们应该干什么呢？它们应该看看，自己和它们的子树包含多少条符合条件的路径。好了，这道题就结束了。
 
-按照前面说的技巧，根据刚才的分析来定义清楚每个递归函数应该做的事：
+    按照前面说的技巧，根据刚才的分析来定义清楚每个递归函数应该做的事：
 
-`PathSum` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，和为目标值的路径总数。
+    `PathSum` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，和为目标值的路径总数。
 
-`count` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，能凑出几个以该节点为路径开头，和为目标值的路径总数。
+    `count` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，能凑出几个以该节点为路径开头，和为目标值的路径总数。
 
-??? note "参考代码（附注释）"
-    ```cpp
-    int pathSum(TreeNode *root, int sum) {
-        if (root == nullptr) return 0;
-        int pathImLeading = count(root, sum);  // 自己为开头的路径数
-        int leftPathSum = pathSum(root->left, sum);  // 左边路径总数（相信它能算出来）
-        int rightPathSum = pathSum(root->right, sum);  // 右边路径总数（相信它能算出来）
-        return leftPathSum + rightPathSum + pathImLeading;
-    }
+    ??? note "参考代码（附注释）"
+        ```cpp
+        int pathSum(TreeNode *root, int sum) {
+            if (root == nullptr) return 0;
+            int pathImLeading = count(root, sum);  // 自己为开头的路径数
+            int leftPathSum = pathSum(root->left, sum);  // 左边路径总数（相信它能算出来）
+            int rightPathSum = pathSum(root->right, sum);  // 右边路径总数（相信它能算出来）
+            return leftPathSum + rightPathSum + pathImLeading;
+        }
 
-    int count(TreeNode *node, int sum) {
-        if (node == nullptr) return 0;
-        // 能不能作为一条单独的路径呢？
-        int isMe = (node->val == sum) ? 1 : 0;
-        // 左边的，你那边能凑几个 sum - node.val ？
-        int leftNode = count(node->left, sum - node->val);
-        // 右边的，你那边能凑几个 sum - node.val ？
-        int rightNode = count(node->right, sum - node->val);
-        return isMe + leftNode + rightNode;  // 我这能凑这么多个
-    }
-    ```
+        int count(TreeNode *node, int sum) {
+            if (node == nullptr) return 0;
+            // 能不能作为一条单独的路径呢？
+            int isMe = (node->val == sum) ? 1 : 0;
+            // 左边的，你那边能凑几个 sum - node.val ？
+            int leftNode = count(node->left, sum - node->val);
+            // 右边的，你那边能凑几个 sum - node.val ？
+            int rightNode = count(node->right, sum - node->val);
+            return isMe + leftNode + rightNode;  // 我这能凑这么多个
+        }
+        ```
 
-还是那句话， **明白每个函数能做的事，并相信它们能够完成。**
+    还是那句话， **明白每个函数能做的事，并相信它们能够完成。**
 
-总结下，`PathSum` 函数提供了二叉树遍历框架，在遍历中对每个节点调用 `count` 函数（这里用的是先序遍历，不过中序遍历和后序遍历也可以）。`count` 函数也是一个二叉树遍历，用于寻找以该节点开头的目标值路径。
+    总结下，`PathSum` 函数提供了二叉树遍历框架，在遍历中对每个节点调用 `count` 函数（这里用的是先序遍历，不过中序遍历和后序遍历也可以）。`count` 函数也是一个二叉树遍历，用于寻找以该节点开头的目标值路径。
 
 ## 习题
 
