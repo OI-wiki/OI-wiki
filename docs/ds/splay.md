@@ -431,7 +431,7 @@ int main() {
 
 ## 例题
 
-以下题目都是裸的 $\text{Splay}$ 维护二叉查找树。~~（直接套板子即可）~~
+以下题目都是裸的 $\text{Splay}$ 维护二叉查找树。
 
 -  [【模板】普通平衡树](https://loj.ac/problem/104) 
 -  [【模板】文艺平衡树](https://loj.ac/problem/105) 

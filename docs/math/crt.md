@@ -15,14 +15,12 @@
 中国剩余定理 (Chinese Remainder Theorem, CRT) 可求解如下形式的一元线性同余方程组（其中 $n_1, n_2, \cdots, n_k$ 两两互质）：
 
 $$
-\left \{
-\begin{array}{ccc}
-x &\equiv& a_1 \pmod {n_1} \\
-x &\equiv& a_2 \pmod {n_2} \\
-  &\vdots& \\
-x &\equiv& a_k \pmod {n_k} \\
-\end{array}
-\right.
+\begin{cases}
+x &\equiv a_1 \pmod {n_1} \\
+x &\equiv a_2 \pmod {n_2} \\
+  &\vdots \\
+x &\equiv a_k \pmod {n_k} \\
+\end{cases}
 $$
 
 上面的「物不知数」问题就是一元线性同余方程组的一个实例。
@@ -39,14 +37,14 @@ $$
 ### 伪代码
 
 ```text
-1 → n
-0 → ans
+n ← 1
+ans ← 0
 for i = 1 to k
-  n * n[i] → n
+  n ← n * n[i]
 for i = 1 to k
-  n / n[i] → m
-  inv(m, n[i]) → b               // b * m mod n[i] = 1
-  (ans + a[i] * m * b) mod n → ans
+  m ← n / n[i]
+  b ← inv(m, n[i])               // b * m mod n[i] = 1
+  ans ← (ans + a[i] * m * b) mod n
 return ans
 ```
 
@@ -136,7 +134,12 @@ $$
 考虑 CRT, 不妨假设 $n_1\leq n_2 \leq ... \leq n_k$ 
 
 $$
-\left\{ \begin{array} { r l } { x } & { \equiv a _ { 1 } \left( \bmod n _ { 1 } \right) } \\ { x } & { \equiv a _ { 2 } \left( \bmod n _ { 2 } \right) } \\ { } & { \vdots } \\ { x } & { \equiv a _ { k } \left( \bmod n _ { k } \right) } \end{array} \right.
+\begin{cases}
+x &\equiv a_1 \pmod {n_1} \\
+x &\equiv a_2 \pmod {n_2} \\
+  &\vdots \\
+x &\equiv a_k \pmod {n_k} \\
+\end{cases}
 $$
 
 与 PMR(Primorial Mixed Radix) 表示
