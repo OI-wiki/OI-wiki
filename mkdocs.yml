@@ -22,11 +22,11 @@ nav:
     - Getting Started: index.md
     - OI 赛事与赛制: intro/oi.md
     - ICPC/CCPC 赛事与赛制: intro/icpc.md
+    - 问题类型: intro/problems.md
     - 学习路线: intro/roadmap.md
     - 学习资源: intro/resources.md
     - 常见错误: intro/common-mistakes.md
     - 常见技巧: intro/common-tricks.md
-    - 非传统题: intro/non-trad.md
     - 工具软件:
       - 评测工具: intro/judgers.md
       - WSL (Windows 10): intro/wsl.md
@@ -233,6 +233,7 @@ nav:
       - 排列组合: math/combination.md
       - 卡特兰数: math/catalan.md
       - 斯特林数: math/stirling.md
+      - 贝尔数: math/bell.md
       - 康托展开: math/cantor.md
       - 容斥原理: math/inclusion-exclusion-principle.md
       - 抽屉原理: math/drawer-principle.md
@@ -265,8 +266,9 @@ nav:
     - 单调栈: ds/monotonous-stack.md
     - 单调队列: ds/monotonous-queue.md
     - ST 表: ds/sparse-table.md
-    - 线段树: ds/seg.md
     - 树状数组: ds/fenwick.md
+    - 线段树: ds/seg.md
+    - 李超线段树: ds/li-chao-tree.md
     - 区间最值操作 & 区间历史最值: ds/seg-beats.md
     - 划分树: ds/dividing.md
     - 二叉搜索树 & 平衡树:

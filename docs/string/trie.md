@@ -444,9 +444,9 @@ int marge(int a, int b) {
             if (opt == 1) {
               lztar[x]++;
               if (x != rt) {
-                if (fa[fa[x]]) trie::erase(trie::rt[fa[fa[x]]], get(fa[x]), 0);
+                if (fa[fa[x]] != -1) trie::erase(trie::rt[fa[fa[x]]], get(fa[x]), 0);
                 V[fa[x]]++;
-                if (fa[fa[x]]) trie::insert(trie::rt[fa[fa[x]]], get(fa[x]), 0);
+                if (fa[fa[x]] != -1) trie::insert(trie::rt[fa[fa[x]]], get(fa[x]), 0);
               }
               trie::addall(trie::rt[x]);
             } else if (opt == 2) {

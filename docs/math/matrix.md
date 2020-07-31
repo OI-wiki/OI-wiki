@@ -226,7 +226,7 @@ $$
 ### 矩阵表达修改
 
 ???+note "「THUSCH 2017」大魔法师"
-    ~~中二病患者~~大魔法师小 L 制作了 $n$ 个魔力水晶球，每个水晶球有水、火、土三个属性的能量值。小 L 把这 $n$ 个水晶球在地上从前向后排成一行，然后开始今天的魔法表演。
+    大魔法师小 L 制作了 $n$ 个魔力水晶球，每个水晶球有水、火、土三个属性的能量值。小 L 把这 $n$ 个水晶球在地上从前向后排成一行，然后开始今天的魔法表演。
     
     我们用 $A_i,\ B_i,\ C_i$ 分别表示从前向后第 $i$ 个水晶球（下标从 $1$ 开始）的水、火、土的能量值。
     
@@ -296,9 +296,12 @@ $$
     有一棵 $n$ 节点的树，根为 $1$ 号节点。每个节点有两个权值 $k_i, t_i$ ，初始值均为 $0$ 。
     
     给出三种操作：
-    1\. $\operatorname{Add}( x , d )$ 操作：将 $x$ 到根的路径上所有点的 $k_i\leftarrow k_i + d$ 2. $\operatorname{Mul}( x , d )$ 操作：将 $x$ 到根的路径上所有点的 $t_i\leftarrow t_i + d \times k_i$ 3. $\operatorname{Query}( x )$ 操作：询问点 $x$ 的权值 $t_x$ 
-    
-     $n,~m \leq 100000, ~-10 \leq d \leq 10$ 
+
+    1.  $\operatorname{Add}( x , d )$ 操作：将 $x$ 到根的路径上所有点的 $k_i\leftarrow k_i + d$ 
+    2.  $\operatorname{Mul}( x , d )$ 操作：将 $x$ 到根的路径上所有点的 $t_i\leftarrow t_i + d \times k_i$ 
+    3.  $\operatorname{Query}( x )$ 操作：询问点 $x$ 的权值 $t_x$ 
+
+    $n,~m \leq 100000, ~-10 \leq d \leq 10$ 
 
 若直接思考，下放操作和维护信息并不是很好想。但是矩阵可以轻松地表达。
 
@@ -400,6 +403,6 @@ $$
 
 -  [洛谷 P1962 斐波那契数列](https://www.luogu.com.cn/problem/P1962) ，即上面的例题，同题 POJ3070
 -  [洛谷 P1349 广义斐波那契数列](https://www.luogu.com.cn/problem/P1349) ， $\text{base}$ 矩阵需要变化一下
--    [洛谷 P1939【模板】矩阵加速（数列）](https://www.luogu.com.cn/problem/P1939) ， $\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
+-  [洛谷 P1939【模板】矩阵加速（数列）](https://www.luogu.com.cn/problem/P1939) ， $\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
 
      **本页面部分内容译自博文 [Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths) 与其英文翻译版 [Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
