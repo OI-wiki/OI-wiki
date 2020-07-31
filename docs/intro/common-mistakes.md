@@ -33,7 +33,7 @@ author: NachtgeistW
 
 -   赋值运算符 `=` 和比较运算符 `==` 不分。
 
-    -   示例（头文件、using 声明和函数主体略）：
+    -   示例：
 
         ```cpp
         std::srand(std::time(nullptr));
@@ -51,7 +51,7 @@ author: NachtgeistW
 
 -   由于运算符优先级产生的错误。
 
-    -   示例（头文件、using 声明和函数主体略）：
+    -   示例：
 
         ```cpp
         // 错误
@@ -131,7 +131,7 @@ author: NachtgeistW
 
 -   由于宏的展开，且未加括号导致的错误。
 
-    -   示例（头文件、using 声明和函数主体略）：该宏返回的值并非 $4^2 = 16$ 而是 $2+2\times 2+2 = 8$ 。
+    -   示例：该宏返回的值并非 $4^2 = 16$ 而是 $2+2\times 2+2 = 8$ 。
 
         ```cpp
         #define square(x) x* x
@@ -145,7 +145,7 @@ author: NachtgeistW
 
 -   误加了 `;` 。
 
-    -   示例（头文件、using 声明和函数主体略）：
+    -   示例：
 
         ```cpp
         /* clang-format off */
@@ -180,7 +180,7 @@ author: NachtgeistW
 
 -   并查集合并集合时没有把两个元素的祖先合并。
 
-    -   示例（头文件、using 声明和函数主体略）：
+    -   示例：
 
         ```cpp
         f[a] = b;              // 错误
@@ -246,7 +246,7 @@ author: NachtgeistW
 
     这样写虽然在正确性上没有问题，但是如果直接对函数的返回值取 max，如 `a = Max(func1(), func2())` ，而这个函数的运行时间较长，则会大大影响程序的性能，因为宏展开后是 `a = func1() > func2() ? func1() : func2()` 的形式，调用了三次函数，比正常的 max 函数多调用了一次。注意，如果 `func1()` 每次返回的答案不一样，还会导致这种 `max` 的写法出现错误。例如 `func1()` 为 `return ++a;` 而 `a` 为全局变量的情况。
 
-    示例（头文件、using 声明和函数主体略）：如下代码会被卡到单次查询 $\Theta(n)$ 导致 TLE。
+    示例：如下代码会被卡到单次查询 $\Theta(n)$ 导致 TLE。
 
     ```cpp
     #define max(x, y) ((x) > (y) ? (x) : (y))
