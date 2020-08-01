@@ -2,15 +2,15 @@
 
 Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc. 开发。
 
-### 安装
+## 安装
 
-#### 方法一
+### 方法一
 
 打开苹果电脑自带的 App Store（或者尝试 [快捷链接](https://apps.apple.com/cn/app/xcode/id497799835?mt=12) ）下载 Xcode。点击获取，然后输入苹果账号密码开始下载安装。
 
 ![](images/xcode-1.jpg)
 
-#### 方法二
+### 方法二
 
 访问 [苹果开发者下载页面](https://developer.apple.com/download/more/) ，用苹果账号登录，然后找到 Xcode 最新的稳定版本安装包（即不含 Beta 的最新版本，此处为 11.6）：
 
@@ -18,7 +18,7 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 
 点击弹出框内蓝色的文件名即可下载。得到压缩包之后，用系统自带的工具进行解压，然后得到文件 Xcode.app。把这个文件移动到【应用程序】文件夹后即可使用。
 
-### 基础配置
+## 基础配置
 
 首次打开 Xcode 时，可能会遇到下列弹出窗口：
 
@@ -54,7 +54,7 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 
 仿照这种方式，我们就可以运行任何的单个 C/C++ 程序。
 
-### 万能头文件的使用
+## 万能头文件的使用
 
 在编写代码过程中，我们可能会使用到很多头文件。常用的解决方法是使用万能头文件。
 
@@ -64,7 +64,7 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 
 这是因为 Xcode 是默认不兼容万能头文件的。我们可以通过新建头文件的方法来使用万能头文件。
 
-#### 步骤 1
+### 步骤 1
 
 打开终端（Terminal.app），前往 Xcode 存储头文件的文件夹，即：
 
@@ -72,7 +72,7 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 cd /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
 ```
 
-#### 步骤 2
+### 步骤 2
 
 创建 bits 文件夹并进入：
 
@@ -224,10 +224,8 @@ vim stdc++.h
 
 ![](images/xcode-13.jpg)
 
-### 优点
+## 优缺点
 
-由苹果开发，适合 Mac 用户，界面齐全、美观。
+【优点】由苹果开发，适合 Mac 用户，界面齐全、美观。
 
-### 缺点
-
-Xcode 主要用来苹果程序的开发，对于竞赛来说功能冗余，安装包大小较大。
+【缺点】Xcode 主要用来苹果程序的开发，对于竞赛来说功能冗余，安装包大小较大，而且仅能在 Mac 端上使用。
