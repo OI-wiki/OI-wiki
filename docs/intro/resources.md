@@ -59,7 +59,7 @@ author: Konano, Enter-tainer, JulieSigtuna, GldHkkowo, NachtgeistW
 -  [ **OI Wiki** ](https://oi-wiki.org) 
 -  [Codeforces 上网友整理的一份教程合集](http://codeforces.com/blog/entry/57282) 
 -  [英文版 E-Maxx 算法教程](https://cp-algorithms.com/) 
--  [演算法笔记](http://www.csie.ntnu.edu.tw/~u91029/) ：台湾师范大学总结的教程
+-  [演算法笔记](http://web.ntnu.edu.tw/~algo/) ：台湾师范大学总结的教程
 -  [algo.is](https://algo.is/t-414-aflv-competitive-programming-course-2016/) 
 -  [CS 97SI: Introduction to Programming Contests](http://web.stanford.edu/class/cs97si/) ：斯坦福大学的一门课
 -  [如何为 ACM-ICPC 做准备？- geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/) 
