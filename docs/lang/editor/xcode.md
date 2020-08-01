@@ -152,6 +152,7 @@ vim stdc++.h
 #include <ccomplex>
 #include <cfenv>
 #include <cinttypes>
+#include <cstdalign>
 #include <cstdbool>
 #include <cstdint>
 #include <ctgmath>
@@ -209,8 +210,8 @@ vim stdc++.h
 #include <system_error>
 #include <thread>
 #include <tuple>
-#include <type_traits>
 #include <typeindex>
+#include <type_traits>
 #include <unordered_map>
 #include <unordered_set>
 #endif
