@@ -44,9 +44,8 @@ Polygon 是一个支持多人协作的出题平台，功能非常完善。官网
 
 Polygon 的大部分功能都不需要学，能看懂英文就基本能用了。
 
-特别提醒：
-
-- 题面不能使用 Markdown，只能用 TeX。
+???+ warning
+    题面不能使用 Markdown，只能用 TeX。
 
 - Invocation 是用来测试 solution 的。
 
