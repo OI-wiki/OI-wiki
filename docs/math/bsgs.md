@@ -189,7 +189,7 @@ $$
 
 -  [SPOJ MOD](https://www.spoj.com/problems/MOD/) 模板
 -  [SDOI2013 随机数生成器](https://www.luogu.com.cn/problem/P3306) 
--  [BZOJ1319 Discrete Roots](http://www.lydsy.com/JudgeOnline/problem.php?id=1319) 模板
+-  [SGU261 Discrete Roots](https://codeforces.com/problemsets/acmsguru/problem/99999/261) 模板
 -  [SDOI2011 计算器](https://loj.ac/problem/10214) 模板
 -  [Luogu4195【模板】exBSGS/Spoj3105 Mod](https://www.luogu.com.cn/problem/P4195) 模板
 -  [Codeforces - Lunar New Year and a Recursive Sequence](https://codeforces.com/contest/1106/problem/F) 

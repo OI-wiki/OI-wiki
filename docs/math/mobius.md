@@ -111,7 +111,9 @@ $$
 
 ### 定义
 
- $\forall x,y \in \mathbb{N}_{+},\gcd(x,y)=1$ ，都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为积性函数。
+ $\forall x,y \in \mathbb{N}_{+},\gcd(x,y)=1$ ， $f(1)=1$ 且都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为积性函数。
+
+ $\forall x,y \in \mathbb{N}_{+}$ ， $f(1)=1$ 且都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为完全积性函数。
 
 ### 性质
 
@@ -128,9 +130,9 @@ $$
 
 ### 例子
 
-- 单位函数： $\epsilon(n)=[n=1]$ 
-- 恒等函数： $\operatorname{id}_k(n)=n^k$  $\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$ 。
-- 常数函数： $1(n)=1$ 
+- 单位函数： $\epsilon(n)=[n=1]$ （完全积性）
+- 恒等函数： $\operatorname{id}_k(n)=n^k$  $\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$ 。（完全积性）
+- 常数函数： $1(n)=1$ （完全积性）
 - 除数函数： $\sigma_{k}(n)=\sum_{d\mid n}d^{k}$  $\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$ ， $\sigma_{1}(n)$ 通常简记作 $\sigma(n)$ 。
 - 欧拉函数： $\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$ 
 - 莫比乌斯函数： $\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1:d^{2} \mid n \\ (-1)^{\omega(n)} & otherwise\end{cases}$ 其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，是一个积性函数。
@@ -149,9 +151,12 @@ $$
 
 ### 性质
 
-Dirichlet 卷积满足交换律和结合律。
+Dirichlet 卷积满足以下运算规律：
 
-其中 $\varepsilon$ 为 Dirichlet 卷积的单位元（任何函数卷 $\varepsilon$ 都为其本身）
+- 交换律 $(f * g=g * f)$ ；
+- 结合律 $(f * g) * h=f * (g * h)$ ；
+- 分配率 $f * (g+h)=f * g+f * h$ ；
+-  $f*\varepsilon=f$ ，其中 $\varepsilon$ 为 Dirichlet 卷积的单位元（任何函数卷 $\varepsilon$ 都为其本身）
 
 ### 例子
 
@@ -202,7 +207,7 @@ $$
 \end{cases}
 $$
 
-即 $\sum_{d\mid n}\mu(d)=\varepsilon(n)$ ，即 $\mu * 1 =\varepsilon$ 
+即 $\sum_{d\mid n}\mu(d)=\varepsilon(n)$ ， $\mu * 1 =\varepsilon$ 
 
 ### 证明
 
