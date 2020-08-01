@@ -95,127 +95,129 @@ vim stdc++.h
 
 ![](images/xcode-12.jpg)
 
-接着，将下面这段代码块复制并粘贴到终端中：
+将下面这段代码块复制并粘贴到终端中：
 
-```cpp
-// C++ includes used for precompiling -*- C++ -*-
+???+note "万能头文件代码块"
 
-// Copyright (C) 2003-2014 Free Software Foundation, Inc.
-//
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+    ```cpp
+    // C++ includes used for precompiling -*- C++ -*-
 
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
+    // Copyright (C) 2003-2014 Free Software Foundation, Inc.
+    //
+    // This file is part of the GNU ISO C++ Library.  This library is free
+    // software; you can redistribute it and/or modify it under the
+    // terms of the GNU General Public License as published by the
+    // Free Software Foundation; either version 3, or (at your option)
+    // any later version.
 
-// Under Section 7 of GPL version 3, you are granted additional
-// permissions described in the GCC Runtime Library Exception, version
-// 3.1, as published by the Free Software Foundation.
+    // This library is distributed in the hope that it will be useful,
+    // but WITHOUT ANY WARRANTY; without even the implied warranty of
+    // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    // GNU General Public License for more details.
 
-// You should have received a copy of the GNU General Public License and
-// a copy of the GCC Runtime Library Exception along with this program;
-// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
-// <http://www.gnu.org/licenses/>.
+    // Under Section 7 of GPL version 3, you are granted additional
+    // permissions described in the GCC Runtime Library Exception, version
+    // 3.1, as published by the Free Software Foundation.
 
-/** @file stdc++.h
- *  This is an implementation file for a precompiled header.
- */
+    // You should have received a copy of the GNU General Public License and
+    // a copy of the GCC Runtime Library Exception along with this program;
+    // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+    // <http://www.gnu.org/licenses/>.
 
-// 17.4.1.2 Headers
+    /** @file stdc++.h
+    *  This is an implementation file for a precompiled header.
+    */
 
-// C
-#ifndef _GLIBCXX_NO_ASSERT
-#include <cassert>
-#endif
-#include <cctype>
-#include <cerrno>
-#include <cfloat>
-#include <ciso646>
-#include <climits>
-#include <clocale>
-#include <cmath>
-#include <csetjmp>
-#include <csignal>
-#include <cstdarg>
-#include <cstddef>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <ctime>
+    // 17.4.1.2 Headers
 
-#if __cplusplus >= 201103L
-#include <ccomplex>
-#include <cfenv>
-#include <cinttypes>
-#include <cstdalign>
-#include <cstdbool>
-#include <cstdint>
-#include <ctgmath>
-#include <cwchar>
-#include <cwctype>
-#endif
+    // C
+    #ifndef _GLIBCXX_NO_ASSERT
+    #include <cassert>
+    #endif
+    #include <cctype>
+    #include <cerrno>
+    #include <cfloat>
+    #include <ciso646>
+    #include <climits>
+    #include <clocale>
+    #include <cmath>
+    #include <csetjmp>
+    #include <csignal>
+    #include <cstdarg>
+    #include <cstddef>
+    #include <cstdio>
+    #include <cstdlib>
+    #include <cstring>
+    #include <ctime>
 
-// C++
-#include <algorithm>
-#include <bitset>
-#include <complex>
-#include <deque>
-#include <exception>
-#include <fstream>
-#include <functional>
-#include <iomanip>
-#include <ios>
-#include <iosfwd>
-#include <iostream>
-#include <istream>
-#include <iterator>
-#include <limits>
-#include <list>
-#include <locale>
-#include <map>
-#include <memory>
-#include <new>
-#include <numeric>
-#include <ostream>
-#include <queue>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <stdexcept>
-#include <streambuf>
-#include <string>
-#include <typeinfo>
-#include <utility>
-#include <valarray>
-#include <vector>
+    #if __cplusplus >= 201103L
+    #include <ccomplex>
+    #include <cfenv>
+    #include <cinttypes>
+    #include <cstdalign>
+    #include <cstdbool>
+    #include <cstdint>
+    #include <ctgmath>
+    #include <cwchar>
+    #include <cwctype>
+    #endif
 
-#if __cplusplus >= 201103L
-#include <array>
-#include <atomic>
-#include <chrono>
-#include <condition_variable>
-#include <forward_list>
-#include <future>
-#include <initializer_list>
-#include <mutex>
-#include <random>
-#include <ratio>
-#include <regex>
-#include <scoped_allocator>
-#include <system_error>
-#include <thread>
-#include <tuple>
-#include <type_traits>
-#include <typeindex>
-#include <unordered_map>
-#include <unordered_set>
-#endif
-```
+    // C++
+    #include <algorithm>
+    #include <bitset>
+    #include <complex>
+    #include <deque>
+    #include <exception>
+    #include <fstream>
+    #include <functional>
+    #include <iomanip>
+    #include <ios>
+    #include <iosfwd>
+    #include <iostream>
+    #include <istream>
+    #include <iterator>
+    #include <limits>
+    #include <list>
+    #include <locale>
+    #include <map>
+    #include <memory>
+    #include <new>
+    #include <numeric>
+    #include <ostream>
+    #include <queue>
+    #include <set>
+    #include <sstream>
+    #include <stack>
+    #include <stdexcept>
+    #include <streambuf>
+    #include <string>
+    #include <typeinfo>
+    #include <utility>
+    #include <valarray>
+    #include <vector>
+
+    #if __cplusplus >= 201103L
+    #include <array>
+    #include <atomic>
+    #include <chrono>
+    #include <condition_variable>
+    #include <forward_list>
+    #include <future>
+    #include <initializer_list>
+    #include <mutex>
+    #include <random>
+    #include <ratio>
+    #include <regex>
+    #include <scoped_allocator>
+    #include <system_error>
+    #include <thread>
+    #include <tuple>
+    #include <type_traits>
+    #include <typeindex>
+    #include <unordered_map>
+    #include <unordered_set>
+    #endif
+    ```
 
 按键盘左上角的<kbd>Esc</kbd>退出编辑模式，然后直接输入 `:wq` 并换行即可保存文件。
 
