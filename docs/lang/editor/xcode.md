@@ -97,7 +97,7 @@ vim stdc++.h
 
 将下面这段代码块复制并粘贴到终端中：
 
-???+note "万能头文件代码块"
+??? note "万能头文件代码块"
     ```cpp
     // C++ includes used for precompiling -*- C++ -*-
     
