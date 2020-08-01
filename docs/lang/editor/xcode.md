@@ -124,8 +124,8 @@ vim stdc++.h
     // <http://www.gnu.org/licenses/>.
     
     /** @file stdc++.h
-    *  This is an implementation file for a precompiled header.
-    */
+     *  This is an implementation file for a precompiled header.
+     */
     
     // 17.4.1.2 Headers
     
