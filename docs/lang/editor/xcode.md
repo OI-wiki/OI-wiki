@@ -233,7 +233,6 @@ vim stdc++.h
     #include <string_view>
     #include <variant>
     #endif
-    
     ```
 
 按键盘左上角的<kbd>Esc</kbd>退出编辑模式，然后直接输入 `:wq` 并换行即可保存文件。
