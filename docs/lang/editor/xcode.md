@@ -101,7 +101,7 @@ vim stdc++.h
     ```cpp
     // C++ includes used for precompiling -*- C++ -*-
     
-    // Copyright (C) 2003-2014 Free Software Foundation, Inc.
+    // Copyright (C) 2003-2019 Free Software Foundation, Inc.
     //
     // This file is part of the GNU ISO C++ Library.  This library is free
     // software; you can redistribute it and/or modify it under the
@@ -148,6 +148,8 @@ vim stdc++.h
     #include <cstdlib>
     #include <cstring>
     #include <ctime>
+    #include <cwchar>
+    #include <cwctype>
     
     #if __cplusplus >= 201103L
     #include <ccomplex>
@@ -157,8 +159,7 @@ vim stdc++.h
     #include <cstdbool>
     #include <cstdint>
     #include <ctgmath>
-    #include <cwchar>
-    #include <cwctype>
+    #include <cuchar>
     #endif
     
     // C++
@@ -199,6 +200,7 @@ vim stdc++.h
     #include <array>
     #include <atomic>
     #include <chrono>
+    #include <codecvt>
     #include <condition_variable>
     #include <forward_list>
     #include <future>
@@ -211,11 +213,27 @@ vim stdc++.h
     #include <system_error>
     #include <thread>
     #include <tuple>
-    #include <type_traits>
     #include <typeindex>
+    #include <type_traits>
     #include <unordered_map>
     #include <unordered_set>
     #endif
+    
+    #if __cplusplus >= 201402L
+    #include <shared_mutex>
+    #endif
+    
+    #if __cplusplus >= 201703L
+    #include <any>
+    #include <charconv>
+    // #include <execution>
+    #include <filesystem>
+    #include <optional>
+    #include <memory_resource>
+    #include <string_view>
+    #include <variant>
+    #endif
+    
     ```
 
 按键盘左上角的<kbd>Esc</kbd>退出编辑模式，然后直接输入 `:wq` 并换行即可保存文件。
