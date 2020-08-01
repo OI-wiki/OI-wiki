@@ -24,7 +24,7 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 
 ![](images/xcode-3.jpg)
 
-这个窗口是 Xcode 元件的安装引导。点击 Install 并输入当前用户密码即可。
+这个窗口是 Xcode 元件的安装引导。点击 `Install` 并输入当前用户密码即可。
 
 安装完毕后，界面左侧显示：
 
