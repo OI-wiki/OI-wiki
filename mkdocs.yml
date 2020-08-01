@@ -58,6 +58,7 @@ nav:
       - Notepad++: lang/editor/npp.md
       - Dev-C++: lang/editor/devcpp.md
       - Geany: lang/editor/geany.md
+      - Xcode: lang/editor/xcode.md
     - C++ 基础:
       - Hello, World!: lang/helloworld.md
       - C++ 语法基础: lang/basic.md
