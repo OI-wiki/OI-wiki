@@ -73,7 +73,7 @@ void counting_sort(int p) {
   for (int i = 1; i <= n; ++i) ++cnt[a[i].key[p]];
   for (int i = 1; i <= w[p]; ++i) cnt[i] += cnt[i - 1];
   // 为保证排序的稳定性，此处循环i应从n到1
-  // 即当两元素关键字的值相同时，原先排在后面的元素在排序后仍应排在后面 
+  // 即当两元素关键字的值相同时，原先排在后面的元素在排序后仍应排在后面
   for (int i = n; i >= 1; --i) b[cnt[a[i].key[p]]--] = a[i];
   memcpy(a, b, sizeof(a));
 }
