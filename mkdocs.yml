@@ -184,7 +184,7 @@ nav:
     - 快速幂: math/quick-pow.md
     - 进位制: math/base.md
     - 高精度计算: math/bignum.md
-    - 平衡三进制：math/balanced-ternary.md
+    - 平衡三进制: math/balanced-ternary.md
     - 数论:
       - 素数: math/prime.md
       - 最大公约数: math/gcd.md
