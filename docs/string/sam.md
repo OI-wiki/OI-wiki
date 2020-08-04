@@ -170,7 +170,7 @@ $$
 - 如果 $\operatorname{len}(p)+1=\operatorname{len}(q)$ ，我们只要将 $\operatorname{link}(\textit{cur})$ 赋值为 $q$ 并退出。
 -   否则就会有些复杂。需要 **复制** 状态 $q$ ：我们创建一个新的状态 $\textit{clone}$ ，复制 $q$ 的除了 $\operatorname{len}$ 的值以外的所有信息（后缀链接和转移）。我们将 $\operatorname{len}(\textit{clone})$ 赋值为 $\operatorname{len}(p)+1$ 。  
     复制之后，我们将后缀链接从 $\textit{cur}$ 指向 $\textit{clone}$ ，也从 $q$ 指向 $\textit{clone}$ 。  
-    最终我们需要使用后缀链接从状态 $p$ 往回走，只要存在一条通过 $p$ 到状态 $q$ 的转移，就将该转移重定向到状态\\textit{ $}clone$ 。
+    最终我们需要使用后缀链接从状态 $p$ 往回走，只要存在一条通过 $p$ 到状态 $q$ 的转移，就将该转移重定向到状态 $\textit{clone}$ 。
 - 以上三种情况，在完成这个过程之后，我们将 $\textit{last}$ 的值更新为状态 $\textit{cur}$ 。
 
 如果我们还想知道哪些状态是 **终止状态** 而哪些不是，我们可以在为字符串 $s$ 构造完完整的 SAM 后找到所有的终止状态。为此，我们从对应整个字符串的状态（存储在变量 $\textit{last}$ 中），遍历它的后缀链接，直到到达初始状态。我们将所有遍历到的节点都标记为终止节点。容易理解这样做我们会准确地标记字符串 $s$ 的所有后缀，这些状态都是终止状态。
