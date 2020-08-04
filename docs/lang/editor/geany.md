@@ -79,3 +79,5 @@ deepin-terminal -x "/bin/sh" %c
 点击“应用”按钮即可。
 
 （来源：Deepin Wiki <https://wiki.deepin.org/> ）
+
+## 参考资料与注释
