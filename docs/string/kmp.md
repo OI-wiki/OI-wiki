@@ -178,15 +178,13 @@ vector<int> prefix_function(string s) {
 
 ### 字符串的周期
 
-（该部分内容参考了 金策 - 字符串算法选讲）
-
 对字符串 $s$ 和 $0 < p \le |s|$ ，若 $s[i] = s[i+p]$ 对所有 $i \in [0, |s| - p - 1]$ 成立，则称 $p$ 是 $s$ 的周期。
 
 对字符串 $s$ 和 $0 \le r < |s|$ ，若 $s$ 长度为 $r$ 的前缀和长度为 $r$ 的后缀相等，就称 $s$ 长度为 $r$ 的前缀是 $s$ 的 border。
 
 由 $s$ 有长度为 $r$ 的 border 可以推导出 $|s|-r$ 是 $s$ 的周期。
 
-根据前缀函数的定义，可以得到 $s$ 所有的 border 长度，即 $\pi[n-1],\pi[\pi[n-1]]，...$ 。
+根据前缀函数的定义，可以得到 $s$ 所有的 border 长度，即 $\pi[n-1],\pi[\pi[n-1]]，...$ 。[^ref1]
 
 所以根据前缀函数可以在 $O(n)$ 的时间内计算出 $s$ 所有的周期。其中，由于 $\pi[n-1]$ 是 $s$ 最长 border 的长度，所以 $n - \pi[n-1]$ 是 $s$ 的最小周期。
 
@@ -369,6 +367,8 @@ $$
 -  [Codeforces - Anthem of Berland](http://codeforces.com/contest/808/problem/G) 
 -  [Codeforces - MUH and Cube Walls](http://codeforces.com/problemset/problem/471/D) 
 
-* * *
+## 参考资料与注释
 
  **本页面主要译自博文 [Префикс-функция. Алгоритм Кнута-Морриса-Пратта](http://e-maxx.ru/algo/prefix_function) 与其英文翻译版 [Prefix function. Knuth–Morris–Pratt algorithm](https://cp-algorithms.com/string/prefix-function.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ 
+ [^ref1]: [金策-字符串算法选讲](https://wenku.baidu.com/view/850f93f4fbb069dc5022aaea998fcc22bcd1433e.html)
