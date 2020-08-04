@@ -53,7 +53,7 @@ Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者�
 
 ### 使用模板新建\*.cpp 文件
 
-默认情况下，在 Geany 中新建的文件不会带有语法高亮，只有在保存为带有相应语言后缀名的文件（比如：\*.cpp）后才会显示。但是，如果从模板新建文件（*文件 -> 从模板新建*），则会显示默认语法高亮。然而，模板中并没有我们熟知的\*.cpp 文件，只有\*.cxx 文件的模板。我们需要自己建立一个模板。
+默认情况下，在 Geany 中新建的文件不会带有语法高亮，只有在保存为带有相应语言扩展名的文件（比如：\*.cpp）后才会显示。如果从模板新建文件（*文件 -> 从模板新建*），则会显示语法高亮。然而，C++ 模板中只有 \*.cxx 文件的模板，但是在 OI 中我们常接触到的是 \*.cpp 文件[^2]。我们可以自己建立一个 \*.cpp 文件模板。
 
 在配置文件目录下建立 templates/files 文件夹，并在其中建立一个名为 `file.cpp` 的空文件，再次打开 Geany，就可以在*文件 -> 从模板新建*中找到它了。
 
@@ -62,9 +62,7 @@ Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者�
 这里给出 macOS 和 Linux 下的默认模板配置文件目录：
 
 - 系统目录：/usr/share/geany/templates/files/
-- 用户目录：~/。config/geany/templates/files/
-
-更多有关模板的信息，参见： <https://wiki.geany.org/config/templates> 
+- 用户目录：~/.config/geany/templates/files/ [^3]
 
 ## 常见问题
 
@@ -76,10 +74,11 @@ Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者�
 deepin-terminal -x "/bin/sh" %c
 ```
 
-点击“应用”按钮即可。
-
-（来源：Deepin Wiki <https://wiki.deepin.org/> ）
+点击“应用”按钮即可。[^4]
 
 ## 参考资料与注释
 
 [^1]: 详见： <https://github.com/geany/geany/issues/2344> 
+[^2]: 注意：文件扩展名的不同仅仅是习惯问题，无实际影响。
+[^3]: 来源： <https://wiki.geany.org/config/templates> 
+[^4]: 来源： Deepin Wiki <https://wiki.deepin.org/>
