@@ -1,8 +1,10 @@
+本页面将介绍一些 OJ 工具。
+
 ## cf-tool
 
-GitHub 地址： [xalanq/cf-tool](https://github.com/xalanq/cf-tool/) 
+cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux、macOS）工具，支持很多常用操作。
 
-cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux、macOS）工具，其支持很多常用操作。
+源码托管在 [xalanq/cf-tool](https://github.com/xalanq/cf-tool) 上。
 
 ![](./images/cf-tool1.jpg)
 
@@ -32,7 +34,7 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 将下载好的可执行文件 `cf` （或者 `cf.exe` ）放置到合适的位置后（见常见问题的第二条），然后打开命令行，用 `cf config` 命令来配置一下用户名、密码和代码模板。
 
-### 例子
+### 使用举例
 
 以下简单模拟一场比赛的流程。
 
@@ -80,13 +82,13 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
     你应该将 `cf` 这个程序放到一个已经加入到系统变量 PATH 的路径里（比如说 Linux 里的 `/usr/bin/` )。
 
-    或者你直接去搜 "怎样添加路径到系统变量 PATH"。
+    不明白的话请直接搜索“PATH 添加路径”。
 
 3.  如何加一个新的测试数据
 
     新建两个额外的测试数据文件 `inK.txt` 和 `ansK.txt` （K 是包含 0~9 的字符串）。
 
-4.  在终端里启用 tab 补全命令
+4.  怎样在终端里启用 tab 补全命令
 
     使用这个工具 [Infinidat/infi.docopt_completion](https://github.com/Infinidat/infi.docopt_completion) 即可。
 
@@ -94,33 +96,26 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ## Codeforces Visualizer
 
-网站： <https://cfviz.netlify.com/> 。
+官网： [Codeforces Visualizer](https://cfviz.netlify.app) 
 
-您可以在 [GitHub](https://github.com/sjsakib/cfviz/) 上查阅到它的源代码。
+源码托管在 [sjsakib/cfviz](https://github.com/sjsakib/cfviz/) 上。
 
 这个网站有三个功能：
 
-- 用炫酷的图表来可视化某个用户名的各种信息（比如通过题目的难度分布）。
+- 用炫酷的图表来可视化某个用户的各种信息（比如通过题目的难度分布）。
 - 对比两个用户。
 - 计算一场比赛的 Rating 预测。
 
-大家可以自行尝试一下。
+## Competitive Companion
 
-## Competitive companion
+这个工具是一个浏览器插件，用于解析网页里面的测例数据。它支持解析几乎所有的主流 oj 平台（比如 Codeforces、AtCoder）。使用这个插件后，再也不用手动复制任何的测例数据。
 
-网站： <https://github.com/jmerle/competitive-companion> 
-
-功能介绍：
-
-- 这个工具是一个浏览器插件 用来解析网页里面的测例数据
-- 支持解析几乎所有的主流 oj 平台（比如 codeforces atcoder）
-
-推荐理由：使用这个插件后 再也不用手动复制任何的测例数据
+源码托管在 [jmerle/competitive-companion](https://github.com/jmerle/competitive-companion) 上。
 
 使用方法：
 
-1. 在谷歌或者火狐浏览器上安装插件 该工具会将解析到的测例数据以 JSON 格式的形式发到指定的端口
-2. 在本地安装任何可以从端口监听读取数据的工具即可 可参考 <https://github.com/jmerle/competitive-companion-example> 
+- 在谷歌或者火狐浏览器上安装插件。该工具会将解析到的测例数据以 JSON 格式的形式发到指定的端口。
+- 在本地安装任何可以从端口监听读取数据的工具即可，可以参考 [官方给出的示例](https://github.com/jmerle/competitive-companion-example) 。
 
 图片演示：
 
@@ -128,16 +123,10 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ## CP Editor
 
+官网： [CP Editor](https://cpeditor.org) 
+
 CP Editor 是一款专门为算法竞赛（Competitive Programming）设计的轻量级跨平台自由软件 IDE，有自动获取网页上的样例，一键编译运行并测试样例，在 IDE 内提交至 Codeforces 等功能。
 
- [![Latest Stable](https://img.shields.io/github/v/release/cpeditor/cpeditor?label=latest%20stable)](https://github.com/coder3101/cp-editor/releases/latest)  [![Latest Release](https://img.shields.io/github/v/release/cpeditor/cpeditor?include_prereleases&label=latest%20release&sort=semver)](https://github.com/coder3101/cp-editor/releases) 
+源码托管在 [cpeditor/cpeditor](https://github.com/cpeditor/cpeditor) 上，另有 [Gitee 镜像](https://gitee.com/ouuan/cpeditor) （同步自 GitHub，不一定是最新的）。
 
--  [项目主页](https://cpeditor.github.io/) （含 feature 介绍）
--  [GitHub Repo](https://github.com/cpeditor/cpeditor) （含使用说明、贡献指南等文档）
--  [Gitee 镜像](https://gitee.com/ouuan/cpeditor) （同步自 GitHub，不一定是最新的）
--  [GitHub Releases](https://github.com/cpeditor/cpeditor/releases) 
--  [Gitee 发行版](https://gitee.com/ouuan/cpeditor/releases) 
--  [Telegram 群组](https://t.me/cpeditor) 
--  [QQ 群入群链接](https://jq.qq.com/?_wv=1027&k=50eq8yF) （1081647997）
-
-大家在使用之余还可以在 GitHub 上报告 bug，请求 feature，或是入群讨论，参与贡献。如果觉得不错的话，可以在 [GitHub](https://github.com/cpeditor/cpeditor) 上给开发者们一个 star。
+下载链接： [GitHub Releases](https://github.com/cpeditor/cpeditor/releases) 或 [Gitee 发行版](https://gitee.com/ouuan/cpeditor/releases) 
