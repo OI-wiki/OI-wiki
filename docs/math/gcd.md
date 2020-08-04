@@ -121,7 +121,7 @@ int gcd(int a, int b) {
 
 因为 $a=a,b=b$ ，所以 $x_1=y_2,y_1=x_2-\lfloor\frac{a}{b}\rfloor y_2$ 
 
-将 $x_2,y_2$ 不断代入递归求解直至 $\gcd$（最大公约数，下同）为 `0` 递归 `x=1,y=0` 回去求解。
+将 $x_2,y_2$ 不断代入递归求解直至 $\gcd$ （最大公约数，下同）为 `0` 递归 `x=1,y=0` 回去求解。
 
 ```cpp
 int Exgcd(int a, int b, int &x, int &y) {
@@ -138,30 +138,32 @@ int Exgcd(int a, int b, int &x, int &y) {
 }
 ```
 
-函数返回的值为 $\gcd$，在这个过程中计算 $x,y$ 即可。
+函数返回的值为 $\gcd$ ，在这个过程中计算 $x,y$ 即可。
 
-##迭代法编写拓展欧几里得算法
+\## 迭代法编写拓展欧几里得算法
 
 因为迭代的方法避免了递归，所以代码运行速度将比递归代码快一点。
 
 ```cpp
 int gcd(int a, int b, int& x, int& y) {
-    x = 1, y = 0;
-    int x1 = 0, y1 = 1, a1 = a, b1 = b;
-    while (b1) {
-        int q = a1 / b1;
-        tie(x, x1) = make_tuple(x1, x - q * x1);
-        tie(y, y1) = make_tuple(y1, y - q * y1);
-        tie(a1, b1) = make_tuple(b1, a1 - q * b1);
-    }
-    return a1;
+  x = 1, y = 0;
+  int x1 = 0, y1 = 1, a1 = a, b1 = b;
+  while (b1) {
+    int q = a1 / b1;
+    tie(x, x1) = make_tuple(x1, x - q * x1);
+    tie(y, y1) = make_tuple(y1, y - q * y1);
+    tie(a1, b1) = make_tuple(b1, a1 - q * b1);
+  }
+  return a1;
 }
 ```
-如果您仔细观察a1和b1，你会发现，他们在迭代版本的欧几里德算法中取值完全相同，并且以下公式无论何时（在while循环之前和每次迭代结束时）都是成立的：$x \cdot a +y \cdot b =a_1$和$x_1 \cdot a +y_1 \cdot b= b_1$。因此，该算法肯定能正确计算出 $\gcd$。
 
-最后我们知道$a_1$就是要求的 $\gcd$ ，有$x \cdot a +y \cdot b =g$ 。
+如果您仔细观察 a1 和 b1，你会发现，他们在迭代版本的欧几里德算法中取值完全相同，并且以下公式无论何时（在 while 循环之前和每次迭代结束时）都是成立的： $x \cdot a +y \cdot b =a_1$ 和 $x_1 \cdot a +y_1 \cdot b= b_1$ 。因此，该算法肯定能正确计算出 $\gcd$ 。
+
+最后我们知道 $a_1$ 就是要求的 $\gcd$ ，有 $x \cdot a +y \cdot b =g$ 。
+
 ## 应用
 
-* [10104 - Euclid Problem](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1045)
-* [GYM - (J) once upon a time](http://codeforces.com/gym/100963)
-* [UVA - 12775 - Gift Dilemma](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4628)
+-  [10104 - Euclid Problem](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1045) 
+-  [GYM - (J) once upon a time](http://codeforces.com/gym/100963) 
+-  [UVA - 12775 - Gift Dilemma](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4628) 
