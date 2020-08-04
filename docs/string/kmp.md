@@ -370,5 +370,5 @@ $$
 ## 参考资料与注释
 
  **本页面主要译自博文 [Префикс-функция. Алгоритм Кнута-Морриса-Пратта](http://e-maxx.ru/algo/prefix_function) 与其英文翻译版 [Prefix function. Knuth–Morris–Pratt algorithm](https://cp-algorithms.com/string/prefix-function.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
- 
- [^ref1]: [金策-字符串算法选讲](https://wenku.baidu.com/view/850f93f4fbb069dc5022aaea998fcc22bcd1433e.html)
+
+[^ref1]:  [金策 - 字符串算法选讲](https://wenku.baidu.com/view/850f93f4fbb069dc5022aaea998fcc22bcd1433e.html) 
