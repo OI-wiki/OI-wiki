@@ -279,7 +279,7 @@
 
 LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对于 LaTeX 的使用我们有严格的要求。如果您想要快速上手，可以阅读本章节末给出的表格。
 
--   使用 Roman 体表示常量和函数。使用 Italic 体表示变量。LaTeX 已经预先定义好了一些常见的常量、函数、运算符等，我们可以直接调用，包括但不限于：
+-   使用 Roman 体表示常量和函数。LaTeX 已经预先定义好了一些常见的常量、函数、运算符等，我们可以直接调用，包括但不限于：
 
     ```latex
     \log, \ln, \lg, \sin, \cos, \tan, \sec, \csc, \cot, \gcd, \min, \max, \exp, \inf, \mod, \bmod, \pmod
@@ -287,7 +287,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
     所以在输入常量、函数名、运算符等时，请先检查一下是否应该使用 Roman 体或其它字体。LaTeX 符号的书写可参考 [KaTeX 的 Supported Functions 页面](https://katex.org/docs/supported.html) （不是全部），也可以搜索求解。
 
-    如果遇到没有预先定义好的需要使用 Roman 体的 **函数名** ，我们可以使用 `$\operatorname{something}$` 来产生，如我们可以使用 `$\operatorname{lcm}$` 产生正体的最小公倍数（函数）符号。同理，产生 Roman 体的 **常量** 应用 `$\mathrm{}$` ；产生 Roman 体粗体符号应用 `$\mathbf{}$` ；产生 Italic 体粗体符号应用 `$\boldsymbol{}$` （如向量 $\boldsymbol{a}$ ）。对于多字母的变量，应当使用`$\textit{}$`。其他非数学内容，包括英文、特殊符号等，一律使用 `$\text{}$` 。中文我们则建议不放在 LaTeX 公式中。
+    如果遇到没有预先定义好的需要使用 Roman 体的 **函数名** ，我们可以使用 `$\operatorname{something}$` 来产生，如我们可以使用 `$\operatorname{lcm}$` 产生正体的最小公倍数（函数）符号。同理，产生 Roman 体的 **常量** 应用 `$\mathrm{}$` ；产生 Roman 体粗体符号应用 `$\mathbf{}$` ；产生 Italic 体粗体符号应用 `$\boldsymbol{}$` （如向量 $\boldsymbol{a}$ ）。其他非数学内容，包括英文、特殊符号等，一律使用 `$\text{}$` 。中文我们则建议不放在 LaTeX 公式中。
 
 - 在行内使用分数的时候，请使用 `$\dfrac{}{}$` 。比如 `$\dfrac{1}{2}$` ，效果 $\dfrac{1}{2}$ ，而不是 `$\frac{1}{2}$` ，效果 $\frac{1}{2}$ 。
 
@@ -334,7 +334,6 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 |  `$f[i][j][k]$`     |  $f[i][j][k]$     |  `$f_{i,j,k}$, $f(i,j,k)$`                 |  $f_{i,j,k}$ , $f(i,j,k)$                   |
 |  `$R,N^*$` （集合）     |  $R,N^*$          |  `$\mathbf{R}$, $\mathbf{N}^*$`            |  $\mathbf{R}$ , $\mathbf{N}^*$              |
 |  `$\emptyset$`      |  $\emptyset$      |  `$\varnothing$`                           |  $\varnothing$                              |
-|  `$different$`     |  $different$       |       `$\textit{different}$`               |      $\textit{different}$                 |
 
 #### 对数学公式的附加格式要求
 
