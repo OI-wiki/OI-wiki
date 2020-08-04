@@ -1,4 +1,4 @@
-author: NachtgeistW
+author: NachtgeistW, Ir1d, Xeonacid, H-J-Granger, abc1763613206
 
 ## 赛事介绍
 

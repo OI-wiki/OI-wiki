@@ -1,3 +1,5 @@
+author: Marcythm, yizr-cnyali, Chaigidel, Tiger3018, voidge, H-J-Granger, ouuan, Enter-tainer, lcfsih, Xeonacid, Ir1d
+
 在默认情况下， `std::cin/std::cout` 是极为迟缓的读入/输出方式，而 `scanf/printf` 比 `std::cin/std::cout` 快得多。
 
 可是为什么会这样呢？有没有什么办法解决读入输出缓慢的问题呢？

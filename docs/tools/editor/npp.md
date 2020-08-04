@@ -1,4 +1,4 @@
-author: CBW2007, partychicken, StudyingFather, Xeonacid
+author: ouuan, CBW2007, partychicken, StudyingFather, Xeonacid, Henry-ZHR
 
 ## 软件简介
 

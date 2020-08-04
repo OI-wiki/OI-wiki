@@ -1,3 +1,5 @@
+author: H-J-Granger, Ir1d, ChungZH, Marcythm, StudyingFather, billchenchina, Suyun514, Psycho7, greyqz, Xeonacid, partychicken
+
 本页面主要分享一下在竞赛中的小技巧。
 
 ## 利用局部性
