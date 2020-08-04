@@ -20,7 +20,7 @@ Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者�
 ### 缺点
 
 1. 没有太多人使用；
-2. 在 macOS Catalina 下有一些权限问题[^1]；[^1]: 详见： <https://github.com/geany/geany/issues/2344> 
+2. 在 macOS Catalina 下有一些权限问题[^1]；
 3. 新建文件时，默认不会有语法高亮，需要保存为 C++ 文件后才会有；
 4. 如果从模板新建 C++ 文件，后缀名为\*.cxx，而不是我们所熟悉的\*.cpp。
 
@@ -81,3 +81,5 @@ deepin-terminal -x "/bin/sh" %c
 （来源：Deepin Wiki <https://wiki.deepin.org/> ）
 
 ## 参考资料与注释
+
+[^1]: 详见： <https://github.com/geany/geany/issues/2344> 
