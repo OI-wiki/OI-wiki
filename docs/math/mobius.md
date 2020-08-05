@@ -128,11 +128,11 @@ h(x)&=\sum_{d\mid x}f(d)g(\frac{x}{d})
 \end{aligned}
 $$
 
-设$x=\prod p_i^{k_i}$
+设 $x=\prod p_i^{k_i}$ 
 
-若$F(x)$为积性函数，则有$F(x)=\prod F(p_i^{k_i})$。
+若 $F(x)$ 为积性函数，则有 $F(x)=\prod F(p_i^{k_i})$ 。
 
-若$F(x)$为完全积性函数，则有$F(X)=\prod F(p_i)^{a_i}$。
+若 $F(x)$ 为完全积性函数，则有 $F(X)=\prod F(p_i)^{a_i}$ 。
 
 ### 例子
 
@@ -301,7 +301,7 @@ $$
 \sum_{d\mid n}\mu(d)f(\frac{n}{d})=\sum_{d\mid n}\mu(d)\sum_{k\mid \frac{n}{d}}g(k)=\sum_{k\mid n}g(k)\sum_{d\mid \frac{n}{k}}\mu(d)=g(n)
 $$
 
-用 $\displaystyle\sum_{d\mid n}g(d)$ 来替换 $f(\dfrac{n}{d})$ ，再变换求和顺序。最后一步变换的依据： $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]$ ，因此在 $\dfrac{n}{k}=1$ 时第二个和式的值才为 $1$ 。此时 $n=k$ ，故原式等价于 有$F(x)=\prod F(p$\displaystyle\sum_{k\mid n}[n=k]\cdot g(k)=g(n)$ 
+用 $\displaystyle\sum_{d\mid n}g(d)$ 来替换 $f(\dfrac{n}{d})$ ，再变换求和顺序。最后一步变换的依据： $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]$ ，因此在 $\dfrac{n}{k}=1$ 时第二个和式的值才为 $1$ 。此时 $n=k$ ，故原式等价于 有 $F(x)=\prod F(p$ \\displaystyle\\sum\_{k\\mid n}[n=k]\\cdot g(k)=g(n)$
 
 方法二：运用卷积。
 
