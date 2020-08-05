@@ -66,6 +66,6 @@ $$
 -  [Codeforces - 桑迪和坚果](http://codeforces.com/problemset/problem/599/E) 
 -  [UVa 1439 - 独家权限 2](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4185) 
 -  [UVa 11825 - 黑客镇压](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2925) 
--  [Topcoder SRM 604, Div1-250](https://community.topcoder.com/stat?c=problem_statement&pm=12917&rd=15837) 
+-    [Topcoder SRM 604, Div1-250](https://community.topcoder.com/stat?c=problem_statement&pm=12917&rd=15837) 
 
      **本页面部分内容译自博文 [Перечисление субмасок битовой маски](https://github.com/e-maxx-eng/e-maxx-eng/blob/7392f2243b7861f68c8000b48e6bdb19c5041df8/src/algebra/all-submasks.md) 与其英文翻译版 [Enumerating submasks of a bitmask](https://cp-algorithms.com/algebra/all-submasks.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
