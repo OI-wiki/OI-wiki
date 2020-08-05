@@ -27,7 +27,7 @@ for (int s = m;; s = (s - 1) & m) {
 
 现在我们可以一起来检验一下为什么上面的代码不重复地以降序访问 $m$ 的所有子掩码。
 
-假设我们现在有一个位掩码 $s$ ，我们想要继续获得下一个掩码。我们可以通过将掩码 $s$ 减去一位的方法：去除最右边的设置位，然后在它右边的所有位都会置为 1。这样我们删除所有这样没有包含在 $m$ 中的”额外的“一位，这样他们就不能成为子掩码的一部分。我们可以通过按位操作 $(s-1)\&m$ 实现上述的删除操作。这样的话，我们就截取了掩码 $s-1$ 以确定它可以采用的最大值，即，按降序排列的 $s$ 的下一个子掩码。
+假设我们现在有一个位掩码 $s$ ，我们想要继续获得下一个掩码。我们可以通过将掩码 $s$ 减去一位的方法：去除最右边的设置位，然后在它右边的所有位都会置为 $1$ 。这样我们删除所有这样没有包含在 $m$ 中的“额外的”一位，这样他们就不能成为子掩码的一部分。我们可以通过按位操作 $(s-1)\&m$ 实现上述的删除操作。这样的话，我们就截取了掩码 $s-1$ 以确定它可以采用的最大值，即，按降序排列的 $s$ 的下一个子掩码。
 
 因此，该算法以降序生成该掩码的所有子掩码，每次迭代仅执行两个操作。
 
@@ -63,9 +63,9 @@ $$
 ## 练习题
 
 -  [Codeforces - 核聚变](http://codeforces.com/problemset/problem/71/E) 
--  [Codeforce - 桑迪和坚果](http://codeforces.com/problemset/problem/599/E) 
--  [Uva 1439 - 独家权限 2](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4185) 
+-  [Codeforces - 桑迪和坚果](http://codeforces.com/problemset/problem/599/E) 
+-  [UVa 1439 - 独家权限 2](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4185) 
 -  [UVa 11825 - 黑客镇压](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2925) 
--    [Topcoder SRM 604, Div1-250](https://community.topcoder.com/stat?c=problem_statement&pm=12917&rd=15837) 
+-  [Topcoder SRM 604, Div1-250](https://community.topcoder.com/stat?c=problem_statement&pm=12917&rd=15837) 
 
      **本页面部分内容译自博文 [Перечисление субмасок битовой маски](https://github.com/e-maxx-eng/e-maxx-eng/blob/7392f2243b7861f68c8000b48e6bdb19c5041df8/src/algebra/all-submasks.md) 与其英文翻译版 [Enumerating submasks of a bitmask](https://cp-algorithms.com/algebra/all-submasks.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
