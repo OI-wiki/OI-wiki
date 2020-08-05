@@ -247,13 +247,11 @@ $$
 
 - 矩阵行（列）相加或相减，行列式不变；
 
-- 矩阵行（列）所有元素同时乘以数$k$，行列式等比例变大。
+- 矩阵行（列）所有元素同时乘以数 $k$ ，行列式等比例变大。
 
-> 由此，对矩阵应用高斯消元之后，我们可以得到一个对角线矩阵，此矩阵的行列式由对角线元素之积所决定。其符号可由交换行的数量来确定（如果为奇数，则行列式的符号应颠倒）。因此，我们可以在$O(n^3)$的复杂度下使用高斯算法计算矩阵。
+> 由此，对矩阵应用高斯消元之后，我们可以得到一个对角线矩阵，此矩阵的行列式由对角线元素之积所决定。其符号可由交换行的数量来确定（如果为奇数，则行列式的符号应颠倒）。因此，我们可以在 $O(n^3)$ 的复杂度下使用高斯算法计算矩阵。
 >
-> 注意，如果在某个时候，我们在当前列中找不到非零单元，则算法应停止并返回0。
->
-> 
+> 注意，如果在某个时候，我们在当前列中找不到非零单元，则算法应停止并返回 0。
 
 * * *
 
@@ -262,34 +260,28 @@ $$
 ```c++
 const double EPS = 1E-9;
 int n;
-vector < vector<double> > a (n, vector<double> (n));
+vector<vector<double> > a(n, vector<double>(n));
 
 double det = 1;
-for (int i=0; i<n; ++i) {
-    int k = i;
-    for (int j=i+1; j<n; ++j)
-        if (abs (a[j][i]) > abs (a[k][i]))
-            k = j;
-    if (abs (a[k][i]) < EPS) {
-        det = 0;
-        break;
-    }
-    swap (a[i], a[k]);
-    if (i != k)
-        det = -det;
-    det *= a[i][i];
-    for (int j=i+1; j<n; ++j)
-        a[i][j] /= a[i][i];
-    for (int j=0; j<n; ++j)
-        if (j != i && abs (a[j][i]) > EPS)
-            for (int k=i+1; k<n; ++k)
-                a[j][k] -= a[i][k] * a[j][i];
+for (int i = 0; i < n; ++i) {
+  int k = i;
+  for (int j = i + 1; j < n; ++j)
+    if (abs(a[j][i]) > abs(a[k][i])) k = j;
+  if (abs(a[k][i]) < EPS) {
+    det = 0;
+    break;
+  }
+  swap(a[i], a[k]);
+  if (i != k) det = -det;
+  det *= a[i][i];
+  for (int j = i + 1; j < n; ++j) a[i][j] /= a[i][i];
+  for (int j = 0; j < n; ++j)
+    if (j != i && abs(a[j][i]) > EPS)
+      for (int k = i + 1; k < n; ++k) a[j][k] -= a[i][k] * a[j][i];
 }
 
 cout << det;
 ```
-
-
 
 ## 生成树计数
 
@@ -408,4 +400,4 @@ $$
 
 ## 练习题
 
-[Codeforces-巫师和赌注](http://codeforces.com/contest/167/problem/E)
+ [Codeforces - 巫师和赌注](http://codeforces.com/contest/167/problem/E) 
