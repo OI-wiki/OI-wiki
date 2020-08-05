@@ -24,6 +24,7 @@
 /intro/editor/eclipse /tools/editor/eclipse
 /intro/editor/npp /tools/editor/npp
 /intro/editor/devcpp /tools/editor/devcpp
+/intro/editor/geany /tools/editor/geany
 /basic/interaction /contest/interaction
 /topic/cmd /tools/cmd
 /topic/problemsetting /contest/problemsetting
