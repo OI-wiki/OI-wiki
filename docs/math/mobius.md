@@ -313,7 +313,7 @@ $$
 
 ## 问题形式
 
-###  [「HAOI 2011」Pre\\sum\_{k\\mid n}[n=k]\\cdot g(k)=g(n)$oblem b](https://www.luogu.com.cn/problem/P2522) 
+###  [「HAOI 2011」Pre\\sum\_{k\\mid n}\[n=k\]\\cdot g(k)=g(n)$oblem b](https://www.luogu.com.cn/problem/P2522) 
 
 求值（多组数据）
 
