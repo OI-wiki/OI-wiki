@@ -128,11 +128,11 @@ h(x)&=\sum_{d\mid x}f(d)g(\frac{x}{d})
 \end{aligned}
 $$
 
-设$x=\prod p_i^{k_i}$
+设 $x=\prod p_i^{k_i}$ 
 
-若$F(x)$为积性函数，则有$F(x)=\prod F(p_i^{k_i})$。
+若 $F(x)$ 为积性函数，则有 $F(x)=\prod F(p_i^{k_i})$ 。
 
-若$F(x)$为完全积性函数，则有$F(X)=\prod F(p_i)^{k_i}$。
+若 $F(x)$ 为完全积性函数，则有 $F(X)=\prod F(p_i)^{k_i}$ 。
 
 ### 例子
 
@@ -289,9 +289,9 @@ $$
 
 设 $f(n),g(n)$ 为两个数论函数。
 
-如果有$f(n)=\sum_{d\mid n}g(d)$，那么有$g(n)=\sum_{d\mid n}\mu(d)f(\frac{n}{d})$。
+如果有 $f(n)=\sum_{d\mid n}g(d)$ ，那么有 $g(n)=\sum_{d\mid n}\mu(d)f(\frac{n}{d})$ 。
 
-如果有$f(n)=\sum_{n|d}g(d)$，那么有$g(n)=\sum_{n|d}\mu(\frac{d}{n})f(d)$。
+如果有 $f(n)=\sum_{n|d}g(d)$ ，那么有 $g(n)=\sum_{n|d}\mu(\frac{d}{n})f(d)$ 。
 
 ### 证明
 
@@ -947,4 +947,3 @@ $$
 ## 参考文献
 
  [algocode 算法博客](https://algocode.net) 
-
