@@ -84,15 +84,15 @@ $$
 ## Garner 算法
 
 CRT 的另一个用途是用一组比较小的整数表示一个大的整数。
-例如，令 $p$ 是前一千个素数的乘积，通过计算我们得知 $p$ 的位数大概有3000位。
+例如，令 $p$ 是前一千个素数的乘积，通过计算我们得知 $p$ 的位数大概有 3000 位。
 
-任意一个小于 $p$ 的数 $a$ 都能用一组数 $a_1, \ldots, a_k$ 表示，其中  $a_i \equiv a \pmod{p_i}$ 。但是要实现上述表示我们首先要知道如何从它的表示中算出 $a$， 而**Garner 算法**就可以解决这个问题。我们用以下形式的式子(称作 $a$ 的混合基数表示)表示 $a$ ：
+任意一个小于 $p$ 的数 $a$ 都能用一组数 $a_1, \ldots, a_k$ 表示，其中 $a_i \equiv a \pmod{p_i}$ 。但是要实现上述表示我们首先要知道如何从它的表示中算出 $a$ ，而 **Garner 算法** 就可以解决这个问题。我们用以下形式的式子（称作 $a$ 的混合基数表示）表示 $a$ ：
 
 $$
     a = x_1 + x_2 p_1 + x_3 p_1 p_2 + \ldots + x_k p_1 \ldots p_{k-1}
 $$
 
-**Garner 算法**将用来计算系数 $x_1, \ldots, x_k$.
+ **Garner 算法** 将用来计算系数 $x_1, \ldots, x_k$ .
 
 令 $r_{ij}$ 为 $p_i$ 模 $p_j$ 的逆：
 
@@ -100,29 +100,32 @@ $$
     r_{ij} = (p_i)^{-1} \pmod{p_j}
 $$
 
-求逆的算法可以在 [Inverse](./inverse.md)中找到. 把 $a$ 代入我们得到的第一个方程:
+求逆的算法可以在 [Inverse](./inverse.md) 中找到。把 $a$ 代入我们得到的第一个方程：
+
 $$
     a_1 \equiv x_1 \pmod{p_1}.
 $$
+
 代入第二个方程得出：
+
 $$
     a_2 \equiv x_1 + x_2 p_1 \pmod{p_2}.
 $$
 
 方程两边减 $x_1$ ，除 $p_1$ 后得
 
-$$\begin{array}{rclr}
+$$
     a_2 - x_1 &\equiv& x_2 p_1 &\pmod{p_2} \\\\
     (a_2 - x_1) r_{12} &\equiv& x_2 &\pmod{p_2} \\\\
     x_2 &\equiv& (a_2 - x_1) r_{12} &\pmod{p_2}
 \end{array}$$
 
 同样我们可以得到：
-
 $$
+
     x_3 \equiv ((a_3 - x_1) r_{13} - x_2) r_{23} \pmod{p_3}.
-$$
 
+$$
 我们可以用下面的代码来表示上述过程：
 
 ```cpp
@@ -139,12 +142,11 @@ for (int i = 0; i < k; ++i) {
 ```
 
 上述代码可以在 $O(k^2)$ 时间下计算出参数 $x_i$ 。计算出参数后 $a$ 就可以用前面提到的公式表示：
-
 $$
+
     a = x_1 + x_2 p_1 + x_3 p_1 p_2 + \ldots + x_k p_1 \ldots p_{k-1}
+
 $$
-
-
 ## 应用
 
 某些计数问题或数论问题出于加长代码、增加难度、或者是一些其他不可告人的原因，给出的模数： **不是质数** ！
@@ -165,47 +167,40 @@ $$
 首先，当 $G=999~911~659$ 时，所求显然为 $0$ 。
 
 否则，根据 [欧拉定理](./fermat.md) ，可知所求为：
-
-$$
-G^{\sum_{k\mid n}\binom{n}{k} \bmod 999~911~658} \bmod 999~911~659
 $$
 
+G^{\\sum\_{k\\mid n}\\binom{n}{k} \\bmod 999~911~658} \\bmod 999~911~659
+
+$$
 现在考虑如何计算：
-
-$$
-\sum_{k\mid n}\binom{n}{k} \bmod 999~911~658
 $$
 
+\\sum\_{k\\mid n}\\binom{n}{k} \\bmod 999~911~658
+
+$$
 因为 $999~911~658$ 不是质数，无法保证 $\forall x \in [1,999~911~657]$ ， $x$ 都有逆元存在，上面这个式子我们无法直接计算。
 
 注意到 $999~911~658=2 \times 3 \times 4679 \times 35617$ ，其中每个质因子的最高次数均为一，我们可以考虑分别求出 $\sum_{k\mid n}\binom{n}{k}$ 在模 $2$ ， $3$ ， $4679$ ， $35617$ 这几个质数下的结果，最后用中国剩余定理来合并答案。
 
 也就是说，我们实际上要求下面一个线性方程组的解：
-
-$$
-\begin{cases}
-x \equiv a_1 \pmod 2\\
-x \equiv a_2 \pmod 3\\
-x \equiv a_3 \pmod {4679}\\
-x \equiv a_4 \pmod {35617}
-\end{cases}
 $$
 
+\\begin{cases}
+x \\equiv a_1 \\pmod 2\\x \\equiv a_2 \\pmod 3\\x \\equiv a_3 \\pmod {4679}\\x \\equiv a_4 \\pmod {35617}
+\\end{cases}
+
+$$
 而计算一个组合数对较小的质数取模后的结果，可以利用 [卢卡斯定理](./lucas.md) 。
 
 ## 比较两 CRT 下整数
 
 考虑 CRT, 不妨假设 $n_1\leq n_2 \leq ... \leq n_k$ 
-
-$$
-\begin{cases}
-x &\equiv a_1 \pmod {n_1} \\
-x &\equiv a_2 \pmod {n_2} \\
-  &\vdots \\
-x &\equiv a_k \pmod {n_k} \\
-\end{cases}
 $$
 
+\\begin{cases}
+x &\\equiv a_1 \\pmod {n_1}\\x &\\equiv a_2 \\pmod {n_2}\\&\\vdots\\x &\\equiv a_k \\pmod {n_k}\\\\end{cases}
+
+$$
 与 PMR(Primorial Mixed Radix) 表示
 
  $x=b_1+b_2n_1+b_3n_1n_2...+b_kn_1n_2...n_{k-1} ,b_i\in [0,n_i)$ 
@@ -213,17 +208,13 @@ $$
 将数字转化到 PMR 下，逐位比较即可
 
 转化方法考虑依次对 PMR 取模
-
-$$
-\begin{aligned}
-b_1&=a_1 \bmod n_1\\
-b_2&=(a_2-b_1)c_{1,2} \bmod n_2\\
-b_3&=((a_3-b_1')c_{1,3}-x_2')c_{2,3} \bmod n_3\\
-&...\\
-b_k&=(...((a_k-b_1)c_{1,k}-b_2)c_{2,k})-...)c_{k-1,k} \bmod n_k
-\end{aligned}
 $$
 
+\\begin{aligned}
+b*1&=a_1 \\bmod n_1\\b_2&=(a_2-b_1)c*{1,2} \\bmod n*2\\b_3&=((a_3-b_1')c*{1,3}-x*2')c*{2,3} \\bmod n*3\\&...\\b_k&=(...((a_k-b_1)c*{1,k}-b*2)c*{2,k})-...)c\_{k-1,k} \\bmod n_k
+\\end{aligned}
+
+$$
 其中 $c_{i,j}$ 表示 $n_i$ 对 $n_j$ 的逆元， $c_{i,j}n_i \equiv 1 \pmod {n_j}$ 
 
 ## 扩展：模数不互质的情况
@@ -249,3 +240,4 @@ $$
  [「NOI2018」屠龙勇士](https://uoj.ac/problem/396) 
 
  [「TJOI2009」猜数字](https://www.luogu.com.cn/problem/P3868) 
+$$
