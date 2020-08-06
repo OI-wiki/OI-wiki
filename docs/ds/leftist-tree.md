@@ -123,6 +123,25 @@ int pop(int x) {
 }
 ```
 
+### 随机合并
+
+直接贴上代码
+
+```cpp
+Tree* merge(Tree* t1, Tree* t2) {
+    if (!t1 || !t2)
+        return t1 ? t1 : t2;
+    if (t2->value < t1->value)
+        swap(t1, t2);
+    if (rand() & 1)       \\随机选择是否交换左右子节点
+        swap(t1->l, t1->r);
+    t1->l = merge(t1->l, t2);
+    return t1;
+}
+```
+
+可以看到该实现方法唯一不同之处便是采用了随机数来实现合并，这样一来便可以省去 $\mathrm{dist}$ 的相关计算。且平均时间复杂度亦为 $O(\log n)$ ，详细证明可参考该[网页](https://cp-algorithms.com/data_structures/randomized_heap.html)。
+
 ## 例题
 
 ### 模板题
