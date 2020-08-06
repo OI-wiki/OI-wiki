@@ -128,8 +128,11 @@ h(x)&=\sum_{d\mid x}f(d)g(\frac{x}{d})
 \end{aligned}
 $$
 
-设 $x=\prod p_i^{k_i}$ 若 $F(x)$ 为积性函数，，则有 $F(x)=\prod F(p_i^{k_i})$ 。
-若 $F(x)$ 为完全积性函数，则有 $F(X)=\prod F(p_i)^{a_i}$ 。
+设 $x=\prod p_i^{k_i}$ 
+
+若 $F(x)$ 为积性函数，则有 $F(x)=\prod F(p_i^{k_i})$ 。
+
+若 $F(x)$ 为完全积性函数，则有 $F(X)=\prod F(p_i)^{k_i}$ 。
 
 ### 例子
 
