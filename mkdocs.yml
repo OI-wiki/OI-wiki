@@ -186,8 +186,8 @@ nav:
     - 进位制: math/base.md
     - 高精度计算: math/bignum.md
     - 平衡三进制: math/balanced-ternary.md
-    - 整数分解: math/integer-factorization.md
     - 数论:
+      - 整数分解: math/integer-factorization.md
       - 素数: math/prime.md
       - 最大公约数: math/gcd.md
       - 欧拉函数: math/euler.md
