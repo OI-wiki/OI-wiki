@@ -34,29 +34,27 @@
 
 ### 普通辛普森法
 
-1743年，这种方法发表于托马斯·辛普森的一篇论文中。
+1743 年，这种方法发表于托马斯·辛普森的一篇论文中。
 
 #### 描述
 
-给定一个自然数 $n$ ，将区间 $[l, r]$ 分成  $2n$ 个等长的区间 $x$ 。
+给定一个自然数 $n$ ，将区间 $[l, r]$ 分成 $2n$ 个等长的区间 $x$ 。
 
-$$x_i = l + i h, ~~ i = 0 \ldots 2n,$$
-$$h = \frac {r-l} {2n}.$$
+ $x_i = l + i h, ~~ i = 0 \ldots 2n,$  $h = \frac {r-l} {2n}.$ 
 
-我们就可以计算每个小区间 $[x_ {2i-2}, x_ {2i}]$, $i = 1\ldots n$ 的积分值，将所有区间的积分值相加即为总积分。
+我们就可以计算每个小区间 $[x_ {2i-2}, x_ {2i}]$ , $i = 1\ldots n$ 的积分值，将所有区间的积分值相加即为总积分。
 
-对于 $[x_ {2i-2}, x_ {2i}]$, $i = 1\ldots n$ 的一个区间，选其中的三个点 $(x_ {2i-2}, x_ {2i-1}, x_ {2i})$ 就可以构成一条抛物线从而得到一个函数 $P(x)$ ，这个函数存在且唯一。计算原函数在该区间的积分值就变成了计算新的二次函数 $P(x)$ 在该段区间的积分值。这样我们就可以利用辛普森公式来近似计算它。
+对于 $[x_ {2i-2}, x_ {2i}]$ , $i = 1\ldots n$ 的一个区间，选其中的三个点 $(x_ {2i-2}, x_ {2i-1}, x_ {2i})$ 就可以构成一条抛物线从而得到一个函数 $P(x)$ ，这个函数存在且唯一。计算原函数在该区间的积分值就变成了计算新的二次函数 $P(x)$ 在该段区间的积分值。这样我们就可以利用辛普森公式来近似计算它。
 
-$$\int_{x_ {2i-2}} ^ {x_ {2i}} f (x) ~dx \approx \int_{x_ {2i-2}} ^ {x_ {2i}} P (x) ~dx = \left(f(x_{2i-2}) + 4f(x_{2i-1})+(f(x_{2i})\right)\frac {h} {3} $$
+ $\int_{x_ {2i-2}} ^ {x_ {2i}} f (x) ~dx \approx \int_{x_ {2i-2}} ^ {x_ {2i}} P (x) ~dx = \left(f(x_{2i-2}) + 4f(x_{2i-1})+(f(x_{2i})\right)\frac {h} {3}$ 
 
 将其分段求和即可得到如下结论：
 
-$$\int_l ^ r f (x) dx \approx \left(f (x_0) + 4 f (x_1) + 2 f (x_2) + 4f(x_3) + 2 f(x_4) + \ldots + 4 f(x_{2N-1}) + f(x_{2N}) \right)\frac {h} {3} $$
+ $\int_l ^ r f (x) dx \approx \left(f (x_0) + 4 f (x_1) + 2 f (x_2) + 4f(x_3) + 2 f(x_4) + \ldots + 4 f(x_{2N-1}) + f(x_{2N}) \right)\frac {h} {3}$ 
 
 #### 误差
 
 我们直接给出结论，普通辛普森法的误差为：
-
 
 $$
 -\tfrac{1}{90} \left(\tfrac{r-l}{2}\right)^5 f^{(4)}(\xi)
@@ -67,17 +65,17 @@ $$
 #### 实现
 
 ```cpp
-const int N = 1000 * 1000; 
+const int N = 1000 * 1000;
 
-double simpson_integration(double a, double b){
-    double h = (b - a) / N;
-    double s = f(a) + f(b); 
-    for (int i = 1; i <= N - 1; ++i) { 
-        double x = a + h * i;
-        s += f(x) * ((i & 1) ? 4 : 2);
-    }
-    s *= h / 3;
-    return s;
+double simpson_integration(double a, double b) {
+  double h = (b - a) / N;
+  double s = f(a) + f(b);
+  for (int i = 1; i <= N - 1; ++i) {
+    double x = a + h * i;
+    s += f(x) * ((i & 1) ? 4 : 2);
+  }
+  s *= h / 3;
+  return s;
 }
 ```
 
