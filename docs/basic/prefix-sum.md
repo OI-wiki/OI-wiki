@@ -308,7 +308,7 @@ $$
 \begin{aligned}
 &d_s\leftarrow d_s+1\\
 &d_t\leftarrow d_t+1\\
-&d_{lca}\leftarrow d_{lca}-２\\
+&d_{lca}\leftarrow d_{lca}-2\\
 \end{aligned}
 $$
 
