@@ -27,6 +27,7 @@ nav:
     - 用 Docker 部署 OI Wiki: intro/docker-deploy.md
     - 致谢: intro/thanks.md
   - 比赛相关:
+    - 比赛相关简介: contest/index.md
     - 赛事:
       - OI 赛事与赛制: contest/oi.md
       - ICPC/CCPC 赛事与赛制: contest/icpc.md
@@ -42,6 +43,7 @@ nav:
     - 出题相关:
       - 出题: contest/problemsetting.md
   - 工具软件:
+    - 工具软件简介: tools/index.md
     - 代码编辑工具:
       - Vim: tools/editor/vim.md
       - Emacs: tools/editor/emacs.md
