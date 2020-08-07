@@ -49,7 +49,7 @@ $$
 则可以利用下面的恒等式将上升幂转化为普通幂：
 
 $$
-x^{\overline{n}}=\sum_{k} $\begin{bmatrix}n\\ k\end{bmatrix}$ x^k
+x^{\overline{n}}=\sum_{k} \begin{bmatrix}n\\ k\end{bmatrix} x^k
 $$
 
 如果将普通幂转化为上升幂，则有下面的恒等式：
