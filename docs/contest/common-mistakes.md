@@ -1,3 +1,5 @@
+author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
+
 本页面主要分享一下在竞赛中很多人经常会出现的错误。
 
 ## 会引起 Compile Error 的错误

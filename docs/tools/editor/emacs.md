@@ -1,4 +1,4 @@
-author: akakw1, Ir1d, partychicken, Xeonacid
+author: ouuan, akakw1, Ir1d, partychicken, Xeonacid
 
 ## Emacs 入门教程
 
