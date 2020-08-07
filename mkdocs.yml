@@ -307,6 +307,7 @@ nav:
     - 图论部分简介: graph/index.md
     - 图论相关概念: graph/concept.md
     - 图的存储: graph/save.md
+    - 计数标记图: graph/counting-labeled-graphs.md
     - DFS（图论）: graph/dfs.md
     - BFS（图论）: graph/bfs.md
     - 树上问题:
