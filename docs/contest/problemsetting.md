@@ -1,3 +1,5 @@
+author: ouuan, Henry-ZHR, StudyingFather, ChungZH
+
 ## 出题前的准备
 
 ### 具备一定的水平
@@ -102,11 +104,11 @@ OI 中的数学题与其它数学题的区别，也是体现 OI 本质的一个�
 
 网上有很多 LaTeX 的教程，如：
 
--  [LaTeX 入门](../intro/latex.md#_22) 
+-  [LaTeX 入门](../tools/latex.md#_22) 
 -  [LaTeX 数学公式大全](https://www.luogu.com.cn/blog/IowaBattleship/latex-gong-shi-tai-quan) 
 -  [LaTeX 各种命令，符号](https://blog.csdn.net/garfielder007/article/details/51646604) 
 
-使用时请注意 [LaTeX 公式的格式要求](../intro/htc.md#latex) 。
+使用时请注意 [LaTeX 公式的格式要求](../intro/format.md) 。
 
 ### 题目背景
 
@@ -266,7 +268,7 @@ OI 中的数学题与其它数学题的区别，也是体现 OI 本质的一个�
 
 需要特别提醒的是，在生成值域比随机函数返回值更大的数时，请 **不要** 使用 `rand() * rand()` 之类的写法，这样的写法生成的随机数非常不均匀。
 
-另外，出题时推荐使用 [testlib](../intro/testlib/generator.md) 来造数据，可以保证在不同平台上同一个种子生成的随机数相同，并且种子会依据命令行参数自动生成。
+另外，出题时推荐使用 [testlib](../tools/testlib/generator.md) 来造数据，可以保证在不同平台上同一个种子生成的随机数相同，并且种子会依据命令行参数自动生成。
 
 #### 生成随机排列
 
@@ -401,7 +403,7 @@ gen 100000 100000 > 5.in
 
 ## Special Judge
 
- [SPJ 编写教程](../intro/spj.md) 
+ [SPJ 编写教程](../tools/special-judge.md) 
 
 输出方案题和输出浮点数题是两种较为常见的需要使用 SPJ 的题型，其它题目视情况也需要使用 SPJ。在 CF 上，所有题目都必须使用基于 testlib.h 的 checker，例如：题目要求输出若干个整数时，你可以任意输出空白字符（既可以空格也可以换行）。
 
@@ -474,7 +476,7 @@ checker 一般使用 testlib.h 编写。由于你要应对各种各样的不合�
 
 ### Polygon
 
-Polygon 是一个功能非常强大的多人合作出题平台，可以作为在任何网站（使用 package 功能导出到不支持 Polygon 的网站）多人合作出题的首选方案，单人出题（尤其是在不同设备上出题）时也是很不错的选择，使用方法参见 [Polygon 简介](../intro/polygon.md) 。
+Polygon 是一个功能非常强大的多人合作出题平台，可以作为在任何网站（使用 package 功能导出到不支持 Polygon 的网站）多人合作出题的首选方案，单人出题（尤其是在不同设备上出题）时也是很不错的选择，使用方法参见 [Polygon 简介](../tools/polygon.md) 。
 
 ### Codeforces
 
@@ -497,7 +499,7 @@ Codeforces 是全球最著名的算法竞赛网站之一，题目质量较高，
 
 #### 在 Polygon 上准备题目
 
-参考 [Polygon 简介](../intro/polygon.md) 。
+参考 [Polygon 简介](../tools/polygon.md) 。
 
 #### 与管理之间的联系
 

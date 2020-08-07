@@ -1,4 +1,4 @@
-Interactor，即交互器，用于交互题与选手程序交互。交互题的介绍见 [非传统题](../problems.md) 。
+Interactor，即交互器，用于交互题与选手程序交互。交互题的介绍见 [题型介绍 - 交互题](../../contest/problems.md#) 。
 
 ???+note
     Testlib 仅支持 Codeforces 形式交互题，即两程序交互。不支持 NOI 形式的选手编写函数与其他函数交互。

@@ -1,4 +1,4 @@
-author: Xeonacid, Ir1d, Enter-tainer, partychicken, ChungZH, LuoshuiTianyi, Kewth, s0cks5, Doveqise
+author: Enter-tainer, ouuan, Xeonacid, Ir1d, partychicken, ChungZH, LuoshuiTianyi, Kewth, s0cks5, Doveqise, StudyingFather, SukkaW, SodaCris
 
 ## Vim——编辑器之神
 

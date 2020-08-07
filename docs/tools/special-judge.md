@@ -1,4 +1,4 @@
-author: NachtgeistW
+author: Xeonacid, NachtgeistW, 2014CAIS01, sshwy, Chrogeek
 
 本页面主要介绍部分评测工具/OJ 的 spj 编写方法。
 

@@ -1,3 +1,5 @@
+author: shenyouran, Xeonacid, StudyingFather
+
 ## 简介
 
 Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc. 开发。
