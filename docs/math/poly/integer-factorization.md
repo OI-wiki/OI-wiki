@@ -270,7 +270,7 @@ LL mult(LL a, LL b, LL mod) {
 $$
 
 \\begin{array}{ll}
-1 &\\text{function brent(f, x0):}\\2 &\\qquad\\text{tortoise = x0}\\3 &\\qquad\\text{hare = f(x0)}\\4 &\\qquad\\text{l = 1}\\5 &\\qquad\\text{while tortoise != hare:}\\6 &\\qquad\\qquad\\text{tortoise = hare}\\7 &\\qquad\\qquad\\qquad\\text{repeat l times:}\\8 &\\qquad\\qquad\\qquad\\text{hare = f(hare)}\\9 &\\qquad\\qquad\\qquad\\text{if tortoise == hare:}\\10 &\\qquad\\qquad\\qquad\\qquad\\text{return true}\\11 &\\qquad\\qquad\\text{l \*= 2}\\12 &\\qquad\\text{return true}\\\\end{array}
+1 &\\text{function brent(f, x0):}\\2 &\\qquad\\text{tortoise = x0}\\3 &\\qquad\\text{hare = f(x0)}\\4 &\\qquad\\text{l = 1}\\5 &\\qquad\\text{while tortoise != hare:}\\6 &\\qquad\\qquad\\text{tortoise = hare}\\7 &\\qquad\\qquad\\qquad\\text{repeat l times:}\\8 &\\qquad\\qquad\\qquad\\text{hare = f(hare)}\\9 &\\qquad\\qquad\\qquad\\text{if tortoise == hare:}\\10 &\\qquad\\qquad\\qquad\\qquad\\text{return true}\\11 &\\qquad\\qquad\\text{l\*= 2}\\12 &\\qquad\\text{return true}\\\\end{array}
 
 $$
 布伦特的算法也在线性时间内运行，但通常比弗洛伊德的算法快，因为它使用的函数f的计算量更少。
