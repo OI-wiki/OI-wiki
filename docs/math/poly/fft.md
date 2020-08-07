@@ -82,7 +82,7 @@ $$
 
 严谨地，我们称 $x^n=1$ 在复数意义下的解是 $n$ 次复根。显然，这样的解有 $n$ 个，设 $\omega_n=e^{\frac{2\pi i}{n}}$ ，则 $x^n=1$ 的解集表示为 $\{w_n^k\mid k=0,1\cdots,n-1\}$ 。我们称 $w_n$ 是 $n$ 次单位复根（the $n$ -th root of unity）。根据复平面的知识， $n$ 次单位复根是复平面把单位圆 $n$ 等分的第一个角所对应的向量。其他复根均可以用单位复根的幂表示。
 
-另一方面，根据欧拉公式，还可以得到 $\omega_n=e^{\frac{2\pi i}{n}}=\cos\left(\dfrac{2\pi i}{n}\right)+i\cdot \sin\left(\dfrac{2\pi i}{n}\right)$ 。
+另一方面，根据欧拉公式，还可以得到 $\omega_n=e^{\frac{2\pi i}{n}}=\cos\left(\dfrac{2\pi}{n}\right)+i\cdot \sin\left(\dfrac{2\pi}{n}\right)$ 。
 
 举个例子，当 $n=4$ 时， $w_n=i$ ，即 $i$ 就是 $4$ 次单位复根：
 
@@ -300,7 +300,7 @@ $$
 为了使计算的结果为原来的倒数，根据单位复根的性质并结合欧拉公式，可以得到
 
 $$
-\frac{1}{\omega_k}=\omega_k^{-1}=e^{-\frac{2\pi i}{k}}=\cos\left(\frac{2\pi i}{k}\right)+i\cdot \sin\left(-\frac{2\pi i}{k}\right)
+\frac{1}{\omega_k}=\omega_k^{-1}=e^{-\frac{2\pi i}{k}}=\cos\left(\frac{2\pi}{k}\right)+i\cdot \sin\left(-\frac{2\pi}{k}\right)
 $$
 
 因此我们可以尝试着把 $π$ 取成 - 3.14159…，这样我们的计算结果就会变成原来的倒数，而其它的操作过程与 DFT 是完全相同的。我们可以定义一个函数，在里面加一个参数 $1$ 或者是 $-1$ ，然后把它乘到 $π$ 的身上。传入 $1$ 就是 DFT，传入 $-1$ 就是 IDFT。
