@@ -161,7 +161,7 @@
 
 ###  **2018-2019 ACM-ICPC Asia Seoul Regional K [TV Show Game](http://codeforces.com/gym/101987) ** 
 
-题面：有 $k(k>3)$ 盏灯，每盏灯是红色或者蓝色，但是初始的时候不知道灯的颜色。有 $n$ 个人，每个人选择 3 盏灯并猜灯的颜色。一个人猜对两盏灯或以上的颜色就可以获得奖品。判断是否存在一个灯的着色方案使得每个人都能领奖，若有则输出一种灯的着色方案。
+> 题面：有 $k(k>3)$ 盏灯，每盏灯是红色或者蓝色，但是初始的时候不知道灯的颜色。有 $n$ 个人，每个人选择 3 盏灯并猜灯的颜色。一个人猜对两盏灯或以上的颜色就可以获得奖品。判断是否存在一个灯的着色方案使得每个人都能领奖，若有则输出一种灯的着色方案。
 
 这道题在判断是否有方案的基础上，在有方案时还要输出一个可行解。
 
@@ -178,13 +178,12 @@
     using namespace std;
     const int maxn = 1e4 + 5;
     const int maxk = 5005;
-    ```
-
+    
     int n, k;
     int id[maxn][5];
     char s[maxn][5][5], ans[maxk];
     bool vis[maxn];
-
+    
     struct Edge {
       int v, nxt;
     } e[maxn * 100];
@@ -194,7 +193,7 @@
       e[tot].nxt = head[u];
       head[u] = tot++;
     }
-
+    
     int dfn[maxn], low[maxn], color[maxn], stk[maxn], ins[maxn], top, dfs_clock, c;
     void tarjan(int x) {
       stk[++top] = x;
@@ -216,12 +215,12 @@
         } while (stk[top--] != x);
       }
     }
-
+    
     int main() {
       scanf("%d %d", &k, &n);
       for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= 3; j++) scanf("%d%s", &id[i][j], s[i][j]);
-
+        
         for (int j = 1; j <= 3; j++) {
           for (int k = 1; k <= 3; k++) {
             if (j == k) continue;
@@ -231,16 +230,16 @@
           }
         }
       }
-
+      
       for (int i = 1; i <= 2 * k; i++)
         if (!dfn[i]) tarjan(i);
-
+      
       for (int i = 1; i <= 2 * k; i += 2)
         if (color[i] == color[i + 1]) {
           puts("-1");
           return 0;
         }
-
+      
       for (int i = 1; i <= 2 * k; i += 2) {
         int f1 = color[i], f2 = color[i + 1];
         if (vis[f1]) {
