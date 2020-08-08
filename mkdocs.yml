@@ -237,6 +237,7 @@ nav:
       - 向量: math/vector.md
       - 矩阵: math/matrix.md
       - 高斯消元: math/gauss.md
+      - 高斯-若尔当消元: math/linear-system-gauss.md
       - 线性基: math/basis.md
     - 线性规划:
       - 线性规划简介: math/linear-programming.md
