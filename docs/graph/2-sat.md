@@ -161,15 +161,15 @@ int main() {
 }
 ```
 
-### ** 2018-2019 ACM-ICPC Asia Seoul Regional K [TV Show Game] (http://codeforces.com/gym/101987) **
+###  **2018-2019 ACM-ICPC Asia Seoul Regional K [TV Show Game](http://codeforces.com/gym/101987) ** 
 
-题面：有$k(k>3)$盏灯，每盏灯是红色或者蓝色，但是初始的时候不知道灯的颜色。有$n$个人，每个人选择3盏灯并猜灯的颜色。一个人猜对两盏灯或以上的颜色就可以获得奖品。判断是否存在一个灯的着色方案使得每个人都能领奖，若有则输出一种灯的着色方案。
+题面：有 $k(k>3)$ 盏灯，每盏灯是红色或者蓝色，但是初始的时候不知道灯的颜色。有 $n$ 个人，每个人选择 3 盏灯并猜灯的颜色。一个人猜对两盏灯或以上的颜色就可以获得奖品。判断是否存在一个灯的着色方案使得每个人都能领奖，若有则输出一种灯的着色方案。
 
 这道题在判断是否有方案的基础上，在有方案时还要输出一个可行解。
 
-根据[伍昱-《由对称性解2-sat问题》](https://wenku.baidu.com/view/31fd7200bed5b9f3f90f1ce2.html)，我们可以得出：如果要输出2-SAT问题的一个可行解，只需要在tarjan缩点后所得的DAG上自底向上地进行选择和删除。
+根据 [伍昱 -《由对称性解 2-sat 问题》](https://wenku.baidu.com/view/31fd7200bed5b9f3f90f1ce2.html) ，我们可以得出：如果要输出 2-SAT 问题的一个可行解，只需要在 tarjan 缩点后所得的 DAG 上自底向上地进行选择和删除。
 
-具体实现的时候，可以通过构造DAG的反图后在反图上进行拓扑排序实现；也可以根据tarjan缩点后，所属连通块编号越小，节点越靠近叶子节点这一性质，优先对所属连通块编号小的节点进行选择。
+具体实现的时候，可以通过构造 DAG 的反图后在反图上进行拓扑排序实现；也可以根据 tarjan 缩点后，所属连通块编号越小，节点越靠近叶子节点这一性质，优先对所属连通块编号小的节点进行选择。
 
 下面给出第二种实现方法的代码。
 
@@ -186,90 +186,85 @@ char s[maxn][5][5], ans[maxk];
 bool vis[maxn];
 
 struct Edge {
-    int v, nxt;
+  int v, nxt;
 } e[maxn * 100];
 int head[maxn], tot = 1;
-void addedge(int u, int v)
-{
-    e[tot].v = v;
-    e[tot].nxt = head[u];
-    head[u] = tot++;
+void addedge(int u, int v) {
+  e[tot].v = v;
+  e[tot].nxt = head[u];
+  head[u] = tot++;
 }
 
 int dfn[maxn], low[maxn], color[maxn], stk[maxn], ins[maxn], top, dfs_clock, c;
-void tarjan(int x)
-{
-    stk[++top] = x;
-    ins[x] = 1;
-    dfn[x] = low[x] = ++dfs_clock;
-    for (int i = head[x]; i; i = e[i].nxt) {
-        int v = e[i].v;
-        if (!dfn[v]) {
-            tarjan(v);
-            low[x] = min(low[x], low[v]);
-        } else if (ins[v])
-            low[x] = min(low[x], dfn[v]);
-    }
-    if (dfn[x] == low[x]) {
-        c++;
-        do {
-            color[stk[top]] = c;
-            ins[stk[top]] = 0;
-        } while (stk[top--] != x);
-    }
+void tarjan(int x) {
+  stk[++top] = x;
+  ins[x] = 1;
+  dfn[x] = low[x] = ++dfs_clock;
+  for (int i = head[x]; i; i = e[i].nxt) {
+    int v = e[i].v;
+    if (!dfn[v]) {
+      tarjan(v);
+      low[x] = min(low[x], low[v]);
+    } else if (ins[v])
+      low[x] = min(low[x], dfn[v]);
+  }
+  if (dfn[x] == low[x]) {
+    c++;
+    do {
+      color[stk[top]] = c;
+      ins[stk[top]] = 0;
+    } while (stk[top--] != x);
+  }
 }
 
-int main()
-{
-    scanf("%d %d", &k, &n);
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= 3; j++)
-            scanf("%d%s", &id[i][j], s[i][j]);
+int main() {
+  scanf("%d %d", &k, &n);
+  for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= 3; j++) scanf("%d%s", &id[i][j], s[i][j]);
 
-        for (int j = 1; j <= 3; j++) {
-            for (int k = 1; k <= 3; k++) {
-                if (j == k)
-                    continue;
-                int u = 2 * id[i][j] - (s[i][j][0] == 'B');
-                int v = 2 * id[i][k] - (s[i][k][0] == 'R');
-                addedge(u, v);
-            }
-        }
+    for (int j = 1; j <= 3; j++) {
+      for (int k = 1; k <= 3; k++) {
+        if (j == k) continue;
+        int u = 2 * id[i][j] - (s[i][j][0] == 'B');
+        int v = 2 * id[i][k] - (s[i][k][0] == 'R');
+        addedge(u, v);
+      }
+    }
+  }
+
+  for (int i = 1; i <= 2 * k; i++)
+    if (!dfn[i]) tarjan(i);
+
+  for (int i = 1; i <= 2 * k; i += 2)
+    if (color[i] == color[i + 1]) {
+      puts("-1");
+      return 0;
     }
 
-    for (int i = 1; i <= 2 * k; i++)
-        if (!dfn[i])
-            tarjan(i);
-
-    for (int i = 1; i <= 2 * k; i += 2)
-        if (color[i] == color[i + 1]) {
-            puts("-1");
-            return 0;
-        }
-
-    for (int i = 1; i <= 2 * k; i += 2) {
-        int f1 = color[i], f2 = color[i + 1];
-        if (vis[f1]) {
-            ans[(i + 1) >> 1] = 'R';
-            continue;
-        }
-        if (vis[f2]) {
-            ans[(i + 1) >> 1] = 'B';
-            continue;
-        }
-        if (f1 < f2) {
-            vis[f1] = 1;
-            ans[(i + 1) >> 1] = 'R';
-        } else {
-            vis[f2] = 1;
-            ans[(i + 1) >> 1] = 'B';
-        }
+  for (int i = 1; i <= 2 * k; i += 2) {
+    int f1 = color[i], f2 = color[i + 1];
+    if (vis[f1]) {
+      ans[(i + 1) >> 1] = 'R';
+      continue;
     }
-    ans[k + 1] = 0;
-    printf("%s\n", ans + 1);
-    return 0;
+    if (vis[f2]) {
+      ans[(i + 1) >> 1] = 'B';
+      continue;
+    }
+    if (f1 < f2) {
+      vis[f1] = 1;
+      ans[(i + 1) >> 1] = 'R';
+    } else {
+      vis[f2] = 1;
+      ans[(i + 1) >> 1] = 'B';
+    }
+  }
+  ans[k + 1] = 0;
+  printf("%s\n", ans + 1);
+  return 0;
 }
 ```
+
 ## 练习题
 
 HDU1814 [和平委员会](http://acm.hdu.edu.cn/showproblem.php?pid=1814) 
