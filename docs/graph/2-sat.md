@@ -220,7 +220,7 @@
       scanf("%d %d", &k, &n);
       for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= 3; j++) scanf("%d%s", &id[i][j], s[i][j]);
-        
+    
         for (int j = 1; j <= 3; j++) {
           for (int k = 1; k <= 3; k++) {
             if (j == k) continue;
@@ -230,16 +230,16 @@
           }
         }
       }
-      
+    
       for (int i = 1; i <= 2 * k; i++)
         if (!dfn[i]) tarjan(i);
-      
+    
       for (int i = 1; i <= 2 * k; i += 2)
         if (color[i] == color[i + 1]) {
           puts("-1");
           return 0;
         }
-      
+    
       for (int i = 1; i <= 2 * k; i += 2) {
         int f1 = color[i], f2 = color[i + 1];
         if (vis[f1]) {
