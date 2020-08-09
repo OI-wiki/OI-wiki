@@ -20,7 +20,7 @@ author: Ir1d, HeRaNO, Xeonacid
 
 ## 区间和
 
-??? "例题 [LibreOJ 6280 数列分块入门 4](https://loj.ac/problem/6281)"
+??? "例题 [LibreOJ 6280 数列分块入门 4](https://loj.ac/problem/6280)"
     给定一个长度为 $n$ 的序列 $\{a_i\}$ ，需要执行 $n$ 次操作。操作分为两种：
     
     1. 给 $a_l \sim a_r$ 之间的所有数加上 $x$ ；
@@ -48,6 +48,63 @@ $$
 
 利用均值不等式可知，当 $\dfrac{n}{s}=s$ ，即 $s=\sqrt n$ 时，单次操作的时间复杂度最优，为 $O(\sqrt n)$ 。
 
+??? note "参考代码"
+    ```cpp
+    #include <cmath>
+    #include <iostream>
+    using namespace std;
+    int id[50005], len;
+    long long a[50005], b[50005], s[50005];
+    void add(int l, int r, long long x) {
+      int sid = id[l], eid = id[r];
+      if (sid == eid) {
+        for (int i = l; i <= r; i++)
+          a[i] += x, s[sid] += x;
+        return;
+      }
+      for (int i = l; id[i] == sid; i++)
+        a[i] += x, s[sid] += x;
+      for (int i = sid + 1; i < eid; i++)
+        b[i] += x, s[i] += len * x;
+      for (int i = r; id[i] == eid; i--)
+        a[i] += x, s[eid] += x;
+    }
+    long long query(int l, int r, long long p) {
+      int sid = id[l], eid = id[r];
+      long long ans = 0;
+      if (sid == eid) {
+        for (int i = l; i <= r; i++)
+          ans = (ans + a[i] + b[sid]) % p;
+        return ans;
+      }
+      for (int i = l; id[i] == sid; i++)
+        ans = (ans + a[i] + b[sid]) % p;
+      for (int i = sid + 1; i < eid; i++)
+        ans = (ans + s[i]) % p;
+      for (int i = r; id[i] == eid; i--)
+        ans = (ans + a[i] + b[eid]) % p;
+      return ans;
+    }
+    int main() {
+      int n;
+      cin >> n;
+      len = sqrt(n);
+      for (int i = 1; i <= n; i++) {
+        cin >> a[i];
+        id[i] = (i - 1) / len + 1;
+        s[id[i]] += a[i];
+      }
+      for (int i = 1; i <= n; i++) {
+        int op, l, r, c;
+        cin >> op >> l >> r >> c;
+        if (op == 0)
+          add(l, r, c);
+        else
+          cout << query(l, r, c + 1) << endl;
+      }
+      return 0;
+    }
+    ```
 ## 区间和 2
 
 上一个做法的复杂度是 $\Omega(1) , O(\sqrt{n})$ 。
