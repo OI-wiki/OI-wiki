@@ -312,14 +312,16 @@ int main() {
 
 ## 可变参数模板
 
-在 C++11 之前，类模板和函数模板都只能接受固定数目的模板参数。C++11 允许 **任意个数、任意类型*** 的模板参数。
+在 C++11 之前，类模板和函数模板都只能接受固定数目的模板参数。C++11 允许 **任意个数、任意类型 \*** 的模板参数。
 
 ### 可变参数模板类
 
-例如，下列代码声明的模板类 `tuple` 的对象可以接受任意个数、任意类型的模板参数作为它的模板形参。其中， `Values`是一个模板参数包，表示0个或多个额外的类型参数。模板类只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
+例如，下列代码声明的模板类 `tuple` 的对象可以接受任意个数、任意类型的模板参数作为它的模板形参。其中， `Values` 是一个模板参数包，表示 0 个或多个额外的类型参数。模板类只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
 
 ```cpp
-template<typename... Values> class Tuple{};;
+template <typename... Values>
+class Tuple {};
+;
 ```
 
 所以，可以这么声明 `tuple` 的对象：
@@ -334,18 +336,20 @@ Tuple<int, std::vector<int>, std::map<std::string, std::vector<int>>> test3;
 如果要限制至少有一个模板参数，可以这么定义模板类 `tuple` ：
 
 ```cpp
-template<typename First, typename... Rest> class Tuple{};
+template <typename First, typename... Rest>
+class Tuple {};
 ```
 
 ### 可变参数模板函数
 
-同样的，下列代码声明的模板函数 `func` 可以接受任意个数、任意类型的模板参数作为它的模板形参。其中，`Values`是一个模板参数包， `values`是一个函数参数包，表示0个或多个函数参数。模板函数只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
+同样的，下列代码声明的模板函数 `func` 可以接受任意个数、任意类型的模板参数作为它的模板形参。其中， `Values` 是一个模板参数包， `values` 是一个函数参数包，表示 0 个或多个函数参数。模板函数只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
 
 ```cpp
-template<typename... Values> void fun(Values... values) {}
+template <typename... Values>
+void fun(Values... values) {}
 ```
 
-例如，可以这么调用 'fun' 函数：
+例如，可以这么调用'fun' 函数：
 
 ```cpp
 fun();
@@ -370,21 +374,22 @@ fun(1, 0.0, "abc");
 
 ```cpp
 // 递归终止函数，可以是0或多个参数。
-template<typename T>
+template <typename T>
 T MAX(T a, T b) {
   return a > b ? a : b;
 }
 
 // 展开参数包的递归函数
-template<typename First, typename... Rest>
+template <typename First, typename... Rest>
 First MAX(First first, Rest... rest) {
   return MAX(first, MAX(rest...));
 }
 
 // int a = MAX(1); // 编译不通过，但是对1个参数取最大值本身也没有意义
-// int b = MAX(1, "abc"); // 编译不通过，但是在整数和字符串间取最大值本身也没有意义
-int c = MAX(1, 233); // 233
-int d = MAX(1, 233, 666, 10086); // 10086
+// int b = MAX(1, "abc"); //
+// 编译不通过，但是在整数和字符串间取最大值本身也没有意义
+int c = MAX(1, 233);              // 233
+int d = MAX(1, 233, 666, 10086);  // 10086
 ```
 
 ### 一个例子
@@ -397,49 +402,49 @@ int d = MAX(1, 233, 666, 10086); // 10086
 using namespace std;
 
 namespace DEBUG {
-    template <typename T>
-    inline void _debug(const char* format, T t) { 
-        cerr << format << '=' << t << endl; 
-    }
-    
-    template <class First, class... Rest>
-    inline void _debug(const char* format, First first, Rest... rest) {
-        while (*format != ',')
-            cerr << *format++;
-        cerr << '=' << first << ",";
-        _debug(format + 1, rest...);
-    }
-    
-    template <typename T>
-    ostream& operator<<(ostream& os, vector<T> V) {
-        os << "[ ";
-        for (auto vv : V) os << vv << ", ";
-        os << "]";
-        return os;
-    }
-    
-    // 可变参数宏，C99标准增加的特性。
-    // ...是缺省号，表示一个可以变化的参数列表
-    // __VA_ARGS__是保留名，在调用时会替换成可变参数列表
-    // #__VA_ARGS__是__VA_ARGS__的可变参数列表的字符串形式
-    // debug(a, b, c) 等价于 _debug("a, b, c", a, b,c)
-    #define debug(...) _debug(#__VA_ARGS__, __VA_ARGS__)
+template <typename T>
+inline void _debug(const char* format, T t) {
+  cerr << format << '=' << t << endl;
 }
+
+template <class First, class... Rest>
+inline void _debug(const char* format, First first, Rest... rest) {
+  while (*format != ',') cerr << *format++;
+  cerr << '=' << first << ",";
+  _debug(format + 1, rest...);
+}
+
+template <typename T>
+ostream& operator<<(ostream& os, vector<T> V) {
+  os << "[ ";
+  for (auto vv : V) os << vv << ", ";
+  os << "]";
+  return os;
+}
+
+// 可变参数宏，C99标准增加的特性。
+// ...是缺省号，表示一个可以变化的参数列表
+// __VA_ARGS__是保留名，在调用时会替换成可变参数列表
+// #__VA_ARGS__是__VA_ARGS__的可变参数列表的字符串形式
+// debug(a, b, c) 等价于 _debug("a, b, c", a, b,c)
+#define debug(...) _debug(#__VA_ARGS__, __VA_ARGS__)
+}  // namespace DEBUG
 using namespace DEBUG;
 
 int main(int argc, char* argv[]) {
-    int a = 666;
-    vector<int> b({1, 2, 3});
-    string c = "hello world";
-    
-    // before
-    cout << "a=" << a << ", b=" << b << ", c=" << c << endl; //a=666, b=[ 1, 2, 3, ], c=hello world
-    // 如果用printf的话，在只有基本数据类型的时候是比较方便的，然是如果要输出vector等的内容的话，就会比较麻烦
-    
-    // after
-    debug(a, b, c); // a=666, b=[ 1, 2, 3, ], c=hello world
-    
-    return 0;
+  int a = 666;
+  vector<int> b({1, 2, 3});
+  string c = "hello world";
+
+  // before
+  cout << "a=" << a << ", b=" << b << ", c=" << c
+       << endl;  // a=666, b=[ 1, 2, 3, ], c=hello world
+  // 如果用printf的话，在只有基本数据类型的时候是比较方便的，然是如果要输出vector等的内容的话，就会比较麻烦
+
+  // after
+  debug(a, b, c);  // a=666, b=[ 1, 2, 3, ], c=hello world
+
+  return 0;
 }
 ```
 
