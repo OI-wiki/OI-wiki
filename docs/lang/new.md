@@ -317,7 +317,9 @@ int main() {
 例如，下列代码声明的模板类 `tuple` 的对象可以接受任意个数的 typename 作为它的模板形参。
 
 ```cpp
-template<typename... Values> class Tuple{};;
+template <typename... Values>
+class Tuple {};
+;
 ```
 
 所以，可以这么声明 `tuple` 的对象：
@@ -332,7 +334,8 @@ Tuple<int, std::vector<int>, std::map<std::string, std::vector<int>>> test3;
 如果要限制至少有一个模板参数，可以这么定义模板类 `tuple` ：
 
 ```cpp
-template<typename First, typename... Rest> class Tuple{};
+template <typename First, typename... Rest>
+class Tuple {};
 ```
 
 举个应用的例子，有的人在 debug 的时候可能不喜欢用 IDE 的调试功能，而是喜欢输出中间变量。但是，有时候要输出的中间变量数量有点多，写输出中间变量的代码的时候可能会比较烦躁，这时候就可以用上可变参数模板。
@@ -343,46 +346,47 @@ template<typename First, typename... Rest> class Tuple{};
 using namespace std;
 
 namespace DEBUG {
-    template <typename T>
-    inline void _debug(const char* format, T t) { 
-        cerr << format << '=' << t << endl; 
-    }
-    
-    template <class First, class... Rest>
-    inline void _debug(const char* format, First first, Rest... rest) {
-        while (*format != ',')
-            cerr << *format++;
-        cerr << '=' << first << ",";
-        _debug(format + 1, rest...);
-    }
-    
-    template <typename T>
-    ostream& operator<<(ostream& os, vector<T> V) {
-        os << "[ ";
-        for (auto vv : V) os << vv << ", ";
-        os << "]";
-        return os;
-    }
-    
-    #define debug(...) _debug(#__VA_ARGS__, __VA_ARGS__)
+template <typename T>
+inline void _debug(const char* format, T t) {
+  cerr << format << '=' << t << endl;
 }
+
+template <class First, class... Rest>
+inline void _debug(const char* format, First first, Rest... rest) {
+  while (*format != ',') cerr << *format++;
+  cerr << '=' << first << ",";
+  _debug(format + 1, rest...);
+}
+
+template <typename T>
+ostream& operator<<(ostream& os, vector<T> V) {
+  os << "[ ";
+  for (auto vv : V) os << vv << ", ";
+  os << "]";
+  return os;
+}
+
+#define debug(...) _debug(#__VA_ARGS__, __VA_ARGS__)
+}  // namespace DEBUG
 using namespace DEBUG;
 
 int main(int argc, char* argv[]) {
-    int a = 666;
-    vector<int> b({1, 2, 3});
-    string c = "hello world";
-    
-    // before
-    cout << "a=" << a << ", b=" << b << ", c=" << c << endl; //a=666, b=[ 1, 2, 3, ], c=hello world
-    
-    // after
-    debug(a, b, c); // a=666, b=[ 1, 2, 3, ], c=hello world
-    
-    return 0;
+  int a = 666;
+  vector<int> b({1, 2, 3});
+  string c = "hello world";
+
+  // before
+  cout << "a=" << a << ", b=" << b << ", c=" << c
+       << endl;  // a=666, b=[ 1, 2, 3, ], c=hello world
+
+  // after
+  debug(a, b, c);  // a=666, b=[ 1, 2, 3, ], c=hello world
+
+  return 0;
 }
 
-这样一来，如果事先在代码模板里写好 DEBUG 的相关代码，后续输出中间变量的时候就会方便许多。利用可变参数模板，还可以实现例如取多个数中的最值等功能。
+这样一来，如果事先在代码模板里写好 DEBUG
+    的相关代码，后续输出中间变量的时候就会方便许多。利用可变参数模板，还可以实现例如取多个数中的最值等功能。
 ```
 
 ## 参考
