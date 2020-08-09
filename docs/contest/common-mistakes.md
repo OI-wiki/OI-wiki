@@ -1,131 +1,191 @@
 author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
-本页面主要分享一下在竞赛中很多人经常会出现的错误。
+本页面主要列举一些竞赛中很多人经常会出现的错误。
 
-## 会引起 Compile Error 的错误
+## 会引起 CE 的错误
 
-由于这类错误比较明显，故略写。
+这类错误多为词法、语法和语义错误，引发的原因较为简单，修复难度较低。
 
--  `int main()` 写为 `int mian()` 。
+例：
+
+-  `int main()` 写为 `int mian()` 之类的拼写错误。
 
 - 写完 `struct` 或 `class` 忘记写分号。
 
 - 数组开太大，（在 OJ 上）使用了不合法的函数（例如多线程），或者函数声明但未定义，会引起链接错误。
 
--   使用 `algorithm` 中的 `max` 函数时，一个参数类型为 `int` 而另一个参数类型为 `long long` 。
-    -   示例：
+-   函数参数类型不匹配。
+
+    -   示例：如使用 `<algorithm>` 头文件中的 `max` 函数时，传入了一个 `int` 类型参数和一个 `long long` 类型参数。
+
         ```cpp
-        printf("%lld\n", max(0, query(1, 1, n, l, r)); // query 返回 long long 类型
+        // query 为返回 long long 类型的自定义函数
+        printf("%lld\n", max(0, query(1, 1, n, l, r));
+
+        //错误    没有与参数列表匹配的 重载函数 "std::max" 实例
         ```
 
--    `goto` 的时候，跳过了一些局部变量的初始化。
+- 使用 `goto` 和 `switch-case` 的时候跳过了一些局部变量的初始化。
 
-    -  `switch-case` 的时候，跳过了一些局部变量的初始化。
+## 不会引起 CE 但会引起 Warning 的错误
 
-## 不会引起 Compile Error 但会引发 Warning 的错误
+犯这类错误时写下的程序虽然能通过编译，但大概率会得到错误的程序运行结果。这类错误会在使用 `-W{warningtype}` 参数编译时被编译器指出。
 
-这类错误较难发现，但会在使用 `-W{warningtype}` 参数编译时被编译器指出，所以要多学会使用 `-W{warningtype}` 参数，常见的有 `-Wall` ， `-Wextra` ， `-Wshadow` 等。
+-   赋值运算符 `=` 和比较运算符 `==` 不分。
+
+    -   示例：
+
+        ```cpp
+        std::srand(std::time(nullptr));
+        int n = std::rand();
+        if (n = 1)
+          printf("Yes");
+        else
+          printf("No");
+
+        // 无论 n 的随机所得值为多少，输出肯定是 Yes
+        // 警告    运算符不正确: 在 Boolean 上下文中执行了常量赋值。应考虑改用“==”。
+        ```
+
+    - 如果确实想在原应使用 `==` 的语句里使用 `=` （比如 `while (foo = bar)` ），又不想收到 Warning，可以使用 **双括号** ： `while ((foo = bar))` 。
 
 -   由于运算符优先级产生的错误。
-    -  `1 << 1 + 1` : 1 左移了 2，即该表达式返回的值是 4。
+
+    -   示例：
+
+        ```cpp
+        // 错误
+        // std::cout << (1 << 1 + 1);
+        // 正确
+        std::cout << ((1 << 1) + 1);
+
+        // 警告    “<<”: 检查运算符优先级是否有可能的错误；使用括号阐明优先级
+        ```
 
 - 不正确地使用 `static` 修饰符。
 
--  `-1 >> 1 == 1` 。
+- 使用 `scanf` 读入的时候没加取地址符 `&` 。
 
--   赋值运算符和 `==` 不分。
+- 使用 `scanf` 或 `printf` 的时候参数类型与格式指定符不符。
 
-    -   示例：
+-   同时使用位运算和逻辑运算符 `==` 并且未加括号。
+    - 示例： `(x >> j) & 3 == 2` 
 
-        ```cpp
-        if (n = 1)
-          puts("Yes");
-        else
-          puts("No");
-        ```
-
-        无论 $n$ 的值之前为多少，输出肯定是 `Yes` 。
-
-        Tips: 如果你的确是想在 `if` / `while` 直接用赋值运算符（比如 `while (foo = bar)` ），又不想收到 Warning，可以使用 **双括号** ： `while ((foo = bar))` 。
-
-- 使用 `scanf` 读入的时候没加取地址符 `&` 。更一般地，使用 `scanf` 或 `printf` 的时候参数类型与格式指定符不符。
-
-- 没有考虑数组下标出现负数的情况。
-
-- 同时使用位运算和逻辑运算符（ `==` ）并且未加括号（例如 `(x>>j)&3==2` ）。
-
--  `int` 字面量溢出，例如： `long long x = 0x7f7f7f7f7f7f7f7f` ， `1<<62` 。
+-    `int` 字面量溢出。
+    - 示例： `long long x = 0x7f7f7f7f7f7f7f7f` ， `1<<62` 。
 
 - 未初始化局部变量，导致局部变量被赋予垃圾初值。
 
 - 局部变量与全局变量重名，导致全局变量被意外覆盖。（开 `-Wshadow` 就可检查此类错误。）
 
-## 既不会引起 Compile Error 也不会引发 Warning 的错误
+-   运算符重载后引发的输出错误。
+    -   示例：
+        ```cpp
+        // 本意：前一个 << 为重载后的运算符，表示输出；后一个 << 为移位运算符，表示将 1
+        // 左移 1 位。 但由于忘记加括号，导致编译器将后一个 <<
+        // 也判作输出运算符，而导致输出的结果与预期不同。 错误 std::cout << 1 << 1; 正确
+        std::cout << (1 << 1);
+        ```
 
-这类错误无法被编译器发现，所以在调试时只能依靠你自己。
+## 既不会引起 CE 也不会引发 Warning 的错误
 
-### 会导致 WA
+这类错误无法被编译器发现，仅能自行查明。
 
-- 多组数据未清空数组。
+### 会导致 WA 的错误
+
+- 上一组数据处理完毕，读入下一组数据前，未清空数组。
 
 - 读入优化未判断负数。
 
-- 所用数据类型不够大导致溢出，即常见的“三年 OI 一场空，不开 `long long` 见祖宗”，意思是因为没有使用 `long long` （开 `long long` ）导致大量丢分从而赛季作废。
+-   所用数据类型位宽不足，导致溢出。
+    - 如习语“三年 OI 一场空，不开 `long long` 见祖宗”所描述的场景。选手因为没有在正确的地方开 `long long` （将整数定义为 `long long` 类型），导致得出错误的答案而失分。
 
 - 存图时，节点编号 0 开始，而题目给的边中两个端点的编号从 1 开始，读入的时候忘记 -1。
 
 - 大/小于号打错或打反。
 
--   在执行 `ios::sync_with_stdio(false);` 后混用两种 IO，导致输入/输出错乱。
-    -   可以参考这个例子。
+-   在执行 `ios::sync_with_stdio(false);` 后混用 `scanf/printf` 和 `std::cin/std::cout` 两种 IO，导致输入/输出错乱。
+
+    -   示例：
+
         ```cpp
-        // 这个例子将说明，关闭与 stdio 的同步后，混用两种 IO 的后果
+        // 这个例子将说明关闭与 stdio 的同步后，混用两种 IO 方式的后果
         // 建议单步运行来观察效果
         #include <cstdio>
         #include <iostream>
         int main() {
-          std::ios::sync_with_stdio(false);
           // 关闭同步后，cin/cout 将使用独立缓冲区，而不是将输出同步至 scanf/printf
           // 的缓冲区，从而减少 IO 耗时
+          std::ios::sync_with_stdio(false);
+          // cout 下，使用'\n'换行时，内容会被缓冲而不会被立刻输出
           std::cout << "a\n";
-          // cout 下，使用'\n'换行时，内容会被缓冲而不会被立刻输出，应该使用 endl
-          // 来换行并立刻刷新缓冲区
-          printf("b\n");
           // printf 的 '\n' 会刷新 printf 的缓冲区，导致输出错位
+          printf("b\n");
           std::cout << "c\n";
-          return 0;  // 程序结束时，cout 的缓冲区才会被输出
+          //程序结束时，cout 的缓冲区才会被输出
+          return 0;
         }
         ```
+
     - 特别的，也不能在执行 `ios::sync_with_stdio(false);` 后使用 `freopen` 。
 
--   由于宏的展开，且未加括号导致的错误：
-    ```cpp
-    #define square(x) x* x
-    printf("%d", square(2 + 2));
-    ```
-    该宏返回的值并非 $4^2 = 16$ 而是 $2+2\times 2+2 = 8$ 。
+-   由于宏的展开，且未加括号导致的错误。
 
-- 哈希的时候没有使用 `unsigned` ，因为对负数的右移运算会在最高位补 1，详见 [位运算](../math/bit.md) 
+    -   示例：该宏返回的值并非 $4^2 = 16$ 而是 $2+2\times 2+2 = 8$ 。
+
+        ```cpp
+        #define square(x) x* x
+        printf("%d", square(2 + 2));
+        ```
+
+-   哈希的时候没有使用 `unsigned` 导致的运算错误。
+    - 对负数的右移运算会在最高位补 1。参见： [位运算](../math/bit.md) 
 
 - 没有删除或注释掉调试输出语句。
 
 -   误加了 `;` 。
-    -   可以参考这个例子：
+
+    -   示例：
+
         ```cpp
         /* clang-format off */
         while (1);
             printf("OI Wiki!\n");
         ```
 
-- 没有正确设置哨兵值。例如，平衡树的 `0` 节点。
+- 哨兵值设置错误。例如，平衡树的 `0` 节点。
 
-- 在类或结构体的构造函数中，使用 : 初始化变量，且变量声明顺序不符合初始化时候的依赖关系。因为成员变量的初始化顺序只与它们在类中声明的顺序有关，而与在初始化列表中的顺序无关。
+-   在类或结构体的构造函数中使用 `:` 初始化变量时，变量声明顺序不符合初始化时候的依赖关系。
 
--   并查集合并集合时没有把两个元素的祖先合并：
-    ```cpp
-    f[a] = b;              // 错误
-    f[find(a)] = find(b);  // 正确
-    ```
+    - 成员变量的初始化顺序与它们在类中声明的顺序有关，而与初始化列表中的顺序无关。参见： [构造函数与成员初始化器列表](https://zh.cppreference.com/w/cpp/language/constructor) 的“初始化顺序”
+    -   示例：
+
+        ```cpp
+        #include <iostream>
+
+        class Foo {
+         public:
+          int a, b;
+          // a 将在 b 前初始化，其值不确定
+          Foo(int x) : b(x), a(b + 1) {}
+        };
+
+        int main() {
+          Foo bar(1, 2);
+          std::cout << bar.a << ' ' << bar.b;
+        }
+
+        // 可能的输出结果：-858993459 1
+        ```
+
+-   并查集合并集合时没有把两个元素的祖先合并。
+
+    -   示例：
+
+        ```cpp
+        f[a] = b;              // 错误
+        f[find(a)] = find(b);  // 正确
+        ```
 
 ### 会导致 RE
 
@@ -150,6 +210,9 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
     ```cpp
     bool operator<(const int a, const int b) {
       if (block[a.l] == block[b.l])
+        // 错误：不满足严格弱序的要求
+        // return (block[a.l] & 1) ^ (a.r < b.r);
+        // 正确
         return (block[a.l] & 1) ? (a.r < b.r) : (a.r > b.r);
       else
         return block[a.l] < block[b.l];
@@ -172,18 +235,18 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
 -   使用宏展开编写 min/max
 
-    这种做法虽然算不上是「错误」，但是这里还是要拎出来说一下。
+    这种错误会大大增加程序的运行时间，甚至直接影响代码的时间复杂度。在初学者写线段树时尤为多见。
 
-    常见的写法是这样的：
+    常见的错误写法是这样的：
 
     ```cpp
     #define Min(x, y) ((x) < (y) ? (x) : (y))
     #define Max(x, y) ((x) > (y) ? (x) : (y))
     ```
 
-    这样写虽然在正确性上没有问题，但是如果你直接对函数的返回值取 max，如 `a = Max(func1(), func2())` ，而这个函数的运行时间较长，则会大大影响程序的性能，因为宏展开后是 `a = func1() > func2() ? func1() : func2()` 的形式，调用了三次函数，比正常的 max 函数多调用了一次。注意这里如果 `func1()` 每次返回的答案不一样的话还会导致这种 `max` 的写法出现错误，例如 `func1()` 为 `return ++a;` 而 `a` 为全局变量。
+    这样写虽然在正确性上没有问题，但是如果直接对函数的返回值取 max，如 `a = Max(func1(), func2())` ，而这个函数的运行时间较长，则会大大影响程序的性能，因为宏展开后是 `a = func1() > func2() ? func1() : func2()` 的形式，调用了三次函数，比正常的 max 函数多调用了一次。注意，如果 `func1()` 每次返回的答案不一样，还会导致这种 `max` 的写法出现错误。例如 `func1()` 为 `return ++a;` 而 `a` 为全局变量的情况。
 
-    这种错误在初学者写线段树时尤为多见，会大大增加程序的运行时间，甚至直接影响代码的时间复杂度。例如这份错误代码：
+    示例：如下代码会被卡到单次查询 $\Theta(n)$ 导致 TLE。
 
     ```cpp
     #define max(x, y) ((x) > (y) ? (x) : (y))
@@ -195,21 +258,14 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
       }
 
       int mid = (l + r) >> 1;
-      if (mid >= qr) {
-        return query(lt(t), l, mid, ql, qr);
-      }
-      if (mid < ql) {
-        return query(rt(t), mid + 1, r, ql, qr);
-      }
+      if (mid >= qr) return query(lt(t), l, mid, ql, qr);
+      if (mid < ql) return query(rt(t), mid + 1, r, ql, qr);
       return max(query(lt(t), l, mid, ql, qr), query(rt(t), mid + 1, r, ql, qr));
-    }
     ```
-
-    会被卡到单次查询 $\Theta(n)$ 导致 TLE。
 
 - 没删文件操作（某些 OJ）。
 
--  `for (int i = 0; i < strlen(s); ++i)` ：在循环中重复执行复杂度非 $O(1)$ 的函数。（严格来说，这可能会引起时间复杂度的改变。）
+- 在 `for/while` 循环中重复执行复杂度非 $O(1)$ 的函数。严格来说，这可能会引起时间复杂度的改变。
 
 ### 会导致 MLE
 
@@ -223,7 +279,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
 ###  [未定义行为](https://zh.cppreference.com/w/cpp/language/ub) 
 
--   数组越界。上下都算。（多数是 RE。）
+-   数组越界。多数会引发 RE。
 
     - 未正确设置循环的初值导致访问了下标为 -1 的值。
 
@@ -245,9 +301,16 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
 ### 会导致常数过大
 
-- 定义模数的时候，使用了全局变量（如 `int mod = 998244353` ，为方便编译器按常量处理，正确做法是 `const int mod = 998244353` ）。
+-   定义模数的时候，未定义为常量。
 
-- 使用了不必要的递归（需要注意的是，尾递归不在此列）。
+    -   示例：
+
+        ```cpp
+        // int mod = 998244353;      // 错误
+        const int mod = 998244353  // 正确，方便编译器按常量处理
+        ```
+
+- 使用了不必要的递归（尾递归不在此列）。
 
 - 将递归转化成迭代的时候，引入了大量额外运算。
 
@@ -255,8 +318,8 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
 -   文件操作有可能会发生的错误：
 
-    - 对拍时未清除文件指针即 `fclose(fp)` 就又令 `fp = fopen()` , 这会使得进程出现大量的文件野指针。
+    - 对拍时未关闭文件指针 `fclose(fp)` 就又令 `fp = fopen()` 。这会使得进程出现大量的文件野指针。
 
     -  `freopen()` 中的文件名未加 `.in` / `.out` 。
 
-- 使用堆空间忘记 `delete` 或 `free` 。
+- 使用堆空间后忘记 `delete` 或 `free` 。
