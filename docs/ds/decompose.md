@@ -21,14 +21,14 @@ author: Ir1d, HeRaNO, Xeonacid
 ## 区间和
 
 ??? "例题 [LibreOJ 6280 数列分块入门 4](https://loj.ac/problem/6281)"
-    给定一个长度为 $n$ 的序列 $\{a_i\}$，需要执行 $n$ 次操作。操作分为两种：
+    给定一个长度为 $n$ 的序列 $\{a_i\}$ ，需要执行 $n$ 次操作。操作分为两种：
     
-    1. 给 $a_l \sim a_r$ 之间的所有数加上 $x$；
-    2. 求 $\sum_{i=l}^r a_i$。
+    1. 给 $a_l \sim a_r$ 之间的所有数加上 $x$ ；
+    2. 求 $\sum_{i=l}^r a_i$ 。
     
-    $1 \leq n \leq 5 \times 10^4$
+     $1 \leq n \leq 5 \times 10^4$ 
 
-我们将序列按每 $s$ 个元素一块进行分块，并记录每块的区间和 $b_i$。
+我们将序列按每 $s$ 个元素一块进行分块，并记录每块的区间和 $b_i$ 。
 
 $$
  \underbrace{a_1, a_2, \ldots, a_s}_{\text{b_1}}, \underbrace{a_{s+1}, \ldots, a_{2s}_{\text{b_2}}, \dots, \underbrace{a_{(s-1) \times s+1}, \dots, a_n}_{\text{b_{\frac{n}{s}}}} 
@@ -38,15 +38,15 @@ $$
 
 首先看查询操作：
 
-- 若 $l$ 和 $r$ 在同一个块内，直接暴力求和即可，因为块长为 $s$，因此最坏复杂度为 $O(s)$。
-- 若 $l$ 和 $r$ 不在同一个块内，则答案由三部分组成：以 $l$ 开头的不完整块，中间几个完整块，以 $r$ 结尾的不完整块。对于不完整的块，仍然采用上面暴力计算的方法，对于完整块，则直接利用已经求出的 $b_i$ 求和即可。这种情况下，最坏复杂度为 $O(\dfrac{n}{s}+s)$。
+- 若 $l$ 和 $r$ 在同一个块内，直接暴力求和即可，因为块长为 $s$ ，因此最坏复杂度为 $O(s)$ 。
+- 若 $l$ 和 $r$ 不在同一个块内，则答案由三部分组成：以 $l$ 开头的不完整块，中间几个完整块，以 $r$ 结尾的不完整块。对于不完整的块，仍然采用上面暴力计算的方法，对于完整块，则直接利用已经求出的 $b_i$ 求和即可。这种情况下，最坏复杂度为 $O(\dfrac{n}{s}+s)$ 。
 
 接下来是修改操作：
 
-- 若 $l$ 和 $r$ 在同一个块内，直接暴力修改即可，因为块长为 $s$，因此最坏复杂度为 $O(s)$。
-- 若 $l$ 和 $r$ 不在同一个块内，则需要修改三部分：以 $l$ 开头的不完整块，中间几个完整块，以 $r$ 结尾的不完整块。对于不完整的块，仍然是暴力修改，对于完整块，则直接修改 $b_i$ 即可。这种情况下，最坏复杂度和仍然为 $O(\dfrac{n}{s}+s)$。
+- 若 $l$ 和 $r$ 在同一个块内，直接暴力修改即可，因为块长为 $s$ ，因此最坏复杂度为 $O(s)$ 。
+- 若 $l$ 和 $r$ 不在同一个块内，则需要修改三部分：以 $l$ 开头的不完整块，中间几个完整块，以 $r$ 结尾的不完整块。对于不完整的块，仍然是暴力修改，对于完整块，则直接修改 $b_i$ 即可。这种情况下，最坏复杂度和仍然为 $O(\dfrac{n}{s}+s)$ 。
 
-利用均值不等式可知，当 $\dfrac{n}{s}=s$，即 $s=\sqrt n$ 时，单次操作的时间复杂度最优，为 $O(\sqrt n)$。
+利用均值不等式可知，当 $\dfrac{n}{s}=s$ ，即 $s=\sqrt n$ 时，单次操作的时间复杂度最优，为 $O(\sqrt n)$ 。
 
 ## 区间和 2
 
@@ -96,6 +96,6 @@ $$
 -  [Codeforces - Holes](http://codeforces.com/contest/13/problem/E) 
 -  [Codeforces - XOR and Favorite Number](https://codeforces.com/problemset/problem/617/E) 
 -  [Codeforces - Powerful array](http://codeforces.com/problemset/problem/86/D) 
--  [SPOJ - DQUERY](https://www.spoj.com/problems/DQUERY) 
+-    [SPOJ - DQUERY](https://www.spoj.com/problems/DQUERY) 
 
- **本页面主要译自博文 [Sqrt-декомпозиция](http://e-maxx.ru/algo/sqrt_decomposition) 与其英文翻译版 [Sqrt Decomposition](https://cp-algorithms.com/data_structures/sqrt_decomposition.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+     **本页面主要译自博文 [Sqrt-декомпозиция](http://e-maxx.ru/algo/sqrt_decomposition) 与其英文翻译版 [Sqrt Decomposition](https://cp-algorithms.com/data_structures/sqrt_decomposition.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
