@@ -58,31 +58,23 @@ $$
     void add(int l, int r, long long x) {
       int sid = id[l], eid = id[r];
       if (sid == eid) {
-        for (int i = l; i <= r; i++)
-          a[i] += x, s[sid] += x;
+        for (int i = l; i <= r; i++) a[i] += x, s[sid] += x;
         return;
       }
-      for (int i = l; id[i] == sid; i++)
-        a[i] += x, s[sid] += x;
-      for (int i = sid + 1; i < eid; i++)
-        b[i] += x, s[i] += len * x;
-      for (int i = r; id[i] == eid; i--)
-        a[i] += x, s[eid] += x;
+      for (int i = l; id[i] == sid; i++) a[i] += x, s[sid] += x;
+      for (int i = sid + 1; i < eid; i++) b[i] += x, s[i] += len * x;
+      for (int i = r; id[i] == eid; i--) a[i] += x, s[eid] += x;
     }
     long long query(int l, int r, long long p) {
       int sid = id[l], eid = id[r];
       long long ans = 0;
       if (sid == eid) {
-        for (int i = l; i <= r; i++)
-          ans = (ans + a[i] + b[sid]) % p;
+        for (int i = l; i <= r; i++) ans = (ans + a[i] + b[sid]) % p;
         return ans;
       }
-      for (int i = l; id[i] == sid; i++)
-        ans = (ans + a[i] + b[sid]) % p;
-      for (int i = sid + 1; i < eid; i++)
-        ans = (ans + s[i]) % p;
-      for (int i = r; id[i] == eid; i--)
-        ans = (ans + a[i] + b[eid]) % p;
+      for (int i = l; id[i] == sid; i++) ans = (ans + a[i] + b[sid]) % p;
+      for (int i = sid + 1; i < eid; i++) ans = (ans + s[i]) % p;
+      for (int i = r; id[i] == eid; i--) ans = (ans + a[i] + b[eid]) % p;
       return ans;
     }
     int main() {
@@ -105,6 +97,7 @@ $$
       return 0;
     }
     ```
+
 ## 区间和 2
 
 上一个做法的复杂度是 $\Omega(1) , O(\sqrt{n})$ 。
