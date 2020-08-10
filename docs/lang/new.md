@@ -312,7 +312,7 @@ int main() {
 
 ## 可变参数宏
 
-可变参数宏是 C99 引入的一个特性，C++从C++11开始支持这一特性。可变参数宏允许宏定义可以拥有可变参数，例如：
+可变参数宏是 C99 引入的一个特性，C++ 从 C++11 开始支持这一特性。可变参数宏允许宏定义可以拥有可变参数，例如：
 
 ```cpp
 #define def_name(...) def_body(__VA_ARGS__)
@@ -473,4 +473,4 @@ int main(int argc, char* argv[]) {
 2.  [C++ 参考手册](https://zh.cppreference.com/) 
 3.  [C++ in Visual Studio](https://docs.microsoft.com/en-us/cpp/overview/visual-cpp-in-visual-studio?view=vs-2019) 
 4.  [Variadic template](https://en.wikipedia.org/wiki/Variadic_template) 
-5.  [Variadic macros](https://en.wikipedia.org/wiki/Variadic_macro)
+5.  [Variadic macros](https://en.wikipedia.org/wiki/Variadic_macro) 
