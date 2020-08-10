@@ -115,7 +115,7 @@
     }
     ```
 
-另外一道经典例题 [\[WC2008\] 游览计划](https://www.luogu.com.cn/problem/P4294) 。
+另外一道经典例题 [\[WC2008\]游览计划](https://www.luogu.com.cn/problem/P4294) 。
 
 这道题是求点权和最小的斯坦纳树，用 $f(i,S)$ 表示以 $i$ 为根的一棵树，包含集合 $S$ 中所有点的最小点权值和。 $a_i$ 表示点权。
 
@@ -230,8 +230,8 @@
 
  [【模板】最小斯坦纳树](https://www.luogu.com.cn/problem/P6192) 
 
- [\[WC2008\] 游览计划](https://www.luogu.com.cn/problem/P4294) 
+ [\[WC2008\]游览计划](https://www.luogu.com.cn/problem/P4294) 
 
- [\[JLOI2015\] 管道连接](https://loj.ac/problem/2110) 
+ [\[JLOI2015\]管道连接](https://loj.ac/problem/2110) 
 
- [\[APIO2013\] 机器人](https://www.luogu.com.cn/problem/P3638) 
+ [\[APIO2013\]机器人](https://www.luogu.com.cn/problem/P3638) 
