@@ -44,7 +44,7 @@
 
 - 首先对连通的子集进行转移， $f(i,S)\leftarrow \min(f(i,S),f(i,T)+f(i,S-T))$ 。
 
-- 在当前的子集连通状态下进行边的松弛操作， $f(i,S)\leftarrow \min(f(i,S),f(j,S)+w(j,i))$ 。在下面的代码中用一个 tree[tot]来记录两个相连节点 $i,j$ 的相关信息。
+- 在当前的子集连通状态下进行边的松弛操作， $f(i,S)\leftarrow \min(f(i,S),f(j,S)+w(j,i))$ 。在下面的代码中用一个 `tree[tot]` 来记录两个相连节点 $i,j$ 的相关信息。
 
 ??? note "参考实现"
     ```c++
