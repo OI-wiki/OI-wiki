@@ -20,10 +20,12 @@
 
 ### 空间复杂度
 
-对于一个节点节点而言，节点的最高层数为 $i$ 的概率为 $p^{i-1}(1 - p)$ 。所以，跳表的期望层数为 
+对于一个节点节点而言，节点的最高层数为 $i$ 的概率为 $p^{i-1}(1 - p)$ 。所以，跳表的期望层数为
+
 $$
 \sum_{i=1}^{\infin} ip^{i - 1}(1-p) = \frac{1}{1 - p},
 $$
+
 且因为 $p$ 为常数，所以跳表的 **期望空间复杂度** 为 $O(n)$ 。
 
 在最坏的情况下，每一层有序链表等于初始有序链表，即跳表的 **最差空间复杂度** 为 $O(n \log n)$ 。
@@ -364,6 +366,6 @@ bool erase(const K &key) {
 
 ## 参考资料
 
-1.  [Skip Lists: A Probabilistic Alternative to
+1.   [Skip Lists: A Probabilistic Alternative to
     Balanced Trees](https://15721.courses.cs.cmu.edu/spring2018/papers/08-oltpindexes1/pugh-skiplists-cacm1990.pdf) 
 2.  [Skip List](https://en.wikipedia.org/wiki/Skip_list) 
