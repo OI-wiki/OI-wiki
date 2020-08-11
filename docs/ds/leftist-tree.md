@@ -123,6 +123,23 @@ int pop(int x) {
 }
 ```
 
+### 随机合并
+
+直接贴上代码
+
+```cpp
+int merge(int x, int y) {
+  if (!x || !y) return x | y;
+  if (t[y].val < t[x].val) swap(x, y);
+  if (rand() & 1)  //随机选择是否交换左右子节点
+    swap(t[x].ls, t[x].rs);
+  t[x].ls = merge(t[x].ls, t[y]);
+  return x;
+}
+```
+
+可以看到该实现方法唯一不同之处便是采用了随机数来实现合并，这样一来便可以省去 $\mathrm{dist}$ 的相关计算。且平均时间复杂度亦为 $O(\log n)$ ，详细证明可参考 [Randomized Heap](https://cp-algorithms.com/data_structures/randomized_heap.html) 。
+
 ## 例题
 
 ### 模板题
