@@ -294,6 +294,7 @@ nav:
       - 替罪羊树: ds/sgt.md
       - 笛卡尔树: ds/cartesian-tree.md
       - 左偏红黑树: ds/llrbt.md
+    - 跳表: ds/skiplist.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
       - 可持久化线段树: ds/persistent-seg.md
