@@ -17,17 +17,29 @@ $$
 
 并递归下去，求出两点集各自内部的最近点对，设距离为 $h_1,h_2$ ，取较小值设为 $h$ 。
 
+
 现在该合并了！我们试图找到这样的一组点对，其中一个属于 $A_1$ ，另一个属于 $A_2$ ，且二者距离小于 $h$ 。因此我们将所有横坐标与 $x_m$ 的差小于 $h$ 的点放入集合 $B$ ：
 
 $$
 B = \{ p_i \ \big | \ \lvert x_i - x_m \rvert < h \}
 $$
 
+结合图像，直线$m$将点分成了两部分。$m$左侧为$A_1$点集，右侧为为$A_2$点集。
+
+再根据$B = \{ p_i \ \big | \ \lvert x_i - x_m \rvert < h \}$规则，得到绿色点组成的$B$点集。
+![nearest-points1](./images/nearest-points1.png)
+
+
 对于 $B$ 中的每个点 $p_i$ ，我们当前目标是找到一个同样在 $B$ 中、且到其距离小于 $h$ 的点。为了避免两个点之间互相考虑，我们只考虑那些纵坐标小于 $y_i$ 的点。显然对于一个合法的点 $p_j$ ， $y_i - y_j$ 必须小于 $h$ 。于是我们获得了一个集合 $C(p_i)$ ：
 
 $$
 C(p_i) = \{ p_j\ \big |\ p_j \in B,\ y_i - h < y_j \le y_i \}
 $$
+
+在点集$B$中选一点$p_i$，根据$C(p_i) = \{ p_j\ \big |\ p_j \in B,\ y_i - h < y_j \le y_i \}$的规则，得到了由红色方框内的黄色点组成的$C$点集。
+
+![nearest-points2](./images/nearest-points2.png)
+
 
 如果我们将 $B$ 中的点按照 $y_i$ 排序， $C(p_i)$ 将很容易得到，即紧邻 $p_i$ 的连续几个点。
 
@@ -48,6 +60,8 @@ $$
 我们再将这个矩形拆分为两个 $h \times h$ 的正方形，不考虑 $p_i$ ，其中一个正方形中的点为 $C(p_i) \cap A_1$ ，另一个为 $C(p_i) \cap A_2$ ，且两个正方形内的任意两点间距离大于 $h$ 。（因为它们来自同一下层递归）
 
 我们将一个 $h \times h$ 的正方形拆分为四个 $\frac{h}{2} \times \frac{h}{2}$ 的小正方形。可以发现，每个小正方形中最多有 $1$ 个点：因为该小正方形中任意两点最大距离是对角线的长度，即 $\frac{h}{\sqrt 2}$ ，该数小于 $h$ 。
+
+![nearest-points3](./images/nearest-points3.png)
 
 由此，每个正方形中最多有 $4$ 个点，矩形中最多有 $8$ 个点，去掉 $p_i$ 本身， $\max(C(p_i))=7$ 。
 
@@ -213,3 +227,4 @@ $$
  **本页面中的分治算法部分主要译自博文 [Нахождение пары ближайших точек](http://e-maxx.ru/algo/nearest_points) 与其英文翻译版 [Finding the nearest pair of points](https://github.com/e-maxx-eng/e-maxx-eng/blob/master/src/geometry/nearest_points.md) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
 
  [知乎专栏：计算几何 - 最近点对问题](https://zhuanlan.zhihu.com/p/74905629) 
+
