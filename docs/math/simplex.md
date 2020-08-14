@@ -39,7 +39,7 @@ $$
 $$
 s.t \begin{cases}  
 \displaystyle \sum_{j = 1}^{n}a_{ij}x_j = b_j, i = 1,2,...,m\\ 
-xj \geq 0 , j = 1,2,...,n  \\
+x_j \geq 0 , j = 1,2,...,n  \\
 \end{cases}
 $$
 
