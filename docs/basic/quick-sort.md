@@ -40,7 +40,7 @@
 
 ### 时间复杂度
 
-快速排序的最佳时间复杂度和平均时间复杂度为 $O(n\log n)$ ，最坏时间复杂度为 $O(n^2)$。
+快速排序的最佳时间复杂度和平均时间复杂度为 $O(n\log n)$ ，最坏时间复杂度为 $O(n^2)$ 。
 
 实践中几乎不可能达到最坏情况，且因为快速排序的内存访问遵循局部性原理，多数情况下快速排序的表现大幅优于堆排序等其他复杂度为 $O(n \log n)$ 的排序算法。[^ref2]
 
@@ -48,42 +48,38 @@
 
 ## 代码实现
 
-### C++ [^ref3]
+### C++[^ref3]
 
 ```cpp
 struct Range {
-    int start, end;
-    Range(int s = 0, int e = 0) {
-        start = s, end = e;
-    }
+  int start, end;
+  Range(int s = 0, int e = 0) { start = s, end = e; }
 };
 
 template <typename T>
 void quick_sort(T arr[], const int len) {
-    if (len <= 0)
-        return; // 避免 len 等于负值时宣告堆叠阵列宕机
-    // r[]模拟堆叠，p为数量,r[p++]为push,r[--p]为pop且取得元素
-    Range r[len];
-    int p = 0;
-    r[p++] = Range(0, len - 1);
-    while (p) {
-        Range range = r[--p];
-        if (range.start >= range.end)
-            continue;
-        T mid = arr[range.end];
-        int left = range.start, right = range.end - 1;
-        while (left < right) {
-            while (arr[left] < mid && left < right) left++;
-            while (arr[right] >= mid && left < right) right--;
-            std::swap(arr[left], arr[right]);
-        }
-        if (arr[left] >= arr[range.end])
-            std::swap(arr[left], arr[range.end]);
-        else
-            left++;
-        r[p++] = Range(range.start, left - 1);
-        r[p++] = Range(left + 1, range.end);
+  if (len <= 0) return;  // 避免 len 等于负值时宣告堆叠阵列宕机
+  // r[]模拟堆叠，p为数量,r[p++]为push,r[--p]为pop且取得元素
+  Range r[len];
+  int p = 0;
+  r[p++] = Range(0, len - 1);
+  while (p) {
+    Range range = r[--p];
+    if (range.start >= range.end) continue;
+    T mid = arr[range.end];
+    int left = range.start, right = range.end - 1;
+    while (left < right) {
+      while (arr[left] < mid && left < right) left++;
+      while (arr[right] >= mid && left < right) right--;
+      std::swap(arr[left], arr[right]);
     }
+    if (arr[left] >= arr[range.end])
+      std::swap(arr[left], arr[range.end]);
+    else
+      left++;
+    r[p++] = Range(range.start, left - 1);
+    r[p++] = Range(left + 1, range.end);
+  }
 }
 ```
 
@@ -91,16 +87,16 @@ void quick_sort(T arr[], const int len) {
 
 三路快速排序（英语：3-way Radix Quicksort）是快速排序和 [基数排序](radix-sort.md) 的混合。它的算法思想基于 [荷兰国旗问题](https://en.wikipedia.org/wiki/Dutch_national_flag_problem) 的解法。
 
-与原始的快速排序不同，三路快速排序在随机选取分界点 $m$ 后，将待排数列划分为三个部分：小于 $m$、等于 $m$ 以及大于 $m$。
+与原始的快速排序不同，三路快速排序在随机选取分界点 $m$ 后，将待排数列划分为三个部分：小于 $m$ 、等于 $m$ 以及大于 $m$ 。
 
 三路快速排序在处理含有多个重复值的数组时，效率远高于原始快速排序。
 
-三路快速排序的最佳时间复杂度为 $O(n)$。
+三路快速排序的最佳时间复杂度为 $O(n)$ 。
 
 ## 参考资料与注释
 
-[^ref1]: [What algorithms are used in C++11 std::sort in different STL implementations?](https://stackoverflow.com/questions/22339240/what-algorithms-are-used-in-c11-stdsort-in-different-stl-implementations)
+[^ref1]:  [What algorithms are used in C++11 std::sort in different STL implementations?](https://stackoverflow.com/questions/22339240/what-algorithms-are-used-in-c11-stdsort-in-different-stl-implementations) 
 
-[^ref2]: [C++性能榨汁机之局部性原理 - I'm Root lee !](http://irootlee.com/juicer_locality/)
+[^ref2]:  [C++ 性能榨汁机之局部性原理 - I'm Root lee !](http://irootlee.com/juicer_locality/) 
 
-[^ref3]: [算法实现/排序/快速排序 - 维基教科书，自由的教学读本](https://zh.wikibooks.org/wiki/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F)
+[^ref3]:  [算法实现/排序/快速排序 - 维基教科书，自由的教学读本](https://zh.wikibooks.org/wiki/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F) 
