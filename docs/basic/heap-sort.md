@@ -12,8 +12,9 @@
 
 ```cpp
 //这里 floor 函数将实数映射到最小的前导整数。
-iParent(i) = floor((i - 1) / 2)
-    iLeftChild(i) = 2 * i + 1 iRightChild(i) = 2 * i + 2
+iParent(i) = floor((i - 1) / 2);
+iLeftChild(i) = 2 * i + 1;
+iRightChild(i) = 2 * i + 2;
 ```
 
 ## 性质
