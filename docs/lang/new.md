@@ -437,9 +437,9 @@ inline void _debug(const char* format, First first, Rest... rest) {
 }
 
 template <typename T>
-ostream& operator<<(ostream& os, vector<T> V) {
+ostream& operator<<(ostream& os, const vector<T>& V) {
   os << "[ ";
-  for (auto vv : V) os << vv << ", ";
+  for (const auto& vv : V) os << vv << ", ";
   os << "]";
   return os;
 }
