@@ -83,6 +83,14 @@ void quick_sort(T arr[], const int len) {
 }
 ```
 
+## 内省排序[^ref4]
+
+内省排序(introspective sort)快速排序和[堆排序](heap-sort.md)的结合，由David Musser于1997年发明。内省排序其实是对快速排序的一种优化，保证了最差时间复杂度为$O(n\log n)$。
+
+内省排序的思路其实很简单，就是限制快速排序最大递归深度为$\lfloor \log_2n \rfloor$，超过限制时就转换为堆排序。这样既保留了快速排序内存访问的局部性，又可以防止快速排序在某些情况下性能退化为$O(n^2)$。
+
+2000年6月，SGI C++ STL的stl_algo.h中sort()函数的实现采用了内省排序算法。
+
 ## 三路快速排序
 
 三路快速排序（英语：3-way Radix Quicksort）是快速排序和 [基数排序](radix-sort.md) 的混合。它的算法思想基于 [荷兰国旗问题](https://en.wikipedia.org/wiki/Dutch_national_flag_problem) 的解法。
@@ -100,3 +108,5 @@ void quick_sort(T arr[], const int len) {
 [^ref2]:  [C++ 性能榨汁机之局部性原理 - I'm Root lee !](http://irootlee.com/juicer_locality/) 
 
 [^ref3]:  [算法实现/排序/快速排序 - 维基教科书，自由的教学读本](https://zh.wikibooks.org/wiki/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F) 
+
+[^ref4]: [introsort](https://en.wikipedia.org/wiki/Introsort)
