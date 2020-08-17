@@ -14,6 +14,12 @@ Linux 系统通常自带 Vim，打开终端输入 `vim` 即可启用。
 
 ### 手动安装
 
+#### Windows
+
+直接前往官网下载 [安装包](https://ftp.nluug.nl/pub/vim/pc/gvim82.exe) ，然后按步骤安装即可。
+
+#### Linux
+
 自带的 Vim 多半有功能残缺（比如不能与系统剪切板交互，各种“未开启支持”的情况）；或者想要使用一些新版的功能的话（比如 Vim 内部调出终端以及自带的调试功能 termdebug），就需要手动安装。
 
 如果没有相关需求，就没有必要手动安装了，可以直接略过本节。
@@ -675,6 +681,7 @@ Vim 是一款非常优秀的文本编辑器，但由于其陡峭的学习曲线�
 
 ## 外部链接
 
+-  [Vim 官网](https://www.vim.org/) 
 -  [原作者提供的配置](https://github.com/LuoshuiTianyi/Vim-for-OIWiki) 
 -  [Vim 调试：termdebug 入门](https://fzheng.me/2018/05/28/termdebug/) 
 -  [Vim scripting cheatsheet](https://devhints.io/vimscript) 
