@@ -10,7 +10,7 @@ Vim 是从 vi 发展出来的一个文本编辑器。其代码补完、编译及
 
 ### 系统自带
 
-Linux 系统通常自带 Vim ，打开终端输入 `vim` 即可启用。
+Linux 系统通常自带 Vim，打开终端输入 `vim` 即可启用。
 
 ### 手动安装
 
@@ -97,15 +97,15 @@ vimtutor
 - <kbd>o</kbd>：在当前行的下一行新建一行，并插入文本。
 - <kbd>O</kbd>：在当前行的上一行新建一行，并插入文本。
 
-返回普通模式的键位是 <kbd>Esc</kbd> 键；亦可使用快捷键 <kbd>Ctrl</kbd> + <kbd>\[</kbd>。
+返回普通模式的键位是<kbd>Esc</kbd>键；亦可使用快捷键<kbd>Ctrl</kbd>+<kbd>\[</kbd>。
 
-有的时候用户只是需要进入普通模式下按一次小命令，按两次快捷键来回切换又略显浪费时间。Vim 提供了「插入 - 普通模式」来解决这个问题。在插入模式下，按<kbd>Ctrl</kbd> + <kbd>o</kbd>即可进入此模式，执行完一次操作后又会自动回到插入模式。
+有的时候用户只是需要进入普通模式下按一次小命令，按两次快捷键来回切换又略显浪费时间。Vim 提供了「插入 - 普通模式」来解决这个问题。在插入模式下，按<kbd>Ctrl</kbd>+<kbd>o</kbd>即可进入此模式，执行完一次操作后又会自动回到插入模式。
 
 ### 普通模式 (normal)
 
 Vim 的命令大部分都是在普通模式下完成的。普通模式下可不能乱按，可以说每个键都是命令。
 
-Vim 的方向键是 <kbd>h</kbd>、<kbd>j</kbd>、<kbd>k</kbd>、<kbd>l</kbd>。熟练之后能极大提升操作速度。
+Vim 的方向键是<kbd>h</kbd>、<kbd>j</kbd>、<kbd>k</kbd>、<kbd>l</kbd>。熟练之后能极大提升操作速度。
 
 ```text
      k
@@ -115,17 +115,17 @@ h <     > l
      j
 ```
 
-`x` 用于删除光标后的一个字符。
+ `x` 用于删除光标后的一个字符。
 
-`d` 命令也是删除，通常配合其他键使用。
+ `d` 命令也是删除，通常配合其他键使用。
 
-`u` 是撤销的快捷键，作用是撤销上一次对文本的更改。普通模式下的 `x`、`d`、`p` 命令都会被撤销。进入一次插入模式所编辑的文本也算一次更改，撤销命令会删去从进入到退出插入模式所输入的所有东西。与之对应的是 <kbd>Ctrl</kbd> + <kbd>r</kbd> 命令，它的作用是撤销上次的撤销命令，相当于大部分 Windows 下程序中的 <kbd>Ctrl</kbd> + <kbd>y</kbd> 。
+ `u` 是撤销的快捷键，作用是撤销上一次对文本的更改。普通模式下的 `x` 、 `d` 、 `p` 命令都会被撤销。进入一次插入模式所编辑的文本也算一次更改，撤销命令会删去从进入到退出插入模式所输入的所有东西。与之对应的是<kbd>Ctrl</kbd>+<kbd>r</kbd>命令，它的作用是撤销上次的撤销命令，相当于大部分 Windows 下程序中的<kbd>Ctrl</kbd>+<kbd>y</kbd>。
 
-`y` 命令可以复制被选中的区域。需要按 `v` 进入可视模式操作。
+ `y` 命令可以复制被选中的区域。需要按 `v` 进入可视模式操作。
 
-`w` 可以跳到下个单词的开头；`e` 可以跳到当前单词结尾；`0` 可以跳至行首；`$` 可以跳至行尾。`w` 、 `e` 、 `0` 、 `$` 还可以与其他命令组合，比如 `de` 、 `dw` 、 `d0` 和 `d&` 分别对应删至单词尾、删至下个单词头、删至行首和删至行尾。
+ `w` 可以跳到下个单词的开头； `e` 可以跳到当前单词结尾； `0` 可以跳至行首； `$` 可以跳至行尾。 `w` 、 `e` 、 `0` 、 `$` 还可以与其他命令组合，比如 `de` 、 `dw` 、 `d0` 和 `d&` 分别对应删至单词尾、删至下个单词头、删至行首和删至行尾。
 
-由于对行命令的使用很频繁，所以大部分的单键命令都可以通过按两次来实现对行操作。例如，`dd` 可以删除一整行；`yy` 可以复制当前行。
+由于对行命令的使用很频繁，所以大部分的单键命令都可以通过按两次来实现对行操作。例如， `dd` 可以删除一整行； `yy` 可以复制当前行。
 
 在输入某个命令前，输入一个数字 n 的话，命令就会重复 n 次。如在普通模式下：
 
@@ -137,25 +137,25 @@ asdasdasd
 
 光标正位于第一行，该如何删除这三行呢？普通模式下输入 `3 dd` 即可。
 
-`.` 命令可以重复上次执行的命令。
+ `.` 命令可以重复上次执行的命令。
 
-`gg` 命令可跳至代码的开头；`G` 命令可跳至代码最后一行；`G` 命令前加数字可跳至指定行。
+ `gg` 命令可跳至代码的开头； `G` 命令可跳至代码最后一行； `G` 命令前加数字可跳至指定行。
 
-普通模式下按 <kbd>/</kbd>，下方即会出现查找框，输入需要查找的字符，按回车后就能查看搜索结果。如果有多个查找结果，按 <kbd>n</kbd> 即可跳至下一个查找结果；按 <kbd>N</kbd> 可跳至上一个。
+普通模式下按<kbd>/</kbd>，下方即会出现查找框，输入需要查找的字符，按回车后就能查看搜索结果。如果有多个查找结果，按<kbd>n</kbd>即可跳至下一个查找结果；按<kbd>N</kbd>可跳至上一个。
 
 ### 命令行模式
 
 其实这并不能称作是一个模式。
 
-普通模式下只需要按 <kbd>:</kbd> ，下方就会蹦出命令框，继续输入相关命令即可。
+普通模式下只需要按<kbd>:</kbd>，下方就会蹦出命令框，继续输入相关命令即可。
 
 输入 `:help` 可以查看英文版 Vim 在线帮助文档（看不懂英文可以下载 Vim 中文用户手册，或者移步插件篇下载 vimcdoc）。
 
-`:q` 是退出； `:w` 是保存； `:wq` 是保存并退出； `:q!` 是不保存并退出。
+ `:q` 是退出； `:w` 是保存； `:wq` 是保存并退出； `:q!` 是不保存并退出。
 
-`:e filename` 可以打开当前目录下的指定文件。
+ `:e filename` 可以打开当前目录下的指定文件。
 
-`:s` 命令是替换。
+ `:s` 命令是替换。
 
 ```vim
 " 把当前行第一个匹配的 str1 替换成 str2
@@ -178,7 +178,7 @@ asdasdasd
 
 按 `v` 进入可视模式，多用于选中区域。
 
-进入可视模式后，按下 <kbd>h</kbd>、<kbd>j</kbd>、<kbd>k</kbd>、<kbd>l</kbd> 可以移动高亮选区。如果不小心跑反了，可以按 `o` 键切换活动端。如果需要鼠标操作，可以将 `set mouse=a` 写入配置文件，这样就能使用鼠标选中区域并进行复制操作。
+进入可视模式后，按下<kbd>h</kbd>、<kbd>j</kbd>、<kbd>k</kbd>、<kbd>l</kbd>可以移动高亮选区。如果不小心跑反了，可以按 `o` 键切换活动端。如果需要鼠标操作，可以将 `set mouse=a` 写入配置文件，这样就能使用鼠标选中区域并进行复制操作。
 
 选中后输入 `y` 或 `d` 亦可执行相应命令。
 
@@ -188,7 +188,7 @@ asdasdasd
 
 为什么 Emacs 和 Vim 这些编辑器效率高？很重要的一点在于，这些编辑器可以让双手始终处于主键盘区域并且保持合作状态，而不会出现一只手不停地按而另一只手摊在键盘上的情况。
 
-可以通过这几行丧心病狂的配置来极速适应使用 <kbd>h</kbd>、<kbd>j</kbd>、<kbd>k</kbd>、<kbd>l</kbd> 移动：
+可以通过这几行丧心病狂的配置来极速适应使用<kbd>h</kbd>、<kbd>j</kbd>、<kbd>k</kbd>、<kbd>l</kbd>移动：
 
 ```vim
 " 使方向键失效
@@ -200,13 +200,13 @@ imap <RIGHT> <Nop>
 
 还可以进一步缩小双手需要控制的区域：
 
--   用 <kbd>Ctrl</kbd> + <kbd>h</kbd> 代替 <kbd>Backspace</kbd>（甚至可以在终端里这样用）。
--   用 <kbd>Ctrl</kbd> + <kbd>m</kbd> 代替回车（甚至可以在终端里这样用）。
-- 在绝大多数的情况下，不要去按右边的 <kbd>Ctrl</kbd> 和 <kbd>Shift</kbd>，用左边的代替。
+- 用<kbd>Ctrl</kbd>+<kbd>h</kbd>代替<kbd>Backspace</kbd>（甚至可以在终端里这样用）。
+- 用<kbd>Ctrl</kbd>+<kbd>m</kbd>代替回车（甚至可以在终端里这样用）。
+- 在绝大多数的情况下，不要去按右边的<kbd>Ctrl</kbd>和<kbd>Shift</kbd>，用左边的代替。
 
 ### 对调 Esc 键与 CapsLock 键
 
-> 键盘上的 <kbd>Esc</kbd> 键太远了，小拇指都按得不顺手。诶，我又不小心碰到大小写锁定切换键了！这个 <kbd>CapsLock</kbd> 键实在太没用了，不仅难用到，而且这么顺手这么近，还容易错按到，我要它何用？能不能把它和 <kbd>Esc</kbd> 换一下？
+> 键盘上的<kbd>Esc</kbd>键太远了，小拇指都按得不顺手。诶，我又不小心碰到大小写锁定切换键了！这个<kbd>CapsLock</kbd>键实在太没用了，不仅难用到，而且这么顺手这么近，还容易错按到，我要它何用？能不能把它和<kbd>Esc</kbd>换一下？
 
 的确可以。在终端中输入：
 
@@ -226,13 +226,13 @@ xmodmap -e 'clear Lock' -e 'keycode x042=Escape'
 
 ### 重复，重复，重复
 
-毫无疑问，对动作的重复是提高效率最直接的办法，也是对效率最直接的反映。Vim 中，用于重复执行指令的方式有 <kbd>.</kbd> 命令，简单的录制与重复宏与 `normal` 命令。
+毫无疑问，对动作的重复是提高效率最直接的办法，也是对效率最直接的反映。Vim 中，用于重复执行指令的方式有<kbd>.</kbd>命令，简单的录制与重复宏与 `normal` 命令。
 
-#### `.` 命令
+####  `.` 命令
 
-Vim 的使用者不可避免地会抗拒重复的文本修改，因为 Vim 注定比其他编辑器会多出两次按键——<kbd>Esc</kbd> 与 <kbd>i</kbd>。但是，Vim 其实提供了重复命令 `.` ，它适用于重复的添加、修改、删除文本操作。
+Vim 的使用者不可避免地会抗拒重复的文本修改，因为 Vim 注定比其他编辑器会多出两次按键——<kbd>Esc</kbd>与<kbd>i</kbd>。但是，Vim 其实提供了重复命令 `.` ，它适用于重复的添加、修改、删除文本操作。
 
-`.` 命令可以重复上次执行的命令。但是这个「命令」并不只限于单一的命令，它也可以是 `数字 + 命令` 的组合； `进入插入模式 + 输入文本 + Esc` 也是命令的一种。所以，适当使用 `.` 命令才能达到最高的效率。
+ `.` 命令可以重复上次执行的命令。但是这个「命令」并不只限于单一的命令，它也可以是 `数字 + 命令` 的组合； `进入插入模式 + 输入文本 + Esc` 也是命令的一种。所以，适当使用 `.` 命令才能达到最高的效率。
 
 例如，如下代码的每一行末尾都少了分号：
 
@@ -253,7 +253,8 @@ j.
 
 ```cpp
 int check() {
-  book[1] = 1, book[2] = 1, book[3] = 1,  bok[1] = 1, bok[2] = 1, bok[3] = 1,  bok[4] = 1, bok[5] = 1;
+  book[1] = 1, book[2] = 1, book[3] = 1, bok[1] = 1, bok[2] = 1, bok[3] = 1,
+  bok[4] = 1, bok[5] = 1;
 }
 ```
 
@@ -261,7 +262,7 @@ int check() {
 
 第一种改法是搭配普通模式下的 `s` 命令（删除光标处字符并进入插入模式）使用。来到第一个错误的数组名首字母处，按下 `4s` ，输入正确的数组名并退出。之后把光标一个个移过去，再使用 `.` 命令。
 
-第二种比较节省时间的改法是利用查找模式修改。键入 `/book` ，接着按下回车，并使用 `n` 键来到第一个错误的数组名首字母处，键入 `4s 新数组名 <Esc>` ，最后重复 `n.`。
+第二种比较节省时间的改法是利用查找模式修改。键入 `/book` ，接着按下回车，并使用 `n` 键来到第一个错误的数组名首字母处，键入 `4s 新数组名 <Esc>` ，最后重复 `n.` 。
 
 第三种改法是简易查找命令 `f` 。在一行中普通模式下， `f + 单个字符` 即可查找此行中出现的这个字符并将光标移至字符处；按 `;` 查找下一个， `,` 查找上一个。所以对于上面的代码，只需键入 `fb;;;` 之后进入插入模式修改，然后 `;.` 即可。这种改法适用于只需行内移动的情况。
 
@@ -299,9 +300,9 @@ Vim 的宏功能可以重复任意长的命令。
 
 以下是用 Vim 处理的过程：
 
-1. 按下 <kbd>/</kbd> 调出查找框，输入正则表达式进行查找；
+1. 按下<kbd>/</kbd>调出查找框，输入正则表达式进行查找；
 2. 用 `q` 命令开始录制宏；
-3. 键入 `I#` 命令，然后按下 <kbd>ESC</kbd>；
+3. 键入 `I#` 命令，然后按下<kbd>ESC</kbd>；
 4. 用 `q` 进行修改操作并结束宏录制；
 5. 键入 `normal n@字母` 转到下一处并重复上一步操作；
 6. 键入 `数字 + .` 多次重复。
@@ -328,7 +329,7 @@ filetype plugin on
 安装 vim-plug 的具体过程如下：
 
 1. 首先是在 home 目录下建立文件夹 .vim；
-2. 打开终端输入以下命令：
+2.  打开终端输入以下命令：
 
     ```bash
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -345,7 +346,7 @@ vim-plug 可以轻松管理插件，只需要在配置中写一下，并在 Vim 
 
 NERDTree 的开启方式是在 Vim 中输入 `:NERDTreeToggle` ，它会在左侧打开一个侧边栏窗口。它的其他快捷键可以参看 [NERDTree 快捷键辑录](http://yang3wei.github.io/blog/2013/01/29/nerdtree-kuai-jie-jian-ji-lu/) 。
 
-另外，Vim 自带了一个稍逊一筹的文件管理器 **netrw**。在终端中可以使用
+另外，Vim 自带了一个稍逊一筹的文件管理器 **netrw** 。在终端中可以使用
 
 ```bash
 vim 文件夹路径
@@ -357,7 +358,7 @@ vim 文件夹路径
 e 文件夹路径
 ```
 
-在上述两个命令中可以用 `.` 来表示当前工作目录，所以可以在终端中用 `vim .`，或者在 Vim 中使用 `e .` 来开启插件。
+在上述两个命令中可以用 `.` 来表示当前工作目录，所以可以在终端中用 `vim .` ，或者在 Vim 中使用 `e .` 来开启插件。
 
 当然，如果仅是如此还不够。使用文件管理器打开文件的话，容易使工作目录出现差错，从而导致编译的程序不存在于原文件夹中，所以还需在配置文件中加入以下语句：
 
@@ -373,18 +374,18 @@ Vim 依附于终端，所以调整终端设置也可以达到美化效果。比�
 
 字体可以在终端中设置。
 
-**vim-airline** 是一个美化状态栏的插件。当插件正确加载的时候，每个 Vim 窗口的底端都会出现美化后的状态栏，显示效果类似 Oh My Zsh。
+ **vim-airline** 是一个美化状态栏的插件。当插件正确加载的时候，每个 Vim 窗口的底端都会出现美化后的状态栏，显示效果类似 Oh My Zsh。
 
 美化前：![airline1](./images/vim-1.png)
 
 美化后：![airline2](./images/vim-2.png)
 
-vim-airline 的源码托管在 [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)。
+vim-airline 的源码托管在 [vim-airline/vim-airline](https://github.com/vim-airline/vim-airline) 。
 
 主题掌管着语法高亮的色彩、背景颜色等等。以 onedark 主题为例，使用主题的方法如下：
 
 1. 在 `.vim` 文件夹下建立 `colors` 文件夹；
-2. 将后缀名为 `.vim`的主题文件放入其中。本例中要放入的文件名为 `onedark.vim`。
+2. 将后缀名为 `.vim` 的主题文件放入其中。本例中要放入的文件名为 `onedark.vim` 。
 
 ![onedarktheme](./images/vim-3.png "onedrak theme")
 
@@ -394,27 +395,27 @@ vim-airline 的源码托管在 [vim-airline/vim-airline](https://github.com/vim-
 
 ### 小方便性插件
 
-- [vim-commentary](https://github.com/tpope/vim-commentary)：快捷键 `gc` 注释选中行， `gcu` 撤销上次注释。
+-  [vim-commentary](https://github.com/tpope/vim-commentary) ：快捷键 `gc` 注释选中行， `gcu` 撤销上次注释。
 
-- [ale](https://github.com/dense-analysis/ale)： `:w` 保存时提示语法错误，并且可以开启与 `airline` 的携同，状态栏上也会显示 `Error` 和 `Warning` 。
+-  [ale](https://github.com/dense-analysis/ale) ： `:w` 保存时提示语法错误，并且可以开启与 `airline` 的携同，状态栏上也会显示 `Error` 和 `Warning` 。
 
-- [easymotion](https://github.com/easymotion/vim-easymotion)：快速跳转。
+-  [easymotion](https://github.com/easymotion/vim-easymotion) ：快速跳转。
 
-- [rainbow](https://github.com/luochen1990/rainbow)：彩虹括号，使具有包含关系的括号显现出不同的颜色，增强多括号代码的可读性。。
+-  [rainbow](https://github.com/luochen1990/rainbow) ：彩虹括号，使具有包含关系的括号显现出不同的颜色，增强多括号代码的可读性……
 
-- [delimitMate](https://github.com/Raimondi/delimitMate_)：括号补全功能。考试中可用配置实现部分功能，见配置篇。
+-  [delimitMate](https://github.com/Raimondi/delimitMate_) ：括号补全功能。考试中可用配置实现部分功能，见配置篇。
 
-- [vimcdoc](https://github.com/yianwillis/vimcdoc)：汉化 Vim 在线文档。
+-  [vimcdoc](https://github.com/yianwillis/vimcdoc) ：汉化 Vim 在线文档。
 
-- [gundo](https://github.com/sjl/gundo.vim)：这个插件能够像 git 一样显示文件修改树。Vim 中键入 `:GundoToggle` 即可在左侧打开时光机。使用前需要在 Vim 里开启 Python 支持。
+-  [gundo](https://github.com/sjl/gundo.vim) ：这个插件能够像 git 一样显示文件修改树。Vim 中键入 `:GundoToggle` 即可在左侧打开时光机。使用前需要在 Vim 里开启 Python 支持。
 
-- [vimim](https://vim.sourceforge.io/scripts/script.php?script_id=2506)：相当于给 Vim 安装中文输入法。安装方法为在 `.vim` 文件夹中创建文件夹 `plugin` ，然后点击 [vimim 下载链接](https://www.vim.org/scripts/download_script.php?src_id=23122) 下载文件，最后放入此文件夹中。使用方法为打开 Vim 并进入插入模式，按下 <kbd>Ctrl</kbd>+<kbd>/</kbd> 即可启用。但是该插件使用的是云词库，若没网就会卡死。所以建议下载 [本地超大词库](https://github.com/vimim/vimim/raw/master/plugin/vimim.gbk.bsddb) ，与插件一并放入 `plugin` 文件夹中，与插件脚本同目录即可启用。
+-  [vimim](https://vim.sourceforge.io/scripts/script.php?script_id=2506) ：相当于给 Vim 安装中文输入法。安装方法为在 `.vim` 文件夹中创建文件夹 `plugin` ，然后点击 [vimim 下载链接](https://www.vim.org/scripts/download_script.php?src_id=23122) 下载文件，最后放入此文件夹中。使用方法为打开 Vim 并进入插入模式，按下<kbd>Ctrl</kbd>+<kbd>/</kbd>即可启用。但是该插件使用的是云词库，若没网就会卡死。所以建议下载 [本地超大词库](https://github.com/vimim/vimim/raw/master/plugin/vimim.gbk.bsddb) ，与插件一并放入 `plugin` 文件夹中，与插件脚本同目录即可启用。
 
-- [vim-instant-markdown](https://github.com/suan/vim-instant-markdown)：一个即时预览 Markdown 文件的插件。打开 Markdown 文件时会自动在浏览器中打开一个标签页，实时预览 Vim 中正在编辑的 Markdown 文件的内容。
+-  [vim-instant-markdown](https://github.com/suan/vim-instant-markdown) ：一个即时预览 Markdown 文件的插件。打开 Markdown 文件时会自动在浏览器中打开一个标签页，实时预览 Vim 中正在编辑的 Markdown 文件的内容。
 
 ## 配置篇
 
-Vim 的配置语言称为 vim script，语法和 Vim 命令行下的命令一模一样，存储在配置文件中。基础语法就是 `set` 开启选项，`call xxx()` 调用函数，`func` 与 `endfunc` 定义函数，`exec` 执行命令，`if` 和 `endif` 描述以下条件表达式，`"` 表示注释，`source` 表示应用。Vim 开启时会自动执行配置文件中的每一行语句。
+Vim 的配置语言称为 vim script，语法和 Vim 命令行下的命令一模一样，存储在配置文件中。基础语法就是 `set` 开启选项， `call xxx()` 调用函数， `func` 与 `endfunc` 定义函数， `exec` 执行命令， `if` 和 `endif` 描述以下条件表达式， `"` 表示注释， `source` 表示应用。Vim 开启时会自动执行配置文件中的每一行语句。
 
 ### 基础配置
 
@@ -457,7 +458,7 @@ set backspace=indent,eol,start
 set number
 ```
 
-Vim 自带自动折行功能，即当某一行超过了 Vim 窗口边界的时候，多出的部分会自动显示在下一行，而这种多出来的行前面是没有行号的，比较好辨认，这些行被称为屏幕行，而根据行号一一对应的便称作实际行（`g + 移动命令` 可以在屏幕行间移动）。但是仅仅凭着看前面的行号来辨认某个折下来的行属于哪个实际行的话，还是不够快。如下命令可以开启高亮显示当前行的功能：
+Vim 自带自动折行功能，即当某一行超过了 Vim 窗口边界的时候，多出的部分会自动显示在下一行，而这种多出来的行前面是没有行号的，比较好辨认，这些行被称为屏幕行，而根据行号一一对应的便称作实际行（ `g + 移动命令` 可以在屏幕行间移动）。但是仅仅凭着看前面的行号来辨认某个折下来的行属于哪个实际行的话，还是不够快。如下命令可以开启高亮显示当前行的功能：
 
 ```vim
 set cursorline
@@ -504,7 +505,7 @@ set wildmode=full        " zsh补全菜单
 
 ### 快捷键配置
 
-Vim 提供了<kbd>leader</kbd> 键，供使用者与其他按键搭配，自行定制快捷键。
+Vim 提供了<kbd>leader</kbd>键，供使用者与其他按键搭配，自行定制快捷键。
 
 命令如下：
 
@@ -512,7 +513,7 @@ Vim 提供了<kbd>leader</kbd> 键，供使用者与其他按键搭配，自行�
 let mapleader ＝ ""
 ```
 
-双引号之间就是使用者定义的 <kbd>leader</kbd> 键。未定义/为空的情况下默认映射到 <kbd>\</kbd>。
+双引号之间就是使用者定义的<kbd>leader</kbd>键。未定义/为空的情况下默认映射到<kbd>\\</kbd>。
 
 设置快捷键的命令如下：
 
@@ -523,7 +524,7 @@ inoremap 快捷键 指令    " 插入模式
 
 两行分别代表了在普通模式下和插入模式下的快捷键执行指令。这里的指令相当于在键盘上按下指令中写下的键。
 
-例如如下设置。 `<CR>` 代表回车。设置之后只需要连续按 <kbd> ``i</kbd> 就能更新插件。
+例如如下设置。 `<CR>` 代表回车。设置之后只需要连续按<kbd> `` i</kbd>就能更新插件。
 
 ```vim
 let mapleader ＝ "`"
@@ -539,7 +540,7 @@ inoremap "  ""<esc>i
 inoremap '  ''<esc>i
 ```
 
-<kbd>F1</kbd> ~ <kbd>F12</kbd> 键是 Vim 里少有的方便自由的快捷键。可以对它们进行客制化操作。
+<kbd>F1</kbd>~<kbd>F12</kbd>键是 Vim 里少有的方便自由的快捷键。可以对它们进行客制化操作。
 
 <kbd>F9</kbd>：一键编译
 
@@ -674,10 +675,10 @@ Vim 是一款非常优秀的文本编辑器，但由于其陡峭的学习曲线�
 
 ## 外部链接
 
-- [原作者提供的配置](https://github.com/LuoshuiTianyi/Vim-for-OIWiki)
-- [Vim 调试：termdebug 入门](https://fzheng.me/2018/05/28/termdebug/)
-- [Vim scripting cheatsheet](https://devhints.io/vimscript)
+-  [原作者提供的配置](https://github.com/LuoshuiTianyi/Vim-for-OIWiki) 
+-  [Vim 调试：termdebug 入门](https://fzheng.me/2018/05/28/termdebug/) 
+-  [Vim scripting cheatsheet](https://devhints.io/vimscript) 
 
 ## 参考资料与注释
 
-[^note1]: 有些人可能会问：“为什么是乌干达的儿童？”这个问题[知乎](https://www.zhihu.com/question/24892609)上有人问过并得到了简要回答；简书上也有人去深入研究过，并写了一篇文章[《Vim和乌干达的儿童》](https://www.jianshu.com/p/b4daf62c4b59)。感兴趣的可以了解一下。
+[^note1]: 有些人可能会问：“为什么是乌干达的儿童？”这个问题 [知乎](https://www.zhihu.com/question/24892609) 上有人问过并得到了简要回答；简书上也有人去深入研究过，并写了一篇文章 [《Vim 和乌干达的儿童》](https://www.jianshu.com/p/b4daf62c4b59) 。感兴趣的可以了解一下。
