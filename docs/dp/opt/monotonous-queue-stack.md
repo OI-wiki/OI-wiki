@@ -13,7 +13,7 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
 
 写出 **状态转移方程** ： $f_{i,j}=\max\{f_{i-1,k}+b_i-|a_i-j|\}$ 
 
-这里的 $k$ 是有范围的， $j-(t_{i+1}-t_i)\times d\le k\le j+(t_{i+1}-t_i)\times d$ 。
+这里的 $k$ 是有范围的， $j-(t_{i}-t_{i-1})\times d\le k\le j+(t_{i}-t_{i-1})\times d$ 。
 
 我们尝试将状态转移方程进行变形：
 
