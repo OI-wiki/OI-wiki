@@ -39,6 +39,7 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
     const int maxn = 150000 + 10;
     const int maxm = 300 + 10;
     const ll inf = 0xcfcfcfcfcfcfcfcf;
+    ```
 
     ll f[2][maxn];
     ll a[maxm], b[maxm], t[maxm];
@@ -46,7 +47,7 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
 
     int que[maxn];
     int fl = 1;
-    
+
     void init() {
         memset(f, inf, sizeof(f));
         memset(que, 0, sizeof(que));
