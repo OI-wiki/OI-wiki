@@ -4,8 +4,6 @@
 
 快速排序（英语：Quicksort），又称分区交换排序（partition-exchange sort），简称快排，是一种被广泛运用的排序算法。
 
-快速排序是 C++ 标准库中 `std::sort` 的实现算法。[^ref1]
-
 ## 工作原理
 
 快速排序的工作原理是通过 [分治](./divide-and-conquer.md) 的方式来将一个数组排序。
@@ -42,13 +40,13 @@
 
 快速排序的最佳时间复杂度和平均时间复杂度为 $O(n\log n)$ ，最坏时间复杂度为 $O(n^2)$ 。
 
-实践中几乎不可能达到最坏情况，且因为快速排序的内存访问遵循局部性原理，多数情况下快速排序的表现大幅优于堆排序等其他复杂度为 $O(n \log n)$ 的排序算法。[^ref2]
+实践中几乎不可能达到最坏情况，且因为快速排序的内存访问遵循局部性原理，多数情况下快速排序的表现大幅优于堆排序等其他复杂度为 $O(n \log n)$ 的排序算法。[^ref1]
 
 在选择 $m$ 的过程中，使用 [Median of Medians](https://en.wikipedia.org/wiki/Median_of_medians) 算法就可以保证最坏时间复杂度为 $O(n\log n)$ 。但是其过于复杂，实践中一般不使用。
 
 ## 代码实现
 
-### C++[^ref3]
+### C++[^ref2]
 
 ```cpp
 struct Range {
@@ -83,7 +81,7 @@ void quick_sort(T arr[], const int len) {
 }
 ```
 
-## 内省排序[^ref4]
+## 内省排序[^ref3]
 
 内省排序（introspective sort）是快速排序和 [堆排序](heap-sort.md) 的结合，由 David Musser 于 1997 年发明。内省排序其实是对快速排序的一种优化，保证了最差时间复杂度为 $O(n\log n)$ 。
 
@@ -103,10 +101,8 @@ void quick_sort(T arr[], const int len) {
 
 ## 参考资料与注释
 
-[^ref1]:  [What algorithms are used in C++11 std::sort in different STL implementations?](https://stackoverflow.com/questions/22339240/what-algorithms-are-used-in-c11-stdsort-in-different-stl-implementations) 
+[^ref1]:  [C++ 性能榨汁机之局部性原理 - I'm Root lee !](http://irootlee.com/juicer_locality/) 
 
-[^ref2]:  [C++ 性能榨汁机之局部性原理 - I'm Root lee !](http://irootlee.com/juicer_locality/) 
+[^ref2]:  [算法实现/排序/快速排序 - 维基教科书，自由的教学读本](https://zh.wikibooks.org/wiki/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F) 
 
-[^ref3]:  [算法实现/排序/快速排序 - 维基教科书，自由的教学读本](https://zh.wikibooks.org/wiki/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F) 
-
-[^ref4]:  [introsort](https://en.wikipedia.org/wiki/Introsort) 
+[^ref3]:  [introsort](https://en.wikipedia.org/wiki/Introsort) 
