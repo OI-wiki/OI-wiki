@@ -70,7 +70,7 @@ vim
 要编译 C++ 文件，先要安装 g++。命令如下：
 
 ```bash
-sudo apt-get install g++
+sudo apt-get install build-essential
 ```
 
 接着通过 `cd` 命令进入 cpp 文件的路径，然后执行如下命令：
