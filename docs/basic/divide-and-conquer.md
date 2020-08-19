@@ -86,7 +86,7 @@ int size_recurison(Node *head) {
 }
 ```
 
-![\[二者的对比，compiler 设为 Clang 10.0，优化设为 O1\](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-1.png)
+![\[二者的对比，compiler 设为 Clang 10.0，优化设为 O1\](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.png)
 
 #### 递归优化
 
