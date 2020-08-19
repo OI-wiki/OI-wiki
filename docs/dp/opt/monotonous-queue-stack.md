@@ -30,7 +30,7 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
 总的时间复杂度为 $O(nm)$ 。
 
 ???+ 参考代码
-    ```bash
+    ```cpp
     #include <iostream>
     #include <cstdio>
     #include <cstring>
