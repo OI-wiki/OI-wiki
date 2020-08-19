@@ -167,7 +167,7 @@ Cena 的源代码托管于 [oi-archive/cena](https://github.com/oi-archive/cena)
 - Ir1d 提供了一份 Linux 下编译好的版本，源代码托管于 [FreestyleOJ/Project_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built) 。
 - （已停止维护）Menci 提供了一份更新的版本，源代码托管于 [Menci/Lemon](https://github.com/Menci/Lemon/) 。
 - （已停止维护）Dust1404 维护了一份支持子文件夹和单题测试等功能的版本，源代码托管于 [Dust1404/Project_LemonPlus](https://github.com/Dust1404/Project_LemonPlus) 。
-- iotang 维护了一份支持子文件夹和单题测试等功能的版本，源代码托管于 [iotang/Project_LemonLime](https://github.com/iotang/Project_LemonLime) 。
+- iotang 和 Coelacanthus 维护了一份支持子文件夹和单题测试等功能的版本，源代码托管于 [Project-LemonLime/Project_LemonLime](https://github.com/Project-LemonLime/Project_LemonLime) 。
 
 ### 自行编译
 
