@@ -79,7 +79,7 @@ int size(Node *head) {
   return size;
 }
 
-// 递归天下一
+// 递归天下第一
 int size_recurison(Node *head) {
   if (head == nullptr) return 0;
   return size_recurison(head->next) + 1;
