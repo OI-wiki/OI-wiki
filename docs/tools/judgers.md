@@ -8,7 +8,6 @@ author: Ir1d, HeRaNO, NachtgeistW, i-Yirannn, bear-good, ranwen, ayalhw, billche
 
 此测评软件仅能在 NOI Linux 下找到。
 
-
 ### 使用方法
 
 #### 配置程序
