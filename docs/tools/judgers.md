@@ -8,7 +8,6 @@ author: Ir1d, HeRaNO, NachtgeistW, i-Yirannn, bear-good, ranwen, ayalhw, billche
 
 此测评软件仅能在 NOI Linux 下找到。
 
-leedagee 提取出了 Arbiter 供其他 Linux 发行版使用，源代码托管于 [leedagee/arbiter-distro](https://github.com/leedagee/arbiter-distro) 。不过仍建议使用 NOI Linux 及相关配套编译器。(leedagee 因某些会导致 Arbiter crash 的原因放弃了该项目，项目地址现已 404)
 
 ### 使用方法
 
