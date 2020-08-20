@@ -48,42 +48,40 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
     int fl = 1;
     
     void init() {
-        memset(f, inf, sizeof(f));
-        memset(que, 0, sizeof(que));
-        _rep(i, 1, n) f[0][i] = 0;
-        fl = 1;
+      memset(f, inf, sizeof(f));
+      memset(que, 0, sizeof(que));
+      _rep(i, 1, n) f[0][i] = 0;
+      fl = 1;
     }
     
     void dp() {
-        init();
-        for(int i = 1; i <= m; i++) {
-            int l = 1, r = 0;
-            
-            int k = 1;
-            for(int j = 1; j <= n; j++) {
-                for (; k <= min(1ll*n, j+d*(t[i]-t[i-1])); k++) {
-                    while (l <= r && f[fl^1][que[r]] <= f[fl^1][k]) r--;
-                    que[++r] = k;
-                }
-                
-                while (l <= r && que[l] < max(1ll, j-d*(t[i]-t[i-1])) ) l++;
-                f[fl][j] = f[fl^1][que[l]] - abs(a[i]-j) + b[i];
-            }
-            
-            fl ^= 1;
+      init();
+      for (int i = 1; i <= m; i++) {
+        int l = 1, r = 0;
+    
+        int k = 1;
+        for (int j = 1; j <= n; j++) {
+          for (; k <= min(1ll * n, j + d * (t[i] - t[i - 1])); k++) {
+            while (l <= r && f[fl ^ 1][que[r]] <= f[fl ^ 1][k]) r--;
+            que[++r] = k;
+          }
+    
+          while (l <= r && que[l] < max(1ll, j - d * (t[i] - t[i - 1]))) l++;
+          f[fl][j] = f[fl ^ 1][que[l]] - abs(a[i] - j) + b[i];
         }
+    
+        fl ^= 1;
+      }
     }
     
     int main() {
-        cin >> n >> m >> d;
-        _rep(i, 1, m) {
-            cin >> a[i] >> b[i] >> t[i];
-        }
-        
-        dp();
-        ll ans = inf;
-        _rep(i, 1, n) ans = max(ans, f[fl^1][i]);
-        cout << ans << endl;
+      cin >> n >> m >> d;
+      _rep(i, 1, m) { cin >> a[i] >> b[i] >> t[i]; }
+    
+      dp();
+      ll ans = inf;
+      _rep(i, 1, n) ans = max(ans, f[fl ^ 1][i]);
+      cout << ans << endl;
     }
     ```
 
