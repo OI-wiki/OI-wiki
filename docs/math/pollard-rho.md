@@ -1,4 +1,4 @@
-Pollar-Rho 算法是一种用于快速分解质因数的算法。
+Pollard-Rho 算法是一种用于快速分解质因数的算法。
 
 ## 问题引入
 
@@ -63,9 +63,9 @@ $$
 
 我们每次对 $d=\gcd(|x_i-x_j|,n)$ ，判断 d 是否满足 $1< d< n$ ，若满足则可直接返回 $d$ 。由于 $x_i$ 是一个伪随机数列，必定会形成环，在形成环时就不能再继续操作了，直接返回 n 本身，并且在后续操作里调整随机常数 $c$ ，重新分解。
 
-??? note "基于Floyd判环的Pollar-Rho算法"
+??? note "基于Floyd判环的Pollard-Rho算法"
     ```c++
-    ll PR(ll N) {
+    ll Pollard_Rho(ll N) {
       ll c = rand() % (N - 1) + 1;
       ll t = f(0, c, N);
       ll r = f(f(0, c, N), c, N);
@@ -87,7 +87,7 @@ $$
 
 ??? note "参考实现"
     ```c++
-    ll PR(ll x) {
+    ll Pollard_Rho(ll x) {
       ll s = 0, t = 0;
       ll c = rand() % (x - 1) + 1;
       int step = 0, goal = 1;
@@ -123,12 +123,12 @@ $$
     int t;
     ll max_factor, n;
     
-    inline ll gcd(ll a, ll b) {
+    ll gcd(ll a, ll b) {
       if (b == 0) return a;
       return gcd(b, a % b);
     }
     
-    inline ll qp(ll x, ll p, ll mod) {
+    ll quick_pow(ll x, ll p, ll mod) {
       ll ans = 1;
       while (p) {
         if (p & 1) ans = (lll)ans * x % mod;
@@ -138,7 +138,7 @@ $$
       return ans;
     }
     
-    inline bool Miller_rabin(ll p) {
+    bool Miller_Rabin(ll p) {
       if (p < 2) return 0;
       if (p == 2) return 1;
       if (p == 3) return 1;
@@ -146,7 +146,7 @@ $$
       while (!(d & 1)) ++r, d >>= 1;
       for (ll k = 0; k < 10; ++k) {
         ll a = rand() % (p - 2) + 2;
-        ll x = qp(a, d, p);
+        ll x = quick_pow(a, d, p);
         if (x == 1 || x == p - 1) continue;
         for (int i = 0; i < r - 1; ++i) {
           x = (lll)x * x % p;
@@ -157,9 +157,9 @@ $$
       return 1;
     }
     
-    inline ll f(ll x, ll c, ll n) { return ((lll)x * x + c) % n; }
+    ll f(ll x, ll c, ll n) { return ((lll)x * x + c) % n; }
     
-    inline ll PR(ll x) {
+    ll Pollard_Rho(ll x) {
       ll s = 0, t = 0;
       ll c = (ll)rand() % (x - 1) + 1;
       int step = 0, goal = 1;
@@ -178,14 +178,14 @@ $$
       }
     }
     
-    inline void fac(ll x) {
+    void fac(ll x) {
       if (x <= max_factor || x < 2) return;
-      if (Miller_rabin(x)) {
+      if (Miller_Rabin(x)) {
         max_factor = max(max_factor, x);
         return;
       }
       ll p = x;
-      while (p >= x) p = PR(x);
+      while (p >= x) p = Pollard_Rho(x);
       while ((x % p) == 0) x /= p;
       fac(x), fac(p);
     }
