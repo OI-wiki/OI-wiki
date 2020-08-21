@@ -29,6 +29,62 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
 
 总的时间复杂度为 $O(nm)$ 。
 
+???+ 参考代码
+    ```cpp
+    #include <algorithm>
+    #include <cmath>
+    #include <cstdio>
+    #include <cstring>
+    #include <iostream>
+    const int maxn = 150000 + 10;
+    const int maxm = 300 + 10;
+    const ll inf = 0xcfcfcfcfcfcfcfcf;
+    
+    ll f[2][maxn];
+    ll a[maxm], b[maxm], t[maxm];
+    int n, m, d;
+    
+    int que[maxn];
+    int fl = 1;
+    
+    void init() {
+      memset(f, inf, sizeof(f));
+      memset(que, 0, sizeof(que));
+      _rep(i, 1, n) f[0][i] = 0;
+      fl = 1;
+    }
+    
+    void dp() {
+      init();
+      for (int i = 1; i <= m; i++) {
+        int l = 1, r = 0;
+    
+        int k = 1;
+        for (int j = 1; j <= n; j++) {
+          for (; k <= min(1ll * n, j + d * (t[i] - t[i - 1])); k++) {
+            while (l <= r && f[fl ^ 1][que[r]] <= f[fl ^ 1][k]) r--;
+            que[++r] = k;
+          }
+    
+          while (l <= r && que[l] < max(1ll, j - d * (t[i] - t[i - 1]))) l++;
+          f[fl][j] = f[fl ^ 1][que[l]] - abs(a[i] - j) + b[i];
+        }
+    
+        fl ^= 1;
+      }
+    }
+    
+    int main() {
+      cin >> n >> m >> d;
+      _rep(i, 1, m) { cin >> a[i] >> b[i] >> t[i]; }
+    
+      dp();
+      ll ans = inf;
+      _rep(i, 1, n) ans = max(ans, f[fl ^ 1][i]);
+      cout << ans << endl;
+    }
+    ```
+
 讲完了，让我们归纳一下单调队列优化动态规划问题的基本形态：当前状态的所有值可以从上一个状态的某个连续的段的值得到，要对这个连续的段进行 RMQ 操作，相邻状态的段的左右区间满足非降的关系。
 
 ## 单调队列优化多重背包
