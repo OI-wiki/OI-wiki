@@ -11,9 +11,9 @@ Hash 的核心思想在于，将输入映射到一个值域较小、可以方便
     
     同时，为了降低 Hash 冲突率，值域也不能太小。
 
-我们需要有效地解决比较字符串的问题，而暴力求解的方法只是比较两个字符串的字母，时间复杂度为 $O(\min(n_1,n_2))$ （ $n_1,n_2$ 是两个字符串的长度）。而 Hash 算法比较字符串的背后想法如下：我们将每个字符串转换为整数，然后比较他们而不是字符串，于是比较字符串是复杂度只有 $O(1)$ 。
+我们需要有效地解决比较字符串的问题，而暴力求解的方法只是比较两个字符串的字母，时间复杂度为 $O(\min(n_1,n_2))$（$n_1,n_2$ 是两个字符串的长度）。而 Hash 算法比较字符串的背后想法如下：我们将每个字符串转换为整数，然后比较他们而不是字符串，于是比较字符串是复杂度只有 $O(1)$。
 
-于是为了进行转换，我们需要定义一个把字符串映射到整数的函数 $f$ ，这个 $f$ 称为是 **Hash 函数** 。这个函数满足以下条件：如果两个字符串 $s$ 和 $t$ 相等，即 $s=t$ ，那么他们的 Hash 值也一定相等：
+于是为了进行转换，我们需要定义一个把字符串映射到整数的函数 $f$ ，这个 $f$ 称为是 **Hash 函数**。这个函数满足以下条件：如果两个字符串 $s$ 和 $t$ 相等，即 $s=t$，那么他们的 Hash 值也一定相等：
 
 $$
 f(s)=f(t)
@@ -38,7 +38,7 @@ $$
 
 这里面的 $b$ 和 $m$ 需要选取合适的值，以使得 Hash 函数的值分布尽量均匀。
 
-如果 $b$ 和 $m$ 互质，在输入随机的情况下，这个 Hash 函数在 $[0,m)$ 上每个值概率相等，此时单次比较的冲突率为 $\dfrac 1 m$ 。所以，Hash 的模数一般会选用大质数。
+如果 $b$ 和 $m$ 互质，在输入随机的情况下，这个Hash函数在 $[0,m)$ 上每个值概率相等，此时单次比较的冲突率为 $\dfrac 1 m$ 。所以，Hash 的模数一般会选用大质数。
 
 ## Hash 的实现
 
@@ -71,7 +71,7 @@ bool cmp(const string& s, const string& t) {
 
 若进行 $n$ 次比较，每次冲突率 $\dfrac 1 m$ ，那么总冲突率是 $1-\left(1-\dfrac 1 m\right)^n$ 。在随机数据下，若 $m=10^9 + 7$ , $n=10^6$ ，冲突率约为 $\dfrac 1{1000}$ ，并不是能够完全忽略不计的。
 
-于是我们有一个非常简单的技巧来减小冲突率：我们可以为每个字符串计算两个不同的 Hash（通过使用两个不同的 $b$ 或者 $m$ ，然后比较两次获得的 Hash 值。）如果两个 Hash 函数的 $m\approx 10^9$ ，那么就几乎等同于一个 Hash 函数的 $m\approx 10^{18}$ ，这样 Hash 冲突的概率就能大大降低。
+于是我们有一个非常简单的技巧来减小冲突率：我们可以为每个字符串计算两个不同的 Hash（通过使用两个不同的 $b$ 或者 $m$ ，然后比较两次获得的 Hash 值 。）如果两个 Hash 函数的 $m\approx 10^9$，那么就几乎等同于一个 Hash 函数的 $m\approx 10^{18}$，这样 Hash 冲突的概率就能大大降低。
 
 ### 多次询问子串 Hash
 
@@ -112,37 +112,38 @@ $$
 
 ### 确定字符串中不同子字符串的数量
 
-问题：给定长为 $n$ 的字符串，仅由小写英文字母组成，查找该字符串中不同子串的数量。
+问题：给定长为 $n$ 的字符串 ，仅由小写英文字母组成，查找该字符串中不同子串的数量。
 
 为了解决这个问题，我们遍历了所有长度为 $l=1,\cdots ,n$ 的子串。对于每个长度为 $l$ ，我们将其 Hash 值乘以相同的 $b$ 的幂次方，并存入一个数组中。数组中不同元素的数量等于字符串中长度不同的子串的数量，并此数字将添加到最终答案中。
 
-为了方便起见，我们将使用 $h [i]$ 作为 Hash 的前缀字符，并定义 $h[0]=0$ 。
+为了方便起见，我们将使用 $h [i] $ 作为 Hash 的前缀字符，并定义 $h[0]=0$ 。
 
 ```cpp
 int count_unique_substrings(string const& s) {
-  int n = s.size();
-
-  const int b = 31;
-  const int m = 1e9 + 9;
-  vector<long long> b_pow(n);
-  b_pow[0] = 1;
-  for (int i = 1; i < n; i++) b_pow[i] = (b_pow[i - 1] * b) % m;
-
-  vector<long long> h(n + 1, 0);
-  for (int i = 0; i < n; i++)
-    h[i + 1] = (h[i] + (s[i] - 'a' + 1) * b_pow[i]) % m;
-
-  int cnt = 0;
-  for (int l = 1; l <= n; l++) {
-    set<long long> hs;
-    for (int i = 0; i <= n - l; i++) {
-      long long cur_h = (h[i + l] + m - h[i]) % m;
-      cur_h = (cur_h * b_pow[n - i - 1]) % m;
-      hs.insert(cur_h);
+    int n = s.size();
+    
+    const int b = 31;
+    const int m = 1e9 + 9;
+    vector<long long> b_pow(n);
+    b_pow[0] = 1;
+    for (int i = 1; i < n; i++)
+        b_pow[i] = (b_pow[i-1] * b) % m;
+    
+    vector<long long> h(n + 1, 0);
+    for (int i = 0; i < n; i++)
+        h[i+1] = (h[i] + (s[i] - 'a' + 1) * b_pow[i]) % m;
+    
+    int cnt = 0;
+    for (int l = 1; l <= n; l++) {
+        set<long long> hs;
+        for (int i = 0; i <= n - l; i++) {
+            long long cur_h = (h[i + l] + m - h[i]) % m;
+            cur_h = (cur_h * b_pow[n-i-1]) % m;
+            hs.insert(cur_h);
+        }
+        cnt += hs.size();
     }
-    cnt += hs.size();
-  }
-  return cnt;
+    return cnt;
 }
 ```
 
@@ -154,7 +155,7 @@ int count_unique_substrings(string const& s) {
     字符串个数不超过 $10^5$ ，总长不超过 $10^6$ 。
     
     ??? mdui-shadow-6 "题解"
-        每次需要求最长的、是原答案串的后缀、也是第 $i$ 个串的前缀的字符串。枚举这个串的长度，Hash 比较即可。
+        每次需要求最长的、是原答案串的后缀、也是第 $i$ 个串的前缀的字符串。枚举这个串的长度，Hash比较即可。
         
         当然，这道题也可以使用 [KMP 算法](./kmp.md) 解决。
     
@@ -227,4 +228,5 @@ int count_unique_substrings(string const& s) {
         }
         ```
 
- **本页面部分内容译自博文 [строковый хеш](https://github.com/e-maxx-eng/e-maxx-eng/blob/61aff51f658644424c5e1b717f14fb7bf054ae80/src/string/string-hashing.md) 与其英文翻译版 [String Hashing](https://cp-algorithms.com/string/string-hashing.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+
+ **本页面部分内容译自博文 [строковый хеш](https://github.com/e-maxx-eng/e-maxx-eng/blob/61aff51f658644424c5e1b717f14fb7bf054ae80/src/string/string-hashing.md)与其英文翻译版[String Hashing](https://cp-algorithms.com/string/string-hashing.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
