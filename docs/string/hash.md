@@ -85,7 +85,6 @@ $$
 f(s[i \dots j]) = \sum_{k = i}^j s[k] \cdot b^{k-i} \bmod m
 $$
 
-
 两边同时乘以 $b^i$ 得：
 
 $$
@@ -204,6 +203,7 @@ int count_unique_substrings(string const& s) {
         int n, len;
         char cur[CN], nxt[CN];
         int main() {
+        ```
 
           n = read() - 1;
           cin >> cur;
