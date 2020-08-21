@@ -105,6 +105,15 @@ $$
     }
     ```
 
+???+note "二维数论分块"
+    求
+    
+    $$
+    \sum_{i=1}^{\min (n,m)}\left\lfloor\frac{n}{i}    \right\rfloor\left\lfloor\frac{m}{i}    \right\rfloor
+    $$
+    
+    此时可将代码中 `r = n/(n/i)` 替换成 `r = min(n/(n/i), m/(m/i))` 
+
 * * *
 
 ## 积性函数

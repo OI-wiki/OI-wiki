@@ -54,6 +54,7 @@ nav:
       - Dev-C++: tools/editor/devcpp.md
       - Geany: tools/editor/geany.md
       - Xcode: tools/editor/xcode.md
+      - GUIDE: tools/editor/guide.md
     - 评测工具: tools/judgers.md
     - 命令行: tools/cmd.md
     - WSL (Windows 10): tools/wsl.md
@@ -294,6 +295,7 @@ nav:
       - 替罪羊树: ds/sgt.md
       - 笛卡尔树: ds/cartesian-tree.md
       - 左偏红黑树: ds/llrbt.md
+    - 跳表: ds/skiplist.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
       - 可持久化线段树: ds/persistent-seg.md
@@ -335,6 +337,7 @@ nav:
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
     - 最小生成树: graph/mst.md
+    - 斯坦纳树: graph/steiner-tree.md
     - 最小树形图: graph/mdst.md
     - 最短路: graph/shortest-path.md
     - 拆点: graph/node.md
@@ -477,6 +480,8 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.emoji:
       emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.highlight:
+      linenums: true
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.magiclink
