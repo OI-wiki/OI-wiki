@@ -42,22 +42,22 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 如果系统已经安装了 2020 年 5 月更新（内部版本 19041）或更高版本，则可以考虑开启 WSL 2。建议权衡自己的需求选择适合的版本。
 
-WSL的机制，总体上是在运行时将Linux System Call翻译为NT API调用，从而在NT内核基础之上模拟实现Linux内核。
+WSL 的机制，总体上是在运行时将 Linux System Call 翻译为 NT API 调用，从而在 NT 内核基础之上模拟实现 Linux 内核。
 
-无论是在ABI还是API层模拟，Linux/UNIX与Windows NT毕竟是两类内核，设计理念、设计标准等多方面差异甚大，无法实现完全对等模仿，WSL无法兼容所有Linux System Call，这就造成有的程序无法在WSL中运行。
+无论是在 ABI 还是 API 层模拟，Linux/UNIX 与 Windows NT 毕竟是两类内核，设计理念、设计标准等多方面差异甚大，无法实现完全对等模仿，WSL 无法兼容所有 Linux System Call，这就造成有的程序无法在 WSL 中运行。
 
-也许是因为WSL1靠翻译System Call来模拟Linux内核的坑太大填不下去了，这种黑科技思路此次被微软完全抛弃，换成了虚拟机/容器的思路，仅仅是名字上延续了WSL，再也不是当初那个WSL了。WSL2引入了修改版的Linux内核，基于最新的Linux 4.19，这也是Linux内核的长期支持版，新的内核经过了微软悉心改造，以便与Windows相配合，获得更好的用户体验。WSL2将Linux内核塞到一个轻量级的虚拟机（Virtual Machine，VM）中运行，使用过程与WSL1保持一致，VM的启动、管理都藏在背后
+也许是因为 WSL1 靠翻译 System Call 来模拟 Linux 内核的坑太大填不下去了，这种黑科技思路此次被微软完全抛弃，换成了虚拟机/容器的思路，仅仅是名字上延续了 WSL，再也不是当初那个 WSL 了。WSL2 引入了修改版的 Linux 内核，基于最新的 Linux 4.19，这也是 Linux 内核的长期支持版，新的内核经过了微软悉心改造，以便与 Windows 相配合，获得更好的用户体验。WSL2 将 Linux 内核塞到一个轻量级的虚拟机（Virtual Machine，VM）中运行，使用过程与 WSL1 保持一致，VM 的启动、管理都藏在背后
 
-使用虚拟机的方式带来了运行效率和兼容性两方面的提升。根据微软自己的测试，与WSL1相较，在WSL2中解压zip文档速度提升了20倍，使用git clone、npm install、cmake提升大约2~5倍。由于使用了真正的Linux内核，意味着WSL2全面兼容Linux System Call，理论上能在GNU/Linux上运行的程序也都能在WSL2中不经修改直接运行。
+使用虚拟机的方式带来了运行效率和兼容性两方面的提升。根据微软自己的测试，与 WSL1 相较，在 WSL2 中解压 zip 文档速度提升了 20 倍，使用 git clone、npm install、cmake 提升大约 2~5 倍。由于使用了真正的 Linux 内核，意味着 WSL2 全面兼容 Linux System Call，理论上能在 GNU/Linux 上运行的程序也都能在 WSL2 中不经修改直接运行。
 
-性能方面，WSL 和 WSL2 各有优势。**如果不和本机系统交互，WSL2 的性能非常不错，但访问本机系统的文件会下降很多。**
+性能方面，WSL 和 WSL2 各有优势。 **如果不和本机系统交互，WSL2 的性能非常不错，但访问本机系统的文件会下降很多。** 
 
 如果你将使用 WSL Linux 分发版来访问 Windows 文件系统上的项目文件，并且这些文件无法存储在 Linux 文件系统上，那么，通过使用 WSL 1，你将跨 OS 文件系统实现更快的性能。
 
 在 WSL 1 中，跨 Windows 和 Linux 操作系统的文件性能比 WSL 2 中更快，因此如果要使用 Windows 应用程序来访问 Linux 文件，则目前通过 WSL 1 可实现更快的性能。
 
-传统的 VM 体验可能启动速度慢，是独立的，消耗大量资源，需要你花费时间进行管理。 WSL 2 没有这些属性。
-WSL 2 有 WSL 1 的优点，包括 Windows 和 Linux 之间的无缝集成，启动时间短，资源占用量少，并且无需 VM 配置或管理。 虽然 WSL 2 确实使用 VM，但 VM 是在幕后管理和运行的，因此你将具有与 WSL 1 相同的用户体验。
+传统的 VM 体验可能启动速度慢，是独立的，消耗大量资源，需要你花费时间进行管理。WSL 2 没有这些属性。
+WSL 2 有 WSL 1 的优点，包括 Windows 和 Linux 之间的无缝集成，启动时间短，资源占用量少，并且无需 VM 配置或管理。虽然 WSL 2 确实使用 VM，但 VM 是在幕后管理和运行的，因此你将具有与 WSL 1 相同的用户体验。
 
 ## 启用 WSL
 
