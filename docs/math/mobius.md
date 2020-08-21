@@ -105,15 +105,24 @@ $$
     }
     ```
 
+???+note "二维数论分块"
+    求
+    
+    $$
+    \sum_{i=1}^{\min (n,m)}\left\lfloor\frac{n}{i}    \right\rfloor\left\lfloor\frac{m}{i}    \right\rfloor
+    $$
+    
+    此时可将代码中 `r = n/(n/i)` 替换成 `r = min(n/(n/i), m/(m/i))` 
+
 * * *
 
 ## 积性函数
 
 ### 定义
 
- $\forall x,y \in \mathbb{N}_{+},\gcd(x,y)=1$ ， $f(1)=1$ 且都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为积性函数。
+若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y \in \mathbb{N}_{+},\gcd(x,y)=1$ 都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为积性函数。
 
- $\forall x,y \in \mathbb{N}_{+}$ ， $f(1)=1$ 且都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为完全积性函数。
+若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y \in \mathbb{N}_{+}$ 都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为完全积性函数。
 
 ### 性质
 
@@ -128,6 +137,12 @@ h(x)&=\sum_{d\mid x}f(d)g(\frac{x}{d})
 \end{aligned}
 $$
 
+设 $x=\prod p_i^{k_i}$ 
+
+若 $F(x)$ 为积性函数，则有 $F(x)=\prod F(p_i^{k_i})$ 。
+
+若 $F(x)$ 为完全积性函数，则有 $F(X)=\prod F(p_i)^{k_i}$ 。
+
 ### 例子
 
 - 单位函数： $\epsilon(n)=[n=1]$ （完全积性）
@@ -135,7 +150,7 @@ $$
 - 常数函数： $1(n)=1$ （完全积性）
 - 除数函数： $\sigma_{k}(n)=\sum_{d\mid n}d^{k}$  $\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$ ， $\sigma_{1}(n)$ 通常简记作 $\sigma(n)$ 。
 - 欧拉函数： $\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$ 
-- 莫比乌斯函数： $\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1:d^{2} \mid n \\ (-1)^{\omega(n)} & otherwise\end{cases}$ 其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，是一个积性函数。
+- 莫比乌斯函数： $\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1:d^{2} \mid n \\ (-1)^{\omega(n)} & otherwise\end{cases}$ ，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它也是一个积性函数。
 
 * * *
 
@@ -155,7 +170,7 @@ Dirichlet 卷积满足以下运算规律：
 
 - 交换律 $(f * g=g * f)$ ；
 - 结合律 $(f * g) * h=f * (g * h)$ ；
-- 分配率 $f * (g+h)=f * g+f * h$ ；
+- 分配律 $f * (g+h)=f * g+f * h$ ；
 -  $f*\varepsilon=f$ ，其中 $\varepsilon$ 为 Dirichlet 卷积的单位元（任何函数卷 $\varepsilon$ 都为其本身）
 
 ### 例子
@@ -283,17 +298,9 @@ $$
 
 设 $f(n),g(n)$ 为两个数论函数。
 
-如果有
+如果有 $f(n)=\sum_{d\mid n}g(d)$ ，那么有 $g(n)=\sum_{d\mid n}\mu(d)f(\frac{n}{d})$ 。
 
-$$
-f(n)=\sum_{d\mid n}g(d)
-$$
-
-那么有
-
-$$
-g(n)=\sum_{d\mid n}\mu(d)f(\frac{n}{d})
-$$
+如果有 $f(n)=\sum_{n|d}g(d)$ ，那么有 $g(n)=\sum_{n|d}\mu(\frac{d}{n})f(d)$ 。
 
 ### 证明
 

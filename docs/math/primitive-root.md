@@ -37,7 +37,7 @@ $$
 
 又有 $t<\varphi(p)$ ，故 $\gcd(t,\varphi(p))\leqslant t<\varphi(p)$ 。
 
-又 $\gcd(t,\varphi(p))\mid(\varphi(p))$ ，故 $\gcd(t,\varphi(p))$ 必至少整除 $a^{\frac{\varphi(p)}{d_{1}}},a^{\frac{\varphi(p)}{d_{2}}},\ldots,a^{\frac{\varphi(p)}{d_{m}}}$ 中的至少一个，设 $\gcd(t,\varphi(p))\mid a^{\frac{\varphi(p)}{d_{i}}}$ ，则 $a^{\frac{\varphi(p)}{d_{i}}}\equiv a^{\gcd(t,\varphi(p))}\equiv 1\pmod{p}$ 。
+又 $\gcd(t,\varphi(p))\mid(\varphi(p))$ ，故 $\gcd(t,\varphi(p))$ 必至少整除 ${\frac{\varphi(p)}{d_{1}}},{\frac{\varphi(p)}{d_{2}}},\ldots,{\frac{\varphi(p)}{d_{m}}}$ 中的至少一个，设 $\gcd(t,\varphi(p))\mid {\frac{\varphi(p)}{d_{i}}}$ ，则 $a^{\frac{\varphi(p)}{d_{i}}}\equiv a^{\gcd(t,\varphi(p))}\equiv 1\pmod{p}$ 。
 
 故假设不成立。
 
