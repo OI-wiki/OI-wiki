@@ -12,19 +12,19 @@
 
 ### 1.1 Hello, World!
 
-以一句 `Hello, World!`，开始算法竞赛之旅吧！
+以一句 `Hello, World!` ，开始算法竞赛之旅吧！
 
 同时了解一下 C++ 的源程序的大致框架是什么样子的。
 
-- [Hello, World!](../lang/helloworld.md)
-- [C++ 语法基础](../lang/basic.md)
+-  [Hello, World!](../lang/helloworld.md) 
+-  [C++ 语法基础](../lang/basic.md) 
 
 ### 1.2 变量与运算
 
 计算机出现的最初目的就是计算。因此我们先学习如何完成一些简单的运算任务吧。
 
-- [变量](../lang/var.md)
-- [运算](../lang/op.md)
+-  [变量](../lang/var.md) 
+-  [运算](../lang/op.md) 
 
 ### 1.3 流程控制
 
