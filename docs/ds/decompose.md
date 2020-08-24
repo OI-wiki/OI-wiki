@@ -29,9 +29,10 @@ author: Ir1d, HeRaNO, Xeonacid
          $1 \leq n \leq 5 \times 10^4$ 
 
 我们将序列按每 $s$ 个元素一块进行分块，并记录每块的区间和 $b_i$ 。
- $$
- \underbrace{a_1, a_2, \ldots, a_s}_{b_1}, \underbrace{a_{s+1}, \ldots, a_{2s}}_{b_2}, \dots, \underbrace{a_{(s-1) \times s+1}, \dots, a_n}_{b_{\frac{n}{s}}}
- $$
+
+$$
+\underbrace{a_1, a_2, \ldots, a_s}_{b_1}, \underbrace{a_{s+1}, \ldots, a_{2s}}_{b_2}, \dots, \underbrace{a_{(s-1) \times s+1}, \dots, a_n}_{b_{\frac{n}{s}}}
+$$
 
 最后一个块可能是不完整的（因为 $n$ 很可能不是 $s$ 的倍数），但是这对于我们的讨论来说并没有太大影响。
 
