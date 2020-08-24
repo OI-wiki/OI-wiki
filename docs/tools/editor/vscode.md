@@ -20,7 +20,7 @@ VS Code 安装并配置插件后可实现对 C/C++ 的支持，但配置过程�
 
 Code Runner 是一个可以一键运行代码的插件，在工程上一般用来验证代码片段，支持 Node.js、Python、C、C++、Java、PHP、Perl、Ruby、Go……等 40 多种语言。
 
-安装的方式是在插件商店搜索 Code Runner 并点击 Install；或者前往 [Marketplace 里的 Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) 并点击 Install，浏览器会自动打开 VS Code 并进行安装。
+安装的方式是在插件商店搜索 Code Runner 并点击 Install；或者前往 [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) 并点击 Install，浏览器会自动打开 VS Code 并进行安装。
 
 ![](./images/vscode-1.jpg)
 
