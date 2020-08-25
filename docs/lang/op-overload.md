@@ -33,33 +33,28 @@ C++ 自带的运算符，最初只定义了一些基本类型的运算规则。�
 #include <iostream>
 #include <queue>
 using namespace std;
-struct student
-{
- string name;
- int score;
-};
-struct cmp
-{
- bool operator()(const student&a,const student&b)const
- {
-  return a.score<b.score||(a.score==b.score&&a.name>b.name);
- }
-};
-priority_queue<student,vector<student>,cmp> pq;
-int main()
-{
- int n;
- cin>>n;
- for(int i=1;i<=n;i++)
- {
+struct student {
   string name;
   int score;
-  cin>>name>>score;
-  pq.push({name,score});
- }
- student rk1=pq.top();
- cout<<rk1.name<<' '<<rk1.score<<endl;
- return 0;
+};
+struct cmp {
+  bool operator()(const student& a, const student& b) const {
+    return a.score < b.score || (a.score == b.score && a.name > b.name);
+  }
+};
+priority_queue<student, vector<student>, cmp> pq;
+int main() {
+  int n;
+  cin >> n;
+  for (int i = 1; i <= n; i++) {
+    string name;
+    int score;
+    cin >> name >> score;
+    pq.push({name, score});
+  }
+  student rk1 = pq.top();
+  cout << rk1.name << ' ' << rk1.score << endl;
+  return 0;
 }
 ```
 
@@ -86,46 +81,45 @@ int main()
 #include <iostream>
 #include <queue>
 using namespace std;
-struct student
-{
- string name;
- int score;
- bool operator<(const student&a)const
- {
-  return score<a.score||(score==a.score&&name>a.name);
-  // 上面省略了 this 指针，完整表达式如下：
-  // this->score<a.score||(this->score==a.score&&this->name>a.name);
- }
-};
-priority_queue<student> pq;
-int main()
-{
- int n;
- cin>>n;
- for(int i=1;i<=n;i++)
- {
+struct student {
   string name;
   int score;
-  cin>>name>>score;
-  pq.push({name,score});
- }
- student rk1=pq.top();
- cout<<rk1.name<<' '<<rk1.score<<endl;
- return 0;
+  bool operator<(const student& a) const {
+    return score < a.score || (score == a.score && name > a.name);
+    // 上面省略了 this 指针，完整表达式如下：
+    // this->score<a.score||(this->score==a.score&&this->name>a.name);
+  }
+};
+priority_queue<student> pq;
+int main() {
+  int n;
+  cin >> n;
+  for (int i = 1; i <= n; i++) {
+    string name;
+    int score;
+    cin >> name >> score;
+    pq.push({name, score});
+  }
+  student rk1 = pq.top();
+  cout << rk1.name << ' ' << rk1.score << endl;
+  return 0;
 }
 ```
 
 事实上，只要有了 `<` 运算符，则其他五个比较运算符的重载也可以很容易实现。
 
 ```cpp
-bool operator< (const T& lhs, const T& rhs){ /* 这里重载小于运算符 */ }
-bool operator> (const T& lhs, const T& rhs){ return rhs < lhs; }
-bool operator<=(const T& lhs, const T& rhs){ return !(lhs > rhs); }
-bool operator>=(const T& lhs, const T& rhs){ return !(lhs < rhs); }
-bool operator==(const T& lhs, const T& rhs){ return !(lhs < rhs)&&!(lhs > rhs); }
-bool operator!=(const T& lhs, const T& rhs){ return !(lhs == rhs); }
+bool operator<(const T& lhs, const T& rhs) { /* 这里重载小于运算符 */
+}
+bool operator>(const T& lhs, const T& rhs) { return rhs < lhs; }
+bool operator<=(const T& lhs, const T& rhs) { return !(lhs > rhs); }
+bool operator>=(const T& lhs, const T& rhs) { return !(lhs < rhs); }
+bool operator==(const T& lhs, const T& rhs) {
+  return !(lhs < rhs) && !(lhs > rhs);
+}
+bool operator!=(const T& lhs, const T& rhs) { return !(lhs == rhs); }
 ```
 
 参考资料与注释：
 
-- [运算符重载 - cppreference](https://zh.cppreference.com/w/cpp/language/operators)
+-  [运算符重载 - cppreference](https://zh.cppreference.com/w/cpp/language/operators) 
