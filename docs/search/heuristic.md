@@ -30,7 +30,7 @@ struct Node {
   double f;
 } node[N];
 
-bool operator<(Node p, Node q) { return p.f > q.f; }
+bool operator < (Node p, Node q) { return p.f > q.f; }
 
 int f(int t, int v) {
   int tot = 0;
