@@ -9,7 +9,7 @@
 
 ## 代码构造
 
-我们写一个估价函数 $f$，可以剪掉所有无效的 $0$ 枝条（就是剪去大量无用不选枝条）。
+我们写一个估价函数 $f$ ，可以剪掉所有无效的 $0$ 枝条（就是剪去大量无用不选枝条）。
 
 估价函数 $f$ 的运行过程如下：
 
@@ -30,7 +30,7 @@ struct Node {
   double f;
 } node[N];
 
-bool operator < (Node p, Node q) { return p.f > q.f; }
+bool operator<(Node p, Node q) { return p.f > q.f; }
 
 int f(int t, int v) {
   int tot = 0;
