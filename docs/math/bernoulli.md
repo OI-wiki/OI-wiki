@@ -155,55 +155,48 @@ $$
 
 #### 利用指数生成函数证明
 
-对递推式 
-$$\sum_{j=0}^{m}\binom{m+1}{j}B_j=[m=0]$$
+对递推式 $\sum_{j=0}^{m}\binom{m+1}{j}B_j=[m=0]$ 
 
-两边都加上 $B_{m + 1}$，即得到：
+两边都加上 $B_{m + 1}$ ，即得到：
 
-$$\begin{aligned}
+$$
 \sum_{j=0}^{m+1}\binom{m+1}{j}B_j&=[m=0]+B_{m+1}\\
 \sum_{j=0}^{m}\binom{m}{j}B_j&=[m=1]+B_{m}\\
 \sum_{j=0}^{m}\dfrac{B_j}{j!}\cdot\dfrac{1}{(m-j)!}&=[m=1]+\dfrac{B_{m}}{m!}
 \end{aligned}$$
 
 设 $B(z) = \sum\limits_{i\ge 0}\dfrac{B_i}{i!}z^i$，注意到左边为卷积形式，故：
+$$
 
-$$\begin{aligned}
-B(z)e^z &= z+B(z)\\
-B(z) &= \dfrac{z}{e^z - 1}
-\end{aligned}$$
+B(z)e^z &= z+B(z)\\B(z) &= \\dfrac{z}{e^z - 1}
+\\end{aligned}$$
 
-设 $F_n(z) = \sum_{m\ge 0}\dfrac{S_m(n)}{m!}z^m$，则：
+设 $F_n(z) = \sum_{m\ge 0}\dfrac{S_m(n)}{m!}z^m$ ，则：
 
-$$\begin{aligned}
+$$
 F_n(z) &= \sum_{m\ge 0}\dfrac{S_m(n)}{m!}z^m\\
 &= \sum_{m\ge 0}\sum_{i=0}^{n-1}\dfrac{i^mz^m}{m!}\\
 \end{aligned}$$
 
 调换求和顺序：
+$$
 
-$$\begin{aligned}
-F_n(z) &= \sum_{i=0}^{n-1}\sum_{m\ge 0}\dfrac{i^mz^m}{m!}\\
-&= \sum_{i=0}^{n-1}e^{iz}\\
-&= \dfrac{e^{nz} - 1}{e^z - 1}\\
-&= \dfrac{z}{e^z - 1}\cdot\dfrac{e^{nz} - 1}{z}
-\end{aligned}$$
+F*n(z) &= \\sum*{i=0}^{n-1}\\sum*{m\\ge 0}\\dfrac{i^mz^m}{m!}\\&= \\sum*{i=0}^{n-1}e^{iz}\\&= \\dfrac{e^{nz} - 1}{e^z - 1}\\&= \\dfrac{z}{e^z - 1}\\cdot\\dfrac{e^{nz} - 1}{z}
+\\end{aligned}$$
 
-代入 $B(z)=\dfrac{z}{e^z - 1}$：
+代入 $B(z)=\dfrac{z}{e^z - 1}$ ：
 
-$$\begin{aligned}
+$$
 F_n(z) &= B(z)\cdot\dfrac{e^{nz} - 1}{z}\\
 &= \left(\sum_{i\ge 0}\dfrac{B_i}{i!} \right)\left(\sum_{i\ge 1}\dfrac{n^i z^{i - 1}}{i!}\right)\\
 &= \left(\sum_{i\ge 0}\dfrac{B_i}{i!} \right)\left(\sum_{i\ge 0}\dfrac{n^{i+1} z^{i}}{(i+1)!}\right)
 \end{aligned}$$
 
 由于 $F_n(z) = \sum_{m\ge 0}\dfrac{S_m(n)}{m!}z^m$，即 $S_m(n)=m![z^m]F_n(z)$：
+$$
 
-$$\begin{aligned}
-S_m(n)&=m![z^m]F_n(z)\\
-&= m!\sum_{i=0}^{m}\dfrac{B_i}{i!}\cdot\dfrac{n^{m-i+1}}{(m-i+1)!}\\
-&= \dfrac{1}{m+1}\sum_{i=0}^{m}\binom{m+1}{i}B_in^{m-i+1}
-\end{aligned}$$
+S*m(n)&=m![z^m]F_n(z)\\&= m!\\sum*{i=0}^{m}\\dfrac{B*i}{i!}\\cdot\\dfrac{n^{m-i+1}}{(m-i+1)!}\\&= \\dfrac{1}{m+1}\\sum*{i=0}^{m}\\binom{m+1}{i}B_in^{m-i+1}
+\\end{aligned}$$
 
 故得证。
 
