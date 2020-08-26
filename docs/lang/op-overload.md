@@ -97,9 +97,8 @@ struct student {
   string name;
   int score;
 };
-bool operator<(const student&a,const student&b)
-{
- return a.score<b.score||(a.score==b.score&&a.name>b.name);
+bool operator<(const student& a, const student& b) {
+  return a.score < b.score || (a.score == b.score && a.name > b.name);
 }
 priority_queue<student> pq;
 ```
