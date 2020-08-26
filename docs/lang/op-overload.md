@@ -75,12 +75,9 @@ int main() {
 
 在 `std::sort` 和一些 STL 容器中，需要用到 `<` 运算符。在使用自定义类型时，我们需要手动重载。
 
-还是以讲函数调用运算符时举的例子说起，如果我们重载比较运算符，实现代码是这样的：
+还是以讲函数调用运算符时举的例子说起，如果我们重载比较运算符，实现代码是这样的（主函数因为没有改动就略去了）：
 
 ```cpp
-#include <iostream>
-#include <queue>
-using namespace std;
 struct student {
   string name;
   int score;
@@ -91,32 +88,34 @@ struct student {
   }
 };
 priority_queue<student> pq;
-int main() {
-  int n;
-  cin >> n;
-  for (int i = 1; i <= n; i++) {
-    string name;
-    int score;
-    cin >> name >> score;
-    pq.push({name, score});
-  }
-  student rk1 = pq.top();
-  cout << rk1.name << ' ' << rk1.score << endl;
-  return 0;
+```
+
+上面的代码将小于号重载为了成员函数，当然重载为非成员函数也是可以的。
+
+```cpp
+struct student {
+  string name;
+  int score;
+};
+bool operator<(const student&a,const student&b)
+{
+ return a.score<b.score||(a.score==b.score&&a.name>b.name);
 }
+priority_queue<student> pq;
 ```
 
 事实上，只要有了 `<` 运算符，则其他五个比较运算符的重载也可以很容易实现。
 
 ```cpp
-bool operator<(const T& lhs, const T& rhs) { /* 这里重载小于运算符 */
-}
+/* clang-format off */
+
+// 下面的几种实现均将小于号重载为非成员函数
+
+bool operator<(const T& lhs, const T& rhs) { /* 这里重载小于运算符 */ }
 bool operator>(const T& lhs, const T& rhs) { return rhs < lhs; }
 bool operator<=(const T& lhs, const T& rhs) { return !(lhs > rhs); }
 bool operator>=(const T& lhs, const T& rhs) { return !(lhs < rhs); }
-bool operator==(const T& lhs, const T& rhs) {
-  return !(lhs < rhs) && !(lhs > rhs);
-}
+bool operator==(const T& lhs, const T& rhs) { return !(lhs < rhs) && !(lhs > rhs); }
 bool operator!=(const T& lhs, const T& rhs) { return !(lhs == rhs); }
 ```
 
