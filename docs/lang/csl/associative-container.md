@@ -1,13 +1,13 @@
-##  `set`
+##  `set` 
 
  `set` 是关联容器，含有键值类型对象的已排序集，搜索、移除和插入拥有对数复杂度。 `set` 内部通常采用红黑树实现。
 
-和数学中的集合相似， `set` 中不会出现值相同的元素。如果需要有相同元素的集合，需要使用 `multiset`。`multiset` 的使用方法与 `set` 的使用方法基本相同。
+和数学中的集合相似， `set` 中不会出现值相同的元素。如果需要有相同元素的集合，需要使用 `multiset` 。 `multiset` 的使用方法与 `set` 的使用方法基本相同。
 
 ### 插入与删除操作
 
 -  `insert(x)` 当容器中没有等价元素的时候，将元素 x 插入到 `set` 中。
--  `erase(x)` 删除值为 x 的**所有**元素，返回删除元素的个数。
+-  `erase(x)` 删除值为 x 的 **所有** 元素，返回删除元素的个数。
 -  `erase(pos)` 删除迭代器为 pos 的元素，要求迭代器必须合法。
 -  `erase(first,last)` 删除迭代器在 $[first,last)$ 范围内的所有元素。
 -  `clear()` 清空 `set` 。
@@ -62,19 +62,19 @@ map<Key, T> yourMap;
 map<string, int> mp;
 ```
 
-`map` 中不会存在键相同的元素，`multimap` 中允许多个元素拥有同一键。`multimap` 的使用方法与 `map` 的使用方法基本相同。
+ `map` 中不会存在键相同的元素， `multimap` 中允许多个元素拥有同一键。 `multimap` 的使用方法与 `map` 的使用方法基本相同。
 
 !!! warning
     正是因为 multimap 允许多个元素拥有同一键的特点，multimap 并没有提供给出键访问其对应值的方法。
 
 ### 插入与删除操作<span id="map-insert"></span>
 
-- 可以直接通过下标访问来进行查询或插入操作。例如 `mp["Alan"]=100`。
+- 可以直接通过下标访问来进行查询或插入操作。例如 `mp["Alan"]=100` 。
 - 通过向 `map` 中插入一个类型为 `pair<Key, T>` 的值可以达到插入元素的目的，例如 `mp.insert(pair<string,int>("Alan",100));` ；
-- `erase(key)` 函数会删除键为 `key` 的**所有**元素。返回值为删除元素的数量。
-- `erase(pos)` : 删除迭代器为 pos 的元素，要求迭代器必须合法。
-- `erase(first,last)` : 删除迭代器在 $[first,last)$ 范围内的所有元素。
-- `clear()` 函数会清空整个容器。
+-  `erase(key)` 函数会删除键为 `key` 的 **所有** 元素。返回值为删除元素的数量。
+-  `erase(pos)` : 删除迭代器为 pos 的元素，要求迭代器必须合法。
+-  `erase(first,last)` : 删除迭代器在 $[first,last)$ 范围内的所有元素。
+-  `clear()` 函数会清空整个容器。
 
 ???+note "下标访问中的注意事项"
     在利用下标访问 map 中的某个元素时，如果 map 中不存在相应键的元素，会自动在 map 中插入一个新元素，并将其值设置为默认值（对于整数，值为零；对于有默认构造函数的类型，会调用默认构造函数进行初始化）。
@@ -97,8 +97,7 @@ map<string, int> mp;
 ```cpp
 set<int> s;
 typedef set<int>::iterator si;
-for(si it=s.begin();it!=s.end();it++)
-  cout<<*it<<endl;
+for (si it = s.begin(); it != s.end(); it++) cout << *it << endl;
 ```
 
 需要注意的是，对 `map` 的迭代器解引用后，得到的是类型为 `pair<Key, T>` 的键值对。
@@ -107,31 +106,26 @@ for(si it=s.begin();it!=s.end();it++)
 
 ```cpp
 set<int> s;
-for(auto x:s)
-  cout<<x<<endl;
+for (auto x : s) cout << x << endl;
 ```
 
-对于任意关联式容器，使用迭代器遍历容器的时间复杂度均为 $O(n)$。
+对于任意关联式容器，使用迭代器遍历容器的时间复杂度均为 $O(n)$ 。
 
 ## 自定义比较方式
 
-`set` 在默认情况下的比较函数为 `<`（如果是非内置类型需要 [重载 `<` 运算符](../op-overload.md#compare)）。然而在某些特殊情况下，我们希望能自定义 `set` 内部的比较方式。
+ `set` 在默认情况下的比较函数为 `<` （如果是非内置类型需要 [重载 `<` 运算符](../op-overload.md#compare) ）。然而在某些特殊情况下，我们希望能自定义 `set` 内部的比较方式。
 
 这时候可以通过传入自定义比较器来解决问题。
 
-具体来说，我们需要定义一个类，并在这个类中 [重载 `()` 运算符](../op-overload.md#function)。
+具体来说，我们需要定义一个类，并在这个类中 [重载 `()` 运算符](../op-overload.md#function) 。
 
-例如，我们想要维护一个存储整数，且较大值靠前的 `set`，可以这样实现：
+例如，我们想要维护一个存储整数，且较大值靠前的 `set` ，可以这样实现：
 
 ```cpp
-struct cmp
-{
- bool operator()(int a,int b)
- {
-  return a>b;
- }
+struct cmp {
+  bool operator()(int a, int b) { return a > b; }
 };
-set<int,cmp> s;
+set<int, cmp> s;
 ```
 
 对于其他关联式容器，可以用类似的方式实现自定义比较，这里不再赘述。
