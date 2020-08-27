@@ -65,7 +65,7 @@ map<string, int> mp;
  `map` 中不会存在键相同的元素， `multimap` 中允许多个元素拥有同一键。 `multimap` 的使用方法与 `map` 的使用方法基本相同。
 
 !!! warning
-    正是因为 `multimap` 允许多个元素拥有同一键的特点，`multimap` 并没有提供给出键访问其对应值的方法。
+    正是因为 `multimap` 允许多个元素拥有同一键的特点， `multimap` 并没有提供给出键访问其对应值的方法。
 
 ### 插入与删除操作<span id="map-insert"></span>
 
