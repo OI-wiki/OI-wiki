@@ -167,7 +167,7 @@ $$
 \end{aligned}
 $$
 
-设 $B(z) = \sum\limits_{i\ge 0}\dfrac{B_i}{i!}z^i$，注意到左边为卷积形式，故：
+设 $B(z) = \sum\limits_{i\ge 0}\dfrac{B_i}{i!}z^i$ ，注意到左边为卷积形式，故：
 
 $$
 \begin{aligned}
@@ -206,7 +206,7 @@ F_n(z) &= B(z)\cdot\dfrac{e^{nz} - 1}{z}\\
 \end{aligned}
 $$
 
-由于 $F_n(z) = \sum_{m\ge 0}\dfrac{S_m(n)}{m!}z^m$，即 $S_m(n)=m![z^m]F_n(z)$：
+由于 $F_n(z) = \sum_{m\ge 0}\dfrac{S_m(n)}{m!}z^m$ ，即 $S_m(n)=m![z^m]F_n(z)$ ：
 
 $$
 \begin{aligned}
