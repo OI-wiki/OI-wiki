@@ -189,8 +189,8 @@ $$
 
 $$
 \begin{aligned}
-F*n(z) &=\sum*{i=0}^{n-1}\sum*{m\ge 0}\dfrac{i^mz^m}{m!}\\
-       &=\sum*{i=0}^{n-1}e^{iz}\\
+F_n(z) &=\sum_{i=0}^{n-1}\sum_{m\ge 0}\dfrac{i^mz^m}{m!}\\
+       &=\sum_{i=0}^{n-1}e^{iz}\\
        &=\dfrac{e^{nz} - 1}{e^z - 1}\\
        &=\dfrac{z}{e^z - 1}\cdot\dfrac{e^{nz} - 1}{z}
 \end{aligned}
