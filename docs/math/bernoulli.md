@@ -168,8 +168,7 @@ $$
 设 $B(z) = \sum\limits_{i\ge 0}\dfrac{B_i}{i!}z^i$，注意到左边为卷积形式，故：
 $$
 
-B(z)e^z &= z+B(z)\\B(z) &= \\dfrac{z}{e^z - 1}
-\\end{aligned}$$
+B(z)e^z &= z+B(z)\\B(z) &=\\dfrac{z}{e^z - 1}\\end{aligned}$$
 
 设 $F_n(z) = \sum_{m\ge 0}\dfrac{S_m(n)}{m!}z^m$ ，则：
 
@@ -181,8 +180,7 @@ F_n(z) &= \sum_{m\ge 0}\dfrac{S_m(n)}{m!}z^m\\
 调换求和顺序：
 $$
 
-F*n(z) &= \\sum*{i=0}^{n-1}\\sum*{m\\ge 0}\\dfrac{i^mz^m}{m!}\\&= \\sum*{i=0}^{n-1}e^{iz}\\&= \\dfrac{e^{nz} - 1}{e^z - 1}\\&= \\dfrac{z}{e^z - 1}\\cdot\\dfrac{e^{nz} - 1}{z}
-\\end{aligned}$$
+F*n(z) &=\\sum*{i=0}^{n-1}\\sum*{m\\ge 0}\\dfrac{i^mz^m}{m!}\\&=\\sum*{i=0}^{n-1}e^{iz}\\&=\\dfrac{e^{nz} - 1}{e^z - 1}\\&=\\dfrac{z}{e^z - 1}\\cdot\\dfrac{e^{nz} - 1}{z}\\end{aligned}$$
 
 代入 $B(z)=\dfrac{z}{e^z - 1}$ ：
 
@@ -195,8 +193,7 @@ F_n(z) &= B(z)\cdot\dfrac{e^{nz} - 1}{z}\\
 由于 $F_n(z) = \sum_{m\ge 0}\dfrac{S_m(n)}{m!}z^m$，即 $S_m(n)=m![z^m]F_n(z)$：
 $$
 
-S*m(n)&=m![z^m]F_n(z)\\&= m!\\sum*{i=0}^{m}\\dfrac{B*i}{i!}\\cdot\\dfrac{n^{m-i+1}}{(m-i+1)!}\\&= \\dfrac{1}{m+1}\\sum*{i=0}^{m}\\binom{m+1}{i}B_in^{m-i+1}
-\\end{aligned}$$
+S*m(n)&=m![z^m]F_n(z)\\&= m!\\sum*{i=0}^{m}\\dfrac{B*i}{i!}\\cdot\\dfrac{n^{m-i+1}}{(m-i+1)!}\\&=\\dfrac{1}{m+1}\\sum*{i=0}^{m}\\binom{m+1}{i}B_in^{m-i+1}\\end{aligned}$$
 
 故得证。
 
