@@ -258,7 +258,6 @@ void del(int k) {
     return;
   }
   int cnr = rt, x = pre();
-  splay(x);
   fa[ch[cnr][1]] = x;
   ch[x][1] = ch[cnr][1];
   clear(cnr);
@@ -398,7 +397,6 @@ struct Splay {
     }
     int cnr = rt;
     int x = pre();
-    splay(x);
     fa[ch[cnr][1]] = x;
     ch[x][1] = ch[cnr][1];
     clear(cnr);

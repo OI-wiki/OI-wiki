@@ -100,6 +100,7 @@ nav:
     - C++ 进阶:
       - 类: lang/class.md
       - 命名空间: lang/namespace.md
+      - 重载运算符: lang/op-overload.md
       - 引用: lang/reference.md
       - 常值: lang/const.md
       - 新版 C++ 特性: lang/new.md
@@ -215,6 +216,7 @@ nav:
       - 莫比乌斯反演: math/mobius.md
       - 杜教筛: math/du.md
       - Min_25 筛: math/min-25.md
+      - Pollard-rho: math/pollard-rho.md
     - 多项式:
       - 多项式部分简介: math/poly/intro.md
       - 拉格朗日插值: math/poly/lagrange.md
