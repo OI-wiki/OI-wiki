@@ -123,8 +123,8 @@
 
  **Lemma 10** ：任意一个弦图一定不存在一个序列 $v_0,v_1,...,v_k(k\ge 2)$ 满足下列性质：
 
-1. $v_iv_j$ 相连当且仅当 $|i-j|=1$ 。
-2. $\alpha(v_0)>\alpha(v_i)(i\in[1,k])$ 。
+1.  $v_iv_j$ 相连当且仅当 $|i-j|=1$ 。
+2.  $\alpha(v_0)>\alpha(v_i)(i\in[1,k])$ 。
 3. 存在 $i\in[1,k-1]$ ，满足 $\alpha(v_i)<\alpha(v_{i+1})<...<\alpha(v_k)$ 且 $\alpha(v_i)<\alpha(v_{i-1})<...<\alpha(v_1)<\alpha(v_k)<\alpha(v_0)$ 。
 
 证明：
