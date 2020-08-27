@@ -83,6 +83,8 @@ struct student {
   int score;
   bool operator<(const student& a) const {
     return score < a.score || (score == a.score && name > a.name);
+    // 上面省略了 this 指针，完整表达式如下：
+    // this->score<a.score||(this->score==a.score&&this->name>a.name);
   }
 };
 priority_queue<student> pq;
@@ -97,8 +99,6 @@ struct student {
 };
 bool operator<(const student& a, const student& b) {
   return a.score < b.score || (a.score == b.score && a.name > b.name);
-  // 上面省略了 this 指针，完整表达式如下：
-  // this->score<a.score||(this->score==a.score&&this->name>a.name);
 }
 priority_queue<student> pq;
 ```
