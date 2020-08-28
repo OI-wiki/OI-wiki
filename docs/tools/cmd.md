@@ -1,4 +1,4 @@
-author: StudyingFather
+author: StudyingFather, ayalhw
 
 虽然图形界面能做的事情越来越多，但有很多高阶操作仍然需要使用命令行来解决。
 
@@ -54,13 +54,13 @@ command < input > output
 下面给出 Windows 系统和 Linux 系统的命令对照表，以供参考。
 
 | 分类   | Windows 系统 | Linux 系统  |
-| ---- | ---------- | --------- |
+| ----- | ---------- | --------- |
 | 文件列表 |  `dir`     |  `ls`     |
 | 切换目录 |  `cd`      |  `cd`     |
 | 建立目录 |  `md`      |  `mkdir`  |
 | 删除目录 |  `rd`      |  `rmdir`  |
 | 比较文件 |  `fc`      |  `diff`   |
-| 复制文件 |  `cp`      |  `copy`   |
+| 复制文件 |  `copy`    |  `cp`     |
 | 移动文件 |  `move`    |  `mv`     |
 | 文件改名 |  `ren`     |  `mv`     |
 | 删除文件 |  `del`     |  `rm`     |
