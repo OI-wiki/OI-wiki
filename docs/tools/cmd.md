@@ -102,10 +102,10 @@ command < input > output
 -  `call` ：调用某个函数，例如： `call f(2)` （以参数 2 调用函数 f）。
 -  `quit` （ `q` ）：退出 gdb。
 -  `display` （ `disp` ）：指定程序暂停时显示的表达式。
--  `print` （ `p` ）：打印表达式的值。
+-    `print` （ `p` ）：打印表达式的值。
 
- `display` 和 `print` 指令都支持控制输出格式，其方法是在命令后紧跟 `/` 与格式字符，例如 `p/d test` （按照十进制打印变量 test 的值），
-支持的格式字符有：
+     `display` 和 `print` 指令都支持控制输出格式，其方法是在命令后紧跟 `/` 与格式字符，例如 `p/d test` （按照十进制打印变量 test 的值），
+    支持的格式字符有：
 
 | 格式字符 | 对应格式          |
 | ---- | ------------- |
@@ -121,4 +121,5 @@ command < input > output
 ## 参考资料与注释
 
 [^1]: 刘汝佳《算法竞赛入门经典（第 2 版）》附录 A 开发环境与方法
-[^have-to-link-libm-in-gcc]: [Why do you have to link the math library in C?](https://stackoverflow.com/questions/1033898/why-do-you-have-to-link-the-math-library-in-c)
+
+[^have-to-link-libm-in-gcc]:  [Why do you have to link the math library in C?](https://stackoverflow.com/questions/1033898/why-do-you-have-to-link-the-math-library-in-c) 
