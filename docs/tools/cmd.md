@@ -4,7 +4,7 @@ author: StudyingFather
 
 本页面将简要介绍命令行的一些使用方法。
 
-## 一些常用命令
+## 一些常用命令[^1]
 
 ### 文件系统相关
 
@@ -82,7 +82,7 @@ command < input > output
 -  `-lm` ， `-lgmp` : 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）。
 
 ???+ warning
-    在 Linux 下，如使用了标准 C 库里的 math 库（ `math.h` 与 `cmath` ），则需在编译时添加 `-lm` 参数。
+    在 Linux 下，如使用了标准 C 库里的 math 库（ `math.h` 与 `cmath` ），则需在编译时添加 `-lm` 参数。[^have-to-link-libm-in-gcc]
 
 ### 命令行调试
 
@@ -120,4 +120,5 @@ command < input > output
 
 ## 参考资料与注释
 
-- 刘汝佳《算法竞赛入门经典（第 2 版）》附录 A 开发环境与方法
+[^1]: 刘汝佳《算法竞赛入门经典（第 2 版）》附录 A 开发环境与方法
+[^have-to-link-libm-in-gcc]: [Why do you have to link the math library in C?](https://stackoverflow.com/questions/1033898/why-do-you-have-to-link-the-math-library-in-c)
