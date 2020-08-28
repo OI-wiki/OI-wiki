@@ -79,6 +79,10 @@ command < input > output
 -  `-O1` ， `-O2` ， `-O3` ：对编译的程序进行优化，数字越大表示采用的优化手段越多（开启优化会影响使用 gdb 调试）。
 -  `-DDEBUG` ：在编译时定义 `DEBUG` 符号（符号可以随意更换，例如 `-DONLINE_JUDGE` 定义了 `ONLINE_JUDGE` 符号）。
 -  `-UDEBUG` ：在编译时取消定义 `DEBUG` 符号。
+-  `-lm`，`-lgmp` : 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）。
+
+???+ warning
+    在 Linux 下，如使用了标准 C 库里的 math 库（`math.h` 与 `cmath`），则需在编译时添加 `-lm` 参数。
 
 ### 命令行调试
 
