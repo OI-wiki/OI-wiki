@@ -1,6 +1,6 @@
 author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul
 
-前置知识：[动态规划部分简介](./index.md) 
+前置知识： [动态规划部分简介](./index.md) 
 
 在具体讲何为「背包 dp」前，先来看如下的例题：
 
@@ -39,7 +39,8 @@ $$
 for (int i = 1; i <= n; i++)
   for (int l = 0; l <= W - w[i]; l++)
     f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
-// 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + w[i]), f[i][l + w[i]]); 简化而来
+// 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + w[i]), f[i][l +
+// w[i]]); 简化而来
 ```
 
 这段代码哪里错了呢？枚举顺序错了。
@@ -52,8 +53,7 @@ for (int i = 1; i <= n; i++)
 
 ```cpp
 for (int i = 1; i <= n; i++)
-  for (int l = W; l >= w[i]; l--)
-    f[l] = max(f[l], f[l - w[i]] + v[i]);
+  for (int l = W; l >= w[i]; l--) f[l] = max(f[l], f[l - w[i]] + v[i]);
 ```
 
 ??? 例题代码
@@ -63,12 +63,10 @@ for (int i = 1; i <= n; i++)
     int n, W, w[maxn], v[maxn], f[maxn];
     int main() {
       std::cin >> n >> W;
-      for (int i = 1; i <= n; i++)
-        std::cin >> w[i] >> v[i];
+      for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
       for (int i = 1; i <= n; i++)
         for (int l = W; l >= w[i]; l--)
-          if (f[l - w[i]] + v[i] > f[l])
-            f[l] = f[l - w[i]] + v[i];
+          if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];
       std::cout << f[W];
       return 0;
     }
@@ -110,12 +108,10 @@ $$
         int n, W, w[maxn], v[maxn], f[maxn];
         int main() {
           std::cin >> W >> n;
-          for (int i = 1; i <= n; i++)
-            std::cin >> w[i] >> v[i];
+          for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
           for (int i = 1; i <= n; i++)
             for (int l = w[i]; l <= W; l++)
-              if (f[l - w[i]] + v[i] > f[l])
-                f[l] = f[l - w[i]] + v[i];
+              if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];
           std::cout << f[W];
           return 0;
         }
@@ -177,7 +173,7 @@ $$
 
 见 [单调队列/单调栈优化](opt/monotonous-queue-stack.md) 。
 
-习题：[「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.com.cn/problem/P1776) 
+习题： [「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.com.cn/problem/P1776) 
 
 ## 混合背包
 
@@ -202,7 +198,7 @@ $$
 
 ## 二维费用背包
 
-先来一道例题：[「Luogu P1855」榨取 kkksc03](https://www.luogu.com.cn/problem/P1855) 。
+先来一道例题： [「Luogu P1855」榨取 kkksc03](https://www.luogu.com.cn/problem/P1855) 。
 
 这道题是很明显的 0-1 背包问题，可是不同的是选一个物品会消耗两种价值（经费、时间）。这种问题其实很简单：方程基本不用变，只需再开一维数组，同时转移两个价值就行了！（完全、多重背包同理）
 
@@ -220,7 +216,7 @@ for (int k = 1; k <= n; k++) {
 
 ## 分组背包
 
-再看一道例题：[「Luogu P1757」通天之分组背包](https://www.luogu.com.cn/problem/P1757) 。
+再看一道例题： [「Luogu P1757」通天之分组背包](https://www.luogu.com.cn/problem/P1757) 。
 
 所谓分组背包，就是将物品分组，每组的物品相互冲突，最多只能选一个物品放进去。
 
@@ -235,14 +231,15 @@ for (int k = 1; k <= ts; k++)          // 循环每一组
   for (int i = m; i >= 0; i--)         // 循环背包容量
     for (int j = 1; j <= cnt[k]; j++)  // 循环该组的每一个物品
       if (i >= w[t[k][j]])
-        dp[i] = max(dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
+        dp[i] = max(dp[i],
+                    dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
 ```
 
 这里要注意： **一定不能搞错循环顺序** ，这样才能保证正确性。
 
 ## 有依赖的背包
 
-一道例题：[「Luogu P1064」金明的预算方案](https://www.luogu.com.cn/problem/P1064) 。
+一道例题： [「Luogu P1064」金明的预算方案](https://www.luogu.com.cn/problem/P1064) 。
 
 这种背包问题其实就是如果选第 $i$ 件物品，就必须选第 $j$ 件物品，保证不会循环引用，一部分题目甚至会出现多叉树的引用形式。为了方便，就称不依赖于别的物品的物品称为「主件」，依赖于某主件的物品称为「附件」。
 
@@ -311,7 +308,7 @@ $$
 
 如果 $f_{i,j}\neq f_{i-1,j}$ 且 $f_{i,j}=f_{i-1,j-v}+w$ 说明我们此时选择把物品放入背包更优，方案数由 $g\_{i-1,j-v}$ 转移过来，
 
-如果 $f_{i,j}=f_{i-1,j}$ 且 $f_{i,j}=f_{i-1,j-v}+w$ 说明放入或不放入都能取得最优解，方案数由 $g_{i-1,j} 和 $g\_{i-1,j-v}$ 转移过来。
+如果 $f_{i,j}=f_{i-1,j}$ 且 $f_{i,j}=f_{i-1,j-v}+w$ 说明放入或不放入都能取得最优解，方案数由 $g_{i-1,j} 和$ g\_{i-1,j-v}$ 转移过来。
 
 初始条件：
 
@@ -354,4 +351,4 @@ for (int i = 0; i <= V; i++) {
 
 ## 外部链接
 
-- [GitHub - tianyicui/pack: 背包问题九讲](https://github.com/tianyicui/pack) 。
+-  [GitHub - tianyicui/pack: 背包问题九讲](https://github.com/tianyicui/pack) 。
