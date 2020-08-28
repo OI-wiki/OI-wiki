@@ -122,9 +122,10 @@
  **Lemma 9** ：考虑三个点 $u,v,w$ 满足 $\alpha(u)<\alpha(v)<\alpha(w)$ ，如果 $uw$ 相连， $vw$ 不相连，则 $w$ 只给 $u$ 的 $label$ 贡献，不给 $v$ 贡献。为了让 $v$ 比 $u$ 先加入序列，需要一个 $x$ 满足 $\alpha(v)<\alpha(x)$ 且 $vx$ 相连， $ux$ 不相连，即 $x$ 只给 $v$ 贡献而不给 $u$ 贡献。
 
  **Lemma 10** ：任意一个弦图一定不存在一个序列 $v_0,v_1,...,v_k(k\ge 2)$ 满足下列性质：
-1\. $v_iv_j$ 相连当且仅当 $|i-j|=1$ 。
-1\. $\alpha(v_0)>\alpha(v_i)(i\in[1,k])$ 。
-1\. 存在 $i\in[1,k-1]$ ，满足 $\alpha(v_i)<\alpha(v_{i+1})<...<\alpha(v_k)$ 且 $\alpha(v_i)<\alpha(v_{i-1})<...<\alpha(v_1)<\alpha(v_k)<\alpha(v_0)$ 。
+
+1.  $v_iv_j$ 相连当且仅当 $|i-j|=1$ 。
+2.  $\alpha(v_0)>\alpha(v_i)(i\in[1,k])$ 。
+3. 存在 $i\in[1,k-1]$ ，满足 $\alpha(v_i)<\alpha(v_{i+1})<...<\alpha(v_k)$ 且 $\alpha(v_i)<\alpha(v_{i-1})<...<\alpha(v_1)<\alpha(v_k)<\alpha(v_0)$ 。
 
 证明：
 
