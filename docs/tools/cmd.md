@@ -31,9 +31,10 @@ author: StudyingFather, ayalhw
 command < input > output
 ```
 
-例如， `./prog < 1.in > 1.out` 这个命令就将让 `prog` 这个程序从当前目录下的 `1.in` 中读入数据，并将程序输出覆盖写入到 `1.out` （ `1.out` 原本的内容会被覆盖）。
+例如， `./prog < 1.in > 1.out` 这个命令就将让 `prog` 这个程序从当前目录下的 `1.in` 中读入数据，并将程序输出覆盖写入到 `1.out` 。
 
-如果想要在原输出文件末尾追加写入，请使用 `>>` ，即 `./prog >> 1.out` 的方式做输出重定向
+???+ warning
+    `1.out` 原本的内容会被覆盖，如果想要在原输出文件末尾追加写入，请使用 `>>` ，即 `./prog >> 1.out` 的方式做输出重定向
 
 事实上，大多数 OJ 都采用了这样的重定向机制。选手提交的程序采用标准输入输出，通过重定向机制，就可以让选手的程序从给定的输入文件读入数据，输出到指定的输出文件，再进行文件比较就可以评测了。
 
@@ -54,7 +55,7 @@ command < input > output
 下面给出 Windows 系统和 Linux 系统的命令对照表，以供参考。
 
 | 分类   | Windows 系统 | Linux 系统  |
-| ----- | ---------- | --------- |
+| ---- | ---------- | --------- |
 | 文件列表 |  `dir`     |  `ls`     |
 | 切换目录 |  `cd`      |  `cd`     |
 | 建立目录 |  `md`      |  `mkdir`  |
@@ -81,8 +82,8 @@ command < input > output
 -  `-UDEBUG` ：在编译时取消定义 `DEBUG` 符号。
 -  `-lm` ， `-lgmp` : 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）。
 
-???+ warning
-    在 Linux 下，如使用了标准 C 库里的 math 库（ `math.h` 与 `cmath` ），则需在编译时添加 `-lm` 参数。[^have-to-link-libm-in-gcc]
+???+ note
+    在 Linux 下，如使用了标准 C 库里的 math 库（ `math.h` ），则需在编译时添加 `-lm` 参数。[^have-to-link-libm-in-gcc]
 
 ### 命令行调试
 
