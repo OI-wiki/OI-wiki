@@ -86,50 +86,46 @@ $$
 f(u,i,j)=\max_{v,k \leq j,k \leq \textit{siz_v}} f(u,i-1,j-k)+f(v,s_v,k)
 $$
 
+注意上面转移方程中的几个限制条件，这些限制条件确保了一些无意义的状态不会被访问到。
+
  $f$ 的第二维可以很轻松地用滚动数组的方式省略掉，注意这时需要倒序枚举 $j$ 的值。
 
 我们可以证明，该做法的时间复杂度为 $O(nm)$ [^note1]。
 
 ??? note "参考代码"
     ```cpp
-    #include <algorithm>
     #include <cstdio>
+    #include <vector>
+    #include <algorithm>
     using namespace std;
-    struct edge {
-      int v, next;
-    } e[305];
-    int head[305], f[305][305], cnt, s[305];
-    void addedge(int u, int v) {
-      e[++cnt].v = v;
-      e[cnt].next = head[u];
-      head[u] = cnt;
+    int f[305][305],s[305],n,m;
+    vector<int> e[305];
+    int dfs(int u)
+    {
+     int p=1;
+     f[u][1]=s[u];
+     for(auto v:e[u])
+     {
+      int siz=dfs(v);
+      for(int i=min(p,m+1);i;i--)// 只考虑已经合并过的子树
+       for(int j=1;j<=siz&&i+j<=m+1;j++)// 选的课程数超过 m+1 的状态没有意义
+        f[u][i+j]=max(f[u][i+j],f[u][i]+f[v][j]);
+      p+=siz;
+     }
+     return p;
     }
-    int dfs(int a) {
-      int p = 1;
-      f[a][1] = s[a];
-      for (int t = head[a]; t; t = e[t].next) {
-        int v = e[t].v;
-        int now = dfs(v);
-        //需要注意枚举的上下界
-        //一些状态本身是无意义的，故转移时不必考虑这些状态
-        for (int i = p; i; i--)
-          for (int j = 1; j& lt; = now; j++)
-            f[a][i + j] = max(f[a][i + j], f[a][i] + f[v][j]);
-        p += now;
-      }
-      return p;
-    }
-    int main() {
-      int n, m;
-      scanf("%d%d", &n, &m);
-      for (int i = 1; i& lt; = n; i++) {
-        int u;
-        scanf("%d%d", &u, &s[i]);
-        addedge(u, i);
-      }
-      dfs(0);
-      printf("%d", f[0][m + 1]);
-      return 0;
+    int main()
+    {
+     scanf("%d%d",&n,&m);
+     for(int i=1;i<=n;i++)
+     {
+      int k;
+      scanf("%d%d",&k,&s[i]);
+      e[k].push_back(i);
+     }
+     dfs(0);
+     printf("%d",f[0][m+1]);
+     return 0;
     }
     ```
 
