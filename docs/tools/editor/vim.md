@@ -80,7 +80,7 @@ g++ filename.cpp -o filename
 
 ## 基础篇：Vim 的模式与常用键位
 
-Vim 的基础操作在 Vim 自带的教程里将会讲述。打开终端输入
+Vim 的基础操作在 Vim 自带的教程里将会讲述。打开终端输入 `vimtutor` 即可进入教程。
 
 ```shell
 vimtutor
