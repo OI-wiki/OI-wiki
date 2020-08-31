@@ -471,7 +471,53 @@ $$
 
 设 $\displaystyle \operatorname{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\operatorname{g}$ 为积性函数，于是可以 $\Theta(n)$ 筛出。每次询问 $\Theta(1)$ 计算即可。
 
-这个函数筛的时候比较特殊，当 $p_j\mid i$ 的时候，需要根据 $p_j\mid\dfrac{i}{p_j}$ 进行分类讨论。具体可以见代码。
+下面给出这个函数筛法的推导过程:
+
+首先考虑 $\operatorname g(p_j^k)$ 的值，显然它的约数只有 $p_j^0,p_j^1,\cdots,p_j^k$，因此
+
+$$
+\operatorname g(p_j^k)=\sum_{w=0}^{k}p_j^w\cdot\varphi(p_j^w)
+$$
+
+又有 $\varphi(p_j^w)=p_j^{w-1}\cdot(p_j-1)$，则原式可化为
+
+$$
+\sum_{w=0}^{k}p_j^{2w-1}\cdot(p_j-1)
+$$
+
+于是有
+
+$$
+\operatorname g(p_j^{k+1})=g(p_j^k)+p_j^{2k+1}\cdot(p_j-1)
+$$
+
+那么，对于线性筛中的 $\operatorname g(i\cdot p_j)(p_j|i)$，令 $i=a\cdot p_j^w(\operatorname{gcd}(a,p_j)=1)$，可得
+
+$$
+\operatorname g(i\cdot p_j)=\operatorname g(a)\cdot\operatorname g(p_j^{w+1})
+$$
+
+$$
+\operatorname g(i)=\operatorname g(a)\cdot\operatorname g(p_j^w)
+$$
+
+即
+
+$$
+\operatorname g(i\cdot p_j)-\operatorname g(i)=\operatorname g(a)\cdot p_j^{2w+1}\cdot(p_j-1)
+$$
+
+同理有
+
+$$
+\operatorname g(i)-\operatorname g(\frac{i}{p_j})=\operatorname g(a)\cdot p_j^{2w-1}\cdot(p_j-1)
+$$
+
+因此
+
+$$
+\operatorname g(i\cdot p_j)=\operatorname g(i)+(\operatorname g(i)-\operatorname g(\frac{i}{p_j}))\cdot p_j^2
+$$
 
  **时间复杂度** ： $\Theta(n+T)$ 
 
@@ -490,11 +536,7 @@ $$
         for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
           flg[i * p[j]] = 1;
           if (i % p[j] == 0) {
-            if ((i / p[j]) % p[j] == 0) {
-              g[i * p[j]] = g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];
-            } else {
-              g[i * p[j]] = g[i] + g[i / p[j]] * (p[j] - 1) * p[j] * p[j] * p[j];
-            }
+            g[i * p[j]] = g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];
             break;
           }
           g[i * p[j]] = g[i] * g[p[j]];
