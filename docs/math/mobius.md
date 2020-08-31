@@ -471,15 +471,15 @@ $$
 
 设 $\displaystyle \operatorname{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\operatorname{g}$ 为积性函数，于是可以 $\Theta(n)$ 筛出。每次询问 $\Theta(1)$ 计算即可。
 
-下面给出这个函数筛法的推导过程:
+下面给出这个函数筛法的推导过程：
 
-首先考虑 $\operatorname g(p_j^k)$ 的值，显然它的约数只有 $p_j^0,p_j^1,\cdots,p_j^k$，因此
+首先考虑 $\operatorname g(p_j^k)$ 的值，显然它的约数只有 $p_j^0,p_j^1,\cdots,p_j^k$ ，因此
 
 $$
 \operatorname g(p_j^k)=\sum_{w=0}^{k}p_j^w\cdot\varphi(p_j^w)
 $$
 
-又有 $\varphi(p_j^w)=p_j^{w-1}\cdot(p_j-1)$，则原式可化为
+又有 $\varphi(p_j^w)=p_j^{w-1}\cdot(p_j-1)$ ，则原式可化为
 
 $$
 \sum_{w=0}^{k}p_j^{2w-1}\cdot(p_j-1)
@@ -491,7 +491,7 @@ $$
 \operatorname g(p_j^{k+1})=g(p_j^k)+p_j^{2k+1}\cdot(p_j-1)
 $$
 
-那么，对于线性筛中的 $\operatorname g(i\cdot p_j)(p_j|i)$，令 $i=a\cdot p_j^w(\operatorname{gcd}(a,p_j)=1)$，可得
+那么，对于线性筛中的 $\operatorname g(i\cdot p_j)(p_j|i)$ ，令 $i=a\cdot p_j^w(\operatorname{gcd}(a,p_j)=1)$ ，可得
 
 $$
 \operatorname g(i\cdot p_j)=\operatorname g(a)\cdot\operatorname g(p_j^{w+1})
