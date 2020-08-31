@@ -91,9 +91,14 @@ $$
 我们可以证明，该做法的时间复杂度为 $O(nm)$ [^note1]。
 
 ??? note "参考代码"
-    \#include<cstdio>#include<algorithm>using namespace std;
+    ```cpp
+    #include<cstdio>
+    #include<algorithm>
+    using namespace std;
     struct edge
-    {int v,next;}e[305];
+    {
+     int v,next;
+    }e[305];
     int head[305],f[305][305],cnt,s[305];
     void addedge(int u,int v)
     {
@@ -109,8 +114,8 @@ $$
      {
       int v=e[t].v;
       int now=dfs(v);
-    //需要注意枚举的上下界
-    //一些状态本身是无意义的，故转移时不必考虑这些状态
+      //需要注意枚举的上下界
+      //一些状态本身是无意义的，故转移时不必考虑这些状态
       for(int i=p;i;i--)
        for(int j=1;j&lt;=now;j++)
         f[a][i+j]=max(f[a][i+j],f[a][i]+f[v][j]);
@@ -132,6 +137,7 @@ $$
      printf("%d",f[0][m+1]);
      return 0;
     }
+    ```
 
 ## 习题
 
