@@ -107,7 +107,7 @@ $$
         int siz = dfs(v);
         // 注意下面两重循环的上界和下界
         // 只考虑已经合并过的子树，以及选的课程数超过 m+1 的状态没有意义
-        for (int i = min(p, m + 1); i; i--) 
+        for (int i = min(p, m + 1); i; i--)
           for (int j = 1; j <= siz && i + j <= m + 1; j++)
             f[u][i + j] = max(f[u][i + j], f[u][i] + f[v][j]);
         p += siz;
