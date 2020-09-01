@@ -488,7 +488,7 @@ $$
 于是有
 
 $$
-\operatorname g(p_j^{k+1})=g(p_j^k)+p_j^{2k+1}\cdot(p_j-1)
+\operatorname g(p_j^{k+1})=\operatorname g(p_j^k)+p_j^{2k+1}\cdot(p_j-1)
 $$
 
 那么，对于线性筛中的 $\operatorname g(i\cdot p_j)(p_j|i)$ ，令 $i=a\cdot p_j^w(\operatorname{gcd}(a,p_j)=1)$ ，可得
