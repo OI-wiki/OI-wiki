@@ -55,8 +55,8 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 微软给出的建议是，如果经常使用 WSL 来访问 Windows 文件系统上的项目文件，或者需要对相同的文件使用 Windows 和 Linux 工具进行交叉编译，那么建议这些用户使用 WSL 1，因为目前 WSL 1 能跨 OS 文件系统实现更高的性能。
 
 ???+ note
-    目前 WSL 1 完全不支持 systemd （这意味着一些需要 systemd 的功能无法实现或需要别的 hack），WSL 2 可以使用 [genie](https://github.com/arkane-systems/genie)。
-    此外，[yuk7/arch-systemctl-alt](https://github.com/yuk7/arch-systemctl-alt) 项目提供了一个在 WSL 1 与 2 都可用的 alternative script，但是它只具有部分兼容且只在 ArchWSL 进行了测试。
+    目前 WSL 1 完全不支持 systemd（这意味着一些需要 systemd 的功能无法实现或需要别的 hack），WSL 2 可以使用 [genie](https://github.com/arkane-systems/genie) 。
+    此外， [yuk7/arch-systemctl-alt](https://github.com/yuk7/arch-systemctl-alt) 项目提供了一个在 WSL 1 与 2 都可用的 alternative script，但是它只具有部分兼容且只在 ArchWSL 进行了测试。
 
 ## 启用 WSL
 
@@ -294,11 +294,9 @@ xfce4-session
     可以用自带命令行，或者使用图形界面。
     比如说 vim，在命令行中键入 `man vim` ，会给出一份详尽的使用方法。
     亦可使用 `vim --help` 。
-    
 -   占用量大？
 
     这个系统和 Windows 10 共用 Host，所以理论上是比虚拟机占用小的。而且只要别装太多应用，应该还是可以带动的。
-    
 -   汉语化时提示不存在？
 
     玄学问题，可以忽略。修了个疏忽导致的错误，可以重上一下试试。
