@@ -59,25 +59,6 @@ vim
 
 如果出现 Help poor children in Uganda!（帮助乌干达的可怜儿童！）的一长串文本，说明安装成功。[^note1]
 
-## 编译
-
-要编译 C++ 文件，先要安装 g++。命令如下：
-
-```bash
-sudo apt-get install build-essential
-```
-
-接着通过 `cd` 命令进入 cpp 文件的路径，然后执行如下命令：
-
-```bash
-# 编译
-g++ filename.cpp -o filename
-# 运行
-./filename
-```
-
-一键编译运行的配置在配置篇给出。
-
 ## 基础篇：Vim 的模式与常用键位
 
 Vim 的基础操作在 Vim 自带的教程里将会讲述。打开终端输入 `vimtutor` 即可进入教程。
