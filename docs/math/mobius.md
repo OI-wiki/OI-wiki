@@ -516,7 +516,7 @@ $$
 因此
 
 $$
-\operatorname g(i\cdot p_j)=\operatorname g(i)+(\operatorname g(i)-\operatorname g(\frac{i}{p_j}))\cdot p_j^2
+\operatorname g(i\cdot p_j)=\operatorname g(i)+\left (\operatorname g(i)-\operatorname g(\frac{i}{p_j})\right )\cdot p_j^2
 $$
 
  **时间复杂度** ： $\Theta(n+T)$ 
