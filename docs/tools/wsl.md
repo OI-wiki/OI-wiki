@@ -167,9 +167,7 @@ sudo dpkg-reconfigure locales
 
 ```bash
 sudo apt install manpages-zh
-sudo vi /etc/manpath.config
-:1,$s#/usr/share/man#/usr/share/man/zh_CN#g
-:wq
+sudo sed -i 's|/usr/share/man|/usr/share/man/zh_CN|g' /etc/manpath.config
 ```
 
 可以用 `man help` 测试。
