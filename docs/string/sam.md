@@ -141,7 +141,7 @@ $$
 
 -  $s$ 的子串可以根据它们结束的位置 $\operatorname{endpos}$ 被划分为多个等价类；
 - SAM 由初始状态 $t_0$ 和与每一个 $\operatorname{endpos}$ 等价类对应的每个状态组成；
-- 对于每一个状态 $v$ ，一个或多个子串与之匹配。我们记 $\operatorname{longest}(v)$ 为其中最长的一个字符串，记 $\operatorname{len}(v)$ 为它的长度。类似地，记 $shortest(v)$ 为最短的子串，它的长度为 $\operatorname{minlen}(v)$ 。那么对应这个状态的所有字符串都是字符串 $\operatorname{longest}(v)$ 的不同的后缀，且所有字符串的长度恰好覆盖区间 $[\textit{minlength}(v),\operatorname{len}(v)]$ 中的每一个整数。
+- 对于每一个状态 $v$ ，一个或多个子串与之匹配。我们记 $\operatorname{longest}(v)$ 为其中最长的一个字符串，记 $\operatorname{len}(v)$ 为它的长度。类似地，记 $\operatorname{shortest}(v)$ 为最短的子串，它的长度为 $\operatorname{minlen}(v)$ 。那么对应这个状态的所有字符串都是字符串 $\operatorname{longest}(v)$ 的不同的后缀，且所有字符串的长度恰好覆盖区间 $[\operatorname{minlen}(v),\operatorname{len}(v)]$ 中的每一个整数。
 - 对于任意不是 $t_0$ 的状态 $v$ ，定义后缀链接为连接到对应字符串 $\operatorname{longest}(v)$ 的长度为 $\operatorname{minlen}(v)-1$ 的后缀的一条边。从根节点 $t_0$ 出发的后缀链接可以形成一棵树。这棵树也表示 $\operatorname{endpos}$ 集合间的包含关系。
 - 对于 $t_0$ 以外的状态 $v$ ，可用后缀链接 $\operatorname{link}(v)$ 表达 $\operatorname{minlen}(v)$ ：
 
@@ -161,7 +161,7 @@ $$
 
 现在，任务转化为实现给当前字符串添加一个字符 $c$ 的过程。算法流程如下：
 
-- 令 $\textit{last}$ 为添加字符 $c$ 之前，整个字符串对应的状态（一开始我们设 $\textit{\textit{last}}=0$ ，算法的最后一步更新 $\textit{last}$ ）。
+- 令 $\textit{last}$ 为添加字符 $c$ 之前，整个字符串对应的状态（一开始我们设 $\textit{last}=0$ ，算法的最后一步更新 $\textit{last}$ ）。
 - 创建一个新的状态 $\textit{cur}$ ，并将 $\operatorname{len}(\textit{cur})$ 赋值为 $\operatorname{len}(\textit{last})+1$ ，在这时 $\operatorname{link}(\textit{cur})$ 的值还未知。
 - 现在我们按以下流程进行（从状态 $\textit{last}$ 开始）。如果还没有到字符 $c$ 的转移，我们就添加一个到状态 $\textit{cur}$ 的转移，遍历后缀链接。如果在某个点已经存在到字符 $c$ 的转移，我们就停下来，并将这个状态标记为 $p$ 。
 - 如果没有找到这样的状态 $p$ ，我们就到达了虚拟状态 $-1$ ，我们将 $\operatorname{link}(\textit{cur})$ 赋值为 $0$ 并退出。
