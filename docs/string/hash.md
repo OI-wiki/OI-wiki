@@ -5,7 +5,7 @@ Hash 的核心思想在于，将输入映射到一个值域较小、可以方便
 !!! warning
     这里的“值域较小”在不同情况下意义不同。
     
-    在 [ Hash 表](../ds/hash.md) 中，值域需要小到能够接受线性的空间与时间复杂度。
+    在 [Hash 表](../ds/hash.md) 中，值域需要小到能够接受线性的空间与时间复杂度。
     
     在字符串 Hash 中，值域需要小到能够快速比较（ $10^9$ 、 $10^{18}$ 都是可以快速比较的）。
     
@@ -27,7 +27,7 @@ Hash 的核心思想在于，将输入映射到一个值域较小、可以方便
 
 这里面的 $b$ 和 $M$ 需要选取得足够合适才行，以使得 Hash 函数的值分布尽量均匀。
 
-如果 $b$ 和 $M$ 互质，在输入随机的情况下，这个 Hash 函数在 $[0,M)$ 上每个值概率相等，此时单次比较的错误率为 $\dfrac 1 M$ 。所以， Hash 的模数一般会选用大质数。
+如果 $b$ 和 $M$ 互质，在输入随机的情况下，这个 Hash 函数在 $[0,M)$ 上每个值概率相等，此时单次比较的错误率为 $\dfrac 1 M$ 。所以，Hash 的模数一般会选用大质数。
 
 ## Hash 的实现
 
@@ -62,7 +62,7 @@ bool cmp(const string& s, const string& t) {
 
 所以，进行字符串 Hash 时，经常会对两个大质数分别取模，这样的话 Hash 函数的值域就能扩大到两者之积，错误率就非常小了。
 
-### 多次询问子串 Hash 
+### 多次询问子串 Hash
 
 单次计算一个字符串的 Hash 值复杂度是 $O(n)$ ，其中 $n$ 为串长，与暴力匹配没有区别，如果需要多次询问一个字符串的子串的 Hash 值，每次重新计算效率非常低下。
 
@@ -80,13 +80,13 @@ bool cmp(const string& s, const string& t) {
 
 ### 最长回文子串
 
-二分答案，判断是否可行时枚举回文中心（对称轴）， Hash 判断两侧是否相等。需要分别预处理正着和倒着的 Hash 值。时间复杂度 $O(n\log n)$ 。
+二分答案，判断是否可行时枚举回文中心（对称轴），Hash 判断两侧是否相等。需要分别预处理正着和倒着的 Hash 值。时间复杂度 $O(n\log n)$ 。
 
 这个问题可以使用 [manacher 算法](./manacher.md) 在 $O(n)$ 的时间内解决。
 
 ### 确定字符串中不同子字符串的数量
 
-问题：给定长为 $n$ 的字符串 ，仅由小写英文字母组成，查找该字符串中不同子串的数量。
+问题：给定长为 $n$ 的字符串，仅由小写英文字母组成，查找该字符串中不同子串的数量。
 
 为了解决这个问题，我们遍历了所有长度为 $l=1,\cdots ,n$ 的子串。对于每个长度为 $l$ ，我们将其 Hash 值乘以相同的 $b$ 的幂次方，并存入一个数组中。数组中不同元素的数量等于字符串中长度不同的子串的数量，并此数字将添加到最终答案中。
 
@@ -94,30 +94,29 @@ bool cmp(const string& s, const string& t) {
 
 ```cpp
 int count_unique_substrings(string const& s) {
-    int n = s.size();
-    
-    const int b = 31;
-    const int m = 1e9 + 9;
-    vector<long long> b_pow(n);
-    b_pow[0] = 1;
-    for (int i = 1; i < n; i++)
-        b_pow[i] = (b_pow[i-1] * b) % m;
-    
-    vector<long long> h(n + 1, 0);
-    for (int i = 0; i < n; i++)
-        h[i+1] = (h[i] + (s[i] - 'a' + 1) * b_pow[i]) % m;
-    
-    int cnt = 0;
-    for (int l = 1; l <= n; l++) {
-        set<long long> hs;
-        for (int i = 0; i <= n - l; i++) {
-            long long cur_h = (h[i + l] + m - h[i]) % m;
-            cur_h = (cur_h * b_pow[n-i-1]) % m;
-            hs.insert(cur_h);
-        }
-        cnt += hs.size();
+  int n = s.size();
+
+  const int b = 31;
+  const int m = 1e9 + 9;
+  vector<long long> b_pow(n);
+  b_pow[0] = 1;
+  for (int i = 1; i < n; i++) b_pow[i] = (b_pow[i - 1] * b) % m;
+
+  vector<long long> h(n + 1, 0);
+  for (int i = 0; i < n; i++)
+    h[i + 1] = (h[i] + (s[i] - 'a' + 1) * b_pow[i]) % m;
+
+  int cnt = 0;
+  for (int l = 1; l <= n; l++) {
+    set<long long> hs;
+    for (int i = 0; i <= n - l; i++) {
+      long long cur_h = (h[i + l] + m - h[i]) % m;
+      cur_h = (cur_h * b_pow[n - i - 1]) % m;
+      hs.insert(cur_h);
     }
-    return cnt;
+    cnt += hs.size();
+  }
+  return cnt;
 }
 ```
 
@@ -129,7 +128,7 @@ int count_unique_substrings(string const& s) {
     字符串个数不超过 $10^5$ ，总长不超过 $10^6$ 。
     
     ??? mdui-shadow-6 "题解"
-        每次需要求最长的、是原答案串的后缀、也是第 $i$ 个串的前缀的字符串。枚举这个串的长度， Hash 比较即可。
+        每次需要求最长的、是原答案串的后缀、也是第 $i$ 个串的前缀的字符串。枚举这个串的长度，Hash 比较即可。
         
         当然，这道题也可以使用 [KMP 算法](./kmp.md) 解决。
     
@@ -204,4 +203,4 @@ int count_unique_substrings(string const& s) {
         }
         ```
 
-**本页面部分内容译自博文 [строковый хеш](https://github.com/e-maxx-eng/e-maxx-eng/blob/61aff51f658644424c5e1b717f14fb7bf054ae80/src/string/string-hashing.md)与其英文翻译版[String Hashing](https://cp-algorithms.com/string/string-hashing.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+ **本页面部分内容译自博文 [строковый хеш](https://github.com/e-maxx-eng/e-maxx-eng/blob/61aff51f658644424c5e1b717f14fb7bf054ae80/src/string/string-hashing.md) 与其英文翻译版 [String Hashing](https://cp-algorithms.com/string/string-hashing.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
