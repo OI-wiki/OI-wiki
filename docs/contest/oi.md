@@ -125,7 +125,7 @@ APIO 和 CTS 都以省为单位报名，一般按照 NOIP 的成绩排序来确�
 
 ### 美国：USACO
 
-官网地址： <https://www.usaco.org/> 
+官网地址： <http://www.usaco.org/> 
 
 USACO 或许是国内选手最熟悉的外国 OI 竞赛（可能也是中文题解最多的外国 OI 竞赛）。
 
