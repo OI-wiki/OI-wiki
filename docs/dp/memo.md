@@ -6,24 +6,24 @@
 
 我不会动态规划，只会搜索，我就会直接写一个粗暴的 [DFS](../search/dfs.md) :
 
-- 注：为了方便食用，本文中所有代码省略头文件
+- 注：为了方便阅读，本文中所有代码省略头文件。
 
 ```cpp
 int n, t;
-int tcost[103], mget[103];
+int t_cost[103], m_get[103];
 int ans = 0;
-void dfs(int pos, int tleft, int tans) {
-  if (tleft < 0) return;
+void dfs(int pos, int t_left, int t_ans) {
+  if (t_left < 0) return;
   if (pos == n + 1) {
-    ans = max(ans, tans);
+    ans = max(ans, t_ans);
     return;
   }
-  dfs(pos + 1, tleft, tans);
-  dfs(pos + 1, tleft - tcost[pos], tans + mget[pos]);
+  dfs(pos + 1, t_left, t_ans);
+  dfs(pos + 1, t_left - t_cost[pos], t_ans + m_get[pos]);
 }
 int main() {
   cin >> t >> n;
-  for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
+  for (int i = 1; i <= n; i++) cin >> t_cost[i] >> m_get[i];
   dfs(1, t, 0);
   cout << ans << endl;
   return 0;
@@ -42,23 +42,23 @@ emmmmmm....... $30$ 分
 
  **返回值！** 
 
-此时 $dfs(pos,tleft)$ 返回在时间 $tleft$ 内采集 **后**  $pos$ 个草药，能获得的最大收益
+此时 $dfs(pos,t\_left)$ 返回在时间 $t\_left$ 内采集 **后**  $pos$ 个草药，能获得的最大收益
 
 不理解就看看代码吧：
 
 ```cpp
 int n, time;
-int tcost[103], mget[103];
-int dfs(int pos, int tleft) {
+int t_cost[103], m_get[103];
+int dfs(int pos, int t_left) {
   if (pos == n + 1) return 0;
   int dfs1, dfs2 = -INF;
-  dfs1 = dfs(pos + 1, tleft);
-  if (tleft >= tcost[pos]) dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];
+  dfs1 = dfs(pos + 1, t_left);
+  if (t_left >= t_cost[pos]) dfs2 = dfs(pos + 1, t_left - t_cost[pos]) + m_get[pos];
   return max(dfs1, dfs2);
 }
 int main() {
   cin >> time >> n;
-  for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
+  for (int i = 1; i <= n; i++) cin >> t_cost[i] >> m_get[i];
   cout << dfs(1, time) << endl;
   return 0;
 }
@@ -74,30 +74,30 @@ int main() {
 
 想一想也不奇怪，因为我们的 dfs 没有依赖任何外部变量。
 
-旁白：像 $tcost[103]$ , $mget[103]$ 这种东西不算是外部变量，因为它们的值在 dfs 过程中不会被改变。
+旁白：像 $t\_cost[103]$ , $m\_get[103]$ 这种东西不算是外部变量，因为它们的值在 dfs 过程中不会被改变。
 
 然后？
 
-开个数组 $mem$ , 记录下来每个 $dfs(pos,tleft)$ 的返回值。刚开始把 $mem$ 中每个值都设成 $-1$ （代表没访问过）。每次刚刚进入一个 dfs 前（我们的 dfs 是递归调用的嘛），都检测 $mem[pos][tleft]$ 是否为 $-1$ , 如果是就正常执行并把答案记录到 $mem$ 中，否则？
+开个数组 $mem$ , 记录下来每个 $dfs(pos,t\_left)$ 的返回值。刚开始把 $mem$ 中每个值都设成 $-1$ （代表没访问过）。每次刚刚进入一个 dfs 前（我们的 dfs 是递归调用的嘛），都检测 $mem[pos][t\_left]$ 是否为 $-1$ , 如果是就正常执行并把答案记录到 $mem$ 中，否则？
 
  **直接返回 $mem$ 中的值！** 
 
 ```cpp
 int n, t;
-int tcost[103], mget[103];
+int t_cost[103], m_get[103];
 int mem[103][1003];
-int dfs(int pos, int tleft) {
-  if (mem[pos][tleft] != -1) return mem[pos][tleft];
-  if (pos == n + 1) return mem[pos][tleft] = 0;
+int dfs(int pos, int t_left) {
+  if (mem[pos][t_left] != -1) return mem[pos][t_left];
+  if (pos == n + 1) return mem[pos][t_left] = 0;
   int dfs1, dfs2 = -INF;
-  dfs1 = dfs(pos + 1, tleft);
-  if (tleft >= tcost[pos]) dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];
-  return mem[pos][tleft] = max(dfs1, dfs2);
+  dfs1 = dfs(pos + 1, t_left);
+  if (t_left >= t_cost[pos]) dfs2 = dfs(pos + 1, t_left - t_cost[pos]) + m_get[pos];
+  return mem[pos][t_left] = max(dfs1, dfs2);
 }
 int main() {
   memset(mem, -1, sizeof(mem));
   cin >> t >> n;
-  for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
+  for (int i = 1; i <= n; i++) cin >> t_cost[i] >> m_get[i];
   cout << dfs(1, t) << endl;
   return 0;
 }
@@ -107,7 +107,7 @@ int main() {
 
 > 在时间 $tleft$ 内采集 **后**  $pos$ 个草药，能获得的最大收益
 
-这能 ac ?
+这能 AC ?
 
 能。 **这就是 "采药" 那题的 AC 代码** 
 
@@ -116,7 +116,7 @@ int main() {
 #### 总结一下记忆化搜索是啥：
 
 - 不依赖任何 **外部变量** 
-- 答案以返回值的形式存在，而不能以参数的形式存在（就是不能将 dfs 定义成 $dfs(pos ,tleft , nowans )$ , 这里面的 nowans 不符合要求）。
+- 答案以返回值的形式存在，而不能以参数的形式存在（就是不能将 dfs 定义成 $dfs(pos,tleft,now\_ans)$ , 这里面的 now_ans 不符合要求）。
 - 对于相同一组参数，dfs 返回值总是相同的
 
 * * *
@@ -125,7 +125,7 @@ int main() {
 
 有人会问：记忆化搜索难道不是搜索？
 
-是搜索。但个人认为她更像 dp :
+是搜索。但个人认为它更像 dp :
 
 不信你看 $mem$ 的意义：
 
@@ -135,7 +135,7 @@ int main() {
 
 由上面的代码中可以看出：
 
->  $mem[pos][tleft] = max(mem[pos+1][tleft-tcost[pos]]+mget[pos]\ ,\ mem[pos+1][tleft])$ 
+>  $mem[pos][t\_left] = max(mem[pos+1][t\_left-t\_cost[pos]]+m\_get[pos],\ mem[pos+1][t\_left])$ 
 
 这不就是 dp 的状态转移？
 
@@ -176,7 +176,7 @@ int main() {
 
 举例：
 
- $dp_{i} = max\{dp_{j}+1\}\quad 1 \leq j < i and a_{j}<a_{i}$ （最长上升子序列）
+ $dp_{i} = max\{dp_{j}+1\}\quad 1 \leq j < i\ and\ a_{j}<a_{i}$ （最长上升子序列）
 
 转为
 
@@ -241,7 +241,7 @@ dp 状态很显然：
 
 - 千万别忘了加记忆化！（别笑，认真的
 - 边界条件要加在检查当前数组值是否为非法数值（防止越界）
-- 数组不要开小了（逃
+- 数组不要开小了
 
 ## 模板
 
@@ -254,7 +254,8 @@ int f(传入数值) {
   return g[规模];
 }
 int main() {
-  ... memset(g, 无效数值, sizeof(g));
-  ...
+  // ...
+  memset(g, 无效数值, sizeof(g));
+  // ...
 }
 ```
