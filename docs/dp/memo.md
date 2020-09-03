@@ -53,7 +53,8 @@ int dfs(int pos, int t_left) {
   if (pos == n + 1) return 0;
   int dfs1, dfs2 = -INF;
   dfs1 = dfs(pos + 1, t_left);
-  if (t_left >= t_cost[pos]) dfs2 = dfs(pos + 1, t_left - t_cost[pos]) + m_get[pos];
+  if (t_left >= t_cost[pos])
+    dfs2 = dfs(pos + 1, t_left - t_cost[pos]) + m_get[pos];
   return max(dfs1, dfs2);
 }
 int main() {
@@ -91,7 +92,8 @@ int dfs(int pos, int t_left) {
   if (pos == n + 1) return mem[pos][t_left] = 0;
   int dfs1, dfs2 = -INF;
   dfs1 = dfs(pos + 1, t_left);
-  if (t_left >= t_cost[pos]) dfs2 = dfs(pos + 1, t_left - t_cost[pos]) + m_get[pos];
+  if (t_left >= t_cost[pos])
+    dfs2 = dfs(pos + 1, t_left - t_cost[pos]) + m_get[pos];
   return mem[pos][t_left] = max(dfs1, dfs2);
 }
 int main() {
