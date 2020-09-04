@@ -86,39 +86,38 @@ bool cmp(const string& s, const string& t) {
 
 ### 确定字符串中不同子字符串的数量
 
-问题：给定长为 $n$ 的字符串 ，仅由小写英文字母组成，查找该字符串中不同子串的数量。
+问题：给定长为 $n$ 的字符串，仅由小写英文字母组成，查找该字符串中不同子串的数量。
 
 为了解决这个问题，我们遍历了所有长度为 $l=1,\cdots ,n$ 的子串。对于每个长度为 $l$ ，我们将其 Hash 值乘以相同的 $b$ 的幂次方，并存入一个数组中。数组中不同元素的数量等于字符串中长度不同的子串的数量，并此数字将添加到最终答案中。
 
-为了方便起见，我们将使用 $h [i] $ 作为 Hash 的前缀字符，并定义 $h[0]=0$ 。
+为了方便起见，我们将使用 $h [i]$ 作为 Hash 的前缀字符，并定义 $h[0]=0$ 。
 
 ??? note "参考代码"
     ```cpp
     int count_unique_substrings(string const& s) {
-        int n = s.size();
-        
-        const int b = 31;
-        const int m = 1e9 + 9;
-        vector<long long> b_pow(n);
-        b_pow[0] = 1;
-        for (int i = 1; i < n; i++)
-        b_pow[i] = (b_pow[i-1] * b) % m;
-        
-        vector<long long> h(n + 1, 0);
-        for (int i = 0; i < n; i++)
-            h[i+1] = (h[i] + (s[i] - 'a' + 1) * b_pow[i]) % m;
-        
-        int cnt = 0;
-        for (int l = 1; l <= n; l++) {
-            set<long long> hs;
-            for (int i = 0; i <= n - l; i++) {
-                long long cur_h = (h[i + l] + m - h[i]) % m;
-                cur_h = (cur_h * b_pow[n-i-1]) % m;
-                hs.insert(cur_h);
-            }
-            cnt += hs.size();
+      int n = s.size();
+    
+      const int b = 31;
+      const int m = 1e9 + 9;
+      vector<long long> b_pow(n);
+      b_pow[0] = 1;
+      for (int i = 1; i < n; i++) b_pow[i] = (b_pow[i - 1] * b) % m;
+    
+      vector<long long> h(n + 1, 0);
+      for (int i = 0; i < n; i++)
+        h[i + 1] = (h[i] + (s[i] - 'a' + 1) * b_pow[i]) % m;
+    
+      int cnt = 0;
+      for (int l = 1; l <= n; l++) {
+        set<long long> hs;
+        for (int i = 0; i <= n - l; i++) {
+          long long cur_h = (h[i + l] + m - h[i]) % m;
+          cur_h = (cur_h * b_pow[n - i - 1]) % m;
+          hs.insert(cur_h);
         }
-        return cnt;
+        cnt += hs.size();
+      }
+      return cnt;
     }
     ```
 
@@ -205,4 +204,4 @@ bool cmp(const string& s, const string& t) {
         }
         ```
 
- **本页面部分内容译自博文 [строковый хеш](https://github.com/e-maxx-eng/e-maxx-eng/blob/61aff51f658644424c5e1b717f14fb7bf054ae80/src/string/string-hashing.md)与其英文翻译版[String Hashing](https://cp-algorithms.com/string/string-hashing.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+ **本页面部分内容译自博文 [строковый хеш](https://github.com/e-maxx-eng/e-maxx-eng/blob/61aff51f658644424c5e1b717f14fb7bf054ae80/src/string/string-hashing.md) 与其英文翻译版 [String Hashing](https://cp-algorithms.com/string/string-hashing.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
