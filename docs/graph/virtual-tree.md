@@ -185,23 +185,24 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 ???+note "代码实现"
     ```cpp
+    
+    ```
 
 inline bool cmp(const int x,const int y) {
-    return id[x] < id[y];
+    return id[x]&lt; id[y];
 }
 
-void build() {
-    sort(h + 1, h + k + 1, cmp);
+void build() {sort(h + 1, h + k + 1, cmp);
     sta[top = 1]= 1, g.sz = 0, g.head[1]= -1;
 //1 号节点入栈，清空 1 号节点对应的邻接表，设置邻接表边数为 1
-    for (int i = 1, l; i &lt;= k; i += 1)
+    for (int i = 1, l; i&lt;= k; i += 1)
       if (h[i]!= 1) {
 //如果 1 号节点是关键节点就不要重复添加
         l = lca(h[i], sta[top]);
 //计算当前节点与栈顶节点的 LCA
         if (l != sta[top]) {
 //如果 LCA 和栈顶元素不同，则说明当前节点不再当前栈所存的链上
-          while (id[l]&lt; id\[sta[top - 1]])
+          while (id[l]&lt;id\[sta[top - 1]])
 //当次大节点的 Dfs 序大于 LCA 的 Dfs 序
             g.push(sta[top - 1], sta[top]), top--;
 //把与当前节点所在的链不重合的链连接掉并且弹出
@@ -216,10 +217,11 @@ void build() {
         g.head\[h[i]] = -1, sta[++top]= h[i];
 //当前节点必然是第一次入栈，清空邻接表并入栈
       }
-    for (int i = 1; i &lt; top; i += 1)
+    for (int i = 1; i&lt;top; i += 1)
       g.push(sta[i], sta[i + 1]);//剩余的最后一条链连接一下
     return;
 }
+
     ```
 
 于是我们就学会了虚树的建立了！
