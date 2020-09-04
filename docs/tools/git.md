@@ -1,13 +1,13 @@
 ???+note
-    本页面将着重介绍 Git 这一版本控制系统，与 GitHub 相关的内容，请参考 [GitHub 帮助](https://docs.github.com/cn) 和 [如何参与 - OI Wiki](https://oi-wiki.org/intro/htc/)。
+    本页面将着重介绍 Git 这一版本控制系统，与 GitHub 相关的内容，请参考 [GitHub 帮助](https://docs.github.com/cn) 和 [如何参与 - OI Wiki](https://oi-wiki.org/intro/htc/) 。
 
-Git 是目前使用最广泛的版本控制系统。**OI Wiki** 也使用了 Git 作为版本控制系统。
+Git 是目前使用最广泛的版本控制系统。 **OI Wiki** 也使用了 Git 作为版本控制系统。
 
 ## 安装
 
 对于 Windows 系统，可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Git 的安装包。
 
-对于 Linux 系统，可以通过包管理器进行安装。不同 Linux 发行版的安装方式可能不同，[Git 官网](https://git-scm.com/download/linux) 给出了不同系统下的安装方式。
+对于 Linux 系统，可以通过包管理器进行安装。不同 Linux 发行版的安装方式可能不同， [Git 官网](https://git-scm.com/download/linux) 给出了不同系统下的安装方式。
 
 对于 Mac 系统，只需在终端执行 `brew install git` 命令即可安装。
 
@@ -15,8 +15,8 @@ Git 是目前使用最广泛的版本控制系统。**OI Wiki** 也使用了 Git
 
 Git 的配置文件，主要存储在三个位置：
 
-1. `/etc/gitconfig`：该配置文件对系统上的所有用户，以及该系统上的所有仓库均有效。
-2. `~/.gitconfig`：该配置文件对系统的当前用户，以及该系统上的所有仓库有效。
+1.  `/etc/gitconfig` ：该配置文件对系统上的所有用户，以及该系统上的所有仓库均有效。
+2.  `~/.gitconfig` ：该配置文件对系统的当前用户，以及该系统上的所有仓库有效。
 3. 当前仓库目录下的 `.git/config` 文件：只适用于该仓库。
 
 局部设置会自动覆盖全局设置。因此如果需要在某个仓库应用特定的设置的话，只需更改该仓库下的特定设置即可，不会对全局设置造成影响。
@@ -42,7 +42,7 @@ $ git config --global user.email hi@oi-wiki.org
 $ git config --global core.editor emacs
 ```
 
-执行如上命令可以将编辑器更改为 [Emacs](./editor/emacs.md)。
+执行如上命令可以将编辑器更改为 [Emacs](./editor/emacs.md) 。
 
 在 Windows 下，配置编辑器的过程可能会稍有麻烦，具体配置方式可以在网络上查找相关资料。
 
@@ -111,7 +111,6 @@ Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
 
         new file:   README.md
-
 ```
 
 这时 `README.md` 已经纳入了版本跟踪，放入了暂存区。我们接下来只需执行 `git commit` 命令就可以提交这次更改了。
@@ -153,7 +152,7 @@ $ git commit # 接下来会弹出编辑器页面，你需要写下 commit 信息
 
 我们现在重点观察一下 commit 的信息。
 
-`master` 表示当前位于 `master` 分支（关于分支的问题，下文将会详细介绍），`b13c84e` 表示本次提交的 SHA-1 校验和的前几位，后面则是本次提交的信息。
+ `master` 表示当前位于 `master` 分支（关于分支的问题，下文将会详细介绍）， `b13c84e` 表示本次提交的 SHA-1 校验和的前几位，后面则是本次提交的信息。
 
 需要特别关注的是这里的 SHA-1 校验码，每个校验码都与某个时刻仓库的一个快照相对应。利用这一特性我们可以访问历史某个时刻的仓库快照，并在该快照上进行更改。
 
@@ -161,8 +160,8 @@ $ git commit # 接下来会弹出编辑器页面，你需要写下 commit 信息
 
 另外，commit 过程中可以利用几个参数来简化提交过程：
 
-- `-a`：自动将非暂存区内的提交放入暂存区，然后提交暂存区中的所有更改。需要注意的是未被跟踪的文件（新创建的文件）不会被自动加入暂存区，需要用 `git add` 命令手动添加。
-- `-m`：该参数后跟提交信息，表示以该提交信息提交本次更改。
+-  `-a` ：自动将非暂存区内的提交放入暂存区，然后提交暂存区中的所有更改。需要注意的是未被跟踪的文件（新创建的文件）不会被自动加入暂存区，需要用 `git add` 命令手动添加。
+-  `-m` ：该参数后跟提交信息，表示以该提交信息提交本次更改。
 
 ### 查看提交记录
 
@@ -192,7 +191,7 @@ Date:   Fri May 10 22:25:56 2019 +0800
 1. 直接修改主分支不仅会使历史记录混乱，也可能会造成一些危险的后果。
 2. 通过分支，我们可以专注于当前的工作。如果我们需要完成两个不同的工作，只需开两个分支即可，两个分支间的工作互不干扰。
 
-利用 `git branch` 命令可以创建分支，`git checkout` 命令可以切换分支。
+利用 `git branch` 命令可以创建分支， `git checkout` 命令可以切换分支。
 
 ```bash
 $ git branch dev # 创建一个叫做 dev 的新分支
@@ -210,7 +209,7 @@ $ git branch # 查看所有分支信息
 
 dev 前面的星号代表我们当前的分支为 dev，我们的修改都将记录在这个分支上。
 
-我们可以在这个分支上做点小修改，比如创建一个新文件 `test.cpp`。
+我们可以在这个分支上做点小修改，比如创建一个新文件 `test.cpp` 。
 
 ```bash
 $ vi test.cpp
@@ -225,4 +224,4 @@ $ git commit -m "QAQ"
 
 ## 参考资料与注释
 
-[^note1]: `git log` 的更多用法可以参考 [Pro Git Book v2](https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2)。
+[^note1]:  `git log` 的更多用法可以参考 [Pro Git Book v2](https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2) 。
