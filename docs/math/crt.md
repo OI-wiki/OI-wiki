@@ -126,7 +126,6 @@ $$
     x_3 \equiv ((a_3 - x_1) r_{13} - x_2) r_{23} \pmod{p_3}.
 
 $$
-
 ??? note "参考代码"
     ```cpp
     for (int i = 0; i < k; ++i) {
@@ -168,13 +167,13 @@ $$
 否则，根据 [欧拉定理](./fermat.md) ，可知所求为：
 $$
 
-G^{\\sum\_{k\\mid n}\\binom{n}{k} \\bmod 999~911~658} \\bmod 999~911~659
+G^{\\sum\_{k\\mid n}\\binom{n}{k}\\bmod 999~911~658}\\bmod 999~911~659
 
 $$
 现在考虑如何计算：
 $$
 
-\\sum\_{k\\mid n}\\binom{n}{k} \\bmod 999~911~658
+\\sum\_{k\\mid n}\\binom{n}{k}\\bmod 999~911~658
 
 $$
 因为 $999~911~658$ 不是质数，无法保证 $\forall x \in [1,999~911~657]$ ， $x$ 都有逆元存在，上面这个式子我们无法直接计算。
@@ -185,8 +184,7 @@ $$
 $$
 
 \\begin{cases}
-x \\equiv a_1 \\pmod 2\\x \\equiv a_2 \\pmod 3\\x \\equiv a_3 \\pmod {4679}\\x \\equiv a_4 \\pmod {35617}
-\\end{cases}
+x\\equiv a_1\\pmod 2\\x\\equiv a_2\\pmod 3\\x\\equiv a_3\\pmod {4679}\\x\\equiv a_4\\pmod {35617}\\end{cases}
 
 $$
 而计算一个组合数对较小的质数取模后的结果，可以利用 [卢卡斯定理](./lucas.md) 。
@@ -197,7 +195,7 @@ $$
 $$
 
 \\begin{cases}
-x &\\equiv a_1 \\pmod {n_1}\\x &\\equiv a_2 \\pmod {n_2}\\&\\vdots\\x &\\equiv a_k \\pmod {n_k}\\\\end{cases}
+x &\\equiv a_1\\pmod {n_1}\\x &\\equiv a_2\\pmod {n_2}\\&\\vdots\\x &\\equiv a_k\\pmod {n_k}\\\\end{cases}
 
 $$
 与 PMR(Primorial Mixed Radix) 表示
@@ -210,8 +208,7 @@ $$
 $$
 
 \\begin{aligned}
-b*1&=a_1 \\bmod n_1\\b_2&=(a_2-b_1)c*{1,2} \\bmod n*2\\b_3&=((a_3-b_1')c*{1,3}-x*2')c*{2,3} \\bmod n*3\\&...\\b_k&=(...((a_k-b_1)c*{1,k}-b*2)c*{2,k})-...)c\_{k-1,k} \\bmod n_k
-\\end{aligned}
+b*1&=a_1\\bmod n_1\\b_2&=(a_2-b_1)c*{1,2}\\bmod n*2\\b_3&=((a_3-b_1')c*{1,3}-x*2')c*{2,3}\\bmod n*3\\&...\\b_k&=(...((a_k-b_1)c*{1,k}-b*2)c*{2,k})-...)c\_{k-1,k}\\bmod n_k\\end{aligned}
 
 $$
 其中 $c_{i,j}$ 表示 $n_i$ 对 $n_j$ 的逆元， $c_{i,j}n_i \equiv 1 \pmod {n_j}$ 
