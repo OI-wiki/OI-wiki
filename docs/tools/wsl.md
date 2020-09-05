@@ -12,7 +12,9 @@ author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613
 
 众所周知，尽管现在大部分学校的竞赛练习环境都是构建 XP 等 Windows 系操作系统，但是在 NOI 系列赛中，早已用上了 NOI Linux 这个 Ubuntu 操作系统的阉割版。
 
-> ![NOI 竞赛的环境要求](./images/WSL21.png)[^ref2]
+> ![NOI 竞赛的环境要求](./images/WSL21.png)
+> 
+> NOI 竞赛的环境要求[^ref2]
 >
 > 或许大家对自己 Windows 环境下的 Dev-C++ 等都已熟识，但是当场景突然切换到 Linux 的时候，你会不会不知所措？
 >
@@ -21,7 +23,9 @@ author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613
 >
 > 为了防止考场上出现此类尴尬情况，我们必须要提前熟悉下 Linux 系统的操作方法。
 
-![平台差异（转自百度文库“NOIP 标准评测系统及相关问题”）](./images/WSL3.png)[^ref3]
+![平台差异（转自百度文库“NOIP 标准评测系统及相关问题”）](./images/WSL3.png)
+
+平台差异（转自百度文库“NOIP 标准评测系统及相关问题”）[^ref3]
 
 虽然 NOI 的官网已经放出了 NOI Linux 的 ISO 镜像，但是如果跑虚拟机的话，配置也相当麻烦，包括激活 VMware，用 VMware 装系统开虚拟机等步骤，且 NOI Linux 默认自带图形界面，无法保证在低配系统上流畅运行。
 
@@ -139,7 +143,7 @@ sudo apt upgrade -y
 
 ![示例](./images/WSL9.png)
 
-### 安装中文环境[^ref6]
+### 安装中文环境
 
 ```bash
 sudo apt install  language-pack-zh-han* -y
@@ -163,7 +167,7 @@ sudo dpkg-reconfigure locales
 
 之后关闭 Ubuntu 并重启，系统就会变成中文。
 
-再依次输入下列命令，把 `man` 帮助页替换为中文。[^ref7]
+再依次输入下列命令，把 `man` 帮助页替换为中文。[^ref6]
 
 ```bash
 sudo apt install manpages-zh
@@ -174,7 +178,7 @@ sudo vi /etc/manpath.config
 
 可以用 `man help` 测试。
 
-### 安装编译环境[^ref8]
+### 安装编译环境[^ref7]
 
 ```bash
 sudo apt install build-essential vim ddd gdb fpc emacs gedit anjuta lazarus -y
@@ -245,7 +249,7 @@ sudo apt-get install xterm -y
 
 退出 Ubuntu。
 
-从 [Xming X Server 下载地址]((https://sourceforge.net/projects/xming/) 下载最新的 Xming Server，然后安装：
+从 [Xming X Server 下载地址](https://sourceforge.net/projects/xming/) 下载最新的 Xming Server，然后安装：
 
 ![](./images/WSL16.png)
 
@@ -309,7 +313,7 @@ xfce4-session
 - [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://dowww.spencerwoo.com) 
 - [GitHub 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL) 
 
-## 参考资料
+## 参考资料与注释
 
 [^ref1]: [洛谷日报 #6](https://www.luogu.com.cn/blog/asfr/Run-Ubuntu-On-Windows10) 
 [^ref2]: [NOI系列活动标准竞赛环境(2016年11月08日更新)](http://www.noi.cn/newsview.html?id=559&hash=E4E249&type=11) 
@@ -317,5 +321,4 @@ xfce4-session
 [^ref4]: [适用于 Linux 的 Windows 子系统安装指南 (Windows 10), Microsoft Docs](https://docs.microsoft.com/zh-cn/windows/wsl/install-win10) 
 [^ref5]: [WSL-Ubuntu 维基，ubuntu wiki](https://wiki.ubuntu.com/WSL) 
 [^ref6]: [Ubuntu 的 man 命令帮助如何设置中文版，Frank 看庐山，2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523) 
-[^ref7]: [ubuntu 的 man 命令帮助如何设置中文版](https://blog.csdn.net/qq_14989227/article/details/72954523) 
-[^ref8]:  [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97) 
+[^ref7]:  [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97) 
