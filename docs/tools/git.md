@@ -9,7 +9,7 @@ Git 是目前使用最广泛的版本控制系统。 **OI Wiki** 也使用了 Gi
 
 对于 Linux 系统，可以通过包管理器进行安装。不同 Linux 发行版的安装方式可能不同， [Git 官网](https://git-scm.com/download/linux) 给出了不同系统下的安装方式。
 
-对于 macOS 系统，只需在终端执行 `brew install git` 命令即可安装。（需安装 [Homebrew](https://brew.sh/)）
+对于 macOS 系统，只需在终端执行 `brew install git` 命令即可安装。（需安装 [Homebrew](https://brew.sh/) ）
 
 ## 配置
 
