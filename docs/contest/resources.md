@@ -28,7 +28,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -  [POJ](http://poj.org/) ：北京大学在线评测系统，始于 2003 年，国内历史最悠久的 OJ 之一。内有很多英文题，既有基础题，也有值得一试的好题。
 -  [PTA（拼题 A）](https://pintia.cn/) ：始于 2016 年，浙江大学衍生的杭州百腾教育科技有限公司产品。
 -  [清澄](http://www.tsinsen.com/) ：始于 2005 年，由 [胡伟栋](http://www.hhwdd.com/) 开发。自 2019 年 9 月 1 日起不再对外提供服务。
--  [Universal Online Judge](https://uoj.ac/) ：始于 2014 年，Universal 取通用之意， [项目开源](https://github.com/UniversalOJ/UOJ-System)；[VFK](https://github.com/vfleaking) 的 OJ：多原创比赛题和 CCF/THU 题，难度较高。
+-  [Universal Online Judge](https://uoj.ac/) ：始于 2014 年，Universal 取通用之意， [项目开源](https://github.com/UniversalOJ/UOJ-System) ； [VFK](https://github.com/vfleaking) 的 OJ：多原创比赛题和 CCF/THU 题，难度较高。
 -  [Vijos](https://vijos.org/) ：始于 2005 年。 [服务端](https://github.com/vijos/vj4) 和 [评测机](https://github.com/vijos/jd4) 等项目开源。
 -  [ZOJ](https://zoj.pintia.cn/home) ：浙江大学在线评测系统，始于 2001 年。
 
