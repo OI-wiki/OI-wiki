@@ -1,4 +1,4 @@
-author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm
+author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm, ayalhw
 
 ![头图](./images/WSL1.png)
 
@@ -57,6 +57,10 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 性能方面，WSL 和 WSL 2 各有优势。 **如果不和本机系统交互，WSL 2 的性能非常不错，但如果访问 Windows 文件系统下的文件，IO 性能会下降很多。** 
 
 微软给出的建议是，如果经常使用 WSL 来访问 Windows 文件系统上的项目文件，或者需要对相同的文件使用 Windows 和 Linux 工具进行交叉编译，那么建议这些用户使用 WSL 1，因为目前 WSL 1 能跨 OS 文件系统实现更高的性能。
+
+???+ note
+    目前 WSL 1 完全不支持 systemd（这意味着一些需要 systemd 的功能无法实现或需要别的 hack），WSL 2 可以使用 [genie](https://github.com/arkane-systems/genie) 。
+    此外， [yuk7/arch-systemctl-alt](https://github.com/yuk7/arch-systemctl-alt) 项目提供了一个在 WSL 1 与 2 都可用的 alternative script，但是它只具有部分兼容且只在 ArchWSL 进行了测试。
 
 ## 启用 WSL[^ref4]
 
@@ -171,9 +175,7 @@ sudo dpkg-reconfigure locales
 
 ```bash
 sudo apt install manpages-zh
-sudo vi /etc/manpath.config
-:1,$s#/usr/share/man#/usr/share/man/zh_CN#g
-:wq
+sudo sed -i 's|/usr/share/man|/usr/share/man/zh_CN|g' /etc/manpath.config
 ```
 
 可以用 `man help` 测试。
