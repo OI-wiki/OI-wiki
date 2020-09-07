@@ -169,69 +169,69 @@ $f_v\leftarrow f_u$可以体现换根，即以$u$为根转移到以$v$为根。�
 于是在第二次 DFS 遍历整棵树并状态转移$f_v=f_u + n - 2 \times s_v$，那么就能求出以每个结点为根时的深度和了。最后只需要遍历一次所有根节点深度和就可以求出答案。
 
 ??? note "参考代码"
-  ```cppp
-  #include <bits/stdc++.h>
-  
-  using namespace std;
-  
-  int head[1000010<<1],tot;
-  long long n, size[1000010], dep[1000010];
-  long long f[1000010];
-  
-  struct node {
-      int to, next;
-  } e[1000010<<1];
-  
-  void add(int u, int v) {
-      e[++tot] = node{v, head[u]};
-      head[u] = tot;
-  }
-  
-  void dfs(int u, int fa) {
-      size[u] = 1;
-      dep[u] = dep[fa] + 1;
-      for (int i = head[u]; i; i = e[i].next) {
-          int v = e[i].to;
-          if (v != fa) {
-              dfs(v, u);
-              size[u] += size[v];
-          }
-      }
-  }
-  
-  void get_ans(int u, int fa) {
-      for (int i = head[u]; i; i = e[i].next) {
-          int v = e[i].to;
-          if (v != fa) {
-              f[v] = f[u] - size[v] * 2 + n;
-              get_ans(v, u);
-          }
-      }
-  }
-  
-  int main() {
-      scanf("%lld", &n);
-      int u, v;
-      for (int i = 1; i <= n - 1; i ++) {
-          scanf("%d %d", &u, &v);
-          add(u, v);
-          add(v, u);
-      }
-      dfs(1, 1);
-      for (int i = 1; i <= n; i ++) f[1] += dep[i];
-      get_ans(1,1);
-      long long int ans = -1;
-      int id;
-      for (int i = 1; i <= n; i ++) {
-          if (f[i] > ans) {
-              ans = f[i];
-              id = i;
-          }
-      }
-      printf("%d\n", id);
-      return 0;
-  }
-  ```
+    ```cpp
+    #include <bits/stdc++.h>
+    
+    using namespace std;
+    
+    int head[1000010<<1],tot;
+    long long n, size[1000010], dep[1000010];
+    long long f[1000010];
+    
+    struct node {
+        int to, next;
+    } e[1000010<<1];
+    
+    void add(int u, int v) {
+        e[++tot] = node{v, head[u]};
+        head[u] = tot;
+    }
+    
+    void dfs(int u, int fa) {
+        size[u] = 1;
+        dep[u] = dep[fa] + 1;
+        for (int i = head[u]; i; i = e[i].next) {
+            int v = e[i].to;
+            if (v != fa) {
+                dfs(v, u);
+                size[u] += size[v];
+            }
+        }
+    }
+    
+    void get_ans(int u, int fa) {
+        for (int i = head[u]; i; i = e[i].next) {
+            int v = e[i].to;
+            if (v != fa) {
+                f[v] = f[u] - size[v] * 2 + n;
+                get_ans(v, u);
+            }
+        }
+    }
+    
+    int main() {
+        scanf("%lld", &n);
+        int u, v;    
+        for (int i = 1; i <= n - 1; i ++) {
+            scanf("%d %d", &u, &v);
+            add(u, v);
+            add(v, u);
+        }
+        dfs(1, 1);
+        for (int i = 1; i <= n; i ++) f[1] += dep[i];
+        get_ans(1,1);
+        long long int ans = -1;
+        int id;
+        for (int i = 1; i <= n; i ++) {
+            if (f[i] > ans) {
+                ans = f[i];
+                id = i;
+            }
+        }
+        printf("%d\n", id);
+        return 0;
+    }
+    ```
 
 ### 习题
 
