@@ -4,10 +4,10 @@
 
 队列（queue）是一种具有「先进入队列的元素一定先出队列」性质的表。由于该性质，队列通常也被称为先进先出（first in first out）表，简称 FIFO 表。
 
-C++ STL 中实现了 [队列 `std::queue`](https://zh.cppreference.com/w/cpp/container/queue) 和 [优先队列 `std::priority_queue`](https://zh.cppreference.com/w/cpp/container/priority_queue) 两个类，定义于头文件 [`<queue>`](https://zh.cppreference.com/w/cpp/header/queue) 中。
+C++ STL 中实现了 [队列 `std::queue` ](https://zh.cppreference.com/w/cpp/container/queue) 和 [优先队列 `std::priority_queue` ](https://zh.cppreference.com/w/cpp/container/priority_queue) 两个类，定义于头文件 [ `<queue>` ](https://zh.cppreference.com/w/cpp/header/queue) 中。
 
 ???+note
-    `std::queue` 是容器适配器，默认的底层容器为双端队列 [`std::deque`](https://zh.cppreference.com/w/cpp/container/deque)。
+     `std::queue` 是容器适配器，默认的底层容器为双端队列 [ `std::deque` ](https://zh.cppreference.com/w/cpp/container/deque) 。
 
 ## 队列模拟
 
@@ -55,7 +55,7 @@ int q[SIZE], ql = 1, qr;
 
 使用数组模拟队列会导致一个问题：随着时间的推移，整个队列会向数组的尾部移动，一旦到达数组的最末端，即使数组的前端还有空闲位置，再进行入队操作也会导致溢出（这种数组里实际有空闲位置而发生了上溢的现象被称为“假溢出”）。
 
-解决假溢出的办法是采用循环的方式来组织存放队列元素的数组，即将数组下标为 0 的位置看做是最后一个位置的后继。（ 数组下标为 `x` 的元素，它的后继为 `(x + 1) % SIZE` ）。这样就形成了循环队列。
+解决假溢出的办法是采用循环的方式来组织存放队列元素的数组，即将数组下标为 0 的位置看做是最后一个位置的后继。（数组下标为 `x` 的元素，它的后继为 `(x + 1) % SIZE` ）。这样就形成了循环队列。
 
 ## 例题
 
@@ -170,6 +170,7 @@ int q[SIZE], ql = 1, qr;
     /******************heading******************/
     const int M = 5e4 + 5, P = 505;
     int I, m, p;
+    ```
 
     inline int _(int d) { return (d + p) % p; }
     namespace DQ {       // 双栈模拟双端队列
