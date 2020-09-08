@@ -1,4 +1,4 @@
-author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm
+author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm, ayalhw
 
 ![头图](./images/WSL1.png)
 
@@ -8,13 +8,15 @@ author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613
 
 * * *
 
-## 引言
+## 引言[^ref1]
 
 众所周知，尽管现在大部分学校的竞赛练习环境都是构建 XP 等 Windows 系操作系统，但是在 NOI 系列赛中，早已用上了 NOI Linux 这个 Ubuntu 操作系统的阉割版。
 
 > ![NOI 竞赛的环境要求](./images/WSL21.png)
 >
->  [NOI 系列官方环境要求](http://www.noi.cn/newsview.html?id=559&hash=E4E249&type=11) 或许大家对自己 Windows 环境下的 Dev-C++ 等都已熟识，但是当场景突然切换到 Linux 的时候，你会不会不知所措？
+> NOI 竞赛的环境要求[^ref2]
+>
+> 或许大家对自己 Windows 环境下的 Dev-C++ 等都已熟识，但是当场景突然切换到 Linux 的时候，你会不会不知所措？
 >
 > 「想用<kbd>Ctrl</kbd>+<kbd>C</kbd>复制，结果退出了程序」  
 > 「平时 AC 的程序模板到了 Linux 上就 WA」……
@@ -23,11 +25,13 @@ author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613
 
 ![平台差异（转自百度文库“NOIP 标准评测系统及相关问题”）](./images/WSL3.png)
 
+平台差异（转自百度文库“NOIP 标准评测系统及相关问题”）[^ref3]
+
 虽然 NOI 的官网已经放出了 NOI Linux 的 ISO 镜像，但是如果跑虚拟机的话，配置也相当麻烦，包括激活 VMware，用 VMware 装系统开虚拟机等步骤，且 NOI Linux 默认自带图形界面，无法保证在低配系统上流畅运行。
 
 Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 年 5 月更新中升级到了 WSL 2。截至 2020 年 6 月 1 日，WSL 已支持安装 Ubuntu、openSUSE Leap、Kali、Debian……等主流 Linux 分发版。但 WSL 并不支持 NOI 评测用的 Arbiter。
 
-???+ note "[Linux 子系统（WSL）](https://zh.wikipedia.org/wiki/%E9%80%82%E7%94%A8%E4%BA%8E_Linux_%E7%9A%84_Windows_%E5%AD%90%E7%B3%BB%E7%BB%9F) "
+???+ note "[什么是 Linux 子系统（WSL）](https://zh.wikipedia.org/zh-cn/%E9%80%82%E7%94%A8%E4%BA%8E_Linux_%E7%9A%84_Windows_%E5%AD%90%E7%B3%BB%E7%BB%9F) "
     适用于 Linux 的 Windows 子系统（英语：Windows Subsystem for Linux，简称 WSL）是一个为在 Windows 10 和 Windows Server 2019 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。
     
     WSL 可让开发人员按原样运行 GNU/Linux 环境 - 包括大多数命令行工具、实用工具和应用程序 - 且不会产生虚拟机开销。
@@ -54,7 +58,11 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 
 微软给出的建议是，如果经常使用 WSL 来访问 Windows 文件系统上的项目文件，或者需要对相同的文件使用 Windows 和 Linux 工具进行交叉编译，那么建议这些用户使用 WSL 1，因为目前 WSL 1 能跨 OS 文件系统实现更高的性能。
 
-## 启用 WSL
+???+ note
+    目前 WSL 1 完全不支持 systemd（这意味着一些需要 systemd 的功能无法实现或需要别的 hack），WSL 2 可以使用 [genie](https://github.com/arkane-systems/genie) 。
+    此外， [yuk7/arch-systemctl-alt](https://github.com/yuk7/arch-systemctl-alt) 项目提供了一个在 WSL 1 与 2 都可用的 alternative script，但是它只具有部分兼容且只在 ArchWSL 进行了测试。
+
+## 启用 WSL[^ref4]
 
 ???+ warning
     本部分适用于 Windows 10 秋季创意者更新（内部版本 16215）和更高版本。
@@ -85,22 +93,22 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 
 5. 重启
 
-## 安装与使用 Ubuntu
+## 安装与使用 Ubuntu[^ref5]
 
-本章以 Ubuntu 16.04 LTS 为例。
+本章以 Ubuntu 长期更新版为例。
 
 ### 安装
 
 ![搜索页](./images/WSL5.png)
 
-进入 Microsoft Store，搜索 "Ubuntu"，然后选择“Ubuntu”，点击“安装”进行安装。也可打开 <https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6> 
+进入 Microsoft Store，搜索“Ubuntu”，然后选择“Ubuntu”，点击“安装”进行安装。也可打开 [Ubuntu 的商店页面](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6) 。
 
 ???+ warning
     Microsoft Store 的 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。如果想获取稳定的 Ubuntu 长期支持版，可以在 Microsoft Store 安装 Ubuntu 的 LTS 版本。
 
 ### 运行 Ubuntu
 
-打开“开始”菜单找到 Ubuntu 并启动，或使用 wsl 命令从 Windows 命令行启动。
+打开“开始”菜单找到 Ubuntu 并启动，或使用 `wsl` 命令从 Windows 命令行启动。
 
 可以为 Ubuntu 创建应用程序磁贴或固定至任务栏，以在下次方便地打开。
 
@@ -163,18 +171,16 @@ sudo dpkg-reconfigure locales
 
 之后关闭 Ubuntu 并重启，系统就会变成中文。
 
-再依次输入下列命令，把 `man` 帮助页替换为中文。
+再依次输入下列命令，把 `man` 帮助页替换为中文。[^ref6]
 
 ```bash
 sudo apt install manpages-zh
-sudo vi /etc/manpath.config
-:1,$s#/usr/share/man#/usr/share/man/zh_CN#g
-:wq
+sudo sed -i 's|/usr/share/man|/usr/share/man/zh_CN|g' /etc/manpath.config
 ```
 
 可以用 `man help` 测试。
 
-### 安装编译环境
+### 安装编译环境[^ref7]
 
 ```bash
 sudo apt install build-essential vim ddd gdb fpc emacs gedit anjuta lazarus -y
@@ -185,7 +191,7 @@ chmod +x install.sh && ./install.sh
 ```
 
 这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install 程序名` 来安装别的。
-若想安装其他版本可以参考 [这个](https://www.cnblogs.com/EasonJim/p/7144017.html) 。
+若想安装其他版本可以参考 [该博客给出的 apt-get 使用方法](https://www.cnblogs.com/EasonJim/p/7144017.html) 。
 
 以下为一个示例程序：
 
@@ -245,7 +251,7 @@ sudo apt-get install xterm -y
 
 退出 Ubuntu。
 
-从 <https://sourceforge.net/projects/xming/> 下载最新的 Xming Server，然后安装：
+从 [Xming X Server 下载地址](https://sourceforge.net/projects/xming/) 下载最新的 Xming Server，然后安装：
 
 ![](./images/WSL16.png)
 
@@ -291,35 +297,36 @@ xfce4-session
 
     可以用自带命令行，或者使用图形界面。
     比如说 vim，在命令行中键入 `man vim` ，会给出一份详尽的使用方法。
+
     亦可使用 `vim --help` 。
+
 -   占用量大？
 
     这个系统和 Windows 10 共用 Host，所以理论上是比虚拟机占用小的。而且只要别装太多应用，应该还是可以带动的。
+
 -   汉语化时提示不存在？
 
     玄学问题，可以忽略。修了个疏忽导致的错误，可以重上一下试试。
 
-## 参考资料
+## 外部链接
 
-1.  [洛谷日报 #6](https://www.luogu.com.cn/blog/asfr/Run-Ubuntu-On-Windows10) 
-2.  [适用于 Linux 的 Windows 子系统安装指南 (Windows 10), Microsoft Docs](https://docs.microsoft.com/zh-cn/windows/wsl/install-win10) 
-3.  [适用于 Linux 的 Windows 子系统，Wikipedia](https://zh.wikipedia.org/zh-hans/%E9%80%82%E7%94%A8%E4%BA%8E_Linux_%E7%9A%84_Windows_%E5%AD%90%E7%B3%BB%E7%BB%9F) 
-4.  [WSL-Ubuntu 维基，ubuntu wiki](https://wiki.ubuntu.com/WSL) 
-5.  [Windows 10 版本 1803 中命令行的新增功能，Microsoft Devblogs](https://devblogs.microsoft.com/commandline/windows10v1803/) 
-6.  [NOIP 标准评测系统及相关问题，smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html) 
-7.  [WSL, 百度百科](https://baike.baidu.com/item/wsl/20359185) 
-8.  [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97) 
-9.  [Windows Subsystem for Linux Documentation, MSDN](https://docs.microsoft.com/zh-cn/windows/wsl/about) 
-10.  [NOI 系列活动标准竞赛环境，2016-11-08, NOI 官网](http://www.noi.cn/2016-11-08-03-42-01) 
-11.  [购买 Ubuntu, Microsoft Store](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6) 
-12.  [Ubuntu 镜像使用帮助，清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/) 
-13.  [Ubuntu 的 man 命令帮助如何设置中文版，Frank 看庐山，2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523) 
-14.  [Xming X Server for Windows, SourceForge](https://sourceforge.net/projects/xming/) 
-15.  [Sudo, Wikipedia](https://zh.wikipedia.org/wiki/Sudo) 
-16.  [ubuntu 的 man 命令帮助如何设置中文版](https://blog.csdn.net/qq_14989227/article/details/72954523) 
-
-## 延伸内容
-
+-  [关于适用于 Linux 的 Windows 子系统](https://docs.microsoft.com/zh-cn/windows/wsl/about) 
+-  [Ubuntu 镜像使用帮助，清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/) 
 -  [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://dowww.spencerwoo.com) 
-
 -  [GitHub 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL) 
+
+## 参考资料与注释
+
+[^ref1]:  [洛谷日报 #6](https://www.luogu.com.cn/blog/asfr/Run-Ubuntu-On-Windows10) 
+
+[^ref2]:  [NOI 系列活动标准竞赛环境（2016 年 11 月 08 日更新）](http://www.noi.cn/newsview.html?id=559&hash=E4E249&type=11) 
+
+[^ref3]:  [NOIP 标准评测系统及相关问题，smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html) 
+
+[^ref4]:  [适用于 Linux 的 Windows 子系统安装指南 (Windows 10), Microsoft Docs](https://docs.microsoft.com/zh-cn/windows/wsl/install-win10) 
+
+[^ref5]:  [WSL-Ubuntu 维基，ubuntu wiki](https://wiki.ubuntu.com/WSL) 
+
+[^ref6]:  [Ubuntu 的 man 命令帮助如何设置中文版，Frank 看庐山，2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523) 
+
+[^ref7]:  [Run Bash on Ubuntu on Windows, Mike Harsh, 2016-05-30, Windows Blog](https://blogs.windows.com/buildingapps/2016/03/30/run-bash-on-ubuntu-on-windows/#cie8WdR3uSjgR5Ru.97) 
