@@ -252,7 +252,7 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
       for (int i = 1; i <= (N << 1); ++i) lg[i] = lg[i >> 1] + 1;
       for (int i = 1; i <= (N << 1) - 1; ++i) st[0][i] = dfn[i];
       for (int i = 1; i <= lg[(N << 1) - 1]; ++i)
-        for (int j = 1; j + (1 << n) - 1 <= ((N << 1) - 1); ++j)
+        for (int j = 1; j + (1 << i) - 1 <= ((N << 1) - 1); ++j)
             st[i][j] = dep[st[i - 1][j]] < dep[st[i - 1][j + (1 << i - 1)]
                             ? st[i - 1][j]
                             : st[i - 1][j + (1 << i - 1)];
