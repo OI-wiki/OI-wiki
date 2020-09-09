@@ -213,69 +213,61 @@ $$
 
 ### 算法实现
 
-以下是高斯消元的算法实现。在当前列选择最大值作为列主元素。输入是矩阵 $\textbf a$，该矩阵的最右一列是向量 $\textbf b$。函数返回值是方程解的个数（无解, 一个解，或者无穷多个解）。如果至少有一个解，则返回到`ans`中。
+以下是高斯消元的算法实现。在当前列选择最大值作为列主元素。输入是矩阵 $\textbf a$ ，该矩阵的最右一列是向量 $\textbf b$ 。函数返回值是方程解的个数（无解，一个解，或者无穷多个解）。如果至少有一个解，则返回到 `ans` 中。
 
 ??? note "参考代码"
     ```cpp
     const double EPS = 1e-9;
-    const int INF = 2; 
-    int gauss (vector < vector<double> > a, vector<double> & ans) {
-        int n = (int) a.size();
-        int m = (int) a[0].size() - 1;
-        vector<int> where (m, -1);
-        for (int col=0, row=0; col<m && row<n; ++col) {
-            int sel = row;
-            for (int i=row; i<n; ++i)
-                if (abs (a[i][col]) > abs (a[sel][col]))
-                    sel = i;
-            if (abs (a[sel][col]) < EPS)
-                continue;
-            for (int i=col; i<=m; ++i)
-                swap (a[sel][i], a[row][i]);
-            where[col] = row;
-            for (int i=0; i<n; ++i)
-                if (i != row) {
-                    double c = a[i][col] / a[row][col];
-                    for (int j=col; j<=m; ++j)
-                        a[i][j] -= a[row][j] * c;
-                }
-            ++row;
-        }
-        ans.assign (m, 0);
-        for (int i=0; i<m; ++i)
-            if (where[i] != -1)
-                ans[i] = a[where[i]][m] / a[where[i]][i];
-        for (int i=0; i<n; ++i) {
-            double sum = 0;
-            for (int j=0; j<m; ++j)
-                sum += ans[j] * a[i][j];
-            if (abs (sum - a[i][m]) > EPS)
-                return 0;
-        }
-        for (int i=0; i<m; ++i)
-            if (where[i] == -1)
-                return INF;
-        return 1;
+    const int INF = 2;
+    int gauss(vector<vector<double> > a, vector<double>& ans) {
+      int n = (int)a.size();
+      int m = (int)a[0].size() - 1;
+      vector<int> where(m, -1);
+      for (int col = 0, row = 0; col < m && row < n; ++col) {
+        int sel = row;
+        for (int i = row; i < n; ++i)
+          if (abs(a[i][col]) > abs(a[sel][col])) sel = i;
+        if (abs(a[sel][col]) < EPS) continue;
+        for (int i = col; i <= m; ++i) swap(a[sel][i], a[row][i]);
+        where[col] = row;
+        for (int i = 0; i < n; ++i)
+          if (i != row) {
+            double c = a[i][col] / a[row][col];
+            for (int j = col; j <= m; ++j) a[i][j] -= a[row][j] * c;
+          }
+        ++row;
+      }
+      ans.assign(m, 0);
+      for (int i = 0; i < m; ++i)
+        if (where[i] != -1) ans[i] = a[where[i]][m] / a[where[i]][i];
+      for (int i = 0; i < n; ++i) {
+        double sum = 0;
+        for (int j = 0; j < m; ++j) sum += ans[j] * a[i][j];
+        if (abs(sum - a[i][m]) > EPS) return 0;
+      }
+      for (int i = 0; i < m; ++i)
+        if (where[i] == -1) return INF;
+      return 1;
     }
     ```
 
-说明:
+说明：
 
-+ 该函数使用两个指针：当前列 `col` 和当前行 `row` 。
-+ 对于每个变量 $x_i$，$i$ 是此列中不为 $0$ 的行。
-+ 在上述实现中，当前的第 $i$ 行没有像上面所说的除以 $a_{ii}$ ，因此最后的矩阵不是单位矩阵。
-+ 找到解之后，将其重新插入矩阵中，然后检查方程是否至少有一个解，如果满足，则函数返回 $1$ 或者 `inf` （这取决于方程是否有自变量）。
+- 该函数使用两个指针：当前列 `col` 和当前行 `row` 。
+- 对于每个变量 $x_i$ ， $i$ 是此列中不为 $0$ 的行。
+- 在上述实现中，当前的第 $i$ 行没有像上面所说的除以 $a_{ii}$ ，因此最后的矩阵不是单位矩阵。
+- 找到解之后，将其重新插入矩阵中，然后检查方程是否至少有一个解，如果满足，则函数返回 $1$ 或者 `inf` （这取决于方程是否有自变量）。
 
 ### 复杂度与算法改进
 
-复杂度很简单，为$O(n^3)$。
+复杂度很简单，为 $O(n^3)$ 。
 
 将算法分为两个阶段，可以将之前的实现加快两倍：
 
-+ 正向阶段：与之前的实现类似，但是当前行仅仅加到其后的行中。最终我们得到一个三角矩阵而不是对角线矩阵。
-+ 反向阶段：当矩阵为三角形时，我们首先计算最后一个变量的值。然后代入，求下一个变量的值。重复此过程，最终求出所有变量值。
+- 正向阶段：与之前的实现类似，但是当前行仅仅加到其后的行中。最终我们得到一个三角矩阵而不是对角线矩阵。
+- 反向阶段：当矩阵为三角形时，我们首先计算最后一个变量的值。然后代入，求下一个变量的值。重复此过程，最终求出所有变量值。
 
-反向阶段的复杂度仅为 $O(nm)$，比正向阶段快一大截。而在正向阶段，我们将操作步骤减半，最终实现了算法的优化。
+反向阶段的复杂度仅为 $O(nm)$ ，比正向阶段快一大截。而在正向阶段，我们将操作步骤减半，最终实现了算法的优化。
 
 ### 完善方程解
 
@@ -284,7 +276,6 @@ $$
 因此，有时必须通过应用简单的数值方法（例如简单迭代的方法）来改进所得的解。
 
 因此，该方法为两步：首先，应用此算法，然后在第一步中采用以初始解为解的数值方法。
-
 
 ## 行列式计算
 
@@ -473,45 +464,39 @@ $$
     }
     ```
 
-
 ## 求解带模的线性方程组
 
-求解带模的线性方程组时，本文所讲的算法仍然适用。但是在模等于 $2$ 时，我们可以用按位运算和 C++ 的`bitset`数据类型更有效地实现高斯消元：
+求解带模的线性方程组时，本文所讲的算法仍然适用。但是在模等于 $2$ 时，我们可以用按位运算和 C++ 的 `bitset` 数据类型更有效地实现高斯消元：
 
 ??? note "参考代码"
     ```cpp
-      int gauss (vector < bitset<N> > a, int n, int m, bitset<N> & ans) {
-        vector<int> where (m, -1);
-        for (int col=0, row=0; col<m && row<n; ++col) {
-            for (int i=row; i<n; ++i)
-                if (a[i][col]) {
-                    swap (a[i], a[row]);
-                    break;
-                }
-            if (! a[row][col])
-                continue;
-            where[col] = row;
-            for (int i=0; i<n; ++i)
-                if (i != row && a[i][col])
-                    a[i] ^= a[row];
-            ++row;
-        }
-            //其余的实现与上面一样
+    int gauss(vector<bitset<N> > a, int n, int m, bitset<N>& ans) {
+      vector<int> where(m, -1);
+      for (int col = 0, row = 0; col < m && row < n; ++col) {
+        for (int i = row; i < n; ++i)
+          if (a[i][col]) {
+            swap(a[i], a[row]);
+            break;
+          }
+        if (!a[row][col]) continue;
+        where[col] = row;
+        for (int i = 0; i < n; ++i)
+          if (i != row && a[i][col]) a[i] ^= a[row];
+        ++row;
+      }
+      //其余的实现与上面一样
     }
     ```
 
-
 ## 练习题
 
-- [Spoj - Xor Maximization](http://www.spoj.com/problems/XMAX/)
-- [Codechef - Knight Moving](https://www.codechef.com/SEP12/problems/KNGHTMOV)
-- [Lightoj - Graph Coloring](http://lightoj.com/volume_showproblem.php?problem=1279)
-- [UVA 12910 - Snakes and Ladders](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4775)
-- [TIMUS1042 Central Heating](http://acm.timus.ru/problem.aspx?space=1&num=1042)
-- [TIMUS1766 Humpty Dumpty](http://acm.timus.ru/problem.aspx?space=1&num=1766)
-- [TIMUS1266 Kirchhoff's Law](http://acm.timus.ru/problem.aspx?space=1&num=1266)
-- [Codeforces - 巫师和赌注](http://codeforces.com/contest/167/problem/E) 
+-  [Spoj - Xor Maximization](http://www.spoj.com/problems/XMAX/) 
+-  [Codechef - Knight Moving](https://www.codechef.com/SEP12/problems/KNGHTMOV) 
+-  [Lightoj - Graph Coloring](http://lightoj.com/volume_showproblem.php?problem=1279) 
+-  [UVA 12910 - Snakes and Ladders](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4775) 
+-  [TIMUS1042 Central Heating](http://acm.timus.ru/problem.aspx?space=1&num=1042) 
+-  [TIMUS1766 Humpty Dumpty](http://acm.timus.ru/problem.aspx?space=1&num=1766) 
+-  [TIMUS1266 Kirchhoff's Law](http://acm.timus.ru/problem.aspx?space=1&num=1266) 
+-  [Codeforces - 巫师和赌注](http://codeforces.com/contest/167/problem/E) 
 
-
-
- **本页面部分内容译自博文 [Гаусс и детерминант](https://github.com/e-maxx-eng/e-maxx-eng/blob/350808657c17d6fda6a2f7c24c7a14a7b4f4c2e5/src/linear_algebra/linear-system-gauss.md) 与其英文翻译版[Gauss & Determinant](https://cp-algorithms.com/linear_algebra/determinant-gauss.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+ **本页面部分内容译自博文 [Гаусс и детерминант](https://github.com/e-maxx-eng/e-maxx-eng/blob/350808657c17d6fda6a2f7c24c7a14a7b4f4c2e5/src/linear_algebra/linear-system-gauss.md) 与其英文翻译版 [Gauss & Determinant](https://cp-algorithms.com/linear_algebra/determinant-gauss.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
