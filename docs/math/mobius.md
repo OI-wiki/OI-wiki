@@ -899,53 +899,42 @@ $$
     }  // 不要为了省什么内存把数组开小。。。卡了好几次80
     ```
 
- **解法二** 
+ **另一种推导方式** 
 
 转化一下，可以将式子写成
 
 $$
 \begin{aligned}
-&&\sum_{d=1}^{n}\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ijd\cdot[\gcd(i,j)=1]\\
-&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t\mid \gcd(i,j)}\mu(t)\\
-&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}\mu(t)[t\mid \gcd(i,j)]\\
-&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij[1\mid \gcd(i,j)]\\
-&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij
+&&\sum_{d=1}^{n}d^3\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{d}\rfloor}ij\cdot[\gcd(i,j)=1]\\
+&=&\sum_{d=1}^{n}d^3\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{d}\rfloor}ij\sum_{t\mid \gcd(i,j)}\mu(t)\\
+&=&\sum_{d=1}^{n}d^3\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{d}\rfloor}ij\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}\mu(t)[t\mid \gcd(i,j)]\\
+&=&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{td}\rfloor}ij[1\mid \gcd(i,j)]\\
+&=&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{td}\rfloor}ij
 \end{aligned}
 $$
 
 容易知道
 
 $$
-\sum_{i=1}^{n}\sum_{j=1}^{m}ij=\frac{n(n+1)}{2}\cdot \frac{m(m+1)}{2}
+\sum_{i=1}^{n}i=\frac{n(n+1)}{2}
 $$
 
-设 $sum(n,m)=\sum_{i=1}^{n}\sum_{j=1}^{m}ij$ ，继续接着前面的往下推
+设 $F(n)=\sum_{i=1}^{n}i$ ，继续接着前面的往下推
 
 $$
 \begin{aligned}
-&&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij\\
-&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\cdot sum(\lfloor\frac{n}{td}\rfloor,\lfloor\frac{m}{td}\rfloor)\\
-&=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)\sum_{d\mid T}d\cdot (\frac{T}{d})^2\mu(\frac{T}{d})\\
-&=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)(T\sum_{d\mid T}d\cdot\mu(d))
+&&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{td}\rfloor}ij\\
+&=&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\cdot F^2\left(\left\lfloor\frac{n}{td}\right\rfloor\right)\\
+&=&\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) \sum_{d\mid T}d^3\left(\frac{T}{d}\right)^2\mu\left(\frac{T}{d}\right)\\
+&=&\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) T^2\sum_{d\mid T}d\cdot\mu(\dfrac{T}{d})
 \end{aligned}
 $$
 
-这时我们只要对每个 $T$ 预处理出 $T\sum_{d\mid T}d\cdot\mu(d)$ 的值就行了，考虑如何快速求解
+利用 $\operatorname{id}\ast \mu = \varphi$ 反演，上式等于
 
-设 $f(n)=\sum_{d\mid n}d\cdot\mu(d)$ 
+$$\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) T^2\varphi(T)$$
 
-实际上 $f$ 可以用线性筛筛出，具体的是
-
-$$
-f(n)=
-\begin{cases}
-1-n &,n\in primes \\
-f(\frac{x}{p}) &,p^2\mid n\\
-f(\frac{x}{p})\cdot f(p) &,p^2\nmid n
-\end{cases}
-$$
-
-其中 $p$ 表示 $n$ 的最小质因子，总时间复杂度 $O(n+\sqrt n)$ 。
+得到了一个与第一种推导本质相同的式子。
 
 ## 莫比乌斯反演扩展
 
