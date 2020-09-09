@@ -926,7 +926,7 @@ $$
 &&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{td}\rfloor}ij\\
 &=&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\cdot F^2\left(\left\lfloor\frac{n}{td}\right\rfloor\right)\\
 &=&\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) \sum_{d\mid T}d^3\left(\frac{T}{d}\right)^2\mu\left(\frac{T}{d}\right)\\
-&=&\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) T^2\sum_{d\mid T}d\cdot\mu(\dfrac{T}{d})
+&=&\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) T^2\sum_{d\mid T}d\cdot\mu\left(\dfrac{T}{d}\right)
 \end{aligned}
 $$
 
