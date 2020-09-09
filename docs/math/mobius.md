@@ -932,7 +932,7 @@ $$
 
 利用 $\operatorname{id}\ast \mu = \varphi$ 反演，上式等于
 
-$$\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) T^2\varphi(T)$$
+ $\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) T^2\varphi(T)$ 
 
 得到了一个与第一种推导本质相同的式子。
 
