@@ -13,9 +13,38 @@ timsort 为了利用数组中本身就存在的连续且有序的子数组，以
 
 timsort 的过程就是一个类似归并排序的过程，将数组划分为多个 RUN，然后以某种规则不断地合并两个 RUN，直到数组有序。具体过程如下：
 
-\\begin{array}{ll}
-1 &  \\textbf{Input. } \\text{The array to be sorted}.\\2 &  \\textbf{Output.} \\text{Sorted input array}.\\3 &  \\textbf{Method.}\\4 &  nRemaining \\gets \\text{the size of the array}\\5 &  minRun \\gets getMinRunLength(nRemaining)\\6 &  \\textbf{do}\\7 &  \\qquad \\text{Identify natural run begin at start point}\\8 &  \\qquad \\textbf{if} run \\text{ is shorter than } minRun\\9 &  \\qquad \\qquad \\text{extend} run \\text{ to } \\min(minRun, nRemaining)\\10 & \\qquad \\text{push} run \\text{ onto pending-run stack}\\11 & \\qquad \\text{try to merge top 2 runs of pending-run stack}\\12 & \\qquad \\text{start index} \\gets \\text{start index} + \\text{the length of } run\\13 & \\qquad nRemaining \\gets nRemaining - \\text{the length of} run\\14 & \\textbf{while} \\text{ } nRemaining \\ne 0\\15 & \\text{Merge all remaining runs in stack}
-\\end{array}
+\begin{array}{ll}
+
+1 &  \textbf{Input. } \text{The array to be sorted}.\\
+
+2 &  \textbf{Output.} \text{Sorted input array}.\\
+
+3 &  \textbf{Method.} \\
+
+4 &  nRemaining \gets \text{the size of the array}\\
+
+5 &  minRun \gets getMinRunLength(nRemaining)\\
+
+6 &  \textbf{do}\\
+
+7 &  \qquad \text{Identify natural run begin at start point}\\
+
+8 &  \qquad \textbf{if} run \text{ is shorter than } minRun\\
+
+9 &  \qquad \qquad \text{extend} run \text{ to } \min(minRun, nRemaining)\\
+
+10 & \qquad \text{push} run \text{ onto pending-run stack}\\
+
+11 & \qquad \text{try to merge top 2 runs of pending-run stack}\\
+
+12 & \qquad \text{start index} \gets \text{start index} + \text{the length of } run\\
+
+13 & \qquad nRemaining \gets nRemaining - \text{the length of} run\\
+
+14 & \textbf{while} \text{ } nRemaining \ne 0\\
+
+15 & \text{Merge all remaining runs in stack}
+\end{array}
 
 其中， $getMinRunLength$ 函数是根据当前数组长度确定 $minRun$ 具体值的函数，natural run 的意思是原本就非降序或者严格升序的 run，扩展长度不够的 run 就是用插入排序往 run 中添加元素，第 11 步中仅当栈顶部的两个 run 长度相近的时候才会进行合并。
 
