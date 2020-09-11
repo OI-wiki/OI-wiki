@@ -14,7 +14,6 @@ timsort 为了利用数组中本身就存在的连续且有序的子数组，以
 timsort 的过程就是一个类似归并排序的过程，将数组划分为多个 RUN，然后以某种规则不断地合并两个 RUN，直到数组有序。具体过程如下：
 
 $$
-
 \begin{array}{ll}
 
 1 &  \textbf{Input.} \text{The array to be sorted}.\\
@@ -48,7 +47,6 @@ $$
 15 & \text{Merge all remaining runs in stack}\\
 
 \end{array}
-
 $$
 
 其中， $getMinRunLength$ 函数是根据当前数组长度确定 $minRun$ 具体值的函数，natural run 的意思是原本就非降序或者严格升序的 run，扩展长度不够的 run 就是用插入排序往 run 中添加元素，第 11 步中仅当栈顶部的两个 run 长度相近的时候才会进行合并。
