@@ -15,37 +15,21 @@ timsort 的过程就是一个类似归并排序的过程，将数组划分为多
 
 $$
 \begin{array}{ll}
-
 1 &  \textbf{Input.} \text{The array to be sorted}.\\
-
 2 &  \textbf{Output.} \text{Sorted input array}.\\
-
 3 &  \textbf{Method.}\\
-
 4 &  nRemaining \gets \text{the size of the array}\\
-
 5 &  minRun \gets getMinRunLength(nRemaining)\\
-
 6 &  \textbf{do}\\
-
 7 &  \qquad \text{Identify natural run begin at start point}\\
-
 8 &  \qquad \textbf{if} run \text{ is shorter than } minRun\\
-
 9 &  \qquad \qquad \text{extend} run \text{ to } \min(minRun, nRemaining)\\
-
 10 & \qquad \text{push} run \text{ onto pending-run stack}\\
-
 11 & \qquad \text{try to merge top 2 runs of pending-run stack}\\
-
 12 & \qquad \text{start index} \gets \text{start index} + \text{the length of } run\\
-
 13 & \qquad nRemaining \gets nRemaining - \text{the length of} run\\
-
 14 & \textbf{while} \text{ } nRemaining \ne 0\\
-
 15 & \text{Merge all remaining runs in stack}\\
-
 \end{array}
 $$
 
