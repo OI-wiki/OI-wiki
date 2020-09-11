@@ -109,9 +109,9 @@ $$
 ???+note "[洛谷 P2731 骑马修栅栏](https://www.luogu.com.cn/problem/P2731)"
 
     给定一张有 500 个顶点的无向图，求这张图的一条欧拉路或欧拉回路。如果有多组解，输出最小的那一组。
-    
+
     在本题中，欧拉路或欧拉回路不需要经过所有顶点。
-    
+
     边的数量 m 满足 $1\leq m \leq 1024$ 。
 
 ??? note "解题思路"
@@ -129,21 +129,22 @@ $$
     #include <stack>
     #include <vector>
     using namespace std;
+    ```
 
     struct edge {
       int to;
       bool exists;
       int revref;
-    
+
       bool operator<(const edge& b) const { return to < b.to; }
     };
-    
+
     vector<edge> beg[505];
     int cnt[505];
-    
+
     const int dn = 500;
     stack<int> ans;
-    
+
     void Hierholzer(int x) {  // 关键函数
       for (int& i = cnt[x]; i < (int)beg[x].size();) {
         if (beg[x][i].exists) {
@@ -158,15 +159,15 @@ $$
       }
       ans.push(x);
     }
-    
+
     int deg[505];
     int reftop[505];
-    
+
     int main() {
       for (int i = 1; i <= dn; ++i) {
         beg[i].reserve(1050);  // vector 用 reserve 避免动态分配空间，加快速度
       }
-    
+
       int m;
       scanf("%d", &m);
       for (int i = 1; i <= m; ++i) {
@@ -177,19 +178,19 @@ $$
         ++deg[a];
         ++deg[b];
       }
-    
+
       for (int i = 1; i <= dn; ++i) {
         if (!beg[i].empty()) {
           sort(beg[i].begin(), beg[i].end());  // 为了要按字典序贪心，必须排序
         }
       }
-    
+
       for (int i = 1; i <= dn; ++i) {
         for (int j = 0; j < (int)beg[i].size(); ++j) {
           beg[i][j].revref = reftop[beg[i][j].to]++;
         }
       }
-    
+
       int bv = 0;
       for (int i = 1; i <= dn; ++i) {
         if (!deg[bv] && deg[i]) {
@@ -198,9 +199,9 @@ $$
           bv = i;
         }
       }
-    
+
       Hierholzer(bv);
-    
+
       while (!ans.empty()) {
         printf("%d\n", ans.top());
         ans.pop();
@@ -210,6 +211,6 @@ $$
 
 ## 习题
 
-- [洛谷 P1341 无序字母对](https://www.luogu.com.cn/problem/P1341) 
+-  [洛谷 P1341 无序字母对](https://www.luogu.com.cn/problem/P1341) 
 
-- [洛谷 P2731 骑马修栅栏](https://www.luogu.com.cn/problem/P2731) 
+-  [洛谷 P2731 骑马修栅栏](https://www.luogu.com.cn/problem/P2731) 
