@@ -75,11 +75,11 @@ $ git clone https://github.com/OI-wiki/OI-wiki
 
 ### 跟踪文件
 
-在我们对仓库做出了一些修改后，我们需要将这些修改纳入版本管理当中去。
+在对仓库做出了一些修改后，我们需要将这些修改纳入版本管理当中去。
 
 使用 `git status` 命令可以查看当前仓库文件的状态。
 
-假设我们在一个空仓库中新增了一个 `README.md` 文件，执行 `git status` 命令的效果如下：
+举个例子，在一个空仓库中新增了一个 `README.md` 文件后，执行 `git status` 命令的效果如下：
 
 ```bash
 $ git status
@@ -95,7 +95,7 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-这里的 Untracked files 指的是 Git 之前没有纳入版本跟踪的文件。如果文件没有纳入版本跟踪，我们对该文件的修改不会被 Git 记录。
+这里的 Untracked files 指的是 Git 之前没有纳入版本跟踪的文件。如果文件没有纳入版本跟踪，对该文件的修改不会被 Git 记录。
 
 执行 `git add <文件>` 命令可以将指定的文件纳入到版本跟踪中。
 
@@ -112,9 +112,9 @@ Changes to be committed:
         new file:   README.md
 ```
 
-这时 `README.md` 已经纳入了版本跟踪，放入了暂存区。我们接下来只需执行 `git commit` 命令就可以提交这次更改了。
+这时 `README.md` 已经纳入了版本跟踪，放入了暂存区。接下来只需执行 `git commit` 命令就可以提交这次更改了。
 
-但在我们干这个之前，先让我们再对 `README.md` 做点小修改。
+但在进行这一工作之前，先对 `README.md` 做点小修改。
 
 ```bash
 $ vi README.md # 随便修改点东西
@@ -137,9 +137,9 @@ Changes not staged for commit:
 
 你会发现 `README.md` 同时处于暂存区和非暂存区。如果这时候执行 `git commit` 命令，只有处于暂存区的更改会被提交，而非暂存区的修改，则不会被提交。
 
-git 的提示告诉我们，执行 `git add README.md` 就可以将非暂存区的更改放入暂存区了。
+git 给了一条提示，执行 `git add README.md` 就可以将非暂存区的更改放入暂存区了。
 
-现在我们将非暂存区的文件加入暂存区，将所有更改一并提交。
+现在将非暂存区的文件加入暂存区，将所有更改一并提交。
 
 ```bash
 $ git add README.md
@@ -149,7 +149,7 @@ $ git commit # 接下来会弹出编辑器页面，你需要写下 commit 信息
  create mode 100644 README.md
 ```
 
-我们现在重点观察一下 commit 的信息。
+现在重点观察一下 commit 的信息。
 
  `master` 表示当前位于 `master` 分支（关于分支的问题，下文将会详细介绍）， `b13c84e` 表示本次提交的 SHA-1 校验和的前几位，后面则是本次提交的信息。
 
@@ -164,7 +164,7 @@ $ git commit # 接下来会弹出编辑器页面，你需要写下 commit 信息
 
 ### 查看提交记录
 
-使用 `git log` 命令可以查看我们的提交历史记录。
+使用 `git log` 命令可以查看仓库的提交历史记录。
 
 可以看到，提交历史里记录了每次提交时的 SHA-1 校验和，提交的作者，提交时间和 commit 信息。
 
@@ -190,33 +190,84 @@ Date:   Sun Sep 13 00:06:07 2020 +0800
 1. 直接修改主分支不仅会使历史记录混乱，也可能会造成一些危险的后果。
 2. 通过分支，我们可以专注于当前的工作。如果我们需要完成两个不同的工作，只需开两个分支即可，两个分支间的工作互不干扰。
 
-利用 `git branch` 命令可以创建分支， `git checkout` 命令可以切换分支。
+在 Git 中，简单来说，分支就是指向某个快照的指针。每次提交时，git 都会为这次提交创建一个快照，并将当前分支的指针移动到该快照。
+
+另外还有一个 HEAD 指针，它指向当前所在的分支。
+
+切换分支的过程，简单来说就是将 HEAD 指针，从指向当前所在的分支，改为指向另外一个分支。在这一过程中，Git 会自动完成文件的更新，使得切换分支后仓库的状态与目标分支指向的快照一致。
+
+#### 分支的创建
+
+利用 `git branch` 命令可以创建分支，`git switch` 命令可以切换分支，`git switch -c` 命令可以创建分支并切换到这个新分支。
 
 ```bash
-$ git branch dev # 创建一个叫做 dev 的新分支
-$ git checkout dev # 切换当前分支到 dev
+$ git switch -c dev # 创建一个叫做 dev 的新分支并切换当前分支到 dev
 Switched to branch 'dev'
-$ git branch # 查看所有分支信息
+$ git branch # 查看分支列表
   master
 * dev
 ```
 
-???+note "更快速地切换分支"
-    上面的操作需要执行两条命令，事实上只需要一条命令就够了。
-    
-    执行 `git checkout -b dev` 就可以在创建 dev 分支的同时，将当前分支切换到 dev。
+dev 前面的星号代表该仓库的当前分支为 dev，接下来对这个仓库的修改都将记录在这个分支上。
 
-dev 前面的星号代表我们当前的分支为 dev，我们的修改都将记录在这个分支上。
-
-我们可以在这个分支上做点小修改，比如创建一个新文件 `test.cpp` 。
+试着创建一个新文件 `aplusb.cpp` 。
 
 ```bash
-$ vi test.cpp
-$ git add test.cpp
-$ git commit -m "QAQ"
-[dev 4fe4923] QAQ
- 1 file changed, 8 insertions(+)
- create mode 100644 test.cpp
+$ vim aplusb.cpp
+$ git add aplusb.cpp
+$ git commit -m "feat: add A+B Problem code"
+[dev 5da093b] feat: add A+B Problem code
+ 1 file changed, 7 insertions(+)
+ create mode 100644 aplusb.cpp
 ```
 
-在新分支上修改似乎和在 master 分支上修改没什么太大区别，事实上也确实如此，每个分支都是平等的。
+在新分支上修改似乎和在 master 分支上修改没什么太大区别，事实上也确实如此，从理论上来说，每个分支都是平等的。
+
+现在切换回 master 分支，这时候文件夹中没有了 `aplusb.cpp`，一切都回到了刚刚创建 dev 分支时的状态。这时候可以在 master 分支上继续完成其他的工作。
+
+```bash
+$ git switch master
+Switched to branch 'master'
+$ vim README.md # 对 README 做些小改动
+$ git commit -a -m "feat: update README.md"
+[master 5ca15f0] feat: update README.md
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+```
+
+下面用一张图来解释刚才的操作过程。
+
+![](./image/git1.png)
+
+master 分支被标红，表明在这几次操作后，它是当前分支（即 HEAD 指向的位置）。
+
+- 最开始时 master 指向 `ae9dd37` 这一快照。
+- 接下来在 master 所在的位置创建了一个新的 dev 分支，该分支一开始和 master 指向相同位置。
+- 在 dev 分支上作了一些修改（创建了 `aplusb.cpp`），进行了一次提交，本次提交后，dev 分支指向 `5da093b` 这一快照。
+- 切换回 master 分支后，因为 master 分支还指向 `ae9dd37`，还没有创建 `aplusb.cpp`，因此仓库中没有这一文件。
+- 接下来在 master 分支上进行修改（更新了 `README.md`），进行了一次提交，master 分支指向了 `5ca15f0` 这一快照。
+
+### 分支的合并
+
+当一个分支上的工作已经完成，就可以将这些工作合并到另外一个分支上去。
+
+还是接着上面这个例子，dev 分支的工作已经完成，通过 `git merge` 命令可以将该分支合并到当前分支（master）上：
+
+```bash
+$ git merge dev
+Merge made by the 'recursive' strategy.
+ aplusb.cpp | 7 +++++++
+ 1 file changed, 7 insertions(+)
+ create mode 100644 aplusb.cpp
+```
+
+![](./image/git2.png)
+
+这次合并具体是怎么执行的呢？
+
+在合并之前，master 指向 `5ca15f0`，而 dev 指向 `5da093b`，这两个状态并不在一条链上。
+
+Git 会找到这两个状态的最近公共祖先（在上图中是 `ae9dd37`），并对这三个快照进行一次合并。三个快照合并的结果作为一个新的快照，并将当前分支指向这一快照。
+
+合并过程本身也是一次提交，不过与常规提交不同的是，合并提交有不止一个前驱提交，它是多个提交状态合并后的结果。
+
+不过合并过程并非总是这么顺利，在某些情况下，合并过程可能会出现冲突，这个问题接下来会讲到。
