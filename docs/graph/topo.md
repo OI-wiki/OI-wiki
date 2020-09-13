@@ -84,9 +84,9 @@ bool toposort() {
 ## DFS 算法
 
 ```cpp
-vector<int> G[MAXN]; // vector 实现的邻接表
-int c[MAXN];         // 标志数组
-vector<int> topo;    // 拓扑排序后的节点
+vector<int> G[MAXN];  // vector 实现的邻接表
+int c[MAXN];          // 标志数组
+vector<int> topo;     // 拓扑排序后的节点
 
 bool dfs(int u) {
   c[u] = -1;
@@ -94,8 +94,7 @@ bool dfs(int u) {
     if (c[v] < 0)
       return false;
     else if (!c[v])
-      if (!dfs(v))
-        return false;
+      if (!dfs(v)) return false;
   }
   c[u] = 1;
   topo.push_back(u);
@@ -107,8 +106,7 @@ bool toposort() {
   memset(c, 0, sizeof(c));
   for (int u = 0; u < n; u++)
     if (!c[u])
-      if (!dfs(u))
-        return false;
+      if (!dfs(u)) return false;
   reverse(topo.begin(), topo.end());
   return true;
 }
