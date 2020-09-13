@@ -17,6 +17,34 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 
  [并查集](../ds/dsu.md) 、 [贪心](../basic/greedy.md) 、 [图的存储](./save.md) 。
 
+### 实现
+
+伪代码：
+
+$$
+\begin{array}{ll}
+1 &  \textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
+  &  \text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
+2 &  \textbf{Output. } \text{The edges of the MST of the input graph}.\\
+3 &  \textbf{Method. } \\ 
+4 &  result \gets \varnothing \\
+5 &  \text{sort } e \text{ into nondecreasing order by weight } w \\ 
+6 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\ 
+7 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
+8 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
+9 &  \qquad\qquad  result \gets result\;\bigcup\ \{(u, v, w)\} \\
+10 &  \textbf{return }  result
+\end{array}
+$$
+
+算法虽简单，但需要相应的数据结构来支持……具体来说，维护一个森林，查询两个结点是否在同一棵树中，连接两棵树。
+
+抽象一点地说，维护一堆 **集合** ，查询两个元素是否属于同一集合，合并两个集合。
+
+其中，查询两点是否连通和连接两点可以使用并查集维护。
+
+如果使用 $O(m\log m)$ 的排序算法，并且使用 $O(m\alpha(m, n))$ 或 $O(m\log n)$ 的并查集，就可以得到时间复杂度为 $O(m\log m)$ 的 Kruskal 算法。
+
 ### 证明
 
 思路很简单，为了造出一棵最小生成树，我们从最小边权的边开始，按边权从小到大依次加入，如果某次加边产生了环，就扔掉这条边，直到加入了 $n-1$ 条边，即形成了一棵树。
@@ -37,65 +65,9 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 
 所以， $T+e-f$ 包含了 $F$ ，并且也是一棵最小生成树，归纳成立。
 
-### 实现
-
-算法虽简单，但需要相应的数据结构来支持……
-
-具体来说，维护一个森林，查询两个结点是否在同一棵树中，连接两棵树。
-
-抽象一点地说，维护一堆 **集合** ，查询两个元素是否属于同一集合，合并两个集合。
-
-伪代码：
-
-$$
-\begin{array}{ll}
-1 &  \textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
-  &  \text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
-2 &  \textbf{Output. } \text{The edges of the MST of the input graph}.\\
-3 &  \textbf{Method. } \\ 
-4 &  result \gets \varnothing \\
-5 &  \text{sort } e \text{ into nondecreasing order by weight } w \\ 
-6 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\ 
-7 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
-8 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
-9 &  \qquad\qquad  result \gets result\;\bigcup\ \{(u, v, w)\} \\
-10 &  \textbf{return }  result
-\end{array}
-$$
-
-其中，查询两点是否连通和连接两点可以使用并查集维护。
-
-如果使用 $O(m\log m)$ 的排序算法，并且使用 $O(m\alpha(m, n))$ 或 $O(m\log n)$ 的并查集，就可以得到时间复杂度为 $O(m\log m)$ 的 Kruskal 算法。
-
 ## Prim 算法
 
 Prim 算法是另一种常见并且好写的最小生成树算法。该算法的基本思想是从一个结点开始，不断加点（而不是 Kruskal 算法的加边）。
-
-### 证明
-
-从任意一个结点开始，将结点分成两类：已加入的，未加入的。
-
-每次从未加入的结点中，找一个与已加入的结点之间边权最小值最小的结点。
-
-然后将这个结点加入，并连上那条边权最小的边。
-
-重复 $n-1$ 次即可。
-
-证明：还是说明在每一步，都存在一棵最小生成树包含已选边集。
-
-基础：只有一个结点的时候，显然成立。
-
-归纳：如果某一步成立，当前边集为 $F$ ，属于 $T$ 这棵 MST，接下来要加入边 $e$ 。
-
-如果 $e$ 属于 $T$ ，那么成立。
-
-否则考虑 $T+e$ 中环上另一条可以加入当前边集的边 $f$ 。
-
-首先， $f$ 的权值一定不小于 $e$ 的权值，否则就会选择 $f$ 而不是 $e$ 了。
-
-然后， $f$ 的权值一定不大于 $e$ 的权值，否则 $T+e-f$ 就是一棵更小的生成树了。
-
-因此， $e$ 和 $f$ 的权值相等， $T+e-f$ 也是一棵最小生成树，且包含了 $F$ 。
 
 ### 实现
 
@@ -137,6 +109,32 @@ $$
 $$
 
 注意：上述代码只是求出了最小生成树的权值，如果要输出方案还需要记录每个点的 $dis$ 代表的是哪条边。
+
+### 证明
+
+从任意一个结点开始，将结点分成两类：已加入的，未加入的。
+
+每次从未加入的结点中，找一个与已加入的结点之间边权最小值最小的结点。
+
+然后将这个结点加入，并连上那条边权最小的边。
+
+重复 $n-1$ 次即可。
+
+证明：还是说明在每一步，都存在一棵最小生成树包含已选边集。
+
+基础：只有一个结点的时候，显然成立。
+
+归纳：如果某一步成立，当前边集为 $F$ ，属于 $T$ 这棵 MST，接下来要加入边 $e$ 。
+
+如果 $e$ 属于 $T$ ，那么成立。
+
+否则考虑 $T+e$ 中环上另一条可以加入当前边集的边 $f$ 。
+
+首先， $f$ 的权值一定不小于 $e$ 的权值，否则就会选择 $f$ 而不是 $e$ 了。
+
+然后， $f$ 的权值一定不大于 $e$ 的权值，否则 $T+e-f$ 就是一棵更小的生成树了。
+
+因此， $e$ 和 $f$ 的权值相等， $T+e-f$ 也是一棵最小生成树，且包含了 $F$ 。
 
 ## Boruvka 算法
 
