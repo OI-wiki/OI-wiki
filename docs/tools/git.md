@@ -47,7 +47,7 @@ $ git config --global core.editor emacs
 
 执行如上命令可以将编辑器更改为 [Emacs](./editor/emacs.md) 。
 
-在 Windows 下，git 的默认编辑器可以在安装 git 时选择。之后若要修改，在 Git Bash 里输入如上命令，将编辑器名换成编辑器的绝对路径，运行命令即可。
+在 Windows 下，Git 的默认编辑器可以在安装 Git 时选择。之后若要修改，在 Git Bash 里输入如上命令，将编辑器名换成编辑器的绝对路径，运行命令即可。
 
 ### 显示配置
 
@@ -75,7 +75,7 @@ $ git clone https://github.com/OI-wiki/OI-wiki
 
 ### 跟踪文件
 
-在对仓库做出了一些修改后，我们需要将这些修改纳入版本管理当中去。
+在对仓库的文件做出了一些修改后，这些修改需要被纳入到版本管理当中去。
 
 使用 `git status` 命令可以查看当前仓库文件的状态。
 
@@ -137,7 +137,7 @@ Changes not staged for commit:
 
 你会发现 `README.md` 同时处于暂存区和非暂存区。如果这时候执行 `git commit` 命令，只有处于暂存区的更改会被提交，而非暂存区的修改，则不会被提交。
 
-git 给了一条提示，执行 `git add README.md` 就可以将非暂存区的更改放入暂存区了。
+Git 给了一条提示，执行 `git add README.md` 就可以将非暂存区的更改放入暂存区了。
 
 现在将非暂存区的文件加入暂存区，将所有更改一并提交。
 
@@ -190,7 +190,7 @@ Date:   Sun Sep 13 00:06:07 2020 +0800
 1. 直接修改主分支不仅会使历史记录混乱，也可能会造成一些危险的后果。
 2. 通过分支，我们可以专注于当前的工作。如果我们需要完成两个不同的工作，只需开两个分支即可，两个分支间的工作互不干扰。
 
-在 Git 中，简单来说，分支就是指向某个快照的指针。每次提交时，git 都会为这次提交创建一个快照，并将当前分支的指针移动到该快照。
+在 Git 中，简单来说，分支就是指向某个快照的指针。每次提交时，Git 都会为这次提交创建一个快照，并将当前分支的指针移动到该快照。
 
 另外还有一个 HEAD 指针，它指向当前所在的分支。
 
@@ -208,7 +208,7 @@ $ git branch # 查看分支列表
 * dev
 ```
 
-dev 前面的星号代表该仓库的当前分支为 dev，接下来对这个仓库的修改都将记录在这个分支上。
+`dev` 前面的星号代表该仓库的当前分支为 `dev`，接下来对这个仓库的修改都将记录在这个分支上。
 
 试着创建一个新文件 `aplusb.cpp` 。
 
@@ -223,7 +223,7 @@ $ git commit -m "feat: add A+B Problem code"
 
 在新分支上修改似乎和在 master 分支上修改没什么太大区别，事实上也确实如此，从理论上来说，每个分支都是平等的。
 
-现在切换回 master 分支，这时候文件夹中没有了 `aplusb.cpp` ，一切都回到了刚刚创建 dev 分支时的状态。这时候可以在 master 分支上继续完成其他的工作。
+现在切换回 `master` 分支，这时候文件夹中没有了 `aplusb.cpp` ，一切都回到了刚刚创建 `dev` 分支时的状态。这时候可以在 `master` 分支上继续完成其他的工作。
 
 ```bash
 $ git switch master
@@ -236,21 +236,21 @@ $ git commit -a -m "feat: update README.md"
 
 下面用一张图来解释刚才的操作过程。
 
-![](./image/git1.png)
+![](./images/git1.png)
 
-master 分支被标红，表明在这几次操作后，它是当前分支（即 HEAD 指向的位置）。
+`master` 分支被标红，表明在这几次操作后，它是当前分支（即 HEAD 指向的位置）。
 
-- 最开始时 master 指向 `ae9dd37` 这一快照。
-- 接下来在 master 所在的位置创建了一个新的 dev 分支，该分支一开始和 master 指向相同位置。
-- 在 dev 分支上作了一些修改（创建了 `aplusb.cpp` ），进行了一次提交，本次提交后，dev 分支指向 `5da093b` 这一快照。
-- 切换回 master 分支后，因为 master 分支还指向 `ae9dd37` ，还没有创建 `aplusb.cpp` ，因此仓库中没有这一文件。
-- 接下来在 master 分支上进行修改（更新了 `README.md` ），进行了一次提交，master 分支指向了 `5ca15f0` 这一快照。
+- 最开始时 `master` 指向 `ae9dd37` 这一快照。
+- 接下来在 `master` 所在的位置创建了一个新的 dev 分支，该分支一开始和 master 指向相同位置。
+- 在 `dev` 分支上作了一些修改（创建了 `aplusb.cpp` ），进行了一次提交，本次提交后，`dev` 分支指向 `5da093b` 这一快照。
+- 切换回 `master` 分支后，因为 `master` 分支还指向 `ae9dd37` ，还没有创建 `aplusb.cpp` ，因此仓库中没有这一文件。
+- 接下来在 `master` 分支上进行修改（更新了 `README.md` ），进行了一次提交，`master` 分支指向了 `5ca15f0` 这一快照。
 
 ### 分支的合并
 
 当一个分支上的工作已经完成，就可以将这些工作合并到另外一个分支上去。
 
-还是接着上面这个例子，dev 分支的工作已经完成，通过 `git merge` 命令可以将该分支合并到当前分支（master）上：
+还是接着上面这个例子，`dev` 分支的工作已经完成，通过 `git merge` 命令可以将该分支合并到当前分支（`master`）上：
 
 ```bash
 $ git merge dev
@@ -260,14 +260,90 @@ Merge made by the 'recursive' strategy.
  create mode 100644 aplusb.cpp
 ```
 
-![](./image/git2.png)
+![](./images/git2.png)
 
 这次合并具体是怎么执行的呢？
 
-在合并之前，master 指向 `5ca15f0` ，而 dev 指向 `5da093b` ，这两个状态并不在一条链上。
+在合并之前，`master` 指向 `5ca15f0` ，而 `dev` 指向 `5da093b` ，这两个状态并不在一条链上。
 
 Git 会找到这两个状态的最近公共祖先（在上图中是 `ae9dd37` ），并对这三个快照进行一次合并。三个快照合并的结果作为一个新的快照，并将当前分支指向这一快照。
 
 合并过程本身也是一次提交，不过与常规提交不同的是，合并提交有不止一个前驱提交，它是多个提交状态合并后的结果。
 
+在合并完成后，`dev` 分支就完成了它的使命，这时候可以利用下面的命令删除 `dev` 分支：
+
+```bash
+$ git branch -d dev
+```
+
 不过合并过程并非总是这么顺利，在某些情况下，合并过程可能会出现冲突，这个问题接下来会讲到。
+
+### 解决合并冲突
+
+如果在两个分支中，对同一个文件的同一部分进行了不同的修改，Git 就无法自动合并这两个分支，也就是发生了合并冲突。
+
+接着上面的例子，假如你在合并后的 `master` 分支的基础上，新开了一个 `readme-refactor` 分支，准备重写一份自述文件。但因为一些疏忽，你同时修改了 `readme-refactor` 和 `master` 分支的自述文件。
+
+刚开始自述文件是这样的：
+
+```markdown
+# This is a test repo.
+
+This repo includes some c++ codes.
+```
+
+在 `readme-refactor` 分支下的自述文件是这样的：
+
+```markdown
+# Code Library
+
+This repo includes some c++ codes.
+```
+
+在 `master` 分支下的自述文件是这样的：
+
+```markdown
+# This is a code library.
+
+This repo includes some c++ codes.
+```
+
+这时候运行 `git merge readme-refactor` 命令，Git 提示出现了合并冲突。
+
+执行一下 `git status` 命令，可以查看是哪些文件引发了冲突。
+
+```bash
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+    both modified:      README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+如何解决冲突？对于每个发生了合并冲突的文件，Git 都会在这些文件中加入标准的冲突解决标记。比如这个例子中的 `README.md` 文件，打开后它长这个样子：
+
+```markdown
+<<<<<<< HEAD
+# This is a code library.
+=======
+# Code Library
+>>>>>>> readme-refactor
+
+This repo includes some c++ codes.
+```
+
+`=======` 作为分界线将两个分支的内容隔开，`<<<<<<< HEAD` 标记和 `=======` 之间的部分是 `master` 分支的内容，而 `=======` 和 `>>>>>>> readme-refactor` 标记之间的部分是 `readme-refactor` 分支的内容。
+
+删除这些冲突解决标记，保存文件，将这些文件纳入暂存区后提交，就可以解决合并冲突了。
+
+```bash
+$ git add README.md # 将发生冲突的文件纳入暂存区
+$ git commit -m "merge branch readme-refactor into master"
+[master fe92c6b] merge branch readme-refactor into master
+```
