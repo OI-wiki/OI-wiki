@@ -105,15 +105,24 @@ $$
     }
     ```
 
+???+note "二维数论分块"
+    求
+    
+    $$
+    \sum_{i=1}^{\min (n,m)}\left\lfloor\frac{n}{i}    \right\rfloor\left\lfloor\frac{m}{i}    \right\rfloor
+    $$
+    
+    此时可将代码中 `r = n/(n/i)` 替换成 `r = min(n/(n/i), m/(m/i))` 
+
 * * *
 
 ## 积性函数
 
 ### 定义
 
- $\forall x,y \in \mathbb{N}_{+},\gcd(x,y)=1$ ， $f(1)=1$ 且都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为积性函数。
+若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y \in \mathbb{N}_{+},\gcd(x,y)=1$ 都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为积性函数。
 
- $\forall x,y \in \mathbb{N}_{+}$ ， $f(1)=1$ 且都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为完全积性函数。
+若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y \in \mathbb{N}_{+}$ 都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为完全积性函数。
 
 ### 性质
 
@@ -128,6 +137,12 @@ h(x)&=\sum_{d\mid x}f(d)g(\frac{x}{d})
 \end{aligned}
 $$
 
+设 $x=\prod p_i^{k_i}$ 
+
+若 $F(x)$ 为积性函数，则有 $F(x)=\prod F(p_i^{k_i})$ 。
+
+若 $F(x)$ 为完全积性函数，则有 $F(X)=\prod F(p_i)^{k_i}$ 。
+
 ### 例子
 
 - 单位函数： $\epsilon(n)=[n=1]$ （完全积性）
@@ -135,7 +150,7 @@ $$
 - 常数函数： $1(n)=1$ （完全积性）
 - 除数函数： $\sigma_{k}(n)=\sum_{d\mid n}d^{k}$  $\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$ ， $\sigma_{1}(n)$ 通常简记作 $\sigma(n)$ 。
 - 欧拉函数： $\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$ 
-- 莫比乌斯函数： $\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1:d^{2} \mid n \\ (-1)^{\omega(n)} & otherwise\end{cases}$ 其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，是一个积性函数。
+- 莫比乌斯函数： $\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1:d^{2} \mid n \\ (-1)^{\omega(n)} & otherwise\end{cases}$ ，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它也是一个积性函数。
 
 * * *
 
@@ -155,7 +170,7 @@ Dirichlet 卷积满足以下运算规律：
 
 - 交换律 $(f * g=g * f)$ ；
 - 结合律 $(f * g) * h=f * (g * h)$ ；
-- 分配率 $f * (g+h)=f * g+f * h$ ；
+- 分配律 $f * (g+h)=f * g+f * h$ ；
 -  $f*\varepsilon=f$ ，其中 $\varepsilon$ 为 Dirichlet 卷积的单位元（任何函数卷 $\varepsilon$ 都为其本身）
 
 ### 例子
@@ -283,17 +298,9 @@ $$
 
 设 $f(n),g(n)$ 为两个数论函数。
 
-如果有
+如果有 $f(n)=\sum_{d\mid n}g(d)$ ，那么有 $g(n)=\sum_{d\mid n}\mu(d)f(\frac{n}{d})$ 。
 
-$$
-f(n)=\sum_{d\mid n}g(d)
-$$
-
-那么有
-
-$$
-g(n)=\sum_{d\mid n}\mu(d)f(\frac{n}{d})
-$$
+如果有 $f(n)=\sum_{n|d}g(d)$ ，那么有 $g(n)=\sum_{n|d}\mu(\frac{d}{n})f(d)$ 。
 
 ### 证明
 
@@ -464,7 +471,53 @@ $$
 
 设 $\displaystyle \operatorname{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\operatorname{g}$ 为积性函数，于是可以 $\Theta(n)$ 筛出。每次询问 $\Theta(1)$ 计算即可。
 
-这个函数筛的时候比较特殊，当 $p_j\mid i$ 的时候，需要根据 $p_j\mid\dfrac{i}{p_j}$ 进行分类讨论。具体可以见代码。
+下面给出这个函数筛法的推导过程：
+
+首先考虑 $\operatorname g(p_j^k)$ 的值，显然它的约数只有 $p_j^0,p_j^1,\cdots,p_j^k$ ，因此
+
+$$
+\operatorname g(p_j^k)=\sum_{w=0}^{k}p_j^w\cdot\varphi(p_j^w)
+$$
+
+又有 $\varphi(p_j^w)=p_j^{w-1}\cdot(p_j-1)$ ，则原式可化为
+
+$$
+\sum_{w=0}^{k}p_j^{2w-1}\cdot(p_j-1)
+$$
+
+于是有
+
+$$
+\operatorname g(p_j^{k+1})=\operatorname g(p_j^k)+p_j^{2k+1}\cdot(p_j-1)
+$$
+
+那么，对于线性筛中的 $\operatorname g(i\cdot p_j)(p_j|i)$ ，令 $i=a\cdot p_j^w(\operatorname{gcd}(a,p_j)=1)$ ，可得
+
+$$
+\operatorname g(i\cdot p_j)=\operatorname g(a)\cdot\operatorname g(p_j^{w+1})
+$$
+
+$$
+\operatorname g(i)=\operatorname g(a)\cdot\operatorname g(p_j^w)
+$$
+
+即
+
+$$
+\operatorname g(i\cdot p_j)-\operatorname g(i)=\operatorname g(a)\cdot p_j^{2w+1}\cdot(p_j-1)
+$$
+
+同理有
+
+$$
+\operatorname g(i)-\operatorname g(\frac{i}{p_j})=\operatorname g(a)\cdot p_j^{2w-1}\cdot(p_j-1)
+$$
+
+因此
+
+$$
+\operatorname g(i\cdot p_j)=\operatorname g(i)+\left (\operatorname g(i)-\operatorname g(\frac{i}{p_j})\right )\cdot p_j^2
+$$
 
  **时间复杂度** ： $\Theta(n+T)$ 
 
@@ -483,11 +536,7 @@ $$
         for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
           flg[i * p[j]] = 1;
           if (i % p[j] == 0) {
-            if ((i / p[j]) % p[j] == 0) {
-              g[i * p[j]] = g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];
-            } else {
-              g[i * p[j]] = g[i] + g[i / p[j]] * (p[j] - 1) * p[j] * p[j] * p[j];
-            }
+            g[i * p[j]] = g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];
             break;
           }
           g[i * p[j]] = g[i] * g[p[j]];
@@ -850,53 +899,42 @@ $$
     }  // 不要为了省什么内存把数组开小。。。卡了好几次80
     ```
 
- **解法二** 
+ **另一种推导方式** 
 
 转化一下，可以将式子写成
 
 $$
 \begin{aligned}
-&&\sum_{d=1}^{n}\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ijd\cdot[\gcd(i,j)=1]\\
-&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t\mid \gcd(i,j)}\mu(t)\\
-&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}\mu(t)[t\mid \gcd(i,j)]\\
-&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij[1\mid \gcd(i,j)]\\
-&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij
+&&\sum_{d=1}^{n}d^3\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{d}\rfloor}ij\cdot[\gcd(i,j)=1]\\
+&=&\sum_{d=1}^{n}d^3\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{d}\rfloor}ij\sum_{t\mid \gcd(i,j)}\mu(t)\\
+&=&\sum_{d=1}^{n}d^3\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{d}\rfloor}ij\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}\mu(t)[t\mid \gcd(i,j)]\\
+&=&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{td}\rfloor}ij[1\mid \gcd(i,j)]\\
+&=&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{td}\rfloor}ij
 \end{aligned}
 $$
 
 容易知道
 
 $$
-\sum_{i=1}^{n}\sum_{j=1}^{m}ij=\frac{n(n+1)}{2}\cdot \frac{m(m+1)}{2}
+\sum_{i=1}^{n}i=\frac{n(n+1)}{2}
 $$
 
-设 $sum(n,m)=\sum_{i=1}^{n}\sum_{j=1}^{m}ij$ ，继续接着前面的往下推
+设 $F(n)=\sum_{i=1}^{n}i$ ，继续接着前面的往下推
 
 $$
 \begin{aligned}
-&&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij\\
-&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\cdot sum(\lfloor\frac{n}{td}\rfloor,\lfloor\frac{m}{td}\rfloor)\\
-&=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)\sum_{d\mid T}d\cdot (\frac{T}{d})^2\mu(\frac{T}{d})\\
-&=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)(T\sum_{d\mid T}d\cdot\mu(d))
+&&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{td}\rfloor}ij\\
+&=&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\cdot F^2\left(\left\lfloor\frac{n}{td}\right\rfloor\right)\\
+&=&\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) \sum_{d\mid T}d^3\left(\frac{T}{d}\right)^2\mu\left(\frac{T}{d}\right)\\
+&=&\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) T^2\sum_{d\mid T}d\cdot\mu\left(\dfrac{T}{d}\right)
 \end{aligned}
 $$
 
-这时我们只要对每个 $T$ 预处理出 $T\sum_{d\mid T}d\cdot\mu(d)$ 的值就行了，考虑如何快速求解
+利用 $\operatorname{id}\ast \mu = \varphi$ 反演，上式等于
 
-设 $f(n)=\sum_{d\mid n}d\cdot\mu(d)$ 
+ $\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) T^2\varphi(T)$ 
 
-实际上 $f$ 可以用线性筛筛出，具体的是
-
-$$
-f(n)=
-\begin{cases}
-1-n &,n\in primes \\
-f(\frac{x}{p}) &,p^2\mid n\\
-f(\frac{x}{p})\cdot f(p) &,p^2\nmid n
-\end{cases}
-$$
-
-其中 $p$ 表示 $n$ 的最小质因子，总时间复杂度 $O(n+\sqrt n)$ 。
+得到了一个与第一种推导本质相同的式子。
 
 ## 莫比乌斯反演扩展
 

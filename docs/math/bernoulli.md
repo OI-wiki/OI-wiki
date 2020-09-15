@@ -1,6 +1,6 @@
 伯努利数 $B_n$ 是一个与数论有密切关联的有理数序列。前几项被发现的伯努利数分别为：
 
- $B_0=0,B_1=-\frac{1}{2},B_2=\frac{1}{6},B_3=0,B_4=-\frac{1}{30},\dots$ 
+ $B_0=1,B_1=-\frac{1}{2},B_2=\frac{1}{6},B_3=0,B_4=-\frac{1}{30},\dots$ 
 
 ## 等幂求和
 
@@ -29,8 +29,8 @@ $$
 
 $$
 \begin{aligned}
-S_m{n}&=\frac{1}{m+1}(B_0n^{m+1}+\binom{m+1}{1}B_1 n^m+\dots+\binom{m+1}{m}B_m n) \\
-&=\frac{1}{m+1}\sum_{k=0}^{m}\binom{m+1}{k}n^{m+1-k}
+S_m{(n)}&=\frac{1}{m+1}(B_0n^{m+1}+\binom{m+1}{1}B_1 n^m+\dots+\binom{m+1}{m}B_m n) \\
+&=\frac{1}{m+1}\sum_{k=0}^{m}\binom{m+1}{k}B_kn^{m+1-k}
 \end{aligned}
 $$
 
@@ -51,13 +51,15 @@ $$
 
 ### 证明
 
+#### 利用归纳法证明
+
 这个证明方法来自 Concrete Mathematics 6.5 BERNOULLI NUMBER。
 
 运用二项式系数的恒等变换和归纳法进行证明：
 
 $$
 \begin{aligned}
-S_{m+1}+n^{m+1}&= \sum_{k=0}^{n-1}(k+1)^{m+1}\\
+S_{m+1}(n)+n^{m+1}&= \sum_{k=0}^{n-1}(k+1)^{m+1}\\
 &=\sum_{k=0}^{n-1}\sum_{j=0}^{m+1}\binom{m+1}{j}k^j\\
 &=\sum_{j=0}^{m+1}\binom{m+1}{j}S_j(n)
 \end{aligned}
@@ -65,17 +67,17 @@ $$
 
 令 $\hat{S}_{m}(n)=\frac{1}{m+1} \sum_{k=0}^{m} \binom{m+1}{k}B_kn^{m+1-k}$ ，我们希望证明 $S_m(n)=\hat{S}_m(n)$ ，假设对 $j\in[0,m)$ ，有 $S_j(n)=\hat{S}_j(n)$ 。
 
-将原式中两边都减去 $S_{m+1}$ 后可以得到：
+将原式中两边都减去 $S_{m+1}(n)$ 后可以得到：
 
 $$
 \begin{aligned}
-S_{m+1}+n^{m+1}&=\sum_{j=0}^{m+1}\binom{m+1}{j}S_j(n)\\
+S_{m+1}(n)+n^{m+1}&=\sum_{j=0}^{m+1}\binom{m+1}{j}S_j(n)\\
 n^{m+1}&=\sum_{j=0}^{m}\binom{m+1}{j}S_j(n)\\
 &=\sum_{j=0}^{m-1}\binom{m+1}{j}\hat{S}_j(n)+\binom{m+1}{m}S_m(n)
 \end{aligned}
 $$
 
-尝试在式子的右边加上 $\binom{m+1}{m}\hat{s}_m(n)-\binom{m+1}{m}\hat{s}_m(n)$ 再进行化简，可以得到：
+尝试在式子的右边加上 $\binom{m+1}{m}\hat{S}_m(n)-\binom{m+1}{m}\hat{S}_m(n)$ 再进行化简，可以得到：
 
 $$
 n^{m+1}=\sum_{j=0}^{m}\binom{m+1}{j}\hat{S}_j(n)+(m+1)(S_m(n)-\hat{S}_m(n))
@@ -122,7 +124,7 @@ n^{m+1}&=\sum_{k=0}^{m}\frac{n^{k+1}}{k+1}\sum_{j=k}^{m}\binom{m+1}{k}\binom{m-k
 \end{aligned}
 $$
 
-将所有的 $j-k$ 用 j 代替，那么就可以得到：
+将所有的 $j-k$ 用 $j$ 代替，那么就可以得到：
 
 $$
 n^{m+1}=\sum_{k=0}^{m}\frac{n^{k+1}}{k+1}\binom{m+1}{k}\sum_{j=0}^{m-k}\binom{m-k+1}{j}B_{j}+(m+1)\Delta
@@ -150,6 +152,71 @@ n^{m+1}&=\sum_{k=0}^{m}\frac{n^{k+1}}{k+1}\binom{m+1}{k}[m - k = 0]+(m+1)\Delta\
 $$
 
 于是 $\Delta=0$ ，且有 $S_m(n)=\hat{S}_m(n)$ 。
+
+#### 利用指数生成函数证明
+
+对递推式 $\sum_{j=0}^{m}\binom{m+1}{j}B_j=[m=0]$ 
+
+两边都加上 $B_{m + 1}$ ，即得到：
+
+$$
+\begin{aligned}
+\sum_{j=0}^{m+1}\binom{m+1}{j}B_j&=[m=0]+B_{m+1}\\
+\sum_{j=0}^{m}\binom{m}{j}B_j&=[m=1]+B_{m}\\
+\sum_{j=0}^{m}\dfrac{B_j}{j!}\cdot\dfrac{1}{(m-j)!}&=[m=1]+\dfrac{B_{m}}{m!}
+\end{aligned}
+$$
+
+设 $B(z) = \sum\limits_{i\ge 0}\dfrac{B_i}{i!}z^i$ ，注意到左边为卷积形式，故：
+
+$$
+\begin{aligned}
+B(z)e^z &= z+B(z)\\
+B(z)&=\dfrac{z}{e^z - 1}
+\end{aligned}
+$$
+
+设 $F_n(z) = \sum_{m\ge 0}\dfrac{S_m(n)}{m!}z^m$ ，则：
+
+$$
+\begin{aligned}
+F_n(z) &= \sum_{m\ge 0}\dfrac{S_m(n)}{m!}z^m\\
+&= \sum_{m\ge 0}\sum_{i=0}^{n-1}\dfrac{i^mz^m}{m!}\\
+\end{aligned}
+$$
+
+调换求和顺序：
+
+$$
+\begin{aligned}
+F_n(z) &=\sum_{i=0}^{n-1}\sum_{m\ge 0}\dfrac{i^mz^m}{m!}\\
+       &=\sum_{i=0}^{n-1}e^{iz}\\
+       &=\dfrac{e^{nz} - 1}{e^z - 1}\\
+       &=\dfrac{z}{e^z - 1}\cdot\dfrac{e^{nz} - 1}{z}
+\end{aligned}
+$$
+
+代入 $B(z)=\dfrac{z}{e^z - 1}$ ：
+
+$$
+\begin{aligned}
+F_n(z) &= B(z)\cdot\dfrac{e^{nz} - 1}{z}\\
+&= \left(\sum_{i\ge 0}\dfrac{B_i}{i!} \right)\left(\sum_{i\ge 1}\dfrac{n^i z^{i - 1}}{i!}\right)\\
+&= \left(\sum_{i\ge 0}\dfrac{B_i}{i!} \right)\left(\sum_{i\ge 0}\dfrac{n^{i+1} z^{i}}{(i+1)!}\right)
+\end{aligned}
+$$
+
+由于 $F_n(z) = \sum_{m\ge 0}\dfrac{S_m(n)}{m!}z^m$ ，即 $S_m(n)=m![z^m]F_n(z)$ ：
+
+$$
+\begin{aligned}
+S \times m(n)&=m![z^m]F_n(z)\\
+             &= m!\sum_{i=0}^{m}\dfrac{B \times i}{i!}\cdot\dfrac{n^{m-i+1}}{(m-i+1)!}\\
+             &=\dfrac{1}{m+1}\sum_{i=0}^{m}\binom{m+1}{i}B_in^{m-i+1}
+\end{aligned}
+$$
+
+故得证。
 
 ??? note "参考实现"
     ```c++

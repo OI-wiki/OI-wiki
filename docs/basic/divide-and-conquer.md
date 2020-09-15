@@ -79,14 +79,14 @@ int size(Node *head) {
   return size;
 }
 
-// 递归天下一
+// 递归天下第一
 int size_recurison(Node *head) {
   if (head == nullptr) return 0;
   return size_recurison(head->next) + 1;
 }
 ```
 
-![\[二者的对比，compiler 设为 Clang 10.0，优化设为 O1\](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-1.png)
+![\[二者的对比，compiler 设为 Clang 10.0，优化设为 O1\](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.png)
 
 #### 递归优化
 
@@ -146,7 +146,7 @@ void traverse(TreeNode* root) {
 
 这几行代码就足以遍历任何一棵二叉树了。对于递归函数 `traverse(root)` ，只要相信给它一个根节点 `root` ，它就能遍历这棵树。所以只需要把这个节点的左右节点再传给这个函数就行了。
 
-同样扩展到遍历一棵 N 叉数。与二叉树的写法一模一样。不过，对于 N 叉树，显然没有中序遍历。
+同样扩展到遍历一棵 N 叉树。与二叉树的写法一模一样。不过，对于 N 叉树，显然没有中序遍历。
 
 ```cpp
 void traverse(TreeNode* root) {
