@@ -16,11 +16,10 @@ int Eratosthenes(int n) {
   for (int i = 2; i <= n; ++i) {
     if (is_prime[i]) {
       prime[p++] = i;  // prime[p]是i,后置自增运算代表当前素数数量
-      if ((long long)i * i <= n)
-        for (int j = i * i; j <= n; j += i)
-          // 因为从 2 到 i - 1 的倍数我们之前筛过了，这里直接从 i
-          // 的倍数开始，提高了运行速度
-          is_prime[j] = 0;  // 是i的倍数的均不是素数
+      for (int j = i * i; j <= n;
+           j += i)  // 因为从 2 到 i - 1 的倍数我们之前筛过了，这里直接从 i
+                    // 的倍数开始，提高了运行速度
+        is_prime[j] = 0;  // 是i的倍数的均不是素数
     }
   }
   return p;
@@ -288,9 +287,16 @@ for (int i=2; i<=N; ++i) {
 
 该算法将具有线性运行时间，时间复杂度为 $O(n)$ 。
 
+
 #### 空间复杂度
 
-该算法空间复杂度是 $n$ 。
+该算法空间复杂度是 $n$ ，而经典 **Eratosthenes 筛**算法的空间复杂度是 $\dfrac n {\ln n}$ 。
+
+即便该算法的时间复杂度 $O(n)$ 比原算法的时间复杂度 $O(n \log \log n)$ 要好，但是他们并没有特别大的差别。 实际上，它们只有两倍的速度差，优化版本的 **Eratosthenes 筛**运行速度和这里给出的算法基本上一样快。
+
+然而，它的优点在于，该算法计算了一个数组 $\textit{lp}[]$ ，它能让我们找到 $[2, n]$ 中按大小排好序的质因子，使用一个额外的数组可以避免重复查找这些质因子。
+
+能求出所有数字的质因数分解对于某些任务是非常有用的，而且这个算法是少数时间复杂度为 $O(n)$ 的算法。
 
 
 **本页面部分内容译自博文 [Решето Эратосфена с линейным временем работы](http://e-maxx.ru/algo/prime_sieve_linear) 与其英文翻译版 [Sieve of Eratosthenes Having Linear Time Complexity](https://cp-algorithms.com/algebra/prime-sieve-linear.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
