@@ -15,7 +15,7 @@
 
 可以得到两个状态：
 
--  $i \xrightarrow{y} (i+y) \mod x$ 
+-  $i \xrightarrow{y} (i+y) \bmod x$ 
 
 -  $i \xrightarrow{z} (i+z) \mod x$ 
 
