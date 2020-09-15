@@ -22,36 +22,7 @@ Linux 系统通常自带 Vim，打开终端输入 `vim` 即可启用。
 
 系统自带的 `vim` （即直接使用 `apt install vim` 得到的）可能是 `vim-tiny` 或者 `vim-basic` ，缺少一些功能（如部分语言高亮、剪贴板支持等），具体可通过 `vim --version` 查看。此时，可以尝试安装 `vim-gtk3` ，以获得更多的功能。
 
-如果你需要使用到比系统自带的 vim 的更新版本中具有的功能（如 8.1 开始增加的 `termdebug` 插件），则可采取以下两种方法：
-
-如果没有相关需求，就没有必要手动安装了，可以直接略过本节。
-
-安装有两种做法。
-
-做法一，使用命令安装。但因为系统安装的时候 Vim 是从默认软件源安装的，所以软件源里 Vim 的版本并不是最新的。这个时候应使用第三方软件源安装，命令如下：
-
-```bash
-sudo add-apt-repository ppa:jonathonf/vim
-sudo apt-get update
-sudo apt-get install vim
-```
-
-静待安装完成即可。
-
-做法二，先到 [Releases - vim/vim](https://github.com/vim/vim/releases) 下载源码包，然后解压，并进入解压后的文件夹，并打开终端，cd 至文件夹路径，并依次输入如下命令：
-
-```bash
-sudo apt-get install python-dev
-sudo apt-get install python3-dev
-sudo apt-get install libncurses5-dev
-./configure
-make
-sudo make install
-```
-
-make 的过程可能稍久，需耐心等待。
-
-最后在终端输入
+在终端输入
 
 ```bash
 vim
