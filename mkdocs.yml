@@ -345,6 +345,7 @@ nav:
     - 拆点: graph/node.md
     - 差分约束: graph/diff-constraints.md
     - k 短路: graph/kth-path.md
+    - 同余最短路: graph/mod-shortest-path.md
     - 连通性相关:
       - 强连通分量: graph/scc.md
       - 双连通分量: graph/bcc.md
