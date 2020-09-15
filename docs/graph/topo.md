@@ -84,24 +84,27 @@ bool toposort() {
 ## DFS 算法
 
 ```cpp
-// dfs 版本
+vector<int> G[MAXN];  // vector 实现的邻接表
+int c[MAXN];          // 标志数组
+vector<int> topo;     // 拓扑排序后的节点
+
 bool dfs(int u) {
   c[u] = -1;
-  for (int v = 0; v <= n; v++)
-    if (G[u][v]) {
-      if (c[v] < 0)
-        return false;
-      else if (!c[v])
-        dfs(v);
-    }
+  for (int v : G[u]) {
+    if (c[v] < 0)
+      return false;
+    else if (!c[v])
+      if (!dfs(v)) return false;
+  }
   c[u] = 1;
   topo.push_back(u);
   return true;
 }
+
 bool toposort() {
   topo.clear();
   memset(c, 0, sizeof(c));
-  for (int u = 0; u <= n; u++)
+  for (int u = 0; u < n; u++)
     if (!c[u])
       if (!dfs(u)) return false;
   reverse(topo.begin(), topo.end());
