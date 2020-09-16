@@ -76,7 +76,7 @@ Linux 系统可以通过包管理器进行安装。不同 Linux 发行版的安�
 
 ### macOS
 
-macOS 系统只需在终端执行 `brew install git` 命令即可安装。（需安装 [Homebrew](https://brew.sh/)）
+macOS 系统只需在终端执行 `brew install git` 命令即可安装。（需安装 [Homebrew](https://brew.sh/) ）
 
 ## 配置
 
