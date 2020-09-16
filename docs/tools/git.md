@@ -74,9 +74,9 @@ Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Gi
 
 Linux 系统可以通过包管理器进行安装。不同 Linux 发行版的安装方式可能不同， [Git 官网](https://git-scm.com/download/linux) 给出了不同系统下的安装方式。
 
-### Mac
+### macOS
 
-Mac 系统只需在终端执行 `brew install git` 命令即可安装。
+macOS 系统只需在终端执行 `brew install git` 命令即可安装。（需安装 [Homebrew](https://brew.sh/)）
 
 ## 配置
 
