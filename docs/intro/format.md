@@ -499,4 +499,4 @@ PR 需要包含以下基本信息：
 
 [^ref3]:  [我的公式为什么在目录里没有正常显示？好像双倍了](faq.md) 
 
-[^ref4]:  [SVG|MDN](https://developer.mozilla.org/zh-CN/docs/Web/SVG)
+[^ref4]:  [SVG|MDN](https://developer.mozilla.org/zh-CN/docs/Web/SVG) 
