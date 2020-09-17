@@ -131,35 +131,9 @@ Dinic 算法有两个优化：
 1.  **多路增广** ：每次找到一条增广路的时候，如果残余流量没有用完怎么办呢？我们可以利用残余部分流量，再找出一条增广路。这样就可以在一次 DFS 中找出多条增广路，大大提高了算法的效率。
 2.  **当前弧优化** ：如果一条边已经被增广过，那么它就没有可能被增广第二次。那么，我们下一次进行增广的时候，就可以不必再走那些已经被增广过的边。
 
-#### 时间复杂度
-
 设点数为 $n$ ，边数为 $m$ ，那么 Dinic 算法的时间复杂度（在应用上面两个优化的前提下）是 $O(n^{2}m)$ ，在稀疏图上效率和 EK 算法相当，但在稠密图上效率要比 EK 算法高很多。
 
-首先考虑单轮增广的过程。在应用了 **当前弧优化** 的前提下，对于每个点，我们维护下一条可以增广的边，而当前弧最多变化 $m$ 次，从而单轮增广的最坏时间复杂度为 $O(nm)$ 。
-
-接下来我们证明，最多只需 $n-1$ 轮增广即可得到最大流。
-
-我们先回顾下 Dinic 的增广过程。对于每个点，Dinic 只会找比该点层数多 $1$ 的点进行增广。
-
-首先容易发现，对于图上的每个点，一轮增广后其层数一定不会减小。而对于汇点 $t$ ，情况会特殊一些，其层数在一轮增广后一定增大。
-
-对于后者，我们考虑用反证法证明。如果 $t$ 的层数在一轮增广后不变，则意味着在上一次增广中，仍然存在着一条从 $s$ 到 $t$ 的增广路，且该增广路上相邻两点间的层数差为 $1$ 。这条增广路应该在上一次增广过程中就被增广了，这就出现了矛盾。
-
-从而我们证明了汇点的层数在一轮增广后一定增大，即增广过程最多进行 $n-1$ 次。
-
-综上 Dinic 的最坏时间复杂度为 $O(n^{2}m)$ 。事实上在一般的网络上，Dinic 算法往往达不到这个上界。
-
-特别地，在求解二分图最大匹配问题时，Dinic 算法的时间复杂度是 $O(m\sqrt{n})$ 。接下来我们将给出证明。
-
-首先我们来简单归纳下求解二分图最大匹配问题时，建立的网络的特点。我们发现这个网络中，所有边的流量均为 $1$ ，且除了源点和汇点外的所有点，都满足入边最多只有一条，或出边最多只有一条。我们称这样的网络为 **单位网络** 。
-
-对于单位网络，一轮增广的时间复杂度为 $O(m)$ ，因为每条边只会被考虑最多一次。
-
-接下来我们试着求出增广轮数的上界。假设我们已经先完成了前 $\sqrt{n}$ 轮增广，因为汇点的层数在每次增广后均严格增加，因此所有长度不超过 $\sqrt{n}$ 的增广路都已经在之前的增广过程中被增广。设前 $\sqrt{n}$ 轮增广后，网络的流量为 $f$ ，而整个网络的最大流为 $f'$ ，设两者间的差值 $d=f'-f$ 。
-
-因为网络上所有边的流量均为 $1$ ，所以我们还需要找到 $d$ 条增广路才能找到网络最大流。又因为单位网络的特点，这些增广路不会在源点和汇点以外的点相交。因此这些增广路至少经过了 $d\sqrt{n}$ 个点（每条增广路的长度至少为 $\sqrt{n}$ ），且不能超过 $n$ 个点。因此残量网络上最多还存在 $\sqrt{n}$ 条增广路。也即最多还需增广 $\sqrt{n}$ 轮。
-
-综上，对于包含二分图最大匹配在内的单位网络，Dinic 算法可以在 $O(m\sqrt{n})$ 的时间内求出其最大流。
+特别地，在求解二分图最大匹配问题时，可以证明 Dinic 算法的时间复杂度是 $O(m\sqrt{n})$ 。
 
 ??? note "参考代码"
     ```cpp
@@ -608,3 +582,209 @@ HLPP 推送的条件是 $h(u)=h(v)+1$ ，而如果在算法的某一时刻， $h
 ![HLPP](./images/1152.png)
 
 其中 pic13 到 pic14 执行了 Relabel(4)，并进行了 GAP 优化。
+
+## MPM算法
+
+MPM (Malhotra, Pramodh-Kumar and Maheshwari) 算法可以在 $O(V^3)$ 的时间复杂度内解决最大流问题。
+
+### 算法描述
+
+MPM是分阶段运行的，在每一阶段我们找到图 $G$ 的分层网络中的阻塞流。以分层网络 $L$ 为例。对于每个节点，我们将其内部势能和外部是能定义为：
+
+$$\begin{align}
+p_{in}(v) &= \sum\limits_{(u, v)\in L}(c(u, v) - f(u, v)) \\\\
+p_{out}(v) &= \sum\limits_{(v, u)\in L}(c(v, u) - f(v, u))
+\end{align}$$
+
+同时我们令 $p_{in}(s) = p_{out}(t) = \infty$ 。
+
+根据$p_{in}$ 和 $p_{out}$ 我们定义 $p(v) = min(p_{in}(v), p_{out}(v))$ 。
+
+对于某节点 $r$ 如果 $p(r) = \min{p(v)}$ 我们将其定义为参考节点。由于 $L$ 不含环，该节点流量可以增加 $p(r)$ ，从而使 $p(r)$ 变成 $0$ 。
+
+所以我们可以通过向外的边将流推出 $r$ 节点，流将达到 $t$ 节点，因为每个节点在到达时都有足够的外部势能将流推出。阻塞流的构造就是基于这个事实。
+
+在每个迭代中，我们找到一个参考节点，并将流从 $s$ 推到 $t$ ，再推到 $r$ 。
+
+这一过程可以用BFS模拟。
+
+所有完全饱和的弧都可以从 $L$ 中删除，这时候它们就已经没用了。
+
+每个阶段的时间复杂度为 $O(V^2)$ ， $V$ 个阶段所以 MPM 算法的复杂度为 $O(V^3)$ 。
+
+### 实现
+
+??? "MPM算法参考代码"
+    ```cpp 
+    struct MPM{
+        struct FlowEdge{
+            int v, u;
+            long long cap, flow;
+            FlowEdge(){}
+            FlowEdge(int _v, int _u, long long _cap, long long _flow)
+                : v(_v), u(_u), cap(_cap), flow(_flow){}
+            FlowEdge(int _v, int _u, long long _cap)
+                : v(_v), u(_u), cap(_cap), flow(0ll){}
+        };
+        const long long flow_inf = 1e18;
+        vector<FlowEdge> edges;
+        vector<char> alive;
+        vector<long long> pin, pout;
+        vector<list<int> > in, out;
+        vector<vector<int> > adj;
+        vector<long long> ex;
+        int n, m = 0;
+        int s, t;
+        vector<int> level;
+        vector<int> q;
+        int qh, qt;
+        void resize(int _n){
+            n = _n;
+            ex.resize(n);
+            q.resize(n);
+            pin.resize(n);
+            pout.resize(n);
+            adj.resize(n);
+            level.resize(n);
+            in.resize(n);
+            out.resize(n);
+        }
+        MPM(){}
+        MPM(int _n, int _s, int _t){resize(_n); s = _s; t = _t;}
+        void add_edge(int v, int u, long long cap){
+            edges.push_back(FlowEdge(v, u, cap));
+            edges.push_back(FlowEdge(u, v, 0));
+            adj[v].push_back(m);
+            adj[u].push_back(m + 1);
+            m += 2;
+        }
+        bool bfs(){
+            while(qh < qt){
+                int v = q[qh++];
+                for(int id : adj[v]){
+                    if(edges[id].cap - edges[id].flow < 1)continue;
+                    if(level[edges[id].u] != -1)continue;
+                    level[edges[id].u] = level[v] + 1;
+                    q[qt++] = edges[id].u;
+                }
+            }
+            return level[t] != -1;
+        }
+        long long pot(int v){
+            return min(pin[v], pout[v]);
+        }
+        void remove_node(int v){
+            for(int i : in[v]){
+                int u = edges[i].v;
+                auto it = find(out[u].begin(), out[u].end(), i);
+                out[u].erase(it);
+                pout[u] -= edges[i].cap - edges[i].flow;
+            }
+            for(int i : out[v]){
+                int u = edges[i].u;
+                auto it = find(in[u].begin(), in[u].end(), i);
+                in[u].erase(it);
+                pin[u] -= edges[i].cap - edges[i].flow;
+            }
+        }
+        void push(int from, int to, long long f, bool forw){
+            qh = qt = 0;
+            ex.assign(n, 0);
+            ex[from] = f;
+            q[qt++] = from;
+            while(qh < qt){
+                int v = q[qh++];
+                if(v == to)
+                    break;
+                long long must = ex[v];
+                auto it = forw ? out[v].begin() : in[v].begin();
+                while(true){
+                    int u = forw ? edges[*it].u : edges[*it].v;
+                    long long pushed = min(must, edges[*it].cap - edges[*it].flow);
+                    if(pushed == 0)break;
+                    if(forw){
+                        pout[v] -= pushed;
+                        pin[u] -= pushed;
+                    }
+                    else{
+                        pin[v] -= pushed;
+                        pout[u] -= pushed;
+                    }
+                    if(ex[u] == 0)
+                        q[qt++] = u;
+                    ex[u] += pushed;
+                    edges[*it].flow += pushed;
+                    edges[(*it)^1].flow -= pushed;
+                    must -= pushed;
+                    if(edges[*it].cap - edges[*it].flow == 0){
+                        auto jt = it;
+                        ++jt;
+                        if(forw){
+                            in[u].erase(find(in[u].begin(), in[u].end(), *it));
+                            out[v].erase(it);
+                        }
+                        else{
+                            out[u].erase(find(out[u].begin(), out[u].end(), *it));
+                            in[v].erase(it);
+                        }
+                        it = jt;
+                    }
+                    else break;
+                    if(!must)break;
+                }
+            }
+        }
+        long long flow(){
+            long long ans = 0;
+            while(true){
+                pin.assign(n, 0);
+                pout.assign(n, 0);
+                level.assign(n, -1);
+                alive.assign(n, true);
+                level[s] = 0;
+                qh = 0; qt = 1;
+                q[0] = s;
+                if(!bfs())
+                    break;
+                for(int i = 0; i < n; i++){
+                    out[i].clear();
+                    in[i].clear();
+                }
+                for(int i = 0; i < m; i++){
+                    if(edges[i].cap - edges[i].flow == 0)
+                        continue;
+                    int v = edges[i].v, u = edges[i].u;
+                    if(level[v] + 1 == level[u] && (level[u] < level[t] || u == t)){
+                        in[u].push_back(i);
+                        out[v].push_back(i);
+                        pin[u] += edges[i].cap - edges[i].flow;
+                        pout[v] += edges[i].cap - edges[i].flow;
+                    }
+                }
+                pin[s] = pout[t] = flow_inf;
+                while(true){
+                    int v = -1;
+                    for(int i = 0; i < n; i++){
+                        if(!alive[i])continue;
+                        if(v == -1 || pot(i) < pot(v))
+                            v = i;
+                    }
+                    if(v == -1)
+                        break;
+                    if(pot(v) == 0){
+                        alive[v] = false;
+                        remove_node(v);
+                        continue;
+                    }
+                    long long f = pot(v);
+                    ans += f;
+                    push(v, s, f, false);
+                    push(v, t, f, true);
+                    alive[v] = false;
+                    remove_node(v);
+                }
+            }
+            return ans;
+        }
+    };
+    ```
