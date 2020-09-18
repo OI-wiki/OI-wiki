@@ -65,6 +65,27 @@ $$
 
 特别地，规定当 $m>n$ 时， $\mathrm A_n^m=\mathrm C_n^m=0$ 。
 
+#### 通过字典序枚举
+
+给定一个元素从 $1$ 到 $N$ 连续变化的集合，以及一个小于 $N$ 的自然数 $K$ ，要求枚举所有大小为 $K$ 的子集。
+
+??? note "参考代码"
+    ```cpp 
+    bool next_combination(vector<int>& a, int n) {
+        int k = (int)a.size();
+        for (int i = k - 1; i >= 0; i--) {
+            if (a[i] < n - k + i + 1) {
+                a[i]++;
+                for (int j = i + 1; j < k; j++)
+                    a[j] = a[j - 1] + 1;
+                return true;
+            }
+        }
+        return false;
+    }
+    ```
+
+
 ## 二项式定理
 
 在进入排列组合进阶篇之前，我们先介绍一个与组合数密切相关的定理——二项式定理。
