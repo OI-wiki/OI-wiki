@@ -70,21 +70,19 @@ $$
 给定一个元素从 $1$ 到 $N$ 连续变化的集合，以及一个小于 $N$ 的自然数 $K$ ，要求枚举所有大小为 $K$ 的子集。
 
 ??? note "参考代码"
-    ```cpp 
+    ```cpp
     bool next_combination(vector<int>& a, int n) {
-        int k = (int)a.size();
-        for (int i = k - 1; i >= 0; i--) {
-            if (a[i] < n - k + i + 1) {
-                a[i]++;
-                for (int j = i + 1; j < k; j++)
-                    a[j] = a[j - 1] + 1;
-                return true;
-            }
+      int k = (int)a.size();
+      for (int i = k - 1; i >= 0; i--) {
+        if (a[i] < n - k + i + 1) {
+          a[i]++;
+          for (int j = i + 1; j < k; j++) a[j] = a[j - 1] + 1;
+          return true;
         }
-        return false;
+      }
+      return false;
     }
     ```
-
 
 ## 二项式定理
 
