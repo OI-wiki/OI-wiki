@@ -55,7 +55,7 @@ int main() {
 
 -  [洛谷 U53525 前缀和（例题）](https://www.luogu.com.cn/problem/U53525) 
 -  [洛谷 U69096 前缀和的逆](https://www.luogu.com.cn/problem/U69096) 
--  [AT2412 最大の和](https://www.luogu.com.cn/problem/AT2412) 
+-  [AT2412 最大の和](https://vjudge.net/problem/AtCoder-joi2007ho_a#author=wuyudi) 
 -  [「USACO16JAN」子共七 Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131) 
 
 ### 参考
@@ -131,7 +131,7 @@ int main() {
 
 ### 习题
 
--  [HUD 6514 Monitor](http://acm.hdu.edu.cn/showproblem.php?pid=6514) 
+-  [HDU 6514 Monitor](http://acm.hdu.edu.cn/showproblem.php?pid=6514) 
 -  [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387) 
 -  [「HNOI2003」激光炸弹](https://www.luogu.com.cn/problem/P2280) 
 
@@ -171,8 +171,8 @@ int main() {
 
 简单性质：
 
--  $a_i$ 的值是 $b_i$ 的前缀和，即 $a_i=\sum\limits_{i=1}^nf_i$ 
-- 计算 $a_i$ 的前缀和 $sum=\sum\limits_{i=1}^na_i=\sum\limits_{i=1}^n\sum\limits_{j=1}^{i}f_j=\sum\limits_{i}^n(n-i+1)f_i$ 
+-  $a_i$ 的值是 $b_i$ 的前缀和，即 $a_n=\sum\limits_{i=1}^nb_i$ 
+- 计算 $a_i$ 的前缀和 $sum=\sum\limits_{i=1}^na_i=\sum\limits_{i=1}^n\sum\limits_{j=1}^{i}b_j=\sum\limits_{i}^n(n-i+1)b_i$ 
 
 它可以维护多次对序列的一个区间加上一个数，并在最后询问某一位的数或是多次询问某一位的数。（总之修改操作一定要在查询操作之前）  
 具体怎么搞？譬如使 $[l,r]$ 中的每个数加上一个 $k$ ，就是
