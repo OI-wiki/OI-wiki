@@ -52,4 +52,4 @@ author: Ir1d, TrisolarisHD, LucienShui, Anguei, H-J-Granger
 ## 习题
 
 -  [POJ 1655 Balancing Art](http://poj.org/problem?id=1655) （模板题）
--  [CodeForces 1406 C Link Cut Centroids](https://codeforces.com/contest/1406/problem/C) 
+-  [CodeForces 1406C Link Cut Centroids](https://codeforces.com/contest/1406/problem/C) 
