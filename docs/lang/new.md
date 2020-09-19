@@ -193,14 +193,14 @@ int main() {
  `constexpr` 说明符声明可以在编译时求得函数或变量的值。其与 `const` 的主要区别是一定会在编译时进行初始化。用于对象声明的 `constexpr` 说明符蕴含 `const` ，用于函数声明的 `constexpr` 蕴含 `inline` 。来看一个例子
 
 ```cpp
-int frac(int x) { return x ? x * frac(x - 1) : 1; }
+int fact(int x) { return x ? x * fact(x - 1) : 1; }
 int main() {
-  constexpr int a = frac(5);  // ERROR: 函数调用在常量表达式中必须具有常量值
+  constexpr int a = fact(5);  // ERROR: 函数调用在常量表达式中必须具有常量值
   return 0;
 }
 ```
 
-在 `int frac(int x)` 之前加上 `constexpr` 则编译通过。
+在 `int fact(int x)` 之前加上 `constexpr` 则编译通过。
 
 ## std::tuple
 
