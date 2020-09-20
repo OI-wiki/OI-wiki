@@ -341,6 +341,7 @@ nav:
     - 最小生成树: graph/mst.md
     - 斯坦纳树: graph/steiner-tree.md
     - 最小树形图: graph/dmst.md
+    - 最小直径生成树: graph/mdst.md
     - 最短路: graph/shortest-path.md
     - 拆点: graph/node.md
     - 差分约束: graph/diff-constraints.md
