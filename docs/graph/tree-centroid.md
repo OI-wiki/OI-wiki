@@ -22,19 +22,24 @@ author: Ir1d, TrisolarisHD, LucienShui, Anguei, H-J-Granger
 
 ???+note "参考代码"
     ```cpp
-    void getCentroid(int u, int fa) {
-      siz[u] = 1;
-      wt[u] = 0;
-      for (int i = head[u]; ~i; i = nxt[i]) {
-        int v = to[i];
-        if (v != fa) {
-          getCentroid(v, u);
-          siz[u] += siz[v];
-          wt[u] = max(wt[u], siz[v]);
+    // 这份代码默认节点编号从 1 开始，即 i ∈ [1,n]
+    int size[MAXN],  // 这个节点的“大小”（所有子树上节点数 + 该节点）
+        weight[MAXN],  // 这个节点的“重量”
+        centroid[2];   // 用于记录树的重心（存的是节点编号）
+    void GetCentroid(int cur, int fa) {  // cur 表示当前节点 (current)
+      size[cur] = 1;
+      weight[cur] = 0;
+      for (int i = head[cur]; i != -1; i = e[i].nxt) {
+        if (e[i].to != fa) {  // e[i].to 表示这条有向边所通向的节点。
+          GetCentroid(e[i].to, cur);
+          size[cur] += size[e[i].to];
+          weight[cur] = max(weight[cur], size[e[i].to]);
         }
       }
-      wt[u] = max(wt[u], n - siz[u]);
-      if (rt == 0 || wt[u] < wt[rt]) rt = u;  // rt 为重心编号
+      weight[cur] = max(weight[cur], n - size[cur]);
+      if (weight[cur] <= n / 2) {  // 依照树的重心的定义统计
+        centroid[centroid[0] != 0] = cur;
+      }
     }
     ```
 
@@ -47,3 +52,4 @@ author: Ir1d, TrisolarisHD, LucienShui, Anguei, H-J-Granger
 ## 习题
 
 -  [POJ 1655 Balancing Art](http://poj.org/problem?id=1655) （模板题）
+-  [CodeForces 1406C Link Cut Centroids](https://codeforces.com/contest/1406/problem/C) 
