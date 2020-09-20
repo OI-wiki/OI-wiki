@@ -8,7 +8,7 @@ author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613
 
 * * *
 
-## 引言<div style="display:none">\ [</div>[^ref1]<div style="display:none">]</div>
+## 引言<div style="display:none">\\ \[</div>[^ref1]<div style="display:none">]</div>
 
 众所周知，尽管现在大部分学校的竞赛练习环境都是构建 XP 等 Windows 系操作系统，但是在 NOI 系列赛中，早已用上了 NOI Linux 这个 Ubuntu 操作系统的阉割版。
 
@@ -62,7 +62,7 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
     目前 WSL 1 完全不支持 systemd（这意味着一些需要 systemd 的功能无法实现或需要别的 hack），WSL 2 可以使用 [genie](https://github.com/arkane-systems/genie) 。
     此外， [yuk7/arch-systemctl-alt](https://github.com/yuk7/arch-systemctl-alt) 项目提供了一个在 WSL 1 与 2 都可用的 alternative script，但是它只具有部分兼容且只在 ArchWSL 进行了测试。
 
-## 启用 WSL<div style="display:none">\ [</div>[^ref4]<div style="display:none">]</div>
+## 启用 WSL<div style="display:none">\\ \[</div>[^ref4]<div style="display:none">]</div>
 
 ???+ warning
     本部分适用于 Windows 10 秋季创意者更新（内部版本 16215）和更高版本。
@@ -93,7 +93,7 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 
 5. 重启
 
-## 安装与使用 Ubuntu<div style="display:none">\ [</div>[^ref5]<div style="display:none">]</div>
+## 安装与使用 Ubuntu<div style="display:none">\\ \[</div>[^ref5]<div style="display:none">]</div>
 
 本章以 Ubuntu 长期更新版为例。
 
@@ -180,7 +180,7 @@ sudo sed -i 's|/usr/share/man|/usr/share/man/zh_CN|g' /etc/manpath.config
 
 可以用 `man help` 测试。
 
-### 安装编译环境<div style="display:none">\ [</div>[^ref7]<div style="display:none">]</div>
+### 安装编译环境<div style="display:none">\\ \[</div>[^ref7]<div style="display:none">]</div>
 
 ```bash
 sudo apt install build-essential vim ddd gdb fpc emacs gedit anjuta lazarus -y
