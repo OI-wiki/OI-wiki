@@ -8,7 +8,7 @@ author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613
 
 * * *
 
-## 引言[^ref1]
+## 引言<div style="display:none">[^ref1]</div>
 
 众所周知，尽管现在大部分学校的竞赛练习环境都是构建 XP 等 Windows 系操作系统，但是在 NOI 系列赛中，早已用上了 NOI Linux 这个 Ubuntu 操作系统的阉割版。
 
