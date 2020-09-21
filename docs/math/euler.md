@@ -8,36 +8,35 @@
 
 ## 欧拉函数的一些性质
 
-- 欧拉函数是积性函数。
+-   欧拉函数是积性函数。
 
-  积性是什么意思呢？如果有 $\gcd(a, b) = 1$ ，那么 $\varphi(a \times b) = \varphi(a) \times \varphi(b)$ 。
+    积性是什么意思呢？如果有 $\gcd(a, b) = 1$ ，那么 $\varphi(a \times b) = \varphi(a) \times \varphi(b)$ 。
 
-  特别地，当 $n$ 是奇数时 $\varphi(2n) = \varphi(n)$ 。
+    特别地，当 $n$ 是奇数时 $\varphi(2n) = \varphi(n)$ 。
 
-- $n = \sum_{d \mid n}{\varphi(d)}$ 。 
+-    $n = \sum_{d \mid n}{\varphi(d)}$ 。
 
-  利用 [莫比乌斯反演](./mobius.md) 相关知识可以得出。
+    利用 [莫比乌斯反演](./mobius.md) 相关知识可以得出。
 
-  也可以这样考虑：如果 $\gcd(k, n) = d$ ，那么 $\gcd(\dfrac{k}{d},\dfrac{n}{d}) = 1, （ k < n ）$。
+    也可以这样考虑：如果 $\gcd(k, n) = d$ ，那么 $\gcd(\dfrac{k}{d},\dfrac{n}{d}) = 1, （ k < n ）$ 。
 
-  如果我们设 $f(x)$ 表示 $\gcd(k, n) = x$ 的数的个数，那么 $n = \sum_{i = 1}^n{f(i)}$ 。
+    如果我们设 $f(x)$ 表示 $\gcd(k, n) = x$ 的数的个数，那么 $n = \sum_{i = 1}^n{f(i)}$ 。
 
-  根据上面的证明，我们发现， $f(x) = \varphi(\dfrac{n}{x})$ ，从而 $n = \sum_{d \mid n}\varphi(\dfrac{n}{d})$ 。注意到约数 $d$ 和 $\dfrac{n}{d}$ 具有对称性，所以上式化为 $n = \sum_{d \mid n}\varphi(d)$ 。
+    根据上面的证明，我们发现， $f(x) = \varphi(\dfrac{n}{x})$ ，从而 $n = \sum_{d \mid n}\varphi(\dfrac{n}{d})$ 。注意到约数 $d$ 和 $\dfrac{n}{d}$ 具有对称性，所以上式化为 $n = \sum_{d \mid n}\varphi(d)$ 。
 
-- 若 $n = p^k$ ，其中 $p$ 是质数，那么 $\varphi(n) = p^k - p^{k - 1}$ 。
-  （根据定义可知）
+-   若 $n = p^k$ ，其中 $p$ 是质数，那么 $\varphi(n) = p^k - p^{k - 1}$ 。
+    （根据定义可知）
 
-* 由唯一分解定理， 设 $n = \prod_{i=1}^{n}p_i^{k_i}$ ， 其中 $p_i$ 是质数， 有$\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$ 。
 
-  证明：
+-   由唯一分解定理，设 $n = \prod_{i=1}^{n}p_i^{k_i}$ ，其中 $p_i$ 是质数，有 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$ 。
 
-  * 引理：设 $p$为任意质数， 那么 $\varphi(p^k)=p^{k-1}\times(p-1)$ 。
+    证明：
 
-    证明：显然对于从1到$p^k$的所有数中， 除了$p^{k-1}$个$p$的倍数以外其它数都与$p^k$互素， 故$\varphi(p^k)=p^k-p^{k-1}=p^{k-1}\times(p-1)$， 证毕。
+    -   引理：设 $p$ 为任意质数，那么 $\varphi(p^k)=p^{k-1}\times(p-1)$ 。
 
-  接下来我们证明 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$ 。由唯一分解定理与$\varphi(x)$函数的积性
+        证明：显然对于从 1 到 $p^k$ 的所有数中，除了 $p^{k-1}$ 个 $p$ 的倍数以外其它数都与 $p^k$ 互素，故 $\varphi(p^k)=p^k-p^{k-1}=p^{k-1}\times(p-1)$ ，证毕。
 
-  
+    接下来我们证明 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$ 。由唯一分解定理与 $\varphi(x)$ 函数的积性
 
 $$
 \begin{aligned}
@@ -48,8 +47,6 @@ $$
 	&\square
 \end{aligned}
 $$
-
-
 
 ## 如何求欧拉函数值
 
