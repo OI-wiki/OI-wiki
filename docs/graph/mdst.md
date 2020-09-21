@@ -105,7 +105,7 @@
 
  [timus 1569. Networking the“Iset”](https://acm.timus.ru/problem.aspx?space=1&num=1569) 
 
- [SPOJ PT07C - The GbAaY Kingdom](https://www.luogu.com.cn/problem/SP1479) 
+ [SPOJ PT07C - The GbAaY Kingdom](https://www.spoj.com/problems/PT07C) 
 
 ## 参考文献
 
