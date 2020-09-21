@@ -83,140 +83,131 @@ author: Ir1d, Anguei, hsfzLZH1, siger-young, HeRaNO
       }
     ```
 
-### 一元运算符
+###  一元运算符
 
-以上的内容包括 NOIP2005 等价表达式只计算了只含双目运算符（二元运算符）的表达式，那么对含有负号这种单目运算符（一元运算符）的表达式该怎么处理呢？
+以上的内容（包括NOIP2005）等价表达式只计算了只含双目运算符（二元运算符）的表达式，那么对含有负号这种单目运算符（一元运算符）的表达式该怎么处理呢？
 
-现在假设表达式还包含一元运算符，且一元运算符只作用于符号右边的参数
+现在假设表达式还包含一元运算符，且一元运算符只作用于符号右边的参数。
 
 在这种情况下，我们首先需要确定当前操作符是一元的还是二元的。
 
-可以注意到，在一个一元运算符之前，总是有另一个运算符或一个括号，或者什么都没有（位于表达式的最开始）。
+可以注意到，在一个一元运算符之前，总是有另一个运算符或一个括号，或者什么都没有(位于表达式的最开始)。
 
 相反，在二元运算符之前，总是会有一个数字或一个右括号。
 
-因此，很容易标记操作符是否是一元的。
+因此，很容易判断操作符是否是一元的。
 
 ### 右结合
 
 右结合的意思是，当优先级相等时，运算符必须从右到左计算。如上所述，一元运算符通常是右结合的。
 
-另一个右关联运算符的例子是求幂运算符（ $a \wedge b \wedge c$ 通常被认为是 $a^{b^c}$ ，而不是 $(a^b)^c$ )。
+另一个右关联运算符的例子是求幂运算符($a \wedge b \wedge c$通常被认为是$a^{b^c}$，而不是$(a^b)^c$)。
 
 为了实现右结合，实际上只需要几行的代码
 
 ```cpp
-while (!op.empty() && priority(op.top()) >= priority(cur_op)) 
+while (!op.empty() && priority(op.top()) >= priority(cur_op))
 ```
 
 以及
-
 ```cpp
-while (!op.empty() &&
-       ((left_assoc(cur_op) && priority(op.top()) >= priority(cur_op)) ||
-        (!left_assoc(cur_op) && priority(op.top()) > priority(cur_op))))
+while (!op.empty() && (
+        (left_assoc(cur_op) && priority(op.top()) >= priority(cur_op)) ||
+        (!left_assoc(cur_op) && priority(op.top()) > priority(cur_op))
+    ))
 ```
-
- `left_assoc` 函数是用来判断一个运算符是否为左结合运算符。
+`left_assoc`函数是用来判断一个运算符是否为左结合运算符。
 
 ### 实现
 
-二元运算符： $+$ , $-$ , $*$ , $/$ 一元运算符： $+$ , $-$ 
+二元运算符举例： $+,-,*,/$
+一元运算符举例： $+,-$
 
-```cpp expression_parsing_unary
-bool delim(char c) { return c == ' '; }
-
-bool is_op(char c) { return c == '+' || c == '-' || c == '*' || c == '/'; }
-
-bool is_unary(char c) { return c == '+' || c == '-'; }
-
-int priority(char op) {
-  if (op < 0)  // unary operator
-    return 3;
-  if (op == '+' || op == '-') return 1;
-  if (op == '*' || op == '/') return 2;
-  return -1;
-}
-
-void process_op(stack<int>& st, char op) {
-  if (op < 0) {
-    int l = st.top();
-    st.pop();
-    switch (-op) {
-      case '+':
-        st.push(l);
-        break;
-      case '-':
-        st.push(-l);
-        break;
+??? note "参考代码"
+    ```cpp expression_parsing_unary
+    bool delim(char c) {
+        return c == ' ';
     }
-  } else {
-    int r = st.top();
-    st.pop();
-    int l = st.top();
-    st.pop();
-    switch (op) {
-      case '+':
-        st.push(l + r);
-        break;
-      case '-':
-        st.push(l - r);
-        break;
-      case '*':
-        st.push(l * r);
-        break;
-      case '/':
-        st.push(l / r);
-        break;
+    bool is_op(char c) {
+        return c == '+' || c == '-' || c == '*' || c == '/';
     }
-  }
-}
-
-int evaluate(string& s) {
-  stack<int> st;
-  stack<char> op;
-  bool may_be_unary = true;
-  for (int i = 0; i < (int)s.size(); i++) {
-    if (delim(s[i])) continue;
-
-    if (s[i] == '(') {
-      op.push('(');
-      may_be_unary = true;
-    } else if (s[i] == ')') {
-      while (op.top() != '(') {
-        process_op(st, op.top());
-        op.pop();
-      }
-      op.pop();
-      may_be_unary = false;
-    } else if (is_op(s[i])) {
-      char cur_op = s[i];
-      if (may_be_unary && is_unary(cur_op)) cur_op = -cur_op;
-      while (!op.empty() &&
-             ((cur_op >= 0 && priority(op.top()) >= priority(cur_op)) ||
-              (cur_op < 0 && priority(op.top()) > priority(cur_op)))) {
-        process_op(st, op.top());
-        op.pop();
-      }
-      op.push(cur_op);
-      may_be_unary = true;
-    } else {
-      int number = 0;
-      while (i < (int)s.size() && isalnum(s[i]))
-        number = number * 10 + s[i++] - '0';
-      --i;
-      st.push(number);
-      may_be_unary = false;
+    bool is_unary(char c) {
+        return c == '+' || c=='-';
     }
-  }
-
-  while (!op.empty()) {
-    process_op(st, op.top());
-    op.pop();
-  }
-  return st.top();
-}
-```
+    int priority (char op) {
+        if (op < 0) // unary operator
+            return 3;
+        if (op == '+' || op == '-')
+            return 1;
+        if (op == '*' || op == '/')
+            return 2;
+        return -1;
+    }
+    void process_op(stack<int>& st, char op) {
+        if (op < 0) {
+            int l = st.top(); st.pop();
+            switch (-op) {
+                case '+': st.push(l); break;
+                case '-': st.push(-l); break;
+            }
+        } else {
+            int r = st.top(); st.pop();
+            int l = st.top(); st.pop();
+            switch (op) {
+                case '+': st.push(l + r); break;
+                case '-': st.push(l - r); break;
+                case '*': st.push(l * r); break;
+                case '/': st.push(l / r); break;
+            }
+        }
+    }
+    int evaluate(string& s) {
+        stack<int> st;
+        stack<char> op;
+        bool may_be_unary = true;
+        for (int i = 0; i < (int)s.size(); i++) {
+            if (delim(s[i]))
+                continue;
+            
+            if (s[i] == '(') {
+                op.push('(');
+                may_be_unary = true;
+            } else if (s[i] == ')') {
+                while (op.top() != '(') {
+                    process_op(st, op.top());
+                    op.pop();
+                }
+                op.pop();
+                may_be_unary = false;
+            } else if (is_op(s[i])) {
+                char cur_op = s[i];
+                if (may_be_unary && is_unary(cur_op))
+                    cur_op = -cur_op;
+                while (!op.empty() && (
+                        (cur_op >= 0 && priority(op.top()) >= priority(cur_op)) ||
+                        (cur_op < 0 && priority(op.top()) > priority(cur_op))
+                    )) {
+                    process_op(st, op.top());
+                    op.pop();
+                }
+                op.push(cur_op);
+                may_be_unary = true;
+            } else {
+                int number = 0;
+                while (i < (int)s.size() && isalnum(s[i]))
+                    number = number * 10 + s[i++] - '0';
+                --i;
+                st.push(number);
+                may_be_unary = false;
+            }
+        }
+        while (!op.empty()) {
+            process_op(st, op.top());
+            op.pop();
+        }
+        return st.top();
+    }
+    ```
 
 ## 习题
 
