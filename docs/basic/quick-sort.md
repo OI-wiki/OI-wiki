@@ -83,9 +83,9 @@ void quick_sort(T arr[], const int len) {
 
 ## 内省排序[^ref3]
 
-内省排序（introspective sort）是快速排序和 [堆排序](heap-sort.md) 的结合，由 David Musser 于 1997 年发明。内省排序其实是对快速排序的一种优化，保证了最差时间复杂度为 $O(n\log n)$ 。
+内省排序（英语：Introsort 或 Introspective sort）是快速排序和 [堆排序](heap-sort.md) 的结合，由 David Musser 于 1997 年发明。内省排序其实是对快速排序的一种优化，保证了最差时间复杂度为 $O(n\log n)$ 。
 
-内省排序的思路其实很简单，就是限制快速排序最大递归深度为 $\lfloor \log_2n \rfloor$ ，超过限制时就转换为堆排序。这样既保留了快速排序内存访问的局部性，又可以防止快速排序在某些情况下性能退化为 $O(n^2)$ 。
+内省排序将快速排序的最大递归深度限制为 $\lfloor \log_2n \rfloor$ ，超过限制时就转换为堆排序。这样既保留了快速排序内存访问的局部性，又可以防止快速排序在某些情况下性能退化为 $O(n^2)$ 。
 
 2000 年 6 月，SGI C++ STL 的 stl_algo.h 中 sort(）函数的实现采用了内省排序算法。
 
