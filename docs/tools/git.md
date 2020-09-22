@@ -231,7 +231,7 @@ $ git commit # 接下来会弹出编辑器页面，你需要写下 commit 信息
 
 ### 查看提交记录
 
-使用 `git log` 命令可以查看仓库的提交历史记录[^note3]。
+使用 `git log` 命令可以查看仓库的提交历史记录。
 
 可以看到，提交历史里记录了每次提交时的 SHA-1 校验和，提交的作者，提交时间和 commit 信息。
 
@@ -250,7 +250,7 @@ Date:   Sun Sep 13 00:06:07 2020 +0800
     initial commit
 ```
 
-### 分支管理
+## 分支管理
 
 为什么版本管理中需要分支管理呢？答案主要有两点：
 
@@ -263,7 +263,7 @@ Date:   Sun Sep 13 00:06:07 2020 +0800
 
 切换分支的过程，简单来说就是将 HEAD 指针，从指向当前所在的分支，改为指向另外一个分支。在这一过程中，Git 会自动完成文件的更新，使得切换分支后仓库的状态与目标分支指向的快照一致。
 
-#### 分支的创建
+### 分支的创建
 
 利用 `git branch` 命令可以创建分支， `git switch` 命令可以切换分支， `git switch -c` 命令可以创建分支并切换到这个新分支。
 
@@ -287,8 +287,6 @@ $ git commit -m "feat: add A+B Problem code"
  1 file changed, 7 insertions(+)
  create mode 100644 aplusb.cpp
 ```
-
-在新分支上修改似乎和在 master 分支上修改没什么太大区别，事实上也确实如此，从理论上来说，每个分支都是平等的。
 
 现在切换回 `master` 分支，这时候文件夹中没有了 `aplusb.cpp` ，一切都回到了刚刚创建 `dev` 分支时的状态。这时候可以在 `master` 分支上继续完成其他的工作。
 
@@ -398,14 +396,14 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```markdown
 <<<<<< HEAD
 # This is a code library.
-=======
+======
 # Code Library
 >>>>>> readme-refactor
 
 This repo includes some c++ codes.
 ```
 
- `=======` 作为分界线将两个分支的内容隔开， `<<<<<<< HEAD` 标记和 `=======` 之间的部分是 `master` 分支的内容，而 `=======` 和 `>>>>>>> readme-refactor` 标记之间的部分是 `readme-refactor` 分支的内容。
+ `======` 作为分界线将两个分支的内容隔开， `<<<<<< HEAD` 标记和 `======` 之间的部分是 `master` 分支的内容，而 `======` 和 `>>>>>> readme-refactor` 标记之间的部分是 `readme-refactor` 分支的内容。
 
 删除这些冲突解决标记，保存文件，将这些文件纳入暂存区后提交，就可以解决合并冲突了。
 
@@ -415,10 +413,60 @@ $ git commit -m "merge branch readme-refactor into master"
 [master fe92c6b] merge branch readme-refactor into master
 ```
 
+## 远程仓库的管理
+
+在本地完成修改后，你可能会需要将这些修改推送到 GitHub 等 Git 仓库托管平台上。托管在这些平台上的仓库就归属于远程仓库的范畴——你可以从这些仓库中获取信息，也可以将你作出的更改推送到远程仓库上。与其他人的协作往往离不开远程仓库，因此学会管理远程仓库很有必要。
+
+### 远程仓库的查看
+
+使用 `git remote` 命令可以查看当前仓库的远程仓库列表。
+
+如果当前仓库是克隆来的，那么应该会有一个叫做 origin 的远程仓库。
+
+```bash
+$ git remote
+origin
+```
+
+### 远程仓库的添加/删除/重命名
+
+执行 `git remote add <name> <url>` 命令可以添加一个名字为 `name`，链接为 `url` 的远程仓库。
+
+执行 `git remote remame <oldname> <newname>` 可以将名字为 `oldname` 的远程仓库改名为 `newname`。
+
+执行 `git remote rm <remote>` 可以删除名字为 `name` 的远程仓库。
+
+### 从远程仓库拉取更改
+
+在远程仓库中，其他人可能会推送一些更改，执行 `git fetch` 命令可以将这些更改拉取到本地。
+
+```bash
+$ git fetch origin # 拉取 origin 的数据
+```
+
+需要注意的是，`git fetch` 命令只会拉取远程仓库的信息，而不会将这些信息合并到本地仓库中。如果需要将这些更改进行合并，需要使用 `git pull` 命令。
+
+```bash
+$ git pull origin master # 抓取 origin 的数据并自动和本地的 master 分支合并
+```
+
+### 将更改推送到远程仓库
+
+当你完成了一些更改之后，使用 `git push` 命令可以将这些更改推送到远程仓库。
+
+```bash
+$ git push origin master # 将 master 分支的数据推送至 origin
+```
+
+需要注意的是，你的更改能成功推送，需要满足两个条件：你拥有向这个仓库的写入权限，且之前没有人推送过。当远程分支有新更改而当前分支没有时，需要执行 `git pull` 命令完成合并再提交。
+
+## 外部链接
+
+- [Git Reference](https://git-scm.com/docs)
+- [Pro Git Book](https://git-scm.com/book/zh/v2)
+
 ## 参考资料与注释
 
 [^note1]: 在某些地方（比如 [LFS 官网](https://git-lfs.github.com/) ）又被称作 Git Large File Storage（大文件存储）。它在将项目托管到平台上时，用文本指针代替音频、视频、图像、数据集等大文件的原始文件，从而加快传输速度。对移动应用程序开发人员、游戏工程师以及任何需要大文件构建软件的人，该功能都极为实用。若想进一步了解该功能，可以参考 [Atlassian 官方介绍 Git LFS 的译文](https://www.cnblogs.com/cangqinglang/p/13097777.html) 。
 
 [^note2]: 但是，Git for Windows 对 Vim 的描述是“虽然强大，但是可能会难以使用。用户界面反人类，键位映射卡手。Git 使用 Vim 作为默认编辑器只是出于历史原因，强烈推荐换用一个 UI 设计现代化的编辑器。”，并给“难以使用”加上了 [“StackOverflow 每年帮助一百万名开发者退出 Vim”的页面链接](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/) 。
-
-[^note3]:  `git log` 的更多用法可以参考 [Pro Git Book v2](https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2) 。
