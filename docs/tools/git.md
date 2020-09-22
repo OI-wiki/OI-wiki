@@ -464,6 +464,7 @@ $ git push origin master # 将 master 分支的数据推送至 origin
 
 -  [Git Reference](https://git-scm.com/docs) 
 -  [Pro Git Book](https://git-scm.com/book/zh/v2) 
+-  [Learn Git Branching](https://learngitbranching.js.org/)
 
 ## 参考资料与注释
 
