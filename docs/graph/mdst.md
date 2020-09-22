@@ -103,11 +103,10 @@
 
  [SPOJ MDST](https://www.spoj.com/problems/MDST/) 
 
- [timus 1569. Networking the“Iset”](https://acm.timus.ru/problem.aspx?space=1&num=1569) 
+ [timus 1569. Networking the "Iset"](https://acm.timus.ru/problem.aspx?space=1&num=1569) 
 
  [SPOJ PT07C - The GbAaY Kingdom](https://www.spoj.com/problems/PT07C) 
 
 ## 参考文献
 
- [Play with Trees
-Solutions The GbAaY Kingdom](https://adn.botao.hu/adn-backup/blog/attachments/month_0705/32007531153238.pdf) 
+ [Play with Trees Solutions The GbAaY Kingdom](https://adn.botao.hu/adn-backup/blog/attachments/month_0705/32007531153238.pdf) 
