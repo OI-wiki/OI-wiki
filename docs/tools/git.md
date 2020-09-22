@@ -184,7 +184,7 @@ Changes to be committed:
 但在进行这一工作之前，先对 `README.md` 做点小修改。
 
 ```bash
-$ vi README.md # 随便修改点东西
+$ vim README.md # 随便修改点东西
 $ git status
 On branch master
 
