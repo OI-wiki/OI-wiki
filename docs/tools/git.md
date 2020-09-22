@@ -430,9 +430,9 @@ origin
 
 ### 远程仓库的添加/删除/重命名
 
-执行 `git remote add <name> <url>` 命令可以添加一个名字为 `name`，链接为 `url` 的远程仓库。
+执行 `git remote add <name> <url>` 命令可以添加一个名字为 `name` ，链接为 `url` 的远程仓库。
 
-执行 `git remote remame <oldname> <newname>` 可以将名字为 `oldname` 的远程仓库改名为 `newname`。
+执行 `git remote remame <oldname> <newname>` 可以将名字为 `oldname` 的远程仓库改名为 `newname` 。
 
 执行 `git remote rm <remote>` 可以删除名字为 `name` 的远程仓库。
 
@@ -444,7 +444,7 @@ origin
 $ git fetch origin # 拉取 origin 的数据
 ```
 
-需要注意的是，`git fetch` 命令只会拉取远程仓库的信息，而不会将这些信息合并到本地仓库中。如果需要将这些更改进行合并，需要使用 `git pull` 命令。
+需要注意的是， `git fetch` 命令只会拉取远程仓库的信息，而不会将这些信息合并到本地仓库中。如果需要将这些更改进行合并，需要使用 `git pull` 命令。
 
 ```bash
 $ git pull origin master # 抓取 origin 的数据并自动和本地的 master 分支合并
@@ -462,8 +462,8 @@ $ git push origin master # 将 master 分支的数据推送至 origin
 
 ## 外部链接
 
-- [Git Reference](https://git-scm.com/docs)
-- [Pro Git Book](https://git-scm.com/book/zh/v2)
+-  [Git Reference](https://git-scm.com/docs) 
+-  [Pro Git Book](https://git-scm.com/book/zh/v2) 
 
 ## 参考资料与注释
 
