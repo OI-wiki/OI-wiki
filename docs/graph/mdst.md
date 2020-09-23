@@ -24,7 +24,7 @@
 
 ![mdst2](./images/mdst-2.png)
 
-对于图上的任意一结点，图的绝对中心到最远距离结点的函数就写作 $f = max\{ d(c,i)\},i \in[1,n]$ ，其函数图像如下。
+对于图上的任意一结点，图的绝对中心到最远距离结点的函数就写作 $f = \max\{ d(c,i)\},i \in[1,n]$ ，其函数图像如下。
 
 ![mdst3](./images/mdst-3.png)
 
@@ -34,7 +34,7 @@
 
 ### 算法流程
 
-1. 使用多源最短路算法（Floyd，Johnson 等），求出 $d$ 数组；
+1. 使用多源最短路算法（[Floyd](shortest-path.md#floyd)，[Johnson](shortest-path.md#johnson) 等），求出 $d$ 数组；
 
 2. 求出 `rk[i][j]` ，并将其升序排序；
 
