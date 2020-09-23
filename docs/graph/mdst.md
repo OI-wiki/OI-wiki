@@ -40,7 +40,7 @@
 
 3. 图的绝对中心可能在某个结点上，用距离预选结点最远的那个结点来更新，遍历所有结点并用 $\textit{ans}\leftarrow \min(\textit{ans},d(i,\textit{rk}(i,1)) \times 2)$ 更新最小值。
 
-4. 图的绝对中心可能在某条边上，枚举所有的边。对于一条边 $w(u,j)$ 从距离 $u$ 最远的结点开始更新。当出现 $d(v,rk(u,i)) > d(v,rk(u,i-1))$ 的情况时，用 $ans\leftarrow  \min(ans, d(v,rk(u,i))+d(v,rk(u,i-1))+w(i,j))$ 来更新。因为这种情况会使图的绝对中心改变。
+4. 图的绝对中心可能在某条边上，枚举所有的边。对于一条边 $w(u,j)$ 从距离 $u$ 最远的结点开始更新。当出现 $d(v,\textit{rk}(u,i)) > d(v,\textit{rk}(u,i-1))$ 的情况时，用 $\textit{ans}\leftarrow  \min(\textit{ans}, d(v,\textit{rk}(u,i))+d(v,\textit{rk}(u,i-1))+w(i,j))$ 来更新。因为这种情况会使图的绝对中心改变。
 
 ??? note "参考实现"
 
