@@ -16,7 +16,7 @@ Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Gi
 
 ![Git for Windows installation 1](images/git3.png)
 
-点击 Next >，选择安装路径。
+点击 `Next >`，选择安装路径。
 
 ![Git for Windows installation 2](images/git4.png)
 
