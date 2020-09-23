@@ -49,7 +49,7 @@
 4. 将这些更改推送（push）到你克隆的仓库；
 5. 提交 Pull Request 至主仓库。
 
-详细的操作方式可以参考 [Git - OI Wiki](../tools/git.md) 页面。
+详细的操作方式可以参考 [Git](../tools/git.md) 页面。
 
 ### 协作流程
 
