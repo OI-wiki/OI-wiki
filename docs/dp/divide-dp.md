@@ -1,9 +1,10 @@
-[分治](../basic/divide-and-coquer.md) 也是 dp 的一种优化方法。
+ [分治](../basic/divide-and-coquer.md) 也是 dp 的一种优化方法。
 
 ## 先决条件
 
 某些 dp 问题有着如下的形式：
- $$dp(i, j) =
+
+$$
 \min_{k \leq j} { dp(i - 1, k) + C(k, j) }$$ 
 
 其中 $C(k, j)$ 是价值函数。
@@ -22,26 +23,26 @@
 
 
 ??? note "参考代码"
-    ```cpp
-    int n;
-    long long C(int i, int j);
-    vector<long long> dp_before(n), dp_cur(n);
-    // compute dp_cur[l], ... dp_cur[r] (inclusive)
-    void compute(int l, int r, int optl, int optr)
-    {
-        if (l > r)
-            return;
-        int mid = (l + r) >> 1;
-        pair<long long, int> best = {INF, -1};
-        for (int k = optl; k <= min(mid, optr); k++) {
-            best = min(best, {dp_before[k] + C(k, mid), k});
-        }
-        dp_cur[mid] = best.first;
-        int opt = best.second;
-        compute(l, mid - 1, optl, opt);
-        compute(mid + 1, r, opt, optr);
-    }
-    ```
+   ```cpp
+   int n;
+   long long C(int i, int j);
+   vector<long long> dp_before(n), dp_cur(n);
+   // compute dp_cur[l], ... dp_cur[r] (inclusive)
+   void compute(int l, int r, int optl, int optr)
+   {
+       if (l > r)
+           return;
+       int mid = (l + r) >> 1;
+       pair<long long, int> best = {INF, -1};
+       for (int k = optl; k <= min(mid, optr); k++) {
+           best = min(best, {dp_before[k] + C(k, mid), k});
+       }
+       dp_cur[mid] = best.first;
+       int opt = best.second;
+       compute(l, mid - 1, optl, opt);
+       compute(mid + 1, r, opt, optr);
+   }
+   ```
 
 ## 练习题
 
@@ -57,3 +58,4 @@
 
 *****
 **本页面主要译自英文版博文[Divide and Conquer DP](https://cp-algorithms.com/dynamic_programming/divide-and-conquer-dp.html)。版权协议为 CC-BY-SA 4.0。** 
+$$
