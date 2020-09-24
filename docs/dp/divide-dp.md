@@ -1,6 +1,6 @@
 [分治](../basic/divide-and-coquer.md) 也是 dp 的一种优化方法。
 
-### 先决条件
+## 先决条件
 
 某些 dp 问题有着如下的形式：
  $$dp(i, j) =
@@ -20,32 +20,28 @@
 
 为了最小化运行时间，我们便需要应用分治法背后的思想。首先计算 $opt(i, \dfrac{n}{2})$ 然后计算 $opt(i, \dfrac{n}{4})$ 。通过递归地得到 $opt$ 的上下界，就可以达到$O(mn \log n)$ 的时间复杂度。每一个 $opt(i, j)$ 的值只可能出现在 $\log n$ 个不同的节点中。
 
-## 实现
 
-```cpp
-int n;
-long long C(int i, int j);
-vector<long long> dp_before(n), dp_cur(n);
-
-// compute dp_cur[l], ... dp_cur[r] (inclusive)
-void compute(int l, int r, int optl, int optr)
-{
-    if (l > r)
-        return;
-    int mid = (l + r) >> 1;
-    pair<long long, int> best = {INF, -1};
-
-    for (int k = optl; k <= min(mid, optr); k++) {
-        best = min(best, {dp_before[k] + C(k, mid), k});
+??? note "参考代码"
+    ```cpp
+    int n;
+    long long C(int i, int j);
+    vector<long long> dp_before(n), dp_cur(n);
+    // compute dp_cur[l], ... dp_cur[r] (inclusive)
+    void compute(int l, int r, int optl, int optr)
+    {
+        if (l > r)
+            return;
+        int mid = (l + r) >> 1;
+        pair<long long, int> best = {INF, -1};
+        for (int k = optl; k <= min(mid, optr); k++) {
+            best = min(best, {dp_before[k] + C(k, mid), k});
+        }
+        dp_cur[mid] = best.first;
+        int opt = best.second;
+        compute(l, mid - 1, optl, opt);
+        compute(mid + 1, r, opt, optr);
     }
-
-    dp_cur[mid] = best.first;
-    int opt = best.second;
-
-    compute(l, mid - 1, optl, opt);
-    compute(mid + 1, r, opt, optr);
-}
-```
+    ```
 
 ## 练习题
 
