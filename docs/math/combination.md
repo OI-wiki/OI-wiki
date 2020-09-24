@@ -74,21 +74,19 @@ $$
 很显然，第一个组合是 ${1, 2, ..., K}$ 。然后找到该组合里最右边并且小于 $N$ 的数。一旦找到这个数，我们就让它自增，并用类似的方法来处理前面的数。
 
 ??? note "参考代码"
-    ```cpp 
+    ```cpp
     bool next_combination(vector<int>& a, int n) {
-        int k = (int)a.size();
-        for (int i = k - 1; i >= 0; i--) {
-            if (a[i] < n - k + i + 1) {
-                a[i]++;
-                for (int j = i + 1; j < k; j++)
-                    a[j] = a[j - 1] + 1;
-                return true;
-            }
+      int k = (int)a.size();
+      for (int i = k - 1; i >= 0; i--) {
+        if (a[i] < n - k + i + 1) {
+          a[i]++;
+          for (int j = i + 1; j < k; j++) a[j] = a[j - 1] + 1;
+          return true;
         }
-        return false;
+      }
+      return false;
     }
     ```
-
 
 ## 二项式定理
 
@@ -314,4 +312,4 @@ $$
 
 通过组合分析——考虑 $S={a_1, a_2, \cdots, a_{n+1}}$ 的 $k+1$ 子集数可以得证。
 
-**本页面主要译自博文[Тернарный поиск](http://e-maxx.ru/algo/ternary_search)与其英文翻译版[Ternary Search](https://cp-algorithms.com/num_methods/ternary_search.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ **本页面主要译自博文 [Тернарный поиск](http://e-maxx.ru/algo/ternary_search) 与其英文翻译版 [Ternary Search](https://cp-algorithms.com/num_methods/ternary_search.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
