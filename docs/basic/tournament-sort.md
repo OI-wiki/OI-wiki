@@ -8,7 +8,7 @@
 
 ## 工作原理
 
-以 **最小锦标赛排序树** 为例。
+以 **最小锦标赛排序树** 为例：
 
 ![tournament-sort1](./images/tournament-sort1.png)
 
