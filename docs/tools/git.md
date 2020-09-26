@@ -197,7 +197,7 @@ Changes to be committed:
 
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
+  (use "git restore -- <file>..." to discard changes in working directory)
 
         modified:   README.md
 ```
@@ -458,7 +458,7 @@ $ git pull origin master # 抓取 origin 的数据并自动和本地的 master �
 $ git push origin master # 将 master 分支的数据推送至 origin
 ```
 
-需要注意的是，你的更改能成功推送，需要满足两个条件：你拥有向这个仓库的写入权限，且之前没有人推送过。当远程分支有新更改而当前分支没有时，需要执行 `git pull` 命令完成合并再提交。
+需要注意的是，你的更改能成功推送，需要满足两个条件：你拥有向这个仓库（分支）的写入权限，且你的这个分支比远程仓库的这个分支新（可以理解为没有人在你进行修改的这段时间进行了推送）。当远程分支有当前分支没有的新更改时，可以执行 `git pull` 命令完成合并再提交。
 
 ## 外部链接
 
