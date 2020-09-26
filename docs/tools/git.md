@@ -82,9 +82,9 @@ macOS 系统只需在终端执行 `brew install git` 命令即可安装。（需
 
 Git 的配置文件分为三个级别：
 
-1.  `/etc/gitconfig` ：该配置文件对系统上的所有用户，以及该系统上的所有仓库均有效。
-2.  `~/.gitconfig` ：该配置文件对系统的当前用户，以及该系统上的所有仓库有效。
-3. 当前仓库目录下的 `.git/config` 文件：只适用于该仓库。
+1. 对系统上的所有用户，以及该系统上的所有仓库有效的配置文件。
+2. 对系统的当前用户，以及该系统上的所有仓库有效的配置文件。
+3. 只适用于当前仓库的配置文件。
 
 局部设置会自动覆盖全局设置。因此如果需要在某个仓库应用特定的设置的话，只需更改该仓库下的特定设置即可，不会对全局设置造成影响。
 
@@ -205,6 +205,11 @@ Changes not staged for commit:
 你会发现 `README.md` 同时处于暂存区和非暂存区。如果这时候执行 `git commit` 命令，只有处于暂存区的更改会被提交，而非暂存区的修改，则不会被提交。
 
 Git 给了一条提示，执行 `git add README.md` 就可以将非暂存区的更改放入暂存区了。
+
+???+note "一次性将所有更改放入暂存区"
+    `git add` 命令会将对指定的文件的修改放入暂存区中。
+    
+    在多数情况下，用户更期望一次性将所有更改都放入暂存区中，这时候可以应用 `git add -A` 命令。该命令会将所有更改（包括未被纳入版本跟踪的文件，不包括被忽略的文件）放入暂存区。
 
 现在将非暂存区的文件加入暂存区，将所有更改一并提交。
 
@@ -409,8 +414,8 @@ This repo includes some c++ codes.
 
 ```bash
 $ git add README.md # 将发生冲突的文件纳入暂存区
-$ git commit -m "merge branch readme-refactor into master"
-[master fe92c6b] merge branch readme-refactor into master
+$ git commit
+[master fe92c6b] Merge branch readme-refactor into master
 ```
 
 ## 远程仓库的管理
