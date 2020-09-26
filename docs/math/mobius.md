@@ -981,7 +981,7 @@ t\left(\frac{T}{i}\right)g\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
 \varepsilon(T)
 &\text{【}\mu\ast 1= \varepsilon\text{】}\\
 &=g(n)t(1)
-&&\text{【当且仅当 T=1,}\varepsilon(T)=1\text{时】}\\
+&\text{【当且仅当 T=1,}\varepsilon(T)=1\text{时】}\\
 &=g(n)
 & \square
 \end{aligned}
