@@ -151,7 +151,6 @@ nav:
     - 优化: search/opt.md
   - 动态规划:
     - 动态规划部分简介: dp/index.md
-    - 分治在动态规划中的应用: dp/divide-dp.md
     - 动态规划基础: dp/basic.md
     - 记忆化搜索: dp/memo.md
     - 背包 DP: dp/knapsack.md
