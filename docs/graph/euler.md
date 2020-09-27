@@ -129,8 +129,7 @@ $$
     #include <stack>
     #include <vector>
     using namespace std;
-    ```
-
+    
     struct edge {
       int to;
       bool exists;
