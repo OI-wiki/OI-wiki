@@ -2,7 +2,7 @@
 
 前缀和是一种重要的预处理，能大大降低查询的时间复杂度。可以简单理解为“数列的前 n 项的和”。[^note1]
 
-C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cppreference.com/w/cpp/algorithm/partial_sum)，定义于头文件 `<numeric>` 中。
+C++ 标准库中实现了前缀和函数 [ `std::partial_sum` ](https://zh.cppreference.com/w/cpp/algorithm/partial_sum) ，定义于头文件 `<numeric>` 中。
 
 ### 例题
 
@@ -29,6 +29,7 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
 ??? note "参考代码"
     ```cpp
     #include <iostream>
+    ```
 
     using namespace std;
 
@@ -93,7 +94,6 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     在一个n*m的只包含0和1的矩阵里找出一个不包含0的最大正方形，输出边长。
 
 ??? note "参考代码"
-    
     ```cpp
     #include <algorithm>
     #include <iostream>
@@ -103,6 +103,7 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     int main() {
       int n, m;
       cin >> n >> m;
+    ```
 
       for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= m; j++) {
@@ -151,10 +152,11 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
 
 设 $sum_i$ 表示结点 $i$ 到根节点的权值总和。  
 然后：
+
 - 若是点权， $x,y$ 路径上的和为 $sum_x + sum_y - sum_{lca} - sum_{fa_{lca}}$ 。
 - 若是边权， $x,y$ 路径上的和为 $sum_x + sum_y - 2sum_{lca}$ 。
 
-$lca$ 的求法参见 [最近公共祖先](../graph/lca.md) 。
+ $lca$ 的求法参见 [最近公共祖先](../graph/lca.md) 。
 
 ## 差分
 
@@ -178,10 +180,10 @@ $lca$ 的求法参见 [最近公共祖先](../graph/lca.md) 。
     $$
 
     其中 $b_l+k=a_l+k-a_{l-1}$ , $b_{r+1}-k=a_{r+1}-(a_r+k)$
-    
+
     最后做一遍前缀和就好了。
 
-C++ 标准库中实现了差分函数 [`std::adjacent_difference`](https://zh.cppreference.com/w/cpp/algorithm/adjacent_difference)，定义于头文件 `<numeric>` 中。
+C++ 标准库中实现了差分函数 [ `std::adjacent_difference` ](https://zh.cppreference.com/w/cpp/algorithm/adjacent_difference) ，定义于头文件 `<numeric>` 中。
 
 ### 树上差分
 
@@ -229,7 +231,7 @@ $$
 ### 例题
 
 ???+note "[洛谷 3128 最大流](https://www.luogu.com.cn/problem/P3128)"
-    FJ给他的牛棚的$N(2≤N≤50,000)$个隔间之间安装了$N-1$根管道，隔间编号从$1$到$N$。所有隔间都被管道连通了。
+    FJ 给他的牛棚的 $N(2≤N≤50,000)$ 个隔间之间安装了 $N-1$ 根管道，隔间编号从 $1$ 到 $N$ 。所有隔间都被管道连通了。
 
     FJ有$K(1≤K≤100,000)$条运输牛奶的路线，第$i$条路线从隔间si运输到隔间ti。一条运输路线会给它的两个端点处的隔间以及中间途径的所有隔间带来一个单位的运输压力，你需要计算压力最大的隔间的压力是多少。
 
@@ -318,7 +320,7 @@ $$
 
 ## 习题
 
----
+* * *
 
 前缀和：
 
@@ -327,7 +329,7 @@ $$
 -  [AT2412 最大の和](https://vjudge.net/problem/AtCoder-joi2007ho_a#author=wuyudi) 
 -  [「USACO16JAN」子共七 Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131) 
 
----
+* * *
 
 二维/多维前缀和：
 
@@ -335,14 +337,14 @@ $$
 -  [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387) 
 -  [「HNOI2003」激光炸弹](https://www.luogu.com.cn/problem/P2280) 
 
----
+* * *
 
 树上前缀和：
 
 -  [LOJ 10134.Dis](https://loj.ac/problem/10134) 
 -  [LOJ 2491. 求和](https://loj.ac/problem/2491) 
 
----
+* * *
 
 差分：
 
@@ -350,7 +352,7 @@ $$
 -  [P3397 地毯](https://www.luogu.com.cn/problem/P3397) 
 -  [「Poetize6」IncDec Sequence](https://www.luogu.com.cn/problem/P4552) 
 
----
+* * *
 
 树上差分：
 
@@ -359,7 +361,7 @@ $$
 -  [NOIP2015 运输计划](http://uoj.ac/problem/150) 
 -  [NOIP2016 天天爱跑步](http://uoj.ac/problem/261) 
 
----
+* * *
 
 ## 参考资料与注释
 
