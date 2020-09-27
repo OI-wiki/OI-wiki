@@ -121,6 +121,47 @@ bool cmp(const string& s, const string& t) {
     }
     ```
 
+### Rabin-Karp 算法
+
+本算法是基于哈希的概念建立起来的，由 Rabin 和 Karp 在1987年提出。
+
+问题：给定两个文本串 $s$ 和 $t$ ，判断 $s$ 是否在 $t$ 中。如果是，在复杂度$O(|s|+|t|)$下枚举所有的情况。
+
+算法思路：先计算模式串 $s$ 的哈希值，再计算 $t$ 的所有前缀的哈希值。现在我们可以用计算得到的哈希值将长度为$|s|$的文本子串与 $s$ 比较。这样，将每一个长度为$|s|$的子串与模式串$s$比较，总的时间复杂度为$O(|t|)$。所以，该算法的最终复杂度为$(|t|+|s|)$：我们需要用$O(|s|)$的时间计算模式串的哈希值，需要用$O(|t|)$的时间比较子串与模式串$s$。
+
+
+??? note "代码实现"
+
+    ```cpp
+    vector<int> rabin_karp(string const& s, string const& t) {
+        const int p = 31; 
+        const int m = 1e9 + 9;
+        int S = s.size(), T = t.size();
+
+        vector<long long> p_pow(max(S, T)); 
+        p_pow[0] = 1; 
+        for (int i = 1; i < (int)p_pow.size(); i++) 
+            p_pow[i] = (p_pow[i-1] * p) % m;
+
+        vector<long long> h(T + 1, 0); 
+        for (int i = 0; i < T; i++)
+            h[i+1] = (h[i] + (t[i] - 'a' + 1) * p_pow[i]) % m; 
+        long long h_s = 0; 
+        for (int i = 0; i < S; i++) 
+            h_s = (h_s + (s[i] - 'a' + 1) * p_pow[i]) % m; 
+
+        vector<int> occurences;
+        for (int i = 0; i + S - 1 < T; i++) { 
+            long long cur_h = (h[i+S] + m - h[i]) % m; 
+            if (cur_h == h_s * p_pow[i] % m)
+                occurences.push_back(i);
+        }
+        return occurences;
+    }
+    ```
+
+
+
 ### 例题
 
 ???+note "[CF1200E Compress Words](http://codeforces.com/contest/1200/problem/E)"
@@ -204,4 +245,10 @@ bool cmp(const string& s, const string& t) {
         }
         ```
 
- **本页面部分内容译自博文 [строковый хеш](https://github.com/e-maxx-eng/e-maxx-eng/blob/61aff51f658644424c5e1b717f14fb7bf054ae80/src/string/string-hashing.md) 与其英文翻译版 [String Hashing](https://cp-algorithms.com/string/string-hashing.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+## 练习题
+
+- [SPOJ-模式查找](http://www.spoj.com/problems/NAJPF/)
+- [Codeforce-好的子字符串](http://codeforces.com/problemset/problem/271/D)
+- [Codeforces-回文特征](https://codeforces.com/problemset/problem/835/D)
+
+ **本页面部分内容译自博文 [строковый хеш](http://e-maxx.ru/algo/z_function) 和  [Алгоритм Рабина-Карпа поиска подстроки в строке за O (N)](http://e-maxx.ru/algo/rabin_karp) 与其英文翻译版 [String Hashing](https://cp-algorithms.com/string/string-hashing.html) 和 [Rabin-Karp for String Matching](https://cp-algorithms.com/string/rabin-karp.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
