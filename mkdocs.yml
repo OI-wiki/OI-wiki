@@ -218,6 +218,7 @@ nav:
       - 杜教筛: math/du.md
       - Min_25 筛: math/min-25.md
       - Pollard-rho: math/pollard-rho.md
+      - 整数分解: math/integer-factorization.md
     - 多项式:
       - 多项式部分简介: math/poly/intro.md
       - 拉格朗日插值: math/poly/lagrange.md
