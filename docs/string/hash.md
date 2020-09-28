@@ -246,6 +246,6 @@ bool cmp(const string& s, const string& t) {
 
 -  [SPOJ - 模式查找](http://www.spoj.com/problems/NAJPF/) 
 -  [Codeforce - 好的子字符串](http://codeforces.com/problemset/problem/271/D) 
--    [Codeforces - 回文特征](https://codeforces.com/problemset/problem/835/D) 
+-  [Codeforces - 回文特征](https://codeforces.com/problemset/problem/835/D) 
 
-     **本页面部分内容译自博文 [строковый хеш](http://e-maxx.ru/algo/z_function) 和 [Алгоритм Рабина-Карпа поиска подстроки в строке за O (N)](http://e-maxx.ru/algo/rabin_karp) 与其英文翻译版 [String Hashing](https://cp-algorithms.com/string/string-hashing.html) 和 [Rabin-Karp for String Matching](https://cp-algorithms.com/string/rabin-karp.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+**本页面部分内容译自博文 [строковый хеш](http://e-maxx.ru/algo/z_function) 和 [Алгоритм Рабина-Карпа поиска подстроки в строке за O (N)](http://e-maxx.ru/algo/rabin_karp) 与其英文翻译版 [String Hashing](https://cp-algorithms.com/string/string-hashing.html) 和 [Rabin-Karp for String Matching](https://cp-algorithms.com/string/rabin-karp.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
