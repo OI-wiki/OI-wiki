@@ -124,28 +124,27 @@ struct mat {
 
 ### 求矩阵行列式
 
-下面我们将讨论如何用 Kraut 方法在$O(n^3)$下得到矩阵的行列式。
+下面我们将讨论如何用 Kraut 方法在 $O(n^3)$ 下得到矩阵的行列式。
 
-Kraut 算法发现矩阵$A$可分解为$A=LU$，其中$L$是下三角矩阵，$U$是上三角矩阵。在不失一般性的前提下，我们可以假定$L$的所有对角元素均等于$1$。那么我们很容易计算出$A$的行列式：它等于矩阵$U$的主对角线上所有元素的乘积。
+Kraut 算法发现矩阵 $A$ 可分解为 $A=LU$ ，其中 $L$ 是下三角矩阵， $U$ 是上三角矩阵。在不失一般性的前提下，我们可以假定 $L$ 的所有对角元素均等于 $1$ 。那么我们很容易计算出 $A$ 的行列式：它等于矩阵 $U$ 的主对角线上所有元素的乘积。
 
-任何一个可逆矩阵都具有$LU$分解，同时当且仅当其所有主子式不为零时，它才是唯一的。我们仅考虑矩阵$L$的对角线由$1$组成的分解。
+任何一个可逆矩阵都具有 $LU$ 分解，同时当且仅当其所有主子式不为零时，它才是唯一的。我们仅考虑矩阵 $L$ 的对角线由 $1$ 组成的分解。
 
-给定一个$N\times N$的矩阵$A$，我们可以通过如下步骤找到$L$和$U$的元素：
+给定一个 $N\times N$ 的矩阵 $A$ ，我们可以通过如下步骤找到 $L$ 和 $U$ 的元素：
 
-1.  令$L_{ii}=1,\quad i=1,2,\cdots,N$。
+1. 令 $L_{ii}=1,\quad i=1,2,\cdots,N$ 。
 
-2. 对于每个$j=1,2,\cdots,N$，做如下操作：
+2.  对于每个 $j=1,2,\cdots,N$ ，做如下操作：
 
-   + 对于每个$i=1,2,\cdots,j$，计算值：
-     $$
-     U_{ij} = A_{ij} - \sum_{k=1}^{i-1} L_{ik} \cdot U_{kj}
-     $$
+    -   对于每个 $i=1,2,\cdots,j$ ，计算值：
+        $$
+        U_{ij} = A_{ij} - \sum_{k=1}^{i-1} L_{ik} \cdot U_{kj}
+        $$
 
-   + 对于$i=j+1,j+2,\cdots,N$，计算值：
-     $$
-     L_{ij} = \frac{1}{U_{jj}} \left(A_{ij} - \sum_{k=1}^{j-1} L_{ik} \cdot U_{kj} \right)
-     $$
-     
+    -   对于 $i=j+1,j+2,\cdots,N$ ，计算值：
+        $$
+        L_{ij} = \frac{1}{U_{jj}} \left(A_{ij} - \sum_{k=1}^{j-1} L_{ik} \cdot U_{kj} \right)
+        $$
 
 ??? note "代码实现"
     ```java
@@ -176,6 +175,7 @@ Kraut 算法发现矩阵$A$可分解为$A=LU$，其中$L$是下三角矩阵，$U
                     sum = sum.subtract (a[i][k].multiply (a[k][j]));
                 a[i][j] = sum;
             }
+    ```
 
             BigDecimal big = new BigDecimal (BigInteger.ZERO);
             int imax = -1;
@@ -504,4 +504,4 @@ $$
 -  [洛谷 P1349 广义斐波那契数列](https://www.luogu.com.cn/problem/P1349) ， $\text{base}$ 矩阵需要变化一下
 -  [洛谷 P1939【模板】矩阵加速（数列）](https://www.luogu.com.cn/problem/P1939) ， $\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
 
-**本页面部分内容译自博文 [Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths) 和 [Краут & определитель](https://github.com/e-maxx-eng/e-maxx-eng/blob/358bdfb972df51644e6365e25e36e2e7dcacc633/src/linear_algebra/determinant-kraut.md) 与其英文翻译版 [Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html) 和 [Kraut & Determinant](https://cp-algorithms.com/linear_algebra/determinant-kraut.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ **本页面部分内容译自博文 [Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths) 和 [Краут & определитель](https://github.com/e-maxx-eng/e-maxx-eng/blob/358bdfb972df51644e6365e25e36e2e7dcacc633/src/linear_algebra/determinant-kraut.md) 与其英文翻译版 [Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html) 和 [Kraut & Determinant](https://cp-algorithms.com/linear_algebra/determinant-kraut.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
