@@ -41,19 +41,19 @@ C++ 标准库中实现了前缀和函数 [ `std::partial_sum` ](https://zh.cppre
       for (int i = 0; i < N; i++) {
         cin >> A[i];
       }
-      
+    
       // 前缀和数组的第一项和原数组的第一项是相等的。
       B[0] = A[0];
-      
+    
       for (int i = 1; i < N; i++) {
         // 前缀和数组的第 i 项 = 原数组的 0 到 i-1 项的和 + 原数组的第 i 项。
         B[i] = B[i - 1] + A[i];
       }
-      
+    
       for (int i = 0; i < N; i++) {
         cout << B[i] << " ";
       }
-      
+    
       return 0;
     }
     ```
@@ -105,7 +105,7 @@ C++ 标准库中实现了前缀和函数 [ `std::partial_sum` ](https://zh.cppre
     int main() {
       int n, m;
       cin >> n >> m;
-      
+    
       for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= m; j++) {
           cin >> a[i][j];
@@ -113,9 +113,9 @@ C++ 标准库中实现了前缀和函数 [ `std::partial_sum` ](https://zh.cppre
               b[i][j - 1] + b[i - 1][j] - b[i - 1][j - 1] + a[i][j];  // 求前缀和
         }
       }
-      
+    
       int ans = 1;
-      
+    
       int l = 2;
       while (l <= min(n, m)) {
         for (int i = l; i <= n; i++) {
@@ -127,7 +127,7 @@ C++ 标准库中实现了前缀和函数 [ `std::partial_sum` ](https://zh.cppre
         }
         l++;
       }
-      
+    
       cout << ans << endl;
       return 0;
     }
@@ -155,9 +155,9 @@ C++ 标准库中实现了前缀和函数 [ `std::partial_sum` ](https://zh.cppre
 然后：
 
 - 若是点权， $x,y$ 路径上的和为 $sum_x + sum_y - sum_{lca} - sum_{fa_{lca}}$ 。
-- 若是边权， $x,y$ 路径上的和为 $sum_x + sum_y - 2sum_{lca}$ 。
+-   若是边权， $x,y$ 路径上的和为 $sum_x + sum_y - 2sum_{lca}$ 。
 
- $lca$ 的求法参见 [最近公共祖先](../graph/lca.md) 。
+     $lca$ 的求法参见 [最近公共祖先](../graph/lca.md) 。
 
 ## 差分
 
