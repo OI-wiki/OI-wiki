@@ -2,7 +2,7 @@
 
 ## 简介
 
-归并排序（英语：Merge sort）是一种采用了 [分治](./divide-and-conquer.md) 思想的排序算法。
+归并排序（英语：merge sort）是一种采用了 [分治](./divide-and-conquer.md) 思想的排序算法。
 
 ## 工作原理
 
