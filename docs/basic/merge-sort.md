@@ -22,11 +22,11 @@
 
 ### 时间复杂度
 
-归并排序的最优时间复杂度、平均时间复杂度和最坏时间复杂度均为 $O(n\log n)$。
+归并排序的最优时间复杂度、平均时间复杂度和最坏时间复杂度均为 $O(n\log n)$ 。
 
 ### 空间复杂度
 
-归并排序的空间复杂度为 $O(n)$。
+归并排序的空间复杂度为 $O(n)$ 。
 
 ## 代码实现
 
@@ -64,6 +64,6 @@ void merge(int ll, int rr) {
 
 ## 外部链接
 
-- [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/)
-- [希尔排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
-- [逆序对 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E9%80%86%E5%BA%8F%E5%AF%B9)
+-  [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/) 
+-  [希尔排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F) 
+-  [逆序对 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E9%80%86%E5%BA%8F%E5%AF%B9) 
