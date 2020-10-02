@@ -14,7 +14,7 @@
 假如我想要修改一个页面内容，应该怎么操作呢？
 
 1. 在 **OI Wiki** 网站上找到对应页面；
-2. 点击正文右上方、目录左侧的 **“编辑此页”** <i class="md-icon">edit</i>按钮，在阅读了 [如何参与](./htc.md) 和 [格式手册](./format.md) 后点击“开始编辑”按钮；
+2. 点击正文右上方、目录左侧的 **“编辑此页”** <i class="md-icon">edit</i>按钮，在阅读了本页面和 [格式手册](./format.md) 后点击“开始编辑”按钮；
 3. 在编辑框里编写你想修改的内容。另外，由于 **OI Wiki** 使用 Markdown 进行编写，如果想进行一些比较大的更改（比如扩充页面内容），你需要掌握一些 [Markdown 语法](https://markdown.tw/) ；
 4. 写好了之后点下方的绿色按钮 Propose changes 提交修改。但是，GitHub 可能会提示你没有权限。不必担心！GitHub 会自动帮你将 **OI Wiki** 的所有文件复制一份，放到你的仓库中（fork）并创建申请合并更改的请求 (Pull Request)；
 5. 之后，点上方的绿色按钮 (Create pull request) 后，GitHub 会跳转到一个新的页面 Open a pull request。删掉方框里的文字，简单写写你做的修改，然后再点一下下面的绿色按钮 (Create pull request)；
