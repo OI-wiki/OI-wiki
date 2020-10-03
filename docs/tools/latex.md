@@ -74,7 +74,7 @@ A sentence of text.
 
  $\rightarrow$ 按下 **Save** 按扭； $\rightarrow$ 在 **Libraries>Documents** 中新建一个名为 **LaTeX course** 文件夹； $\rightarrow$ 将你的文档命名为 **Doc1** 并将其保存为 **TeX document** 放在这个文件夹中。
 
-将不同的 LaTeX 文档放在不同的目录下，在编译的时侯组合多个文件是一个很好的想法。
+将不同的 LaTeX 文档放在不同的目录下，在编译的时候组合多个文件是一个很好的想法。
 
  $\rightarrow$ 确保 typeset 菜单设置为了 **xeLaTeX** 。 $\rightarrow$ 点击 **Typeset** 按扭。
 
