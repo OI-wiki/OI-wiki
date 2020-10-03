@@ -417,7 +417,7 @@ $ git commit
 [master fe92c6b] Merge branch readme-refactor into master
 ```
 
-## 远程仓库的管理
+## 管理远程仓库
 
 在本地完成修改后，你可能会需要将这些修改推送到 GitHub 等 Git 仓库托管平台上。托管在这些平台上的仓库就归属于远程仓库的范畴——你可以从这些仓库中获取信息，也可以将你作出的更改推送到远程仓库上。与其他人的协作往往离不开远程仓库，因此学会管理远程仓库很有必要。
 
@@ -432,13 +432,17 @@ $ git remote
 origin
 ```
 
-### 远程仓库的添加/删除/重命名
+### 远程仓库的配置
 
 执行 `git remote add <name> <url>` 命令可以添加一个名字为 `name` ，链接为 `url` 的远程仓库。
 
 执行 `git remote remame <oldname> <newname>` 可以将名字为 `oldname` 的远程仓库改名为 `newname` 。
 
-执行 `git remote rm <remote>` 可以删除名字为 `name` 的远程仓库。
+执行 `git remote rm <name>` 可以删除名字为 `name` 的远程仓库。
+
+执行 `git remote get-url <name>` 可以查看名字为 `name` 的远程仓库的链接。
+
+执行 `git remote set-url <name> <newurl>` 可以将名字为 `name` 的远程仓库的链接更改为 `newurl`。
 
 ### 从远程仓库拉取更改
 
