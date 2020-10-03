@@ -170,8 +170,6 @@ int q[SIZE], ql = 1, qr;
     /******************heading******************/
     const int M = 5e4 + 5, P = 505;
     int I, m, p;
-    ```
-
     inline int _(int d) { return (d + p) % p; }
     namespace DQ {       // 双栈模拟双端队列
     pii fr[M], bc[M];    // front,back; fi:w,se:v;

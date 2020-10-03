@@ -6,7 +6,7 @@ author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy
 >
 > Dev-C++ 是一个 SourceForge 的项目，是由 Colin Laplace 这位程序员及其公司 Bloodshed Software 所开始的。当前 Dev-C++ 一般用于撰写运行于 Microsoft Windows 的程序。Dev-C++ 一度有移植到 Linux 的项目但当前被暂停了。
 >
-> Bloodshed Dev-C++ 是一款全功能的 C 和 C++ 编程语言的集成开发环境（IDE）。它使用的 GCC MinGW 或 TDM-GCC 的 64 位版本作为它的编译器。DEV-C++ 也可以使用 Cygwin 或任何其他基于 GCC 编译器组合使用。
+> Bloodshed Dev-C++ 是一款全功能的 C 和 C++ 编程语言的集成开发环境（IDE）。它使用的 GCC MinGW 或 TDM-GCC 的 64 位版本作为它的编译器。Dev-C++ 也可以使用 Cygwin 或任何其他基于 GCC 编译器组合使用。
 >
 > 此外，Dev-C++ 较旧的版本无法在 win8 环境下编译。
 >
@@ -22,7 +22,7 @@ author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy
 
 以上摘自 Wikipedia[^2]。
 
-自 2011 年的 Dev-C++ 4.9.9.3 版本之后，你使用的版本均为 Orewell Dev-C++。
+自 2011 年的 Dev-C++ 4.9.9.3 版本之后，你使用的版本均为 Orwell Dev-C++。
 
 目前最新版本为 2015 年 4 月 27 日的 Dev-C++ 5.11 版本。
 
