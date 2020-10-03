@@ -442,7 +442,7 @@ origin
 
 执行 `git remote get-url <name>` 可以查看名字为 `name` 的远程仓库的链接。
 
-执行 `git remote set-url <name> <newurl>` 可以将名字为 `name` 的远程仓库的链接更改为 `newurl`。
+执行 `git remote set-url <name> <newurl>` 可以将名字为 `name` 的远程仓库的链接更改为 `newurl` 。
 
 ### 从远程仓库拉取更改
 
