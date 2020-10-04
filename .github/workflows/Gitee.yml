@@ -6,7 +6,7 @@ name: Gitee
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -17,15 +17,15 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-    - name: Single repo mirror
-      uses: Yikun/hub-mirror-action@master
-      with:
-        src: github/OI-wiki
-        dst: gitee/OI-wiki
-        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
-        dst_token: ${{ secrets.GITEE_TOKEN }}
-        white_list: "OI-wiki"
-        force_update: true
+      - name: Single repo mirror
+        uses: Yikun/hub-mirror-action@master
+        with:
+          src: github/OI-wiki
+          dst: gitee/OI-wiki
+          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          dst_token: ${{ secrets.GITEE_TOKEN }}
+          white_list: "OI-wiki"
+          force_update: true
