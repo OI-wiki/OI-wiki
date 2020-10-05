@@ -48,16 +48,16 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 #### 配置 IntelliSense
 
-用于调整 VS Code 的智能补全。如果你使用 `Clang` 编译器，无需改动任何设置。
+用于调整 VS Code 的智能补全。
 
-如果你使用 `G++` 编译器，在下面的 `IntelliSense Mode` （ `IntelliSense 模式` ）中选择 `gcc-x64` 而非默认的 `msvc-x64` 以使用自动补全等功能。否则会得到 `IntelliSense 模式 msvc-x64 与编译器路径不兼容。` 的错误。
+如果你使用 `Clang` 编译器，在下面的 `IntelliSense Mode` （ `IntelliSense 模式` ）中选择 `clang-x64` 而非默认的 `msvc-x64` ；如果你使用 `G++` 编译器，选择 `gcc-x64` 以使用自动补全等功能。否则会得到 `IntelliSense 模式 msvc-x64 与编译器路径不兼容。` 的错误。
 
 ![](images/vscode-4.png)
 
 #### 配置 GDB/LLDB 调试器
 
 在 `VS Code` 中新建一份 `C++` 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}` ），保存并按下<kbd>F5</kbd>，进入调试模式。
-如果出现了 `选择环境` 的提示，选择 `C++ (GDB/LLDB)` 。在 `选择配置` 中， `G++` 用户选择 `g++.exe - build and debug active file` （ `g++ - 生成和调试活动文件` ）； `Clang` 用户选择 `cl.exe - build and debug active file` （ `cl.exe - 生成和调试活动文件` ）。
+如果出现了 `选择环境` 的提示，选择 `C++ (GDB/LLDB)` 。在 `选择配置` 中， `G++` 用户选择 `g++.exe - build and debug active file` （ `g++.exe - 生成和调试活动文件` ）； `Clang` 用户选择 `clang++ - build and debug active file` （ `clang++ - 生成和调试活动文件` ）。
 
 ???+ warning
 
