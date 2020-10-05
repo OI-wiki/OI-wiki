@@ -24,7 +24,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 ![](./images/vscode-1.jpg)
 
-安装完成后，打开需要运行的文件，点击右上角的小三角图标即可运行代码；按下快捷键<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd>（在 macOS 下是<kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>N</kbd>）也可以得到同样的效果。
+安装完成后，打开需要运行的文件，点击右上角的小三角图标即可运行代码；按下快捷键 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd>（在 macOS 下是 <kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>N</kbd>）也可以得到同样的效果。
 
 ???+ warning
     如果安装了 VS Code 与 Code Runner 后，代码仍然无法运行，很有可能是因为系统尚未安装 C/C++ 的运行环境。
@@ -36,18 +36,48 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 ### 使用 C/C++ 插件编译并调试
 
 ???+ warning
-    在配置前，请确保系统已经安装了 [MinGW-w64](https://mingw-w64.org/doku.php/download) 或 [Clang](https://releases.llvm.org/download.html) ，并已添加到了 `path` 中。请使用 `CMD` 或者 `PowerShell` ，而不是 `Git Bash` 作为集成终端。
+    在配置前，请确保系统已经安装了 [MinGW-w64](https://mingw-w64.org/doku.php/download) 或 [Clang](https://releases.llvm.org/download.html) ，并已添加到了 `PATH` 中。请使用 `CMD` 或者 `PowerShell` ，而不是 `Git Bash` 作为集成终端。
 
-#### 配置编译与调试
+#### 配置编译
 
-首先用 VS Code 打开一个空文件夹，然后按下 `F1` ，输入 `C/C++: Edit configurations (UI)` ，进入 `C/C++` 插件的设置界面。
+首先用 VS Code 打开一个文件夹，然后按下 <kbd>F1</kbd>，输入 `C/C++: Edit configurations (UI)` ，进入 `C/C++` 插件的设置界面。
 
 ![vscode-3](images/vscode-3.png)
 
-在 `Compiler path` 中选择 `G++` 或 `Clang` 的所在路径。
-
-至此，编译的配置已经完成。按下 `F1` ，输入 `C/C++: Build and Debug Active File` ，选择用 `G++` 编译，即可查看效果。
+在 `Compiler path` （`编译器路径`）中选择 `G++` 或 `Clang` 的所在路径。如果没有可选项，请检查编译器所在路径是否添加到了操作系统的 `PATH` 变量中。
 
 #### 配置 IntelliSense
 
-用于调整 VS Code 的智能补全。修改 IntelliSense mode 即可，可选的选项有 `Clang` 和 `gcc` 。
+用于调整 VS Code 的智能补全。如果你使用 `Clang` 编译器，无需改动任何设置。
+
+如果你使用 `G++` 编译器，在下面的 `IntelliSense Mode` （`IntelliSense 模式`）中选择 `gcc-x64` 而非默认的 `msvc-x64` 以使用自动补全等功能。否则会得到 `IntelliSense 模式 msvc-x64 与编译器路径不兼容。` 的错误。
+
+![](images/vscode-4.png)
+
+#### 配置 GDB/LLDB 调试器
+
+在 `VS Code` 中新建一份 `C++` 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}`），保存并按下 <kbd>F5</kbd>，进入调试模式。
+如果出现了 `选择环境` 的提示，选择 `C++ (GDB/LLDB)`。在 `选择配置` 中，`G++` 用户选择 `g++.exe - build and debug active file` （`g++ - 生成和调试活动文件`）；`Clang` 用户选择 `cl.exe - build and debug active file`（`cl.exe - 生成和调试活动文件`）。
+
+???+ warning
+	配置名称并非固定，而是可以自定义的。不同的操作系统可能具有不同的配置名称。
+
+完成后，VS Code 将自动完成初始化操作并弹出一个 `launch.json` 配置文件。关闭它。
+
+至此，所有的配置流程已经完毕。再次按下 <kbd>F5</kbd> 即可看到软件下方的调试信息。
+
+若要在以后使用 VS Code 编译并调试代码，所有的源代码都需要保存至这个文件夹内。若要编译并调试其他文件夹中存放的代码，需要重新执行上述步骤（或将旧文件夹内的 `.vscode` 子文件夹复制到新文件夹内）。
+
+#### 给一份代码设置断点，并查看变量的值
+
+使用 VS Code 打开一份代码，将鼠标悬停在行数左侧的空白区域，并单击出现的红点即可为该行代码设置断点。再次单击可取消设置断点。
+
+![](images/vscode-5.gif)
+
+按下 <kbd>F5</kbd> 进入调试模式，编辑器上方会出现一个调试工具栏，四个蓝色按钮从左至右分别代表 `GDB` 中的 `continue `,`next`,`step`和`until`：
+
+![](images/vscode-6.png)
+
+如果编辑器未自动跳转，点击左侧工具栏中的“甲虫+播放键”图标进入调试窗口，即可在左侧看到变量的值。
+
+在调试模式中，编辑器将以黄色底色显示下一步将要执行的代码。
