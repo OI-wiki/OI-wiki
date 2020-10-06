@@ -109,7 +109,7 @@ struct mat {
     mat res, bas;
     for (int i = 0; i < sz; ++i) res.a[i][i] = 1;
     for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j) bas.a[i][j] = a[i][j];
+      for (int j = 0; j < sz; ++j) bas.a[i][j] = a[i][j] % MOD;
     while (x) {
       if (x & 1) res = res * bas;
       bas = bas * bas;
