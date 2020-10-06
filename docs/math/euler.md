@@ -67,6 +67,7 @@ int euler_phi(int n) {
 ```
 
 注：如果将上面的程序改成如下形式，会提升一点效率：
+
 ```cpp
 int euler_phi(int n) {
   int ans = n;
