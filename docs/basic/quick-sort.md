@@ -22,8 +22,8 @@
 
 ### 性质
 
-- **稳定性：** 快速排序是一种不稳定的排序方法；
-- **时间复杂度：** 快速排序的最佳时间复杂度和平均时间复杂度为 $O(n\log n)$ ，最坏时间复杂度为 $O(n^2)$ 。然而，实践中几乎不可能达到最坏情况，且因为快速排序的内存访问遵循局部性原理，多数情况下快速排序的表现大幅优于堆排序等其他复杂度为 $O(n \log n)$ 的排序算法。[^ref1]
+-  **稳定性：** 快速排序是一种不稳定的排序方法；
+-  **时间复杂度：** 快速排序的最佳时间复杂度和平均时间复杂度为 $O(n\log n)$ ，最坏时间复杂度为 $O(n^2)$ 。然而，实践中几乎不可能达到最坏情况，且因为快速排序的内存访问遵循局部性原理，多数情况下快速排序的表现大幅优于堆排序等其他复杂度为 $O(n \log n)$ 的排序算法。[^ref1]
 
 ### 实现（C++）[^ref2]
 
@@ -64,13 +64,13 @@ void quick_sort(T arr[], const int len) {
 
 ### 朴素优化思想
 
-如果仅按照上文所述的基本思想来实现快速排序（或者是直接照抄模板）的话，那大概率是通不过 [P1177 【模板】快速排序](https://www.luogu.com.cn/problem/P1177) 这道模板的。因为有毒瘤数据能够把朴素的快速排序卡成 $O(n^2)$。
+如果仅按照上文所述的基本思想来实现快速排序（或者是直接照抄模板）的话，那大概率是通不过 [P1177【模板】快速排序](https://www.luogu.com.cn/problem/P1177) 这道模板的。因为有毒瘤数据能够把朴素的快速排序卡成 $O(n^2)$ 。
 
 所以，我们需要对朴素快速排序思想加以优化。较为常见的优化思路有以下三种[^ref3]。
 
 - 通过 **三数取中（即选取第一个、最后一个以及中间的元素中的中位数）** 的方法来选择两个子序列的分界元素（即比较基准）。这样可以避免极端数据（如升序序列或降序序列）带来的退化；
 - 当序列较短时，使用 **插入排序** 的效率更高；
-- 每趟排序后，**将与分界元素相等的元素聚集在分界元素周围**，这样可以避免极端数据（如序列中大部分元素都相等）带来的退化。
+- 每趟排序后， **将与分界元素相等的元素聚集在分界元素周围** ，这样可以避免极端数据（如序列中大部分元素都相等）带来的退化。
 
 下面列举了几种较为成熟的快速排序优化方式。
 
@@ -82,35 +82,33 @@ void quick_sort(T arr[], const int len) {
 
 三路快速排序在处理含有多个重复值的数组时，效率远高于原始快速排序。其最佳时间复杂度为 $O(n)$ 。
 
-三路快速排序实现起来非常简单。下面给出了一种三路快排的C++实现，其表现在模板题中并不输给STL的sort。
+三路快速排序实现起来非常简单。下面给出了一种三路快排的 C++ 实现，其表现在模板题中并不输给 STL 的 sort。
 
 ```cpp
 // 模板的T参数表示元素的类型，此类型需要定义小于（<）运算
 template <typename T>
 // arr为需要被排序的数组，len为数组长度
-void quick_sort(T arr[], const int len)
-{
-    if (len <= 1)
-        return;
-    // 随机选择基准（pivot）
-    const T pivot = arr[rand() % len];
-    // i：当前操作的元素
-    // j：第一个等于pivot的元素
-    // k：第一个大于pivot的元素
-    int i = 0, j = 0, k = len;
-    // 完成一趟三路快排，将序列分为：小于pivot的元素 ｜ 等于pivot的元素 ｜ 大于pivot的元素
-    while (i < k)
-    {
-        if (arr[i] < pivot)
-            swap(arr[i++], arr[j++]);
-        else if (pivot < arr[i])
-            swap(arr[i], arr[--k]);
-        else
-            i++;
-    }
-    // 递归完成对于两个子序列的快速排序
-    quick_sort(arr, j);
-    quick_sort(arr + k, len - k);
+void quick_sort(T arr[], const int len) {
+  if (len <= 1) return;
+  // 随机选择基准（pivot）
+  const T pivot = arr[rand() % len];
+  // i：当前操作的元素
+  // j：第一个等于pivot的元素
+  // k：第一个大于pivot的元素
+  int i = 0, j = 0, k = len;
+  // 完成一趟三路快排，将序列分为：小于pivot的元素 ｜ 等于pivot的元素 ｜
+  // 大于pivot的元素
+  while (i < k) {
+    if (arr[i] < pivot)
+      swap(arr[i++], arr[j++]);
+    else if (pivot < arr[i])
+      swap(arr[i], arr[--k]);
+    else
+      i++;
+  }
+  // 递归完成对于两个子序列的快速排序
+  quick_sort(arr, j);
+  quick_sort(arr + k, len - k);
 }
 ```
 
@@ -136,35 +134,32 @@ void quick_sort(T arr[], const int len)
 // 模板的T参数表示元素的类型，此类型需要定义小于（<）运算
 template <typename T>
 // arr为查找范围数组，rk为需要查找的排名（从0开始），len为数组长度
-T find_kth_element(T arr[], int rk, const int len)
-{
-    if (len <= 1)
-        return arr[0];
-    // 随机选择基准（pivot）
-    const T pivot = arr[rand() % len];
-    // i：当前操作的元素
-    // j：第一个等于pivot的元素
-    // k：第一个大于pivot的元素
-    int i = 0, j = 0, k = len;
-    // 完成一趟三路快排，将序列分为：小于pivot的元素 ｜ 等于pivot的元素 ｜ 大于pivot的元素
-    while (i < k)
-    {
-        if (arr[i] < pivot)
-            swap(arr[i++], arr[j++]);
-        else if (pivot < arr[i])
-            swap(arr[i], arr[--k]);
-        else
-            i++;
-    }
-    // 根据要找的排名与两条分界线的位置，去不同的区间递归查找第k大的数
-    // 如果小于pivot的元素个数比k多，则第k大的元素一定是一个小于pivot的元素
-    if (rk < j)
-        return find_kth_element(arr, rk, j);
-    // 否则，如果小于pivot和等于pivot的元素加起来也没有k多，则第k大的元素一定是一个大于pivot的元素
-    else if (rk >= k)
-        return find_kth_element(arr + k, rk - k, len - k);
-    // 否则，pivot就是第k大的元素
-    return pivot;
+T find_kth_element(T arr[], int rk, const int len) {
+  if (len <= 1) return arr[0];
+  // 随机选择基准（pivot）
+  const T pivot = arr[rand() % len];
+  // i：当前操作的元素
+  // j：第一个等于pivot的元素
+  // k：第一个大于pivot的元素
+  int i = 0, j = 0, k = len;
+  // 完成一趟三路快排，将序列分为：小于pivot的元素 ｜ 等于pivot的元素 ｜
+  // 大于pivot的元素
+  while (i < k) {
+    if (arr[i] < pivot)
+      swap(arr[i++], arr[j++]);
+    else if (pivot < arr[i])
+      swap(arr[i], arr[--k]);
+    else
+      i++;
+  }
+  // 根据要找的排名与两条分界线的位置，去不同的区间递归查找第k大的数
+  // 如果小于pivot的元素个数比k多，则第k大的元素一定是一个小于pivot的元素
+  if (rk < j) return find_kth_element(arr, rk, j);
+  // 否则，如果小于pivot和等于pivot的元素加起来也没有k多，则第k大的元素一定是一个大于pivot的元素
+  else if (rk >= k)
+    return find_kth_element(arr + k, rk - k, len - k);
+  // 否则，pivot就是第k大的元素
+  return pivot;
 }
 ```
 
@@ -172,8 +167,8 @@ T find_kth_element(T arr[], int rk, const int len)
 
 [^ref1]:  [C++ 性能榨汁机之局部性原理 - I'm Root lee !](http://irootlee.com/juicer_locality/) 
 
-[^ref2]:  [算法实现/排序/快速排序 - 维基教科书，自由的教学读本](https://zh.wikibooks.org/wiki/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F)
+[^ref2]:  [算法实现/排序/快速排序 - 维基教科书，自由的教学读本](https://zh.wikibooks.org/wiki/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F) 
 
-[^ref3]:  [三种快速排序以及快速排序的优化](https://blog.csdn.net/insistGoGo/article/details/7785038)
+[^ref3]:  [三种快速排序以及快速排序的优化](https://blog.csdn.net/insistGoGo/article/details/7785038) 
 
 [^ref4]:  [introsort](https://en.wikipedia.org/wiki/Introsort) 
