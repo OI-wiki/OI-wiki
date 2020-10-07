@@ -2,19 +2,11 @@ author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink,
 
 ## 简介
 
-Visual Studio Code（以下简称 VS Code) 是一个由微软开发，同时支持 Windows、Linux 和 macOS 等操作系统且开放源代码的代码编辑器。它是用 TypeScript 编写的，并且采用 Electron 架构。它带有对 JavaScript、TypeScript 和 Node.js 的内置支持，并为其他语言（如 C++、Cype、Java、Python、PHP、Go）提供了丰富的扩展生态系统。
+Visual Studio Code（以下简称 VS Code) 是一个由微软开发，同时支持 Windows、Linux 和 macOS 等操作系统且开放源代码的代码编辑器。它是用 TypeScript 编写的，并且采用 Electron 架构。它带有对 JavaScript、TypeScript 和 Node.js 的内置支持，并为其他语言（如 C、C++、Java、Python、PHP、Go）提供了丰富的扩展生态系统。
 
 官网： [Visual Studio Code - Code Editing. Redefined](https://code.visualstudio.com/) 
 
-## 配置
-
-### 安装 C/C++ 语言支持插件
-
-在 VS Code 中打开插件商店，在搜索栏中输入 `C++` 或者 `@category:"programming languages"` ，然后找到 C/C++，点击 Install 安装插件。
-
-![](./images/vscode-2.png)
-
-### 使用 Code Runner 插件运行代码
+## 使用 Code Runner 插件运行代码
 
 VS Code 安装并配置插件后可实现对 C/C++ 的支持，但配置过程比较复杂。一个简单的编译与运行 C++ 程序的方案是安装 Code Runner 插件。
 
@@ -27,37 +19,39 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 安装完成后，打开需要运行的文件，点击右上角的小三角图标即可运行代码；按下快捷键<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd>（在 macOS 下是<kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>N</kbd>）也可以得到同样的效果。
 
 ???+ warning
-    如果安装了 VS Code 与 Code Runner 后，代码仍然无法运行，很有可能是因为系统尚未安装 C/C++ 的运行环境。
+    如果安装了 VS Code 与 Code Runner 后，代码仍然无法运行，很有可能是因为系统尚未安装 C/C++ 的运行环境，参考 [Hello, World! 页面](../../lang/helloworld.md) 以安装。
 
-    - 在 Windows 环境下运行 C/C++ 程序，需要先安装 [MinGW](http://www.mingw.org/) 或 MinGW-w64；
-    - macOS 可运行 `xcode-select --install` 进行安装；
-    - Linux 系统已经带有 C/C++ 运行环境，无需额外配置。
+## 使用 C/C++ 插件编译并调试
 
-### 使用 C/C++ 插件编译并调试
+### 安装插件
+
+在 VS Code 中打开插件商店，在搜索栏中输入 `C++` 或者 `@category:"programming languages"` ，然后找到 C/C++，点击 Install 安装插件。
+
+![](./images/vscode-2.png)
 
 ???+ warning
-    在配置前，请确保系统已经安装了 [MinGW-w64](https://mingw-w64.org/doku.php/download) 或 [Clang](https://releases.llvm.org/download.html) ，并已添加到了 `PATH` 中。请使用 `CMD` 或者 `PowerShell` ，而不是 `Git Bash` 作为集成终端。
+    在配置前，请确保系统已经安装了 G++ 或 Clang ，并已添加到了 `PATH` 中。请使用 CMD 或者 PowerShell，而不是 Git Bash 作为集成终端。
 
-#### 配置编译
+### 配置编译
 
-首先用 VS Code 打开一个文件夹，然后按下<kbd>F1</kbd>，输入 `C/C++: Edit configurations (UI)` ，进入 `C/C++` 插件的设置界面。
+首先用 VS Code 打开一个文件夹，然后按下<kbd>F1</kbd>，输入 `C/C++: Edit configurations (UI)` ，进入 C/C++ 插件的设置界面。
 
 ![vscode-3](images/vscode-3.png)
 
-在 `Compiler path` （ `编译器路径` ）中选择 `G++` 或 `Clang` 的所在路径。如果没有可选项，请检查编译器所在路径是否添加到了操作系统的 `PATH` 变量中。
+在 `Compiler path` （ `编译器路径` ）中选择 G++ 或 Clang 的所在路径。如果没有可选项，请检查编译器所在路径是否添加到了操作系统的 `PATH` 变量中。
 
-#### 配置 IntelliSense
+### 配置 IntelliSense
 
 用于调整 VS Code 的智能补全。
 
-如果你使用 `Clang` 编译器，在下面的 `IntelliSense Mode` （ `IntelliSense 模式` ）中选择 `clang-x64` 而非默认的 `msvc-x64` ；如果你使用 `G++` 编译器，选择 `gcc-x64` 以使用自动补全等功能。否则会得到 `IntelliSense 模式 msvc-x64 与编译器路径不兼容。` 的错误。
+如果你使用 Clang 编译器，在下面的 `IntelliSense Mode` （ `IntelliSense 模式` ）中选择 `clang-x64` 而非默认的 `msvc-x64` ；如果你使用 G++ 编译器，选择 `gcc-x64` 以使用自动补全等功能。否则会得到 `IntelliSense 模式 msvc-x64 与编译器路径不兼容。` 的错误。
 
 ![](images/vscode-4.png)
 
-#### 配置 GDB/LLDB 调试器
+### 配置 GDB/LLDB 调试器
 
-在 `VS Code` 中新建一份 `C++` 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}` ），保存并按下<kbd>F5</kbd>，进入调试模式。
-如果出现了 `选择环境` 的提示，选择 `C++ (GDB/LLDB)` 。在 `选择配置` 中， `G++` 用户选择 `g++.exe - build and debug active file` （ `g++.exe - 生成和调试活动文件` ）； `Clang` 用户选择 `clang++ - build and debug active file` （ `clang++ - 生成和调试活动文件` ）。
+在 VS Code 中新建一份 C++ 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}` ），保存并按下<kbd>F5</kbd>，进入调试模式。
+如果出现了 `选择环境` 的提示，选择 `C++ (GDB/LLDB)` 。在 `选择配置` 中， `G++` 用户选择 `g++.exe - build and debug active file` （ `g++.exe - 生成和调试活动文件` ）； Clang 用户选择 `clang++ - build and debug active file` （ `clang++ - 生成和调试活动文件` ）。
 
 ???+ warning
 
@@ -69,13 +63,13 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 若要在以后使用 VS Code 编译并调试代码，所有的源代码都需要保存至这个文件夹内。若要编译并调试其他文件夹中存放的代码，需要重新执行上述步骤（或将旧文件夹内的 `.vscode` 子文件夹复制到新文件夹内）。
 
-#### 给一份代码设置断点，并查看变量的值
+### 给一份代码设置断点，并查看变量的值
 
 使用 VS Code 打开一份代码，将鼠标悬停在行数左侧的空白区域，并单击出现的红点即可为该行代码设置断点。再次单击可取消设置断点。
 
 ![](images/vscode-5.gif)
 
-按下<kbd>F5</kbd>进入调试模式，编辑器上方会出现一个调试工具栏，四个蓝色按钮从左至右分别代表 `GDB` 中的 `continue` , `next` , `step` 和 `until` ：
+按下<kbd>F5</kbd>进入调试模式，编辑器上方会出现一个调试工具栏，四个蓝色按钮从左至右分别代表 GDB 中的 `continue` , `next` , `step` 和 `until` ：
 
 ![](images/vscode-6.png)
 
