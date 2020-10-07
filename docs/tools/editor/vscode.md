@@ -30,7 +30,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 ![](./images/vscode-2.png)
 
 ???+ warning
-    在配置前，请确保系统已经安装了 G++ 或 Clang ，并已添加到了 `PATH` 中。请使用 CMD 或者 PowerShell，而不是 Git Bash 作为集成终端。
+    在配置前，请确保系统已经安装了 G++ 或 Clang，并已添加到了 `PATH` 中。请使用 CMD 或者 PowerShell，而不是 Git Bash 作为集成终端。
 
 ### 配置编译
 
@@ -51,7 +51,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 ### 配置 GDB/LLDB 调试器
 
 在 VS Code 中新建一份 C++ 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}` ），保存并按下<kbd>F5</kbd>，进入调试模式。
-如果出现了 `选择环境` 的提示，选择 `C++ (GDB/LLDB)` 。在 `选择配置` 中， `G++` 用户选择 `g++.exe - build and debug active file` （ `g++.exe - 生成和调试活动文件` ）； Clang 用户选择 `clang++ - build and debug active file` （ `clang++ - 生成和调试活动文件` ）。
+如果出现了 `选择环境` 的提示，选择 `C++ (GDB/LLDB)` 。在 `选择配置` 中， `G++` 用户选择 `g++.exe - build and debug active file` （ `g++.exe - 生成和调试活动文件` ）；Clang 用户选择 `clang++ - build and debug active file` （ `clang++ - 生成和调试活动文件` ）。
 
 ???+ warning
 
