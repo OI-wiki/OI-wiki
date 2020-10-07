@@ -2,7 +2,7 @@
 
 ## 简介
 
-快速排序（英语：quicksort），又称分区交换排序（英语：partition-exchange sort），简称快排，是一种被广泛运用的排序算法。
+快速排序（英语：Quicksort），又称分区交换排序（英语：partition-exchange sort），简称快排，是一种被广泛运用的排序算法。
 
 ## 工作原理
 
