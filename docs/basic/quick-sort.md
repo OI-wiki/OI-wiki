@@ -56,8 +56,7 @@ struct Range {
 
 template <typename T>
 void quick_sort(T arr[], const int len) {
-  if (len <= 0) return;  // 避免 len 等于负值时宣告堆叠阵列宕机
-  // r[]模拟堆叠，p为数量,r[p++]为push,r[--p]为pop且取得元素
+  if (len <= 0) return;
   Range r[len];
   int p = 0;
   r[p++] = Range(0, len - 1);
