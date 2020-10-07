@@ -222,13 +222,13 @@ void pre() {
 }
 ```
 
-## 线性Eratosthenes筛法
+## 线性 Eratosthenes 筛法
 
-线性筛算法的缺点是使用的空间比**Eratosthenes筛法**更多：它需要一个大小为 $n$ 的数组。
+线性筛算法的缺点是使用的空间比 **Eratosthenes 筛法** 更多：它需要一个大小为 $n$ 的数组。
 
 因此，仅对于数据量小于等于 $10 ^ 7$ 的问题，线性筛算法才有使用价值。
 
-该算法的作者是Gries＆Misra[^er]。虽然其名叫做**线性 Eratosthenes 筛**。但是，严格来说，该算法不应被称为 **Eratosthenes 筛**的一种变形，因为它与经典的 **Eratosthenes 筛**算法有很大不同。
+该算法的作者是 Gries&Misra[^er]。虽然其名叫做 **线性 Eratosthenes 筛** 。但是，严格来说，该算法不应被称为 **Eratosthenes 筛** 的一种变形，因为它与经典的 **Eratosthenes 筛** 算法有很大不同。
 
 ### 算法描述
 
@@ -248,21 +248,20 @@ void pre() {
 
 如果数字 $x_j = i \cdot p_j$ ，其中 $p_j$ 都是小于或等于 $\textit{lp}[i]$ 的质数，就令 $\textit{lp} [x_j] = p_j$ 。
 
-
 ### 实现
 
 ```cpp
 const int N = 10000000;
-int lp[N+1];
+int lp[N + 1];
 vector<int> pr;
 
-for (int i=2; i<=N; ++i) {
-    if (lp[i] == 0) {
-        lp[i] = i;
-        pr.push_back (i);
-    }
-    for (int j=0; j<(int)pr.size() && pr[j]<=lp[i] && i*pr[j]<=N; ++j)
-        lp[i * pr[j]] = pr[j];
+for (int i = 2; i <= N; ++i) {
+  if (lp[i] == 0) {
+    lp[i] = i;
+    pr.push_back(i);
+  }
+  for (int j = 0; j < (int)pr.size() && pr[j] <= lp[i] && i * pr[j] <= N; ++j)
+    lp[i * pr[j]] = pr[j];
 }
 ```
 
@@ -272,7 +271,7 @@ for (int i=2; i<=N; ++i) {
 
 下面我们来证明该算法是正确的，以及 $\ lp$ 里的每个值最多被更新一次。
 
-请注意，每个数字 $i$ 的形式都只有一个表示形式：$i = \textit{lp}[i] \cdot x$ ，
+请注意，每个数字 $i$ 的形式都只有一个表示形式： $i = \textit{lp}[i] \cdot x$ ，
 
 其中 $\textit{lp} [i]$ 是 $i$ 的最小素数，而 $x$ 的素数不小于 $\textit{lp} [i]$ ，即 $\textit{lp} [i] \le \textit{lp} [x]$ 。
 
@@ -286,22 +285,16 @@ for (int i=2; i<=N; ++i) {
 
 该算法时间复杂度为 $O(n)$ 。
 
-
 #### 空间复杂度
 
-该算法空间复杂度是 $O(n)$ ，而经典 **Eratosthenes 筛**算法的空间复杂度是 $\dfrac n {\ln n}$ 。
+该算法空间复杂度是 $O(n)$ ，而经典 **Eratosthenes 筛** 算法的空间复杂度是 $\dfrac n {\ln n}$ 。
 
-即便该算法的时间复杂度 $O(n)$ 比原算法的时间复杂度 $O(n \log \log n)$ 要好，但是他们并没有特别大的差别。 实际上，它们只有两倍的速度差，优化版本的 **Eratosthenes 筛**运行速度和这里给出的算法基本上一样快。
+即便该算法的时间复杂度 $O(n)$ 比原算法的时间复杂度 $O(n \log \log n)$ 要好，但是他们并没有特别大的差别。实际上，它们只有两倍的速度差，优化版本的 **Eratosthenes 筛** 运行速度和这里给出的算法基本上一样快。
 
 然而，它的优点在于，该算法计算了一个数组 $\ lp$ ，它能让我们找到 $[2, n]$ 中按大小排好序的质因子，使用一个额外的数组可以避免重复查找这些质因子。
 
-
-**本页面部分内容译自博文 [Решето Эратосфена с линейным временем работы](http://e-maxx.ru/algo/prime_sieve_linear) 与其英文翻译版 [Sieve of Eratosthenes Having Linear Time Complexity](https://cp-algorithms.com/algebra/prime-sieve-linear.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
-
+ **本页面部分内容译自博文 [Решето Эратосфена с линейным временем работы](http://e-maxx.ru/algo/prime_sieve_linear) 与其英文翻译版 [Sieve of Eratosthenes Having Linear Time Complexity](https://cp-algorithms.com/algebra/prime-sieve-linear.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
 
 ## 注释
 
-[^er]:David Gries, Jayadev Misra. A Linear Sieve Algorithm for Finding Prime Numbers [1978]
-
-
-
+[^er]: David Gries, Jayadev Misra. A Linear Sieve Algorithm for Finding Prime Numbers[1978]
