@@ -107,6 +107,6 @@ $$
 
  [洛谷 P2662 牛场围栏](https://www.luogu.com.cn/problem/P2662) 
 
- [\[国家集训队\]墨墨的等式](https://www.luogu.com.cn/problem/P2371) 
+ [「国家集训队」墨墨的等式](https://www.luogu.com.cn/problem/P2371) 
 
  [「NOIP2018」货币系统](https://loj.ac/problem/2951) 

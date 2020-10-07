@@ -222,58 +222,57 @@ void pre() {
 }
 ```
 
-## 线性 Eratosthenes 筛法
+## 线性Eratosthenes筛法
 
-线性筛算法的缺点是使用的空间比 **Eratosthenes 筛法** 更多：它需要一个大小为 $n$ 的数组。
+线性筛算法的缺点是使用的空间比**Eratosthenes筛法**更多：它需要一个大小为 $n$ 的数组。
 
 因此，仅对于数据量小于等于 $10 ^ 7$ 的问题，线性筛算法才有使用价值。
 
-该算法的作者是 Gries&Misra[^er]。虽然其名叫做 **线性 Eratosthenes 筛** 。但是，严格来说，该算法不应被称为 **Eratosthenes 筛** 的一种变形，因为它与经典的 **Eratosthenes 筛** 算法有很大不同。
+该算法的作者是Gries＆Misra[^er]。虽然其名叫做**线性 Eratosthenes 筛**。但是，严格来说，该算法不应被称为 **Eratosthenes 筛**的一种变形，因为它与经典的 **Eratosthenes 筛**算法有很大不同。
 
 ### 算法描述
 
 我们的目的是计算范围 $[2,n]$ 中每个整数的最小质因数 $\textit{lp}[i]$ 。
 
-此外，我们还需要把找到的质数存起来，存到数组 $\textit{pr}[]$ 当中。
+此外，我们还需要把找到的质数存起来，存到数组 $\ lp$ 当中。
 
-首先用 $0$ 初始化数组 $\textit{lp}[]$ ，这意味着我们假设所有数字都是质数（因为质数的判断条件就是看 $\textit{lp}[i]$ 是否为 $0$ ）。在算法运行期间，该数组将逐渐被更新。
+首先用 $0$ 初始化数组 $\ lp$ ，这意味着我们假设所有数字都是质数（因为质数的判断条件就是看 $\textit{lp}[i]$ 是否为 $0$ ）。在算法运行期间，该数组将逐渐被更新。
 
 现在，我们将遍历从 $2$ 到 $n$ 的数字。对于当前数字 $i$ ，我们有两种情况：
 
-如果 $\textit{lp}[i]=0$ ，那么这意味着 $i$ 是质数，令 $\textit{lp}[i]=i$ 并将 $i$ 添加到列表 $\textit{pr}[]$ 的末尾。
+如果 $\textit{lp}[i]=0$ ，那么这意味着 $i$ 是质数，令 $\textit{lp}[i]=i$ 并将 $i$ 添加到列表 $pr$ 的末尾。
 
 如果 $\textit{lp}[i] \neq 0$ ，则表示 $i$ 是合数的，其最小素数为 $\textit{lp}[i]$ 。
 
-在这两种情况下，我们都会为能被 $i$ 整除的数字更新 $\textit{lp}[]$ 的值。这样做是为了对于每个数字 $x$ ，最多更新一次对应的 $\textit{lp}[x]$ 。
+在这两种情况下，我们都会为能被 $i$ 整除的数字更新 $\ lp$ 的值。这样做是为了对于每个数字 $x$ ，最多更新一次对应的 $\textit{lp}[x]$ 。
 
 如果数字 $x_j = i \cdot p_j$ ，其中 $p_j$ 都是小于或等于 $\textit{lp}[i]$ 的质数，就令 $\textit{lp} [x_j] = p_j$ 。
 
-该算法的正确性及其运行时间的证明放在代码实现之后。
 
 ### 实现
 
 ```cpp
 const int N = 10000000;
-int lp[N + 1];
+int lp[N+1];
 vector<int> pr;
 
-for (int i = 2; i <= N; ++i) {
-  if (lp[i] == 0) {
-    lp[i] = i;
-    pr.push_back(i);
-  }
-  for (int j = 0; j < (int)pr.size() && pr[j] <= lp[i] && i * pr[j] <= N; ++j)
-    lp[i * pr[j]] = pr[j];
+for (int i=2; i<=N; ++i) {
+    if (lp[i] == 0) {
+        lp[i] = i;
+        pr.push_back (i);
+    }
+    for (int j=0; j<(int)pr.size() && pr[j]<=lp[i] && i*pr[j]<=N; ++j)
+        lp[i * pr[j]] = pr[j];
 }
 ```
 
-我们可以通过使用数组和计数器替换 $pr$ 并省去 for 循环中的乘法来加快速度（为此，我们只需要记录每一次的乘积即可）。
+我们可以通过使用数组和计数器替换 $\ pr$ 并省去 for 循环中的乘法来加快速度（为此，我们只需要记录每一次的乘积即可）。
 
 ### 证明
 
-下面我们来证明该算法是正确的，以及 $\textit{lp}[]$ 里的每个值最多被更新一次。
+下面我们来证明该算法是正确的，以及 $\ lp$ 里的每个值最多被更新一次。
 
-请注意，每个数字 $i$ 的形式都只有一个表示形式： $i = \textit{lp}[i] \cdot x$ ，
+请注意，每个数字 $i$ 的形式都只有一个表示形式：$i = \textit{lp}[i] \cdot x$ ，
 
 其中 $\textit{lp} [i]$ 是 $i$ 的最小素数，而 $x$ 的素数不小于 $\textit{lp} [i]$ ，即 $\textit{lp} [i] \le \textit{lp} [x]$ 。
 
@@ -285,20 +284,24 @@ for (int i = 2; i <= N; ++i) {
 
 #### 时间复杂度
 
-该算法将具有线性运行时间，时间复杂度为 $O(n)$ 。
+该算法时间复杂度为 $O(n)$ 。
+
 
 #### 空间复杂度
 
-该算法空间复杂度是 $n$ ，而经典 **Eratosthenes 筛** 算法的空间复杂度是 $\dfrac n {\ln n}$ 。
+该算法空间复杂度是 $O(n)$ ，而经典 **Eratosthenes 筛**算法的空间复杂度是 $\dfrac n {\ln n}$ 。
 
-即便该算法的时间复杂度 $O(n)$ 比原算法的时间复杂度 $O(n \log \log n)$ 要好，但是他们并没有特别大的差别。实际上，它们只有两倍的速度差，优化版本的 **Eratosthenes 筛** 运行速度和这里给出的算法基本上一样快。
+即便该算法的时间复杂度 $O(n)$ 比原算法的时间复杂度 $O(n \log \log n)$ 要好，但是他们并没有特别大的差别。 实际上，它们只有两倍的速度差，优化版本的 **Eratosthenes 筛**运行速度和这里给出的算法基本上一样快。
 
-然而，它的优点在于，该算法计算了一个数组 $\textit{lp}[]$ ，它能让我们找到 $[2, n]$ 中按大小排好序的质因子，使用一个额外的数组可以避免重复查找这些质因子。
+然而，它的优点在于，该算法计算了一个数组 $\ lp$ ，它能让我们找到 $[2, n]$ 中按大小排好序的质因子，使用一个额外的数组可以避免重复查找这些质因子。
 
-能求出所有数字的质因数分解对于某些任务是非常有用的，而且这个算法是少数时间复杂度为 $O(n)$ 的算法。
 
- **本页面部分内容译自博文 [Решето Эратосфена с линейным временем работы](http://e-maxx.ru/algo/prime_sieve_linear) 与其英文翻译版 [Sieve of Eratosthenes Having Linear Time Complexity](https://cp-algorithms.com/algebra/prime-sieve-linear.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+**本页面部分内容译自博文 [Решето Эратосфена с линейным временем работы](http://e-maxx.ru/algo/prime_sieve_linear) 与其英文翻译版 [Sieve of Eratosthenes Having Linear Time Complexity](https://cp-algorithms.com/algebra/prime-sieve-linear.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+
 
 ## 注释
 
-[^er]: David Gries, Jayadev Misra. A Linear Sieve Algorithm for Finding Prime Numbers[1978]
+[^er]:David Gries, Jayadev Misra. A Linear Sieve Algorithm for Finding Prime Numbers [1978]
+
+
+
