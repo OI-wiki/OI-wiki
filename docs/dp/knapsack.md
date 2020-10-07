@@ -127,7 +127,7 @@ $$
 f_{i,j}=\max_{k=0}^{k_i}(f_{i-1,j-k\times w_i}+v_i\times k)
 $$
 
-时间复杂度 $O(nW\sum k_i)$ 。
+时间复杂度 $O(W\sum_{i=1}^nk_i)$ 。
 
 ### 二进制分组优化
 
