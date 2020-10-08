@@ -1,4 +1,4 @@
-author: kexplorning, Ir1d
+author: kexplorning, Ir1d, lvneg1
 
 > 用来急救，不多废话。
 
@@ -662,7 +662,7 @@ C++ 把函数和过程统统视作函数，连 `main` 都不放过，比如写 `
 
 ### 在函数中传递参数 Passing Parameters to Functions
 
-C++ 中没有 Pascal 的 `var` 关键字可以改变传递的参数
+C++ 中没有 Pascal 的 `var` 关键字可以改变传递的参数，但是 C++ 可以使用引用和指针达到同样的效果。
 
 ```pas
 var a, b: integer;
@@ -683,6 +683,7 @@ end.
 ```
 
 ```cpp
+// 使用指针的代码
 #include <iostream>
 
 void swap(int* x, int* y) {
@@ -701,9 +702,31 @@ int main() {
 }
 ```
 
-注意，此处 C++ 代码涉及指针问题。指针问题还是很麻烦的，建议去阅读相关资料。
+注意，此处 C++ 代码 **涉及指针问题** 。指针问题还是很麻烦的，建议去阅读相关资料。
 
-C++ 中函数传递参数还有其他方法，其中一种是 **直接使用全局变量传递参数** ，如果不会用指针，可以先用这种方法。
+```cpp
+// 使用引用的代码
+#include <iostream>
+
+void swap(int& x, int& y) {
+  int temp;
+  temp = x;
+  x = y;
+  y = temp;
+}
+
+int main(int argc, char const* argv[]) {
+  int a = 10, b = 20;
+  swap(a, b);
+  std::cout << a << " " << b;
+
+  return 0;
+}
+```
+
+注意，此处 C++ 代码涉及 **引用相关类型问题** 。在用引用调用一些 STL 库、模板库的时候可能会遇到一些问题，这时候需要手动声明别类型。具体资料可以在《C++ Primer》第五版或者网络资料中自行查阅。
+
+C++ 中函数传递参数还有其他方法，其中一种是 **直接使用全局变量传递参数** ，如果不会用指针，可以先用这种方法。但是这种方法的缺陷是没有栈保存数据， **没有办法在递归函数中传参** 。（除非手写栈，注意，手写栈也是一种突破系统栈限制的方法。）
 
 ## C++ 标准库与参考资料 Reference
 
