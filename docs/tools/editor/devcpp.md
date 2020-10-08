@@ -28,6 +28,14 @@ author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy
 
 该应用界面简洁友好，安装便捷，适合初学者使用。
 
+## 下载地址
+
+[SourceForge](https://sourceforge.net/projects/orwelldevcpp/files/latest/download)
+
+[童程童美TTS](http://resources.tmooc.cn/tctm/TTS/download/NOIP%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7.rar)
+
+[百度网盘（提取码：vtur）](https://pan.baidu.com/s/16kHQQF6GnrrPoj_xXEsVxQ)
+
 ## 使用教程
 
 ### 常用快捷键
