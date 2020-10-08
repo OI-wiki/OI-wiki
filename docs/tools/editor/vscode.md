@@ -1,4 +1,4 @@
-author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek
+author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n
 
 ## 简介
 
@@ -38,20 +38,20 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 ![vscode-3](images/vscode-3.png)
 
-在 `Compiler path` （ `编译器路径` ）中选择 G++ 或 Clang 的所在路径。如果没有可选项，请检查编译器所在路径是否添加到了操作系统的 `PATH` 变量中。
+在“编译器路径”中选择 G++ 或 Clang 的所在路径。如果没有可选项，请检查编译器所在路径是否添加到了操作系统的 `PATH` 变量中。
 
 ### 配置 IntelliSense
 
 用于调整 VS Code 的智能补全。
 
-如果你使用 Clang 编译器，在下面的 `IntelliSense Mode` （ `IntelliSense 模式` ）中选择 `clang-x64` 而非默认的 `msvc-x64` ；如果你使用 G++ 编译器，选择 `gcc-x64` 以使用自动补全等功能。否则会得到 `IntelliSense 模式 msvc-x64 与编译器路径不兼容。` 的错误。
+如果你使用 Clang 编译器，在“IntelliSense 模式”中选择 `clang-x64` 而非默认的 `msvc-x64` ；如果你使用 G++ 编译器，选择 `gcc-x64` 以使用自动补全等功能。否则会得到“IntelliSense 模式 msvc-x64 与编译器路径不兼容。”的错误。
 
 ![](images/vscode-4.png)
 
 ### 配置 GDB/LLDB 调试器
 
 在 VS Code 中新建一份 C++ 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}` ），保存并按下<kbd>F5</kbd>，进入调试模式。
-如果出现了 `选择环境` 的提示，选择 `C++ (GDB/LLDB)` 。在 `选择配置` 中， `G++` 用户选择 `g++.exe - build and debug active file` （ `g++.exe - 生成和调试活动文件` ）；Clang 用户选择 `clang++ - build and debug active file` （ `clang++ - 生成和调试活动文件` ）。
+如果出现了“选择环境”的提示，选择“C++ (GDB/LLDB)” 。在“选择配置”中， G++ 用户选择 `g++.exe - 生成和调试活动文件` ；Clang 用户选择 `clang++ - 生成和调试活动文件`。
 
 ???+ warning
 
@@ -63,7 +63,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 若要在以后使用 VS Code 编译并调试代码，所有的源代码都需要保存至这个文件夹内。若要编译并调试其他文件夹中存放的代码，需要重新执行上述步骤（或将旧文件夹内的 `.vscode` 子文件夹复制到新文件夹内）。
 
-### 给一份代码设置断点，并查看变量的值
+### 开始调试代码
 
 使用 VS Code 打开一份代码，将鼠标悬停在行数左侧的空白区域，并单击出现的红点即可为该行代码设置断点。再次单击可取消设置断点。
 
@@ -73,6 +73,6 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 ![](images/vscode-6.png)
 
-如果编辑器未自动跳转，点击左侧工具栏中的“甲虫 + 播放键”图标进入调试窗口，即可在左侧看到变量的值。
+如果编辑器未自动跳转，点击左侧工具栏中的“调试”图标进入调试窗口，即可在左侧看到变量的值。
 
 在调试模式中，编辑器将以黄色底色显示下一步将要执行的代码。
