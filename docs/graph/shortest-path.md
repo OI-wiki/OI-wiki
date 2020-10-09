@@ -323,66 +323,65 @@ Johnson 算法则通过另外一种方法来给每条边重新标注边权。
 
 ## D´Esopo-Pape 算法
 
-在大部分的情况下 D´Esopo-Pape 算法比 Dijkstra 算法和 Bellman-Ford 算法要快一些。和 Johnson 算法一样，该算法适用于无负环的负权图。该算法可以计算出起始点到所有点的最短路。
+在大部分的情况下 D´Esopo-Pape 算法比 Dijkstra 算法和 Bellman-Ford 算法要快一些。和 Johnson 算法一样，该算法适用于无负环的负权图。该算法用于计算单源最短路。
 
 ### 描述
 
-使用一个数组 $d$ 存储所有的最短路，比如 $d_i$ 就代表 $v_0$ 到点 $i$ 的最短路径。数组除了 $d_{v_0} = 0$ 以外，初始值都为无穷大。
+设 $d_i$ 表示起点 $s到点i$ 的最短路长度。初始时 $d_s = 0$，其他都设为无穷大。
 
-再使用一个数组 $p$ 存放当前节点的前一个节点，比如 $p_i$ 就是点 $i$ 在最短路径上的祖先。
+设 $p_i$ 表示点 i 在最短路树上的父亲。
 
-每一步都将涉及三个点：
+维护三个点集：
 
--  $M_0$ - 已经计算出距离的点（即便不是最短距离）；
--  $M_1$ - 正在计算距离的点；
--  $M_2$ - 还没被计算距离的点。
+- $M_0$ - 已经计算出距离的点（即便不是最短距离）；
+- $M_1$ - 正在计算距离的点；
+- $M_2$ - 还没被计算距离的点。
 
 点集 $M_1$ 将采用双向队列来存储。
 
-每一步都将从 $M_1$ 中取一个点 $u$ ，然后将点 $u$ 存入 $M_0$ 。然后我们遍历所有从这个顶点出来的边。设另一端是点 $v$ ，权值为 $w$ 。
+每次我们从 $M_1$ 中取一个点 $u$ ，然后将点 $u$ 存入 $M_0$ 。然后我们遍历从 $u$ 出发的所有边。设另一端是点 $v$ ，权值为 $w$ ：
 
-- 如果 $v$ 属于 $M_2$ ，将 $v$ 插入 $M_1$ 队尾， $d_v=d_u + w$ 。
-- 如果 $v$ 属于 $M_1$ ，那我们就更新 $d_v$ ： $d_v = \min(d_v, d_u + w)$ 。
-- 如果 $v$ 属于 $M_0$ ，并且 $d_v$ 可以被改进到 $d_v > d_u + w$ ，那么我们就更新 $d_v$ ，并将 $v$ 插入到 $M_1$ 的队首。
+- 如果 $v \in M_2$，将 $v$ 插入 $M_1$ 队尾， 并更新 $d_v：d_v\gets d_u + w$ 。
+- 如果 $v \in M_1$，那我们就更新 $d_v$ ： $d_v = \min(d_v, d_u + w)$ 。
+- 如果 $v \in M_0$，并且 $d_v$ 可以被改进到 $d_v > d_u + w$，那么我们就更新 $d_v$ ，并将 $v$ 插入到 $M_1$ 的队首。 
 
 当然，每次更新数组 $d$ 时，我们也必须更新 $p$ 数组中相应的元素。
 
 ??? note "参考代码"
-
-```cpp desopo_pape
-struct Edge {
-  int to, w;
-};
-int n;
-vector<vector<Edge>> adj;
-const int INF = 1e9;
-void shortest_paths(int v0, vector<int>& d, vector<int>& p) {
-  d.assign(n, INF);
-  d[v0] = 0;
-  vector<int> m(n, 2);
-  deque<int> q;
-  q.push_back(v0);
-  p.assign(n, -1);
-  while (!q.empty()) {
-    int u = q.front();
-    q.pop_front();
-    m[u] = 0;
-    for (Edge e : adj[u]) {
-      if (d[e.to] > d[u] + e.w) {
-        d[e.to] = d[u] + e.w;
-        p[e.to] = u;
-        if (m[e.to] == 2) {
-          m[e.to] = 1;
-          q.push_back(e.to);
-        } else if (m[e.to] == 0) {
-          m[e.to] = 1;
-          q.push_front(e.to);
+    ```cpp desopo_pape
+    struct Edge {
+        int to, w;
+    };
+    int n;
+    vector<vector<Edge>> adj;
+    const int INF = 1e9;
+    void shortest_paths(int v0, vector<int>& d, vector<int>& p) {
+        d.assign(n, INF);
+        d[v0] = 0;
+        vector<int> m(n, 2);
+        deque<int> q;
+        q.push_back(v0);
+        p.assign(n, -1);
+        while (!q.empty()) {
+            int u = q.front();
+            q.pop_front();
+            m[u] = 0;
+            for (Edge e : adj[u]) {
+                if (d[e.to] > d[u] + e.w) {
+                    d[e.to] = d[u] + e.w;
+                    p[e.to] = u;
+                    if (m[e.to] == 2) {
+                        m[e.to] = 1;
+                        q.push_back(e.to);
+                    } else if (m[e.to] == 0) {
+                        m[e.to] = 1;
+                        q.push_front(e.to);
+                    }
+                }
+            }
         }
-      }
     }
-  }
-}
-```
+    ```
 
 * * *
 
@@ -402,4 +401,4 @@ void shortest_paths(int v0, vector<int>& d, vector<int>& p) {
 
 比如 Floyd 就要记录 `pre[i][j] = k;` ，Bellman-Ford 和 Dijkstra 一般记录 `pre[v] = u` 。
 
- **本页面部分内容译自博文 [Тернарный поиск](http://e-maxx.ru/algo/levit_algorithm) 与其英文翻译版 [D´Esopo-Pape algorithm](https://cp-algorithms.com/graph/desopo_pape.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+**本页面部分内容译自博文[Тернарный поиск](http://e-maxx.ru/algo/levit_algorithm)与其英文翻译版[D´Esopo-Pape algorithm](https://cp-algorithms.com/graph/desopo_pape.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
