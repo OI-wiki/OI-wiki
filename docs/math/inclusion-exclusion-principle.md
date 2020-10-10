@@ -276,11 +276,9 @@ $$
 由于当 $k>N/2$ 时，我们可以直接算出 $f(k)= \lfloor (N/k) \rfloor ^2$ ，故我们可以倒过来，从 $f(N)$ 算到 $f(1)$ 就可以了。于是，我们使用容斥原理轻松地完成了本题。
 
 ```cpp
-for (long long k = N; k >= 1; k--)
-{
-    f[k] = (N / k) * (N / k);
-    for (long long i = k + k; i <= N; i += k)
-        f[k] -= f[i];
+for (long long k = N; k >= 1; k--) {
+  f[k] = (N / k) * (N / k);
+  for (long long i = k + k; i <= N; i += k) f[k] -= f[i];
 }
 ```
 
@@ -288,9 +286,9 @@ for (long long k = N; k >= 1; k--)
 
 附赠三倍经验供大家练手。
 
-- [Luogu P2398 GCD SUM](https://www.luogu.com.cn/problem/P2398)
-- [Luogu P2158 \[SDOI2008\]仪仗队](https://www.luogu.com.cn/problem/P2158)
-- [Luogu P1447 \[NOI2010\]能量采集](https://www.luogu.com.cn/problem/P1447)
+-  [Luogu P2398 GCD SUM](https://www.luogu.com.cn/problem/P2398) 
+-  [Luogu P2158\[SDOI2008\]仪仗队](https://www.luogu.com.cn/problem/P2158) 
+-  [Luogu P1447\[NOI2010\]能量采集](https://www.luogu.com.cn/problem/P1447) 
 
 ### 容斥原理推导欧拉函数
 
