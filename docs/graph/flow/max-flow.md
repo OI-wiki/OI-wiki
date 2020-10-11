@@ -609,22 +609,24 @@ HLPP 推送的条件是 $h(u)=h(v)+1$ ，而如果在算法的某一时刻， $h
 
 其中 pic13 到 pic14 执行了 Relabel(4)，并进行了 GAP 优化。
 
-## MPM 算法
+## MPM算法
 
 MPM (Malhotra, Pramodh-Kumar and Maheshwari) 算法可以在 $O(V^3)$ 的时间复杂度内解决最大流问题。
 
 ### 算法描述
 
-MPM 是分阶段运行的，在每一阶段我们找到图 $G$ 的分层网络中的阻塞流。以分层网络 $L$ 为例。对于每个节点，我们将其内部势能和外部势能定义为：
+MPM是分阶段运行的，在每一阶段我们找到图 $G$ 的分层网络中的阻塞流。以分层网络 $L$ 为例。对于每个节点，我们将其内部势能和外部势能定义为：
 
 $$
-\mathit{p_{in}(v)} &= \sum\limits_{(u, v)\in L}(c(u, v) - f(u, v)) \\\\
-\mathit{p_{out}(v)} &= \sum\limits_{(v, u)\in L}(c(v, u) - f(v, u))
-\end{align}$$
+\begin{align}
+p_{in}(v) &= \sum\limits_{(u, v)\in L}(c(u, v) - f(u, v)) \\\\
+p_{out}(v) &= \sum\limits_{(v, u)\in L}(c(v, u) - f(v, u))
+\end{align}
+$$
 
-同时我们令 $\mathit{p_{in}(s)} = \mathit{p_{out}(t)} = \infty $ 。
+同时我们令 $p_{in}(s) = p_{out}(t) = \infty $ 。
 
-根据$\mathit{p_{in}}$ 和 $\mathit{p_{out}}$ 我们定义 $p(v) = min(\mathit{p_{in}(v)}, \mathit{p_{out}(v)})$ 。
+根据$p_{in}$ 和 $p_{out}$ 我们定义 $p(v) = min(p_{in}(v), p_{out}(v))$ 。
 
 对于某节点 $r$ 如果 $p(r) = \min{p(v)}$ 我们将其定义为参考节点。由于 $L$ 不含环，该节点流量可以增加 $p(r)$ ，从而使 $p(r)$ 变成 $0$ 。
 
@@ -814,4 +816,3 @@ $$
         }
     };
     ```
-$$
