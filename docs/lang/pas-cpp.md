@@ -332,7 +332,7 @@ for (int i = 1; i <= 10; i++) {
 
 ####  `repeat until` 与 `do while` 循环
 
-注意， `repeat unitl` 与 `do while` 是不同的，请对比以下代码
+注意， `repeat until` 与 `do while` 是不同的，请对比以下代码
 
 ```pas
 var i: integer;
