@@ -175,14 +175,14 @@ void swap(int &a, int &b) { a ^= b ^= a ^= b; }
 int getBit(int a, int b) { return (a >> b) & 1; }
 ```
 
-### 将一个数二进制的某一位设置为 $0$ 
+### 将一个数二进制的某一位设置为 0
 
 ```cpp
 // 将 a 的第 b 位设置为 0 ，最低位编号为 0
 int unsetBit(int a, int b) { return a & ~(1 << b); }
 ```
 
-### 将一个数二进制的某一位设置为 $1$ 
+### 将一个数二进制的某一位设置为 1
 
 ```cpp
 // 将 a 的第 b 位设置为 1 ，最低位编号为 0
