@@ -43,7 +43,7 @@
 ??? note "参考代码"
     ```cpp
     // 该代码为回溯法的 DFS 实现
-    #include <iostream>
+    #include <cstdio>
     int ans[14], check[3][28] = {0}, sum = 0, n;
     void eq(int line) {
       if (line > n) {
@@ -84,6 +84,9 @@
 
 ??? note "参考代码"
     ```cpp
+    // 该代码为回溯法的 BFS 实现
+    #include <cstdio>
+    #include <queue>
     using namespace std;
     int n, m, k, x, y, a, b, ans;
     int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};
