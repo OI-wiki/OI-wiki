@@ -13,9 +13,9 @@ author: TrisolarisHD, hsfzLZH1, abc1763613206, greyqz, Ir1d, billchenchina, Chro
 
  $f_i+2\times s_i\times (s_j+L')=f_j+s_i^2+(s_j+L')^2$ 
 
- $f_j = -2 \times s_i \times (s_j + L') - f_i + s_i^2 +(s_j + L')^2$
- 
- 将 $f_j$ 视作 $y$， 将 $s_i$ 视作 $k$， 将 $s_j + L'$ 视作 $x$， 将 $- f_i + s_i^2 + (s_j+L')^2$ 视作 $b$
+ $f_j = -2 \times s_i \times (s_j + L') - f_i + s_i^2 +(s_j + L')^2$ 
+
+将 $f_j$ 视作 $y$ ，将 $s_i$ 视作 $k$ ，将 $s_j + L'$ 视作 $x$ ，将 $- f_i + s_i^2 + (s_j+L')^2$ 视作 $b$ 
 
 我们观察到，式子的右端的所有项都只和 $i$ 有关或只和 $j$ 有关，式子左端的第一项是我们要求的目标值，式子左端的其余项都同时和 $i$ 和 $j$ 有关。我们将这个式子看作一条直线的函数解析式，形如 $b+k\times x=y$ ，和上式一一对应。我们发现如果我们要最小化 $f_i$ ，也就是说要最小化这个直线的截距，而对于每个确定的 $i$ ，这个直线的斜率 $s_i$ 都是确定的。
 
