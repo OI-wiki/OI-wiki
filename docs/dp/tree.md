@@ -137,7 +137,7 @@ $$
 
 ### 习题
 
--  [\[CTSC1997\]选课](https://www.luogu.com.cn/problem/P2014) 
+-  [「CTSC1997」选课](https://www.luogu.com.cn/problem/P2014) 
 
 -  [「JSOI2018」潜入行动](https://loj.ac/problem/2546) 
 
