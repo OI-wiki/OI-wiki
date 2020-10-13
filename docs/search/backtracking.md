@@ -92,10 +92,9 @@
     struct oo {
       int x, y, used[6][6];
     };
-    ```
-
+    
     oo sa;
-
+    
     void bfs() {
       queue<oo> q;
       sa.x = x;
@@ -123,7 +122,7 @@
         }
       }
     }
-
+    
     int main() {
       scanf("%d%d%d", &n, &m, &k);
       scanf("%d%d%d%d", &x, &y, &a, &b);
