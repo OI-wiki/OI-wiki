@@ -84,15 +84,15 @@ $$
 ## Garner 算法
 
 CRT 的另一个用途是用一组比较小的整数表示一个大的整数。
-例如，令 $p$ 是前一千个素数的乘积，通过计算我们得知 $p$ 在十进制下大概有 3000 位。
+例如，令 $p$ 是前一千个素数的乘积，通过计算我们得知 $p$ 在十进制下大概有3000位。
 
-任意一个小于 $p$ 的数 $a$ 都能用一组数 $a_1, \ldots, a_k$ 表示，其中 $a_i \equiv a \pmod{p_i}$ 。但是要实现上述表示我们首先要知道如何从它的表示中算出 $a$ ，而 **Garner 算法** 就可以解决这个问题。我们用以下形式的式子（称作 $a$ 的混合基数表示）表示 $a$ ：
+任意一个小于 $p$ 的数 $a$ 都能用一组数 $a_1, \ldots, a_k$ 表示，其中  $a_i \equiv a \pmod{p_i}$ 。但是要实现上述表示我们首先要知道如何从它的表示中算出 $a$， 而**Garner 算法**就可以解决这个问题。我们用以下形式的式子(称作 $a$ 的混合基数表示)表示 $a$ ：
 
 $$
     a = x_1 + x_2 p_1 + x_3 p_1 p_2 + \ldots + x_k p_1 \ldots p_{k-1}
 $$
 
- **Garner 算法** 将用来计算系数 $x_1, \ldots, x_k$ .
+**Garner 算法**将用来计算系数 $x_1, \ldots, x_k$.
 
 令 $r_{ij}$ 为 $p_i$ 模 $p_j$ 的逆：
 
@@ -100,7 +100,7 @@ $$
     r_{ij} = (p_i)^{-1} \pmod{p_j}
 $$
 
-求逆的算法可以在 [乘法逆元](./inverse.md) 中找到。把 $a$ 代入我们得到的第一个方程：
+求逆的算法可以在 [乘法逆元](./inverse.md)中找到. 把 $a$ 代入我们得到的第一个方程:
 
 $$
     a_1 \equiv x_1 \pmod{p_1}.
@@ -114,9 +114,9 @@ $$
 
 方程两边减 $x_1$ ，除 $p_1$ 后得
 
-$$
-    a_2 - x_1 &\equiv& x_2 p_1 &\pmod{p_2} \\\\
-    (a_2 - x_1) r_{12} &\equiv& x_2 &\pmod{p_2} \\\\
+$$\begin{array}{rclr}
+    a_2 - x_1 &\equiv& x_2 p_1 &\pmod{p_2} \\
+    (a_2 - x_1) r_{12} &\equiv& x_2 &\pmod{p_2} \\
     x_2 &\equiv& (a_2 - x_1) r_{12} &\pmod{p_2}
 \end{array}
 $$
@@ -127,22 +127,21 @@ $$
     x_3 \equiv ((a_3 - x_1) r_{13} - x_2) r_{23} \pmod{p_3}.
 $$
 
+
 ??? note "参考代码"
     ```cpp
     for (int i = 0; i < k; ++i) {
-      x[i] = a[i];
-      for (int j = 0; j < i; ++j) {
-        x[i] = r[j][i] * (x[i] - x[j]);
-    ```
-
+        x[i] = a[i];
+        for (int j = 0; j < i; ++j) {
+            x[i] = r[j][i] * (x[i] - x[j]);
             x[i] = x[i] % p[i];
             if (x[i] < 0)
                 x[i] += p[i];
         }
     }
     ```
+时间复杂度 $O(k^2)$。
 
-时间复杂度 $O(k^2)$ 。
 
 ## 应用
 
@@ -249,4 +248,4 @@ $$
 
  [「TJOI2009」猜数字](https://www.luogu.com.cn/problem/P3868) 
 
- **本页面部分内容译自博文 [Китайская теорема об остатках](http://e-maxx.ru/algo/chinese_theorem) 与其英文翻译版 [Chinese Remainder Theorem](https://cp-algorithms.com/algebra/chinese-remainder-theorem.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+**本页面部分内容译自博文 [Китайская теорема об остатках](http://e-maxx.ru/algo/chinese_theorem) 与其英文翻译版 [Chinese Remainder Theorem](https://cp-algorithms.com/algebra/chinese-remainder-theorem.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
