@@ -80,8 +80,8 @@ $$
     $$
     \begin{aligned}
     F(x)&=\sum_{n\ge 0}x^{2n}\\
-    &=\sum_{n\ge 0} \frac{1+(-1)^n}{2}x^n\\
-    &=\frac{1}{2}\left(\frac{1}{1-x}+\frac{1}{1+x}\right)\\&=\frac{1}{1-x^2}
+    &=\sum_{n\ge 0}(x^2)^{n}\\
+    &=\frac{1}{1-x^2}
     \end{aligned}
     $$
     
