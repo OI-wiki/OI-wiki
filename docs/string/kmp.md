@@ -58,7 +58,7 @@ vector<int> prefix_function(string s) {
   vector<int> pi(n);
   for (int i = 1; i < n; i++)
     for (int j = i; j >= 0; j--)
-      if (s.substr(0, j) == s.substr(i - j + 1, i + 1)) {
+      if (s.substr(0, j) == s.substr(i - j + 1, j)) {
         pi[i] = j;
         break;
       }
@@ -94,7 +94,7 @@ vector<int> prefix_function(string s) {
   vector<int> pi(n);
   for (int i = 1; i < n; i++)
     for (int j = pi[i - 1] + 1; j >= 0; j--)  // improved: j=i => j=pi[i-1]+1
-      if (s.substr(0, j) == s.substr(i - j + 1, i + 1)) {
+      if (s.substr(0, j) == s.substr(i - j + 1, j)) {
         pi[i] = j;
         break;
       }
