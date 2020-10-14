@@ -33,7 +33,7 @@ $$
 
  $\pi[3]=1$ ，因为 `abca` 只有一对相等的真前缀和真后缀： `a` ，长度为 1
 
- $\pi[4]=2$ ，因为 `abcab` 相等的真前缀和真后缀有 `a` 和 `ab` ，其中最长的 `ab` 长度为 2
+ $\pi[4]=2$ ，因为 `abcab` 相等的真前缀和真后缀只有 `ab` ，长度为 2
 
  $\pi[5]=3$ ，因为 `abcabc` 相等的真前缀和真后缀只有 `abc` ，长度为 3
 
@@ -58,7 +58,7 @@ vector<int> prefix_function(string s) {
   vector<int> pi(n);
   for (int i = 1; i < n; i++)
     for (int j = i; j >= 0; j--)
-      if (s.substr(0, j) == s.substr(i - j + 1, j)) {
+      if (s.substr(0, j) == s.substr(i - j + 1, i + 1)) {
         pi[i] = j;
         break;
       }
@@ -94,7 +94,7 @@ vector<int> prefix_function(string s) {
   vector<int> pi(n);
   for (int i = 1; i < n; i++)
     for (int j = pi[i - 1] + 1; j >= 0; j--)  // improved: j=i => j=pi[i-1]+1
-      if (s.substr(0, j) == s.substr(i - j + 1, j)) {
+      if (s.substr(0, j) == s.substr(i - j + 1, i + 1)) {
         pi[i] = j;
         break;
       }
