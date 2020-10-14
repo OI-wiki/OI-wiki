@@ -26,8 +26,8 @@ struct Node {
                   // 若该节点没有儿子/兄弟则指针指向虚拟空节点 null。
 };
 
-Node node[N];  // 节点池
-Node* null=&node[0];  // 虚拟空节点
+Node node[N];           // 节点池
+Node* null = &node[0];  // 虚拟空节点
 ```
 
 #### 查询最小值
