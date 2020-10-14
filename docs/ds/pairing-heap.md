@@ -67,7 +67,7 @@ Node* merges(Node* x) {
   if (x == nullptr || x->xd == nullptr)
     return x;  // 如果该树为空或他没有兄弟（即他的父亲的儿子数小于2），就直接return。
   Node *a = x->xd, *b = a->xd;  // a：x的一个兄弟，b：x的另一个兄弟
-  x->xd = a->xd = nullptr;         // 拆散
+  x->xd = a->xd = nullptr;      // 拆散
   return merge(merge(x, a), merges(b));  // 核心部分
 }
 ```
@@ -95,7 +95,8 @@ Node* delete_min(Node* x) { return merges(x->ch); }
 struct Node {
   T v;
   Node *ch, *xd;
-  Node *fa;  // 新增：fa指针，指向该节点的父亲，若该节点为根节点则指向空节点 nullptr
+  Node *fa;  // 新增：fa指针，指向该节点的父亲，若该节点为根节点则指向空节点
+             // nullptr
 };
 ```
 
@@ -137,7 +138,7 @@ Node* merges(Node* x) {
 // root为堆的根，x为要操作的节点，v为新的权值，调用时需保证x->v<=v
 //返回值为新的根节点
 Node* decrease - key(Node* root, Node* x, LL v) {
-  x->v = v;                     // 修改权值
+  x->v = v;                        // 修改权值
   if (x->fa == nullptr) return x;  // 如果x为根，就不用接下去的步骤了。
   // 把x从fa的子节点中剖出去，这里要分x的位置讨论一下。
   if (x->fa->ch == x)
