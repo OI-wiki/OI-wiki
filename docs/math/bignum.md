@@ -194,7 +194,7 @@ void add(int a[], int b[], int c[]) {
 
 ### 减法
 
-高精度加法，也就是竖式减法啦。
+高精度减法，也就是竖式减法啦。
 
 ![](./images/subtraction.png)
 
