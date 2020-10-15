@@ -304,4 +304,4 @@ print(x)
 
  <https://blog.csdn.net/doyouseeman/article/details/52033204> 
 
- [https://yutong.site/？p=1192](https://yutong.site/?p=1192) 
+ [二次剩余Tonelli-Shanks算法](https://yutong.site/?p=1192) 
