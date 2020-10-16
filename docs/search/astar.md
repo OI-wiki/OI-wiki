@@ -2,7 +2,7 @@
 
 ## 简介
 
-A\*搜索算法（英文：A\* search algorithm，A\*读作 A-star），简称 A\*算法，是一种在图形平面上，对于有多个节点的路径求出最低通过成本的算法。它属于图遍历（英文：Graph traversal）和最佳优先搜索算法（英文：Best-first search），亦是 [BFS](./bfs.md) 的改进。
+A\*搜索算法（英文：A\*search algorithm，A\*读作 A-star），简称 A\*算法，是一种在图形平面上，对于有多个节点的路径求出最低通过成本的算法。它属于图遍历（英文：Graph traversal）和最佳优先搜索算法（英文：Best-first search），亦是 [BFS](./bfs.md) 的改进。
 
 定义起点 $s$ ，终点 $t$ ，从起点（初始状态）开始的距离函数 $g(x)$ ，到终点（最终状态）的距离函数 $h(x)$ ， $h^{\ast}(x)$ [^note1]，以及每个点的估价函数 $f(x)=g(x)+h(x)$ 。
 
@@ -204,4 +204,4 @@ A\*算法每次从优先队列中取出一个 $f$ 最小的元素，然后更新
 
 ## 参考资料与注释
 
-[^note1]: 此处的 h 意为 heuristic。详见 [启发式搜索 - 维基百科](https://zh.wikipedia.org/wiki/%E5%90%AF%E5%8F%91%E5%BC%8F%E6%90%9C%E7%B4%A2) 和 [A\* search algorithm - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm#Bounded_relaxation) 的 Bounded relaxation 一节。
+[^note1]: 此处的 h 意为 heuristic。详见 [启发式搜索 - 维基百科](https://zh.wikipedia.org/wiki/%E5%90%AF%E5%8F%91%E5%BC%8F%E6%90%9C%E7%B4%A2) 和 [A\*search algorithm - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm#Bounded_relaxation) 的 Bounded relaxation 一节。
