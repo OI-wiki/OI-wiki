@@ -84,8 +84,7 @@ void init() {
       if (1ll * i * pri[j] >= MAXN) break;
       vis[i * pri[j]] = 1;
       phi[i * pri[j]] = phi[i] * (pri[j] - 1);
-      if (i % pri[j] == 0)
-        break;
+      if (i % pri[j] == 0) break;
       // i % pri[j] == 0
       // 换言之，i 之前被 pri[j] 筛过了
       // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
