@@ -188,7 +188,7 @@ ll cipolla(ll n, ll p) {
 
 ## Tonelli-Shanks 算法
 
-前提条件：$p$ 为质数，$a$ 是 $p$ 的二次剩余
+前提条件： $p$ 为质数， $a$ 是 $p$ 的二次剩余
 
 ## 证明
 
@@ -205,7 +205,7 @@ ll cipolla(ll n, ll p) {
     2.  $a^{2^{(s-1)}*t} = 1 (mod\ p)$ 
     3.  $\left(a^{-1} \times\left(a^{\frac{t+1}{2}}\right)^{2}\right)^{2^{s-1}} =  1 (mod\ p)$ 
     4.  $\left(a^{-1} \times x_{s-1}^{2}\right)^{2^{s-1}} =  1 (mod\ p)$ 
--   所以 $a^{-1} \times x_{s-1}^{2}$ 是 1 的 $2^{s-1}$ 次根（模 $p$ 下）
+- 所以 $a^{-1} \times x_{s-1}^{2}$ 是 1 的 $2^{s-1}$ 次根（模 $p$ 下）
 -   设 $e_k$ 为 $2^k$ 次单位根（模 $p$ 下）
     -  $e_{s-1} = a^{-1}*x^{2}_{s-1}$ 
 -   假设已知 $e_{s-k}, x_{s-k}$ 
