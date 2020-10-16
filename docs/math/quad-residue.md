@@ -188,58 +188,31 @@ ll cipolla(ll n, ll p) {
 
 ## Tonelli-Shanks 算法
 
-前提条件： $p$ 为质数， $a$ 是 $p$ 的二次剩余
+前提条件：$p$ 为质数，$a$ 是 $p$ 的二次剩余
 
 ## 证明
 
 - 令 $p-1 = 2^s*t$ , 则 $t$ 为奇数
-
-
 -   若 $s = 1$ 则：
-
     1.  $x^2 = a\ (mod\ p)$ , $x = \sqrt{a}\ (mod\ p)$ 
-
     2. a 是 p 的二次剩余，所以 $a^{\frac{p-1}{2}} = 1 (mod\ p)$ ，所以 $\sqrt{a^{\frac{p-1}{2}}} = 1 (mod\ p)$ 
-
     3. 由 1 和 2，所以 $x = \sqrt{a^{\frac{p-1}{2}}*a}\ (mod\ p)$ 
-
     4. 注意到 $s = 1$ , $x = \sqrt{a^{t}*a}\ (mod\ p)$ 
-
     5.  $x = a^{\frac{t+1}{2}}\ (mod\ p)$ 
-
-
 - 因此 $s = 1$ 时，容易求得 $x$ 
-
-
 -   对于 $s > 1$ ，设 $x_{s-1} = a^{\frac{t+1}{2}} (\ mod\ p)$ 
-
     1.  $a^{\frac{p-1}{2}} = 1 (mod\ p)$ 
-
     2.  $a^{2^{(s-1)}*t} = 1 (mod\ p)$ 
-
     3.  $\left(a^{-1} \times\left(a^{\frac{t+1}{2}}\right)^{2}\right)^{2^{s-1}} =  1 (mod\ p)$ 
-
     4.  $\left(a^{-1} \times x_{s-1}^{2}\right)^{2^{s-1}} =  1 (mod\ p)$ 
-
-
-- 所以 $a^{-1} \times x_{s-1}^{2}$ 是 1 的 $2^{s-1}$ 次根（模 $p$ 下）
-
-
+-   所以 $a^{-1} \times x_{s-1}^{2}$ 是 1 的 $2^{s-1}$ 次根（模 $p$ 下）
 -   设 $e_k$ 为 $2^k$ 次单位根（模 $p$ 下）
-
     -  $e_{s-1} = a^{-1}*x^{2}_{s-1}$ 
-
 -   假设已知 $e_{s-k}, x_{s-k}$ 
-
     -    $e_{s-k}^{2^{s-k}} = 1 (mod\ p)$ 
-
         -  $sqrt(e_{s-k}^{2^{s-k}}) = \pm 1 (mod\ p)$ 
-
         -  $e_{s-k}^{2^{s-k-1}} = \pm 1 (mod\ p)$ 
-
-
 -   计算 $e_{s-k}^{2^{s-k-1}} (mod\ p)$ 
-
     -    $e_{s-k}^{2^{s-k-1}} = 1 (mod\ p)$ 
         -  $e_{s-k-1} = e_{s-k}  (mod\ p)$ 
         -  $x_{s-k-1} = x_{s-k}  (mod\ p)$ 
@@ -256,9 +229,7 @@ ll cipolla(ll n, ll p) {
                 -  $(b^{t2^{k-1}})^{2^{s-k}} = -1 (mod\ p)$ 
                 -  $q = b^{t2^{k-1}}(mod \ p)$ 
             -  $x_{s-k-1} = x_{s-k} * q (mod\ p)$ 
-
 - 迭代至最初即可获得答案
-
 - 复杂度约为 $O(log_2p)$ 
 
 ## 参考实现
