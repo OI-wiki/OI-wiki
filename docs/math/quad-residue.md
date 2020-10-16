@@ -188,7 +188,7 @@ ll cipolla(ll n, ll p) {
 
 ## Tonelli-Shanks 算法
 
-前提条件：p 为质数，a 是 p 的二次剩余
+前提条件：$p$ 为质数，$a$ 是 $p$ 的二次剩余
 
 ## 证明
 
