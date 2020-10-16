@@ -2,7 +2,7 @@
 
 ## 简介
 
-归并排序（英语：Merge sort）是一种采用了 [分治](./divide-and-conquer.md) 思想的排序算法。
+归并排序（英语：merge sort）是一种采用了 [分治](./divide-and-conquer.md) 思想的排序算法。
 
 ## 工作原理
 
@@ -22,9 +22,15 @@
 
 ### 复杂度
 
-归并排序的最优时间复杂度、平均时间复杂度和最坏时间复杂度均为 $O(n\log n)$。
+归并排序的最优时间复杂度、平均时间复杂度和最坏时间复杂度均为 $O(n\log n)$ 。
 
+<<<<<<< HEAD
 归并排序的空间复杂度为 $O(n)$。
+=======
+### 空间复杂度
+
+归并排序的空间复杂度为 $O(n)$ 。
+>>>>>>> e7f50757c97e1793bb85e97e2f1b10f6c18b0944
 
 ## 代码实现
 
@@ -62,6 +68,6 @@ void merge(int ll, int rr) {
 
 ## 外部链接
 
-- [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/)
-- [希尔排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
-- [逆序对 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E9%80%86%E5%BA%8F%E5%AF%B9)
+-  [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/) 
+-  [希尔排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F) 
+-  [逆序对 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E9%80%86%E5%BA%8F%E5%AF%B9) 
