@@ -57,12 +57,12 @@ author: accelsao
 
 所以这个 $a$ 值的选择，显然得是 $S-T'$ 当中最小的边权，
 
- $a = \min \{ lx(u) + ly(v) - w(u,v) | u\in{S} , v\in{T'} \}$。
+ $a = \min \{ lx(u) + ly(v) - w(u,v) | u\in{S} , v\in{T'} \}$ 。
 
 当一条新的边 $(u,v)$ 加入相等子图后有两种情况
 
-- $v$ 是未匹配点，则找到增广路
-- $v$ 和 $S'$ 中的点已经匹配
+-  $v$ 是未匹配点，则找到增广路
+-  $v$ 和 $S'$ 中的点已经匹配
 
 这样至多修改 $n$ 次顶标后，就可以找到增广路。
 
@@ -70,11 +70,11 @@ author: accelsao
 
 我们对 $T$ 中的每个点 $v$ 维护
 
- $slack(v) = \min \{ lx(u) + ly(v) - w(u,v) | u\in{S} \}$。
+ $slack(v) = \min \{ lx(u) + ly(v) - w(u,v) | u\in{S} \}$ 。
 
 所以可以在 $O(n)$ 算出顶标修改值 $a$ 
 
- $a = \min \{ slack(v) | v\in{T'} \}$
+ $a = \min \{ slack(v) | v\in{T'} \}$ 
 
 交错树新增一个点进入 $S$ 的时候需要 $O(n)$ 更新 $slack(v)$ 。修改顶标需要 $O(n)$ 给每个 $slack(v)$ 减去 $a$ 。只要交错树找到一个未匹配点，就找到增广路。
 
