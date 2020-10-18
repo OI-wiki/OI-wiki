@@ -413,4 +413,4 @@ func calc(char) { ... }
 
 ## 参考资料与注释
 
-[^note1]: 这里使用的是 C 中的定义，C++98 标准中继续沿用了该种划分方式。但在 C++11 标准中，值类型被重新定义，所有的值被分为左值，纯右值和亡值三类。更详细的内容可以参考 [值类别 - cppreference.com](https://zh.cppreference.com/w/cpp/language/value_category) 。
+[^note1]&#x3A; 这里使用的是 C 中的定义，C++98 标准中继续沿用了该种划分方式。但在 C++11 标准中，值类型被重新定义，所有的值被分为左值，纯右值和亡值三类。更详细的内容可以参考 [值类别 - cppreference.com](https://zh.cppreference.com/w/cpp/language/value_category) 。
