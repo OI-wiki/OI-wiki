@@ -92,17 +92,17 @@ long long binpow(long long a, long long b) {
 
 ```cpp
 long long binpow(long long a, long long b, long long m) {
-	if (b == 0) return 1 % m; \\特判b=0
-	else{
-		a %= m;
-		long long res = 1;
-		while (b > 0) {
-			if (b & 1) res = res * a % m;
-			a = a * a % m;
-			b >>= 1;
-		}
-		return res;
-	}
+  if (b == 0) return 1 % m;
+  \\特判b = 0 else {
+    a %= m;
+    long long res = 1;
+    while (b > 0) {
+      if (b & 1) res = res * a % m;
+      a = a * a % m;
+      b >>= 1;
+    }
+    return res;
+  }
 }
 ```
 
