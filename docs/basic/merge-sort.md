@@ -28,7 +28,6 @@
 
 ## 代码实现
 
-
 ```cpp
 void merge(int ll, int rr) {
   // 用来把 a[ll.. rr - 1] 这一区间的数排序。 t 数组是临时存放有序的版本用的。
