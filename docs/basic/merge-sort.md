@@ -28,7 +28,6 @@
 
 ## 代码实现
 
-### C++
 
 ```cpp
 void merge(int ll, int rr) {
