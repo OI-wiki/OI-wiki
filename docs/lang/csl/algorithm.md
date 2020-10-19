@@ -25,3 +25,27 @@ STL 提供了大约 100 个实现算法的模版函数，基本都包含在 `<al
      `set` 等关联式容器中已经封装了 `lower_bound` 等函数（像 `s.lower_bound(val)` 这样），这样调用的时间复杂度是 $O(\log n)$ 的。
 
 -  `next_permutation`：将当前排列更改为 **全排列中的下一个排列** 。如果当前排列已经是 **全排列中的最后一个排列** （元素完全从大到小排列），函数返回 `false` 并将排列更改为 **全排列中的第一个排列** （元素完全从小到大排列）；否则，函数返回 `true` 。 `next_permutation(v.begin(), v.end())` 或 `next_permutation(v + begin, v + end)` 。
+
+### 使用样例
+
+- 使用 `next_permutation` 生成 $1$ 到 $9$ 的全排列
+
+```cpp
+int N = 9, a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+do
+{
+    for (int i = 0; i < N; i++)
+        cout << a[i] << " ";
+    cout << endl;
+}
+while (next_permutation(a, a + N));
+```
+
+- 使用 `lower_bound` 与 `upper_bound` 查找小于 $x$ ，等于 $x$ ，大于 $x$ 元素的分界线
+
+```cpp
+int N = 10, a[] = {1, 1, 2, 4, 5, 5, 7, 7, 9, 9}, x = 5;
+int i = lower_bound(a, a + N, x) - a, j = upper_bound(a, a + N, x) - a;
+// a[0] ~ a[i - 1] 为小于x的元素， a[i] ~ a[j - 1] 为等于x的元素， a[j] ~ a[N - 1] 为大于x的元素
+cout << i << " " << j << endl;
+```
