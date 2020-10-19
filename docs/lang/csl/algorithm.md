@@ -24,12 +24,12 @@ STL 提供了大约 100 个实现算法的模版函数，基本都包含在 `<al
     
      `set` 等关联式容器中已经封装了 `lower_bound` 等函数（像 `s.lower_bound(val)` 这样），这样调用的时间复杂度是 $O(\log n)$ 的。
 
-<<<<<<< HEAD
--  `next_permutation`：将当前排列更改为 **全排列中的下一个排列** 。如果当前排列已经是 **全排列中的最后一个排列** （元素完全从大到小排列），函数返回 `false` 并将排列更改为 **全排列中的第一个排列** （元素完全从小到大排列）；否则，函数返回 `true` 。 `next_permutation(v.begin(), v.end())` 或 `next_permutation(v + begin, v + end)` 。
-- `partial_sum`：求前缀和。设源容器为 $x$，目标容器为 $y$，则令 $y[i]=x[0]+x[1]+...+x[i]$ 。`partial_sum(src.begin(), src.end(), back_inserter(dst))` 。
-=======
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+
 -  `next_permutation` ：将当前排列更改为 **全排列中的下一个排列** 。如果当前排列已经是 **全排列中的最后一个排列** （元素完全从大到小排列），函数返回 `false` 并将排列更改为 **全排列中的第一个排列** （元素完全从小到大排列）；否则，函数返回 `true` 。 `next_permutation(v.begin(), v.end())` 或 `next_permutation(v + begin, v + end)` 。
->>>>>>> b4e5d15127adab5c3e392aa5d5f41027236df4b4
+- #  `partial_sum` ：求前缀和。设源容器为 $x$ ，目标容器为 $y$ ，则令 $y[i]=x[0]+x[1]+...+x[i]$ 。 `partial_sum(src.begin(), src.end(), back_inserter(dst))` 。
+-    `next_permutation` ：将当前排列更改为 **全排列中的下一个排列** 。如果当前排列已经是 **全排列中的最后一个排列** （元素完全从大到小排列），函数返回 `false` 并将排列更改为 **全排列中的第一个排列** （元素完全从小到大排列）；否则，函数返回 `true` 。 `next_permutation(v.begin(), v.end())` 或 `next_permutation(v + begin, v + end)` 。
+    > > > > > > > b4e5d15127adab5c3e392aa5d5f41027236df4b4
 
 ### 使用样例
 
@@ -60,6 +60,5 @@ vector<int> src = {1, 2, 3, 4, 5}, dst;
 // 求解src中元素的前缀和，dst[i] = src[0] + ... + src[i]
 // back_inserter 函数作用在 dst 容器上，提供一个迭代器
 partial_sum(src.begin(), src.end(), back_inserter(dst));
-for (unsigned int i = 0; i < dst.size(); i++)
-    cout << dst[i] << " ";
+for (unsigned int i = 0; i < dst.size(); i++) cout << dst[i] << " ";
 ```
