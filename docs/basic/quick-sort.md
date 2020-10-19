@@ -128,15 +128,48 @@ void quick_sort(T arr[], const int len) {
 
 从 2000 年 6 月起，SGI C++ STL 的 `stl_algo.h` 中 `sort()` 函数的实现采用了内省排序算法。
 
-## 应用
-
-### 线性找第 k 大的数
+## 线性找第 k 大的数
 
 找第 $k$ 大的数（K-th order statistic），最简单的方法是先排序，然后直接找到第 $k$ 大的位置的元素。这样做的时间复杂度是 $O(n\log n)$ ，对于这个问题来说很不划算。
 
 我们可以借助快速排序的思想解决这个问题。考虑快速排序的划分过程，在快速排序的「划分」结束后，数列 $A_{p} \cdots A_{r}$ 被分成了 $A_{p} \cdots A_{q}$ 和 $A_{q+1} \cdots A_{r}$ ，此时可以按照左边元素的个数（ $q - p + 1$ ）和 $k$ 的大小关系来判断是只在左边还是只在右边递归地求解。
 
 可以证明，在期望意义下，程序的时间复杂度为 $O(n)$ 。
+
+### 实现（C++）
+
+```cpp
+// 模板的T参数表示元素的类型，此类型需要定义小于（<）运算
+template <typename T>
+// arr为查找范围数组，rk为需要查找的排名（从0开始），len为数组长度
+T find_kth_element(T arr[], int rk, const int len) {
+  if (len <= 1) return arr[0];
+  // 随机选择基准（pivot）
+  const T pivot = arr[rand() % len];
+  // i：当前操作的元素
+  // j：第一个等于pivot的元素
+  // k：第一个大于pivot的元素
+  int i = 0, j = 0, k = len;
+  // 完成一趟三路快排，将序列分为：小于pivot的元素 ｜ 等于pivot的元素 ｜
+  // 大于pivot的元素
+  while (i < k) {
+    if (arr[i] < pivot)
+      swap(arr[i++], arr[j++]);
+    else if (pivot < arr[i])
+      swap(arr[i], arr[--k]);
+    else
+      i++;
+  }
+  // 根据要找的排名与两条分界线的位置，去不同的区间递归查找第k大的数
+  // 如果小于pivot的元素个数比k多，则第k大的元素一定是一个小于pivot的元素
+  if (rk < j) return find_kth_element(arr, rk, j);
+  // 否则，如果小于pivot和等于pivot的元素加起来也没有k多，则第k大的元素一定是一个大于pivot的元素
+  else if (rk >= k)
+    return find_kth_element(arr + k, rk - k, len - k);
+  // 否则，pivot就是第k大的元素
+  return pivot;
+}
+```
 
 ## 参考资料与注释
 
