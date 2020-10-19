@@ -2,7 +2,7 @@
 
 ## 简介
 
-希尔排序（英文：Shell sort），也称为缩小增量排序法，是 [插入排序](insertion-sort.md) 的一种改进版本。希尔排序以它的发明者希尔（英文：Donald Shell）命名。
+希尔排序（英语：Shell sort），也称为缩小增量排序法，是 [插入排序](insertion-sort.md) 的一种改进版本。希尔排序以它的发明者希尔（英语：Donald Shell）命名。
 
 ## 工作原理
 

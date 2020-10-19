@@ -6,7 +6,7 @@ author: fudonglai, AngelKitty, labuladong
 
 递归（英语：Recursion），在数学和计算机科学中是指在函数的定义中使用函数自身的方法，在计算机科学中还额外指一种通过重复将问题分解为同类的子问题而解决问题的方法。
 
-分治字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。
+分治（英语：Conquer），字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。
 
 ## 详细介绍
 
@@ -21,9 +21,7 @@ author: fudonglai, AngelKitty, labuladong
 1.  [什么是递归？](divide-and-conquer.md) 
 2. 如何给一堆数字排序？答：分成两半，先排左半边再排右半边，最后合并就行了，至于怎么排左边和右边，请重新阅读这句话。
 3. 你今年几岁？答：去年的岁数加一岁，1999 年我出生。
-4.
-
-![一个用于理解递归的例子](images/divide-and-conquer-1.png)
+4. ![一个用于理解递归的例子](images/divide-and-conquer-1.png)
 
 递归在数学中非常常见。例如，集合论对自然数的正式定义是：1 是一个自然数，每个自然数都有一个后继，这一个后继也是自然数。
 
@@ -79,14 +77,14 @@ int size(Node *head) {
   return size;
 }
 
-// 递归天下第一
+// 我就是要写递归，递归天下第一
 int size_recurison(Node *head) {
   if (head == nullptr) return 0;
   return size_recurison(head->next) + 1;
 }
 ```
 
-![\[二者的对比，compiler 设为 Clang 10.0，优化设为 O1\](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.png)
+![\[二者的对比，compiler 设为 Clang 10.0，优化设为 O1\](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.png "[二者的对比，compiler 设为 Clang 10.0，优化设为 O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)")
 
 #### 递归优化
 
