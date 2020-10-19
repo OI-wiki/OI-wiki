@@ -113,7 +113,7 @@ int divPowerOfTwo(int n, int m) {  // 计算 n/(2^m)
 !!! warning
     我们平常写的除法是向 0 取整，而这里的右移是向下取整（注意这里的区别），即当数大于等于 0 时两种方法等价，当数小于 0 时会有区别，如： `-1 / 2` 的值为 $0$ ，而 `-1 >> 1` 的值为 $-1$ 。
 
-### 判断一个数是不是 2 的正整数次幂
+### 判断一个数是不是 2 的非负整数次幂
 
 ```cpp
 bool isPowerOfTwo(int n) { return n > 0 && (n & (n - 1)) == 0; }
@@ -173,6 +173,27 @@ void swap(int &a, int &b) { a ^= b ^= a ^= b; }
 ```cpp
 // 获取 a 的第 b 位，最低位编号为 0
 int getBit(int a, int b) { return (a >> b) & 1; }
+```
+
+### 将一个数二进制的某一位设置为 0
+
+```cpp
+// 将 a 的第 b 位设置为 0 ，最低位编号为 0
+int unsetBit(int a, int b) { return a & ~(1 << b); }
+```
+
+### 将一个数二进制的某一位设置为 1
+
+```cpp
+// 将 a 的第 b 位设置为 1 ，最低位编号为 0
+int setBit(int a, int b) { return a | (1 << b); }
+```
+
+### 将一个数二进制的某一位取反
+
+```cpp
+// 将 a 的第 b 位取反 ，最低位编号为 0
+int flapBit(int a, int b) { return a ^ (1 << b); }
 ```
 
 ### 表示集合

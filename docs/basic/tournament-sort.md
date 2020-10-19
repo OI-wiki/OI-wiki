@@ -2,7 +2,7 @@
 
 ## 简介
 
-锦标赛排序（英文：Tournament sort），又被称为树形选择排序，是 [选择排序](/selection-sort.md) 的优化版本， [堆排序](heap-sort.md) 的一种变体。它在选择排序的基础上使用优先队列查找下一个该选择的元素。
+锦标赛排序（英文：Tournament sort），又被称为树形选择排序，是 [选择排序](/selection-sort.md) 的优化版本， [堆排序](heap-sort.md) 的一种变体（均采用完全二叉树）。它在选择排序的基础上使用优先队列查找下一个该选择的元素。
 
 该算法的名字来源于单败淘汰制的竞赛形式。在这种赛制中有许多选手参与比赛，他们两两比较，胜者进入下一轮比赛。这种淘汰方式能够决定最好的选手，但是在最后一轮比赛中被淘汰的选手不一定是第二好的——他可能不如先前被淘汰的选手。
 
@@ -53,11 +53,8 @@ int winner(int pos1, int pos2) {
 void creat_tree(int &value) {
   for (int i = 0; i < n; i++) tmp[n + i] = a[i];
   for (int i = 2 * n - 1; i > 1; i -= 2) {
-    int j, k = i / 2;
-    if (i % 2 == 0 && i < 2 * n - 1)
-      j = i + 1;
-    else if (i > 1)
-      j = i - 1;
+    int k = i / 2;
+    int j = i - 1;
     tmp[k] = winner(i, j);
   }
   value = tmp[tmp[1]];
@@ -70,7 +67,7 @@ void recreat(int &value) {
     int j, k = i / 2;
     if (i % 2 == 0 && i < 2 * n - 1)
       j = i + 1;
-    else if (i > 1)
+    else
       j = i - 1;
     tmp[k] = winner(i, j);
     i = k;

@@ -1,4 +1,4 @@
-author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy
+author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe
 
 ## 介绍
 
@@ -24,7 +24,7 @@ author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy
 
 自 2011 年的 Dev-C++ 4.9.9.3 版本之后，你使用的版本均为 Orwell Dev-C++。
 
-目前最新版本为 2015 年 4 月 27 日的 Dev-C++ 5.11 版本。
+目前最新版本为 2015 年 4 月 27 日的 Dev-C++ 5.11 版本，可于 [SourceForge](https://sourceforge.net/projects/orwelldevcpp/files/latest/download) 下载。
 
 该应用界面简洁友好，安装便捷，适合初学者使用。
 

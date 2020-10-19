@@ -194,7 +194,7 @@ void add(int a[], int b[], int c[]) {
 
 ### 减法
 
-高精度加法，也就是竖式减法啦。
+高精度减法，也就是竖式减法啦。
 
 ![](./images/subtraction.png)
 
@@ -711,12 +711,7 @@ $$
       Big(const int);
       Big(const char*);
       Big(const Big&);
-      Big& operator=(const Big&);  // 注意这里operator有&，因为赋值有修改……
-      // 由于OI中要求效率
-      // 此处不使用泛型函数
-      // 故不重载
-      // istream& operator>>(istream&,  BigNum&);   // 重载输入运算符
-      // ostream& operator<<(ostream&,  BigNum&);   // 重载输出运算符
+      Big& operator=(const Big&);
       Big operator+(const Big&) const;
       Big operator-(const Big&) const;
       Big operator*(const Big&)const;
@@ -733,7 +728,6 @@ $$
       bool operator<(const int& t) const;
       inline void print() const;
     };
-    // README::不要随随便便把参数都变成引用，那样没办法传值
     Big::Big(const int b) {
       int c, d = b;
       len = 0;
