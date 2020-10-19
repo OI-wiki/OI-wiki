@@ -28,6 +28,44 @@
 
 ## 代码实现
 
+### 伪代码
+
+$$
+\begin{array}{ll}
+1 & \textbf{Input. }\text{An array } A \text{ and its indices } p \text{, } q \text{, } r \text{ such that }p \leq q < r \text{.}\\
+2 & \textbf{Ouput. } A\text{ will be sorted in non-decreasing order stably.}\\
+3 & \textbf{Method.}\\
+4 \\
+5 & \text{MERGE}(A, p, q, r)\\
+6 & n_1 \gets q - r + p \\
+7 & n_2 \gets r - q\\
+8 & \text{let } L[1\ldots n_1+1] \text{ and } R[1\ldots n_2+1] \text{ be new arrays}\\
+9 & \textbf{for } i \gets 1 \textbf{ to } n_1\\
+10 & \qquad L[i] \gets A[p+i-1]\\
+11 & \textbf{for } j \gets 1 \textbf{ to } n_2\\
+12 & \qquad R[i] \gets A[q+j]\\
+13 & L[n+1] \gets \infty\\
+14 & R[n+1] \gets \infty\\
+15 & i \gets 1\\
+16 & j \gets 1\\
+17 & \textbf{for } k \gets p \textbf{ to } r\\
+18 & \qquad \textbf{if } L[i]\leq R[i]\\
+19 & \qquad \qquad A[k] \gets L[i]\\
+20 & \qquad \qquad i \gets i + 1\\
+21 & \qquad \textbf{else } A[k] \gets R[j]\\
+22 & \qquad \qquad j \gets j + 1\\
+23 \\
+24 & \text{MERGE-SORT}(A, p, r)\\
+25 & \textbf{if } p < r\\
+26 & \qquad q \gets \lfloor(p + r) \ 2 \rfloor\\
+27 & \qquad \text{MERGE-SORT}(A, p, q)\\
+28 & \qquad \text{MERGE-SORT}(A, q + 1, r)\\
+29 & \qquad \text{MERGE}(A, p, q, r)\\
+\end{array}
+$$
+
+[^ref1]
+
 ### C++
 
 ```cpp
@@ -65,3 +103,7 @@ void merge(int ll, int rr) {
 -  [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/) 
 -  [希尔排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F) 
 -  [逆序对 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E9%80%86%E5%BA%8F%E5%AF%B9) 
+
+## 参考资料与注释
+
+[^ref1]: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein.Introduction to Algorithms(3rd ed.). MIT Press and McGraw-Hill, 2009. ISBN 978-0-262-03384-8. "2.3 Designing algorithms", pp. 31-34.
