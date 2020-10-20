@@ -88,7 +88,7 @@ $$
 
 但是对于有些问题， $f(i)$ 并不是递增的。所以我们需要保存凸包的每一个节点，然后每次用当前的直线去切这个凸包。这个过程显然可以使用二分解决，因为凸包上相邻两个点的斜率是有单调性的。
 
-例题： [Codeforces 1420E](https://codeforces.com/contest/1420/problem/E) 
+例题： [「Codeforces 1420E」Battle Lemmings](https://codeforces.com/contest/1420/problem/E) 
 
 ### CDQ/Splay + 斜率优化
 
@@ -100,4 +100,4 @@ $$
 
 对于 $[mid+1,n]$ 中的每个点，如果它的最优决策的位置是在 $[1,mid]$ 这个区间，在这一步操作中他就会被更新成最优答案。当执行完这一步操作时，我们发现 $[1,mid]$ 中的所有点已经发挥了全部的作用，凸包中他们存不存在已经不影响之后的答案更新。因此我们可以直接舍弃这个凸包，并使用 `CDQ(mid+1,n)` 解决右区间的问题。复杂度 $n\log n$ 
 
-例题： [\[NOI2007\]货币兑换](https://www.luogu.com.cn/problem/P4027) 
+例题： [「NOI2007」货币兑换](https://www.luogu.com.cn/problem/P4027) 
