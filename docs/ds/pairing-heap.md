@@ -88,7 +88,8 @@ Node* delete_min(Node* x) { return merges(x->ch); }
 
 #### 减小一个元素的值
 
-要实现这个操作，需要给节点添加一个 father 指针，会使实现变得相对复杂。  
+要实现这个操作，需要给节点添加一个 father 指针，其指向前一个节点而非树形结构的父节点。
+
 首先节点的定义修改为：
 
 ```cpp
@@ -110,6 +111,8 @@ Node* merge(Node* a, Node* b) {
   a->fa = nullptr;
   b->fa = nullptr;  // 新增：维护fa指针
   b->xd = a->ch;
+  if (a->ch != nullptr)  //判断a的子节点是否为空 否则会空指针异常
+    a->ch->fa = b;
   a->ch->fa = b;  // 新增：维护fa指针
   a->ch = b;
   return a;
@@ -122,8 +125,14 @@ Node* merge(Node* a, Node* b) {
 Node* merges(Node* x) {
   x->fa = nullptr;  // 新增：维护fa指针
   if (x == nullptr || x->xd == nullptr) return x;
-  Node *a = x->xd, *b = a->xd;
-  x->xd = a->xd = nullptr;
+  Node* a = x->xd;
+  Node* b = nullptr;
+  if (a != nullptr) {
+    b = a->xd;
+    x->xd = a->xd = nullptr;
+  } else {
+    x->xd = nullptr;
+  }
   a->fa = nullptr;  // 新增：维护fa指针
   return merge(merge(x, a), merges(b));
 }
@@ -135,8 +144,8 @@ Node* merges(Node* x) {
 这个操作本身复杂度显然为 $O(1)$ ，但会破坏原有的势能分析过程，因此均摊复杂度难以证明（目前学术界还无法给出复杂度的精确值），通常可以简单的认为复杂度为 $o(\log n)$ （注意这里为小 o）。
 
 ```cpp
-// root为堆的根，x为要操作的节点，v为新的权值，调用时需保证x->v<=v
-//返回值为新的根节点
+// root为堆的根，x为要操作的节点，v为新的权值，调用时需保证x->v>=v
+// 返回值为新的根节点
 Node* decrease - key(Node* root, Node* x, LL v) {
   x->v = v;                        // 修改权值
   if (x->fa == nullptr) return x;  // 如果x为根，就不用接下去的步骤了。
@@ -159,7 +168,7 @@ Node* decrease - key(Node* root, Node* x, LL v) {
 ### 参考文献
 
 1.  [HOOCCOOH 的题解](https://hooccooh.blog.luogu.org/solution-p3377) 
-2. 集训队论文《黄源河 -- 左偏树的特点及其应用》
+2.  [集训队论文《黄源河 -- 左偏树的特点及其应用》](https://wenku.baidu.com/view/20e9ff18964bcf84b9d57ba1.html) 
 3.  [《配对堆中文版》](https://wenku.baidu.com/view/f2527bc2bb4cf7ec4afed06d.html) 
 4.  [维基百科 pairing heap 词条](https://en.wikipedia.org/wiki/Pairing_heap) 
 5.  <https://blog.csdn.net/luofeixiongsix/article/details/50640668> 
