@@ -420,6 +420,7 @@ nav:
       - 一般图匹配: topic/graph-matching/general-match.md
       - 二分图最大权匹配: topic/graph-matching/bigraph-weight-match.md
       - 一般图最大权匹配: topic/graph-matching/general-weight-match.md
+    - 并查集应用: topic/dsu-app.md
   - 关于 Hulu:
     -  关于 Hulu: intro/hulu.md
 
