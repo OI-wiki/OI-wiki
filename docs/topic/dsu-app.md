@@ -107,4 +107,4 @@ author: sshwy
 
 并查集与 Kruskal 重构树有许多共通点，而并查集的优化（按秩合并）正是启发式合并思想的应用。因此灵活运用并查集可以方便地处理许多与连通性有关的图论问题。
 
-**本页面部分内容译自博文[Поиск мостов в режиме онлайн](http://e-maxx.ru/algo/bridge_searching_online)与其英文翻译版[Finding Bridges Online](https://cp-algorithms.com/graph/bridge-searching-online.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+ **本页面部分内容译自博文 [Поиск мостов в режиме онлайн](http://e-maxx.ru/algo/bridge_searching_online) 与其英文翻译版 [Finding Bridges Online](https://cp-algorithms.com/graph/bridge-searching-online.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
