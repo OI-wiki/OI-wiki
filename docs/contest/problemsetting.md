@@ -401,6 +401,16 @@ gen 100000 100000 > 5.in
 
 如果你希望出现少量而非没有 FST，你可以问问 Sooke 对这件事的看法（Sooke 曾经坚称“FST 是 CF 的灵魂”，在我的强烈要求下，在 [CF1172A Nauuo and Cards](https://codeforces.com/problemset/problem/1172/A) 中，他构造了许多数据，在 pretests 中卡掉了所有已知错解，最后，这题在比赛中 Div.2 的 FST 率为 18.5%）。
 
+### 数据的格式
+
+这里引用CodeChef对题目输入数据的格式要求：
+
+> 1. 不使用Windows格式的换行符，即'\r\n'。
+> 2. 最后一行的末尾有换行符，即整个文件的最后一个字符需要是'\n'。
+> 3. 没有空行。
+> 4. 任何一行的开头和末尾都没有空白字符。
+> 5. 连续的空格不超过1个。
+
 ## Special Judge
 
  [SPJ 编写教程](../tools/special-judge.md) 
