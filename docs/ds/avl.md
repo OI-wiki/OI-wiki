@@ -116,7 +116,7 @@ Maintain-Balanced(p)
 
 ## 其他操作
 
-AVL 树的其他操作（Pred、Succ、Select、Rank 等）与普通的二叉搜索树相同。
+AVL 树的其他操作（Predecessor、Successor、Select、Rank 等）与普通的二叉搜索树相同。
 
 ## 其他资料
 

@@ -71,7 +71,8 @@ void dfz(int x, int fa) {
       for (int k = 1; k <= cnt; k++)
         for (int i = 1; i <= m; i++)
           if (q[i] >= dd[k]) ret[i] |= tf[q[i] - dd[k]];
-      for (int k = 1; k <= cnt; k++) tag.push(dd[k]), tf[dd[k]] = true;
+      for (int k = 1; k <= cnt; k++)
+        if (dd[k] < 10000010) tag.push(dd[k]), tf[dd[k]] = true;
       cnt = 0;
     }
   while (!tag.empty()) tf[tag.front()] = false, tag.pop();

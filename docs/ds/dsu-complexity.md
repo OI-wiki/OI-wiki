@@ -44,11 +44,11 @@ $$
 定义势能函数 $\Phi(S)=\sum\limits_{x\in S}\Phi(x)$ ，其中 $S$ 表示一整个并查集，而 $x$ 为并查集中的一个节点。定义 $\Phi(x)$ 为：
 
 $$
-\Phi(x)=\left\{
-\begin{aligned}
-&\alpha(n)\times rnk(x)& &rnk(x)=0\text{ 或 x为某棵树的根节点}&\\
-&(\alpha(n)-level(x))\times rnk(x)-iter(x)& &otherwise&
-\end{aligned}\right.
+\Phi(x)=
+\begin{cases}
+\alpha(n)\times \mathit{rnk}(x)& \mathit{rnk}(x)=0\text{或}x\text{为某棵树的根节点}&\\
+(\alpha(n)-\mathit{level}(x))\times \mathit{rnk}(x)-iter(x)& \mathit{otherwise}&
+\end{cases}
 $$
 
 然后就是通过操作引起的势能变化来证明摊还时间复杂度为 $\Theta(\alpha(n))$ 啦。注意，这里我们讨论的 $union(x,y)$ 操作保证了 $x$ 和 $y$ 都是某个树的根，因此不需要额外执行 $find(x)$ 和 $find(y)$ 。

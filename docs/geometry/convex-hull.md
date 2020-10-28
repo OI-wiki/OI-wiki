@@ -34,20 +34,20 @@
 
 ???+note "代码实现"
     ```cpp
-    // stk[]是整型，存的是下标
-    // p[]存储向量或点
+    // stk[] 是整型，存的是下标
+    // p[] 存储向量或点
     tp = 0;                       // 初始化栈
     std::sort(p + 1, p + 1 + n);  // 对点进行排序
     stk[++tp] = 1;
-    //栈内添加第一个元素，且不更新used，使得1在最后封闭凸包时也对单调栈更新
+    //栈内添加第一个元素，且不更新 used，使得 1 在最后封闭凸包时也对单调栈更新
     for (int i = 2; i <= n; ++i) {
-      while (tp >= 2  // 下一行*被重载为叉积
+      while (tp >= 2  // 下一行 * 操作符被重载为叉积
              && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
         used[stk[tp--]] = 0;
-      used[i] = 1;  // used表示在凸壳上
+      used[i] = 1;  // used 表示在凸壳上
       stk[++tp] = i;
     }
-    int tmp = tp;  // tmp表示下凸壳大小
+    int tmp = tp;  // tmp 表示下凸壳大小
     for (int i = n - 1; i > 0; --i)
       if (!used[i]) {
         //      ↓求上凸壳时不影响下凸壳
@@ -61,10 +61,10 @@
     int ans = tp - 1;
     ```
 
-根据上面的代码，最后凸包上有 $ans$ 个元素（额外存储了 $1$ 号点，因此 $h$ 数组中有 $ans+1$ 个元素），并且按逆时针方向排序。周长就是
+根据上面的代码，最后凸包上有 $\textit{ans}$ 个元素（额外存储了 $1$ 号点，因此 $h$ 数组中有 $\textit{ans}+1$ 个元素），并且按逆时针方向排序。周长就是
 
 $$
-\sum_{i=1}^{ans}\left|\overrightarrow{h_ih_{i+1}}\right|
+\sum_{i=1}^{\textit{ans}}\left|\overrightarrow{h_ih_{i+1}}\right|
 $$
 
 ### 例题

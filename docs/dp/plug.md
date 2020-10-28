@@ -1189,4 +1189,4 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ![sm18847458](./images/sm18847458.png)
 
--  [【动画】从方格这头走向那头有多少种走法呢～【结尾迷之感动】](https://www.bilibili.com/video/BV1Cx411D74e) \| [Youtube](https://www.youtube.com/watch?v=Q4gTV4r0zRs) \| [Niconico](<>) 
+-  [【动画】从方格这头走向那头有多少种走法呢～【结尾迷之感动】](https://www.bilibili.com/video/BV1Cx411D74e) \| [Youtube](https://www.youtube.com/watch?v=Q4gTV4r0zRs) 

@@ -4,7 +4,6 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 它支持两种操作：
 
 - 查找（Find）：确定某个元素处于哪个子集；
-
 - 合并（Union）：将两个子集合并成一个集合。
 
 !!! warning
@@ -141,6 +140,8 @@ void unionSet(int x, int y) {
 ## 其他应用
 
  [最小生成树算法](../graph/mst.md) 中的 Kruskal 和 [最近公共祖先](../graph/lca.md) 中的 Tarjan 算法是基于并查集的算法。
+
+相关专题见 [并查集应用](../topic/dsu-app.md) 。
 
 ## References
 

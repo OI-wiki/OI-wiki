@@ -318,6 +318,25 @@ $$
 
 易知如下转化： $f\ast\mu=g*1*\mu\implies f\ast\mu=g$ （其中 $1\ast\mu=\varepsilon$ ）。
 
+对于第二种形式：
+
+类似上面的方法一，我们考虑逆推这个式子。
+
+$$
+\begin{aligned}
+&\sum_{n|d}{\mu(\frac{d}{n})f(d)} \\ 
+    =& \sum_{k=1}^{+\infty}{\mu(k)f(kn)}
+    = \sum_{k=1}^{+\infty}{\mu(k)\sum_{kn|d}{g(d)}} \\
+    =& \sum_{n|d}{g(d)\sum_{k|\frac{n}{d}}{\mu(k)}}
+    = \sum_{n|d}{g(d)\epsilon(\frac{n}{d})} \\ 
+    =& g(n)
+\end{aligned}
+$$
+
+我们把 $d$ 表示为 $kn$ 的形式，然后把 $f$ 的原定义代入式子。  
+发现枚举 $k$ 再枚举 $kn$ 的倍数可以转换为直接枚举 $n$ 的倍数再求出 $k$ ,  
+发现后面那一块其实就是 $\epsilon$ , $g*\epsilon=g$ .
+
 * * *
 
 ## 问题形式
@@ -471,7 +490,53 @@ $$
 
 设 $\displaystyle \operatorname{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\operatorname{g}$ 为积性函数，于是可以 $\Theta(n)$ 筛出。每次询问 $\Theta(1)$ 计算即可。
 
-这个函数筛的时候比较特殊，当 $p_j\mid i$ 的时候，需要根据 $p_j\mid\dfrac{i}{p_j}$ 进行分类讨论。具体可以见代码。
+下面给出这个函数筛法的推导过程：
+
+首先考虑 $\operatorname g(p_j^k)$ 的值，显然它的约数只有 $p_j^0,p_j^1,\cdots,p_j^k$ ，因此
+
+$$
+\operatorname g(p_j^k)=\sum_{w=0}^{k}p_j^w\cdot\varphi(p_j^w)
+$$
+
+又有 $\varphi(p_j^w)=p_j^{w-1}\cdot(p_j-1)$ ，则原式可化为
+
+$$
+\sum_{w=0}^{k}p_j^{2w-1}\cdot(p_j-1)
+$$
+
+于是有
+
+$$
+\operatorname g(p_j^{k+1})=\operatorname g(p_j^k)+p_j^{2k+1}\cdot(p_j-1)
+$$
+
+那么，对于线性筛中的 $\operatorname g(i\cdot p_j)(p_j|i)$ ，令 $i=a\cdot p_j^w(\operatorname{gcd}(a,p_j)=1)$ ，可得
+
+$$
+\operatorname g(i\cdot p_j)=\operatorname g(a)\cdot\operatorname g(p_j^{w+1})
+$$
+
+$$
+\operatorname g(i)=\operatorname g(a)\cdot\operatorname g(p_j^w)
+$$
+
+即
+
+$$
+\operatorname g(i\cdot p_j)-\operatorname g(i)=\operatorname g(a)\cdot p_j^{2w+1}\cdot(p_j-1)
+$$
+
+同理有
+
+$$
+\operatorname g(i)-\operatorname g(\frac{i}{p_j})=\operatorname g(a)\cdot p_j^{2w-1}\cdot(p_j-1)
+$$
+
+因此
+
+$$
+\operatorname g(i\cdot p_j)=\operatorname g(i)+\left (\operatorname g(i)-\operatorname g(\frac{i}{p_j})\right )\cdot p_j^2
+$$
 
  **时间复杂度** ： $\Theta(n+T)$ 
 
@@ -490,11 +555,7 @@ $$
         for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
           flg[i * p[j]] = 1;
           if (i % p[j] == 0) {
-            if ((i / p[j]) % p[j] == 0) {
-              g[i * p[j]] = g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];
-            } else {
-              g[i * p[j]] = g[i] + g[i / p[j]] * (p[j] - 1) * p[j] * p[j] * p[j];
-            }
+            g[i * p[j]] = g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];
             break;
           }
           g[i * p[j]] = g[i] * g[p[j]];
@@ -744,8 +805,11 @@ $$
 求
 
 $$
-\sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot \gcd(i,j)\bmod p\\
-n\leq10^{10},5\times10^8\leq p\leq1.1\times10^9,\text{p 是质数}
+\sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot \gcd(i,j)\bmod p
+$$
+
+$$
+n\leq10^{10},5\times10^8\leq p\leq1.1\times10^9,p \text{是质数}
 $$
 
 看似是一道和 $\gcd$ 有关的题，不过由于带有系数，并不容易化简
@@ -754,20 +818,20 @@ $$
 
 $$
 \begin{aligned}
-&& \sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot \gcd(i,j)\\
-&=&\sum_{i=1}^n\sum_{j=1}^ni\cdot j
+& \sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot \gcd(i,j)\\
+=&\sum_{i=1}^n\sum_{j=1}^ni\cdot j
 \sum_{d \mid i,d \mid j}\varphi(d)\\
-&=&\sum_{d=1}^n\sum_{i=1}^n
+=&\sum_{d=1}^n\sum_{i=1}^n
 \sum_{j=1}^n[d \mid i,d \mid j]\cdot i\cdot j
 \cdot\varphi(d)\\
-&=&\sum_{d=1}^n
+=&\sum_{d=1}^n
 \sum_{i=1}^{\left\lfloor\frac{n}{d}\right\rfloor}
 \sum_{j=1}^{\left\lfloor\frac{n}{d}\right\rfloor}
 d^2\cdot i\cdot j\cdot\varphi(d)\\
-&=&\sum_{d=1}^nd^2\cdot\varphi(d)
+=&\sum_{d=1}^nd^2\cdot\varphi(d)
 \sum_{i=1}^{\left\lfloor\frac{n}{d}\right\rfloor}i
 \sum_{j=1}^{\left\lfloor\frac{n}{d}\right\rfloor}j\\
-&=&\sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)
+=&\sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)
 \left(F(n)=\frac{1}{2}n\left(n+1\right)\right)\\
 \end{aligned}
 $$
@@ -857,53 +921,42 @@ $$
     }  // 不要为了省什么内存把数组开小。。。卡了好几次80
     ```
 
- **解法二** 
+ **另一种推导方式** 
 
 转化一下，可以将式子写成
 
 $$
 \begin{aligned}
-&&\sum_{d=1}^{n}\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ijd\cdot[\gcd(i,j)=1]\\
-&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t\mid \gcd(i,j)}\mu(t)\\
-&=&\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}ij\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}\mu(t)[t\mid \gcd(i,j)]\\
-&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij[1\mid \gcd(i,j)]\\
-&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij
+&\sum_{d=1}^{n}d^3\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{d}\rfloor}ij\cdot[\gcd(i,j)=1]\\
+=&\sum_{d=1}^{n}d^3\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{d}\rfloor}ij\sum_{t\mid \gcd(i,j)}\mu(t)\\
+=&\sum_{d=1}^{n}d^3\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{d}\rfloor}ij\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}\mu(t)[t\mid \gcd(i,j)]\\
+=&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{td}\rfloor}ij[1\mid \gcd(i,j)]\\
+=&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{td}\rfloor}ij
 \end{aligned}
 $$
 
 容易知道
 
 $$
-\sum_{i=1}^{n}\sum_{j=1}^{m}ij=\frac{n(n+1)}{2}\cdot \frac{m(m+1)}{2}
+\sum_{i=1}^{n}i=\frac{n(n+1)}{2}
 $$
 
-设 $sum(n,m)=\sum_{i=1}^{n}\sum_{j=1}^{m}ij$ ，继续接着前面的往下推
+设 $F(n)=\sum_{i=1}^{n}i$ ，继续接着前面的往下推
 
 $$
 \begin{aligned}
-&&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{td}\rfloor}ij\\
-&=&\sum_{d=1}^{n}d\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\cdot sum(\lfloor\frac{n}{td}\rfloor,\lfloor\frac{m}{td}\rfloor)\\
-&=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)\sum_{d\mid T}d\cdot (\frac{T}{d})^2\mu(\frac{T}{d})\\
-&=&\sum_{T=1}^{n}sum(\lfloor\frac{n}{T}\rfloor,\lfloor\frac{m}{T}\rfloor)(T\sum_{d\mid T}d\cdot\mu(d))
+&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{td}\rfloor}ij\\
+=&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\cdot F^2\left(\left\lfloor\frac{n}{td}\right\rfloor\right)\\
+=&\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) \sum_{d\mid T}d^3\left(\frac{T}{d}\right)^2\mu\left(\frac{T}{d}\right)\\
+=&\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) T^2\sum_{d\mid T}d\cdot\mu\left(\dfrac{T}{d}\right)
 \end{aligned}
 $$
 
-这时我们只要对每个 $T$ 预处理出 $T\sum_{d\mid T}d\cdot\mu(d)$ 的值就行了，考虑如何快速求解
+利用 $\operatorname{id}\ast \mu = \varphi$ 反演，上式等于
 
-设 $f(n)=\sum_{d\mid n}d\cdot\mu(d)$ 
+ $\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) T^2\varphi(T)$ 
 
-实际上 $f$ 可以用线性筛筛出，具体的是
-
-$$
-f(n)=
-\begin{cases}
-1-n &,n\in primes \\
-f(\frac{x}{p}) &,p^2\mid n\\
-f(\frac{x}{p})\cdot f(p) &,p^2\nmid n
-\end{cases}
-$$
-
-其中 $p$ 表示 $n$ 的最小质因子，总时间复杂度 $O(n+\sqrt n)$ 。
+得到了一个与第一种推导本质相同的式子。
 
 ## 莫比乌斯反演扩展
 
@@ -920,36 +973,36 @@ $$
 
 $$
 \begin{aligned}
-&&g(n)=\sum_{i=1}^n\mu(i)t(i)f\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-&=&\sum_{i=1}^n\mu(i)t(i)
+g(n)&=\sum_{i=1}^n\mu(i)t(i)f\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+&=\sum_{i=1}^n\mu(i)t(i)
 \sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}t(j)
 g\left(\left\lfloor\frac{\left\lfloor\frac{n}{i}\right\rfloor}{j}\right\rfloor\right)\\
-&=&\sum_{i=1}^n\mu(i)t(i)
+&=\sum_{i=1}^n\mu(i)t(i)
 \sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}t(j)
 g\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\\
-&=&\sum_{T=1}^n
+&=\sum_{T=1}^n
 \sum_{i=1}^n\mu(i)t(i)
 \sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}[ij=T]
 t(j)g\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
-&&\text{【先枚举 ij 乘积】}\\
-&=&\sum_{T=1}^n
+&\text{【先枚举 ij 乘积】}\\
+&=\sum_{T=1}^n
 \sum_{i \mid T}\mu(i)t(i)
 t\left(\frac{T}{i}\right)g\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
-&&\text{【}\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}[ij=T] \text{对答案的贡献为 1，于是省略】}\\
-&=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
+&\text{【}\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}[ij=T] \text{对答案的贡献为 1，于是省略】}\\
+&=\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
 \sum_{i \mid T}\mu(i)t(i)t\left(\frac{T}{i}\right)\\
-&=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
+&=\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)
 \sum_{i \mid T}\mu(i)t(T)
-&&\text{【t 是完全积性函数】}\\
-&=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)t(T)
+&\text{【t 是完全积性函数】}\\
+&=\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)t(T)
 \sum_{i \mid T}\mu(i)\\
-&=&\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)t(T)
+&=\sum_{T=1}^ng\left(\left\lfloor\frac{n}{T}\right\rfloor\right)t(T)
 \varepsilon(T)
-&&\text{【}\mu\ast 1= \varepsilon\text{】}\\
-&=&g(n)t(1)
-&&\text{【当且仅当 T=1,}\varepsilon(T)=1\text{时】}\\
-&=&g(n)
-&& \square
+&\text{【}\mu\ast 1= \varepsilon\text{】}\\
+&=g(n)t(1)
+&\text{【当且仅当 T=1,}\varepsilon(T)=1\text{时】}\\
+&=g(n)
+& \square
 \end{aligned}
 $$
 
