@@ -318,6 +318,25 @@ $$
 
 易知如下转化： $f\ast\mu=g*1*\mu\implies f\ast\mu=g$ （其中 $1\ast\mu=\varepsilon$ ）。
 
+对于第二种形式：
+
+类似上面的方法一，我们考虑逆推这个式子。
+
+$$
+\begin{aligned}
+&\sum_{n|d}{\mu(\frac{d}{n})f(d)} \\ 
+    =& \sum_{k=1}^{+\infty}{\mu(k)f(kn)}
+    = \sum_{k=1}^{+\infty}{\mu(k)\sum_{kn|d}{g(d)}} \\
+    =& \sum_{n|d}{g(d)\sum_{k|\frac{n}{d}}{\mu(k)}}
+    = \sum_{n|d}{g(d)\epsilon(\frac{n}{d})} \\ 
+    =& g(n)
+\end{aligned}
+$$
+
+我们把 $d$ 表示为 $kn$ 的形式，然后把 $f$ 的原定义代入式子。  
+发现枚举 $k$ 再枚举 $kn$ 的倍数可以转换为直接枚举 $n$ 的倍数再求出 $k$ ,  
+发现后面那一块其实就是 $\epsilon$ , $g*\epsilon=g$ .
+
 * * *
 
 ## 问题形式
