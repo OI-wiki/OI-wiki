@@ -6,7 +6,7 @@
 
 一个简单的例子就是二维平面中矩阵区域内点数的查询。
 
-??? note+ "矩形区域查询"
+???+ note "矩形区域查询"
     给出 $n$ 个二维平面中的点 $(x_i, y_i)$ ，其中 $1 \le i \le n, 1 \le x_i, y_i \le n, 1 \le n \le 10^5$ , 要求实现以下中操作：
 
     1. 给出$a, b, c, d$，询问以$(a, b)$为左上角， $c, d$为右下角的矩形区域内点的个数。
@@ -54,7 +54,7 @@
 
 ## 例题 1
 
-??? note+ " [Intersection of Permutations](https://codeforces.com/problemset/problem/1093/E) "
+???+ note " [Intersection of Permutations](https://codeforces.com/problemset/problem/1093/E) "
     给出两个排列 $a$ 和 $b$ ，要求实现以下两种操作：
 
     1. 给出$l_a, r_a, l_b, r_b$，要求查询既出现在$a[l_a ... r_a]$又出现在$b[l_b ... r_b]$中的元素的个数。
@@ -290,7 +290,7 @@
 
 ## 例题 2
 
-??? note+ " [Complicated Computations](https://codeforces.com/contest/1436/problem/E) "
+???+ note " [Complicated Computations](https://codeforces.com/contest/1436/problem/E) "
     给出一个序列 $a$ ，将 $a$ 所有连续子序列的 MEX 构成的数组作为 $b$ ，问 $b$ 的 MEX。一个序列的 MEX 是序列中最小的没出现过的 **正整数** 。
 
     序列的长度$n$满足$1 \le n \le 10^5$。
