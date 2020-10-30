@@ -1,20 +1,30 @@
 ## 概述
 
-随机化被广泛应用于 OI 中各种 **骗分** ， **偷懒** 的场景下。
+要想使用随机化技巧，前提条件是能够快速生成随机数。本文将介绍生成随机数的常见方法。
 
-当然，也有正经用途，例如：考场上造出随机数据然后对拍。
+### 随机数与伪随机数
 
-尤其是当算法期望复杂度正确且 **与输入数据无关** 时可用随机化使复杂度达到期望平衡，比如 Treap 和可并堆等。
+说一个单独的数是“随机数”是无意义的，所以以下我们都默认讨论“随机数列”，即使提到“随机数”，指的也是“随机数列中的一个元素”。
+
+现有的计算机的运算过程都是确定性的，因此，仅凭借算法来生成真正 **不可预测** 、 **不可重复** 的随机数列是不可能的。
+
+然而在绝大部分情况下，我们都不需要如此强的随机性，而只需要所生成的数列在统计学上具有随机数列的种种特征（比如均匀分布、互相独立等等）。这样的数列即称为 **伪随机数** 数列。
+
+随机数与伪随机数在实际生活和算法中的应用举例:
+- 抽样调查时往往只需使用伪随机数。这是因为我们本就只关心统计特征。
+- 网络安全中往往要用到（比刚刚提到的伪随机数）更强的随机数。这是因为攻击者可能会利用可预测性做文章。
+- 在笔者了解范围内，OI/ICPC 中用到的所有随机算法，都只需要伪随机数。这是因为，这些算法往往是 通过引入随机数 来把概率引入复杂度分析，从而降低复杂度。这本质上依然只利用了随机数的统计特征。
+- 某些（未被引入 OI/ICPC 的）随机算法（例如 [Moser 算法](https://en.wikipedia.org/wiki/Algorithmic_Lov%C3%A1sz_local_lemma)）用到了随机数的熵相关的性质，因此必须使用真正的随机数。
 
 ## 实现
 
 ### rand
 
-用于生成一个伪随机数，缺点是比较慢，使用时需要 `#include<cstdlib>` 。
+用于生成一个 `[0,RAND_MAX]` 中的伪随机数，缺点是比较慢，使用时需要 `#include<cstdlib>` 。
 
 使用 `rand()` 需要一个随机数种子，可以使用 `srand(seed)` 函数来将随机种子更改为 `seed` ，当然不初始化也是可以的。
 
-相同的 `seed` 两次运行同一程序随机出的结果将会是相同的
+同一程序使用相同的 `seed` 两次运行，在同一机器、同一编译器下，随机出的结果将会是相同的。
 
 有一个选择是使用当前系统时间来作为随机种子： `srand(time(0))` 。
 
@@ -23,13 +33,22 @@
 !!! warning
     在 `Windows` 系统下 `rand()` 返回值的取值范围为 $\left[0,2^{15}\right)$ ，当需要生成的数不小于 $2^{15}$ 时建议使用 `(rand() << 15 | rand())` 来生成更大的随机数。
 
+关于 `rand()` 和 `rand()%n` 的随机性：
+- C/C++ 标准并未关于 `rand()` 所生成随机数的任何方面的质量做任何规定。
+- GCC 编译器对 `rand()` 所采用的实现方式，保证了分布的均匀性等基本性质，但具有 低位周期长度短 等明显缺陷。（例如在笔者的机器上， `rand()%2` 所生成的序列的周期长约 2000000 ）
+- 即使假设 `rand()` 是均匀随机的，`rand()%n` 也不能保证均匀性，因为 `[0,n)` 中的每个数在 `[0,RAND_MAX]` 中的出现次数可能不相同。
+
 ### mt19937
 
-是一个随机数生成器类，效用同 `rand` ，优点是更加随机（出现循环的周期更长）且速度比 `rand()` 快很多。使用时需要 `#include<random>` 。
+是一个随机数生成器类，效用同 `rand` ，随机数的范围同 `unsigned int` 类型的取值范围。
+
+其优点是随机数质量高（一个表现为，出现循环的周期更长；其他方面也都至少不逊于 `rand()` ），且速度比 `rand()` 快很多。使用时需要 `#include<random>` 。
 
  `mt19937` 基于 [Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister) ，使用时用其定义一个随机数生成器即可： `std::mt19937 myrand(seed)` ， `seed` 可不填，不填 `seed` 则会使用默认随机种子。
 
  `mt19937` 重载了 `operator ()` ，需要生成随机数时调用 `myrand()` 即可返回一个随机数。
+
+ 另一个类似的生成器是 `mt19937_64` ，使用方式同 `mt19937` ，但随机数范围扩大到了 `unsigned long long` 类型的取值范围。
 
 #### 示例
 
@@ -55,6 +74,11 @@ int main() {
 
 内部使用的随机数生成器默认为 `rand()` 。当然也可以传入自定义的随机数生成器。
 
+关于 `random_shuffle` 的随机性：
+- C++ 标准中要求 `random_shuffle` 在所有可能的排列中 **等概率** 随机选取，但 GCC[^note1] 编译器 **并未** 严格执行。
+- GCC 中 `random_shuffle` 随机性上的缺陷的原因之一，是因为它使用了 `rand()%n` 这样的写法。如先前所述，这样生成的不是均匀随机的整数。
+- 原因之二，是因为 `rand()` 的值域有限。如果所传入的区间长度超过 `RAND_MAX` ，将存在某些排列 **不可能** 被产生[^ref1]。
+
 !!! warning
      `random_shuffle` 已于 C++14 标准中被弃用，于 C++17 标准中被移除。
 
@@ -63,6 +87,8 @@ int main() {
 效用同 `random_shuffle` 。使用时需要 `#include<algorithm>` 。
 
 区别在于必须使用自定义的随机数生成器： `std::shuffle(first, last, myrand)` 。
+
+GCC[^note1] 实现的 `shuffle` 符合 C++ 标准的要求，即在所有可能的排列中等概率随机选取。
 
 下面是用 `rand()` 及 `random_shuffle()` 编写的一个数据生成器。生成数据为 [「ZJOI2012」灾难](https://www.luogu.com.cn/problem/P2597) 的随机小数据。
 
@@ -90,7 +116,7 @@ int main() {
 
 ### 非确定随机数的均匀分布整数随机数生成器
 
- `random_device` 是一个基于硬件的均匀分布随机数生成器， **在熵池耗尽** 前们可以高速生成随机数。该类在 C++11 定义，需要 `random` 头文件。由于熵池耗尽后性能急剧下降，所以建议用此方法生成 `mt19937` 等伪随机数的种子，而不是直接生成。
+ `random_device` 是一个基于硬件的均匀分布随机数生成器， **在熵池耗尽** 前可以高速生成随机数。该类在 C++11 定义，需要 `random` 头文件。由于熵池耗尽后性能急剧下降，所以建议用此方法生成 `mt19937` 等伪随机数的种子，而不是直接生成。
 
 参考代码如下。
 
@@ -133,83 +159,8 @@ int main() {
 
 阅读 [cppreference](https://zh.cppreference.com/w/cpp/numeric/random/random_device) 以获得更多信息。
 
-## Example I
+## 参考资料与注释
 
-先来看一道网络流题： [「TJOI2015」线性代数](https://loj.ac/problem/2100) 。
+[^ref1]:  [Don't use rand(): a guide to random number generators in C++](https://codeforces.com/blog/entry/61587) 
 
-我们并不想写网络流，于是开始偷税。建模？不存在的。
-
-### 做法
-
-随机一个位置，把这个位置取反，判断大小并更新答案。
-
-### 代码
-
-```cpp
-#include <algorithm>
-#include <cstdlib>
-#include <iostream>
-
-int n;
-
-int a[510], b[510], c[510][510], d[510];
-int p[510], q[510];
-
-int maxans = 0;
-
-void check() {
-  memset(d, 0, sizeof d);
-  int nowans = 0;
-  for (int i = 1; i <= n; i++)
-    for (int j = 1; j <= n; j++) d[i] += a[j] * c[i][j];
-  for (int i = 1; i <= n; i++) nowans += (d[i] - b[i]) * a[i];
-  maxans = std::max(maxans, nowans);
-}
-
-int main() {
-  srand(19260817);
-  std::cin >> n;
-  for (int i = 1; i <= n; i++)
-    for (int j = 1; j <= n; j++) std::cin >> c[i][j];
-  for (int i = 1; i <= n; i++) std::cin >> b[i];
-  for (int i = 1; i <= n; i++) a[i] = 1;
-  check();
-  for (int T = 1000; T; T--) {
-    int tmp = rand() % n + 1;
-    a[tmp] ^= 1;
-    check();
-  }
-  std::cout << maxans << '\n';
-}
-```
-
-## Example II
-
-当一个算法的期望复杂度正确且与输入数据无关时，我们可以通过随机化达到期望上的平衡（就是随机卡不掉的意思
-
-Treap 的随机很经典了，来一发可并堆
-
-### 做法
-
-可并堆最常用的写法应该是左偏树了，通过维护树高让树左偏来保证合并的复杂度。然而…… **维护树高什么的好烦啊** 。
-
-那么我们可以考虑使用极其难卡的随机堆，即不按照树高来交换儿子，而是随机交换。
-
-### 代码
-
-```cpp
-struct Node {
-  int child[2];
-  long long val;
-} nd[100010];
-int root[100010];
-
-int merge(int u, int v) {
-  if (!(u && v)) return u | v;
-  int x = rand() & 1, p = nd[u].val > nd[v].val ? u : v;
-  nd[p].child[x] = merge(nd[p].child[x], u + v - p);
-  return p;
-}
-
-void pop(int &now) { now = merge(nd[now].child[0], nd[now].child[1]); }
-```
+[^note1]: 版本号为 GCC 9.2.0
