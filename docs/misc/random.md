@@ -114,6 +114,30 @@ int main() {
 }
 ```
 
+下面是用 `mt19937` 及 `shuffle()` 编写的同一个数据生成器。
+
+```cpp
+#include <algorithm>
+#include <random>
+#include <ctime>
+#include <iostream>
+
+int a[100];
+
+int main() {
+  std::mt19937 rng(time(0));
+  int n = rng() % 99 + 1;
+  for (int i = 1; i <= n; i++) a[i] = i;
+  std::cout << n << '\n';
+  for (int i = 1; i <= n; i++) {
+    std::shuffle(a + 1, a + i, rng);
+    int cnt = rng() % i;
+    for (int j = 1; j <= cnt; j++) std::cout << a[j] << ' ';
+    std::cout << 0 << '\n';
+  }
+}
+```
+
 ### 非确定随机数的均匀分布整数随机数生成器
 
  `random_device` 是一个基于硬件的均匀分布随机数生成器， **在熵池耗尽** 前可以高速生成随机数。该类在 C++11 定义，需要 `random` 头文件。由于熵池耗尽后性能急剧下降，所以建议用此方法生成 `mt19937` 等伪随机数的种子，而不是直接生成。
