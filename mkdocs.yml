@@ -310,6 +310,7 @@ nav:
       - 平衡树套线段树: ds/seg-in-balanced.md
       - 线段树套平衡树: ds/balanced-in-seg.md
       - 树状数组套主席树: ds/persistent-in-bit.md
+      - 分块套树状数组: ds/bit-in-block-array.md
     - K-D Tree: ds/kdt.md
     - 珂朵莉树: ds/odt.md
     - 动态树:
