@@ -55,7 +55,7 @@ $$
         for (int i = n - 1; i >= 0; i--) {
             if (s[i] == '(') depth--;
             else depth++;
-    
+
             if (s[i] == '(' && depth > 0) {
                 depth--;
                 int open = (n - i - 1 - depth) / 2;
@@ -86,3 +86,5 @@ $$
 对于变种括号序列，方法是类似的，只不过我们需要对每个 $s_i$ 考虑比它小的那些字符进行计算（在上述算法中因为不存在比左括号小的字符，所以我们只考虑了 $s_i$ 为右括号的情况）。
 
 另外，利用 $f$ 数组，我们同样可以求出字典序排名为 $k$ 的合法括号序列是什么。
+
+**本页面主要译自博文 [http://e-maxx.ru/algo/bracket_sequences](http://e-maxx.ru/algo/bracket_sequences) 与其英文翻译版 [Balanced bracket sequences](https://cp-algorithms.com/combinatorics/bracket_sequences.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
