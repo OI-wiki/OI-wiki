@@ -81,7 +81,7 @@
 我们称若干个事件 $A_{1\ldots n}$  **互相独立** ，当对于其中任何一个子集，该子集中的事件同时发生的概率，等于其中每个事件发生概率的乘积。形式化地说：
 
 $$
-P(\bigcap\limits_{E\in T} E)=\prod_{E\in T} P(E), \forall T\subseteq \{A_1,A_2,\ldots,A_n\}
+P\Big(\bigcap\limits_{E\in T} E\Big)=\prod_{E\in T} P(E), \forall T\subseteq \{A_1,A_2,\ldots,A_n\}
 $$
 
 由此可见，若干事件 **两两独立** 和 **互相独立** 是不同的概念。请注意这一点。
