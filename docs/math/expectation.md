@@ -90,7 +90,7 @@ $$
 
 以下用 $I(X)$ 表示随机变量 $X$ 的取值范围。即，如果把 $X$ 看作一个映射，则 $I(X)$ 就是其值域。
 
-我们称两个随机变量 $X,Y$  **独立** ，当 $P((X=\alpha)\cap(Y=\beta))=P(X=\alpha)P(Y=\beta),\forall \alpha\in I(X),\beta\in I(Y)$ ，即 $(X,Y)$ 取任意一组值的概率，等于 $X$ 和 $Y$ 分别取对应值的概率乘积。
+我们称两个随机变量 $X,Y$  **独立** ，当 $P\big((X=\alpha)\cap(Y=\beta)\big)=P(X=\alpha)P(Y=\beta),\forall \alpha\in I(X),\beta\in I(Y)$ ，即 $(X,Y)$ 取任意一组值的概率，等于 $X$ 和 $Y$ 分别取对应值的概率乘积。
 
 我们称若干个随机变量 $X_{1\ldots n}$  **互相独立** ，当 $(X_1,\ldots,X_n)$ 取任意一组值的概率，等于每个 $X_i$ 分别取对应值的概率乘积。形式化地说：
 
