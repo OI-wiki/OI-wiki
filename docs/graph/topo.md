@@ -128,6 +128,10 @@ bool toposort() {
 
 将 Kahn 算法中的队列替换成最大堆/最小堆实现的优先队列即可，此时总的时间复杂度为 $O(E+V \log{V})$ 。
 
+## 习题
+
+ [CF 1385E](https://codeforces.com/problemset/problem/1385/E) ：需要通过拓扑排序构造。
+
 ## 参考
 
 1. 离散数学及其应用。ISBN:9787111555391
