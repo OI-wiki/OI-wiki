@@ -95,7 +95,7 @@ $$
 我们称若干个随机变量 $X_{1\ldots n}$  **互相独立** ，当 $(X_1,\ldots,X_n)$ 取任意一组值的概率，等于每个 $X_i$ 分别取对应值的概率乘积。形式化地说：
 
 $$
-P(\bigcap\limits_{i=1}^n X_i=F_i)=\prod\limits_{i=1}^n P(X_i=F_i),\forall F_{1\ldots n} \text{ s.t. } F_i\in I(X_i)
+P\Big(\bigcap\limits_{i=1}^n X_i=F_i\Big)=\prod\limits_{i=1}^n P(X_i=F_i),\forall F_{1\ldots n} \text{ s.t. } F_i\in I(X_i)
 $$
 
 由此可见，若干随机变量 **两两独立** 和 **互相独立** 是不同的概念。请注意这一点。
