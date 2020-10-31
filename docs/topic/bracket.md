@@ -90,4 +90,4 @@ $$
 
 另外，利用 $f$ 数组，我们同样可以求出字典序排名为 $k$ 的合法括号序列是什么。
 
-**本页面主要译自博文 [http://e-maxx.ru/algo/bracket_sequences](http://e-maxx.ru/algo/bracket_sequences) 与其英文翻译版 [Balanced bracket sequences](https://cp-algorithms.com/combinatorics/bracket_sequences.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+ **本页面主要译自博文 <http://e-maxx.ru/algo/bracket_sequences> 与其英文翻译版 [Balanced bracket sequences](https://cp-algorithms.com/combinatorics/bracket_sequences.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
