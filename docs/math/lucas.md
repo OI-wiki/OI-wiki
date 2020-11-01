@@ -61,7 +61,7 @@ Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是�
 
 ### 求解方式
 
-#### 求解组合数
+#### 第一部分：求解组合数
 
 根据 **唯一分解定理** ，将 $p$ 质因数分解：
 
@@ -85,7 +85,7 @@ $$
 
 我们发现，在求出 $a_i$ 后，就可以用中国剩余定理求解出 $C_n^m$ 。
 
-#### 求解 $a_i$ 
+#### 第二部分：求解 $a_i$ 
 
 根据同余的定义， $a_i=C_n^m\bmod {q_i}^{\alpha_i}$ ，问题转化成，求 $C_n^m\mod q^k(q\in\{$ 质数 $\})$ 的值。
 
@@ -105,7 +105,7 @@ $$
 
  $x$ 表示 $n!$ 中包含多少个 $q$ 因子， $y，z$ 同理。
 
-#### 求解 $\frac{n!}{q ^ x} \bmod q ^ k$ 
+#### 第三部分：求解 $\frac{n!}{q ^ x} \bmod q ^ k$ 
 
 问题转化成，求形如：
 
@@ -127,13 +127,13 @@ $$
 
  $22!=3^7 \times (1\times 2\times 3\times 4\times 5\times 6\times 7)$  $\times(1\times 2\times 4\times 5\times 7\times 8\times 10 \times 11\times 13\times 14\times 16\times 17\times 19 \times 20 \times 22 )$ 
 
-可以看到，式子分为三个部分：
+可以看到，式子分为三个整式的乘积：
 
- **第一部分** 是 $3$ 的幂，次数是 $\lfloor\frac{n}{q}\rfloor$ ；
+ **1. ** 是 $3$ 的幂，次数是 $\lfloor\frac{n}{q}\rfloor$ ；
 
- **第二部分** 是 $7!$ ，即 $\lfloor\frac{n}{q}\rfloor!$ ，由于阶乘中仍然可能有 $q$ 的倍数，考虑递归求解；
+ **2. ** 是 $7!$ ，即 $\lfloor\frac{n}{q}\rfloor!$ ，由于阶乘中仍然可能有 $q$ 的倍数，考虑递归求解；
 
- **第三部分** 是 $n!$ 中与 $q$ 互质的部分的乘积，具有如下性质：
+ **3. ** 是 $n!$ 中与 $q$ 互质的部分的乘积，具有如下性质：
 
  $1\times 2\times 4\times 5\times 7\times 8\equiv10 \times 11\times 13\times 14\times 16\times 17\ \pmod{ 3^2}$ 
 
