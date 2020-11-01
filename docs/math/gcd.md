@@ -21,13 +21,13 @@
 
 * * *
 
-设 $a=bk+c$ ，显然有 $c=a \bmod b$ 。设 $d \mid a,~d \mid b$ ，则 $c=a-bk, \frac{c}{d}=\frac{a}{d}-\frac{b}{d}k$。
+设 $a=bk+c$ ，显然有 $c=a \bmod b$ 。设 $d \mid a,~d \mid b$ ，则 $c=a-bk, \frac{c}{d}=\frac{a}{d}-\frac{b}{d}k$ 。
 
 由右边的式子可知 $\frac{c}{d}$ 为整数，即 $d \mid c$ 所以对于 $a,b$ 的公约数，它也会是 $a \bmod b$ 的公约数。
 
 反过来也需要证明：
 
-设 $d \mid b,~\mid (a \bmod b)$ ，我们还是可以像之前一样得到以下式子 $\frac{a\bmod b}{d}=\frac{a}{d}-\frac{b}{d}k,~\frac{a\bmod b}{d}+\frac{b}{d}k=\frac{a}{d}$。
+设 $d \mid b,~\mid (a \bmod b)$ ，我们还是可以像之前一样得到以下式子 $\frac{a\bmod b}{d}=\frac{a}{d}-\frac{b}{d}k,~\frac{a\bmod b}{d}+\frac{b}{d}k=\frac{a}{d}$ 。
 
 因为左边式子显然为整数，所以 $\frac{a}{d}$ 也为整数，即 $d \mid a$ ，所以 $b,a\bmod b$ 的公约数也是 $a,b$ 的公约数。
 
