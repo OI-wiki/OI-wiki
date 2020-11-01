@@ -129,11 +129,11 @@ $$
 
 可以看到，式子分为三个整式的乘积：
 
- **1. ** 是 $3$ 的幂，次数是 $\lfloor\frac{n}{q}\rfloor$ ；
+ **1.** 是 $3$ 的幂，次数是 $\lfloor\frac{n}{q}\rfloor$ ；
 
- **2. ** 是 $7!$ ，即 $\lfloor\frac{n}{q}\rfloor!$ ，由于阶乘中仍然可能有 $q$ 的倍数，考虑递归求解；
+ **2.** 是 $7!$ ，即 $\lfloor\frac{n}{q}\rfloor!$ ，由于阶乘中仍然可能有 $q$ 的倍数，考虑递归求解；
 
- **3. ** 是 $n!$ 中与 $q$ 互质的部分的乘积，具有如下性质：
+ **3.** 是 $n!$ 中与 $q$ 互质的部分的乘积，具有如下性质：
 
  $1\times 2\times 4\times 5\times 7\times 8\equiv10 \times 11\times 13\times 14\times 16\times 17\ \pmod{ 3^2}$ 
 
