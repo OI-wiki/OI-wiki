@@ -230,7 +230,7 @@ author: accelsao
 
 ## 习题
 
-??? note "[UOJ #78. 二分图最大匹配](https://uoj.ac/problem/78) "
+??? note "[UOJ #80. 二分图最大权匹配](https://uoj.ac/problem/80) "
     模板题
     
     ```cpp
