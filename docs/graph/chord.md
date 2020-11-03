@@ -1,4 +1,4 @@
-弦图是一种特殊的图，很多在一般图上的 NP 问题在弦图上都有优秀的线性时间复杂度算法。
+弦图是一种特殊的图，很多在一般图上的 NP-Hard 问题在弦图上都有优秀的线性时间复杂度算法。
 
 ## 一些定义与性质
 
@@ -274,7 +274,7 @@ for (int i = 1; i <= n; i++)
 
  [P3196\[HNOI2008\]神奇的国度](https://www.luogu.com.cn/problem/P3196) 
 
- [P3852\[TJOI2007\]小朋友](https://www.luogu.com.cn/problem/P3852) 
+ [P3852\[TJOI2007\]小朋友](https://www.luogu.com.cn/problem/P3852)
 
 ## 参考资料
 
@@ -284,4 +284,4 @@ for (int i = 1; i <= n; i++)
 
  [弦图总结 - 租酥雨](https://www.cnblogs.com/zhoushuyu/p/8716935.html) 
 
-[R. E. Tarjan and M. Yannakakis, Simple linear-time algorithms to test chordality of graphs,test acyclicity of hypergraphs,and selectively reduce acyclic hypergraphs, SIAM J. Comput., 13 (1984), pp. 566–579.]
+ [R. E. Tarjan and M. Yannakakis, Simple linear-time algorithms to test chordality of graphs,test acyclicity of hypergraphs,and selectively reduce acyclic hypergraphs, SIAM J. Comput., 13 (1984), pp. 566–579.](https://dl.acm.org/doi/abs/10.1137/0213035)
