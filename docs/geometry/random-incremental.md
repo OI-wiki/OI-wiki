@@ -1,4 +1,4 @@
-author: Ir1d
+author: Ir1d, TianyiQ
 
 ## 简介
 
@@ -30,7 +30,7 @@ $$
 
 遍历完所有点之后，所得到的圆就是覆盖所有点得最小圆。
 
- **时间复杂度**  $O(n)$ 
+ **时间复杂度**  $O(n)$ ，证明详见参考资料。
 
  **空间复杂度**  $O(n)$ 
 
@@ -112,10 +112,15 @@ $$
 
  [「HNOI2012」射箭](https://www.luogu.com.cn/problem/P3222) 
 
-## 参考资料
+ [CodeForces 442E](https://codeforces.com/problemset/problem/442/E)
+
+
+## 参考资料与扩展阅读
 
  <http://www.doc88.com/p-007257893177.html> 
 
  <https://www.cnblogs.com/aininot260/p/9635757.html> 
 
  <https://wenku.baidu.com/view/162699d63186bceb19e8bbe6.html> 
+
+ <https://blog.csdn.net/u014609452/article/details/62039612>
