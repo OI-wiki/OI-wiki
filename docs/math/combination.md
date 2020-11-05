@@ -85,7 +85,7 @@ $$
 (x_1 + x_2 + \cdots + x_t)^n = \sum_{满足 n_1 + \cdots + n_t=n 的非负整数解} \binom{n}{n_1n_2\cdots n_t} x_1^{n_1}x_2^{n_2}\cdots x_t^{n_t}
 $$
 
-其中的 $\binom{n}{n_1n_2\cdots n_t}$ 是多项式系数，它的性质也很相似：
+其中的 $\binom{n}{n_1,n_2,\cdots ,n_t}$ 是多项式系数，它的性质也很相似：
 
 $$
 \sum{\binom{n}{n_1n_2\cdots n_t}} = t^n
