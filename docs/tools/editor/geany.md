@@ -70,8 +70,8 @@ sudo make install
 
 这里给出 macOS 和 Linux 下的默认模板配置文件目录：
 
-- 系统目录：`/usr/share/geany/templates/files/`
-- 用户目录：`~/.config/geany/templates/files/`[^2]
+- 系统目录： `/usr/share/geany/templates/files/` 
+- 用户目录： `~/.config/geany/templates/files/` [^2]
 
 ## 常见问题
 
