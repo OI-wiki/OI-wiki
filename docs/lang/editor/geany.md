@@ -34,6 +34,7 @@ Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者�
 #### 方法一
 
 使用包管理器进行安装，如在 Ubuntu 或 NOI Linux 中，运行
+
 ```bash
 sudo apt install geany
 ```
@@ -49,7 +50,7 @@ make
 sudo make install
 ```
 
-如遇到 `No package 'gtk+-2.0' found` 可能需要安装 `libgtk2.0-dev`。
+如遇到 `No package 'gtk+-2.0' found` 可能需要安装 `libgtk2.0-dev` 。
 
 ## 使用技巧
 
@@ -68,7 +69,7 @@ sudo make install
 这里给出 macOS 和 Linux 下的默认模板配置文件目录：
 
 - 系统目录：/usr/share/geany/templates/files/
-- 用户目录：~/.config/geany/templates/files/[^2]
+- 用户目录：~/。config/geany/templates/files/[^2]
 
 ## 常见问题
 
