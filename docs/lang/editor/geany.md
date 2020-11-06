@@ -33,9 +33,9 @@ Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者�
 
 #### 方法一
 
-使用包管理器进行安装，如在 Ubuntu 或 NOI Linux 中
+使用包管理器进行安装，如在 Ubuntu 或 NOI Linux 中，运行
 ```bash
-    sudo apt install geany
+sudo apt install geany
 ```
 
 #### 方法二
@@ -44,9 +44,9 @@ Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者�
 2. 终端下运行：
 
 ```bash
-    ./configure
-    make
-    sudo make install
+./configure
+make
+sudo make install
 ```
 
 如遇到 `No package 'gtk+-2.0' found` 可能需要安装 `libgtk2.0-dev`。
@@ -56,6 +56,7 @@ Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者�
 ### 切换文件类型
 
 在*文档 -> 设置文件类型*中进行切换。
+
 如 C++ 语言，点击*文档 -> 设置文件类型 -> 编程语言 -> C++ 源文件*，即可看到文件已被转换为 C++ 语言的语法高亮了。
 
 ### 设置文件模板
@@ -67,26 +68,24 @@ Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者�
 这里给出 macOS 和 Linux 下的默认模板配置文件目录：
 
 - 系统目录：/usr/share/geany/templates/files/
-- 用户目录：~/.config/geany/templates/files/[^3]
+- 用户目录：~/.config/geany/templates/files/[^2]
 
 ## 常见问题
 
 ### 兼容深度终端
 
-在首选项→工具→虚拟终端，修改终端的命令为：
+在*首选项 -> 工具 -> 虚拟终端*，修改终端的命令为：
 
 ```bash
 deepin-terminal -x "/bin/sh" %c
 ```
 
-点击“应用”按钮即可。[^4]
+点击“应用”按钮即可。[^3]
 
 ## 参考资料与注释
 
 [^1]: 详见： <https://github.com/geany/geany/issues/2344> 
 
-[^2]: 注意：文件扩展名的不同仅仅是习惯问题，无实际影响。
+[^2]: 来源： <https://wiki.geany.org/config/templates> 
 
-[^3]: 来源： <https://wiki.geany.org/config/templates> 
-
-[^4]: 来源：Deepin Wiki <https://wiki.deepin.org/> 
+[^3]: 来源：Deepin Wiki <https://wiki.deepin.org/> 
