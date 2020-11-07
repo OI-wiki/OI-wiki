@@ -31,69 +31,14 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
 
 ???+ 参考代码
     ```cpp
-    #include <assert.h>
     #include <algorithm>
-    #include <bitset>
-    #include <cmath>
-    #include <cstdio>
-    #include <cstdlib>
     #include <cstring>
-    #include <iomanip>
     #include <iostream>
-    #include <map>
-    #include <queue>
-    #include <set>
-    #include <sstream>
-    #include <stack>
-    #include <vector>
-    
     using namespace std;
     typedef long long ll;
-    typedef set<int>::iterator ssii;
-    
-    #define Cmp(a, b) memcmp(a, b, sizeof(b))
-    #define Cpy(a, b) memcpy(a, b, sizeof(b))
-    #define Set(a, v) memset(a, v, sizeof(a))
-    #define debug(x) cout << #x << ": " << x << endl
-    #define _forS(i, l, r) for (set<int>::iterator i = (l); i != (r); i++)
-    #define _rep(i, l, r) for (int i = (l); i <= (r); i++)
-    #define _for(i, l, r) for (int i = (l); i < (r); i++)
-    #define _forDown(i, l, r) for (int i = (l); i >= r; i--)
-    #define debug_(ch, i) printf(#ch "[%d]: %d\n", i, ch[i])
-    #define debug_m(mp, p) printf(#mp "[%d]: %d\n", p->first, p->second)
-    #define debugS(str) cout << "dbg: " << str << endl;
-    #define debugArr(arr, x, y)                \
-      _for(i, 0, x) {                          \
-        _for(j, 0, y) printf("%c", arr[i][j]); \
-        printf("\n");                          \
-      }
-    #define _forPlus(i, l, d, r) for (int i = (l); i + d < (r); i++)
-    #define lowbit(i) (i & (-i))
-    #define MPR(a, b) make_pair(a, b)
-    
-    template <class T>
-    inline bool chmax(T& a, T b) {
-      if (a < b) {
-        a = b;
-        return true;
-      }
-      return false;
-    }
-    
-    template <class T>
-    inline bool chmin(T& a, T b) {
-      if (a > b) {
-        a = b;
-        return true;
-      }
-      return false;
-    }
-    
-    // ============================================================== //
     
     const int maxn = 150000 + 10;
     const int maxm = 300 + 10;
-    const ll inf = 0xcfcfcfcfcfcfcfcf;
     
     ll f[2][maxn];
     ll a[maxm], b[maxm], t[maxm];
@@ -103,45 +48,40 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
     
     int fl = 1;
     void init() {
-      memset(f, inf, sizeof(f));
+      memset(f, 207, sizeof(f));
       memset(que, 0, sizeof(que));
-      _rep(i, 1, n) f[0][i] = 0;
+      for (int i = 1; i <= n; i++) f[0][i] = 0;
       fl = 1;
     }
     
     void dp() {
       init();
-      _rep(i, 1, m) {
-        int l = 1, r = 0;
-    
-        int k = 1;
-        _rep(j, 1, n) {
+      for (int i = 1; i <= m; i++) {
+        int l = 1, r = 0, k = 1;
+        for (int j = 1; j <= n; j++) {
           for (; k <= min(1ll * n, j + d * (t[i] - t[i - 1])); k++) {
             while (l <= r && f[fl ^ 1][que[r]] <= f[fl ^ 1][k]) r--;
             que[++r] = k;
           }
-    
+        
           while (l <= r && que[l] < max(1ll, j - d * (t[i] - t[i - 1]))) l++;
           f[fl][j] = f[fl ^ 1][que[l]] - abs(a[i] - j) + b[i];
         }
-    
+        
         fl ^= 1;
       }
     }
     
     int main() {
-      // freopen("input.txt", "r", stdin);
       cin >> n >> m >> d;
-      _rep(i, 1, m) {
-        cin >> a[i] >> b[i] >> t[i];
-        // debug(t[i]);
-      }
-    
+      for (int i = 1; i <= m; i++) cin >> a[i] >> b[i] >> t[i];
+      
       // then dp
       dp();
-      ll ans = inf;
-      _rep(i, 1, n) chmax(ans, f[fl ^ 1][i]);
+      ll ans = -1e18;
+      for (int i = 1; i <= n; i++) ans = max(ans, f[fl ^ 1][i]);
       cout << ans << endl;
+      return 0;
     }
     ```
 
