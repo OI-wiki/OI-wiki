@@ -63,11 +63,11 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
             while (l <= r && f[fl ^ 1][que[r]] <= f[fl ^ 1][k]) r--;
             que[++r] = k;
           }
-        
+    
           while (l <= r && que[l] < max(1ll, j - d * (t[i] - t[i - 1]))) l++;
           f[fl][j] = f[fl ^ 1][que[l]] - abs(a[i] - j) + b[i];
         }
-        
+    
         fl ^= 1;
       }
     }
@@ -75,7 +75,7 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
     int main() {
       cin >> n >> m >> d;
       for (int i = 1; i <= m; i++) cin >> a[i] >> b[i] >> t[i];
-      
+    
       // then dp
       dp();
       ll ans = -1e18;
