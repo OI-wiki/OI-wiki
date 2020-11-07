@@ -46,12 +46,11 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
     #include <sstream>
     #include <stack>
     #include <vector>
-    ```
-
+    
     using namespace std;
     typedef long long ll;
     typedef set<int>::iterator ssii;
-
+    
     #define Cmp(a, b) memcmp(a, b, sizeof(b))
     #define Cpy(a, b) memcpy(a, b, sizeof(b))
     #define Set(a, v) memset(a, v, sizeof(a))
@@ -67,7 +66,7 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
     #define _forPlus(i, l, d, r) for(int i = (l); i + d < (r); i++)
     #define lowbit(i) (i & (-i))
     #define MPR(a, b) make_pair(a, b)
-
+    
     template <class T>
     inline bool chmax(T& a, T b) {
         if(a < b) {
@@ -76,7 +75,7 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
         }
         return false;
     }
-
+    
     template <class T>
     inline bool chmin(T& a, T b) {
         if(a > b) {
@@ -85,19 +84,19 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
         }
         return false;
     }
-
+    
     // ============================================================== //
-
+    
     const int maxn = 150000 + 10;
     const int maxm = 300 + 10;
     const ll inf = 0xcfcfcfcfcfcfcfcf;
-
+    
     ll f[2][maxn];
     ll a[maxm], b[maxm], t[maxm];
     int n, m, d;
-
+    
     int que[maxn];
-
+    
     int fl = 1;
     void init() {
         memset(f, inf, sizeof(f));
@@ -105,29 +104,27 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
         _rep(i, 1, n) f[0][i] = 0;
         fl = 1;
     }
-
-
-
+    
     void dp() {
         init();
         _rep(i, 1, m) {
             int l = 1, r = 0;
-
+            
             int k = 1;
             _rep(j, 1, n) {
                 for (; k <= min(1ll*n, j+d*(t[i]-t[i-1])); k++) {
                     while (l <= r && f[fl^1][que[r]] <= f[fl^1][k]) r--;
                     que[++r] = k;
                 }
-
+                
                 while (l <= r && que[l] < max(1ll, j-d*(t[i]-t[i-1])) ) l++;
                 f[fl][j] = f[fl^1][que[l]] - abs(a[i]-j) + b[i];
             }
-
+            
             fl ^= 1;
         }
     }
-
+    
     int main() {
         //freopen("input.txt", "r", stdin);
         cin >> n >> m >> d;
@@ -135,7 +132,7 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
             cin >> a[i] >> b[i] >> t[i];
             //debug(t[i]);
         }
-
+        
         // then dp
         dp();
         ll ans = inf;
