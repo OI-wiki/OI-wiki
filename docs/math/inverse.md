@@ -53,25 +53,38 @@
 
 首先，很显然的 $1^{-1} \equiv 1 \pmod p$ ；
 
-然后，设 $p=ki+j,j<i,1<i<p$ ，再放到 $\mod p$ 意义下就会得到： $ki+j \equiv 0 \pmod p$ ；
+???+note "证明"
+    对于 $\forall p \in Z$，有 $1 \times 1 \equiv 1 \pmod p$ 恒成立，故在 $p$ 下 $1$ 的逆元是 $1$，而这是推算出其他情况的基础。
+    
+其次对于递归情况 $i^{-1}$，我们令 $k = \lfloor \frac{p}{i} \rfloor$，$j = k \bmod i$，有 $p = ki + j$。再放到 $\mod p$ 意义下就会得到： $ki+j \equiv 0 \pmod p$ ；
 
-两边同时乘 $i^{-1},j^{-1}$ ：
+两边同时乘 $i^{-1} \times j^{-1}$ ：
 
- $kj^{-1}+i^{-1} \equiv 0 \pmod p$ ；
+$$kj^{-1}+i^{-1} \equiv 0 \pmod p$$
 
- $i^{-1} \equiv -kj^{-1} \pmod p$ ；
+$$i^{-1} \equiv -kj^{-1} \pmod p$$
 
- $i^{-1} \equiv -(\frac{p}{i}) (p \bmod i)^{-1}$ ；
+再带入$j = k \bmod i$，有 $p = ki + j$，有：
 
-然后我们就可以推出逆元了：
+$$i^{-1} \equiv -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1} \pmod p$$
+
+我们注意到 $p \bmod i < i$，而在迭代中我们完全可以假设我们已经知道了所有的模 $p$ 下的逆元 $j^{-1}, j < i$。
+
+故我们就可以推出逆元，利用递归的形式，而使用迭代实现：
+
+$$i^{-1} \equiv  \begin{cases}
+    1,                                           & \text{if } i = 1, \\
+    -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1}, & \text{otherwises}.
+\end{cases} \pmod p$$
 
 ???+note "代码实现"
     ```cpp
     inv[1] = 1;
-    for (int i = 2; i <= n; ++i) inv[i] = (long long)(p - p / i) * inv[p % i] % p;
+    for (int i = 2; i <= n; ++i)
+        inv[i] = (long long)(p - p / i) * inv[p % i] % p;
     ```
 
-使用 $p-\dfrac{p}{i}$ 来防止出现负数。
+使用 $p-\lfloor \dfrac{p}{i} \rfloor$ 来防止出现负数。
 
 另外，根据线性求逆元方法的式子： $i^{-1} \equiv -kj^{-1} \pmod p$ 
 
