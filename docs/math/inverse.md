@@ -73,9 +73,11 @@
 故我们就可以推出逆元，利用递归的形式，而使用迭代实现：
 
 $$
+i^{-1} \equiv \begin{cases}
     1,                                           & \text{if } i = 1, \\
     -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1}, & \text{otherwises}.
-\end{cases} \pmod p$$
+\end{cases} \pmod p
+$$
 
 ???+note "代码实现"
     ```cpp
@@ -85,6 +87,8 @@ $$
     ```
 
 使用 $p-\lfloor \dfrac{p}{i} \rfloor$ 来防止出现负数。
+
+另外我们注意到我们没有对 `inv[0]` 进行定义却可能会使用它：当 $i | p$ 成立时，我们在代码中会访问 `inv[p % i]`，也就是 `inv[0]`，这是因为当 $i | p$ 时不存在 $i$ 的逆元 $i^{-1}$。[线性同余方程](./linear-equation.md) 中指出，如果 $i$ 与 $p$ 不互素时不存在相应的逆元（当一般而言我们会使用一个大素数，比如 $10^9 + 7$ 来确保它有着有效的逆元）。因此需要指出的是：如果没有相应的逆元的时候，`inv[i]` 的值是未定义的。
 
 另外，根据线性求逆元方法的式子： $i^{-1} \equiv -kj^{-1} \pmod p$ 
 
