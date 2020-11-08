@@ -82,7 +82,9 @@ $$
 ???+note "代码实现"
     ```cpp
     inv[1] = 1;
-    for (int i = 2; i <= n; ++i) inv[i] = (long long)(p - p / i) * inv[p % i] % p;
+    for (int i = 2; i <= n; ++i) {
+        inv[i] = (long long)(p - p / i) * inv[p % i] % p;
+    }
     ```
 
 使用 $p-\lfloor \dfrac{p}{i} \rfloor$ 来防止出现负数。
@@ -130,7 +132,3 @@ $$
  [「AHOI2005」洗牌](https://www.luogu.com.cn/problem/P2054) 
 
  [「SDOI2016」排列计数](https://loj.ac/problem/2034) 
-
-$$
-
-$$
