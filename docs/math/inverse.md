@@ -54,7 +54,7 @@
 首先，很显然的 $1^{-1} \equiv 1 \pmod p$ ；
 
 ???+note "证明"
-    对于 $\forall p \in Z$ ，有 $1 \times 1 \equiv 1 \pmod p$ 恒成立，故在 $p$ 下 $1$ 的逆元是 $1$ ，而这是推算出其他情况的基础。
+    对于 $\forall p \in \mathbf{Z}$ ，有 $1 \times 1 \equiv 1 \pmod p$ 恒成立，故在 $p$ 下 $1$ 的逆元是 $1$ ，而这是推算出其他情况的基础。
 
 其次对于递归情况 $i^{-1}$ ，我们令 $k = \lfloor \frac{p}{i} \rfloor$ ， $j = k \bmod i$ ，有 $p = ki + j$ 。再放到 $\mod p$ 意义下就会得到： $ki+j \equiv 0 \pmod p$ ；
 
