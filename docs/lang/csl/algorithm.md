@@ -29,7 +29,7 @@ STL 提供了大约 100 个实现算法的模版函数，基本都包含在 `<al
 
 ### 使用样例
 
-- 使用 `next_permutation` 生成 $1$ 到 $9$ 的全排列。例题：[Luogu P1706 全排列问题](https://www.luogu.com.cn/problem/P1706)
+- 使用 `next_permutation` 生成 $1$ 到 $9$ 的全排列。例题： [Luogu P1706 全排列问题](https://www.luogu.com.cn/problem/P1706) 
 
 ```cpp
 int N = 9, a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -59,7 +59,7 @@ partial_sum(src.begin(), src.end(), back_inserter(dst));
 for (unsigned int i = 0; i < dst.size(); i++) cout << dst[i] << " ";
 ```
 
-- 使用 `lower_bound` 查找有序数组 $a$ 中最接近 $x$ 的元素。例题：[UVA10487 Closest Sums](https://www.luogu.com.cn/problem/UVA10487)
+- 使用 `lower_bound` 查找有序数组 $a$ 中最接近 $x$ 的元素。例题： [UVA10487 Closest Sums](https://www.luogu.com.cn/problem/UVA10487) 
 
 ```cpp
 int N = 10, a[] = {1, 1, 2, 4, 5, 5, 8, 8, 9, 9}, x = 6;
@@ -76,7 +76,7 @@ else
   cout << a[i - 1];
 ```
 
-- 使用 `sort` 与 `unique` 查找数组 $a$ 中 **第 $k$ 小的值** （注意：重复出现的值仅算一次，因此本题不是求解第 $k$ 小的元素）。例题：[Luogu P1138 第k小整数](https://www.luogu.com.cn/problem/P1138)
+- 使用 `sort` 与 `unique` 查找数组 $a$ 中 **第 $k$ 小的值** （注意：重复出现的值仅算一次，因此本题不是求解第 $k$ 小的元素）。例题： [Luogu P1138 第 k 小整数](https://www.luogu.com.cn/problem/P1138) 
 
 ```cpp
 int N = 10, a[] = {1, 3, 3, 7, 2, 5, 1, 2, 4, 6}, k = 3;
