@@ -32,34 +32,32 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
 ???+ 参考代码
     ```cpp
     #include <algorithm>
-    #include <cmath>
-    #include <cstdio>
     #include <cstring>
     #include <iostream>
+    using namespace std;
+    typedef long long ll;
+    
     const int maxn = 150000 + 10;
     const int maxm = 300 + 10;
-    const ll inf = 0xcfcfcfcfcfcfcfcf;
     
     ll f[2][maxn];
     ll a[maxm], b[maxm], t[maxm];
     int n, m, d;
     
     int que[maxn];
-    int fl = 1;
     
+    int fl = 1;
     void init() {
-      memset(f, inf, sizeof(f));
+      memset(f, 207, sizeof(f));
       memset(que, 0, sizeof(que));
-      _rep(i, 1, n) f[0][i] = 0;
+      for (int i = 1; i <= n; i++) f[0][i] = 0;
       fl = 1;
     }
     
     void dp() {
       init();
       for (int i = 1; i <= m; i++) {
-        int l = 1, r = 0;
-    
-        int k = 1;
+        int l = 1, r = 0, k = 1;
         for (int j = 1; j <= n; j++) {
           for (; k <= min(1ll * n, j + d * (t[i] - t[i - 1])); k++) {
             while (l <= r && f[fl ^ 1][que[r]] <= f[fl ^ 1][k]) r--;
@@ -76,12 +74,14 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
     
     int main() {
       cin >> n >> m >> d;
-      _rep(i, 1, m) { cin >> a[i] >> b[i] >> t[i]; }
+      for (int i = 1; i <= m; i++) cin >> a[i] >> b[i] >> t[i];
     
+      // then dp
       dp();
-      ll ans = inf;
-      _rep(i, 1, n) ans = max(ans, f[fl ^ 1][i]);
+      ll ans = -1e18;
+      for (int i = 1; i <= n; i++) ans = max(ans, f[fl ^ 1][i]);
       cout << ans << endl;
+      return 0;
     }
     ```
 
