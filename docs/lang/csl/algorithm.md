@@ -73,3 +73,12 @@ if (i == 0 || (i < n && a[i] - x < x - a[i - 1]))
 else
     cout << a[i - 1];
 ```
+
+- 使用 `sort` 与 `unique` 查找数组 `a` 中 **第 $k$ 大的值** （重复出现的值仅算一次）。
+
+```cpp
+sort(a, a + n);
+// unique将返回去重之后数组最后一个元素之后的地址，计算出的cnt为去重后数组的长度
+int cnt = unique(a, a + n) - a;
+cout << a[k - 1];
+```
