@@ -28,7 +28,7 @@ $$
     \end{aligned}
     $$
 
-    再由 $u+1 \leq v+1 \leq r_1 \leq v_2$ 和归纳假设知
+    再由 $u+1 \leq v+1 \leq r_1 \leq r_2$ 和归纳假设知
 
     $$
     f_{u+1,r_1} + f_{v+1,r_2} \leq f_{u+1,r_2} + f_{v+1,r_1}
