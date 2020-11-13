@@ -180,13 +180,13 @@ sudo apt install gnome-tweak-tool
 
 如果你使用的是 kde，那么在 System Settings -> Input devices -> Keyboard -> Advanced -> Caps Lock Behavior 中勾选 Swap ESC and Caps Lock 即可
 
-#### 方法 2：通过 setxkbmap （仅适用X11）
+#### 方法 2：通过 setxkbmap（仅适用 X11）
 
 在绝大多数 linux 发行版上，可以通过 `setxkbmap -option caps:swapescape` 来临时修改。
 
 如果想要永久修改，将其加入到 `~/.profile` 中（对当前用户）或 `/etc/profile` 中（对所有用户）。
 
-#### 方法 3：修改 X11 配置文件（仅适用X11，不推荐）
+#### 方法 3：修改 X11 配置文件（仅适用 X11，不推荐）
 
 对所有用户进行修改，如果改错了容易使整个桌面环境无法启动。
 
