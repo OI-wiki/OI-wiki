@@ -164,7 +164,7 @@ imap <RIGHT> <Nop>
 
 的确可以。
 
-#### 方法1：在桌面环境中修改（推荐）
+#### 方法 1：在桌面环境中修改（推荐）
 
 如果你使用的是 gnome 桌面环境，那么可以很方便的使用图形界面修改，无需担心配置错误等问题。
 
@@ -178,13 +178,13 @@ sudo apt install gnome-tweak-tool
 
 打开，在 Keyboard & Mouse -> Additional Layout Options -> Caps Lock Behavior 中，勾选 Swap ESC and Caps Lock 即可。
 
-#### 方法2：通过 setxkbmap
+#### 方法 2：通过 setxkbmap
 
 在绝大多数 linux 发行版上，可以通过 `setxkbmap -option caps:swapescape` 来临时修改。
 
 如果想要永久修改，将其加入到 `~/.profile` 中（对当前用户）或 `/etc/profile` 中（对所有用户）。
 
-#### 方法3：修改X11配置文件（不推荐）
+#### 方法 3：修改 X11 配置文件（不推荐）
 
 对所有用户进行修改，如果改错了容易使整个桌面环境无法启动。
 
@@ -198,7 +198,7 @@ sudo vim pc
 
 找到 `key <ESC>` 与 `key <CAPS>` 这两行，调换两行的中括号 `[]` 中的内容。注销再重新进入系统后，它们就换过来了。
 
-#### 方法4（在考场上使用）
+#### 方法 4（在考场上使用）
 
 对于使用考场设备，拿不到管理员权限的情况，可以在终端输入如下命令：
 
