@@ -147,7 +147,7 @@ command < input > output
 
 ### Help
 
-一般来说，命令行下的程序都附有“帮助”，Windows 下一般使用 `command /?` 或者 `command -?` 获取，Unix-like (例如 Linux) 上一般使用 `command --help` 获取（但是 BSD 下的“帮助”往往过分简略而难以使用）。
+一般来说，命令行下的程序都附有“帮助”，Windows 下一般使用 `command /?` 或者 `command -?` 获取，Unix-like（例如 Linux) 上一般使用 `command --help` 获取（但是 BSD 下的“帮助”往往过分简略而难以使用）。
 
 此外，在 Unix-like 系统上，还有可通过 `man command` 获取的“手册”(manual)，相比“帮助”一般更为详细。
 
@@ -157,9 +157,9 @@ command < input > output
 
 但是这个命令实际上在系统中有两个对应的命令：一个是部分 Shell（例如 Bash）内建的命令，一个是 GNU time（是一个单独的软件）。这两个之间存在一些差异。
 
-一般在 Bash 中直接使用 `time` 调用的是 Bash 内建的版本，我们可以使用 `TIMEFORMAT` 环境变量控制其输出格式，例如将其设为 `%3lR` 即可输出三位精度的实际运行时间，`%3lU` 即可输出三位精度的用户空间运行时间。[^bash-time-format]
+一般在 Bash 中直接使用 `time` 调用的是 Bash 内建的版本，我们可以使用 `TIMEFORMAT` 环境变量控制其输出格式，例如将其设为 `%3lR` 即可输出三位精度的实际运行时间， `%3lU` 即可输出三位精度的用户空间运行时间。[^bash-time-format]
 
-如果想要调用 GNU 版本的 time，则需使用 `\time` 或者 `/usr/bin/time` 调用，但是他的输出格式并不易读，我们可以附加 `-p` 参数（即为 `\time -p`）来获得易读的输出。
+如果想要调用 GNU 版本的 time，则需使用 `\time` 或者 `/usr/bin/time` 调用，但是他的输出格式并不易读，我们可以附加 `-p` 参数（即为 `\time -p` ）来获得易读的输出。
 
 ## 参考资料与注释
 
@@ -169,4 +169,4 @@ command < input > output
 
 [^autocomplete]:  [Comparison_of_command_shells#Interactive_features](https://en.wikipedia.org/wiki/Comparison_of_command_shells#Interactive_features) 
 
-[^bash-time-format]:  [https://unix.stackexchange.com/a/70655](https://unix.stackexchange.com/a/70655)
+[^bash-time-format]:  <https://unix.stackexchange.com/a/70655> 
