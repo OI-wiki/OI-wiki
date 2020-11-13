@@ -182,7 +182,7 @@ sudo apt install gnome-tweak-tool
 
 在绝大多数 linux 发行版上，可以通过 `setxkbmap -option caps:swapescape` 来临时修改。
 
-如果想要永久修改，将其加入到 `~/.profile` 中（对当前用户）或 `/etc/profile` 中（对所有用户）
+如果想要永久修改，将其加入到 `~/.profile` 中（对当前用户）或 `/etc/profile` 中（对所有用户）。
 
 #### 方法3：修改X11配置文件（不推荐）
 
@@ -193,7 +193,7 @@ sudo apt install gnome-tweak-tool
 ```bash
 cd /usr/share/X11/xkb/symbols/
 sudo cp pc pc.bak # 备份配置文件，以防改错
-sudo pc
+sudo vim pc
 ```
 
 找到 `key <ESC>` 与 `key <CAPS>` 这两行，调换两行的中括号 `[]` 中的内容。注销再重新进入系统后，它们就换过来了。
