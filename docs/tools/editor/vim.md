@@ -162,13 +162,45 @@ imap <RIGHT> <Nop>
 
 > 键盘上的<kbd>Esc</kbd>键太远了，小拇指都按得不顺手。诶，我又不小心碰到大小写锁定切换键了！这个<kbd>CapsLock</kbd>键实在太没用了，不仅难用到，而且这么顺手这么近，还容易错按到，我要它何用？能不能把它和<kbd>Esc</kbd>换一下？
 
-的确可以。在终端中输入：
+的确可以。
+
+#### 方法 1：在桌面环境中修改（推荐）
+
+如果你使用的是 gnome 桌面环境，那么可以很方便的使用图形界面修改，无需担心配置错误等问题。
+
+只对当前用户生效。
+
+首先下载 gnome-tweak-tool。
 
 ```bash
-sudo vim /usr/share/X11/xkb/symbols/pc
+sudo apt install gnome-tweak-tool
+```
+
+打开，在 Keyboard & Mouse -> Additional Layout Options -> Caps Lock Behavior 中，勾选 Swap ESC and Caps Lock 即可。
+
+如果你使用的是 KDE，那么在 System Settings -> Input devices -> Keyboard -> Advanced -> Caps Lock Behavior 中勾选 Swap ESC and Caps Lock 即可
+
+#### 方法 2：通过 setxkbmap（仅适用 X11）
+
+在绝大多数 linux 发行版上，可以通过 `setxkbmap -option caps:swapescape` 来临时修改。
+
+如果想要永久修改，将其加入到 `~/.profile` 中（对当前用户）或 `/etc/profile` 中（对所有用户）。
+
+#### 方法 3：修改 X11 配置文件（仅适用 X11，不推荐）
+
+对所有用户进行修改，如果改错了容易使整个桌面环境无法启动。
+
+在终端中输入：
+
+```bash
+cd /usr/share/X11/xkb/symbols/
+sudo cp pc pc.bak # 备份配置文件，以防改错
+sudo vim pc
 ```
 
 找到 `key <ESC>` 与 `key <CAPS>` 这两行，调换两行的中括号 `[]` 中的内容。注销再重新进入系统后，它们就换过来了。
+
+#### 方法 4（在考场上使用）
 
 对于使用考场设备，拿不到管理员权限的情况，可以在终端输入如下命令：
 
@@ -177,6 +209,8 @@ xmodmap -e 'clear Lock' -e 'keycode x042=Escape'
 ```
 
 该映射重启设备失效，因此不用担心修改考场设备的问题。
+
+另：切换输入法，切换 tty 等操作也有可能使其失效，重新运行命令即可
 
 ### 重复，重复，重复
 
