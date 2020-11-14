@@ -159,7 +159,7 @@ command < input > output
 
 一般在 Bash 中直接使用 `time` 调用的是 Bash 内建的版本，我们可以使用 `TIMEFORMAT` 环境变量控制其输出格式，例如将其设为 `%3lR` 即可输出三位精度的实际运行时间， `%3lU` 即可输出三位精度的用户空间运行时间。[^bash-time-format]
 
-如果想要调用 GNU 版本的 time，则需使用 `\time` 或者 `/usr/bin/time` 调用，但是他的输出格式并不易读，我们可以附加 `-p` 参数（即为 `\time -p` ）来获得易读的输出。
+如果想要调用 GNU 版本的 time，则需使用 `\time` 或者 `/usr/bin/time` 调用，但是它的输出格式并不易读，我们可以附加 `-p` 参数（即为 `\time -p` ）来获得易读的输出。
 
 ## 参考资料与注释
 
