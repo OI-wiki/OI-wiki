@@ -119,8 +119,54 @@ command < input > output
 | u    | 按十进制格式显示无符号整型 |
 | o    | 按八进制格式显示变量    |
 
+## 命令行使用技巧
+
+### 自动补全
+
+补全是 Shell 提供的基本功能之一，主要用于减少命令行使用中的输入量和 typo 概率。
+
+一般情况下，使用补全的快捷键一般是<kbd>Tab</kbd>，按下后 Shell 会根据已输入的字符补全信息。
+
+不同的 Shell 提供了能力不尽相同的补全能力。
+
+以下是常见 Shell 的补全能力[^autocomplete]：
+
+| Shell                | 补全能力（补全范围）                                               |
+| -------------------- | -------------------------------------------------------- |
+| cmd (Windows 的传统控制台） | 文件路径                                                     |
+| PowerShell           | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，自动纠错               |
+| Bash                 | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数                           |
+| Zsh                  | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，自动纠错和建议            |
+| Fish                 | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，补全时可显示参数功能，自动纠错和建议 |
+
+???+ note
+    PowerShell 的部分功能需要 PSReadline Module 载入或者位于 PowerShell ISE 中。  
+    Bash 的补全功能一般需要一个名为 `bash-completions` 的包才能获得完整功能，部分软件的补全文件由软件包自带。  
+    Zsh 完整的补全功能需要配合用户预定义的文件（一般随 Zsh 包或对应软件包安装）。  
+    Fish 在默认配置下提供良好完整的补全功能，但仍有部分官方未覆盖到的软件的补全文件由软件自行提供。
+
+### 帮助文档
+
+一般来说，命令行下的程序都附有“帮助”，Windows 下一般使用 `command /?` 或者 `command -?` 获取，Unix-like（例如 Linux) 上一般使用 `command --help` 获取（但是 BSD 下的“帮助”往往过分简略而难以使用）。
+
+此外，在 Unix-like 系统上，还有可通过 `man command` 获取的“手册”(manual)，相比“帮助”一般更为详细。
+
+### built-in time 和 GNU time
+
+测试程序运行时间时，我们通常可以使用 `time` 命令。
+
+但是这个命令实际上在系统中有两个对应的命令：一个是部分 Shell（例如 Bash）内建的命令，一个是 GNU time（是一个单独的软件）。这两个之间存在一些差异。
+
+一般在 Bash 中直接使用 `time` 调用的是 Bash 内建的版本，我们可以使用 `TIMEFORMAT` 环境变量控制其输出格式，例如将其设为 `%3lR` 即可输出三位精度的实际运行时间， `%3lU` 即可输出三位精度的用户空间运行时间。[^bash-time-format]
+
+如果想要调用 GNU 版本的 time，则需使用 `\time` 或者 `/usr/bin/time` 调用，但是它的输出格式并不易读，我们可以附加 `-p` 参数（即为 `\time -p` ）来获得易读的输出。
+
 ## 参考资料与注释
 
 [^1]: 刘汝佳《算法竞赛入门经典（第 2 版）》附录 A 开发环境与方法
 
 [^have-to-link-libm-in-gcc]:  [Why do you have to link the math library in C?](https://stackoverflow.com/questions/1033898/why-do-you-have-to-link-the-math-library-in-c) 
+
+[^autocomplete]:  [Comparison_of_command_shells#Interactive_features](https://en.wikipedia.org/wiki/Comparison_of_command_shells#Interactive_features) 
+
+[^bash-time-format]:  <https://unix.stackexchange.com/a/70655> 
