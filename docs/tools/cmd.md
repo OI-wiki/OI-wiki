@@ -145,7 +145,7 @@ command < input > output
     Zsh 完整的补全功能需要配合用户预定义的文件（一般随 Zsh 包或对应软件包安装）。  
     Fish 在默认配置下提供良好完整的补全功能，但仍有部分官方未覆盖到的软件的补全文件由软件自行提供。
 
-### Help
+### 帮助文档
 
 一般来说，命令行下的程序都附有“帮助”，Windows 下一般使用 `command /?` 或者 `command -?` 获取，Unix-like（例如 Linux) 上一般使用 `command --help` 获取（但是 BSD 下的“帮助”往往过分简略而难以使用）。
 
