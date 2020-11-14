@@ -153,7 +153,7 @@ command < input > output
 
 ### built-in time 和 GNU time
 
-对于测试程序运行时间，我们通常可以使用 `time` 命令。
+测试程序运行时间时，我们通常可以使用 `time` 命令。
 
 但是这个命令实际上在系统中有两个对应的命令：一个是部分 Shell（例如 Bash）内建的命令，一个是 GNU time（是一个单独的软件）。这两个之间存在一些差异。
 
