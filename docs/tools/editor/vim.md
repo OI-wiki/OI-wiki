@@ -178,7 +178,7 @@ sudo apt install gnome-tweak-tool
 
 打开，在 Keyboard & Mouse -> Additional Layout Options -> Caps Lock Behavior 中，勾选 Swap ESC and Caps Lock 即可。
 
-如果你使用的是 kde，那么在 System Settings -> Input devices -> Keyboard -> Advanced -> Caps Lock Behavior 中勾选 Swap ESC and Caps Lock 即可
+如果你使用的是 KDE，那么在 System Settings -> Input devices -> Keyboard -> Advanced -> Caps Lock Behavior 中勾选 Swap ESC and Caps Lock 即可
 
 #### 方法 2：通过 setxkbmap（仅适用 X11）
 
