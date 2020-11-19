@@ -112,8 +112,7 @@ $$
 
  [「HNOI2012」射箭](https://www.luogu.com.cn/problem/P3222) 
 
- [CodeForces 442E](https://codeforces.com/problemset/problem/442/E)
-
+ [CodeForces 442E](https://codeforces.com/problemset/problem/442/E) 
 
 ## 参考资料与扩展阅读
 
@@ -123,4 +122,4 @@ $$
 
  <https://wenku.baidu.com/view/162699d63186bceb19e8bbe6.html> 
 
- <https://blog.csdn.net/u014609452/article/details/62039612>
+ <https://blog.csdn.net/u014609452/article/details/62039612> 
