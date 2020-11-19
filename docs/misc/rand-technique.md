@@ -137,7 +137,7 @@ author: Ir1d, partychicken, ouuan, Marcythm, TianyiQ
 而连续选完 $k$ 对 $(s,t)$ 后判断它们是否全部满足目标 I 很简单，只要再跑一遍强连通缩点，判断一下 $n,m$ 是否都减小了 $k$ 即可。注意到若每次减少 $k=\dfrac{\min(n,m)}2$ ，则 $min(n,m)$ 必在 $O(\log(n+m))$ 轮内变成 1 ，也就转化到了平凡的情况。
 
 ???+ note "算法伪代码"
-    ```
+    ```text
 	while(n>1 and m>1):
 		randomly choose k=min(n,m)/2 pairs (s,t)
 		add edge t->s for all these pairs
