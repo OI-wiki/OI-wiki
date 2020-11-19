@@ -132,7 +132,8 @@ author: Ir1d, partychicken, ouuan, Marcythm, TianyiQ
 
 推论：等概率独立随机地连续选取 $\dfrac {\min(n,m)}2$ 对不含公共元素的 $(s,t)$ ，并对它们 **依次** 操作（即连边 $t\to s$ ），则这些操作全部满足目标 I 的概率 $\geq \dfrac 14$ 。
 
-- 理由： 
+- 理由：
+
 $$
 \begin{aligned}
 &\phantom{=\ }\dfrac {(n-1)(m-1)}{nm}\cdot\dfrac{(n-2)(m-2)}{(n-1)(m-1)}\cdots\dfrac{(n-k)(m-k)}{(n-k+1)(m-k+1)}\\
