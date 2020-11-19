@@ -488,18 +488,18 @@ $$
 
     尝试分析第二、第三步所需的操作次数：
 
-    - 记 01 随机变量 $X_i$ 表示 $i$ 是否被选入初始的子集，令 $X:=X_1+\cdots+X_n$ 表示子集大小，则第二步所需的操作次数等于 $\big|X-\mathrm{E}[X]\big|$ 。在 Hoeffding 不等式中取 $t=c\cdot\sqrt n$ （其中 $c$ 为任意常数），得到 $\mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geq t\Big]\leq 2e^{-c^2}$ 。也就是说，我们可以通过允许 $\Theta(\sqrt n)$ 级别的偏移，来得到任意小的常数级别的失败概率。（注意到这并不一定说明偏移量的期望值就是 $\Theta(\sqrt n)$ ）
+    - 记 01 随机变量 $X_i$ 表示 $i$ 是否被选入初始的子集，令 $X:=X_1+\cdots+X_n$ 表示子集大小，则第二、第三步所需的操作次数等于 $\big|X-\mathrm{E}[X]\big|$ 。在 Hoeffding 不等式中取 $t=c\cdot\sqrt n$ （其中 $c$ 为任意常数），得到 $\mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geq t\Big]\leq 2e^{-c^2}$ 。也就是说，我们可以通过允许 $\Theta(\sqrt n)$ 级别的偏移，来得到任意小的常数级别的失败概率。（注意到这并不一定说明偏移量的期望值就是 $\Theta(\sqrt n)$ ）
 
     至此我们已经基本能够确信，第二、第三步的操作次数应该不是瓶颈，该算法的期望抛硬币次数应该是 $n+o(n)$ 。
 
     ??? mdui-shadow-6 "闲得无聊想算精确的式子"
-        尝试用 Hoeffding 不等式求第二步中操作次数期望值的上界：
+        尝试用 Hoeffding 不等式求第二、第三步中操作次数期望值的上界：
 
         $$
         E\Big[\big|X-E[X]\big|\Big]=\int\limits_0^\infty \mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geq t\Big]\mathrm{d}t\leq2\int\limits_0^\infty \exp {-\dfrac {t^2}n}\mathrm{d}t=\sqrt{\pi n}
         $$
         
-        从而第二步所需抛硬币次数的期望值是 $\sqrt{\pi n}\cdot2\lceil\log_2 n\rceil$ 。
+        从而第二、第三步所需抛硬币次数的期望值是 $\sqrt{\pi n}\cdot2\lceil\log_2 n\rceil$ 。
 
         综上，该算法期望需要抛 $n+2\sqrt{\pi n}\lceil\log_2 n\rceil$ 次硬币。
 
