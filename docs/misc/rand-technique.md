@@ -138,14 +138,11 @@ author: Ir1d, partychicken, ouuan, Marcythm, TianyiQ
 
 ???+ note "算法伪代码"
     ```text
-    
-    ```
-
     while(n>1 and m>1):
-    	randomly choose k=min(n,m)/2 pairs (s,t)
-    	add edge t->s for all these pairs
-    	if new_n>n-k or new_m>m-k:
-    		roll_back()
+        randomly choose k=min(n,m)/2 pairs (s,t)
+        add edge t->s for all these pairs
+        if new_n>n-k or new_m>m-k:
+            roll_back()
     solve_trivial()
     ```
 
@@ -318,15 +315,14 @@ author: Ir1d, partychicken, ouuan, Marcythm, TianyiQ
     #include <algorithm>
     #include <cstdlib>
     #include <iostream>
-    ```
-
+    
     int n;
-
+    
     int a[510], b[510], c[510][510], d[510];
     int p[510], q[510];
-
+    
     int maxans = 0;
-
+    
     void check() {
       memset(d, 0, sizeof d);
       int nowans = 0;
@@ -335,7 +331,7 @@ author: Ir1d, partychicken, ouuan, Marcythm, TianyiQ
       for (int i = 1; i <= n; i++) nowans += (d[i] - b[i]) * a[i];
       maxans = std::max(maxans, nowans);
     }
-
+    
     int main() {
       srand(19260817);
       std::cin >> n;
@@ -366,15 +362,15 @@ author: Ir1d, partychicken, ouuan, Marcythm, TianyiQ
       long long val;
     } nd[100010];
     int root[100010];
-    ```
-
+    
+    
     int merge(int u, int v) {
       if (!(u && v)) return u | v;
       int x = rand() & 1, p = nd[u].val > nd[v].val ? u : v;
       nd[p].child[x] = merge(nd[p].child[x], u + v - p);
       return p;
     }
-
+    
     void pop(int &now) { now = merge(nd[now].child[0], nd[now].child[1]); }
     ```
 
@@ -429,9 +425,9 @@ $$
     - 坏事件中至少一者发生的概率， **不小于** 每一个的发生概率之和，减掉每两个同时发生的概率之和。
     - 坏事件中至少一者发生的概率， **不超过** 每一个的发生概率之和，减掉每两个同时发生的概率之和，加上每三个同时发生的概率之和。
     - ……
-    -   随着层数越来越多，交替出现的上界和下界也越来越紧。这一系列结论形式上类似容斥原理，证明过程也和容斥类似，这里略去。
+    - 随着层数越来越多，交替出现的上界和下界也越来越紧。这一系列结论形式上类似容斥原理，证明过程也和容斥类似，这里略去。
 
-         **自然常数的使用** ： $\Big(1-\dfrac 1n\Big)^n\leq \dfrac 1e,\forall n\geq1$ 
+     **自然常数的使用** ： $\Big(1-\dfrac 1n\Big)^n\leq \dfrac 1e,\forall n\geq1$ 
 
 - 左式关于 $n\geq 1$ 单调递增且在 $+\infty$ 处的极限是 $\dfrac 1e$ ，因此有这个结论。
 
