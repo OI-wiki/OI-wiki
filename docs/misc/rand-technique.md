@@ -132,18 +132,26 @@ author: Ir1d, partychicken, ouuan, Marcythm, TianyiQ
 
 推论：等概率独立随机地连续选取 $\dfrac {\min(n,m)}2$ 对不含公共元素的 $(s,t)$ ，并对它们 **依次** 操作（即连边 $t\to s$ ），则这些操作全部满足目标 I 的概率 $\geq \dfrac 14$ 。
 
-- 理由： $\dfrac {(n-1)(m-1)}{nm}\cdot\dfrac{(n-2)(m-2)}{(n-1)(m-1)}\cdots\dfrac{(n-k)(m-k)}{(n-k+1)(m-k+1)}=\dfrac{(n-k)(m-k)}{nm}\geq \dfrac 14$ 
+- 理由：
+
+$$
+\begin{aligned}
+&\phantom{=\ }\dfrac {(n-1)(m-1)}{nm}\cdot\dfrac{(n-2)(m-2)}{(n-1)(m-1)}\cdots\dfrac{(n-k)(m-k)}{(n-k+1)(m-k+1)}\\
+&=\dfrac{(n-k)(m-k)}{nm}\\
+&\geq \dfrac 14
+\end{aligned}
+$$
 
 而连续选完 $k$ 对 $(s,t)$ 后判断它们是否全部满足目标 I 很简单，只要再跑一遍强连通缩点，判断一下 $n,m$ 是否都减小了 $k$ 即可。注意到若每次减少 $k=\dfrac{\min(n,m)}2$ ，则 $\min(n,m)$ 必在 $O(\log(n+m))$ 轮内变成 1，也就转化到了平凡的情况。
 
 ???+ note "算法伪代码"
     ```text
-	while(n>1 and m>1):
-		randomly choose k=min(n,m)/2 pairs (s,t)
-		add edge t->s for all these pairs
-		if new_n>n-k or new_m>m-k:
-			roll_back()
-	solve_trivial()
+    while(n>1 and m>1):
+        randomly choose k=min(n,m)/2 pairs (s,t)
+        add edge t->s for all these pairs
+        if new_n>n-k or new_m>m-k:
+            roll_back()
+    solve_trivial()
     ```
 
 复杂度 $O((|V|+|E|) \log |V|)$ 。
@@ -177,9 +185,9 @@ author: Ir1d, partychicken, ouuan, Marcythm, TianyiQ
     - 因为只需考虑大小 $\geq \dfrac n3$ 的团，所以需要考虑的左侧团 $L$ 和 右侧团 $C_R$ 的数量也大大减少至约 $1.8\cdot 10^6$ 。
 -   现在的瓶颈变成了求单侧的某一子集的权值和，因为这需要 $O(2^{|V_L|}+2^{|V_R|})$ 的预处理。
     - 解决方案：在 $V_L,V_R$ 内部再次折半；当查询一个子集的权值和时，将这个子集分成左右两半查询，再把答案相加。
-- 这样即可通过本题。
+-   这样即可通过本题。
 
- **回顾** ：一个随机的集合有着“在划分出的两半的数量差距不会太悬殊”这一性质，而我们通过随机划分获取了这个性质。
+     **回顾** ：一个随机的集合有着“在划分出的两半的数量差距不会太悬殊”这一性质，而我们通过随机划分获取了这个性质。
 
 ## 随机化用于哈希
 
@@ -315,15 +323,14 @@ author: Ir1d, partychicken, ouuan, Marcythm, TianyiQ
     #include <algorithm>
     #include <cstdlib>
     #include <iostream>
-    ```
-
+    
     int n;
-
+    
     int a[510], b[510], c[510][510], d[510];
     int p[510], q[510];
-
+    
     int maxans = 0;
-
+    
     void check() {
       memset(d, 0, sizeof d);
       int nowans = 0;
@@ -332,7 +339,7 @@ author: Ir1d, partychicken, ouuan, Marcythm, TianyiQ
       for (int i = 1; i <= n; i++) nowans += (d[i] - b[i]) * a[i];
       maxans = std::max(maxans, nowans);
     }
-
+    
     int main() {
       srand(19260817);
       std::cin >> n;
@@ -363,15 +370,14 @@ author: Ir1d, partychicken, ouuan, Marcythm, TianyiQ
       long long val;
     } nd[100010];
     int root[100010];
-    ```
-
+    
     int merge(int u, int v) {
       if (!(u && v)) return u | v;
       int x = rand() & 1, p = nd[u].val > nd[v].val ? u : v;
       nd[p].child[x] = merge(nd[p].child[x], u + v - p);
       return p;
     }
-
+    
     void pop(int &now) { now = merge(nd[now].child[0], nd[now].child[1]); }
     ```
 
@@ -418,19 +424,23 @@ $$
 $$
 
 - 即：坏事件中至少一者发生的概率，不超过每一个的发生概率之和。
+
 - 证明：回到概率的定义，把事件看成单位事件的集合，发现这个结论是显然的。
+
 -   这一结论还可以稍作加强：
+
     - 坏事件中至少一者发生的概率， **不小于** 每一个的发生概率之和，减掉每两个同时发生的概率之和。
     - 坏事件中至少一者发生的概率， **不超过** 每一个的发生概率之和，减掉每两个同时发生的概率之和，加上每三个同时发生的概率之和。
     - ……
-    - 随着层数越来越多，交替出现的上界和下界也越来越紧。这一系列结论形式上类似容斥原理，证明过程也和容斥类似，这里略去。
+    -   随着层数越来越多，交替出现的上界和下界也越来越紧。这一系列结论形式上类似容斥原理，证明过程也和容斥类似，这里略去。
 
- **自然常数的使用** ： $\Big(1-\dfrac 1n\Big)^n\leq \dfrac 1e,\forall n\geq1$ 
+         **自然常数的使用** ： $\Big(1-\dfrac 1n\Big)^n\leq \dfrac 1e,\forall n\geq1$ 
 
 - 左式关于 $n\geq 1$ 单调递增且在 $+\infty$ 处的极限是 $\dfrac 1e$ ，因此有这个结论。
-- 这告诉我们，如果 $n$ 个互相独立的坏事件，每个的发生概率为 $1-\dfrac 1n$ ，则它们全部发生的概率至多为 $\dfrac 1e$ 。
 
- **(\*) Hoeffding** 不等式：若 $X_{1\cdots n}$ 为互相独立的实随机变量且 $X_i\in [a_i,b_i]$ ，记随机变量 $X:=\sum\limits_{i=1}^n X_i$ ，则
+-   这告诉我们，如果 $n$ 个互相独立的坏事件，每个的发生概率为 $1-\dfrac 1n$ ，则它们全部发生的概率至多为 $\dfrac 1e$ 。
+
+     **(\*) Hoeffding** 不等式：若 $X_{1\cdots n}$ 为互相独立的实随机变量且 $X_i\in [a_i,b_i]$ ，记随机变量 $X:=\sum\limits_{i=1}^n X_i$ ，则
 
 $$
 \mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geq t\Big]\leq2\exp {-\dfrac {t^2}{\sum\limits_{i=1}^n (b_i-a_i)^2}}
