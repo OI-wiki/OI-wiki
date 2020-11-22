@@ -14,7 +14,7 @@
 
 ### Dijkstra
 
-相关链接：[最短路/Dijkstra](https://oi-wiki.org/graph/shortest-path/#dijkstra)
+相关链接： [最短路/Dijkstra](https://oi-wiki.org/graph/shortest-path/#dijkstra) 
 
 枚举所有边，每一次求删除一条边之后对这条边的起点跑一次 Dijkstra，道理同上。
 
@@ -22,7 +22,7 @@
 
 ### Floyd
 
-相关链接：[最短路/Floyd](https://oi-wiki.org/graph/shortest-path/#floyd)
+相关链接： [最短路/Floyd](https://oi-wiki.org/graph/shortest-path/#floyd) 
 
 记原图中 $u,v$ 之间边的边权为 $val\left(u,v\right)$ 。
 
