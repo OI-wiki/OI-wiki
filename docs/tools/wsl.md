@@ -79,13 +79,13 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 
 2. 出现提示时，重启计算机。
 
-### 使用 “启用和关闭 Windows 功能” 面板启用
+### 使用“启用和关闭 Windows 功能”面板启用
 
 ![Windows 功能](./images/WSL4.png)
 
 1. 打开“控制面板”
 
-2. 访问 “程序和功能” 子菜单 “启用或关闭 Windows 功能”
+2. 访问“程序和功能”子菜单“启用或关闭 Windows 功能”
 
 3. 在弹出窗口中选择“适用于 Linux 的 Windows 子系统”
 
@@ -128,7 +128,7 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 
 ### 更换为国内软件源
 
-Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速度，比如 [清华源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)、阿里云源。
+Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速度，比如 [清华源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/) 、阿里云源。
 
 使用以下命令更新软件源：
 
