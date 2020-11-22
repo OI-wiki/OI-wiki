@@ -1,4 +1,4 @@
-author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm, ayalhw
+author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm, ayalhw, renbaoshuo
 
 ![头图](./images/WSL1.png)
 
@@ -79,15 +79,15 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 
 2. 出现提示时，重启计算机。
 
-### 使用 GUI
+### 使用 “启用和关闭 Windows 功能” 面板启用
 
 ![Windows 功能](./images/WSL4.png)
 
 1. 打开“控制面板”
 
-2. 访问“程序和功能”子菜单“打开或关闭 Windows 功能”
+2. 访问 “程序和功能” 子菜单 “启用或关闭 Windows 功能”
 
-3. 选择“适用于 Linux 的 Windows 子系统”
+3. 在弹出窗口中选择“适用于 Linux 的 Windows 子系统”
 
 4. 点击确定
 
@@ -95,7 +95,7 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 
 ## 安装与使用 Ubuntu[^ref5]
 
-本章以 Ubuntu 长期更新版为例。
+本章以 Ubuntu 长期支持（LTS）版为例。
 
 ### 安装
 
@@ -128,40 +128,27 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 
 ### 更换为国内软件源
 
-Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速度，如 [清华 TUNA 的软件源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/) 。
+Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速度，比如 [清华源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)、阿里云源。
 
-???+ warning  "使用与自己系统版本匹配的软件源"
-    请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a` 查看 Ubuntu 版本）。
-    
-    除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！
-
-使用以下命令更新软件和软件源：
+使用以下命令更新软件源：
 
 ```bash
-sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
-sudo vim /etc/apt/sources.list
-# （按 i 之后将上文的源右键粘贴进去，编辑完后按 Esc，再输入 :wq 和回车）
+sudo sed -i 's/http\:\/\/archive.ubuntu.com/https\:\/\/mirrors.aliyun.com/g'    /etc/apt/sources.list
+sudo sed -i 's/http\:\/\/security.ubuntu.com/https\:\/\/mirrors.aliyun.com/g'   /etc/apt/sources.list
 sudo apt update
-sudo apt upgrade -y
 ```
 
 ![示例](./images/WSL9.png)
 
 ### 安装中文环境
 
+先安装中文语言包
+
 ```bash
 sudo apt install language-pack-zh-hans -y
-sudo locale-gen zh_CN.GB18030 && sudo locale-gen zh_CN.UTF-8
-# 中文字体，别忘了同意 EULA
-sudo apt install fontconfig -y
-sudo apt install ttf-mscorefonts-installer -y
-# 下面的再执行一遍以防万一
-sudo apt install -y --force-yes --no-install-recommends fonts-wqy-microhei
-sudo apt install -y --force-yes --no-install-recommends ttf-wqy-zenhei
-sudo dpkg-reconfigure locales
 ```
 
-使用 `sudo dpkg-reconfigure locales` 进入菜单，按空格选择带 `zh_CN` 的选项（推荐 `zh_CN, UTF-8 UTF-8` ），选完后回车，
+使用 `sudo dpkg-reconfigure locales` 进入菜单，按键盘上的 `↓` 键向下滑动，按空格选择 `zh_CN.UTF-8 UTF-8` 选项，选完后回车确定。
 
 ![安装中文环境 1](./images/WSL10.png)
 
@@ -183,14 +170,9 @@ sudo sed -i 's|/usr/share/man|/usr/share/man/zh_CN|g' /etc/manpath.config
 ### 安装编译环境[^ref7]
 
 ```bash
-sudo apt install build-essential vim ddd gdb fpc emacs gedit anjuta lazarus -y
-wget http://download.noi.cn/T/noi/GUIDE-1.0.2-ubuntu.tar
-tar -xvf GUIDE-1.0.2-ubuntu.tar
-cd GUIDE-1.0.2-ubuntu
-chmod +x install.sh && ./install.sh
+sudo apt install gcc g++ gdb -y
 ```
 
-这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install 程序名` 来安装别的。
 若想安装其他版本可以参考 [该博客给出的 apt-get 使用方法](https://www.cnblogs.com/EasonJim/p/7144017.html) 。
 
 以下为一个示例程序：
@@ -205,83 +187,7 @@ AMD Ryzen 5 1400 Quad-Core Processor
 ???+ note
     Linux 环境下可执行文件可不带扩展名，实现方式看上方命令。
 
-## 进阶操作
-
-### 安装图形环境，并使用远程桌面连接
-
-推荐图形环境用 xfce4，不臃肿。
-
-```bash
-sudo apt install xfce4 tightvncserver -y
-# 或使用 sudo apt install xubuntu-desktop -y
-# xubuntu 安装的软件多，基础环境可用第一种
-```
-
-图形环境文件较大，下载解包需要一定时间。
-
-配置 xrdp：
-
-```bash
-sudo apt install xrdp -y
-echo "xfce4-session" >~/.xsession
-sudo service xrdp restart
-```
-
-为了防止和计算机本来带的远程桌面冲突，最好换一下端口。
-
-![不换端口的结果](./images/WSL12.png)
-
-运行命令 `vim /etc/xrdp/xrdp.ini` ，把 `port=3389` 改为其他端口（如 `port=3390` ），然后保存即可。
-
-![](./images/WSL13.png)
-
-运行 `sudo service xrdp restart` ，然后去开始菜单，用 `localhost: 配置的端口` 来访问。
-
-![](./images/WSL14.png)
-
-![](./images/WSL15.png)
-
-### 使用 Xming 连接
-
-进入 Ubuntu 环境，安装 xterm：
-
-```bash
-sudo apt-get install xterm -y
-```
-
-退出 Ubuntu。
-
-从 [Xming X Server 下载地址](https://sourceforge.net/projects/xming/) 下载最新的 Xming Server，然后安装：
-
-![](./images/WSL16.png)
-
-如果安装完后忘记勾选 Launch Xming，需在开始菜单里打开 Xming：
-
-![别忘了！](./images/WSL17.png)
-
-之后再回到 Ubuntu，键入如下指令：
-
-```bash
-DISPLAY=:0 xterm
-```
-
-![](./images/WSL18.png)
-
-貌似只支持命令行。
-
-如果使用了 xfce4，可以在弹出的窗口中使用如下命令激活 xfce4：
-
-```bash
-xfce4-session
-```
-
-![](./images/WSL19.png)
-
-运行结果如图。（在 Xming 中使用<kbd>Ctrl</kbd>+<kbd>C</kbd>就可以退出该界面。）
-
-![](./images/WSL20.png)
-
-### 与 Windows 内原硬盘分区交互
+## 与 Windows 文件系统交互
 
 硬盘分区作为文件夹在 `/mnt/` 里存放，因此可以直接交互，如直接编译二进制文件，或者往 Ubuntu 里传文件。
 
@@ -295,7 +201,7 @@ xfce4-session
 
 -   如何在子系统下进行 xxx？
 
-    可以用自带命令行，或者使用图形界面。
+    可以用自带命令行。
     比如说 vim，在命令行中键入 `man vim` ，会给出一份详尽的使用方法。
 
     亦可使用 `vim --help` 。
@@ -304,7 +210,7 @@ xfce4-session
 
     这个系统和 Windows 10 共用 Host，所以理论上是比虚拟机占用小的。而且只要别装太多应用，应该还是可以带动的。
 
--   汉语化时提示不存在？
+-   汉化时提示不存在？
 
     玄学问题，可以忽略。修了个疏忽导致的错误，可以重上一下试试。
 
@@ -325,7 +231,7 @@ xfce4-session
 
 [^ref4]:  [适用于 Linux 的 Windows 子系统安装指南 (Windows 10), Microsoft Docs](https://docs.microsoft.com/zh-cn/windows/wsl/install-win10) 
 
-[^ref5]:  [WSL-Ubuntu 维基，ubuntu wiki](https://wiki.ubuntu.com/WSL) 
+[^ref5]:  [WSL-Ubuntu Wiki，ubuntu wiki](https://wiki.ubuntu.com/WSL) 
 
 [^ref6]:  [Ubuntu 的 man 命令帮助如何设置中文版，Frank 看庐山，2017-06-09](https://blog.csdn.net/qq_14989227/article/details/72954523) 
 
