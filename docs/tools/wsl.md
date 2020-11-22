@@ -150,7 +150,7 @@ sudo apt upgrade -y
 ### 安装中文环境
 
 ```bash
-sudo apt install  language-pack-zh-han* -y
+sudo apt install language-pack-zh-hans -y
 sudo locale-gen zh_CN.GB18030 && sudo locale-gen zh_CN.UTF-8
 # 中文字体，别忘了同意 EULA
 sudo apt install fontconfig -y
