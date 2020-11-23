@@ -148,7 +148,7 @@ sudo apt update
 sudo apt install language-pack-zh-hans -y
 ```
 
-使用 `sudo dpkg-reconfigure locales` 进入菜单，按键盘上的 `↓` 键向下滑动，按空格选择 `zh_CN.UTF-8 UTF-8` 选项，选完后回车确定。
+使用 `sudo dpkg-reconfigure locales` 进入菜单，按键盘上的 <kbd>↓</kbd> 键向下滑动，按空格选择 `zh_CN.UTF-8 UTF-8` 选项，选完后回车确定。
 
 ![安装中文环境 1](./images/WSL10.png)
 
