@@ -152,7 +152,7 @@ $$
 
 #### 判定两向量共线
 
- $\boldsymbol a = \lambda \boldsymbol b$  $\Leftrightarrow$  $\boldsymbol a\cdot \boldsymbol b=|\boldsymbol a||\boldsymbol b|$ 
+ $\boldsymbol a = \lambda \boldsymbol b$  $\Leftrightarrow$  $|\boldsymbol a\cdot \boldsymbol b|=|\boldsymbol a||\boldsymbol b|$ 
 
 #### 数量积的坐标运算
 

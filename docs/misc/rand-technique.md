@@ -460,7 +460,7 @@ $$
     - ……
     -   随着层数越来越多，交替出现的上界和下界也越来越紧。这一系列结论形式上类似容斥原理，证明过程也和容斥类似，这里略去。
 
-         **自然常数的使用** ： $\Big(1-\dfrac 1n\Big)^n\leq \dfrac 1e,\forall n\geq1$ 
+     **自然常数的使用** ： $\Big(1-\dfrac 1n\Big)^n\leq \dfrac 1e,\forall n\geq1$ 
 
 - 左式关于 $n\geq 1$ 单调递增且在 $+\infty$ 处的极限是 $\dfrac 1e$ ，因此有这个结论。
 
