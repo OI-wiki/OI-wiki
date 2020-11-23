@@ -95,7 +95,7 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 
 ## 安装与使用 Ubuntu[^ref5]
 
-本章以 Ubuntu 长期支持（LTS）版为例。
+本章以 Ubuntu LTS（长期支持版）为例。
 
 ### 安装
 
