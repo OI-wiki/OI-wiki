@@ -35,6 +35,8 @@ list<int> breakdown(int N) {
 
 值得指出的是，如果开始已经打了一个素数表的话，时间复杂度将从 $O(\sqrt N)$ 下降到 $O(\sqrt{\frac N {\ln N}})$ 。去 [筛法](./sieve.md) 处查阅更多打表的信息。
 
+例题：[CF 1445C](https://codeforces.ml/problemset/problem/1445/C)
+
 而下面复杂度复杂度更低的 Pollard-Rho 算法是一种用于快速分解非平凡因数的算法（ **注意** ！非平凡因子不是素因子）。而在此之前需要先引入生日悖论。
 
 ## 生日悖论
