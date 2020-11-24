@@ -43,6 +43,34 @@
      `set` 自带的 `lower_bound` 和 `upper_bound` 的时间复杂度为 $O(\log n)$ 。
     
     但使用 `algorithm` 库中的 `lower_bound` 和 `upper_bound` 函数对 `set` 中的元素进行查询，时间复杂度为 $O(n)$ 。
+	
+???+warning "`nth_element` 的时间复杂度"
+     `set` 没有提供自带的 `nth_element` 。使用 `algorithm` 库中的 `nth_element` 查找第 $k$ 大的元素时间复杂度为 $O(n)$ 。
+    
+    如果需要实现平衡二叉树所具备的 $O(\log n)$ 查找第 $k$ 大元素，需要自己手写平衡二叉树（或权值线段树）。
+	
+### 使用样例
+
+##### `set` 在贪心中的使用
+
+在贪心算法中经常会需要出现类似 **找出并删除最小的大于等于某个值的元素** 。这种操作能轻松地通过 `set` 来完成。
+
+```cpp
+// 现存可用的元素
+set<int> available;
+// 需要大于等于的值
+int x;
+
+// 查找最小的大于等于x的元素
+set<int>::iterator it = available.lower_bound(x);
+if (it == available.end()) {
+	// 不存在这样的元素，则进行相应操作……
+} else {
+	// 找到了这样的元素，将其从现存可用元素中移除
+	available.erase(it);
+	// 进行相应操作……
+}
+````
 
 ##  `map` 
 
