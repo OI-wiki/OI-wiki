@@ -2,7 +2,7 @@
 
 ## 简介
 
- Splay 是一种二叉查找树，它通过不断将某个节点旋转到根节点，使得整棵树仍然满足二叉查找树的性质，并且保持平衡而不至于退化为链。它由 Daniel Sleator 和 Robert Tarjan 发明。
+Splay 是一种二叉查找树，它通过不断将某个节点旋转到根节点，使得整棵树仍然满足二叉查找树的性质，并且保持平衡而不至于退化为链。它由 Daniel Sleator 和 Robert Tarjan 发明。
 
 ## 结构
 
@@ -14,9 +14,9 @@
 
 ### 节点维护信息
 
-|  rt  |  tot  |  fa[i]  |  ch[i][0/1]  | val[i]  |  cnt[i]  |  sz[i]  |
-| :-----: | :------: | :--------: | :-------------: | :---------: | :---------: | :--------: |
-| 根节点编号  | 节点个数    | 父亲        | 左右儿子编号         | 节点权值       | 权值出现次数     | 子树大小      |
+|   rt  |  tot | fa[i] | ch[i][0/1] | val[i] | cnt[i] | sz[i] |
+| :---: | :--: | :---: | :--------: | :----: | :----: | :---: |
+| 根节点编号 | 节点个数 |   父亲  |   左右儿子编号   |  节点权值  | 权值出现次数 |  子树大小 |
 
 ## 操作
 
@@ -40,7 +40,7 @@ void clear(int x) { ch[x][0] = ch[x][1] = fa[x] = val[x] = sz[x] = cnt[x] = 0; }
 
 - 整棵 Splay 的中序遍历不变（不能破坏二叉查找树的性质）。
 - 受影响的节点维护的信息依然正确有效。
-- `root` 必须指向旋转后的根节点。
+-  `root` 必须指向旋转后的根节点。
 
 在 Splay 中旋转分为两种：左旋和右旋。
 
@@ -68,7 +68,7 @@ void rotate(int x) {
 
 ### Splay 操作
 
- Splay 规定：每访问一个节点后都要强制将其旋转到根节点。此时旋转操作具体分为 $6$ 种情况讨论（其中 $x$ 为需要旋转到根的节点）
+Splay 规定：每访问一个节点后都要强制将其旋转到根节点。此时旋转操作具体分为 $6$ 种情况讨论（其中 $x$ 为需要旋转到根的节点）
 
 ![](./images/splay1.png)
 
@@ -429,10 +429,10 @@ int main() {
 
 ## 习题
 
-- [「Cerc2007」robotic sort 机械排序](https://www.luogu.com.cn/problem/P4402) 
-- [二逼平衡树（树套树）](https://loj.ac/problem/106) 
-- [bzoj 2827 千山鸟飞绝](http://www.lydsy.com/JudgeOnline/problem.php?id=2827) 
-- [「Lydsy1706 月赛」K 小值查询](http://www.lydsy.com/JudgeOnline/problem.php?id=4923) 
+-  [「Cerc2007」robotic sort 机械排序](https://www.luogu.com.cn/problem/P4402) 
+-  [二逼平衡树（树套树）](https://loj.ac/problem/106) 
+-  [bzoj 2827 千山鸟飞绝](http://www.lydsy.com/JudgeOnline/problem.php?id=2827) 
+-  [「Lydsy1706 月赛」K 小值查询](http://www.lydsy.com/JudgeOnline/problem.php?id=4923) 
 
 ## 参考资料与注释
 
