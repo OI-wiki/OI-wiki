@@ -217,7 +217,7 @@ nav:
       - 莫比乌斯反演: math/mobius.md
       - 杜教筛: math/du.md
       - Min_25 筛: math/min-25.md
-      - Pollard-rho: math/pollard-rho.md
+      - 分解质因数: math/pollard-rho.md
     - 多项式:
       - 多项式部分简介: math/poly/intro.md
       - 拉格朗日插值: math/poly/lagrange.md
@@ -428,7 +428,10 @@ nav:
 
 # Theme
 theme:
-  name: 'material'
+  name: null
+  custom_dir: 'mkdocs-material/material'
+  static_templates:
+    - 404.html
   language: 'zh'
   palette:
     primary: 'white'
