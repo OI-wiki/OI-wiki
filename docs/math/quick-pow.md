@@ -1,5 +1,7 @@
 快速幂，二进制取幂（Binary Exponentiation，也称平方法），是一个在 $\Theta(\log n)$ 的时间内计算 $a^n$ 的小技巧，而暴力的计算需要 $\Theta(n)$ 的时间。而这个技巧也常常用在非计算的场景，因为它可以应用在任何具有结合律的运算中。其中显然的是它可以应用于模意义下取幂、矩阵幂等运算，我们接下来会讨论。
 
+另外在最后会谈到和快速幂思想相近的快速乘法。
+
 ## 算法描述
 
 计算 $a$ 的 $n$ 次方表示将 $n$ 个 $a$ 乘在一起： $a^{n} = \underbrace{a \times a \cdots \times a}_{n\text{ 个 a}}$ 。然而当 $a,n$ 太大的时侯，这种方法就不太适用了。不过我们知道： $a^{b+c} = a^b \cdot a^c,\,\,a^{2b} = a^b \cdot a^b = (a^b)^2$ 。二进制取幂的想法是，我们将取幂的任务按照指数的 **二进制表示** 来分割成更小的任务。
@@ -278,6 +280,43 @@ int main() {
 }
 ```
 
+## 模下快速乘法
+
+模 $N$ 快速乘法，可以用来解决在模 $N$ 意义下乘法溢出的问题。
+
+### 问题引入
+
+在有时候，我们需要将两个比较大的数相乘再取模（比如说，在[rho 算法](./pollard-rho.md)中，我们给定了一个比较大的数$x$，需要计算$x\times x\bmod p$，如果直接计算乘法时可能会发生溢出）。为了避免溢出的情况，需要引入在模 N 意义下进行快速乘法的算法。
+
+### 基础算法
+
+即使在 `long long` 下进行乘法，也可能会溢出。我们可以模仿二进制乘法：
+``` C++
+using ll = long long;
+
+ll pmul(ll x, ll y, ll p) {
+    ll result=0;
+    while (y) {
+        if (y & 1) result = (result + x) % p;
+        x = (x<<1) % p; y >>= 1;
+    }
+    return result;
+}
+```
+
+给定两个数 $x = 2^0 p_0 + 2^1 p_1 + \cdots + 2^n p_n$，$y = 2^0 q_0 + 2^1 p_1 + \cdots + 2^n p_n$。
+
+我们有：$result = x\cdot y\bmod N = (2^0 q_0 x + 2^1 q_1 x + \cdots + 2^n q_n x)\bmod N$。
+
+注意到，`(x<<1)` 是用来给自己乘以二的。因为每一次乘完了就会取模，完全不会溢出了。
+
+时间复杂度为：$O(\log y)$。
+
+### 参考资料
+
+[812-xiao-wen 的快速乘博客](https://www.cnblogs.com/812-xiao-wen/p/10543023.html)
+
+
 ## 习题
 
 -  [UVa 1230 - MODEX](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3671) 
@@ -290,3 +329,4 @@ int main() {
 -    [SPOJ - Just add it](http://www.spoj.com/problems/ZSUM/) 
 
      **本页面部分内容译自博文 [Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow) 与其英文翻译版 [Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+
