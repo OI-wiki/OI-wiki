@@ -49,20 +49,25 @@ ST3 并不支持中文，需要安装汉化插件。
 
 输入 `Crtl+Shift+P` 输入 `Install` 后回车，然后搜索插件/主题/配色即可。
 
-本人目前使用如下插件：
+由于ST3主要面向网页前端开发，所以一般来说编辑C++的情况下并没有太多很好的插件，不过一般来说自带的功能已经足够了。
+
+少量插件：
 
 + BracketHighlighter ：对原版的括号高亮进行了增强。
+
 + C++ Snippets ：ST3 自带有 C++ 代码补全，格式为大括号换行。如果不习惯大括号换行的码风可以安装这个插件，同时增加了少量补全。
 
-有需要的可以安装Astyle。
++ C++ 11：支持C++ 11标准高亮。
 
-主题（管理编辑区以外的UI部分）：Seti_UI
++ SublimeAstyleFormatter：Astyle，不解释。
 
-配色方案（管理编辑区颜色）：Grandson-of-Obsidian
++ C++ Completions：提供与ST3自带补全不同的补全方式，但对C++头文件的支持并不完全。
 
-一些其他主题：[^ref1]
+有其他需要可以自己尝试搜索。
 
-3024、Material Theme、Predawn、Agila、Materialize。
+一些主题：[^ref1]
+
+3024（单配色方案）、Grandson-of-Obsidian（单配色方案）、Seti_UI（单主题）、Material Theme、Predawn、Agila、Materialize。
 
 如果要编辑自己的配色方案，可以访问 [tmTheme Editor](http://tmtheme-editor.herokuapp.com/) 。
 
@@ -176,8 +181,8 @@ Windows环境下需要将g++所在目录添加到环境变量中，并将其优�
 进入`系统->编译系统->新建编译系统…` 然后在大括号中间输入：
 
 ```json
- 	"cmd": ["cmd","/c","g++","-Wall","-lm","${file}","-o","${file_path}/${file_base_name}","&&","cmd","/c","${file_path}/${file_base_name}"],    //编译选项可以自己调整
-	"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",    //这一行可以让ST3图形化显示报错，如果习惯了看g++返回的信息或者考场上背不下来可以去掉
+     "cmd": ["cmd","/c","g++","-Wall","-lm","${file}","-o","${file_path}/${file_base_name}","&&","cmd","/c","${file_path}/${file_base_name}"],    //编译选项可以自己调整
+    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",    //这一行可以让ST3图形化显示报错，如果习惯了看g++返回的信息可以去掉
 ```
 
 保存后把编译系统切换到你自己写的这个，就可以使用了，这里的配置是在ST3窗口内编译并运行。
@@ -192,16 +197,14 @@ Windows环境下需要将g++所在目录添加到环境变量中，并将其优�
     ```json
         "cmd": [“g++","-Wall","-lm","${file}","-o","${file_path}/${file_base_name}"],
     ```
+    
     在外部 CMD 运行
+    
     ```json
-
- 	    "cmd": ["cmd","/c","g++","-Wall","-lm","${file}","-o","${file_path}/${file_base_name}","&&","start","cmd","/c","${file_path}/${file_base_name}&pause"],
-
+        "cmd": ["cmd","/c","g++","-Wall","-lm","${file}","-o","${file_path}/${file_base_name}","&&","start","cmd","/c","${file_path}/${file_base_name}&pause"],
     ```
     
-    ```
-    
-    还可以利用一些方法把编译和运行拆开并分别配置快捷键，由于考场上应该用不到，请自行搜索。
+    还可以利用一些方法把编译和运行拆开并分别配置快捷键，由于并不必要，请自行搜索。
 
 ### 运行
 
@@ -223,7 +226,7 @@ Windows环境下需要将g++所在目录添加到环境变量中，并将其优�
 
 ## 杂项
 
-+ 考场可以先把文件夹拖进ST3中开启侧边栏，从而快速切换文件。
++ 把文件夹拖进ST3中并开启侧边栏，从而快速切换文件。
 
 + 善用跳转功能，尤其是 `Ctrl+P` 进行文件跳转与 `Ctrl+R` 进行函数跳转。
 
@@ -236,6 +239,6 @@ Windows环境下需要将g++所在目录添加到环境变量中，并将其优�
 
 ## 参考资料与注释
 
-[^ref1]: [便捷清新的文本编辑器 sublime](https://www.luogu.com.cn/blog/acking/sublime)
+[^ref1]:[便捷清新的文本编辑器 sublime](https://www.luogu.com.cn/blog/acking/sublime)
 
-[^ref2]: [Sublime Text社区文档](https://docs.sublimetext.io/)
+[^ref2]:[Sublime Text社区文档](https://docs.sublimetext.io/)
