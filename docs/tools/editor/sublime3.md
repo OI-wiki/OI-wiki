@@ -30,7 +30,7 @@ ST3 并不支持中文，需要安装汉化插件。
 
 再次按下 <kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> 输入 `Install` 后回车（完整命令是 `Package Contrl:Install Package`），等待加载完成，接下来应该是这个界面：
 
-![](/images/sublime3-1.png)
+![](./images/sublime3-1.png)
 
 输入`Chinese` 选择 ChineseLocalizationgs 并回车，等待安装完毕，完成后界面会自动切换为中文。
 
