@@ -63,8 +63,7 @@ inline mat operator*(const mat& T) const {
   for (int i = 0; i < sz; ++i)
     for (int k = 0; k < sz; ++k) {
       r = a[i][k];
-      for (int j = 0; j < sz; ++j) res.a[i][j] += T.a[k][j] * r;
-      res.a[i][j] %= MOD;
+      for (int j = 0; j < sz; ++j) res.a[i][j] += T.a[k][j] * r, res.a[i][j] %= MOD;
     }
   return res;
 }
