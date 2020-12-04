@@ -24,7 +24,7 @@ author: StudyingFather, NachtgeistW, countercurrent-time, Ir1d, H-J-Granger, Chr
 - Presentation Error（PE）：选手程序正常结束，但是格式不符合要求[^note6]。
 - Runtime Error（RE）：选手程序非正常结束（选手程序结束时的返回值不为零）。
 - Time Limit Exceeded（TLE）：选手程序运行的时间超过了给定的时间限制。
-- Memory Limit Exceeded（MLE）：选手程序占用的最大空间超过了给定的时间限制。
+- Memory Limit Exceeded（MLE）：选手程序占用的最大空间超过了给定的空间限制。
 - Output Limit Exceeded（OLE）：选手程序输出的内容的量超过了最大限制。
 
 在 ICPC 赛事中，你的程序需要在一道题目的所有测试点上都取得 AC 状态，才能视为通过相应的题目。在 OI 赛事中，在一个测试点中取得 AC 状态，即可拿到该测试点的分数[^note7]。
