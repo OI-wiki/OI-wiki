@@ -71,7 +71,7 @@ int euler_phi(int n) {
 ```cpp
 int euler_phi(int n) {
   int ans = n;
-  for (int i = 2; i * i <= m; i++)
+  for (int i = 2; i * i <= n; i++)
     if (n % i == 0) {
       ans = ans / i * (i - 1);
       while (n % i == 0) n /= i;
