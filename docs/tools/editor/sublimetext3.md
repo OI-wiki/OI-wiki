@@ -22,13 +22,13 @@ ST3 并不支持中文，需要安装汉化插件。
 
 #### 安装插件管理器
 
-打开 ST3 后键入 <kbd>Crtl<\kbd>+<kbd>Shift<\kbd>+<kbd>P<\kbd> 唤出命令框，输入`Install` 后回车（完整命令是 `Install Package Control` ，不区分大小写），此时应该会看到左下角有一个 `=` 在不停的左右移动。等待 Package Control 安装完成，具体的加载时间取决于网络。
+打开 ST3 后键入 <kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> 唤出命令框，输入`Install` 后回车（完整命令是 `Install Package Control` ，不区分大小写），此时应该会看到左下角有一个 `=` 在不停的左右移动。等待 Package Control 安装完成，具体的加载时间取决于网络。
 
 如果完成的弹窗显示安装失败（与网络有关），则需要手动下载 [Package Control](https://packagecontrol.io/Package%20Control.sublime-package) 并将下载好的文件放到 `C:\Users\用户名\AppData\Roaming\Sublime Text 3\Installed Packages` 中。稍作等待，ST3 会自动识别该插件。
 
 #### 安装汉化插件
 
-再次按下 <kbd>Crtl<\kbd>+<kbd>Shift<\kbd>+<kbd>P<\kbd> 输入 `Install` 后回车（完整命令是 `Package Contrl:Install Package`），等待加载完成，接下来应该是这个界面：
+再次按下 <kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> 输入 `Install` 后回车（完整命令是 `Package Contrl:Install Package`），等待加载完成，接下来应该是这个界面：
 
 ![](https://i.loli.net/2020/12/04/259a1sDlPcLzpfF.png)
 
@@ -47,7 +47,7 @@ ST3 并不支持中文，需要安装汉化插件。
 
 安装插件与主题的方法与安装汉化插件一致。
 
-输入 <kbd>Crtl<\kbd>+<kbd>Shift<\kbd>+<kbd>P<\kbd> 输入 `Install` 后回车，然后搜索插件/主题/配色即可。
+输入 <kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> 输入 `Install` 后回车，然后搜索插件/主题/配色即可。
 
 本人目前使用如下插件：
 
@@ -102,7 +102,7 @@ ST3 的编译环境已经配置好了，可以直接使用。
 进入`系统->编译系统->新建编译系统…` 然后在大括号中间输入：
 
 ```json
- 	"cmd": ["cmd","/c","g++","-Wall","-lm",""${file}","-o","${file_path}/${file_base_name}","&&","cmd","/c","${file_path}/${file_base_name}"],
+ 	"cmd": ["cmd","/c","g++","-Wall","-lm","${file}","-o","${file_path}/${file_base_name}","&&","cmd","/c","${file_path}/${file_base_name}"],
 	"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$", //这一行可以让ST3图形化显示报错，如果习惯了看g++返回的信息或者考场上背不下来可以去掉
 ```
 
