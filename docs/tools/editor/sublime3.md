@@ -202,7 +202,7 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并将其�
     
     ```json
 
- 	    "cmd": ["cmd","/c","g++","-Wall","-lm","${file}","-o","${file_path}/${file_base_name}","&&","start","cmd","/c","${file_path}/${file_base_name}&pause"],
+ 	    "cmd": ["cmd","/c","g++","-Wall","-lm","${file}","-o","${file_path}/${file_base_name}","&&","start","cmd","/c","${file_path}/${file_base_name}& pause"],
     ```
     
 
