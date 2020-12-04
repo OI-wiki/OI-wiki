@@ -30,7 +30,7 @@ ST3 并不支持中文，需要安装汉化插件。
 
 再次按下 `Crtl+Shift+P` 输入 `Install` 后回车（完整命令是 `Package Contrl:Install Package`），等待加载完成，接下来应该是这个界面：
 
-![](./images/sublime3-1.png)
+![](images/sublime3-1.png)
 
 输入`Chinese` 选择 ChineseLocalizationgs 并回车，等待安装完毕，完成后界面会自动切换为中文。
 
@@ -101,7 +101,7 @@ ST3的vim与真正的vim略有区别，以下为找到的部分（欢迎补充�
 
 按右下角的 `Plain Text` 然后修改为你需要的语言即可。
 
-![](.\images\sublime3-2.png)
+![](images/sublime3-2.png)
 
 ### 快捷键
 
@@ -153,9 +153,7 @@ ST3有丰富的补全功能，可能的补全内容会在光标下方显示，�
    ```json
    "auto_complete": true,
    "auto_match_enabled": true,
-   ```
-
-   
+   ``` 
 
 ## 编译与运行
 
@@ -231,7 +229,7 @@ Windows环境下需要将g++所在目录添加到环境变量中，并将其优�
 
 ## 外部链接
 
-[使用命令行调试](../cmd.md)
++ [使用命令行调试](../cmd.md)
 
 
 ## 参考资料与注释
