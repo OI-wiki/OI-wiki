@@ -66,6 +66,21 @@ int euler_phi(int n) {
 }
 ```
 
+注：如果将上面的程序改成如下形式，会提升一点效率：
+
+```cpp
+int euler_phi(int n) {
+  int ans = n;
+  for (int i = 2; i * i <= n; i++)
+    if (n % i == 0) {
+      ans = ans / i * (i - 1);
+      while (n % i == 0) n /= i;
+    }
+  if (n > 1) ans = ans / n * (n - 1);
+  return ans;
+}
+```
+
 如果是多个数的欧拉函数值，可以利用后面会提到的线性筛法来求得。
 详见： [筛法求欧拉函数](./sieve.md#_2) 
 
