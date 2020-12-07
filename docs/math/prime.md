@@ -76,7 +76,9 @@ bool millerRabin(int n) {
 
 #### 二次探测定理
 
-如果 $p$ 是奇素数，则 $x^2 \equiv 1 \bmod p$ 的解为 $x \equiv 1$ 或者 $x \equiv p - 1 (\bmod p)$ ;
+如果 $p$ 是奇素数，则 $x^2 \equiv 1 \pmod p$ 的解为 $x \equiv 1 \pmod p$ 或者 $x \equiv p - 1 \pmod p$。
+
+要证明该定理，只需将上面的方程移项，再使用平方差公式，得到 $(x+1)(x-1) \equiv 0 \bmod p$，即可得出上面的结论。
 
 ### 实现
 
