@@ -16,7 +16,7 @@ RMQ 是 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）�
 
 ## 树上倍增求 LCA
 
-参见： [最近公共祖先](../graph/lca.md/#_5) 
+参见： [最近公共祖先](../graph/lca.md) 
 
 ## 例题
 
