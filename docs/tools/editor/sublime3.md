@@ -59,7 +59,8 @@ ST3 并不支持中文，需要安装汉化插件。
 
 + C++ 11 ：支持 C++ 11 标准高亮。
 
-+ SublimeAstyleFormatter ： Astyle，不解释。
++ SublimeAstyleFormatter ： Astyle，用于格式化代码。
+
 
 + C++ Completions ：提供与 ST3 自带补全不同的补全方式，但对 C++ 头文件的支持并不完全。
 
