@@ -21,7 +21,7 @@
 ### 例题 1
 
 ???+note "[Codeforces Round #384 (Div. 2) C.Vladik and fractions](http://codeforces.com/problemset/problem/743/C)"
-
+    
     构造一组 $x,y,z$ ，使得对于给定的 $n$ ，满足 $\dfrac{1}{x}+\dfrac{1}{y}+\dfrac{1}{z}=\dfrac{2}{n}$ 
 
 ??? note "解题思路"
@@ -34,9 +34,9 @@
 ### 例题 2
 
 ???+note "[Luogu P3599 Koishi Loves Construction](https://www.luogu.com.cn/problem/P3599)"
-
+    
     Task1：试判断能否构造并构造一个长度为$nn$的$1\dots n1…n$的排列，满足其$nn$个前缀和在模$nn$的意义下互不相同
-
+    
     Taks2：试判断能否构造并构造一个长度为$nn$的$1\dots n1…n$的排列，满足其$nn$个前缀积在模$nn$的意义下互不相同
 
 ??? note "解题思路"
@@ -79,12 +79,12 @@
 ### 例题 3
 
 ???+note "[AtCoder Grand Contest 032 B](https://atcoder.jp/contests/agc032/tasks/agc032_b)"
-
+    
     You are given an integer $N$. Build an undirected graph with $N$ vertices with indices $1$ to $N$ that satisfies the following two conditions:
-
+    
     - The graph is simple and connected.
     - There exists an integer $S$ such that, for every vertex, the sum of the indices of the vertices adjacent to that vertex is $S$.
-
+    
     It can be proved that at least one such graph exists under the constraints of this problem.
 
 ??? note "解题思路"

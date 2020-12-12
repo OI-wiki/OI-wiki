@@ -60,15 +60,15 @@ int q[SIZE], ql = 1, qr;
 ## 例题
 
 ???+note "[LOJ6515「雅礼集训 2018 Day10」贪玩蓝月](https://loj.ac/problem/6515)"
-
+    
     一个双端队列（deque），m 个事件：
-
+    
     1. 在前端插入 (w,v)
     2. 在后端插入 (w,v)
     3. 删除前端的二元组
     4. 删除后端的二元组
     5.  给定 l,r，在当前 deque 中选择一个子集 S 使得 $\sum_{(w,v)\in S}w\bmod p\in[l,r]$ ，且最大化 $\sum_{(w,v)\in S}v$ .
-
+    
     $m\leq 5\times 10^4,p\leq 500$ .
 
 ??? note "解题思路"

@@ -17,7 +17,7 @@
 根据定理 2，可以求出方程的所有解。但在实际问题中，我们往往被要求求出一个最小整数解，也就是一个特解 $x=(x \bmod t+t) \bmod t$ ，其中 $t=\dfrac{b}{\gcd(a,b)}$ 。
 
 ???+note "代码实现"
-
+    
     ```cpp
     int ex_gcd(int a, int b, int& x, int& y) {
       if (b == 0) {
