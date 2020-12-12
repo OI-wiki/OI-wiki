@@ -80,7 +80,8 @@ ST3 并不支持中文，需要安装汉化插件。
 
 ST3 可以！
 
-ST3 的 vim 模式是一个安装时自带的插件叫 Vintage ，它默认是禁用的。可以通过 `首选项->设置` 在用户设置中，将 `"ignored_packages"` 一项中的 Vintage 删除并保存， ST3 的状态栏左边就会出现 `INSERT MODE` ，这时就可以愉快的打 vim 了。
+ST3 的 vim 模式由自带的插件 Vintage 提供，它默认是禁用的。可以通过 `首选项->设置` 在用户设置中，将 `"ignored_packages"` 一项中的 Vintage 删除并保存， ST3 的状态栏左边就会出现 `INSERT MODE` ，这时就可以愉快的打 vim 了。
+
 
 #### 与真正 vim 的不同
 
