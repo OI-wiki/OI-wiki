@@ -71,8 +71,6 @@ void unionSet(int x, int y) {
   // x 与 y 所在家族合并
   x = find(x);
   y = find(y);
-  if (x == y)  // 原本就在一个家族里就不管了
-    return;
   fa[x] = y;  // 把 x 的祖先变成 y 的祖先的儿子
 }
 ```
