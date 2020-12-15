@@ -1,0 +1,54 @@
+<svg width="706" height="230" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+ <g>
+  <title>background</title>
+  <rect fill="#ffffff" id="canvas_background" height="232" width="708" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_14">
+   <g stroke="null" transform="matrix(0.23317688600314318,0,0,0.20090438076754139,-469.3389706406854,-824.5947650043289) " id="svg_5">
+    <path stroke="black" id="svg_6" d="m2250.30562,4300.29759l0,769l513,-769l0,769l-513,-769l1026,769l0,-769l-1026,769m513,-769l513,769m-513,0l513,-769" stroke-width="8.208" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <g stroke="null" id="svg_7" fill="red">
+     <circle stroke="null" id="svg_8" cy="4300.29759" cx="2250.30562" r="18.0576"/>
+     <circle stroke="null" id="svg_9" cy="4300.29759" cx="2763.30562" r="18.0576"/>
+     <circle stroke="null" id="svg_10" cy="4300.29759" cx="3276.30562" r="18.0576"/>
+     <circle stroke="null" id="svg_11" cy="5069.29759" cx="2250.30562" r="18.0576"/>
+     <circle stroke="null" id="svg_12" cy="5069.29759" cx="2763.30562" r="18.0576"/>
+     <circle stroke="null" id="svg_13" cy="5069.29759" cx="3276.30562" r="18.0576"/>
+    </g>
+   </g>
+  </g>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_25" y="23.8" x="48.5" stroke-width="0" stroke="#000" fill="#000000">a</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_26" y="23.8" x="169.5" stroke-width="0" stroke="#000" fill="#000000">b</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_27" y="23.8" x="287.5" stroke-width="0" stroke="#000" fill="#000000">c</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_28" y="217.8" x="48.5" stroke-width="0" stroke="#000" fill="#000000">d</text>
+  <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_29" y="217.8" x="167.5" stroke-width="0" stroke="#000" fill="#000000">e</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_30" y="217.8" x="292.5" stroke-width="0" stroke="#000" fill="#000000">f</text>
+  <g stroke="null" id="svg_40">
+   <g stroke="null" transform="matrix(0.23317688600314318,0,0,0.20090438076754139,-469.3389706406854,-824.5947650043289) " id="svg_39">
+    <path stroke="black" id="svg_31" d="m3742.73482,4290.34261l0,769l513,-769l0,769l-513,-769l1026,769l0,-769l-1026,769m513,-769l513,769m-513,0l513,-769" stroke-width="8.208" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <g stroke="null" id="svg_38" fill="red">
+     <circle stroke="null" id="svg_32" cy="4290.34261" cx="3742.73482" r="18.0576"/>
+     <circle stroke="null" id="svg_33" cy="4290.34261" cx="4255.73482" r="18.0576"/>
+     <circle stroke="null" id="svg_34" cy="4290.34261" cx="4768.73482" r="18.0576"/>
+     <circle stroke="null" id="svg_35" cy="5059.34261" cx="3742.73482" r="18.0576"/>
+     <circle stroke="null" id="svg_36" cy="5059.34261" cx="4255.73482" r="18.0576"/>
+     <circle stroke="null" id="svg_37" cy="5059.34261" cx="4768.73482" r="18.0576"/>
+    </g>
+   </g>
+  </g>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_41" y="21.8" x="396.5" stroke-width="0" stroke="#000" fill="#000000">a</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_42" y="21.8" x="517.5" stroke-width="0" stroke="#000" fill="#000000">b</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_43" y="21.8" x="635.5" stroke-width="0" stroke="#000" fill="#000000">c</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_44" y="215.8" x="396.5" stroke-width="0" stroke="#000" fill="#000000">d</text>
+  <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_45" y="215.8" x="515.5" stroke-width="0" stroke="#000" fill="#000000">e</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_46" y="215.8" x="640.5" stroke-width="0" stroke="#000" fill="#000000">f</text>
+  <ellipse ry="5" rx="5" id="svg_47" cy="115.3" cx="54" stroke-width="0" stroke="#000" fill="#ff0000"/>
+  <text xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_48" y="116.8" x="24.5" stroke-width="0" stroke="#000" fill="#000000">g</text>
+ </g>
+</svg>
