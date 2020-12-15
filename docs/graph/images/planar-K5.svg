@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="10200" height="10000"><!--Complete graph K8-->
+
+<g style="fill:none;stroke:black;stroke-width:70" transform="translate(100,120)">
+<polyline points="5000,200 7939,9245 245,3655 9755,3655 2061,9245"/>
+<polyline points="2061,9245 5000,200 9755,3655 7939,9245 2061,9245 245,3655 5000,200"/>
+<g style="fill:blue;stroke:black;stroke-width:70">
+<circle cx="5000" cy="200" r="200"/>
+<circle cx="7939" cy="9245" r="200"/>
+<circle cx="245" cy="3655" r="200"/>
+<circle cx="9755" cy="3655" r="200"/>
+<circle cx="2061" cy="9245" r="200"/>
+</g>
+</g>
+</svg>

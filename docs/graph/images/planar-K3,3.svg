@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1062.1152" height="805.1152" id="Complete bipartite graph K_3,3">
+<g transform="translate(18.0576,18.0576)">
+<path stroke-linejoin="round" stroke-linecap="round" fill="none" stroke="black" stroke-width="8.208"
+	d="M 0,0 v 769 l 513,-769 v 769 l -513,-769 1026,769 v -769 l -1026,769
+	   M 513,0 l 513,769
+	   M 513,769 l 513,-769" />
+<g fill="red">
+  <circle r="18.0576" cx="0" cy="0" />
+  <circle r="18.0576" cx="513" cy="0" />
+  <circle r="18.0576" cx="1026" cy="0" />
+  <circle r="18.0576" cx="0" cy="769" />
+  <circle r="18.0576" cx="513" cy="769" />
+  <circle r="18.0576" cx="1026" cy="769" />
+</g>
+</g>
+</svg>
