@@ -16,11 +16,11 @@
 
 ## Kahn 算法
 
-将入度为 $0$ 的点组成一个集合 $S$ 
+初始状态下，集合 $S$ 装着所有入度为 $0$ 的点， $L$ 是一个空列表。
 
-每次从 $S$ 里面取出一个顶点 $u$ （可以随便取）放入 $L$ , 然后遍历顶点 $u$ 的所有边 $(u, v_1), (u, v_2), (u, v_3) \cdots$ , 并删除，并判断如果该边的另一个顶点，如果在移除这一条边后入度为 $0$ , 那么就将这个顶点放入集合 $L$ 中。不断地重复取出顶点然后……
+每次从 $S$ 中取出一个点 $u$ （可以随便取）放入 $L$ , 然后将 $u$ 的所有边 $(u, v_1), (u, v_2), (u, v_3) \cdots$ 删除。对于边 $(u, v)$ ，若将该边删除后点 $v$ 的入度变为 $0$ ，则将 $v$ 放入 $S$ 中。
 
-最后当集合为空后，就检查图中是否存在任何边。如果有，那么这个图一定有环路，否者返回 $L$ , $L$ 中顺序就是拓扑排序的结果
+不断重复以上过程，直到集合 $S$ 为空。检查图中是否存在任何边，如果有，那么这个图一定有环路，否则返回 $L$ , $L$ 中顶点的顺序就是拓扑排序的结果。
 
 首先看来自 [Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm) 的伪代码
 
@@ -40,7 +40,7 @@ else
     return L (a topologically sortedorder)
 ```
 
-代码的核心是，是维持一个入度为 0 的顶点。
+代码的核心是维持一个入度为 0 的顶点的集合。
 
 可以参考该图
 
@@ -84,24 +84,27 @@ bool toposort() {
 ## DFS 算法
 
 ```cpp
-// dfs 版本
+vector<int> G[MAXN];  // vector 实现的邻接表
+int c[MAXN];          // 标志数组
+vector<int> topo;     // 拓扑排序后的节点
+
 bool dfs(int u) {
   c[u] = -1;
-  for (int v = 0; v <= n; v++)
-    if (G[u][v]) {
-      if (c[v] < 0)
-        return false;
-      else if (!c[v])
-        dfs(v);
-    }
+  for (int v : G[u]) {
+    if (c[v] < 0)
+      return false;
+    else if (!c[v])
+      if (!dfs(v)) return false;
+  }
   c[u] = 1;
   topo.push_back(u);
   return true;
 }
+
 bool toposort() {
   topo.clear();
   memset(c, 0, sizeof(c));
-  for (int u = 0; u <= n; u++)
+  for (int u = 0; u < n; u++)
     if (!c[u])
       if (!dfs(u)) return false;
   reverse(topo.begin(), topo.end());
@@ -124,6 +127,10 @@ bool toposort() {
 ### 求字典序最大/最小的拓扑排序
 
 将 Kahn 算法中的队列替换成最大堆/最小堆实现的优先队列即可，此时总的时间复杂度为 $O(E+V \log{V})$ 。
+
+## 习题
+
+ [CF 1385E](https://codeforces.com/problemset/problem/1385/E) ：需要通过拓扑排序构造。
 
 ## 参考
 

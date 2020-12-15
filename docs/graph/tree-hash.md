@@ -46,7 +46,7 @@ $$
 
  $seed$ 为选定的一个合适的质数。
 
- $\large\bigoplus$ 表示异或和。
+ $\bigoplus$ 表示异或和。
 
 #### Hack
 

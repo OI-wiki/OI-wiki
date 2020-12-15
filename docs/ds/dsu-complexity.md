@@ -44,11 +44,11 @@ $$
 定义势能函数 $\Phi(S)=\sum\limits_{x\in S}\Phi(x)$ ，其中 $S$ 表示一整个并查集，而 $x$ 为并查集中的一个节点。定义 $\Phi(x)$ 为：
 
 $$
-\Phi(x)=\left\{
-\begin{aligned}
-&\alpha(n)\times rnk(x)& &rnk(x)=0\text{ 或 x为某棵树的根节点}&\\
-&(\alpha(n)-level(x))\times rnk(x)-iter(x)& &otherwise&
-\end{aligned}\right.
+\Phi(x)=
+\begin{cases}
+\alpha(n)\times \mathit{rnk}(x)& \mathit{rnk}(x)=0\text{或}x\text{为某棵树的根节点}&\\
+(\alpha(n)-\mathit{level}(x))\times \mathit{rnk}(x)-iter(x)& \mathit{otherwise}&
+\end{cases}
 $$
 
 然后就是通过操作引起的势能变化来证明摊还时间复杂度为 $\Theta(\alpha(n))$ 啦。注意，这里我们讨论的 $union(x,y)$ 操作保证了 $x$ 和 $y$ 都是某个树的根，因此不需要额外执行 $find(x)$ 和 $find(y)$ 。
@@ -128,7 +128,7 @@ $$
 
 所以，启发式合并会不会被卡？
 
-首先，~~手推一下我们就可以发现那个数据卡不掉启发式合并~~可以从秩参与证明的性质来说明。如果 $size$ 可以代替 $rnk$ 的地位，则可以使用启发式合并。快速总结一下，秩参与证明的性质有以下三条：
+首先，可以从秩参与证明的性质来说明。如果 $size$ 可以代替 $rnk$ 的地位，则可以使用启发式合并。快速总结一下，秩参与证明的性质有以下三条：
 
 1. 每次合并，最多有一个节点的秩上升，而且最多上升 1。
 2. 总有 $rnk(fa(x))\geq rnk(x)+1$ 。
@@ -138,6 +138,6 @@ $$
 
 所以，可以考虑使用 $\log_2 siz(x)$ 代替 $rnk(x)$ 。
 
-关于第一条性质，由于节点的 $siz$ 最多翻倍，所以 $\log_2 siz(x)$ 最多上升 1。关于第二三条性质，~~既得易见平凡~~。
+关于第一条性质，由于节点的 $siz$ 最多翻倍，所以 $\log_2 siz(x)$ 最多上升 1。关于第二三条性质，结论较为显然，这里略去证明。
 
 所以说，如果不想写按秩合并，就写启发式合并好了，时间复杂度仍旧是 $\Theta(m\alpha(n))$ 。

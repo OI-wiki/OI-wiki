@@ -92,7 +92,7 @@ void restore(int x) {
 
 ### BFS 序列
 
-类似 BFS 序列，BFS 序列是指在 BFS 过程中访问的节点编号的序列。
+类似 DFS 序列，BFS 序列是指在 BFS 过程中访问的节点编号的序列。
 
 ### 一般图上 BFS
 

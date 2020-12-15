@@ -1,21 +1,21 @@
-author: kexplorning, Ir1d
+author: kexplorning, Ir1d, lvneg1
 
 > 用来急救，不多废话。
 
 ???+note "药方食用提示"
     本急救贴可以让您充分了解以下内容（对应 [C++ 语法快速提要](#c-start-here) ）：
-
+    
     - 基本语法（块语句、注释、导入库、简单输入输出、声明变量、赋值……）
-    - C++ 的 Hello World 与 A+B Problem 写法与解释
-
-    [对应语法](#syntax) 部分较为紧凑，正式食用可能需要额外参考资料（已给出）。此部分不包括指针与 C 风格数组的介绍，也没有结构体、运算符重载等等。
-
-    [重要不同之处](#differences) 部分为 C++ 的语法特点，也是 Pascal 转 C++ 时会碰到的坑。
-
+    -   C++ 的 Hello World 与 A+B Problem 写法与解释
+    
+         [对应语法](#syntax) 部分较为紧凑，正式食用可能需要额外参考资料（已给出）。此部分不包括指针与 C 风格数组的介绍，也没有结构体、运算符重载等等。
+    
+         [重要不同之处](#differences) 部分为 C++ 的语法特点，也是 Pascal 转 C++ 时会碰到的坑。
+    
     如要快速查找，请见附录：
-
-    - [附 A：Pascal 与 C++ 运算符与数学函数语法对比表](#apascal-c-pascal-vs-c-operator-syntax-table)
-    - [附 B：文章检索](#b-index) - 按 C++ 语句语法索引
+    
+    -  [附 A：Pascal 与 C++ 运算符与数学函数语法对比表](#apascal-c-pascal-vs-c-operator-syntax-table) 
+    -  [附 B：文章检索](#b-index) - 按 C++ 语句语法索引
 
 <!-- 
 
@@ -46,9 +46,9 @@ INFO: 恭喜你找到了隐藏彩蛋！
 
 以下 IDE 选择一个即可：
 
--  [Dev-C++](https://sourceforge.net/projects/orwelldevcpp/) 
+-  [Dev-C++](../tools/editor/devcpp.md) 
 -  [Code::Blocks](https://sourceforge.net/projects/codeblocks/) 
--  [Visual Studio](https://visualstudio.microsoft.com/) （Community 版本够用）
+-  [VS Code](../tools/editor/vscode.md) 
 
 ### 方式二：使用 代码编辑器 + 编译器 + 调试器
 
@@ -264,8 +264,8 @@ if (a == b && a > 0 && b > 0) {
 
 ???+note "易错提醒"
     特别注意： **不要把 `==` 写成 `=` ！** 
-
-    由于 C/C++ 比 Pascal 语法灵活，如果在判断语句中写了 `if (a=b) {`，那么程序会顺利运行下去，因为 C++ 中 `a=b` 是有返回值的。
+    
+    由于 C/C++ 比 Pascal 语法灵活，如果在判断语句中写了 `if (a=b) {` ，那么程序会顺利运行下去，因为 C++ 中 `a=b` 是有返回值的。
 
 ####  `case` 与 `switch` 
 
@@ -332,7 +332,7 @@ for (int i = 1; i <= 10; i++) {
 
 ####  `repeat until` 与 `do while` 循环
 
-注意， `repeat unitl` 与 `do while` 是不同的，请对比以下代码
+注意， `repeat until` 与 `do while` 是不同的，请对比以下代码
 
 ```pas
 var i: integer;
@@ -662,7 +662,7 @@ C++ 把函数和过程统统视作函数，连 `main` 都不放过，比如写 `
 
 ### 在函数中传递参数 Passing Parameters to Functions
 
-C++ 中没有 Pascal 的 `var` 关键字可以改变传递的参数
+C++ 中没有 Pascal 的 `var` 关键字可以改变传递的参数，但是 C++ 可以使用引用和指针达到同样的效果。
 
 ```pas
 var a, b: integer;
@@ -683,6 +683,7 @@ end.
 ```
 
 ```cpp
+// 使用指针的代码
 #include <iostream>
 
 void swap(int* x, int* y) {
@@ -701,9 +702,31 @@ int main() {
 }
 ```
 
-注意，此处 C++ 代码涉及指针问题。指针问题还是很麻烦的，建议去阅读相关资料。
+注意，此处 C++ 代码 **涉及指针问题** 。指针问题还是很麻烦的，建议去阅读相关资料。
 
-C++ 中函数传递参数还有其他方法，其中一种是 **直接使用全局变量传递参数** ，如果不会用指针，可以先用这种方法。
+```cpp
+// 使用引用的代码
+#include <iostream>
+
+void swap(int& x, int& y) {
+  int temp;
+  temp = x;
+  x = y;
+  y = temp;
+}
+
+int main(int argc, char const* argv[]) {
+  int a = 10, b = 20;
+  swap(a, b);
+  std::cout << a << " " << b;
+
+  return 0;
+}
+```
+
+注意，此处 C++ 代码涉及 **引用相关类型问题** 。在用引用调用一些 STL 库、模板库的时候可能会遇到一些问题，这时候需要手动声明别类型。具体资料可以在《C++ Primer》第五版或者网络资料中自行查阅。
+
+C++ 中函数传递参数还有其他方法，其中一种是 **直接使用全局变量传递参数** ，如果不会用指针，可以先用这种方法。但是这种方法的缺陷是没有栈保存数据， **没有办法在递归函数中传参** 。（除非手写栈，注意，手写栈也是一种突破系统栈限制的方法。）
 
 ## C++ 标准库与参考资料 Reference
 

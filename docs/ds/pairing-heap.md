@@ -23,7 +23,7 @@
 struct Node {
   T v;            // T为权值类型
   Node *ch, *xd;  // ch为该节点儿子的指针，xd为该节点兄弟的指针。
-                  // 若该节点没有儿子/兄弟则指针指向虚拟空节点。
+                  // 若该节点没有儿子/兄弟则指针指向空节点 nullptr。
 };
 ```
 
@@ -40,8 +40,8 @@ struct Node {
 ```cpp
 Node* merge(Node* a, Node* b) {
   // 若有一个为空则直接返回另一个
-  if (a == node) return b;
-  if (b == node) return a;
+  if (a == nullptr) return b;
+  if (b == nullptr) return a;
   if (a->v > b->v) swap(a, b);  // swap后a为权值小的堆，b为权值大的堆
   // 将b设为a的儿子
   b->xd = a->ch;
@@ -64,10 +64,10 @@ Node* merge(Node* a, Node* b) {
 
 ```cpp
 Node* merges(Node* x) {
-  if (x == node || x->xd == node)
+  if (x == nullptr || x->xd == nullptr)
     return x;  // 如果该树为空或他没有兄弟（即他的父亲的儿子数小于2），就直接return。
   Node *a = x->xd, *b = a->xd;  // a：x的一个兄弟，b：x的另一个兄弟
-  x->xd = a->xd = node;         // 拆散
+  x->xd = a->xd = nullptr;      // 拆散
   return merge(merge(x, a), merges(b));  // 核心部分
 }
 ```
@@ -88,14 +88,16 @@ Node* delete_min(Node* x) { return merges(x->ch); }
 
 #### 减小一个元素的值
 
-要实现这个操作，需要给节点添加一个 father 指针，会使实现变得相对复杂。  
+要实现这个操作，需要给节点添加一个 father 指针，其指向前一个节点而非树形结构的父节点。
+
 首先节点的定义修改为：
 
 ```cpp
 struct Node {
   T v;
   Node *ch, *xd;
-  Node *fa;  // 新增：fa指针，指向该节点的父亲，若该节点为根节点则指向虚拟空节点
+  Node *fa;  // 新增：fa指针，指向该节点的父亲，若该节点为根节点则指向空节点
+             // nullptr
 };
 ```
 
@@ -103,12 +105,14 @@ struct Node {
 
 ```cpp
 Node* merge(Node* a, Node* b) {
-  if (a == node) return b;
-  if (b == node) return a;
+  if (a == nullptr) return b;
+  if (b == nullptr) return a;
   if (a->v > b->v) swap(a, b);
-  a->fa = node;
-  b->fa = node;  // 新增：维护fa指针
+  a->fa = nullptr;
+  b->fa = nullptr;  // 新增：维护fa指针
   b->xd = a->ch;
+  if (a->ch != nullptr)  //判断a的子节点是否为空 否则会空指针异常
+    a->ch->fa = b;
   a->ch->fa = b;  // 新增：维护fa指针
   a->ch = b;
   return a;
@@ -119,11 +123,17 @@ Node* merge(Node* a, Node* b) {
 
 ```cpp
 Node* merges(Node* x) {
-  x->fa = node;  // 新增：维护fa指针
-  if (x == node || x->xd == node) return x;
-  Node *a = x->xd, *b = a->xd;
-  x->xd = a->xd = node;
-  a->fa = node;  // 新增：维护fa指针
+  x->fa = nullptr;  // 新增：维护fa指针
+  if (x == nullptr || x->xd == nullptr) return x;
+  Node* a = x->xd;
+  Node* b = nullptr;
+  if (a != nullptr) {
+    b = a->xd;
+    x->xd = a->xd = nullptr;
+  } else {
+    x->xd = nullptr;
+  }
+  a->fa = nullptr;  // 新增：维护fa指针
   return merge(merge(x, a), merges(b));
 }
 ```
@@ -134,19 +144,19 @@ Node* merges(Node* x) {
 这个操作本身复杂度显然为 $O(1)$ ，但会破坏原有的势能分析过程，因此均摊复杂度难以证明（目前学术界还无法给出复杂度的精确值），通常可以简单的认为复杂度为 $o(\log n)$ （注意这里为小 o）。
 
 ```cpp
-// root为堆的根，x为要操作的节点，v为新的权值，调用时需保证x->v<=v
-//返回值为新的根节点
+// root为堆的根，x为要操作的节点，v为新的权值，调用时需保证x->v>=v
+// 返回值为新的根节点
 Node* decrease - key(Node* root, Node* x, LL v) {
-  x->v = v;                     // 修改权值
-  if (x->fa == node) return x;  // 如果x为根，就不用接下去的步骤了。
+  x->v = v;                        // 修改权值
+  if (x->fa == nullptr) return x;  // 如果x为根，就不用接下去的步骤了。
   // 把x从fa的子节点中剖出去，这里要分x的位置讨论一下。
   if (x->fa->ch == x)
     x->fa->ch = x->xd;
   else
     x->fa->xd = x->xd;
   x->xd->fa = x->fa;
-  x->xd = node;
-  x->fa = node;
+  x->xd = nullptr;
+  x->fa = nullptr;
   return merge(root, x);  // 合并root和x。
 }
 ```
@@ -158,7 +168,7 @@ Node* decrease - key(Node* root, Node* x, LL v) {
 ### 参考文献
 
 1.  [HOOCCOOH 的题解](https://hooccooh.blog.luogu.org/solution-p3377) 
-2. 集训队论文《黄源河 -- 左偏树的特点及其应用》
+2.  [集训队论文《黄源河 -- 左偏树的特点及其应用》](https://wenku.baidu.com/view/20e9ff18964bcf84b9d57ba1.html) 
 3.  [《配对堆中文版》](https://wenku.baidu.com/view/f2527bc2bb4cf7ec4afed06d.html) 
 4.  [维基百科 pairing heap 词条](https://en.wikipedia.org/wiki/Pairing_heap) 
 5.  <https://blog.csdn.net/luofeixiongsix/article/details/50640668> 

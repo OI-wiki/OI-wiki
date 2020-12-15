@@ -49,7 +49,7 @@ $$
 
 行列式可以使用高斯消元求。
 
-复杂度为 $O(n+k^2(k + \log p))$ ，其中 $\log p$ 是求逆元复杂度。
+复杂度为 $O(n+k(k^2 + \log p))$ ，其中 $\log p$ 是求逆元复杂度。
 
 ??? note "参考代码"
     ```cpp
@@ -108,9 +108,10 @@ $$
             }
           }
           if (!m[i][i]) continue;
+          int inv = qpow(m[i][i], mod - 2);
           for (int j = i + 1; j <= k; ++j) {
             if (!m[j][i]) continue;
-            int mul = (ll)m[j][i] * qpow(m[i][i], mod - 2) % mod;
+            int mul = (ll)m[j][i] * inv % mod;
             for (int p = i; p <= k; ++p) {
               m[j][p] = (m[j][p] - (ll)m[i][p] * mul % mod + mod) % mod;
             }

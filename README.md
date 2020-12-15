@@ -5,8 +5,8 @@
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-brightgreen?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/OI-wiki/OI-wiki)
 [![Travis](https://img.shields.io/travis/OI-WIKI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/OI-wiki/OI-wiki)
 [![Uptime Robot Status](https://img.shields.io/uptimerobot/status/m781254113-3e3bac467c64fc99eafd383e.svg?style=flat-square)](https://status.oi-wiki.org/)
-[![Telegram](https://img.shields.io/badge/OI--wiki-join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
-[![QQ](https://img.shields.io/badge/OI--wiki-join%20QQ%20group-brightgreen.svg?style=flat-square)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
+[![Telegram](https://img.shields.io/badge/Telegram-OI%20Wiki-%232CA5E0?style=flat-square&logo=telegram)](https://t.me/OIwiki)
+[![QQ](https://img.shields.io/badge/QQ%20group-OI%20Wiki-blue?style=flat-square&logo=tencent-qq)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
 [![GitHub watchers](https://img.shields.io/github/watchers/OI-Wiki/OI-Wiki.svg?style=social&label=Watch)](https://github.com/OI-wiki/OI-wiki)
 [![GitHub stars](https://img.shields.io/github/stars/OI-Wiki/OI-Wiki.svg?style=social&label=Stars)](https://github.com/OI-wiki/OI-wiki)
 
@@ -102,10 +102,6 @@ python2 -m SimpleHTTPServer
 具体的贡献方式在 [如何参与](https://oi-wiki.org/intro/htc/)。
 
 * * *
-
-## 开源软件供应链点亮计划 —— 暑期 2020
-
-OI Wiki 社区正在参加由中科院软件所与华为 openEuler 项目共同举办的 [“开源软件供应链点亮计划——暑期2020”](https://isrc.iscas.ac.cn/summer2020/) 项目。 OI Wiki 也准备好了若干需求等待大家积极参与，详情请见 [「“开源软件供应链点亮计划——暑期2020”项目提案」](https://github.com/OI-wiki/OI-wiki/wiki/Open-Source-Promotion-Plan---Summer-2020#) 。如有意愿，请加入 Telegram 群组 [Project OI Wiki Summer2020](https://t.me/joinchat/GaEGzht3n19XgNcd3giLSA) 。
 
 ## 版权声明
 

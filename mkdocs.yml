@@ -20,44 +20,58 @@ google_analytics:
 nav:
   - 简介:
     - Getting Started: index.md
-    - OI 赛事与赛制: intro/oi.md
-    - ICPC/CCPC 赛事与赛制: intro/icpc.md
-    - 学习路线: intro/roadmap.md
-    - 学习资源: intro/resources.md
-    - 常见错误: intro/common-mistakes.md
-    - 常见技巧: intro/common-tricks.md
-    - 非传统题: intro/non-trad.md
-    - 工具软件:
-      - 评测工具: intro/judgers.md
-      - WSL (Windows 10): intro/wsl.md
-      - Special Judge: intro/spj.md
-      - Testlib:
-        - Testlib 简介: intro/testlib/index.md
-        - 通用: intro/testlib/general.md
-        - Generator: intro/testlib/generator.md
-        - Validator: intro/testlib/validator.md
-        - Interactor: intro/testlib/interactor.md
-        - Checker: intro/testlib/checker.md
-      - Polygon: intro/polygon.md
-      - OJ 工具: intro/oj-tool.md
-      - LaTeX 入门: intro/latex.md
-    - Docker 部署: intro/docker-deploy.md
     - 关于本项目: intro/about.md
     - 如何参与: intro/htc.md
     - 格式手册: intro/format.md
     - F.A.Q.: intro/faq.md
+    - 用 Docker 部署 OI Wiki: intro/docker-deploy.md
     - 致谢: intro/thanks.md
+  - 比赛相关:
+    - 比赛相关简介: contest/index.md
+    - 赛事:
+      - OI 赛事与赛制: contest/oi.md
+      - ICPC/CCPC 赛事与赛制: contest/icpc.md
+    - 题型: 
+      - 题型概述: contest/problems.md
+      - 构造: contest/construction.md
+      - 交互题: contest/interaction.md
+    - 学习路线: contest/roadmap.md
+    - 学习资源: contest/resources.md
+    - 技巧:
+      - 读入、输出优化: contest/io.md
+      - 常见错误: contest/common-mistakes.md
+      - 常见技巧: contest/common-tricks.md
+    - 出题相关:
+      - 出题: contest/problemsetting.md
+  - 工具软件:
+    - 工具软件简介: tools/index.md
+    - 代码编辑工具:
+      - Vim: tools/editor/vim.md
+      - Emacs: tools/editor/emacs.md
+      - VS Code: tools/editor/vscode.md
+      - Atom: tools/editor/atom.md
+      - Eclipse: tools/editor/eclipse.md
+      - Notepad++: tools/editor/npp.md
+      - Dev-C++: tools/editor/devcpp.md
+      - Geany: tools/editor/geany.md
+      - Xcode: tools/editor/xcode.md
+      - GUIDE: tools/editor/guide.md
+    - 评测工具: tools/judgers.md
+    - 命令行: tools/cmd.md
+    - WSL (Windows 10): tools/wsl.md
+    - Special Judge: tools/special-judge.md
+    - Testlib:
+      - Testlib 简介: tools/testlib/index.md
+      - 通用: tools/testlib/general.md
+      - Generator: tools/testlib/generator.md
+      - Validator: tools/testlib/validator.md
+      - Interactor: tools/testlib/interactor.md
+      - Checker: tools/testlib/checker.md
+    - Polygon: tools/polygon.md
+    - OJ 工具: tools/oj-tool.md
+    - LaTeX 入门: tools/latex.md
   - 语言基础:
     - 语言基础简介: lang/index.md
-    - 编辑工具:
-      - Vim: lang/editor/vim.md
-      - Emacs: lang/editor/emacs.md
-      - VS Code: lang/editor/vscode.md
-      - Atom: lang/editor/atom.md
-      - Eclipse: lang/editor/eclipse.md
-      - Notepad++: lang/editor/npp.md
-      - Dev-C++: lang/editor/devcpp.md
-      - Geany: lang/editor/geany.md
     - C++ 基础:
       - Hello, World!: lang/helloworld.md
       - C++ 语法基础: lang/basic.md
@@ -87,6 +101,7 @@ nav:
     - C++ 进阶:
       - 类: lang/class.md
       - 命名空间: lang/namespace.md
+      - 重载运算符: lang/op-overload.md
       - 引用: lang/reference.md
       - 常值: lang/const.md
       - 新版 C++ 特性: lang/new.md
@@ -116,13 +131,12 @@ nav:
       - 堆排序: basic/heap-sort.md
       - 桶排序: basic/bucket-sort.md
       - 希尔排序: basic/shell-sort.md
+      - 锦标赛排序: basic/tournament-sort.md
       - 排序相关 STL: basic/stl-sort.md
       - 排序应用: basic/use-of-sort.md
     - 前缀和 & 差分: basic/prefix-sum.md
     - 二分: basic/binary.md
     - 倍增: basic/binary-lifting.md
-    - 构造: basic/construction.md
-    - 交互题: basic/interaction.md
   - 搜索:
     - 搜索部分简介: search/index.md
     - DFS（搜索）: search/dfs.md
@@ -148,6 +162,7 @@ nav:
     - 插头 DP: dp/plug.md
     - 计数 DP: dp/count.md
     - 动态 DP: dp/dynamic.md
+    - 概率 DP: dp/probability.md
     - DP 优化:
       - 单调队列/单调栈优化: dp/opt/monotonous-queue-stack.md
       - 斜率优化: dp/opt/slope.md
@@ -183,6 +198,7 @@ nav:
     - 快速幂: math/quick-pow.md
     - 进位制: math/base.md
     - 高精度计算: math/bignum.md
+    - 平衡三进制: math/balanced-ternary.md
     - 数论:
       - 素数: math/prime.md
       - 最大公约数: math/gcd.md
@@ -201,6 +217,7 @@ nav:
       - 莫比乌斯反演: math/mobius.md
       - 杜教筛: math/du.md
       - Min_25 筛: math/min-25.md
+      - 分解质因数: math/pollard-rho.md
     - 多项式:
       - 多项式部分简介: math/poly/intro.md
       - 拉格朗日插值: math/poly/lagrange.md
@@ -232,10 +249,12 @@ nav:
       - 排列组合: math/combination.md
       - 卡特兰数: math/catalan.md
       - 斯特林数: math/stirling.md
+      - 贝尔数: math/bell.md
+      - 伯努利数: math/bernoulli.md
       - 康托展开: math/cantor.md
       - 容斥原理: math/inclusion-exclusion-principle.md
       - 抽屉原理: math/drawer-principle.md
-    - 概率 & 期望: math/expectation.md
+    - 概率初步: math/expectation.md
     - 置换群: math/permutation-group.md
     - 斐波那契数列: math/fibonacci.md
     - 博弈论: math/game-theory.md
@@ -249,7 +268,6 @@ nav:
     - 链表: ds/linked-list.md
     - 哈希表: ds/hash.md
     - 并查集: ds/dsu.md
-    - 并查集时间复杂度证明: ds/dsu-complexity.md
     - 堆:
       - 堆简介: ds/heap.md
       - 二叉堆: ds/binary-heap.md
@@ -264,8 +282,9 @@ nav:
     - 单调栈: ds/monotonous-stack.md
     - 单调队列: ds/monotonous-queue.md
     - ST 表: ds/sparse-table.md
-    - 线段树: ds/seg.md
     - 树状数组: ds/fenwick.md
+    - 线段树: ds/seg.md
+    - 李超线段树: ds/li-chao-tree.md
     - 区间最值操作 & 区间历史最值: ds/seg-beats.md
     - 划分树: ds/dividing.md
     - 二叉搜索树 & 平衡树:
@@ -278,6 +297,7 @@ nav:
       - 替罪羊树: ds/sgt.md
       - 笛卡尔树: ds/cartesian-tree.md
       - 左偏红黑树: ds/llrbt.md
+    - 跳表: ds/skiplist.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
       - 可持久化线段树: ds/persistent-seg.md
@@ -290,6 +310,7 @@ nav:
       - 平衡树套线段树: ds/seg-in-balanced.md
       - 线段树套平衡树: ds/balanced-in-seg.md
       - 树状数组套主席树: ds/persistent-in-bit.md
+      - 分块套树状数组: ds/bit-in-block-array.md
     - K-D Tree: ds/kdt.md
     - 珂朵莉树: ds/odt.md
     - 动态树:
@@ -319,11 +340,14 @@ nav:
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
     - 最小生成树: graph/mst.md
-    - 最小树形图: graph/mdst.md
+    - 斯坦纳树: graph/steiner-tree.md
+    - 最小树形图: graph/dmst.md
+    - 最小直径生成树: graph/mdst.md
     - 最短路: graph/shortest-path.md
     - 拆点: graph/node.md
     - 差分约束: graph/diff-constraints.md
     - k 短路: graph/kth-path.md
+    - 同余最短路: graph/mod-shortest-path.md
     - 连通性相关:
       - 强连通分量: graph/scc.md
       - 双连通分量: graph/bcc.md
@@ -362,7 +386,6 @@ nav:
     - 计算几何杂项: geometry/misc.md
   - 杂项:
     - 杂项简介: misc/index.md
-    - 读入、输出优化: misc/io.md
     - 复杂度: misc/complexity.md
     - 离散化: misc/discrete.md
     - 离线算法:
@@ -379,6 +402,7 @@ nav:
     - 分数规划: misc/frac-programming.md
     - 随机化:
       - 随机函数: misc/random.md
+      - 随机化技巧: misc/rand-technique.md
       - 爬山算法: misc/hill-climbing.md
       - 模拟退火: misc/simulated-annealing.md
     - 悬线法: misc/hoverline.md
@@ -398,13 +422,16 @@ nav:
       - 一般图匹配: topic/graph-matching/general-match.md
       - 二分图最大权匹配: topic/graph-matching/bigraph-weight-match.md
       - 一般图最大权匹配: topic/graph-matching/general-weight-match.md
-    - 出题: topic/problemsetting.md
+    - 并查集应用: topic/dsu-app.md
   - 关于 Hulu:
     -  关于 Hulu: intro/hulu.md
 
 # Theme
 theme:
-  name: 'material'
+  name: null
+  custom_dir: 'mkdocs-material/material'
+  static_templates:
+    - 404.html
   language: 'zh'
   palette:
     primary: 'white'
@@ -463,6 +490,8 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.emoji:
       emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.highlight:
+      linenums: true
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.magiclink

@@ -23,11 +23,19 @@ $$
 B = \{ p_i \ \big | \ \lvert x_i - x_m \rvert < h \}
 $$
 
+结合图像，直线 $m$ 将点分成了两部分。 $m$ 左侧为 $A_1$ 点集，右侧为为 $A_2$ 点集。
+
+再根据 $B = \{ p_i \ \big | \ \lvert x_i - x_m \rvert < h \}$ 规则，得到绿色点组成的 $B$ 点集。![nearest-points1](./images/nearest-points1.png)
+
 对于 $B$ 中的每个点 $p_i$ ，我们当前目标是找到一个同样在 $B$ 中、且到其距离小于 $h$ 的点。为了避免两个点之间互相考虑，我们只考虑那些纵坐标小于 $y_i$ 的点。显然对于一个合法的点 $p_j$ ， $y_i - y_j$ 必须小于 $h$ 。于是我们获得了一个集合 $C(p_i)$ ：
 
 $$
 C(p_i) = \{ p_j\ \big |\ p_j \in B,\ y_i - h < y_j \le y_i \}
 $$
+
+在点集 $B$ 中选一点 $p_i$ ，根据 $C(p_i) = \{ p_j\ \big |\ p_j \in B,\ y_i - h < y_j \le y_i \}$ 的规则，得到了由红色方框内的黄色点组成的 $C$ 点集。
+
+![nearest-points2](./images/nearest-points2.png)
 
 如果我们将 $B$ 中的点按照 $y_i$ 排序， $C(p_i)$ 将很容易得到，即紧邻 $p_i$ 的连续几个点。
 
@@ -48,6 +56,8 @@ $$
 我们再将这个矩形拆分为两个 $h \times h$ 的正方形，不考虑 $p_i$ ，其中一个正方形中的点为 $C(p_i) \cap A_1$ ，另一个为 $C(p_i) \cap A_2$ ，且两个正方形内的任意两点间距离大于 $h$ 。（因为它们来自同一下层递归）
 
 我们将一个 $h \times h$ 的正方形拆分为四个 $\frac{h}{2} \times \frac{h}{2}$ 的小正方形。可以发现，每个小正方形中最多有 $1$ 个点：因为该小正方形中任意两点最大距离是对角线的长度，即 $\frac{h}{\sqrt 2}$ ，该数小于 $h$ 。
+
+![nearest-points3](./images/nearest-points3.png)
 
 由此，每个正方形中最多有 $4$ 个点，矩形中最多有 $8$ 个点，去掉 $p_i$ 本身， $\max(C(p_i))=7$ 。
 
@@ -202,8 +212,9 @@ $$
 -  [UVA 10245 "The Closest Pair Problem"\[难度：低\]](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1186) 
 -  [SPOJ #8725 CLOPPAIR "Closest Point Pair"\[难度：低\]](https://www.spoj.com/problems/CLOPPAIR/) 
 -  [CODEFORCES Team Olympiad Saratov - 2011 "Minimum amount"\[难度：中\]](http://codeforces.com/contest/120/problem/J) 
--  [Google CodeJam 2009 Final "Min Perimeter"\[难度：中\]](https://code.google.com/codejam/contest/311101/dashboard#s=a&a=1) 
 -  [SPOJ #7029 CLOSEST "Closest Triple"\[难度：中\]](https://www.spoj.com/problems/CLOSEST/) 
+
+<!-- -  [Google CodeJam 2009 Final "Min Perimeter"\[难度：中\]](https://code.google.com/codejam/contest/311101/dashboard#s=a&a=1)  -->
 
 * * *
 

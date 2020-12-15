@@ -80,17 +80,17 @@ $$
 
 ### 定义
 
-严谨地，我们称 $x^n=1$ 在复数意义下的解是 $n$ 次复根。显然，这样的解有 $n$ 个，设 $\omega_n=e^{\frac{2\pi i}{n}}$ ，则 $x^n=1$ 的解集表示为 $\{w_n^k\mid k=0,1\cdots,n-1\}$ 。我们称 $w_n$ 是 $n$ 次单位复根（the $n$ -th root of unity）。根据复平面的知识， $n$ 次单位复根是复平面把单位圆 $n$ 等分的第一个角所对应的向量。其他复根均可以用单位复根的幂表示。
+严谨地，我们称 $x^n=1$ 在复数意义下的解是 $n$ 次复根。显然，这样的解有 $n$ 个，设 $\omega_n=e^{\frac{2\pi i}{n}}$ ，则 $x^n=1$ 的解集表示为 $\{\omega_n^k\mid k=0,1\cdots,n-1\}$ 。我们称 $\omega_n$ 是 $n$ 次单位复根（the $n$ -th root of unity）。根据复平面的知识， $n$ 次单位复根是复平面把单位圆 $n$ 等分的第一个角所对应的向量。其他复根均可以用单位复根的幂表示。
 
-另一方面，根据欧拉公式，还可以得到 $\omega_n=e^{\frac{2\pi i}{n}}=\cos\left(\dfrac{2\pi i}{n}\right)+i\cdot \sin\left(\dfrac{2\pi i}{n}\right)$ 。
+另一方面，根据欧拉公式，还可以得到 $\omega_n=e^{\frac{2\pi i}{n}}=\cos\left(\dfrac{2\pi}{n}\right)+i\cdot \sin\left(\dfrac{2\pi}{n}\right)$ 。
 
-举个例子，当 $n=4$ 时， $w_n=i$ ，即 $i$ 就是 $4$ 次单位复根：
+举个例子，当 $n=4$ 时， $\omega_n=i$ ，即 $i$ 就是 $4$ 次单位复根：
 
 ![img](./images/fft3.png)
 
 当 $n = 4$ 的时候，相当于把单位圆等分 $n=4$ 份。将每一份按照极角编号，那么我们只要知道 $\omega_4^1$ （因为他的角度是相当于单位角度），就能知道 $\omega_4^0, \omega_4^1, \omega_4^2, \omega_4^3$ 。
 
- $\omega_4^0$ 恒等于 $1$ ， $\omega_4^2$ 的角度是 $\omega_4^0$ 的两倍，所以 $\omega_4^2 = (\omega_4^1)^2 = i^2=-1$ ，依次以此类推。
+ $\omega_4^0$ 恒等于 $1$ ， $\omega_4^2$ 的角度是 $\omega_4^1$ 的两倍，所以 $\omega_4^2 = (\omega_4^1)^2 = i^2=-1$ ，依次以此类推。
 
 ### 性质
 
@@ -117,10 +117,10 @@ $$
 按照次数的奇偶来分成两组，然后右边提出来一个 $x$ 
 
 $$
-\begin{split}
+\begin{aligned}
 f(x) &= (a_0+a_2x^2+a_4x^4+a_6x^6) + (a_1x+a_3x^3+a_5x^5+a_7x^7)\\
      &= (a_0+a_2x^2+a_4x^4+a_6x^6) + x(a_1+a_3x^2+a_5x^4+a_7x^6)
-\end{split}
+\end{aligned}
 $$
 
 分别用奇偶次次项数建立新的函数
@@ -141,23 +141,23 @@ $$
 利用单位复根的性质得到
 
 $$
-\begin{split}
+\begin{aligned}
 \operatorname{DFT}(f(\omega_n^k))
 &=\operatorname{DFT}(G((\omega_n^k)^2)) + \omega_n^k  \times \operatorname{DFT}(H((\omega_n^k)^2))\\
 &=\operatorname{DFT}(G(\omega_n^{2k})) + \omega_n^k  \times \operatorname{DFT}(H(\omega_n^{2k}))\\
 &=\operatorname{DFT}(G(\omega_{n/2}^k)) + \omega_n^k  \times \operatorname{DFT}(H(\omega_{n/2}^k))
-\end{split}
+\end{aligned}
 $$
 
 同理可得
 
 $$
-\begin{split}
+\begin{aligned}
 \operatorname{DFT}(f(\omega_n^{k+n/2}))
 &=\operatorname{DFT}(G(\omega_n^{2k+n})) + \omega_n^{k+n/2}  \times \operatorname{DFT}(H(\omega_n^{2k+n}))\\
 &=\operatorname{DFT}(G(\omega_n^{2k})) - \omega_n^k  \times \operatorname{DFT}(H(\omega_n^{2k}))\\
 &=\operatorname{DFT}(G(\omega_{n/2}^k)) - \omega_n^k  \times \operatorname{DFT}(H(\omega_{n/2}^k))
-\end{split}
+\end{aligned}
 $$
 
 因此我们求出了 $\operatorname{DFT}(G(\omega_{n/2}^k))$ 和 $\operatorname{DFT}(H(\omega_{n/2}^k))$ 后，就可以同时求出 $\operatorname{DFT}(f(\omega_n^k))$ 和 $\operatorname{DFT}(f(\omega_n^{k+n/2}))$ 。于是对 $G$ 和 $H$ 分别递归 DFT 即可。
@@ -206,7 +206,7 @@ $$
 
 ### 蝴蝶变换
 
-这个算法还可以从“分治”的角度继续优化。我们每一次都会把整个多项式的奇数次项和偶数次项系数分开，一只分到只剩下一个系数。但是，这个递归的过程需要更多的内存。因此，我们可以先“模仿递归”把这些系数在原数组中“拆分”，然后再“倍增”地去合并这些算出来的值。
+这个算法还可以从“分治”的角度继续优化。我们每一次都会把整个多项式的奇数次项和偶数次项系数分开，一直分到只剩下一个系数。但是，这个递归的过程需要更多的内存。因此，我们可以先“模仿递归”把这些系数在原数组中“拆分”，然后再“倍增”地去合并这些算出来的值。
 
 以 $8$ 项多项式为例，模拟拆分的过程：
 
@@ -300,7 +300,7 @@ $$
 为了使计算的结果为原来的倒数，根据单位复根的性质并结合欧拉公式，可以得到
 
 $$
-\frac{1}{\omega_k}=\omega_k^{-1}=e^{-\frac{2\pi i}{k}}=\cos\left(\frac{2\pi i}{k}\right)+i\cdot \sin\left(-\frac{2\pi i}{k}\right)
+\frac{1}{\omega_k}=\omega_k^{-1}=e^{-\frac{2\pi i}{k}}=\cos\left(\frac{2\pi}{k}\right)+i\cdot \sin\left(-\frac{2\pi}{k}\right)
 $$
 
 因此我们可以尝试着把 $π$ 取成 - 3.14159…，这样我们的计算结果就会变成原来的倒数，而其它的操作过程与 DFT 是完全相同的。我们可以定义一个函数，在里面加一个参数 $1$ 或者是 $-1$ ，然后把它乘到 $π$ 的身上。传入 $1$ 就是 DFT，传入 $-1$ 就是 IDFT。
@@ -320,10 +320,10 @@ $$
 对 $A(x)$ 的定义式做一下变换，可以将 $A(b_k)$ 表示为
 
 $$
-\begin{split}
+\begin{aligned}
 A(b_k)&=\sum_{i=0}^{n-1}f(\omega_n^i)\omega_n^{-ik}=\sum_{i=0}^{n-1}\omega_n^{-ik}\sum_{j=0}^{n-1}a_j(\omega_n^i)^{j}\\
 &=\sum_{i=0}^{n-1}\sum_{j=0}^{n-1}a_j\omega_n^{i(j-k)}=\sum_{j=0}^{n-1}a_j\sum_{i=0}^{n-1}\left(\omega_n^{j-k}\right)^i\\
-\end{split}
+\end{aligned}
 $$
 
 记 $S\left(\omega_n^a\right)=\sum_{i=0}^{n-1}\left(\omega_n^a\right)^i$ 。
@@ -333,21 +333,21 @@ $$
 当 $a\neq 0$ 时，我们错位相减
 
 $$
-\begin{split}
+\begin{aligned}
 S\left(\omega_n^a\right)&=\sum_{i=0}^{n-1}\left(\omega_n^a\right)^i\\
 \omega_n^a S\left(\omega_n^a\right)&=\sum_{i=1}^{n}\left(\omega_n^a\right)^i\\
 S\left(\omega_n^a\right)&=\frac{\left(\omega_n^a\right)^n-\left(\omega_n^a\right)^0}{\omega_n^a-1}=0\\
-\end{split}
+\end{aligned}
 $$
 
 也就是说
 
 $$
 S\left(\omega_n^a\right)=
-\left\{\begin{split}
+\left\{\begin{aligned}
 n,a=0\\
 0,a\neq 0
-\end{split}\right.
+\end{aligned}\right.
 $$
 
 那么代回原式
@@ -359,10 +359,10 @@ $$
 也就是说给定点 $b_i=\omega_n^{-i}$ ，则 $A$ 的点值表示法为
 
 $$
-\begin{split}
+\begin{aligned}
 &\left\{ (b_0,A(b_0)),(b_1,A(b_1)),\cdots,(b_{n-1},A(b_{n-1})) \right\}\\
 =&\left\{ (b_0,a_0\cdot n),(b_1,a_1\cdot n),\cdots,(b_{n-1},a_{n-1}\cdot n) \right\}
-\end{split}
+\end{aligned}
 $$
 
 综上所述，我们取单位根为其倒数，对 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 跑一遍 FFT，然后除以 $n$ 即可得到 $f(x)$ 的系数表示。

@@ -1,4 +1,4 @@
-author: Ir1d, LeoJacob, Xeonacid, greyqz, StudyingFather, TrisolarisHD, minghu6
+author: Ir1d, LeoJacob, Xeonacid, greyqz, StudyingFather, TrisolarisHD, minghu6, Backl1ght
 
 ## 字符串前缀和后缀定义
 
@@ -33,9 +33,9 @@ $$
 
  $\pi[3]=1$ ，因为 `abca` 只有一对相等的真前缀和真后缀： `a` ，长度为 1
 
- $\pi[4]=2$ ，因为 `abcab` 相等的真前缀和真后缀有 `a` 和 `ab` ，其中最长的 `ab` 长度为 2
+ $\pi[4]=2$ ，因为 `abcab` 相等的真前缀和真后缀只有 `ab` ，长度为 2
 
- $\pi[5]=3$ ，因为 `abcabc` 相等的真前缀和真后缀有 `a` 、 `ab` 、 `abc` ，其中最长的 `abc` 长度为 3
+ $\pi[5]=3$ ，因为 `abcabc` 相等的真前缀和真后缀只有 `abc` ，长度为 3
 
  $\pi[6]=0$ ，因为 `abcabcd` 无相等的真前缀和真后缀
 
@@ -122,7 +122,7 @@ $$
 
 如果我们找到了这样的长度 $j$ ，那么仅需要再次比较 $s[i + 1]$ 和 $s[j]$ 。如果它们相等，那么就有 $\pi[i + 1] = j + 1$ 。否则，我们需要找到子串 $s[0\dots i]$ 仅次于 $j$ 的第二长度 $j^{(2)}$ ，使得前缀性质得以保持，如此反复，直到 $j = 0$ 。如果 $s[i + 1] \neq s[0]$ ，则 $\pi[i + 1] = 0$ 。
 
-观察上图可以发现，因为 $s[0\dots \pi[i]] = s[i-\pi[i]+1]$ ，所以对于 $s[0\dots i]$ 的第二长度 $j$ ，有这样的性质：
+观察上图可以发现，因为 $s[0\dots \pi[i]-1] = s[i-\pi[i]+1\dots i]$ ，所以对于 $s[0\dots i]$ 的第二长度 $j$ ，有这样的性质：
 
 $$
 s[0 \dots j - 1] = s[i - j + 1 \dots i]= s[\pi[i]-j\dots \pi[i]-1]
@@ -154,8 +154,6 @@ vector<int> prefix_function(string s) {
 
 这是一个 **在线** 算法，即其当数据到达时处理它——举例来说，你可以一个字符一个字符的读取字符串，立即处理它们以计算出每个字符的前缀函数值。该算法仍然需要存储字符串本身以及先前计算过的前缀函数值，但如果我们已经预先知道该字符串前缀函数的最大可能取值 $M$ ，那么我们仅需要存储该字符串的前 $M + 1$ 个字符以及对应的前缀函数值。
 
-*吐槽一下*：虽然这个改进后的计算前缀函数的算法看起来很屌，但是在基准测试中发现，当模式串 $s$ 的长度 $n$ 不是很大（100 以内）的情况下，其实和朴素算法也没有什么区别。
-
 ## 应用
 
 ### 在字符串中查找子串：Knuth-Morris-Pratt 算法
@@ -175,6 +173,18 @@ vector<int> prefix_function(string s) {
 正如在前缀函数的计算中已经提到的那样，如果我们知道前缀函数的值永远不超过一特定值，那么我们不需要存储整个字符串以及整个前缀函数，而只需要二者开头的一部分。在我们这种情况下这意味着只需要存储字符串 $s + \#$ 以及相应的前缀函数值即可。我们可以一次读入字符串 $t$ 的一个字符并计算当前位置的前缀函数值。
 
 因此 Knuth-Morris-Pratt 算法（简称 KMP 算法）用 $O(n + m)$ 的时间以及 $O(n)$ 的内存解决了该问题。
+
+### 字符串的周期
+
+对字符串 $s$ 和 $0 < p \le |s|$ ，若 $s[i] = s[i+p]$ 对所有 $i \in [0, |s| - p - 1]$ 成立，则称 $p$ 是 $s$ 的周期。
+
+对字符串 $s$ 和 $0 \le r < |s|$ ，若 $s$ 长度为 $r$ 的前缀和长度为 $r$ 的后缀相等，就称 $s$ 长度为 $r$ 的前缀是 $s$ 的 border。
+
+由 $s$ 有长度为 $r$ 的 border 可以推导出 $|s|-r$ 是 $s$ 的周期。
+
+根据前缀函数的定义，可以得到 $s$ 所有的 border 长度，即 $\pi[n-1],\pi[\pi[n-1]]，...$ 。[^ref1]
+
+所以根据前缀函数可以在 $O(n)$ 的时间内计算出 $s$ 所有的周期。其中，由于 $\pi[n-1]$ 是 $s$ 最长 border 的长度，所以 $n - \pi[n-1]$ 是 $s$ 的最小周期。
 
 ### 统计每个前缀的出现次数
 
@@ -355,6 +365,8 @@ $$
 -  [Codeforces - Anthem of Berland](http://codeforces.com/contest/808/problem/G) 
 -  [Codeforces - MUH and Cube Walls](http://codeforces.com/problemset/problem/471/D) 
 
-* * *
+## 参考资料与注释
 
  **本页面主要译自博文 [Префикс-функция. Алгоритм Кнута-Морриса-Пратта](http://e-maxx.ru/algo/prefix_function) 与其英文翻译版 [Prefix function. Knuth–Morris–Pratt algorithm](https://cp-algorithms.com/string/prefix-function.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+
+[^ref1]:  [金策 - 字符串算法选讲](https://wenku.baidu.com/view/850f93f4fbb069dc5022aaea998fcc22bcd1433e.html) 

@@ -602,8 +602,8 @@ if (s >> j & 1) {       // 如果已被覆盖
     
     - 第 i 个参观的格点 (x, y)，满足 T[x][y]= L[i]
     - 路径的一端在棋盘的边界上
-
-    求可行的方案数 $\bmod 11192869$。
+    
+    求可行的方案数 $\bmod 11192869$ 。
 
 ## 染色模型
 
@@ -613,7 +613,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+note " 例题[「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572)"
     题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白染色，要求所有黑色区域和白色区域连通，且任意一个 $2\times 2$ 的子矩形内的颜色不能完全相同（例如下图中的情况非法），求合法的方案数，并构造一组合法的方案。
-
+    
     ![black_and_white1](./images/black_and_white1.png)
 
 #### 状态编码
@@ -1132,7 +1132,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ??? note " 习题[「HDU 4796」Winter's Coming](https://vjudge.net/problem/HDU-4796)"
     题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白灰染色，要求所有黑色区域和白色区域连通，且黑色区域与白色区域分别与棋盘的上下边界连通，且其中黑色区域与白色区域不能相邻。每个格子有对应的代价，求一组染色方案，最小化灰色区域的代价。
-
+    
     ![4796](./images/4796.jpg)
 
 ??? note " 习题[「ZOJ 2125」Rocket Mania](https://vjudge.net/problem/ZOJ-2125)"
@@ -1189,4 +1189,4 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ![sm18847458](./images/sm18847458.png)
 
--  [【动画】从方格这头走向那头有多少种走法呢～【结尾迷之感动】](https://www.bilibili.com/video/BV1Cx411D74e) \| [Youtube](https://www.youtube.com/watch?v=Q4gTV4r0zRs) \| [Niconico](<>) 
+-  [【动画】从方格这头走向那头有多少种走法呢～【结尾迷之感动】](https://www.bilibili.com/video/BV1Cx411D74e) \| [Youtube](https://www.youtube.com/watch?v=Q4gTV4r0zRs) 

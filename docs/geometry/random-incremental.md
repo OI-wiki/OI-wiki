@@ -1,4 +1,4 @@
-author: Ir1d
+author: Ir1d, TianyiQ
 
 ## 简介
 
@@ -22,7 +22,7 @@ $$
 
 ### 算法
 
-假设圆 $O$ 是前 $i-1$ 个点得最小覆盖圆，加入第 $i$ 个点，如果在圆内或边上则什么也不做。否，新得到的最小覆盖圆肯定经过第 $i$ 个点。
+假设圆 $O$ 是前 $i-1$ 个点的最小覆盖圆，加入第 $i$ 个点，如果在圆内或边上则什么也不做。否则，新得到的最小覆盖圆肯定经过第 $i$ 个点。
 
 然后以第 $i$ 个点为基础（半径为 $0$ ），重复以上过程依次加入第 $j$ 个点，若第 $j$ 个点在圆外，则最小覆盖圆必经过第 $j$ 个点。
 
@@ -30,7 +30,7 @@ $$
 
 遍历完所有点之后，所得到的圆就是覆盖所有点得最小圆。
 
- **时间复杂度**  $O(n)$ 
+ **时间复杂度**  $O(n)$ ，证明详见参考资料。
 
  **空间复杂度**  $O(n)$ 
 
@@ -112,10 +112,14 @@ $$
 
  [「HNOI2012」射箭](https://www.luogu.com.cn/problem/P3222) 
 
-## 参考资料
+ [CodeForces 442E](https://codeforces.com/problemset/problem/442/E) 
+
+## 参考资料与扩展阅读
 
  <http://www.doc88.com/p-007257893177.html> 
 
  <https://www.cnblogs.com/aininot260/p/9635757.html> 
 
  <https://wenku.baidu.com/view/162699d63186bceb19e8bbe6.html> 
+
+ <https://blog.csdn.net/u014609452/article/details/62039612> 

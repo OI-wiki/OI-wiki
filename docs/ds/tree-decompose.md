@@ -164,7 +164,7 @@ author: ouuan, Ir1d, TrisolarisHD, Xeonacid
     }
     ```
 
-###  [BZOJ4812 由乃打扑克](https://www.lydsy.com/JudgeOnline/problem.php?id=4812) 
+###  [BZOJ4812 由乃打扑克](https://www.luogu.com.cn/problem/P5356) 
 
 这题和上一题基本一样，唯一的区别是得到 `bitset` 后如何计算答案。
 

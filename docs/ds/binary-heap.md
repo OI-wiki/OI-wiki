@@ -108,11 +108,11 @@ void build_heap_2() {
 
 换一种理解方法，每次「合并」两个已经调整好的堆，这说明了正确性。
 
-注意到向下调整的复杂度，为 $O(\log n - k)$ 。
+注意到向下调整的复杂度，为 $O(\log n - k)$ ，另外注意到叶节点无需调整，因此可从序列约 $n/2$ 的位置开始调整，可减少部分常数但不影响复杂度。
 
 $$
 \begin{aligned}
-总复杂度 & = n \log n - \log 1 - \log 2 - \cdots - \log n \\
+\text{总复杂度} & = n \log n - \log 1 - \log 2 - \cdots - \log n \\
 & \leq n \log n - 0 \times 2^0 - 1 \times 2^1 -\cdots - (\log n - 1) \times \frac{n}{2} \\\
 & = n \log n - (n-1) - (n-2) - (n-4) - \cdots - (n-\frac{n}{2}) \\
 & = n \log n - n \log n + 1 + 2 + 4 + \cdots + \frac{n}{2} \\

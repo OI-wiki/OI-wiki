@@ -6,17 +6,15 @@
 
 强连通分量（Strongly Connected Components，SCC）的定义是：极大的强连通子图。
 
-这里想要介绍的是如何来求强连通分量。
+这里要介绍的是如何来求强连通分量。
 
 ## Tarjan 算法
 
-Robert E. Tarjan (1948~) 美国人。
+Robert E. Tarjan　罗伯特·塔扬 (1948~)，生于美国加州波莫纳，计算机科学家。
 
-Tarjan 发明了很多算法结构。光 Tarjan 算法就有很多，比如求各种连通分量的 Tarjan 算法，求 LCA（Lowest Common Ancestor，最近公共祖先）的 Tarjan 算法。并查集、Splay、Toptree 也是 Tarjan 发明的。
+Tarjan 发明了很多算法结构。不少他发明的算法都以他的名字命名，以至于有时会让人混淆几种不同的算法。比如求各种连通分量的 Tarjan 算法，求 LCA（Lowest Common Ancestor，最近公共祖先）的 Tarjan 算法。并查集、Splay、Toptree 也是 Tarjan 发明的。
 
 我们这里要介绍的是在有向图中求强连通分量的 Tarjan 算法。
-
-另外，Tarjan 的名字 `j` 不发音，中文译为塔扬。
 
 ### DFS 生成树
 
@@ -148,13 +146,50 @@ void kosaraju() {
 
 ## Garbow 算法
 
+Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 low 来计算强连通分量的根，Garbow 维护一个节点栈，并用第二个栈来确定何时从第一个栈中弹出属于同一个强连通分量的节点。从节点 $w$ 开始的 DFS 过程中，当一条路径显示这组节点都属于同一个强连通分量时，只要栈顶节点的访问时间大于根节点 $w$ 的访问时间，就从第二个栈中弹出这个节点，那么最后只留下根节点 $w$ 。在这个过程中每一个被弹出的节点都属于同一个强连通分量。
+
+当回溯到某一个节点 $w$ 时，如果这个节点在第二个栈的顶部，就说明这个节点是强连通分量的起始节点，在这个节点之后搜索到的那些节点都属于同一个强连通分量，于是从第一个栈中弹出那些节点，构成强连通分量。
+
+### 实现
+
+```cpp
+int garbow(int u) {
+  stack1[++p1] = u;
+  stack2[++p2] = u;
+  low[u] = ++dfs_clock;
+  for (int i = head[u]; i; i = e[i].next) {
+    int v = e[i].to;
+    if (!low[v])
+      garbow(v);
+    else if (!sccno[v])
+      while (low[stack2[p2]] > low[v]) p2--;
+  }
+  if (stack2[p2] == u) {
+    p2--;
+    scc_cnt++;
+    do {
+      sccno[stack1[p1]] = scc_cnt;
+      // all_scc[scc_cnt] ++;
+    } while (stack1[p1--] != u);
+  }
+  return 0;
+}
+
+void find_scc(int n) {
+  dfs_clock = scc_cnt = 0;
+  p1 = p2 = 0;
+  memset(sccno, 0, sizeof(sccno));
+  memset(low, 0, sizeof(low));
+  for (int i = 1; i <= n; i++)
+    if (!low[i]) garbow(i);
+}
+```
+
 ## 应用
 
 我们可以将一张图的每个强连通分量都缩成一个点。
 
-然后这张图会变成一个 DAG（为什么？）。
-
-DAG 好啊，能拓扑排序了就能做很多事情了。
+然后这张图会变成一个 DAG，可以进行拓扑排序以及更多其他操作。
 
 举个简单的例子，求一条路径，可以经过重复结点，要求经过的不同结点数量最多。
 

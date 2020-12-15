@@ -38,7 +38,7 @@
 
 *所以刚才的算法流程中的递归部分我们就是通过 $solve(l,mid),solve(mid,r)$ 来实现的*
 
-所以说 cdq 分治只是一种十分模糊的思想，可以看到这种思想就是不断的把点对通过递归~~（甩锅）~~的方式分给左右两个区间
+所以说 cdq 分治只是一种十分模糊的思想，可以看到这种思想就是不断的把点对通过递归的方式分给左右两个区间
 
 至于我们设计出来的算法真正干活的部分就是第 4 部分需要我们想方设法解决的部分了
 
@@ -206,7 +206,7 @@ int main() {
 
 *如果你足够熟练的话可以看出这就是一个二维最长上升子序列的 $dp$ 方程*
 
-解释一下上面的式子就是说只有 $i<j,a_{i}<a_{j},b_{i}<b_{j}$ 的点 $j$ 可以去更新点 $i$ 的 dp 值
+解释一下上面的式子就是说只有 $j<i,a_{j}<a_{i},b_{j}<b_{i}$ 的点 $j$ 可以去更新点 $i$ 的 dp 值
 
 直接转移显然是 $O(n^2)$ 的，我们如何使用 $cdq$ 分治去优化它的转移过程呢？
 
@@ -226,7 +226,7 @@ int main() {
 
 那么第二步怎么做呢？
 
-其实和 cdq 分治求三维偏序差不多，我们会发现处理 $l \leq j \leq mid,mid+1 \leq i \leq r$ 的转移关系的时候我们已经不用管 $j<i$ 这个限制条件了，因此我们依然是将所有的点 $i$ 和点 $j$ 按 $a$ 值进行排序处理之后用双指针的方式将 $j$ 点插入到树状数组里，然后最后查一发前缀最大值更新一下 $dp_{i}$ 就可以了
+其实和 cdq 分治求三维偏序差不多，我们会发现处理 $l \leq j \leq mid,mid+1 \leq i \leq r$ 的转移关系的时候我们已经不用管 $j<i$ 这个限制条件了，因此我们依然是将所有的点 $i$ 和点 $j$ 按 $a$ 值进行排序处理之后用双指针的方式将 $j$ 点插入到树状数组里，然后最后查一下前缀最大值更新一下 $dp_{i}$ 就可以了
 
 你会发现此时的 cdq 写法和上一种处理点对间关系的 cdq 写法最大的不同就是处理 $l \leq j \leq mid,mid+1 \leq i \leq r$ 的点对这一部分，上面的写法中这一部分我们放到哪里都是可以的，但是，在用 cdq 分治优化 dp 的时候这个流程却必须夹在 $solve(l,mid),solve(mid+1,r)$ 的中间，为什么呢？
 
@@ -266,7 +266,7 @@ int main() {
 
 接下来结束的函数是 $solve(3,3)$ 我们会发现 $dp_{3}$ 的 dp 值被计算好了
 
-接下来执行的转移是 $solve(2,4)$ 此时 $dp_{4}$ 在 $solve(1,4)$ 中被 $(1,2)转移了一次,这次又被$ (3,3)$ 转移了
+接下来执行的转移是 $solve(2,4)$ 此时 $dp_{4}$ 在 $solve(1,4)$ 中被 $(1,2)$ 转移了一次，这次又被 $(3,3)$ 转移了
 
 因此 $dp_{4}$ 的值也被转移好了
 
@@ -286,61 +286,152 @@ int main() {
 
 一道二维最长上升子序列的题，为了确定某一个元素是否在最长上升子序列中可以正反跑两遍 CDQ
 
-```C
-#include<cstdio>
-#include<algorithm>
+```cpp
+#include <algorithm>
+#include <cstdio>
 using namespace std;
-typedef double db;const int N=1e6+10;
-struct data{int h;int v;int p;int ma;db ca;}a[2][N];int n;bool tr;
-inline bool cmp1(const data& a,const data& b){if(tr)return a.h>b.h;else return a.h<b.h;}
-inline bool cmp2(const data& a,const data& b){if(tr)return a.v>b.v;else return a.v<b.v;}
-inline bool cmp3(const data& a,const data& b){if(tr)return a.p<b.p;else return a.p>b.p;}
-inline bool cmp4(const data& a,const data& b){return a.v==b.v;}
-struct treearray
-{
-    int ma[2*N];db ca[2*N];
-    inline void c(int x,int t,db c)
-    {for(;x<=n;x+=x&(-x)){if(ma[x]==t){ca[x]+=c;}else if(ma[x]<t){ca[x]=c;ma[x]=t;}}}
-    inline void d(int x){for(;x<=n;x+=x&(-x)){ma[x]=0;ca[x]=0;}}
-    inline void q(int x,int& m,db& c)
-    {for(;x>0;x-=x&(-x)){if(ma[x]==m){c+=ca[x];}else if(m<ma[x]){c=ca[x];m=ma[x];}}}
-}ta;int rk[2][N];
-inline void solve(int l,int r,int t)
-{
-    if(r-l==1){return;}int mid=(l+r)/2;
-    solve(l,mid,t);sort(a[t]+mid+1,a[t]+r+1,cmp1);int p=l+1;
-    for(int i=mid+1;i<=r;i++)
-    {
-        for(;(cmp1(a[t][p],a[t][i])||a[t][p].h==a[t][i].h)&&p<=mid;p++)
-        {ta.c(a[t][p].v,a[t][p].ma,a[t][p].ca);}db c=0;int m=0;ta.q(a[t][i].v,m,c);
-        if(a[t][i].ma<m+1){a[t][i].ma=m+1;a[t][i].ca=c;}else if(a[t][i].ma==m+1){a[t][i].ca+=c;}
-    }for(int i=l+1;i<=mid;i++){ta.d(a[t][i].v);}
-    sort(a[t]+mid,a[t]+r+1,cmp3);solve(mid,r,t);
-    sort(a[t]+l+1,a[t]+r+1,cmp1);
+typedef double db;
+const int N = 1e6 + 10;
+struct data {
+  int h;
+  int v;
+  int p;
+  int ma;
+  db ca;
+} a[2][N];
+int n;
+bool tr;
+inline bool cmp1(const data& a, const data& b) {
+  if (tr)
+    return a.h > b.h;
+  else
+    return a.h < b.h;
 }
-inline void ih(int t)
-{
-    sort(a[t]+1,a[t]+n+1,cmp2);rk[t][1]=1;
-    for(int i=2;i<=n;i++){rk[t][i]=(cmp4(a[t][i],a[t][i-1]))?rk[t][i-1]:i;}
-    for(int i=1;i<=n;i++){a[t][i].v=rk[t][i];}sort(a[t]+1,a[t]+n+1,cmp3);
-    for(int i=1;i<=n;i++){a[t][i].ma=1;a[t][i].ca=1;}
-}int len;db ans;
-int main()
-{
-    scanf("%d",&n);
-    for(int i=1;i<=n;i++)
-    {
-        scanf("%d%d",&a[0][i].h,&a[0][i].v);a[0][i].p=i;
-        a[1][i].h=a[0][i].h;a[1][i].v=a[0][i].v;a[1][i].p=i;
-    }ih(0);solve(0,n,0);tr=1;ih(1);solve(0,n,1);tr=1;
-    sort(a[0]+1,a[0]+n+1,cmp3);sort(a[1]+1,a[1]+n+1,cmp3);
-    for(int i=1;i<=n;i++){len=max(len,a[0][i].ma);}printf("%d\n",len);
-    for(int i=1;i<=n;i++){if(a[0][i].ma==len){ans+=a[0][i].ca;}}
-    for(int i=1;i<=n;i++)
-    {
-        if(a[0][i].ma+a[1][i].ma-1==len){printf("%.5lf ",(a[0][i].ca*a[1][i].ca)/ans);}
-        else {printf("0.00000 ");}
-    }return 0;
+inline bool cmp2(const data& a, const data& b) {
+  if (tr)
+    return a.v > b.v;
+  else
+    return a.v < b.v;
+}
+inline bool cmp3(const data& a, const data& b) {
+  if (tr)
+    return a.p < b.p;
+  else
+    return a.p > b.p;
+}
+inline bool cmp4(const data& a, const data& b) { return a.v == b.v; }
+struct treearray {
+  int ma[2 * N];
+  db ca[2 * N];
+  inline void c(int x, int t, db c) {
+    for (; x <= n; x += x & (-x)) {
+      if (ma[x] == t) {
+        ca[x] += c;
+      } else if (ma[x] < t) {
+        ca[x] = c;
+        ma[x] = t;
+      }
+    }
+  }
+  inline void d(int x) {
+    for (; x <= n; x += x & (-x)) {
+      ma[x] = 0;
+      ca[x] = 0;
+    }
+  }
+  inline void q(int x, int& m, db& c) {
+    for (; x > 0; x -= x & (-x)) {
+      if (ma[x] == m) {
+        c += ca[x];
+      } else if (m < ma[x]) {
+        c = ca[x];
+        m = ma[x];
+      }
+    }
+  }
+} ta;
+int rk[2][N];
+inline void solve(int l, int r, int t) {
+  if (r - l == 1) {
+    return;
+  }
+  int mid = (l + r) / 2;
+  solve(l, mid, t);
+  sort(a[t] + mid + 1, a[t] + r + 1, cmp1);
+  int p = l + 1;
+  for (int i = mid + 1; i <= r; i++) {
+    for (; (cmp1(a[t][p], a[t][i]) || a[t][p].h == a[t][i].h) && p <= mid;
+         p++) {
+      ta.c(a[t][p].v, a[t][p].ma, a[t][p].ca);
+    }
+    db c = 0;
+    int m = 0;
+    ta.q(a[t][i].v, m, c);
+    if (a[t][i].ma < m + 1) {
+      a[t][i].ma = m + 1;
+      a[t][i].ca = c;
+    } else if (a[t][i].ma == m + 1) {
+      a[t][i].ca += c;
+    }
+  }
+  for (int i = l + 1; i <= mid; i++) {
+    ta.d(a[t][i].v);
+  }
+  sort(a[t] + mid, a[t] + r + 1, cmp3);
+  solve(mid, r, t);
+  sort(a[t] + l + 1, a[t] + r + 1, cmp1);
+}
+inline void ih(int t) {
+  sort(a[t] + 1, a[t] + n + 1, cmp2);
+  rk[t][1] = 1;
+  for (int i = 2; i <= n; i++) {
+    rk[t][i] = (cmp4(a[t][i], a[t][i - 1])) ? rk[t][i - 1] : i;
+  }
+  for (int i = 1; i <= n; i++) {
+    a[t][i].v = rk[t][i];
+  }
+  sort(a[t] + 1, a[t] + n + 1, cmp3);
+  for (int i = 1; i <= n; i++) {
+    a[t][i].ma = 1;
+    a[t][i].ca = 1;
+  }
+}
+int len;
+db ans;
+int main() {
+  scanf("%d", &n);
+  for (int i = 1; i <= n; i++) {
+    scanf("%d%d", &a[0][i].h, &a[0][i].v);
+    a[0][i].p = i;
+    a[1][i].h = a[0][i].h;
+    a[1][i].v = a[0][i].v;
+    a[1][i].p = i;
+  }
+  ih(0);
+  solve(0, n, 0);
+  tr = 1;
+  ih(1);
+  solve(0, n, 1);
+  tr = 1;
+  sort(a[0] + 1, a[0] + n + 1, cmp3);
+  sort(a[1] + 1, a[1] + n + 1, cmp3);
+  for (int i = 1; i <= n; i++) {
+    len = max(len, a[0][i].ma);
+  }
+  printf("%d\n", len);
+  for (int i = 1; i <= n; i++) {
+    if (a[0][i].ma == len) {
+      ans += a[0][i].ca;
+    }
+  }
+  for (int i = 1; i <= n; i++) {
+    if (a[0][i].ma + a[1][i].ma - 1 == len) {
+      printf("%.5lf ", (a[0][i].ca * a[1][i].ca) / ans);
+    } else {
+      printf("0.00000 ");
+    }
+  }
+  return 0;
 }
 ```
 
@@ -354,7 +445,7 @@ int main()
 
 什么意思呢？
 
-众所周知的是有些数据结构题需要我们兹次做 xxx 修改然后做 xxx 询问的情况
+众所周知的是有些数据结构题需要我们支持做 xxx 修改然后做 xxx 询问的情况
 
 然后你会发现一个有趣的事实是如果我们把询问进行离线之后，所有操作按照时间自然的排成了一个序列，另一个比较显然的事实是每一个修改会对它之后的询问发生关系，而这样的修改 - 询问关系一共会有 $O(n^2)$ 对
 

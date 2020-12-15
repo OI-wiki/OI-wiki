@@ -13,7 +13,7 @@ $$
 -  **区间包含单调性** ：如果对于任意 $l \leq l' \leq r' \leq r$ ，均有 $w(l',r') \leq w(l,r)$ 成立，则称函数 $w$ 对于区间包含关系具有单调性。
 -    **四边形不等式** ：如果对于任意 $l_1\leq l_2 \leq r_1 \leq r_2$ ，均有 $w(l_1,r_1)+w(l_2,r_2) \leq w(l_1,r_2) + w(l_2,r_1)$ 成立，则称函数 $w$ 满足四边形不等式（简记为“交叉小于包含”）。若等号永远成立，则称函数 $w$ 满足 **四边形恒等式** 。
 
-     **引理 1** ：若满足关于区间包含的单调性的函数 $w(l, r)$ 满足四边形不等式，则状态 $f_{l,r}$ 也满足四边形不等式。
+     **引理 1** ：若满足关于区间包含的单调性的函数 $w(l, r)$ 满足区间包含单调性和四边形不等式，则状态 $f_{l,r}$ 也满足四边形不等式。
 
 考虑对区间长度使用数学归纳法。
 
@@ -28,7 +28,7 @@ $$
     \end{aligned}
     $$
 
-    再由 $u+1 \leq v+1 \leq r_1 \leq v_2$ 和归纳假设知
+    再由 $u+1 \leq v+1 \leq r_1 \leq r_2$ 和归纳假设知
 
     $$
     f_{u+1,r_1} + f_{v+1,r_2} \leq f_{u+1,r_2} + f_{v+1,r_1}
@@ -138,6 +138,42 @@ $$
       }
     ```
 
+### 另一种常见的形式
+
+某些 dp 问题有着如下的形式：
+
+$$
+f_{i,j} = \min_{k \leq j}\{f_{i-1,k}\} + w(k,j)\qquad\left(1 \leq i \leq n,1 \leq j \leq m\right)
+$$
+
+总共有 $n \times m$ 个状态，每个状态要有 $m$ 次转换，上述 dp 问题的时间复杂度就是 $O(n m^2)$ 。
+
+令 $opt(i, j)$ 为使上述表达式最小化的 $k$ 的值。如果对于所有的 $i, j$ 都有 $opt(i, j) \leq opt(i, j + 1)$ ，那么我们就可以用分治法来优化 dp 问题。
+
+我们可以更有效地解出所有状态。假设我们对于固定的 $i$ 和 $j$ 计算 $opt(i, j)$ 。那么我们就可以确定对于任何 $j' < j$ 都有 $opt(i, j') \leq opt(i, j)$ ，这意味着在计算 $opt(i, j')$ 时，我们不必考虑那么多其他的点。
+
+为了最小化运行时间，我们便需要应用分治法背后的思想。首先计算 $opt(i, \dfrac{n}{2})$ 然后计算 $opt(i, \dfrac{n}{4})$ 。通过递归地得到 $opt$ 的上下界，就可以达到 $O(mn \log n)$ 的时间复杂度。每一个 $opt(i, j)$ 的值只可能出现在 $\log n$ 个不同的节点中。
+
+??? note "参考代码"
+    ```cpp
+    int n;
+    long long C(int i, int j);
+    vector<long long> dp_before(n), dp_cur(n);
+    // compute dp_cur[l], ... dp_cur[r] (inclusive)
+    void compute(int l, int r, int optl, int optr) {
+      if (l > r) return;
+      int mid = (l + r) >> 1;
+      pair<long long, int> best = {INF, -1};
+      for (int k = optl; k <= min(mid, optr); k++) {
+        best = min(best, {dp_before[k] + C(k, mid), k});
+      }
+      dp_cur[mid] = best.first;
+      int opt = best.second;
+      compute(l, mid - 1, optl, opt);
+      compute(mid + 1, r, opt, optr);
+    }
+    ```
+
 ## 1D1D 动态规划中的应用
 
 除了经典的石子合并问题外，四边形不等式的性质在一类 1D1D 动态规划中也能得出决策单调性，从而优化状态转移的复杂度。考虑以下状态转移方程：
@@ -188,7 +224,7 @@ $$
       int mid = (l + r) / 2, k = k_l;
       // 求状态f[mid]的最优决策点
       for (int i = k_l; i <= min(k_r, mid - 1); ++i)
-        if (w(i, mid) < w(k, mid)) i = k;
+        if (w(i, mid) < w(k, mid)) k = i;
       f[mid] = w(k, mid);
       // 根据决策单调性得出左右两部分的决策区间，递归处理
       if (l < mid) DP(l, mid - 1, k_l, k);
@@ -284,8 +320,19 @@ $$
 
 ## 习题
 
- [「IOI2000」邮局](https://www.luogu.com.cn/problem/P4767) 
+-  [「IOI2000」邮局](https://www.luogu.com.cn/problem/P4767) 
+-  [Codeforces - Ciel and Gondolas](https://codeforces.com/contest/321/problem/E) (Be careful with I/O!)
+-  [SPOJ - LARMY](https://www.spoj.com/problems/LARMY/) 
+-  [Codechef - CHEFAOR](https://www.codechef.com/problems/CHEFAOR) 
+-  [Hackerrank - Guardians of the Lunatics](https://www.hackerrank.com/contests/ioi-2014-practice-contest-2/challenges/guardians-lunatics-ioi14) 
+-  [ACM ICPC World Finals 2017 - Money](https://open.kattis.com/problems/money) 
 
 ## 参考资料
 
- [noiau 的 CSDN 博客](https://blog.csdn.net/noiau/article/details/72514812) 
+-  [noiau 的 CSDN 博客](https://blog.csdn.net/noiau/article/details/72514812) 
+-  [Quora Answer by Michael Levin](https://www.quora.com/What-is-divide-and-conquer-optimization-in-dynamic-programming) 
+-  [Video Tutorial by "Sothe" the Algorithm Wolf](https://www.youtube.com/watch?v=wLXEWuDWnzI) 
+
+* * *
+
+ **本页面主要译自英文版博文 [Divide and Conquer DP](https://cp-algorithms.com/dynamic_programming/divide-and-conquer-dp.html) 。版权协议为 CC-BY-SA 4.0。** 

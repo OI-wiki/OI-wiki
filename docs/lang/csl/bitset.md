@@ -8,9 +8,9 @@ author: i-Yirannn, Xeonacid, ouuan
     > The C++ standard library provides some special container classes, the so-called container adapters (stack, queue, priority queue). In addition, a few classes provide a container-like interface (for example, strings, bitsets, and valarrays). All these classes are covered separately.1 Container adapters and bitsets are covered in Chapter 12.
     >
     > The C++ standard library provides not only the containers for the STL framework but also some containers that fit some special needs and provide simple, almost self-explanatory, interfaces. You can group these containers into either the so-called container adapters, which adapt standard STL containers to fit special needs, or a bitset, which is a containers for bits or Boolean values. There are three standard container adapters: stacks, queues, and priority queues. In priority queues, the elements are sorted automatically according to a sorting criterion. Thus, the“next”element of a priority queue is the element with the“highest”value. A bitset is a bitfield with an arbitrary but fixed number of bits. Note that the C++ standard library also provides a special container with a variable size for Boolean values: vector.
-
+    
     ——摘自《The C++ Standard Library 2nd Edition》
-
+    
     由此看来， `bitset` 并不属于 STL，而是一种标准库中的 "Special Container"。事实上，它作为一种容器，也并不满足 STL 容器的要求。说它是适配器，它也并不依赖于其它 STL 容器作为底层实现。
 
 由于内存地址是按字节即 `byte` 寻址，而非比特 `bit` ，一个 `bool` 类型的变量，虽然只能表示 `0/1` , 但是也占了 1 byte 的内存。
@@ -112,7 +112,7 @@ bitset<1000> bs;  // a bitset with 1000 bits
 
 #### 做法
 
-看到“在模 $2$ 意义下”，~~而且这是篇 bitset 教程~~，可以想到用 `bitset` 维护每个可重集。
+看到“在模 $2$ 意义下”，可以想到用 `bitset` 维护每个可重集。
 
 这样的话，操作 $1$ 直接设，操作 $2$ 就是异或（因为模 $2$ ），操作 $4$ 就是直接查，但 .. 操作 $3$ 怎么办？
 
@@ -130,9 +130,9 @@ $$
 
 由于是模 $2$ 意义下， $-1$ 和 $1$ 是一样的，只用看 $\frac d x$ 有没有平方因子即可。所以，可以对值域内每个数预处理出其倍数中除以它不含平方因子的位置构成的 `bitset` ，求答案的时候先按位与再 `count()` 就好了。
 
-这样的话，单次询问复杂度就是 $O(\frac v w)$ （ $v=7000,\,w=32$ ）。预处理可以写 $O(v\log v)$ 的，也可以写 $O(v\sqrt v)$ 的，还可以写 $O(v^2)$ 的，~~它们甚至跑的差不多快~~。
+这样的话，单次询问复杂度就是 $O(\frac v w)$ （ $v=7000,\,w=32$ ）。
 
- $O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单， $\log$ 预处理就如下面代码所示，复杂度为调和级数，所以是 $O(v\log v)$ 。
+至于预处理的部分， $O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单， $\log$ 预处理就如下面代码所示，复杂度为调和级数，所以是 $O(v\log v)$ 。
 
 ??? "参考代码"
     ```cpp

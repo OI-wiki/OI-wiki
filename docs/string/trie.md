@@ -50,12 +50,12 @@ struct trie {
 
 ???+note "[于是他错误的点名开始了](https://www.luogu.com.cn/problem/P2580)"
     给你 $n$ 个名字串，然后进行 $m$ 次点名，每次你需要回答“名字不存在”、“第一次点到这个名字”、“已经点过这个名字”之一。
-
-    $1\le n\le 10^4$, $1\le m\le 10^5$，所有字符串长度不超过 $50$。
-
+    
+     $1\le n\le 10^4$ , $1\le m\le 10^5$ ，所有字符串长度不超过 $50$ 。
+    
     ??? mdui-shadow-6 "题解"
         对所有名字建 trie，再在 trie 中查询字符串是否存在、是否已经点过名，第一次点名时标记为点过名。
-
+    
     ??? mdui-shadow-6 "参考代码"
         ```cpp
         #include <cstdio>
@@ -112,18 +112,18 @@ trie 是 [AC 自动机](./ac-automaton.md) 的一部分。
 
 ???+note "[BZOJ1954 最长异或路径](https://www.luogu.com.cn/problem/P4551)"
     给你一棵带边权的树，求 $(u, v)$ 使得 $u$ 到 $v$ 的路径上的边权异或和最大，输出这个最大值。
-
-    点数不超过 $10^5$，边权在 $[0,2^{31})$ 内。
-
+    
+    点数不超过 $10^5$ ，边权在 $[0,2^{31})$ 内。
+    
     ??? mdui-shadow-6 "题解"
         随便指定一个根 $root$ ，用 $T(u, v)$ 表示 $u$ 和 $v$ 之间的路径的边权异或和，那么 $T(u,v)=T(root, u)\oplus T(root,v)$ ，因为 [LCA](../graph/lca.md) 以上的部分异或两次抵消了。
-
+        
         那么，如果将所有 $T(root, u)$ 插入到一棵 trie 中，就可以对每个 $T(root, u)$ 快速求出和它异或和最大的 $T(root, v)$ ：
-
+        
         从 trie 的根开始，如果能向和 $T(root, u)$ 的当前位不同的子树走，就向那边走，否则没有选择。
-
+        
         贪心的正确性：如果这么走，这一位为 $1$ ；如果不这么走，这一位就会为 $0$ 。而高位是需要优先尽量大的。
-
+    
     ??? mdui-shadow-6 "参考代码"
         ```cpp
         #include <algorithm>
@@ -351,103 +351,117 @@ int marge(int a, int b) {
     -   询问树上与一个节点 $x$ 距离为 $1$ 的所有节点上的权值的异或和。
         对于 $100\%$ 的数据，满足 $1\le n \le 5\times 10^5$ ， $1\le m \le 5\times 10^5$ ， $0\le a_i \le 10^5$ ， $1 \le x \le n$ ， $opt\in\{1,2,3\}$ 。
         保证任意时刻每个节点的权值非负。
-
+    
     ??? mdui-shadow-6 "题解"
         每个结点建立一棵 trie 维护其儿子的权值，trie 应该支持全局加一。
         可以使用在每一个结点上设置懒标记来标记儿子的权值的增加量。
-
+    
     ??? mdui-shadow-6 "参考代码"
         ```cpp
         const int _ = 5e5 + 10;
-        namespace trie{
-            const int _n = _ * 25;
-            int rt[_];
-            int ch[_n][2];
-            int w[_n]; //`w[o]` 指节点 `o` 到其父亲节点这条边上数值的数量（权值）。
-            int xorv[_n];
-            int tot = 0;
-            void maintain(int o){
-                w[o] = xorv[o] = 0;
-                if(ch[o][0]){ w[o] += w[ch[o][0]]; xorv[o] ^=  xorv[ch[o][0]] << 1; }
-                if(ch[o][1]){ w[o] += w[ch[o][1]]; xorv[o] ^= (xorv[ch[o][1]] << 1) | (w[ch[o][1]] & 1); }
-            }
-            inline int mknode(){ ++tot; ch[tot][0] = ch[tot][1] = 0; w[tot] = 0; return tot; }
-            void insert(int &o, int x, int dp){
-                if(!o) o = mknode();
-                if(dp > 20) return (void)(w[o] ++);
-                insert(ch[o][ x&1 ], x >> 1, dp + 1);
-                maintain(o); 
-            }
-            void erase(int o, int x, int dp){
-                if(dp > 20) return (void )(w[o]--);
-                erase(ch[o][ x&1 ], x >> 1, dp + 1);
-                maintain(o);
-            }
-            void addall(int o){
-                swap(ch[o][1], ch[o][0]);
-                if(ch[o][0]) addall(ch[o][0]);
-                maintain(o);
-            }
-        }
-
-        int head[_];
-        struct edges{
-            int node;
-            int nxt;
-        }edge[_ << 1];
+        namespace trie {
+        const int _n = _ * 25;
+        int rt[_];
+        int ch[_n][2];
+        int w[_n];  //`w[o]` 指节点 `o` 到其父亲节点这条边上数值的数量（权值）。
+        int xorv[_n];
         int tot = 0;
-        void add(int u, int v){
-            edge[++tot].nxt = head[u];
-            head[u] = tot;
-            edge[tot].node = v;
+        void maintain(int o) {
+          w[o] = xorv[o] = 0;
+          if (ch[o][0]) {
+            w[o] += w[ch[o][0]];
+            xorv[o] ^= xorv[ch[o][0]] << 1;
+          }
+          if (ch[o][1]) {
+            w[o] += w[ch[o][1]];
+            xorv[o] ^= (xorv[ch[o][1]] << 1) | (w[ch[o][1]] & 1);
+          }
         }
-
+        inline int mknode() {
+          ++tot;
+          ch[tot][0] = ch[tot][1] = 0;
+          w[tot] = 0;
+          return tot;
+        }
+        void insert(int &o, int x, int dp) {
+          if (!o) o = mknode();
+          if (dp > 20) return (void)(w[o]++);
+          insert(ch[o][x & 1], x >> 1, dp + 1);
+          maintain(o);
+        }
+        void erase(int o, int x, int dp) {
+          if (dp > 20) return (void)(w[o]--);
+          erase(ch[o][x & 1], x >> 1, dp + 1);
+          maintain(o);
+        }
+        void addall(int o) {
+          swap(ch[o][1], ch[o][0]);
+          if (ch[o][0]) addall(ch[o][0]);
+          maintain(o);
+        }
+        }  // namespace trie
+        
+        int head[_];
+        struct edges {
+          int node;
+          int nxt;
+        } edge[_ << 1];
+        int tot = 0;
+        void add(int u, int v) {
+          edge[++tot].nxt = head[u];
+          head[u] = tot;
+          edge[tot].node = v;
+        }
+        
         int n, m;
         int rt;
         int lztar[_];
         int fa[_];
-        void dfs0(int o, int f){
-            fa[o] = f;
-            for(int i = head[o];i;i = edge[i].nxt){
-                int node = edge[i].node;
-                if(node == f) continue;
-                dfs0(node, o);
-            }
+        void dfs0(int o, int f) {
+          fa[o] = f;
+          for (int i = head[o]; i; i = edge[i].nxt) {
+            int node = edge[i].node;
+            if (node == f) continue;
+            dfs0(node, o);
+          }
         }
         int V[_];
-        inline int get(int x){ return (fa[x] == -1 ? 0 : lztar[fa[x]]) + V[x]; }
-        int main()
-        {
-            n = read(), m = read();
-            for(int i = 1;i < n;i++){
-                int u = read(), v = read(); 
-                add(u, v); add(rt = v, u);
+        inline int get(int x) { return (fa[x] == -1 ? 0 : lztar[fa[x]]) + V[x]; }
+        int main() {
+          n = read(), m = read();
+          for (int i = 1; i < n; i++) {
+            int u = read(), v = read();
+            add(u, v);
+            add(rt = v, u);
+          }
+          dfs0(rt, -1);
+          for (int i = 1; i <= n; i++) {
+            V[i] = read();
+            if (fa[i] != -1) trie::insert(trie::rt[fa[i]], V[i], 0);
+          }
+          while (m--) {
+            int opt = read(), x = read();
+            if (opt == 1) {
+              lztar[x]++;
+              if (x != rt) {
+                if (fa[fa[x]] != -1) trie::erase(trie::rt[fa[fa[x]]], get(fa[x]), 0);
+                V[fa[x]]++;
+                if (fa[fa[x]] != -1) trie::insert(trie::rt[fa[fa[x]]], get(fa[x]), 0);
+              }
+              trie::addall(trie::rt[x]);
+            } else if (opt == 2) {
+              int v = read();
+              if (x != rt) trie::erase(trie::rt[fa[x]], get(x), 0);
+              V[x] -= v;
+              if (x != rt) trie::insert(trie::rt[fa[x]], get(x), 0);
+            } else {
+              int res = 0;
+              res = trie::xorv[trie::rt[x]];
+              res ^= get(fa[x]);
+              printf("%d\n", res);
             }
-            dfs0(rt, -1);
-            for(int i = 1;i <= n;i++) { V[i] = read(); if(fa[i] != -1)trie::insert(trie::rt[fa[i]], V[i], 0);  }
-            while(m--){
-                int opt = read(), x = read(); 
-                if(opt == 1){
-                    lztar[x] ++;
-                    if(x != rt) {
-                        if(fa[fa[x]])trie::erase(trie::rt[fa[fa[x]]], get(fa[x]), 0);
-                        V[fa[x]] ++;
-                        if(fa[fa[x]])trie::insert(trie::rt[fa[fa[x]]], get(fa[x]), 0);
-                    }
-                    trie::addall(trie::rt[x]);
-                } else if(opt == 2){
-                    int v = read();
-                    if(x != rt) trie::erase(trie::rt[fa[x]], get(x), 0);
-                    V[x] -= v;
-                    if(x != rt) trie::insert(trie::rt[fa[x]], get(x), 0);
-                } else {
-                    int res = 0;
-                    res = trie::xorv[trie::rt[x]];
-                    res ^= get(fa[x]);
-                    printf("%d\n", res);
-                }
-            }
-            return 0;
+          }
+          return 0;
         }
         ```
 
@@ -457,69 +471,79 @@ int marge(int a, int b) {
      $val(x)=(v_{c_1}+d(c_1,x)) \oplus (v_{c_2}+d(c_2,x)) \oplus \cdots \oplus (v_{c_k}+d(c_k, x))$ 其中 $d(x,y)$ 。  
     表示树上 $x$ 号结点与 $y$ 号结点间唯一简单路径所包含的边数， $d(x,x) = 0$ 。 $\oplus$ 表示异或运算。
     请你求出 $\sum\limits_{i=1}^n val(i)$ 的结果。
-
+    
     ??? mdui-shadow-6 "题解"
         考虑每个结点对其所有祖先的贡献。
-        每个结点建立 trie ，初始先只存这个结点的权值，然后从底向上合并每个儿子结点上的 trie ，然后再全局加一，完成后统计答案。
+        每个结点建立 trie，初始先只存这个结点的权值，然后从底向上合并每个儿子结点上的 trie，然后再全局加一，完成后统计答案。
+    
     ??? mdui-shadow-6 "参考代码"
         ```cpp
         const int _ = 526010;
         int n;
         int V[_];
-        int debug  = 0;
-        namespace trie{
-            const int MAXH = 21; 
-            int ch[_ * (MAXH + 1)][2], w[_ * (MAXH + 1)], xorv[_ * (MAXH + 1)];
-            int tot = 0;
-            int mknode(){ ++tot; ch[tot][1] = ch[tot][0] = w[tot] = xorv[tot] = 0; return tot;}
-            void maintain(int o){
-                w[o] = xorv[o] = 0;
-                if(ch[o][0]){ w[o] += w[ch[o][0]]; xorv[o] ^=  xorv[ch[o][0]] << 1; }
-                if(ch[o][1]){ w[o] += w[ch[o][1]]; xorv[o] ^= (xorv[ch[o][1]] << 1) | (w[ch[o][1]] & 1); }
-                w[o] = w[o] & 1;
-            }
-            void insert(int &o, int x, int dp){
-                if(!o) o = mknode();
-                if(dp > MAXH) return (void)(w[o] ++);
-                insert(ch[o][ x&1 ], x >> 1, dp + 1);
-                maintain(o);
-            }
-            int marge(int a, int b){
-                if(!a) return b;
-                if(!b) return a;
-                w[a] = w[a] + w[b];
-                xorv[a] ^= xorv[b];
-                ch[a][0] = marge(ch[a][0], ch[b][0]);
-                ch[a][1] = marge(ch[a][1], ch[b][1]);
-                return a;
-            }
-            void addall(int o){
-                swap(ch[o][0], ch[o][1]);
-                if(ch[o][0]) addall(ch[o][0]);
-                maintain(o);
-            }
+        int debug = 0;
+        namespace trie {
+        const int MAXH = 21;
+        int ch[_ * (MAXH + 1)][2], w[_ * (MAXH + 1)], xorv[_ * (MAXH + 1)];
+        int tot = 0;
+        int mknode() {
+          ++tot;
+          ch[tot][1] = ch[tot][0] = w[tot] = xorv[tot] = 0;
+          return tot;
         }
+        void maintain(int o) {
+          w[o] = xorv[o] = 0;
+          if (ch[o][0]) {
+            w[o] += w[ch[o][0]];
+            xorv[o] ^= xorv[ch[o][0]] << 1;
+          }
+          if (ch[o][1]) {
+            w[o] += w[ch[o][1]];
+            xorv[o] ^= (xorv[ch[o][1]] << 1) | (w[ch[o][1]] & 1);
+          }
+          w[o] = w[o] & 1;
+        }
+        void insert(int &o, int x, int dp) {
+          if (!o) o = mknode();
+          if (dp > MAXH) return (void)(w[o]++);
+          insert(ch[o][x & 1], x >> 1, dp + 1);
+          maintain(o);
+        }
+        int marge(int a, int b) {
+          if (!a) return b;
+          if (!b) return a;
+          w[a] = w[a] + w[b];
+          xorv[a] ^= xorv[b];
+          ch[a][0] = marge(ch[a][0], ch[b][0]);
+          ch[a][1] = marge(ch[a][1], ch[b][1]);
+          return a;
+        }
+        void addall(int o) {
+          swap(ch[o][0], ch[o][1]);
+          if (ch[o][0]) addall(ch[o][0]);
+          maintain(o);
+        }
+        }  // namespace trie
         int rt[_];
         long long Ans = 0;
-        vector<int>E[_];
-        void dfs0(int o){
-            for(int i = 0;i < E[o].size();i++){
-                int node = E[o][i];
-                dfs0(node);
-                rt[o] = trie::marge(rt[o], rt[node]);
-            }
-            trie::addall(rt[o]);
-            trie::insert(rt[o], V[o], 0);
-            Ans += trie::xorv[rt[o]];
+        vector<int> E[_];
+        void dfs0(int o) {
+          for (int i = 0; i < E[o].size(); i++) {
+            int node = E[o][i];
+            dfs0(node);
+            rt[o] = trie::marge(rt[o], rt[node]);
+          }
+          trie::addall(rt[o]);
+          trie::insert(rt[o], V[o], 0);
+          Ans += trie::xorv[rt[o]];
         }
-        int main()
-        {
-            n = read();
-            for(int i = 1;i <= n;i++) V[i] = read();
-            for(int i = 2;i <= n;i++) E[read()].push_back(i);
-            dfs0(1); 
-            printf("%lld", Ans);
-            return 0;
+        int main() {
+          n = read();
+          for (int i = 1; i <= n; i++) V[i] = read();
+          for (int i = 2; i <= n; i++) E[read()].push_back(i);
+          dfs0(1);
+          printf("%lld", Ans);
+          return 0;
         }
         ```
 

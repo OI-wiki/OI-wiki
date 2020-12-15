@@ -6,14 +6,14 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
 
 ???+note " 例题[CF372C Watching Fireworks is Fun](http://codeforces.com/problemset/problem/372/C)"
     题目大意：城镇中有 $n$ 个位置，有 $m$ 个烟花要放。第 $i$ 个烟花放出的时间记为 $t_i$ ，放出的位置记为 $a_i$ 。如果烟花放出的时候，你处在位置 $x$ ，那么你将收获 $b_i-|a_i-x|$ 点快乐值。
-
+    
     初始你可在任意位置，你每个单位时间可以移动不大于 $d$ 个单位距离。现在你需要最大化你能获得的快乐值。
 
 设 $f_{i,j}$ 表示在放第 $i$ 个烟花时，你的位置在 $j$ 所能获得的最大快乐值。
 
 写出 **状态转移方程** ： $f_{i,j}=\max\{f_{i-1,k}+b_i-|a_i-j|\}$ 
 
-这里的 $k$ 是有范围的， $j-(t_{i+1}-t_i)\times d\le k\le j+(t_{i+1}-t_i)\times d$ 。
+这里的 $k$ 是有范围的， $j-(t_{i}-t_{i-1})\times d\le k\le j+(t_{i}-t_{i-1})\times d$ 。
 
 我们尝试将状态转移方程进行变形：
 
@@ -28,6 +28,62 @@ author: TrisolarisHD, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, C
 看到这一熟悉的形式，我们想到了什么？ **单调队列优化** 。由于最终式子中的 $\max$ 只和上一状态中连续的一段的最大值有关，所以我们在计算一个新的 $i$ 的状态值时候只需将原来的 $f_{i-1}$ 构造成一个单调队列，并维护单调队列，使得其能在均摊 $O(1)$ 的时间复杂度内计算出 $\max\{f_{i-1,k}\}$ 的值，从而根据公式计算出 $f_{i,j}$ 的值。
 
 总的时间复杂度为 $O(nm)$ 。
+
+???+ 参考代码
+    ```cpp
+    #include <algorithm>
+    #include <cstring>
+    #include <iostream>
+    using namespace std;
+    typedef long long ll;
+    
+    const int maxn = 150000 + 10;
+    const int maxm = 300 + 10;
+    
+    ll f[2][maxn];
+    ll a[maxm], b[maxm], t[maxm];
+    int n, m, d;
+    
+    int que[maxn];
+    
+    int fl = 1;
+    void init() {
+      memset(f, 207, sizeof(f));
+      memset(que, 0, sizeof(que));
+      for (int i = 1; i <= n; i++) f[0][i] = 0;
+      fl = 1;
+    }
+    
+    void dp() {
+      init();
+      for (int i = 1; i <= m; i++) {
+        int l = 1, r = 0, k = 1;
+        for (int j = 1; j <= n; j++) {
+          for (; k <= min(1ll * n, j + d * (t[i] - t[i - 1])); k++) {
+            while (l <= r && f[fl ^ 1][que[r]] <= f[fl ^ 1][k]) r--;
+            que[++r] = k;
+          }
+    
+          while (l <= r && que[l] < max(1ll, j - d * (t[i] - t[i - 1]))) l++;
+          f[fl][j] = f[fl ^ 1][que[l]] - abs(a[i] - j) + b[i];
+        }
+    
+        fl ^= 1;
+      }
+    }
+    
+    int main() {
+      cin >> n >> m >> d;
+      for (int i = 1; i <= m; i++) cin >> a[i] >> b[i] >> t[i];
+    
+      // then dp
+      dp();
+      ll ans = -1e18;
+      for (int i = 1; i <= n; i++) ans = max(ans, f[fl ^ 1][i]);
+      cout << ans << endl;
+      return 0;
+    }
+    ```
 
 讲完了，让我们归纳一下单调队列优化动态规划问题的基本形态：当前状态的所有值可以从上一个状态的某个连续的段的值得到，要对这个连续的段进行 RMQ 操作，相邻状态的段的左右区间满足非降的关系。
 

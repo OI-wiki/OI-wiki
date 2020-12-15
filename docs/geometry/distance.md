@@ -127,12 +127,11 @@ $$
 只要分别求出 $x+y, x-y$ 的最大值和最小值即能得出答案。
 
 ??? 参考代码 1
-
     ```cpp
     #include <bits/stdc++.h>
-
+    
     using namespace std;
-
+    
     template <class T>
     inline void read(T &x) {
       x = 0;
@@ -142,9 +141,9 @@ $$
       for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
       x = f ? -x : x;
     }
-
+    
     int n, x, y, minx = 0x7fffffff, maxx, miny = 0x7fffffff, maxy;
-
+    
     int main() {
       read(n);
       for (int i = 1; i <= n; i++) {
@@ -245,7 +244,7 @@ $$
 \begin{aligned}
 d(A,B)&=|x_1 - x_2| + |y_1 - y_2|\\
 &=\max\begin{Bmatrix} x_1 - x_2 + y_1 - y_2, x_1 - x_2 + y_2 - y_1,x_2 - x_1 + y_1 - y_2, x_2 - x_1 + y_2 - y_1\end{Bmatrix}\\
-&= \max(|(x_1 + y_1) - (x_2 + y_2)|, |(x_1 - y_2) - (x_2 - y_2)|)
+&= \max(|(x_1 + y_1) - (x_2 + y_2)|, |(x_1 - y_1) - (x_2 - y_2)|)
 \end{aligned}
 $$
 
@@ -289,12 +288,11 @@ $$
 现要使得横坐标之差和纵坐标之差最大，只需要预处理出 $x,y$ 的最大值和最小值即可。
 
 ??? 参考代码 2
-
     ```cpp
     #include <bits/stdc++.h>
-
+    
     using namespace std;
-
+    
     template <class T>
     inline void read(T &x) {
       x = 0;
@@ -304,9 +302,9 @@ $$
       for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + (c ^ 48);
       x = f ? -x : x;
     }
-
+    
     int n, x, y, a, b, minx = 0x7fffffff, maxx, miny = 0x7fffffff, maxy;
-
+    
     int main() {
       read(n);
       for (int i = 1; i <= n; i++) {

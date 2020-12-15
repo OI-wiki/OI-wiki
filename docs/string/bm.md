@@ -28,7 +28,7 @@ $$
 
  **观察 1** ：
 
-如果我们知道 $char$ 这个字符不在 $pat$ 中，我们就不用考虑 $pat$ 从 $string$ 的第 1 个、第 2 个、。。。。。。第 $patlen$ 个字符起出现的情况，，而可以直接将 $pat$ 向下滑动 $patlen$ 个字符。
+如果我们知道 $char$ 这个字符不在 $pat$ 中，我们就不用考虑 $pat$ 从 $string$ 的第 $1$ 个、第 $2$ 个……第 $patlen$ 个字符起出现的情况，，而可以直接将 $pat$ 向下滑动 $patlen$ 个字符。
 
  **观察 2** ：
 
@@ -44,7 +44,7 @@ $$
 \qquad \textbf{if}\ \text{char不在pat中 || char是pat上最后一个字符} \\
 \qquad\qquad\textbf{return}\ patlen \\
 \qquad \textbf{else} \\
-\qquad\qquad\textbf{return}\ patlastpos-i\quad\textbf{\\\\}\ \text{i为出现在pat最末尾的那一个char出现的位置，即pat[i]=char}
+\qquad\qquad\textbf{return}\ patlastpos-i\quad\textbf{//}\ \text{i为出现在pat最末尾的那一个char出现的位置，即pat[i]=char}
 \end{array}
 $$
 
@@ -84,7 +84,7 @@ $$
 
 $$
 \begin{array}{ll}
-\textbf{int}\ delta2(\textbf{int}\ j) \quad\textbf{\\\\}\ \text{j为失配字符在pat上对应字符的位置} \\
+\textbf{int}\ delta2(\textbf{int}\ j) \quad\textbf{//}\ \text{j为失配字符在pat上对应字符的位置} \\
 \qquad\qquad\textbf{return}\ patlastpos-rpr(j) \\
 \end{array}
 $$
@@ -280,7 +280,7 @@ $$
 \begin{array}{ll}
 \textbf{int}\ delta0(\textbf{char}\ char) \\
 \qquad \textbf{if}\ char=pat[patlastpos] \\
-\qquad\qquad \textbf{return}\ large\ \ \text{\\\\ large为一个整数，需要满足large>stringlastpos+patlen} \\
+\qquad\qquad \textbf{return}\ large\ \ \text{// large为一个整数，需要满足large>stringlastpos+patlen} \\
 \qquad \textbf{return}\ delta1(char)
 \end{array}
 $$
@@ -295,8 +295,8 @@ i \gets patlastpos \\
 \qquad\qquad\textbf{return}\ false\\
 \\
 \qquad\textbf{while}\ i < stringlen \\
-\qquad\qquad i \gets i+delta0(string(i)) \ \ \text{\\\\ 除非string[i]和pat末尾字符匹配，否则至多向下滑动patlen }\\\
-\qquad\textbf{if}\ i \leqslant\ large \qquad\qquad\qquad\qquad \text{\\\\此时表示string上没有一个字符和pat末尾字符匹配}\ \\
+\qquad\qquad i \gets i+delta0(string(i)) \ \ \text{// 除非string[i]和pat末尾字符匹配，否则至多向下滑动patlen }\\\
+\qquad\textbf{if}\ i \leqslant\ large \qquad\qquad\qquad\qquad \text{//此时表示string上没有一个字符和pat末尾字符匹配}\ \\
 \qquad\qquad\textbf{return}\ false\\
 \\
 \qquad i \gets i-large \\

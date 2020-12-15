@@ -1,140 +1,177 @@
-贪心算法顾名思义就是用计算机来模拟一个“贪心”的人做出决策的过程。
+本页面将简要介绍贪心算法。
 
-这个人每一步行动总是按某种指标选取最优的操作，他总是 **只看眼前，并不考虑以后可能造成的影响** 。
+## 简介
+
+贪心算法（英语：greedy algorithm），是用计算机来模拟一个“贪心”的人做出决策的过程。这个人十分贪婪，每一步行动总是按某种指标选取最优的操作。而且他目光短浅，总是只看眼前，并不考虑以后可能造成的影响。
 
 可想而知，并不是所有的时候贪心法都能获得最优解，所以一般使用贪心法的时候，都要确保自己能证明其正确性。
 
-## 常见做法
+## 详细介绍
 
-在提高组难度以下的题目中，最常见的贪心有两种。一种是：「我们将 XXX 按照某某顺序排序，然后按某种顺序（例如从小到大）处理」。另一种是：「我们每次都取 XXX 中最大/小的东西，并更新 XXX」，有时「XXX 中最大/小的东西」可以优化，比如用优先队列维护。
+### 适用范围
 
-为啥分成两种？你可以发现，一种是离线的，一种是在线的。
+贪心算法在有最优子结构的问题中尤为有效。最优子结构的意思是问题能够分解成子问题来解决，子问题的最优解能递推到最终问题的最优解。[^ref1]
 
-## 证明方法
+### 证明方法
 
-以下套路请按照题目自行斟酌，一般情况下一道题只会用到其中的一种方法来证明。
+贪心算法有两种证明方法：反证法和归纳法。一般情况下，一道题只会用到其中的一种方法来证明。
 
-1. 运用反证法，如果交换方案中任意两个元素/相邻的两个元素后，答案不会变得更好，那么可以发现目前的解已经是最优解了。
-2. 运用归纳法，先手算得出边界情况（例如 $n = 1$ ）的最优解 $F_1$ ，然后再证明：对于每个 $n$ ， $F_{n+1}$ 都可以由 $F_{n}$ 推导出结果。
+1. 反证法：如果交换方案中任意两个元素/相邻的两个元素后，答案不会变得更好，那么可以推定目前的解已经是最优解了。
+2. 归纳法：先算得出边界情况（例如 $n = 1$ ）的最优解 $F_1$ ，然后再证明：对于每个 $n$ ， $F_{n+1}$ 都可以由 $F_{n}$ 推导出结果。
 
-## 排序法
+## 要点
+
+### 常见题型
+
+在提高组难度以下的题目中，最常见的贪心有两种。
+
+- 「我们将 XXX 按照某某顺序排序，然后按某种顺序（例如从小到大）选择。」。
+- 「我们每次都取 XXX 中最大/小的东西，并更新 XXX。」（有时「XXX 中最大/小的东西」可以优化，比如用优先队列维护）
+
+二者的区别在于一种是离线的，先处理后选择；一种是在线的，边处理边选择。
+
+### 排序解法
 
 用排序法常见的情况是输入一个包含几个（一般一到两个）权值的数组，通过排序然后遍历模拟计算的方法求出最优值。
 
-有些题的排序方法非常显然，如 [「USACO1.3」修理牛棚 Barn Repair](https://www.luogu.com.cn/problem/P1209) 就是将输入数组差分后排序模拟求值。
+### 后悔解法
 
-然而有些时候很难直接一下子看出排序方法，比如 [NOIP 2012 国王游戏](https://vijos.org/p/1779) 就很容易凭直觉而错误地以 $a$ 或 $b$ 为关键字排序，过样例之后提交就发现 WA 了 QAQ。一个常见办法就是尝试交换数组相邻的两个元素来 **推导** 出正确的排序方法。我们假设这题输入的俩个数用一个结构体来保存
+思路是无论当前的选项是否最优都接受，然后进行比较，如果选择之后不是最优了，则反悔，舍弃掉这个选项；否则，正式接受。如此往复。
 
-```cpp
-struct {
-  int a, b;
-} v[n];
-```
+## 区别
 
-用 $m$ 表示 $i$ 前面所有的 $a$ 的乘积，那么第 $i$ 个大臣得到的奖赏就是
+### 与动态规划的区别
 
-$$
-\frac{m} {v[i].b}
-$$
+贪心算法与动态规划的不同在于它对每个子问题的解决方案都做出选择，不能回退。动态规划则会保存以前的运算结果，并根据以前的结果对当前进行选择，有回退功能。
 
-第 $i + 1$ 个大臣得到的奖赏就是
+## 例题详解
 
-$$
-\frac{m \cdot v[i].a} {v[i + 1].b}
-$$
+### 排序法的例题
 
-如果我们交换第 $i$ 个大臣与第 $i + 1$ 个大臣的位置，那么第 $i + 1$ 个大臣得到的奖赏就是
+???+note "[NOIP 2012 国王游戏](https://vijos.org/p/1779)"
+    恰逢 H 国国庆，国王邀请 n 位大臣来玩一个有奖游戏。首先，他让每个大臣在左、右手上面分别写下一个整数，国王自己也在左、右手上各写一个整数。然后，让这 n 位大臣排成一排，国王站在队伍的最前面。排好队后，所有的大臣都会获得国王奖赏的若干金币，每位大臣获得的金币数分别是：排在该大臣前面的所有人的左手上的数的乘积除以他自己右手上的数，然后向下取整得到的结果。
+    
+    国王不希望某一个大臣获得特别多的奖赏，所以他想请你帮他重新安排一下队伍的顺序，使得获得奖赏最多的大臣，所获奖赏尽可能的少。注意，国王的位置始终在队伍的最前面。
 
-$$
-\frac{m} {v[i + 1].b}
-$$
+??? note "解题思路"
+    有些题的排序方法非常明显，但这道题不是。如果凭直觉而错误地以 $a$ 或 $b$ 为关键字排序，过样例之后提交就发现报 WA 了。一个常见办法就是尝试交换数组相邻的两个元素来 **推导** 出正确的排序方法。我们假设这题输入的两个数用一个结构体来保存
+    
+    ```cpp
+    struct {
+      int a, b;
+    } v[n];
+    ```
+    
+    用 $m$ 表示 $i$ 前面所有的 $a$ 的乘积，那么第 $i$ 个大臣得到的奖赏就是
+    
+    $$
+    \frac{m} {v[i].b}
+    $$
+    
+    第 $i + 1$ 个大臣得到的奖赏就是
+    
+    $$
+    \frac{m \cdot v[i].a} {v[i + 1].b}
+    $$
+    
+    如果我们交换第 $i$ 个大臣与第 $i + 1$ 个大臣的位置，那么第 $i + 1$ 个大臣得到的奖赏就是
+    
+    $$
+    \frac{m} {v[i + 1].b}
+    $$
+    
+    第 $i + 1$ 个大臣得到的奖励就是
+    
+    $$
+    \frac{m \cdot v[i + 1].a} {v[i].b}
+    $$
+    
+    如果交换前更优当且仅当
+    
+    $$
+    \max (\frac{m} {v[i].b}, \frac{m \times v[i].a} {v[i + 1].b})  < \max (\frac{m} {v[i + 1].b}, \frac{m \times v[i + 1].a} {v[i].b})
+    $$
+    
+    时，提取出相同的 $m$ 并约分得到
+    
+    $$
+    \max(\frac{1} {v[i].b}, \frac{v[i].a} {v[i + 1].b}) < \max(\frac{1} {v[i + 1].b}, \frac{v[i + 1].a} {v[i].b})
+    $$
+    
+    然后分式化成整式得到
+    
+    $$
+    \max(v[i + 1].b, v[i].a \times v[i].b) < \max(v[i].b, v[i + 1].a \times v[i + 1].b)
+    $$
+    
+    于是得到排序函数
+    
+    ```cpp
+    struct uv {
+      int a, b;
+      bool operator<(const uv &x) const {
+        return max(x.b, a * b) < max(b, x.a * x.b);
+      }
+    };
+    ```
 
-第 $i + 1$ 个大臣得到的奖励就是
+### 后悔法的例题
 
-$$
-\frac{m \cdot v[i + 1].a} {v[i].b}
-$$
-
-如果交换前更优当且仅当
-
-$$
-\max (\frac{m} {v[i].b}, \frac{m \times v[i].a} {v[i + 1].b})  < \max (\frac{m} {v[i + 1].b}, \frac{m \times v[i + 1].a} {v[i].b})
-$$
-
-提取出相同的 $m$ 并约分得到
-
-$$
-\max(\frac{1} {v[i].b}, \frac{v[i].a} {v[i + 1].b}) < \max(\frac{1} {v[i + 1].b}, \frac{v[i + 1].a} {v[i].b})
-$$
-
-然后分式化成整式得到
-
-$$
-\max(v[i + 1].b, v[i].a \times v[i].b) < \max(v[i].b, v[i + 1].a \times v[i + 1].b)
-$$
-
-于是我们就成功得到排序函数了！
-
-```cpp
-struct uv {
-  int a, b;
-  bool operator<(const uv &x) const {
-    return max(x.b, a * b) < max(b, x.a * x.b);
-  }
-};
-```
-
-如果看懂了就可以尝试下一道类似的题： [Luogu P2123 皇后游戏](https://www.luogu.com.cn/problem/P2123) 
-
-## 后悔法
-
-???+note "例题[「USACO09OPEN」工作调度 Work Scheduling](https://www.luogu.com.cn/problem/P2949)"
+???+note "[「USACO09OPEN」工作调度 Work Scheduling](https://www.luogu.com.cn/problem/P2949)"
     约翰的工作日从 $0$ 时刻开始，有 $10^9$ 个单位时间。在任一单位时间，他都可以选择编号 $1$ 到 $N$ 的 $N(1 \leq N \leq 10^5)$ 项工作中的任意一项工作来完成。工作 $i$ 的截止时间是 $D_i(1 \leq D_i \leq 10^9)$ ，完成后获利是 $P_i( 1\leq P_i\leq 10^9 )$ 。在给定的工作利润和截止时间下，求约翰能够获得的利润最大为多少。
 
-贪心思想：
+??? note "解题思路"
+    1. 先假设每一项工作都做，将各项工作按截止时间排序后入队；
+    2.  在判断第 i 项工作做与不做时，若其截至时间符合条件，则将其与队中报酬最小的元素比较，若第 i 项工作报酬较高（后悔），则 `ans += a[i].p - q.top()` 。  
+        用优先队列（小根堆）来维护队首元素最小。
 
--  **1** . 先假设每一项工作都做，将各项工作按截止时间排序后入队。
--    **2** . 在判断第 i 项工作做与不做时，若其截至时间符合条件，则将其与队中报酬最小的元素比较，若第 i 项工作报酬较高（后悔），则 ans+=a[i].p-q.top()。
-
-     **PS** ：用优先队列（小根堆）来维护队首元素最小。
-
-### 代码
-
-```cpp
-#include <algorithm>
-#include <cmath>
-#include <cstdio>
-#include <cstring>
-#include <iostream>
-#include <queue>
-using namespace std;
-struct f {
-  long long d;
-  long long x;
-} a[100005];
-bool cmp(f A, f B) { return A.d < B.d; }
-priority_queue<long long, vector<long long>, greater<long long> > q;
-int main() {
-  long long n, i, j;
-  cin >> n;
-  for (i = 1; i <= n; i++) {
-    scanf("%d%d", &a[i].d, &a[i].x);
-  }
-  sort(a + 1, a + n + 1, cmp);
-  long long ans = 0;
-  for (i = 1; i <= n; i++) {
-    if (a[i].d <= q.size()) {
-      if (q.top() < a[i].x) {
-        ans += a[i].x - q.top();
-        q.pop();
-        q.push(a[i].x);
+??? note "参考代码"
+    ```cpp
+    #include <algorithm>
+    #include <cmath>
+    #include <cstdio>
+    #include <cstring>
+    #include <iostream>
+    #include <queue>
+    using namespace std;
+    struct f {
+      long long d;
+      long long x;
+    } a[100005];
+    bool cmp(f A, f B) { return A.d < B.d; }
+    priority_queue<long long, vector<long long>, greater<long long> > q;
+    
+    int main() {
+      long long n, i, j;
+      cin >> n;
+      for (i = 1; i <= n; i++) {
+        scanf("%d%d", &a[i].d, &a[i].x);
       }
-    } else {
-      ans += a[i].x;
-      q.push(a[i].x);
+      sort(a + 1, a + n + 1, cmp);
+      long long ans = 0;
+      for (i = 1; i <= n; i++) {
+        if (a[i].d <= q.size()) {
+          if (q.top() < a[i].x) {
+            ans += a[i].x - q.top();
+            q.pop();
+            q.push(a[i].x);
+          }
+        } else {
+          ans += a[i].x;
+          q.push(a[i].x);
+        }
+      }
+      cout << ans << endl;
+      return 0;
     }
-  }
-  cout << ans << endl;
-  return 0;
-}
-```
+    ```
+
+## 习题
+
+-  [P1209\[USACO1.3\]修理牛棚 Barn Repair - 洛谷](https://www.luogu.com.cn/problem/P1209) 
+-  [P2123 皇后游戏 - 洛谷](https://www.luogu.com.cn/problem/P2123) 
+-  [LeetCode 上标签为贪心算法的题目](https://leetcode-cn.com/tag/greedy/) 
+
+## 参考资料与注释
+
+[^ref1]:  [贪心算法 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95) 
