@@ -4,7 +4,7 @@ author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink,
 
 Visual Studio Code（以下简称 VS Code) 是一个由微软开发，同时支持 Windows、Linux 和 macOS 等操作系统且开放源代码的代码编辑器。它是用 TypeScript 编写的，并且采用 Electron 架构。它带有对 JavaScript、TypeScript 和 Node.js 的内置支持，并为其他语言（如 C、C++、Java、Python、PHP、Go）提供了丰富的扩展生态系统。
 
-官网： [Visual Studio Code - Code Editing. Redefined](https://code.visualstudio.com/) 
+官网： [Visual Studio Code - Code Editing. Redefined](https://code.visualstudio.com/)
 
 ## 使用 Code Runner 插件运行代码
 
@@ -20,6 +20,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 ???+ warning
     如果安装了 VS Code 与 Code Runner 后，代码仍然无法运行，很有可能是因为系统尚未安装 C/C++ 的运行环境，参考 [Hello, World! 页面](../../lang/helloworld.md) 以安装。
+
     记得勾选设置中的 Run In Terminal 选项，如图：
     ![](./images/vscode-7.png)
 
