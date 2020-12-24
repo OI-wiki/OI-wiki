@@ -614,7 +614,7 @@ int main() {
 最大化与最小化互换，常数与目标函数互换，改变不等号，变量与约束对应。
 
 $$
-\max \ c^T: Ax \leq b, x \geq 0
+\max \ c^Tx: Ax \leq b, x \geq 0
 $$
 
 $$
