@@ -85,7 +85,7 @@ void merge(int x, int y) {
 
 ![dsu-on-tree-3.png](./images/dsu-on-tree-3.png)
 
-*图中标红的即为重边，重边连向的子节点为重儿子*
+*图中标粗的即为重边，重边连向的子节点为重儿子*
 
 ### 大致代码
 
