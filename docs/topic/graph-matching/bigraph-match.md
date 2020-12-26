@@ -24,7 +24,7 @@ struct augment_path {
   vector<int> pa;  // 匹配
   vector<int> pb;
   vector<int> vis;  // 访问
-  int n, m;         // 两个点集中
+  int n, m;         // 两个点集中的顶点数量
   int dfn;          // 时间戳记
   int res;          // 匹配数
 
