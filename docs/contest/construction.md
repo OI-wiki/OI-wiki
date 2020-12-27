@@ -35,9 +35,9 @@
 
 ???+note "[Luogu P3599 Koishi Loves Construction](https://www.luogu.com.cn/problem/P3599)"
     
-    Task1：试判断能否构造并构造一个长度为$nn$的$1\dots n1…n$的排列，满足其$nn$个前缀和在模$nn$的意义下互不相同
+    Task1：试判断能否构造并构造一个长度为$n$的$1\dots n$的排列，满足其$n$个前缀和在模$n$的意义下互不相同
     
-    Taks2：试判断能否构造并构造一个长度为$nn$的$1\dots n1…n$的排列，满足其$nn$个前缀积在模$nn$的意义下互不相同
+    Taks2：试判断能否构造并构造一个长度为$n$的$1\dots n$的排列，满足其$n$个前缀积在模$n$的意义下互不相同
 
 ??? note "解题思路"
     对于 task1：
