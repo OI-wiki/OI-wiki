@@ -227,7 +227,7 @@ $$
     }
     ```
 
-#### 时滞斐波那契生成器
+#### 时滞斐波那契随机数生成器
 
 利用下式来生成随机数序列 $\{R_i\}$（其中 $0 < j < k$）：
 
@@ -238,6 +238,37 @@ $$
 这里的 $P$ 通常取 $2$ 的幂（常用 $2^{32}$ 或 $2^{64}$），$\star$ 表示二元运算符，可以使用加法，减法，乘法，异或。
 
 该方法较传统的线性同余随机数生成器而言，拥有更长的周期，但随机性受初始条件影响较大。
+
+??? note "参考实现"
+    ```cpp
+    #include <iostream>
+    #include <vector>
+    using namespace std;
+    struct myrand {
+      vector<unsigned> vec;
+      int l, j, k, cur;
+      myrand(int l, int j, int k) {
+        this->l = l;
+        this->j = j;
+        this->k = k;
+        cur = 0;
+        for (int i = 0; i < l; i++) {
+          vec.push_back(rand());  // 先用其他方法生成随机序列中的前几个元素
+        }
+      }
+      unsigned next() {
+        vec[cur] = vec[(cur - j + l) % l] * vec[(cur - k + l) % l];
+        // 这里用 unsigned 类型是为了实现自动对 2^32 取模
+        return vec[cur++];
+      }
+    };
+    myrand rnd(11, 4, 7);
+    int main() {
+      unsigned x = rnd.next();
+      cout << x << endl;
+      return 0;
+    }
+    ```
 
 ## 参考资料与注释
 
