@@ -209,7 +209,7 @@ $$
 
 接下来设 $e_k$ 为模 $p$ 意义下的 $2^k$ 次单位根。容易发现 $e_{s-1} = a^{-1} \times x^{2}_{s-1}$ 。
 
-假设我们已经知道 $e_{s-k}, x_{s-k}$ ：因为 $e_{s-k}^{2^{s-k}} \equiv 1 \pmod p$ ，所以有 $\sqrt(e_{s-k}^{2^{s-k}}) \equiv \pm 1 \pmod p$ ，即 $e_{s-k}^{2^{s-k-1}} \equiv \pm 1 \pmod p$ ；
+假设我们已经知道 $e_{s-k}, x_{s-k}$ ：因为 $e_{s-k}^{2^{s-k}} \equiv 1 \pmod p$ ，所以有 $\sqrt{(e_{s-k}^{2^{s-k}})} \equiv \pm 1 \pmod p$ ，即 $e_{s-k}^{2^{s-k-1}} \equiv \pm 1 \pmod p$ ；
 
 现在的任务变成了计算 $e_{s-k}^{2^{s-k-1}} \pmod p$ 。这时候又可以分为两种情况： $e_{s-k}^{2^{s-k-1}} \equiv 1 \pmod p$ 和 $e_{s-k}^{2^{s-k-1}} \equiv -1 \pmod p$ 。
 
