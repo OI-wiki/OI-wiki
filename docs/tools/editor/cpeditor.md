@@ -7,6 +7,7 @@ author: Forever-God404
 > 它强大的可自定义代码片段功能可加快编程速度。在短短两秒钟内，你可以将整个 DFS 代码插入编辑器。
 >
 > 你可以通过内置检查器或来自 testlib 的检查器一键获取样例的评测结果。你也可以添加自己的 SPJ。
+
 以上摘自 CP Editor官网 [^1]
 
 可见，CP Editor对参加OI及ICPC等竞赛的选手可谓是一大利器。
@@ -18,29 +19,41 @@ CP Editor共支持C++ [^2], Java [^3], Python [^4]这三种语言，你均可以
 ## 常规热键操作
 
 ### 文件部分
+
 - 'Ctrl + N': 创建新文件
+
 - 'Ctrl + O': 打开文件
+
 - 'Ctrl + Shift + O': 打开比赛
+
 - 'Ctrl + W': 关闭文件
+
 - 'Ctrl + S': 保存文件
 
 ### 格式部分
+
 - 'Ctrl + /': 加入注释
+
 - 'Tab': 缩进
+
 - 'Ctrl + Shift + I': 格式化代码
 
 ### 跳转部分
+
 - 'Ctrl + F': 查找和替换
 
 ### 运行部分
 - 'Ctrl + Shift + R': 编译并运行
+
 - 'Ctrl + Alt + D': 在终端中运行
+
 - 'Ctrl + K': 终止所有进程
 
 ???+ warning
     CP Editor目前还不支持任何语言的调试，推荐使用IDE编辑确认无误后使用CP Editor来对拍。
 
 ## 打开比赛
+
 当使用'Ctrl + Shift + O'打开比赛时，CP Editor会自动为您建立题目，并默认存放到所选择文件夹中。这样既可以快速进入工作状态，又可以在编译运行时不被选择路径打断思路。
 
 ## 自测
@@ -186,7 +199,11 @@ CP Editor共支持C++ [^2], Java [^3], Python [^4]这三种语言，你均可以
 ## 参考资料
 
 [^1]: [CP Editor](https://cpeditor.org/zh)
+
 [^2]: [Hello, world! - OI Wiki](https://oi-wiki.org/lang/helloworld/)
+
 [^3]: [Java速成 - OI Wiki](https://oi-wiki.org/lang/java/)
+
 [^4]: [Python速成 - OI Wiki](https://oi-wiki.org/lang/python/)
+
 [^5]: [U126428 二进制 - 洛谷](https://www.luogu.com.cn/problem/U126428)
