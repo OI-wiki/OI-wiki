@@ -56,6 +56,7 @@ nav:
       - Geany: tools/editor/geany.md
       - Xcode: tools/editor/xcode.md
       - GUIDE: tools/editor/guide.md
+      - CP Editor: tools/editor/cpeditor.md
     - 评测工具: tools/judgers.md
     - 命令行: tools/cmd.md
     - WSL (Windows 10): tools/wsl.md
