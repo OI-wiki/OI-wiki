@@ -203,7 +203,7 @@ $$
 对于 $s > 1$ 的情况，设 $x_{s-1} \equiv a^{\frac{t+1}{2}} \pmod p$ 。
 
 1. 由欧拉判别准则可知 $a^{\frac{p-1}{2}} \equiv 1 \pmod p$ ，进一步有 $a^{2^{(s-1)} \times t} \equiv 1 \pmod p$ ；
-2. 稍作变形得到 $\left(a^{-1} \times \left(a^{\frac{t+1}{2}}\right)^{2}\right)^{2^{s-1}} \equiv 1 \pmod p)$ ，即 $\left(a^{-1} \times x_{s-1}^{2}\right)^{2^{s-1}} \equiv 1 \pmod p)$ 。
+2. 稍作变形得到 $\left(a^{-1} \times \left(a^{\frac{t+1}{2}}\right)^{2}\right)^{2^{s-1}} \equiv 1 \pmod p)$ ，即 $\left(a^{-1} \times x_{s-1}^{2}\right)^{2^{s-1}} \equiv 1 \pmod p$ 。
 
 所以 $a^{-1} \times x_{s-1}^{2}$ 是模 $p$ 意义下的 1 的 $2^{s-1}$ 次根。
 
@@ -221,7 +221,7 @@ $$
 
 接下来寻找一个非二次剩余 $b$ ：
 
-- 因为 $b$ 是非二次剩余，所以 $b^{\frac{p-1}{2}} \equiv -1 \pmod p$ ，即 $b^{t2^{s-1}} \equiv -1 \pmod\ p$ ；
+- 因为 $b$ 是非二次剩余，所以 $b^{\frac{p-1}{2}} \equiv -1 \pmod p$ ，即 $b^{t2^{s-1}} \equiv -1 \pmod p$ ；
 - 稍微变个形得到 $b^{t \times 2^{s-k} \times 2^{k-1}} \equiv -1 \pmod p$ ，即 $(b^{t \times 2^{k-1}})^{2^{s-k}} \equiv -1 \pmod p$ ；
 -  $q \equiv b^{t \times 2^{k-1}} \pmod p$ 。
 
