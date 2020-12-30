@@ -61,101 +61,16 @@ CP Editor共支持C++ [^2], Java [^3], Python [^4]这三种语言，你均可以
 众所周知，在ACM/ICPC这样的赛事中，提交错误答案会有罚时，故可以在提交前通过自己造的数据来验证程序的正确性。
 
 ???+ note "题目"
-    Luogu/U126428 [^5]，使用私题是为了方便测试软件，测试数据通过附件下载。
+    Luogu/P1001 [^5]
 
 ???+ note "标程"
     ```cpp
-    #include <bits/stdc++.h>
+    #include<bits/stdc++.h>
     using namespace std;
-    const int N = 30;
-    char buf[N],buf2[N];
-    int convertBIN_DEC(){
-        int len = strlen(buf);
-        int ans=0;
-        for (int i = len-1; i >= 0; i--){
-            ans += (buf[i]-48)*pow(2,len-i-1);
-        }
-        return ans;   
-    }
-    int countBIN(bool mode){
-        int len = strlen(buf);
-        int ans=0;
-        for (int i = 0; i < len; i++){
-            if(buf[i]-48==mode){
-                ans++;
-            }
-        }
-        return ans;
-    }
-    void convertDEC(int dec, int in){
-        int c,m=0,s[1024];
-        while (dec!=0){  
-            c=dec%in;  
-            dec=dec/in;  
-            m++;
-            s[m]=c;
-        }  
-        for(int k=m;k>=1;k--){  
-            cout<<s[k];  
-        } 
-        cout<<endl;
-    }
-    void Lshift(int bit){
-        int len = strlen(buf);
-        for(int i=0;i<len;i++){
-            buf2[(i-bit+len)%len] = buf[i];
-        }
-        for(int i = 0;i<len;i++){
-            buf[i] = buf2[i];
-        }
-    }
-    void Rshift(int bit){
-        int len = strlen(buf);
-        for(int i=0;i<len;i++){
-            buf2[(i+bit)%len] = buf[i];
-        }
-        for(int i = 0;i<len;i++){
-            buf[i] = buf2[i];
-        }
-    }
-    int main(){
-        //freopen("binary5.in","r",stdin);
-        //freopen("binary5.out","w",stdout);
-        int T;
-        cin >> T;
-        while(T--){
-        
-            int tm;
-            cin >> buf >> tm;
-            while(tm--){
-                char type;
-                cin >> type;
-                if(type=='L'){
-                    int btdig;
-                    cin>>btdig;
-                    Lshift(btdig);
-                }
-                if(type=='R'){
-                    int btdig;
-                    cin>>btdig;
-                    Rshift(btdig);
-                }
-                if(type=='C'){
-                    bool md;
-                    cin>>md;
-                    cout<<countBIN(md)<<endl;
-                }
-                if(type=='O'){
-                    int in;
-                    int dec=convertBIN_DEC();
-                    cin>>in;
-                    convertDEC(dec,in);
-                }
-                if(type=='T'){//for debug
-                    cout<<buf<<endl;
-                }
-            }
-        }
+    int main(void){
+        int a, b;
+        cin >> a >> b;
+        cout << a + b << '\n';
         return 0;
     }
     ```
@@ -208,4 +123,4 @@ CP Editor共支持C++ [^2], Java [^3], Python [^4]这三种语言，你均可以
 
 [^4]: [Python速成 - OI Wiki](https://oi-wiki.org/lang/python/)
 
-[^5]: [U126428 二进制 - 洛谷](https://www.luogu.com.cn/problem/U126428)
+[^5]: [P1001 A+B Problem - 洛谷](https://www.luogu.com.cn/problem/P1001)
