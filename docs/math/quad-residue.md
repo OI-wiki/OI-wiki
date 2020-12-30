@@ -192,42 +192,42 @@ $$
 
 针对 $s$ 的值分两种情况 $s = 1$ 和 $s > 1$ 进行讨论。
 
-如果 $s = 1$：
+如果 $s = 1$ ：
 
-1. 因为 $a$ 是 $p$ 的二次剩余，所以 $a^{\frac{p-1}{2}} \equiv 1 \pmod p$ ，即 $\sqrt{a^{\frac{p-1}{2}}} \equiv 1 \pmod p$；
-2. 由 1 可知，$x \equiv \sqrt{a^{\frac{p-1}{2}} \times a} \pmod p$；
-3. 注意到 $s = 1$，可以得出 $x \equiv \sqrt{a^{t} \times a} \pmod p$，进一步得到 $x \equiv a^{\frac{t+1}{2}} \pmod p$。
+1. 因为 $a$ 是 $p$ 的二次剩余，所以 $a^{\frac{p-1}{2}} \equiv 1 \pmod p$ ，即 $\sqrt{a^{\frac{p-1}{2}}} \equiv 1 \pmod p$ ；
+2. 由 1 可知， $x \equiv \sqrt{a^{\frac{p-1}{2}} \times a} \pmod p$ ；
+3. 注意到 $s = 1$ ，可以得出 $x \equiv \sqrt{a^{t} \times a} \pmod p$ ，进一步得到 $x \equiv a^{\frac{t+1}{2}} \pmod p$ 。
 
-因此 $s = 1$ 时，$x$ 的值容易求出。
+因此 $s = 1$ 时， $x$ 的值容易求出。
 
-对于 $s > 1$ 的情况，设 $x_{s-1} \equiv a^{\frac{t+1}{2}} \pmod p$。
+对于 $s > 1$ 的情况，设 $x_{s-1} \equiv a^{\frac{t+1}{2}} \pmod p$ 。
 
-1. 由欧拉判别准则可知 $a^{\frac{p-1}{2}} \equiv 1 \pmod p$，进一步有 $a^{2^{(s-1)} \times t} \equiv 1 \pmod p$；
-2. 稍作变形得到 $\left(a^{-1} \times \left(a^{\frac{t+1}{2}}\right)^{2}\right)^{2^{s-1}} \equiv 1 \pmod p)$，即 $\left(a^{-1} \times x_{s-1}^{2}\right)^{2^{s-1}} \equiv 1 \pmod p)$。
+1. 由欧拉判别准则可知 $a^{\frac{p-1}{2}} \equiv 1 \pmod p$ ，进一步有 $a^{2^{(s-1)} \times t} \equiv 1 \pmod p$ ；
+2. 稍作变形得到 $\left(a^{-1} \times \left(a^{\frac{t+1}{2}}\right)^{2}\right)^{2^{s-1}} \equiv 1 \pmod p)$ ，即 $\left(a^{-1} \times x_{s-1}^{2}\right)^{2^{s-1}} \equiv 1 \pmod p)$ 。
 
 所以 $a^{-1} \times x_{s-1}^{2}$ 是模 $p$ 意义下的 1 的 $2^{s-1}$ 次根。
 
-接下来设 $e_k$ 为模 $p$ 意义下的 $2^k$ 次单位根。容易发现 $e_{s-1} = a^{-1} \times x^{2}_{s-1}$。 
+接下来设 $e_k$ 为模 $p$ 意义下的 $2^k$ 次单位根。容易发现 $e_{s-1} = a^{-1} \times x^{2}_{s-1}$ 。
 
-假设我们已经知道 $e_{s-k}, x_{s-k}$：因为 $e_{s-k}^{2^{s-k}} \equiv 1 \pmod p$，所以有 $\sqrt(e_{s-k}^{2^{s-k}}) \equiv \pm 1 \pmod p$，即 $e_{s-k}^{2^{s-k-1}} \equiv \pm 1 \pmod p$；
+假设我们已经知道 $e_{s-k}, x_{s-k}$ ：因为 $e_{s-k}^{2^{s-k}} \equiv 1 \pmod p$ ，所以有 $\sqrt(e_{s-k}^{2^{s-k}}) \equiv \pm 1 \pmod p$ ，即 $e_{s-k}^{2^{s-k-1}} \equiv \pm 1 \pmod p$ ；
 
-现在的任务变成了计算 $e_{s-k}^{2^{s-k-1}} \pmod p$。这时候又可以分为两种情况：$e_{s-k}^{2^{s-k-1}} \equiv 1 \pmod p$ 和 $e_{s-k}^{2^{s-k-1}} \equiv -1 \pmod p$。
+现在的任务变成了计算 $e_{s-k}^{2^{s-k-1}} \pmod p$ 。这时候又可以分为两种情况： $e_{s-k}^{2^{s-k-1}} \equiv 1 \pmod p$ 和 $e_{s-k}^{2^{s-k-1}} \equiv -1 \pmod p$ 。
 
-对于第一种情况，容易得到：$e_{s-k-1} \equiv e_{s-k}  \pmod p$，$x_{s-k-1} \equiv x_{s-k}  \pmod p$。
+对于第一种情况，容易得到： $e_{s-k-1} \equiv e_{s-k}  \pmod p$ ， $x_{s-k-1} \equiv x_{s-k}  \pmod p$ 。
 
-对于第二种情况，则有：$\left(a^{-1} \times x_{s-k}^{2}\right)^{2^{s-k-1}} \equiv -1 \pmod p$。我们此时需要找到一个 $q$ ，使得 $\left(a^{-1} \times (qx_{s-k})^{2}\right)^{2^{s-k-1}} \equiv 1 \pmod p$。
+对于第二种情况，则有： $\left(a^{-1} \times x_{s-k}^{2}\right)^{2^{s-k-1}} \equiv -1 \pmod p$ 。我们此时需要找到一个 $q$ ，使得 $\left(a^{-1} \times (qx_{s-k})^{2}\right)^{2^{s-k-1}} \equiv 1 \pmod p$ 。
 
-寻找 $q$ 的思路如下：因为 $\left(a^{-1} \times (qx_{s-k})^{2}\right)^{2^{s-k-1}} \equiv 1 \pmod p$，所以 $q^{2^{s-k}} \equiv -1 \pmod p$。
+寻找 $q$ 的思路如下：因为 $\left(a^{-1} \times (qx_{s-k})^{2}\right)^{2^{s-k-1}} \equiv 1 \pmod p$ ，所以 $q^{2^{s-k}} \equiv -1 \pmod p$ 。
 
-接下来寻找一个非二次剩余 $b$：
+接下来寻找一个非二次剩余 $b$ ：
 
--  因为 $b$ 是非二次剩余，所以 $b^{\frac{p-1}{2}} \equiv -1 \pmod p$，即 $b^{t2^{s-1}} \equiv -1 \pmod\ p$； 
--  稍微变个形得到 $b^{t \times 2^{s-k} \times 2^{k-1}} \equiv -1 \pmod p$，即 $(b^{t \times 2^{k-1}})^{2^{s-k}} \equiv -1 \pmod p$；
--  $q \equiv b^{t \times 2^{k-1}} \pmod p$。
+- 因为 $b$ 是非二次剩余，所以 $b^{\frac{p-1}{2}} \equiv -1 \pmod p$ ，即 $b^{t2^{s-1}} \equiv -1 \pmod\ p$ ；
+- 稍微变个形得到 $b^{t \times 2^{s-k} \times 2^{k-1}} \equiv -1 \pmod p$ ，即 $(b^{t \times 2^{k-1}})^{2^{s-k}} \equiv -1 \pmod p$ ；
+-  $q \equiv b^{t \times 2^{k-1}} \pmod p$ 。
 
-最后得到 $x_{s-k-1} \equiv x_{s-k} \times q \pmod p$。
+最后得到 $x_{s-k-1} \equiv x_{s-k} \times q \pmod p$ 。
 
-不断迭代即可得到答案。该做法的时间复杂度约为 $O(\log p)$。
+不断迭代即可得到答案。该做法的时间复杂度约为 $O(\log p)$ 。
 
 ??? note "参考实现"
     ```python3
