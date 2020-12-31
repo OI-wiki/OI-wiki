@@ -43,49 +43,37 @@
 4. 图的绝对中心可能在某条边上，枚举所有的边。对于一条边 $w(u,j)$ 从距离 $u$ 最远的结点开始更新。当出现 $d(v,\textit{rk}(u,i)) > d(v,\textit{rk}(u,i-1))$ 的情况时，用 $\textit{ans}\leftarrow  \min(\textit{ans}, d(v,\textit{rk}(u,i))+d(v,\textit{rk}(u,i-1))+w(i,j))$ 来更新。因为这种情况会使图的绝对中心改变。
 
 ??? note "参考实现"
-    
     ```cpp
-    bool cmp(int a, int b)
-    {
-        return val[a] < val[b];
+    bool cmp(int a, int b) { return val[a] < val[b]; }
+    
+    void Floyd() {
+      for (int k = 1; k <= n; k++)
+        for (int i = 1; i <= n; i++)
+          for (int j = 1; j <= n; j++) d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
     }
     
-    void Floyd()
-    {
-        for (int k = 1; k <= n; k ++)
-            for (int i = 1; i <= n; i ++)
-                for (int j = 1; j <= n; j ++)
-                    d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
-    }
-    
-    void solve()
-    {
-        Floyd();
-        for (int i = 1; i <= n; i ++)
-        {
-            for (int j = 1; j <= n; j ++) 
-            {
-                rk[i][j] = j;
-                val[j] = d[i][j];
-            }
-            sort(rk[i] + 1, rk[i] + 1 + n, cmp);
+    void solve() {
+      Floyd();
+      for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+          rk[i][j] = j;
+          val[j] = d[i][j];
         }
-        int ans = INF;
-        // 图的绝对中心可能在结点上
-        for (int i = 1; i <= n; i ++) ans = min(ans, d[i][rk[i][n]] * 2);
-        // 图的绝对中心可能在边上
-        for (int i = 1; i <= m; i ++)
-        {
-            int u = a[i].u, v = a[i].v, w = a[i].w;
-            for (int p = n, i = n - 1; i >= 1; i --)
-            {
-                if (d[v][rk[u][i]] > d[v][rk[u][p]])
-                {
-                    ans = min(ans, d[u][rk[u][i]] + d[v][rk[u][p]] + w);
-                    p = i;
-                }
-            }
+        sort(rk[i] + 1, rk[i] + 1 + n, cmp);
+      }
+      int ans = INF;
+      // 图的绝对中心可能在结点上
+      for (int i = 1; i <= n; i++) ans = min(ans, d[i][rk[i][n]] * 2);
+      // 图的绝对中心可能在边上
+      for (int i = 1; i <= m; i++) {
+        int u = a[i].u, v = a[i].v, w = a[i].w;
+        for (int p = n, i = n - 1; i >= 1; i--) {
+          if (d[v][rk[u][i]] > d[v][rk[u][p]]) {
+            ans = min(ans, d[u][rk[u][i]] + d[v][rk[u][p]] + w);
+            p = i;
+          }
         }
+      }
     }
     ```
 

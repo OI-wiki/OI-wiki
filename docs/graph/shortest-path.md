@@ -273,32 +273,33 @@ for (i = 1; i <= n; i++) {
 或者说一个 `C++` 代码：
 
 ```C++
-vector<vector<Point>> Ps; // 图的邻接矩阵
-vector<LL> dist; // min_len 的运行结果存储位置
+vector<vector<Point>> Ps;  // 图的邻接矩阵
+vector<LL> dist;           // min_len 的运行结果存储位置
 
 // i: 源点在点集中的下标
 void min_len(size_t i) {
-  using Pair = pair<LL, size_t>; // pair 的排序是先第一分量后第二分量，
-                                 // 通过这个可以调整它在堆中的位置
+  using Pair = pair<LL, size_t>;  // pair 的排序是先第一分量后第二分量，
+                                  // 通过这个可以调整它在堆中的位置
 
   // 初始化 dist
   for (auto &k : dist) k = LLONG_MAX;
   dist[i] = 0;
-  
+
   // 初始化小根堆
-  priority<Pair, vector<Pair>, greater<Pair>> Q; // 小根堆
+  priority<Pair, vector<Pair>, greater<Pair>> Q;  // 小根堆
   Q.push(Pair(0, i));
-  
+
   while (!Q.empty()) {
-    auto k = Q.top().second; Q.pop();
-    for (size_t i = 0; i < Ps[k].size(); i ++) {
+    auto k = Q.top().second;
+    Q.pop();
+    for (size_t i = 0; i < Ps[k].size(); i++) {
       // 如果 k 和 i 有边连（这里设置 Ps[k][i] == 0 时无边连接）
       if (Ps[k][i] && dist[k] + Ps[k][i] < dist[i]) {
         // 松弛操作
         dist[i] = dist[k] + Ps[k][i];
         Q.push(Pair(dist[i], i));
       }
-    } 
+    }
   }
 }
 ```
@@ -437,10 +438,10 @@ Johnson 算法则通过另外一种方法来给每条边重新标注边权。
 
 ## 不同方法的比较
 
-| Floyd      | Bellman-Ford    | Dijkstra       | Johnson         | D´Esopo-Pape    |
-| ---------- | --------------- | -------------- | --------------- | --------------- |
-| 每对结点之间的最短路 | 单源最短路           | 单源最短路          | 每对结点之间的最短路      | 单源最短路 |
-| 没有负环的图     | 任意图（可以判定负环是否存在） | 非负权图           | 没有负环的图          | 没有负环的图     |     
+| Floyd      | Bellman-Ford    | Dijkstra       | Johnson         | D´Esopo-Pape     |
+| ---------- | --------------- | -------------- | --------------- | ---------------- |
+| 每对结点之间的最短路 | 单源最短路           | 单源最短路          | 每对结点之间的最短路      | 单源最短路            |
+| 没有负环的图     | 任意图（可以判定负环是否存在） | 非负权图           | 没有负环的图          | 没有负环的图           |
 |  $O(N^3)$  |  $O(NM)$        |  $O(M\log M)$  |  $O(NM\log M)$  |  $O(N\cdot2^N)$  |
 
 注：表中的 Dijkstra 算法在计算复杂度时均用 `priority_queue` 实现。
