@@ -270,6 +270,39 @@ for (i = 1; i <= n; i++) {
 }
 ```
 
+或者说一个 `C++` 代码：
+
+```C++
+vector<vector<Point>> Ps; // 图的邻接矩阵
+vector<LL> dist; // min_len 的运行结果存储位置
+
+// i: 源点在点集中的下标
+void min_len(size_t i) {
+  using Pair = pair<LL, size_t>; // pair 的排序是先第一分量后第二分量，
+                                 // 通过这个可以调整它在堆中的位置
+
+  // 初始化 dist
+  for (auto &k : dist) k = LLONG_MAX;
+  dist[i] = 0;
+  
+  // 初始化小根堆
+  priority<Pair, vector<Pair>, greater<Pair>> Q; // 小根堆
+  Q.push(Pair(0, i));
+  
+  while (!Q.empty()) {
+    auto k = Q.top().second; Q.pop();
+    for (size_t i = 0; i < Ps[k].size(); i ++) {
+      // 如果 k 和 i 有边连（这里设置 Ps[k][i] == 0 时无边连接）
+      if (Ps[k][i] && dist[k] + Ps[k][i] < dist[i]) {
+        // 松弛操作
+        dist[i] = dist[k] + Ps[k][i];
+        Q.push(Pair(dist[i], i));
+      }
+    } 
+  }
+}
+```
+
 ## Johnson 全源最短路径算法
 
 Johnson 和 Floyd 一样，是一种能求出无负环图上任意两点间最短路径的算法。该算法在 1977 年由 Donald B. Johnson 提出。
