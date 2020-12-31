@@ -126,8 +126,10 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
 我们现在考虑任意不是 $t_0$ 的状态 $v$ 及后缀链接 $\operatorname{link}(v)$ ，由后缀链接和引理 2，我们可以得到
 
 $$
-\operatorname{endpos}(v)\subseteq \operatorname{endpos}(\operatorname{link}(v)),
+\operatorname{endpos}(v)\subsetneq \operatorname{endpos}(\operatorname{link}(v)),
 $$
+
+（注意这里应该是 $\subsetneq$ 不是 $\subseteq$，因为若 $\operatorname{endpos}(v)=\operatorname{endpos}(\operatorname{link}(v))$，那么 $v$ 和 $\operatorname{link}(v)$ 应该被合并为一个节点）
 
 结合前面的引理有：后缀链接构成的树本质上是 $\operatorname{endpos}$ 集合构成的一棵树。
 
