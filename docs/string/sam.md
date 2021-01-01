@@ -129,7 +129,7 @@ $$
 \operatorname{endpos}(v)\subsetneq \operatorname{endpos}(\operatorname{link}(v)),
 $$
 
-（注意这里应该是 $\subsetneq$ 不是 $\subseteq$ ，因为若 $\operatorname{endpos}(v)=\operatorname{endpos}(\operatorname{link}(v))$ ，那么 $v$ 和 $\operatorname{link}(v)$ 应该被合并为一个节点）
+注意这里应该是 $\subsetneq$ 而不是 $\subseteq$ ，因为若 $\operatorname{endpos}(v)=\operatorname{endpos}(\operatorname{link}(v))$ ，那么 $v$ 和 $\operatorname{link}(v)$ 应该被合并为一个节点
 
 结合前面的引理有：后缀链接构成的树本质上是 $\operatorname{endpos}$ 集合构成的一棵树。
 
