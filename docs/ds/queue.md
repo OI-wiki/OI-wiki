@@ -66,7 +66,7 @@ int q[SIZE], ql = 1, qr;
     2. 在后端插入 (w,v)
     3. 删除前端的二元组
     4. 删除后端的二元组
-    5.  给定 l,r，在当前 deque 中选择一个子集 S 使得 $\sum_{(w,v)\in S}w\bmod p\in[l,r]$ ，且最大化 $\sum_{(w,v)\in S}v$ .
+    5. 给定 l,r，在当前 deque 中选择一个子集 S 使得 $\sum_{(w,v)\in S}w\bmod p\in[l,r]$ ，且最大化 $\sum_{(w,v)\in S}v$ .
     
          $m\leq 5\times 10^4,p\leq 500$ .
 
