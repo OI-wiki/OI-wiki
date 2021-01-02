@@ -20,6 +20,26 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 ### 实现
 
 伪代码：
+<!--
+```pseudo
+\begin{algorithm}
+\caption{Kruskal}
+\begin{algorithmic}
+\INPUT{ The edges of the graph $e$ where each element in $e$ is $(u, v, w)$ denoting that there is an edge between $u$ and $v$ weighted $w$. }
+\OUTPUT The edges of the MST of the input graph
+\STATE $result \gets \varnothing$
+\STATE sort $e$ into nondecreasing order by weight $w$
+\FOR{each $(u, v, w)$ in the sorted $e$}
+    \IF{$u$ \AND $v$ are not connected in the union-find set}
+        \STATE connect $u$ \AND $v$ in the union-find set
+        \STATE $result \gets result \bigcup (u, v, w)$
+    \ENDIF
+\ENDFOR
+\RETURN $result$
+\end{algorithmic}
+\end{algorithm}
+```
+-->
 
 $$
 \begin{array}{ll}
