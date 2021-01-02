@@ -20,6 +20,7 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 ### 实现
 
 伪代码：
+
 <!--
 ```pseudo
 \begin{algorithm}
