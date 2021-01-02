@@ -153,7 +153,7 @@ $$
 - 莫比乌斯函数： $\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1:d^{2} \mid n \\ (-1)^{\omega(n)} & otherwise\end{cases}$ ，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它是一个加性函数。
 
 ???+note "加性函数"
-    此处加性函数指数论上的加性函数 (Additive function) 。对于加性函数$\operatorname{f}$，当整数 $a,b$ 互质时，均有 $\operatorname{f}(ab)=\operatorname{f}(a)+\operatorname{f}(b)$ 。
+    此处加性函数指数论上的加性函数 (Additive function)。对于加性函数 $\operatorname{f}$ ，当整数 $a,b$ 互质时，均有 $\operatorname{f}(ab)=\operatorname{f}(a)+\operatorname{f}(b)$ 。
     应与代数中的加性函数 (Additive map) 区分。
 
 * * *
