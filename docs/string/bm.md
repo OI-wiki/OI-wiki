@@ -48,7 +48,7 @@ $$
 \end{array}
 $$
 
- **注意：显然这个表只需计算到 $patlastpos-1$ 的位置** 
+ **注意：显然这个表只需计算到 $patlastpos-1$ 的位置**
 
 现在假设 $char$ 和 $pat$ 最后一个字符匹配到了，那我们就看看 $char$ 前一个字符和 $pat$ 的倒数第二个字符是否匹配：
 
@@ -133,7 +133,7 @@ $$
 \end{aligned}
 $$
 
-根据 **观察 3(a)** ， $\texttt{L}$ 失配，因为 $\texttt{L}$ 不在 $pat$ 中，所以 $pa$ t 向下移动 $k=delta_1-m=7-1=6$ 个字符，而 $string$ 上指针向下移动 $delta_1=7$ 个字符：
+根据 **观察 3(a)** ， $\texttt{L}$ 失配，因为 $\texttt{L}$ 不在 $pat$ 中，所以 $pat$ 向下移动 $k=delta_1-m=7-1=6$ 个字符，而 $string$ 上指针向下移动 $delta_1=7$ 个字符：
 
 $$
 \begin{aligned}
@@ -153,9 +153,9 @@ $$
 \end{aligned}
 $$
 
-显然直观上看，此时根据 **观察 3(b)** ，将 $pat$ 向左移动 $k=5$ 个字符，使得后缀 $\texttt{AT}$ 对齐，这种滑动可以获得 $string$ 指针最大的滑动距离，此时 $delta_2=k+patlastpos-j=5+6-4=7$ ，即 $string$ 上指针向下滑动 7 个字符。
+显然直观上看，此时根据 **观察 3(b)** ，将 $pat$ 向下移动 $k=5$ 个字符，使得后缀 $\texttt{AT}$ 对齐，这种滑动可以获得 $string$ 指针最大的滑动距离，此时 $delta_2=k+patlastpos-j=5+6-4=7$ ，即 $string$ 上指针向下滑动 7 个字符。
 
-而从形式化逻辑看，此时， $delta_1=7-1-2=4,\ delta_2=5, \max(delta_1,delta_2)= 7$ ，
+而从形式化逻辑看，此时， $delta_1=7-1-2=4,\ delta_2=7, \max(delta_1,delta_2)= 7$ ，
 这样从形式逻辑上支持了进行 **观察 3(b)** 的跳转：
 $$
 \begin{aligned}
@@ -470,7 +470,7 @@ $$
 \end{aligned}
 $$
 
-在 $j\leq2$ 处有 $\texttt{ABAABAA}$ ， $2< j \leq 5$ 处有 $\texttt{ABAA}$ ，在 $5<j\leq8$ 处有 $\texttt{A}$ 
+在 $j\leq2$ 处有 $\texttt{ABAABAA}$ ， $2< j \leq 5$ 处有 $\texttt{ABAA}$ ，在 $5<j\leq8$ 处有 $\texttt{A}$
 
 之前提到的 Knuth 算法的缺陷就是只考虑了最长的那一对的情况。
 
@@ -571,7 +571,7 @@ pub fn build_delta_2_table_improved_minghu6(p: &[impl PartialEq]) -> Vec<usize> 
 
 之前的搜索算法只涉及到在 $string$ 中寻找第一次 $pat$ 匹配的情况，而对与在 $string$ 中寻找全部 $pat$ 的匹配的情况有很多不同的算法思路，这个问题的核心关注点是：
 
- **如何利用之前匹配成功的字符的信息，将最坏情况下的时间复杂度降为线性。** 
+ **如何利用之前匹配成功的字符的信息，将最坏情况下的时间复杂度降为线性。**
 
 在原始的成功匹配后，简单的 $string$ 的指针向后滑动 $patlen$ 距离后重新开始后缀匹配，这会导致最坏情况下回到 $O(mn)$ 的时间复杂度（按照惯例， $m$ 为 $patlen$ ， $n$ 为 $stringlen$ ，下同）。
 
@@ -579,7 +579,7 @@ pub fn build_delta_2_table_improved_minghu6(p: &[impl PartialEq]) -> Vec<usize> 
 
 对此 Knuth 提出来的一个方法是用一个“数量有限”的状态的集合来记录 $patlen$ 长度的字符，这种算法保证 $string$ 上每一个字符最多比较一次，但代价是这个“数量有限”的状态可能数目并不怎么“有限”，比如立刻就能想到它的上限是 $2^{m}$ 个，但并不清楚它到底能变得多大，对于一个字符彼此不相等的 $pat$ ，需要 $\dfrac{1}{2}m^{2}+m$ 个状态。这个算法思路同在 1977 年 6 月的发表 KMP 论文[^kmp]里被介绍，也许在未来某个节点匹配代价很高但状态存储代价很低的新场景能重新得到应用，但对于现在简单的字符串匹配，这个设计并不特别合适。
 
-而 Knuth 提出的另一个方法，嗯这里就不介绍了，同在上面的 Knuth 那篇“宝藏”论文里被介绍，缺点是除了过于复杂以外主要是构建辅助的数据结构需要的预处理时间太大： $O(qm)$ 
+而 Knuth 提出的另一个方法，嗯这里就不介绍了，同在上面的 Knuth 那篇“宝藏”论文里被介绍，缺点是除了过于复杂以外主要是构建辅助的数据结构需要的预处理时间太大： $O(qm)$
 
  $q$ 为全字符集的大小，而且 $qm$ 前面的系数很大。
 
@@ -637,7 +637,7 @@ impl<'a> BMPattern<'a> {
 
         while string_index < stringlen {
             let old_string_index = string_index;
-            
+
             while string_index < stringlen {
                 string_index += self.delta0(string_bytes[string_index]);
             }
@@ -646,15 +646,15 @@ impl<'a> BMPattern<'a> {
             }
 
             string_index -= LARGE;
-			
+
             // 如果string_index发生移动，意味着自从上次成功匹配后发生了至少一次的失败匹配。
             // 此时需要将Galil规则的二次匹配的偏移量归零。
             if old_string_index < string_index {
                 l = 0;
             }
-            
+
             pat_index = pat_last_pos;
-            
+
             while pat_index > l && string_bytes[string_index] == self.pat_bytes[pat_index] {
                 string_index -= 1;
                 pat_index -= 1;
@@ -930,7 +930,7 @@ Bloom 过滤器设设计通过牺牲准确率（实际还有运行时间）来�
 
 另外，按照计算，当 pat 在 30 字节以下时，为了达到最佳的 FP 概率，需要超过一个哈希函数，但这么做意义不大，因为用装有两个 `u128` 数字的数组就已经可以构建字符表的全字符集。
 
-##### 使用 $delta_1(pat[patlastpos])$ 代替整个 $delta_1$ 
+##### 使用 $delta_1(pat[patlastpos])$ 代替整个 $delta_1$
 
 观察 $delta_1$ 最常使用的地方就是后缀匹配时第一个字符就不匹配是最常见的不匹配的情况，于是令 `skip = delta1(pat[patlastpos])` ，
 
@@ -1053,9 +1053,9 @@ $$
 
  $skip(m,k)$ 为发生失配时 $pat$ 向下滑动 $k$ 个字符的概率，（这里的 $k$ 如同前文讨论的 $k$ 一样，为 $pat$ 实际滑动距离，不包括指针从失配位置回退到 $patlastpos$ 位置的距离）。实际上所有字符串匹配算法的核就在于 $skip(m,k)$ ，下面我们会通过分析 $delta_1$ 和 $delta_2$ 来计算 BoyerMoore 算法的 $skip(m,k)$ 。
 
-### 计算 BoyerMoore 算法的 $skip(m,k)$ 
+### 计算 BoyerMoore 算法的 $skip(m,k)$
 
-####  $delta_1$ 
+####  $delta_1$
 
 首先考虑 $delta_1$ 不起作用的情况，也就是发现失配字符在 $pat$ 上重现的位置在已经匹配完的 $m$ 个字符中，这种情况的概率 $\textit{probdelta_1_worthless}$ 为：
 
@@ -1089,7 +1089,7 @@ probdelta1(m,k) =
 \end{array}\right.
 $$
 
-####  $delta_2$ 
+####  $delta_2$
 
 对于 $delta_2$ 概率的计算，根据定义，首先计算某个 $subpat$ 的重现的概率，只要考虑该重现左边还有没有字符来提供额外的判断与失配字符是否相等的检查：
 
@@ -1143,7 +1143,7 @@ $$
 
 为了结构清晰、书写简单、演示方便，我们使用 Python 平台的 Lisp 方言 Hy 来进行实际计算：
 
- `myprob.hy` 
+ `myprob.hy`
 
 ```Hy
 (require [hy.contrib.sequences [defseq seq]])
@@ -1231,7 +1231,7 @@ $$
 
 并且为了进行比较，还额外计算了简化 BM 算法：
 
- `myprob.hy` 
+ `myprob.hy`
 
 ```hy
 (defn simplified-bm-skip [patlen p m k]
@@ -1253,7 +1253,7 @@ $$
 
 和 KMP 算法：
 
- `myprob,hy` 
+ `myprob,hy`
 
 ```hy
 (defn getone [&rest body &kwonly [default None]]
@@ -1352,12 +1352,12 @@ def plot(p, title, N=30):
 
 ## 引用
 
-[^bm]:  [1977 年 Boyer-Moore 算法论文](https://dl.acm.org/doi/10.1145/359842.359859) 
+[^bm]:  [1977 年 Boyer-Moore 算法论文](https://dl.acm.org/doi/10.1145/359842.359859)
 
-[^kmp]:  [1977 年 KMP 算法论文](https://epubs.siam.org/doi/abs/10.1137/0206024) 
+[^kmp]:  [1977 年 KMP 算法论文](https://epubs.siam.org/doi/abs/10.1137/0206024)
 
-[^rytter]:  [1980 年 Rytter 纠正 Knuth 的论文](https://epubs.siam.org/doi/10.1137/0209037) 
+[^rytter]:  [1980 年 Rytter 纠正 Knuth 的论文](https://epubs.siam.org/doi/10.1137/0209037)
 
-[^galil-rule]:  [1979 年介绍 Galil 算法的论文](https://doi.org/10.1145%2F359146.359148) 
+[^galil-rule]:  [1979 年介绍 Galil 算法的论文](https://doi.org/10.1145%2F359146.359148)
 
-[^b5s]:  [B5S 算法的介绍](http://effbot.org/zone/stringlib.htm#BMHBNFS) 
+[^b5s]:  [B5S 算法的介绍](http://effbot.org/zone/stringlib.htm#BMHBNFS)
