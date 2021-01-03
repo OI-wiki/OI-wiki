@@ -35,7 +35,7 @@ author: accelsao
 
 首先初始化一组可行顶标，例如
 
- $lx(i) = \max \{ w(i, j)\  \text{for}\  j = 1\  \text{to}\  n\}, ly(i) = 0$ 
+lx(i) = \max_{1\leq j\leq n} \{ w(i, j)\},\, ly(i) = 0
 
 然后选一个未匹配点，如同最大匹配一样求增广路。找到增广路就增广，否则，会得到一个交错树。
 
