@@ -21,8 +21,8 @@ $\Sigma$ 表示字符集。
 
 $$
 \begin{aligned}
-\textit{S}:\quad &\texttt{HERE_I}{\color{blue}\texttt{S}}\texttt{_A_SIMPLE_EXAMPLE} \\
-\textit{T}:\quad &\texttt{EXAMPL}{\color{blue}\texttt{E}} \\
+\textit{S}:\quad &\texttt{HERE_I}{\color{blue}{\texttt{S}}}\texttt{_A_SIMPLE_EXAMPLE} \\
+\textit{T}:\quad &\texttt{EXAMPL}{\color{blue}{\texttt{E}}} \\
 \end{aligned}
 $$
 
@@ -30,8 +30,8 @@ $$
 
 $$
 \begin{aligned}
-\textit{S}:\quad &\texttt{HERE_IS_A_SIM}{\color{blue}\texttt{P}}\texttt{LE_EXAMPLE} \\
-\textit{T}:\quad &\texttt{.......EXAMPL}{\color{blue}\texttt{E}} \\
+\textit{S}:\quad &\texttt{HERE_IS_A_SIM}{\color{blue}{\texttt{P}}}\texttt{LE_EXAMPLE} \\
+\textit{T}:\quad &\texttt{.......EXAMPL}{\color{blue}{\texttt{E}}} \\
 \end{aligned}
 $$
 
@@ -39,8 +39,8 @@ $$
 
 $$
 \begin{aligned}
-\textit{S}:\quad &\texttt{HERE_IS_A_SIM}{\color{blue}\texttt{P}}{\color{green}\texttt{LE}}\texttt{_EXAMPLE} \\
-\textit{T}:\quad &\texttt{.........EXAM}{\color{blue}\texttt{P}}{\color{green}\texttt{LE}} \\
+\textit{S}:\quad &\texttt{HERE_IS_A_SIM}{\color{blue}{\texttt{P}}}{\color{green}{\texttt{LE}}}\texttt{_EXAMPLE} \\
+\textit{T}:\quad &\texttt{.........EXAM}{\color{blue}{\texttt{P}}}{\color{green}{\texttt{LE}}} \\
 \end{aligned}
 $$
 
@@ -48,8 +48,8 @@ $$
 
 $$
 \begin{aligned}
-\textit{S}:\quad &\texttt{HERE_IS_A_S}{\color{blue}\texttt{I}}{\color{green}\texttt{MPLE}}\texttt{_EXAMPLE} \\
-\textit{T}:\quad &\texttt{.........EX}{\color{blue}\texttt{A}}{\color{green}\texttt{MPLE}}\\
+\textit{S}:\quad &\texttt{HERE_IS_A_S}{\color{blue}{\texttt{I}}}{\color{green}{\texttt{MPLE}}}\texttt{_EXAMPLE} \\
+\textit{T}:\quad &\texttt{.........EX}{\color{blue}{\texttt{A}}}{\color{green}{\texttt{MPLE}}}\\
 \end{aligned}
 $$
 
@@ -57,8 +57,8 @@ $$
 
 $$
 \begin{aligned}
-\textit{S}:\quad &\texttt{HERE_IS_A_SIMPLE_}{\color{blue}\texttt{E}}\texttt{XAMPLE} \\
-\textit{T}:\quad &\texttt{.................}{\color{blue}\texttt{E}}{\texttt{XAMPLE}}\\
+\textit{S}:\quad &\texttt{HERE_IS_A_SIMPLE_}{\color{blue}{\texttt{E}}}\texttt{XAMPLE} \\
+\textit{T}:\quad &\texttt{.................}{\color{blue}{\texttt{E}}}{\texttt{XAMPLE}}\\
 \end{aligned}
 $$
 
@@ -425,8 +425,6 @@ Bloom 过滤器设设计通过牺牲准确率（实际还有运行时间）来�
 ## 引用
 
 [^bm]:  [1977 年 Boyer-Moore 算法论文](https://dl.acm.org/doi/10.1145/359842.359859) 
-
-[^kmp]:  [1977 年 KMP 算法论文](https://epubs.siam.org/doi/abs/10.1137/0206024) 
 
 [^rytter]:  [1980 年 Rytter 纠正 Knuth 的论文](https://epubs.siam.org/doi/10.1137/0209037) 
 
