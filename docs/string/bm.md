@@ -18,40 +18,50 @@ $\Sigma$ 表示字符集。
 ## 引入
 
 考虑从左到右匹配。但是我们匹配的时候是从右到左比较字符是否相同。举个例子：
+
 $$
 \begin{aligned}
 \textit{S}:\quad &\texttt{HERE_I}{\color{blue}\texttt{S}}\texttt{_A_SIMPLE_EXAMPLE} \\
 \textit{T}:\quad &\texttt{EXAMPL}{\color{blue}\texttt{E}} \\
 \end{aligned}
 $$
+
 这时 $T$ 的最后一个字符 `E` 与 `S` 不匹配。而且 `S` 没有在 $T$ 中出现。因此我们把 $T$ 后移 $|T|$ 个字符：
+
 $$
 \begin{aligned}
 \textit{S}:\quad &\texttt{HERE_IS_A_SIM}{\color{blue}\texttt{P}}\texttt{LE_EXAMPLE} \\
 \textit{T}:\quad &\texttt{.......EXAMPL}{\color{blue}\texttt{E}} \\
 \end{aligned}
 $$
+
 这时 `P` 和 `E` 仍不匹配，但 `P` 在 $T$ 中出现过。它在 $T$ 中出现的最后一次是 $T[5]$（其实也只出现了这一次），因此我们把 $T$ 往后移动 （$7-5=$）$2$ 位，让两个 `P` 对齐：
+
 $$
 \begin{aligned}
 \textit{S}:\quad &\texttt{HERE_IS_A_SIM}{\color{blue}\texttt{P}}{\color{green}\texttt{LE}}\texttt{_EXAMPLE} \\
 \textit{T}:\quad &\texttt{.........EXAM}{\color{blue}\texttt{P}}{\color{green}\texttt{LE}} \\
 \end{aligned}
 $$
+
 然后我们再从 $T$ 的末尾开始比较：
+
 $$
 \begin{aligned}
 \textit{S}:\quad &\texttt{HERE_IS_A_S}{\color{blue}\texttt{I}}{\color{green}\texttt{MPLE}}\texttt{_EXAMPLE} \\
 \textit{T}:\quad &\texttt{.........EX}{\color{blue}\texttt{A}}{\color{green}\texttt{MPLE}}\\
 \end{aligned}
 $$
+
 这时遇到 `I` 和 `A` 两个字符不匹配。按照刚才的方法，我们会将 $T$ 向后移动（$3-0=$） $3$ 位。但注意到 $T[|T|]=T[1]$，因此我们可以直接把两个 $E$ 对齐：
+
 $$
 \begin{aligned}
 \textit{S}:\quad &\texttt{HERE_IS_A_SIMPLE_}{\color{blue}\texttt{E}}\texttt{XAMPLE} \\
 \textit{T}:\quad &\texttt{.................}{\color{blue}\texttt{E}}{\texttt{XAMPLE}}\\
 \end{aligned}
 $$
+
 然后再从右往左比较一轮，我们就找到了匹配。
 
 ## 朴素算法
@@ -196,10 +206,8 @@ impl<'a> SundayPattern<'a> {
 
 B5S 基本想法是：
 
-1. 假设 $T[|T|]$ 与 $S[i]$ 对齐。按照后缀匹配的思路，首先比较 $T[|T|]$ 与 $S[i]$ 是否相等，如果相等就比较 $T[1,T]$ 与 $S[i-|T|+1,i]$ 是否相等，如果仍然相等，那么就发现一个匹配；
-
-2. 如果任何一个阶段发生不匹配，就进入跳转阶段；
-
+1.  假设 $T[|T|]$ 与 $S[i]$ 对齐。按照后缀匹配的思路，首先比较 $T[|T|]$ 与 $S[i]$ 是否相等，如果相等就比较 $T[1,T]$ 与 $S[i-|T|+1,i]$ 是否相等，如果仍然相等，那么就发现一个匹配；
+2.  如果任何一个阶段发生不匹配，就进入跳转阶段；
 3.  在跳转阶段，首先观察 $S[i+1]$ 是否在 $T$ 中，如果不在，直接将 $T$ 向右移动 $|T|+1$ 位，这是 Sunday 算法的运用；否则对 $T[|T|]$ 使用 Horspool 算法跳转。
 
 ### 时间节省版本
