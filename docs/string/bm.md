@@ -122,33 +122,34 @@ Horspool 算法同样是基于坏字符策略，不过它只会在 $T$ 的最后
 
 Boyer-Moore-Horspool 算法则是每次匹配的时候，如果 $T$ 的最后一个字符与 $S$ 不匹配，则执行 Horspool 算法直到 $T$ 的最后一个字符与 $S$ 匹配，然后执行 Boyer-Moore 算法。
 
-```rust
-pub struct HorspoolPattern<'a> {
-    pat_bytes: &'a [u8],
-    bm_bc: [usize; 256],
-}
-
-impl<'a> HorspoolPattern<'a> {
-    // ...
-    pub fn find_all(&self, string: &str) -> Vec<usize> {
-        let mut result = vec![];
-        let string_bytes = string.as_bytes();
-        let stringlen = string_bytes.len();
-        let pat_last_pos = self.pat_bytes.len() - 1;
-        let mut string_index = pat_last_pos;
-
-        while string_index < stringlen {
-            if &string_bytes[string_index-pat_last_pos..string_index+1] == self.pat_bytes {
-                result.push(string_index-pat_last_pos);
-            }
-
-            string_index += self.bm_bc[string_bytes[string_index] as usize];
-        }
-
-        result
+??? note "代码实现(rust)"
+    ```rust
+    pub struct HorspoolPattern<'a> {
+        pat_bytes: &'a [u8],
+        bm_bc: [usize; 256],
     }
-}
-```
+    
+    impl<'a> HorspoolPattern<'a> {
+        // ...
+        pub fn find_all(&self, string: &str) -> Vec<usize> {
+            let mut result = vec![];
+            let string_bytes = string.as_bytes();
+            let stringlen = string_bytes.len();
+            let pat_last_pos = self.pat_bytes.len() - 1;
+            let mut string_index = pat_last_pos;
+    
+            while string_index < stringlen {
+                if &string_bytes[string_index-pat_last_pos..string_index+1] == self.pat_bytes {
+                    result.push(string_index-pat_last_pos);
+                }
+    
+                string_index += self.bm_bc[string_bytes[string_index] as usize];
+            }
+    
+            result
+        }
+    }
+    ```
 
 ## Boyer-Moore-Sunday 算法
 
@@ -156,47 +157,48 @@ Sunday 算法同样是利用坏字符规则，只不过相比 Horspool 它更进
 
 Sunday 算法通常用作一般情况下实现最简单而且平均表现最好之一的实用算法，通常表现比 Horspool、BM 都要快一点。
 
-```rust
-pub struct SundayPattern<'a> {
-    pat_bytes: &'a [u8],
-    sunday_bc: [usize; 256],
-}
-
-impl<'a> SundayPattern<'a> {
-    // ...
-    fn build_sunday_bc(p: &'a [u8]) -> [usize; 256] {
-        let mut sunday_bc_table = [p.len() + 1; 256];
-
-        for i in 0..p.len() {
-            sunday_bc_table[p[i] as usize] = p.len() - i;
-        }
-
-        sunday_bc_table
+??? note "代码实现(rust)"
+    ```rust
+    pub struct SundayPattern<'a> {
+        pat_bytes: &'a [u8],
+        sunday_bc: [usize; 256],
     }
-
-    pub fn find_all(&self, string: &str) -> Vec<usize> {
-        let mut result = vec![];
-        let string_bytes = string.as_bytes();
-        let pat_last_pos = self.pat_bytes.len() - 1;
-        let stringlen = string_bytes.len();
-        let mut string_index = pat_last_pos;
-
-        while string_index < stringlen {
-            if &string_bytes[string_index - pat_last_pos..string_index+1] == self.pat_bytes {
-                result.push(string_index - pat_last_pos);
+    
+    impl<'a> SundayPattern<'a> {
+        // ...
+        fn build_sunday_bc(p: &'a [u8]) -> [usize; 256] {
+            let mut sunday_bc_table = [p.len() + 1; 256];
+    
+            for i in 0..p.len() {
+                sunday_bc_table[p[i] as usize] = p.len() - i;
             }
-
-            if string_index + 1 == stringlen {
-                break;
-            }
-
-            string_index += self.sunday_bc[string_bytes[string_index + 1] as usize];
+    
+            sunday_bc_table
         }
-
-        result
+    
+        pub fn find_all(&self, string: &str) -> Vec<usize> {
+            let mut result = vec![];
+            let string_bytes = string.as_bytes();
+            let pat_last_pos = self.pat_bytes.len() - 1;
+            let stringlen = string_bytes.len();
+            let mut string_index = pat_last_pos;
+    
+            while string_index < stringlen {
+                if &string_bytes[string_index - pat_last_pos..string_index+1] == self.pat_bytes {
+                    result.push(string_index - pat_last_pos);
+                }
+    
+                if string_index + 1 == stringlen {
+                    break;
+                }
+    
+                string_index += self.sunday_bc[string_bytes[string_index + 1] as usize];
+            }
+    
+            result
+        }
     }
-}
-```
+    ```
 
 ## BMHBNFS 算法
 
@@ -212,79 +214,80 @@ B5S 基本想法是：
 
 ### 时间节省版本
 
-```rust
-pub struct B5STimePattern<'a> {
-    pat_bytes: &'a [u8],
-    alphabet: [bool;256],
-    bm_bc: [usize;256],
-    k: usize
-}
-
-impl<'a> B5STimePattern<'a> {
-    pub fn new(pat: &'a str) -> Self {
-        assert_ne!(pat.len(), 0);
-
-        let pat_bytes = pat.as_bytes();
-        let (alphabet, bm_bc, k) = B5STimePattern::build(pat_bytes);
-
-        B5STimePattern { pat_bytes, alphabet, bm_bc, k }
+??? note "代码实现(rust)"
+    ```rust
+    pub struct B5STimePattern<'a> {
+        pat_bytes: &'a [u8],
+        alphabet: [bool;256],
+        bm_bc: [usize;256],
+        k: usize
     }
-
-    fn build(p: &'a [u8]) -> ([bool;256], [usize;256], usize)  {
-        let mut alphabet = [false;256];
-        let mut bm_bc = [p.len(); 256];
-        let lastpos = p.len() - 1;
-
-        for i in 0..lastpos {
-            alphabet[p[i] as usize] = true;
-            bm_bc[p[i] as usize] = lastpos - i;
+    
+    impl<'a> B5STimePattern<'a> {
+        pub fn new(pat: &'a str) -> Self {
+            assert_ne!(pat.len(), 0);
+    
+            let pat_bytes = pat.as_bytes();
+            let (alphabet, bm_bc, k) = B5STimePattern::build(pat_bytes);
+    
+            B5STimePattern { pat_bytes, alphabet, bm_bc, k }
         }
-
-        alphabet[p[lastpos] as usize] = true;
-
-        (alphabet, bm_bc, compute_k(p))
-    }
-
-    pub fn find_all(&self, string: &str) -> Vec<usize> {
-        let mut result = vec![];
-        let string_bytes = string.as_bytes();
-        let pat_last_pos = self.pat_bytes.len() - 1;
-        let patlen = self.pat_bytes.len();
-        let stringlen = string_bytes.len();
-        let mut string_index = pat_last_pos;
-        let mut offset = pat_last_pos;
-        let offset0 = self.k - 1;
-
-        while string_index < stringlen {
-            if string_bytes[string_index] == self.pat_bytes[pat_last_pos] {
-                if &string_bytes[string_index-offset..string_index] == &self.pat_bytes[pat_last_pos-offset..pat_last_pos] {
-                    result.push(string_index-pat_last_pos);
-
-                    offset = offset0;
-
-                    // Galil rule
-                    string_index += self.k;
-                    continue;
+    
+        fn build(p: &'a [u8]) -> ([bool;256], [usize;256], usize)  {
+            let mut alphabet = [false;256];
+            let mut bm_bc = [p.len(); 256];
+            let lastpos = p.len() - 1;
+    
+            for i in 0..lastpos {
+                alphabet[p[i] as usize] = true;
+                bm_bc[p[i] as usize] = lastpos - i;
+            }
+    
+            alphabet[p[lastpos] as usize] = true;
+    
+            (alphabet, bm_bc, compute_k(p))
+        }
+    
+        pub fn find_all(&self, string: &str) -> Vec<usize> {
+            let mut result = vec![];
+            let string_bytes = string.as_bytes();
+            let pat_last_pos = self.pat_bytes.len() - 1;
+            let patlen = self.pat_bytes.len();
+            let stringlen = string_bytes.len();
+            let mut string_index = pat_last_pos;
+            let mut offset = pat_last_pos;
+            let offset0 = self.k - 1;
+    
+            while string_index < stringlen {
+                if string_bytes[string_index] == self.pat_bytes[pat_last_pos] {
+                    if &string_bytes[string_index-offset..string_index] == &self.pat_bytes[pat_last_pos-offset..pat_last_pos] {
+                        result.push(string_index-pat_last_pos);
+    
+                        offset = offset0;
+    
+                        // Galil rule
+                        string_index += self.k;
+                        continue;
+                    }
+                }
+    
+                if string_index + 1 == stringlen {
+                    break;
+                }
+    
+                offset = pat_last_pos;
+    
+                if !self.alphabet[string_bytes[string_index+1] as usize] {
+                    string_index += patlen + 1;  // sunday
+                } else {
+                    string_index += self.bm_bc[string_bytes[string_index] as usize];  // horspool
                 }
             }
-
-            if string_index + 1 == stringlen {
-                break;
-            }
-
-            offset = pat_last_pos;
-
-            if !self.alphabet[string_bytes[string_index+1] as usize] {
-                string_index += patlen + 1;  // sunday
-            } else {
-                string_index += self.bm_bc[string_bytes[string_index] as usize];  // horspool
-            }
+    
+            result
         }
-
-        result
     }
-}
-```
+    ```
 
 这个版本的 B5S 性能表现非常理想，是通常情况下，目前介绍的后缀匹配系列算法中最快的。
 
@@ -294,27 +297,28 @@ impl<'a> B5STimePattern<'a> {
 
 优化1：用 Bloom 过滤器取代字符表（alphabet）：
 
-```rust
-pub struct BytesBloomFilter {
-    mask: u64,
-}
-
-impl BytesBloomFilter {
-    pub fn new() -> Self {
-        SimpleBloomFilter {
-            mask: 0,
+??? note "代码实现(rust)"
+    ```rust
+    pub struct BytesBloomFilter {
+        mask: u64,
+    }
+    
+    impl BytesBloomFilter {
+        pub fn new() -> Self {
+            SimpleBloomFilter {
+                mask: 0,
+            }
+        }
+    
+        fn insert(&mut self, byte: &u8) {
+            (self.mask) |= 1u64 << (byte & 63);
+        }
+    
+        fn contains(&self, char: &u8) -> bool {
+            (self.mask & (1u64 << (byte & 63))) != 0
         }
     }
-
-    fn insert(&mut self, byte: &u8) {
-        (self.mask) |= 1u64 << (byte & 63);
-    }
-
-    fn contains(&self, char: &u8) -> bool {
-        (self.mask & (1u64 << (byte & 63))) != 0
-    }
-}
-```
+    ```
 
 Bloom 过滤器设设计通过牺牲准确率（实际还有运行时间）来极大地节省存储空间的 `Set` 类型的数据结构，它的特点是会将集合中不存在的项误判为存在（False Positives，简称 FP），但不会把集合中存在的项判断为不存在（False Negatives，简称 FN），因此使用它时间复杂度可能不是最优，但正确性是保证的。
 
@@ -322,82 +326,83 @@ Bloom 过滤器设设计通过牺牲准确率（实际还有运行时间）来�
 
 具体地，如果 $T[|T|]$ 与 $S[i]$ 对齐，且 $S[i]$ 不在 $T$ 中出现过，我们直接把 $T$ 向后移动 $|T|$ 位。否则我们向后移动一位。
 
-```rust
-pub struct B5SSpacePattern<'a> {
-    pat_bytes: &'a [u8],
-    alphabet: BytesBloomFilter,
-    skip: usize,
-}
-
-impl<'a> B5SSpacePattern<'a> {
-    pub fn new(pat: &'a str) -> Self {
-        assert_ne!(pat.len(), 0);
-
-        let pat_bytes = pat.as_bytes();
-        let (alphabet, skip) = B5SSpacePattern::build(pat_bytes);
-
-        B5SSpacePattern { pat_bytes, alphabet, skip}
+??? note "代码实现(rust)"
+    ```rust
+    pub struct B5SSpacePattern<'a> {
+        pat_bytes: &'a [u8],
+        alphabet: BytesBloomFilter,
+        skip: usize,
     }
-
-    fn build(p: &'a [u8]) -> (BytesBloomFilter, usize)  {
-        let mut alphabet = BytesBloomFilter::new();
-        let lastpos = p.len() - 1;
-        let mut skip = p.len();
-
-        for i in 0..p.len()-1 {
-            alphabet.insert(&p[i]);
-
-            if p[i] == p[lastpos] {
-                skip = lastpos - i;
-            }
+    
+    impl<'a> B5SSpacePattern<'a> {
+        pub fn new(pat: &'a str) -> Self {
+            assert_ne!(pat.len(), 0);
+    
+            let pat_bytes = pat.as_bytes();
+            let (alphabet, skip) = B5SSpacePattern::build(pat_bytes);
+    
+            B5SSpacePattern { pat_bytes, alphabet, skip}
         }
-
-        alphabet.insert(&p[lastpos]);
-
-        (alphabet, skip)
-    }
-
-    pub fn find_all(&self, string: &'a str) -> Vec<usize> {
-        let mut result = vec![];
-        let string_bytes = string.as_bytes();
-        let pat_last_pos = self.pat_bytes.len() - 1;
-        let patlen = self.pat_bytes.len();
-        let stringlen = string_bytes.len();
-        let mut string_index = pat_last_pos;
-
-        while string_index < stringlen {
-            if string_bytes[string_index] == self.pat_bytes[pat_last_pos] {
-                if &string_bytes[string_index-pat_last_pos..string_index] == &self.pat_bytes[..patlen-1] {
-                    result.push(string_index-pat_last_pos);
-                }
-
-                if string_index + 1 == stringlen {
-                    break;
-                }
-
-                if !self.alphabet.contains(&string_bytes[string_index+1]) {
-                    string_index += patlen + 1;  // sunday
-                } else {
-                    string_index += self.skip;  // horspool
-                }
-            } else {
-                if string_index + 1 == stringlen {
-                    break;
-                }
-
-                if !self.alphabet.contains(&string_bytes[string_index+1]) {
-                    string_index += patlen + 1;  // sunday
-                } else {
-                    string_index += 1;
+    
+        fn build(p: &'a [u8]) -> (BytesBloomFilter, usize)  {
+            let mut alphabet = BytesBloomFilter::new();
+            let lastpos = p.len() - 1;
+            let mut skip = p.len();
+    
+            for i in 0..p.len()-1 {
+                alphabet.insert(&p[i]);
+    
+                if p[i] == p[lastpos] {
+                    skip = lastpos - i;
                 }
             }
-
+    
+            alphabet.insert(&p[lastpos]);
+    
+            (alphabet, skip)
         }
-
-        result
+    
+        pub fn find_all(&self, string: &'a str) -> Vec<usize> {
+            let mut result = vec![];
+            let string_bytes = string.as_bytes();
+            let pat_last_pos = self.pat_bytes.len() - 1;
+            let patlen = self.pat_bytes.len();
+            let stringlen = string_bytes.len();
+            let mut string_index = pat_last_pos;
+    
+            while string_index < stringlen {
+                if string_bytes[string_index] == self.pat_bytes[pat_last_pos] {
+                    if &string_bytes[string_index-pat_last_pos..string_index] == &self.pat_bytes[..patlen-1] {
+                        result.push(string_index-pat_last_pos);
+                    }
+    
+                    if string_index + 1 == stringlen {
+                        break;
+                    }
+    
+                    if !self.alphabet.contains(&string_bytes[string_index+1]) {
+                        string_index += patlen + 1;  // sunday
+                    } else {
+                        string_index += self.skip;  // horspool
+                    }
+                } else {
+                    if string_index + 1 == stringlen {
+                        break;
+                    }
+    
+                    if !self.alphabet.contains(&string_bytes[string_index+1]) {
+                        string_index += patlen + 1;  // sunday
+                    } else {
+                        string_index += 1;
+                    }
+                }
+    
+            }
+    
+            result
+        }
     }
-}
-```
+    ```
 
 通常情况下，这个版本的算法相对于前面的后缀匹配算法不够快，但差距并不大，仍然比 KMP 这种快得多，特别是考虑到它极为优秀的空间复杂度：至多两个 `u64` 的整数，这确实是极为实用的适合作为标准库实现的一种算法！
 
