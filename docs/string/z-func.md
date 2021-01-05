@@ -1,4 +1,4 @@
-author: LeoJacob, TrisolarisHD，minghu6
+author: LeoJacob, TrisolarisHD, minghu6
 
 假设我们有一个长度为 $n$ 的字符串 $s$ 。该字符串的 **Z 函数** 为一个长度为 $n$ 的数组，其中第 $i$ 个元素为满足从位置 $i$ 开始且为 $s$ 前缀的字符串的最大长度。
 
