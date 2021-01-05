@@ -123,7 +123,7 @@ $$
 
 如果一张无向图 $G$ 的某个生成子图 $F$ 为 $k$ - 正则图，则称 $F$ 为 $G$ 的一个 ** $k$ - 因子 ( $k$ -Factor)** 。
 
-如果有向图 $G = (u, v)$ 的导出子图 $H = G \left[ V^* \right]$ 满足 $\forall v \in V^*, (v, u) \in E$ ，就有 $u \in V^*$ ，则称 $H$ 为 $G$ 的一个 **闭合子图 (Closed subgraph)** 。
+如果有向图 $G = (V, E)$ 的导出子图 $H = G \left[ V^\ast \right]$ 满足 $\forall v \in V^\ast, (v, u) \in E$ ，有 $u \in V^\ast$ ，则称 $H$ 为 $G$ 的一个 **闭合子图 (Closed subgraph)** 。
 
 ## 连通
 
