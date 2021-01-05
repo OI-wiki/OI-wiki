@@ -19,7 +19,11 @@
 
 ## 实现
 
-### rand
+### 标准库实现
+
+下面是 C++ 标准库里已有的一些随机函数实现。
+
+#### rand
 
 用于生成伪随机数，缺点是比较慢，使用时需要 `#include<cstdlib>` 。
 
@@ -40,7 +44,7 @@
 - GCC 编译器对 `rand()` 所采用的实现方式，保证了分布的均匀性等基本性质，但具有 低位周期长度短 等明显缺陷。（例如在笔者的机器上， `rand()%2` 所生成的序列的周期长约 $2\cdot 10^6$ ）
 - 即使假设 `rand()` 是均匀随机的， `rand()%n` 也不能保证均匀性，因为 `[0,n)` 中的每个数在 `0%n,1%n,...,RAND_MAX%n` 中的出现次数可能不相同。
 
-### mt19937
+#### mt19937
 
 是一个随机数生成器类，效用同 `rand` ，随机数的范围同 `unsigned int` 类型的取值范围。
 
@@ -68,7 +72,7 @@ int main() {
 }
 ```
 
-### random_shuffle
+#### random_shuffle
 
 用于随机打乱指定序列。使用时需要 `#include<algorithm>` 。
 
@@ -85,7 +89,7 @@ int main() {
 !!! warning
      `random_shuffle` 已于 C++14 标准中被弃用，于 C++17 标准中被移除。
 
-### shuffle
+#### shuffle
 
 效用同 `random_shuffle` 。使用时需要 `#include<algorithm>` 。
 
@@ -141,7 +145,7 @@ int main() {
 }
 ```
 
-### 非确定随机数的均匀分布整数随机数生成器
+#### 非确定随机数的均匀分布整数随机数生成器
 
  `random_device` 是一个基于硬件的均匀分布随机数生成器， **在熵池耗尽** 前可以高速生成随机数。该类在 C++11 定义，需要 `random` 头文件。由于熵池耗尽后性能急剧下降，所以建议用此方法生成 `mt19937` 等伪随机数的种子，而不是直接生成。
 
@@ -185,6 +189,86 @@ int main() {
 ```
 
 阅读 [cppreference](https://zh.cppreference.com/w/cpp/numeric/random/random_device) 以获得更多信息。
+
+### 其他实现方法
+
+有的时候我们需要实现自己的随机数生成器。下面是一些常用的随机数生成方法。
+
+#### 线性同余随机数生成器
+
+利用下式来生成随机数序列 $\{R_i\}$：
+
+$$
+R_{i+1} = (A \times R_i + B) \bmod P
+$$
+
+其中 $A,B,P$ 均为常数。
+
+该方法实现难度低，但生成的随机序列周期长度较短（周期最大为 $P$，但大多数情况下都会比 $P$ 短）。
+
+??? note "参考实现"
+    ```cpp
+    #include <iostream>
+    using namespace std;
+    struct myrand {
+      int A, B, P, x;
+      myrand(int A, int B, int P) {
+        this->A = A;
+        this->B = B;
+        this->P = P;
+      }
+      int next() { return x = (A * x + B) % P; } // 生成随机序列的下一个随机数
+    };
+    myrand rnd(3, 5, 97); // 初始化一个随机数生成器
+    int main() {
+      int x = rnd.next();
+      cout << x << endl;
+      return 0;
+    }
+    ```
+
+#### 时滞斐波那契随机数生成器
+
+利用下式来生成随机数序列 $\{R_i\}$（其中 $0 < j < k$）：
+
+$$
+R_i \equiv R_{i-j} \star R_{i-k} \bmod P
+$$
+
+这里的 $P$ 通常取 $2$ 的幂（常用 $2^{32}$ 或 $2^{64}$），$\star$ 表示二元运算符，可以使用加法，减法，乘法，异或。
+
+该方法较传统的线性同余随机数生成器而言，拥有更长的周期，但随机性受初始条件影响较大。
+
+??? note "参考实现"
+    ```cpp
+    #include <iostream>
+    #include <vector>
+    using namespace std;
+    struct myrand {
+      vector<unsigned> vec;
+      int l, j, k, cur;
+      myrand(int l, int j, int k) {
+        this->l = l;
+        this->j = j;
+        this->k = k;
+        cur = 0;
+        for (int i = 0; i < l; i++) {
+          vec.push_back(rand());  // 先用其他方法生成随机序列中的前几个元素
+        }
+      }
+      unsigned next() {
+        vec[cur] = vec[(cur - j + l) % l] * vec[(cur - k + l) % l];
+        // 这里用 unsigned 类型是为了实现自动对 2^32 取模
+        return vec[cur++];
+      }
+    };
+    myrand rnd(11, 4, 7);
+    int main() {
+      unsigned x = rnd.next();
+      cout << x << endl;
+      return 0;
+    }
+    ```
 
 ## 参考资料与注释
 

@@ -413,6 +413,7 @@ nav:
     - 格雷码: misc/gray-code.md
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
+    - 主元素问题: misc/main-element.md
   - 专题:
     - RMQ: topic/rmq.md
     - 图的匹配:
