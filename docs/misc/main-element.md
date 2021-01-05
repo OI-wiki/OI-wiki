@@ -15,7 +15,7 @@ for(int i = 0;i < n;i ++) {
     cin >> t;
     ans[t] ++;
 }
-for(int i = 0;i < 10001;i ++) {
+for(int i = 0;i < m;i ++) { // m 为桶的大小
     if(ans[i] > n / 2){
        cout << i;
        break;
@@ -23,7 +23,7 @@ for(int i = 0;i < 10001;i ++) {
 }
 ```
 
-时间复杂度$\mathcal O(N + M)$。
+时间复杂度 $O(n+m)$。
 
 但是这个做法很浪费空间，我们不推荐使用。
 
