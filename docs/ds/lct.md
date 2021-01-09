@@ -133,7 +133,7 @@
 ```cpp
 inline void PushUp(int p) {
   // maintain other variables
-  siz[p] = siz[ls] + siz[rs];
+  siz[p] = siz[ls] + siz[rs] + 1;
 }
 ```
 
