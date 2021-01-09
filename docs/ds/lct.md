@@ -160,7 +160,7 @@ inline void Rotate(int x) {
   // 上面这句一定要写在前面，普通的Splay是不用的，因为 isRoot  (后面会讲)
   ch[y][k] = ch[x][!k], f[ch[x][!k]] = y;
   ch[x][!k] = y, f[y] = x, f[x] = z;
-  PushUp(x), PushUp(y);
+  PushUp(y), PushUp(x);
 }
 inline void Splay(int x) {
   Update(
