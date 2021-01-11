@@ -187,7 +187,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
         f[find(a)] = find(b);  // 正确
         ```
 
-### 会导致 RE
+### 会导致 RE 的错误
 
 -   对整数除以 $0$ 。
     - 对 $0$ 求逆元。
@@ -221,7 +221,9 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
 - 解引用空指针。
 
-### 会导致 TLE
+- 一个循环中定义多个循环变量（某些OJ）。
+
+### 会导致 TLE 的错误
 
 - 分治未判边界导致死递归。
 
@@ -267,7 +269,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
 - 在 `for/while` 循环中重复执行复杂度非 $O(1)$ 的函数。严格来说，这可能会引起时间复杂度的改变。
 
-### 会导致 MLE
+### 会导致 MLE 的错误
 
 - 数组过大。
 
