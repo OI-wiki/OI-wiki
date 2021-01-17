@@ -1,23 +1,21 @@
-author: Xeonacid
+author: Xeonacid, ksyx
 
-## stack
+## 栈
 
 STL 栈 ( `std::stack` ) 是一种后进先出 (Last In, First Out) 的容器适配器，仅支持查询或删除最后一个加入的元素（栈顶元素），不支持随机访问，且为了保证数据的严格有序性，不支持迭代器。
 
-### 头文件和命名空间
+### 头文件
 
 ```cpp
 #include <stack>
-using std::stack;
 ```
 
 ### 栈的定义
 
 ```cpp
-stack<TypeName> s;  // 使用默认底层容器 deque，数据类型为 TypeName
-stack<TypeName, Container> s;  // 使用 Container 作为底层容器
-
-stack<TypeName> s2(s1);  // 以 s1 为模板定义一个栈 s2
+std::stack<TypeName> s;  // 使用默认底层容器 deque，数据类型为 TypeName
+std::stack<TypeName, Container> s;  // 使用 Container 作为底层容器
+std::stack<TypeName> s2(s1);  // 以 s1 为模板定义一个栈 s2
 ```
 
 ### 成员函数
@@ -33,10 +31,10 @@ stack<TypeName> s2(s1);  // 以 s1 为模板定义一个栈 s2
 ### 简单示例
 
 ```cpp
-stack<int> s1;
+std::stack<int> s1;
 s1.push(2);
 s1.push(1);
-stack<int> s2(s1);
+std::stack<int> s2(s1);
 s1.pop();
 std::cout << s1.size() << " " << s2.size() << endl;  // 1 2
 std::cout << s1.top() << " " << s2.top() << endl;    // 2 1
@@ -44,24 +42,23 @@ s1.pop();
 std::cout << s1.empty() << " " << s2.empty() << endl;  // 1 0
 ```
 
-## queue
+## 队列
 
 STL 队列 ( `std::queue` ) 是一种先进先出 (First In, First Out) 的容器适配器，仅支持查询或删除第一个加入的元素（队首元素），不支持随机访问，且为了保证数据的严格有序性，不支持迭代器。
 
-### 头文件和命名空间
+### 头文件
 
 ```cpp
 #include <queue>
-using std::queue
 ```
 
 ### 队列的定义
 
 ```cpp
-queue<TypeName> q;  // 使用默认底层容器 deque，数据类型为 TypeName
-queue<TypeName, Container> q;  // 使用 Container 作为底层容器
+std::queue<TypeName> q;  // 使用默认底层容器 deque，数据类型为 TypeName
+std::queue<TypeName, Container> q;  // 使用 Container 作为底层容器
 
-queue<TypeName> q2(q1);  // 以 q1 为模板定义一个队列 q2
+std::queue<TypeName> q2(q1);  // 以 q1 为模板定义一个队列 q2
 ```
 
 ### 成员函数
@@ -77,10 +74,10 @@ queue<TypeName> q2(q1);  // 以 q1 为模板定义一个队列 q2
 ### 简单示例
 
 ```cpp
-queue<int> q1;
+std::queue<int> q1;
 q1.push(2);
 q1.push(1);
-queue<int> q2(q1);
+std::queue<int> q2(q1);
 q1.pop();
 std::cout << q1.size() << " " << q2.size() << endl;    // 1 2
 std::cout << q1.front() << " " << q2.front() << endl;  // 1 2
@@ -88,10 +85,10 @@ q1.pop();
 std::cout << q1.empty() << " " << q2.empty() << endl;  // 1 0
 ```
 
-## priority_queue
+## 优先队列
 
 ```cpp
-#include <queue>  // std::priority_queue
+#include <queue>  // 包含 std::priority_queue
 // 本文里的所有优先队列都会加上命名空间
 // 如果不想加命名空间，需要使用：using std::priority_queue;
 // 不推荐直接使用 using namespace std;
@@ -109,9 +106,9 @@ std::priority_queue<T, Container, Compare> q;
  */
 // 构造方式 ：
 std::priority_queue<int> q1;
-std::priority_queue<int, vector<int>> q2;
-// C++11 前，请使用 vector<int> >，空格不可省略
-std::priority_queue<int, deque<int>, greater<int>> q3;
+std::priority_queue<int, std::vector<int> > q2;
+// C++11 后空格可省略
+std::priority_queue<int, std::deque<int>, std::greater<int> > q3;
 // 注意：不可跳过容器参数直接传入比较类
 ```
 
@@ -128,9 +125,7 @@ std::priority_queue<int, deque<int>, greater<int>> q3;
 ### 示例
 
 ```cpp
-q1.push(1);
-// 堆中元素 ： [1];
-for (int i = 2; i <= 5; i++) q1.push(i);
+for (int i = 1; i <= 5; i++) q1.push(i);
 // 堆中元素 :  [1, 2, 3, 4, 5];
 std::cout << q1.top() << std::endl;
 // 输出结果 : 5;
