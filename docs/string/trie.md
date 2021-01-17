@@ -309,7 +309,7 @@ void addall(int o) {
 
 可能关于合并 trie 的文章比较少，其实合并 trie 和合并线段树的思路非常相似，可以搜索“合并线段树”来学习如何合并 trie。
 
-其实合并 trie 非常简单，就是考虑一下我们有一个 `int marge(int a, int b)` 函数，这个函数传入两个 trie 树位于同一相对位置的结点编号，然后合并完成后返回合并完成的结点编号。
+其实合并 trie 非常简单，就是考虑一下我们有一个 `int merge(int a, int b)` 函数，这个函数传入两个 trie 树位于同一相对位置的结点编号，然后合并完成后返回合并完成的结点编号。
 
 考虑怎么实现？
 分三种情况：
@@ -321,7 +321,7 @@ void addall(int o) {
      **提示** ：如果需要的合并是将 a，b 合并到一棵新树上，这里可以新建结点，然后合并到这个新结点上，这里的代码实现仅仅是将 b 的信息合并到 a 上。
 
 ```cpp
-int marge(int a, int b) {
+int merge(int a, int b) {
   if (!a) return b;  // 如果 a 没有这个位置上的结点，返回 b
   if (!b) return a;  // 如果 b 没有这个位置上的结点，返回 a
   /*
@@ -334,8 +334,8 @@ int marge(int a, int b) {
     maintain() 是合并a的两个儿子的信息
     而这里需要 a b 两个节点进行信息合并
    */
-  ch[a][0] = marge(ch[a][0], ch[b][0]);
-  ch[a][1] = marge(ch[a][1], ch[b][1]);
+  ch[a][0] = merge(ch[a][0], ch[b][0]);
+  ch[a][1] = merge(ch[a][1], ch[b][1]);
   return a;
 }
 ```
@@ -509,13 +509,13 @@ int marge(int a, int b) {
           insert(ch[o][x & 1], x >> 1, dp + 1);
           maintain(o);
         }
-        int marge(int a, int b) {
+        int merge(int a, int b) {
           if (!a) return b;
           if (!b) return a;
           w[a] = w[a] + w[b];
           xorv[a] ^= xorv[b];
-          ch[a][0] = marge(ch[a][0], ch[b][0]);
-          ch[a][1] = marge(ch[a][1], ch[b][1]);
+          ch[a][0] = merge(ch[a][0], ch[b][0]);
+          ch[a][1] = merge(ch[a][1], ch[b][1]);
           return a;
         }
         void addall(int o) {
@@ -531,7 +531,7 @@ int marge(int a, int b) {
           for (int i = 0; i < E[o].size(); i++) {
             int node = E[o][i];
             dfs0(node);
-            rt[o] = trie::marge(rt[o], rt[node]);
+            rt[o] = trie::merge(rt[o], rt[node]);
           }
           trie::addall(rt[o]);
           trie::insert(rt[o], V[o], 0);
