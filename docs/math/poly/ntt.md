@@ -41,7 +41,7 @@ NTT 解决的是多项式乘法带模数的情况，可以说有些受模数的�
 
 ## NTT
 
-对于质数 $p=qn+1, (n=2^m)$ , 原根 $g$ 满足 $g^{qn} \equiv 1 \pmod p$ , 将 $g_n=g^p\pmod q$ 看做 $\omega_n$ 的等价，择其满足相似的性质，比如 $g_n^n \equiv 1 \pmod p, g_n^{n/2} \equiv -1 \pmod p$ 
+对于质数 $p=qn+1, (n=2^m)$ , 原根 $g$ 满足 $g^{qn} \equiv 1 \pmod p$ , 将 $g_n=g^q\pmod p$ 看做 $\omega_n$ 的等价，择其满足相似的性质，比如 $g_n^n \equiv 1 \pmod p, g_n^{n/2} \equiv -1 \pmod p$ 
 
 然后因为这里涉及到数论变化，所以这里的 $N$ （为了区分 FFT 中的 $n$ ，我们把这里的 $n$ 称为 $N$ ）可以比 FFT 中的 $n$ 大，但是只要把 $\frac{qN}{n}$ 看做这里的 $q$ 就行了，能够避免大小问题……
 
