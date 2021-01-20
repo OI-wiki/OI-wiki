@@ -98,7 +98,7 @@ $$
 f_{i,j}=\max_{k=0}^{k_i}(f_{i-1,j-k\times w_i}+v_i\times k)
 $$
 
-时间复杂度 $O(W\sum k_i)$ 。
+时间复杂度 $O(m\sum k_i)$ 。
 
 考虑优化 $f_i$ 的转移。为方便表述，设 $g_{x,y}=f_{i,x\times w_i+y},g'_{x,y}=f_{i-1,x\times w_i+y}$ ，则转移方程可以表示为：
 
