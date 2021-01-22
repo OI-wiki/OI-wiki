@@ -15,7 +15,7 @@ STL 栈 ( `std::stack` ) 是一种后进先出 (Last In, First Out) 的容器适
 ```cpp
 std::stack<TypeName> s;  // 使用默认底层容器 deque，数据类型为 TypeName
 std::stack<TypeName, Container> s;  // 使用 Container 作为底层容器
-std::stack<TypeName> s2(s1);  // 以 s1 为模板定义一个栈 s2
+std::stack<TypeName> s2(s1);  // 将 s1 复制一份用于构造 s2
 ```
 
 ### 成员函数
@@ -58,7 +58,7 @@ STL 队列 ( `std::queue` ) 是一种先进先出 (First In, First Out) 的容�
 std::queue<TypeName> q;  // 使用默认底层容器 deque，数据类型为 TypeName
 std::queue<TypeName, Container> q;  // 使用 Container 作为底层容器
 
-std::queue<TypeName> q2(q1);  // 以 q1 为模板定义一个队列 q2
+std::queue<TypeName> q2(q1);  // 将 s1 复制一份用于构造 q2
 ```
 
 ### 成员函数
