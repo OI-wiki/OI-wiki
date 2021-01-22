@@ -33,7 +33,6 @@ nav:
       - ICPC/CCPC 赛事与赛制: contest/icpc.md
     - 题型: 
       - 题型概述: contest/problems.md
-      - 构造: contest/construction.md
       - 交互题: contest/interaction.md
     - 学习路线: contest/roadmap.md
     - 学习资源: contest/resources.md
@@ -137,6 +136,7 @@ nav:
     - 前缀和 & 差分: basic/prefix-sum.md
     - 二分: basic/binary.md
     - 倍增: basic/binary-lifting.md
+    - 构造: contest/construction.md
   - 搜索:
     - 搜索部分简介: search/index.md
     - DFS（搜索）: search/dfs.md
