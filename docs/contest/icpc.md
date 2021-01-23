@@ -8,7 +8,7 @@ author: NachtgeistW, Ir1d, Xeonacid, H-J-Granger, abc1763613206
 
 ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分。
 
-官网地址： <https://icpc.baylor.edu> 
+官网地址： <https://icpc.global> 
 
 ### CCPC
 
