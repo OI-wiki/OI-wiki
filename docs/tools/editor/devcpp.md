@@ -28,6 +28,8 @@ author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe
 
 该应用界面简洁友好，安装便捷，适合初学者使用。
 
+2020 年，Embarcadero 赞助并接手了原有的 Bloodshed Dev-C++ 项目，继续开发。项目地址位于 [GitHub](https://github.com/Embarcadero/Dev-Cpp) 和 [SourceForge](https://sourceforge.net/projects/embarcadero-devcpp/) .
+
 ## 使用教程
 
 ### 常用快捷键
