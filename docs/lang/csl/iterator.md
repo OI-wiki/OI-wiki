@@ -22,7 +22,7 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 ???+warning "`auto` 在竞赛中的使用"
     大部分选手都喜欢使用 `auto` 来代替繁琐的迭代器声明。但是需要注意的是， `auto` 需要 **C++11** 版本，而 NOI 系列比赛在评测时使用的是 **C++98** 。
 
-     NOI官网上最新的 [NOI系列活动标准竞赛环境](http://www.noi.cn/newsview.html?id=559&hash=E4E249&type=11) 明确了C++编译器版本为G++ 4.8.4，且编译指令为 `g++ test.cpp -o test` ，并没有携带 `--std=c++11` 参数，而gcc从6.0版本起才将默认版本修改为C++14。
+     NOI官网上最新的 [NOI系列活动标准竞赛环境](http://www.noi.cn/gynoi/jsgz/2018-08-13/710465.shtml) 明确了C++编译器版本为G++ 4.8.4，且编译指令为 `g++ test.cpp -o test` ，并没有携带 `--std=c++11` 参数，而gcc从6.0版本起才将默认版本修改为C++14。
      
      因此，在比赛时使用 `auto` 时需要注意 CE 爆零的风险。
 
