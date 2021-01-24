@@ -329,7 +329,7 @@ int main() {
     顺带一提，刚刚的测试用例在这题的答案是 $212$。
     
 
-???+note "[「APIO2018」铁人两项](https://loj.ac/p/2587)"
+???+note "[Codeforces #487 E. Tourists](https://codeforces.com/contest/487/problem/E)"
     ??? mdui-shadow-6 "题意简述"
         给定一张简单无向连通图，要求支持两种操作：
         
@@ -484,6 +484,120 @@ int main() {
         			Ans = std::min(Ans, Qur(1, 1, cnt, dfn[x], dfn[y]));
         			if (x > N) Ans = std::min(Ans, w[faz[x]]);
         			printf("%d\n", Ans);
+        		}
+        	}
+        	return 0;
+        }
+        ```
+        
+    
+
+???+note "[「SDOI2018」战略游戏](https://loj.ac/p/2562)"
+    ??? mdui-shadow-6 "题意简述"
+        给出一个简单无向连通图。有 $q$ 次询问：
+        
+        每次给出一个点集 $S$（$2 \le |S| \le n$），问有多少个点 $u$ 满足 $u \notin S$ 且删掉 $u$ 之后 $S$ 中的点不全在一个连通分量中。
+        
+        每个测试点有多组数据。
+        
+    
+    ??? mdui-shadow-6 "题解"
+        先建出圆方树，则变为询问 $S$ 在圆方树上对应的连通子图中的圆点个数减去 $|S|$。
+        
+        如何计算连通子图中的圆点个数？有一个方法：
+        
+        把圆点的权值放到它和它的父亲方点的边上，问题转化为求边权和，这个问题可以参考 [「SDOI2015」寻宝游戏](https://loj.ac/p/2182) 的一种解法。  
+        即把 $S$ 中的点按照 DFS 序排序，计算排序后相邻两点的距离和（还包括首尾两点之间的距离），答案就是距离和的一半，因为每条边只被经过两次。
+        
+        最后，如果子图中的深度最浅的节点是圆点，答案还要加上 $1$，因为我们没有统计到它。
+        
+        因为有多组数据，要注意初始化数组。
+        
+    
+    ??? mdui-shadow-6 "参考代码"
+        ```cpp
+        #include <cstdio>
+        #include <vector>
+        #include <algorithm>
+        
+        const int MN = 100005;
+        
+        int N, M, Q, cnt;
+        std::vector<int> G[MN], T[MN * 2];
+        
+        int dfn[MN * 2], low[MN], dfc;
+        int stk[MN], tp;
+        void Tarjan(int u) {
+        	low[u] = dfn[u] = ++dfc;
+        	stk[++tp] = u;
+        	for (int v : G[u]) {
+        		if (!dfn[v]) {
+        			Tarjan(v);
+        			low[u] = std::min(low[u], low[v]);
+        			if (low[v] == dfn[u]) {
+        				++cnt;
+        				for (int x = 0; x != v; --tp) {
+        					x = stk[tp];
+        					T[cnt].push_back(x);
+        					T[x].push_back(cnt);
+        				}
+        				T[cnt].push_back(u);
+        				T[u].push_back(cnt);
+        			}
+        		} else low[u] = std::min(low[u], dfn[v]);
+        	}
+        }
+        
+        int dep[MN * 2], faz[MN * 2][18], dis[MN * 2];
+        void DFS(int u, int fz) {
+        	dfn[u] = ++dfc;
+        	dep[u] = dep[faz[u][0] = fz] + 1;
+        	dis[u] = dis[fz] + (u <= N);
+        	for (int j = 0; j < 17; ++j)
+        		faz[u][j + 1] = faz[faz[u][j]][j];
+        	for (int v : T[u]) if (v != fz) DFS(v, u);
+        }
+        int LCA(int x, int y) {
+        	if (dep[x] < dep[y]) std::swap(x, y);
+        	for (int j = 0, d = dep[x] - dep[y]; d; ++j, d >>= 1)
+        		if (d & 1) x = faz[x][j];
+        	if (x == y) return x;
+        	for (int j = 17; ~j; --j)
+        		if (faz[x][j] != faz[y][j])
+        			x = faz[x][j], y = faz[y][j];
+        	return faz[x][0];
+        }
+        
+        int main() {
+        	int Ti; scanf("%d", &Ti);
+        	while (Ti--) {
+        		scanf("%d%d", &N, &M);
+        		for (int i = 1; i <= N; ++i) {
+        			G[i].clear();
+        			dfn[i] = low[i] = 0;
+        		}
+        		for (int i = 1; i <= N * 2; ++i) T[i].clear();
+        		for (int i = 1, x, y; i <= M; ++i) {
+        			scanf("%d%d", &x, &y);
+        			G[x].push_back(y);
+        			G[y].push_back(x);
+        		}
+        		cnt = N;
+        		dfc = 0, Tarjan(1), --tp;
+        		dfc = 0, DFS(1, 0);
+        		scanf("%d", &Q);
+        		while (Q--) {
+        			static int S, A[MN];
+        			scanf("%d", &S);
+        			int Ans = -2 * S;
+        			for (int i = 1; i <= S; ++i) scanf("%d", &A[i]);
+        			std::sort(A + 1, A + S + 1, [](int i, int j) { return dfn[i] < dfn[j]; });
+        			for (int i = 1; i <= S; ++i) {
+        				int u = A[i], v = A[i % S + 1];
+        				Ans += dis[u] + dis[v] - 2 * dis[LCA(u, v)];
+        			}
+        			if (LCA(A[1], A[S]) <= N) Ans += 2;
+        			printf("%d\n", Ans / 2);
         		}
         	}
         	return 0;
