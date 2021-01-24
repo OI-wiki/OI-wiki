@@ -352,6 +352,7 @@ nav:
       - 强连通分量: graph/scc.md
       - 双连通分量: graph/bcc.md
       - 割点和桥: graph/cut.md
+      - 圆方树: graph/block-forest.md
     - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
@@ -413,6 +414,7 @@ nav:
     - 格雷码: misc/gray-code.md
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
+    - 主元素问题: misc/main-element.md
   - 专题:
     - RMQ: topic/rmq.md
     - 图的匹配:
@@ -423,6 +425,7 @@ nav:
       - 二分图最大权匹配: topic/graph-matching/bigraph-weight-match.md
       - 一般图最大权匹配: topic/graph-matching/general-weight-match.md
     - 并查集应用: topic/dsu-app.md
+    - 括号序列: topic/bracket.md
   - 关于 Hulu:
     -  关于 Hulu: intro/hulu.md
 

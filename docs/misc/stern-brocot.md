@@ -1,6 +1,6 @@
 ## Stern-Brocot 树
 
-Stern-Brocot 树是一种维护分数的优雅的数据结构。它分别由 Moritz Stern 在 1858 年和 Achille Brocot 在 1861 年发现这个结构。
+Stern-Brocot 树是一种维护分数的优雅的结构。它分别由 Moritz Stern 在 1858 年和 Achille Brocot 在 1861 年发现这个结构。
 
 ### 概述
 
@@ -22,7 +22,7 @@ $$
 \end{array}
 $$
 
-既然我们叫这个数据结构 Stern-Brocot 树，那么它总得有一个树的样子对吧。来一张图：
+既然我们称它为 Stern-Brocot 树，那么它总得有一个树的样子对吧。来一张图：
 
 ![pic](./images/stern-brocot1.png)
 

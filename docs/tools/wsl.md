@@ -319,7 +319,7 @@ xfce4-session
 
 [^ref1]:  [洛谷日报 #6](https://www.luogu.com.cn/blog/asfr/Run-Ubuntu-On-Windows10) 
 
-[^ref2]:  [NOI 系列活动标准竞赛环境（2016 年 11 月 08 日更新）](http://www.noi.cn/newsview.html?id=559&hash=E4E249&type=11) 
+[^ref2]:  [NOI 系列活动标准竞赛环境（2016 年 11 月 08 日更新）](http://www.noi.cn/gynoi/jsgz/2018-08-13/710465.shtml) 
 
 [^ref3]:  [NOIP 标准评测系统及相关问题，smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html) 
 

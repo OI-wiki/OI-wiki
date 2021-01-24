@@ -28,5 +28,5 @@ jobs:
           dst: gitee/OI-wiki
           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
-          white_list: "OI-wiki"
+          # white_list: "OI-wiki"
           force_update: true

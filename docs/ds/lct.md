@@ -133,7 +133,7 @@
 ```cpp
 inline void PushUp(int p) {
   // maintain other variables
-  siz[p] = siz[ls] + siz[rs];
+  siz[p] = siz[ls] + siz[rs] + 1;
 }
 ```
 
@@ -160,7 +160,7 @@ inline void Rotate(int x) {
   // 上面这句一定要写在前面，普通的Splay是不用的，因为 isRoot  (后面会讲)
   ch[y][k] = ch[x][!k], f[ch[x][!k]] = y;
   ch[x][!k] = y, f[y] = x, f[x] = z;
-  PushUp(x), PushUp(y);
+  PushUp(y), PushUp(x);
 }
 inline void Splay(int x) {
   Update(
@@ -979,7 +979,7 @@ LCT 不擅长维护子树信息。统计一个结点所有虚子树的信息，�
 
 题目中的操作既有连边，又有删边，还保证在任意时刻都是一棵森林，我们不由得想到用 LCT 来维护。但是这题中 LCT 维护的是子树的大小，不像我们印象中的维护一条链的信息，而 LCT 的构造 **认父不认子** ，不方便我们直接进行子树的统计。怎么办呢？
 
-方法是统计一个结点 $x$ 所有虚儿子（即父亲为 $x$ ，但 $x$ 在 Splay 中的左右儿子并不包含 $x$ ）所代表的子树的贡献。
+方法是统计一个结点 $x$ 所有虚儿子（即父亲为 $x$ ，但 $x$ 在 Splay 中的左右儿子并不包含它 ）所代表的子树的贡献。
 
 定义 $siz2[x]$ 为结点 $x$ 的所有虚儿子代表的子树的结点数， $siz[x]$ 为 结点 $x$ 子树中的结点数。
 

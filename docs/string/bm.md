@@ -48,7 +48,7 @@ $$
 \end{array}
 $$
 
- **注意：显然这个表只需计算到 $patlastpos-1$ 的位置** 
+ **注意：显然这个表只需计算到 $patlastpos-1$ 的位置**
 
 现在假设 $char$ 和 $pat$ 最后一个字符匹配到了，那我们就看看 $char$ 前一个字符和 $pat$ 的倒数第二个字符是否匹配：
 
@@ -78,7 +78,7 @@ $$
 
 假设此时 $pat$ 向下滑动的 $k$ 个字符（也即 $pat$ 末尾端的 $subpat$ 与其最右边的合理重现的距离），这样我们的注意力应该沿着 $string$ 向后滑动 $k+m$ 个字符，这段距离我们称之为 $delta_2(j)$ ：
 
-假定 $rpr(j)$ 为 $subpat=pat[j+1\dots patlen-1]$ 在 $pat[j]$ 最右边合理重现的位置（这里只给出简单定义，在下文的算法设计章节里会有更精确的讨论），那么显然 $k=j-rpr(j),\ m=patlen-1-j$ 。
+假定 $rpr(j)$ 为 $subpat=pat[j+1\dots patlastpos]$ 在 $pat[j]$ 上失配时的最右边合理重现的位置，$rpr(j) \lt j$（这里只给出简单定义，在下文的算法设计章节里会有更精确的讨论），那么显然 $k=j-rpr(j),\ m=patlastpos-j$ 。
 
 所以有：
 
@@ -133,7 +133,7 @@ $$
 \end{aligned}
 $$
 
-根据 **观察 3(a)** ， $\texttt{L}$ 失配，因为 $\texttt{L}$ 不在 $pat$ 中，所以 $pa$ t 向下移动 $k=delta_1-m=7-1=6$ 个字符，而 $string$ 上指针向下移动 $delta_1=7$ 个字符：
+根据 **观察 3(a)** ， $\texttt{L}$ 失配，因为 $\texttt{L}$ 不在 $pat$ 中，所以 $pat$ 向下移动 $k=delta_1-m=7-1=6$ 个字符，而 $string$ 上指针向下移动 $delta_1=7$ 个字符：
 
 $$
 \begin{aligned}
@@ -153,11 +153,10 @@ $$
 \end{aligned}
 $$
 
-显然直观上看，此时根据 **观察 3(b)** ，将 $pat$ 向左移动 $k=5$ 个字符，使得后缀 $\texttt{AT}$ 对齐，这种滑动可以获得 $string$ 指针最大的滑动距离，此时 $delta_2=k+patlen-1-j=5+7-1-4=7$ ，即 $string$ 上指针向下滑动 7​个字符。
+显然直观上看，此时根据 **观察 3(b)** ，将 $pat$ 向下移动 $k=5$ 个字符，使得后缀 $\texttt{AT}$ 对齐，这种滑动可以获得 $string$ 指针最大的滑动距离，此时 $delta_2=k+patlastpos-j=5+6-4=7$ ，即 $string$ 上指针向下滑动 7 个字符。
 
-而从形式化逻辑看，此时， $delta_1=7-1-2=4,\ delta_2=5, \max(delta_1,delta_2)= 7$ ，
+而从形式化逻辑看，此时， $delta_1=7-1-2=4,\ delta_2=7, \max(delta_1,delta_2)= 7$ ，
 这样从形式逻辑上支持了进行 **观察 3(b)** 的跳转：
-
 $$
 \begin{aligned}
 \textit{pat}:\qquad\qquad &\qquad\qquad\qquad\qquad\qquad\quad \;\, \texttt{AT-THAT} \\
@@ -203,12 +202,13 @@ $$
 
 也就是说需要找到一个最好的 $k$ , 使得 $pat[k\dots k+patlastpos-j-1]=pat[j+1\dots patlastpos]$ ，另外要考虑两种特殊情况：
 
-1. 当 $k<0$ 时，相当于在 $pat$ 前面补充了一段虚拟的前缀，实际上也符合 $delta_2$ 跳转的原理
-
+1. 当 $k<0$ 时，相当于在 $pat$ 前面补充了一段虚拟的前缀，实际上也符合 $delta_2$ 跳转的原理。
 2.  当 $k>0$ 时，如果 $pat[k-1]=pat[j]$ ，则这个 $pat[k\dots k+patlastpos-j-1]$ 不能作为 $subpat$ 的合理重现。
     原因是 $pat[j]$ 本身是失配字符，所以 $pat$ 向下滑动 $k$ 个字符后，在后缀匹配过程中仍然会在 $pat[k-1]$ 处失配。
 
-特别地，考虑到 $delta_2(patlastpos)= 0$ ，所以 $rpr(patlastpos) = patlastpos$ 
+还要注意两个限制条件：
+1. $k \lt j$ 。因为当 $k=j$ 时，有 $pat[k]=pat[j]$ ， 在 $pat[j]$ 上失配的字符也会在 $pat[k]$ 上失配。
+2. 考虑到 $delta_2(patlastpos)= 0$ ，所以规定 $rpr(patlastpos) = patlastpos$ 。
 
 由于理解 $rpr(j)$ 是实现 BoyerMoore 算法的核心，所以我们使用如下两个例子进行详细说明：
 
@@ -235,7 +235,7 @@ $$
 
 对于 $rpr(6)$ ， $subpat$ 为 $\texttt{BC}$ ，又因为 $string[0]=string[6]$ ，即 $string[0]$ 等于失配字符 $string[6]$ ，所以 $string[0\dots 2]$ 并不是符合条件的 $subpat$ 的合理重现，所以在最右边的合理重现是 $\texttt{[(BC)]ABCXXXABC}$ ，所以 $rpr(j)=-2$ ；
 
-对于 $rpr(7)$ ， $subpat$ 为 $\texttt{C}$ ，同理又因为 $string[7]=string[1]$ ，所以 $string[1\dots 2]$ 并不是符合条件的 subpat 的合理重现，在最右边的合理重现是 $\texttt{[(C)]ABCXXXABC}$ ，所以 $rpr(j)=-1$ ；
+对于 $rpr(7)$ ， $subpat$ 为 $\texttt{C}$ ，同理又因为 $string[7]=string[1]$ ，所以 $string[1\dots 2]$ 并不是符合条件的 $subpat$ 的合理重现，在最右边的合理重现是 $\texttt{[(C)]ABCXXXABC}$ ，所以 $rpr(j)=-1$ ；
 
 对于 $rpr(8)$ ，根据 $delta_2$ 定义， $rpr(patlastpos)=patlastpos$ ，得到 $rpr(8)=8$ 。
 
@@ -311,6 +311,8 @@ i \gets patlastpos \\
 \\
 \end{array}
 $$
+
+其中 $large$ 起到多重作用，一是类似后面介绍的Horspool算法进行快速的坏字符跳转，二是辅助检测字符串搜索是否完成。
 
 经过改进，比起原算法，在做 **观察 1** 跳转时不必每次进行 $delta_2$ 的多余计算，使得在通常字符集下搜索字符串的性能有了明显的提升。
 
@@ -443,7 +445,7 @@ $$
 \end{aligned}
 $$
 
- $delta_2(3)$ 的重现 $\texttt{[(XX)ABC]XXXABC}$ ，subpat $\texttt{XXABC}$ 的后缀与 pat 前缀中，有相等的，是 $\texttt{ABC}$ 。
+ $delta_2(3)$ 的重现 $\texttt{[(XX)ABC]XXXABC}$ ，$subpat$ $\texttt{XXABC}$ 的后缀与 pat 前缀中，有相等的，是 $\texttt{ABC}$ 。
 
 *说到这个拗口的前缀后缀相等，此时看过之前《前缀函数与 KMP 算法》的小伙伴们可能已经有所悟了，*
 
@@ -468,7 +470,7 @@ $$
 \end{aligned}
 $$
 
-在 $j\leq2$ 处有 $\texttt{ABAABAA}$ ， $2< j \leq 5$ 处有 $\texttt{ABAA}$ ，在 $5<j\leq8$ 处有 $\texttt{A}$ 
+在 $j\leq2$ 处有 $\texttt{ABAABAA}$ ， $2< j \leq 5$ 处有 $\texttt{ABAA}$ ，在 $5<j\leq8$ 处有 $\texttt{A}$
 
 之前提到的 Knuth 算法的缺陷就是只考虑了最长的那一对的情况。
 
@@ -569,7 +571,7 @@ pub fn build_delta_2_table_improved_minghu6(p: &[impl PartialEq]) -> Vec<usize> 
 
 之前的搜索算法只涉及到在 $string$ 中寻找第一次 $pat$ 匹配的情况，而对与在 $string$ 中寻找全部 $pat$ 的匹配的情况有很多不同的算法思路，这个问题的核心关注点是：
 
- **如何利用之前匹配成功的字符的信息，将最坏情况下的时间复杂度降为线性。** 
+ **如何利用之前匹配成功的字符的信息，将最坏情况下的时间复杂度降为线性。**
 
 在原始的成功匹配后，简单的 $string$ 的指针向后滑动 $patlen$ 距离后重新开始后缀匹配，这会导致最坏情况下回到 $O(mn)$ 的时间复杂度（按照惯例， $m$ 为 $patlen$ ， $n$ 为 $stringlen$ ，下同）。
 
@@ -577,7 +579,7 @@ pub fn build_delta_2_table_improved_minghu6(p: &[impl PartialEq]) -> Vec<usize> 
 
 对此 Knuth 提出来的一个方法是用一个“数量有限”的状态的集合来记录 $patlen$ 长度的字符，这种算法保证 $string$ 上每一个字符最多比较一次，但代价是这个“数量有限”的状态可能数目并不怎么“有限”，比如立刻就能想到它的上限是 $2^{m}$ 个，但并不清楚它到底能变得多大，对于一个字符彼此不相等的 $pat$ ，需要 $\dfrac{1}{2}m^{2}+m$ 个状态。这个算法思路同在 1977 年 6 月的发表 KMP 论文[^kmp]里被介绍，也许在未来某个节点匹配代价很高但状态存储代价很低的新场景能重新得到应用，但对于现在简单的字符串匹配，这个设计并不特别合适。
 
-而 Knuth 提出的另一个方法，嗯这里就不介绍了，同在上面的 Knuth 那篇“宝藏”论文里被介绍，缺点是除了过于复杂以外主要是构建辅助的数据结构需要的预处理时间太大： $O(qm)$ 
+而 Knuth 提出的另一个方法，嗯这里就不介绍了，同在上面的 Knuth 那篇“宝藏”论文里被介绍，缺点是除了过于复杂以外主要是构建辅助的数据结构需要的预处理时间太大： $O(qm)$
 
  $q$ 为全字符集的大小，而且 $qm$ 前面的系数很大。
 
@@ -587,7 +589,9 @@ pub fn build_delta_2_table_improved_minghu6(p: &[impl PartialEq]) -> Vec<usize> 
 
 原理很简单，假定一个 $pat$ ，它是某个子串 $U$ 重复 n 次构成的字符串 $UUUU\dots$ 的前缀，那么我们称 $U$ 为 $pat$ 的一个周期。
 
-比如， $pat:$  $\texttt{ABCABCAB}$ ，是 $\texttt{ABC}$ 的重复 $\texttt{ABCABCABC}$ 的前缀，所以 $\texttt{ABC}$ 就是这个 $pat$ 的周期，当然其实 $\texttt{ABCABC}\dots$ 也是 $pat$ 的周期，但我们只关注最短的那个。
+比如， $pat:$  $\texttt{ABCABCAB}$ ，是 $\texttt{ABC}$ 的重复 $\texttt{ABCABCABC}$ 的前缀，所以 $\texttt{ABC}$ 的长度 $3$ 就是这个 $pat$ 的周期长度，也即 $pat$ 满足 $pat[i] = pat[i+3]$ 。
+
+当然其实 $\texttt{ABCABC}\dots$ 也是 $pat$ 的周期，但我们只关注最短的那个。
 
 事实上，广义地讲， $pat$ 至少拥有一个长度为它自身的周期。
 
@@ -614,7 +618,7 @@ pub struct BMPattern<'a> {
     pat_bytes: &'a [u8],
     delta_1: [usize; 256],
     delta_2: Vec<usize>,
-    k: usize
+    k: usize  // pat的最短周期长度
 }
 
 impl<'a> BMPattern<'a> {
@@ -632,6 +636,8 @@ impl<'a> BMPattern<'a> {
         let mut l = 0;
 
         while string_index < stringlen {
+            let old_string_index = string_index;
+
             while string_index < stringlen {
                 string_index += self.delta0(string_bytes[string_index]);
             }
@@ -640,7 +646,15 @@ impl<'a> BMPattern<'a> {
             }
 
             string_index -= LARGE;
+
+            // 如果string_index发生移动，意味着自从上次成功匹配后发生了至少一次的失败匹配。
+            // 此时需要将Galil规则的二次匹配的偏移量归零。
+            if old_string_index < string_index {
+                l = 0;
+            }
+
             pat_index = pat_last_pos;
+
             while pat_index > l && string_bytes[string_index] == self.pat_bytes[pat_index] {
                 string_index -= 1;
                 pat_index -= 1;
@@ -669,7 +683,7 @@ impl<'a> BMPattern<'a> {
 
 从实践的角度上说，理论上的最坏情况并不容易影响性能表现，哪怕是很小的只有 4 的字符集的随机文本测试下这种最坏情况的影响也小到难以观察。
 
-也因此如果没有很好地设计，使用 Galil 法则会拖累一点平均的性能表现，但对于一些极端特殊的 $pat$ 和 $string$ 比如例子中的： $pat$ ： $\texttt{AAA}$ ， $string$ ： $\texttt{AAAAA}\dots$ ，Gulil 规则的应用确实会使得性能表现提高数倍。
+也因此如果没有很好地设计，使用 Galil 法则会拖累一点平均的性能表现，但对于一些极端特殊的 $pat$ 和 $string$ 比如例子中的： $pat$ ： $\texttt{AAA}$ ， $string$ ： $\texttt{AAAAA}\dots$ ，Galil 规则的应用确实会使得性能表现提高数倍。
 
 ## 实践及后续
 
@@ -700,11 +714,11 @@ impl<'a> BMPattern<'a> {
 
 ### Simplified Boyer-Moore 算法
 
-BM 算法最复杂的地方就在于 $delta_2$ 表（有一个通俗的名字，好后缀表）的构建，而在在实践中发现，一般的字符集上的匹配性能主要依靠 $delta_1$ 表（通俗的名字是坏字符表），于是出现了仅仅使用 $delta_1$ 表的简化版 BM 算法，通常表现和完整版差距很小。
+BM 算法最复杂的地方就在于 $delta_2$ 表（通俗的名字是好后缀表）的构建，而实践中发现，在一般的字符集上的匹配性能主要依靠 $delta_1$ 表（通俗的名字是坏字符表），于是出现了仅仅使用 $delta_1$ 表的简化版 BM 算法，通常表现和完整版差距很小。
 
 ### Boyer-Moore-Horspol 算法
 
-Horspol 算法同样是基于坏字符的规则，不过是在与与 $pat$ 尾部对齐的字符上应用 $delta_1$ ，这个效果类似于前文对匹配算法的改进，所以它的通常表现优于原始 BM、和匹配算法改进后的 BM 差不多。
+Horspol 算法同样是基于坏字符的规则，不过是在与 $pat$ 尾部对齐的字符上应用 $delta_1$ ，这个效果类似于前文对匹配算法的改进，所以它的通常表现优于原始 BM 和匹配算法改进后的 BM 差不多。
 
 ```rust
 pub struct HorspoolPattern<'a> {
@@ -736,9 +750,9 @@ impl<'a> HorspoolPattern<'a> {
 
 ### Boyer-Moore-Sunday 算法
 
-Sunday 算法同样是利用坏字符规则，只不过相比 Horspool 它更进一步，直接关注 $pat$ 尾部对齐的那个字符的下一个字符上，只不过要稍微修改一下 $delta_1$ 表，
+Sunday 算法同样是利用坏字符规则，只不过相比 Horspool 它更进一步，直接关注 $pat$ 尾部对齐的那个字符的下一个字符。
 
-使得它相当于在 $patlen+1$ 长度的 $pat$ 上构建的。
+实现它只需要稍微修改一下 $delta_1$ 表，使得它相当于在 $patlen+1$ 长度的 $pat$ 上进行构建。
 
 Sunday 算法通常用作一般情况下实现最简单而且平均表现最好之一的实用算法，通常表现比 Horspool、BM 都要快一点。
 
@@ -796,7 +810,7 @@ B5S 基本想法是：
 
 2. 如果任何一个阶段发生不匹配，就进入跳转阶段；
 
-3.  在跳转阶段，首先观察 $patlastpos$ 位置的下一个字符是否在 $pat$ 中，如果不在，直接向右滑动 $patlen+1$ ，这是 Sunday 算法的最大利用
+3.  在跳转阶段，首先观察 $patlastpos$ 位置的下一个字符是否在 $pat$ 中，如果不在，直接向右滑动 $patlen+1$ ，这是 Sunday 算法的最大利用；
 
     如果这个字符在 $pat$ 中，对 $patlastpos$ 处的字符利用 $delta_1$ 进行 Horspool 跳转。
 
@@ -916,7 +930,7 @@ Bloom 过滤器设设计通过牺牲准确率（实际还有运行时间）来�
 
 另外，按照计算，当 pat 在 30 字节以下时，为了达到最佳的 FP 概率，需要超过一个哈希函数，但这么做意义不大，因为用装有两个 `u128` 数字的数组就已经可以构建字符表的全字符集。
 
-##### 使用 $delta_1(pat[patlastpos])$ 代替整个 $delta_1$ 
+##### 使用 $delta_1(pat[patlastpos])$ 代替整个 $delta_1$
 
 观察 $delta_1$ 最常使用的地方就是后缀匹配时第一个字符就不匹配是最常见的不匹配的情况，于是令 `skip = delta1(pat[patlastpos])` ，
 
@@ -1039,9 +1053,9 @@ $$
 
  $skip(m,k)$ 为发生失配时 $pat$ 向下滑动 $k$ 个字符的概率，（这里的 $k$ 如同前文讨论的 $k$ 一样，为 $pat$ 实际滑动距离，不包括指针从失配位置回退到 $patlastpos$ 位置的距离）。实际上所有字符串匹配算法的核就在于 $skip(m,k)$ ，下面我们会通过分析 $delta_1$ 和 $delta_2$ 来计算 BoyerMoore 算法的 $skip(m,k)$ 。
 
-### 计算 BoyerMoore 算法的 $skip(m,k)$ 
+### 计算 BoyerMoore 算法的 $skip(m,k)$
 
-####  $delta_1$ 
+####  $delta_1$
 
 首先考虑 $delta_1$ 不起作用的情况，也就是发现失配字符在 $pat$ 上重现的位置在已经匹配完的 $m$ 个字符中，这种情况的概率 $\textit{probdelta_1_worthless}$ 为：
 
@@ -1075,7 +1089,7 @@ probdelta1(m,k) =
 \end{array}\right.
 $$
 
-####  $delta_2$ 
+####  $delta_2$
 
 对于 $delta_2$ 概率的计算，根据定义，首先计算某个 $subpat$ 的重现的概率，只要考虑该重现左边还有没有字符来提供额外的判断与失配字符是否相等的检查：
 
@@ -1129,7 +1143,7 @@ $$
 
 为了结构清晰、书写简单、演示方便，我们使用 Python 平台的 Lisp 方言 Hy 来进行实际计算：
 
- `myprob.hy` 
+ `myprob.hy`
 
 ```Hy
 (require [hy.contrib.sequences [defseq seq]])
@@ -1217,7 +1231,7 @@ $$
 
 并且为了进行比较，还额外计算了简化 BM 算法：
 
- `myprob.hy` 
+ `myprob.hy`
 
 ```hy
 (defn simplified-bm-skip [patlen p m k]
@@ -1239,7 +1253,7 @@ $$
 
 和 KMP 算法：
 
- `myprob,hy` 
+ `myprob,hy`
 
 ```hy
 (defn getone [&rest body &kwonly [default None]]
@@ -1338,12 +1352,12 @@ def plot(p, title, N=30):
 
 ## 引用
 
-[^bm]:  [1977 年 Boyer-Moore 算法论文](https://dl.acm.org/doi/10.1145/359842.359859) 
+[^bm]:  [1977 年 Boyer-Moore 算法论文](https://dl.acm.org/doi/10.1145/359842.359859)
 
-[^kmp]:  [1977 年 KMP 算法论文](https://epubs.siam.org/doi/abs/10.1137/0206024) 
+[^kmp]:  [1977 年 KMP 算法论文](https://epubs.siam.org/doi/abs/10.1137/0206024)
 
-[^rytter]:  [1980 年 Rytter 纠正 Knuth 的论文](https://epubs.siam.org/doi/10.1137/0209037) 
+[^rytter]:  [1980 年 Rytter 纠正 Knuth 的论文](https://epubs.siam.org/doi/10.1137/0209037)
 
-[^galil-rule]:  [1979 年介绍 Galil 算法的论文](https://doi.org/10.1145%2F359146.359148) 
+[^galil-rule]:  [1979 年介绍 Galil 算法的论文](https://doi.org/10.1145%2F359146.359148)
 
-[^b5s]:  [B5S 算法的介绍](http://effbot.org/zone/stringlib.htm#BMHBNFS) 
+[^b5s]:  [B5S 算法的介绍](http://effbot.org/zone/stringlib.htm#BMHBNFS)

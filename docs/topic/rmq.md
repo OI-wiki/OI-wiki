@@ -28,7 +28,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 时间复杂度 $O(n)-O(\log n)$ 
 
-空间复杂度 $O(n\log n)$ 
+空间复杂度 $O(n)$ 
 
 ## Four Russian
 

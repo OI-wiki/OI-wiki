@@ -63,7 +63,8 @@ inline mat operator*(const mat& T) const {
   for (int i = 0; i < sz; ++i)
     for (int k = 0; k < sz; ++k) {
       r = a[i][k];
-      for (int j = 0; j < sz; ++j) res.a[i][j] += T.a[k][j] * r, res.a[i][j] %= MOD;
+      for (int j = 0; j < sz; ++j)
+        res.a[i][j] += T.a[k][j] * r, res.a[i][j] %= MOD;
     }
   return res;
 }
@@ -295,12 +296,12 @@ $$
     有一棵 $n$ 节点的树，根为 $1$ 号节点。每个节点有两个权值 $k_i, t_i$ ，初始值均为 $0$ 。
     
     给出三种操作：
-
+    
     1.  $\operatorname{Add}( x , d )$ 操作：将 $x$ 到根的路径上所有点的 $k_i\leftarrow k_i + d$ 
     2.  $\operatorname{Mul}( x , d )$ 操作：将 $x$ 到根的路径上所有点的 $t_i\leftarrow t_i + d \times k_i$ 
-    3.  $\operatorname{Query}( x )$ 操作：询问点 $x$ 的权值 $t_x$ 
-
-    $n,~m \leq 100000, ~-10 \leq d \leq 10$ 
+    3.   $\operatorname{Query}( x )$ 操作：询问点 $x$ 的权值 $t_x$ 
+    
+         $n,~m \leq 100000, ~-10 \leq d \leq 10$ 
 
 若直接思考，下放操作和维护信息并不是很好想。但是矩阵可以轻松地表达。
 

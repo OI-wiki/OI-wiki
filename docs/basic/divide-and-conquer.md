@@ -6,7 +6,7 @@ author: fudonglai, AngelKitty, labuladong
 
 递归（英语：Recursion），在数学和计算机科学中是指在函数的定义中使用函数自身的方法，在计算机科学中还额外指一种通过重复将问题分解为同类的子问题而解决问题的方法。
 
-分治（英语：Conquer），字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。
+分治（英语：Divide and Conquer），字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。
 
 ## 详细介绍
 
@@ -166,20 +166,19 @@ void traverse(TreeNode* root) {
 ## 例题详解
 
 ???+note "[437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)" 
-
     给定一个二叉树，它的每个结点都存放着一个整数值。
-
+    
     找出路径和等于给定数值的路径总数。
-
+    
     路径不需要从根节点开始，也不需要在叶子节点结束，但是路径方向必须是向下的（只能从父节点到子节点）。
-
-    二叉树不超过1000个节点，且节点数值范围是 [-1000000,1000000] 的整数。
-
+    
+    二叉树不超过 1000 个节点，且节点数值范围是[-1000000,1000000]的整数。
+    
     示例：
-
+    
     ```text
     root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
-
+    
           10
          /  \
         5   -3
@@ -187,23 +186,24 @@ void traverse(TreeNode* root) {
       3   2   11
      / \   \
     3  -2   1
-
+    
     返回 3。和等于 8 的路径有：
-
+    
     1.  5 -> 3
     2.  5 -> 2 -> 1
     3. -3 -> 11
     ```
+    
     ```cpp
     /**
-    * 二叉树结点的定义
-    * struct TreeNode {
-    *     int val;
-    *     TreeNode *left;
-    *     TreeNode *right;
-    *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-    * };
-    */
+     * 二叉树结点的定义
+     * struct TreeNode {
+     *     int val;
+     *     TreeNode *left;
+     *     TreeNode *right;
+     *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+     * };
+     */
     ```
 
 ??? note "参考代码"
@@ -223,15 +223,15 @@ void traverse(TreeNode* root) {
 
 ??? note "题目解析"
     题目看起来很复杂，不过代码却极其简洁。
-
+    
     首先明确，递归求解树的问题必然是要遍历整棵树的，所以二叉树的遍历框架（分别对左右子树递归调用函数本身）必然要出现在主函数 pathSum 中。那么对于每个节点，它们应该干什么呢？它们应该看看，自己和它们的子树包含多少条符合条件的路径。好了，这道题就结束了。
-
+    
     按照前面说的技巧，根据刚才的分析来定义清楚每个递归函数应该做的事：
-
+    
      `PathSum` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，和为目标值的路径总数。
-
+    
      `count` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，能凑出几个以该节点为路径开头，和为目标值的路径总数。
-
+    
     ??? note "参考代码（附注释）"
         ```cpp
         int pathSum(TreeNode *root, int sum) {
@@ -242,7 +242,8 @@ void traverse(TreeNode* root) {
               pathSum(root->right, sum);  // 右边路径总数（相信它能算出来）
           return leftPathSum + rightPathSum + pathImLeading;
         }
-
+        ```
+    
         int count(TreeNode *node, int sum) {
             if (node == nullptr) return 0;
             // 能不能作为一条单独的路径呢？
@@ -254,9 +255,9 @@ void traverse(TreeNode* root) {
             return isMe + leftNode + rightNode;  // 我这能凑这么多个
         }
         ```
-
+    
     还是那句话， **明白每个函数能做的事，并相信它们能够完成。** 
-
+    
     总结下， `PathSum` 函数提供了二叉树遍历框架，在遍历中对每个节点调用 `count` 函数（这里用的是先序遍历，不过中序遍历和后序遍历也可以）。 `count` 函数也是一个二叉树遍历，用于寻找以该节点开头的目标值路径。
 
 ## 习题
