@@ -273,7 +273,7 @@ for (i = 1; i <= n; i++) {
 或者说一个 `C++` 代码：
 
 ```C++
-vector<vector<Point>> Ps;  // 图的邻接矩阵
+vector<vector<LL>> Ps;     // 图的邻接矩阵
 vector<LL> dist;           // min_len 的运行结果存储位置
 
 // i: 源点在点集中的下标
@@ -286,7 +286,7 @@ void min_len(size_t i) {
   dist[i] = 0;
 
   // 初始化小根堆
-  priority<Pair, vector<Pair>, greater<Pair>> Q;  // 小根堆
+  priority_queue<Pair, vector<Pair>, greater<Pair>> Q;  // 小根堆
   Q.push(Pair(0, i));
 
   while (!Q.empty()) {
@@ -302,6 +302,8 @@ void min_len(size_t i) {
     }
   }
 }
+
+
 ```
 
 ## Johnson 全源最短路径算法
