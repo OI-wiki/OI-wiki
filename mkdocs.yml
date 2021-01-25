@@ -370,8 +370,8 @@ nav:
       - 图匹配: graph/graph-matching/graph-match.md
       - 增广路: graph/graph-matching/augment.md
       - 二分图最大匹配: graph/graph-matching/bigraph-match.md
-      - 一般图匹配: graph/graph-matching/general-match.md
       - 二分图最大权匹配: graph/graph-matching/bigraph-weight-match.md
+      - 一般图最大匹配: graph/graph-matching/general-match.md
       - 一般图最大权匹配: graph/graph-matching/general-weight-match.md
     - Prufer 序列: graph/prufer.md
     - LGV 引理: graph/lgv.md

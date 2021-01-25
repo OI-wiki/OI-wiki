@@ -1,7 +1,5 @@
 author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR
 
-# 一般图最大匹配
-
 ## 带花树算法（Blossom Algorithm）
 
 开花算法（Blossom Algorithm，也被称做带花树）可以解决一般图最大匹配问题（maximum cardinality matchings)。此算法由 Jack Edmonds 在 1961 年提出。

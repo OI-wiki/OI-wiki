@@ -1,7 +1,5 @@
 author: accelsao, thallium, Chrogeek, Enter-tainer, ksyx, StudyingFather, H-J-Granger, Henry-ZHR, countercurrent-time, william-song-shy
 
-# 二分图最大匹配
-
 为了描述方便将两个集合分成左和右两个部分，所有匹配边都是横跨左右两个集合，可以假想成男女配对。
 
 假设图有 $n$ 个顶点， $m$ 条边。

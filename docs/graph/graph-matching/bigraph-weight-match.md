@@ -1,7 +1,5 @@
 author: accelsao, Enter-tainer, guodong2005, StudyingFather, Backl1ght, Chrogeek, H-J-Granger, Henry-ZHR
 
-# 二分图最大权匹配
-
 二分图的最大权匹配是指二分图中边权和最大的匹配。
 
 ## Hungarian Algorithm（Kuhn-Munkres Algorithm）
