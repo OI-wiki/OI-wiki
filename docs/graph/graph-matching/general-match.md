@@ -1,4 +1,4 @@
-author: accelsao
+author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR
 
 # 一般图最大匹配
 

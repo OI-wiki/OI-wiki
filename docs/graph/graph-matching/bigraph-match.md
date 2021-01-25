@@ -1,4 +1,4 @@
-author: accelsao
+author: accelsao, thallium, Chrogeek, Enter-tainer, ksyx, StudyingFather, H-J-Granger, Henry-ZHR, countercurrent-time, william-song-shy
 
 # 二分图最大匹配
 

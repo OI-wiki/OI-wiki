@@ -1,4 +1,4 @@
-author: accelsao
+author: accelsao, StudyingFather
 
  **匹配** 或是 **独立边集** 是一张图中没有公共边的集合。
 在二分图中求匹配等价于网路流问题。
