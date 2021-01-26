@@ -48,6 +48,27 @@ sudo apt install -y checkinstall
 sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y
 ```
 
+### 在 openSUSE 安装
+
+按照 [openSUSE/opi](https://github.com/openSUSE/opi#install) 给出的方式安装 opi。
+
+然后(32位用户自行删去 `-32bit`)
+```bash
+sudo opi checkinstall
+sudo zypper install -n {libpng12-0,libSM6,libICE6,libXi6,libXrender1,libXrandr2,libfreetype6,libfontconfig1,libXext6,libX11-6,libz1,libgthread-2_0-0,libglib2_0-0,libstdc++6,libgcc_s1,glibc}-32bit
+wget -c http://download.noi.cn/T/noi/GUIDE-1.0.2-ubuntu.tar
+tar -xvf GUIDE-1.0.2-ubuntu.tar
+cd GUIDE-1.0.2-ubuntu
+cat <<EOF > Makefile
+install:
+	install -Dm755 -t /usr/bin GUIDE
+	install -Dm644 -t /usr/share/ lang_en.qm
+	install -Dm644 -t /usr/share/ apis
+	mkdir -p /usr/share/doc/GUIDE/html/
+	cp -r doc/*  /usr/share/doc/GUIDE/html/
+EOF
+sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y -rpmi
+```
 
 ## 编辑文件
 
