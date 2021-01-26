@@ -183,8 +183,9 @@ sudo sed -i 's|/usr/share/man|/usr/share/man/zh_CN|g' /etc/manpath.config
 ### 安装编译环境[^ref7]
 
 ```bash
-sudo apt install build-essential vim ddd gdb fpc emacs gedit anjuta lazarus -y
-wget http://download.noi.cn/T/noi/GUIDE-1.0.2-ubuntu.tar
+sudo apt install -y build-essential vim ddd gdb fpc emacs gedit anjuta lazarus
+sudo apt install -y libpng12 libsm6 libice6 libxi6 libxrender1 libxrandr libfreetype6 libfontconfig1 libxext6 libx11-6 zlib1g libglib2.0-0 libglib2.0-0 libstdc++6 lib32gcc1 libc6
+wget -c http://download.noi.cn/T/noi/GUIDE-1.0.2-ubuntu.tar
 tar -xvf GUIDE-1.0.2-ubuntu.tar
 cd GUIDE-1.0.2-ubuntu
 chmod +x install.sh && ./install.sh
