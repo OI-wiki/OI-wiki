@@ -22,13 +22,13 @@ $$
 \end{aligned}
 $$
 
-注意到我们是在 $\mathbb{Z}_{998244353}$ 上做 NTT，那么相应地，虚数单位 $i$ 应该被换成 $86583718$ 或 $911660635$ ： $i = \sqrt{-1} \equiv \sqrt{998244352} \equiv 86583718 \equiv 911660635 \pmod{998244353}$ 。
-
 直接按上述表达式编写程序即可得到模 $x^{n}$ 意义下的 $\sin{f\left(x\right)}$ 与 $\cos{f\left(x\right)}$ 。再由 $\tan{f\left(x\right)} = \frac{\sin{f\left(x\right)}}{\cos{f\left(x\right)}}$ 可求得 $\tan{f\left(x\right)}$ 。
 
 ## 代码
 
 ??? "多项式三角函数"
+    注意到我们是在 $\mathbb{Z}_{998244353}$ 上做 NTT，那么相应地，虚数单位 $i$ 应该被换成 $86583718$ 或 $911660635$ ： $i = \sqrt{-1} \equiv \sqrt{998244352} \equiv 86583718 \equiv 911660635 \pmod{998244353}$ 。
+
     ```cpp
     constexpr int maxn = 262144;
     constexpr int mod = 998244353;
