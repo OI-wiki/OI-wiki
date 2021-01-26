@@ -29,6 +29,26 @@ NOI Linux 系统自带 GUIDE，因此 GUIDE 也成为了选手在 NOI 系列比�
 |libm.so.6|lib32-glibc|libc6|glibc|glibc|glibc-32bit|
 |libc.so.6|lib32-glibc|libc6|glibc|glibc|glibc-32bit|
 
+### 在 Debian 或 Ubuntu 安装
+
+```bash
+sudo apt install -y libpng12 libsm6 libice6 libxi6 libxrender1 libxrandr libfreetype6 libfontconfig1 libxext6 libx11-6 zlib1g libglib2.0-0 libglib2.0-0 libstdc++6 lib32gcc1 libc6
+wget -c http://download.noi.cn/T/noi/GUIDE-1.0.2-ubuntu.tar
+tar -xvf GUIDE-1.0.2-ubuntu.tar
+cd GUIDE-1.0.2-ubuntu
+cat <<EOF > Makefile
+install:
+	install -Dm755 -t /usr/bin GUIDE
+	install -Dm644 -t /usr/share/ lang_en.qm
+	install -Dm644 -t /usr/share/ apis
+	mkdir -p /usr/share/doc/GUIDE/html/
+	cp -r doc/*  /usr/share/doc/GUIDE/html/
+EOF
+sudo apt install -y checkinstall
+sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y
+```
+
+
 ## 编辑文件
 
 点击页面上方工具栏的“新文件”按钮（或者使用<kbd>Ctrl</kbd>+<kbd>N</kbd>快捷键）来创建一个新文件。
