@@ -29,16 +29,18 @@
 
 ## 应用
 
-### 二分图匹配
+### 二分图最大匹配
 
-#### 二分图最大匹配
+详见 [二分图最大匹配](./graph-matching/bigraph-match.md) 页面。
 
-详见 [二分图最大匹配](../topic/graph-matching/bigraph-match.md) 页面。
+### 二分图最大权匹配
 
-#### 二分图最大权匹配
+详见 [二分图最大权匹配](./graph-matching/bigraph-weight-match.md) 页面。
 
-详见 [二分图最大权匹配](../topic/graph-matching/bigraph-weight-match.md) 页面。
+### 一般图最大匹配
 
-### 一般图匹配
+详见 [一般图最大匹配](./graph-matching/general-match.md) 页面。
 
-详见 [一般图匹配](../topic/graph-matching/general-match.md) 页面。
+### 一般图最大权匹配
+
+详见 [一般图最大权匹配](./graph-matching/general-weight-match.md) 页面。

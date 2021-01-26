@@ -366,6 +366,13 @@ nav:
       - 最小割: graph/flow/min-cut.md
       - 费用流: graph/flow/min-cost.md
       - 上下界网络流: graph/flow/bound.md
+    - 图的匹配:
+      - 图匹配: graph/graph-matching/graph-match.md
+      - 增广路: graph/graph-matching/augment.md
+      - 二分图最大匹配: graph/graph-matching/bigraph-match.md
+      - 二分图最大权匹配: graph/graph-matching/bigraph-weight-match.md
+      - 一般图最大匹配: graph/graph-matching/general-match.md
+      - 一般图最大权匹配: graph/graph-matching/general-weight-match.md
     - Prufer 序列: graph/prufer.md
     - LGV 引理: graph/lgv.md
     - 弦图: graph/chord.md
@@ -417,13 +424,6 @@ nav:
     - 主元素问题: misc/main-element.md
   - 专题:
     - RMQ: topic/rmq.md
-    - 图的匹配:
-      - 图匹配: topic/graph-matching/graph-match.md
-      - 增广路: topic/graph-matching/augment.md
-      - 二分图最大匹配: topic/graph-matching/bigraph-match.md
-      - 一般图匹配: topic/graph-matching/general-match.md
-      - 二分图最大权匹配: topic/graph-matching/bigraph-weight-match.md
-      - 一般图最大权匹配: topic/graph-matching/general-weight-match.md
     - 并查集应用: topic/dsu-app.md
     - 括号序列: topic/bracket.md
   - 关于 Hulu:
