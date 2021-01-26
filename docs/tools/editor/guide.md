@@ -45,7 +45,7 @@ sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y
 
 按照 [openSUSE/opi](https://github.com/openSUSE/opi#install) 给出的方式安装 opi。
 
-然后(32位用户自行删去 `-32bit`)
+然后：（32 位用户自行删去 `-32bit`）
 ```bash
 sudo opi checkinstall
 sudo zypper install -n {libpng12-0,libSM6,libICE6,libXi6,libXrender1,libXrandr2,libfreetype6,libfontconfig1,libXext6,libX11-6,libz1,libgthread-2_0-0,libglib2_0-0,libstdc++6,libgcc_s1,glibc}-32bit
