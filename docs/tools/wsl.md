@@ -184,21 +184,9 @@ sudo sed -i 's|/usr/share/man|/usr/share/man/zh_CN|g' /etc/manpath.config
 
 ```bash
 sudo apt install -y build-essential vim ddd gdb fpc emacs gedit anjuta lazarus
-sudo apt install -y libpng12 libsm6 libice6 libxi6 libxrender1 libxrandr libfreetype6 libfontconfig1 libxext6 libx11-6 zlib1g libglib2.0-0 libglib2.0-0 libstdc++6 lib32gcc1 libc6
-wget -c http://download.noi.cn/T/noi/GUIDE-1.0.2-ubuntu.tar
-tar -xvf GUIDE-1.0.2-ubuntu.tar
-cd GUIDE-1.0.2-ubuntu
-cat <<EOF > Makefile
-install:
-	install -Dm755 -t /usr/bin GUIDE
-	install -Dm644 -t /usr/share/ lang_en.qm
-	install -Dm644 -t /usr/share/ apis
-	mkdir -p /usr/share/doc/GUIDE/html/
-	cp -r doc/*  /usr/share/doc/GUIDE/html/
-EOF
-sudo apt install -y checkinstall
-sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y
 ```
+
+GUIDE 的安装请参考 [Debian 或 Ubuntu 下 GUIDE 的安装](./editor/guide.md#debian-ubuntu)
 
 这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install 程序名` 来安装别的。
 若想安装其他版本可以参考 [该博客给出的 apt-get 使用方法](https://www.cnblogs.com/EasonJim/p/7144017.html) 。
