@@ -188,7 +188,16 @@ sudo apt install -y libpng12 libsm6 libice6 libxi6 libxrender1 libxrandr libfree
 wget -c http://download.noi.cn/T/noi/GUIDE-1.0.2-ubuntu.tar
 tar -xvf GUIDE-1.0.2-ubuntu.tar
 cd GUIDE-1.0.2-ubuntu
-chmod +x install.sh && ./install.sh
+cat <<EOF > Makefile
+install:
+	install -Dm755 -t /usr/bin GUIDE
+	install -Dm644 -t /usr/share/ lang_en.qm
+	install -Dm644 -t /usr/share/ apis
+	mkdir -p /usr/share/doc/GUIDE/html/
+	cp -r doc/*  /usr/share/doc/GUIDE/html/
+EOF
+sudo apt install -y checkinstall
+sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y
 ```
 
 这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install 程序名` 来安装别的。
