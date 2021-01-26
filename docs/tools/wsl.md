@@ -295,9 +295,9 @@ xfce4-session
 
 硬盘分区作为文件夹在 `/mnt/` 里存放，因此可以直接交互，如直接编译二进制文件，或者往 Ubuntu 里传文件。
 
-![与 Windows 内原硬盘分区交互 1](./images/wsl-interact-with-Windows-1.png)
+![与 Windows 内原硬盘分区交互 1](./images/wsl-interact-with-windows-1.png)
 
-![与 Windows 内原硬盘分区交互 2](./images/wsl-interact-with-Windows-2.png)
+![与 Windows 内原硬盘分区交互 2](./images/wsl-interact-with-windows-2.png)
 
 ## FAQ
 
