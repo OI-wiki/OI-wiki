@@ -212,6 +212,7 @@ int main() {
     ??? mdui-shadow-6 "题意简述"
         给定一张简单无向图，问有多少对三元组 $\langle s, c, f \rangle$（$s, c, f$ 互不相同）使得存在一条简单路径从 $s$ 出发，经过 $c$ 到达 $f$。
         
+    
     ??? mdui-shadow-6 "题解"
         说到简单路径，就必须提一个关于点双很好的性质：对于一个点双中的两点，它们之间简单路径的并集，恰好完全等于这个点双。  
         即同一个点双中的两不同点 $u,v$ 之间一定存在一条简单路径经过给定的在同一个点双内的另一点 $w$。
@@ -249,6 +250,7 @@ int main() {
         
         最后，不要忘记处理图不连通的情况。下面是对应代码：
         
+    
     ??? mdui-shadow-6 "参考代码"
         ```cpp
         #include <cstdio>
@@ -267,64 +269,342 @@ int main() {
         int wgh[MN * 2];
         
         void Tarjan(int u) {
-          low[u] = dfn[u] = ++dfc;
-          stk[++tp] = u;
-          ++num;
-          for (int v : G[u]) {
-            if (!dfn[v]) {
-              Tarjan(v);
-              low[u] = std::min(low[u], low[v]);
-              if (low[v] == dfn[u]) {
-                wgh[++cnt] = 0;
-                for (int x = 0; x != v; --tp) {
-                  x = stk[tp];
-                  T[cnt].push_back(x);
-                  T[x].push_back(cnt);
-                  ++wgh[cnt];
-                }
-                T[cnt].push_back(u);
-                T[u].push_back(cnt);
-                ++wgh[cnt];
-              }
-            } else low[u] = std::min(low[u], dfn[v]);
-          }
+        	low[u] = dfn[u] = ++dfc;
+        	stk[++tp] = u;
+        	++num;
+        	for (int v : G[u]) {
+        		if (!dfn[v]) {
+        			Tarjan(v);
+        			low[u] = std::min(low[u], low[v]);
+        			if (low[v] == dfn[u]) {
+        				wgh[++cnt] = 0;
+        				for (int x = 0; x != v; --tp) {
+        					x = stk[tp];
+        					T[cnt].push_back(x);
+        					T[x].push_back(cnt);
+        					++wgh[cnt];
+        				}
+        				T[cnt].push_back(u);
+        				T[u].push_back(cnt);
+        				++wgh[cnt];
+        			}
+        		} else low[u] = std::min(low[u], dfn[v]);
+        	}
         }
         
         int vis[MN * 2], siz[MN * 2];
         
         void DFS(int u, int fz) {
-          vis[u] = 1;
-          siz[u] = (u <= N);
-          for (int v : T[u]) if (v != fz) {
-            DFS(v, u);
-            Ans += 2ll * wgh[u] * siz[u] * siz[v];
-            siz[u] += siz[v];
-          }
-          Ans += 2ll * wgh[u] * siz[u] * (num - siz[u]);
+        	vis[u] = 1;
+        	siz[u] = (u <= N);
+        	for (int v : T[u]) if (v != fz) {
+        		DFS(v, u);
+        		Ans += 2ll * wgh[u] * siz[u] * siz[v];
+        		siz[u] += siz[v];
+        	}
+        	Ans += 2ll * wgh[u] * siz[u] * (num - siz[u]);
         }
         
         int main() {
-          scanf("%d%d", &N, &M);
-          for (int u = 1; u <= N; ++u) wgh[u] = -1;
-          cnt = N;
-          for (int i = 1; i <= M; ++i) {
-            int u, v;
-            scanf("%d%d", &u, &v);
-            G[u].push_back(v);
-            G[v].push_back(u);
-          }
-          for (int u = 1; u <= N; ++u) if (!dfn[u]) {
-            num = 0;
-            Tarjan(u), --tp;
-            DFS(u, 0);
-          }
-          printf("%lld\n", Ans);
-          return 0;
+        	scanf("%d%d", &N, &M);
+        	for (int u = 1; u <= N; ++u) wgh[u] = -1;
+        	cnt = N;
+        	for (int i = 1; i <= M; ++i) {
+        		int u, v;
+        		scanf("%d%d", &u, &v);
+        		G[u].push_back(v);
+        		G[v].push_back(u);
+        	}
+        	for (int u = 1; u <= N; ++u) if (!dfn[u]) {
+        		num = 0;
+        		Tarjan(u), --tp;
+        		DFS(u, 0);
+        	}
+        	printf("%lld\n", Ans);
+        	return 0;
         }
         ```
         
+    
     顺带一提，刚刚的测试用例在这题的答案是 $212$。
+    
 
+???+note "[Codeforces #487 E. Tourists](https://codeforces.com/contest/487/problem/E)"
+    ??? mdui-shadow-6 "题意简述"
+        给定一张简单无向连通图，要求支持两种操作：
+        
+        1. 修改一个点的点权。
+
+        2. 询问两点之间所有简单路径上点权的最小值。
+        
+    
+    ??? mdui-shadow-6 "题解"
+        同样地，我们建出原图的圆方树，令方点权值为相邻圆点权值的最小值，问题转化为求路径上最小值。
+        
+        路径最小值可以使用树链剖分和线段树维护，但是修改呢？
+        
+        一次修改一个圆点的点权，需要修改所有和它相邻的方点，这样很容易被卡到 $\mathcal{O}(n)$ 个修改。
+        
+        这时我们利用圆方树是棵树的性质，令方点权值为自己的儿子圆点的权值最小值，这样的话修改时只需要修改父亲方点。
+        
+        对于方点的维护，只需要对每个方点开一个 `multiset` 维护权值集合即可。
+        
+        需要注意的是查询时若 LCA 是方点，则还需要查 LCA 的父亲圆点的权值。
+        
+        注意：圆方树点数要开原图的两倍，否则会数组越界。
+        
+    
+    ??? mdui-shadow-6 "参考代码"
+        ```cpp
+        #include <cstdio>
+        #include <vector>
+        #include <algorithm>
+        #include <set>
+        
+        const int MN = 100005;
+        const int MS = 524288;
+        const int Inf = 0x7fffffff;
+        
+        int N, M, Q, cnt;
+        int w[MN * 2];
+        std::vector<int> G[MN], T[MN * 2];
+        std::multiset<int> S[MN * 2];
+        
+        int dfn[MN * 2], low[MN], dfc;
+        int stk[MN], tp;
+        
+        void Tarjan(int u) {
+        	low[u] = dfn[u] = ++dfc;
+        	stk[++tp] = u;
+        	for (int v : G[u]) {
+        		if (!dfn[v]) {
+        			Tarjan(v);
+        			low[u] = std::min(low[u], low[v]);
+        			if (low[v] == dfn[u]) {
+        				++cnt;
+        				for (int x = 0; x != v; --tp) {
+        					x = stk[tp];
+        					T[cnt].push_back(x);
+        					T[x].push_back(cnt);
+        				}
+        				T[cnt].push_back(u);
+        				T[u].push_back(cnt);
+        			}
+        		} else low[u] = std::min(low[u], dfn[v]);
+        	}
+        }
+        
+        int idf[MN * 2], faz[MN * 2], siz[MN * 2], dep[MN * 2], son[MN * 2], top[MN * 2];
+        
+        void DFS0(int u, int fz) {
+        	faz[u] = fz, dep[u] = dep[fz] + 1, siz[u] = 1;
+        	for (int v : T[u]) if (v != fz) {
+        		DFS0(v, u);
+        		siz[u] += siz[v];
+        		if (siz[son[u]] < siz[v]) son[u] = v;
+        	}
+        }
+        
+        void DFS1(int u, int fz, int tp) {
+        	dfn[u] = ++dfc, idf[dfc] = u, top[u] = tp;
+        	if (son[u]) DFS1(son[u], u, tp);
+        	for (int v : T[u])
+        		if (v != fz && v != son[u])
+        			DFS1(v, u, v);
+        }
+        
+        #define li (i << 1)
+        #define ri (i << 1 | 1)
+        #define mid ((l + r) >> 1)
+        #define ls li, l, mid
+        #define rs ri, mid + 1, r
+        
+        int dat[MS];
+        
+        void Build(int i, int l, int r) {
+        	if (l == r) { dat[i] = w[idf[l]]; return ; }
+        	Build(ls), Build(rs);
+        	dat[i] = std::min(dat[li], dat[ri]);
+        }
+        
+        void Mdf(int i, int l, int r, int p, int x) {
+        	if (l == r) { dat[i] = x; return ; }
+        	if (p <= mid) Mdf(ls, p, x);
+        	else Mdf(rs, p, x);
+        	dat[i] = std::min(dat[li], dat[ri]);
+        }
+        
+        int Qur(int i, int l, int r, int a, int b) {
+        	if (r < a || b < l) return Inf;
+        	if (a <= l && r <= b) return dat[i];
+        	return std::min(Qur(ls, a, b), Qur(rs, a, b));
+        }
+        
+        int main() {
+        	scanf("%d%d%d", &N, &M, &Q);
+        	for (int i = 1; i <= N; ++i)
+        		scanf("%d", &w[i]);
+        	cnt = N;
+        	for (int i = 1; i <= M; ++i) {
+        		int u, v;
+        		scanf("%d%d", &u, &v);
+        		G[u].push_back(v);
+        		G[v].push_back(u);
+        	}
+        	Tarjan(1), DFS0(1, 0), dfc = 0, DFS1(1, 0, 1);
+        	for (int i = 1; i <= N; ++i) if (faz[i])
+        		S[faz[i]].insert(w[i]);
+        	for (int i = N + 1; i <= cnt; ++i)
+        		w[i] = *S[i].begin();
+        	Build(1, 1, cnt);
+        	for (int q = 1; q <= Q; ++q) {
+        		char opt[3]; int x, y;
+        		scanf("%s%d%d", opt, &x, &y);
+        		if (*opt == 'C') {
+        			Mdf(1, 1, cnt, dfn[x], y);
+        			if (faz[x]) {
+        				int u = faz[x];
+        				S[u].erase(S[u].lower_bound(w[x]));
+        				S[u].insert(y);
+        				if (w[u] != *S[u].begin()) {
+        					w[u] = *S[u].begin();
+        					Mdf(1, 1, cnt, dfn[u], w[u]);
+        				}
+        			}
+        			w[x] = y;
+        		} else {
+        			int Ans = Inf;
+        			while (top[x] != top[y]) {
+        				if (dep[top[x]] < dep[top[y]])
+        					std::swap(x, y);
+        				Ans = std::min(Ans, Qur(1, 1, cnt, dfn[top[x]], dfn[x]));
+        				x = faz[top[x]];
+        			}
+        			if (dfn[x] > dfn[y]) std::swap(x, y);
+        			Ans = std::min(Ans, Qur(1, 1, cnt, dfn[x], dfn[y]));
+        			if (x > N) Ans = std::min(Ans, w[faz[x]]);
+        			printf("%d\n", Ans);
+        		}
+        	}
+        	return 0;
+        }
+        ```
+        
+    
+
+???+note "[「SDOI2018」战略游戏](https://loj.ac/p/2562)"
+    ??? mdui-shadow-6 "题意简述"
+        给出一个简单无向连通图。有 $q$ 次询问：
+        
+        每次给出一个点集 $S$（$2 \le |S| \le n$），问有多少个点 $u$ 满足 $u \notin S$ 且删掉 $u$ 之后 $S$ 中的点不全在一个连通分量中。
+        
+        每个测试点有多组数据。
+        
+    
+    ??? mdui-shadow-6 "题解"
+        先建出圆方树，则变为询问 $S$ 在圆方树上对应的连通子图中的圆点个数减去 $|S|$。
+        
+        如何计算连通子图中的圆点个数？有一个方法：
+        
+        把圆点的权值放到它和它的父亲方点的边上，问题转化为求边权和，这个问题可以参考 [「SDOI2015」寻宝游戏](https://loj.ac/p/2182) 的一种解法。  
+        即把 $S$ 中的点按照 DFS 序排序，计算排序后相邻两点的距离和（还包括首尾两点之间的距离），答案就是距离和的一半，因为每条边只被经过两次。
+        
+        最后，如果子图中的深度最浅的节点是圆点，答案还要加上 $1$，因为我们没有统计到它。
+        
+        因为有多组数据，要注意初始化数组。
+        
+    
+    ??? mdui-shadow-6 "参考代码"
+        ```cpp
+        #include <cstdio>
+        #include <vector>
+        #include <algorithm>
+        
+        const int MN = 100005;
+        
+        int N, M, Q, cnt;
+        std::vector<int> G[MN], T[MN * 2];
+        
+        int dfn[MN * 2], low[MN], dfc;
+        int stk[MN], tp;
+        void Tarjan(int u) {
+        	low[u] = dfn[u] = ++dfc;
+        	stk[++tp] = u;
+        	for (int v : G[u]) {
+        		if (!dfn[v]) {
+        			Tarjan(v);
+        			low[u] = std::min(low[u], low[v]);
+        			if (low[v] == dfn[u]) {
+        				++cnt;
+        				for (int x = 0; x != v; --tp) {
+        					x = stk[tp];
+        					T[cnt].push_back(x);
+        					T[x].push_back(cnt);
+        				}
+        				T[cnt].push_back(u);
+        				T[u].push_back(cnt);
+        			}
+        		} else low[u] = std::min(low[u], dfn[v]);
+        	}
+        }
+        
+        int dep[MN * 2], faz[MN * 2][18], dis[MN * 2];
+        void DFS(int u, int fz) {
+        	dfn[u] = ++dfc;
+        	dep[u] = dep[faz[u][0] = fz] + 1;
+        	dis[u] = dis[fz] + (u <= N);
+        	for (int j = 0; j < 17; ++j)
+        		faz[u][j + 1] = faz[faz[u][j]][j];
+        	for (int v : T[u]) if (v != fz) DFS(v, u);
+        }
+        int LCA(int x, int y) {
+        	if (dep[x] < dep[y]) std::swap(x, y);
+        	for (int j = 0, d = dep[x] - dep[y]; d; ++j, d >>= 1)
+        		if (d & 1) x = faz[x][j];
+        	if (x == y) return x;
+        	for (int j = 17; ~j; --j)
+        		if (faz[x][j] != faz[y][j])
+        			x = faz[x][j], y = faz[y][j];
+        	return faz[x][0];
+        }
+        
+        int main() {
+        	int Ti; scanf("%d", &Ti);
+        	while (Ti--) {
+        		scanf("%d%d", &N, &M);
+        		for (int i = 1; i <= N; ++i) {
+        			G[i].clear();
+        			dfn[i] = low[i] = 0;
+        		}
+        		for (int i = 1; i <= N * 2; ++i) T[i].clear();
+        		for (int i = 1, x, y; i <= M; ++i) {
+        			scanf("%d%d", &x, &y);
+        			G[x].push_back(y);
+        			G[y].push_back(x);
+        		}
+        		cnt = N;
+        		dfc = 0, Tarjan(1), --tp;
+        		dfc = 0, DFS(1, 0);
+        		scanf("%d", &Q);
+        		while (Q--) {
+        			static int S, A[MN];
+        			scanf("%d", &S);
+        			int Ans = -2 * S;
+        			for (int i = 1; i <= S; ++i) scanf("%d", &A[i]);
+        			std::sort(A + 1, A + S + 1, [](int i, int j) { return dfn[i] < dfn[j]; });
+        			for (int i = 1; i <= S; ++i) {
+        				int u = A[i], v = A[i % S + 1];
+        				Ans += dis[u] + dis[v] - 2 * dis[LCA(u, v)];
+        			}
+        			if (LCA(A[1], A[S]) <= N) Ans += 2;
+        			printf("%d\n", Ans / 2);
+        		}
+        	}
+        	return 0;
+        }
+        ```
+        
+    
 
 ## 外部链接
 
