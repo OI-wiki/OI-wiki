@@ -11,7 +11,7 @@ author: TrisolarisHD, partychicken, Xeonacid
 ???+note "题面"
     给定两个长度分别为 $n,m$ 且仅由小写字母构成的字符串 $A,B$ , 求 $A,B$ 的最长公共子序列。$(n\le 10^6,m\le 10^3)$ 
 
-### 简单的解法
+### 朴素的解法
 
 您一眼秒了它，这不是板子吗？
 
