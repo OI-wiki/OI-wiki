@@ -34,7 +34,7 @@ Python 是一种目前已在世界上广泛使用的解释型面向对象语言�
 
 正常启动后，它会先显示欢迎信息与版本信息以及版权声明，之后就会出现提示符 `>>>` ，一般情况下如下所示：
 
-```bash
+```console
 $ python3
 Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:54:40) [MSC v.1900 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
@@ -48,7 +48,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ### macOS/Linux
 
-通常情况下，正如上文所说，大部分的 Linux 发行版中已经自带了 Python，如果您只打算学学语法并无特别需求，一般情况下不用再另外安装。通常而言，在 Linux 终端中运行 `python` 进入的是 Python 2，而运行 `python3` 进入的是 Python 3。
+通常情况下，正如上文所说，大部分的 Linux 发行版中已经自带了 Python，如果您只打算学学语法并无特别需求，一般情况下不用再另外安装。通常而言，在 Linux 终端中运行 `python2` 进入的是 Python 2，而运行 `python3` 进入的是 Python 3。
 
 而由于种种依赖问题（如 CentOS 的 yum )，自行编译安装后通常还要处理种种问题，这已经超出了本文的讨论范畴。
 
@@ -61,7 +61,7 @@ sudo apt install python3
 更多详情您可以直接在搜索引擎上使用关键字 `系统名称(标志版本) 安装 Python 2/3` 来找到对应教程。
 
 ???+ note "运行 `python` 还是 `python3` ？"
-    根据 [Python 3 官方文档](https://docs.python.org/zh-cn/3/tutorial/interpreter.html) 的说法，在 Unix 系统中， `Python 3.X` 解释器 **默认安装** （指使用软件包管理器安装）后的执行文件并不叫作 `python` ，这样才不会与同时安装的 `Python 2.X` 冲突。同样的，默认安装的 pip 软件也是类似的情况，Python 3 包管理器的文件名为 `pip3` 您可以根据自己的使用习惯自建软链或者 shell 别名，但还请注意不要与自带的冲突。
+    根据 [Python 3 官方文档](https://docs.python.org/zh-cn/3/tutorial/interpreter.html) 的说法，在 Unix 系统中， `Python 3.X` 解释器 **默认安装** （指使用软件包管理器安装）后的执行文件并不一定叫作 `python` ，以免与可能同时安装的 `Python 2.X` 冲突。同样的，默认安装的 pip 软件也是类似的情况，Python 3 包管理器的文件名为 `pip3` 。`python` 这个名字指向 `python2` 还是 `python3` 则视系统和系统版本确定。所以，当使用 Python 3 有关的时，请使用 `python3` 和 `pip3` 以确保准确，同理，Python 2 最好使用 `python2` 和 `pip2`。
 
 ### 关于镜像和 pip
 
@@ -283,7 +283,7 @@ array([[0, 0, 1],
 
 Python 是一个动态类型检查的语言，以灵活但隐式的方式处理类型。Python 解释器仅仅在运行时检查类型是否正确，并且允许在运行时改变变量类型。
 
-```python
+```python3
 >>> if False:
 ...     1 + "two"  # This line never runs, so no TypeError is raised
 ... else:
@@ -299,7 +299,7 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
 
 我们首先通过一个例子来简要说明。假如我们要向函数中添加关于类型的信息，首先需要按如下方式对它的参数和返回值设置类型标注：
 
-```python
+```python3
 # headlines.py
 
 def headline(text: str, align: bool = True) -> str:
@@ -314,7 +314,7 @@ print(headline("use mypy", centered=True))
 
 但是这样添加类型提示没有运行时的效果——如果我们用错误类型的 `align` 参数，程序依然可以在不报错、不警告的情况下正常运行。
 
-```bash
+```console
 $ python headlines.py
 Python Type Checking
 --------------------
@@ -323,7 +323,7 @@ oooooooooooooooooooo Use Mypy oooooooooooooooooooo
 
 因此，我们需要静态检查工具来排除这类错误（例如 [PyCharm](https://www.jetbrains.com/pycharm/) 中就包含这种检查）。最常用的静态类型检查工具是 [Mypy](http://mypy-lang.org/) 。
 
-```bash
+```console
 $ pip install mypy
 Successfully installed mypy.
 
@@ -339,7 +339,7 @@ Success: no issues found in 1 source file
 
 类型标注是自 Python 3.0 引入的特征，是添加类型提示的重要方法。例如这段代码就引入了类型标注，你可以通过调用 `circumference.__annotations__` 来查看函数中所有的类型标注。
 
-```python
+```python3
 import math
 
 def circumference(radius: float) -> float:
@@ -348,7 +348,7 @@ def circumference(radius: float) -> float:
 
 当然，除了函数函数，变量也是可以类型标注的，你可以通过调用 `__annotations__` 来查看函数中所有的类型标注。
 
-```python
+```python3
 pi: float = 3.142
 
 def circumference(radius: float) -> float:
@@ -357,7 +357,7 @@ def circumference(radius: float) -> float:
 
 变量类型标注赋予了 Python 静态语言的性质，即声明与赋值分离：
 
-```python
+```python3
 >>> nothing: str
 >>> nothing
 NameError: name 'nothing' is not defined
@@ -370,7 +370,7 @@ NameError: name 'nothing' is not defined
 
 如上所述，Python 的类型标注是 3.0 之后才支持的，这说明如果你需要编写支持遗留 Python 的代码，就不能使用标注。为了应对这个问题，你可以尝试使用类型注释——一种特殊格式的代码注释——作为你代码的类型提示。
 
-```python
+```python3
 import math
 
 pi = 3.142  # type: float
@@ -514,7 +514,7 @@ void dijkstra(int s) {
 
 Python：
 
-```python
+```python3
 def nextedgeid(u):  # 生成器，可以用在for循环里
     i = h[u]
     while i:
@@ -559,7 +559,7 @@ int main() {
 
 Python：
 
-```python
+```python3
 # 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
 if __name__ == '__main__':
     # 一行读入多个整数。注意它会把整行都读进来
@@ -628,7 +628,7 @@ if __name__ == '__main__':
     ```
 
 ??? note "Python"
-    ```python
+    ```python3
     try:  # 引入优先队列模块
         import Queue as pq  # python version < 3.0
     except ImportError:
