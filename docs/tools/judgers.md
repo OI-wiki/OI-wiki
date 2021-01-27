@@ -1,4 +1,4 @@
-author: Ir1d, HeRaNO, NachtgeistW, i-Yirannn, bear-good, ranwen, ayalhw, billchenchina, Tiger3018, Xeonacid
+author: Ir1d, HeRaNO, NachtgeistW, i-Yirannn, bear-good, ranwen, CoelacanthusHex, billchenchina, Tiger3018, Xeonacid
 
  **评测软件** 是用于本地测试分数的软件。使用者在将代码提交到 OJ 前，可以使用评测软件对自己的程序估分。
 
@@ -174,14 +174,14 @@ Ubuntu：
 ```bash
 sudo apt update
 sudo apt install qt5-default build-essential git -y
-git clone --depth=1 http://github.com/menci/lemon.git
+git clone --depth=1 https://github.com/Menci/Lemon.git
 cd lemon
-# 可以修改 make 文件来调整 make job 的线程数
-sed -i 's/make $/make -j 1 $/g' make
-./make
-cp Lemon ~
-cd ..
+# 可以修改 -j 后面的数字来调整 make job 的线程数
+./make -j2
+sudo install -Dm755 -t /usr/bin/ Lemon
 ```
+
+如要编译 LemonLime，请参阅 LemonLime 的[编译手册](https://github.com/Project-LemonLime/Project_LemonLime/blob/master/BUILD.md)。
 
 ### 数据格式
 
