@@ -174,13 +174,11 @@ Ubuntu：
 ```bash
 sudo apt update
 sudo apt install qt5-default build-essential git -y
-git clone --depth=1 http://github.com/menci/lemon.git
+git clone --depth=1 https://github.com/Menci/Lemon.git
 cd lemon
-# 可以修改 make 文件来调整 make job 的线程数
-sed -i 's/make $/make -j 1 $/g' make
-./make
-cp Lemon ~
-cd ..
+# 可以修改 -j 后面的数字来调整 make job 的线程数
+./make -j2
+sudo install -Dm755 -t /usr/bin/ Lemon
 ```
 
 ### 数据格式
