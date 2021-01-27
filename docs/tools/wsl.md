@@ -189,7 +189,7 @@ sudo apt install -y build-essential vim ddd gdb fpc emacs gedit anjuta lazarus
 GUIDE 的安装请参考 [Debian 或 Ubuntu 下 GUIDE 的安装](./editor/guide.md#debian-ubuntu)
 
 这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install 程序名` 来安装别的。
-若想安装其他版本可以参考 [该博客给出的 apt-get 使用方法](https://www.cnblogs.com/EasonJim/p/7144017.html) 。
+若想安装其他版本可以参考 Debian 官方的 [包管理手册](https://www.debian.org/doc/manuals/debian-reference/ch02.zh-cn.html) 。
 
 以下为一个示例程序：
 
@@ -211,7 +211,8 @@ AMD Ryzen 5 1400 Quad-Core Processor
 
 ```bash
 sudo apt install xfce4 tightvncserver -y
-# 或使用 sudo apt install xubuntu-desktop -y
+# 或使用
+sudo apt install xubuntu-desktop -y
 # xubuntu 安装的软件多，基础环境可用第一种
 ```
 
@@ -244,7 +245,7 @@ sudo service xrdp restart
 进入 Ubuntu 环境，安装 xterm：
 
 ```bash
-sudo apt-get install xterm -y
+sudo apt install xterm -y
 ```
 
 退出 Ubuntu。
