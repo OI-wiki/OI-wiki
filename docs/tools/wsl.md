@@ -1,6 +1,6 @@
-author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm, ayalhw
+author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm, CoelacanthusHex
 
-![头图](./images/WSL1.png)
+![头图](./images/wsl-header.png)
 
 本章主要介绍了在 Windows 系统下运行 Linux 系统的方法。
 
@@ -12,7 +12,7 @@ author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613
 
 众所周知，尽管现在大部分学校的竞赛练习环境都是构建 XP 等 Windows 系操作系统，但是在 NOI 系列赛中，早已用上了 NOI Linux 这个 Ubuntu 操作系统的阉割版。
 
-> ![NOI 竞赛的环境要求](./images/WSL21.png)
+> ![NOI 竞赛的环境要求](./images/wsl-noi-environment-requirements.png)
 >
 > NOI 竞赛的环境要求[^ref2]
 >
@@ -23,7 +23,7 @@ author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613
 >
 > 为了防止考场上出现此类尴尬情况，我们必须要提前熟悉下 Linux 系统的操作方法。
 
-![平台差异（转自百度文库“NOIP 标准评测系统及相关问题”）](./images/WSL3.png)
+![平台差异（转自百度文库“NOIP 标准评测系统及相关问题”）](./images/wsl-platform-differences.png)
 
 平台差异（转自百度文库“NOIP 标准评测系统及相关问题”）[^ref3]
 
@@ -81,7 +81,7 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 
 ### 使用 GUI
 
-![Windows 功能](./images/WSL4.png)
+![Windows 功能](./images/wsl-windows-features.png)
 
 1. 打开“控制面板”
 
@@ -99,7 +99,7 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 
 ### 安装
 
-![搜索页](./images/WSL5.png)
+![搜索页](./images/wsl-search-page.png)
 
 进入 Microsoft Store，搜索“Ubuntu”，然后选择“Ubuntu”，点击“安装”进行安装。也可打开 [Ubuntu 的商店页面](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6) 。
 
@@ -118,13 +118,13 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 
 等待一两分钟时间，系统会提示创建新的用户帐户及其密码，请确保选择一个容易记住的密码。
 
-![初始化](./images/WSL6.png)
+![初始化](./images/wsl-initialization.png)
 
 ## 基础配置
 
 初次安装好的系统不附带任何 C/C++ 编译器，需要手动配置环境。
 
-![不附带任何编译器的系统](./images/WSL7.png)
+![不附带任何编译器的系统](./images/wsl-system-without-compiler.png)
 
 ### 更换为国内软件源
 
@@ -145,7 +145,7 @@ sudo apt update
 sudo apt upgrade -y
 ```
 
-![示例](./images/WSL9.png)
+![示例](./images/wsl-change-mirror.png)
 
 ### 安装中文环境
 
@@ -163,11 +163,11 @@ sudo dpkg-reconfigure locales
 
 使用 `sudo dpkg-reconfigure locales` 进入菜单，按空格选择带 `zh_CN` 的选项（推荐 `zh_CN, UTF-8 UTF-8` ），选完后回车，
 
-![安装中文环境 1](./images/WSL10.png)
+![安装中文环境 1](./images/wsl-install-chinese-environment-1.png)
 
 下一个菜单中选择 `zh_CN.UTF-8` 回车。
 
-![安装中文环境 2](./images/WSL11.png)
+![安装中文环境 2](./images/wsl-install-chinese-environment-2.png)
 
 之后关闭 Ubuntu 并重启，系统就会变成中文。
 
@@ -183,12 +183,10 @@ sudo sed -i 's|/usr/share/man|/usr/share/man/zh_CN|g' /etc/manpath.config
 ### 安装编译环境[^ref7]
 
 ```bash
-sudo apt install build-essential vim ddd gdb fpc emacs gedit anjuta lazarus -y
-wget http://download.noi.cn/T/noi/GUIDE-1.0.2-ubuntu.tar
-tar -xvf GUIDE-1.0.2-ubuntu.tar
-cd GUIDE-1.0.2-ubuntu
-chmod +x install.sh && ./install.sh
+sudo apt install -y build-essential vim ddd gdb fpc emacs gedit anjuta lazarus
 ```
+
+GUIDE 的安装请参考 [Debian 或 Ubuntu 下 GUIDE 的安装](./editor/guide.md#debian-ubuntu)
 
 这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install 程序名` 来安装别的。
 若想安装其他版本可以参考 [该博客给出的 apt-get 使用方法](https://www.cnblogs.com/EasonJim/p/7144017.html) 。
@@ -229,17 +227,17 @@ sudo service xrdp restart
 
 为了防止和计算机本来带的远程桌面冲突，最好换一下端口。
 
-![不换端口的结果](./images/WSL12.png)
+![不换端口的结果](./images/wsl-result-of-not-changing-ports.png)
 
 运行命令 `vim /etc/xrdp/xrdp.ini` ，把 `port=3389` 改为其他端口（如 `port=3390` ），然后保存即可。
 
-![](./images/WSL13.png)
+![](./images/wsl-change-port.png)
 
 运行 `sudo service xrdp restart` ，然后去开始菜单，用 `localhost: 配置的端口` 来访问。
 
-![](./images/WSL14.png)
+![](./images/wsl-login-using-non-root.png)
 
-![](./images/WSL15.png)
+![](./images/wsl-first-login.png)
 
 ### 使用 Xming 连接
 
@@ -253,11 +251,11 @@ sudo apt-get install xterm -y
 
 从 [Xming X Server 下载地址](https://sourceforge.net/projects/xming/) 下载最新的 Xming Server，然后安装：
 
-![](./images/WSL16.png)
+![](./images/wsl-xming-setup-wizard.png)
 
 如果安装完后忘记勾选 Launch Xming，需在开始菜单里打开 Xming：
 
-![别忘了！](./images/WSL17.png)
+![别忘了！](./images/wsl-xming.png)
 
 之后再回到 Ubuntu，键入如下指令：
 
@@ -265,7 +263,7 @@ sudo apt-get install xterm -y
 DISPLAY=:0 xterm
 ```
 
-![](./images/WSL18.png)
+![](./images/wsl-open-xterm.png)
 
 貌似只支持命令行。
 
@@ -275,19 +273,19 @@ DISPLAY=:0 xterm
 xfce4-session
 ```
 
-![](./images/WSL19.png)
+![](./images/wsl-open-xfce4-session.png)
 
 运行结果如图。（在 Xming 中使用<kbd>Ctrl</kbd>+<kbd>C</kbd>就可以退出该界面。）
 
-![](./images/WSL20.png)
+![](./images/wsl-xfce.png)
 
 ### 与 Windows 内原硬盘分区交互
 
 硬盘分区作为文件夹在 `/mnt/` 里存放，因此可以直接交互，如直接编译二进制文件，或者往 Ubuntu 里传文件。
 
-![与 Windows 内原硬盘分区交互 1](./images/WSL22.png)
+![与 Windows 内原硬盘分区交互 1](./images/wsl-interact-with-windows-1.png)
 
-![与 Windows 内原硬盘分区交互 2](./images/WSL23.png)
+![与 Windows 内原硬盘分区交互 2](./images/wsl-interact-with-windows-2.png)
 
 ## FAQ
 
