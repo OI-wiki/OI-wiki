@@ -43,5 +43,8 @@ jobs:
           publish_dir: ./site
           force_orphan: true
       - name: BaiduPusher
-        if: ${{ github.event_name == 'push' && env.BaiduToken }}
+        if: ${{ github.event_name == 'push' && secrets.BaiduToken }}
+        env:
+          site: oi-wiki.org
+          BaiduToken: ${{ secrets.BaiduToken }}
         run: chmod +x scripts/BaiduPusher.sh && ./scripts/BaiduPusher.sh
