@@ -189,7 +189,7 @@ sudo apt install -y build-essential vim ddd gdb fpc emacs gedit anjuta lazarus
 GUIDE 的安装请参考 [Debian 或 Ubuntu 下 GUIDE 的安装](./editor/guide.md#debian-ubuntu)
 
 这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install 程序名` 来安装别的。
-若想安装其他版本可以参考 [该博客给出的 apt-get 使用方法](https://www.cnblogs.com/EasonJim/p/7144017.html) 。
+若想安装其他版本可以参考 Debian 官方的 [包管理手册](https://www.debian.org/doc/manuals/debian-reference/ch02.zh-cn.html) 。
 
 以下为一个示例程序：
 
@@ -211,7 +211,8 @@ AMD Ryzen 5 1400 Quad-Core Processor
 
 ```bash
 sudo apt install xfce4 tightvncserver -y
-# 或使用 sudo apt install xubuntu-desktop -y
+# 或使用
+sudo apt install xubuntu-desktop -y
 # xubuntu 安装的软件多，基础环境可用第一种
 ```
 
@@ -229,7 +230,7 @@ sudo service xrdp restart
 
 ![不换端口的结果](./images/wsl-result-of-not-changing-ports.png)
 
-运行命令 `vim /etc/xrdp/xrdp.ini` ，把 `port=3389` 改为其他端口（如 `port=3390` ），然后保存即可。
+运行命令 `sudo sed 's/port=[0-9]{1,5}/port=qwq/' /etc/xrdp/xrdp.ini` ，其中 `qwq` 为其他端口（如 `3390` ）。
 
 ![](./images/wsl-change-port.png)
 
@@ -244,7 +245,7 @@ sudo service xrdp restart
 进入 Ubuntu 环境，安装 xterm：
 
 ```bash
-sudo apt-get install xterm -y
+sudo apt install xterm -y
 ```
 
 退出 Ubuntu。
@@ -295,8 +296,9 @@ xfce4-session
 
     可以用自带命令行，或者使用图形界面。
     比如说 vim，在命令行中键入 `man vim` ，会给出一份详尽的使用方法。
-
     亦可使用 `vim --help` 。
+    
+    关于命令行，可阅读[命令行](./cmd.md)
 
 -   占用量大？
 
