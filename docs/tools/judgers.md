@@ -181,6 +181,8 @@ cd lemon
 sudo install -Dm755 -t /usr/bin/ Lemon
 ```
 
+如要编译 LemonLime，请参阅 LemonLime 的[编译手册](https://github.com/Project-LemonLime/Project_LemonLime/blob/master/BUILD.md)。
+
 ### 数据格式
 
 首先打开 lemon 选择“新建试题”，然后打开新建试题的文件夹。
