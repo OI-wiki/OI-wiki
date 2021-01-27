@@ -230,7 +230,7 @@ sudo service xrdp restart
 
 ![不换端口的结果](./images/wsl-result-of-not-changing-ports.png)
 
-运行命令 `vim /etc/xrdp/xrdp.ini` ，把 `port=3389` 改为其他端口（如 `port=3390` ），然后保存即可。
+运行命令 `sudo sed 's/port=[0-9]{1,5}/port=qwq/' /etc/xrdp/xrdp.ini` ，其中 `qwq` 为其他端口（如 `3390` ）。
 
 ![](./images/wsl-change-port.png)
 
@@ -296,8 +296,9 @@ xfce4-session
 
     可以用自带命令行，或者使用图形界面。
     比如说 vim，在命令行中键入 `man vim` ，会给出一份详尽的使用方法。
-
     亦可使用 `vim --help` 。
+    
+    关于命令行，可阅读[命令行](./cmd.md)
 
 -   占用量大？
 
