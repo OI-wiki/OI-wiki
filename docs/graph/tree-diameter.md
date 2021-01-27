@@ -29,9 +29,6 @@
 因此定理成立。
 
 ```cpp
-#include <bits/stdc++.h>
-using namespace std;
-
 const int N = 10000 + 10;
 
 int n, c, d[N];
@@ -64,9 +61,6 @@ int main() {
 我们记录每个节点向下，所能延伸的最远距离 $d_1$ ，和次远距离 $d_2$ ，那么直径就是所有 $d_1 + d_2$ 的最大值。
 
 ```cpp
-#include <bits/stdc++.h>
-using namespace std;
-
 const int N = 10000 + 10;
 
 int n, c, d = 0;
