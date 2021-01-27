@@ -34,7 +34,7 @@ Python 是一种目前已在世界上广泛使用的解释型面向对象语言�
 
 正常启动后，它会先显示欢迎信息与版本信息以及版权声明，之后就会出现提示符 `>>>` ，一般情况下如下所示：
 
-```bash
+```console
 $ python3
 Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:54:40) [MSC v.1900 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
@@ -314,7 +314,7 @@ print(headline("use mypy", centered=True))
 
 但是这样添加类型提示没有运行时的效果——如果我们用错误类型的 `align` 参数，程序依然可以在不报错、不警告的情况下正常运行。
 
-```bash
+```console
 $ python headlines.py
 Python Type Checking
 --------------------
@@ -323,7 +323,7 @@ oooooooooooooooooooo Use Mypy oooooooooooooooooooo
 
 因此，我们需要静态检查工具来排除这类错误（例如 [PyCharm](https://www.jetbrains.com/pycharm/) 中就包含这种检查）。最常用的静态类型检查工具是 [Mypy](http://mypy-lang.org/) 。
 
-```bash
+```console
 $ pip install mypy
 Successfully installed mypy.
 
