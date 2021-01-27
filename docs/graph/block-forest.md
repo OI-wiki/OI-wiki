@@ -210,7 +210,7 @@ int main() {
 
 ???+note "[「APIO2018」铁人两项](https://loj.ac/p/2587)"
     ??? mdui-shadow-6 "题意简述"
-        给定一张简单无向图，问有多少对三元组 $\langle s, c, f \rangle$（$s, c, f$ 互不相同）使得存在一条简单路径从 $s$ 出发，经过 $c$ 到达 $t$。
+        给定一张简单无向图，问有多少对三元组 $\langle s, c, f \rangle$（$s, c, f$ 互不相同）使得存在一条简单路径从 $s$ 出发，经过 $c$ 到达 $f$。
         
     
     ??? mdui-shadow-6 "题解"

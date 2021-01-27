@@ -1,6 +1,4 @@
-author: accelsao
-
-# 一般图最大权匹配
+author: accelsao, Henry-ZHR
 
 ## 带权带花树
 

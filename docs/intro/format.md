@@ -20,7 +20,7 @@
 
 - 推荐使用 SVG 格式的图片[^ref4]，以获取较好的清晰度和缩放效果。
 
-- 请确保您的文档中的引用链接的稳定性。 **不推荐** 引用 **自建** 服务中的资源（如自建 OJ 里的题目）。
+- 请确保您的文档中的引用链接的稳定性。 **不推荐** 引用 **自建** 服务中的资源（如自建 OJ 里的题目）。建议在添加时同时将该外链存于互联网档案馆[^webarchive]，以防无法替代的链接失效。
 
 - 站内链接请去掉网站域名，并且使用相对路径链接对应 `.md` 文件。例如，在本页面（ `intro/format` ）中链接杂项简介（ `misc` ），应使用 `[杂项简介](../misc/index.md)` 。
 
@@ -482,3 +482,5 @@ $$
 [^ref3]:  [我的公式为什么在目录里没有正常显示？好像双倍了](faq.md) 
 
 [^ref4]:  [SVG|MDN](https://developer.mozilla.org/zh-CN/docs/Web/SVG) 
+
+[^webarchive]: [Save Page in Internet Archive](https://web.archive.org/save/)

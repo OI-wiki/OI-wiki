@@ -1,6 +1,4 @@
-author: accelsao
-
-# 一般图最大匹配
+author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR
 
 ## 带花树算法（Blossom Algorithm）
 
