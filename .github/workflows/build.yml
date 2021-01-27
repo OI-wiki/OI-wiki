@@ -26,9 +26,9 @@ jobs:
       - name: Install Node.js dependencies
         run: npm install .
       - name: Page Build
-        run:
-          - chmod +x ./scripts/build.sh && ./scripts/build.sh
-          - mkdocs build -v
+        run: |
+          chmod +x ./scripts/build.sh && ./scripts/build.sh
+          mkdocs build -v
       - name: Render math
         run: node --max_old_space_size=3072 ./scripts/render_math.js
       - name: Gulp minify
