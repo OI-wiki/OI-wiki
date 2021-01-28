@@ -238,6 +238,8 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
     (custom-set-faces)
 ```
 这里顺便提一下，如果对``Emacs``的配置有兴趣，可以参考一部[著名的Emacs入门教程](https://github.com/redguardtoo/mastering-emacs-in-one-year-guide)来进行进一步的学习。
+## 一点点的拓展内容
+如上文所说，``Emacs``就像一个伪装成编辑器的操作系统。它可以作为一款编辑器使用，还可以上网、煮咖啡。它还有一个类似于``Markdown``但是功能却丰富了很多的文本格式（或者说是功能）-—— ``Org-Mode``。关于它的语法，这里也不多提了。有兴趣的朋友同样可以参考[著名的Emacs入门教程](https://github.com/redguardtoo/mastering-emacs-in-one-year-guide)来学习。这份教程就是``Org-mode``编写的。（Github也有解析``Org-mode``的功能。）
 ## 参考资料与注释
 
 [^note1]: 该键的作用是调出鼠标右键菜单，一般为右<kbd>Ctrl</kbd>左边的第一个键。
