@@ -5,6 +5,7 @@ author: ouuan, akakw1, Ir1d, partychicken, Xeonacid
 > 15 分钟入门 Emacs。
 
 ## 简介
+~~其实Emacs是相对比较难上手的。Gnu/nano才是相对比较方便的文本编辑器。~~
 
 Emacs 是一款非常容易上手的编辑器，只需要简短的几行配置就能使用，但是想要非常熟练地使用 Emacs 进行各项工作还是需要一定的时间。
 
@@ -21,6 +22,7 @@ Emacs 是一款非常容易上手的编辑器，只需要简短的几行配置�
 通常使用 `es` 或者 `eshell` 命令来打开 Eshell（类似一个终端）。
 
 输入命令通常可以用快捷键代替。
+
 
 ### 缓冲 (buffer)
 
@@ -60,11 +62,11 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
 
 为了方便描述，做如下约定：
 
-| 字符  | 键位              |
-| --- | --------------- |
-| C   | <kbd>Ctrl</kbd> |
-| M   | <kbd>Alt</kbd>  |
-| ？   | 任意键位            |
+| 字符                 | 键位            |
+| -------------------- | --------------- |
+| C                    | <kbd>Ctrl</kbd> |
+| M (有时也被称为Meta) | <kbd>Alt</kbd>  |
+| ？                   | 任意键位        |
 
 一般有以下三种：
 
@@ -78,7 +80,9 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
 -  `C-x left` 、 `C-x right` ：切换到上/下一个缓冲
 -  `C-x d` ：打开一个目录
 -  `C-x C-f` ：打开一个文件（如果不存在文件则新建文件）
-
+-  `M->`：跳转至文件尾部
+-  `M-<`： 跳转至文件头部
+其实一些熟悉``vim``的朋友可以参考[``Spacemacs``](https://www.spacemacs.org)的配置文件，这份配置文件允许你在``Emacs``上使用``Vim``的各种键位。
 ## 个性化
 
 刚安装好的 Emacs 外观难看且不好使用，因此需要对其进行个性化设置。
@@ -96,11 +100,15 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
 
 ### 配置
 
-在 home 目录下显示隐藏文件（Windows 系统在 **用户目录** 的 `AppData\Roaming` 目录下），".emacs" 就是配置文件（如果没有说明之前没保存），打开修改即可。如果 Emacs 已打开，则需要重启 Emacs，配置才能生效。
+有人说``Emacs``是伪装成编译器的一个操作系统。有很多人拥有一份自己维护多年的``Emacs``配置。**但是不要过分依赖``Emacs``的各种配置与插件。在考场上一般是不允许你使用插件的。**
+
+``Emacs``使用自己的``lisp``方言``emacs lisp``对自身进行拓展和配置。
+
+在 home 目录下显示隐藏文件（Windows 系统在 **用户目录** 的 `AppData\Roaming` 目录下。如果在环境变量的系统变量中定义了home,则在该目录下存在.emacs配置文件），".emacs" 就是配置文件（如果没有说明之前没保存），打开修改即可。如果 Emacs 已打开，则需要重启 Emacs，配置才能生效。如果``.emacs``是一个文件夹，那么请你创建文件``init.el``，在这个文件里进行各种配置。
 
 考场推荐的配置如下。
 
-```text
+```emacs lisp
 ;;设置一键编译 可以自行添加参数 难背考场不建议使用 不建议依赖一键编译
 (defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))
 (global-set-key [f9] 'compile-file)
@@ -123,7 +131,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
 ```
 
 ??? "完整配置"
-    ```text
+```emacs lisp
     ;;设置一键编译
     (defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))
     (global-set-key [f9] 'compile-file)
@@ -228,8 +236,8 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
     ;;关闭光标闪烁
      '(blink-cursor-mode nil)
     (custom-set-faces)
-    ```
-
+```
+这里顺便提一下，如果对``Emacs``的配置有兴趣，可以参考一部[著名的Emacs入门教程](https://github.com/redguardtoo/mastering-emacs-in-one-year-guide)来进行进一步的学习。
 ## 参考资料与注释
 
 [^note1]: 该键的作用是调出鼠标右键菜单，一般为右<kbd>Ctrl</kbd>左边的第一个键。
