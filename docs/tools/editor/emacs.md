@@ -238,7 +238,7 @@ Emacs 有中心化的软件仓库，配置后可通过 `M-x package-install` 来
 
 Emacs 可以使用语言服务器（Language Server Protocol）来提高编辑体验，目前推荐的 C++ 后端是 [Clangd](https://clangd.llvm.org/)。前端可以采用 [Eglot](https://github.com/joaotavora/eglot) 或 [Emacs LSP](https://emacs-lsp.github.io/lsp-mode/)，参阅[此条目](https://github.com/joaotavora/eglot#historical-differences-to-lsp-modeel)可能对选择前端有所帮助。
 
-拓展名为 `.org` 的 Org Mode 脚本可以通过 [Pandoc](https://pandoc.org/) 转换为 Markdown 脚本。
+拓展名为 `.org` 的 Org Mode 文档可以通过 [Pandoc](https://pandoc.org/) 转换为 Markdown 文档。
 
 ## 参考资料与注释
 
