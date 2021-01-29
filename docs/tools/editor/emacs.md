@@ -9,7 +9,7 @@ author: ouuan, akakw1, Ir1d, partychicken, Xeonacid
 
 Emacs 是一款非常容易上手的编辑器，只需要简短的几行配置就能使用，但是想要非常熟练地使用 Emacs 进行各项工作还是需要一定的时间。
 
-其实Emacs本身就有一份相当完整的使用教程了。要阅读它，你只需要按住``Ctrl``按键 + ``h``,然后再按下``t``。阅读它的时间还是比较久的，所以，
+其实Emacs本身就有一份相当完整的使用教程了。要阅读它，你只需要按住`Ctrl`按键 + `h`,然后再按下`t`。阅读它的时间还是比较久的，所以，
 作为入门教程，这里仅介绍 Emacs 的基本功能，以及较方便地用 Emacs 编写、调试代码的方法。
 
 ## 入门
@@ -89,15 +89,24 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
 
 和 Vim 一样，它也可以不用方向键快速地移动光标：
 
-- `C-p` : 向上移动光标
-- `C-n` : 向下移动光标
-- `C-b` : 向后（左）移动光标
-- `C-f` : 向前（右）移动光标
+- `C-p` :  向上移动光标
+- `C-n` :  向下移动光标
+- `C-b` :  向后（左）移动光标
+- `C-f` :  向前（右）移动光标
 
-它们分别对应了 Vim 中的：k、j、h、l
+它们分别对应了 Vim 中的：k、j、h、l。
 
-其实一些熟悉  Vim 的朋友可以参考 [Spacemacs](https://www.spacemacs.org)的配置文件，这份配置文件配置了Emacs的键位，使它允许你在 Emacs 上使用 Vim 的各种键位。
+其实一些熟悉  Vim 的朋友可以参考 [Spacemacs](https://www.spacemacs.org)的配置文件，这份配置文件使用了 Evil[^note4] 配置了 Emacs  的键位，使它允许你在 Emacs 上使用 Vim 的编辑模式对文本对象进行处理。
+> **Evil** is an **e**xtensible **vi** **l**ayer for Emacs. It provides Vim features like Visual selection and text objects, and is the successor to the now-obsolete [Vimpulse](https://www.emacswiki.org/emacs/Vimpulse) and [vim-mode](https://www.emacswiki.org/emacs/VimMode). 
+>
+> 中译文：
+>
+> **Evil**，即 **e**xtensible **vi** **l**ayer for Emacs，是构建于Emacs之上的模拟层。提供了诸多Vim的特性，比如Visual selection或text objects，算是已经过时的[Vimpulse](https://www.emacswiki.org/emacs/Vimpulse)及[vim-mode](https://www.emacswiki.org/emacs/VimMode)的继承者。
+
+这是 Evil 的[主页](https://github.com/emacs-evil/evil) 。在 Evil 之前，已经有过分别叫做 Vimpulse 和 vim-mode 的 Emacs 插件。但已经年久失修。 
+
 和 [Spacemacs](https://www.spacemacs.org) 同样可以模仿Vim的键位的配置文件叫作 Doom 。由于它已经过久没有维护，所以这里就不再对它进行描述了。
+
 ## 个性化
 
 刚安装好的 Emacs 外观难看且不好使用，因此需要对其进行个性化设置。
@@ -117,9 +126,9 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
 
 有人说 Emacs 是伪装成编译器的一个操作系统。有很多人拥有一份自己维护多年的 Emacs 配置。**但是不要过分依赖 Emacs 的各种配置与插件。在考场上一般是不允许你使用插件的。**
 
-Emacs使用自己的``lisp``方言``emacs-lisp``对自身进行拓展和配置。
+Emacs使用自己的 `lisp` 方言 `emacs-lisp` 对自身进行拓展和配置。
 
-在 home 目录下显示隐藏文件（Windows 系统在 **用户目录** 的 `AppData\Roaming` 目录下。如果在环境变量的系统变量中定义了home,则在该目录下存在.emacs配置文件），".emacs" 就是配置文件（如果没有说明之前没保存），打开修改即可。如果 Emacs 已打开，则需要重启 Emacs，配置才能生效。如果``.emacs``是一个文件夹，那么请你创建文件 ``init.el`` ，在这个文件里进行各种配置。
+在 home 目录下显示隐藏文件（Windows 系统在 **用户目录** 的 `AppData\Roaming` 目录下。如果在环境变量的系统变量中定义了home,则在该目录下存在.emacs配置文件），".emacs" 就是配置文件（如果没有说明之前没保存），打开修改即可。如果 Emacs 已打开，则需要重启 Emacs，配置才能生效。如果`.emacs`是一个文件夹，那么请你创建文件 `init.el` ，在这个文件里进行各种配置。
 
 考场推荐的配置如下。
 
@@ -256,8 +265,24 @@ Emacs使用自己的``lisp``方言``emacs-lisp``对自身进行拓展和配置�
 
 ## 一点点的拓展内容
 
-如上文所说，Emacs就像一个伪装成编辑器的操作系统。它可以作为一款编辑器使用，还可以上网、[煮咖啡](https://zh.wikipedia.org/wiki/Emacs)。它还有一个类似于 ``Markdown`` 但是功能却丰富了很多的文本格式（或者说是功能）-—— ``Org-Mode``。关于它的语法，这里也不多提了。有兴趣的朋友同样可以参考[著名的Emacs入门教程](https://github.com/redguardtoo/mastering-emacs-in-one-year-guide)来学习。这份教程就是 ``Org-mode`` 编写的。（Github也有解析 ``Org-mode`` 的功能。）
+如上文所说，Emacs就像一个伪装成编辑器的操作系统。它可以作为一款编辑器使用，还可以上网[^note2]、煮咖啡[^note3]。它还有一个类似于 `Markdown` 但是功能却丰富了很多的文本格式（或者说是编辑模式）-—— `Org-Mode`。关于它的语法，这里也不多提了。有兴趣的朋友同样可以参考[著名的Emacs入门教程](https://github.com/redguardtoo/mastering-emacs-in-one-year-guide)来学习。这份教程就是 `Org-mode` 编写的。（Github也有解析 `Org-mode` 的功能。）
+
+如果你安装了具有 `gtk` `x` 特性的 Emacs（大部分安装的 Emacs 都具有该特性） 那么当你在终端里输入 `Emacs` 时，往往会打开一个新的窗口，而不是在终端打开它。 那么，你可以加上一个参数 ` -nw` 来在终端打开它。换句话说，你需要在终端输入 `emacs -nw `才能在终端打开它而不打开一个新的窗口。
+
+和 Linux 的各个发行版的软件包镜像相似，Emacs 具有一个中心化的软件仓库 ELPA，Emacs 也有内置的包管理器，用于管理从软件仓库下载下来的 Emacs 的插件。可以在 `emacs.d` 或者 `init.el`中声明式地对它配置，并让它安装插件，也可以通过 `M-x package-install`来安装插件 。你可以根据你的需求设置 `package-archives` 。 ELPA 具有若干个国内的镜像，可以通过镜像列表查看。下面是来自[Emacs-china](https://elpa.emacs-china.org/)的配置示例。
+
+```elisp
+(setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
+                           ("melpa" . "http://elpa.emacs-china.org/melpa/")))
+```
+
+[Emacs-china](https://www.emacs-china.org/) 是一个内容非常丰富的中文 Emacs 论坛。如果有关于 Emacs 的一些问题，可在  [Emacs-china](https://www.emacs-china.org/) 找到答案。另外，个人建议使用 Emacs-china 的镜像：它是 tuna bfsu 镜像源的上游，tuna 提供的镜像难免会出现同步不及时、若干软件包出现问题的情况，而 Emacs-china 相对会好一点。
+
+至于可以提升编辑体验的 language server protocol (即语言服务器)，对于竞赛常用的 C++ 语言来说，值得推荐的后端是 [Clangd](https://clangd.llvm.org/)。至于前端， [Eglot](https://github.com/joaotavora/eglot) 、 [Emacs LSP ](https://emacs-lsp.github.io/lsp-mode/) 都比较适合使用。Eglot 的[此条目](https://github.com/joaotavora/eglot#historical-differences-to-lsp-modeel) 对选择前端作了比较详细的说明。
 
 ## 参考资料与注释
 
 [^note1]: 该键的作用是调出鼠标右键菜单，一般为右<kbd>Ctrl</kbd>左边的第一个键。
+[^note2]: 使用 `M-x eww` 即可使用 Emacs 内置的浏览器。
+[^note3]: 具体参考[维基百科的介绍](https://zh.wikipedia.org/wiki/%E8%B6%85%E6%96%87%E6%9C%AC%E5%92%96%E5%95%A1%E5%A3%B6%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE)。
+[^note4]: 具体参见: [Emacs wiki](https://www.emacswiki.org/emacs/EvilZH) 对 Evil 的介绍。
