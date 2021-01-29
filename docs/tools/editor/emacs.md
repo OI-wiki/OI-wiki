@@ -155,7 +155,7 @@ Emacs使用自己的 `lisp` 方言 `emacs-lisp` 对自身进行拓展和配置�
 ```
 
 ??? "完整配置"
-```emacs-lisp
+    ```emacs-lisp
     ;;设置一键编译
     (defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))
     (global-set-key [f9] 'compile-file)
@@ -260,7 +260,7 @@ Emacs使用自己的 `lisp` 方言 `emacs-lisp` 对自身进行拓展和配置�
     ;;关闭光标闪烁
      '(blink-cursor-mode nil)
     (custom-set-faces)
-```
+    ```
 这里顺便提一下，如果对 Emacs 的配置有兴趣，可以参考一部 [著名的Emacs入门教程](https://github.com/redguardtoo/mastering-emacs-in-one-year-guide) 来进行进一步的学习。
 
 ## 一点点的拓展内容
