@@ -717,7 +717,7 @@ Field name = {field contents},
 
 ```tex
 \bibliographystyle{plain}
-\biblirgraphy{references}
+\bibliography{references}
 ```
 
 参考文献写在 `references.bib` 里。
