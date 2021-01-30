@@ -783,9 +783,9 @@ $$
 
 ## 习题
 
- [HDU3625 Examining the Rooms](http://acm.hdu.edu.cn/showproblem.php?pid=3625) 
- [UOJ540 联合省选2020 组合数问题](https://uoj.ac/problem/540)
- [UOJ269 清华集训2016 如何优雅地求和](https://uoj.ac/problem/269)
+- [HDU3625 Examining the Rooms](http://acm.hdu.edu.cn/showproblem.php?pid=3625) 
+- [UOJ540 联合省选2020 组合数问题](https://uoj.ac/problem/540)
+- [UOJ269 清华集训2016 如何优雅地求和](https://uoj.ac/problem/269)
 
 ## 参考资料与注释
 
