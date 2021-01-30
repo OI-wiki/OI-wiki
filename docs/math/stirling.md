@@ -71,7 +71,7 @@ $$
 如果将下降幂转化为普通幂，则有下面的恒等式：
 
 $$
-x^{\underline{n}}=\sum_{k} \begin{bmatrix}n\\ k\end{bmatrix} (-1)^{n-k} x^k
+x^{\underline{n}}=\sum_{k} \begin{Bmatrix}n\\ k\end{Bmatrix} (-1)^{n-k} x^k
 $$
 
 ## 习题
