@@ -33,7 +33,7 @@ $$
 
 ### 方法 3：拉格朗日插值法
 
-如图所示，将每一个点 $(x_i, y_i)$ 在 $x$ 轴上的投影 $(x_i, 0)$ 记为 $H_i$ 。对每一个 $i$ ，我们选择一个点集 $\lbrace P_i\rbrace \cup \lbrace H_j \vert 1 \le i\le n, j \neq i\rbrace$ ，作过这 $n$ 个点的至多 $n-1$ 次的线 $g_i(x)$ 。图中 $f(x)$ 用黑线表示， $g_i(x)$ 用彩色线表示。
+如图所示，将每一个点 $(x_i, y_i)$ 在 $x$ 轴上的投影 $(x_i, 0)$ 记为 $H_i$ 。对每一个 $i$ ，我们选择一个点集 $\lbrace P_i\rbrace \cup \lbrace H_j \vert 1 \le j\le n, j \neq i\rbrace$ ，作过这 $n$ 个点的至多 $n-1$ 次的线 $g_i(x)$ 。图中 $f(x)$ 用黑线表示， $g_i(x)$ 用彩色线表示。
 
 ![example](./images/lagrange-interpolation.png)
 
