@@ -36,7 +36,7 @@ sudo apt install -y libpng12 libsm6 libice6 libxi6 libxrender1 libxrandr libfree
 wget -c http://download.noi.cn/T/noi/GUIDE-1.0.2-ubuntu.tar
 tar -xvf GUIDE-1.0.2-ubuntu.tar
 cd GUIDE-1.0.2-ubuntu
-echo "install:\n\tinstall -Dm755 -t /usr/bin GUIDE\n\tinstall -Dm644 -t /usr/share/ lang_en.qm\n\tinstall -Dm644 -t /usr/share/ apis\n\tmkdir -p /usr/share/doc/GUIDE/html/\n\tcp -r doc/*  /usr/share/doc/GUIDE/html/" > Makefile
+echo "install:\n\tinstall -Dm755 -t /usr/bin GUIDE\n\tinstall -Dm644 -t /usr/share/ lang_en.qm\n\tmkdir -p /usr/share/apis/ && cp -r apis/* /usr/share/apis/\n\tmkdir -p /usr/share/doc/GUIDE/ && mkdir -p /usr/share/doc/GUIDE/html/ && cp -r doc/*  /usr/share/doc/GUIDE/html/" > Makefile
 sudo apt install -y checkinstall
 sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y
 ```
@@ -52,7 +52,7 @@ sudo zypper install -n {libpng12-0,libSM6,libICE6,libXi6,libXrender1,libXrandr2,
 wget -c http://download.noi.cn/T/noi/GUIDE-1.0.2-ubuntu.tar
 tar -xvf GUIDE-1.0.2-ubuntu.tar
 cd GUIDE-1.0.2-ubuntu
-echo "install:\n\tinstall -Dm755 -t /usr/bin GUIDE\n\tinstall -Dm644 -t /usr/share/ lang_en.qm\n\tinstall -Dm644 -t /usr/share/ apis\n\tmkdir -p /usr/share/doc/GUIDE/html/\n\tcp -r doc/*  /usr/share/doc/GUIDE/html/" > Makefile
+echo "install:\n\tinstall -Dm755 -t /usr/bin GUIDE\n\tinstall -Dm644 -t /usr/share/ lang_en.qm\n\tmkdir -p /usr/share/apis/ && cp -r apis/* /usr/share/apis/\n\tmkdir -p /usr/share/doc/GUIDE/ && mkdir -p /usr/share/doc/GUIDE/html/ && cp -r doc/*  /usr/share/doc/GUIDE/html/" > Makefile
 sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y -rpmi
 ```
 
