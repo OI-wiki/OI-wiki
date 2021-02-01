@@ -78,7 +78,7 @@ $$
 
 假设此时 $pat$ 向下滑动的 $k$ 个字符（也即 $pat$ 末尾端的 $subpat$ 与其最右边的合理重现的距离），这样我们的注意力应该沿着 $string$ 向后滑动 $k+m$ 个字符，这段距离我们称之为 $delta_2(j)$ ：
 
-假定 $rpr(j)$ 为 $subpat=pat[j+1\dots patlastpos]$ 在 $pat[j]$ 上失配时的最右边合理重现的位置，$rpr(j) \lt j$（这里只给出简单定义，在下文的算法设计章节里会有更精确的讨论），那么显然 $k=j-rpr(j),\ m=patlastpos-j$ 。
+假定 $rpr(j)$ 为 $subpat=pat[j+1\dots patlastpos]$ 在 $pat[j]$ 上失配时的最右边合理重现的位置，$rpr(j) < j$（这里只给出简单定义，在下文的算法设计章节里会有更精确的讨论），那么显然 $k=j-rpr(j),\ m=patlastpos-j$ 。
 
 所以有：
 
@@ -207,7 +207,7 @@ $$
     原因是 $pat[j]$ 本身是失配字符，所以 $pat$ 向下滑动 $k$ 个字符后，在后缀匹配过程中仍然会在 $pat[k-1]$ 处失配。
 
 还要注意两个限制条件：
-1. $k \lt j$ 。因为当 $k=j$ 时，有 $pat[k]=pat[j]$ ， 在 $pat[j]$ 上失配的字符也会在 $pat[k]$ 上失配。
+1. $k < j$ 。因为当 $k=j$ 时，有 $pat[k]=pat[j]$ ， 在 $pat[j]$ 上失配的字符也会在 $pat[k]$ 上失配。
 2. 考虑到 $delta_2(patlastpos)= 0$ ，所以规定 $rpr(patlastpos) = patlastpos$ 。
 
 由于理解 $rpr(j)$ 是实现 BoyerMoore 算法的核心，所以我们使用如下两个例子进行详细说明：

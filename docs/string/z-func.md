@@ -12,9 +12,9 @@ author: LeoJacob, TrisolarisHD, minghu6
 
 下面若干样例展示了对于不同字符串的 Z 函数：
 
--  $z(\mathtt{aaaaa}) = [0, 4, 3, 2, 1]$ 
--  $z(\mathtt{aaabaab}) = [0, 2, 1, 0, 2, 1, 0]$ 
--  $z(\mathtt{abacaba}) = [0, 0, 1, 0, 3, 0, 1]$ 
+-  $z(\mathtt{aaaaa}) = [0, 4, 3, 2, 1]$
+-  $z(\mathtt{aaabaab}) = [0, 2, 1, 0, 2, 1, 0]$
+-  $z(\mathtt{abacaba}) = [0, 0, 1, 0, 3, 0, 1]$
 
 ## 朴素算法
 
@@ -71,7 +71,7 @@ vector<int> z_function(string s) {
 
 ## 复杂度分析
 
-对于内层 `while` 循环，每次执行都会使得 $r$ 向后移至少 $1$ 位，而 $r\lt n-1$ ，所以总共只会执行 $n$ 次。
+对于内层 `while` 循环，每次执行都会使得 $r$ 向后移至少 $1$ 位，而 $r< n-1$ ，所以总共只会执行 $n$ 次。
 
 对于外层循环，只有一遍线性遍历。
 
@@ -119,14 +119,14 @@ vector<int> z_function(string s) {
 
 ## 练习题目
 
--  [CF126B Password](http://codeforces.com/problemset/problem/126/B) 
--  [UVA # 455 Periodic Strings](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396) 
--  [UVA # 11022 String Factoring](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963) 
--  [UVa 11475 - Extend to Palindrome](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2470) 
--  [LA 6439 - Pasti Pas!](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=588&page=show_problem&problem=4450) 
--  [Codechef - Chef and Strings](https://www.codechef.com/problems/CHSTR) 
--  [Codeforces - Prefixes and Suffixes](http://codeforces.com/problemset/problem/432/D) 
+-  [CF126B Password](http://codeforces.com/problemset/problem/126/B)
+-  [UVA # 455 Periodic Strings](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
+-  [UVA # 11022 String Factoring](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
+-  [UVa 11475 - Extend to Palindrome](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2470)
+-  [LA 6439 - Pasti Pas!](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=588&page=show_problem&problem=4450)
+-  [Codechef - Chef and Strings](https://www.codechef.com/problems/CHSTR)
+-  [Codeforces - Prefixes and Suffixes](http://codeforces.com/problemset/problem/432/D)
 
 * * *
 
- **本页面主要译自博文 [Z-функция строки и её вычисление](http://e-maxx.ru/algo/z_function) 与其英文翻译版 [Z-function and its calculation](https://cp-algorithms.com/string/z-function.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ **本页面主要译自博文 [Z-функция строки и её вычисление](http://e-maxx.ru/algo/z_function) 与其英文翻译版 [Z-function and its calculation](https://cp-algorithms.com/string/z-function.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
