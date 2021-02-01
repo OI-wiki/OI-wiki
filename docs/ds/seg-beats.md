@@ -431,17 +431,17 @@ $$
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-char nc() {
-  static char buf[1000000], *p = buf, *q = buf;
-  return p == q && (q = (p = buf) + fread(buf, 1, 1000000, stdin), p == q)
-             ? EOF
-             : *p++;
+char nc(){
+	static char buf[1000000], *p = buf, *q = buf;
+	return p == q && (q = (p = buf) + fread(buf, 1, 1000000, stdin), p == q)
+					? EOF
+					: *p++;
 }
 inline ll rd(){//LLONG_MIN LMAX=9,223,372,036,854,775,807
-    ll s=0,w=1;char ch=nc();
-    while(ch<'0'||ch>'9'){if(ch=='-')w=-1;ch=nc();}
-    while(ch>='0' && ch<='9')s=s*10+ch-'0',ch=nc();
-    return s*w;
+	ll s=0,w=1;char ch=nc();
+	while(ch<'0'||ch>'9'){if(ch=='-')w=-1;ch=nc();}
+	while(ch>='0' && ch<='9')s=s*10+ch-'0',ch=nc();
+	return s*w;
 }
 const int N=1e5+7;
 struct Tree{
