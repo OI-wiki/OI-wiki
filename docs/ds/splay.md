@@ -104,18 +104,18 @@ void ins(int k) {
     maintain(rt);
     return;
   }
-  int cnr = rt, f = 0;
+  int cur = rt, f = 0;
   while (1) {
-    if (val[cnr] == k) {
-      cnt[cnr]++;
-      maintain(cnr);
+    if (val[cur] == k) {
+      cnt[cur]++;
+      maintain(cur);
       maintain(f);
-      splay(cnr);
+      splay(cur);
       break;
     }
-    f = cnr;
-    cnr = ch[cnr][val[cnr] < k];
-    if (!cnr) {
+    f = cur;
+    cur = ch[cur][val[cur] < k];
+    if (!cur) {
       val[++tot] = k;
       cnt[tot]++;
       fa[tot] = f;
@@ -141,18 +141,18 @@ void ins(int k) {
 
 ```cpp
 int rk(int k) {
-  int res = 0, cnr = rt;
+  int res = 0, cur = rt;
   while (1) {
-    if (k < val[cnr]) {
-      cnr = ch[cnr][0];
+    if (k < val[cur]) {
+      cur = ch[cur][0];
     } else {
-      res += sz[ch[cnr][0]];
-      if (k == val[cnr]) {
-        splay(cnr);
+      res += sz[ch[cur][0]];
+      if (k == val[cur]) {
+        splay(cur);
         return res + 1;
       }
-      res += cnt[cnr];
-      cnr = ch[cnr][1];
+      res += cnt[cur];
+      cur = ch[cur][1];
     }
   }
 }
@@ -167,17 +167,17 @@ int rk(int k) {
 
 ```cpp
 int kth(int k) {
-  int cnr = rt;
+  int cur = rt;
   while (1) {
-    if (ch[cnr][0] && k <= sz[ch[cnr][0]]) {
-      cnr = ch[cnr][0];
+    if (ch[cur][0] && k <= sz[ch[cur][0]]) {
+      cur = ch[cur][0];
     } else {
-      k -= cnt[cnr] + sz[ch[cnr][0]];
+      k -= cnt[cur] + sz[ch[cur][0]];
       if (k <= 0) {
-        splay(cnr);
-        return val[cnr];
+        splay(cur);
+        return val[cur];
       }
-      cnr = ch[cnr][1];
+      cur = ch[cur][1];
     }
   }
 }
@@ -189,10 +189,10 @@ int kth(int k) {
 
 ```cpp
 int pre() {
-  int cnr = ch[rt][0];
-  while (ch[cnr][1]) cnr = ch[cnr][1];
-  splay(cnr);
-  return cnr;
+  int cur = ch[rt][0];
+  while (ch[cur][1]) cur = ch[cur][1];
+  splay(cur);
+  return cur;
 }
 ```
 
@@ -202,10 +202,10 @@ int pre() {
 
 ```cpp
 int nxt() {
-  int cnr = ch[rt][1];
-  while (ch[cnr][0]) cnr = ch[cnr][0];
-  splay(cnr);
-  return cnr;
+  int cur = ch[rt][1];
+  while (ch[cur][0]) cur = ch[cur][0];
+  splay(cur);
+  return cur;
 }
 ```
 
@@ -239,23 +239,23 @@ void del(int k) {
     return;
   }
   if (!ch[rt][0]) {
-    int cnr = rt;
+    int cur = rt;
     rt = ch[rt][1];
     fa[rt] = 0;
-    clear(cnr);
+    clear(cur);
     return;
   }
   if (!ch[rt][1]) {
-    int cnr = rt;
+    int cur = rt;
     rt = ch[rt][0];
     fa[rt] = 0;
-    clear(cnr);
+    clear(cur);
     return;
   }
-  int cnr = rt, x = pre();
-  fa[ch[cnr][1]] = x;
-  ch[x][1] = ch[cnr][1];
-  clear(cnr);
+  int cur = rt, x = pre();
+  fa[ch[cur][1]] = x;
+  ch[x][1] = ch[cur][1];
+  clear(cur);
   maintain(rt);
 }
 ```
@@ -296,18 +296,18 @@ struct Splay {
       maintain(rt);
       return;
     }
-    int cnr = rt, f = 0;
+    int cur = rt, f = 0;
     while (1) {
-      if (val[cnr] == k) {
-        cnt[cnr]++;
-        maintain(cnr);
+      if (val[cur] == k) {
+        cnt[cur]++;
+        maintain(cur);
         maintain(f);
-        splay(cnr);
+        splay(cur);
         break;
       }
-      f = cnr;
-      cnr = ch[cnr][val[cnr] < k];
-      if (!cnr) {
+      f = cur;
+      cur = ch[cur][val[cur] < k];
+      if (!cur) {
         val[++tot] = k;
         cnt[tot]++;
         fa[tot] = f;
@@ -320,47 +320,47 @@ struct Splay {
     }
   }
   int rk(int k) {
-    int res = 0, cnr = rt;
+    int res = 0, cur = rt;
     while (1) {
-      if (k < val[cnr]) {
-        cnr = ch[cnr][0];
+      if (k < val[cur]) {
+        cur = ch[cur][0];
       } else {
-        res += sz[ch[cnr][0]];
-        if (k == val[cnr]) {
-          splay(cnr);
+        res += sz[ch[cur][0]];
+        if (k == val[cur]) {
+          splay(cur);
           return res + 1;
         }
-        res += cnt[cnr];
-        cnr = ch[cnr][1];
+        res += cnt[cur];
+        cur = ch[cur][1];
       }
     }
   }
   int kth(int k) {
-    int cnr = rt;
+    int cur = rt;
     while (1) {
-      if (ch[cnr][0] && k <= sz[ch[cnr][0]]) {
-        cnr = ch[cnr][0];
+      if (ch[cur][0] && k <= sz[ch[cur][0]]) {
+        cur = ch[cur][0];
       } else {
-        k -= cnt[cnr] + sz[ch[cnr][0]];
+        k -= cnt[cur] + sz[ch[cur][0]];
         if (k <= 0) {
-          splay(cnr);
-          return val[cnr];
+          splay(cur);
+          return val[cur];
         }
-        cnr = ch[cnr][1];
+        cur = ch[cur][1];
       }
     }
   }
   int pre() {
-    int cnr = ch[rt][0];
-    while (ch[cnr][1]) cnr = ch[cnr][1];
-    splay(cnr);
-    return cnr;
+    int cur = ch[rt][0];
+    while (ch[cur][1]) cur = ch[cur][1];
+    splay(cur);
+    return cur;
   }
   int nxt() {
-    int cnr = ch[rt][1];
-    while (ch[cnr][0]) cnr = ch[cnr][0];
-    splay(cnr);
-    return cnr;
+    int cur = ch[rt][1];
+    while (ch[cur][0]) cur = ch[cur][0];
+    splay(cur);
+    return cur;
   }
   void del(int k) {
     rk(k);
@@ -375,24 +375,24 @@ struct Splay {
       return;
     }
     if (!ch[rt][0]) {
-      int cnr = rt;
+      int cur = rt;
       rt = ch[rt][1];
       fa[rt] = 0;
-      clear(cnr);
+      clear(cur);
       return;
     }
     if (!ch[rt][1]) {
-      int cnr = rt;
+      int cur = rt;
       rt = ch[rt][0];
       fa[rt] = 0;
-      clear(cnr);
+      clear(cur);
       return;
     }
-    int cnr = rt;
+    int cur = rt;
     int x = pre();
-    fa[ch[cnr][1]] = x;
-    ch[x][1] = ch[cnr][1];
-    clear(cnr);
+    fa[ch[cur][1]] = x;
+    ch[x][1] = ch[cur][1];
+    clear(cur);
     maintain(rt);
   }
 } tree;
