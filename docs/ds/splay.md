@@ -48,7 +48,7 @@ void clear(int x) { ch[x][0] = ch[x][1] = fa[x] = val[x] = sz[x] = cnt[x] = 0; }
 
  **具体分析旋转步骤** （假设需要旋转的节点为 $x$ ，其父亲为 $y$ ，以右旋为例）
 
-1. 将 $y$ 的左儿子指向 $x$ 的右儿子，且 $x$ 的右儿子的父亲指向 $y$ ； `ch[y][0]=ch[x][1]; fa[ch[x][1]]=y;` 
+1. 将 $y$ 的左儿子指向 $x$ 的右儿子，且 $x$ 的右儿子（如果 $x$ 有右儿子的话）的父亲指向 $y$ ； `ch[y][0]=ch[x][1]; fa[ch[x][1]]=y;` 
 2. 将 $x$ 的右儿子指向 $y$ ，且 $y$ 的父亲指向 $x$ ； `ch[x][chk^1]=y; fa[y]=x;` 
 3. 如果原来的 $y$ 还有父亲 $z$ ，那么把 $z$ 的某个儿子（原来 $y$ 所在的儿子位置）指向 $x$ ，且 $x$ 的父亲指向 $z$ 。 `fa[x]=z; if(z) ch[z][y==ch[z][1]]=x;` 
 
@@ -56,7 +56,7 @@ void clear(int x) { ch[x][0] = ch[x][1] = fa[x] = val[x] = sz[x] = cnt[x] = 0; }
 void rotate(int x) {
   int y = fa[x], z = fa[y], chk = get(x);
   ch[y][chk] = ch[x][chk ^ 1];
-  fa[ch[x][chk ^ 1]] = y;
+  if (ch[x][chk ^ 1]) fa[ch[x][chk ^ 1]] = y;
   ch[x][chk ^ 1] = y;
   fa[y] = x;
   fa[x] = z;
@@ -275,7 +275,7 @@ struct Splay {
   void rotate(int x) {
     int y = fa[x], z = fa[y], chk = get(x);
     ch[y][chk] = ch[x][chk ^ 1];
-    fa[ch[x][chk ^ 1]] = y;
+    if (ch[x][chk ^ 1]) fa[ch[x][chk ^ 1]] = y;
     ch[x][chk ^ 1] = y;
     fa[y] = x;
     fa[x] = z;
