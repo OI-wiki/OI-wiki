@@ -32,6 +32,16 @@ $$
 
 证毕。
 
+也可用归纳法证明：
+
+显然 $1^p\equiv 1\pmod p$ ，假设 $a^p\equiv a\pmod p$ 成立，那么通过二项式定理有
+
+$$
+(a+1)^p=a^p+\binom{p}{1}a^{p-1}+\binom{p}{2}a^{p-2}+\cdots +\binom{p}{p-1}a+1
+$$
+
+因为 $\binom{p}{k}=\frac{p(p-1)\cdots (p-k+1)}{k!}$ 对于 $1\leq k\leq p-1$ 成立，在模 $p$ 意义下 $\binom{p}{1}\equiv \binom{p}{2}\equiv \cdots \equiv \binom{p}{p-1}\equiv 0\pmod p$ ，那么 $(a+1)^p \equiv a^p +1\pmod p$ ，将 $a^p\equiv a\pmod p$ 带入得 $(a+1)^p\equiv a+1\pmod p$ 得证。
+
 ## 欧拉定理
 
 在了解欧拉定理（Euler's theorem）之前，请先了解 [欧拉函数](./euler.md) 。定理内容如下：
@@ -78,7 +88,7 @@ $$
 
     所以 $p^r\equiv p^{r+s}\pmod m$ ，这里 $s=\varphi(m)$ 
 
-3.  推论： $p^b\equiv p^{r+(b-r) \mod \varphi(m)}\pmod m$ 
+3. 推论： $p^b\equiv p^{r+(b-r) \mod \varphi(m)}\pmod m$ 
 
 4.  又由于 $m=p^rm'$ ，所以 $\varphi(m) \ge  \varphi(p^r)=p^{r-1}(p-1) \ge r$ 
 
@@ -108,8 +118,8 @@ $$
 
 ## 习题
 
-1.   [SPOJ #4141 "Euler Totient Function"\[Difficulty: CakeWalk\]](http://www.spoj.com/problems/ETF/) 
-2.   [UVA #10179 "Irreducible Basic Fractions"\[Difficulty: Easy\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1120) 
-3.   [UVA #10299 "Relatives"\[Difficulty: Easy\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1240) 
-4.   [UVA #11327 "Enumerating Rational Numbers"\[Difficulty: Medium\]](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2302) 
-5.   [TIMUS #1673 "Admission to Exam"\[Difficulty: High\]](http://acm.timus.ru/problem.aspx?space=1&num=1673) 
+1.  [SPOJ #4141 "Euler Totient Function"\[Difficulty: CakeWalk\]](http://www.spoj.com/problems/ETF/) 
+2.  [UVA #10179 "Irreducible Basic Fractions"\[Difficulty: Easy\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1120) 
+3.  [UVA #10299 "Relatives"\[Difficulty: Easy\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1240) 
+4.  [UVA #11327 "Enumerating Rational Numbers"\[Difficulty: Medium\]](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2302) 
+5.  [TIMUS #1673 "Admission to Exam"\[Difficulty: High\]](http://acm.timus.ru/problem.aspx?space=1&num=1673) 

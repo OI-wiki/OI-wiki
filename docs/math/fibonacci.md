@@ -14,13 +14,13 @@ $$
 
 斐波那契数列拥有许多有趣的性质，这里列举出一部分简单的性质：
 
-1.  卡西尼性质（Cassini's identity）： $F_{n-1} F_{n+1} - F_n^2 = (-1)^n$ 。
-2.  附加性质： $F_{n+k} = F_k F_{n+1} + F_{k-1} F_n$ 。
-3.  取上一条性质中 $k = n$ ，我们得到 $F_{2n} = F_n (F_{n+1} + F_{n-1})$ 。
-4.  由上一条性质可以归纳证明， $\forall k\in \mathbb{N},F_n|F_{nk}$ 。
-5.  上述性质可逆，即 $\forall F_a|F_b,a|b$ 。
-6.  GCD 性质： $(F_m, F_n) = F_{(m, n)}$ 。
-7.  以斐波那契数列相邻两项作为输入会使欧几里德算法达到最坏复杂度（具体参见 [维基 - 拉梅](https://en.wikipedia.org/wiki/Gabriel_Lam%C3%A9) ）。
+1. 卡西尼性质（Cassini's identity）： $F_{n-1} F_{n+1} - F_n^2 = (-1)^n$ 。
+2. 附加性质： $F_{n+k} = F_k F_{n+1} + F_{k-1} F_n$ 。
+3. 取上一条性质中 $k = n$ ，我们得到 $F_{2n} = F_n (F_{n+1} + F_{n-1})$ 。
+4. 由上一条性质可以归纳证明， $\forall k\in \mathbb{N},F_n|F_{nk}$ 。
+5. 上述性质可逆，即 $\forall F_a|F_b,a|b$ 。
+6. GCD 性质： $(F_m, F_n) = F_{(m, n)}$ 。
+7. 以斐波那契数列相邻两项作为输入会使欧几里德算法达到最坏复杂度（具体参见 [维基 - 拉梅](https://en.wikipedia.org/wiki/Gabriel_Lam%C3%A9) ）。
 
 ## 斐波那契编码
 
@@ -35,22 +35,22 @@ $$
 于是我们可以用 $d_0 d_1 d_2 \dots d_s 1$ 的编码表示一个正整数，其中 $d_i=1$ 则表示 $F_{i+2}$ 被使用。编码末位我们强制给它加一个 1（这样会出现两个相邻的 1），表示这一串编码结束。举几个例子：
 
 $$
-\begin{eqnarray}
+\begin{aligned}
 1 &=& 1 &=& F_2 &=& (11)_F \\
 2 &=& 2 &=& F_3 &=& (011)_F \\
 6 &=& 5 + 1 &=& F_5 + F_2 &=& (10011)_F \\
 8 &=& 8 &=& F_6 &=& (000011)_F \\
 9 &=& 8 + 1 &=& F_6 + F_2 &=& (100011)_F \\
 19 &=& 13 + 5 + 1 &=& F_7 + F_5 + F_2 &=& (1001011)_F
-\end{eqnarray}
+\end{aligned}
 $$
 
 给 $n$ 编码的过程可以使用贪心算法解决：
 
-1.  从大到小枚举斐波那契数 $F_i$ ，直到 $F_i\le n$ 。
-2.  把 $n$ 减掉 $F_i$ ，在编码的 $i-2$ 的位置上放一个 1（编码从左到右以 0 为起点）。
-3.  如果 $n$ 为正，回到步骤 1。
-4.  最后在编码末位添加一个 1，表示编码的结束位置。
+1. 从大到小枚举斐波那契数 $F_i$ ，直到 $F_i\le n$ 。
+2. 把 $n$ 减掉 $F_i$ ，在编码的 $i-2$ 的位置上放一个 1（编码从左到右以 0 为起点）。
+3. 如果 $n$ 为正，回到步骤 1。
+4. 最后在编码末位添加一个 1，表示编码的结束位置。
 
 解码过程同理，先删掉末位的 1，对于编码为 1 的位置 $i$ （编码从左到右以 0 为起点），累加一个 $F_{i+2}$ 到答案。最后的答案就是原数字。
 
@@ -134,9 +134,9 @@ $$
 
 ## 习题
 
--    [SPOJ - Euclid Algorithm Revisited](http://www.spoj.com/problems/MAIN74/) 
--    [SPOJ - Fibonacci Sum](http://www.spoj.com/problems/FIBOSUM/) 
--    [HackerRank - Is Fibo](https://www.hackerrank.com/contests/codesprint5/challenges/is-fibo/problem) 
+-  [SPOJ - Euclid Algorithm Revisited](http://www.spoj.com/problems/MAIN74/) 
+-  [SPOJ - Fibonacci Sum](http://www.spoj.com/problems/FIBOSUM/) 
+-  [HackerRank - Is Fibo](https://www.hackerrank.com/contests/codesprint5/challenges/is-fibo/problem) 
 -    [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem) 
 
      **本页面主要译自博文 [Числа Фибоначчи](http://e-maxx.ru/algo/fibonacci_numbers) 与其英文翻译版 [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

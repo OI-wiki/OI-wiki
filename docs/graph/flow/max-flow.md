@@ -28,9 +28,9 @@
 
 我们从 $4$ 到 $3$ ，肯定可以先从流量为 $20$ 的这条边先走。那么这条边就被走掉了，不能再选，总的流量为 $20$ （现在）。然后我们可以这样选择：
 
-1.   $4\rightarrow2\rightarrow3$ 这条 **增广路** 的总流量为 $20$ 。到 $2$ 的时候还是 $30$ ，到 $3$ 了就只有 $20$ 了。
+1.  $4\rightarrow2\rightarrow3$ 这条 **增广路** 的总流量为 $20$ 。到 $2$ 的时候还是 $30$ ，到 $3$ 了就只有 $20$ 了。
 
-2.   $4\rightarrow2\rightarrow1\rightarrow3$ 这样子我们就很好的保留了 $30$ 的流量。
+2.  $4\rightarrow2\rightarrow1\rightarrow3$ 这样子我们就很好的保留了 $30$ 的流量。
 
 所以我们这张图的最大流就应该是 $20+30=50$ 。
 
@@ -40,9 +40,9 @@
 
 这个算法很简单，就是 BFS **找增广路** ，然后对其进行 **增广** 。你可能会问，怎么找？怎么增广？
 
-1.  找？我们就从源点一直 BFS 走来走去，碰到汇点就停，然后增广（每一条路都要增广）。我们在 BFS 的时候就注意一下流量合不合法就可以了。
+1. 找？我们就从源点一直 BFS 走来走去，碰到汇点就停，然后增广（每一条路都要增广）。我们在 BFS 的时候就注意一下流量合不合法就可以了。
 
-2.  增广？其实就是按照我们找的增广路在重新走一遍。走的时候把这条路的能够成的最大流量减一减，然后给答案加上最小流量就可以了。
+2. 增广？其实就是按照我们找的增广路在重新走一遍。走的时候把这条路的能够成的最大流量减一减，然后给答案加上最小流量就可以了。
 
 再讲一下 **反向边** 。增广的时候要注意建造反向边，原因是这条路不一定是最优的，这样子程序可以进行反悔。假如我们对这条路进行增广了，那么其中的每一条边的反向边的流量就是它的流量。
 
@@ -52,65 +52,70 @@
 
 EK 算法的时间复杂度为 $O(nm^2)$ （其中 $n$ 为点数， $m$ 为边数）。效率还有很大提升空间。
 
-```cpp
-#define maxn 250
-#define INF 0x3f3f3f3f
-
-struct Edge {
-  int from, to, cap, flow;
-  Edge(int u, int v, int c, int f) : from(u), to(v), cap(c), flow(f) {}
-};
-
-struct EK {
-  int n, m;
-  vector<Edge> edges;
-  vector<int> G[maxn];
-  int a[maxn], p[maxn];
-
-  void init(int n) {
-    for (int i = 0; i < n; i++) G[i].clear();
-    edges.clear();
-  }
-
-  void AddEdge(int from, int to, int cap) {
-    edges.push_back(Edge(from, to, cap, 0));
-    edges.push_back(Edge(to, from, 0, 0));
-    m = edges.size();
-    G[from].push_back(m - 2);
-    G[to].push_back(m - 1);
-  }
-
-  int Maxflow(int s, int t) {
-    int flow = 0;
-    for (;;) {
-      memset(a, 0, sizeof(a));
-      queue<int> Q;
-      Q.push(s);
-      a[s] = INF;
-      while (!Q.empty()) {
-        int x = Q.front();
-        Q.pop();
-        for (int i = 0; i < G[x].size(); i++) {
-          Edge& e = edges[G[x][i]];
-          if (!a[e.to] && e.cap > e.flow) {
-            p[e.to] = G[x][i];
-            a[e.to] = min(a[x], e.cap - e.flow);
-            Q.push(e.to);
+??? note "参考代码"
+    ```cpp
+    #define maxn 250
+    #define INF 0x3f3f3f3f
+    
+    struct Edge {
+      int from, to, cap, flow;
+      Edge(int u, int v, int c, int f) : from(u), to(v), cap(c), flow(f) {}
+    };
+    
+    struct EK {
+      int n, m;             // n：点数，m：边数
+      vector<Edge> edges;   // edges：所有边的集合
+      vector<int> G[maxn];  // G：点 x -> x 的所有边在 edges 中的下标
+      int a[maxn], p[maxn];  // a：点 x -> BFS 过程中最近接近点 x 的边给它的最大流
+                             // p：点 x -> BFS 过程中最近接近点 x 的边
+    
+      void init(int n) {
+        for (int i = 0; i < n; i++) G[i].clear();
+        edges.clear();
+      }
+    
+      void AddEdge(int from, int to, int cap) {
+        edges.push_back(Edge(from, to, cap, 0));
+        edges.push_back(Edge(to, from, 0, 0));
+        m = edges.size();
+        G[from].push_back(m - 2);
+        G[to].push_back(m - 1);
+      }
+    
+      int Maxflow(int s, int t) {
+        int flow = 0;
+        for (;;) {
+          memset(a, 0, sizeof(a));
+          queue<int> Q;
+          Q.push(s);
+          a[s] = INF;
+          while (!Q.empty()) {
+            int x = Q.front();
+            Q.pop();
+            for (int i = 0; i < G[x].size(); i++) {  // 遍历以 x 作为起点的边
+              Edge& e = edges[G[x][i]];
+              if (!a[e.to] && e.cap > e.flow) {
+                p[e.to] = G[x][i];  // G[x][i] 是最近接近点 e.to 的边
+                a[e.to] =
+                    min(a[x], e.cap - e.flow);  // 最近接近点 e.to 的边赋给它的流
+                Q.push(e.to);
+              }
+            }
+            if (a[t]) break;  // 如果汇点接受到了流，就退出 BFS
           }
+          if (!a[t])
+            break;  // 如果汇点没有接受到流，说明源点和汇点不在同一个连通分量上
+          for (int u = t; u != s;
+               u = edges[p[u]].from) {  // 通过 u 追寻 BFS 过程中 s -> t 的路径
+            edges[p[u]].flow += a[t];      // 增加路径上边的 flow 值
+            edges[p[u] ^ 1].flow -= a[t];  // 减小反向路径的 flow 值
+          }
+          flow += a[t];
         }
-        if (a[t]) break;
+        return flow;
       }
-      if (!a[t]) break;
-      for (int u = t; u != s; u = edges[p[u]].from) {
-        edges[p[u]].flow += a[t];
-        edges[p[u] ^ 1].flow -= a[t];
-      }
-      flow += a[t];
-    }
-    return flow;
-  }
-};
-```
+    };
+    ```
 
 ### Dinic 算法
 
@@ -118,8 +123,8 @@ struct EK {
 
 通过分层，我们可以干两件事情：
 
-1.  如果不存在到汇点的增广路（即汇点的层数不存在），我们即可停止增广。
-2.  确保我们找到的增广路是最短的。（原因见下文）
+1. 如果不存在到汇点的增广路（即汇点的层数不存在），我们即可停止增广。
+2. 确保我们找到的增广路是最短的。（原因见下文）
 
 接下来是 DFS 找增广路的过程。
 
@@ -127,208 +132,254 @@ struct EK {
 
 Dinic 算法有两个优化：
 
-1.   **多路增广** ：每次找到一条增广路的时候，如果残余流量没有用完怎么办呢？我们可以利用残余部分流量，再找出一条增广路。这样就可以在一次 DFS 中找出多条增广路，大大提高了算法的效率。
-2.   **当前弧优化** ：如果一条边已经被增广过，那么它就没有可能被增广第二次。那么，我们下一次进行增广的时候，就可以不必再走那些已经被增广过的边。
+1.  **多路增广** ：每次找到一条增广路的时候，如果残余流量没有用完怎么办呢？我们可以利用残余部分流量，再找出一条增广路。这样就可以在一次 DFS 中找出多条增广路，大大提高了算法的效率。
+2.  **当前弧优化** ：如果一条边已经被增广过，那么它就没有可能被增广第二次。那么，我们下一次进行增广的时候，就可以不必再走那些已经被增广过的边。
 
-设点数为 $n$ ，边数为 $m$ ，那么 Dinic 算法的时间复杂度是 $O(n^{2}m)$ ，在稀疏图上效率和 EK 算法相当，但在稠密图上效率要比 EK 算法高很多。
+#### 时间复杂度
 
-特别地，在求解二分图最大匹配问题时，可以证明 Dinic 算法的时间复杂度是 $O(m\sqrt{n})$ 。
+设点数为 $n$ ，边数为 $m$ ，那么 Dinic 算法的时间复杂度（在应用上面两个优化的前提下）是 $O(n^{2}m)$ ，在稀疏图上效率和 EK 算法相当，但在稠密图上效率要比 EK 算法高很多。
 
-```cpp
-#define maxn 250
-#define INF 0x3f3f3f3f
+首先考虑单轮增广的过程。在应用了 **当前弧优化** 的前提下，对于每个点，我们维护下一条可以增广的边，而当前弧最多变化 $m$ 次，从而单轮增广的最坏时间复杂度为 $O(nm)$ 。
 
-struct Edge {
-  int from, to, cap, flow;
-  Edge(int u, int v, int c, int f) : from(u), to(v), cap(c), flow(f) {}
-};
+接下来我们证明，最多只需 $n-1$ 轮增广即可得到最大流。
 
-struct Dinic {
-  int n, m, s, t;
-  vector<Edge> edges;
-  vector<int> G[maxn];
-  int d[maxn], cur[maxn];
-  bool vis[maxn];
+我们先回顾下 Dinic 的增广过程。对于每个点，Dinic 只会找比该点层数多 $1$ 的点进行增广。
 
-  void init(int n) {
-    for (int i = 0; i < n; i++) G[i].clear();
-    edges.clear();
-  }
+首先容易发现，对于图上的每个点，一轮增广后其层数一定不会减小。而对于汇点 $t$ ，情况会特殊一些，其层数在一轮增广后一定增大。
 
-  void AddEdge(int from, int to, int cap) {
-    edges.push_back(Edge(from, to, cap, 0));
-    edges.push_back(Edge(to, from, 0, 0));
-    m = edges.size();
-    G[from].push_back(m - 2);
-    G[to].push_back(m - 1);
-  }
+对于后者，我们考虑用反证法证明。如果 $t$ 的层数在一轮增广后不变，则意味着在上一次增广中，仍然存在着一条从 $s$ 到 $t$ 的增广路，且该增广路上相邻两点间的层数差为 $1$ 。这条增广路应该在上一次增广过程中就被增广了，这就出现了矛盾。
 
-  bool BFS() {
-    memset(vis, 0, sizeof(vis));
-    queue<int> Q;
-    Q.push(s);
-    d[s] = 0;
-    vis[s] = 1;
-    while (!Q.empty()) {
-      int x = Q.front();
-      Q.pop();
-      for (int i = 0; i < G[x].size(); i++) {
-        Edge& e = edges[G[x][i]];
-        if (!vis[e.to] && e.cap > e.flow) {
-          vis[e.to] = 1;
-          d[e.to] = d[x] + 1;
-          Q.push(e.to);
+从而我们证明了汇点的层数在一轮增广后一定增大，即增广过程最多进行 $n-1$ 次。
+
+综上 Dinic 的最坏时间复杂度为 $O(n^{2}m)$ 。事实上在一般的网络上，Dinic 算法往往达不到这个上界。
+
+特别地，在求解二分图最大匹配问题时，Dinic 算法的时间复杂度是 $O(m\sqrt{n})$ 。接下来我们将给出证明。
+
+首先我们来简单归纳下求解二分图最大匹配问题时，建立的网络的特点。我们发现这个网络中，所有边的流量均为 $1$ ，且除了源点和汇点外的所有点，都满足入边最多只有一条，或出边最多只有一条。我们称这样的网络为 **单位网络** 。
+
+对于单位网络，一轮增广的时间复杂度为 $O(m)$ ，因为每条边只会被考虑最多一次。
+
+接下来我们试着求出增广轮数的上界。假设我们已经先完成了前 $\sqrt{n}$ 轮增广，因为汇点的层数在每次增广后均严格增加，因此所有长度不超过 $\sqrt{n}$ 的增广路都已经在之前的增广过程中被增广。设前 $\sqrt{n}$ 轮增广后，网络的流量为 $f$ ，而整个网络的最大流为 $f'$ ，设两者间的差值 $d=f'-f$ 。
+
+因为网络上所有边的流量均为 $1$ ，所以我们还需要找到 $d$ 条增广路才能找到网络最大流。又因为单位网络的特点，这些增广路不会在源点和汇点以外的点相交。因此这些增广路至少经过了 $d\sqrt{n}$ 个点（每条增广路的长度至少为 $\sqrt{n}$ ），且不能超过 $n$ 个点。因此残量网络上最多还存在 $\sqrt{n}$ 条增广路。也即最多还需增广 $\sqrt{n}$ 轮。
+
+综上，对于包含二分图最大匹配在内的单位网络，Dinic 算法可以在 $O(m\sqrt{n})$ 的时间内求出其最大流。
+
+??? note "参考代码"
+    ```cpp
+    #define maxn 250
+    #define INF 0x3f3f3f3f
+    
+    struct Edge {
+      int from, to, cap, flow;
+      Edge(int u, int v, int c, int f) : from(u), to(v), cap(c), flow(f) {}
+    };
+    
+    struct Dinic {
+      int n, m, s, t;
+      vector<Edge> edges;
+      vector<int> G[maxn];
+      int d[maxn], cur[maxn];
+      bool vis[maxn];
+    
+      void init(int n) {
+        for (int i = 0; i < n; i++) G[i].clear();
+        edges.clear();
+      }
+    
+      void AddEdge(int from, int to, int cap) {
+        edges.push_back(Edge(from, to, cap, 0));
+        edges.push_back(Edge(to, from, 0, 0));
+        m = edges.size();
+        G[from].push_back(m - 2);
+        G[to].push_back(m - 1);
+      }
+    
+      bool BFS() {
+        memset(vis, 0, sizeof(vis));
+        queue<int> Q;
+        Q.push(s);
+        d[s] = 0;
+        vis[s] = 1;
+        while (!Q.empty()) {
+          int x = Q.front();
+          Q.pop();
+          for (int i = 0; i < G[x].size(); i++) {
+            Edge& e = edges[G[x][i]];
+            if (!vis[e.to] && e.cap > e.flow) {
+              vis[e.to] = 1;
+              d[e.to] = d[x] + 1;
+              Q.push(e.to);
+            }
+          }
         }
+        return vis[t];
       }
-    }
-    return vis[t];
-  }
-
-  int DFS(int x, int a) {
-    if (x == t || a == 0) return a;
-    int flow = 0, f;
-    for (int& i = cur[x]; i < G[x].size(); i++) {
-      Edge& e = edges[G[x][i]];
-      if (d[x] + 1 == d[e.to] && (f = DFS(e.to, min(a, e.cap - e.flow))) > 0) {
-        e.flow += f;
-        edges[G[x][i] ^ 1].flow -= f;
-        flow += f;
-        a -= f;
-        if (a == 0) break;
+    
+      int DFS(int x, int a) {
+        if (x == t || a == 0) return a;
+        int flow = 0, f;
+        for (int& i = cur[x]; i < G[x].size(); i++) {
+          Edge& e = edges[G[x][i]];
+          if (d[x] + 1 == d[e.to] && (f = DFS(e.to, min(a, e.cap - e.flow))) > 0) {
+            e.flow += f;
+            edges[G[x][i] ^ 1].flow -= f;
+            flow += f;
+            a -= f;
+            if (a == 0) break;
+          }
+        }
+        return flow;
       }
-    }
-    return flow;
-  }
-
-  int Maxflow(int s, int t) {
-    this->s = s;
-    this->t = t;
-    int flow = 0;
-    while (BFS()) {
-      memset(cur, 0, sizeof(cur));
-      flow += DFS(s, INF);
-    }
-    return flow;
-  }
-};
-```
+    
+      int Maxflow(int s, int t) {
+        this->s = s;
+        this->t = t;
+        int flow = 0;
+        while (BFS()) {
+          memset(cur, 0, sizeof(cur));
+          flow += DFS(s, INF);
+        }
+        return flow;
+      }
+    };
+    ```
 
 ### ISAP
 
-这个是 SAP 算法的加强版 (Improved)。
+在 Dinic 算法中，我们每次求完增广路后都要跑 BFS 来分层，有没有更高效的方法呢？
 
-```cpp
-struct Edge {
-  int from, to, cap, flow;
-  Edge(int u, int v, int c, int f) : from(u), to(v), cap(c), flow(f) {}
-};
+答案就是下面要介绍的 ISAP 算法。
 
-bool operator<(const Edge& a, const Edge& b) {
-  return a.from < b.from || (a.from == b.from && a.to < b.to);
-}
+和 Dinic 算法一样，我们还是先跑 BFS 对图上的点进行分层，不过与 Dinic 略有不同的是，我们选择在反图上，从 $t$ 点向 $s$ 点进行 BFS。
 
-struct ISAP {
-  int n, m, s, t;
-  vector<Edge> edges;
-  vector<int> G[maxn];
-  bool vis[maxn];
-  int d[maxn];
-  int cur[maxn];
-  int p[maxn];
-  int num[maxn];
+执行完分层过程后，我们通过 DFS 来找增广路。
 
-  void AddEdge(int from, int to, int cap) {
-    edges.push_back(Edge(from, to, cap, 0));
-    edges.push_back(Edge(to, from, 0, 0));
-    m = edges.size();
-    G[from].push_back(m - 2);
-    G[to].push_back(m - 1);
-  }
+增广的过程和 Dinic 类似，我们只选择比当前点层数少 $1$ 的点来增广。
 
-  bool BFS() {
-    memset(vis, 0, sizeof(vis));
-    queue<int> Q;
-    Q.push(t);
-    vis[t] = 1;
-    d[t] = 0;
-    while (!Q.empty()) {
-      int x = Q.front();
-      Q.pop();
-      for (int i = 0; i < G[x].size(); i++) {
-        Edge& e = edges[G[x][i] ^ 1];
-        if (!vis[e.from] && e.cap > e.flow) {
-          vis[e.from] = 1;
-          d[e.from] = d[x] + 1;
-          Q.push(e.from);
+与 Dinic 不同的是，我们并不会重跑 BFS 来对图上的点重新分层，而是在增广的过程中就完成重分层过程。
+
+具体来说，设 $i$ 号点的层为 $d_i$ ，当我们结束在 $i$ 号点的增广过程后，我们遍历残量网络上 $i$ 的所有出边，找到层最小的出点 $j$ ，随后令 $d_i=d_j+1$ 。特别地，若残量网络上 $i$ 无出边，则 $d_i=n$ 。
+
+容易发现，当 $d_s \geq n$ 时，图上不存在增广路，此时即可终止算法。
+
+和 Dinic 类似，ISAP 中也存在 **当前弧优化** 。
+
+而 ISAP 还存在另外一个优化，我们记录层数为 $i$ 的点的数量 $num_i$ ，每当将一个点的层数从 $x$ 更新到 $y$ 时，同时更新 $num$ 数组的值，若在更新后 $num_x=0$ ，则意味着图上出现了断层，无法再找到增广路，此时可以直接终止算法（实现时直接将 $d_s$ 标为 $n$ ），该优化被称为 **GAP 优化** 。
+
+??? note "参考代码"
+    ```cpp
+    struct Edge {
+      int from, to, cap, flow;
+      Edge(int u, int v, int c, int f) : from(u), to(v), cap(c), flow(f) {}
+    };
+    
+    bool operator<(const Edge& a, const Edge& b) {
+      return a.from < b.from || (a.from == b.from && a.to < b.to);
+    }
+    
+    struct ISAP {
+      int n, m, s, t;
+      vector<Edge> edges;
+      vector<int> G[maxn];
+      bool vis[maxn];
+      int d[maxn];
+      int cur[maxn];
+      int p[maxn];
+      int num[maxn];
+    
+      void AddEdge(int from, int to, int cap) {
+        edges.push_back(Edge(from, to, cap, 0));
+        edges.push_back(Edge(to, from, 0, 0));
+        m = edges.size();
+        G[from].push_back(m - 2);
+        G[to].push_back(m - 1);
+      }
+    
+      bool BFS() {
+        memset(vis, 0, sizeof(vis));
+        queue<int> Q;
+        Q.push(t);
+        vis[t] = 1;
+        d[t] = 0;
+        while (!Q.empty()) {
+          int x = Q.front();
+          Q.pop();
+          for (int i = 0; i < G[x].size(); i++) {
+            Edge& e = edges[G[x][i] ^ 1];
+            if (!vis[e.from] && e.cap > e.flow) {
+              vis[e.from] = 1;
+              d[e.from] = d[x] + 1;
+              Q.push(e.from);
+            }
+          }
         }
+        return vis[s];
       }
-    }
-    return vis[s];
-  }
-
-  void init(int n) {
-    this->n = n;
-    for (int i = 0; i < n; i++) G[i].clear();
-    edges.clear();
-  }
-
-  int Augment() {
-    int x = t, a = INF;
-    while (x != s) {
-      Edge& e = edges[p[x]];
-      a = min(a, e.cap - e.flow);
-      x = edges[p[x]].from;
-    }
-    x = t;
-    while (x != s) {
-      edges[p[x]].flow += a;
-      edges[p[x] ^ 1].flow -= a;
-      x = edges[p[x]].from;
-    }
-    return a;
-  }
-
-  int Maxflow(int s, int t) {
-    this->s = s;
-    this->t = t;
-    int flow = 0;
-    BFS();
-    memset(num, 0, sizeof(num));
-    for (int i = 0; i < n; i++) num[d[i]]++;
-    int x = s;
-    memset(cur, 0, sizeof(cur));
-    while (d[s] < n) {
-      if (x == t) {
-        flow += Augment();
-        x = s;
+    
+      void init(int n) {
+        this->n = n;
+        for (int i = 0; i < n; i++) G[i].clear();
+        edges.clear();
       }
-      int ok = 0;
-      for (int i = cur[x]; i < G[x].size(); i++) {
-        Edge& e = edges[G[x][i]];
-        if (e.cap > e.flow && d[x] == d[e.to] + 1) {
-          ok = 1;
-          p[e.to] = G[x][i];
-          cur[x] = i;
-          x = e.to;
-          break;
+    
+      int Augment() {
+        int x = t, a = INF;
+        while (x != s) {
+          Edge& e = edges[p[x]];
+          a = min(a, e.cap - e.flow);
+          x = edges[p[x]].from;
         }
-      }
-      if (!ok) {
-        int m = n - 1;
-        for (int i = 0; i < G[x].size(); i++) {
-          Edge& e = edges[G[x][i]];
-          if (e.cap > e.flow) m = min(m, d[e.to]);
+        x = t;
+        while (x != s) {
+          edges[p[x]].flow += a;
+          edges[p[x] ^ 1].flow -= a;
+          x = edges[p[x]].from;
         }
-        if (--num[d[x]] == 0) break;
-        num[d[x] = m + 1]++;
-        cur[x] = 0;
-        if (x != s) x = edges[p[x]].from;
+        return a;
       }
-    }
-    return flow;
-  }
-};
-```
+    
+      int Maxflow(int s, int t) {
+        this->s = s;
+        this->t = t;
+        int flow = 0;
+        BFS();
+        memset(num, 0, sizeof(num));
+        for (int i = 0; i < n; i++) num[d[i]]++;
+        int x = s;
+        memset(cur, 0, sizeof(cur));
+        while (d[s] < n) {
+          if (x == t) {
+            flow += Augment();
+            x = s;
+          }
+          int ok = 0;
+          for (int i = cur[x]; i < G[x].size(); i++) {
+            Edge& e = edges[G[x][i]];
+            if (e.cap > e.flow && d[x] == d[e.to] + 1) {
+              ok = 1;
+              p[e.to] = G[x][i];
+              cur[x] = i;
+              x = e.to;
+              break;
+            }
+          }
+          if (!ok) {
+            int m = n - 1;
+            for (int i = 0; i < G[x].size(); i++) {
+              Edge& e = edges[G[x][i]];
+              if (e.cap > e.flow) m = min(m, d[e.to]);
+            }
+            if (--num[d[x]] == 0) break;
+            num[d[x] = m + 1]++;
+            cur[x] = 0;
+            if (x != s) x = edges[p[x]].from;
+          }
+        }
+        return flow;
+      }
+    };
+    ```
 
 ## Push-Relabel 预流推进算法
 
@@ -354,8 +405,8 @@ $$
 
 准确地说，预流推进维护以下的一个映射 $h:V\to \mathbf{N}$ ：
 
--    $h(s)=|V|,h(t)=0$ 
--    $\forall (u,v)\in E_f,h(u)\leq h(v)+1$ 
+-  $h(s)=|V|,h(t)=0$ 
+-  $\forall (u,v)\in E_f,h(u)\leq h(v)+1$ 
 
 称 $h$ 是残存网络 $G_f=(V_f,E_f)$ 的高度函数。
 
@@ -380,18 +431,18 @@ $$
 #### 初始化
 
 $$
-\begin{split}
-&\forall (u,v)\in E,&f(u,v)=\left\{\begin{split}
+\begin{aligned}
+\forall (u,v)\in E,&f(u,v)=\left\{\begin{aligned}
 &c(u,v)&,u=s\\
 &0&,u\neq s\\
-\end{split}\right.
+\end{aligned}\right.
 \\
-&\forall u\in V,&h(u)=\left\{\begin{split}
+\forall u\in V,&h(u)=\left\{\begin{aligned}
 &|V|&,u=s\\
 &0&,u\neq s\\
-\end{split}\right.
+\end{aligned}\right.
 ,e(u)=\sum_{(x,u)\in E}f(x,u)-\sum_{(u,y)\in E}f(u,y)
-\end{split}
+\end{aligned}
 $$
 
 上述将 $(s,v)\in E$ 充满流，并将 $h(s)$ 抬高，使得 $(s,v)\notin E_f$ ，因为 $h(s)>h(v)$ ，而且 $(s,v)$ 毕竟满流，没必要留在残存网络中；上述还将 $e(s)$ 初始化为 $\sum_{(s,v)\in E}f(s,v)$ 的相反数。
@@ -446,10 +497,10 @@ $$
 
 具体地说，HLPP 算法过程如下：
 
-1.  初始化（基于预流推进算法）；
-2.  选择溢出结点（除 $s,t$ ）中高度最高的结点 $u$ ，并对它所有可以推送的边进行推送；
-3.  如果 $u$ 仍溢出，对它重贴标签，回到步骤 2；
-4.  如果没有溢出的结点，算法结束。
+1. 初始化（基于预流推进算法）；
+2. 选择溢出结点（除 $s,t$ ）中高度最高的结点 $u$ ，并对它所有可以推送的边进行推送；
+3. 如果 $u$ 仍溢出，对它重贴标签，回到步骤 2；
+4. 如果没有溢出的结点，算法结束。
 
 #### BFS 优化
 

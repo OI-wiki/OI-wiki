@@ -183,4 +183,4 @@ $$
 
 ## 例题
 
-1.   [ **「Codeforces Round #250」E. The Child and Binary Tree** ](https://codeforces.com/contest/438/problem/E) 
+1.  [ **「Codeforces Round #250」E. The Child and Binary Tree** ](https://codeforces.com/contest/438/problem/E) 

@@ -15,38 +15,36 @@
 中国剩余定理 (Chinese Remainder Theorem, CRT) 可求解如下形式的一元线性同余方程组（其中 $n_1, n_2, \cdots, n_k$ 两两互质）：
 
 $$
-\left \{
-\begin{array}{ccc}
-x &\equiv& a_1 \pmod {n_1} \\
-x &\equiv& a_2 \pmod {n_2} \\
-  &\vdots& \\
-x &\equiv& a_k \pmod {n_k} \\
-\end{array}
-\right.
+\begin{cases}
+x &\equiv a_1 \pmod {n_1} \\
+x &\equiv a_2 \pmod {n_2} \\
+  &\vdots \\
+x &\equiv a_k \pmod {n_k} \\
+\end{cases}
 $$
 
 上面的「物不知数」问题就是一元线性同余方程组的一个实例。
 
 ### 算法流程
 
-1.  计算所有模数的积 $n$ ；
+1. 计算所有模数的积 $n$ ；
 2.  对于第 $i$ 个方程：
-    1.  计算 $m_i=\frac{n}{n_i}$ ；
-    2.  计算 $m_i$ 在模 $n_i$ 意义下的 [逆元](./inverse.md)  $m_i^{-1}$ ；
-    3.  计算 $c_i=m_im_i^{-1}$ （ **不要对 $n_i$ 取模** ）。
-3.  方程组的唯一解为： $a=\sum_{i=1}^k a_ic_i \pmod n$ 。
+    1. 计算 $m_i=\frac{n}{n_i}$ ；
+    2. 计算 $m_i$ 在模 $n_i$ 意义下的 [逆元](./inverse.md)  $m_i^{-1}$ ；
+    3. 计算 $c_i=m_im_i^{-1}$ （ **不要对 $n_i$ 取模** ）。
+3. 方程组的唯一解为： $a=\sum_{i=1}^k a_ic_i \pmod n$ 。
 
 ### 伪代码
 
 ```text
-1 → n
-0 → ans
+n ← 1
+ans ← 0
 for i = 1 to k
-  n * n[i] → n
+  n ← n * n[i]
 for i = 1 to k
-  n / n[i] → m
-  inv(m, n[i]) → b               // b * m mod n[i] = 1
-  (ans + a[i] * m * b) mod n → ans
+  m ← n / n[i]
+  b ← inv(m, n[i])               // b * m mod n[i] = 1
+  ans ← (ans + a[i] * m * b) mod n
 return ans
 ```
 
@@ -77,11 +75,11 @@ $$
 
 下面演示 CRT 如何解「物不知数」问题。
 
-1.   $n=3\times 5\times 7=105$ ；
-2.  三人同行 **七十** 希： $n_1=3, m_1=n/n_1=35, m_1^{-1}\equiv 2\pmod 3$ ，故 $c_1=35\times 2=70$ ；
-3.  五树梅花 **廿一** 支： $n_2=5, m_2=n/n_2=21, m_2^{-1}\equiv 1\pmod 5$ ，故 $c_2=21\times 1=21$ ；
-4.  七子团圆正 **半月** ： $n_3=7, m_3=n/n_3=15, m_3^{-1}\equiv 1\pmod 7$ ，故 $c_3=15\times 1=15$ ；
-5.  所以方程组的唯一解为 $a\equiv 2\times 70+3\times 21+2\times 15\equiv 233\equiv 23 \pmod {105}$ 。（除 **百零五** 便得知）
+1.  $n=3\times 5\times 7=105$ ；
+2. 三人同行 **七十** 希： $n_1=3, m_1=n/n_1=35, m_1^{-1}\equiv 2\pmod 3$ ，故 $c_1=35\times 2=70$ ；
+3. 五树梅花 **廿一** 支： $n_2=5, m_2=n/n_2=21, m_2^{-1}\equiv 1\pmod 5$ ，故 $c_2=21\times 1=21$ ；
+4. 七子团圆正 **半月** ： $n_3=7, m_3=n/n_3=15, m_3^{-1}\equiv 1\pmod 7$ ，故 $c_3=15\times 1=15$ ；
+5. 所以方程组的唯一解为 $a\equiv 2\times 70+3\times 21+2\times 15\equiv 233\equiv 23 \pmod {105}$ 。（除 **百零五** 便得知）
 
 ## 应用
 
@@ -91,14 +89,57 @@ $$
 
 那么我们可以分别对这些模数进行计算，最后用 CRT 合并答案。
 
-推荐练习：BZOJ 1951
+下面这道题就是一个不错的例子。
+
+???+note "[洛谷 P2480 [SDOI2010]古代猪文](https://www.luogu.com.cn/problem/P2480)"
+    给出 $G,n$ （ $1 \leq G,n \leq 10^9$ ），求：
+    
+    $$
+    G^{\sum_{k\mid n}\binom{n}{k}} \bmod 999~911~659
+    $$
+
+首先，当 $G=999~911~659$ 时，所求显然为 $0$ 。
+
+否则，根据 [欧拉定理](./fermat.md) ，可知所求为：
+
+$$
+G^{\sum_{k\mid n}\binom{n}{k} \bmod 999~911~658} \bmod 999~911~659
+$$
+
+现在考虑如何计算：
+
+$$
+\sum_{k\mid n}\binom{n}{k} \bmod 999~911~658
+$$
+
+因为 $999~911~658$ 不是质数，无法保证 $\forall x \in [1,999~911~657]$ ， $x$ 都有逆元存在，上面这个式子我们无法直接计算。
+
+注意到 $999~911~658=2 \times 3 \times 4679 \times 35617$ ，其中每个质因子的最高次数均为一，我们可以考虑分别求出 $\sum_{k\mid n}\binom{n}{k}$ 在模 $2$ ， $3$ ， $4679$ ， $35617$ 这几个质数下的结果，最后用中国剩余定理来合并答案。
+
+也就是说，我们实际上要求下面一个线性方程组的解：
+
+$$
+\begin{cases}
+x \equiv a_1 \pmod 2\\
+x \equiv a_2 \pmod 3\\
+x \equiv a_3 \pmod {4679}\\
+x \equiv a_4 \pmod {35617}
+\end{cases}
+$$
+
+而计算一个组合数对较小的质数取模后的结果，可以利用 [卢卡斯定理](./lucas.md) 。
 
 ## 比较两 CRT 下整数
 
 考虑 CRT, 不妨假设 $n_1\leq n_2 \leq ... \leq n_k$ 
 
 $$
-\left\{ \begin{array} { r l } { x } & { \equiv a _ { 1 } \left( \bmod n _ { 1 } \right) } \\ { x } & { \equiv a _ { 2 } \left( \bmod n _ { 2 } \right) } \\ { } & { \vdots } \\ { x } & { \equiv a _ { k } \left( \bmod n _ { k } \right) } \end{array} \right.
+\begin{cases}
+x &\equiv a_1 \pmod {n_1} \\
+x &\equiv a_2 \pmod {n_2} \\
+  &\vdots \\
+x &\equiv a_k \pmod {n_k} \\
+\end{cases}
 $$
 
 与 PMR(Primorial Mixed Radix) 表示
@@ -139,12 +180,8 @@ $$
 
 用上面的方法两两合并就可以了……
 
-推荐练习：POJ 2891
-
  [【模板】扩展中国剩余定理](https://www.luogu.com.cn/problem/P4777) 
 
  [「NOI2018」屠龙勇士](https://uoj.ac/problem/396) 
 
  [「TJOI2009」猜数字](https://www.luogu.com.cn/problem/P3868) 
-
- [「SDOI2010」古代猪文](https://loj.ac/problem/10229) 

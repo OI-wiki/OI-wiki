@@ -6,7 +6,7 @@ author: wjy-yy, Ir1d, Xeonacid
 
 一条直线和直线的一侧。半平面是一个点集，因此是一条直线和直线的一侧构成的点集。当包含直线时，称为闭半平面；当不包含直线时，称为开半平面。
 
-解析式一般为 $Ax+By+C\ge 0​$ 。
+解析式一般为 $Ax+By+C\ge 0$ 。
 
 在计算几何中用向量表示，整个题统一以向量的左侧或右侧为半平面。
 
@@ -96,50 +96,46 @@ C 语言有一个库函数叫做 `atan2(double y,double x)` ，可以返回 $\th
 
 所以一定要先排除队尾再排除队首。
 
-## 代码
+???+note "代码-比较部分"
+    ```cpp
+    friend bool operator<(seg x, seg y) {
+      db t1 = atan2((x.b - x.a).y, (x.b - x.a).x);
+      db t2 = atan2((y.b - y.a).y, (y.b - y.a).x);  // 求极角
+      if (fabs(t1 - t2) > eps)                      // 如果极角不等
+        return t1 < t2;
+      return (y.a - x.a) * (y.b - x.a) >
+             eps;  // 判断向量x在y的哪边，令最靠左的排在最左边
+    }
+    ```
 
-比较部分
-
-```cpp
-friend bool operator<(seg x, seg y) {
-  db t1 = atan2((x.b - x.a).y, (x.b - x.a).x);
-  db t2 = atan2((y.b - y.a).y, (y.b - y.a).x);  // 求极角
-  if (fabs(t1 - t2) > eps)                      // 如果极角不等
-    return t1 < t2;
-  return (y.a - x.a) * (y.b - x.a) >
-         eps;  // 判断向量x在y的哪边，令最靠左的排在最左边
-}
-```
-
-增量部分
-
-```cpp
-// pnt its(seg a,seg b)表示求线段a,b的交点
-// s[]是极角排序后的向量
-// q[]是向量队列
-// t[i]是s[i-1]与s[i]的交点
-//【码风】队列的范围是(l,r]
-//求的是向量左侧的半平面
-int l = 0, r = 0;
-for (int i = 1; i <= n; ++i)
-  if (s[i] != s[i - 1]) {
-    // 注意要先检查队尾
-    while (r - l > 1 && (s[i].b - t[r]) * (s[i].a - t[r]) >
-                            eps)  // 如果上一个交点在向量右侧则弹出队尾
+???+note "代码-增量部分"
+    ```cpp
+    // pnt its(seg a,seg b)表示求线段a,b的交点
+    // s[]是极角排序后的向量
+    // q[]是向量队列
+    // t[i]是s[i-1]与s[i]的交点
+    //【码风】队列的范围是(l,r]
+    //求的是向量左侧的半平面
+    int l = 0, r = 0;
+    for (int i = 1; i <= n; ++i)
+      if (s[i] != s[i - 1]) {
+        // 注意要先检查队尾
+        while (r - l > 1 && (s[i].b - t[r]) * (s[i].a - t[r]) >
+                                eps)  // 如果上一个交点在向量右侧则弹出队尾
+          --r;
+        while (r - l > 1 && (s[i].b - t[l + 2]) * (s[i].a - t[l + 2]) >
+                                eps)  // 如果第一个交点在向量右侧则弹出队首
+          ++l;
+        q[++r] = s[i];
+        if (r - l > 1) t[r] = its(q[r], q[r - 1]);  // 求新交点
+      }
+    while (r - l > 1 &&
+           (q[l + 1].b - t[r]) * (q[l + 1].a - t[r]) > eps)  // 注意删除多余元素
       --r;
-    while (r - l > 1 && (s[i].b - t[l + 2]) * (s[i].a - t[l + 2]) >
-                            eps)  // 如果第一个交点在向量右侧则弹出队首
-      ++l;
-    q[++r] = s[i];
-    if (r - l > 1) t[r] = its(q[r], q[r - 1]);  // 求新交点
-  }
-while (r - l > 1 &&
-       (q[l + 1].b - t[r]) * (q[l + 1].a - t[r]) > eps)  // 注意删除多余元素
-  --r;
-t[r + 1] = its(q[l + 1], q[r]);  // 再求出新的交点
-++r;
-//这里不能在t里面++r需要注意一下……
-```
+    t[r + 1] = its(q[l + 1], q[r]);  // 再求出新的交点
+    ++r;
+    //这里不能在t里面++r需要注意一下……
+    ```
 
 ## 练习
 

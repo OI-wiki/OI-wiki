@@ -64,8 +64,8 @@ int Answer(int l, int r, int c) {
 
 两种操作：
 
-1.  区间 $[x,y]$ 每个数都变成 $z$ 
-2.  查询区间 $[x,y]$ 内小于等于 $z$ 的数的个数
+1. 区间 $[x,y]$ 每个数都变成 $z$ 
+2. 查询区间 $[x,y]$ 内小于等于 $z$ 的数的个数
 
 用 `dlt` 保存现在块内是否被整体赋值了。用一个值表示没有。对于边角块，查询前要 `pushdown` ，把块内存的信息下放到每一个数上。赋值之后记得重新 `sort` 一遍。其他方面同上题。
 
@@ -130,9 +130,9 @@ int Answer(int l, int r, int c) {
 
 ## 练习
 
-1.   [单点修改，区间查询](https://loj.ac/problem/130) 
-2.   [区间修改，区间查询](https://loj.ac/problem/132) 
-3.   [【模板】线段树 2](https://www.luogu.com.cn/problem/P3373) 
-4.   [「Ynoi2019 模拟赛」Yuno loves sqrt technology III](https://www.luogu.com.cn/problem/P5048) 
-5.   [「Violet」蒲公英](https://www.luogu.com.cn/problem/P4168) 
-6.   [作诗](https://www.luogu.com.cn/problem/P4135) 
+1.  [单点修改，区间查询](https://loj.ac/problem/130) 
+2.  [区间修改，区间查询](https://loj.ac/problem/132) 
+3.  [【模板】线段树 2](https://www.luogu.com.cn/problem/P3373) 
+4.  [「Ynoi2019 模拟赛」Yuno loves sqrt technology III](https://www.luogu.com.cn/problem/P5048) 
+5.  [「Violet」蒲公英](https://www.luogu.com.cn/problem/P4168) 
+6.  [作诗](https://www.luogu.com.cn/problem/P4135) 

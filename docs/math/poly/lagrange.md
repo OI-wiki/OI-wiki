@@ -14,10 +14,10 @@ author: Ir1d, TrisolarisHD, YanWQ-monad, x4Cx58x54
 
 $$
 \begin{array}{cccccccccccc}
-&  1 &    &  5 &    & 14 &    & 30 &    & 55 &    & 91 & \\
-&    &  4 &    &  9 &    & 16 &    & 25  &    & 36 & \\
-&    &    &  5 &    &  7 &    &  9 &    &  11 & \\
-&    &    &    &  2 &    &  2 &    &  2 & \\
+1 &    &  5 &    & 14 &    & 30 &    & 55 &    & 91 & \\
+  &  4 &    &  9 &    & 16 &    & 25  &    & 36 & \\
+  &    &  5 &    &  7 &    &  9 &    &  11 & \\
+  &    &    &  2 &    &  2 &    &  2 & \\
 \end{array}
 $$
 
@@ -33,7 +33,7 @@ $$
 
 ### 方法 3：拉格朗日插值法
 
-如图所示，将每一个点 $(x_i, y_i)$ 在 $x$ 轴上的投影 $(x_i, 0)$ 记为 $H_i$ 。对每一个 $i$ ，我们选择一个点集 $\lbrace P_i\rbrace \cup \lbrace H_j \vert 1 \le i\le n, j \neq i\rbrace$ ，作过这 $n$ 个点的至多 $n-1$ 次的线 $g_i(x)$ 。图中 $f(x)$ 用黑线表示， $g_i(x)$ 用彩色线表示。
+如图所示，将每一个点 $(x_i, y_i)$ 在 $x$ 轴上的投影 $(x_i, 0)$ 记为 $H_i$ 。对每一个 $i$ ，我们选择一个点集 $\lbrace P_i\rbrace \cup \lbrace H_j \vert 1 \le j\le n, j \neq i\rbrace$ ，作过这 $n$ 个点的至多 $n-1$ 次的线 $g_i(x)$ 。图中 $f(x)$ 用黑线表示， $g_i(x)$ 用彩色线表示。
 
 ![example](./images/lagrange-interpolation.png)
 
@@ -62,23 +62,25 @@ $$
 ### 代码实现
 
 ```cpp
-#include <algorithm>
 #include <cstdio>
-#include <cstring>
+
 const int maxn = 2010;
 using ll = long long;
 ll mod = 998244353;
 ll n, k, x[maxn], y[maxn], ans, s1, s2;
-ll powmod(ll a, ll x) {
-  ll ret = 1ll, nww = a;
-  while (x) {
-    if (x & 1) ret = ret * nww % mod;
-    nww = nww * nww % mod;
-    x >>= 1;
+
+ll powmod(ll x, ll n) {
+  ll ret = 1ll;
+  while (n) {
+    if (n & 1) ret = ret * x % mod;
+    x = x * x % mod;
+    n >>= 1;
   }
   return ret;
 }
+
 ll inv(ll x) { return powmod(x, mod - 2); }
+
 int main() {
   scanf("%lld%lld", &n, &k);
   for (int i = 1; i <= n; i++) scanf("%lld%lld", x + i, y + i);
@@ -86,12 +88,10 @@ int main() {
     s1 = y[i] % mod;
     s2 = 1ll;
     for (int j = 1; j <= n; j++)
-      if (i != j)
-        s1 = s1 * (k - x[j]) % mod, s2 = s2 * ((x[i] - x[j] % mod) % mod) % mod;
+      if (i != j) s1 = s1 * (k - x[j]) % mod, s2 = s2 * (x[i] - x[j]) % mod;
     ans += s1 * inv(s2) % mod;
-    ans = (ans + mod) % mod;
   }
-  printf("%lld\n", ans);
+  printf("%lld\n", (ans % mod + mod) % mod);
   return 0;
 }
 ```

@@ -1,30 +1,49 @@
-在看这篇文章前请先看 [网络流简介](../flow.md) 这篇 wiki 的定义部分
+在看这篇文章前请先看 [网络流简介](../flow.md) 这篇 wiki 的定义部分。
 
 ## 费用流
 
-给定一个网络 $G=(V,E)$ ，每条边除了有容量限制 $c(u,v)$ ，还有一个单位限制 $w(u,v)$ 
+给定一个网络 $G=(V,E)$ ，每条边除了有容量限制 $c(u,v)$ ，还有一个单位流量的费用 $w(u,v)$ 。
 
-当 $(u,v)$ 的流量为 $f(u,v)$ 时，需要花费 $f(u,v)\times w(u,v)$ .
+当 $(u,v)$ 的流量为 $f(u,v)$ 时，需要花费 $f(u,v)\times w(u,v)$ 的费用。
 
- $w$ 也满足斜对称性，即 $w(u,v)=-w(v,u)$ .
+ $w$ 也满足斜对称性，即 $w(u,v)=-w(v,u)$ 。
 
-则该网络中总花费最小的最大流称为 **最小费用最大流** ，即在最大化 $\sum_{(s,v)\in E}f(s,v)$ 的前提下最小化 $\sum_{(u,v)\in E}f(u,v)\times w(u,v)$ .
+则该网络中总花费最小的最大流称为 **最小费用最大流** ，即在最大化 $\sum_{(s,v)\in E}f(s,v)$ 的前提下最小化 $\sum_{(u,v)\in E}f(u,v)\times w(u,v)$ 。
 
-### 费用
+## SSP 算法
 
-我们定义一条边的费用 $w(u,v)$ 表示边 $(u,v)$ 上单位流量的费用。也就是说，当边 $(u,v)$ 的流量为 $f(u,v)$ 时，需要花费 $f(u,v)\times w(u,v)$ 的费用。
+SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路是每次寻找单位费用最小的增广路进行增广，直到图上不存在增广路为止。
 
-### 最小费用最大流
+如果图上存在单位费用为负的圈，SSP 算法正确无法求出该网络的最小费用最大流。此时需要先使用消圈算法消去图上的负圈。
 
-网络流图中，花费最小的最大流被称为 **最小费用最大流** ，这也是接下来我们要研究的对象。
+### 证明
 
-## MCMF 算法
+我们考虑使用数学归纳法和反证法来证明 SSP 算法的正确性。
 
-在最大流的 EK 算法求解最大流的基础上，把 **用 BFS 求解任意增广路** 改为 **用 SPFA 求解单位费用之和最小的增广路** 即可
+设流量为 $i$ 的时候最小费用为 $f_i$。我们假设最初的网络上**没有负圈**，这种情况下 $f_0=0$。
 
-相当于把 $w(u,v)$ 作为边权，在残存网络上求最短路
+假设用 SSP 算法求出的 $f_i$ 是最小费用，我们在 $f_i$ 的基础上，找到一条最短的增广路，从而求出 $f_{i+1}$。这时 $f_{i+1}-f_i$ 是这条最短增广路的长度。
 
-???+ "核心代码"
+假设存在更小的 $f_{i+1}$，设它为 $f'_{i+1}$。因为 $f_{i+1}-f_i$ 已经是最短增广路了，所以 $f'_{i+1}-f_i$ 一定对应一个经过**至少一个负圈**的增广路。
+
+这时候矛盾就出现了：既然存在一条经过至少一个负圈的增广路，那么 $f_i$ 就不是最小费用了。因为只要给这个负圈添加流量，就可以在不增加 $s$ 流出的流量的前提下，使 $f_i$ 对应的费用更小。
+
+综上，SSP 算法可以正确求出无负圈网络的最小费用最大流。
+
+### 时间复杂度
+
+如果使用 [Bellman-Ford 算法](../shortest-path.md#bellman-ford) 求解最短路，每次找增广路的时间复杂度为 $O(nm)$。设该网络的最大流为 $f$，则最坏时间复杂度为 $O(nmf)$。事实上，这个时间复杂度是 **伪多项式的**。
+
+???+note "为什么 SSP 算法具有伪多项式时间复杂度？"
+    一般所说的 **多项式时间复杂度**，要求算法花费的时间，可以表示为一个关于输入数据规模 $n$ 的多项式函数。
+    
+    而在 SSP 算法中，网络的最大流 $f$ 并不一定能表示为关于图的点数 $n$ 的多项式函数。事实上可以构造 $m=n^2,f=2^{n/2}$ 的网络 [^note1]，该情况下 SSP 算法的时间复杂度将达到 $O(n^3 2^{n/2})$。这明显是指数时间复杂度。
+
+### 实现
+
+只需将 EK 算法或 Dinic 算法中找增广路的过程，替换为用最短路算法寻找单位费用最小的增广路即可。
+
+??? note "基于 EK 算法的实现"
     ```cpp
     struct qxx {
       int nex, t, v, c;
@@ -68,17 +87,7 @@
     // 调用：while(spfa())update();
     ```
 
-## 类 Dinic 算法
-
-我们可以在 Dinic 算法的基础上进行改进，把 BFS 求分层图改为用 SPFA（由于有负权边，所以不能直接用 Dijkstra）来求一条单位费用之和最小的路径，也就是把 $w(u,v)$ 当做边权然后在残量网络上求最短路，当然在 DFS 中也要略作修改。这样就可以求得网络流图的 **最小费用最大流** 了。
-
-如何建 **反向边** ？对于一条边 $(u,v,w,c)$ （其中 $w$ 和 $c$ 分别为容量和费用），我们建立正向边 $(u,v,w,c)$ 和反向边 $(v,u,0,-c)$ （其中 $-c$ 是使得从反向边经过时退回原来的费用）。
-
- **优化** ：如果你是“关于 SPFA，它死了”言论的追随者，那么你可以使用 Primal-Dual 原始对偶算法将 SPFA 改成 Dijkstra！
-
- **时间复杂度** ：可以证明上界为 $O(nmf)$ ，其中 $f$ 表示流量。
-
-???+ "代码实现"
+??? note "基于 Dinic 算法的实现"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -148,11 +157,134 @@
     }
     ```
 
+### Primal-Dual 原始对偶算法
+
+用 Bellman-Ford 求解最短路的时间复杂度为 $O(nm)$，无论在稀疏图上还是稠密图上都不及 Dijkstra 算法[^note2]。但网络上存在单位费用为负的边，因此无法直接使用 Dijkstra 算法。
+
+Primal-Dual 原始对偶算法的思路与 [Johnson 全源最短路径算法](../shortest-path.md#johnson) 类似，通过为每个点设置一个势能，将网络上所有边的费用（下面简称为边权）全部变为非负值，从而可以应用 Dijkstra 算法找出网络上单位费用最小的增广路。
+
+首先跑一次最短路，求出源点到每个点的最短距离（也是该点的初始势能）$h_i$。接下来和 Johnson 算法一样，对于一条从 $u$ 到 $v$，单位费用为 $w$ 的边，将其边权重置为 $w+h_u-h_v$。
+
+可以发现，这样设置势能后新网络上的最短路径和原网络上的最短路径一定对应。证明在介绍 Johnson 算法时已经给出，这里不再展开。
+
+与常规的最短路问题不同的是，每次增广后图的形态会发生变化，这种情况下各点的势能需要更新。
+
+如何更新呢？先给出结论，设增广后从源点到 $i$ 号点的最短距离为 $d'_i$（这里的距离为重置每条边边权后得到的距离），只需给 $h_i$ 加上 $d'_i$ 即可。下面我们证明，这样更新边权后，图上所有边的边权均为负。
+
+容易发现，在一轮增广后，由于一些 $(i,j)$ 边在增广路上，残量网络上会相应多出一些 $(j,i)$ 边，且一定会满足 $d'_i+(w(i,j)+h_i-h_j)=d'_j$（否则 $(i,j)$ 边就不会在增广路上了）。稍作变形后可以得到 $w(j,i)+(h_j+d'_j)-(h_i+d'_i)=0$。因此新增的边的边权非负。
+
+而对于原有的边，在增广前，$d'_i+(w(i,j)+h_i-h_j) - d'_j \geq 0$，因此 $w(i,j)+(d'_i+h_i)-(d'_j+h_j) \geq 0$，即用 $h_i+d'_i$ 作为新势能并不会使 $(i,j)$ 的边权变为负。
+
+综上，增广后所有边的边权均非负，使用 Dijkstra 算法可以正确求出图上的最短路。
+
+??? note "参考代码"
+    ```cpp
+    #include <algorithm>
+    #include <cstdio>
+    #include <cstring>
+    #include <queue>
+    #define INF 0x3f3f3f3f
+    using namespace std;
+    struct edge {
+      int v, f, c, next;
+    } e[100005];
+    struct node {
+      int v, e;
+    } p[10005];
+    struct mypair {
+      int dis, id;
+      bool operator<(const mypair& a) const { return dis > a.dis; }
+      mypair(int d, int x) { dis = d, id = x; }
+    };
+    int head[5005], dis[5005], vis[5005], h[5005];
+    int n, m, s, t, cnt = 1, maxf, minc;
+    void addedge(int u, int v, int f, int c) {
+      e[++cnt].v = v;
+      e[cnt].f = f;
+      e[cnt].c = c;
+      e[cnt].next = head[u];
+      head[u] = cnt;
+    }
+    bool dijkstra() {
+      priority_queue<mypair> q;
+      for (int i = 1; i <= n; i++) dis[i] = INF;
+      memset(vis, 0, sizeof(vis));
+      dis[s] = 0;
+      q.push(mypair(0, s));
+      while (!q.empty()) {
+        int u = q.top().id;
+        q.pop();
+        if (vis[u]) continue;
+        vis[u] = 1;
+        for (int i = head[u]; i; i = e[i].next) {
+          int v = e[i].v, nc = e[i].c + h[u] - h[v];
+          if (e[i].f && dis[v] > dis[u] + nc) {
+            dis[v] = dis[u] + nc;
+            p[v].v = u;
+            p[v].e = i;
+            if (!vis[v]) q.push(mypair(dis[v], v));
+          }
+        }
+      }
+      return dis[t] != INF;
+    }
+    void spfa() {
+      queue<int> q;
+      memset(h, 63, sizeof(h));
+      h[s] = 0, vis[s] = 1;
+      q.push(s);
+      while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        vis[u] = 0;
+        for (int i = head[u]; i; i = e[i].next) {
+          int v = e[i].v;
+          if (e[i].f && h[v] > h[u] + e[i].c) {
+            h[v] = h[u] + e[i].c;
+            if (!vis[v]) {
+              vis[v] = 1;
+              q.push(v);
+            }
+          }
+        }
+      }
+    }
+    int main() {
+      scanf("%d%d%d%d", &n, &m, &s, &t);
+      for (int i = 1; i <= m; i++) {
+        int u, v, f, c;
+        scanf("%d%d%d%d", &u, &v, &f, &c);
+        addedge(u, v, f, c);
+        addedge(v, u, 0, -c);
+      }
+      spfa();  // 先求出初始势能
+      while (dijkstra()) {
+        int minf = INF;
+        for (int i = 1; i <= n; i++) h[i] += dis[i];
+        for (int i = t; i != s; i = p[i].v) minf = min(minf, e[p[i].e].f);
+        for (int i = t; i != s; i = p[i].v) {
+          e[p[i].e].f -= minf;
+          e[p[i].e ^ 1].f += minf;
+        }
+        maxf += minf;
+        minc += minf * h[t];
+      }
+      printf("%d %d\n", maxf, minc);
+      return 0;
+    }
+    ```
+
 ## 习题
 
--    [「Luogu 3381」【模板】最小费用最大流](https://www.luogu.com.cn/problem/P3381) 
--    [「Luogu 4452」航班安排](https://www.luogu.com.cn/problem/P4452) 
--    [「SDOI 2009」晨跑](https://www.luogu.com.cn/problem/P2153) 
--    [「SCOI 2007」修车](https://www.luogu.com.cn/problem/P2053) 
--    [「HAOI 2010」订货](https://www.luogu.com.cn/problem/P2517) 
--    [「NOI 2012」美食节](https://loj.ac/problem/2674) 
+-  [「Luogu 3381」【模板】最小费用最大流](https://www.luogu.com.cn/problem/P3381) 
+-  [「Luogu 4452」航班安排](https://www.luogu.com.cn/problem/P4452) 
+-  [「SDOI 2009」晨跑](https://www.luogu.com.cn/problem/P2153) 
+-  [「SCOI 2007」修车](https://www.luogu.com.cn/problem/P2053) 
+-  [「HAOI 2010」订货](https://www.luogu.com.cn/problem/P2517) 
+-  [「NOI 2012」美食节](https://loj.ac/problem/2674) 
+
+## 参考资料与注释
+
+[^note1]: 详细构造方法可以参考 [min_25 的博客](https://min-25.hatenablog.com/entry/2018/03/19/235802)。
+
+[^note2]: 在稀疏图上使用堆优化可以做到 $O(m \log n)$ 的时间复杂度，而在稠密图上不使用堆优化，可以做到 $O(n^2)$ 的时间复杂度。

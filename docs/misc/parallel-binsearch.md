@@ -4,13 +4,13 @@
 
 > 可以使用整体二分解决的题目需要满足以下性质：
 >
-> 1.  询问的答案具有可二分性
+> 1. 询问的答案具有可二分性
 >
-> 2.   **修改对判定答案的贡献互相独立** ，修改之间互不影响效果
+> 2.  **修改对判定答案的贡献互相独立** ，修改之间互不影响效果
 >
-> 3.  修改如果对判定答案有贡献，则贡献为一确定的与判定标准无关的值
+> 3. 修改如果对判定答案有贡献，则贡献为一确定的与判定标准无关的值
 >
-> 4.  贡献满足交换律，结合律，具有可加性
+> 4. 贡献满足交换律，结合律，具有可加性
 >
 > 5.  题目允许使用离线算法
 >
@@ -20,10 +20,10 @@
 
 记 $[l,r]$ 为答案的值域， $[L,R]$ 为答案的定义域。（也就是说求答案时仅考虑下标在区间 $[L,R]$ 内的操作和询问，这其中询问的答案在 $[l,r]$ 内）
 
--   我们首先把所有操作 **按时间顺序** 存入数组中，然后开始分治。
--   在每一层分治中，利用数据结构（常见的是树状数组）统计当前查询的答案和 $mid$ 之间的关系。
--   根据查询出来的答案和 $mid$ 间的关系（小于等于 $mid$ 和大于 $mid$ ）将当前处理的操作序列分为 $q1$ 和 $q2$ 两份，并分别递归处理。
--   当 $l=r$ 时，找到答案，记录答案并返回即可。
+- 我们首先把所有操作 **按时间顺序** 存入数组中，然后开始分治。
+- 在每一层分治中，利用数据结构（常见的是树状数组）统计当前查询的答案和 $mid$ 之间的关系。
+- 根据查询出来的答案和 $mid$ 间的关系（小于等于 $mid$ 和大于 $mid$ ）将当前处理的操作序列分为 $q1$ 和 $q2$ 两份，并分别递归处理。
+- 当 $l=r$ 时，找到答案，记录答案并返回即可。
 
 需要注意的是，在整体二分过程中，若当前处理的值域为 $[l,r]$ ，则此时最终答案范围不在 $[l,r]$ 的询问会在其他时候处理。
 
@@ -31,7 +31,7 @@
 
 注：
 
-1.  为可读性，文中代码或未采用实际竞赛中的常见写法。
+1. 为可读性，文中代码或未采用实际竞赛中的常见写法。
 2.  若觉得某段代码有难以理解之处，请先参考之前题目的解释，
     因为节省篇幅解释过的内容不再赘述。
 
@@ -141,6 +141,103 @@ void solve(int l, int r, vector<Num> a, vector<Query> q)
 }
 ```
 
+下面提供 [【模板】可持久化线段树 2（主席树）](https://www.luogu.com.cn/problem/P3834) 一题使用整体二分的，偏向竞赛风格的写法。
+
+???+note "参考代码"
+    ```cpp
+    #include <bits/stdc++.h>
+    using namespace std;
+    const int N = 200020;
+    const int INF = 1e9;
+    int n, m;
+    int ans[N];
+    // BIT begin
+    int t[N];
+    int a[N];
+    int sum(int p) {
+      int ans = 0;
+      while (p) {
+        ans += t[p];
+        p -= p & (-p);
+      }
+      return ans;
+    }
+    void add(int p, int x) {
+      while (p <= n) {
+        t[p] += x;
+        p += p & (-p);
+      }
+    }
+    // BIT end
+    int tot = 0;
+    struct Query {
+      int l, r, k, id, type;  // set values to -1 when they are not used!
+    } q[N * 2], q1[N * 2], q2[N * 2];
+    void solve(int l, int r, int ql, int qr) {
+      if (ql > qr) return;
+      if (l == r) {
+        for (int i = ql; i <= qr; i++)
+          if (q[i].type == 2) ans[q[i].id] = l;
+        return;
+      }
+      int mid = (l + r) / 2, cnt1 = 0, cnt2 = 0;
+      for (int i = ql; i <= qr; i++) {
+        if (q[i].type == 1) {
+          if (q[i].l <= mid) {
+            add(q[i].id, 1);
+            q1[++cnt1] = q[i];
+          } else
+            q2[++cnt2] = q[i];
+        } else {
+          int x = sum(q[i].r) - sum(q[i].l - 1);
+          if (q[i].k <= x)
+            q1[++cnt1] = q[i];
+          else {
+            q[i].k -= x;
+            q2[++cnt2] = q[i];
+          }
+        }
+      }
+      // rollback changes
+      for (int i = 1; i <= cnt1; i++)
+        if (q1[i].type == 1) add(q1[i].id, -1);
+      // move them to the main array
+      for (int i = 1; i <= cnt1; i++) q[i + ql - 1] = q1[i];
+      for (int i = 1; i <= cnt2; i++) q[i + cnt1 + ql - 1] = q2[i];
+      solve(l, mid, ql, cnt1 + ql - 1);
+      solve(mid + 1, r, cnt1 + ql, qr);
+    }
+    pair<int, int> b[N];
+    int toRaw[N];
+    int main() {
+      scanf("%d%d", &n, &m);
+      // read and discrete input data
+      for (int i = 1; i <= n; i++) {
+        int x;
+        scanf("%d", &x);
+        b[i].first = x;
+        b[i].second = i;
+      }
+      sort(b + 1, b + n + 1);
+      int cnt = 0;
+      for (int i = 1; i <= n; i++) {
+        if (b[i].first != b[i - 1].first) cnt++;
+        a[b[i].second] = cnt;
+        toRaw[cnt] = b[i].first;
+      }
+      for (int i = 1; i <= n; i++) {
+        q[++tot] = {a[i], -1, -1, i, 1};
+      }
+      for (int i = 1; i <= m; i++) {
+        int l, r, k;
+        scanf("%d%d%d", &l, &r, &k);
+        q[++tot] = {l, r, k, i, 2};
+      }
+      solve(0, cnt + 1, 1, tot);
+      for (int i = 1; i <= m; i++) printf("%d\n", toRaw[ans[i]]);
+    }
+    ```
+
 ### 带修区间第 k 小：整体二分的完整运用
 
 >  **题 4**  [Dynamic Rankings](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=2112) 给定一个数列，要支持单点修改，区间查第 $k$ 小。
@@ -149,9 +246,9 @@ void solve(int l, int r, vector<Num> a, vector<Query> q)
 
  **优化** 
 
-1.  注意到每次对于操作进行分类时，只会更改操作顺序，故可直接在原数组上操作。具体实现，在二分时将记录操作的 $q, a$ 数组换为一个大的全局数组，二分时记录信息变为 $L, R$ ，即当前处理的操作是全局数组上的哪个区间。利用临时数组记录当前的分类情况，进一步递归前将临时数组信息写回原数组。
-2.  树状数组每次清空会导致时间复杂度爆炸，可采用每次使用树状数组时记录当前修改位置（这已由 1 中提到的临时数组实现），本次操作结束后在原位置加 $-1$ 的方法快速清零。
-3.  一开始对于数列的初始化操作可简化为插入操作。
+1. 注意到每次对于操作进行分类时，只会更改操作顺序，故可直接在原数组上操作。具体实现，在二分时将记录操作的 $q, a$ 数组换为一个大的全局数组，二分时记录信息变为 $L, R$ ，即当前处理的操作是全局数组上的哪个区间。利用临时数组记录当前的分类情况，进一步递归前将临时数组信息写回原数组。
+2. 树状数组每次清空会导致时间复杂度爆炸，可采用每次使用树状数组时记录当前修改位置（这已由 1 中提到的临时数组实现），本次操作结束后在原位置加 $-1$ 的方法快速清零。
+3. 一开始对于数列的初始化操作可简化为插入操作。
 
 关键部分参考代码
 
@@ -211,4 +308,4 @@ void solve(int l, int r, int L, int R)
 
 ## 参考资料
 
--   许昊然《浅谈数据结构题几个非经典解法》
+- 许昊然《浅谈数据结构题几个非经典解法》

@@ -2,9 +2,9 @@ AVL 树，是一种平衡的二叉搜索树。由于各种算法教材上对 AVL
 
 ## 性质
 
-1.  空二叉树是一个 AVL 树
-2.  如果 T 是一棵 AVL 树，那么其左右子树也是 AVL 树，并且 $|h(ls) - h(rs)| \leq 1$ ，h 是其左右子树的高度
-3.  树高为 $O(\log n)$ 
+1. 空二叉树是一个 AVL 树
+2. 如果 T 是一棵 AVL 树，那么其左右子树也是 AVL 树，并且 $|h(ls) - h(rs)| \leq 1$ ，h 是其左右子树的高度
+3. 树高为 $O(\log n)$ 
 
 平衡因子：右子树高度 - 左子树高度
 
@@ -116,7 +116,7 @@ Maintain-Balanced(p)
 
 ## 其他操作
 
-AVL 树的其他操作（Pred、Succ、Select、Rank 等）与普通的二叉搜索树相同。
+AVL 树的其他操作（Predecessor、Successor、Select、Rank 等）与普通的二叉搜索树相同。
 
 ## 其他资料
 

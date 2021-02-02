@@ -10,7 +10,11 @@
 采用哈希存储的特点使得无序关联式容器 **在平均情况下** 大多数操作（包括查找，插入，删除）都能在常数时间复杂度内完成，相较于关联式容器与容器大小成对数的时间复杂度更加优秀。
 
 !!! warning
-    在最坏情况下，对无序关联式容器进行插入、删除、查找等操作的时间复杂度会 **与容器大小成线性关系** ！这一情况往往在容器内出现大量哈希冲突时产生，因此应谨慎使用无序关联式容器。
+    在最坏情况下，对无序关联式容器进行插入、删除、查找等操作的时间复杂度会 **与容器大小成线性关系** ！这一情况往往在容器内出现大量哈希冲突时产生。
+
+    同时，由于无序关联式容器的操作时通常存在较大的常数，其效率有时并不比普通的关联式容器好太多。
+
+    因此应谨慎使用无序关联式容器，尽量避免滥用（例如懒得离散化，直接将 `unordered_map<int, int>` 当作空间无限的普通数组使用）。
 
 由于无序关联式容器与相应的关联式容器在用途和操作中有很多共同点，这里不再介绍无序关联式容器的各种操作，这些内容读者可以参考 [关联式容器](./associative-container.md) 。
 
@@ -54,7 +58,15 @@ struct my_hash {
         chrono::steady_clock::now().time_since_epoch().count();
     return splitmix64(x + FIXED_RANDOM);
   }
+
+  // 针对 std::pair<int, int> 作为主键类型的哈希函数
+  size_t operator()(pair<uint64_t, uint64_t> x) const {
+    static const uint64_t FIXED_RANDOM =
+        chrono::steady_clock::now().time_since_epoch().count();
+    return splitmix64(x.first + FIXED_RANDOM) ^
+           (splitmix64(x.second + FIXED_RANDOM) >> 1);
+  }
 };
 ```
 
-写完自定义的哈希函数后，就可以通过 `unordered_map<int, int, my_hash> my_map;` 的定义方式将自定义的哈希函数传入容器了。
+写完自定义的哈希函数后，就可以通过 `unordered_map<int, int, my_hash> my_map;` 或者 `unordered_map<pair<int, int>, int, my_hash> my_pair_map;` 的定义方式将自定义的哈希函数传入容器了。

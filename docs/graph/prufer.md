@@ -63,16 +63,16 @@ vector<int> pruefer_code() {
 
 于是我们考虑这样一个过程：维护一个指针 $p$ 。初始时 $p$ 指向编号最小的叶结点。同时我们维护每个结点的度数，方便我们知道在删除结点的时侯是否产生新的叶结点。操作如下：
 
-1.  删除 $p$ 指向的结点，并检查是否产生新的叶结点。
-2.  如果产生新的叶结点，假设编号为 $x$ ，我们比较 $p,x$ 的大小关系。如果 $x>q$ ，那么不做其他操作；否则就立刻删除 $x$ ，然后检查删除 $x$ 后是否产生新的叶结点，重复 $2$ 步骤，直到未产生新节点或者新节点的编号 $>p$ 。
-3.  让指针 $p$ 自增直到遇到一个未被删除叶结点为止；
+1. 删除 $p$ 指向的结点，并检查是否产生新的叶结点。
+2. 如果产生新的叶结点，假设编号为 $x$ ，我们比较 $p,x$ 的大小关系。如果 $x>q$ ，那么不做其他操作；否则就立刻删除 $x$ ，然后检查删除 $x$ 后是否产生新的叶结点，重复 $2$ 步骤，直到未产生新节点或者新节点的编号 $>p$ 。
+3. 让指针 $p$ 自增直到遇到一个未被删除叶结点为止；
 
 循环上述操作 $n-2$ 次，就完成了序列的构造。接下来考虑算法的正确性。
 
  $p$ 是当前编号最小的叶结点，若删除 $p$ 后未产生叶结点，我们就只能去寻找下一个叶结点；若产生了叶结点 $x$ ：
 
--   如果 $x>p$ ，则反正 $p$ 往后扫描都会扫到它，于是不做操作；
--   如果 $x<p$ ，因为 $p$ 原本就是编号最小的，而 $x$ 比 $p$ 还小，所以 $x$ 就是当前编号最小的叶结点，优先删除。删除 $x$ 继续这样的考虑直到没有更小的叶结点。
+- 如果 $x>p$ ，则反正 $p$ 往后扫描都会扫到它，于是不做操作；
+- 如果 $x<p$ ，因为 $p$ 原本就是编号最小的，而 $x$ 比 $p$ 还小，所以 $x$ 就是当前编号最小的叶结点，优先删除。删除 $x$ 继续这样的考虑直到没有更小的叶结点。
 
 算法复杂度分析，发现每条边最多被访问一次（在删度数的时侯），而指针最多遍历每个结点一次，因此复杂度是 $O(n)$ 的。
 
@@ -118,8 +118,8 @@ vector<int> pruefer_code() {
 
 ### Prufer 序列的性质
 
-1.  在构造完 Prufer 序列后原树中会剩下两个结点，其中一个一定是编号最大的点 $n$ 。
-2.  每个结点在序列中出现的次数是其度数减 $1$ 。（没有出现的就是叶结点）
+1. 在构造完 Prufer 序列后原树中会剩下两个结点，其中一个一定是编号最大的点 $n$ 。
+2. 每个结点在序列中出现的次数是其度数减 $1$ 。（没有出现的就是叶结点）
 
 ### 用 Prufer 序列重建树
 
@@ -242,7 +242,7 @@ $$
 
 ## 习题
 
--    [UVA #10843 - Anne's game](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=20&page=show_problem&problem=1784) 
--    [Timus #1069 - Prufer Code](http://acm.timus.ru/problem.aspx?space=1&num=1069) 
--    [Codeforces - Clues](http://codeforces.com/contest/156/problem/D) 
--    [Topcoder - TheCitiesAndRoadsDivTwo](https://community.topcoder.com/stat?c=problem_statement&pm=10774&rd=14146) 
+-  [UVA #10843 - Anne's game](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=20&page=show_problem&problem=1784) 
+-  [Timus #1069 - Prufer Code](http://acm.timus.ru/problem.aspx?space=1&num=1069) 
+-  [Codeforces - Clues](http://codeforces.com/contest/156/problem/D) 
+-  [Topcoder - TheCitiesAndRoadsDivTwo](https://community.topcoder.com/stat?c=problem_statement&pm=10774&rd=14146) 

@@ -3,9 +3,8 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 并查集是一种树形的数据结构，顾名思义，它用于处理一些不交集的 **合并** 及 **查询** 问题。
 它支持两种操作：
 
--   查找（Find）：确定某个元素处于哪个子集；
-
--   合并（Union）：将两个子集合并成一个集合。
+- 查找（Find）：确定某个元素处于哪个子集；
+- 合并（Union）：将两个子集合并成一个集合。
 
 !!! warning
     并查集不支持集合的分离，但是并查集在经过修改后可以支持集合中单个元素的删除操作（详见 UVA11987 Almost Union-Find）。使用动态开点线段树还可以实现可持久化并查集。
@@ -72,8 +71,6 @@ void unionSet(int x, int y) {
   // x 与 y 所在家族合并
   x = find(x);
   y = find(y);
-  if (x == y)  // 原本就在一个家族里就不管了
-    return;
   fa[x] = y;  // 把 x 的祖先变成 y 的祖先的儿子
 }
 ```
@@ -84,11 +81,11 @@ void unionSet(int x, int y) {
 
 由于需要我们支持的只有集合的合并、查询操作，当我们需要将两个集合合二为一时，无论将哪一个集合连接到另一个集合的下面，都能得到正确的结果。但不同的连接方法存在时间复杂度的差异。具体来说，如果我们将一棵点数与深度都较小的集合树连接到一棵更大的集合树下，显然相比于另一种连接方案，接下来执行查找操作的用时更小（也会带来更优的最坏时间复杂度）。
 
-当然，我们不总能遇到恰好如上所述的集合————点数与深度都更小。鉴于点数与深度这两个特征都很容易维护，我们常常从中择一，作为估价函数。而无论选择哪一个，时间复杂度都为 $\Theta (m\alpha(m,n))$ ，具体的证明可参见 References 中引用的论文。
+当然，我们不总能遇到恰好如上所述的集合————点数与深度都更小。鉴于点数与深度这两个特征都很容易维护，我们常常从中择一，作为估价函数。而无论选择哪一个，时间复杂度都为 $O (m\alpha(m,n))$ ，具体的证明可参见 References 中引用的论文。
 
-在算法竞赛的实际代码中，即便不使用启发式合并，代码也往往能够在规定时间内完成任务。在 Tarjan 的论文[1]中，证明了不使用启发式合并、只使用路径压缩的最坏时间复杂度是 $\Theta (m \log n)$ 。在姚期智的论文[2]中，证明了不使用启发式合并、只使用路径压缩，在平均情况下，时间复杂度依然是 $\Theta (m\alpha(m,n))$ 。
+在算法竞赛的实际代码中，即便不使用启发式合并，代码也往往能够在规定时间内完成任务。在 Tarjan 的论文[1]中，证明了不使用启发式合并、只使用路径压缩的最坏时间复杂度是 $O (m \log n)$ 。在姚期智的论文[2]中，证明了不使用启发式合并、只使用路径压缩，在平均情况下，时间复杂度依然是 $O (m\alpha(m,n))$ 。
 
-如果只使用启发式合并，而不使用路径压缩，时间复杂度为 $\Theta(m\log n)$ 。由于路径压缩单次合并可能造成大量修改，有时路径压缩并不适合使用。例如，在可持久化并查集、线段树分治 + 并查集中，一般使用只启发式合并的并查集。
+如果只使用启发式合并，而不使用路径压缩，时间复杂度为 $O(m\log n)$ 。由于路径压缩单次合并可能造成大量修改，有时路径压缩并不适合使用。例如，在可持久化并查集、线段树分治 + 并查集中，一般使用只启发式合并的并查集。
 
 此处给出一种 C++ 的参考实现，其选择点数作为估价函数：
 
@@ -110,7 +107,7 @@ void unionSet(int x, int y) {
 
 同时使用路径压缩和启发式合并之后，并查集的每个操作平均时间仅为 $O(\alpha(n))$ ，其中 $\alpha$ 为阿克曼函数的反函数，其增长极其缓慢，也就是说其单次操作的平均运行时间可以认为是一个很小的常数。
 
- [Ackermann 函数](https://en.wikipedia.org/wiki/Ackermann_function)  $A(n, m)$ 的定义是这样的：
+ [Ackermann 函数](https://en.wikipedia.org/wiki/Ackermann_function)  $A(m, n)$ 的定义是这样的：
 
  $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0\\A(m-1,A(m,n-1))&\text{otherwise}\end{cases}$ 
 
@@ -142,9 +139,11 @@ void unionSet(int x, int y) {
 
  [最小生成树算法](../graph/mst.md) 中的 Kruskal 和 [最近公共祖先](../graph/lca.md) 中的 Tarjan 算法是基于并查集的算法。
 
+相关专题见 [并查集应用](../topic/dsu-app.md) 。
+
 ## References
 
--   [1]Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281. [ResearchGate PDF](https://www.researchgate.net/profile/Jan_Van_Leeuwen2/publication/220430653_Worst-case_Analysis_of_Set_Union_Algorithms/links/0a85e53cd28bfdf5eb000000/Worst-case-Analysis-of-Set-Union-Algorithms.pdf) 
--   [2]Yao, A. C. (1985). On the expected performance of path compression algorithms. [SIAM Journal on Computing, 14(1), 129-133.](https://epubs.siam.org/doi/abs/10.1137/0214010?journalCode=smjcat) 
--   [3][知乎回答：是否在并查集中真的有二分路径压缩优化？]( <https://www.zhihu.com/question/28410263/answer/40966441> )
--   [4]Gabow, H. N., & Tarjan, R. E. (1985). A Linear-Time Algorithm for a Special Case of Disjoint Set Union. JOURNAL OF COMPUTER AND SYSTEM SCIENCES, 30, 209-221. [CORE PDF](https://core.ac.uk/download/pdf/82125836.pdf) 
+- [1]Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281. [ResearchGate PDF](https://www.researchgate.net/profile/Jan_Van_Leeuwen2/publication/220430653_Worst-case_Analysis_of_Set_Union_Algorithms/links/0a85e53cd28bfdf5eb000000/Worst-case-Analysis-of-Set-Union-Algorithms.pdf) 
+- [2]Yao, A. C. (1985). On the expected performance of path compression algorithms. [SIAM Journal on Computing, 14(1), 129-133.](https://epubs.siam.org/doi/abs/10.1137/0214010?journalCode=smjcat) 
+- [3][知乎回答：是否在并查集中真的有二分路径压缩优化？]( <https://www.zhihu.com/question/28410263/answer/40966441> )
+- [4]Gabow, H. N., & Tarjan, R. E. (1985). A Linear-Time Algorithm for a Special Case of Disjoint Set Union. JOURNAL OF COMPUTER AND SYSTEM SCIENCES, 30, 209-221. [CORE PDF](https://core.ac.uk/download/pdf/82125836.pdf) 

@@ -44,11 +44,11 @@ $$
 定义势能函数 $\Phi(S)=\sum\limits_{x\in S}\Phi(x)$ ，其中 $S$ 表示一整个并查集，而 $x$ 为并查集中的一个节点。定义 $\Phi(x)$ 为：
 
 $$
-\Phi(x)=\left\{
-\begin{aligned}
-&\alpha(n)\times rnk(x)& &rnk(x)=0\text{ 或 x为某棵树的根节点}&\\
-&(\alpha(n)-level(x))\times rnk(x)-iter(x)& &otherwise&
-\end{aligned}\right.
+\Phi(x)=
+\begin{cases}
+\alpha(n)\times \mathit{rnk}(x)& \mathit{rnk}(x)=0\text{或}x\text{为某棵树的根节点}&\\
+(\alpha(n)-\mathit{level}(x))\times \mathit{rnk}(x)-iter(x)& \mathit{otherwise}&
+\end{cases}
 $$
 
 然后就是通过操作引起的势能变化来证明摊还时间复杂度为 $\Theta(\alpha(n))$ 啦。注意，这里我们讨论的 $union(x,y)$ 操作保证了 $x$ 和 $y$ 都是某个树的根，因此不需要额外执行 $find(x)$ 和 $find(y)$ 。
@@ -63,10 +63,10 @@ $$
 
 设操作前 $c$ 的势能为 $\Phi(c)$ ，操作后为 $\Phi(c')$ ，这里 $c$ 可以是任意一个 $rnk(c)>0$ 的非根节点，操作可以是任意操作，包括下面的 find 操作。我们分三种情况讨论。
 
-1.   $iter(c)$ 和 $level(c)$ 并未增加。显然有 $\Phi(c)=\Phi(c')$ 。
-2.   $iter(c)$ 增加了， $level(c)$ 并未增加。这里 $iter(c)$ 至少增加一，即 $\Phi(c')\leq \Phi(c)-1$ ，势能函数减少了，并且至少减少 1。
-3.   $level(c)$ 增加了， $iter(c)$ 可能减少。但是由于 $0<iter(c)\leq rnk(c)$ ， $iter(c)$ 最多减少 $rnk(c)-1$ ，而 $level(c)$ 至少增加 $1$ 。由定义 $\Phi(c)=(\alpha(n)-level(c))\times rnk(c)-iter(c)$ ，可得 $\Phi(c')\leq\Phi(c)-1$ 。
-4.  其他情况。由于 $rnk(c)$ 不变， $rnk(fa(c))$ 不减，所以不存在。
+1.  $iter(c)$ 和 $level(c)$ 并未增加。显然有 $\Phi(c)=\Phi(c')$ 。
+2.  $iter(c)$ 增加了， $level(c)$ 并未增加。这里 $iter(c)$ 至少增加一，即 $\Phi(c')\leq \Phi(c)-1$ ，势能函数减少了，并且至少减少 1。
+3.  $level(c)$ 增加了， $iter(c)$ 可能减少。但是由于 $0<iter(c)\leq rnk(c)$ ， $iter(c)$ 最多减少 $rnk(c)-1$ ，而 $level(c)$ 至少增加 $1$ 。由定义 $\Phi(c)=(\alpha(n)-level(c))\times rnk(c)-iter(c)$ ，可得 $\Phi(c')\leq\Phi(c)-1$ 。
+4. 其他情况。由于 $rnk(c)$ 不变， $rnk(fa(c))$ 不减，所以不存在。
 
 所以，势能增加的节点仅可能是 $x$ 或 $y$ 。而 $x$ 从树根变成了非树根，如果 $rnk(x)=0$ ，则一直有 $\Phi(x)=\Phi(x')=0$ 。否则，一定有 $\alpha(x)\times rnk(x)\geq(\alpha(n)-level(x))\times rnk(x)-iter(x)$ 。即， $\Phi(x')\leq \Phi(x)$ 。
 
@@ -128,16 +128,16 @@ $$
 
 所以，启发式合并会不会被卡？
 
-首先，~~手推一下我们就可以发现那个数据卡不掉启发式合并~~可以从秩参与证明的性质来说明。如果 $size$ 可以代替 $rnk$ 的地位，则可以使用启发式合并。快速总结一下，秩参与证明的性质有以下三条：
+首先，可以从秩参与证明的性质来说明。如果 $size$ 可以代替 $rnk$ 的地位，则可以使用启发式合并。快速总结一下，秩参与证明的性质有以下三条：
 
-1.  每次合并，最多有一个节点的秩上升，而且最多上升 1。
-2.  总有 $rnk(fa(x))\geq rnk(x)+1$ 。
-3.  节点的秩不减。
+1. 每次合并，最多有一个节点的秩上升，而且最多上升 1。
+2. 总有 $rnk(fa(x))\geq rnk(x)+1$ 。
+3. 节点的秩不减。
 
 关于第二条和第三条， $siz$ 显然满足，然而第一条不满足，如果将 $x$ 合并到 $y$ 上面，则 $siz(y)$ 会增大 $siz(x)$ 那么多。
 
 所以，可以考虑使用 $\log_2 siz(x)$ 代替 $rnk(x)$ 。
 
-关于第一条性质，由于节点的 $siz$ 最多翻倍，所以 $\log_2 siz(x)$ 最多上升 1。关于第二三条性质，~~既得易见平凡~~。
+关于第一条性质，由于节点的 $siz$ 最多翻倍，所以 $\log_2 siz(x)$ 最多上升 1。关于第二三条性质，结论较为显然，这里略去证明。
 
 所以说，如果不想写按秩合并，就写启发式合并好了，时间复杂度仍旧是 $\Theta(m\alpha(n))$ 。

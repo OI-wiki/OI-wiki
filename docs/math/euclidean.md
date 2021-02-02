@@ -38,7 +38,7 @@ $$
 =\sum_{i=0}^n\sum_{j=0}^{\left\lfloor \frac{ai+b}{c} \right\rfloor-1}1\\
 $$
 
-现在多了一个变量 $j$ ，既然算 $i$ 的贡献不方便，我们就想办法算 $j$ 的贡献。因此想办法搞一个和 $j$ 有关的贡献式。这里有另一个家喻户晓的变换方法，笔者概括为限制转移。具体来说，在上面的和式中 $n$ 限制 $i$ 的上界，而 $i$ 限制 $j$ 的上界。为了搞 $j$ ，就先把 j 放到贡献的式子里，于是我们~~神仙地~~交换一下 $i,j$ 的求和算子，强制用 $n$ 限制 $j$ 的上界。
+现在多了一个变量 $j$ ，既然算 $i$ 的贡献不方便，我们就想办法算 $j$ 的贡献。因此想办法搞一个和 $j$ 有关的贡献式。这里有另一个家喻户晓的变换方法，笔者概括为限制转移。具体来说，在上面的和式中 $n$ 限制 $i$ 的上界，而 $i$ 限制 $j$ 的上界。为了搞 $j$ ，就先把 j 放到贡献的式子里，于是我们交换一下 $i,j$ 的求和算子，强制用 $n$ 限制 $j$ 的上界。
 
 $$
 \begin{split}
@@ -175,60 +175,57 @@ $$
 h(a,b,c,n)=nm(m+1)-2g(c,c-b-1,a,m-1)-2f(c,c-b-1,a,m-1)-f(a,b,c,n)
 $$
 
-## 模板与实现
+在代码实现的时侯，因为 $3$ 个函数各有交错递归，因此可以考虑三个一起整体递归，同步计算，否则有很多项会被多次计算。这样实现的复杂度是 $O(\log n)$ 的。
 
-在计算的时侯，因为 $3$ 个函数各有交错递归，因此可以考虑三个一起整体递归，同步计算，否则有很多项会被多次计算。这样实现的复杂度是 $O(\log n)$ 的。
-
-模板： [luogu5170](https://www.luogu.com.cn/problem/P5170) 
-
-```cpp
-#include <bits/stdc++.h>
-#define int long long
-using namespace std;
-const int P = 998244353;
-int i2 = 499122177, i6 = 166374059;
-struct data {
-  data() { f = g = h = 0; }
-  int f, g, h;
-};  // 三个函数打包
-data calc(int n, int a, int b, int c) {
-  int ac = a / c, bc = b / c, m = (a * n + b) / c, n1 = n + 1, n21 = n * 2 + 1;
-  data d;
-  if (a == 0) {  // 迭代到最底层
-    d.f = bc * n1 % P;
-    d.g = bc * n % P * n1 % P * i2 % P;
-    d.h = bc * bc % P * n1 % P;
-    return d;
-  }
-  if (a >= c || b >= c) {  // 取模
-    d.f = n * n1 % P * i2 % P * ac % P + bc * n1 % P;
-    d.g = ac * n % P * n1 % P * n21 % P * i6 % P + bc * n % P * n1 % P * i2 % P;
-    d.h = ac * ac % P * n % P * n1 % P * n21 % P * i6 % P +
-          bc * bc % P * n1 % P + ac * bc % P * n % P * n1 % P;
-    d.f %= P, d.g %= P, d.h %= P;
-
-    data e = calc(n, a % c, b % c, c);  // 迭代
-
-    d.h += e.h + 2 * bc % P * e.f % P + 2 * ac % P * e.g % P;
-    d.g += e.g, d.f += e.f;
-    d.f %= P, d.g %= P, d.h %= P;
-    return d;
-  }
-  data e = calc(m - 1, c, c - b - 1, a);
-  d.f = n * m % P - e.f, d.f = (d.f % P + P) % P;
-  d.g = m * n % P * n1 % P - e.h - e.f, d.g = (d.g * i2 % P + P) % P;
-  d.h = n * m % P * (m + 1) % P - 2 * e.g - 2 * e.f - d.f;
-  d.h = (d.h % P + P) % P;
-  return d;
-}
-int T, n, a, b, c;
-signed main() {
-  scanf("%lld", &T);
-  while (T--) {
-    scanf("%lld%lld%lld%lld", &n, &a, &b, &c);
-    data ans = calc(n, a, b, c);
-    printf("%lld %lld %lld\n", ans.f, ans.h, ans.g);
-  }
-  return 0;
-}
-```
+??? note "[模板题代码实现](https://www.luogu.com.cn/problem/P5170)"
+    ```cpp
+    #include <bits/stdc++.h>
+    #define int long long
+    using namespace std;
+    const int P = 998244353;
+    int i2 = 499122177, i6 = 166374059;
+    struct data {
+      data() { f = g = h = 0; }
+      int f, g, h;
+    };  // 三个函数打包
+    data calc(int n, int a, int b, int c) {
+      int ac = a / c, bc = b / c, m = (a * n + b) / c, n1 = n + 1, n21 = n * 2 + 1;
+      data d;
+      if (a == 0) {  // 迭代到最底层
+        d.f = bc * n1 % P;
+        d.g = bc * n % P * n1 % P * i2 % P;
+        d.h = bc * bc % P * n1 % P;
+        return d;
+      }
+      if (a >= c || b >= c) {  // 取模
+        d.f = n * n1 % P * i2 % P * ac % P + bc * n1 % P;
+        d.g = ac * n % P * n1 % P * n21 % P * i6 % P + bc * n % P * n1 % P * i2 % P;
+        d.h = ac * ac % P * n % P * n1 % P * n21 % P * i6 % P +
+              bc * bc % P * n1 % P + ac * bc % P * n % P * n1 % P;
+        d.f %= P, d.g %= P, d.h %= P;
+    
+        data e = calc(n, a % c, b % c, c);  // 迭代
+    
+        d.h += e.h + 2 * bc % P * e.f % P + 2 * ac % P * e.g % P;
+        d.g += e.g, d.f += e.f;
+        d.f %= P, d.g %= P, d.h %= P;
+        return d;
+      }
+      data e = calc(m - 1, c, c - b - 1, a);
+      d.f = n * m % P - e.f, d.f = (d.f % P + P) % P;
+      d.g = m * n % P * n1 % P - e.h - e.f, d.g = (d.g * i2 % P + P) % P;
+      d.h = n * m % P * (m + 1) % P - 2 * e.g - 2 * e.f - d.f;
+      d.h = (d.h % P + P) % P;
+      return d;
+    }
+    int T, n, a, b, c;
+    signed main() {
+      scanf("%lld", &T);
+      while (T--) {
+        scanf("%lld%lld%lld%lld", &n, &a, &b, &c);
+        data ans = calc(n, a, b, c);
+        printf("%lld %lld %lld\n", ans.f, ans.h, ans.g);
+      }
+      return 0;
+    }
+    ```

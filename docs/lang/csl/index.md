@@ -4,7 +4,7 @@
 
 每一个版本的 C++ 标准不仅规定了 C++ 的语法、语言特性，还规定了一套 C++ 内置库的实现规范，这个库便是 C++ 标准库。C++ 标准库中包含大量常用代码的实现，如输入输出、基本数据结构、内存管理、多线程支持等。掌握 C++ 标准库是编写更现代的 C++ 代码必要的一步。C++ 标准库的详细文档在 [cppreference](https://zh.cppreference.com/) 网站上，文档对标准库中的类型函数的用法、效率、注意事项等都有介绍，请善用。
 
-需要指出的是，不同的 OJ 平台对 C++ 版本均不相同，例如 [最新的 ICPC 比赛规则](https://icpc.baylor.edu/worldfinals/programming-environment) 支持 C++17 标准，而 [NOI 现行规则](http://www.noi.cn/newsview.html?id=559&hash=E4E249) 中指定的 g++ 4.8 [默认支持标准](https://gcc.gnu.org/onlinedocs/gcc-4.8.5/gcc/Standards.html#Standards) 是 C++98。因此在学习 C++ 时要注意比赛支持的标准，避免在赛场上时编译报错。
+需要指出的是，不同的 OJ 平台对 C++ 版本均不相同，例如 [最新的 ICPC 比赛规则](https://icpc.baylor.edu/worldfinals/programming-environment) 支持 C++17 标准，而 [NOI 现行规则](http://www.noi.cn/gynoi/jsgz/2018-08-13/710465.shtml) 中指定的 g++ 4.8 [默认支持标准](https://gcc.gnu.org/onlinedocs/gcc-4.8.5/gcc/Standards.html#Standards) 是 C++98。因此在学习 C++ 时要注意比赛支持的标准，避免在赛场上时编译报错。
 
 ## 标准模板库（STL）
 
@@ -19,8 +19,8 @@ STL 即标准模板库（Standard Template Library），是 C++ 标准库的一�
 
 ## 参考资料
 
-1.   [C++ reference](https://en.cppreference.com/) 
-2.   [C++ 参考手册](https://zh.cppreference.com/) 
-3.   [维基百科 - C++](https://zh.wikipedia.org/wiki/C%2B%2B) 
-4.   [Boost 官方网站](https://www.boost.org/) 
-5.   [Boost 教程网站](https://theboostcpplibraries.com/) 
+1.  [C++ reference](https://en.cppreference.com/) 
+2.  [C++ 参考手册](https://zh.cppreference.com/) 
+3.  [维基百科 - C++](https://zh.wikipedia.org/wiki/C%2B%2B) 
+4.  [Boost 官方网站](https://www.boost.org/) 
+5.  [Boost 教程网站](https://theboostcpplibraries.com/) 

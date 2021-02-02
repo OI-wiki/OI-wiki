@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/24OI/OI-wiki.git"
+    "url": "git+https://github.com/OI-wiki/OI-wiki.git"
   },
   "keywords": [
     "OI",
@@ -21,9 +21,9 @@
   "author": "OI Wiki Team",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/24OI/OI-wiki/issues"
+    "url": "https://github.com/OI-wiki/OI-wiki/issues"
   },
-  "homepage": "https://github.com/24OI/OI-wiki#readme",
+  "homepage": "https://github.com/OI-wiki/OI-wiki#readme",
   "dependencies": {
     "bluebird": "^3.7.2",
     "chalk": "^4.1.0",
@@ -35,8 +35,10 @@
     "hexo-fs": "^3.1.0",
     "mathjax-node-page": "^3.2.0",
     "remark-clang-format": "^1.0.1",
+    "remark-cli": "^8.0.0",
     "remark-copywriting-correct": "^0.5.0",
-    "remark-details": "^2.0.0",
+    "remark-details": "^2.0.2",
+    "remark-footnotes": "^1.0.0",
     "remark-lint-final-newline": "^1.0.2",
     "remark-lint-no-tabs": "^1.0.2",
     "remark-math": "^1.0.5",

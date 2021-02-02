@@ -23,19 +23,27 @@ $$
 B = \{ p_i \ \big | \ \lvert x_i - x_m \rvert < h \}
 $$
 
+结合图像，直线 $m$ 将点分成了两部分。 $m$ 左侧为 $A_1$ 点集，右侧为为 $A_2$ 点集。
+
+再根据 $B = \{ p_i \ \big | \ \lvert x_i - x_m \rvert < h \}$ 规则，得到绿色点组成的 $B$ 点集。![nearest-points1](./images/nearest-points1.png)
+
 对于 $B$ 中的每个点 $p_i$ ，我们当前目标是找到一个同样在 $B$ 中、且到其距离小于 $h$ 的点。为了避免两个点之间互相考虑，我们只考虑那些纵坐标小于 $y_i$ 的点。显然对于一个合法的点 $p_j$ ， $y_i - y_j$ 必须小于 $h$ 。于是我们获得了一个集合 $C(p_i)$ ：
 
 $$
 C(p_i) = \{ p_j\ \big |\ p_j \in B,\ y_i - h < y_j \le y_i \}
 $$
 
+在点集 $B$ 中选一点 $p_i$ ，根据 $C(p_i) = \{ p_j\ \big |\ p_j \in B,\ y_i - h < y_j \le y_i \}$ 的规则，得到了由红色方框内的黄色点组成的 $C$ 点集。
+
+![nearest-points2](./images/nearest-points2.png)
+
 如果我们将 $B$ 中的点按照 $y_i$ 排序， $C(p_i)$ 将很容易得到，即紧邻 $p_i$ 的连续几个点。
 
 由此我们得到了合并的步骤：
 
-1.  构建集合 $B$ 。
-2.  将 $B$ 中的点按照 $y_i$ 排序。通常做法是 $O(n\log n)$ ，但是我们可以改变策略优化到 $O(n)$ （下文讲解）。
-3.  对于每个 $p_i \in B$ 考虑 $p_j \in C(p_i)$ ，对于每对 $(p_i,p_j)$ 计算距离并更新答案（当前所处集合的最近点对）。
+1. 构建集合 $B$ 。
+2. 将 $B$ 中的点按照 $y_i$ 排序。通常做法是 $O(n\log n)$ ，但是我们可以改变策略优化到 $O(n)$ （下文讲解）。
+3. 对于每个 $p_i \in B$ 考虑 $p_j \in C(p_i)$ ，对于每对 $(p_i,p_j)$ 计算距离并更新答案（当前所处集合的最近点对）。
 
 注意到我们上文提到了两次排序，因为点坐标全程不变，第一次排序可以只在分治开始前进行一次。我们令每次递归返回当前点集按 $y_i$ 排序的结果，对于第二次排序，上层直接使用下层的两个分别排序过的点集归并即可。
 
@@ -49,81 +57,87 @@ $$
 
 我们将一个 $h \times h$ 的正方形拆分为四个 $\frac{h}{2} \times \frac{h}{2}$ 的小正方形。可以发现，每个小正方形中最多有 $1$ 个点：因为该小正方形中任意两点最大距离是对角线的长度，即 $\frac{h}{\sqrt 2}$ ，该数小于 $h$ 。
 
+![nearest-points3](./images/nearest-points3.png)
+
 由此，每个正方形中最多有 $4$ 个点，矩形中最多有 $8$ 个点，去掉 $p_i$ 本身， $\max(C(p_i))=7$ 。
 
 ## 实现
 
 我们使用一个结构体来存储点，并定义用于排序的函数对象：
 
-```cpp
-struct pt {
-  int x, y, id;
-};
-
-struct cmp_x {
-  bool operator()(const pt& a, const pt& b) const {
-    return a.x < b.x || (a.x == b.x && a.y < b.y);
-  }
-};
-
-struct cmp_y {
-  bool operator()(const pt& a, const pt& b) const { return a.y < b.y; }
-};
-
-int n;
-vector<pt> a;
-```
+???+note "结构体定义"
+    ```cpp
+    struct pt {
+      int x, y, id;
+    };
+    
+    struct cmp_x {
+      bool operator()(const pt& a, const pt& b) const {
+        return a.x < b.x || (a.x == b.x && a.y < b.y);
+      }
+    };
+    
+    struct cmp_y {
+      bool operator()(const pt& a, const pt& b) const { return a.y < b.y; }
+    };
+    
+    int n;
+    vector<pt> a;
+    ```
 
 为了方便实现递归，我们引入 `upd_ans()` 辅助函数来计算两点间距离并尝试更新答案：
 
-```cpp
-double mindist;
-int ansa, ansb;
-
-inline void upd_ans(const pt& a, const pt& b) {
-  double dist =
-      sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y) + .0);
-  if (dist < mindist) mindist = dist, ansa = a.id, ansb = b.id;
-}
-```
+???+note "答案更新函数"
+    ```cpp
+    double mindist;
+    int ansa, ansb;
+    
+    inline void upd_ans(const pt& a, const pt& b) {
+      double dist =
+          sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y) + .0);
+      if (dist < mindist) mindist = dist, ansa = a.id, ansb = b.id;
+    }
+    ```
 
 下面是递归本身：假设在调用前 `a[]` 已按 $x_i$ 排序。如果 $r-l$ 过小，使用暴力算法计算 $h$ ，终止递归。
 
 我们使用 `std::merge()` 来执行归并排序，并创建辅助缓冲区 `t[]` ， $B$ 存储在其中。
 
-```cpp
-void rec(int l, int r) {
-  if (r - l <= 3) {
-    for (int i = l; i <= r; ++i)
-      for (int j = i + 1; j <= r; ++j) upd_ans(a[i], a[j]);
-    sort(a + l, a + r + 1, &cmp_y);
-    return;
-  }
-
-  int m = (l + r) >> 1;
-  int midx = a[m].x;
-  rec(l, m), rec(m + 1, r);
-  static pt t[MAXN];
-  merge(a + l, a + m + 1, a + m + 1, a + r + 1, t, &cmp_y);
-  copy(t, t + r - l + 1, a + l);
-
-  int tsz = 0;
-  for (int i = l; i <= r; ++i)
-    if (abs(a[i].x - midx) < mindist) {
-      for (int j = tsz - 1; j >= 0 && a[i].y - t[j].y < mindist; --j)
-        upd_ans(a[i], t[j]);
-      t[tsz++] = a[i];
+???+note "主体函数"
+    ```cpp
+    void rec(int l, int r) {
+      if (r - l <= 3) {
+        for (int i = l; i <= r; ++i)
+          for (int j = i + 1; j <= r; ++j) upd_ans(a[i], a[j]);
+        sort(a + l, a + r + 1, &cmp_y);
+        return;
+      }
+    
+      int m = (l + r) >> 1;
+      int midx = a[m].x;
+      rec(l, m), rec(m + 1, r);
+      static pt t[MAXN];
+      merge(a + l, a + m + 1, a + m + 1, a + r + 1, t, &cmp_y);
+      copy(t, t + r - l + 1, a + l);
+    
+      int tsz = 0;
+      for (int i = l; i <= r; ++i)
+        if (abs(a[i].x - midx) < mindist) {
+          for (int j = tsz - 1; j >= 0 && a[i].y - t[j].y < mindist; --j)
+            upd_ans(a[i], t[j]);
+          t[tsz++] = a[i];
+        }
     }
-}
-```
+    ```
 
 在主函数中，这样开始递归即可：
 
-```cpp
-sort(a, a + n, &cmp_x);
-mindist = 1E20;
-rec(0, n - 1);
-```
+???+note "调用接口"
+    ```cpp
+    sort(a, a + n, &cmp_x);
+    mindist = 1E20;
+    rec(0, n - 1);
+    ```
 
 ## 推广：平面最小周长三角形
 
@@ -139,9 +153,9 @@ rec(0, n - 1);
 
 具体地，我们把所有点按照 $x_i$ 为第一关键字、 $y_i$ 为第二关键字排序，并建立一个以 $y_i$ 为第一关键字、 $x_i$ 为第二关键字排序的 multiset。对于每一个位置 $i$ ，我们执行以下操作：
 
-1.  将所有满足 $x_i - x_j >= d$ 的点从集合中删除。它们不会再对答案有贡献。
-2.  对于集合内满足 $\lvert y_i - y_j \rvert < d$ 的所有点，统计它们和 $p_i$ 的距离。
-3.  将 $p_i$ 插入到集合中。
+1. 将所有满足 $x_i - x_j >= d$ 的点从集合中删除。它们不会再对答案有贡献。
+2. 对于集合内满足 $\lvert y_i - y_j \rvert < d$ 的所有点，统计它们和 $p_i$ 的距离。
+3. 将 $p_i$ 插入到集合中。
 
 由于每个点最多会被插入和删除一次，所以插入和删除点的时间复杂度为 $O(n \log n)$ ，而统计答案部分的时间复杂度证明与分治算法的时间复杂度证明方法类似，读者不妨一试。
 
@@ -195,11 +209,11 @@ rec(0, n - 1);
 
 ## 习题
 
--    [UVA 10245 "The Closest Pair Problem"\[难度：低\]](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1186) 
--    [SPOJ #8725 CLOPPAIR "Closest Point Pair"\[难度：低\]](https://www.spoj.com/problems/CLOPPAIR/) 
--    [CODEFORCES Team Olympiad Saratov - 2011 "Minimum amount"\[难度：中\]](http://codeforces.com/contest/120/problem/J) 
--    [Google CodeJam 2009 Final "Min Perimeter"\[难度：中\]](https://code.google.com/codejam/contest/311101/dashboard#s=a&a=1) 
--    [SPOJ #7029 CLOSEST "Closest Triple"\[难度：中\]](https://www.spoj.com/problems/CLOSEST/) 
+-  [UVA 10245 "The Closest Pair Problem"\[难度：低\]](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1186) 
+-  [SPOJ #8725 CLOPPAIR "Closest Point Pair"\[难度：低\]](https://www.spoj.com/problems/CLOPPAIR/) 
+-  [CODEFORCES Team Olympiad Saratov - 2011 "Minimum amount"\[难度：中\]](http://codeforces.com/contest/120/problem/J) 
+-  [SPOJ #7029 CLOSEST "Closest Triple"\[难度：中\]](https://www.spoj.com/problems/CLOSEST/) 
+-  [Google Code Jam 2009 Final "Min Perimeter"\[难度：中\]](https://codingcompetitions.withgoogle.com/codejam/round/0000000000432ad5/0000000000433195) 
 
 * * *
 

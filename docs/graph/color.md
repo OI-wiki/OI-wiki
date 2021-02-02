@@ -44,21 +44,21 @@
 
 ??? note "一道很不简单的例题 [uoj 444 二分图](https://uoj.ac/problem/444)"
     本题为笔者于 2018 年命制的集训队第一轮作业题。
-
+    
     首先我们可以发现答案下界为度数不为 $k$ 倍数的点的个数。
-
+    
     下界的构造方法是对二分图进行拆点。
-
-    若 $degree \bmod k \neq 0$ ,我们将其拆为 $degree/k$ 个度数为 k 的节点和一个度数为 $degree \bmod k$ 的节点 。
-
-    若 $degree \bmod k = 0$ ,我们将其拆为 $degree/k$ 个度数为 k 的节点。
-
+    
+    若 $degree \bmod k \neq 0$ , 我们将其拆为 $degree/k$ 个度数为 k 的节点和一个度数为 $degree \bmod k$ 的节点。
+    
+    若 $degree \bmod k = 0$ , 我们将其拆为 $degree/k$ 个度数为 k 的节点。
+    
     拆出来的点在原图中的意义相同，也就是说，在满足度数限制的情况下，一条边端点可以连接任意一个拆出来的点。
-
+    
     根据 Vizing 定理，我们显然可以构造出该图的一种 $k$ 染色方案。
-
+    
     删边部分由于和 Vizing 定理关系不大这里不再展开。
-
+    
     有兴趣的读者可以自行阅读笔者当时写的题解。
 
 ## 色多项式
@@ -71,8 +71,8 @@
 
 在无向无环图 $G$ 中，
 
-1.   $e=(v_i, v_j) \notin E(G)$ ，则 $f(G, k) = f(G \cup (v_i, v_j), k)+f(G\backslash(v_i, v_j), k)$ 
-2.   $e=(v_i, v_j) \in E(G)$ ，则 $f(G,k)=f(G-e,k)-f(G\backslash e,k)$ 
+1.  $e=(v_i, v_j) \notin E(G)$ ，则 $f(G, k) = f(G \cup (v_i, v_j), k)+f(G\backslash(v_i, v_j), k)$ 
+2.  $e=(v_i, v_j) \in E(G)$ ，则 $f(G,k)=f(G-e,k)-f(G\backslash e,k)$ 
 
 定理：设 $V_1$ 是 $G$ 的点割集，且 $G[V_1]$ 是 $G$ 的 $|V_1|$ 阶完全子图， $G-V_1$ 有 $p(p \geq 2)$ 个连通分支，则：
 

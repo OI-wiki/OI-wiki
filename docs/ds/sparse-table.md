@@ -55,7 +55,7 @@ ST 表基于 [倍增](../basic/binary-lifting.md) 思想，可以做到 $\Theta(
 using namespace std;
 const int logn = 21;
 const int maxn = 2000001;
-int f[maxn][logn], Logn[maxn];
+int f[maxn][logn + 1], Logn[maxn + 1];
 inline int read() {
   char c = getchar();
   int x = 0, f = 1;
@@ -94,9 +94,9 @@ int main() {
 
 ## 注意点
 
-1.  输入输出数据一般很多，建议开启输入输出优化。
+1. 输入输出数据一般很多，建议开启输入输出优化。
 
-2.  每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议进行如下的预处理：
+2. 每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议进行如下的预处理：
 
 $$
 \left\{\begin{aligned}
@@ -139,13 +139,13 @@ ST 表能较好的维护“可重复贡献”的区间信息（同时也应满�
 
 ??? note "更严谨的证明"
     理解本段，可能需要具备 [时间复杂度](../misc/complexity.md) 的关于“势能分析法”的知识。
-
+    
     先分析预处理部分的时间复杂度：
-
+    
     设“待考虑数列”为在预处理 ST 表的时候当前层循环的数列。例如，第零层的数列就是原数列，第一层的数列就是第零层的数列经过一次迭代之后的数列，即 `st[1..n][1]` ，我们将其记为 $A$ 。
-
+    
     而势能函数就定义为“待考虑数列”中所有数的累乘的以二为底的对数。即： $\Phi(A)=\log_2\left(\prod\limits_{i=1}^n A_i\right)$ 。
-
+    
     在一次迭代中，所花费的时间相当于迭代循环所花费的时间与 GCD 所花费的时间之和。其中，GCD 花费的时间有长有短。最短可能只有两次甚至一次递归，而最长可能有 $O(\log w)$ 次递归。但是，GCD 过程中，除最开头一层与最末一层以外，每次递归都会使“待考虑数列”中的某个结果至少减半。即， $\Phi(A)$ 会减少至少 $1$ ，该层递归所用的时间可以被势能函数均摊。
-
+    
     同时，我们可以看到， $\Phi(A)$ 的初值最大为 $\log_2 (w^n)=\Theta(n\log w)$ ，而 $\Phi(A)$ 不增。所以，ST 表预处理部分的时间复杂度为 $O(n(\log w+\log n))$ 。

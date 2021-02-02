@@ -39,8 +39,8 @@
 
 所以我们整理一下向量的加法法则：
 
-1.   **向量加法的三角形法则** ：若要求和的向量首尾顺次相连，那么这些向量的和为第一个向量的起点指向最后一个向量的终点；
-2.   **向量加法的平行四边形法则** ：若要求和的两个向量 **共起点** ，那么它们的和向量为以这两个向量为邻边的平行四边形的对角线，起点为两个向量共有的起点，方向沿平行四边形对角线方向。
+1.  **向量加法的三角形法则** ：若要求和的向量首尾顺次相连，那么这些向量的和为第一个向量的起点指向最后一个向量的终点；
+2.  **向量加法的平行四边形法则** ：若要求和的两个向量 **共起点** ，那么它们的和向量为以这两个向量为邻边的平行四边形的对角线，起点为两个向量共有的起点，方向沿平行四边形对角线方向。
 
 这样，向量的加法就具有了几何意义。并且可以验证，向量的加法满足 **交换律与结合律** 。
 
@@ -56,8 +56,8 @@
 
 规定「实数 $\lambda$ 与向量 $\boldsymbol a$ 的积」为一个向量，这种运算就是向量的 **数乘运算** ，记作 $\lambda \boldsymbol a$ ，它的长度与方向规定如下：
 
-1.   $|\lambda \boldsymbol a|=|\lambda||\boldsymbol a|$ ；
-2.  当 $\lambda >0$ 时， $\lambda\boldsymbol a$ 与 $\boldsymbol a$ 同向，当 $\lambda =0$ 时， $\lambda \boldsymbol a=\boldsymbol 0$ ，当 $\lambda<0$ 时， $\lambda \boldsymbol a$ 与 $\boldsymbol a$ 方向相反。
+1.  $|\lambda \boldsymbol a|=|\lambda||\boldsymbol a|$ ；
+2. 当 $\lambda >0$ 时， $\lambda\boldsymbol a$ 与 $\boldsymbol a$ 同向，当 $\lambda =0$ 时， $\lambda \boldsymbol a=\boldsymbol 0$ ，当 $\lambda<0$ 时， $\lambda \boldsymbol a$ 与 $\boldsymbol a$ 方向相反。
 
 我们根据数乘的定义，可以验证有如下运算律：
 
@@ -152,7 +152,7 @@ $$
 
 #### 判定两向量共线
 
- $\boldsymbol a = \lambda \boldsymbol b$  $\Leftrightarrow$  $\boldsymbol a\cdot \boldsymbol b=|\boldsymbol a||\boldsymbol b|$ 
+ $\boldsymbol a = \lambda \boldsymbol b$  $\Leftrightarrow$  $|\boldsymbol a\cdot \boldsymbol b|=|\boldsymbol a||\boldsymbol b|$ 
 
 #### 数量积的坐标运算
 
@@ -180,8 +180,8 @@ $$
 
 我们定义向量 $\boldsymbol a,\boldsymbol b$ 的向量积为一个向量，记为 $\boldsymbol a\times \boldsymbol b$ ，其模与方向定义如下：
 
-1.   $|\boldsymbol a\times \boldsymbol b|=|\boldsymbol a||\boldsymbol b|\sin \langle \boldsymbol a,\boldsymbol b\rangle$ ；
-2.   $\boldsymbol a\times \boldsymbol b$ 与 $\boldsymbol a,\boldsymbol b$ 都垂直，且 $\boldsymbol a,\boldsymbol b,\boldsymbol a\times \boldsymbol b$ 符合右手法则。
+1.  $|\boldsymbol a\times \boldsymbol b|=|\boldsymbol a||\boldsymbol b|\sin \langle \boldsymbol a,\boldsymbol b\rangle$ ；
+2.  $\boldsymbol a\times \boldsymbol b$ 与 $\boldsymbol a,\boldsymbol b$ 都垂直，且 $\boldsymbol a,\boldsymbol b,\boldsymbol a\times \boldsymbol b$ 符合右手法则。
 
 向量积也叫外积。
 
@@ -221,7 +221,7 @@ $$
 
 ### 任意角与弧度制
 
-（为人教版高中数学必修四内容）
+（为人教版高中数学必修一内容）
 
 我们在初中学习过角度值，但是角度不是一个数，这给我们深入研究带来了一定的困难，还有其他的问题无法解释清，所以我们换用弧度制描述角。
 

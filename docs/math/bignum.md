@@ -10,16 +10,16 @@
 
 ???+ note "任务"
     输入：一个形如 `a <op> b` 的表达式。
-
-    -    `a` 、 `b` 分别是长度不超过 $1000$ 的十进制非负整数；
-    -    `<op>` 是一个字符（ `+` 、 `-` 、 `*` 或 `/` ），表示运算。
-    -   整数与运算符之间由一个空格分隔。
-
+    
+    -  `a` 、 `b` 分别是长度不超过 $1000$ 的十进制非负整数；
+    -  `<op>` 是一个字符（ `+` 、 `-` 、 `*` 或 `/` ），表示运算。
+    - 整数与运算符之间由一个空格分隔。
+    
     输出：运算结果。
-
-    -   对于 `+` 、 `-` 、 `*` 运算，输出一行表示结果；
-    -   对于 `/` 运算，输出两行分别表示商和余数。
-    -   保证结果均为非负整数。
+    
+    - 对于 `+` 、 `-` 、 `*` 运算，输出一行表示结果；
+    - 对于 `/` 运算，输出两行分别表示商和余数。
+    - 保证结果均为非负整数。
 
 ## 存储
 
@@ -194,7 +194,7 @@ void add(int a[], int b[], int c[]) {
 
 ### 减法
 
-高精度加法，也就是竖式减法啦。
+高精度减法，也就是竖式减法啦。
 
 ![](./images/subtraction.png)
 
@@ -272,7 +272,7 @@ void sub(int a[], int b[], int c[]) {
     }
     ```
 
-试一试，输入 `1 2` ——输出 `/9999999` ，诶这个 OI Wiki 怎么给了我一份假的代码啊……
+试一试，输入 `1 2` ——输出 `/9999999` ，诶这个 **OI Wiki** 怎么给了我一份假的代码啊……
 
 事实上，上面的代码只能处理减数 $a$ 大于等于被减数 $b$ 的情况。处理被减数比减数小，即 $a<b$ 时的情况很简单。
 
@@ -553,6 +553,45 @@ void div(int a[], int b[], int c[], int d[]) {
     }
     ```
 
+## 压位高精度
+
+在一般的高精度加法，减法，乘法运算中，我们都是将参与运算的数拆分成一个个单独的数码进行运算。
+
+例如计算 $8192\times 42$ 时，如果按照高精度乘高精度的计算方式，我们实际上算的是 $(8000+100+90+2)\times(40+2)$ 。
+
+在位数较多的时候，拆分出的数也很多，高精度运算的效率就会下降。
+
+有没有办法作出一些优化呢？
+
+注意到拆分数字的方式并不影响最终的结果，因此我们可以将若干个数码进行合并。
+
+还是以上面这个例子为例，如果我们每两位拆分一个数，我们可以拆分成 $(8100+92)\times 42$ 。
+
+这样的拆分不影响最终结果，但是因为拆分出的数字变少了，计算效率也就提升了。
+
+从 [进位制](./base.md) 的角度理解这一过程，我们通过在较大的进位制（上面每两位拆分一个数，可以认为是在 $100$ 进制下进行运算）下进行运算，从而达到减少参与运算的数字的位数，提升运算效率的目的。
+
+这就是 **压位高精度** 的思想。
+
+下面我们给出压位高精度的加法代码，用于进一步阐述其实现方法：
+
+??? note "压位高精度加法参考实现"
+    ```cpp
+    //这里的 a,b,c 数组均为 p 进制下的数
+    //最终输出答案时需要将数字转为十进制
+    void add(int a[], int b[], int c[]) {
+      clear(c);
+    
+      for (int i = 0; i < LEN - 1; ++i) {
+        c[i] += a[i] + b[i];
+        if (c[i] >= p) {  //在普通高精度运算下，p=10
+          c[i + 1] += 1;
+          c[i] -= p;
+        }
+      }
+    }
+    ```
+
 ## Karatsuba 乘法
 
 记高精度数字的位数为 $n$ ，那么高精度—高精度竖式乘法需要花费 $O(n^2)$ 的时间。本节介绍一个时间复杂度更为优秀的算法，由前苏联（俄罗斯）数学家 Anatoly Karatsuba 提出，是一种分治算法。
@@ -641,9 +680,9 @@ $$
     ```
 
 ??? " 关于 `new` 和 `delete` "
-    见 [内存池](../intro/common-tricks.md#_5) 。
+    见 [内存池](../contest/common-tricks.md#_5) 。
 
-但是这样的实现存在一个问题：在 $b$ 进制下，多项式的每一个系数都有可能达到 $n \cdot b^2$ 量级，在压位高精度实现（即 $b > 10$ ，下文介绍）中可能造成整数溢出；而若在多项式乘法的过程中处理进位问题，则 $x_1 + x_0$ 与 $y_1 + y_0$ 的结果可能达到 $2 \cdot b^m$ ，增加一个位（如果采用 $x_1 - x_0$ 的计算方式，则不得不特殊处理负数的情况）。因此，需要依照实际的应用场景来决定采用何种实现方式。
+但是这样的实现存在一个问题：在 $b$ 进制下，多项式的每一个系数都有可能达到 $n \cdot b^2$ 量级，在压位高精度实现中可能造成整数溢出；而若在多项式乘法的过程中处理进位问题，则 $x_1 + x_0$ 与 $y_1 + y_0$ 的结果可能达到 $2 \cdot b^m$ ，增加一个位（如果采用 $x_1 - x_0$ 的计算方式，则不得不特殊处理负数的情况）。因此，需要依照实际的应用场景来决定采用何种实现方式。
 
 ### Reference
 
@@ -672,12 +711,7 @@ $$
       Big(const int);
       Big(const char*);
       Big(const Big&);
-      Big& operator=(const Big&);  // 注意这里operator有&，因为赋值有修改……
-      // 由于OI中要求效率
-      // 此处不使用泛型函数
-      // 故不重载
-      // istream& operator>>(istream&,  BigNum&);   // 重载输入运算符
-      // ostream& operator<<(ostream&,  BigNum&);   // 重载输出运算符
+      Big& operator=(const Big&);
       Big operator+(const Big&) const;
       Big operator-(const Big&) const;
       Big operator*(const Big&)const;
@@ -694,7 +728,6 @@ $$
       bool operator<(const int& t) const;
       inline void print() const;
     };
-    // README::不要随随便便把参数都变成引用，那样没办法传值
     Big::Big(const int b) {
       int c, d = b;
       len = 0;
@@ -864,9 +897,9 @@ $$
 
 ## 习题
 
--    [NOIP 2012 国王游戏](https://loj.ac/problem/2603) 
--    [SPOJ - Fast Multiplication](http://www.spoj.com/problems/MUL/en/) 
--    [SPOJ - GCD2](http://www.spoj.com/problems/GCD2/) 
--    [UVA - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024) 
--    [UVA - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436) 
--    [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D) 
+-  [NOIP 2012 国王游戏](https://loj.ac/problem/2603) 
+-  [SPOJ - Fast Multiplication](http://www.spoj.com/problems/MUL/en/) 
+-  [SPOJ - GCD2](http://www.spoj.com/problems/GCD2/) 
+-  [UVA - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024) 
+-  [UVA - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436) 
+-  [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D) 

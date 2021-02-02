@@ -160,10 +160,10 @@ void tarjan(int u, int fa) {
 
 ## 练习
 
--    [P3388【模板】割点（割顶）](https://www.luogu.com.cn/problem/P3388) 
--    [POJ2117 Electricity](https://vjudge.net/problem/POJ-2117) 
--    [HDU4738 Caocao's Bridges](https://vjudge.net/problem/HDU-4738) 
--    [HDU2460 Network](https://vjudge.net/problem/HDU-2460) 
--    [POJ1523 SPF](https://vjudge.net/problem/POJ-1523) 
+-  [P3388【模板】割点（割顶）](https://www.luogu.com.cn/problem/P3388) 
+-  [POJ2117 Electricity](https://vjudge.net/problem/POJ-2117) 
+-  [HDU4738 Caocao's Bridges](https://vjudge.net/problem/HDU-4738) 
+-  [HDU2460 Network](https://vjudge.net/problem/HDU-2460) 
+-  [POJ1523 SPF](https://vjudge.net/problem/POJ-1523) 
 
 Tarjan 算法还有许多用途，常用的例如求强连通分量，缩点，还有求 2-SAT 的用途等。

@@ -48,9 +48,9 @@
 
 证明：考虑使用数学归纳法。
 
--   当 $|s| =1$ 时， $s$ 只有一个字符，同时也只有一个子串，并且这个子串是回文的，因此结论成立。
+- 当 $|s| =1$ 时， $s$ 只有一个字符，同时也只有一个子串，并且这个子串是回文的，因此结论成立。
 
--   当 $|s| >1$ 时，设 $t=sc$ ，其中 $t$ 表示 $s$ 最后增加一个字符 $c$ 后形成的字符串，假设结论对 $s$ 串成立。考虑以最后一个字符 $c$ 结尾的回文子串，假设它们的左端点由小到大排序为 $l_1,l_2,\dots,l_k$ 。由于 $t[l_1..|t|]$ 是回文串，因此对于所有位置 $l_1 \le p \le |t|$ ，有 $t[p..|t|]=t[l_1..l_1+|t|-p]$ 。所以，对于 $1 < i \le k$ ， $t[l_i..|t|]$ 已经在 $t[1..|t|-1]$ 中出现过。因此，每次增加一个字符，本质不同的回文子串个数最多增加 $1$ 个。
+- 当 $|s| >1$ 时，设 $t=sc$ ，其中 $t$ 表示 $s$ 最后增加一个字符 $c$ 后形成的字符串，假设结论对 $s$ 串成立。考虑以最后一个字符 $c$ 结尾的回文子串，假设它们的左端点由小到大排序为 $l_1,l_2,\dots,l_k$ 。由于 $t[l_1..|t|]$ 是回文串，因此对于所有位置 $l_1 \le p \le |t|$ ，有 $t[p..|t|]=t[l_1..l_1+|t|-p]$ 。所以，对于 $1 < i \le k$ ， $t[l_i..|t|]$ 已经在 $t[1..|t|-1]$ 中出现过。因此，每次增加一个字符，本质不同的回文子串个数最多增加 $1$ 个。
 
 由数学归纳法，可知该定理成立。
 
@@ -197,21 +197,21 @@ border：若 $0 \le r < |s|$ ， $pre(s,r)=suf(s,r)$ ，就称 $pre(s,r)$ 是 $s
 
 引理 $4$ ： $x$ 是一个回文串， $y$ 是 $x$ 的最长回文真后缀， $z$ 是 $y$ 的最长回文真后缀。令 $u,v$ 分别为满足 $x=uy,y=vz$ 的字符串，则有下面三条性质
 
-1.   $|u| \ge |v|$ ；
+1.  $|u| \ge |v|$ ；
 
-2.  如果 $|u| > |v|$ ，那么 $|u| > |z|$ ；
+2. 如果 $|u| > |v|$ ，那么 $|u| > |z|$ ；
 
-3.  如果 $|u| = |v|$ ，那么 $u=v$ 。
+3. 如果 $|u| = |v|$ ，那么 $u=v$ 。
 
 ![](./images/pam4.png)
 
 证明：
 
-1.  由引理 $3$ 的推论， $|u|=|x|-|y|$ 是 $x$ 的最小周期， $|v|=|y|-|z|$ 是 $y$ 的最小周期。考虑反证法，假设 $|u| < |v|$ ，因为 $y$ 是 $x$ 的后缀，所以 $u$ 既是 $x$ 的周期，也是 $y$ 的周期，而 $|v|$ 是 $y$ 的最小周期，矛盾。所以 $|u| \ge |v|$ 。
+1. 由引理 $3$ 的推论， $|u|=|x|-|y|$ 是 $x$ 的最小周期， $|v|=|y|-|z|$ 是 $y$ 的最小周期。考虑反证法，假设 $|u| < |v|$ ，因为 $y$ 是 $x$ 的后缀，所以 $u$ 既是 $x$ 的周期，也是 $y$ 的周期，而 $|v|$ 是 $y$ 的最小周期，矛盾。所以 $|u| \ge |v|$ 。
 
-2.  因为 $y$ 是 $x$ 的 border，所以 $v$ 是 $x$ 的前缀，设字符串 $w$ ，满足 $x=vw$ （如下图所示），其中 $z$ 是 $w$ 的 border。考虑反证法，假设 $|u| \le |z|$ ，那么 $|zu| \le 2|z|$ ，所以由引理 $2$ ， $w$ 是回文串，由引理 $1$ ， $w$ 是 $x$ 的 border，又因为 $|u| > |v|$ ，所以 $|w| > |y|$ ，矛盾。所以 $|u| > |z|$ 。
+2. 因为 $y$ 是 $x$ 的 border，所以 $v$ 是 $x$ 的前缀，设字符串 $w$ ，满足 $x=vw$ （如下图所示），其中 $z$ 是 $w$ 的 border。考虑反证法，假设 $|u| \le |z|$ ，那么 $|zu| \le 2|z|$ ，所以由引理 $2$ ， $w$ 是回文串，由引理 $1$ ， $w$ 是 $x$ 的 border，又因为 $|u| > |v|$ ，所以 $|w| > |y|$ ，矛盾。所以 $|u| > |z|$ 。
 
-3.   $u,v$ 都是 $x$ 的前缀， $|u|=|v|$ ，所以 $u=v$ 。
+3.  $u,v$ 都是 $x$ 的前缀， $|u|=|v|$ ，所以 $u=v$ 。
 
 ![](./images/pam5.png)
 
@@ -332,29 +332,29 @@ border：若 $0 \le r < |s|$ ， $pre(s,r)=suf(s,r)$ ，就称 $pre(s,r)$ 是 $s
 
 ## 例题
 
--    [最长双回文串](https://www.luogu.com.cn/problem/P4555) 
+-  [最长双回文串](https://www.luogu.com.cn/problem/P4555) 
 
--    [拉拉队排练](https://www.luogu.com.cn/problem/P1659) 
+-  [拉拉队排练](https://www.luogu.com.cn/problem/P1659) 
 
--    [「SHOI2011」双倍回文](https://www.luogu.com.cn/problem/P4287) 
+-  [「SHOI2011」双倍回文](https://www.luogu.com.cn/problem/P4287) 
 
--    [HDU 5421 Victor and String](http://acm.hdu.edu.cn/showproblem.php?pid=5421) 
+-  [HDU 5421 Victor and String](http://acm.hdu.edu.cn/showproblem.php?pid=5421) 
 
--    [CodeChef Palindromeness](https://www.codechef.com/LTIME23/problems/PALPROB) 
+-  [CodeChef Palindromeness](https://www.codechef.com/LTIME23/problems/PALPROB) 
 
 ## 相关资料
 
--    [EERTREE: An Efficient Data Structure for Processing Palindromes in Strings](https://arxiv.org/pdf/1506.04862) 
+-  [EERTREE: An Efficient Data Structure for Processing Palindromes in Strings](https://arxiv.org/pdf/1506.04862) 
 
--    [Palindromic tree](http://adilet.org/blog/palindromic-tree/) 
+-  [Palindromic tree](http://adilet.org/blog/palindromic-tree/) 
 
--   2017 年 IOI 国家候选队论文集 回文树及其应用 翁文涛
+- 2017 年 IOI 国家候选队论文集 回文树及其应用 翁文涛
 
 
--   2019 年 IOI 国家候选队论文集 子串周期查询问题的相关算法及其应用 陈孙立
+- 2019 年 IOI 国家候选队论文集 子串周期查询问题的相关算法及其应用 陈孙立
 
--   字符串算法选讲 金策
+- 字符串算法选讲 金策
 
--    [A bit more about palindromes](https://codeforces.com/blog/entry/19193) 
+-  [A bit more about palindromes](https://codeforces.com/blog/entry/19193) 
 
--    [A Subquadratic Algorithm for Minimum Palindromic Factorization](https://arxiv.org/pdf/1403.2431.pdf) 
+-  [A Subquadratic Algorithm for Minimum Palindromic Factorization](https://arxiv.org/pdf/1403.2431.pdf) 

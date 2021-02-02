@@ -1,12 +1,25 @@
-## 前置知识
-
-FFT，多项式乘法
-
 ## Basic Concepts
 
 ### 多项式的度
 
 对于一个多项式 $f(x)$ ，称其最高次项的次数为该多项式的 **度（Degree）** ，记作 $\operatorname{deg}{f}$ 。
+
+### 多项式的乘法
+
+最核心的操作是两个多项式的乘法，即给定多项式 $f(x)$ 和 $g(x)$ ：
+
+$$
+f(x)=a_0+a_1x+\dots+a_nx^n\quad \quad (1)\\ 
+g(x)=b_0+b_1x+\dots+b_mx^m\quad \quad (2)
+$$
+
+要计算多项式 $Q(x)=f(x)\cdot g(x)$ ：
+
+$$
+\boxed {Q(x) = \sum \limits_ {i = 0} ^ n \sum \limits_ {j = 0 } ^ m a_i b_j x ^ {i + j}} = c_0 + c_1 x + \dots + c_ {n + m} x ^ {n + m}
+$$
+
+上述过程可以通过快速傅里叶变换在 $O(n\log n)$ 下计算。
 
 ### 多项式的逆元
 
@@ -75,5 +88,5 @@ $$
 
 ## References
 
--    [ **Picks's Blog** ](https://picks.logdown.com) 
--    [ **Miskcoo's Space** ](https://blog.miskcoo.com) 
+-  [ **Picks's Blog** ](https://picks.logdown.com) 
+-  [ **Miskcoo's Space** ](https://blog.miskcoo.com) 

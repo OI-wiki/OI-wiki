@@ -81,4 +81,4 @@ $$
 
 ## 例题
 
-1.  有标号简单无向连通图计数： [「POJ 1737」Connected Graph](http://poj.org/problem?id=1737) 
+1. 有标号简单无向连通图计数： [「POJ 1737」Connected Graph](http://poj.org/problem?id=1737) 

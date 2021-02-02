@@ -8,9 +8,9 @@
 
 一棵红黑树满足如下性质：
 
-1.  节点是红色或黑色；
-2.  红色的节点的所有儿子的颜色必须是黑色，即从每个叶子到根的所有路径上不能有两个连续的红色节点；
-3.  从任一节点到其子树中的每个叶子的所有简单路径上都包含相同数目的黑色节点。（黑高平衡）
+1. 节点是红色或黑色；
+2. 红色的节点的所有儿子的颜色必须是黑色，即从每个叶子到根的所有路径上不能有两个连续的红色节点；
+3. 从任一节点到其子树中的每个叶子的所有简单路径上都包含相同数目的黑色节点。（黑高平衡）
 
 这保证了从根节点到任意叶子的最长路径（红黑交替）不会超过最短路径（全黑）的二倍。从而保证了树的平衡性。
 
@@ -24,8 +24,8 @@
 
 左偏红黑树对红黑树进行了进一步限制，一个黑色节点的左右儿子：
 
--   要么全是黑色；
--   要么左儿子是红色，右儿子是黑色。
+- 要么全是黑色；
+- 要么左儿子是红色，右儿子是黑色。
 
 符合条件的情况：
 
@@ -51,7 +51,7 @@
 
 ![llrbt5](./images/llrbt-5.png)
 
-因此需要把它进行一次右旋。而对于右旋后的情况，我们应该对它进行 `color_filp` ：即翻转该节点和它的两个儿子的颜色
+因此需要把它进行一次右旋。而对于右旋后的情况，我们应该对它进行 `color_flip` ：即翻转该节点和它的两个儿子的颜色
 
 ![llrbt6](./images/llrbt-6.png)
 
@@ -509,5 +509,5 @@
 
 ## 参考资料与拓展阅读
 
--    [Left-Leaning Red-Black Trees](https://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf) -  Robert Sedgewick Princeton University
--    [Balanced Search Trees](https://algs4.cs.princeton.edu/lectures/33BalancedSearchTrees-2x2.pdf) -\_Algorithms_Robert Sedgewick | Kevin Wayne
+-  [Left-Leaning Red-Black Trees](https://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf) -  Robert Sedgewick Princeton University
+-  [Balanced Search Trees](https://algs4.cs.princeton.edu/lectures/33BalancedSearchTrees-2x2.pdf) -\_Algorithms_Robert Sedgewick | Kevin Wayne
