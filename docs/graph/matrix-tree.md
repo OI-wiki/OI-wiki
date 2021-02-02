@@ -126,69 +126,70 @@ $$
     
     求出它的 $n$ 阶子式的行列式即可，剩下的只有高精度计算了。
 
-???+ note "例题 2+"
+??? note "例题 2+"
 
     将例题 2 的数据加强，要求 $n\leq 100000$ ，但是答案对 1000007 取模。（本题求解需要一些线性代数知识）
     
      **解** 推导递推式后利用矩阵快速幂即可求得。
 
-    ??? danger "推导递推式的过程。警告：过程冗杂"
-        注意到 $L_n$ 删掉第 1 行第 1 列以后得到的矩阵很有规律，因此其实就是在求矩阵
-        
-        $$
-        M_n = \begin{bmatrix}
-        3&	-1&	0&	\cdots&	0&	-1\\
-        -1&	3&	-1&	\cdots&	0&	0\\
-        0&	-1&	3&	\cdots&	0&	0\\
-        \vdots&	\vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
-        0&	0&	0&	\cdots&	3&	-1\\
-        -1&	0&	0&	\cdots&	-1&	3\\
-        \end{bmatrix}_{n}
-        $$
-        
-        的行列式。对 $M_n$ 的行列式按第一列展开，得到
-        
-        $$
-        \det M_n = 3\det \begin{bmatrix}
-        3&	-1&	\cdots&	0&	0\\
-        -1&	3&	\cdots&	0&	0\\
-        \vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
-        0&	0&	\cdots&	3&	-1\\
-        0&	0&	\cdots&	-1&	3\\
-        \end{bmatrix}_{n-1} + \det\begin{bmatrix}
-        -1&	0&	\cdots&	0&	-1\\
-        -1&	3&	\cdots&	0&	0\\
-        \vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
-        0&	0&	\cdots&	3&	-1\\
-        0&	0&	\cdots&	-1&	3\\
-        \end{bmatrix}_{n-1} + (-1)^n \det\begin{bmatrix}
-        -1&	0&	\cdots&	0&	-1\\
-        3&	-1&	\cdots&	0&	0\\
-        -1&	3&	\cdots&	0&	0\\
-        \vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
-        0&	0&	\cdots&	3&	-1\\
-        \end{bmatrix}_{n-1}
-        $$
-        
-        上述三个矩阵的行列式记为 $d_{n-1}, a_{n-1}, b_{n-1}$ 。  
-        注意到 $d_n$ 是三对角行列式，采用类似的展开的方法可以得到 $d_n$ 具有递推公式 $d_n=3d_{n-1}-d_{n-2}$ 。类似地，采用展开的方法可以得到 $a_{n-1}=-d_{n-2}-1$ ，以及 $(-1)^n b_{n-1}=-d_{n-2}-1$ 。  
-        将这些递推公式代入上式，得到：
-        
-        $$
-        \det M_n = 3d_{n-1}-2d_{n-2}-2
-        $$
-        
-        $$
-        d_n = 3d_{n-1}-d_{n-2}
-        $$
-        
-        于是猜测 $\det M_n$ 也是非齐次的二阶线性递推。采用待定系数法可以得到最终的递推公式为
-        
-        $$
-        \det M_n = 3\det M_{n-1} - \det M_{n-2} + 2
-        $$
-        
-        改写成 $(\det M_n+2) = 3(\det M_{n-1}+2) - (\det M_{n-2} + 2)$ 后，采用矩阵快速幂即可求出答案。
+    推导递推式的过程：
+    
+    注意到 $L_n$ 删掉第 1 行第 1 列以后得到的矩阵很有规律，因此其实就是在求矩阵
+    
+    $$
+    M_n = \begin{bmatrix}
+    3&	-1&	0&	\cdots&	0&	-1\\
+    -1&	3&	-1&	\cdots&	0&	0\\
+    0&	-1&	3&	\cdots&	0&	0\\
+    \vdots&	\vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
+    0&	0&	0&	\cdots&	3&	-1\\
+    -1&	0&	0&	\cdots&	-1&	3\\
+    \end{bmatrix}_{n}
+    $$
+    
+    的行列式。对 $M_n$ 的行列式按第一列展开，得到
+    
+    $$
+    \det M_n = 3\det \begin{bmatrix}
+    3&	-1&	\cdots&	0&	0\\
+    -1&	3&	\cdots&	0&	0\\
+    \vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
+    0&	0&	\cdots&	3&	-1\\
+    0&	0&	\cdots&	-1&	3\\
+    \end{bmatrix}_{n-1} + \det\begin{bmatrix}
+    -1&	0&	\cdots&	0&	-1\\
+    -1&	3&	\cdots&	0&	0\\
+    \vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
+    0&	0&	\cdots&	3&	-1\\
+    0&	0&	\cdots&	-1&	3\\
+    \end{bmatrix}_{n-1} + (-1)^n \det\begin{bmatrix}
+    -1&	0&	\cdots&	0&	-1\\
+    3&	-1&	\cdots&	0&	0\\
+    -1&	3&	\cdots&	0&	0\\
+    \vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
+    0&	0&	\cdots&	3&	-1\\
+    \end{bmatrix}_{n-1}
+    $$
+    
+    上述三个矩阵的行列式记为 $d_{n-1}, a_{n-1}, b_{n-1}$ 。  
+    注意到 $d_n$ 是三对角行列式，采用类似的展开的方法可以得到 $d_n$ 具有递推公式 $d_n=3d_{n-1}-d_{n-2}$ 。类似地，采用展开的方法可以得到 $a_{n-1}=-d_{n-2}-1$ ，以及 $(-1)^n b_{n-1}=-d_{n-2}-1$ 。  
+    将这些递推公式代入上式，得到：
+    
+    $$
+    \det M_n = 3d_{n-1}-2d_{n-2}-2
+    $$
+    
+    $$
+    d_n = 3d_{n-1}-d_{n-2}
+    $$
+    
+    于是猜测 $\det M_n$ 也是非齐次的二阶线性递推。采用待定系数法可以得到最终的递推公式为
+    
+    $$
+    \det M_n = 3\det M_{n-1} - \det M_{n-2} + 2
+    $$
+    
+    改写成 $(\det M_n+2) = 3(\det M_{n-1}+2) - (\det M_{n-2} + 2)$ 后，采用矩阵快速幂即可求出答案。
 
 ???+ note "例题 3：「BZOJ3659」WHICH DREAMED IT"
 
