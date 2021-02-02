@@ -125,8 +125,10 @@ Farey 序列同样满足最简性和单调性，并且满足一个与 Stern-Broc
 由 Farey 序列的定义，我们可以得到 $F_i$ 的长度 $L_i$ 公式为：
 
 $$
+\begin{aligned}
 L_i=L_{i-1}+\varphi(i)\\
 L_i=1+\sum_{k=1}^i\varphi(k)
+\end{aligned}
 $$
 
  **本页面主要译自博文 [Дерево Штерна-Броко. Ряд Фарея](http://e-maxx.ru/algo/stern_brocot_farey) 与其英文翻译版 [The Stern-Brocot Tree and Farey Sequences](https://cp-algorithms.com/others/stern_brocot_tree_farey_sequences.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
