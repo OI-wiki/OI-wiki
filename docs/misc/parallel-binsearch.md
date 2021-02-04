@@ -85,7 +85,7 @@ void solve(int l, int r, vector<Query> q) {
   }
   vector<int> q1, q2;
   for (unsigned i = 0; i < q.size(); i++)
-    if (check(m) <= q[i].k)
+    if (q[i].k <=check(m))
       q1.push_back(q[i]);
     else
       q[i].k -= check(m), q2.push_back(q[i]);
