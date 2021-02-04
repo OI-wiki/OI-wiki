@@ -8,8 +8,8 @@
 
 $$
 \begin{aligned}
-	\sin{x} &= \frac{e^{ix} + e^{-ix}}{2i} \\
-	\cos{x} &= \frac{e^{ix} - e^{-ix}}{2}
+	\sin{x} &= \frac{e^{ix} - e^{-ix}}{2i} \\
+	\cos{x} &= \frac{e^{ix} + e^{-ix}}{2}
 \end{aligned}
 $$
 
