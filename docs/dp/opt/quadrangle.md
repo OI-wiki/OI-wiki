@@ -39,54 +39,54 @@ $$
 -  $l_1 < l_2 < r_1 < r_2$ （仅需要 $w$ 满足四边形不等式）
 
 
-    1.  若 $u\leq v$ ，则 $l_1\leq u< r_1,\ l_2\leq v< r_2$ ，因此
+   1.  若 $u\leq v$ ，则 $l_1\leq u< r_1,\ l_2\leq v< r_2$ ，因此
 
-        $$
-        \begin{aligned}
-            f_{l_1,r_1} \leq g_{u,l_1,r_1} &= f_{l_1,u} + f_{u+1,r_1} + w(l_1,r_1) \\
-            f_{l_2,r_2} \leq g_{v,l_2,r_2} &= f_{l_2,v} + f_{v+1,r_2} + w(l_2,r_2)
-        \end{aligned}
-        $$
+       $$
+       \begin{aligned}
+           f_{l_1,r_1} \leq g_{u,l_1,r_1} &= f_{l_1,u} + f_{u+1,r_1} + w(l_1,r_1) \\
+           f_{l_2,r_2} \leq g_{v,l_2,r_2} &= f_{l_2,v} + f_{v+1,r_2} + w(l_2,r_2)
+       \end{aligned}
+       $$
 
-        再由 $u+1 \leq v+1 \leq r_1 \leq r_2$ 和归纳假设知
+       再由 $u+1 \leq v+1 \leq r_1 \leq r_2$ 和归纳假设知
 
-        $$
-        f_{u+1,r_1} + f_{v+1,r_2} \leq f_{u+1,r_2} + f_{v+1,r_1}
-        $$
+       $$
+       f_{u+1,r_1} + f_{v+1,r_2} \leq f_{u+1,r_2} + f_{v+1,r_1}
+       $$
 
-        将前两个不等式累加，并将第三个不等式代入，可得
+       将前两个不等式累加，并将第三个不等式代入，可得
 
-        $$
-        \begin{aligned}
-            f_{l_1,r_1} + f_{l_2,r_2} & \leq f_{l_1,u} + f_{l_2,v} + f_{u+1,r_1} + f_{v+1,r_2} + w(l_1,r_1) + w(l_2,r_2) \\
-            & \leq g_{u,l_1,r_2} + g_{v,l_2,r_1} = f_{l_1,r_2} + f_{l_2,r_1}
-        \end{aligned}
-        $$
+       $$
+       \begin{aligned}
+           f_{l_1,r_1} + f_{l_2,r_2} & \leq f_{l_1,u} + f_{l_2,v} + f_{u+1,r_1} + f_{v+1,r_2} + w(l_1,r_1) + w(l_2,r_2) \\
+           & \leq g_{u,l_1,r_2} + g_{v,l_2,r_1} = f_{l_1,r_2} + f_{l_2,r_1}
+       \end{aligned}
+       $$
 
 
-    2.  若 $v< u$ ，则 $l_1\leq v<r_1,l_2\leq u<r_2$ ，因此
+   2.  若 $v< u$ ，则 $l_1\leq v<r_1,l_2\leq u<r_2$ ，因此
 
-        $$
-        \begin{aligned}
-        f_{l_1,r_1} \leq g_{v,l_1,r_1} &= f_{l_1,v} + f_{v+1,r_1} + w(l_1,r_1) \\
-        f_{l_2,r_2} \leq g_{u,l_2,r_2} &= f_{l_2,u} + f_{u+1,r_2} + w(l_2,r_2)
-        \end{aligned}
-        $$
+       $$
+       \begin{aligned}
+       f_{l_1,r_1} \leq g_{v,l_1,r_1} &= f_{l_1,v} + f_{v+1,r_1} + w(l_1,r_1) \\
+       f_{l_2,r_2} \leq g_{u,l_2,r_2} &= f_{l_2,u} + f_{u+1,r_2} + w(l_2,r_2)
+       \end{aligned}
+       $$
 
-        再由 $l_1 \leq l_2 \leq v \leq u$ 和归纳假设知
+       再由 $l_1 \leq l_2 \leq v \leq u$ 和归纳假设知
 
-        $$
-        f_{l_1,v} + f_{l_2,u} \leq f_{l_1,u} + f_{l_2,v}
-        $$
+       $$
+       f_{l_1,v} + f_{l_2,u} \leq f_{l_1,u} + f_{l_2,v}
+       $$
 
-        将前两个不等式累加，并将第三个不等式代入，可得
+       将前两个不等式累加，并将第三个不等式代入，可得
 
-        $$
-        \begin{aligned}
-        f_{l_1,r_1} + f_{l_2,r_2} & \leq f_{l_1,u} + f_{l_2,v} + f_{v+1,r_1} + f_{u+1,r_2} + w(l_1,r_2) + w(l_2,r_1) \\
-        & \leq g_{u,l_1,r_2} + g_{v,l_2,r_1} = f_{l_1,r_2} + f_{l_2,r_1}
-        \end{aligned}
-        $$
+       $$
+       \begin{aligned}
+       f_{l_1,r_1} + f_{l_2,r_2} & \leq f_{l_1,u} + f_{l_2,v} + f_{v+1,r_1} + f_{u+1,r_2} + w(l_1,r_2) + w(l_2,r_1) \\
+       & \leq g_{u,l_1,r_2} + g_{v,l_2,r_1} = f_{l_1,r_2} + f_{l_2,r_1}
+       \end{aligned}
+       $$
 
 综上所述，两种情形均有 $f_{l_1,r_1} + f_{l_2,r_2} \leq f_{l_1,r_2} + f_{l_2,r_1}$ ，即四边形不等式成立。
 
