@@ -89,10 +89,25 @@ A：推荐在 hosts 文件中加入如下几行[^ref1]：
 
 ```text
 # GitHub Start
-13.250.177.223 gist.github.com
-13.250.177.223 github.com
-13.229.188.59  www.github.com
-151.101.56.133 raw.githubusercontent.com
+192.30.255.112	gist.github.com
+192.30.255.112	github.com
+192.30.255.112	www.github.com
+151.101.56.133	avatars0.githubusercontent.com
+151.101.56.133	avatars1.githubusercontent.com
+151.101.56.133	avatars2.githubusercontent.com
+151.101.56.133	avatars3.githubusercontent.com
+151.101.56.133	avatars4.githubusercontent.com
+151.101.56.133	avatars5.githubusercontent.com
+151.101.56.133	avatars6.githubusercontent.com
+151.101.56.133	avatars7.githubusercontent.com
+151.101.56.133	avatars8.githubusercontent.com
+151.101.56.133	camo.githubusercontent.com
+151.101.56.133	cloud.githubusercontent.com
+151.101.56.133	gist.githubusercontent.com
+151.101.56.133	marketplace-screenshots.githubusercontent.com
+151.101.56.133	raw.githubusercontent.com
+151.101.56.133	repository-images.githubusercontent.com
+151.101.56.133	user-images.githubusercontent.com
 # GitHub End
 ```
 
@@ -272,7 +287,7 @@ A： `_redirects` 文件用于生成 [netlify 的配置](https://docs.netlify.co
 
 ## 参考资料与注释
 
-[^ref1]:  [GoogleHosts-919f34e](https://github.com/googlehosts/hosts/blob/919f34e53c1099241af7d0b5e730b60899af7d18/hosts-files/hosts#L1467-#L1472) 
+[^ref1]:  [GoogleHosts-8ff01be](https://github.com/googlehosts/hosts/blob/8ff01be91c4a70604f83e5cf0a3dd595fe8868b0/hosts-files/hosts#L1465-L1485) 
 
 [^ref2]:  [更改 pip 源至国内镜像 - L 瑜 - CSDN 博客](https://blog.csdn.net/lambert310/article/details/52412059) 
 
