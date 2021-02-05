@@ -33,7 +33,7 @@ $$
    2.  若 $u \geq r_1$ 则 $f(l_2, r_2) \leq f(l_2, u) + f(u + 1, r_2) + w(l_2, r_2)$ 由归纳法 $f(l_1, r_1) + f(l_2, u) \leq f(l_1, l_2) + f(r_1, u)$，因此
 
        $$
-       f_{l_1, r_1} + f_{l_2, r_2} \leq f_{l_1, r_1} + f_{l_2, r_2} f_{u + 1, r_2} + f_{l_2, r_1} + w(l_1, r_1) \leq f_{l_1, r_2} + f_{l_2, r_1}
+       f_{l_1, r_1} + f_{l_2, r_2} \leq f_{l_1, r_1} + f_{l_2, r_2} + f_{u + 1, r_2} + f_{l_2, r_1} + w(l_1, r_1) \leq f_{l_1, r_2} + f_{l_2, r_1}
        $$
 
 -  $l_1 < l_2 < r_1 < r_2$ （仅需要 $w$ 满足四边形不等式）
@@ -167,6 +167,8 @@ f_{i,j} = \min_{k \leq j}\{f_{i-1,k}\} + w(k,j)\qquad\left(1 \leq i \leq n,1 \le
 $$
 
 总共有 $n \times m$ 个状态，每个状态要有 $m$ 次转换，上述 dp 问题的时间复杂度就是 $O(n m^2)$ 。
+
+> 实际上此形式也有同样的结论，可以在 $O(n m)$ 复杂度解决，读者可以模仿 2D1D 类似的给出证明。
 
 令 $opt(i, j)$ 为使上述表达式最小化的 $k$ 的值。如果对于所有的 $i, j$ 都有 $opt(i, j) \leq opt(i, j + 1)$ ，那么我们就可以用分治法来优化 dp 问题。
 
@@ -340,7 +342,6 @@ $$
 
 ## 习题
 
--  [Lougu P1880](https://www.luogu.com.cn/problem/P1880)
 -  [「IOI2000」邮局](https://www.luogu.com.cn/problem/P4767) 
 -  [Codeforces - Ciel and Gondolas](https://codeforces.com/contest/321/problem/E) (Be careful with I/O!)
 -  [SPOJ - LARMY](https://www.spoj.com/problems/LARMY/) 
