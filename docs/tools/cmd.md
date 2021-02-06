@@ -45,7 +45,7 @@ command < input > output
 当然，执行一个文件时，命令行并不会把所有目录下的文件都找一遍。环境变量 `PATH` 描述了命令行搜索路径的范围，命令行会在 `PATH` 中的路径寻找目标文件。
 
 对于 Windows 系统， **当前目录也在命令行的默认搜索范围内** 。例如 Windows 系统中，输入 `hello` 命令就可以执行当前目录下的 `hello.exe` 。但是在 PowerShell 中，PowerShell 默认不会从当前目录寻找可执行文件（这与在 Linux 的行为一致），因而在 PowerShell 中需要使用相对路径或绝对路径调用当前目录下的可执行文件，例如 `.\hello.exe`，否则，你将看到以下报错（以cf-tool的cf.exe为例）：
-![](./images/cmd_exec.png)
+![](./images/cmd-exec.png)
 
 在 Linux 系统中， **当前目录并不在命令行的默认搜索范围内** ，所以执行当前目录下的 `hello` 程序的命令就变成了 `./hello` 。
 
