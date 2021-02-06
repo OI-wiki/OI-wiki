@@ -1,4 +1,4 @@
-author: StudyingFather, ayalhw
+author: StudyingFather, ayalhw, qinyihao
 
 虽然图形界面能做的事情越来越多，但有很多高阶操作仍然需要使用命令行来解决。
 
@@ -17,9 +17,9 @@ author: StudyingFather, ayalhw
 
 在 Windows/Linux 下，使用 `cd <目录>` 命令可以切换当前的目录。例如， `cd folder` 会切换到当前目录的 `folder` 子目录； `cd ..` 会切换到当前目录的父目录。
 
-在 Windows 下，使用 `dir` 命令可以列出当前目录的文件列表。在 Linux 下，列出文件列表的命令是 `ls` 。
+在 Windows 下，使用 `dir` 命令可以列出当前目录的文件列表。在 Linux 下，列出文件列表的命令是 `ls` 。特别的，在Windows Powershell下，可以使用与Linux相同的`ls`命令。
 
-在 Windows 下，使用 `md <目录>` 命令创建一个新目录，使用 `rd <目录>` 命令删除一个目录。在 Linux 下，这两个命令分别是 `mkdir` 和 `rmdir` 。需要注意的是， **使用 `rd` 或是 `rmdir` 删除一个目录前，这个目录必须是空的** 。如果想要删除非空目录（和该目录下的所有文件）的话，Linux 下可以执行 `rm -r <目录>` 命令，Windows 下可以执行 `rd /s <目录>` 命令。
+在 Windows 下，使用 `md <目录>` 或者`mkdir <目录>`命令创建一个新目录，使用 `rd <目录>` 命令删除一个目录。在 Linux 下，这两个命令分别是 `mkdir` 和 `rmdir` 。需要注意的是， **使用 `rd` 或是 `rmdir` 删除一个目录前，这个目录必须是空的** 。如果想要删除非空目录（和该目录下的所有文件）的话，Linux 下可以执行 `rm -r <目录>` 命令，Windows 下可以执行 `rd /s <目录>` 命令。
 
 ### 重定向机制
 
@@ -44,7 +44,8 @@ command < input > output
 
 当然，执行一个文件时，命令行并不会把所有目录下的文件都找一遍。环境变量 `PATH` 描述了命令行搜索路径的范围，命令行会在 `PATH` 中的路径寻找目标文件。
 
-对于 Windows 系统， **当前目录也在命令行的默认搜索范围内** 。例如 Windows 系统中，输入 `hello` 命令就可以执行当前目录下的 `hello.exe` 。
+对于 Windows 系统， **当前目录也在命令行的默认搜索范围内** 。例如 Windows 系统中，输入 `hello` 命令就可以执行当前目录下的 `hello.exe` 。特别的，在Windows10的Powershell中，必须要使用`.\hello.exe`，**注意这里的斜杠是反斜杠**。否则，就会出现以下的报错（以cf-tool的cf.exe为例）：
+![](./images/cmd_exec.jpg)
 
 在 Linux 系统中， **当前目录并不在命令行的默认搜索范围内** ，所以执行当前目录下的 `hello` 程序的命令就变成了 `./hello` 。
 
