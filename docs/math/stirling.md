@@ -58,7 +58,7 @@ $$
 “同一行”的第二类斯特林数指的是，有着不同的 $i$，相同的 $n$ 的一系列 $\begin{Bmatrix}n\\i\end{Bmatrix}$。求出同一行的所有第二类斯特林数，就是对 $i=0..n$ 求出了将 $n$ 个不同元素划分为 $i$ 个非空集的方案数。
 
 根据上面给出的通项公式，卷积计算即可。下面的代码使用了名为 `poly` 的多项式类，仅供参考。
-??? note "poly"
+??? note "参考代码"
     ```cpp
     	#ifndef _FEISTDLIB_POLY_
 	#define _FEISTDLIB_POLY_
