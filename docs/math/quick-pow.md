@@ -129,7 +129,7 @@ long long binpow(long long a, long long b, long long m) {
 > 2. 按比例缩放这个点的坐标（Scale）。
 > 3. 绕某个坐标轴旋转（Rotate）。
 >
-> 还有一个特殊的操作，就是将一个操作序列重复 $k$ 次（Loop），这个序列中也可能有 Loop 操作（Loop 操作可以嵌套）。现在要求你在低于 $O(n \cdot length)$ 的时间内将这些变换应用到这个 $n$ 个点，其中 $length$ 表示把所有的 Loop 操作展开后的操作序列的长度。
+> 还有一个特殊的操作，就是将一个操作序列重复 $k$ 次（Loop），这个序列中也可能有 Loop 操作（Loop 操作可以嵌套）。现在要求你在低于 $O(n \cdot \textit{length})$ 的时间内将这些变换应用到这个 $n$ 个点，其中 $\textit{length}$ 表示把所有的 Loop 操作展开后的操作序列的长度。
 
 让我们来观察一下这三种操作对坐标的影响：
 
