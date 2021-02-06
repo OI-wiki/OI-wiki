@@ -17,7 +17,7 @@ author: StudyingFather, ayalhw, qinyihao
 
 在 Windows/Linux 下，使用 `cd <目录>` 命令可以切换当前的目录。例如， `cd folder` 会切换到当前目录的 `folder` 子目录； `cd ..` 会切换到当前目录的父目录。
 
-在 Windows 下，使用 `dir` 命令可以列出当前目录的文件列表。在 Linux 下，列出文件列表的命令是 `ls` 。特别的，在Windows Powershell下，可以使用与Linux相同的`ls`命令。
+在 Windows 下，使用 `dir` 命令可以列出当前目录的文件列表。在 Linux 下，列出文件列表的命令是 `ls` 。特别的，在 Windows Powershell 下，可以使用与 Linux 相同的 `ls` 命令。
 
 在 Windows 下，使用 `md <目录>` 或者`mkdir <目录>`命令创建一个新目录，使用 `rd <目录>` 命令删除一个目录。在 Linux 下，这两个命令分别是 `mkdir` 和 `rmdir` 。需要注意的是， **使用 `rd` 或是 `rmdir` 删除一个目录前，这个目录必须是空的** 。如果想要删除非空目录（和该目录下的所有文件）的话，Linux 下可以执行 `rm -r <目录>` 命令，Windows 下可以执行 `rd /s <目录>` 命令。
 
