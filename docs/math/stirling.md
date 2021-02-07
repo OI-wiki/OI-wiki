@@ -62,23 +62,23 @@ $$
     ```cpp
     	#ifndef _FEISTDLIB_POLY_
 	#define _FEISTDLIB_POLY_
-
+	
 	/*
 	 * This file is part of the fstdlib project.
 	 * Version: Build v0.0.2
 	 * You can check for details at https://github.com/FNatsuka/fstdlib
 	 */
-
+	
 	#include <cstdio>
 	#include <vector>
 	#include <algorithm>
 	#include <cmath>
-
+	
 	namespace fstdlib{
-
+		
 		typedef long long ll;
 		int mod = 998244353, grt = 3;
-
+		
 		class poly{
 		private:
 			std::vector<int> data;
@@ -122,13 +122,13 @@ $$
 			friend poly log(const poly &h);
 			friend poly exp(const poly &h);
 		};
-
+		
 		int qpow(int a, int b, int p = mod){
 			int res = 1;
 			while(b){if(b & 1) res = (ll)res * a % p; a = (ll)a * a % p, b >>= 1; }
 			return res;
 		}
-
+		
 		std::vector<int> rev;
 		void dft_for_module(std::vector<int> &f, int n, int b){
 			static std::vector<int> w;
@@ -144,7 +144,7 @@ $$
 					}
 			}
 		}
-
+		
 		poly poly::operator*(const poly &h)const{
 			int N = 1; while(N < (int)(size() + h.size() - 1)) N <<= 1;
 			std::vector<int> f(this->data), g(h.data); f.resize(N), g.resize(N);
@@ -156,82 +156,82 @@ $$
 			for(int i = 0, inv = qpow(N, mod - 2); i < (int)f.size(); ++i) f[i] = (ll)f[i] * inv % mod;
 			return f;
 		}
-
+		
 		poly poly::operator*=(const poly &h){
 			return *this = *this * h;
 		}
-
+		
 		poly poly::operator*(const int &h)const{
 			std::vector<int> f(this->data);
 			for(int i = 0; i < (int)f.size(); ++i) f[i] = (ll)f[i] * h % mod;
 			return f;
 		}
-
+		
 		poly poly::operator*=(const int &h){
 			for(int i = 0; i < (int)size(); ++i) data[i] = (ll)data[i] * h % mod;
 			return *this;
 		}
-
+		
 		poly poly::operator+(const poly &h)const{
 			std::vector<int> f(this->data);
 			if(f.size() < h.size()) f.resize(h.size());
 			for(int i = 0; i < (int)h.size(); ++i) f[i] = (f[i] + h[i]) % mod;
 			return f;
 		}
-
+		
 		poly poly::operator+=(const poly &h){
 			std::vector<int> &f = this->data;
 			if(f.size() < h.size()) f.resize(h.size());
 			for(int i = 0; i < (int)h.size(); ++i) f[i] = (f[i] + h[i]) % mod;
 			return f;
 		}
-
+		
 		poly poly::operator-(const poly &h)const{
 			std::vector<int> f(this->data);
 			if(f.size() < h.size()) f.resize(h.size());
 			for(int i = 0; i < (int)h.size(); ++i) f[i] = (f[i] - h[i] + mod) % mod;
 			return f;
 		}
-
+		
 		poly poly::operator-=(const poly &h){
 			std::vector<int> &f = this->data;
 			if(f.size() < h.size()) f.resize(h.size());
 			for(int i = 0; i < (int)h.size(); ++i) f[i] = (f[i] - h[i] + mod) % mod;
 			return f;
 		}
-
+		
 		poly poly::operator<<(const std::size_t &b)const{
 			std::vector<int> f(size() + b);
 			for(int i = 0; i < (int)size(); ++i) f[i + b] = data[i];
 			return f;
 		}
-
+		
 		poly poly::operator<<=(const std::size_t &b){
 			return *this = (*this) << b;
 		}
-
+		
 		poly poly::operator>>(const std::size_t &b)const{
 			std::vector<int> f(size() - b);
 			for(int i = 0; i < (int)f.size(); ++i) f[i] = data[i + b];
 			return f;
 		}
-
+		
 		poly poly::operator>>=(const std::size_t &b){
 			return *this = (*this) >> b;
 		}
-
+		
 		poly poly::operator/(const int &h)const{
 			std::vector<int> f(this->data); int inv = qpow(h, mod - 2);
 			for(int i = 0; i < (int)f.size(); ++i) f[i] = (ll)f[i] * inv % mod;
 			return f;
 		}
-
+		
 		poly poly::operator/=(const int &h){
 			int inv = qpow(h, mod - 2);
 			for(int i = 0; i < (int)data.size(); ++i) data[i] = (ll)data[i] * inv % mod;
 			return *this;
 		}
-
+		
 		poly poly::inv(void)const{
 			int N = 1; while(N < (int)(size() + size() - 1)) N <<= 1;
 			std::vector<int> f(N), g(N), d(this->data);
@@ -249,39 +249,39 @@ $$
 			f.resize(size());
 			return f;
 		}
-
+		
 		poly poly::operator==(const poly &h)const{
 			if(size() != h.size()) return 0;
 			for(int i = 0; i < (int)size(); ++i) if(data[i] != h[i]) return 0;
 			return 1;
 		}
-
+		
 		poly poly::operator!=(const poly &h)const{
 			if(size() != h.size()) return 1;
 			for(int i = 0; i < (int)size(); ++i) if(data[i] != h[i]) return 1;
 			return 0;
 		}
-
+		
 		poly poly::operator+(const int &h)const{
 			poly f(this->data);
 			f[0] = (f[0] + h) % mod;
 			return f;
 		}
-
+		
 		poly poly::operator+=(const int &h){
 			return *this = (*this) + h;
 		}
-
+		
 		poly poly::inv(const int &h)const{
 			poly f(*this);
 			f.resize(h);
 			return f.inv();
 		}
-
+		
 		int modsqrt(int h, int p = mod){
 			return 1;
 		}
-
+		
 		poly sqrt(const poly &h){
 			int N = 1; while(N < (int)(h.size() + h.size() - 1)) N <<= 1;
 			poly f(N), g(N), d(h); d.resize(N), f[0] = modsqrt(d[0]);
@@ -294,7 +294,7 @@ $$
 			f.resize(h.size());
 			return f;
 		}
-
+		
 		poly log(const poly &h){
 			poly f(h);
 			for(int i = 1; i < (int)f.size(); ++i) f[i - 1] = (ll)f[i] * i % mod;
@@ -303,7 +303,7 @@ $$
 			f[0] = 0;
 			return f;
 		}
-
+		
 		poly exp(const poly &h){
 			int N = 1; while(N < (int)(h.size() + h.size() - 1)) N <<= 1;
 			poly f(N), g(N), d(h);
@@ -317,7 +317,7 @@ $$
 			f.resize(h.size());
 			return f;
 		}
-
+		
 		struct comp{
 			long double x, y;
 			comp(long double _x = 0, long double _y = 0) : x(_x), y(_y) {}
@@ -326,14 +326,14 @@ $$
 			comp operator-(const comp &b)const{return comp(x - b.x, y - b.y); }
 			comp conj(void){return comp(x, -y); }
 		};
-
+		
 		const int EPS = 1e-9;
-
+		
 		template <typename FLOAT_T>
 		FLOAT_T fabs(const FLOAT_T &x){
 			return x > 0 ? x : -x;
 		}
-
+		
 		template <typename FLOAT_T>
 		FLOAT_T sin(const FLOAT_T &x, const long double &EPS = fstdlib::EPS){
 			FLOAT_T res = 0, delt = x;
@@ -344,7 +344,7 @@ $$
 			}
 			return res;
 		}
-
+		
 		template <typename FLOAT_T>
 		FLOAT_T cos(const FLOAT_T &x, const long double &EPS = fstdlib::EPS){
 			FLOAT_T res = 0, delt = 1;
@@ -355,9 +355,9 @@ $$
 			}
 			return res;
 		}
-
+		
 		const long double PI = std::acos((long double)(-1));
-
+		
 		void dft_for_complex(std::vector<comp> &f, int n, int b){
 			static std::vector<comp> w;
 			w.resize(n);
@@ -372,7 +372,7 @@ $$
 					}
 			}
 		}
-
+		
 		class arbitrary_module_poly{
 		private:
 			std::vector<int> data;
@@ -481,21 +481,21 @@ $$
 			for(int i = 0; i < (int)size(); ++i) f[i + b] = data[i];
 			return arbitrary_module_poly(f, mod);
 		}
-
+		
 		arbitrary_module_poly arbitrary_module_poly::operator<<=(const std::size_t &b){
 			return *this = (*this) << b;
 		}
-
+		
 		arbitrary_module_poly arbitrary_module_poly::operator>>(const std::size_t &b)const{
 			std::vector<int> f(size() - b);
 			for(int i = 0; i < (int)f.size(); ++i) f[i] = data[i + b];
 			return arbitrary_module_poly(f, mod);
 		}
-
+		
 		arbitrary_module_poly arbitrary_module_poly::operator>>=(const std::size_t &b){
 			return *this = (*this) >> b;
 		}
-
+		
 		arbitrary_module_poly arbitrary_module_poly::inv(void)const{
 			int N = 1; while(N < (int)(size() + size() - 1)) N <<= 1;
 			arbitrary_module_poly f(1, mod), g(N, mod), h(*this), f2(1, mod);
@@ -509,38 +509,38 @@ $$
 			f.resize(size());
 			return f;
 		}
-
+		
 		arbitrary_module_poly arbitrary_module_poly::inv(const int &h)const{
 			arbitrary_module_poly f(*this);
 			f.resize(h);
 			return f.inv();
 		}
-
+		
 		arbitrary_module_poly arbitrary_module_poly::operator/(const int &h)const{
 			int inv = qpow(h, mod - 2, mod);
 			std::vector<int> f(this->data);
 			for(int i = 0; i < (int)f.size(); ++i) f[i] = (ll)f[i] * inv % mod;
 			return arbitrary_module_poly(f, mod);
 		}
-
+		
 		arbitrary_module_poly arbitrary_module_poly::operator/=(const int &h){
 			int inv = qpow(h, mod - 2, mod);
 			for(int i = 0; i < (int)size(); ++i) data[i] = (ll)data[i] * inv % mod;
 			return *this;
 		}
-
+		
 		arbitrary_module_poly arbitrary_module_poly::operator==(const arbitrary_module_poly &h)const{
 			if(size() != h.size() || mod != h.mod) return 0;
 			for(int i = 0; i < (int)size(); ++i) if(data[i] != h[i]) return 0;
 			return 1;
 		}
-
+		
 		arbitrary_module_poly arbitrary_module_poly::operator!=(const arbitrary_module_poly &h)const{
 			if(size() != h.size() || mod != h.mod) return 1;
 			for(int i = 0; i < (int)size(); ++i) if(data[i] != h[i]) return 1;
 			return 0;
 		}
-
+		
 		arbitrary_module_poly sqrt(const arbitrary_module_poly &h){
 			int N = 1; while(N < (int)(h.size() + h.size() - 1)) N <<= 1;
 			arbitrary_module_poly f(1, mod), g(N, mod), d(h);
@@ -554,7 +554,7 @@ $$
 			f.resize(h.size());
 			return f;
 		}
-
+		
 		arbitrary_module_poly log(const arbitrary_module_poly &h){
 			arbitrary_module_poly f(h);
 			for(int i = 1; i < (int)f.size(); ++i) f[i - 1] = (ll)f[i] * i % f.mod;
@@ -565,7 +565,7 @@ $$
 		}
 		typedef arbitrary_module_poly m_poly;
 	}
-
+	
 	#endif
 
     ```
