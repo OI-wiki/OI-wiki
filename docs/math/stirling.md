@@ -754,7 +754,7 @@ $$
 在这里，多项式的下降阶乘幂表示就是用
 
 $$
-f(x)=\sum\limits_{i=0}^nb_i{x^\underline{i}}
+f(x)=\sum\limits_{i=0}^nb_i{x^{\underline{i}}}
 $$
 
 的形式表示一个多项式，而点值表示就是用 $n+1$ 个点
