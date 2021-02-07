@@ -43,7 +43,7 @@ jobs:
             cp *.ttc /usr/share/fonts
             fc-cache
 
-            git clone git@github.com:OI-wiki/OI-Wiki-export.git
+            git clone https://github.com/OI-wiki/OI-Wiki-export.git
             cd ./OI-Wiki-export/oi-wiki-export
             npm i
             node index.js ../../
