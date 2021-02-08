@@ -27,6 +27,8 @@ jobs:
             librsvg
             git
             py3-pygments
+            inkscape
+            libxml2
           pre_compile: |
             wget -q "https://github.com/stipub/stixfonts/raw/73d7c426993abacea44288aded4e81b568d57ed1/zipfiles/STIXv2.0.2.zip" -O stix.zip
             unzip -q stix.zip
