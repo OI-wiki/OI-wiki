@@ -242,8 +242,6 @@ void traverse(TreeNode* root) {
               pathSum(root->right, sum);  // 右边路径总数（相信它能算出来）
           return leftPathSum + rightPathSum + pathImLeading;
         }
-        ```
-    
         int count(TreeNode *node, int sum) {
             if (node == nullptr) return 0;
             // 能不能作为一条单独的路径呢？
