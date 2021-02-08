@@ -318,7 +318,7 @@ $$
 \mathsf{NSPACE}\left(f\left(n\right)\right)\subseteq \mathsf {DSPACE}\left(\left(f\left(n\right)\right)^2\right)
 $$
 
-推论：$\mathsf{PSPACE}=\mathsf{NPSPACE}$,$\mathsf{EXPSPACE}=\mathsf{NEXPSPACE}$。
+推论：$\mathsf{PSPACE}=\mathsf{NPSPACE}$，$\mathsf{EXPSPACE}=\mathsf{NEXPSPACE}$。
 
 ### P?=NP
 

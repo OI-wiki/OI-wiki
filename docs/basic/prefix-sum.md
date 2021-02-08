@@ -175,7 +175,7 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     b_l \leftarrow b_l + k,b_{r + 1} \leftarrow b_{r + 1} - k
     $$
     
-    其中 $b_l+k=a_l+k-a_{l-1}$,$b_{r+1}-k=a_{r+1}-(a_r+k)$
+    其中 $b_l+k=a_l+k-a_{l-1}$，$b_{r+1}-k=a_{r+1}-(a_r+k)$
     
     最后做一遍前缀和就好了。
 

@@ -62,7 +62,7 @@ $$
 
 若 $d(v) = \left| V \right| - 1$，则称 $v$ 为 **支配点 (Universal vertex)**。
 
-对一张图，所有节点的度数的最小值称为 $G$ 的 **最小度 (Minimum degree)**，记作 $\delta (G)$；最大值称为 **最大度 (Maximum degree)**，记作 $\Delta (G)$。即：$\delta (G) = \min_{v \in G} d(v)$,$\Delta (G) = \max_{v \in G} d(v)$。
+对一张图，所有节点的度数的最小值称为 $G$ 的 **最小度 (Minimum degree)**，记作 $\delta (G)$；最大值称为 **最大度 (Maximum degree)**，记作 $\Delta (G)$。即：$\delta (G) = \min_{v \in G} d(v)$，$\Delta (G) = \max_{v \in G} d(v)$。
 
 在有向图 $G = (V, E)$ 中，以一个顶点 $v$ 为起点的边的条数称为该顶点的 **出度 (Out-degree)**，记作 $d^+(v)$。以一个顶点 $v$ 为终点的边的条数称为该节点的 **入度 (In-degree)**，记作 $d^-(v)$。显然 $d^+(v)+d^-(v)=d(v)$。
 

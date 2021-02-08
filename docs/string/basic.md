@@ -14,7 +14,7 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 字符串 $S$ 的 **子串**  $S[i..j]，i≤j$，表示 $S$ 串中从 $i$ 到 $j$ 这一段，也就是顺次排列 $S[i],S[i+1],\ldots,S[j]$ 形成的字符串。
 
-有时也会用 $S[i..j]$,$i>j$ 来表示空串。
+有时也会用 $S[i..j]$，$i>j$ 来表示空串。
 
 ### 子序列
 

@@ -94,7 +94,7 @@ $$
 - $dfn(x)$ 表示节点 $x$ 的 **DFS 序**，也是其在线段树中的编号。
 - $rnk(x)$ 表示 DFS 序所对应的节点编号，有 $rnk(dfn(x))=x$。
 
-我们进行两遍 DFS 预处理出这些值，其中第一次 DFS 求出 $fa(x)$,$dep(x)$,$siz(x)$,$son(x)$，第二次 DFS 求出 $top(x)$,$dfn(x)$,$rnk(x)$。
+我们进行两遍 DFS 预处理出这些值，其中第一次 DFS 求出 $fa(x)$，$dep(x)$，$siz(x)$，$son(x)$，第二次 DFS 求出 $top(x)$，$dfn(x)$，$rnk(x)$。
 
 ```cpp
 void dfs1(int o) {
@@ -218,7 +218,7 @@ int lca(int u, int v) {
 2. 查询 $u$ 到 $v$ 的路径上的最大权值；
 3. 查询 $u$ 到 $v$ 的路径上的权值之和。
 
-保证 $1\le n\le 30000$,$0\le q\le 200000$。
+保证 $1\le n\le 30000$，$0\le q\le 200000$。
 
 #### 解法
 

@@ -10,7 +10,7 @@ author: sshwy, hsfzLZH1, Enter-tainer
 
 1. 整除符号：$x\mid y$，表示 $x$ 整除 $y$，即 $x$ 是 $y$ 的因数。
 2. 取模符号：$x\bmod y$，表示 $x$ 除以 $y$ 得到的余数。
-3. 互质符号：$x\perp y$，表示 $x$,$y$ 互质。
+3. 互质符号：$x\perp y$，表示 $x$，$y$ 互质。
 4. 最大公约数：$\gcd(x,y)$，在无混淆意义的时侯可以写作 $(x,y)$。
 5. 最小公倍数：$\operatorname{lcm}(x,y)$，在无混淆意义的时侯可以写作 $[x,y]$。
 
