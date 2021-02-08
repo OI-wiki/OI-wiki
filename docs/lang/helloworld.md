@@ -6,13 +6,13 @@ disqus:
 
 ### 集成开发环境
 
-IDE 操作较为简单，一般入门玩家会选用 IDE 来编写代码。在竞赛中最常见的是 [Dev-C++](../tools/editor/devcpp.md) （如果考试环境是 Windows 系统，一般也会提供这一 IDE）。
+IDE 操作较为简单，一般入门玩家会选用 IDE 来编写代码。在竞赛中最常见的是 [Dev-C++](../tools/editor/devcpp.md)（如果考试环境是 Windows 系统，一般也会提供这一 IDE）。
 
 ### 编译器
 
 #### Windows
 
-推荐使用 GNU 编译器。需要去 [MinGW Distro](https://nuwen.net/mingw.html) 下载 MinGW 并安装。此外 Windows 下也可以选择 [Microsoft Visual C++ 编译器](https://docs.microsoft.com/en-us/cpp/build/projects-and-build-systems-cpp) ，需要去 [Visual Studio 页面](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019) 下载安装。
+推荐使用 GNU 编译器。需要去 [MinGW Distro](https://nuwen.net/mingw.html) 下载 MinGW 并安装。此外 Windows 下也可以选择 [Microsoft Visual C++ 编译器](https://docs.microsoft.com/en-us/cpp/build/projects-and-build-systems-cpp)，需要去 [Visual Studio 页面](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019) 下载安装。
 
 #### macOS
 
@@ -24,7 +24,7 @@ xcode-select --install
 
 #### Linux
 
-使用 `g++ -v` 来检查是否安装过 `g++` 。
+使用 `g++ -v` 来检查是否安装过 `g++`。
 
 使用如下命令可以安装：
 
@@ -40,9 +40,9 @@ sudo apt update && sudo apt install g++
 g++ test.cpp -o test -lm
 ```
 
- `g++` 是 C++ 语言的编译器（C 语言的编译器为 `gcc` ）， `-o` 用于指定可执行文件的文件名，编译选项 `-lm` 用于链接数学库 `libm` ，从而使得使用 `math.h` 的代码可以正常编译运行。
+`g++` 是 C++ 语言的编译器（C 语言的编译器为 `gcc`），`-o` 用于指定可执行文件的文件名，编译选项 `-lm` 用于链接数学库 `libm`，从而使得使用 `math.h` 的代码可以正常编译运行。
 
-注：C++ 程序不需要 `-lm` 即可正常编译运行。历年 NOI/NOIP 试题的 C++ 编译选项中都带着 `-lm` ，故这里也一并加上。
+注：C++ 程序不需要 `-lm` 即可正常编译运行。历年 NOI/NOIP 试题的 C++ 编译选项中都带着 `-lm`，故这里也一并加上。
 
 ## 第一份代码
 
@@ -73,4 +73,4 @@ int main() {                // 定义 main 函数
 }
 ```
 
-注意：C 语言在这里仅做参考（它基本上已经过时），C++ 完全兼容 C 语言，并且拥有许多新的功能，可以让选手在赛场上事半功倍。具体请见 [C 与 C++ 区别](/lang/c-cpp/) 
+注意：C 语言在这里仅做参考（它基本上已经过时），C++ 完全兼容 C 语言，并且拥有许多新的功能，可以让选手在赛场上事半功倍。具体请见 [C 与 C++ 区别](/lang/c-cpp/)

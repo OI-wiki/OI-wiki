@@ -2,7 +2,7 @@ author: Xeonacid, ksyx
 
 ## 栈
 
-STL 栈 ( `std::stack` ) 是一种后进先出 (Last In, First Out) 的容器适配器，仅支持查询或删除最后一个加入的元素（栈顶元素），不支持随机访问，且为了保证数据的严格有序性，不支持迭代器。
+STL 栈 (`std::stack`) 是一种后进先出 (Last In, First Out) 的容器适配器，仅支持查询或删除最后一个加入的元素（栈顶元素），不支持随机访问，且为了保证数据的严格有序性，不支持迭代器。
 
 ### 头文件
 
@@ -15,18 +15,18 @@ STL 栈 ( `std::stack` ) 是一种后进先出 (Last In, First Out) 的容器适
 ```cpp
 std::stack<TypeName> s;  // 使用默认底层容器 deque，数据类型为 TypeName
 std::stack<TypeName, Container> s;  // 使用 Container 作为底层容器
-std::stack<TypeName> s2(s1);  // 将 s1 复制一份用于构造 s2
+std::stack<TypeName> s2(s1);        // 将 s1 复制一份用于构造 s2
 ```
 
 ### 成员函数
 
 #### 以下所有函数均为常数复杂度
 
--  `top()` 访问栈顶元素（如果栈为空，此处会出错）
--  `push(x)` 向栈中插入元素 x
--  `pop()` 删除栈顶元素
--  `size()` 查询容器中的元素数量
--  `empty()` 询问容器是否为空
+- `top()` 访问栈顶元素（如果栈为空，此处会出错）
+- `push(x)` 向栈中插入元素 x
+- `pop()` 删除栈顶元素
+- `size()` 查询容器中的元素数量
+- `empty()` 询问容器是否为空
 
 ### 简单示例
 
@@ -44,7 +44,7 @@ std::cout << s1.empty() << " " << s2.empty() << endl;  // 1 0
 
 ## 队列
 
-STL 队列 ( `std::queue` ) 是一种先进先出 (First In, First Out) 的容器适配器，仅支持查询或删除第一个加入的元素（队首元素），不支持随机访问，且为了保证数据的严格有序性，不支持迭代器。
+STL 队列 (`std::queue`) 是一种先进先出 (First In, First Out) 的容器适配器，仅支持查询或删除第一个加入的元素（队首元素），不支持随机访问，且为了保证数据的严格有序性，不支持迭代器。
 
 ### 头文件
 
@@ -65,11 +65,11 @@ std::queue<TypeName> q2(q1);  // 将 s1 复制一份用于构造 q2
 
 #### 以下所有函数均为常数复杂度
 
--  `front()` 访问队首元素（如果队列为空，此处会出错）
--  `push(x)` 向队列中插入元素 x
--  `pop()` 删除队首元素
--  `size()` 查询容器中的元素数量
--  `empty()` 询问容器是否为空
+- `front()` 访问队首元素（如果队列为空，此处会出错）
+- `push(x)` 向队列中插入元素 x
+- `pop()` 删除队首元素
+- `size()` 查询容器中的元素数量
+- `empty()` 询问容器是否为空
 
 ### 简单示例
 
@@ -114,13 +114,13 @@ std::priority_queue<int, std::deque<int>, std::greater<int> > q3;
 
 ### 成员函数
 
-1.  `top()` : 访问栈顶元素 常数复杂度
-2.  `empty()` : 检查底层的容器是否为空 常数复杂度
-3.  `size()` : 返回底层容器的元素数量 常数复杂度
-4.  `push()` : 插入元素，并对底层容器排序 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$ 
-5.  `pop()` : 删除第一个元素 最坏 $\Theta(\log(n))$ 
+1. `top()`: 访问栈顶元素 常数复杂度
+2. `empty()`: 检查底层的容器是否为空 常数复杂度
+3. `size()`: 返回底层容器的元素数量 常数复杂度
+4. `push()`: 插入元素，并对底层容器排序 最坏 $\Theta(n)$ 均摊 $\Theta(\log(n))$
+5. `pop()`: 删除第一个元素 最坏 $\Theta(\log(n))$
 
-由于 `std::priority_queue` 原生不支持 `modify()` / `join()` / `erase()` 故不做讲解。
+由于 `std::priority_queue` 原生不支持 `modify()`/`join()`/`erase()` 故不做讲解。
 
 ### 示例
 

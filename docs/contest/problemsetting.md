@@ -70,21 +70,21 @@ author: ouuan, Henry-ZHR, StudyingFather, ChungZH
 >
 > ——[vfk《UOJ 精神之源流》][1]
 
-例子： [「XR-1」柯南家族](https://www.luogu.com.cn/problem/P5346) ，做法的前后两部分完全割裂，前半部分为 [「模板」树上后缀排序](https://www.luogu.com.cn/problem/P5353) ，后半部分是经典树上问题。就算是随意输入树的点权，依然可以做第二部分，前后部分没有联系。
+例子：[「XR-1」柯南家族](https://www.luogu.com.cn/problem/P5346)，做法的前后两部分完全割裂，前半部分为 [「模板」树上后缀排序](https://www.luogu.com.cn/problem/P5353)，后半部分是经典树上问题。就算是随意输入树的点权，依然可以做第二部分，前后部分没有联系。
 
 > 一类 OI 题以数学为主，无论是题目描述还是做法都是数学题的特征，并且解法中不含算法相关的知识点，这类 OI 题目统称为纯数学题。
 >
 > ——[王天懿《论偏题的危害》][2]
 
-经典例子： [NOIP2017 小凯的疑惑](https://uoj.ac/problem/329) 
+经典例子：[NOIP2017 小凯的疑惑](https://uoj.ac/problem/329)
 
-OI 中的数学题与其它数学题的区别，也是体现 OI 本质的一个特点，是 OI 中的数学题往往重点不在答案 **是什么** ，而在如何 **加快** 答案的计算。如果一道题考察的重点是“怎么算”而非“怎么快速计算”，这样的数学题一般都是不适合出在 OI 中的。
+OI 中的数学题与其它数学题的区别，也是体现 OI 本质的一个特点，是 OI 中的数学题往往重点不在答案 **是什么**，而在如何 **加快** 答案的计算。如果一道题考察的重点是“怎么算”而非“怎么快速计算”，这样的数学题一般都是不适合出在 OI 中的。
 
 > 一部分偏题中牵涉到了大学物理的内容，导致选手在面对这些从未接触过物理知识点时变得不知所措，造成了知识上的隔膜。
 >
 > ——[王天懿《论偏题的危害》][2]
 
-经典例子： [「清华集训 2015」多边形下海](https://uoj.ac/problem/159) 
+经典例子：[「清华集训 2015」多边形下海](https://uoj.ac/problem/159)
 
 不止是物理，OI 题目中不应过多涉及到其它学科的知识，如果涉及应当给予详细的解释，不应使其它学科的知识作为解题的重大障碍。
 
@@ -94,7 +94,7 @@ OI 中的数学题与其它数学题的区别，也是体现 OI 本质的一个�
 >
 > ——[王天懿《论偏题的危害》][2]
 
-经典例子： [「SDOI2010」猪国杀](https://loj.ac/problem/2885) ， [「集训队互测 2015」未来程序·改](https://uoj.ac/problem/98) 
+经典例子：[「SDOI2010」猪国杀](https://loj.ac/problem/2885)，[「集训队互测 2015」未来程序·改](https://uoj.ac/problem/98)
 
 在一般的 OI 比赛中，思维难度应占主要部分。当然，如 THUWC/THUSC 的 Day 2+ 那样的工程题也有其存在的道理——毕竟体验营的目的除了考察选手的算法设计能力，还有和大学学习对接的工程代码以及文档学习能力。但在一般的 OI 比赛中，考察更多的应当还是算法设计与思维能力。
 
@@ -104,11 +104,11 @@ OI 中的数学题与其它数学题的区别，也是体现 OI 本质的一个�
 
 网上有很多 LaTeX 的教程，如：
 
--  [LaTeX 入门](../tools/latex.md#_22) 
--  [LaTeX 数学公式大全](https://www.luogu.com.cn/blog/IowaBattleship/latex-gong-shi-tai-quan) 
--  [LaTeX 各种命令，符号](https://blog.csdn.net/garfielder007/article/details/51646604) 
+- [LaTeX 入门](../tools/latex.md#_22)
+- [LaTeX 数学公式大全](https://www.luogu.com.cn/blog/IowaBattleship/latex-gong-shi-tai-quan)
+- [LaTeX 各种命令，符号](https://blog.csdn.net/garfielder007/article/details/51646604)
 
-使用时请注意 [LaTeX 公式的格式要求](../intro/format.md) 。
+使用时请注意 [LaTeX 公式的格式要求](../intro/format.md)。
 
 ### 题目背景
 
@@ -120,7 +120,7 @@ OI 中的数学题与其它数学题的区别，也是体现 OI 本质的一个�
 
 ### 题目描述
 
-简而言之，题目描述需要 **清晰易懂** 。
+简而言之，题目描述需要 **清晰易懂**。
 
 题面中的每个可能不被理解的定义都应得到解释，不应凭空冒出未加定义的概念。例如：在 [CF1172D Nauuo and Portals](https://codeforces.com/problemset/problem/1172/D) 中，你必须在题面中解释什么是“传送门”。
 
@@ -142,9 +142,9 @@ OI 中的数学题与其它数学题的区别，也是体现 OI 本质的一个�
 
 需要特别注意的是，如果输出中含有小数，请尽量使用 SPJ。如果无法使用 SPJ，请保证对精度的要求是有限的。
 
-如果没有保证，对精度的要求可能是无限的。例如：要求保留三位小数，实际答案为 $0.0015$ ，此时只要有任意大小的误差导致计算出的答案小于 $0.0015$ ，即使计算出的答案是 $0.00149999\cdots$ 也会输出错误的答案。
+如果没有保证，对精度的要求可能是无限的。例如：要求保留三位小数，实际答案为 $0.0015$，此时只要有任意大小的误差导致计算出的答案小于 $0.0015$，即使计算出的答案是 $0.00149999\cdots$ 也会输出错误的答案。
 
-保证对精度要求有限的例子：请输出答案四舍五入后保留小数点后三位的结果。令标准答案为 $ans$ ，数据保证对于任意满足 $\frac{|x-ans|}{\max(1,ans)}<10^{-9}$ 的 $x$ ，四舍五入后结果与 $ans$ 四舍五入后相同。
+保证对精度要求有限的例子：请输出答案四舍五入后保留小数点后三位的结果。令标准答案为 $ans$，数据保证对于任意满足 $\frac{|x-ans|}{\max(1,ans)}<10^{-9}$ 的 $x$，四舍五入后结果与 $ans$ 四舍五入后相同。
 
 可以参考的一些句子：
 
@@ -198,7 +198,7 @@ OI 中的数学题与其它数学题的区别，也是体现 OI 本质的一个�
 4. 实数没说小数点后位数。
 5. 某些变量没有给范围。
 
-你需要保证标程可以通过满足题面所述数据范围的 **任何一组数据** 。
+你需要保证标程可以通过满足题面所述数据范围的 **任何一组数据**。
 
 ### 样例
 
@@ -206,7 +206,7 @@ OI 中的数学题与其它数学题的区别，也是体现 OI 本质的一个�
 
 有多种操作的题，每种操作都应在样例中出现。
 
-有多种输出的题（如 [CF1173A Nauuo and Votes](https://codeforces.com/problemset/problem/1173/A) ），每种输出都应在样例中出现。例外：实际上不可能无解，但要求判断是否有解的题目。
+有多种输出的题（如 [CF1173A Nauuo and Votes](https://codeforces.com/problemset/problem/1173/A)），每种输出都应在样例中出现。例外：实际上不可能无解，但要求判断是否有解的题目。
 
 ### 样例解释
 
@@ -250,7 +250,7 @@ OI 中的数学题与其它数学题的区别，也是体现 OI 本质的一个�
 
 “数据有梯度”最好用多档部分分替代。
 
-特殊性质部分分的设置要依具体题目而定。理想的特殊性质部分分应当是能够引导选手思考正解的。与较小数据范围部分分不同，在你不会针对某种特殊性质的做法时，最好不要给这种特殊性质一档分。例如： [「CTS2019」随机立方体](https://loj.ac/problem/3119) 的 $k=1$ 这档部分分在讲题时就被很多人吐槽，称这档部分分妨碍了思考正解。
+特殊性质部分分的设置要依具体题目而定。理想的特殊性质部分分应当是能够引导选手思考正解的。与较小数据范围部分分不同，在你不会针对某种特殊性质的做法时，最好不要给这种特殊性质一档分。例如：[「CTS2019」随机立方体](https://loj.ac/problem/3119) 的 $k=1$ 这档部分分在讲题时就被很多人吐槽，称这档部分分妨碍了思考正解。
 
 如果题目给分方式与默认方式不同（如：在一般的 OI 赛制比赛中绑 Subtask 测试），一定要在题面中说明。
 
@@ -281,23 +281,23 @@ for (int i = 1; i <= n; ++i) {
 }
 ```
 
-如果使用 `testlib.h` ，可以使用 `shuffle` 函数，和 `random_shuffle` 类似，但使用 `rnd.next` 作为随机数生成器。
+如果使用 `testlib.h`，可以使用 `shuffle` 函数，和 `random_shuffle` 类似，但使用 `rnd.next` 作为随机数生成器。
 
 #### 生成随机区间
 
-常见错误方法：在 $[1,n]$ 中随机生成左端点 $l$ ，再在 $[l, n]$ 中随机生成右端点 $r$ 。这样的话生成的区间会比较靠右。
+常见错误方法：在 $[1,n]$ 中随机生成左端点 $l$，再在 $[l, n]$ 中随机生成右端点 $r$。这样的话生成的区间会比较靠右。
 
 较为正确的方法（推荐做法）：在 $[1, n]$ 中随机生成两个数，取较小的作为左端点，较大的作为右端点。
 
-真正均匀随机的方法：在 $[1, n(n+1)]$ 中生成一个随机数 $x$ ，若 $x\le n-1$ ，再在 $[1, n]$ 中生成一个随机数 $y$ ，区间为 $[y,y]$ ；否则按“较为正确的方法”生成。
+真正均匀随机的方法：在 $[1, n(n+1)]$ 中生成一个随机数 $x$，若 $x\le n-1$，再在 $[1, n]$ 中生成一个随机数 $y$，区间为 $[y,y]$；否则按“较为正确的方法”生成。
 
 #### 生成随机树
 
-常用方法是为 $2\sim n$ 的每个节点 $i$ 从 $[1,i-1]$ 中随机选择一个父亲。这样做的话生成的树不是均匀随机的，期望高度为 $O(\log n)$ 。
+常用方法是为 $2\sim n$ 的每个节点 $i$ 从 $[1,i-1]$ 中随机选择一个父亲。这样做的话生成的树不是均匀随机的，期望高度为 $O(\log n)$。
 
 还有一种随机方法：从 $[i\cdot low, i\cdot high]$ 中随机选择 $i$ 的父亲。若 $low$ 和 $high$ 设置得当，可以造出强度较高的树。
 
-真正均匀随机的方法是利用 [Prufer 序列](../graph/prufer.md) ，先生成一个随机 Prufer 序列，再通过序列生成树。这样做的话，树的期望高度为 $O(\sqrt n)$ 。
+真正均匀随机的方法是利用 [Prufer 序列](../graph/prufer.md)，先生成一个随机 Prufer 序列，再通过序列生成树。这样做的话，树的期望高度为 $O(\sqrt n)$。
 
 除此之外，可以随机一个排列来给节点重编号/打乱边的顺序。
 
@@ -309,7 +309,7 @@ for (int i = 1; i <= n; ++i) {
 
 #### 需要分解因数的题目
 
-可重质因数个数尽量多： $2$ 的幂。
+可重质因数个数尽量多：$2$ 的幂。
 
 去重后质因数个数尽量多：最小的若干个质数相乘。
 
@@ -335,7 +335,7 @@ for (int i = 1; i <= n; ++i) {
 
 例如：
 
- `gen.cpp` :
+`gen.cpp`:
 
 ```cpp
 #include "testlib.h"
@@ -369,7 +369,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
- `gen_scripts.bat` :
+`gen_scripts.bat`:
 
 ```bat
 gen 10 10 > 1.in
@@ -413,7 +413,7 @@ gen 100000 100000 > 5.in
 
 ## Special Judge
 
- [SPJ 编写教程](../tools/special-judge.md) 
+[SPJ 编写教程](../tools/special-judge.md)
 
 输出方案题和输出浮点数题是两种较为常见的需要使用 SPJ 的题型，其它题目视情况也需要使用 SPJ。在 CF 上，所有题目都必须使用基于 testlib.h 的 checker，例如：题目要求输出若干个整数时，你可以任意输出空白字符（既可以空格也可以换行）。
 
@@ -421,7 +421,7 @@ checker 一般使用 testlib.h 编写。由于你要应对各种各样的不合�
 
 编写 checker 需要注意以下两点：
 
-1. 你需要应对各种不合法的输出，因此，请检查读入的每个变量是否在合法范围中（ `readInt(minvalue, maxvalue)` ）。例如：读入一个在 check 过程中会作为数组下标的变量时必须检查其范围，否则可能引发数组越界，有时这会导致 RE，有时则可能判为 AC。
+1. 你需要应对各种不合法的输出，因此，请检查读入的每个变量是否在合法范围中（`readInt(minvalue, maxvalue)`）。例如：读入一个在 check 过程中会作为数组下标的变量时必须检查其范围，否则可能引发数组越界，有时这会导致 RE，有时则可能判为 AC。
 2. 原则上 checker 中不应检查空白字符（即，不应使用 readSpace()、readEoln()、readEof()，值得一提的是，testlib.h 会自动检查是否有多余的输出）。
 
 ## 题解
@@ -442,7 +442,7 @@ checker 一般使用 testlib.h 编写。由于你要应对各种各样的不合�
 
 例如：dp 的题解要解释清楚状态的定义。
 
-再例如： [CF1172F Nauuo and Bug](https://codeforces.com/problemset/problem/1172/F) 的旧版题解，其中对“分段函数”没有定义，这是绝对不可取的。
+再例如：[CF1172F Nauuo and Bug](https://codeforces.com/problemset/problem/1172/F) 的旧版题解，其中对“分段函数”没有定义，这是绝对不可取的。
 
 ### 关于细节
 
@@ -486,7 +486,7 @@ checker 一般使用 testlib.h 编写。由于你要应对各种各样的不合�
 
 ### Polygon
 
-Polygon 是一个功能非常强大的多人合作出题平台，可以作为在任何网站（使用 package 功能导出到不支持 Polygon 的网站）多人合作出题的首选方案，单人出题（尤其是在不同设备上出题）时也是很不错的选择，使用方法参见 [Polygon 简介](../tools/polygon.md) 。
+Polygon 是一个功能非常强大的多人合作出题平台，可以作为在任何网站（使用 package 功能导出到不支持 Polygon 的网站）多人合作出题的首选方案，单人出题（尤其是在不同设备上出题）时也是很不错的选择，使用方法参见 [Polygon 简介](../tools/polygon.md)。
 
 ### Codeforces
 
@@ -509,7 +509,7 @@ Codeforces 是全球最著名的算法竞赛网站之一，题目质量较高，
 
 #### 在 Polygon 上准备题目
 
-参考 [Polygon 简介](../tools/polygon.md) 。
+参考 [Polygon 简介](../tools/polygon.md)。
 
 #### 与管理之间的联系
 
@@ -528,19 +528,19 @@ Codeforces 是全球最著名的算法竞赛网站之一，题目质量较高，
 
 创办时间不是很久的国内算法竞赛平台，应该算是国内平台出题的最佳选择。
 
-出题申请： <https://info.cometoj.com/contests/Questionnaire_IssuerInfo/> 
+出题申请：<https://info.cometoj.com/contests/Questionnaire_IssuerInfo/>
 
 ### CodeChef
 
 印度的算法竞赛平台，支持 10 天且带 challenge 的 Long Challenge，2.5h 类 ICPC 的 Cook-Off，3h 类 IOI 的 LunchTime 三种赛制。
 
-出题 FAQ： <https://www.codechef.com/wiki/faq-problem-setters> 
+出题 FAQ：<https://www.codechef.com/wiki/faq-problem-setters>
 
-出题指南： <https://www.codechef.com/problemsetting> 
+出题指南：<https://www.codechef.com/problemsetting>
 
 ### AtCoder
 
-日本的算法竞赛平台，出题联系方式： [contest@atcoder.jp](mailto:contest@atcoder.jp) 。
+日本的算法竞赛平台，出题联系方式：[contest@atcoder.jp](mailto:contest@atcoder.jp)。
 
 ### UOJ & LOJ
 
@@ -564,7 +564,7 @@ Codeforces 是全球最著名的算法竞赛网站之一，题目质量较高，
 
 2. [王天懿《论偏题的危害》][2]
 
-3. [CF 出题人须知][3]（ [国内可访问的图片版](https://github.com/OI-wiki/libs/blob/master/topic/rules.jpg) ）
+3. [CF 出题人须知][3]（[国内可访问的图片版](https://github.com/OI-wiki/libs/blob/master/topic/rules.jpg)）
 
 4. [CF 出题人的自我修养][4]
 

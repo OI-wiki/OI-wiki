@@ -3,7 +3,7 @@
 ??? note "为什么先介绍第二类斯特林数"
     虽然被称作“第二类”，第二类斯特林数却在斯特林的相关著作和具体数学中被首先描述，同时也比第一类斯特林数常用得多。
 
- **第二类斯特林数** （斯特林子集数） $\begin{Bmatrix}n\\ k\end{Bmatrix}$，也可记做 $S(n,k)$，表示将 $n$ 个两两不同的元素，划分为 $k$ 个互不区分的非空子集的方案数。
+**第二类斯特林数**（斯特林子集数）$\begin{Bmatrix}n\\ k\end{Bmatrix}$，也可记做 $S(n,k)$，表示将 $n$ 个两两不同的元素，划分为 $k$ 个互不区分的非空子集的方案数。
 
 ### 递推式
 
@@ -11,7 +11,7 @@ $$
 \begin{Bmatrix}n\\ k\end{Bmatrix}=\begin{Bmatrix}n-1\\ k-1\end{Bmatrix}+k\begin{Bmatrix}n-1\\ k\end{Bmatrix}
 $$
 
-边界是 $\begin{Bmatrix}n\\ 0\end{Bmatrix}=[n=0]$ 。
+边界是 $\begin{Bmatrix}n\\ 0\end{Bmatrix}=[n=0]$。
 
 考虑用组合意义来证明。
 
@@ -600,10 +600,8 @@ int main() {
   scanf("%d%d", &n, &k);
   poly f(n + 1);
   fact[0] = 1;
-  for (int i = 1; i <= n; ++i)
-    fact[i] = (ll)fact[i - 1] * i % mod;
-  for (int i = 1; i <= n; ++i)
-    f[i] = qpow(fact[i], mod - 2);
+  for (int i = 1; i <= n; ++i) fact[i] = (ll)fact[i - 1] * i % mod;
+  for (int i = 1; i <= n; ++i) f[i] = qpow(fact[i], mod - 2);
   f = exp(log(f >> 1) * k) << k, f.resize(n + 1);
   int inv = qpow(fact[k], mod - 2);
   for (int i = 0; i <= n; ++i)
@@ -614,9 +612,9 @@ int main() {
 
 ## 第一类斯特林数（Stirling Number）
 
- **第一类斯特林数** （斯特林轮换数） $\begin{bmatrix}n\\ k\end{bmatrix}$，也可记做 $s(n,k)$，表示将 $n$ 个两两不同的元素，划分为 $k$ 个互不区分的非空轮换的方案数。
+**第一类斯特林数**（斯特林轮换数）$\begin{bmatrix}n\\ k\end{bmatrix}$，也可记做 $s(n,k)$，表示将 $n$ 个两两不同的元素，划分为 $k$ 个互不区分的非空轮换的方案数。
 
-一个轮换就是一个首尾相接的环形排列。我们可以写出一个轮换$[A,B,C,D]$，并且我们认为 $[A,B,C,D]=[B,C,D,A]=[C,D,A,B]=[D,A,B,C]$，即，两个可以通过旋转而互相得到的轮换是等价的。注意，我们不认为两个可以通过翻转而相互得到的轮换等价，即 $[A,B,C,D]\neq[D,C,B,A]$。
+一个轮换就是一个首尾相接的环形排列。我们可以写出一个轮换 $[A,B,C,D]$，并且我们认为 $[A,B,C,D]=[B,C,D,A]=[C,D,A,B]=[D,A,B,C]$，即，两个可以通过旋转而互相得到的轮换是等价的。注意，我们不认为两个可以通过翻转而相互得到的轮换等价，即 $[A,B,C,D]\neq[D,C,B,A]$。
 
 ### 递推式
 
@@ -624,7 +622,7 @@ $$
 \begin{bmatrix}n\\ k\end{bmatrix}=\begin{bmatrix}n-1\\ k-1\end{bmatrix}+(n-1)\begin{bmatrix}n-1\\ k\end{bmatrix}
 $$
 
-边界是 $\begin{bmatrix}n\\ 0\end{bmatrix}=[n=0]$ 。
+边界是 $\begin{bmatrix}n\\ 0\end{bmatrix}=[n=0]$。
 
 该递推式的证明可以考虑其组合意义。
 
@@ -643,15 +641,15 @@ $$
 
 类似第二类斯特林数，我们构造同行第一类斯特林数的生成函数，即
 
-$$F_n(x)=\sum\limits_{i=0}^n\begin{bmatrix}n\\i\end{bmatrix}x^i$$
+$F_n(x)=\sum\limits_{i=0}^n\begin{bmatrix}n\\i\end{bmatrix}x^i$
 
 根据递推公式，不难写出
 
-$$F_n(x)=(n-1)F_{n-1}(x)+xF_{n-1}(x)$$
+$F_n(x)=(n-1)F_{n-1}(x)+xF_{n-1}(x)$
 
 于是
 
-$$F_n(x)=\prod\limits_{i=0}^{n-1}(x+i)=\dfrac{(x+n-1)!}{(x-1)!}$$
+$F_n(x)=\prod\limits_{i=0}^{n-1}(x+i)=\dfrac{(x+n-1)!}{(x-1)!}$
 
 这其实是 $x$ 的 $n$ 次上升阶乘幂，记做 $x^{\overline n}$。这个东西自然是可以暴力分治乘 $O(n\log^2n)$ 求出的，但用上升幂相关做法可以 $O(n\log n)$ 求出。
 
@@ -661,7 +659,7 @@ $$F_n(x)=\prod\limits_{i=0}^{n-1}(x+i)=\dfrac{(x+n-1)!}{(x-1)!}$$
 
 显然，单个轮换的指数型生成函数为
 
-$$F(x)=\sum\limits_{i=1}^n\dfrac{(i-1)!x^i}{i!}=\sum\limits_{i=1}^n\dfrac{x^i}{i}$$
+$F(x)=\sum\limits_{i=1}^n\dfrac{(i-1)!x^i}{i!}=\sum\limits_{i=1}^n\dfrac{x^i}{i}$
 
 它的 $k$ 次幂就是 $\begin{bmatrix}i\\k\end{bmatrix}$ 的指数型生成函数，$O(n\log n)$ 计算即可。
 
@@ -669,14 +667,11 @@ $$F(x)=\sum\limits_{i=1}^n\dfrac{(i-1)!x^i}{i!}=\sum\limits_{i=1}^n\dfrac{x^i}{i
 int main() {
   scanf("%d%d", &n, &k);
   fact[0] = 1;
-  for (int i = 1; i <= n; ++i)
-    fact[i] = (ll)fact[i - 1] * i % mod;
+  for (int i = 1; i <= n; ++i) fact[i] = (ll)fact[i - 1] * i % mod;
   ifact[n] = qpow(fact[n], mod - 2);
-  for (int i = n - 1; i >= 0; --i)
-    ifact[i] = (ll)ifact[i + 1] * (i + 1) % mod;
+  for (int i = n - 1; i >= 0; --i) ifact[i] = (ll)ifact[i + 1] * (i + 1) % mod;
   poly f(n + 1);
-  for (int i = 1; i <= n; ++i)
-    f[i] = (ll)fact[i - 1] * ifact[i] % mod;
+  for (int i = 1; i <= n; ++i) f[i] = (ll)fact[i - 1] * ifact[i] % mod;
   f = exp(log(f >> 1) * k) << k, f.resize(n + 1);
   for (int i = 0; i <= n; ++i)
     printf("%lld ", (ll)f[i] * fact[i] % mod * ifact[k] % mod);
@@ -688,7 +683,7 @@ int main() {
 
 ### 上升幂与普通幂的相互转化
 
-我们记上升阶乘幂 $x^{\overline{n}}=\prod_{k=0}^{n-1} (x+k)$ 。
+我们记上升阶乘幂 $x^{\overline{n}}=\prod_{k=0}^{n-1} (x+k)$。
 
 则可以利用下面的恒等式将上升幂转化为普通幂：
 
@@ -704,7 +699,7 @@ $$
 
 ### 下降幂与普通幂的相互转化
 
-我们记下降阶乘幂 $x^{\underline{n}}=\dfrac{x!}{(x-n)!}=\prod_{k=0}^{n-1} (x-k)$ 。
+我们记下降阶乘幂 $x^{\underline{n}}=\dfrac{x!}{(x-n)!}=\prod_{k=0}^{n-1} (x-k)$。
 
 则可以利用下面的恒等式将普通幂转化为下降幂：
 
@@ -753,10 +748,10 @@ $$
 ## 习题
 
 - [HDU3625 Examining the Rooms](http://acm.hdu.edu.cn/showproblem.php?pid=3625)
-- [UOJ540 联合省选2020 组合数问题](https://uoj.ac/problem/540)
-- [UOJ269 清华集训2016 如何优雅地求和](https://uoj.ac/problem/269)
+- [UOJ540 联合省选 2020 组合数问题](https://uoj.ac/problem/540)
+- [UOJ269 清华集训 2016 如何优雅地求和](https://uoj.ac/problem/269)
 
 ## 参考资料与注释
 
-1.  [Stirling Number of the First Kind - Wolfram MathWorld](http://mathworld.wolfram.com/StirlingNumberoftheFirstKind.html)
-2.  [Stirling Number of the Second Kind - Wolfram MathWorld](http://mathworld.wolfram.com/StirlingNumberoftheSecondKind.html)
+1. [Stirling Number of the First Kind - Wolfram MathWorld](http://mathworld.wolfram.com/StirlingNumberoftheFirstKind.html)
+2. [Stirling Number of the Second Kind - Wolfram MathWorld](http://mathworld.wolfram.com/StirlingNumberoftheSecondKind.html)

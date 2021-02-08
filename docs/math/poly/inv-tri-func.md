@@ -1,6 +1,6 @@
 ## 描述
 
-给定多项式 $f\left(x\right)$ ，求模 $x^{n}$ 意义下的 $\arcsin{f\left(x\right)}, \arccos{f\left(x\right)}$ 与 $\arctan{f\left(x\right)}$ 。
+给定多项式 $f\left(x\right)$，求模 $x^{n}$ 意义下的 $\arcsin{f\left(x\right)}, \arccos{f\left(x\right)}$ 与 $\arctan{f\left(x\right)}$。
 
 ## 解法
 

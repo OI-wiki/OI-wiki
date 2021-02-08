@@ -25,7 +25,7 @@ iRightChild(i) = 2 * i + 2;
 
 ### 时间复杂度
 
-堆排序的最优时间复杂度、平均时间复杂度、最坏时间复杂度均为 $O(n\log n)$ 。
+堆排序的最优时间复杂度、平均时间复杂度、最坏时间复杂度均为 $O(n\log n)$。
 
 ## 代码实现
 
@@ -64,4 +64,4 @@ void heap_sort(int arr[], int len) {
 
 ## 外部链接
 
--  [堆排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%A0%86%E6%8E%92%E5%BA%8F) 
+- [堆排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%A0%86%E6%8E%92%E5%BA%8F)
