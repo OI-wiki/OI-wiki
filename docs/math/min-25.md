@@ -1,4 +1,4 @@
-author: TrisolarisHD, Xeonacid
+author: Marcythm, Xeonacid
 
 由于其由 [Min_25](http://min-25.hatenablog.com/) 发明并最早开始使用，故称「Min_25 筛」。
 

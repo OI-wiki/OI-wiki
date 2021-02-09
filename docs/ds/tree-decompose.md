@@ -1,4 +1,4 @@
-author: ouuan, Ir1d, TrisolarisHD, Xeonacid
+author: ouuan, Ir1d, Marcythm, Xeonacid
 
 ## 树分块的方式
 

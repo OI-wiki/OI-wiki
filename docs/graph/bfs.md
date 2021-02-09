@@ -1,4 +1,4 @@
-author: Ir1d, greyqz, yjl9903, Anguei, TrisolarisHD, ChungZH, Xeonacid, ylxmf2005
+author: Ir1d, greyqz, yjl9903, Anguei, Marcythm, ChungZH, Xeonacid, ylxmf2005
 
 BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first_search) ，中文名是宽度优先搜索，也叫广度优先搜索。
 

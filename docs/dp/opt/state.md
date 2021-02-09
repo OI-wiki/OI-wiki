@@ -1,4 +1,4 @@
-author: TrisolarisHD, partychicken, Xeonacid
+author: Marcythm, partychicken, Xeonacid
 
 ## 概述
 
