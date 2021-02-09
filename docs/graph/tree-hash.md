@@ -7,7 +7,7 @@
 ### 公式
 
 $$
-f_{now}=size_{now} \times \sum f_{son_{now,i}}\times seed^{i-1}
+f_{now}=size_{now} \times \sum f_{son(now,i)}\times seed^{i-1}
 $$
 
 #### 注
@@ -33,7 +33,7 @@ $seed$ 为选定的一个合适的种子（最好是质数，对字符串 hash �
 ### 公式
 
 $$
-f_{now}=\bigoplus f_{son_{now,i}}\times seed+size_{son_{now,i}}
+f_{now}=\bigoplus f_{son(now,i)}\times seed+size_{son(now,i)}
 $$
 
 #### 注
@@ -57,7 +57,7 @@ $\bigoplus$ 表示异或和。
 ### 公式
 
 $$
-f_{now}=1+\sum f_{son_{now,i}} \times prime(size_{son_{now,i}})
+f_{now}=1+\sum f_{son(now,i)} \times prime(size_{son(now,i)})
 $$
 
 ### 注
