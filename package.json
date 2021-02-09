@@ -34,15 +34,15 @@
     "gulp-purifycss": "^0.2.0",
     "hexo-fs": "^3.1.0",
     "mathjax-node-page": "^3.2.0",
-    "remark-clang-format": "^1.0.1",
+    "remark-clang-format": "^1.6.0",
     "remark-cli": "^8.0.0",
     "remark-copywriting-correct": "^0.5.0",
-    "remark-details": "^2.0.2",
+    "remark-details": "^3.0.0",
     "remark-footnotes": "^1.0.0",
     "remark-lint-final-newline": "^1.0.2",
     "remark-lint-no-tabs": "^1.0.2",
     "remark-math": "^1.0.5",
-    "remark-math-space": "^1.4.0",
-    "remark-preset-lint-markdown-style-guide": "^2.1.2"
+    "remark-math-space": "^2.1",
+    "remark-preset-lint-markdown-style-guide": "^4.0.0"
   }
 }

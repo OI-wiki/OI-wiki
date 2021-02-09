@@ -35,7 +35,7 @@ struct Node {
 
 配对堆的合并操作极为简单，直接把根节点权值较大的那个配对堆设成另一个的儿子就好了。（如下图）  
 ![](./images/pairingheap3.png)  
-复杂度的话，操作本身显然是 $O(1)$ 的，考虑到对势能的影响后还是均摊 $O(1)$ 
+复杂度的话，操作本身显然是 $O(1)$ 的，考虑到对势能的影响后还是均摊 $O(1)$
 
 ```cpp
 Node* merge(Node* a, Node* b) {
@@ -58,9 +58,9 @@ Node* merge(Node* a, Node* b) {
 
 到这里我们会发现，前面的几个操作都十分偷懒，几乎完全没有对数据结构进行维护，所以删除最小值是配对堆最重要的（也是最复杂）的一个操作。  
 考虑我们拿掉根节点之后会发生什么，根节点原来的所有儿子构成了一片森林，所以我们要把他们合并起来。  
-一个很自然的想法是使用 `merge` 函数把儿子们一个一个并在一起，这样做的话正确性是显然的，但是会导致复杂度退化到 $O(n)$ 。为了保证删除操作的均摊复杂度为 $O(\log n)$ ，我们需要：把儿子们 **从左往右** 两两配成一对，用 `merge` 操作把被配成同一对的两个儿子合并到一起（见下图 1)，再将新产生的堆 **从右往左** 暴力合并在一起（见下图 2）。![](./images/pairingheap4.jpg)![](./images/pairingheap5.jpg)
+一个很自然的想法是使用 `merge` 函数把儿子们一个一个并在一起，这样做的话正确性是显然的，但是会导致复杂度退化到 $O(n)$。为了保证删除操作的均摊复杂度为 $O(\log n)$，我们需要：把儿子们 **从左往右** 两两配成一对，用 `merge` 操作把被配成同一对的两个儿子合并到一起（见下图 1)，再将新产生的堆 **从右往左** 暴力合并在一起（见下图 2）。![](./images/pairingheap4.jpg)![](./images/pairingheap5.jpg)
 
-先实现一个辅助函数 `merges` ，作用是合并一个节点的所有兄弟。
+先实现一个辅助函数 `merges`，作用是合并一个节点的所有兄弟。
 
 ```cpp
 Node* merges(Node* x) {
@@ -74,13 +74,13 @@ Node* merges(Node* x) {
 
 最后一句话是该函数的核心，这句话分三部分：
 
-1.  `merge(x,a)` “配对”了 x 和 a。
-2.  `merges(b)` 递归合并 b 和他的兄弟们。
+1. `merge(x,a)`“配对”了 x 和 a。
+2. `merges(b)` 递归合并 b 和他的兄弟们。
 3. 将上面 2 个操作产生的 2 个新树合并。
 
 需要注意到的是，上文提到了配对方向和合并方向是有要求的（从左往右配对，从右往左合并），该递归函数的实现已保证了这个顺序，如果读者需要自行实现迭代版本的话请务必注意保证该顺序，否则复杂度将失去保证。
 
-有了 `merges` 函数， `delete-min` 操作就显然了。（因为这个封装实在没啥用，实际在实现时中一般不显式写出这个函数）
+有了 `merges` 函数，`delete-min` 操作就显然了。（因为这个封装实在没啥用，实际在实现时中一般不显式写出这个函数）
 
 ```cpp
 Node* delete_min(Node* x) { return merges(x->ch); }
@@ -101,7 +101,7 @@ struct Node {
 };
 ```
 
- `merge` 操作修改为：
+`merge` 操作修改为：
 
 ```cpp
 Node* merge(Node* a, Node* b) {
@@ -119,7 +119,7 @@ Node* merge(Node* a, Node* b) {
 }
 ```
 
- `merges` 操作修改为：
+`merges` 操作修改为：
 
 ```cpp
 Node* merges(Node* x) {
@@ -141,7 +141,7 @@ Node* merges(Node* x) {
 现在我们来考虑如何实现 `decrease-key` 操作。  
 首先我们发现，当我们对节点 x 进行 `decrease-key` 操作后，以 $x$ 为根的子树仍然满足配对堆性质，但 $x$ 的父亲和 $x$ 之间可能不再满足堆性质。  
 因此我们可以把整棵以 $x$ 为根的子树剖出来，这样现在两棵树都符合配对堆性质了，再把他们 `merge` 起来就做完了。  
-这个操作本身复杂度显然为 $O(1)$ ，但会破坏原有的势能分析过程，因此均摊复杂度难以证明（目前学术界还无法给出复杂度的精确值），通常可以简单的认为复杂度为 $o(\log n)$ （注意这里为小 o）。
+这个操作本身复杂度显然为 $O(1)$，但会破坏原有的势能分析过程，因此均摊复杂度难以证明（目前学术界还无法给出复杂度的精确值），通常可以简单的认为复杂度为 $o(\log n)$（注意这里为小 o）。
 
 ```cpp
 // root为堆的根，x为要操作的节点，v为新的权值，调用时需保证x->v>=v
@@ -163,13 +163,13 @@ Node* decrease - key(Node* root, Node* x, LL v) {
 
 ### 复杂度分析
 
-见 [配对堆的论文](http://www.cs.cmu.edu/~sleator/papers/pairing-heaps.pdf) 。
+见 [配对堆的论文](http://www.cs.cmu.edu/~sleator/papers/pairing-heaps.pdf)。
 
 ### 参考文献
 
-1.  [HOOCCOOH 的题解](https://hooccooh.blog.luogu.org/solution-p3377) 
-2.  [集训队论文《黄源河 -- 左偏树的特点及其应用》](https://wenku.baidu.com/view/20e9ff18964bcf84b9d57ba1.html) 
-3.  [《配对堆中文版》](https://wenku.baidu.com/view/f2527bc2bb4cf7ec4afed06d.html) 
-4.  [维基百科 pairing heap 词条](https://en.wikipedia.org/wiki/Pairing_heap) 
-5.  <https://blog.csdn.net/luofeixiongsix/article/details/50640668> 
-6.  <https://brilliant.org/wiki/pairing-heap/> （注：本条目所有图片均来自这里）
+1. [HOOCCOOH 的题解](https://hooccooh.blog.luogu.org/solution-p3377)
+2. [集训队论文《黄源河 -- 左偏树的特点及其应用》](https://wenku.baidu.com/view/20e9ff18964bcf84b9d57ba1.html)
+3. [《配对堆中文版》](https://wenku.baidu.com/view/f2527bc2bb4cf7ec4afed06d.html)
+4. [维基百科 pairing heap 词条](https://en.wikipedia.org/wiki/Pairing_heap)
+5. <https://blog.csdn.net/luofeixiongsix/article/details/50640668>
+6. <https://brilliant.org/wiki/pairing-heap/>（注：本条目所有图片均来自这里）

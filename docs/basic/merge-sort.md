@@ -18,9 +18,9 @@
 
 归并排序是一种稳定的排序算法。
 
-归并排序的最优时间复杂度、平均时间复杂度和最坏时间复杂度均为 $O(n\log n)$ 。
+归并排序的最优时间复杂度、平均时间复杂度和最坏时间复杂度均为 $O(n\log n)$。
 
-归并排序的空间复杂度为 $O(n)$ 。
+归并排序的空间复杂度为 $O(n)$。
 
 ## 代码实现
 
@@ -88,17 +88,17 @@ void merge(int ll, int rr) {
 
 归并排序还可以用来求逆序对的个数。
 
-所谓逆序对，就是满足 $a_{i} > a_{j}$ 且 $i < j$ 的数对 $(i, j)$ 。
+所谓逆序对，就是满足 $a_{i} > a_{j}$ 且 $i < j$ 的数对 $(i, j)$。
 
-代码实现中注释掉的 `ans += mid - p` 就是在统计逆序对个数。具体来说，算法把靠后的数放到前面了（较小的数放在前面），所以在这个数原来位置之前的、比它大的数都会和它形成逆序对，而这个个数就是还没有合并进去的数的个数，即为 `mid - p` 。
+代码实现中注释掉的 `ans += mid - p` 就是在统计逆序对个数。具体来说，算法把靠后的数放到前面了（较小的数放在前面），所以在这个数原来位置之前的、比它大的数都会和它形成逆序对，而这个个数就是还没有合并进去的数的个数，即为 `mid - p`。
 
-另外，逆序对也可以用 [树状数组](../ds/fenwick.md) 、 [线段树](../ds/seg.md) 等数据结构求解。这三种方法的时间复杂度都是 $O(n \log n)$ 。
+另外，逆序对也可以用 [树状数组](../ds/fenwick.md)、[线段树](../ds/seg.md) 等数据结构求解。这三种方法的时间复杂度都是 $O(n \log n)$。
 
 ## 外部链接
 
--  [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/) 
--  [希尔排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F) 
--  [逆序对 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E9%80%86%E5%BA%8F%E5%AF%B9) 
+- [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/)
+- [希尔排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
+- [逆序对 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E9%80%86%E5%BA%8F%E5%AF%B9)
 
 ## 参考资料与注释
 

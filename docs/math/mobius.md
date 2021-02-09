@@ -2,9 +2,9 @@ author: hydingsy, hyp1231, ranwen
 
 ## 简介
 
-莫比乌斯反演是数论中的重要内容。对于一些函数 $f(n)$ ，如果很难直接求出它的值，而容易求出其倍数和或约数和 $g(n)$ ，那么可以通过莫比乌斯反演简化运算，求得 $f(n)$ 的值。
+莫比乌斯反演是数论中的重要内容。对于一些函数 $f(n)$，如果很难直接求出它的值，而容易求出其倍数和或约数和 $g(n)$，那么可以通过莫比乌斯反演简化运算，求得 $f(n)$ 的值。
 
-开始学习莫比乌斯反演前，我们需要一些前置知识： **积性函数** 、 **Dirichlet 卷积** 、 **莫比乌斯函数** 。
+开始学习莫比乌斯反演前，我们需要一些前置知识：**积性函数**、**Dirichlet 卷积**、**莫比乌斯函数**。
 
 * * *
 
@@ -32,7 +32,7 @@ $$
 $$
 
 ??? note "关于证明最后的小方块"
-    QED 是拉丁词组“Quod Erat Demonstrandum”（这就是所要证明的）的缩写，代表证明完毕。现在的 QED 符号通常是 $\blacksquare$ 或者 $\square$ 。（ [维基百科](https://zh.wikipedia.org/wiki/%E8%AD%89%E6%98%8E%E5%AE%8C%E7%95%A2) ）
+    QED 是拉丁词组“Quod Erat Demonstrandum”（这就是所要证明的）的缩写，代表证明完毕。现在的 QED 符号通常是 $\blacksquare$ 或者 $\square$。（[维基百科](https://zh.wikipedia.org/wiki/%E8%AD%89%E6%98%8E%E5%AE%8C%E7%95%A2)）
 
 ### 引理 2
 
@@ -40,25 +40,25 @@ $$
 \forall n \in \mathbb{N}_{+},  \left|\left\{ \lfloor \frac{n}{d} \rfloor \mid d \in \mathbb{N}_{+},d\leq n \right\}\right| \leq \lfloor 2\sqrt{n} \rfloor
 $$
 
- $|V|$ 表示集合 $V$ 的元素个数
+$|V|$ 表示集合 $V$ 的元素个数
 
 略证：
 
-对于 $d\leq \left\lfloor\sqrt{n}\right\rfloor$ ， $\left\lfloor\frac{n}{d}\right\rfloor$ 有 $\left\lfloor\sqrt{n}\right\rfloor$ 种取值
+对于 $d\leq \left\lfloor\sqrt{n}\right\rfloor$，$\left\lfloor\frac{n}{d}\right\rfloor$ 有 $\left\lfloor\sqrt{n}\right\rfloor$ 种取值
 
-对于 $d> \left\lfloor\sqrt{n}\right\rfloor$ ，有 $\left\lfloor\frac{n}{d}\right\rfloor\leq\left\lfloor\sqrt{n}\right\rfloor$ ，也只有 $\left\lfloor\sqrt{n}\right\rfloor$ 种取值
+对于 $d> \left\lfloor\sqrt{n}\right\rfloor$，有 $\left\lfloor\frac{n}{d}\right\rfloor\leq\left\lfloor\sqrt{n}\right\rfloor$，也只有 $\left\lfloor\sqrt{n}\right\rfloor$ 种取值
 
 综上，得证
 
 ### 数论分块
 
-数论分块的过程大概如下：考虑含有 $\left\lfloor\frac{n}{i}\right\rfloor$ 的求和式子（ $n$ 为常数）
+数论分块的过程大概如下：考虑含有 $\left\lfloor\frac{n}{i}\right\rfloor$ 的求和式子（$n$ 为常数）
 
-对于任意一个 $i(i\leq n)$ ，我们需要找到一个最大的 $j(i\leq j\leq n)$ ，使得 $\left\lfloor\frac{n}{i}\right\rfloor = \left\lfloor\frac{n}{j}\right\rfloor$ .
+对于任意一个 $i(i\leq n)$，我们需要找到一个最大的 $j(i\leq j\leq n)$，使得 $\left\lfloor\frac{n}{i}\right\rfloor = \left\lfloor\frac{n}{j}\right\rfloor$.
 
-此时 $j=\left\lfloor\frac{n}{\left\lfloor\frac{n}{i}\right\rfloor}\right\rfloor$ .
+此时 $j=\left\lfloor\frac{n}{\left\lfloor\frac{n}{i}\right\rfloor}\right\rfloor$.
 
-显然 $j\leq n$ ，考虑证明 $j\geq i$ ：
+显然 $j\leq n$，考虑证明 $j\geq i$：
 
 $$
 \begin{aligned}
@@ -73,7 +73,7 @@ $$
 \end{aligned}
 $$
 
-不妨设 $k=\left\lfloor\frac{n}{i}\right\rfloor$ ，考虑证明当 $\left\lfloor\frac{n}{j}\right\rfloor=k$ 时， $j$ 的最大值为 $\left\lfloor\frac{n}{k}\right\rfloor$ ：
+不妨设 $k=\left\lfloor\frac{n}{i}\right\rfloor$，考虑证明当 $\left\lfloor\frac{n}{j}\right\rfloor=k$ 时，$j$ 的最大值为 $\left\lfloor\frac{n}{k}\right\rfloor$：
 
 $$
 \left\lfloor\frac{n}{j}\right\rfloor=k
@@ -85,11 +85,11 @@ k\leq\frac{n}{j}<k+1
 \frac{n}{k+1}<j\leq\frac{n}{k}
 $$
 
-又因为 $j$ 为整数 所以 $j_{max}=\left\lfloor\frac{n}{k}\right\rfloor$ 
+又因为 $j$ 为整数 所以 $j_{max}=\left\lfloor\frac{n}{k}\right\rfloor$
 
 利用上述结论，我们每次以 $[i,j]$ 为一块，分块求和即可
 
-例如 [「luogu P2261」\[CQOI2007\]余数求和](https://www.luogu.com.cn/problem/P2261) , $ans=\sum_{i=1}^n(k\bmod i)=\sum_{i=1}^nk-i\left\lfloor\frac{k}{i}\right\rfloor$ .
+例如 [「luogu P2261」\[CQOI2007\]余数求和](https://www.luogu.com.cn/problem/P2261),$ans=\sum_{i=1}^n(k\bmod i)=\sum_{i=1}^nk-i\left\lfloor\frac{k}{i}\right\rfloor$.
 
 ??? note "代码实现"
     ```cpp
@@ -112,7 +112,7 @@ $$
     \sum_{i=1}^{\min (n,m)}\left\lfloor\frac{n}{i}    \right\rfloor\left\lfloor\frac{m}{i}    \right\rfloor
     $$
     
-    此时可将代码中 `r = n/(n/i)` 替换成 `r = min(n/(n/i), m/(m/i))` 
+    此时可将代码中 `r = n/(n/i)` 替换成 `r = min(n/(n/i), m/(m/i))`
 
 * * *
 
@@ -120,9 +120,9 @@ $$
 
 ### 定义
 
-若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y \in \mathbb{N}_{+},\gcd(x,y)=1$ 都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为积性函数。
+若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y \in \mathbb{N}_{+},\gcd(x,y)=1$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为积性函数。
 
-若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y \in \mathbb{N}_{+}$ 都有 $f(xy)=f(x)f(y)$ ，则 $f(n)$ 为完全积性函数。
+若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y \in \mathbb{N}_{+}$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为完全积性函数。
 
 ### 性质
 
@@ -137,23 +137,23 @@ h(x)&=\sum_{d\mid x}f(d)g(\frac{x}{d})
 \end{aligned}
 $$
 
-设 $x=\prod p_i^{k_i}$ 
+设 $x=\prod p_i^{k_i}$
 
-若 $F(x)$ 为积性函数，则有 $F(x)=\prod F(p_i^{k_i})$ 。
+若 $F(x)$ 为积性函数，则有 $F(x)=\prod F(p_i^{k_i})$。
 
-若 $F(x)$ 为完全积性函数，则有 $F(X)=\prod F(p_i)^{k_i}$ 。
+若 $F(x)$ 为完全积性函数，则有 $F(X)=\prod F(p_i)^{k_i}$。
 
 ### 例子
 
-- 单位函数： $\epsilon(n)=[n=1]$ （完全积性）
-- 恒等函数： $\operatorname{id}_k(n)=n^k$  $\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$ 。（完全积性）
-- 常数函数： $1(n)=1$ （完全积性）
-- 除数函数： $\sigma_{k}(n)=\sum_{d\mid n}d^{k}$  $\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$ ， $\sigma_{1}(n)$ 通常简记作 $\sigma(n)$ 。
-- 欧拉函数： $\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$ 
-- 莫比乌斯函数： $\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1:d^{2} \mid n \\ (-1)^{\omega(n)} & otherwise\end{cases}$ ，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它是一个加性函数。
+- 单位函数：$\epsilon(n)=[n=1]$（完全积性）
+- 恒等函数：$\operatorname{id}_k(n)=n^k$ $\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$。（完全积性）
+- 常数函数：$1(n)=1$（完全积性）
+- 除数函数：$\sigma_{k}(n)=\sum_{d\mid n}d^{k}$$\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$，$\sigma_{1}(n)$ 通常简记作 $\sigma(n)$。
+- 欧拉函数：$\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$
+- 莫比乌斯函数：$\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1:d^{2} \mid n \\ (-1)^{\omega(n)} & otherwise\end{cases}$，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它是一个加性函数。
 
 ???+note "加性函数"
-    此处加性函数指数论上的加性函数 (Additive function)。对于加性函数 $\operatorname{f}$ ，当整数 $a,b$ 互质时，均有 $\operatorname{f}(ab)=\operatorname{f}(a)+\operatorname{f}(b)$ 。
+    此处加性函数指数论上的加性函数 (Additive function)。对于加性函数 $\operatorname{f}$，当整数 $a,b$ 互质时，均有 $\operatorname{f}(ab)=\operatorname{f}(a)+\operatorname{f}(b)$。
     应与代数中的加性函数 (Additive map) 区分。
 
 * * *
@@ -172,10 +172,10 @@ $$
 
 Dirichlet 卷积满足以下运算规律：
 
-- 交换律 $(f * g=g * f)$ ；
-- 结合律 $(f * g) * h=f * (g * h)$ ；
-- 分配律 $f * (g+h)=f * g+f * h$ ；
--  $f*\varepsilon=f$ ，其中 $\varepsilon$ 为 Dirichlet 卷积的单位元（任何函数卷 $\varepsilon$ 都为其本身）
+- 交换律 $(f * g=g * f)$；
+- 结合律 $(f * g) * h=f * (g * h)$；
+- 分配律 $f * (g+h)=f * g+f * h$；
+- $f*\varepsilon=f$，其中 $\varepsilon$ 为 Dirichlet 卷积的单位元（任何函数卷 $\varepsilon$ 都为其本身）
 
 ### 例子
 
@@ -194,7 +194,7 @@ $$
 
 ### 定义
 
- $\mu$ 为莫比乌斯函数，定义为
+$\mu$ 为莫比乌斯函数，定义为
 
 $$
 \mu(n)=
@@ -207,12 +207,12 @@ $$
 
 详细解释一下：
 
-令 $n=\prod_{i=1}^kp_i^{c_i}$ ，其中 $p_i$ 为质因子， $c_i\ge 1$ 。上述定义表示：
+令 $n=\prod_{i=1}^kp_i^{c_i}$，其中 $p_i$ 为质因子，$c_i\ge 1$。上述定义表示：
 
-1.  $n=1$ 时， $\mu(n)=1$ ；
+1. $n=1$ 时，$\mu(n)=1$；
 2.  对于 $n\not= 1$ 时：
-    1. 当存在 $i\in [1,k]$ ，使得 $c_i > 1$ 时， $\mu(n)=0$ ，也就是说只要某个质因子出现的次数超过一次， $\mu(n)$ 就等于 $0$ ；
-    2. 当任意 $i\in[1,k]$ ，都有 $c_i=1$ 时， $\mu(n)=(-1)^k$ ，也就是说每个质因子都仅仅只出现过一次时，即 $n=\prod_{i=1}^kp_i$ ， $\{p_i\}_{i=1}^k$ 中个元素唯一时， $\mu(n)$ 等于 $-1$ 的 $k$ 次幂，此处 $k$ 指的便是仅仅只出现过一次的质因子的总个数。
+    1. 当存在 $i\in [1,k]$，使得 $c_i > 1$ 时，$\mu(n)=0$，也就是说只要某个质因子出现的次数超过一次，$\mu(n)$ 就等于 $0$；
+    2. 当任意 $i\in[1,k]$，都有 $c_i=1$ 时，$\mu(n)=(-1)^k$，也就是说每个质因子都仅仅只出现过一次时，即 $n=\prod_{i=1}^kp_i$，$\{p_i\}_{i=1}^k$ 中个元素唯一时，$\mu(n)$ 等于 $-1$ 的 $k$ 次幂，此处 $k$ 指的便是仅仅只出现过一次的质因子的总个数。
 
 ### 性质
 
@@ -226,23 +226,23 @@ $$
 \end{cases}
 $$
 
-即 $\sum_{d\mid n}\mu(d)=\varepsilon(n)$ ， $\mu * 1 =\varepsilon$ 
+即 $\sum_{d\mid n}\mu(d)=\varepsilon(n)$，$\mu * 1 =\varepsilon$
 
 ### 证明
 
-设 $\displaystyle n=\prod_{i=1}^k{p_i}^{c_i},n'=\prod_{i=1}^k p_i$ 
+设 $\displaystyle n=\prod_{i=1}^k{p_i}^{c_i},n'=\prod_{i=1}^k p_i$
 
-那么 $\displaystyle\sum_{d\mid n}\mu(d)=\sum_{d\mid n'}\mu(d)=\sum_{i=0}^k C_k^i\cdot(-1)^i=(1+(-1))^k$ 
+那么 $\displaystyle\sum_{d\mid n}\mu(d)=\sum_{d\mid n'}\mu(d)=\sum_{i=0}^k C_k^i\cdot(-1)^i=(1+(-1))^k$
 
-根据二项式定理，易知该式子的值在 $k=0$ 即 $n=1$ 时值为 $1$ 否则为 $0$ ，这也同时证明了 $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]=\varepsilon(n)$ 以及 $\mu\ast 1=\varepsilon$ 
+根据二项式定理，易知该式子的值在 $k=0$ 即 $n=1$ 时值为 $1$ 否则为 $0$，这也同时证明了 $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]=\varepsilon(n)$ 以及 $\mu\ast 1=\varepsilon$
 
 ### 补充结论
 
-反演结论： $\displaystyle [\gcd(i,j)=1] \iff\sum_{d\mid\gcd(i,j)}\mu(d)$ 
+反演结论：$\displaystyle [\gcd(i,j)=1] \iff\sum_{d\mid\gcd(i,j)}\mu(d)$
 
- **直接推导** ：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$ ，也就是式子的值是 $1$ ，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值： $0$ 
+**直接推导**：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$，也就是式子的值是 $1$，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值：$0$
 
- **利用 $\varepsilon$ 函数** ：根据上一结论， $[\gcd(i,j)=1]\implies \varepsilon(\gcd(i,j))$ ，将 $\varepsilon$ 展开即可。
+**利用 $\varepsilon$ 函数**：根据上一结论，$[\gcd(i,j)=1]\implies \varepsilon(\gcd(i,j))$，将 $\varepsilon$ 展开即可。
 
 ### 线性筛
 
@@ -274,11 +274,11 @@ $$
 \varphi \ast 1=\operatorname{id}
 $$
 
-将 $n$ 分解质因数： $\displaystyle n=\prod_{i=1}^k {p_i}^{c_i}$ 
+将 $n$ 分解质因数：$\displaystyle n=\prod_{i=1}^k {p_i}^{c_i}$
 
 首先，因为 $\varphi$ 是积性函数，故只要证明当 $n'=p^c$ 时 $\displaystyle\varphi \ast 1=\sum_{d\mid n'}\varphi(\frac{n'}{d})=\operatorname{id}$ 成立即可。
 
-因为 $p$ 是质数，于是 $d=p^0,p^1,p^2,\cdots,p^c$ 
+因为 $p$ 是质数，于是 $d=p^0,p^1,p^2,\cdots,p^c$
 
 易知如下过程：
 
@@ -292,7 +292,7 @@ $$
 \end{aligned}
 $$
 
-该式子两侧同时卷 $\mu$ 可得 $\displaystyle\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})$ 
+该式子两侧同时卷 $\mu$ 可得 $\displaystyle\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})$
 
 * * *
 
@@ -302,9 +302,9 @@ $$
 
 设 $f(n),g(n)$ 为两个数论函数。
 
-如果有 $f(n)=\sum_{d\mid n}g(d)$ ，那么有 $g(n)=\sum_{d\mid n}\mu(d)f(\frac{n}{d})$ 。
+如果有 $f(n)=\sum_{d\mid n}g(d)$，那么有 $g(n)=\sum_{d\mid n}\mu(d)f(\frac{n}{d})$。
 
-如果有 $f(n)=\sum_{n|d}g(d)$ ，那么有 $g(n)=\sum_{n|d}\mu(\frac{d}{n})f(d)$ 。
+如果有 $f(n)=\sum_{n|d}g(d)$，那么有 $g(n)=\sum_{n|d}\mu(\frac{d}{n})f(d)$。
 
 ### 证明
 
@@ -314,13 +314,13 @@ $$
 \sum_{d\mid n}\mu(d)f(\frac{n}{d})=\sum_{d\mid n}\mu(d)\sum_{k\mid \frac{n}{d}}g(k)=\sum_{k\mid n}g(k)\sum_{d\mid \frac{n}{k}}\mu(d)=g(n)
 $$
 
-用 $\displaystyle\sum_{d\mid n}g(d)$ 来替换 $f(\dfrac{n}{d})$ ，再变换求和顺序。最后一步变换的依据： $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]$ ，因此在 $\dfrac{n}{k}=1$ 时第二个和式的值才为 $1$ 。此时 $n=k$ ，故原式等价于 $\displaystyle\sum_{k\mid n}[n=k]\cdot g(k)=g(n)$ 
+用 $\displaystyle\sum_{d\mid n}g(d)$ 来替换 $f(\dfrac{n}{d})$，再变换求和顺序。最后一步变换的依据：$\displaystyle\sum_{d\mid n}\mu(d)=[n=1]$，因此在 $\dfrac{n}{k}=1$ 时第二个和式的值才为 $1$。此时 $n=k$，故原式等价于 $\displaystyle\sum_{k\mid n}[n=k]\cdot g(k)=g(n)$
 
 方法二：运用卷积。
 
-原问题为：已知 $f=g\ast1$ ，证明 $g=f\ast\mu$ 
+原问题为：已知 $f=g\ast1$，证明 $g=f\ast\mu$
 
-易知如下转化： $f\ast\mu=g*1*\mu\implies f\ast\mu=g$ （其中 $1\ast\mu=\varepsilon$ ）。
+易知如下转化：$f\ast\mu=g*1*\mu\implies f\ast\mu=g$（其中 $1\ast\mu=\varepsilon$）。
 
 对于第二种形式：
 
@@ -338,14 +338,14 @@ $$
 $$
 
 我们把 $d$ 表示为 $kn$ 的形式，然后把 $f$ 的原定义代入式子。  
-发现枚举 $k$ 再枚举 $kn$ 的倍数可以转换为直接枚举 $n$ 的倍数再求出 $k$ ,  
-发现后面那一块其实就是 $\epsilon$ , 整个式子只有在 $d=m$ 的时候才能取到值 .
+发现枚举 $k$ 再枚举 $kn$ 的倍数可以转换为直接枚举 $n$ 的倍数再求出 $k$,  
+发现后面那一块其实就是 $\epsilon$, 整个式子只有在 $d=m$ 的时候才能取到值 .
 
 * * *
 
 ## 问题形式
 
-###  [「HAOI 2011」Problem b](https://www.luogu.com.cn/problem/P2522) 
+### [「HAOI 2011」Problem b](https://www.luogu.com.cn/problem/P2522)
 
 求值（多组数据）
 
@@ -365,7 +365,7 @@ $$
 \sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}[\gcd(i,j)=1]
 $$
 
-因为 $\gcd(i,j)=1$ 时对答案才用贡献，于是我们可以将其替换为 $\varepsilon(\gcd(i,j))$ （ $\varepsilon(n)$ 当且仅当 $n=1$ 时值为 $1$ 否则为 $0$ ），故原式化为
+因为 $\gcd(i,j)=1$ 时对答案才用贡献，于是我们可以将其替换为 $\varepsilon(\gcd(i,j))$（$\varepsilon(n)$ 当且仅当 $n=1$ 时值为 $1$ 否则为 $0$），故原式化为
 
 $$
 \sum_{i=1}^{\lfloor\frac{n}{k}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{k}\rfloor}\varepsilon(\gcd(i,j))
@@ -391,7 +391,7 @@ $$
 
 很显然，式子可以数论分块求解。
 
- **时间复杂度 $\Theta(N+T\sqrt{n})$ ** 
+**时间复杂度 $\Theta(N+T\sqrt{n})$**
 
 ??? note "代码实现"
     ```cpp
@@ -440,7 +440,7 @@ $$
     }
     ```
 
-###  [「SPOJ 5971」LCMSUM](https://www.spoj.com/problems/LCMSUM/) 
+### [「SPOJ 5971」LCMSUM](https://www.spoj.com/problems/LCMSUM/)
 
 求值（多组数据）
 
@@ -460,7 +460,7 @@ $$
 \frac{1}{2}\cdot \left(\sum_{i=1}^{n-1}\frac{i\cdot n}{\gcd(i,n)}+\sum_{i=n-1}^{1}\frac{i\cdot n}{\gcd(i,n)}\right)+n
 $$
 
-根据 $\gcd(i,n)=\gcd(n-i,n)$ ，可将原式化为
+根据 $\gcd(i,n)=\gcd(n-i,n)$，可将原式化为
 
 $$
 \frac{1}{2}\cdot \left(\sum_{i=1}^{n-1}\frac{i\cdot n}{\gcd(i,n)}+\sum_{i=n-1}^{1}\frac{i\cdot n}{\gcd(n-i,n)}\right)+n
@@ -478,7 +478,7 @@ $$
 \frac{1}{2}\cdot \sum_{i=1}^{n}\frac{n^2}{\gcd(i,n)}+\frac{n}{2}
 $$
 
-可以将相同的 $\gcd(i,n)$ 合并在一起计算，故只需要统计 $\gcd(i,n)=d$ 的个数。当 $\gcd(i,n)=d$ 时， $\displaystyle\gcd(\frac{i}{d},\frac{n}{d})=1$ ，所以 $\gcd(i,n)=d$ 的个数有 $\displaystyle\varphi(\frac{n}{d})$ 个。
+可以将相同的 $\gcd(i,n)$ 合并在一起计算，故只需要统计 $\gcd(i,n)=d$ 的个数。当 $\gcd(i,n)=d$ 时，$\displaystyle\gcd(\frac{i}{d},\frac{n}{d})=1$，所以 $\gcd(i,n)=d$ 的个数有 $\displaystyle\varphi(\frac{n}{d})$ 个。
 
 故答案为
 
@@ -486,23 +486,23 @@ $$
  \frac{1}{2}\cdot\sum_{d\mid n}\frac{n^2\cdot\varphi(\frac{n}{d})}{d}+\frac{n}{2}
 $$
 
-变换求和顺序，设 $\displaystyle d'=\frac{n}{d}$ ，合并公因式，式子化为
+变换求和顺序，设 $\displaystyle d'=\frac{n}{d}$，合并公因式，式子化为
 
 $$
 \frac{1}{2}n\cdot\left(\sum_{d'\mid n}d'\cdot\varphi(d')+1\right)
 $$
 
-设 $\displaystyle \operatorname{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$ ，已知 $\operatorname{g}$ 为积性函数，于是可以 $\Theta(n)$ 筛出。每次询问 $\Theta(1)$ 计算即可。
+设 $\displaystyle \operatorname{g}(n)=\sum_{d\mid n} d\cdot\varphi(d)$，已知 $\operatorname{g}$ 为积性函数，于是可以 $\Theta(n)$ 筛出。每次询问 $\Theta(1)$ 计算即可。
 
 下面给出这个函数筛法的推导过程：
 
-首先考虑 $\operatorname g(p_j^k)$ 的值，显然它的约数只有 $p_j^0,p_j^1,\cdots,p_j^k$ ，因此
+首先考虑 $\operatorname g(p_j^k)$ 的值，显然它的约数只有 $p_j^0,p_j^1,\cdots,p_j^k$，因此
 
 $$
 \operatorname g(p_j^k)=\sum_{w=0}^{k}p_j^w\cdot\varphi(p_j^w)
 $$
 
-又有 $\varphi(p_j^w)=p_j^{w-1}\cdot(p_j-1)$ ，则原式可化为
+又有 $\varphi(p_j^w)=p_j^{w-1}\cdot(p_j-1)$，则原式可化为
 
 $$
 \sum_{w=0}^{k}p_j^{2w-1}\cdot(p_j-1)
@@ -514,7 +514,7 @@ $$
 \operatorname g(p_j^{k+1})=\operatorname g(p_j^k)+p_j^{2k+1}\cdot(p_j-1)
 $$
 
-那么，对于线性筛中的 $\operatorname g(i\cdot p_j)(p_j|i)$ ，令 $i=a\cdot p_j^w(\operatorname{gcd}(a,p_j)=1)$ ，可得
+那么，对于线性筛中的 $\operatorname g(i\cdot p_j)(p_j|i)$，令 $i=a\cdot p_j^w(\operatorname{gcd}(a,p_j)=1)$，可得
 
 $$
 \operatorname g(i\cdot p_j)=\operatorname g(a)\cdot\operatorname g(p_j^{w+1})
@@ -542,7 +542,7 @@ $$
 \operatorname g(i\cdot p_j)=\operatorname g(i)+\left (\operatorname g(i)-\operatorname g(\frac{i}{p_j})\right )\cdot p_j^2
 $$
 
- **时间复杂度** ： $\Theta(n+T)$ 
+**时间复杂度**：$\Theta(n+T)$
 
 ??? note "代码实现"
     ```cpp
@@ -577,7 +577,7 @@ $$
     }
     ```
 
-###  [「BZOJ 2154」Crash 的数字表格](https://www.luogu.com.cn/problem/P1829) 
+### [「BZOJ 2154」Crash 的数字表格](https://www.luogu.com.cn/problem/P1829)
 
 求值（对 $20101009$ 取模）
 
@@ -591,7 +591,7 @@ $$
 \sum_{i=1}^n\sum_{j=1}^m\frac{i\cdot j}{\gcd(i,j)}
 $$
 
-枚举最大公因数 $d$ ，显然两个数除以 $d$ 得到的数互质
+枚举最大公因数 $d$，显然两个数除以 $d$ 得到的数互质
 
 $$
 \sum_{i=1}^n\sum_{j=1}^m\sum_{d\mid i,d\mid j,\gcd(\frac{i}{d},\frac{j}{d})=1}\frac{i\cdot j}{d}
@@ -609,13 +609,13 @@ $$
 \operatorname{sum}(n,m)=\sum_{i=1}^n\sum_{j=1}^m [\gcd(i,j)=1]\  i\cdot j
 $$
 
-接下来对 $\operatorname{sum}(n,m)$ 进行化简。首先枚举约数，并将 $[\gcd(i,j)=1]$ 表示为 $\varepsilon(\gcd(i,j))$ 
+接下来对 $\operatorname{sum}(n,m)$ 进行化简。首先枚举约数，并将 $[\gcd(i,j)=1]$ 表示为 $\varepsilon(\gcd(i,j))$
 
 $$
 \sum_{d=1}^n\sum_{d\mid i}^n\sum_{d\mid j}^m\mu(d)\cdot i\cdot j
 $$
 
-设 $i=i'\cdot d$ ， $j=j'\cdot d$ ，显然式子可以变为
+设 $i=i'\cdot d$，$j=j'\cdot d$，显然式子可以变为
 
 $$
 \sum_{d=1}^n\mu(d)\cdot d^2\cdot\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{m}{d}\rfloor}i\cdot j
@@ -645,9 +645,9 @@ $$
 
 可见这又是一个可以数论分块求解的式子！
 
-本题除了推式子比较复杂、代码细节较多之外，是一道很好的莫比乌斯反演练习题！（上述过程中，默认 $n\leqslant m$ ）
+本题除了推式子比较复杂、代码细节较多之外，是一道很好的莫比乌斯反演练习题！（上述过程中，默认 $n\leqslant m$）
 
-时间复杂度： $\Theta(n+m)$ （瓶颈为线性筛）
+时间复杂度：$\Theta(n+m)$（瓶颈为线性筛）
 
 ??? note "代码实现"
     ```cpp
@@ -706,7 +706,7 @@ $$
     }
     ```
 
-###  [「SDOI2015」约数个数和](https://loj.ac/problem/2185) 
+### [「SDOI2015」约数个数和](https://loj.ac/problem/2185)
 
 多组数据，求
 
@@ -759,7 +759,7 @@ S\left(\left\lfloor\frac{m}{p}\right\rfloor\right)
 \end{aligned}
 $$
 
-那么 $O(n)$ 预处理 $\mu,d$ 的前缀和， $O(\sqrt{n})$ 分块处理询问，总复杂度 $O(n+T\sqrt{n})$ .
+那么 $O(n)$ 预处理 $\mu,d$ 的前缀和，$O(\sqrt{n})$ 分块处理询问，总复杂度 $O(n+T\sqrt{n})$.
 
 ??? note "代码实现"
     ```cpp
@@ -804,7 +804,7 @@ $$
     }
     ```
 
-###  [「luogu 3768」简单的数学题](https://www.luogu.com.cn/problem/P3768) 
+### [「luogu 3768」简单的数学题](https://www.luogu.com.cn/problem/P3768)
 
 求
 
@@ -840,7 +840,7 @@ d^2\cdot i\cdot j\cdot\varphi(d)\\
 \end{aligned}
 $$
 
-对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2$ 做数论分块， $d^2\varphi(d)$ 的前缀和用杜教筛处理：
+对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2$ 做数论分块，$d^2\varphi(d)$ 的前缀和用杜教筛处理：
 
 $$
 \begin{aligned}
@@ -849,13 +849,13 @@ $$
 \end{aligned}
 $$
 
-杜教筛（见 [杜教筛 - 例 3](../du/#_8) ）完了是这样的
+杜教筛（见 [杜教筛 - 例 3](../du/#_8)）完了是这样的
 
 $$
 S(n)=\left(\frac{1}{2}n(n+1)\right)^2-\sum_{i=2}^ni^2S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 $$
 
-分块递归求解即可，复杂度 $O(n^{\frac{2}{3}})$ .
+分块递归求解即可，复杂度 $O(n^{\frac{2}{3}})$.
 
 ??? note "代码实现"
     ```cpp
@@ -925,7 +925,7 @@ $$
     }  // 不要为了省什么内存把数组开小。。。卡了好几次80
     ```
 
- **另一种推导方式** 
+**另一种推导方式**
 
 转化一下，可以将式子写成
 
@@ -945,7 +945,7 @@ $$
 \sum_{i=1}^{n}i=\frac{n(n+1)}{2}
 $$
 
-设 $F(n)=\sum_{i=1}^{n}i$ ，继续接着前面的往下推
+设 $F(n)=\sum_{i=1}^{n}i$，继续接着前面的往下推
 
 $$
 \begin{aligned}
@@ -958,7 +958,7 @@ $$
 
 利用 $\operatorname{id}\ast \mu = \varphi$ 反演，上式等于
 
- $\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) T^2\varphi(T)$ 
+$\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) T^2\varphi(T)$
 
 得到了一个与第一种推导本质相同的式子。
 
@@ -966,7 +966,7 @@ $$
 
 结尾补充一个莫比乌斯反演的非卷积形式。
 
-对于数论函数 $f,g$ 和完全积性函数 $t$ 且 $t(1)=1$ ：
+对于数论函数 $f,g$ 和完全积性函数 $t$ 且 $t(1)=1$：
 
 $$
 f(n)=\sum_{i=1}^nt(i)g\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
@@ -1012,4 +1012,4 @@ $$
 
 ## 参考文献
 
- [algocode 算法博客](https://algocode.net) 
+[algocode 算法博客](https://algocode.net)

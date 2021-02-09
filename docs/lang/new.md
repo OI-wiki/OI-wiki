@@ -1,10 +1,10 @@
- **注意** ：考虑到算法竞赛的实际情况，本文将不会全面研究语法，只会讲述在算法竞赛中可能会应用到的部分。
+**注意**：考虑到算法竞赛的实际情况，本文将不会全面研究语法，只会讲述在算法竞赛中可能会应用到的部分。
 
 本文语法参照 **C++11** 标准。语义不同的将以 **C++11** 作为标准，C++14、C++17 的语法视情况提及并会特别标注。
 
-##  `auto` 类型说明符
+## `auto` 类型说明符
 
- `auto` 类型说明符用于自动推导变量等的类型。例如：
+`auto` 类型说明符用于自动推导变量等的类型。例如：
 
 ```cpp
 auto a = 1;        // a 是 int 类型
@@ -19,7 +19,7 @@ auto b = a + 0.1;  // b 是 double 类型
 for (range_declaration : range_expression) loop_statement
 ```
 
-上述语法产生的代码等价于下列代码（ `__range` 、 `__begin` 和 `__end` 仅用于阐释）：
+上述语法产生的代码等价于下列代码（`__range`、`__begin` 和 `__end` 仅用于阐释）：
 
 ```cpp
 auto&& __range = range_expression;
@@ -87,16 +87,16 @@ Lambda 表达式是能够捕获作用域中的变量的无名函数对象，我�
 
 Lambda 表达式以 capture 子句开头，它指定哪些变量被捕获，以及捕获是通过值还是引用：有 `&` 符号前缀的变量通过引用访问，没有该前缀的变量通过值访问。空的 capture 子句 `[]` 指示 Lambda 表达式的主体不访问封闭范围中的变量。
 
-我们也可以使用默认捕获模式： `&` 表示捕获到的所有变量都通过引用访问， `=` 表示捕获到的所有变量都通过值访问。之后我们可以为特定的变量 **显式** 指定相反的模式。
+我们也可以使用默认捕获模式：`&` 表示捕获到的所有变量都通过引用访问，`=` 表示捕获到的所有变量都通过值访问。之后我们可以为特定的变量 **显式** 指定相反的模式。
 
-例如 Lambda 体要通过引用访问外部变量 `a` 并通过值访问外部变量 `b` ，则以下子句等效：
+例如 Lambda 体要通过引用访问外部变量 `a` 并通过值访问外部变量 `b`，则以下子句等效：
 
--  `[&a, b]` 
--  `[b, &a]` 
--  `[&, b]` 
--  `[b, &]` 
--  `[=, &a]` 
--  `[&a, =]` 
+- `[&a, b]`
+- `[b, &a]`
+- `[&, b]`
+- `[b, &]`
+- `[=, &a]`
+- `[&a, =]`
 
 默认捕获时，会捕获 Lambda 中提及的变量。
 
@@ -109,7 +109,7 @@ auto lam = [](int a, int b) { return a + b; };
 std::cout << lam(1, 9) << " " << lam(2, 6) << std::endl;
 ```
 
- **C++14** 中，若参数类型是泛型，则可以使用 `auto` 声明类型：
+**C++14** 中，若参数类型是泛型，则可以使用 `auto` 声明类型：
 
 ```cpp
 auto lam = [](auto a, auto b)
@@ -127,11 +127,11 @@ for (auto i : x) std::cout << i << " ";
 
 ### mutable 可变规范
 
-利用可变规范，Lambda 表达式的主体可以修改通过值捕获的变量。若使用此关键字，则 parameters **不可省略** （即使为空）。
+利用可变规范，Lambda 表达式的主体可以修改通过值捕获的变量。若使用此关键字，则 parameters **不可省略**（即使为空）。
 
 ### return-type 返回类型
 
-若 Lambda 主体只包含一个 `return` 语句或不返回值，则可以省略此部分。若 Lambda 表达式主体包含一个 `return` 语句，则返回类型将被自动推导，返回类型遵循 parameters（除非你想指定一个）。否则编译器会将返回类型推断为 `void` 。
+若 Lambda 主体只包含一个 `return` 语句或不返回值，则可以省略此部分。若 Lambda 表达式主体包含一个 `return` 语句，则返回类型将被自动推导，返回类型遵循 parameters（除非你想指定一个）。否则编译器会将返回类型推断为 `void`。
 
 例如，上文的 `lam` 也可以写作
 
@@ -153,7 +153,7 @@ Lambda 主体可包含任何函数可包含的部分。普通函数和 Lambda �
 - 从封闭范围捕获变量
 - 参数
 - 本地声明的变量
-- 在一个 `class` 中声明时，捕获 `this` 
+- 在一个 `class` 中声明时，捕获 `this`
 - 具有静态存储时间的任何变量，如全局变量
 
 下面是一个例子
@@ -169,11 +169,11 @@ int main() {
 }
 ```
 
-最后我们得到输出 `5 0` 。这是由于 `n` 是通过值捕获的，在调用 Lambda 表达式后仍保持原来的值 `0` 不变。 `mutable` 规范允许 `n` 在 Lambda 主体中被修改，将 `mutable` 删去则编译不通过。
+最后我们得到输出 `5 0`。这是由于 `n` 是通过值捕获的，在调用 Lambda 表达式后仍保持原来的值 `0` 不变。`mutable` 规范允许 `n` 在 Lambda 主体中被修改，将 `mutable` 删去则编译不通过。
 
 ## decltype 说明符
 
- `decltype` 说明符可以推断表达式的类型。
+`decltype` 说明符可以推断表达式的类型。
 
 ```cpp
 #include <iostream>
@@ -190,7 +190,7 @@ int main() {
 
 ## constexpr
 
- `constexpr` 说明符声明可以在编译时求得函数或变量的值。其与 `const` 的主要区别是一定会在编译时进行初始化。用于对象声明的 `constexpr` 说明符蕴含 `const` ，用于函数声明的 `constexpr` 蕴含 `inline` 。来看一个例子
+`constexpr` 说明符声明可以在编译时求得函数或变量的值。其与 `const` 的主要区别是一定会在编译时进行初始化。用于对象声明的 `constexpr` 说明符蕴含 `const`，用于函数声明的 `constexpr` 蕴含 `inline`。来看一个例子
 
 ```cpp
 int fact(int x) { return x ? x * fact(x - 1) : 1; }
@@ -204,7 +204,7 @@ int main() {
 
 ## std::tuple
 
- `std::tuple` 定义于头文件 `<tuple>` ，是固定大小的异类值汇集（在确定初始元素后不能更改，但是初始元素能有任意多个）。它是 `std::pair` 的推广。来看一个例子：
+`std::tuple` 定义于头文件 `<tuple>`，是固定大小的异类值汇集（在确定初始元素后不能更改，但是初始元素能有任意多个）。它是 `std::pair` 的推广。来看一个例子：
 
 ```cpp
 #include <iostream>
@@ -229,10 +229,10 @@ int main() {
 
 ### 成员函数
 
-| 函数            | 作用                   |
-| ------------- | -------------------- |
-|  `operator=`  | 赋值一个 `tuple` 的内容给另一个 |
-|  `swap`       | 交换二个 `tuple` 的内容     |
+| 函数          | 作用                   |
+| ----------- | -------------------- |
+| `operator=` | 赋值一个 `tuple` 的内容给另一个 |
+| `swap`      | 交换二个 `tuple` 的内容     |
 
 例子
 
@@ -245,12 +245,12 @@ tupB.swap(tupA);
 
 ### 非成员函数
 
-| 函数              | 作用                           |
-| --------------- | ---------------------------- |
-|  `make_tuple`   | 创建一个 `tuple` 对象，其类型根据各实参类型定义 |
-|  `std::get`     | 元组式访问指定的元素                   |
-|  `operator==` 等 | 按字典顺序比较 `tuple` 中的值          |
-|  `std::swap`    | 特化的 `std::swap` 算法           |
+| 函数             | 作用                           |
+| -------------- | ---------------------------- |
+| `make_tuple`   | 创建一个 `tuple` 对象，其类型根据各实参类型定义 |
+| `std::get`     | 元组式访问指定的元素                   |
+| `operator==` 等 | 按字典顺序比较 `tuple` 中的值          |
+| `std::swap`    | 特化的 `std::swap` 算法           |
 
 例子
 
@@ -263,9 +263,9 @@ std::cout << std::get<1>(tupA) << std::endl;
 
 ## std::function
 
-类模板 `std::function` 是通用多态函数封装器，定义于头文件 `<functional>` 。 `std::function` 的实例能存储、复制及调用任何可调用（*Callable*）目标——函数、Lambda 表达式或其他函数对象，还有指向成员函数指针和指向数据成员指针。
+类模板 `std::function` 是通用多态函数封装器，定义于头文件 `<functional>`。`std::function` 的实例能存储、复制及调用任何可调用（*Callable*）目标——函数、Lambda 表达式或其他函数对象，还有指向成员函数指针和指向数据成员指针。
 
-存储的可调用对象被称为 `std::function` 的 **目标** 。若 `std::function` 不含目标，则称它为 **空** 。调用空 `std::function` 的目标将导致抛出 `std::bad_function_call` 异常。
+存储的可调用对象被称为 `std::function` 的 **目标**。若 `std::function` 不含目标，则称它为 **空**。调用空 `std::function` 的目标将导致抛出 `std::bad_function_call` 异常。
 
 来看例子
 
@@ -318,9 +318,9 @@ int main() {
 #define def_name(...) def_body(__VA_ARGS__)
 ```
 
-其中， `...` 是缺省符号， `__VA_ARGS__` 在调用时会替换成实际的参数列表， `def_body` 应为可变参数模板函数。
+其中，`...` 是缺省符号，`__VA_ARGS__` 在调用时会替换成实际的参数列表，`def_body` 应为可变参数模板函数。
 
-现在就可以这么调用 `def_name` ：
+现在就可以这么调用 `def_name`：
 
 ```cpp
 def_name();
@@ -342,7 +342,7 @@ template <typename... Values>
 class Tuple {};
 ```
 
-其中， `Values` 是一个模板参数包，表示 0 个或多个额外的类型参数。模板类只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
+其中，`Values` 是一个模板参数包，表示 0 个或多个额外的类型参数。模板类只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
 
 所以，可以这么声明 `tuple` 的对象：
 
@@ -353,7 +353,7 @@ Tuple<int, int, int> test2;
 Tuple<int, std::vector<int>, std::map<std::string, std::vector<int>>> test3;
 ```
 
-如果要限制至少有一个模板参数，可以这么定义模板类 `tuple` ：
+如果要限制至少有一个模板参数，可以这么定义模板类 `tuple`：
 
 ```cpp
 template <typename First, typename... Rest>
@@ -369,7 +369,7 @@ template <typename... Values>
 void fun(Values... values) {}
 ```
 
-其中， `Values` 是一个模板参数包， `values` 是一个函数参数包，表示 0 个或多个函数参数。模板函数只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
+其中，`Values` 是一个模板参数包，`values` 是一个函数参数包，表示 0 个或多个函数参数。模板函数只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
 
 所以，可以这么调用 `fun` 函数：
 
@@ -469,8 +469,8 @@ int main(int argc, char* argv[]) {
 
 ## 参考
 
-1.  [C++ reference](https://en.cppreference.com/) 
-2.  [C++ 参考手册](https://zh.cppreference.com/) 
-3.  [C++ in Visual Studio](https://docs.microsoft.com/en-us/cpp/overview/visual-cpp-in-visual-studio?view=vs-2019) 
-4.  [Variadic template](https://en.wikipedia.org/wiki/Variadic_template) 
-5.  [Variadic macros](https://en.wikipedia.org/wiki/Variadic_macro) 
+1. [C++ reference](https://en.cppreference.com/)
+2. [C++ 参考手册](https://zh.cppreference.com/)
+3. [C++ in Visual Studio](https://docs.microsoft.com/en-us/cpp/overview/visual-cpp-in-visual-studio?view=vs-2019)
+4. [Variadic template](https://en.wikipedia.org/wiki/Variadic_template)
+5. [Variadic macros](https://en.wikipedia.org/wiki/Variadic_macro)
