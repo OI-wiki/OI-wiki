@@ -1,4 +1,4 @@
-author: LeoJacob, TrisolarisHD, minghu6
+author: LeoJacob, Marcythm, minghu6
 
 约定：字符串下标以 $0$ 为起点。
 

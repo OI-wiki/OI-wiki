@@ -1,4 +1,4 @@
-author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, TrisolarisHD, HeRaNO, greyqz, Chrogeek, partychicken
+author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken
 
 动态规划应用于子问题重叠的情况：
 
