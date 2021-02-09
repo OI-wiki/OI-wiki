@@ -1,4 +1,4 @@
-author: Ir1d, TrisolarisHD, YanWQ-monad, x4Cx58x54
+author: Ir1d, Marcythm, YanWQ-monad, x4Cx58x54
 
 !!! note "例题 [Luogu P4781【模板】拉格朗日插值](https://www.luogu.com.cn/problem/P4781)"
 

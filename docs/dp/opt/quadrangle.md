@@ -1,4 +1,4 @@
-author: TrisolarisHD, zyf0726, hsfzLZH1, MingqiHuang, Ir1d, greyqz, billchenchina, Chrogeek, StudyingFather
+author: Marcythm, zyf0726, hsfzLZH1, MingqiHuang, Ir1d, greyqz, billchenchina, Chrogeek, StudyingFather
 
 ## 区间类（2D1D）动态规划中的应用
 

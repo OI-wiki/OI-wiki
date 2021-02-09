@@ -1,4 +1,4 @@
-author: Ir1d, LeoJacob, Xeonacid, greyqz, StudyingFather, TrisolarisHD, minghu6, Backl1ght
+author: Ir1d, LeoJacob, Xeonacid, greyqz, StudyingFather, Marcythm, minghu6, Backl1ght
 
 ## 字符串前缀和后缀定义
 

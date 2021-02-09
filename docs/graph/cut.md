@@ -1,4 +1,4 @@
-author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, TrisolarisHD, ylxmf2005
+author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005
 
 相关阅读：[双连通分量](./bcc.md)，
 

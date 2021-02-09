@@ -1,4 +1,4 @@
-author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, TrisolarisHD, luoguyuntianming, ChungZH, Xeonacid, yizr-cnyali, i-Yirannn, H-J-Granger, NachtgeistW
+author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, yizr-cnyali, i-Yirannn, H-J-Granger, NachtgeistW
 
 ## 赛事简介
 

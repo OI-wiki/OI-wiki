@@ -1,4 +1,4 @@
-author: hsfzLZH1, sshwy, StudyingFather, TrisolarisHD
+author: hsfzLZH1, sshwy, StudyingFather, Marcythm
 
 ## 积性函数
 

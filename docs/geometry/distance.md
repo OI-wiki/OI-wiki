@@ -1,4 +1,4 @@
-author: Chrogeek, frank-xjh, ChungZH, hsfzLZH1, TrisolarisHD, Planet6174, partychicken, i-Yirannn
+author: Chrogeek, frank-xjh, ChungZH, hsfzLZH1, Marcythm, Planet6174, partychicken, i-Yirannn
 
 ## 欧氏距离
 
