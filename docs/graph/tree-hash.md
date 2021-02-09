@@ -7,7 +7,7 @@
 ### 公式
 
 $$
-f_{now}=size_{now} \times \sum f_{son_{now,i}}\times seed^{i-1}
+f_{now}=size_{now} \times \sum f_{son(now,i)}\times seed^{i-1}
 $$
 
 #### 注
@@ -16,9 +16,9 @@ $$
 
  $size_{x}$ 表示以节点 $x$ 为根的子树大小。
 
- $son_{x,i}$ 表示 $x$ 所有子节点以 $f$ 作为关键字排序后排名第 $i$ 的儿子。
+ $son(x,i)$ 表示 $x$ 所有子节点以 $f$ 作为关键字排序后排名第 $i$ 的儿子。
 
- $seed$ 为选定的一个合适的种子（最好是质数，对字符串 hash 有了解的人一定不陌生）
+ $seed$ 为选定的一个合适的种子（最好是质数，对字符串 hash 有了解的人一定不陌生）。
 
 上述哈希过程中，可以适当取模避免溢出或加快运行速度。
 
@@ -33,7 +33,7 @@ $$
 ### 公式
 
 $$
-f_{now}=\bigoplus f_{son_{now,i}}\times seed+size_{son_{now,i}}
+f_{now}=\bigoplus f_{son(now,i)}\times seed+size_{son(now,i)}
 $$
 
 #### 注
@@ -42,7 +42,7 @@ $$
 
  $size_{x}$ 表示以节点 $x$ 为根的子树大小。
 
- $son_{x,i}$ 表示 $x$ 所有子节点之一（不用排序）。
+ $son(x,i)$ 表示 $x$ 所有子节点之一（不用排序）。
 
  $seed$ 为选定的一个合适的质数。
 
@@ -57,7 +57,7 @@ $$
 ### 公式
 
 $$
-f_{now}=1+\sum f_{son_{now,i}} \times prime(size_{son_{now,i}})
+f_{now}=1+\sum f_{son(now,i)} \times prime(size_{son(now,i)})
 $$
 
 ### 注
@@ -66,7 +66,7 @@ $$
 
  $size_{x}$ 表示以节点 $x$ 为根的子树大小。
 
- $son_{x,i}$ 表示 $x$ 所有子节点之一（不用排序）。
+ $son(x,i)$ 表示 $x$ 所有子节点之一（不用排序）。
 
  $prime(i)$ 表示第 $i$ 个质数。
 
