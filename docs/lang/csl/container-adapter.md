@@ -98,8 +98,9 @@ std::cout << q1.empty() << " " << q2.empty() << endl;  // 1 0
 ```cpp
 std::priority_queue<TypeName> q;             // 数据类型为 TypeName
 std::priority_queue<TypeName, Container> q;  // 使用 Container 作为底层容器
-std::priority_queue<TypeName, Container, Compare>
-    q;  // 使用 Container 作为底层容器，使用 Compare 作为比较类型
+std::priority_queue<TypeName, Container, Compare> q;
+// 使用 Container 作为底层容器，使用 Compare 作为比较类型
+
 // 默认使用底层容器 vector，比较类型 less<TypeName>（此时为它的 top()
 // 返回为最大值） 若希望 top() 返回最小值，可令比较类型为 greater<TypeName>
 // 注意：不可跳过 Container 直接传入 Compare
