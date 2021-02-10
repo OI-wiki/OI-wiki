@@ -15,7 +15,7 @@ STL 栈 (`std::stack`) 是一种后进先出 (Last In, First Out) 的容器适�
 ```cpp
 std::stack<TypeName> s;  // 使用默认底层容器 deque，数据类型为 TypeName
 std::stack<TypeName, Container> s;  // 使用 Container 作为底层容器
-std::stack<TypeName> s2(s1);  // 将 s1 复制一份用于构造 s2
+std::stack<TypeName> s2(s1);        // 将 s1 复制一份用于构造 s2
 ```
 
 ### 成员函数
@@ -37,7 +37,7 @@ s1.push(1);
 std::stack<int> s2(s1);
 s1.pop();
 std::cout << s1.size() << " " << s2.size() << endl;  // 1 2
-std::cout << s1.top() << " " << s2.top() << endl;  // 2 1
+std::cout << s1.top() << " " << s2.top() << endl;    // 2 1
 s1.pop();
 std::cout << s1.empty() << " " << s2.empty() << endl;  // 1 0
 ```
@@ -96,11 +96,12 @@ std::cout << q1.empty() << " " << q2.empty() << endl;  // 1 0
 ### 定义
 
 ```cpp
-std::priority_queue<TypeName> q; // 数据类型为 TypeName
-std::priority_queue<TypeName, Container> q; // 使用 Container 作为底层容器
-std::priority_queue<TypeName, Container, Compare> q; // 使用 Container 作为底层容器，使用 Compare 作为比较类型
-// 默认使用底层容器 vector，比较类型 less<TypeName>（此时为它的 top() 返回为最大值）
-// 若希望 top() 返回最小值，可令比较类型为 greater<TypeName>
+std::priority_queue<TypeName> q;             // 数据类型为 TypeName
+std::priority_queue<TypeName, Container> q;  // 使用 Container 作为底层容器
+std::priority_queue<TypeName, Container, Compare>
+    q;  // 使用 Container 作为底层容器，使用 Compare 作为比较类型
+// 默认使用底层容器 vector，比较类型 less<TypeName>（此时为它的 top()
+// 返回为最大值） 若希望 top() 返回最小值，可令比较类型为 greater<TypeName>
 // 注意：不可跳过 Container 直接传入 Compare
 ```
 
