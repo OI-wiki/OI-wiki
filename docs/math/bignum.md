@@ -714,7 +714,7 @@ $$
       Big& operator=(const Big&);
       Big operator+(const Big&) const;
       Big operator-(const Big&) const;
-      Big operator*(const Big&)const;
+      Big operator*(const Big&) const;
       Big operator/(const int&) const;
       // TODO: Big / Big;
       Big operator^(const int&) const;
