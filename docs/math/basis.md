@@ -14,7 +14,7 @@
 
 构造线性基的方法如下：
 
-对原集合的每个数 p 转为二进制，从高位向低位扫，对于第 $x$ 位是 1 的，如果 $a_x$ 不存在，那么令 $a_x=p$ 并结束扫描，如果存在，令 $p=p~\text{xor}~a_x$ 。
+对原集合的每个数 p 转为二进制，从高位向低位扫，对于第 $x$ 位是 1 的，如果 $a_x$ 不存在，那么令 $a_x=p$ 并结束扫描，如果存在，令 $p=p~\text{xor}~a_x$。
 
 代码：
 
@@ -34,7 +34,7 @@ inline void insert(long long x) {
 
 查询原集合内任意几个元素 xor 的最大值，就可以用线性基解决。
 
-将线性基从高位向低位扫，若 xor 上当前扫到的 $a_x$ 答案变大，就把答案异或上 $a_x$ 。
+将线性基从高位向低位扫，若 xor 上当前扫到的 $a_x$ 答案变大，就把答案异或上 $a_x$。
 
 为什么能行呢？因为从高往低位扫，若当前扫到第 $i$ 位，意味着可以保证答案的第 $i$ 位为 1，且后面没有机会改变第 $i$ 位。
 
@@ -44,8 +44,8 @@ inline void insert(long long x) {
 
 ## 线性基练习题
 
- [SGU 275 to xor or not xor](https://vjudge.net/problem/SGU-275) 
+[SGU 275 to xor or not xor](https://vjudge.net/problem/SGU-275)
 
- [HDU 3949 XOR](https://loj.ac/problem/161) 
+[HDU 3949 XOR](https://loj.ac/problem/161)
 
- [Luogu P4151\[WC2011\]最大 XOR 和路径](https://www.luogu.com.cn/problem/P4151) 
+[Luogu P4151\[WC2011\]最大 XOR 和路径](https://www.luogu.com.cn/problem/P4151)

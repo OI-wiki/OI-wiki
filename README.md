@@ -3,7 +3,7 @@
 # 欢迎来到 **OI Wiki**！
 
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-brightgreen?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/OI-wiki/OI-wiki)
-[![Travis](https://img.shields.io/travis/OI-WIKI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/OI-wiki/OI-wiki)
+[![GitHub Actions](https://img.shields.io/github/workflow/status/OI-Wiki/OI-Wiki/Build?style=flat-square)](https://github.com/OI-wiki/OI-wiki/actions?query=workflow%3ABuild)
 [![Uptime Robot Status](https://img.shields.io/uptimerobot/status/m781254113-3e3bac467c64fc99eafd383e.svg?style=flat-square)](https://status.oi-wiki.org/)
 [![Telegram](https://img.shields.io/badge/Telegram-OI%20Wiki-%232CA5E0?style=flat-square&logo=telegram)](https://t.me/OIwiki)
 [![QQ](https://img.shields.io/badge/QQ%20group-OI%20Wiki-blue?style=flat-square&logo=tencent-qq)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)
@@ -129,7 +129,7 @@ python2 -m SimpleHTTPServer
 
 ## 鸣谢
 
-本项目受 [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
+本项目受 [CTF Wiki](https://ctf-wiki.org/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
 
 非常感谢一起完善 **OI Wiki** 的 [小伙伴们](https://github.com/OI-wiki/OI-wiki/graphs/contributors) 和为 **OI Wiki** 捐赠的 [朋友们](https://oi-wiki.org/intro/thanks/) ！！
 

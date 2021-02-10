@@ -8,19 +8,19 @@
 
 ## 标准模板库（STL）
 
-STL 即标准模板库（Standard Template Library），是 C++ 标准库的一部分，里面包含了一些模板化的通用的数据结构和算法。由于其模板化的特点，它能够兼容自定义的数据类型，避免大量的造轮子工作。NOI 和 ICPC 赛事都支持 STL 库的使用，因此合理利用 STL 可以避免编写无用算法，并且充分利用编译器对模板库优化提高效率。STL 库的详细介绍请参见对应的页面： [STL 容器](./container.md) 和 [STL 算法](./algorithm.md) 。
+STL 即标准模板库（Standard Template Library），是 C++ 标准库的一部分，里面包含了一些模板化的通用的数据结构和算法。由于其模板化的特点，它能够兼容自定义的数据类型，避免大量的造轮子工作。NOI 和 ICPC 赛事都支持 STL 库的使用，因此合理利用 STL 可以避免编写无用算法，并且充分利用编译器对模板库优化提高效率。STL 库的详细介绍请参见对应的页面：[STL 容器](./container.md) 和 [STL 算法](./algorithm.md)。
 
 ??? note "什么是造轮子"
-    造轮子（ [Reinventing_the_wheel](https://en.wikipedia.org/wiki/Reinventing_the_wheel) ）指的是重复发明已有的算法，或者重复编写现成优化过的代码。造轮子通常耗时耗力，同时效果还没有别人好。但若是为了学习或者练习，造轮子则是必要的。
+    造轮子（[Reinventing_the_wheel](https://en.wikipedia.org/wiki/Reinventing_the_wheel)）指的是重复发明已有的算法，或者重复编写现成优化过的代码。造轮子通常耗时耗力，同时效果还没有别人好。但若是为了学习或者练习，造轮子则是必要的。
 
 ## Boost 库
 
- [Boost](https://www.boost.org/) 是除了标准库外，另一个久副盛名的开源 C++ 工具库，其代码具有可移植、高质量、高性能、高可靠性等特点。Boost 中的模块数量非常之大，功能全面，并且拥有完备的跨平台支持，因此被看作 C++ 的准标准库。C++ 标准中的不少特性也都来自于 Boost，如智能指针、元编程、日期和时间等。尽管在 OI 中无法使用 Boost，但是 Boost 中有不少轮子可以用来验证算法或者对拍，如 Boost.Geometry 有 R 树的实现，Boost.Graph 有图的相关算法，Boost.Intrusive 则提供了一套与 STL 容器用法相似的侵入式容器。有兴趣的读者可以自行在网络搜索教程。
+[Boost](https://www.boost.org/) 是除了标准库外，另一个久副盛名的开源 C++ 工具库，其代码具有可移植、高质量、高性能、高可靠性等特点。Boost 中的模块数量非常之大，功能全面，并且拥有完备的跨平台支持，因此被看作 C++ 的准标准库。C++ 标准中的不少特性也都来自于 Boost，如智能指针、元编程、日期和时间等。尽管在 OI 中无法使用 Boost，但是 Boost 中有不少轮子可以用来验证算法或者对拍，如 Boost.Geometry 有 R 树的实现，Boost.Graph 有图的相关算法，Boost.Intrusive 则提供了一套与 STL 容器用法相似的侵入式容器。有兴趣的读者可以自行在网络搜索教程。
 
 ## 参考资料
 
-1.  [C++ reference](https://en.cppreference.com/) 
-2.  [C++ 参考手册](https://zh.cppreference.com/) 
-3.  [维基百科 - C++](https://zh.wikipedia.org/wiki/C%2B%2B) 
-4.  [Boost 官方网站](https://www.boost.org/) 
-5.  [Boost 教程网站](https://theboostcpplibraries.com/) 
+1. [C++ reference](https://en.cppreference.com/)
+2. [C++ 参考手册](https://zh.cppreference.com/)
+3. [维基百科 - C++](https://zh.wikipedia.org/wiki/C%2B%2B)
+4. [Boost 官方网站](https://www.boost.org/)
+5. [Boost 教程网站](https://theboostcpplibraries.com/)

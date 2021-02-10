@@ -2,13 +2,13 @@
 
 ### 凸多边形
 
-凸多边形是指所有内角大小都在 $[0,\pi]$ 范围内的 **简单多边形** 。
+凸多边形是指所有内角大小都在 $[0,\pi]$ 范围内的 **简单多边形**。
 
 ### 凸包
 
 在平面上能包含所有给定点的最小凸多边形叫做凸包。
 
-其定义为：对于给定集合 $X$ ，所有包含 $X$ 的凸集的交集 $S$ 被称为 $X$ 的 **凸包** 。
+其定义为：对于给定集合 $X$，所有包含 $X$ 的凸集的交集 $S$ 被称为 $X$ 的 **凸包**。
 
 实际上可以理解为用一个橡皮筋包含住所有给定点的形态。
 
@@ -28,9 +28,9 @@
 
 因为从左向右看，上下凸壳所旋转的方向不同，为了让单调栈起作用，我们首先 **升序枚举** 求出下凸壳，然后 **降序** 求出上凸壳。
 
-求凸壳时，一旦发现即将进栈的点（ $P$ ）和栈顶的两个点（ $S_1,S_2$ ，其中 $S_1$ 为栈顶）行进的方向向右旋转，即叉积小于 $0$ ： $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$ ，则弹出栈顶，回到上一步，继续检测，直到 $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}\ge 0$ 或者栈内仅剩一个元素为止。
+求凸壳时，一旦发现即将进栈的点（$P$）和栈顶的两个点（$S_1,S_2$，其中 $S_1$ 为栈顶）行进的方向向右旋转，即叉积小于 $0$：$\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$，则弹出栈顶，回到上一步，继续检测，直到 $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}\ge 0$ 或者栈内仅剩一个元素为止。
 
-通常情况下不需要保留位于凸包边上的点，因此上面一段中 $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$ 这个条件中的“ $<$ ”可以视情况改为 $\le$ ，同时后面一个条件应改为 $>$ 。
+通常情况下不需要保留位于凸包边上的点，因此上面一段中 $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$ 这个条件中的“$<$”可以视情况改为 $\le$，同时后面一个条件应改为 $>$。
 
 ???+note "代码实现"
     ```cpp
@@ -69,12 +69,12 @@ $$
 
 ### 例题
 
- [UVA11626 Convex Hull](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=78&page=show_problem&problem=2673) 
+[UVA11626 Convex Hull](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=78&page=show_problem&problem=2673)
 
- [「USACO5.1」圈奶牛 Fencing the Cows](https://www.luogu.com.cn/problem/P2742) 
+[「USACO5.1」圈奶牛 Fencing the Cows](https://www.luogu.com.cn/problem/P2742)
 
- [POJ1873 The Fortified Forest](http://poj.org/problem?id=1873) 
+[POJ1873 The Fortified Forest](http://poj.org/problem?id=1873)
 
- [POJ1113 Wall](http://poj.org/problem?id=1113) 
+[POJ1113 Wall](http://poj.org/problem?id=1113)
 
- [「SHOI2012」信用卡凸包](https://www.luogu.com.cn/problem/P3829) 
+[「SHOI2012」信用卡凸包](https://www.luogu.com.cn/problem/P3829)
