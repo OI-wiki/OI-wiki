@@ -238,11 +238,11 @@ $$
 
 ### 补充结论
 
-反演结论：$\displaystyle [\gcd(i,j)=1] \iff\sum_{d\mid\gcd(i,j)}\mu(d)$
+反演结论：$\displaystyle [\gcd(i,j)=1]=\sum_{d\mid\gcd(i,j)}\mu(d)$
 
 **直接推导**：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$，也就是式子的值是 $1$，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值：$0$
 
-**利用 $\varepsilon$ 函数**：根据上一结论，$[\gcd(i,j)=1]\implies \varepsilon(\gcd(i,j))$，将 $\varepsilon$ 展开即可。
+**利用 $\varepsilon$ 函数**：根据上一结论，$[\gcd(i,j)=1]=\varepsilon(\gcd(i,j))$，将 $\varepsilon$ 展开即可。
 
 ### 线性筛
 
