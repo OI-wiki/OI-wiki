@@ -83,6 +83,28 @@ struct hash_map {  // 哈希表模板
 
 解释一下，hash 函数是针对 key 的类型设计的，并且返回一个链表头指针用于查询。在这个模板中我们写了一个 $\text{(long long , int)}$ 式的 hash 表，并且当某个 key 不存在的时侯初始化对应的 val 成 -1。hash_map() 函数是在定义的时侯初始化用的。
 
+### 闭散列法
+```cpp
+const int N=360007;
+class Hash{
+private:
+	int keys[N]={0}, values[N]={0};
+public:
+    Hash(){
+        memset(values, 0, sizeof(values));
+    }
+    int& operator [](int n){
+        int idx = (n%N + N)%N, cnt=1;
+        while(keys[idx]!=n && values[idx]!=0){
+            idx = (idx+cnt*cnt)%N;
+            cnt += 1;
+        }
+        keys[idx] = n;
+        return values[idx];
+    }
+};
+```
+
 ## 例题
 
 [「JLOI2011」不重复数字](https://www.luogu.com.cn/problem/P4305)
