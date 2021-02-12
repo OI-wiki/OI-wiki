@@ -36,7 +36,7 @@ __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
 
 ## 成员函数
 
-- `insert(x)`：向树中插入一个元素 x，返回 `std::pair<point_iterator,bool>`。
+- `insert(x)`：向树中插入一个元素 x，返回 `std::pair<point_iterator, bool>`。
 - `erase(x)`：从树中删除一个元素/迭代器 x，返回一个 `bool` 表明是否删除成功。
 - `order_of_key(x)`：返回 x 以 `Cmp_Fn` 比较的排名。
 - `find_by_order(x)`：返回 `Cmp_Fn` 比较的排名所对应元素的迭代器。
