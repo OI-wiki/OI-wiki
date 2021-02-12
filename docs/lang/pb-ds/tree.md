@@ -1,5 +1,3 @@
-$f_{i-1} *a+f_{i}*b\equiv 0 \pmod M$
-
 ## `__gnu_pbds :: tree`
 
 附：[官方文档地址](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tree_based_containers.html)
