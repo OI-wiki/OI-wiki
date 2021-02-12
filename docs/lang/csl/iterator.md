@@ -51,7 +51,7 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 
 很多 [STL 函数](./algorithm.md) 都使用迭代器作为参数。
 
-可以使用 `std::advance(it,n)` 获取迭代器 `it` 的增加n步的迭代器；若n为负数，则尝试获取迭代器的前驱，若迭代器不满足双向迭代器，行为未定义。
+可以使用 `std::advance(it, n)` 获取迭代器 `it` 的增加 `n` 步的迭代器；若 `n` 为负数，则尝试获取迭代器的前驱，此时若迭代器不满足双向迭代器，行为未定义。
 
 在 C++11 以后可以使用 `std::next(it)` 获取向前迭代器 `it` 的后继，`std::next(it, n)` 获取向前迭代器 `it` 的第 `n` 个后继。
 
