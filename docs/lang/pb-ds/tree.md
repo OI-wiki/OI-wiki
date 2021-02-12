@@ -13,8 +13,8 @@ __gnu_pbds ::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
 
 ## 模板形参
 
-- `Key`: 储存的元素类型。
-- `Mapped`: 映射规则（Mapped-Policy）类型，指示关联容器是 **集合**, 为 `null_type`，低版本 `g++` 此处为 `null_mapped_type`，类似于存储元素在 `std::set` 中，如果想要存储多个相同的 `Key` 元素，则需要使用类似于 `std::pair` 和 `struct` 的方法，并配合使用 `lower_bound` 和 `upper_bound` 成员函数进行查找。
+- `Key`: 储存的元素类型
+- `Mapped`: 映射规则（Mapped-Policy）类型，指示关联容器是 **集合**, 为 `null_type`，低版本 `g++` 此处为 `null_mapped_type`，类似于存储元素在 `std::set` 中，如果想要存储多个相同的 `Key` 元素，则需要使用类似于 `std::pair` 和 `struct` 的方法，并配合使用 `lower_bound` 和 `upper_bound` 成员函数进行查找
 - `Cmp_Fn`: 关键字比较函子，例如 `std::less<Key>`
 - `Tag`: 选择使用何种底层数据结构类型，默认是 `rb_tree_tag`。`__gnu_pbds` 提供不同的三种平衡树，分别是：
 - `rb_tree_tag`：红黑树，一般使用这个，后两者的性能一般不如红黑树
