@@ -46,12 +46,13 @@ int n, t;
 int tcost[103], mget[103];
 int mem[103][1003];
 int dfs(int pos, int tleft) {
-  if (mem[pos][tleft] != -1) return mem[pos][tleft]; // 已经访问过的状态，直接返回之前记录的值
+  if (mem[pos][tleft] != -1)
+    return mem[pos][tleft];  // 已经访问过的状态，直接返回之前记录的值
   if (pos == n + 1) return mem[pos][tleft] = 0;
   int dfs1, dfs2 = -INF;
   dfs1 = dfs(pos + 1, tleft);
   if (tleft >= tcost[pos]) dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];
-  return mem[pos][tleft] = max(dfs1, dfs2); // 最后将当前状态的值存下来
+  return mem[pos][tleft] = max(dfs1, dfs2);  // 最后将当前状态的值存下来
 }
 int main() {
   memset(mem, -1, sizeof(mem));
