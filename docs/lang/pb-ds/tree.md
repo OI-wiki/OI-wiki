@@ -19,7 +19,7 @@ __gnu_pbds ::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
 - `Tag`: 选择使用何种底层数据结构类型，默认是 `rb_tree_tag`。`__gnu_pbds` 提供不同的三种平衡树，分别是：
 - `rb_tree_tag`：红黑树，一般使用这个，后两者的性能一般不如红黑树
 - `splay_tree_tag`：splay 树
--   `ov_tree_tag`：有序向量树，只是一个由 `vector` 实现的有序结构，类似于排序的 `vector` 来实现平衡树，性能取决于数据想不想卡你
+- `ov_tree_tag`：有序向量树，只是一个由 `vector` 实现的有序结构，类似于排序的 `vector` 来实现平衡树，性能取决于数据想不想卡你
 - `Node_Update`：用于更新节点的策略，默认使用 `null_node_update`
 - `Allocator`：空间分配器类型
 
