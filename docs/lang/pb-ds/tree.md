@@ -16,7 +16,7 @@ __gnu_pbds ::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
 - `Key`: 储存的元素类型，一般为 `pair<T1,T2>` T1 为第一关键字类型，T2 为第二关键字类型，类似于存储元素在 `std::set` 中
 - `Mapped`: 映射规则（Mapped-Policy）类型，指示关联容器是 **集合**, 为 `null_type`，低版本 `g++` 此处为 `null_mapped_type`
 - `Cmp_Fn`: 关键字比较函子，例如 `std::less<Key>`
-- `Tag`: 选择使用何种底层数据结构类型，`__gnu_pbds` 提供不同的三种平衡树，Tag 参数默认是 `rb_tree_tag` 三种分别是：
+- `Tag`: 选择使用何种底层数据结构类型，默认是 `rb_tree_tag`。`__gnu_pbds` 提供不同的三种平衡树，分别是：
 - `rb_tree_tag`：红黑树，一般使用这个，后两者的性能一般不如红黑树
 - `splay_tree_tag`：splay 树
 -   `ov_tree_tag`：有序向量树
