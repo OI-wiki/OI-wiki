@@ -11,7 +11,7 @@ $$
 直接简单实现状态转移，总时间复杂度将会达到 $O(n^3)$，但当函数 $w(l,r)$ 满足一些特殊的性质时，我们可以利用决策的单调性进行优化。
 
 - **区间包含单调性**：如果对于任意 $l \leq l' \leq r' \leq r$，均有 $w(l',r') \leq w(l,r)$ 成立，则称函数 $w$ 对于区间包含关系具有单调性。
--   **四边形不等式**：如果对于任意 $l_1\leq l_2 \leq r_1 \leq r_2$，均有 $w(l_1,r_1)+w(l_2,r_2) \leq w(l_1,r_2) + w(l_2,r_1)$ 成立，则称函数 $w$ 满足四边形不等式（简记为“交叉小于包含”）。若等号永远成立，则称函数 $w$ 满足 **四边形恒等式**。
+- **四边形不等式**：如果对于任意 $l_1\leq l_2 \leq r_1 \leq r_2$，均有 $w(l_1,r_1)+w(l_2,r_2) \leq w(l_1,r_2) + w(l_2,r_1)$ 成立，则称函数 $w$ 满足四边形不等式（简记为“交叉小于包含”）。若等号永远成立，则称函数 $w$ 满足 **四边形恒等式**。
 
 **引理 1**：若满足关于区间包含的单调性的函数 $w(l, r)$ 满足区间包含单调性和四边形不等式，则状态 $f_{l,r}$ 也满足四边形不等式。
 
@@ -172,97 +172,75 @@ $$
     #include <cstring>
     #include <iostream>
     using namespace std;
-    struct BIT
-    {
-     int a[50005],n;
-     void init(int N)
-     {
-      n=N;
-     }
-     int lowbit(int x)
-     {
-      return x&(-x);
-     }
-     void update(int x,int y)
-     {
-      while(x<=n)
-      {
-       a[x]+=y;
-       x+=lowbit(x);
+    struct BIT {
+      int a[50005], n;
+      void init(int N) { n = N; }
+      int lowbit(int x) { return x & (-x); }
+      void update(int x, int y) {
+        while (x <= n) {
+          a[x] += y;
+          x += lowbit(x);
+        }
       }
-     }
-     int query(int x)
-     {
-      int ans=0;
-      while(x)
-      {
-       ans+=a[x];
-       x-=lowbit(x);
+      int query(int x) {
+        int ans = 0;
+        while (x) {
+          ans += a[x];
+          x -= lowbit(x);
+        }
+        return ans;
       }
-      return ans;
-     }
-    }tr;
-    int a[50005],f[50005],g[50005],sum;
-    int cl=1,cr=0,n,k;
-    void modify(int l,int r)
-    {
-     while(cl<l)
-     {
-      tr.update(a[cl],-1);
-      sum-=tr.query(a[cl]-1);
-      cl++;
-     }
-     while(cl>l)
-     {
-      cl--;
-      tr.update(a[cl],1);
-      sum+=tr.query(a[cl]-1);
-     }
-     while(cr<r)
-     {
-      cr++;
-      tr.update(a[cr],1);
-      sum+=tr.query(n)-tr.query(a[cr]);
-     }
-     while(cr>r)
-     {
-      tr.update(a[cr],-1);
-      sum-=tr.query(n)-tr.query(a[cr]);
-      cr--;
-     }
+    } tr;
+    int a[50005], f[50005], g[50005], sum;
+    int cl = 1, cr = 0, n, k;
+    void modify(int l, int r) {
+      while (cl < l) {
+        tr.update(a[cl], -1);
+        sum -= tr.query(a[cl] - 1);
+        cl++;
+      }
+      while (cl > l) {
+        cl--;
+        tr.update(a[cl], 1);
+        sum += tr.query(a[cl] - 1);
+      }
+      while (cr < r) {
+        cr++;
+        tr.update(a[cr], 1);
+        sum += tr.query(n) - tr.query(a[cr]);
+      }
+      while (cr > r) {
+        tr.update(a[cr], -1);
+        sum -= tr.query(n) - tr.query(a[cr]);
+        cr--;
+      }
     }
-    void dfs(int l1,int r1,int l2,int r2)
-    {
-     if(l1>r1)return;
-     int mid=(l1+r1)>>1,p=mid;
-     for(int i=min(mid-1,r2);i>=l2;i--)
-     {
-      modify(i+1,mid);
-      if(g[i]+sum<f[mid])
-       f[mid]=g[i]+sum,p=i;
-     }
-     dfs(l1,mid-1,l2,p);
-     dfs(mid+1,r1,p,r2);
+    void dfs(int l1, int r1, int l2, int r2) {
+      if (l1 > r1) return;
+      int mid = (l1 + r1) >> 1, p = mid;
+      for (int i = min(mid - 1, r2); i >= l2; i--) {
+        modify(i + 1, mid);
+        if (g[i] + sum < f[mid]) f[mid] = g[i] + sum, p = i;
+      }
+      dfs(l1, mid - 1, l2, p);
+      dfs(mid + 1, r1, p, r2);
     }
-    int main()
-    {
-     cin>>n>>k;
-     tr.init(n);
-     for(int i=1;i<=n;i++)
-     {
-      cin>>a[i];
-      a[i]=n+1-a[i];
-      modify(1,i);
-      f[i]=sum;
-     }
-     for(int i=2;i<=k;i++)
-     {
-      memcpy(g,f,sizeof(f));
-      memset(f,63,sizeof(f));
-      dfs(1,n,1,n);
-     }
-     cout<<f[n]<<endl;
-     return 0;
+    int main() {
+      cin >> n >> k;
+      tr.init(n);
+      for (int i = 1; i <= n; i++) {
+        cin >> a[i];
+        a[i] = n + 1 - a[i];
+        modify(1, i);
+        f[i] = sum;
+      }
+      for (int i = 2; i <= k; i++) {
+        memcpy(g, f, sizeof(f));
+        memset(f, 63, sizeof(f));
+        dfs(1, n, 1, n);
+      }
+      cout << f[n] << endl;
+      return 0;
     }
     ```
 
