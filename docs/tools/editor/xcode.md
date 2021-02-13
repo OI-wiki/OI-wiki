@@ -8,13 +8,13 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 
 ### 方法一
 
-打开苹果电脑自带的 App Store（或者尝试 [快捷链接](https://apps.apple.com/cn/app/xcode/id497799835?mt=12) ）下载 Xcode。点击获取，然后输入苹果账号密码开始下载安装。
+打开苹果电脑自带的 App Store（或者尝试 [快捷链接](https://apps.apple.com/cn/app/xcode/id497799835?mt=12)）下载 Xcode。点击获取，然后输入苹果账号密码开始下载安装。
 
 ![](images/xcode-1.jpg)
 
 ### 方法二
 
-访问 [苹果开发者下载页面](https://developer.apple.com/download/more/) ，用苹果账号登录，然后找到 Xcode 最新的稳定版本安装包（即不含 Beta 的最新版本，此处为 11.6）：
+访问 [苹果开发者下载页面](https://developer.apple.com/download/more/)，用苹果账号登录，然后找到 Xcode 最新的稳定版本安装包（即不含 Beta 的最新版本，此处为 11.6）：
 
 ![](images/xcode-2.jpg)
 
@@ -32,7 +32,7 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 
 ![](images/xcode-4.jpg)
 
-点击 `Create a new Xcode project` （创建一个新的 Xcode 项目），然后选择上方 `macOS` 中的 `Command Line Tool` （命令行工具），并点击右下角的 `Next` 。
+点击 `Create a new Xcode project`（创建一个新的 Xcode 项目），然后选择上方 `macOS` 中的 `Command Line Tool`（命令行工具），并点击右下角的 `Next`。
 
 ![](images/xcode-5.jpg)
 
@@ -40,7 +40,7 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 
 ![](images/xcode-6.jpg)
 
-项目的目录可以根据需要选择。创建完毕后，Xcode 会自动打开这个项目，并自动创建一个 `main` 文件（C 语言的后缀为 `.c` ，C++ 语言的后缀为 `.cpp` ）。
+项目的目录可以根据需要选择。创建完毕后，Xcode 会自动打开这个项目，并自动创建一个 `main` 文件（C 语言的后缀为 `.c`，C++ 语言的后缀为 `.cpp`）。
 
 点击这个文件，就可以打开编辑区域：
 
@@ -60,7 +60,7 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 
 在编写代码过程中，我们可能会使用到很多头文件。常用的解决方法是使用万能头文件。
 
-我们在源代码第一行引入万能头文件，然而编译过程中却提示： `'bits/stdc++.h' file not found` 。即该头文件未找到。
+我们在源代码第一行引入万能头文件，然而编译过程中却提示：`'bits/stdc++.h' file not found`。即该头文件未找到。
 
 ![](images/xcode-10.jpg)
 
@@ -93,7 +93,7 @@ vim stdc++.h
 
 ![](images/xcode-11.jpg)
 
-接着，我们需要通过 vim 编辑文件。敲击 i（insert）键盘即可进入插入/编辑模式（下方出现 `-- INSERT --` ）：
+接着，我们需要通过 vim 编辑文件。敲击 i（insert）键盘即可进入插入/编辑模式（下方出现 `-- INSERT --`）：
 
 ![](images/xcode-12.jpg)
 

@@ -6,6 +6,6 @@
 
 进一步的，若有 $n$ 个苹果，想要放到 $k$ 个抽屉里，那么必然至少一个抽屉里有不少于 $\left \lfloor \dfrac{n}{k} \right \rfloor$ 个的苹果。
 
-证明亦为反证法，若所有抽屉都有不超过 $\left \lfloor \dfrac{n}{k} \right \rfloor$ 个苹果，则其总和不超过 $(\left \lfloor \dfrac{n}{k} \right \rfloor -1 ) \times k$ 。 因为 $\left \lfloor \dfrac{n}{k} \right \rfloor \times k \le n$ ，所以 $(\left \lfloor \dfrac{n}{k} \right \rfloor -1 ) \times k < n$ ，矛盾。
+证明亦为反证法，若所有抽屉都有不超过 $\left \lfloor \dfrac{n}{k} \right \rfloor$ 个苹果，则其总和不超过 $(\left \lfloor \dfrac{n}{k} \right \rfloor -1 ) \times k$。因为 $\left \lfloor \dfrac{n}{k} \right \rfloor \times k \le n$，所以 $(\left \lfloor \dfrac{n}{k} \right \rfloor -1 ) \times k < n$，矛盾。
 
 抽屉原理经常被使用在证明存在性和最坏情况下的解。

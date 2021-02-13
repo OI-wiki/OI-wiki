@@ -1,18 +1,18 @@
 ## 一些约定
 
-字符串相关的定义请参考 [字符串基础](./basic.md) 。
+字符串相关的定义请参考 [字符串基础](./basic.md)。
 
 字符串下标从 $1$ 开始。
 
-" 后缀 $i$ " 代指以第 $i$ 个字符开头的后缀。
+" 后缀 $i$" 代指以第 $i$ 个字符开头的后缀。
 
 ## 后缀数组是什么？
 
-后缀数组（Suffix Array）主要是两个数组： $sa$ 和 $rk$ 。
+后缀数组（Suffix Array）主要是两个数组：$sa$ 和 $rk$。
 
-其中， $sa[i]$ 表示将所有后缀排序后第 $i$ 小的后缀的编号。 $rk[i]$ 表示后缀 $i$ 的排名。
+其中，$sa[i]$ 表示将所有后缀排序后第 $i$ 小的后缀的编号。$rk[i]$ 表示后缀 $i$ 的排名。
 
-这两个数组满足性质： $sa[rk[i]]=rk[sa[i]]=i$ 。
+这两个数组满足性质：$sa[rk[i]]=rk[sa[i]]=i$。
 
 后缀数组示例：
 
@@ -22,7 +22,7 @@
 
 ### O(n^2logn) 做法
 
-我相信这个做法大家还是能自己想到的，用 `string` + `sort` 就可以了。由于比较两个字符串是 $O(n)$ 的，所以排序是 $O(n^2\log n)$ 的。
+我相信这个做法大家还是能自己想到的，用 `string`+`sort` 就可以了。由于比较两个字符串是 $O(n)$ 的，所以排序是 $O(n^2\log n)$ 的。
 
 ### O(nlog^2n) 做法
 
@@ -30,7 +30,7 @@
 
 先对每个长度为 $1$ 的子串（即每个字符）进行排序。
 
-假设我们已经知道了长度为 $w$ 的子串的排名 $rk_w[1..n]$ （即， $rk_w[i]$ 表示 $s[i..\min(i+w-1,n)]$ 在 $\{s[x..\min(x+w-1,n)]\ |\ x\in[1,n]\}$ 中的排名），那么，以 $rk_w[i]$ 为第一关键字， $rk_w[i+w]$ 为第二关键字（若 $i+w>n$ 则令 $rk_w[i+w]$ 为无穷小）进行排序，就可以求出 $rk_{2w}[1..n]$ 。
+假设我们已经知道了长度为 $w$ 的子串的排名 $rk_w[1..n]$（即，$rk_w[i]$ 表示 $s[i..\min(i+w-1,n)]$ 在 $\{s[x..\min(x+w-1,n)]\ |\ x\in[1,n]\}$ 中的排名），那么，以 $rk_w[i]$ 为第一关键字，$rk_w[i+w]$ 为第二关键字（若 $i+w>n$ 则令 $rk_w[i+w]$ 为无穷小）进行排序，就可以求出 $rk_{2w}[1..n]$。
 
 倍增排序示意图：
 
@@ -87,9 +87,9 @@
 
 在刚刚的 $O(n\log^2n)$ 做法中，单次排序是 $O(n\log n)$ 的，如果能 $O(n)$ 排序，就能 $O(n\log n)$ 计算后缀数组了。
 
-前置知识： [计数排序](../basic/counting-sort.md) ， [基数排序](../basic/radix-sort.md) 。
+前置知识：[计数排序](../basic/counting-sort.md)，[基数排序](../basic/radix-sort.md)。
 
-由于计算后缀数组的过程中排序的关键字是排名，值域为 $O(n)$ ，并且是一个双关键字的排序，可以使用基数排序优化至 $O(n)$ 。
+由于计算后缀数组的过程中排序的关键字是排名，值域为 $O(n)$，并且是一个双关键字的排序，可以使用基数排序优化至 $O(n)$。
 
 ??? note "参考代码"
     ```cpp
@@ -166,7 +166,7 @@ for (i = 1; i <= n; ++i) {
 
 #### 优化计数排序的值域
 
-每次对 $rk$ 进行去重之后，我们都计算了一个 $p$ ，这个 $p$ 即是 $rk$ 的值域，将值域改成它即可。
+每次对 $rk$ 进行去重之后，我们都计算了一个 $p$，这个 $p$ 即是 $rk$ 的值域，将值域改成它即可。
 
 #### 将 rk\[id[i]] 存下来，减少不连续内存访问
 
@@ -176,7 +176,7 @@ for (i = 1; i <= n; ++i) {
 
 同样是减少不连续内存访问，在数据范围较大时效果比较明显。
 
-把 `oldrk[sa[i]] == oldrk[sa[i - 1]] && oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]` 替换成 `cmp(sa[i], sa[i - 1], w)` ， `bool cmp(int x, int y, int w) { return oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w]; }` 。
+把 `oldrk[sa[i]] == oldrk[sa[i - 1]] && oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]` 替换成 `cmp(sa[i], sa[i - 1], w)`，`bool cmp(int x, int y, int w) { return oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w]; }`。
 
 ??? note "参考代码"
     ```cpp
@@ -233,7 +233,7 @@ for (i = 1; i <= n; ++i) {
 
 #### SA-IS
 
-可以参考 [诱导排序与 SA-IS 算法](https://riteme.site/blog/2016-6-19/sais.html) 。
+可以参考 [诱导排序与 SA-IS 算法](https://riteme.site/blog/2016-6-19/sais.html)。
 
 #### DC3
 
@@ -245,22 +245,22 @@ for (i = 1; i <= n; ++i) {
 
 将字符串 $S$ 复制一份变成 $SS$ 就转化成了后缀排序问题。
 
-例题： [「JSOI2007」字符加密](https://www.luogu.com.cn/problem/P4051) 。
+例题：[「JSOI2007」字符加密](https://www.luogu.com.cn/problem/P4051)。
 
 ### 在字符串中找子串
 
-任务是在线地在主串 $T$ 中寻找模式串 $S$ 。在线的意思是，我们已经预先知道知道主串 $T$ ，但是当且仅当询问时才知道模式串 $S$ 。我们可以先构造出 $T$ 的后缀数组，然后查找子串 $S$ 。若子串 $S$ 在 $T$ 中出现，它必定是 $T$ 的一些后缀的前缀。因为我们已经将所有后缀排序了，我们可以通过在 $p$ 数组中二分 $S$ 来实现。比较子串 $S$ 和当前后缀的时间复杂度为 $O(|S|)$ ，因此找子串的时间复杂度为 $O(|S|\log |T|)$ 。注意，如果该子串在 $T$ 中出现了多次，每次出现都是在 $p$ 数组中相邻的。因此出现次数可以通过再次二分找到，输出每次出现的位置也很轻松。
+任务是在线地在主串 $T$ 中寻找模式串 $S$。在线的意思是，我们已经预先知道知道主串 $T$，但是当且仅当询问时才知道模式串 $S$。我们可以先构造出 $T$ 的后缀数组，然后查找子串 $S$。若子串 $S$ 在 $T$ 中出现，它必定是 $T$ 的一些后缀的前缀。因为我们已经将所有后缀排序了，我们可以通过在 $p$ 数组中二分 $S$ 来实现。比较子串 $S$ 和当前后缀的时间复杂度为 $O(|S|)$，因此找子串的时间复杂度为 $O(|S|\log |T|)$。注意，如果该子串在 $T$ 中出现了多次，每次出现都是在 $p$ 数组中相邻的。因此出现次数可以通过再次二分找到，输出每次出现的位置也很轻松。
 
 ### 从字符串首尾取字符最小化字典序
 
-例题： [「USACO07DEC」Best Cow Line](https://www.luogu.com.cn/problem/P2870) 。
+例题：[「USACO07DEC」Best Cow Line](https://www.luogu.com.cn/problem/P2870)。
 
 题意：给你一个字符串，每次从首或尾取一个字符组成字符串，问所有能够组成的字符串中字典序最小的一个。
 
 ??? note "题解"
     暴力做法就是每次最坏 $O(n)$ 地判断当前应该取首还是尾（即比较取首得到的字符串与取尾得到的反串的大小），只需优化这一判断过程即可。
     
-    由于需要在原串后缀与反串后缀构成的集合内比较大小，可以将反串拼接在原串后，并在中间加上一个没出现过的字符（如 `#` ，代码中可以直接使用空字符），求后缀数组，即可 $O(1)$ 完成这一判断。
+    由于需要在原串后缀与反串后缀构成的集合内比较大小，可以将反串拼接在原串后，并在中间加上一个没出现过的字符（如 `#`，代码中可以直接使用空字符），求后缀数组，即可 $O(1)$ 完成这一判断。
 
 ??? note "参考代码"
     ```cpp
@@ -323,41 +323,41 @@ for (i = 1; i <= n; ++i) {
 
 ### LCP（最长公共前缀）
 
-两个字符串 $S$ 和 $T$ 的 LCP 就是最大的 $x$ ( $x\le \min(|S|, |T|)$ ) 使得 $S_i=T_i\ (\forall\ 1\le i\le x)$ 。
+两个字符串 $S$ 和 $T$ 的 LCP 就是最大的 $x$($x\le \min(|S|, |T|)$) 使得 $S_i=T_i\ (\forall\ 1\le i\le x)$。
 
 下文中以 $lcp(i,j)$ 表示后缀 $i$ 和后缀 $j$ 的最长公共前缀（的长度）。
 
 ### height 数组的定义
 
- $height[i]=lcp(sa[i],sa[i-1])$ ，即第 $i$ 名的后缀与它前一名的后缀的最长公共前缀。
+$height[i]=lcp(sa[i],sa[i-1])$，即第 $i$ 名的后缀与它前一名的后缀的最长公共前缀。
 
- $height[1]$ 可以视作 $0$ 。
+$height[1]$ 可以视作 $0$。
 
 ### O(n) 求 height 数组需要的一个引理
 
- $height[rk[i]]\ge height[rk[i-1]]-1$ 
+$height[rk[i]]\ge height[rk[i-1]]-1$
 
 证明：
 
-当 $height[rk[i-1]]\le1$ 时，上式显然成立（右边小于等于 $0$ ）。
+当 $height[rk[i-1]]\le1$ 时，上式显然成立（右边小于等于 $0$）。
 
 当 $height[rk[i-1]]>1$ 时：
 
-设后缀 $i-1$ 为 $aAD$ （ $A$ 是一个长度为 $height[rk[i-1]]-1$ 的字符串），那么后缀 $i$ 就是 $AD$ 。设后缀 $sa[rk[i-1]-1]$ 为 $aAB$ ，那么 $lcp(i-1,sa[rk[i-1]-1])=aA$ 。由于后缀 $sa[rk[i-1]-1]+1$ 是 $AB$ ，一定排在后缀 $i$ 的前面，所以后缀 $sa[rk[i]-1]$ 一定含有前缀 $A$ ，所以 $lcp(i,sa[rk[i]-1])$ 至少是 $height[rk[i-1]]-1$ 。
+设后缀 $i-1$ 为 $aAD$（$A$ 是一个长度为 $height[rk[i-1]]-1$ 的字符串），那么后缀 $i$ 就是 $AD$。设后缀 $sa[rk[i-1]-1]$ 为 $aAB$，那么 $lcp(i-1,sa[rk[i-1]-1])=aA$。由于后缀 $sa[rk[i-1]-1]+1$ 是 $AB$，一定排在后缀 $i$ 的前面，所以后缀 $sa[rk[i]-1]$ 一定含有前缀 $A$，所以 $lcp(i,sa[rk[i]-1])$ 至少是 $height[rk[i-1]]-1$。
 
 简单来说：
 
- $i-1$ ： $aAD$ 
+$i-1$：$aAD$
 
- $i$ ： $AD$ 
+$i$：$AD$
 
- $sa[rk[i-1]-1]$ ： $aAB$ 
+$sa[rk[i-1]-1]$：$aAB$
 
- $sa[rk[i-1]-1]+1$ ： $AB$ 
+$sa[rk[i-1]-1]+1$：$AB$
 
- $sa[rk[i]-1]$ ： $A[B/C]$ 
+$sa[rk[i]-1]$：$A[B/C]$
 
- $lcp(i,sa[rk[i]-1])$ ： $AX$ （ $X$ 可能为空）
+$lcp(i,sa[rk[i]-1])$：$AX$（$X$ 可能为空）
 
 ### O(n) 求 height 数组的代码实现
 
@@ -371,43 +371,43 @@ for (i = 1, k = 0; i <= n; ++i) {
 }
 ```
 
- $k$ 不会超过 $n$ ，最多减 $n$ 次，所以最多加 $2n$ 次，总复杂度就是 $O(n)$ 。
+$k$ 不会超过 $n$，最多减 $n$ 次，所以最多加 $2n$ 次，总复杂度就是 $O(n)$。
 
 ## height 数组的应用
 
 ### 两子串最长公共前缀
 
- $lcp(sa[i],sa[j])=\min\{height[i+1..j]\}$ 
+$lcp(sa[i],sa[j])=\min\{height[i+1..j]\}$
 
 感性理解：如果 $height$ 一直大于某个数，前这么多位就一直没变过；反之，由于后缀已经排好序了，不可能变了之后变回来。
 
 严格证明可以参考[\[2004\]后缀数组 by. 徐智磊][1]。
 
-有了这个定理，求两子串最长公共前缀就转化为了 [RMQ 问题](../topic/rmq.md) 。
+有了这个定理，求两子串最长公共前缀就转化为了 [RMQ 问题](../topic/rmq.md)。
 
 ### 比较一个字符串的两个子串的大小关系
 
 假设需要比较的是 $A=S[a..b]$ 和 $B=S[c..d]$ 的大小关系。
 
-若 $lcp(a, c)\ge\min(|A|, |B|)$ ， $A<B\iff |A|<|B|$ 。
+若 $lcp(a, c)\ge\min(|A|, |B|)$，$A<B\iff |A|<|B|$。
 
-否则， $A<B\iff rk[a]< rk[b]$ 。
+否则，$A<B\iff rk[a]< rk[b]$。
 
 ### 不同子串的数目
 
 子串就是后缀的前缀，所以可以枚举每个后缀，计算前缀总数，再减掉重复。
 
-“前缀总数”其实就是子串个数，为 $n(n+1)/2$ 。
+“前缀总数”其实就是子串个数，为 $n(n+1)/2$。
 
 如果按后缀排序的顺序枚举后缀，每次新增的子串就是除了与上一个后缀的 LCP 剩下的前缀。这些前缀一定是新增的，否则会破坏 $lcp(sa[i],sa[j])=\min\{height[i+1..j]\}$ 的性质。只有这些前缀是新增的，因为 LCP 部分在枚举上一个前缀时计算过了。
 
 所以答案为：
 
- $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$ 
+$\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 
 ### 出现至少 k 次的子串的最大长度
 
-例题： [「USACO06DEC」Milk Patterns](https://www.luogu.com.cn/problem/P2852) 。
+例题：[「USACO06DEC」Milk Patterns](https://www.luogu.com.cn/problem/P2852)。
 
 ??? note "题解"
     出现至少 $k$ 次意味着后缀排序后有至少连续 $k$ 个后缀的 LCP 是这个子串。
@@ -478,17 +478,17 @@ for (i = 1, k = 0; i <= n; ++i) {
 
 ### 是否有某字符串在文本串中至少不重叠地出现了两次
 
-可以二分目标串的长度 $|s|$ ，将 $h$ 数组划分成若干个连续 LCP 大于等于 $|s|$ 的段，利用 RMQ 对每个段求其中出现的数中最大和最小的下标，若这两个下标的距离满足条件，则一定有长度为 $|s|$ 的字符串不重叠地出现了两次。
+可以二分目标串的长度 $|s|$，将 $h$ 数组划分成若干个连续 LCP 大于等于 $|s|$ 的段，利用 RMQ 对每个段求其中出现的数中最大和最小的下标，若这两个下标的距离满足条件，则一定有长度为 $|s|$ 的字符串不重叠地出现了两次。
 
 ### 连续的若干个相同子串
 
-我们可以枚举连续串的长度 $|s|$ ，按照 $|s|$ 对整个串进行分块，对相邻两块的块首进行 LCP 与 LCS 查询，具体可见[\[2009\]后缀数组——处理字符串的有力工具][2]。
+我们可以枚举连续串的长度 $|s|$，按照 $|s|$ 对整个串进行分块，对相邻两块的块首进行 LCP 与 LCS 查询，具体可见[\[2009\]后缀数组——处理字符串的有力工具][2]。
 
 ### 结合并查集
 
 某些题目求解时要求你将后缀数组划分成若干个连续 LCP 长度大于等于某一值的段，亦即将 $h$ 数组划分成若干个连续最小值大于等于某一值的段并统计每一段的答案。如果有多次询问，我们可以将询问离线。观察到当给定值单调递减的时候，满足条件的区间个数总是越来越少，而新区间都是两个或多个原区间相连所得，且新区间中不包含在原区间内的部分的 $h$ 值都为减少到的这个值。我们只需要维护一个并查集，每次合并相邻的两个区间，并维护统计信息即可。
 
-经典题目： [「NOI2015」品酒大会](https://uoj.ac/problem/131) 
+经典题目：[「NOI2015」品酒大会](https://uoj.ac/problem/131)
 
 ### 结合线段树
 
@@ -496,16 +496,16 @@ for (i = 1, k = 0; i <= n; ++i) {
 
 ### 结合单调栈
 
-例题： [「AHOI2013」差异](https://loj.ac/problem/2377) 
+例题：[「AHOI2013」差异](https://loj.ac/problem/2377)
 
 ??? note "题解"
-    被加数的前两项很好处理，为 $n(n-1)(n+1)/2$ （每个后缀都出现了 $n-1$ 次，后缀总长是 $n(n+1)/2$ ），关键是最后一项，即后缀的两两 LCP。
+    被加数的前两项很好处理，为 $n(n-1)(n+1)/2$（每个后缀都出现了 $n-1$ 次，后缀总长是 $n(n+1)/2$），关键是最后一项，即后缀的两两 LCP。
     
-    我们知道 $lcp(i,j)=k$ 等价于 $\min\{height[i+1..j]\}=k$ 。所以，可以把 $lcp(i,j)$ 记作 $\min\{x|i+1\le x\le j, height[x]=lcp(i,j)\}$ 对答案的贡献。
+    我们知道 $lcp(i,j)=k$ 等价于 $\min\{height[i+1..j]\}=k$。所以，可以把 $lcp(i,j)$ 记作 $\min\{x|i+1\le x\le j, height[x]=lcp(i,j)\}$ 对答案的贡献。
     
     考虑每个位置对答案的贡献是哪些后缀的 LCP，其实就是从它开始向左若干个连续的 $height$ 大于它的后缀中选一个，再从向右若干个连续的 $height$ 不小于它的后缀中选一个。这个东西可以用 [单调栈](../ds/monotonous-stack.md) 计算。
     
-    单调栈部分类似于 [Luogu P2659 美丽的序列](https://www.luogu.com.cn/problem/P2659) 以及 [悬线法](../misc/hoverline.md) 。
+    单调栈部分类似于 [Luogu P2659 美丽的序列](https://www.luogu.com.cn/problem/P2659) 以及 [悬线法](../misc/hoverline.md)。
 
 ??? note "参考代码"
     ```cpp
@@ -575,48 +575,48 @@ for (i = 1, k = 0; i <= n; ++i) {
     }
     ```
 
-类似的题目： [「HAOI2016」找相同字符](https://loj.ac/problem/2064) 。
+类似的题目：[「HAOI2016」找相同字符](https://loj.ac/problem/2064)。
 
 ## 习题
 
--  [Uva 760 - DNA Sequencing](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=701) 
--  [Uva 1223 - Editor](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3664) 
--  [Codechef - Tandem](https://www.codechef.com/problems/TANDEM) 
--  [Codechef - Substrings and Repetitions](https://www.codechef.com/problems/ANUSAR) 
--  [Codechef - Entangled Strings](https://www.codechef.com/problems/TANGLED) 
--  [Codeforces - Martian Strings](http://codeforces.com/problemset/problem/149/E) 
--  [Codeforces - Little Elephant and Strings](http://codeforces.com/problemset/problem/204/E) 
--  [SPOJ - Ada and Terramorphing](http://www.spoj.com/problems/ADAPHOTO/) 
--  [SPOJ - Ada and Substring](http://www.spoj.com/problems/ADASTRNG/) 
--  [UVA - 1227 - The longest constant gene](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3668) 
--  [SPOJ - Longest Common Substring](http://www.spoj.com/problems/LCS/en/) 
--  [UVA 11512 - GATTACA](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2507) 
--  [LA 7502 - Suffixes and Palindromes](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=720&page=show_problem&problem=5524) 
--  [GYM - Por Costel and the Censorship Committee](http://codeforces.com/gym/100923/problem/D) 
--  [UVA 1254 - Top 10](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3695) 
--  [UVA 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343) 
--  [UVA 12206 - Stammering Aliens](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3358) 
--  [Codechef - Jarvis and LCP](https://www.codechef.com/problems/INSQ16F) 
--  [LA 3943 - Liking's Letter](https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=1944) 
--  [UVA 11107 - Life Forms](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2048) 
--  [UVA 12974 - Exquisite Strings](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4853) 
--  [UVA 10526 - Intellectual Property](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1467) 
--  [UVA 12338 - Anti-Rhyme Pairs](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3760) 
--  [DevSkills Reconstructing Blue Print of Life](https://devskill.com/CodingProblems/ViewProblem/328) 
--  [UVA 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343) 
--  [SPOJ - Suffix Array](http://www.spoj.com/problems/SARRAY/) 
--  [LA 4513 - Stammering Aliens](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2514) 
--  [SPOJ - LCS2](http://www.spoj.com/problems/LCS2/) 
--  [Codeforces - Fake News (hard)](http://codeforces.com/contest/802/problem/I) 
--  [SPOJ - Longest Commong Substring](http://www.spoj.com/problems/LONGCS/) 
--  [SPOJ - Lexicographical Substring Search](http://www.spoj.com/problems/SUBLEX/) 
--  [Codeforces - Forbidden Indices](http://codeforces.com/contest/873/problem/F) 
--  [Codeforces - Tricky and Clever Password](http://codeforces.com/contest/30/problem/E) 
--  [LA 6856 - Circle of digits](https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&page=show_problem&problem=4868) 
+- [Uva 760 - DNA Sequencing](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=701)
+- [Uva 1223 - Editor](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3664)
+- [Codechef - Tandem](https://www.codechef.com/problems/TANDEM)
+- [Codechef - Substrings and Repetitions](https://www.codechef.com/problems/ANUSAR)
+- [Codechef - Entangled Strings](https://www.codechef.com/problems/TANGLED)
+- [Codeforces - Martian Strings](http://codeforces.com/problemset/problem/149/E)
+- [Codeforces - Little Elephant and Strings](http://codeforces.com/problemset/problem/204/E)
+- [SPOJ - Ada and Terramorphing](http://www.spoj.com/problems/ADAPHOTO/)
+- [SPOJ - Ada and Substring](http://www.spoj.com/problems/ADASTRNG/)
+- [UVA - 1227 - The longest constant gene](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3668)
+- [SPOJ - Longest Common Substring](http://www.spoj.com/problems/LCS/en/)
+- [UVA 11512 - GATTACA](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2507)
+- [LA 7502 - Suffixes and Palindromes](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=720&page=show_problem&problem=5524)
+- [GYM - Por Costel and the Censorship Committee](http://codeforces.com/gym/100923/problem/D)
+- [UVA 1254 - Top 10](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3695)
+- [UVA 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343)
+- [UVA 12206 - Stammering Aliens](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3358)
+- [Codechef - Jarvis and LCP](https://www.codechef.com/problems/INSQ16F)
+- [LA 3943 - Liking's Letter](https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=1944)
+- [UVA 11107 - Life Forms](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2048)
+- [UVA 12974 - Exquisite Strings](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4853)
+- [UVA 10526 - Intellectual Property](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1467)
+- [UVA 12338 - Anti-Rhyme Pairs](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3760)
+- [DevSkills Reconstructing Blue Print of Life](https://devskill.com/CodingProblems/ViewProblem/328)
+- [UVA 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343)
+- [SPOJ - Suffix Array](http://www.spoj.com/problems/SARRAY/)
+- [LA 4513 - Stammering Aliens](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2514)
+- [SPOJ - LCS2](http://www.spoj.com/problems/LCS2/)
+- [Codeforces - Fake News (hard)](http://codeforces.com/contest/802/problem/I)
+- [SPOJ - Longest Commong Substring](http://www.spoj.com/problems/LONGCS/)
+- [SPOJ - Lexicographical Substring Search](http://www.spoj.com/problems/SUBLEX/)
+- [Codeforces - Forbidden Indices](http://codeforces.com/contest/873/problem/F)
+- [Codeforces - Tricky and Clever Password](http://codeforces.com/contest/30/problem/E)
+- [LA 6856 - Circle of digits](https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&page=show_problem&problem=4868)
 
 ## 参考资料
 
-本页面中（ [4070a9b](https://github.com/OI-wiki/OI-wiki/pull/950/commits/4070a9b3db8576db16c74d3ec33806ad10476eef) 引入的部分）主要译自博文 [Суффиксный массив](http://e-maxx.ru/algo/suffix_array) 与其英文翻译版 [Suffix Array](https://cp-algorithms.com/string/suffix-array.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。
+本页面中（[4070a9b](https://github.com/OI-wiki/OI-wiki/pull/950/commits/4070a9b3db8576db16c74d3ec33806ad10476eef) 引入的部分）主要译自博文 [Суффиксный массив](http://e-maxx.ru/algo/suffix_array) 与其英文翻译版 [Suffix Array](https://cp-algorithms.com/string/suffix-array.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。
 
 论文：
 

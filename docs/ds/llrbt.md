@@ -51,7 +51,7 @@
 
 ![llrbt5](./images/llrbt-5.png)
 
-因此需要把它进行一次右旋。而对于右旋后的情况，我们应该对它进行 `color_flip` ：即翻转该节点和它的两个儿子的颜色
+因此需要把它进行一次右旋。而对于右旋后的情况，我们应该对它进行 `color_flip`：即翻转该节点和它的两个儿子的颜色
 
 ![llrbt6](./images/llrbt-6.png)
 
@@ -97,7 +97,7 @@
 
 首先来试一下删除整棵树里的最小值。
 
-怎么才能保证最后删除的节点是红色的呢？我们需要在向下递归的过程中保证一个性质：如果当前节点是 `h` ，那么需要保证 `h` 是红色，或者 `h->lc` 是红色。
+怎么才能保证最后删除的节点是红色的呢？我们需要在向下递归的过程中保证一个性质：如果当前节点是 `h`，那么需要保证 `h` 是红色，或者 `h->lc` 是红色。
 
 考虑这样做的正确性，如果我们能够通过各种旋转和反转颜色操作成功维护这个性质，那么当我们到达最小的节点 `h_min` 的时候，有 `h_min` 是红色，或者 `h_min` 的左子树——但是 `h_min` 根本没有左子树！所以这就保证了最小值节点一定是红的，既然它是红色的，我们就可以大胆的删除它，然后用与插入操作相同的调整思路对树进行调整。
 
@@ -148,7 +148,7 @@
 
 #### 删除任意节点
 
-我们首先考虑删除叶子：与删最小值类似，我们在删除任意值的过程中也要维护一个性质，不过这次比较特殊，因为我们不是只向左边走，而是可以向左右两个方向走，因此在删除过程中维护的性质是这样的：如果往左走，当前节点是 `h` ，那么需要保证 `h` 是红色，或者 `h->lc` 是红色；如果往右走，当前节点是 `h` ，那么需要保证 `h` 是红色，或者 `h->rc` 是红色。这样可以保证我们最后总会删掉一个红色节点。
+我们首先考虑删除叶子：与删最小值类似，我们在删除任意值的过程中也要维护一个性质，不过这次比较特殊，因为我们不是只向左边走，而是可以向左右两个方向走，因此在删除过程中维护的性质是这样的：如果往左走，当前节点是 `h`，那么需要保证 `h` 是红色，或者 `h->lc` 是红色；如果往右走，当前节点是 `h`，那么需要保证 `h` 是红色，或者 `h->rc` 是红色。这样可以保证我们最后总会删掉一个红色节点。
 
 下面考虑删除非叶子节点，我们只需要找到其右子树（如果有）里的最小节点，然后用右子树的最小节点的值代替该节点的值，最后删除右子树里的最小节点。
 
@@ -191,7 +191,7 @@
 
 ## 参考代码
 
-下面的代码是用左偏红黑树实现的 `Set` ，即有序不可重集合：
+下面的代码是用左偏红黑树实现的 `Set`，即有序不可重集合：
 
 ??? note "参考代码"
     ```cpp
@@ -509,5 +509,5 @@
 
 ## 参考资料与拓展阅读
 
--  [Left-Leaning Red-Black Trees](https://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf) -  Robert Sedgewick Princeton University
--  [Balanced Search Trees](https://algs4.cs.princeton.edu/lectures/33BalancedSearchTrees-2x2.pdf) -\_Algorithms_Robert Sedgewick | Kevin Wayne
+- [Left-Leaning Red-Black Trees](https://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf)-  Robert Sedgewick Princeton University
+- [Balanced Search Trees](https://algs4.cs.princeton.edu/lectures/33BalancedSearchTrees-2x2.pdf)-\_Algorithms_Robert Sedgewick | Kevin Wayne
