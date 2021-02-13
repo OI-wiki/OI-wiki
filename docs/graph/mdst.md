@@ -1,228 +1,226 @@
-## 最小树形图
+在学习最小直径生成树（Minimum Diameter Spanning Tree）前建议先阅读 [树的直径](./tree-diameter.md) 的内容。
 
-有向图上的最小生成树（Minimum Directed Spanning Tree）称为最小树形图。
+在无向图的所有生成树中，直径最小的那一棵生成树就是最小直径生成树。
 
-常用的算法是朱刘算法（也称 Edmonds 算法），可以在 $O(nm)$ 时间内解决最小树形图问题。
+## 图的绝对中心
 
-### 流程
+求解直径最小生成树，首先需要找到 **图的绝对中心**，**图的绝对中心** 可以存在于一条边上或某个结点上，该中心到所有点的最短距离的最大值最小。
 
-1. 对于每个点，选择它入度最小的那条边
-2. 如果没有环，算法终止；否则进行缩环并更新其他点到环的距离。
+根据 **图的绝对中心** 的定义可以知道，到绝对中心距离最远的结点至少有两个。
 
-### 代码
+令 `d[i][j]` 为顶点 $i,j$ 间的最短路径长，通过多源最短路算法求出所有结点的最短路。
 
-```cpp
-bool solve() {
-  ans = 0;
-  int u, v, root = 0;
-  for (;;) {
-    f(i, 0, n) in[i] = 1e100;
-    f(i, 0, m) {
-      u = e[i].s;
-      v = e[i].t;
-      if (u != v && e[i].w < in[v]) {
-        in[v] = e[i].w;
-        pre[v] = u;
+`rk[i][j]` 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结点。
+
+图的绝对中心可能在某条边上，枚举每一条边 $w=(u,v)$，并且假设图的绝对中心 $c$ 就在这条边上。那么距离 $u$ 的长度为 $x$($x \leq w$)，距离 $v$ 的长度就是 $w - x$。
+
+对于图中的任意一点 $i$，图的绝对中心 $c$ 到 $i$ 的距离为 $d(c,i)=\min(d(u,i) + x, d(v,i) + (w - x))$。
+
+举例一个结点 $i$，该结点与图的绝对中心的位置关系如下图。
+
+![mdst1](./images/mdst-1.png)
+
+随着图的绝对中心 $c$ 在边上的改变会生成一个距离与 $c$ 位置的函数图像。显然的，当前的 $d(c,i)$ 的函数图像是一个两条斜率相同的线段构成的折线段。
+
+![mdst2](./images/mdst-2.png)
+
+对于图上的任意一结点，图的绝对中心到最远距离结点的函数就写作 $f = \max\{ d(c,i)\},i \in[1,n]$，其函数图像如下。
+
+![mdst3](./images/mdst-3.png)
+
+并且这些折线交点中的最低点，横坐标就是图的绝对中心的位置。
+
+图的绝对中心可能在某个结点上，用距离预选结点最远的那个结点来更新，即 $\textit{ans}\leftarrow \min(\textit{ans},d(i,\textit{rk}(i,1))\times 2)$。
+
+### 算法流程
+
+1. 使用多源最短路算法（[Floyd](shortest-path.md#floyd)，[Johnson](shortest-path.md#johnson) 等），求出 $d$ 数组；
+
+2. 求出 `rk[i][j]`，并将其升序排序；
+
+3. 图的绝对中心可能在某个结点上，用距离预选结点最远的那个结点来更新，遍历所有结点并用 $\textit{ans}\leftarrow \min(\textit{ans},d(i,\textit{rk}(i,1)) \times 2)$ 更新最小值。
+
+4. 图的绝对中心可能在某条边上，枚举所有的边。对于一条边 $w(u,j)$ 从距离 $u$ 最远的结点开始更新。当出现 $d(v,\textit{rk}(u,i)) > d(v,\textit{rk}(u,i-1))$ 的情况时，用 $\textit{ans}\leftarrow  \min(\textit{ans}, d(v,\textit{rk}(u,i))+d(v,\textit{rk}(u,i-1))+w(i,j))$ 来更新。因为这种情况会使图的绝对中心改变。
+
+??? note "参考实现"
+    ```cpp
+    bool cmp(int a, int b) { return val[a] < val[b]; }
+    
+    void Floyd() {
+      for (int k = 1; k <= n; k++)
+        for (int i = 1; i <= n; i++)
+          for (int j = 1; j <= n; j++) d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
+    }
+    
+    void solve() {
+      Floyd();
+      for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+          rk[i][j] = j;
+          val[j] = d[i][j];
+        }
+        sort(rk[i] + 1, rk[i] + 1 + n, cmp);
+      }
+      int ans = INF;
+      // 图的绝对中心可能在结点上
+      for (int i = 1; i <= n; i++) ans = min(ans, d[i][rk[i][n]] * 2);
+      // 图的绝对中心可能在边上
+      for (int i = 1; i <= m; i++) {
+        int u = a[i].u, v = a[i].v, w = a[i].w;
+        for (int p = n, i = n - 1; i >= 1; i--) {
+          if (d[v][rk[u][i]] > d[v][rk[u][p]]) {
+            ans = min(ans, d[u][rk[u][i]] + d[v][rk[u][p]] + w);
+            p = i;
+          }
+        }
       }
     }
-    f(i, 0, m) if (i != root && in[i] > 1e50) return 0;
-    int tn = 0;
-    memset(id, -1, sizeof id);
-    memset(vis, -1, sizeof vis);
-    in[root] = 0;
-    f(i, 0, n) {
-      ans += in[i];
-      v = i;
-      while (vis[v] != i && id[v] == -1 && v != root) {
-        vis[v] = i;
-        v = pre[v];
+    ```
+
+### 例题
+
+- [CodeForce 266D BerDonalds](https://codeforces.ml/contest/266/problem/D)
+
+## 最小直径生成树
+
+根据图的绝对中心的定义，容易得知图的绝对中心是最小直径生成树的直径的中点。
+
+求解最小直径生成树首先需要找到图的绝对中心。以图的绝对中心为起点，生成一个最短路径树，那么就可以得到最小直径生成树了。
+
+??? note "参考实现"
+    ```cpp
+    #include <bits/stdc++.h>
+    using namespace std;
+    const int MAXN = 502;
+    typedef long long ll;
+    typedef pair<int, int> pii;
+    ll d[MAXN][MAXN], dd[MAXN][MAXN], rk[MAXN][MAXN], val[MAXN];
+    const ll INF = 1e17;
+    int n, m;
+    bool cmp(int a, int b) { return val[a] < val[b]; }
+    void floyd() {
+      for (int k = 1; k <= n; k++)
+        for (int i = 1; i <= n; i++)
+          for (int j = 1; j <= n; j++) d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
+    }
+    struct node {
+      ll u, v, w;
+    } a[MAXN * (MAXN - 1) / 2];
+    void solve() {
+      //求图的绝对中心
+      floyd();
+      for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+          rk[i][j] = j;
+          val[j] = d[i][j];
+        }
+        sort(rk[i] + 1, rk[i] + 1 + n, cmp);
       }
-      if (v != root && id[v] == -1) {
-        for (int u = pre[v]; u != v; u = pre[u]) id[u] = tn;
-        id[v] = tn++;
+      ll P = 0, ansP = INF;
+      //在点上
+      for (int i = 1; i <= n; i++) {
+        if (d[i][rk[i][n]] * 2 < ansP) {
+          ansP = d[i][rk[i][n]] * 2;
+          P = i;
+        }
+      }
+      //在边上
+      int f1 = 0, f2 = 0;
+      ll disu = INT_MIN, disv = INT_MIN, ansL = INF;
+      for (int i = 1; i <= m; i++) {
+        ll u = a[i].u, v = a[i].v, w = a[i].w;
+        for (int p = n, i = n - 1; i >= 1; i--) {
+          if (d[v][rk[u][i]] > d[v][rk[u][p]]) {
+            if (d[u][rk[u][i]] + d[v][rk[u][p]] + w < ansL) {
+              ansL = d[u][rk[u][i]] + d[v][rk[u][p]] + w;
+              f1 = u, f2 = v;
+              disu = (d[u][rk[u][i]] + d[v][rk[u][p]] + w) / 2 - d[u][rk[u][i]];
+              disv = w - disu;
+            }
+            p = i;
+          }
+        }
+      }
+      cout << min(ansP, ansL) / 2 << '\n';
+      //最小路径生成树
+      vector<pii> pp;
+      for (int i = 1; i <= 501; ++i)
+        for (int j = 1; j <= 501; ++j) dd[i][j] = INF;
+      for (int i = 1; i <= 501; ++i) dd[i][i] = 0;
+      if (ansP <= ansL) {
+        for (int j = 1; j <= n; j++) {
+          for (int i = 1; i <= m; ++i) {
+            ll u = a[i].u, v = a[i].v, w = a[i].w;
+            if (dd[P][u] + w == d[P][v] && dd[P][u] + w < dd[P][v]) {
+              dd[P][v] = dd[P][u] + w;
+              pp.push_back({u, v});
+            }
+            u = a[i].v, v = a[i].u, w = a[i].w;
+            if (dd[P][u] + w == d[P][v] && dd[P][u] + w < dd[P][v]) {
+              dd[P][v] = dd[P][u] + w;
+              pp.push_back({u, v});
+            }
+          }
+        }
+        for (auto [x, y] : pp) cout << x << ' ' << y << '\n';
+      } else {
+        d[n + 1][f1] = disu;
+        d[f1][n + 1] = disu;
+        d[n + 1][f2] = disv;
+        d[f2][n + 1] = disv;
+        a[m + 1].u = n + 1, a[m + 1].v = f1, a[m + 1].w = disu;
+        a[m + 2].u = n + 1, a[m + 2].v = f2, a[m + 2].w = disv;
+        n += 1;
+        m += 2;
+        floyd();
+        P = n;
+        for (int j = 1; j <= n; j++) {
+          for (int i = 1; i <= m; ++i) {
+            ll u = a[i].u, v = a[i].v, w = a[i].w;
+            if (dd[P][u] + w == d[P][v] && dd[P][u] + w < dd[P][v]) {
+              dd[P][v] = dd[P][u] + w;
+              pp.push_back({u, v});
+            }
+            u = a[i].v, v = a[i].u, w = a[i].w;
+            if (dd[P][u] + w == d[P][v] && dd[P][u] + w < dd[P][v]) {
+              dd[P][v] = dd[P][u] + w;
+              pp.push_back({u, v});
+            }
+          }
+        }
+        cout << f1 << ' ' << f2 << '\n';
+        for (auto [x, y] : pp)
+          if (x != n && y != n) cout << x << ' ' << y << '\n';
       }
     }
-    if (tn == 0) break;
-    f(i, 0, n) if (id[i] == -1) id[i] = tn++;
-    f(i, 0, m) {
-      u = e[i].s;
-      v = e[i].t;
-      e[i].s = id[u];
-      e[i].t = id[v];
-      if (e[i].s != e[i].t) e[i].w -= in[v];
+    void init() {
+      for (int i = 1; i <= 501; ++i)
+        for (int j = 1; j <= 501; ++j) d[i][j] = INF;
+      for (int i = 1; i <= 501; ++i) d[i][i] = 0;
     }
-    n = tn;
-    root = id[root];
-  }
-  return ans;
-}
-```
-
-## Tarjan 的 MDST 算法
-
-Tarjan 提出了一种能够在 $O(m+n\log n)$ 时间内解决最小树形图问题的算法。
-
-这里的算法描述以及参考代码基于 Uri Zwick 教授的课堂讲义，更多的细节可以参考原文。
-
-Tarjan 的算法分为 **收缩** 与 **伸展** 两个过程。接下来先介绍 **收缩** 的过程。
-
-我们需要假设输入的图是满足强连通的，如果不满足那么就加入 $O(n)$ 条边使其满足，并且这些边的边权是无穷大的。
-
-我们需要一个堆存储结点的入边编号，入边权值，结点总代价等相关信息，由于后续过程中会有堆的合并操作，这里采用 [左偏树](../ds/leftist-tree.md) 与 [并查集](../ds/dsu.md) 实现。算法的每一步都选择一个任意结点 $v$ ，需要保证 $v$ 不是根节点，并且在堆中没有它的入边。再将 $v$ 的最小入边加入到堆中，如果新加入的这条边使堆中的边形成了环，那么将构成环的那些结点收缩，我们不妨将这些已经收缩的结点命名为 **超级结点** ，再继续这个过程，如果所有的顶点都缩成了一个超级结点，那么收缩过程就结束了。整个收缩过程结束后会得到一棵收缩树，之后将对它进行伸展操作。
-
-堆中的边总是会形成一条路径 $v_0\leftarrow v_1\leftarrow \dots\leftarrow v_k$ ，由于图是强连通的，这个路径必然存在，并且其中的 $v_i$ 可能是最初的单一结点，也可能是压缩后的超级结点。
-
-最初有 $v_o=a$ ，其中 $a$ 是图中任意的一个结点，每一次选择一条最小入边 $v_k\leftarrow u$ ，如果 $u$ 不是 $v_0,v_1,\dots,v_k$ 中的一个结点，那么就将结点扩展到 $v_{k+1}=u$ 。如果 $u$ 是他们其中的一个结点 $v_i$ ，那么就找到了一个关于 $v_i\leftarrow\dots\leftarrow v_k\leftarrow v_i$ 的环，再将他们收缩为一个超级结点 $c$ 。
-
-向队列 $P$ 中放入所有的结点或超级结点，并初始选择任意一节点 $a$ ，只要队列不为空，就进行以下步骤：
-
-1. 选择 $a$ 的最小入边，保证不存在自环，并找到另一头的结点 $b$ 。如果结点 $b$ 没有被记录过说明未形成环，令 $a\leftarrow b$ ，继续当前操作寻找环。
-
-2. 如果 $b$ 被记录过了，就说明出现了环。总结点数加一，并将环上的所有结点重新编号，对堆进行合并，以及结点/超级结点的总权值的更新。更新权值操作就是将环上所有结点的入边都收集起来，并减去环上入边的边权。
-
-![mdst1](./images/mdst1.png)
-
-以图片为例，左边的强连通图在收缩后就形成了右边的一棵收缩树，其中 $a$ 是结点 1 与结点 2 收缩后的超级结点， $b$ 是结点 3，结点 4，结点 5 收缩后的超级结点， $A$ 是两个超级结点 $a$ 与 $b$ 收缩后形成的。
-
-伸展过程是相对简单的，以原先要求的根节点 $r$ 为起始点，对 $r$ 到收缩树的根上的每一个环进行伸展。再以 $r$ 的祖先结点 $f_r$ 为起始点，将其到根的环展开，直到遍历完所有的结点。
-
-### 代码
-
-```cpp
-#include <bits/stdc++.h>
-
-using namespace std;
-
-typedef long long ll;
-#define maxn 102
-#define INF 0x3f3f3f3f
-
-struct UnionFind {
-  int fa[maxn << 1];
-  UnionFind() { memset(fa, 0, sizeof(fa)); }
-  void clear(int n) { memset(fa + 1, 0, sizeof(int) * n); }
-  int find(int x) { return fa[x] ? fa[x] = find(fa[x]) : x; }
-  int operator[](int x) { return find(x); }
-};
-struct Edge {
-  int u, v, w, w0;
-};
-struct Heap {
-  Edge *e;
-  int rk, constant;
-  Heap *lch, *rch;
-  Heap(Edge *_e) : e(_e), rk(1), constant(0), lch(NULL), rch(NULL) {}
-  void push() {
-    if (lch) lch->constant += constant;
-    if (rch) rch->constant += constant;
-    e->w += constant;
-    constant = 0;
-  }
-};
-Heap *merge(Heap *x, Heap *y) {
-  if (!x) return y;
-  if (!y) return x;
-  if (x->e->w + x->constant > y->e->w + y->constant) swap(x, y);
-  x->push();
-  x->rch = merge(x->rch, y);
-  if (!x->lch || x->lch->rk < x->rch->rk) swap(x->lch, x->rch);
-  if (x->rch)
-    x->rk = x->rch->rk + 1;
-  else
-    x->rk = 1;
-  return x;
-}
-Edge *extract(Heap *&x) {
-  Edge *r = x->e;
-  x->push();
-  x = merge(x->lch, x->rch);
-  return r;
-}
-
-vector<Edge> in[maxn];
-int n, m, fa[maxn << 1], nxt[maxn << 1];
-Edge *ed[maxn << 1];
-Heap *Q[maxn << 1];
-UnionFind id;
-
-void contract() {
-  bool mark[maxn << 1];
-  // 将图上的每一个结点与其相连的那些结点进行记录。
-  for (int i = 1; i <= n; i++) {
-    queue<Heap *> q;
-    for (int j = 0; j < in[i].size(); j++) q.push(new Heap(&in[i][j]));
-    while (q.size() > 1) {
-      Heap *u = q.front();
-      q.pop();
-      Heap *v = q.front();
-      q.pop();
-      q.push(merge(u, v));
+    int main() {
+      init();
+      cin >> n >> m;
+      for (int i = 1; i <= m; ++i) {
+        ll u, v, w;
+        cin >> u >> v >> w;
+        w *= 2;
+        d[u][v] = w, d[v][u] = w;
+        a[i].u = u, a[i].v = v, a[i].w = w;
+      }
+      solve();
+      return 0;
     }
-    Q[i] = q.front();
-  }
-  mark[1] = true;
-  for (int a = 1, b = 1, p; Q[a]; b = a, mark[b] = true) {
-    //寻找最小入边以及其端点，保证无环。
-    do {
-      ed[a] = extract(Q[a]);
-      a = id[ed[a]->u];
-    } while (a == b && Q[a]);
-    if (a == b) break;
-    if (!mark[a]) continue;
-    // 对发现的环进行收缩，以及环内的结点重新编号，总权值更新。
-    for (a = b, n++; a != n; a = p) {
-      id.fa[a] = fa[a] = n;
-      if (Q[a]) Q[a]->constant -= ed[a]->w;
-      Q[n] = merge(Q[n], Q[a]);
-      p = id[ed[a]->u];
-      nxt[p == n ? b : p] = a;
-    }
-  }
-}
+    ```
 
-ll expand(int x, int r);
-ll expand_iter(int x) {
-  ll r = 0;
-  for (int u = nxt[x]; u != x; u = nxt[u]) {
-    if (ed[u]->w0 >= INF)
-      return INF;
-    else
-      r += expand(ed[u]->v, u) + ed[u]->w0;
-  }
-  return r;
-}
-ll expand(int x, int t) {
-  ll r = 0;
-  for (; x != t; x = fa[x]) {
-    r += expand_iter(x);
-    if (r >= INF) return INF;
-  }
-  return r;
-}
-void link(int u, int v, int w) { in[v].push_back({u, v, w, w}); }
+### 例题
 
-int main() {
-  int rt;
-  scanf("%d %d %d", &n, &m, &rt);
-  for (int i = 0; i < m; i++) {
-    int u, v, w;
-    scanf("%d %d %d", &u, &v, &w);
-    link(u, v, w);
-  }
-  // 保证强连通
-  for (int i = 1; i <= n; i++) link(i > 1 ? i - 1 : n, i, INF);
-  contract();
-  ll ans = expand(rt, n);
-  if (ans >= INF)
-    puts("-1");
-  else
-    printf("%lld\n", ans);
-  return 0;
-}
-```
+[SPOJ MDST](https://www.spoj.com/problems/MDST/)
+
+[timus 1569. Networking the "Iset"](https://acm.timus.ru/problem.aspx?space=1&num=1569)
+
+[SPOJ PT07C - The GbAaY Kingdom](https://www.spoj.com/problems/PT07C)
 
 ## 参考文献
 
-Uri Zwick. (2013), [Directed Minimum Spanning Trees](http://www.cs.tau.ac.il/~zwick/grad-algo-13/directed-mst.pdf) , Lecture notes on“Analysis of Algorithms”
-
- <https://riteme.site/blog/2018-6-18/mdst.html#_3> 
+[Play with Trees Solutions The GbAaY Kingdom](https://adn.botao.hu/adn-backup/blog/attachments/month_0705/32007531153238.pdf)

@@ -1,4 +1,4 @@
-author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy
+author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe
 
 ## 介绍
 
@@ -6,7 +6,7 @@ author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy
 >
 > Dev-C++ 是一个 SourceForge 的项目，是由 Colin Laplace 这位程序员及其公司 Bloodshed Software 所开始的。当前 Dev-C++ 一般用于撰写运行于 Microsoft Windows 的程序。Dev-C++ 一度有移植到 Linux 的项目但当前被暂停了。
 >
-> Bloodshed Dev-C++ 是一款全功能的 C 和 C++ 编程语言的集成开发环境（IDE）。它使用的 GCC MinGW 或 TDM-GCC 的 64 位版本作为它的编译器。DEV-C++ 也可以使用 Cygwin 或任何其他基于 GCC 编译器组合使用。
+> Bloodshed Dev-C++ 是一款全功能的 C 和 C++ 编程语言的集成开发环境（IDE）。它使用的 GCC MinGW 或 TDM-GCC 的 64 位版本作为它的编译器。Dev-C++ 也可以使用 Cygwin 或任何其他基于 GCC 编译器组合使用。
 >
 > 此外，Dev-C++ 较旧的版本无法在 win8 环境下编译。
 >
@@ -22,11 +22,13 @@ author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy
 
 以上摘自 Wikipedia[^2]。
 
-自 2011 年的 Dev-C++ 4.9.9.3 版本之后，你使用的版本均为 Orewell Dev-C++。
+自 2011 年的 Dev-C++ 4.9.9.3 版本之后，你使用的版本均为 Orwell Dev-C++。
 
-目前最新版本为 2015 年 4 月 27 日的 Dev-C++ 5.11 版本。
+目前最新版本为 2015 年 4 月 27 日的 Dev-C++ 5.11 版本，可于 [SourceForge](https://sourceforge.net/projects/orwelldevcpp/files/latest/download) 下载。
 
 该应用界面简洁友好，安装便捷，适合初学者使用。
+
+2020 年，Embarcadero 赞助并接手了原有的 Bloodshed Dev-C++ 项目，继续开发。项目地址位于 [GitHub](https://github.com/Embarcadero/Dev-Cpp) 和 [SourceForge](https://sourceforge.net/projects/embarcadero-devcpp/).
 
 ## 使用教程
 
@@ -34,54 +36,54 @@ author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy
 
 #### 文件部分
 
--  `Ctrl + N` : 创建源代码
--  `Ctrl + O` : 打开文件
--  `Ctrl + W` : 关闭文件
--  `Ctrl + P` : 打印文件
+- `Ctrl + N`: 创建源代码
+- `Ctrl + O`: 打开文件
+- `Ctrl + W`: 关闭文件
+- `Ctrl + P`: 打印文件
 
 #### 格式部分
 
--  `Ctrl + /` ：注释和取消注释
--  `Tab` : 缩进
--  `Shift + Tab` : 取消缩进
+- `Ctrl + /`：注释和取消注释
+- `Tab`: 缩进
+- `Shift + Tab`: 取消缩进
 
 #### 行操作
 
--  `Ctrl + E` : 复制行
--  `Ctrl + D` : 删除行
--  `Ctrl + Shift + Up` : 向上移动
--  `Ctrl + Shift + Down` : 向下移动
+- `Ctrl + E`: 复制行
+- `Ctrl + D`: 删除行
+- `Ctrl + Shift + Up`: 向上移动
+- `Ctrl + Shift + Down`: 向下移动
 
 #### 跳转部分
 
--  `Ctrl + F` : 搜索
--  `Ctrl + R` : 替换
--  `F3` : 搜索下一个
--  `Shift + F3` : 搜索上一个
--  `Ctrl + G` : 到指定行号
--  `Shift + Ctrl + G` : 到指定函数
--  `Ctrl +[1 ~ 9]` : 设置书签
--  `Alt +[1 ~ 9]` : 跳转书签
+- `Ctrl + F`: 搜索
+- `Ctrl + R`: 替换
+- `F3`: 搜索下一个
+- `Shift + F3`: 搜索上一个
+- `Ctrl + G`: 到指定行号
+- `Shift + Ctrl + G`: 到指定函数
+- `Ctrl +[1 ~ 9]`: 设置书签
+- `Alt +[1 ~ 9]`: 跳转书签
 
 #### 显示部分
 
--  `Ctrl + 滚轮` ：字号放大或缩小
--  `Ctrl + F11` : 全屏或恢复
+- `Ctrl + 滚轮`：字号放大或缩小
+- `Ctrl + F11`: 全屏或恢复
 
 #### 运行部分
 
--  `F9` : 只编译
--  `F10` : 只运行
--  `F11` : 编译并运行
--  `F12` : 全部重新编译
+- `F9`: 只编译
+- `F10`: 只运行
+- `F11`: 编译并运行
+- `F12`: 全部重新编译
 
 #### 调试部分
 
--  `F2` : 转到断点
--  `F4` : 设置断点或取消
--  `F5` : 调试运行
--  `F6` : 停止
--  `F7` : 逐步调试
+- `F2`: 转到断点
+- `F4`: 设置断点或取消
+- `F5`: 调试运行
+- `F6`: 停止
+- `F7`: 逐步调试
 
 ### 调试流程
 
@@ -186,6 +188,6 @@ freopen("test.out", "w", stdout);
 
 ## 参考资料
 
-[^1]:  [Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B) 
+[^1]: [Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B)
 
-[^2]:  [Orwell Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B) 
+[^2]: [Orwell Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B)
