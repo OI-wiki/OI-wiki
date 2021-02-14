@@ -146,7 +146,7 @@ $$
 ### 例子
 
 - 单位函数：$\epsilon(n)=[n=1]$（完全积性）
-- 恒等函数：$\operatorname{id}_k(n)=n^k$ $\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$。（完全积性）
+- 恒等函数：$\operatorname{id}_k(n)=n^k$ , $\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$。（完全积性）
 - 常数函数：$1(n)=1$（完全积性）
 - 除数函数：$\sigma_{k}(n)=\sum_{d\mid n}d^{k}$$\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$，$\sigma_{1}(n)$ 通常简记作 $\sigma(n)$。
 - 欧拉函数：$\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$
