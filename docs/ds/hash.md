@@ -92,15 +92,15 @@ private:
 	int values[N];
 public:
 	Hash(){
-		memset(values, 0, sizeof(values));
+		memset(values,0,sizeof(values));
 	}
 	int& operator [](int n){ // 返回一个指向对应 Hash[Key]的引用 修改成不为0的值 0时候视为空
-		int idx = (n%N + N)%N, cnt=1;
-		while(keys[idx]!=n && values[idx]!=0){
-			idx = (idx+cnt*cnt)%N;
-			cnt += 1;
+		int idx=(n%N+N)%N,cnt=1;
+		while(keys[idx]!=n&&values[idx]!=0){
+			idx=(idx+cnt*cnt)%N;
+			cnt+=1;
 		}
-		keys[idx] = n;
+		keys[idx]=n;
 		return values[idx];
 	}
 };
