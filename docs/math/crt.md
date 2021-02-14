@@ -96,13 +96,13 @@ a &\equiv a_k \pmod {p_k} \\
 \end{cases}
 $$
 
-我们可以用以下形式的式子（称作 $a$ 的混合基数表示）表示 $a$ ：
+我们可以用以下形式的式子（称作 $a$ 的混合基数表示）表示 $a$：
 
 $$
 a = x_1 + x_2 p_1 + x_3 p_1 p_2 + \ldots + x_k p_1 \ldots p_{k-1}
 $$
 
- **Garner 算法** 将用来计算系数 $x_1, \ldots, x_k$。
+**Garner 算法** 将用来计算系数 $x_1, \ldots, x_k$。
 
 令 $r_{ij}$ 为 $p_i$ 在模 $p_j$ 意义下的 [逆](./inverse.md)：
 
@@ -122,7 +122,7 @@ $$
 a_2 \equiv x_1 + x_2 p_1 \pmod{p_2}
 $$
 
-方程两边减 $x_1$ ，除 $p_1$ 后得
+方程两边减 $x_1$，除 $p_1$ 后得
 
 $$
 \begin{array}{rclr}
@@ -150,11 +150,11 @@ $$
     }
     ```
 
-该算法的时间复杂度为 $O(k^2)$ 。
+该算法的时间复杂度为 $O(k^2)$。
 
 ## 应用
 
-某些计数问题或数论问题出于加长代码、增加难度、或者是一些其他原因，给出的模数： **不是质数** ！
+某些计数问题或数论问题出于加长代码、增加难度、或者是一些其他原因，给出的模数：**不是质数**！
 
 但是对其质因数分解会发现它没有平方因子，也就是该模数是由一些不重复的质数相乘得到。
 
@@ -222,6 +222,6 @@ $$
 
 - [【模板】扩展中国剩余定理](https://www.luogu.com.cn/problem/P4777)
 - [「NOI2018」屠龙勇士](https://uoj.ac/problem/396)
-- [「TJOI2009」猜数字](https://www.luogu.com.cn/problem/P3868) 
+-   [「TJOI2009」猜数字](https://www.luogu.com.cn/problem/P3868)
 
- **本页面部分内容译自博文 [Китайская теорема об остатках](http://e-maxx.ru/algo/chinese_theorem) 与其英文翻译版 [Chinese Remainder Theorem](https://cp-algorithms.com/algebra/chinese-remainder-theorem.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+    **本页面部分内容译自博文 [Китайская теорема об остатках](http://e-maxx.ru/algo/chinese_theorem) 与其英文翻译版 [Chinese Remainder Theorem](https://cp-algorithms.com/algebra/chinese-remainder-theorem.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
