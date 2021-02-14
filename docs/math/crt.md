@@ -81,9 +81,80 @@ $$
 4. 七子团圆正 **半月**：$n_3=7, m_3=n/n_3=15, m_3^{-1}\equiv 1\pmod 7$，故 $c_3=15\times 1=15$；
 5. 所以方程组的唯一解为 $a\equiv 2\times 70+3\times 21+2\times 15\equiv 233\equiv 23 \pmod {105}$。（除 **百零五** 便得知）
 
+## Garner 算法
+
+CRT 的另一个用途是用一组比较小的质数表示一个大的整数。
+
+例如，若 $a$ 满足如下线性方程组，且 $a < \prod_{i=1}^k p_i$（其中 $p_i$ 为质数）：
+
+$$
+\begin{cases}
+a &\equiv a_1 \pmod {p_1} \\
+a &\equiv a_2 \pmod {p_2} \\
+  &\vdots \\
+a &\equiv a_k \pmod {p_k} \\
+\end{cases}
+$$
+
+我们可以用以下形式的式子（称作 $a$ 的混合基数表示）表示 $a$ ：
+
+$$
+a = x_1 + x_2 p_1 + x_3 p_1 p_2 + \ldots + x_k p_1 \ldots p_{k-1}
+$$
+
+ **Garner 算法** 将用来计算系数 $x_1, \ldots, x_k$。
+
+令 $r_{ij}$ 为 $p_i$ 在模 $p_j$ 意义下的 [逆](./inverse.md)：
+
+$$
+r_{ij} = (p_i)^{-1} \pmod{p_j}
+$$
+
+把 $a$ 代入我们得到的第一个方程：
+
+$$
+a_1 \equiv x_1 \pmod{p_1}
+$$
+
+代入第二个方程得出：
+
+$$
+a_2 \equiv x_1 + x_2 p_1 \pmod{p_2}
+$$
+
+方程两边减 $x_1$ ，除 $p_1$ 后得
+
+$$
+\begin{array}{rclr}
+a_2 - x_1 &\equiv& x_2 p_1 &\pmod{p_2} \\
+(a_2 - x_1) r_{12} &\equiv& x_2 &\pmod{p_2} \\
+x_2 &\equiv& (a_2 - x_1) r_{12} &\pmod{p_2}
+\end{array}
+$$
+
+类似地，我们可以得到：
+
+$$
+x_k=(...((a_k-x_1)r_{1k}-x_2)r_{2k})-...)r_{k-1k} \bmod p_k
+$$
+
+??? note "参考代码"
+    ```cpp
+    for (int i = 0; i < k; ++i) {
+      x[i] = a[i];
+      for (int j = 0; j < i; ++j) {
+        x[i] = r[j][i] * (x[i] - x[j]);
+        x[i] = x[i] % p[i];
+        if (x[i] < 0) x[i] += p[i];
+      }
+    }
+    ```
+
+该算法的时间复杂度为 $O(k^2)$ 。
+
 ## 应用
 
-某些计数问题或数论问题出于加长代码、增加难度、或者是一些其他不可告人的原因，给出的模数：**不是质数**！
+某些计数问题或数论问题出于加长代码、增加难度、或者是一些其他原因，给出的模数： **不是质数** ！
 
 但是对其质因数分解会发现它没有平方因子，也就是该模数是由一些不重复的质数相乘得到。
 
@@ -129,39 +200,6 @@ $$
 
 而计算一个组合数对较小的质数取模后的结果，可以利用 [卢卡斯定理](./lucas.md)。
 
-## 比较两 CRT 下整数
-
-考虑 CRT, 不妨假设 $n_1\leq n_2 \leq ... \leq n_k$
-
-$$
-\begin{cases}
-x &\equiv a_1 \pmod {n_1} \\
-x &\equiv a_2 \pmod {n_2} \\
-  &\vdots \\
-x &\equiv a_k \pmod {n_k} \\
-\end{cases}
-$$
-
-与 PMR(Primorial Mixed Radix) 表示
-
-$x=b_1+b_2n_1+b_3n_1n_2...+b_kn_1n_2...n_{k-1} ,b_i\in [0,n_i)$
-
-将数字转化到 PMR 下，逐位比较即可
-
-转化方法考虑依次对 PMR 取模
-
-$$
-\begin{aligned}
-b_1&=a_1 \bmod n_1\\
-b_2&=(a_2-b_1)c_{1,2} \bmod n_2\\
-b_3&=((a_3-b_1')c_{1,3}-x_2')c_{2,3} \bmod n_3\\
-&...\\
-b_k&=(...((a_k-b_1)c_{1,k}-b_2)c_{2,k})-...)c_{k-1,k} \bmod n_k
-\end{aligned}
-$$
-
-其中 $c_{i,j}$ 表示 $n_i$ 对 $n_j$ 的逆元，$c_{i,j}n_i \equiv 1 \pmod {n_j}$
-
 ## 扩展：模数不互质的情况
 
 ### 两个方程
@@ -178,10 +216,12 @@ $$
 
 ### 多个方程
 
-用上面的方法两两合并就可以了……
+用上面的方法两两合并即可。
 
-[【模板】扩展中国剩余定理](https://www.luogu.com.cn/problem/P4777)
+## 习题
 
-[「NOI2018」屠龙勇士](https://uoj.ac/problem/396)
+- [【模板】扩展中国剩余定理](https://www.luogu.com.cn/problem/P4777)
+- [「NOI2018」屠龙勇士](https://uoj.ac/problem/396)
+- [「TJOI2009」猜数字](https://www.luogu.com.cn/problem/P3868) 
 
-[「TJOI2009」猜数字](https://www.luogu.com.cn/problem/P3868)
+ **本页面部分内容译自博文 [Китайская теорема об остатках](http://e-maxx.ru/algo/chinese_theorem) 与其英文翻译版 [Chinese Remainder Theorem](https://cp-algorithms.com/algebra/chinese-remainder-theorem.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
