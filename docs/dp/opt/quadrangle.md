@@ -23,70 +23,70 @@ $$
 
 考虑对区间长度 $r_2 - l_1$ 使用数学归纳法（$r_2 - r_1 = 0$ 时，显然成立）。
 
--   $l_1 < l_2 = r_1 < r_2$（仅需要 $w$ 满足区间包含单调性））
+-   $l_1 < l_2 = r_1 < r_2$（证明过程需要 $w$ 满足区间包含单调性））
 
-    1.  若 $u < r_1$ 则 $f_{l_1, r_1} \leq f_{l_1, u} + f_{u + 1, r_1} + w(l_1, r_1)$，由归纳法 $f_{u + 1, r_1} + f_{l_2, r_2} \leq f_{u + 1, r_2} + f_{l_2, r_1}$，因此
+    1.  若 $u < r_1$ 则 $f_{l_1, r_1} \leq f_{l_1, u} + f_{u + 1, r_1} + w(l_1, r_1)$，由归纳法 $f_{u + 1, r_1} + f_{l_2, r_2} \leq f_{u + 1, r_2} + f_{l_2, r_1}$，两式相加再消去相同部分得到（下面最后一个不等式用到了 $w(l_1, r_1) < w(l_1, r_2)$）：
 
         $$
         f_{l_1, r_1} + f_{l_2, r_2} \leq f_{l_1, u} + f_{u + 1, r_2} + f_{l_2, r_1} + w(l_1, r_1) \leq f_{l_1, r_2} + f_{l_2, r_1}
         $$
 
-    2.  若 $u \geq r_1$ 则 $f(l_2, r_2) \leq f(l_2, u) + f(u + 1, r_2) + w(l_2, r_2)$ 由归纳法 $f(l_1, r_1) + f(l_2, u) \leq f(l_1, l_2) + f(r_1, u)$，因此
+    2.  若 $u \geq r_1$ 则 $f_{l_2, r_2} \leq f_{l_2, u} + f_{u + 1, r_2} + w(l_2, r_2)$ 由归纳法 $f_{l_1, r_1} + f_{l_2, u} \leq f_{l_1, u} + f_{l_2, r_1}$，两式相加再消去相同部分得到（下面最后一个不等式用到了 $w(l_2, r_2) < w(l_1, r_2)$）：
 
         $$
-        f_{l_1, r_1} + f_{l_2, r_2} \leq f_{l_1, r_1} + f_{l_2, r_2} + f_{u + 1, r_2} + f_{l_2, r_1} + w(l_1, r_1) \leq f_{l_1, r_2} + f_{l_2, r_1}
+        f_{l_1, r_1} + f_{l_2, r_2} \leq f_{l_1, u} + f_{l_2, r_1} + f_{u + 1, r_2} + w(l_2, r_2) \leq f_{l_1, r_2} + f_{l_2, r_1}
         $$
 
 - $l_1 < l_2 < r_1 < r_2$（仅需要 $w$ 满足四边形不等式）
 
-1.  若 $u\leq v$，则 $l_1\leq u< r_1,\ l_2\leq v< r_2$，因此
+    1.  若 $u\leq v$，则 $l_1\leq u< r_1,\ l_2\leq v< r_2$，因此
 
-    $$
-    \begin{aligned}
-        f_{l_1,r_1} \leq g_{u,l_1,r_1} &= f_{l_1,u} + f_{u+1,r_1} + w(l_1,r_1) \\
-        f_{l_2,r_2} \leq g_{v,l_2,r_2} &= f_{l_2,v} + f_{v+1,r_2} + w(l_2,r_2)
-    \end{aligned}
-    $$
+        $$
+        \begin{aligned}
+            f_{l_1,r_1} \leq g_{u,l_1,r_1} &= f_{l_1,u} + f_{u+1,r_1} + w(l_1,r_1) \\
+            f_{l_2,r_2} \leq g_{v,l_2,r_2} &= f_{l_2,v} + f_{v+1,r_2} + w(l_2,r_2)
+        \end{aligned}
+        $$
 
-    再由 $u+1 \leq v+1 \leq r_1 \leq r_2$ 和归纳假设知
+        再由 $u+1 \leq v+1 \leq r_1 \leq r_2$ 和归纳假设知
 
-    $$
-    f_{u+1,r_1} + f_{v+1,r_2} \leq f_{u+1,r_2} + f_{v+1,r_1}
-    $$
+        $$
+        f_{u+1,r_1} + f_{v+1,r_2} \leq f_{u+1,r_2} + f_{v+1,r_1}
+        $$
 
-    将前两个不等式累加，并将第三个不等式代入，可得
+        将前两个不等式累加，并将第三个不等式代入，可得
 
-    $$
-    \begin{aligned}
-        f_{l_1,r_1} + f_{l_2,r_2} & \leq f_{l_1,u} + f_{l_2,v} + f_{u+1,r_1} + f_{v+1,r_2} + w(l_1,r_1) + w(l_2,r_2) \\
+        $$
+        \begin{aligned}
+            f_{l_1,r_1} + f_{l_2,r_2} & \leq f_{l_1,u} + f_{l_2,v} + f_{u+1,r_1} + f_{v+1,r_2} + w(l_1,r_1) + w(l_2,r_2) \\
+            & \leq g_{u,l_1,r_2} + g_{v,l_2,r_1} = f_{l_1,r_2} + f_{l_2,r_1}
+        \end{aligned}
+        $$
+
+
+    2.  若 $v< u$，则 $l_1\leq v<r_1,l_2\leq u<r_2$，因此
+
+        $$
+        \begin{aligned}
+        f_{l_1,r_1} \leq g_{v,l_1,r_1} &= f_{l_1,v} + f_{v+1,r_1} + w(l_1,r_1) \\
+        f_{l_2,r_2} \leq g_{u,l_2,r_2} &= f_{l_2,u} + f_{u+1,r_2} + w(l_2,r_2)
+        \end{aligned}
+        $$
+
+        再由 $l_1 \leq l_2 \leq v \leq u$ 和归纳假设知
+
+        $$
+        f_{l_1,v} + f_{l_2,u} \leq f_{l_1,u} + f_{l_2,v}
+        $$
+
+        将前两个不等式累加，并将第三个不等式代入，可得
+
+        $$
+        \begin{aligned}
+        f_{l_1,r_1} + f_{l_2,r_2} & \leq f_{l_1,u} + f_{l_2,v} + f_{v+1,r_1} + f_{u+1,r_2} + w(l_1,r_2) + w(l_2,r_1) \\
         & \leq g_{u,l_1,r_2} + g_{v,l_2,r_1} = f_{l_1,r_2} + f_{l_2,r_1}
-    \end{aligned}
-    $$
-
-
-2.  若 $v< u$，则 $l_1\leq v<r_1,l_2\leq u<r_2$，因此
-
-    $$
-    \begin{aligned}
-    f_{l_1,r_1} \leq g_{v,l_1,r_1} &= f_{l_1,v} + f_{v+1,r_1} + w(l_1,r_1) \\
-    f_{l_2,r_2} \leq g_{u,l_2,r_2} &= f_{l_2,u} + f_{u+1,r_2} + w(l_2,r_2)
-    \end{aligned}
-    $$
-
-    再由 $l_1 \leq l_2 \leq v \leq u$ 和归纳假设知
-
-    $$
-    f_{l_1,v} + f_{l_2,u} \leq f_{l_1,u} + f_{l_2,v}
-    $$
-
-    将前两个不等式累加，并将第三个不等式代入，可得
-
-    $$
-    \begin{aligned}
-    f_{l_1,r_1} + f_{l_2,r_2} & \leq f_{l_1,u} + f_{l_2,v} + f_{v+1,r_1} + f_{u+1,r_2} + w(l_1,r_2) + w(l_2,r_1) \\
-    & \leq g_{u,l_1,r_2} + g_{v,l_2,r_1} = f_{l_1,r_2} + f_{l_2,r_1}
-    \end{aligned}
-    $$
+        \end{aligned}
+        $$
 
 综上所述，两种情形均有 $f_{l_1,r_1} + f_{l_2,r_2} \leq f_{l_1,r_2} + f_{l_2,r_1}$，即四边形不等式成立。
 
@@ -140,9 +140,7 @@ $$
 
 因此，如果在计算状态 $f_{l,r}$ 的同时将其最优决策点 $m_{l,r}$ 记录下来，那么我们对决策点 $k$ 的总枚举量将降为
 
-$$
- \sum_{1\leq l<r\leq n} m_{l, r} = n - 1 + \sum_{1\leq l + 1<r\leq n} m_{l+1,r} - m_{l,r-1} = n - 1 + \sum_{1 < i < n} m_{i,n} - m_{1,i} \leq n^2
-$$
+$$ \sum_{1\leq l<r\leq n} m_{l+1,r} - m_{l,r-1} = \sum_{i=1}^n m_{i,n} - m_{1,i}\leq n^2 $$
 
 ???+note "核心代码"
     ```cpp
