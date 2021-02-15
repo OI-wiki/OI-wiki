@@ -86,7 +86,7 @@ struct hash_map {  // 哈希表模板
 ### 闭散列法
 
 ```cpp
-const int N = 360007;  // N是最大可以存储的元素数量
+const int N = 360007;  // N 是最大可以存储的元素数量
 class Hash {
  private:
   int keys[N];
@@ -94,8 +94,9 @@ class Hash {
 
  public:
   Hash() { memset(values, 0, sizeof(values)); }
-  int& operator[](
-      int n) {  // 返回一个指向对应 Hash[Key]的引用 修改成不为0的值 0时候视为空
+  int& operator[](int n) { 
+    // 返回一个指向对应 Hash[Key] 的引用 
+    // 修改成不为 0 的值 0 时候视为空
     int idx = (n % N + N) % N, cnt = 1;
     while (keys[idx] != n && values[idx] != 0) {
       idx = (idx + cnt * cnt) % N;
