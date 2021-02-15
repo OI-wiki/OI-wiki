@@ -79,12 +79,12 @@ author: leoleoasd, yzxoi
 ### 例题 3
 
 ???+note "[AtCoder Grand Contest 032 B](https://atcoder.jp/contests/agc032/tasks/agc032_b)"
-    You are given an integer $N$. Build an undirected graph with $N$ vertices with indices $1$ to $N$ that satisfies the following two conditions:
+    给定一个整数 $N$，试构造一个节点数为 $N$ 无向图。令节点编号为 $1\ldots N$，要求其满足以下条件：
     
-    - The graph is simple and connected.
-    - There exists an integer $S$ such that, for every vertex, the sum of the indices of the vertices adjacent to that vertex is $S$.
+    - 这是一个简单连通图。
+    - 存在一个整数 $S$ 使得对于任意节点，与其相邻节点的下标和为 $S$。
     
-    It can be proved that at least one such graph exists under the constraints of this problem.
+    保证输入数据有解。
 
 ??? note "解题思路"
     手玩一下 $n=3,4,5$ 的情况，我们可以找到一个构造思路。
