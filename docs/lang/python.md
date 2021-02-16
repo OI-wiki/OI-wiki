@@ -52,7 +52,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 通常情况下，正如上文所说，大部分的 Linux 发行版中已经自带了 Python，如果您只打算学学语法并无特别需求，一般情况下不用再另外安装。通常而言，在 Linux 终端中运行 `python2` 进入的是 Python 2，而运行 `python3` 进入的是 Python 3。
 
-而由于种种依赖问题（如 CentOS 的 yum )，自行编译安装后通常还要处理种种问题，这已经超出了本文的讨论范畴。可以使用软件包管理器 Nix 来管理 Python、Python 工具链和 Python 软件包，这样不会出现依赖问题。
+而由于种种依赖问题（如 CentOS 的 yum )，自行编译安装后通常还要处理种种问题，这已经超出了本文的讨论范畴。可以使用 venv、conda、Nix 等工具来管理 Python、Python 工具链和 Python 软件包，避免出现依赖问题。
 
 而在这种情况下您一般能直接通过软件包管理器来进行安装，如在 Ubuntu 下安装 `Python 3`：
 
