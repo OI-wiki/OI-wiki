@@ -467,7 +467,7 @@ $\text{insert(r, c)}$ 表示在第 $r$ 行，第 $c$ 列插入一个结点。
 ```cpp
 void insert(const int &r, const int &c) {
   row[++idx] = r, col[idx] = c, ++siz[c];
-  U[idx] = D[idx] = c, U[D[c]] = idx, D[c] = idx;
+  U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
   if (!first[r])
     first[r] = L[idx] = R[idx] = idx;
   else {
