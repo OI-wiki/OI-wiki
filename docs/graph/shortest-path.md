@@ -206,6 +206,7 @@ while (!q.empty()) {
     - 栈优化：将队列换成栈（即将原来的 BFS 过程变成 DFS），在寻找负环时可能具有更高效率，但最坏时间复杂度仍然为指数级。
     - LLL 优化：将普通队列换成双端队列，每次将入队结点距离和队内距离平均值比较，如果更大则插入至队尾，否则插入队首。
     - SLF 优化：将普通队列换成双端队列，每次将入队结点距离和队首比较，如果更大则插入至队尾，否则插入队首。
+    - D´Esopo-Pape 算法：将普通队列换成双端队列，如果一个节点之前没有入队，则将其插入队尾，否则插入队首。
     
     更多优化以及针对这些优化的 Hack 方法，可以看 [fstqwq 在知乎上的回答](https://www.zhihu.com/question/292283275/answer/484871888)。
 
@@ -372,77 +373,15 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 
 这样，我们就证明了 Johnson 算法的正确性。
 
-## D´Esopo-Pape 算法
-
-在大部分的情况下 D´Esopo-Pape 算法比 Dijkstra 算法和 Bellman-Ford 算法要快一些，但在最差情况下该算法时间复杂度可达到指数级。和 Johnson 算法一样，该算法适用于无负环的负权图。该算法用于计算单源最短路。
-
-### 描述
-
-设 $d_i$ 表示起点 $s到点i$ 的最短路长度。初始时 $d_s = 0$，其他都设为无穷大。
-
-设 $p_i$ 表示点 i 在最短路树上的父亲。
-
-维护三个点集：
-
-- $M_0$- 已经计算出距离的点（即便不是最短距离）；
-- $M_1$- 正在计算距离的点；
-- $M_2$- 还没被计算距离的点。
-
-点集 $M_1$ 将采用双向队列来存储。
-
-每次我们从 $M_1$ 中取一个点 $u$，然后将点 $u$ 存入 $M_0$。然后我们遍历从 $u$ 出发的所有边。设另一端是点 $v$，权值为 $w$：
-
-- 如果 $v \in M_2$，将 $v$ 插入 $M_1$ 队尾，并更新 $d_v：d_v\gets d_u + w$。
-- 如果 $v \in M_1$，那我们就更新 $d_v$：$d_v = \min(d_v, d_u + w)$。
-- 如果 $v \in M_0$，并且 $d_v$ 可以被改进到 $d_v > d_u + w$，那么我们就更新 $d_v$，并将 $v$ 插入到 $M_1$ 的队首。
-
-当然，每次更新数组 $d$ 时，我们也必须更新 $p$ 数组中相应的元素。
-
-??? note "参考代码"
-    ```cpp
-    struct Edge {
-      int to, w;
-    };
-    int n;
-    vector<vector<Edge>> adj;
-    const int INF = 1e9;
-    void shortest_paths(int v0, vector<int>& d, vector<int>& p) {
-      d.assign(n, INF);
-      d[v0] = 0;
-      vector<int> m(n, 2);
-      deque<int> q;
-      q.push_back(v0);
-      p.assign(n, -1);
-      while (!q.empty()) {
-        int u = q.front();
-        q.pop_front();
-        m[u] = 0;
-        for (Edge e : adj[u]) {
-          if (d[e.to] > d[u] + e.w) {
-            d[e.to] = d[u] + e.w;
-            p[e.to] = u;
-            if (m[e.to] == 2) {
-              m[e.to] = 1;
-              q.push_back(e.to);
-            } else if (m[e.to] == 0) {
-              m[e.to] = 1;
-              q.push_front(e.to);
-            }
-          }
-        }
-      }
-    }
-    ```
-
 * * *
 
 ## 不同方法的比较
 
-| Floyd      | Bellman-Ford    | Dijkstra     | Johnson       | D´Esopo-Pape   |
-| ---------- | --------------- | ------------ | ------------- | -------------- |
-| 每对结点之间的最短路 | 单源最短路           | 单源最短路        | 每对结点之间的最短路    | 单源最短路          |
-| 没有负环的图     | 任意图（可以判定负环是否存在） | 非负权图         | 没有负环的图        | 没有负环的图         |
-| $O(N^3)$   | $O(NM)$         | $O(M\log M)$ | $O(NM\log M)$ | $O(N\cdot2^N)$ |
+| Floyd      | Bellman-Ford    | Dijkstra     | Johnson       |
+| ---------- | --------------- | ------------ | ------------- |
+| 每对结点之间的最短路 | 单源最短路           | 单源最短路        | 每对结点之间的最短路    |
+| 没有负环的图     | 任意图（可以判定负环是否存在） | 非负权图         | 没有负环的图        |
+| $O(N^3)$   | $O(NM)$         | $O(M\log M)$ | $O(NM\log M)$ |
 
 注：表中的 Dijkstra 算法在计算复杂度时均用 `priority_queue` 实现。
 
