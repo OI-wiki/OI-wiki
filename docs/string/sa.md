@@ -391,7 +391,7 @@ $lcp(sa[i],sa[j])=\min\{height[i+1..j]\}$
 
 若 $lcp(a, c)\ge\min(|A|, |B|)$，$A<B\iff |A|<|B|$。
 
-否则，$A<B\iff rk[a]< rk[b]$。
+否则，$A<B\iff rk[a]< rk[c]$。
 
 ### 不同子串的数目
 
