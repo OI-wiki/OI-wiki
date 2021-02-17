@@ -64,7 +64,7 @@ int main() {
 ```cpp
 const int N = 10000 + 10;
 
-int n, c, d = 0;
+int n, d = 0;
 int d1[N], d2[N];
 vector<int> E[N];
 
