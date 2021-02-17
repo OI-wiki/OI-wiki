@@ -436,7 +436,7 @@ origin
 
 执行 `git remote add <name> <url>` 命令可以添加一个名字为 `name` ，链接为 `url` 的远程仓库。
 
-执行 `git remote remame <oldname> <newname>` 可以将名字为 `oldname` 的远程仓库改名为 `newname` 。
+执行 `git remote rename <oldname> <newname>` 可以将名字为 `oldname` 的远程仓库改名为 `newname` 。
 
 执行 `git remote rm <name>` 可以删除名字为 `name` 的远程仓库。
 
