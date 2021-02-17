@@ -5,7 +5,7 @@ author: Marcythm, zyf0726, hsfzLZH1, MingqiHuang, Ir1d, greyqz, billchenchina, C
 在区间类动态规划（如石子合并问题）中，我们经常遇到以下形式的 2D1D 状态转移方程：
 
 $$
-f_{l,r} = \min_{k=l}^{r-1}\{f_{l,k}+f_{k+1,r}\} + w(l,r)\qquad\left(1 \leq l \leq r \leq n\right)
+f_{l,r} = \min_{k=l}^{r-1}\{f_{l,k}+f_{k+1,r}\} + w(l,r)\qquad\left(1 \leq l < r \leq n\right)
 $$
 
 直接简单实现状态转移，总时间复杂度将会达到 $O(n^3)$，但当函数 $w(l,r)$ 满足一些特殊的性质时，我们可以利用决策的单调性进行优化。
@@ -13,67 +13,87 @@ $$
 - **区间包含单调性**：如果对于任意 $l \leq l' \leq r' \leq r$，均有 $w(l',r') \leq w(l,r)$ 成立，则称函数 $w$ 对于区间包含关系具有单调性。
 - **四边形不等式**：如果对于任意 $l_1\leq l_2 \leq r_1 \leq r_2$，均有 $w(l_1,r_1)+w(l_2,r_2) \leq w(l_1,r_2) + w(l_2,r_1)$ 成立，则称函数 $w$ 满足四边形不等式（简记为“交叉小于包含”）。若等号永远成立，则称函数 $w$ 满足 **四边形恒等式**。
 
-**引理 1**：若满足关于区间包含的单调性的函数 $w(l, r)$ 满足区间包含单调性和四边形不等式，则状态 $f_{l,r}$ 也满足四边形不等式。
+**引理 1**：若 $w(l, r)$ 满足区间包含单调性和四边形不等式，则状态 $f_{l,r}$ 满足四边形不等式。
 
-考虑对区间长度使用数学归纳法。
+定义 $g_{k,l,r}=f_{l,k}+f_{k+1,r}+w(l,r)$ 表示当决策为 $k$ 时的状态值，任取 $l_1\leq l_2\leq r_1\leq r_2$，记 $u=\mathop{\arg\min}\limits_{l_1\leq k < r_2}g_{k,l_1,r_2},v=\mathop{\arg\min}\limits_{l_2\leq k < r_1}g_{k,l_2,r_1}$ 分别表示状态 $f_{l_1,r_2}$ 和 $f_{l_2,r_1}$ 的最小最优决策点。
 
-定义 $g_{k,l,r}=f_{l,k}+f_{k+1,r}+w(l,r)$ 表示当决策为 $k$ 时的状态值，任取 $l_1\leq l_2\leq r_1\leq r_2$，记 $u=\mathop{\arg\min}\limits_{l_1\leq k < r_2}g_{k,l_1,r_2},v=\mathop{\arg\min}\limits_{l_2\leq k < r_1}g_{k,l_2,r_1}$ 分别表示状态 $f_{l_1,r_2}$ 和 $f_{l_2,r_1}$ 的最优决策点。
+> 注意到，仅当 $l_2 < r_1$ 时 $v$ 才有意义。因此我们有必要单独考虑 $l_2 = r_1$ 的情形。
 
-1.  若 $u\leq v$，则 $l_1\leq u< r_1,\ l_2\leq v< r_2$，因此
+首先注意到若 $l_1 = l_2$ 或 $r_1 = r_2$ 时，显然成立。
 
-    $$
-    \begin{aligned}
-    	f_{l_1,r_1} \leq g_{u,l_1,r_1} &= f_{l_1,u} + f_{u+1,r_1} + w(l_1,r_1) \\
-    	f_{l_2,r_2} \leq g_{v,l_2,r_2} &= f_{l_2,v} + f_{v+1,r_2} + w(l_2,r_2)
-    \end{aligned}
-    $$
+考虑对区间长度 $r_2 - l_1$ 使用数学归纳法（$r_2 - r_1 = 0$ 时，显然成立）。
 
-    再由 $u+1 \leq v+1 \leq r_1 \leq r_2$ 和归纳假设知
+-   $l_1 < l_2 = r_1 < r_2$（证明过程需要 $w$ 满足区间包含单调性）
 
-    $$
-    f_{u+1,r_1} + f_{v+1,r_2} \leq f_{u+1,r_2} + f_{v+1,r_1}
-    $$
+    1.  若 $u < r_1$ 则 $f_{l_1, r_1} \leq f_{l_1, u} + f_{u + 1, r_1} + w(l_1, r_1)$，由归纳法 $f_{u + 1, r_1} + f_{l_2, r_2} \leq f_{u + 1, r_2} + f_{l_2, r_1}$，两式相加再消去相同部分得到（下面最后一个不等式用到了 $w(l_1, r_1) < w(l_1, r_2)$）：
 
-    将前两个不等式累加，并将第三个不等式代入，可得
+        $$
+        f_{l_1, r_1} + f_{l_2, r_2} \leq f_{l_1, u} + f_{u + 1, r_2} + f_{l_2, r_1} + w(l_1, r_1) \leq f_{l_1, r_2} + f_{l_2, r_1}
+        $$
 
-    $$
-    \begin{aligned}
-    	f_{l_1,r_1} + f_{l_2,r_2} & \leq f_{l_1,u} + f_{l_2,v} + f_{u+1,r_2} + f_{v+1,r_1} + w(l_1,r_2) + w(l_2,r_1) \\
-    	& \leq g_{u,l_1,r_2} + g_{v,l_2,r_1} = f_{l_1,r_2} + f_{l_2,r_1}
-    \end{aligned}
-    $$
+    2.  若 $u \geq r_1$ 则 $f_{l_2, r_2} \leq f_{l_2, u} + f_{u + 1, r_2} + w(l_2, r_2)$ 由归纳法 $f_{l_1, r_1} + f_{l_2, u} \leq f_{l_1, u} + f_{l_2, r_1}$，两式相加再消去相同部分得到（下面最后一个不等式用到了 $w(l_2, r_2) < w(l_1, r_2)$）：
+
+        $$
+        f_{l_1, r_1} + f_{l_2, r_2} \leq f_{l_1, u} + f_{l_2, r_1} + f_{u + 1, r_2} + w(l_2, r_2) \leq f_{l_1, r_2} + f_{l_2, r_1}
+        $$
+
+-   $l_1 < l_2 < r_1 < r_2$（仅需要 $w$ 满足四边形不等式）
+
+    1.  若 $u\leq v$，则 $l_1\leq u< r_1,\ l_2\leq v< r_2$，因此
+
+        $$
+        \begin{aligned}
+            f_{l_1,r_1} \leq g_{u,l_1,r_1} &= f_{l_1,u} + f_{u+1,r_1} + w(l_1,r_1) \\
+            f_{l_2,r_2} \leq g_{v,l_2,r_2} &= f_{l_2,v} + f_{v+1,r_2} + w(l_2,r_2)
+        \end{aligned}
+        $$
+
+        再由 $u+1 \leq v+1 \leq r_1 \leq r_2$ 和归纳假设知
+
+        $$
+        f_{u+1,r_1} + f_{v+1,r_2} \leq f_{u+1,r_2} + f_{v+1,r_1}
+        $$
+
+        将前两个不等式累加，并将第三个不等式代入，可得
+
+        $$
+        \begin{aligned}
+            f_{l_1,r_1} + f_{l_2,r_2} & \leq f_{l_1,u} + f_{l_2,v} + f_{u+1,r_1} + f_{v+1,r_2} + w(l_1,r_1) + w(l_2,r_2) \\
+            & \leq g_{u,l_1,r_2} + g_{v,l_2,r_1} = f_{l_1,r_2} + f_{l_2,r_1}
+        \end{aligned}
+        $$
 
 
-2.  若 $v< u$，则 $l_1\leq v<r_1,l_2\leq u<r_2$，因此
+    2.  若 $v< u$，则 $l_1\leq v<r_1,l_2\leq u<r_2$，因此
 
-    $$
-    \begin{aligned}
-    f_{l_1,r_1} \leq g_{v,l_1,r_1} &= f_{l_1,v} + f_{v+1,r_1} + w(l_1,r_1) \\
-    f_{l_2,r_2} \leq g_{u,l_2,r_2} &= f_{l_2,u} + f_{u+1,r_2} + w(l_2,r_2)
-    \end{aligned}
-    $$
+        $$
+        \begin{aligned}
+        f_{l_1,r_1} \leq g_{v,l_1,r_1} &= f_{l_1,v} + f_{v+1,r_1} + w(l_1,r_1) \\
+        f_{l_2,r_2} \leq g_{u,l_2,r_2} &= f_{l_2,u} + f_{u+1,r_2} + w(l_2,r_2)
+        \end{aligned}
+        $$
 
-    再由 $l_1 \leq l_2 \leq v \leq u$ 和归纳假设知
+        再由 $l_1 \leq l_2 \leq v \leq u$ 和归纳假设知
 
-    $$
-    f_{l_1,v} + f_{l_2,u} \leq f_{l_1,u} + f_{l_2,v}
-    $$
+        $$
+        f_{l_1,v} + f_{l_2,u} \leq f_{l_1,u} + f_{l_2,v}
+        $$
 
-    将前两个不等式累加，并将第三个不等式代入，可得
+        将前两个不等式累加，并将第三个不等式代入，可得
 
-    $$
-    \begin{aligned}
-    f_{l_1,r_1} + f_{l_2,r_2} & \leq f_{l_1,u} + f_{l_2,v} + f_{v+1,r_1} + f_{u+1,r_2} + w(l_1,r_2) + w(l_2,r_1) \\
-    & \leq g_{u,l_1,r_2} + g_{v,l_2,r_1} = f_{l_1,r_2} + f_{l_2,r_1}
-    \end{aligned}
-    $$
+        $$
+        \begin{aligned}
+        f_{l_1,r_1} + f_{l_2,r_2} & \leq f_{l_1,u} + f_{l_2,v} + f_{v+1,r_1} + f_{u+1,r_2} + w(l_1,r_2) + w(l_2,r_1) \\
+        & \leq g_{u,l_1,r_2} + g_{v,l_2,r_1} = f_{l_1,r_2} + f_{l_2,r_1}
+        \end{aligned}
+        $$
 
-综上所述，两种情况均有 $f_{l_1,r_1} + f_{l_2,r_2} \leq f_{l_1,r_2} + f_{l_2,r_1}$，即四边形不等式成立。
+综上所述，两种情形均有 $f_{l_1,r_1} + f_{l_2,r_2} \leq f_{l_1,r_2} + f_{l_2,r_1}$，即四边形不等式成立。
 
 **定理 1**：若状态 $f$ 满足四边形不等式，记 $m_{l,r}=\min\{k:f_{l,r} = g_{k,l,r}\}$ 表示最优决策点，则有
 
 $$
-m_{l,r-1} \leq m_{l,r} \leq m_{l+1,r}
+m_{l,r-1} \leq m_{l,r} \leq m_{l+1,r} \qquad (l + 1 < r)
 $$
 
 记 $u = m_{l,r},\ k_1=m_{l,r-1},\ k_2=m_{l+1,r}$，分情况讨论：
@@ -147,6 +167,8 @@ f_{i,j} = \min_{k \leq j}\{f_{i-1,k}\} + w(k,j)\qquad\left(1 \leq i \leq n,1 \le
 $$
 
 总共有 $n \times m$ 个状态，每个状态有 $O(m)$ 个决策，上述 dp 问题的时间复杂度就是 $O(n m^2)$。
+
+> 实际上此形式也有同样的结论，可以在 $O(n m)$ 复杂度解决，读者可以模仿 2D1D 类似的给出证明。
 
 令 $opt(i, j)$ 为使上述表达式最小化的 $k$ 的值。如果对于所有的 $i, j$ 都有 $opt(i, j) \leq opt(i, j + 1)$，那么我们就可以用分治法来优化 dp 问题。
 
@@ -249,10 +271,10 @@ $$
 除了经典的石子合并问题外，四边形不等式的性质在一类 1D1D 动态规划中也能得出决策单调性，从而优化状态转移的复杂度。考虑以下状态转移方程：
 
 $$
-f_{r} = \min_{l=1}^{r-1}\{f_{l}+w(l,r)\}\qquad\left(1 \leq r \leq n\right)
+f_{r} = \min_{l=1}^{r-1}\{f_{l}+w(l,r)\}\qquad\left(1 < r \leq n\right)
 $$
 
-**定理 2**：若函数 $w(l,r)$ 满足四边形不等式，记 $h_{l,r}=f_l+w(l,r)$ 表示从 $l$ 转移过来的状态 $r$，$k_{r}=\min\{l|f_{r}=h_{l,r}\}$ 表示最优决策点，则有
+**定理 2**：若函数 $w(l,r)$ 满足四边形不等式，记 $h_{l,r}=f_l+w(l,r)$ 表示从 $l$ 转移过来的状态 $r$,$k_{r}=\min\{l|f_{r}=h_{l,r}\}$ 表示最小最优决策点，则有
 
 $$
 \forall r_1 \leq r_2:k_{r_1} \leq k_{r_2}
@@ -357,8 +379,8 @@ $$
 
 $$
 \begin{aligned}
-	h(w(l_1,r_1)) - h(w(l_2,r_1)) & \leq  h(w(l_2,r_1)+t) - h(w(l_2,r_1)) \\
-	h(w(l_1,r_2)) - h(w(l_2,r_2)) & = h(w(l_2,r_2)+t) - h(w(l_2,r_2))
+    h(w(l_1,r_1)) - h(w(l_2,r_1)) & \leq  h(w(l_2,r_1)+t) - h(w(l_2,r_1)) \\
+    h(w(l_1,r_2)) - h(w(l_2,r_2)) & = h(w(l_2,r_2)+t) - h(w(l_2,r_2))
 \end{aligned}
 $$
 
@@ -367,7 +389,7 @@ $$
 $$
 \begin{aligned}
 h(w(l_1,r_1)) - h(w(l_2,r_1)) & \leq \Delta h(w(l_2,r_1)) \\
-	& \leq \Delta h(w(l_2,r_2)) = h(w(l_1,r_2)) - h(w(l_2,r_2))
+    & \leq \Delta h(w(l_2,r_2)) = h(w(l_1,r_2)) - h(w(l_2,r_2))
 \end{aligned}
 $$
 

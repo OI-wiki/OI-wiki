@@ -123,10 +123,10 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ## CP Editor
 
-官网：[CP Editor](https://cpeditor.org)
+官网：[CP Editor](https://cpeditor.org/zh)
 
-CP Editor 是一款专门为算法竞赛（Competitive Programming）设计的轻量级跨平台自由软件 IDE，有自动获取网页上的样例，一键编译运行并测试样例，在 IDE 内提交至 Codeforces 等功能。
+CP Editor 是一款专为算法竞赛（Competitive Programming）设计的轻量级 IDE，支持 Linux/Windows/macOS，是自由软件，有自动获取网页上的样例，一键编译运行并测试样例，在 IDE 内提交至 Codeforces 等功能。
 
-源码托管在 [cpeditor/cpeditor](https://github.com/cpeditor/cpeditor) 上，另有 [Gitee 镜像](https://gitee.com/ouuan/cpeditor)（同步自 GitHub，不一定是最新的）。
+源码托管在 [GitHub](https://github.com/cpeditor/cpeditor) 上，另有 [Gitee 镜像](https://gitee.com/ouuan/cpeditor)（同步自 GitHub）。
 
-下载链接：[GitHub Releases](https://github.com/cpeditor/cpeditor/releases) 或 [Gitee 发行版](https://gitee.com/ouuan/cpeditor/releases)
+下载链接：[GitHub Releases](https://github.com/cpeditor/cpeditor/releases) 或 [Gitee 发行版](https://gitee.com/ouuan/cpeditor/releases)。
