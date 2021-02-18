@@ -89,10 +89,10 @@ CRT 的另一个用途是用一组比较小的质数表示一个大的整数。
 
 $$
 \begin{cases}
-a &\equiv& a_1 \pmod {p_1} \\
-a &\equiv& a_2 \pmod {p_2} \\
-  &\vdots& \\
-a &\equiv& a_k \pmod {p_k} \\
+a &\equiv a_1 \pmod {p_1} \\
+a &\equiv a_2 \pmod {p_2} \\
+  &\vdots \\
+a &\equiv a_k \pmod {p_k} \\
 \end{cases}
 $$
 
