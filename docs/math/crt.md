@@ -52,14 +52,14 @@ return ans
 
 我们需要证明上面算法计算所得的 $a$ 对于任意 $i=1,2,\cdots,k$ 满足 $a\equiv a_i \pmod {n_i}$。
 
-当 $i\neq j$ 时，有 $m_j\equiv 0 \pmod {n_i}$，故 $c_j\equiv m_j\equiv 0 \pmod {n_i}$。又有 $c_i\equiv m_i(m_i^{-1}\bmod {n_i})\equiv 1 \pmod {n_i}$，所以我们有：
+当 $i\neq j$ 时，有 $m_j \equiv 0 \pmod {n_i}$，故 $c_j \equiv m_j \equiv 0 \pmod {n_i}$。又有 $c_i \equiv m_i \cdot (m_i^{-1} \bmod {n_i}) \equiv 1 \pmod {n_i}$，所以我们有：
 
 $$
 \begin{aligned}
-a&\equiv \sum_{j=1}^k a_jc_j        &\pmod {n_i} \\
- &\equiv a_ic_i                     &\pmod {n_i} \\
- &\equiv a_im_i(m^{-1}_i \bmod n_i) &\pmod {n_i} \\
- &\equiv a_i                        &\pmod {n_i}
+a&\equiv \sum_{j=1}^k a_jc_j                      &\pmod {n_i} \\
+ &\equiv a_ic_i                                   &\pmod {n_i} \\
+ &\equiv a_i \cdot m_i \cdot (m^{-1}_i \bmod n_i) &\pmod {n_i} \\
+ &\equiv a_i                                      &\pmod {n_i}
 \end{aligned}
 $$
 
@@ -107,7 +107,7 @@ $$
 令 $r_{ij}$ 为 $p_i$ 在模 $p_j$ 意义下的 [逆](./inverse.md)：
 
 $$
-r_{ij} = (p_i)^{-1} \pmod{p_j}
+p_i \cdot r_{i,j} \equiv 1 \pmod{p_j}
 $$
 
 把 $a$ 代入我们得到的第一个方程：
@@ -126,16 +126,16 @@ $$
 
 $$
 \begin{array}{rclr}
-a_2 - x_1 &\equiv& x_2 p_1 &\pmod{p_2} \\
-(a_2 - x_1) r_{12} &\equiv& x_2 &\pmod{p_2} \\
-x_2 &\equiv& (a_2 - x_1) r_{12} &\pmod{p_2}
+a_2 - x_1           &\equiv& x_2 p_1             &\pmod{p_2} \\
+(a_2 - x_1) r_{1,2} &\equiv& x_2                 &\pmod{p_2} \\
+x_2                 &\equiv& (a_2 - x_1) r_{1,2} &\pmod{p_2}
 \end{array}
 $$
 
 类似地，我们可以得到：
 
 $$
-x_k=(...((a_k-x_1)r_{1k}-x_2)r_{2k})-...)r_{k-1k} \bmod p_k
+x_k=(...((a_k-x_1)r_{1,k}-x_2)r_{2,k})-...)r_{k-1,k} \bmod p_k
 $$
 
 ??? note "参考代码"
