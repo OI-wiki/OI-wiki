@@ -59,11 +59,12 @@ C 标准库是在对字符数组进行操作
 C++ 标准库是在对字符串对象进行操作，同时也提供对字符数组的兼容。
 
 ### `std::string`
-- `substr(start,len)`可以从字符串的start(从0开始)截取一个长度为len的字符串(缺省len时代码截取到字符串末尾)
-- 重载了赋值运算符`+`，当`+`两边是`string/char/char[]/const char*`类型时，可以将这两个变量连接，返回连接后的字符串(`string`)
+
+- `substr(start,len)` 可以从字符串的 start（从 0 开始）截取一个长度为 len 的字符串（缺省 len 时代码截取到字符串末尾）
+- 重载了赋值运算符 `+`，当 `+` 两边是 `string/char/char[]/const char*` 类型时，可以将这两个变量连接，返回连接后的字符串（`string`)
 - 赋值运算符 `=` 右侧可以是 `const string/string/const char*/char*`。
 - 访问运算符 `[cur]` 返回 `cur` 位置的引用。
 - 访问函数 `data()/c_str()` 返回一个 `const char*` 指针，内容与该 `string` 相同。
 - 容量函数 `size()` 返回字符串字符个数。
-- `find(char,start=0)` 找到并返回从start开始的char字符位置;`rfind(char)`从末尾开始，找到并返回第一个找到的char字符的位置(都从0开始)
+- `find(char,start=0)` 找到并返回从 start 开始的 char 字符位置；`rfind(char)` 从末尾开始，找到并返回第一个找到的 char 字符的位置（都从 0 开始）
 - `std :: string` 重载了比较逻辑运算符，复杂度是 $\Theta(N)$ 的。
