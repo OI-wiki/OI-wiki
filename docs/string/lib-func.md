@@ -60,9 +60,11 @@ C++ 标准库是在对字符串对象进行操作，同时也提供对字符数�
 
 ### `std::string`
 
+- `substr(start, len)` 可以从字符串的 `start`（从 $0$ 开始）截取一个长度为 `len` 的字符串（缺省 `len` 时代码截取到字符串末尾）
+- 重载了赋值运算符 `+`，当 `+` 两边是 `string/char/char[]/const char*` 类型时，可以将这两个变量连接，返回连接后的字符串（`string`)
 - 赋值运算符 `=` 右侧可以是 `const string/string/const char*/char*`。
 - 访问运算符 `[cur]` 返回 `cur` 位置的引用。
 - 访问函数 `data()/c_str()` 返回一个 `const char*` 指针，内容与该 `string` 相同。
 - 容量函数 `size()` 返回字符串字符个数。
-- 还有一些其他的函数如 `find()` 找到并返回某字符位置。
-- `std :: string` 重载了比较逻辑运算符，复杂度是 $\Theta(N)$ 的。
+- `find(ch, start = 0)` 查找并返回从 `start` 开始的字符 `ch` 的位置；`rfind(ch)` 从末尾开始，查找并返回第一个找到的字符 `ch` 的位置（皆从 $0$ 开始）。
+- `std::string` 重载了比较逻辑运算符，复杂度是 $\Theta(N)$ 的。
