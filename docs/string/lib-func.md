@@ -60,7 +60,7 @@ C++ 标准库是在对字符串对象进行操作，同时也提供对字符数�
 
 ### `std::string`
 
-- `substr(start,len)` 可以从字符串的 start（从 0 开始）截取一个长度为 len 的字符串（缺省 len 时代码截取到字符串末尾）
+- `substr(start,len)` 可以从字符串的 `start`（从 $0$ 开始）截取一个长度为 `len` 的字符串（缺省 `len` 时代码截取到字符串末尾）
 - 重载了赋值运算符 `+`，当 `+` 两边是 `string/char/char[]/const char*` 类型时，可以将这两个变量连接，返回连接后的字符串（`string`)
 - 赋值运算符 `=` 右侧可以是 `const string/string/const char*/char*`。
 - 访问运算符 `[cur]` 返回 `cur` 位置的引用。
