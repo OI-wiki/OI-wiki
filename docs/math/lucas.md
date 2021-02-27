@@ -112,9 +112,6 @@ $$\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor +\lfloor m/p^j\rfloor 
 
 ???+note "代码实现"
     ```cpp
-    #ifndef LOCAL
-    #define NDEBUG
-    #endif
     #include <algorithm>
     #include <cassert>
     #include <cstring>
@@ -221,9 +218,6 @@ $$\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor +\lfloor m/p^j\rfloor 
     }
 
     int main() {
-    #ifdef LOCAL
-      std::freopen("..\\in", "r", stdin), std::freopen("..\\out", "w", stdout);
-    #endif
       std::ios::sync_with_stdio(false);
       std::cin.tie(0);
       ll n, m, k;
