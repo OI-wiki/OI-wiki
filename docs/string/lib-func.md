@@ -6,7 +6,7 @@ author: Frankaiyou, henrytbtrue, zymooll
 
 C 标准库是在对字符数组进行操作。
 
-\###`char[]`/`const char*`
+### `char[]`/`const char*`
 
 - `strlen(const char *str)`：返回从 `str[0]` 开始直到 `'\0'` 的字符数。注意，未开启 O2 优化时，该操作写在循环条件中复杂度是 $\Theta(N)$ 的。
 - `printf("%s", s)`：用 `%s` 来输出一个字符串（字符数组）。
