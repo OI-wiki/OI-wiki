@@ -84,7 +84,7 @@ $$
 
     令 $m=p^rm'$，则 $\gcd(p,m')=1$，所以 $p^{\varphi(m')}\equiv 1\pmod{m'}$
 
-    又由于 $\gcd(p^r,m')=1$，所以 $\varphi(m') \mid \varphi(m)$，所以 $p^{\varphi(m)}\equiv 1 \pmod {m'}$，即 $p^\varphi(m)=km'+1$，两边同时乘以 $p^r$，得 $p^{r+\varphi(m)}=km+p^r$（因为 $m=p^rm'$）
+    又由于 $\gcd(p^r,m')=1$，所以 $\varphi(m') \mid \varphi(m)$，所以 $p^{\varphi(m)}\equiv 1 \pmod {m'}$，即 $p^{\varphi(m)}=km'+1$，两边同时乘以 $p^r$，得 $p^{r+\varphi(m)}=km+p^r$（因为 $m=p^rm'$）
 
     所以 $p^r\equiv p^{r+s}\pmod m$，这里 $s=\varphi(m)$
 
