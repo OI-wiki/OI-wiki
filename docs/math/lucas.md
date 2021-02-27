@@ -67,7 +67,7 @@ Legengre 在 1808 年指出 $n!$ 中含有的素数 $p$ 的幂次为 $\sum_{j\ge
 
 Wilson 定理：对于素数 $p$ 有 $(p-1)!\equiv -1\pmod p$。
 
-证明：我们知道在模奇素数 $p$ 意义下， $1,2,\dots ,p-1$ 都存在逆元且唯一，那么只需要将一个数与其逆元配对发现其乘积均为（同余意义下）$1$，但前提是这个数的逆元不等于自身。那么很显然 $(p-1)!\bmod p$ 就是逆元等于其自身的数的乘积，这两个数为 $\pm 1$。在 $p$ 为 $2$ 时单独讨论即可。
+证明：我们知道在模奇素数 $p$ 意义下，$1,2,\dots ,p-1$ 都存在逆元且唯一，那么只需要将一个数与其逆元配对发现其乘积均为（同余意义下）$1$，但前提是这个数的逆元不等于自身。那么很显然 $(p-1)!\bmod p$ 就是逆元等于其自身的数的乘积，这两个数为 $\pm 1$。在 $p$ 为 $2$ 时单独讨论即可。
 
 Wilson 定理指出 $(p!)_p=(p-1)!\equiv -1\pmod p$ 且可被推广至模素数 $p$ 的幂次。
 
@@ -77,14 +77,13 @@ Wilson 定理的推广：对于素数 $p$ 和正整数 $q$ 有 $(p^q!)_p\equiv \
 
 至此我们对 Wilson 定理的推广中的 $\pm 1$ 有了详细的定义即
 
-$$(p^q!)_p\equiv \begin{cases}1&\text{if }p=2\text{ and }q\geq 3,\\-1&\text{otherwise.}\end{cases}$$
+$(p^q!)_p\equiv \begin{cases}1&\text{if }p=2\text{ and }q\geq 3,\\-1&\text{otherwise.}\end{cases}$
 
-推论 1 ：对于素数 $p$、正整数 $q$、非负整数 $n$ 和 
-$N_0=n\bmod{p^q}$ 有 $(n!)_p\equiv (\pm 1)^{\lfloor n/{p^q}\rfloor}(N_0!)_p\pmod{p^q}$。
+推论 1：对于素数 $p$、正整数 $q$、非负整数 $n$ 和 $N_0=n\bmod{p^q}$ 有 $(n!)_p\equiv (\pm 1)^{\lfloor n/{p^q}\rfloor}(N_0!)_p\pmod{p^q}$。
 
 证明：令 $\displaystyle \prod '$ 表示不能被 $p$ 整除的数的乘积，有
 
-$$\begin{aligned}
+$$
 (n!)_p&=\prod_{1\leq r\leq n}'r\\
 &=\left(\prod_{i=0}^{\lfloor n/p^q\rfloor -1}\prod_{1\leq j\leq p^q}'(ip^q+j)\right)\left(\prod_{1\leq j\leq
 N_0}'(\lfloor n/p^q\rfloor p^q+j)\right)\\
@@ -97,14 +96,13 @@ N_0}'(\lfloor n/p^q\rfloor p^q+j)\right)\\
 至此得到了
 
 推论 2 ：对于素数 $p$ 和正整数 $q$ 和非负整数 $n$ 有
-
-$$n!\Big/p^{\sum_{j\geq 1}\lfloor n/p^j\rfloor}\equiv (\pm 1)^{\sum_{j\geq q}\lfloor n/p^j\rfloor}\prod_{j\geq 0}(N_j!)_p\pmod{p^q}$$
+$$
 
 其中 $N_j=\lfloor n/p^j\rfloor \bmod{p^q}$ 而 $\pm 1$ 与上述相同。
 
 记 $r=n-m$ 且 $n\gt m$ 有
 
-$$\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor +\lfloor m/p^j\rfloor +\lfloor r/p^j\rfloor\right)}}{p^{\nu(n!)-\nu(m!)-\nu(r!)}}\binom{n}{m}\equiv \frac{n!/p^{\nu(n!)}}{(m!/p^{\nu(m!)})(r!/p^{\nu(r!)})}\pmod{p^q}$$
+$\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor +\lfloor m/p^j\rfloor +\lfloor r/p^j\rfloor\right)}}{p^{\nu(n!)-\nu(m!)-\nu(r!)}}\binom{n}{m}\equiv \frac{n!/p^{\nu(n!)}}{(m!/p^{\nu(m!)})(r!/p^{\nu(r!)})}\pmod{p^q}$
 
 右边的分母中括号内的项均在模 $p^q$ 意义下均存在逆元，可直接计算，而 $\pm 1$ 的与上述相同。
 
@@ -122,8 +120,9 @@ $$\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor +\lfloor m/p^j\rfloor 
     #include <queue>
     #include <random>
     #include <vector>
-
-    template <typename T> std::enable_if_t<std::is_integral_v<T>, T> inv_mod(T x, T mod) {
+    
+    template <typename T>
+    std::enable_if_t<std::is_integral_v<T>, T> inv_mod(T x, T mod) {
       using S = std::make_signed_t<T>;
       S a = x, b = mod, x1 = 1, x3 = 0;
       while (b != 0) {
@@ -133,9 +132,9 @@ $$\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor +\lfloor m/p^j\rfloor 
       assert(a == 1 && "inv_mod_error");
       return static_cast<T>(x1 < 0 ? x1 + mod : x1);
     }
-
+    
     using ll = long long;
-
+    
     int binomial_coefficient_modulo_prime(ll n, ll m, int p) {
       // return \binom{n}{m} mod p
       static int fac[1000005], ifac[1000005];
@@ -143,7 +142,7 @@ $$\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor +\lfloor m/p^j\rfloor 
       if (n == 0 && m == 0) return 1;
       fac[0] = ifac[0] = 1;
       for (int i = 1; i != p; ++i) fac[i] = ll(fac[i - 1]) * i % p;
-      ifac[p - 1] = p - 1; // Wilson's theorem
+      ifac[p - 1] = p - 1;  // Wilson's theorem
       for (int i = p - 2; i > 0; --i) ifac[i] = ll(ifac[i + 1]) * (i + 1) % p;
       ll res = 1;
       for (; n; n /= p, m /= p) {
@@ -152,32 +151,33 @@ $$\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor +\lfloor m/p^j\rfloor 
       }
       return res;
     }
-
+    
     int binomial_coefficient_modulo_prime_power(ll n, ll m, int p, int q) {
       // return \binom{n}{m} mod p^q
-
+    
       auto simple_pow = [](int x, int y) {
         int res = 1;
         for (; y; y >>= 1, x *= x)
           if (y & 1) res *= x;
         return res;
       };
-
+    
       if (q == 1) return binomial_coefficient_modulo_prime(n, m, p);
       if (n < 0 || m < 0 || n < m) return 0;
       if (n == 0 && m == 0) return 1;
-
-      ll k = 0, r = n - m; // k 为 binom{n}{m} 中 p 包含的幂次
+    
+      ll k = 0, r = n - m;  // k 为 binom{n}{m} 中 p 包含的幂次
       for (ll n1 = n / p; n1; n1 /= p) k += n1;
       for (ll m1 = m / p; m1; m1 /= p) k -= m1;
       for (ll r1 = r / p; r1; r1 /= p) k -= r1;
-
+    
       if (k >= q) return 0;
-
-      const int pq = simple_pow(p, q), pk = simple_pow(p, k); // p^q 在 int 范围内且较小
-
+    
+      const int pq = simple_pow(p, q),
+                pk = simple_pow(p, k);  // p^q 在 int 范围内且较小
+    
       static int fac[1000005], ifac[1000005];
-
+    
       ifac[0] = fac[0] = 1;
       for (int i = 1; i != pq; ++i) {
         fac[i] = (i % p == 0) ? fac[i - 1] : ll(fac[i - 1]) * i % pq;
@@ -186,23 +186,26 @@ $$\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor +\lfloor m/p^j\rfloor 
       int ivpq = inv_mod(ifac[pq - 1], pq);
       for (int i = pq - 1; i > 0; --i)
         ifac[i] = ll(ivpq) * ifac[i - 1] % pq, ivpq = ll(ivpq) * fac[i] % pq;
-
+    
       ll res = 1;
       unsigned long long is_negative = 0;
       for (; n; n /= p, m /= p, r /= p) {
         res = ll(res) * fac[n % pq] % pq * ifac[m % pq] % pq * ifac[r % pq] % pq;
         is_negative += n / pq + m / pq + r / pq;
       }
-
+    
       if ((p == 2 && q >= 3) || (is_negative & 1) == 0) return res * pk % pq;
       return (pq - res) * pk % pq;
     }
-
-    std::pair<int, int> crt2(int a, int m1, int b, int m2) { // assume \gcd(m1, m2)=1
-      // res mod m1 = a, res mod m2 = b => x1m1+a=x2m2+b => x1m1+a=b (mod m2) => x1=(b-a)/m1 (mod m2)
-      return std::make_pair(int(ll(b + m2 - a % m2) % m2 * inv_mod(m1, m2) % m2 * m1 + a), m1 *m2);
+    
+    std::pair<int, int> crt2(int a, int m1, int b,
+                             int m2) {  // assume \gcd(m1, m2)=1
+      // res mod m1 = a, res mod m2 = b => x1m1+a=x2m2+b => x1m1+a=b (mod m2) =>
+      // x1=(b-a)/m1 (mod m2)
+      return std::make_pair(
+          int(ll(b + m2 - a % m2) % m2 * inv_mod(m1, m2) % m2 * m1 + a), m1 *m2);
     }
-
+    
     int binomial_coefficient_modulo_composite(ll n, ll m, int p) {
       int res = 0, m1 = 1;
       for (int i = 2; i * i <= p; ++i) {
@@ -210,13 +213,16 @@ $$\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor +\lfloor m/p^j\rfloor 
           int e = 0, old_p = p;
           while (p % i == 0) ++e, p /= i;
           std::tie(res, m1) =
-              crt2(res, m1, binomial_coefficient_modulo_prime_power(n, m, i, e), old_p / p);
+              crt2(res, m1, binomial_coefficient_modulo_prime_power(n, m, i, e),
+                   old_p / p);
         }
       }
-      if (p != 1) std::tie(res, m1) = crt2(res, m1, binomial_coefficient_modulo_prime(n, m, p), p);
+      if (p != 1)
+        std::tie(res, m1) =
+            crt2(res, m1, binomial_coefficient_modulo_prime(n, m, p), p);
       return res;
     }
-
+    
     int main() {
       std::ios::sync_with_stdio(false);
       std::cin.tie(0);
