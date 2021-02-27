@@ -55,171 +55,183 @@ $$
 
 注意前者只有在 $p$ 的倍数位置才有取值，而后者最高次项为 $n\bmod p \le p-1$，因此这两部分的卷积在任何一个位置只有最多一种方式贡献取值，即在前者部分取 $p$ 的倍数次项，后者部分取剩余项，即 $\displaystyle\binom{n}{m}\bmod p = \binom{\left\lfloor n/p \right\rfloor}{\left\lfloor m/p\right\rfloor}\cdot\binom{n\bmod p}{m\bmod p}\bmod p$。
 
-## exLucas 定理
+## Lucas 定理的推广
 
-Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是素数的情况，就需要用到 exLucas 定理。
+#### Lucas 定理的推广
 
-### 求解思路
+要求计算二项式系数 $\binom{n}{m}\bmod M$ 其中 $M$ 可能为合数，但因为可用中国剩余定理合并答案，这指导我们只需求出 $\binom{n}{m}\bmod p^q$ 其中 $p$ 为素数且 $q$ 为正整数。
 
-#### 第一部分
+对于整数 $n$，令 $(n!)_p$ 表示所有小于等于 $n$ 但不能被 $p$ 整除的正整数的乘积即 $(n!)_p=n!/(\lfloor n/p\rfloor !p^{\lfloor n/p\rfloor})$。
 
-根据 **唯一分解定理**，将 $p$ 质因数分解：
+Legengre 在 1808 年指出 $n!$ 中含有的素数 $p$ 的幂次为 $\sum_{j\geq 1}\lfloor n/p^j\rfloor$。
 
-$$
-p=
-{q_1}^{\alpha_1}\cdot{q_2}^{\alpha_2}\cdots{q_r}^{\alpha_r}=\prod_{i=1}^{r}{q_i}^{\alpha_i}
-$$
+证明：将 $n!$ 记为 $1\times 2\times \cdots \times p\times \cdots \times 2p\times \cdots \times \lfloor n/p\rfloor p\times \cdots \times n$ 那么其中 $p$ 的倍数有 $p\times 2p\times \cdots \times \lfloor n/p\rfloor p=p^{\lfloor n/p\rfloor }\lfloor n/p\rfloor !$ 然后在 $\lfloor n/p\rfloor !$ 中继续寻找 $p$ 的倍数即可，这是一个递归的过程。为了方便记 $\nu(n!)=\sum_{j\geq 1}\lfloor n/p^j\rfloor$。
 
-对于任意 $i,j$，有 ${p_i}^{\alpha_i}$ 与 ${p_j}^{\alpha_j}$ 互质，所以可以构造如下 $r$ 个同余方程：
+Wilson 定理：对于素数 $p$ 有 $(p-1)!\equiv -1\pmod p$。
 
-$$
-\left\{
-\begin{aligned}
-a_1\equiv C_n^m&\pmod {{q_1}^{\alpha_1}}\\
-a_2\equiv C_n^m&\pmod {{q_2}^{\alpha_2}}\\
-&\cdots\\
-a_r\equiv C_n^m&\pmod {{q_r}^{\alpha_r}}\\
-\end{aligned}
-\right.
-$$
+证明：我们知道在模奇素数 $p$ 意义下， $1,2,\dots ,p-1$ 都存在逆元且唯一，那么只需要将一个数与其逆元配对发现其乘积均为（同余意义下）$1$，但前提是这个数的逆元不等于自身。那么很显然 $(p-1)!\bmod p$ 就是逆元等于其自身的数的乘积，这两个数为 $\pm 1$。在 $p$ 为 $2$ 时单独讨论即可。
 
-我们发现，在求出 $a_i$ 后，就可以用中国剩余定理求解出 $C_n^m$。
+Wilson 定理指出 $(p!)_p=(p-1)!\equiv -1\pmod p$ 且可被推广至模素数 $p$ 的幂次。
 
-#### 第二部分
+Wilson 定理的推广：对于素数 $p$ 和正整数 $q$ 有 $(p^q!)_p\equiv \pm 1\pmod{p^q}$。
 
-根据同余的定义，$a_i=C_n^m\bmod {q_i}^{\alpha_i}$，问题转化成，求 $C_n^m\mod q^k(q\in\{$ 质数 $\})$ 的值。
+依然考虑配对一个数与其逆元，也就是考虑关于 $m$ 的同余方程 $m^2\equiv 1\pmod{p^q}$ 的根的乘积，当 $p^q=2$ 时方程仅有一根，当 $p=2$ 且 $q\geq 3$ 时有四根为 $\pm 1,2^{q-1}\pm 1$ 其他时候则有两根为 $\pm 1$。
 
-根据组合数定义 $C_n^m=\frac{n!}{m!(n-m)!}$，$C_n^m\bmod q^k=\frac{n!}{m!(n-m)!}\bmod q^k$.
+至此我们对 Wilson 定理的推广中的 $\pm 1$ 有了详细的定义即
 
-由于式子是在模 $q^k$ 意义下，所以分母要算乘法逆元。
+$$(p^q!)_p\equiv \begin{cases}1&\text{if }p=2\text{ and }q\geq 3,\\-1&\text{otherwise.}\end{cases}$$
 
-同余方程 $ax\equiv 1\pmod p$（即乘法逆元）**有解** 的充要条件为 $\gcd(a,p)=1$（裴蜀定理），
+推论 1 ：对于素数 $p$、正整数 $q$、非负整数 $n$ 和 
+$N_0=n\bmod{p^q}$ 有 $(n!)_p\equiv (\pm 1)^{\lfloor n/{p^q}\rfloor}(N_0!)_p\pmod{p^q}$。
 
-然而 **无法保证有解**，发现无法直接求 $\operatorname{inv}_{m!}$ 和 $\operatorname{inv}_{(n-m)!}$，
+证明：令 $\displaystyle \prod '$ 表示不能被 $p$ 整除的数的乘积，有
 
-所以将原式转化为：
+$$\begin{aligned}
+(n!)_p&=\prod_{1\leq r\leq n}'r\\
+&=\left(\prod_{i=0}^{\lfloor n/p^q\rfloor -1}\prod_{1\leq j\leq p^q}'(ip^q+j)\right)\left(\prod_{1\leq j\leq
+N_0}'(\lfloor n/p^q\rfloor p^q+j)\right)\\
+&\equiv ((p^q!)_p)^{\lfloor n/p^q\rfloor}(N_0!)_p\\
+&\equiv (\pm 1)^{\lfloor n/p^q\rfloor}(N_0!)_p\pmod{p^q}
+\end{aligned}$$
 
-$$
-\frac{\frac{n!}{q^x}}{\frac{m!}{q^y}\frac{(n-m)!}{q^z}}q^{x-y-z} \bmod q^k
-$$
+将 $1\times 2\times 3\times \cdots \times n$ 记为 $(0\times p^q+1)\times (0\times p^q+2)\times \cdots \times (\lfloor n/p^q\rfloor p^q+N_0)$ 就得到了上述第二行。
 
-$x$ 表示 $n!$ 中包含多少个 $q$ 因子，$y，z$ 同理。
+至此得到了
 
-#### 第三部分
+推论 2 ：对于素数 $p$ 和正整数 $q$ 和非负整数 $n$ 有
 
-问题转化成，求形如：
+$$n!\Big/p^{\sum_{j\geq 1}\lfloor n/p^j\rfloor}\equiv (\pm 1)^{\sum_{j\geq q}\lfloor n/p^j\rfloor}\prod_{j\geq 0}(N_j!)_p\pmod{p^q}$$
 
-$$
-\frac{n!}{q^x}\bmod q^k
-$$
+其中 $N_j=\lfloor n/p^j\rfloor \bmod{p^q}$ 而 $\pm 1$ 与上述相同。
 
-的值。
+记 $r=n-m$ 且 $n\gt m$ 有
 
-先考虑 $n!\bmod q^k$
+$$\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor +\lfloor m/p^j\rfloor +\lfloor r/p^j\rfloor\right)}}{p^{\nu(n!)-\nu(m!)-\nu(r!)}}\binom{n}{m}\equiv \frac{n!/p^{\nu(n!)}}{(m!/p^{\nu(m!)})(r!/p^{\nu(r!)})}\pmod{p^q}$$
 
-比如 $n=22,p=3,k=2$ 时：
+右边的分母中括号内的项均在模 $p^q$ 意义下均存在逆元，可直接计算，而 $\pm 1$ 的与上述相同。
 
-$22!=1\times 2\times 3\times 4\times 5\times 6\times 7\times 8\times 9\times 10\times 11\times 12$
-
-$\times 13\times 14\times 15\times 16\times 17\times 18\times 19\times20\times21\times22$
-
-将其中所有 $p$ 的倍数提取，得到：
-
-$22!=3^7 \times (1\times 2\times 3\times 4\times 5\times 6\times 7)$$\times(1\times 2\times 4\times 5\times 7\times 8\times 10 \times 11\times 13\times 14\times 16\times 17\times 19 \times 20 \times 22 )$
-
-可以看到，式子分为三个整式的乘积：
-
-**1.** 是 $3$ 的幂，次数是 $\lfloor\frac{n}{q}\rfloor$；
-
-**2.** 是 $7!$，即 $\lfloor\frac{n}{q}\rfloor!$，由于阶乘中仍然可能有 $q$ 的倍数，考虑递归求解；
-
-**3.** 是 $n!$ 中与 $q$ 互质的部分的乘积，具有如下性质：
-
-$1\times 2\times 4\times 5\times 7\times 8\equiv10 \times 11\times 13\times 14\times 16\times 17\ \pmod{ 3^2}$
-
-即：
-
-$$
-\prod_{i,(i,q)=1}^{q^k}i\equiv\prod_{i,(i,q)=1}^{q^k}(i+tq^k)\ mod\ q^k
-$$
-
-（$t$ 是任意正整数）
-
-$\prod_{i,(i,q)=1}^{p^k}i$ 一共循环了 $\lfloor\frac{n}{q^k}\rfloor$ 次，暴力求出 $\prod_{i,(i,q)=1}^{q^k}i$，然后用快速幂求
-
-$\lfloor\frac{n}{q^k}\rfloor$ 次幂
-
-最后要乘上 $\prod_{i,(i,q)=1}^{n\ mod\ q^k}i$，即 $19\times 20\times 22$，显然长度小于 $q^k$，暴力乘上去。
-
-上述三部分乘积为 $n!$。最终要求的是 $\frac{n!}{q^x}\bmod{q^k}$.
-
-所以有：
-
-$$
-{n!}=q^{\lfloor\frac{n}{p}\rfloor}\cdot (\lfloor\frac{n}{q}\rfloor)!\cdot(\prod_{i,(i,q)=1}^{q^k}i)^{\lfloor\frac{n}{q^k}\rfloor}\cdot(\prod_{i,(i,q)=1}^{n\bmod q^k}i)
-$$
-
-于是：
-
-$$
-\frac{n!}{q^k}=
-{(\lfloor\frac{n}{q}\rfloor)!}\cdot(\prod_{i,(i,q)=1}^{q^k}i)^{\lfloor\frac{n}{q^k}\rfloor}\cdot(\prod_{i,(i,q)=1}^{n\bmod q^k}i)
-$$
-
-**${(\lfloor\frac{n}{q}\rfloor)!}$ 同样是一个数的阶乘，所以也可以分为上述三个部分，于是可以递归求解。**
-
-#### 总结
-
-对于 $C_n^m\bmod p$，我们将其转化为 $r$ 个形如 $a_i\equiv C_n^m\pmod {{q_i}^{\alpha_i}}$ 的同余方程并分别求解。
-
-对于 $a_i\equiv C_n^m\pmod {{q_i}^{\alpha_i}}$，将 $C_n^m$ 转化为 $\frac{\frac{n!}{q^x}}{\frac{m!}{q^y}\frac{(n-m)!}{q^z}}q^{x-y-z}$，于是可求逆元。
-
-对于 $\frac{m!}{q^y}$ 和 $\frac{(n-m)!}{q^z}$，将其变换整理，可递归求解。
+### [Ceizenpok’s formula](http://codeforces.com/gym/100633/problem/J)
 
 ???+note "代码实现"
-    其中 `int inverse(int x)` 函数返回 $x$ 在模 $p$ 意义下的逆元。
-    
     ```cpp
-    LL CRT(int n, LL* a, LL* m) {
-      LL M = 1, p = 0;
-      for (int i = 1; i <= n; i++) M = M * m[i];
-      for (int i = 1; i <= n; i++) {
-        LL w = M / m[i], x, y;
-        exgcd(w, m[i], x, y);
-        p = (p + a[i] * w * x % mod) % mod;
+    #ifndef LOCAL
+    #define NDEBUG
+    #endif
+    #include <algorithm>
+    #include <cassert>
+    #include <cstring>
+    #include <functional>
+    #include <initializer_list>
+    #include <iostream>
+    #include <memory>
+    #include <queue>
+    #include <random>
+    #include <vector>
+
+    template <typename T> std::enable_if_t<std::is_integral_v<T>, T> inv_mod(T x, T mod) {
+      using S = std::make_signed_t<T>;
+      S a = x, b = mod, x1 = 1, x3 = 0;
+      while (b != 0) {
+        S q = a / b;
+        std::tie(x1, x3, a, b) = std::make_tuple(x3, x1 - x3 * q, b, a - b * q);
       }
-      return (p % mod + mod) % mod;
+      assert(a == 1 && "inv_mod_error");
+      return static_cast<T>(x1 < 0 ? x1 + mod : x1);
     }
-    LL calc(LL n, LL x, LL P) {
-      if (!n) return 1;
-      LL s = 1;
-      for (int i = 1; i <= P; i++)
-        if (i % x) s = s * i % P;
-      s = Pow(s, n / P, P);
-      for (int i = n / P * P + 1; i <= n; i++)
-        if (i % x) s = s * i % P;
-      return s * calc(n / x, x, P) % P;
+
+    using ll = long long;
+
+    int binomial_coefficient_modulo_prime(ll n, ll m, int p) {
+      // return \binom{n}{m} mod p
+      static int fac[1000005], ifac[1000005];
+      if (n < 0 || m < 0 || n < m) return 0;
+      if (n == 0 && m == 0) return 1;
+      fac[0] = ifac[0] = 1;
+      for (int i = 1; i != p; ++i) fac[i] = ll(fac[i - 1]) * i % p;
+      ifac[p - 1] = p - 1; // Wilson's theorem
+      for (int i = p - 2; i > 0; --i) ifac[i] = ll(ifac[i + 1]) * (i + 1) % p;
+      ll res = 1;
+      for (; n; n /= p, m /= p) {
+        if (n % p < m % p) return 0;
+        res = res * ll(fac[n % p]) * ifac[m % p] % p * ifac[n % p - m % p] % p;
+      }
+      return res;
     }
-    LL multilucas(LL m, LL n, LL x, LL P) {
-      int cnt = 0;
-      for (int i = m; i; i /= x) cnt += i / x;
-      for (int i = n; i; i /= x) cnt -= i / x;
-      for (int i = m - n; i; i /= x) cnt -= i / x;
-      return Pow(x, cnt, P) % P * calc(m, x, P) % P * inverse(calc(n, x, P), P) %
-             P * inverse(calc(m - n, x, P), P) % P;
+
+    int binomial_coefficient_modulo_prime_power(ll n, ll m, int p, int q) {
+      // return \binom{n}{m} mod p^q
+
+      auto simple_pow = [](int x, int y) {
+        int res = 1;
+        for (; y; y >>= 1, x *= x)
+          if (y & 1) res *= x;
+        return res;
+      };
+
+      if (q == 1) return binomial_coefficient_modulo_prime(n, m, p);
+      if (n < 0 || m < 0 || n < m) return 0;
+      if (n == 0 && m == 0) return 1;
+
+      ll k = 0, r = n - m; // k 为 binom{n}{m} 中 p 包含的幂次
+      for (ll n1 = n / p; n1; n1 /= p) k += n1;
+      for (ll m1 = m / p; m1; m1 /= p) k -= m1;
+      for (ll r1 = r / p; r1; r1 /= p) k -= r1;
+
+      if (k >= q) return 0;
+
+      const int pq = simple_pow(p, q), pk = simple_pow(p, k); // p^q 在 int 范围内且较小
+
+      static int fac[1000005], ifac[1000005];
+
+      ifac[0] = fac[0] = 1;
+      for (int i = 1; i != pq; ++i) {
+        fac[i] = (i % p == 0) ? fac[i - 1] : ll(fac[i - 1]) * i % pq;
+        ifac[i] = ll(fac[i]) * ifac[i - 1] % pq;
+      }
+      int ivpq = inv_mod(ifac[pq - 1], pq);
+      for (int i = pq - 1; i > 0; --i)
+        ifac[i] = ll(ivpq) * ifac[i - 1] % pq, ivpq = ll(ivpq) * fac[i] % pq;
+
+      ll res = 1;
+      unsigned long long is_negative = 0;
+      for (; n; n /= p, m /= p, r /= p) {
+        res = ll(res) * fac[n % pq] % pq * ifac[m % pq] % pq * ifac[r % pq] % pq;
+        is_negative += n / pq + m / pq + r / pq;
+      }
+
+      if ((p == 2 && q >= 3) || (is_negative & 1) == 0) return res * pk % pq;
+      return (pq - res) * pk % pq;
     }
-    LL exlucas(LL m, LL n, LL P) {
-      int cnt = 0;
-      LL p[20], a[20];
-      for (LL i = 2; i * i <= P; i++) {
-        if (P % i == 0) {
-          p[++cnt] = 1;
-          while (P % i == 0) p[cnt] = p[cnt] * i, P /= i;
-          a[cnt] = multilucas(m, n, i, p[cnt]);
+
+    std::pair<int, int> crt2(int a, int m1, int b, int m2) { // assume \gcd(m1, m2)=1
+      // res mod m1 = a, res mod m2 = b => x1m1+a=x2m2+b => x1m1+a=b (mod m2) => x1=(b-a)/m1 (mod m2)
+      return std::make_pair(int(ll(b + m2 - a % m2) % m2 * inv_mod(m1, m2) % m2 * m1 + a), m1 *m2);
+    }
+
+    int binomial_coefficient_modulo_composite(ll n, ll m, int p) {
+      int res = 0, m1 = 1;
+      for (int i = 2; i * i <= p; ++i) {
+        if (p % i == 0) {
+          int e = 0, old_p = p;
+          while (p % i == 0) ++e, p /= i;
+          std::tie(res, m1) =
+              crt2(res, m1, binomial_coefficient_modulo_prime_power(n, m, i, e), old_p / p);
         }
       }
-      if (P > 1) p[++cnt] = P, a[cnt] = multilucas(m, n, P, P);
-      return CRT(cnt, a, p);
+      if (p != 1) std::tie(res, m1) = crt2(res, m1, binomial_coefficient_modulo_prime(n, m, p), p);
+      return res;
+    }
+
+    int main() {
+    #ifdef LOCAL
+      std::freopen("..\\in", "r", stdin), std::freopen("..\\out", "w", stdout);
+    #endif
+      std::ios::sync_with_stdio(false);
+      std::cin.tie(0);
+      ll n, m, k;
+      std::cin >> n >> m >> k;
+      std::cout << binomial_coefficient_modulo_composite(n, m, k);
+      return 0;
     }
     ```
 
