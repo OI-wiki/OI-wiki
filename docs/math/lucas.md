@@ -57,8 +57,6 @@ $$
 
 ## Lucas 定理的推广
 
-#### Lucas 定理的推广
-
 要求计算二项式系数 $\binom{n}{m}\bmod M$ 其中 $M$ 可能为合数，但因为可用中国剩余定理合并答案，这指导我们只需求出 $\binom{n}{m}\bmod p^q$ 其中 $p$ 为素数且 $q$ 为正整数。
 
 对于整数 $n$，令 $(n!)_p$ 表示所有小于等于 $n$ 但不能被 $p$ 整除的正整数的乘积即 $(n!)_p=n!/(\lfloor n/p\rfloor !p^{\lfloor n/p\rfloor})$。
