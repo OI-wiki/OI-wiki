@@ -57,9 +57,11 @@ $$
 
 ## Lucas 定理的推广
 
-要求计算二项式系数 $\binom{n}{m}\bmod M$ 其中 $M$ 可能为合数，但因为可用中国剩余定理合并答案，这指导我们只需求出 $\binom{n}{m}\bmod p^q$ 其中 $p$ 为素数且 $q$ 为正整数。
+要求计算二项式系数 $\binom{n}{m}\bmod M$，其中 $M$ 可能为合数。
 
-对于整数 $n$，令 $(n!)_p$ 表示所有小于等于 $n$ 但不能被 $p$ 整除的正整数的乘积即 $(n!)_p=n!/(\lfloor n/p\rfloor !p^{\lfloor n/p\rfloor})$。
+考虑利用 [中国剩余定理](./crt.md) 合并答案，这种情况下我们只需求出 $\binom{n}{m}\bmod p^q$ 的值即可（其中 $p$ 为素数且 $q$ 为正整数）。
+
+对于整数 $n$，令 $(n!)_p$ 表示所有小于等于 $n$ 但不能被 $p$ 整除的正整数的乘积，即 $(n!)_p=n!/(\lfloor n/p\rfloor !p^{\lfloor n/p\rfloor})$。
 
 Legengre 在 1808 年指出 $n!$ 中含有的素数 $p$ 的幂次为 $\sum_{j\geq 1}\lfloor n/p^j\rfloor$。
 
@@ -84,9 +86,9 @@ $(p^q!)_p\equiv \begin{cases}1&\text{if }p=2\text{ and }q\geq 3,\\-1&\text{other
 证明：令 $\displaystyle \prod '$ 表示不能被 $p$ 整除的数的乘积，有
 
 $$
+\begin{aligned}
 (n!)_p&=\prod_{1\leq r\leq n}'r\\
-&=\left(\prod_{i=0}^{\lfloor n/p^q\rfloor -1}\prod_{1\leq j\leq p^q}'(ip^q+j)\right)\left(\prod_{1\leq j\leq
-N_0}'(\lfloor n/p^q\rfloor p^q+j)\right)\\
+&=\left(\prod_{i=0}^{\lfloor n/p^q \rfloor -1}\prod_{1\leq j\leq p^q}'(ip^q+j)\right)\left(\prod_{1\leq j\leq N_0}'(\lfloor n/p^q\rfloor p^q+j)\right)\\
 &\equiv ((p^q!)_p)^{\lfloor n/p^q\rfloor}(N_0!)_p\\
 &\equiv (\pm 1)^{\lfloor n/p^q\rfloor}(N_0!)_p\pmod{p^q}
 \end{aligned}$$
@@ -108,7 +110,7 @@ $\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor +\lfloor m/p^j\rfloor +
 
 ### [Ceizenpok’s formula](http://codeforces.com/gym/100633/problem/J)
 
-???+note "代码实现"
+??? note "代码实现"
     ```cpp
     #include <algorithm>
     #include <cassert>
