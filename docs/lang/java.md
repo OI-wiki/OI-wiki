@@ -91,7 +91,21 @@ rm jdk-8u121-macosx-x64.dmg
 
 ## 基本语法
 
-***注意***  `Java` 类似 `C/C++` 语言，有一个函数作为程序执行的起始点，所有的程序只有一个主函数，每次执行的时候都会从主类开始，主函数是整个程序的入口，一切从此处开始。
+### 主函数
+
+`Java` 类似 `C/C++` 语言，需要一个函数（在面向对象中，这被称为方法）作为程序执行的入口点。
+
+`Java` 的主函数的格式是固定的，形如：
+
+```java
+class Test {
+    public static void main(String[] args) {
+        // 程序的代码
+    }
+}
+```
+
+一个打包的 `Java` 程序（名称一般是 `*.jar` ）中可以有很多个类似的函数，但是当双击运行这个程序的时候，只有其中一个函数会被运行，这是定义在 `Jar` 的 `Manifest` 文件中的，在OI比赛中一般用不到关于它的知识。
 
 ### 注释
 
@@ -116,7 +130,7 @@ rm jdk-8u121-macosx-x64.dmg
 ```java
 int a = 12; // 设置a为整数类型,并给a赋值12
 String str = "Hello, OI-wiki"; // 申明字符串变量str
-char ch = "W";
+char ch = 'W';
 double PI = 3.1415926;
 ```
 
@@ -149,9 +163,46 @@ char[] stringArray = { 'H', 'e', 'l', 'l', 'o' };
 String s = new String(stringArray);
 ```
 
+### 包和导入包
+
+`Java` 中的类（`Class`）都被放在一个个包（`package`）里面。在一个包里面不允许有同名的类。在类的第一行通常要说明这个类是属于哪个包的。例如：
+
+```java
+pakcage org.oi-wiki.tutorial;
+```
+
+包的命名规范一般是：项目所有者的顶级域.项目所有者的二级域.项目名称。
+
+通过 `import` 关键字来导入不在本类所属的包下面的类。例如下面要用到的 `Scanner` ：
+
+```java
+import java.util.Scanner;
+```
+
+如果想要导入某包下面所有的类，只需要把这个语句最后的分号前的类名换成星号 `*` 。
+
+### 输入
+
+可以通过 `Scanner` 类来处理命令行输入。
+
+```java
+pakcage org.oi-wiki.tutorial;
+
+import java.util.Scanner;
+
+class Test {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in); // System.in 是输入流
+        int a = scan.nextInt();
+        double b = scan.nextDouble();
+        String c = scan.nextLine();
+    }
+}
+```
+
 ### 输出
 
-可以对变量进行格式化输出
+可以对变量进行格式化输出。
 
 |  符号  |   意义  |
 | :--: | :---: |
@@ -177,6 +228,8 @@ class Test {
 
 ### 控制语句
 
+`Java` 的流程控制语句与 `C++` 是基本相同的。
+
 #### 选择
 
 - if
@@ -185,9 +238,9 @@ class Test {
 class Test {
     public static void main(String[] args) {
         if ( /* 判断条件 */ ){
-              // 条件成立时执行这里面的代码
-          }
-      }
+            // 条件成立时执行这里面的代码
+        }
+    }
 }
 ```
 
@@ -196,7 +249,7 @@ class Test {
 ```java
 class Test {
     public static void main(String[] args) {
-        if ( /* 判断条件 */ ){
+        if ( /* 判断条件 */ ) {
             // 条件成立时执行这里面的代码
         } else {
             // 条件不成立时执行这里面的代码
@@ -210,12 +263,31 @@ class Test {
 ```java
 class Test {
     public static void main(String[] args) {
-        if ( /* 判断条件 */ ){
+        if ( /* 判断条件 */ ) {
             //判断条件成立执行这里面的代码
-        } else if ( /* 判断条件2 */ ){
+        } else if ( /* 判断条件2 */ ) {
             // 判断条件2成立执行这里面的代码
         } else {
           // 上述条件都不成立执行这里面的代码
+        }
+    }
+}
+```
+
+- switch...case
+
+```java
+class Test {
+    public static void main(String[] args) {
+        switch ( /* 表达式 */ ){
+          case /* 值 1 */:
+              // 当表达式取得的值符合值 1 执行此段代码
+              break; // 如果不加上 break 语句,会让程序按顺序往下执行,执行所有的 case 语句
+          case /* 值 2 */:
+              // 当表达式取得的值符合值 2 执行此段代码
+              break;
+          default:
+              // 当表达式不符合上面列举的值的时候执行这里面的代码
         }
     }
 }
@@ -225,12 +297,26 @@ class Test {
 
 - for
 
+for关键字有两种使用方法，其中第一种是普通的for循环，形式如下：
+
 ```java
 class Test {
     public static void main(String[] args) {
-            for ( /* 初始化 */; /* 循环的判断条件 */; /* 每次循环后执行的步骤 */ ){
-                // 当循环的条件成立执行循环体内代码
-            }
+        for ( /* 初始化 */; /* 循环的判断条件 */; /* 每次循环后执行的步骤 */ ) {
+            // 当循环的条件成立执行循环体内代码
+        }
+    }
+}
+```
+
+第二种是类似 `C++` 的 foreach 使用方法，用于循环数组或者集合中的数据，相当于把上一种方式中的循环变量隐藏起来了，形式如下：
+
+```java
+class Test {
+    public static void main(String[] args) {
+        for	( /* 元素类型X */ /* 元素名Y */ : /* 集合Z */ ) {
+            // 这个语句块的每一次循环时，元素Y分别是集合Z中的一个元素。
+        }
     }
 }
 ```
@@ -240,7 +326,7 @@ class Test {
 ```java
 class Test {
     public static void main(String[] args) {
-        while ( /* 判定条件 */ ){
+        while ( /* 判定条件 */ ) {
             // 条件成立时执行循环体内代码
         }
     }
@@ -259,34 +345,15 @@ class Test {
 }
 ```
 
-- switch...case
-
-```java
-class Test {
-      public static void main(String[] args) {
-        switch ( /* 表达式 */ ){
-          case /* 值 1 */:
-              // 当表达式取得的值符合值 1 执行此段代码
-          break; // 如果不加上 break 语句,会让程序按顺序往下执行,执行所有的 case 语句
-          case /* 值 2 */:
-              // 当表达式取得的值符合值 2 执行此段代码
-          break;
-          default:
-              // 当表达式不符合上面列举的值的时候执行这里面的代码
-        }
-      }
-}
-```
-
 ## 注意事项
 
 ### 类名与文件名一致
 
-创建 Java 源程序需要类名和文件名一致才能编译通过，否则编译器会提示找不到 `类`。通常该文件名会在具体 OJ 中指定。
+创建 `Java` 源程序需要类名和文件名一致才能编译通过，否则编译器会提示找不到 `类`。通常该文件名会在具体 OJ 中指定。
 
 例：
 
-Add.java
+`Add.java`
 
 ```java
 class Add {
