@@ -116,7 +116,7 @@ rm jdk-8u121-macosx-x64.dmg
 ```java
 int a = 12; // 设置a为整数类型,并给a赋值12
 String str = "Hello, OI-wiki"; // 申明字符串变量str
-char ch = "W";
+char ch = 'W';
 double PI = 3.1415926;
 ```
 
