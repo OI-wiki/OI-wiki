@@ -171,7 +171,7 @@ String s = new String(stringArray);
 pakcage org.oi-wiki.tutorial;
 ```
 
-包的命名规范一般是：项目所有者的顶级域。项目所有者的二级域。项目名称。
+包的命名规范一般是： `项目所有者的顶级域.项目所有者的二级域.项目名称`。
 
 通过 `import` 关键字来导入不在本类所属的包下面的类。例如下面要用到的 `Scanner`：
 
