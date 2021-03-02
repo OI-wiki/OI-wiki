@@ -31,7 +31,7 @@ sudo apt install default-jdk
 sudo yum install java-1.8.0-openjdk
 ```
 
-在稍后询问是否安装时按下 <kbd>y</kbd> 继续安装，或是你已经下好了 `rpm` 文件，可以使用以下命令安装：
+在稍后询问是否安装时按下<kbd>y</kbd>继续安装，或是你已经下好了 `rpm` 文件，可以使用以下命令安装：
 
 ```bash
 sudo yum localinstall jre-9.0.4_linux_x64_bin.rpm #安装jre-9.0
@@ -44,7 +44,7 @@ sudo yum localinstall jdk-9.0.4_linux-x64_bin.rpm #安装jdk-9.0
 sudo dnf install java-1.8.0-openjdk
 ```
 
-在稍后询问是否安装时按下 <kbd>y</kbd> 继续安装，或是你已经下好了 `rpm` 文件，可以使用以下命令安装：
+在稍后询问是否安装时按下<kbd>y</kbd>继续安装，或是你已经下好了 `rpm` 文件，可以使用以下命令安装：
 
 ```bash
 sudo dnf install jre-9.0.4_linux_x64_bin.rpm #安装jre-9.0
