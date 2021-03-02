@@ -111,7 +111,7 @@ rm jdk-8u121-macosx-x64.dmg
 |  short  |  短整型  |
 |   null  |   空   |
 
-### 申明变量
+### 声明变量
 
 ```java
 int a = 12; // 设置 a 为整数类型,并给 a 赋值为 12
