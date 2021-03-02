@@ -297,7 +297,7 @@ class Test {
 
 - for
 
-for 关键字有两种使用方法，其中第一种是普通的 for 循环，形式如下：
+`for` 关键字有两种使用方法，其中第一种是普通的 `for` 循环，形式如下：
 
 ```java
 class Test {
