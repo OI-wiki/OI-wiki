@@ -111,12 +111,12 @@ rm jdk-8u121-macosx-x64.dmg
 |  short  |  短整型  |
 |   null  |   空   |
 
-### 声明变量
+### 申明变量
 
 ```java
-int a = 12; // 设置 a 为整数类型,并给 a 赋值为 12
-String str = "Hello, OI-wiki"; // 声明字符串变量 str
-char ch = "W";
+int a = 12; // 设置a为整数类型,并给a赋值12
+String str = "Hello, OI-wiki"; // 申明字符串变量str
+char ch = 'W';
 double PI = 3.1415926;
 ```
 
@@ -267,7 +267,7 @@ class Test {
         switch ( /* 表达式 */ ){
           case /* 值 1 */:
               // 当表达式取得的值符合值 1 执行此段代码
-          break; // 如果不加上 break 语句，会让程序按顺序往下执行，执行所有的 case 语句
+          break; // 如果不加上 break 语句,会让程序按顺序往下执行,执行所有的 case 语句
           case /* 值 2 */:
               // 当表达式取得的值符合值 2 执行此段代码
           break;
