@@ -125,11 +125,11 @@ class Test {
 |  short  |  短整型  |
 |   null  |   空   |
 
-### 申明变量
+### 声明变量
 
 ```java
-int a = 12; // 设置a为整数类型,并给a赋值12
-String str = "Hello, OI-wiki"; // 申明字符串变量str
+int a = 12; // 设置 a 为整数类型,并给 a 赋值为 12
+String str = "Hello, OI-wiki"; // 声明字符串变量 str
 char ch = 'W';
 double PI = 3.1415926;
 ```
