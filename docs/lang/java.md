@@ -31,7 +31,7 @@ sudo apt install default-jdk
 sudo yum install java-1.8.0-openjdk
 ```
 
-在稍后询问是否安装时按下 `y` 继续安装，或是你已经下好了 `rpm` 文件，可以使用以下命令安装：
+在稍后询问是否安装时按下 <kbd>y</kbd> 继续安装，或是你已经下好了 `rpm` 文件，可以使用以下命令安装：
 
 ```bash
 sudo yum localinstall jre-9.0.4_linux_x64_bin.rpm #安装jre-9.0
@@ -44,7 +44,7 @@ sudo yum localinstall jdk-9.0.4_linux-x64_bin.rpm #安装jdk-9.0
 sudo dnf install java-1.8.0-openjdk
 ```
 
-在稍后询问是否安装时按下 `y` 继续安装，或是你已经下好了 `rpm` 文件，可以使用以下命令安装：
+在稍后询问是否安装时按下 <kbd>y</kbd> 继续安装，或是你已经下好了 `rpm` 文件，可以使用以下命令安装：
 
 ```bash
 sudo dnf install jre-9.0.4_linux_x64_bin.rpm #安装jre-9.0
@@ -74,9 +74,9 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 在控制台中输入命令 `source ~/.bashrc` 即可重载。如果是使用的 zsh 或其他命令行，在 `~/.zshrc` 或对应的文件中添加上面的内容。
 
-### MacOS
+### macOS
 
-如果是 MacOS，你可以使用以下命令安装包：
+如果是 macOS，你可以使用以下命令安装包：
 
 ```bash
 cd ~/Downloads
@@ -93,9 +93,9 @@ rm jdk-8u121-macosx-x64.dmg
 
 ### 主函数
 
-`Java` 类似 `C/C++` 语言，需要一个函数（在面向对象中，这被称为方法）作为程序执行的入口点。
+Java 类似 C/C++ 语言，需要一个函数（在面向对象中，这被称为方法）作为程序执行的入口点。
 
-`Java` 的主函数的格式是固定的，形如：
+Java 的主函数的格式是固定的，形如：
 
 ```java
 class Test {
@@ -105,11 +105,11 @@ class Test {
 }
 ```
 
-一个打包的 `Java` 程序（名称一般是 `*.jar`）中可以有很多个类似的函数，但是当运行这个程序的时候，只有其中一个函数会被运行，这是定义在 `Jar` 的 `Manifest` 文件中的，在 OI 比赛中一般用不到关于它的知识。
+一个打包的 Java 程序（名称一般是 `*.jar`）中可以有很多个类似的函数，但是当运行这个程序的时候，只有其中一个函数会被运行，这是定义在 `Jar` 的 `Manifest` 文件中的，在 OI 比赛中一般用不到关于它的知识。
 
 ### 注释
 
-和 `C/C++` 一样，`Java` 使用 `//` 和 `/* */` 分别注释单行和多行。
+和 C/C++ 一样，Java 使用 `//` 和 `/* */` 分别注释单行和多行。
 
 ### 基本数据类型
 
@@ -136,7 +136,7 @@ double PI = 3.1415926;
 
 ### final 关键字
 
-`final` 含义是这是最终的、不可更改的结果，被 final 修饰的变量只能被赋值一次，赋值后不再改变。
+`final` 含义是这是最终的、不可更改的结果，被 `final` 修饰的变量只能被赋值一次，赋值后不再改变。
 
 ```java
 final double PI = 3.1415926;
@@ -152,7 +152,7 @@ int[] ary = new int[10];
 
 ### 字符串
 
-- 字符串是 `Java` 一个内置的类。
+- 字符串是 Java 一个内置的类。
 
 ```java
 // 最为简单的构造一个字符串变量的方法如下
@@ -165,10 +165,10 @@ String s = new String(stringArray);
 
 ### 包和导入包
 
-`Java` 中的类（`Class`）都被放在一个个包（`package`）里面。在一个包里面不允许有同名的类。在类的第一行通常要说明这个类是属于哪个包的。例如：
+Java 中的类（`Class`）都被放在一个个包（`package`）里面。在一个包里面不允许有同名的类。在类的第一行通常要说明这个类是属于哪个包的。例如：
 
 ```java
-pakcage org.oi-wiki.tutorial;
+package org.oi-wiki.tutorial;
 ```
 
 包的命名规范一般是：`项目所有者的顶级域.项目所有者的二级域.项目名称`。
@@ -186,7 +186,7 @@ import java.util.Scanner;
 可以通过 `Scanner` 类来处理命令行输入。
 
 ```java
-pakcage org.oi-wiki.tutorial;
+package org.oiwiki.tutorial;
 
 import java.util.Scanner;
 
@@ -228,7 +228,7 @@ class Test {
 
 ### 控制语句
 
-`Java` 的流程控制语句与 `C++` 是基本相同的。
+Java 的流程控制语句与 C++ 是基本相同的。
 
 #### 选择
 
@@ -363,4 +363,4 @@ class Add {
 }
 ```
 
-在该文件中需使用 Add 为类名方可编译通过。
+在该文件中需使用 `Add` 为类名方可编译通过。
