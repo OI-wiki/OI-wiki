@@ -260,6 +260,7 @@ nav:
     - 博弈论: math/game-theory.md
     - 牛顿迭代法: math/newton.md
     - 数值积分: math/integral.md
+    - Stern-Brocot 树与 Farey 序列: misc/stern-brocot.md
     - 分段打表: math/dictionary.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
@@ -417,7 +418,6 @@ nav:
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
     - 约瑟夫问题: misc/josephus.md
-    - Stern-Brocot 树与 Farey 序列: misc/stern-brocot.md
     - 格雷码: misc/gray-code.md
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
