@@ -218,6 +218,9 @@ nav:
       - 杜教筛: math/du.md
       - Min_25 筛: math/min-25.md
       - 分解质因数: math/pollard-rho.md
+      - 连分数: math/continued-fraction.md
+      - Stern-Brocot 树与 Farey 序列: math/stern-brocot.md
+      - Pell 方程: math/pell-equation.md
     - 多项式:
       - 多项式部分简介: math/poly/intro.md
       - 拉格朗日插值: math/poly/lagrange.md
@@ -260,7 +263,6 @@ nav:
     - 博弈论: math/game-theory.md
     - 牛顿迭代法: math/newton.md
     - 数值积分: math/integral.md
-    - Stern-Brocot 树与 Farey 序列: math/stern-brocot.md
     - 分段打表: math/dictionary.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
