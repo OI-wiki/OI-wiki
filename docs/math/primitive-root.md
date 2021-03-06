@@ -388,7 +388,7 @@ $$
 
     在 $g$ 和 $g+p^{\alpha}$ 中有一个是奇数，设这个奇数是 $G$，则 $\gcd(G,2p^{\alpha})=1$。
 
-    由欧拉定理，$\delta_{2p^{\alpha}}(G)|\varphi(2p^{\alpha})$。
+    由欧拉定理，$\delta_{2p^{\alpha}}(G)\mid\varphi(2p^{\alpha})$。
 
     而 $G^{\delta_{2p^{\alpha}}(G)}\equiv 1\pmod {2p^{\alpha}}$，故：
 
