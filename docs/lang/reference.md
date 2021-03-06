@@ -1,6 +1,6 @@
 引用可以看成是 C++ 封装的指针，用来传递它所指向的对象。在 C++ 代码中实际上会经常和引用打交道，但是通常不会显式地表现出来。引用的基本原则是在声明时必须指向对象，以及对引用的一切操作都相当于对原对象操作。另外，引用不是对象，因此不存在引用的数组、无法获取引用的指针，也不存在引用的引用。
 
-> 注意"引用"不是一种类型而是表达式值类别，所以才需要 [`reference_wrapper`](https://zh.cppreference.com/w/cpp/utility/functional/reference_wrapper) 这种设施。
+> 注意 "引用" 不是一种类型而是表达式值类别，所以才需要 [`reference_wrapper`](https://zh.cppreference.com/w/cpp/utility/functional/reference_wrapper) 这种设施。
 
 引用主要分为两种，左值引用和右值引用。此外还有两种特殊的引用：转发引用和垂悬引用，不作详细介绍。另外，本文还牵涉到一部分常值的内容，请用 [常值](./const.md) 一文辅助阅读。
 
