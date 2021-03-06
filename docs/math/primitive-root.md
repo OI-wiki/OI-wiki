@@ -356,7 +356,7 @@ $$
 
     所以命题对任意 $\beta\in\mathbf{N}^{*}$ 都成立。
 
-    其次，记 $\delta=\delta_{p^\alpha}(g)$，则由欧拉定理，可知 $\delta|p^{\alpha-1}(p-1)$。
+    其次，记 $\delta=\delta_{p^\alpha}(g)$，则由欧拉定理，可知 $\delta\midp^{\alpha-1}(p-1)$。
 
     而由 $g$ 为模 $p$ 的原根，及 $g^{\delta}\equiv 1\pmod {p^\alpha}$。
 
