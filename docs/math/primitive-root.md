@@ -114,7 +114,7 @@ $$
 1 \equiv (ab)^{\delta_m(ab)\delta_m(b)}\equiv a^{\delta_m(ab)} \pmod m
 $$
 
-故 $\delta_m(a)|\delta_m(ab)\delta_m(b)$。结合 $\gcd(\delta_m(a),\delta_m(b))=1$ 即得
+故 $\delta_m(a)\mid\delta_m(ab)\delta_m(b)$。结合 $\gcd(\delta_m(a),\delta_m(b))=1$ 即得
 
 $$
 \delta_m(a)\mid\delta_m(ab)
