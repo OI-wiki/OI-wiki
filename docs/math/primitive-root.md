@@ -396,7 +396,7 @@ $$
     G^{\delta_{2p^{\alpha}}(G)}\equiv 1 \pmod {p^{\alpha}}
     $$
 
-    利用 $G$ 为模 $p^{\alpha}$ 的原根可知 $\varphi(p^{\alpha})|\delta_{2p^{\alpha}}(G)$。
+    利用 $G$ 为模 $p^{\alpha}$ 的原根可知 $\varphi(p^{\alpha})\mid\delta_{2p^{\alpha}}(G)$。
 
     结合 $\varphi(p^{\alpha})=\varphi(2p^{\alpha})$ 可知 $G$ 为模 $2p^{\alpha}$ 的原根。
 
