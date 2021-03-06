@@ -141,7 +141,7 @@ $$
 故
 
 $$
-\delta_m(ab)|\delta_m(a)\delta_m(b)
+\delta_m(ab)\mid\delta_m(a)\delta_m(b)
 $$
 
 综合以上两点即得
