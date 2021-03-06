@@ -198,7 +198,7 @@ $$
 
 ## 原根
 
-> **原根**：设 $m \in \mathbb{N}^{*}$，$a\in \mathbb{Z}$。若 $\gcd(a,n)=1$，且 $\delta_m(a)=\varphi(m)$，则称 $a$ 为模 $m$ 的原根。
+> **原根**：设 $m \in \mathbb{N}^{*}$，$a\in \mathbb{Z}$。若 $\gcd(a,m)=1$，且 $\delta_m(a)=\varphi(m)$，则称 $a$ 为模 $m$ 的原根。
 
 ### 原根判定定理
 
