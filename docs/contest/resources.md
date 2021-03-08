@@ -163,4 +163,4 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [多校联合训练](http://acm.hdu.edu.cn) 关键词：`Multi-University Training Contest`
 - [Vjudge](https://vjudge.net/)
 - [Project Euler](https://projecteuler.net/)
-- [Junior Training Sheet](https://goo.gl/unDETI): Awesome training sheet. Designed for newbies!
+- [Junior Training Sheet](https://goo.gl/unDETI)： 对新手友好的训练计划
