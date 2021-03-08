@@ -1,4 +1,4 @@
-author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, GldHkkowo, SukkaW, Rapiz1, Henry-ZHR, H-J-Granger, countercurrent-time, fouzhe, Ir1d, abc1763613206, EndlessCheng, Plaaant6
+author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, GldHkkowo, SukkaW, Rapiz1, Henry-ZHR, H-J-Granger, countercurrent-time, fouzhe, Ir1d, abc1763613206, EndlessCheng, Plaaant6, LUTLJS
 
 本页面主要列举了一些与算法竞赛有关的在线评测网站、题目合集、书籍、工具等资源。
 
@@ -163,3 +163,4 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [多校联合训练](http://acm.hdu.edu.cn) 关键词：`Multi-University Training Contest`
 - [Vjudge](https://vjudge.net/)
 - [Project Euler](https://projecteuler.net/)
+- [Junior Training Sheet](https://goo.gl/unDETI)： 对新手友好的训练计划
