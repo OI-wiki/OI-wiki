@@ -56,7 +56,7 @@ $$
 
 这样我们就通过二分能在 $O(\log{n})$ 的时间复杂度内完成拼接，每次拼接的时候要完成一次运算，也就是说在 $O(n\log{n})$ 的时间复杂度得到了 $FWT[A]$。
 
-接下来就是反演了，其实反演是很简单的，既然知道了 $A_0$ 的本身的子集是他自己 ($A_0 = FAT[A_0]$)，$A_1$ 的子集是 $FAT[A_0] + FAT[A_1]（A_1'= A_0' + A_1'$），那就很简单的得出反演的递推式了：
+接下来就是反演了，其实反演是很简单的，既然知道了 $A_0$ 的本身的子集是他自己 ($A_0 = FWT[A_0]$)，$A_1$ 的子集是 $FWT[A_0] + FWT[A_1]（A_1 = A_0' + A_1'$），那就很简单的得出反演的递推式了：
 
 $$
 UFWT[A'] = merge(UFWT[A_0'], UFWT[A_1'] - UFWT[A_0'])
@@ -80,7 +80,7 @@ $$
 
 异或的卷积是基于如下原理：
 
-若我们令 $i\And j$ 中 $1$ 数量的奇偶性为 $i$ 与 $j$ 的奇偶性，那么 $i$ 与 $k$ 的奇偶性异或 $j$ 和 $k$ 的奇偶性等于 $i \operatorname{xor} j$ 和 $k$ 的奇偶性。
+若我们令 $i\And j$ 中 $1$ 数量的奇偶性为 $i$ 与 $j$ 的奇偶性，那么 $i$ 与 $k$ 的奇偶性异或 $j$ 与 $k$ 的奇偶性等于 $i \operatorname{xor} j$ 与 $k$ 的奇偶性。
 
 对于 $FWT[A]$ 的运算其实也很好得到。
 
@@ -95,7 +95,7 @@ FWT[A] = merge(FWT[A_0] + FWT[A_1], FWT[A_0] - FWT[A_1])
 $$
 
 $$
-UFWT[A'] = merge(\frac{FWT[A_0'] + FWT[A_1']}{2}, \frac{FWT[A_0'] - FWT[A_1']}{2})
+UFWT[A'] = merge(\frac{UFWT[A_0'] + UFWT[A_1']}{2}, \frac{UFWT[A_0'] - UFWT[A_1']}{2})
 $$
 
 ### 同或运算
@@ -109,5 +109,5 @@ FWT[A] = merge(FWT[A_1] - FWT[A_0], FWT[A_1] + FWT[A_0])
 $$
 
 $$
-UFWT[A'] = merge(\frac{FWT[A_1'] - FWT[A_0']}{2}, \frac{FWT[A_1'] + FWT[A_0']}{2})
+UFWT[A'] = merge(\frac{UFWT[A_1'] - UFWT[A_0']}{2}, \frac{UFWT[A_1'] + UFWT[A_0']}{2})
 $$
