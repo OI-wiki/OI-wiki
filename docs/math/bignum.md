@@ -592,6 +592,88 @@ void div(int a[], int b[], int c[], int d[]) {
     }
     ```
 
+### 压位高精下的高效除法
+
+压位高精下，比如说用万进制，如果每个位仍然使用前面介绍的，大于等于就减1的方法，那在除法下常数会非常大，在万进制下那每个位平均需要减个5000次，这个是不可接受的。这里需要一个高效的试商办法，平均每个位只需要试一次。
+
+我们可以利用double作为媒介，假设被除数有4个位，是$a_4,a_3,a_2,a_1$，除数有3个位，是$b_3,b_2,b_1$，那么我们只要试一位的商（多个位就是一位的写法加个循环），使用$base$进制，用式子$\frac{a_4 base + a_3}{b_3 + b_2 base^{-1} + (b_1+1)base^{-2}}$来估商，由于使用3位的精度，能保证估的商小于等于实际商，且误差不超过1，这样每个位只需要一次试商。但由于此方法需要3个位，所以要求这在double的有效精度内，建议不要使用超过32768进制，如超过，那需要换一种试商办法。
+
+??? note "压位高精度高效除法参考实现"
+    ```cpp
+    //完整模板和实现 https://baobaobear.github.io/post/20210228-bigint1/
+    //对b乘以mul再左移offset的结果相减，为除法服务
+    BigIntSimple &sub_mul(const BigIntSimple &b, int mul, int offset) {
+        if (mul == 0)
+            return *this;
+        int borrow = 0;
+        //与减法不同的是，borrow可能很大，不能使用减法的写法
+        for (size_t i = 0; i < b.v.size(); ++i) {
+            borrow += v[i + offset] - b.v[i] * mul - BIGINT_BASE + 1;
+            v[i + offset] = borrow % BIGINT_BASE + BIGINT_BASE - 1;
+            borrow /= BIGINT_BASE;
+        }
+        //如果还有借位就继续处理
+        for (size_t i = b.v.size(); borrow; ++i) {
+            borrow += v[i + offset] - BIGINT_BASE + 1;
+            v[i + offset] = borrow % BIGINT_BASE + BIGINT_BASE - 1;
+            borrow /= BIGINT_BASE;
+        }
+        return *this;
+    }
+    BigIntSimple div_mod(const BigIntSimple &b, BigIntSimple &r) const {
+        BigIntSimple d;
+        r = *this;
+        if (absless(b)) return d;
+        d.v.resize(v.size() - b.v.size() + 1);
+        //提前算好除数的最高三位+1的倒数，若最高三位是a3,a2,a1
+        //那么db是a3+a2/base+(a1+1)/base^2的倒数，最后用乘法估商的每一位
+        //此法在BIGINT_BASE<=32768时可在int32范围内用
+        //但即使使用int64，那么也只有BIGINT_BASE<=131072时可用（受double的精度限制）
+        //能保证估计结果q'与实际结果q的关系满足q'<=q<=q'+1
+        //所以每一位的试商平均只需要一次，只要后面再统一处理进位即可
+        //如果要使用更大的base，那么需要更换其它试商方案
+        double t = (b.get((unsigned)b.v.size() - 2) +
+                    (b.get((unsigned)b.v.size() - 3) + 1.0) / BIGINT_BASE);
+        double db = 1.0 / (b.v.back() + t / BIGINT_BASE);
+        for (size_t i = v.size() - 1, j = d.v.size() - 1; j <= v.size();) {
+            int rm = r.get(i + 1) * BIGINT_BASE + r.get(i);
+            int m = std::max((int)(db * rm), r.get(i + 1));
+            r.sub_mul(b, m, j);
+            d.v[j] += m;
+            if (!r.get(i + 1)) //检查最高位是否已为0，避免极端情况
+                --i, --j;
+        }
+        r.trim();
+        //修正结果的个位
+        int carry = 0;
+        while (!r.absless(b)) {
+            r.subtract(b);
+            ++carry;
+        }
+        //修正每一位的进位
+        for (size_t i = 0; i < d.v.size(); ++i) {
+            carry += d.v[i];
+            d.v[i] = carry % BIGINT_BASE;
+            carry /= BIGINT_BASE;
+        }
+        d.trim();
+        d.sign = sign * b.sign;
+        return d;
+    }
+
+    BigIntSimple operator/(const BigIntSimple &b) const {
+        BigIntSimple r;
+        return div_mod(b, r);
+    }
+
+    BigIntSimple operator%(const BigIntSimple &b) const {
+        BigIntSimple r;
+        div_mod(b, r);
+        return r;
+    }
+    ```
+
+
 ## Karatsuba 乘法
 
 记高精度数字的位数为 $n$，那么高精度—高精度竖式乘法需要花费 $O(n^2)$ 的时间。本节介绍一个时间复杂度更为优秀的算法，由前苏联（俄罗斯）数学家 Anatoly Karatsuba 提出，是一种分治算法。
@@ -690,7 +772,7 @@ $$
 
 ## 封装类
 
-[这里](https://paste.ubuntu.com/p/7VKYzpC7dn/) 有一个封装好的高精度整数类。
+[这里](https://paste.ubuntu.com/p/7VKYzpC7dn/) 有一个封装好的高精度整数类，以及[这里](https://github.com/Baobaobear/MiniBigInteger/blob/main/bigint_tiny.h)支持动态长度及四则运算的超迷你实现类。
 
 ??? 这里是另一个模板
     ```cpp
@@ -886,8 +968,7 @@ $$
       gd(i, len - 2, 0) { printf("%04d", a[i]); }
     }
     
-    inline void print(Big s) {
-      // s不要是引用，要不然你怎么print(a * b);
+    inline void print(const Big& s) {
       int len = s.len;
       printf("%d", s.a[len - 1]);
       gd(i, len - 2, 0) { printf("%04d", s.a[i]); }
