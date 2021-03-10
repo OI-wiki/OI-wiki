@@ -1,18 +1,18 @@
 引用可以看成是 C++ 封装的指针，用来传递它所指向的对象。在 C++ 代码中实际上会经常和引用打交道，但是通常不会显式地表现出来。引用的基本原则是在声明时必须指向对象，以及对引用的一切操作都相当于对原对象操作。另外，引用不是对象，因此不存在引用的数组、无法获取引用的指针，也不存在引用的引用。
 
-> 尽管引用不是对象，但是可以通过 [`reference_wrapper`](https://zh.cppreference.com/w/cpp/utility/functional/reference_wrapper) 把它对象化，间接实现相似的效果。
+> 注意引用类型不属于对象类型，所以才需要 [`reference_wrapper`](https://zh.cppreference.com/w/cpp/utility/functional/reference_wrapper) 这种设施。
 
 引用主要分为两种，左值引用和右值引用。此外还有两种特殊的引用：转发引用和垂悬引用，不作详细介绍。另外，本文还牵涉到一部分常值的内容，请用 [常值](./const.md) 一文辅助阅读。
 
 ## 左值引用
 
 ??? note "左值和右值"
-    在赋值表达式 `X = Y` 中，我们说 X 是左值，它被用到的是在内存中的 **地址**，在编译时可知；而 Y 则是右值，它被用到的是它的 **内容**（值），内容仅在运行时可知。在 C++11 之后值的概念被进一步分类，分为泛左值、纯右值和亡值，具体参见 [相关文档](https://zh.cppreference.com/w/cpp/language/value_category)。值得一提的是，尽管右值引用在 C++11 后才支持，但是右值概念却更早就被定义了。
+    关于左值和右值，一个常见的误区是认为能出现在赋值运算符左侧的是左值，其余为右值。事实上常量、字符串字面量、函数名、数组名（作为变量名表达式）都是不能出现在赋值运算符左侧的左值。一种不容易出错的判断方法是，左值可以被取地址，而右值不可以。在 C++11 之后，为了完善移动语义，值的类别被进一步分为泛左值、纯右值和亡值，具体参见 [相关文档](https://zh.cppreference.com/w/cpp/language/value_category)。值得一提的是，尽管右值引用在 C++11 后才支持，但是右值概念却更早就被定义了。
 
 ??? note "左值表达式"
-    如果一个表达式返回的是左值（即可以被修改），那么这个表达式被称为左值表达式。右值表达式亦然。
+    如果一个表达式返回的是左值，那么这个表达式被称为左值表达式。右值表达式亦然。
 
-通常我们会接触到的引用为左值引用，它通常被用来被赋值和访问，指向右值，它的名称来源于它通常放在等号左边。左值需要 **在内存中有实体**，而不能指向临时变量。以下是来自 [参考手册](https://zh.cppreference.com/w/cpp/language/reference) 的一段示例代码。
+通常我们会接触到的引用为左值引用，即绑定到左值的引用，但 `const` 的左值引用可以绑定到右值。以下是来自 [参考手册](https://zh.cppreference.com/w/cpp/language/reference) 的一段示例代码。
 
 ```cpp
 #include <iostream>
@@ -51,7 +51,7 @@ int main() {
 
 ## 右值引用 (C++ 11)
 
-右值引用是用来赋给其他变量的引用，指向右值，它的名称来源于它通常放在赋值号右边。右值 **可以在内存里也可以在 CPU 寄存器中**。另外，右值引用可以被看作一种 **延长临时对象生存期的方式**。
+右值引用是绑定到右值的引用。右值 **可以在内存里也可以在 CPU 寄存器中**。另外，右值引用可以被看作一种 **延长临时对象生存期的方式**。
 
 ```cpp
 #include <iostream>
@@ -94,16 +94,16 @@ int n8 = n7++;    // n8 = 1
 在 C++11 之后，C++ 利用右值引用新增了移动语义的支持，用来避免对象在堆空间的复制（但是无法避免栈空间复制），STL 容器对该特性有完整支持。具体特性有 [移动构造函数](https://zh.cppreference.com/w/cpp/language/move_constructor)、[移动赋值](https://zh.cppreference.com/w/cpp/language/move_assignment) 和具有移动能力的函数（参数里含有右值引用）。
 另外，`std::move` 函数可以用来产生右值引用，需要包含 `<utility>` 头文件。
 
+**注意：一个对象被移动后不应对其进行任何操作，无论是修改还是访问**。被移动的对象处于有效但未指定的状态，具体内容依赖于 stl 的实现。如果需要访问（即指定一种状态），可以使用该对象的 `swap` 成员函数或者偏特化的 `std::swap` 交换两个对象（同样可以避免堆空间的复制）。
+
 ```cpp
 // 移动构造函数
 std::vector<int> v{1, 2, 3, 4, 5};
 std::vector<int> v2(std::move(v));  // 移动v到v2, 不发生拷贝
-assert(v.empty());
 
 // 移动赋值函数
 std::vector<int> v3;
 v3 = std::move(v2);
-assert(v2.empty());
 
 // 有移动能力的函数
 std::string s = "def";
@@ -151,3 +151,4 @@ Beta_ab ab = Beta().getAB();  // 这里是移动语义，而非拷贝
 1. [C++ 语言文档——引用声明](https://zh.cppreference.com/w/cpp/language/reference)
 2. [C++ 语言文档——值类别](https://zh.cppreference.com/w/cpp/language/value_category)
 3. [Is returning by rvalue reference more efficient?](https://stackoverflow.com/questions/1116641/is-returning-by-rvalue-reference-more-efficient)
+4. [浅谈值类别及其历史](https://www.luogu.com.cn/blog/SuperConstructor/qian-tan-zhi-lei-bie-ji-ji-li-shi)
