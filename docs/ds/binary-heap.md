@@ -1,4 +1,4 @@
-auhor: HeRaNO, Xeonacid
+author: HeRaNO, Xeonacid
 
 ### 结构
 
