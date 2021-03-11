@@ -85,3 +85,7 @@ $l$ 共有 $\sqrt n$ 级别种取值，所以直接转移复杂度为 $\displays
 ### 求和
 
 算出了 Part 1 和 Part 2 的答案，将其相加即为 $\displaystyle\sum_{i=1}^nf(i)$。
+
+## 参考
+
+[积性函数线性筛/杜教筛/洲阁筛学习笔记 | Bill Yang's Blog](https://blog.bill.moe/multiplicative-function-sieves-notes)
