@@ -555,7 +555,7 @@ $$
     void solve() {
       g[1] = 1;
       for (int i = 2; i <= N; ++i) {
-        if (!flg[i]) p[++tot] = i, g[i] = i * (i - 1) + 1;
+        if (!flg[i]) p[++tot] = i, g[i] = 1ll * i * (i - 1) + 1;
         for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
           flg[i * p[j]] = 1;
           if (i % p[j] == 0) {
