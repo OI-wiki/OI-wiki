@@ -451,14 +451,14 @@ $$
 
 $$
 \begin{aligned}
-\left|f(\max_{i\in S}{x_i})\right|
+\left|f\left(\max_{i\in S}{x_i}\right)\right|
 &= \left| \bigcup_{i\in S} f(x_i) \right|\\
 &= \sum_{T\subseteq S}(-1)^{|T|-1} \left|\bigcap_{j\in T}f(x_j)\right|\\
-&= \sum_{T\subseteq S}(-1)^{|T|-1} |f(\min_{j\in T}{x_j})|\\
+&= \sum_{T\subseteq S}(-1)^{|T|-1} \left|f\left(\min_{j\in T}{x_j}\right)\right|\\
 \end{aligned}
 $$
 
-然后再把 $\left|f(\max_{i\in S}{x_i})\right|$ 映射回 $\max_{i\in S}{x_i}$，而 $\min$ 是类似的。
+然后再把 $\left|f\left(\max_{i\in S}{x_i}\right)\right|$ 映射回 $\max_{i\in S}{x_i}$，而 $\min$ 是类似的。
 
 **证毕**
 
@@ -475,7 +475,7 @@ $$
 **证明：** 我们考虑计算期望的一种方法：
 
 $$
-E\left(\max_{i\in S}{x_i}\right)=\sum_{y}{\Pr\left[y=x\right]\max_{j\in S}{y_j}}
+E\left(\max_{i\in S}{x_i}\right)=\sum_{y}{P(y=x)\max_{j\in S}{y_j}}
 $$
 
 其中 $y$ 是一个长度为 $n$ 的序列。
@@ -483,16 +483,16 @@ $$
 我们对后面的 $\max$ 使用之前的式子：
 
 $$
-\begin{aligned}E\left(\max_{i\in S}{x_i}\right)&=\sum_{y}{\Pr\left[y=x\right]\max_{j\in S}{y_j}}\\
-&=\sum_{y}{\Pr[y=x]\sum_{T\subseteq S}{(-1)^{|T|-1}\min_{j\in T}{y_j}}} \end{aligned}
+\begin{aligned}E\left(\max_{i\in S}{x_i}\right)&=\sum_{y}{P(y=x)\max_{j\in S}{y_j}}\\
+&=\sum_{y}{P(y=x)\sum_{T\subseteq S}{(-1)^{|T|-1}\min_{j\in T}{y_j}}} \end{aligned}
 $$
 
 调换求和顺序：
 
 $$
 \begin{aligned}E\left(\max_{i\in S}{x_i}\right)
-&=\sum_{y}{\Pr[y=x]\sum_{T\subseteq S}{(-1)^{|T|-1}\min_{j\in T}{y_j}}}\\
-&=\sum_{T\subseteq S}{(-1)^{|T|-1}\sum_y{\Pr[y=x]\min_{j\in T}{y_j}}}\\
+&=\sum_{y}{P(y=x)\sum_{T\subseteq S}{(-1)^{|T|-1}\min_{j\in T}{y_j}}}\\
+&=\sum_{T\subseteq S}{(-1)^{|T|-1}\sum_y{P(y=x)\min_{j\in T}{y_j}}}\\
 &=\sum_{T\subseteq S}{(-1)^{|T|-1}E\left(\min_{j\in T}{y_j}\right)} \end{aligned}
 $$
 
