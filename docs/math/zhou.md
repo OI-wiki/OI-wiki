@@ -35,14 +35,14 @@ $$
 对于前半部分，枚举最大因子，根据积性函数的性质可以转换：
 
 $$
-\sum_{i=1}^nf(i)=\sum_{i=1}^\sqrt nf(i)\cdot\left(\sum_{d=\lfloor\sqrt n\rfloor+1}^{\lfloor\frac ni\rfloor}[d\in\mathbb P]f(d)\right)+\sum_{i=1}^n\left[\forall d\in(\sqrt n,n]\cap\mathbb P,d\nmid i\right]f(i)
+\sum_{i=1}^nf(i)=\sum_{i=1}^{\sqrt n}f(i)\cdot\left(\sum_{d=\lfloor\sqrt n\rfloor+1}^{\lfloor\frac ni\rfloor}[d\in\mathbb P]f(d)\right)+\sum_{i=1}^n\left[\forall d\in(\sqrt n,n]\cap\mathbb P,d\nmid i\right]f(i)
 $$
 
 前后部分可以分别计算。
 
 ### Part 1
 
-> 计算 $\displaystyle\sum_{i=1}^\sqrt nf(i)\cdot\left(\sum_{d=\lfloor\sqrt n\rfloor+1}^{\lfloor\frac ni\rfloor}[d\in\mathbb P]f(d)\right)$。
+> 计算 $\displaystyle\sum_{i=1}^{\sqrt n}f(i)\cdot\left(\sum_{d=\lfloor\sqrt n\rfloor+1}^{\lfloor\frac ni\rfloor}[d\in\mathbb P]f(d)\right)$。
 
 考虑枚举 $i$，然后 $\mathcal O(1)$ 计算括号内部分。
 
