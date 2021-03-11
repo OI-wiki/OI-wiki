@@ -29,7 +29,7 @@ author: Early0v0
 将 $[1,n]$ 内的所有整数按是否有 $>\sqrt n$ 的质因子分为两类：
 
 $$
-\sum_{i=1}^nf(i)=\sum_{i=1}^n\left[\exist d\in(\sqrt n,n]\cap\mathbb P,d\mid i\right]f(i)+\sum_{i=1}^n\left[\forall d\in(\sqrt n,n]\cap\mathbb P,d\nmid i\right]f(i)
+\sum_{i=1}^nf(i)=\sum_{i=1}^n\left[\exists d\in(\sqrt n,n]\cap\mathbb P,d\mid i\right]f(i)+\sum_{i=1}^n\left[\forall d\in(\sqrt n,n]\cap\mathbb P,d\nmid i\right]f(i)
 $$
 
 对于前半部分，枚举最大因子，根据积性函数的性质可以转换：
