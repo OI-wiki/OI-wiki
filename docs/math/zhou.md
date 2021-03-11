@@ -48,7 +48,7 @@ $$
 
 记 $\displaystyle g(t,l)=\sum_{i=1}^l[\forall j\in[1,t],\gcd(i,p_j)=1]f(i)$，即 $[1,l]$ 中与 $p_1,p_2,\dots,p_t$ 均互质的数的 $f$ 值之和。
 
-这样 Part 1 的计算就变成了 $\displaystyle\sum_{i=1}^\sqrt nf(i)\cdot g\left(m,\left\lfloor\frac ni\right\rfloor\right)$。
+这样 Part 1 的计算就变成了 $\displaystyle\sum_{i=1}^{\sqrt n}f(i)\cdot g\left(m,\left\lfloor\frac ni\right\rfloor\right)$。
 
 边界 $g(0,l)=\sum_{i=1}^lf(i)$，转移 $g(t,l)=g(t-1,l)-f(p_t)\cdot g\left(t-1,\left\lfloor\frac l{p_t}\right\rfloor\right)$。
 
