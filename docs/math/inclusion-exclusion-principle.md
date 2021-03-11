@@ -438,7 +438,7 @@ $$
 \min_{i\in S}{x_i}=\sum_{T\subseteq S}{(-1)^{|T|-1}\max_{j\in T}{x_j}}
 $$
 
-??? note "全序集合"
+??? note "全序关系"
     对于集合 $X$，若 $X$ 满足全序关系，则下列陈述对于任意 $a,b,c\in X$ 都成立：
     
     - 反对称性：若 $a\le b$ 且 $b\le a$，则 $a=b$;
