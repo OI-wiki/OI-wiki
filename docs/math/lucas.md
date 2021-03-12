@@ -1,6 +1,6 @@
 ## Lucas 定理
 
-Lucas 定理用于求解大组合数取模的问题，其中 p 必须为素数。正常的组合数运算可以通过递推公式求解（详见 [排列组合](./combination.md)），但当问题规模很大，而模数是一个不大的质数的时候，就不能简单地通过递推求解来得到答案，需要用到 Lucas 定理。
+Lucas 定理用于求解大组合数取模的问题，其中模数必须为素数。正常的组合数运算可以通过递推公式求解（详见[排列组合](./combination.md)），但当问题规模很大，而模数是一个不大的质数的时候，就不能简单地通过递推求解来得到答案，需要用到 Lucas 定理。
 
 ### 求解方式
 
@@ -57,45 +57,44 @@ $$
 
 ## exLucas 定理
 
-Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是素数的情况，就需要用到 exLucas 定理。
+Lucas 定理中对于模数 $m$ 要求必须为素数，那么对于 $m$ 不是素数的情况，就需要用到 exLucas 定理。
 
 ### 求解思路
 
 #### 第一部分
 
-根据 **唯一分解定理**，将 $p$ 质因数分解：
+根据**唯一分解定理**，将 $m$ 质因数分解：
 
 $$
-p=
-{q_1}^{\alpha_1}\cdot{q_2}^{\alpha_2}\cdots{q_r}^{\alpha_r}=\prod_{i=1}^{r}{q_i}^{\alpha_i}
+m={q_1}^{\alpha_1}\cdot{q_2}^{\alpha_2}\cdots{q_r}^{\alpha_r}=\prod_{i=1}^{r}{q_i}^{\alpha_i}
 $$
 
-对于任意 $i,j$，有 ${p_i}^{\alpha_i}$ 与 ${p_j}^{\alpha_j}$ 互质，所以可以构造如下 $r$ 个同余方程：
+对于任意 $i,j$，有 ${q_i}^{\alpha_i}$ 与 ${q_j}^{\alpha_j}$ 互质，所以可以构造如下 $r$ 个同余方程：
 
 $$
 \left\{
 \begin{aligned}
-a_1\equiv C_n^m&\pmod {{q_1}^{\alpha_1}}\\
-a_2\equiv C_n^m&\pmod {{q_2}^{\alpha_2}}\\
+a_1\equiv \displaystyle\binom{n}{m}{&\pmod {{q_1}^{\alpha_1}}\\
+a_2\equiv \displaystyle\binom{n}{m&\pmod {{q_2}^{\alpha_2}}\\
 &\cdots\\
-a_r\equiv C_n^m&\pmod {{q_r}^{\alpha_r}}\\
+a_r\equiv \displaystyle\binom{n}{m}&\pmod {{q_r}^{\alpha_r}}\\
 \end{aligned}
 \right.
 $$
 
-我们发现，在求出 $a_i$ 后，就可以用中国剩余定理求解出 $C_n^m$。
+我们发现，在求出 $a_i$ 后，就可以用中国剩余定理求解出 $\displaystyle\binom{n}{m}$。
 
 #### 第二部分
 
-根据同余的定义，$a_i=C_n^m\bmod {q_i}^{\alpha_i}$，问题转化成，求 $C_n^m\mod q^k(q\in\{$ 质数 $\})$ 的值。
+根据同余的定义，$\displaystyle a_i=\binom{n}{m}\bmod {q_i}^{\alpha_i}$，问题转化成，求 $\displaystyle \binom{n}{m} \bmod q^k$（$q$ 为质数）的值。
 
-根据组合数定义 $C_n^m=\frac{n!}{m!(n-m)!}$，$C_n^m\bmod q^k=\frac{n!}{m!(n-m)!}\bmod q^k$.
+根据组合数定义 $\displaystyle \binom{n}{m} = \frac{n!}{m! (n-m)!}$，$\displaystyle \binom{n}{m} \bmod q^k = \frac{n!}{m! (n-m)!} \bmod q^k$。
 
 由于式子是在模 $q^k$ 意义下，所以分母要算乘法逆元。
 
-同余方程 $ax\equiv 1\pmod p$（即乘法逆元）**有解** 的充要条件为 $\gcd(a,p)=1$（裴蜀定理），
+同余方程 $ax \equiv 1 \pmod p$（即乘法逆元）**有解**的充要条件为 $\gcd(a,p)=1$（裴蜀定理），
 
-然而 **无法保证有解**，发现无法直接求 $\operatorname{inv}_{m!}$ 和 $\operatorname{inv}_{(n-m)!}$，
+然而**无法保证有解**，发现无法直接求 $\operatorname{inv}_{m!}$ 和 $\operatorname{inv}_{(n-m)!}$，
 
 所以将原式转化为：
 
@@ -103,7 +102,7 @@ $$
 \frac{\frac{n!}{q^x}}{\frac{m!}{q^y}\frac{(n-m)!}{q^z}}q^{x-y-z} \bmod q^k
 $$
 
-$x$ 表示 $n!$ 中包含多少个 $q$ 因子，$y，z$ 同理。
+$x$ 表示 $n!$ 中包含多少个 $q$ 因子，$y, z$ 同理。
 
 #### 第三部分
 
@@ -115,64 +114,51 @@ $$
 
 的值。
 
-先考虑 $n!\bmod q^k$
+先考虑 $n! \bmod q^k$，
 
-比如 $n=22,p=3,k=2$ 时：
+比如 $n=22, q=3, k=2$ 时：
 
 $22!=1\times 2\times 3\times 4\times 5\times 6\times 7\times 8\times 9\times 10\times 11\times 12$
 
 $\times 13\times 14\times 15\times 16\times 17\times 18\times 19\times20\times21\times22$
 
-将其中所有 $p$ 的倍数提取，得到：
+将其中所有 $q$ 的倍数提取，得到：
 
 $22!=3^7 \times (1\times 2\times 3\times 4\times 5\times 6\times 7)$$\times(1\times 2\times 4\times 5\times 7\times 8\times 10 \times 11\times 13\times 14\times 16\times 17\times 19 \times 20 \times 22 )$
 
 可以看到，式子分为三个整式的乘积：
 
-**1.** 是 $3$ 的幂，次数是 $\lfloor\frac{n}{q}\rfloor$；
+1. 是 $3$ 的幂，次数是 $\lfloor\frac{n}{q}\rfloor$；
 
-**2.** 是 $7!$，即 $\lfloor\frac{n}{q}\rfloor!$，由于阶乘中仍然可能有 $q$ 的倍数，考虑递归求解；
+2. 是 $7!$，即 $\lfloor\frac{n}{q}\rfloor!$，由于阶乘中仍然可能有 $q$ 的倍数，考虑递归求解；
 
-**3.** 是 $n!$ 中与 $q$ 互质的部分的乘积，具有如下性质：
+3. 是 $n!$ 中与 $q$ 互质的部分的乘积，具有如下性质：  
+$1\times 2\times 4\times 5\times 7\times 8\equiv10 \times 11\times 13\times 14\times 16\times 17 \pmod{3^2}$  
+即：$\displaystyle \prod_{i,(i,q)=1}^{q^k}i\equiv\prod_{i,(i,q)=1}^{q^k}(i+tq^k) \pmod{q^k}$（$t$ 是任意正整数）。  
+$\displaystyle \prod_{i,(i,q)=1}^{p^k}i$ 一共循环了 $\displaystyle \lfloor\frac{n}{q^k}\rfloor$ 次，暴力求出 $\displaystyle \prod_{i,(i,q)=1}^{q^k}i$，然后用快速幂求 $\displaystyle \lfloor\frac{n}{q^k}\rfloor$ 次幂。  
+最后要乘上 $\displaystyle \prod_{i,(i,q)=1}^{n \bmod q^k}i$，即 $19\times 20\times 22$，显然长度小于 $q^k$，暴力乘上去。
 
-$1\times 2\times 4\times 5\times 7\times 8\equiv10 \times 11\times 13\times 14\times 16\times 17\ \pmod{ 3^2}$
-
-即：
-
-$$
-\prod_{i,(i,q)=1}^{q^k}i\equiv\prod_{i,(i,q)=1}^{q^k}(i+tq^k)\ mod\ q^k
-$$
-
-（$t$ 是任意正整数）
-
-$\prod_{i,(i,q)=1}^{p^k}i$ 一共循环了 $\lfloor\frac{n}{q^k}\rfloor$ 次，暴力求出 $\prod_{i,(i,q)=1}^{q^k}i$，然后用快速幂求
-
-$\lfloor\frac{n}{q^k}\rfloor$ 次幂
-
-最后要乘上 $\prod_{i,(i,q)=1}^{n\ mod\ q^k}i$，即 $19\times 20\times 22$，显然长度小于 $q^k$，暴力乘上去。
-
-上述三部分乘积为 $n!$。最终要求的是 $\frac{n!}{q^x}\bmod{q^k}$.
+上述三部分乘积为 $n!$。最终要求的是 $\frac{n!}{q^x}\bmod{q^k}$。
 
 所以有：
 
 $$
-{n!}=q^{\lfloor\frac{n}{p}\rfloor}\cdot (\lfloor\frac{n}{q}\rfloor)!\cdot(\prod_{i,(i,q)=1}^{q^k}i)^{\lfloor\frac{n}{q^k}\rfloor}\cdot(\prod_{i,(i,q)=1}^{n\bmod q^k}i)
+n! = q^{\lfloor\frac{n}{q}\rfloor} \cdot \left(\left\lfloor\frac{n}{q}\right\rfloor\right)! \cdot {\left(\prod_{i,(i,q)=1}^{q^k}i\right)}^{\lfloor\frac{n}{q^k}\rfloor} \cdot \left(\prod_{i,(i,q)=1}^{n\bmod q^k}i\right)
 $$
 
 于是：
 
 $$
-\frac{n!}{q^k}=
-{(\lfloor\frac{n}{q}\rfloor)!}\cdot(\prod_{i,(i,q)=1}^{q^k}i)^{\lfloor\frac{n}{q^k}\rfloor}\cdot(\prod_{i,(i,q)=1}^{n\bmod q^k}i)
+\frac{n!}{q^k} = \left(\left\lfloor\frac{n}{q}\right\rfloor\right)! \cdot {\left(\prod_{i,(i,q)=1}^{q^k}i\right)}^{\lfloor\frac{n}{q^k}\rfloor} \cdot \left(\prod_{i,(i,q)=1}^{n\bmod q^k}i\right)
 $$
 
-**${(\lfloor\frac{n}{q}\rfloor)!}$ 同样是一个数的阶乘，所以也可以分为上述三个部分，于是可以递归求解。**
+**$\displaystyle \left(\left\lfloor\frac{n}{q}\right\rfloor\right)!$ 同样是一个数的阶乘，所以也可以分为上述三个部分，于是可以递归求解。**
 
 #### 总结
 
-对于 $C_n^m\bmod p$，我们将其转化为 $r$ 个形如 $a_i\equiv C_n^m\pmod {{q_i}^{\alpha_i}}$ 的同余方程并分别求解。
+对于 $\displaystyle \binom{n}{m} \bmod p$，我们将其转化为 $r$ 个形如 $\displaystyle a_i \equiv \binom{n}{m} \pmod{{q_i}^{\alpha_i}}$ 的同余方程并分别求解。
 
-对于 $a_i\equiv C_n^m\pmod {{q_i}^{\alpha_i}}$，将 $C_n^m$ 转化为 $\frac{\frac{n!}{q^x}}{\frac{m!}{q^y}\frac{(n-m)!}{q^z}}q^{x-y-z}$，于是可求逆元。
+对于 $\displaystyle a_i \equiv \binom{n}{m} \pmod{{q_i}^{\alpha_i}}$，将 $\displaystyle \binom{n}{m}$ 转化为 $\displaystyle \frac{\frac{n!}{q^x}}{\frac{m!}{q^y}\frac{(n-m)!}{q^z}}q^{x-y-z}$，于是可求逆元。
 
 对于 $\frac{m!}{q^y}$ 和 $\frac{(n-m)!}{q^z}$，将其变换整理，可递归求解。
 
