@@ -74,8 +74,8 @@ $$
 $$
 \left\{
 \begin{aligned}
-a_1\equiv \displaystyle\binom{n}{m}{&\pmod {{q_1}^{\alpha_1}}\\
-a_2\equiv \displaystyle\binom{n}{m&\pmod {{q_2}^{\alpha_2}}\\
+a_1\equiv \displaystyle\binom{n}{m}&\pmod {{q_1}^{\alpha_1}}\\
+a_2\equiv \displaystyle\binom{n}{m}&\pmod {{q_2}^{\alpha_2}}\\
 &\cdots\\
 a_r\equiv \displaystyle\binom{n}{m}&\pmod {{q_r}^{\alpha_r}}\\
 \end{aligned}
