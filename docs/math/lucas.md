@@ -57,16 +57,16 @@ $$
 
 ## exLucas 定理
 
-Lucas 定理中对于模数 $m$ 要求必须为素数，那么对于 $m$ 不是素数的情况，就需要用到 exLucas 定理。
+Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是素数的情况，就需要用到 exLucas 定理。
 
 ### 求解思路
 
 #### 第一部分
 
-根据 **唯一分解定理**，将 $m$ 质因数分解：
+根据 **唯一分解定理**，将 $p$ 质因数分解：
 
 $$
-m={q_1}^{\alpha_1}\cdot{q_2}^{\alpha_2}\cdots{q_r}^{\alpha_r}=\prod_{i=1}^{r}{q_i}^{\alpha_i}
+p={q_1}^{\alpha_1}\cdot{q_2}^{\alpha_2}\cdots{q_r}^{\alpha_r}=\prod_{i=1}^{r}{q_i}^{\alpha_i}
 $$
 
 对于任意 $i,j$，有 ${q_i}^{\alpha_i}$ 与 ${q_j}^{\alpha_j}$ 互质，所以可以构造如下 $r$ 个同余方程：
@@ -133,7 +133,7 @@ $22!=3^7 \times (1\times 2\times 3\times 4\times 5\times 6\times 7)$$\times(1\ti
 2. 是 $7!$，即 $\lfloor\frac{n}{q}\rfloor!$，由于阶乘中仍然可能有 $q$ 的倍数，考虑递归求解；
 
 3.  是 $n!$ 中与 $q$ 互质的部分的乘积，具有如下性质：  
-    $1\times 2\times 4\times 5\times 7\times 8\equiv10 \times 11\times 13\times 14\times 16\times 17 \pmod{3^2}$   
+    $1\times 2\times 4\times 5\times 7\times 8\equiv10 \times 11\times 13\times 14\times 16\times 17 \pmod{3^2}$，  
     即：$\displaystyle \prod_{i,(i,q)=1}^{q^k}i\equiv\prod_{i,(i,q)=1}^{q^k}(i+tq^k) \pmod{q^k}$（$t$ 是任意正整数）。  
     $\displaystyle \prod_{i,(i,q)=1}^{p^k}i$ 一共循环了 $\displaystyle \lfloor\frac{n}{q^k}\rfloor$ 次，暴力求出 $\displaystyle \prod_{i,(i,q)=1}^{q^k}i$，然后用快速幂求 $\displaystyle \lfloor\frac{n}{q^k}\rfloor$ 次幂。  
     最后要乘上 $\displaystyle \prod_{i,(i,q)=1}^{n \bmod q^k}i$，即 $19\times 20\times 22$，显然长度小于 $q^k$，暴力乘上去。
@@ -143,13 +143,13 @@ $22!=3^7 \times (1\times 2\times 3\times 4\times 5\times 6\times 7)$$\times(1\ti
 所以有：
 
 $$
-n! = q^{\lfloor\frac{n}{q}\rfloor} \cdot \left(\left\lfloor\frac{n}{q}\right\rfloor\right)! \cdot {\left(\prod_{i,(i,q)=1}^{q^k}i\right)}^{\lfloor\frac{n}{q^k}\rfloor} \cdot \left(\prod_{i,(i,q)=1}^{n\bmod q^k}i\right)
+n! = q^{\left\lfloor\frac{n}{q}\right\rfloor} \cdot \left(\left\lfloor\frac{n}{q}\right\rfloor\right)! \cdot {\left(\prod_{i,(i,q)=1}^{q^k}i\right)}^{\left\lfloor\frac{n}{q^k}\right\rfloor} \cdot \left(\prod_{i,(i,q)=1}^{n\bmod q^k}i\right)
 $$
 
 于是：
 
 $$
-\frac{n!}{q^k} = \left(\left\lfloor\frac{n}{q}\right\rfloor\right)! \cdot {\left(\prod_{i,(i,q)=1}^{q^k}i\right)}^{\lfloor\frac{n}{q^k}\rfloor} \cdot \left(\prod_{i,(i,q)=1}^{n\bmod q^k}i\right)
+\frac{n!}{q^{\left\lfloor\frac{n}{q}\right\rfloor}} = \left(\left\lfloor\frac{n}{q}\right\rfloor\right)! \cdot {\left(\prod_{i,(i,q)=1}^{q^k}i\right)}^{\left\lfloor\frac{n}{q^k}\right\rfloor} \cdot \left(\prod_{i,(i,q)=1}^{n\bmod q^k}i\right)
 $$
 
 **$\displaystyle \left(\left\lfloor\frac{n}{q}\right\rfloor\right)!$ 同样是一个数的阶乘，所以也可以分为上述三个部分，于是可以递归求解。**
