@@ -4,8 +4,6 @@ author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613
 
 本章主要介绍了在 Windows 系统下运行 Linux 系统的方法。
 
-由于截至 2020 年 6 月，大部分系统尚未安装 Windows 10 2020 年 5 月更新（内部版本 19041），本章仅介绍 WSL。
-
 * * *
 
 ## 引言[^ref1]
@@ -203,6 +201,36 @@ AMD Ryzen 5 1400 Quad-Core Processor
 ???+ note
     Linux 环境下可执行文件可不带扩展名，实现方式看上方命令。
 
+## WSL1 升级为 WSL2
+
+???+ warning
+    请确认已经完成前面 WSL1 的安装步骤。
+
+执行命令 `wsl -l -v` 可以看到WSL版本号是 1，需要执行升级，才能到 2。
+
+1. 启用虚拟机功能
+
+    使用 PowerShell 以管理员身份运行：
+
+    ```shell
+    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+    ```
+
+    然后**重启电脑**。
+
+2. 下载 Linux 内核更新包
+
+    - [x64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi) 的内核更新包。
+    - [arm64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi) 的内核更新包。
+
+3. 设置分发版版本
+
+    执行命令：`wsl --set-version <分发版名称> <版本号>`
+
+    如：将 Ubuntu18.04 设置为 WSL2 的命令为 `wsl --set-version Ubuntu-18.04 2`
+
+    这一步比较耗时，执行完成后通过命令 `wsl -l -v` 来查询升级是否成功。
+
 ## 进阶操作
 
 ### 安装图形环境，并使用远程桌面连接
@@ -314,6 +342,7 @@ xfce4-session
 - [Ubuntu 镜像使用帮助，清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
 - [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://dowww.spencerwoo.com)
 - [GitHub 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL)
+- [WSL1 升级为 WSL2](https://www.cnblogs.com/stulzq/p/13926936.html)
 
 ## 参考资料与注释
 
