@@ -145,12 +145,12 @@ $$
 
 ### 例子
 
-- 单位函数：$\epsilon(n)=[n=1]$（完全积性）
+- 单位函数：$\varepsilon(n)=[n=1]$（完全积性）
 - 恒等函数：$\operatorname{id}_k(n)=n^k$，$\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$。（完全积性）
 - 常数函数：$1(n)=1$（完全积性）
 - 除数函数：$\sigma_{k}(n)=\sum_{d\mid n}d^{k}$$\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$，$\sigma_{1}(n)$ 通常简记作 $\sigma(n)$。
 - 欧拉函数：$\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$
-- 莫比乌斯函数：$\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1:d^{2} \mid n \\ (-1)^{\omega(n)} & otherwise\end{cases}$，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它是一个加性函数。
+- 莫比乌斯函数：$\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1,d^{2} \mid n \\ (-1)^{\omega(n)} & \texttt{otherwise}\end{cases}$，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它是一个加性函数。
 
 ???+note "加性函数"
     此处加性函数指数论上的加性函数 (Additive function)。对于加性函数 $\operatorname{f}$，当整数 $a,b$ 互质时，均有 $\operatorname{f}(ab)=\operatorname{f}(a)+\operatorname{f}(b)$。
@@ -162,20 +162,109 @@ $$
 
 ### 定义
 
-定义两个数论函数 $f,g$ 的 Dirichlet 卷积为
+对于两个数论函数 $f(x)$ 和 $g(x)$，则它们的狄利克雷卷积得到的结果 $h(x)$ 定义为：
 
 $$
-(f\ast g)(n)=\sum_{d\mid n}f(d)g(\frac{n}{d})
+h(x)=\sum_{d\mid x}{f(d)g\left(\dfrac xd \right)}=\sum_{ab=x}{f(a)g(b)}
 $$
+
+上式可以简记为：
+
+$$
+h=f*g
+$$
+
+狄利克雷卷积是数论函数的重要运算，数论函数的许多性质都是通过这个运算挖掘出来的。
 
 ### 性质
 
-Dirichlet 卷积满足以下运算规律：
+**交换律：** $f*g=g*f$。
 
-- 交换律 $(f * g=g * f)$；
-- 结合律 $(f * g) * h=f * (g * h)$；
-- 分配律 $f * (g+h)=f * g+f * h$；
-- $f*\varepsilon=f$，其中 $\varepsilon$ 为 Dirichlet 卷积的单位元（任何函数卷 $\varepsilon$ 都为其本身）
+**结合律：**$(f*g)*h=f*(g*h)$。
+
+**分配律：**$(f+g)*h=f*h+g*h$。
+
+**等式的性质：** $f=g$ 的充要条件是 $f*h=g*h$，其中数论函数 $h(x)$ 要满足 $h(1)\ne 0$。
+
+> **证明：** 充分性是显然的。
+>
+> 证明必要性，我们先假设存在 $x$，使得 $f(x)\ne g(y)$。那么我们找到最小的 $y\in \mathbb{N}$，满足 $f(y)\ne g(y)$，并设 $r=f*h-g*h=(f-g)*h$。
+>
+> 则有：
+>
+> $$
+> \begin{aligned}
+> r(y)&=\sum_{d\mid y}{(f(d)-g(d))h\left(\dfrac yd \right)}\\
+> &=(f(y)-g(y))h(1)\\
+> &\ne 0
+> \end{aligned}
+> $$
+>
+> 则 $f*h$ 和 $g*h$ 在 $y$ 处的取值不一样，即有 $f*h\ne g*h$。矛盾，所以必要性成立。
+>
+> **证毕**
+
+**单位元：** 单位函数 $\varepsilon$ 是 Dirichlet 卷积运算中的单位元，即对于任何数论函数 $f$，都有 $f*\varepsilon=f$。
+
+**逆元：** 对于任何一个满足 $f(x)\ne 0$ 的数论函数，如果有另一个数论函数 $g(x)$ 满足 $f*g=\varepsilon$，则称 $g(x)$ 是 $f(x)$ 的逆元。由 **等式的性质** 可知，逆元是唯一的。
+
+容易构造出 $g(x)$ 的表达式为：
+
+$$
+g(x)=\dfrac {\varepsilon(x)-\sum_{d\mid x,d\ne 1}{f(x)g\left(\dfrac xd \right)}}{f(1)}
+$$
+
+### 重要结论
+
+#### 两个积性函数的 Dirichlet 卷积也是积性函数
+
+**证明：** 设两个积性函数为 $f(x)$ 和 $g(x)$，再记 $h=f*g$。
+
+设 $\gcd(a,b)=1$，则：
+
+$$
+h(a)=\sum_{d_1\mid a}{f(a)g\left(\dfrac a{d_1} \right)},h(b)=\sum_{d_2\mid b}{f(b)g\left(\dfrac b{d_2} \right)},
+$$
+
+所以：
+
+$$
+\begin{aligned}
+h(a)h(b)&=\sum_{d_1\mid a}{f(a)g\left(\dfrac a{d_1} \right)}\sum_{d_2\mid b}{f(b)g\left(\dfrac b{d_2} \right)}\\
+&=\sum_{d\mid ab}{f(d)g\left(\dfrac {ab}d \right)}\\
+&=h(ab)
+\end{aligned}
+$$
+
+所以结论成立。
+
+**证毕**
+
+#### 积性函数的逆元也是积性函数
+
+**证明**：我们设 $f*g=\varepsilon$，并且不妨设 $f(1)=1$。考虑归纳法：
+
+- 若 $nm=1$，则 $g(nm)=g(1)=1$，结论显然成立；
+
+-   若 $nm>1(\gcd(n,m)=1)$，假设现在对于所有的 $xy<nm(\gcd(x,y)=1)$，都有 $g(xy)=g(x)g(y)$，所以有：
+    $$
+    g(nm)=-\sum_{d\mid nm,d\ne 1}{f(d)g\left(\dfrac {nm}d \right)}=-\sum_{a\mid n,b\mid m,ab\ne 1}{f(ab)g\left(\dfrac {nm}{ab} \right)}
+    $$
+    又因为 $\dfrac{nm}{ab}<nm$，所以有：
+    $$
+    \begin{aligned}
+    g(nm)&=-\sum_{a\mid n,b\mid m,ab\ne 1}{f(ab)g\left(\dfrac {nm}{ab} \right)}\\
+    &=-\sum_{a\mid n,b\mid m,ab\ne 1}{f(a)f(b)g\left(\dfrac {n}{a} \right)g\left(\dfrac {m}{b} \right)}\\
+    &=f(1)f(1)g(n)g(m)-\sum_{a\mid n,b\mid m}{f(a)f(b)g\left(\dfrac {n}{a} \right)g\left(\dfrac {m}{b} \right)}\\
+    &=g(n)g(m)-\sum_{a\mid n}{f(a)g\left(\dfrac {n}{a} \right)}\sum_{b\mid m}{f(b)g\left(\dfrac {m}{b} \right)}\\
+    &=g(n)g(m)-\varepsilon(n)-\varepsilon(m)\\
+    &=g(n)g(m)
+    \end{aligned}
+    $$
+
+综合以上两点，结论成立。
+
+**证毕**
 
 ### 例子
 
