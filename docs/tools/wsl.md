@@ -206,9 +206,9 @@ AMD Ryzen 5 1400 Quad-Core Processor
 ???+ warning
     请确认已经完成前面 WSL1 的安装步骤。
 
-执行命令 `wsl -l -v` 可以看到WSL版本号是 1，需要执行升级，才能到 2。
+执行命令 `wsl -l -v` 可以看到 WSL 版本号是 1，需要执行升级，才能到 2。
 
-1. 启用虚拟机功能
+1.  启用虚拟机功能
 
     使用 PowerShell 以管理员身份运行：
 
@@ -216,14 +216,14 @@ AMD Ryzen 5 1400 Quad-Core Processor
     dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
     ```
 
-    然后**重启电脑**。
+    然后 **重启电脑**。
 
-2. 下载 Linux 内核更新包
+2.  下载 Linux 内核更新包
 
     - [x64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi) 的内核更新包。
     - [arm64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi) 的内核更新包。
 
-3. 设置分发版版本
+3.  设置分发版版本
 
     执行命令：`wsl --set-version <分发版名称> <版本号>`
 
