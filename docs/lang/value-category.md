@@ -5,16 +5,15 @@
 ???+note "关于名词的翻译"
     type 和 category 都可以翻译为“类型”或“类别”，但为了区分两者，下文中统一将 type 翻译为“类型”，category 翻译为“类别”。
 
-
 ## 从 CPL 语言的定义说起
 
-左值与右值的概念最早出现在 C 语言的祖先语言：CPL 。
+左值与右值的概念最早出现在 C 语言的祖先语言：CPL。
 
 在 CPL 的定义中，lvalue 意为 left-hand side value，即能够出现在赋值运算符（等号）左侧的值，右值的定义亦然。
 
 ## C 和 C++ 11 以前
 
-C 语言沿用了相似的分类方法，但左右值的判断标准已经与赋值运算符无关。在新的定义中， lvalue 意为 locate value，即能进行取地址运算 (`&`) 的值。
+C 语言沿用了相似的分类方法，但左右值的判断标准已经与赋值运算符无关。在新的定义中，lvalue 意为 locate value，即能进行取地址运算 (`&`) 的值。
 
 可以这么理解：左值是有内存地址的对象，而右值只是一个中间计算结果（虽然编译器往往需要在内存中分配地址来储存这个值，但这个内存地址是无法被程序员感知的，所以可以认为它不存在）。中间计算结果就意味着这个值马上就没用了，以后不会再访问它。
 
@@ -36,33 +35,33 @@ b = a;
 
 我们姑且不管移动是怎么实现的，先来考虑一下我们如何标记 `a` 是可以移动的。显然不管能否移动，这个表达式的类型都是 `vector` 不变，所以只能对值类别下手。不可移动的 `a` 是左值，如果要在原有的体系下标记可以移动的 `a`，我们只能把它标记为右值。但标记为右值又是不合理的，因为这个 `a` 实际上拥有自己的内存地址，与其他右值有有根本上的不同。所以 C++ 11 引入了 亡值 (xvalue) 这一值类别来标记这一种表达式。
 
-于是我们现在有了三种类别：左值 (lvalue) 、纯右值 (prvalue) 、亡值 (xvalue) （纯右值就是原先的右值）。
+于是我们现在有了三种类别：左值 (lvalue)、纯右值 (prvalue)、亡值 (xvalue)（纯右值就是原先的右值）。
 
 然后我们发现亡值同时具有一些左值和纯右值的性质，比如它可以像左值一样取地址，又像右值一样不会再被访问。
 
-所以又有了两种组合类别：泛左值 (glvalue) （左值和亡值）、右值 (rvalue) （纯右值和亡值）。
+所以又有了两种组合类别：泛左值 (glvalue)（左值和亡值）、右值 (rvalue)（纯右值和亡值）。
 
 有一个初步的感性理解后，来看一下标准委员会对它们的定义：
 
-+ A  **glvalue** (generalized lvalue) is an expression whose evaluation determines the identity of an object, bit-field, or function.
-+ A  **prvalue** (pure rvalue) is an expression whose evaluation initializes an object or a bit-field, or computes the value of an operand of an operator, as specified by the context in which it appears, or an expression that has type cv void.
-+ An **xvalue** (eXpiring value) is a glvalue that denotes an object or bit-field whose resources can be reused （usually because it is near the end of its lifetime）.
-+ An **lvalue** is a glvalue that is not an xvalue.
-+ An **rvalue** is a prvalue or an xvalue.
+- A **glvalue**(generalized lvalue) is an expression whose evaluation determines the identity of an object, bit-field, or function.
+- A **prvalue**(pure rvalue) is an expression whose evaluation initializes an object or a bit-field, or computes the value of an operand of an operator, as specified by the context in which it appears, or an expression that has type cv void.
+- An **xvalue**(eXpiring value) is a glvalue that denotes an object or bit-field whose resources can be reused（usually because it is near the end of its lifetime）。
+- An **lvalue** is a glvalue that is not an xvalue.
+- An **rvalue** is a prvalue or an xvalue.
 
 上述定义中提到了一个叫位域 (bit-field) 的东西。如果你不知道位域是什么，忽略它即可，后文也不会提及。
 
 其中关键的两个概念：
 
-+ 是否拥有身份 (identity)：可以确定表达式是否与另一表达式指代同一实体，例如比较它们所标识的对象或函数的（直接或间接获得的）地址
-+ 是否可以被移动 (resources can be reused)：对象的资源可以移动到别的对象中
+- 是否拥有身份 (identity)：可以确定表达式是否与另一表达式指代同一实体，例如比较它们所标识的对象或函数的（直接或间接获得的）地址
+- 是否可以被移动 (resources can be reused)：对象的资源可以移动到别的对象中
 
 这 5 种类型无非就是根据上面两种属性的是与否区分的，所以用下面的这张表格可以帮助理解：
 
-|                      | 拥有身份（glvalue） | 不拥有身份 |
-| -------------------- | ------------------- | ---------- |
-|   可移动（rvalue）   | xvalue              | prvalue    |
-|   不可移动           | lvalue              | 不存在     |
+|             | 拥有身份（glvalue） | 不拥有身份   |
+| ----------- | ------------- | ------- |
+| 可移动（rvalue） | xvalue        | prvalue |
+| 不可移动        | lvalue        | 不存在     |
 
 注意不用有身份就意为着这个对象以后无法被访问，这样的对象显然是可以被移动的，所以不存在不拥有身份不可移动的值。
 
@@ -74,20 +73,20 @@ b = a;
 
 ```cpp
 std::vector<int> make_vector(...) {
-    std::vector<int> result;
-    // ...
-    return result;
+  std::vector<int> result;
+  // ...
+  return result;
 }
 std::vector<int> a = make_vector(...);
 ```
 
 `make_vector` 函数根据一输入生成一个 `vector`。这个 `vector` 一开始在 `make_vector` 的栈上被构造，随后又被移动到调用者的栈上，需要一次移动操作，这显然很浪费，能不能省略这次移动？
 
-答案是肯定的，这就是 RVO 优化，即省略拷贝。通常的方法是编译器让 `make_vector`  返回的对象直接在调用者的栈上构造，然后 `make_vector` 在上面进行修改。这相当与这样的代码：
+答案是肯定的，这就是 RVO 优化，即省略拷贝。通常的方法是编译器让 `make_vector` 返回的对象直接在调用者的栈上构造，然后 `make_vector` 在上面进行修改。这相当与这样的代码：
 
 ```cpp
 void make_vector(std::vector<int>& result, ...) {
-	// ... (对 result 进行操作)
+  // ... (对 result 进行操作)
 }
 std::vecctor<int> a;
 make_vector(a, ...);
@@ -107,4 +106,4 @@ C++ 17 以后，纯右值不再能移动，但可以隐式地转变为亡值。�
 
 1. [Value categories](https://en.cppreference.com/w/cpp/language/value_category)
 2. [Wording for guaranteed copy elision through simplified value categories](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0135r1.html)
-3. [C++中的值类别](https://paul.pub/cpp-value-category/)
+3. [C++ 中的值类别](https://paul.pub/cpp-value-category/)
