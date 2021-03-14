@@ -11,7 +11,7 @@ repo_url: 'https://github.com/OI-wiki/OI-wiki'
 edit_uri: 'https://oi-wiki.org/edit-landing/?ref='
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2020 OI Wiki Team'
+copyright: 'Copyright &copy; 2016 - 2021 OI Wiki Team'
 google_analytics:
   - 'UA-124485594-1'
   - 'auto'
@@ -218,6 +218,9 @@ nav:
       - 杜教筛: math/du.md
       - Min_25 筛: math/min-25.md
       - 分解质因数: math/pollard-rho.md
+      - 连分数: math/continued-fraction.md
+      - Stern-Brocot 树与 Farey 序列: math/stern-brocot.md
+      - Pell 方程: math/pell-equation.md
     - 多项式:
       - 多项式部分简介: math/poly/intro.md
       - 拉格朗日插值: math/poly/lagrange.md
@@ -417,7 +420,6 @@ nav:
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
     - 约瑟夫问题: misc/josephus.md
-    - Stern-Brocot 树与 Farey 序列: misc/stern-brocot.md
     - 格雷码: misc/gray-code.md
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md

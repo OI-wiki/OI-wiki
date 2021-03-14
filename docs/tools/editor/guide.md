@@ -6,28 +6,28 @@ NOI Linux 系统自带 GUIDE，因此 GUIDE 也成为了选手在 NOI 系列比�
 
 ### 需要的动态库文件及包名
 
-|动态库|Arch 包名|Debian 包名|Fedora 包名|openSUSE x86 包名| openSUSE x86_64 包名|
-|-----|--------|-----------|----------|----------------|--------------------|
-|libpng12.so.0|lib32-libpng12|libpng12|libpng12|libpng12-0|libpng12-0-32bit|
-|libSM.so.6|lib32-libsm|libsm6|libSM|libSM6|libSM6-32bit|
-|libICE.so.6|lib32-libice|libice6|libICE|libICE6|libICE6-32bit|
-|libXi.so.6|lib32-libxi|libxi6|libXi|libXi6|libXi6-32bit|
-|libXrender.so.1|lib32-libxrender|libxrender1|libXrender|libXrender1|libXrender1-32bit|
-|libXrandr.so.2|lib32-libxrandr|libxrandr|libXrandr|libXrandr2|libXrandr2-32bit|
-|libfreetype.so.6|lib32-freetype2|libfreetype6|freetype|libfreetype6|libfreetype6-32bit
-|libfontconfig.so.1|lib32-fontconfig|libfontconfig1|fontconfig|libfontconfig1|libfontconfig1-32bit|
-|libXext.so.6|lib32-libxext|libxext6|libXext|libXext6|libXext6-32bit|
-|libX11.so.6|lib32-libx11|libx11-6|libX11|libX11-6|libX11-6-32bit|
-|libz.so.1|lib32-zlib|zlib1g|zlib|libz1|libz1-32bit|
-|libgthread-2.0.so.0|lib32-glib2|libglib2.0-0|glib2|libgthread-2_0-0|libgthread-2_0-0-32bit
-|libglib-2.0.so.0|lib32-glib2|libglib2.0-0|glib2|libglib2_0-0|libglib2_0-0-32bit|
-|libstdc++.so.6|lib32-gcc-libs|libstdc++6|libstdc++|libstdc++6|libstdc++6-32bit|
-|libgcc_s.so.1|lib32-gcc-libs|lib32gcc1|libgcc|libgcc_s1|libgcc_s1|
-|librt.so.1|lib32-glibc|libc6|glibc|glibc|glibc-32bit|
-|libpthread.so.0|lib32-glibc|libc6|glibc|glibc|glibc-32bit|
-|libdl.so.2|lib32-glibc|libc6|glibc|glibc|glibc-32bit|
-|libm.so.6|lib32-glibc|libc6|glibc|glibc|glibc-32bit|
-|libc.so.6|lib32-glibc|libc6|glibc|glibc|glibc-32bit|
+| 动态库                 | Arch 包名          | Debian 包名      | Fedora 包名  | openSUSE x86 包名  | openSUSE x86_64 包名     |
+| ------------------- | ---------------- | -------------- | ---------- | ---------------- | ---------------------- |
+| libpng12.so.0       | lib32-libpng12   | libpng12       | libpng12   | libpng12-0       | libpng12-0-32bit       |
+| libSM.so.6          | lib32-libsm      | libsm6         | libSM      | libSM6           | libSM6-32bit           |
+| libICE.so.6         | lib32-libice     | libice6        | libICE     | libICE6          | libICE6-32bit          |
+| libXi.so.6          | lib32-libxi      | libxi6         | libXi      | libXi6           | libXi6-32bit           |
+| libXrender.so.1     | lib32-libxrender | libxrender1    | libXrender | libXrender1      | libXrender1-32bit      |
+| libXrandr.so.2      | lib32-libxrandr  | libxrandr      | libXrandr  | libXrandr2       | libXrandr2-32bit       |
+| libfreetype.so.6    | lib32-freetype2  | libfreetype6   | freetype   | libfreetype6     | libfreetype6-32bit     |
+| libfontconfig.so.1  | lib32-fontconfig | libfontconfig1 | fontconfig | libfontconfig1   | libfontconfig1-32bit   |
+| libXext.so.6        | lib32-libxext    | libxext6       | libXext    | libXext6         | libXext6-32bit         |
+| libX11.so.6         | lib32-libx11     | libx11-6       | libX11     | libX11-6         | libX11-6-32bit         |
+| libz.so.1           | lib32-zlib       | zlib1g         | zlib       | libz1            | libz1-32bit            |
+| libgthread-2.0.so.0 | lib32-glib2      | libglib2.0-0   | glib2      | libgthread-2_0-0 | libgthread-2_0-0-32bit |
+| libglib-2.0.so.0    | lib32-glib2      | libglib2.0-0   | glib2      | libglib2_0-0     | libglib2_0-0-32bit     |
+| libstdc++.so.6      | lib32-gcc-libs   | libstdc++6     | libstdc++  | libstdc++6       | libstdc++6-32bit       |
+| libgcc_s.so.1       | lib32-gcc-libs   | lib32gcc1      | libgcc     | libgcc_s1        | libgcc_s1              |
+| librt.so.1          | lib32-glibc      | libc6          | glibc      | glibc            | glibc-32bit            |
+| libpthread.so.0     | lib32-glibc      | libc6          | glibc      | glibc            | glibc-32bit            |
+| libdl.so.2          | lib32-glibc      | libc6          | glibc      | glibc            | glibc-32bit            |
+| libm.so.6           | lib32-glibc      | libc6          | glibc      | glibc            | glibc-32bit            |
+| libc.so.6           | lib32-glibc      | libc6          | glibc      | glibc            | glibc-32bit            |
 
 ### 在 Debian 或 Ubuntu 安装
 
@@ -36,7 +36,7 @@ sudo apt install -y libpng12 libsm6 libice6 libxi6 libxrender1 libxrandr libfree
 wget -c http://download.noi.cn/T/noi/GUIDE-1.0.2-ubuntu.tar
 tar -xvf GUIDE-1.0.2-ubuntu.tar
 cd GUIDE-1.0.2-ubuntu
-echo "install:\n\tinstall -Dm755 -t /usr/bin GUIDE\n\tinstall -Dm644 -t /usr/share/ lang_en.qm\n\tinstall -Dm644 -t /usr/share/ apis\n\tmkdir -p /usr/share/doc/GUIDE/html/\n\tcp -r doc/*  /usr/share/doc/GUIDE/html/" > Makefile
+echo "install:\n\tinstall -Dm755 -t /usr/bin GUIDE\n\tinstall -Dm644 -t /usr/share/ lang_en.qm\n\tmkdir -p /usr/share/apis/ && cp -r apis/* /usr/share/apis/\n\tmkdir -p /usr/share/doc/GUIDE/ && mkdir -p /usr/share/doc/GUIDE/html/ && cp -r doc/*  /usr/share/doc/GUIDE/html/" > Makefile
 sudo apt install -y checkinstall
 sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y
 ```
@@ -46,13 +46,14 @@ sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y
 按照 [openSUSE/opi](https://github.com/openSUSE/opi#install) 给出的方式安装 opi。
 
 然后：（32 位用户自行删去 `-32bit`）
+
 ```bash
 sudo opi checkinstall
 sudo zypper install -n {libpng12-0,libSM6,libICE6,libXi6,libXrender1,libXrandr2,libfreetype6,libfontconfig1,libXext6,libX11-6,libz1,libgthread-2_0-0,libglib2_0-0,libstdc++6,libgcc_s1,glibc}-32bit
 wget -c http://download.noi.cn/T/noi/GUIDE-1.0.2-ubuntu.tar
 tar -xvf GUIDE-1.0.2-ubuntu.tar
 cd GUIDE-1.0.2-ubuntu
-echo "install:\n\tinstall -Dm755 -t /usr/bin GUIDE\n\tinstall -Dm644 -t /usr/share/ lang_en.qm\n\tinstall -Dm644 -t /usr/share/ apis\n\tmkdir -p /usr/share/doc/GUIDE/html/\n\tcp -r doc/*  /usr/share/doc/GUIDE/html/" > Makefile
+echo "install:\n\tinstall -Dm755 -t /usr/bin GUIDE\n\tinstall -Dm644 -t /usr/share/ lang_en.qm\n\tmkdir -p /usr/share/apis/ && cp -r apis/* /usr/share/apis/\n\tmkdir -p /usr/share/doc/GUIDE/ && mkdir -p /usr/share/doc/GUIDE/html/ && cp -r doc/*  /usr/share/doc/GUIDE/html/" > Makefile
 sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y -rpmi
 ```
 

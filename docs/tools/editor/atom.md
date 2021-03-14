@@ -8,4 +8,4 @@ Atom 是一个免费、开源、跨平台的文本编辑器，由 GitHub 开发�
 
 ## 外部链接
 
--  [Atom 官网](https://atom.io) 
+- [Atom 官网](https://atom.io)

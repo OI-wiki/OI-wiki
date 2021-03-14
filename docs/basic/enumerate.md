@@ -72,4 +72,4 @@ author: frank-xjh
 
 ## 习题
 
--  [2811: 熄灯问题 - OpenJudge](http://bailian.openjudge.cn/practice/2811/) 
+- [2811: 熄灯问题 - OpenJudge](http://bailian.openjudge.cn/practice/2811/)

@@ -24,15 +24,15 @@ $$
 
 假设圆 $O$ 是前 $i-1$ 个点的最小覆盖圆，加入第 $i$ 个点，如果在圆内或边上则什么也不做。否则，新得到的最小覆盖圆肯定经过第 $i$ 个点。
 
-然后以第 $i$ 个点为基础（半径为 $0$ ），重复以上过程依次加入第 $j$ 个点，若第 $j$ 个点在圆外，则最小覆盖圆必经过第 $j$ 个点。
+然后以第 $i$ 个点为基础（半径为 $0$），重复以上过程依次加入第 $j$ 个点，若第 $j$ 个点在圆外，则最小覆盖圆必经过第 $j$ 个点。
 
 重复以上步骤。（因为最多需要三个点来确定这个最小覆盖圆，所以重复三次）
 
 遍历完所有点之后，所得到的圆就是覆盖所有点得最小圆。
 
- **时间复杂度**  $O(n)$ ，证明详见参考资料。
+**时间复杂度**  $O(n)$，证明详见参考资料。
 
- **空间复杂度**  $O(n)$ 
+**空间复杂度**  $O(n)$
 
 ??? note "代码实现"
     ```cpp
@@ -108,18 +108,18 @@ $$
 
 ## 练习
 
- [最小圆覆盖](https://www.luogu.com.cn/problem/P1742) 
+[最小圆覆盖](https://www.luogu.com.cn/problem/P1742)
 
- [「HNOI2012」射箭](https://www.luogu.com.cn/problem/P3222) 
+[「HNOI2012」射箭](https://www.luogu.com.cn/problem/P3222)
 
- [CodeForces 442E](https://codeforces.com/problemset/problem/442/E) 
+[CodeForces 442E](https://codeforces.com/problemset/problem/442/E)
 
 ## 参考资料与扩展阅读
 
- <http://www.doc88.com/p-007257893177.html> 
+<http://www.doc88.com/p-007257893177.html>
 
- <https://www.cnblogs.com/aininot260/p/9635757.html> 
+<https://www.cnblogs.com/aininot260/p/9635757.html>
 
- <https://wenku.baidu.com/view/162699d63186bceb19e8bbe6.html> 
+<https://wenku.baidu.com/view/162699d63186bceb19e8bbe6.html>
 
- <https://blog.csdn.net/u014609452/article/details/62039612> 
+<https://blog.csdn.net/u014609452/article/details/62039612>

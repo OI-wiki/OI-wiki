@@ -8,7 +8,7 @@
 
 ![](./images/bi-graph.png)
 
-（图源 [英文维基](https://en.wikipedia.org/wiki/Bipartite_graph) ）
+（图源 [英文维基](https://en.wikipedia.org/wiki/Bipartite_graph)）
 
 ## 性质
 

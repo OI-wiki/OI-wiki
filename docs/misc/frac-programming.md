@@ -2,15 +2,15 @@ author: greyqz, Ir1d, hsfzLZH1
 
 分数规划用来求一个分式的极值。
 
-形象一点就是，给出 $a_i$ 和 $b_i$ ，求一组 $w_i\in\{0,1\}$ ，最小化或最大化
+形象一点就是，给出 $a_i$ 和 $b_i$，求一组 $w_i\in\{0,1\}$，最小化或最大化
 
 $$
 \displaystyle\frac{\sum\limits_{i=1}^na_i\times w_i}{\sum\limits_{i=1}^nb_i\times w_i}
 $$
 
-另外一种描述：每种物品有两个权值 $a$ 和 $b$ ，选出若干个物品使得 $\displaystyle\frac{\sum a}{\sum b}$ 最小/最大。
+另外一种描述：每种物品有两个权值 $a$ 和 $b$，选出若干个物品使得 $\displaystyle\frac{\sum a}{\sum b}$ 最小/最大。
 
-一般分数规划问题还会有一些奇怪的限制，比如『分母至少为 $W$ 』。
+一般分数规划问题还会有一些奇怪的限制，比如『分母至少为 $W$』。
 
 ## 求解
 
@@ -18,7 +18,7 @@ $$
 
 分数规划问题的通用方法是二分。
 
-假设我们要求最大值。二分一个答案 $mid$ ，然后推式子（为了方便少写了上下界）：
+假设我们要求最大值。二分一个答案 $mid$，然后推式子（为了方便少写了上下界）：
 
 $$
 \displaystyle
@@ -45,7 +45,7 @@ Dinkelbach 算法的大概思想是每次用上一轮的答案当做新的 $L$ �
 
 ### 模板
 
-> 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$ 。求一组 $w_i\in\{0,1\}$ ，最大化 $\displaystyle\frac{\sum a_i\times w_i}{\sum b_i\times w_i}$ 的值。
+> 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$。求一组 $w_i\in\{0,1\}$，最大化 $\displaystyle\frac{\sum a_i\times w_i}{\sum b_i\times w_i}$ 的值。
 
 把 $a_i-mid\times b_i$ 作为第 $i$ 个物品的权值，贪心地选所有权值大于 $0$ 的物品即可得到最大值。
 
@@ -112,13 +112,13 @@ Dinkelbach 算法的大概思想是每次用上一轮的答案当做新的 $L$ �
 
 ### POJ2976 Dropping tests
 
-> 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$ 。
+> 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$。
 >
-> 你可以选 $k$ 个物品 $p_1,p_2,\cdots,p_k$ ，使得 $\displaystyle\frac{\sum a_{p_i}}{\sum b_{p_i}}$ 最大。
+> 你可以选 $k$ 个物品 $p_1,p_2,\cdots,p_k$，使得 $\displaystyle\frac{\sum a_{p_i}}{\sum b_{p_i}}$ 最大。
 >
 > 输出答案乘 $100$ 后四舍五入到整数的值。
 
-把第 $i$ 个物品的权值设为 $a_i-mid\times b_i$ ，然后选最大的 $k$ 个即可得到最大值。
+把第 $i$ 个物品的权值设为 $a_i-mid\times b_i$，然后选最大的 $k$ 个即可得到最大值。
 
 ```cpp
 inline bool cmp(double x, double y) { return x > y; }
@@ -133,19 +133,19 @@ inline bool check(double mid) {
 
 ### 洛谷 4377 Talent Show
 
-> 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$ 。
+> 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$。
 >
-> 你需要确定一组 $w_i\in\{0,1\}$ ，使得 $\displaystyle\frac{\sum w_i\times a_i}{\sum w_i\times b_i}$ 最大。
+> 你需要确定一组 $w_i\in\{0,1\}$，使得 $\displaystyle\frac{\sum w_i\times a_i}{\sum w_i\times b_i}$ 最大。
 >
-> 要求 $\displaystyle\sum w_i\times b_i \geq W$ 。
+> 要求 $\displaystyle\sum w_i\times b_i \geq W$。
 
 本题多了分母至少为 $W$ 的限制，因此无法再使用上一题的贪心算法。
 
-可以考虑 01 背包。把 $b_i$ 作为第 $i$ 个物品的重量， $a_i-mid\times b_i$ 作为第 $i$ 个物品的价值，然后问题就转化为背包了。
+可以考虑 01 背包。把 $b_i$ 作为第 $i$ 个物品的重量，$a_i-mid\times b_i$ 作为第 $i$ 个物品的价值，然后问题就转化为背包了。
 
 那么 $dp[n][W]$ 就是最大值。
 
-一个要注意的地方： $\sum w_i\times b_i$ 可能超过 $W$ ，此时直接视为 $W$ 即可。（想一想，为什么？）
+一个要注意的地方：$\sum w_i\times b_i$ 可能超过 $W$，此时直接视为 $W$ 即可。（想一想，为什么？）
 
 ```cpp
 double f[1010];
@@ -162,7 +162,7 @@ inline bool check(double mid) {
 
 ### POJ2728 Desert King
 
-> 每条边有两个权值 $a_i$ 和 $b_i$ ，求一棵生成树 $T$ 使得 $\displaystyle\frac{\sum_{e\in T}a_e}{\sum_{e\in T}b_e}$ 最小。
+> 每条边有两个权值 $a_i$ 和 $b_i$，求一棵生成树 $T$ 使得 $\displaystyle\frac{\sum_{e\in T}a_e}{\sum_{e\in T}b_e}$ 最小。
 
 把 $a_i-mid\times b_i$ 作为每条边的权值，那么最小生成树就是最小值，
 
@@ -170,13 +170,13 @@ inline bool check(double mid) {
 
 ### [HNOI2009]最小圈
 
-> 每条边的边权为 $w$ ，求一个环 $C$ 使得 $\displaystyle\frac{\sum_{e\in C}w}{|C|}$ 最小。
+> 每条边的边权为 $w$，求一个环 $C$ 使得 $\displaystyle\frac{\sum_{e\in C}w}{|C|}$ 最小。
 
 把 $a_i-mid$ 作为边权，那么权值最小的环就是最小值。
 
-因为我们只需要判最小值是否小于 $0$ ，所以只需要判断图中是否存在负环即可。
+因为我们只需要判最小值是否小于 $0$，所以只需要判断图中是否存在负环即可。
 
-另外本题存在一种复杂度 $O(nm)$ 的算法，如果有兴趣可以阅读 [这篇文章](https://www.cnblogs.com/y-clever/p/7043553.html) 。
+另外本题存在一种复杂度 $O(nm)$ 的算法，如果有兴趣可以阅读 [这篇文章](https://www.cnblogs.com/y-clever/p/7043553.html)。
 
 ```cpp
 inline int SPFA(int u, double mid) {  // 判负环
@@ -209,6 +209,6 @@ inline bool check(double mid) {  // 如果有负环返回 true
 
 ## 习题
 
--  [JSOI2016 最佳团体](https://loj.ac/problem/2071) 
--  [SDOI2017 新生舞会](https://loj.ac/problem/2003) 
--  [UVa1389 Hard Life](https://www.luogu.com.cn/problem/UVA1389) 
+- [JSOI2016 最佳团体](https://loj.ac/problem/2071)
+- [SDOI2017 新生舞会](https://loj.ac/problem/2003)
+- [UVa1389 Hard Life](https://www.luogu.com.cn/problem/UVA1389)
