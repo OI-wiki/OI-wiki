@@ -100,6 +100,7 @@ nav:
     - C++ 进阶:
       - 类: lang/class.md
       - 命名空间: lang/namespace.md
+      - 值类别: lang/value-category.md
       - 重载运算符: lang/op-overload.md
       - 引用: lang/reference.md
       - 常值: lang/const.md
