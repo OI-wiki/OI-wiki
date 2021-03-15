@@ -229,7 +229,7 @@ AMD Ryzen 5 1400 Quad-Core Processor
 
     如：将 Ubuntu18.04 设置为 WSL2 的命令为 `wsl --set-version Ubuntu-18.04 2`
 
-    这一步比较耗时，执行完成后通过命令 `wsl -l -v` 来查询升级是否成功。
+    这一步比较耗时，执行完成后通过命令 `wsl -l -v` 来检查升级是否成功。
 
 ## 进阶操作
 
