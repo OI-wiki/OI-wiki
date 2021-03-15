@@ -135,7 +135,7 @@ $22!=3^7 \times (1\times 2\times 3\times 4\times 5\times 6\times 7)$$\times(1\ti
 3.  是 $n!$ 中与 $q$ 互质的部分的乘积，具有如下性质：  
     $1\times 2\times 4\times 5\times 7\times 8\equiv10 \times 11\times 13\times 14\times 16\times 17 \pmod{3^2}$，  
     即：$\displaystyle \prod_{i,(i,q)=1}^{q^k}i\equiv\prod_{i,(i,q)=1}^{q^k}(i+tq^k) \pmod{q^k}$（$t$ 是任意正整数）。  
-    $\displaystyle \prod_{i,(i,q)=1}^{p^k}i$ 一共循环了 $\displaystyle \lfloor\frac{n}{q^k}\rfloor$ 次，暴力求出 $\displaystyle \prod_{i,(i,q)=1}^{q^k}i$，然后用快速幂求 $\displaystyle \lfloor\frac{n}{q^k}\rfloor$ 次幂。  
+    $\displaystyle \prod_{i,(i,q)=1}^{q^k}i$ 一共循环了 $\displaystyle \lfloor\frac{n}{q^k}\rfloor$ 次，暴力求出 $\displaystyle \prod_{i,(i,q)=1}^{q^k}i$，然后用快速幂求 $\displaystyle \lfloor\frac{n}{q^k}\rfloor$ 次幂。  
     最后要乘上 $\displaystyle \prod_{i,(i,q)=1}^{n \bmod q^k}i$，即 $19\times 20\times 22$，显然长度小于 $q^k$，暴力乘上去。
 
 上述三部分乘积为 $n!$。最终要求的是 $\frac{n!}{q^x}\bmod{q^k}$。
