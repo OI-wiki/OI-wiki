@@ -7,7 +7,7 @@ $\left[x\right]$ 表示对 $x$ 下取整得到的结果。
 $p_k$ 表示第 $k$ 个质数，$p_1=2$。  
 $\pi\left(x\right)$ 表示 $1\sim x$ 范围内素数的个数。  
 $\mu\left(x\right)$ 表示莫比乌斯函数。  
-对于集合 $S$，$\#\ S$ 表示集合 $S$ 的大小。  
+对于集合 $S$，$\# S$ 表示集合 $S$ 的大小。  
 $\delta\left(x\right)$ 表示 $x$ 最小的质因子。  
 $P^+\left(n\right)$ 表示 $x$ 最大的质因子。
 
@@ -229,7 +229,7 @@ $$
 因此：
 
 $$
-U=\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\#\ \left\{q\mid \dfrac x{p^2}<q\le y \right\}}
+U=\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\#\left\{q\mid \dfrac x{p^2}<q\le y \right\}}
 $$
 
 因此：
