@@ -1,5 +1,6 @@
 author: Peanut-Tang, Early0v0, Vxlimo, GHLinZhengyu, 1196131597
 
+「Meissel-Lehmer 算法」是一种能在亚线性时间复杂度内求出 $1\sim n$ 内质数个数的一种算法。
 
 ## 记号规定
 
