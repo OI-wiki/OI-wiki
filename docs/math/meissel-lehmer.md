@@ -73,7 +73,7 @@ $$
 
 计算 $\phi\left(x,a\right)$ 的简单方法可以从这个定理推导出来：我们重复使用等式 $\left(7\right)$，知道最后得到 $\phi\left(u,0\right)$。这个过程可以看作从根节点 $\phi\left(x,a\right)$ 开始创建有根二叉树，图 $1$ 画出了这一过程。通过这种方法，我们得到如下公式：
 $$
-\phi\left(x,a\right)=\sum\limits_{1\le n\le x\\P^+\left(n\right)\le y}{\mu\left(n\right)\left[x/n\right]}
+\phi\left(x,a\right)=\sum\limits_{1\le n\le x\\\\ P^+\left(n\right)\le y}{\mu\left(n\right)\left[x/n\right]}
 $$
 
 $$
@@ -127,23 +127,24 @@ $$
 
 我们有：
 $$
-S=-\sum\limits_{p\le y}{\ \sum\limits_{\delta\left(m\right)>p\\m\le y<mp}{\mu\left(m\right)\phi\left(\dfrac{x}{mp},\pi\left(p\right)-1\right)}}\tag{10}
+S=-\sum\limits_{p\le y}{\ \sum\limits_{\delta\left(m\right)>p\\\\ m\le y<mp}{\mu\left(m\right)\phi\left(\dfrac{x}{mp},\pi\left(p\right)-1\right)}}\tag{10}
 $$
 我们将这个等式改写为：
 $$
 S=S_1+S_2+S_3
 $$
 其中：
+
 $$
 S_1=-\sum\limits_{x^{1/3}<p\le y}{\ \sum\limits_{\delta\left(m\right)>p\\m\le y<mp}{\mu\left(m\right)\phi\left(\dfrac{x}{mp},\pi\left(p\right)-1\right)}}
 $$
 
 $$
-S_2=-\sum\limits_{x^{1/4}<p\le x^{1/3}}{\ \sum\limits_{\delta\left(m\right)>p\\m\le y<mp}{\mu\left(m\right)\phi\left(\dfrac{x}{mp},\pi\left(p\right)-1\right)}}
+S_2=-\sum\limits_{x^{1/4}<p\le x^{1/3}}{\ \sum\limits_{\delta\left(m\right)>p\\\\ m\le y<mp}{\mu\left(m\right)\phi\left(\dfrac{x}{mp},\pi\left(p\right)-1\right)}}
 $$
 
 $$
-S_3=-\sum\limits_{p\le x^{1/4}}{\ \sum\limits_{\delta\left(m\right)>p\\m\le y<mp}{\mu\left(m\right)\phi\left(\dfrac{x}{mp},\pi\left(p\right)-1\right)}}
+S_3=-\sum\limits_{p\le x^{1/4}}{\ \sum\limits_{\delta\left(m\right)>p\\\\ m\le y<mp}{\mu\left(m\right)\phi\left(\dfrac{x}{mp},\pi\left(p\right)-1\right)}}
 $$
 
 注意到计算 $S_1,S_2$ 的和式中涉及到的 $m$ 都是质数，证明如下：
@@ -173,9 +174,11 @@ $$
 所以计算 $S_1$ 的和式中的项都是 $1$。所以我们实际上要计算质数对 $\left(p,q\right)$ 的个数，满足：$x^{1/3}<p<q\le y$。
 
 因此：
+
 $$
 S_1=\dfrac{\left(\pi\left(y\right)-\pi\left(x^{1/3}\right)\right)\left(\pi\left(y\right)-\pi\left(x^{1/3}\right)-1\right)}{2}
 $$
+
 有了这个等式我们便可以在 $O\left(1\right)$ 的时间内计算 $S_1$。
 
 ### 计算 $S_2$
@@ -186,10 +189,12 @@ S_2=\sum\limits_{x^{1/4}<p\le x^{1/3}}{\ \sum\limits_{p<q\le y}{\phi\left(\dfrac
 $$
 
 我们将 $S_2$ 分成 $q>\dfrac x{p^2}$ 与 $q\le \dfrac x{p^2}$ 两部分：
+
 $$
 S_2=U+V
 $$
 其中：
+
 $$
 U=\sum\limits_{x^{1/4}<p\le x^{1/3}}{\ \sum\limits_{p<q<y\\q>x/p^2}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1 \right)}}
 $$
@@ -201,30 +206,41 @@ $$
 ### 计算 $U$
 
 由 $q>\dfrac x{p^2}$ 可得 $p^2>\dfrac xq\le \dfrac xy,p>\sqrt{\dfrac xy}$，因此：
+
 $$
 U=\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\ \sum\limits_{p<q\le y\\q>x/p^2}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1 \right)}}
 $$
+
 因此：
+
 $$
 U=\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\#\ \left\{q\mid \dfrac x{p^2}<q\le y \right\}}
 $$
+
 因此：
+
 $$
 U=\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\left(\pi\left(y\right)-\pi\left(\dfrac{x}{p^2} \right) \right)}
 $$
+
 因为有 $\dfrac x{p^2}<y$，所以我们可以预处理出所有的 $\pi\left(t\right)\left(t\le y\right)$，这样我们就可以在 $O\left(y\right)$ 的时间复杂度内计算出 $U$。
 
 ### 计算 $V$
 
 对于计算 $V$ 的和式中的每一项，我们都有 $p\le \dfrac{x}{pq}<x^{1/2}<p^2$。因此：
+
 $$
 \phi\left(\dfrac{x}{pq},\pi\left(p\right)-1 \right)=1+\pi\left(\dfrac{x}{pq} \right)-\left(\pi\left(p\right)-1\right)=2-\pi\left(p\right)+\pi\left(\dfrac{x}{pq} \right)
 $$
+
 所以 $V$ 可以被表示为：
+
 $$
 V=V_1+V_2
 $$
+
 其中：
+
 $$
 V_1=\sum\limits_{x^{1/4}<p\le x^{1/3}}{\ \sum\limits_{p<q\le \min\left(x/p^2,y\right)}{\left(2-\pi\left(p\right)\right)}}
 $$
@@ -238,14 +254,19 @@ $$
 考虑我们如何加速计算 $V_2$ 的过程。我们可以把 $q$ 的贡献拆分成若干个 $\pi\left(\dfrac{x}{pq} \right)$ 为定值的区间上，这样我就只需要计算出每一个区间的长度和从一个区间到下一个区间的 $\pi\left(\dfrac{x}{pq} \right)$ 的改变量。
 
 更准确的说，我们首先将 $V_2$ 分成两个部分，将 $q\le \min\left(\dfrac x{p^2},y\right)$ 这个复杂的条件简化：
+
 $$
 V_2=\sum\limits_{x^{1/4}<p\le \sqrt{x/y}}{\ \sum\limits_{p<q\le y}{\pi\left(\dfrac{x}{pq} \right)}}+\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\ \sum\limits_{p<q\le x/p^2}{\pi\left(\dfrac{x}{pq} \right)}}
 $$
+
 接着我们把这个式子改写为：
+
 $$
 V_2=W_1+W_2+W_3+W_4+W_5
 $$
+
 其中：
+
 $$
 W_1=\sum\limits_{x^{1/4}<p\le x/y^2}{\ \sum\limits_{p<q\le y}{\pi\left(\dfrac{x}{pq} \right)}}
 $$
@@ -308,23 +329,31 @@ $$
 计算 $W_1,W_2$ 所进行的块长度为 $y$ 的筛的时间按复杂度为 $O\left(\sqrt{x}\log{\log x}\right)$，空间复杂度为 $O\left(y\right)$。
 
 计算 $W_1$ 所需的时间复杂度为：
+
 $$
 \pi\left(\dfrac{x}{y^2} \right)\pi\left(y\right)=O\left(\dfrac{x}{y\log^2 x} \right)
 $$
+
 计算 $W_2$ 的时间复杂度为：
+
 $$
 O\left(\sum\limits_{x/y^2<p\le \sqrt{x/y}}{\pi\left(\sqrt{\dfrac xp}\right)} \right)=O\left(\dfrac{x^{3/4}}{y^{1/4}\log^2 x} \right)
 $$
+
 因此，计算 $W_3$ 的时间复杂度为：
+
 $$
 O\left(\sum\limits_{x/y^2<p\le \sqrt{x/y}}{\pi\left(\sqrt{\dfrac xp}\right)} \right)=O\left(\dfrac{x^{3/4}}{y^{1/4}\log^2 x} \right)
 $$
+
 计算 $W_4$ 的时间复杂度为：
+
 $$
 O\left(\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\pi\left(\sqrt{\dfrac xp}\right)} \right)=O\left(\dfrac{x^{2/3}}{\log^2 x} \right)
 $$
 
 计算 $W_5$ 的时间复杂度为：
+
 $$
 O\left(\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\pi\left(\sqrt{\dfrac xp}\right)} \right)=O\left(\dfrac{x^{2/3}}{\log^2 x} \right)
 $$
@@ -334,6 +363,7 @@ $$
 对于预处理：由于要快速查询 $\phi(u,b)$ 的值，我们没办法用普通的筛法 $O(1)$ 求出，而是要维护一个数据结构使得每次查询的时间复杂度是 $O(\log x)$，因此时间复杂度为 $O\left(\dfrac{x}{y}\log x\log\log x\right)$。
 
 对于求和：对于计算 $S_3$ 和式中的每一项，我们查询上述数据结构，一共 $O\left(\log x\right)$ 次查询。我们还需要计算和式的项数，即二叉树中叶子的个数。所有叶子的形式均为 $\pm\phi\left(\dfrac{x}{mp_b},b-1\right)$，其中 $m\le y,b<\pi(x^{1/4})$。因此，叶子的数目是 $O\left(y\pi\left(x^{1/4}\right)\right)$ 级别的。所以计算 $S_3$ 的总时间复杂度为：
+
 $$
 O\left(\dfrac{x}{y}\log x\log\log x+yx^{1/4}\right)
 $$
@@ -341,9 +371,11 @@ $$
 ### 总复杂度
 
 这个算法的空间复杂度为 $O\left(y\right)$，时间复杂度为：
+
 $$
 O\left(\dfrac{x}{y}\log{\log x}+\dfrac{x}{y}\log x\log{\log x}+x^{1/4}y+\dfrac{x^{2/3}}{\log^2{x}} \right)
 $$
+
 我们取 $y=x^{1/3}\log^3{x}\log{\log x}$，就有最优时间复杂度为 $O\left(\dfrac{x^{2/3}}{\log^2 x}\right)$，空间复杂度为 $O\left(x^{1/3}\log^3{x}\log{\log x}\right)$。
 
 
