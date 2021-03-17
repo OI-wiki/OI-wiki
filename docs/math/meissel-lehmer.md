@@ -56,7 +56,7 @@ $$
 
 当 $p\in \left[y+1,\sqrt{x}\right]$ 时，我们有 $\dfrac{x}{p}\in \left[1,\dfrac{x}{y}\right]$。因此，我们可以筛区间 $\left[1,\dfrac{x}{y}\right]$，然后对于所有的的质数 $p\in \left[y+1,\sqrt{x}\right]$ 计算 $\pi\left(\dfrac{x}{p}\right)-\pi\left(p\right)+1$。为了减少上述算法的空间复杂度，我们可以考虑分块，块长为 $L$。若块长 $L=y$，则我们可以在 $O\left(\dfrac{x}{y}\log{\log{x}}\right)$ 的时间复杂度，$O\left(y\right)$ 的空间复杂度内计算 $P_2\left(x,a\right)$。
 
-## 计算 φ(x,a)
+## 计算 ϕ(x,a)
 
 对于 $b\le a$，考虑所有不超过 $x$ 的正整数，满足它的所有质因子都大于 $p_{b-1}$。这些数可以被分为两类：
 
