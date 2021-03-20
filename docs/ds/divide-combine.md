@@ -304,16 +304,16 @@ void build() {
     st2[++tp2] = i;
 
     id[i] = ++cnt;
-    L[cnt] = R[cnt] = i;  // 这里的 L,R 是指值域的上下界
+    L[cnt] = R[cnt] = i;  // 这里的 L,R 是指节点所对应区间的左右端点
     int le = T.query(1, 1, n), now = cnt;
     while (tp && L[st[tp]] >= le) {
       if (typ[st[tp]] && judge(M[st[tp]], i)) {
         // 判断是否能成为儿子，如果能就做
-        R[st[tp]] = i, add(st[tp], now), now = st[tp--];
+        R[st[tp]] = i, M[st[tp]] = l[now], add(st[tp], now), now = st[tp--];
       } else if (judge(L[st[tp]], i)) {
         typ[++cnt] = 1;  // 合点一定是被这样建出来的
         L[cnt] = L[st[tp]], R[cnt] = i, M[cnt] = L[now];
-        // 这里M数组的作用是保证合点的儿子排列是单调的
+        // 这里M数组是记录节点最右面的儿子的左端点，用于上方能否成为儿子的判断
         add(cnt, st[tp--]), add(cnt, now);
         now = cnt;
       } else {
