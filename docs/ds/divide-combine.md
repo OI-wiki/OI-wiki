@@ -309,7 +309,7 @@ void build() {
     while (tp && L[st[tp]] >= le) {
       if (typ[st[tp]] && judge(M[st[tp]], i)) {
         // 判断是否能成为儿子，如果能就做
-        R[st[tp]] = i, M[st[tp]] = l[now], add(st[tp], now), now = st[tp--];
+        R[st[tp]] = i, M[st[tp]] = L[now], add(st[tp], now), now = st[tp--];
       } else if (judge(L[st[tp]], i)) {
         typ[++cnt] = 1;  // 合点一定是被这样建出来的
         L[cnt] = L[st[tp]], R[cnt] = i, M[cnt] = L[now];
