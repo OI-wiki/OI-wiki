@@ -1,4 +1,4 @@
-# Project Information
+﻿# Project Information
 site_name: OI Wiki
 site_description: OI Wiki 是一个编程竞赛知识整合站点，提供有趣又实用的编程竞赛知识以及其他有帮助的内容，帮助广大编程竞赛爱好者更快更深入地学习编程竞赛
 site_author: OI Wiki Team
@@ -202,6 +202,7 @@ nav:
     - 平衡三进制: math/balanced-ternary.md
     - 数论:
       - 素数: math/prime.md
+      - Meissel-Lehmer 算法: math/meissel-lehmer.md
       - 最大公约数: math/gcd.md
       - 欧拉函数: math/euler.md
       - 筛法: math/sieve.md
