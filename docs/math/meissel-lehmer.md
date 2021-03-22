@@ -26,7 +26,7 @@ $$
 P_k\left(x,a\right)=\#\big\{n\le x\mid n=q_1q_2\cdots q_k\Rightarrow\forall i,q_i>p_a\big\}\tag2
 $$
 
-特殊的，我们定义： $P_0\left(x,a\right)=1$，如此便有：
+特殊的，我们定义：$P_0\left(x,a\right)=1$，如此便有：
 
 $$
 \phi\left(x,a\right)=P_0\left(x,a\right)+P_1\left(x,a\right)+\cdots+P_k\left(x,a\right)+\cdots
@@ -67,7 +67,8 @@ $$
 
 因此我们得出结论：
 
-> **定理 $5.1$：**函数 $\phi$ 满足下列性质
+> **定理 $5.1$：** 函数 $\phi$ 满足下列性质
+>
 > $$
 > \phi\left(u,0\right)=\left[u\right]\tag5
 > $$
@@ -96,31 +97,36 @@ $$
 
 为了限制这个二叉树的“生长”，我们要改变原来的终止条件。这是原来的终止条件。
 
-> **终止条件 $1$：**如果 $b=0$，则不要再对节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 调用等式 $\left(6\right)$。
+> **终止条件 $1$：** 如果 $b=0$，则不要再对节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 调用等式 $\left(6\right)$。
 
 我们把它改成更强的终止条件：
 
-> **终止条件 $2$：**如果满足下面 $2$ 个条件中的一个，不要再对节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 调用等式 $\left(6\right)$:
+> **终止条件 $2$：** 如果满足下面 $2$ 个条件中的一个，不要再对节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 调用等式 $\left(6\right)$:
 >
 > 1. $b=0$ 且 $n\le y$；
 > 2. $n>y$。
 
-我们根据**终止条件 $2$ **将原二叉树上的叶子分成两种：
+我们根据 **终止条件 $2$** 将原二叉树上的叶子分成两种：
 
-1. 如果叶子节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 满足 $n\le y$，则称这种叶子节点为**普通叶子**；
-2. 如果叶子节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 满足 $n>y$ 且 $n=mp_b\left(m\le y\right)$，则称这种节点为**特殊叶子**。
+1. 如果叶子节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 满足 $n\le y$，则称这种叶子节点为 **普通叶子**；
+2. 如果叶子节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 满足 $n>y$ 且 $n=mp_b\left(m\le y\right)$，则称这种节点为 **特殊叶子**。
 
 由此我们得出：
 
-> **定理 $5.2$：**我们有：
+> **定理 $5.2$：** 我们有：
+>
 > $$
 > \phi\left(x,a\right)=S_0+S\tag7
 > $$
-> 其中 $S_0$ 表示**普通叶子**的贡献：
+>
+> 其中 $S_0$ 表示 **普通叶子** 的贡献：
+>
 > $$
 > S_0=\sum\limits_{n\le y}{\mu\left(n\right)\left[\dfrac xn\right]}\tag8
 > $$
-> $S$ 表示**特殊叶子**的贡献：
+>
+> $S$ 表示 **特殊叶子** 的贡献：
+>
 > $$
 > S=\sum\limits_{n/\delta\left(n\right)\le y\le n}{\mu\left(n\right)\phi\left(\dfrac{x}{n},\pi\left(\delta\left(n\right)\right)-1 \right)}\tag{9}
 > $$
@@ -307,7 +313,7 @@ $$
 
 #### 计算 W₃
 
-对于每个 $p$，我们把 $q$ 分成若干个区间，每个区间都满足它们的 $\pi\left(\dfrac x{pq}\right)$ 是定值，每个区间我们都可以 $O(1)$ 计算它的贡献。当我们获得一个新的 $q$ 时，我们用 $\pi(t)$（$t\leq y$）的值表计算 $\pi\left(\dfrac x{pq}\right)$。 $y$ 以内的质数表可以给出使得 $\pi(t)<\pi(t+1)=\pi\left(\dfrac x{pq}\right)$ 成立的 $t$。 以此类推使得 $\pi\left(\dfrac x{pq}\right)$ 变化的下一个 $q$ 的值。
+对于每个 $p$，我们把 $q$ 分成若干个区间，每个区间都满足它们的 $\pi\left(\dfrac x{pq}\right)$ 是定值，每个区间我们都可以 $O(1)$ 计算它的贡献。当我们获得一个新的 $q$ 时，我们用 $\pi(t)$（$t\leq y$）的值表计算 $\pi\left(\dfrac x{pq}\right)$。$y$ 以内的质数表可以给出使得 $\pi(t)<\pi(t+1)=\pi\left(\dfrac x{pq}\right)$ 成立的 $t$。以此类推使得 $\pi\left(\dfrac x{pq}\right)$ 变化的下一个 $q$ 的值。
 
 #### 计算 W₄
 
@@ -391,13 +397,14 @@ $$
 
 我们在这里给出改进方法，以减少算法的常数，提高它的实际效率。
 
-- 在**终止条件 $2$ **中，我们可以用一个 $z$ 来代替 $y$，其中 $z$ 满足 $z>y$。我们可以证明这样子计算 $S_3$ 的时间复杂度可以优化到：
-  $$
-  O\left(\dfrac{x}{z}\log x\log{\log x}+\dfrac{yx^{1/4}}{\log x}+z^{3/2} \right)
-  $$
-  这也为通过改变 $z$ 的值来检查计算提供了一个很好的方法。
+-   在 **终止条件 $2$** 中，我们可以用一个 $z$ 来代替 $y$，其中 $z$ 满足 $z>y$。我们可以证明这样子计算 $S_3$ 的时间复杂度可以优化到：
+    $$
+    O\left(\dfrac{x}{z}\log x\log{\log x}+\dfrac{yx^{1/4}}{\log x}+z^{3/2} \right)
+    $$
+    这也为通过改变 $z$ 的值来检查计算提供了一个很好的方法。
 
 - 为了清楚起见，我们在阐述算法的时候选择在 $x^{1/4}$ 处拆分来计算总和 $S$，但实际上我们只需要有 $p\le \dfrac{x}{pq}<p^2$ 就可以计算。我们可以利用这一点，渐近复杂性保持不变。
+
 - 用前几个素数 $2,3,5$ 预处理计算可以节省更多的时间。
 
 ## References
