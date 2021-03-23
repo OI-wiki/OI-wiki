@@ -17,13 +17,13 @@ $P^+\left(n\right)$ 表示 $x$ 最大的质因子。
 定义 $\phi\left(x,a\right)$ 为所有小于 $x$ 的正整数中满足其所有质因子都大于 $p_a$ 的数的个数，即：
 
 $$
-\phi\left(x,a\right)=\#\big\{n\le x\mid n\bmod p=0\Rightarrow p>p_a\big\}\tag1
+\phi\left(x,a\right)=\#\big\{n\le x\mid n\bmod p=0\Rightarrow p>p_a\big\}\tag{1}
 $$
 
 再定义 $P_k\left(x,a\right)$ 表示为所有小于 $x$ 的正整数中满足可重质因子恰好有 $k$ 个且所有质因子都大于 $p_a$ 的数的个数，即：
 
 $$
-P_k\left(x,a\right)=\#\big\{n\le x\mid n=q_1q_2\cdots q_k\Rightarrow\forall i,q_i>p_a\big\}\tag2
+P_k\left(x,a\right)=\#\big\{n\le x\mid n=q_1q_2\cdots q_k\Rightarrow\forall i,q_i>p_a\big\}\tag{2}
 $$
 
 特殊的，我们定义：$P_0\left(x,a\right)=1$，如此便有：
@@ -39,7 +39,7 @@ $$
 在 $k\ge 3$ 时，有 $P_1\left(x,a\right)=\pi\left(x\right)-a$ 与 $P_k\left(x,a\right)=0$，由此我们可以推出：
 
 $$
-\pi\left(x\right)=\phi\left(x,a\right)+a-1-P_2\left(x,a\right)\tag3
+\pi\left(x\right)=\phi\left(x,a\right)+a-1-P_2\left(x,a\right)\tag{3}
 $$
 
 这样，计算 $\pi\left(x\right)$ 便可以转化为计算 $\phi\left(x,a\right)$ 与 $P_2\left(x,a\right)$。
@@ -51,7 +51,7 @@ $$
 首先我们注意到 $p\in \left[y+1,\sqrt{x}\right]$。此外，对于每个 $p$，我们都有 $q\in\left[p,x/p\right]$。因此：
 
 $$
-P_2\left(x,a\right)=\sum\limits_{y<p\le \sqrt{x}}{\left(\pi\left(\dfrac{x}{p}\right)-\pi\left(p\right)+1\right)}\tag4
+P_2\left(x,a\right)=\sum\limits_{y<p\le \sqrt{x}}{\left(\pi\left(\dfrac{x}{p}\right)-\pi\left(p\right)+1\right)}\tag{4}
 $$
 
 当 $p\in \left[y+1,\sqrt{x}\right]$ 时，我们有 $\dfrac{x}{p}\in \left[1,\dfrac{x}{y}\right]$。因此，我们可以筛区间 $\left[1,\dfrac{x}{y}\right]$，然后对于所有的的质数 $p\in \left[y+1,\sqrt{x}\right]$ 计算 $\pi\left(\dfrac{x}{p}\right)-\pi\left(p\right)+1$。为了减少上述算法的空间复杂度，我们可以考虑分块，块长为 $L$。若块长 $L=y$，则我们可以在 $O\left(\dfrac{x}{y}\log{\log{x}}\right)$ 的时间复杂度，$O\left(y\right)$ 的空间复杂度内计算 $P_2\left(x,a\right)$。
@@ -70,11 +70,11 @@ $$
 > **定理 $5.1$：** 函数 $\phi$ 满足下列性质
 >
 > $$
-> \phi\left(u,0\right)=\left[u\right]\tag5
+> \phi\left(u,0\right)=\left[u\right]\tag{5}
 > $$
 >
 > $$
-> \phi\left(x,b\right)=\phi\left(x,b-1\right)-\phi\left(\dfrac{x}{p_b},b-1\right)\tag6
+> \phi\left(x,b\right)=\phi\left(x,b-1\right)-\phi\left(\dfrac{x}{p_b},b-1\right)\tag{6}
 > $$
 
 计算 $\phi\left(x,a\right)$ 的简单方法可以从这个定理推导出来：我们重复使用等式 $\left(7\right)$，知道最后得到 $\phi\left(u,0\right)$。这个过程可以看作从根节点 $\phi\left(x,a\right)$ 开始创建有根二叉树，图 $1$ 画出了这一过程。通过这种方法，我们得到如下公式：
@@ -90,8 +90,9 @@ $$
 \swarrow&\downarrow&&\downarrow&\searrow\\
 \phi\left(x,a-2\right)&\phi\left(\frac{x}{p_{a-1}},a-2\right)&&-\phi\left(\frac{x}{p_a},a-2\right)&\phi\left(\frac{x}{p_ap_{a-1}},a-2\right)\end{matrix}\\
 \vdots\\
-\texttt{图 $1$，表示计算 $\phi\left(x,a\right)$ 过程的二叉树：叶子节点权值之和就是 $\phi\left(x,a\right)$。}
 $$
+
+上图表示计算 $\phi\left(x,a\right)$ 过程的二叉树：叶子节点权值之和就是 $\phi\left(x,a\right)$。
 
 但是，这样需要计算太多东西。因为 $y\geq x^{1/3}$，仅仅计算为 $3$ 个 不超过 $y$ 质数的乘积的数，如果按照这个方法计算，会有至少 $\dfrac{x}{\log^3 x}$ 个项，没有办法我们对复杂度的需求。
 
@@ -116,13 +117,13 @@ $$
 > **定理 $5.2$：** 我们有：
 >
 > $$
-> \phi\left(x,a\right)=S_0+S\tag7
+> \phi\left(x,a\right)=S_0+S\tag{7}
 > $$
 >
 > 其中 $S_0$ 表示 **普通叶子** 的贡献：
 >
 > $$
-> S_0=\sum\limits_{n\le y}{\mu\left(n\right)\left[\dfrac xn\right]}\tag8
+> S_0=\sum\limits_{n\le y}{\mu\left(n\right)\left[\dfrac xn\right]}\tag{8}
 > $$
 >
 > $S$ 表示 **特殊叶子** 的贡献：
