@@ -319,7 +319,7 @@ KMP 自动机就是一个不断读入待匹配串，每次匹配时走到接受�
 $$
 trans_{i,c} =
 \begin{cases}
-i + 1,  & \text{if $b_{i} = c$} \\[2ex]
+i + 1,  & \text{if }b_{i} = c \\[2ex]
 \text{trans}_{next_{i},c}, & \text{else}
 \end{cases}
 $$
