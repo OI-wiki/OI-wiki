@@ -14,8 +14,8 @@ author: Xarfa
 
 两个关键数组：
 
-tree[log(N),N]&#x3A; 也就是树，要存下所有的值，空间复杂度 $O(n\log n)$。
-toleft[log(N),n]&#x3A; 也就是每一层 1~i 进入左儿子的数量，这里需要理解一下，这是一个前缀和。
+tree[log(N),N]&#x3A;也就是树，要存下所有的值，空间复杂度 $O(n\log n)$。
+toleft[log(N),n]&#x3A;也就是每一层 1~i 进入左儿子的数量，这里需要理解一下，这是一个前缀和。
 
 ```pascal
 procedure Build(left,right,deep:longint); // left,right 表示区间左右端点,deep是第几层
