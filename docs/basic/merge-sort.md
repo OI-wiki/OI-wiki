@@ -1,16 +1,68 @@
-## 算法
+本页面将简要介绍归并排序。
 
-归并排序是一种采用了[分治](/basic/divide-and-conquer)思想的排序算法，其本质是一种[CDQ 分治](/misc/cdq-divide)。
+## 简介
 
-归并排序分为三个过程：
+归并排序（英语：merge sort）是一种采用了 [分治](./divide-and-conquer.md) 思想的排序算法。
 
-1.  将数列随意划分为两部分（在均匀划分时时间复杂度为 $O\left(n\log{n}\right)$ ）
-2.  递归地分别对两个子序列进行归并排序
-3.  合并两个子序列
+## 工作原理
 
-不难发现，归并排序的核心是如何合并两个子序列，前两步都很好实现。
+归并排序分为三个步骤：
 
-其实合并的时候也不难操作。注意到两个子序列在第二步中已经保证了都是有序的了，第三步中实际上是想要把两个 **有序** 的序列合并起来。
+1. 将数列划分为两部分；
+2. 递归地分别对两个子序列进行归并排序；
+3. 合并两个子序列。
+
+不难发现，归并排序的前两步都很好实现，关键是如何合并两个子序列。注意到两个子序列在第二步中已经保证了都是有序的了，第三步中实际上是想要把两个 **有序** 的序列合并起来。
+
+## 性质
+
+归并排序是一种稳定的排序算法。
+
+归并排序的最优时间复杂度、平均时间复杂度和最坏时间复杂度均为 $O(n\log n)$。
+
+归并排序的空间复杂度为 $O(n)$。
+
+## 代码实现
+
+### 伪代码
+
+$$
+\begin{array}{ll}
+1 & \textbf{Input. }\text{An array } A \text{ and its indices } p \text{, } q \text{, } r \text{ such that }p \leq q < r \text{.}\\
+2 & \textbf{Ouput. } A\text{ will be sorted in non-decreasing order stably.}\\
+3 & \textbf{Method.}\\
+4 \\
+5 & \text{MERGE}(A, p, q, r)\\
+6 & n_1 \gets q - r + p \\
+7 & n_2 \gets r - q\\
+8 & \text{let } L[1\ldots n_1+1] \text{ and } R[1\ldots n_2+1] \text{ be new arrays}\\
+9 & \textbf{for } i \gets 1 \textbf{ to } n_1\\
+10 & \qquad L[i] \gets A[p+i-1]\\
+11 & \textbf{for } j \gets 1 \textbf{ to } n_2\\
+12 & \qquad R[i] \gets A[q+j]\\
+13 & L[n+1] \gets \infty\\
+14 & R[n+1] \gets \infty\\
+15 & i \gets 1\\
+16 & j \gets 1\\
+17 & \textbf{for } k \gets p \textbf{ to } r\\
+18 & \qquad \textbf{if } L[i]\leq R[i]\\
+19 & \qquad \qquad A[k] \gets L[i]\\
+20 & \qquad \qquad i \gets i + 1\\
+21 & \qquad \textbf{else } A[k] \gets R[j]\\
+22 & \qquad \qquad j \gets j + 1\\
+23 \\
+24 & \text{MERGE-SORT}(A, p, r)\\
+25 & \textbf{if } p < r\\
+26 & \qquad q \gets \lfloor(p + r) \ 2 \rfloor\\
+27 & \qquad \text{MERGE-SORT}(A, p, q)\\
+28 & \qquad \text{MERGE-SORT}(A, q + 1, r)\\
+29 & \qquad \text{MERGE}(A, p, q, r)\\
+\end{array}
+$$
+
+[^ref1]
+
+### C++
 
 ```cpp
 void merge(int ll, int rr) {
@@ -29,62 +81,25 @@ void merge(int ll, int rr) {
   }
   for (int i = ll; i < rr; ++i) a[i] = t[i];
 }
+//关键点在于一次性创建数组，避免在每次递归调用时创建，以避免对象的无谓构造和析构。
 ```
-
-下面参考《算法 4》的 Java 完整代码，很漂亮，建议背住，学习一下代码风格。
-
-```java
-public class Merge {
-    private static Comparable[] aux;
-
-     public static void sort(Comparable[] a) {
-        aux = new Comparable[a.length];
-        sort(a, 0, a.length - 1);
-    }
-
-    private static void sort(Comparable[] a, int lo, int hi) {
-        if (lo >= hi) return;
-        int mid = lo + (hi - lo) / 2;
-        sort(a, lo, mid);
-        sort(a, mid + 1, hi);
-        merge(a, lo, mid, hi);
-    }
-
-    private static void merge(Comparable[] a, int lo, int mid, int hi) {
-        int i = lo, j = mid + 1;
-        for (int k = lo; k <= hi; k++) {
-            aux[k] = a[k];
-        }
-        for (int k = lo; k <= hi; k++) {
-            if      (i > mid)               { a[k] = aux[j++]; }
-            else if (j > hi)                { a[k] = aux[i++]; }
-            else if (less(aux[j], aux[i]))  { a[k] = aux[j++]; }
-            else                            { a[k] = aux[i++]; }
-        }
-    }
-
-    private static boolean less(Comparable v, Comparable w) {
-        return v.compareTo(w) < 0;
-    }
-}
-```
-
-关键点在于一次性创建数组，避免在每次递归调用时创建，避免了对象的无谓构造和析构。
 
 ## 逆序对
 
 归并排序还可以用来求逆序对的个数。
 
-所谓逆序对，就是满足 $a_{i} > a_{j}$ 且 $i < j$ 的数对 $(i, j)$ 。
+所谓逆序对，就是满足 $a_{i} > a_{j}$ 且 $i < j$ 的数对 $(i, j)$。
 
-可以用[树状数组](/ds/bit)、[线段树](/ds/segment/)等数据结构来求，也可以用归并排序来求。
+代码实现中注释掉的 `ans += mid - p` 就是在统计逆序对个数。具体来说，算法把靠后的数放到前面了（较小的数放在前面），所以在这个数原来位置之前的、比它大的数都会和它形成逆序对，而这个个数就是还没有合并进去的数的个数，即为 `mid - p`。
 
-具体来说，上面归并排序中间注释掉的 `ans += mid - p` 就是在统计逆序对个数。
+另外，逆序对也可以用 [树状数组](../ds/fenwick.md)、[线段树](../ds/seg.md) 等数据结构求解。这三种方法的时间复杂度都是 $O(n \log n)$。
 
-是因为，那里把靠后的数放到前面了（较小的数放在前面），所以在这个数的原来位置之前的、比它大的数都会和它形成逆序对，而这个个数就是还没有合并进去的数的个数，即为 `mid - p` 。
+## 外部链接
 
-使用归并排序求逆序对的时间复杂度也是 $O(n \log n)​$ 。
+- [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/)
+- [希尔排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
+- [逆序对 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E9%80%86%E5%BA%8F%E5%AF%B9)
 
-## 参考
+## 参考资料与注释
 
-<https://www.geeksforgeeks.org/merge-sort/>
+[^ref1]: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein.Introduction to Algorithms(3rd ed.). MIT Press and McGraw-Hill, 2009. ISBN 978-0-262-03384-8. "2.3 Designing algorithms", pp. 31-34.

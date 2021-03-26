@@ -16,15 +16,15 @@
 
 ### 拉链法
 
-拉链发也称开散列法（open hashing）。
+拉链法也称开散列法（open hashing）。
 
 拉链法是在每个存放数据的地方开一个链表，如果有多个 key 索引到同一个地方，只用把他们都放到那个位置的链表里就行了。查询的时候需要把对应位置的链表整个扫一遍，对其中的每个数据比较其 key 与查询的 key 是否一致。如果索引的范围是 1~M，哈希表的大小为 N，那么一次插入/查询需要进行期望 $O(\frac{N}{M})$ 次比较。
 
 ### 闭散列法
 
-闭散列方法吧所有记录直接存储在散列表中，如果发生冲突则根据某种方式继续进行探查。
+闭散列方法把所有记录直接存储在散列表中，如果发生冲突则根据某种方式继续进行探查。
 
-比如线性探查法：如果在 `d` 处发生冲突，就依次检查 `d + 1` ， `d+2` ……
+比如线性探查法：如果在 `d` 处发生冲突，就依次检查 `d + 1`，`d+2`……
 
 ## 实现
 
@@ -83,6 +83,31 @@ struct hash_map {  // 哈希表模板
 
 解释一下，hash 函数是针对 key 的类型设计的，并且返回一个链表头指针用于查询。在这个模板中我们写了一个 $\text{(long long , int)}$ 式的 hash 表，并且当某个 key 不存在的时侯初始化对应的 val 成 -1。hash_map() 函数是在定义的时侯初始化用的。
 
+### 闭散列法
+
+```cpp
+const int N = 360007;  // N 是最大可以存储的元素数量
+class Hash {
+ private:
+  int keys[N];
+  int values[N];
+
+ public:
+  Hash() { memset(values, 0, sizeof(values)); }
+  int& operator[](int n) {
+    // 返回一个指向对应 Hash[Key] 的引用
+    // 修改成不为 0 的值 0 时候视为空
+    int idx = (n % N + N) % N, cnt = 1;
+    while (keys[idx] != n && values[idx] != 0) {
+      idx = (idx + cnt * cnt) % N;
+      cnt += 1;
+    }
+    keys[idx] = n;
+    return values[idx];
+  }
+};
+```
+
 ## 例题
 
-[\[JLOI2011\]不重复数字](https://www.lydsy.com/JudgeOnline/problem.php?id=2761)
+[「JLOI2011」不重复数字](https://www.luogu.com.cn/problem/P4305)

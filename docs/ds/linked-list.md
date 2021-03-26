@@ -4,9 +4,9 @@
 
 不同的存储结构令他们有了不同的优势：
 
-链表可以方便地删除、插入数据，操作次数是 $O(1)$ 。但也因为这样寻找读取数据的效率不如数组高，在随机访问数据中的操作次数是 $O(n)$ 。
+链表可以方便地删除、插入数据，操作次数是 $O(1)$。但也因为这样寻找读取数据的效率不如数组高，在随机访问数据中的操作次数是 $O(n)$。
 
-数组可以方便的寻找读取数据，在随机访问中操作次数是 $O(1)$ 。但删除、插入的操作次数却是却是 $O(n)$ 次。
+数组可以方便的寻找读取数据，在随机访问中操作次数是 $O(1)$。但删除、插入的操作次数却是却是 $O(n)$ 次。
 
 ## 构建链表
 
@@ -101,7 +101,9 @@ void insertNode(int i, Node *p) {
 ```c++
 void deleteNode(Node *p) {
   p->value = p->next->value;
+  Node *t = p->next;
   p->next = p->next->next;
+  delete t;
 }
 ```
 
@@ -112,10 +114,11 @@ void deleteNode(Node *p) {
 ### 双向循环链表
 
 ```c++
-void deleteNode(Node *p) {
-  p->value = p->right->value;
+void deleteNode(Node *&p) {
   p->left->right = p->right;
   p->right->left = p->left;
+  Node *t = p;
   p = p->right;
+  delete t;
 }
 ```

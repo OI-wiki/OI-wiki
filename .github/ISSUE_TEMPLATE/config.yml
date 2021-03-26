@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 查看我们的 F.A.Q.
+    url: https://oi-wiki.org/intro/faq/
+    about: 提问之前先阅读一下 F.A.Q. 哦~
+  - name: 加入我们的 QQ 群组
+    url: https://jq.qq.com/?_wv=1027&k=5EfkM6K 
+    about: 在这里可以提问、获取帮助、讨论与 OI Wiki 有关的话题
+  - name: 加入我们的 Telegram 群组
+    url: https://t.me/OIwiki
+    about: 在这里可以提问、获取帮助、讨论与 OI Wiki 有关的话题

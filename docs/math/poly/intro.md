@@ -1,16 +1,29 @@
-## 前置知识
-
-FFT，多项式乘法
-
 ## Basic Concepts
 
 ### 多项式的度
 
-对于一个多项式 $f(x)$ ，称其最高次项的次数为该多项式的 **度（Degree）** ，记作 $\operatorname{deg}{f}$ 。
+对于一个多项式 $f(x)$，称其最高次项的次数为该多项式的 **度（Degree）**，记作 $\operatorname{deg}{f}$。
+
+### 多项式的乘法
+
+最核心的操作是两个多项式的乘法，即给定多项式 $f(x)$ 和 $g(x)$：
+
+$$
+f(x)=a_0+a_1x+\dots+a_nx^n\quad \quad (1)\\ 
+g(x)=b_0+b_1x+\dots+b_mx^m\quad \quad (2)
+$$
+
+要计算多项式 $Q(x)=f(x)\cdot g(x)$：
+
+$$
+\boxed {Q(x) = \sum \limits_ {i = 0} ^ n \sum \limits_ {j = 0 } ^ m a_i b_j x ^ {i + j}} = c_0 + c_1 x + \dots + c_ {n + m} x ^ {n + m}
+$$
+
+上述过程可以通过快速傅里叶变换在 $O(n\log n)$ 下计算。
 
 ### 多项式的逆元
 
-对于多项式 $f(x)$ ，若存在 $g(x)$ 满足：
+对于多项式 $f(x)$，若存在 $g(x)$ 满足：
 
 $$
 \begin{aligned}
@@ -22,7 +35,7 @@ $$
 
 ### 多项式的余数和商
 
-对于多项式 $f(x), g(x)$ ，存在 **唯一** 的 $Q(x), R(x)$ 满足：
+对于多项式 $f(x), g(x)$，存在 **唯一** 的 $Q(x), R(x)$ 满足：
 
 $$
 \begin{aligned}
@@ -40,10 +53,11 @@ $$
 
 ### <span id="ln-exp">多项式的对数函数与指数函数</span>
 
-对于一个多项式 $f(x)$ ，可以将其对数函数看作其与麦克劳林级数的复合：
+对于一个多项式 $f(x)$，可以将其对数函数看作其与麦克劳林级数的复合：
 
 $$
-\ln{(1 - f(x))} = -\sum_{i = 1}^{+\infty} \frac{f^{i}(x)}{i} = \sum_{i = 1}^{+\infty} \frac{(-1)^{i - 1}f^{i}(x)}{i}
+\ln{(1 - f(x))} = -\sum_{i = 1}^{+\infty} \frac{f^{i}(x)}{i}\\
+\ln{(1 + f(x))} = \sum_{i = 1}^{+\infty} \frac{(-1)^{i - 1}f^{i}(x)}{i}
 $$
 
 其指数函数同样可以这样定义：
@@ -54,13 +68,13 @@ $$
 
 ### 多项式的多点求值和插值
 
- **多项式的多点求值（Multi-point evaluation）** 即给出一个多项式 $f(x)$ 和 $n$ 个点 $x_{1}, x_{2}, \dots, x_{n}$ ，求
+**多项式的多点求值（Multi-point evaluation）** 即给出一个多项式 $f(x)$ 和 $n$ 个点 $x_{1}, x_{2}, \dots, x_{n}$，求
 
 $$
 f(x_{1}), f(x_{2}), \dots, f(x_{n})
 $$
 
- **多项式的插值（Interpolation）** 即给出 $n + 1$ 个点
+**多项式的插值（Interpolation）** 即给出 $n + 1$ 个点
 
 $$
 (x_{0}, y_{0}), (x_{1}, y_{1}), \dots, (x_{n}, y_{n})
@@ -72,5 +86,5 @@ $$
 
 ## References
 
--   [ **Picks's Blog** ](https://picks.logdown.com)
--   [ **Miskcoo's Space** ](https://blog.miskcoo.com)
+- [**Picks's Blog**](https://picks.logdown.com)
+- [**Miskcoo's Space**](https://blog.miskcoo.com)

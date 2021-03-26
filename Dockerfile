@@ -10,7 +10,7 @@ RUN apt-get update \
     && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && apt-get install -y nodejs
 
-RUN git clone https://github.com/24OI/OI-wiki.git --depth=1 \
+RUN git clone https://github.com/OI-wiki/OI-wiki.git --depth=1 \
     && cd OI-wiki \
     && pip install -U -r requirements.txt \
     && npm install
