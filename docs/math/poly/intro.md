@@ -14,12 +14,11 @@ FFT，多项式乘法
 
 $$
 \begin{aligned}
-	f(x) g(x) & \equiv 1 \pmod{x^{n}} \\
-	\operatorname{deg}{g} & \le \operatorname{deg}{f}
+	f(x) g(x) & \equiv 1 \pmod{x^{n}}
 \end{aligned}
 $$
 
-则称 $g(x)$ 为 $f(x)$ 在模 $x^{n}$ 意义下的 **逆元（Inverse Element）** ，记作 $f^{-1}(x)$ 。
+则称 $g(x)$ 为 $f(x)$ 在模 $x^{n}$ 意义下的 **逆元（Inverse Element）** ，记作 $f^{-1}(x)$ 。若要求 $\operatorname{deg}{g} < n$，则此时 $g$ 唯一。
 
 ### 多项式的余数和商
 
@@ -28,13 +27,12 @@ $$
 $$
 \begin{aligned}
     f(x) &= Q(x) g(x) + R(x) \\
-    \operatorname{deg}{Q} &= \operatorname{deg}{f} - \operatorname{deg}{g} \\
     \operatorname{deg}{R} &< \operatorname{deg}{g}
 \end{aligned}
 $$
 
-我们称 $Q(x)$ 为 $g(x)$ 除 $f(x)$ 的 **商（Quotient）** ，R(x) $为$ g(x) $除$ f(x)$ 的 **余数（Remainder）** 。
-亦可记作
+当 $\operatorname{deg}{f} \ge \operatorname{deg}{g}$ 时有 $\operatorname{deg}{Q} = \operatorname{deg}{f} - \operatorname{deg}{g}$，否则有 $Q(x) = 0$。
+我们称 $Q(x)$ 为 $g(x)$ 除 $f(x)$ 的 **商（Quotient）** ，$R(x) $为$ g(x) $除$ f(x)$ 的 **余数（Remainder）** 。亦可记作
 
 $$
 f(x) \equiv R(x) \pmod{g(x)}
