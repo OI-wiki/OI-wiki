@@ -219,6 +219,7 @@ nav:
       - 莫比乌斯反演: math/mobius.md
       - 杜教筛: math/du.md
       - Min_25 筛: math/min-25.md
+      - 洲阁筛: math/zhou.md
       - 分解质因数: math/pollard-rho.md
       - 连分数: math/continued-fraction.md
       - Stern-Brocot 树与 Farey 序列: math/stern-brocot.md
