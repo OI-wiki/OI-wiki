@@ -68,4 +68,4 @@
 
 [UVA10817 校长的烦恼 Headmaster's Headache](https://www.luogu.com.cn/problem/UVA10817)
 
-[UVA1252 20个问题 Twenty Questions](https://www.luogu.com.cn/problem/UVA1252)
+[UVA1252 20 个问题 Twenty Questions](https://www.luogu.com.cn/problem/UVA1252)
