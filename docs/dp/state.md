@@ -64,6 +64,8 @@
 
 [「USACO06NOV」玉米田 Corn Fields](https://www.luogu.com.cn/problem/P1879)
 
-[AHOI2009 中国象棋](https://www.luogu.com.cn/problem/P2051)
-
 [九省联考 2018 一双木棋](https://loj.ac/problem/2471)
+
+[UVA10817 校长的烦恼 Headmaster's Headache](https://www.luogu.com.cn/problem/UVA10817)
+
+[UVA1252 20个问题 Twenty Questions](https://www.luogu.com.cn/problem/UVA1252)
