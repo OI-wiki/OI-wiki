@@ -16,6 +16,7 @@ jobs:
         with:
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
+          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode -8bit"
           extra_system_packages: |
             unzip
             wget
