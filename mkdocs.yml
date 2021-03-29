@@ -97,6 +97,7 @@ nav:
       - STL 算法: lang/csl/algorithm.md
       - bitset: lang/csl/bitset.md
       - string: lang/csl/string.md
+      - pair: lang/csl/pair.md
     - C++ 进阶:
       - 类: lang/class.md
       - 命名空间: lang/namespace.md
