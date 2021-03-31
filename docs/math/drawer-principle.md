@@ -23,5 +23,5 @@
 
 ## 参考文献
 
-- [wikipedia: Pigeonhole principle](https://en.wikipedia.org/wiki/Pigeonhole_principle)
-- *Discrete Mathematics and Its Applications*, chatper 6 section 1
+- [Wikipedia: Pigeonhole principle](https://en.wikipedia.org/wiki/Pigeonhole_principle)
+- *Discrete Mathematics and Its Applications*: Chapter 6, Section 1
