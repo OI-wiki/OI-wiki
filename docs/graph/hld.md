@@ -1,6 +1,6 @@
 author: Ir1d, Marcythm, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogeek, ftxj, sshwy, LuoshuiTianyi, hyp1231
 
-## 树链剖分的思想及能解决的问题
+## 树链剖分（Heavy-light Decomposition）的思想及能解决的问题
 
 树链剖分用于将树分割成若干条链的形式，以维护树上路径的信息。
 
