@@ -1,6 +1,6 @@
 author: Ir1d, Marcythm, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogeek, ftxj, sshwy, LuoshuiTianyi, hyp1231
 
-## 树链剖分的思想及能解决的问题
+## 树链剖分（Tree Decomposition）的思想及能解决的问题
 
 树链剖分用于将树分割成若干条链的形式，以维护树上路径的信息。
 
@@ -19,7 +19,7 @@ author: Ir1d, Marcythm, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogeek, ftxj, sshwy
 
 除了配合数据结构来维护树上路径信息，树剖还可以用来 $O(\log n)$（且常数较小）地求 LCA。在某些题目中，还可以利用其性质来灵活地运用树剖。
 
-## 重链剖分
+## 重链剖分（Heavy-light Decomposition）
 
 我们给出一些定义：
 
@@ -521,7 +521,7 @@ $2999+\sum_{i=1}^{2999}T(i)\le 29940$，事实上这个上界是可以通过构�
     }
     ```
 
-## 长链剖分
+## 长链剖分（long-chain Decomposition）
 
 长链剖分本质上就是另外一种链剖分方式。
 
