@@ -199,6 +199,45 @@ mkfifo input output
 
 使用完后，可以像普通文件一样用 `rm` 命令删除命名管道。
 
+## Sanitizers
+
+### 介绍
+
+`sanitizers` 是一种集成于编译器中，用于调试 `c++` 代码的工具，通过修改可执行文件来检查代码运行时出现的内存访问越界、未定义行为等错误。
+
+它分为以下几种：
+
+- AddressSanitizer[^address-sanitizer]：检测对堆、栈、全局变量的越界访问，无效的释放内存、内存泄漏（实验性）。
+- ThreadSanitizer[^thread-sanitizer]：检测多线程数据调用的冲突。
+- MemorySanitizer[^memory-sanitizer]：检测对未初始化内存的读取。
+- UndefinedBehaviorSanitizer[^ub-san]：检测未定义行为。
+
+### 使用方式
+
+最新版本的 `clang++/g++` 均已内置 `sanitizers`，但功能和使用方法有所不同，这里以 `clang++` 为例，它的使用方法如下：
+
+```bash
+% clang++ -fsanitize=<name> test.cc
+```
+
+其中 `<name>` 即为要启用的功能（一个 `sanitizer` 可理解为一些功能的集合），例如：
+
+```bash
+% clang++ -fsanitize=memory test.cc #启用 MemorySanitizer
+% clang++ -fsanitize=signed-integer-overflow test.cc #启用有符号整型溢出检测
+```
+
+### 时间/内存代价
+
+显而易见，这些调试工具会严重拖慢代码的运行时间和增大所用内存，以下为使用它们的时间/内存代价：
+
+| 名称 | 所增大内存倍数 | 所增大时间倍数 |
+| :----------- | :----------- | :----------- |
+| AddressSanitizer | N/A | 2 |
+| ThreadSanitizer | 5~15 | 5~10 |
+| MemorySanitizer | N/A | 3 |
+| UndefinedBehaviorSanitizer | N/A | N/A |
+
 ## 参考资料与注释
 
 [^1]: 刘汝佳《算法竞赛入门经典（第 2 版）》附录 A 开发环境与方法
@@ -208,3 +247,11 @@ mkfifo input output
 [^autocomplete]: [Comparison_of_command_shells#Interactive_features](https://en.wikipedia.org/wiki/Comparison_of_command_shells#Interactive_features)
 
 [^bash-time-format]: <https://unix.stackexchange.com/a/70655>
+
+[^address-sanitizer]: <https://clang.llvm.org/docs/AddressSanitizer.html>
+
+[^thread-sanitizer]: <https://clang.llvm.org/docs/ThreadSanitizer.html>
+
+[^memory-sanitizer]: <https://clang.llvm.org/docs/MemorySanitizer.html>
+
+[^ub-san]: <https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html>
