@@ -238,12 +238,12 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 
 显而易见，这些调试工具会严重拖慢代码的运行时间和增大所用内存，以下为使用它们的时间/内存代价：
 
-| 名称 | 所增大内存倍数 | 所增大时间倍数 |
-| :----------- | :----------- | :----------- |
-| AddressSanitizer | N/A | 2 |
-| ThreadSanitizer | 5~15 | 5~10 |
-| MemorySanitizer | N/A | 3 |
-| UndefinedBehaviorSanitizer | N/A | N/A |
+| 名称                         | 所增大内存倍数 | 所增大时间倍数 |
+| :------------------------- | :------ | :------ |
+| AddressSanitizer           | N/A     | 2       |
+| ThreadSanitizer            | 5~15    | 5~10    |
+| MemorySanitizer            | N/A     | 3       |
+| UndefinedBehaviorSanitizer | N/A     | N/A     |
 
 ## 参考资料与注释
 
