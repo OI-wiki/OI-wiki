@@ -203,12 +203,12 @@ mkfifo input output
 
 ### 介绍
 
-`sanitizers` 是一种集成于编译器中，用于调试 `c++` 代码的工具，通过修改可执行文件来检查代码运行时出现的内存访问越界、未定义行为等错误。
+`sanitizers` 是一种集成于编译器中，用于调试 `c++` 代码的工具，通过在编译过程中插入检查代码来检查代码运行时出现的内存访问越界、未定义行为等错误。
 
 它分为以下几种：
 
 - AddressSanitizer[^address-sanitizer]：检测对堆、栈、全局变量的越界访问，无效的释放内存、内存泄漏（实验性）。
-- ThreadSanitizer[^thread-sanitizer]：检测多线程数据调用的冲突。
+- ThreadSanitizer[^thread-sanitizer]：检测多线程的数据竞争。
 - MemorySanitizer[^memory-sanitizer]：检测对未初始化内存的读取。
 - UndefinedBehaviorSanitizer[^ub-san]：检测未定义行为。
 
