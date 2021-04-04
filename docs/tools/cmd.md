@@ -214,7 +214,7 @@ mkfifo input output
 
 ### 使用方式
 
-最新版本的 `clang++/g++` 均已内置 `sanitizers`，但功能和使用方法有所不同，这里以 `clang++` 为例，它的使用方法如下：
+最新版本的 `clang++/g++` 和 `MSVC`（部分支持） 均已内置 `sanitizers`，但功能和使用方法有所不同，这里以 `clang++` 为例，它的使用方法如下：
 
 ```bash
 % clang++ -fsanitize=<name> test.cc
