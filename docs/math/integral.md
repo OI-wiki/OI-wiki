@@ -93,7 +93,7 @@ double simpson_integration(double a, double b) {
 
 我们把当前段直接代入公式求积分，再将当前段从中点分割成两段，把这两段再直接代入公式求积分。如果当前段的积分和分割成两段后的积分之和相差很小的话，就可以认为当前段和二次函数很相似了，不用再递归分割了。
 
-上面就是自适应辛普森法的思想。
+上面就是自适应辛普森法的思想。在分治判断的时候，除了判断精度是否正确，一般还要强制执行最少的迭代次数。
 
 参考代码如下：
 
@@ -102,13 +102,16 @@ double simpson(double l, double r) {
   double mid = (l + r) / 2;
   return (r - l) * (f(l) + 4 * f(mid) + f(r)) / 6;  // 辛普森公式
 }
-double asr(double l, double r, double eqs, double ans) {
+double asr(double l, double r, double eqs, double ans, int step) {
   double mid = (l + r) / 2;
   double fl = simpson(l, mid), fr = simpson(mid, r);
-  if (abs(fl + fr - ans) <= 15 * eqs)
+  if (abs(fl + fr - ans) <= 15 * eqs && step < 0)
     return fl + fr + (fl + fr - ans) / 15;  // 足够相似的话就直接返回
-  return asr(l, mid, eqs / 2, fl) +
-         asr(mid, r, eqs / 2, fr);  // 否则分割成两段递归求解
+  return asr(l, mid, eqs / 2, fl, step - 1) +
+         asr(mid, r, eqs / 2, fr, step - 1);  // 否则分割成两段递归求解
+}
+double calc(double l, double r, double eps) {
+  return asr(l, r, eps, simpson(l, r), 12);
 }
 ```
 
