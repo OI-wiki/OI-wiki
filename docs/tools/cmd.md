@@ -113,7 +113,7 @@ command < input > output
 % clang++ -fsanitize=signed-integer-overflow test.cc # 启用有符号整型溢出检测
 ```
 
-之后直接像平常一样运行可执行文件即可，如果 `sanitizers` 检测到错误，则会输出到 `stderr` 流，例如：
+之后直接像平常一样运行可执行文件即可，如果 sanitizer 检测到错误，则会输出到 `stderr` 流，例如：
 
 ```bash
 % ./a.out
