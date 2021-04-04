@@ -227,6 +227,13 @@ mkfifo input output
 % clang++ -fsanitize=signed-integer-overflow test.cc #启用有符号整型溢出检测
 ```
 
+之后直接像平常一样运行可执行文件即可，如果 `sanitizers` 检测到错误，则会输出到 `stderr` 流，例如：
+
+```bash
+% ./a.out
+test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be represented in type 'int'
+```
+
 ### 时间/内存代价
 
 显而易见，这些调试工具会严重拖慢代码的运行时间和增大所用内存，以下为使用它们的时间/内存代价：
