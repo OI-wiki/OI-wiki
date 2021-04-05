@@ -191,7 +191,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 #### 换行符不同
 
 ???+ warning
-    在正式比赛中会保证选手答题的环境和最终测试的环境相同。
+    在正式比赛中会尽量保证选手答题的环境和最终测试的环境相同。
     
     本节内容仅适用于模拟赛等情况，而我们也建议出题人尽量让数据符合 [数据格式](../problemsetting/#_29)。
 
@@ -207,7 +207,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
 以下为解决方案：
 
-- 多次 `getchar()`，直到读到想要的字符为止。
+- 多次 `getchar()` 或 `scanf("%c",&c)`，直到读到想要的字符为止。
 
 - 使用 `cin` 读入，**这可能会增大代码常数**。
 
