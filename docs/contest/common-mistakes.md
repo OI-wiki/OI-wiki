@@ -207,7 +207,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
 以下为解决方案：
 
-- 多次 `getchar()` ，直到读到想要的字符为止。
+- 多次 `getchar()`，直到读到想要的字符为止。
 
 - 使用 `cin` 读入，**这可能会增大代码常数**。
 
