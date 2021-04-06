@@ -207,11 +207,13 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
 以下为解决方案：
 
-- 多次 `getchar()` 或 `scanf("%c",&c)`，直到读到想要的字符为止。
+- 多次 `getchar()` ，直到读到想要的字符为止。
 
 - 使用 `cin` 读入，**这可能会增大代码常数**。
 
 - 使用 `scanf("%s",str)` 读入一个字符串，然后取 `str[0]` 作为读入的字符。
+
+- 使用 `scanf(" %c",&c)` 过滤掉所有空白字符。
 
 ### 会导致 RE
 
