@@ -291,7 +291,7 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
 
 每一步的复杂度都是 $O(N)$ 的，因此总复杂度依然是 $O(N)$。
 
-提供 RMQ 转标准 RMQ 的代码，为洛谷上 ST 表的例题 [**P3865**【模板】ST 表](https://www.luogu.com.cn/problem/P3865)
+提供 LCA 转标准 RMQ 的代码，为洛谷上 ST 表的例题 [**P3865**【模板】ST 表](https://www.luogu.com.cn/problem/P3865)
 
 ??? note "参考代码"
     ```cpp
