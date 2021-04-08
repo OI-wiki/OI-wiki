@@ -33,7 +33,7 @@ void merge(int x, int y) {
 
 ???+note "例题引入"
     给出一棵 $n$ 个节点以 $1$ 为根的树，节点 $u$ 的颜色为 $c_u$，现在对于每个结点 $u$ 询问 $u$ 子树里一共出现了多少种不同的颜色。
-
+    
     $n\le 2\times 10^5$。
 
 ![dsu-on-tree-1.png](./images/dsu-on-tree-1.png)
@@ -52,7 +52,7 @@ void merge(int x, int y) {
 
 我们可以先预处理出每个节点子树的大小和它的重儿子，重儿子同树链剖分一样，是拥有节点最多子树的儿子，这个过程显然可以 $O(n)$ 完成
 
-我们用 cnt[i] 表示颜色 $i$ 的出现次数，ans[u] 表示结点 $u$ 的答案。
+我们用 cnt[i]表示颜色 $i$ 的出现次数，ans[u]表示结点 $u$ 的答案。
 
 遍历一个节点 $u$，我们按以下的步骤进行遍历：
 
@@ -90,7 +90,7 @@ void merge(int x, int y) {
 
 ???+note "代码实现"
     ```cpp
-    #include<bits/stdc++.h>
+    #include <bits/stdc++.h>
     using namespace std;
     
     const int N = 2e5 + 5;
@@ -113,57 +113,58 @@ void merge(int x, int y) {
     int ans[N], cnt[N], totColor;
     
     void add(int u) {
-      if(cnt[col[u]] == 0) ++totColor;
-      cnt[col[u]] ++;
+      if (cnt[col[u]] == 0) ++totColor;
+      cnt[col[u]]++;
     }
     void del(int u) {
-      cnt[col[u]] --;
-      if(cnt[col[u]] == 0) --totColor;
+      cnt[col[u]]--;
+      if (cnt[col[u]] == 0) --totColor;
     }
-    int getAns () {
-      return totColor;
-    }
+    int getAns() { return totColor; }
     
     void dfs0(int u, int p) {
       L[u] = ++totdfn;
       Node[totdfn] = u;
       sz[u] = 1;
-      for(int v: g[u]) if(v != p) {
-        dfs0(v, u);
-        sz[u] += sz[v];
-        if(!big[u] || sz[big[u]] < sz[v]) big[u] = v;
-      }
+      for (int v : g[u])
+        if (v != p) {
+          dfs0(v, u);
+          sz[u] += sz[v];
+          if (!big[u] || sz[big[u]] < sz[v]) big[u] = v;
+        }
       R[u] = totdfn;
     }
     
     void dfs1(int u, int p, bool keep) {
       // 计算轻儿子的答案
-      for(int v: g[u]) if(v != p && v != big[u]) {
-        dfs1(v, u, false);
-      }
+      for (int v : g[u])
+        if (v != p && v != big[u]) {
+          dfs1(v, u, false);
+        }
       // 计算重儿子答案并保留计算过程中的数据（用于继承）
-      if(big[u]) {
+      if (big[u]) {
         dfs1(big[u], u, true);
       }
-      for(int v: g[u]) if(v != p && v != big[u]) {
-        // 子树结点的 DFS 序构成一段连续区间，可以直接遍历
-        for(int i = L[v]; i <= R[v]; i ++) { 
-          add(Node[i]);
+      for (int v : g[u])
+        if (v != p && v != big[u]) {
+          // 子树结点的 DFS 序构成一段连续区间，可以直接遍历
+          for (int i = L[v]; i <= R[v]; i++) {
+            add(Node[i]);
+          }
         }
-      }
       add(u);
-      ans[u] = getAns ();
-      if(keep == false) {
-        for(int i = L[u]; i <= R[u]; i ++) {
+      ans[u] = getAns();
+      if (keep == false) {
+        for (int i = L[u]; i <= R[u]; i++) {
           del(Node[i]);
         }
       }
     }
     
-    int main(){
+    int main() {
       scanf("%d", &n);
-      for(int i = 1; i <= n; i ++) scanf("%d", &col[i]);
-      for(int i = 1; i < n; i ++){
+      for (int i = 1; i <= n; i++) scanf("%d", &col[i]);
+      for (int i = 1; i < n; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
         g[u].push_back(v);
@@ -171,7 +172,7 @@ void merge(int x, int y) {
       }
       dfs0(1, 0);
       dfs1(1, 0, false);
-      for(int i = 1; i <= n; i ++) printf("%d%c", ans[i], " \n"[i == n]);
+      for (int i = 1; i <= n; i++) printf("%d%c", ans[i], " \n"[i == n]);
       return 0;
     }
     ```
