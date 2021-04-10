@@ -32,26 +32,24 @@ jobs:
             inkscape
             libxml2
           pre_compile: |
-            wget -q "https://github.com/stipub/stixfonts/raw/73d7c426993abacea44288aded4e81b568d57ed1/zipfiles/STIXv2.0.2.zip" -O stix.zip
-            unzip -q stix.zip
-            wget -q "https://github.com/adobe-fonts/source-han-super-otc/releases/download/20190603/SourceHan.ttc"
-            git clone https://github.com/alif-type/xits --depth=1
-            cp xits/*.otf /usr/share/fonts
-            wget https://mirrors.sjtug.sjtu.edu.cn/ctan/fonts/fandol.zip
-            unzip -q fandol.zip
-            cp fandol/* /usr/share/fonts
+            wget -q -O notosans.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSans-hinted.zip"
+            wget -q -O notoserif.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerif-hinted.zip"
+            wget -q -O notoserifcjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKsc-hinted.zip"
+            wget -q -O notosanscjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip"
+            wget -q -O robotomono.zip "https://fonts.google.com/download?family=Roboto%20Mono"
             wget -q "http://mirrors.ctan.org/fonts/cm-unicode.zip"
-            unzip ./cm-unicode.zip
-            cp cm-unicode/fonts/otf/* /usr/share/fonts
-            cp STIXv2.0.2/OTF/* /usr/share/fonts
-            cp *.ttc /usr/share/fonts
+            unzip -q notosans.zip -d notosans
+            unzip -q notoserif.zip -d notoserif
+            unzip -q notosanscjk.zip -d notosanscjk
+            unzip -q notoserifcjk.zip -d notoserifcjk
+            unzip -q robotomono.zip -d robotomono
+            unzip -q ./cm-unicode.zip
+            cp -r notosans notoserif notosanscjk notoserifcjk robotomono cm-unicode/fonts/otf/* /usr/share/fonts
             fc-cache
-
-            git clone https://github.com/OI-wiki/OI-Wiki-export.git --depth=1
-            cd ./OI-Wiki-export/oi-wiki-export
+            cd oi-wiki-export
             npm i
-            node index.js ../../
-
+            git clone https://github.com/OI-wiki/OI-wiki.git
+            node index.js ./OI-wiki
           root_file: |
             oi-wiki-export.tex
       - uses: actions/upload-artifact@v2
