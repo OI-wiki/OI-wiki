@@ -48,8 +48,7 @@ jobs:
             fc-cache
             cd oi-wiki-export
             npm i
-            git clone https://github.com/OI-wiki/OI-wiki.git
-            node index.js ./OI-wiki
+            node index.js ../../
           root_file: |
             oi-wiki-export.tex
       - uses: actions/upload-artifact@v2
