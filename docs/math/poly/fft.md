@@ -307,7 +307,7 @@ $$
 \frac{1}{\omega_k}=\omega_k^{-1}=e^{-\frac{2\pi i}{k}}=\cos\left(\frac{2\pi}{k}\right)+i\cdot \sin\left(-\frac{2\pi}{k}\right)
 $$
 
-因此我们可以尝试着把单位根 $\omega_k$ 取成 $e^{-\frac{2\pi i}{k}}$，这样我们的计算结果就会变成原来的倒数，而其它的操作过程与 DFT 是完全相同的。我们可以定义一个函数，在里面加一个参数 $1$ 或者是 $-1$，然后把它乘到 $\pi $$ 的身上。传入 $1$ 就是 DFT，传入 $-1$ 就是 IDFT。
+因此我们可以尝试着把单位根 $\omega_k$ 取成 $e^{-\frac{2\pi i}{k}}$，这样我们的计算结果就会变成原来的倒数，而其它的操作过程与 DFT 是完全相同的。我们可以定义一个函数，在里面加一个参数 $1$ 或者是 $-1$，然后把它乘到 $\pi$  $的身上。传入$ 1 $就是 DFT，传入$-1$ 就是 IDFT。
 
 ### 单位复根周期性
 
@@ -435,7 +435,7 @@ $$
      */
     void fft(Complex y[], int len, int on) {
       change(y, len);
-      for (int h = 2; h <= len; h <<= 1) {                  // 模拟合并过程
+      for (int h = 2; h <= len; h <<= 1) {             // 模拟合并过程
         Complex wn(cos(2 * PI / h), sin(2 * PI / h));  // 计算当前单位复根
         for (int j = 0; j < len; j += h) {
           Complex w(1, 0);  // 计算当前单位复根
@@ -452,7 +452,7 @@ $$
         }
       }
       if (on == -1) {
-        reverse(y, y+len);
+        reverse(y, y + len);
         for (int i = 0; i < len; i++) {
           y[i].x /= len;
         }
