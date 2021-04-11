@@ -223,14 +223,14 @@ $$
 设 $\gcd(a,b)=1$，则：
 
 $$
-h(a)=\sum_{d_1\mid a}{f(a)g\left(\dfrac a{d_1} \right)},h(b)=\sum_{d_2\mid b}{f(b)g\left(\dfrac b{d_2} \right)},
+h(a)=\sum_{d_1\mid a}{f(d_1)g\left(\dfrac a{d_1} \right)},h(b)=\sum_{d_2\mid b}{f(d_2)g\left(\dfrac b{d_2} \right)},
 $$
 
 所以：
 
 $$
 \begin{aligned}
-h(a)h(b)&=\sum_{d_1\mid a}{f(a)g\left(\dfrac a{d_1} \right)}\sum_{d_2\mid b}{f(b)g\left(\dfrac b{d_2} \right)}\\
+h(a)h(b)&=\sum_{d_1\mid a}{f(d_1)g\left(\dfrac a{d_1} \right)}\sum_{d_2\mid b}{f(d_2)g\left(\dfrac b{d_2} \right)}\\
 &=\sum_{d\mid ab}{f(d)g\left(\dfrac {ab}d \right)}\\
 &=h(ab)
 \end{aligned}
