@@ -26,6 +26,7 @@ for (int i = 1; i <= num; i++) {
 我们要询问一个块内大于等于一个数的数的个数，所以需要一个 `t` 数组对块内排序。对于整块的修改，使用类似于标记永久化的方式保存。时间复杂度 $O(q\sqrt{n}\log n)$
 
 用 `dlt` 保存某块的整体赋值情况。
+
 ```cpp
 void Sort(int k) {
   for (int i = st[k]; i <= ed[k]; i++) t[i] = a[i];
