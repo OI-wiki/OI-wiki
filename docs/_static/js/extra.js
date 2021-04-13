@@ -36,14 +36,15 @@ function foo(response) {
   var data = response.data;
   var num = response.data.length;
   if (data && data[0]) {
-    var ti = new Date(data[0].commit.author.date).toLocaleString('zh-CN', { timeZone: "Asia/Shanghai", hour12: false });
+    var t = new Date(data[0].commit.author.date);
+    var ti = t.toLocaleDateString('zh-CN', { timeZone: "Asia/Shanghai", hour12: false }) + " " + t.toLocaleTimeString('zh-CN', { timeZone: "Asia/Shanghai", hour12: false });
 
     var author_list = document.getElementsByClassName('page_contributors')[0].innerHTML.split(', ');
-    author_list = author_list.filter((e)=> {return e != 'OI-wiki'})
+    author_list = author_list.filter((e) => { return e != 'OI-wiki' })
     for (var i = 0; i < num; ++i) {
       author_list.push(data[i].author.login);
     }
-    
+
     var cnts = author_list.reduce(function (obj, val) {
       obj[val] = (obj[val] || 0) + 1;
       return obj;
@@ -57,7 +58,7 @@ function foo(response) {
     if (index > -1) {
       sorted.splice(index, 1);
     }
-    sorted = sorted.map(function(x) {
+    sorted = sorted.map(function (x) {
       return `<a href=https://github.com/${x}>${x}</a>`
     })
     document.getElementsByClassName('facts_modified')[0].innerHTML = (ti);
@@ -76,7 +77,7 @@ if (url == "/index.md") {
   document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/OI-wiki/OI-wiki/commits/master/docs/index.md`);
   script.src = `https://api.github.com/repos/OI-wiki/OI-WIki/commits?path=docs/index.md&callback=foo`;
   document.getElementsByTagName('head')[0].appendChild(script);
-} else if (typeof(url) != 'undefined') {
+} else if (typeof (url) != 'undefined') {
   document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/OI-wiki/OI-wiki/commits/master/docs${url}`);
   script.src = `https://api.github.com/repos/OI-wiki/OI-WIki/commits?path=docs${url}&callback=foo`;
   document.getElementsByTagName('head')[0].appendChild(script);
