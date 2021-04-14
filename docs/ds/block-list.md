@@ -71,27 +71,26 @@ void check(node* p) {
 }
 void insert(char c, int pos) {
   node* p = head;
-  int tot, cnt;
   if (pos > llen++) {
     while (p->nxt != NULL) p = p->nxt;
     p->pb(c), check(p);
     return;
   }
-  for (tot = head->size; p != NULL && tot < pos; p = p->nxt, tot += p->size)
-    ;
-  tot -= p->size, cnt = pos - tot - 1;
-  for (int i = p->size - 1; i >= cnt; i--) p->d[i + 1] = p->d[i];
-  p->d[cnt] = c, p->size++;
+  while(p != NULL && pos > p->size) {
+    pos -= p->size
+    p = p->nxt,
+  }
+  for (int i = p->size - 1; i >= pos; i--) p->d[i + 1] = p->d[i];
+  p->d[pos] = c, p->size++;
   check(p);
 }
 char query(int pos) {
-  node* p;
-  int tot, cnt;
-  for (p = head, tot = head->size; p != NULL && tot < pos;
-       p = p->nxt, tot += p->size)
-    ;
-  tot -= p->size;
-  return p->d[pos - tot - 1];
+  node* p = head;
+  while(p != NULL && pos > p->size) {
+    pos -= p->size
+    p = p->nxt,
+  }
+  return p->d[pos];
 }
 int main() {
   scanf("%s %d", inits, &q), llen = strlen(inits);
