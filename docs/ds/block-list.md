@@ -76,9 +76,8 @@ void insert(char c, int pos) {
     p->pb(c), check(p);
     return;
   }
-  while(p != NULL && pos > p->size) {
-    pos -= p->size
-    p = p->nxt,
+  while (p != NULL && pos > p->size) {
+    pos -= p->size p = p->nxt,
   }
   for (int i = p->size - 1; i >= pos; i--) p->d[i + 1] = p->d[i];
   p->d[pos] = c, p->size++;
@@ -86,9 +85,8 @@ void insert(char c, int pos) {
 }
 char query(int pos) {
   node* p = head;
-  while(p != NULL && pos > p->size) {
-    pos -= p->size
-    p = p->nxt,
+  while (p != NULL && pos > p->size) {
+    pos -= p->size p = p->nxt,
   }
   return p->d[pos];
 }
