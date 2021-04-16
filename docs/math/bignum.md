@@ -932,7 +932,7 @@ $$
       Big res;
       int down = 0;
       gd(i, len - 1, 0) {
-        res.a[i] = (a[i] + down * (MAXN + 1) / b);
+        res.a[i] = (a[i] + down * (MAXN + 1)) / b;
         down = a[i] + down * (MAXN + 1) - res.a[i] * b;
       }
       res.len = len;
