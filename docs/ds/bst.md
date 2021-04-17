@@ -70,6 +70,7 @@ void insert(int& o, int v) {
   if (!o) {
     val[o = ++sum] = v;
     cnt[o] = siz[o] = 1;
+    lc[o] = rc[o] = 0;
     return;
   }
   siz[o]++;
