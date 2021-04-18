@@ -165,9 +165,6 @@ bool cmp(const string& s, const string& t) {
         ```cpp
         #include <bits/stdc++.h>
         using namespace std;
-        #define pb push_back
-        #define FOR(i, a, b) for (int i = (a); i <= (b); ++i)
-        #define ROF(i, a, b) for (int i = (a); i >= (b); --i)
         
         const int L = 1e6 + 5;
         const int HASH_CNT = 2;
@@ -182,7 +179,7 @@ bool cmp(const string& s, const string& t) {
           int pwMod[HASH_CNT][L];
           void init() {
             ls = 0;
-            FOR(i, 0, HASH_CNT - 1) {
+            for (int i = 0; i < HASH_CNT; ++i) {
               hsh[i][0] = 0;
               pwMod[i][0] = 1;
             }
@@ -190,14 +187,14 @@ bool cmp(const string& s, const string& t) {
           StringWithHash() { init(); }
           void extend(char c) {
             s[++ls] = c;
-            FOR(i, 0, HASH_CNT - 1) {
+            for (int i = 0; i < HASH_CNT; ++i) {
               pwMod[i][ls] = 1ll * pwMod[i][ls - 1] * hashBase[i] % hashMod[i];
               hsh[i][ls] = (1ll * hsh[i][ls - 1] * hashBase[i] + c) % hashMod[i];
             }
           }
           vector<int> getHash(int l, int r) {
             vector<int> res(HASH_CNT, 0);
-            FOR(i, 0, HASH_CNT - 1) {
+            for (int i = 0; i < HASH_CNT; ++i) {
               int t =
                   (hsh[i][r] - 1ll * hsh[i][l - 1] * pwMod[i][r - l + 1]) % hashMod[i];
               t = (t + hashMod[i]) % hashMod[i];
@@ -207,7 +204,7 @@ bool cmp(const string& s, const string& t) {
           }
         };
         
-        bool equal(vector<int> h1, vector<int> h2) {
+        bool equal(const vector<int> &h1, const vector<int> &h2) {
           assert(h1.size() == h2.size());
           for (unsigned i = 0; i < h1.size(); i++)
             if (h1[i] != h2[i]) return false;
@@ -221,19 +218,19 @@ bool cmp(const string& s, const string& t) {
         void work() {
           int len = strlen(str);
           t.init();
-          FOR(j, 0, len - 1) t.extend(str[j]);
+          for (int j = 0; j < len; ++j) t.extend(str[j]);
           int d = 0;
-          ROF(j, min(len, s.ls), 1) {
+          for (int j = min(len, s.ls); j >= 1; --j) {
             if (equal(t.getHash(1, j), s.getHash(s.ls - j + 1, s.ls))) {
               d = j;
               break;
             }
           }
-          FOR(j, d, len - 1) s.extend(str[j]);
+          for (int j = d; j < len; ++j) s.extend(str[j]);
         }
         int main() {
           scanf("%d", &n);
-          FOR(i, 1, n) {
+          for (int i = 1; i <= n; ++i) {
             scanf("%s", str);
             work();
           }
