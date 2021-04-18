@@ -163,72 +163,80 @@ bool cmp(const string& s, const string& t) {
     
     ??? mdui-shadow-6 "参考代码"
         ```cpp
-        #include <cstdio>
-        #include <cstring>
-        #include <iostream>
-        #include <string>
+        #include<bits/stdc++.h>
         using namespace std;
-        const int CN = 1e6 + 6;
-        const int M1 = 11431471;
-        const int B1 = 231;
-        const int M2 = 37101101;
-        const int B2 = 312;
-        int read() {
-          int s = 0, ne = 1;
-          char c = getchar();
-          while (c < '0' || c > '9') ne = c == '-' ? -1 : 1, c = getchar();
-          while (c >= '0' && c <= '9') s = (s << 1) + (s << 3) + c - '0', c = getchar();
-          return s * ne;
-        }
-        int qp(int a, int b, int P) {
-          int r = 1;
-          while (b) {
-            if (b & 1) r = 1ll * r * a % P;
-            a = 1ll * a * a % P;
-            b >>= 1;
-          }
-          return r;
-        }
-        int H1[CN], H2[CN], l1 = 0;
-        void add1(int x) {
-          H1[l1 + 1] = (1ll * H1[l1] * B1 % M1 + x) % M1,
-                  H2[l1 + 1] = (1ll * H2[l1] * B2 % M2 + x) % M2;
-          l1++;
-        }
-        int h1[CN], h2[CN], l2 = 0;
-        void add2(int x) {
-          h1[l2 + 1] = (1ll * h1[l2] * B1 % M1 + x) % M1,
-                  h2[l2 + 1] = (1ll * h2[l2] * B2 % M2 + x) % M2;
-          l2++;
-        }
-        int get(int* h, int l, int r, int b, int m) {
-          return 1ll * (h[r] - 1ll * h[l - 1] * qp(b, r - l + 1, m) % m + m) % m;
-        }
-        int n, len;
-        char cur[CN], nxt[CN];
-        int main() {
-          n = read() - 1;
-          cin >> cur;
-          len = strlen(cur);
-          for (int i = 0; i < len; i++) add1(cur[i] - '0');
-          while (n--) {
-            cin >> nxt;
-            int l = strlen(nxt);
-            for (int i = 0; i < l; i++) add2(nxt[i] - '0');
-            int p = 0;
-            for (int i = 0; i < l && i < len; i++) {
-              int G1 = get(H1, len - i, len, B1, M1),
-                  G2 = get(H2, len - i, len, B2, M2);
-              int g1 = get(h1, 1, i + 1, B1, M1), g2 = get(h2, 1, i + 1, B2, M2);
-              if (G1 == g1 && G2 == g2) p = i + 1;
-            }
+        #define pb push_back
+        #define FOR(i,a,b) for(int i=(a);i<=(b);++i)
+        #define ROF(i,a,b) for(int i=(a);i>=(b);--i)
         
-            for (int i = len; i < len - p + l; i++)
-              cur[i] = nxt[i - len + p], add1(cur[i] - '0');
-            len = len - p + l, cur[len] = '\0';
-            l2 = 0;
+        const int L = 1e6 + 5;
+        const int HASH_CNT = 2;
+        
+        int hashBase[HASH_CNT] = {29, 31};
+        int hashMod[HASH_CNT] = {int(1e9+9), 998244353};
+        
+        struct StringWithHash {
+          char s[L];
+          int ls;
+          int hsh[HASH_CNT][L];
+          int pwMod[HASH_CNT][L];
+          void init () {
+            ls = 0;
+            FOR(i, 0, HASH_CNT - 1) {
+              hsh[i][0] = 0;
+              pwMod[i][0] = 1;
+            }
           }
-          cout << cur;
+          StringWithHash () { init (); }
+          void extend(char c) {
+            s[++ls] = c;
+            FOR(i, 0, HASH_CNT - 1) {
+              pwMod[i][ls] = 1ll * pwMod[i][ls - 1] * hashBase[i] % hashMod[i];
+              hsh[i][ls] = (1ll * hsh[i][ls - 1] * hashBase[i] + c) % hashMod[i];
+            }
+          }
+          vector<int> getHash(int l, int r) {
+            vector<int> res(HASH_CNT, 0);
+            FOR(i, 0, HASH_CNT - 1) {
+              int t = (hsh[i][r] - 1ll * hsh[i][l - 1] * pwMod[i][r - l + 1]) % hashMod[i];
+              t = (t + hashMod[i]) % hashMod[i];
+              res[i] = t;
+            }
+            return res;
+          }
+        };
+        
+        bool equal(vector<int> h1, vector<int> h2) {
+          assert(h1.size() == h2.size());
+          for(unsigned i = 0; i < h1.size(); i++) if(h1[i] != h2[i]) return false;
+          return true;
+        }
+        
+        int n;
+        StringWithHash s, t;
+        char str[L];
+        
+        void work () {
+          int len = strlen(str);
+          t.init();
+          FOR(j, 0, len - 1) t.extend(str[j]);
+          int d = 0;
+          ROF(j, min(len, s.ls), 1) {
+            if(equal(t.getHash(1, j), s.getHash(s.ls - j + 1, s.ls))) {
+              d = j;
+              break;
+            }
+          }
+          FOR(j, d, len - 1) s.extend(str[j]);
+        }
+        int main(){
+          scanf("%d", &n);
+          FOR(i, 1, n) {
+            scanf("%s", str);
+            work ();
+          }
+          printf("%s\n", s.s + 1);
+          return 0;
         }
         ```
 
