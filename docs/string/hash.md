@@ -163,31 +163,31 @@ bool cmp(const string& s, const string& t) {
     
     ??? mdui-shadow-6 "参考代码"
         ```cpp
-        #include<bits/stdc++.h>
+        #include <bits/stdc++.h>
         using namespace std;
         #define pb push_back
-        #define FOR(i,a,b) for(int i=(a);i<=(b);++i)
-        #define ROF(i,a,b) for(int i=(a);i>=(b);--i)
+        #define FOR(i, a, b) for (int i = (a); i <= (b); ++i)
+        #define ROF(i, a, b) for (int i = (a); i >= (b); --i)
         
         const int L = 1e6 + 5;
         const int HASH_CNT = 2;
         
         int hashBase[HASH_CNT] = {29, 31};
-        int hashMod[HASH_CNT] = {int(1e9+9), 998244353};
+        int hashMod[HASH_CNT] = {int(1e9 + 9), 998244353};
         
         struct StringWithHash {
           char s[L];
           int ls;
           int hsh[HASH_CNT][L];
           int pwMod[HASH_CNT][L];
-          void init () {
+          void init() {
             ls = 0;
             FOR(i, 0, HASH_CNT - 1) {
               hsh[i][0] = 0;
               pwMod[i][0] = 1;
             }
           }
-          StringWithHash () { init (); }
+          StringWithHash() { init(); }
           void extend(char c) {
             s[++ls] = c;
             FOR(i, 0, HASH_CNT - 1) {
@@ -198,7 +198,8 @@ bool cmp(const string& s, const string& t) {
           vector<int> getHash(int l, int r) {
             vector<int> res(HASH_CNT, 0);
             FOR(i, 0, HASH_CNT - 1) {
-              int t = (hsh[i][r] - 1ll * hsh[i][l - 1] * pwMod[i][r - l + 1]) % hashMod[i];
+              int t =
+                  (hsh[i][r] - 1ll * hsh[i][l - 1] * pwMod[i][r - l + 1]) % hashMod[i];
               t = (t + hashMod[i]) % hashMod[i];
               res[i] = t;
             }
@@ -208,7 +209,8 @@ bool cmp(const string& s, const string& t) {
         
         bool equal(vector<int> h1, vector<int> h2) {
           assert(h1.size() == h2.size());
-          for(unsigned i = 0; i < h1.size(); i++) if(h1[i] != h2[i]) return false;
+          for (unsigned i = 0; i < h1.size(); i++)
+            if (h1[i] != h2[i]) return false;
           return true;
         }
         
@@ -216,24 +218,24 @@ bool cmp(const string& s, const string& t) {
         StringWithHash s, t;
         char str[L];
         
-        void work () {
+        void work() {
           int len = strlen(str);
           t.init();
           FOR(j, 0, len - 1) t.extend(str[j]);
           int d = 0;
           ROF(j, min(len, s.ls), 1) {
-            if(equal(t.getHash(1, j), s.getHash(s.ls - j + 1, s.ls))) {
+            if (equal(t.getHash(1, j), s.getHash(s.ls - j + 1, s.ls))) {
               d = j;
               break;
             }
           }
           FOR(j, d, len - 1) s.extend(str[j]);
         }
-        int main(){
+        int main() {
           scanf("%d", &n);
           FOR(i, 1, n) {
             scanf("%s", str);
-            work ();
+            work();
           }
           printf("%s\n", s.s + 1);
           return 0;
