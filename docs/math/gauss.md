@@ -237,7 +237,7 @@ $$
 \operatorname{det}(A)=\sum_{\sigma \in S_{n}} \operatorname{sgn}(\sigma) \prod_{i=1}^{n} a_{i, \sigma(i)}
 $$
 
-其中 $S_n$ 是指全排列的集合，$\sigma$ 就是一个全排列，如果 $\sigma$ 的逆序对对数为偶数，则 sgn=1, 否则 =−1。
+其中 $S_n$ 是指全排列的集合，$\sigma$ 就是一个全排列，如果 $\sigma$ 的逆序对对数为偶数，则 $\operatorname{sgn}(\sigma)$=1, 否则$\operatorname{sgn}(\sigma)$=−1。
 
 通过体积概念理解行列式不变性是一个非常简单的办法：
 
