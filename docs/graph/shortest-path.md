@@ -149,7 +149,7 @@ Bellman-Ford 算法是一种基于松弛（relax）操作的单源最短路算�
 
 定义 $\dist (u)$ 为 $s$ 到 $u$（当前）的最短路径长度。
 
-$\relax (u,v)$ 操作指：$\dist(v) = \min(\dist(v), \dist(u) + w(u, v))$。 $w(u, v)$ 表示边的权值，如果该边不存在则为 $+\infty$，$u=v$ 时为 $0$。
+$\relax (u,v)$ 操作指：$\dist(v) = \min(\dist(v), \dist(u) + w(u, v))$。$w(u, v)$ 表示边的权值，如果该边不存在则为 $+\infty$，$u=v$ 时为 $0$。
 
 $\relax$ 操作根据三角形不等式：$\dist(v) \leq \dist(u) + w(u, v)$。
 
