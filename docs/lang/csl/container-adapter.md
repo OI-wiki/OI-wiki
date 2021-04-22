@@ -110,7 +110,8 @@ std::priority_queue<TypeName, Container, Compare> q;
 // 则需要将其作为构造函数的参数代入，如：
 auto cmp = [](const auto &l, const auto &r) { return l.second < r.second; };
 std::priority_queue<std::pair<int, int>, vector<std::pair<int, int> >,
-  decltype(cmp)> pq(cmp);
+                    decltype(cmp)>
+    pq(cmp);
 ```
 
 ### 成员函数
