@@ -7,6 +7,46 @@
 - 有向图中的最短路、无向图中的最短路
 - 单源最短路、每对结点之间的最短路
 
+$$
+\def\function#1{ {\textbf{function }\text{ #1 } } }
+\def\call#1#2{\text{ #1 }{ #2 } \\}
+\def\inlinecall#1#2{\text{ #1 }{ #2 }}
+\def\for#1#2#3{\textbf{for }#1\textbf{ from }#2\textbf{ to }#3}
+\def\rangefor#1#2{\textbf{for }#1\textbf{ of }#2}
+\def\while#1{\textbf{while }#1}
+\def\if#1{\textbf{if }#1}
+\def\elseif#1{\textbf{else if }#1}
+\def\else{\textbf{else }}
+\def\return#1{\textbf{return }#1}
+
+\def\do#1{\,#1\\}
+\def\var#1{\textit{#1}}
+\def\operate#1{\textbf{#1 }}
+
+\def\endfunction{\textbf{end function}}
+\def\endfor{\textbf{end for} }
+\def\endwhile{\textbf{end while} }
+\def\endif{\textbf{end if} }
+
+\def\scope#1{\begin{array}{l}#1\end{array} \\ }
+\def\pseudocode#1{\begin{array}{l}\hline #1 \hline \end{array} \\ }
+\def\tabscope#1{\quad\begin{array}{l}#1\end{array} \\ }
+\def\functionscope#1#2#3{\scope{\function{ #1 }{ #2 }\\ \tabscope{ #3 } \endfunction } }
+\def\forscope#1#2#3#4{\scope{\for{ #1 }{ #2 }{ #3 }\\ \tabscope{ #4 } \endfor } }
+\def\rangeforscope#1#2#3{\scope{\rangefor{ #1 }{ #2 }\\ \tabscope{ #3 } \endfor } }
+\def\whilescope#1#2{\scope{\while{ #1 }\\ \tabscope{ #2 } \endwhile } }
+\def\ifstatement#1#2{\scope{\if{ #1 }\\ \tabscope{ #2 } } }
+\def\elseifstatement#1#2{\scope{\elseif{ #1 }\\ \tabscope{ #2 } } }
+\def\elsestatement#1{\scope{\else \\ \tabscope{ #1 } } }
+
+\def\Input#1{\textbf{Input.}#1\\}
+\def\Output#1{\textbf{Output.}#1\\}
+\def\Method{\textbf{Method.}\\}
+
+\def\dist{\text{dist}}
+\def\relax{\text{relax}}
+$$
+
 ## 性质
 
 对于边权为正的图，任意两个结点之间的最短路，不会经过重复的结点。
@@ -99,69 +139,48 @@ for (k = 1; k <= n; k++) {
         if (f[i][k]) f[i] = f[i] | f[k];
     ```
 
-* * *
-
 ## Bellman-Ford 算法
 
-一种基于松弛（relax）操作的最短路算法。
-
-支持负权。
-
-能找到某个结点出发到所有结点的最短路，或者报告某些最短路不存在。
-
-在国内 OI 界，你可能听说过的“SPFA”，就是 Bellman-Ford 算法的一种实现。（优化）
+Bellman-Ford 算法是一种基于松弛（relax）操作的单源最短路算法，它支持带有负权边的图。你可能听说过的“SPFA”，就是 Bellman-Ford 算法的一种优化。
 
 ### 实现
 
-假设结点为 $S$。
+假设源点为 $s$。
 
-先定义 $dist(u)$ 为 $S$ 到 $u$（当前）的最短路径长度。
+定义 $\dist (u)$ 为 $s$ 到 $u$（当前）的最短路径长度。
 
-$relax(u,v)$ 操作指：$dist(v) = min(dist(v), dist(u) + edge\_len(u, v))$.
+$\relax (u,v)$ 操作指：$\dist(v) = \min(\dist(v), \dist(u) + w(u, v))$。 $w(u, v)$ 表示边的权值，如果该边不存在则为 $+\infty$，$u=v$ 时为 $0$。
 
-$relax$ 是从哪里来的呢？
+$\relax$ 操作根据三角形不等式：$\dist(v) \leq \dist(u) + w(u, v)$。
 
-三角形不等式：$dist(v) \leq dist(u) + edge\_len(u, v)$。
-
-证明：反证法，如果不满足，那么可以用松弛操作来更新 $dist(v)$ 的值。
+证明：反证法，如果不满足，那么可以用松弛操作来更新 $\dist(v)$ 的值。
 
 Bellman-Ford 算法如下：
-
-```text
-while (1) for each edge(u, v) relax(u, v);
-```
-
+$$
+\functionscope{Bellman-Ford}{(V, E)}{
+	\do{\var{flag} \gets \text{false}}
+	\rangeforscope{u}{V}{
+		\do{\dist(u) \gets \infty}
+	}
+	\do{\dist(s) \gets 0}
+	\whilescope{\var{flag}}{
+		\rangeforscope{(u, v)}{E}{
+			\ifstatement{\dist(v) > \dist(u) + w(u, v)}{
+				\do{\dist(v) \gets \dist(u) + w(u, v)}
+				\do{\var{flag} \gets \text{true}}
+			}
+			\endif
+		}
+	}
+}
+$$
 当一次循环中没有松弛操作成功时停止。
 
 每次循环是 $O(m)$ 的，那么最多会循环多少次呢？
 
-答案是 $\infty$！（如果有一个 $S$ 能走到的负环就会这样）
+若图中存在负环，即最短路不存在，那么 Bellman-Ford 算法就会无限循环下去。若最短路存在，由于一次松弛操作会使最短路的边数至少 $+1$，而最短路的边数最多为 $n-1$。所以最多执行 $n-1$ 次松弛操作，即最多循环 $n-1$ 次。
 
-但是此时某些结点的最短路不存在。
-
-我们考虑最短路存在的时候。
-
-由于一次松弛操作会使最短路的边数至少 $+1$，而最短路的边数最多为 $n-1$。
-
-所以最多执行 $n-1$ 次松弛操作，即最多循环 $n-1$ 次。
-
-总时间复杂度 $O(NM)$。**（对于最短路存在的图）**
-
-```text
-relax(u, v) {
-  dist[v] = min(dist[v], dist[u] + edge_len(u, v));
-}
-for (i = 1; i <= n; i++) {
-  dist[i] = edge_len(S, i);
-}
-for (i = 1; i < n; i++) {
-  for each edge(u, v) {
-    relax(u, v);
-  }
-}
-```
-
-注：这里的 $edge\_len(u, v)$ 表示边的权值，如果该边不存在则为 $+\infty$，$u=v$ 则为 $0$。
+综上，Bellman-Ford 算法总时间复杂度 $O(NM)$。**（对于最短路存在的图）**
 
 ### 应用
 
@@ -180,22 +199,42 @@ for (i = 1; i < n; i++) {
 很显然，只有上一次被松弛的结点，所连接的边，才有可能引起下一次的松弛操作。
 
 那么我们用队列来维护“哪些结点可能会引起松弛操作”，就能只访问必要的边了。
+$$
+\def\vis{\text{vis}}
 
-```text
-q = new queue();
-q.push(S);
-in_queue[S] = true;
-while (!q.empty()) {
-  u = q.pop();
-  in_queue[u] = false;
-  for each edge(u, v) {
-    if (relax(u, v) && !in_queue[v]) {
-      q.push(v);
-      in_queue[v] = true;
-    }
-  }
+\begin{array}{l}
+\functionscope {relax}{(u, v)} {
+	\ifstatement{\dist(v) > \dist(u) + w(u, v)}{
+		\do{\dist(v) \gets \dist(u) + w(u, v)}
+		\return \text{true}
+	}
+	\endif
+	return \text{false}
 }
-```
+\\
+\functionscope{SPFA}{(V, E, s)}{
+	\do{\text{prepare a queue named }Q\text{.}}
+	\rangeforscope{u}{V}{
+		\do{\vis(u) \gets \text{false}}
+	}
+	\do{\text{push }s \text{ back into }Q}
+	\do{\vis(s) \gets \text{true}}
+	\whilescope{Q \text{ isn't empty}}{
+		\do{u \gets \text{the head of }Q}
+		\do{\text{pop the head of }Q}
+		\do{\vis(u) \gets \text{false}}
+		\rangeforscope{(u, v)}{E}{
+			\ifstatement{\inlinecall{relax}{(u, v)} \text { and not } \vis(v)}{
+				\do{\text{push }v \text{ back into }Q}
+				\do{\vis(v) \gets \text{true}}
+			}
+			\endif
+		}
+	}
+}
+\end{array}
+$$
+
 
 虽然在大多数情况下 SPFA 跑得很快，但其最坏情况下的时间复杂度为 $O(NM)$，将其卡到这个复杂度也是不难的，所以考试时要谨慎使用（在没有负权边时最好使用 Dijkstra 算法，在有负权边且题目中的图没有特殊性质时，若 SPFA 是标算的一部分，题目不应当给出 Bellman-Ford 算法无法通过的数据范围）。
 
