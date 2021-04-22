@@ -109,9 +109,9 @@ std::priority_queue<TypeName, Container, Compare> q;
 // 从 C++11 开始，如果使用 lambda 函数自定义 Compare
 // 则需要将其作为构造函数的参数代入，如：
 auto cmp = [](const auto &l, const auto &r) { return l.second < r.second; };
-std::priority_queue<std::pair<int, int>, vector<std::pair<int, int> >,
-                    decltype(cmp)>
-    pq(cmp);
+std::priority_queue<std::pair<int, int>,
+    std::vector<std::pair<int, int> >,
+    decltype(cmp)> pq(cmp);
 ```
 
 ### 成员函数
