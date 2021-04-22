@@ -105,7 +105,8 @@ std::priority_queue<TypeName, Container, Compare> q;
 // 返回为最大值） 若希望 top() 返回最小值，可令比较类型为 greater<TypeName>
 // 注意：不可跳过 Container 直接传入 Compare
 
-// 从 C++11 开始，如果使用 lambda 函数自定义 Compare，则需要将其作为构造函数的参数代入，如：
+// 从 C++11 开始，如果使用 lambda 函数自定义
+// Compare，则需要将其作为构造函数的参数代入，如：
 auto cmp = [](const auto &l, const auto &r) { return l.second < r.second; };
 std::priority_queue<pair<int, int>, vector<pair<int, int> >, decltype(cmp)> pq(
     cmp);
