@@ -337,8 +337,8 @@ inline void Cut(int x, int p) {
 
 ```cpp
 inline int Find(int p) {
-  Access(p), Splay(p);
-  while (ls) pushDown(p), p = ls;
+  Access(p), Splay(p)， pushDown(p);
+  while (ls) p = ls, pushDown(p);
   Splay(p);
   return p;
 }
