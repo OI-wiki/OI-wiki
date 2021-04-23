@@ -10,13 +10,15 @@ int cnt,                 // 树中元素总数
     w[MAXN],             // 点中的数据 / 权值
     lc[MAXN], rc[MAXN],  // 左右子树
     wn[MAXN],            // 本数据出现次数（为 0 代表已删除）
-    s[MAXN],             // 以本节点为根的子树大小
-    sd[MAXN];            // 已删除节点不计的子树大小
+    s[MAXN],  // 以本节点为根的子树大小（每个节点记 1 次）
+    sz[MAXN],  // 以本节点为根的子树大小（每个节点记 wn[k] 次）
+    sd[MAXN];  // 已删除节点不计的子树大小（每个节点记 1 次）
 
 void Calc(int k) {
   // 重新计算以 k 为根的子树大小
   s[k] = s[lc[k]] + s[rc[k]] + 1;
-  sd[k] = sd[lc[k]] + sd[rc[k]] + wn[k];
+  sz[k] = sz[lc[k]] + sz[rc[k]] + wn[k];
+  sd[k] = sd[lc[k]] + sd[rc[k]] + (wn[k] != 0);
 }
 ```
 
@@ -80,7 +82,7 @@ void Ins(int& k, int p) {
     if (!rt) rt = 1;
     w[k] = p;
     lc[k] = rc[k] = 0;
-    wn[k] = s[k] = sd[k] = 1;
+    wn[k] = s[k] = sz[k] = sd[k] = 1;
   } else {
     if (w[k] == p)
       wn[k]++;
@@ -130,11 +132,11 @@ int MyUprBd(int k, int p) {
   if (!k)
     return 1;
   else if (w[k] == p && wn[k])
-    return sd[lc[k]] + 1 + wn[k];
+    return sz[lc[k]] + 1 + wn[k];
   else if (p < w[k])
     return MyUprBd(lc[k], p);
   else
-    return sd[lc[k]] + wn[k] + MyUprBd(rc[k], p);
+    return sz[lc[k]] + wn[k] + MyUprBd(rc[k], p);
 }
 ```
 
@@ -145,9 +147,9 @@ int MyUprGrt(int k, int p) {
   if (!k)
     return 0;
   else if (w[k] == p && wn[k])
-    return sd[lc[k]];
+    return sz[lc[k]];
   else if (w[k] < p)
-    return sd[lc[k]] + wn[k] + MyUprGrt(rc[k], p);
+    return sz[lc[k]] + wn[k] + MyUprGrt(rc[k], p);
   else
     return MyUprGrt(lc[k], p);
 }
@@ -162,10 +164,10 @@ int MyAt(int k, int p) {
   // 以 k 为根的子树中，名次为 p 的权值
   if (!k)
     return 0;
-  else if (sd[lc[k]] < p && p <= sd[lc[k]] + wn[k])
+  else if (sz[lc[k]] < p && p <= sz[lc[k]] + wn[k])
     return w[k];
-  else if (sd[lc[k]] + wn[k] < p)
-    return MyAt(rc[k], p - sd[lc[k]] - wn[k]);
+  else if (sz[lc[k]] + wn[k] < p)
+    return MyAt(rc[k], p - sz[lc[k]] - wn[k]);
   else
     return MyAt(lc[k], p);
 }
