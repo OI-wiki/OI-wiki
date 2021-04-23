@@ -31,7 +31,7 @@ nav:
     - 赛事:
       - OI 赛事与赛制: contest/oi.md
       - ICPC/CCPC 赛事与赛制: contest/icpc.md
-    - 题型: 
+    - 题型:
       - 题型概述: contest/problems.md
       - 交互题: contest/interaction.md
     - 学习路线: contest/roadmap.md
@@ -183,7 +183,9 @@ nav:
     - Z 函数（扩展 KMP）: string/z-func.md
     - 自动机: string/automaton.md
     - AC 自动机: string/ac-automaton.md
-    - 后缀数组 (SA): string/sa.md
+    - 后缀数组 (SA):
+      - 后缀数组简介: string/sa.md
+      - 最优原地后缀排序算法: string/sa-optimal-inplace.md
     - 后缀自动机 (SAM): string/sam.md
     - 广义后缀自动机: string/general-sam.md
     - 后缀树: string/suffix-tree.md
