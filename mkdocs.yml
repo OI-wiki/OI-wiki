@@ -187,6 +187,7 @@ nav:
       - 后缀数组简介: string/sa.md
       - 最优原地后缀排序算法: string/sa-optimal-inplace.md
     - 后缀自动机 (SAM): string/sam.md
+    - 后缀平衡树: string/suffix-bst.md
     - 广义后缀自动机: string/general-sam.md
     - 后缀树: string/suffix-tree.md
     - Manacher: string/manacher.md
