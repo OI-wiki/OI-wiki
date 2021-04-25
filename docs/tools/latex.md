@@ -20,7 +20,7 @@ LaTeX 基于 TeX（Donald Knuth 在 1978 年为数字化排版设计的排版系
 
 ### 一些概念
 
-如果需要编写 LaTeX 文档，你需要安装一个「发行版」，常用的发行版有 [TeX Live](http://tug.org/texlive/)、[MikTeX](https://miktex.org/) 和适用于 macOS 用户的 MacTeX（实际上是 TeX Live 的 macOS 版本），至于 [CTeX](http://www.ctex.org/) 则现在不推荐使用。TeX Live 和 MacTeX 带有几乎所有的 LaTeX 宏包；而 MikTeX 不带有任何宏包，而是在需要使用某个宏包时自动安装。
+如果需要编写 LaTeX 文档，你需要安装一个「发行版」，常用的发行版有 [TeX Live](http://tug.org/texlive/)、[MikTeX](https://miktex.org/) 和适用于 macOS 用户的 MacTeX（实际上是 TeX Live 的 macOS 版本），至于 [CTeX](http://www.ctex.org/) 则现在不推荐使用。TeX Live 和 MacTeX 带有几乎所有的 LaTeX 宏包；而 MikTeX 只带有少量必须的宏包，其他宏包将在需要时安装。
 
 TeX Live 和 MikTeX 都带有 TeXworks 编辑器，你也可以安装功能更多的 TeXstudio 编辑器，或者自行配置 Visual Studio Code 或 Notepad++ 等编辑器。下文所使用的编辑器是运行在 Windows 7 上的 TeXworks。
 
