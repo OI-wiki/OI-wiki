@@ -34,7 +34,7 @@
 
 不妨令平衡树中每个节点对应一个实数区间，令根节点对应 $(0, 1)$。对于节点 $i$，记其对应的实数区间为 $(l, r)$，则 $tag_i = \frac{l + r}{2}$，其左子树对应实数区间 $(l, tag_i)$，其右子树对应实数区间 $(tag_i, r)$。易证 $tag_i$ 满足上述要求。
 
-由于使用了期望树高为 $O(\log n)$ 的平衡树，所以精度是有一定保证的。实际实现时也可以用一个较大的整数区间来做，例如让根对应 $[0, 2^{62}]$。对于节点 $i$，记其对应区间为对 $[l, r]$，则 $tag_i = \lfloor \frac{l + r}{2} \rfloor$，其左子树对应区间 $[l, tag_i - 1]$，其右子树对应区间 $[tag_i + 1, r]$。
+由于使用了期望树高为 $O(\log n)$ 的平衡树，所以精度是有一定保证的。实际实现时也可以用一个较大的区间来做。例如让根对应 $(0, 10^18)。
 
 ### 做法 4
 
@@ -51,7 +51,7 @@
 
 ### [P3809【模板】后缀排序](https://www.luogu.com.cn/problem/P3809)
 
-建出后缀平衡树之后，通过中序遍历得到后缀数组。
+后缀数组的模板提，建出后缀平衡树之后，通过中序遍历得到后缀数组。
 
 ??? note "SGT版本的参考代码"
     ```cpp
@@ -180,6 +180,259 @@
     }
     ```
 
+
+### [【模板】后缀平衡树](https://www.luogu.com.cn/problem/P6164)
+
+??? node+ "题意"
+    给定初始字符串$s$，和$q$个操作：
+
+    1. 在当前字符串的后面插入若干个字符。
+    2. 在当前字符串的后面删除若干个字符。
+    3. 询问字符串$t$作为连续子串在当前字符串中出现了几次？
+    
+    题目**强制在线**，字符串变化长度以及初始长度$\le 8 \times 10^5$，$q \le 10^5，询问的总长度$\le 3 \times 10^6$。
+
+对于操作1和操作2，由于后缀平衡树维护头插和头删操作比较方便，所以想到把尾插和尾删操作搞成头插和头删。这里如果维护$s$的反串的后缀平衡树，而非$s$的后缀平衡树，就可以完成上述转换。单次添加和删除都是$O(\log n)$的，所以这一部分总的时间复杂度为$O(8 \times 10^5\log n)$。
+
+对于操作3，$t$的出现次数等于以$t$为前缀的后缀数量，而以$t$为前缀的后缀数量等于其后继的排名减去其前驱的排名。在$t$后面加入一个极大的字符，就可以构造出$t$的一个后继。将$t$的最后一个字符减小1，就可以构造出$t$的一个前驱。
+
+现在要查询某一个串$t$在后缀平衡树中排名，由于不能保证$t$在后缀平衡树中出现过，所以每次只能暴力比较字符串大小。单次比较的时间复杂度为$O(|t|)$，每次查询至多比较$O(\log n)$次，所以单次查询的复杂度为$O(|t|\log n)$。由此，这一部分总的时间复杂度为$O(3 \times 10^6 \log n)$。
+
+??? note "SGT版本的参考代码"
+    ```cpp
+    #include <bits/stdc++.h>
+    using namespace std;
+    
+    const int N = 8e5 + 5;
+    const double INF = 1e18;
+    
+    void decode(char* s, int len, int mask)
+    {
+        for (int i = 0; i < len; ++i) {
+            mask = (mask * 131 + i) % len;
+            swap(s[i], s[mask]);
+        }
+    }
+    
+    int q, n, na;
+    char a[N], t[N];
+    
+    // SuffixBST(SGT Ver)
+    
+    // 顺序加入，查询时将询问串翻转
+    // 以i结束的前缀，对应节点的编号为i
+    // 注意：不能写懒惰删除，否则可能会破坏树的结构
+    const double alpha = 0.75;
+    int root;
+    int sz[N], L[N], R[N];
+    double tag[N];
+    int buffer_size, buffer[N];
+    
+    bool cmp(int x, int y)
+    {
+        if (t[x] != t[y])
+            return t[x] < t[y];
+        return tag[x - 1] < tag[y - 1];
+    }
+    
+    void init()
+    {
+        root = 0;
+    }
+    
+    void new_node(int& rt, int p, double lv, double rv)
+    {
+        rt = p;
+        sz[rt] = 1;
+        tag[rt] = (lv + rv) / 2;
+        L[rt] = R[rt] = 0;
+    }
+    
+    void push_up(int x)
+    {
+        if (!x)
+            return;
+        sz[x] = sz[L[x]] + 1 + sz[R[x]];
+    }
+    
+    bool balance(int rt)
+    {
+        return alpha * sz[rt] > max(sz[L[rt]], sz[R[rt]]);
+    }
+    
+    void flatten(int rt)
+    {
+        if (!rt)
+            return;
+        flatten(L[rt]);
+        buffer[++buffer_size] = rt;
+        flatten(R[rt]);
+    }
+    
+    void build(int& rt, int l, int r, double lv, double rv)
+    {
+        if (l > r) {
+            rt = 0;
+            return;
+        }
+        int mid = (l + r) >> 1;
+        double mv = (lv + rv) / 2;
+    
+        rt = buffer[mid];
+        tag[rt] = mv;
+        build(L[rt], l, mid - 1, lv, mv);
+        build(R[rt], mid + 1, r, mv, rv);
+        push_up(rt);
+    }
+    
+    void rebuild(int& rt, double lv, double rv)
+    {
+        buffer_size = 0;
+        flatten(rt);
+        build(rt, 1, buffer_size, lv, rv);
+    }
+    
+    void insert(int& rt, int p, double lv, double rv)
+    {
+        if (!rt) {
+            new_node(rt, p, lv, rv);
+            return;
+        }
+    
+        if (cmp(p, rt))
+            insert(L[rt], p, lv, tag[rt]);
+        else
+            insert(R[rt], p, tag[rt], rv);
+    
+        push_up(rt);
+        if (!balance(rt))
+            rebuild(rt, lv, rv);
+    }
+    
+    void remove(int& rt, int p, double lv, double rv)
+    {
+        if (!rt)
+            return;
+    
+        if (rt == p) {
+            if (!L[rt] || !R[rt]) {
+                rt = (L[rt] | R[rt]);
+            } else {
+                // 找到rt的前驱来替换rt
+                int nrt = L[rt], fa = rt;
+                while (R[nrt]) {
+                    fa = nrt;
+                    sz[fa]--;
+                    nrt = R[nrt];
+                }
+                if (fa == rt) {
+                    R[nrt] = R[rt];
+                } else {
+                    L[nrt] = L[rt];
+                    R[nrt] = R[rt];
+                    R[fa] = 0;
+                }
+                rt = nrt;
+                tag[rt] = (lv + rv) / 2;
+            }
+        } else {
+            double mv = (lv + rv) / 2;
+            if (cmp(p, rt))
+                remove(L[rt], p, lv, mv);
+            else
+                remove(R[rt], p, mv, rv);
+        }
+    
+        push_up(rt);
+        if (!balance(rt))
+            rebuild(rt, lv, rv);
+    }
+    
+    bool cmp1(char* s, int len, int p)
+    {
+        for (int i = 1; i <= len; ++i, --p) {
+            if (s[i] < t[p])
+                return true;
+            if (s[i] > t[p])
+                return false;
+        }
+    }
+    
+    int query(int rt, char* s, int len)
+    {
+        if (!rt)
+            return 0;
+        if (cmp1(s, len, rt))
+            return query(L[rt], s, len);
+        else
+            return sz[L[rt]] + 1 + query(R[rt], s, len);
+    }
+    
+    void solve(int Case)
+    {
+        n = 0;
+        scanf("%d", &q);
+        init();
+    
+        scanf("%s", a + 1);
+        na = strlen(a + 1);
+        for (int i = 1; i <= na; ++i) {
+            t[++n] = a[i];
+            insert(root, n, 0, INF);
+        }
+    
+        int mask = 0;
+        char op[10];
+        for (int i = 1; i <= q; ++i) {
+            scanf("%s", op);
+            if (op[0] == 'A') {
+                scanf("%s", a + 1);
+                na = strlen(a + 1);
+                decode(a + 1, na, mask);
+    
+                for (int i = 1; i <= na; ++i) {
+                    t[++n] = a[i];
+                    insert(root, n, 0, INF);
+                }
+            } else if (op[0] == 'D') {
+                int x;
+                scanf("%d", &x);
+                while (x) {
+                    remove(root, n, 0, INF);
+                    --n;
+                    --x;
+                }
+            } else if (op[0] == 'Q') {
+                scanf("%s", a + 1);
+                na = strlen(a + 1);
+                decode(a + 1, na, mask);
+    
+                reverse(a + 1, a + 1 + na);
+    
+                a[na + 1] = 'Z' + 1;
+                a[na + 2] = 0;
+                int ans = query(root, a, na + 1);
+    
+                --a[na];
+                ans -= query(root, a, na + 1);
+    
+                printf("%d\n", ans);
+                mask ^= ans;
+            }
+        }
+    }
+    
+    int main()
+    {
+    
+        int T = 1;
+        // cin >> T;
+        for (int i = 1; i <= T; ++i)
+            solve(i);
+        return 0;
+    }
+    ```
+
 ## 参考资料
 
-[^1]: 陈立杰 -《重量平衡树和后缀平衡树在信息学奥赛中的应用》
+[^1]: 陈立杰 - 《重量平衡树和后缀平衡树在信息学奥赛中的应用》
