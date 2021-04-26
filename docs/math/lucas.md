@@ -295,5 +295,3 @@ $$
 - [SDOI2010 古代猪文  卢卡斯定理](https://loj.ac/problem/10229)
 - [Luogu4720【模板】扩展卢卡斯](https://www.luogu.com.cn/problem/P4720)
 - [Ceizenpok’s formula](http://codeforces.com/gym/100633/problem/J)
-
-
