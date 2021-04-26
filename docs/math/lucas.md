@@ -130,7 +130,7 @@ $$
 #### 推论 2 
 
 对于素数 $p$ 和正整数 $q$ 和非负整数 $n$ 有
-$$\frac{n!}{p^{\sum_{j\geq 1}{\left\lfloor \frac{n}{p^j}\right\rfloor}}}\equiv {\left(\pm 1\right)}^{\sum_{j\geq q}{\left\lfloor \frac{n}{p^j}\right\rfloor}}\prod_{j\geq 0}{\left(N_j !\right)}_p\bmod{p^q}$$
+$$
 
 其中 $N_j=\lfloor n/p^j\rfloor \bmod{p^q}$ 而 $\pm 1$ 与上述相同。
 
