@@ -157,14 +157,13 @@ Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是�
 根据 **唯一分解定理**，将 $p$ 质因数分解：
 
 $$
-p={q*1}^{\\alpha_1}\\cdot{q_2}^{\\alpha_2}\\cdots{q_r}^{\\alpha_r}=\\prod*{i=1}^{r}{q_i}^{\\alpha_i}
+p={q_1}^{\alpha_1}\cdot{q_2}^{\alpha_2}\cdots{q_r}^{\alpha_r}=\prod_{i=1}^{r}{q_i}^{\alpha_i}
 $$
 
 对于任意 $i,j$，有 ${q_i}^{\alpha_i}$ 与 ${q_j}^{\alpha_j}$ 互质，所以可以构造如下 $r$ 个同余方程：
 
 $$
-\\left{\\begin{aligned}
-a_1\\equiv\\displaystyle\\binom{n}{m}&\\pmod {{q_1}^{\\alpha_1}}\\a_2\\equiv\\displaystyle\\binom{n}{m}&\\pmod {{q_2}^{\\alpha_2}}\\&\\cdots\\a_r\\equiv\\displaystyle\\binom{n}{m}&\\pmod {{q_r}^{\\alpha_r}}\\\\end{aligned}\\right.
+\left{ \begin{aligned} a_1\equiv \displaystyle\binom{n}{m}&\pmod {{q_1}^{\alpha_1}}\ a_2\equiv \displaystyle\binom{n}{m}&\pmod {{q_2}^{\alpha_2}}\ &\cdots\ a_r\equiv \displaystyle\binom{n}{m}&\pmod {{q_r}^{\alpha_r}}\ \end{aligned} \right.
 $$
 
 我们发现，在求出 $a_i$ 后，就可以用中国剩余定理求解出 $\displaystyle\binom{n}{m}$。
@@ -184,7 +183,7 @@ $$
 所以将原式转化为：
 
 $$
-\\frac{\\frac{n!}{q^x}}{\\frac{m!}{q^y}\\frac{(n-m)!}{q^z}}q^{x-y-z}\\bmod q^k
+\frac{\frac{n!}{q^x}}{\frac{m!}{q^y}\frac{(n-m)!}{q^z}}q^{x-y-z} \bmod q^k
 $$
 
 $x$ 表示 $n!$ 中包含多少个 $q$ 因子，$y, z$ 同理。
@@ -194,7 +193,7 @@ $x$ 表示 $n!$ 中包含多少个 $q$ 因子，$y, z$ 同理。
 问题转化成，求形如：
 
 $$
-\\frac{n!}{q^x}\\bmod q^k
+\frac{n!}{q^x}\bmod q^k
 $$
 
 的值。这时可以利用上文 Wilson 定理的推论。如果难以理解，可以看看下面的解释。
@@ -230,13 +229,13 @@ $22!=3^7 \times (1\times 2\times 3\times 4\times 5\times 6\times 7)$$\times(1\ti
 所以有：
 
 $$
-n! = q^{\\left\\lfloor\\frac{n}{q}\\right\\rfloor}\\cdot\\left(\\left\\lfloor\\frac{n}{q}\\right\\rfloor\\right)!\\cdot {\\left(\\prod*{i,(i,q)=1}^{q^k}i\\right)}^{\\left\\lfloor\\frac{n}{q^k}\\right\\rfloor}\\cdot\\left(\\prod*{i,(i,q)=1}^{n\\bmod q^k}i\\right)
+n! = q^{\left\lfloor\frac{n}{q}\right\rfloor} \cdot \left(\left\lfloor\frac{n}{q}\right\rfloor\right)! \cdot {\left(\prod_{i,(i,q)=1}^{q^k}i\right)}^{\left\lfloor\frac{n}{q^k}\right\rfloor} \cdot \left(\prod_{i,(i,q)=1}^{n\bmod q^k}i\right)
 $$
 
 于是：
 
 $$
-\\frac{n!}{q^{\\left\\lfloor\\frac{n}{q}\\right\\rfloor}} =\\left(\\left\\lfloor\\frac{n}{q}\\right\\rfloor\\right)!\\cdot {\\left(\\prod*{i,(i,q)=1}^{q^k}i\\right)}^{\\left\\lfloor\\frac{n}{q^k}\\right\\rfloor}\\cdot\\left(\\prod*{i,(i,q)=1}^{n\\bmod q^k}i\\right)
+\frac{n!}{q^{\left\lfloor\frac{n}{q}\right\rfloor}} = \left(\left\lfloor\frac{n}{q}\right\rfloor\right)! \cdot {\left(\prod_{i,(i,q)=1}^{q^k}i\right)}^{\left\lfloor\frac{n}{q^k}\right\rfloor} \cdot \left(\prod_{i,(i,q)=1}^{n\bmod q^k}i\right)
 $$
 
 **$\displaystyle \left(\left\lfloor\frac{n}{q}\right\rfloor\right)!$ 同样是一个数的阶乘，所以也可以分为上述三个部分，于是可以递归求解。**
@@ -297,6 +296,4 @@ $$
 - [Luogu4720【模板】扩展卢卡斯](https://www.luogu.com.cn/problem/P4720)
 - [Ceizenpok’s formula](http://codeforces.com/gym/100633/problem/J)
 
-$$
 
-$$
