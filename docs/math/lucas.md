@@ -61,31 +61,31 @@ Legengre 在 1808 年指出 $n!$ 中含有的素数 $p$ 的幂次为 $\sum_{j\ge
 
 证明：将 $n!$ 记为 $1\times 2\times \cdots \times p\times \cdots \times 2p\times \cdots \times \lfloor n/p\rfloor p\times \cdots \times n$ 那么其中 $p$ 的倍数有 $p\times 2p\times \cdots \times \lfloor n/p\rfloor p=p^{\lfloor n/p\rfloor }\lfloor n/p\rfloor !$ 然后在 $\lfloor n/p\rfloor !$ 中继续寻找 $p$ 的倍数即可，这是一个递归的过程。为了方便记 $\nu(n!)=\sum_{j\geq 1}\lfloor n/p^j\rfloor$。
 
-另一种其他地方比较常见的公式，用到了p进制下各位数字和：
+另一种其他地方比较常见的公式，用到了 p 进制下各位数字和：
 
-$$v_p(n!)=\frac{n-S_p(n)}{p-1}$$
+$v_p(n!)=\frac{n-S_p(n)}{p-1}$
 
 与等比数列求和公式很相似。由于涉及各位数字和，利用数学归纳法可以轻松证明。
 
-特别地，阶乘中2的幂次是：
+特别地，阶乘中 2 的幂次是：
 
-$$v_2(n!)=n-S_2(n)$$
+$v_2(n!)=n-S_2(n)$
 
 ### 素数在组合数中的幂次
 
-组合数对一个数取模的结果，往往构成分形结构，例如谢尔宾斯基三角形就可以通过组合数模2得到。
+组合数对一个数取模的结果，往往构成分形结构，例如谢尔宾斯基三角形就可以通过组合数模 2 得到。
 
-$$v_p(C_m^n)=\frac{S_p(n)+S_p(m-n)-S_p(m)}{p-1}$$
+$v_p(C_m^n)=\frac{S_p(n)+S_p(m-n)-S_p(m)}{p-1}$
 
-如果仔细分析，p是否整除组合数其实和上下标在p进制下减法是否需要借位有关。这就有了下面的定理。
+如果仔细分析，p 是否整除组合数其实和上下标在 p 进制下减法是否需要借位有关。这就有了下面的定理。
 
-**p在组合数$C_m^n$中的幂次，恰好是p进制下m减掉n需要借位的次数。**
+**p 在组合数 $C_m^n$ 中的幂次，恰好是 p 进制下 m 减掉 n 需要借位的次数。**
 
-特别地，组合数中2的幂次是：
+特别地，组合数中 2 的幂次是：
 
-$$v_2(C_m^n)=S_2(n)+S_2(m-n)-S_2(m)$$
+$v_2(C_m^n)=S_2(n)+S_2(m-n)-S_2(m)$
 
-## Wilson定理
+## Wilson 定理
 
 ### 内容
 
@@ -107,7 +107,7 @@ Wilson 定理指出 $(p!)_p=(p-1)!\equiv -1\pmod p$ 且可被推广至模素数 
 
 $(p^q!)_p\equiv \begin{cases}1&\text{if }p=2\text{ and }q\geq 3,\\-1&\text{otherwise.}\end{cases}$
 
-下文两个推论中的 $\pm 1$ ，均特指这样的定义：当模数 $p^q$ 取8及以上的2的幂时取1，其余取-1。
+下文两个推论中的 $\pm 1$，均特指这样的定义：当模数 $p^q$ 取 8 及以上的 2 的幂时取 1，其余取 - 1。
 
 #### 推论 1
 
@@ -130,8 +130,7 @@ $$
 #### 推论 2 
 
 对于素数 $p$ 和正整数 $q$ 和非负整数 $n$ 有
-
-$$\frac{n!}{p^{\sum_{j\geq 1}\lfloor n/p^j\rfloor}}\equiv (\pm 1)^{\sum_{j\geq q}\lfloor n/p^j\rfloor}\prod_{j\geq 0}(N_j!)_p\pmod{p^q}$$
+$$
 
 其中 $N_j=\lfloor n/p^j\rfloor \bmod{p^q}$ 而 $\pm 1$ 与上述相同。
 
@@ -194,7 +193,7 @@ $$
 
 $x$ 表示 $n!$ 中包含多少个 $q$ 因子，$y, z$ 同理。
 
-#### 第三部分：Wilson定理的推论
+#### 第三部分：Wilson 定理的推论
 
 问题转化成，求形如：
 
@@ -202,7 +201,7 @@ $$
 \frac{n!}{q^x}\bmod q^k
 $$
 
-的值。这时可以利用上文Wilson定理的推论。如果难以理解，可以看看下面的解释。
+的值。这时可以利用上文 Wilson 定理的推论。如果难以理解，可以看看下面的解释。
 
 #### 一个示例：22! mod 9
 
@@ -246,7 +245,7 @@ $$
 
 **$\displaystyle \left(\left\lfloor\frac{n}{q}\right\rfloor\right)!$ 同样是一个数的阶乘，所以也可以分为上述三个部分，于是可以递归求解。**
 
-递归的结果，三个部分中，左边部分随着递归结束而自然消失，中间部分可以利用Wilson定理的推论0，右边部分就是推论2中的$\prod_{j\geq 0}(N_j!)_p$。
+递归的结果，三个部分中，左边部分随着递归结束而自然消失，中间部分可以利用 Wilson 定理的推论 0，右边部分就是推论 2 中的 $\prod_{j\geq 0}(N_j!)_p$。
 
 ???+note "代码实现"
     其中 `int inverse(int x)` 函数返回 $x$ 在模 $p$ 意义下的逆元。
@@ -296,8 +295,8 @@ $$
     ```
 
 ## 习题
+
 - [Luogu3807【模板】卢卡斯定理](https://www.luogu.com.cn/problem/P3807)
 - [SDOI2010 古代猪文  卢卡斯定理](https://loj.ac/problem/10229)
 - [Luogu4720【模板】扩展卢卡斯](https://www.luogu.com.cn/problem/P4720)
 - [Ceizenpok’s formula](http://codeforces.com/gym/100633/problem/J)
-
