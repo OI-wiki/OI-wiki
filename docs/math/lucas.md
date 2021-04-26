@@ -130,11 +130,11 @@ $$
 #### 推论 2 
 
 对于素数 $p$ 和正整数 $q$ 和非负整数 $n$ 有
-
-$$
-\frac{n!}{p^{\sum_{j\geq 1}{\left\lfloor \frac{n}{p^j}\right\rfloor}}}\equiv {\left(\pm 1\right)}^{\sum_{j\geq q}{\left\lfloor \frac{n}{p^j}\right\rfloor}}\prod_{j\geq 0}{\left(N_j !\right)}_p\bmod{p^q}
 $$
 
+\\frac{n!}{p^{\\sum*{j\\geq 1}{\\left\\lfloor \\frac{n}{p^j}\\right\\rfloor}}}\\equiv {\\left(\\pm 1\\right)}^{\\sum*{j\\geq q}{\\left\\lfloor \\frac{n}{p^j}\\right\\rfloor}}\\prod\_{j\\geq 0}{\\left(N_j !\\right)}\_p\\bmod{p^q}
+
+$$
 其中 $N_j=\lfloor n/p^j\rfloor \bmod{p^q}$ 而 $\pm 1$ 与上述相同。
 
 记 $r=n-m$ 且 $n\gt m$ 有
@@ -156,24 +156,19 @@ Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是�
 考虑利用 [中国剩余定理](./crt.md) 合并答案，这种情况下我们只需求出 $\binom{n}{m}\bmod p^q$ 的值即可（其中 $p$ 为素数且 $q$ 为正整数）。
 
 根据 **唯一分解定理**，将 $p$ 质因数分解：
-
-$$
-p={q_1}^{\alpha_1}\cdot{q_2}^{\alpha_2}\cdots{q_r}^{\alpha_r}=\prod_{i=1}^{r}{q_i}^{\alpha_i}
 $$
 
+p={q*1}^{\\alpha_1}\\cdot{q_2}^{\\alpha_2}\\cdots{q_r}^{\\alpha_r}=\\prod*{i=1}^{r}{q_i}^{\\alpha_i}
+
+$$
 对于任意 $i,j$，有 ${q_i}^{\alpha_i}$ 与 ${q_j}^{\alpha_j}$ 互质，所以可以构造如下 $r$ 个同余方程：
-
-$$
-\left\{
-\begin{aligned}
-a_1\equiv \displaystyle\binom{n}{m}&\pmod {{q_1}^{\alpha_1}}\\
-a_2\equiv \displaystyle\binom{n}{m}&\pmod {{q_2}^{\alpha_2}}\\
-&\cdots\\
-a_r\equiv \displaystyle\binom{n}{m}&\pmod {{q_r}^{\alpha_r}}\\
-\end{aligned}
-\right.
 $$
 
+\\left{\\begin{aligned}
+a_1\\equiv \\displaystyle\\binom{n}{m}&\\pmod {{q_1}^{\\alpha_1}}\\a_2\\equiv \\displaystyle\\binom{n}{m}&\\pmod {{q_2}^{\\alpha_2}}\\&\\cdots\\a_r\\equiv \\displaystyle\\binom{n}{m}&\\pmod {{q_r}^{\\alpha_r}}\\\\end{aligned}
+\\right.
+
+$$
 我们发现，在求出 $a_i$ 后，就可以用中国剩余定理求解出 $\displaystyle\binom{n}{m}$。
 
 #### 第二部分：移除分子分母中的素数
@@ -189,21 +184,21 @@ $$
 然而 **无法保证有解**，发现无法直接求 $\operatorname{inv}_{m!}$ 和 $\operatorname{inv}_{(n-m)!}$，
 
 所以将原式转化为：
-
-$$
-\frac{\frac{n!}{q^x}}{\frac{m!}{q^y}\frac{(n-m)!}{q^z}}q^{x-y-z} \bmod q^k
 $$
 
+\\frac{\\frac{n!}{q^x}}{\\frac{m!}{q^y}\\frac{(n-m)!}{q^z}}q^{x-y-z} \\bmod q^k
+
+$$
 $x$ 表示 $n!$ 中包含多少个 $q$ 因子，$y, z$ 同理。
 
 #### 第三部分：Wilson 定理的推论
 
 问题转化成，求形如：
-
-$$
-\frac{n!}{q^x}\bmod q^k
 $$
 
+\\frac{n!}{q^x}\\bmod q^k
+
+$$
 的值。这时可以利用上文 Wilson 定理的推论。如果难以理解，可以看看下面的解释。
 
 #### 一个示例：22! mod 9
@@ -235,17 +230,17 @@ $22!=3^7 \times (1\times 2\times 3\times 4\times 5\times 6\times 7)$$\times(1\ti
 上述三部分乘积为 $n!$。最终要求的是 $\frac{n!}{q^x}\bmod{q^k}$。
 
 所以有：
-
-$$
-n! = q^{\left\lfloor\frac{n}{q}\right\rfloor} \cdot \left(\left\lfloor\frac{n}{q}\right\rfloor\right)! \cdot {\left(\prod_{i,(i,q)=1}^{q^k}i\right)}^{\left\lfloor\frac{n}{q^k}\right\rfloor} \cdot \left(\prod_{i,(i,q)=1}^{n\bmod q^k}i\right)
 $$
 
+n! = q^{\\left\\lfloor\\frac{n}{q}\\right\\rfloor} \\cdot \\left(\\left\\lfloor\\frac{n}{q}\\right\\rfloor\\right)! \\cdot {\\left(\\prod*{i,(i,q)=1}^{q^k}i\\right)}^{\\left\\lfloor\\frac{n}{q^k}\\right\\rfloor} \\cdot \\left(\\prod*{i,(i,q)=1}^{n\\bmod q^k}i\\right)
+
+$$
 于是：
-
-$$
-\frac{n!}{q^{\left\lfloor\frac{n}{q}\right\rfloor}} = \left(\left\lfloor\frac{n}{q}\right\rfloor\right)! \cdot {\left(\prod_{i,(i,q)=1}^{q^k}i\right)}^{\left\lfloor\frac{n}{q^k}\right\rfloor} \cdot \left(\prod_{i,(i,q)=1}^{n\bmod q^k}i\right)
 $$
 
+\\frac{n!}{q^{\\left\\lfloor\\frac{n}{q}\\right\\rfloor}} = \\left(\\left\\lfloor\\frac{n}{q}\\right\\rfloor\\right)! \\cdot {\\left(\\prod*{i,(i,q)=1}^{q^k}i\\right)}^{\\left\\lfloor\\frac{n}{q^k}\\right\\rfloor} \\cdot \\left(\\prod*{i,(i,q)=1}^{n\\bmod q^k}i\\right)
+
+$$
 **$\displaystyle \left(\left\lfloor\frac{n}{q}\right\rfloor\right)!$ 同样是一个数的阶乘，所以也可以分为上述三个部分，于是可以递归求解。**
 
 递归的结果，三个部分中，左边部分随着递归结束而自然消失，中间部分可以利用 Wilson 定理的推论 0，右边部分就是推论 2 中的 $\prod_{j\geq 0}(N_j!)_p$。
@@ -303,3 +298,4 @@ $$
 - [SDOI2010 古代猪文  卢卡斯定理](https://loj.ac/problem/10229)
 - [Luogu4720【模板】扩展卢卡斯](https://www.luogu.com.cn/problem/P4720)
 - [Ceizenpok’s formula](http://codeforces.com/gym/100633/problem/J)
+$$
