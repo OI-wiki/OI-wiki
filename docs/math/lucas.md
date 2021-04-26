@@ -163,7 +163,14 @@ $$
 对于任意 $i,j$，有 ${q_i}^{\alpha_i}$ 与 ${q_j}^{\alpha_j}$ 互质，所以可以构造如下 $r$ 个同余方程：
 
 $$
-\left{ \begin{aligned} a_1\equiv \displaystyle\binom{n}{m}&\pmod {{q_1}^{\alpha_1}}\ a_2\equiv \displaystyle\binom{n}{m}&\pmod {{q_2}^{\alpha_2}}\ &\cdots\ a_r\equiv \displaystyle\binom{n}{m}&\pmod {{q_r}^{\alpha_r}}\ \end{aligned} \right.
+\left\{
+\begin{aligned}
+a_1\equiv \displaystyle\binom{n}{m}&\pmod {{q_1}^{\alpha_1}}\\
+a_2\equiv \displaystyle\binom{n}{m}&\pmod {{q_2}^{\alpha_2}}\\
+&\cdots\\
+a_r\equiv \displaystyle\binom{n}{m}&\pmod {{q_r}^{\alpha_r}}\\
+\end{aligned}
+\right.
 $$
 
 我们发现，在求出 $a_i$ 后，就可以用中国剩余定理求解出 $\displaystyle\binom{n}{m}$。
