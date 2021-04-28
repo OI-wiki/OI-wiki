@@ -77,9 +77,9 @@ $v_2(n!)=n-S_2(n)$
 
 $v_p(C_m^n)=\frac{S_p(n)+S_p(m-n)-S_p(m)}{p-1}$
 
-如果仔细分析，p 是否整除组合数其实和上下标在 p 进制下减法是否需要借位有关。这就有了下面的定理。
+如果仔细分析，p 是否整除组合数其实和上下标在 p 进制下减法是否需要借位有关。这就有了 Kummer 定理。
 
-**p 在组合数 $C_m^n$ 中的幂次，恰好是 p 进制下 m 减掉 n 需要借位的次数。**
+**Kummer 定理：p 在组合数 $C_m^n$ 中的幂次，恰好是 p 进制下 m 减掉 n 需要借位的次数。**
 
 特别地，组合数中 2 的幂次是：
 
@@ -138,7 +138,7 @@ $\frac{n!}{p^{\sum_{j\geq 1}\lfloor \frac{n}{p^j}\rfloor}}\equiv (\pm 1)^{\sum_{
 
 记 $r=n-m$ 且 $n\gt m$ 有
 
-$\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor +\lfloor m/p^j\rfloor +\lfloor r/p^j\rfloor\right)}}{p^{\nu(n!)-\nu(m!)-\nu(r!)}}\binom{n}{m}\equiv \frac{n!/p^{\nu(n!)}}{(m!/p^{\nu(m!)})(r!/p^{\nu(r!)})}\pmod{p^q}$
+$\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor -\lfloor m/p^j\rfloor -\lfloor r/p^j\rfloor\right)}}{p^{\nu(n!)-\nu(m!)-\nu(r!)}}\binom{n}{m}\equiv \frac{n!/p^{\nu(n!)}}{(m!/p^{\nu(m!)})(r!/p^{\nu(r!)})}\pmod{p^q}$
 
 右边的分母中括号内的项均在模 $p^q$ 意义下均存在逆元，可直接计算，而 $\pm 1$ 的与上述相同。
 
