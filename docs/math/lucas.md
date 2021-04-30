@@ -253,16 +253,6 @@ $$
     其中 `int inverse(int x)` 函数返回 $x$ 在模 $p$ 意义下的逆元。
     
     ```cpp
-    LL CRT(int n, LL* a, LL* m) {
-      LL M = 1, p = 0;
-      for (int i = 1; i <= n; i++) M = M * m[i];
-      for (int i = 1; i <= n; i++) {
-        LL w = M / m[i], x, y;
-        exgcd(w, m[i], x, y);
-        p = (p + a[i] * w * x % mod) % mod;
-      }
-      return (p % mod + mod) % mod;
-    }
     LL calc(LL n, LL x, LL P) {
       if (!n) return 1;
       LL s = 1;
