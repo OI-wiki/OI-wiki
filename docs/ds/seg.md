@@ -71,7 +71,7 @@ int getsum(int l, int r, int s, int t, int p) {
   // [l,r] 为查询区间,[s,t] 为当前节点包含的区间,p 为当前节点的编号
   if (l <= s && t <= r)
     return d[p];  // 当前区间为询问区间的子集时直接返回当前区间的和
-  int m = (s + t) / 2, sum = 0;
+  int m = s + (t - s)>>1, sum = 0;
   if (l <= m) sum += getsum(l, r, s, m, p * 2);
   // 如果左儿子代表的区间 [l,m] 与询问区间有交集,则递归查询左儿子
   if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
