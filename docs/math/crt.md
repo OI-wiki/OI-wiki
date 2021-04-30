@@ -36,6 +36,7 @@ $$
 
 ### C 语言代码
 
+```C
         LL CRT(int k, LL* a, LL* r) {
           LL n = 1, ans = 0;
           for (int i = 1; i <= k; i++) n = n * r[i];
@@ -46,6 +47,7 @@ $$
           }
           return (ans % mod + mod) % mod;
         }
+```
 
 ## 算法的证明
 
