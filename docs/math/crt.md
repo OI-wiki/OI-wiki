@@ -34,18 +34,19 @@ $$
     3. 计算 $c_i=m_im_i^{-1}$（**不要对 $n_i$ 取模**）。
 3. 方程组的唯一解为：$a=\sum_{i=1}^k a_ic_i \pmod n$。
 
-### 伪代码
+### C语言代码
 
-```text
-n ← 1
-ans ← 0
-for i = 1 to k
-  n ← n * n[i]
-for i = 1 to k
-  m ← n / n[i]
-  b ← inv(m, n[i])               // b * m mod n[i] = 1
-  ans ← (ans + a[i] * m * b) mod n
-return ans
+```
+    LL CRT(int k, LL* a, LL* r) {
+      LL n = 1, ans = 0;
+      for (int i = 1; i <= k; i++) n = n * r[i];
+      for (int i = 1; i <= k; i++) {
+        LL m = n / r[i], b, y;
+        exgcd(m, r[i], b, y);               // b * m mod r[i] = 1
+        ans = (ans + a[i] * m * b % mod) % mod;
+      }
+      return (ans % mod + mod) % mod;
+    }
 ```
 
 ## 算法的证明
