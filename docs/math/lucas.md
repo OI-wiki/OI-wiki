@@ -252,7 +252,6 @@ $$
 下面这种写法，拥有单次询问 $O(plogp)$ 的时间复杂度。其中 `int inverse(int x)` 函数返回 $x$ 在模 $p$ 意义下的逆元。
 
 ???+note "代码实现"
-    
     ```cpp
     LL calc(LL n, LL x, LL P) {
       if (!n) return 1;
