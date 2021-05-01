@@ -250,24 +250,24 @@ $$
 递归的结果，三个部分中，左边部分随着递归结束而自然消失，中间部分可以利用 Wilson 定理的推论 0，右边部分就是推论 2 中的 $\prod_{j\geq 0}(N_j!)_p$。
 
 ???+note "代码实现"
-    其中 `int inverse(int x)` 函数返回 $x$ 在模 $p$ 意义下的逆元。
+    下面这种写法，拥有单次询问O(plogp)的时间复杂度。其中 `int inverse(int x)` 函数返回 $x$ 在模 $p$ 意义下的逆元。
     
     ```cpp
     LL calc(LL n, LL x, LL P) {
       if (!n) return 1;
       LL s = 1;
-      for (int i = 1; i <= P; i++)
+      for (LL i = 1; i <= P; i++)
         if (i % x) s = s * i % P;
       s = Pow(s, n / P, P);
-      for (int i = n / P * P + 1; i <= n; i++)
-        if (i % x) s = s * i % P;
+      for (LL i = n / P * P + 1; i <= n; i++)
+        if (i % x) s = i % P * s % P;
       return s * calc(n / x, x, P) % P;
     }
     LL multilucas(LL m, LL n, LL x, LL P) {
       int cnt = 0;
-      for (int i = m; i; i /= x) cnt += i / x;
-      for (int i = n; i; i /= x) cnt -= i / x;
-      for (int i = m - n; i; i /= x) cnt -= i / x;
+      for (LL i = m; i; i /= x) cnt += i / x;
+      for (LL i = n; i; i /= x) cnt -= i / x;
+      for (LL i = m - n; i; i /= x) cnt -= i / x;
       return Pow(x, cnt, P) % P * calc(m, x, P) % P * inverse(calc(n, x, P), P) %
              P * inverse(calc(m - n, x, P), P) % P;
     }
@@ -285,6 +285,8 @@ $$
       return CRT(cnt, a, p);
     }
     ```
+
+若不考虑excrt的复杂度，通过预处理$\frac{n!}{n以内的p的所有倍数的乘积}\bmod{p}$，可以使时间复杂度优化至单次$O(p + logp)$。而如果p是固定的，我们在一开始就可以对p进行分解，并进行预处理，可以达到总复杂度$O(p + Tlogp)$。
 
 ## 习题
 
