@@ -54,10 +54,9 @@ Stoer-Wagner 算法在 1995 年由*Mechthild Stoer*与*Frank Wagner*提出，是
 
 其中权值函数的定义：
 
-$$
-0& {(j,i) \notin E'}\\
-d(j,i)& {(j,i) \in E'}
-\end{cases}$$
+$$ w(A, i) = \sum_{j \in A} d(i, j) $$
+
+（若 $ (i, j) \notin E'$ ，则 $d(i, j) = 0$ ）。
 
 容易知道所有点加入 $ A $ 的顺序是固定的，令 $ord(i)$ 表示第 $i$ 个加入 $A$ 的点, $t = ord(|V'|)$；$pos(v)$ 表示 $v$ 被加入 $A$ 后 $|A|$ 的大小，即 $v$ 被加入的顺序。
 
@@ -158,3 +157,4 @@ d(j,i)& {(j,i) \in E'}
  （实际测试中开O2还要卡评测波动才能过。）
  
 $$
+
