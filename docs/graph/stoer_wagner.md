@@ -69,7 +69,9 @@ d(j,i)& {(j,i) \in E'}
 
 定义诱导割 $C_v$ 为 $C \cap E_v$ 。$w(C_v) = \sum_{(i,j)\in C_v} d(i , j)$ 。
 
-???+note 对于任何被激活的点 $v$ ，$w(A_v, v) \le w(C_v)$
+???+note "Lemma 1"
+    
+    对于任何被激活的点 $v$ ，$w(A_v, v) \le w(C_v)$
 
     证明：使用数学归纳法
     
@@ -96,45 +98,48 @@ d(j,i)& {(j,i) \in E'}
 
 由于 $pos(s) < pos(t) $ ，并且 $ s, t$ 不在同一联通块，因此 $t$ 会被激活，由此可以得出 $w(A_t, t) \le w(C_t) = w(C) $
 
-```cpp
-int contract( int &s, int &t )          // Find s,t  
-{  
-    memset(dist, 0, sizeof(dist));  
-    memset(vis, false, sizeof(vis));  
-    int i, j, k, mincut, maxc;  
-    for (i = 1; i <= n; i++)  
+??? note "参考代码"
+    
+    ```cpp
+    int contract( int &s, int &t )          // Find s,t  
     {  
-        k = -1; maxc = -1;  
-        for (j = 1; j <= n; j++)if (!bin[j] && !vis[j] && dist[j] > maxc)  
+        memset(dist, 0, sizeof(dist));  
+        memset(vis, false, sizeof(vis));  
+        int i, j, k, mincut, maxc;  
+        for (i = 1; i <= n; i++)  
         {  
-            k = j;  maxc = dist[j];  
+            k = -1; maxc = -1;  
+            for (j = 1; j <= n; j++)if (!bin[j] && !vis[j] && dist[j] > maxc)  
+            {  
+                k = j;  maxc = dist[j];  
+            }  
+            if (k == -1) return mincut;  
+            s = t;  t = k;  
+            mincut = maxc;  
+            vis[k] = true;  
+            for (j = 1; j <= n; j++) if (!bin[j] && !vis[j])  
+                dist[j] += edge[k][j];  
         }  
-        if (k == -1) return mincut;  
-        s = t;  t = k;  
-        mincut = maxc;  
-        vis[k] = true;  
-        for (j = 1; j <= n; j++) if (!bin[j] && !vis[j])  
-            dist[j] += edge[k][j];  
-    }  
-    return mincut;  
-}
+        return mincut;  
+    }
 
 
-int Stoer_Wagner()  
-{  
-    int mincut, i, j, s, t, ans;  
-    for (mincut = inf, i = 1; i < n; i++)  
+    int Stoer_Wagner()  
     {  
-        ans = contract( s, t );  
-        bin[t] = true;  
-        if (mincut > ans) mincut = ans;  
-        if (mincut == 0)return 0;  
-        for (j = 1; j <= n; j++) if (!bin[j])  
-            edge[s][j] = (edge[j][s] += edge[j][t]);  
-    }  
-    return mincut;  
-}
-```
+        int mincut, i, j, s, t, ans;  
+        for (mincut = inf, i = 1; i < n; i++)  
+        {  
+            ans = contract( s, t );  
+            bin[t] = true;  
+            if (mincut > ans) mincut = ans;  
+            if (mincut == 0)return 0;  
+            for (j = 1; j <= n; j++) if (!bin[j])  
+                edge[s][j] = (edge[j][s] += edge[j][t]);  
+        }  
+        return mincut;  
+    }
+    ```
+* * *
 
 ### 复杂度分析与优化
 
