@@ -1,4 +1,4 @@
-author:DanJoshua
+author: DanJoshua
 
 ## 概念
 
