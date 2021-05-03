@@ -54,107 +54,103 @@ Stoer-Wagner 算法在 1995 年由*Mechthild Stoer*与*Frank Wagner*提出，是
 
 其中权值函数的定义：
 
-$$ w(A, i) = \sum_{j \in A} d(i, j) $$
+$w(A, i) = \sum_{j \in A} d(i, j)$
 
-（若 $ (i, j) \notin E'$ ，则 $d(i, j) = 0$ ）。
+（若 $(i, j) \notin E'$，则 $d(i, j) = 0$）。
 
-容易知道所有点加入 $ A $ 的顺序是固定的，令 $ord(i)$ 表示第 $i$ 个加入 $A$ 的点, $t = ord(|V'|)$；$pos(v)$ 表示 $v$ 被加入 $A$ 后 $|A|$ 的大小，即 $v$ 被加入的顺序。
+容易知道所有点加入 $A$ 的顺序是固定的，令 $ord(i)$ 表示第 $i$ 个加入 $A$ 的点，$t = ord(|V'|)$；$pos(v)$ 表示 $v$ 被加入 $A$ 后 $|A|$ 的大小，即 $v$ 被加入的顺序。
 
-则对任意点 $s$ ，一个 $s$ 到 $t$ 的割即为 $w(t)$ 。
+则对任意点 $s$，一个 $s$ 到 $t$ 的割即为 $w(t)$。
 
 #### 证明算法正确性
 
 定义一个点 $v$ 被激活，当且仅当 $v$ 在加入 $A$ 中时，发现在 $A$ 存在一个点 $u$ 早于 $v$ 加入集合，并且在图 $G'' = (V', E'/C)$ 中，$u$ 与 $v$ 不在同一联通块。
 
-定义 $A_v = \{u|pos(u) < pos(v)\}$ ，也就是严格早于 $v$ 加入 $A$ 的边，令 $E_v$ 为 $E'$ 的诱导子图（点集为 $A_v \cup\{v\}$)。（注意包含点 $v$ 。）
+定义 $A_v = \{u|pos(u) < pos(v)\}$，也就是严格早于 $v$ 加入 $A$ 的边，令 $E_v$ 为 $E'$ 的诱导子图（点集为 $A_v \cup\{v\}$)。（注意包含点 $v$。）
 
-定义诱导割 $C_v$ 为 $C \cap E_v$ 。$w(C_v) = \sum_{(i,j)\in C_v} d(i , j)$ 。
+定义诱导割 $C_v$ 为 $C \cap E_v$。$w(C_v) = \sum_{(i,j)\in C_v} d(i , j)$。
 
 ???+note "Lemma 1"
+    对于任何被激活的点 $v$，$w(A_v, v) \le w(C_v)$。
     
-    对于任何被激活的点 $v$ ，$w(A_v, v) \le w(C_v)$ 。
-
     证明：使用数学归纳法。
     
-    对于第一个被激活的点$v_0$，由定义可知$w(A_{v_0}, v_0) = w(C_{v_0})$ 。
+    对于第一个被激活的点 $v_0$，由定义可知 $w(A_{v_0}, v_0) = w(C_{v_0})$。
     
-    对于之后两个被激活的点 $u, v$，假设 $pos(v) < pos(u)$ ，则有：
+    对于之后两个被激活的点 $u, v$，假设 $pos(v) < pos(u)$，则有：
     
-    $$ w(A_u, u) = w(A_v, u) + w(A_u - A_v, u) $$
-       
+    $w(A_u, u) = w(A_v, u) + w(A_u - A_v, u)$
+    
     又，已知：
     
-    $$ w(A_v, u) \le w(A_v, v)$$
-    并且 
-    $$ w(A_v, v) \le w(C_v) $$
-    联立可得：
+    $w(A_v, u) \le w(A_v, v)$ 并且 $w(A_v, v) \le w(C_v)$ 联立可得：
     
-    $$ w(A_u, u) \le w(C_v) + w(A_u - A_v, u) $$
+    $w(A_u, u) \le w(C_v) + w(A_u - A_v, u)$
     
     由于 $w(A_u - A_v, u)$ 对 $w(C_u)$ 有贡献而对 $w(C_v)$ 没有贡献，在所有边均为正权的情况下，可导出：
     
-    $$ w(A_u,u) \le w(C_u) $$
+    $w(A_u,u) \le w(C_u)$
     
     由归纳法得证。
 
-由于 $pos(s) < pos(t) $ ，并且 $ s, t$ 不在同一联通块，因此 $t$ 会被激活，由此可以得出 $w(A_t, t) \le w(C_t) = w(C) $ 。
+由于 $pos(s) < pos(t)$，并且 $s, t$ 不在同一联通块，因此 $t$ 会被激活，由此可以得出 $w(A_t, t) \le w(C_t) = w(C)$。
 
 ??? note "参考代码"
-    
     ```cpp
-    int contract( int &s, int &t )          // Find s,t  
-    {  
-        memset(dist, 0, sizeof(dist));  
-        memset(vis, false, sizeof(vis));  
-        int i, j, k, mincut, maxc;  
-        for (i = 1; i <= n; i++)  
-        {  
-            k = -1; maxc = -1;  
-            for (j = 1; j <= n; j++)if (!bin[j] && !vis[j] && dist[j] > maxc)  
-            {  
-                k = j;  maxc = dist[j];  
-            }  
-            if (k == -1) return mincut;  
-            s = t;  t = k;  
-            mincut = maxc;  
-            vis[k] = true;  
-            for (j = 1; j <= n; j++) if (!bin[j] && !vis[j])  
-                dist[j] += edge[k][j];  
-        }  
-        return mincut;  
+    int contract(int &s, int &t)  // Find s,t
+    {
+      memset(dist, 0, sizeof(dist));
+      memset(vis, false, sizeof(vis));
+      int i, j, k, mincut, maxc;
+      for (i = 1; i <= n; i++) {
+        k = -1;
+        maxc = -1;
+        for (j = 1; j <= n; j++)
+          if (!bin[j] && !vis[j] && dist[j] > maxc) {
+            k = j;
+            maxc = dist[j];
+          }
+        if (k == -1) return mincut;
+        s = t;
+        t = k;
+        mincut = maxc;
+        vis[k] = true;
+        for (j = 1; j <= n; j++)
+          if (!bin[j] && !vis[j]) dist[j] += edge[k][j];
+      }
+      return mincut;
     }
-
-
-    int Stoer_Wagner()  
-    {  
-        int mincut, i, j, s, t, ans;  
-        for (mincut = inf, i = 1; i < n; i++)  
-        {  
-            ans = contract( s, t );  
-            bin[t] = true;  
-            if (mincut > ans) mincut = ans;  
-            if (mincut == 0)return 0;  
-            for (j = 1; j <= n; j++) if (!bin[j])  
-                edge[s][j] = (edge[j][s] += edge[j][t]);  
-        }  
-        return mincut;  
+    
+    int Stoer_Wagner() {
+      int mincut, i, j, s, t, ans;
+      for (mincut = inf, i = 1; i < n; i++) {
+        ans = contract(s, t);
+        bin[t] = true;
+        if (mincut > ans) mincut = ans;
+        if (mincut == 0) return 0;
+        for (j = 1; j <= n; j++)
+          if (!bin[j]) edge[s][j] = (edge[j][s] += edge[j][t]);
+      }
+      return mincut;
     }
     ```
+
 * * *
 
 ### 复杂度分析与优化
 
- _contract_ 操作的复杂度为 $O(|E| + |V|log|V|)$ 。
- 
- 一共进行 $O(|V|)$ 次  _contract_ ，总复杂度为 $O(|E||V| + |V|^2\log|V|)$ 。
+*contract*操作的复杂度为 $O(|E| + |V|log|V|)$。
+
+一共进行 $O(|V|)$ 次*contract*，总复杂度为 $O(|E||V| + |V|^2\log|V|)$。
 
 根据 [最短路](./shortest-path.md) 的经验，算法瓶颈在于找到权值最大的点。
 
-在一次  _contract_ 中需要找 $|V|$ 次堆顶，并单调递增地修改 $|E|$ 次权值。
+在一次*contract*中需要找 $|V|$ 次堆顶，并单调递增地修改 $|E|$ 次权值。
 
- 斐波那契堆 可以胜任 $O(1)$ 查找堆顶和单调递增修改权值的工作，理论复杂度可以达到 $O(|E| + |V|\log|V|)$ ，但是由于斐波那契堆常数过大，码量高，实际应用价值偏低。
- 
- （实际测试中开O2还要卡评测波动才能过。）
- 
+斐波那契堆 可以胜任 $O(1)$ 查找堆顶和单调递增修改权值的工作，理论复杂度可以达到 $O(|E| + |V|\log|V|)$，但是由于斐波那契堆常数过大，码量高，实际应用价值偏低。
+
+（实际测试中开 O2 还要卡评测波动才能过。）
+
 $$
 
+$$
