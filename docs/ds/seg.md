@@ -41,7 +41,9 @@ void build(int s, int t, int p) {
     d[p] = a[s];
     return;
   }
-  int m = (s + t) / 2;
+  int m = s + ((t - s) >> 1);
+  // 移位运算符的优先级小于加减法，所以加上括号
+  // 如果写成 (s + t) >> 1 可能会时间超限
   build(s, m, p * 2), build(m + 1, t, p * 2 + 1);
   // 递归对左右区间建树
   d[p] = d[p * 2] + d[(p * 2) + 1];
@@ -71,7 +73,7 @@ int getsum(int l, int r, int s, int t, int p) {
   // [l,r] 为查询区间,[s,t] 为当前节点包含的区间,p 为当前节点的编号
   if (l <= s && t <= r)
     return d[p];  // 当前区间为询问区间的子集时直接返回当前区间的和
-  int m = (s + t) / 2, sum = 0;
+  int m = s + ((t - s) >> 1), sum = 0;
   if (l <= m) sum += getsum(l, r, s, m, p * 2);
   // 如果左儿子代表的区间 [l,m] 与询问区间有交集,则递归查询左儿子
   if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
@@ -143,7 +145,7 @@ void update(int l, int r, int c, int s, int t, int p) {
     d[p] += (t - s + 1) * c, b[p] += c;
     return;
   }  // 当前区间为修改区间的子集时直接修改当前节点的值,然后打标记,结束修改
-  int m = (s + t) / 2;
+  int m = s + ((t - s) >> 1);
   if (b[p] && s != t) {
     // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
     d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m);
@@ -163,7 +165,7 @@ int getsum(int l, int r, int s, int t, int p) {
   // [l,r] 为查询区间,[s,t] 为当前节点包含的区间,p为当前节点的编号
   if (l <= s && t <= r) return d[p];
   // 当前区间为询问区间的子集时直接返回当前区间的和
-  int m = (s + t) / 2;
+  int m = s + ((t - s) >> 1);
   if (b[p]) {
     // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
     d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m),
@@ -185,7 +187,7 @@ void update(int l, int r, int c, int s, int t, int p) {
     d[p] = (t - s + 1) * c, b[p] = c;
     return;
   }
-  int m = (s + t) / 2;
+  int m = s + ((t - s) >> 1);
   if (b[p]) {
     d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
           b[p * 2] = b[p * 2 + 1] = b[p];
@@ -197,7 +199,7 @@ void update(int l, int r, int c, int s, int t, int p) {
 }
 int getsum(int l, int r, int s, int t, int p) {
   if (l <= s && t <= r) return d[p];
-  int m = (s + t) / 2;
+  int m = s + (t - s) >> 1;
   if (b[p]) {
     d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
           b[p * 2] = b[p * 2 + 1] = b[p];
@@ -234,7 +236,7 @@ int getsum(int l, int r, int s, int t, int p) {
         d[p] = a[l];
         return;
       }
-      LL m = (l + r) >> 1;
+      LL m = l + ((r - l) >> 1);
       build(l, m, p << 1), build(m + 1, r, (p << 1) | 1);
       d[p] = d[p << 1] + d[(p << 1) | 1];
     }
@@ -243,7 +245,7 @@ int getsum(int l, int r, int s, int t, int p) {
         d[p] += (t - s + 1) * c, b[p] += c;
         return;
       }
-      LL m = (s + t) >> 1;
+      LL m = s + ((t - s) >> 1);
       if (b[p])
         d[p << 1] += b[p] * (m - s + 1), d[(p << 1) | 1] += b[p] * (t - m),
             b[p << 1] += b[p], b[(p << 1) | 1] += b[p];
@@ -254,7 +256,7 @@ int getsum(int l, int r, int s, int t, int p) {
     }
     LL getsum(LL l, LL r, LL s, LL t, LL p) {
       if (l <= s && t <= r) return d[p];
-      LL m = (s + t) >> 1;
+      LL m = s + ((t - s) >> 1);
       if (b[p])
         d[p << 1] += b[p] * (m - s + 1), d[(p << 1) | 1] += b[p] * (t - m),
             b[p << 1] += b[p], b[(p << 1) | 1] += b[p];
@@ -335,13 +337,13 @@ int getsum(int l, int r, int s, int t, int p) {
         sum[i] = a[s];
         return;
       }
-      int mid = (s + t) >> 1;
+      int mid = ((t - s) >> 1);
       build(s, mid, i << 1);
       build(mid + 1, t, (i << 1) | 1);
       up(i);
     }
     void chen(int l, int r, int s, int t, int i, ll z) {
-      int mid = (s + t) >> 1;
+      int mid = s + ((t - s) >> 1);
       if (l <= s && t <= r) {
         mul[i] *= z;
         mul[i] %= mod;
@@ -357,7 +359,7 @@ int getsum(int l, int r, int s, int t, int p) {
       up(i);
     }
     void add(int l, int r, int s, int t, int i, ll z) {
-      int mid = (s + t) >> 1;
+      int mid = s + ((t - s) >> 1);
       if (l <= s && t <= r) {
         sum[i] += z * (t - s + 1);
         sum[i] %= mod;
@@ -371,7 +373,7 @@ int getsum(int l, int r, int s, int t, int p) {
       up(i);
     }
     ll getans(int l, int r, int s, int t, int i) {
-      int mid = (s + t) >> 1;
+      int mid = s + ((t - s) >> 1);
       ll tot = 0;
       if (l <= s && t <= r) return sum[i];
       pd(i, s, t);
@@ -422,7 +424,7 @@ int getsum(int l, int r, int s, int t, int p) {
         d[p] = a[l];
         return;
       }
-      int m = (l + r) >> 1;
+      int m = l + ((r - l) >> 1);
       build(l, m, p << 1), build(m + 1, r, (p << 1) | 1);
       d[p] = d[p << 1] + d[(p << 1) | 1];
     }
@@ -431,7 +433,7 @@ int getsum(int l, int r, int s, int t, int p) {
         d[p] = (t - s + 1) * c, b[p] = c;
         return;
       }
-      int m = (s + t) >> 1;
+      int m = s + ((t - s) >> 1);
       if (b[p]) {
         d[p << 1] = b[p] * (m - s + 1), d[(p << 1) | 1] = b[p] * (t - m);
         b[p << 1] = b[(p << 1) | 1] = b[p];
@@ -443,7 +445,7 @@ int getsum(int l, int r, int s, int t, int p) {
     }
     int getsum(int l, int r, int s, int t, int p) {
       if (l <= s && t <= r) return d[p];
-      int m = (s + t) >> 1;
+      int m = s + ((t - s) >> 1);
       if (b[p]) {
         d[p << 1] = b[p] * (m - s + 1), d[(p << 1) | 1] = b[p] * (t - m);
         b[p << 1] = b[(p << 1) | 1] = b[p];
