@@ -199,7 +199,7 @@ void update(int l, int r, int c, int s, int t, int p) {
 }
 int getsum(int l, int r, int s, int t, int p) {
   if (l <= s && t <= r) return d[p];
-  int m = s + (t - s) >> 1;
+  int m = s + ((t - s) >> 1);
   if (b[p]) {
     d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
           b[p * 2] = b[p * 2 + 1] = b[p];
@@ -337,7 +337,7 @@ int getsum(int l, int r, int s, int t, int p) {
         sum[i] = a[s];
         return;
       }
-      int mid = ((t - s) >> 1);
+      int mid = s + ((t - s) >> 1);
       build(s, mid, i << 1);
       build(mid + 1, t, (i << 1) | 1);
       up(i);
