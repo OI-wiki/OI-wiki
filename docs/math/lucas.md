@@ -247,6 +247,14 @@ $$
 
 **$\displaystyle \left(\left\lfloor\frac{n}{q}\right\rfloor\right)!$ 同样是一个数的阶乘，所以也可以分为上述三个部分，于是可以递归求解。**
 
+等式的右边两项不含素数q。事实上，如果直接把n的阶乘中所有q的幂都拿出来，等式右边的阶乘也照做，这个等式可以直接写成：
+
+$$
+\frac{n!}{q^{x}} = \frac{\left(\left\lfloor\frac{n}{q}\right\rfloor\right)!}{q^{x'}} \cdot {\left(\prod_{i,(i,q)=1}^{q^k}i\right)}^{\left\lfloor\frac{n}{q^k}\right\rfloor} \cdot \left(\prod_{i,(i,q)=1}^{n\bmod q^k}i\right)
+$$
+
+式中的x和x'都表示把分子中所有的素数q都拿出来。改写成这样，每一项就完全不含q了。
+
 递归的结果，三个部分中，左边部分随着递归结束而自然消失，中间部分可以利用 Wilson 定理的推论 0，右边部分就是推论 2 中的 $\prod_{j\geq 0}(N_j!)_p$。
 
 下面这种写法，拥有单次询问 $O(plogp)$ 的时间复杂度。其中 `int inverse(int x)` 函数返回 $x$ 在模 $p$ 意义下的逆元。
