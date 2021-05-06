@@ -1,4 +1,4 @@
-author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe
+author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe, DawnMagnet
 
 ## 介绍
 
@@ -29,6 +29,8 @@ author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe
 该应用界面简洁友好，安装便捷，适合初学者使用。
 
 2020 年，Embarcadero 赞助并接手了原有的 Bloodshed Dev-C++ 项目，继续开发。项目地址位于 [GitHub](https://github.com/Embarcadero/Dev-Cpp) 和 [SourceForge](https://sourceforge.net/projects/embarcadero-devcpp/).
+
+在 2015 年停止更新后，因为教学需要，一位来自中国的个人开发者 [royqh1979](https://github.com/royqh1979) 决定继续开发他的 Dev-C++ 个人分支，命名为小熊猫 Dev-C++，集成了智能提示和高版本的 MINGW64，非常便于国内的个人使用和学习，项目官网位于 [小熊猫 Dev-C++](https://royqh.net/devcpp/download)，源码地址位于 [Github](https://github.com/royqh1979/Dev-Cpp).
 
 ## 使用教程
 
