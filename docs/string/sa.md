@@ -178,6 +178,10 @@ for (i = 1; i <= n; ++i) {
 
 把 `oldrk[sa[i]] == oldrk[sa[i - 1]] && oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]` 替换成 `cmp(sa[i], sa[i - 1], w)`，`bool cmp(int x, int y, int w) { return oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w]; }`。
 
+#### 若排名都不相同可直接生成后缀数组
+
+考虑新的 $rk$ 数组，若其值域为 $[1,n]$ 那么每个排名都不同，此时无需再排序。
+
 ??? note "参考代码"
     ```cpp
     #include <algorithm>
@@ -206,7 +210,7 @@ for (i = 1; i <= n; ++i) {
       for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
       for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
     
-      for (w = 1; w < n; w <<= 1, m = p) {  // m=p 就是优化计数排序值域
+      for (w = 1;; w <<= 1, m = p) {  // m=p 就是优化计数排序值域
         for (p = 0, i = n; i > n - w; --i) id[++p] = i;
         for (i = 1; i <= n; ++i)
           if (sa[i] > w) id[++p] = sa[i] - w;
@@ -217,6 +221,10 @@ for (i = 1; i <= n; ++i) {
         memcpy(oldrk, rk, sizeof(rk));
         for (p = 0, i = 1; i <= n; ++i)
           rk[sa[i]] = cmp(sa[i], sa[i - 1], w) ? p : ++p;
+        if (p == n) {
+          for (int i = 1; i <= n; ++i) sa[rk[i]] = i;
+          break;
+        }
       }
     
       for (i = 1; i <= n; ++i) printf("%d ", sa[i]);
@@ -391,7 +399,7 @@ $lcp(sa[i],sa[j])=\min\{height[i+1..j]\}$
 
 若 $lcp(a, c)\ge\min(|A|, |B|)$，$A<B\iff |A|<|B|$。
 
-否则，$A<B\iff rk[a]< rk[b]$。
+否则，$A<B\iff rk[a]< rk[c]$。
 
 ### 不同子串的数目
 

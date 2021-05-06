@@ -1,4 +1,4 @@
-author: AndrewWayne, GavinZhengOI. ChungZH, henryrabbit, Xeonacid, sshwy, Yukimaikoriya
+author: AndrewWayne, GavinZhengOI, ChungZH, henryrabbit, Xeonacid, sshwy, Yukimaikoriya
 
 前置知识：[复数](../complex.md)。
 
@@ -211,8 +211,8 @@ $$
 以 $8$ 项多项式为例，模拟拆分的过程：
 
 - 初始序列为 $\{x_0, x_1, x_2, x_3, x_4, x_5, x_6, x_7\}$
-- 一次二分之后 $\{x_0, x_2, x_4, x_6\},\{x_1, x_3,x_5, x_7 \}$
-- 两次二分之后 $\{x_0,x_4\} \{x_2, x_6\},\{x_1, x_3\},\{x_5, x_7 \}$
+- 一次二分之后 $\{x_0, x_2, x_4, x_6\},\{x_1, x_3, x_5, x_7 \}$
+- 两次二分之后 $\{x_0,x_4\} \{x_2, x_6\},\{x_1, x_5\},\{x_3, x_7 \}$
 - 三次二分之后 $\{x_0\}\{x_4\}\{x_2\}\{x_6\}\{x_1\}\{x_5\}\{x_3\}\{x_7 \}$
 
 规律：其实就是原来的那个序列，每个数用二进制表示，然后把二进制翻转对称一下，就是最终那个位置的下标。比如 $x_1$ 是 001，翻转是 100，也就是 4，而且最后那个位置确实是 4。我们称这个变换为位逆序置换（bit-reversal permutation，国内也称蝴蝶变换）。
@@ -281,7 +281,11 @@ $$
 
 ## 快速傅里叶逆变换
 
-IDFT（傅里叶反变换）的作用，是把目标多项式的点值形式转换成系数形式。我们把单位复根代入多项式之后，就是下面这个样子（矩阵表示方程组）
+傅里叶逆变换可以用傅里叶变换表示。对此我们有两种理解方式。
+
+### 线性代数角度
+
+IDFT（傅里叶反变换）的作用，是把目标多项式的点值形式转换成系数形式。而 DFT 本身是个线性变换，可以理解为将目标多项式当作向量，左乘一个矩阵得到变换后的向量，以模拟把单位复根代入多项式的过程：
 
 $$
 \begin{bmatrix}y_0 \\ y_1 \\ y_2 \\ y_3 \\ \vdots \\ y_{n-1} \end{bmatrix}
@@ -303,11 +307,13 @@ $$
 \frac{1}{\omega_k}=\omega_k^{-1}=e^{-\frac{2\pi i}{k}}=\cos\left(\frac{2\pi}{k}\right)+i\cdot \sin\left(-\frac{2\pi}{k}\right)
 $$
 
-因此我们可以尝试着把 $π$ 取成 - 3.14159…，这样我们的计算结果就会变成原来的倒数，而其它的操作过程与 DFT 是完全相同的。我们可以定义一个函数，在里面加一个参数 $1$ 或者是 $-1$，然后把它乘到 $π$ 的身上。传入 $1$ 就是 DFT，传入 $-1$ 就是 IDFT。
+因此我们可以尝试着把单位根 $\omega_k$ 取成 $e^{-\frac{2\pi i}{k}}$，这样我们的计算结果就会变成原来的倒数，而其它的操作过程与 DFT 是完全相同的。我们可以定义一个函数，在里面加一个参数 $1$ 或者是 $-1$，然后把它乘到 $\pi$ 上。传入 $1$ 就是 DFT，传入 $-1$ 就是 IDFT。
 
-### 对 IDFT 操作的证明
+### 单位复根周期性
 
-由于上述矩阵的逆矩阵并未给出严格的推理过程，因此这里提供另一种对 IDFT 操作的证明。考虑原本的多项式是 $f(x)=a_0+a_1x+a_2x^2+\cdots+a_{n-1}x^{n-1}=\sum_{i=0}^{n-1}a_ix^i$。而 IDFT 就是把你的点值表示还原为系数表示。
+利用单位复根的周期性同样可以理解 IDFT 与 DFT 之间的关系。
+
+考虑原本的多项式是 $f(x)=a_0+a_1x+a_2x^2+\cdots+a_{n-1}x^{n-1}=\sum_{i=0}^{n-1}a_ix^i$。而 IDFT 就是把你的点值表示还原为系数表示。
 
 考虑 **构造法**。我们已知 $y_i=f\left( \omega_n^i \right),i\in\{0,1,\cdots,n-1\}$，求 $\{a_0,a_1,\cdots,a_{n-1}\}$。构造多项式如下
 
@@ -315,7 +321,13 @@ $$
 A(x)=\sum_{i=0}^{n-1}y_ix^i
 $$
 
-相当于把 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 当做多项式 $A$ 的系数表示法。设 $b_i=\omega_n^{-i}$，则多项式 $A$ 在 $x=b_0,b_1,\cdots,b_{n-1}$ 处的点值表示法为 $\left\{ A(b_0),A(b_1),\cdots,A(b_{n-1}) \right\}$。
+相当于把 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 当做多项式 $A$ 的系数表示法。
+
+这时我们有两种推导方式，这对应了两种实现方法。
+
+#### 方法一
+
+设 $b_i=\omega_n^{-i}$，则多项式 $A$ 在 $x=b_0,b_1,\cdots,b_{n-1}$ 处的点值表示法为 $\left\{ A(b_0),A(b_1),\cdots,A(b_{n-1}) \right\}$。
 
 对 $A(x)$ 的定义式做一下变换，可以将 $A(b_k)$ 表示为
 
@@ -328,9 +340,9 @@ $$
 
 记 $S\left(\omega_n^a\right)=\sum_{i=0}^{n-1}\left(\omega_n^a\right)^i$。
 
-当 $a=0$ 时，$S\left(\omega_n^a\right)=n$。
+当 $a=0 \pmod{n}$ 时，$S\left(\omega_n^a\right)=n$。
 
-当 $a\neq 0$ 时，我们错位相减
+当 $a\neq 0 \pmod{n}$ 时，我们错位相减
 
 $$
 \begin{aligned}
@@ -367,16 +379,26 @@ $$
 
 综上所述，我们取单位根为其倒数，对 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 跑一遍 FFT，然后除以 $n$ 即可得到 $f(x)$ 的系数表示。
 
-证毕。
+#### 方法二
+
+我们直接将 $\omega_n^i$ 代入 $A(x)$。
+
+推导的过程与方法一大同小异，最终我们得到 $A(\omega_n^k) = \sum_{j=0}^{n-1}a_jS\left(\omega_n^{j+k}\right)$。
+
+当且仅当 $j+k=0 \pmod{n}$ 时有 $S\left(\omega_n^{j+k}\right) = n$，否则为 $0$。因此 $A(\omega_n^k) = a_{n-k}\cdot n$。
+
+这意味着我们将 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 做 DFT 变换后，反转再除以 $n$，同样可以还原 $f(x)$ 的系数表示。
+
+### 代码实现
 
 所以我们 FFT 函数可以集 DFT 和 IDFT 于一身。代码实现如下：
 
-???+ note "非递归版 FFT"
+???+ note "非递归版 FFT（对应方法一）"
     ```cpp
     /*
      * 做 FFT
-     *len 必须是 2^k 形式
-     *on == 1 时是 DFT，on == -1 时是 IDFT
+     * len 必须是 2^k 形式
+     * on == 1 时是 DFT，on == -1 时是 IDFT
      */
     void fft(Complex y[], int len, int on) {
       change(y, len);
@@ -397,6 +419,40 @@ $$
         }
       }
       if (on == -1) {
+        for (int i = 0; i < len; i++) {
+          y[i].x /= len;
+        }
+      }
+    }
+    ```
+
+???+ note "非递归版 FFT（对应方法二）"
+    ```cpp
+    /*
+     * 做 FFT
+     * len 必须是 2^k 形式
+     * on == 1 时是 DFT，on == -1 时是 IDFT
+     */
+    void fft(Complex y[], int len, int on) {
+      change(y, len);
+      for (int h = 2; h <= len; h <<= 1) {             // 模拟合并过程
+        Complex wn(cos(2 * PI / h), sin(2 * PI / h));  // 计算当前单位复根
+        for (int j = 0; j < len; j += h) {
+          Complex w(1, 0);  // 计算当前单位复根
+          for (int k = j; k < j + h / 2; k++) {
+            Complex u = y[k];
+            Complex t = w * y[k + h / 2];
+            y[k] = u + t;  // 这就是吧两部分分治的结果加起来
+            y[k + h / 2] = u - t;
+            // 后半个 “step” 中的ω一定和 “前半个” 中的成相反数
+            // “红圈”上的点转一整圈“转回来”，转半圈正好转成相反数
+            // 一个数相反数的平方与这个数自身的平方相等
+            w = w * wn;
+          }
+        }
+      }
+      if (on == -1) {
+        reverse(y, y + len);
         for (int i = 0; i < len; i++) {
           y[i].x /= len;
         }

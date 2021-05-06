@@ -30,6 +30,7 @@
 /topic/cmd /tools/cmd
 /topic/problemsetting /contest/problemsetting
 /misc/io /contest/io
+/misc/stern-brocot /math/stern-brocot
 /math/sign /math/notation
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut

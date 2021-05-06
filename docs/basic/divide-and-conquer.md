@@ -78,9 +78,9 @@ int size(Node *head) {
 }
 
 // 我就是要写递归，递归天下第一
-int size_recurison(Node *head) {
+int size_recursion(Node *head) {
   if (head == nullptr) return 0;
-  return size_recurison(head->next) + 1;
+  return size_recursion(head->next) + 1;
 }
 ```
 
@@ -149,7 +149,7 @@ void traverse(TreeNode* root) {
 ```cpp
 void traverse(TreeNode* root) {
   if (root == nullptr) return;
-  for (child : root->children) traverse(child);
+  for (auto child : root->children) traverse(child);
 }
 ```
 

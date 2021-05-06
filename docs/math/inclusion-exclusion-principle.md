@@ -428,44 +428,149 @@ $$
 
 ## Min-max 容斥
 
-对于全序集合 $S$，有：
+对于满足全序关系并且其中元素满足可加减性的序列 $\{x_i\}$，设其长度为 $n$，并设 $S=\{1,2,3,\cdots,n\}$，则有：
 
 $$
-\begin{split}
-\max S &= \sum_{T\subseteq S}(-1)^{|T|-1} \min T\\
-\min S &= \sum_{T\subseteq S}(-1)^{|T|-1} \max T
-\end{split}
+\max_{i\in S}{x_i}=\sum_{T\subseteq S}{(-1)^{|T|-1}\min_{j\in T}{x_j}}
 $$
 
-??? note "全序集合"
-    在介绍全序集合之前，首先介绍全序关系。对于集合 $X$，若 $X$ 满足全序关系，则下列陈述对于任意 $a,b,c\in X$ 都成立：
+$$
+\min_{i\in S}{x_i}=\sum_{T\subseteq S}{(-1)^{|T|-1}\max_{j\in T}{x_j}}
+$$
+
+??? note "全序关系"
+    对于集合 $X$，若 $X$ 满足全序关系，则下列陈述对于任意 $a,b,c\in X$ 都成立：
     
     - 反对称性：若 $a\le b$ 且 $b\le a$，则 $a=b$;
     - 传递性：若 $a\le b$ 且 $b\le c$，则 $a\le c$；
     - 完全性：$a\le b$ 或者 $b\le a$。
-    
-    满足全序关系的集合就是全序集合。
-    
-    不严谨地说，全序集合就是每一个元素都有确定的排名的集合（可以求第 k 大/第 k 小）。比如正整数集合。
 
-### 证明
-
-考虑做一个到一般容斥原理的映射。对于 $x\in S$，假设 $x$ 是第 $k$ 大的元素。那么我们定义一一映射 $f:x\mapsto \{1,2,\cdots,k\}$。
-
-容易发现，$x$，$k$，$f(x)$ 两两都是一一映射的关系。
+**证明：** 考虑做一个到一般容斥原理的映射。对于 $x\in S$，假设 $x$ 是第 $k$ 大的元素。那么我们定义一个映射 $f:x\mapsto \{1,2,\cdots,k\}$。显然这是一个双射。
 
 那么容易发现，对于 $x,y\in S$，$f(\min(x,y))=f(x)\cap f(y)$，$f(\max(x,y))=f(x)\cup f(y)$。因此我们得到：
 
 $$
-\begin{split}
-|f(\max S )|
-&= \left| \bigcup_{x\in S} f(x) \right|\\
-&= \sum_{T\subseteq S}(-1)^{|T|-1} \left|\bigcap_{x\in T}f(x)\right|\\
-&= \sum_{T\subseteq S}(-1)^{|T|-1} |f(\min T)|\\
-\end{split}
+\begin{aligned}
+\left|f\left(\max_{i\in S}{x_i}\right)\right|
+&= \left| \bigcup_{i\in S} f(x_i) \right|\\
+&= \sum_{T\subseteq S}(-1)^{|T|-1} \left|\bigcap_{j\in T}f(x_j)\right|\\
+&= \sum_{T\subseteq S}(-1)^{|T|-1} \left|f\left(\min_{j\in T}{x_j}\right)\right|\\
+\end{aligned}
 $$
 
-然后再把 $|f(\max S)|$ 映射回 $\max S$，我们就证明了原式。
+然后再把 $\left|f\left(\max_{i\in S}{x_i}\right)\right|$ 映射回 $\max_{i\in S}{x_i}$，而 $\min$ 是类似的。
+
+**证毕**
+
+但是你可能觉得这个式子非常蠢，最大值明明可以直接求。之所以 min-max 容斥这么重要，是因为它在期望上也是成立的，即：
+
+$$
+E\left(\max_{i\in S}{x_i}\right)=\sum_{T\subseteq S}{(-1)^{|T|-1}E\left(\min_{j\in T}{x_j} \right)}
+$$
+
+$$
+E\left(\min_{i\in S}{x_i}\right)=\sum_{T\subseteq S}{(-1)^{|T|-1}E\left(\max_{j\in T}{x_j} \right)}
+$$
+
+**证明：** 我们考虑计算期望的一种方法：
+
+$$
+E\left(\max_{i\in S}{x_i}\right)=\sum_{y}{P(y=x)\max_{j\in S}{y_j}}
+$$
+
+其中 $y$ 是一个长度为 $n$ 的序列。
+
+我们对后面的 $\max$ 使用之前的式子：
+
+$$
+\begin{aligned}E\left(\max_{i\in S}{x_i}\right)&=\sum_{y}{P(y=x)\max_{j\in S}{y_j}}\\
+&=\sum_{y}{P(y=x)\sum_{T\subseteq S}{(-1)^{|T|-1}\min_{j\in T}{y_j}}} \end{aligned}
+$$
+
+调换求和顺序：
+
+$$
+\begin{aligned}E\left(\max_{i\in S}{x_i}\right)
+&=\sum_{y}{P(y=x)\sum_{T\subseteq S}{(-1)^{|T|-1}\min_{j\in T}{y_j}}}\\
+&=\sum_{T\subseteq S}{(-1)^{|T|-1}\sum_y{P(y=x)\min_{j\in T}{y_j}}}\\
+&=\sum_{T\subseteq S}{(-1)^{|T|-1}E\left(\min_{j\in T}{y_j}\right)} \end{aligned}
+$$
+
+$\min$ 是类似的。
+
+**证毕**
+
+还有更强的：
+
+$$
+\underset{i\in S}{\operatorname{kthmax}{x_i}}=\sum_{T\subseteq S}{(-1)^{|T|-k}\dbinom {|T|-1}{k-1}\min_{j\in T}{x_j}}
+$$
+
+$$
+\underset{i\in S}{\operatorname{kthmin}{x_i}}=\sum_{T\subseteq S}{(-1)^{|T|-k}\dbinom {|T|-1}{k-1}\max_{j\in T}{x_j}}
+$$
+
+$$
+E\left(\underset{i\in S}{\operatorname{kthmax}{x_i}}\right)=\sum_{T\subseteq S}{(-1)^{|T|-k}\dbinom {|T|-1}{k-1}E\left(\min_{j\in T}{x_j}\right)}
+$$
+
+$$
+E\left(\underset{i\in S}{\operatorname{kthmin}{x_i}}\right)=\sum_{T\subseteq S}{(-1)^{|T|-k}\dbinom {|T|-1}{k-1}E\left(\max_{j\in T}{x_j}\right)}
+$$
+
+规定若 $n< m$，则 $\dbinom nm=0$。
+
+**证明：** 不妨设 $\forall 1\le i<n,x_i\le x_{i+1}$。则有：
+
+$$
+\begin{aligned}
+\sum_{T\subseteq S}{(-1)^{|T|-k}\dbinom {|T|-1}{k-1}\min_{j\in T}{x_j}}
+&=\sum_{i\in S}{x_i\sum_{T\subseteq S}{(-1)^{|T|-k}\dbinom {|T|-1}{k-1}\left[x_i=\min_{j\in T}{x_j} \right]}}\\
+&=\sum_{i\in S}{x_i\sum_{j=k}^n{\dbinom {n-i}{j-1}\dbinom {j-1}{k-1}(-1)^{j-k}}}
+\end{aligned}
+$$
+
+又因为有组合恒等式：$\dbinom ab\dbinom bc=\dbinom ac\dbinom {a-c}{b-c}$，所以有：
+
+$$
+\begin{aligned}
+\sum_{T\subseteq S}{(-1)^{|T|-k}\dbinom {|T|-1}{k-1}\min_{j\in T}{x_j}}
+&=\sum_{i\in S}{x_i\sum_{j=k}^n{\dbinom {n-i}{j-1}\dbinom {j-1}{k-1}(-1)^{j-k}}}\\
+&=\sum_{i\in S}{x_i\sum_{j=k}^n{\dbinom {n-i}{k-1}\dbinom {n-i-k+1}{j-k}(-1)^{j-k}}}\\
+&=\sum_{i\in S}{\dbinom {n-i}{k-1}x_i\sum_{j=k}^n{\dbinom {n-i-k+1}{j-k}(-1)^{j-k}}}\\
+&=\sum_{i\in S}{\dbinom {n-i}{k-1}x_i\sum_{j=0}^{n-i-k+1}{\dbinom {n-i-k+1}j(-1)^{j}}}
+\end{aligned}
+$$
+
+当 $i=n-k+1$ 时：
+
+$$
+\dbinom {n-i}{k-1}\sum_{j=0}^{n-i-k+1}{\dbinom {n-i-k+1}j(-1)^{j}}=1
+$$
+
+否则：
+
+$$
+\dbinom {n-i}{k-1}\sum_{j=0}^{n-i-k+1}{\dbinom {n-i-k+1}j(-1)^{j}}=0
+$$
+
+所以：
+
+$$
+\sum_{i\in S}{\dbinom {n-i}{k-1}x_i\sum_{j=0}^{n-i-k+1}{\dbinom {n-i-k+1}j(-1)^{j}}}=\underset{i\in S}{\operatorname{kthmax}}{x_i}
+$$
+
+剩下三个是类似的。
+
+**证毕**
+
+根据 min-max 容斥，我们还可以得到下面的式子：
+
+$$
+\underset{i\in S}{\operatorname{lcm}}{x_i}=\prod_{T\subseteq S}{\left(\gcd_{j\in T}{x_j} \right)^{(-1)^{|T|-1}}}
+$$
+
+因为 $\operatorname{lcm},\gcd,a^{1},a^{-1}$ 分别相当于 $\max,\min,+,-$，就是说相当于对于指数做了一个 min-max 容斥，自然就是对的了
 
 ## PKUWC2018 随机游走
 

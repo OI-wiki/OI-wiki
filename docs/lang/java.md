@@ -31,7 +31,7 @@ sudo apt install default-jdk
 sudo yum install java-1.8.0-openjdk
 ```
 
-在稍后询问是否安装时按下 `y` 继续安装，或是你已经下好了 `rpm` 文件，可以使用以下命令安装：
+在稍后询问是否安装时按下<kbd>y</kbd>继续安装，或是你已经下好了 `rpm` 文件，可以使用以下命令安装：
 
 ```bash
 sudo yum localinstall jre-9.0.4_linux_x64_bin.rpm #安装jre-9.0
@@ -44,7 +44,7 @@ sudo yum localinstall jdk-9.0.4_linux-x64_bin.rpm #安装jdk-9.0
 sudo dnf install java-1.8.0-openjdk
 ```
 
-在稍后询问是否安装时按下 `y` 继续安装，或是你已经下好了 `rpm` 文件，可以使用以下命令安装：
+在稍后询问是否安装时按下<kbd>y</kbd>继续安装，或是你已经下好了 `rpm` 文件，可以使用以下命令安装：
 
 ```bash
 sudo dnf install jre-9.0.4_linux_x64_bin.rpm #安装jre-9.0
@@ -74,9 +74,9 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 在控制台中输入命令 `source ~/.bashrc` 即可重载。如果是使用的 zsh 或其他命令行，在 `~/.zshrc` 或对应的文件中添加上面的内容。
 
-### MacOS
+### macOS
 
-如果是 MacOS，你可以使用以下命令安装包：
+如果是 macOS，你可以使用以下命令安装包：
 
 ```bash
 cd ~/Downloads
@@ -91,11 +91,25 @@ rm jdk-8u121-macosx-x64.dmg
 
 ## 基本语法
 
-***注意***  `Java` 类似 `C/C++` 语言，有一个函数作为程序执行的起始点，所有的程序只有一个主函数，每次执行的时候都会从主类开始，主函数是整个程序的入口，一切从此处开始。
+### 主函数
+
+Java 类似 C/C++ 语言，需要一个函数（在面向对象中，这被称为方法）作为程序执行的入口点。
+
+Java 的主函数的格式是固定的，形如：
+
+```java
+class Test {
+    public static void main(String[] args) {
+        // 程序的代码
+    }
+}
+```
+
+一个打包的 Java 程序（名称一般是 `*.jar`）中可以有很多个类似的函数，但是当运行这个程序的时候，只有其中一个函数会被运行，这是定义在 `Jar` 的 `Manifest` 文件中的，在 OI 比赛中一般用不到关于它的知识。
 
 ### 注释
 
-和 `C/C++` 一样，`Java` 使用 `//` 和 `/* */` 分别注释单行和多行。
+和 C/C++ 一样，Java 使用 `//` 和 `/* */` 分别注释单行和多行。
 
 ### 基本数据类型
 
@@ -111,18 +125,18 @@ rm jdk-8u121-macosx-x64.dmg
 |  short  |  短整型  |
 |   null  |   空   |
 
-### 申明变量
+### 声明变量
 
 ```java
-int a = 12; // 设置a为整数类型,并给a赋值12
-String str = "Hello, OI-wiki"; // 申明字符串变量str
-char ch = "W";
+int a = 12; // 设置 a 为整数类型,并给 a 赋值为 12
+String str = "Hello, OI-wiki"; // 声明字符串变量 str
+char ch = 'W';
 double PI = 3.1415926;
 ```
 
 ### final 关键字
 
-`final` 含义是这是最终的、不可更改的结果，被 final 修饰的变量只能被赋值一次，赋值后不再改变。
+`final` 含义是这是最终的、不可更改的结果，被 `final` 修饰的变量只能被赋值一次，赋值后不再改变。
 
 ```java
 final double PI = 3.1415926;
@@ -138,7 +152,7 @@ int[] ary = new int[10];
 
 ### 字符串
 
-- 字符串是 `Java` 一个内置的类。
+- 字符串是 Java 一个内置的类。
 
 ```java
 // 最为简单的构造一个字符串变量的方法如下
@@ -149,9 +163,46 @@ char[] stringArray = { 'H', 'e', 'l', 'l', 'o' };
 String s = new String(stringArray);
 ```
 
+### 包和导入包
+
+Java 中的类（`Class`）都被放在一个个包（`package`）里面。在一个包里面不允许有同名的类。在类的第一行通常要说明这个类是属于哪个包的。例如：
+
+```java
+package org.oi-wiki.tutorial;
+```
+
+包的命名规范一般是：`项目所有者的顶级域.项目所有者的二级域.项目名称`。
+
+通过 `import` 关键字来导入不在本类所属的包下面的类。例如下面要用到的 `Scanner`：
+
+```java
+import java.util.Scanner;
+```
+
+如果想要导入某包下面所有的类，只需要把这个语句最后的分号前的类名换成 `*`。
+
+### 输入
+
+可以通过 `Scanner` 类来处理命令行输入。
+
+```java
+package org.oiwiki.tutorial;
+
+import java.util.Scanner;
+
+class Test {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in); // System.in 是输入流
+        int a = scan.nextInt();
+        double b = scan.nextDouble();
+        String c = scan.nextLine();
+    }
+}
+```
+
 ### 输出
 
-可以对变量进行格式化输出
+可以对变量进行格式化输出。
 
 |  符号  |   意义  |
 | :--: | :---: |
@@ -177,6 +228,8 @@ class Test {
 
 ### 控制语句
 
+Java 的流程控制语句与 C++ 是基本相同的。
+
 #### 选择
 
 - if
@@ -185,9 +238,9 @@ class Test {
 class Test {
     public static void main(String[] args) {
         if ( /* 判断条件 */ ){
-              // 条件成立时执行这里面的代码
-          }
-      }
+            // 条件成立时执行这里面的代码
+        }
+    }
 }
 ```
 
@@ -196,7 +249,7 @@ class Test {
 ```java
 class Test {
     public static void main(String[] args) {
-        if ( /* 判断条件 */ ){
+        if ( /* 判断条件 */ ) {
             // 条件成立时执行这里面的代码
         } else {
             // 条件不成立时执行这里面的代码
@@ -210,12 +263,31 @@ class Test {
 ```java
 class Test {
     public static void main(String[] args) {
-        if ( /* 判断条件 */ ){
+        if ( /* 判断条件 */ ) {
             //判断条件成立执行这里面的代码
-        } else if ( /* 判断条件2 */ ){
+        } else if ( /* 判断条件2 */ ) {
             // 判断条件2成立执行这里面的代码
         } else {
           // 上述条件都不成立执行这里面的代码
+        }
+    }
+}
+```
+
+- switch...case
+
+```java
+class Test {
+    public static void main(String[] args) {
+        switch ( /* 表达式 */ ){
+          case /* 值 1 */:
+              // 当表达式取得的值符合值 1 执行此段代码
+              break; // 如果不加上 break 语句,会让程序按顺序往下执行直到 break
+          case /* 值 2 */:
+              // 当表达式取得的值符合值 2 执行此段代码
+              break;
+          default:
+              // 当表达式不符合上面列举的值的时候执行这里面的代码
         }
     }
 }
@@ -225,12 +297,26 @@ class Test {
 
 - for
 
+`for` 关键字有两种使用方法，其中第一种是普通的 `for` 循环，形式如下：
+
 ```java
 class Test {
     public static void main(String[] args) {
-            for ( /* 初始化 */; /* 循环的判断条件 */; /* 每次循环后执行的步骤 */ ){
-                // 当循环的条件成立执行循环体内代码
-            }
+        for ( /* 初始化 */; /* 循环的判断条件 */; /* 每次循环后执行的步骤 */ ) {
+            // 当循环的条件成立执行循环体内代码
+        }
+    }
+}
+```
+
+第二种是类似 C++ 的 `foreach` 使用方法，用于循环数组或者集合中的数据，相当于把上一种方式中的循环变量隐藏起来了，形式如下：
+
+```java
+class Test {
+    public static void main(String[] args) {
+        for	( /* 元素类型X */ /* 元素名Y */ : /* 集合Z */ ) {
+            // 这个语句块的每一次循环时，元素Y分别是集合Z中的一个元素。
+        }
     }
 }
 ```
@@ -240,7 +326,7 @@ class Test {
 ```java
 class Test {
     public static void main(String[] args) {
-        while ( /* 判定条件 */ ){
+        while ( /* 判定条件 */ ) {
             // 条件成立时执行循环体内代码
         }
     }
@@ -259,34 +345,15 @@ class Test {
 }
 ```
 
-- switch...case
-
-```java
-class Test {
-      public static void main(String[] args) {
-        switch ( /* 表达式 */ ){
-          case /* 值 1 */:
-              // 当表达式取得的值符合值 1 执行此段代码
-          break; // 如果不加上 break 语句,会让程序按顺序往下执行,执行所有的 case 语句
-          case /* 值 2 */:
-              // 当表达式取得的值符合值 2 执行此段代码
-          break;
-          default:
-              // 当表达式不符合上面列举的值的时候执行这里面的代码
-        }
-      }
-}
-```
-
 ## 注意事项
 
 ### 类名与文件名一致
 
-创建 Java 源程序需要类名和文件名一致才能编译通过，否则编译器会提示找不到 `类`。通常该文件名会在具体 OJ 中指定。
+创建  Java 源程序需要类名和文件名一致才能编译通过，否则编译器会提示找不到类。通常该文件名会在具体 OJ 中指定。
 
 例：
 
-Add.java
+`Add.java`
 
 ```java
 class Add {
@@ -296,4 +363,4 @@ class Add {
 }
 ```
 
-在该文件中需使用 Add 为类名方可编译通过。
+在该文件中需使用 `Add` 为类名方可编译通过。

@@ -221,7 +221,40 @@ a \cdot b = \begin{cases}
 \end{cases}
 $$
 
-注意：你也可以利用双精度浮点数在常数时间内计算大整数乘法。因为 $a\times b\bmod m=a\times b-\left\lfloor\frac{a\times b}{m}\right\rfloor m$。由于 $a,b<m$，因此 $\left\lfloor\frac{a\times b}{m}\right\rfloor<m$，于是可以用双精度浮点数计算这个分式。作差的时侯直接自然溢出。因为两者的差是一定小于 $m$ 的，我们只关心低位。这样再调整一下正负性就行了。更多信息参见 [这里](https://cs.stackexchange.com/questions/77016/modular-multiplication)。
+#### 快速乘
+
+但是 $O(\log_2 m)$ 的“龟速乘”还是太慢了，这在很多对常数要求比较高的算法比如 Miller_Rabin 和 Pollard-Rho 中，就显得不够用了。所以我们要介绍一种可以处理模数在 `long long` 范围内、不需要使用黑科技 `__int128` 的、复杂度为 $O(1)$ 的“快速乘”。
+
+我们发现：
+
+$$
+a\times b\bmod m=a\times b-\left\lfloor \dfrac{ab}m \right\rfloor\times m
+$$
+
+我们巧妙运用 `unsigned long long` 的自然溢出：
+
+$$
+a\times b\bmod m=a\times b-\left\lfloor \dfrac{ab}m \right\rfloor\times m=\left(a\times b-\left\lfloor \dfrac{ab}m \right\rfloor\times m\right)\bmod 2^{64}
+$$
+
+于是在算出 $\left\lfloor\dfrac{ab}m\right\rfloor$ 后，两边的乘法和中间的减法部分都可以使用 `unsigned long long` 直接计算，现在我们只需要解决如何计算 $\left\lfloor\dfrac {ab}m\right\rfloor$。
+
+我们考虑先使用 `long double` 算出 $\dfrac ap$ 再乘上 $b$。
+
+既然使用了 `long double`，就无疑会有进度误差。极端情况就是第一个有效数字在小数点后一位。因为 `sizeof(long double)=16`，即 `long double` 的进度是 $64$ 位有效数字。所以 $\dfrac ap$ 从第 $65$ 位开始出错，误差范围为 $\left(-2^{-64},2^{64}\right)$。乘上 $b$ 这个 $64$ 位整数，误差范围为 $(-0.5,0.5)$，再加上 $0.5$ 误差范围为 $(0,1)$，取整后误差范围位 $\{0,1\}$。于是乘上 $-m$ 后，误差范围变成 $\{0,-m\}$，我们需要判断这两种情况。
+
+因为 $m$ 在 `long long` 范围内，所以如果计算结果 $r$ 在 $[0,m)$ 时，直接返回 $r$，否则返回 $r+m$，当然你也可以直接返回 $(r+m)\bmod m$。
+
+代码实现如下：
+
+```cpp
+long long binmul(long long a, long long b, long long m) {
+  unsigned long long c =
+      (unsigned long long)a * b - (unsigned)((long double)a / m * b + 0.5L) * m;
+  if (c < m) return c;
+  return c + m;
+}
+```
 
 ### 高精度快速幂
 

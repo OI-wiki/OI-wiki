@@ -467,7 +467,7 @@ $\text{insert(r, c)}$ 表示在第 $r$ 行，第 $c$ 列插入一个结点。
 ```cpp
 void insert(const int &r, const int &c) {
   row[++idx] = r, col[idx] = c, ++siz[c];
-  U[idx] = D[idx] = c, U[D[c]] = idx, D[c] = idx;
+  U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
   if (!first[r])
     first[r] = L[idx] = R[idx] = idx;
   else {
@@ -1084,4 +1084,4 @@ DLX 能用来解决精确覆盖问题，适当地建立起模型后能解决一�
 - [2]万仓一黍 的 [《跳跃的舞者，舞蹈链（Dancing Links）算法——求解精确覆盖问题》](https://www.cnblogs.com/grenet/p/3145800.html)
 - [3]zhangjianjunab 的 [《DLX 算法一览》](https://blog.csdn.net/zhangjianjunab/article/details/83688681)
 - [4]静听风吟。的 [《搜索：DLX 算法》](https://www.cnblogs.com/aininot260/p/9629926.html)
-- [5]刘汝佳，陈锋 的 [《算法竞赛进阶指南》](https://item.jd.com/11111050.html)
+- [5]刘汝佳，陈锋 的 [《算法竞赛入门经典 - 训练指南》](https://item.jd.com/11111050.html)

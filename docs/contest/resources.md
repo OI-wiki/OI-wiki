@@ -1,4 +1,4 @@
-author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, GldHkkowo, SukkaW, Rapiz1, Henry-ZHR, H-J-Granger, countercurrent-time, fouzhe, Ir1d, abc1763613206, EndlessCheng, Plaaant6
+author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, GldHkkowo, SukkaW, Rapiz1, Henry-ZHR, H-J-Granger, countercurrent-time, fouzhe, Ir1d, abc1763613206, EndlessCheng, Plaaant6, LUTLJS, ZsgsDesign
 
 本页面主要列举了一些与算法竞赛有关的在线评测网站、题目合集、书籍、工具等资源。
 
@@ -22,7 +22,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [Lutece](https://acm.uestc.edu.cn/home)：电子科技大学在线评测系统，始于 2018 年，[项目开源](https://github.com/lutece-awesome)。
 - [洛谷](https://www.luogu.com.cn/)：始于 2013 年，社区群体庞大，各类 OI 的真题和习题较全。提供有偿教育服务。
 - [牛客网](https://www.nowcoder.com/)：始于 2014 年，提供技术类求职备考、社群交流、企业招聘等服务。
-- [NOJ](http://acm.njupt.edu.cn/)：南京邮电大学在线评测系统，始于 2018 年，[项目开源](https://github.com/ZsgsDesign/NOJ)。自身拥有题目两千余道，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
+- [NOJ](http://acm.njupt.edu.cn/)：南京邮电大学在线评测系统，始于 2008 年，[项目开源](https://github.com/ZsgsDesign/NOJ)。自身拥有题目两千余道，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
 - [NTUOJ](http://acm.csie.ntu.edu.tw)：台湾大学在线评测系统，始于 2007 年，基于开源项目 [Judge Girl](http://judgegirl.github.io/)。
 - [OpenJudge](http://openjudge.cn/)：始于 2005 年，由 POJ 团队开发的小组评测平台。
 - [POJ](http://poj.org/)：北京大学在线评测系统，始于 2003 年，国内历史最悠久的 OJ 之一。内有很多英文题，既有基础题，也有值得一试的好题。
@@ -163,3 +163,4 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [多校联合训练](http://acm.hdu.edu.cn) 关键词：`Multi-University Training Contest`
 - [Vjudge](https://vjudge.net/)
 - [Project Euler](https://projecteuler.net/)
+- [Junior Training Sheet](https://goo.gl/unDETI)：对新手友好的训练计划
