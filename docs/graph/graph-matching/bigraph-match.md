@@ -201,139 +201,138 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
     关键在于建图。我们建立每个物品两个属性值连向其编号的单向边。因为属性值一定是连续的，所以我们从小到大枚举属性值依次判断是否可以匹配，若枚举到 $i$ 时无法匹配，则最多只能攻击 $i-1$ 次。
     
     ```cpp
-	  #include<bits/stdc++.h>
-		using namespace std;
-		typedef long long ll;
-		
-		const int N = 1e6 + 7;
-		int n, maxn, book[N], match[N];
-		struct edge {
-			int to, nxt;
-		}e[N * 2];
-		int cnt, he[N];
-		
-		void add(int u, int v) {
-			e[++cnt].to = v;
-			e[cnt].nxt = he[u];
-			he[u] = cnt;
-		}
-		
-		bool dfs(int u, int tag) {//二分图匹配 
-			if(book[u] == tag)
-				return false;
-			book[u] = tag;
-			for(int i = he[u]; i; i = e[i].nxt) {
-				int v = e[i].to;
-				if(!match[v] || dfs(match[v], tag)) {
-					match[v] = u;
-					return true;
-				}
-			}
-			return false;
-		}
-		
-		int main() {
-			scanf("%d", &n);
-			for(int i = 1; i <= n; i++) {
-				int x, y;
-				scanf("%d%d", &x, &y);
-				add(x, i), add(y, i);
-				maxn = max(maxn, max(x, y));
-			}
-			for(int i = 1; i <= maxn + 1; i++) 
-				if(!dfs(i, i))
-					return printf("%d", i - 1), 0;
-		}
+    #include<bits/stdc++.h>
+    using namespace std;
+    typedef long long ll;
+    
+    const int N = 1e6 + 7;
+    int n, maxn, book[N], match[N];
+    struct edge {
+        int to, nxt;
+    }e[N * 2];
+    int cnt, he[N];
+    
+    void add(int u, int v) {
+        e[++cnt].to = v;
+        e[cnt].nxt = he[u];
+        he[u] = cnt;
+    }
+    	
+    bool dfs(int u, int tag) {//二分图匹配 
+        if(book[u] == tag)
+            return false;
+        book[u] = tag;
+        for(int i = he[u]; i; i = e[i].nxt) {
+            int v = e[i].to;
+            if(!match[v] || dfs(match[v], tag)) {
+                match[v] = u;
+            return true;
+            }
+        }
+        return false;
+    }
+    
+    int main() {
+        scanf("%d", &n);
+        for(int i = 1; i <= n; i++) {
+            int x, y;
+            scanf("%d%d", &x, &y);
+            add(x, i), add(y, i);
+            maxn = max(maxn, max(x, y));
+        }
+        for(int i = 1; i <= maxn + 1; i++) 
+            if(!dfs(i, i))
+                return printf("%d", i - 1), 0;
+    }
     ```
     
 ??? note "[Codeforces 1139E - Maximize Mex](https://codeforces.com/problemset/problem/1139/E) "
     建立每个学生能力值连向其社团编号的单向边。求 $\operatorname{mex}$ 的最大值只需从小到大枚举能力值判断是否可以匹配，当我们枚举到 $i$ 时，若其无法匹配，则 $\operatorname{mex}$ 的最大值即为 $i$。
-
-每天都有学生退出社团，我们很难维护这种操作，正难则反，我们倒叙枚举删去的学生，统计完当天的答案后，就将当前枚举的学生加入图中。注意匹配和标记数组初始化应为 $-1$，因为 $0$ 也是能力值。
+    
+    每天都有学生退出社团，我们很难维护这种操作，正难则反，我们倒叙枚举删去的学生，统计完当天的答案后，就将当前枚举的学生加入图中。注意匹配和标记数组初始化应为 $-1$，因为 $0$ 也是能力值。
 
     ```cpp
-	 	#include<bits/stdc++.h>
-		using namespace std;
-		typedef long long ll;
-		
-		inline ll read() {
-			ll sum = 0, ff = 1;
-			char ch = getchar();
-			while(ch < '0' || ch > '9') {
-				if(ch == '-')
-					ff = -1;
-				ch = getchar();
-			}
-			while(ch >= '0' && ch <= '9')
-				sum = sum * 10 + ch - '0', ch = getchar();
-			return sum * ff;
-		}
-		
-		void write(ll x) {
-			if(x < 0)
-				putchar('-'), x = -x;
-			if(x > 9)
-				write(x / 10);
-			putchar(x % 10 + '0');
-		}
-		
-		const int N = 1e4 + 7;
-		int n, m, d, maxn, p[N], c[N], k[N], match[N], book[N], ans[N];
-		bool vis[N];
-		struct edge {
-			int to, nxt;
-		}e[N];
-		int cnt, he[N];
-		
-		void add(int u, int v) {
-			e[++cnt].to = v;
-			e[cnt].nxt = he[u];
-			he[u] = cnt;
-		}
-		
-		bool dfs(int u, int tag) {
-			if(book[u] == tag)
-				return false;
-			book[u] = tag;
-			for(int i = he[u]; i; i = e[i].nxt) {
-				int v = e[i].to;
-				if(match[v] == -1 || dfs(match[v], tag)) {
-					match[v] = u;
-					return true;
-				}
-			}
-			return false;
-		} 
-		
-		int main() {
-		//	freopen("", "r", stdin);
-		//	freopen("", "w", stdout);
-			n = read(), m = read();
-			for(int i = 1; i <= n; i++)
-				p[i] = read(), maxn = max(maxn, p[i]);
-			for(int i = 1; i <= n; i++)
-				c[i] = read();
-			d = read();
-			for(int i = 1; i <= d; i++)
-				k[i] = read(), vis[k[i]] = true;
-			for(int i = 1; i <= n; i++)
-				if(!vis[i])
-					add(p[i], c[i]);
-			for(int i = d; i >= 1; i--) {
-				memset(match, -1, sizeof(match));
-				memset(book, -1, sizeof(book));
-				int mex = 0;
-				for(int j = 0; j <= maxn + 1; j++)
-					if(!dfs(j, j)) {
-						mex = j;
-						break;
-					}
-				ans[i] = mex;
-				add(p[k[i]], c[k[i]]);
-			}
-			for(int i = 1; i <= d; i++)
-				write(ans[i]), puts("");
-			return 0;
-		}
+    #include<bits/stdc++.h>
+    using namespace std;
+    typedef long long ll;
+    
+    inline ll read() {
+        ll sum = 0, ff = 1;
+        char ch = getchar();
+        while(ch < '0' || ch > '9') {
+            if(ch == '-')
+                ff = -1;
+            ch = getchar();
+            }
+            while(ch >= '0' && ch <= '9')
+                sum = sum * 10 + ch - '0', ch = getchar();
+            return sum * ff;
+        }
+     
+    void write(ll x) {
+        if(x < 0)
+            putchar('-'), x = -x;
+        if(x > 9)
+            write(x / 10);
+            putchar(x % 10 + '0');
+        }
+        
+    const int N = 1e4 + 7;
+    int n, m, d, maxn, p[N], c[N], k[N], match[N], book[N], ans[N];
+    bool vis[N];
+    struct edge {
+        int to, nxt;
+    }e[N];
+    int cnt, he[N];
+    
+    void add(int u, int v) {
+        e[++cnt].to = v;
+        e[cnt].nxt = he[u];
+        he[u] = cnt;
+    }
+    
+    bool dfs(int u, int tag) {
+        if(book[u] == tag)
+            return false;
+        book[u] = tag;
+        for(int i = he[u]; i; i = e[i].nxt) {
+            int v = e[i].to;
+            if(match[v] == -1 || dfs(match[v], tag)) {
+                match[v] = u;
+                return true;
+            }
+        }
+        return false;
+    } 
 	
+    int main() {
+        //	freopen("", "r", stdin);
+        //	freopen("", "w", stdout);
+        n = read(), m = read();
+        for(int i = 1; i <= n; i++)
+            p[i] = read(), maxn = max(maxn, p[i]);
+        for(int i = 1; i <= n; i++)
+            c[i] = read();
+        d = read();
+        for(int i = 1; i <= d; i++)
+            k[i] = read(), vis[k[i]] = true;
+        for(int i = 1; i <= n; i++)
+            if(!vis[i])
+                add(p[i], c[i]);
+        for(int i = d; i >= 1; i--) {
+            memset(match, -1, sizeof(match));
+            memset(book, -1, sizeof(book));
+            int mex = 0;
+            for(int j = 0; j <= maxn + 1; j++)
+            if(!dfs(j, j)) {
+                mex = j;
+                break;
+            }
+            ans[i] = mex;
+            add(p[k[i]], c[k[i]]);
+        }
+        for(int i = 1; i <= d; i++)
+            write(ans[i]), puts("");
+        return 0;
+    }
     ```
