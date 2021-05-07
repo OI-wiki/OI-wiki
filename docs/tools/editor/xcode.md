@@ -64,7 +64,7 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 
 ![](images/xcode-10.jpg)
 
-这是因为在 macOS 上默认使用 libc++ 作为 C++ 标准库实现，而万能头 `bits/stdc++.h` 是 GNU libstdc++ 所独有的。
+这是因为在 macOS 上默认使用 [libc++](https://libcxx.llvm.org/) 作为 C++ 标准库实现，而万能头 `bits/stdc++.h` 是 [GNU libstdc++](https://gcc.gnu.org/onlinedocs/libstdc++/) 所独有的。
 
 不过，我们可以手动编写一个万能头文件来使用。
 
