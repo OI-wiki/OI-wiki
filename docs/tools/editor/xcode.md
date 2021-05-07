@@ -165,11 +165,14 @@ vim stdc++.h
     #include <ccomplex>
     #include <cfenv>
     #include <cinttypes>
-    #include <cstdalign>
     #include <cstdbool>
     #include <cstdint>
     #include <ctgmath>
+    /* https://stackoverflow.com/a/25892335/15125422 */
+    #if defined(__GLIBCXX__) || defined(__GLIBCPP__)
+    #include <cstdalign>
     #include <cuchar>
+    #endif
     #endif
     
     // C++
