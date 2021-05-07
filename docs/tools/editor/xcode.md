@@ -1,4 +1,4 @@
-author: shenyouran, Xeonacid, StudyingFather
+author: shenyouran, Xeonacid, StudyingFather, CoelacanthusHex
 
 ## 简介
 
@@ -64,7 +64,9 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 
 ![](images/xcode-10.jpg)
 
-这是因为 Xcode 是默认不兼容万能头文件的。我们可以通过新建头文件的方法来使用万能头文件。
+这是因为在 macOS 上默认使用 libc++ 作为 C++ 标准库实现，而万能头 `bits/stdc++.h` 是 GNU libstdc++ 所独有的。
+
+不过，我们可以手动编写一个万能头文件来使用。
 
 ### 步骤 1
 
@@ -72,6 +74,12 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 
 ```bash
 cd /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
+```
+
+如果 Xcode 版本大于等于 12.5，那么
+
+```bash
+cd /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/
 ```
 
 ### 步骤 2
@@ -103,7 +111,7 @@ vim stdc++.h
     ```cpp
     // C++ includes used for precompiling -*- C++ -*-
     
-    // Copyright (C) 2003-2019 Free Software Foundation, Inc.
+    // Copyright (C) 2003-2020 Free Software Foundation, Inc.
     //
     // This file is part of the GNU ISO C++ Library.  This library is free
     // software; you can redistribute it and/or modify it under the
@@ -215,8 +223,8 @@ vim stdc++.h
     #include <system_error>
     #include <thread>
     #include <tuple>
-    #include <type_traits>
     #include <typeindex>
+    #include <type_traits>
     #include <unordered_map>
     #include <unordered_set>
     #endif
@@ -230,10 +238,22 @@ vim stdc++.h
     #include <charconv>
     // #include <execution>
     #include <filesystem>
-    #include <memory_resource>
     #include <optional>
+    #include <memory_resource>
     #include <string_view>
     #include <variant>
+    #endif
+    
+    #if __cplusplus > 201703L
+    #include <bit>
+    #include <compare>
+    #include <concepts>
+    #include <numbers>
+    #include <ranges>
+    #include <span>
+    #include <stop_token>
+    // #include <syncstream>
+    #include <version>
     #endif
     ```
 
