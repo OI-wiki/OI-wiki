@@ -126,46 +126,27 @@ ST3 的 vim 模式与真正的 vim 略有区别，以下为找到的部分（欢
 | --------------------------- | ------------------------------------------------------------ |
 | <kbd>Ctrl</kbd>+<kbd>X</kbd>                    | 剪切当前行                                                   |
 | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>              | 删除行                                                       |
-
 | <kbd>Ctrl</kbd>+<kbd>Enter</kbd>                | 在下方插入行                                                 |
-
 | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd>          | 在上方插入行                                                 |
-
 | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>             | 行上移                                                       |
-
 | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Down</kbd>           | 行下移                                                       |
-
 | <kbd>Ctrl</kbd>+<kbd>L</kbd>                    | 选择行，重复以向下选择多行                                   |
-
 | <kbd>Ctrl</kbd>+<kbd>D</kbd>                    | 选择词，重复以选择多个相同词，并进入多点编辑（用于快速批量更改） |
-
 | <kbd>Ctrl</kbd>+<kbd>M</kbd>                    | 跳转到匹配的括号                                             |
-
 | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>              | 选择括号内的内容，重复以包括括号                             |
-
 | <kbd>Ctrl</kbd>+<kbd>K</kbd> & <kbd>Ctrl</kbd>+<kbd>K</kbd>        | 删至行尾（复合快捷键，建议使用 vim 模式代替）                |
-
 | <kbd>Ctrl</kbd>+<kbd>K</kbd> & <kbd>Ctrl</kbd>+<kbd>Backspace</kbd> | 删至行首（复合快捷键，建议使用 vim 模式代替）                |
-
 | <kbd>Ctrl</kbd>+<kbd>]</kbd>                    | 缩进当前（选择的）行                                         |
-
 | <kbd>Ctrl</kbd>+<kbd>[</kbd>                    | 取消缩进当前（选择的）行                                     |
-
 | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>              | 复制当前行，并插入在下一行                                   |
-
 | <kbd>Ctrl</kbd>+<kbd>J</kbd>                    | 合并下一行与当前行                                           |
-
 | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>              | 粘贴并缩进（用于整段粘贴代码）                               |
-
 | <kbd>Ctrl</kbd>+<kbd>K</kbd> & <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>   | 从历史粘贴（复合快捷键，建议修改为 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd>）           |
-
 | <kbd>Ctrl</kbd>+<kbd>Space</kbd>                    | 选择下一个自动补全建议（与 <kbd>Down</kbd> 等价，注意是空格） |
-
 | <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>             | 光标下移，并保留当前行光标（进入多点编辑模式）               |
-
 | <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd>               | 光标上移，并保留当前行光标（进入多点编辑模式）               |
-
 | <kbd>~</kbd>                           | 转换选择内容的大小写                                         |
+
 
 
 ### 自动补全
