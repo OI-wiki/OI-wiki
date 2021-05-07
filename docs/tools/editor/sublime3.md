@@ -22,13 +22,13 @@ ST3 并不支持中文，需要安装汉化插件。
 
 #### 安装插件管理器
 
-打开 ST3 后键入 `Crtl+Shift+P` 唤出命令框，输入 `Install` 后回车（完整命令是 `Install Package Control` ，不区分大小写），此时应该会看到左下角有一个 `=` 在不停的左右移动。等待 Package Control 安装完成，具体的加载时间取决于网络。
+打开 ST3 后键入 <kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> 唤出命令框，输入 `Install` 后回车（完整命令是 `Install Package Control` ，不区分大小写），此时应该会看到左下角有一个 `=` 在不停的左右移动。等待 Package Control 安装完成，具体的加载时间取决于网络。
 
 如果完成的弹窗显示安装失败（与网络有关），则需要手动下载 [Package Control](https://packagecontrol.io/Package%20Control.sublime-package) 并将下载好的文件放到 `C:\Users\用户名\AppData\Roaming\Sublime Text 3\Installed Packages` 中。稍作等待，ST3 会自动识别该插件。
 
 #### 安装汉化插件
 
-再次按下 `Crtl+Shift+P` 输入 `Install` 后回车（完整命令是 `Package Contrl:Install Package` ），等待加载完成，接下来应该是这个界面：
+再次按下 <kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>  输入 `Install` 后回车（完整命令是 `Package Contrl:Install Package` ），等待加载完成，接下来应该是这个界面：
 
 ![](./images/sublime3-1.png)
 
@@ -47,7 +47,7 @@ ST3 并不支持中文，需要安装汉化插件。
 
 安装插件与主题的方法与安装汉化插件一致。
 
-输入 `Crtl+Shift+P` 输入 `Install` 后回车，然后搜索插件/主题/配色即可。
+输入 <kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>  输入 `Install` 后回车，然后搜索插件/主题/配色即可。
 
 由于 ST3 主要面向网页前端开发，所以一般来说编辑 C++ 的情况下并没有太多很好的插件，不过一般来说自带的功能已经足够了。
 
@@ -96,7 +96,7 @@ ST3 的 vim 模式与真正的 vim 略有区别，以下为找到的部分（欢
 + 使用 <kbd>Ctrl</kbd> 、 <kbd>Shift</kbd> 和 <kbd>Alt</kbd> 键的快捷键会保留为 ST3 设置的快捷键，如 `Ctrl+V` 不会进入可视模式而是正常粘贴。
 + 命令行模式只保留了 `:e` 、 `:0` 、 `:$` 、 `:s`  。
 + 使用 `\` 与 `?` 命令会自动唤出搜索框，而不是直接在命令中键入单词进行搜索。同时，数字将无法生效。
-+ `q` 宏录制命令会启动 ST3 自带的宏录制，按 <kbd>q</kbd> 后需要再按一个键启动录制，但录制的宏不会与该键绑定，需要按 `Crtl+Shift+Q` 才能启动。如果需要保存，需要 `工具->保存宏` ，快捷键需要设置。
++ `q` 宏录制命令会启动 ST3 自带的宏录制，按 <kbd>q</kbd> 后需要再按一个键启动录制，但录制的宏不会与该键绑定，需要按 <kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd>  才能启动。如果需要保存，需要 `工具->保存宏` ，快捷键需要设置。
 + 该插件的实现方式是通过修改快捷键，由于已经打包，所以如果是包含多个字符的命令无法进行设置。
 
 ??? note "让 ST3 更加 vim" 
@@ -116,7 +116,7 @@ ST3 的 vim 模式与真正的 vim 略有区别，以下为找到的部分（欢
 
 ### 快捷键
 
-注意 ST3 有复合快捷键，如 `Ctrl+K` & `Ctrl+Backspace` 表示先按 `Ctrl+K` 再按 `Ctrl+Backspace` ，不要认为是两者都可以。
+注意 ST3 有复合快捷键，如 <kbd>Ctrl</kbd>+<kbd>K</kbd> & <kbd>Ctrl</kbd>+<kbd>Backspace</kbd> 表示先按 <kbd>Ctrl</kbd>+<kbd>K</kbd> 再按 <kbd>Ctrl</kbd>+<kbd>Backspace</kbd> ，不要认为是两者都可以。
 
 以及不要尝试用 vim 模式中的 `j` 、 `k` 命令代替上下来触发快捷键。
 
@@ -124,28 +124,49 @@ ST3 的 vim 模式与真正的 vim 略有区别，以下为找到的部分（欢
 
 | 按键                        | 命令                                                         |
 | --------------------------- | ------------------------------------------------------------ |
-| `Ctrl+X`                    | 剪切当前行                                                   |
-| `Ctrl+Shift+k`              | 删除行                                                       |
-| `Ctrl+Enter`                | 在下方插入行                                                 |
-| `Ctrl+Shitf+Enter`          | 在上方插入行                                                 |
-| `Ctrl+Shitf+Up`             | 行上移                                                       |
-| `Ctrl+Shitf+Down`           | 行下移                                                       |
-| `Ctrl+L`                    | 选择行，重复以向下选择多行                                   |
-| `Ctrl+D`                    | 选择词，重复以选择多个相同词，并进入多点编辑（用于快速批量更改） |
-| `Ctrl+M`                    | 跳转到匹配的括号                                             |
-| `Ctrl+Shift+M`              | 选择括号内的内容，重复以包括括号                             |
-| `Ctrl+K` & ` Ctrl+K`        | 删至行尾（复合快捷键，建议使用 vim 模式代替）                |
-| `Ctrl+K` & `Ctrl+Backspace` | 删至行首（复合快捷键，建议使用 vim 模式代替）                |
-| `Ctrl+]`                    | 缩进当前（选择的）行                                         |
-| `Ctrl+[`                    | 取消缩进当前（选择的）行                                     |
-| `Ctrl+Shift+D`              | 复制当前行，并插入在下一行                                   |
-| `Ctrl+J`                    | 合并下一行与当前行                                           |
-| `Ctrl+Shift+V`              | 粘贴并缩进（用于整段粘贴代码）                               |
-| `Ctrl+K` & `Ctrl+Shift+V`   | 从历史粘贴（复合快捷键，建议修改为 `Ctrl+Alt+V `）           |
-| `Ctrl ␣`                    | 选择下一个自动补全建议（与 <kbd>Down</kbd> 等价，注意是空格） |
-| `Crtl+Alt+Down`             | 光标下移，并保留当前行光标（进入多点编辑模式）               |
-| `Crtl+Alt+Up`               | 光标上移，并保留当前行光标（进入多点编辑模式）               |
-| '~'                           | 转换选择内容的大小写                                         |
+| <kbd>Ctrl</kbd>+<kbd>X</kbd>                    | 剪切当前行                                                   |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>              | 删除行                                                       |
+
+| <kbd>Ctrl</kbd>+<kbd>Enter</kbd>                | 在下方插入行                                                 |
+
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd>          | 在上方插入行                                                 |
+
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>             | 行上移                                                       |
+
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Down</kbd>           | 行下移                                                       |
+
+| <kbd>Ctrl</kbd>+<kbd>L</kbd>                    | 选择行，重复以向下选择多行                                   |
+
+| <kbd>Ctrl</kbd>+<kbd>D</kbd>                    | 选择词，重复以选择多个相同词，并进入多点编辑（用于快速批量更改） |
+
+| <kbd>Ctrl</kbd>+<kbd>M</kbd>                    | 跳转到匹配的括号                                             |
+
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>              | 选择括号内的内容，重复以包括括号                             |
+
+| <kbd>Ctrl</kbd>+<kbd>K</kbd> & <kbd>Ctrl</kbd>+<kbd>K</kbd>        | 删至行尾（复合快捷键，建议使用 vim 模式代替）                |
+
+| <kbd>Ctrl</kbd>+<kbd>K</kbd> & <kbd>Ctrl</kbd>+<kbd>Backspace</kbd> | 删至行首（复合快捷键，建议使用 vim 模式代替）                |
+
+| <kbd>Ctrl</kbd>+<kbd>]</kbd>                    | 缩进当前（选择的）行                                         |
+
+| <kbd>Ctrl</kbd>+<kbd>[</kbd>                    | 取消缩进当前（选择的）行                                     |
+
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>              | 复制当前行，并插入在下一行                                   |
+
+| <kbd>Ctrl</kbd>+<kbd>J</kbd>                    | 合并下一行与当前行                                           |
+
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>              | 粘贴并缩进（用于整段粘贴代码）                               |
+
+| <kbd>Ctrl</kbd>+<kbd>K</kbd> & <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>   | 从历史粘贴（复合快捷键，建议修改为 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd>）           |
+
+| <kbd>Ctrl</kbd>+<kbd>Space</kbd>                    | 选择下一个自动补全建议（与 <kbd>Down</kbd> 等价，注意是空格） |
+
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>             | 光标下移，并保留当前行光标（进入多点编辑模式）               |
+
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd>               | 光标上移，并保留当前行光标（进入多点编辑模式）               |
+
+| <kbd>~</kbd>                           | 转换选择内容的大小写                                         |
+
 
 ### 自动补全
 
@@ -176,7 +197,8 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 
 ### 编译
 
-直接按 `Ctrl+B` 编译，第一次使用会让你选择编译方式，选择 `C++ Single File ` （编译）或 `C++ Single File - Run` （编译并运行）。
+直接按 <kbd>Ctrl</kbd>+<kbd>B</kbd> 编译，第一次使用会让你选择编译方式，选择 `C++ Single File ` （编译）或 `C++ Single File - Run` （编译并运行）。
+
 
 #### 修改编译选项
 
@@ -219,10 +241,12 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 运行结束后会提示程序的运行时间。
 
 ??? note "为什么感觉时间多了？"
-    注意这个时间是从按下 `Ctrl+B` 到程序结束的时间，也就是说包括编译的时间和输入的时间，以及如果在外部 CMD 运行还包括 CMD 开启关闭的时间，总之确实不太准。
+    注意这个时间是从按下 <kbd>Ctrl</kbd>+<kbd>B</kbd> 到程序结束的时间，也就是说包括编译的时间和输入的时间，以及如果在外部 CMD 运行还包括 CMD 开启关闭的时间，总之确实不太准。
+
 
 ???+warning
-    这个窗口无法输入 `F6` 或 `Crtl+Z` ，如果运行读入到文件末尾的程序请使用文件输入，或使用上面「其他配置方法」中写的方法在外部 CMD 运行。
+    这个窗口无法输入 <kbd>F6</kbd> 或 <kbd>Ctrl</kbd>+<kbd>Z</kbd> ，如果运行读入到文件末尾的程序请使用文件输入，或使用上面「其他配置方法」中写的方法在外部 CMD 运行。
+
 
 ### 调试
 
@@ -234,7 +258,8 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 
 + 把文件夹拖进 ST3 中并开启侧边栏，从而快速切换文件。
 
-+ 善用跳转功能，尤其是 `Ctrl+P` 进行文件跳转与 `Ctrl+R` 进行函数跳转。
++ 善用跳转功能，尤其是 <kbd>Ctrl</kbd>+<kbd>P</kbd> 进行文件跳转与 <kbd>Ctrl</kbd>+<kbd>R</kbd> 进行函数跳转。
+
 
 + ST3 支持 git。
 
