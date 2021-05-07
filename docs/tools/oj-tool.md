@@ -32,43 +32,43 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ### 使用
 
-将下载好的可执行文件 `cf` （或者 `cf.exe` ）放置到合适的位置后（见常见问题的第二条），然后打开命令行，用 `cf config` 命令来配置一下用户名、密码和代码模板。
+将下载好的可执行文件 `cf`（或者 `cf.exe`）放置到合适的位置后（见常见问题的第二条），然后打开命令行，用 `cf config` 命令来配置一下用户名、密码和代码模板。
 
 ### 使用举例
 
 以下简单模拟一场比赛的流程。
 
- `cf race 1136` 
+`cf race 1136`
 
-要开始打 1136 这场比赛了！其中 1136 可以从比赛的链接获取，比方说这个例子的比赛链接就为 <https://codeforces.com/contest/1136> 。
+要开始打 1136 这场比赛了！其中 1136 可以从比赛的链接获取，比方说这个例子的比赛链接就为 <https://codeforces.com/contest/1136>。
 
 如果比赛还未开始，则该命令会进行倒计时。比赛已开始或倒计时完后，工具会自动用默认浏览器打开比赛的所有题目页面，并拉取样例到本地。
 
- `cd 1136/a` 
+`cd 1136/a`
 
 进入 A 题的目录，此时该目录下会包含该题的样例。
 
- `cf gen` 
+`cf gen`
 
-用默认模板生成一份代码，在这里不妨设为 `a.cpp` 。
+用默认模板生成一份代码，在这里不妨设为 `a.cpp`。
 
- `vim a.cpp` 
+`vim a.cpp`
 
 用 Vim 写代码（或者用其他的编辑器或 IDE 进行）。
 
- `cf test` 
+`cf test`
 
 编译并测试样例。
 
- `cf submit` 
+`cf submit`
 
 提交代码。
 
- `cf list` 
+`cf list`
 
 查看当前比赛各个题目的信息。
 
- `cf stand` 
+`cf stand`
 
 用浏览器打开榜单，查看排名。
 
@@ -80,23 +80,23 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 2.  我无法使用 `cf` 这个命令
 
-    你应该将 `cf` 这个程序放到一个已经加入到系统变量 PATH 的路径里（比如说 Linux 里的 `/usr/bin/` )。
+    你应该将 `cf` 这个程序放到一个已经加入到系统变量 PATH 的路径里（比如说 Linux 里的 `/usr/bin/`)。
 
     不明白的话请直接搜索“PATH 添加路径”。
 
 3.  如何加一个新的测试数据
 
-    新建两个额外的测试数据文件 `inK.txt` 和 `ansK.txt` （K 是包含 0~9 的字符串）。
+    新建两个额外的测试数据文件 `inK.txt` 和 `ansK.txt`（K 是包含 0~9 的字符串）。
 
 4.  怎样在终端里启用 tab 补全命令
 
     使用这个工具 [Infinidat/infi.docopt_completion](https://github.com/Infinidat/infi.docopt_completion) 即可。
 
-    注意：如果有一个新版本发布（尤其是添加了新命令），你应该重新运行 `docopt-completion cf` 。
+    注意：如果有一个新版本发布（尤其是添加了新命令），你应该重新运行 `docopt-completion cf`。
 
 ## Codeforces Visualizer
 
-官网： [Codeforces Visualizer](https://cfviz.netlify.app) 
+官网：[Codeforces Visualizer](https://cfviz.netlify.app)
 
 源码托管在 [sjsakib/cfviz](https://github.com/sjsakib/cfviz/) 上。
 
@@ -115,7 +115,7 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 使用方法：
 
 - 在谷歌或者火狐浏览器上安装插件。该工具会将解析到的测例数据以 JSON 格式的形式发到指定的端口。
-- 在本地安装任何可以从端口监听读取数据的工具即可，可以参考 [官方给出的示例](https://github.com/jmerle/competitive-companion-example) 。
+- 在本地安装任何可以从端口监听读取数据的工具即可，可以参考 [官方给出的示例](https://github.com/jmerle/competitive-companion-example)。
 
 图片演示：
 
@@ -123,10 +123,10 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ## CP Editor
 
-官网： [CP Editor](https://cpeditor.org) 
+官网：[CP Editor](https://cpeditor.org/zh)
 
-CP Editor 是一款专门为算法竞赛（Competitive Programming）设计的轻量级跨平台自由软件 IDE，有自动获取网页上的样例，一键编译运行并测试样例，在 IDE 内提交至 Codeforces 等功能。
+CP Editor 是一款专为算法竞赛（Competitive Programming）设计的轻量级 IDE，支持 Linux/Windows/macOS，是自由软件，有自动获取网页上的样例，一键编译运行并测试样例，在 IDE 内提交至 Codeforces 等功能。
 
-源码托管在 [cpeditor/cpeditor](https://github.com/cpeditor/cpeditor) 上，另有 [Gitee 镜像](https://gitee.com/ouuan/cpeditor) （同步自 GitHub，不一定是最新的）。
+源码托管在 [GitHub](https://github.com/cpeditor/cpeditor) 上，另有 [Gitee 镜像](https://gitee.com/ouuan/cpeditor)（同步自 GitHub）。
 
-下载链接： [GitHub Releases](https://github.com/cpeditor/cpeditor/releases) 或 [Gitee 发行版](https://gitee.com/ouuan/cpeditor/releases) 
+下载链接：[GitHub Releases](https://github.com/cpeditor/cpeditor/releases) 或 [Gitee 发行版](https://gitee.com/ouuan/cpeditor/releases)。

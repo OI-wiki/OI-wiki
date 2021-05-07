@@ -4,7 +4,7 @@ author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink,
 
 Visual Studio Code（以下简称 VS Code) 是一个由微软开发，同时支持 Windows、Linux 和 macOS 等操作系统且开放源代码的代码编辑器。它是用 TypeScript 编写的，并且采用 Electron 架构。它带有对 JavaScript、TypeScript 和 Node.js 的内置支持，并为其他语言（如 C、C++、Java、Python、PHP、Go）提供了丰富的扩展生态系统。
 
-官网： [Visual Studio Code - Code Editing. Redefined](https://code.visualstudio.com/) 
+官网：[Visual Studio Code - Code Editing. Redefined](https://code.visualstudio.com/)
 
 ## 使用 Code Runner 插件运行代码
 
@@ -20,12 +20,14 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 ???+ warning
     如果安装了 VS Code 与 Code Runner 后，代码仍然无法运行，很有可能是因为系统尚未安装 C/C++ 的运行环境，参考 [Hello, World! 页面](../../lang/helloworld.md) 以安装。
+    
+    记得勾选设置中的 Run In Terminal 选项，如图：![](./images/vscode-7.png)
 
 ## 使用 C/C++ 插件编译并调试
 
 ### 安装插件
 
-在 VS Code 中打开插件商店，在搜索栏中输入 `C++` 或者 `@category:"programming languages"` ，然后找到 C/C++，点击 Install 安装插件。
+在 VS Code 中打开插件商店，在搜索栏中输入 `C++` 或者 `@category:"programming languages"`，然后找到 C/C++，点击 Install 安装插件。
 
 ![](./images/vscode-2.png)
 
@@ -34,7 +36,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 ### 配置编译
 
-首先用 VS Code 打开一个文件夹，然后按下<kbd>F1</kbd>，输入 `C/C++: Edit configurations (UI)` ，进入 C/C++ 插件的设置界面。
+首先用 VS Code 打开一个文件夹，然后按下<kbd>F1</kbd>，输入 `C/C++: Edit configurations (UI)`，进入 C/C++ 插件的设置界面。
 
 ![vscode-3](images/vscode-3.png)
 
@@ -44,17 +46,16 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 用于调整 VS Code 的智能补全。
 
-如果你使用 Clang 编译器，在“IntelliSense 模式”中选择 `clang-x64` 而非默认的 `msvc-x64` ；如果你使用 G++ 编译器，选择 `gcc-x64` 以使用自动补全等功能。否则会得到“IntelliSense 模式 msvc-x64 与编译器路径不兼容。”的错误。
+如果你使用 Clang 编译器，在“IntelliSense 模式”中选择 `clang-x64` 而非默认的 `msvc-x64`；如果你使用 G++ 编译器，选择 `gcc-x64` 以使用自动补全等功能。否则会得到“IntelliSense 模式 msvc-x64 与编译器路径不兼容。”的错误。
 
 ![](images/vscode-4.png)
 
 ### 配置 GDB/LLDB 调试器
 
-在 VS Code 中新建一份 C++ 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}` ），保存并按下<kbd>F5</kbd>，进入调试模式。
-如果出现了“选择环境”的提示，选择“C++ (GDB/LLDB)”。在“选择配置”中，G++ 用户选择 `g++.exe - 生成和调试活动文件` ；Clang 用户选择 `clang++ - 生成和调试活动文件` 。
+在 VS Code 中新建一份 C++ 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}`），保存并按下<kbd>F5</kbd>，进入调试模式。
+如果出现了“选择环境”的提示，选择“C++ (GDB/LLDB)”。在“选择配置”中，G++ 用户选择 `g++.exe - 生成和调试活动文件`；Clang 用户选择 `clang++ - 生成和调试活动文件`。
 
 ???+ warning
-
     配置名称并非固定，而是可以自定义的。不同的操作系统可能具有不同的配置名称。
 
 完成后，VS Code 将自动完成初始化操作并弹出一个 `launch.json` 配置文件。关闭它。
@@ -69,7 +70,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 ![](images/vscode-5.gif)
 
-按下<kbd>F5</kbd>进入调试模式，编辑器上方会出现一个调试工具栏，四个蓝色按钮从左至右分别代表 GDB 中的 `continue` , `next` , `step` 和 `until` ：
+按下<kbd>F5</kbd>进入调试模式，编辑器上方会出现一个调试工具栏，四个蓝色按钮从左至右分别代表 GDB 中的 `continue`,`next`,`step` 和 `until`：
 
 ![](images/vscode-6.png)
 

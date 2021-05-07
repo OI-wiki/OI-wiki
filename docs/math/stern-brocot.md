@@ -1,6 +1,6 @@
 ## Stern-Brocot 树
 
-Stern-Brocot 树是一种维护分数的优雅的数据结构。它分别由 Moritz Stern 在 1858 年和 Achille Brocot 在 1861 年发现这个结构。
+Stern-Brocot 树是一种维护分数的优雅的结构。它分别由 Moritz Stern 在 1858 年和 Achille Brocot 在 1861 年发现这个结构。
 
 ### 概述
 
@@ -12,7 +12,7 @@ $$
 
 这个 $\frac{1}{0}$ 可能看得你有点懵逼。不过我们不讨论这方面的严谨性，你只需要把它当作 $\infty$ 就行了。
 
-每次我们在相邻的两个分数 $\frac{a}{b},\frac{c}{d}$ 中间插入一个分数 $\frac{a+c}{b+d}$ ，这样就完成了一次迭代，得到下一个序列。于是它就会变成这样
+每次我们在相邻的两个分数 $\frac{a}{b},\frac{c}{d}$ 中间插入一个分数 $\frac{a+c}{b+d}$，这样就完成了一次迭代，得到下一个序列。于是它就会变成这样
 
 $$
 \begin{array}{c}
@@ -22,7 +22,7 @@ $$
 \end{array}
 $$
 
-既然我们叫这个数据结构 Stern-Brocot 树，那么它总得有一个树的样子对吧。来一张图：
+既然我们称它为 Stern-Brocot 树，那么它总得有一个树的样子对吧。来一张图：
 
 ![pic](./images/stern-brocot1.png)
 
@@ -57,9 +57,9 @@ $$
 
 #### 最简性
 
-序列中的分数（除了 $\frac{0}{1},\frac{1}{0}$ ）都是最简分数。
+序列中的分数（除了 $\frac{0}{1},\frac{1}{0}$）都是最简分数。
 
-略证：为证明最简性，我们首先证明对于序列中连续的两个分数 $\frac{a}{b},\frac{c}{d}$ ：
+略证：为证明最简性，我们首先证明对于序列中连续的两个分数 $\frac{a}{b},\frac{c}{d}$：
 
 $$
 bc-ad=1
@@ -71,9 +71,9 @@ $$
 a(b+d)-b(a+c)=ad-bc=1
 $$
 
-后半部分同理。证明了这个，利用扩展欧几里德定理，如果上述方程有解，显然 $\gcd(a,b)=\gcd(c,d)=1$ 。这样就证完了。
+后半部分同理。证明了这个，利用扩展欧几里德定理，如果上述方程有解，显然 $\gcd(a,b)=\gcd(c,d)=1$。这样就证完了。
 
-有了上面的证明，我们可以证明 $\frac{a}{b}<\frac{c}{d}$ 。
+有了上面的证明，我们可以证明 $\frac{a}{b}<\frac{c}{d}$。
 
 有了这两个性质，你就可以把它当成一棵平衡树来做了。建立和查询就向平衡树一样做就行了。
 
@@ -106,7 +106,7 @@ string find(int x, int y, int a = 0, int b = 1, int c = 1, int d = 0) {
 
 ## Farey 序列
 
-Stern-Brocot 树与 Farey 序列有着极其相似的特征。第 $i$ 个 Farey 序列记作 $F_i$ ，表示把分母小于等于 $i$ 的所有最简真分数按大小顺序排列形成的序列。
+Stern-Brocot 树与 Farey 序列有着极其相似的特征。第 $i$ 个 Farey 序列记作 $F_i$，表示把分母小于等于 $i$ 的所有最简真分数按大小顺序排列形成的序列。
 
 $$
 \begin{array}{lllllllllllll}
@@ -120,13 +120,15 @@ $$
 
 显然，上述构建 Stern-Brocot 树的算法同样适用于构建 Farey 序列。因为 Stern-Brocot 树中的数是最简分数，因此在边界条件（分母）稍微修改一下就可以形成构造 Farey 序列的代码。你可以认为 Farey 序列 $F_i$ 是 Stern-Brocot 第 $i-1$ 次迭代后得到的序列的子序列。
 
-Farey 序列同样满足最简性和单调性，并且满足一个与 Stern-Brocot 树相似的性质：对于序列中连续的三个数 $\frac ab,\frac xy,\frac cd$ ，有 $x=a+c,y=b+d$ 。这个可以轻松证明，不再赘述。
+Farey 序列同样满足最简性和单调性，并且满足一个与 Stern-Brocot 树相似的性质：对于序列中连续的三个数 $\frac ab,\frac xy,\frac cd$，有 $x=a+c,y=b+d$。这个可以轻松证明，不再赘述。
 
 由 Farey 序列的定义，我们可以得到 $F_i$ 的长度 $L_i$ 公式为：
 
 $$
+\begin{aligned}
 L_i=L_{i-1}+\varphi(i)\\
 L_i=1+\sum_{k=1}^i\varphi(k)
+\end{aligned}
 $$
 
- **本页面主要译自博文 [Дерево Штерна-Броко. Ряд Фарея](http://e-maxx.ru/algo/stern_brocot_farey) 与其英文翻译版 [The Stern-Brocot Tree and Farey Sequences](https://cp-algorithms.com/others/stern_brocot_tree_farey_sequences.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+**本页面主要译自博文 [Дерево Штерна-Броко. Ряд Фарея](http://e-maxx.ru/algo/stern_brocot_farey) 与其英文翻译版 [The Stern-Brocot Tree and Farey Sequences](https://cp-algorithms.com/others/stern_brocot_tree_farey_sequences.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

@@ -1,0 +1,50 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: OI-Wiki Page Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+          check-latest: true
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+      - name: Install Node.js dependencies
+        run: npm install .
+      - name: Page Build
+        run: |
+          chmod +x ./scripts/build.sh && ./scripts/build.sh
+          mkdocs build -v
+      - name: Render math
+        run: node --max_old_space_size=3072 ./scripts/render_math.js
+      - name: Gulp minify
+        run: npx gulp minify
+      - name: Generate redirects
+        run: python scripts/gen_redirect.py
+      - name: Deploy to gh-pages
+        if: ${{ github.event_name == 'push' }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          force_orphan: true
+      - name: BaiduPusher
+        if: ${{ github.event_name == 'push' && github.repository_owner == 'oi-wiki' }}
+        env:
+          site: oi-wiki.org
+          BaiduToken: ${{ secrets.BaiduToken }}
+        run: chmod +x scripts/BaiduPusher.sh && ./scripts/BaiduPusher.sh

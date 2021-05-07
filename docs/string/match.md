@@ -45,8 +45,8 @@ std::vector<int> match(char *a, char *b, int n, int m) {
 
 ## Hash 的方法
 
-参见 [Hash](./hash.md) 
+参见 [Hash](./hash.md)
 
 ## KMP 算法
 
-参见 [KMP](./kmp.md) 
+参见 [KMP](./kmp.md)
