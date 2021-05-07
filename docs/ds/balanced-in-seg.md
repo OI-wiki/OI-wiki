@@ -24,8 +24,8 @@ author: Dev-jqe, HeRaNO, huaruoji
 
 ## 时间复杂度
 
-对于 $1,3,4$ 操作，我们考虑我们在外层线段树上进行 $\log{n}$ 次操作，每次操作会在一个内层平衡树树上进行 $\log{n}$ 次操作，所以时间复杂度为 $\log^2{n}$。
-对于 $2$ 操作，多一个二分过程，为 $\log^3{n}$。
+- 对于 1，3，4 操作，我们考虑我们在外层线段树上进行 $\log{n}$ 次操作，每次操作会在一个内层平衡树树上进行 $\log{n}$ 次操作，所以时间复杂度为 $\log^2{n}$。
+- 对于 2 操作，多一个二分过程，为 $\log^3{n}$。
 
 ## 经典例题
 
@@ -33,9 +33,9 @@ author: Dev-jqe, HeRaNO, huaruoji
 
 ## 示例代码
 
-平衡树部分代码请参考 Splay 等其他条目。[传送至 Splay 条目](./splay.md)
+平衡树部分代码请参考 [Splay](./splay.md) 等其他条目。
 
-操作一
+操作一：
 
 ```cpp
 int vec_rank(int k, int l, int r, int x, int y, int t) {
@@ -51,7 +51,7 @@ int vec_rank(int k, int l, int r, int x, int y, int t) {
 }
 ```
 
-操作二
+操作二：
 
 ```cpp
 int el = 0, er = 100000001, emid;
@@ -65,7 +65,7 @@ while (el != er) {
 printf("%d\n", el - 1);
 ```
 
-操作三
+操作三：
 
 ```cpp
 void vec_chg(int k, int l, int r, int loc, int x) {
@@ -79,7 +79,7 @@ void vec_chg(int k, int l, int r, int loc, int x) {
 }
 ```
 
-操作四
+操作四：
 
 ```cpp
 int vec_front(int k, int l, int r, int x, int y, int t) {
@@ -94,4 +94,4 @@ int vec_front(int k, int l, int r, int x, int y, int t) {
 
 ## 相关算法
 
-面对多维度信息的题目时，如果题目没有要求强制在线，我们还可以考虑 **CDQ 分治**，或者 **整体二分** 等分治算法，来避免使用高级数据结构，减少代码实现难度。
+面对多维度信息的题目时，如果题目没有要求强制在线，我们还可以考虑 [CDQ 分治](../misc/cdq-divide.md)，或者 [整体二分](../misc/parallel-binsearch.md) 等分治算法，来避免使用高级数据结构，减少代码实现难度。
