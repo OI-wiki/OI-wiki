@@ -209,7 +209,8 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 进入 `系统->编译系统->新建编译系统…` 然后在大括号中间输入：
 
 ```json
-"cmd": ["cmd","/c","g++","-Wall","-lm","${file}","-o","${file_path}/${file_base_name}","&&","cmd","/c","${file_path}/${file_base_name}"],    //编译选项可以自己调整
+"cmd": ["cmd","/c","g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","cmd","/c","${file_path}/${file_base_name}"],    //编译选项可以自己调整
+
 "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",    //这一行可以让ST3图形化显示报错，如果习惯了看g++返回的信息可以去掉
 ```
 
@@ -229,7 +230,8 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
     在外部 CMD 运行
     
     ```json
-    "cmd": ["cmd","/c","g++","-Wall","-lm","${file}","-o","${file_path}/${file_base_name}","&&","start","cmd","/c","${file_path}/${file_base_name}& pause"],
+    "cmd": ["cmd","/c","g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","start","cmd","/c","${file_path}/${file_base_name}& pause"],
+
     ```
     
     还可以利用一些方法把编译和运行拆开并分别配置快捷键，由于并不必要，请自行搜索。
