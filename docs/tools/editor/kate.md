@@ -15,3 +15,18 @@ Kate 是一个具有众多功能的跨平台文本编辑器。Kate 还附带了�
 ![](images/kate-2-windows-install-2.png)
 
 其中形如 `kate-21.04.0-1-1272-windows-msvc2019_64-cl-sideload.appx` 格式的是供手动安装的商店版本，`kate-21.04.0-1-1272-windows-msvc2019_64-cl.exe` 格式的则是安装包，下载双击即可。
+
+## 用法与功能
+
+### 交换文件防止数据丢失
+
+类似 Vim，Kate 会将未保存的更改写入一个交换文件（一般是原文件名前面加点后面加 `.kate-swp`），如果遭遇断电或程序崩溃，您下次启动时不会丢失未保存的更改。
+
+### 代码高亮
+
+Kate 支持三百余种语言的语法高亮。一般来说，Kate 可以自动地选择对应的语言进行语法高亮，不过偶尔也有错误的时候，这时候可以点击最右下角的按钮，选择正确的语言。
+
+#### 自己编写语法高亮文件
+
+尽管 Kate 支持超过三百种语言的语法高亮，但是仍不免有语言未被覆盖到，此时可以自己动手编写语法高亮文件。
+Kate 自身自带的文件位于[这里](https://kate-editor.org/syntax/)，语法可参照 [Working with Syntax Highlighting](https://docs.kde.org/trunk5/en/kate/katepart/highlight.html)，编写好的文件根据[这里](https://github.com/KDE/syntax-highlighting#syntax-definition-files)放置。[这里](https://github.com/CoelacanthusHex/dotfiles/blob/80a913cc5b90d7878eb0ed77b8df2d9b97926272/kate/.local/share/katepart5/syntax/pam_env.xml)有我编写的一个可供参考。
