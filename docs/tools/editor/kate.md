@@ -30,3 +30,7 @@ Kate 支持三百余种语言的语法高亮。一般来说，Kate 可以自动�
 
 尽管 Kate 支持超过三百种语言的语法高亮，但是仍不免有语言未被覆盖到，此时可以自己动手编写语法高亮文件。
 Kate 自身自带的文件位于[这里](https://kate-editor.org/syntax/)，语法可参照 [Working with Syntax Highlighting](https://docs.kde.org/trunk5/en/kate/katepart/highlight.html)，编写好的文件根据[这里](https://github.com/KDE/syntax-highlighting#syntax-definition-files)放置。[这里](https://github.com/CoelacanthusHex/dotfiles/blob/80a913cc5b90d7878eb0ed77b8df2d9b97926272/kate/.local/share/katepart5/syntax/pam_env.xml)有我编写的一个可供参考。
+
+### 切换语言
+
+点击上方工具栏里的 `设置` / `Setting`，然后点击 `配置语言` / `Configure Language`，随后选择语言即可，注意可以选择备选语言。
