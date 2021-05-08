@@ -26,7 +26,7 @@ author: DanJoshua
 
 ## Stoer-Wagner 算法
 
-Stoer-Wagner 算法在 1995 年由*Mechthild Stoer*与*Frank Wagner*提出，是一种通过 **递归** 的方式来解决 **无向正权图** 上的全局最小割问题的算法。算法复杂度一般可近似看作 $O(V^3)$。
+Stoer-Wagner 算法在 1995 年由*Mechthild Stoer*与*Frank Wagner*提出，是一种通过 **递归** 的方式来解决 **无向正权图** 上的全局最小割问题的算法。算法复杂度 $O(|V||E| + |V|^{2}\log|V|)$ 一般可近似看作 $O(|V|^3)$。
 
 它的实现基于以下基本事实：设图 $G$ 中有任意两点 $S, T$。那么任意一个图 $G$ 的割 $C$，或者有 $S, T$ 在同一联通块中，或者有 $C$ 是一个 ${S-T}$ 割。
 
