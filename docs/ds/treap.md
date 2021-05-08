@@ -180,29 +180,32 @@ struct treap {
     }
   }
 
-  void del(int &k, int x) {
-    if (!k) return;
+  bool del(int &k, int x) {
+    if (!k) return false;
     if (val[k] == x) {
       if (w[k] > 1) {
         w[k]--;
         size[k]--;
-        return;
+        return true;
       }
-      if (l[k] == 0 || r[k] == 0)
+      if (l[k] == 0 || r[k] == 0) {
         k = l[k] + r[k];
-      else if (rnd[l[k]] < rnd[r[k]]) {
+        return true;
+      } else if (rnd[l[k]] < rnd[r[k]]) {
         rrotate(k);
-        del(k, x);
+        return del(k, x);
       } else {
         lrotate(k);
-        del(k, x);
+        return del(k, x);
       }
     } else if (val[k] < x) {
-      size[k]--;
-      del(r[k], x);
+      bool succ = del(r[k], x);
+      if (succ) size[k]--;
+      return succ;
     } else {
-      size[k]--;
-      del(l[k], x);
+      bool succ = del(l[k], x);
+      if (succ) size[k]--;
+      return succ;
     }
   }
 
