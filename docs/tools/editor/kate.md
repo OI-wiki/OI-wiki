@@ -51,3 +51,73 @@ Kate 可以自动识别当前文件使用的是什么编码，如果识别错误
 2. 支持正则表达式（包括捕获组）
 3. 从当前文件到多文件再到当前工程不等的范围
 4. 对查找的结果进行选择替换
+
+### Language Server Protocol
+
+Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go、Latex/BibTeX、OCaml、Python、Rust，现如今支持如下表中的语言：
+
+|语言|LSP Server|
+|:--:|:--------:|
+|Bash|[bash-language-server](https://github.com/bash-lsp/bash-language-server)|
+|LaTeX|[texlab](https://texlab.netlify.com/)|
+|BibTeX|[texlab](https://texlab.netlify.com/)|
+|C|[clangd](https://clang.llvm.org/extra/clangd/)|
+|C++|[clangd](https://clang.llvm.org/extra/clangd/)|
+|D|[serve-d](https://github.com/Pure-D/serve-d)|
+|Fortran|[fortls](https://github.com/hansec/fortran-language-server)|
+|Go|[gopls](https://golang.org/x/tools/gopls)|
+|Haskell|[haskell-language-server-wrapper](https://github.com/haskell/haskell-language-server")|
+|JavaScript|[typescript-language-server](https://github.com/theia-ide/typescript-language-server)|
+|OCaml|[ocamllsp](https://github.com/ocaml/ocaml-lsp)|
+|Perl|[Perl-LanguageServer](https://github.com/richterger/Perl-LanguageServer)|
+|Python|[pyls](https://github.com/palantir/python-language-server)|
+|Rust|[rls](https://github.com/rust-lang/rls)|
+|TypeScript|[typescript-language-server](https://github.com/theia-ide/typescript-language-server)|
+|R|[RLanguageServer](https://github.com/REditorSupport/languageserver)|
+|zig|[zls](https://github.com/zigtools/zls)|
+
+#### 增加配置
+
+此外，用户还可以手动编写配置，具体格式为：
+
+```json
+{
+    "servers": {
+        "bibtex": {
+            "use": "latex",
+            "highlightingModeRegex": "^BibTeX$"
+        },
+        "c": {
+            "command": ["clangd", "-log=error", "--background-index"],
+            "commandDebug": ["clangd", "-log=verbose", "--background-index"],
+            "url": "https://clang.llvm.org/extra/clangd/",
+            "highlightingModeRegex": "^(C|ANSI C89|Objective-C)$"
+        },
+        "cpp": {
+            "use": "c",
+            "highlightingModeRegex": "^(C\\+\\+|ISO C\\+\\+|Objective-C\\+\\+)$"
+        },
+        "haskell": {
+            "command": ["haskell-language-server-wrapper", "--lsp"],
+            "rootIndicationFileNames": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml"],
+            "url": "https://github.com/haskell/haskell-language-server",
+            "highlightingModeRegex": "^Haskell$"
+        },
+        "latex": {
+            "command": ["texlab"],
+            "url": "https://texlab.netlify.com/",
+            "highlightingModeRegex": "^LaTeX$"
+        },
+        "rust": {
+            "command": ["rls"],
+            "rootIndicationFileNames": ["Cargo.lock", "Cargo.toml"],
+            "url": "https://github.com/rust-lang/rls",
+            "highlightingModeRegex": "^Rust$"
+        }
+    }
+}
+```
+
+其中 `server` 里的每一项代表一种语言，在这个语言里，`command` 代表启动 LSP Server 所使用的命令，`command` 是一个数组，是所需要执行的命令以空格分词的结果；`url` 是 LSP 的网址；`rootIndicationFileNames` 是用于确定项目根目录的文件；`highlightingModeRegex` 则匹配某种语法高亮的名字，以确定使用哪个 LSP；如果存在 `use` 项，则代表使用 `use` 项对应的语言的配置。
+
+填写于 `设置`→`配置 Kate`→`LSP 客户端`→`用户服务器设置`。
