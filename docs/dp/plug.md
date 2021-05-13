@@ -9,11 +9,11 @@
 
 当 $n$ 或 $m$ 规模不大的时候，这类问题可以使用 [状压 DP](./state.md) 解决。逐行划分阶段，设 $dp(i,s)$ 表示当前已考虑过前 $i$ 行，且第 $i$ 行的状态为 $s$ 的方案数。这里的状态 $s$ 的每一位可以表示这个这个位置是否已被上一行覆盖。
 
-![domino](./images/domino.png)（Credits: 图片来自 [这里](https://blog.csdn.net/u014634338/article/details/50015825) 。）
+![domino](./images/domino.png)（Credits: 图片来自 [这里](https://blog.csdn.net/u014634338/article/details/50015825)。）
 
-另一种划分阶段的方法是逐格 DP，或者称之为轮廓线 DP。 $dp(i,j,s)$ 表示已经考虑到第 $i$ 行第 $j$ 列，且当前轮廓线上的状态为 $s$ 的方案数。
+另一种划分阶段的方法是逐格 DP，或者称之为轮廓线 DP。$dp(i,j,s)$ 表示已经考虑到第 $i$ 行第 $j$ 列，且当前轮廓线上的状态为 $s$ 的方案数。
 
-虽然逐格 DP 中我们的状态增加了一个维度，但是转移的时间复杂度减少为 $O(1)$ ，所以时间复杂度未变。我们用 $f_0$ 表示当前阶段的状态，用 $f_1$ 表示下一阶段的状态， $u = f_0(s)$ 表示当前枚举的函数值，那么有如下的状态转移方程：
+虽然逐格 DP 中我们的状态增加了一个维度，但是转移的时间复杂度减少为 $O(1)$，所以时间复杂度未变。我们用 $f_0$ 表示当前阶段的状态，用 $f_1$ 表示下一阶段的状态，$u = f_0(s)$ 表示当前枚举的函数值，那么有如下的状态转移方程：
 
 ```cpp
 if (s >> j & 1) {       // 如果已被覆盖
@@ -86,7 +86,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 严格来说，多条回路问题并不属于插头 DP，因为我们只需要和上面的骨牌覆盖问题一样，记录插头是否存在，然后成对的合并和生成插头就可以了。
 
-注意对于一个宽度为 $m$ 的棋盘，轮廓线的宽度为 $m+1$ ，因为包含 $m$ 个上插头，和 $1$ 个左插头。注意，当一行迭代完成之后，最右边的左插头通常是不合法的状态，同时我们需要补上下一行第一个左插头，这需要我们调整当前轮廓线的状态，通常是所有状态进行左移，我们把这个操作称为滚动 `roll()` 。
+注意对于一个宽度为 $m$ 的棋盘，轮廓线的宽度为 $m+1$，因为包含 $m$ 个上插头，和 $1$ 个左插头。注意，当一行迭代完成之后，最右边的左插头通常是不合法的状态，同时我们需要补上下一行第一个左插头，这需要我们调整当前轮廓线的状态，通常是所有状态进行左移，我们把这个操作称为滚动 `roll()`。
 
 ??? 例题代码
     ```cpp
@@ -146,16 +146,16 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 状态编码
 
-通常的编码方案有括号表示和最小表示，这里着重介绍泛用性更好的最小表示。我们用长度 $m+1$ 的整形数组，记录轮廓线上每个插头的状态， $0$ 表示没有插头，并约定连通的插头用相同的数字进行标记。
+通常的编码方案有括号表示和最小表示，这里着重介绍泛用性更好的最小表示。我们用长度 $m+1$ 的整形数组，记录轮廓线上每个插头的状态，$0$ 表示没有插头，并约定连通的插头用相同的数字进行标记。
 
 那么下面两组编码方式表示的是相同的状态：
 
--  `0 3 1 0 1 3` 
--  `0 1 2 0 2 1` 
+- `0 3 1 0 1 3`
+- `0 1 2 0 2 1`
 
 我们将相同的状态都映射成字典序最小表示，例如在上例中的 `0 1 2 0 2 1` 就是一组最小表示。
 
-我们用 `b[]` 数组表示轮廓线上插头的状态。 `bb[]` 表示在最小表示的编码的过程中，每个数字被映射到的最小数字。注意 $0$ 表示插头不存在，不能被映射成其他值。
+我们用 `b[]` 数组表示轮廓线上插头的状态。`bb[]` 表示在最小表示的编码的过程中，每个数字被映射到的最小数字。注意 $0$ 表示插头不存在，不能被映射成其他值。
 
 ??? note "代码实现"
     ```cpp
@@ -185,7 +185,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 手写哈希
 
-在一些 [状压 DP](./state.md) 的问题中，合法的状态可能是稀疏的（例如本题），为了优化时空复杂度，我们可以使用哈希表存储合法的 DP 状态。对于 C++ 选手，我们可以使用 [std::unordered_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/) ，当然也可以直接手写，这样可以灵活的将状态转移函数也封装于其中。
+在一些 [状压 DP](./state.md) 的问题中，合法的状态可能是稀疏的（例如本题），为了优化时空复杂度，我们可以使用哈希表存储合法的 DP 状态。对于 C++ 选手，我们可以使用 [std::unordered_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/)，当然也可以直接手写，这样可以灵活的将状态转移函数也封装于其中。
 
 ???+note "代码实现"
     ```cpp
@@ -216,15 +216,15 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 上面的代码中：
 
--  `MaxSZ` 表示合法状态的上界，可以估计，也可以预处理出较为精确的值。
--  `Prime` 一个小于 `MaxSZ` 的大素数。
--  `head[]` 表头节点的指针。
--  `next[]` 后续状态的指针。
--  `state[]` 节点的状态。
--  `key[]` 节点的关键字，在本题中是方案数。
--  `clear()` 初始化函数，和手写邻接表类似，我们只需要初始化表头节点的指针。
--  `push()` 状态转移函数，其中 `d` 是一个全局变量（偷懒），表示每次状态转移所带来的增量。如果找到的话就 `+=` ，否则就创建一个状态为 `s` ，关键字为 `d` 的新节点。
--  `roll()` 迭代完一整行之后，滚动轮廓线。
+- `MaxSZ` 表示合法状态的上界，可以估计，也可以预处理出较为精确的值。
+- `Prime` 一个小于 `MaxSZ` 的大素数。
+- `head[]` 表头节点的指针。
+- `next[]` 后续状态的指针。
+- `state[]` 节点的状态。
+- `key[]` 节点的关键字，在本题中是方案数。
+- `clear()` 初始化函数，和手写邻接表类似，我们只需要初始化表头节点的指针。
+- `push()` 状态转移函数，其中 `d` 是一个全局变量（偷懒），表示每次状态转移所带来的增量。如果找到的话就 `+=`，否则就创建一个状态为 `s`，关键字为 `d` 的新节点。
+- `roll()` 迭代完一整行之后，滚动轮廓线。
 
 关于哈希表的复杂度分析，以及开哈希和闭哈希的不同，可以参见 [《算法导论》](https://oi-wiki.org/intro/resources/#_5) 中关于散列表的相关章节。
 
@@ -603,7 +603,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     - 第 i 个参观的格点 (x, y)，满足 T[x][y]= L[i]
     - 路径的一端在棋盘的边界上
     
-    求可行的方案数 $\bmod 11192869$ 。
+    求可行的方案数 $\bmod 11192869$。
 
 ## 染色模型
 
@@ -618,11 +618,11 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 状态编码
 
-我们先考虑状态编码。不考虑连通性，那么就是 [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197) ，不难用 [状压 DP](./state.md) 直接解决。现在我们需要在状态中同时体现颜色和连通性的信息，考察轮廓线上每个位置的状态，二进制的每 `Offset` 位描述轮廓线上的一个位置，因为只有黑白两种颜色，我们用最低位的奇偶性表示颜色，其余部分示连通性。
+我们先考虑状态编码。不考虑连通性，那么就是 [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197)，不难用 [状压 DP](./state.md) 直接解决。现在我们需要在状态中同时体现颜色和连通性的信息，考察轮廓线上每个位置的状态，二进制的每 `Offset` 位描述轮廓线上的一个位置，因为只有黑白两种颜色，我们用最低位的奇偶性表示颜色，其余部分示连通性。
 
 考虑第一行上面的节点，和第一列左侧节点，如果要避免特判的话，可以考虑引入第三种颜色区分它们，这里我们观察到这些边界状态的连通性信息一定为 0，所以不需要对第三种颜色再进行额外编码。
 
-在路径问题中我们的轮廓线是由 $m$ 个上插头与 $1$ 个左插头组成的。本题中，由于我们还需要判断当前格点为右下角的 $2\times 2$ 子矩形是否合法，所以需要记录左上角格子的颜色，因此轮廓线的长度依然是 $m+1$ 。
+在路径问题中我们的轮廓线是由 $m$ 个上插头与 $1$ 个左插头组成的。本题中，由于我们还需要判断当前格点为右下角的 $2\times 2$ 子矩形是否合法，所以需要记录左上角格子的颜色，因此轮廓线的长度依然是 $m+1$。
 
 这样的编码方案中依然保留了很多冗余信息，（连通的区域颜色一定相同，且左上角的格子只需要颜色信息不需要连通性），但是因为已经用了哈希表和最小表示，对时间复杂度的影响不大，为了降低编程压力，就不再细化了。
 
@@ -692,7 +692,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 方案构造
 
-有了上面的信息，我们就可以容易的构造方案了。首先遍历当前哈希表中的状态，如果连通块数目不超过 $2$ ，那么统计进方案数。如果方案数不为 $0$ ，我们倒序用 `pre` 数组构造出方案，注意每一行的末尾因为我们执行了 `Roll()` 操作，颜色需要取 `c[j+1]` 。
+有了上面的信息，我们就可以容易的构造方案了。首先遍历当前哈希表中的状态，如果连通块数目不超过 $2$，那么统计进方案数。如果方案数不为 $0$，我们倒序用 `pre` 数组构造出方案，注意每一行的末尾因为我们执行了 `Roll()` 操作，颜色需要取 `c[j+1]`。
 
 ???+note "代码实现"
     ```cpp
@@ -727,10 +727,10 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 我们记：
 
--  `cc` 当前正在染色的格子的颜色
--  `lf` 左边格子的颜色
--  `up` 上边格子的颜色
--  `lu` 左上格子的颜色
+- `cc` 当前正在染色的格子的颜色
+- `lf` 左边格子的颜色
+- `up` 上边格子的颜色
+- `lu` 左上格子的颜色
 
 我们用 $-1$ 表示颜色不存在。接下来讨论状态转移，一共有三种情况，合并，继承与生成：
 
@@ -968,7 +968,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     要求：
     最小生成树的边权和
     所有最小生成树的得分之和。
-    （ $n\le 800,m\le 7$ ）
+    （$n\le 800,m\le 7$）
 
 ## 实战篇
 
@@ -990,7 +990,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 因而我们使用路径模型，转化为 [一条回路](#一条回路) 来处理。
 
-我们沿着棋盘的交叉点进行 DP（因而长宽需要增加 $1$ ），每次转移时，需要保证所有的 `x` 在回路之外， `o` 在回路之内。因此我们还需要维护当前位置是否在回路内部。对于这个信息我们可以加维，也可以直接统计轮廓线上到这个位置之前出现下插头次数的奇偶性（射线法）。
+我们沿着棋盘的交叉点进行 DP（因而长宽需要增加 $1$），每次转移时，需要保证所有的 `x` 在回路之外，`o` 在回路之内。因此我们还需要维护当前位置是否在回路内部。对于这个信息我们可以加维，也可以直接统计轮廓线上到这个位置之前出现下插头次数的奇偶性（射线法）。
 
 ??? 例题代码
     ```cpp
@@ -1161,27 +1161,27 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ## 本章注记
 
-插头 DP 问题通常编码难度较大，讨论复杂，因而属于 OI/ACM 中相对较为 [偏门的领域](https://github.com/OI-wiki/libs/blob/master/topic/7-%E7%8E%8B%E5%A4%A9%E6%87%BF-%E8%AE%BA%E5%81%8F%E9%A2%98%E7%9A%84%E5%8D%B1%E5%AE%B3.ppt) 。这方面最为经典的资料，当属 2008 年 [陈丹琦](https://www.cs.princeton.edu/~danqic/) 的集训队论文—— [基于连通性状态压缩的动态规划问题](https://github.com/AngelKitty/review_the_national_post-graduate_entrance_examination/tree/master/books_and_notes/professional_courses/data_structures_and_algorithms/sources/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2008%E8%AE%BA%E6%96%87%E9%9B%86/%E9%99%88%E4%B8%B9%E7%90%A6%E3%80%8A%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E6%80%A7%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E7%9A%84%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E3%80%8B) 。其次，HDU 的 notonlysuccess 2011 年曾经在博客中连续写过两篇由浅入深的专题，也是不可多得的好资料，不过现在需要在 Web Archive 里考古。
+插头 DP 问题通常编码难度较大，讨论复杂，因而属于 OI/ACM 中相对较为 [偏门的领域](https://github.com/OI-wiki/libs/blob/master/topic/7-%E7%8E%8B%E5%A4%A9%E6%87%BF-%E8%AE%BA%E5%81%8F%E9%A2%98%E7%9A%84%E5%8D%B1%E5%AE%B3.ppt)。这方面最为经典的资料，当属 2008 年 [陈丹琦](https://www.cs.princeton.edu/~danqic/) 的集训队论文——[基于连通性状态压缩的动态规划问题](https://github.com/AngelKitty/review_the_national_post-graduate_entrance_examination/tree/master/books_and_notes/professional_courses/data_structures_and_algorithms/sources/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2008%E8%AE%BA%E6%96%87%E9%9B%86/%E9%99%88%E4%B8%B9%E7%90%A6%E3%80%8A%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E6%80%A7%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E7%9A%84%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E3%80%8B)。其次，HDU 的 notonlysuccess 2011 年曾经在博客中连续写过两篇由浅入深的专题，也是不可多得的好资料，不过现在需要在 Web Archive 里考古。
 
--  [notonlysuccess，【专辑】插头 DP](https://web.archive.org/web/20110815044829/http://www.notonlysuccess.com/?p=625) 
--  [notonlysuccess，【完全版】插头 DP](https://web.archive.org/web/20111007185146/http://www.notonlysuccess.com/?p=931) 
+- [notonlysuccess，【专辑】插头 DP](https://web.archive.org/web/20110815044829/http://www.notonlysuccess.com/?p=625)
+- [notonlysuccess，【完全版】插头 DP](https://web.archive.org/web/20111007185146/http://www.notonlysuccess.com/?p=931)
 
 ### 多米诺骨牌覆盖
 
- [「HDU 1400」Mondriaan’s Dream](https://vjudge.net/problem/HDU-1400) 也出现在 [《算法竞赛入门经典训练指南》](https://oi-wiki.org/intro/resources/#_5) 中，并作为《轮廓线上的动态规划》一节的例题。 [多米诺骨牌覆盖（Domino tiling）](https://en.wikipedia.org/wiki/Domino_tiling) 是一组非常经典的数学问题，稍微修改其数据范围就可以得到不同难度，需要应用不同的算法解决的子问题。
+[「HDU 1400」Mondriaan’s Dream](https://vjudge.net/problem/HDU-1400) 也出现在 [《算法竞赛入门经典训练指南》](https://oi-wiki.org/intro/resources/#_5) 中，并作为《轮廓线上的动态规划》一节的例题。[多米诺骨牌覆盖（Domino tiling）](https://en.wikipedia.org/wiki/Domino_tiling) 是一组非常经典的数学问题，稍微修改其数据范围就可以得到不同难度，需要应用不同的算法解决的子问题。
 
-当限定 $m=2$ 时，多米诺骨牌覆盖等价于斐波那契数列。 [《具体数学》](https://www.csie.ntu.edu.tw/~r97002/temp/Concrete%20Mathematics%202e.pdf) 中使用了该问题以引出斐波那契数列，并使用了多种方法得到其解析解。
+当限定 $m=2$ 时，多米诺骨牌覆盖等价于斐波那契数列。[《具体数学》](https://www.csie.ntu.edu.tw/~r97002/temp/Concrete%20Mathematics%202e.pdf) 中使用了该问题以引出斐波那契数列，并使用了多种方法得到其解析解。
 
-当 $m\le 10,n\le 10^9$ 时，可以将转移方程预处理成矩阵形式，并使用 [矩阵乘法进行加速](http://www.matrix67.com/blog/archives/276) 。
+当 $m\le 10,n\le 10^9$ 时，可以将转移方程预处理成矩阵形式，并使用 [矩阵乘法进行加速](http://www.matrix67.com/blog/archives/276)。
 
 ![domino_v2_transform_matrix](./images/domino_v2_transform_matrix.gif)
 
-当 $n,m\le 100$ ，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数。
+当 $n,m\le 100$，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数。
 
--  [「51nod 1031」骨牌覆盖](http://www.51nod.com/Challenge/Problem.html#problemId=1031) 
--  [「51nod 1033」骨牌覆盖 V2](http://www.51nod.com/Challenge/Problem.html#problemId=1033) \| [「Vijos 1194」Domino](https://vijos.org/p/1194) 
--  [「51nod 1034」骨牌覆盖 V3](http://www.51nod.com/Challenge/Problem.html#problemId=1034) \| [「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594) 
--  [Wolfram MathWorld, Chebyshev Polynomial of the Second Kind](https://mathworld.wolfram.com/ChebyshevPolynomialoftheSecondKind.html) 
+- [「51nod 1031」骨牌覆盖](http://www.51nod.com/Challenge/Problem.html#problemId=1031)
+- [「51nod 1033」骨牌覆盖 V2](http://www.51nod.com/Challenge/Problem.html#problemId=1033)\|[「Vijos 1194」Domino](https://vijos.org/p/1194)
+- [「51nod 1034」骨牌覆盖 V3](http://www.51nod.com/Challenge/Problem.html#problemId=1034)\|[「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594)
+- [Wolfram MathWorld, Chebyshev Polynomial of the Second Kind](https://mathworld.wolfram.com/ChebyshevPolynomialoftheSecondKind.html)
 
 ### 一条路径
 
@@ -1189,4 +1189,4 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ![sm18847458](./images/sm18847458.png)
 
--  [【动画】从方格这头走向那头有多少种走法呢～【结尾迷之感动】](https://www.bilibili.com/video/BV1Cx411D74e) \| [Youtube](https://www.youtube.com/watch?v=Q4gTV4r0zRs) 
+- [【动画】从方格这头走向那头有多少种走法呢～【结尾迷之感动】](https://www.bilibili.com/video/BV1Cx411D74e)\|[Youtube](https://www.youtube.com/watch?v=Q4gTV4r0zRs)

@@ -8,7 +8,7 @@ Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者�
 
 不过，它可以在 Linux/Windows/macOS 下运行。
 
-其官网为： <https://geany.org/> 
+其官网为：<https://geany.org/>
 
 ## 优缺点
 
@@ -52,7 +52,7 @@ make
 sudo make install
 ```
 
-如遇到 `No package 'gtk+-2.0' found` 可能需要安装 `libgtk2.0-dev` 。
+如遇到 `No package 'gtk+-2.0' found` 可能需要安装 `libgtk2.0-dev`。
 
 ## 使用技巧
 
@@ -70,8 +70,8 @@ sudo make install
 
 这里给出 macOS 和 Linux 下的默认模板配置文件目录：
 
-- 系统目录： `/usr/share/geany/templates/files/` 
-- 用户目录： `~/.config/geany/templates/files/` [^2]
+- 系统目录：`/usr/share/geany/templates/files/`
+- 用户目录：`~/.config/geany/templates/files/`[^2]
 
 ## 常见问题
 
@@ -87,8 +87,8 @@ deepin-terminal -x "/bin/sh" %c
 
 ## 参考资料与注释
 
-[^1]: 详见： <https://github.com/geany/geany/issues/2344> 
+[^1]: 详见：<https://github.com/geany/geany/issues/2344>
 
-[^2]: 来源： <https://wiki.geany.org/config/templates> 
+[^2]: 来源：<https://wiki.geany.org/config/templates>
 
-[^3]: 来源：Deepin Wiki <https://wiki.deepin.org/> 
+[^3]: 来源：Deepin Wiki <https://wiki.deepin.org/>

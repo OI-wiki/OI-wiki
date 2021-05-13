@@ -11,10 +11,10 @@ OI 中的三角剖分主要指二维几何中的完美三角剖分（二维 Dela
 
 ### 定义
 
-在数学和计算几何中，对于给定的平面中的离散点集 $P$ ，其 Delaunay 三角剖分 DT( $P$ ) 满足：
+在数学和计算几何中，对于给定的平面中的离散点集 $P$，其 Delaunay 三角剖分 DT($P$) 满足：
 
-1. 空圆性：DT( $P$ ) 是 **唯一** 的（任意四点不能共圆），在 DT( $P$ ) 中， **任意** 三角形的外接圆范围内不会有其它点存在。
-2. 最大化最小角：在点集 $P$ 可能形成的三角剖分中，DT( $P$ ) 所形成的三角形的最小角最大。从这个意义上讲，DT( $P$ ) 是 **最接近于规则化** 的三角剖分。具体的说是在两个相邻的三角形构成凸四边形的对角线，在相互交换后，两个内角的最小角不再增大。
+1. 空圆性：DT($P$) 是 **唯一** 的（任意四点不能共圆），在 DT($P$) 中，**任意** 三角形的外接圆范围内不会有其它点存在。
+2. 最大化最小角：在点集 $P$ 可能形成的三角剖分中，DT($P$) 所形成的三角形的最小角最大。从这个意义上讲，DT($P$) 是 **最接近于规则化** 的三角剖分。具体的说是在两个相邻的三角形构成凸四边形的对角线，在相互交换后，两个内角的最小角不再增大。
 
 ![一个显示了外接圆的 Delaunay 三角剖分](./images/triangulation-1.png)
 
@@ -33,9 +33,9 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
 
 分治构造 DT 的第一步是将给定点集按照 $x$ 坐标 **升序** 排列，如下图是排好序的大小为 $10$ 的点集。
 
-![排好序的大小为 $10$ 的点集](./images/triangulation-2.svg)
+![排好序的大小为 10 的点集](./images/triangulation-2.svg)
 
-一旦点集有序，我们就可以不断地将其分成两个部分（分治），直到子点集大小不超过 $3$ 。然后这些子点集可以立刻剖分为一个三角形或线段。
+一旦点集有序，我们就可以不断地将其分成两个部分（分治），直到子点集大小不超过 $3$。然后这些子点集可以立刻剖分为一个三角形或线段。
 
 ![分治为包含 2 或 3 个点的点集](./images/triangulation-3.svg)
 
@@ -47,18 +47,18 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
 
 ![合并左右剖分](./images/triangulation-5.svg)
 
-然后，我们需要确定下一条 **紧接在** base LR-edge 之上的 LR-edge。比如对于右侧点集，下一条 LR-edge 的可能端点（右端点）为与 base LR-edge 右端点相连的 RR-edge 的另一端点（ $6, 7, 9$ 号点），左端点即为 $2$ 号点。
+然后，我们需要确定下一条 **紧接在** base LR-edge 之上的 LR-edge。比如对于右侧点集，下一条 LR-edge 的可能端点（右端点）为与 base LR-edge 右端点相连的 RR-edge 的另一端点（$6, 7, 9$ 号点），左端点即为 $2$ 号点。
 
 ![下一条 LR-edge](./images/triangulation-6.svg)
 
 对于可能的端点，我们需要按以下两个标准检验：
 
 1. 其对应 RR-edge 与 base LR-edge 的夹角小于 $180$ 度。
-2. base LR-edge 两端点和这个可能点三点构成的圆内不包含任何其它 **可能点** 。
+2. base LR-edge 两端点和这个可能点三点构成的圆内不包含任何其它 **可能点**。
 
 ![检验可能点](./images/triangulation-7.svg)
 
-如上图， $6$ 号可能点所对应的绿色圆包含了 $9$ 号可能点，而 $7$ 号可能点对应的紫色圆则不包含任何其它可能点，故 $7$ 号点为下一条 LR-edge 的右端点。
+如上图，$6$ 号可能点所对应的绿色圆包含了 $9$ 号可能点，而 $7$ 号可能点对应的紫色圆则不包含任何其它可能点，故 $7$ 号点为下一条 LR-edge 的右端点。
 
 对于左侧点集，我们做镜像处理即可。
 
@@ -276,12 +276,12 @@ Voronoi 图是 Delaunay 三角剖分的对偶图，可以使用构造 Delaunay �
 
 ## 题目
 
- [SGU 383 Caravans](https://codeforces.com/problemsets/acmsguru/problem/99999/383) 三角剖分 + 倍增
+[SGU 383 Caravans](https://codeforces.com/problemsets/acmsguru/problem/99999/383) 三角剖分 + 倍增
 
- [ContestHunter. 无尽的毁灭](http://noi-test.zzstep.com/contest/Beta%20Round%20%EF%BC%832%20(%E6%96%B0%E7%96%86%E7%9C%81%E9%98%9F%E4%BA%92%E6%B5%8BWeek1-Day2)/%E6%97%A0%E5%B0%BD%E7%9A%84%E6%AF%81%E7%81%AD) 三角剖分求对偶图建 Voronoi 图
+[ContestHunter. 无尽的毁灭](http://noi-test.zzstep.com/contest/Beta%20Round%20%EF%BC%832%20(%E6%96%B0%E7%96%86%E7%9C%81%E9%98%9F%E4%BA%92%E6%B5%8BWeek1-Day2)/%E6%97%A0%E5%B0%BD%E7%9A%84%E6%AF%81%E7%81%AD) 三角剖分求对偶图建 Voronoi 图
 
 ## References
 
-- [1][Wikipedia - Triangulation (geometry)]( <https://en.wikipedia.org/wiki/Triangulation_(geometry)> )
-- [2][Wikipedia - Delaunay triangulation]( <https://en.wikipedia.org/wiki/Delaunay_triangulation> )
-- [3]Samuel Peterson - [Computing Constrained Delaunay Triangulations in 2-D (1997-98)](http://www.geom.uiuc.edu/~samuelp/del_project.html) 
+- [1][Wikipedia - Triangulation (geometry)](<https://en.wikipedia.org/wiki/Triangulation_(geometry)>)
+- [2][Wikipedia - Delaunay triangulation](<https://en.wikipedia.org/wiki/Delaunay_triangulation>)
+- [3]Samuel Peterson -[Computing Constrained Delaunay Triangulations in 2-D (1997-98)](http://www.geom.uiuc.edu/~samuelp/del_project.html)

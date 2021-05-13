@@ -62,7 +62,7 @@ mkdocs build -v
 mkdocs --help
 ```
 
-我们现在在服务器端渲染 MathJax ，如果希望实现类似效果，可以参考 [.travis.yml](https://github.com/OI-wiki/OI-wiki/blob/master/.travis.yml)。（需要安装 Node.js）
+我们现在在服务器端渲染 MathJax ，如果希望实现类似效果，可以参考 [build.yml](https://github.com/OI-wiki/OI-wiki/blob/master/.github/workflows/build.yml)。（需要安装 Node.js）
 
 ### 镜像
 
