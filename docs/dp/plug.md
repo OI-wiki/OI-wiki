@@ -4,7 +4,7 @@
 
 温故而知新，在开始学习插头 DP 之前，不妨先让我们回顾一个经典问题。
 
-???+note " 例题[「HDU 1400」Mondriaan’s Dream](https://vjudge.net/problem/HDU-1400)"
+???+note " 例题 [「HDU 1400」Mondriaan’s Dream](https://vjudge.net/problem/HDU-1400)"
     题目大意：在 $N\times M$ 的棋盘内铺满 $1\times 2$ 或 $2\times 1$ 的多米诺骨牌，求方案数。
 
 当 $n$ 或 $m$ 规模不大的时候，这类问题可以使用 [状压 DP](./state.md) 解决。逐行划分阶段，设 $dp(i,s)$ 表示当前已考虑过前 $i$ 行，且第 $i$ 行的状态为 $s$ 的方案数。这里的状态 $s$ 的每一位可以表示这个这个位置是否已被上一行覆盖。
@@ -81,7 +81,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 多条回路
 
-???+note " 例题[「HDU 1693」Eat the Trees](https://vjudge.net/problem/HDU-1693)"
+???+note " 例题 [「HDU 1693」Eat the Trees](https://vjudge.net/problem/HDU-1693)"
     题目大意：求用若干条回路覆盖 $N\times M$ 棋盘的方案数，有些位置有障碍。
 
 严格来说，多条回路问题并不属于插头 DP，因为我们只需要和上面的骨牌覆盖问题一样，记录插头是否存在，然后成对的合并和生成插头就可以了。
@@ -139,7 +139,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 例题「Andrew Stankevich Contest 16 - Problem F」Pipe Layout
 
-???+note " 例题[「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
+???+note " 例题 [「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
     题目大意：求用一条回路覆盖 $N\times$ 棋盘的方案数。
 
 在上面的状态表示中我们每合并一组连通的插头，就会生成一条独立的回路，因而在本题中，我们还需要区分插头之间的连通性（出现了！）。这需要我们对状态进行额外的编码。
@@ -392,7 +392,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 例题「ZOJ 3213」Beautiful Meadow
 
-???+note " 例题[「ZOJ 3213」Beautiful Meadow](https://vjudge.net/problem/ZOJ-3213)"
+???+note " 例题 [「ZOJ 3213」Beautiful Meadow](https://vjudge.net/problem/ZOJ-3213)"
     题目大意：一个 $N\times M$ 的方阵（ $N,M\le 8$ ），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和。
 
 本题是标准的一条路径问题，在一条路径问题中，编码的状态中还会存在不能配对的独立插头。需要在状态转移函数中，额外讨论独立插头的生成、合并与消失的情况。独立插头的生成和消失对应着路径的一端，因而这类事件不会发生超过两次（一次生成一次消失，或者两次生成一次合并），否则最终结果一定会出现多个连通块。
@@ -611,7 +611,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 例题「UVA 10572」Black & White
 
-???+note " 例题[「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572)"
+???+note " 例题 [「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572)"
     题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白染色，要求所有黑色区域和白色区域连通，且任意一个 $2\times 2$ 的子矩形内的颜色不能完全相同（例如下图中的情况非法），求合法的方案数，并构造一组合法的方案。
     
     ![black_and_white1](./images/black_and_white1.png)
@@ -957,10 +957,10 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ## 图论模型
 
-???+note " 例题[「NOI 2007 Day2」生成树计数](https://www.luogu.com.cn/problem/P2109)"
+???+note " 例题 [「NOI 2007 Day2」生成树计数](https://www.luogu.com.cn/problem/P2109)"
     题目大意：某类特殊图的生成树计数，每个节点恰好与其前 $k$ 个节点之间有边相连。
 
-???+note " 例题[「2015 ACM-ICPC Asia Shenyang Regional Contest - Problem E」Efficient Tree](https://vjudge.net/problem/HDU-5513)"
+???+note " 例题 [「2015 ACM-ICPC Asia Shenyang Regional Contest - Problem E」Efficient Tree](https://vjudge.net/problem/HDU-5513)"
     题目大意：给出一个 $N\times M$ 的网格图，以及相邻四连通格子之间的边权。
     对于一颗生成树，每个节点的得分为 1+[有一条连向上的边]+[有一条连向左的边]。
     生成树的得分为所有节点的得分之积。
@@ -974,7 +974,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 例题「HDU 4113」Construct the Great Wall
 
-???+note " 例题[「HDU 4113」Construct the Great Wall](https://vjudge.net/problem/HDU-4113)"
+???+note " 例题 [「HDU 4113」Construct the Great Wall](https://vjudge.net/problem/HDU-4113)"
     题目大意：在 $N\times M$ 的棋盘内构造一组回路，分割所有的 `x` 和 `o` 。
 
 有一类插头 DP 问题要求我们在棋盘上构造一组墙，以分割棋盘上的某些元素。不妨称之为修墙问题，这类问题既可视作染色模型，也可视作路径模型。
