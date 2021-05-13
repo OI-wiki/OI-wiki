@@ -18,6 +18,14 @@ PQ树和析合树（Permutation Tree/Cut Join Tree）都是处理连续子序列
 
 PQ树则作用于查找具有给定连续子集的有效排列。常见问题是求一个满足若干限制的排列。
 
+## PC树
+
+PC树, 是由 Shiwei-Kuan Shih 和 Hen-Lian Hsu 于[2001](https://www.researchgate.net/publication/221427187_PC-trees_vs_PQ-trees)年定义的树状数据结构，我们可以把它看作是基于PQ树的更新。和PQ树一样，PC树通过节点的重新排序来表示排列，元素通过叶节点表示。 
+
+但与PQ树不同的是，PC树是无根的。与标记为P的任何非叶节点相邻的节点都可以像在PQ树中那样任意地重新排序，而与标记为C的任何非叶节点相邻的节点都具有固定的循环顺序，并且重新排序只能遵循逆序列。 
+
+因此，PC树只能表示每个顺序的任何循环排列或逆转也都在该集合中的顺序集合。 但是，我们可以通过`n+1`个元素的PC树来模拟`n`个元素的PQ树，其中多余的元素用于使PC树成为根。在PC树上执行平面性测试算法所需的操作比PQ树上的相应操作要简单一些。
+
 ## 参考链接
  
 - [PQ tree - Wikipedia](https://en.wikipedia.org/wiki/PQ_tree)
