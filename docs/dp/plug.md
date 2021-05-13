@@ -56,7 +56,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-??? note " 习题[「SRM 671. Div 1 900」BearDestroys](https://competitiveprogramming.info/topcoder/srm/round/16551/div/1)"
+??? note " 习题 [「SRM 671. Div 1 900」BearDestroys](https://competitiveprogramming.info/topcoder/srm/round/16551/div/1)"
     题目大意：给定 $n\times m$ 的矩阵，每个格子有 `E` 或 `S` 。
     对于一个矩阵，有一个计分方案。按照行优先的规则扫描每个格子，如果这个格子之前被骨牌占据，则 skip。
     否则尝试放多米诺骨牌。如果放骨牌的方向在矩阵外或被其他骨牌占据，则放置失败，切换另一种方案或 skip。
@@ -132,7 +132,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-??? note " 习题[「ZJU 4231」The Hive II](https://vjudge.net/problem/ZOJ-3466)"
+??? note " 习题 [「ZJU 4231」The Hive II](https://vjudge.net/problem/ZOJ-3466)"
     题目大意：同上题，但格子变成了六边形。
 
 ### 一条回路
@@ -373,19 +373,19 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 习题
 
-??? note " 习题[「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
+??? note " 习题 [「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
     题目大意：有障碍。
 
-??? note " 习题[「USACO 5.4.4」Betsy's Tours](http://oj.jzxx.net/problem.php?id=1695)"
+??? note " 习题 [「USACO 5.4.4」Betsy's Tours](http://oj.jzxx.net/problem.php?id=1695)"
     题目大意：一个 $N\times N$ 的方阵（ $N\le 7$ ），求从左上角出发到左下角结束经过每个格子的路径总数。虽然是一条路径，但因为起点和终点固定，可以转化为一条回路问题。
 
-??? note " 习题[「POJ 1739」Tony's Tour](http://poj.org/problem?id=1739)"
+??? note " 习题 [「POJ 1739」Tony's Tour](http://poj.org/problem?id=1739)"
     题目大意：著名的男人八题系列之一。解法同上。
 
-??? note " 习题[「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
+??? note " 习题 [「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
     题目大意： $n\le 1000,m=4$ ，每个回路需要统计两次（逆时针和顺时针），需要高精度。
 
-??? note " 习题[「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
+??? note " 习题 [「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
     题目大意：对于每一个有 $m$ 条回路的方案，对答案的贡献是 $2^m$ ，求所有方案的贡献和。
 
 ### 一条路径
@@ -597,7 +597,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 习题
 
-??? note " 习题[「NOI 2010 Day2」旅行路线](https://www.luogu.com.cn/problem/P1933)"
+??? note " 习题 [「NOI 2010 Day2」旅行路线](https://www.luogu.com.cn/problem/P1933)"
     题目大意： $n\times m$ 的棋盘，棋盘的每个格子有一个 01 权值 T[x][y]，要求寻找一个路径覆盖，满足：
     
     - 第 i 个参观的格点 (x, y)，满足 T[x][y]= L[i]
@@ -949,10 +949,10 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-??? note " 习题[「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://competitiveprogramming.info/topcoder/srm/round/9992/div/1)"
+??? note " 习题 [「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://competitiveprogramming.info/topcoder/srm/round/9992/div/1)"
     题目大意：给一个棋盘图，每个格子有权值，求权值之和最小的连通块。
 
-??? note " 习题[「JLOI 2009」神秘的生物](https://www.luogu.com.cn/problem/P3886)"
+??? note " 习题 [「JLOI 2009」神秘的生物](https://www.luogu.com.cn/problem/P3886)"
     题目大意：给一个棋盘图，每个格子有权值，求权值之和最大的连通块。
 
 ## 图论模型
@@ -1130,31 +1130,31 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-??? note " 习题[「HDU 4796」Winter's Coming](https://vjudge.net/problem/HDU-4796)"
+??? note " 习题 [「HDU 4796」Winter's Coming](https://vjudge.net/problem/HDU-4796)"
     题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白灰染色，要求所有黑色区域和白色区域连通，且黑色区域与白色区域分别与棋盘的上下边界连通，且其中黑色区域与白色区域不能相邻。每个格子有对应的代价，求一组染色方案，最小化灰色区域的代价。
     
     ![4796](./images/4796.jpg)
 
-??? note " 习题[「ZOJ 2125」Rocket Mania](https://vjudge.net/problem/ZOJ-2125)"
+??? note " 习题 [「ZOJ 2125」Rocket Mania](https://vjudge.net/problem/ZOJ-2125)"
 
-??? note " 习题[「ZOJ 2126」Rocket Mania Plus](https://vjudge.net/problem/ZOJ-2126)"
+??? note " 习题 [「ZOJ 2126」Rocket Mania Plus](https://vjudge.net/problem/ZOJ-2126)"
 
-??? note " 习题[「World Finals 2009/2010 Harbin」Channel](https://vjudge.net/problem/UVALive-4789)"
+??? note " 习题 [「World Finals 2009/2010 Harbin」Channel](https://vjudge.net/problem/UVALive-4789)"
     题目大意：。
 
-??? note " 习题[「HDU 3958」Tower Defence](https://vjudge.net/problem/HDU-3958)"
+??? note " 习题 [「HDU 3958」Tower Defence](https://vjudge.net/problem/HDU-3958)"
     题目大意：。
 
-??? note " 习题[「UVA 10531」Maze Statistics](https://vjudge.net/problem/UVA-10531)"
+??? note " 习题 [「UVA 10531」Maze Statistics](https://vjudge.net/problem/UVA-10531)"
     题目大意：。
 
-??? note " 习题[「AIZU 2452」Pipeline Plans](https://vjudge.net/problem/Aizu-2452)"
+??? note " 习题 [「AIZU 2452」Pipeline Plans](https://vjudge.net/problem/Aizu-2452)"
     题目大意：。
 
-??? note " 习题[「SDOI 2014」电路板](https://www.luogu.com.cn/problem/P3314)"
+??? note " 习题 [「SDOI 2014」电路板](https://www.luogu.com.cn/problem/P3314)"
     题目大意：。
 
-??? note " 习题[「SPOJ CAKE3」Delicious Cake](https://vjudge.net/problem/SPOJ-CAKE3)"
+??? note " 习题 [「SPOJ CAKE3」Delicious Cake](https://vjudge.net/problem/SPOJ-CAKE3)"
     题目大意：。
 
 .
