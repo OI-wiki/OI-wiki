@@ -28,7 +28,7 @@ PC树, 是由 Shiwei-Kuan Shih 和 Hen-Lian Hsu 于[2001](https://www.researchga
 
 ## 参考链接
  
-- [PQ tree - Wikipedia](https://en.wikipedia.org/wiki/PQ_tree)
-- [PC-trees vs. PQ-trees](https://www.researchgate.net/publication/221427187_PC-trees_vs_PQ-trees)
-- [Breakpoint Distance and PQ-Trees](https://www.researchgate.net/publication/221313779_Breakpoint_Distance_and_PQ-Trees)
-- [PQ Tree vs Permutation Tree](https://codeforces.com/blog/entry/69158?#comment-536295)
+[^ref1]: [PQ tree - Wikipedia](https://en.wikipedia.org/wiki/PQ_tree)
+[^ref2]: [PC-trees vs. PQ-trees](https://www.researchgate.net/publication/221427187_PC-trees_vs_PQ-trees)
+[^ref3]: [Breakpoint Distance and PQ-Trees](https://www.researchgate.net/publication/221313779_Breakpoint_Distance_and_PQ-Trees)
+[^ref4]: [PQ Tree vs Permutation Tree](https://codeforces.com/blog/entry/69158?#comment-536295)
