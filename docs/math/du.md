@@ -43,18 +43,18 @@ $h(x)=\sum_{d \mid x} f(d)g(\frac x d)$
 对于任意一个数论函数 $g$，必满足
 
 $$
-\sum_{i=1}^{n}\sum_{d \mid i}f(d)g\left(\frac{i}{d}\right)=\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+\sum_{i=1}^{n}\sum_{d \mid i}g(d)f\left(\frac{i}{d}\right)=\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 \Leftrightarrow
 \sum_{i=1}^{n}(f\ast g)(i)=\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
 
 略证：
 
-$f(d)g\left(\frac{i}{d}\right)$ 就是对所有 $i\leq n$ 的做贡献，因此变换枚举顺序，枚举 $d,\frac{i}{d}$（分别对应新的 $i,j$）
+$g(d)f\left(\frac{i}{d}\right)$ 就是对所有 $i\leq n$ 的做贡献，因此变换枚举顺序，枚举 $d,\frac{i}{d}$（分别对应新的 $i,j$）
 
 $$
 \begin{split}
-&\sum_{i=1}^n\sum_{d \mid i}f(d)g\left(\frac{i}{d}\right)\\
+&\sum_{i=1}^n\sum_{d \mid i}g(d)f\left(\frac{i}{d}\right)\\
 =&\sum_{i=1}^n\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}g(i)f(j)\\
 =&\sum_{i=1}^ng(i)\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}f(j)\\
 =&\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
