@@ -53,7 +53,7 @@ int eulerianNumber(int n, int m)
         return 0;
     if (m == 0)
         return 1;
-    return ( ( (n - m) * eulerianNumber(n - 1, m - 1) ) + ( (m + 1) * eulerianNumber(n - 1, m) ) );
+    return (((n - m) * eulerianNumber(n - 1, m - 1)) + ((m + 1) * eulerianNumber(n - 1, m)));
 }
 ```
 
