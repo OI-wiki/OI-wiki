@@ -40,8 +40,8 @@ $$
 A(n, m) = 
 \left\{
 \begin{array}{ll}
-0 & \text{if } m > n \text{ or } n = 0 \\
-1 & \text{if } m = 0 \\
+0 & m > n \text{ or } n = 0 \\
+1 & m = 0 \\
 (n-m)*A(n-1, m-1) + (m+1) * A(n-1, m) & \text{otherwise} \\
 \end{array}
 \right.
