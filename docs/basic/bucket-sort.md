@@ -23,9 +23,9 @@
 
 ### 时间复杂度
 
-桶排序的平均时间复杂度为 $O(n + n^2/k + k)$ （将值域平均分成 $n$ 块 + 排序 + 重新合并元素），当 $k\approx n$ 时为 $O(n)$ 。[^ref1]
+桶排序的平均时间复杂度为 $O(n + n^2/k + k)$（将值域平均分成 $n$ 块 + 排序 + 重新合并元素），当 $k\approx n$ 时为 $O(n)$。[^ref1]
 
-桶排序的最坏时间复杂度为 $O(n^2)$ 。
+桶排序的最坏时间复杂度为 $O(n^2)$。
 
 ## 算法实现
 
@@ -69,4 +69,4 @@ void bucket_sort() {
 
 ## 参考资料与注释
 
-[^ref1]:  [（英文）Bucket sort - Wikipedia](https://en.wikipedia.org/wiki/Bucket_sort#Average-case_analysis) 
+[^ref1]: [（英文）Bucket sort - Wikipedia](https://en.wikipedia.org/wiki/Bucket_sort#Average-case_analysis)

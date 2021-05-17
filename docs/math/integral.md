@@ -1,22 +1,22 @@
 ## 定积分的定义
 
-简单来说，函数 $f(x)$ 在区间 $[l,r]$ 上的定积分 $\int_{l}^{r}f(x)\mathrm{d}x$ 指的是 $f(x)$ 在区间 $[l,r]$ 中与 $x$ 轴围成的区域的面积（其中 $x$ 轴上方的部分为正值， $x$ 轴下方的部分为负值）。
+简单来说，函数 $f(x)$ 在区间 $[l,r]$ 上的定积分 $\int_{l}^{r}f(x)\mathrm{d}x$ 指的是 $f(x)$ 在区间 $[l,r]$ 中与 $x$ 轴围成的区域的面积（其中 $x$ 轴上方的部分为正值，$x$ 轴下方的部分为负值）。
 
-很多情况下，我们需要高效，准确地求出一个积分的近似值。下面介绍的 **辛普森法** ，就是这样一种求数值积分的方法。
+很多情况下，我们需要高效，准确地求出一个积分的近似值。下面介绍的 **辛普森法**，就是这样一种求数值积分的方法。
 
 ## 辛普森法
 
 这个方法的思想是将被积区间分为若干小段，每段套用二次函数的积分公式进行计算。
 
 ??? note "二次函数积分公式（辛普森公式）"
-    对于一个二次函数 $f(x)=Ax^2+Bx+C$ ，有：
+    对于一个二次函数 $f(x)=Ax^2+Bx+C$，有：
     
     $$
     \int_l^r f(x) {\mathrm d}x = \frac{(r-l)(f(l)+f(r)+4 f(\frac{l+r}{2}))}{6}
     $$
     
     推导过程：
-    对于一个二次函数 $f(x)=Ax^2+Bx+C$ ；
+    对于一个二次函数 $f(x)=Ax^2+Bx+C$；
     求积分可得 $F(x)=\int_0^x f(x) {\mathrm d}x = \frac{a}{3}x^3+\frac{b}{2}x^2+cx+D$ 在这里 D 是一个常数，那么
     
     $$
@@ -38,19 +38,19 @@
 
 #### 描述
 
-给定一个自然数 $n$ ，将区间 $[l, r]$ 分成 $2n$ 个等长的区间 $x$ 。
+给定一个自然数 $n$，将区间 $[l, r]$ 分成 $2n$ 个等长的区间 $x$。
 
- $x_i = l + i h, ~~ i = 0 \ldots 2n,$  $h = \frac {r-l} {2n}.$ 
+$x_i = l + i h, ~~ i = 0 \ldots 2n,$ $h = \frac {r-l} {2n}.$
 
-我们就可以计算每个小区间 $[x_ {2i-2}, x_ {2i}]$ , $i = 1\ldots n$ 的积分值，将所有区间的积分值相加即为总积分。
+我们就可以计算每个小区间 $[x_ {2i-2}, x_ {2i}]$，$i = 1\ldots n$ 的积分值，将所有区间的积分值相加即为总积分。
 
-对于 $[x_ {2i-2}, x_ {2i}]$ , $i = 1\ldots n$ 的一个区间，选其中的三个点 $(x_ {2i-2}, x_ {2i-1}, x_ {2i})$ 就可以构成一条抛物线从而得到一个函数 $P(x)$ ，这个函数存在且唯一。计算原函数在该区间的积分值就变成了计算新的二次函数 $P(x)$ 在该段区间的积分值。这样我们就可以利用辛普森公式来近似计算它。
+对于 $[x_ {2i-2}, x_ {2i}]$，$i = 1\ldots n$ 的一个区间，选其中的三个点 $(x_ {2i-2}, x_ {2i-1}, x_ {2i})$ 就可以构成一条抛物线从而得到一个函数 $P(x)$，这个函数存在且唯一。计算原函数在该区间的积分值就变成了计算新的二次函数 $P(x)$ 在该段区间的积分值。这样我们就可以利用辛普森公式来近似计算它。
 
- $\int_{x_ {2i-2}} ^ {x_ {2i}} f (x) ~dx \approx \int_{x_ {2i-2}} ^ {x_ {2i}} P (x) ~dx = \left(f(x_{2i-2}) + 4f(x_{2i-1})+(f(x_{2i})\right)\frac {h} {3}$ 
+$\int_{x_ {2i-2}} ^ {x_ {2i}} f (x) ~dx \approx \int_{x_ {2i-2}} ^ {x_ {2i}} P (x) ~dx = \left(f(x_{2i-2}) + 4f(x_{2i-1})+(f(x_{2i})\right)\frac {h} {3}$
 
 将其分段求和即可得到如下结论：
 
- $\int_l ^ r f (x) dx \approx \left(f (x_0) + 4 f (x_1) + 2 f (x_2) + 4f(x_3) + 2 f(x_4) + \ldots + 4 f(x_{2N-1}) + f(x_{2N}) \right)\frac {h} {3}$ 
+$\int_l ^ r f (x) dx \approx \left(f (x_0) + 4 f (x_1) + 2 f (x_2) + 4f(x_3) + 2 f(x_4) + \ldots + 4 f(x_{2N-1}) + f(x_{2N}) \right)\frac {h} {3}$
 
 #### 误差
 
@@ -93,7 +93,7 @@ double simpson_integration(double a, double b) {
 
 我们把当前段直接代入公式求积分，再将当前段从中点分割成两段，把这两段再直接代入公式求积分。如果当前段的积分和分割成两段后的积分之和相差很小的话，就可以认为当前段和二次函数很相似了，不用再递归分割了。
 
-上面就是自适应辛普森法的思想。
+上面就是自适应辛普森法的思想。在分治判断的时候，除了判断精度是否正确，一般还要强制执行最少的迭代次数。
 
 参考代码如下：
 
@@ -102,18 +102,21 @@ double simpson(double l, double r) {
   double mid = (l + r) / 2;
   return (r - l) * (f(l) + 4 * f(mid) + f(r)) / 6;  // 辛普森公式
 }
-double asr(double l, double r, double eqs, double ans) {
+double asr(double l, double r, double eqs, double ans, int step) {
   double mid = (l + r) / 2;
   double fl = simpson(l, mid), fr = simpson(mid, r);
-  if (abs(fl + fr - ans) <= 15 * eqs)
+  if (abs(fl + fr - ans) <= 15 * eqs && step < 0)
     return fl + fr + (fl + fr - ans) / 15;  // 足够相似的话就直接返回
-  return asr(l, mid, eqs / 2, fl) +
-         asr(mid, r, eqs / 2, fr);  // 否则分割成两段递归求解
+  return asr(l, mid, eqs / 2, fl, step - 1) +
+         asr(mid, r, eqs / 2, fr, step - 1);  // 否则分割成两段递归求解
+}
+double calc(double l, double r, double eps) {
+  return asr(l, r, eps, simpson(l, r), 12);
 }
 ```
 
 ## 习题
 
--  [Luogu4525【模板】自适应辛普森法 1](https://www.luogu.com.cn/problem/P4525) 
--  [HDU1724 Ellipse](http://acm.hdu.edu.cn/showproblem.php?pid=1724) 
--  [NOI2005 月下柠檬树](https://www.luogu.com.cn/problem/P4207) 
+- [Luogu4525【模板】自适应辛普森法 1](https://www.luogu.com.cn/problem/P4525)
+- [HDU1724 Ellipse](http://acm.hdu.edu.cn/showproblem.php?pid=1724)
+- [NOI2005 月下柠檬树](https://www.luogu.com.cn/problem/P4207)

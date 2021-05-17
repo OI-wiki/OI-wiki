@@ -34,7 +34,7 @@ Emacs 是一款非常容易上手的编辑器，只需要简短的几行配置�
 
 可以使用终端或 Eshell 运行程序。
 
-按下 Tools 中的调试 (gud-gdb) 后，输入程序名（一般会自动输好，但如果中途将程序另存为或者打开了两个需要调试的程序， **自动输好的文件名可能会有误** ）即可开始调试。
+按下 Tools 中的调试 (gud-gdb) 后，输入程序名（一般会自动输好，但如果中途将程序另存为或者打开了两个需要调试的程序，**自动输好的文件名可能会有误**）即可开始调试。
 
 ### 分屏
 
@@ -60,24 +60,24 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
 
 为了方便描述，做如下约定：
 
-| 字符  | 键位              |
-| --- | --------------- |
-| C   | <kbd>Ctrl</kbd> |
-| M   | <kbd>Alt</kbd>  |
-| ？   | 任意键位            |
+| 字符 | 键位              |
+| -- | --------------- |
+| C  | <kbd>Ctrl</kbd> |
+| M  | <kbd>Alt</kbd>  |
+| ？  | 任意键位            |
 
 一般有以下三种：
 
--  `F?` 、 `ESC` ：直接按下对应的功能键。
--  `M-?` 、 `C-?` 、 `C-M-?` ：按下<kbd>Alt</kbd>或者<kbd>Ctrl</kbd>的同时按下 `?` 。
--  `? ?` ：先按下第一个 `?` 代表的键，松开再按下第二个 `?` 代表的键。
+- `F?`、`ESC`：直接按下对应的功能键。
+- `M-?`、`C-?`、`C-M-?`：按下<kbd>Alt</kbd>或者<kbd>Ctrl</kbd>的同时按下 `?`。
+- `? ?`：先按下第一个 `?` 代表的键，松开再按下第二个 `?` 代表的键。
 
 下面是一些常用的快捷键：
 
--  `C-x h` ：全选
--  `C-x left` 、 `C-x right` ：切换到上/下一个缓冲
--  `C-x d` ：打开一个目录
--  `C-x C-f` ：打开一个文件（如果不存在文件则新建文件）
+- `C-x h`：全选
+- `C-x left`、`C-x right`：切换到上/下一个缓冲
+- `C-x d`：打开一个目录
+- `C-x C-f`：打开一个文件（如果不存在文件则新建文件）
 
 ## 个性化
 
@@ -87,12 +87,12 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
 
 ### 直接设置
 
-- Options： `Highlight Matching Parentheses` 高亮匹配括号
-- Options： `Blink Cursor` 设置光标闪烁
-- Options Show/Hide： `Tool Bar` 显示/不显示工具栏（默认显示，建议不显示）
-- Options： `Use CUA Keys` 勾选后可以使用 Ctrl + C,Ctrl + V 等快捷键进行复制粘贴
-- Options Customize-Emacs： `Custom Theme` 选择配色方案，选择完后需要点击保存
-- Options： `Save Options`  **保存配置** 
+- Options：`Highlight Matching Parentheses` 高亮匹配括号
+- Options：`Blink Cursor` 设置光标闪烁
+- Options Show/Hide：`Tool Bar` 显示/不显示工具栏（默认显示，建议不显示）
+- Options：`Use CUA Keys` 勾选后可以使用 Ctrl + C,Ctrl + V 等快捷键进行复制粘贴
+- Options Customize-Emacs：`Custom Theme` 选择配色方案，选择完后需要点击保存
+- Options：`Save Options`  **保存配置**
 
 ### 配置
 
@@ -234,9 +234,9 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
 
 要以终端模式启动 Emacs，在启动时添加参数 `-nw`。Emacs 有多种变体，如采用 native-comp 来减少延迟的 [GCC Emacs](http://akrl.sdf.org/gccemacs.html) 及其纯 GTK 版本变体、针对 macOS 优化的 Emacs Macport。
 
-Emacs 有中心化的软件仓库，配置后可通过 `M-x package-install` 来安装插件。使用[镜像站](https://mirrors.bfsu.edu.cn/help/elpa/)可以加快下载速度。
+Emacs 有中心化的软件仓库，配置后可通过 `M-x package-install` 来安装插件。使用 [镜像站](https://mirrors.bfsu.edu.cn/help/elpa/) 可以加快下载速度。
 
-Emacs 可以使用语言服务器（Language Server Protocol）来提高编辑体验，目前推荐的 C++ 后端是 [Clangd](https://clangd.llvm.org/)。前端可以采用 [Eglot](https://github.com/joaotavora/eglot) 或 [Emacs LSP](https://emacs-lsp.github.io/lsp-mode/)，参阅[此条目](https://github.com/joaotavora/eglot#historical-differences-to-lsp-modeel)可能对选择前端有所帮助。
+Emacs 可以使用语言服务器（Language Server Protocol）来提高编辑体验，目前推荐的 C++ 后端是 [Clangd](https://clangd.llvm.org/)。前端可以采用 [Eglot](https://github.com/joaotavora/eglot) 或 [Emacs LSP](https://emacs-lsp.github.io/lsp-mode/)，参阅 [此条目](https://github.com/joaotavora/eglot#historical-differences-to-lsp-modeel) 可能对选择前端有所帮助。
 
 拓展名为 `.org` 的 Org Mode 文档可以通过 [Pandoc](https://pandoc.org/) 转换为 Markdown 文档。
 
