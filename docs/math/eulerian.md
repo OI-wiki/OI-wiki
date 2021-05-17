@@ -37,11 +37,14 @@ $$
 ## 公式
 
 $$
-\begin{aligned}
-&A(n, m) = 0, if m > n or n = 0 \\
-&A(n, m) = 1, if m = 0  \\
-&A(n, m) = (n-m)*A(n-1, m-1) + (m+1) * A(n-1, m)\\
-\end{aligned}
+A(n, m) = 
+\left\{
+\begin{array}{ll}
+0 & \text{if } m > n \text{ or } n = 0 \\
+1 & \text{if } m = 0 \\
+(n-m)*A(n-1, m-1) + (m+1) * A(n-1, m) & \text{otherwise} \\
+\end{array}
+\right.
 $$
 
 ## 实现
