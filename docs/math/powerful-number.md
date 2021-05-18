@@ -38,14 +38,16 @@ $$
 易得$h(1) = 1$。
 
 对于素数$p$，$f(p) = g(1)h(p) + g(p)f(1) = h(p) + g(p) \Rightarrow h(p) = 0$。根据$h(p)=0$和$h$是积性函数可以推出对于非PN的数$n$有$h(n) = 0$，即$h$仅在PN处取有效值。
+
 $$
 \begin{align}
 F(n) &= \sum_{i = 1}^{n} f(i)\\
      &= \sum_{i = 1}^{n} \sum_{d|i} h(i) g(\frac{i}{d})\\
-     &= \sum_{d=1}^{n} \sum_{r=1}^{\lfloor \frac{n}{i}\rfloor} h(d) g(r)\\
-     &= \sum_{d=1}^{n} h(d) \sum_{r=1}^{\lfloor \frac{n}{i}\rfloor}  g(r) \\
-     &= \sum_{d=1}^{n} h(d) G(\lfloor \frac{n}{i}\rfloor)\\
-     &= \sum_{\substack{d=1 \\ d \text{ is PN}}}^{n}h(d) G(\lfloor \frac{n}{i}\rfloor)
+     &= \sum_{d=1}^{n} \sum_{i=1}^{\lfloor \frac{n}{d}\rfloor} h(d) g(i)\\
+     &= \sum_{d=1}^{n} h(d) \sum_{i=1}^{\lfloor \frac{n}{d}\rfloor}  g(i) \\
+     &= \sum_{d=1}^{n} h(d) G(\lfloor \frac{n}{d}\rfloor)\\
+     &= \sum_{\substack{d=1 \\ d \text{ is PN}}}^{n}h(d) G(\lfloor \frac{n}{d}\rfloor)
 \end{align}
 $$
+
 $O(\sqrt{n})$筛出所有PN，$O(\sqrt{n})$对$G$进行数论分块，即可求出$F(n)$。
