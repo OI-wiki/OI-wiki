@@ -57,7 +57,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     ```
 
 ??? note " 习题 [「SRM 671. Div 1 900」BearDestroys](https://competitiveprogramming.info/topcoder/srm/round/16551/div/1)"
-    题目大意：给定 $n\times m$ 的矩阵，每个格子有 `E` 或 `S` 。
+    题目大意：给定 $n\times m$ 的矩阵，每个格子有 `E` 或 `S`。
     对于一个矩阵，有一个计分方案。按照行优先的规则扫描每个格子，如果这个格子之前被骨牌占据，则 skip。
     否则尝试放多米诺骨牌。如果放骨牌的方向在矩阵外或被其他骨牌占据，则放置失败，切换另一种方案或 skip。
     如果是 `E` 则优先放一个 $1\times 2$ 的骨牌，
@@ -377,23 +377,23 @@ if (s >> j & 1) {       // 如果已被覆盖
     题目大意：有障碍。
 
 ??? note " 习题 [「USACO 5.4.4」Betsy's Tours](http://oj.jzxx.net/problem.php?id=1695)"
-    题目大意：一个 $N\times N$ 的方阵（ $N\le 7$ ），求从左上角出发到左下角结束经过每个格子的路径总数。虽然是一条路径，但因为起点和终点固定，可以转化为一条回路问题。
+    题目大意：一个 $N\times N$ 的方阵（$N\le 7$），求从左上角出发到左下角结束经过每个格子的路径总数。虽然是一条路径，但因为起点和终点固定，可以转化为一条回路问题。
 
 ??? note " 习题 [「POJ 1739」Tony's Tour](http://poj.org/problem?id=1739)"
     题目大意：著名的男人八题系列之一。解法同上。
 
 ??? note " 习题 [「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
-    题目大意： $n\le 1000,m=4$ ，每个回路需要统计两次（逆时针和顺时针），需要高精度。
+    题目大意：$n\le 1000,m=4$，每个回路需要统计两次（逆时针和顺时针），需要高精度。
 
 ??? note " 习题 [「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
-    题目大意：对于每一个有 $m$ 条回路的方案，对答案的贡献是 $2^m$ ，求所有方案的贡献和。
+    题目大意：对于每一个有 $m$ 条回路的方案，对答案的贡献是 $2^m$，求所有方案的贡献和。
 
 ### 一条路径
 
 #### 例题「ZOJ 3213」Beautiful Meadow
 
 ???+note " 例题 [「ZOJ 3213」Beautiful Meadow](https://vjudge.net/problem/ZOJ-3213)"
-    题目大意：一个 $N\times M$ 的方阵（ $N,M\le 8$ ），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和。
+    题目大意：一个 $N\times M$ 的方阵（$N,M\le 8$），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和。
 
 本题是标准的一条路径问题，在一条路径问题中，编码的状态中还会存在不能配对的独立插头。需要在状态转移函数中，额外讨论独立插头的生成、合并与消失的情况。独立插头的生成和消失对应着路径的一端，因而这类事件不会发生超过两次（一次生成一次消失，或者两次生成一次合并），否则最终结果一定会出现多个连通块。
 
@@ -598,7 +598,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 #### 习题
 
 ??? note " 习题 [「NOI 2010 Day2」旅行路线](https://www.luogu.com.cn/problem/P1933)"
-    题目大意： $n\times m$ 的棋盘，棋盘的每个格子有一个 01 权值 T[x][y]，要求寻找一个路径覆盖，满足：
+    题目大意：$n\times m$ 的棋盘，棋盘的每个格子有一个 01 权值 T[x][y]，要求寻找一个路径覆盖，满足：
     
     - 第 i 个参观的格点 (x, y)，满足 T[x][y]= L[i]
     - 路径的一端在棋盘的边界上
@@ -975,7 +975,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 ### 例题「HDU 4113」Construct the Great Wall
 
 ???+note " 例题 [「HDU 4113」Construct the Great Wall](https://vjudge.net/problem/HDU-4113)"
-    题目大意：在 $N\times M$ 的棋盘内构造一组回路，分割所有的 `x` 和 `o` 。
+    题目大意：在 $N\times M$ 的棋盘内构造一组回路，分割所有的 `x` 和 `o`。
 
 有一类插头 DP 问题要求我们在棋盘上构造一组墙，以分割棋盘上的某些元素。不妨称之为修墙问题，这类问题既可视作染色模型，也可视作路径模型。
 
@@ -1137,7 +1137,9 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ??? note " 习题 [「ZOJ 2125」Rocket Mania](https://vjudge.net/problem/ZOJ-2125)"
 
+
 ??? note " 习题 [「ZOJ 2126」Rocket Mania Plus](https://vjudge.net/problem/ZOJ-2126)"
+
 
 ??? note " 习题 [「World Finals 2009/2010 Harbin」Channel](https://vjudge.net/problem/UVALive-4789)"
     题目大意：。
