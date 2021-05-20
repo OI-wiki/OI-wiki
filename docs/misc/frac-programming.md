@@ -1,4 +1,4 @@
-author: greyqz, Ir1d, hsfzLZH1
+author: greyqz, Ir1d, hsfzLZH1, huaruoji
 
 分数规划用来求一个分式的极值。
 
