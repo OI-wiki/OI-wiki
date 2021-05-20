@@ -114,7 +114,7 @@ Dinkelbach 算法的大概思想是每次用上一轮的答案当做新的 $L$ �
 
 > 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$。
 >
-> 你可以选 $n-k$ 个物品 $p_1,p_2,\cdots,p_k$，使得 $\displaystyle\frac{\sum a_{p_i}}{\sum b_{p_i}}$ 最大。
+> 你可以选 $n-k$ 个物品 $p_1,p_2,\cdots,p_{n-k}$，使得 $\displaystyle\frac{\sum a_{p_i}}{\sum b_{p_i}}$ 最大。
 >
 > 输出答案乘 $100$ 后四舍五入到整数的值。
 
