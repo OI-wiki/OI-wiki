@@ -105,7 +105,7 @@ ST3 的 vim 模式由自带的插件 Vintage 提供，它默认是禁用的。�
 	{ "keys": ["down"], "command": ""},
 ```
 
-也可以通过快捷键设置将进入命令模式设置成任意键，但注意在 Windows 环境下不要使用 <kbd>Caps Lock</kbd> ，因为很难令大小写转换失效。
+也可以通过快捷键设置将进入命令模式设置成任意键（具体详见 [修改插件](#修改插件) ），但注意在 Windows 环境下不要使用 <kbd>Caps Lock</kbd> ，因为很难令大小写转换失效。
 
 #### 与真正 vim 的不同
 
@@ -113,7 +113,7 @@ ST3 的 vim 模式与真正的 vim 略有区别，以下为找到的部分（欢
 
 + 在插入模式下用选中不会进入可视模式，这时输入不会被识别为命令而是直接替换文本。可视模式只有命令模式下才能进入。
 + `r` 、 `R` 、 `zA` 、 `za` 、 `zi` 、 `z=` 、 `@` 与使用 <kbd>[</kbd>  、 <kbd>]</kbd> 或 <kbd>"</kbd> 键的命令不存在。
-+ 使用 <kbd>Ctrl</kbd> 、 <kbd>Shift</kbd> 和 <kbd>Alt</kbd> 键的快捷键会保留为 ST3 设置的快捷键，如 `Ctrl+V` 不会进入可视模式而是正常粘贴。
++ 使用 <kbd>Ctrl</kbd> 、 <kbd>Shift</kbd> 和 <kbd>Alt</kbd> 键的快捷键会保留为 ST3 设置的快捷键，如 <kbd>Crtl</kbd>+<kbd>v</kbd> 不会进入可视模式而是正常粘贴。
 + 命令行模式只保留了 `:e` 、 `:0` 、 `:$` 、 `:s`  。
 + 使用 `\` 与 `?` 命令会自动唤出搜索框，而不是直接在命令中键入单词进行搜索。同时，数字将无法生效。
 + `q` 宏录制命令会启动 ST3 自带的宏录制，按 <kbd>q</kbd> 后需要再按一个键启动录制，但录制的宏不会与该键绑定，需要按 <kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd>  才能启动。如果需要保存，需要 `工具->保存宏` ，快捷键需要设置。
@@ -185,7 +185,7 @@ ST3 的 vim 模式与真正的 vim 略有区别，以下为找到的部分（欢
 
 在`首选项->快捷键设置` 中设置，在左边找到自己需要修改的功能，然后复制到右边并修改按键即可。注意 ST3 的功能极多，不要与其他功能重复了，或者把重复的功能的快捷键也改掉。
 
-例如，如果要把 <kbd>Ctrl</kbd>+<kbd>B</kbd> 的编译改为 <kbd>F9</kbd> （事实上，如果不令原有的快捷键失效，实际是增加一个触发方式），则可以在 `首选项->快捷键设置` 中添加：
+例如，如果要把 <kbd>Ctrl</kbd>+<kbd>B</kbd> 的编译改为 <kbd>F9</kbd> （如果不令原有的快捷键失效，实际是增加一个触发方式），则可以在 `首选项->快捷键设置` 中添加：
 
 ```json
 	{ "keys": ["f9"], "command": "build" },  //将build命令改为f9
@@ -404,7 +404,7 @@ s[5] = "aae";
 s[6] = "aaf";
 ```
 
-如要为下列所有 `a + b` 加上括号，只需选择一个 `a + b` ，按住 <kbd>Ctrl</kbd>+<kbd>D</kbd> 并键入 <kbd>(</kbd> 即可
+如要为下列所有 `a + b` 加上括号，只需选择一个 `a + b` ，按住 <kbd>Ctrl</kbd>+<kbd>D</kbd> 并键入 <kbd>(</kbd> 即可（如选择一定区域，则 <kbd>(</kbd> 会为该区域两边添加括号）。
 
 ```c++
 a + b * a + b * a + b
@@ -438,10 +438,7 @@ return 0
 如要为以下代码添加分号，可以按 <kbd>Ctrl</kbd>+<kbd>q</kbd> 启动宏录制接下来依次按 <kbd>End</kbd> 、 <kbd>;</kbd>  、 <kbd>Down</kbd> 再按 <kbd>Ctrl</kbd>+<kbd>q</kbd> 结束宏录制（中途左下角不会全程显示正在录制，但确实在录制），接下来按 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd> 执行一次，  <kbd>Esc</kbd> 进入命令模式，输入 `..` 即可（ `.` 命令可以重复 ST3 命令）
 
 ```c++
-int a, b
-cin >> a >> b
-cout << a + b
-return 0
+int a, bcin >> a >> bcout << a + breturn 0
 ```
 
 关于宏的保存与绑定按键详见 [社区文档](https://docs.sublimetext.io/guide/extensibility/macros.html) 。
@@ -466,9 +463,7 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 进入 `系统->编译系统->新建编译系统…` 然后在大括号中间输入：
 
 ```json
-"cmd": ["cmd","/c","g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","cmd","/c","${file_path}/${file_base_name}"],    //编译选项可以自己调整
-
-"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",    //这一行可以让ST3图形化显示报错，如果习惯了看g++返回的信息可以去掉
+"cmd": ["cmd","/c","g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","cmd","/c","${file_path}/${file_base_name}"],    //编译选项可以自己调整"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",    //这一行可以让ST3图形化显示报错，如果习惯了看g++返回的信息可以去掉
 ```
 
 保存后按 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> 把编译系统切换到你自己写的这个，就可以使用了，这里的配置是编译并在外部 CMD 运行。
@@ -479,20 +474,7 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
     以下为满足各位的各种需要而写，可能需要掌握一些命令行的知识。
     
 
-    只编译 
-    
-    ```json
-    "cmd": [“g++","-Wall","${file}","-o","${file_path}/${file_base_name}"],
-    ```
-    
-    在内部 CMD 运行
-    
-    ```json
-    "shell_cmd": [g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","${file_path}/${file_base_name}& pause"],
-    
-    ```
-    
-    还可以利用一些方法把编译和运行拆开并分别配置快捷键，由于并不必要，请自行搜索。
+    只编译 ```json"cmd": [“g++","-Wall","${file}","-o","${file_path}/${file_base_name}"],```在内部 CMD 运行```json"shell_cmd": [g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","${file_path}/${file_base_name}& pause"],```还可以利用一些方法把编译和运行拆开并分别配置快捷键，由于并不必要，请自行搜索。
 
 
 ### 运行
@@ -534,5 +516,6 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 [^ref1]: [便捷清新的文本编辑器 sublime](https://www.luogu.com.cn/blog/acking/sublime)
 
 [^ref2]: [Sublime Text社区文档](https://docs.sublimetext.io/)
+
 [^ref3]: [Sublime Text 3 Git集成](https://www.sublimetext.com/docs/3/git_integration.html)
 
