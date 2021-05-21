@@ -338,7 +338,6 @@ int main(){
 | <kbd>Ctrl</kbd>+<kbd>J</kbd>                                 | 合并下一行与当前行                                           |
 | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>                | 粘贴并缩进（用于整段粘贴代码）                               |
 | <kbd>Ctrl</kbd>+<kbd>K</kbd> & <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> | 从历史粘贴（复合快捷键，建议修改为 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd>） |
-| <kbd>Ctrl</kbd>+<kbd>Space</kbd>                             | 选择下一个自动补全建议（与 <kbd>Down</kbd> 等价，注意是空格） |
 | <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>               | 光标下移，并保留当前行光标（进入多点编辑模式）               |
 | <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd>                 | 光标上移，并保留当前行光标（进入多点编辑模式）               |
 | <kbd>~</kbd>                                                 | 转换选择内容的大小写                                         |
@@ -371,7 +370,7 @@ ST3 有丰富的补全功能，可能的补全内容会在光标下方显示，�
 
 五个查找选项分别为、正则表达式（开启后可以直接输入正则表达式）、大小写敏感、全字匹配、循环查找、在选段中查找。
 
-建议在首选项中将 `"auto_find_in_selection"` 设置为 `true` 这样在选择时使用查找会自动只在选段中查找。
+建议在首选项中将 `"auto_find_in_selection"` 设置为 `true` 这样在选择超过一个词时使用查找会自动只在选段中查找。
 
 ## 演示
 
@@ -403,6 +402,12 @@ s[3] = "aac";
 s[4] = "good"
 s[5] = "aae";
 s[6] = "aaf";
+```
+
+如要为下列所有 `a + b` 加上括号，只需选择一个 `a + b` ，按住 <kbd>Ctrl</kbd>+<kbd>D</kbd> 并键入 <kbd>(</kbd> 即可
+
+```c++
+a + b * a + b * a + b
 ```
 
 ### 查找与替换
