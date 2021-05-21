@@ -438,7 +438,10 @@ return 0
 如要为以下代码添加分号，可以按 <kbd>Ctrl</kbd>+<kbd>q</kbd> 启动宏录制接下来依次按 <kbd>End</kbd> 、 <kbd>;</kbd>  、 <kbd>Down</kbd> 再按 <kbd>Ctrl</kbd>+<kbd>q</kbd> 结束宏录制（中途左下角不会全程显示正在录制，但确实在录制），接下来按 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd> 执行一次，  <kbd>Esc</kbd> 进入命令模式，输入 `..` 即可（ `.` 命令可以重复 ST3 命令）
 
 ```c++
-int a, bcin >> a >> bcout << a + breturn 0
+int a, b
+cin >> a >> b
+cout << a + b
+return 0
 ```
 
 关于宏的保存与绑定按键详见 [社区文档](https://docs.sublimetext.io/guide/extensibility/macros.html) 。
@@ -451,7 +454,7 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 
 ### 编译
 
-直接按 <kbd>Ctrl</kbd>+<kbd>B</kbd> 编译，第一次使用会让你选择编译方式，选择 `C++ Single File ` （编译）或 `C++ Single File - Run` （编译并运行）。
+直接按 <kbd>Ctrl</kbd>+<kbd>B</kbd> 编译，第一次使用会让你选择编译方式，选择 `C++ Single File` （编译）或 `C++ Single File - Run` （编译并运行）。
 
 
 #### 修改编译选项
@@ -463,7 +466,9 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 进入 `系统->编译系统->新建编译系统…` 然后在大括号中间输入：
 
 ```json
-"cmd": ["cmd","/c","g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","cmd","/c","${file_path}/${file_base_name}"],    //编译选项可以自己调整"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",    //这一行可以让ST3图形化显示报错，如果习惯了看g++返回的信息可以去掉
+"cmd": ["cmd","/c","g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","cmd","/c","${file_path}/${file_base_name}"],    //编译选项可以自己调整
+
+"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",    //这一行可以让ST3图形化显示报错，如果习惯了看g++返回的信息可以去掉
 ```
 
 保存后按 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> 把编译系统切换到你自己写的这个，就可以使用了，这里的配置是编译并在外部 CMD 运行。
@@ -474,7 +479,20 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
     以下为满足各位的各种需要而写，可能需要掌握一些命令行的知识。
     
 
-    只编译 ```json"cmd": [“g++","-Wall","${file}","-o","${file_path}/${file_base_name}"],```在内部 CMD 运行```json"shell_cmd": [g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","${file_path}/${file_base_name}& pause"],```还可以利用一些方法把编译和运行拆开并分别配置快捷键，由于并不必要，请自行搜索。
+    只编译 
+    
+    ```json
+    "cmd": [“g++","-Wall","${file}","-o","${file_path}/${file_base_name}"],
+    ```
+    
+    在内部 CMD 运行
+    
+    ```json
+    "shell_cmd": [g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","${file_path}/${file_base_name}& pause"],
+    
+    ```
+    
+    还可以利用一些方法把编译和运行拆开并分别配置快捷键，由于并不必要，请自行搜索。
 
 
 ### 运行
