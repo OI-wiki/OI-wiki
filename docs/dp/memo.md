@@ -182,7 +182,7 @@ int main() {
 
 举例：
 
-$dp_{i} = max\{dp_{j}+1\}\quad (1 \leq j < i \text{ and } a_{j}<a_{i})$（最长上升子序列）
+$dp_{i} = max\{dp_{j}+1\}\quad (1 \leq j < i \land a_{j}<a_{i})$（最长上升子序列）
 
 转为
 
