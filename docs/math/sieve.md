@@ -35,21 +35,21 @@ int Eratosthenes(int n) {
 
 现在我们就来看看推导过程：
 
-如果每一次对数组的操作花费1个单位时间，则时间复杂度为：
+如果每一次对数组的操作花费 1 个单位时间，则时间复杂度为：
 
 $$
 O\left(n\sum_{k=1}^{\pi(n)}{1\over p_k}\right)
 $$
 
-其中$p_k$表示第k小的素数。根据Mertens第二定理，存在常数$B_1$使得：
+其中 $p_k$ 表示第 k 小的素数。根据 Mertens 第二定理，存在常数 $B_1$ 使得：
 
 $$
 \sum_{k=1}^{\pi(n)}{1\over p_k}=\log\log n+B_1+O\left(1\over\log n\right)
 $$
 
-所以**Eratosthenes筛法**的时间复杂度为$O(n\log\log n)$。接下来我们证明Mertens第二定理的弱化版本$\sum_{k\le\pi(n)}1/p_k=O(\log\log n)$：
+所以 **Eratosthenes 筛法** 的时间复杂度为 $O(n\log\log n)$。接下来我们证明 Mertens 第二定理的弱化版本 $\sum_{k\le\pi(n)}1/p_k=O(\log\log n)$：
 
-根据$\pi(n)=\Theta(n/\log n)$，可知第n个素数的大小为$\Theta(n\log n)$。于是就有
+根据 $\pi(n)=\Theta(n/\log n)$，可知第 n 个素数的大小为 $\Theta(n\log n)$。于是就有
 
 $$
 \begin{aligned}
