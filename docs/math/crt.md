@@ -36,7 +36,7 @@ $$
 
 ### C 语言代码
 
-```C
+```c
         LL CRT(int k, LL* a, LL* r) {
           LL n = 1, ans = 0;
           for (int i = 1; i <= k; i++) n = n * r[i];
