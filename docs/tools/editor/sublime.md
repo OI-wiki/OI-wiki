@@ -99,10 +99,10 @@ ST3 的 vim 模式由自带的插件 Vintage 提供，它默认是禁用的。�
 如果想让上下左右键失效，可以在快捷键设置中添加：
 
 ```json
-    { "keys": ["left"], "command": ""},
-    { "keys": ["right"], "command": ""},
-    { "keys": ["up"], "command": ""},
-    { "keys": ["down"], "command": ""},
+	{ "keys": ["left"], "command": ""},
+	{ "keys": ["right"], "command": ""},
+	{ "keys": ["up"], "command": ""},
+	{ "keys": ["down"], "command": ""},
 ```
 
 也可以通过快捷键设置将进入命令模式设置成任意键，但注意在 Windows 环境下不要使用 <kbd>Caps Lock</kbd> ，因为很难令大小写转换失效。
@@ -131,12 +131,12 @@ ST3 的 vim 模式与真正的 vim 略有区别，以下为找到的部分（欢
 ```json
 {
 	"font_size": 11,  //字体大小
-    "font_face": "",  //字体，可以不设置，默认为 Consolas
-    "translate_tabs_to_spaces": true,  //Tab自动转换为空格
+	"font_face": "",  //字体，可以不设置，默认为 Consolas
+	"translate_tabs_to_spaces": true,  //Tab自动转换为空格
 	"tab_size": 4,  //缩进宽度
 	"highlight_line": true,  //行高亮
-    "trim_trailing_white_space_on_save": true,  //保存时自动在文件尾增加换行
-    "auto_find_in_selection": true,  //在选择时查找自动只查找选择范围
+	"trim_trailing_white_space_on_save": true,  //保存时自动在文件尾增加换行
+	"auto_find_in_selection": true,  //在选择时查找自动只查找选择范围
 	"ignored_packages":  //禁用了OI中不太可能用到的插件，可以自己调整
 	[
 		"ActionScript",
