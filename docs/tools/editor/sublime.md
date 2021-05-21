@@ -399,7 +399,7 @@ int check() {
 s[1] = "aaa";
 s[2] = "aab";
 s[3] = "aac";
-s[4] = "good"
+s[4] = "good";
 s[5] = "aae";
 s[6] = "aaf";
 ```
@@ -418,7 +418,7 @@ a + b * a + b * a + b
 s[1] = "aaa";
 s[2] = "aab";
 s[3] = "aac";
-s[4] = "good"
+s[4] = "good";
 s[5] = "aae";
 s[6] = "aaf";
 ```
