@@ -48,7 +48,7 @@ cd OI-wiki
 # 安装 mkdocs
 pip3 install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
-# 使用我们的自定义主题(windwos上直接执行&&后的语句就好)
+# 使用我们的自定义主题（Windows 上请使用 Git Bash 执行 `&&` 后的语句）
 chmod +x ./scripts/install_theme.sh && ./scripts/install_theme.sh
 
 # 两种方法（选其一即可）：
