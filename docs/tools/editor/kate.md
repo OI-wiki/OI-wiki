@@ -6,7 +6,7 @@ Kate 是一个具有众多功能的跨平台文本编辑器。Kate 还附带了�
 
 ## 下载与安装
 
-可打开 [Kate 官网](https://kate-editor.org/)，然后进入[获取页面](https://kate-editor.org/zh-cn/get-it/)。随后，根据你使用的系统和喜欢的安装方式进行安装。接下来以 Windows 为例讲解安装。
+可打开 [Kate 官网](https://kate-editor.org/)，然后进入 [获取页面](https://kate-editor.org/zh-cn/get-it/)。随后，根据你使用的系统和喜欢的安装方式进行安装。接下来以 Windows 为例讲解安装。
 
 ![Windows 上的安装方式](images/kate-1-windows-install-1.png)
 
@@ -33,17 +33,17 @@ Kate 自身自带的文件位于 [Syntax Highlighting Powered By KSyntaxHighligh
 
 ### 切换语言
 
-点击上方工具栏里的 `设置` / `Setting`，然后点击 `配置语言` / `Configure Language`，随后选择语言即可，注意可以选择备选语言。
+点击上方工具栏里的 `设置`/`Setting`，然后点击 `配置语言`/`Configure Language`，随后选择语言即可，注意可以选择备选语言。
 
 ### 编码与行尾符
 
 Kate 可以自动识别当前文件使用的是什么编码，如果识别错误，可以点击右下角倒数第二个按钮，选择正确的编码。
 
-同时，Kate 也可以自动识别当前文件使用的行尾符，如果识别错误，可以点击 `工具`→`行尾` / `Tool`→`End of line` 选择正确的行尾符。
+同时，Kate 也可以自动识别当前文件使用的行尾符，如果识别错误，可以点击 `工具`→`行尾`/`Tool`→`End of line` 选择正确的行尾符。
 
 ### 查找与替换
 
-依次单击`编辑`→`查找`（快捷键 <kbd>Ctrl</kbd>+<kbd>F</kbd>）即可打开“查找”页面。依次单击`编辑`→`替换`（快捷键 <kbd>Ctrl</kbd>+<kbd>R</kbd>）即可打开“查找与替换”页面。同时，点击左下角 `搜索与替换` 也可打开“查找与替换”页面。
+依次单击 `编辑`→`查找`（快捷键<kbd>Ctrl</kbd>+<kbd>F</kbd>）即可打开“查找”页面。依次单击 `编辑`→`替换`（快捷键<kbd>Ctrl</kbd>+<kbd>R</kbd>）即可打开“查找与替换”页面。同时，点击左下角 `搜索与替换` 也可打开“查找与替换”页面。
 
 具体操作和其他编辑器并无太大差别，但是支持一些额外的特性，例如：
 
@@ -56,25 +56,25 @@ Kate 可以自动识别当前文件使用的是什么编码，如果识别错误
 
 Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go、Latex/BibTeX、OCaml、Python、Rust，现如今支持如下表中的语言：
 
-|语言|LSP Server|
-|:--:|:--------:|
-|Bash|[bash-language-server](https://github.com/bash-lsp/bash-language-server)|
-|LaTeX|[texlab](https://texlab.netlify.com/)|
-|BibTeX|[texlab](https://texlab.netlify.com/)|
-|C|[clangd](https://clang.llvm.org/extra/clangd/)|
-|C++|[clangd](https://clang.llvm.org/extra/clangd/)|
-|D|[serve-d](https://github.com/Pure-D/serve-d)|
-|Fortran|[fortls](https://github.com/hansec/fortran-language-server)|
-|Go|[gopls](https://golang.org/x/tools/gopls)|
-|Haskell|[haskell-language-server-wrapper](https://github.com/haskell/haskell-language-server")|
-|JavaScript|[typescript-language-server](https://github.com/theia-ide/typescript-language-server)|
-|OCaml|[ocamllsp](https://github.com/ocaml/ocaml-lsp)|
-|Perl|[Perl-LanguageServer](https://github.com/richterger/Perl-LanguageServer)|
-|Python|[pyls](https://github.com/palantir/python-language-server)|
-|Rust|[rls](https://github.com/rust-lang/rls)|
-|TypeScript|[typescript-language-server](https://github.com/theia-ide/typescript-language-server)|
-|R|[RLanguageServer](https://github.com/REditorSupport/languageserver)|
-|zig|[zls](https://github.com/zigtools/zls)|
+|     语言     |                                       LSP Server                                       |
+| :--------: | :------------------------------------------------------------------------------------: |
+|    Bash    |        [bash-language-server](https://github.com/bash-lsp/bash-language-server)        |
+|    LaTeX   |                          [texlab](https://texlab.netlify.com/)                         |
+|   BibTeX   |                          [texlab](https://texlab.netlify.com/)                         |
+|      C     |                     [clangd](https://clang.llvm.org/extra/clangd/)                     |
+|     C++    |                     [clangd](https://clang.llvm.org/extra/clangd/)                     |
+|      D     |                      [serve-d](https://github.com/Pure-D/serve-d)                      |
+|   Fortran  |               [fortls](https://github.com/hansec/fortran-language-server)              |
+|     Go     |                        [gopls](https://golang.org/x/tools/gopls)                       |
+|   Haskell  | [haskell-language-server-wrapper](https://github.com/haskell/haskell-language-server") |
+| JavaScript |  [typescript-language-server](https://github.com/theia-ide/typescript-language-server) |
+|    OCaml   |                     [ocamllsp](https://github.com/ocaml/ocaml-lsp)                     |
+|    Perl    |        [Perl-LanguageServer](https://github.com/richterger/Perl-LanguageServer)        |
+|   Python   |               [pyls](https://github.com/palantir/python-language-server)               |
+|    Rust    |                         [rls](https://github.com/rust-lang/rls)                        |
+| TypeScript |  [typescript-language-server](https://github.com/theia-ide/typescript-language-server) |
+|      R     |           [RLanguageServer](https://github.com/REditorSupport/languageserver)          |
+|     zig    |                         [zls](https://github.com/zigtools/zls)                         |
 
 当打开对应语言的文件时，Kate 会自动拉起对应的 LSP Server。
 
@@ -126,7 +126,7 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 
 ### 内置终端
 
-按 <kbd>F4</kbd> 可打开或关闭内置终端，也可点击左下角 `终端` 按钮打开，内置终端的当前目录会自动与当前文件保持一致，并随着你选择的文件而改变。其余与一般终端并无太大不同。
+按<kbd>F4</kbd>可打开或关闭内置终端，也可点击左下角 `终端` 按钮打开，内置终端的当前目录会自动与当前文件保持一致，并随着你选择的文件而改变。其余与一般终端并无太大不同。
 
 ### 外部工具
 
