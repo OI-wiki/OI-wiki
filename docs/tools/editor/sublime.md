@@ -394,7 +394,7 @@ int check() {
 
 如果要将下列文件中的所有等号后面改成 `"good"` ，只需在将光标放置于第一行的 `aaa` 前，并按六次  <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd> ，再然后按下 <kbd>Ctrl</kbd>+<kbd>D</kbd> 并键入 `good` 即可。
 
-或选中 `aa` ，然后按五次 <kbd>Ctrl</kbd>+<kbd>D</kbd> 然后按 <kbd>Left</kbd> 、 <kbd>Ctrl</kbd>+<kbd>D</kbd> ，之后键入即可。
+或选中 `"a` ，然后按住 <kbd>Ctrl</kbd>+<kbd>D</kbd> 然后按 <kbd>Right</kbd> 、 <kbd>Ctrl</kbd>+<kbd>D</kbd> ，之后键入即可。
 
 ```c++
 s[1] = "aaa";
@@ -430,7 +430,7 @@ return 0
 
 ### 宏录制
 
-如要为以下代码添加分号，可以按 <kbd>Ctrl</kbd>+<kbd>q</kbd> 启动宏录制接下来依次按 <kbd>End</kbd> 、 <kbd>;</kbd>  、 <kbd>Down</kbd> 再按 <kbd>Ctrl</kbd>+<kbd>q</kbd> 结束宏录制（中途左下角不会全程显示正在录制，但确实在录制），接下来按 <kbd>Esc</kbd> 进入命令模式，输入 `...` 即可（ `.` 命令可以重复 ST3 命令）
+如要为以下代码添加分号，可以按 <kbd>Ctrl</kbd>+<kbd>q</kbd> 启动宏录制接下来依次按 <kbd>End</kbd> 、 <kbd>;</kbd>  、 <kbd>Down</kbd> 再按 <kbd>Ctrl</kbd>+<kbd>q</kbd> 结束宏录制（中途左下角不会全程显示正在录制，但确实在录制），接下来按 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd> 执行一次，  <kbd>Esc</kbd> 进入命令模式，输入 `..` 即可（ `.` 命令可以重复 ST3 命令）
 
 ```c++
 int a, b
