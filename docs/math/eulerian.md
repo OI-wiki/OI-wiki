@@ -42,7 +42,7 @@ A(n, m) =
 \begin{array}{ll}
 0 & m > n \text{ or } n = 0 \\
 1 & m = 0 \\
-(n-m)*A(n-1, m-1) + (m+1) * A(n-1, m) & \text{otherwise} \\
+(n-m) \cdot A(n-1, m-1) + (m+1) \cdot A(n-1, m) & \text{otherwise} \\
 \end{array}
 \right.
 $$
