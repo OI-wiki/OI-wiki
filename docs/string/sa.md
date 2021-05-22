@@ -28,7 +28,6 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
 
 我相信这个做法大家还是能自己想到的：将盛有全部后缀字符串的数组进行 `sort` 排序，由于排序进行 $O(n\log n)$ 次字符串比较，每次字符串比较要 $O(n)$ 次字符比较，所以这个排序是 $O(n^2\log n)$ 的时间复杂度。
 
-
 ### O(nlog^2n) 做法
 
 这个做法要用到倍增的思想。
@@ -61,23 +60,23 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
     #include <cstdio>
     #include <cstring>
     #include <iostream>
-
+    
     using namespace std;
-
+    
     const int N = 1000010;
-
+    
     char s[N];
     int n, w, sa[N], rk[N << 1], oldrk[N << 1];
     // 为了防止访问 rk[i+w] 导致数组越界，开两倍数组。
     // 当然也可以在访问前判断是否越界，但直接开两倍数组方便一些。
-
+    
     int main() {
       int i, p;
-
+    
       scanf("%s", s + 1);
       n = strlen(s + 1);
       for (i = 1; i <= n; ++i) sa[i] = i, rk[i] = s[i];
-
+    
       for (w = 1; w < n; w <<= 1) {
         sort(sa + 1, sa + n + 1, [](int x, int y) {
           return rk[x] == rk[y] ? rk[x + w] < rk[y + w] : rk[x] < rk[y];
@@ -93,9 +92,9 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
           }  // 若两个子串相同，它们对应的 rk 也需要相同，所以要去重
         }
       }
-
+    
       for (i = 1; i <= n; ++i) printf("%d ", sa[i]);
-
+    
       return 0;
     }
     ```
@@ -114,17 +113,17 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
     #include <cstdio>
     #include <cstring>
     #include <iostream>
-
+    
     using namespace std;
-
+    
     const int N = 1000010;
-
+    
     char s[N];
     int n, sa[N], rk[N << 1], oldrk[N << 1], id[N], cnt[N];
-
+    
     int main() {
       int i, m, p, w;
-
+    
       scanf("%s", s + 1);
       n = strlen(s + 1);
       m = 127;
@@ -139,7 +138,7 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
           rk[sa[i]] = ++p;
         }
       }
-
+    
       for (w = 1; w < n; w <<= 1, m = n) {
         // 对第二关键字：id[i] + w进行计数排序
         memset(cnt, 0, sizeof(cnt));
@@ -148,14 +147,14 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
         for (i = 1; i <= n; ++i) ++cnt[rk[id[i] + w]];
         for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
         for (i = n; i >= 1; --i) sa[cnt[rk[id[i] + w]]--] = id[i];
-
+    
         // 对第一关键字：id[i]进行计数排序
         memset(cnt, 0, sizeof(cnt));
         memcpy(id + 1, sa + 1, n * sizeof(int));
         for (i = 1; i <= n; ++i) ++cnt[rk[id[i]]];
         for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
         for (i = n; i >= 1; --i) sa[cnt[rk[id[i]]]--] = id[i];
-
+    
         memcpy(oldrk + 1, rk + 1, n * sizeof(int));
         for (p = 0, i = 1; i <= n; ++i) {
           if (oldrk[sa[i]] == oldrk[sa[i - 1]] &&
@@ -166,9 +165,9 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
           }
         }
       }
-
+    
       for (i = 1; i <= n; ++i) printf("%d ", sa[i]);
-
+    
       return 0;
     }
     ```
@@ -221,37 +220,37 @@ for (i = 1; i <= n; ++i) {
     #include <cstdio>
     #include <cstring>
     #include <iostream>
-
+    
     using namespace std;
-
+    
     const int N = 1000010;
-
+    
     char s[N];
     int n, sa[N], rk[N], oldrk[N << 1], id[N], key1[N], cnt[N];
     // key1[i] = rk[id[i]]（作为基数排序的第一关键字数组）
-
+    
     bool cmp(int x, int y, int w) {
       return oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w];
     }
-
+    
     int main() {
       int i, m = 127, p, w;
-
+    
       scanf("%s", s + 1);
       n = strlen(s + 1);
       for (i = 1; i <= n; ++i) ++cnt[rk[i] = s[i]];
       for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
       for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
-
+    
       for (w = 1;; w <<= 1, m = p) {  // m=p 就是优化计数排序值域
         for (p = 0, i = n; i > n - w; --i) id[++p] = i;
         for (i = 1; i <= n; ++i)
           if (sa[i] > w) id[++p] = sa[i] - w;
-
+    
         memset(cnt, 0, sizeof(cnt));
         for (i = 1; i <= n; ++i) ++cnt[key1[i] = rk[id[i]]];
         // 注意这里px[i] != i，因为rk没有更新，是上一轮的排名数组
-
+    
         for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
         for (i = n; i >= 1; --i) sa[cnt[key1[i]]--] = id[i];
         memcpy(oldrk + 1, rk + 1, n * sizeof(int));
@@ -262,9 +261,9 @@ for (i = 1; i <= n; ++i) {
           break;
         }
       }
-
+    
       for (i = 1; i <= n; ++i) printf("%d ", sa[i]);
-
+    
       return 0;
     }
     ```
@@ -303,7 +302,7 @@ for (i = 1; i <= n; ++i) {
 
 ??? note "题解"
     暴力做法就是每次最坏 $O(n)$ 地判断当前应该取首还是尾（即比较取首得到的字符串与取尾得到的反串的大小），只需优化这一判断过程即可。
-
+    
     由于需要在原串后缀与反串后缀构成的集合内比较大小，可以将反串拼接在原串后，并在中间加上一个没出现过的字符（如 `#`，代码中可以直接使用空字符），求后缀数组，即可 $O(1)$ 完成这一判断。
 
 ??? note "参考代码"
@@ -312,35 +311,35 @@ for (i = 1; i <= n; ++i) {
     #include <cstdio>
     #include <cstring>
     #include <iostream>
-
+    
     using namespace std;
-
+    
     const int N = 1000010;
-
+    
     char s[N];
     int n, sa[N], id[N], oldrk[N << 1], rk[N << 1], key1[N], cnt[N];
-
+    
     bool cmp(int x, int y, int w) {
       return oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w];
     }
-
+    
     int main() {
       int i, w, m = 127, p, l = 1, r, tot = 0;
-
+    
       cin >> n;
       r = n;
-
+    
       for (i = 1; i <= n; ++i)
         while (!isalpha(s[i] = getchar()))
           ;
       for (i = 1; i <= n; ++i) rk[i] = rk[2 * n + 2 - i] = s[i];
-
+    
       n = 2 * n + 1;
-
+    
       for (i = 1; i <= n; ++i) ++cnt[rk[i]];
       for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
       for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
-
+    
       for (w = 1; w < n; w <<= 1, m = p) {
         for (p = 0, i = n; i > n - w; --i) id[++p] = i;
         for (i = 1; i <= n; ++i)
@@ -353,12 +352,12 @@ for (i = 1; i <= n; ++i) {
         for (p = 0, i = 1; i <= n; ++i)
           rk[sa[i]] = cmp(sa[i], sa[i - 1], w) ? p : ++p;
       }
-
+    
       while (l <= r) {
         printf("%c", rk[l] < rk[n + 1 - r] ? s[l++] : s[r--]);
         if ((++tot) % 80 == 0) puts("");
       }
-
+    
       return 0;
     }
     ```
@@ -455,9 +454,9 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 
 ??? note "题解"
     出现至少 $k$ 次意味着后缀排序后有至少连续 $k$ 个后缀的 LCP 是这个子串。
-
+    
     所以，求出每相邻 $k-1$ 个 $height$ 的最小值，再求这些最小值的最大值就是答案。
-
+    
     可以使用单调队列 $O(n)$ 解决，但使用其它方式也足以 AC。
 
 ??? note "参考代码"
@@ -466,29 +465,29 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
     #include <cstring>
     #include <iostream>
     #include <set>
-
+    
     using namespace std;
-
+    
     const int N = 32000;
-
+    
     int n, k, a[N], sa[N], rk[N], oldrk[N], id[N], key1[N], cnt[N << 1], ht[N], ans;
     multiset<int> t;  // multiset 是最好写的实现方式
-
+    
     bool cmp(int x, int y, int w) {
       return oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w];
     }
-
+    
     int main() {
       int i, j, w, p, m = 127;
-
+    
       scanf("%d%d", &n, &k);
       --k;
-
+    
       for (i = 1; i <= n; ++i) scanf("%d", a + i);
       for (i = 1; i <= n; ++i) ++cnt[rk[i] = a[i]];
       for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
       for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
-
+    
       for (w = 1; w < n; w <<= 1, m = p) {
         for (p = 0, i = n; i > n - w; --i) id[++p] = i;
         for (i = 1; i <= n; ++i)
@@ -501,21 +500,21 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
         for (p = 0, i = 1; i <= n; ++i)
           rk[sa[i]] = cmp(sa[i], sa[i - 1], w) ? p : ++p;
       }
-
+    
       for (i = 1, j = 0; i <= n; ++i) {
         if (j) --j;
         while (a[i + j] == a[sa[rk[i] - 1] + j]) ++j;
         ht[rk[i]] = j;
       }
-
+    
       for (i = 1; i <= n; ++i) {
         t.insert(ht[i]);
         if (i > k) t.erase(t.find(ht[i - k]));
         ans = max(ans, *t.begin());
       }
-
+    
       cout << ans;
-
+    
       return 0;
     }
     ```
@@ -544,11 +543,11 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 
 ??? note "题解"
     被加数的前两项很好处理，为 $n(n-1)(n+1)/2$（每个后缀都出现了 $n-1$ 次，后缀总长是 $n(n+1)/2$），关键是最后一项，即后缀的两两 LCP。
-
+    
     我们知道 $lcp(i,j)=k$ 等价于 $\min\{height[i+1..j]\}=k$。所以，可以把 $lcp(i,j)$ 记作 $\min\{x|i+1\le x\le j, height[x]=lcp(i,j)\}$ 对答案的贡献。
-
+    
     考虑每个位置对答案的贡献是哪些后缀的 LCP，其实就是从它开始向左若干个连续的 $height$ 大于它的后缀中选一个，再从向右若干个连续的 $height$ 不小于它的后缀中选一个。这个东西可以用 [单调栈](../ds/monotonous-stack.md) 计算。
-
+    
     单调栈部分类似于 [Luogu P2659 美丽的序列](https://www.luogu.com.cn/problem/P2659) 以及 [悬线法](../misc/hoverline.md)。
 
 ??? note "参考代码"
@@ -556,30 +555,30 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
     #include <cstdio>
     #include <cstring>
     #include <iostream>
-
+    
     using namespace std;
-
+    
     const int N = 500010;
-
+    
     char s[N];
     int n, sa[N], rk[N << 1], oldrk[N << 1], id[N], key1[N], cnt[N], ht[N], sta[N],
         top, l[N];
     long long ans;
-
+    
     bool cmp(int x, int y, int w) {
       return oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w];
     }
-
+    
     int main() {
       int i, k, w, p, m = 127;
-
+    
       scanf("%s", s + 1);
       n = strlen(s + 1);
       ans = 1ll * n * (n - 1) * (n + 1) / 2;
       for (i = 1; i <= n; ++i) ++cnt[rk[i] = s[i]];
       for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
       for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
-
+    
       for (w = 1; w < n; w <<= 1, m = p) {
         for (p = 0, i = n; i > n - w; --i) id[++p] = i;
         for (i = 1; i <= n; ++i)
@@ -592,19 +591,19 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
         for (p = 0, i = 1; i <= n; ++i)
           rk[sa[i]] = cmp(sa[i], sa[i - 1], w) ? p : ++p;
       }
-
+    
       for (i = 1, k = 0; i <= n; ++i) {
         if (k) --k;
         while (s[i + k] == s[sa[rk[i] - 1] + k]) ++k;
         ht[rk[i]] = k;
       }
-
+    
       for (i = 1; i <= n; ++i) {
         while (ht[sta[top]] > ht[i]) --top;
         l[i] = i - sta[top];
         sta[++top] = i;
       }
-
+    
       sta[++top] = n + 1;
       ht[n + 1] = -1;
       for (i = n; i >= 1; --i) {
@@ -612,9 +611,9 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
         ans -= 2ll * ht[i] * l[i] * (sta[top] - i);
         sta[++top] = i;
       }
-
+    
       cout << ans;
-
+    
       return 0;
     }
     ```
