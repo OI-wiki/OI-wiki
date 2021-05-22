@@ -389,10 +389,7 @@ s[6] = "aaf";
 如要为以下代码添加分号，只需使用替换，打开正则，输入 `\n`，并替换成 `;\n` 即可。
 
 ```C++
-int a, b
-cin >> a >> b
-cout << a + b
-return 0
+int a, b cin >> a >> b cout << a + b return 0
 
 ```
 
@@ -404,10 +401,7 @@ return 0
     执行一次<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd>后，可以<kbd>Esc</kbd>进入命令模式，输入 `..` 即可（`.` 命令可以重复 ST3 命令）
 
 ```C++
-int a, b
-cin >> a >> b
-cout << a + b
-return 0
+int a, b cin >> a >> b cout << a + b return 0
 ```
 
 关于宏的保存与绑定按键详见 [社区文档](https://docs.sublimetext.io/guide/extensibility/macros.html)。
