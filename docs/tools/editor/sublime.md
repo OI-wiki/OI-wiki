@@ -8,7 +8,7 @@ ST4 与 ST3 的差别比较大，这里会少量涉及。
 
 ## 安装
 
-直接前往 [Sublime Text 3 官网](https://www.sublimetext.com/3) 下载即可（如使用搜索引擎，可能会进入一个中文官网，但通过数字签名等方式可以看出这并不是官方网站）。
+直接前往 [Sublime Text 3 官网](https://www.sublimetext.com/3) 下载即可（如使用搜索引擎，可能会找到一个中文官网，但通过数字签名等方式可以看出这并不是官方网站）。
 
 ST3 的安装包并不会创建桌面快捷方式，需要自己手动创建。
 
@@ -119,7 +119,7 @@ ST3 的 Vintage 插件与 Vim 有一定不同，以下为找到的部分（欢�
 - `q` 宏录制命令会启动 ST3 自带的宏录制，按<kbd>Q</kbd>后需要再按一个键启动录制，但录制的宏不会与该键绑定，需要按<kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd>才能启动。如果需要保存，需要 `工具->保存宏`，快捷键需要设置。
 - 无法使用 `数字+.` 的组合。
 
-当然，可以通过修改快捷键以及 .py 文件增添功能，这里不再赘述。
+当然，可以通过修改快捷键及 .py 文件增添功能，这里不再赘述。
 
 ### 设置
 
@@ -155,10 +155,10 @@ ST3 的 Vintage 插件与 Vim 有一定不同，以下为找到的部分（欢�
 		"ActionScript", "AppleScript", "ASP", "Batch File", "C#", 
 		"Clojure", "CSS", "D", "Diff", "Erlang", "Git Formats", 
 		"Go", "Graphviz", "Groovy", "Haskell", "HTML", "Java", 
-        "LaTeX", "Lisp", "Lua", "Makefile", "Matlab", 
-        "Objective-C", "OCaml", "Perl", "PHP", "Python", 
-        "R","Rails", "RestructuredText", "Ruby", "Rust", 
-        "Scala", "ShellScript", "SQL", "TCL", "Textile", "XML", 
+		"LaTeX", "Lisp", "Lua", "Makefile", "Matlab", 
+		"Objective-C", "OCaml", "Perl", "PHP", "Python", 
+		"R","Rails", "RestructuredText", "Ruby", "Rust", 
+		"Scala", "ShellScript", "SQL", "TCL", "Textile", "XML", 
 	],
 }
 ```
@@ -234,7 +234,7 @@ ST3 的 Vintage 插件与 Vim 有一定不同，以下为找到的部分（欢�
 
 例如，一个文件模板的补全可以这么写：
 
-```xml
+```XML
 <snippet>
 	<description>template_code</description> <!-- 这里的内容是补全内容的预览 -->
 	<content><![CDATA[#include <cstdio>
@@ -347,7 +347,7 @@ ST3 有丰富的补全功能，可能的补全内容会在光标下方显示，�
 
 如果要把以下代码中的所有 `bok` 改为 `book`，只需将光标放置在任意一个 `bok` 中，长按<kbd>Ctrl</kbd>+<kbd>D</kbd>即可快速选中。
 
-```c++
+```C++
 int check() {
   book[1] = 1, book[2] = 1, book[3] = 1, bok[1] = 1, bok[2] = 1, bok[3] = 1,
   bok[4] = 1, bok[5] = 1;
@@ -358,7 +358,7 @@ int check() {
 
 或选中 `"a`，然后按住<kbd>Ctrl</kbd>+<kbd>D</kbd>然后按<kbd>Right</kbd>、<kbd>Ctrl</kbd>+<kbd>D</kbd>，之后键入即可。
 
-```c++
+```C++
 s[1] = "aaa";
 s[2] = "aab";
 s[3] = "aac";
@@ -369,7 +369,7 @@ s[6] = "aaf";
 
 如要为下列所有 `a + b` 加上括号，只需选择一个 `a + b`，按住<kbd>Ctrl</kbd>+<kbd>D</kbd>并键入<kbd>(</kbd>即可（如选择一定区域，则<kbd>(</kbd>会为该区域两边添加括号）。
 
-```c++
+```C++
 a + b* a + b* a + b
 ```
 
@@ -377,7 +377,7 @@ a + b* a + b* a + b
 
 如果要将下列文件中的所有等号后面改成 `"good"`，也可以用<kbd>Crtl</kbd>+<kbd>H</kbd>使用替换，打开正则，输入 `".*"`，并替换成 `"good"` 即可。
 
-```c++
+```C++
 s[1] = "aaa";
 s[2] = "aab";
 s[3] = "aac";
@@ -388,8 +388,11 @@ s[6] = "aaf";
 
 如要为以下代码添加分号，只需使用替换，打开正则，输入 `\n`，并替换成 `;\n` 即可。
 
-```c++
-int a, b cin >> a >> b cout << a + b return 0
+```C++
+int a, b
+cin >> a >> b
+cout << a + b
+return 0
 
 ```
 
@@ -400,8 +403,11 @@ int a, b cin >> a >> b cout << a + b return 0
 ??? note "如已开启 Vintage"
     执行一次<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd>后，可以<kbd>Esc</kbd>进入命令模式，输入 `..` 即可（`.` 命令可以重复 ST3 命令）
 
-```c++
-int a, b cin >> a >> b cout << a + b return 0
+```C++
+int a, b
+cin >> a >> b
+cout << a + b
+return 0
 ```
 
 关于宏的保存与绑定按键详见 [社区文档](https://docs.sublimetext.io/guide/extensibility/macros.html)。
@@ -425,9 +431,11 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 进入 `系统->编译系统->新建编译系统…` 然后在大括号中间输入：
 
 ```JSON
-"cmd": ["cmd","/c","g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","cmd","/c","${file_path}/${file_base_name}"],    //编译选项可以自己调整
+//编译选项可以自己调整
+"cmd": ["cmd","/c","g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","cmd","/c","${file_path}/${file_base_name}"],
 
-"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",    //这一行可以让ST3图形化显示报错，如果习惯了看g++返回的信息可以去掉
+//这一行可以让ST3图形化显示报错，如果习惯了看g++返回的信息可以去掉
+"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
 ```
 
 保存后按<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>把编译系统切换到你自己写的这个，就可以使用了，这里的配置是编译并在外部 CMD 运行。
@@ -447,7 +455,6 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
     
     ```JSON
     "shell_cmd": ["g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","${file_path}/${file_base_name}& pause"],
-    
     ```
     
     还可以利用一些方法把编译和运行拆开并分别配置快捷键，由于并不必要，请自行搜索。
@@ -474,8 +481,6 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 
 - 把文件夹拖进 ST3 中并开启侧边栏，从而快速切换文件。
 - 善用跳转功能，尤其是<kbd>Ctrl</kbd>+<kbd>P</kbd>进行文件跳转与<kbd>Ctrl</kbd>+<kbd>R</kbd>进行函数跳转。
-
-
 - ST3 支持 git[^ref3]。
 
 ## 外部链接
