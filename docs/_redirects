@@ -25,6 +25,14 @@
 /intro/editor/npp /tools/editor/npp
 /intro/editor/devcpp /tools/editor/devcpp
 /intro/editor/geany /tools/editor/geany
+/lang/editor/vim /tools/editor/vim
+/lang/editor/emacs /tools/editor/emacs
+/lang/editor/vscode /tools/editor/vscode
+/lang/editor/atom /tools/editor/atom
+/lang/editor/eclipse /tools/editor/eclipse
+/lang/editor/npp /tools/editor/npp
+/lang/editor/devcpp /tools/editor/devcpp
+/lang/editor/geany /tools/editor/geany
 /basic/interaction /contest/interaction
 /contest/construction /basic/construction
 /topic/cmd /tools/cmd
