@@ -1,4 +1,4 @@
-author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina, orzAtalod
+author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina, orzAtalod, luoguojie
 
 线段树是算法竞赛中常用的用来维护 **区间信息** 的数据结构。
 
@@ -546,4 +546,6 @@ int getsum(int l, int r, int s, int t, int p) {
 
 ### 参考
 
-[immortalCO 大爷的博客](https://immortalco.blog.uoj.ac/blog/2102)
+* [immortalCO 大爷的博客](https://immortalco.blog.uoj.ac/blog/2102)
+* [[Kle77]](http://ieeexplore.ieee.org/document/1675628/) V. Klee, “Can the Measure of be Computed in Less than O (n log n) Steps?,” Am. Math. Mon., vol. 84, no. 4, pp. 284–285, Apr. 1977.
+* [[BeW80]](https://www.tandfonline.com/doi/full/10.1080/00029890.1977.11994336) Bentley and Wood, “An Optimal Worst Case Algorithm for Reporting Intersections of Rectangles,” IEEE Trans. Comput., vol. C–29, no. 7, pp. 571–577, Jul. 1980.
