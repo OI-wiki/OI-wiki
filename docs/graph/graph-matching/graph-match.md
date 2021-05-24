@@ -10,10 +10,10 @@ author: accelsao, StudyingFather, thredreams
 
 同理，匹配中的边称为 **匹配边**，反之称为 **未匹配边**。
 
-- 定义匹配$M$的大小为其中边的数量 $|M|$，边数最大的 $M$ 为 **最大匹配 (Maximum-cardinality matching)**。图 $G$ 的最大匹配的大小记作 $\nu(G)$。
+- 定义匹配 $M$ 的大小为其中边的数量 $|M|$，边数最大的 $M$ 为 **最大匹配 (Maximum-cardinality matching)**。图 $G$ 的最大匹配的大小记作 $\nu(G)$。
 - 赋权图中权重之和最大的匹配为 **最大权匹配 (Maximum-weight matching)**。
 - 无法再增加匹配边的匹配为 **极大匹配 (Maximal matching)**。
-- 如果对于一个匹配这个图中所有点都是被匹配的，那么这个匹配是一个 **完美匹配 (Perfect matching)**， 或称为 **完备匹配**。如果在一个图中只有一个点不被匹配，那么这个匹配是一个 **准完美匹配 (Near-perfect matching)**，或 **准完备匹配** 。但并非每个图都存在完美匹配。
+- 如果对于一个匹配这个图中所有点都是被匹配的，那么这个匹配是一个 **完美匹配 (Perfect matching)**，或称为 **完备匹配**。如果在一个图中只有一个点不被匹配，那么这个匹配是一个 **准完美匹配 (Near-perfect matching)**，或 **准完备匹配**。但并非每个图都存在完美匹配。
 
 求一张普通图或二分图的匹配或完美匹配个数都是 [#P 完全](../../misc/cc-basic.md#p_1) 的。
 
@@ -37,7 +37,7 @@ author: accelsao, StudyingFather, thredreams
 
 ## 贝尔热定理 (Berge theorem)
 
-![[公式]](https://www.zhihu.com/equation?tex=G) 的匹配 ![[公式]](https://www.zhihu.com/equation?tex=M) 是最大匹配当且仅当 ![[公式]](https://www.zhihu.com/equation?tex=G) 不包含 ![[公式]](https://www.zhihu.com/equation?tex=M) 可扩充路。
+![\[公式\]](https://www.zhihu.com/equation?tex=G)的匹配![\[公式\]](https://www.zhihu.com/equation?tex=M)是最大匹配当且仅当![\[公式\]](https://www.zhihu.com/equation?tex=G)不包含![\[公式\]](https://www.zhihu.com/equation?tex=M)可扩充路。
 
 这个定理是 **最大匹配判定定理** 并提供了匹配扩充的思路。详见 [增广路定理](./augment.md)
 
@@ -61,17 +61,17 @@ Petersen's theorem 是托特定理的推论。
 
 ### X 到 Y 的完美匹配
 
-设 $G=<X,Y,E>$ 为二分图，$|X| \leq |Y|$，$M$ 为 $G$ 中一个最大匹配，且 $|M|=2|X|$，则称 $M$ 为 $X$ 到 $Y$ 的完美匹配，或 X-完美匹配 (**X-perfect matching**)，X-饱和匹配 (**X-saturating matching**)。换言之，X-完美匹配是覆盖X中每一个顶点的匹配。
+设 $G=<X,Y,E>$ 为二分图，$|X| \leq |Y|$，$M$ 为 $G$ 中一个最大匹配，且 $|M|=2|X|$，则称 $M$ 为 $X$ 到 $Y$ 的完美匹配，或 X - 完美匹配 (**X-perfect matching**)，X - 饱和匹配 (**X-saturating matching**)。换言之，X - 完美匹配是覆盖 X 中每一个顶点的匹配。
 
 ### 霍尔定理 (Hall's marriage theorem)
 
 设二分图 $G=<V_1, V_2, E>, |V_1| \leq |V_2|$，则 $G$ 中存在 $V_1$ 到 $V_2$ 的完美匹配，当且仅当对于任意的 $S \subset V_1$，均有 $|S|\leq|N(S)|$，其中 $N(S)=\bigcup\limits_{v \in S}{N(v)}$，是 $S$ 的邻域。
 
-霍尔定理是二分图中求最大匹配算法(匈牙利算法)的基础
+霍尔定理是二分图中求最大匹配算法（匈牙利算法）的基础
 
 ### 柯尼希定理 (Konig theorem)
 
- 在二分图中，最大匹配的边数等于最小覆盖的顶点数。
+在二分图中，最大匹配的边数等于最小覆盖的顶点数。
 
 ## 算法
 
