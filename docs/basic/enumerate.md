@@ -1,4 +1,4 @@
-author: qiqistyle
+author: frank-xjh, qiqistyle
 
 本页面将简要介绍枚举算法。
 
