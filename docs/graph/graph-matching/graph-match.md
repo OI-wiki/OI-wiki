@@ -13,7 +13,7 @@ author: accelsao, StudyingFather, thredreams
 - 定义匹配 $M$ 的大小为其中边的数量 $|M|$，边数最大的 $M$ 为 **最大匹配 (Maximum-cardinality matching)**。图 $G$ 的最大匹配的大小记作 $\nu(G)$。
 - 赋权图中权重之和最大的匹配为 **最大权匹配 (Maximum-weight matching)**。
 - 无法再增加匹配边的匹配为 **极大匹配 (Maximal matching)**。
-- 如果对于一个匹配这个图中所有点都是被匹配的，那么这个匹配是一个 **完美匹配 (Perfect matching)**，或称为 **完备匹配**。如果在一个图中只有一个点不被匹配，那么这个匹配是一个 **准完美匹配 (Near-perfect matching)**，或 **准完备匹配**。但并非每个图都存在完美匹配。
+- 如果对于一个匹配这个图中所有点都是被匹配的，那么这个匹配是一个 **完美匹配 (Perfect matching)**，或称为 **完备匹配（Complete matching）**。如果在一个图中只有一个点不被匹配，那么这个匹配是一个 **准完美匹配 (Near-perfect matching)**，或 **准完备匹配**。但并非每个图都存在完美匹配。
 
 求一张普通图或二分图的匹配或完美匹配个数都是 [#P 完全](../../misc/cc-basic.md#p_1) 的。
 
