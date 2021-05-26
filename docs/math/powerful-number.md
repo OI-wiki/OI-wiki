@@ -64,9 +64,9 @@ $O(\sqrt{n})$ 找出所有 PN，计算出所有 $h$ 的有效值。对于 $h$ �
 
 考虑使用杜教筛求 $G(n)$，经过推导可得 $G(n)= \sum_{i=1}^{n} i^2 - \sum_{i=2}^{n} d \cdot G(\lfloor \dfrac{n}{d} \rfloor)$。
 
-之后 $h(p^c)$ 的取值可以暴力枚举计算，这种方法不再赘述。
+之后 $h(p^k)$ 的取值可以暴力枚举计算，这种方法不再赘述。
 
-此题还可以直接求出 $h(p^c)$ 的取值的公式，过程如下：
+此外，此题还可以直接求出 $h(p^k)$ 的公式，过程如下：
 
 $$
 \begin{align}
@@ -88,8 +88,6 @@ $$
     #include <bits/stdc++.h>
     using namespace std;
     using ll = int64_t;
-    
-    ```
     
     constexpr int MOD = 1e9 + 7;
     template &lt;typename T>
@@ -503,3 +501,7 @@ $S_1$ 可以用杜教筛求，$S_2$ 直接按照公式推，这样 $G$ 也可以
       return 0;
     }
     ```
+## 习题
+
+- [PE-Twos are all you need](https://projecteuler.net/problem=708)
+- [PE-Summing a multiplicative function](https://projecteuler.net/problem=639)
