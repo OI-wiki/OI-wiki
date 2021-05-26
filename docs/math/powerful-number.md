@@ -271,10 +271,6 @@ $$
         scanf( "%lld", &n );
         printf( "%d\\n", PNS::solve( n ) );
         return 0;
-    }
-    
-    ```
-    
     
     ```
 
