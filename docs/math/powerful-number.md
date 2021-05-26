@@ -27,7 +27,7 @@ $$
 \int_{1}^{\sqrt{n}} \sqrt[3]{\frac{n}{x^2}} dx = \sqrt{n}
 $$
 
-那么如何求出 $n$ 以内所有的素数呢？线性筛找出 $\sqrt{n}$ 内的所有素数，再 dfs 搜索各素数的指数即可。由于 $n$ 以内的 PN 至多有 $O(\sqrt{n})$ 个，所以搜索的复杂度也为 $O(\sqrt{n})$。
+那么如何求出 $n$ 以内所有的素数呢？线性筛找出 $\sqrt{n}$ 内的所有素数，再 DFS 搜索各素数的指数即可。由于 $n$ 以内的 PN 至多有 $O(\sqrt{n})$ 个，所以搜索的复杂度也为 $O(\sqrt{n})$。
 
 ## PN 筛
 
@@ -55,6 +55,228 @@ $O(\sqrt{n})$ 找出所有 PN，计算出所有 $h$ 的有效值。对于 $h$ �
 现在对于每一个有效值 $d$，计算 $h(d)G(\lfloor \dfrac{n}{d} \rfloor)$ 并累加即可得到 $F(n)$。
 
 ## 例题
+
+### [「Luogu P5325」模板】Min_25筛](https://www.luogu.com.cn/problem/P5325)
+
+**题意**：给定积性函数$f(p^k) = p^k(p^k-1)$，求$\sum_{i=1}^{n} f(i)$。
+
+易得$f(p) = p(p-1) = id(p)\varphi(p)$，构造$g(n) = id(n)\varphi(n)$。
+
+考虑使用杜教筛求$G(n)$，经过推导可得$G(n)= \sum_{i=1}^{n} i^2 - \sum_{i=2}^{n} d \cdot G(\lfloor \dfrac{n}{d} \rfloor)$。
+
+之后$h(p^c)$的取值可以暴力枚举计算，这种方法不再赘述。
+
+此题还可以直接求出$h(p^c)$的取值的公式，过程如下：
+
+$$
+\begin{align}
+& f(p^k) = \sum_{i=0}^{k} g(p^{k-i})h(p^i)\\
+\Leftrightarrow & p^k(p^k-1) = \sum_{i=0}^{k} p^{k-i}\varphi(p^{k-i}) h(p^i)\\
+\Leftrightarrow & p^k(p^k-1) = \sum_{i=0}^{k} p^{2k-2i-1}(p - 1) h(p^i)\\
+\Leftrightarrow & p^k(p^k-1) = h(p^k) + \sum_{i=0}^{k-1} p^{2k-2i-1}(p - 1) h(p^i)\\
+\Leftrightarrow & h(p^k) = p^k(p^k-1) - \sum_{i=0}^{k-1} p^{2k-2i-1}(p - 1) h(p^i)\\
+\Leftrightarrow & h(p^k) - p^2h(p^{k-1}) = p^{k}(p^k-1)-p^{k+1}(p^{k-1}-1) + p(p-1)h(p^{k-1})\\
+\Leftrightarrow & h(p^k) - ph(p^{k-1}) = p^{k+1} - p^k\\
+\Leftrightarrow & \frac{h(p^k)}{p^k} - \frac{h(p^{k-1}}{p^{k-1}}) = p - 1\\
+\end{align}
+$$
+
+再根据$h(p) = 0$，通过累加法即可推出$h(p^k) = (k-1)(p-1)p^k$。
+
+??? note "参考代码"
+
+    ```cpp
+    #include <bits/stdc++.h>
+    using namespace std;
+    using ll = int64_t;
+    
+    ```
+
+    constexpr int MOD = 1e9 + 7;
+    template < typename T >
+    inline int mint( T x )
+    {
+        x %= MOD;
+        if ( x < 0 )
+            x += MOD;
+        return x;
+    }
+    inline int add( int x, int y )
+    {
+        return x + y >= MOD ? x + y - MOD : x + y;
+    }
+    inline int mul( int x, int y )
+    {
+        return 1ll * x * y % MOD;
+    }
+    inline int sub( int x, int y )
+    {
+        return x < y ? x - y + MOD : x - y;
+    }
+    inline int qp( int x, int y )
+    {
+        int r = 1;
+        for ( ; y; y >>= 1 )
+        {
+            if ( y & 1 )
+                r = mul( r, x );
+            x = mul( x, x );
+        }
+        return r;
+    }
+    inline int inv( int x )
+    {
+        return qp( x, MOD - 2 );
+    }
+    
+    namespace PNS
+    {
+        const int N = 2e6 + 5;
+        const int M = 35;
+    
+        ll global_n;
+    
+        int g[ N ], sg[ N ];
+    
+        int  h[ N ][ M ];
+        bool vis_h[ N ][ M ];
+    
+        int ans;
+    
+        int  pcnt, prime[ N ], phi[ N ];
+        bool isp[ N ];
+    
+        void sieve( int n )
+        {
+            pcnt = 0;
+            for ( int i = 2; i <= n; ++i )
+                isp[ i ] = true;
+            phi[ 1 ] = 1;
+            for ( int i = 2; i <= n; ++i )
+            {
+                if ( isp[ i ] )
+                {
+                    ++pcnt;
+                    prime[ pcnt ] = i;
+                    phi[ i ]      = i - 1;
+                }
+                for ( int j = 1; j <= pcnt; ++j )
+                {
+                    ll nxt = 1ll * i * prime[ j ];
+                    if ( nxt > n )
+                        break;
+                    isp[ nxt ] = false;
+                    if ( i % prime[ j ] == 0 )
+                    {
+                        phi[ nxt ] = phi[ i ] * prime[ j ];
+                        break;
+                    }
+                    phi[ nxt ] = phi[ i ] * phi[ prime[ j ] ];
+                }
+            }
+    
+            for ( int i = 1; i <= n; ++i )
+                g[ i ] = mul( i, phi[ i ] );
+    
+            sg[ 0 ] = 0;
+            for ( int i = 1; i <= n; ++i )
+                sg[ i ] = add( sg[ i - 1 ], g[ i ] );
+        }
+    
+        int  inv2, inv6;
+        void init()
+        {
+            sieve( N - 1 );
+            for ( int i = 1; i <= pcnt; ++i )
+                h[ i ][ 0 ] = 1, h[ i ][ 1 ] = 0;
+            for ( int i = 1; i <= pcnt; ++i )
+                vis_h[ i ][ 0 ] = vis_h[ i ][ 1 ] = true;
+            inv2 = inv( 2 );
+            inv6 = inv( 6 );
+        }
+    
+        int S1( ll n )
+        {
+            return mul( mul( mint( n ), mint( n + 1 ) ), inv2 );
+        }
+    
+        int S2( ll n )
+        {
+            return mul( mul( mint( n ), mul( mint( n + 1 ), mint( n * 2 + 1 ) ) ), inv6 );
+        }
+    
+        map< ll, int > mp_g;
+    
+        int G( ll n )
+        {
+            if ( n < N )
+                return sg[ n ];
+            if ( mp_g.count( n ) )
+                return mp_g[ n ];
+    
+            int ret = S2( n );
+            for ( ll i = 2, j; i <= n; i = j + 1 )
+            {
+                j   = n / ( n / i );
+                ret = sub( ret, mul( sub( S1( j ), S1( i - 1 ) ), G( n / i ) ) );
+            }
+            mp_g[ n ] = ret;
+            return ret;
+        }
+    
+        void dfs( ll d, int hd, int pid )
+        {
+            ans = add( ans, mul( hd, G( global_n / d ) ) );
+    
+            for ( int i = pid, p; i <= pcnt; ++i )
+            {
+                if ( i > 1 && d > global_n / prime[ i ] / prime[ i ] )
+                    break;
+    
+                int c = 2;
+                for ( ll x = d * prime[ i ] * prime[ i ]; x <= global_n; x *= prime[ i ], ++c )
+                {
+                    if ( !vis_h[ i ][ c ] )
+                    {
+                        int f = qp( prime[ i ], c );
+                        f     = mul( f, sub( f, 1 ) );
+                        int g = mul( prime[ i ], prime[ i ] - 1 );
+                        int t = mul( prime[ i ], prime[ i ] );
+    
+                        for ( int j = 1; j <= c; ++j )
+                        {
+                            f = sub( f, mul( g, h[ i ][ c - j ] ) );
+                            g = mul( g, t );
+                        }
+                        h[ i ][ c ]     = f;
+                        vis_h[ i ][ c ] = true;
+                    }
+    
+                    if ( h[ i ][ c ] )
+                        dfs( x, mul( hd, h[ i ][ c ] ), i + 1 );
+                }
+            }
+        }
+    
+        int solve( ll n )
+        {
+            global_n = n;
+            ans      = 0;
+            dfs( 1, 1, 1 );
+            return ans;
+        }
+    }  // namespace PNS
+    
+    int main()
+    {
+        PNS::init();
+        ll n;
+        scanf( "%lld", &n );
+        printf( "%d\n", PNS::solve( n ) );
+        return 0;
+    }
+    ```
+
 
 ### [「LOJ #6053」简单的函数](https://loj.ac/problem/6053)
 
@@ -144,6 +366,7 @@ $S_1$ 可以用杜教筛求，$S_2$ 直接按照公式推，这样 $G$ 也可以
     using namespace std;
     using ll = int64_t;
     
+
     constexpr int MOD = 1e9 + 7;  // 998244353 1e9 + 7
     constexpr int inv2 = (MOD + 1) / 2;
     template <typename T>
