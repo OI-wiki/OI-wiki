@@ -251,10 +251,7 @@ $S_1$ 可以用杜教筛求，$S_2$ 直接按照公式推，这样 $G$ 也可以
             if (i == 1) g = mul(g, 3);
     
             for (int j = 1; j <= c; ++j) {
-              if (i == 1)
-                f = sub(f, mul(g, h[i][c - j]));
-              else
-                f = sub(f, mul(g, h[i][c - j]));
+              f = sub(f, mul(g, h[i][c - j]));
               g = mul(g, prime[i]);
             }
             h[i][c] = f;
