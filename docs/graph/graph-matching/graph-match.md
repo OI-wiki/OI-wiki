@@ -37,7 +37,7 @@ author: accelsao, StudyingFather, thredreams
 
 ## 贝尔热定理 (Berge theorem)
 
-![\[公式\]](https://www.zhihu.com/equation?tex=G)的匹配![\[公式\]](https://www.zhihu.com/equation?tex=M)是最大匹配当且仅当![\[公式\]](https://www.zhihu.com/equation?tex=G)不包含![\[公式\]](https://www.zhihu.com/equation?tex=M)可扩充路。
+$G$ 的匹配 $M$ 是最大匹配当且仅当 $G$ 不包含 $M$ 可扩充路。
 
 这个定理是 **最大匹配判定定理** 并提供了匹配扩充的思路。详见 [增广路定理](./augment.md)
 
