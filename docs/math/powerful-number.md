@@ -52,7 +52,7 @@ $$
 
 $O(\sqrt{n})$ 找出所有 PN，计算出所有 $h$ 的有效值。对于 $h$ 有效值的计算，只需要计算出所有 $h(p^c)$ 处的值，就可以根据 $h$ 为积性函数推出 $h$ 的所有有效值。下面考虑计算 $h(p^c)$。根据 $f = g * h$ 有 $f(p^c) = \sum_{i=0}^c g(p^i)h(p^{c-i})$，移项可得 $h(p^c) = f(p^c) - \sum_{i=1}^{c}g(p^{c-i})h(p^i)$，现在可以枚举素数 $p$ 再枚举质数 $c$ 求解出 $h(p^c)$。
 
-现在对于每一个有效值$d$，计算$h(d)G(\lfloor \dfrac{n}{d} \rfloor)$并累加即可得到$F(n)$。
+现在对于每一个有效值 $d$，计算 $h(d)G(\lfloor \dfrac{n}{d} \rfloor)$ 并累加即可得到 $F(n)$。
 
 ## 例题
 
@@ -72,6 +72,7 @@ f(a)f(b) & n=ab \text{ and } a \perp b
 $$
 
 易得：
+
 $$
 f(p) = 
 \left\{
@@ -81,7 +82,9 @@ p - 1 & \texttt{otherwise} \\
 \end{array}
 \right.
 $$
-构造$g$为
+
+构造 $g$ 为
+
 $$
 g(n) =
 \left\{
@@ -91,9 +94,10 @@ g(n) =
 \end{array}
 \right.
 $$
-易证$g(p) = f(p)$且$g$为积性函数。
 
-下面考虑求$G(n)$。
+易证 $g(p) = f(p)$ 且 $g$ 为积性函数。
+
+下面考虑求 $G(n)$。
 
 $$
 \begin{aligned}
@@ -104,9 +108,10 @@ G(n)
 \end{aligned}
 $$
 
-记$S_1(n) = \sum_{i=1}^{n} \varphi(i)$，$S_2(n) = \sum_{i=1}^{n} \varphi(2i)$，则$G(n) = S_1(n) + 2S_2(\lfloor \dfrac{n}{2} \rfloor)$。
+记 $S_1(n) = \sum_{i=1}^{n} \varphi(i)$，$S_2(n) = \sum_{i=1}^{n} \varphi(2i)$，则 $G(n) = S_1(n) + 2S_2(\lfloor \dfrac{n}{2} \rfloor)$。
 
-当$2 \mid n$时，有
+当 $2 \mid n$ 时，有
+
 $$
 \begin{align}
 S_2(n)
@@ -118,7 +123,9 @@ S_2(n)
 &= S_1(n) + S_2(\lfloor \frac{n}{2} \rfloor)\\
 \end{align}
 $$
-当$2 \nmid n$时，有
+
+当 $2 \nmid n$ 时，有
+
 $$
 \begin{align}
 S_2(n)
@@ -129,193 +136,149 @@ S_2(n)
 \end{align}
 $$
 
-$S_1$可以用杜教筛求，$S_2$直接按照公式推，这样$G$也可以求出来了。
+$S_1$ 可以用杜教筛求，$S_2$ 直接按照公式推，这样 $G$ 也可以求出来了。
 
 ??? note "参考代码"
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
     using ll = int64_t;
-
-    constexpr int MOD  = 1e9 + 7;  // 998244353 1e9 + 7
-    constexpr int inv2 = ( MOD + 1 ) / 2;
-    template < typename T >
-    inline int mint( T x )
-    {
-        x %= MOD;
-        if ( x < 0 )
-            x += MOD;
-        return x;
+    
+    constexpr int MOD = 1e9 + 7;  // 998244353 1e9 + 7
+    constexpr int inv2 = (MOD + 1) / 2;
+    template <typename T>
+    inline int mint(T x) {
+      x %= MOD;
+      if (x < 0) x += MOD;
+      return x;
     }
-    inline int add( int x, int y )
-    {
-        return x + y >= MOD ? x + y - MOD : x + y;
+    inline int add(int x, int y) { return x + y >= MOD ? x + y - MOD : x + y; }
+    inline int mul(int x, int y) { return 1ll * x * y % MOD; }
+    inline int sub(int x, int y) { return x < y ? x - y + MOD : x - y; }
+    
+    namespace PNS {
+    const int N = 2e6 + 5;
+    const int M = 35;
+    
+    ll global_n;
+    
+    int s1[N], s2[N];
+    
+    int h[N][M];
+    bool vis_h[N][M];
+    
+    int ans;
+    
+    int pcnt, prime[N], phi[N];
+    bool isp[N];
+    
+    void sieve(int n) {
+      pcnt = 0;
+      for (int i = 2; i <= n; ++i) isp[i] = true;
+      phi[1] = 1;
+      for (int i = 2; i <= n; ++i) {
+        if (isp[i]) {
+          ++pcnt;
+          prime[pcnt] = i;
+          phi[i] = i - 1;
+        }
+        for (int j = 1; j <= pcnt; ++j) {
+          ll nxt = 1ll * i * prime[j];
+          if (nxt > n) break;
+          isp[nxt] = false;
+          if (i % prime[j] == 0) {
+            phi[nxt] = phi[i] * prime[j];
+            break;
+          }
+          phi[nxt] = phi[i] * phi[prime[j]];
+        }
+      }
+    
+      s1[0] = 0;
+      for (int i = 1; i <= n; ++i) s1[i] = add(s1[i - 1], phi[i]);
+    
+      s2[0] = 0;
+      for (int i = 1; i <= n / 2; ++i) {
+        s2[i] = add(s2[i - 1], phi[2 * i]);
+      }
     }
-    inline int mul( int x, int y )
-    {
-        return 1ll * x * y % MOD;
+    
+    void init() {
+      sieve(N - 1);
+      for (int i = 1; i <= pcnt; ++i) h[i][0] = 1;
+      for (int i = 1; i <= pcnt; ++i) vis_h[i][0] = true;
     }
-    inline int sub( int x, int y )
-    {
-        return x < y ? x - y + MOD : x - y;
+    
+    map<ll, int> mp_s1;
+    
+    int S1(ll n) {
+      if (n < N) return s1[n];
+      if (mp_s1.count(n)) return mp_s1[n];
+    
+      int ret = mul(mul(mint(n), mint(n + 1)), inv2);
+      for (ll i = 2, j; i <= n; i = j + 1) {
+        j = n / (n / i);
+        ret = sub(ret, mul(mint(j - i + 1), S1(n / i)));
+      }
+      mp_s1[n] = ret;
+      return ret;
     }
-
-    namespace PNS
-    {
-        const int N = 2e6 + 5;
-        const int M = 35;
-
-        ll global_n;
-
-        int s1[ N ], s2[ N ];
-
-        int  h[ N ][ M ];
-        bool vis_h[ N ][ M ];
-
-        int ans;
-
-        int  pcnt, prime[ N ], phi[ N ];
-        bool isp[ N ];
-
-        void sieve( int n )
-        {
-            pcnt = 0;
-            for ( int i = 2; i <= n; ++i )
-                isp[ i ] = true;
-            phi[ 1 ] = 1;
-            for ( int i = 2; i <= n; ++i )
-            {
-                if ( isp[ i ] )
-                {
-                    ++pcnt;
-                    prime[ pcnt ] = i;
-                    phi[ i ]      = i - 1;
-                }
-                for ( int j = 1; j <= pcnt; ++j )
-                {
-                    ll nxt = 1ll * i * prime[ j ];
-                    if ( nxt > n )
-                        break;
-                    isp[ nxt ] = false;
-                    if ( i % prime[ j ] == 0 )
-                    {
-                        phi[ nxt ] = phi[ i ] * prime[ j ];
-                        break;
-                    }
-                    phi[ nxt ] = phi[ i ] * phi[ prime[ j ] ];
-                }
+    
+    map<ll, int> mp_s2;
+    
+    int S2(ll n) {
+      if (n < N / 2) return s2[n];
+      if (mp_s2.count(n)) return mp_s2[n];
+      int ret = add(S1(n), S2(n / 2));
+      mp_s2[n] = ret;
+      return ret;
+    }
+    
+    int G(ll n) { return add(S1(n), mul(2, S2(n / 2))); }
+    
+    void dfs(ll d, int hd, int pid) {
+      ans = add(ans, mul(hd, G(global_n / d)));
+    
+      for (int i = pid, p; i <= pcnt; ++i) {
+        if (i > 1 && d > global_n / prime[i] / prime[i]) break;
+    
+        int c = 1;
+        for (ll x = d * prime[i]; x <= global_n; x *= prime[i], ++c) {
+          if (!vis_h[i][c]) {
+            int f = prime[i] ^ c, g = prime[i] - 1;
+    
+            // p = 2时特判一下
+            if (i == 1) g = mul(g, 3);
+    
+            for (int j = 1; j <= c; ++j) {
+              if (i == 1)
+                f = sub(f, mul(g, h[i][c - j]));
+              else
+                f = sub(f, mul(g, h[i][c - j]));
+              g = mul(g, prime[i]);
             }
-
-            s1[ 0 ] = 0;
-            for ( int i = 1; i <= n; ++i )
-                s1[ i ] = add( s1[ i - 1 ], phi[ i ] );
-
-            s2[ 0 ] = 0;
-            for ( int i = 1; i <= n / 2; ++i )
-            {
-                s2[ i ] = add( s2[ i - 1 ], phi[ 2 * i ] );
-            }
+            h[i][c] = f;
+            vis_h[i][c] = true;
+          }
+    
+          if (h[i][c]) dfs(x, mul(hd, h[i][c]), i + 1);
         }
-
-        void init()
-        {
-            sieve( N - 1 );
-            for ( int i = 1; i <= pcnt; ++i )
-                h[ i ][ 0 ] = 1;
-            for ( int i = 1; i <= pcnt; ++i )
-                vis_h[ i ][ 0 ] = true;
-        }
-
-        map< ll, int > mp_s1;
-
-        int S1( ll n )
-        {
-            if ( n < N )
-                return s1[ n ];
-            if ( mp_s1.count( n ) )
-                return mp_s1[ n ];
-
-            int ret = mul( mul( mint( n ), mint( n + 1 ) ), inv2 );
-            for ( ll i = 2, j; i <= n; i = j + 1 )
-            {
-                j   = n / ( n / i );
-                ret = sub( ret, mul( mint( j - i + 1 ), S1( n / i ) ) );
-            }
-            mp_s1[ n ] = ret;
-            return ret;
-        }
-
-        map< ll, int > mp_s2;
-
-        int S2( ll n )
-        {
-            if ( n < N / 2 )
-                return s2[ n ];
-            if ( mp_s2.count( n ) )
-                return mp_s2[ n ];
-            int ret    = add( S1( n ), S2( n / 2 ) );
-            mp_s2[ n ] = ret;
-            return ret;
-        }
-
-        int G( ll n )
-        {
-            return add( S1( n ), mul( 2, S2( n / 2 ) ) );
-        }
-
-        void dfs( ll d, int hd, int pid )
-        {
-            ans = add( ans, mul( hd, G( global_n / d ) ) );
-
-            for ( int i = pid, p; i <= pcnt; ++i )
-            {
-                if ( i > 1 && d > global_n / prime[ i ] / prime[ i ] )
-                    break;
-
-                int c = 1;
-                for ( ll x = d * prime[ i ]; x <= global_n; x *= prime[ i ], ++c )
-                {
-                    if ( !vis_h[ i ][ c ] )
-                    {
-                        int f = prime[ i ] ^ c, g = prime[ i ] - 1;
-
-                        // p = 2时特判一下
-                        if ( i == 1 )
-                            g = mul( g, 3 );
-
-                        for ( int j = 1; j <= c; ++j )
-                        {
-                            if ( i == 1 )
-                                f = sub( f, mul( g, h[ i ][ c - j ] ) );
-                            else
-                                f = sub( f, mul( g, h[ i ][ c - j ] ) );
-                            g = mul( g, prime[ i ] );
-                        }
-                        h[ i ][ c ]     = f;
-                        vis_h[ i ][ c ] = true;
-                    }
-
-                    if ( h[ i ][ c ] )
-                        dfs( x, mul( hd, h[ i ][ c ] ), i + 1 );
-                }
-            }
-        }
-
-        int solve( ll n )
-        {
-            global_n = n;
-            ans      = 0;
-            dfs( 1, 1, 1 );
-            return ans;
-        }
+      }
+    }
+    
+    int solve(ll n) {
+      global_n = n;
+      ans = 0;
+      dfs(1, 1, 1);
+      return ans;
+    }
     }  // namespace PNS
-
-    int main()
-    {
-        PNS::init();
-        ll n;
-        scanf( "%lld", &n );
-        printf( "%d\n", PNS::solve( n ) );
-        return 0;
+    
+    int main() {
+      PNS::init();
+      ll n;
+      scanf("%lld", &n);
+      printf("%d\n", PNS::solve(n));
+      return 0;
     }
     ```
