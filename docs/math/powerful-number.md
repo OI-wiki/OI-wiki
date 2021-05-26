@@ -56,17 +56,17 @@ $O(\sqrt{n})$ 找出所有 PN，计算出所有 $h$ 的有效值。对于 $h$ �
 
 ## 例题
 
-### [「Luogu P5325」模板】Min_25筛](https://www.luogu.com.cn/problem/P5325)
+### [「Luogu P5325」模板】Min_25 筛](https://www.luogu.com.cn/problem/P5325)
 
-**题意**：给定积性函数$f(p^k) = p^k(p^k-1)$，求$\sum_{i=1}^{n} f(i)$。
+**题意**：给定积性函数 $f(p^k) = p^k(p^k-1)$，求 $\sum_{i=1}^{n} f(i)$。
 
-易得$f(p) = p(p-1) = id(p)\varphi(p)$，构造$g(n) = id(n)\varphi(n)$。
+易得 $f(p) = p(p-1) = id(p)\varphi(p)$，构造 $g(n) = id(n)\varphi(n)$。
 
-考虑使用杜教筛求$G(n)$，经过推导可得$G(n)= \sum_{i=1}^{n} i^2 - \sum_{i=2}^{n} d \cdot G(\lfloor \dfrac{n}{d} \rfloor)$。
+考虑使用杜教筛求 $G(n)$，经过推导可得 $G(n)= \sum_{i=1}^{n} i^2 - \sum_{i=2}^{n} d \cdot G(\lfloor \dfrac{n}{d} \rfloor)$。
 
-之后$h(p^c)$的取值可以暴力枚举计算，这种方法不再赘述。
+之后 $h(p^c)$ 的取值可以暴力枚举计算，这种方法不再赘述。
 
-此题还可以直接求出$h(p^c)$的取值的公式，过程如下：
+此题还可以直接求出 $h(p^c)$ 的取值的公式，过程如下：
 
 $$
 \begin{align}
@@ -81,23 +81,22 @@ $$
 \end{align}
 $$
 
-再根据$h(p) = 0$，通过累加法即可推出$h(p^k) = (k-1)(p-1)p^k$。
+再根据 $h(p) = 0$，通过累加法即可推出 $h(p^k) = (k-1)(p-1)p^k$。
 
 ??? note "参考代码"
-
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
     using ll = int64_t;
     
     ```
-
+    
     constexpr int MOD = 1e9 + 7;
-    template < typename T >
+    template &lt;typename T>
     inline int mint( T x )
     {
         x %= MOD;
-        if ( x < 0 )
+        if ( x &lt; 0 )
             x += MOD;
         return x;
     }
@@ -107,11 +106,11 @@ $$
     }
     inline int mul( int x, int y )
     {
-        return 1ll * x * y % MOD;
+        return 1ll*x*y % MOD;
     }
-    inline int sub( int x, int y )
+    inline int sub(int x, int y)
     {
-        return x < y ? x - y + MOD : x - y;
+        return x &lt; y ? x - y + MOD : x - y;
     }
     inline int qp( int x, int y )
     {
@@ -265,18 +264,21 @@ $$
             dfs( 1, 1, 1 );
             return ans;
         }
-    }  // namespace PNS
+    
+    }//namespace PNS
     
     int main()
-    {
-        PNS::init();
+    {PNS::init();
         ll n;
         scanf( "%lld", &n );
-        printf( "%d\n", PNS::solve( n ) );
+        printf( "%d\\n", PNS::solve( n ) );
         return 0;
     }
+    
     ```
-
+    
+    
+    ```
 
 ### [「LOJ #6053」简单的函数](https://loj.ac/problem/6053)
 
@@ -366,7 +368,6 @@ $S_1$ 可以用杜教筛求，$S_2$ 直接按照公式推，这样 $G$ 也可以
     using namespace std;
     using ll = int64_t;
     
-
     constexpr int MOD = 1e9 + 7;  // 998244353 1e9 + 7
     constexpr int inv2 = (MOD + 1) / 2;
     template <typename T>
