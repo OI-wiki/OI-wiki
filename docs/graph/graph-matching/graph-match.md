@@ -61,7 +61,7 @@ Petersen's theorem 是托特定理的推论。
 
 ### X 到 Y 的完美匹配
 
-设 $G=<X,Y,E>$ 为二分图，$|X| \leq |Y|$，$M$ 为 $G$ 中一个最大匹配，且 $|M|=2|X|$，则称 $M$ 为 $X$ 到 $Y$ 的完美匹配，或 X - 完美匹配 (**X-perfect matching**)，X - 饱和匹配 (**X-saturating matching**)。换言之，X - 完美匹配是覆盖 X 中每一个顶点的匹配。
+设 $G=<X,Y,E>$ 为二分图，$|X| \leq |Y|$，$M$ 为 $G$ 中一个最大匹配，且 $|M|=2|X|$，则称 $M$ 为 $X$ 到 $Y$ 的完美匹配，或 X - 完美匹配 (**X-perfect matching**)、X - 饱和匹配 (**X-saturating matching**)。换言之，X - 完美匹配是覆盖 X 中每一个顶点的匹配。
 
 ### 霍尔定理 (Hall's marriage theorem)
 
