@@ -254,7 +254,7 @@ nav:
       - 康托展开: math/cantor.md
       - 容斥原理: math/inclusion-exclusion-principle.md
       - 抽屉原理: math/drawer-principle.md
-      - 欧拉数: math/eulerian.md
+      - Eulerian Number: math/eulerian.md
     - 概率初步: math/expectation.md
     - 置换群: math/permutation-group.md
     - 斐波那契数列: math/fibonacci.md
