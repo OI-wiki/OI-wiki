@@ -56,7 +56,7 @@ $O(\sqrt{n})$ 找出所有 PN，计算出所有 $h$ 的有效值。对于 $h$ �
 
 ## 例题
 
-### [「Luogu P5325」模板】Min_25 筛](https://www.luogu.com.cn/problem/P5325)
+### [「Luogu P5325」【模板】Min_25 筛](https://www.luogu.com.cn/problem/P5325)
 
 **题意**：给定积性函数 $f(p^k) = p^k(p^k-1)$，求 $\sum_{i=1}^{n} f(i)$。
 
@@ -228,7 +228,7 @@ $$
       scanf("%lld", &n);
       printf("%d\\n", PNS::solve(n));
       return 0;
-    
+    }
     ```
 
 ### [「LOJ #6053」简单的函数](https://loj.ac/problem/6053)
