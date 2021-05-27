@@ -114,11 +114,11 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 如果数据随机，则我们还可以暴力在笛卡尔树上查找。此时的时间复杂度为期望 $O(n)-O(\log n)$，并且实际使用时这种算法的常数往往很小。
 
-## 基于状压的 O(n)-O(1) RMQ 算法
+## 基于状压的线性 RMQ 算法
 
 ### 隐性要求
 
-- 序列的长度 $n$ 满足 $\log_2{n} \leq 64$~~（`long long` 范围的 $n$ 能出现？）~~
+- 序列的长度 $n$ 满足 $\log_2{n} \leq 64$
 
 ### 前置知识
 
@@ -150,108 +150,107 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 由于块大小为 $O(\log_2{n})$，因而最多不超过 $64$ 位，可以用一个整数存下（即隐性条件的原因）。
 
-### 参考代码
+??? "参考代码"
+    ```cpp
+    #include <bits/stdc++.h>
 
-```cpp
-#include <bits/stdc++.h>
+    const int MAXN = 1e5 + 5;
+    const int MAXM = 20;
 
-const int MAXN = 1e5 + 5;
-const int MAXM = 20;
-
-struct RMQ {
-  int N, A[MAXN];
-  int blockSize;
-  int S[MAXN][MAXM], Pow[MAXM], Log[MAXN];
-  int Belong[MAXN], Pos[MAXN];
-  int Pre[MAXN], Sub[MAXN];
-  int F[MAXN];
-  void buildST() {
-    int cur = 0, id = 1;
-    Pos[0] = -1;
-    for (int i = 1; i <= N; ++i) {
-      S[id][0] = std::max(S[id][0], A[i]);
-      Belong[i] = id;
-      if (Belong[i - 1] != Belong[i])
-        Pos[i] = 0;
-      else
-        Pos[i] = Pos[i - 1] + 1;
-      if (++cur == blockSize) {
-        cur = 0;
-        ++id;
+    struct RMQ {
+      int N, A[MAXN];
+      int blockSize;
+      int S[MAXN][MAXM], Pow[MAXM], Log[MAXN];
+      int Belong[MAXN], Pos[MAXN];
+      int Pre[MAXN], Sub[MAXN];
+      int F[MAXN];
+      void buildST() {
+        int cur = 0, id = 1;
+        Pos[0] = -1;
+        for (int i = 1; i <= N; ++i) {
+          S[id][0] = std::max(S[id][0], A[i]);
+          Belong[i] = id;
+          if (Belong[i - 1] != Belong[i])
+            Pos[i] = 0;
+          else
+            Pos[i] = Pos[i - 1] + 1;
+          if (++cur == blockSize) {
+            cur = 0;
+            ++id;
+          }
+        }
+        if (N % blockSize == 0) --id;
+        Pow[0] = 1;
+        for (int i = 1; i < MAXM; ++i) Pow[i] = Pow[i - 1] * 2;
+        for (int i = 2; i <= id; ++i) Log[i] = Log[i / 2] + 1;
+        for (int i = 1; i <= Log[id]; ++i) {
+          for (int j = 1; j + Pow[i] - 1 <= id; ++j) {
+            S[j][i] = std::max(S[j][i - 1], S[j + Pow[i - 1]][i - 1]);
+          }
+        }
       }
-    }
-    if (N % blockSize == 0) --id;
-    Pow[0] = 1;
-    for (int i = 1; i < MAXM; ++i) Pow[i] = Pow[i - 1] * 2;
-    for (int i = 2; i <= id; ++i) Log[i] = Log[i / 2] + 1;
-    for (int i = 1; i <= Log[id]; ++i) {
-      for (int j = 1; j + Pow[i] - 1 <= id; ++j) {
-        S[j][i] = std::max(S[j][i - 1], S[j + Pow[i - 1]][i - 1]);
+      void buildSubPre() {
+        for (int i = 1; i <= N; ++i) {
+          if (Belong[i] != Belong[i - 1])
+            Pre[i] = A[i];
+          else
+            Pre[i] = std::max(Pre[i - 1], A[i]);
+        }
+        for (int i = N; i >= 1; --i) {
+          if (Belong[i] != Belong[i + 1])
+            Sub[i] = A[i];
+          else
+            Sub[i] = std::max(Sub[i + 1], A[i]);
+        }
       }
-    }
-  }
-  void buildSubPre() {
-    for (int i = 1; i <= N; ++i) {
-      if (Belong[i] != Belong[i - 1])
-        Pre[i] = A[i];
-      else
-        Pre[i] = std::max(Pre[i - 1], A[i]);
-    }
-    for (int i = N; i >= 1; --i) {
-      if (Belong[i] != Belong[i + 1])
-        Sub[i] = A[i];
-      else
-        Sub[i] = std::max(Sub[i + 1], A[i]);
-    }
-  }
-  void buildBlock() {
-    static int S[MAXN], top;
-    for (int i = 1; i <= N; ++i) {
-      if (Belong[i] != Belong[i - 1])
-        top = 0;
-      else
-        F[i] = F[i - 1];
-      while (top > 0 && A[S[top]] <= A[i]) F[i] &= ~(1 << Pos[S[top--]]);
-      S[++top] = i;
-      F[i] |= (1 << Pos[i]);
-    }
-  }
-  void init() {
-    for (int i = 1; i <= N; ++i) scanf("%d", &A[i]);
-    blockSize = log2(N) * 1.5;
-    buildST();
-    buildSubPre();
-    buildBlock();
-  }
-  int queryMax(int l, int r) {
-    int bl = Belong[l], br = Belong[r];
-    if (bl != br) {
-      int ans1 = 0;
-      if (br - bl > 1) {
-        int p = Log[br - bl - 1];
-        ans1 = std::max(S[bl + 1][p], S[br - Pow[p]][p]);
+      void buildBlock() {
+        static int S[MAXN], top;
+        for (int i = 1; i <= N; ++i) {
+          if (Belong[i] != Belong[i - 1])
+            top = 0;
+          else
+            F[i] = F[i - 1];
+          while (top > 0 && A[S[top]] <= A[i]) F[i] &= ~(1 << Pos[S[top--]]);
+          S[++top] = i;
+          F[i] |= (1 << Pos[i]);
+        }
       }
-      int ans2 = std::max(Sub[l], Pre[r]);
-      return std::max(ans1, ans2);
-    } else {
-      return A[l + __builtin_ctz(F[r] >> Pos[l])];
+      void init() {
+        for (int i = 1; i <= N; ++i) scanf("%d", &A[i]);
+        blockSize = log2(N) * 1.5;
+        buildST();
+        buildSubPre();
+        buildBlock();
+      }
+      int queryMax(int l, int r) {
+        int bl = Belong[l], br = Belong[r];
+        if (bl != br) {
+          int ans1 = 0;
+          if (br - bl > 1) {
+            int p = Log[br - bl - 1];
+            ans1 = std::max(S[bl + 1][p], S[br - Pow[p]][p]);
+          }
+          int ans2 = std::max(Sub[l], Pre[r]);
+          return std::max(ans1, ans2);
+        } else {
+          return A[l + __builtin_ctz(F[r] >> Pos[l])];
+        }
+      }
+    } R;
+
+    int M;
+
+    int main() {
+      scanf("%d%d", &R.N, &M);
+      R.init();
+      for (int i = 0, l, r; i < M; ++i) {
+        scanf("%d%d", &l, &r);
+        printf("%d\n", R.queryMax(l, r));
+      }
+      return 0;
     }
-  }
-} R;
+    ```
 
-int M;
+### 习题
 
-int main() {
-  scanf("%d%d", &R.N, &M);
-  R.init();
-  for (int i = 0, l, r; i < M; ++i) {
-    scanf("%d%d", &l, &r);
-    printf("%d\n", R.queryMax(l, r));
-  }
-  return 0;
-}
-```
-
-### 相关例题
-
-- [\[BJOI 2020\]封印](https://loj.ac/problem/3298)：SAM+RMQ
+[\[BJOI 2020\] 封印](https://loj.ac/problem/3298)：SAM+RMQ
