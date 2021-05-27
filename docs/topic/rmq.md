@@ -153,10 +153,10 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 ??? "参考代码"
     ```cpp
     #include <bits/stdc++.h>
-
+    
     const int MAXN = 1e5 + 5;
     const int MAXM = 20;
-
+    
     struct RMQ {
       int N, A[MAXN];
       int blockSize;
@@ -237,9 +237,9 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
         }
       }
     } R;
-
+    
     int M;
-
+    
     int main() {
       scanf("%d%d", &R.N, &M);
       R.init();
@@ -253,4 +253,4 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 ### 习题
 
-[\[BJOI 2020\] 封印](https://loj.ac/problem/3298)：SAM+RMQ
+[\[BJOI 2020\]封印](https://loj.ac/problem/3298)：SAM+RMQ
