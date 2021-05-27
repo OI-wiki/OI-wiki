@@ -254,4 +254,4 @@ int main() {
 
 ### 相关例题
 
-- [\[BJOI 2020\] 封印](https://loj.ac/problem/3298)：SAM+RMQ
+- [\[BJOI 2020\]封印](https://loj.ac/problem/3298)：SAM+RMQ
