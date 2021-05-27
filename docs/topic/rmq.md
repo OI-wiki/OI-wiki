@@ -122,7 +122,7 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 ### 前置知识
 
-- [Sparse Table](https://oi-wiki.org/ds/sparse-table/)
+- [Sparse Table](../ds/sparse-table.md)
 
 - 基本位运算
 
