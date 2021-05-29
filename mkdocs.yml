@@ -224,6 +224,7 @@ nav:
       - 卢卡斯定理: math/lucas.md
       - 莫比乌斯反演: math/mobius.md
       - 杜教筛: math/du.md
+      - Powerful Number 筛: math/powerful-number.md
       - Min_25 筛: math/min-25.md
       - 洲阁筛: math/zhou.md
       - 分解质因数: math/pollard-rho.md
