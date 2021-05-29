@@ -15,15 +15,15 @@ author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul
 
 设 DP 状态 $f_{i,j}$ 为在只能放前 $i$ 个物品的情况下，容量为 $j$ 的背包所能达到的最大总价值。
 
-考虑转移。假设当前已经处理好了前 $i-1$ 个物品的所有状态，那么对于第 $i$ 个物品，当其不放入背包时，背包的剩余容量不变，背包中物品的总价值也不变，故这种情况的最大价值为 $f_{i-1,j}$；当其放入背包时，背包的剩余容量会减小 $w_{i}$，背包中物品的总价值会增大 $v_{i}$，故这种情况的最大价值为 $f_{i-1,j-w_{i}}+v_{i}$。
+考虑转移。假设当前已经处理好了前 $i-1$ 个物品的所有状态，那么对于第 $i$ 个物品，当其不放入背包时，背包的剩余容量不变，背包中物品的总价值也不变，故这种情况的最大价值为 $f_{i-1,j}$；当其放入背包时，背包的剩余容量会减小 $w_{i}$，背包中物品的总价值会增大 $v_{i}$，故这种情况的最大价值为 $f_{i-1,j-w_{i}}+v_i$，在这两种方案中找一个最大值。
 
 由此可以得出状态转移方程：
 
 $$
-f_{i,j}=\max(f_{i-1,j},f_{i-1,j-w_{i}}+v_{i})
+f_{i,j}=\max(f_{i-1,j},f_{i-1,j-w_{i}}+v_i)
 $$
 
-这里如果直接采用二维数组对状态进行记录，会出现 MLE。可以考虑改用滚动数组的形式来优化。
+这里如果直接采用二维数组对状态进行记录，有可能会出现 MLE。可以考虑改用滚动数组的形式来优化。
 
 由于对 $f_i$ 有影响的只有 $f_{i-1}$，可以去掉第一维，直接用 $f_{i}$ 来表示处理到当前物品时背包容量为 $i$ 的最大价值，得出以下方程：
 
@@ -53,21 +53,25 @@ for (int i = 1; i <= n; i++)
 
 ```cpp
 for (int i = 1; i <= n; i++)
-  for (int l = W; l >= w[i]; l--) f[l] = max(f[l], f[l - w[i]] + v[i]);
+  for (int l = W; l >= w[i]; l--) 
+      f[l] = max(f[l], f[l - w[i]] + v[i]);
 ```
 
 ??? 例题代码
     ```cpp
-    #include <iostream>
+    #include <bits/stdc++.h>
+    using namespace std;
     const int maxn = 13010;
     int n, W, w[maxn], v[maxn], f[maxn];
     int main() {
-      std::cin >> n >> W;
-      for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
+      cin >> n >> W;
+      for (int i = 1; i <= n; i++) 
+          cin >> w[i] >> v[i];
       for (int i = 1; i <= n; i++)
         for (int l = W; l >= w[i]; l--)
-          if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];
-      std::cout << f[W];
+          f[l] = max(f[l], f[l - w[i]] + v[i]);
+          //或者if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];
+      cout << f[W];
       return 0;
     }
     ```
@@ -103,18 +107,20 @@ $$
 
 ??? 例题代码
     ```cpp
-    #include <iostream>
+    #include <bits/stdc++.h>
+    using namespace std;
     const int maxn = 1e4 + 5;
     const int maxW = 1e7 + 5;
     int n, W, w[maxn], v[maxn];
     long long f[maxW];
     int main() {
-      std::cin >> W >> n;
-      for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
+      cin >> W >> n;
+      for (int i = 1; i <= n; i++) 
+          cin >> w[i] >> v[i];
       for (int i = 1; i <= n; i++)
         for (int l = w[i]; l <= W; l++)
           if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];
-      std::cout << f[W];
+      cout << f[W];
       return 0;
     }
     ```
@@ -173,13 +179,13 @@ $$
 
 ### 单调队列优化
 
-见 [单调队列/单调栈优化](opt/monotonous-queue-stack.md)。
+见 [单调队列/单调栈优化](./opt/monotonous-queue-stack.md)。
 
 习题：[「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.com.cn/problem/P1776)
 
 ## 混合背包
 
-混合背包就是将前面三种的背包问题混合起来，有的只能取一次，有的能取无限次，有的只能取 $k$ 次。
+混合背包就是将前面三种的背包问题混合起来，有的只能取一次，有的能取无限次，有的只能取 $k_i$ 次。
 
 这种题目看起来很吓人，可是只要领悟了前面几种背包的中心思想，并将其合并在一起就可以了。下面给出伪代码：
 
@@ -232,8 +238,8 @@ for (int k = 1; k <= ts; k++)          // 循环每一组
   for (int i = m; i >= 0; i--)         // 循环背包容量
     for (int j = 1; j <= cnt[k]; j++)  // 循环该组的每一个物品
       if (i >= w[t[k][j]])
-        dp[i] = max(dp[i],
-                    dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
+        dp[i] = max(dp[i],dp[i - w[t[k][j]]] + c[t[k][j]]);  
+        // 像0-1背包一样状态转移
 ```
 
 这里要注意：**一定不能搞错循环顺序**，这样才能保证正确性。
