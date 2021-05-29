@@ -6,9 +6,9 @@
 
 ### [DFS](../search/dfs.md) 做法
 
-注：为了节省篇幅，本文中所有代码省略头文件。
-
 ```cpp
+#include<bits/stdc++.h>
+using namespace std;
 int n, t;
 int tcost[103], mget[103];
 int ans = 0;
@@ -149,7 +149,7 @@ $mem_{pos,tleft} = \max\{mem_{pos+1,tleft-tcost(pos)}+mget(pos),mem_{pos+1,tleft
 
 > 记忆化搜索约等于动态规划，**（印象中）任何一个 dp 方程都能转为记忆化搜索**
 
-大部分记忆化搜索的状态/转移方程与 dp 都一样，时间复杂度/空间复杂度与 **不加优化的** dp 完全相同
+比较好的记忆化搜索的状态/转移方程与 dp 都一样，时间复杂度/空间复杂度与 **不加优化的** dp 完全相同
 
 比如：
 
