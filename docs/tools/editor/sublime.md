@@ -1,10 +1,10 @@
 ## 简介
 
-Sublime Text 是一款轻量级的文本编辑器，支持多种语言的语法高亮及代码补全。具有高度的可拓展性以及 Vim 模式，特别的热启动模式大幅避免了文件丢失的可能。
+Sublime Text （以下简称 ST）是一款轻量级的文本编辑器，支持多种语言的语法高亮及代码补全。具有高度的可拓展性以及 Vim 模式，特别的热启动模式大幅减小了文件丢失的可能。
 
-Sublime Text 4 正式版已经发布，但由于并未发布太久，许多插件仍未更新（比如汉化插件），故这里以 Sublime Text 3（以下简称 ST3）为主。
+ST4 正式版已经发布，现在如仍使用 ST3 会提示更新。但由于并未发布太久，许多插件仍未更新（比如汉化插件），故这里以 ST3 为主。
 
-ST4 与 ST3 的差别比较大，这里会少量涉及。
+ST4 与 ST3 的重要差别会有额外补充。
 
 ## 安装
 
@@ -60,10 +60,9 @@ ST3 并不支持中文，需要安装汉化插件。
 - C++ Snippets : ST3 自带有 C++ 代码补全，格式为大括号换行。如果不习惯大括号换行的码风可以安装这个插件，同时增加了少量补全。
 - C++ 11 : 支持 C++ 11 标准高亮。
 - SublimeAstyleFormatter : Astyle，用于格式化代码。
-- C++ Completions : 提供与 ST3 自带补全不同的补全方式，但对 C++ 头文件的支持并不完全。
 - Diffy : 按<kbd>Crtl</kbd>+<kbd>K</kbd>&<kbd>Crtl</kbd>+<kbd>D</kbd>即可快速比较第一视窗与第二视窗打开的文件的不同。
 - ConvertToUTF8 : 自动识别文件编码。
-- SideBarEnhancements : 侧边栏增强。
+- SideBarEnhancements : 侧边栏增强（在 ST4 中侧边栏完全失效，只能用于调整状态栏显示）。
 - Transparency : 窗口透明化。
 
 有其他需要可以自己尝试搜索。
@@ -160,6 +159,9 @@ ST3 的 Vintage 插件与 Vim 有一定不同，以下为找到的部分（欢�
 		"R","Rails", "RestructuredText", "Ruby", "Rust", 
 		"Scala", "ShellScript", "SQL", "TCL", "Textile", "XML", 
 	],
+    
+    //相对行号，可配合 Vim 插件快速跳转
+	"relative_line_numbers": false,
 }
 ```
 
@@ -255,17 +257,17 @@ int main(){
 
 以下列出部分文件后缀以及其用途，具体的插件开发教程详见 [社区文档](https://docs.sublimetext.io/guide/extensibility/plugins/) 和 [官方文档](https://www.sublimetext.com/docs/3/)：
 
-| 后缀名                  | 用途                              |
-| -------------------- | ------------------------------- |
-| .sublime-build       | 编译系统文件                          |
-| .sublime-completions | 文件名补全列表（一般为头文件）                 |
-| .sublime-syntax      | 语法高亮文件                          |
-| .sublime-settings    | 设置文件                            |
-| .tmPreferences       | 首选项中的列表文件                       |
-| .sublime-keymap      | 快捷键设置文件                         |
-| .sublime-snippet     | 代码补全文件                          |
-| .py                  | Python 文件，一般用于编写命令              |
-| .sublime-commands    | 命令定义文件                          |
+| 后缀名               | 用途                                                    |
+| -------------------- | ------------------------------------------------------- |
+| .sublime-build       | 编译系统文件                                            |
+| .sublime-completions | 文件名补全列表（一般为头文件）                          |
+| .sublime-syntax      | 语法高亮文件                                            |
+| .sublime-settings    | 设置文件                                                |
+| .tmPreferences       | 首选项中的列表文件                                      |
+| .sublime-keymap      | 快捷键设置文件                                          |
+| .sublime-snippet     | 代码补全文件                                            |
+| .py                  | Python 文件，一般用于编写命令                           |
+| .sublime-commands    | 命令定义文件                                            |
 | .sublime-menu        | ST3 UI 文件，包括侧边栏以及顶部菜单栏（汉化的主要对象） |
 
 由于插件会更新会直接覆盖原文件，所以建议备份自己更改的文件。
@@ -284,29 +286,29 @@ int main(){
 
 部分快捷键：[^ref2]
 
-| 按键                                                                         | 命令                                                            |
-| -------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| <kbd>Ctrl</kbd>+<kbd>X</kbd>                                               | 剪切当前行                                                         |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>                              | 删除行                                                           |
-| <kbd>Ctrl</kbd>+<kbd>Enter</kbd>                                           | 在下方插入行                                                        |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd>                          | 在上方插入行                                                        |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>                             | 行上移                                                           |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Down</kbd>                           | 行下移                                                           |
-| <kbd>Ctrl</kbd>+<kbd>L</kbd>                                               | 选择行，重复以向下选择多行                                                 |
-| <kbd>Ctrl</kbd>+<kbd>D</kbd>                                               | 选择词，重复以选择多个相同词，并进入多点编辑（用于快速批量更改）                              |
-| <kbd>Ctrl</kbd>+<kbd>M</kbd>                                               | 跳转到匹配的括号                                                      |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>                              | 选择括号内的内容（不包括括号），重复以包括括号                                       |
-| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>K</kbd>                  | 删至行尾（复合快捷键，建议使用 Vim 模式代替）                                     |
-| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd>          | 删至行首（复合快捷键，建议使用 Vim 模式代替）                                     |
-| <kbd>Ctrl</kbd>+<kbd>]</kbd>                                               | 缩进当前（选择的）行                                                    |
-| <kbd>Ctrl</kbd>+<kbd>\[</kbd>                                              | 取消缩进当前（选择的）行                                                  |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>                              | 复制当前行，并插入在下一行                                                 |
-| <kbd>Ctrl</kbd>+<kbd>J</kbd>                                               | 合并下一行与当前行                                                     |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>                              | 粘贴并缩进（用于整段粘贴代码）                                               |
+| 按键                                                         | 命令                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| <kbd>Ctrl</kbd>+<kbd>X</kbd>                                 | 剪切当前行                                                   |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>                | 删除行                                                       |
+| <kbd>Ctrl</kbd>+<kbd>Enter</kbd>                             | 在下方插入行                                                 |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd>            | 在上方插入行                                                 |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>               | 行上移                                                       |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Down</kbd>             | 行下移                                                       |
+| <kbd>Ctrl</kbd>+<kbd>L</kbd>                                 | 选择行，重复以向下选择多行                                   |
+| <kbd>Ctrl</kbd>+<kbd>D</kbd>                                 | 选择词，重复以选择多个相同词，并进入多点编辑（用于快速批量更改） |
+| <kbd>Ctrl</kbd>+<kbd>M</kbd>                                 | 跳转到匹配的括号                                             |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>                | 选择括号内的内容（不包括括号），重复以包括括号               |
+| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>K</kbd>    | 删至行尾（复合快捷键，建议使用 Vim 模式代替）                |
+| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd> | 删至行首（复合快捷键，建议使用 Vim 模式代替）                |
+| <kbd>Ctrl</kbd>+<kbd>]</kbd>                                 | 缩进当前（选择的）行                                         |
+| <kbd>Ctrl</kbd>+<kbd>\[</kbd>                                | 取消缩进当前（选择的）行                                     |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>                | 复制当前行，并插入在下一行                                   |
+| <kbd>Ctrl</kbd>+<kbd>J</kbd>                                 | 合并下一行与当前行                                           |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>                | 粘贴并缩进（用于整段粘贴代码）                               |
 | <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> | 从历史粘贴（复合快捷键，建议修改为<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd>） |
-| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>                             | 光标下移，并保留当前行光标（进入多点编辑模式）                                       |
-| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd>                               | 光标上移，并保留当前行光标（进入多点编辑模式）                                       |
-| <kbd>~</kbd>                                                               | 转换选择内容的大小写                                                    |
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>               | 光标下移，并保留当前行光标（进入多点编辑模式）               |
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd>                 | 光标上移，并保留当前行光标（进入多点编辑模式）               |
+| <kbd>~</kbd>                                                 | 转换选择内容的大小写                                         |
 
 ### 自动补全
 
@@ -341,7 +343,7 @@ ST3 有丰富的补全功能，可能的补全内容会在光标下方显示，�
 
 ### 热启动
 
-尝试在 ST3 中键入一些内容，并直接把整个 ST3 关闭，你会发现 ST3 不会有任何提示就直接关闭了。这时再打开 ST3 不会丢失任何内容，即使重启电脑也不会。
+尝试在 ST3 中键入一些内容，并直接把整个 ST3 关闭，ST3 会直接关闭没有任何提示。这时再打开 ST3 不会丢失任何内容，即使重启电脑也不会。
 
 ### 多点编辑
 
@@ -356,7 +358,7 @@ int check() {
 
 如果要将下列文件中的所有等号后面改成 `"good"`，只需在将光标放置于第一行的 `aaa` 前，并按六次<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>，再然后按下<kbd>Ctrl</kbd>+<kbd>D</kbd>并键入 `good` 即可。
 
-或选中 `"a`，然后按住<kbd>Ctrl</kbd>+<kbd>D</kbd>然后按<kbd>Right</kbd>、<kbd>Ctrl</kbd>+<kbd>D</kbd>，之后键入即可。
+或选中 `"a` 并按住<kbd>Ctrl</kbd>+<kbd>D</kbd>，然后按<kbd>Right</kbd>、<kbd>Ctrl</kbd>+<kbd>D</kbd>，之后键入即可。
 
 ```C++
 s[1] = "aaa";
@@ -367,10 +369,10 @@ s[5] = "aae";
 s[6] = "aaf";
 ```
 
-如要为下列所有 `a + b` 加上括号，只需选择一个 `a + b`，按住<kbd>Ctrl</kbd>+<kbd>D</kbd>并键入<kbd>(</kbd>即可（如选择一定区域，则<kbd>(</kbd>会为该区域两边添加括号）。
+如要为下列所有 `a + b` 加上括号，只需选择一个 `a + b`，按住<kbd>Ctrl</kbd>+<kbd>D</kbd>并键入<kbd>(</kbd>即可（如选择一定区域，则任意左括号键入会为该区域两边添加括号）。
 
-```C++
-a + b* a + b* a + b
+```plain
+a + b*a + b*a + b
 ```
 
 ### 查找与替换
@@ -386,11 +388,15 @@ s[5] = "aae";
 s[6] = "aaf";
 ```
 
-如要为以下代码添加分号，只需使用替换，打开正则，输入 `\n`，并替换成 `;\n` 即可。
+如要为以下代码添加分号，只需使用选择区域替换，打开正则，输入 `\n`，并替换成 `;\n` 即可。
 
-```C++
-int a, b cin >> a >> b cout << a + b return 0
-
+```plain
+int main(){
+    int a, b
+    cin >> a >> b
+    cout << a + b
+    return 0
+}
 ```
 
 ### 宏录制
@@ -400,8 +406,13 @@ int a, b cin >> a >> b cout << a + b return 0
 ??? note "如已开启 Vintage"
     执行一次<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd>后，可以<kbd>Esc</kbd>进入命令模式，输入 `..` 即可（`.` 命令可以重复 ST3 命令）
 
-```C++
-int a, b cin >> a >> b cout << a + b return 0
+```plain
+int main(){
+    int a, b
+    cin >> a >> b
+    cout << a + b
+    return 0
+}
 ```
 
 关于宏的保存与绑定按键详见 [社区文档](https://docs.sublimetext.io/guide/extensibility/macros.html)。
@@ -439,6 +450,7 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 ??? note "其他配置方法"
     以下为满足其他需要而写，理解需要一些命令行的知识。
     
+
     只编译
     
     ```JSON
@@ -455,7 +467,7 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 
 ### 运行
 
-如果编译时选择 `C++ Single File - Run`（或者自己配置了自动运行），那么在下方弹出的编译信息窗口可能不会有任何显示，因为 ST3 的编译信息窗口兼职 CMD，此时它在等你给正在运行的程序输入数据。
+如果编译时选择 `C++ Single File - Run`（或者自己配置了自动运行），那么在下方弹出的编译信息窗口应该不会有任何显示（除非编译错误），因为 ST3 的编译信息窗口兼职 CMD，此时它在等你给正在运行的程序输入数据。
 
 运行结束后会提示程序的运行时间。
 
@@ -480,7 +492,7 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 ## 外部链接
 
 - [使用命令行调试](./cmd)
-- [Sublime Text 4](https://www.sublimetext.com/blog/articles/sublime-text-4)
+- [Sublime Text 4 发布](https://www.sublimetext.com/blog/articles/sublime-text-4)
 - [Sublime Text 3 官方文档](https://www.sublimetext.com/docs/3/)
 
 ## 参考资料与注释
@@ -489,4 +501,4 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 
 [^ref2]: [Sublime Text 社区文档](https://docs.sublimetext.io/)
 
-[^ref3]: [Sublime Text 3 Git 集成](https://www.sublimetext.com/docs/3/git_integration.html)
+[^ref3]: [Sublime Text Git 集成](https://www.sublimetext.com/docs/git_integration.html)
