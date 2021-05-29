@@ -435,11 +435,27 @@ git merge <branch> --squash
 
 需要注意的是，在执行上述命令后，Git 只会将 B 分支的所有更改存入 A 分支的缓冲区内，接下来还需要执行一次 `git commit` 命令完成合并工作。
 
-使用 Squash 方式合并可以简化 commit 记录，但是会丢失一些 commit 信息（包括 commit 的提交者，每次 commit 的具体更改等等）。
+使用 Squash 方式合并可以简化 commit 记录，但是会丢失一些原分支上的 commit 信息（包括原分支上每次 commit 的提交者，每次 commit 的具体更改等等）。
 
 #### Rebase（变基）
 
-To-do.
+使用 Rebase 方式将分支 B 并入分支 A 时，在 B 分支上的每一次 commit 都会单独添加到 A 分支，而不再像 Merge 方式那样创建一个合并 commit 来合并两个分支的内容[^note4]。
+
+首先，切换到 B 分支，接下来将 B 分支变基到 A 分支：
+
+```bash
+git checkout B
+git rebase A
+```
+
+现在切回到 A 分支，再执行一次 `git merge` 命令，即可完成将 B 分支的内容合并到 A 分支的工作。
+
+```bash
+git checkout A
+git merge B
+```
+
+使用 Rebase 完成合并可以让 commit 历史线性化。但是这样做的缺点也很明显：Rebase 会改变已有的 commit 历史，在多人协作时会有出现冲突或丢失更改的风险。
 
 ## 管理远程仓库
 
@@ -505,3 +521,5 @@ $ git push origin master # 将 master 分支的数据推送至 origin
 [^note2]: 但是，Git for Windows 对 Vim 的描述是“虽然强大，但是可能会难以使用。用户界面反人类，键位映射卡手。Git 使用 Vim 作为默认编辑器只是出于历史原因，强烈推荐换用一个 UI 设计现代化的编辑器。”，并给“难以使用”加上了 [Stack Overflow 每年帮助一百万名开发者退出 Vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/) 的页面链接。
 
 [^note3]: 事实上 Git 还有一个针对系统上每一个用户及系统上所有仓库的通用配置文件，该配置文件覆盖范围最广，等级在用户配置文件之上。因为该配置实践中较少使用，这里不再展开。
+
+[^note4]: [Pro Git Book](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA) 中提供了可视化的 Rebase 过程图，借助图片读者可以更好地理解 Rebase 的机制。
