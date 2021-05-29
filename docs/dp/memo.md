@@ -49,6 +49,8 @@ emmmmmm……$30$ 分。
 不理解就看看代码吧：
 
 ```cpp
+#include<bits/stdc++.h>
+using namespace std;
 int n, time;
 int tcost[103], mget[103];
 int dfs(int pos, int tleft) {
@@ -87,6 +89,8 @@ emmmmmm……还是 ${30}$ 分。
 **直接返回 mem 中的值！**
 
 ```cpp
+#include<bits/stdc++.h>
+using namespace std;
 int n, t;
 int tcost[103], mget[103];
 int mem[103][1003];
@@ -158,6 +162,8 @@ $dp(i,j,k) = dp(i+1,j+1,k-a_j) + dp(i+1,j,k)$
 转为
 
 ```cpp
+#include<bits/stdc++.h>
+using namespace std;
 int dfs(int i, int j, int k) {
   // 判断边界条件
   if (mem[i][j][k] != -1) return mem[i][j][k];
@@ -187,6 +193,8 @@ $dp_{i} = max\{dp_{j}+1\}\quad (1 \leq j < i \land a_{j}<a_{i})$（最长上升�
 转为
 
 ```cpp
+#include<bits/stdc++.h>
+using namespace std;
 int dfs(int i) {
   if (mem[i] != -1) return mem[i];
   int ret = 1;
@@ -252,6 +260,8 @@ dp 状态很显然：
 ## 模板
 
 ```cpp
+#include<bits/stdc++.h>
+using namespace std;
 int g[MAXN];
 int f(传入数值) {
   if (g[规模] != 无效数值) return g[规模];
