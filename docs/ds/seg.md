@@ -10,9 +10,9 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
 
 - 封闭性：$\forall x\in S$ 和 $\forall y\in S$ 有 $x\circ y\in S$。
 - 结合律：$\forall x,y,z\in S$ 有 $(x\circ y)\circ z=x\circ (y\circ z)$。
-- 存在单位元：即 $\exists e\in S$ 满足 $\forall x \in S$ 有 $e\circ x=x\circ e=x$，$e$ 为幺元（或单位元）。
+- 存在幺元：即 $\exists e\in S$ 满足 $\forall x \in S$ 有 $e\circ x=x$，$e$ 为左幺元；或 $x\circ e=x$，$e$ 为右幺元。
 
-我们观察到线段树上的信息一般满足这样的性质，一些数域上的加法与乘法自然，考虑二元的 $\max(x,y)$ 运算，此时幺元为 $-\infty$ 也满足这样的性质。
+我们观察到线段树上的信息一般满足这样的性质，一些数域上的加法与乘法自然，考虑二元的 $\max(x,y)$ 运算，此时幺元为 $-\infty$ 也满足这样的性质（一般左右幺元相同时简称为幺元）。
 
 ## 线段树
 
