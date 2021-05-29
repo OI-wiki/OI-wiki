@@ -417,6 +417,30 @@ $ git commit
 [master fe92c6b] Merge branch readme-refactor into master
 ```
 
+### 其他合并方式
+
+默认情况下，Git 采用 Merge（合并）的方式合并两个分支。使用该方法将分支 B 并入分支 A 时，会将 B 分支的所有 commit 并入 A 分支的提交历史中。
+
+除此以外，Git 还提供了两种合并分支的方式：Squash（压缩）和 Rebase（变基）。
+
+#### Squash（压缩）
+
+使用 Squash 方式将分支 B 并入分支 A 时，在 B 分支上的所有更改会被合并为一次 commit 提交到 A 分支。
+
+在 `git merge` 中加入 `--squash` 参数即可使用 Squash 方式进行分支合并。
+
+```bash
+git merge <branch> --squash
+```
+
+需要注意的是，在执行上述命令后，Git 只会将 B 分支的所有更改存入 A 分支的缓冲区内，接下来还需要执行一次 `git commit` 命令完成合并工作。
+
+使用 Squash 方式合并可以简化 commit 记录，但是会丢失一些 commit 信息（包括 commit 的提交者，每次 commit 的具体更改等等）。
+
+#### Rebase（变基）
+
+To-do.
+
 ## 管理远程仓库
 
 在本地完成修改后，你可能会需要将这些修改推送到 GitHub 等 Git 仓库托管平台上。托管在这些平台上的仓库就归属于远程仓库的范畴——你可以从这些仓库中获取信息，也可以将你作出的更改推送到远程仓库上。与其他人的协作往往离不开远程仓库，因此学会管理远程仓库很有必要。
