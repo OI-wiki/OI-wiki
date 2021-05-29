@@ -20,7 +20,7 @@ Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Gi
 
 ![Git for Windows installation 2](images/git4.png)
 
-点击 Next >，选择安装可选项。
+点击 `Next >`，选择安装可选项。
 
 ![Git for Windows installation 3](images/git5.png)
 
@@ -46,11 +46,11 @@ Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Gi
     - `Use a TrueType font in all console windows` ：让 Git 在所有命令行（包括 cmd 命令行窗口）中都使用 TrueType 字体。
     - `Check daily for Git for Windows updates`：让 Git 每天检查更新。
 
-点击 Next >，选择存放 Git 快捷方式的开始菜单文件夹。若勾选 `Don't create a Start Menu folder` ，则 Git 不会在开始菜单创建快捷方式。
+点击 `Next >`，选择存放 Git 快捷方式的开始菜单文件夹。若勾选 `Don't create a Start Menu folder` ，则 Git 不会在开始菜单创建快捷方式。
 
 ![Git for Windows installation 4](images/git6.png)
 
-点击 Next >，选择默认的编辑器。
+点击 `Next >`，选择默认的编辑器。
 
 ![Git for Windows installation 5](images/git7.png)
 
@@ -62,11 +62,11 @@ Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Gi
 
 ![Git for Windows installation 7](images/git9.png)
 
-选好默认编辑器后，点击 Next > 进入下一步。
+选好默认编辑器后，点击 `Next >` 进入下一步。
 
-接下来的每一步都直接点击 Next >。当 Next > 变为 Install 时，按下 Install 进行安装。
+接下来的每一步都直接点击 `Next >`。当 `Next >` 变为 `Install` 时，按下 `Install` 进行安装。
 
-最后，该页面出现，Git 安装完成。此时可以取消勾选 `View Release Notes` ，然后按下 Next > 直接退出；也可以直接按下 Next > 查看版本更新信息；亦可以勾选 `Launch Git Bash` 运行 Git 命令行。
+最后，该页面出现，Git 安装完成。此时可以取消勾选 `View Release Notes` ，然后按下 `Next >` 直接退出；也可以直接按下 `Next >` 查看版本更新信息；亦可以勾选 `Launch Git Bash` 运行 Git 命令行。
 
 ![Git for Windows installation 8](images/git10.png)
 
@@ -113,7 +113,7 @@ $ git config --global core.editor emacs
 
 执行如上命令可以将编辑器更改为 [Emacs](./editor/emacs.md) 。
 
-在 Windows 下，Git 的默认编辑器可以在安装 Git 时选择。之后若要修改，在 Git Bash 里输入如上命令，将编辑器名换成编辑器的绝对路径，运行命令即可。
+在 Windows 下，Git 的默认编辑器可以在安装 Git 时选择（见前文）。之后若要修改，在 Git Bash 里输入如上命令，将编辑器名换成编辑器的绝对路径，运行命令即可。
 
 ### 显示配置
 
