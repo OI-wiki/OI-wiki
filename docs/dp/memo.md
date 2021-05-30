@@ -44,7 +44,7 @@ emmmmmm……$30$ 分。
 
 **返回值！**
 
-此时 `dfs(pos,tleft)` 返回在时间 `tleft` 内采集 **后** `pos` 个草药，能获得的最大收益
+此时 `dfs(pos,tleft)` 返回在时间 `tleft` 内采集 **后**  `pos` 个草药，能获得的最大收益
 
 不理解就看看代码吧：
 
@@ -82,7 +82,7 @@ emmmmmm……还是 30 分。
 
 然后？
 
-开个数组 `mem` , 记录下来每个 `dfs(pos,tleft)` 的返回值。刚开始把 `mem` 中每个值都设成 `-1`（代表没访问过）。每次刚刚进入一个 dfs 前（我们的 dfs 是递归调用的嘛），都判断 `mem[pos][tleft]` 是否为 `-1`, 如果是就正常执行并把答案记录到 `mem` 中，否则？
+开个数组 `mem`, 记录下来每个 `dfs(pos,tleft)` 的返回值。刚开始把 `mem` 中每个值都设成 `-1`（代表没访问过）。每次刚刚进入一个 dfs 前（我们的 dfs 是递归调用的嘛），都判断 `mem[pos][tleft]` 是否为 `-1`, 如果是就正常执行并把答案记录到 `mem` 中，否则？
 
 **直接返回 mem 中的值！**
 
@@ -109,7 +109,7 @@ int main() {
 
 此时 `mem` 的意义与 dfs 相同：
 
-> 在时间 tleft 内采集 **后** `pos` 个草药，能获得的最大收益
+> 在时间 tleft 内采集 **后**  `pos` 个草药，能获得的最大收益
 
 这能 AC？
 
@@ -135,13 +135,13 @@ int main() {
 
 不信你看 `mem` 的意义：
 
-> 在时间 `tleft` 内采集 **后** `pos` 个草药，能获得的最大收益
+> 在时间 `tleft` 内采集 **后**  `pos` 个草药，能获得的最大收益
 
 这不就是 dp 的状态？
 
 由上面的代码中可以看出：
 
-$$\mathit{mem}_{\mathit{pos},\mathit{tleft} = \max\{mem_{\mathit{pos}+1},\mathit{tleft}-\mathit{tcost}(\mathit{pos})}+\mathit{mget}(\mathit{pos}),mem_{\mathit{pos}+1,\mathit{tleft}}\}$$
+$\mathit{mem}_{\mathit{pos},\mathit{tleft} = \max\{mem_{\mathit{pos}+1},\mathit{tleft}-\mathit{tcost}(\mathit{pos})}+\mathit{mget}(\mathit{pos}),mem_{\mathit{pos}+1,\mathit{tleft}}\}$
 
 这不就是 dp 的状态转移？
 
