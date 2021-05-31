@@ -48,7 +48,7 @@ cd OI-wiki
 # 安装 mkdocs
 pip3 install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
-# 使用我们的自定义主题
+# 使用我们的自定义主题（Windows 下请使用 Git Bash 执行）
 chmod +x ./scripts/install_theme.sh && ./scripts/install_theme.sh
 
 # 两种方法（选其一即可）：
@@ -62,7 +62,7 @@ mkdocs build -v
 mkdocs --help
 ```
 
-我们现在在服务器端渲染 MathJax ，如果希望实现类似效果，可以参考 [.travis.yml](https://github.com/OI-wiki/OI-wiki/blob/master/.travis.yml)。（需要安装 Node.js）
+我们现在在服务器端渲染 MathJax ，如果希望实现类似效果，可以参考 [build.yml](https://github.com/OI-wiki/OI-wiki/blob/master/.github/workflows/build.yml)。（需要安装 Node.js）
 
 ### 镜像
 

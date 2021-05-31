@@ -14,7 +14,7 @@ $$
 
 这个式子和我们以前见过的式子都长得不太一样。带向下取整的式子容易让人想到数论分块，然而数论分块似乎不适用于这个求和。但是我们是可以做一些预处理的。
 
-如果说 $a\ge c$ 或者 $b\ge c$ ，意味着可以将 $a,b$ 对 $c$ 取模以简化问题：
+如果说 $a\ge c$ 或者 $b\ge c$，意味着可以将 $a,b$ 对 $c$ 取模以简化问题：
 
 $$
 \begin{split}
@@ -29,16 +29,16 @@ f(a,b,c,n)&=\sum_{i=0}^n\left\lfloor \frac{ai+b}{c} \right\rfloor\\
 \end{split}
 $$
 
-那么问题转化为了 $a<c,b<c$ 的情况。观察式子，你发现只有 $i$ 这一个变量。因此要推就只能从 $i$ 下手。在推求和式子中有一个常见的技巧，就是条件与贡献的放缩与转化。具体地说，在原式 $\displaystyle f(a,b,c,n)=\sum_{i=0}^n\left\lfloor \frac{ai+b}{c} \right\rfloor$ 中， $0\le i\le n$ 是条件，而 $\left\lfloor \dfrac{ai+b}{c} \right\rfloor$ 是对总和的贡献。
+那么问题转化为了 $a<c,b<c$ 的情况。观察式子，你发现只有 $i$ 这一个变量。因此要推就只能从 $i$ 下手。在推求和式子中有一个常见的技巧，就是条件与贡献的放缩与转化。具体地说，在原式 $\displaystyle f(a,b,c,n)=\sum_{i=0}^n\left\lfloor \frac{ai+b}{c} \right\rfloor$ 中，$0\le i\le n$ 是条件，而 $\left\lfloor \dfrac{ai+b}{c} \right\rfloor$ 是对总和的贡献。
 
-要加快一个和式的计算过程，所有的方法都可以归约为 **贡献合并计算** 。但你发现这个式子的贡献难以合并，怎么办？ **将贡献与条件做转化** 得到另一个形式的和式。具体地，我们直接把原式的贡献变成条件：
+要加快一个和式的计算过程，所有的方法都可以归约为 **贡献合并计算**。但你发现这个式子的贡献难以合并，怎么办？**将贡献与条件做转化** 得到另一个形式的和式。具体地，我们直接把原式的贡献变成条件：
 
 $$
 \sum_{i=0}^n\left\lfloor \frac{ai+b}{c} \right\rfloor
 =\sum_{i=0}^n\sum_{j=0}^{\left\lfloor \frac{ai+b}{c} \right\rfloor-1}1\\
 $$
 
-现在多了一个变量 $j$ ，既然算 $i$ 的贡献不方便，我们就想办法算 $j$ 的贡献。因此想办法搞一个和 $j$ 有关的贡献式。这里有另一个家喻户晓的变换方法，笔者概括为限制转移。具体来说，在上面的和式中 $n$ 限制 $i$ 的上界，而 $i$ 限制 $j$ 的上界。为了搞 $j$ ，就先把 j 放到贡献的式子里，于是我们交换一下 $i,j$ 的求和算子，强制用 $n$ 限制 $j$ 的上界。
+现在多了一个变量 $j$，既然算 $i$ 的贡献不方便，我们就想办法算 $j$ 的贡献。因此想办法搞一个和 $j$ 有关的贡献式。这里有另一个家喻户晓的变换方法，笔者概括为限制转移。具体来说，在上面的和式中 $n$ 限制 $i$ 的上界，而 $i$ 限制 $j$ 的上界。为了搞 $j$，就先把 j 放到贡献的式子里，于是我们交换一下 $i,j$ 的求和算子，强制用 $n$ 限制 $j$ 的上界。
 
 $$
 \begin{split}
@@ -67,7 +67,7 @@ $$
 jc+c-b-1< ai\Leftrightarrow \left\lfloor\frac{jc+c-b-1}{a}\right\rfloor< i
 $$
 
-这一步的重要意义在于，我们可以把变量 $i$ 消掉了！具体地，令 $m=\left\lfloor \frac{an+b}{c} \right\rfloor$ ，那么原式化为
+这一步的重要意义在于，我们可以把变量 $i$ 消掉了！具体地，令 $m=\left\lfloor \frac{an+b}{c} \right\rfloor$，那么原式化为
 
 $$
 \begin{split}
@@ -81,7 +81,7 @@ $$
 
 这是一个递归的式子。并且你发现 $a,c$ 分子分母换了位置，又可以重复上述过程。先取模，再递归。这就是一个辗转相除的过程，这也是类欧几里德算法的得名。
 
-容易发现时间复杂度为 $O(\log n)$ 。
+容易发现时间复杂度为 $O(\log n)$。
 
 ## 扩展
 
@@ -94,14 +94,14 @@ $$
 
 ### 推导 g
 
-我们先考虑 $g$ ，类似地，首先取模：
+我们先考虑 $g$，类似地，首先取模：
 
 $$
 g(a,b,c,n)
 =g(a\bmod c,b\bmod c,c,n)+\left\lfloor\frac{a}{c}\right\rfloor\frac{n(n+1)(2n+1)}{6}+\left\lfloor\frac{b}{c}\right\rfloor\frac{n(n+1)}{2}
 $$
 
-接下来考虑 $a<c,b<c$ 的情况，令 $m=\left\lfloor\frac{an+b}{c}\right\rfloor$ 。之后的过程我会写得很简略，因为方法和上文略同：
+接下来考虑 $a<c,b<c$ 的情况，令 $m=\left\lfloor\frac{an+b}{c}\right\rfloor$。之后的过程我会写得很简略，因为方法和上文略同：
 
 $$
 \begin{split}
@@ -111,7 +111,7 @@ $$
 \end{split}
 $$
 
-这时我们设 $t=\left\lfloor\frac{jc+c-b-1}{a}\right\rfloor$ ，可以得到
+这时我们设 $t=\left\lfloor\frac{jc+c-b-1}{a}\right\rfloor$，可以得到
 
 $$
 \begin{split}
@@ -136,7 +136,7 @@ h(a,b,c,n)&=h(a\bmod c,b\bmod c,c,n)\\
 \end{split}
 $$
 
-考虑 $a<c,b<c$ 的情况， $m=\left\lfloor\dfrac{an+b}{c}\right\rfloor, t=\left\lfloor\dfrac{jc+c-b-1}{a}\right\rfloor$ .
+考虑 $a<c,b<c$ 的情况，$m=\left\lfloor\dfrac{an+b}{c}\right\rfloor, t=\left\lfloor\dfrac{jc+c-b-1}{a}\right\rfloor$.
 
 我们发现这个平方不太好处理，于是可以这样把它拆成两部分：
 

@@ -24,7 +24,7 @@
 
 闭散列方法把所有记录直接存储在散列表中，如果发生冲突则根据某种方式继续进行探查。
 
-比如线性探查法：如果在 `d` 处发生冲突，就依次检查 `d + 1` ， `d+2` ……
+比如线性探查法：如果在 `d` 处发生冲突，就依次检查 `d + 1`，`d+2`……
 
 ## 实现
 
@@ -83,6 +83,31 @@ struct hash_map {  // 哈希表模板
 
 解释一下，hash 函数是针对 key 的类型设计的，并且返回一个链表头指针用于查询。在这个模板中我们写了一个 $\text{(long long , int)}$ 式的 hash 表，并且当某个 key 不存在的时侯初始化对应的 val 成 -1。hash_map() 函数是在定义的时侯初始化用的。
 
+### 闭散列法
+
+```cpp
+const int N = 360007;  // N 是最大可以存储的元素数量
+class Hash {
+ private:
+  int keys[N];
+  int values[N];
+
+ public:
+  Hash() { memset(values, 0, sizeof(values)); }
+  int& operator[](int n) {
+    // 返回一个指向对应 Hash[Key] 的引用
+    // 修改成不为 0 的值 0 时候视为空
+    int idx = (n % N + N) % N, cnt = 1;
+    while (keys[idx] != n && values[idx] != 0) {
+      idx = (idx + cnt * cnt) % N;
+      cnt += 1;
+    }
+    keys[idx] = n;
+    return values[idx];
+  }
+};
+```
+
 ## 例题
 
- [「JLOI2011」不重复数字](https://www.luogu.com.cn/problem/P4305) 
+[「JLOI2011」不重复数字](https://www.luogu.com.cn/problem/P4305)
