@@ -1,6 +1,6 @@
 ## 描述
 
-给定多项式 $f\left(x\right)$ ，求 $f^{-1}\left(x\right)$ 。
+给定多项式 $f\left(x\right)$，求 $f^{-1}\left(x\right)$。
 
 ## 解法
 
@@ -12,7 +12,7 @@ $$
 \left[x^{0}\right]f^{-1}\left(x\right)=\left(\left[x^{0}\right]f\left(x\right)\right)^{-1}
 $$
 
-假设现在已经求出了 $f\left(x\right)$ 在模 $x^{\left\lceil\frac{n}{2}\right\rceil}$ 意义下的逆元 $f^{-1}_{0}\left(x\right)$ 。
+假设现在已经求出了 $f\left(x\right)$ 在模 $x^{\left\lceil\frac{n}{2}\right\rceil}$ 意义下的逆元 $f^{-1}_{0}\left(x\right)$。
 有：
 
 $$
@@ -45,7 +45,7 @@ $$
 
 ### Newton's Method
 
-参见 [ **Newton's Method** ](./newton.md#newtons-method) .
+参见 [**Newton's Method**](./newton.md#newtons-method).
 
 ## 代码
 
@@ -81,4 +81,4 @@ $$
 
 ## 例题
 
-1. 有标号简单无向连通图计数： [「POJ 1737」Connected Graph](http://poj.org/problem?id=1737) 
+1. 有标号简单无向连通图计数：[「POJ 1737」Connected Graph](http://poj.org/problem?id=1737)

@@ -100,7 +100,7 @@ int find(int cur, int x) {
 }
 int rnk(int cur, int x) {
   if (size[cur] == 1) return 1;
-  maintain(cur);  // asdasdasdasd
+  maintain(cur);
   if (x > val[ls[cur]]) return rnk(rs[cur], x) + size[ls[cur]];
   return rnk(ls[cur], x);
 }

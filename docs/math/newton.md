@@ -2,13 +2,13 @@ author: Marcythm, sshwy, nutshellfool
 
 本文介绍如何用牛顿迭代法（Newton's method for finding roots）求方程的近似解，该方法于 17 世纪由牛顿提出。
 
-具体的任务是，对于在 $[a,b]$ 上连续且单调的函数 $f(x)$ ，求方程 $f(x)=0$ 的近似解。
+具体的任务是，对于在 $[a,b]$ 上连续且单调的函数 $f(x)$，求方程 $f(x)=0$ 的近似解。
 
 ## 算法描述
 
-初始时我们从给定的 $f(x)$ 和一个近似解 $x_0$ 开始。（ $x_0$ 的值可任意取）
+初始时我们从给定的 $f(x)$ 和一个近似解 $x_0$ 开始。（$x_0$ 的值可任意取）
 
-假设我们目前的近似解是 $x_i$ ，我们画出与 $f(x)$ 切于点 $(x_i,f(x_i))$ 的直线 $l$ ，将 $l$ 与 $x$ 轴的交点横坐标记为 $x_{i+1}$ ，那么这就是一个更优的近似解。重复这个迭代的过程。
+假设我们目前的近似解是 $x_i$，我们画出与 $f(x)$ 切于点 $(x_i,f(x_i))$ 的直线 $l$，将 $l$ 与 $x$ 轴的交点横坐标记为 $x_{i+1}$，那么这就是一个更优的近似解。重复这个迭代的过程。
 根据导数的几何意义，可以得到如下关系：
 
 $$
@@ -21,16 +21,16 @@ $$
  x_{i+1} = x_i - \frac{f(x_i)}{f^\prime(x_i)}
 $$
 
-直观地说，如果 $f(x)$ 比较平滑，那么随着迭代次数的增加， $x_i$ 会越来越逼近方程的解。
+直观地说，如果 $f(x)$ 比较平滑，那么随着迭代次数的增加，$x_i$ 会越来越逼近方程的解。
 
 牛顿迭代法的收敛率是平方级别的，这意味着每次迭代后近似解的精确数位会翻倍。
-关于牛顿迭代法的收敛性证明可参考 [citizendium - Newton method Convergence analysis](http://en.citizendium.org/wiki/Newton%27s_method#Convergence_analysis) 
+关于牛顿迭代法的收敛性证明可参考 [citizendium - Newton method Convergence analysis](http://en.citizendium.org/wiki/Newton%27s_method#Convergence_analysis)
 
-当然牛顿迭代法也同样存在着缺陷，详情参考 [Xiaolin Wu - Roots of Equations 第 18 - 20 页分析](https://www.ece.mcmaster.ca/~xwu/part2.pdf) 
+当然牛顿迭代法也同样存在着缺陷，详情参考 [Xiaolin Wu - Roots of Equations 第 18 - 20 页分析](https://www.ece.mcmaster.ca/~xwu/part2.pdf)
 
 ## 求解平方根
 
-我们尝试用牛顿迭代法求解平方根。设 $f(x)=x^2-n$ ，这个方程的近似解就是 $\sqrt{n}$ 的近似值。于是我们得到
+我们尝试用牛顿迭代法求解平方根。设 $f(x)=x^2-n$，这个方程的近似解就是 $\sqrt{n}$ 的近似值。于是我们得到
 
 $$
 x_{i+1}=x_i-\frac{x_i^2-n}{2x_i}=\frac{x_i+\frac{n}{x_i}}{2}
@@ -71,7 +71,7 @@ int isqrt_newton(int n) {
 
 ## 高精度平方根
 
-最后考虑高精度的牛顿迭代法。迭代的方法是不变的，但这次我们需要关注初始时近似解的设置，即 $x_0$ 的值。由于需要应用高精度的数一般都非常大，因此不同的初始值对于算法效率的影响也很大。一个自然的想法就是考虑 $x_0=2^{\left\lfloor\frac{1}{2}\log_2n\right\rfloor}$ ，这样既可以快速计算出 $x_0$ ，又可以较为接近平方根的近似解。
+最后考虑高精度的牛顿迭代法。迭代的方法是不变的，但这次我们需要关注初始时近似解的设置，即 $x_0$ 的值。由于需要应用高精度的数一般都非常大，因此不同的初始值对于算法效率的影响也很大。一个自然的想法就是考虑 $x_0=2^{\left\lfloor\frac{1}{2}\log_2n\right\rfloor}$，这样既可以快速计算出 $x_0$，又可以较为接近平方根的近似解。
 
 给出 Java 代码的实现：
 
@@ -94,7 +94,7 @@ public static BigInteger isqrtNewton(BigInteger n) {
 
 ## 习题
 
--  [UVa 10428 - The Roots](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=16&page=show_problem&problem=1369) 
--    [LeetCode 69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/) 
+- [UVa 10428 - The Roots](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=16&page=show_problem&problem=1369)
+-   [LeetCode 69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)
 
-     **本页面主要译自博文 [Метод Ньютона (касательных) для поиска корней](http://e-maxx.ru/algo/roots_newton) 与其英文翻译版 [Newton's method for finding roots](https://cp-algorithms.com/num_methods/roots_newton.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+    **本页面主要译自博文 [Метод Ньютона (касательных) для поиска корней](http://e-maxx.ru/algo/roots_newton) 与其英文翻译版 [Newton's method for finding roots](https://cp-algorithms.com/num_methods/roots_newton.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
