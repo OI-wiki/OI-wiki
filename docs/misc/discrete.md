@@ -35,7 +35,8 @@ std::lower_bound(a + 1, a + len + 1, x) - a;  // 查询 x 离散化后对应的�
 
 ```cpp
 // std::vector<int> a, b; // b 是 a 的一个副本
-std::sort(a.begin(), a.end()); // 如果数组未经排序 unique 移除的是相邻的连续重复元素
+std::sort(a.begin(),
+          a.end());  // 如果数组未经排序 unique 移除的是相邻的连续重复元素
 std::vector<int>::iterator last = std::unique(a.begin(), a.end());
 a.erase(last, a.end());
 for (int i = 0; i < n; ++i)
