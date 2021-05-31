@@ -187,7 +187,7 @@
     #include <bits/stdc++.h>
     using namespace std;
     #define MAXN 2000000  // 双倍字符串长度
-    #define CHAR_NUM 30   // 字符集个数，注意修改下方的 (-'a')
+    #define CHAR_NUM 30  // 字符集个数，注意修改下方的 (-'a')
     struct exSAM {
       int len[MAXN];             // 节点长度
       int link[MAXN];            // 后缀链接，link
@@ -292,8 +292,8 @@
     #include <bits/stdc++.h>
     using namespace std;
     #define MAXN 2000000  // 双倍字符串长度
-    #define CHAR_NUM 30   // 字符集个数，注意修改下方的 (-'a')
-    #define NUM 15        // 字符串个数
+    #define CHAR_NUM 30  // 字符集个数，注意修改下方的 (-'a')
+    #define NUM 15  // 字符串个数
     struct exSAM {
       int len[MAXN];             // 节点长度
       int link[MAXN];            // 后缀链接，link
