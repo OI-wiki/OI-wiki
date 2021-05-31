@@ -425,9 +425,6 @@ int main(int argc, char *argv[]) {
 /////////////////////////////////////
 ```
 
-结果如下：
-
-![answer](./images/answer.png)
 
 ## 理论罗列
 
