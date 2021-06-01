@@ -1255,7 +1255,7 @@ $$
 
 和 KMP 算法：
 
-`myprob,hy`
+`myprob.hy`
 
 ```hy
 (defn getone [&rest body &kwonly [default None]]
