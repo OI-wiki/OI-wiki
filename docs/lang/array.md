@@ -59,7 +59,7 @@ int main() {
 
   int sum = 0;
   for (int i = 1; i <= n; ++i) {
-    sum += i;
+    sum += a[i];
   }
 
   printf("%d\n", sum);
