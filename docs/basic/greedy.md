@@ -88,7 +88,8 @@
       }
     };
     ```
-
+    
+    
 ### 后悔法的例题
 
 ???+note "[「USACO09OPEN」工作调度 Work Scheduling](https://www.luogu.com.cn/problem/P2949)"
@@ -110,7 +111,7 @@
     using namespace std;
     struct f {
       long long d;
-      long long x;
+      long long p;
     } a[100005];
     bool cmp(f A, f B) { return A.d < B.d; }
     priority_queue<long long, vector<long long>, greater<long long> > q;
@@ -124,9 +125,15 @@
       sort(a + 1, a + n + 1, cmp);
       long long ans = 0;
       for (i = 1; i <= n; i++) {
-        if (a[i].d <= q.size()) {
+      /***
+      当a[i].d==q.size()可以这么理解从0开始到a[i].d这个时间段
+      只能做a[i].d个任务，而若q.size()>a[i].d说明完成q.size()个任务
+      时间大于a[i].d的时间，所以当第i个任务获利比较大的时候应该把最小的任务从
+      优先级队列中换出。
+      ***/
+      if (a[i].d <= q.size()) {
           if (q.top() < a[i].x) {
-            ans += a[i].x - q.top();
+            ans += a[i].p - q.top();
             q.pop();
             q.push(a[i].x);
           }
@@ -139,7 +146,10 @@
       return 0;
     }
     ```
-
+    
+##### 复杂度分析
+- 空间复杂度 当输入 $n$ 个任务时使用 $n$ 个 $a$ 数组元素，优先级队列中最差情况下可以装 $n$ 个元素，则复杂度为 $O(n)$ 。 
+- 时间复杂度 sort排序时间复杂度为 $O(nlogn)$，维护优先级队列的时间复杂度为 $O(nlogn)$ ，综上所述时间复杂度为 $O(nlogn)$ 。
 ## 习题
 
 - [P1209\[USACO1.3\]修理牛棚 Barn Repair - 洛谷](https://www.luogu.com.cn/problem/P1209)
