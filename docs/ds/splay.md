@@ -190,7 +190,7 @@ int kth(int k) {
 ```cpp
 int pre() {
   int cur = ch[rt][0];
-  if (!cur) return cur; 
+  if (!cur) return cur;
   while (ch[cur][1]) cur = ch[cur][1];
   splay(cur);
   return cur;
