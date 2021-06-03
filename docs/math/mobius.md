@@ -420,8 +420,8 @@ $$
 &\sum_{n|d}{\mu(\frac{d}{n})f(d)} \\ 
     =& \sum_{k=1}^{+\infty}{\mu(k)f(kn)}
     = \sum_{k=1}^{+\infty}{\mu(k)\sum_{kn|d}{g(d)}} \\
-    =& \sum_{n|d}{g(d)\sum_{k|\frac{n}{d}}{\mu(k)}}
-    = \sum_{n|d}{g(d)\epsilon(\frac{n}{d})} \\ 
+    =& \sum_{n|d}{g(d)\sum_{k|\frac{d}{n}}{\mu(k)}}
+    = \sum_{n|d}{g(d)\epsilon(\frac{d}{n})} \\ 
     =& g(n)
 \end{aligned}
 $$

@@ -4,7 +4,7 @@ DAG 即 [有向无环图](../graph/dag.md)，一些实际问题中的二元关�
 
 以这道题为例子，来分析一下 DAG 建模的过程。
 
-???+note " 例题[UVa 437 巴比伦塔 The Tower of Babylon](https://cn.vjudge.net/problem/UVA-437)"
+???+note " 例题 [UVa 437 巴比伦塔 The Tower of Babylon](https://cn.vjudge.net/problem/UVA-437)"
     有 $n (n\leqslant 30)$ 种砖块，已知三条边长，每种都有无穷多个。要求选一些立方体摞成一根尽量高的柱子（每个砖块可以自行选择一条边作为高），使得每个砖块的底面长宽分别严格小于它下方砖块的底面长宽，求塔的最大高度。
 
 ### 建立 DAG

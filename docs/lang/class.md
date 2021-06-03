@@ -73,7 +73,7 @@ Object *c;
 
 ```cpp
 class Class_Name {
-  ... type Funciton_Name(...) { ... }
+  ... type Function_Name(...) { ... }
 };
 
 // Example:

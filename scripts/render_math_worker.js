@@ -36,14 +36,14 @@ async function renderMathJax(filename) {
 
   const content = await readFile(filename);
 
-  const preProcesed = content
+  const preProcessed = content
     .replace(/<span class="MathJax_Preview">.+?<\/span><script type="math\/tex">/gi, '<script type="math/tex">')
     .replace(/<div class="MathJax_Preview">[\s\S]*?<\/div>/gi, '');
 
   let result = null;
 
   try {
-    result = await mathJaxRenderer(preProcesed);
+    result = await mathJaxRenderer(preProcessed);
   } catch (e) {
     console.error(`${bgRed('ERROR')} ${yellow(filename)} ${red(`rendered failed`)}, detailed error see below:`);
     console.error(e);
