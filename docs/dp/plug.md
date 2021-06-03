@@ -613,7 +613,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+note " 例题 [「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572)"
     题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白染色，要求所有黑色区域和白色区域连通，且任意一个 $2\times 2$ 的子矩形内的颜色不能完全相同（例如下图中的情况非法），求合法的方案数，并构造一组合法的方案。
-
+    
     ![black_and_white1](./images/black_and_white1.svg)
 
 #### 状态编码
