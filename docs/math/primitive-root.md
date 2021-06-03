@@ -111,7 +111,7 @@ $$
 由 $(ab)^{\delta_m(ab)}\equiv 1 \pmod m$ 可知
 
 $$
-1 \equiv (ab)^{\delta_m(ab)\delta_m(b)}\equiv a^{\delta_m(ab)} \pmod m
+1 \equiv (ab)^{\delta_m(ab)\delta_m(b)}\equiv a^{\delta_m(ab)\delta_m(b)} \pmod m
 $$
 
 故 $\delta_m(a)\mid\delta_m(ab)\delta_m(b)$。结合 $\gcd(\delta_m(a),\delta_m(b))=1$ 即得
@@ -232,7 +232,7 @@ $$
 
 所以若 $\gcd\big(k,\varphi(m)\big)=1$，则有：$\delta_m(g^k)=\varphi(m)$，即 $g^k$ 也是模 $m$ 的原根。
 
-而满足 $\gcd\big(\varphi(m),k\big)=1$ 且 $1<k<\varphi(m)$ 的 $k$ 有 $\varphi(\varphi(m))$ 个。所以原根就有 $\varphi(\varphi(m))$ 个。
+而满足 $\gcd\big(\varphi(m),k\big)=1$ 且 $1\leq k \leq \varphi(m)$ 的 $k$ 有 $\varphi(\varphi(m))$ 个。所以原根就有 $\varphi(\varphi(m))$ 个。
 
 **证毕**
 
