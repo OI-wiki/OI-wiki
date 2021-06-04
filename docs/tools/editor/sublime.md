@@ -25,7 +25,7 @@ ST3 并不支持中文，需要安装汉化插件。
 
 打开 ST3 后键入<kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>唤出命令框，输入 `Install` 后回车（完整命令是 `Install Package Control`，不区分大小写），此时应该会看到左下角有一个 `=` 在不停的左右移动。等待 Package Control 安装完成，具体的加载时间取决于网络。
 
-如果完成的弹窗显示安装失败（与网络有关），则需要手动下载 [Package Control](https://packagecontrol.io/Package%20Control.sublime-package) 并将下载好的文件放到 `C:\Users\用户名\AppData\Roaming\Sublime Text 3\Installed Packages` 中。稍作等待，ST3 会自动识别该插件（或者直接重启）。
+如果完成的弹窗显示安装失败（与网络有关），则需要手动下载 [Package Control](https://packagecontrol.io/Package%20Control.sublime-package) 并将下载好的文件放到 `C:\Users\用户名\AppData\Roaming\Sublime Text 3\Installed Packages` （如果是 Win7 及以下系统，则可能位于安装目录的 `\Data` 下，如存在该目录请使用该目录）中。稍作等待，ST3 会自动识别该插件（或者直接重启）。
 
 #### 安装汉化插件
 
@@ -62,7 +62,7 @@ ST3 并不支持中文，需要安装汉化插件。
 - SublimeAstyleFormatter : Astyle，用于格式化代码。
 - Diffy : 按<kbd>Crtl</kbd>+<kbd>K</kbd>&<kbd>Crtl</kbd>+<kbd>D</kbd>即可快速比较第一视窗与第二视窗打开的文件的不同。
 - ConvertToUTF8 : 自动识别文件编码。
-- SideBarEnhancements : 侧边栏增强（在 ST4 中侧边栏完全失效，只能用于调整状态栏显示）。
+- SideBarEnhancements : 侧边栏增强（在 ST4 中侧边栏部分完全失效，只能用于调整状态栏显示）。
 - Transparency : 窗口透明化。
 
 有其他需要可以自己尝试搜索。
@@ -93,7 +93,7 @@ ST3 的 Vim 模式由自带的插件 Vintage 提供，它默认是禁用的。�
 
 或者按<kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>，然后输入 `Enable` 选择 `Package Control: Enable Package` 并回车，选择 Vintage 即可，该方法需要 Package Control。
 
-#### 更多东西
+#### 相关配置
 
 如果想让上下左右键失效，可以在快捷键设置中添加：
 
@@ -104,7 +104,7 @@ ST3 的 Vim 模式由自带的插件 Vintage 提供，它默认是禁用的。�
 	{ "keys": ["down"], "command": ""},
 ```
 
-也可以通过快捷键设置将进入命令模式设置成任意键（具体详见 [修改插件](#修改插件)），但注意在 Windows 环境下不要使用<kbd>Caps Lock</kbd>，因为很难令大小写转换失效。
+也可以通过快捷键设置将进入命令模式设置成任意键（具体详见 [修改插件](#修改插件)）。
 
 #### 与 Vim 的不同
 
@@ -175,7 +175,7 @@ ST3 的 Vintage 插件与 Vim 有一定不同，以下为找到的部分（欢�
 	//将build命令改为f9
 	{ "keys": ["f9"], "command": "build" },
 
-	//将原有的行排序的快捷键改为shift+f9，由于大部分时候这个功能用不到，这一行也可以不添加
+	//将原有的f9对应的行排序功能的快捷键改为shift+f9，由于大部分时候这个功能用不到，这一行也可以不添加
 	{ "keys": ["shift+f9"], "command": "sort_lines", "args": {"case_sensitive": false} },
 ```
 
@@ -183,7 +183,7 @@ ST3 的 Vintage 插件与 Vim 有一定不同，以下为找到的部分（欢�
 
 插件的设置可以在 `首选项->Package Setting->插件名` 中找到，做修改时请注意不要修改默认设置。
 
-例如，这里给出 BracketHighlighter 的一种比较实用的设置，可以在 `首选项->Package Setting->BracketHighlighter->Bracket Setting` 中修改：
+例如，这里给出 BracketHighlighter 的一种比较实用的设置，在 `首选项->Package Setting->BracketHighlighter->Bracket Setting` 中修改：
 
 ```JSON
 {
@@ -196,21 +196,12 @@ ST3 的 Vintage 插件与 Vim 有一定不同，以下为找到的部分（欢�
 	//忽略匹配范围限制
 	"ignore_threshold": true,
     
+	//style高亮样式，bold为块高亮，underline为加粗下划线，outline为外围一圈
+	//color为颜色，默认设置中已经包含了所有支持的颜色
+	//icon为在侧边栏显示的标志
 	"bracket_styles": {
-		"default": {
-			"icon": "dot","color": "region.yellowish brackethighlighter.default",
-
-			//匹配样式，bold为块高亮，underline为标准下划线，outline为外面一圈
-			"style": "bold",
-		},
-		"unmatched": {
-			//在侧边栏显示的标志
-			"icon": "question",
-
-			//可以配置颜色，默认设置已经包含了所有支持的颜色
-			"color": "region.redish",
-			"style": "outline",
-		},
+		"default": {"icon": "dot", "color": "region.yellowish", "style": "bold",},
+		"unmatched": {"icon": "question", "color": "region.redish", "style": "outline",},
 		"curly": {"icon": "curly_bracket", "color": "region.purplish",},
 		"round": {"icon": "round_bracket", "color": "region.yellowish",},
 		"square": {"icon": "square_bracket", "color": "region.bluish",},
@@ -230,9 +221,9 @@ ST3 的 Vintage 插件与 Vim 有一定不同，以下为找到的部分（欢�
 
 一般而言，插件的目录是 `C:\Users\用户名\AppData\Roaming\Sublime Text 3\Installed Packages`（也可以通过 `首选项->浏览插件目录` 快速找到）。
 
-里面的文件以 `.sublime-package` 为后缀，但实际上就是压缩包，可以使用 Winrar 等软件打开。
+里面的文件以 `.sublime-package` 为后缀，实际上为 `.zip` 格式，可以使用 Winrar 等软件打开。
 
-例如，如果要修改自动补全，可以打开安装目录下 `Package\C++` 插件中的 `.sublime-snippet` 文件修改，如要增添自动补全，可以安装 C++ Snippets 并在其中修改或添加文件。做任何修改时记得关闭 ST3。
+例如，如果要修改自动补全，可以打开安装目录下（注意是 ST3 自身的安装目录，非插件目录） `\Package\C++` 插件中的 `Snippets\*.sublime-snippet` 文件修改，如要增添自动补全，可以安装 C++ Snippets 并在其中修改或添加文件（或自己新建一个插件，但不能直接添加进自带的 C++ 插件，因为无法被识别）。保存任何修改时记得关闭 ST3。
 
 例如，一个文件模板的补全可以这么写：
 
@@ -250,8 +241,8 @@ int main() {
 	fclose(stdout);
 	return 0;
 }]]></content>
-	<tabTrigger> code </tabTrigger> <!-- 这里的内容是补全的触发文本 -->
-	<scope> source.c++ </scope> <!-- 这里的内容是补全适用语言 -->
+	<tabTrigger>code</tabTrigger> <!-- 这里的内容是补全的触发文本 -->
+	<scope>source.c++</scope> <!-- 这里的内容是补全适用语言 -->
 </snippet>
 ```
 
@@ -270,7 +261,7 @@ int main() {
 | .sublime-commands    | 命令定义文件                          |
 | .sublime-menu        | ST3 UI 文件，包括侧边栏以及顶部菜单栏（汉化的主要对象） |
 
-由于插件会更新会直接覆盖原文件，所以建议备份自己更改的文件。
+由于插件更新会直接覆盖原文件，所以建议备份自己更改的文件。
 
 ## 编辑
 
@@ -282,33 +273,33 @@ int main() {
 
 ### 快捷键
 
-注意 ST3 有复合快捷键，如<kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd>表示先按<kbd>Ctrl</kbd>+<kbd>K</kbd>再按<kbd>Ctrl</kbd>+<kbd>Backspace</kbd>，并非是两者都可以。
+ST3 有复合快捷键，如<kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd>表示先按<kbd>Ctrl</kbd>+<kbd>K</kbd>再按<kbd>Ctrl</kbd>+<kbd>Backspace</kbd>。
 
 部分快捷键：[^ref2]
 
-| 按键                                                                         | 命令                                                            |
-| -------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| <kbd>Ctrl</kbd>+<kbd>X</kbd>                                               | 剪切当前行                                                         |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>                              | 删除行                                                           |
-| <kbd>Ctrl</kbd>+<kbd>Enter</kbd>                                           | 在下方插入行                                                        |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd>                          | 在上方插入行                                                        |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>                             | 行上移                                                           |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Down</kbd>                           | 行下移                                                           |
-| <kbd>Ctrl</kbd>+<kbd>L</kbd>                                               | 选择行，重复以向下选择多行                                                 |
-| <kbd>Ctrl</kbd>+<kbd>D</kbd>                                               | 选择词，重复以选择多个相同词，并进入多点编辑（用于快速批量更改）                              |
-| <kbd>Ctrl</kbd>+<kbd>M</kbd>                                               | 跳转到匹配的括号                                                      |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>                              | 选择括号内的内容（不包括括号），重复以包括括号                                       |
-| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>K</kbd>                  | 删至行尾（复合快捷键，建议使用 Vim 模式代替）                                     |
-| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd>          | 删至行首（复合快捷键，建议使用 Vim 模式代替）                                     |
-| <kbd>Ctrl</kbd>+<kbd>]</kbd>                                               | 缩进当前（选择的）行                                                    |
-| <kbd>Ctrl</kbd>+<kbd>\[</kbd>                                              | 取消缩进当前（选择的）行                                                  |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>                              | 复制当前行，并插入在下一行                                                 |
-| <kbd>Ctrl</kbd>+<kbd>J</kbd>                                               | 合并下一行与当前行                                                     |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>                              | 粘贴并缩进（用于整段粘贴代码）                                               |
+| 按键                                                         | 命令                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| <kbd>Ctrl</kbd>+<kbd>X</kbd>                                 | 剪切当前行                                                   |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>                | 删除行                                                       |
+| <kbd>Ctrl</kbd>+<kbd>Enter</kbd>                             | 在下方插入行                                                 |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd>            | 在上方插入行                                                 |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>               | 行上移                                                       |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Down</kbd>             | 行下移                                                       |
+| <kbd>Ctrl</kbd>+<kbd>L</kbd>                                 | 选择行，重复以向下选择多行                                   |
+| <kbd>Ctrl</kbd>+<kbd>D</kbd>                                 | 选择词，重复以选择多个相同词，并进入多点编辑（用于快速批量更改） |
+| <kbd>Ctrl</kbd>+<kbd>M</kbd>                                 | 跳转到匹配的括号                                             |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>                | 选择括号内的内容（不包括括号），重复以包括括号               |
+| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>K</kbd>    | 删至行尾（复合快捷键，建议使用 Vim 模式代替）                |
+| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd> | 删至行首（复合快捷键，建议使用 Vim 模式代替）                |
+| <kbd>Ctrl</kbd>+<kbd>]</kbd>                                 | 缩进当前（选择的）行                                         |
+| <kbd>Ctrl</kbd>+<kbd>\[</kbd>                                | 取消缩进当前（选择的）行                                     |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>                | 复制当前行，并插入在下一行                                   |
+| <kbd>Ctrl</kbd>+<kbd>J</kbd>                                 | 合并下一行与当前行                                           |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>                | 粘贴并缩进（用于整段粘贴代码）                               |
 | <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> | 从历史粘贴（复合快捷键，建议修改为<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd>） |
-| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>                             | 光标下移，并保留当前行光标（进入多点编辑模式）                                       |
-| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd>                               | 光标上移，并保留当前行光标（进入多点编辑模式）                                       |
-| <kbd>~</kbd>                                                               | 转换选择内容的大小写                                                    |
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>               | 光标下移，并保留当前行光标（进入多点编辑模式）               |
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd>                 | 光标上移，并保留当前行光标（进入多点编辑模式）               |
+| <kbd>~</kbd>                                                 | 转换选择内容的大小写                                         |
 
 ### 自动补全
 
@@ -335,7 +326,7 @@ ST3 有丰富的补全功能，可能的补全内容会在光标下方显示，�
 
 <kbd>Ctrl</kbd>+<kbd>F</kbd>为查找，<kbd>F3</kbd>为查找下一个<kbd>Shift</kbd>+<kbd>F3</kbd>为查找上一个，<kbd>Ctrl</kbd>+<kbd>H</kbd>为替换。
 
-五个查找选项分别为、正则表达式（开启后可以直接输入正则表达式）、大小写敏感、全字匹配、循环查找、在选段中查找。
+五个查找选项分别为正则表达式（开启后可以直接输入正则表达式）、大小写敏感、全字匹配、循环查找、在选段中查找。
 
 建议在首选项中将 `"auto_find_in_selection"` 设置为 `true`。这样在选择超过一个词时使用查找会自动只在选段中查找。
 
@@ -403,9 +394,6 @@ int main(){
 
 如要为以下代码添加分号，可以按<kbd>Ctrl</kbd>+<kbd>q</kbd>启动宏录制接下来依次按<kbd>End</kbd>、<kbd>;</kbd>、<kbd>Down</kbd>再按<kbd>Ctrl</kbd>+<kbd>q</kbd>结束宏录制（中途左下角不会全程显示正在录制，但确实在录制），接下来重复<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd>即可。
 
-??? note "如已开启 Vintage"
-    执行一次<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd>后，可以<kbd>Esc</kbd>进入命令模式，输入 `..` 即可（`.` 命令可以重复 ST3 命令）
-
 ```plain
 int main(){
     int a, b
@@ -415,6 +403,9 @@ int main(){
 }
 ```
 
+??? note "如已开启 Vintage"
+    执行一次<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd>后，可以<kbd>Esc</kbd>进入命令模式，输入 `..` 即可（`.` 命令可以重复 ST3 命令）
+    
 关于宏的保存与绑定按键详见 [社区文档](https://docs.sublimetext.io/guide/extensibility/macros.html)。
 
 ## 编译与运行
@@ -429,28 +420,26 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 
 #### 修改编译选项
 
-虽然 ST3 自带编译环境，但不幸的是，编译选项无法修改。
-
-如果需要修改编译选项，则需要自己新建一个编译系统。
+ST3 自带的编译环境不方便修改，如果要修改编译选项，可以新建一个编译系统。
 
 进入 `系统->编译系统->新建编译系统…` 然后在大括号中间输入：
 
 ```JSON
-//编译选项可以自己调整"cmd": ["cmd","/c","g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","cmd","/c","${file_path}/${file_base_name}"],//这一行可以让ST3图形化显示报错，如果习惯了看g++返回的信息可以去掉"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+//编译选项可以自己调整
+"cmd": ["cmd","/c","g++","-Wall","${file}","-o","${file_path}/${file_base_name}"
+	,"&&","cmd","/c","${file_path}/${file_base_name}"],  //这部分为运行
+
+//这一行可以让ST3图形化显示报错，如果习惯了看g++返回的信息可以去掉
+"file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
 ```
 
 保存后按<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>把编译系统切换到你自己写的这个，就可以使用了，这里的配置是编译并在外部 CMD 运行。
 
 保存的文件为 `C:\Users\用户名\AppData\Roaming\Sublime Text 3\Packages\User\编译系统名.sublime-build` 可以反复修改。
 
-??? note "其他配置方法"
-    以下为满足其他需要而写，理解需要一些命令行的知识。
-    
-    只编译 `JSON"cmd": ["g++","-Wall","${file}","-o","${file_path}/${file_base_name}"],` 在内部 CMD 运行 `JSON"shell_cmd": ["g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","${file_path}/${file_base_name}& pause"],` 还可以利用一些方法把编译和运行拆开并分别配置快捷键，由于并不必要，请自行搜索。
-
 ### 运行
 
-如果编译时选择 `C++ Single File - Run`（或者自己配置了自动运行），那么在下方弹出的编译信息窗口应该不会有任何显示（除非编译错误），因为 ST3 的编译信息窗口兼职 CMD，此时它在等你给正在运行的程序输入数据。
+如果编译时选择 `C++ Single File - Run`（即编译后运行），那么在下方弹出的编译信息窗口应该不会有任何显示（除非编译错误），因为 ST3 的编译信息窗口同时也是一个 CMD 终端，此时它在等你给正在运行的程序输入数据。
 
 运行结束后会提示程序的运行时间。
 
@@ -471,6 +460,7 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 - 把文件夹拖进 ST3 中并开启侧边栏，从而快速切换文件。
 - 善用跳转功能，尤其是<kbd>Ctrl</kbd>+<kbd>P</kbd>进行文件跳转与<kbd>Ctrl</kbd>+<kbd>R</kbd>进行函数跳转。
 - ST3 支持 git[^ref3]。
+- ST3 的所有配置储存在 `C:\Users\用户名\AppData\Roaming\Sublime Text 3` ，可以随意打包，但注册信息无法在多台电脑上使用。
 
 ## 外部链接
 
@@ -485,3 +475,4 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 [^ref2]: [Sublime Text 社区文档](https://docs.sublimetext.io/)
 
 [^ref3]: [Sublime Text Git 集成](https://www.sublimetext.com/docs/git_integration.html)
+
