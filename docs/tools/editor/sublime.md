@@ -8,7 +8,7 @@ ST4 与 ST3 的重要差别会有额外补充。
 
 ## 安装
 
-直接前往 [Sublime Text 3 官网](https://www.sublimetext.com/3) 下载即可（如使用搜索引擎，可能会找到一个中文官网，但通过数字签名等方式可以看出这并不是官方网站）。
+直接前往 [Sublime Text 3 官网](https://www.sublimetext.com/3) 下载即可（[中文官网](http://www.sublimetext.cn/) 已经很久没有更新，另外还有一个仿冒的网站）。
 
 ST3 的安装包并不会创建桌面快捷方式，需要自己手动创建。
 
