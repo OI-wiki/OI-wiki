@@ -120,20 +120,20 @@
       long long n, i, j;
       cin >> n;
       for (i = 1; i <= n; i++) {
-        scanf("%d%d", &a[i].d, &a[i].x);
+        scanf("%d%d", &a[i].d, &a[i].p);
       }
       sort(a + 1, a + n + 1, cmp);
       long long ans = 0;
       for (i = 1; i <= n; i++) {
         if (a[i].d <= q.size()) {
-          if (q.top() < a[i].x) {
+          if (q.top() < a[i].p) {
             ans += a[i].p - q.top();
             q.pop();
-            q.push(a[i].x);
+            q.push(a[i].p);
           }
         } else {
-          ans += a[i].x;
-          q.push(a[i].x);
+          ans += a[i].p;
+          q.push(a[i].p);
         }
       }
       cout << ans << endl;
