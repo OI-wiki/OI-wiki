@@ -117,10 +117,10 @@
     priority_queue<long long, vector<long long>, greater<long long> > q;
     
     int main() {
-      long long n, i, j;
+      long long n, i;
       cin >> n;
       for (i = 1; i <= n; i++) {
-        scanf("%d%d", &a[i].d, &a[i].p);
+        scanf("%lld%lld", &a[i].d, &a[i].p);
       }
       sort(a + 1, a + n + 1, cmp);
       long long ans = 0;
