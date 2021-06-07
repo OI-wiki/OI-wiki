@@ -125,7 +125,7 @@
       sort(a + 1, a + n + 1, cmp);
       long long ans = 0;
       for (i = 1; i <= n; i++) {
-        if (a[i].d <= q.size()) {
+        if (a[i].d <= (int)q.size()) {
           if (q.top() < a[i].p) {
             ans += a[i].p - q.top();
             q.pop();
