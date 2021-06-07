@@ -929,6 +929,7 @@ DLX 的难点，不全在于链表的建立，而在于建模。
     ```cpp
     #include <bits/stdc++.h>
     #define LL long long
+    #define rgi register int
     int numcol, numrow;
     int dfn[3000], tx[2], nxt[2], num[50][50], vis[50];
     char ans[50][50];
