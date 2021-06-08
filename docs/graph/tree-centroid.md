@@ -45,7 +45,11 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld
 
 ## 参考
 
-<http://fanhq666.blog.163.com/blog/static/81943426201172472943638/>（暂时无法访问 [转载传送门](https://www.cnblogs.com/qlky/p/5781081.html))<https://blog.csdn.net/weixin_43810158/article/details/88391828>  <https://www.cnblogs.com/zinthos/p/3899075.html>
+<http://fanhq666.blog.163.com/blog/static/81943426201172472943638/> ([博客园转载](https://www.cnblogs.com/qlky/p/5781081.html)，[Internet Archive](https://web.archive.org/web/20181122041458/http://fanhq666.blog.163.com/blog/static/81943426201172472943638))  
+
+<https://blog.csdn.net/weixin_43810158/article/details/88391828>  
+
+<https://www.cnblogs.com/zinthos/p/3899075.html>  
 
 ## 习题
 
