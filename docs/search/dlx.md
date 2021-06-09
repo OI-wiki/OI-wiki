@@ -929,6 +929,7 @@ DLX 的难点，不全在于链表的建立，而在于建模。
     ```cpp
     #include <bits/stdc++.h>
     #define LL long long
+    #define rgi register int
     int numcol, numrow;
     int dfn[3000], tx[2], nxt[2], num[50][50], vis[50];
     char ans[50][50];
@@ -1084,4 +1085,4 @@ DLX 能用来解决精确覆盖问题，适当地建立起模型后能解决一�
 - [2]万仓一黍 的 [《跳跃的舞者，舞蹈链（Dancing Links）算法——求解精确覆盖问题》](https://www.cnblogs.com/grenet/p/3145800.html)
 - [3]zhangjianjunab 的 [《DLX 算法一览》](https://blog.csdn.net/zhangjianjunab/article/details/83688681)
 - [4]静听风吟。的 [《搜索：DLX 算法》](https://www.cnblogs.com/aininot260/p/9629926.html)
-- [5]刘汝佳，陈锋 的 [《算法竞赛进阶指南》](https://item.jd.com/11111050.html)
+- [5]刘汝佳，陈锋 的 [《算法竞赛入门经典 - 训练指南》](https://item.jd.com/11111050.html)

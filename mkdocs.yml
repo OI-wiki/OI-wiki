@@ -1,9 +1,9 @@
-# Project Information
+﻿# Project Information
 site_name: OI Wiki
 site_description: OI Wiki 是一个编程竞赛知识整合站点，提供有趣又实用的编程竞赛知识以及其他有帮助的内容，帮助广大编程竞赛爱好者更快更深入地学习编程竞赛
 site_author: OI Wiki Team
 site_url: https://oi-wiki.org
-strict: true
+strict: false
 
 # Repository
 repo_name: 'OI-wiki/OI-wiki'
@@ -31,7 +31,7 @@ nav:
     - 赛事:
       - OI 赛事与赛制: contest/oi.md
       - ICPC/CCPC 赛事与赛制: contest/icpc.md
-    - 题型: 
+    - 题型:
       - 题型概述: contest/problems.md
       - 交互题: contest/interaction.md
     - 学习路线: contest/roadmap.md
@@ -51,10 +51,12 @@ nav:
       - Atom: tools/editor/atom.md
       - Eclipse: tools/editor/eclipse.md
       - Notepad++: tools/editor/npp.md
+      - Kate: tools/editor/kate.md
       - Dev-C++: tools/editor/devcpp.md
       - Geany: tools/editor/geany.md
       - Xcode: tools/editor/xcode.md
       - GUIDE: tools/editor/guide.md
+      - Sublime Text 3: tools/editor/sublime3.md
     - 评测工具: tools/judgers.md
     - 命令行: tools/cmd.md
     - WSL (Windows 10): tools/wsl.md
@@ -97,9 +99,11 @@ nav:
       - STL 算法: lang/csl/algorithm.md
       - bitset: lang/csl/bitset.md
       - string: lang/csl/string.md
+      - pair: lang/csl/pair.md
     - C++ 进阶:
       - 类: lang/class.md
       - 命名空间: lang/namespace.md
+      - 值类别: lang/value-category.md
       - 重载运算符: lang/op-overload.md
       - 引用: lang/reference.md
       - 常值: lang/const.md
@@ -181,8 +185,11 @@ nav:
     - Z 函数（扩展 KMP）: string/z-func.md
     - 自动机: string/automaton.md
     - AC 自动机: string/ac-automaton.md
-    - 后缀数组 (SA): string/sa.md
+    - 后缀数组 (SA):
+      - 后缀数组简介: string/sa.md
+      - 最优原地后缀排序算法: string/sa-optimal-inplace.md
     - 后缀自动机 (SAM): string/sam.md
+    - 后缀平衡树: string/suffix-bst.md
     - 广义后缀自动机: string/general-sam.md
     - 后缀树: string/suffix-tree.md
     - Manacher: string/manacher.md
@@ -201,6 +208,7 @@ nav:
     - 平衡三进制: math/balanced-ternary.md
     - 数论:
       - 素数: math/prime.md
+      - Meissel-Lehmer 算法: math/meissel-lehmer.md
       - 最大公约数: math/gcd.md
       - 欧拉函数: math/euler.md
       - 筛法: math/sieve.md
@@ -216,7 +224,9 @@ nav:
       - 卢卡斯定理: math/lucas.md
       - 莫比乌斯反演: math/mobius.md
       - 杜教筛: math/du.md
+      - Powerful Number 筛: math/powerful-number.md
       - Min_25 筛: math/min-25.md
+      - 洲阁筛: math/zhou.md
       - 分解质因数: math/pollard-rho.md
       - 连分数: math/continued-fraction.md
       - Stern-Brocot 树与 Farey 序列: math/stern-brocot.md
@@ -257,6 +267,7 @@ nav:
       - 康托展开: math/cantor.md
       - 容斥原理: math/inclusion-exclusion-principle.md
       - 抽屉原理: math/drawer-principle.md
+      - Eulerian Number: math/eulerian.md
     - 概率初步: math/expectation.md
     - 置换群: math/permutation-group.md
     - 斐波那契数列: math/fibonacci.md
@@ -369,6 +380,7 @@ nav:
       - 最小割: graph/flow/min-cut.md
       - 费用流: graph/flow/min-cost.md
       - 上下界网络流: graph/flow/bound.md
+    - Stoer-Wagner 算法: graph/stoer-wagner.md
     - 图的匹配:
       - 图匹配: graph/graph-matching/graph-match.md
       - 增广路: graph/graph-matching/augment.md

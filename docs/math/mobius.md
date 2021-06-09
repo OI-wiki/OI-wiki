@@ -141,7 +141,7 @@ $$
 
 若 $F(x)$ 为积性函数，则有 $F(x)=\prod F(p_i^{k_i})$。
 
-若 $F(x)$ 为完全积性函数，则有 $F(X)=\prod F(p_i)^{k_i}$。
+若 $F(x)$ 为完全积性函数，则有 $F(x)=\prod F(p_i)^{k_i}$。
 
 ### 例子
 
@@ -223,14 +223,14 @@ $$
 设 $\gcd(a,b)=1$，则：
 
 $$
-h(a)=\sum_{d_1\mid a}{f(a)g\left(\dfrac a{d_1} \right)},h(b)=\sum_{d_2\mid b}{f(b)g\left(\dfrac b{d_2} \right)},
+h(a)=\sum_{d_1\mid a}{f(d_1)g\left(\dfrac a{d_1} \right)},h(b)=\sum_{d_2\mid b}{f(d_2)g\left(\dfrac b{d_2} \right)},
 $$
 
 所以：
 
 $$
 \begin{aligned}
-h(a)h(b)&=\sum_{d_1\mid a}{f(a)g\left(\dfrac a{d_1} \right)}\sum_{d_2\mid b}{f(b)g\left(\dfrac b{d_2} \right)}\\
+h(a)h(b)&=\sum_{d_1\mid a}{f(d_1)g\left(\dfrac a{d_1} \right)}\sum_{d_2\mid b}{f(d_2)g\left(\dfrac b{d_2} \right)}\\
 &=\sum_{d\mid ab}{f(d)g\left(\dfrac {ab}d \right)}\\
 &=h(ab)
 \end{aligned}
@@ -420,8 +420,8 @@ $$
 &\sum_{n|d}{\mu(\frac{d}{n})f(d)} \\ 
     =& \sum_{k=1}^{+\infty}{\mu(k)f(kn)}
     = \sum_{k=1}^{+\infty}{\mu(k)\sum_{kn|d}{g(d)}} \\
-    =& \sum_{n|d}{g(d)\sum_{k|\frac{n}{d}}{\mu(k)}}
-    = \sum_{n|d}{g(d)\epsilon(\frac{n}{d})} \\ 
+    =& \sum_{n|d}{g(d)\sum_{k|\frac{d}{n}}{\mu(k)}}
+    = \sum_{n|d}{g(d)\epsilon(\frac{d}{n})} \\ 
     =& g(n)
 \end{aligned}
 $$

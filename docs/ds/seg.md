@@ -1,10 +1,18 @@
-author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina, orzAtalod
+author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina, orzAtalod, luoguojie
 
 线段树是算法竞赛中常用的用来维护 **区间信息** 的数据结构。
 
 线段树可以在 $O(\log N)$ 的时间复杂度内实现单点修改、区间修改、区间查询（区间求和，求区间最大值，求区间最小值）等操作。
 
-线段树维护的信息，需要满足可加性，即能以可以接受的速度合并信息和修改信息，包括在使用懒惰标记时，标记也要满足可加性（例如取模就不满足可加性，对 $4$ 取模然后对 $3$ 取模，两个操作就不能合并在一起做）。
+线段树维护的信息在很多时候可以认为是满足（幺）半群的性质的信息。
+
+一个幺半群 $M=(S,\circ ,e)$，其中 $\circ$ 为在集合 $S$ 上定义的二元运算符，幺半群具有以下性质：
+
+- 封闭性：$\forall x\in S$ 和 $\forall y\in S$ 有 $x\circ y\in S$。
+- 结合律：$\forall x,y,z\in S$ 有 $(x\circ y)\circ z=x\circ (y\circ z)$。
+- 存在幺元：即 $\exists e\in S$ 满足 $\forall x \in S$ 有 $e\circ x=x$，$e$ 为左幺元；或 $x\circ e=x$，$e$ 为右幺元。
+
+我们观察到线段树上的信息一般满足这样的性质，一些数域上的加法与乘法自然，考虑二元的 $\max(x,y)$ 运算，此时幺元为 $-\infty$ 也满足这样的性质（一般左右幺元相同时简称为幺元）。
 
 ## 线段树
 
@@ -41,7 +49,9 @@ void build(int s, int t, int p) {
     d[p] = a[s];
     return;
   }
-  int m = (s + t) / 2;
+  int m = s + ((t - s) >> 1);
+  // 移位运算符的优先级小于加减法，所以加上括号
+  // 如果写成 (s + t) >> 1 可能会时间超限
   build(s, m, p * 2), build(m + 1, t, p * 2 + 1);
   // 递归对左右区间建树
   d[p] = d[p * 2] + d[(p * 2) + 1];
@@ -71,7 +81,7 @@ int getsum(int l, int r, int s, int t, int p) {
   // [l,r] 为查询区间,[s,t] 为当前节点包含的区间,p 为当前节点的编号
   if (l <= s && t <= r)
     return d[p];  // 当前区间为询问区间的子集时直接返回当前区间的和
-  int m = (s + t) / 2, sum = 0;
+  int m = s + ((t - s) >> 1), sum = 0;
   if (l <= m) sum += getsum(l, r, s, m, p * 2);
   // 如果左儿子代表的区间 [l,m] 与询问区间有交集,则递归查询左儿子
   if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
@@ -143,7 +153,7 @@ void update(int l, int r, int c, int s, int t, int p) {
     d[p] += (t - s + 1) * c, b[p] += c;
     return;
   }  // 当前区间为修改区间的子集时直接修改当前节点的值,然后打标记,结束修改
-  int m = (s + t) / 2;
+  int m = s + ((t - s) >> 1);
   if (b[p] && s != t) {
     // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
     d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m);
@@ -163,7 +173,7 @@ int getsum(int l, int r, int s, int t, int p) {
   // [l,r] 为查询区间,[s,t] 为当前节点包含的区间,p为当前节点的编号
   if (l <= s && t <= r) return d[p];
   // 当前区间为询问区间的子集时直接返回当前区间的和
-  int m = (s + t) / 2;
+  int m = s + ((t - s) >> 1);
   if (b[p]) {
     // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
     d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m),
@@ -185,7 +195,7 @@ void update(int l, int r, int c, int s, int t, int p) {
     d[p] = (t - s + 1) * c, b[p] = c;
     return;
   }
-  int m = (s + t) / 2;
+  int m = s + ((t - s) >> 1);
   if (b[p]) {
     d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
           b[p * 2] = b[p * 2 + 1] = b[p];
@@ -197,7 +207,7 @@ void update(int l, int r, int c, int s, int t, int p) {
 }
 int getsum(int l, int r, int s, int t, int p) {
   if (l <= s && t <= r) return d[p];
-  int m = (s + t) / 2;
+  int m = s + ((t - s) >> 1);
   if (b[p]) {
     d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
           b[p * 2] = b[p * 2 + 1] = b[p];
@@ -234,7 +244,7 @@ int getsum(int l, int r, int s, int t, int p) {
         d[p] = a[l];
         return;
       }
-      LL m = (l + r) >> 1;
+      LL m = l + ((r - l) >> 1);
       build(l, m, p << 1), build(m + 1, r, (p << 1) | 1);
       d[p] = d[p << 1] + d[(p << 1) | 1];
     }
@@ -243,7 +253,7 @@ int getsum(int l, int r, int s, int t, int p) {
         d[p] += (t - s + 1) * c, b[p] += c;
         return;
       }
-      LL m = (s + t) >> 1;
+      LL m = s + ((t - s) >> 1);
       if (b[p])
         d[p << 1] += b[p] * (m - s + 1), d[(p << 1) | 1] += b[p] * (t - m),
             b[p << 1] += b[p], b[(p << 1) | 1] += b[p];
@@ -254,7 +264,7 @@ int getsum(int l, int r, int s, int t, int p) {
     }
     LL getsum(LL l, LL r, LL s, LL t, LL p) {
       if (l <= s && t <= r) return d[p];
-      LL m = (s + t) >> 1;
+      LL m = s + ((t - s) >> 1);
       if (b[p])
         d[p << 1] += b[p] * (m - s + 1), d[(p << 1) | 1] += b[p] * (t - m),
             b[p << 1] += b[p], b[(p << 1) | 1] += b[p];
@@ -335,13 +345,13 @@ int getsum(int l, int r, int s, int t, int p) {
         sum[i] = a[s];
         return;
       }
-      int mid = (s + t) >> 1;
+      int mid = s + ((t - s) >> 1);
       build(s, mid, i << 1);
       build(mid + 1, t, (i << 1) | 1);
       up(i);
     }
     void chen(int l, int r, int s, int t, int i, ll z) {
-      int mid = (s + t) >> 1;
+      int mid = s + ((t - s) >> 1);
       if (l <= s && t <= r) {
         mul[i] *= z;
         mul[i] %= mod;
@@ -357,7 +367,7 @@ int getsum(int l, int r, int s, int t, int p) {
       up(i);
     }
     void add(int l, int r, int s, int t, int i, ll z) {
-      int mid = (s + t) >> 1;
+      int mid = s + ((t - s) >> 1);
       if (l <= s && t <= r) {
         sum[i] += z * (t - s + 1);
         sum[i] %= mod;
@@ -371,7 +381,7 @@ int getsum(int l, int r, int s, int t, int p) {
       up(i);
     }
     ll getans(int l, int r, int s, int t, int i) {
-      int mid = (s + t) >> 1;
+      int mid = s + ((t - s) >> 1);
       ll tot = 0;
       if (l <= s && t <= r) return sum[i];
       pd(i, s, t);
@@ -422,7 +432,7 @@ int getsum(int l, int r, int s, int t, int p) {
         d[p] = a[l];
         return;
       }
-      int m = (l + r) >> 1;
+      int m = l + ((r - l) >> 1);
       build(l, m, p << 1), build(m + 1, r, (p << 1) | 1);
       d[p] = d[p << 1] + d[(p << 1) | 1];
     }
@@ -431,7 +441,7 @@ int getsum(int l, int r, int s, int t, int p) {
         d[p] = (t - s + 1) * c, b[p] = c;
         return;
       }
-      int m = (s + t) >> 1;
+      int m = s + ((t - s) >> 1);
       if (b[p]) {
         d[p << 1] = b[p] * (m - s + 1), d[(p << 1) | 1] = b[p] * (t - m);
         b[p << 1] = b[(p << 1) | 1] = b[p];
@@ -443,7 +453,7 @@ int getsum(int l, int r, int s, int t, int p) {
     }
     int getsum(int l, int r, int s, int t, int p) {
       if (l <= s && t <= r) return d[p];
-      int m = (s + t) >> 1;
+      int m = s + ((t - s) >> 1);
       if (b[p]) {
         d[p << 1] = b[p] * (m - s + 1), d[(p << 1) | 1] = b[p] * (t - m);
         b[p << 1] = b[(p << 1) | 1] = b[p];
@@ -544,4 +554,6 @@ int getsum(int l, int r, int s, int t, int p) {
 
 ### 参考
 
-[immortalCO 大爷的博客](https://immortalco.blog.uoj.ac/blog/2102)
+- [immortalCO 大爷的博客](https://immortalco.blog.uoj.ac/blog/2102)
+- [\[Kle77\]](http://ieeexplore.ieee.org/document/1675628/) V. Klee,“Can the Measure of be Computed in Less than O (n log n) Steps?,”Am. Math. Mon., vol. 84, no. 4, pp. 284–285, Apr. 1977.
+- [\[BeW80\]](https://www.tandfonline.com/doi/full/10.1080/00029890.1977.11994336) Bentley and Wood,“An Optimal Worst Case Algorithm for Reporting Intersections of Rectangles,”IEEE Trans. Comput., vol. C–29, no. 7, pp. 571–577, Jul. 1980.

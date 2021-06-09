@@ -202,7 +202,7 @@ $$
 \end{aligned}
 $$
 
-其中 $f$ 表示生成 $lca$ 的父亲节点，$d_i$ 为点权 $a_i$ 的差分数组。
+其中 $f$ 表示 $lca$ 的父亲节点，$d_i$ 为点权 $a_i$ 的差分数组。
 
 ![](./images/prefix_sum1.png)
 

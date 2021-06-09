@@ -143,7 +143,7 @@ $$
 
 $$
 \begin{aligned}
-F(x)&=\frac{1}{1-(x+x^2)}\\
+F(x)&=\frac{x}{1-(x+x^2)}\\
 &=\sum_{n\ge 0}(x+x^2)^n\\
 &=\sum_{n\ge 0}\sum_{i=0}^n\binom{n}{i}x^{2i}x^{n-i}\\
 &=\sum_{n\ge 0}\sum_{i=0}^n\binom{n}{i}x^{n+i}\\

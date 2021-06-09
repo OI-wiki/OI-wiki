@@ -234,10 +234,10 @@ $$
 行列式有公式
 
 $$
-D = \left| A \right| = \sum(-1)^va_{1,l_1}a_{2,l_2}\dots a_{n,l_n}
+\operatorname{det}(A)=\sum_{\sigma \in S_{n}} \operatorname{sgn}(\sigma) \prod_{i=1}^{n} a_{i, \sigma(i)}
 $$
 
-> 其中 $v$ 为 $l_1$，$l_2$，$\cdots$，$l_n$ 中逆序对的个数。
+其中 $S_n$ 是指长度为 $n$ 的全排列的集合，$\sigma$ 就是一个全排列，如果 $\sigma$ 的逆序对对数为偶数，则 $\operatorname{sgn}(\sigma)=1$，否则 $\operatorname{sgn}(\sigma)=−1$。
 
 通过体积概念理解行列式不变性是一个非常简单的办法：
 

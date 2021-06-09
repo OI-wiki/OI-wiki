@@ -63,7 +63,6 @@ $$
         \end{aligned}
         $$
 
-
     2.  若 $v< u$，则 $l_1\leq v<r_1,l_2\leq u<r_2$，因此
 
         $$

@@ -63,7 +63,7 @@ node *merge(node *u, node *v) {
 
 方法二：在递归建树的过程中，每次选取当前区间的中点作为该区间的树根，然后给每个节点一个随机优先级。这样能保证树高为 $O(\log n)$，但不保证其满足堆的性质。这样也是正确的，因为无旋式 treap 的优先级是用来使 `merge` 操作更加随机一点，而不是用来保证树高的。
 
-方法三：观察到 treap 是笛卡尔树，利用笛卡尔树的 $O(n)$ 建树方法即可，用单调栈维护右脊柱即可。
+方法三：观察到 treap 是笛卡尔树，利用笛卡尔树的 $O(n)$ 建树方法即可，用单调栈维护右子树即可。
 
 ## 将 treap 包装成为 `set<int>`
 
@@ -180,29 +180,32 @@ struct treap {
     }
   }
 
-  void del(int &k, int x) {
-    if (!k) return;
+  bool del(int &k, int x) {
+    if (!k) return false;
     if (val[k] == x) {
       if (w[k] > 1) {
         w[k]--;
         size[k]--;
-        return;
+        return true;
       }
-      if (l[k] == 0 || r[k] == 0)
+      if (l[k] == 0 || r[k] == 0) {
         k = l[k] + r[k];
-      else if (rnd[l[k]] < rnd[r[k]]) {
+        return true;
+      } else if (rnd[l[k]] < rnd[r[k]]) {
         rrotate(k);
-        del(k, x);
+        return del(k, x);
       } else {
         lrotate(k);
-        del(k, x);
+        return del(k, x);
       }
     } else if (val[k] < x) {
-      size[k]--;
-      del(r[k], x);
+      bool succ = del(r[k], x);
+      if (succ) size[k]--;
+      return succ;
     } else {
-      size[k]--;
-      del(l[k], x);
+      bool succ = del(l[k], x);
+      if (succ) size[k]--;
+      return succ;
     }
   }
 
