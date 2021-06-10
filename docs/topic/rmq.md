@@ -4,13 +4,13 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 在笔者接下来的描述中，默认初始数组大小为 $n$。
 
-在笔者接下来的描述中，默认时间复杂度标记方式为 $O($ 数据预处理 $)-O($ 单次询问 $)$。
+在笔者接下来的描述中，默认时间复杂度标记方式为 $O($ 数据预处理 $) \sim O($ 单次询问 $)$。
 
 ## 单调栈
 
 由于 **OI Wiki** 中已有此部分的描述，本文仅给出 [链接](../ds/monotonous-stack.md)。这部分不再展开。
 
-时间复杂度 $O(m\log m)-O(\log n)$
+时间复杂度 $O(m\log m) \sim O(\log n)$
 
 空间复杂度 $O(n)$
 
@@ -18,7 +18,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 由于 **OI Wiki** 中已有此部分的描述，本文仅给出 [链接](../ds/sparse-table.md)。这部分不再展开。
 
-时间复杂度 $O(n\log n)-O(1)$
+时间复杂度 $O(n\log n) \sim O(1)$
 
 空间复杂度 $O(n\log n)$
 
@@ -26,7 +26,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 由于 **OI Wiki** 中已有此部分的描述，本文仅给出 [链接](../ds/seg.md)。这部分不再展开。
 
-时间复杂度 $O(n)-O(\log n)$
+时间复杂度 $O(n) \sim O(\log n)$
 
 空间复杂度 $O(n)$
 
@@ -46,7 +46,7 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 在 $S=\log n$ 时候，预处理复杂度达到最优，为 $O((n / \log n)\log n+(n / \log n)\times\log n\times\log \log n)=O(n\log \log n)$。
 
-时间复杂度 $O(n\log \log n)-O(1)$
+时间复杂度 $O(n\log \log n) \sim O(1)$
 
 空间复杂度 $O(n\log \log n)$
 
@@ -74,25 +74,9 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
     
     以上做法参考了 [P3793 由乃救爷爷](https://www.luogu.com.cn/problem/P3793) 中的题解。
 
-## 笛卡尔树在 RMQ 上的应用
+## 加减 1RMQ
 
-不了解笛卡尔树的朋友请移步 [笛卡尔树](../ds/cartesian-tree.md)。
-
-我们发现，原序列上两个点之间的 min/max，等于笛卡尔树上两个点的 LCA 的权值。
-
-这也说明，我们现在需要去解决的是如何 $O(n)-O(1)$ 树上两个点之间的 LCA 的。
-
-树上 LCA 在 [LCA](../graph/lca.md) 部分已经有描述，这里不再展开。
-
-这里我们需要采用的是基于 RMQ 的树上 LCA 算法。
-
-可能会有同学会问：为什么我们在绕了一圈之后，又回到了 RMQ 问题呢？
-
-别着急，我们来找一找这个 RMQ 问题的特殊性质：
-
-因为树的 dfs 序列的相邻两个节点互为父子关系，也就是说相邻两个节点深度差为 $\pm 1$。我们一般称这种相邻两个元素差为 1 的 RMQ 问题为 $\pm 1$ RMQ 问题。
-
-根据这个特性我们就可以改进 Four Russian 算法了。
+若序列满足相邻两元素相差为 1，在这个序列上做 RMQ 可以成为加减 1RMQ，根究这个特性可以改进 Four Russian 算法，做到 $O(n) \sim O(1)$ 的时间复杂度，$O(n)$ 的空间复杂度。
 
 由于 Four russian 算法的瓶颈在于块内 RMQ 问题，我们重点去讨论块内 RMQ 问题的优化。
 
@@ -106,10 +90,211 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 这样子 Four russian 预处理的时间复杂度就被优化到了 $O(n)$。
 
-结合笛卡尔树部分我们就可以实现 $O(n)-O(1)$ 的 RMQ 问题了。
+## 笛卡尔树在 RMQ 上的应用
 
-代码和例题由于在 LCA 部分已经给出 [链接](../graph/lca.md)，这里不再赘述。
+不了解笛卡尔树的朋友请移步 [笛卡尔树](../ds/cartesian-tree.md)。
 
-当然由于转化步数较多，$O(n)-O(1)$ RMQ 跑的比较慢。
+我们发现，原序列上两个点之间的 min/max，等于笛卡尔树上两个点的 LCA 的权值。
 
-如果数据随机，则我们还可以暴力在笛卡尔树上查找。此时的时间复杂度为期望 $O(n)-O(\log n)$，并且实际使用时这种算法的常数往往很小。
+这也说明，我们现在需要去解决的是如何 $O(n) \sim O(1)$ 树上两个点之间的 LCA 的。
+
+$O(n) \sim O(1)$ 树上 LCA 在 [LCA](../graph/lca.md#rmq_1) 已经有描述，这里不再展开。
+
+结合笛卡尔树部分就可以实现 $O(n) \sim O(1)$ 的 RMQ 问题了。
+
+当然由于转化步数较多，$O(n) \sim O(1)$ RMQ 常数较大。
+
+如果数据随机，则我们还可以暴力在笛卡尔树上查找。此时的时间复杂度为期望 $O(n) \sim O(\log n)$，并且实际使用时这种算法的常数往往很小。
+
+### 例题 [Luogu P3865【模板】ST 表](https://www.luogu.com.cn/problem/P3865)
+
+??? note "参考代码"
+    ```cpp
+    // Copyright (C) 2018 Skqliao. All rights served.
+    #include <bits/stdc++.h>
+    
+    #define rep(i, l, r) for (int i = (l), _##i##_ = (r); i < _##i##_; ++i)
+    #define rof(i, l, r) for (int i = (l)-1, _##i##_ = (r); i >= _##i##_; --i)
+    #define ALL(x) (x).begin(), (x).end()
+    #define SZ(x) static_cast<int>((x).size())
+    typedef long long ll;
+    typedef std::pair<int, int> pii;
+    template <typename T>
+    inline bool chkMin(T &a, const T &b) {
+      return a > b ? a = b, 1 : 0;
+    }
+    template <typename T>
+    inline bool chkMax(T &a, const T &b) {
+      return a < b ? a = b, 1 : 0;
+    }
+    
+    const int MAXN = 1e5 + 5;
+    
+    struct PlusMinusOneRMQ {
+      const static int M = 8;
+      int blocklen, block, Minv[MAXN], F[MAXN / M * 2 + 5][M << 1], T[MAXN],
+          f[1 << M][M][M], S[MAXN];
+      void init(int n) {
+        blocklen = std::max(1, (int)(log(n * 1.0) / log(2.0)) / 2);
+        block = n / blocklen + (n % blocklen > 0);
+        int total = 1 << (blocklen - 1);
+        for (int i = 0; i < total; i++) {
+          for (int l = 0; l < blocklen; l++) {
+            f[i][l][l] = l;
+            int now = 0, minv = 0;
+            for (int r = l + 1; r < blocklen; r++) {
+              f[i][l][r] = f[i][l][r - 1];
+              if ((1 << (r - 1)) & i) {
+                now++;
+              } else {
+                now--;
+                if (now < minv) {
+                  minv = now;
+                  f[i][l][r] = r;
+                }
+              }
+            }
+          }
+        }
+        T[1] = 0;
+        for (int i = 2; i < MAXN; i++) {
+          T[i] = T[i - 1];
+          if (!(i & (i - 1))) {
+            T[i]++;
+          }
+        }
+      }
+      void initmin(int a[], int n) {
+        for (int i = 0; i < n; i++) {
+          if (i % blocklen == 0) {
+            Minv[i / blocklen] = i;
+            S[i / blocklen] = 0;
+          } else {
+            if (a[i] < a[Minv[i / blocklen]]) {
+              Minv[i / blocklen] = i;
+            }
+            if (a[i] > a[i - 1]) {
+              S[i / blocklen] |= 1 << (i % blocklen - 1);
+            }
+          }
+        }
+        for (int i = 0; i < block; i++) {
+          F[i][0] = Minv[i];
+        }
+        for (int j = 1; (1 << j) <= block; j++) {
+          for (int i = 0; i + (1 << j) - 1 < block; i++) {
+            int b1 = F[i][j - 1], b2 = F[i + (1 << (j - 1))][j - 1];
+            F[i][j] = a[b1] < a[b2] ? b1 : b2;
+          }
+        }
+      }
+      int querymin(int a[], int L, int R) {
+        int idl = L / blocklen, idr = R / blocklen;
+        if (idl == idr)
+          return idl * blocklen + f[S[idl]][L % blocklen][R % blocklen];
+        else {
+          int b1 = idl * blocklen + f[S[idl]][L % blocklen][blocklen - 1];
+          int b2 = idr * blocklen + f[S[idr]][0][R % blocklen];
+          int buf = a[b1] < a[b2] ? b1 : b2;
+          int c = T[idr - idl - 1];
+          if (idr - idl - 1) {
+            int b1 = F[idl + 1][c];
+            int b2 = F[idr - 1 - (1 << c) + 1][c];
+            int b = a[b1] < a[b2] ? b1 : b2;
+            return a[buf] < a[b] ? buf : b;
+          }
+          return buf;
+        }
+      }
+    };
+    
+    struct CartesianTree {
+     private:
+      struct Node {
+        int key, value, l, r;
+        Node(int key, int value) {
+          this->key = key;
+          this->value = value;
+          l = r = 0;
+        }
+        Node() {}
+      };
+      Node tree[MAXN];
+      int sz;
+      int S[MAXN], top;
+    
+     public:
+      void build(int a[], int n) {
+        top = 0;
+        tree[0] = Node(-1, INT_MAX);
+        S[top++] = 0;
+        sz = 0;
+        for (int i = 0; i < n; i++) {
+          tree[++sz] = Node(i, a[i]);
+          int last = 0;
+          while (tree[S[top - 1]].value <= tree[sz].value) {
+            last = S[top - 1];
+            top--;
+          }
+          tree[sz].l = last;
+          tree[S[top - 1]].r = sz;
+          S[top++] = sz;
+        }
+      }
+      Node &operator[](const int x) { return tree[x]; }
+    };
+    
+    class stdRMQ {
+     public:
+      void work(int a[], int n) {
+        ct.build(a, n);
+        dfs_clock = 0;
+        dfs(0, 0);
+        rmq.init(dfs_clock);
+        rmq.initmin(depseq, dfs_clock);
+      }
+      int query(int L, int R) {
+        int cl = clk[L], cr = clk[R];
+        if (cl > cr) {
+          std::swap(cl, cr);
+        }
+        return Val[rmq.querymin(depseq, cl, cr)];
+      }
+    
+     private:
+      CartesianTree ct;
+      PlusMinusOneRMQ rmq;
+      int dfs_clock, clk[MAXN], Val[MAXN << 1], depseq[MAXN << 1];
+      void dfs(int rt, int d) {
+        clk[ct[rt].key] = dfs_clock;
+        depseq[dfs_clock] = d;
+        Val[dfs_clock++] = ct[rt].value;
+        if (ct[rt].l) {
+          dfs(ct[rt].l, d + 1);
+          depseq[dfs_clock] = d;
+          Val[dfs_clock++] = ct[rt].value;
+        }
+        if (ct[rt].r) {
+          dfs(ct[rt].r, d + 1);
+          depseq[dfs_clock] = d;
+          Val[dfs_clock++] = ct[rt].value;
+        }
+      }
+    } doit;
+    
+    int A[MAXN];
+    
+    int main() {
+      int n, m, l, r;
+      scanf("%d%d", &n, &m);
+      for (int i = 0; i < n; ++i) {
+        scanf("%d", &A[i]);
+      }
+      doit.work(A, n);
+      while (m--) {
+        scanf("%d%d", &l, &r);
+        printf("%d\n", doit.query(l - 1, r - 1));
+      }
+      return 0;
+    }
+    ```
