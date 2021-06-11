@@ -15,7 +15,7 @@ ST3 的安装包并不会创建桌面快捷方式，需要自己手动创建。
 ???+note "Sublime 提示激活"
     ST3 是收费软件，但有一个无限期的试用，试用并不会带来功能上的缺失，但会不时弹出弹窗提示你激活。
 
-## 安装插件与自定义
+## 插件与自定义
 
 ### 汉化
 
@@ -50,8 +50,6 @@ ST3 并不支持中文，需要安装汉化插件。
 
 输入<kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>输入 `Install` 后回车，然后搜索插件/主题/配色即可。
 
-由于 ST3 主要面向网页开发，所以一般来说编辑 C++ 的情况下并没有太多很好的插件，不过一般来说自带的功能已经足够了。
-
 插件推荐：
 
 - BracketHighlighter : 对原版的括号高亮进行了增强，必备。
@@ -60,7 +58,7 @@ ST3 并不支持中文，需要安装汉化插件。
 - SublimeAstyleFormatter : Astyle，用于格式化代码。
 - Diffy : 按<kbd>Crtl</kbd>+<kbd>K</kbd>&<kbd>Crtl</kbd>+<kbd>D</kbd>即可快速比较第一视窗与第二视窗打开的文件的不同。
 - ConvertToUTF8 : 自动识别文件编码。
-- SideBarEnhancements : 侧边栏增强，较为推荐（但在 ST4 中侧边栏部分完全失效，只能用于调整状态栏显示）。
+- SideBarEnhancements : 侧边栏增强，较为推荐（但在 ST4 中侧边栏功能完全失效，只能用于调整状态栏显示）。
 - Transparency : 窗口透明化。
 
 有其他需要可以尝试搜索。
@@ -73,21 +71,17 @@ ST3 并不支持中文，需要安装汉化插件。
 
 如是 ST4 则可以在 `Preferences->Customize Color Scheme` 中调整配色方案或 `Preferences->Customize Scheme` 中调整主题。
 
-### 使用 Vim！
+### 使用 Vim
 
-如果是希望使用 Vim 但又需要快速提升效率，或许 ST3 可以作为一个中间过渡。
-
-#### 开启方式
-
-Vim 作为一款编辑器，其效率高的特点可以说是众人皆知。
+Vim 作为一款编辑器，其效率高的特点众所周知。
 
 但 Vim 的界面并不太友好，而且部分功能对于现代编辑器确实有些薄弱。
 
-有没有什么现代编辑器可以支持 Vim 的命令模式呢？
+如果是希望使用 Vim 但又需要快速提升效率，ST3 可以作为一个中间过渡。
 
-ST3 可以！
+#### 开启方式
 
-ST3 的 Vim 模式由自带的插件 Vintage 提供，它默认是禁用的。可以通过 `首选项->设置` 在用户设置中，将 `"ignored_packages"` 一项中的 Vintage 删除并保存（不要整个删除，只删除 Vintage），ST3 的状态栏左边就会出现 `INSERT MODE`，这时就可以愉快的打 Vim 了。
+ST3 的 Vim 模式由自带的插件 Vintage 提供，它默认是禁用的。可以通过 `首选项->设置` 在用户设置中，将 `"ignored_packages"` 一项中的 Vintage 删除并保存（不要整个删除，只删除 Vintage），ST3 的状态栏左边就会出现 `INSERT MODE`，即 Vintage 插件已开启。
 
 或者按<kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>，然后输入 `Enable` 选择 `Package Control: Enable Package` 并回车，选择 Vintage 即可，该方法需要 Package Control。
 
@@ -106,7 +100,7 @@ ST3 的 Vim 模式由自带的插件 Vintage 提供，它默认是禁用的。�
 
 #### 与 Vim 的不同
 
-ST3 的 Vintage 插件与 Vim 有一定不同，以下为找到的部分（欢迎补充）：
+ST3 的 Vintage 插件与 Vim 有一定不同，部分列于此处：
 
 - 在插入模式下用选中不会进入可视模式，这时输入不会被识别为命令而是直接替换文本。可视模式只有命令模式下才能进入。
 - `r`、`R`、`zA`、`za`、`zi`、`z=`、`@` 与使用<kbd>[</kbd>、<kbd>]</kbd>或<kbd>"</kbd>键的命令不存在。
@@ -115,8 +109,6 @@ ST3 的 Vintage 插件与 Vim 有一定不同，以下为找到的部分（欢�
 - 使用 `\` 与 `?` 命令会自动唤出搜索框，而不是直接在命令中键入单词进行搜索。同时，数字将无法生效。
 - `q` 宏录制命令会启动 ST3 自带的宏录制，按<kbd>Q</kbd>后需要再按一个键启动录制，但录制的宏不会与该键绑定，需要按<kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd>才能启动。如果需要保存，需要 `工具->保存宏`，快捷键需要设置。
 - 无法使用 `数字+.` 的组合。
-
-当然，可以通过修改快捷键及 .py 文件增添功能，这里不再赘述。
 
 ### 设置
 
@@ -301,9 +293,9 @@ ST3 有复合快捷键，如<kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Ba
 
 ### 自动补全
 
-ST3 有丰富的补全功能，可能的补全内容会在光标下方显示，按<kbd>Tab</kbd>或<kbd>Enter</kbd>进行补全（ST4 中，如进行一个无补全块的补全，接下来再按<kbd>Tab</kbd>将尝试对以该补全为子串的补全继续）。
+ST3 有丰富的补全功能，可能的补全内容会在光标下方显示，按<kbd>Tab</kbd>或<kbd>Enter</kbd>进行补全（ST4 中，如进行一个非 Snippet 类型的补全，接下来再按<kbd>Tab</kbd>可继续选择为以该补全为子串的补全）。
 
-一般会有一些补全块可以编辑，编辑完成后再次按<kbd>Tab</kbd>进行下一个补全块的编辑（for 循环等复杂代码可能有多个补全块，需要按多次<kbd>Tab</kbd>，此时要在补全块中触发补全需要使用<kbd>Enter</kbd>（在 ST4 中可继续使用<kbd>Tab</kbd>））。
+Snippet 类型的补全一般会有一些编辑块，编辑完成后再次按<kbd>Tab</kbd>完成下一个编辑块（for 循环等复杂代码可能有多个编辑块，需要按多次<kbd>Tab</kbd>，此时要在编辑块中触发补全需要使用<kbd>Enter</kbd>（在 ST4 中可继续使用<kbd>Tab</kbd>））。
 
 如果没有自动补全，请如下修复：
 
@@ -318,7 +310,7 @@ ST3 有丰富的补全功能，可能的补全内容会在光标下方显示，�
 
 ### 多点编辑
 
-按<kbd>Ctrl</kbd>并用鼠标单击即可在屏幕上增加光标，任何操作会同时应用至所有光标，<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd>或<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>可以在相邻两行直接增加光标。
+按<kbd>Ctrl</kbd>并用鼠标单击即可在屏幕上增加光标，<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd>或<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>可以在相邻两行直接增加光标，任何操作会同时应用至所有光标。
 
 ### 查找与替换
 
@@ -456,7 +448,7 @@ ST3 默认的编译选项为 `g++ "${file}" -o "${file_path}/${file_base_name}"`
 ## 杂项
 
 - 把文件夹拖进 ST3 中并开启侧边栏，从而快速切换文件。
-- 善用跳转功能，尤其是<kbd>Ctrl</kbd>+<kbd>P</kbd>进行文件跳转与<kbd>Ctrl</kbd>+<kbd>R</kbd>进行函数跳转。
+- 善用跳转功能，尤其是<kbd>Ctrl</kbd>+<kbd>P</kbd>进行文件间跳转与<kbd>Ctrl</kbd>+<kbd>R</kbd>进行函数跳转。
 - ST3 支持 git[^ref3]。
 - ST3 的所有配置储存在 `C:\Users\用户名\AppData\Roaming\Sublime Text 3`，可以随意打包，但注册信息无法在多台电脑上使用。
 
