@@ -32,30 +32,29 @@ author: i-Yirannn, Xeonacid, ouuan
 
 ## 使用
 
-### 创建一个bitset
+### 创建一个 bitset
 
 ```cpp
+#include <bitset>
 #include <iostream>
 #include <string>
-#include <bitset>
 
-int main ()
-{
+int main() {
   std::bitset<16> bs1;
-  std::bitset<16> bs2 (0xfa2);
-  std::bitset<16> bs3 (std::string("0101111001"));
+  std::bitset<16> bs2(0xfa2);
+  std::bitset<16> bs3(std::string("0101111001"));
 
-  std::cout << bs1 << '\n';		// 0000000000000000
-  std::cout << bs2 << '\n';		// 0000111110100010
-  std::cout << bs3 << '\n';		// 0000000101111001
+  std::cout << bs1 << '\n';  // 0000000000000000
+  std::cout << bs2 << '\n';  // 0000111110100010
+  std::cout << bs3 << '\n';  // 0000000101111001
 
   return 0;
 }
 ```
 
-其中，`bitset<16> bs1;`用于声明一个bitset `bs1`，并指定大小为16。
+其中，`bitset<16> bs1;` 用于声明一个 bitset `bs1`，并指定大小为 16。
 
-bitset有三种构造函数：
+bitset 有三种构造函数：
 
 - `bitset()`: 每一位都是 `false`。
 - `bitset(unsigned long val)`: 设为 `val` 的二进制形式。
@@ -97,12 +96,13 @@ bitset有三种构造函数：
 ### [「LibreOJ β Round #2」贪心只能过样例](https://loj.ac/problem/515)
 
 ???+note "[「LibreOJ β Round #2」贪心只能过样例](https://loj.ac/problem/515)"
-	一共有$n$个数，第$i$个数$x_i$可以取$[a_i,b_i]$ 中任意值。
-	设$S=\sum x_i^2$，求$S$种类数。
+
+    一共有$n$个数，第$i$个数$x_i$可以取$[a_i,b_i]$ 中任意值。
+    设$S=\sum x_i^2$，求$S$种类数。
 
 ??? note
     这题可以用 dp 做，转移方程很简单：
-
+    
     $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\limits_{k=a}^bf(i-1,j-k^2)$（或起来）。
     
     但如果直接做的话是 $O(n^5)$ 的，（看起来）过不了。
@@ -114,8 +114,9 @@ bitset有三种构造函数：
     然而，可以手写 `bitset`（只需要支持左移后或起来这一种操作）压 $64$ 位（`unsigned long long`）来艹掉暴力：[手写 bitset](https://loj.ac/submission/395619)
 
 ???+note "[CF1097F Alex and a TV Show](https://codeforces.com/contest/1097/problem/F)"
-    题意:
+    题意：
     给你 $n$ 个可重集，四种操作：
+    
     1. 把某个可重集设为一个数。
     2. 把某个可重集设为另外两个可重集加起来。
     3. 把某个可重集设为从另外两个可重集中各选一个数的 $\gcd$。即：$A=\{\gcd(x,y)|x\in B,y\in C\}$。
@@ -223,6 +224,7 @@ bitset有三种构造函数：
       return 0;
     }
     ```
+
 ## 应用
 
 ### 与埃氏筛结合
