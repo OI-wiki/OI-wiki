@@ -1,4 +1,4 @@
-author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm, CoelacanthusHex
+author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm, CoelacanthusHex, indevn
 
 ![头图](./images/wsl-header.png)
 
@@ -288,6 +288,20 @@ xfce4-session
 
 ![与 Windows 内原硬盘分区交互 2](./images/wsl-interact-with-windows-2.png)
 
+### 配合Visual Sudio Code进行编辑
+
+如果习惯在Windows环境下使用Visual Studio Code进行代码编辑，可以安装VSC中的插件`Remote - WSL`，更方便地对WSL系统中的文件进行编辑。
+
+通过`Remote - WSL`，可以在Windows下的VS Code界面中直接对WSL子系统进行操作，更加方便地编辑子系统目录下的文件、更方便地使用终端进行调试。
+
+通过在WSL中直接键入`code .`，可以在该目录下直接唤出Visual Studio Code，对于该目录下的文件进行编辑。
+
+同时，可以通过类似`code readme.md`的命令，对于目录下的指定文件（这里是`readme.md`）进行编辑。
+
+在插件`Remote - WSL`的Getting started页面，包含对于编辑操作的详细简介。
+
+同时，也可以参考Visual Studio Code的官方文档中关于WSL的内容（[Remote development in WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial)），这篇文章包含从WSL安装到配合插件使用的全流程的更详细的介绍。
+
 ## FAQ
 
 参见：[常见问题](https://docs.microsoft.com/zh-cn/windows/wsl/faq)，[WSL 2 常见问题解答](https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-faq)
@@ -307,6 +321,12 @@ xfce4-session
 -   汉语化时提示不存在？
 
     玄学问题，可以忽略。修了个疏忽导致的错误，可以重上一下试试。
+    
+-   如何从文件管理器访问WSL目录？
+
+    只需在资源管理器的路径或运行(win+R)中输入`\\wsl$`，即可进入访问wsl的目录。
+
+    这个变量直接指向WSL目录，故也可以直接使用诸如`\\wsl$\Ubuntu\home\`的路径访问其子文件夹。
 
 ## 外部链接
 
