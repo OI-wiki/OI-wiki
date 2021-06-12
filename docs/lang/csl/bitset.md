@@ -32,19 +32,30 @@ author: i-Yirannn, Xeonacid, ouuan
 
 ## 使用
 
-### 头文件
+### 创建一个bitset
 
 ```cpp
+#include <iostream>
+#include <string>
 #include <bitset>
+
+int main ()
+{
+  std::bitset<16> bs1;
+  std::bitset<16> bs2 (0xfa2);
+  std::bitset<16> bs3 (std::string("0101111001"));
+
+  std::cout << bs1 << '\n';		// 0000000000000000
+  std::cout << bs2 << '\n';		// 0000111110100010
+  std::cout << bs3 << '\n';		// 0000000101111001
+
+  return 0;
+}
 ```
 
-### 指定大小
+其中，`bitset<16> bs1;`用于声明一个bitset `bs1`，并指定大小为16。
 
-```cpp
-bitset<1000> bs;  // a bitset with 1000 bits
-```
-
-### 构造函数
+bitset有三种构造函数：
 
 - `bitset()`: 每一位都是 `false`。
 - `bitset(unsigned long val)`: 设为 `val` 的二进制形式。
@@ -81,58 +92,54 @@ bitset<1000> bs;  // a bitset with 1000 bits
 - `_Find_first()`: 返回 `bitset` 第一个 `true` 的下标，若没有 `true` 则返回 `bitset` 的大小。
 - `_Find_next(pos)`: 返回 `pos` 后面（下标严格大于 `pos` 的位置）第一个 `true` 的下标，若 `pos` 后面没有 `true` 则返回 `bitset` 的大小。
 
-## 应用
+## 例题
 
 ### [「LibreOJ β Round #2」贪心只能过样例](https://loj.ac/problem/515)
 
-这题可以用 dp 做，转移方程很简单：
+???+note "[「LibreOJ β Round #2」贪心只能过样例](https://loj.ac/problem/515)"
+	一共有$n$个数，第$i$个数$x_i$可以取$[a_i,b_i]$ 中任意值。
+	设$S=\sum x_i^2$，求$S$种类数。
 
-$f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\limits_{k=a}^bf(i-1,j-k^2)$（或起来）。
+??? note
+    这题可以用 dp 做，转移方程很简单：
 
-但如果直接做的话是 $O(n^5)$ 的，（看起来）过不了。
+    $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\limits_{k=a}^bf(i-1,j-k^2)$（或起来）。
+    
+    但如果直接做的话是 $O(n^5)$ 的，（看起来）过不了。
+    
+    发现可以用 `bitset` 优化，左移再或起来就好了：[std::bitset](https://loj.ac/submission/395274)
+    
+    然后发现……被加了几个剪枝的暴力艹了：[加了几个剪枝的暴力](https://loj.ac/submission/395673)
+    
+    然而，可以手写 `bitset`（只需要支持左移后或起来这一种操作）压 $64$ 位（`unsigned long long`）来艹掉暴力：[手写 bitset](https://loj.ac/submission/395619)
 
-发现可以用 `bitset` 优化，左移再或起来就好了：[std::bitset](https://loj.ac/submission/395274)
+???+note "[CF1097F Alex and a TV Show](https://codeforces.com/contest/1097/problem/F)"
+    题意:
+    给你 $n$ 个可重集，四种操作：
+    1. 把某个可重集设为一个数。
+    2. 把某个可重集设为另外两个可重集加起来。
+    3. 把某个可重集设为从另外两个可重集中各选一个数的 $\gcd$。即：$A=\{\gcd(x,y)|x\in B,y\in C\}$。
+    4. 询问某个可重集中某个数的个数，**在模 2 意义下**。
+    
+    可重集个数 $10^5$，操作个数 $10^6$，值域 $7000$。
 
-然后发现……被加了几个剪枝的暴力艹了：[加了几个剪枝的暴力](https://loj.ac/submission/395673)
-
-然而，可以手写 `bitset`（只需要支持左移后或起来这一种操作）压 $64$ 位（`unsigned long long`）来艹掉暴力：[手写 bitset](https://loj.ac/submission/395619)
-
-### [CF1097F Alex and a TV Show](https://codeforces.com/contest/1097/problem/F)
-
-#### 题意
-
-给你 $n$ 个可重集，四种操作：
-
-1. 把某个可重集设为一个数。
-2. 把某个可重集设为另外两个可重集加起来。
-3. 把某个可重集设为从另外两个可重集中各选一个数的 $\gcd$。即：$A=\{\gcd(x,y)|x\in B,y\in C\}$。
-4. 询问某个可重集中某个数的个数，**在模 2 意义下**。
-
-可重集个数 $10^5$，操作个数 $10^6$，值域 $7000$。
-
-#### 做法
-
-看到“在模 $2$ 意义下”，可以想到用 `bitset` 维护每个可重集。
-
-这样的话，操作 $1$ 直接设，操作 $2$ 就是异或（因为模 $2$），操作 $4$ 就是直接查，但 .. 操作 $3$ 怎么办？
-
-我们可以尝试维护每个可重集的所有约数构成的可重集，这样的话，操作 $3$ 就是直接按位与。
-
-我们可以把值域内每个数的约数构成的 `bitset` 预处理出来，这样操作 $1$ 就解决了。操作 $2$ 仍然是异或。
-
-现在的问题是，如何通过一个可重集的约数构成的可重集得到该可重集中某个数的个数。
-
-令原可重集为 $A$，其约数构成的可重集为 $A'$，我们要求 $A$ 中 $x$ 的个数，用 [莫比乌斯反演](../../math/mobius.md) 推一推：
-
-$$
-\begin{aligned}&\sum\limits_{i\in A}[\frac i x=1]\\=&\sum\limits_{i\in A}\sum\limits_{d|\frac i x}\mu(d)\\=&\sum\limits_{d\in A',x|d}\mu(\frac d x)\end{aligned}
-$$
-
-由于是模 $2$ 意义下，$-1$ 和 $1$ 是一样的，只用看 $\frac d x$ 有没有平方因子即可。所以，可以对值域内每个数预处理出其倍数中除以它不含平方因子的位置构成的 `bitset`，求答案的时候先按位与再 `count()` 就好了。
-
-这样的话，单次询问复杂度就是 $O(\frac v w)$（$v=7000,\,w=32$）。
-
-至于预处理的部分，$O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单，$\log$ 预处理就如下面代码所示，复杂度为调和级数，所以是 $O(v\log v)$。
+??? note
+    看到“在模 $2$ 意义下”，可以想到用 `bitset` 维护每个可重集。
+    这样的话，操作 $1$ 直接设，操作 $2$ 就是异或（因为模 $2$），操作 $4$ 就是直接查，但 .. 操作 $3$ 怎么办？
+    我们可以尝试维护每个可重集的所有约数构成的可重集，这样的话，操作 $3$ 就是直接按位与。
+    我们可以把值域内每个数的约数构成的 `bitset` 预处理出来，这样操作 $1$ 就解决了。操作 $2$ 仍然是异或。
+    现在的问题是，如何通过一个可重集的约数构成的可重集得到该可重集中某个数的个数。
+    令原可重集为 $A$，其约数构成的可重集为 $A'$，我们要求 $A$ 中 $x$ 的个数，用 [莫比乌斯反演](../../math/mobius.md) 推一推：
+    
+    $$
+    \begin{aligned}&\sum\limits_{i\in A}[\frac i x=1]\\=&\sum\limits_{i\in A}\sum\limits_{d|\frac i x}\mu(d)\\=&\sum\limits_{d\in A',x|d}\mu(\frac d x)\end{aligned}
+    $$
+    
+    由于是模 $2$ 意义下，$-1$ 和 $1$ 是一样的，只用看 $\frac d x$ 有没有平方因子即可。所以，可以对值域内每个数预处理出其倍数中除以它不含平方因子的位置构成的 `bitset`，求答案的时候先按位与再 `count()` 就好了。
+    
+    这样的话，单次询问复杂度就是 $O(\frac v w)$（$v=7000,\,w=32$）。
+    
+    至于预处理的部分，$O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单，$\log$ 预处理就如下面代码所示，复杂度为调和级数，所以是 $O(v\log v)$。
 
 ??? "参考代码"
     ```cpp
@@ -141,6 +148,10 @@ $$
     #include <cmath>
     #include <cstdio>
     #include <iostream>
+    
+    ```
+    
+    ```
     
     using namespace std;
     
@@ -212,6 +223,7 @@ $$
       return 0;
     }
     ```
+## 应用
 
 ### 与埃氏筛结合
 
