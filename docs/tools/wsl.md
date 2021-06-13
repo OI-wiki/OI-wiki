@@ -298,7 +298,7 @@ xfce4-session
 
 同时，可以通过类似 `code readme.md` 的命令，对于目录下的指定文件（这里是 `readme.md`）进行编辑。
 
-在插件 `Remote - WSL` 的 Getting started 页面，包含对于编辑操作的详细简介。
+在插件 `Remote - WSL` 的 Getting Started 页面，包含对于编辑操作的详细简介。
 
 同时，也可以参考 Visual Studio Code 的官方文档中关于 WSL 的内容（[Remote development in WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial)），这篇文章包含从 WSL 安装到配合插件使用的全流程的更详细的介绍。
 
