@@ -1,4 +1,4 @@
-author: inkydragon
+author: inkydragon, TravorLZH
 
 ## 素数筛法
 
@@ -33,40 +33,32 @@ int Eratosthenes(int n) {
 
 以上为 **Eratosthenes 筛法**（埃拉托斯特尼筛法，简称埃氏筛法），时间复杂度是 $O(n\log\log n)$。
 
-怎么证明这个复杂度呢？我们先列出复杂度的数学表达式。
+现在我们就来看看推导过程：
 
-发现数学表达式显然就是素数的倒数和乘上 $n$，即 $n\sum_p {\frac{1}{p}}$。
+如果每一次对数组的操作花费 1 个单位时间，则时间复杂度为：
 
-我们相当于要证明 $\sum_p {\frac{1}{p}}$ 是 $O(\log\log n)$ 的。我们考虑一个很巧妙的构造来证明这个式子是 $O(\log\log n)$ 的：
+$$
+O\left(n\sum_{k=1}^{\pi(n)}{1\over p_k}\right)
+$$
 
-证明：
+其中 $p_k$ 表示第 $k$ 小的素数。根据 Mertens 第二定理，存在常数 $B_1$ 使得：
 
-注意到调和级数 $\sum_n {\frac{1}{n}}=\ln n$。
+$$
+\sum_{k=1}^{\pi(n)}{1\over p_k}=\log\log n+B_1+O\left(1\over\log n\right)
+$$
 
-而又由唯一分解定理可得：$\sum_n {\frac{1}{n}}=\prod_p {(1+\frac{1}{p}+\frac{1}{p^2}+\cdots)}=\prod_p {\frac{p}{p-1}}$。
+所以 **Eratosthenes 筛法** 的时间复杂度为 $O(n\log\log n)$。接下来我们证明 Mertens 第二定理的弱化版本 $\sum_{k\le\pi(n)}1/p_k=O(\log\log n)$：
 
-我们两边同时取 $\ln$，得：
+根据 $\pi(n)=\Theta(n/\log n)$，可知第 $n$ 个素数的大小为 $\Theta(n\log n)$。于是就有
 
 $$
 \begin{aligned}
-\ln \sum_n {\frac{1}{n}}&=\ln \prod_p {\frac{p}{p-1}}\\
-\ln\ln n&=\sum_p {(\ln p-\ln {(p-1)})}
+\sum_{k=1}^{\pi(n)}{1\over p_k}
+&=O\left(\sum_{k=2}^{\pi(n)}{1\over k\log k}\right) \\
+&=O\left(\int_2^{\pi(n)}{\mathrm dx\over x\log x}\right) \\
+&=O(\log\log\pi(n))=O(\log\log n)
 \end{aligned}
 $$
-
-又发现 $\int {\frac{1}{x}dx}=\ln x$，所以由微积分基本定理：
-
-$$
-\sum_p {(\ln p-\ln {(p-1)})}=\sum_p {\int_{p-1}^p {\frac{1}{x}dx}}
-$$
-
-画图可以发现，$\int_{p-1}^p {\frac{1}{x}dx}>\frac{1}{p}$，所以：
-
-$$
-\ln\ln n=\sum_p {\int_{p-1}^p {\frac{1}{x}dx}}>\sum_p {\frac{1}{p}}
-$$
-
-所以 $\sum_p {\frac{1}{p}}$ 是 $O(\log\log n)$ 的，所以 **Eratosthenes 筛法** 的复杂度是 $O(n\log\log n)$ 的。
 
 当然，上面的做法效率仍然不够高效，应用下面几种方法可以稍微提高算法的执行效率。
 
@@ -216,15 +208,26 @@ $$
 $$
 
 ```cpp
-void phi_table(int n, int* phi) {
-  for (int i = 2; i <= n; i++) phi[i] = 0;
+void pre() {
+  memset(is_prime, 1, sizeof(is_prime));
+  int cnt = 0;
+  is_prime[1] = 0;
   phi[1] = 1;
-  for (int i = 2; i <= n; i++)
-    if (!phi[i])
-      for (int j = i; j <= n; j += i) {
-        if (!phi[j]) phi[j] = j;
-        phi[j] = phi[j] / i * (i - 1);
+  for (int i = 2; i <= 5000000; i++) {
+    if (is_prime[i]) {
+      prime[++cnt] = i;
+      phi[i] = i - 1;
+    }
+    for (int j = 1; j <= cnt && i * prime[j] <= 5000000; j++) {
+      is_prime[i * prime[j]] = 0;
+      if (i % prime[j])
+        phi[i * prime[j]] = phi[i] * phi[prime[j]];
+      else {
+        phi[i * prime[j]] = phi[i] * prime[j];
+        break;
       }
+    }
+  }
 }
 ```
 

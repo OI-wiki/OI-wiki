@@ -4,12 +4,12 @@
 
 温故而知新，在开始学习插头 DP 之前，不妨先让我们回顾一个经典问题。
 
-???+note " 例题[「HDU 1400」Mondriaan’s Dream](https://vjudge.net/problem/HDU-1400)"
+???+note " 例题 [「HDU 1400」Mondriaan’s Dream](https://vjudge.net/problem/HDU-1400)"
     题目大意：在 $N\times M$ 的棋盘内铺满 $1\times 2$ 或 $2\times 1$ 的多米诺骨牌，求方案数。
 
 当 $n$ 或 $m$ 规模不大的时候，这类问题可以使用 [状压 DP](./state.md) 解决。逐行划分阶段，设 $dp(i,s)$ 表示当前已考虑过前 $i$ 行，且第 $i$ 行的状态为 $s$ 的方案数。这里的状态 $s$ 的每一位可以表示这个这个位置是否已被上一行覆盖。
 
-![domino](./images/domino.png)（Credits: 图片来自 [这里](https://blog.csdn.net/u014634338/article/details/50015825)。）
+![domino](./images/domino.svg)
 
 另一种划分阶段的方法是逐格 DP，或者称之为轮廓线 DP。$dp(i,j,s)$ 表示已经考虑到第 $i$ 行第 $j$ 列，且当前轮廓线上的状态为 $s$ 的方案数。
 
@@ -56,7 +56,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-??? note " 习题[「SRM 671. Div 1 900」BearDestroys](https://competitiveprogramming.info/topcoder/srm/round/16551/div/1)"
+??? note " 习题 [「SRM 671. Div 1 900」BearDestroys](https://competitiveprogramming.info/topcoder/srm/round/16551/div/1)"
     题目大意：给定 $n\times m$ 的矩阵，每个格子有 `E` 或 `S`。
     对于一个矩阵，有一个计分方案。按照行优先的规则扫描每个格子，如果这个格子之前被骨牌占据，则 skip。
     否则尝试放多米诺骨牌。如果放骨牌的方向在矩阵外或被其他骨牌占据，则放置失败，切换另一种方案或 skip。
@@ -71,17 +71,17 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 轮廓线：已决策状态和未决策状态的分界线。
 
-![contour line](./images/contour_line.png)
+![contour line](./images/contour_line.svg)
 
 插头：一个格子某个方向的插头存在，表示这个格子在这个方向与相邻格子相连。
 
-![contour line](./images/plug.png)
+![plug](./images/plug.svg)
 
 ## 路径模型
 
 ### 多条回路
 
-???+note " 例题[「HDU 1693」Eat the Trees](https://vjudge.net/problem/HDU-1693)"
+???+note " 例题 [「HDU 1693」Eat the Trees](https://vjudge.net/problem/HDU-1693)"
     题目大意：求用若干条回路覆盖 $N\times M$ 棋盘的方案数，有些位置有障碍。
 
 严格来说，多条回路问题并不属于插头 DP，因为我们只需要和上面的骨牌覆盖问题一样，记录插头是否存在，然后成对的合并和生成插头就可以了。
@@ -132,14 +132,14 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-??? note " 习题[「ZJU 4231」The Hive II](https://vjudge.net/problem/ZOJ-3466)"
+??? note " 习题 [「ZJU 4231」The Hive II](https://vjudge.net/problem/ZOJ-3466)"
     题目大意：同上题，但格子变成了六边形。
 
 ### 一条回路
 
 #### 例题「Andrew Stankevich Contest 16 - Problem F」Pipe Layout
 
-???+note " 例题[「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
+???+note " 例题 [「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
     题目大意：求用一条回路覆盖 $N\times$ 棋盘的方案数。
 
 在上面的状态表示中我们每合并一组连通的插头，就会生成一条独立的回路，因而在本题中，我们还需要区分插头之间的连通性（出现了！）。这需要我们对状态进行额外的编码。
@@ -373,26 +373,26 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 习题
 
-??? note " 习题[「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
+??? note " 习题 [「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
     题目大意：有障碍。
 
-??? note " 习题[「USACO 5.4.4」Betsy's Tours](http://oj.jzxx.net/problem.php?id=1695)"
+??? note " 习题 [「USACO 5.4.4」Betsy's Tours](http://oj.jzxx.net/problem.php?id=1695)"
     题目大意：一个 $N\times N$ 的方阵（$N\le 7$），求从左上角出发到左下角结束经过每个格子的路径总数。虽然是一条路径，但因为起点和终点固定，可以转化为一条回路问题。
 
-??? note " 习题[「POJ 1739」Tony's Tour](http://poj.org/problem?id=1739)"
+??? note " 习题 [「POJ 1739」Tony's Tour](http://poj.org/problem?id=1739)"
     题目大意：著名的男人八题系列之一。解法同上。
 
-??? note " 习题[「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
+??? note " 习题 [「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
     题目大意：$n\le 1000,m=4$，每个回路需要统计两次（逆时针和顺时针），需要高精度。
 
-??? note " 习题[「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
+??? note " 习题 [「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
     题目大意：对于每一个有 $m$ 条回路的方案，对答案的贡献是 $2^m$，求所有方案的贡献和。
 
 ### 一条路径
 
 #### 例题「ZOJ 3213」Beautiful Meadow
 
-???+note " 例题[「ZOJ 3213」Beautiful Meadow](https://vjudge.net/problem/ZOJ-3213)"
+???+note " 例题 [「ZOJ 3213」Beautiful Meadow](https://vjudge.net/problem/ZOJ-3213)"
     题目大意：一个 $N\times M$ 的方阵（$N,M\le 8$），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和。
 
 本题是标准的一条路径问题，在一条路径问题中，编码的状态中还会存在不能配对的独立插头。需要在状态转移函数中，额外讨论独立插头的生成、合并与消失的情况。独立插头的生成和消失对应着路径的一端，因而这类事件不会发生超过两次（一次生成一次消失，或者两次生成一次合并），否则最终结果一定会出现多个连通块。
@@ -597,7 +597,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 习题
 
-??? note " 习题[「NOI 2010 Day2」旅行路线](https://www.luogu.com.cn/problem/P1933)"
+??? note " 习题 [「NOI 2010 Day2」旅行路线](https://www.luogu.com.cn/problem/P1933)"
     题目大意：$n\times m$ 的棋盘，棋盘的每个格子有一个 01 权值 T[x][y]，要求寻找一个路径覆盖，满足：
     
     - 第 i 个参观的格点 (x, y)，满足 T[x][y]= L[i]
@@ -611,10 +611,10 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 例题「UVA 10572」Black & White
 
-???+note " 例题[「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572)"
+???+note " 例题 [「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572)"
     题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白染色，要求所有黑色区域和白色区域连通，且任意一个 $2\times 2$ 的子矩形内的颜色不能完全相同（例如下图中的情况非法），求合法的方案数，并构造一组合法的方案。
     
-    ![black_and_white1](./images/black_and_white1.png)
+    ![black_and_white1](./images/black_and_white1.svg)
 
 #### 状态编码
 
@@ -949,18 +949,18 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-??? note " 习题[「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://competitiveprogramming.info/topcoder/srm/round/9992/div/1)"
+??? note " 习题 [「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://competitiveprogramming.info/topcoder/srm/round/9992/div/1)"
     题目大意：给一个棋盘图，每个格子有权值，求权值之和最小的连通块。
 
-??? note " 习题[「JLOI 2009」神秘的生物](https://www.luogu.com.cn/problem/P3886)"
+??? note " 习题 [「JLOI 2009」神秘的生物](https://www.luogu.com.cn/problem/P3886)"
     题目大意：给一个棋盘图，每个格子有权值，求权值之和最大的连通块。
 
 ## 图论模型
 
-???+note " 例题[「NOI 2007 Day2」生成树计数](https://www.luogu.com.cn/problem/P2109)"
+???+note " 例题 [「NOI 2007 Day2」生成树计数](https://www.luogu.com.cn/problem/P2109)"
     题目大意：某类特殊图的生成树计数，每个节点恰好与其前 $k$ 个节点之间有边相连。
 
-???+note " 例题[「2015 ACM-ICPC Asia Shenyang Regional Contest - Problem E」Efficient Tree](https://vjudge.net/problem/HDU-5513)"
+???+note " 例题 [「2015 ACM-ICPC Asia Shenyang Regional Contest - Problem E」Efficient Tree](https://vjudge.net/problem/HDU-5513)"
     题目大意：给出一个 $N\times M$ 的网格图，以及相邻四连通格子之间的边权。
     对于一颗生成树，每个节点的得分为 1+[有一条连向上的边]+[有一条连向左的边]。
     生成树的得分为所有节点的得分之积。
@@ -974,12 +974,12 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 例题「HDU 4113」Construct the Great Wall
 
-???+note " 例题[「HDU 4113」Construct the Great Wall](https://vjudge.net/problem/HDU-4113)"
+???+note " 例题 [「HDU 4113」Construct the Great Wall](https://vjudge.net/problem/HDU-4113)"
     题目大意：在 $N\times M$ 的棋盘内构造一组回路，分割所有的 `x` 和 `o`。
 
 有一类插头 DP 问题要求我们在棋盘上构造一组墙，以分割棋盘上的某些元素。不妨称之为修墙问题，这类问题既可视作染色模型，也可视作路径模型。
 
-![greatwall](./images/greatwall.jpg)
+![greatwall](./images/greatwall.svg)
 
 在本题中，如果视作染色模型的话，不仅需要额外讨论染色区域的周长，还要判断在角上触碰而导致不合法的情况（图 2）。另外与 [「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572) 不同的是，本题中要求围墙为简单多边形，因而对于下面的回字形的情况，在本题中是不合法的。
 
@@ -1130,33 +1130,33 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-??? note " 习题[「HDU 4796」Winter's Coming](https://vjudge.net/problem/HDU-4796)"
+??? note " 习题 [「HDU 4796」Winter's Coming](https://vjudge.net/problem/HDU-4796)"
     题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白灰染色，要求所有黑色区域和白色区域连通，且黑色区域与白色区域分别与棋盘的上下边界连通，且其中黑色区域与白色区域不能相邻。每个格子有对应的代价，求一组染色方案，最小化灰色区域的代价。
     
     ![4796](./images/4796.jpg)
 
-??? note " 习题[「ZOJ 2125」Rocket Mania](https://vjudge.net/problem/ZOJ-2125)"
+??? note " 习题 [「ZOJ 2125」Rocket Mania](https://vjudge.net/problem/ZOJ-2125)"
 
 
-??? note " 习题[「ZOJ 2126」Rocket Mania Plus](https://vjudge.net/problem/ZOJ-2126)"
+??? note " 习题 [「ZOJ 2126」Rocket Mania Plus](https://vjudge.net/problem/ZOJ-2126)"
 
 
-??? note " 习题[「World Finals 2009/2010 Harbin」Channel](https://vjudge.net/problem/UVALive-4789)"
+??? note " 习题 [「World Finals 2009/2010 Harbin」Channel](https://vjudge.net/problem/UVALive-4789)"
     题目大意：。
 
-??? note " 习题[「HDU 3958」Tower Defence](https://vjudge.net/problem/HDU-3958)"
+??? note " 习题 [「HDU 3958」Tower Defence](https://vjudge.net/problem/HDU-3958)"
     题目大意：。
 
-??? note " 习题[「UVA 10531」Maze Statistics](https://vjudge.net/problem/UVA-10531)"
+??? note " 习题 [「UVA 10531」Maze Statistics](https://vjudge.net/problem/UVA-10531)"
     题目大意：。
 
-??? note " 习题[「AIZU 2452」Pipeline Plans](https://vjudge.net/problem/Aizu-2452)"
+??? note " 习题 [「AIZU 2452」Pipeline Plans](https://vjudge.net/problem/Aizu-2452)"
     题目大意：。
 
-??? note " 习题[「SDOI 2014」电路板](https://www.luogu.com.cn/problem/P3314)"
+??? note " 习题 [「SDOI 2014」电路板](https://www.luogu.com.cn/problem/P3314)"
     题目大意：。
 
-??? note " 习题[「SPOJ CAKE3」Delicious Cake](https://vjudge.net/problem/SPOJ-CAKE3)"
+??? note " 习题 [「SPOJ CAKE3」Delicious Cake](https://vjudge.net/problem/SPOJ-CAKE3)"
     题目大意：。
 
 .
@@ -1176,7 +1176,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 当 $m\le 10,n\le 10^9$ 时，可以将转移方程预处理成矩阵形式，并使用 [矩阵乘法进行加速](http://www.matrix67.com/blog/archives/276)。
 
-![domino_v2_transform_matrix](./images/domino_v2_transform_matrix.gif)
+![domino_v2_transform_matrix](./images/domino_v2_transform_matrix.svg)
 
 当 $n,m\le 100$，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数。
 

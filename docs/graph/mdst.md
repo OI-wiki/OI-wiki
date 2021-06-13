@@ -8,11 +8,11 @@
 
 根据 **图的绝对中心** 的定义可以知道，到绝对中心距离最远的结点至少有两个。
 
-令 `d[i][j]` 为顶点 $i,j$ 间的最短路径长，通过多源最短路算法求出所有结点的最短路。
+令 $d(i,j)$ 为顶点 $i,j$ 间的最短路径长，通过多源最短路算法求出所有结点的最短路。
 
-`rk[i][j]` 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结点。
+$\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结点。
 
-图的绝对中心可能在某条边上，枚举每一条边 $w=(u,v)$，并且假设图的绝对中心 $c$ 就在这条边上。那么距离 $u$ 的长度为 $x$($x \leq w$)，距离 $v$ 的长度就是 $w - x$。
+图的绝对中心可能在某条边上，枚举每一条边 $w=(u,v)$，并且假设图的绝对中心 $c$ 就在这条边上。那么距离 $u$ 的长度为 $x$（$x \leq w$），距离 $v$ 的长度就是 $w - x$。
 
 对于图中的任意一点 $i$，图的绝对中心 $c$ 到 $i$ 的距离为 $d(c,i)=\min(d(u,i) + x, d(v,i) + (w - x))$。
 
@@ -30,17 +30,17 @@
 
 并且这些折线交点中的最低点，横坐标就是图的绝对中心的位置。
 
-图的绝对中心可能在某个结点上，用距离预选结点最远的那个结点来更新，即 $\textit{ans}\leftarrow \min(\textit{ans},d(i,\textit{rk}(i,1))\times 2)$。
+图的绝对中心可能在某个结点上，用距离预选结点最远的那个结点来更新，即 $\textit{ans}\leftarrow \min(\textit{ans},d(i,\textit{rk}(i,n))\times 2)$。
 
 ### 算法流程
 
 1. 使用多源最短路算法（[Floyd](shortest-path.md#floyd)，[Johnson](shortest-path.md#johnson) 等），求出 $d$ 数组；
 
-2. 求出 `rk[i][j]`，并将其升序排序；
+2. 求出 $\textit{rk}(i,j)$，并将其升序排序；
 
-3. 图的绝对中心可能在某个结点上，用距离预选结点最远的那个结点来更新，遍历所有结点并用 $\textit{ans}\leftarrow \min(\textit{ans},d(i,\textit{rk}(i,1)) \times 2)$ 更新最小值。
+3. 图的绝对中心可能在某个结点上，用距离预选结点最远的那个结点来更新，遍历所有结点并用 $\textit{ans}\leftarrow \min(\textit{ans},d(i,\textit{rk}(i,n)) \times 2)$ 更新最小值。
 
-4. 图的绝对中心可能在某条边上，枚举所有的边。对于一条边 $w(u,j)$ 从距离 $u$ 最远的结点开始更新。当出现 $d(v,\textit{rk}(u,i)) > d(v,\textit{rk}(u,i-1))$ 的情况时，用 $\textit{ans}\leftarrow  \min(\textit{ans}, d(v,\textit{rk}(u,i))+d(v,\textit{rk}(u,i-1))+w(i,j))$ 来更新。因为这种情况会使图的绝对中心改变。
+4. 图的绝对中心可能在某条边上，枚举所有的边。对于一条边 $w(u,v)$ 从距离 $u$ 最远的结点开始更新。当出现 $d(v,\textit{rk}(u,i)) > \max_{j=i+1}^n d(v,\textit{rk}(u,j))$ 的情况时，用 $\textit{ans}\leftarrow  \min(\textit{ans}, d(u,\textit{rk}(u,i))+\max_{j=i+1}^n d(v,\textit{rk}(u,j))+w(u,v))$ 来更新。因为这种情况会使图的绝对中心改变。
 
 ??? note "参考实现"
     ```cpp
