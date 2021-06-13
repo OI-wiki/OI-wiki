@@ -298,35 +298,37 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
       return false;
     }
     ```
-
-    int main() {
-        //	freopen("", "r", stdin);
-        //	freopen("", "w", stdout);
+    
+    int main() {//	freopen("","r", stdin);
+    //	freopen("","w", stdout);
         n = read(), m = read();
-        for(int i = 1; i <= n; i++)
-            p[i] = read(), maxn = max(maxn, p[i]);
-        for(int i = 1; i <= n; i++)
-            c[i] = read();
+        for(int i = 1; i &lt;= n; i++)
+            p[i]= read(), maxn = max(maxn, p[i]);
+        for(int i = 1; i &lt;= n; i++)
+            c[i]= read();
         d = read();
-        for(int i = 1; i <= d; i++)
-            k[i] = read(), vis[k[i]] = true;
-        for(int i = 1; i <= n; i++)
+        for(int i = 1; i &lt;= d; i++)
+            k[i]= read(), vis\[k[i]] = true;
+        for(int i = 1; i &lt;= n; i++)
             if(!vis[i])
                 add(p[i], c[i]);
-        for(int i = d; i >= 1; i--) {
+        for(int i = d; i>= 1; i--) {
             memset(match, -1, sizeof(match));
             memset(book, -1, sizeof(book));
             int mex = 0;
-            for(int j = 0; j <= maxn + 1; j++)
+            for(int j = 0; j &lt;= maxn + 1; j++)
             if(!dfs(j, j)) {
                 mex = j;
                 break;
             }
-            ans[i] = mex;
-            add(p[k[i]], c[k[i]]);
+            ans[i]= mex;
+            add(p\[k[i]], c\[k[i]]);
         }
-        for(int i = 1; i <= d; i++)
+        for(int i = 1; i &lt;= d; i++)
             write(ans[i]), puts("");
         return 0;
     }
+    
+    ```
+    
     ```
