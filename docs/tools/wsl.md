@@ -290,7 +290,7 @@ xfce4-session
 
 ### 配合 Visual Sudio Code 进行编辑
 
-如果习惯在 Windows 环境下使用 Visual Studio Code 进行代码编辑，可以安装 VSC 中的插件 `Remote - WSL`，更方便地对 WSL 系统中的文件进行编辑。
+如果习惯在 Windows 环境下使用 Visual Studio Code 进行代码编辑，可以安装 VSC 中的 `Remote - WSL` 插件，更方便地对 WSL 系统中的文件进行编辑。
 
 通过 `Remote - WSL`，可以在 Windows 下的 VS Code 界面中直接对 WSL 子系统进行操作，更加方便地编辑子系统目录下的文件、更方便地使用终端进行调试。
 
