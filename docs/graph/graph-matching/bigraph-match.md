@@ -298,8 +298,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
       return false;
     }
     
-    int main() {  //	freopen("","r", stdin);
-                  //	freopen("","w", stdout);
+    int main() {
       n = read(), m = read();
       for (int i = 1; i &lt; = n; i++) p[i] = read(), maxn = max(maxn, p[i]);
       for (int i = 1; i &lt; = n; i++) c[i] = read();
