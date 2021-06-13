@@ -489,13 +489,13 @@ origin
 在远程仓库中，其他人可能会推送一些更改，执行 `git fetch` 命令可以将这些更改拉取到本地。
 
 ```bash
-$ git fetch origin # 拉取 origin 的数据
+$ git fetch <remote-name> # 拉取 <remote-name> 的数据
 ```
 
 需要注意的是， `git fetch` 命令只会拉取远程仓库的信息，而不会将这些信息合并到本地仓库中。如果需要将这些更改进行合并，需要使用 `git pull` 命令。
 
 ```bash
-$ git pull origin master # 抓取 origin 的数据并自动和本地的 master 分支合并
+$ git pull <remote-name> <branch> # 抓取 <remote-name> 的数据并自动和本地的 <branch> 分支合并
 ```
 
 ### 将更改推送到远程仓库
@@ -503,10 +503,24 @@ $ git pull origin master # 抓取 origin 的数据并自动和本地的 master �
 当你完成了一些更改之后，使用 `git push` 命令可以将这些更改推送到远程仓库。
 
 ```bash
-$ git push origin master # 将 master 分支的数据推送至 origin
+$ git push <remote-name> <branch> # 将 <branch> 分支的数据推送至 <remote-name>
 ```
 
-需要注意的是，你的更改能成功推送，需要满足两个条件：你拥有向这个仓库（分支）的写入权限，且你的这个分支比远程仓库的这个分支新（可以理解为没有人在你进行修改的这段时间进行了推送）。当远程分支有当前分支没有的新更改时，可以执行 `git pull` 命令完成合并再提交。
+需要注意的是，你的更改能成功推送，需要满足两个条件：你拥有向这个仓库（分支）的写入权限，且你的这个分支比远程仓库的相应分支新（可以理解为没有人在你进行修改的这段时间进行了推送）。当远程分支有当前分支没有的新更改时，可以执行 `git pull` 命令完成合并再提交。
+
+### 追踪远程分支
+
+通过将一个本地分支设定为追踪远程分支，可以方便地查看本地分支与远程分支的差别，并能简化与远程分支交互时的操作。
+
+在开始追踪前，你需要先执行 `git fetch <remote-name>` 将远程仓库的信息抓取到本地。
+
+接下来执行 `git switch <remote-name>/<remote-branch>` 切换到你想切换的远程分支。该操作会在本地自动创建名字为 `<remote-branch>` 的新分支，并设定该分支自动追踪相应的远程分支。
+
+这时候执行 `git status` 命令，会提示当前分支与远程分支之间的差别。
+
+因为设定了本地分支追踪的远程分支，向远程分支推送的命令也被简化了。只需要执行 `git push` 命令，在本地分支上作出的修改就能被推送至其追踪的远程分支。
+
+对于本地已有的分支，设定其对应的远程追踪分支也很容易。只需在当前分支下执行 `git branch -u <remote-name>/<remote-branch>`，就可以设定当前的本地分支追踪 `<remote-name>/<remote-branch>` 这一远程分支。
 
 ## 外部链接
 
