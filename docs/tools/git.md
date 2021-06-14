@@ -179,7 +179,7 @@ Changes to be committed:
 
 这时 `README.md` 已经纳入了版本跟踪，放入了暂存区。接下来只需执行 `git commit` 命令就可以提交这次更改了。
 
-但在进行这一工作之前，先对 `README.md` 做点小修改。
+但在进行这一工作之前，让我们先对 `README.md` 做点小修改。
 
 ```bash
 $ vim README.md # 随便修改点东西
