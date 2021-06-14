@@ -3,7 +3,7 @@ author: Ir1d, cjsoft, Lans1ot
 
 在面向对象编程（OOP）中，对象就是类的实例，也就是变量。
 
-C++ 中 `struct` 关键字定义的也是类，上文中的 **结构体** 的定义来自 C。因为某些历史原因，C++ 保留并拓展了 `struct` 。
+C++ 中 `struct` 关键字定义的也是类，上文中的 **结构体** 的定义来自 C。因为某些历史原因，C++ 保留并拓展了 `struct`。
 
 ## 定义类
 
@@ -26,36 +26,36 @@ Object b, B[array_length];
 Object *c;
 ```
 
-与使用 `struct` 大同小异。该例定义了一个名为 `Object` 的类。该类拥有四个成员元素，分别为 `weight,value` ；并在 `}` 后定义了一个数组 `B` 。
+与使用 `struct` 大同小异。该例定义了一个名为 `Object` 的类。该类拥有四个成员元素，分别为 `weight,value`；并在 `}` 后定义了一个数组 `B`。
 
-定义类的指针形同 [ `struct` ](./struct.md) 。
+定义类的指针形同 [`struct`](./struct.md)。
 
 ### 访问说明符
 
-不同于 [ `struct` ](./struct.md) 中的举例，本例中出现了 `public` ，这属于访问说明符。
+不同于 [`struct`](./struct.md) 中的举例，本例中出现了 `public`，这属于访问说明符。
 
--  `public` ：该访问说明符之后的各个成员都可以被公开访问，简单来说就是无论 **类内** 还是 **类外** 都可以访问。
--  `protected` ：该访问说明符之后的各个成员可以被 **类内** 、派生类或者友元的成员访问，但类外 **不能访问** 。
--  `private` ：该访问说明符之后的各个成员 **只能** 被 **类内** 成员或者友元的成员访问， **不能** 被从类外或者派生类中访问。
+- `public`：该访问说明符之后的各个成员都可以被公开访问，简单来说就是无论 **类内** 还是 **类外** 都可以访问。
+- `protected`：该访问说明符之后的各个成员可以被 **类内**、派生类或者友元的成员访问，但类外 **不能访问**。
+- `private`：该访问说明符之后的各个成员 **只能** 被 **类内** 成员或者友元的成员访问，**不能** 被从类外或者派生类中访问。
 
-对于 `struct` ，它的所有成员都是默认 `public` 。对于 `class` ，它的所有成员都是默认 `private` 。
+对于 `struct`，它的所有成员都是默认 `public`。对于 `class`，它的所有成员都是默认 `private`。
 
 *关于 "友元" 和 "派生类"，可以参考下方折叠框，或者查询网络资料进行详细了解。*
 
 *对于算法竞赛来说，友元和派生类并不是必须要掌握的知识点。*
 
 ??? note "关于友元以及派生类的基本概念"
-    友元（ `friend` ）：使用 `friend` 关键字修饰某个函数或者类。可以使得在 **被修饰者** 在不成为成员函数或者成员类的情况下，访问该类的私有（ `private` ）或者受保护（ `protected` ）成员。简单来说就是只要带有这个类的 `friend` 标记，就可以访问私有或受保护的成员元素。
+    友元（`friend`）：使用 `friend` 关键字修饰某个函数或者类。可以使得在 **被修饰者** 在不成为成员函数或者成员类的情况下，访问该类的私有（`private`）或者受保护（`protected`）成员。简单来说就是只要带有这个类的 `friend` 标记，就可以访问私有或受保护的成员元素。
     
-    派生类（ `derived class` ）：C++ 允许使用一个类作为 **基类** ，并通过基类 **派生** 出 **派生类** 。其中派生类（根据特定规则）继承基类中的成员变量和成员函数。可以提高代码的复用率。
+    派生类（`derived class`）：C++ 允许使用一个类作为 **基类**，并通过基类 **派生** 出 **派生类**。其中派生类（根据特定规则）继承基类中的成员变量和成员函数。可以提高代码的复用率。
     
     派生类似 "is" 的关系。如猫（派生类）"is" 哺乳动物（基类）。
     
-    对于上面 `private` 和 `protected` 的区别，可以看做派生类可以访问基类的 `protected` 的元素（ `public` 同），但不能访问 `private` 元素。
+    对于上面 `private` 和 `protected` 的区别，可以看做派生类可以访问基类的 `protected` 的元素（`public` 同），但不能访问 `private` 元素。
 
 ## 访问与修改成员元素的值
 
-方法形同 [ `struct` ](./struct.md) 
+方法形同 [`struct`](./struct.md)
 
 - 对于变量，使用 `.` 符号。
 - 对于指针，使用 `->` 符号。
@@ -73,7 +73,7 @@ Object *c;
 
 ```cpp
 class Class_Name {
-  ... type Funciton_Name(...) { ... }
+  ... type Function_Name(...) { ... }
 };
 
 // Example:
@@ -100,7 +100,7 @@ void Object::change_w(int _weight) { weight = _weight; }
 ### 重载运算符
 
 ??? note "何为重载"
-    C++ 允许编写者为名称相同的函数或者运算符指定不同的定义。这称为 **重载** （overload）。
+    C++ 允许编写者为名称相同的函数或者运算符指定不同的定义。这称为 **重载**（overload）。
     
     如果同名函数的参数种类、数量、返回类型不相同其中一者或多者两两不相同，则这些同名函数被看做是不同的。
     
@@ -143,7 +143,7 @@ Vector Vector::operator-(const Vector& other) {
 /*类定义内声明，在外部定义*/ 返回类型 类名称::operator符号(参数){...}
 ```
 
-对于自定义的类，如果重载了某些运算符（一般来说只需要重载 `<` 这个比较运算符），便可以使用相应的 STL 容器或算法，如 [ `sort` ](../basic/stl-sort.md) 。
+对于自定义的类，如果重载了某些运算符（一般来说只需要重载 `<` 这个比较运算符），便可以使用相应的 STL 容器或算法，如 [`sort`](../basic/stl-sort.md)。
 
 *如要了解更多，参见“参考资料”第四条。*
 
@@ -157,7 +157,7 @@ Vector Vector::operator-(const Vector& other) {
 
 ### 在实例化变量时设定初始值
 
-为完成这种操作，需要定义 **默认构造函数** (Default constructor)。
+为完成这种操作，需要定义 **默认构造函数**(Default constructor)。
 
 ```cpp
 class ClassName {
@@ -176,7 +176,7 @@ class Object {
 };
 ```
 
-该例定义了 `Object` 的默认构造函数，该函数能够在我们实例化 `Object` 类型变量时，将所有的成员元素初始化为 `0` 。
+该例定义了 `Object` 的默认构造函数，该函数能够在我们实例化 `Object` 类型变量时，将所有的成员元素初始化为 `0`。
 
 若无显式的构造函数，则编译器认为该类有隐式的默认构造函数。换言之，若无定义任何构造函数，则编译器会自动生成一个默认构造函数，并会根据成员元素的类型进行初始化（与定义 内置类型 变量相同）。
 
@@ -247,7 +247,7 @@ Object C{1, 2};  // ok,(C++11)
     
     看上去十分不符合逻辑，一个 `int` 类型不可能转化为 `node` 类型。但是编译器不会进行 `error` 提示。
     
-    原因是在进行赋值时，首先会将 `1` 作为参数调用 `node::node(int)` ，然后调用默认的复制函数进行赋值。
+    原因是在进行赋值时，首先会将 `1` 作为参数调用 `node::node(int)`，然后调用默认的复制函数进行赋值。
     
     但大多数情况下，编写者会希望编译器进行报错。这时便可以在构造函数前追加 `explicit` 关键字。这会告诉编译器必须显式进行调用。
     
@@ -271,7 +271,7 @@ Object C{1, 2};  // ok,(C++11)
 
 如果结构体的成员元素包含指针，同样会遇到这种问题。需要用到析构函数来手动释放动态内存。
 
- **析构** 函数（Destructor）将会在该变量被销毁时被调用。重载的方法形同构造函数，但需要在前加 `~` 
+**析构** 函数（Destructor）将会在该变量被销毁时被调用。重载的方法形同构造函数，但需要在前加 `~`
 
 *默认定义的析构函数通常对于算法竞赛已经足够使用，通常我们只有在成员元素包含指针时才会重载析构函数。*
 
@@ -295,7 +295,7 @@ class Object {
 
 前者只是调用了复制构造函数（copy constructor)，而后者在调用复制构造函数前会调用默认构造函数。
 
-另外默认情况下，进行的赋值都是对应元素间进行 **浅拷贝** ，如果成员元素中有指针，则在赋值完成后，两个变量的成员指针具有相同的地址。
+另外默认情况下，进行的赋值都是对应元素间进行 **浅拷贝**，如果成员元素中有指针，则在赋值完成后，两个变量的成员指针具有相同的地址。
 
 ```cpp
 // A,tmp1,tmp2,tmp3类型为Object
@@ -310,12 +310,12 @@ tmp3 = {...};
 
 ## 参考资料
 
-1.  [cppreference class](https://zh.cppreference.com/w/cpp/language/class) 
-2.  [cppreference access](https://zh.cppreference.com/w/cpp/language/access) 
-3.  [cppreference default_constructor](https://zh.cppreference.com/w/cpp/language/default_constructor) 
-4.  [cppreference operator](https://zh.cppreference.com/w/cpp/language/operators) 
-5.  [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/) 
-6.  [cplusplus Special members](http://www.cplusplus.com/doc/tutorial/classes2/) 
-7.  [C++11 FAQ](http://www.stroustrup.com/C++11FAQ.html) 
-8.  [cppreference Friendship and inheritance](http://www.cplusplus.com/doc/tutorial/inheritance/) 
-9.  [cppreference value initialization](https://zh.cppreference.com/w/cpp/language/value_initialization) 
+1. [cppreference class](https://zh.cppreference.com/w/cpp/language/class)
+2. [cppreference access](https://zh.cppreference.com/w/cpp/language/access)
+3. [cppreference default_constructor](https://zh.cppreference.com/w/cpp/language/default_constructor)
+4. [cppreference operator](https://zh.cppreference.com/w/cpp/language/operators)
+5. [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/)
+6. [cplusplus Special members](http://www.cplusplus.com/doc/tutorial/classes2/)
+7. [C++11 FAQ](http://www.stroustrup.com/C++11FAQ.html)
+8. [cppreference Friendship and inheritance](http://www.cplusplus.com/doc/tutorial/inheritance/)
+9. [cppreference value initialization](https://zh.cppreference.com/w/cpp/language/value_initialization)

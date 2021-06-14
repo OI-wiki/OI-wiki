@@ -78,6 +78,6 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 ## 参考资料与注释
 
-[^ref1]:  [Eclipse - 维基百科](https://zh.wikipedia.org/wiki/Eclipse) 
+[^ref1]: [Eclipse - 维基百科](https://zh.wikipedia.org/wiki/Eclipse)
 
-[^ref2]:  [曾经的 Java IDE 王者 Eclipse 真的没落了？21 款插件让它强大起来！](https://blog.csdn.net/csdnnews/article/details/78495979) 
+[^ref2]: [曾经的 Java IDE 王者 Eclipse 真的没落了？21 款插件让它强大起来！](https://blog.csdn.net/csdnnews/article/details/78495979)

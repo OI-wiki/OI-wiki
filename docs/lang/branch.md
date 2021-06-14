@@ -50,9 +50,9 @@ else if 语句是 if 和 else 的组合，对多个条件进行判断并选择�
 
 > 解一元二次方程的时候，方程的根与判别式的关系：
 >
-> -   如果 ( $\Delta<0$ )
+> -   如果 ($\Delta<0$)
 >     方程无解；
-> -   否则，如果 ( $\Delta=0$ )
+> -   否则，如果 ($\Delta=0$)
 >     方程有两个相同的实数解；
 > -   否则
 >     方程有两个不相同的实数解；
@@ -107,7 +107,7 @@ switch (i) {
 }
 ```
 
-以上代码运行后输出的结果为 `WIKI` 和 `Hello World` ，如果不想让下面分支的语句被运行就需要 break 了，具体例子可看下面的示例。
+以上代码运行后输出的结果为 `WIKI` 和 `Hello World`，如果不想让下面分支的语句被运行就需要 break 了，具体例子可看下面的示例。
 
 ```cpp
 char i = 'B';
@@ -146,7 +146,9 @@ switch (i) {
     break;
   }
 
-  default: { cout << "Hello World" << endl; }
+  default: {
+    cout << "Hello World" << endl;
+  }
 }
 ```
 

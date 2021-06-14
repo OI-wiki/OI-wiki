@@ -1,6 +1,6 @@
 author: Anguei, sshwy, Xeonacid, Ir1d, MonkeyOliver, hsfzLZH1
 
-拆点是一种图论建模思想，常用于 [网络流](./flow.md) ，用来处理 **点权或者点的流量限制** 的问题，也常用于 **分层图** 。
+拆点是一种图论建模思想，常用于 [网络流](./flow.md)，用来处理 **点权或者点的流量限制** 的问题，也常用于 **分层图**。
 
 ## 结点有流量限制的最大流
 
@@ -18,11 +18,11 @@ author: Anguei, sshwy, Xeonacid, Ir1d, MonkeyOliver, hsfzLZH1
 
 ## 分层图最短路
 
-分层图最短路，如：有 $k$ 次零代价通过一条路径，求总的最小花费。对于这种题目，我们可以采用 DP 相关的思想，设 $\text{dis}_{i, j}$ 表示当前从起点 $i$ 号结点，使用了 $j$ 次免费通行权限后的最短路径。显然， $\text{dis}$ 数组可以这么转移：
+分层图最短路，如：有 $k$ 次零代价通过一条路径，求总的最小花费。对于这种题目，我们可以采用 DP 相关的思想，设 $\text{dis}_{i, j}$ 表示当前从起点 $i$ 号结点，使用了 $j$ 次免费通行权限后的最短路径。显然，$\text{dis}$ 数组可以这么转移：
 
- $\text{dis}_{i, j} = \min\{\min\{\text{dis}_{from, j - 1}\}, \min\{\text{dis}_{from,j} + w\}\}$ 
+$\text{dis}_{i, j} = \min\{\min\{\text{dis}_{from, j - 1}\}, \min\{\text{dis}_{from,j} + w\}\}$
 
-其中， $from$ 表示 $i$ 的父亲节点， $w$ 表示当前所走的边的边权。当 $j - 1 \geq k$ 时， $\text{dis}_{from, j}$ = $\infty$ 。
+其中，$from$ 表示 $i$ 的父亲节点，$w$ 表示当前所走的边的边权。当 $j - 1 \geq k$ 时，$\text{dis}_{from, j}$=$\infty$。
 
 事实上，这个 DP 就相当于把每个结点拆分成了 $k+1$ 个结点，每个新结点代表使用不同多次免费通行后到达的原图结点。换句话说，就是每个结点 $u_i$ 表示使用 $i$ 次免费通行权限后到达 $u$ 结点。
 

@@ -2,13 +2,13 @@
 
 ## 问题描述
 
-> n 个人标号 $0,1,\cdots, n-1$ 。逆时针站一圈，从 $0$ 号开始，每一次从当前的人逆时针数 $k$ 个，然后让这个人出局。问最后剩下的人是谁。
+> n 个人标号 $0,1,\cdots, n-1$。逆时针站一圈，从 $0$ 号开始，每一次从当前的人逆时针数 $k$ 个，然后让这个人出局。问最后剩下的人是谁。
 
 这个经典的问题由约瑟夫于公元 1 世纪提出，尽管他当时只考虑了 $k=2$ 的情况。现在我们可以用许多高效的算法解决这个问题。
 
 ## 朴素算法
 
-最朴素的算法莫过于直接枚举。用一个环形链表枚举删除的过程，重复 $n-1$ 次得到答案。复杂度 $\Theta (n^2)$ 。
+最朴素的算法莫过于直接枚举。用一个环形链表枚举删除的过程，重复 $n-1$ 次得到答案。复杂度 $\Theta (n^2)$。
 
 ## 简单优化
 
@@ -36,7 +36,7 @@ int josephus(int n, int k) {
 
 对于 $k$ 较小 $n$ 较大的情况，本题还有一种复杂度为 $\Theta (k\log n)$ 的算法。
 
-考虑到我们每次走 $k$ 个删一个，那么在一圈以内我们可以删掉 $\left\lfloor\frac{n}{k}\right\rfloor$ 个，然后剩下了 $n-\left\lfloor\frac{n}{k}\right\rfloor$ 个人。这时我们在第 $\left\lfloor\frac{n}{k}\right\rfloor\cdot k$ 个人的位置上。而你发现这个东西它等于 $n-n\bmod k$ 。于是我们继续递归处理，算完后还原它的相对位置。得到如下的算法：
+考虑到我们每次走 $k$ 个删一个，那么在一圈以内我们可以删掉 $\left\lfloor\frac{n}{k}\right\rfloor$ 个，然后剩下了 $n-\left\lfloor\frac{n}{k}\right\rfloor$ 个人。这时我们在第 $\left\lfloor\frac{n}{k}\right\rfloor\cdot k$ 个人的位置上。而你发现这个东西它等于 $n-n\bmod k$。于是我们继续递归处理，算完后还原它的相对位置。得到如下的算法：
 
 ```cpp
 int josephus(int n, int k) {
@@ -53,7 +53,7 @@ int josephus(int n, int k) {
 }
 ```
 
-可以证明这个算法的复杂度是 $\Theta (k\log n)$ 的。我们设这个过程的递归次数是 $x$ ，那么每一次问题规模会大致变成 $\displaystyle n\left(1-\frac{1}{k}\right)$ ，于是得到
+可以证明这个算法的复杂度是 $\Theta (k\log n)$ 的。我们设这个过程的递归次数是 $x$，那么每一次问题规模会大致变成 $\displaystyle n\left(1-\frac{1}{k}\right)$，于是得到
 
 $$
 n\left(1-\frac{1}{k}\right)^x=1
@@ -67,7 +67,7 @@ $$
 
 下面我们证明该算法的复杂度是 $\Theta (k\log n)$ 的。
 
-考虑 $\displaystyle \lim _{k \rightarrow \infty} k \log \left(1-\frac{1}{k}\right)$ ，我们有
+考虑 $\displaystyle \lim _{k \rightarrow \infty} k \log \left(1-\frac{1}{k}\right)$，我们有
 
 $$
 \begin{aligned}
@@ -80,6 +80,6 @@ $$
 \end{aligned}
 $$
 
-所以 $x \sim k \ln n, k\to \infty$ ，即 $-\dfrac{\ln n}{\ln\left(1-\frac{1}{k}\right)}= \Theta (k\log n)$ 
+所以 $x \sim k \ln n, k\to \infty$，即 $-\dfrac{\ln n}{\ln\left(1-\frac{1}{k}\right)}= \Theta (k\log n)$
 
- **本页面主要译自博文 [Задача Иосифа](https://e-maxx.ru/algo/joseph_problem) 与其英文翻译版 [Josephus Problem](https://cp-algorithms.com/others/josephus_problem.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+**本页面主要译自博文 [Задача Иосифа](https://e-maxx.ru/algo/joseph_problem) 与其英文翻译版 [Josephus Problem](https://cp-algorithms.com/others/josephus_problem.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

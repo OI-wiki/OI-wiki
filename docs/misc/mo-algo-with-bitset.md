@@ -2,9 +2,9 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 bitset 常用于常规数据结构难以维护的的判定、统计问题，而莫队可以维护常规数据结构难以维护的区间信息。把两者结合起来使用可以同时利用两者的优势。
 
-## 例题 [「Ynoi2016」掉进兔子洞](https://www.luogu.com.cn/problem/P4688) 
+## 例题 [「Ynoi2016」掉进兔子洞](https://www.luogu.com.cn/problem/P4688)
 
-本题刚好符合上面提到的莫队配合 bitset 的特征。不难想到我们可以分别用 bitset 存储每一个区间内的出现过的所有权值，一组询问的答案即所有区间的长度和减去三者的并集元素个数 $\times 3$ 。
+本题刚好符合上面提到的莫队配合 bitset 的特征。不难想到我们可以分别用 bitset 存储每一个区间内的出现过的所有权值，一组询问的答案即所有区间的长度和减去三者的并集元素个数 $\times 3$。
 
 但是在莫队中使用 bitset 也需要针对 bitset 的特性调整算法：
 
@@ -87,6 +87,6 @@ bitset 常用于常规数据结构难以维护的的判定、统计问题，而�
 
 ## 习题
 
--  [小清新人渣的本愿](https://www.luogu.com.cn/problem/P3674) 
--  [「Ynoi2017」由乃的玉米田](https://www.luogu.com.cn/problem/P5355) 
--  [「Ynoi2011」WBLT](https://www.luogu.com.cn/problem/P5313) 
+- [小清新人渣的本愿](https://www.luogu.com.cn/problem/P3674)
+- [「Ynoi2017」由乃的玉米田](https://www.luogu.com.cn/problem/P5355)
+- [「Ynoi2011」WBLT](https://www.luogu.com.cn/problem/P5313)
