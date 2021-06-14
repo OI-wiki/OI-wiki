@@ -1,7 +1,7 @@
 ???+note
-    本页面将着重介绍 Git 这一版本控制系统，与 GitHub 相关的内容，请参考 [GitHub 帮助](https://docs.github.com/cn) 和 [如何参与 - OI Wiki](../intro/htc.md) 。
+    本页面将着重介绍 Git 这一版本控制系统，与 GitHub 相关的内容，请参考 [GitHub 帮助](https://docs.github.com/cn) 和 [如何参与 - OI Wiki](../intro/htc.md)。
 
-Git 是目前使用最广泛的版本控制系统之一。 **OI Wiki** 也使用了 Git 作为版本控制系统。
+Git 是目前使用最广泛的版本控制系统之一。**OI Wiki** 也使用了 Git 作为版本控制系统。
 
 ## 安装
 
@@ -16,7 +16,7 @@ Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Gi
 
 ![Git for Windows installation 1](images/git3.png)
 
-点击 `Next >` ，选择安装路径。
+点击 `Next >`，选择安装路径。
 
 ![Git for Windows installation 2](images/git4.png)
 
@@ -27,26 +27,25 @@ Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Gi
 默认的选项如上图所示，均不建议取消勾选。其他未勾选的选项可以依照需求勾选。
 
 ??? note "各选项功能详解"
-
     默认勾选的选项：
-
-    - `Windows Explorer integration` ：资源管理器集成（右键菜单）。
-        - `Git Bash Here` ：在当前目录运行 Git 命令行。
-        - `Git GUI Here` ：在当前目录运行 Git 图形化页面。
-    - `Git LFS` ：安装 Git Large File Support（大文件支持）。[^note1]
-    - `Associate .git* configuration files with the default text editor` ：将所有 `.git` 配置文件与默认文本编辑器关联，并用其打开。默认文本编辑器会在后面配置。
-    - `Associate .sh files to be run with Bash` ：将所有扩展名为 `.sh` 的文件与 Git 命令行关联，并用其执行。
-
-    ---
-
+    
+    -   `Windows Explorer integration`：资源管理器集成（右键菜单）。
+        - `Git Bash Here`：在当前目录运行 Git 命令行。
+        - `Git GUI Here`：在当前目录运行 Git 图形化页面。
+    - `Git LFS`：安装 Git Large File Support（大文件支持）。[^note1]
+    - `Associate .git* configuration files with the default text editor`：将所有 `.git` 配置文件与默认文本编辑器关联，并用其打开。默认文本编辑器会在后面配置。
+    - `Associate .sh files to be run with Bash`：将所有扩展名为 `.sh` 的文件与 Git 命令行关联，并用其执行。
+    
+    * * *
+    
     默认不勾选的选项：
-
-    - `Additional icons`
+    
+    -   `Additional icons`
         - `On the Desktop`：让 Git 在桌面创建快捷方式。
-    - `Use a TrueType font in all console windows` ：让 Git 在所有命令行（包括 cmd 命令行窗口）中都使用 TrueType 字体。
+    - `Use a TrueType font in all console windows`：让 Git 在所有命令行（包括 cmd 命令行窗口）中都使用 TrueType 字体。
     - `Check daily for Git for Windows updates`：让 Git 每天检查更新。
 
-点击 `Next >`，选择存放 Git 快捷方式的开始菜单文件夹。若勾选 `Don't create a Start Menu folder` ，则 Git 不会在开始菜单创建快捷方式。
+点击 `Next >`，选择存放 Git 快捷方式的开始菜单文件夹。若勾选 `Don't create a Start Menu folder`，则 Git 不会在开始菜单创建快捷方式。
 
 ![Git for Windows installation 4](images/git6.png)
 
@@ -54,7 +53,7 @@ Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Gi
 
 ![Git for Windows installation 5](images/git7.png)
 
-在下拉菜单栏中，Git 提供了 nano、 [Vim](editor/vim.md) 、 [Notepad++](editor/npp.md) 、 [Visual Studio Code](editor/vscode.md) 、Visual Studio Code Insiders（VS Code 预览版）、Sublime Text、 [Atom](editor/atom.md) 和 VSCodium 作为默认编辑器的预设方案。如果系统已经安装了上述的一种或多种编辑器，可以直接选择其中一种并进入下一步。另外，还可通过 `Select other editor as Git's default editor` 项手动指定默认编辑器。
+在下拉菜单栏中，Git 提供了 nano、[Vim](editor/vim.md)、[Notepad++](editor/npp.md)、[Visual Studio Code](editor/vscode.md)、Visual Studio Code Insiders（VS Code 预览版）、Sublime Text、[Atom](editor/atom.md) 和 VSCodium 作为默认编辑器的预设方案。如果系统已经安装了上述的一种或多种编辑器，可以直接选择其中一种并进入下一步。另外，还可通过 `Select other editor as Git's default editor` 项手动指定默认编辑器。
 
 ![Git for Windows installation 6](images/git8.png)
 
@@ -66,17 +65,17 @@ Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Gi
 
 接下来的每一步都直接点击 `Next >`。当 `Next >` 变为 `Install` 时，按下 `Install` 进行安装。
 
-最后，该页面出现，Git 安装完成。此时可以取消勾选 `View Release Notes` ，然后按下 `Next >` 直接退出；也可以直接按下 `Next >` 查看版本更新信息；亦可以勾选 `Launch Git Bash` 运行 Git 命令行。
+最后，该页面出现，Git 安装完成。此时可以取消勾选 `View Release Notes`，然后按下 `Next >` 直接退出；也可以直接按下 `Next >` 查看版本更新信息；亦可以勾选 `Launch Git Bash` 运行 Git 命令行。
 
 ![Git for Windows installation 8](images/git10.png)
 
 ### Linux
 
-Linux 系统可以通过包管理器进行安装。不同 Linux 发行版的安装方式可能不同， [Git 官网](https://git-scm.com/download/linux) 给出了不同系统下的安装方式。
+Linux 系统可以通过包管理器进行安装。不同 Linux 发行版的安装方式可能不同，[Git 官网](https://git-scm.com/download/linux) 给出了不同系统下的安装方式。
 
 ### macOS
 
-macOS 系统只需在终端执行 `brew install git` 命令即可安装。（需安装 [Homebrew](https://brew.sh/) ）
+macOS 系统只需在终端执行 `brew install git` 命令即可安装。（需安装 [Homebrew](https://brew.sh/)）
 
 ## 配置
 
@@ -111,7 +110,7 @@ $ git config --global user.email oi-wiki@example.com
 $ git config --global core.editor emacs
 ```
 
-执行如上命令可以将编辑器更改为 [Emacs](./editor/emacs.md) 。
+执行如上命令可以将编辑器更改为 [Emacs](./editor/emacs.md)。
 
 在 Windows 下，Git 的默认编辑器可以在安装 Git 时选择（见前文）。之后若要修改，在 Git Bash 里输入如上命令，将编辑器名换成编辑器的绝对路径，运行命令即可。
 
@@ -206,7 +205,7 @@ Changes not staged for commit:
 Git 给了一条提示，执行 `git add README.md` 就可以将非暂存区的更改放入暂存区了。
 
 ???+note "一次性将所有更改放入暂存区"
-     `git add` 命令会将对指定的文件的修改放入暂存区中。
+    `git add` 命令会将对指定的文件的修改放入暂存区中。
     
     在多数情况下，用户更期望一次性将所有更改都放入暂存区中，这时候可以应用 `git add -A` 命令。该命令会将所有更改（包括未被纳入版本跟踪的文件，不包括被忽略的文件）放入暂存区。
 
@@ -222,7 +221,7 @@ $ git commit # 接下来会弹出编辑器页面，你需要写下 commit 信息
 
 现在重点观察一下 commit 的信息。
 
- `master` 表示当前位于 `master` 分支（关于分支的问题，下文将会详细介绍）， `b13c84e` 表示本次提交的 SHA-1 校验和的前几位，后面则是本次提交的信息。
+`master` 表示当前位于 `master` 分支（关于分支的问题，下文将会详细介绍），`b13c84e` 表示本次提交的 SHA-1 校验和的前几位，后面则是本次提交的信息。
 
 需要特别关注的是这里的 SHA-1 校验码，每个校验码都与某个时刻仓库的一个快照相对应。利用这一特性我们可以访问历史某个时刻的仓库快照，并在该快照上进行更改。
 
@@ -230,8 +229,8 @@ $ git commit # 接下来会弹出编辑器页面，你需要写下 commit 信息
 
 另外，commit 过程中可以利用几个参数来简化提交过程：
 
--  `-a` ：在提交前将所有已跟踪的文件的更改放入暂存区。需要注意的是未被跟踪的文件（新创建的文件）不会被自动加入暂存区，需要用 `git add` 命令手动添加。
--  `-m` ：该参数后跟提交信息，表示以该提交信息提交本次更改。
+- `-a`：在提交前将所有已跟踪的文件的更改放入暂存区。需要注意的是未被跟踪的文件（新创建的文件）不会被自动加入暂存区，需要用 `git add` 命令手动添加。
+- `-m`：该参数后跟提交信息，表示以该提交信息提交本次更改。
 
 ### 查看提交记录
 
@@ -269,7 +268,7 @@ Date:   Sun Sep 13 00:06:07 2020 +0800
 
 ### 分支的创建
 
-利用 `git branch` 命令可以创建分支， `git switch` 命令可以切换分支， `git switch -c` 命令可以创建分支并切换到这个新分支。
+利用 `git branch` 命令可以创建分支，`git switch` 命令可以切换分支，`git switch -c` 命令可以创建分支并切换到这个新分支。
 
 ```bash
 $ git switch -c dev # 创建一个叫做 dev 的新分支并切换当前分支到 dev
@@ -279,9 +278,9 @@ $ git branch # 查看分支列表
 * dev
 ```
 
- `dev` 前面的星号代表该仓库的当前分支为 `dev` ，接下来对这个仓库的修改都将记录在这个分支上。
+`dev` 前面的星号代表该仓库的当前分支为 `dev`，接下来对这个仓库的修改都将记录在这个分支上。
 
-试着创建一个新文件 `aplusb.cpp` 。
+试着创建一个新文件 `aplusb.cpp`。
 
 ```bash
 $ vim aplusb.cpp
@@ -292,7 +291,7 @@ $ git commit -m "feat: add A+B Problem code"
  create mode 100644 aplusb.cpp
 ```
 
-现在切换回 `master` 分支，这时候文件夹中没有了 `aplusb.cpp` ，一切都回到了刚刚创建 `dev` 分支时的状态。这时候可以在 `master` 分支上继续完成其他的工作。
+现在切换回 `master` 分支，这时候文件夹中没有了 `aplusb.cpp`，一切都回到了刚刚创建 `dev` 分支时的状态。这时候可以在 `master` 分支上继续完成其他的工作。
 
 ```bash
 $ git switch master
@@ -307,19 +306,19 @@ $ git commit -a -m "feat: update README.md"
 
 ![](./images/git1.png)
 
- `master` 分支被标红，表明在这几次操作后，它是当前分支（即 HEAD 指向的位置）。
+`master` 分支被标红，表明在这几次操作后，它是当前分支（即 HEAD 指向的位置）。
 
 - 最开始时 `master` 指向 `ae9dd37` 这一快照。
 - 接下来在 `master` 所在的位置创建了一个新的 dev 分支，该分支一开始和 master 指向相同位置。
-- 在 `dev` 分支上作了一些修改（创建了 `aplusb.cpp` ），进行了一次提交，本次提交后， `dev` 分支指向 `5da093b` 这一快照。
-- 切换回 `master` 分支后，因为 `master` 分支还指向 `ae9dd37` ，还没有创建 `aplusb.cpp` ，因此仓库中没有这一文件。
-- 接下来在 `master` 分支上进行修改（更新了 `README.md` ），进行了一次提交， `master` 分支指向了 `5ca15f0` 这一快照。
+- 在 `dev` 分支上作了一些修改（创建了 `aplusb.cpp`），进行了一次提交，本次提交后，`dev` 分支指向 `5da093b` 这一快照。
+- 切换回 `master` 分支后，因为 `master` 分支还指向 `ae9dd37`，还没有创建 `aplusb.cpp`，因此仓库中没有这一文件。
+- 接下来在 `master` 分支上进行修改（更新了 `README.md`），进行了一次提交，`master` 分支指向了 `5ca15f0` 这一快照。
 
 ### 分支的合并
 
 当一个分支上的工作已经完成，就可以将这些工作合并到另外一个分支上去。
 
-还是接着上面这个例子， `dev` 分支的工作已经完成，通过 `git merge` 命令可以将该分支合并到当前分支（ `master` ）上：
+还是接着上面这个例子，`dev` 分支的工作已经完成，通过 `git merge` 命令可以将该分支合并到当前分支（`master`）上：
 
 ```bash
 $ git merge dev
@@ -333,13 +332,13 @@ Merge made by the 'recursive' strategy.
 
 这次合并具体是怎么执行的呢？
 
-在合并之前， `master` 指向 `5ca15f0` ，而 `dev` 指向 `5da093b` ，这两个状态并不在一条链上。
+在合并之前，`master` 指向 `5ca15f0`，而 `dev` 指向 `5da093b`，这两个状态并不在一条链上。
 
-Git 会找到这两个状态的最近公共祖先（在上图中是 `ae9dd37` ），并对这三个快照进行一次合并。三个快照合并的结果作为一个新的快照，并将当前分支指向这一快照。
+Git 会找到这两个状态的最近公共祖先（在上图中是 `ae9dd37`），并对这三个快照进行一次合并。三个快照合并的结果作为一个新的快照，并将当前分支指向这一快照。
 
 合并过程本身也是一次提交，不过与常规提交不同的是，合并提交有不止一个前驱提交，它是多个提交状态合并后的结果。
 
-在合并完成后， `dev` 分支就完成了它的使命，这时候可以利用下面的命令删除 `dev` 分支：
+在合并完成后，`dev` 分支就完成了它的使命，这时候可以利用下面的命令删除 `dev` 分支：
 
 ```bash
 $ git branch -d dev
@@ -407,7 +406,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 This repo includes some c++ codes.
 ```
 
- `======` 作为分界线将两个分支的内容隔开， `<<<<<< HEAD` 标记和 `======` 之间的部分是 `master` 分支的内容，而 `======` 和 `>>>>>> readme-refactor` 标记之间的部分是 `readme-refactor` 分支的内容。
+`======` 作为分界线将两个分支的内容隔开，`<<<<<< HEAD` 标记和 `======` 之间的部分是 `master` 分支的内容，而 `======` 和 `>>>>>> readme-refactor` 标记之间的部分是 `readme-refactor` 分支的内容。
 
 删除这些冲突解决标记，保存文件，将这些文件纳入暂存区后提交，就可以解决合并冲突了。
 
@@ -474,15 +473,15 @@ origin
 
 ### 远程仓库的配置
 
-执行 `git remote add <name> <url>` 命令可以添加一个名字为 `name` ，链接为 `url` 的远程仓库。
+执行 `git remote add <name> <url>` 命令可以添加一个名字为 `name`，链接为 `url` 的远程仓库。
 
-执行 `git remote rename <oldname> <newname>` 可以将名字为 `oldname` 的远程仓库改名为 `newname` 。
+执行 `git remote rename <oldname> <newname>` 可以将名字为 `oldname` 的远程仓库改名为 `newname`。
 
 执行 `git remote rm <name>` 可以删除名字为 `name` 的远程仓库。
 
 执行 `git remote get-url <name>` 可以查看名字为 `name` 的远程仓库的链接。
 
-执行 `git remote set-url <name> <newurl>` 可以将名字为 `name` 的远程仓库的链接更改为 `newurl` 。
+执行 `git remote set-url <name> <newurl>` 可以将名字为 `name` 的远程仓库的链接更改为 `newurl`。
 
 ### 从远程仓库拉取更改
 
@@ -492,7 +491,7 @@ origin
 $ git fetch <remote-name> # 拉取 <remote-name> 的数据
 ```
 
-需要注意的是， `git fetch` 命令只会拉取远程仓库的信息，而不会将这些信息合并到本地仓库中。如果需要将这些更改进行合并，需要使用 `git pull` 命令。
+需要注意的是，`git fetch` 命令只会拉取远程仓库的信息，而不会将这些信息合并到本地仓库中。如果需要将这些更改进行合并，需要使用 `git pull` 命令。
 
 ```bash
 $ git pull <remote-name> <branch> # 抓取 <remote-name> 的数据并自动和本地的 <branch> 分支合并
@@ -524,13 +523,13 @@ $ git push <remote-name> <branch> # 将 <branch> 分支的数据推送至 <remot
 
 ## 外部链接
 
--  [Git Reference](https://git-scm.com/docs) 
--  [Pro Git Book](https://git-scm.com/book/zh/v2) 
--  [Learn Git Branching](https://learngitbranching.js.org/) 
+- [Git Reference](https://git-scm.com/docs)
+- [Pro Git Book](https://git-scm.com/book/zh/v2)
+- [Learn Git Branching](https://learngitbranching.js.org/)
 
 ## 参考资料与注释
 
-[^note1]: 在某些地方（比如 [LFS 官网](https://git-lfs.github.com/) ）又被称作 Git Large File Storage（大文件存储）。它在将项目托管到平台上时，用文本指针代替音频、视频、图像、数据集等大文件的原始文件，从而加快传输速度。对移动应用程序开发人员、游戏工程师以及任何需要大文件构建软件的人，该功能都极为实用。若想进一步了解该功能，可以参考 [Atlassian 官方介绍 Git LFS 的译文](https://www.cnblogs.com/cangqinglang/p/13097777.html) 。
+[^note1]: 在某些地方（比如 [LFS 官网](https://git-lfs.github.com/)）又被称作 Git Large File Storage（大文件存储）。它在将项目托管到平台上时，用文本指针代替音频、视频、图像、数据集等大文件的原始文件，从而加快传输速度。对移动应用程序开发人员、游戏工程师以及任何需要大文件构建软件的人，该功能都极为实用。若想进一步了解该功能，可以参考 [Atlassian 官方介绍 Git LFS 的译文](https://www.cnblogs.com/cangqinglang/p/13097777.html)。
 
 [^note2]: 但是，Git for Windows 对 Vim 的描述是“虽然强大，但是可能会难以使用。用户界面反人类，键位映射卡手。Git 使用 Vim 作为默认编辑器只是出于历史原因，强烈推荐换用一个 UI 设计现代化的编辑器。”，并给“难以使用”加上了 [Stack Overflow 每年帮助一百万名开发者退出 Vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/) 的页面链接。
 

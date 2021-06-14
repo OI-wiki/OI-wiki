@@ -50,6 +50,7 @@
 5. 提交 Pull Request 至主仓库。
 
 详细的操作方式可以参考 [Git](../tools/git.md) 页面。
+
 ### commit 与 Pull Request 要求
 
 对于提交时需要填写的 commit 信息，请遵守以下几点基本要求：
