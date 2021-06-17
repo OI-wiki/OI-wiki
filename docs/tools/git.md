@@ -34,7 +34,7 @@ Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Gi
         - `Git GUI Here`：在当前目录运行 Git 图形化页面。
     - `Git LFS`：安装 Git Large File Support（大文件支持）。[^note1]
     - `Associate .git* configuration files with the default text editor`：将所有 `.git` 配置文件与默认文本编辑器关联，并用其打开。默认文本编辑器会在后面配置。
-    - `Associate .sh files to be run with Bash`：将所有扩展名为 `.sh` 的文件与 Git 命令行关联，并用其执行。
+    - `Associate .sh files to be run with Bash`：将所有扩展名为 `.sh` 的文件与 Git Bash 关联，并用其执行。
     
     * * *
     
