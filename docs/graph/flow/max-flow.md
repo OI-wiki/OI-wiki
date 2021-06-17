@@ -397,11 +397,11 @@ $$
 e(u)=\sum_{(x,u)\in E}f(x,u)-\sum_{(u,y)\in E}f(u,y)
 $$
 
-若 $e(u)>0$，称结点 $u$ **溢出**[^note1]，注意当我们提到溢出结点时，并不包括 $s$ 和 $t$。
+若 $e(u)>0$，称结点 $u$  **溢出**[^note1]，注意当我们提到溢出结点时，并不包括 $s$ 和 $t$。
 
 预流推进算法维护每个结点的高度 $h(u)$，并且规定溢出的结点 $u$ 如果要推送超额流，只能向高度小于 $u$ 的结点推送；如果 $u$ 没有相邻的高度小于 $u$ 的结点，就修改 $u$ 的高度（重贴标签）。
 
-#### 高度函数 [^note2]
+#### 高度函数[^note2]
 
 准确地说，预流推进维护以下的一个映射 $h:V\to \mathbf{N}$：
 
@@ -465,7 +465,7 @@ $$
 
 可以发现，最后的超额流一部分回到了 $s$，且除了源点汇点，其他结点都没有溢出；这时的流函数 $f$ 满足流守恒性，为最大流，流量即为 $e(t)$。
 
-但是实际上论文 [^ref1] 指出只处理高度小于 $n$ 的溢出节点也能获得正确的最大流值，不过这样一来算法结束的时候预流还不满足流函数性质，不能知道每条边上真实的流量。
+但是实际上论文[^ref1]指出只处理高度小于 $n$ 的溢出节点也能获得正确的最大流值，不过这样一来算法结束的时候预流还不满足流函数性质，不能知道每条边上真实的流量。
 
 ???+ "核心代码"
     ```cpp
@@ -495,7 +495,7 @@ $$
 
 ### HLPP 算法
 
-最高标号预流推进算法（Highest Label Preflow Push）在上述通用的预流推送算法中, 在每次选择结点时, 都优先选择高度最高的溢出结点，其算法算法复杂度为 $O(n^2\sqrt m)$。
+最高标号预流推进算法（Highest Label Preflow Push）在上述通用的预流推送算法中，在每次选择结点时，都优先选择高度最高的溢出结点，其算法算法复杂度为 $O(n^2\sqrt m)$。
 
 具体地说，HLPP 算法过程如下：
 
@@ -504,7 +504,7 @@ $$
 3. 如果 $u$ 仍溢出，对它重贴标签，回到步骤 2；
 4. 如果没有溢出的结点，算法结束。
 
-一篇对最大流算法实际表现进行测试的论文 [^ref2] 表明，实际上基于预流的算法，有相当一部分时间都花在了重贴标签这一步上。以下介绍两种来自论文 [^ref3] 的能显著减少重贴标签次数的优化。
+一篇对最大流算法实际表现进行测试的论文[^ref2]表明，实际上基于预流的算法，有相当一部分时间都花在了重贴标签这一步上。以下介绍两种来自论文[^ref3]的能显著减少重贴标签次数的优化。
 
 #### BFS 优化
 
@@ -516,9 +516,9 @@ HLPP 的上界为 $O(n^2\sqrt m)$，但在使用时卡得比较紧；我们可�
 
 HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u)=t$ 的结点个数为 $0$，那么对于 $h(u)>t$ 的结点就永远无法推送超额流到 $t$，因此只能送回 $s$，那么我们就在这时直接让他们的高度变成至少 $n+1$，以尽快推送回 $s$，减少重贴标签的操作。
 
-以下的实现采取论文 [^ref2] 中的实现方法, 使用 $N*2-1$ 个桶 `B`，其中 `B[i]` 中记录所有当前高度为 $i$ 的溢出节点。加入了以上提到的两种优化，并且只处理了高度小于 $n$ 的溢出节点。
+以下的实现采取论文[^ref2]中的实现方法，使用 $N*2-1$ 个桶 `B`，其中 `B[i]` 中记录所有当前高度为 $i$ 的溢出节点。加入了以上提到的两种优化，并且只处理了高度小于 $n$ 的溢出节点。
 
-值得注意的是论文 [^ref2] 中使用的桶是基于链表的栈，而 STL 中的 `stack` 默认的容器是 `deque`。经过简单的测试发现 `vector`，`deque`，`list` 在本题的实际运行过程中效率区别不大。
+值得注意的是论文[^ref2]中使用的桶是基于链表的栈，而 STL 中的 `stack` 默认的容器是 `deque`。经过简单的测试发现 `vector`，`deque`，`list` 在本题的实际运行过程中效率区别不大。
 
 ??? "LuoguP4722【模板】最大流 加强版/预流推进"
     ```cpp
@@ -540,71 +540,68 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u
       add_path(f, t, v);
       add_path(t, f, 0);
     }
-    int ht[N + 1], ex[N + 1], gap[N]; // 高度; 超额流; gap 优化 gap[i] 为高度为 i 的节点的数量
-    stack<int> B[N];                  // 桶 B[i] 中记录所有 ht[v]==i 的v
-    int level = 0;                    // 溢出节点的最高高度
-    int push(int u) {                 // 尽可能通过能够推送的边推送超额流
-      bool init = u == s;             // 是否在初始化
+    int ht[N + 1], ex[N + 1],
+        gap[N];  // 高度; 超额流; gap 优化 gap[i] 为高度为 i 的节点的数量
+    stack<int> B[N];       // 桶 B[i] 中记录所有 ht[v]==i 的v
+    int level = 0;         // 溢出节点的最高高度
+    int push(int u) {      // 尽可能通过能够推送的边推送超额流
+      bool init = u == s;  // 是否在初始化
       for (int i = h[u]; i; i = e[i].nex) {
         const int &v = e[i].t, &w = e[i].v;
-        if (!w || init == false && ht[u] != ht[v] + 1) // 初始化时不考虑高度差为1
+        if (!w || init == false && ht[u] != ht[v] + 1)  // 初始化时不考虑高度差为1
           continue;
-        int k = init ? w : min(w, ex[u]); // 取到剩余容量和超额流的最小值，初始化时可以使源的溢出量为负数。
-        if (v != s && v != t && !ex[v])
-          B[ht[v]].push(v), level = max(level, ht[v]);
-        ex[u] -= k, ex[v] += k, e[i].v -= k, e[i ^ 1].v += k; // push
-        if (!ex[u])
-          return 0; // 如果已经推送完就返回
+        int k = init ? w : min(w, ex[u]);
+        // 取到剩余容量和超额流的最小值，初始化时可以使源的溢出量为负数。
+        if (v != s && v != t && !ex[v]) B[ht[v]].push(v), level = max(level, ht[v]);
+        ex[u] -= k, ex[v] += k, e[i].v -= k, e[i ^ 1].v += k;  // push
+        if (!ex[u]) return 0;  // 如果已经推送完就返回
       }
       return 1;
     }
-    void relabel(int u) { // 重贴标签（高度）
+    void relabel(int u) {  // 重贴标签（高度）
       ht[u] = INF;
       for (int i = h[u]; i; i = e[i].nex)
-        if (e[i].v)
-          ht[u] = min(ht[u], ht[e[i].t]);
-      if (++ht[u] < n) { // 只处理高度小于 n 的节点
+        if (e[i].v) ht[u] = min(ht[u], ht[e[i].t]);
+      if (++ht[u] < n) {  // 只处理高度小于 n 的节点
         B[ht[u]].push(u);
         level = max(level, ht[u]);
-        ++gap[ht[u]]; // 新的高度，更新 gap
+        ++gap[ht[u]];  // 新的高度，更新 gap
       }
     }
     bool bfs_init() {
       memset(ht, 0x3f, sizeof(ht));
       queue<int> q;
       q.push(t), ht[t] = 0;
-      while (q.size()) { // 反向 BFS, 遇到没有访问过的结点就入队
+      while (q.size()) {  // 反向 BFS, 遇到没有访问过的结点就入队
         int u = q.front();
         q.pop();
         for (int i = h[u]; i; i = e[i].nex) {
           const int &v = e[i].t;
-          if (e[i ^ 1].v && ht[v] > ht[u] + 1)
-            ht[v] = ht[u] + 1, q.push(v);
+          if (e[i ^ 1].v && ht[v] > ht[u] + 1) ht[v] = ht[u] + 1, q.push(v);
         }
       }
-      return ht[s] != INF; // 如果图不连通，返回 0
+      return ht[s] != INF;  // 如果图不连通，返回 0
     }
     // 选出当前高度最大的节点之一, 如果已经没有溢出节点返回 0
     int select() {
       while (B[level].size() == 0 && level > -1) level--;
       return level == -1 ? 0 : B[level].top();
     }
-    int hlpp() { // 返回最大流
-      if (!bfs_init())
-        return 0; // 图不连通
+    int hlpp() {                  // 返回最大流
+      if (!bfs_init()) return 0;  // 图不连通
       memset(gap, 0, sizeof(gap));
       for (int i = 1; i <= n; i++)
-        if (ht[i] != INF) gap[ht[i]]++; // 初始化 gap
+        if (ht[i] != INF) gap[ht[i]]++;  // 初始化 gap
       ht[s] = n;
-      push(s); // 初始化预流
+      push(s);  // 初始化预流
       int u;
       while ((u = select())) {
         B[level].pop();
-        if (push(u)) { // 仍然溢出
+        if (push(u)) {  // 仍然溢出
           if (!--gap[ht[u]])
             for (int i = 1; i <= n; i++)
               if (i != s && i != t && ht[i] > ht[u] && ht[i] < n + 1)
-                ht[i] = n + 1; // 这里重贴成 n+1 的节点都不是溢出节点
+                ht[i] = n + 1;  // 这里重贴成 n+1 的节点都不是溢出节点
           relabel(u);
         }
       }
@@ -629,14 +626,14 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u
 
 ## 参考文献
 
-[^ref1]: Cherkassky B V, Goldberg A V. On implementing push-relabel method for the maximum flow problem\[C\]//International Conference on Integer Programming and Combinatorial Optimization. Springer, Berlin, Heidelberg, 1995: 157-171.
+[^ref1]: Cherkassky B V, Goldberg A V. On implementing push-relabel method for the maximum flow problem\[C]//International Conference on Integer Programming and Combinatorial Optimization. Springer, Berlin, Heidelberg, 1995: 157-171.
 
-[^ref2]: Ahuja R K, Kodialam M, Mishra A K, et al. Computational investigations of maximum flow algorithms\[J\]. European Journal of Operational Research, 1997, 97(3): 509-542.
+[^ref2]: Ahuja R K, Kodialam M, Mishra A K, et al. Computational investigations of maximum flow algorithms\[J]. European Journal of Operational Research, 1997, 97(3): 509-542.
 
-[^ref3]: Derigs U, Meier W. Implementing Goldberg's max-flow-algorithm—A computational investigation\[J\]. Zeitschrift für Operations Research, 1989, 33(6): 383-403.
+[^ref3]: Derigs U, Meier W. Implementing Goldberg's max-flow-algorithm—A computational investigation\[J]. Zeitschrift für Operations Research, 1989, 33(6): 383-403.
 
 ## 脚注
- 
-[^note1]: 英语文献中通常称为 “active“。
 
-[^note2]: 在英语文献中，一个结点的高度通常被称为 “distance label”。此处使用的 “高度” 这个术语源自算法导论中的相关章节。你可以在机械工业出版社算法导论（原书第 3 版）的 P432 脚注中找到这么做的理由。
+[^note1]: 英语文献中通常称为“active“。
+
+[^note2]: 在英语文献中，一个结点的高度通常被称为“distance label”。此处使用的“高度”这个术语源自算法导论中的相关章节。你可以在机械工业出版社算法导论（原书第 3 版）的 P432 脚注中找到这么做的理由。
