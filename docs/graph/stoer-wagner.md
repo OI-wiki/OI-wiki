@@ -1,4 +1,4 @@
-author: DanJoshua、opsiff
+author: DanJoshua, opsiff
 
 ## 概念
 
