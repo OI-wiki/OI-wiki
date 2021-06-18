@@ -200,7 +200,7 @@ Changes not staged for commit:
         modified:   README.md
 ```
 
-你会发现 `README.md` 同时处于暂存区和非暂存区。如果这时候执行 `git commit` 命令，只有处于暂存区的更改会被提交，而非暂存区的修改，则不会被提交。
+你会发现 `README.md` 同时处于暂存区和非暂存区。实际上，是否处于暂存区是对于更改而言的，而不是对于文件而言的，所以对 `README.md` 的前一次修改已被纳入暂存区，而后一次修改还没有。如果这时候执行 `git commit` 命令，只有处于暂存区的更改会被提交，而非暂存区的更改，则不会被提交。
 
 Git 给了一条提示，执行 `git add README.md` 就可以将非暂存区的更改放入暂存区了。
 
@@ -208,6 +208,8 @@ Git 给了一条提示，执行 `git add README.md` 就可以将非暂存区的�
     `git add` 命令会将对指定的文件的修改放入暂存区中。
     
     在多数情况下，用户更期望一次性将所有更改都放入暂存区中，这时候可以应用 `git add -A` 命令。该命令会将所有更改（包括未被纳入版本跟踪的文件，不包括被忽略的文件）放入暂存区。
+
+    如果只需更新已被纳入版本跟踪的文件，而不将未纳入版本跟踪的文件加入暂存区，可以使用 `git add -u`。
 
 现在将非暂存区的文件加入暂存区，将所有更改一并提交。
 
@@ -406,9 +408,9 @@ no changes added to commit (use "git add" and/or "git commit -a")
 This repo includes some c++ codes.
 ```
 
-`======` 作为分界线将两个分支的内容隔开，`<<<<<< HEAD` 标记和 `======` 之间的部分是 `master` 分支的内容，而 `======` 和 `>>>>>> readme-refactor` 标记之间的部分是 `readme-refactor` 分支的内容。
+`======` 作为分界线将两个分支的内容隔开，`<<<<<< HEAD` 标记和 `======` 之间的部分是 HEAD 指针（`master` 分支）的内容，而 `======` 和 `>>>>>> readme-refactor` 标记之间的部分是 `readme-refactor` 分支的内容。
 
-删除这些冲突解决标记，保存文件，将这些文件纳入暂存区后提交，就可以解决合并冲突了。
+通过编辑文本来处理冲突，删除这些冲突标记，保存文件，将这些文件纳入暂存区后提交，就可以解决合并冲突了。
 
 ```bash
 $ git add README.md # 将发生冲突的文件纳入暂存区
@@ -434,7 +436,7 @@ git merge <branch> --squash
 
 需要注意的是，在执行上述命令后，Git 只会将 B 分支的所有更改存入 A 分支的缓冲区内，接下来还需要执行一次 `git commit` 命令完成合并工作。
 
-使用 Squash 方式合并可以简化 commit 记录，但是会丢失一些原分支上的 commit 信息（包括原分支上每次 commit 的提交者，每次 commit 的具体更改等等）。
+使用 Squash 方式合并可以简化 commit 记录，但是会丢失具体到每一次 commit 的信息（每次 commit 的提交者，每次 commit 的更改等等），只留下合并为一个整体的信息（每次 commit 的提交者会以 "Co-authored-by" 的形式在提交信息中列出）。但如果是在 GitHub 上进行 Squash and Merge，原有的信息都可以在 Pull Request 中查看。
 
 #### Rebase（变基）
 
@@ -454,7 +456,7 @@ git checkout A
 git merge B
 ```
 
-使用 Rebase 完成合并可以让 commit 历史线性化。但是这样做的缺点也很明显：Rebase 会改变已有的 commit 历史，在多人协作时会有出现冲突或丢失更改的风险。
+使用 Rebase 完成合并可以让 commit 历史线性化，在适当的场景下正确地使用 Rebase 可以达到比 Merge 更好的效果。但是这样做会改变提交历史，在进行 Rebase 时和 Rebase 后再进行相关合并操作时都会增加出现冲突的可能，如果操作不当可能反而会使提交历史变得杂乱。因此，如果对 Rebase 操作没有充分的了解，不建议使用。
 
 ## 管理远程仓库
 
@@ -485,16 +487,16 @@ origin
 
 ### 从远程仓库拉取更改
 
-在远程仓库中，其他人可能会推送一些更改，执行 `git fetch` 命令可以将这些更改拉取到本地。
+在远程仓库中，其他人可能会推送一些更改，执行 `git fetch` 命令可以将这些更改获取到本地。
 
 ```bash
-$ git fetch <remote-name> # 拉取 <remote-name> 的数据
+$ git fetch <remote-name> # 获取 <remote-name> 的更改
 ```
 
-需要注意的是，`git fetch` 命令只会拉取远程仓库的信息，而不会将这些信息合并到本地仓库中。如果需要将这些更改进行合并，需要使用 `git pull` 命令。
+需要注意的是，`git fetch` 命令只会获取远程仓库的更改，而不会将这些更改合并到本地仓库中。如果需要将这些更改进行合并，可以使用 `git pull` 命令。在默认情况下，`git pull` 相当于 `git fetch` 后 `git merge FETCH_HEAD`。
 
 ```bash
-$ git pull <remote-name> <branch> # 抓取 <remote-name> 的数据并自动和本地的 <branch> 分支合并
+$ git pull <remote-name> <branch> # 获取 <remote-name> 的更改，然后将这些更改合并到 HEAD。
 ```
 
 ### 将更改推送到远程仓库
@@ -513,7 +515,7 @@ $ git push <remote-name> <branch> # 将 <branch> 分支的数据推送至 <remot
 
 在开始追踪前，你需要先执行 `git fetch <remote-name>` 将远程仓库的信息抓取到本地。
 
-接下来执行 `git switch <remote-name>/<remote-branch>` 切换到你想切换的远程分支。该操作会在本地自动创建名字为 `<remote-branch>` 的新分支，并设定该分支自动追踪相应的远程分支。
+接下来执行 `git switch <remote-branch>`，会在本地自动创建名字为 `<remote-branch>` 的新分支，并设定该分支自动追踪相应的远程分支。
 
 这时候执行 `git status` 命令，会提示当前分支与远程分支之间的差别。
 
