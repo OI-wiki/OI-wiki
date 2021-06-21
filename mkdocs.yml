@@ -71,6 +71,7 @@ nav:
     - Polygon: tools/polygon.md
     - OJ 工具: tools/oj-tool.md
     - LaTeX 入门: tools/latex.md
+    - Git: tools/git.md
   - 语言基础:
     - 语言基础简介: lang/index.md
     - C++ 基础:
