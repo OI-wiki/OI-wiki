@@ -563,9 +563,9 @@ $ git push <remote> <from>:<to> # 将本地 <from> 分支的更改推送至 <rem
 
 与 HTTP(S) 相比，使用 ssh 连接到远程仓库更为方便安全。
 
-在使用 ssh 连接到远程仓库之前，需要先在本地添加 ssh 密钥。具体操作方式可以参考 [missing semester 上的教程](https://missing-semester-cn.github.io/2020/command-line/#%E8%BF%9C%E7%AB%AF%E8%AE%BE%E5%A4%87)，这里不再展开。
+在使用 ssh 连接到远程仓库之前，需要先在本地添加 ssh 密钥。接下来需要将本地添加的 ssh 密钥的**公钥**上传到远程仓库账户。
 
-接下来需要将本地添加的 ssh 密钥的**公钥**上传到远程仓库。以 GitHub 为例，用户需要在个人设置里点击 **SSH and GPG keys**，随后点击 **New SSH key** 来添加 ssh 密钥。
+考虑到本文主要是给 **OI Wiki** 的贡献者提供一个使用 Git 的教程，这里直接给出 [GitHub Docs 提供的教程](https://docs.github.com/cn/github/authenticating-to-github/connecting-to-github-with-ssh)，供各位读者参考。
 
 完成以上步骤后，你就可以通过 ssh 连接到远程仓库了。下面就是一条通过 ssh 连接 clone **OI Wiki** 仓库的命令：
 
