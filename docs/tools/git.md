@@ -491,13 +491,13 @@ origin
 
 ```bash
 $ git remote show origin
-* 远程 origin
-  获取地址：git@github.com:OI-wiki/OI-wiki.git
-  推送地址：git@github.com:OI-wiki/OI-wiki.git
-  HEAD 分支：master
-  远程分支：
-    git             已跟踪
-    master          已跟踪
+* remote origin
+  Fetch URL: git@github.com:OI-wiki/OI-wiki.git
+  Push  URL: git@github.com:OI-wiki/OI-wiki.git
+  HEAD branch: master
+  Remote branches:
+    git             tracked
+    master          tracked
   ...
  
 ```
