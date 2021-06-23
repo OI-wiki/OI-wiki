@@ -91,7 +91,7 @@ $a$ 是 $p$ 的一个 [原根](./primitive-root.md)，因此 $a$ 模 $p$ 的指�
 $$
 \begin{aligned}
 (a+b)^p &\equiv \sum_{i=0}^{p}\mathrm C_p^i a^{p-i}b^i \\
-&\equiv \sum_{i=0}^{p}\frac{p!}{(p-i)!i!}a^{p-i} \\
+&\equiv \sum_{i=0}^{p}\frac{p!}{(p-i)!i!}a^{p-i}b^i \\
 &\equiv a^p+b^p\pmod p
 \end{aligned}
 $$
