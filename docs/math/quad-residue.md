@@ -86,7 +86,7 @@ $a$ 是 $p$ 的一个 [原根](./primitive-root.md)，因此 $a$ 模 $p$ 的指�
 
 ### 证明
 
-- 定理 1:$(a+b)^p\equiv a^p+b^p\pmod p$
+- 定理 1：$(a+b)^p\equiv a^p+b^p\pmod p$
 
 $$
 \begin{aligned}
