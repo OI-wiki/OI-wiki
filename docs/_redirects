@@ -38,7 +38,6 @@
 /topic/cmd /tools/cmd
 /topic/problemsetting /contest/problemsetting
 /misc/io /contest/io
-/misc/stern-brocot /math/stern-brocot /math/number-theory/stern-brocot
 /math/prime /math/number-theory/prime
 /math/meissel-lehmer /math/number-theory/meissel-lehmer
 /math/gcd /math/number-theory/gcd
