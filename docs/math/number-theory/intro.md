@@ -2,59 +2,59 @@
 
 ## 整除
 
-整除的定义：设 $a,b\in Z$ ，$a\neq 0$。如果 $\exists q\in \mathbb{Z}$ ，使得 $b=aq$ ，那么就说b可被a整除，记作$a\mid b$，且称b是a的倍数，a是b的约数（因数）。
+整除的定义：设 $a,b\in Z$，$a\neq 0$。如果 $\exists q\in \mathbb{Z}$，使得 $b=aq$，那么就说 b 可被 a 整除，记作 $a\mid b$，且称 b 是 a 的倍数，a 是 b 的约数（因数）。
 
-b不被a整除记作$a\nmid b$。
+b 不被 a 整除记作 $a\nmid b$。
 
 整除的性质：
 
-$$ a\mid b\Leftrightarrow -a\mid b \Leftrightarrow a\mid -b\Leftrightarrow \left|a\right|\mid \left|b\right| $$
+$a\mid b\Leftrightarrow -a\mid b \Leftrightarrow a\mid -b\Leftrightarrow \left|a\right|\mid \left|b\right|$
 
-$$ a\mid b\land b\mid c \Rightarrow a\mid c$$
+$a\mid b\land b\mid c \Rightarrow a\mid c$
 
-$$ a\mid b\land a\mid c \Leftrightarrow \forall x,y\in\mathbb{Z}, a\mid xb+yc$$
+$a\mid b\land a\mid c \Leftrightarrow \forall x,y\in\mathbb{Z}, a\mid xb+yc$
 
-$$ a\mid b\land b\mid a \Rightarrow b=\pm a$$
+$a\mid b\land b\mid a \Rightarrow b=\pm a$
 
-设 $m\neq 0$ ，那么 $a\mid b\Leftrightarrow ma\mid mb$。
+设 $m\neq 0$，那么 $a\mid b\Leftrightarrow ma\mid mb$。
 
-设 $b\neq 0$ ，那么 $a\mid b\Rightarrow \left|a\right|\leq \left|b\right|$。
+设 $b\neq 0$，那么 $a\mid b\Rightarrow \left|a\right|\leq \left|b\right|$。
 
-设 $a\neq 0, b=qa+c$ ，那么 $a\mid b\Leftrightarrow a\mid c$。
+设 $a\neq 0, b=qa+c$，那么 $a\mid b\Leftrightarrow a\mid c$。
 
-0是所有非0整数的倍数。对于整数$b\neq 0$，b的约数只有有限个。
+0 是所有非 0 整数的倍数。对于整数 $b\neq 0$，b 的约数只有有限个。
 
-显然约数（显然因数）：对于整数$b\neq 0$，$\pm 1$、$\pm b$是b的显然约数。当$b=\pm 1$时，b只有两个显然约数。
+显然约数（显然因数）：对于整数 $b\neq 0$，$\pm 1$、$\pm b$ 是 b 的显然约数。当 $b=\pm 1$ 时，b 只有两个显然约数。
 
-对于整数$b\neq 0$，b的其他约数称为真约数（真因数、非显然约数、非显然因数）。
+对于整数 $b\neq 0$，b 的其他约数称为真约数（真因数、非显然约数、非显然因数）。
 
 约数的性质：
 
-设整数$b\neq 0$。当d遍历b的全体约数的时候，$\frac{b}{d}$也遍历b的全体约数。
+设整数 $b\neq 0$。当 d 遍历 b 的全体约数的时候，$\frac{b}{d}$ 也遍历 b 的全体约数。
 
-若$b>0$，则当d遍历b的全体正约数的时候，$\frac{b}{d}$也遍历b的全体正约数。
+若 $b>0$，则当 d 遍历 b 的全体正约数的时候，$\frac{b}{d}$ 也遍历 b 的全体正约数。
 
 ## 带余数除法
 
-余数的定义：设a、b为两个给定的整数，$a\neq 0$。设d是一个给定的整数。那么，一定存在唯一的一对整数q和r，满足：
+余数的定义：设 a、b 为两个给定的整数，$a\neq 0$。设 d 是一个给定的整数。那么，一定存在唯一的一对整数 q 和 r，满足：
 
 $b=qa+r, d\leq r<\left|a\right|+d$
 
-无论整数d取何值，r统称为余数。$a\mid b$等价于$a\mid r$。
+无论整数 d 取何值，r 统称为余数。$a\mid b$ 等价于 $a\mid r$。
 
-一般情况下，d取0，此时等式：
+一般情况下，d 取 0，此时等式：
 
 $b=qa+r, 0\leq r<\left|a\right|$
 
-称为带余数除法（带余除法）。这里的余数r称为最小非负余数。
+称为带余数除法（带余除法）。这里的余数 r 称为最小非负余数。
 
 余数往往还有两种常见取法：
 
-绝对最小余数：d取a的绝对值的一半的相反数。
+绝对最小余数：d 取 a 的绝对值的一半的相反数。
 
 $b=qa+r, -\frac{\left|a\right|}{2}\leq r<\left|a\right|-\frac{\left|a\right|}{2}$
 
-最小正余数：d取1。
+最小正余数：d 取 1。
 
 $b=qa+r, 1\leq r<\left|a\right|+1$
 
@@ -62,49 +62,49 @@ $b=qa+r, 1\leq r<\left|a\right|+1$
 
 余数的性质：
 
-任一整数被正整数a除后，余数一定是且仅是0到a-1这a个数中的一个。
+任一整数被正整数 a 除后，余数一定是且仅是 0 到 a-1 这 a 个数中的一个。
 
-相邻的a个整数被正整数a除后，恰好取到上述a个余数。特别地，一定有且仅有一个数被a整除。
+相邻的 a 个整数被正整数 a 除后，恰好取到上述 a 个余数。特别地，一定有且仅有一个数被 a 整除。
 
 ## 最大公约数与最小公倍数
 
 ### 互素
 
-关于公约数、公倍数、最大公约数与最小公倍数，四个名词的定义与性质，见 [最大公约数](./gcd.md) 。
+关于公约数、公倍数、最大公约数与最小公倍数，四个名词的定义与性质，见 [最大公约数](./gcd.md)。
 
-两个整数互素（既约）的定义：若$gcd\left(a_1,a_2\right)=1$，则称$a_1$和$a_2$互素（既约）。
+两个整数互素（既约）的定义：若 $gcd\left(a_1,a_2\right)=1$，则称 $a_1$ 和 $a_2$ 互素（既约）。
 
-多个整数互素（既约）的定义：若$gcd\left(a_1,\ldots,a_k\right)=1$，则称$a_1,\ldots,a_k$互素（既约）。
+多个整数互素（既约）的定义：若 $gcd\left(a_1,\ldots,a_k\right)=1$，则称 $a_1,\ldots,a_k$ 互素（既约）。
 
-多个整数互素，不一定两两互素。例如6、10和15互素，但是任意两个都不互素。
+多个整数互素，不一定两两互素。例如 6、10 和 15 互素，但是任意两个都不互素。
 
-互素的性质与最大公约数理论：裴蜀定理（Bézout's identity）。见 [裴蜀定理](./bezouts.md) 。
+互素的性质与最大公约数理论：裴蜀定理（Bézout's identity）。见 [裴蜀定理](./bezouts.md)。
 
 ### 辗转相除法
 
-辗转相除法是一种算法，也称Euclid算法。见 [最大公约数](./gcd.md) 。
+辗转相除法是一种算法，也称 Euclid 算法。见 [最大公约数](./gcd.md)。
 
 ## 素数与合数
 
-关于素数的算法见 [素数](./prime.md) 。
+关于素数的算法见 [素数](./prime.md)。
 
-设整数$p\neg 0,\pm 1$。如果p除了显然约数外没有其他约数，那么称p为素数（不可约数）。
+设整数 $p\neg 0,\pm 1$。如果 p 除了显然约数外没有其他约数，那么称 p 为素数（不可约数）。
 
-若整数$a\neg 0,\pm 1$且a不是素数，则称a为合数。
+若整数 $a\neg 0,\pm 1$ 且 a 不是素数，则称 a 为合数。
 
-p和$-p$总是同为素数或者同为合数。**如果没有特别说明，素数总是指正的素数。**
+p 和 $-p$ 总是同为素数或者同为合数。**如果没有特别说明，素数总是指正的素数。**
 
 整数的因数是素数，则该素数称为该整数的素因数（素约数）。
 
 素数与合数的简单性质：
 
-大于1的整数a是合数，等价于a可以表示为d和e的乘积，d和e都是大于1且小于a的整数。
+大于 1 的整数 a 是合数，等价于 a 可以表示为 d 和 e 的乘积，d 和 e 都是大于 1 且小于 a 的整数。
 
-如果素数q有大于1的约数d，那么d与q相等。
+如果素数 q 有大于 1 的约数 d，那么 d 与 q 相等。
 
-大于1的整数a一定可以表示为素数的乘积。
+大于 1 的整数 a 一定可以表示为素数的乘积。
 
-对于合数a，一定存在素数p，$p\mid a, p\leq\sqrt{a}$。
+对于合数 a，一定存在素数 p，$p\mid a, p\leq\sqrt{a}$。
 
 素数有无穷多个。
 
@@ -112,7 +112,7 @@ p和$-p$总是同为素数或者同为合数。**如果没有特别说明，素�
 
 算术基本引理：
 
-设p是素数，$p\mid a_1a_2$，那么$p\mid a_1$和$p\mid a_2$至少有一个成立。
+设 p 是素数，$p\mid a_1a_2$，那么 $p\mid a_1$ 和 $p\mid a_2$ 至少有一个成立。
 
 算术基本引理是素数的本质属性，也是素数的真正定义。
 
@@ -120,78 +120,76 @@ p和$-p$总是同为素数或者同为合数。**如果没有特别说明，素�
 
 算术基本定理（唯一分解定理）：
 
-设正整数a，那么必有表示：
+设正整数 a，那么必有表示：
 
-$$a=p_1p_2\ldots p_s$$
+$a=p_1p_2\ldots p_s$
 
-其中$p_j\left(1\leq j\leq s\right)$是素数。并且在不计次序的意义下，该表示唯一。
+其中 $p_j\left(1\leq j\leq s\right)$ 是素数。并且在不计次序的意义下，该表示唯一。
 
 标准素因数分解式：
 
 将上述表示中，相同的素数合并，可得：
 
-$$a={p_1}^{\alpha_1}{p_2}^{\alpha_2}\ldots {p_s}^{\alpha_s}, p_1<p_2<\ldots<p_s$$
+$a={p_1}^{\alpha_1}{p_2}^{\alpha_2}\ldots {p_s}^{\alpha_s}, p_1<p_2<\ldots<p_s$
 
-称为正整数a的标准素因数分解式。
+称为正整数 a 的标准素因数分解式。
 
 算术基本定理和算术基本引理，两个定理是等价的。
 
 ## 同余
 
-同余的定义：设整数$m\neg 0$。若$m\mid a-b$，称m为模数（模），a同余于b模m，b是a对模m的剩余。记作：
+同余的定义：设整数 $m\neg 0$。若 $m\mid a-b$，称 m 为模数（模），a 同余于 b 模 m，b 是 a 对模 m 的剩余。记作：
 
-$$a\equiv b \mod m$$
+$a\equiv b \mod m$
 
-否则，a不同余于b模m，b不是a对模m的剩余。记作：
+否则，a 不同余于 b 模 m，b 不是 a 对模 m 的剩余。记作：
 
-$$a\nequiv b \mod m$$
+$a\nequiv b \mod m$
 
-这样的等式，称为模m的同余式，简称同余式。
+这样的等式，称为模 m 的同余式，简称同余式。
 
 根据整除的性质，上述同余式也等价于：
 
-$$a\equiv b \mod \left(-m\right)$$
+$a\equiv b \mod \left(-m\right)$
 
 **如果没有特别说明，模数总是正整数。**
 
-式中的b是a对模m的剩余，这个概念与余数完全一致。通过限定b的范围，相应的有a对模m的最小非负剩余、绝对最小剩余、最小正剩余。
+式中的 b 是 a 对模 m 的剩余，这个概念与余数完全一致。通过限定 b 的范围，相应的有 a 对模 m 的最小非负剩余、绝对最小剩余、最小正剩余。
 
 同余的性质：
 
-整数a同余于整数b模m，等价于a和b被m除，余数相等。
+整数 a 同余于整数 b 模 m，等价于 a 和 b 被 m 除，余数相等。
 
 同余式可以相加减，可以相乘。
 
-设正整数d整除m。如果a与b模m同余，则它们模d也同余。
+设正整数 d 整除 m。如果 a 与 b 模 m 同余，则它们模 d 也同余。
 
-设整数$d\neg 0$，那么
+设整数 $d\neg 0$，那么
 
-$$a\equiv b \mod m$$
+$a\equiv b \mod m$
 
 等价于
 
-$$da\equiv db \mod dm$$
+$da\equiv db \mod dm$
 
 同余式
 
-$$ca\equiv cb \mod m$$
+$ca\equiv cb \mod m$
 
 等价于
 
-$$a\equiv b \mod \frac{m}{gcd\left(c,m\right)}$$
+$a\equiv b \mod \frac{m}{gcd\left(c,m\right)}$
 
-特别地，当c与m互素时，相当于同余式两边直接消去c。
+特别地，当 c 与 m 互素时，相当于同余式两边直接消去 c。
 
-还有性质是乘法逆元。见 [乘法逆元](./inverse.md) 。
+还有性质是乘法逆元。见 [乘法逆元](./inverse.md)。
 
-## C语言的整数除法和取模运算
+## C 语言的整数除法和取模运算
 
-在C语言中，整除除法和取模运算，与数学上习惯的取模和除法不一致。
+在 C 语言中，整除除法和取模运算，与数学上习惯的取模和除法不一致。
 
-C语言中的整数除法不是一律向下取整，而是向0取整。取模也同理。
+C 语言中的整数除法不是一律向下取整，而是向 0 取整。取模也同理。
 
 因此，一个负数模一个正数，结果会得到一个负数，这与数学上的习惯不同。
 
-C语言对于除数或模数为负数的行为是未定义行为，结果未定。这一点也要特别注意。
-
-
+C 语言对于除数或模数为负数的行为是未定义行为，结果未定。这一点也要特别注意。
