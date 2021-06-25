@@ -286,10 +286,10 @@ $$
     > \delta_m\left(b^Z\right)=W
     > $$
     >
-    > 又因为显然有 $\gcd(Y,W)=1$，$YZ=\operatorname{lcm}\big(\delta_p(a),\delta_p(b)\big)$，则再由阶的 **性质 $1$**，可得：
+    > 又因为显然有 $\gcd(Y,W)=1$，$YW=\operatorname{lcm}\big(\delta_p(a),\delta_p(b)\big)$，则再由阶的 **性质 $1$**，可得：
     >
     > $$
-    > \delta_m\left(a^Xb^Z\right)=\delta_m\left(a^X\right)\delta_m\left(b^Z\right)=YZ=\operatorname{lcm}\big(\delta_p(a),\delta_p(b)\big)
+    > \delta_m\left(a^Xb^Z\right)=\delta_m\left(a^X\right)\delta_m\left(b^Z\right)=YW=\operatorname{lcm}\big(\delta_p(a),\delta_p(b)\big)
     > $$
     >
     > 于是令 $c=a^Xb^Z$ 则原命题得证。
