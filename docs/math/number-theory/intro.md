@@ -166,7 +166,7 @@ $a\equiv b \mod \left(-m\right)$
 
 设整数 $d\neg 0$，那么
 
-$a\equiv b \mod m$
+$a\equiv b \pmod m$
 
 等价于
 
