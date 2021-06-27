@@ -74,7 +74,7 @@ $b=qa+r, 1\leq r<\left|a\right|+1$
 
 两个整数互素（既约）的定义：若 $\gcd\left(a_1,a_2\right)=1$，则称 $a_1$ 和 $a_2$ 互素（既约）。
 
-多个整数互素（既约）的定义：若 $gcd\left(a_1,\ldots,a_k\right)=1$，则称 $a_1,\ldots,a_k$ 互素（既约）。
+多个整数互素（既约）的定义：若 $\gcd\left(a_1,\ldots,a_k\right)=1$，则称 $a_1,\ldots,a_k$ 互素（既约）。
 
 多个整数互素，不一定两两互素。例如 6、10 和 15 互素，但是任意两个都不互素。
 
@@ -140,17 +140,17 @@ $a={p_1}^{\alpha_1}{p_2}^{\alpha_2}\ldots {p_s}^{\alpha_s}, p_1<p_2<\ldots<p_s$
 
 同余的定义：设整数 $m\neg 0$。若 $m\mid a-b$，称 m 为模数（模），a 同余于 b 模 m，b 是 a 对模 m 的剩余。记作：
 
-$a\equiv b \mod m$
+$a\equiv b \pmod m$
 
 否则，a 不同余于 b 模 m，b 不是 a 对模 m 的剩余。记作：
 
-$a\not\equiv b \mod m$
+$a\not\equiv b \pmod m$
 
 这样的等式，称为模 m 的同余式，简称同余式。
 
 根据整除的性质，上述同余式也等价于：
 
-$a\equiv b \mod \left(-m\right)$
+$a\equiv b \pmod \left(-m\right)$
 
 **如果没有特别说明，模数总是正整数。**
 
@@ -170,15 +170,15 @@ $a\equiv b \pmod m$
 
 等价于
 
-$da\equiv db \mod dm$
+$da\equiv db \pmod dm$
 
 同余式
 
-$ca\equiv cb \mod m$
+$ca\equiv cb \pmod m$
 
 等价于
 
-$a\equiv b \mod \frac{m}{gcd\left(c,m\right)}$
+$a\equiv b \pmod \frac{m}{\gcd\left(c,m\right)}$
 
 特别地，当 c 与 m 互素时，相当于同余式两边直接消去 c。
 
