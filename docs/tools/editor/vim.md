@@ -20,7 +20,7 @@ Linux 系统通常自带 Vim，打开终端输入 `vim` 即可启用。
 
 #### Linux
 
-系统自带的 `vim`（即直接使用 `apt install vim` 得到的）可能是 `vim-tiny` 或者 `vim-basic`，缺少一些功能（如部分语言高亮、剪贴板支持等），具体可通过 `vim --version` 查看。此时，可以尝试安装 `vim-gtk3`，以获得更多的功能。
+系统自带的 `vim`（即使用包管理器安装得到的），可能是 `vim-tiny` 或者 `vim-basic`，它们会缺少一些功能（如部分语言高亮、剪贴板支持等），具体可通过 `vim --version` 查看。此时，可以尝试安装 `vim-gtk3`，以获得更多的功能。
 
 在终端输入
 
@@ -28,7 +28,7 @@ Linux 系统通常自带 Vim，打开终端输入 `vim` 即可启用。
 vim
 ```
 
-如果出现 Help poor children in Uganda!（帮助乌干达的可怜儿童！）的一长串文本，说明安装成功。[^note1]
+如果在屏幕中间出现包括 Vim 版本号、维护人员以及一些类似「Help poor children in Uganda!」或者「帮助乌干达的可怜儿童！」的文字[^note1]，说明 Vim 已经安装成功。
 
 ## 基础篇：Vim 的模式与常用键位
 
@@ -670,4 +670,4 @@ Vim 是一款非常优秀的文本编辑器，但由于其陡峭的学习曲线�
 
 ## 参考资料与注释
 
-[^note1]: 有些人可能会问：“为什么是乌干达的儿童？”这个问题 [知乎](https://www.zhihu.com/question/24892609) 上有人问过并得到了简要回答；简书上也有人去深入研究过，并写了一篇文章 [《Vim 和乌干达的儿童》](https://web.archive.org/web/20200220074059if_/https://www.jianshu.com/p/b4daf62c4b59)。感兴趣的可以了解一下。
+[^note1]: 有些人可能会问：“为什么是乌干达的儿童？”，这个问题知乎上[有人问过](https://www.zhihu.com/question/24892609)并得到了简要回答；简书上也有人去深入研究过，并写了一篇文章 [《Vim 和乌干达的儿童》](https://web.archive.org/web/20200220074059if_/https://www.jianshu.com/p/b4daf62c4b59)。感兴趣的可以了解一下。
