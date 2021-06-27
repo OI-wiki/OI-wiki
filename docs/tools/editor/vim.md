@@ -1,4 +1,4 @@
-author: Enter-tainer, ouuan, Xeonacid, Ir1d, partychicken, ChungZH, LuoshuiTianyi, Kewth, s0cks5, Doveqise, StudyingFather, SukkaW, SodaCris
+author: Enter-tainer, ouuan, Xeonacid, Ir1d, partychicken, ChungZH, LuoshuiTianyi, Kewth, s0cks5, Doveqise, StudyingFather, SukkaW, SodaCris, SkyeYoung
 
 Vim，编辑器之神。
 
@@ -34,11 +34,7 @@ vim
 
 Vim 的基础操作在 Vim 自带的教程里将会讲述。打开终端输入 `vimtutor` 即可进入教程。
 
-```shell
-vimtutor
-```
-
-即可进入教程。这些操作通常需要二三十分钟来大致熟悉。
+这些操作通常需要二三十分钟来大致熟悉。
 
 ### 插入模式 (insert)
 
@@ -56,6 +52,8 @@ vimtutor
 有的时候用户只是需要进入普通模式下按一次小命令，按两次快捷键来回切换又略显浪费时间。Vim 提供了「插入 - 普通模式」来解决这个问题。在插入模式下，按<kbd>Ctrl</kbd>+<kbd>o</kbd>即可进入此模式，执行完一次操作后又会自动回到插入模式。
 
 ### 普通模式 (normal)
+
+进入 Vim 后的默认模式。
 
 Vim 的命令大部分都是在普通模式下完成的。普通模式下可不能乱按，可以说每个键都是命令。
 
@@ -128,7 +126,7 @@ asdasdasd
 
 如果命令形式是 `:! command`，则命令将在 bash 终端执行。
 
-### 可视模式
+### 可视模式（visual）
 
 按 `v` 进入可视模式，多用于选中区域。
 
@@ -301,6 +299,8 @@ Vim 与 Emacs 之所以能成为两大巅峰神器，是因为其高度的扩展
 
 虽然考场上基本上不能用插件，但是日常的学习中，插件能大大提高效率，而且一些插件的部分功能可以通过 Vim 自带实现以及配置实现。
 
+下面是一些插件的推荐和相关配置，你也可以通过搜索引擎和 Github 找到更多感兴趣的插件。
+
 ### 插件管理器 vim-plug
 
 以前，安装 Vim 的插件十分麻烦且易出错。在这种情况下，一款强大的插件管理器 **vim-plug** 应运而生。
@@ -404,6 +404,8 @@ vim-airline 的源码托管在 [vim-airline/vim-airline](https://github.com/vim-
 ## 配置篇
 
 Vim 的配置语言称为 vim script，语法和 Vim 命令行下的命令一模一样，存储在配置文件中。基础语法就是 `set` 开启选项，`call xxx()` 调用函数，`func` 与 `endfunc` 定义函数，`exec` 执行命令，`if` 和 `endif` 描述以下条件表达式，`"` 表示注释，`source` 表示应用。Vim 开启时会自动执行配置文件中的每一行语句。
+
+下面是一些推荐的配置以供参考，你可以通过搜索引擎或 Github 找到更多可参考的配置。
 
 ### 基础配置
 
@@ -667,6 +669,7 @@ Vim 是一款非常优秀的文本编辑器，但由于其陡峭的学习曲线�
 - [原作者提供的配置](https://github.com/LuoshuiTianyi/Vim-for-OIWiki)
 - [Vim 调试：termdebug 入门](https://fzheng.me/2018/05/28/termdebug/)
 - [Vim scripting cheatsheet](https://devhints.io/vimscript)
+- [Learn Vimscript the Hard Way](https://learnvimscriptthehardway.stevelosh.com)
 
 ## 参考资料与注释
 
