@@ -669,4 +669,4 @@ Vim 是一款非常优秀的文本编辑器，但由于其陡峭的学习曲线�
 
 ## 参考资料与注释
 
-[^note1]: 有些人可能会问：“为什么是乌干达的儿童？”，这个问题知乎上[有人问过](https://www.zhihu.com/question/24892609)并得到了简要回答；简书上也有人去深入研究过，并写了一篇文章 [《Vim 和乌干达的儿童》](https://web.archive.org/web/20200220074059if_/https://www.jianshu.com/p/b4daf62c4b59)。感兴趣的可以了解一下。
+[^note1]: 有些人可能会问：“为什么是乌干达的儿童？”，这个问题 [知乎](https://www.zhihu.com/question/24892609) 上有人问过并得到了简要回答；简书上也有人去深入研究过，并写了一篇文章 [《Vim 和乌干达的儿童》（Web Archive）](https://web.archive.org/web/20200220074059if_/https://www.jianshu.com/p/b4daf62c4b59)。感兴趣的可以了解一下。
