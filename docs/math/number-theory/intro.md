@@ -72,7 +72,7 @@ $b=qa+r, 1\leq r<\left|a\right|+1$
 
 ### 互素
 
-两个整数互素（既约）的定义：若 $gcd\left(a_1,a_2\right)=1$，则称 $a_1$ 和 $a_2$ 互素（既约）。
+两个整数互素（既约）的定义：若 $\gcd\left(a_1,a_2\right)=1$，则称 $a_1$ 和 $a_2$ 互素（既约）。
 
 多个整数互素（既约）的定义：若 $gcd\left(a_1,\ldots,a_k\right)=1$，则称 $a_1,\ldots,a_k$ 互素（既约）。
 
