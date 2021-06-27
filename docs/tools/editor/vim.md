@@ -28,7 +28,7 @@ Linux 系统通常自带 Vim，打开终端输入 `vim` 即可启用。
 vim
 ```
 
-如果在屏幕中间出现包括 Vim 版本号、维护人员以及一些类似「Help poor children in Uganda!」或者「帮助乌干达的可怜儿童！」的文字[^note1]，说明 Vim 已经安装成功。
+如果在屏幕中间出现包括 Vim 版本号、维护人员以及一些类似「Help poor children in Uganda!」或者「帮助乌干达的可怜儿童！」等文字[^note1]，说明 Vim 已经安装成功。
 
 ## 基础篇：Vim 的模式与常用键位
 
