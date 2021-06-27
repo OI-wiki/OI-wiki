@@ -144,7 +144,7 @@ $a\equiv b \mod m$
 
 否则，a 不同余于 b 模 m，b 不是 a 对模 m 的剩余。记作：
 
-$a\nequiv b \mod m$
+$a\not\equiv b \mod m$
 
 这样的等式，称为模 m 的同余式，简称同余式。
 
