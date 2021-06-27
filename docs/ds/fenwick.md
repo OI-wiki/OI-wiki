@@ -45,7 +45,7 @@ int lowbit(int x) {
 }
 ```
 
-注释说明了 `lowbit` 的意思，对于 $a[88]$： 
+注释说明了 `lowbit` 的意思，对于 $x=88$： 
 $88_{(10)}=1011000_{(2)}$   
 发现第一个 $1$ 以及他后面的 $0$ 组成的二进制是 $1000$   
  $1000_{(2)} = 8_{(10)}$   
@@ -67,7 +67,7 @@ void add(int x, int k) {
 前缀求和：
 
 ```cpp
-int getsum(int x) {  // a[1]……a[x]的和
+int getsum(int x) {  // a[1]..a[x]的和
   int ans = 0;
   while (x >= 1) {
     ans = ans + c[x];
