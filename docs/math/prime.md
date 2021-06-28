@@ -221,7 +221,7 @@ int main() {
 
 #### 求 n 以内因子数最多的数
 
-<http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemId=1562>
+<https://zoj.pintia.cn/problem-sets/91827364500/problems/91827366061>
 
 思路同上，只不过要改改 dfs 的返回条件。注意这样的题目的数据范围，我一开始用了 int，应该是溢出了，在循环里可能就出不来了就超时了。上代码，0ms 过。注释就没必要写了上面写的很清楚了。
 
