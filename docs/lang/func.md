@@ -30,7 +30,7 @@ int some_function(int, int); // 声明
 int some_function(int x, int y) { // 定义
     int result = 2 * x + y;
     return result;
-    // result = 3; // won't be executed
+    result = 3; // 这条语句不会被执行
 }
 ```
 
@@ -45,7 +45,7 @@ int some_function(int x, int y) {
 }
 ```
 
-如果函数不需要有返回值，则将函数的返回值类型标为 `void`；如果函数不需要参数，则可以将参数列表置空。没有返回值的函数，同样可以用 `return` 语句结束函数的执行。
+如果函数不需要有返回值，则将函数的返回值类型标为 `void`；如果函数不需要参数，则可以将参数列表置空。同样，无返回值的函数执行到 `return;` 语句也会结束执行。
 
 ```cpp
 void say_hello() {
@@ -53,7 +53,7 @@ void say_hello() {
     cout << "hello!\n";
     cout << "hello!\n";
     return; 
-    // cout << "hello!\n"; // won't be executed
+    cout << "hello!\n"; // 这条语句不会被执行
 }
 ```
 
@@ -70,7 +70,7 @@ int foo(int, int);
 
 /* ... */
 
-void foo(int x, int y) { x = x * 2; y = y + 3; return x + y; }
+void foo(int x, int y) { x = x * 2; y = y + 3; }
 
 /* ... */
 
