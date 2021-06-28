@@ -32,7 +32,7 @@ author: linehk
 
 ### 大 Θ 符号
 
-对于给定的一个函数 $g(n)$，$f(n)=\Theta(g(n))$，当且仅当 $\exists c_1,c_2,n_0>0$，使得 $\forall n \ge n_0, 0\le c_1\cdot g(n)\le f(n) \le c_2\cdot g(n)$。
+对于函数 $f(n)$ 和 $g(n)$，$f(n)=\Theta(g(n))$，当且仅当 $\exists c_1,c_2,n_0>0$，使得 $\forall n \ge n_0, 0\le c_1\cdot g(n)\le f(n) \le c_2\cdot g(n)$。
 
 也就是说，如果函数 $f(n)=\Theta(g(n))$，那么我们能找到两个正数 $c_1, c_2$ 使得 $f(n)$ 被 $c_1\cdot g(n)$ 和 $c_2\cdot g(n)$ 夹在中间。
 
@@ -40,7 +40,7 @@ author: linehk
 
 ### 大 O 符号
 
-$\Theta$ 符号同时给了我们一个函数的上下界，如果我们只有一个函数的渐进上界的时候，我们使用 $O$ 符号。对于一个给定的函数 $g(n)$, 我们把它记作 $O(g(n))$。$f(n)=O(g(n))$，当且仅当 $\exists c,n_0$，使得 $\forall n \ge n_0,0\le f(n)\le c\cdot g(n)$。
+$\Theta$ 符号同时给了我们一个函数的上下界，如果只知道一个函数的渐进上界而不知道其渐进下界，可以使用 $O$ 符号。$f(n)=O(g(n))$，当且仅当 $\exists c,n_0$，使得 $\forall n \ge n_0,0\le f(n)\le c\cdot g(n)$。
 
 研究时间复杂度时通常会使用 $O$ 符号，因为我们关注的通常是程序用时的上界，而不关心其用时的下界。
 
