@@ -94,9 +94,9 @@ foo(b, 12); // 调用 foo
 #include <iostream>
 
 void say_hello() {
-    cout << "hello!\n";
-    cout << "hello!\n";
-    cout << "hello!\n";
+    std::cout << "hello!\n";
+    std::cout << "hello!\n";
+    std::cout << "hello!\n";
 }
 
 int main() {
