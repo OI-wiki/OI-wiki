@@ -102,193 +102,145 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 ### 例题 [Luogu P3865【模板】ST 表](https://www.luogu.com.cn/problem/P3865)
 
-??? note "参考代码"
+如果数据随机，则我们还可以暴力在笛卡尔树上查找。此时的时间复杂度为期望 $O(n)-O(\log n)$，并且实际使用时这种算法的常数往往很小。
+
+## 基于状压的线性 RMQ 算法
+
+### 隐性要求
+
+- 序列的长度 $n$ 满足 $\log_2{n} \leq 64$
+
+### 前置知识
+
+- [Sparse Table](../ds/sparse-table.md)
+
+- 基本位运算
+
+- 前后缀极值
+
+### 算法原理
+
+将原序列 $A[1\cdots n]$ 分成每块长度为 $O(\log_2{n})$ 的 $O(\frac{n}{\log_2{n}})$ 块。
+
+> 听说令块长为 $1.5\times \log_2{n}$ 时常数较小。
+
+记录每块的最大值，并用 ST 表维护块间最大值，复杂度 $O(n)$。
+
+记录块中每个位置的前、后缀最大值 $Pre[1\cdots n], Sub[1\cdots n]$（$Pre[i]$ 即 $A[i]$ 到其所在块的块首的最大值），复杂度 $O(n)$。
+
+若查询的 $l,r$ 在两个不同块上，分别记为第 $bl,br$ 块，则最大值为 $[bl+1,br-1]$ 块间的最大值，以及 $Sub[l]$ 和 $Pre[r]$ 这三个数的较大值。
+
+现在的问题在于若 $l,r$ 在同一块中怎么办。
+
+将 $A[1\cdots r]$ 依次插入单调栈中，记录下标和值，满足值从栈底到栈顶递减，则 $A[l,r]$ 中的最大值为从栈底往上，单调栈中第一个满足其下标 $p \geq l$ 的值。
+
+由于 $A[p]$ 是 $A[l,r]$ 中的最大值，因而在插入 $A[p]$ 时，$A[l\cdots p-1]$ 都被弹出，且在插入 $A[p+1\cdots r]$ 时不可能将 $A[p]$ 弹出。
+
+而如果用 $0/1$ 表示每个数是否在栈中，就可以用整数状压，则 $p$ 为第 $l$ 位后的第一个 $1$ 的位置。
+
+由于块大小为 $O(\log_2{n})$，因而最多不超过 $64$ 位，可以用一个整数存下（即隐性条件的原因）。
+
+??? "参考代码"
     ```cpp
-    // Copyright (C) 2018 Skqliao. All rights served.
     #include <bits/stdc++.h>
     
-    #define rep(i, l, r) for (int i = (l), _##i##_ = (r); i < _##i##_; ++i)
-    #define rof(i, l, r) for (int i = (l)-1, _##i##_ = (r); i >= _##i##_; --i)
-    #define ALL(x) (x).begin(), (x).end()
-    #define SZ(x) static_cast<int>((x).size())
-    typedef long long ll;
-    typedef std::pair<int, int> pii;
-    template <typename T>
-    inline bool chkMin(T &a, const T &b) {
-      return a > b ? a = b, 1 : 0;
-    }
-    template <typename T>
-    inline bool chkMax(T &a, const T &b) {
-      return a < b ? a = b, 1 : 0;
-    }
-    
     const int MAXN = 1e5 + 5;
+    const int MAXM = 20;
     
-    struct PlusMinusOneRMQ {
-      const static int M = 8;
-      int blocklen, block, Minv[MAXN], F[MAXN / M * 2 + 5][M << 1], T[MAXN],
-          f[1 << M][M][M], S[MAXN];
-      void init(int n) {
-        blocklen = std::max(1, (int)(log(n * 1.0) / log(2.0)) / 2);
-        block = n / blocklen + (n % blocklen > 0);
-        int total = 1 << (blocklen - 1);
-        for (int i = 0; i < total; i++) {
-          for (int l = 0; l < blocklen; l++) {
-            f[i][l][l] = l;
-            int now = 0, minv = 0;
-            for (int r = l + 1; r < blocklen; r++) {
-              f[i][l][r] = f[i][l][r - 1];
-              if ((1 << (r - 1)) & i) {
-                now++;
-              } else {
-                now--;
-                if (now < minv) {
-                  minv = now;
-                  f[i][l][r] = r;
-                }
-              }
-            }
+    struct RMQ {
+      int N, A[MAXN];
+      int blockSize;
+      int S[MAXN][MAXM], Pow[MAXM], Log[MAXN];
+      int Belong[MAXN], Pos[MAXN];
+      int Pre[MAXN], Sub[MAXN];
+      int F[MAXN];
+      void buildST() {
+        int cur = 0, id = 1;
+        Pos[0] = -1;
+        for (int i = 1; i <= N; ++i) {
+          S[id][0] = std::max(S[id][0], A[i]);
+          Belong[i] = id;
+          if (Belong[i - 1] != Belong[i])
+            Pos[i] = 0;
+          else
+            Pos[i] = Pos[i - 1] + 1;
+          if (++cur == blockSize) {
+            cur = 0;
+            ++id;
           }
         }
-        T[1] = 0;
-        for (int i = 2; i < MAXN; i++) {
-          T[i] = T[i - 1];
-          if (!(i & (i - 1))) {
-            T[i]++;
-          }
-        }
-      }
-      void initmin(int a[], int n) {
-        for (int i = 0; i < n; i++) {
-          if (i % blocklen == 0) {
-            Minv[i / blocklen] = i;
-            S[i / blocklen] = 0;
-          } else {
-            if (a[i] < a[Minv[i / blocklen]]) {
-              Minv[i / blocklen] = i;
-            }
-            if (a[i] > a[i - 1]) {
-              S[i / blocklen] |= 1 << (i % blocklen - 1);
-            }
-          }
-        }
-        for (int i = 0; i < block; i++) {
-          F[i][0] = Minv[i];
-        }
-        for (int j = 1; (1 << j) <= block; j++) {
-          for (int i = 0; i + (1 << j) - 1 < block; i++) {
-            int b1 = F[i][j - 1], b2 = F[i + (1 << (j - 1))][j - 1];
-            F[i][j] = a[b1] < a[b2] ? b1 : b2;
+        if (N % blockSize == 0) --id;
+        Pow[0] = 1;
+        for (int i = 1; i < MAXM; ++i) Pow[i] = Pow[i - 1] * 2;
+        for (int i = 2; i <= id; ++i) Log[i] = Log[i / 2] + 1;
+        for (int i = 1; i <= Log[id]; ++i) {
+          for (int j = 1; j + Pow[i] - 1 <= id; ++j) {
+            S[j][i] = std::max(S[j][i - 1], S[j + Pow[i - 1]][i - 1]);
           }
         }
       }
-      int querymin(int a[], int L, int R) {
-        int idl = L / blocklen, idr = R / blocklen;
-        if (idl == idr)
-          return idl * blocklen + f[S[idl]][L % blocklen][R % blocklen];
-        else {
-          int b1 = idl * blocklen + f[S[idl]][L % blocklen][blocklen - 1];
-          int b2 = idr * blocklen + f[S[idr]][0][R % blocklen];
-          int buf = a[b1] < a[b2] ? b1 : b2;
-          int c = T[idr - idl - 1];
-          if (idr - idl - 1) {
-            int b1 = F[idl + 1][c];
-            int b2 = F[idr - 1 - (1 << c) + 1][c];
-            int b = a[b1] < a[b2] ? b1 : b2;
-            return a[buf] < a[b] ? buf : b;
+      void buildSubPre() {
+        for (int i = 1; i <= N; ++i) {
+          if (Belong[i] != Belong[i - 1])
+            Pre[i] = A[i];
+          else
+            Pre[i] = std::max(Pre[i - 1], A[i]);
+        }
+        for (int i = N; i >= 1; --i) {
+          if (Belong[i] != Belong[i + 1])
+            Sub[i] = A[i];
+          else
+            Sub[i] = std::max(Sub[i + 1], A[i]);
+        }
+      }
+      void buildBlock() {
+        static int S[MAXN], top;
+        for (int i = 1; i <= N; ++i) {
+          if (Belong[i] != Belong[i - 1])
+            top = 0;
+          else
+            F[i] = F[i - 1];
+          while (top > 0 && A[S[top]] <= A[i]) F[i] &= ~(1 << Pos[S[top--]]);
+          S[++top] = i;
+          F[i] |= (1 << Pos[i]);
+        }
+      }
+      void init() {
+        for (int i = 1; i <= N; ++i) scanf("%d", &A[i]);
+        blockSize = log2(N) * 1.5;
+        buildST();
+        buildSubPre();
+        buildBlock();
+      }
+      int queryMax(int l, int r) {
+        int bl = Belong[l], br = Belong[r];
+        if (bl != br) {
+          int ans1 = 0;
+          if (br - bl > 1) {
+            int p = Log[br - bl - 1];
+            ans1 = std::max(S[bl + 1][p], S[br - Pow[p]][p]);
           }
-          return buf;
+          int ans2 = std::max(Sub[l], Pre[r]);
+          return std::max(ans1, ans2);
+        } else {
+          return A[l + __builtin_ctz(F[r] >> Pos[l])];
         }
       }
-    };
+    } R;
     
-    struct CartesianTree {
-     private:
-      struct Node {
-        int key, value, l, r;
-        Node(int key, int value) {
-          this->key = key;
-          this->value = value;
-          l = r = 0;
-        }
-        Node() {}
-      };
-      Node tree[MAXN];
-      int sz;
-      int S[MAXN], top;
-    
-     public:
-      void build(int a[], int n) {
-        top = 0;
-        tree[0] = Node(-1, INT_MAX);
-        S[top++] = 0;
-        sz = 0;
-        for (int i = 0; i < n; i++) {
-          tree[++sz] = Node(i, a[i]);
-          int last = 0;
-          while (tree[S[top - 1]].value <= tree[sz].value) {
-            last = S[top - 1];
-            top--;
-          }
-          tree[sz].l = last;
-          tree[S[top - 1]].r = sz;
-          S[top++] = sz;
-        }
-      }
-      Node &operator[](const int x) { return tree[x]; }
-    };
-    
-    class stdRMQ {
-     public:
-      void work(int a[], int n) {
-        ct.build(a, n);
-        dfs_clock = 0;
-        dfs(0, 0);
-        rmq.init(dfs_clock);
-        rmq.initmin(depseq, dfs_clock);
-      }
-      int query(int L, int R) {
-        int cl = clk[L], cr = clk[R];
-        if (cl > cr) {
-          std::swap(cl, cr);
-        }
-        return Val[rmq.querymin(depseq, cl, cr)];
-      }
-    
-     private:
-      CartesianTree ct;
-      PlusMinusOneRMQ rmq;
-      int dfs_clock, clk[MAXN], Val[MAXN << 1], depseq[MAXN << 1];
-      void dfs(int rt, int d) {
-        clk[ct[rt].key] = dfs_clock;
-        depseq[dfs_clock] = d;
-        Val[dfs_clock++] = ct[rt].value;
-        if (ct[rt].l) {
-          dfs(ct[rt].l, d + 1);
-          depseq[dfs_clock] = d;
-          Val[dfs_clock++] = ct[rt].value;
-        }
-        if (ct[rt].r) {
-          dfs(ct[rt].r, d + 1);
-          depseq[dfs_clock] = d;
-          Val[dfs_clock++] = ct[rt].value;
-        }
-      }
-    } doit;
-    
-    int A[MAXN];
+    int M;
     
     int main() {
-      int n, m, l, r;
-      scanf("%d%d", &n, &m);
-      for (int i = 0; i < n; ++i) {
-        scanf("%d", &A[i]);
-      }
-      doit.work(A, n);
-      while (m--) {
+      scanf("%d%d", &R.N, &M);
+      R.init();
+      for (int i = 0, l, r; i < M; ++i) {
         scanf("%d%d", &l, &r);
-        printf("%d\n", doit.query(l - 1, r - 1));
+        printf("%d\n", R.queryMax(l, r));
       }
       return 0;
     }
     ```
+
+### 习题
+
+[\[BJOI 2020\]封印](https://loj.ac/problem/3298)：SAM+RMQ
