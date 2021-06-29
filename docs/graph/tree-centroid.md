@@ -1,4 +1,4 @@
-author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger
+author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld
 
 ## 定义
 
@@ -45,11 +45,14 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger
 
 ## 参考
 
-<http://fanhq666.blog.163.com/blog/static/81943426201172472943638/>
+<http://fanhq666.blog.163.com/blog/static/81943426201172472943638/>([博客园转载](https://www.cnblogs.com/qlky/p/5781081.html)，[Internet Archive](https://web.archive.org/web/20181122041458/http://fanhq666.blog.163.com/blog/static/81943426201172472943638))
+
+<https://blog.csdn.net/weixin_43810158/article/details/88391828>
 
 <https://www.cnblogs.com/zinthos/p/3899075.html>
 
 ## 习题
 
 - [POJ 1655 Balancing Art](http://poj.org/problem?id=1655)（模板题）
+- [洛谷 P1364 医院设置](https://www.luogu.com.cn/problem/P1364)
 - [CodeForces 1406C Link Cut Centroids](https://codeforces.com/contest/1406/problem/C)

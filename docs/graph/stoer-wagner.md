@@ -1,4 +1,4 @@
-author: DanJoshua
+author: DanJoshua, opsiff
 
 ## 概念
 
@@ -36,7 +36,7 @@ Stoer-Wagner 算法在 1995 年由*Mechthild Stoer*与*Frank Wagner*提出，是
 2. 「合并」点 $s, t$，如果图 $G$ 中 $|V|$ 大于 $1$，则回到第一步。
 3. 输出所有*cut of phase*的最小值。
 
-合并两点 $s, t$：删除 $s, t$ 之间的连边 $(s, t)$，对于 $G/\{s, t\}$ 中任意一点 $k$，删除 $(t, k)$，并将其边权加到 $(s, k)$ 上
+合并两点 $s, t$：删除 $s, t$ 之间的连边 $(s, t)$，对于 $G/\{s, t\}$ 中任意一点 $k$，删除 $(t, k)$，并将其边权 $d(t, k)$ 加到 $d(s, k)$ 上
 
 解释：如果 $s, t$ 在同一连通块，对于 $G/\{s, t\}$ 中的一点 $k$，假如 $(k, s) \in C_{min}$，那么 $(k, t) \in C_{min}$ 也一定成立，否则因为 $s, t$ 连通，$k, t$ 连通，导致 $s, k$ 在同一连通块，此时 $C = C_{min} / {s}$ 将比 $C_{min}$ 更优。反之亦然。所以 $s, t$ 可以看作同一点。
 
@@ -48,7 +48,7 @@ Stoer-Wagner 算法在 1995 年由*Mechthild Stoer*与*Frank Wagner*提出，是
 
 假设进行若干次合并以后，当前图 $G'=(V', E')$，执行步骤 1。
 
-我们构造一个集合 $A$，初识时令 $A = \varnothing$。
+我们构造一个集合 $A$，初始时令 $A = \varnothing$。
 
 我们每次将 $V'$ 中所有点中，满足 $i \notin A$，且权值函数 $w(A, i)$ 最大的节点加入集合 $A$，直到 $|A| = |V'|$。
 
@@ -95,10 +95,16 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
 
 由于 $pos(s) < pos(t)$，并且 $s, t$ 不在同一连通块，因此 $t$ 会被激活，由此可以得出 $w(A_t, t) \le w(C_t) = w(C)$。
 
-??? note "参考代码"
+??? note "[P5632 【模板】Stoer-Wagner算法](https://www.luogu.com.cn/problem/P5632)"
     ```cpp
-    int contract(int &s, int &t)  // Find s,t
-    {
+    #include <bits/stdc++.h>
+    using namespace std;
+    const int N = 601;
+    int fa[N], siz[N], edge[N][N];
+    int find(int x) { return fa[x] == x ? x : fa[x] = find(fa[x]); }
+    int dist[N], vis[N], bin[N];
+    int n, m;
+    int contract(int &s, int &t) {  // Find s,t
       memset(dist, 0, sizeof(dist));
       memset(vis, false, sizeof(vis));
       int i, j, k, mincut, maxc;
@@ -120,7 +126,7 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
       }
       return mincut;
     }
-    
+    const int inf = 0x3f3f3f3f;
     int Stoer_Wagner() {
       int mincut, i, j, s, t, ans;
       for (mincut = inf, i = 1; i < n; i++) {
@@ -132,6 +138,31 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
           if (!bin[j]) edge[s][j] = (edge[j][s] += edge[j][t]);
       }
       return mincut;
+    }
+    int main() {
+      ios::sync_with_stdio(0), cin.tie(0);
+      cin >> n >> m;
+      if (m < n - 1) {
+        cout << 0;
+        return 0;
+      }
+      for (int i = 1; i <= n; ++i) fa[i] = i, siz[i] = 1;
+      for (int i = 1, u, v, w; i <= m; ++i) {
+        cin >> u >> v >> w;
+        int fu = find(u), fv = find(v);
+        if (fu != fv) {
+          if (siz[fu] > siz[fv]) swap(fu, fv);
+          fa[fu] = fv, siz[fv] += siz[fu];
+        }
+        edge[u][v] += w, edge[v][u] += w;
+      }
+      int fr = find(1);
+      if (siz[fr] != n) {
+        cout << 0;
+        return 0;
+      }
+      cout << Stoer_Wagner();
+      return 0;
     }
     ```
 
@@ -145,8 +176,8 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
 
 根据 [最短路](./shortest-path.md) 的经验，算法瓶颈在于找到权值最大的点。
 
-在一次*contract*中需要找 $|V|$ 次堆顶，并单调递增地修改 $|E|$ 次权值。
+在一次*contract*中需要找 $|V|$ 次堆顶，并递增地修改 $|E|$ 次权值。
 
-斐波那契堆 可以胜任 $O(1)$ 查找堆顶和单调递增修改权值的工作，理论复杂度可以达到 $O(|E| + |V|\log|V|)$，但是由于斐波那契堆常数过大，码量高，实际应用价值偏低。
+斐波那契堆 可以胜任 $O(\log|V|)$ 查找堆顶和 $O(1)$ 递增修改权值的工作，理论复杂度可以达到 $O(|E| + |V|\log|V|)$，但是由于斐波那契堆常数过大，码量高，实际应用价值偏低。
 
 （实际测试中开 O2 还要卡评测波动才能过。）

@@ -29,7 +29,7 @@
 $$
 \begin{array}{ll}
 1 & \textbf{Input. }\text{待排序的数组}A\text{和用作临时存储的数组}T\\
-2 & \textbf{Ouput. }\text{数组}A\text{中的元素将会按照不减的顺序进行稳定排序}\\
+2 & \textbf{Output. }\text{数组}A\text{中的元素将会按照不减的顺序进行稳定排序}\\
 3 & \textbf{Method.}\\
 4 & \text{merge}(A,\ T)\\
 5 & \qquad\text{merge0}(A,\ T,\ 0,\ A.length)\\

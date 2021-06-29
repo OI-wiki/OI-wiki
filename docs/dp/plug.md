@@ -9,7 +9,7 @@
 
 当 $n$ 或 $m$ 规模不大的时候，这类问题可以使用 [状压 DP](./state.md) 解决。逐行划分阶段，设 $dp(i,s)$ 表示当前已考虑过前 $i$ 行，且第 $i$ 行的状态为 $s$ 的方案数。这里的状态 $s$ 的每一位可以表示这个这个位置是否已被上一行覆盖。
 
-![domino](./images/domino.png)（Credits: 图片来自 [这里](https://blog.csdn.net/u014634338/article/details/50015825)。）
+![domino](./images/domino.svg)
 
 另一种划分阶段的方法是逐格 DP，或者称之为轮廓线 DP。$dp(i,j,s)$ 表示已经考虑到第 $i$ 行第 $j$ 列，且当前轮廓线上的状态为 $s$ 的方案数。
 
@@ -71,11 +71,11 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 轮廓线：已决策状态和未决策状态的分界线。
 
-![contour line](./images/contour_line.png)
+![contour line](./images/contour_line.svg)
 
 插头：一个格子某个方向的插头存在，表示这个格子在这个方向与相邻格子相连。
 
-![contour line](./images/plug.png)
+![plug](./images/plug.svg)
 
 ## 路径模型
 
@@ -614,7 +614,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 ???+note " 例题 [「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572)"
     题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白染色，要求所有黑色区域和白色区域连通，且任意一个 $2\times 2$ 的子矩形内的颜色不能完全相同（例如下图中的情况非法），求合法的方案数，并构造一组合法的方案。
     
-    ![black_and_white1](./images/black_and_white1.png)
+    ![black_and_white1](./images/black_and_white1.svg)
 
 #### 状态编码
 
@@ -979,7 +979,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 有一类插头 DP 问题要求我们在棋盘上构造一组墙，以分割棋盘上的某些元素。不妨称之为修墙问题，这类问题既可视作染色模型，也可视作路径模型。
 
-![greatwall](./images/greatwall.jpg)
+![greatwall](./images/greatwall.svg)
 
 在本题中，如果视作染色模型的话，不仅需要额外讨论染色区域的周长，还要判断在角上触碰而导致不合法的情况（图 2）。另外与 [「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572) 不同的是，本题中要求围墙为简单多边形，因而对于下面的回字形的情况，在本题中是不合法的。
 
@@ -1176,7 +1176,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 当 $m\le 10,n\le 10^9$ 时，可以将转移方程预处理成矩阵形式，并使用 [矩阵乘法进行加速](http://www.matrix67.com/blog/archives/276)。
 
-![domino_v2_transform_matrix](./images/domino_v2_transform_matrix.gif)
+![domino_v2_transform_matrix](./images/domino_v2_transform_matrix.svg)
 
 当 $n,m\le 100$，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数。
 
