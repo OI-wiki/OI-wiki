@@ -56,6 +56,7 @@ author: Ir1d, Anguei, hsfzLZH1, siger-young, HeRaNO
                 oper.pop();  // 只要栈顶符号的优先级不低于新符号，就不断取出栈顶并输出
           oper.push(tmp[0]);  // 最后把新符号进栈
         }
+        }
         while (!oper.empty()) t += std::string(1, oper.top()) + " ", oper.pop();
         return t;
       }
