@@ -112,7 +112,7 @@ for i in range(0, n):
 // C++ Version
 const int N = 100000;
 for (int i = 0; i < N; ++i) {
-    std::cout << "hello world\n";
+  std::cout << "hello world\n";
 }
 ```
 
