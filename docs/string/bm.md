@@ -103,7 +103,7 @@ $$
 \end{aligned}
 $$
 
-$\texttt{F}$ 没有出现 $pat$ 中，根据 **观察 1**，$pat$ 直接向下移动 $patlen$ 个字符，也就是 7​个字符：
+$\texttt{F}$ 没有出现 $pat$ 中，根据 **观察 1**，$pat$ 直接向下移动 $patlen$ 个字符，也就是 7个字符：
 
 $$
 \begin{aligned}
