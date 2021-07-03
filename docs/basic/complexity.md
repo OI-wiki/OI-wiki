@@ -76,6 +76,7 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
 ### for 循环
 
 ```cpp
+// C++ Version
 int n, m;
 std::cin >> n >> m;
 for (int i = 0; i < n; ++i) {
@@ -85,6 +86,16 @@ for (int i = 0; i < n; ++i) {
         }
     }
 }
+```
+
+```python
+# Python Version
+n = int(input())
+m = int(input())
+for i in range(0, n):
+    for j in range(0, n):
+        for k in range(0, m):
+            print("hello world")
 ```
 
 如果以输入的数值 $n$ 和 $m$ 的大小作为数据规模，则上面这段代码的时间复杂度为 $\Theta(n^2m)$。
@@ -98,10 +109,18 @@ for (int i = 0; i < n; ++i) {
 当我们要进行若干次操作时，如何判断这若干次操作是否影响时间复杂度呢？例如：
 
 ```cpp
+// C++ Version
 const int N = 100000;
 for (int i = 0; i < N; ++i) {
   std::cout << "hello world\n";
 }
+```
+
+```python
+# Python Version
+N = 100000
+for i in range(0, N):
+    print("hello world")
 ```
 
 如果 $N$ 的大小不被看作输入规模，那么这段代码的时间复杂度就是 $O(1)$。
