@@ -951,7 +951,7 @@ if __name__ == '__main__':
     
     ```
 
-~~~python
+```python
 N = int(1e5+5)
 M = int(2e5+5)
 INF = 0x3f3f3f3f
