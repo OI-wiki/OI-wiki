@@ -46,7 +46,7 @@ vector<int> z_function_trivial(string s) {
     - 若 $z[i-l] < r-i+1$，则 $z[i] = z[i-l]$。
     - 否则 $z[i-l]\ge r-i+1$，这时我们令 $z[i] = r-i+1$，然后暴力枚举下一个字符扩展 $z[i]$ 直到不能扩展为止。
 - 如果 $i>r$，那么我们直接按照朴素算法，从 $s[i]$ 开始比较，暴力求出 $z[i]$。
-- 在求出 $z[i]$ 后，如果 $z[i]>r$，我们就需要更新 $[l,r]$，即令 $l=i, r=i+z[i]-1$。
+- 在求出 $z[i]$ 后，如果 $i+z[i]-1>r$，我们就需要更新 $[l,r]$，即令 $l=i, r=i+z[i]-1$。
 
 可以访问 [这个网站](https://personal.utdallas.edu/~besp/demo/John2010/z-algorithm.htm) 来看 Z 函数的模拟过程。
 
