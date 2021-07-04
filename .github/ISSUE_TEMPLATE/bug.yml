@@ -1,6 +1,6 @@
 name: "内容无关的 bug"
 description: "指出出现的问题"
-title: "[BUG]"
+title: "[BUG] "
 labels: ["Other Bug / 内容无关的 Bug"]
 
 body:

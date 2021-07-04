@@ -34,4 +34,4 @@ body:
   attributes:
     label: 我发现页面有这样的问题
   validations:
-    required: false
+    required: true
