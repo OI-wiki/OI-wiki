@@ -247,9 +247,207 @@ Dinic 算法有两个优化：
 
 ### MPM 算法
 
-**MPM** (Malhotra, Pramodh-Kumar and Maheshwari) 算法得到最大流的方式有两种：使用基于堆的优先队列，时间复杂度为 $O(n^3\log n)$ ；使用斐波那契堆，时间复杂度为 $O(n^3)$ 。MPM 算法的整体结构和 Dinic 算法或 Edmonds-Karp 算法类似。
+**MPM** (Malhotra, Pramodh-Kumar and Maheshwari) 算法得到最大流的方式有两种：使用基于堆的优先队列，时间复杂度为 $O(n^3\log n)$ ；使用斐波那契堆，时间复杂度为 $O(n^3)$ 。
 
-与 Dinic 算法一样，MPM 算法也是分阶段运行的。在每个阶段我们都会在 $G$ 的残差网络的分层网络中找到阻塞流。与 Dinic 算法的主要区别在于我们如何找到阻塞流。
+MPM 算法的整体结构和 Dinic 算法类似，也是分阶段运行的。在每个阶段，计算当前流量的残差网络和分层网络 $L_G$ ，如果 $t$ 没有出现在 $L_G$ 中，运算完成。 否则，删除所有不在分层图中从 $s$ 到 $t$ 的路径上的顶点。重复以上步骤直到找到阻塞流。并且，在每个阶段我们都会在 $G$ 的残差网络的分层网络中找到阻塞流。
+ 
+MPM 算法与 Dinic 算法的主要区别在于找到阻塞流的方式，这也是 MPM 算法能得到更优复杂度的原因：找到阻塞流只花了 $O(n^2\log n)$ （如果用斐波那契堆的话是 $O(n^2)$ ）。
+
+MPM 算法需要考虑顶点而不是边的容量。如果定义顶点 $v$ 的容量 $c(v)$ 是其传入边总容量和传出边总容量中的最小值：
+
+$c(v) = min \sum\limits_{u \in V} c(u, v), \sum\limits_{w \in V} c(v, w).$
+
+那么这个公式可以直观地表示可以通过该顶点的最大量。这样的定义同样适用于表示减去非零流量获得的剩余容量。具体步骤如下：
+
+1. 找到最小容量 $d$ 的顶点 $v$ 。 如果 $d = 0$ ，执行步骤 $2$ 。如果 $d \neq 0$，执行步骤 $3$ 。
+2. 删除 $v$ 和所有相邻边并更新相邻顶点的容量。回到步骤 $1$ 。
+3. 将 $d$ 个单位的流从 $v$ 推到池中，并将 $d$ 个单位的流从源头加到 $v$ 以通过 $v$ 的流量增加 $d$ 。
+    - $v$ 的输出边按顺序饱和，最多留下一个非饱和边。在此过程中删除变得饱和的所有边。然后，在 $v$ 中的边饱和期间接收流的每个顶点上重复此过程，一直到 $t$ 。总是有可能将所有 $d$ 个单位的流一直推到 $t$ ，因为每个顶点的容量至少为 $d$ 。
+    - $v$ 的传入边按顺序饱和，最多留下一个非饱和边。在此过程中删除变得饱和的所有边。然后，在边缘饱和到 $v$ 期间从中获取流的每个顶点上重复此过程，依此类推，一直到 $s$ 。 总是可以从 $s$ 一路取出所有 $d$ 个单位的流量，因为每个顶点的容量至少为 $d$ 。
+    - 这样， $v$ 的所有传入边或 $v$ 的所有传出边都饱和并被删除，因此可以从分层图中删除 $v$ 及其所有剩余的关联边，并更新邻居的容量。之后跳转到步骤 $1$ 。
+
+#### 时间复杂度分析
+
+使用 BFS 计算当前流和分层图的残流网络需要 $O(m)$ 。使用基于堆的优先队列或斐波那契堆，需要 $O(n \log n)$ 才能找到并删除最小容量的顶点， 需要 $O(m)$ 在所有循环中删除完全饱和边，需要 $O(n^2)$ 在所有循环中执行部分饱和，因为在步骤 $3$ 中，对于步骤 $1$ 中每个 $v$ 的选择，在每个顶点处最多执行一次。
+
+这样，我们唯一没有考虑到的就是当推动流通过一个顶点时，我们必须减少它的容量，进而可能会改变它在优先队列中的优先级。更新优先队列顶点的优先级需要 $O(log n)$ ， 而更新斐波那契堆的只需要 $O(1)$ 。我们可能需要对每个完全饱和边执行一次，对每个部分饱和边执行一次。 在整个阶段，由于饱和边被删除，最多有 $m$ 个完全饱和边，并且最多有 $n^2$ 个部分饱和边。 因此，在整个阶段，减少优先级所需的时间对于基于堆的优先队列，时间复杂度为 $O(n^2 \log n)$ ，对于斐波那契堆， 时间复杂度为 $O(n^2)$ 。
+
+和以前一样，最多需要计算 $n$ 个阻塞流，因为分层图中从 $s$ 到 $t$ 的距离每次至少增加 $1$ 。 那么总体最坏时间复杂度为基于堆的优先队列的 $O(n^3 \log n)$ 或斐波那契堆的 $O(n^3)$ 。
+
+??? note "参考代码"
+    ```cpp
+    struct MPM{
+    struct FlowEdge{
+        int v, u;
+        long long cap, flow;
+        FlowEdge(){}
+        FlowEdge(int _v, int _u, long long _cap, long long _flow)
+            : v(_v), u(_u), cap(_cap), flow(_flow){}
+        FlowEdge(int _v, int _u, long long _cap)
+            : v(_v), u(_u), cap(_cap), flow(0ll){}
+    };
+    const long long flow_inf = 1e18;
+    vector<FlowEdge> edges;
+    vector<char> alive;
+    vector<long long> pin, pout;
+    vector<list<int> > in, out;
+    vector<vector<int> > adj;
+    vector<long long> ex;
+    int n, m = 0;
+    int s, t;
+    vector<int> level;
+    vector<int> q;
+    int qh, qt;
+    void resize(int _n){
+        n = _n;
+        ex.resize(n);
+        q.resize(n);
+        pin.resize(n);
+        pout.resize(n);
+        adj.resize(n);
+        level.resize(n);
+        in.resize(n);
+        out.resize(n);
+    }
+    MPM(){}
+    MPM(int _n, int _s, int _t){resize(_n); s = _s; t = _t;}
+    void add_edge(int v, int u, long long cap){
+        edges.push_back(FlowEdge(v, u, cap));
+        edges.push_back(FlowEdge(u, v, 0));
+        adj[v].push_back(m);
+        adj[u].push_back(m + 1);
+        m += 2;
+    }
+    bool bfs(){
+        while(qh < qt){
+            int v = q[qh++];
+            for(int id : adj[v]){
+                if(edges[id].cap - edges[id].flow < 1)continue;
+                if(level[edges[id].u] != -1)continue;
+                level[edges[id].u] = level[v] + 1;
+                q[qt++] = edges[id].u;
+            }
+        }
+        return level[t] != -1;
+    }
+    long long pot(int v){
+        return min(pin[v], pout[v]);
+    }
+    void remove_node(int v){
+        for(int i : in[v]){
+            int u = edges[i].v;
+            auto it = find(out[u].begin(), out[u].end(), i);
+            out[u].erase(it);
+            pout[u] -= edges[i].cap - edges[i].flow;
+        }
+        for(int i : out[v]){
+            int u = edges[i].u;
+            auto it = find(in[u].begin(), in[u].end(), i);
+            in[u].erase(it);
+            pin[u] -= edges[i].cap - edges[i].flow;
+        }
+    }
+    void push(int from, int to, long long f, bool forw){
+        qh = qt = 0;
+        ex.assign(n, 0);
+        ex[from] = f;
+        q[qt++] = from;
+        while(qh < qt){
+            int v = q[qh++];
+            if(v == to)
+                break;
+            long long must = ex[v];
+            auto it = forw ? out[v].begin() : in[v].begin();
+            while(true){
+                int u = forw ? edges[*it].u : edges[*it].v;
+                long long pushed = min(must, edges[*it].cap - edges[*it].flow);
+                if(pushed == 0)break;
+                if(forw){
+                    pout[v] -= pushed;
+                    pin[u] -= pushed;
+                }
+                else{
+                    pin[v] -= pushed;
+                    pout[u] -= pushed;
+                }
+                if(ex[u] == 0)
+                    q[qt++] = u;
+                ex[u] += pushed;
+                edges[*it].flow += pushed;
+                edges[(*it)^1].flow -= pushed;
+                must -= pushed;
+                if(edges[*it].cap - edges[*it].flow == 0){
+                    auto jt = it;
+                    ++jt;
+                    if(forw){
+                        in[u].erase(find(in[u].begin(), in[u].end(), *it));
+                        out[v].erase(it);
+                    }
+                    else{
+                        out[u].erase(find(out[u].begin(), out[u].end(), *it));
+                        in[v].erase(it);
+                    }
+                    it = jt;
+                }
+                else break;
+                if(!must)break;
+            }
+        }
+    }
+    long long flow(){
+        long long ans = 0;
+        while(true){
+            pin.assign(n, 0);
+            pout.assign(n, 0);
+            level.assign(n, -1);
+            alive.assign(n, true);
+            level[s] = 0;
+            qh = 0; qt = 1;
+            q[0] = s;
+            if(!bfs())
+                break;
+            for(int i = 0; i < n; i++){
+                out[i].clear();
+                in[i].clear();
+            }
+            for(int i = 0; i < m; i++){
+                if(edges[i].cap - edges[i].flow == 0)
+                    continue;
+                int v = edges[i].v, u = edges[i].u;
+                if(level[v] + 1 == level[u] && (level[u] < level[t] || u == t)){
+                    in[u].push_back(i);
+                    out[v].push_back(i);
+                    pin[u] += edges[i].cap - edges[i].flow;
+                    pout[v] += edges[i].cap - edges[i].flow;
+                }
+            }
+            pin[s] = pout[t] = flow_inf;
+            while(true){
+                int v = -1;
+                for(int i = 0; i < n; i++){
+                    if(!alive[i])continue;
+                    if(v == -1 || pot(i) < pot(v))
+                        v = i;
+                }
+                if(v == -1)
+                    break;
+                if(pot(v) == 0){
+                    alive[v] = false;
+                    remove_node(v);
+                    continue;
+                }
+                long long f = pot(v);
+                ans += f;
+                push(v, s, f, false);
+                push(v, t, f, true);
+                alive[v] = false;
+                remove_node(v);
+            }
+        }
+        return ans;
+      }
+    };
+    ```
 
 ### ISAP
 
