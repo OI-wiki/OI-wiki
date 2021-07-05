@@ -49,9 +49,11 @@
 -   **后代（descendant）**：子结点和子结点的后代。  
     或者理解成：如果 $u$ 是 $v$ 的祖先，那么 $v$ 是 $u$ 的后代。
 
+![tree-definition.svg](images/tree-definition.svg)
+
 - **子树（subtree）**：删掉与父亲相连的边后，该结点所在的子图。
 
-![tree-basic.png](images/tree-basic.png)
+![tree-definition-subtree.svg](images/tree-definition-subtree.svg)
 
 ## 特殊的树
 
@@ -62,13 +64,17 @@
 -   **有根二叉树（rooted binary tree）**：每个结点最多只有两个儿子（子结点）的有根树称为二叉树。常常对两个子结点的顺序加以区分，分别称之为左子结点和右子结点。  
     大多数情况下，**二叉树** 一词均指有根二叉树。
 
-![tree-binary.png](images/tree-binary.png)
-
 - **完整二叉树（full/proper binary tree）**：每个结点的子结点数量均为 0 或者 2 的二叉树。换言之，每个结点或者是树叶，或者左右子树均非空。
+
+![](images/tree-binary-proper.svg)
 
 - **完全二叉树（complete binary tree）**：只有最下面两层结点的度数可以小于 2，且最下面一层的结点都集中在该层最左边的连续位置上。
 
+![](images/tree-binary-complete.svg)
+
 - **完美二叉树（perfect binary tree）**：所有叶结点的深度均相同的二叉树称为完美二叉树。
+
+![](images/tree-binary-perfect.svg)
 
 ???+warning
     Proper binary tree 的汉译名称不固定，且完全二叉树和满二叉树的定义在不同教材中定义不同，遇到的时候需根据上下文加以判断。
