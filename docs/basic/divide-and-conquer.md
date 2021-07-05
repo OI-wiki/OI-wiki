@@ -63,9 +63,9 @@ int func(传入数值) {
     ```python
     # Python Version
     #不使用递归的归并排序算法
-    def merge_sort():
+    def merge_sort(a):
       n = len(a)
-      seg,start = 1,0
+      seg, start = 1,0
       while seg < n:
           while start < n - seg:
               merge(a, start, start + seg - 1, min(start + seg + seg - 1, n - 1))
