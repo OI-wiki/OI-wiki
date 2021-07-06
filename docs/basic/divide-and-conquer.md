@@ -18,7 +18,7 @@ author: fudonglai, AngelKitty, labuladong
 
 以下是一些有助于理解递归的例子：
 
-1.  [什么是递归？](divide-and-conquer.md) 
+1. [什么是递归？](divide-and-conquer.md)
 2. 如何给一堆数字排序？答：分成两半，先排左半边再排右半边，最后合并就行了，至于怎么排左边和右边，请重新阅读这句话。
 3. 你今年几岁？答：去年的岁数加一岁，1999 年我出生。
 4. ![一个用于理解递归的例子](images/divide-and-conquer-1.png)
@@ -36,7 +36,7 @@ int func(传入数值) {
 
 #### 为什么要写递归
 
-1.  结构清晰，可读性强。例如，分别用不同的方法实现 [归并排序](merge-sort.md) ：
+1.  结构清晰，可读性强。例如，分别用不同的方法实现 [归并排序](merge-sort.md)：
 
     ```cpp
     //不使用递归的归并排序算法
@@ -67,7 +67,7 @@ int func(传入数值) {
 
 在程序执行中，递归是利用堆栈来实现的。每当进入一个函数调用，栈就会增加一层栈帧，每次函数返回，栈就会减少一层栈帧。而栈不是无限大的，当递归层数过多时，就会造成 **栈溢出** 的后果。
 
-显然有时候递归处理是高效的，比如归并排序； **有时候是低效的** ，比如数孙悟空身上的毛，因为堆栈会消耗额外空间，而简单的递推不会消耗空间。比如这个例子，给一个链表头，计算它的长度：
+显然有时候递归处理是高效的，比如归并排序；**有时候是低效的**，比如数孙悟空身上的毛，因为堆栈会消耗额外空间，而简单的递推不会消耗空间。比如这个例子，给一个链表头，计算它的长度：
 
 ```cpp
 // 典型的递推遍历框架
@@ -78,9 +78,9 @@ int size(Node *head) {
 }
 
 // 我就是要写递归，递归天下第一
-int size_recurison(Node *head) {
+int size_recursion(Node *head) {
   if (head == nullptr) return 0;
-  return size_recurison(head->next) + 1;
+  return size_recursion(head->next) + 1;
 }
 ```
 
@@ -88,7 +88,7 @@ int size_recurison(Node *head) {
 
 #### 递归优化
 
-主页面： [搜索优化](../search/opt.md) 和 [记忆化搜索](../dp/memo.md) 
+主页面：[搜索优化](../search/opt.md) 和 [记忆化搜索](../dp/memo.md)
 
 比较初级的递归实现可能递归次数太多，容易超时。这时需要对递归进行优化。[^ref1]
 
@@ -111,7 +111,7 @@ int size_recurison(Node *head) {
 ???+warning "注意"
     如果各子问题是不独立的，则分治法要重复地解公共的子问题，也就做了许多不必要的工作。此时虽然也可用分治法，但一般用 [动态规划](../dp/basic.md) 较好。
 
-以归并排序为例。假设实现归并排序的函数名为 `merge_sort` 。明确该函数的职责，即 **对传入的一个数组排序** 。这个问题显然可以分解。给一个数组排序等于给该数组的左右两半分别排序，然后合并成一个数组。
+以归并排序为例。假设实现归并排序的函数名为 `merge_sort`。明确该函数的职责，即 **对传入的一个数组排序**。这个问题显然可以分解。给一个数组排序等于给该数组的左右两半分别排序，然后合并成一个数组。
 
 ```cpp
 void merge_sort(一个数组) {
@@ -122,15 +122,15 @@ void merge_sort(一个数组) {
 }
 ```
 
-传给它半个数组，那么处理完后这半个数组就已经被排好了。注意到， `merge_sort` 与二叉树的后序遍历模板极其相似。因为分治算法的套路是 **分解 -> 解决（触底）-> 合并（回溯）** ，先左右分解，再处理合并，回溯就是在退栈，即相当于后序遍历。
+传给它半个数组，那么处理完后这半个数组就已经被排好了。注意到，`merge_sort` 与二叉树的后序遍历模板极其相似。因为分治算法的套路是 **分解 -> 解决（触底）-> 合并（回溯）**，先左右分解，再处理合并，回溯就是在退栈，即相当于后序遍历。
 
- `merge` 函数的实现方式与两个有序链表的合并一致。
+`merge` 函数的实现方式与两个有序链表的合并一致。
 
 ## 要点
 
 ### 写递归的要点
 
- **明白一个函数的作用并相信它能完成这个任务，千万不要跳进这个函数里面企图探究更多细节，** 否则就会陷入无穷的细节无法自拔，人脑能压几个栈啊。
+**明白一个函数的作用并相信它能完成这个任务，千万不要跳进这个函数里面企图探究更多细节，** 否则就会陷入无穷的细节无法自拔，人脑能压几个栈啊。
 
 以遍历二叉树为例。
 
@@ -142,14 +142,14 @@ void traverse(TreeNode* root) {
 }
 ```
 
-这几行代码就足以遍历任何一棵二叉树了。对于递归函数 `traverse(root)` ，只要相信给它一个根节点 `root` ，它就能遍历这棵树。所以只需要把这个节点的左右节点再传给这个函数就行了。
+这几行代码就足以遍历任何一棵二叉树了。对于递归函数 `traverse(root)`，只要相信给它一个根节点 `root`，它就能遍历这棵树。所以只需要把这个节点的左右节点再传给这个函数就行了。
 
 同样扩展到遍历一棵 N 叉树。与二叉树的写法一模一样。不过，对于 N 叉树，显然没有中序遍历。
 
 ```cpp
 void traverse(TreeNode* root) {
   if (root == nullptr) return;
-  for (child : root->children) traverse(child);
+  for (auto child : root->children) traverse(child);
 }
 ```
 
@@ -228,9 +228,9 @@ void traverse(TreeNode* root) {
     
     按照前面说的技巧，根据刚才的分析来定义清楚每个递归函数应该做的事：
     
-     `PathSum` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，和为目标值的路径总数。
+    `PathSum` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，和为目标值的路径总数。
     
-     `count` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，能凑出几个以该节点为路径开头，和为目标值的路径总数。
+    `count` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，能凑出几个以该节点为路径开头，和为目标值的路径总数。
     
     ??? note "参考代码（附注释）"
         ```cpp
@@ -242,29 +242,27 @@ void traverse(TreeNode* root) {
               pathSum(root->right, sum);  // 右边路径总数（相信它能算出来）
           return leftPathSum + rightPathSum + pathImLeading;
         }
-        ```
-    
         int count(TreeNode *node, int sum) {
-            if (node == nullptr) return 0;
-            // 能不能作为一条单独的路径呢？
-            int isMe = (node->val == sum) ? 1 : 0;
-            // 左边的，你那边能凑几个 sum - node.val ？
-            int leftNode = count(node->left, sum - node->val);
-            // 右边的，你那边能凑几个 sum - node.val ？
-            int rightNode = count(node->right, sum - node->val);
-            return isMe + leftNode + rightNode;  // 我这能凑这么多个
+          if (node == nullptr) return 0;
+          // 能不能作为一条单独的路径呢？
+          int isMe = (node->val == sum) ? 1 : 0;
+          // 左边的，你那边能凑几个 sum - node.val ？
+          int leftNode = count(node->left, sum - node->val);
+          // 右边的，你那边能凑几个 sum - node.val ？
+          int rightNode = count(node->right, sum - node->val);
+          return isMe + leftNode + rightNode;  // 我这能凑这么多个
         }
         ```
     
-    还是那句话， **明白每个函数能做的事，并相信它们能够完成。** 
+    还是那句话，**明白每个函数能做的事，并相信它们能够完成。**
     
-    总结下， `PathSum` 函数提供了二叉树遍历框架，在遍历中对每个节点调用 `count` 函数（这里用的是先序遍历，不过中序遍历和后序遍历也可以）。 `count` 函数也是一个二叉树遍历，用于寻找以该节点开头的目标值路径。
+    总结下，`PathSum` 函数提供了二叉树遍历框架，在遍历中对每个节点调用 `count` 函数（这里用的是先序遍历，不过中序遍历和后序遍历也可以）。`count` 函数也是一个二叉树遍历，用于寻找以该节点开头的目标值路径。
 
 ## 习题
 
--  [LeetCode 上的递归专题练习](https://leetcode.com/explore/learn/card/recursion-i/) 
--  [LeetCode 上的分治算法专项练习](https://leetcode.com/tag/divide-and-conquer/) 
+- [LeetCode 上的递归专题练习](https://leetcode.com/explore/learn/card/recursion-i/)
+- [LeetCode 上的分治算法专项练习](https://leetcode.com/tag/divide-and-conquer/)
 
 ## 参考资料与注释
 
-[^ref1]:  [labuladong 的算法小抄 - 递归详解](https://labuladong.gitbook.io/algo/suan-fa-si-wei-xi-lie/di-gui-xiang-jie) 
+[^ref1]: [labuladong 的算法小抄 - 递归详解](https://labuladong.gitbook.io/algo/suan-fa-si-wei-xi-lie/di-gui-xiang-jie)

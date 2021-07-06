@@ -1,4 +1,4 @@
-author: inkydragon
+author: inkydragon, TravorLZH
 
 ## 素数筛法
 
@@ -31,42 +31,34 @@ int Eratosthenes(int n) {
 }
 ```
 
-以上为 **Eratosthenes 筛法** （埃拉托斯特尼筛法，简称埃氏筛法），时间复杂度是 $O(n\log\log n)$ 。
+以上为 **Eratosthenes 筛法**（埃拉托斯特尼筛法，简称埃氏筛法），时间复杂度是 $O(n\log\log n)$。
 
-怎么证明这个复杂度呢？我们先列出复杂度的数学表达式。
+现在我们就来看看推导过程：
 
-发现数学表达式显然就是素数的倒数和乘上 $n$ ，即 $n\sum_p {\frac{1}{p}}$ 。
+如果每一次对数组的操作花费 1 个单位时间，则时间复杂度为：
 
-我们相当于要证明 $\sum_p {\frac{1}{p}}$ 是 $O(\log\log n)$ 的。我们考虑一个很巧妙的构造来证明这个式子是 $O(\log\log n)$ 的：
+$$
+O\left(n\sum_{k=1}^{\pi(n)}{1\over p_k}\right)
+$$
 
-证明：
+其中 $p_k$ 表示第 $k$ 小的素数。根据 Mertens 第二定理，存在常数 $B_1$ 使得：
 
-注意到调和级数 $\sum_n {\frac{1}{n}}=\ln n$ 。
+$$
+\sum_{k=1}^{\pi(n)}{1\over p_k}=\log\log n+B_1+O\left(1\over\log n\right)
+$$
 
-而又由唯一分解定理可得： $\sum_n {\frac{1}{n}}=\prod_p {(1+\frac{1}{p}+\frac{1}{p^2}+\cdots)}=\prod_p {\frac{p}{p-1}}$ 。
+所以 **Eratosthenes 筛法** 的时间复杂度为 $O(n\log\log n)$。接下来我们证明 Mertens 第二定理的弱化版本 $\sum_{k\le\pi(n)}1/p_k=O(\log\log n)$：
 
-我们两边同时取 $\ln$ ，得：
+根据 $\pi(n)=\Theta(n/\log n)$，可知第 $n$ 个素数的大小为 $\Theta(n\log n)$。于是就有
 
 $$
 \begin{aligned}
-\ln \sum_n {\frac{1}{n}}&=\ln \prod_p {\frac{p}{p-1}}\\
-\ln\ln n&=\sum_p {(\ln p-\ln {(p-1)})}
+\sum_{k=1}^{\pi(n)}{1\over p_k}
+&=O\left(\sum_{k=2}^{\pi(n)}{1\over k\log k}\right) \\
+&=O\left(\int_2^{\pi(n)}{\mathrm dx\over x\log x}\right) \\
+&=O(\log\log\pi(n))=O(\log\log n)
 \end{aligned}
 $$
-
-又发现 $\int {\frac{1}{x}dx}=\ln x$ ，所以由微积分基本定理：
-
-$$
-\sum_p {(\ln p-\ln {(p-1)})}=\sum_p {\int_{p-1}^p {\frac{1}{x}dx}}
-$$
-
-画图可以发现， $\int_{p-1}^p {\frac{1}{x}dx}>\frac{1}{p}$ ，所以：
-
-$$
-\ln\ln n=\sum_p {\int_{p-1}^p {\frac{1}{x}dx}}>\sum_p {\frac{1}{p}}
-$$
-
-所以 $\sum_p {\frac{1}{p}}$ 是 $O(\log\log n)$ 的，所以 **Eratosthenes 筛法** 的复杂度是 $O(n\log\log n)$ 的。
 
 当然，上面的做法效率仍然不够高效，应用下面几种方法可以稍微提高算法的执行效率。
 
@@ -85,7 +77,7 @@ for (int i = 2; i * i <= n; i++) {
 }
 ```
 
-这种优化不会影响渐进时间复杂度，实际上重复以上证明，我们将得到 $n \ln \ln \sqrt n + o(n)$ ，根据对数的性质，它们的渐进相同，但操作次数会明显减少。
+这种优化不会影响渐进时间复杂度，实际上重复以上证明，我们将得到 $n \ln \ln \sqrt n + o(n)$，根据对数的性质，它们的渐进相同，但操作次数会明显减少。
 
 #### 只筛奇数
 
@@ -101,13 +93,13 @@ for (int i = 2; i * i <= n; i++) {
 
 因此，这种方法只有在 $n$ 特别大，以至于我们不能再分配内存时才合理。在这种情况下，我们将牺牲效率，通过显著降低算法速度以节省内存（减小 8 倍）。
 
-值得一提的是，存在自动执行位级压缩的数据结构，如 C++ 中的 `vector<bool>` 和 `bitset<>` 。
+值得一提的是，存在自动执行位级压缩的数据结构，如 C++ 中的 `vector<bool>` 和 `bitset<>`。
 
 #### 分块筛选
 
-由优化“筛至平方根”可知，不需要一直保留整个 `is_prime[1...n]` 数组。为了进行筛选，只保留到 $\sqrt n$ 的素数就足够了，即 `prime[1...sqrt(n)]` 。并将整个范围分成块，每个块分别进行筛选。这样，我们就不必同时在内存中保留多个块，而且 CPU 可以更好地处理缓存。
+由优化“筛至平方根”可知，不需要一直保留整个 `is_prime[1...n]` 数组。为了进行筛选，只保留到 $\sqrt n$ 的素数就足够了，即 `prime[1...sqrt(n)]`。并将整个范围分成块，每个块分别进行筛选。这样，我们就不必同时在内存中保留多个块，而且 CPU 可以更好地处理缓存。
 
-设 $s$ 是一个常数，它决定了块的大小，那么我们就有了 $\lceil {\frac n s} \rceil$ 个块，而块 $k$ ( $k = 0 ... \lfloor {\frac n s} \rfloor$ ) 包含了区间 $[ks; ks + s - 1]$ 中的数字。我们可以依次处理块，也就是说，对于每个块 $k$ ，我们将遍历所有质数（从 $1$ 到 $\sqrt n$ ）并使用它们进行筛选。
+设 $s$ 是一个常数，它决定了块的大小，那么我们就有了 $\lceil {\frac n s} \rceil$ 个块，而块 $k$($k = 0 ... \lfloor {\frac n s} \rfloor$) 包含了区间 $[ks; ks + s - 1]$ 中的数字。我们可以依次处理块，也就是说，对于每个块 $k$，我们将遍历所有质数（从 $1$ 到 $\sqrt n$）并使用它们进行筛选。
 
 值得注意的是，我们在处理第一个数字时需要稍微修改一下策略：首先，应保留 $[1; \sqrt n]$ 中的所有的质数；第二，数字 $0$ 和 $1$ 应该标记为非素数。在处理最后一个块时，不应该忘记最后一个数字 $n$ 并不一定位于块的末尾。
 
@@ -144,7 +136,7 @@ int count_primes(int n) {
 }
 ```
 
-分块筛分的渐进时间复杂度与埃氏筛法是一样的（除非块非常小），但是所需的内存将缩小为 $O(\sqrt{n} + S)$ ，并且有更好的缓存结果。
+分块筛分的渐进时间复杂度与埃氏筛法是一样的（除非块非常小），但是所需的内存将缩小为 $O(\sqrt{n} + S)$，并且有更好的缓存结果。
 另一方面，对于每一对块和区间 $[1, \sqrt{n}]$ 中的素数都要进行除法，而对于较小的块来说，这种情况要糟糕得多。
 因此，在选择常数 $S$ 时要保持平衡。
 
@@ -185,18 +177,18 @@ void init() {
 
 上面代码中的 $phi$ 数组，会在下面提到。
 
-上面的这种 **线性筛法** 也称为 **Euler 筛法** （欧拉筛法）。
+上面的这种 **线性筛法** 也称为 **Euler 筛法**（欧拉筛法）。
 
 ??? note
     注意到筛法求素数的同时也得到了每个数的最小质因子
 
 ## 筛法求欧拉函数
 
-注意到在线性筛中，每一个合数都是被最小的质因子筛掉。比如设 $p_1$ 是 $n$ 的最小质因子， $n' = \frac{n}{p_1}$ ，那么线性筛的过程中 $n$ 通过 $n' \times p_1$ 筛掉。
+注意到在线性筛中，每一个合数都是被最小的质因子筛掉。比如设 $p_1$ 是 $n$ 的最小质因子，$n' = \frac{n}{p_1}$，那么线性筛的过程中 $n$ 通过 $n' \times p_1$ 筛掉。
 
 观察线性筛的过程，我们还需要处理两个部分，下面对 $n' \bmod p_1$ 分情况讨论。
 
-如果 $n' \bmod p_1 = 0$ ，那么 $n'$ 包含了 $n$ 的所有质因子。
+如果 $n' \bmod p_1 = 0$，那么 $n'$ 包含了 $n$ 的所有质因子。
 
 $$
 \begin{aligned}
@@ -216,15 +208,26 @@ $$
 $$
 
 ```cpp
-void phi_table(int n, int* phi) {
-  for (int i = 2; i <= n; i++) phi[i] = 0;
+void pre() {
+  memset(is_prime, 1, sizeof(is_prime));
+  int cnt = 0;
+  is_prime[1] = 0;
   phi[1] = 1;
-  for (int i = 2; i <= n; i++)
-    if (!phi[i])
-      for (int j = i; j <= n; j += i) {
-        if (!phi[j]) phi[j] = j;
-        phi[j] = phi[j] / i * (i - 1);
+  for (int i = 2; i <= 5000000; i++) {
+    if (is_prime[i]) {
+      prime[++cnt] = i;
+      phi[i] = i - 1;
+    }
+    for (int j = 1; j <= cnt && i * prime[j] <= 5000000; j++) {
+      is_prime[i * prime[j]] = 0;
+      if (i % prime[j])
+        phi[i * prime[j]] = phi[i] * phi[prime[j]];
+      else {
+        phi[i * prime[j]] = phi[i] * prime[j];
+        break;
       }
+    }
+  }
 }
 ```
 
@@ -250,13 +253,13 @@ void pre() {
 
 ## 筛法求约数个数
 
-用 $d_i$ 表示 $i$ 的约数个数， $num_i$ 表示 $i$ 的最小质因子出现次数。
+用 $d_i$ 表示 $i$ 的约数个数，$num_i$ 表示 $i$ 的最小质因子出现次数。
 
 ### 约数个数定理
 
-定理：若 $n=\prod_{i=1}^mp_i^{c_i}$ 则 $d_i=\prod_{i=1}^mc_i+1$ .
+定理：若 $n=\prod_{i=1}^mp_i^{c_i}$ 则 $d_i=\prod_{i=1}^mc_i+1$.
 
-证明：我们知道 $p_i^{c_i}$ 的约数有 $p_i^0,p_i^1,\dots ,p_i^{c_i}$ 共 $c_i+1$ 个，根据乘法原理， $n$ 的约数个数就是 $\prod_{i=1}^mc_i+1$ .
+证明：我们知道 $p_i^{c_i}$ 的约数有 $p_i^0,p_i^1,\dots ,p_i^{c_i}$ 共 $c_i+1$ 个，根据乘法原理，$n$ 的约数个数就是 $\prod_{i=1}^mc_i+1$.
 
 ### 实现
 
@@ -284,7 +287,7 @@ void pre() {
 
 ## 筛法求约数和
 
- $f_i$ 表示 $i$ 的约数和， $g_i$ 表示 $i$ 的最小质因子的 $p+p^1+p^2+\dots p^k$ .
+$f_i$ 表示 $i$ 的约数和，$g_i$ 表示 $i$ 的最小质因子的 $p+p^1+p^2+\dots p^k$.
 
 ```cpp
 void pre() {
@@ -309,4 +312,4 @@ void pre() {
 
 ## 其他线性函数
 
- **本节部分内容译自博文 [Решето Эратосфена](http://e-maxx.ru/algo/eratosthenes_sieve) 与其英文翻译版 [Sieve of Eratosthenes](https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+**本节部分内容译自博文 [Решето Эратосфена](http://e-maxx.ru/algo/eratosthenes_sieve) 与其英文翻译版 [Sieve of Eratosthenes](https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

@@ -1,19 +1,19 @@
 ## 定义
 
 最近公共祖先简称 LCA（Lowest Common Ancestor）。两个节点的最近公共祖先，就是这两个点的公共祖先里面，离根最远的那个。
-为了方便，我们记某点集 $S={v_1,v_2,\ldots,v_n}$ 的最近公共祖先为 $\text{LCA}(v_1,v_2,\ldots,v_n)$ 或 $\text{LCA}(S)$ 。
+为了方便，我们记某点集 $S={v_1,v_2,\ldots,v_n}$ 的最近公共祖先为 $\text{LCA}(v_1,v_2,\ldots,v_n)$ 或 $\text{LCA}(S)$。
 
 ## 性质
 
-> 本节 **性质** 部分内容翻译自 [wcipeg](http://wcipeg.com/wiki/Lowest_common_ancestor) ，并做过修改。
+> 本节 **性质** 部分内容翻译自 [wcipeg](http://wcipeg.com/wiki/Lowest_common_ancestor)，并做过修改。
 
-1.  $\text{LCA}({u})=u$ ；
-2.  $u$ 是 $v$ 的祖先，当且仅当 $\text{LCA}(u,v)=u$ ；
+1. $\text{LCA}({u})=u$；
+2. $u$ 是 $v$ 的祖先，当且仅当 $\text{LCA}(u,v)=u$；
 3. 如果 $u$ 不为 $v$ 的祖先并且 $v$ 不为 $u$ 的祖先，那么 $u,v$ 分别处于 $\text{LCA}(u,v)$ 的两棵不同子树中；
-4. 前序遍历中， $\text{LCA}(S)$ 出现在所有 $S$ 中元素之前，后序遍历中 $\text{LCA}(S)$ 则出现在所有 $S$ 中元素之后；
-5. 两点集并的最近公共祖先为两点集分别的最近公共祖先的最近公共祖先，即 $\text{LCA}(A\cup B)=\text{LCA}(\text{LCA}(A), \text{LCA}(B))$ ；
+4. 前序遍历中，$\text{LCA}(S)$ 出现在所有 $S$ 中元素之前，后序遍历中 $\text{LCA}(S)$ 则出现在所有 $S$ 中元素之后；
+5. 两点集并的最近公共祖先为两点集分别的最近公共祖先的最近公共祖先，即 $\text{LCA}(A\cup B)=\text{LCA}(\text{LCA}(A), \text{LCA}(B))$；
 6. 两点的最近公共祖先必定处在树上两点间的最短路上；
-7.  $d(u,v)=h(u)+h(v)-2h(\text{LCA}(u,v))$ ，其中 $d$ 是树上两点间的距离， $h$ 代表某点到树根的距离。
+7. $d(u,v)=h(u)+h(v)-2h(\text{LCA}(u,v))$，其中 $d$ 是树上两点间的距离，$h$ 代表某点到树根的距离。
 
 ## 求法
 
@@ -22,21 +22,21 @@
 可以每次找深度比较大的那个点，让它向上跳。显然在树上，这两个点最后一定会相遇，相遇的位置就是想要求的 LCA。
 或者先向上调整深度较大的点，令他们深度相同，然后再共同向上跳转，最后也一定会相遇。
 
-朴素算法预处理时需要 dfs 整棵树，时间复杂度为 $O(n)$ ，单次查询时间复杂度为 $\Theta(n)$ 。但由于随机树高为 $O(\log n)$ ，所以朴素算法在随机树上的单次查询时间复杂度为 $O(\log n)$ 。
+朴素算法预处理时需要 dfs 整棵树，时间复杂度为 $O(n)$，单次查询时间复杂度为 $\Theta(n)$。但由于随机树高为 $O(\log n)$，所以朴素算法在随机树上的单次查询时间复杂度为 $O(\log n)$。
 
 ### 倍增算法
 
-倍增算法是最经典的 LCA 求法，他是朴素算法的改进算法。通过预处理 $\text{fa}_{x,i}$ 数组，游标可以快速移动，大幅减少了游标跳转次数。 $\text{fa}_{x,i}$ 表示点 $x$ 的第 $2^i$ 个祖先。 $\text{fa}_{x,i}$ 数组可以通过 dfs 预处理出来。
+倍增算法是最经典的 LCA 求法，他是朴素算法的改进算法。通过预处理 $\text{fa}_{x,i}$ 数组，游标可以快速移动，大幅减少了游标跳转次数。$\text{fa}_{x,i}$ 表示点 $x$ 的第 $2^i$ 个祖先。$\text{fa}_{x,i}$ 数组可以通过 dfs 预处理出来。
 
 现在我们看看如何优化这些跳转：
-在调整游标的第一阶段中，我们要将 $u,v$ 两点跳转到同一深度。我们可以计算出 $u,v$ 两点的深度之差，设其为 $y$ 。通过将 $y$ 进行二进制拆分，我们将 $y$ 次游标跳转优化为「 $y$ 的二进制表示所含 `1` 的个数」次游标跳转。
-在第二阶段中，我们从最大的 $i$ 开始循环尝试，一直尝试到 $0$ （包括 $0$ ），如果 $\text{fa}_{u,i}\not=\text{fa}_{v,i}$ ，则 $u\gets\text{fa}_{u,i},v\gets\text{fa}_{v,i}$ ，那么最后的 LCA 为 $\text{fa}_{u,0}$ 。
+在调整游标的第一阶段中，我们要将 $u,v$ 两点跳转到同一深度。我们可以计算出 $u,v$ 两点的深度之差，设其为 $y$。通过将 $y$ 进行二进制拆分，我们将 $y$ 次游标跳转优化为「$y$ 的二进制表示所含 `1` 的个数」次游标跳转。
+在第二阶段中，我们从最大的 $i$ 开始循环尝试，一直尝试到 $0$（包括 $0$），如果 $\text{fa}_{u,i}\not=\text{fa}_{v,i}$，则 $u\gets\text{fa}_{u,i},v\gets\text{fa}_{v,i}$，那么最后的 LCA 为 $\text{fa}_{u,0}$。
 
-倍增算法的预处理时间复杂度为 $O(n \log n)$ ，单次查询时间复杂度为 $O(\log n)$ 。
+倍增算法的预处理时间复杂度为 $O(n \log n)$，单次查询时间复杂度为 $O(\log n)$。
 另外倍增算法可以通过交换 `fa` 数组的两维使较小维放在前面。这样可以减少 cache miss 次数，提高程序效率。
 
 !!! 例题
-     [HDU 2586 How far away?](http://acm.hdu.edu.cn/showproblem.php?pid=2586) 树上最短路查询。原题为多组数据，以下代码为针对单组数据的情况编写的。
+    [HDU 2586 How far away?](http://acm.hdu.edu.cn/showproblem.php?pid=2586) 树上最短路查询。原题为多组数据，以下代码为针对单组数据的情况编写的。
 
 可先求出 LCA，再结合性质 $7$ 进行解答。也可以直接在求 LCA 时求出结果。
 
@@ -110,17 +110,17 @@
 
 ### Tarjan 算法
 
- `Tarjan 算法` 是一种 `离线算法` ，需要使用 `并查集` 记录某个结点的祖先结点。做法如下：
+`Tarjan 算法` 是一种 `离线算法`，需要使用 `并查集` 记录某个结点的祖先结点。做法如下：
 
 1. 首先接受输入（邻接链表）、查询（存储在另一个邻接链表内）。查询边其实是虚拟加上去的边，为了方便，每次输入查询边的时候，将这个边及其反向边都加入到 `queryEdge` 数组里。
-2. 然后对其进行一次 DFS 遍历，同时使用 `visited` 数组进行记录某个结点是否被访问过、 `parent` 记录当前结点的父亲结点。
-3. 其中涉及到了 `回溯思想` ，我们每次遍历到某个结点的时候，认为这个结点的根结点就是它本身。让以这个结点为根节点的 DFS 全部遍历完毕了以后，再将 `这个结点的根节点` 设置为 `这个结点的父一级结点` 。
-4. 回溯的时候，如果以该节点为起点， `queryEdge` 查询边的另一个结点也恰好访问过了，则直接更新查询边的 LCA 结果。
+2. 然后对其进行一次 DFS 遍历，同时使用 `visited` 数组进行记录某个结点是否被访问过、`parent` 记录当前结点的父亲结点。
+3. 其中涉及到了 `回溯思想`，我们每次遍历到某个结点的时候，认为这个结点的根结点就是它本身。让以这个结点为根节点的 DFS 全部遍历完毕了以后，再将 `这个结点的根节点` 设置为 `这个结点的父一级结点`。
+4. 回溯的时候，如果以该节点为起点，`queryEdge` 查询边的另一个结点也恰好访问过了，则直接更新查询边的 LCA 结果。
 5. 最后输出结果。
 
-Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(n)$ ，Tarjan 算法处理所有 $m$ 次询问的时间复杂度为 $O(n + m)$ 。但是 Tarjan 算法的常数比倍增算法大。
+Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(n)$，Tarjan 算法处理所有 $m$ 次询问的时间复杂度为 $O(n + m)$。但是 Tarjan 算法的常数比倍增算法大。
 
-需要注意的是，Tarjan 算法中使用的并查集性质比较特殊，在仅使用路径压缩优化的情况下，单次调用 `find()` 函数的时间复杂度为均摊 $O(1)$ ，而不是 $O(\log n)$ 。具体可以见 [并查集部分的引用：A Linear-Time Algorithm for a Special Case of Disjoint Set Union](../ds/dsu.md#references) 。
+需要注意的是，Tarjan 算法中使用的并查集性质比较特殊，在仅使用路径压缩优化的情况下，单次调用 `find()` 函数的时间复杂度为均摊 $O(1)$，而不是 $O(\log n)$。具体可以见 [并查集部分的引用：A Linear-Time Algorithm for a Special Case of Disjoint Set Union](../ds/dsu.md#references)。
 
 ??? note "参考代码"
     ```cpp
@@ -226,13 +226,13 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
 
 对一棵树进行 DFS，无论是第一次访问还是回溯，每次到达一个结点时都将编号记录下来，可以得到一个长度为 $2n-1$ 的序列，这个序列被称作这棵树的欧拉序列。
 
-在下文中，把结点 $u$ 在欧拉序列中第一次出现的位置编号记为 $pos(u)$ （也称作节点 $u$ 的欧拉序），把欧拉序列本身记作 $E[1..2n-1]$ 。
+在下文中，把结点 $u$ 在欧拉序列中第一次出现的位置编号记为 $pos(u)$（也称作节点 $u$ 的欧拉序），把欧拉序列本身记作 $E[1..2n-1]$。
 
-有了欧拉序列，LCA 问题可以在线性时间内转化为 RMQ 问题，即 $pos(LCA(u, v))=\min\{pos(k)|k\in E[pos(u)..pos(v)]\}$ 。
+有了欧拉序列，LCA 问题可以在线性时间内转化为 RMQ 问题，即 $pos(LCA(u, v))=\min\{pos(k)|k\in E[pos(u)..pos(v)]\}$。
 
-这个等式不难理解：从 $u$ 走到 $v$ 的过程中一定会经过 $LCA(u,v)$ ，但不会经过 $LCA(u,v)$ 的祖先。因此，从 $u$ 走到 $v$ 的过程中经过的欧拉序最小的结点就是 $LCA(u, v)$ 。
+这个等式不难理解：从 $u$ 走到 $v$ 的过程中一定会经过 $LCA(u,v)$，但不会经过 $LCA(u,v)$ 的祖先。因此，从 $u$ 走到 $v$ 的过程中经过的欧拉序最小的结点就是 $LCA(u, v)$。
 
-用 DFS 计算欧拉序列的时间复杂度是 $O(n)$ ，且欧拉序列的长度也是 $O(n)$ ，所以 LCA 问题可以在 $O(n)$ 的时间内转化成等规模的 RMQ 问题。
+用 DFS 计算欧拉序列的时间复杂度是 $O(n)$，且欧拉序列的长度也是 $O(n)$，所以 LCA 问题可以在 $O(n)$ 的时间内转化成等规模的 RMQ 问题。
 
 ???+note "参考代码"
     ```cpp
@@ -261,64 +261,43 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
 
 当我们需要查询某点对 $(u, v)$ 的 LCA 时，查询区间 $[\min\{pos[u], pos[v]\}, \max\{pos[u], pos[v]\}]$ 上最小值的所代表的节点即可。
 
-若使用 ST 表来解决 RMQ 问题，那么该算法不支持在线修改，预处理的时间复杂度为 $O(n\log n)$ ，每次查询 LCA 的时间复杂度为 $O(1)$ 。
+若使用 ST 表来解决 RMQ 问题，那么该算法不支持在线修改，预处理的时间复杂度为 $O(n\log n)$，每次查询 LCA 的时间复杂度为 $O(1)$。
 
 ### 树链剖分
 
 LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所指向的点。
 
-树链剖分的预处理时间复杂度为 $O(n)$ ，单次查询的时间复杂度为 $O(\log n)$ ，并且常数较小。
+树链剖分的预处理时间复杂度为 $O(n)$，单次查询的时间复杂度为 $O(\log n)$，并且常数较小。
 
-###  [动态树](../ds/lct.md) 
+### [动态树](../ds/lct.md)
 
-设连续两次 [access](../ds/lct.md#access) 操作的点分别为 `u` 和 `v` ，则第二次 [access](../ds/lct.md#access) 操作返回的点即为 `u` 和 `v` 的 LCA.
+设连续两次 [access](../ds/lct.md#access) 操作的点分别为 `u` 和 `v`，则第二次 [access](../ds/lct.md#access) 操作返回的点即为 `u` 和 `v` 的 LCA.
 
-在无 link 和 cut 等操作的情况下，使用 link cut tree 单次查询的时间复杂度为 $O(\log n)$ 。
+在无 link 和 cut 等操作的情况下，使用 link cut tree 单次查询的时间复杂度为 $O(\log n)$。
 
 ### 标准 RMQ
 
-时间复杂度 $O(N)-O(1)$ ，空间复杂度 $O(N)$ ，支持在线查询，常数较大，编程复杂度较高。
+前面讲到了借助欧拉序将 LCA 问题转化为 RMQ 问题，其瓶颈在于 RMQ。如果能做到 $O(n) \sim O(1)$ 求解 RMQ，那么也就能做到 $O(n) \sim O(1)$ 求解 LCA。
 
-流程：
+注意到欧拉序满足相邻两数之差为 1 或者 -1，所以可以使用 $O(n) \sim O(1)$ 的 [加减 1RMQ](../topic/rmq.md#1rmq) 来做。
 
-- 通过 DFS 序将树上 LCA 问题转为序列 RMQ 问题
+时间复杂度 $O(n) \sim O(1)$，空间复杂度 $O(n)$，支持在线查询，常数较大。
 
-- 通过单调栈将序列转为笛卡尔树
-
-- 在笛卡尔树上求欧拉序，如此转化为 $\pm 1$ RMQ
-
-- 对新序列分块，做分块 ST 表，块内通过二进制状压 DP 维护
-
-每一步的复杂度都是 $O(N)$ 的，因此总复杂度依然是 $O(N)$ 。
-
-提供 RMQ 转标准 RMQ 的代码，为洛谷上 ST 表的例题 [ **P3865** 【模板】ST 表](https://www.luogu.com.cn/problem/P3865) 
+#### 例题 [Luogu P3379【模板】最近公共祖先（LCA）](https://www.luogu.com.cn/problem/P3379)
 
 ??? note "参考代码"
     ```cpp
-    // Copyright (C) 2018 Skqliao. All rights served.
     #include <bits/stdc++.h>
+    using namespace std;
     
-    #define rep(i, l, r) for (int i = (l), _##i##_ = (r); i < _##i##_; ++i)
-    #define rof(i, l, r) for (int i = (l)-1, _##i##_ = (r); i >= _##i##_; --i)
-    #define ALL(x) (x).begin(), (x).end()
-    #define SZ(x) static_cast<int>((x).size())
-    typedef long long ll;
-    typedef std::pair<int, int> pii;
-    template <typename T>
-    inline bool chkMin(T &a, const T &b) {
-      return a > b ? a = b, 1 : 0;
-    }
-    template <typename T>
-    inline bool chkMax(T &a, const T &b) {
-      return a < b ? a = b, 1 : 0;
-    }
-    
-    const int MAXN = 1e5 + 5;
+    const int N = 5e5 + 5;
     
     struct PlusMinusOneRMQ {
-      const static int M = 8;
-      int blocklen, block, Minv[MAXN], F[MAXN / M * 2 + 5][M << 1], T[MAXN],
-          f[1 << M][M][M], S[MAXN];
+      // Copyright (C) 2018 Skqliao. All rights served.
+      const static int M = 9;
+    
+      int blocklen, block, Minv[N], F[N / M * 2 + 5][M << 1], T[N], f[1 << M][M][M],
+          S[N];
       void init(int n) {
         blocklen = std::max(1, (int)(log(n * 1.0) / log(2.0)) / 2);
         block = n / blocklen + (n % blocklen > 0);
@@ -342,7 +321,7 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
           }
         }
         T[1] = 0;
-        for (int i = 2; i < MAXN; i++) {
+        for (int i = 2; i < N; i++) {
           T[i] = T[i - 1];
           if (!(i & (i - 1))) {
             T[i]++;
@@ -391,101 +370,85 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
           return buf;
         }
       }
-    };
+    } rmq;
     
-    struct CartesianTree {
-     private:
-      struct Node {
-        int key, value, l, r;
-        Node(int key, int value) {
-          this->key = key;
-          this->value = value;
-          l = r = 0;
-        }
-        Node() {}
-      };
-      Node tree[MAXN];
-      int sz;
-      int S[MAXN], top;
+    int n, m, s;
     
-     public:
-      void build(int a[], int n) {
-        top = 0;
-        tree[0] = Node(-1, INT_MAX);
-        S[top++] = 0;
-        sz = 0;
-        for (int i = 0; i < n; i++) {
-          tree[++sz] = Node(i, a[i]);
-          int last = 0;
-          while (tree[S[top - 1]].value <= tree[sz].value) {
-            last = S[top - 1];
-            top--;
-          }
-          tree[sz].l = last;
-          tree[S[top - 1]].r = sz;
-          S[top++] = sz;
-        }
+    struct Edge {
+      int v, nxt;
+    } e[N * 2];
+    int tot, head[N];
+    void init(int n) {
+      tot = 0;
+      fill(head, head + n + 1, 0);
+    }
+    void addedge(int u, int v) {
+      ++tot;
+      e[tot] = (Edge){v, head[u]};
+      head[u] = tot;
+    
+      ++tot;
+      e[tot] = (Edge){u, head[v]};
+      head[v] = tot;
+    }
+    
+    int dfs_clock, dfn[N * 2], dep[N * 2], st[N];
+    
+    void dfs(int u, int fa, int d) {
+      st[u] = dfs_clock;
+    
+      dfn[dfs_clock] = u;
+      dep[dfs_clock] = d;
+      ++dfs_clock;
+    
+      int v;
+      for (int i = head[u]; i; i = e[i].nxt) {
+        v = e[i].v;
+        if (v == fa) continue;
+        dfs(v, u, d + 1);
+        dfn[dfs_clock] = u;
+        dep[dfs_clock] = d;
+        ++dfs_clock;
       }
-      Node &operator[](const int x) { return tree[x]; }
-    };
+    }
     
-    class stdRMQ {
-     public:
-      void work(int a[], int n) {
-        ct.build(a, n);
-        dfs_clock = 0;
-        dfs(0, 0);
-        rmq.init(dfs_clock);
-        rmq.initmin(depseq, dfs_clock);
-      }
-      int query(int L, int R) {
-        int cl = clk[L], cr = clk[R];
-        if (cl > cr) {
-          std::swap(cl, cr);
-        }
-        return Val[rmq.querymin(depseq, cl, cr)];
-      }
+    void build_lca() {
+      rmq.init(dfs_clock);
+      rmq.initmin(dep, dfs_clock);
+    }
     
-     private:
-      CartesianTree ct;
-      PlusMinusOneRMQ rmq;
-      int dfs_clock, clk[MAXN], Val[MAXN << 1], depseq[MAXN << 1];
-      void dfs(int rt, int d) {
-        clk[ct[rt].key] = dfs_clock;
-        depseq[dfs_clock] = d;
-        Val[dfs_clock++] = ct[rt].value;
-        if (ct[rt].l) {
-          dfs(ct[rt].l, d + 1);
-          depseq[dfs_clock] = d;
-          Val[dfs_clock++] = ct[rt].value;
-        }
-        if (ct[rt].r) {
-          dfs(ct[rt].r, d + 1);
-          depseq[dfs_clock] = d;
-          Val[dfs_clock++] = ct[rt].value;
-        }
-      }
-    } doit;
-    
-    int A[MAXN];
+    int LCA(int u, int v) {
+      int l = st[u], r = st[v];
+      if (l > r) swap(l, r);
+      return dfn[rmq.querymin(dep, l, r)];
+    }
     
     int main() {
-      int n, m, l, r;
-      scanf("%d%d", &n, &m);
-      for (int i = 0; i < n; ++i) {
-        scanf("%d", &A[i]);
+      scanf("%d %d %d", &n, &m, &s);
+    
+      init(n);
+      int u, v;
+      for (int i = 1; i <= n - 1; ++i) {
+        scanf("%d %d", &u, &v);
+        addedge(u, v);
       }
-      doit.work(A, n);
-      while (m--) {
-        scanf("%d%d", &l, &r);
-        printf("%d\n", doit.query(l - 1, r - 1));
+    
+      dfs_clock = 0;
+      dfs(s, s, 0);
+    
+      build_lca();
+    
+      for (int i = 1; i <= m; ++i) {
+        scanf("%d %d", &u, &v);
+        printf("%d\n", LCA(u, v));
       }
+    
       return 0;
     }
     ```
 
 ## 习题
 
--  [祖孙询问](https://loj.ac/problem/10135) 
--  [货车运输](https://loj.ac/problem/2610) 
--  [点的距离](https://loj.ac/problem/10130) 
+- [祖孙询问](https://loj.ac/problem/10135)
+- [货车运输](https://loj.ac/problem/2610)
+- [点的距离](https://loj.ac/problem/10130)

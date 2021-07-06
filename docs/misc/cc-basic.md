@@ -2,23 +2,23 @@
 
 本文中许多结论都是不加证明的，如果有兴趣的话可以自行查阅相关证明。
 
-前置知识： [时间复杂度](./complexity.md) 。
+前置知识：[时间复杂度](../basic/complexity.md)。
 
 ## 问题
 
 ### 语言
 
-一个 **字母表（alphabet)** 是一个非空有限集合，该集合中的元素称为 **符号/字符（symbol)** 。
+一个 **字母表（alphabet)** 是一个非空有限集合，该集合中的元素称为 **符号/字符（symbol)**。
 
 令 $\Sigma^\ast$ 表示非负整数个 $\Sigma$ 中的字符连接而成的串，字母表 $\Sigma$ 上的一个 **语言（language)** 是 $\Sigma^\ast$ 的一个子集。
 
 需要注意的是，这里的“语言”是一个抽象的概念，通常意义上的字符串是语言，所有的有向无环图也可以是一个语言（01 串与有向图之间可以建立双射，具体方式无需了解）。
 
-由于任何语言都可以转化成 01 串的形式，所以在下文中不加说明时 $\Sigma=\{0, 1\}$ 。
+由于任何语言都可以转化成 01 串的形式，所以在下文中不加说明时 $\Sigma=\{0, 1\}$。
 
 ### 判定问题
 
-判定问题就是只能用 YES/NO 回答的问题，本质上是判定一个串是否属于一个语言，即： $f:\Sigma^\ast\rightarrow\{0, 1\}, f(x)=1\iff x\in L$ 是一个关于字母表 $\Sigma$ 和语言 $L$ 的判定问题。如，“判定一张图是不是一个有向无环图”就是一个判定问题。
+判定问题就是只能用 YES/NO 回答的问题，本质上是判定一个串是否属于一个语言，即：$f:\Sigma^\ast\rightarrow\{0, 1\}, f(x)=1\iff x\in L$ 是一个关于字母表 $\Sigma$ 和语言 $L$ 的判定问题。如，“判定一张图是不是一个有向无环图”就是一个判定问题。
 
 判定问题由于其简洁性而常常被作为计算理论研究的对象。本文中不加说明时，“问题”都指“判定问题”，当然，有时一些命题也能简单地推广到其它问题上。
 
@@ -30,7 +30,7 @@
 
 任何功能性问题都可以转化为一个判定问题，如，“求两个数的和”可以转化为“判定两个数的和是否等于第三个数”。
 
-判定问题也可以转化为一个功能性问题：求这个判定问题的指示函数，即上文中判定问题定义里的 $f$ 。
+判定问题也可以转化为一个功能性问题：求这个判定问题的指示函数，即上文中判定问题定义里的 $f$。
 
 ## 图灵机
 
@@ -42,21 +42,21 @@
 
 图灵机是一个在一条可双向无限延伸且被划分为若干格子的纸带上进行操作的机器，其有内部状态，还有一个可以在纸带上进行修改与移动的磁针。
 
-正式地说，图灵机是一个七元组 $M=<Q,\Gamma,b,\Sigma,\delta,q_0,F>$ ，其中：
+正式地说，图灵机是一个七元组 $M=<Q,\Gamma,b,\Sigma,\delta,q_0,F>$，其中：
 
--  $Q$ 是一个有限非空的 **状态集合** ；
--  $\Gamma$ 是一个有限非空的 **磁带字母表** ；
--  $b\in\Gamma$ 是 **空字符** ，它是唯一一个在计算过程中可以在磁带上无限频繁地出现的字符；
--  $\Sigma\subseteq(\Gamma\setminus\{b\})$ 是 **输入符号集** ，是可以出现在初始磁带（即输入）上的字符；
--  $q_0\in Q$ 是 **初始状态** ；
--  $F\subseteq Q$ 是 **接受状态** ，如果一个图灵机在某个接受状态停机，则称初始磁带上的内容被这个图灵机 **接受** 。
--  $\delta :(Q\setminus F)\times \Gamma \not \to Q\times \Gamma \times \{L,R\}$ 是一个被称作 **转移函数** 的 partial function（即只对定义域的一个子集有定义的函数）。如果 $\delta$ 在当前状态下没有定义，则图灵机停机。
+- $Q$ 是一个有限非空的 **状态集合**；
+- $\Gamma$ 是一个有限非空的 **磁带字母表**；
+- $b\in\Gamma$ 是 **空字符**，它是唯一一个在计算过程中可以在磁带上无限频繁地出现的字符；
+- $\Sigma\subseteq(\Gamma\setminus\{b\})$ 是 **输入符号集**，是可以出现在初始磁带（即输入）上的字符；
+- $q_0\in Q$ 是 **初始状态**；
+- $F\subseteq Q$ 是 **接受状态**，如果一个图灵机在某个接受状态停机，则称初始磁带上的内容被这个图灵机 **接受**。
+- $\delta :(Q\setminus F)\times \Gamma \not \to Q\times \Gamma \times \{L,R\}$ 是一个被称作 **转移函数** 的 partial function（即只对定义域的一个子集有定义的函数）。如果 $\delta$ 在当前状态下没有定义，则图灵机停机。
 
-图灵机从初始状态与纸带起点起，每次根据当前的内部状态 $x$ 和当前磁针指向的纸带上的单元格中的字符 $y$ 进行操作：若 $\delta(x, y)$ 没有定义则停机，否则若 $\delta(x, y)=(a, b, c)$ ，则将内部状态修改为 $a$ ，将磁针指向的格子中的字符修改为 $b$ ，若 $c$ 为 $L$ 则向左移动一格，为 $R$ 则向右移动一格。
+图灵机从初始状态与纸带起点起，每次根据当前的内部状态 $x$ 和当前磁针指向的纸带上的单元格中的字符 $y$ 进行操作：若 $\delta(x, y)$ 没有定义则停机，否则若 $\delta(x, y)=(a, b, c)$，则将内部状态修改为 $a$，将磁针指向的格子中的字符修改为 $b$，若 $c$ 为 $L$ 则向左移动一格，为 $R$ 则向右移动一格。
 
 其实，知道图灵机的工作细节是不必要的，只需建立直观理解即可。
 
-图灵机 $M$ 在输入 $x$ 下的输出记作 $M(x)$ （ $M(x)=1$ 当且仅当 $M$ 接受 $x$ ， $M(x)=0$ 当且仅当 $M$ 在输入 $x$ 下在有限步骤内停机且 $M$ 不接受 $x$ ），也可以在括号内包含多个参数，用逗号隔开，具体实现时可以向字母表中添加一个元素表示逗号来隔开各个参数。
+图灵机 $M$ 在输入 $x$ 下的输出记作 $M(x)$（$M(x)=1$ 当且仅当 $M$ 接受 $x$，$M(x)=0$ 当且仅当 $M$ 在输入 $x$ 下在有限步骤内停机且 $M$ 不接受 $x$），也可以在括号内包含多个参数，用逗号隔开，具体实现时可以向字母表中添加一个元素表示逗号来隔开各个参数。
 
 图灵机与冯·诺依曼计算机解决问题的时间复杂度差别在多项式级别内，所以研究复杂度类时可以使用图灵机作为计算模型。
 
@@ -78,16 +78,16 @@
 
 ### 图灵机的编码
 
-图灵机可以被自然数编码，即存在满射函数 $f:\mathbb{N}\to\mathbb{M}$ ，使得每个自然数都对应一个图灵机，而每个图灵机都有无数个编码。因此，由若干图灵机构成的集合可以是一个语言。
+图灵机可以被自然数编码，即存在满射函数 $f:\mathbb{N}\to\mathbb{M}$，使得每个自然数都对应一个图灵机，而每个图灵机都有无数个编码。因此，由若干图灵机构成的集合可以是一个语言。
 
-记由自然数 $\alpha$ 编码的图灵机为 $M_{\alpha}$ 。
+记由自然数 $\alpha$ 编码的图灵机为 $M_{\alpha}$。
 
 ### 通用图灵机
 
 存在一台图灵机 $\mathcal U$ 满足：
 
-1. 若 $M_{\alpha}$ 在输入 $x$ 下在有限时间内停机，则 $\mathcal{U}(x, \alpha)=M_{\alpha}(x)$ ，否则 $\mathcal{U}(x, \alpha)$ 不会在有限时间内停机；
-2. 如果对于任意 $x\in\{0, 1\}^\ast$ ， $M_\alpha$ 在输入 $x$ 下在 $T(|x|)$ 时间内停机，则对于任意 $x\in\{0, 1\}^\ast$ ， $\mathcal{U}(x, \alpha)$ 在 $O(T(|x|)\log T(|x|))$ 时间内停机。
+1. 若 $M_{\alpha}$ 在输入 $x$ 下在有限时间内停机，则 $\mathcal{U}(x, \alpha)=M_{\alpha}(x)$，否则 $\mathcal{U}(x, \alpha)$ 不会在有限时间内停机；
+2. 如果对于任意 $x\in\{0, 1\}^\ast$，$M_\alpha$ 在输入 $x$ 下在 $T(|x|)$ 时间内停机，则对于任意 $x\in\{0, 1\}^\ast$，$\mathcal{U}(x, \alpha)$ 在 $O(T(|x|)\log T(|x|))$ 时间内停机。
 
 即：存在一台通用图灵机，它能模拟任何一台图灵机，且花费的时间只会比这台被模拟的图灵机慢其运行时间的对数。
 
@@ -101,7 +101,7 @@
 
 ### 停机问题
 
-停机问题是一个经典的图灵不可计算问题：给定 $\alpha$ 和 $x$ ，判定 $M_{\alpha}$ 在输入为 $x$ 时是否会在有限步内停机。
+停机问题是一个经典的图灵不可计算问题：给定 $\alpha$ 和 $x$，判定 $M_{\alpha}$ 在输入为 $x$ 时是否会在有限步内停机。
 
 ??? note "停机问题是图灵不可计算的证明"
     定义函数 $\mathsf{UC}:\{0,1\}^\ast\to\{0,1\}$ 为：
@@ -112,11 +112,11 @@
     
     我们先证明 $\mathsf{UC}$ 函数是图灵不可计算的：
     
-    假设存在一台图灵机 $M_{\beta}$ 能够计算 $\mathsf{UC}$ ，那么根据 $\mathsf{UC}$ 的定义可以得到 $\mathsf{UC}(\beta)=1\iff M_\beta(\beta)\neq 1$ ，而根据 $M_{\beta}$ 能够计算 $\mathsf{UC}$ 可以得到 $M_{\beta}(\beta)=\mathsf{UC}(\beta)$ ，产生了矛盾，所以假设不成立，不存在可以计算 $\mathsf{UC}$ 的图灵机。
+    假设存在一台图灵机 $M_{\beta}$ 能够计算 $\mathsf{UC}$，那么根据 $\mathsf{UC}$ 的定义可以得到 $\mathsf{UC}(\beta)=1\iff M_\beta(\beta)\neq 1$，而根据 $M_{\beta}$ 能够计算 $\mathsf{UC}$ 可以得到 $M_{\beta}(\beta)=\mathsf{UC}(\beta)$，产生了矛盾，所以假设不成立，不存在可以计算 $\mathsf{UC}$ 的图灵机。
     
-    令 $M_{\mathsf{HALT}}$ 是一个可以解决停机问题的图灵机， $M_{\mathsf{HALT}}(x,\alpha)$ 的值是判定问题 $M_\alpha$ 在输入为 $x$ 时是否会在有限步内停机的解，那么我们可以构造出一台能够计算 $\mathsf{UC}$ 函数的图灵机 $M_{\mathsf{UC}}$ ：
+    令 $M_{\mathsf{HALT}}$ 是一个可以解决停机问题的图灵机，$M_{\mathsf{HALT}}(x,\alpha)$ 的值是判定问题 $M_\alpha$ 在输入为 $x$ 时是否会在有限步内停机的解，那么我们可以构造出一台能够计算 $\mathsf{UC}$ 函数的图灵机 $M_{\mathsf{UC}}$：
     
-     $M_\mathsf{UC}$ 首先调用 $M_\mathsf{HALT}(α,α)$ , 如果它输出 $0$ , 则 $M_\mathsf{UC}(α)=1$ ；否则， $M_\mathsf{UC}$ 使用通用图灵机模拟计算得到答案。
+    $M_\mathsf{UC}$ 首先调用 $M_\mathsf{HALT}(α,α)$, 如果它输出 $0$, 则 $M_\mathsf{UC}(α)=1$；否则，$M_\mathsf{UC}$ 使用通用图灵机模拟计算得到答案。
     
     由于 $\mathsf{UC}$ 函数是图灵不可计算的，所以 $M_\mathsf{HALT}$ 不存在，也就是说停机问题是图灵不可计算的。
 
@@ -137,19 +137,19 @@
 
 ### R 和 RE
 
-对于语言 $L$ 和图灵机 $M$ ，若 $M$ 在任何输入下都能在有限步骤内停机，且 $M(x)=1\iff x\in L$ ，则称 $M$ 能够 **判定**  $L$ 。
+对于语言 $L$ 和图灵机 $M$，若 $M$ 在任何输入下都能在有限步骤内停机，且 $M(x)=1\iff x\in L$，则称 $M$ 能够 **判定**  $L$。
 
-对于语言 $L$ 和图灵机 $M$ ，若对于任何属于 $L$ 的输入， $M$ 都在有限步骤内停机，且 $M(x)=1\iff x\in L$ ，则称 $M$ 能够 **识别**  $L$ 。
+对于语言 $L$ 和图灵机 $M$，若对于任何属于 $L$ 的输入，$M$ 都在有限步骤内停机，且 $M(x)=1\iff x\in L$，则称 $M$ 能够 **识别**  $L$。
 
 复杂度类 $\mathsf R$ 表示那些可以被某台图灵机判定的语言的集合，即所有图灵可计算的语言。
 
-复杂度类 $\mathsf{RE}$ 表示那些可以被某台图灵机识别的语言的集合。 $\mathsf{RE}$ 也被称作递归可枚举语言。
+复杂度类 $\mathsf{RE}$ 表示那些可以被某台图灵机识别的语言的集合。$\mathsf{RE}$ 也被称作递归可枚举语言。
 
-由定义可以得到 $\mathsf{R}\subseteq\mathsf{RE}$ 。
+由定义可以得到 $\mathsf{R}\subseteq\mathsf{RE}$。
 
 ### DTIME
 
-如果存在一台确定性图灵机能够判定一个语言，且对于任何输入 $x$ ，这台图灵机可以在 $O(f(|x|))$ 的时间内停机，那么这个语言属于 $\mathsf{DTIME}(f(n))$ 类。
+如果存在一台确定性图灵机能够判定一个语言，且对于任何输入 $x$，这台图灵机可以在 $O(f(|x|))$ 的时间内停机，那么这个语言属于 $\mathsf{DTIME}(f(n))$ 类。
 
 ### P
 
@@ -169,11 +169,11 @@ $$
 \mathsf{EXPTIME}=\bigcup\limits_{k\in\mathbb{N}}\mathsf{DTIME}(2^{n^k})
 $$
 
-停机问题的弱化版——给定一个图灵机的编码以及一个正整数 $k$ ，判定这个图灵机是否在 $k$ 步内停机，是一个 $\mathsf{EXPTIME}$ 类的问题。因为这个问题的解法需要 $O(k)$ 的时间，而数字 $k$ 可以被编码为长度为 $O(\log k)$ 的二进制串。
+停机问题的弱化版——给定一个图灵机的编码以及一个正整数 $k$，判定这个图灵机是否在 $k$ 步内停机，是一个 $\mathsf{EXPTIME}$ 类的问题。因为这个问题的解法需要 $O(k)$ 的时间，而数字 $k$ 可以被编码为长度为 $O(\log k)$ 的二进制串。
 
 ### NTIME
 
-如果存在一台非确定性图灵机能够判定一个语言，且对于任何输入 $x$ ，这台图灵机可以在 $O(f(|x|))$ 的时间内停机，那么这个语言属于 $\mathsf{NTIME}(f(n))$ 类。
+如果存在一台非确定性图灵机能够判定一个语言，且对于任何输入 $x$，这台图灵机可以在 $O(f(|x|))$ 的时间内停机，那么这个语言属于 $\mathsf{NTIME}(f(n))$ 类。
 
 ### NP
 
@@ -187,9 +187,9 @@ $$
 
 #### NP-hard
 
-如果所有 $\mathsf{NP}$ 类问题都可以在多项式时间内规约到问题 $H$ ，那么问题 $H$ 是 NP-hard 的。
+如果所有 $\mathsf{NP}$ 类问题都可以在多项式时间内规约到问题 $H$，那么问题 $H$ 是 NP-hard 的。
 
-换句话说，如果可以在一单位的时间内解决 NP-hard 的问题 $H$ ，那么所有 $\mathsf{NP}$ 类问题都可以在多项式单位的时间内解决。
+换句话说，如果可以在一单位的时间内解决 NP-hard 的问题 $H$，那么所有 $\mathsf{NP}$ 类问题都可以在多项式单位的时间内解决。
 
 #### NP-complete
 
@@ -213,7 +213,7 @@ NPC 问题的功能性版本往往是 NP-hard 的，例如：“判定一张图�
 
 就人们目前的了解，图同构问题、离散对数问题和因数分解问题可能是 NP-intermediate 的。
 
-Ladner 定理指出，如果 $\mathsf{P}\ne\mathsf{NP}$ ，则一定存在问题是 NP-intermediate 的。
+Ladner 定理指出，如果 $\mathsf{P}\ne\mathsf{NP}$，则一定存在问题是 NP-intermediate 的。
 
 ### NEXPTIME
 
@@ -225,7 +225,7 @@ $$
 
 ### #P
 
- $\mathsf{\#P}$ 类问题不是判定问题，而是关于 $\mathsf{NP}$ 类问题的计数问题：数一个 $\mathsf{NP}$ 类问题的解的个数是一个 $\mathsf{\#P}$ 类的问题。换句话说，数一个串在一个总是在多项式时间内停机的非确定性图灵机的多少个分支处被接受是一个 $\mathsf{\#P}$ 类的问题。
+$\mathsf{\#P}$ 类问题不是判定问题，而是关于 $\mathsf{NP}$ 类问题的计数问题：数一个 $\mathsf{NP}$ 类问题的解的个数是一个 $\mathsf{\#P}$ 类的问题。换句话说，数一个串在一个总是在多项式时间内停机的非确定性图灵机的多少个分支处被接受是一个 $\mathsf{\#P}$ 类的问题。
 
 求一张普通图或二分图的匹配或完美匹配个数都是 #P 完全的，对应的判定问题为“判定一张图是否存在（完美）匹配”。
 
@@ -233,43 +233,43 @@ $$
 
 如果存在一台确定性图灵机能够在输入为 $x$ 时在 $O(f(|x|))$ 的空间内判定一个语言，那么这个语言属于 $\mathsf{DSPACE}(f(n))$ 类。
 
--  $\mathsf{REG}=\mathsf{DSPACE}(O(1))$ ，即正则语言，也就是自动机能够判定的语言。
+- $\mathsf{REG}=\mathsf{DSPACE}(O(1))$，即正则语言，也就是自动机能够判定的语言。
 
--  $\mathsf{L}=\mathsf{DSPACE}(O(\log n))$ ，需要注意的是图灵机使用的空间不包括输入占用的空间。
+- $\mathsf{L}=\mathsf{DSPACE}(O(\log n))$，需要注意的是图灵机使用的空间不包括输入占用的空间。
 
--  $\mathsf{PSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{DSPACE}(n^k)$ 
+- $\mathsf{PSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{DSPACE}(n^k)$
 
--  $\mathsf{EXPSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{DSPACE}(2^{n^k})$ 
+- $\mathsf{EXPSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{DSPACE}(2^{n^k})$
 
 ### NSPACE
 
 如果存在一台非确定性图灵机能够在输入为 $x$ 时在 $O(f(|x|))$ 的空间内判定一个语言，那么这个语言属于 $\mathsf{NSPACE}(f(n))$ 类。
 
--  $\mathsf{REG}=\mathsf{DSPACE}(O(1))=\mathsf{NSPACE}(O(1))$ 
+- $\mathsf{REG}=\mathsf{DSPACE}(O(1))=\mathsf{NSPACE}(O(1))$
 
--  $\mathsf{NL}=\mathsf{NSPACE}(O(\log n))$ 
+- $\mathsf{NL}=\mathsf{NSPACE}(O(\log n))$
 
--  $\mathsf{CSL}=\mathsf{NSPACE}(O(n))$ ，即上下文相关语言。
+- $\mathsf{CSL}=\mathsf{NSPACE}(O(n))$，即上下文相关语言。
 
--  $\mathsf{PSPACE}=\mathsf{NPSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{NSPACE}(n^k)$ 
+- $\mathsf{PSPACE}=\mathsf{NPSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{NSPACE}(n^k)$
 
--  $\mathsf{EXPSPACE}=\mathsf{NEXPSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{NSPACE}(2^{n^k})$ 
+- $\mathsf{EXPSPACE}=\mathsf{NEXPSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{NSPACE}(2^{n^k})$
 
 ## 可构造函数
 
 ### 时间可构造函数
 
-有时，我们想让图灵机知道自己用了多长的时间，例如，强制图灵机在进行 $T(n)$ 步计算后停机。但如果计算 $T(n)$ 的用时就超过了 $T(n)$ ，这便是不可做到的。为此，定义了时间可构造函数，来避免这样的麻烦。
+有时，我们想让图灵机知道自己用了多长的时间，例如，强制图灵机在进行 $T(n)$ 步计算后停机。但如果计算 $T(n)$ 的用时就超过了 $T(n)$，这便是不可做到的。为此，定义了时间可构造函数，来避免这样的麻烦。
 
-如果存在图灵机 $M$ ，使得输入为 $1^n$ ( $n$ 个 1) 时 $M$ 能在 $O(f(n))$ 的时间内停机并且输出 $f(n)$ 的二进制表示（注意，这里的图灵机的输出不是接受/不接受，而是一个串，输出可以在纸带上进行），则 $f(n)$ 是一个 **时间可构造函数** 。
+如果存在图灵机 $M$，使得输入为 $1^n$($n$ 个 1) 时 $M$ 能在 $O(f(n))$ 的时间内停机并且输出 $f(n)$ 的二进制表示（注意，这里的图灵机的输出不是接受/不接受，而是一个串，输出可以在纸带上进行），则 $f(n)$ 是一个 **时间可构造函数**。
 
-由于读入需要 $O(n)$ 的时间， $o(n)$ 的非常值函数都不是时间可构造函数。
+由于读入需要 $O(n)$ 的时间，$o(n)$ 的非常值函数都不是时间可构造函数。
 
 ### 空间可构造函数
 
 类似地可以定义空间可构造函数。
 
-如果存在图灵机 $M$ ，使得输入为 $1^n$ ( $n$ 个 1) 时 $M$ 能在 $O(f(n))$ 的空间内停机并且输出 $f(n)$ 的二进制表示，则 $f(n)$ 是一个 **空间可构造函数** 。
+如果存在图灵机 $M$，使得输入为 $1^n$($n$ 个 1) 时 $M$ 能在 $O(f(n))$ 的空间内停机并且输出 $f(n)$ 的二进制表示，则 $f(n)$ 是一个 **空间可构造函数**。
 
 ## 复杂度类之间的关系
 
@@ -283,57 +283,62 @@ $$
 \mathsf {DTIME}\left(o\left({\frac {f(n)}{\log f(n)}}\right)\right)\subsetneq \mathsf {DTIME}(f(n))
 $$
 
-由确定性时间谱系定理可以得到 $\mathsf{P}\subsetneq\mathsf{EXPTIME}$ 。
+由确定性时间谱系定理可以得到 $\mathsf{P}\subsetneq\mathsf{EXPTIME}$。
 
 ??? note "确定性时间谱系定理的证明"
-    定义语言 $L=\{(x, y)|\mathcal{U}((x, y), x)\text{ 在 }f(|x|+|y|)\text{ 时间内停机并拒绝}\}$ ，由于 $f(n)$ 是一个时间可构造函数，可以根据定义进行计算来判定 $L$ ，用时为 $O(f(|x|+|y|))$ ，所以 $L\in\mathsf{DTIME}(f(n))$ 。
+    定义语言 $L=\{(x, y)|\mathcal{U}((x, y), x)\text{ 在 }f(|x|+|y|)\text{ 时间内停机并拒绝}\}$，由于 $f(n)$ 是一个时间可构造函数，可以根据定义进行计算来判定 $L$，用时为 $O(f(|x|+|y|))$，所以 $L\in\mathsf{DTIME}(f(n))$。
     
-    现在假设 $L\in\mathsf{DTIME}(o\left({\dfrac {f(n)}{\log f(n)}}\right))$ ，设 $M_z$ 就是那台在 $o\left({\dfrac {f(n)}{\log f(n)}}\right)$ 的时间内判定 $L$ 的图灵机。
+    现在假设 $L\in\mathsf{DTIME}(o\left({\dfrac {f(n)}{\log f(n)}}\right))$，设 $M_z$ 就是那台在 $o\left({\dfrac {f(n)}{\log f(n)}}\right)$ 的时间内判定 $L$ 的图灵机。
     
-    令通用图灵机 $\mathcal{U}(x, z)$ 关于 $x$ 的用时为 $g(|x|)$ ，由上文关于通用图灵机的介绍可以得到 $g(n)=o(f(n))$ ，所以，当 $y$ 足够大时， $g(|z|+|y|)<f(|z|+|y|)$ 。
+    令通用图灵机 $\mathcal{U}(x, z)$ 关于 $x$ 的用时为 $g(|x|)$，由上文关于通用图灵机的介绍可以得到 $g(n)=o(f(n))$，所以，当 $y$ 足够大时，$g(|z|+|y|)<f(|z|+|y|)$。
     
-    令 $y'$ 是一个足够大的 $y$ ，那么 $\mathcal{U}((z, y'), z)$ 一定能在 $f(|z|+|y'|)$ 时间内停机，从而 $M_z(z, y')\ne M_z(z, y')$ ，产生矛盾，所以假设不成立，确定性时间谱系定理证毕。
+    令 $y'$ 是一个足够大的 $y$，那么 $\mathcal{U}((z, y'), z)$ 一定能在 $f(|z|+|y'|)$ 时间内停机，从而 $M_z(z, y')\ne M_z(z, y')$，产生矛盾，所以假设不成立，确定性时间谱系定理证毕。
 
 #### 非确定性时间谱系定理
 
-若 $g(n)$ 是一个时间可构造函数，并且 $f(n+1)=o(g(n))$ ，则 $\mathsf{NTIME}(f(n))\subsetneq\mathsf{NTIME}(g(n))$ 。
+若 $g(n)$ 是一个时间可构造函数，并且 $f(n+1)=o(g(n))$，则 $\mathsf{NTIME}(f(n))\subsetneq\mathsf{NTIME}(g(n))$。
 
-由非确定性时间谱系定理可以得到 $\mathsf{NP}\subsetneq\mathsf{NEXPTIME}$ 。
+由非确定性时间谱系定理可以得到 $\mathsf{NP}\subsetneq\mathsf{NEXPTIME}$。
 
 ### 空间谱系定理
 
-若 $f(n)$ 是一个空间可构造函数且 $f(n)=\Omega(\log n)$ ，则 $\mathsf{SPACE}(o(f(n)))\subsetneq\mathsf{SPACE}(f(n))$ 。
+若 $f(n)$ 是一个空间可构造函数且 $f(n)=\Omega(\log n)$，则 $\mathsf{SPACE}(o(f(n)))\subsetneq\mathsf{SPACE}(f(n))$。
 
-其中 $\mathsf{SPACE}$ 可以代指 $\mathsf{DSPACE}$ 或 $\mathsf{NSPACE}$ 。
+其中 $\mathsf{SPACE}$ 可以代指 $\mathsf{DSPACE}$ 或 $\mathsf{NSPACE}$。
 
-由空间谱系定理可以得到 $\mathsf{PSPACE}\subsetneq\mathsf{EXPSPACE}$ 。
+由空间谱系定理可以得到 $\mathsf{PSPACE}\subsetneq\mathsf{EXPSPACE}$。
 
 ### 萨维奇定理
 
 一台确定性图灵机可以在一台非确定性图灵机所消耗空间的平方内模拟它（尽管消耗的时间可能多很多），即：
 
-若 $f(n)=\Omega(\log n)$ ，则：
+若 $f(n)=\Omega(\log n)$，则：
 
 $$
 \mathsf{NSPACE}\left(f\left(n\right)\right)\subseteq \mathsf {DSPACE}\left(\left(f\left(n\right)\right)^2\right)
 $$
 
-推论： $\mathsf{PSPACE}=\mathsf{NPSPACE}$ , $\mathsf{EXPSPACE}=\mathsf{NEXPSPACE}$ 。
+推论：$\mathsf{PSPACE}=\mathsf{NPSPACE}$，$\mathsf{EXPSPACE}=\mathsf{NEXPSPACE}$。
 
 ### P?=NP
 
 复杂度类 $\mathsf{P}$ 与 $\mathsf{NP}$ 是否相等是计算复杂度理论中一个著名的尚未解决的问题。
 
-若 $\mathsf{P}=\mathsf{NP}$ ，可以得到 $\mathsf{NP}=\mathsf{co-NP}$ ，但反之不行（目前没有基于 $\mathsf{NP}=\mathsf{co-NP}$ 证明 $\mathsf{P}=\mathsf{NP}$ 的方法）。
+若 $\mathsf{P}=\mathsf{NP}$，可以得到 $\mathsf{NP}=\mathsf{co-NP}$，但反之不行（目前没有基于 $\mathsf{NP}=\mathsf{co-NP}$ 证明 $\mathsf{P}=\mathsf{NP}$ 的方法）。
 
-若 $\mathsf{P}=\mathsf{NP}$ ，还可以得到 $\mathsf{EXPTIME}=\mathsf{NEXPTIME}$ 。
+???+note "为什么 NP?=co-NP 不是显然的？"
+    由于 $\mathsf{NP}$ 问题和与其对应的 $\mathsf{co-NP}$ 问题答案相反，很容易有这种想法：对于一个 $\mathsf{co-NP}$ 问题，我只要将解决其补集的非确定性图灵机的输出反过来，就解决了该 $\mathsf{co-NP}$ 问题，所以 $\mathsf{NP}=\mathsf{co-NP}$。
+    
+    实际上，上面所说的这种方法确实能够解决该 $\mathsf{co-NP}$ 问题，但并没有找到一个非确定性图灵机来解决它：如果一个图灵机所做的事情是将一个非确定性图灵机的输出反过来，该图灵机并不是一个非确定性图灵机。因为，非确定性图灵机接受是在某个分支处接受，而拒绝是在所有分支处拒绝；而将其输出反过来，就变成了接受是在所有分支处，而拒绝是在一个分支处，而这样就不符合非确定性图灵机的定义了，所以能用该图灵机解决这个 $\mathsf{co-NP}$ 问题并不能使这个 $\mathsf{co-NP}$ 问题变成一个 $\mathsf{NP}$ 问题。
 
-若 $\mathsf{P}\ne\mathsf{NP}$ ，可以得到 NP-intermediate 不为空。
+若 $\mathsf{P}=\mathsf{NP}$，还可以得到 $\mathsf{EXPTIME}=\mathsf{NEXPTIME}$。
+
+若 $\mathsf{P}\ne\mathsf{NP}$，可以得到 NP-intermediate 不为空。
 
 ## 参考资料
 
-1.  [计算复杂性（1）Warming Up: 自动机模型](https://lingeros-tot.github.io/2019/03/05/Warming-Up-自动机模型/) ；
+1. [计算复杂性（1）Warming Up: 自动机模型](https://lingeros-tot.github.io/2019/03/05/Warming-Up-自动机模型/)；
 
-2.  [计算复杂性（2）图灵机计算模型](https://lingeros-tot.github.io/2019/03/05/图灵机模型与可计算性/) ；
+2. [计算复杂性（2）图灵机计算模型](https://lingeros-tot.github.io/2019/03/05/图灵机模型与可计算性/)；
 
-3.  [Wikipedia](https://en.wikipedia.org/) 的相关词条以及这些词条的参考资料。
+3. [Wikipedia](https://en.wikipedia.org/) 的相关词条以及这些词条的参考资料。

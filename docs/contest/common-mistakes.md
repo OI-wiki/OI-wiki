@@ -8,7 +8,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
 例：
 
--  `int main()` 写为 `int mian()` 之类的拼写错误。
+- `int main()` 写为 `int mian()` 之类的拼写错误。
 
 - 写完 `struct` 或 `class` 忘记写分号。
 
@@ -47,7 +47,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
         // 警告    运算符不正确: 在 Boolean 上下文中执行了常量赋值。应考虑改用“==”。
         ```
 
-    - 如果确实想在原应使用 `==` 的语句里使用 `=` （比如 `while (foo = bar)` ），又不想收到 Warning，可以使用 **双括号** ： `while ((foo = bar))` 。
+    - 如果确实想在原应使用 `==` 的语句里使用 `=`（比如 `while (foo = bar)`），又不想收到 Warning，可以使用 **双括号**：`while ((foo = bar))`。
 
 -   由于运算符优先级产生的错误。
 
@@ -64,15 +64,16 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
 - 不正确地使用 `static` 修饰符。
 
-- 使用 `scanf` 读入的时候没加取地址符 `&` 。
+- 使用 `scanf` 读入的时候没加取地址符 `&`。
 
 - 使用 `scanf` 或 `printf` 的时候参数类型与格式指定符不符。
 
 -   同时使用位运算和逻辑运算符 `==` 并且未加括号。
-    - 示例： `(x >> j) & 3 == 2` 
+    - 示例：`(x >> j) & 3 == 2`
 
--    `int` 字面量溢出。
-    - 示例： `long long x = 0x7f7f7f7f7f7f7f7f` ， `1<<62` 。
+- `int` 字面量溢出。
+
+    - 示例：`long long x = 0x7f7f7f7f7f7f7f7f`，`1<<62`。
 
 - 未初始化局部变量，导致局部变量被赋予垃圾初值。
 
@@ -98,7 +99,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 - 读入优化未判断负数。
 
 -   所用数据类型位宽不足，导致溢出。
-    - 如习语“三年 OI 一场空，不开 `long long` 见祖宗”所描述的场景。选手因为没有在正确的地方开 `long long` （将整数定义为 `long long` 类型），导致得出错误的答案而失分。
+    - 如习语“三年 OI 一场空，不开 `long long` 见祖宗”所描述的场景。选手因为没有在正确的地方开 `long long`（将整数定义为 `long long` 类型），导致得出错误的答案而失分。
 
 - 存图时，节点编号 0 开始，而题目给的边中两个端点的编号从 1 开始，读入的时候忘记 -1。
 
@@ -127,11 +128,11 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
         }
         ```
 
-    - 特别的，也不能在执行 `ios::sync_with_stdio(false);` 后使用 `freopen` 。
+    - 特别的，也不能在执行 `ios::sync_with_stdio(false);` 后使用 `freopen`。
 
 -   由于宏的展开，且未加括号导致的错误。
 
-    -   示例：该宏返回的值并非 $4^2 = 16$ 而是 $2+2\times 2+2 = 8$ 。
+    -   示例：该宏返回的值并非 $4^2 = 16$ 而是 $2+2\times 2+2 = 8$。
 
         ```cpp
         #define square(x) x* x
@@ -139,11 +140,11 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
         ```
 
 -   哈希的时候没有使用 `unsigned` 导致的运算错误。
-    - 对负数的右移运算会在最高位补 1。参见： [位运算](../math/bit.md) 
+    - 对负数的右移运算会在最高位补 1。参见：[位运算](../math/bit.md)
 
 - 没有删除或注释掉调试输出语句。
 
--   误加了 `;` 。
+-   误加了 `;`。
 
     -   示例：
 
@@ -157,7 +158,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
 -   在类或结构体的构造函数中使用 `:` 初始化变量时，变量声明顺序不符合初始化时候的依赖关系。
 
-    - 成员变量的初始化顺序与它们在类中声明的顺序有关，而与初始化列表中的顺序无关。参见： [构造函数与成员初始化器列表](https://zh.cppreference.com/w/cpp/language/constructor) 的“初始化顺序”
+    - 成员变量的初始化顺序与它们在类中声明的顺序有关，而与初始化列表中的顺序无关。参见：[构造函数与成员初始化器列表](https://zh.cppreference.com/w/cpp/language/constructor) 的“初始化顺序”
     -   示例：
 
         ```cpp
@@ -187,14 +188,41 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
         f[find(a)] = find(b);  // 正确
         ```
 
+#### 换行符不同
+
+???+ warning
+    在正式比赛中会尽量保证选手答题的环境和最终测试的环境相同。
+    
+    本节内容仅适用于模拟赛等情况，而我们也建议出题人尽量让数据符合 [数据格式](../problemsetting/#_29)。
+
+不同的操作系统使用不同的符号来标记换行，以下为几种常用系统的换行符：
+
+- LF（用 `\n` 表示）：`Unix` 或 `Unix` 兼容系统
+
+- CR+LF（用 `\r\n` 表示）：`Windows`
+
+- CR（用 `\r` 表示）：`Mac OS` 至版本 9
+
+而 C/C++ 利用转义序列 `\n` 来换行，这可能会导致我们认为输入中的换行符也一定是由 `\n` 来表示，而只读入了一个字符来代表换行符，这就会导致我们没有完全读入输入文件。
+
+以下为解决方案：
+
+- 多次 `getchar()`，直到读到想要的字符为止。
+
+- 使用 `cin` 读入，**这可能会增大代码常数**。
+
+- 使用 `scanf("%s",str)` 读入一个字符串，然后取 `str[0]` 作为读入的字符。
+
+- 使用 `scanf(" %c",&c)` 过滤掉所有空白字符。
+
 ### 会导致 RE
 
--   对整数除以 $0$ 。
+-   对整数除以 $0$。
     - 对 $0$ 求逆元。
 
 - 没删文件操作（某些 OJ）。
 
--   排序时比较函数的错误 `std::sort` 要求比较函数是严格弱序： `a<a` 为 `false` ；若 `a<b` 为 `true` ，则 `b<a` 为 `false` ；若 `a<b` 为 `true` 且 `b<c` 为 `true` ，则 `a<c` 为 `true` 。其中要特别注意第二点。
+-   排序时比较函数的错误 `std::sort` 要求比较函数是严格弱序：`a<a` 为 `false`；若 `a<b` 为 `true`，则 `b<a` 为 `false`；若 `a<b` 为 `true` 且 `b<c` 为 `true`，则 `a<c` 为 `true`。其中要特别注意第二点。
     如果不满足上述要求，排序时很可能会 RE。
     例如，编写莫队的奇偶性排序时，这样写是错误的：
     ```cpp
@@ -244,7 +272,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
     #define Max(x, y) ((x) > (y) ? (x) : (y))
     ```
 
-    这样写虽然在正确性上没有问题，但是如果直接对函数的返回值取 max，如 `a = Max(func1(), func2())` ，而这个函数的运行时间较长，则会大大影响程序的性能，因为宏展开后是 `a = func1() > func2() ? func1() : func2()` 的形式，调用了三次函数，比正常的 max 函数多调用了一次。注意，如果 `func1()` 每次返回的答案不一样，还会导致这种 `max` 的写法出现错误。例如 `func1()` 为 `return ++a;` 而 `a` 为全局变量的情况。
+    这样写虽然在正确性上没有问题，但是如果直接对函数的返回值取 max，如 `a = Max(func1(), func2())`，而这个函数的运行时间较长，则会大大影响程序的性能，因为宏展开后是 `a = func1() > func2() ? func1() : func2()` 的形式，调用了三次函数，比正常的 max 函数多调用了一次。注意，如果 `func1()` 每次返回的答案不一样，还会导致这种 `max` 的写法出现错误。例如 `func1()` 为 `return ++a;` 而 `a` 为全局变量的情况。
 
     示例：如下代码会被卡到单次查询 $\Theta(n)$ 导致 TLE。
 
@@ -277,7 +305,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
     - 也有可能被卡了。
 
-###  [未定义行为](https://zh.cppreference.com/w/cpp/language/ub) 
+### [未定义行为](https://zh.cppreference.com/w/cpp/language/ub)
 
 -   数组越界。多数会引发 RE。
 
@@ -291,7 +319,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
     - 错误预估了算法的空间复杂度。
 
-    - 写线段树的时候， `pushup` 或 `pushdown` 叶节点。
+    - 写线段树的时候，`pushup` 或 `pushdown` 叶节点。
 
 -   解引用野指针。
 
@@ -318,8 +346,8 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
 -   文件操作有可能会发生的错误：
 
-    - 对拍时未关闭文件指针 `fclose(fp)` 就又令 `fp = fopen()` 。这会使得进程出现大量的文件野指针。
+    - 对拍时未关闭文件指针 `fclose(fp)` 就又令 `fp = fopen()`。这会使得进程出现大量的文件野指针。
 
-    -  `freopen()` 中的文件名未加 `.in` / `.out` 。
+    - `freopen()` 中的文件名未加 `.in`/`.out`。
 
-- 使用堆空间后忘记 `delete` 或 `free` 。
+- 使用堆空间后忘记 `delete` 或 `free`。
