@@ -58,7 +58,7 @@ ST3 并不支持中文，需要安装汉化插件。
 - SublimeAstyleFormatter : Astyle，用于格式化代码。
 - Diffy : 按<kbd>Crtl</kbd>+<kbd>K</kbd>&<kbd>Crtl</kbd>+<kbd>D</kbd>即可快速比较第一视窗与第二视窗打开的文件的不同。
 - ConvertToUTF8 : 自动识别文件编码。
-- SideBarEnhancements : 侧边栏增强，较为推荐（但在 ST4 中侧边栏功能完全失效，只能用于调整状态栏显示）。
+- SideBarEnhancements : 侧边栏增强，较为推荐。
 - Transparency : 窗口透明化。
 
 有其他需要可以尝试搜索。
