@@ -256,6 +256,7 @@ nav:
       - 向量: math/vector.md
       - 矩阵: math/matrix.md
       - 高斯消元: math/gauss.md
+      - 特征多项式: math/char-poly.md
       - 线性基: math/basis.md
     - 线性规划:
       - 线性规划简介: math/linear-programming.md
