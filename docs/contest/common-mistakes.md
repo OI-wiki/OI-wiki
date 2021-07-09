@@ -73,7 +73,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
 - `int` 字面量溢出。
 
-- 示例：`long long x = 0x7f7f7f7f7f7f7f7f`，`1<<62`。
+    - 示例：`long long x = 0x7f7f7f7f7f7f7f7f`，`1<<62`。
 
 - 未初始化局部变量，导致局部变量被赋予垃圾初值。
 

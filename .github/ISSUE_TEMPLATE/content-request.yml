@@ -1,0 +1,37 @@
+name: 添加新内容
+description: 申请添加某个 topic
+title: "Add "
+labels: ["Content Request / 内容请求", "Help Wanted / 需要帮助"]
+
+body:
+- type: markdown
+  attributes:
+    value: 欢迎为 OI Wiki 提出新的 Issue！烦请填写以下表单：
+- type: input
+  id: pagename
+  attributes:
+    label: 页面英文名
+    description: 添加新页面请填写
+    placeholder: sparse-table
+  validations:
+    required: false
+- type: checkboxes
+  id: confirm
+  attributes:
+    label: 请选择：
+    options:
+    - label: 我正在着手修复这个问题
+      required: false
+- type: textarea
+  id: page
+  attributes:
+    label: 我正在访问这个页面
+    description: 建议带上链接以更好定位问题
+  validations:
+    required: true
+- type: textarea
+  id: problem
+  attributes:
+    label: 我发现页面有这样的问题
+  validations:
+    required: true
