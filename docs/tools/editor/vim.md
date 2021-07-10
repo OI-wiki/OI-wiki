@@ -1,4 +1,4 @@
-author: Enter-tainer, ouuan, Xeonacid, Ir1d, partychicken, ChungZH, LuoshuiTianyi, Kewth, s0cks5, Doveqise, StudyingFather, SukkaW, SodaCris
+author: Enter-tainer, ouuan, Xeonacid, Ir1d, partychicken, ChungZH, LuoshuiTianyi, Kewth, s0cks5, Doveqise, StudyingFather, SukkaW, SodaCris, SkyeYoung
 
 Vim，编辑器之神。
 
@@ -20,7 +20,7 @@ Linux 系统通常自带 Vim，打开终端输入 `vim` 即可启用。
 
 #### Linux
 
-系统自带的 `vim`（即直接使用 `apt install vim` 得到的）可能是 `vim-tiny` 或者 `vim-basic`，缺少一些功能（如部分语言高亮、剪贴板支持等），具体可通过 `vim --version` 查看。此时，可以尝试安装 `vim-gtk3`，以获得更多的功能。
+系统自带的 `vim`（即使用包管理器安装得到的），可能是 `vim-tiny` 或者 `vim-basic`。这类版本会缺少一些功能（如部分语言高亮、剪贴板支持等），具体可通过 `vim --version` 查看。此时，可以尝试安装 `vim-gtk3`，以获得更多的功能。
 
 在终端输入
 
@@ -28,17 +28,13 @@ Linux 系统通常自带 Vim，打开终端输入 `vim` 即可启用。
 vim
 ```
 
-如果出现 Help poor children in Uganda!（帮助乌干达的可怜儿童！）的一长串文本，说明安装成功。[^note1]
+如果在屏幕中间出现包括 Vim 版本号、维护人员以及一些类似「Help poor children in Uganda!」或者「帮助乌干达的可怜儿童！」等文字[^note1]，说明 Vim 已经安装成功。
 
 ## 基础篇：Vim 的模式与常用键位
 
 Vim 的基础操作在 Vim 自带的教程里将会讲述。打开终端输入 `vimtutor` 即可进入教程。
 
-```shell
-vimtutor
-```
-
-即可进入教程。这些操作通常需要二三十分钟来大致熟悉。
+这些操作通常需要二三十分钟来大致熟悉。
 
 ### 插入模式 (insert)
 
@@ -56,6 +52,8 @@ vimtutor
 有的时候用户只是需要进入普通模式下按一次小命令，按两次快捷键来回切换又略显浪费时间。Vim 提供了「插入 - 普通模式」来解决这个问题。在插入模式下，按<kbd>Ctrl</kbd>+<kbd>o</kbd>即可进入此模式，执行完一次操作后又会自动回到插入模式。
 
 ### 普通模式 (normal)
+
+进入 Vim 后的默认模式。
 
 Vim 的命令大部分都是在普通模式下完成的。普通模式下可不能乱按，可以说每个键都是命令。
 
@@ -89,7 +87,7 @@ asdadasdddd
 asdasdasd
 ```
 
-光标正位于第一行，该如何删除这三行呢？普通模式下输入 `3 dd` 即可。
+光标正位于第一行，该如何删除这三行呢？普通模式下输入 `3dd` 即可。
 
 `.` 命令可以重复上次执行的命令。
 
@@ -128,7 +126,7 @@ asdasdasd
 
 如果命令形式是 `:! command`，则命令将在 bash 终端执行。
 
-### 可视模式
+### 可视模式（visual）
 
 按 `v` 进入可视模式，多用于选中区域。
 
@@ -667,7 +665,8 @@ Vim 是一款非常优秀的文本编辑器，但由于其陡峭的学习曲线�
 - [原作者提供的配置](https://github.com/LuoshuiTianyi/Vim-for-OIWiki)
 - [Vim 调试：termdebug 入门](https://fzheng.me/2018/05/28/termdebug/)
 - [Vim scripting cheatsheet](https://devhints.io/vimscript)
+- [Learn Vimscript the Hard Way](https://learnvimscriptthehardway.stevelosh.com)
 
 ## 参考资料与注释
 
-[^note1]: 有些人可能会问：“为什么是乌干达的儿童？”这个问题 [知乎](https://www.zhihu.com/question/24892609) 上有人问过并得到了简要回答；简书上也有人去深入研究过，并写了一篇文章 [《Vim 和乌干达的儿童》](https://www.jianshu.com/p/b4daf62c4b59)。感兴趣的可以了解一下。
+[^note1]: 有些人可能会问：“为什么是乌干达的儿童？”，这个问题 [知乎](https://www.zhihu.com/question/24892609) 上有人问过并得到了简要回答；简书上也有人去深入研究过，并写了一篇文章 [《Vim 和乌干达的儿童》（Web Archive）](https://web.archive.org/web/20200220074059if_/https://www.jianshu.com/p/b4daf62c4b59)。感兴趣的可以了解一下。
