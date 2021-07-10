@@ -18,7 +18,7 @@ body:
   attributes:
     label: 我希望能有这样的解决方案
   validations:
-    required: false
+    required: true
 - type: textarea
   id: alternate
   attributes:

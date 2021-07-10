@@ -43,7 +43,7 @@ $$
 13&\qquad p \gets rr\\
 14&\qquad q \gets mid\\
 15&\qquad\textbf{for}\text{ each } i \text{ in the } ll\dots rr-1\\
-16&\qquad\qquad\textbf{if}\ p\geqslant mid\ or\ q\lt rr\ and\ A[q]\lt A[p]\\
+16&\qquad\qquad\textbf{if}\ p\geqslant mid\ or\ q < rr\ and\ A[q] < A[p]\\
 17&\qquad\qquad\qquad T[i] \gets A[q]\\
 18&\qquad\qquad\qquad q \gets q+1\\
 19&\qquad\qquad\textbf{else}\\

@@ -93,7 +93,7 @@ long long binpow(long long a, long long b) {
 ```cpp
 long long binpow(long long a, long long b, long long m) {
   a %= m;
-  long long res = 1;
+  long long res = 1 % m;
   while (b > 0) {
     if (b & 1) res = res * a % m;
     a = a * a % m;

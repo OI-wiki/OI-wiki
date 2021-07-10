@@ -76,9 +76,7 @@ $$
 \Gamma(x)=\Gamma_k(x)=x^k-\sum_{i=1}^ka_ix^{k-i}
 $$
 
-至此我们可以使用上面的结论。
-
-令 $g(x)=f(x)\bmod{\Gamma(x)}$ 有 $g(M)=M^n$。而 $\deg(g(x))\lt k$ 显然，令 $g(x)=g_0+g_1x+\cdots +g_{k-1}x^{k-1}$ 那么
+至此我们可以使用上面的结论。令 $g(x)=f(x)\bmod{\Gamma(x)}$ 有 $g(M)=M^n$。而 $\deg(g(x))\lt k$ 显然，令 $g(x)=g_0+g_1x+\cdots +g_{k-1}x^{k-1}$ 那么
 
 $$
 M^nv_0=\sum_{i=0}^{k-1}g_iM^iv_0

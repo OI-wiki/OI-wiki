@@ -14,7 +14,7 @@ body:
     options:
     - label: 我正在着手修复这个问题
       required: false
-- type: textarea
+- type: input
   id: page
   attributes:
     label: 我正在访问这个页面
@@ -26,4 +26,4 @@ body:
   attributes:
     label: 我发现页面有这样的问题
   validations:
-    required: false
+    required: true
