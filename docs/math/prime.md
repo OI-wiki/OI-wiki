@@ -92,7 +92,7 @@ bool millerRabin(int n) {
 
 ```cpp
 bool millerRabbin(int n) {
-  if (n < 3 || n%2==0) return n == 2;
+  if (n < 3 || n % 2 == 0) return n == 2;
   int a = n - 1, b = 0;
   while (a % 2 == 0) a /= 2, ++b;
   // test_time 为测试次数,建议设为不小于 8
