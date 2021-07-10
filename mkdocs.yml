@@ -252,6 +252,7 @@ nav:
       - 生成函数简介: math/gen-func/intro.md
       - 普通生成函数: math/gen-func/ogf.md
       - 指数生成函数: math/gen-func/egf.md
+      - 狄利克雷生成函数: math/gen-func/dgf.md
     - 线性代数:
       - 向量: math/vector.md
       - 矩阵: math/matrix.md
