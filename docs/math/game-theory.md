@@ -1,4 +1,4 @@
-author: cutekibry, zj713300
+author: cutekibry, zj713300, tinjyu
 
 **博弈论**，是经济学的一个分支，主要研究具有竞争或对抗性质的对象，在一定规则下产生的各种行为。博弈论考虑游戏中的个体的预测行为和实际行为，并研究它们的优化策略。
 
@@ -100,9 +100,27 @@ $$
 \operatorname{SG}(x)=\operatorname{mex}\{\operatorname{SG}(y_1), \operatorname{SG}(y_2), \ldots, \operatorname{SG}(y_k)\}
 $$
 
-而对于由 $n$ 个有向图游戏组成的组合游戏，设它们的起点分别为 $s_1, s_2, \ldots, s_n$，则有定理：**当且仅当 $\operatorname{SG}(s_1) \oplus \operatorname{SG}(s_2) \oplus \ldots \oplus \operatorname{SG}(s_n) \neq 0$ 时，这个游戏是先手必胜的。**
+而对于由 $n$ 个有向图游戏组成的组合游戏，设它们的起点分别为 $s_1, s_2, \ldots, s_n$，则有定理：**当且仅当 $\operatorname{SG}(s_1) \oplus \operatorname{SG}(s_2) \oplus \ldots \oplus \operatorname{SG}(s_n) \neq 0$ 时，这个游戏是先手必胜的。同時，這是這一個組合遊戲遊戲狀態 $x$ 的SG值。**
 
 这一定理被称作 SG 定理。
+
+### SG 定理证明
+
+可以使用数学归纳法来证明。
+
+我們假設對於所有遊戲狀態 &x'&，其當前節點是 $s_1', s_2'， \ldots, s_n' ( \forall i，s_i' \< s_i)$ ，皆满足SG定理。
+
+显然当 $operatorname{SG}(s_1)'=operatorname{SG}(s_2)'=\ldots \operatorname{SG}(s_n)'=0$ 时，该状态能满足SG定理。
+
+那么只需要证明游戏状态 $x$ ，其当前节点为 $s_1', s_2', \ldots, s_n'$ 符合SG定理，SG定理便成立。
+
+事实上这一个状态可以看作为一个Nim游戏，對於某個節點 &s_i&，它可以移动动到任何一个SG值比它小或比它大的節點。
+
+在有向图游戏中，当一方将某一节点 &s_i& 移动到SG值比它大的节点时,另一方可以移动回和SG值和 &operatorname{SG}(s_i)& 一样的节点,所以向SG值较大节点移动是无效操作。
+
+当移动到SG值较小的节点时，情况会和Nim游戏一样，它能到达任何一个游戏状态 $x'$，$\operatorname{SG}(x')= \operatorname{SG}(s_1') \oplus \operatorname{SG}(s_2') \oplus \ldots \oplus \operatorname{SG}(s_n') \< \operatorname{SG}(X)$ (前面己经假设 $x'$ 满足SG定理)。但到达不了SG值和$\operatorname{SG}(s_1) \oplus \operatorname{SG}(s_2) \oplus \ldots \oplus \operatorname{SG}(s_n)$一样的节点。
+
+所以状态 $x$ 符合SG定理。
 
 ## 将 Nim 游戏转换为有向图游戏
 
