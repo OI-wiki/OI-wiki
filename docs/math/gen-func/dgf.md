@@ -1,8 +1,8 @@
 author: sshwy
 
 $$
-\gdef\dgf#1{\tilde{ #1 }}
-\gdef\Prime{\mathcal{P}}
+\newcommand\dgf#1{\tilde{ #1 }}
+\newcommand\Prime{\mathcal{P}}
 $$
 
 记 $\Prime$ 表示素数集合。
