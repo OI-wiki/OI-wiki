@@ -69,6 +69,7 @@ void bucket_sort() {
 ```
 
 ### Python
+
 ```python
 # Python Version
 N = 100010

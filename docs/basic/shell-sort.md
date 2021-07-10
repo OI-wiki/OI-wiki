@@ -52,6 +52,7 @@ void shell_sort(T array[], int length) {
 ```
 
 ### Python
+
 ```python
 # Python Version
 def shell_sort(array, length):

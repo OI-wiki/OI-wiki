@@ -67,6 +67,7 @@ void counting_sort() {
 ```
 
 ### Python
+
 ```
 # Python Version
 N = W = 100010
