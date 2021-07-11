@@ -628,10 +628,6 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 
 论文：
 
-1. [\[2004\]后缀数组 by. 徐智磊][1]
+1. [\[2004\]后缀数组 by. 徐智磊](https://wenku.baidu.com/view/0dc03d2b1611cc7931b765ce0508763230127479.html)
 
-2. [\[2009\]后缀数组——处理字符串的有力工具 by. 罗穗骞][2]
-
-[1]: https://wenku.baidu.com/view/0dc03d2b1611cc7931b765ce0508763230127479.html "[2004] 后缀数组 by. 徐智磊"
-
-[2]: https://wenku.baidu.com/view/5b886b1ea76e58fafab00374.html "[2009] 后缀数组——处理字符串的有力工具 by. 罗穗骞"
+2. [\[2009\]后缀数组——处理字符串的有力工具 by. 罗穗骞](https://wenku.baidu.com/view/5b886b1ea76e58fafab00374.html)

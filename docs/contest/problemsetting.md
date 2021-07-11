@@ -560,20 +560,12 @@ Codeforces 是全球最著名的算法竞赛网站之一，题目质量较高，
 
 ## 参考资料
 
-1. [vfk《UOJ 精神之源流》][1]
+1. [vfk《UOJ 精神之源流》](https://vfleaking.blog.uoj.ac/blog/909)
 
-2. [王天懿《论偏题的危害》][2]
+2. [王天懿《论偏题的危害》](https://github.com/OI-wiki/libs/blob/master/topic/7-%E7%8E%8B%E5%A4%A9%E6%87%BF-%E8%AE%BA%E5%81%8F%E9%A2%98%E7%9A%84%E5%8D%B1%E5%AE%B3.ppt)
 
-3. [CF 出题人须知][3]（[国内可访问的图片版](https://github.com/OI-wiki/libs/blob/master/topic/rules.jpg)）
+3. [CF 出题人须知](https://docs.google.com/document/d/e/2PACX-1vRhazTXxSdj7JEIC7dp-nOWcUFiY8bXi9lLju-k6vVMKf4IiBmweJoOAMI-ZEZxatXF08I9wMOQpMqC/pub)（[国内可访问的图片版](https://github.com/OI-wiki/libs/blob/master/topic/rules.jpg)）
 
-4. [CF 出题人的自我修养][4]
+4. [CF 出题人的自我修养](https://github.com/OI-wiki/libs/blob/master/topic/CF%E5%87%BA%E9%A2%98%E4%BA%BA%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB.md)
 
 本文由作者本人自 [ouuan 的出题规范](https://ouuan.github.io/post/ouuan-的出题规范/) 搬运而来并有所修改、补充。
-
-[1]: https://vfleaking.blog.uoj.ac/blog/909 "vfk《UOJ 精神之源流》"
-
-[2]: https://github.com/OI-wiki/libs/blob/master/topic/7-%E7%8E%8B%E5%A4%A9%E6%87%BF-%E8%AE%BA%E5%81%8F%E9%A2%98%E7%9A%84%E5%8D%B1%E5%AE%B3.ppt "王天懿《论偏题的危害》"
-
-[3]: https://docs.google.com/document/d/e/2PACX-1vRhazTXxSdj7JEIC7dp-nOWcUFiY8bXi9lLju-k6vVMKf4IiBmweJoOAMI-ZEZxatXF08I9wMOQpMqC/pub "CF 出题人须知"
-
-[4]: https://github.com/OI-wiki/libs/blob/master/topic/CF%E5%87%BA%E9%A2%98%E4%BA%BA%E7%9A%84%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB.md "CF 出题人的自我修养"
