@@ -42,4 +42,4 @@ $$
 \end{aligned}
 $$
 
-通过计算 $c^{-\binom{t}{2}}[x^{n+t}](A_0(x)B_0(x))$ 可得到 $A(1),A(c),\dots $，该算法需一次卷积。且 $\forall i\geq 2$ 有 $c^{\binom{i+1}{2}}=c^{\binom{i}{2}}\cdot c^i$，可递推计算。
+通过计算 $c^{-\binom{t}{2}}[x^{n+t}](A_0(x)B_0(x))$ 可得到 $A(1),A(c),\dots $，该算法需一次卷积。且 $\forall i\geq 0$ 有 $c^{\binom{i+1}{2}}=c^{\binom{i}{2}}\cdot c^i$，可递推计算。
