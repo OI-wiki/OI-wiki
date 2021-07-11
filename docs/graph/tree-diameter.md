@@ -37,7 +37,7 @@
       
       那么根据假设，有 $\delta(y, z) \ge \delta(y, t) \Longrightarrow \delta(x', x) + \delta(x, t) \ge \delta(x', z)$。既然这样子的话，那么 $\delta(x, z) \ge \delta(x, t)$，和 $\delta(s, t)$ 对应着直径这一前提不符，故 $y$ 的最远节点 $z$ 不可能在 $s$ 到 $t$ 这个直径对应的路外面。
 
-![当 y 不在 s-t 上，且 z 也不在的情况](./iamges/tree-diameter.png)
+![当 y 不在 s-t 上，且 z 也不在的情况](./images/tree-diameter.png)
 
 因此定理成立。
 
