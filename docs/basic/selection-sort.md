@@ -37,6 +37,7 @@ $$
 ### C++
 
 ```cpp
+// C++ Version
 void selection_sort(int* a, int n) {
   for (int i = 1; i < n; ++i) {
     int ith = i;
@@ -50,4 +51,17 @@ void selection_sort(int* a, int n) {
     a[ith] = t;
   }
 }
+```
+
+### Python
+
+```python
+# Python Version
+def selection_sort(a, n):
+    for i in range(1, n):
+        ith = i
+        for j in range(i + 1, n + 1):
+            if a[j] < a[ith]:
+                ith = j
+        a[i], a[ith] = a[ith], a[i]
 ```

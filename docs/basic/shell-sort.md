@@ -33,6 +33,7 @@
 ### C++[^ref1]
 
 ```cpp
+// C++ Version
 template <typename T>
 void shell_sort(T array[], int length) {
   int h = 1;
@@ -48,6 +49,23 @@ void shell_sort(T array[], int length) {
     h = h / 3;
   }
 }
+```
+
+### Python
+
+```python
+# Python Version
+def shell_sort(array, length):
+    h = 1
+    while h < length / 3:
+        h = int(3 * h + 1)
+    while h >= 1:
+        for i in range(h, length):
+            j = i
+            while j >= h and array[j] < array[j - h]:
+                array[j], array[j - h] = array[j - h], array[j]
+                j -= h
+        h = int(h / 3)
 ```
 
 ## 参考资料与注释
