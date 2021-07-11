@@ -81,12 +81,7 @@
     实现的时候我们将输入的两个数用一个结构体来保存并重载运算符：
     
     ```cpp
-    struct uv {
-      int a, b;
-      bool operator<(const uv &x) const {
-        return max(x.b, a * b) < max(b, x.a * x.b);
-      }
-    };
+    
     ```
 
 ### 后悔法的例题
@@ -101,43 +96,7 @@
 
 ??? note "参考代码"
     ```cpp
-    #include <algorithm>
-    #include <cmath>
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    #include <queue>
-    using namespace std;
-    struct f {
-      long long d;
-      long long x;
-    } a[100005];
-    bool cmp(f A, f B) { return A.d < B.d; }
-    priority_queue<long long, vector<long long>, greater<long long> > q;
     
-    int main() {
-      long long n, i, j;
-      cin >> n;
-      for (i = 1; i <= n; i++) {
-        scanf("%d%d", &a[i].d, &a[i].x);
-      }
-      sort(a + 1, a + n + 1, cmp);
-      long long ans = 0;
-      for (i = 1; i <= n; i++) {
-        if (a[i].d <= q.size()) {
-          if (q.top() < a[i].x) {
-            ans += a[i].x - q.top();
-            q.pop();
-            q.push(a[i].x);
-          }
-        } else {
-          ans += a[i].x;
-          q.push(a[i].x);
-        }
-      }
-      cout << ans << endl;
-      return 0;
-    }
     ```
 
 ## 习题

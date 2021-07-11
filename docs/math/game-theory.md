@@ -108,7 +108,7 @@ $$
 
 可以使用数学归纳法来证明。
 
-我们假设对于游戏状态 $x'$，其当前节点 $s_1', s_2', \ldots, s_n' $（对于任意 $i$ 有 $s_i' < s_i$），皆满足 SG 定理。
+我们假设对于游戏状态 $x'$，其当前节点 $s_1', s_2', \ldots, s_n'$（对于任意 $i$ 有 $s_i' < s_i$），皆满足 SG 定理。
 
 显然当 $operatorname{SG}(s_1)'=operatorname{SG}(s_2)'=\ldots \operatorname{SG}(s_n)'=0$ 时，该状态能满足 SG 定理。
 
