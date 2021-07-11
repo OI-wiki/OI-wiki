@@ -69,8 +69,8 @@ $$
 
 对 $n\times n$ 的矩阵 $B$ 进行高斯消元行变换的三个基本操作有
 
-- 将 $B$ 的第 $i$，$j$ 行互换： $B\mapsto P_{ij}B$。
-- 将 $B$ 的第 $i$ 行乘 $k\neq 0$： $B\mapsto D_i(k)B$。
+- 将 $B$ 的第 $i$，$j$ 行互换：$B\mapsto P_{ij}B$。
+- 将 $B$ 的第 $i$ 行乘 $k\neq 0$：$B\mapsto D_i(k)B$。
 - 将 $B$ 的第 $j$ 行的 $k$ 倍加到第 $i$ 行：$B\mapsto T_{ij}(k)B$。
 
 对于 $1\leq i\lt j\leq n$ 这几个 $n\times n$ 的初等矩阵分别为
@@ -240,6 +240,6 @@ $$
 
 ## 参考文献
 
-- Rizwana Rehman, Ilse C.F. Ipsen. [La Budde’s Method for Computing Characteristic Polynomials](https://ipsen.math.ncsu.edu/ps/charpoly3.pdf).
-- Marshall Law. [Computing Characteristic Polynomials of Matrices of Structured Polynomials](http://summit.sfu.ca/system/files/iritems1/17301/etd10125_.pdf).
-- Mike Paterson. [On the Number of Nonscalar Multiplications Necessary to Evaluate Polynomials](http://summit.sfu.ca/system/files/iritems1/17301/etd10125_.pdf).
+- Rizwana Rehman, Ilse C.F. Ipsen.[La Budde’s Method for Computing Characteristic Polynomials](https://ipsen.math.ncsu.edu/ps/charpoly3.pdf).
+- Marshall Law.[Computing Characteristic Polynomials of Matrices of Structured Polynomials](http://summit.sfu.ca/system/files/iritems1/17301/etd10125_.pdf).
+- Mike Paterson.[On the Number of Nonscalar Multiplications Necessary to Evaluate Polynomials](http://summit.sfu.ca/system/files/iritems1/17301/etd10125_.pdf).
