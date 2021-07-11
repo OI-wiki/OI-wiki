@@ -132,6 +132,7 @@ def tournament_sort():
         a[i] = value
         recreat(value)
 ```
+
 ## 外部链接
 
 - [Tournament sort - Wikipedia](https://en.wikipedia.org/wiki/Tournament_sort)
