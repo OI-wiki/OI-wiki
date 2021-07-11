@@ -98,6 +98,7 @@
     1. 先假设每一项工作都做，将各项工作按截止时间排序后入队；
     2.  在判断第 i 项工作做与不做时，若其截至时间符合条件，则将其与队中报酬最小的元素比较，若第 i 项工作报酬较高（后悔），则 `ans += a[i].p - q.top()`。  
         用优先队列（小根堆）来维护队首元素最小。
+    3. 当 `a[i].d<=q.size()` 可以这么理解从 0 开始到 a[i].d 这个时间段只能做 a[i].d 个任务，而若 q.size()>=a[i].d 说明完成 q.size() 个任务时间大于等于 a[i].d 的时间，所以当第 i 个任务获利比较大的时候应该把最小的任务从优先级队列中换出。
 
 ??? note "参考代码"
     ```cpp
@@ -110,35 +111,41 @@
     using namespace std;
     struct f {
       long long d;
-      long long x;
+      long long p;
     } a[100005];
     bool cmp(f A, f B) { return A.d < B.d; }
     priority_queue<long long, vector<long long>, greater<long long> > q;
     
     int main() {
-      long long n, i, j;
+      long long n, i;
       cin >> n;
       for (i = 1; i <= n; i++) {
-        scanf("%d%d", &a[i].d, &a[i].x);
+        scanf("%lld%lld", &a[i].d, &a[i].p);
       }
       sort(a + 1, a + n + 1, cmp);
       long long ans = 0;
       for (i = 1; i <= n; i++) {
-        if (a[i].d <= q.size()) {
-          if (q.top() < a[i].x) {
-            ans += a[i].x - q.top();
+        if (a[i].d <= (int)q.size()) {
+          if (q.top() < a[i].p) {
+            ans += a[i].p - q.top();
             q.pop();
-            q.push(a[i].x);
+            q.push(a[i].p);
           }
         } else {
-          ans += a[i].x;
-          q.push(a[i].x);
+          ans += a[i].p;
+          q.push(a[i].p);
         }
       }
       cout << ans << endl;
       return 0;
     }
     ```
+
+##### 复杂度分析
+
+- 空间复杂度：当输入 $n$ 个任务时使用 $n$ 个 $a$ 数组元素，优先队列中最差情况下会储存 $n$ 个元素，则空间复杂度为 $O(n)$。
+
+- 时间复杂度：`std::sort` 的时间复杂度为 $O(n\log n)$，维护优先队列的时间复杂度为 $O(n\log n)$，综上所述，时间复杂度为 $O(n\log n)$。
 
 ## 习题
 
