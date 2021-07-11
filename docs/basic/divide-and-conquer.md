@@ -59,7 +59,7 @@ int func(传入数值) {
       merge(a, front, mid, end);
     }
     ```
-    
+
     ```python
     # Python Version
     #不使用递归的归并排序算法
