@@ -77,16 +77,7 @@ author: frank-xjh
     两个数是否都一定要枚举出来呢？枚举其中一个数之后，题目的条件已经确定了其他的要素（另一个数），如果能找到一种方法直接判断题目要求的那个数是否存在，就可以省掉枚举后一个数的时间了。
     
     ```cpp
-    // C++ Version
-    // 要求 a 数组中的数的绝对值都小于 MAXN
-    bool met[MAXN * 2];
-    // 初始化 met 数组为 0；
-    memset(met, 0, sizeof(met));
-    for (int i = 0; i < n; ++i) {
-      if (met[MAXN - a[i]]) ++ans;
-      // 为了避免负数下标
-      met[a[i] + MAXN] = 1;
-    }
+    
     ```
     
     ```python
