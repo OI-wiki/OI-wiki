@@ -20,7 +20,7 @@ mjpage[promisify.custom] = input => {
         {
           format: ["TeX"],
         },
-        { svg: true, ex: 8, cjkCharWidth: 18, linebreaks: true, useGlobalCache: true, },
+        { svg: true, ex: 8, cjkCharWidth: 18, linebreaks: true, },
         resolve
       );
     } catch (e) {
