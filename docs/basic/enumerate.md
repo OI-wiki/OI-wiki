@@ -42,7 +42,7 @@ author: frank-xjh
       for (int j = 0; j < n; ++j)
         if (a[i] + a[j] == 0) ++ans;
     ```
-
+    
     ```python
     # Python Version
     for i in range(0, n):
@@ -61,7 +61,7 @@ author: frank-xjh
       for (int j = 0; j < i; ++j)
         if (a[i] + a[j] == 0) ++ans;
     ```
-
+    
     ```python
     # Python Version
     for i in range(0, n):
@@ -88,7 +88,7 @@ author: frank-xjh
       met[a[i] + MAXN] = 1;
     }
     ```
-
+    
     ```python
     # Python Version
     met = [False] * MAXN * 2

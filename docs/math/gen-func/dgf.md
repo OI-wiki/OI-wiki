@@ -76,7 +76,7 @@ $$
 
 DGF 的应用主要体现在构造积性序列的狄利克雷卷积序列。研究方向通常是质数处的取值。
 
-例如在杜教筛的过程中，要计算积性序列（积性函数在正整数处的取值构成的序列） $f$ 的前缀和，我们需要找到一个积性序列 $g$ 使得 $f\ast g$ 和 $g$ 都可以快速求前缀和。那么我们可以利用 DGF 推导这一过程。
+例如在杜教筛的过程中，要计算积性序列（积性函数在正整数处的取值构成的序列）$f$ 的前缀和，我们需要找到一个积性序列 $g$ 使得 $f\ast g$ 和 $g$ 都可以快速求前缀和。那么我们可以利用 DGF 推导这一过程。
 
 以洛谷 3768 简单的数学题[^3]为例，我们要对 $f_i = i^2\varphi(i)$ 构造一个满足上述条件的积性序列 $g$。由于 $f$ 是积性的，考虑其 DGF
 
@@ -86,7 +86,10 @@ $$
 
 因此 $\tilde{F}(x)\zeta(x-2) = \zeta(x-3)$。而 $\zeta(x-2)$ 对应的积性函数为 $I_2$，所以令 $g = I_2$ 即可。这样有 $f\ast g = I_3$，两者都是可以快速计算前缀和的。
 
-[^1]:https://en.wikipedia.org/wiki/Generating_function#Dirichlet_series_generating_functions_(DGFs)
-[^2]:https://oi-wiki.org/math/mobius/#_4
-[^3]:https://oi-wiki.org/math/du/#_7
-[^4]:https://oi-wiki.org/math/mobius/#dirichlet
+[^1]: <https://en.wikipedia.org/wiki/Generating_function#Dirichlet_series_generating_functions_(DGFs>)
+
+[^2]: <https://oi-wiki.org/math/mobius/#_4>
+
+[^3]: <https://oi-wiki.org/math/du/#_7>
+
+[^4]: <https://oi-wiki.org/math/mobius/#dirichlet>
