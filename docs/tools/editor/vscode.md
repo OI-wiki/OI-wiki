@@ -1,4 +1,4 @@
-author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n
+author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n, HeliumOI
 
 ## 简介
 
@@ -77,3 +77,50 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 如果编辑器未自动跳转，点击左侧工具栏中的“调试”图标进入调试窗口，即可在左侧看到变量的值。
 
 在调试模式中，编辑器将以黄色底色显示下一步将要执行的代码。
+
+## 配置 clangd
+
+### 简介
+
+LLVM 官网上对 clangd 的介绍是这样的：
+
+> Clangd is an implementation of the Language Server Protocol leveraging Clang. Clangd’s goal is to provide language “smartness” features like code completion, find references, etc. for clients such as C/C++ Editors.
+
+简单来说，clangd 是 Clang 对语言服务器协定（Language Server Protocol）的实现，提供了一些智能的特性，例如代码补全，跳转等，并且能利用 LSP 与 Vim、Emacs、VSCode 等编辑器协作。虽然官方给出的定义是 LSP 的实现，但 clangd 的功能更接近语言服务器（Language Server）而不仅仅只是协议本身。
+
+VS Code 的 C/C++ 插件也有自动补全等功能。但这些功能是由插件本身实现的，而非专业的 Language Server，在提示信息的易读程度的准确度等方面与 clangd 相比也稍逊一筹。所以我们有时会使用 clangd 代替 C/C++ 插件来实现代码自动补全等功能。
+
+### 安装
+
+Linux 用户可以直接用内置的包管理器安装 clangd，各个发行版的操作大同小异。
+
+```bash
+# Ubuntu/Debian
+sudo apt install clangd 
+```
+
+有的发行版只需要安装 clang。
+
+```bash
+# Arch/Manjaro
+sudo pacman -S clang
+```
+
+对于 macOS 用户，由于自带的 XcodeCommandLineTools 中的 LLVM 不包含 clangd，需要使用 Homebrew 安装 LLVM。
+
+```bash
+brew install llvm
+```
+
+Windows 用户在 [LLVM Download Page](https://releases.llvm.org/download.html)上下载二进制文件并安装。
+
+### VS Code 插件
+
+打开 VS Code 插件商店，在搜索栏中输入`clang`找到 clang 插件并安装
+
+![](images/vscode-8.png)
+
+现在就可以享受 clangd 的自动补全等功能了。
+
+???+ warning
+    由于功能冲突，安装 clangd 插件后 C/C++ 插件的 IntelliSense 功能将被禁用。如果 clangd 插件的功能出现问题，可以查看是否禁用了 C/C++ 插件的 IntelliSense 功能。
