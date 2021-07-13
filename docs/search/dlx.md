@@ -6,7 +6,7 @@ author: LeverImmy
 
 ### 问题定义
 
-精确覆盖问题 (英文：Exact Cover Problem) 是指给定许多集合 $S_i (1 \le i \le n)$ 以及一个集合 $X$，求满足以下条件的无序多元组 $(T_1, T_2, \cdots , T_m)$：
+精确覆盖问题（英文：Exact Cover Problem) 是指给定许多集合 $S_i (1 \le i \le n)$ 以及一个集合 $X$，求满足以下条件的无序多元组 $(T_1, T_2, \cdots , T_m)$：
 
 1. $\forall i, j \in [1, m],T_i\bigcap T_j = \varnothing (i \neq j)$
 2. $X = \bigcup\limits_{i = 1}^{m}T_i$
@@ -281,9 +281,9 @@ $$
 2. 如果尝试了所有的 $r$ 却无解，则算法结束，输出无解；
 3. 标记与 $r$ 相关的行 $r_i$ 和 $c_i$；
 4. 删除所有标记的行和列，得到新矩阵 $M'$；
-5.  如果 $M'$ 为空，且 $r$ 为全 $1$ ，则算法结束，输出被删除的行组成的集合 $S$；
+5.  如果 $M'$ 为空，且 $r$ 为全 $1$，则算法结束，输出被删除的行组成的集合 $S$；
 
-    如果 $M'$ 为空，且 $r$ 不为全 $1$ ，则恢复与 $r$ 相关的行 $r_i$ 以及列 $c_i$，跳转至步骤 1；
+    如果 $M'$ 为空，且 $r$ 不为全 $1$，则恢复与 $r$ 相关的行 $r_i$ 以及列 $c_i$，跳转至步骤 1；
 
     如果 $M'$ 不为空，则跳转至步骤 1。
 
@@ -343,7 +343,7 @@ $\text{remove(c)}$ 表示在 Dancing Links 中删除第 $c$ 列以及与其相�
 
 如何删掉每一行呢？枚举当前行的指针 $j$，此时：
 
-- $j$ 上方的结点的下结点应为 $j$ 的下结点.
+- $j$ 上方的结点的下结点应为 $j$ 的下结点。
 - $j$ 下方的结点的上结点应为 $j$ 的上结点。
 
 注意要修改每一列的元素个数。
@@ -419,43 +419,43 @@ $\text{insert(r, c)}$ 表示在第 $r$ 行，第 $c$ 列插入一个结点。
 
 插入操作分为两种情况：
 
-- 如果第 $r$ 行没有元素，那么直接插入一个元素，并使 $first(r)$ 指向这个元素。
+-   如果第 $r$ 行没有元素，那么直接插入一个元素，并使 $first(r)$ 指向这个元素。
 
     这可以通过 `first[r] = L[idx] = R[idx] = idx;` 来实现。
 
-- 如果第 $r$ 行有元素，那么将这个新元素用一种特殊的方式与 $c$ 和 $first(r)$ 连接起来。
+-   如果第 $r$ 行有元素，那么将这个新元素用一种特殊的方式与 $c$ 和 $first(r)$ 连接起来。
 
     设这个新元素为 $idx$，然后：
 
-  - 把 $idx$ 插入到 $c$ 的正下方，此时：
+    -   把 $idx$ 插入到 $c$ 的正下方，此时：
 
-    - $idx$ 下方的结点为原来 $c$ 的下结点；
-    - $idx$ 下方的结点（即原来 $c$ 的下结点）的上结点为 $idx$;
-    - $idx$ 的上结点为 $c$；
-    - $c$ 的下结点为 $idx$。
+        - $idx$ 下方的结点为原来 $c$ 的下结点；
+        - $idx$ 下方的结点（即原来 $c$ 的下结点）的上结点为 $idx$;
+        - $idx$ 的上结点为 $c$；
+        - $c$ 的下结点为 $idx$。
 
-    注意记录 $idx$ 的所在列和所在行，以及更新这一列的元素个数。
+        注意记录 $idx$ 的所在列和所在行，以及更新这一列的元素个数。
 
-    ```cpp
-    col[++idx] = c, row[idx] = r, ++siz[c];
-    U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
-    ```
+        ```cpp
+        col[++idx] = c, row[idx] = r, ++siz[c];
+        U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
+        ```
 
-    **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。**
+        **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。**
 
-  - 把 $idx$ 插入到 $first(r)$ 的正右方，此时：
+    -   把 $idx$ 插入到 $first(r)$ 的正右方，此时：
 
-      1. $idx$ 右侧的结点为原来 $first(r)$ 的右结点；
-      2. 原来 $first(r)$ 右侧的结点的左结点为 $idx$；
-      3. $idx$ 的左结点为 $first(r)$；
-      4. $first(r)$ 的右结点为 $idx$。
+        1. $idx$ 右侧的结点为原来 $first(r)$ 的右结点；
+        2. 原来 $first(r)$ 右侧的结点的左结点为 $idx$；
+        3. $idx$ 的左结点为 $first(r)$；
+        4.  $first(r)$ 的右结点为 $idx$。
 
-      ```cpp
-      L[idx] = first[r], R[idx] = R[first[r]];
-      R[first[r]] = idx, L[R[first[r]]] = idx;
-      ```
+            ```cpp
+            L[idx] = first[r], R[idx] = R[first[r]];
+            R[first[r]] = idx, L[R[first[r]]] = idx;
+            ```
 
-      **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。**
+            **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。**
 
 $\text{insert(r, c)}$ 这个操作可以通过图片来辅助理解：
 
@@ -627,7 +627,7 @@ DLX 的难点，不全在于链表的建立，而在于建模。
 
 对于某一行而言，由于不同的列的值不尽相同，我们 **由不同的状态，定义了一个决策**。
 
-### 例题1 [P1784 数独](https://www.luogu.com.cn/problem/P1784)
+### 例题 1 [P1784 数独](https://www.luogu.com.cn/problem/P1784)
 
 ??? note "解题思路"
     先考虑决策是什么。
@@ -764,7 +764,7 @@ DLX 的难点，不全在于链表的建立，而在于建模。
     }
     ```
 
-### 例题2 [靶形数独](https://www.luogu.com.cn/problem/P1074)
+### 例题 2 [靶形数独](https://www.luogu.com.cn/problem/P1074)
 
     $$
     \begin{pmatrix}
@@ -776,8 +776,6 @@ DLX 的难点，不全在于链表的建立，而在于建模。
       0 & 0 & \color{Red}0 & 1 & \color{Red}1 & \color{Red}0 & 1
       \end{pmatrix}
     $$
-
-
 
 ??? note "解题思路"
     这一题与 [数独](https://www.luogu.com.cn/problem/P1784) 的模型构建 **一模一样**，主要区别在于答案的更新。
@@ -900,7 +898,7 @@ DLX 的难点，不全在于链表的建立，而在于建模。
     }
     ```
 
-### 例题3 [「NOI2005」智慧珠游戏](https://www.luogu.com.cn/problem/P4205)
+### 例题 3 [「NOI2005」智慧珠游戏](https://www.luogu.com.cn/problem/P4205)
 
 ??? note "解题思路"
     定义：题中给我们的智慧珠的形态，称为这个智慧珠的*标准形态*。
@@ -1087,7 +1085,7 @@ DLX 的难点，不全在于链表的建立，而在于建模。
 
 ## 外部链接
 
-- [夜深人静写算法（九）- Dancing Links X（跳舞链）_WhereIsHeroFrom的博客》](https://blog.csdn.net/whereisherofrom/article/details/79220897)
+- [夜深人静写算法（九）- Dancing Links X（跳舞链）\_WhereIsHeroFrom 的博客》](https://blog.csdn.net/whereisherofrom/article/details/79220897)
 - [跳跃的舞者，舞蹈链（Dancing Links）算法——求解精确覆盖问题 - 万仓一黍](https://www.cnblogs.com/grenet/p/3145800.html)
 - [DLX 算法一览 - zhangjianjunab](https://blog.csdn.net/zhangjianjunab/article/details/83688681)
 - [搜索：DLX 算法 - 静听风吟。](https://www.cnblogs.com/aininot260/p/9629926.html)
