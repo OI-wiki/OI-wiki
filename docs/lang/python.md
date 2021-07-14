@@ -899,8 +899,6 @@ if __name__ == '__main__':
     using namespace std;
     const int N = 1e5 + 5, M = 2e5 + 5;
     
-    ```
-    
     struct qxx {
       int nex, t, v;
     };
