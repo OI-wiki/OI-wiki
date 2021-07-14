@@ -48,7 +48,7 @@ $$
 M^kv_t=\sum_{i=1}^ka_{i}M^{k-i}v_{t}
 $$
 
-将两边的 $v_t$ 消去后不难得到多项式 $\Gamma(x)=x^k-\sum_{i=1}^ka_ix^{k-i}$ 满足 $\Gamma(M)=O$ 其中 $O$ 为一个 $k\times k$ 的零矩阵。假设我们要求 $M^n$ 不难构造多项式 $f(x)=x^n$ 那么 $f(M)=M^n$，而现在我们可将 $f(x)$ 写成 $f(x)=Q(x)\Gamma(x)+R(x)$ 而其中零矩阵是没有贡献的，那么 $f(M)=R(M)$。令 $g(x)=f(x)\bmod{\Gamma(x)}$ 有 $g(M)=M^n$。而 $\deg(g(x))\lt k$ 显然，令 $g(x)=g_0+g_1x+\cdots +g_{k-1}x^{k-1}$ 那么
+将两边的 $v_t$ 消去后不难得到多项式 $\Gamma(x)=x^k-\sum_{i=1}^ka_ix^{k-i}$ 满足 $\Gamma(M)=O$ 其中 $O$ 为一个 $k\times k$ 的零矩阵。假设我们要求 $M^n$ 不难构造多项式 $f(x)=x^n$ 那么 $f(M)=M^n$，而现在我们可将 $f(x)$ 写成 $f(x)=Q(x)\Gamma(x)+R(x)$ 而其中零矩阵是没有贡献的，那么 $f(M)=R(M)$。令 $g(x)=f(x)\bmod{\Gamma(x)}$ 有 $g(M)=M^n$。而 $\deg(g(x))< k$ 显然，令 $g(x)=g_0+g_1x+\cdots +g_{k-1}x^{k-1}$ 那么
 
 $$
 M^nv_0=\sum_{i=0}^{k-1}g_iM^iv_0

@@ -4,6 +4,8 @@
 
 选择排序（英语：Selection sort）是排序算法的一种，它的工作原理是每次找出第 $i$ 小的元素（也就是 $A_{i..n}$ 中最小的元素），然后将这个元素与数组第 $i$ 个位置上的元素交换。
 
+![selection sort animate example](images/selection-sort-1-animate-example.svg)
+
 ## 性质
 
 ### 稳定性
@@ -35,6 +37,7 @@ $$
 ### C++
 
 ```cpp
+// C++ Version
 void selection_sort(int* a, int n) {
   for (int i = 1; i < n; ++i) {
     int ith = i;
@@ -48,4 +51,17 @@ void selection_sort(int* a, int n) {
     a[ith] = t;
   }
 }
+```
+
+### Python
+
+```python
+# Python Version
+def selection_sort(a, n):
+    for i in range(1, n):
+        ith = i
+        for j in range(i + 1, n + 1):
+            if a[j] < a[ith]:
+                ith = j
+        a[i], a[ith] = a[ith], a[i]
 ```
