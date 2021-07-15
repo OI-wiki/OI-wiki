@@ -1,0 +1,23 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\begin{document}
+\begin{tikzpicture}
+
+\draw[very thick] (-1,2) -- (-1,-5mm) -- (1,-5mm) -- (1,2);
+
+\begin{scope}
+    [every node/.style={
+        rectangle,thick,draw,minimum width=18mm,minimum height=8mm}]
+    \node at (0,0) {};
+    \node at (0,1) {};
+    \node at (0,3) {};
+\end{scope}
+
+\draw[<->,very thick] (0,2.4)
+    -- node[left] {push} node[right] {pop} (0,1.6);
+
+\end{tikzpicture}
+\end{document}
