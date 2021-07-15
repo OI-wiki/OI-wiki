@@ -1,4 +1,4 @@
-author: pw384, s0cks5, Xeonacid
+author: pw384, s0cks5, Xeonacid, isdanni
 
 Kirchhoff 矩阵树定理（简称矩阵树定理）解决了一张图的生成树个数计数问题。
 
@@ -71,6 +71,52 @@ t(G) = \det L(G)\binom{1,2,\cdots,i-1,i+1,\cdots,n}{1,2,\cdots,i-1,i+1,\cdots,n}
 $$
 
 其中记号 $L(G)\binom{1,2,\cdots,i-1,i+1,\cdots,n}{1,2,\cdots,i-1,i+1,\cdots,n}$ 表示矩阵 $L(G)$ 的第 $1,\cdots,i-1,i+1,\cdots,n$ 行与第 $1,\cdots,i-1,i+1,\cdots,n$ 列构成的子矩阵。也就是说，无向图的 Laplace 矩阵具有这样的性质，它的所有 $n-1$ 阶主子式都相等。
+
+**定理 1 证明**
+
+对于定理一证明，我们需要知道以下知识点：令 $A \in R$ 并取 $E_{ii}$ 为在第 $(i, I)$ 项值为 $1$ 否则其他项值为 $0$ 的矩阵。那么，
+
+$$
+det(A + E_{ii}) = det(A) + det(A[i]).
+$$
+
+考虑到行列式的排列和定义，这一定义显而易见成立。
+
+$$
+det(A = (a_{ij})) = d
+$$
+
+因为我们已经将第 $(i, i)^{th}$ 个项从 $a_{ii}$ 增加到 $a_{ii}+1$ 。因此，我们得到了原始行列式加上 $[n] \ {i}$ 的所有排列的总和，避免了第 $i$ 行和列，即 $det(A[i])$ 。
+
+证明：
+
+1. 基本情况：如果 $G$ 是有两个顶点的空图，则有：
+
+$$
+L_n = \begin{bmatrix}
+    0&  0\\
+    0&  0\\
+    \end{bmatrix}
+$$
+
+那么 $LG[i] = [0]$ 并且 $det(LG[i]) = 0$ 。
+
+2. 归纳步骤：用 $τ(G)$ 表示 $G$ 中生成树的个数， $G-e$ 表示去除边 $e$ 的图，$G/e$ 表示收缩边 $e$ 的图。如果 $i$ 是孤立顶点，则 $G$ 不产生生成树，并且 $LG$ 的第 $i$ 行和列有零值。因此， $det(LG[i]) = det(LG-i) = 0$ 。
+
+否则，我们可以假设存在与 $i$ 相关的边 $e = (i, j)$ 。 对于任何生成树 $T$ ，$e \in T$ 或 $e \notin T$ 。我们注意到 $\varsigma(G/e)$ 给出了在 $e \in T$ 时树的数量 $T$ ， 而 $\varsigma(G−e)$ 给出了 $e \notin T$ 时树 $T$ 的数量。因此，
+
+$$
+\varsigma(G) = \varsigma(G\e) + \varsigma(G − e).
+$$
+
+注意第一项是缺少一条边的 $G$ ， 而第二项是则是 $G$ 少了一个顶点，所以这些将作为我们归纳的基础。首先，我们尝试将 $LG$ 与 $LG−e$ 联系起来，因为观察到 $LG[i] = LG−e[i] +E_{jj}$ （也就是说，如果移除边 $e$ ，那么得到的拉普拉斯算子与 LG[i] 仅有 $j$ 不同）。因此，根据前文提到的知识点：
+
+$$
+det(LG[i]) = det(LG−e + E_{jj} ) \\
+= det(LG−e[i]) + det(LG−e[i, j]) \\
+= det(LG−e[i]) + det(LG[i, j]), \\
+$$
+
 
 **定理 2（矩阵树定理，无向图特征值形式）** 设 $\lambda_1, \lambda_2, \cdots, \lambda_{n-1}$ 为 $L(G)$ 的 $n - 1$ 个非零特征值，那么有
 
