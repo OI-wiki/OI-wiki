@@ -130,17 +130,17 @@ $$
 
 其中第二个方程遵循归纳法；这样就完成了证明。
 
-**柯西-比内公式** (Cauchy–Binet formula)将行列式的可乘性（两个方块矩阵的行列式等于两个行列式的乘积）推广到非方块矩阵。
+**柯西 - 比内公式**(Cauchy–Binet formula）将行列式的可乘性（两个方块矩阵的行列式等于两个行列式的乘积）推广到非方块矩阵。
 
-定义： 设 $A \in R_{n \times m}$ , $B \in R_{m \times n}$ ， 其中 $m ≥ n$ 。 设 $A_{S}$ , $B_{S}$ 分别是通过取由 $A$ ， $B$ 的 $S \subseteq [m]$ 索引的行，列形成的子矩阵。
+定义：设 $A \in R_{n \times m}$,$B \in R_{m \times n}$，其中 $m ≥ n$。设 $A_{S}$,$B_{S}$ 分别是通过取由 $A$，$B$ 的 $S \subseteq [m]$ 索引的行，列形成的子矩阵。
 
-令 $$ 为的所有大小为 $n$ 的 $[m]$ 子集的集合。 那么：
+令 $$为的所有大小为$ n $的$ [m]$ 子集的集合。那么：
 
 $$
 \det(AB) = \sum_{S\subseteq {\frac{[m]}{n}}} \det(A_{S}) \det(B_{S})
 $$
 
-根据之前得到的 $L_{G} = \sum_{(i,j)\subseteq E} (e_{i} - e_{j})(e_{i} - e_{j})^T$ ， 我们可以得出 $L_{G} = {BB}^{T}$ ， 其中 $B \in R_{m \times n}$ 每条边 $(i, j)$ 有一列，该列等于 $(e_{i} − e_{j})$ 。 如果 $B[i]$ 表示 $B$ 省略了 $i^{th}$ 行，我们有 $L_{G}[i] = {B[i]B[i]}^{T}$ 。 我们让 $B_{S}[i]$ 用 $S \subseteq E$ 索引的列来表示 $B[i]$ 。
+根据之前得到的 $L_{G} = \sum_{(i,j)\subseteq E} (e_{i} - e_{j})(e_{i} - e_{j})^T$，我们可以得出 $L_{G} = {BB}^{T}$，其中 $B \in R_{m \times n}$ 每条边 $(i, j)$ 有一列，该列等于 $(e_{i} − e_{j})$。如果 $B[i]$ 表示 $B$ 省略了 $i^{th}$ 行，我们有 $L_{G}[i] = {B[i]B[i]}^{T}$。我们让 $B_{S}[i]$ 用 $S \subseteq E$ 索引的列来表示 $B[i]$。
 
 **定理 2（矩阵树定理，无向图特征值形式）** 设 $\lambda_1, \lambda_2, \cdots, \lambda_{n-1}$ 为 $L(G)$ 的 $n - 1$ 个非零特征值，那么有
 
