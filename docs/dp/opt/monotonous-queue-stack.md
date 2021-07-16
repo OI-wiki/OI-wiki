@@ -4,7 +4,7 @@ author: Marcythm, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, Chung
 
 学习本节前，请务必先学习 [单调队列](../../ds/monotonous-queue.md) 及 [单调栈](../../ds/monotonous-stack.md) 部分。
 
-???+note " 例题[CF372C Watching Fireworks is Fun](http://codeforces.com/problemset/problem/372/C)"
+???+note " 例题 [CF372C Watching Fireworks is Fun](http://codeforces.com/problemset/problem/372/C)"
     题目大意：城镇中有 $n$ 个位置，有 $m$ 个烟花要放。第 $i$ 个烟花放出的时间记为 $t_i$，放出的位置记为 $a_i$。如果烟花放出的时候，你处在位置 $x$，那么你将收获 $b_i-|a_i-x|$ 点快乐值。
     
     初始你可在任意位置，你每个单位时间可以移动不大于 $d$ 个单位距离。现在你需要最大化你能获得的快乐值。
@@ -29,7 +29,7 @@ $f_{i,j}=\max\{f_{i-1,k}+b_i+|a_i-j|\}=\max\{f_{i-1,k}-|a_i-j|\}+b_i$
 
 总的时间复杂度为 $O(nm)$。
 
-???+ 参考代码
+??? note "参考代码"
     ```cpp
     #include <algorithm>
     #include <cstring>
@@ -116,8 +116,6 @@ $$
 
 ## 习题
 
-[「Luogu P1886」滑动窗口](https://loj.ac/problem/10175)
-
-[「NOI2005」瑰丽华尔兹](https://www.luogu.com.cn/problem/P2254)
-
-[「SCOI2010」股票交易](https://loj.ac/problem/10183)
+- [「Luogu P1886」滑动窗口](https://loj.ac/problem/10175)
+- [「NOI2005」瑰丽华尔兹](https://www.luogu.com.cn/problem/P2254)
+- [「SCOI2010」股票交易](https://loj.ac/problem/10183)

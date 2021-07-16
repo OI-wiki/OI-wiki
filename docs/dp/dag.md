@@ -1,4 +1,4 @@
-DAG 即 [有向无环图](../graph/dag.md)，一些实际问题中的二元关系都可使用 DAG 来建模。
+DAG 即 [有向无环图](../graph/dag.md)，一些实际问题中的二元关系都可使用 DAG 来建模，从而将这些问题转化为 DAG 上的最长（短）路问题。
 
 ## 例子
 
@@ -19,11 +19,13 @@ DAG 即 [有向无环图](../graph/dag.md)，一些实际问题中的二元关�
 
 初始的起点是大地，大地的底面是无穷大的，则大地可达任意砖块，当然我们写程序时不必特意写上无穷大。
 
-假设有两个砖块，三条边分别为 $31, 41, 59$ 和 $33, 83, 27$，那么整张 DAG 应该如下图所示。![](./images/dag-babylon.png)
+假设有两个砖块，三条边分别为 $31, 41, 59$ 和 $33, 83, 27$，那么整张 DAG 应该如下图所示。
+
+![](./images/dag-babylon.png)
 
 图中蓝实框所表示的是一个砖块拆解得到的一组砖块，之所以用 $\{\}$ 表示底面边长，是因为砖块一旦选取了高，底面边长就是无序的。
 
-图中黄虚框表示的是重复计算部分，为下文做铺垫。
+图中黄虚框表示的是重复计算部分，可以采用 [记忆化搜索](./memo.md) 的方法来避免重复计算。
 
 ### 转移
 
@@ -33,86 +35,75 @@ DAG 即 [有向无环图](../graph/dag.md)，一些实际问题中的二元关�
 
 之前在图上标记的黄虚框表明有重复计算，下面我们开始考虑转移方程。
 
-显然，砖块一旦选取了高，那么这块砖块上最大能放的高度是确定的。
+设 $d(i,r)$ 表示第 $i$ 块砖块在最上面，且采取第 $r$ 种堆叠方式时的最大高度。那么有如下转移方程：
 
-某个砖块 $i$ 有三种堆叠方式分别记为 $0, 1, 2$，那么对于砖块 $i$ 和其堆叠方式 $r$ 来说则有如下转移方程
+$$
+d(i, r) = \max\left\{d(j, r') + h\right\}
+$$
 
-$d(i, r) = \max\left\{d(j, r') + h'\right\}$
+其中 $j$ 是所有那些在砖块 $i$ 以 $r$ 方式堆叠时可放上的砖块，$r'$ 对应 $j$ 此时的摆放方式，$h$ 对应砖块 $i$ 采用第 $r$ 种堆叠方式时的高度。
 
-其中 $j$ 是所有那些在砖块 $i$ 以 $r$ 方式堆叠时可放上的砖块，$r'$ 对应 $j$ 此时的摆放方式，也就确定了此时唯一的高度 $h'$。
-
-在实际编写时，将所有 $d(i, r)$ 都初始化为 $-1$，表示未计算过。
-
-在试图计算前，如果发现已经计算过，直接返回保存的值；否则就按步计算，并保存。
-
-最终答案是所有 $d(i, r)$ 的最大值。
-
-### 题解
-
-```cpp
-#include <cstring>
-#include <iostream>
-#define MAXN (30 + 5)
-#define MAXV (500 + 5)
-#define MAX(a, b) (((a) > (b)) ? (a) : (b))
-int d[MAXN][3];
-int x[MAXN], y[MAXN], z[MAXN];
-int babylon_sub(int c, int rot, int n) {
-  if (d[c][rot] != -1) {
-    return d[c][rot];
-  }
-  d[c][rot] = 0;
-  int base1, base2;
-  if (rot == 0) {
-    base1 = x[c];
-    base2 = y[c];
-  }
-  if (rot == 1) {
-    base1 = y[c];
-    base2 = z[c];
-  }
-  if (rot == 2) {
-    base1 = x[c];
-    base2 = z[c];
-  }
-  for (int i = 0; i < n; i++) {
-    if ((x[i] < base1 && y[i] < base2) || (y[i] < base1 && x[i] < base2))
-      d[c][rot] = MAX(d[c][rot], babylon_sub(i, 0, n) + z[i]);
-    if ((y[i] < base1 && z[i] < base2) || (z[i] < base1 && y[i] < base2))
-      d[c][rot] = MAX(d[c][rot], babylon_sub(i, 1, n) + x[i]);
-    if ((x[i] < base1 && z[i] < base2) || (z[i] < base1 && x[i] < base2))
-      d[c][rot] = MAX(d[c][rot], babylon_sub(i, 2, n) + y[i]);
-  }
-  return d[c][rot];
-}
-int babylon(int n) {
-  for (int i = 0; i < n; i++) {
-    d[i][0] = -1;
-    d[i][1] = -1;
-    d[i][2] = -1;
-  }
-  int r = 0;
-  for (int i = 0; i < n; i++) {
-    r = MAX(r, babylon_sub(i, 0, n) + z[i]);
-    r = MAX(r, babylon_sub(i, 1, n) + x[i]);
-    r = MAX(r, babylon_sub(i, 2, n) + y[i]);
-  }
-  return r;
-}
-int main() {
-  int t = 0;
-  while (true) {
-    int n;
-    std::cin >> n;
-    if (n == 0) break;
-    t++;
-    for (int i = 0; i < n; i++) {
-      std::cin >> x[i] >> y[i] >> z[i];
+???+note "参考代码"
+    ```cpp
+    #include <cstring>
+    #include <iostream>
+    #define MAXN (30 + 5)
+    #define MAXV (500 + 5)
+    #define MAX(a, b) (((a) > (b)) ? (a) : (b))
+    int d[MAXN][3];
+    int x[MAXN], y[MAXN], z[MAXN];
+    int babylon_sub(int c, int rot, int n) {
+      if (d[c][rot] != -1) return d[c][rot];
+      d[c][rot] = 0;
+      int base1, base2;
+      if (rot == 0) {
+        base1 = x[c];
+        base2 = y[c];
+      }
+      if (rot == 1) {
+        base1 = y[c];
+        base2 = z[c];
+      }
+      if (rot == 2) {
+        base1 = x[c];
+        base2 = z[c];
+      }
+      for (int i = 0; i < n; i++) {
+        if ((x[i] < base1 && y[i] < base2) || (y[i] < base1 && x[i] < base2))
+          d[c][rot] = MAX(d[c][rot], babylon_sub(i, 0, n) + z[i]);
+        if ((y[i] < base1 && z[i] < base2) || (z[i] < base1 && y[i] < base2))
+          d[c][rot] = MAX(d[c][rot], babylon_sub(i, 1, n) + x[i]);
+        if ((x[i] < base1 && z[i] < base2) || (z[i] < base1 && x[i] < base2))
+          d[c][rot] = MAX(d[c][rot], babylon_sub(i, 2, n) + y[i]);
+      }
+      return d[c][rot];
     }
-    std::cout << "Case " << t << ":"
-              << " maximum height = " << babylon(n);
-    std::cout << std::endl;
-  }
-  return 0;
-}
-```
+    int babylon(int n) {
+      for (int i = 0; i < n; i++) {
+        d[i][0] = -1;
+        d[i][1] = -1;
+        d[i][2] = -1;
+      }
+      int r = 0;
+      for (int i = 0; i < n; i++) {
+        r = MAX(r, babylon_sub(i, 0, n) + z[i]);
+        r = MAX(r, babylon_sub(i, 1, n) + x[i]);
+        r = MAX(r, babylon_sub(i, 2, n) + y[i]);
+      }
+      return r;
+    }
+    int main() {
+      int t = 0;
+      while (true) {
+        int n;
+        std::cin >> n;
+        if (n == 0) break;
+        t++;
+        for (int i = 0; i < n; i++) std::cin >> x[i] >> y[i] >> z[i];
+        std::cout << "Case " << t << ":"
+                  << " maximum height = " << babylon(n);
+        std::cout << std::endl;
+      }
+      return 0;
+    }
+    ```
