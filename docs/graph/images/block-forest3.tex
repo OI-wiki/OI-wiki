@@ -4,30 +4,49 @@
 \usepackage{ctex}
 
 \begin{document}
-\begin{tikzpicture}
-    [level distance=1cm,every node/.style={draw,circle}]
+\begin{tikzpicture}[x=20mm,y=20mm]
 
-\node (A) {$1$}
-    child[->] {node (B) {$2$}
-        child {node (C) {$3$}
-            child {node (D) {$4$}
-                child {node (E) {$5$}
-                    child {node (F) {$6$}}
-                }
-                child[missing]
-            }
-            child {node (G) {$7$}
-                child {node (H) {$8$}}
-                child {node (I) {$9$}}
-            }
-        }
-    };
+\begin{scope}[every node/.style={draw,minimum size=6mm},circle,thick]
+    \node (GA) at (-0.5,1){};
+    \node (GB) at (0.5,1) {};
+    \node (GC) at (0,0) {};
+    \node (GD) at (-1,0) {};
+    \node (GE) at (-0.5,-1) {};
+    \node (GF) at (-1.5,-1) {};
+    \node (GG) at (1,0) {};
+    \node (GH) at (0.5,-1) {};
+    \node (GI) at (0.5,-2) {};
 
-\path[->]
-    (C) edge[bend left] (A)
-    (E) edge[bend left] (C)
-    (F) edge[bend right] (D)
-    (I) edge[bend right] (C);
+\begin{scope}[rectangle]
+    \node (FA) at (0,0.7) {};
+    \node (FB) at (-0.75,-0.5) {};
+    \node (FC) at (0.5,-0.3) {};
+    \node (FD) at (0.5,-1.5) {};
+\end{scope}
+\end{scope}
+
+\draw[color=lightgray]
+    (GA) -- (GB) -- (GC) -- (GA)
+    (GC) -- (GD)
+    (GC) -- (GE)
+    (GD) -- (GE) -- (GF) -- (GD)
+    (GC) -- (GG) -- (GH) -- (GC)
+    (GH) -- (GI);
+
+\draw[thick]
+    (GA) -- (FA)
+    (GB) -- (FA)
+    (FA) -- (GC)
+    (GC) -- (FB)
+    (GC) -- (FC)
+    (FB) -- (GD)
+    (FB) -- (GE)
+    (FB) -- (GF)
+    (FC) -- (GG)
+    (FC) -- (GH)
+    (GH) -- (FD)
+    (FD) -- (GI);
+
 
 \end{tikzpicture}
 \end{document}

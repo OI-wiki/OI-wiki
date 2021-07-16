@@ -5,9 +5,9 @@
 
 \begin{document}
 \begin{tikzpicture}
-    [level distance=1cm,every node/.style={draw,circle}]
+    [level distance=10mm,every node/.style={draw,circle}]
 
-\node (A) {$1$}
+\node (A) at (0,0) {$1$}
     child[->] {node (B) {$2$}
         child {node (C) {$3$}
             child {node (D) {$4$}
@@ -23,11 +23,17 @@
         }
     };
 
+\node (J) at (2,0) {$10$}
+    child[<->] {node (K) {$11$}
+        child[->] {node (L) {$12$}}};
+
+\node (M) at (3,-4) {$13$};
+
 \path[->]
-    (C) edge[bend left] (A)
-    (E) edge[bend left] (C)
-    (F) edge[bend right] (D)
-    (I) edge[bend right] (C);
+    (A) edge[bend right] (C)
+    (C) edge[bend right] (E)
+    (D) edge[bend left] (F)
+    (C) edge[bend left] (I);
 
 \end{tikzpicture}
 \end{document}

@@ -42,7 +42,9 @@
 
 下面的图显示了一张图对应的点双和圆方树形态。[^ref2]
 
-![](./images/block-forest1.svg)![](./images/block-forest2.svg)
+![](./images/block-forest1.svg)
+![](./images/block-forest2.svg)
+![](./images/block-forest3.svg)
 
 圆方树的点数小于 $2n$，这是因为割点的数量小于 $n$，所以请注意各种数组大小要开两倍。
 
@@ -66,7 +68,7 @@
 `low[u]` 存储的是节点 $u$ 的 DFS 树中的子树中的某个点 $v$ 通过 **最多一次返祖边或向父亲的树边** 能访问到的点的 **最小** DFS 序。  
 如果没有听说过 Tarjan 算法可能会有点难理解，让我们举个例子吧：
 
-![](./images/block-forest3.svg)
+![](./images/block-forest4.svg)
 
 （可以发现这张图其实和上面图片中的图等价）  
 这里树边从上至下用直线画出，返祖边从下至上用曲线画出。节点的编号便是它的 DFS 序。
@@ -204,7 +206,7 @@ int main() {
 
 这个例子对应的图（包含了重边和孤立点的情况）：
 
-![](./images/block-forest4.svg)
+![](./images/block-forest5.svg)
 
 ## 例题
 
