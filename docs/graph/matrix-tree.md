@@ -118,9 +118,9 @@ $$
 = \det(L_{G−e}[i]) + \det(L_{G}[i, j]), \\
 $$
 
-其中 $L_{G}[i,j]$ 指删除第 $i$ 和 $j$ 行和列后的 $L_{G}$ ； 对于 $e = (i, j)$ ，$L_{G}$ 和 $L_{G-e}$ 没有区别。
+其中 $L_{G}[i,j]$ 指删除第 $i$ 和 $j$ 行和列后的 $L_{G}$；对于 $e = (i, j)$，$L_{G}$ 和 $L_{G-e}$ 没有区别。
 
-现在我们把 $L_{G}$ 与 $L_{G/e}$ 联系起来。 假设将 $i$ 收缩到 $j$ （因此 $L_{G \backslash e}$ 没有对应于 $i$ 的行或列）。 那么， $L_{G \backslash e}[j] = L_{G}[i, j]$ 。那么，可以得出：
+现在我们把 $L_{G}$ 与 $L_{G/e}$ 联系起来。假设将 $i$ 收缩到 $j$（因此 $L_{G \backslash e}$ 没有对应于 $i$ 的行或列）。那么，$L_{G \backslash e}[j] = L_{G}[i, j]$。那么，可以得出：
 
 $$
 \det(L_{G}[i]) = \det(L{G−e}[i] + \det(L_{G/e}[j])  \\
@@ -128,7 +128,7 @@ $$
 = \tau(G).
 $$
 
-其中第二个方程遵循归纳法； 这样就完成了证明。
+其中第二个方程遵循归纳法；这样就完成了证明。
 
 **定理 2（矩阵树定理，无向图特征值形式）** 设 $\lambda_1, \lambda_2, \cdots, \lambda_{n-1}$ 为 $L(G)$ 的 $n - 1$ 个非零特征值，那么有
 
@@ -136,7 +136,7 @@ $t(G) = \frac{1}{n}\lambda_1\lambda_2\cdots\lambda_{n-1}$
 
 **定理 2 证明**
 
-如果 $G$ 不连通，那么 $\lambda_{1} = 0$ 且 $\tau(G) = 0$，因此定理成立。否则，我们将以两种方法检查特征多项式的线性项。 一方面，如果多项式为
+如果 $G$ 不连通，那么 $\lambda_{1} = 0$ 且 $\tau(G) = 0$，因此定理成立。否则，我们将以两种方法检查特征多项式的线性项。一方面，如果多项式为
 
 $$
 (\lambda - \lambda_{1})(\lambda - \lambda_{2})\cdots(\lambda - \lambda_{n}) = \lambda(\lambda - \lambda_{2})(\lambda - \lambda_{3})\cdots(\lambda - \lambda_{n})
@@ -148,13 +148,13 @@ $$
 (-1)^{n-1}\coprod_{i=1}^{n-1}\lambda_{i}.
 $$
 
-另一方面，我们知道特征多项式的定义为 $\det(\lambda I - L_{G})$ 。应用于相同维度的 $A$ , $B$ ， $\det(A + B) = \sum_{S\subseteq [n]} \det A_{S}$ ，其中 $A_{S}$ 是第 $S$ 行被 $B$ 中相应行替换的矩阵 $A$ 。 对于 $A = \lambda I$ ， $B = -L_{G}$ ， $\lambda$ 的线性项为
+另一方面，我们知道特征多项式的定义为 $\det(\lambda I - L_{G})$。应用于相同维度的 $A$,$B$，$\det(A + B) = \sum_{S\subseteq [n]} \det A_{S}$，其中 $A_{S}$ 是第 $S$ 行被 $B$ 中相应行替换的矩阵 $A$。对于 $A = \lambda I$，$B = -L_{G}$，$\lambda$ 的线性项为
 
 $$
 \sum_{S\subseteq [n], |S|=n-1}^{} \det(\lambda I)_{S} = (-1)^{n-1} * n * \tau(G).
 $$
 
-因此，可以得出 $\tau(G) = \frac{1}{n}\coprod_{i=1}^{n-1}\lambda_{i}$ 。
+因此，可以得出 $\tau(G) = \frac{1}{n}\coprod_{i=1}^{n-1}\lambda_{i}$。
 
 **定理 3（矩阵树定理，有向图根向形式）** 对于任意的 $k$，都有
 
