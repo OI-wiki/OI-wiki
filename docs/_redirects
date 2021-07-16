@@ -39,6 +39,7 @@
 /topic/problemsetting /contest/problemsetting
 /misc/io /contest/io
 /misc/stern-brocot /math/stern-brocot
+/misc/complexity /basic/complexity
 /math/sign /math/notation
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut

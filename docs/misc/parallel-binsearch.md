@@ -108,7 +108,7 @@ struct Num {
 };  // 位于数列中第 p 项的数的值为 x
 struct Query {
   int l, r, k, id;
-};  // 一个编号为 id, 询问 [l,r] 中第 k 大数的询问
+};  // 一个编号为 id, 询问 [l,r] 中第 k 小数的询问
 int ans[N];
 void add(int p, int x);  // 树状数组, 在 p 位置加上 x
 int query(int p);        // 树状数组, 求 [1,p] 的和

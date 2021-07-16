@@ -43,7 +43,7 @@ $$
 13&\qquad p \gets rr\\
 14&\qquad q \gets mid\\
 15&\qquad\textbf{for}\text{ each } i \text{ in the } ll\dots rr-1\\
-16&\qquad\qquad\textbf{if}\ p\geqslant mid\ or\ q\lt rr\ and\ A[q]\lt A[p]\\
+16&\qquad\qquad\textbf{if}\ p\geqslant mid\ or\ q < rr\ and\ A[q] < A[p]\\
 17&\qquad\qquad\qquad T[i] \gets A[q]\\
 18&\qquad\qquad\qquad q \gets q+1\\
 19&\qquad\qquad\textbf{else}\\
@@ -56,6 +56,7 @@ $$
 ### C++
 
 ```cpp
+// C++ Version
 void merge(int ll, int rr) {
   // 用来把 a[ll.. rr - 1] 这一区间的数排序。 t 数组是临时存放有序的版本用的。
   if (rr - ll <= 1) return;
@@ -73,6 +74,31 @@ void merge(int ll, int rr) {
   for (int i = ll; i < rr; ++i) a[i] = t[i];
 }
 //关键点在于一次性创建数组，避免在每次递归调用时创建，以避免对象的无谓构造和析构。
+```
+
+### Python
+
+```python
+# Python Version
+def merge_sort(ll, rr):
+    if rr - ll <= 1:
+        return
+    mid = math.floor((rr + ll) / 2)
+    merge_sort(ll, mid)
+    merge_sort(mid, rr)
+    p = s = ll
+    q = mid
+    while(s < rr):
+        if p >= mid or (q < rr and a[p] > a[q]):
+            s += 1
+            q += 1
+            t[s] = a[q]
+        else:
+            s += 1
+            p += 1
+            t[s] = a[p]
+    for i in range(ll, rr):
+        a[i] = t[i]
 ```
 
 ## 逆序对

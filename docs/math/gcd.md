@@ -166,6 +166,94 @@ int gcd(int a, int b, int& x, int& y) {
 
 最后我们知道 $a_1$ 就是要求的 $\gcd$，有 $x \cdot a +y \cdot b =g$。
 
+#### 矩阵的解释
+
+对于正整数 $a$ 和 $b$ 的一次辗转相除即 $\gcd(a,b)=\gcd(b,a\bmod b)$ 使用矩阵表示如
+
+$$
+\begin{bmatrix}
+b\\a\bmod b
+\end{bmatrix}
+=
+\begin{bmatrix}
+0&1\\1&-\lfloor a/b\rfloor
+\end{bmatrix}
+\begin{bmatrix}
+a\\b
+\end{bmatrix}
+$$
+
+其中向下取整符号 $\lfloor c\rfloor$ 表示不大于 $c$ 的最大整数。我们定义变换 $\begin{bmatrix}a\\b\end{bmatrix}\mapsto \begin{bmatrix}0&1\\1&-\lfloor a/b\rfloor\end{bmatrix}\begin{bmatrix}a\\b\end{bmatrix}$。
+
+易发现欧几里得算法即不停应用该变换，有
+
+$$
+\begin{bmatrix}
+\gcd(a,b)\\0
+\end{bmatrix}
+=
+\left(
+\cdots 
+\begin{bmatrix}
+0&1\\1&-\lfloor a/b\rfloor
+\end{bmatrix}
+\begin{bmatrix}
+1&0\\0&1
+\end{bmatrix}
+\right)
+\begin{bmatrix}
+a\\b
+\end{bmatrix}
+$$
+
+令
+
+$$
+\begin{bmatrix}
+x_1&x_2\\x_3&x_4
+\end{bmatrix}
+=
+\cdots 
+\begin{bmatrix}
+0&1\\1&-\lfloor a/b\rfloor
+\end{bmatrix}
+\begin{bmatrix}
+1&0\\0&1
+\end{bmatrix}
+$$
+
+那么
+
+$$
+\begin{bmatrix}
+\gcd(a,b)\\0
+\end{bmatrix}
+=
+\begin{bmatrix}
+x_1&x_2\\x_3&x_4
+\end{bmatrix}
+\begin{bmatrix}
+a\\b
+\end{bmatrix}
+$$
+
+满足 $a\cdot x_1+b\cdot x_2=\gcd(a,b)$ 即扩展欧几里得算法，注意在最后乘了一个单位矩阵不会影响结果，提示我们可以在开始时维护一个 $2\times 2$ 的单位矩阵编写更简洁的迭代方法如
+
+```cpp
+int exgcd(int a, int b, int &x, int &y) {
+  int x1 = 1, x2 = 0, x3 = 0, x4 = 1;
+  while (b != 0) {
+    int c = a / b;
+    std::tie(x1, x2, x3, x4, a, b) =
+        std::make_tuple(x3, x4, x1 - x3 * c, x2 - x4 * c, b, a - b * c);
+  }
+  x = x1, y = x2;
+  return a;
+}
+```
+
+这种表述相较于递归更简单。
+
 ## 应用
 
 - [10104 - Euclid Problem](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1045)

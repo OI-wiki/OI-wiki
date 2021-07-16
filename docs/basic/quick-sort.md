@@ -27,6 +27,7 @@
 ### 实现（C++）[^ref2]
 
 ```cpp
+// C++ Version
 struct Range {
   int start, end;
   Range(int s = 0, int e = 0) { start = s, end = e; }
@@ -56,6 +57,28 @@ void quick_sort(T arr[], const int len) {
     r[p++] = Range(left + 1, range.end);
   }
 }
+```
+
+### 实现（Python）[^ref2]
+
+```python
+# Python Version
+def quick_sort(alist, first, last):
+    if first >= last:
+        return
+    mid_value = alist[first]
+    low = first
+    high = last
+    while low < high:
+        while low < high and alist[high] >= mid_value:
+            high -= 1
+        alist[low] = alist[high]
+        while low < high and alist[low] < mid_value:
+            low += 1
+        alist[high] = alist[low]
+    alist[low] = mid_value
+    quick_sort(alist, first, low - 1)
+    quick_sort(alist, low + 1, last)
 ```
 
 ## 性质
@@ -93,6 +116,7 @@ void quick_sort(T arr[], const int len) {
 三路快速排序实现起来非常简单。下面给出了一种三路快排的 C++ 实现，其表现在模板题中并不输给 STL 的 sort。
 
 ```cpp
+// C++ Version
 // 模板的T参数表示元素的类型，此类型需要定义小于（<）运算
 template <typename T>
 // arr为需要被排序的数组，len为数组长度
@@ -118,6 +142,32 @@ void quick_sort(T arr[], const int len) {
   quick_sort(arr, j);
   quick_sort(arr + k, len - k);
 }
+```
+
+```python
+# Python Version
+def quick_sort(arr, l, r):
+    if l >= r:
+        return
+    random_index = random.randint(l, r)
+    pivot = arr[random_index]
+    arr[l], arr[random_index] = arr[random_index], arr[l]
+    i = l + 1
+    j = l 
+    k = r + 1
+    while i < k:
+        if arr[i] < pivot:
+            arr[i], arr[j + 1] = arr[j + 1], arr[i]
+            j += 1
+            i += 1
+        elif arr[i] > pivot:
+            arr[i], arr[k - 1] = arr[k - 1], arr[i]
+            k -= 1
+        else: 
+            i += 1
+    arr[l], arr[j] = arr[j], arr[l]
+    quick_sort(arr, l, j - 1)
+    quick_sort(arr, k, r)
 ```
 
 ### 内省排序[^ref4]

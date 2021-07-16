@@ -92,17 +92,17 @@ bool millerRabin(int n) {
 
 ```cpp
 bool millerRabbin(int n) {
-  if (n < 3) return n == 2;
+  if (n < 3 || n % 2 == 0) return n == 2;
   int a = n - 1, b = 0;
   while (a % 2 == 0) a /= 2, ++b;
   // test_time 为测试次数,建议设为不小于 8
   // 的整数以保证正确率,但也不宜过大,否则会影响效率
   for (int i = 1, j; i <= test_time; ++i) {
     int x = rand() % (n - 2) + 2, v = quickPow(x, a, n);
-    if (v == 1 || v == n - 1) continue;
+    if (v == 1) continue;
     for (j = 0; j < b; ++j) {
-      v = (long long)v * v % n;
       if (v == n - 1) break;
+      v = (long long)v * v % n;
     }
     if (j >= b) return 0;
   }
@@ -221,7 +221,7 @@ int main() {
 
 #### 求 n 以内因子数最多的数
 
-<http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemId=1562>
+<https://zoj.pintia.cn/problem-sets/91827364500/problems/91827366061>
 
 思路同上，只不过要改改 dfs 的返回条件。注意这样的题目的数据范围，我一开始用了 int，应该是溢出了，在循环里可能就出不来了就超时了。上代码，0ms 过。注释就没必要写了上面写的很清楚了。
 

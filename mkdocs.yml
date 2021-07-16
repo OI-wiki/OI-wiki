@@ -3,7 +3,7 @@ site_name: OI Wiki
 site_description: OI Wiki 是一个编程竞赛知识整合站点，提供有趣又实用的编程竞赛知识以及其他有帮助的内容，帮助广大编程竞赛爱好者更快更深入地学习编程竞赛
 site_author: OI Wiki Team
 site_url: https://oi-wiki.org
-strict: true
+strict: false
 
 # Repository
 repo_name: 'OI-wiki/OI-wiki'
@@ -71,6 +71,7 @@ nav:
     - Polygon: tools/polygon.md
     - OJ 工具: tools/oj-tool.md
     - LaTeX 入门: tools/latex.md
+    - Git: tools/git.md
   - 语言基础:
     - 语言基础简介: lang/index.md
     - C++ 基础:
@@ -118,6 +119,7 @@ nav:
     - Java 速成: lang/java.md
   - 算法基础:
     - 算法基础简介: basic/index.md
+    - 复杂度: basic/complexity.md
     - 枚举: basic/enumerate.md
     - 模拟: basic/simulate.md
     - 递归 & 分治: basic/divide-and-conquer.md
@@ -250,6 +252,7 @@ nav:
       - 生成函数简介: math/gen-func/intro.md
       - 普通生成函数: math/gen-func/ogf.md
       - 指数生成函数: math/gen-func/egf.md
+      - 狄利克雷生成函数: math/gen-func/dgf.md
     - 线性代数:
       - 向量: math/vector.md
       - 矩阵: math/matrix.md
@@ -409,7 +412,6 @@ nav:
     - 计算几何杂项: geometry/misc.md
   - 杂项:
     - 杂项简介: misc/index.md
-    - 复杂度: misc/complexity.md
     - 离散化: misc/discrete.md
     - 离线算法:
       - 离线算法简介: misc/offline.md

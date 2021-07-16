@@ -18,9 +18,9 @@ mjpage[promisify.custom] = input => {
       mjpage(
         input,
         {
-          format: ["TeX"]
+          format: ["TeX"],
         },
-        { svg: true, ex: 8, cjkCharWidth: 18, linebreaks: true },
+        { svg: true, ex: 8, cjkCharWidth: 18, linebreaks: true, },
         resolve
       );
     } catch (e) {
