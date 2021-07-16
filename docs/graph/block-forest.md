@@ -42,9 +42,7 @@
 
 下面的图显示了一张图对应的点双和圆方树形态。[^ref2]
 
-![](./images/block-forest1.svg)
-![](./images/block-forest2.svg)
-![](./images/block-forest3.svg)
+![](./images/block-forest1.svg)![](./images/block-forest2.svg)![](./images/block-forest3.svg)
 
 圆方树的点数小于 $2n$，这是因为割点的数量小于 $n$，所以请注意各种数组大小要开两倍。
 
