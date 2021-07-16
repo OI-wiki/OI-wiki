@@ -29,11 +29,11 @@
 那么我们可以列出一些式子如下：
 
 $$
-\begin{cases}
-\delta(y, z) = \delta(y, x') + \delta(x', z)\\
-\delta(y, t) = \delta(y, x') + \delta(x', x) + \delta(x, t)\\
-\delta(s, t) = \delta(s, x) + \delta(x, t)
-\end{cases}
+\begin{array}{rcl}
+\delta(y, z)&=&\delta(y, x') + \delta(x', z)\\
+\delta(y, t)&=&\delta(y, x') + \delta(x', x) + \delta(x, t)\\
+\delta(s, t)&=&\delta(s, x) + \delta(x, t)
+\end{array}
 $$
 
 那么根据假设，有 $\delta(y, z) \ge \delta(y, t) \Longrightarrow \delta(x', x) + \delta(x, t) \ge \delta(x', z)$。既然这样子的话，那么 $\delta(x, z) \ge \delta(x, t)$，和 $\delta(s, t)$ 对应着直径这一前提不符，故 $y$ 的最远节点 $z$ 不可能在 $s$ 到 $t$ 这个直径对应的路外面。
