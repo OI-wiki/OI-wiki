@@ -133,7 +133,7 @@ $$
 
 定义：设 $A \in R_{n \times m}$,$B \in R_{m \times n}$，其中 $m ≥ n$。设 $A_{S}$,$B_{S}$ 分别是通过取由 $A$，$B$ 的 $S \subseteq [m]$ 索引的行，列形成的子矩阵。
 
-令 $\left( \frac{[m]}{n} \right)$ 为的所有大小为$ n $的$ [m]$ 子集的集合。那么：
+令 $\left( \frac{[m]}{n} \right)$ 为的所有大小为 $n$ 的 $[m]$ 子集的集合。那么：
 
 $$
 \det(AB) = \sum_{S\subseteq {\frac{[m]}{n}}} \det(A_{S}) \det(B_{S})
