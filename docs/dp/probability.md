@@ -74,7 +74,7 @@
 $$
 \begin{aligned}
 f_{i,j} &= p_1\cdot f_{i,j}+p_2\cdot f_{i,j+1}+p_3\cdot f_{i+1,j}+p_4\cdot f_{i+1,j+1} + 1\\
-&=(p_2\cdot f_{i,j+1}+p_3\cdot f_{i+1,j}+p_4\cdot f_{i+1,j+1}+1)\cdot(1-p_1)
+&=(p_2\cdot f_{i,j+1}+p_3\cdot f_{i+1,j}+p_4\cdot \frac{f_{i+1,j+1}+1)}{(1-p_1)}
 \end{aligned}
 $$
 
