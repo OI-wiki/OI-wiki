@@ -96,5 +96,4 @@ int main() {
   //将newtr树并入trr树，newtr树被删除。
   return 0;
 }
-
 ```
