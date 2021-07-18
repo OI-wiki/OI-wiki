@@ -10,11 +10,11 @@ author: Anguei, sshwy, Xeonacid, Ir1d, MonkeyOliver, hsfzLZH1
 
 如果原图是这样：
 
-![](./images/node1.png)
+![](./images/node.svg)
 
 拆点之后的图是这个样子：
 
-![](./images/node2.png)
+![](./images/node-split.svg)
 
 ## 分层图最短路
 
