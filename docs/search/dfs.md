@@ -14,7 +14,7 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面。�
 for (int i = 1; i <= n; ++i)
   for (int j = i; j <= n; ++j)
     for (int k = j; k <= n; ++k)
-      if (i + j + k == n) printf("%d=%d+%d+%d\n", n, i, j, k);
+       if (i + j + k == n) printf("%d = %d + %d + %d\n", n, i, j, k);
 ```
 
 ```python
@@ -23,7 +23,7 @@ for i in range(1, n + 1):
     for j in range(i, n + 1):
         for k in range(j, n + 1):
             if i + j + k == n:
-                print("%d=%d+%d+%d" % (n, i, j, k))
+                print("%d = %d + %d + %d" % (n, i, j, k))
 ```
 
 那如果是分解成四个整数呢？再加一重循环？
@@ -74,7 +74,7 @@ def dfs(n, i, a):
     if i <= m:
         for j in range(a, n + 1):
             arr[i] = j
-            dfs(n - j, i + 1, j)  #请仔细思考该行含义。
+            dfs(n - j, i + 1, j)  # 请仔细思考该行含义。
 
 # 主函数
 n, m = input().split(' ')
