@@ -100,7 +100,6 @@ def merge_sort(ll, rr):
     for i in range(ll, rr):
         a[i] = t[i]
 ```
-
 ## 逆序对
 
 归并排序还可以用来求逆序对的个数。
