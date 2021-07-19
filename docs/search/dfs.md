@@ -14,7 +14,7 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面。�
 for (int i = 1; i <= n; ++i)
   for (int j = i; j <= n; ++j)
     for (int k = j; k <= n; ++k)
-       if (i + j + k == n) printf("%d = %d + %d + %d\n", n, i, j, k);
+      if (i + j + k == n) printf("%d = %d + %d + %d\n", n, i, j, k);
 ```
 
 ```python
