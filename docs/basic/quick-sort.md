@@ -60,6 +60,7 @@ void quick_sort(T arr[], const int len) {
 ```
 
 ### 实现（Python）[^ref2]
+
 ```python
 # Python Version
 def quick_sort(alist, first, last):
@@ -168,6 +169,7 @@ def quick_sort(arr, l, r):
     quick_sort(arr, l, j - 1)
     quick_sort(arr, k, r)
 ```
+
 ### 内省排序[^ref4]
 
 内省排序（英语：Introsort 或 Introspective sort）是快速排序和 [堆排序](./heap-sort.md) 的结合，由 David Musser 于 1997 年发明。内省排序其实是对快速排序的一种优化，保证了最差时间复杂度为 $O(n\log n)$。
