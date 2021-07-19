@@ -68,7 +68,7 @@ void counting_sort() {
 
 ### Python
 
-```
+```python
 # Python Version
 N = W = 100010
 n = w = 0
