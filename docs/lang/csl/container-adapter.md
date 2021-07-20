@@ -101,9 +101,19 @@ std::priority_queue<TypeName, Container> q;  // 使用 Container 作为底层容
 std::priority_queue<TypeName, Container, Compare> q;
 // 使用 Container 作为底层容器，使用 Compare 作为比较类型
 
-// 默认使用底层容器 vector，比较类型 less<TypeName>（此时为它的 top()
-// 返回为最大值） 若希望 top() 返回最小值，可令比较类型为 greater<TypeName>
+// 默认使用底层容器 vector
+// 比较类型 less<TypeName>（此时为它的 top() 返回为最大值）
+// 若希望 top() 返回最小值，可令比较类型为 greater<TypeName>
 // 注意：不可跳过 Container 直接传入 Compare
+
+// 从 C++11 开始，如果使用 lambda 函数自定义 Compare
+// 则需要将其作为构造函数的参数代入，如：
+auto cmp = [](const std::pair<int, int> &l, const std::pair<int, int> &r) {
+  return l.second < r.second;
+};
+std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int> >,
+                    decltype(cmp)>
+    pq(cmp);
 ```
 
 ### 成员函数

@@ -1,5 +1,5 @@
 ???+ warning
-    本页面要介绍的不是 [**基数排序**](radix-sort.md)。
+    本页面要介绍的不是 [**基数排序**](./radix-sort.md)。
 
 本页面将简要介绍计数排序。
 
@@ -14,7 +14,7 @@
 它的工作过程分为三个步骤：
 
 1. 计算每个数出现了几次；
-2. 求出每个数出现次数的 [前缀和](prefix-sum.md)；
+2. 求出每个数出现次数的 [前缀和](./prefix-sum.md)；
 3. 利用出现次数的前缀和，从右至左计算每个数的排名。
 
 ## 性质
@@ -52,6 +52,7 @@ $$
 ### C++
 
 ```cpp
+// C++ Version
 const int N = 100010;
 const int W = 100010;
 
@@ -64,6 +65,23 @@ void counting_sort() {
   for (int i = n; i >= 1; --i) b[cnt[a[i]]--] = a[i];
 }
 ```
+
+### Python
+
+    # Python Version
+    N = W = 100010
+    n = w = 0
+    a = b = [0] * N
+    cnt = [0] * W
+
+    def counting_sort():
+        for i in range(1, n + 1):
+            cnt[a[i]] += 1
+        for i in range(1, w + 1):
+            cnt[i] += cnt[i - 1]
+        for i in range(n, 0, -1):
+            b[cnt[a[i]] - 1] = a[i]
+            cnt[a[i]] -= 1
 
 ## 参考资料与注释
 

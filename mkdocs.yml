@@ -3,7 +3,7 @@ site_name: OI Wiki
 site_description: OI Wiki 是一个编程竞赛知识整合站点，提供有趣又实用的编程竞赛知识以及其他有帮助的内容，帮助广大编程竞赛爱好者更快更深入地学习编程竞赛
 site_author: OI Wiki Team
 site_url: https://oi-wiki.org
-strict: true
+strict: false
 
 # Repository
 repo_name: 'OI-wiki/OI-wiki'
@@ -31,7 +31,7 @@ nav:
     - 赛事:
       - OI 赛事与赛制: contest/oi.md
       - ICPC/CCPC 赛事与赛制: contest/icpc.md
-    - 题型: 
+    - 题型:
       - 题型概述: contest/problems.md
       - 交互题: contest/interaction.md
     - 学习路线: contest/roadmap.md
@@ -51,10 +51,12 @@ nav:
       - Atom: tools/editor/atom.md
       - Eclipse: tools/editor/eclipse.md
       - Notepad++: tools/editor/npp.md
+      - Kate: tools/editor/kate.md
       - Dev-C++: tools/editor/devcpp.md
       - Geany: tools/editor/geany.md
       - Xcode: tools/editor/xcode.md
       - GUIDE: tools/editor/guide.md
+      - Sublime Text 3: tools/editor/sublime3.md
     - 评测工具: tools/judgers.md
     - 命令行: tools/cmd.md
     - WSL (Windows 10): tools/wsl.md
@@ -69,6 +71,7 @@ nav:
     - Polygon: tools/polygon.md
     - OJ 工具: tools/oj-tool.md
     - LaTeX 入门: tools/latex.md
+    - Git: tools/git.md
   - 语言基础:
     - 语言基础简介: lang/index.md
     - C++ 基础:
@@ -116,6 +119,7 @@ nav:
     - Java 速成: lang/java.md
   - 算法基础:
     - 算法基础简介: basic/index.md
+    - 复杂度: basic/complexity.md
     - 枚举: basic/enumerate.md
     - 模拟: basic/simulate.md
     - 递归 & 分治: basic/divide-and-conquer.md
@@ -183,8 +187,11 @@ nav:
     - Z 函数（扩展 KMP）: string/z-func.md
     - 自动机: string/automaton.md
     - AC 自动机: string/ac-automaton.md
-    - 后缀数组 (SA): string/sa.md
+    - 后缀数组 (SA):
+      - 后缀数组简介: string/sa.md
+      - 最优原地后缀排序算法: string/sa-optimal-inplace.md
     - 后缀自动机 (SAM): string/sam.md
+    - 后缀平衡树: string/suffix-bst.md
     - 广义后缀自动机: string/general-sam.md
     - 后缀树: string/suffix-tree.md
     - Manacher: string/manacher.md
@@ -219,6 +226,7 @@ nav:
       - 卢卡斯定理: math/lucas.md
       - 莫比乌斯反演: math/mobius.md
       - 杜教筛: math/du.md
+      - Powerful Number 筛: math/powerful-number.md
       - Min_25 筛: math/min-25.md
       - 洲阁筛: math/zhou.md
       - 分解质因数: math/pollard-rho.md
@@ -231,6 +239,7 @@ nav:
       - 快速傅里叶变换: math/poly/fft.md
       - 快速数论变换: math/poly/ntt.md
       - 快速沃尔什变换: math/poly/fwt.md
+      - Chirp-Z 变换: math/poly/czt.md
       - 多项式求逆: math/poly/inv.md
       - 多项式开方: math/poly/sqrt.md
       - 多项式除法|取模: math/poly/div-mod.md
@@ -244,10 +253,12 @@ nav:
       - 生成函数简介: math/gen-func/intro.md
       - 普通生成函数: math/gen-func/ogf.md
       - 指数生成函数: math/gen-func/egf.md
+      - 狄利克雷生成函数: math/gen-func/dgf.md
     - 线性代数:
       - 向量: math/vector.md
       - 矩阵: math/matrix.md
       - 高斯消元: math/gauss.md
+      - 特征多项式: math/char-poly.md
       - 线性基: math/basis.md
     - 线性规划:
       - 线性规划简介: math/linear-programming.md
@@ -261,6 +272,7 @@ nav:
       - 康托展开: math/cantor.md
       - 容斥原理: math/inclusion-exclusion-principle.md
       - 抽屉原理: math/drawer-principle.md
+      - Eulerian Number: math/eulerian.md
     - 概率初步: math/expectation.md
     - 置换群: math/permutation-group.md
     - 斐波那契数列: math/fibonacci.md
@@ -373,6 +385,7 @@ nav:
       - 最小割: graph/flow/min-cut.md
       - 费用流: graph/flow/min-cost.md
       - 上下界网络流: graph/flow/bound.md
+    - Stoer-Wagner 算法: graph/stoer-wagner.md
     - 图的匹配:
       - 图匹配: graph/graph-matching/graph-match.md
       - 增广路: graph/graph-matching/augment.md
@@ -401,7 +414,6 @@ nav:
     - 计算几何杂项: geometry/misc.md
   - 杂项:
     - 杂项简介: misc/index.md
-    - 复杂度: misc/complexity.md
     - 离散化: misc/discrete.md
     - 离线算法:
       - 离线算法简介: misc/offline.md

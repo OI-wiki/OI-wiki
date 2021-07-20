@@ -54,13 +54,19 @@
     int fa[MXN][31], cost[MXN][31], dep[MXN];
     int n, m;
     int a, b, c;
+    
+    // dfs，用来为 lca 算法做准备。接受两个参数：dfs 起始节点和它的父亲节点。
     void dfs(int root, int fno) {
+      // 初始化：第 2^0 = 1 个祖先就是它的父亲节点，dep 也比父亲节点多 1。
       fa[root][0] = fno;
       dep[root] = dep[fa[root][0]] + 1;
+      // 初始化：其他的祖先节点：第 2^i 的祖先节点是第 2^(i-1) 的祖先节点的第
+      // 2^(i-1) 的祖先节点。
       for (int i = 1; i < 31; ++i) {
         fa[root][i] = fa[fa[root][i - 1]][i - 1];
         cost[root][i] = cost[fa[root][i - 1]][i - 1] + cost[root][i - 1];
       }
+      // 遍历子节点来进行 dfs。
       int sz = v[root].size();
       for (int i = 0; i < sz; ++i) {
         if (v[root][i] == fno) continue;
@@ -68,12 +74,18 @@
         dfs(v[root][i], root);
       }
     }
+    
+    // lca。用倍增算法算取 x 和 y 的 lca 节点。
     int lca(int x, int y) {
+      // 令 y 比 x 深。
       if (dep[x] > dep[y]) swap(x, y);
+      // 令 y 和 x 在一个深度。
       int tmp = dep[y] - dep[x], ans = 0;
       for (int j = 0; tmp; ++j, tmp >>= 1)
         if (tmp & 1) ans += cost[y][j], y = fa[y][j];
+      // 如果这个时候 y = x，那么 x，y 就都是它们自己的祖先。
       if (y == x) return ans;
+      // 不然的话，找到第一个不是它们祖先的两个点。
       for (int j = 30; j >= 0 && y != x; --j) {
         if (fa[x][j] != fa[y][j]) {
           ans += cost[x][j] + cost[y][j];
@@ -81,13 +93,17 @@
           y = fa[y][j];
         }
       }
+      // 返回结果。
       ans += cost[x][0] + cost[y][0];
       return ans;
     }
+    
     int main() {
+      // 初始化表示祖先的数组 fa，代价 cost 和深度 dep。
       memset(fa, 0, sizeof(fa));
       memset(cost, 0, sizeof(cost));
       memset(dep, 0, sizeof(dep));
+      // 读入树：节点数一共有 n 个。
       scanf("%d", &n);
       for (int i = 1; i < n; ++i) {
         scanf("%d %d %d", &a, &b, &c);
@@ -97,7 +113,9 @@
         w[a].push_back(c);
         w[b].push_back(c);
       }
+      // 为了计算 lca 而使用 dfs。
       dfs(1, 0);
+      // 查询 m 次，每一次查找两个节点的 lca 点。
       scanf("%d", &m);
       for (int i = 0; i < m; ++i) {
         scanf("%d %d", &a, &b);
@@ -277,48 +295,27 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
 
 ### 标准 RMQ
 
-时间复杂度 $O(N)-O(1)$，空间复杂度 $O(N)$，支持在线查询，常数较大，编程复杂度较高。
+前面讲到了借助欧拉序将 LCA 问题转化为 RMQ 问题，其瓶颈在于 RMQ。如果能做到 $O(n) \sim O(1)$ 求解 RMQ，那么也就能做到 $O(n) \sim O(1)$ 求解 LCA。
 
-流程：
+注意到欧拉序满足相邻两数之差为 1 或者 -1，所以可以使用 $O(n) \sim O(1)$ 的 [加减 1RMQ](../topic/rmq.md#1rmq) 来做。
 
-- 通过 DFS 序将树上 LCA 问题转为序列 RMQ 问题
+时间复杂度 $O(n) \sim O(1)$，空间复杂度 $O(n)$，支持在线查询，常数较大。
 
-- 通过单调栈将序列转为笛卡尔树
-
-- 在笛卡尔树上求欧拉序，如此转化为 $\pm 1$ RMQ
-
-- 对新序列分块，做分块 ST 表，块内通过二进制状压 DP 维护
-
-每一步的复杂度都是 $O(N)$ 的，因此总复杂度依然是 $O(N)$。
-
-提供 LCA 转标准 RMQ 的代码，为洛谷上 ST 表的例题 [**P3865**【模板】ST 表](https://www.luogu.com.cn/problem/P3865)
+#### 例题 [Luogu P3379【模板】最近公共祖先（LCA）](https://www.luogu.com.cn/problem/P3379)
 
 ??? note "参考代码"
     ```cpp
-    // Copyright (C) 2018 Skqliao. All rights served.
     #include <bits/stdc++.h>
+    using namespace std;
     
-    #define rep(i, l, r) for (int i = (l), _##i##_ = (r); i < _##i##_; ++i)
-    #define rof(i, l, r) for (int i = (l)-1, _##i##_ = (r); i >= _##i##_; --i)
-    #define ALL(x) (x).begin(), (x).end()
-    #define SZ(x) static_cast<int>((x).size())
-    typedef long long ll;
-    typedef std::pair<int, int> pii;
-    template <typename T>
-    inline bool chkMin(T &a, const T &b) {
-      return a > b ? a = b, 1 : 0;
-    }
-    template <typename T>
-    inline bool chkMax(T &a, const T &b) {
-      return a < b ? a = b, 1 : 0;
-    }
-    
-    const int MAXN = 1e5 + 5;
+    const int N = 5e5 + 5;
     
     struct PlusMinusOneRMQ {
-      const static int M = 8;
-      int blocklen, block, Minv[MAXN], F[MAXN / M * 2 + 5][M << 1], T[MAXN],
-          f[1 << M][M][M], S[MAXN];
+      // Copyright (C) 2018 Skqliao. All rights served.
+      const static int M = 9;
+    
+      int blocklen, block, Minv[N], F[N / M * 2 + 5][M << 1], T[N], f[1 << M][M][M],
+          S[N];
       void init(int n) {
         blocklen = std::max(1, (int)(log(n * 1.0) / log(2.0)) / 2);
         block = n / blocklen + (n % blocklen > 0);
@@ -342,7 +339,7 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
           }
         }
         T[1] = 0;
-        for (int i = 2; i < MAXN; i++) {
+        for (int i = 2; i < N; i++) {
           T[i] = T[i - 1];
           if (!(i & (i - 1))) {
             T[i]++;
@@ -391,95 +388,79 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
           return buf;
         }
       }
-    };
+    } rmq;
     
-    struct CartesianTree {
-     private:
-      struct Node {
-        int key, value, l, r;
-        Node(int key, int value) {
-          this->key = key;
-          this->value = value;
-          l = r = 0;
-        }
-        Node() {}
-      };
-      Node tree[MAXN];
-      int sz;
-      int S[MAXN], top;
+    int n, m, s;
     
-     public:
-      void build(int a[], int n) {
-        top = 0;
-        tree[0] = Node(-1, INT_MAX);
-        S[top++] = 0;
-        sz = 0;
-        for (int i = 0; i < n; i++) {
-          tree[++sz] = Node(i, a[i]);
-          int last = 0;
-          while (tree[S[top - 1]].value <= tree[sz].value) {
-            last = S[top - 1];
-            top--;
-          }
-          tree[sz].l = last;
-          tree[S[top - 1]].r = sz;
-          S[top++] = sz;
-        }
+    struct Edge {
+      int v, nxt;
+    } e[N * 2];
+    int tot, head[N];
+    void init(int n) {
+      tot = 0;
+      fill(head, head + n + 1, 0);
+    }
+    void addedge(int u, int v) {
+      ++tot;
+      e[tot] = (Edge){v, head[u]};
+      head[u] = tot;
+    
+      ++tot;
+      e[tot] = (Edge){u, head[v]};
+      head[v] = tot;
+    }
+    
+    int dfs_clock, dfn[N * 2], dep[N * 2], st[N];
+    
+    void dfs(int u, int fa, int d) {
+      st[u] = dfs_clock;
+    
+      dfn[dfs_clock] = u;
+      dep[dfs_clock] = d;
+      ++dfs_clock;
+    
+      int v;
+      for (int i = head[u]; i; i = e[i].nxt) {
+        v = e[i].v;
+        if (v == fa) continue;
+        dfs(v, u, d + 1);
+        dfn[dfs_clock] = u;
+        dep[dfs_clock] = d;
+        ++dfs_clock;
       }
-      Node &operator[](const int x) { return tree[x]; }
-    };
+    }
     
-    class stdRMQ {
-     public:
-      void work(int a[], int n) {
-        ct.build(a, n);
-        dfs_clock = 0;
-        dfs(0, 0);
-        rmq.init(dfs_clock);
-        rmq.initmin(depseq, dfs_clock);
-      }
-      int query(int L, int R) {
-        int cl = clk[L], cr = clk[R];
-        if (cl > cr) {
-          std::swap(cl, cr);
-        }
-        return Val[rmq.querymin(depseq, cl, cr)];
-      }
+    void build_lca() {
+      rmq.init(dfs_clock);
+      rmq.initmin(dep, dfs_clock);
+    }
     
-     private:
-      CartesianTree ct;
-      PlusMinusOneRMQ rmq;
-      int dfs_clock, clk[MAXN], Val[MAXN << 1], depseq[MAXN << 1];
-      void dfs(int rt, int d) {
-        clk[ct[rt].key] = dfs_clock;
-        depseq[dfs_clock] = d;
-        Val[dfs_clock++] = ct[rt].value;
-        if (ct[rt].l) {
-          dfs(ct[rt].l, d + 1);
-          depseq[dfs_clock] = d;
-          Val[dfs_clock++] = ct[rt].value;
-        }
-        if (ct[rt].r) {
-          dfs(ct[rt].r, d + 1);
-          depseq[dfs_clock] = d;
-          Val[dfs_clock++] = ct[rt].value;
-        }
-      }
-    } doit;
-    
-    int A[MAXN];
+    int LCA(int u, int v) {
+      int l = st[u], r = st[v];
+      if (l > r) swap(l, r);
+      return dfn[rmq.querymin(dep, l, r)];
+    }
     
     int main() {
-      int n, m, l, r;
-      scanf("%d%d", &n, &m);
-      for (int i = 0; i < n; ++i) {
-        scanf("%d", &A[i]);
+      scanf("%d %d %d", &n, &m, &s);
+    
+      init(n);
+      int u, v;
+      for (int i = 1; i <= n - 1; ++i) {
+        scanf("%d %d", &u, &v);
+        addedge(u, v);
       }
-      doit.work(A, n);
-      while (m--) {
-        scanf("%d%d", &l, &r);
-        printf("%d\n", doit.query(l - 1, r - 1));
+    
+      dfs_clock = 0;
+      dfs(s, s, 0);
+    
+      build_lca();
+    
+      for (int i = 1; i <= m; ++i) {
+        scanf("%d %d", &u, &v);
+        printf("%d\n", LCA(u, v));
       }
+    
       return 0;
     }
     ```

@@ -36,7 +36,7 @@
 
 求最大流是很简单的，接下来讲解求最大流的 3 种方法。
 
-### Edmond-Karp 动能算法（EK 算法）
+### Edmonds-Karp 动能算法（EK 算法）
 
 这个算法很简单，就是 BFS **找增广路**，然后对其进行 **增广**。你可能会问，怎么找？怎么增广？
 
@@ -245,6 +245,210 @@ Dinic 算法有两个优化：
     };
     ```
 
+### MPM 算法
+
+**MPM**(Malhotra, Pramodh-Kumar and Maheshwari) 算法得到最大流的方式有两种：使用基于堆的优先队列，时间复杂度为 $O(n^3\log n)$；常用 BFS 解法，时间复杂度为 $O(n^3)$。注意，本章节只专注于分析更优也更简洁的 $O(n^3)$ 算法。
+
+MPM 算法的整体结构和 Dinic 算法类似，也是分阶段运行的。在每个阶段，在 $G$ 的残量网络的分层网络中找到增广路。它与 Dinic 算法的主要区别在于寻找增广路的方式不同：MPM 算法中寻找增广路的部分的只花了 $O(n^2)$, 时间复杂度要优于 Dinic 算法。
+
+MPM 算法需要考虑顶点而不是边的容量。在分层网络 $L$ 中，如果定义点 $v$ 的容量 $p(v)$ 为其传入残量和传出残量的最小值，则有：
+
+$$
+\begin{aligned}
+p_{in}(v) &= \sum\limits_{(u,v) \in L} (c(u, v) - f(u, v)) \\
+p_{out}(v) &= \sum\limits_{(v,u) \in L} (c(v, u) - f(v, u)) \\
+p(v) &= \min (p_{in}(v), p_{out}(v))
+\end{aligned}
+$$
+
+我们称节点 $r$ 是参考节点当且仅当 $p(r) = \min {p(v)}$。对于一个参考节点 $r$，我们一定可以让经过 $r$ 的流量增加 $p(r)$ 以使其容量变为 $0$。这是因为 $L$ 是有向无环图且 $L$ 中节点容量至少为 $p(r)$，所以我们一定能找到一条从 $s$ 经过 $r$ 到达 $t$ 的有向路径。那么我们让这条路上的边流量都增加 $p(r)$ 即可。这条路即为这一阶段的增广路。寻找增广路可以用 BFS。增广完之后所有满流边都可以从 $L$ 中删除，因为它们不会在此阶段后被使用。同样，所有与 $s$ 和 $t$ 不同且没有出边或入边的节点都可以删除。
+
+#### 时间复杂度分析
+
+MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（因为至少删除了所选的参考节点），并且在每次迭代中，我们删除除最多 $V$ 之外经过的所有边。求和，我们得到 $O(V^2+E)=O(V^2)$。由于阶段总数少于 $V$，因此 MPM 算法的总运行时间为 $O(V^3)$。
+
+##### 阶段总数小于 V 的证明
+
+MPM 算法在少于 $V$ 个阶段内结束。为了证明这一点，我们必须首先证明两个引理。
+
+**引理 1**：每次迭代后，从 $s$ 到每个点的距离不会减少，也就是说，$level_{i+1}[v] \ge level_{i}[v]$。
+
+**证明**：固定一个阶段 $i$ 和点 $v$。考虑 $G_{i}^R$ 中从 $s$ 到 $v$ 的任意最短路径 $P$。$P$ 的长度等于 $level_{i}[v]$。注意 $G_{i}^R$ 只能包含 $G_{i}^R$ 的后向边和前向边。如果 $P$ 没有 $G_{i}^R$ 的后边，那么 $level_{i+1}[v] \ge level_{i}[v]$。因为 $P$ 也是 $G_{i}^R$ 中的一条路径。现在，假设 $P$ 至少有一个后向边且第一个这样的边是 $(u,w)$，那么 $level_{i+1}[u] \ge level_{i}[u]$（因为第一种情况）。边 $(u,w)$ 不属于 $G_{i}^R$，因此 $(u,w)$ 受到前一次迭代的增广路的影响。这意味着 $level_{i}[u] = level_{i}[w]+1$。此外，$level_{i+1}[w] = level_{i+1}[u]+1$。从这两个方程和 $level_{i+1}[u] \ge level_{i}[u]$ 我们得到 $level_{i+1}[w] \ge level_{i}[w]+2$。路径的剩余部分也可以使用相同思想。
+
+**引理 2**：$level_{i+1}[t] > level_{i}[t]$。
+
+**证明**：从引理一我们得出，$level_{i+1}[t] \ge level_{i}[t]$。假设 $level_{i+1}[t] = level_{i}[t]$，注意 $G_{i}^R$ 只能包含 $G_{i}^R$ 的后向边和前向边。这意味着 $G_{i}^R$ 中有一条最短路径未被增广路阻塞。这就形成了矛盾。
+
+??? note "参考代码"
+    ```cpp
+    struct MPM {
+      struct FlowEdge {
+        int v, u;
+        long long cap, flow;
+        FlowEdge() {}
+        FlowEdge(int _v, int _u, long long _cap, long long _flow)
+            : v(_v), u(_u), cap(_cap), flow(_flow) {}
+        FlowEdge(int _v, int _u, long long _cap)
+            : v(_v), u(_u), cap(_cap), flow(0ll) {}
+      };
+      const long long flow_inf = 1e18;
+      vector<FlowEdge> edges;
+      vector<char> alive;
+      vector<long long> pin, pout;
+      vector<list<int> > in, out;
+      vector<vector<int> > adj;
+      vector<long long> ex;
+      int n, m = 0;
+      int s, t;
+      vector<int> level;
+      vector<int> q;
+      int qh, qt;
+      void resize(int _n) {
+        n = _n;
+        ex.resize(n);
+        q.resize(n);
+        pin.resize(n);
+        pout.resize(n);
+        adj.resize(n);
+        level.resize(n);
+        in.resize(n);
+        out.resize(n);
+      }
+      MPM() {}
+      MPM(int _n, int _s, int _t) {
+        resize(_n);
+        s = _s;
+        t = _t;
+      }
+      void add_edge(int v, int u, long long cap) {
+        edges.push_back(FlowEdge(v, u, cap));
+        edges.push_back(FlowEdge(u, v, 0));
+        adj[v].push_back(m);
+        adj[u].push_back(m + 1);
+        m += 2;
+      }
+      bool bfs() {
+        while (qh < qt) {
+          int v = q[qh++];
+          for (int id : adj[v]) {
+            if (edges[id].cap - edges[id].flow < 1) continue;
+            if (level[edges[id].u] != -1) continue;
+            level[edges[id].u] = level[v] + 1;
+            q[qt++] = edges[id].u;
+          }
+        }
+        return level[t] != -1;
+      }
+      long long pot(int v) { return min(pin[v], pout[v]); }
+      void remove_node(int v) {
+        for (int i : in[v]) {
+          int u = edges[i].v;
+          auto it = find(out[u].begin(), out[u].end(), i);
+          out[u].erase(it);
+          pout[u] -= edges[i].cap - edges[i].flow;
+        }
+        for (int i : out[v]) {
+          int u = edges[i].u;
+          auto it = find(in[u].begin(), in[u].end(), i);
+          in[u].erase(it);
+          pin[u] -= edges[i].cap - edges[i].flow;
+        }
+      }
+      void push(int from, int to, long long f, bool forw) {
+        qh = qt = 0;
+        ex.assign(n, 0);
+        ex[from] = f;
+        q[qt++] = from;
+        while (qh < qt) {
+          int v = q[qh++];
+          if (v == to) break;
+          long long must = ex[v];
+          auto it = forw ? out[v].begin() : in[v].begin();
+          while (true) {
+            int u = forw ? edges[*it].u : edges[*it].v;
+            long long pushed = min(must, edges[*it].cap - edges[*it].flow);
+            if (pushed == 0) break;
+            if (forw) {
+              pout[v] -= pushed;
+              pin[u] -= pushed;
+            } else {
+              pin[v] -= pushed;
+              pout[u] -= pushed;
+            }
+            if (ex[u] == 0) q[qt++] = u;
+            ex[u] += pushed;
+            edges[*it].flow += pushed;
+            edges[(*it) ^ 1].flow -= pushed;
+            must -= pushed;
+            if (edges[*it].cap - edges[*it].flow == 0) {
+              auto jt = it;
+              ++jt;
+              if (forw) {
+                in[u].erase(find(in[u].begin(), in[u].end(), *it));
+                out[v].erase(it);
+              } else {
+                out[u].erase(find(out[u].begin(), out[u].end(), *it));
+                in[v].erase(it);
+              }
+              it = jt;
+            } else
+              break;
+            if (!must) break;
+          }
+        }
+      }
+      long long flow() {
+        long long ans = 0;
+        while (true) {
+          pin.assign(n, 0);
+          pout.assign(n, 0);
+          level.assign(n, -1);
+          alive.assign(n, true);
+          level[s] = 0;
+          qh = 0;
+          qt = 1;
+          q[0] = s;
+          if (!bfs()) break;
+          for (int i = 0; i < n; i++) {
+            out[i].clear();
+            in[i].clear();
+          }
+          for (int i = 0; i < m; i++) {
+            if (edges[i].cap - edges[i].flow == 0) continue;
+            int v = edges[i].v, u = edges[i].u;
+            if (level[v] + 1 == level[u] && (level[u] < level[t] || u == t)) {
+              in[u].push_back(i);
+              out[v].push_back(i);
+              pin[u] += edges[i].cap - edges[i].flow;
+              pout[v] += edges[i].cap - edges[i].flow;
+            }
+          }
+          pin[s] = pout[t] = flow_inf;
+          while (true) {
+            int v = -1;
+            for (int i = 0; i < n; i++) {
+              if (!alive[i]) continue;
+              if (v == -1 || pot(i) < pot(v)) v = i;
+            }
+            if (v == -1) break;
+            if (pot(v) == 0) {
+              alive[v] = false;
+              remove_node(v);
+              continue;
+            }
+            long long f = pot(v);
+            ans += f;
+            push(v, s, f, false);
+            push(v, t, f, true);
+            alive[v] = false;
+            remove_node(v);
+          }
+        }
+        return ans;
+      }
+    };
+    ```
+
 ### ISAP
 
 在 Dinic 算法中，我们每次求完增广路后都要跑 BFS 来分层，有没有更高效的方法呢？
@@ -397,11 +601,11 @@ $$
 e(u)=\sum_{(x,u)\in E}f(x,u)-\sum_{(u,y)\in E}f(u,y)
 $$
 
-若 $e(u)>0$，称结点 $u$  **溢出**。
+若 $e(u)>0$，称结点 $u$  **溢出**[^note1]，注意当我们提到溢出结点时，并不包括 $s$ 和 $t$。
 
 预流推进算法维护每个结点的高度 $h(u)$，并且规定溢出的结点 $u$ 如果要推送超额流，只能向高度小于 $u$ 的结点推送；如果 $u$ 没有相邻的高度小于 $u$ 的结点，就修改 $u$ 的高度（重贴标签）。
 
-#### 高度函数
+#### 高度函数[^note2]
 
 准确地说，预流推进维护以下的一个映射 $h:V\to \mathbf{N}$：
 
@@ -463,7 +667,9 @@ $$
 
 ![p3](./images/2150.png)
 
-可以发现，最后的超额流一部分回到了 $s$，且除了源点汇点，其他结点都没有溢出；这时的流函数 $f$ 满足流守恒性，为最大流，即 $e(t)$。
+可以发现，最后的超额流一部分回到了 $s$，且除了源点汇点，其他结点都没有溢出；这时的流函数 $f$ 满足流守恒性，为最大流，流量即为 $e(t)$。
+
+但是实际上论文[^ref1]指出只处理高度小于 $n$ 的溢出节点也能获得正确的最大流值，不过这样一来算法结束的时候预流还不满足流函数性质，不能知道每条边上真实的流量。
 
 ???+ "核心代码"
     ```cpp
@@ -493,14 +699,16 @@ $$
 
 ### HLPP 算法
 
-最高标号预流推进算法（High Level Preflow Push）是基于预流推进算法的优先队列实现，该算法优先推送高度高的溢出的结点，算法算法复杂度 $O(n^2\sqrt m)$。
+最高标号预流推进算法（Highest Label Preflow Push）在上述通用的预流推送算法中，在每次选择结点时，都优先选择高度最高的溢出结点，其算法算法复杂度为 $O(n^2\sqrt m)$。
 
 具体地说，HLPP 算法过程如下：
 
 1. 初始化（基于预流推进算法）；
-2. 选择溢出结点（除 $s,t$）中高度最高的结点 $u$，并对它所有可以推送的边进行推送；
+2. 选择溢出结点中高度最高的结点 $u$，并对它所有可以推送的边进行推送；
 3. 如果 $u$ 仍溢出，对它重贴标签，回到步骤 2；
 4. 如果没有溢出的结点，算法结束。
+
+一篇对最大流算法实际表现进行测试的论文[^ref2]表明，实际上基于预流的算法，有相当一部分时间都花在了重贴标签这一步上。以下介绍两种来自论文[^ref3]的能显著减少重贴标签次数的优化。
 
 #### BFS 优化
 
@@ -510,29 +718,60 @@ HLPP 的上界为 $O(n^2\sqrt m)$，但在使用时卡得比较紧；我们可�
 
 #### GAP 优化
 
-HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u)=t$ 的结点个数为 $0$，那么对于 $h(u)>t$ 的结点就永远无法推送超额流到 $t$，因此只能送回 $s$，那么我们就在这时直接让他们的高度变成 $n+1$，以尽快推送回 $s$，减少重贴标签的操作。
+HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u)=t$ 的结点个数为 $0$，那么对于 $h(u)>t$ 的结点就永远无法推送超额流到 $t$，因此只能送回 $s$，那么我们就在这时直接让他们的高度变成至少 $n+1$，以尽快推送回 $s$，减少重贴标签的操作。
+
+以下的实现采取论文[^ref2]中的实现方法，使用 $N*2-1$ 个桶 `B`，其中 `B[i]` 中记录所有当前高度为 $i$ 的溢出节点。加入了以上提到的两种优化，并且只处理了高度小于 $n$ 的溢出节点。
+
+值得注意的是论文[^ref2]中使用的桶是基于链表的栈，而 STL 中的 `stack` 默认的容器是 `deque`。经过简单的测试发现 `vector`，`deque`，`list` 在本题的实际运行过程中效率区别不大。
 
 ??? "LuoguP4722【模板】最大流 加强版/预流推进"
     ```cpp
     #include <cstdio>
     #include <cstring>
     #include <queue>
+    #include <stack>
     using namespace std;
-    const int N = 1e4 + 4, M = 2e5 + 5, INF = 0x3f3f3f3f;
+    const int N = 1200, M = 120000, INF = 0x3f3f3f3f;
     int n, m, s, t;
     
     struct qxx {
       int nex, t, v;
     };
-    qxx e[M * 2];
-    int h[N], cnt = 1;
+    qxx e[M * 2 + 1];
+    int h[N + 1], cnt = 1;
     void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
     void add_flow(int f, int t, int v) {
       add_path(f, t, v);
       add_path(t, f, 0);
     }
-    
-    int ht[N], ex[N], gap[N];  // 高度；超额流；gap 优化
+    int ht[N + 1], ex[N + 1],
+        gap[N];  // 高度; 超额流; gap 优化 gap[i] 为高度为 i 的节点的数量
+    stack<int> B[N];       // 桶 B[i] 中记录所有 ht[v]==i 的v
+    int level = 0;         // 溢出节点的最高高度
+    int push(int u) {      // 尽可能通过能够推送的边推送超额流
+      bool init = u == s;  // 是否在初始化
+      for (int i = h[u]; i; i = e[i].nex) {
+        const int &v = e[i].t, &w = e[i].v;
+        if (!w || init == false && ht[u] != ht[v] + 1)  // 初始化时不考虑高度差为1
+          continue;
+        int k = init ? w : min(w, ex[u]);
+        // 取到剩余容量和超额流的最小值，初始化时可以使源的溢出量为负数。
+        if (v != s && v != t && !ex[v]) B[ht[v]].push(v), level = max(level, ht[v]);
+        ex[u] -= k, ex[v] += k, e[i].v -= k, e[i ^ 1].v += k;  // push
+        if (!ex[u]) return 0;  // 如果已经推送完就返回
+      }
+      return 1;
+    }
+    void relabel(int u) {  // 重贴标签（高度）
+      ht[u] = INF;
+      for (int i = h[u]; i; i = e[i].nex)
+        if (e[i].v) ht[u] = min(ht[u], ht[e[i].t]);
+      if (++ht[u] < n) {  // 只处理高度小于 n 的节点
+        B[ht[u]].push(u);
+        level = max(level, ht[u]);
+        ++gap[ht[u]];  // 新的高度，更新 gap
+      }
+    }
     bool bfs_init() {
       memset(ht, 0x3f, sizeof(ht));
       queue<int> q;
@@ -547,51 +786,27 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u
       }
       return ht[s] != INF;  // 如果图不连通，返回 0
     }
-    struct cmp {
-      bool operator()(int a, int b) const { return ht[a] < ht[b]; }
-    };                                         // 伪装排序函数
-    priority_queue<int, vector<int>, cmp> pq;  // 将需要推送的结点以高度高的优先
-    bool vis[N];                               // 是否在优先队列中
-    int push(int u) {  // 尽可能通过能够推送的边推送超额流
-      for (int i = h[u]; i; i = e[i].nex) {
-        const int &v = e[i].t, &w = e[i].v;
-        if (!w || ht[u] != ht[v] + 1) continue;
-        int k = min(w, ex[u]);  // 取到剩余容量和超额流的最小值
-        ex[u] -= k, ex[v] += k, e[i].v -= k, e[i ^ 1].v += k;  // push
-        if (v != s && v != t && !vis[v])
-          pq.push(v), vis[v] = 1;  // 推送之后，v 必然溢出，则入堆，等待被推送
-        if (!ex[u]) return 0;  // 如果已经推送完就返回
-      }
-      return 1;
-    }
-    void relabel(int u) {  // 重贴标签（高度）
-      ht[u] = INF;
-      for (int i = h[u]; i; i = e[i].nex)
-        if (e[i].v) ht[u] = min(ht[u], ht[e[i].t]);
-      ++ht[u];
+    // 选出当前高度最大的节点之一, 如果已经没有溢出节点返回 0
+    int select() {
+      while (B[level].size() == 0 && level > -1) level--;
+      return level == -1 ? 0 : B[level].top();
     }
     int hlpp() {                  // 返回最大流
       if (!bfs_init()) return 0;  // 图不连通
-      ht[s] = n;
       memset(gap, 0, sizeof(gap));
       for (int i = 1; i <= n; i++)
         if (ht[i] != INF) gap[ht[i]]++;  // 初始化 gap
-      for (int i = h[s]; i; i = e[i].nex) {
-        const int v = e[i].t, w = e[i].v;  // 队列初始化
-        if (!w) continue;
-        ex[s] -= w, ex[v] += w, e[i].v -= w, e[i ^ 1].v += w;  // 注意取消 w 的引用
-        if (v != s && v != t && !vis[v]) pq.push(v), vis[v] = 1;  // 入队
-      }
-      while (pq.size()) {
-        int u = pq.top();
-        pq.pop(), vis[u] = 0;
-        while (push(u)) {  // 仍然溢出
-          // 如果 u 结点原来所在的高度没有结点了，相当于出现断层
+      ht[s] = n;
+      push(s);  // 初始化预流
+      int u;
+      while ((u = select())) {
+        B[level].pop();
+        if (push(u)) {  // 仍然溢出
           if (!--gap[ht[u]])
             for (int i = 1; i <= n; i++)
-              if (i != s && i != t && ht[i] > ht[u] && ht[i] < n + 1) ht[i] = n + 1;
+              if (i != s && i != t && ht[i] > ht[u] && ht[i] < n + 1)
+                ht[i] = n + 1;  // 这里重贴成 n+1 的节点都不是溢出节点
           relabel(u);
-          ++gap[ht[u]];  // 新的高度，更新 gap
         }
       }
       return ex[t];
@@ -612,3 +827,15 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u
 ![HLPP](./images/1152.png)
 
 其中 pic13 到 pic14 执行了 Relabel(4)，并进行了 GAP 优化。
+
+## 脚注
+
+[^ref1]: Cherkassky B V, Goldberg A V. On implementing push-relabel method for the maximum flow problem\[C]//International Conference on Integer Programming and Combinatorial Optimization. Springer, Berlin, Heidelberg, 1995: 157-171.
+
+[^ref2]: Ahuja R K, Kodialam M, Mishra A K, et al. Computational investigations of maximum flow algorithms\[J]. European Journal of Operational Research, 1997, 97(3): 509-542.
+
+[^ref3]: Derigs U, Meier W. Implementing Goldberg's max-flow-algorithm—A computational investigation\[J]. Zeitschrift für Operations Research, 1989, 33(6): 383-403.
+
+[^note1]: 英语文献中通常称为“active“。
+
+[^note2]: 在英语文献中，一个结点的高度通常被称为“distance label”。此处使用的“高度”这个术语源自算法导论中的相关章节。你可以在机械工业出版社算法导论（原书第 3 版）的 P432 脚注中找到这么做的理由。

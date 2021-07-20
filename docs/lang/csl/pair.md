@@ -40,7 +40,7 @@ p1.second = 2.0;
 pair<int, double> p2 = make_pair(1, 2.0);
 ```
 
-一种常用的方法是使用宏定义 `#define make_pair mp`，将有些冗长的 `make_pair` 化简为 `mp`。
+一种常用的方法是使用宏定义 `#define mp make_pair`，将有些冗长的 `make_pair` 化简为 `mp`。
 
 在 C++11 以及之后的版本中，`make_pair` 可以配合 `auto` 使用，以避免显式声明数据类型。
 

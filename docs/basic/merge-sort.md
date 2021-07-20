@@ -28,43 +28,35 @@
 
 $$
 \begin{array}{ll}
-1 & \textbf{Input. }\text{An array } A \text{ and its indices } p \text{, } q \text{, } r \text{ such that }p \leq q < r \text{.}\\
-2 & \textbf{Ouput. } A\text{ will be sorted in non-decreasing order stably.}\\
+1 & \textbf{Input. }\text{待排序的数组}A\text{和用作临时存储的数组}T\\
+2 & \textbf{Output. }\text{数组}A\text{中的元素将会按照不减的顺序进行稳定排序}\\
 3 & \textbf{Method.}\\
-4 \\
-5 & \text{MERGE}(A, p, q, r)\\
-6 & n_1 \gets q - r + p \\
-7 & n_2 \gets r - q\\
-8 & \text{let } L[1\ldots n_1+1] \text{ and } R[1\ldots n_2+1] \text{ be new arrays}\\
-9 & \textbf{for } i \gets 1 \textbf{ to } n_1\\
-10 & \qquad L[i] \gets A[p+i-1]\\
-11 & \textbf{for } j \gets 1 \textbf{ to } n_2\\
-12 & \qquad R[i] \gets A[q+j]\\
-13 & L[n+1] \gets \infty\\
-14 & R[n+1] \gets \infty\\
-15 & i \gets 1\\
-16 & j \gets 1\\
-17 & \textbf{for } k \gets p \textbf{ to } r\\
-18 & \qquad \textbf{if } L[i]\leq R[i]\\
-19 & \qquad \qquad A[k] \gets L[i]\\
-20 & \qquad \qquad i \gets i + 1\\
-21 & \qquad \textbf{else } A[k] \gets R[j]\\
-22 & \qquad \qquad j \gets j + 1\\
-23 \\
-24 & \text{MERGE-SORT}(A, p, r)\\
-25 & \textbf{if } p < r\\
-26 & \qquad q \gets \lfloor(p + r) \ 2 \rfloor\\
-27 & \qquad \text{MERGE-SORT}(A, p, q)\\
-28 & \qquad \text{MERGE-SORT}(A, q + 1, r)\\
-29 & \qquad \text{MERGE}(A, p, q, r)\\
+4 & \text{merge}(A,\ T)\\
+5 & \qquad\text{merge0}(A,\ T,\ 0,\ A.length)\\
+6 & \text{merge0}(A,\ T,\ ll,\ rr)\\
+7 & \qquad \textbf{if}\ \ rr - ll \leqslant 1\\
+8 & \qquad\qquad \textbf{return}\\
+9 & \qquad mid \gets \large\lfloor\frac{ll+rr}{2}\rfloor\\
+10& \qquad\text{merge0}(A,\ T,\ ll,\ mid)\\
+11&\qquad\text{merge0}(A,\ T,\ mid,\ rr)\\
+12&\\
+13&\qquad p \gets rr\\
+14&\qquad q \gets mid\\
+15&\qquad\textbf{for}\text{ each } i \text{ in the } ll\dots rr-1\\
+16&\qquad\qquad\textbf{if}\ p\geqslant mid\ or\ q < rr\ and\ A[q] < A[p]\\
+17&\qquad\qquad\qquad T[i] \gets A[q]\\
+18&\qquad\qquad\qquad q \gets q+1\\
+19&\qquad\qquad\textbf{else}\\
+20&\qquad\qquad\qquad T[i] \gets A[p]\\
+21&\qquad\qquad\qquad p \gets p+1\\
+22&\qquad \text{copy }T[ll\dots rr-1] \text{ to } A[ll\dots rr-1]\\
 \end{array}
 $$
-
-[^ref1]
 
 ### C++
 
 ```cpp
+// C++ Version
 void merge(int ll, int rr) {
   // 用来把 a[ll.. rr - 1] 这一区间的数排序。 t 数组是临时存放有序的版本用的。
   if (rr - ll <= 1) return;
@@ -84,6 +76,31 @@ void merge(int ll, int rr) {
 //关键点在于一次性创建数组，避免在每次递归调用时创建，以避免对象的无谓构造和析构。
 ```
 
+### Python
+
+```python
+# Python Version
+def merge_sort(ll, rr):
+    if rr - ll <= 1:
+        return
+    mid = math.floor((rr + ll) / 2)
+    merge_sort(ll, mid)
+    merge_sort(mid, rr)
+    p = s = ll
+    q = mid
+    while(s < rr):
+        if p >= mid or (q < rr and a[p] > a[q]):
+            s += 1
+            q += 1
+            t[s] = a[q]
+        else:
+            s += 1
+            p += 1
+            t[s] = a[p]
+    for i in range(ll, rr):
+        a[i] = t[i]
+```
+
 ## 逆序对
 
 归并排序还可以用来求逆序对的个数。
@@ -99,7 +116,3 @@ void merge(int ll, int rr) {
 - [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/)
 - [希尔排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
 - [逆序对 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E9%80%86%E5%BA%8F%E5%AF%B9)
-
-## 参考资料与注释
-
-[^ref1]: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein.Introduction to Algorithms(3rd ed.). MIT Press and McGraw-Hill, 2009. ISBN 978-0-262-03384-8. "2.3 Designing algorithms", pp. 31-34.

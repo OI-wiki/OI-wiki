@@ -11,15 +11,19 @@
 ???+note "[「SCOI2005」互不侵犯](https://loj.ac/problem/2153)"
     在 $N\times N$ 的棋盘里面放 $K$ 个国王，使他们互不攻击，共有多少种摆放方案。国王能攻击到它上下左右，以及左上左下右上右下八个方向上附近的各一个格子，共 $8$ 个格子。
 
-我们用 $f(i,j,l)$ 表示前 $i$ 行，当前状态为 $j$，且已经放置 $l$ 个国王时的方案数。
+我们用 $f(i,j,l)$ 表示只考虑前 $i$ 行，第 $i$ 行按照编号为 $j$ 的状态放置国王，且已经放置 $l$ 个国王时的方案数。
 
-其中 $j$ 这一维状态我们用一个二进制整数表示（$j$ 的某个二进制位为 0 代表对应的列不放国王，否则代表对应的列放国王）。
+对于编号为 $j$ 的状态，我们用二进制整数 $sit(j)$ 表示国王的放置情况，$sit(j)$ 的某个二进制位为 $0$ 表示对应位置不放国王，为 $1$ 表示在对应位置上放置国王；用 $sta(j)$ 表示该状态的国王个数，即二进制数 $sit(j)$ 中 $1$ 的个数。例如，如下图所示的状态可用二进制数 $100101$ 来表示（棋盘左边对应二进制低位），则有 $sit(j)=100101_{(2)}=37, sta(j)=3$。
 
-我们需要在刚开始的时候预处理出一行的所有合法状态 $sta(x)$（排除同一行内两个国王相邻的不合法情况），在转移的时候枚举这些可能状态进行转移。
+![](./images/SCOI2005-互不侵犯.png)
 
-设当前行的状态为 $j$，上一行的状态为 $x$，可以得到下面的转移方程：$f(i,j,l) = \sum f(i-1,x,l-sta(x))$。
+我们需要在刚开始的时候枚举出所有的合法状态（即排除同一行内两个国王相邻的不合法情况），并计算这些状态的 $sit(j)$ 和 $sta(j)$。
 
-需要注意在转移时排除相邻两行国王互相攻击的不合法情况。
+设上一行的状态编号为 $x$，在保证当前行和上一行不冲突的前提下，枚举所有可能的 $x$ 进行转移，转移方程：
+
+$$
+f(i,j,l) = \sum f(i-1,x,l-sta(j))
+$$
 
 ??? "参考代码"
     ```cpp
@@ -38,18 +42,21 @@
       dfs(x + (1 << cur), num + 1,
           cur + 2);  // cur位置放国王，与它相邻的位置不能再放国王
     }
+    bool compatible(int j, int x) {
+      if (sit[j] & sit[x]) return false;
+      if ((sit[j] << 1) & sit[x]) return false;
+      if (sit[j] & (sit[x] << 1)) return false;
+      return true;
+    }
     int main() {
       cin >> n >> k;
       dfs(0, 0, 0);  // 先预处理一行的所有合法状态
-      for (int i = 1; i <= cnt; i++) f[1][i][sta[i]] = 1;
+      for (int j = 1; j <= cnt; j++) f[1][j][sta[j]] = 1;
       for (int i = 2; i <= n; i++)
         for (int j = 1; j <= cnt; j++)
-          for (int l = 1; l <= cnt; l++) {
-            if (sit[j] & sit[l]) continue;
-            if ((sit[j] << 1) & sit[l]) continue;
-            if (sit[j] & (sit[l] << 1)) continue;
-            // 排除不合法转移
-            for (int p = sta[j]; p <= k; p++) f[i][j][p] += f[i - 1][l][p - sta[j]];
+          for (int x = 1; x <= cnt; x++) {
+            if (!compatible(j, x)) continue;  // 排除不合法转移
+            for (int l = sta[j]; l <= k; l++) f[i][j][l] += f[i - 1][x][l - sta[j]];
           }
       long long ans = 0;
       for (int i = 1; i <= cnt; i++) ans += f[n][i][k];  // 累加答案

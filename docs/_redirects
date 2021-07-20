@@ -25,12 +25,21 @@
 /intro/editor/npp /tools/editor/npp
 /intro/editor/devcpp /tools/editor/devcpp
 /intro/editor/geany /tools/editor/geany
+/lang/editor/vim /tools/editor/vim
+/lang/editor/emacs /tools/editor/emacs
+/lang/editor/vscode /tools/editor/vscode
+/lang/editor/atom /tools/editor/atom
+/lang/editor/eclipse /tools/editor/eclipse
+/lang/editor/npp /tools/editor/npp
+/lang/editor/devcpp /tools/editor/devcpp
+/lang/editor/geany /tools/editor/geany
 /basic/interaction /contest/interaction
 /contest/construction /basic/construction
 /topic/cmd /tools/cmd
 /topic/problemsetting /contest/problemsetting
 /misc/io /contest/io
 /misc/stern-brocot /math/stern-brocot
+/misc/complexity /basic/complexity
 /math/sign /math/notation
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut
@@ -42,3 +51,4 @@
 /topic/graph-matching/general-match /graph/graph-matching/general-match
 /topic/graph-matching/bigraph-weight-match /graph/graph-matching/bigraph-weight-match
 /topic/graph-matching/general-weight-match /graph/graph-matching/general-weight-match
+/lang/variable /lang/var

@@ -18,7 +18,7 @@ author: fudonglai, AngelKitty, labuladong
 
 以下是一些有助于理解递归的例子：
 
-1. [什么是递归？](divide-and-conquer.md)
+1. [什么是递归？](./divide-and-conquer.md)
 2. 如何给一堆数字排序？答：分成两半，先排左半边再排右半边，最后合并就行了，至于怎么排左边和右边，请重新阅读这句话。
 3. 你今年几岁？答：去年的岁数加一岁，1999 年我出生。
 4. ![一个用于理解递归的例子](images/divide-and-conquer-1.png)
@@ -36,9 +36,10 @@ int func(传入数值) {
 
 #### 为什么要写递归
 
-1.  结构清晰，可读性强。例如，分别用不同的方法实现 [归并排序](merge-sort.md)：
+1.  结构清晰，可读性强。例如，分别用不同的方法实现 [归并排序](./merge-sort.md)：
 
     ```cpp
+    // C++ Version
     //不使用递归的归并排序算法
     template <typename T>
     void merge_sort(vector<T> a) {
@@ -57,6 +58,28 @@ int func(传入数值) {
       merge_sort(a, mid + 1, end);
       merge(a, front, mid, end);
     }
+    ```
+
+    ```python
+    # Python Version
+    #不使用递归的归并排序算法
+    def merge_sort(a):
+      n = len(a)
+      seg, start = 1, 0
+      while seg < n:
+          while start < n - seg:
+              merge(a, start, start + seg - 1, min(start + seg + seg - 1, n - 1))
+              start = start + seg + seg
+          seg = seg + seg
+      
+    #使用递归的归并排序算法
+    def merge_sort(a, front, end):
+      if front >= end:
+          return
+      mid = front + (end - front) / 2
+      merge_sort(a, front, mid)
+      merge_sort(a, mid + 1, end)
+      merge(a, front, mid, end)
     ```
 
     显然，递归版本比非递归版本更易理解。递归版本的做法一目了然：把左半边排序，把右半边排序，最后合并两边。而非递归版本看起来不知所云，充斥着各种难以理解的边界计算细节，特别容易出 bug，且难以调试。
@@ -78,9 +101,9 @@ int size(Node *head) {
 }
 
 // 我就是要写递归，递归天下第一
-int size_recurison(Node *head) {
+int size_recursion(Node *head) {
   if (head == nullptr) return 0;
-  return size_recurison(head->next) + 1;
+  return size_recursion(head->next) + 1;
 }
 ```
 
@@ -149,7 +172,7 @@ void traverse(TreeNode* root) {
 ```cpp
 void traverse(TreeNode* root) {
   if (root == nullptr) return;
-  for (child : root->children) traverse(child);
+  for (auto child : root->children) traverse(child);
 }
 ```
 

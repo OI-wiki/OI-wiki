@@ -190,6 +190,7 @@ int kth(int k) {
 ```cpp
 int pre() {
   int cur = ch[rt][0];
+  if (!cur) return cur;
   while (ch[cur][1]) cur = ch[cur][1];
   splay(cur);
   return cur;
@@ -203,6 +204,7 @@ int pre() {
 ```cpp
 int nxt() {
   int cur = ch[rt][1];
+  if (!cur) return cur;
   while (ch[cur][0]) cur = ch[cur][0];
   splay(cur);
   return cur;
@@ -352,12 +354,14 @@ struct Splay {
   }
   int pre() {
     int cur = ch[rt][0];
+    if (!cur) return cur;
     while (ch[cur][1]) cur = ch[cur][1];
     splay(cur);
     return cur;
   }
   int nxt() {
     int cur = ch[rt][1];
+    if (!cur) return cur;
     while (ch[cur][0]) cur = ch[cur][0];
     splay(cur);
     return cur;

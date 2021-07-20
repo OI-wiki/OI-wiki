@@ -293,7 +293,7 @@ void build() {
     // 维护单调栈的目的是辅助线段树从 i-1 更新到 i。
     // 更新到 i 后，只需要查询全局最小值即可知道是否有解
 
-    while (tp1 && a[i] <= a[st1[tp1]])  // 单调递増的栈，维护 Min
+    while (tp1 && a[i] <= a[st1[tp1]])  // 单调递增的栈，维护 Min
       T.update(1, 1, n, st1[tp1 - 1] + 1, st1[tp1], a[st1[tp1]]), tp1--;
     while (tp2 && a[i] >= a[st2[tp2]])
       T.update(1, 1, n, st2[tp2 - 1] + 1, st2[tp2], -a[st2[tp2]]), tp2--;
