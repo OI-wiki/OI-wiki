@@ -34,7 +34,7 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
 
 ### 算法流程
 
-1. 使用多源最短路算法（[Floyd](shortest-path.md#floyd)，[Johnson](shortest-path.md#johnson) 等），求出 $d$ 数组；
+1. 使用多源最短路算法（[Floyd](./shortest-path.md#floyd)，[Johnson](./shortest-path.md#johnson) 等），求出 $d$ 数组；
 
 2. 求出 $\textit{rk}(i,j)$，并将其升序排序；
 

@@ -2,7 +2,7 @@
 
 ## 简介
 
-锦标赛排序（英文：Tournament sort），又被称为树形选择排序，是 [选择排序](/selection-sort.md) 的优化版本，[堆排序](heap-sort.md) 的一种变体（均采用完全二叉树）。它在选择排序的基础上使用优先队列查找下一个该选择的元素。
+锦标赛排序（英文：Tournament sort），又被称为树形选择排序，是 [选择排序](/selection-sort.md) 的优化版本，[堆排序](./heap-sort.md) 的一种变体（均采用完全二叉树）。它在选择排序的基础上使用优先队列查找下一个该选择的元素。
 
 该算法的名字来源于单败淘汰制的竞赛形式。在这种赛制中有许多选手参与比赛，他们两两比较，胜者进入下一轮比赛。这种淘汰方式能够决定最好的选手，但是在最后一轮比赛中被淘汰的选手不一定是第二好的——他可能不如先前被淘汰的选手。
 
@@ -41,6 +41,7 @@
 ### C++
 
 ```cpp
+// C++ Version
 int n, a[maxn], tmp[maxn << 1];
 
 int winner(int pos1, int pos2) {
@@ -84,6 +85,52 @@ void tournament_sort() {
     recreat(value);
   }
 }
+```
+
+### Python
+
+```python
+# Python Version
+n = 0
+a = [0] * maxn
+tmp = [0] * maxn * 2
+
+def winner(pos1, pos2):
+    u = pos1 if pos1 >= n else tmp[pos1]
+    v = pos2 if pos2 >= n else tmp[pos2]
+    if tmp[u] <= tmp[v]:
+        return u
+    return v
+
+def creat_tree(value):
+    for i in range(0, n):
+        tmp[n + 1] = a[i]
+    for i in range(2 * n -1, 1, -2):
+        k = int(i / 2)
+        j = i - 1
+        tmp[k] = winner(i, j)
+    value = tmp[tmp[i]]
+    tmp[tmp[i]] = INF
+
+def recreat(value):
+    i = tmp[1]
+    while i > 1:
+        j = k = int(i / 2)
+        if i % 2 == 0 and i < 2 * n - 1:
+            j = i + 1
+        else:
+            j = i - 1
+        tmp[k] = winner(i, j)
+        i = k
+    value = tmp[tmp[1]]
+    tmp[tmp[1]] = INF
+
+def tournament_sort():
+    value = 0
+    creat_tree(value)
+    for i in range(0, n):
+        a[i] = value
+        recreat(value)
 ```
 
 ## 外部链接

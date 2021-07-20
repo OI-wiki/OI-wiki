@@ -13,7 +13,7 @@ Powerful Number（以下简称 PN）筛类似于杜教筛，或者说是杜教�
 
 ## Powerful Number
 
-**定义**：对于正整数 $n$，记 $n$ 的质因数分解为 $n = \sum_{i=1}^{m} p_{i}^{e_{i}}$。$n$ 是 PN 当且仅当 $\forall 1 \le i \le m, e_{i} > 1$。
+**定义**：对于正整数 $n$，记 $n$ 的质因数分解为 $n = \prod_{i=1}^{m} p_{i}^{e_{i}}$。$n$ 是 PN 当且仅当 $\forall 1 \le i \le m, e_{i} > 1$。
 
 **性质 1**：所有 PN 都可以表示成 $a^{2}b^{3}$ 的形式。
 
@@ -54,7 +54,7 @@ $$
 
 $O(\sqrt{n})$ 找出所有 PN，计算出所有 $h$ 的有效值。对于 $h$ 有效值的计算，只需要计算出所有 $h(p^c)$ 处的值，就可以根据 $h$ 为积性函数推出 $h$ 的所有有效值。现在对于每一个有效值 $d$，计算 $h(d)G(\lfloor \dfrac{n}{d} \rfloor)$ 并累加即可得到 $F(n)$。
 
-下面考虑计算 $h(p^c)$，一共有两种方法：一种是直接推出 $h(p^c)$ 仅于 $p, c$ 有关的计算公式，再根据公式计算 $h(p^c)$；另一种是根据 $f = g * h$ 有 $f(p^c) = \sum_{i=0}^c g(p^i)h(p^{c-i})$，移项可得 $h(p^c) = f(p^c) - \sum_{i=1}^{c}g(p^{c-i})h(p^i)$，现在就可以枚举素数 $p$ 再枚举质数 $c$ 求解出所有 $h(p^c)$。
+下面考虑计算 $h(p^c)$，一共有两种方法：一种是直接推出 $h(p^c)$ 仅于 $p, c$ 有关的计算公式，再根据公式计算 $h(p^c)$；另一种是根据 $f = g * h$ 有 $f(p^c) = \sum_{i=0}^c g(p^i)h(p^{c-i})$，移项可得 $h(p^c) = f(p^c) - \sum_{i=1}^{c}g(p^i)h(p^{c-i})$，现在就可以枚举素数 $p$ 再枚举质数 $c$ 求解出所有 $h(p^c)$。
 
 ## PN 筛的一般过程
 
@@ -86,7 +86,7 @@ $O(\sqrt{n})$ 找出所有 PN，计算出所有 $h$ 的有效值。对于 $h$ �
 
 易得 $f(p) = p(p-1) = id(p)\varphi(p)$，构造 $g(n) = id(n)\varphi(n)$。
 
-考虑使用杜教筛求 $G(n)$，根据 $(id * \varphi) * id = id_2$ 可得 $G(n)= \sum_{i=1}^{n} i^2 - \sum_{i=2}^{n} d \cdot G(\lfloor \dfrac{n}{d} \rfloor)$。
+考虑使用杜教筛求 $G(n)$，根据 $(id * \varphi) * I = id_2$ 可得 $G(n)= \sum_{i=1}^{n} i^2 - \sum_{i=2}^{n} d \cdot G(\lfloor \dfrac{n}{d} \rfloor)$。
 
 之后 $h(p^k)$ 的取值可以枚举计算，这种方法不再赘述。
 

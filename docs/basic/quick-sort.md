@@ -27,6 +27,7 @@
 ### 实现（C++）[^ref2]
 
 ```cpp
+// C++ Version
 struct Range {
   int start, end;
   Range(int s = 0, int e = 0) { start = s, end = e; }
@@ -58,6 +59,28 @@ void quick_sort(T arr[], const int len) {
 }
 ```
 
+### 实现（Python）[^ref2]
+
+```python
+# Python Version
+def quick_sort(alist, first, last):
+    if first >= last:
+        return
+    mid_value = alist[first]
+    low = first
+    high = last
+    while low < high:
+        while low < high and alist[high] >= mid_value:
+            high -= 1
+        alist[low] = alist[high]
+        while low < high and alist[low] < mid_value:
+            low += 1
+        alist[high] = alist[low]
+    alist[low] = mid_value
+    quick_sort(alist, first, low - 1)
+    quick_sort(alist, low + 1, last)
+```
+
 ## 性质
 
 ### 稳定性
@@ -84,7 +107,7 @@ void quick_sort(T arr[], const int len) {
 
 ### 三路快速排序
 
-三路快速排序（英语：3-way Radix Quicksort）是快速排序和 [基数排序](radix-sort.md) 的混合。它的算法思想基于 [荷兰国旗问题](https://en.wikipedia.org/wiki/Dutch_national_flag_problem) 的解法。
+三路快速排序（英语：3-way Radix Quicksort）是快速排序和 [基数排序](./radix-sort.md) 的混合。它的算法思想基于 [荷兰国旗问题](https://en.wikipedia.org/wiki/Dutch_national_flag_problem) 的解法。
 
 与原始的快速排序不同，三路快速排序在随机选取分界点 $m$ 后，将待排数列划分为三个部分：小于 $m$、等于 $m$ 以及大于 $m$。这样做即实现了将与分界元素相等的元素聚集在分界元素周围这一效果。
 
@@ -93,6 +116,7 @@ void quick_sort(T arr[], const int len) {
 三路快速排序实现起来非常简单。下面给出了一种三路快排的 C++ 实现，其表现在模板题中并不输给 STL 的 sort。
 
 ```cpp
+// C++ Version
 // 模板的T参数表示元素的类型，此类型需要定义小于（<）运算
 template <typename T>
 // arr为需要被排序的数组，len为数组长度
@@ -120,9 +144,35 @@ void quick_sort(T arr[], const int len) {
 }
 ```
 
+```python
+# Python Version
+def quick_sort(arr, l, r):
+    if l >= r:
+        return
+    random_index = random.randint(l, r)
+    pivot = arr[random_index]
+    arr[l], arr[random_index] = arr[random_index], arr[l]
+    i = l + 1
+    j = l 
+    k = r + 1
+    while i < k:
+        if arr[i] < pivot:
+            arr[i], arr[j + 1] = arr[j + 1], arr[i]
+            j += 1
+            i += 1
+        elif arr[i] > pivot:
+            arr[i], arr[k - 1] = arr[k - 1], arr[i]
+            k -= 1
+        else: 
+            i += 1
+    arr[l], arr[j] = arr[j], arr[l]
+    quick_sort(arr, l, j - 1)
+    quick_sort(arr, k, r)
+```
+
 ### 内省排序[^ref4]
 
-内省排序（英语：Introsort 或 Introspective sort）是快速排序和 [堆排序](heap-sort.md) 的结合，由 David Musser 于 1997 年发明。内省排序其实是对快速排序的一种优化，保证了最差时间复杂度为 $O(n\log n)$。
+内省排序（英语：Introsort 或 Introspective sort）是快速排序和 [堆排序](./heap-sort.md) 的结合，由 David Musser 于 1997 年发明。内省排序其实是对快速排序的一种优化，保证了最差时间复杂度为 $O(n\log n)$。
 
 内省排序将快速排序的最大递归深度限制为 $\lfloor \log_2n \rfloor$，超过限制时就转换为堆排序。这样既保留了快速排序内存访问的局部性，又可以防止快速排序在某些情况下性能退化为 $O(n^2)$。
 
