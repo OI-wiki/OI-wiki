@@ -30,10 +30,9 @@ ST 并不支持中文，如需中文需要安装汉化插件。
 ???+note "ST 数据目录的路径"
     Windows 下，如果在 ST 的 **安装目录** 下存在 `\data` 文件夹，会自动使用（或初始化）该文件夹作为数据目录。
     
-
-    ST3 的路径一般为 `C:\Users\用户名\AppData\Roaming\Sublime Text 3` ，ST4 一般为 `C:\Users\用户名\AppData\Roaming\Sublime Text` ，ST 会先寻找对应版本的路径，如不存在则寻找更低版本的路径，如都不存在则新建并初始化。
+    ST3 的路径一般为 `C:\Users\用户名\AppData\Roaming\Sublime Text 3`，ST4 一般为 `C:\Users\用户名\AppData\Roaming\Sublime Text`，ST 会先寻找对应版本的路径，如不存在则寻找更低版本的路径，如都不存在则新建并初始化。
     
-    在以 NOI Linux 所使用的 Ubuntu 20.04.1 中，ST3 的数据目录为 `/home/用户名/.config/sublime-text-3` ，ST4 的数据目录为 `/home/用户名/.config/sublime-text` ，使用的具体规则同 Windows 环境。
+    在以 NOI Linux 所使用的 Ubuntu 20.04.1 中，ST3 的数据目录为 `/home/用户名/.config/sublime-text-3`，ST4 的数据目录为 `/home/用户名/.config/sublime-text`，使用的具体规则同 Windows 环境。
     
     可以使用 `首选项->浏览插件目录...` 快速查看数据文件夹路径下的 `\Packages` 文件夹。
 
@@ -252,16 +251,16 @@ int main() {
 
 以下列出部分文件后缀以及其用途，具体的插件开发教程详见 [社区文档](https://docs.sublimetext.io/guide/extensibility/plugins/) 和 [官方文档](https://www.sublimetext.com/docs/3/)：
 
-| 后缀名               | 用途                                                   |
-| -------------------- | ------------------------------------------------------ |
-| .sublime-build       | 编译系统文件                                           |
-| .sublime-completions | 文件名补全列表（一般为头文件）                         |
-| .sublime-syntax      | 语法高亮文件                                           |
-| .sublime-settings    | 设置文件                                               |
-| .tmPreferences       | 首选项中的列表文件                                     |
-| .sublime-keymap      | 快捷键设置文件                                         |
-| .sublime-snippet     | 代码补全文件                                           |
-| .sublime-commands    | 命令定义文件                                           |
+| 后缀名                  | 用途                             |
+| -------------------- | ------------------------------ |
+| .sublime-build       | 编译系统文件                         |
+| .sublime-completions | 文件名补全列表（一般为头文件）                |
+| .sublime-syntax      | 语法高亮文件                         |
+| .sublime-settings    | 设置文件                           |
+| .tmPreferences       | 首选项中的列表文件                      |
+| .sublime-keymap      | 快捷键设置文件                        |
+| .sublime-snippet     | 代码补全文件                         |
+| .sublime-commands    | 命令定义文件                         |
 | .sublime-menu        | ST UI 文件，包括侧边栏以及顶部菜单栏（汉化的主要对象） |
 
 由于插件更新会直接覆盖原文件，所以建议备份更改的文件。
@@ -280,32 +279,32 @@ ST 有复合快捷键，如<kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Bac
 
 部分快捷键：
 
-| 按键                                                         | 命令                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| <kbd>Ctrl</kbd>+<kbd>X</kbd>                                 | 剪切当前行                                                   |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>                | 删除行                                                       |
-| <kbd>Ctrl</kbd>+<kbd>Enter</kbd>                             | 在下方插入行                                                 |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd>            | 在上方插入行                                                 |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>               | 行上移                                                       |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Down</kbd>             | 行下移                                                       |
-| <kbd>Ctrl</kbd>+<kbd>L</kbd>                                 | 选择行，重复以向下选择多行                                   |
-| <kbd>Ctrl</kbd>+<kbd>D</kbd>                                 | 选择词，重复以选择多个相同词，并进入多重选择模式（用于快速批量更改） |
-| <kbd>Ctrl</kbd>+<kbd>M</kbd>                                 | 跳转到匹配的括号                                             |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>                | 选择括号内的内容（不包括括号），重复以包括括号               |
-| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>K</kbd>    | 删至行尾（复合快捷键，建议使用 Vim 模式代替）                |
-| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd> | 删至行首（复合快捷键，建议使用 Vim 模式代替）                |
-| <kbd>Ctrl</kbd>+<kbd>]</kbd>                                 | 缩进当前（选择的）行                                         |
-| <kbd>Ctrl</kbd>+<kbd>\[</kbd>                                | 取消缩进当前（选择的）行                                     |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>                | 复制当前行，并插入在下一行                                   |
-| <kbd>Ctrl</kbd>+<kbd>J</kbd>                                 | 合并下一行与当前行                                           |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>                | 粘贴并缩进（用于整段粘贴代码）                               |
+| 按键                                                                         | 命令                                                            |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| <kbd>Ctrl</kbd>+<kbd>X</kbd>                                               | 剪切当前行                                                         |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>                              | 删除行                                                           |
+| <kbd>Ctrl</kbd>+<kbd>Enter</kbd>                                           | 在下方插入行                                                        |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd>                          | 在上方插入行                                                        |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>                             | 行上移                                                           |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Down</kbd>                           | 行下移                                                           |
+| <kbd>Ctrl</kbd>+<kbd>L</kbd>                                               | 选择行，重复以向下选择多行                                                 |
+| <kbd>Ctrl</kbd>+<kbd>D</kbd>                                               | 选择词，重复以选择多个相同词，并进入多重选择模式（用于快速批量更改）                            |
+| <kbd>Ctrl</kbd>+<kbd>M</kbd>                                               | 跳转到匹配的括号                                                      |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>                              | 选择括号内的内容（不包括括号），重复以包括括号                                       |
+| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>K</kbd>                  | 删至行尾（复合快捷键，建议使用 Vim 模式代替）                                     |
+| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd>          | 删至行首（复合快捷键，建议使用 Vim 模式代替）                                     |
+| <kbd>Ctrl</kbd>+<kbd>]</kbd>                                               | 缩进当前（选择的）行                                                    |
+| <kbd>Ctrl</kbd>+<kbd>\[</kbd>                                              | 取消缩进当前（选择的）行                                                  |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>                              | 复制当前行，并插入在下一行                                                 |
+| <kbd>Ctrl</kbd>+<kbd>J</kbd>                                               | 合并下一行与当前行                                                     |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>                              | 粘贴并缩进（用于整段粘贴代码）                                               |
 | <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> | 从历史粘贴（复合快捷键，建议修改为<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd>） |
-| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>               | 光标下移，并保留当前行光标（进入多重选择模式）               |
-| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd>                 | 光标上移，并保留当前行光标（进入多重选择模式）               |
-| <kbd>Ctrl</kbd>+<kbd>R</kbd>                                 | 跳至文件中的任意符号（函数或类型定义）                       |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>                | 跳至项目中的任意符号（函数或类型定义）                       |
-| <kbd>Ctrl</kbd>+<kbd>P</kbd>                                 | 跳至任意文件（曾经打开过或在项目中且存在的文件）             |
-| <kbd>~</kbd>                                                 | 转换选择内容的大小写                                         |
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>                             | 光标下移，并保留当前行光标（进入多重选择模式）                                       |
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd>                               | 光标上移，并保留当前行光标（进入多重选择模式）                                       |
+| <kbd>Ctrl</kbd>+<kbd>R</kbd>                                               | 跳至文件中的任意符号（函数或类型定义）                                           |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>                              | 跳至项目中的任意符号（函数或类型定义）                                           |
+| <kbd>Ctrl</kbd>+<kbd>P</kbd>                                               | 跳至任意文件（曾经打开过或在项目中且存在的文件）                                      |
+| <kbd>~</kbd>                                                               | 转换选择内容的大小写                                                    |
 
 ### 自动补全
 
@@ -347,7 +346,10 @@ Snippet 类型的补全一般会有一些编辑块，补全后会自动选择为
 如果要把以下代码中的所有 `bok` 改为 `book`，只需将光标放置在任意一个 `bok` 中，长按<kbd>Ctrl</kbd>+<kbd>D</kbd>即可快速选中。
 
 ```C++
-int check() {  book[1] = 1, book[2] = 1, book[3] = 1, bok[1] = 1, bok[2] = 1, bok[3] = 1,  bok[4] = 1, bok[5] = 1;}
+int check() {
+  book[1] = 1, book[2] = 1, book[3] = 1, bok[1] = 1, bok[2] = 1, bok[3] = 1,
+  bok[4] = 1, bok[5] = 1;
+}
 ```
 
 如果要将下列文件中的所有等号后面改成 `"good"`，只需在将光标放置于第一行的 `aaa` 前，并按五次<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>，再然后按下<kbd>Ctrl</kbd>+<kbd>D</kbd>并键入 `good` 即可。
@@ -355,7 +357,12 @@ int check() {  book[1] = 1, book[2] = 1, book[3] = 1, bok[1] = 1, bok[2] = 1, bo
 或选中 `"a` 并按住<kbd>Ctrl</kbd>+<kbd>D</kbd>，然后按<kbd>Right</kbd>、<kbd>Ctrl</kbd>+<kbd>D</kbd>，之后键入即可。
 
 ```C++
-s[1] = "aaa";s[2] = "aab";s[3] = "aac";s[4] = "good";s[5] = "aae";s[6] = "aaf";
+s[1] = "aaa";
+s[2] = "aab";
+s[3] = "aac";
+s[4] = "good";
+s[5] = "aae";
+s[6] = "aaf";
 ```
 
 如要为下列所有 `a + b` 加上括号，只需选择一个 `a + b`，按住<kbd>Ctrl</kbd>+<kbd>D</kbd>并键入<kbd>(</kbd>即可（如选择一定区域，则任意左括号键入会为该区域两边添加匹配的括号）。
@@ -369,7 +376,12 @@ a + b*a + b*a + b
 如果要将下列文件中的所有等号后面改成 `"good"`，也可以用<kbd>Crtl</kbd>+<kbd>H</kbd>使用替换，打开正则，输入 `".*"`，并替换成 `"good"` 即可。
 
 ```C++
-s[1] = "aaa";s[2] = "aab";s[3] = "aac";s[4] = "good";s[5] = "aae";s[6] = "aaf";
+s[1] = "aaa";
+s[2] = "aab";
+s[3] = "aac";
+s[4] = "good";
+s[5] = "aae";
+s[6] = "aaf";
 ```
 
 如要为以下代码添加分号，只需使用选择区域替换，打开正则，输入 `\n`，并替换成 `;\n` 即可。
