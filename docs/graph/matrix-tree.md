@@ -1,4 +1,4 @@
-author: pw384, s0cks5, Xeonacid
+author: pw384, s0cks5, Xeonacid, isdanni
 
 Kirchhoff 矩阵树定理（简称矩阵树定理）解决了一张图的生成树个数计数问题。
 
@@ -72,9 +72,102 @@ $$
 
 其中记号 $L(G)\binom{1,2,\cdots,i-1,i+1,\cdots,n}{1,2,\cdots,i-1,i+1,\cdots,n}$ 表示矩阵 $L(G)$ 的第 $1,\cdots,i-1,i+1,\cdots,n$ 行与第 $1,\cdots,i-1,i+1,\cdots,n$ 列构成的子矩阵。也就是说，无向图的 Laplace 矩阵具有这样的性质，它的所有 $n-1$ 阶主子式都相等。
 
+**定理 1 证明**
+
+对于定理一的证明，我们需要知道以下知识点：令 $A \in {\mathbb{R}}^{n \times n}$ 并取 $E_{ii}$ 为在第 $(i, I)$ 项值为 $1$ 否则其他项值为 $0$ 的矩阵。那么，
+
+$$
+\det(A + E_{ii}) = \det(A) + \det(A[i]).
+$$
+
+考虑到行列式的排列和定义，这一定义显而易见成立。
+
+$$
+\det(A = (a_{ij})) = d
+$$
+
+因为我们已经将第 $(i, i)^{th}$ 个项从 $a_{ii}$ 增加到 $a_{ii}+1$。因此，我们得到了原始行列式加上 $[n] \ {i}$ 的所有排列的总和，避免了第 $i$ 行和列，即 $det(A[i])$。
+
+证明：
+
+1.  基本情况：如果 $G$ 是有两个顶点的空图，则有：
+
+    $$
+    L_{G} = 
+      \begin{bmatrix}
+      0 & 0 \\
+      0 & 0
+      \end{bmatrix}
+    $$
+
+    那么 $L_{G}[i] = [0]$ 并且 $\det(L_{G}[i]) = 0$。
+2. 归纳步骤：用 $\tau(G)$ 表示 $G$ 中生成树的个数，$G-e$ 表示去除边 $e$ 的图，$G/e$ 表示收缩边 $e$ 的图。如果 $i$ 是孤立顶点，则 $G$ 不产生生成树，并且 $L_{G}$ 的第 $i$ 行和列有零值。因此，$\det(L_{G}[i]) = \det(L_{G-i}) = 0$。
+
+否则，我们可以假设存在与 $i$ 相关的边 $e = (i, j)$。对于任何生成树 $T$，$e \in T$ 或 $e \notin T$。我们注意到 $\varsigma(G/e)$ 给出了在 $e \in T$ 时树的数量 $T$，而 $\tau(G−e)$ 给出了 $e \notin T$ 时树 $T$ 的数量。因此，
+
+$$
+\tau(G) = \tau(G \backslash e) + \tau(G - e).
+$$
+
+注意第一项是缺少一条边的 $G$，而第二项是则是 $G$ 少了一个顶点，所以这些将作为我们归纳的基础。首先，我们尝试将 $LG$ 与 $LG−e$ 联系起来，因为观察到 $L_{G}[i] = L{G−e}[i] +E_{jj}$（也就是说，如果移除边 $e$，那么得到的拉普拉斯算子与 LG[i]仅有 $j$ 不同）。因此，根据前文提到的知识点：
+
+$$
+\begin{aligned}
+\det(L_{G}[i]) &= \det(L{G−e} + E_{jj} ) \\
+&= \det(L_{G−e}[i]) + \det(L_{G−e}[i, j]) \\
+&= \det(L_{G−e}[i]) + \det(L_{G}[i, j]), \\
+\end{aligned}
+$$
+
+其中 $L_{G}[i,j]$ 指删除第 $i$ 和 $j$ 行和列后的 $L_{G}$；对于 $e = (i, j)$，$L_{G}$ 和 $L_{G-e}$ 没有区别。
+
+现在我们把 $L_{G}$ 与 $L_{G/e}$ 联系起来。假设将 $i$ 收缩到 $j$（因此 $L_{G \backslash e}$ 没有对应于 $i$ 的行或列）。那么，$L_{G \backslash e}[j] = L_{G}[i, j]$。那么，可以得出：
+
+$$
+\det(L_{G}[i]) = \det(L{G−e}[i] + \det(L_{G/e}[j])  \\
+= \tau(G - e) + \tau(G / e) \\
+= \tau(G).
+$$
+
+其中第二个方程遵循归纳法；这样就完成了证明。
+
+**柯西 - 比内公式**(Cauchy–Binet formula）将行列式的可乘性（两个方块矩阵的行列式等于两个行列式的乘积）推广到非方块矩阵。
+
+定义：设 $A \in R_{n \times m}$,$B \in R_{m \times n}$，其中 $m ≥ n$。设 $A_{S}$,$B_{S}$ 分别是通过取由 $A$，$B$ 的 $S \subseteq [m]$ 索引的行，列形成的子矩阵。
+
+令 $\left( \frac{[m]}{n} \right)$ 为的所有大小为 $n$ 的 $[m]$ 子集的集合。那么：
+
+$$
+\det(AB) = \sum_{S\subseteq {\frac{[m]}{n}}} \det(A_{S}) \det(B_{S})
+$$
+
+根据之前得到的 $L_{G} = \sum_{(i,j)\subseteq E} (e_{i} - e_{j})(e_{i} - e_{j})^T$，我们可以得出 $L_{G} = {BB}^{T}$，其中 $B \in R_{m \times n}$ 每条边 $(i, j)$ 有一列，该列等于 $(e_{i} − e_{j})$。如果 $B[i]$ 表示 $B$ 省略了 $i^{th}$ 行，我们有 $L_{G}[i] = {B[i]B[i]}^{T}$。我们让 $B_{S}[i]$ 用 $S \subseteq E$ 索引的列来表示 $B[i]$。
+
 **定理 2（矩阵树定理，无向图特征值形式）** 设 $\lambda_1, \lambda_2, \cdots, \lambda_{n-1}$ 为 $L(G)$ 的 $n - 1$ 个非零特征值，那么有
 
 $t(G) = \frac{1}{n}\lambda_1\lambda_2\cdots\lambda_{n-1}$
+
+**定理 2 证明**
+
+如果 $G$ 不连通，那么 $\lambda_{1} = 0$ 且 $\tau(G) = 0$，因此定理成立。否则，我们将以两种方法检查特征多项式的线性项。一方面，如果多项式为
+
+$$
+(\lambda - \lambda_{1})(\lambda - \lambda_{2})\cdots(\lambda - \lambda_{n}) = \lambda(\lambda - \lambda_{2})(\lambda - \lambda_{3})\cdots(\lambda - \lambda_{n})
+$$
+
+那么线性项可以表达为
+
+$$
+(-1)^{n-1}\coprod_{i=1}^{n-1}\lambda_{i}.
+$$
+
+另一方面，我们知道特征多项式的定义为 $\det(\lambda I - L_{G})$。应用于相同维度的 $A$,$B$，$\det(A + B) = \sum_{S\subseteq [n]} \det A_{S}$，其中 $A_{S}$ 是第 $S$ 行被 $B$ 中相应行替换的矩阵 $A$。对于 $A = \lambda I$，$B = -L_{G}$，$\lambda$ 的线性项为
+
+$$
+\sum_{S\subseteq [n], |S|=n-1}^{} \det(\lambda I)_{S} = (-1)^{n-1} * n * \tau(G).
+$$
+
+因此，可以得出 $\tau(G) = \frac{1}{n}\coprod_{i=1}^{n-1}\lambda_{i}$。
 
 **定理 3（矩阵树定理，有向图根向形式）** 对于任意的 $k$，都有
 
@@ -93,6 +186,10 @@ $$
 因此如果要统计一张图所有的叶向树形图，只要枚举所有的根 $k$ 并对 $t^{leaf}(G,k)$ 求和即可。
 
 ## BEST 定理
+
+BEST 定理定义了有向图中欧拉回路数的乘积公式。BEST 是该算法发现者姓名（de Bruijn、van Aardenne-Ehrenfest、Smith 和 Tutte）的首字母缩写。
+
+此定理表明了有向图中的欧拉回路数可以在多项式时间（P：polynomial）内计算出来。这个问题对于无向图来说是 $\#P-complete$。它也可以用于完全欧拉回路和完全二分图的渐近枚举。
 
 **定理 5 (BEST 定理）** 设 $G$ 是有向欧拉图，那么 $G$ 的不同欧拉回路总数 $ec(G)$ 是
 
