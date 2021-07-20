@@ -79,10 +79,9 @@ author: frank-xjh
     ```cpp
     bool met[MAXN * 2];
     memset(met, 0, sizeof(met));
-    for(int i = 0; i < n; ++i){
-        if(met[MAXN + a[i]])
-            ans += 1;
-        met[MAXN + a[i]] = true;
+    for (int i = 0; i < n; ++i) {
+      if (met[MAXN + a[i]]) ans += 1;
+      met[MAXN + a[i]] = true;
     }
     ```
     
