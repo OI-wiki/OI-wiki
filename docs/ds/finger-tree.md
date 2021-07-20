@@ -1,7 +1,7 @@
 author: isdanni
 
 ???+ warning "注意"
-    此章不是必修内容，在阅读前请确定你对函数式编程（Functional Programming）有一定了解。
+    此章是选读内容，在阅读前请确定你对函数式编程（Functional Programming）有一定了解。
 
 ## 简介
 
