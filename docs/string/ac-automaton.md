@@ -40,10 +40,10 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 构建 fail 指针，可以参考 KMP 中构造 Next 指针的思想。
 
-考虑字典树中当前的结点 $u$，$u$ 的父结点是 $p$，$p$ 通过字符 `c` 的边指向 $u$，即 $trie[p,c]=u$。假设深度小于 $u$ 的所有结点的 fail 指针都已求得。
+考虑字典树中当前的结点 $u$，$u$ 的父结点是 $p$，$p$ 通过字符 `c` 的边指向 $u$，即 $trie[p,\mathtt{c}]=u$。假设深度小于 $u$ 的所有结点的 fail 指针都已求得。
 
-1. 如果 $\text{trie}[\text{fail}[p],c]$ 存在：则让 u 的 fail 指针指向 $\text{trie}[\text{fail}[p],c]$。相当于在 $p$ 和 $\text{fail}[p]$ 后面加一个字符 `c`，分别对应 $u$ 和 $fail[u]$。
-2. 如果 $\text{trie}[\text{fail}[p],c]$ 不存在：那么我们继续找到 $\text{trie}[\text{fail}[\text{fail}[p]],c]$。重复 1 的判断过程，一直跳 fail 指针直到根结点。
+1. 如果 $\text{trie}[\text{fail}[p],\mathtt{c}]$ 存在：则让 u 的 fail 指针指向 $\text{trie}[\text{fail}[p],\mathtt{c}]$。相当于在 $p$ 和 $\text{fail}[p]$ 后面加一个字符 `c`，分别对应 $u$ 和 $fail[u]$。
+2. 如果 $\text{trie}[\text{fail}[p],\mathtt{c}]$ 不存在：那么我们继续找到 $\text{trie}[\text{fail}[\text{fail}[p]],\mathtt{c}]$。重复 1 的判断过程，一直跳 fail 指针直到根结点。
 3. 如果真的没有，就让 fail 指针指向根结点。
 
 如此即完成了 $\text{fail}[u]$ 的构建。
@@ -96,12 +96,12 @@ void build() {
 
 然后开始 BFS：每次取出队首的结点 u（$\text{fail}[u]$ 在之前的 BFS 过程中已求得），然后遍历字符集（这里是 0-25，对应 a-z，即 $u$ 的各个子节点）：
 
-1. 如果 $\text{trans}[u][i]$ 存在，我们就将 $\text{trans}[u][i]$ 的 fail 指针赋值为 $\text{trans}[\text{fail}[u]][i]$。这里似乎有一个问题。根据之前的讲解，我们应该用 while 循环，不停的跳 fail 指针，判断是否存在字符 `i` 对应的结点，然后赋值，但是这里通过特殊处理简化了这些代码。
-2. 否则，令 $\text{trans}[u][i]$ 指向 $\text{trans}[\text{fail}[u]][i]$ 的状态。
+1. 如果 $\text{trans}[u][\mathtt{i}]$ 存在，我们就将 $\text{trans}[u][\mathtt{i}]$ 的 fail 指针赋值为 $\text{trans}[\text{fail}[u]][\mathtt{i}]$。这里似乎有一个问题。根据之前的讲解，我们应该用 while 循环，不停的跳 fail 指针，判断是否存在字符 `i` 对应的结点，然后赋值，但是这里通过特殊处理简化了这些代码。
+2. 否则，令 $\text{trans}[u][\mathtt{i}]$ 指向 $\text{trans}[\text{fail}[u]][\mathtt{i}]$ 的状态。
 
 这里的处理是，通过 `else` 语句的代码修改字典树的结构。没错，它将不存在的字典树的状态链接到了失配指针的对应状态。在原字典树中，每一个结点代表一个字符串 $S$，是某个模式串的前缀。而在修改字典树结构后，尽管增加了许多转移关系，但结点（状态）所代表的字符串是不变的。
 
-而 $\text{trans}[S][c]$ 相当于是在 $S$ 后添加一个字符 `c` 变成另一个状态 $S'$。如果 $S'$ 存在，说明存在一个模式串的前缀是 $S'$，否则我们让 $\text{trans}[S][c]$ 指向 $\text{trans}[\text{fail}[S]][c]$。由于 $\text{fail}[S]$ 对应的字符串是 $S$ 的后缀，因此 $\text{trans}[\text{fail}[S]][c]$ 对应的字符串也是 $S'$ 的后缀。
+而 $\text{trans}[S][\mathtt{c}]$ 相当于是在 $S$ 后添加一个字符 `c` 变成另一个状态 $S'$。如果 $S'$ 存在，说明存在一个模式串的前缀是 $S'$，否则我们让 $\text{trans}[S][\mathtt{c}]$ 指向 $\text{trans}[\text{fail}[S]][\mathtt{c}]$。由于 $\text{fail}[S]$ 对应的字符串是 $S$ 的后缀，因此 $\text{trans}[\text{fail}[S]][\mathtt{c}]$ 对应的字符串也是 $S'$ 的后缀。
 
 换言之在 Trie 上跳转的时侯，我们只会从 $S$ 跳转到 $S'$，相当于匹配了一个 $S'$；但在 AC 自动机上跳转的时侯，我们会从 $S$ 跳转到 $S'$ 的后缀，也就是说我们匹配一个字符 `c`，然后舍弃 $S$ 的部分前缀。舍弃前缀显然是能匹配的。那么 fail 指针呢？它也是在舍弃前缀啊！试想一下，如果文本串能匹配 $S$，显然它也能匹配 $S$ 的后缀。所谓的 fail 指针其实就是 $S$ 的一个后缀集合。
 
