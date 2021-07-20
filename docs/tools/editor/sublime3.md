@@ -172,7 +172,7 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 
 ### 编译
 
-直接按<kbd>Ctrl</kbd>+<kbd>B</kbd>编译，第一次使用会让你选择编译方式，选择 `C++ Single File `（编译）或 `C++ Single File - Run`（编译并运行）。
+直接按<kbd>Ctrl</kbd>+<kbd>B</kbd>编译，第一次使用会让你选择编译方式，选择 `C++ Single File`（编译）或 `C++ Single File - Run`（编译并运行）。
 
 #### 修改编译选项
 
@@ -205,7 +205,6 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
     
     ```json
     "cmd": ["cmd","/c","g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","start","cmd","/c","${file_path}/${file_base_name}& pause"],
-    
     ```
     
     还可以利用一些方法把编译和运行拆开并分别配置快捷键，由于并不必要，请自行搜索。
