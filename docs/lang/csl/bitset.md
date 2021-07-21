@@ -96,9 +96,8 @@ bitset 有三种构造函数：
 ### [「LibreOJ β Round #2」贪心只能过样例](https://loj.ac/problem/515)
 
 ???+note "[「LibreOJ β Round #2」贪心只能过样例](https://loj.ac/problem/515)"
-
     一共有 $n$ 个数，第 $i$ 个数 $x_i$ 可以取 $[a_i,b_i]$ 中任意值。
-    设$S=\sum x_i^2$，求$S$种类数。
+    设 $S=\sum x_i^2$，求 $S$ 种类数。
 
 ??? note
     这题可以用 dp 做，转移方程很简单：
