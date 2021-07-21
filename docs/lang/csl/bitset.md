@@ -150,10 +150,6 @@ bitset 有三种构造函数：
     #include <cstdio>
     #include <iostream>
     
-    ```
-    
-    ```
-    
     using namespace std;
     
     int read() {
