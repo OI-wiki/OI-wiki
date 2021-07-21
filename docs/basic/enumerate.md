@@ -101,4 +101,4 @@ author: frank-xjh
 
 ## 脚注
 
-[^ref1]: [Wikipedia中的桶排序](https://zh.wikipedia.org/wiki/%E6%A1%B6%E6%8E%92%E5%BA%8F)
+[^ref1]: [Wikipedia 中的桶排序](https://zh.wikipedia.org/wiki/%E6%A1%B6%E6%8E%92%E5%BA%8F)
