@@ -99,7 +99,7 @@ $$
 \Leftrightarrow & p^k(p^k-1) = \sum_{i=0}^{k} p^{2k-2i-1}(p - 1) h(p^i)\\
 \Leftrightarrow & p^k(p^k-1) = h(p^k) + \sum_{i=0}^{k-1} p^{2k-2i-1}(p - 1) h(p^i)\\
 \Leftrightarrow & h(p^k) = p^k(p^k-1) - \sum_{i=0}^{k-1} p^{2k-2i-1}(p - 1) h(p^i)\\
-\Leftrightarrow & h(p^k) - p^2h(p^{k-1}) = p^{k}(p^k-1)-p^{k+1}(p^{k-1}-1) + p(p-1)h(p^{k-1})\\
+\Leftrightarrow & h(p^k) - p^2h(p^{k-1}) = p^{k}(p^k-1)-p^{k+1}(p^{k-1}-1) - p(p-1)h(p^{k-1})\\
 \Leftrightarrow & h(p^k) - ph(p^{k-1}) = p^{k+1} - p^k\\
 \Leftrightarrow & \frac{h(p^k)}{p^k} - \frac{h(p^{k-1})}{p^{k-1}} = p - 1\\
 \end{align}
