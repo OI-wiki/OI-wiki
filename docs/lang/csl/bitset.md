@@ -52,7 +52,7 @@ int main() {
 }
 ```
 
-其中，`bitset<16> bs1;` 用于声明一个 bitset `bs1`，并指定大小为 16。
+其中，`bitset<16> bs1;` 用于声明一个含有 16 个元素的 bitset `bs1`
 
 bitset 有三种构造函数：
 
