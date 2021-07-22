@@ -70,6 +70,8 @@ command < input > output
 
 ### 命令行编译
 
+#### 手动编译
+
 在命令行下输入 `g++ a.cpp` 就可以编译 `a.cpp` 这个文件了（Windows 系统需提前把编译器所在目录加入到 `PATH` 中）。
 
 编译过程中可以加入一些编译选项：
@@ -84,6 +86,12 @@ command < input > output
 
 ???+ note
     在 Linux 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数。[^have-to-link-libm-in-gcc]
+
+#### 使用 GNU Make 的内置规则[^gnu-make-built-in-rules]
+
+对于名为 `qwq.c/cpp/p` 的 C，C++，Pascal 程序源代码，可以使用 `make qwq` 自动编译成对应名为 `qwq` 的程序。
+
+如需添加额外的编译选项，请使用 `export CFLAGS="xxx"` 或者 `export CPPFLAGS="xxx"` 定义。
 
 ### Sanitizers
 
@@ -262,3 +270,5 @@ mkfifo input output
 [^memory-sanitizer]: <https://clang.llvm.org/docs/MemorySanitizer.html>
 
 [^ub-san]: <https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html>
+
+[^gnu-make-built-in-rules]: [Catalogue of Built-In Rules](https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html)
