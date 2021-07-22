@@ -80,9 +80,9 @@ ST 并不支持中文，如需中文需要安装汉化插件。
 
 如是 ST4 则可以在 `Preferences->Customize Color Scheme` 中调整配色方案或 `Preferences->Customize Scheme` 中调整主题。
 
-### 使用 Vi
+### 开启 Vi Mode
 
-ST 的开发者为 Vi 使用者提供了一个可选插件 Vintage，可模拟 Vi 的部分功能。
+ST 的开发者为 Vi 使用者提供了一个可选插件 Vintage，可模拟 Vi 的大部分功能。
 
 #### 开启方式
 
