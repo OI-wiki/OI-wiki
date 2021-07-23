@@ -8,4 +8,4 @@
 
 ## 参考资料
 
-（动态规划 - 维基百科，自由的百科全书）[https://zh.wikipedia.org/wiki/动态规划]
+[动态规划 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/动态规划)
