@@ -279,7 +279,32 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
 
 ### 代码实现
 
-???+note "参考实现"
+这里同时给出 $O(n^2)$ 的暴力做法实现和 $O(m \log m)$ 的优先队列做法实现。
+
+???+note "暴力实现"
+    ```cpp
+    struct edge {
+      int v, w;
+    };
+    vector<edge> e[maxn];
+    int dis[maxn], vis[maxn];
+    void dijkstra(int n, int s) {
+      memset(dis, 63, sizeof(dis));
+      dis[s] = 0;
+      for (int i = 1; i <= n; i++) {
+        int u = 0, mind = 0x3f3f3f3f;
+        for (int j = 1; j <= n; j++)
+          if (!vis[j] && dis[j] < mind) u = j, mind = dis[j];
+        vis[u] = true;
+        for (auto ed : e[u]) {
+          int v = ed.v, w = ed.w;
+          if (dis[v] > dis[u] + w) dis[v] = dis[u] + w;
+        }
+      }
+    }
+    ```
+
+???+note "优先队列实现"
     ```cpp
     struct edge {
       int v, w;
