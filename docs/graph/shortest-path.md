@@ -140,6 +140,36 @@ Bellman-Ford 算法所做的，就是不断尝试对图上每一条边进行松�
 
 ### 代码实现
 
+??? note "参考实现"
+    ```cpp
+    struct edge {
+      int v, w;
+    };
+    vector<edge> e[maxn];
+    int dis[maxn];
+    bool bellmanford(int n, int s) {
+      memset(dis, 63, sizeof(dis));
+      dis[s] = 0;
+      bool flag;
+      for (int i = 1; i <= n; i++) {
+        flag = false;
+        for (int u = 1; u <= n; u++) {
+          for (auto ed : e[u]) {
+            int v = ed.v, w = ed.w;
+            if (dis[v] > dis[u] + w) {
+              dis[v] = dis[u] + w;
+              flag = true;
+            }
+          }
+        }
+        // 没有可以松弛的边时就停止算法
+        if (!flag) break;
+      }
+      // 第 n 轮循环仍然可以松弛时说明 s 点可以抵达一个负环
+      return flag;
+    }
+    ```
+
 ### 队列优化：SPFA
 
 即 Shortest Path Faster Algorithm。
@@ -150,21 +180,38 @@ Bellman-Ford 算法所做的，就是不断尝试对图上每一条边进行松�
 
 那么我们用队列来维护“哪些结点可能会引起松弛操作”，就能只访问必要的边了。
 
-```text
-q = new queue();
-q.push(S);
-in_queue[S] = true;
-while (!q.empty()) {
-  u = q.pop();
-  in_queue[u] = false;
-  for each edge(u, v) {
-    if (relax(u, v) && !in_queue[v]) {
-      q.push(v);
-      in_queue[v] = true;
+SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最短路经过了多少条边，当经过了至少 $n$ 条边时，说明 $s$ 点可以抵达一个负环。
+
+??? note "参考实现"
+    ```cpp
+    struct edge {
+      int v, w;
+    };
+    vector<edge> e[maxn];
+    int dis[maxn], cnt[maxn], vis[maxn];
+    queue<int> q;
+    bool spfa(int n, int s) {
+      memset(dis, 63, sizeof(dis));
+      dis[s] = 0, vis[s] = 1;
+      q.push(s);
+      while (!q.empty()) {
+        int u = q.front();
+        q.pop(), vis[u] = 0;
+        for (auto ed : e[u]) {
+          int v = ed.v, w = ed.w;
+          if (dis[v] > dis[u] + w) {
+            dis[v] = dis[u] + w;
+            cnt[v] = cnt[u] + 1;  // 记录最短路经过的边数
+            if (cnt[v] >= n) return false;
+            // 在不经过负环的情况下，最短路至多经过 n - 1 条边
+            // 因此如果经过了多于 n 条边，一定说明经过了负环
+            if (!vis[v]) q.push(v), vis[v] = 1;
+          }
+        }
+      }
+      return true;
     }
-  }
-}
-```
+    ```
 
 虽然在大多数情况下 SPFA 跑得很快，但其最坏情况下的时间复杂度为 $O(nm)$，将其卡到这个复杂度也是不难的，所以考试时要谨慎使用（在没有负权边时最好使用 Dijkstra 算法，在有负权边且题目中的图没有特殊性质时，若 SPFA 是标算的一部分，题目不应当给出 Bellman-Ford 算法无法通过的数据范围）。
 
@@ -204,7 +251,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
 - 二叉堆：每成功松弛一条边 $(u,v)$，就将 $v$ 插入二叉堆中（如果 $v$ 已经在二叉堆中，直接修改相应元素的权值即可），1 操作直接取堆顶结点即可。共计 $O(m)$ 次二叉堆上的插入（修改）操作，$O(n)$ 次删除堆顶操作，而插入（修改）和删除的时间复杂度均为 $O(\log n)$，时间复杂度为 $O((n+m) \log n) = O(m \log n)$。
 - 优先队列：和二叉堆类似，但使用优先队列时，如果同一个点的最短路被更新多次，因为先前更新时插入的元素不能被删除，也不能被修改，只能留在优先队列中，故优先队列内的元素个数是 $O(m)$ 的，时间复杂度为 $O(m \log m)$。
 - Fibonacci 堆：和前面二者类似，但 Fibonacci 堆插入的时间复杂度为 $O(1)$，故时间复杂度为 $O(n \log n + m) = O(n \log n)$，时间复杂度最优。但因为 Fibonacci 堆较二叉堆不易实现，效率优势也不够大[^1]，算法竞赛中较少使用。
-- 线段树：和二叉堆原理类似，不过将每次成功松弛后插入二叉堆的操作改为在线段树上执行单点修改，而 1 操作则是线段树上的全局查询最小值。时间复杂度为 O(m \\log n)$。
+- 线段树：和二叉堆原理类似，不过将每次成功松弛后插入二叉堆的操作改为在线段树上执行单点修改，而 1 操作则是线段树上的全局查询最小值。时间复杂度为 $O(m \log n)$。
 
 在稀疏图中，$m = O(n)$，使用二叉堆实现的 Dijkstra 算法较 Bellman-Ford 算法具有较大的效率优势；而在稠密图中，$m = O(n^2)$，这时候使用暴力做法较二叉堆实现更优。
 
@@ -232,39 +279,37 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
 
 ### 代码实现
 
-以下是该算法的 C++ 实现
-
-```C++
-vector<vector<LL>> Ps;  // 图的邻接矩阵
-vector<LL> dist;        // min_len 的运行结果存储位置
-
-// i: 源点在点集中的下标
-void min_len(size_t i) {
-  using Pair = pair<LL, size_t>;  // pair 的排序是先第一分量后第二分量，
-                                  // 通过这个可以调整它在堆中的位置
-
-  // 初始化 dist
-  for (auto &k : dist) k = LLONG_MAX;
-  dist[i] = 0;
-
-  // 初始化小根堆
-  priority_queue<Pair, vector<Pair>, greater<Pair>> Q;  // 小根堆
-  Q.push(Pair(0, i));
-
-  while (!Q.empty()) {
-    auto k = Q.top().second;
-    Q.pop();
-    for (size_t i = 0; i < Ps[k].size(); i++) {
-      // 如果 k 和 i 有边连（这里设置 Ps[k][i] == 0 时无边连接）
-      if (Ps[k][i] && dist[k] + Ps[k][i] < dist[i]) {
-        // 松弛操作
-        dist[i] = dist[k] + Ps[k][i];
-        Q.push(Pair(dist[i], i));
+???+note "参考实现"
+    ```cpp
+    struct edge {
+      int v, w;
+    };
+    struct node {
+      int dis, u;
+      bool operator>(const node& a) const { return dis > a.dis; }
+    };
+    vector<edge> e[maxn];
+    int dis[maxn], vis[maxn];
+    priority_queue<node, vector<node>, greater<node> > q;
+    void dijkstra(int n, int s) {
+      memset(dis, 63, sizeof(dis));
+      dis[s] = 0;
+      q.push({0, s});
+      while (!q.empty()) {
+        int u = q.top().u;
+        q.pop();
+        if (vis[u]) continue;
+        vis[u] = 1;
+        for (auto ed : e[u]) {
+          int v = ed.v, w = ed.w;
+          if (dis[v] > dis[u] + w) {
+            dis[v] = dis[u] + w;
+            q.push({dis[v], v});
+          }
+        }
       }
     }
-  }
-}
-```
+    ```
 
 ## Johnson 全源最短路径算法
 
