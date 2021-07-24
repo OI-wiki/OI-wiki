@@ -15,23 +15,15 @@ body:
     placeholder: sparse-table
   validations:
     required: false
-- type: checkboxes
-  id: confirm
-  attributes:
-    label: 请选择：
-    options:
-    - label: 我正在着手修复这个问题
-      required: false
 - type: textarea
   id: page
   attributes:
-    label: 我正在访问这个页面
-    description: 建议带上链接以更好定位问题
+    label: 我希望能添加的内容是
   validations:
     required: true
 - type: textarea
-  id: problem
+  id: ref
   attributes:
-    label: 我发现页面有这样的问题
+    label: 我了解到的相关参考资料有
   validations:
-    required: true
+    required: false
