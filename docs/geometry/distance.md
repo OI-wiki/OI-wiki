@@ -181,8 +181,8 @@ $$
 
 $$
 \begin{aligned}
-&y = x + 1  &(x \geq 0, y \geq 0) \\
-&y = -x + 1 &(x \leq 0, y \geq 0) \\
+&y = -x + 1 &(x \geq 0, y \geq 0) \\
+&y = x + 1 &(x \leq 0, y \geq 0) \\
 &y = x - 1  &(x \geq 0, y \leq 0)  \\
 &y = -x - 1  &(x \leq 0, y \leq 0) \\
 \end{aligned}
