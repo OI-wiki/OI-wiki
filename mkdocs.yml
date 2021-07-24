@@ -277,6 +277,7 @@ nav:
     - 牛顿迭代法: math/newton.md
     - 数值积分: math/integral.md
     - 分段打表: math/dictionary.md
+    - 傅里叶-莫茨金消元法: math/fourier-motzkin-elimination.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
     - 栈: ds/stack.md
