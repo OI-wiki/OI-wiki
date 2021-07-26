@@ -53,7 +53,7 @@ Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Gi
 
 ![Git for Windows installation 5](images/git7.png)
 
-在下拉菜单栏中，Git 提供了 nano、[Vim](editor/vim.md)、[Notepad++](editor/npp.md)、[Visual Studio Code](editor/vscode.md)、Visual Studio Code Insiders（VS Code 预览版）、Sublime Text、[Atom](editor/atom.md) 和 VSCodium 作为默认编辑器的预设方案。如果系统已经安装了上述的一种或多种编辑器，可以直接选择其中一种并进入下一步。另外，还可通过 `Select other editor as Git's default editor` 项手动指定默认编辑器。
+在下拉菜单栏中，Git 提供了 nano、[Vim](./editor/vim.md)、[Notepad++](./editor/npp.md)、[Visual Studio Code](./editor/vscode.md)、Visual Studio Code Insiders（VS Code 预览版）、Sublime Text、[Atom](./editor/atom.md) 和 VSCodium 作为默认编辑器的预设方案。如果系统已经安装了上述的一种或多种编辑器，可以直接选择其中一种并进入下一步。另外，还可通过 `Select other editor as Git's default editor` 项手动指定默认编辑器。
 
 ![Git for Windows installation 6](images/git8.png)
 
