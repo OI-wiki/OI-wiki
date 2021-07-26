@@ -31,6 +31,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [Universal Online Judge](https://uoj.ac/)：始于 2014 年，Universal 取通用之意，[项目开源](https://github.com/UniversalOJ/UOJ-System)；[VFK](https://github.com/vfleaking) 的 OJ：多原创比赛题和 CCF/THU 题，难度较高。
 - [Vijos](https://vijos.org/)：始于 2005 年。[服务端](https://github.com/vijos/vj4) 和 [评测机](https://github.com/vijos/jd4) 等项目开源。
 - [ZOJ](https://zoj.pintia.cn/home)：浙江大学在线评测系统，始于 2001 年。
+- [HydroOJ](https://hydro.ac/)：始于2021年，为开源项目 [Hydro](https://hydro.js.org/) 的官方站。用户可以创建自己的[域](https://hydro.ac/discuss/6087cc44e098b0cd7dde1a0c)，域中可以使用题库、比赛、讨论等主站可以使用的功能。
 
 ### 国外
 
