@@ -101,4 +101,4 @@ author: frank-xjh
 
 ## 脚注
 
-[^1]: [桶排序](https://oi-wiki.org/basic/bucket-sort/) 以及 [主元素问题](https://oi-wiki.org/misc/main-element/#_3) 
+[^1]: [桶排序](https://oi-wiki.org/basic/bucket-sort/) 以及 [主元素问题](https://oi-wiki.org/misc/main-element/#_3)
