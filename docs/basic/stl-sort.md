@@ -6,7 +6,7 @@
 
 参见：[`qsort`](https://zh.cppreference.com/w/c/algorithm/qsort)，[`std::qsort`](https://zh.cppreference.com/w/cpp/algorithm/qsort)
 
-该函数为 C 标准库实现的 [快速排序](quick-sort.md)，定义在 `<stdlib.h>` 中。在 C++ 标准库里，该函数定义在 `<cstdlib>` 中。
+该函数为 C 标准库实现的 [快速排序](./quick-sort.md)，定义在 `<stdlib.h>` 中。在 C++ 标准库里，该函数定义在 `<cstdlib>` 中。
 
 ## std::sort
 
@@ -27,7 +27,7 @@ std::sort(a, a + n, cmp);
 
 旧版 C++ 标准中仅要求它的 **平均** 时间复杂度达到 $O(n\log n)$。C++11 标准以及后续标准要求它的 **最坏** 时间复杂度达到 $O(n\log n)$。
 
-C++ 标准并未严格要求此函数的实现算法，具体实现取决于编译器。[libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) 和 [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm) 中的实现算法都是 [内省排序](quick-sort.md#内省排序[^ref3])。
+C++ 标准并未严格要求此函数的实现算法，具体实现取决于编译器。[libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) 和 [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm) 中的实现算法都是 [内省排序](./quick-sort.md#内省排序[^ref3])。
 
 ## std::nth_element
 
