@@ -182,7 +182,7 @@ vector<int> prefix_function(string s) {
 
 由 $s$ 有长度为 $r$ 的 border 可以推导出 $|s|-r$ 是 $s$ 的周期。
 
-根据前缀函数的定义，可以得到 $s$ 所有的 border 长度，即 $\pi[n-1],\pi[\pi[n-1]]，...$。[^ref1]
+根据前缀函数的定义，可以得到 $s$ 所有的 border 长度，即 $\pi[n-1],\pi[\pi[n-1]-1]，...$。[^ref1]
 
 所以根据前缀函数可以在 $O(n)$ 的时间内计算出 $s$ 所有的周期。其中，由于 $\pi[n-1]$ 是 $s$ 最长 border 的长度，所以 $n - \pi[n-1]$ 是 $s$ 的最小周期。
 
