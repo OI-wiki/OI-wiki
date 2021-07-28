@@ -398,7 +398,7 @@ $\text{build(r, c)}$ 表示新建一个大小为 $r \times c$，即有 $r$ 行�
 
 这样就初始化了一个 Dancing Link。
 
-$\text{build(r, c)}$ 的代码实现如下：
+`\text{build(r, c)}` 的代码实现如下：
 
 ```cpp
 void build(const int &r, const int &c) {
