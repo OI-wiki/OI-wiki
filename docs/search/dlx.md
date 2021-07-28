@@ -1089,4 +1089,4 @@ DLX 的难点，不全在于链表的建立，而在于建模。
 - [跳跃的舞者，舞蹈链（Dancing Links）算法——求解精确覆盖问题 - 万仓一黍](https://www.cnblogs.com/grenet/p/3145800.html)
 - [DLX 算法一览 - zhangjianjunab](https://blog.csdn.net/zhangjianjunab/article/details/83688681)
 - [搜索：DLX 算法 - 静听风吟。](https://www.cnblogs.com/aininot260/p/9629926.html)
-- [《算法竞赛入门经典 - 训练指南》](https://item.jd.com/11111050.html)
+- [《算法竞赛入门经典 - 训练指南》](https://book.douban.com/subject/35431537/)
