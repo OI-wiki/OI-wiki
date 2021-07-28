@@ -236,6 +236,55 @@ int main() {
 9 : ********************
 ```
 
+### 随机数分布
+
+这里介绍的是要求生成的随机数按照一定的概率出现，如等概率，[伯努利分布](https://en.wikipedia.org/wiki/Bernoulli_distribution)，[二项分布](https://en.wikipedia.org/wiki/Binomial_distribution)，[几何分布](https://en.wikipedia.org/wiki/Geometric_distribution)，[标准正态（高斯）分布](https://en.wikipedia.org/wiki/Normal_distribution)。
+
+类名请参照下表，本文仅以等概率整数作为示例，其余实现请替换类名。
+| 类名                            | 注释                                 |
+| ------------------------------- | ------------------------------------ |
+| uniform_int_distribution        | 产生在一个范围上均匀分布的整数值     |
+| uniform_real_distribution       | 产生在一个范围上均匀分布的实数值     |
+| bernoulli_distribution          | 产生伯努利分布上的布尔值。           |
+| binomial_distribution           | 产生二项分布上的整数值。             |
+| negative_binomial_distribution  | 产生负二项分布上的整数值。           |
+| geometric_distribution          | 产生几何分布上的整数值。             |
+| poisson_distribution            | 产生泊松分布上的整数值。             |
+| exponential_distribution        | 产生指数分布上的实数值。             |
+| gamma_distribution              | 产生 $\gamma$ 分布上的实数值         |
+| weibull_distribution            | 产生威布尔分布上的实数值。           |
+| extreme_value_distribution      | 产生极值分布上的实数值。             |
+| normal_distribution             | 产生标准正态（高斯）分布上的实数值。 |
+| lognormal_distribution          | 产生对数正态分布上的实数值。         |
+| chi_squared_distribution        | 产生 $x^2$ 分布上的实数值。          |
+| cauchy_distribution             | 产生柯西分布上的实数值。             |
+| fisher_f_distribution           | 产生费舍尔 F 分布上的实数值。        |
+| student_t_distribution          | 产生学生 t 分布上的实数值。          |
+| discrete_distribution           | 产生离散分布上的随机整数。           |
+| piecewise_constant_distribution | 产生分布在常子区间上的实数值。       |
+| piecewise_linear_distribution   | 产生分布在定义的子区间上的实数值。   |
+
+#### 实现
+
+下面的程序模拟了一个六面体骰子。
+
+```cpp
+#include <random>
+#include <iostream>
+ 
+int main()
+{
+    std::random_device rd;  // 将用于为随机数引擎获得种子
+    std::mt19937 gen(rd()); // 以播种标准 mersenne_twister_engine
+    std::uniform_int_distribution<> dis(1, 6);
+ 
+    for (int n=0; n<10; ++n)
+        // 用 dis 变换 gen 所生成的随机 unsigned int 到 [1, 6] 中的 int
+        std::cout << dis(gen) << ' ';
+    std::cout << '\n';
+}
+```
+
 ### 其他实现方法
 
 有的时候我们需要实现自己的随机数生成器。下面是一些常用的随机数生成方法。
