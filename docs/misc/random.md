@@ -23,7 +23,7 @@
 
 #### C 随机库
 
-下面是 C 标准库里已有的一些随机函数实现，尽管**不推荐**。
+下面是 C 标准库里已有的一些随机函数实现，尽管 **不推荐**。
 
 ##### rand
 
@@ -48,7 +48,7 @@
 
 #### 预定义随机数生成器
 
-定义了数个特别的流行算法。如没有特别说明，均定义于头文件 `<random>` 。
+定义了数个特别的流行算法。如没有特别说明，均定义于头文件 `<random>`。
 
 !!! warning
     预定义随机数生成器仅在于 C++11 标准[^ref2]中开始使用。
@@ -86,15 +86,16 @@ int main() {
 线性同余算法由 Lewis、Goodman 及 Miller 发现于 1969，由 Park 与 Miller 于 1988 采纳为「最小标准」。
 
 计算公式如下，其中 $A,C,M$ 为预定义常数。
+
 $$
 s_i\equiv s_{i-1}\times A+C\mod{M}
 $$
 
-`minstd_rand()` 是较新的“最小标准”，为 Park、 Miller 和 Stockmeyer 于 1993 推荐。
+`minstd_rand()` 是较新的“最小标准”，为 Park、Miller 和 Stockmeyer 于 1993 推荐。
 
-对于 `minstd_rand0()` ，$s$ 的类型取 32 位无符号整数，$A$ 取 16807，$C$ 取 0，$M$ 取 2147483647。
+对于 `minstd_rand0()`，$s$ 的类型取 32 位无符号整数，$A$ 取 16807，$C$ 取 0，$M$ 取 2147483647。
 
-对于 `minstd_rand()` ，$s$ 的类型取 32 位无符号整数，$A$ 取 48271，$C$ 取 0，$M$ 取 2147483647。
+对于 `minstd_rand()`，$s$ 的类型取 32 位无符号整数，$A$ 取 48271，$C$ 取 0，$M$ 取 2147483647。
 
 #### random_shuffle
 
@@ -172,22 +173,21 @@ int main() {
 下面是随机排列前十个正整数的一个实现。
 
 ```cpp
-#include <random>
 #include <algorithm>
-#include <iterator>
 #include <iostream>
- 
-int main()
-{
-    std::vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
- 
-    std::random_device rd;
-    std::mt19937 g(rd());
- 
-    std::shuffle(v.begin(), v.end(), g);
- 
-    std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, " "));
-    std::cout << "\n";
+#include <iterator>
+#include <random>
+
+int main() {
+  std::vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+  std::random_device rd;
+  std::mt19937 g(rd());
+
+  std::shuffle(v.begin(), v.end(), g);
+
+  std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, " "));
+  std::cout << "\n";
 }
 ```
 
@@ -242,46 +242,45 @@ int main() {
 
 类名请参照下表，本文仅以等概率整数作为示例，其余实现请替换类名。
 | 类名                            | 注释                                 |
-| ------------------------------- | ------------------------------------ |
+\| ------------------------------- \| ------------------------------------ \|
 | uniform_int_distribution        | 产生在一个范围上均匀分布的整数值     |
 | uniform_real_distribution       | 产生在一个范围上均匀分布的实数值     |
-| bernoulli_distribution          | 产生伯努利分布上的布尔值。           |
-| binomial_distribution           | 产生二项分布上的整数值。             |
-| negative_binomial_distribution  | 产生负二项分布上的整数值。           |
-| geometric_distribution          | 产生几何分布上的整数值。             |
-| poisson_distribution            | 产生泊松分布上的整数值。             |
-| exponential_distribution        | 产生指数分布上的实数值。             |
+| bernoulli_distribution          | 产生伯努利分布上的布尔值。|
+| binomial_distribution           | 产生二项分布上的整数值。|
+| negative_binomial_distribution  | 产生负二项分布上的整数值。|
+| geometric_distribution          | 产生几何分布上的整数值。|
+| poisson_distribution            | 产生泊松分布上的整数值。|
+| exponential_distribution        | 产生指数分布上的实数值。|
 | gamma_distribution              | 产生 $\gamma$ 分布上的实数值         |
-| weibull_distribution            | 产生威布尔分布上的实数值。           |
-| extreme_value_distribution      | 产生极值分布上的实数值。             |
-| normal_distribution             | 产生标准正态（高斯）分布上的实数值。 |
-| lognormal_distribution          | 产生对数正态分布上的实数值。         |
-| chi_squared_distribution        | 产生 $x^2$ 分布上的实数值。          |
-| cauchy_distribution             | 产生柯西分布上的实数值。             |
-| fisher_f_distribution           | 产生费舍尔 F 分布上的实数值。        |
-| student_t_distribution          | 产生学生 t 分布上的实数值。          |
-| discrete_distribution           | 产生离散分布上的随机整数。           |
-| piecewise_constant_distribution | 产生分布在常子区间上的实数值。       |
-| piecewise_linear_distribution   | 产生分布在定义的子区间上的实数值。   |
+| weibull_distribution            | 产生威布尔分布上的实数值。|
+| extreme_value_distribution      | 产生极值分布上的实数值。|
+| normal_distribution             | 产生标准正态（高斯）分布上的实数值。|
+| lognormal_distribution          | 产生对数正态分布上的实数值。|
+| chi_squared_distribution        | 产生 $x^2$ 分布上的实数值。|
+| cauchy_distribution             | 产生柯西分布上的实数值。|
+| fisher_f_distribution           | 产生费舍尔 F 分布上的实数值。|
+| student_t_distribution          | 产生学生 t 分布上的实数值。|
+| discrete_distribution           | 产生离散分布上的随机整数。|
+| piecewise_constant_distribution | 产生分布在常子区间上的实数值。|
+| piecewise_linear_distribution   | 产生分布在定义的子区间上的实数值。|
 
 #### 实现
 
 下面的程序模拟了一个六面体骰子。
 
 ```cpp
-#include <random>
 #include <iostream>
- 
-int main()
-{
-    std::random_device rd;  // 将用于为随机数引擎获得种子
-    std::mt19937 gen(rd()); // 以播种标准 mersenne_twister_engine
-    std::uniform_int_distribution<> dis(1, 6);
- 
-    for (int n=0; n<10; ++n)
-        // 用 dis 变换 gen 所生成的随机 unsigned int 到 [1, 6] 中的 int
-        std::cout << dis(gen) << ' ';
-    std::cout << '\n';
+#include <random>
+
+int main() {
+  std::random_device rd;   // 将用于为随机数引擎获得种子
+  std::mt19937 gen(rd());  // 以播种标准 mersenne_twister_engine
+  std::uniform_int_distribution<> dis(1, 6);
+
+  for (int n = 0; n < 10; ++n)
+    // 用 dis 变换 gen 所生成的随机 unsigned int 到 [1, 6] 中的 int
+    std::cout << dis(gen) << ' ';
+  std::cout << '\n';
 }
 ```
 
@@ -368,6 +367,9 @@ $$
 ## 参考资料与注释
 
 [^ref1]: [Don't use rand(): a guide to random number generators in C++](https://codeforces.com/blog/entry/61587)
-[^ref2]:[伪随机数生成 - cppreference.com](https://zh.cppreference.com/w/cpp/numeric/random#%E9%A2%84%E5%AE%9A%E4%B9%89%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8)
-[^ref3]:[Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister)
+
+[^ref2]: [伪随机数生成 - cppreference.com](https://zh.cppreference.com/w/cpp/numeric/random#%E9%A2%84%E5%AE%9A%E4%B9%89%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8)
+
+[^ref3]: [Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister)
+
 [^note1]: 版本号为 GCC 9.2.0
