@@ -372,7 +372,7 @@ void remove(const int &c) {
 
 `recover(c)` 即 `remove(c)` 的逆操作，这里不再赘述。
 
-**值得注意的是，**`recover(c)` **的所有操作的顺序与** `remove(c)` **的操作恰好相反。**
+**值得注意的是，** `recover(c)` **的所有操作的顺序与**  `remove(c)` **的操作恰好相反。**
 
 `recover(c)` 的代码实现如下：
 
