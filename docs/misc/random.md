@@ -56,6 +56,9 @@
 
 另一个类似的生成器是 `mt19937_64`，使用方式同 `mt19937`，但随机数范围扩大到了 `unsigned long long` 类型的取值范围。
 
+!!! warning
+    ` mt19937` 仅在于 C++11 标准[^ref2]中开始使用。
+
 ##### 示例
 
 ```cpp
@@ -273,5 +276,5 @@ $$
 ## 参考资料与注释
 
 [^ref1]: [Don't use rand(): a guide to random number generators in C++](https://codeforces.com/blog/entry/61587)
-
+[^ref2]:[伪随机数生成 - cppreference.com](https://zh.cppreference.com/w/cpp/numeric/random#%E9%A2%84%E5%AE%9A%E4%B9%89%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8)
 [^note1]: 版本号为 GCC 9.2.0
