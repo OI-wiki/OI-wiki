@@ -328,7 +328,7 @@ int col[MS], row[MS];
 
 ### remove 操作
 
-$\text{remove(c)}$ 表示在 Dancing Links 中删除第 $c$ 列以及与其相关的行和列。
+`remove(c)` 表示在 Dancing Links 中删除第 $c$ 列以及与其相关的行和列。
 
 先将 $c$ 删除，此时：
 
@@ -362,19 +362,19 @@ void remove(const int &c) {
 }
 ```
 
-其中第一个 `IT(i, D, c)` 等价于 `for(i = D[c]; i != c; i = D[i])`，即在顺着这一列从上往下遍历；
+其中第一个 `IT(i, D, c)` 等价于 `for(i = D[c]; i != c; i = D[i])`，即顺着这一列从上往下遍历；
 
-第二个 `IT(j, R, i)` 等价于 `for(j = R[i]; j != i; j = R[j])`，即在顺着这一行从左往右遍历。
+第二个 `IT(j, R, i)` 等价于 `for(j = R[i]; j != i; j = R[j])`，即顺着这一行从左往右遍历。
 
 ### recover 操作
 
-$\text{recover(c)}$ 表示在 Dancing Links 中还原第 $c$ 列以及与其相关的行和列。
+`recover(c)` 表示在 Dancing Links 中还原第 $c$ 列以及与其相关的行和列。
 
-$\text{recover(c)}$ 即 $\text{remove(c)}$ 的逆操作，这里不再赘述。
+`recover(c)` 即 `remove(c)` 的逆操作，这里不再赘述。
 
-**值得注意的是，**$\text{recover(c)}$ **的所有操作的顺序与** $\text{remove(c)}$ **的操作恰好相反。**
+**值得注意的是，**`recover(c)` **的所有操作的顺序与** `remove(c)` **的操作恰好相反。**
 
-$\text{recover(c)}$ 的代码实现如下：
+`recover(c)` 的代码实现如下：
 
 ```cpp
 void recover(const int &c) {
@@ -386,7 +386,7 @@ void recover(const int &c) {
 
 ### build 操作
 
-$\text{build(r, c)}$ 表示新建一个大小为 $r \times c$，即有 $r$ 行，$c$ 列的 Dancing Links。
+`build(r, c)` 表示新建一个大小为 $r \times c$，即有 $r$ 行，$c$ 列的 Dancing Links。
 
 新建 $c + 1$ 个结点作为列指示。
 
@@ -415,7 +415,7 @@ void build(const int &r, const int &c) {
 
 ### insert 操作
 
-$\text{insert(r, c)}$ 表示在第 $r$ 行，第 $c$ 列插入一个结点。
+`insert(r, c)` 表示在第 $r$ 行，第 $c$ 列插入一个结点。
 
 插入操作分为两种情况：
 
@@ -457,13 +457,13 @@ $\text{insert(r, c)}$ 表示在第 $r$ 行，第 $c$ 列插入一个结点。
 
             **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。**
 
-$\text{insert(r, c)}$ 这个操作可以通过图片来辅助理解：
+`insert(r, c)` 这个操作可以通过图片来辅助理解：
 
 ![dlx-6.png](./images/dlx-6.png)
 
 留心曲线箭头的方向。
 
-$\text{insert(r, c)}$ 的代码实现如下：
+`insert(r, c)` 的代码实现如下：
 
 ```cpp
 void insert(const int &r, const int &c) {
@@ -480,15 +480,15 @@ void insert(const int &r, const int &c) {
 
 ### dance 操作
 
-$\text{dance()}$ 即为递归地删除以及还原各个行列的过程。
+`dance` 即为递归地删除以及还原各个行列的过程。
 
 1. 如果 $0$ 号结点没有右结点，那么矩阵为空，记录答案并返回；
 2. 选择列元素个数最少的一列，并删掉这一列；
 3. 遍历这一列所有有 $1$ 的行，枚举它是否被选择；
-4. 递归调用 $\text{dance()}$，如果可行，则返回；如果不可行，则恢复被选择的行；
+4. 递归调用 `dance`，如果可行，则返回；如果不可行，则恢复被选择的行；
 5. 如果无解，则返回。
 
-$\text{dance()}$ 的代码实现如下：
+`dance` 的代码实现如下：
 
 ```cpp
 bool dance(int dep) {
