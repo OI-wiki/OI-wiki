@@ -21,9 +21,11 @@
 
 ### 标准库实现
 
-下面是 C++ 标准库里已有的一些随机函数实现。
+#### C 随机库
 
-#### rand
+下面是 C 标准库里已有的一些随机函数实现，尽管**不推荐**。
+
+##### rand
 
 用于生成伪随机数，缺点是比较慢，使用时需要 `#include<cstdlib>`。
 
@@ -44,22 +46,26 @@
 - GCC 编译器对 `rand()` 所采用的实现方式，保证了分布的均匀性等基本性质，但具有 低位周期长度短 等明显缺陷。（例如在笔者的机器上，`rand()%2` 所生成的序列的周期长约 $2\cdot 10^6$）
 - 即使假设 `rand()` 是均匀随机的，`rand()%n` 也不能保证均匀性，因为 `[0,n)` 中的每个数在 `0%n,1%n,...,RAND_MAX%n` 中的出现次数可能不相同。
 
-#### mt19937
+#### 预定义随机数生成器
 
-是一个随机数生成器类，效用同 `rand`，随机数的范围同 `unsigned int` 类型的取值范围。
+定义了数个特别的流行算法。如没有特别说明，均定义于头文件 `<random>` 。
+
+!!! warning
+    预定义随机数生成器仅在于 C++11 标准[^ref2]中开始使用。
+
+##### mt19937
+
+是一个随机数生成器类，效用同 `rand()`，随机数的范围同 `unsigned int` 类型的取值范围。
 
 其优点是随机数质量高（一个表现为，出现循环的周期更长；其他方面也都至少不逊于 `rand()`），且速度比 `rand()` 快很多。使用时需要 `#include<random>`。
 
-`mt19937` 基于 [Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister)，使用时用其定义一个随机数生成器即可：`std::mt19937 myrand(seed)`，`seed` 可不填，不填 `seed` 则会使用默认随机种子。
+`mt19937` 基于 32 位梅森缠绕器，由松本与西村设计于 1998 年[^ref3]，使用时用其定义一个随机数生成器即可：`std::mt19937 myrand(seed)`，`seed` 可不填，不填 `seed` 则会使用默认随机种子。
 
 `mt19937` 重载了 `operator ()`，需要生成随机数时调用 `myrand()` 即可返回一个随机数。
 
-另一个类似的生成器是 `mt19937_64`，使用方式同 `mt19937`，但随机数范围扩大到了 `unsigned long long` 类型的取值范围。
+另一个类似的生成器是 `mt19937_64`，基于 64 位梅森缠绕器，由松本与西村设计于 2000 年，使用方式同 `mt19937`，但随机数范围扩大到了 `unsigned long long` 类型的取值范围。
 
-!!! warning
-    ` mt19937` 仅在于 C++11 标准[^ref2]中开始使用。
-
-##### 示例
+###### 示例
 
 ```cpp
 #include <ctime>
@@ -74,6 +80,21 @@ int main() {
   return 0;
 }
 ```
+
+##### minstd_rand0
+
+线性同余算法由 Lewis、Goodman 及 Miller 发现于 1969，由 Park 与 Miller 于 1988 采纳为「最小标准」。
+
+计算公式如下，其中 $A,C,M$ 为预定义常数。
+$$
+s_i\equiv s_{i-1}\times A+C\mod{M}
+$$
+
+`minstd_rand()` 是较新的“最小标准”，为 Park、 Miller 和 Stockmeyer 于 1993 推荐。
+
+对于 `minstd_rand0()` ，$s$ 的类型取 32 位无符号整数，$A$ 取 16807，$C$ 取 0，$M$ 取 2147483647。
+
+对于 `minstd_rand()` ，$s$ 的类型取 32 位无符号整数，$A$ 取 48271，$C$ 取 0，$M$ 取 2147483647。
 
 #### random_shuffle
 
@@ -148,9 +169,33 @@ int main() {
 }
 ```
 
+下面是随机排列前十个正整数的一个实现。
+
+```cpp
+#include <random>
+#include <algorithm>
+#include <iterator>
+#include <iostream>
+ 
+int main()
+{
+    std::vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+ 
+    std::random_device rd;
+    std::mt19937 g(rd());
+ 
+    std::shuffle(v.begin(), v.end(), g);
+ 
+    std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, " "));
+    std::cout << "\n";
+}
+```
+
 #### 非确定随机数的均匀分布整数随机数生成器
 
 `random_device` 是一个基于硬件的均匀分布随机数生成器，**在熵池耗尽** 前可以高速生成随机数。该类在 C++11 定义，需要 `random` 头文件。由于熵池耗尽后性能急剧下降，所以建议用此方法生成 `mt19937` 等伪随机数的种子，而不是直接生成。
+
+`random_device` 是非确定的均匀随机位生成器，尽管若不支持非确定随机数生成，则允许实现用伪随机数引擎实现。目前笔者尚未接到报告称 NOIP 评测机不支持基于硬件的均匀分布随机数生成。但出于保守考虑，建议使用该算法生成随机数种子。
 
 参考代码如下。
 
@@ -190,8 +235,6 @@ int main() {
 8 : *******************
 9 : ********************
 ```
-
-阅读 [cppreference](https://zh.cppreference.com/w/cpp/numeric/random/random_device) 以获得更多信息。
 
 ### 其他实现方法
 
@@ -277,4 +320,5 @@ $$
 
 [^ref1]: [Don't use rand(): a guide to random number generators in C++](https://codeforces.com/blog/entry/61587)
 [^ref2]:[伪随机数生成 - cppreference.com](https://zh.cppreference.com/w/cpp/numeric/random#%E9%A2%84%E5%AE%9A%E4%B9%89%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%99%A8)
+[^ref3]:[Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister)
 [^note1]: 版本号为 GCC 9.2.0
