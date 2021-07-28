@@ -101,4 +101,4 @@ author: frank-xjh
 
 ## 脚注
 
-[^1]: [桶排序](https://oi-wiki.org/basic/bucket-sort/) 以及 [主元素问题](https://oi-wiki.org/misc/main-element/#_3)
+[^1]: [桶排序](https://oi-wiki.org/basic/bucket-sort/) 以及 [主元素问题](https://oi-wiki.org/misc/main-element/#_3) 以及 [Stack Overflow上对桶数据结构的讲解](https://stackoverflow.com/questions/42399355/what-is-a-bucket-or-double-bucket-data-structure) （英文）
