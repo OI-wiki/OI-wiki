@@ -19,17 +19,11 @@
 
 ## 实现
 
-### 标准库实现
-
-#### C 随机库
-
-下面是 C 标准库里已有的一些随机函数实现，尽管 **不推荐**。
-
-##### rand
+### `rand`
 
 用于生成伪随机数，缺点是比较慢，使用时需要 `#include<cstdlib>`。
 
-调用 `rand()` 函数会返回一个 `[0,RAND_MAX]` 中的随机非负整数，其中 `RAND_MAX` 是标准库中的一个宏，在 `Linux` 系统下 `RAND_MAX` 等于 $2^{31}-1$。可以用取模来限制所生成的数的大小。
+调用 `rand()` 函数会返回一个 `[0,RAND_MAX]` 中的随机非负整数，其中 `RAND_MAX` 是标准库中的一个宏，在 Linux 系统下 `RAND_MAX` 等于 $2^{31}-1$。可以用取模来限制所生成的数的大小。
 
 使用 `rand()` 需要一个随机数种子，可以使用 `srand(seed)` 函数来将随机种子更改为 `seed`，当然不初始化也是可以的。
 
@@ -46,14 +40,14 @@
 - GCC 编译器对 `rand()` 所采用的实现方式，保证了分布的均匀性等基本性质，但具有 低位周期长度短 等明显缺陷。（例如在笔者的机器上，`rand()%2` 所生成的序列的周期长约 $2\cdot 10^6$）
 - 即使假设 `rand()` 是均匀随机的，`rand()%n` 也不能保证均匀性，因为 `[0,n)` 中的每个数在 `0%n,1%n,...,RAND_MAX%n` 中的出现次数可能不相同。
 
-#### 预定义随机数生成器
+### 预定义随机数生成器
 
 定义了数个特别的流行算法。如没有特别说明，均定义于头文件 `<random>`。
 
 !!! warning
     预定义随机数生成器仅在于 C++11 标准[^ref2]中开始使用。
 
-##### mt19937
+#### mt19937
 
 是一个随机数生成器类，效用同 `rand()`，随机数的范围同 `unsigned int` 类型的取值范围。
 
@@ -65,23 +59,22 @@
 
 另一个类似的生成器是 `mt19937_64`，基于 64 位梅森缠绕器，由松本与西村设计于 2000 年，使用方式同 `mt19937`，但随机数范围扩大到了 `unsigned long long` 类型的取值范围。
 
-###### 示例
+??? note "代码示例"
+    ```cpp
+    #include <ctime>
+    #include <iostream>
+    #include <random>
+    
+    using namespace std;
+    
+    int main() {
+      mt19937 myrand(time(0));
+      cout << myrand() << endl;
+      return 0;
+    }
+    ```
 
-```cpp
-#include <ctime>
-#include <iostream>
-#include <random>
-
-using namespace std;
-
-int main() {
-  mt19937 myrand(time(0));
-  cout << myrand() << endl;
-  return 0;
-}
-```
-
-##### minstd_rand0
+#### `minstd_rand0`
 
 线性同余算法由 Lewis、Goodman 及 Miller 发现于 1969，由 Park 与 Miller 于 1988 采纳为「最小标准」。
 
@@ -97,7 +90,7 @@ $$
 
 对于 `minstd_rand()`，$s$ 的类型取 32 位无符号整数，$A$ 取 48271，$C$ 取 0，$M$ 取 2147483647。
 
-#### random_shuffle
+### `random_shuffle`
 
 用于随机打乱指定序列。使用时需要 `#include<algorithm>`。
 
@@ -114,7 +107,7 @@ $$
 !!! warning
     `random_shuffle` 已于 C++14 标准中被弃用，于 C++17 标准中被移除。
 
-#### shuffle
+### `shuffle`
 
 效用同 `random_shuffle`。使用时需要 `#include<algorithm>`。
 
@@ -191,7 +184,7 @@ int main() {
 }
 ```
 
-#### 非确定随机数的均匀分布整数随机数生成器
+### 非确定随机数的均匀分布整数随机数生成器
 
 `random_device` 是一个基于硬件的均匀分布随机数生成器，**在熵池耗尽** 前可以高速生成随机数。该类在 C++11 定义，需要 `random` 头文件。由于熵池耗尽后性能急剧下降，所以建议用此方法生成 `mt19937` 等伪随机数的种子，而不是直接生成。
 
@@ -241,8 +234,9 @@ int main() {
 这里介绍的是要求生成的随机数按照一定的概率出现，如等概率，[伯努利分布](https://en.wikipedia.org/wiki/Bernoulli_distribution)，[二项分布](https://en.wikipedia.org/wiki/Binomial_distribution)，[几何分布](https://en.wikipedia.org/wiki/Geometric_distribution)，[标准正态（高斯）分布](https://en.wikipedia.org/wiki/Normal_distribution)。
 
 类名请参照下表，本文仅以等概率整数作为示例，其余实现请替换类名。
+
 | 类名                            | 注释                                 |
-\| ------------------------------- \| ------------------------------------ \|
+| ------------------------------- | ------------------------------------ |
 | uniform_int_distribution        | 产生在一个范围上均匀分布的整数值     |
 | uniform_real_distribution       | 产生在一个范围上均匀分布的实数值     |
 | bernoulli_distribution          | 产生伯努利分布上的布尔值。|
