@@ -42,30 +42,33 @@ $$
 
 考虑以下不等式系统：
 
-$$
-x \leq (10 + 5y - 4z)/2 \nonumber \\
-x \leq (9 + 6y - 3z)/3 \nonumber \\
-x \geq 7 + 5y - 2z \nonumber \\
-x \geq (-12 + 2y + 6z)/3
-\end{eqnarray}$$
+$x \leq (10 + 5y - 4z)/2$
+
+$x \leq (9 + 6y - 3z)/3$
+
+$x \geq 7 + 5y - 2z$
+
+$x \geq (-12 + 2y + 6z)/3$
 
 为了消除 $x$，我们可以根据 $x$ 改写不等式：
-$$
 
-x \\leq (10 + 5y - 4z)/2 \\nonumber\\x \\leq (9 + 6y - 3z)/3 \\nonumber\\x \\geq 7 + 5y - 2z \\nonumber\\x \\geq (-12 + 2y + 6z)/3
-\\end{eqnarray}$$
+$x \leq (10 + 5y - 4z)/2$
+
+$x \leq (9 + 6y - 3z)/3$
+
+$x \geq 7 + 5y - 2z$
+
+$x \geq (-12 + 2y + 6z)/3$
 
 这样我们得到两个 $\leq$ 不等式和两个 $\geq$ 不等式；如果每个 $\leq$ 不等式的右侧至少是每个 $\geq$ 不等式的右侧，则系统有一个解。我们有 $2\times2$ 这样的组合：
 
-$$
-7 + 5y - 2z \leq  (10 + 5y - 4z)/2 \\
+$7 + 5y - 2z \leq  (10 + 5y - 4z)/2$
 
-7 + 5y - 2z \leq  (9 + 6y - 3z)/3 \\
+$7 + 5y - 2z \leq  (9 + 6y - 3z)/3$
 
-(-12 + 2y + 6z)/3 \leq (10 + 5y - 4z)/2 \\
+$(-12 + 2y + 6z)/3 \leq (10 + 5y - 4z)/2$
 
-(-12 + 2y + 6z)/3 \leq (9 + 6y - 3z)/3
-$$
+$(-12 + 2y + 6z)/3 \leq (9 + 6y - 3z)/3$
 
 现在我们有了一个新的少了一个变量不等式系统。
 
