@@ -518,6 +518,7 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.magiclink
   - pymdownx.mark
+  - pymdownx.snippets
   - pymdownx.progressbar
   - pymdownx.smartsymbols
   - pymdownx.superfences:
