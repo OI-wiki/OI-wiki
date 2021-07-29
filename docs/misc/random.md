@@ -235,28 +235,28 @@ int main() {
 
 类名请参照下表，本文仅以等概率整数作为示例，其余实现请替换类名。
 
-| 类名                            | 注释                                 |
-| ------------------------------- | ------------------------------------ |
-| uniform_int_distribution        | 产生在一个范围上均匀分布的整数值     |
-| uniform_real_distribution       | 产生在一个范围上均匀分布的实数值     |
-| bernoulli_distribution          | 产生伯努利分布上的布尔值。|
-| binomial_distribution           | 产生二项分布上的整数值。|
-| negative_binomial_distribution  | 产生负二项分布上的整数值。|
-| geometric_distribution          | 产生几何分布上的整数值。|
-| poisson_distribution            | 产生泊松分布上的整数值。|
-| exponential_distribution        | 产生指数分布上的实数值。|
-| gamma_distribution              | 产生 $\gamma$ 分布上的实数值         |
-| weibull_distribution            | 产生威布尔分布上的实数值。|
-| extreme_value_distribution      | 产生极值分布上的实数值。|
-| normal_distribution             | 产生标准正态（高斯）分布上的实数值。|
-| lognormal_distribution          | 产生对数正态分布上的实数值。|
-| chi_squared_distribution        | 产生 $x^2$ 分布上的实数值。|
-| cauchy_distribution             | 产生柯西分布上的实数值。|
-| fisher_f_distribution           | 产生费舍尔 F 分布上的实数值。|
-| student_t_distribution          | 产生学生 t 分布上的实数值。|
-| discrete_distribution           | 产生离散分布上的随机整数。|
-| piecewise_constant_distribution | 产生分布在常子区间上的实数值。|
-| piecewise_linear_distribution   | 产生分布在定义的子区间上的实数值。|
+| 类名                              | 注释                  |
+| ------------------------------- | ------------------- |
+| uniform_int_distribution        | 产生在一个范围上均匀分布的整数值    |
+| uniform_real_distribution       | 产生在一个范围上均匀分布的实数值    |
+| bernoulli_distribution          | 产生伯努利分布上的布尔值。       |
+| binomial_distribution           | 产生二项分布上的整数值。        |
+| negative_binomial_distribution  | 产生负二项分布上的整数值。       |
+| geometric_distribution          | 产生几何分布上的整数值。        |
+| poisson_distribution            | 产生泊松分布上的整数值。        |
+| exponential_distribution        | 产生指数分布上的实数值。        |
+| gamma_distribution              | 产生 $\gamma$ 分布上的实数值 |
+| weibull_distribution            | 产生威布尔分布上的实数值。       |
+| extreme_value_distribution      | 产生极值分布上的实数值。        |
+| normal_distribution             | 产生标准正态（高斯）分布上的实数值。  |
+| lognormal_distribution          | 产生对数正态分布上的实数值。      |
+| chi_squared_distribution        | 产生 $x^2$ 分布上的实数值。   |
+| cauchy_distribution             | 产生柯西分布上的实数值。        |
+| fisher_f_distribution           | 产生费舍尔 F 分布上的实数值。    |
+| student_t_distribution          | 产生学生 t 分布上的实数值。     |
+| discrete_distribution           | 产生离散分布上的随机整数。       |
+| piecewise_constant_distribution | 产生分布在常子区间上的实数值。     |
+| piecewise_linear_distribution   | 产生分布在定义的子区间上的实数值。   |
 
 #### 实现
 
