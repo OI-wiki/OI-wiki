@@ -50,5 +50,5 @@ $d(i, r) = \max\left\{d(j, r') + h'\right\}$
 ### 题解
 
 ```cpp
---8 < --"docs/dp/dag/dag_code.md"
+--8<-- "docs/dp/dag/dag_code.md"
 ```
