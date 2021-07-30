@@ -265,15 +265,15 @@ nav:
       - 线性规划简介: math/linear-programming.md
       - 单纯形算法: math/simplex.md
     - 组合数学:
-      - 排列组合: math/combination.md
-      - 卡特兰数: math/catalan.md
-      - 斯特林数: math/stirling.md
-      - 贝尔数: math/bell.md
-      - 伯努利数: math/bernoulli.md
-      - 康托展开: math/cantor.md
-      - 容斥原理: math/inclusion-exclusion-principle.md
-      - 抽屉原理: math/drawer-principle.md
-      - Eulerian Number: math/eulerian.md
+      - 排列组合: math/combinatorics/combination.md
+      - 卡特兰数: math/combinatorics/catalan.md
+      - 斯特林数: math/combinatorics/stirling.md
+      - 贝尔数: math/combinatorics/bell.md
+      - 伯努利数: math/combinatorics/bernoulli.md
+      - 康托展开: math/combinatorics/cantor.md
+      - 容斥原理: math/combinatorics/inclusion-exclusion-principle.md
+      - 抽屉原理: math/combinatorics/drawer-principle.md
+      - Eulerian Number: math/combinatorics/eulerian.md
     - 概率初步: math/expectation.md
     - 置换群: math/permutation-group.md
     - 斐波那契数列: math/fibonacci.md

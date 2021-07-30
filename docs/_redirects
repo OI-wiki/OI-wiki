@@ -38,6 +38,15 @@
 /topic/cmd /tools/cmd
 /topic/problemsetting /contest/problemsetting
 /misc/io /contest/io
+/math/combination.md /math/combinatorics/combination.md
+/math/catalan.md /math/combinatorics/catalan.md
+/math/stirling.md /math/combinatorics/stirling.md
+/math/bell.md /math/combinatorics/bell.md
+/math/bernoulli.md /math/combinatorics/bernoulli.md
+/math/cantor.md /math/combinatorics/cantor.md
+/math/inclusion-exclusion-principle.md /math/combinatorics/inclusion-exclusion-principle.md
+/math/drawer-principle.md /math/combinatorics/drawer-principle.md
+/math/eulerian.md /math/combinatorics/eulerian.md
 /math/prime /math/number-theory/prime
 /math/meissel-lehmer /math/number-theory/meissel-lehmer
 /math/gcd /math/number-theory/gcd
