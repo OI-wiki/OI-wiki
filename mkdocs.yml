@@ -1,4 +1,4 @@
-﻿# Project Information
+# Project Information
 site_name: OI Wiki
 site_description: OI Wiki 是一个编程竞赛知识整合站点，提供有趣又实用的编程竞赛知识以及其他有帮助的内容，帮助广大编程竞赛爱好者更快更深入地学习编程竞赛
 site_author: OI Wiki Team
@@ -337,6 +337,7 @@ nav:
       - Euler Tour Tree: ds/ett.md
       - Top Tree: ds/top-tree.md
     - 析合树: ds/divide-combine.md
+    - PQ 树: ds/pq-tree.md
     - 手指树: ds/finger-tree.md
   - 图论:
     - 图论部分简介: graph/index.md
