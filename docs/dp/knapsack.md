@@ -193,7 +193,7 @@ $$
       list[index].v = h * k;
     }
     ```
-
+    
     ```python
     # Python Version
     index = 0
@@ -267,7 +267,6 @@ for k in range(1, n + 1):
             j -= 1
         i -= 1
 ```
-
 
 ## 分组背包
 

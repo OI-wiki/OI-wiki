@@ -157,7 +157,7 @@ $$
           }
       }
     ```
-
+    
     ```python
     # Python Version
     for len in range(2, n + 1): # 枚举区间长度
@@ -175,7 +175,6 @@ $$
                     m[l][r] = k # 更新（最小）最优决策点
                 k += 1
     ```
-
 
 ### 另一种常见的形式
 
@@ -273,7 +272,7 @@ $$
       if (r > mid) DP(mid + 1, r, k, k_r);
     }
     ```
-
+    
     ```python
     # Python Version
     def DP(l, r, k_l, k_r):
