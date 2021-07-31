@@ -1,4 +1,4 @@
-author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm, CoelacanthusHex, indevn
+author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm, CoelacanthusHex, indevn, qinyihao
 
 ![头图](./images/wsl-header.png)
 
@@ -339,7 +339,7 @@ xfce4-session
 
 [^ref1]: [洛谷日报 #6](https://www.luogu.com.cn/blog/asfr/Run-Ubuntu-On-Windows10)
 
-[^ref2]: [NOI 系列活动标准竞赛环境（2016 年 11 月 08 日更新）](http://www.noi.cn/gynoi/jsgz/2018-08-13/710465.shtml)
+[^ref2]: [NOI Linux 2.0 发布，将于 9 月 1 日起正式启用！](https://noi.cn/gynoi/jsgz/2021-07-16/732450.shtml)
 
 [^ref3]: [NOIP 标准评测系统及相关问题，smart0326, 2014-05-19, 百度文库](https://wenku.baidu.com/view/8246d96cdd36a32d72758143.html)
 

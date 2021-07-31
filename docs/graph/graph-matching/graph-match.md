@@ -28,7 +28,9 @@ author: accelsao, StudyingFather, t4rf9
 
 ## 二分图匹配
 
-一张二分图上的匹配称作二分匹配。![graph-match-3](./images/graph-match-3.png)
+![](../images/bi-graph.svg)
+
+一张二分图上的匹配称作二分匹配
 
 设 $G$ 为二分图，若在 $G$ 的子图 $M$ 中，任意两条边都没有公共节点，那么称 $M$ 为二分图 $G$ 的一个匹配，且 $M$ 的边数为匹配数。
 

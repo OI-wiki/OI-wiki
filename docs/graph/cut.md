@@ -14,13 +14,13 @@ author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005
 
 首先，我们上一个图：
 
-![](./images/bridge1.png)
+![](./images/cut1.svg)
 
 很容易的看出割点是 2，而且这个图仅有这一个割点。
 
 首先，我们按照 DFS 序给他打上时间戳（访问的顺序）。
 
-![](./images/bridge2.png)
+![](./images/cut2.svg)
 
 这些信息被我们保存在一个叫做 `num` 的数组中。
 
@@ -32,7 +32,7 @@ author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005
 
 另外，如果搜到了自己（在环中），如果他有两个及以上的儿子，那么他一定是割点了，如果只有一个儿子，那么把它删掉，不会有任何的影响。比如下面这个图，此处形成了一个环，从树上来讲它有 2 个儿子：
 
-![](./images/bridge3.png)
+![](./images/cut3.svg)
 
 我们在访问 1 的儿子时候，假设先 DFS 到了 2，然后标记用过，然后递归往下，来到了 4，4 又来到了 3，当递归回溯的时候，会发现 3 已经被访问过了，所以不是割点。
 
@@ -118,9 +118,9 @@ low[u] = min(low[u], num[v]);
 
 比如说，下图中，
 
-![割边示例图](./images/bridge4.png)
+![割边示例图](./images/bridge1.svg)
 
-红色箭头指向的就是割边。
+红色的边就是割边。
 
 ### 实现
 
