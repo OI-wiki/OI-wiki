@@ -9,6 +9,7 @@
 注：为了节省篇幅，本文中所有代码省略头文件。
 
 ```cpp
+// C++ Version
 int n, t;
 int tcost[103], mget[103];
 int ans = 0;
@@ -30,6 +31,29 @@ int main() {
 }
 ```
 
+```python
+# Python Version
+tcost = [0] * 103
+mget = [0] * 103
+ans = 0
+
+def dfs(pos, tleft, tans):
+    global ans
+    if tleft < 0:
+        return
+    if pos == n + 1:
+        ans = max(ans, tans)
+        return
+    dfs(pos + 1, tleft, tans)
+    dfs(pos + 1, tleft - tcost[pos], tans + mget[pos])
+
+t, n = map(lambda x:int(x), input().split())
+for i in range(1, n + 1):
+    tcost[i], mget[i] = map(lambda x:int(x), input().split())
+dfs(1, t, 0)
+print(ans)
+```
+
 这就是个十分朴素的大暴搜是吧……
 
 emmmmmm……$30$ 分。
@@ -49,6 +73,7 @@ emmmmmm……$30$ 分。
 不理解就看看代码吧：
 
 ```cpp
+// C++ Version
 int n, time;
 int tcost[103], mget[103];
 int dfs(int pos, int tleft) {
@@ -64,6 +89,26 @@ int main() {
   cout << dfs(1, time) << endl;
   return 0;
 }
+```
+
+```python
+# Python Version
+tcost = [0] * 103
+mget = [0] * 103
+
+def dfs(pos, tleft):
+    if pos == n + 1:
+        return 0
+    dfs1 = dfs2 = -INF
+    dfs1 = dfs(pos + 1, tleft)
+    if tleft >= tcost[pos]:
+        dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos]
+    return max(dfs1, dfs2)
+
+time, n = map(lambda x:int(x), input().split())
+for i in range(1, n + 1):
+    tcost[i], mget[i] = map(lambda x:int(x), input().split())
+print(dfs(1, time))
 ```
 
 emmmmmm……还是 30 分。
@@ -87,6 +132,7 @@ emmmmmm……还是 30 分。
 **直接返回 mem 中的值！**
 
 ```cpp
+// C++ Version
 int n, t;
 int tcost[103], mget[103];
 int mem[103][1003];
@@ -105,6 +151,31 @@ int main() {
   cout << dfs(1, t) << endl;
   return 0;
 }
+```
+
+```python
+# Python Version
+tcost = [0] * 103
+mget = [0] * 103
+mem = [[-1 for i in range(1003)] for j in range(103)]
+def dfs(pos, tleft):
+    if mem[pos][tleft] != -1:
+        return mem[pos][tleft]
+    if pos == n + 1:
+        mem[pos][tleft] = 0
+        return mem[pos][tleft]
+    dfs1 = dfs2 = -INF
+    dfs1 = dfs(pos + 1, tleft)
+    if tleft >= tcost[pos]:
+        dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos]
+    mem[pos][tleft] = max(dfs1, dfs2)
+    return mem[pos][tleft]
+
+
+t, n = map(lambda x:int(x), input().split())
+for i in range(1, n + 1):
+    tcost[i], mget[i] = map(lambda x:int(x), input().split())
+print(dfs(1, t))
 ```
 
 此时 `mem` 的意义与 dfs 相同：
@@ -170,6 +241,16 @@ int main() {
 }
 ```
 
+```python
+# Python Version
+def dfs(i, j, k):
+    if mem[i][j][k] != -1:
+        return mem[i][j][k]
+    mem[i][j][k] = dfs(i + 1, j + 1, k - a[j]) + dfs(i + 1, j, k)
+    return mem[i][j][k]
+```
+
+
 * * *
 
 ## 如何写记忆化搜索
@@ -199,6 +280,19 @@ int main() {
   // 读入部分略去
   cout << dfs(n) << endl;
 }
+```
+
+```python
+# Python Version
+def dfs(i):
+    if mem[i] != -1:
+        return mem[i]
+    ret = 1
+    for j in range(1, i):
+        if a[j] < a[i]:
+            ret = max(ret, dfs(j) + 1)
+    mem[i] = ret
+    return mem[i]
 ```
 
 ### 方法二
