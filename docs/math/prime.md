@@ -91,7 +91,7 @@ bool millerRabin(int n) {
 比较正确的 Miller Rabin：（来自 fjzzq2002）
 
 ```cpp
-bool millerRabbin(int n) {
+bool millerRabin(int n) {
   if (n < 3 || n % 2 == 0) return n == 2;
   int a = n - 1, b = 0;
   while (a % 2 == 0) a /= 2, ++b;

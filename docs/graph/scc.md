@@ -106,6 +106,8 @@ void tarjan(int u) {
 
 ## Kosaraju 算法
 
+Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文上提出，但 Micha Sharir 最早发表了它。
+
 Kosaraju 算法依靠两次简单的 DFS 实现。
 
 第一次 DFS，选取任意顶点作为起点，遍历所有未访问过的顶点，并在回溯之前给顶点编号，也就是后序遍历。
