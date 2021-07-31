@@ -68,7 +68,6 @@ void counting_sort() {
 
 ### Python
 
-
 ```python
 # Python Version
 N = W = 100010
@@ -85,7 +84,6 @@ def counting_sort():
         b[cnt[a[i]] - 1] = a[i]
         cnt[a[i]] -= 1
 ```
-
 
 ## 参考资料与注释
 
