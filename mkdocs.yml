@@ -205,6 +205,7 @@ nav:
     - 复数: math/complex.md
     - 位运算: math/bit.md
     - 快速幂: math/quick-pow.md
+    - 光速幂: math/quick-pow-2.md
     - 进位制: math/base.md
     - 高精度计算: math/bignum.md
     - 平衡三进制: math/balanced-ternary.md
