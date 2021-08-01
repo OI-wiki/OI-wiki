@@ -6,7 +6,7 @@
 
 ## 例题
 
-### 例题 1
+### 例题一
 
 ???+note "[P3403 跳楼机](https://www.luogu.com.cn/problem/P3403)"
     题目大意：给定 $x，y，z，h$，对于 $k \in [1,h]$，有多少个 $k$ 能够满足 $ax+by+cz=k$。（$1\le x,y,z\le 10^5$，$h\le 2^{63}-1$）
