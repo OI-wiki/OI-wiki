@@ -199,7 +199,7 @@ while (dp[ans] != mx) ++ans;
 
 ```python
 # Python Version
-dp = [int('0x1f1f1f1f',16)] * MAXN
+dp = [0x1f1f1f1f] * MAXN
 mx = dp[0]
 for i in range(0, n):
     bisect.insort_left(dp, a[i], 0, len(dp))
