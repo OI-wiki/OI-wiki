@@ -38,7 +38,7 @@
 /topic/cmd /tools/cmd
 /topic/problemsetting /contest/problemsetting
 /misc/io /contest/io
-/math/combination.md /math/combinatorics/combination.md
+/math/combination.md /math/combinatorics/combination
 /math/catalan.md /math/combinatorics/catalan.md
 /math/stirling.md /math/combinatorics/stirling.md
 /math/bell.md /math/combinatorics/bell.md
