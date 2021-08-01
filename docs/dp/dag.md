@@ -51,5 +51,5 @@ $d(i, r) = \max\left\{d(j, r') + h'\right\}$
 
 ```cpp
 /* clang-format off */
---8<-- "docs/dp/dag/dag_code.cpp"
+--8<-- "docs/dp/code/dag/dag_1.cpp"
 ```
