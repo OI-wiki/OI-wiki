@@ -245,7 +245,7 @@ int main() {
 ```python
 # Python Version
 def dfs(i, j, k):
-    #判断边界条件
+    # 判断边界条件
     if mem[i][j][k] != -1:
         return mem[i][j][k]
     mem[i][j][k] = dfs(i + 1, j + 1, k - a[j]) + dfs(i + 1, j, k)
