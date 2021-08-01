@@ -211,7 +211,7 @@ $$
 容易构造出 $g(x)$ 的表达式为：
 
 $$
-g(x)=\dfrac {\varepsilon(x)-\sum_{d\mid x,d\ne 1}{f(x)g\left(\dfrac xd \right)}}{f(1)}
+g(x)=\dfrac {\varepsilon(x)-\sum_{d\mid x,d\ne 1}{f(d)g\left(\dfrac {x}{d} \right)}}{f(1)}
 $$
 
 ### 重要结论
@@ -475,7 +475,7 @@ $$
 易知 $1\sim\lfloor\dfrac{n}{k}\rfloor$ 中 $d$ 的倍数有 $\lfloor\dfrac{n}{kd}\rfloor$ 个，故原式化为
 
 $$
-\displaystyle\sum_{d=1}\mu(d)\lfloor\frac{n}{kd}\rfloor\lfloor\frac{m}{kd}\rfloor
+\displaystyle\sum_{d=1}^{\min(\lfloor \frac{n}{k}\rfloor,\lfloor \frac{m}{k}\rfloor)}\mu(d)\lfloor\frac{n}{kd}\rfloor\lfloor\frac{m}{kd}\rfloor
 $$
 
 很显然，式子可以数论分块求解。
