@@ -48,12 +48,11 @@ for (len = 1; len <= n; len++)
 ```python
 # Python Version
 for len in range(1, n + 1):
-    while i <= 2 * n - 1:
+    for i in range(1, 2 * n):
         j = len + i - 1
         while k < j and k <= 2 * n - 1:
             f[i][j] = max(f[i][j], f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1])
             k += 1
-        i += 1
 ```
 
 ## 几道练习题
