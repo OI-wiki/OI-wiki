@@ -74,7 +74,7 @@ $$
 f(a,b,c,n)&=\sum_{j=0}^{m-1}
 \sum_{i=0}^n\left[i>\left\lfloor\frac{jc+c-b-1}{a}\right\rfloor \right]\\
 &=\sum_{j=0}^{m-1}
-n-\left\lfloor\frac{jc+c-b-1}{a}\right\rfloor\\
+(n-\left\lfloor\frac{jc+c-b-1}{a}\right\rfloor)\\
 &=nm-f\left(c,c-b-1,a,m-1\right)
 \end{split}
 $$
