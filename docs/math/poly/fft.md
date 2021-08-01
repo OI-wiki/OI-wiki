@@ -199,38 +199,38 @@ $$
 那么原来的 $f(x)$ 用新函数表示为
 
 $$
-F(x)=G\left(x^2\right) + x  \times  H\left(x^2\right)
+f(x)=G\left(x^2\right) + x  \times  H\left(x^2\right)
 $$
 
-利用单位复根的性质得到
-
-$$
-\begin{aligned}
-\operatorname{DFT}(f(\omega_n^k))
-&=\operatorname{DFT}(G((\omega_n^k)^2)) + \omega_n^k  \times \operatorname{DFT}(H((\omega_n^k)^2))\\
-&=\operatorname{DFT}(G(\omega_n^{2k})) + \omega_n^k  \times \operatorname{DFT}(H(\omega_n^{2k}))\\
-&=\operatorname{DFT}(G(\omega_{n/2}^k)) + \omega_n^k  \times \operatorname{DFT}(H(\omega_{n/2}^k))
-\end{aligned}
-$$
-
-同理可得
+利用单位复根的性质，和 $G\left(x^2\right)$ 和 $H\left(x^2\right)$ 是偶函数，我们知道在复平面上 $\omega^i_n$ 和 $\omega^{i+n/2}_n$ 的 $G(x^2)$ 的 $H(x^2)$ 对应的值相同（因为 $\omega^i_n = -\omega^{i + n/2}_n$）。得到
 
 $$
 \begin{aligned}
-\operatorname{DFT}(f(\omega_n^{k+n/2}))
-&=\operatorname{DFT}(G(\omega_n^{2k+n})) + \omega_n^{k+n/2}  \times \operatorname{DFT}(H(\omega_n^{2k+n}))\\
-&=\operatorname{DFT}(G(\omega_n^{2k})) - \omega_n^k  \times \operatorname{DFT}(H(\omega_n^{2k}))\\
-&=\operatorname{DFT}(G(\omega_{n/2}^k)) - \omega_n^k  \times \operatorname{DFT}(H(\omega_{n/2}^k))
+f(\omega_n^k) &= G((\omega_n^k)^2) + \omega_n^k  \times H((\omega_n^k)^2) \\
+              &= G(\omega_n^{2k}) + \omega_n^k  \times H(\omega_n^{2k}) \\
+              &= G(\omega_{n/2}^k) + \omega_n^k  \times H(\omega_{n/2}^k)
 \end{aligned}
 $$
 
-因此我们求出了 $\operatorname{DFT}(G(\omega_{n/2}^k))$ 和 $\operatorname{DFT}(H(\omega_{n/2}^k))$ 后，就可以同时求出 $\operatorname{DFT}(f(\omega_n^k))$ 和 $\operatorname{DFT}(f(\omega_n^{k+n/2}))$。于是对 $G$ 和 $H$ 分别递归 DFT 即可。
+和
+
+$$
+\begin{aligned}
+f(\omega_n^{k+n/2}) &= G(\omega_n^{2k+n}) + \omega_n^{k+n/2}  \times H(\omega_n^{2k+n}) \\
+                    &= G(\omega_n^{2k}) - \omega_n^k  \times H(\omega_n^{2k}) \\
+                    &= G(\omega_{n/2}^k) - \omega_n^k  \times H(\omega_{n/2}^k)
+\end{aligned}
+$$
+
+因此我们求出了 $G(\omega_{n/2}^k)$ 和 $H(\omega_{n/2}^k)$ 后，就可以同时求出 $f(\omega_n^k)$ 和 $f(\omega_n^{k+n/2})$。于是对 $G$ 和 $H$ 分别递归 DFT 即可。
 
 考虑到分治 DFT 能处理的多项式长度只能是 $2^m(m \in N^ \ast )$，否则在分治的时候左右不一样长，右边就取不到系数了。所以要在第一次 DFT 之前就把序列向上补成长度为 $2^m(m \in N^\ast )$（高次系数补 $0$）、最高项次数为 $2^m-1$ 的多项式。
 
 在代入值的时候，因为要代入 $n$ 个不同值，所以我们代入 $\omega_n^0,\omega_n^1,\omega_n^2,\cdots, \omega_n^{n-1} (n=2^m(m \in N^ \ast ))$ 一共 $2^m$ 个不同值。
 
 代码实现方面，STL 提供了复数的模板，当然也可以手动实现。两者区别在于，使用 STL 的 `complex` 可以调用 `exp` 函数求出 $\omega_n$。但事实上使用欧拉公式得到的虚数来求 $\omega_n$ 也是等价的。
+
+以上就是 FFT 算法中 DFT 的介绍，它将一个多项式从系数表示法变成了点值表示法。
 
 ???+ note "递归版 FFT"
     ```cpp
