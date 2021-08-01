@@ -2,6 +2,8 @@
 
 ## 队列
 
+![](./images/queue.svg)
+
 队列（queue）是一种具有「先进入队列的元素一定先出队列」性质的表。由于该性质，队列通常也被称为先进先出（first in first out）表，简称 FIFO 表。
 
 C++ STL 中实现了 [队列 `std::queue`](https://zh.cppreference.com/w/cpp/container/queue) 和 [优先队列 `std::priority_queue`](https://zh.cppreference.com/w/cpp/container/priority_queue) 两个类，定义于头文件 [`<queue>`](https://zh.cppreference.com/w/cpp/header/queue) 中。
