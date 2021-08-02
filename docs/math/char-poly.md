@@ -214,10 +214,10 @@ $$
     #include <iostream>
     #include <random>
     #include <vector>
-
+    
     typedef std::vector<std::vector<int>> Matrix;
     typedef long long i64;
-
+    
     Matrix to_upper_Hessenberg(const Matrix &M, int mod) {
       Matrix H(M);
       int n = H.size();
@@ -246,19 +246,23 @@ $$
             }
             if (H[j][i] >= H[i + 1][i]) {
               int q = H[j][i] / H[i + 1][i], mq = mod - q;
-              for (int k = i; k < n; ++k) H[j][k] = (H[j][k] + i64(mq) * H[i + 1][k]) % mod;
-              for (int k = 0; k < n; ++k) H[k][i + 1] = (H[k][i + 1] + i64(q) * H[k][j]) % mod;
+              for (int k = i; k < n; ++k)
+                H[j][k] = (H[j][k] + i64(mq) * H[i + 1][k]) % mod;
+              for (int k = 0; k < n; ++k)
+                H[k][i + 1] = (H[k][i + 1] + i64(q) * H[k][j]) % mod;
             } else {
               int q = H[i + 1][i] / H[j][i], mq = mod - q;
-              for (int k = i; k < n; ++k) H[i + 1][k] = (H[i + 1][k] + i64(mq) * H[j][k]) % mod;
-              for (int k = 0; k < n; ++k) H[k][j] = (H[k][j] + i64(q) * H[k][i + 1]) % mod;
+              for (int k = i; k < n; ++k)
+                H[i + 1][k] = (H[i + 1][k] + i64(mq) * H[j][k]) % mod;
+              for (int k = 0; k < n; ++k)
+                H[k][j] = (H[k][j] + i64(q) * H[k][i + 1]) % mod;
             }
           }
         }
       }
       return H;
     }
-
+    
     std::vector<int> get_charpoly(const Matrix &M, int mod) {
       Matrix H(to_upper_Hessenberg(M, mod));
       int n = H.size();
@@ -280,12 +284,13 @@ $$
           int prod = i64(t) * H[i - j - 1][i - 1] % mod;
           if (prod == 0) continue;
           prod = mod - prod;
-          for (int k = 0; k <= i - j - 1; ++k) pi[k] = (pi[k] + i64(prod) * p[i - j - 1][k]) % mod;
+          for (int k = 0; k <= i - j - 1; ++k)
+            pi[k] = (pi[k] + i64(prod) * p[i - j - 1][k]) % mod;
         }
       }
       return p[n];
     }
-
+    
     bool verify(const Matrix &M, const std::vector<int> &charpoly, int mod) {
       if (mod == 1) return true;
       int n = M.size();
@@ -308,7 +313,7 @@ $$
         if (sum[i] != 0) return false;
       return true;
     }
-
+    
     int main() {
       std::ios::sync_with_stdio(false);
       std::cin.tie(0);
