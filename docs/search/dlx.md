@@ -398,7 +398,7 @@ void recover(const int &c) {
 
 这样就初始化了一个 Dancing Link。
 
-`\text{build(r, c)}` 的代码实现如下：
+`build(r, c)` 的代码实现如下：
 
 ```cpp
 void build(const int &r, const int &c) {
