@@ -209,7 +209,7 @@ nav:
     - 高精度计算: math/bignum.md
     - 平衡三进制: math/balanced-ternary.md
     - 数论:
-      - 数论部分简介: math/number-theory/intro.md
+      - 数论基础: math/number-theory/basic.md
       - 素数: math/number-theory/prime.md
       - Meissel-Lehmer 算法: math/number-theory/meissel-lehmer.md
       - 最大公约数: math/number-theory/gcd.md
