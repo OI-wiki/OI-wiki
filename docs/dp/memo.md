@@ -10,6 +10,7 @@
 ### 朴素的 [DFS](../search/dfs.md) 做法
 
 ```cpp
+// C++ Version
 int n, t;
 int tcost[103], mget[103];
 int ans = 0;
@@ -42,6 +43,7 @@ int main() {
 具体到本题上，我们用一个数组 `mem` 来记录每个 `dfs(pos,tleft)` 的返回值。刚开始把 `mem` 中每个值都设成 $-1$（代表没访问过）。每次需要访问一个状态时 dfs 时，如果相应状态的值在 `mem` 中为 $-1$，则正常进行递归。否则我们直接使用 `mem` 中已经存储过的值即可。
 
 ```cpp
+// C++ Version
 int n, t;
 int tcost[103], mget[103];
 int mem[103][1003];

@@ -97,6 +97,20 @@ $$
 
 该做法的时间复杂度为 $O(n^2)$。
 
+```python
+# Python Version
+a = [0] * MAXN
+def dp():
+    now, ans = 1, 1
+    for i in range(2, n + 1):
+        if a[i] >= a[i + 1]:
+            now += 1
+        else:
+            now = 1
+        ans = max(now, ans)
+    return ans
+```
+
 ## 最长不下降子序列
 
 ???+note "最长不下降子序列问题"
@@ -111,6 +125,7 @@ $$
 容易发现该算法的时间复杂度为 $O(n^2)$。
 
 ```cpp
+// C++ Version
 int a[MAXN], d[MAXN];
 int dp() {
   d[1] = 1;
@@ -144,6 +159,7 @@ int dp() {
 参考代码如下：
 
 ```cpp
+// C++ Version
 for (int i = 0; i < n; ++i) scanf("%d", a + i);
 memset(dp, 0x1f, sizeof dp);
 mx = dp[0];
