@@ -135,7 +135,7 @@ $$
 那么原来的 $f(x)$ 用新函数表示为
 
 $$
-F(x)=G\left(x^2\right) + x  \times  H\left(x^2\right)
+f(x)=G\left(x^2\right) + x  \times  H\left(x^2\right)
 $$
 
 利用单位复根的性质得到
