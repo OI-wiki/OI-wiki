@@ -237,7 +237,7 @@ $$
 
 ## 二维费用背包
 
-???+note "例题 [「Luogu P1855」榨取 kkksc03](https://www.luogu.com.cn/problem/P1855)"
+???+note "[「Luogu P1855」榨取 kkksc03](https://www.luogu.com.cn/problem/P1855)"
     有 $n$ 个任务需要完成，完成第 $i$ 个任务需要花费 $t_i$ 分钟，产生 $c_i$ 元的开支。
     
     现在有 $T$ 分钟时间，$W$ 元钱来处理这些任务，求最多能完成多少任务。
@@ -271,7 +271,7 @@ for k in range(1, n + 1):
 
 ## 分组背包
 
-???+note "例题 [「Luogu P1757」通天之分组背包](https://www.luogu.com.cn/problem/P1757)"
+???+note "[「Luogu P1757」通天之分组背包](https://www.luogu.com.cn/problem/P1757)"
     有 $n$ 件物品和一个大小为 $m$ 的背包，第 $i$ 个物品的价值为 $w_i$，体积为 $v_i$。同时，每个物品属于一个组，同组内最多只能选择一个物品。求背包能装载物品的最大总价值。
 
 这种题怎么想呢？其实是从「在所有物品中选择一件」变成了「从当前组中选择一件」，于是就对每一组进行一次 0-1 背包就可以了。
@@ -304,7 +304,7 @@ for k in range(1, ts + 1): # 循环每一组
 
 ## 有依赖的背包
 
-???+note " 例题 [「Luogu P1064」金明的预算方案](https://www.luogu.com.cn/problem/P1064)“
+???+note "[「Luogu P1064」金明的预算方案](https://www.luogu.com.cn/problem/P1064)"
     金明有 $n$ 元钱，想要买 $m$ 个物品，第 $i$ 件物品的价格为 $v_i$，重要度为 $p_i$。有些物品是从属于某个主件物品的附件，要买这个物品，必须购买它的主件。
 
     目标是让所有购买的物品的 $v_i \times p_i$ 之和最大。
