@@ -199,6 +199,7 @@ nav:
     - 序列自动机: string/seq-automaton.md
     - 最小表示法: string/minimal-string.md
     - Lyndon 分解: string/lyndon.md
+    - Main-Lorentz 算法: string/main-lorentz.md
   - 数学:
     - 数学部分简介: math/index.md
     - 符号: math/notation.md
