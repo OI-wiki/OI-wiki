@@ -168,7 +168,7 @@ bool isSameSign(int x, int y) {  // 有 0 的情况例外
     对于一般情况下的交换操作，推荐直接调用 `algorithm` 库中的 `std::swap` 函数。
 
 ```cpp
-void swap(int &a, int &b) { a ^= b ^= a ^= b; }
+void swap(int &a, int &b) { (a ^ b) ? a ^= b ^= a ^= b : 0; }
 ```
 
 ### 操作一个数的二进制位
