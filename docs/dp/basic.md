@@ -172,4 +172,4 @@ while (dp[ans] != mx) ++ans;
 
 ## 参考资料与注释
 
-[^ref1]: <https://www.cnblogs.com/itlqs/p/5743114.html>
+[^ref1]: [最长不下降子序列nlogn算法详解 - lvmememe - 博客园](https://www.cnblogs.com/itlqs/p/5743114.html)
