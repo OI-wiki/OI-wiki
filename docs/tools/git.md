@@ -29,7 +29,6 @@ Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Gi
 ??? note "各选项功能详解"
     默认勾选的选项：
     
-
     -   `Windows Explorer integration`：资源管理器集成（右键菜单）。
         - `Git Bash Here`：在当前目录运行 Git 命令行。
         - `Git GUI Here`：在当前目录运行 Git 图形化页面。
@@ -54,7 +53,7 @@ Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Gi
 
 ![Git for Windows installation 5](images/git7.png)
 
-在下拉菜单栏中，Git 提供了 nano、[Vim](editor/vim.md)、[Notepad++](editor/npp.md)、[Visual Studio Code](editor/vscode.md)、Visual Studio Code Insiders（VS Code 预览版）、Sublime Text、[Atom](editor/atom.md) 和 VSCodium 作为默认编辑器的预设方案。如果系统已经安装了上述的一种或多种编辑器，可以直接选择其中一种并进入下一步。另外，还可通过 `Select other editor as Git's default editor` 项手动指定默认编辑器。
+在下拉菜单栏中，Git 提供了 nano、[Vim](./editor/vim.md)、[Notepad++](./editor/npp.md)、[Visual Studio Code](./editor/vscode.md)、Visual Studio Code Insiders（VS Code 预览版）、Sublime Text、[Atom](./editor/atom.md) 和 VSCodium 作为默认编辑器的预设方案。如果系统已经安装了上述的一种或多种编辑器，可以直接选择其中一种并进入下一步。另外，还可通过 `Select other editor as Git's default editor` 项手动指定默认编辑器。
 
 ![Git for Windows installation 6](images/git8.png)
 
@@ -140,7 +139,6 @@ $ git clone https://github.com/OI-wiki/OI-wiki
 ???+note "远程仓库的链接"
     这里给出的仓库链接是 HTTP(S) 链接，也即我们采用了 HTTP(S) 方式连接到远程仓库。
     
-
     事实上，连接到远程仓库的方式还有多种。其中使用 ssh 连接到远程仓库的方法更为方便和安全，在「远程仓库的管理」部分我们会简单介绍使用 ssh 连接到远程仓库的方法。
 
 这样，被克隆的仓库的内容就会被储存到当前文件夹下一个与仓库同名的新文件夹。在本例中，当前文件夹下会出现一个名为 `OI-wiki` 的新文件夹。
@@ -214,7 +212,6 @@ Git 给了一条提示，执行 `git add README.md` 就可以将非暂存区的�
 ???+note "一次性将所有更改放入暂存区"
     `git add` 命令会将对指定的文件的更改放入暂存区中。
     
-
     在多数情况下，用户更期望一次性将所有更改都放入暂存区中，这时候可以应用 `git add -A` 命令。该命令会将所有更改（包括未被纳入版本跟踪的文件，不包括被忽略的文件）放入暂存区。
     
     如果只需更新已被纳入版本跟踪的文件，而不将未纳入版本跟踪的文件加入暂存区，可以使用 `git add -u`。
@@ -222,7 +219,6 @@ Git 给了一条提示，执行 `git add README.md` 就可以将非暂存区的�
 ???+note "忽略文件"
     有些时候我们并不希望将一些文件（如可执行文件等）纳入到版本跟踪中。这时候可以在仓库根目录下创建 `.gitignore` 文件，在该文件里写下想要忽略的文件。Git 将不会将这些文件纳入到版本跟踪中。
     
-
     例如，`*.exe` 将自动忽略仓库里的所有扩展名为 `.exe` 的文件。
 
 现在将非暂存区的文件加入暂存区，将所有更改一并提交（commit）。
@@ -540,7 +536,7 @@ $ git push <remote> <from>:<to> # 将本地 <from> 分支的更改推送至 <rem
 
 需要注意的是，你的更改能成功推送，需要满足两个条件：你拥有向这个仓库（分支）的写入权限，且你的这个分支比远程仓库的相应分支新（可以理解为没有人在你进行更改的这段时间进行了推送）。当远程分支有当前分支没有的新更改时，可以执行 `git pull` 命令完成合并再提交。
 
-如果你需要强制将本地分支的更改推送到远程仓库的话，可以加入 `-f` 参数。此时**远程仓库的提交历史会被本地的提交历史覆盖**，因此该命令应谨慎使用。更好的选择是使用 `--force-with-lease` 参数，该参数仅在远程仓库没有更新时才会进行覆盖。需要注意的是，此处“更新”是相对于上一次 fetch 而言的，如果使用了 VS Code 提供的 Auto Fetch 功能，可能会没有注意到更新而使 `--force-with-lease` 和 `-f` 一样危险。
+如果你需要强制将本地分支的更改推送到远程仓库的话，可以加入 `-f` 参数。此时 **远程仓库的提交历史会被本地的提交历史覆盖**，因此该命令应谨慎使用。更好的选择是使用 `--force-with-lease` 参数，该参数仅在远程仓库没有更新时才会进行覆盖。需要注意的是，此处“更新”是相对于上一次 fetch 而言的，如果使用了 VS Code 提供的 Auto Fetch 功能，可能会没有注意到更新而使 `--force-with-lease` 和 `-f` 一样危险。
 
 ### 追踪远程分支
 
@@ -563,7 +559,7 @@ $ git push <remote> <from>:<to> # 将本地 <from> 分支的更改推送至 <rem
 
 与 HTTP(S) 相比，使用 ssh 连接到远程仓库更为方便安全。
 
-在使用 ssh 连接到远程仓库之前，需要先在本地添加 ssh 密钥。接下来需要将本地添加的 ssh 密钥的**公钥**上传到远程仓库账户。
+在使用 ssh 连接到远程仓库之前，需要先在本地添加 ssh 密钥。接下来需要将本地添加的 ssh 密钥的 **公钥** 上传到远程仓库账户。
 
 考虑到本文主要是给 **OI Wiki** 的贡献者提供一个使用 Git 的教程，这里直接给出 [GitHub Docs 提供的教程](https://docs.github.com/cn/github/authenticating-to-github/connecting-to-github-with-ssh)，供各位读者参考。
 

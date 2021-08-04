@@ -56,31 +56,32 @@ author: Ir1d, Anguei, hsfzLZH1, siger-young, HeRaNO
                 oper.pop();  // 只要栈顶符号的优先级不低于新符号，就不断取出栈顶并输出
           oper.push(tmp[0]);  // 最后把新符号进栈
         }
-        while (!oper.empty()) t += std::string(1, oper.top()) + " ", oper.pop();
-        return t;
       }
-      int calc(const std::string &s) {  // 计算转换好的后缀表达式
-        std::stack<int> num;
-        std::stringstream ss;
-        ss << s;
-        std::string t, tmp;
-        while (ss >> tmp) {
-          if (isdigit(tmp[0]))
-            num.push(stoi(tmp));
-          else {
-            int b, a;  // 取出栈顶元素，注意顺序
-            if (!num.empty()) b = num.top();
-            num.pop();
-            if (!num.empty()) a = num.top();
-            num.pop();
-            if (tmp[0] == '+') num.push(a + b);
-            if (tmp[0] == '-') num.push(a - b);
-            if (tmp[0] == '*') num.push(a * b);
-            if (tmp[0] == '^') num.push(qpow(a, b));
-          }
+      while (!oper.empty()) t += std::string(1, oper.top()) + " ", oper.pop();
+      return t;
+    }
+    int calc(const std::string &s) {  // 计算转换好的后缀表达式
+      std::stack<int> num;
+      std::stringstream ss;
+      ss << s;
+      std::string t, tmp;
+      while (ss >> tmp) {
+        if (isdigit(tmp[0]))
+          num.push(stoi(tmp));
+        else {
+          int b, a;  // 取出栈顶元素，注意顺序
+          if (!num.empty()) b = num.top();
+          num.pop();
+          if (!num.empty()) a = num.top();
+          num.pop();
+          if (tmp[0] == '+') num.push(a + b);
+          if (tmp[0] == '-') num.push(a - b);
+          if (tmp[0] == '*') num.push(a * b);
+          if (tmp[0] == '^') num.push(qpow(a, b));
         }
-        return num.top();
       }
+      return num.top();
+    }
     ```
 
 ## 习题

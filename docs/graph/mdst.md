@@ -18,15 +18,15 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
 
 举例一个结点 $i$，该结点与图的绝对中心的位置关系如下图。
 
-![mdst1](./images/mdst-1.png)
+![mdst1](./images/mdst-graph.svg)
 
 随着图的绝对中心 $c$ 在边上的改变会生成一个距离与 $c$ 位置的函数图像。显然的，当前的 $d(c,i)$ 的函数图像是一个两条斜率相同的线段构成的折线段。
 
-![mdst2](./images/mdst-2.png)
+![mdst2](./images/mdst-plot1.svg)
 
 对于图上的任意一结点，图的绝对中心到最远距离结点的函数就写作 $f = \max\{ d(c,i)\},i \in[1,n]$，其函数图像如下。
 
-![mdst3](./images/mdst-3.png)
+![mdst3](./images/mdst-plot2.svg)
 
 并且这些折线交点中的最低点，横坐标就是图的绝对中心的位置。
 
@@ -34,7 +34,7 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
 
 ### 算法流程
 
-1. 使用多源最短路算法（[Floyd](shortest-path.md#floyd)，[Johnson](shortest-path.md#johnson) 等），求出 $d$ 数组；
+1. 使用多源最短路算法（[Floyd](./shortest-path.md#floyd)，[Johnson](./shortest-path.md#johnson) 等），求出 $d$ 数组；
 
 2. 求出 $\textit{rk}(i,j)$，并将其升序排序；
 

@@ -21,13 +21,13 @@ ST3 并不支持中文，需要安装汉化插件。
 
 #### 安装插件管理器
 
-打开 ST3 后键入<kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>唤出命令框，输入 `Install` 后回车（完整命令是 `Install Package Control`，不区分大小写），此时应该会看到左下角有一个 `=` 在不停的左右移动。等待 Package Control 安装完成，具体的加载时间取决于网络。
+打开 ST3 后键入<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>唤出命令框，输入 `Install` 后回车（完整命令是 `Install Package Control`，不区分大小写），此时应该会看到左下角有一个 `=` 在不停的左右移动。等待 Package Control 安装完成，具体的加载时间取决于网络。
 
 如果完成的弹窗显示安装失败（与网络有关），则需要手动下载 [Package Control](https://packagecontrol.io/Package%20Control.sublime-package) 并将下载好的文件放到 `C:\Users\用户名\AppData\Roaming\Sublime Text 3\Installed Packages` 中。稍作等待，ST3 会自动识别该插件。
 
 #### 安装汉化插件
 
-再次按下<kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>输入 `Install` 后回车（完整命令是 `Package Contrl:Install Package`），等待加载完成，接下来应该是这个界面：
+再次按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>输入 `Install` 后回车（完整命令是 `Package Contrl:Install Package`），等待加载完成，接下来应该是这个界面：
 
 ![](./images/sublime3-1.png)
 
@@ -46,7 +46,7 @@ ST3 并不支持中文，需要安装汉化插件。
 
 安装插件与主题的方法与安装汉化插件一致。
 
-输入<kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>输入 `Install` 后回车，然后搜索插件/主题/配色即可。
+输入<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>输入 `Install` 后回车，然后搜索插件/主题/配色即可。
 
 由于 ST3 主要面向网页前端开发，所以一般来说编辑 C++ 的情况下并没有太多很好的插件，不过一般来说自带的功能已经足够了。
 
@@ -94,7 +94,7 @@ ST3 的 vim 模式与真正的 vim 略有区别，以下为找到的部分（欢
 - 使用<kbd>Ctrl</kbd>、<kbd>Shift</kbd>和<kbd>Alt</kbd>键的快捷键会保留为 ST3 设置的快捷键，如 `Ctrl+V` 不会进入可视模式而是正常粘贴。
 - 命令行模式只保留了 `:e`、`:0`、`:$`、`:s`。
 - 使用 `\` 与 `?` 命令会自动唤出搜索框，而不是直接在命令中键入单词进行搜索。同时，数字将无法生效。
-- `q` 宏录制命令会启动 ST3 自带的宏录制，按<kbd>q</kbd>后需要再按一个键启动录制，但录制的宏不会与该键绑定，需要按<kbd>Crtl</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd>才能启动。如果需要保存，需要 `工具->保存宏`，快捷键需要设置。
+- `q` 宏录制命令会启动 ST3 自带的宏录制，按<kbd>q</kbd>后需要再按一个键启动录制，但录制的宏不会与该键绑定，需要按<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd>才能启动。如果需要保存，需要 `工具->保存宏`，快捷键需要设置。
 - 该插件的实现方式是通过修改快捷键，由于已经打包，所以如果是包含多个字符的命令无法进行设置。
 
 ??? note "让 ST3 更加 vim" 
@@ -172,7 +172,7 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 
 ### 编译
 
-直接按<kbd>Ctrl</kbd>+<kbd>B</kbd>编译，第一次使用会让你选择编译方式，选择 `C++ Single File `（编译）或 `C++ Single File - Run`（编译并运行）。
+直接按<kbd>Ctrl</kbd>+<kbd>B</kbd>编译，第一次使用会让你选择编译方式，选择 `C++ Single File`（编译）或 `C++ Single File - Run`（编译并运行）。
 
 #### 修改编译选项
 
@@ -205,7 +205,6 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
     
     ```json
     "cmd": ["cmd","/c","g++","-Wall","${file}","-o","${file_path}/${file_base_name}","&&","start","cmd","/c","${file_path}/${file_base_name}& pause"],
-    
     ```
     
     还可以利用一些方法把编译和运行拆开并分别配置快捷键，由于并不必要，请自行搜索。

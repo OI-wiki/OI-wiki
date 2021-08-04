@@ -1,4 +1,4 @@
-﻿# Project Information
+# Project Information
 site_name: OI Wiki
 site_description: OI Wiki 是一个编程竞赛知识整合站点，提供有趣又实用的编程竞赛知识以及其他有帮助的内容，帮助广大编程竞赛爱好者更快更深入地学习编程竞赛
 site_author: OI Wiki Team
@@ -239,6 +239,7 @@ nav:
       - 快速傅里叶变换: math/poly/fft.md
       - 快速数论变换: math/poly/ntt.md
       - 快速沃尔什变换: math/poly/fwt.md
+      - Chirp-Z 变换: math/poly/czt.md
       - 多项式求逆: math/poly/inv.md
       - 多项式开方: math/poly/sqrt.md
       - 多项式除法|取模: math/poly/div-mod.md
@@ -252,10 +253,12 @@ nav:
       - 生成函数简介: math/gen-func/intro.md
       - 普通生成函数: math/gen-func/ogf.md
       - 指数生成函数: math/gen-func/egf.md
+      - 狄利克雷生成函数: math/gen-func/dgf.md
     - 线性代数:
       - 向量: math/vector.md
       - 矩阵: math/matrix.md
       - 高斯消元: math/gauss.md
+      - 特征多项式: math/char-poly.md
       - 线性基: math/basis.md
     - 线性规划:
       - 线性规划简介: math/linear-programming.md
@@ -277,6 +280,7 @@ nav:
     - 牛顿迭代法: math/newton.md
     - 数值积分: math/integral.md
     - 分段打表: math/dictionary.md
+    - 傅里叶-莫茨金消元法: math/fourier-motzkin-elimination.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
     - 栈: ds/stack.md
@@ -334,6 +338,8 @@ nav:
       - Euler Tour Tree: ds/ett.md
       - Top Tree: ds/top-tree.md
     - 析合树: ds/divide-combine.md
+    - PQ 树: ds/pq-tree.md
+    - 手指树: ds/finger-tree.md
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论相关概念: graph/concept.md
