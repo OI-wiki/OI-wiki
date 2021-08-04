@@ -1,6 +1,6 @@
 author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul
 
-在学习本章前请确认你已经学习了 [动态规划部分简介](./index.md)。
+前置知识：[动态规划部分简介](./index.md)。
 
 在具体讲何为「背包 dp」前，先来看如下的例题：
 

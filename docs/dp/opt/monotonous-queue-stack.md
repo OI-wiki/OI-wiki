@@ -2,7 +2,7 @@ author: Marcythm, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, Chung
 
 ## 介绍
 
-学习本节前，请务必先学习 [单调队列](../../ds/monotonous-queue.md) 及 [单调栈](../../ds/monotonous-stack.md) 部分。
+前置知识：[单调队列](../../ds/monotonous-queue.md) 、[单调栈](../../ds/monotonous-stack.md) 。
 
 ???+note " 例题 [CF372C Watching Fireworks is Fun](http://codeforces.com/problemset/problem/372/C)"
     题目大意：城镇中有 $n$ 个位置，有 $m$ 个烟花要放。第 $i$ 个烟花放出的时间记为 $t_i$，放出的位置记为 $a_i$。如果烟花放出的时候，你处在位置 $x$，那么你将收获 $b_i-|a_i-x|$ 点快乐值。

@@ -178,7 +178,7 @@ $$
 
 ### 基于分治的决策单调性优化
 
-某些 dp 问题有着如下的形式：
+某些 dp 问题形式如下：
 
 $$
 f_{i,j} = \min_{k \leq j}\{f_{i-1,k}\} + w(k,j)\qquad\left(1 \leq i \leq n,1 \leq j \leq m\right)
