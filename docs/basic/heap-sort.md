@@ -18,9 +18,9 @@
 
 ### 在数组上建立二叉堆
 
-从根结点开始，依次将每一层的结点排列在数组里。
+从根节点开始，依次将每一层的节点排列在数组里。
 
-于是有数组中下标为 `i` 的结点，对应的父结点、左子结点和右子结点如下：
+于是有数组中下标为 `i` 的节点，对应的父结点、左子结点和右子结点如下：
 
 ```cpp
 iParent(i) = (i - 1) / 2;
@@ -68,7 +68,7 @@ void sift_down(int arr[], int start, int end) {
 }
 
 void heap_sort(int arr[], int len) {
-  // 从最后一个结点的父结点开始sift down以完成堆化(heapify)
+  // 从最后一个节点的父节点开始sift down以完成堆化(heapify)
   for (int i = (len - 1 - 1) / 2; i >= 0; i--) sift_down(arr, i, len - 1);
   // 先将第一个元素和已经排好的元素前一位做交换，再重新调整（刚调整的元素之前的元素），直到排序完毕
   for (int i = len - 1; i > 0; i--) {
@@ -97,7 +97,7 @@ def sift_down(arr, start, end):
             child = int(parent * 2 + 1)
 
 def heap_sort(arr, len):
-  # 从最后一个结点的父结点开始sift down以完成堆化(heapify)
+  # 从最后一个节点的父节点开始sift down以完成堆化(heapify)
     i = (len - 1 - 1) / 2
     while(i >= 0):
         sift_down(arr, i, len - 1)
