@@ -32,6 +32,27 @@ int main() {
 }
 ```
 
+```python
+# Python Version
+tcost = [0] * 103
+mget = [0] * 103
+ans = 0
+def dfs(pos, tleft, tans):
+    global ans
+    if tleft < 0:
+        return
+    if pos == n + 1:
+        ans = max(ans, tans)
+        return
+    dfs(pos + 1, tleft, tans)
+    dfs(pos + 1, tleft - tcost[pos], tans + mget[pos])
+t, n = map(lambda x:int(x), input().split())
+for i in range(1, n + 1):
+    tcost[i], mget[i] = map(lambda x:int(x), input().split())
+dfs(1, t, 0)
+print(ans)
+```
+
 这是最朴素的搜索方法，时间复杂度是指数级别的，并不能通过本题。
 
 ### 优化
@@ -40,7 +61,7 @@ int main() {
 
 如果我们每查询完一个状态后将该状态的值存储下来，再次需要访问这个状态就可以直接使用之前计算过的值，从而避免重复计算。
 
-具体到本题上，我们用一个数组 `mem` 来记录每个 `dfs(pos,tleft)` 的返回值。刚开始把 `mem` 中每个值都设成 $-1$（代表没访问过）。每次需要访问一个状态时 dfs 时，如果相应状态的值在 `mem` 中为 $-1$，则正常进行递归。否则我们直接使用 `mem` 中已经存储过的值即可。
+具体到本题上，我们用一个数组 `mem` 来记录每个 `dfs(pos,tleft)` 的返回值。刚开始把 `mem` 中每个值都设成 `-1`（代表没访问过）。每次需要访问一个状态时 dfs 时，如果相应状态的值在 `mem` 中为 `-1`，则正常进行递归。否则我们直接使用 `mem` 中已经存储过的值即可。
 
 ```cpp
 // C++ Version
@@ -65,10 +86,34 @@ int main() {
 }
 ```
 
+```python
+# Python Version
+tcost = [0] * 103
+mget = [0] * 103
+mem = [[-1 for i in range(1003)] for j in range(103)]
+def dfs(pos, tleft):
+    if mem[pos][tleft] != -1:
+        return mem[pos][tleft]
+    if pos == n + 1:
+        mem[pos][tleft] = 0
+        return mem[pos][tleft]
+    dfs1 = dfs2 = -INF
+    dfs1 = dfs(pos + 1, tleft)
+    if tleft >= tcost[pos]:
+        dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos]
+    mem[pos][tleft] = max(dfs1, dfs2)
+    return mem[pos][tleft]
+t, n = map(lambda x:int(x), input().split())
+for i in range(1, n + 1):
+    tcost[i], mget[i] = map(lambda x:int(x), input().split())
+print(dfs(1, t))
+```
+
+
 因为每个状态只会被访问一次，因此该算法的的时间复杂度为 $O(TM)$。
 
 ## 总结
 
-在动态规划的实现过程中，记忆化搜索和递推相比，都确保了同一状态至多只被访问一次。而它们实现这一点的方式则略有不同：递推通过设置明确的访问顺序来避免重复访问，记忆化搜索虽然没有明确规定访问顺序，但通过打标记的方式，也达到了同样的目的。
+在动态规划的实现过程中，记忆化搜索和递推相比，都确保了同一状态至多只被访问一次。而它们实现这一点的方式则略有不同：递推通过设置明确的访问顺序来避免重复访问，记忆化搜索虽然没有明确规定访问顺序，但通过给已经访问过的状态打标记的方式，也达到了同样的目的。
 
 与递推相比，记忆化搜索因为不用明确规定访问顺序，在实现难度上有时低于递推，且能比较方便地处理边界情况，这是记忆化搜索的一大优势。但与此同时，记忆化搜索难以使用滚动数组等优化，且运行效率会低于递推。因此应该视题目选择更适合的实现方式。

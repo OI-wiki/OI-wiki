@@ -84,17 +84,6 @@ author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marc
 
 对于每个 $f(i,j)$，存在三种决策：如果 $A_i=B_j$，则可以将它接到公共子序列的末尾；另外两种决策分别是跳过 $A_i$ 或者 $B_j$。
 
-写成状态转移方程是这样的：
-
-$$
-f(i,j)= \max
-\begin{cases}
- & f(i-1,j)\\ 
- & f(i,j-1)\\
- & f(i-1,j-1)+1 \text{ if } A_i = B_j
-\end{cases}
-$$
-
 该做法的时间复杂度为 $O(n^2)$。
 
 ```python
@@ -141,6 +130,21 @@ int dp() {
 }
 ```
 
+```python
+# Python Version
+a = [0] * MAXN
+d = [0] * MAXN
+def dp():
+    d[1] = 1
+    ans = 1
+    for i in range(2, n + 1):
+        for j in range(1, i):
+            if a[j] <= a[i]:
+                d[i] = max(d[i], d[j] + 1)
+                ans = max(ans, d[i])
+    return ans
+```
+
 ### 算法二[^ref1]
 
 当 $n$ 的范围扩大到 $n \leq 10^5$ 时，第一种做法就不够快了，下面给出了一个 $O(n \log n)$ 的做法。
@@ -168,6 +172,17 @@ for (int i = 0; i < n; ++i) {
 }
 ans = 0;
 while (dp[ans] != mx) ++ans;
+```
+
+```python
+# Python Version
+dp = [0x1f1f1f1f] * MAXN
+mx = dp[0]
+for i in range(0, n):
+    bisect.insort_left(dp, a[i], 0, len(dp))
+ans = 0
+while dp[ans] != mx:
+    ans += 1
 ```
 
 ## 参考资料与注释
