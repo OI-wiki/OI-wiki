@@ -18,9 +18,9 @@
 
 ### 在数组上建立二叉堆
 
-从根节点开始，依次将每一层的节点排列在数组里。
+从根结点开始，依次将每一层的结点排列在数组里。
 
-于是有数组中下标为 `i` 的节点，对应的父节点、左子节点和右子节点如下：
+于是有数组中下标为 `i` 的结点，对应的父结点、左子结点和右子结点如下：
 
 ```cpp
 iParent(i) = (i - 1) / 2;
@@ -49,17 +49,17 @@ iRightChild(i) = 2 * i + 2;
 ```cpp
 // C++ Version
 void sift_down(int arr[], int start, int end) {
-  // 建立父节点指标和子节点指标
+  // 建立父结点指标和子结点指标
   int parent = start;
   int child = parent * 2 + 1;
-  while (child <= end) {  // 子节点指标在范围内才做比较
+  while (child <= end) {  // 子结点指标在范围内才做比较
     if (child + 1 <= end &&
-        arr[child] < arr[child + 1])  // 先比较两个子节点大小，选择最大的
+        arr[child] < arr[child + 1])  // 先比较两个子结点大小，选择最大的
       child++;
     if (arr[parent] >=
-        arr[child])  // 如果父节点比子节点大，代表调整完毕，直接跳出函数
+        arr[child])  // 如果父结点比子结点大，代表调整完毕，直接跳出函数
       return;
-    else {  // 否则交换父子内容，子节点再和孙节点比较
+    else {  // 否则交换父子内容，子结点再和孙结点比较
       swap(arr[parent], arr[child]);
       parent = child;
       child = parent * 2 + 1;
@@ -68,7 +68,7 @@ void sift_down(int arr[], int start, int end) {
 }
 
 void heap_sort(int arr[], int len) {
-  // 从最后一个节点的父节点开始sift down以完成堆化(heapify)
+  // 从最后一个结点的父结点开始sift down以完成堆化(heapify)
   for (int i = (len - 1 - 1) / 2; i >= 0; i--) sift_down(arr, i, len - 1);
   // 先将第一个元素和已经排好的元素前一位做交换，再重新调整（刚调整的元素之前的元素），直到排序完毕
   for (int i = len - 1; i > 0; i--) {
@@ -83,21 +83,21 @@ void heap_sort(int arr[], int len) {
 ```python
 # Python Version
 def sift_down(arr, start, end):
-    # 建立父节点指标和子节点指标
+    # 建立父结点指标和子结点指标
     parent = int(start)
     child = int(parent * 2 + 1)
-    while child <= end: # 子节点指标在范围内才做比较
+    while child <= end: # 子结点指标在范围内才做比较
         if child + 1 <= end and arr[child] < arr[child + 1]:
-            child += 1 # 先比较两个子节点大小，选择最大的
+            child += 1 # 先比较两个子结点大小，选择最大的
         if arr[parent] >= arr[child]:
-            return # 如果父节点比子节点大，代表调整完毕，直接跳出函数
-        else: # 否则交换父子内容，子节点再和孙节点比较
+            return # 如果父结点比子结点大，代表调整完毕，直接跳出函数
+        else: # 否则交换父子内容，子结点再和孙结点比较
             arr[parent], arr[child] = arr[child], arr[parent]
             parent = child
             child = int(parent * 2 + 1)
 
 def heap_sort(arr, len):
-  # 从最后一个节点的父节点开始sift down以完成堆化(heapify)
+  # 从最后一个结点的父结点开始sift down以完成堆化(heapify)
     i = (len - 1 - 1) / 2
     while(i >= 0):
         sift_down(arr, i, len - 1)
