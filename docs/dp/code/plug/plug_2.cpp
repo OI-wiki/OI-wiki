@@ -25,7 +25,9 @@ struct hashTable {
     next[sz] = head[x];
     head[x] = sz++;
   }
-  void roll() { for(int i=0;i<sz;i++) state[i] <<= offset; }
+  void roll() {
+    for (int i = 0; i < sz; i++) state[i] <<= offset;
+  }
 } H[2], *H0, *H1;
 int b[M + 1], bb[M + 1];
 int encode() {
@@ -41,7 +43,7 @@ int encode() {
   return s;
 }
 void decode(int s) {
-  for(int i=0;i<m+1;i++) {
+  for (int i = 0; i < m + 1; i++) {
     b[i] = s & mask;
     s >>= offset;
   }
@@ -58,11 +60,11 @@ int main() {
   H1->clear();
   d = 1;
   H1->push(0);
-  for(int i=0;i<n;i++){
-    for(int j=0;j<m;j++) {
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
       swap(H0, H1);
       H1->clear();
-      for(int ii=0;ii<(H0->sz);ii++) {
+      for (int ii = 0; ii < (H0->sz); ii++) {
         decode(H0->state[ii]);
         d = H0->key[ii];
         int lt = b[j], up = b[j + 1];
@@ -73,7 +75,8 @@ int main() {
               push(j, 0, 0);
             }
           } else {
-            for(int i=0;i<m+1;i++) if (b[i] == lt) b[i] = up;
+            for (int i = 0; i < m + 1; i++)
+              if (b[i] == lt) b[i] = up;
             push(j, 0, 0);
           }
         } else if (lt || up) {

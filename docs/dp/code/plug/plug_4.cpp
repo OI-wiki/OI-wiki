@@ -21,7 +21,7 @@ T_state encode() {
   return s;
 }
 void decode(T_state s) {
-  for(int i=0;i<m+1;i++){
+  for (int i = 0; i < m + 1; i++) {
     b[i] = s & Mask;
     c[i] = b[i] & 1;
     b[i] >>= 1;
@@ -51,7 +51,9 @@ struct hashTable {
     state[sz] = s, key[sz] = d, pre[sz] = u;
     next[sz] = head[x], head[x] = sz++;
   }
-  void roll() { for(int ii=0;ii<sz;ii++) state[ii] <<= Offset; }
+  void roll() {
+    for (int ii = 0; ii < sz; ii++) state[ii] <<= Offset;
+  }
 };
 hashTable<T_state, T_key> _H, H[N][N], *H0, *H1;
 bool ok(int i, int j, int cc) {
@@ -59,13 +61,14 @@ bool ok(int i, int j, int cc) {
   int up = b[j + 1];
   if (!up) return true;
   int c1 = 0, c2 = 0;
-  for(int i=0;i<m+1;i++) if (i != j + 1) {
-    if (b[i] == b[j + 1]) {// 连通性相同，颜色一定相同
-      assert(c[i] == c[j + 1]);
+  for (int i = 0; i < m + 1; i++)
+    if (i != j + 1) {
+      if (b[i] == b[j + 1]) {  // 连通性相同，颜色一定相同
+        assert(c[i] == c[j + 1]);
+      }
+      if (c[i] == c[j + 1] && b[i] == b[j + 1]) ++c1;
+      if (c[i] == c[j + 1]) ++c2;
     }
-    if (c[i] == c[j + 1] && b[i] == b[j + 1]) ++c1;
-    if (c[i] == c[j + 1]) ++c2;
-  }
   if (!c1) {               // 如果会生成新的封闭连通块
     if (c2) return false;  // 如果轮廓线上还有相同的颜色
     if (i < n - 1 || j < m - 2) return false;
@@ -79,7 +82,10 @@ void trans(int i, int j, int u, int cc) {
   if (lf == cc && up == cc) {         // 合并
     if (lu == cc) return;             // 2x2 子矩形相同的情况
     int lf_b = b[j - 1], up_b = b[j + 1];
-    for(int i=0;i<m+1;i++) if (b[i] == up_b) { b[i] = lf_b; }
+    for (int i = 0; i < m + 1; i++)
+      if (b[i] == up_b) {
+        b[i] = lf_b;
+      }
     b[j] = lf_b;
   } else if (lf == cc || up == cc) {  // 继承
     if (lf == cc)
@@ -96,14 +102,14 @@ void trans(int i, int j, int u, int cc) {
 }
 void init() {
   cin >> n >> m;
-  for(int i=0;i<n;i++) scanf("%s", A[i]);
+  for (int i = 0; i < n; i++) scanf("%s", A[i]);
 }
 void solve() {
   H1 = &_H, H1->clear(), H1->push(0, 1, 0);
-  for(int i=0;i<n;i++) {
-    for(int j=0;j<m;j++) {
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
       H0 = H1, H1 = &H[i][j], H1->clear();
-      for(int u=0;u<H0->sz;u++){
+      for (int u = 0; u < H0->sz; u++) {
         if (A[i][j] == '.' || A[i][j] == '#') trans(i, j, u, 0);
         if (A[i][j] == '.' || A[i][j] == 'o') trans(i, j, u, 1);
       }
@@ -114,7 +120,7 @@ void solve() {
 void print() {
   T_key z = 0;
   int u;
-  for(int i=0;i<H1->sz;i++){
+  for (int i = 0; i < H1->sz; i++) {
     decode(H1->state[i]);
     if (*max_element(b + 1, b + m + 1) <= 2) {
       z += H1->key[i];
@@ -123,16 +129,16 @@ void print() {
   }
   cout << z << endl;
   if (z) {
-    for(int i=n-1;i>=0;i--) {
+    for (int i = n - 1; i >= 0; i--) {
       B[i][m] = 0;
-      for(int j=m-1;j>=0;j--) {
+      for (int j = m - 1; j >= 0; j--) {
         decode(H[i][j].state[u]);
         int cc = j == m - 1 ? c[j + 1] : c[j];
         B[i][j] = cc ? 'o' : '#';
         u = H[i][j].pre[u];
       }
     }
-    for(int i=0;i<n;i++) puts(B[i]);
+    for (int i = 0; i < n; i++) puts(B[i]);
   }
   puts("");
 }

@@ -19,13 +19,17 @@ struct matrix {
   matrix operator*(const matrix &b) const  // 重载矩阵乘
   {
     matrix c;
-    for(int i=0;i<=1;i++)
-    for(int j=0;j<=1;j++) for(int k=0;k<=1;k++) c.g[i][j] = max(c.g[i][j], g[i][k] + b.g[k][j]);
+    for (int i = 0; i <= 1; i++)
+      for (int j = 0; j <= 1; j++)
+        for (int k = 0; k <= 1; k++)
+          c.g[i][j] = max(c.g[i][j], g[i][k] + b.g[k][j]);
     return c;
   }
 } Tree[maxn], g[maxn];  // Tree[]是建出来的线段树，g[]是维护的每个点的矩阵
 
-inline void PushUp(int root) { Tree[root] = Tree[root<<1] * Tree[root << 1 | 1]; }
+inline void PushUp(int root) {
+  Tree[root] = Tree[root << 1] * Tree[root << 1 | 1];
+}
 
 inline void Build(int root, int l, int r) {
   if (l == r) {
@@ -33,7 +37,7 @@ inline void Build(int root, int l, int r) {
     return;
   }
   int Mid = l + r >> 1;
-  Build(root<<1, l, Mid);
+  Build(root << 1, l, Mid);
   Build(root << 1 | 1, Mid + 1, r);
   PushUp(root);
 }
@@ -41,9 +45,10 @@ inline void Build(int root, int l, int r) {
 inline matrix Query(int root, int l, int r, int L, int R) {
   if (L <= l && r <= R) return Tree[root];
   int Mid = l + r >> 1;
-  if (R <= Mid) return Query(root<<1, l, Mid, L, R);
+  if (R <= Mid) return Query(root << 1, l, Mid, L, R);
   if (Mid < L) return Query(root << 1 | 1, Mid + 1, r, L, R);
-  return Query(root<<1, l, Mid, L, R) * Query(root << 1 | 1, Mid + 1, r, L, R);
+  return Query(root << 1, l, Mid, L, R) *
+         Query(root << 1 | 1, Mid + 1, r, L, R);
   // 注意查询操作的书写
 }
 
@@ -54,7 +59,7 @@ inline void Modify(int root, int l, int r, int pos) {
   }
   int Mid = l + r >> 1;
   if (pos <= Mid)
-    Modify(root<<1, l, Mid, pos);
+    Modify(root << 1, l, Mid, pos);
   else
     Modify(root << 1 | 1, Mid + 1, r, pos);
   PushUp(root);
@@ -128,9 +133,9 @@ inline void DFS2(int u, int t) {
 }
 
 int main() {
-  scanf("%d%d", &n, &m); 
-  for(int i=1;i<=n;i++) scanf("%d", &a[i]); 
-  for(int i=1;i<=n-1;i++) {
+  scanf("%d%d", &n, &m);
+  for (int i = 1; i <= n; i++) scanf("%d", &a[i]);
+  for (int i = 1; i <= n - 1; i++) {
     int u, v;
     scanf("%d%d", &u, &v);
     add(u, v);
@@ -140,7 +145,7 @@ int main() {
   DFS1(1);
   DFS2(1, 1);
   Build(1, 1, n);
-  for(int i=1;i<=m;i++) {
+  for (int i = 1; i <= m; i++) {
     int x, val;
     scanf("%d%d", &x, &val);
     Update(x, val);
