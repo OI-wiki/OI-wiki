@@ -209,30 +209,31 @@ nav:
     - 高精度计算: math/bignum.md
     - 平衡三进制: math/balanced-ternary.md
     - 数论:
-      - 素数: math/prime.md
-      - Meissel-Lehmer 算法: math/meissel-lehmer.md
-      - 最大公约数: math/gcd.md
-      - 欧拉函数: math/euler.md
-      - 筛法: math/sieve.md
-      - 欧拉定理 & 费马小定理: math/fermat.md
-      - 类欧几里德算法: math/euclidean.md
-      - 裴蜀定理: math/bezouts.md
-      - 乘法逆元: math/inverse.md
-      - 线性同余方程: math/linear-equation.md
-      - 中国剩余定理: math/crt.md
-      - 二次剩余: math/quad-residue.md
-      - BSGS: math/bsgs.md
-      - 原根: math/primitive-root.md
-      - 卢卡斯定理: math/lucas.md
-      - 莫比乌斯反演: math/mobius.md
-      - 杜教筛: math/du.md
-      - Powerful Number 筛: math/powerful-number.md
-      - Min_25 筛: math/min-25.md
-      - 洲阁筛: math/zhou.md
-      - 分解质因数: math/pollard-rho.md
-      - 连分数: math/continued-fraction.md
-      - Stern-Brocot 树与 Farey 序列: math/stern-brocot.md
-      - Pell 方程: math/pell-equation.md
+      - 数论基础: math/number-theory/basic.md
+      - 素数: math/number-theory/prime.md
+      - Meissel-Lehmer 算法: math/number-theory/meissel-lehmer.md
+      - 最大公约数: math/number-theory/gcd.md
+      - 欧拉函数: math/number-theory/euler.md
+      - 筛法: math/number-theory/sieve.md
+      - 欧拉定理 & 费马小定理: math/number-theory/fermat.md
+      - 类欧几里德算法: math/number-theory/euclidean.md
+      - 裴蜀定理: math/number-theory/bezouts.md
+      - 乘法逆元: math/number-theory/inverse.md
+      - 线性同余方程: math/number-theory/linear-equation.md
+      - 中国剩余定理: math/number-theory/crt.md
+      - 二次剩余: math/number-theory/quad-residue.md
+      - BSGS: math/number-theory/bsgs.md
+      - 原根: math/number-theory/primitive-root.md
+      - 卢卡斯定理: math/number-theory/lucas.md
+      - 莫比乌斯反演: math/number-theory/mobius.md
+      - 杜教筛: math/number-theory/du.md
+      - Powerful Number 筛: math/number-theory/powerful-number.md
+      - Min_25 筛: math/number-theory/min-25.md
+      - 洲阁筛: math/number-theory/zhou.md
+      - 分解质因数: math/number-theory/pollard-rho.md
+      - 连分数: math/number-theory/continued-fraction.md
+      - Stern-Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
+      - Pell 方程: math/number-theory/pell-equation.md
     - 多项式:
       - 多项式部分简介: math/poly/intro.md
       - 拉格朗日插值: math/poly/lagrange.md
@@ -264,15 +265,15 @@ nav:
       - 线性规划简介: math/linear-programming.md
       - 单纯形算法: math/simplex.md
     - 组合数学:
-      - 排列组合: math/combination.md
-      - 卡特兰数: math/catalan.md
-      - 斯特林数: math/stirling.md
-      - 贝尔数: math/bell.md
-      - 伯努利数: math/bernoulli.md
-      - 康托展开: math/cantor.md
-      - 容斥原理: math/inclusion-exclusion-principle.md
-      - 抽屉原理: math/drawer-principle.md
-      - Eulerian Number: math/eulerian.md
+      - 排列组合: math/combinatorics/combination.md
+      - 卡特兰数: math/combinatorics/catalan.md
+      - 斯特林数: math/combinatorics/stirling.md
+      - 贝尔数: math/combinatorics/bell.md
+      - 伯努利数: math/combinatorics/bernoulli.md
+      - 康托展开: math/combinatorics/cantor.md
+      - 容斥原理: math/combinatorics/inclusion-exclusion-principle.md
+      - 抽屉原理: math/combinatorics/drawer-principle.md
+      - Eulerian Number: math/combinatorics/eulerian.md
     - 概率初步: math/expectation.md
     - 置换群: math/permutation-group.md
     - 斐波那契数列: math/fibonacci.md
