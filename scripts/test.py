@@ -1,42 +1,50 @@
 import os
 import sys
+import json
+
+annotations = []
+
+def generate_annotations_and_exit(file, message):
+    print(f"::error file={file},line={1},col={1}::{message}")
+    sys.exit(1)
+
 
 filename = "res.txt"
 with open(filename) as file_object:
-    lines=file_object.readlines()
+    lines = file_object.readlines()
 for line in lines:
-    name=line[:-5]
-    num=name.rfind('/')
-    content=name[:num]
-    filename=name[num:]
-    #文件名
-    cpp=name+'.cpp'
-    indata=name+'.in'
-    ansdata=name+'.ans'
-    outdata=name+'.out'
-    indata=indata.replace('code','examples')
-    outdata=outdata.replace('code','examples')
-    ansdata=ansdata.replace('code','examples')
-    cmd='g++ '+cpp+' -o '+name
-    #判断CE
-    if os.system(cmd)==0 :
+    name = line[:-5]
+    num = name.rfind('/')
+    content = name[:num]
+    filename = name[num:]
+    # 文件名
+    cpp = name+'.cpp'
+    indata = name+'.in'
+    ansdata = name+'.ans'
+    outdata = name+'.out'
+    indata = indata.replace('code', 'examples')
+    outdata = outdata.replace('code', 'examples')
+    ansdata = ansdata.replace('code', 'examples')
+    cmd = 'g++ '+cpp+' -o '+name
+    # 判断CE
+    if os.system(cmd) == 0:
         print(cpp+' Successfully compiled')
     else:
         print(cpp+' Compiled Error')
-        sys.exit(1)
-    #运行程序并重定向输出
-    cmd=content+'/.'+filename+' <'+indata+'> '+outdata
+        generate_annotations_and_exit(cpp, 'Compiled Error')
+    # 运行程序并重定向输出
+    cmd = content+'/.'+filename+' <'+indata+'> '+outdata
     os.system(cmd)
-    #判断RE
-    if os.system(cmd)==0:
+    # 判断RE
+    if os.system(cmd) == 0:
         print(cpp+' Run successfully')
     else:
         print(cpp+' Runtime Error')
-        sys.exit(1)
-    #判断答案
-    cmd='diff -b -B '+outdata+' '+ansdata
-    if os.system(cmd)==0 :
+        generate_annotations_and_exit(cpp, 'Runtime Error')
+    # 判断答案
+    cmd = 'diff -b -B '+outdata+' '+ansdata
+    if os.system(cmd) == 0:
         print(cpp+' Successfully passed the test')
     else:
-        print(cpp+ ' Wrong Answer')
-        sys.exit(1)
+        print(cpp + ' Wrong Answer')
+        generate_annotations_and_exit(cpp, 'Wrong Answer')
