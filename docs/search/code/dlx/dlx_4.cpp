@@ -47,7 +47,7 @@ struct DLX {
     memset(first, 0, sizeof(first));
     memset(siz, 0, sizeof(siz));
   }
-  void insert(const int &r, const int &c) {//insert 
+  void insert(const int &r, const int &c) {  // insert
     col[++tot] = c, row[tot] = r, ++siz[c];
     D[tot] = D[c], U[D[c]] = tot, U[tot] = c, D[c] = tot;
     if (!first[r])
@@ -56,33 +56,33 @@ struct DLX {
       R[tot] = R[first[r]], L[R[first[r]]] = tot, L[tot] = first[r],
       R[first[r]] = tot;  // !
   }
-  void remove(const int &c) {//remove
+  void remove(const int &c) {  // remove
     register int i, j;
     L[R[c]] = L[c], R[L[c]] = R[c];
-    for(i=D[c];i!=c;i=D[i])
-	    for(j=R[i];j!=i;j=R[j])
-		    U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
+    for (i = D[c]; i != c; i = D[i])
+      for (j = R[i]; j != i; j = R[j])
+        U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
   }
-  void recover(const int &c) {//recover
+  void recover(const int &c) {  // recover
     register int i, j;
-    for(i=U[c];i!=c;i=U[i])
-		for(j=L[i];j!=i;j=L[j])
-			U[D[j]] = D[U[j]] = j, ++siz[col[j]];
+    for (i = U[c]; i != c; i = U[i])
+      for (j = L[i]; j != i; j = L[j]) U[D[j]] = D[U[j]] = j, ++siz[col[j]];
     L[R[c]] = R[L[c]] = c;
   }
-  bool dance() {//dance
+  bool dance() {  // dance
     if (!R[0]) return 1;
     register int i, j, c = R[0];
-    for(i=R[0];i!=0;i=R[i]) if (siz[i] < siz[c]) c = i;
+    for (i = R[0]; i != 0; i = R[i])
+      if (siz[i] < siz[c]) c = i;
     remove(c);
-    for(i=D[c];i!=c;i=D[i]) {
+    for (i = D[c]; i != c; i = D[i]) {
       if (col[i] <= 55) ans[getx[col[i]]][gety[col[i]]] = dfn[row[i]] + 'A';
-      for(j=R[i];j!=i;j=R[j]) {
+      for (j = R[i]; j != i; j = R[j]) {
         remove(col[j]);
         if (col[j] <= 55) ans[getx[col[j]]][gety[col[j]]] = dfn[row[j]] + 'A';
       }
       if (dance()) return 1;
-      for(j=L[i];j!=i;j=L[j]) recover(col[j]);
+      for (j = L[i]; j != i; j = L[j]) recover(col[j]);
     }
     recover(c);
     return 0;
