@@ -15,8 +15,8 @@ struct SAM {
   int par, ch[26], len;
 } sam[N << 1];
 
-void insert(int x) { 
-  int np = ++tot; //新节点 
+void insert(int x) {
+  int np = ++tot;  //新节点
   sam[np].len = sam[p].len + 1;
   while (p && !sam[p].ch[x]) {
     sam[p].ch[x] = np;
@@ -53,8 +53,8 @@ int main() {
   for (int i = 1; i <= m; ++i) b[i] = t[i] - 'a';
 
   for (int i = 1; i <= m; ++i) insert(b[i]);
-  
-  //nxt[S[i]]<-i
+
+  // nxt[S[i]]<-i
   for (int i = 0; i < 26; ++i) nxt[i] = n + 1;
   for (int i = n; i >= 0; --i) {
     memcpy(na[i], nxt, sizeof(nxt));
@@ -68,7 +68,7 @@ int main() {
   }
 
   //四种情况计算答案
-  //1 
+  // 1
   int ans = N;
   for (int l = 1; l <= n; ++l) {
     for (int r = l, u = 1; r <= n; ++r) {
@@ -81,8 +81,8 @@ int main() {
   }
 
   printf("%d\n", ans == N ? -1 : ans);
-  
-  //2
+
+  // 2
   ans = N;
 
   for (int l = 1; l <= n; ++l) {
@@ -96,8 +96,8 @@ int main() {
   }
 
   printf("%d\n", ans == N ? -1 : ans);
-  
-  //3
+
+  // 3
   for (int i = n; i >= 0; --i) {
     for (int j = 1; j <= tot; ++j) {
       f[i][j] = N;
@@ -110,8 +110,8 @@ int main() {
   }
 
   printf("%d\n", f[0][1] == N ? -1 : f[0][1]);
-  
-  //4
+
+  // 4
   memset(f, 0, sizeof(f));
 
   for (int i = n; i >= 0; --i) {

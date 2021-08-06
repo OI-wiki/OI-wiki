@@ -87,8 +87,7 @@ void remove(int& rt, int p, double lv, double rv) {
   if (rt == p) {
     if (!L[rt] || !R[rt]) {
       rt = (L[rt] | R[rt]);
-    } 
-	else {
+    } else {
       // 找到rt的前驱来替换rt
       int nrt = L[rt], fa = rt;
       while (R[nrt]) {
@@ -98,8 +97,7 @@ void remove(int& rt, int p, double lv, double rv) {
       }
       if (fa == rt) {
         R[nrt] = R[rt];
-      } 
-	  else {
+      } else {
         L[nrt] = L[rt];
         R[nrt] = R[rt];
         R[fa] = 0;
@@ -127,7 +125,6 @@ void inorder(int rt) {
 }
 
 void solve(int Case) {
-  
   scanf("%s", t + 1);
   n = strlen(t + 1);
 
@@ -142,7 +139,6 @@ void solve(int Case) {
 
   for (int i = 1; i <= n; ++i) printf("%d ", sa[i]);
   printf("\n");
-  
 }
 
 int main() {
