@@ -30,30 +30,7 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
 
 ??? note "参考代码"
     ```cpp
-    #include <iostream>
-    using namespace std;
-    
-    int N, A[10000], B[10000];
-    int main() {
-      cin >> N;
-      for (int i = 0; i < N; i++) {
-        cin >> A[i];
-      }
-    
-      // 前缀和数组的第一项和原数组的第一项是相等的。
-      B[0] = A[0];
-    
-      for (int i = 1; i < N; i++) {
-        // 前缀和数组的第 i 项 = 原数组的 0 到 i-1 项的和 + 原数组的第 i 项。
-        B[i] = B[i - 1] + A[i];
-      }
-    
-      for (int i = 0; i < N; i++) {
-        cout << B[i] << " ";
-      }
-    
-      return 0;
-    }
+    --8<-- "docs/basic/code/prefix-sum/prefix-sum_1.cpp"
     ```
 
 ### 二维/多维前缀和
@@ -93,40 +70,7 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
 
 ??? note "参考代码"
     ```cpp
-    #include <algorithm>
-    #include <iostream>
-    using namespace std;
-    int a[103][103];
-    int b[103][103];  // 前缀和数组，相当于上文的 sum[]
-    int main() {
-      int n, m;
-      cin >> n >> m;
-    
-      for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= m; j++) {
-          cin >> a[i][j];
-          b[i][j] =
-              b[i][j - 1] + b[i - 1][j] - b[i - 1][j - 1] + a[i][j];  // 求前缀和
-        }
-      }
-    
-      int ans = 1;
-    
-      int l = 2;
-      while (l <= min(n, m)) {
-        for (int i = l; i <= n; i++) {
-          for (int j = l; j <= m; j++) {
-            if (b[i][j] - b[i - l][j] - b[i][j - l] + b[i - l][j - l] == l * l) {
-              ans = max(ans, l);
-            }
-          }
-        }
-        l++;
-      }
-    
-      cout << ans << endl;
-      return 0;
-    }
+    --8<-- "docs/basic/code/prefix-sum/prefix-sum_2.cpp"
     ```
 
 ### 基于 DP 计算高维前缀和
@@ -236,82 +180,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
-    #include <bits/stdc++.h>
-    
-    using namespace std;
-    #define maxn 50010
-    
-    struct node {
-      int to, next;
-    } edge[maxn << 1];
-    
-    int fa[maxn][30], head[maxn << 1];
-    int power[maxn];
-    int depth[maxn], lg[maxn];
-    int n, k, ans = 0, tot = 0;
-    
-    void add(int x, int y) {
-      edge[++tot].to = y;
-      edge[tot].next = head[x];
-      head[x] = tot;
-    }
-    
-    void dfs(int now, int father) {
-      fa[now][0] = father;
-      depth[now] = depth[father] + 1;
-      for (int i = 1; i <= lg[depth[now]]; ++i)
-        fa[now][i] = fa[fa[now][i - 1]][i - 1];
-      for (int i = head[now]; i; i = edge[i].next)
-        if (edge[i].to != father) dfs(edge[i].to, now);
-    }
-    
-    int lca(int x, int y) {
-      if (depth[x] < depth[y]) swap(x, y);
-      while (depth[x] > depth[y]) x = fa[x][lg[depth[x] - depth[y]] - 1];
-      if (x == y) return x;
-      for (int k = lg[depth[x]] - 1; k >= 0; k--) {
-        if (fa[x][k] != fa[y][k]) x = fa[x][k], y = fa[y][k];
-      }
-      return fa[x][0];
-    }
-    
-    //用dfs求最大压力，回溯时将子树的权值加上
-    void get_ans(int u, int father) {
-      for (int i = head[u]; i; i = edge[i].next) {
-        int to = edge[i].to;
-        if (to == father) continue;
-        get_ans(to, u);
-        power[u] += power[to];
-      }
-      ans = max(ans, power[u]);
-    }
-    
-    int main() {
-      scanf("%d %d", &n, &k);
-      int x, y;
-      for (int i = 1; i <= n; i++) {
-        lg[i] = lg[i - 1] + (1 << lg[i - 1] == i);
-      }
-      for (int i = 1; i <= n - 1; i++) {
-        scanf("%d %d", &x, &y);
-        add(x, y);
-        add(y, x);
-      }
-      dfs(1, 0);
-      int s, t;
-      for (int i = 1; i <= k; i++) {
-        scanf("%d %d", &s, &t);
-        int ancestor = lca(s, t);
-        // 树上差分
-        power[s]++;
-        power[t]++;
-        power[ancestor]--;
-        power[fa[ancestor][0]]--;
-      }
-      get_ans(1, 0);
-      printf("%d\n", ans);
-      return 0;
-    }
+    --8<-- "docs/basic/code/prefix-sum/prefix-sum_3.cpp"
     ```
 
 ## 习题
