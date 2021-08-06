@@ -1,3 +1,5 @@
+author: PeterlitsZo
+
 ## 费马小定理
 
 若 $p$ 为素数，$\gcd(a, p) = 1$，则 $a^{p - 1} \equiv 1 \pmod{p}$。
@@ -59,36 +61,34 @@ $$
 ## 扩展欧拉定理
 
 $$
-a^b\equiv
-\begin{cases}
-a^{b\bmod\varphi(p)},\,&\gcd(a,\,p)=1\\
-a^b,&\gcd(a,\,p)\ne1,\,b<\varphi(p)\\
-a^{b\bmod\varphi(p)+\varphi(p)},&\gcd(a,\,p)\ne1,\,b\ge\varphi(p)
-\end{cases}
-\pmod p
+a^b \equiv \begin{cases}
+  a^{b \bmod \varphi(m)},                &\gcd(a,m) =  1                   \\
+  a^b,                                   &\gcd(a,m)\ne 1, b <   \varphi(m) \\
+  a^{(b \bmod \varphi(m)) + \varphi(m)}, &\gcd(a,m)\ne 1, b \ge \varphi(m)
+\end{cases} \pmod m
 $$
 
 ### 证明
 
-证明转载自 [synapse7](http://blog.csdn.net/synapse7/article/details/19610361)
+证明转载自 [synapse7](http://blog.csdn.net/synapse7/article/details/19610361)，并进行了一些整理。
 
-1.  在 $a$ 的 $0$ 次，$1$ 次，。。。，$b$ 次幂模 $m$ 的序列中，前 $r$ 个数（$a^0$ 到 $a^{r-1}$) 互不相同，从第 $r$ 个数开始，每 $s$ 个数就循环一次。
+1.  **命题**：$a$ 的从 $0$ 次，$1$ 次到 $b$ 次幂模 $m$ 构成的序列中，前 $r$ 个数（即从 $a^0$ 到 $a^{r-1}$) 互不相同，从第 $r$ 个数开始，每 $s$ 个数就循环一次。
 
-    证明：由鸽巢定理易证。
+    **证明**：由鸽巢定理易证。
 
     我们把 $r$ 称为 $a$ 幂次模 $m$ 的循环起始点，$s$ 称为循环长度。（注意：$r$ 可以为 $0$）
 
-    用公式表述为：$a^r\equiv a^{r+s}\pmod{m}$
+    用公式表述为：$\any i \ge r, a^i \equiv a^{i+s} \pmod{m}$
 
-2.  $a$ 为素数的情况
+2.  **命题**：$a$ 为素数的情况，该式成立。
 
-    令 $m=p^rm'$，则 $\gcd(p,m')=1$，所以 $p^{\varphi(m')}\equiv 1\pmod{m'}$
+    **证明**：若模 $m$ 能被 $a$ 整除，那么令 $m = a^r m'$，且 $\gcd(a, m')=1$。所以根据欧拉定理有 $a^{\varphi(m')} \equiv 1 \pmod{m'}$。
 
-    又由于 $\gcd(p^r,m')=1$，所以 $\varphi(m') \mid \varphi(m)$，所以 $p^{\varphi(m)}\equiv 1 \pmod {m'}$，即 $p^{\varphi(m)}=km'+1$，两边同时乘以 $p^r$，得 $p^{r+\varphi(m)}=km+p^r$（因为 $m=p^rm'$）
+    又由于 $\gcd(a^r, m')=1$，所以根据欧拉函数的求值规则，容易得到：$\varphi(m') \mid \varphi(m)$，所以 $a^{\varphi(m)} \equiv 1 \pmod {m'}$，即 $a^{\varphi(m)}=km'+1$，两边同时乘以 $a^r$，得 $a^{r+\varphi(m)} = km + a^r$（因为 $m = a^r m'$）
 
-    所以 $p^r\equiv p^{r+s}\pmod m$，这里 $s=\varphi(m)$
+    所以 $a^r \equiv a^{r+\varphi(m)} \pmod m$。
 
-3. 推论：$p^b\equiv p^{r+(b-r) \mod \varphi(m)}\pmod m$
+3.  推论：$a^b \equiv a^{r+(b-r) \mod \varphi(m)} \pmod m$。
 
 4.  又由于 $m=p^rm'$，所以 $\varphi(m) \ge  \varphi(p^r)=p^{r-1}(p-1) \ge r$
 
