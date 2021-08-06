@@ -50,6 +50,5 @@ $d(i, r) = \max\left\{d(j, r') + h'\right\}$
 ### 题解
 
 ```cpp
-/* clang-format off */
 --8<-- "docs/dp/code/dag/dag_1.cpp"
 ```
