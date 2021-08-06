@@ -14,7 +14,7 @@ ll a[100005], sum[400005], mul[400005], laz[400005];
 void up(int i) { sum[i] = (sum[(i << 1)] + sum[(i << 1) | 1]) % mod; }
 void pd(int i, int s, int t) {
   int l = (i << 1), r = (i << 1) | 1, mid = (s + t) >> 1;
-  if (mul[i] != 1) {//懒标记传递，两个懒标记
+  if (mul[i] != 1) {  //懒标记传递，两个懒标记
     mul[l] *= mul[i];
     mul[l] %= mod;
     mul[r] *= mul[i];
@@ -29,7 +29,7 @@ void pd(int i, int s, int t) {
     sum[r] %= mod;
     mul[i] = 1;
   }
-  if (laz[i]) {//懒标记传递
+  if (laz[i]) {  //懒标记传递
     sum[l] += laz[i] * (mid - s + 1);
     sum[l] %= mod;
     sum[r] += laz[i] * (t - mid);
@@ -49,7 +49,7 @@ void build(int s, int t, int i) {
     return;
   }
   int mid = s + ((t - s) >> 1);
-  build(s, mid, i << 1);//建树
+  build(s, mid, i << 1);  //建树
   build(mid + 1, t, (i << 1) | 1);
   up(i);
 }
@@ -57,11 +57,11 @@ void chen(int l, int r, int s, int t, int i, ll z) {
   int mid = s + ((t - s) >> 1);
   if (l <= s && t <= r) {
     mul[i] *= z;
-    mul[i] %= mod;//这是取模的
+    mul[i] %= mod;  //这是取模的
     laz[i] *= z;
-    laz[i] %= mod;//这是取模的
+    laz[i] %= mod;  //这是取模的
     sum[i] *= z;
-    sum[i] %= mod;//这是取模的
+    sum[i] %= mod;  //这是取模的
     return;
   }
   pd(i, s, t);
@@ -73,9 +73,9 @@ void add(int l, int r, int s, int t, int i, ll z) {
   int mid = s + ((t - s) >> 1);
   if (l <= s && t <= r) {
     sum[i] += z * (t - s + 1);
-    sum[i] %= mod;//这是取模的
+    sum[i] %= mod;  //这是取模的
     laz[i] += z;
-    laz[i] %= mod;//这是取模的
+    laz[i] %= mod;  //这是取模的
     return;
   }
   pd(i, s, t);
@@ -83,7 +83,8 @@ void add(int l, int r, int s, int t, int i, ll z) {
   if (mid + 1 <= r) add(l, r, mid + 1, t, (i << 1) | 1, z);
   up(i);
 }
-ll getans(int l, int r, int s, int t, int i) {//得到答案，可以看下上面懒标记助于理解
+ll getans(int l, int r, int s, int t,
+          int i) {  //得到答案，可以看下上面懒标记助于理解
   int mid = s + ((t - s) >> 1);
   ll tot = 0;
   if (l <= s && t <= r) return sum[i];
@@ -93,14 +94,14 @@ ll getans(int l, int r, int s, int t, int i) {//得到答案，可以看下上�
   if (mid + 1 <= r) tot += getans(l, r, mid + 1, t, (i << 1) | 1);
   return tot % mod;
 }
-int main() {//读入
+int main() {  //读入
   int i, j, x, y, bh;
   ll z;
   n = read();
   m = read();
   mod = read();
   for (i = 1; i <= n; i++) a[i] = read();
-  build(1, n, 1);//建树
+  build(1, n, 1);  //建树
   for (i = 1; i <= m; i++) {
     bh = read();
     if (bh == 1) {

@@ -73,7 +73,7 @@ int main() {
 }
 
 void dfs(int u) {
-  int i, v;//根据题意开始dfs
+  int i, v;  //根据题意开始dfs
   for (i = head[u]; i; i = nxt[i]) {
     v = to[i];
     dep[v] = dep[u] + 1;
@@ -103,7 +103,7 @@ void add(int u, int v) {
   to[cnt] = v;
 }
 
-int merge(int x, int y) {//合并
+int merge(int x, int y) {  //合并
   if (!x || !y) return x | y;
   if (t[x].val > t[y].val) swap(x, y);
   pushdown(x);
@@ -129,7 +129,7 @@ void mmul(int u, ll x) {
   t[u].mul *= x;
 }
 
-void pushdown(int x) {//like 线段树，下传合并
+void pushdown(int x) {  // like 线段树，下传合并
   mmul(t[x].ls, t[x].mul);
   madd(t[x].ls, t[x].add);
   mmul(t[x].rs, t[x].mul);
