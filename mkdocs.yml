@@ -274,6 +274,7 @@ nav:
       - 容斥原理: math/combinatorics/inclusion-exclusion-principle.md
       - 抽屉原理: math/combinatorics/drawer-principle.md
       - Eulerian Number: math/combinatorics/eulerian.md
+      - 分拆数: math/combinatorics/partition.md
     - 概率初步: math/expectation.md
     - 置换群: math/permutation-group.md
     - 斐波那契数列: math/fibonacci.md
