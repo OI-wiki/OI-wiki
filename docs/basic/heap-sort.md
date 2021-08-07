@@ -49,10 +49,10 @@ iRightChild(i) = 2 * i + 2;
 ```cpp
 // C++ Version
 void sift_down(int arr[], int start, int end) {
-  // 建立父结点指标和子结点指标
+  // 计算父结点和子结点的下标
   int parent = start;
   int child = parent * 2 + 1;
-  while (child <= end) {  // 子结点指标在范围内才做比较
+  while (child <= end) {  // 子结点下标在范围内才做比较
     if (child + 1 <= end &&
         arr[child] < arr[child + 1])  // 先比较两个子结点大小，选择最大的
       child++;
@@ -83,10 +83,10 @@ void heap_sort(int arr[], int len) {
 ```python
 # Python Version
 def sift_down(arr, start, end):
-    # 建立父结点指标和子结点指标
+    # 计算父结点和子结点的下标
     parent = int(start)
     child = int(parent * 2 + 1)
-    while child <= end: # 子结点指标在范围内才做比较
+    while child <= end: # 子结点下标在范围内才做比较
         if child + 1 <= end and arr[child] < arr[child + 1]:
             child += 1 # 先比较两个子结点大小，选择最大的
         if arr[parent] >= arr[child]:
