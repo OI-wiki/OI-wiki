@@ -10,7 +10,7 @@ inline int mint(T x) {
 }
 inline int add(int x, int y) { return x + y >= MOD ? x + y - MOD : x + y; }
 inline int mul(int x, int y) { return (long long)1 * x * y % MOD; }
-inline int sub(int x, int y) { return x < y ? x - y + MOD : x - y; }//防止负数 
+inline int sub(int x, int y) { return x < y ? x - y + MOD : x - y; }  //防止负数
 inline int qp(int x, int y) {
   int r = 1;
   for (; y; y >>= 1) {
@@ -39,7 +39,7 @@ bool isp[N];
 
 void sieve(int n) {
   pcnt = 0;
-  for (int i = 2; i <= n; ++i) isp[i] = true;//判断质数数组 
+  for (int i = 2; i <= n; ++i) isp[i] = true;  //判断质数数组
   phi[1] = 1;
   for (int i = 2; i <= n; ++i) {
     if (isp[i]) {
@@ -47,11 +47,11 @@ void sieve(int n) {
       prime[pcnt] = i;
       phi[i] = i - 1;
     }
-    for (int j = 1; j <= pcnt; ++j) {//筛去非质数 
+    for (int j = 1; j <= pcnt; ++j) {  //筛去非质数
       long long nxt = (long long)1 * i * prime[j];
       if (nxt > n) break;
       isp[nxt] = false;
-      if (i % prime[j] == 0) {//i是非质数的情况 
+      if (i % prime[j] == 0) {  // i是非质数的情况
         phi[nxt] = phi[i] * prime[j];
         break;
       }
@@ -62,12 +62,12 @@ void sieve(int n) {
   for (int i = 1; i <= n; ++i) g[i] = mul(i, phi[i]);
 
   sg[0] = 0;
-  for (int i = 1; i <= n; ++i) sg[i] = add(sg[i - 1], g[i]); //g函数的前缀和 
+  for (int i = 1; i <= n; ++i) sg[i] = add(sg[i - 1], g[i]);  // g函数的前缀和
 }
 
 int inv2, inv6;
 void init() {
-  sieve(N - 1); 
+  sieve(N - 1);
   for (int i = 1; i <= pcnt; ++i) h[i][0] = 1, h[i][1] = 0;
   for (int i = 1; i <= pcnt; ++i) vis_h[i][0] = vis_h[i][1] = true;
   inv2 = inv(2);
@@ -99,10 +99,11 @@ void dfs(long long d, int hd, int pid) {
   ans = add(ans, mul(hd, G(global_n / d)));
 
   for (int i = pid, p; i <= pcnt; ++i) {
-    if (i > 1 && d > global_n / prime[i] / prime[i]) break; //剪枝 
+    if (i > 1 && d > global_n / prime[i] / prime[i]) break;  //剪枝
 
     int c = 2;
-    for (long long x = d * prime[i] * prime[i]; x <= global_n; x *= prime[i], ++c) {//计算f.g函数 
+    for (long long x = d * prime[i] * prime[i]; x <= global_n;
+         x *= prime[i], ++c) {  //计算f.g函数
       if (!vis_h[i][c]) {
         int f = qp(prime[i], c);
         f = mul(f, sub(f, 1));

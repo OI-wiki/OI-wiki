@@ -24,21 +24,21 @@ void prime_work(int k) {  // 线性筛phi，s
       if (i % p[j] == 0) {
         phi[i * p[j]] = phi[i] * p[j];
         break;
-      } 
-	  else	phi[i * p[j]] = phi[i] * phi[p[j]];
+      } else
+        phi[i * p[j]] = phi[i] * phi[p[j]];
     }
   }
   for (int i = 1; i <= k; i++)
     s[i] = (1ll * i * i % P * phi[i] % P + s[i - 1]) % P;
 }
 
-long long s3(long long k) {// 立方和
+long long s3(long long k) {  // 立方和
   return k %= P, (k * (k + 1) / 2) % P * ((k * (k + 1) / 2) % P) % P;
-}  
+}
 
-long long s2(long long k) {// 平方和
+long long s2(long long k) {  // 平方和
   return k %= P, k * (k + 1) % P * (k * 2 + 1) % P * inv6 % P;
-}  
+}
 
 long long calc(long long k) {  // 计算S(k)
   if (k <= pn) return s[k];
@@ -52,11 +52,11 @@ long long calc(long long k) {  // 计算S(k)
 
 long long solve() {
   long long res = 0, pre = 0, cur;
-  for (long long i = 1, j; i <= n; i = j + 1){
+  for (long long i = 1, j; i <= n; i = j + 1) {
     j = n / (n / i);
-	cur = calc(j);
+    cur = calc(j);
     res = (res + (s3(n / i) * (cur - pre)) % P) % P;
-	pre = cur;
+    pre = cur;
   }
   return (res + P) % P;
 }

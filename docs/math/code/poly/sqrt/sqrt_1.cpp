@@ -5,7 +5,7 @@ const int maxn = 1 << 20, mod = 998244353;
 
 int a[maxn], b[maxn], g[maxn], gg[maxn];
 
-int qpow(int x, int y) {//快速幂 
+int qpow(int x, int y) {  //快速幂
   int ans = 1;
 
   while (y) {
@@ -18,7 +18,7 @@ int qpow(int x, int y) {//快速幂
   return ans;
 }
 
-int inv2 = qpow(2, mod - 2);//逆元 
+int inv2 = qpow(2, mod - 2);  //逆元
 
 inline void change(int *f, int len) {
   for (int i = 1, j = len / 2; i < len - 1; i++) {
@@ -37,7 +37,7 @@ inline void change(int *f, int len) {
   }
 }
 
-inline void NTT(int *f, int len, int type) {//NTT
+inline void NTT(int *f, int len, int type) {  // NTT
   change(f, len);
 
   for (int q = 2; q <= len; q <<= 1) {
@@ -66,7 +66,7 @@ inline void NTT(int *f, int len, int type) {//NTT
   }
 }
 
-inline void inv(int deg, int *f, int *h) {//求逆元 
+inline void inv(int deg, int *f, int *h) {  //求逆元
   if (deg == 1) {
     h[0] = qpow(f[0], mod - 2);
     return;
@@ -75,7 +75,7 @@ inline void inv(int deg, int *f, int *h) {//求逆元
   inv(deg + 1 >> 1, f, h);
 
   int len = 1;
-  while (len < deg * 2) {//倍增 
+  while (len < deg * 2) {  //倍增
     len *= 2;
   }
 
@@ -85,7 +85,8 @@ inline void inv(int deg, int *f, int *h) {//求逆元
   NTT(gg, len, 1);
   NTT(h, len, 1);
   for (int i = 0; i < len; i++) {
-    h[i] = (long long)1 * (2 - (long long)1 * gg[i] * h[i] % mod + mod) % mod * h[i] % mod;
+    h[i] = (long long)1 * (2 - (long long)1 * gg[i] * h[i] % mod + mod) % mod *
+           h[i] % mod;
   }
 
   NTT(h, len, -1);
@@ -94,9 +95,9 @@ inline void inv(int deg, int *f, int *h) {//求逆元
 
 int n, t[maxn];
 
-//deg:次数
-//f:被开根数组
-//h:答案数组 
+// deg:次数
+// f:被开根数组
+// h:答案数组
 inline void sqrt(int deg, int *f, int *h) {
   if (deg == 1) {
     h[0] = 1;
@@ -106,7 +107,7 @@ inline void sqrt(int deg, int *f, int *h) {
   sqrt(deg + 1 >> 1, f, h);
 
   int len = 1;
-  while (len < deg * 2) {//倍增 
+  while (len < deg * 2) {  //倍增
     len *= 2;
   }
   fill(g, g + len, 0);
@@ -118,7 +119,8 @@ inline void sqrt(int deg, int *f, int *h) {
   NTT(h, len, 1);
 
   for (int i = 0; i < len; i++) {
-    h[i] = (long long)1 * inv2 * ((long long)1 * h[i] % mod + (long long)1 * g[i] * t[i] % mod) % mod;
+    h[i] = (long long)1 * inv2 *
+           ((long long)1 * h[i] % mod + (long long)1 * g[i] * t[i] % mod) % mod;
   }
   NTT(h, len, -1);
   fill(h + deg, h + len, 0);
