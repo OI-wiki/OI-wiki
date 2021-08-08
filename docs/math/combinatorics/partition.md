@@ -57,7 +57,7 @@ $$
 
 观察表格与递推式，按列更新对于存储更有利。不难写出程序：
 
-```c
+```cpp
 
 #include<stdio.h>
 #include<string.h>
@@ -175,7 +175,7 @@ $$
 
 观察表格与递推式，按列更新对于存储更有利。代码中将后一位缩减了空间，仅保留相邻两项。
 
-```c
+```cpp
 
 #include<stdio.h>
 #include<string.h>
@@ -325,7 +325,7 @@ $$
 
 采用五边形数定理的方法。有代码：
 
-```c
+```cpp
 
 #include<stdio.h> 
 
