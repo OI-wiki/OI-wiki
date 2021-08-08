@@ -28,7 +28,7 @@ $$
 
 很明显，多项式 $C$ 的系数 $c_i$ 满足 $c_i = \sum_{j = 0}^i a_j b_{i - j}$。而对于这种朴素算法而言，计算每一项的时间复杂度都为 $O(n)$，一共有 $O(n)$ 项，那么时间复杂度为 $\mathcal{O}(n^2)$。
 
-真不错，但是我们能否加速使得它的时间复杂度降低呢？如果使用快速傅里叶变换的话，那么我们可以使得其复杂度降低到 $O(n \log n)$ 。
+真不错，但是我们能否加速使得它的时间复杂度降低呢？如果使用快速傅里叶变换的话，那么我们可以使得其复杂度降低到 $O(n \log n)$。
 
 ## 概述
 
@@ -262,10 +262,9 @@ $$
     
     //rev=1,DFT; rev=-1,IDFT
     void DFT(Comp*f, int n, int rev) {if (n == 1) return;
-      for (int i = 0; i &lt; n; ++i) tmp[i]= f[i];
+      for (int i = 0; i&lt;n; ++i) tmp[i]= f[i];
     //偶数放左边，奇数放右边
-      for (int i = 0; i &lt; n; ++i) {
-        if (i & 1)
+      for (int i = 0; i&lt;n; ++i) {if (i & 1)
           f[n/2 + i/2]= tmp[i];
         else
           f[i/2]= tmp[i];
@@ -277,14 +276,13 @@ $$
     //step 是两个单位复根的差，即满足 omega^k_n = step*omega^{k-1}*n，
     //定义等价于 exp(I*(2*M_PI/n*rev))
       Comp cur(1, 0), step(cos(2*M_PI/n), sin(2*M_PI*rev/n));
-      for (int k = 0; k &lt; n/2; ++k) {
-    //F(omega^k_n) = G(omega^k*{n/2}) + omega^k*n\*H(omega^k*{n/2})
+      for (int k = 0; k&lt;n/2; ++k) {//F(omega^k_n) = G(omega^k*{n/2}) + omega^k*n\*H(omega^k*{n/2})
         tmp[k]= g[k]+ cur*h[k];
     //F(omega^{k+n/2}*n) = G(omega^k*{n/2}) - omega^k_n*H(omega^k\_{n/2})
         tmp[k + n/2]= g[k]- cur*h[k];
         cur*= step;
       }
-      for (int i = 0; i &lt; n; ++i) f[i]= tmp[i];
+      for (int i = 0; i&lt;n; ++i) f[i]= tmp[i];
     }
     
     ```
