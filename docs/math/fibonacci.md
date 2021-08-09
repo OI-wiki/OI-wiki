@@ -301,17 +301,17 @@ $$
 由于：
 
 $$
-F_M=\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^M-\left(\frac{1-\sqrt{5}}{2}\right)\right^M)\equiv 0\pmod {p^{k-1}}
+F_M=\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^M-\left(\frac{1-\sqrt{5}}{2}\right)^M\right)\equiv 0\pmod {p^{k-1}}
 $$
 
 $$
-F_{M+1}=\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{M+1}-\left(\frac{1-\sqrt{5}}{2}\right)\right^{M+1})\equiv 1\pmod {p^{k-1}}
+F_{M+1}=\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{M+1}-\left(\frac{1-\sqrt{5}}{2}\right)^{M+1}\right)\equiv 1\pmod {p^{k-1}}
 $$
 
 因此：
 
 $$
-\left(\frac{1+\sqrt{5}}{2}\right)^M \equiv \left(\frac{1-\sqrt{5}}{2}\right)\right^M\pmod {p^{k-1}}
+\left(\frac{1+\sqrt{5}}{2}\right)^M \equiv \left(\frac{1-\sqrt{5}}{2}\right)^M\pmod {p^{k-1}}
 $$
 
 $$
@@ -321,7 +321,7 @@ $$
 因为反方向也可以推导，所以 M 是斐波那契数模 $p^{k-1}$ 的周期，等价于：
 
 $$
-\left(\frac{1+\sqrt{5}}{2}\right)^M \equiv \left(\frac{1-\sqrt{5}}{2}\right)\right^M\equiv 1\pmod {p^{k-1}}
+\left(\frac{1+\sqrt{5}}{2}\right)^M \equiv \left(\frac{1-\sqrt{5}}{2}\right)^M\equiv 1\pmod {p^{k-1}}
 $$
 
 当 p 是奇素数时，根据模奇素数 p 的升幂定理，有：
@@ -339,7 +339,7 @@ $$
 代入 a 为 $\left(\frac{1+\sqrt{5}}{2}\right)$ 和 $\left(\frac{1-\sqrt{5}}{2}\right)$ ， t 为 M 和 $Mp$ ，上述条件也就等价于：
 
 $$
-\left(\frac{1+\sqrt{5}}{2}\right)^Mp \equiv \left(\frac{1-\sqrt{5}}{2}\right)\right^Mp\equiv 1\pmod {p^k}
+\left(\frac{1+\sqrt{5}}{2}\right)^{Mp} \equiv \left(\frac{1-\sqrt{5}}{2}\right)^{Mp}\equiv 1\pmod {p^k}
 $$
 
 因此也等价于 Mp 是斐波那契数模 $p^k$ 的周期。因为周期等价，所以最小正周期也等价。
