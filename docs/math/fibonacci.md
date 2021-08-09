@@ -292,7 +292,7 @@ $$
 
 于是 $F_{2p}$ 和 $F_{2p+1}$ 两项与 $F_{-2}$ 和 $F_{-1}$ 一致，所以 $2p+2$ 是周期。
 
-结论3：对于素数 p ， M 是模 $p^{k-1}$ 的皮萨诺周期，等价于 $Mp$ 是模 $p^k$ 的皮萨诺周期。
+结论3：对于素数 p ， M 是斐波那契数模 $p^{k-1}$ 的周期，等价于 $Mp$ 是斐波那契数模 $p^k$ 的周期。特别地， M 是模 $p^{k-1}$ 的皮萨诺周期，等价于 $Mp$ 是模 $p^k$ 的皮萨诺周期。
 
 证明：
 
@@ -342,7 +342,9 @@ $$
 \left(\frac{1+\sqrt{5}}{2}\right)^{Mp} \equiv \left(\frac{1-\sqrt{5}}{2}\right)^{Mp}\equiv 1\pmod {p^k}
 $$
 
-因此也等价于 Mp 是斐波那契数模 $p^k$ 的周期。因为周期等价，所以最小正周期也等价。
+因此也等价于 Mp 是斐波那契数模 $p^k$ 的周期。
+
+因为周期等价，所以最小正周期也等价。
 
 三个结论证完。据此可以写出代码：
 
@@ -356,7 +358,7 @@ struct prime
 struct prime pp[2048];
 int pptop;
 
-unsigned long long get_cycle_from_mod(unsigned long long mod)
+unsigned long long get_cycle_from_mod(unsigned long long mod) // 这里求解的只是周期，不一定是最小正周期
 {
     pptop = 0;
     srand(time(0));
