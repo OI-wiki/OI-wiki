@@ -402,7 +402,13 @@ $$
 
 异或方程组是指形如
 
-$$\begin{cases}a_{1,1}x_1 \oplus a_{1,2}x_2 \oplus \cdots \oplus a_{1,n}x_n &= b_1\\a_{2,1}x_1 \oplus a_{2,2}x_2 \oplus \cdots \oplus a_{2,n}x_n &= b_2 \\ \cdots &\cdots \\ a_{m,1}x_1 \oplus a_{m,2}x_2 \oplus \cdots \oplus a_{m,n}x_n &= b_1\end{cases}$$
+$$
+\begin{cases}
+a_{1,1}x_1 \oplus a_{1,2}x_2 \oplus \cdots \oplus a_{1,n}x_n &= b_1\\
+a_{2,1}x_1 \oplus a_{2,2}x_2 \oplus \cdots \oplus a_{2,n}x_n &= b_2\\
+\cdots &\cdots \\ a_{m,1}x_1 \oplus a_{m,2}x_2 \oplus \cdots \oplus a_{m,n}x_n &= b_1
+\end{cases}
+$$
 
 的方程组，其中 $\oplus$ 表示“按位异或”（即 `xor` 或 C++ 中的 `^`），且式中所有系数 / 常数（即 $a_{i,j}$ 与 $b_i$）均为 $0$ 或 $1$。
 
