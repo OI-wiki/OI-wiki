@@ -17,7 +17,7 @@ int main() {
   long long n, i, j;
   cin >> n;
   for (i = 1; i <= n; i++) {
-    scanf("%d%d", &a[i].d, &a[i].x);
+    cin >> a[i].d >> a[i].x;
   }
   sort(a + 1, a + n + 1, cmp);
   long long ans = 0;
