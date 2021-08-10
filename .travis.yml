@@ -20,7 +20,7 @@ install:
   # - wget -O package-lock.json https://raw.githubusercontent.com/OI-wiki/OI-wiki/master/package-lock.json
   - pip install -r requirements.txt
   - npm install -g clang-format # for clang-format
-  - npm install .
+  - npm ci
 script:
   - set -e
   - npx remark ./docs -o --silent
