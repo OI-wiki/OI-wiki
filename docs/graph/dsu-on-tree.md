@@ -60,7 +60,7 @@ void merge(int x, int y) {
 2. 遍历它的重儿子，**保留它对 cnt 数组的影响**；
 3. 再次遍历 $u$ 的轻儿子的子树结点，加入这些结点的贡献，以得到 $u$ 的答案。
 
-![dsu-on-tree-2.png](./images/dsu-on-tree-2.png)
+![dsu-on-tree-2.png](./images/dsu-on-tree-2.svg)
 
 上图是一个例子。
 
