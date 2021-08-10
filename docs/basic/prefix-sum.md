@@ -66,7 +66,7 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     6 3 5 9
     ```
     
-    我们定义一个矩阵 $\textit{sum}$ 使得 $\texit{sum}_{x,y} = \sum\limits_{i=1}^x \sum\limits_{j=1}^y a_{i,j}$，  
+    我们定义一个矩阵 $\textit{sum}$ 使得 $\textit{sum}_{x,y} = \sum\limits_{i=1}^x \sum\limits_{j=1}^y a_{i,j}$，  
     那么这个矩阵长这样：
     
     ```text
