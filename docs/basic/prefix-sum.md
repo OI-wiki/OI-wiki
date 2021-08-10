@@ -66,7 +66,7 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     6 3 5 9
     ```
     
-    我们定义一个矩阵 $sum$，$sum_{x,y} = \sum\limits_{i=1}^x \sum\limits_{j=1}^y a_{i,j}$，  
+    我们定义一个矩阵 $\textit{sum}$ 使得 $\texit{sum}_{x,y} = \sum\limits_{i=1}^x \sum\limits_{j=1}^y a_{i,j}$，  
     那么这个矩阵长这样：
     
     ```text
@@ -75,18 +75,18 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     12 18 29 45
     ```
     
-    第一个问题就是递推求 $sum$ 的过程，$sum_{i,j} = sum_{i - 1,j} + sum_{i,j - 1} - sum_{i - 1,j - 1} + a_{i,j}$。
+    第一个问题就是递推求 $\textit{sum}$ 的过程，$\textit{sum}_{i,j} = \textit{sum}_{i - 1,j} + \textit{sum}_{i,j - 1} - \textit{sum}_{i - 1,j - 1} + a_{i,j}$。
     
-    因为加了 $sum_{i - 1,j}$ 和 $sum_{i,j - 1}$ 重复了 $sum_{i - 1,j - 1}$，所以减去。
+    因为同时加了 $\textit{sum}_{i - 1,j}$ 和 $\textit{sum}_{i,j - 1}$，故重复了 $\textit{sum}_{i - 1,j - 1}$，减去。
     
-    第二个问题就是如何应用，譬如求 $(x1,y1) - (x2,y2)$ 子矩阵的和。
+    第二个问题就是如何应用，譬如求 $(x_1,y_1) - (x_2,y_2)$ 子矩阵的和。
     
-    那么，根据类似的思考过程，易得答案为 $sum_{x2,y2} - sum_{x1 - 1,y2} - sum_{x2,y1 - 1} + sum_{x1 - 1,y1 - 1}$。
+    那么，根据类似的思考过程，易得答案为 $\textit{sum}_{x_2,y_2} - \textit{sum}_{x_1 - 1,y_2} - sum_{x_2,y_1 - 1} + sum_{x_1 - 1,y_1 - 1}$。
 
 #### 例题
 
 ???+note "[洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387)"
-    在一个 n\*m 的只包含 0 和 1 的矩阵里找出一个不包含 0 的最大正方形，输出边长。
+    在一个 $n\times m$ 的只包含 $0$ 和 $1$ 的矩阵里找出一个不包含 $0$ 的最大正方形，输出边长。
 
 ??? note "参考代码"
     ```cpp
@@ -102,8 +102,8 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
       for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= m; j++) {
           cin >> a[i][j];
-          b[i][j] =
-              b[i][j - 1] + b[i - 1][j] - b[i - 1][j - 1] + a[i][j];  // 求前缀和
+          // 求前缀和
+          b[i][j] = b[i][j - 1] + b[i - 1][j] - b[i - 1][j - 1] + a[i][j];
         }
       }
     
@@ -144,13 +144,13 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
 
 ### 树上前缀和
 
-设 $sum_i$ 表示结点 $i$ 到根节点的权值总和。  
+设 $\textit{sum}_i$ 表示结点 $i$ 到根节点的权值总和。  
 然后：
 
-- 若是点权，$x,y$ 路径上的和为 $sum_x + sum_y - sum_{lca} - sum_{fa_{lca}}$。
--   若是边权，$x,y$ 路径上的和为 $sum_x + sum_y - 2sum_{lca}$。
+- 若是点权，$x,y$ 路径上的和为 $\textit{sum}_x + \textit{sum}_y - \textit{sum}_\textit{lca} - \textit{sum}_{\textit{fa}_\textit{lca}}$。
+- 若是边权，$x,y$ 路径上的和为 $\textit{sum}_x + \textit{sum}_y - 2\cdot\textit{sum}_{lca}$。
 
-    $lca$ 的求法参见 [最近公共祖先](../graph/lca.md)。
+    LCA 的求法参见 [最近公共祖先](../graph/lca.md)。
 
 ## 差分
 
@@ -166,7 +166,7 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
 它可以维护多次对序列的一个区间加上一个数，并在最后询问某一位的数或是多次询问某一位的数。注意修改操作一定要在查询操作之前。
 
 ???+note "示例"
-    譬如使 $[l,r]$ 中的每个数加上一个 $k$，就是
+    譬如使 $[l,r]$ 中的每个数加上一个 $k$，即
     
     $$
     b_l \leftarrow b_l + k,b_{r + 1} \leftarrow b_{r + 1} - k
@@ -193,9 +193,9 @@ C++ 标准库中实现了差分函数 [`std::adjacent_difference`](https://zh.cp
 $$
 \begin{aligned}
 &d_s\leftarrow d_s+1\\
-&d_{lca}\leftarrow d_{lca}-1\\
+&d_{lca}\leftarrow d_{\textit{lca}}-1\\
 &d_t\leftarrow d_t+1\\
-&d_{f(lca)}\leftarrow d_{f(lca)}-1\\
+&d_{f(\textit{lca})}\leftarrow d_{f(\textit{lca})}-1\\
 \end{aligned}
 $$
 
@@ -203,7 +203,7 @@ $$
 
 ![](./images/prefix_sum1.png)
 
-可以认为公式中的前两条是对蓝色方框内的路径进行操作，后两条是对红色方框内的路径进行操作。不妨将 $lca$ 左侧的直系子节点命名为 $left$。那么就有 $d_{lca}-1=a_{lca}-(a_{left}+1)$，$d_{f(lca)}-1=a_{f(lca)}-(a_{lca}+1)$。可以发现实际上点差分的操作和上文一维数组的差分操作是类似的。
+可以认为公式中的前两条是对蓝色方框内的路径进行操作，后两条是对红色方框内的路径进行操作。不妨令 $\textit{lca}$ 左侧的直系子节点为 $\textit{left}$。那么有 $d_{\textit{lca}}-1=a_{\textit{lca}}-(a_{\textit{left}}+1)$，$d_{f(\textit{lca})}-1=a_{f(\textit{lca})}-(a_{\textit{lca}}+1)$。可以发现实际上点差分的操作和上文一维数组的差分操作是类似的。
 
 #### 边差分
 
@@ -213,7 +213,7 @@ $$
 \begin{aligned}
 &d_s\leftarrow d_s+1\\
 &d_t\leftarrow d_t+1\\
-&d_{lca}\leftarrow d_{lca}-2\\
+&d_{\textit{lca}}\leftarrow d_{\textit{lca}}-2\\
 \end{aligned}
 $$
 
@@ -229,7 +229,7 @@ $$
     FJ 有 $K(1 \le K \le 100,000)$ 条运输牛奶的路线，第 $i$ 条路线从隔间 $s_i$ 运输到隔间 $t_i$。一条运输路线会给它的两个端点处的隔间以及中间途径的所有隔间带来一个单位的运输压力，你需要计算压力最大的隔间的压力是多少。
 
 ??? note "解题思路"
-    需要统计每个点经过了多少次，那么就用树上差分将每一次的路径上的点加一，可以很快得到每个点经过的次数。这里采用倍增法进行 lca 的计算。最后对 DFS 遍历整棵树，在回溯时对差分数组求和就能求得答案了。
+    需要统计每个点经过了多少次，那么就用树上差分将每一次的路径上的点加一，可以很快得到每个点经过的次数。这里采用倍增法计算 LCA，最后对 DFS 遍历整棵树，在回溯时对差分数组求和就能求得答案了。
 
 ??? note "参考代码"
     ```cpp
@@ -272,7 +272,7 @@ $$
       return fa[x][0];
     }
     
-    //用dfs求最大压力，回溯时将子树的权值加上
+    //用 DFS 求最大压力，回溯时将子树的权值加上
     void get_ans(int u, int father) {
       for (int i = head[u]; i; i = edge[i].next) {
         int to = edge[i].to;
