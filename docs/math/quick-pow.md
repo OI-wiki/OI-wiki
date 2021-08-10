@@ -311,6 +311,39 @@ int main() {
 }
 ```
 
+## 光速幂（块速幂）
+
+通常来说，快速幂 $O(\log n)$ 的复杂度已经很优秀了，但是有时我们的算法并不支持在原先的基础上再乘上一个 $\log n$，所以就需要一种支持 $O(1)$ 查询的更快速的**光速幂**。
+
+光速幂利用分块思想，用一定的时间（一般是 $O(\sqrt n)$）预处理后用 $O(1)$ 的时间回答一次询问。
+
+光速幂的具体步骤是：
+
+1. 选定一个数 $s$，预处理出 $a^0$ 到 $a^s$ 与 $a^{0\cdot s}$ 到 $a^{\lceil\frac ps\rceil\cdot s}$ 的值并存在一个（或两个）数组里；
+2. 对于每一次询问 $a^b\bmod p$，将 $b$ 拆分成 $\left\lfloor\dfrac bs\right\rfloor\cdot s+b\bmod s$，则 $a^b=a^{\lfloor\frac bs\rfloor\cdot s}\times a^{b\bmod s}$，可以 $O(1)$ 求出答案。
+
+关于这个数 $s$ 的选择，我们一般选择 $\sqrt p$ 或者一个大小适当的 $2$ 的次幂（选择 $\sqrt p$ 可以使预处理较优，选择 $2$ 的次幂可以使用位运算优化 / 简化计算）。
+
+当然，光速幂的缺点也非常地显而易见：一次预处理仅支持同一底数与同一模数的查询，所以它的用途并没有快速幂广泛。
+
+??? note " 参考代码"
+    ```cpp
+    int pow1[65536], pow2[65536];
+    void preproc(int a, int mod)
+    {
+        pow1[0] = pow2[0] = 1;
+        for (int i = 1; i < 65536; i++)
+            pow1[i] = 1LL * pow1[i - 1] * a % mod;
+        int pow65536 = 1LL * pow1[65535] * a % mod;
+        for (int i = 1; i < 65536; i++)
+            pow2[i] = 1LL * pow2[i - 1] * pow65536 % mod;
+    }
+    int query(int pows)
+    {
+        return 1LL * pow1[pows & 65535] * pow2[pows >> 16];
+    }
+    ```
+
 ## 习题
 
 - [UVa 1230 - MODEX](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3671)
