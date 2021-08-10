@@ -8,7 +8,7 @@ python:
 services:
   - docker
 before_install:
-  - "if [ '$TRAVIS_PULL_REQUEST' != 'false' ]; then git remote add pr 'https://24OI-bot:${GH_TOKEN}@github.com/${TRAVIS_PULL_REQUEST_SLUG}.git'; fi"
+  - if [ '$TRAVIS_PULL_REQUEST' != 'false' ]; then git remote add pr 'https://24OI-bot:${GH_TOKEN}@github.com/${TRAVIS_PULL_REQUEST_SLUG}.git'; fi
   - if [ '$TRAVIS_PULL_REQUEST' != 'false' ]; then git fetch pr $TRAVIS_PULL_REQUEST_BRANCH; git checkout $TRAVIS_PULL_REQUEST_BRANCH; fi
   - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
   - source ~/.nvm/nvm.sh
