@@ -104,7 +104,7 @@ $$
 ???+note "[BJWC2018 最长上升子序列](https://www.luogu.com.cn/problem/P4484)"
     现在有一个长度为 $n$ 的随机排列，求它的最长上升子序列长度的期望。
 
-???+note "[CF 年轻人的多米诺骨牌](https://codeforces.com/problemset/problem/1268/B)"
+???+note "[CF 杨氏多米诺骨牌](https://codeforces.com/problemset/problem/1268/B)"
     给定一个具有 $n$ 列长度 $a_{1} ,a_{2},...,a_{n}$$(a_{1} \geq a_{2} \geq ... \geq a_{n} \geq 1)$ 的直方图。$a=[3,2,2,2,1]$ 的杨图。找到可以在此直方图中绘制的最大数量的非重叠多米诺骨牌（$1 \times 2$ 或 $2 \times 1$ 矩形）。
 
 ## References
