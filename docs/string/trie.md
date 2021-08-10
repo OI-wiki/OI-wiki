@@ -58,7 +58,7 @@ struct trie {
     
     ??? mdui-shadow-6 "参考代码"
         ```cpp
-        --8<-- "docs/string/code/tries/trie_1.cpp"
+        --8<-- "docs/string/code/trie/trie_1.cpp"
         ```
 
 ### AC 自动机
@@ -85,7 +85,7 @@ trie 是 [AC 自动机](./ac-automaton.md) 的一部分。
     
     ??? mdui-shadow-6 "参考代码"
         ```cpp
-        --8<-- "docs/string/code/tries/trie_2.cpp"
+        --8<-- "docs/string/code/trie/trie_2.cpp"
         ```
 
 ### 维护异或和
@@ -255,7 +255,7 @@ int merge(int a, int b) {
     
     ??? mdui-shadow-6 "参考代码"
         ```cpp
-        --8<-- "docs/string/code/tries/trie_3.cpp"
+        --8<-- "docs/string/code/trie/trie_3.cpp"
         ```
 
 ???+note "[【luogu-P6623】 【省选联考 2020 A 卷】 树](https://www.luogu.com.cn/problem/P6623)"
