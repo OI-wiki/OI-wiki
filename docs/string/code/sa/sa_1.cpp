@@ -1,4 +1,4 @@
-#include <cctype> 
+#include <cctype>
 #include <cstdio>
 #include <cstring>
 #include <iostream>
@@ -23,15 +23,16 @@ int main() {
   for (i = 1; i <= n; ++i)
     while (!isalpha(s[i] = getchar()))
       ;
-  for (i = 1; i <= n; ++i) rk[i] = rk[2 * n + 2 - i] = s[i];//拼接正反两个字符串，中间空出一个字符 
+  for (i = 1; i <= n; ++i)
+    rk[i] = rk[2 * n + 2 - i] = s[i];  //拼接正反两个字符串，中间空出一个字符
 
   n = 2 * n + 1;
-  //求后缀数组 
+  //求后缀数组
   for (i = 1; i <= n; ++i) ++cnt[rk[i]];
   for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-  for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i; 
+  for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
 
-  for (w = 1; w < n; w *= 2, m = p) { // m=p 就是优化计数排序值域
+  for (w = 1; w < n; w *= 2, m = p) {  // m=p 就是优化计数排序值域
     for (p = 0, i = n; i > n - w; --i) id[++p] = i;
     for (i = 1; i <= n; ++i)
       if (sa[i] > w) id[++p] = sa[i] - w;
@@ -43,10 +44,10 @@ int main() {
     for (p = 0, i = 1; i <= n; ++i)
       rk[sa[i]] = cmp(sa[i], sa[i - 1], w) ? p : ++p;
   }
-  //利用后缀数组O(1)进行判断 
+  //利用后缀数组O(1)进行判断
   while (l <= r) {
     printf("%c", rk[l] < rk[n + 1 - r] ? s[l++] : s[r--]);
-    if ((++tot) % 80 == 0) puts("");//回车 
+    if ((++tot) % 80 == 0) puts("");  //回车
   }
 
   return 0;

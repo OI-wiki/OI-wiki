@@ -18,9 +18,9 @@ void insert(char *s, int id) {  // id 表示原始字符串的编号
   int u = 0;
   for (int i = 1; s[i]; i++) {
     if (!tr[u][s[i] - 'a']) tr[u][s[i] - 'a'] = ++tot;
-    u = tr[u][s[i] - 'a']; // 转移 
+    u = tr[u][s[i] - 'a'];  // 转移
   }
-  idx[u] = id; // 以 u 为结尾的字符串编号为 idx[u] 
+  idx[u] = id;  // 以 u 为结尾的字符串编号为 idx[u]
 }
 queue<int> q;
 void build() {
@@ -30,11 +30,10 @@ void build() {
     int u = q.front();
     q.pop();
     for (int i = 0; i < 26; i++) {
-      if (tr[u][i]){
-      	fail[tr[u][i]] = tr[fail[u]][i];//fail数组：同一字符可以匹配的其他位置 
-		q.push(tr[u][i]);  
-	  }
-      else
+      if (tr[u][i]) {
+        fail[tr[u][i]] = tr[fail[u]][i];  // fail数组：同一字符可以匹配的其他位置
+        q.push(tr[u][i]);
+      } else
         tr[u][i] = tr[fail[u]][i];
     }
   }
@@ -55,8 +54,9 @@ char s[N][100], t[L];
 int main() {
   while (~scanf("%d", &n)) {
     if (n == 0) break;
-    AC::init();// 数组清零 
-    for (int i = 1; i <= n; i++) scanf("%s", s[i] + 1), AC::insert(s[i], i); // 需要记录该字符串的序号 
+    AC::init();  // 数组清零
+    for (int i = 1; i <= n; i++)
+      scanf("%s", s[i] + 1), AC::insert(s[i], i);  // 需要记录该字符串的序号
     AC::build();
     scanf("%s", t + 1);
     int x = AC::query(t);

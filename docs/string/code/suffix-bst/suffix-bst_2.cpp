@@ -156,10 +156,10 @@ void solve() {
   char op[10];
   for (int i = 1; i <= q; ++i) {
     scanf("%s", op);
-    
-    //三种情况分别处理 
-    
-    if (op[0] == 'A') { // ADD
+
+    //三种情况分别处理
+
+    if (op[0] == 'A') {  // ADD
       scanf("%s", a + 1);
       na = strlen(a + 1);
       decode(a + 1, na, mask);
@@ -168,8 +168,7 @@ void solve() {
         t[++n] = a[i];
         insert(root, n, 0, INF);
       }
-    } 
-	else if (op[0] == 'D') { //DEL 
+    } else if (op[0] == 'D') {  // DEL
       int x;
       scanf("%d", &x);
       while (x) {
@@ -177,8 +176,7 @@ void solve() {
         --n;
         --x;
       }
-    } 
-	else if (op[0] == 'Q') { //QUERY
+    } else if (op[0] == 'Q') {  // QUERY
       scanf("%s", a + 1);
       na = strlen(a + 1);
       decode(a + 1, na, mask);
