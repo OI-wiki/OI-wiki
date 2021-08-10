@@ -23,7 +23,8 @@ void build() {
     q.pop();
     for (int i = 0; i < 26; i++) {
       if (tr[u][i]) {
-        fail[tr[u][i]] = tr[fail[u]][i];  // fail数组：同一字符可以匹配的其他位置
+        fail[tr[u][i]] =
+            tr[fail[u]][i];  // fail数组：同一字符可以匹配的其他位置
         q.push(tr[u][i]);
       } else
         tr[u][i] = tr[fail[u]][i];
