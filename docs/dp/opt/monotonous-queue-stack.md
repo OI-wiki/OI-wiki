@@ -31,7 +31,7 @@ $f_{i,j}=\max\{f_{i-1,k}+b_i+|a_i-j|\}=\max\{f_{i-1,k}-|a_i-j|\}+b_i$
 
 ???+ 参考代码
     ```cpp
-    --8<-- "docs/dp/code/monotonous-queue-stack/monotonous-queue-stack_1.cpp"
+    --8<-- "docs/dp/code/opt/monotonous-queue-stack/monotonous-queue-stack_1.cpp"
     ```
 
 讲完了，让我们归纳一下单调队列优化动态规划问题的基本形态：当前状态的所有值可以从上一个状态的某个连续的段的值得到，要对这个连续的段进行 RMQ 操作，相邻状态的段的左右区间满足非降的关系。
