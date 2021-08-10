@@ -13,10 +13,10 @@ before_install:
   - nvm install 12
 install:
   # use config from master branch
-  - wget -O requirements.txt https://raw.githubusercontent.com/OI-wiki/OI-wiki/master/requirements.txt
+  # - wget -O requirements.txt https://raw.githubusercontent.com/OI-wiki/OI-wiki/master/requirements.txt
+  # - wget -O package.json https://raw.githubusercontent.com/OI-wiki/OI-wiki/master/package.json
+  # - wget -O package-lock.json https://raw.githubusercontent.com/OI-wiki/OI-wiki/master/package-lock.json
   - pip install -r requirements.txt
-  - wget -O package.json https://raw.githubusercontent.com/OI-wiki/OI-wiki/master/package.json
-  - wget -O package-lock.json https://raw.githubusercontent.com/OI-wiki/OI-wiki/master/package-lock.json
   - npm install -g clang-format # for clang-format
   - npm install .
 script:
