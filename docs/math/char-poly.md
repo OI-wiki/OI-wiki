@@ -134,7 +134,7 @@ $$
 H=
 \begin{bmatrix}
 \alpha_{1}&h_{12}&\dots&\dots&h_{1n}\\
-\beta_{2}&\alpha_{2}&h_{23}&h_{24}&\vdots \\
+\beta_{2}&\alpha_{2}&h_{23}&\dots &\vdots \\
 &\ddots &\ddots & \ddots &\vdots \\
 & &\ddots &\ddots & h_{(n-1)n}\\
 &&& \beta_{n}& \alpha_{n}
@@ -145,7 +145,7 @@ $$
 
 我们使用相似变换将次对角线以下的元素消为零后即能得到上 Hessenberg 矩阵，而求出一个 $n\times n$ 上 Hessenberg 矩阵的特征多项式则可在 $O(n^3)$ 时间完成。
 
-我们记 $H_i$ 为只保留 $H$ 的前 $i$ 行和前 $i$ 列的矩阵，记 $p_i(x)=\det(H_i)$ 那么
+我们记 $H_i$ 为只保留 $H$ 的前 $i$ 行和前 $i$ 列的矩阵，记 $p_i(x)=\det(xI_i-H_i)$ 那么
 
 $$
 H_0=
@@ -202,11 +202,132 @@ p_i(x)=(x-\alpha_i)p_{i-1}(x)-
 p_{i-m-1}(x)
 $$
 
-至此完成了整个算法，该算法一般被称为 Hessenberg 算法。另外我们也注意到 $\deg(p_n(x))=n$。
+至此完成了整个算法，该算法一般被称为 Hessenberg 算法。
 
 ## 应用
 
 在信息学中我们一般考虑 $(\mathbb{Z}/m\mathbb{Z})^{n\times n}$ 上的矩阵，通常 $m$ 为素数，进行上述相似变换是简单的，当 $m$ 为合数时，我们可以考虑类似辗转相除的方法来进行。
+
+??? note "参考实现"
+    ```cpp
+    #include <cassert>
+    #include <iostream>
+    #include <random>
+    #include <vector>
+    
+    typedef std::vector<std::vector<int>> Matrix;
+    typedef long long i64;
+    
+    Matrix to_upper_Hessenberg(const Matrix &M, int mod) {
+      Matrix H(M);
+      int n = H.size();
+      for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+          if ((H[i][j] %= mod) < 0) H[i][j] += mod;
+        }
+      }
+      for (int i = 0; i < n - 1; ++i) {
+        int pivot = i + 1;
+        for (; pivot < n; ++pivot) {
+          if (H[pivot][i] != 0) break;
+        }
+        if (pivot == n) continue;
+        if (pivot != i + 1) {
+          for (int j = i; j < n; ++j) std::swap(H[i + 1][j], H[pivot][j]);
+          for (int j = 0; j < n; ++j) std::swap(H[j][i + 1], H[j][pivot]);
+        }
+        for (int j = i + 2; j < n; ++j) {
+          for (;;) {
+            if (H[j][i] == 0) break;
+            if (H[i + 1][i] == 0) {
+              for (int k = i; k < n; ++k) std::swap(H[i + 1][k], H[j][k]);
+              for (int k = 0; k < n; ++k) std::swap(H[k][i + 1], H[k][j]);
+              break;
+            }
+            if (H[j][i] >= H[i + 1][i]) {
+              int q = H[j][i] / H[i + 1][i], mq = mod - q;
+              for (int k = i; k < n; ++k)
+                H[j][k] = (H[j][k] + i64(mq) * H[i + 1][k]) % mod;
+              for (int k = 0; k < n; ++k)
+                H[k][i + 1] = (H[k][i + 1] + i64(q) * H[k][j]) % mod;
+            } else {
+              int q = H[i + 1][i] / H[j][i], mq = mod - q;
+              for (int k = i; k < n; ++k)
+                H[i + 1][k] = (H[i + 1][k] + i64(mq) * H[j][k]) % mod;
+              for (int k = 0; k < n; ++k)
+                H[k][j] = (H[k][j] + i64(q) * H[k][i + 1]) % mod;
+            }
+          }
+        }
+      }
+      return H;
+    }
+    
+    std::vector<int> get_charpoly(const Matrix &M, int mod) {
+      Matrix H(to_upper_Hessenberg(M, mod));
+      int n = H.size();
+      std::vector<std::vector<int>> p(n + 1);
+      p[0] = {1 % mod};
+      for (int i = 1; i <= n; ++i) {
+        const std::vector<int> &pi_1 = p[i - 1];
+        std::vector<int> &pi = p[i];
+        pi.resize(i + 1, 0);
+        int v = mod - H[i - 1][i - 1];
+        if (v == mod) v -= mod;
+        for (int j = 0; j < i; ++j) {
+          pi[j] = (pi[j] + i64(v) * pi_1[j]) % mod;
+          if ((pi[j + 1] += pi_1[j]) >= mod) pi[j + 1] -= mod;
+        }
+        int t = 1;
+        for (int j = 1; j < i; ++j) {
+          t = i64(t) * H[i - j][i - j - 1] % mod;
+          int prod = i64(t) * H[i - j - 1][i - 1] % mod;
+          if (prod == 0) continue;
+          prod = mod - prod;
+          for (int k = 0; k <= i - j - 1; ++k)
+            pi[k] = (pi[k] + i64(prod) * p[i - j - 1][k]) % mod;
+        }
+      }
+      return p[n];
+    }
+    
+    bool verify(const Matrix &M, const std::vector<int> &charpoly, int mod) {
+      if (mod == 1) return true;
+      int n = M.size();
+      std::vector<int> randvec(n), sum(n, 0);
+      std::mt19937 gen(std::random_device{}());
+      std::uniform_int_distribution<int> dis(1, mod - 1);
+      for (int i = 0; i < n; ++i) randvec[i] = dis(gen);
+      for (int i = 0; i <= n; ++i) {
+        int v = charpoly[i];
+        for (int j = 0; j < n; ++j) sum[j] = (sum[j] + i64(v) * randvec[j]) % mod;
+        std::vector<int> prod(n, 0);
+        for (int j = 0; j < n; ++j) {
+          for (int k = 0; k < n; ++k) {
+            prod[j] = (prod[j] + i64(M[j][k]) * randvec[k]) % mod;
+          }
+        }
+        randvec.swap(prod);
+      }
+      for (int i = 0; i < n; ++i)
+        if (sum[i] != 0) return false;
+      return true;
+    }
+    
+    int main() {
+      std::ios::sync_with_stdio(false);
+      std::cin.tie(0);
+      int n, mod;
+      std::cin >> n >> mod;
+      Matrix M(n, std::vector<int>(n));
+      for (int i = 0; i < n; ++i)
+        for (int j = 0; j < n; ++j) std::cin >> M[i][j];
+      std::vector<int> charpoly(get_charpoly(M, mod));
+      for (int i = 0; i <= n; ++i) std::cout << charpoly[i] << ' ';
+      assert(verify(M, charpoly, mod));
+      return 0;
+    }
+    ```
 
 上述 Hessenberg 算法不具有数值的稳定性，所以 $\mathbb{R}^{n\times n}$ 上的矩阵在使用前需要其他算法进行调整或改用其他具有数值稳定性的算法。
 
@@ -242,4 +363,4 @@ $$
 
 - Rizwana Rehman, Ilse C.F. Ipsen.[La Budde’s Method for Computing Characteristic Polynomials](https://ipsen.math.ncsu.edu/ps/charpoly3.pdf).
 - Marshall Law.[Computing Characteristic Polynomials of Matrices of Structured Polynomials](http://summit.sfu.ca/system/files/iritems1/17301/etd10125_.pdf).
-- Mike Paterson.[On the Number of Nonscalar Multiplications Necessary to Evaluate Polynomials](http://summit.sfu.ca/system/files/iritems1/17301/etd10125_.pdf).
+- Mike Paterson.[On the Number of Nonscalar Multiplications Necessary to Evaluate Polynomials](https://epubs.siam.org/doi/10.1137/0202007).
