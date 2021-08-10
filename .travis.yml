@@ -28,5 +28,5 @@ script:
   - git config --local user.name "24OI-bot"
   - git status
   - "if [ '$TRAVIS_PULL_REQUEST' = 'true' ]; then git remote add pr 'https://24OI-bot:${GH_TOKEN}@github.com/${TRAVIS_PULL_REQUEST_SLUG}.git'; fi"
-  - "if [[ $(git diff --stat) != '' ]] && if [ '$TRAVIS_PULL_REQUEST' = 'true' ]; then git add .; git commit -m 'style: format markdown files with remark-lint'; git push pr $TRAVIS_PULL_REQUEST_BRANCH; fi"
+  - "if [[ $(git diff --stat) != '' ]] && [ '$TRAVIS_PULL_REQUEST' = 'true' ]; then git add .; git commit -m 'style: format markdown files with remark-lint'; git push pr $TRAVIS_PULL_REQUEST_BRANCH; fi"
   - set +e
