@@ -32,7 +32,7 @@ script:
   - echo $TRAVIS_PULL_REQUEST_SLUG
   - echo $TRAVIS_PULL_REQUEST_BRANCH
   - echo $TRAVIS_PULL_REQUEST
-  - 'if [[ $(git diff --stat) != "" ]] && [ "$TRAVIS_PULL_REQUEST" != "false" ]; then git add . && git commit -m "style: format markdown files with remark-lint" && git push pr $TRAVIS_PULL_REQUEST_BRANCH -v; fi'
+  - "if [[ $(git diff --stat) != \"\" ]] && [ \"$TRAVIS_PULL_REQUEST\" != \"false\" ]; then git add . && git commit -m \"style: format markdown files with remark-lint\" && git push pr $TRAVIS_PULL_REQUEST_BRANCH -v; fi"
   - git log
   - "if [[ $(git diff --stat) != '' ]]; then (exit 1); fi;
   - set +e
