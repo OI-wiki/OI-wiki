@@ -8,7 +8,7 @@ python:
 services:
   - docker
 before_install:
-  - git checkout $TRAVIS_PULL_REQUEST_BRANCH
+  - if [ "$TRAVIS_PULL_REQUEST" == true ]; then git checkout $TRAVIS_PULL_REQUEST_BRANCH; fi
   - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
   - source ~/.nvm/nvm.sh
   - nvm install 12
@@ -29,5 +29,5 @@ script:
   - git status
   - if [ "$TRAVIS_PULL_REQUEST" == true ]; then git remote add pr "https://${GH_TOKEN}@github.com/${TRAVIS_PULL_REQUEST_SLUG}.git"; fi
   - git remote -v
-  - "if [[ $(git diff --stat) != '' ]]; then git add .; git commit -m 'style: format markdown files with remark-lint'; git push pr $TRAVIS_PULL_REQUEST_BRANCH; fi"
+  - "if [[ $(git diff --stat) != '' ]] && if ['$TRAVIS_PULL_REQUEST' == true ]; then git add .; git commit -m 'style: format markdown files with remark-lint'; git push pr $TRAVIS_PULL_REQUEST_BRANCH; fi"
   - set +e
