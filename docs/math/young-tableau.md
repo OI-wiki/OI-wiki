@@ -27,13 +27,13 @@
 
 **杨表**(Young tableau）是通过用取自某个字母表的符号填充杨氏图的框来获得的，这通常需要是一个全序集和。填入的元素写作 $x_{1}$,$x_{2}$,$x_{3}$，。。.。但为了方便起见，都直接填入正整数。杨表最初应用于对称群的表示理论时，允许在杨图的 $n$ 的方格中任意填入 $1$ 到 $n$ 中相异的正整数。但现在的研究大多使用“标准”的杨表，即上述条件中各行与各列中方格的数字皆为严格递增的。由 $n$ 个方格的相异杨表数个数形成对和数：
 
-$1, 1, 2, 4, 10, 26, 76, 232, 764, 2620, 9496, ...$（[OEIS](https://en.wikipedia.org/wiki/On-Line_Encyclopedia_of_Integer_Sequences) 中的数列 [A000085](https://oeis.org/A000085)）
+$1, 1, 2, 4, 10, 26, 76, 232, 764, 2620, 9496, \ldots$（[OEIS](https://en.wikipedia.org/wiki/On-Line_Encyclopedia_of_Integer_Sequences) 中的数列 [A000085](https://oeis.org/A000085)）
 
 在其他应用中，杨图也可以被填入相同的数字。若填法的同列数字严格递增，且同行数字单调递增，则该杨表被称为是 **半标准的**（Semistandard Young Tableaux, 有时称为列严格）。杨表中个数字出现的次数记录下来得到的序列被视为杨表的 **权重**。因此，标准杨表的权重必然是 $(1,1,...,1)$。因为在标准杨表中，$1$ 到 $n$ 的每个正整数恰好各出现一次。
 
 #### 标准杨表的插入算法
 
-排列的性质可以由杨表直观地表现出来。**RSK 插入算法** 就提供了一个将杨表和排列联系起来的途径。它由 Robinson,Schensted and Knuth 提出。
+排列的性质可以由杨表直观地表现出来。**RSK 插入算法** 就提供了一个将杨表和排列联系起来的途径。它由 Robinson, Schensted and Knuth 提出。
 
 令 $S$ 是一个杨表，定义 $S \leftarrow x$ 表示将 $x$ 从第一行插入杨表中，具体如下：
 
@@ -104,7 +104,7 @@ $$
 ???+note "[BJWC2018 最长上升子序列](https://www.luogu.com.cn/problem/P4484)"
     现在有一个长度为 $n$ 的随机排列，求它的最长上升子序列长度的期望。
 
-???+note "[CF 杨氏多米诺骨牌](https://codeforces.com/problemset/problem/1268/B)"
+???+note "[CF1268B 杨氏多米诺骨牌](https://codeforces.com/problemset/problem/1268/B)"
     给定一个具有 $n$ 列长度 $a_{1} ,a_{2},...,a_{n}$$(a_{1} \geq a_{2} \geq ... \geq a_{n} \geq 1)$ 的直方图。$a=[3,2,2,2,1]$ 的杨图。找到可以在此直方图中绘制的最大数量的非重叠多米诺骨牌（$1 \times 2$ 或 $2 \times 1$ 矩形）。
 
 ## References
@@ -112,4 +112,4 @@ $$
 - [1][Young Tableau - from Wolfram MathWorld](<https://mathworld.wolfram.com/YoungTableau.html>)
 - [2][Young tableau - Wikipedia](<https://en.wikipedia.org/wiki/Young_tableau>)
 - [3][Hook length formula - Wikipedia](<https://en.wikipedia.org/wiki/Hook_length_formula>)
-- [4]袁方舟，[《浅谈杨氏矩阵在信息学竞赛中的应用》IOI2019](http://zory.ink/files/%E8%AE%BA%E6%96%87%E9%9B%862019.pdf), 中国国家候选队论文集，202-229
+- [4]袁方舟，[《浅谈杨氏矩阵在信息学竞赛中的应用》IOI2019](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2019%E8%AE%BA%E6%96%87%E9%9B%86.pdf), 中国国家候选队论文集，202-229
