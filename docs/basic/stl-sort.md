@@ -8,6 +8,48 @@
 
 该函数为 C 标准库实现的 [快速排序](./quick-sort.md)，定义在 `<stdlib.h>` 中。在 C++ 标准库里，该函数定义在 `<cstdlib>` 中。
 
+### qsort与bsearch的比较函数
+
+qsort函数有四个参数：数组名、元素个数、元素大小、比较规则。其中，比较规则通过指定比较函数来实现，指定不同的比较函数可以实现不同的排序规则。
+
+比较函数的参数限定为两个const void 类型的指针。返回值规定为正数、负数和0。
+
+比较函数的一种示例写法为：
+
+```cpp
+int compare(const void *p1, const void *p2) // int类型数组的比较函数
+{
+    int *a = (int *)p1;
+    int *b = (int *)p2;
+    if (*a>*b) return 1; // 返回正数表示a大于b
+    else if (*a<*b) return -1; // 返回负数表示a小于b
+    else return 0; // 返回0表示a与b等价
+}
+```
+
+注意：返回值用两个元素相减代替正负数，是一种典型的错误写法，因为这样可能会导致溢出错误。
+
+这里写指针类型的a和b是一种习惯，在待排序元素为较大的结构体时，书写会较为方便。一个示例：
+
+```cpp
+struct eg // 示例结构体
+{
+    int e;
+    int g;
+};
+
+int compare(const void *p1, const void *p2) // struct eg类型数组的比较函数：按成员e排序
+{
+    struct eg *a = (struct eg *)p1;
+    struct eg *b = (struct eg *)p2;
+    if (a->e>b->e) return 1; // 返回正数表示a大于b
+    else if (a->e<b->e) return -1; // 返回负数表示a小于b
+    else return 0; // 返回0表示a与b等价
+}
+```
+
+这里也可以看出，等价不代表相等，只代表在此比较规则下两元素等价。
+
 ## std::sort
 
 参见：[`std::sort`](https://zh.cppreference.com/w/cpp/algorithm/sort)
@@ -22,6 +64,10 @@ std::sort(a, a + n);
 // cmp 为自定义的比较函数
 std::sort(a, a + n, cmp);
 ```
+
+注意：sort的比较函数的返回值是 true 和 false ，用 true 和 false 表示两个元素是否需要调换位置，这与 qsort 的三值比较函数的语义完全不同。具体内容详见上方给出的sort的文档。
+
+如果要将sort简单改写为qsort，维持排序顺序整体上不变（不考虑等价的元素），需要将返回值true改为-1，返回值false改为1。
 
 更为常见的库排序函数是 `std::sort` 函数。该函数的最后一个参数为二元比较函数，未指定 cmp 函数时，默认按从小到大的顺序排序。
 
