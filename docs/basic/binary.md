@@ -115,7 +115,7 @@ int upper(const void *p1, const void *p2) {
 }
 ```
 
-因为现在的 OI 选手很少写纯 C ，并且此方法作用有限，所以不是重点。对于新手而言，建议老老实实地使用 C++ 中的 lower_bound 和 upper_bound 函数。
+因为现在的 OI 选手很少写纯 C，并且此方法作用有限，所以不是重点。对于新手而言，建议老老实实地使用 C++ 中的 lower_bound 和 upper_bound 函数。
 
 ### 二分答案
 
