@@ -202,19 +202,25 @@ $$
 
 ### 原根判定定理
 
-> **原根判定定理**：若一个数 $g$ 是模 $m$ 的原根，则有对于 $\varphi(m)$ 任何大于 $1$ 且不为自身的因数 $p$，都有 $g^{\varphi(m)/p}\not\equiv 1\pmod m$。
+> **原根判定定理**：设 $m \geqslant 3, \gcd(a,m)=1$，则 $a$ 是模 $m$ 的原根的充要条件是，对于 $\varphi(m)$ 的每个素因数 $p$，都有 $a^{\frac{\varphi(m)}{p}}\not\equiv 1\pmod m$。
 
-**证明：** 假设存在一个 $t<\varphi(p)$ 使得 $a^t\equiv 1\pmod{p}$ 且 $\forall i\in\left[1,m\right]:a^{\frac{\varphi(p)}{d_{i}}}\not\equiv 1\pmod{p}$。
+**证明：** 必要性显然，下面证明充分性。
 
-由 [裴蜀定理](./bezouts.md) 得，一定存在一组 $k,x$ 满足 $kt=x\varphi(p)+\gcd(t,\varphi(p))$；由欧拉定理/费马小定理得 $a^{\varphi(p)}\equiv 1\pmod{p}$；故有：
+假设 $a$ 不是模 $m$ 的原根，则存在一个 $t<\varphi(p)$ 使得 $a^t\equiv 1\pmod{m}$。
+
+由 [裴蜀定理](./bezouts.md) 得，一定存在一组 $k,x$ 满足 $kt=x\varphi(m)+\gcd(t,\varphi(m))$。
+
+又由 [欧拉定理](./fermat.md) 得 $a^{\varphi(m)}\equiv 1\pmod{m}$，故有：
 
 $$
-1\equiv a^{kt}\equiv a^{x\varphi(p)+\gcd(t,\varphi(p))}\equiv a^{\gcd(t,\varphi(p))}\pmod{p}
+1\equiv a^{kt}\equiv a^{x\varphi(m)+\gcd(t,\varphi(m))}\equiv a^{\gcd(t,\varphi(m))}\pmod{m}
 $$
 
-又有 $t<\varphi(p)$，故 $\gcd(t,\varphi(p))\leqslant t<\varphi(p)$。
+由于 $\gcd(t, \varphi(m)) \mid \varphi(m)$ 且 $\gcd(t, \varphi(m))\leqslant t < \varphi(m)$。
 
-又 $\gcd(t,\varphi(p))\mid(\varphi(p))$，故 $\gcd(t,\varphi(p))$ 必至少整除 ${\frac{\varphi(p)}{d_{1}}},{\frac{\varphi(p)}{d_{2}}},\ldots,{\frac{\varphi(p)}{d_{m}}}$ 中的至少一个，设 $\gcd(t,\varphi(p))\mid {\frac{\varphi(p)}{d_{i}}}$，则 $a^{\frac{\varphi(p)}{d_{i}}}\equiv a^{\gcd(t,\varphi(p))}\equiv 1\pmod{p}$。
+故存在 $\varphi(m)$ 的素因数 $p$ 使得 $\gcd(t, \varphi(m)) \mid \frac{\varphi(m)}{p}$。
+
+则 $a^{\frac{\varphi(m)}{p}}\equiv a^{(t, \varphi(m))}\equiv 1\pmod{m}$，与条件矛盾。
 
 故假设不成立，原命题成立。
 
