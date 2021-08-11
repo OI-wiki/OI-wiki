@@ -21,6 +21,7 @@ author: LeoJacob, Marcythm, minghu6
 Z 函数的朴素算法复杂度为 $O(n^2)$：
 
 ```cpp
+// C++ Version
 vector<int> z_function_trivial(string s) {
   int n = (int)s.length();
   vector<int> z(n);
@@ -28,6 +29,17 @@ vector<int> z_function_trivial(string s) {
     while (i + z[i] < n && s[z[i]] == s[i + z[i]]) ++z[i];
   return z;
 }
+```
+
+```python
+# Python Version
+def z_function_trivial(s):
+    n = len(s)
+    z = [0] * n
+    for i in range(1, n):
+        while i + z[i] < n and s[z[i]] == s[i + z[i]]:
+            z[i] += 1
+    return z
 ```
 
 ## 线性算法
@@ -53,6 +65,7 @@ vector<int> z_function_trivial(string s) {
 ## 实现
 
 ```cpp
+// C++ Version
 vector<int> z_function(string s) {
   int n = (int)s.length();
   vector<int> z(n);
@@ -67,6 +80,25 @@ vector<int> z_function(string s) {
   }
   return z;
 }
+```
+
+```python
+# Python Version
+def z_function(s):
+    n = len(s)
+    z = [0] * n
+    l, r = 0, 0
+    for i in range(1, n):
+        if i <= r and z[i - l] < r - i + 1:
+            z[i] = z[i - l]
+        else:
+            z[i] = max(0, r - i + 1)
+            while i + z[i] < n and s[z[i]] == s[i + z[i]]:
+                z[i] += 1
+        if i + z[i] - 1 > r:
+            l = i
+            r = i + z[i] - 1
+    return z
 ```
 
 ## 复杂度分析
