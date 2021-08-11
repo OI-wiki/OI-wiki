@@ -2,7 +2,7 @@
 分拆：将自然数n写成递降正整数和的表示。
 
 $$
-n=r_1+r_2+⋯+r_k\quad r_1≥r_2≥⋯≥r_k≥1
+n=r_1+r_2+\ldots+r_k \quad r_1 \ge r_2 \ge \ldots \ge r_k \ge 1
 $$
 
 和式中每个正整数称为一个部分。
