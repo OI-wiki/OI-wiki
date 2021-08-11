@@ -23,7 +23,7 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     ```
 
 ??? note "解题思路"
-    递推：`B[i] = B[i-1] + A[i]`，前提 `B[0] = A[0]`。
+    递推：`B[0] = A[0]`，对于 $i \ge 1$ 则 `B[i] = B[i-1] + A[i]`。
 
 ??? note "参考代码"
     ```cpp
@@ -199,7 +199,7 @@ $$
 \end{aligned}
 $$
 
-其中 $f$ 表示 $lca$ 的父亲节点，$d_i$ 为点权 $a_i$ 的差分数组。
+其中 $f(x)$ 表示 $x$ 的父亲节点，$d_i$ 为点权 $a_i$ 的差分数组。
 
 ![](./images/prefix_sum1.png)
 
