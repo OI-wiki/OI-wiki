@@ -70,44 +70,48 @@ C++ 标准库中实现了查找首个不小于给定值的元素的函数 [`std:
 
 ### bsearch
 
-bsearch函数为 C 标准库实现的二分查找，定义在 `<stdlib.h>` 中。在 C++ 标准库里，该函数定义在 `<cstdlib>` 中。qsort和bsearch是C语言中唯二的两个算法类函数。
+bsearch 函数为 C 标准库实现的二分查找，定义在 `<stdlib.h>` 中。在 C++ 标准库里，该函数定义在 `<cstdlib>` 中。qsort 和 bsearch 是 C 语言中唯二的两个算法类函数。
 
-bsearch函数相比qsort（[排序相关STL](./stl-sort.md)）的四个参数，在最左边增加了参数“待查元素的地址”。之所以按照地址的形式传入，是为了方便直接套用与qsort相同的比较函数，从而实现排序后的立即查找。因此这个参数不能直接传入具体值，而是要先将待查值用一个变量存储，再传入该变量地址。
+bsearch 函数相比 qsort（[排序相关 STL](./stl-sort.md)）的四个参数，在最左边增加了参数“待查元素的地址”。之所以按照地址的形式传入，是为了方便直接套用与 qsort 相同的比较函数，从而实现排序后的立即查找。因此这个参数不能直接传入具体值，而是要先将待查值用一个变量存储，再传入该变量地址。
 
-于是bsearch函数总共有五个参数：待查元素的地址、数组名、元素个数、元素大小、比较规则。比较规则仍然通过指定比较函数实现，详见[排序相关STL](./stl-sort.md)。
+于是 bsearch 函数总共有五个参数：待查元素的地址、数组名、元素个数、元素大小、比较规则。比较规则仍然通过指定比较函数实现，详见 [排序相关 STL](./stl-sort.md)。
 
-bsearch函数的返回值是查找到的元素的地址，该地址为void类型。
+bsearch 函数的返回值是查找到的元素的地址，该地址为 void 类型。
 
-注意：bsearch与上文的lower_bound和upper_bound有两点不同：
+注意：bsearch 与上文的 lower_bound 和 upper_bound 有两点不同：
 
- - 当符合条件的元素有重复多个的时候，会返回执行二分查找时第一个符合条件的元素，从而这个元素可能位于重复多个元素的中间部分。
- - 当查找不到相应的元素时，会返回NULL。
+- 当符合条件的元素有重复多个的时候，会返回执行二分查找时第一个符合条件的元素，从而这个元素可能位于重复多个元素的中间部分。
+- 当查找不到相应的元素时，会返回 NULL。
 
-用lower_bound可以实现与bsearch完全相同的功能，所以可以使用bsearch通过的题目，直接改写成lower_bound同样可以实现。但是鉴于上述不同之处的第二点，例如，在序列1、2、4、5、6中查找3，bsearch实现lower_bound的功能会变得困难。
+用 lower_bound 可以实现与 bsearch 完全相同的功能，所以可以使用 bsearch 通过的题目，直接改写成 lower_bound 同样可以实现。但是鉴于上述不同之处的第二点，例如，在序列 1、2、4、5、6 中查找 3，bsearch 实现 lower_bound 的功能会变得困难。
 
-借助编译器处理比较函数的特性：总是将第一个参数指向待查元素，将第二个参数指向待查数组中的元素，也可以用bsearch实现lower_bound和upper_bound，如下文示例。只是，这要求待查数组必须是全局数组，从而可以直接传入首地址。
+借助编译器处理比较函数的特性：总是将第一个参数指向待查元素，将第二个参数指向待查数组中的元素，也可以用 bsearch 实现 lower_bound 和 upper_bound，如下文示例。只是，这要求待查数组必须是全局数组，从而可以直接传入首地址。
 
 ```cpp
-int A[100005]; // 示例全局数组
+int A[100005];  // 示例全局数组
 
 // 查找首个不小于待查元素的元素的地址
-int lower(const void *p1,const void *p2)
-{
-	int *a=(int *)p1;
-	int *b=(int *)p2;
-	if((b==A||compare(a,b-1)>0)&&compare(a,b)>0) return 1;
-	else if(b!=A&&compare(a,b-1)<=0) return -1; // 用到地址的减法，因此必须指定元素类型
-	else return 0;
+int lower(const void *p1, const void *p2) {
+  int *a = (int *)p1;
+  int *b = (int *)p2;
+  if ((b == A || compare(a, b - 1) > 0) && compare(a, b) > 0)
+    return 1;
+  else if (b != A && compare(a, b - 1) <= 0)
+    return -1;  // 用到地址的减法，因此必须指定元素类型
+  else
+    return 0;
 }
 
 // 查找首个大于待查元素的元素的地址
-int upper(const void *p1,const void *p2)
-{
-	int *a=(int *)p1;
-	int *b=(int *)p2;
-	if((b==A||compare(a,b-1)>=0)&&compare(a,b)>=0) return 1;
-	else if(b!=A&&compare(a,b-1)<0) return -1; // 用到地址的减法，因此必须指定元素类型
-	else return 0;
+int upper(const void *p1, const void *p2) {
+  int *a = (int *)p1;
+  int *b = (int *)p2;
+  if ((b == A || compare(a, b - 1) >= 0) && compare(a, b) >= 0)
+    return 1;
+  else if (b != A && compare(a, b - 1) < 0)
+    return -1;  // 用到地址的减法，因此必须指定元素类型
+  else
+    return 0;
 }
 ```
 
