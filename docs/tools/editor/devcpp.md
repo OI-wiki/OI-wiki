@@ -2,9 +2,9 @@ author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe, DawnMagn
 
 ## 介绍
 
-Dev-C++ 是一套用于开发 C/C++（C++11）程序的自由的集成开发环境（IDE），并以 GPL 作为散布许可，使用 MinGW 及 GDB 作为编译系统与调试系统。Dev-C++ 运行在Microsoft Windows下。
+Dev-C++ 是一套用于开发 C/C++（C++11）程序的自由的集成开发环境（IDE），并以 GPL 作为分发许可，使用 MinGW 及 GDB 作为编译系统与调试系统。Dev-C++ 运行在 Microsoft Windows 下。
 
-Dev-C++的优点在于界面简洁友好，安装便捷，支持单文件编译，因此成为了诸多入门OI选手以及许多C++语言初学者的首选。在NOIP中，Dev-C++一般被预置在比赛使用的Windows环境内。
+Dev-C++的优点在于界面简洁友好，安装便捷，支持单文件编译，因此成为了许入门OI选手以及C++语言初学者的首选。在 NOIP 中，使用 Windows 作为比赛系统的省份一般预置 Dev-C++。
 
 Dev-C++起源于Colin Laplace编写的Bloodshed Dev-C++。该版本自2005年2月22日停止更新。2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释：“因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发。”
 
