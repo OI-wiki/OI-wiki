@@ -54,8 +54,7 @@ void sift_down(int arr[], int start, int end) {
   int child = parent * 2 + 1;
   while (child <= end) {  // 子结点下标在范围内才做比较
     // 先比较两个子结点大小，选择最大的
-    if (child + 1 <= end && arr[child] < arr[child + 1])
-      child++;
+    if (child + 1 <= end && arr[child] < arr[child + 1]) child++;
     // 如果父结点比子结点大，代表调整完毕，直接跳出函数
     if (arr[parent] >= arr[child])
       return;
