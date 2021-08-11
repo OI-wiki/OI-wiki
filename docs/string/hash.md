@@ -40,6 +40,7 @@ Hash 函数值一样时原字符串却不一样的现象我们成为哈希碰撞
 参考代码：（效率低下的版本，实际使用时一般不会这么写）
 
 ```cpp
+// C++ Version
 using std::string;
 
 const int M = 1e9 + 7;
@@ -58,6 +59,21 @@ int get_hash(const string& s) {
 bool cmp(const string& s, const string& t) {
   return get_hash(s) == get_hash(t);
 }
+```
+
+```python
+# Python Version
+M = int(1e9 + 7)
+B = 233
+
+def get_hash(s):
+    res = 0
+    for char in s:
+        res = (res * B + ord(char)) % M
+    return res
+
+def cmp(s, t):
+    return get_hash(s) == get_hash(t)
 ```
 
 ## Hash 的分析与改进

@@ -21,6 +21,7 @@ $$
 我们每次比较 $i$ 和 $j$ 开始的循环同构，把当前比较到的位置记作 $k$，每次遇到不一样的字符时便把大的跳过，最后剩下的就是最优解。
 
 ```cpp
+// C++ Version
 int k = 0, i = 0, j = 1;
 while (k < n && i < n && j < n) {
   if (sec[(i + k) % n] == sec[(j + k) % n]) {
@@ -35,6 +36,23 @@ while (k < n && i < n && j < n) {
   }
 }
 i = min(i, j);
+```
+
+```python
+# Python Version
+k, i, j = 0, 0, 1
+while k < n and i < n and j < n:
+    if sec[(i + k) % n] == sec[(j + k) % n]:
+        k += 1
+    else:
+        if sec[(i + k) % n] > sec[(j + k) % n]:
+            i += 1
+        else:
+            j += 1
+        k = 0
+        if i == j:
+            i += 1
+i = min(i, j)
 ```
 
 随机数据下表现良好，但是可以构造特殊数据卡掉。
@@ -73,6 +91,7 @@ $O(n)$
 ### 代码
 
 ```cpp
+// C++ Version
 int k = 0, i = 0, j = 1;
 while (k < n && i < n && j < n) {
   if (sec[(i + k) % n] == sec[(j + k) % n]) {
@@ -84,4 +103,21 @@ while (k < n && i < n && j < n) {
   }
 }
 i = min(i, j);
+```
+
+```python
+# Python Version
+k, i, j = 0, 0, 1
+while k < n and i < n and j < n:
+    if sec[(i + k) % n] == sec[(j + k) % n]:
+        k += 1
+    else:
+        if sec[(i + k) % n] > sec[(j + k) % n]:
+            i = i + k + 1
+        else:
+            j = j + k + 1
+        if i == j:
+            i += 1
+        k = 0
+i = min(i, j)
 ```
