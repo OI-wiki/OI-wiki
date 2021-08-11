@@ -32,7 +32,7 @@
 
 以下是几种排序算法的比较。
 
-![几种排序算法的比较](images/sort-intro-1.gif)
+![几种排序算法的比较](images/sort-intro-1.apng)
 
 ### 空间复杂度
 
