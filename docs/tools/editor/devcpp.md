@@ -4,13 +4,13 @@ author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe, DawnMagn
 
 Dev-C++ 是一套用于开发 C/C++（C++11）程序的自由的集成开发环境（IDE），并以 GPL 作为分发许可，使用 MinGW 及 GDB 作为编译系统与调试系统。Dev-C++ 运行在 Microsoft Windows 下。
 
-Dev-C++的优点在于界面简洁友好，安装便捷，支持单文件编译，因此成为了许多入门OI选手以及C++语言初学者的首选。在 NOIP 中，提供 Windows 作为比赛系统的省份一般预置 Dev-C++。
+Dev-C++ 的优点在于界面简洁友好，安装便捷，支持单文件编译，因此成为了许多入门 OI 选手以及 C++ 语言初学者的首选。在 NOIP 中，提供 Windows 作为比赛系统的省份一般预置 Dev-C++。
 
-Dev-C++起源于Colin Laplace编写的Bloodshed Dev-C++。该版本自2005年2月22日停止更新。2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释：“因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发。”
+Dev-C++ 起源于 Colin Laplace 编写的 Bloodshed Dev-C++。该版本自 2005 年 2 月 22 日停止更新。2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释：“因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发。”
 
-Orwell Dev-C++ 是 Dev-C++ 的一个衍生版本，由独立程序员 Orwell (Johan Mes) 开发并维护。其对原版Dev-C++进行了错误修正，并更新了编译器版本。一般而言，Dev-C++ 5.x均为Orwell Dev-C++。其最后一次更新于2015年，版本为5.11。
+Orwell Dev-C++ 是 Dev-C++ 的一个衍生版本，由独立程序员 Orwell (Johan Mes) 开发并维护。其对原版 Dev-C++ 进行了错误修正，并更新了编译器版本。一般而言，Dev-C++ 5.x 均为 Orwell Dev-C++。其最后一次更新于 2015 年，版本为 5.11。
 
-Embarcadero Dev-C++[^ref1] 是 Bloodshed Dev-C++ 和 Orwell Dev-C++的继任者。2020 年，Embarcadero 赞助并接手了原有的Dev-C++ 项目，继续开发。Embarcadero Dev-C++ 加入了对高DPI的支持，更新了编译器以加入更新版本的C++标准支持，以及暗色模式。
+Embarcadero Dev-C++[^ref1] 是 Bloodshed Dev-C++ 和 Orwell Dev-C++ 的继任者。2020 年，Embarcadero 赞助并接手了原有的 Dev-C++ 项目，继续开发。Embarcadero Dev-C++ 加入了对高 DPI 的支持，更新了编译器以加入更新版本的 C++ 标准支持，以及暗色模式。
 
 以上的 Dev-C++ 分发都被认为是「官方的」。此外，在 2015 年 Orwell Dev-C++ 停止更新后，因为教学需要，一位来自中国的个人开发者 [royqh1979](https://github.com/royqh1979) 决定继续开发他的 Dev-C++ 个人分支，命名为小熊猫 Dev-C++，集成了智能提示和高版本的 MINGW64，非常便于国内的个人使用和学习，项目官网位于 [小熊猫 Dev-C++](https://royqh.net/devcpp/download)，源代码托管于 [Github](https://github.com/royqh1979/Dev-Cpp)。
 
