@@ -72,7 +72,7 @@ std::sort(a, a + n);
 std::sort(a, a + n, cmp);
 ```
 
-注意：sort 的比较函数的返回值是 true 和 false，用 true 和 false 表示两个元素是否需要调换位置，这与 qsort 的三值比较函数的语义完全不同。具体内容详见上方给出的 sort 的文档。
+注意：sort 的比较函数的返回值是 true 和 false，用 true 和 false 表示两个元素的大小（先后）关系，这与 qsort 的三值比较函数的语义完全不同。具体内容详见上方给出的 sort 的文档。
 
 如果要将 sort 简单改写为 qsort，维持排序顺序整体上不变（不考虑等价的元素），需要将返回值 true 改为 - 1，返回值 false 改为 1。
 
