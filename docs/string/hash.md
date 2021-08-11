@@ -63,7 +63,7 @@ bool cmp(const string& s, const string& t) {
 
 ```python
 # Python Version
-M = 1e9 + 7
+M = int(1e9 + 7)
 B = 233
 
 def get_hash(s):
