@@ -130,7 +130,6 @@ def min_cyclic_string(s):
     return s[ans : n / 2]
 ```
 
-
 ## 习题
 
 -   [UVA #719 - Glass Beads](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=660)

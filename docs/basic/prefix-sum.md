@@ -148,7 +148,7 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
 然后：
 
 - 若是点权，$x,y$ 路径上的和为 $\textit{sum}_x + \textit{sum}_y - \textit{sum}_\textit{lca} - \textit{sum}_{\textit{fa}_\textit{lca}}$。
-- 若是边权，$x,y$ 路径上的和为 $\textit{sum}_x + \textit{sum}_y - 2\cdot\textit{sum}_{lca}$。
+-   若是边权，$x,y$ 路径上的和为 $\textit{sum}_x + \textit{sum}_y - 2\cdot\textit{sum}_{lca}$。
 
     LCA 的求法参见 [最近公共祖先](../graph/lca.md)。
 

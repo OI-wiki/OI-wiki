@@ -234,7 +234,7 @@ $p$ 的剩余系大小为 $p$，意味着在前 $p^2+1$ 个数对中必有两个
 
 ### 皮萨诺周期
 
-模 $m$ 意义下斐波那契数列的最小正周期被称为 [皮萨诺周期](https://en.wikipedia.org/wiki/Pisano_period)（Pisano periods, [OEIS A001175](http://oeis.org/A001175)）。
+模 $m$ 意义下斐波那契数列的最小正周期被称为 [皮萨诺周期](https://en.wikipedia.org/wiki/Pisano_period)（Pisano periods,[OEIS A001175](http://oeis.org/A001175)）。
 
 皮萨诺周期总是不超过 $6m$，且只有在满足 $m=2\times 5^k$ 的形式时才取到等号。
 
@@ -242,15 +242,15 @@ $p$ 的剩余系大小为 $p$，意味着在前 $p^2+1$ 个数对中必有两个
 
 容易验证，斐波那契数模 $2$ 的最小正周期是 $3$，模 $5$ 的最小正周期是 $20$。
 
-显然，如果 $a$ 与 $b$ 互素， $ab$ 的皮萨诺周期就是 $a$ 的皮萨诺周期与 $b$ 的皮萨诺周期的最小公倍数。
+显然，如果 $a$ 与 $b$ 互素，$ab$ 的皮萨诺周期就是 $a$ 的皮萨诺周期与 $b$ 的皮萨诺周期的最小公倍数。
 
 计算周期还需要以下结论：
 
-结论1：对于奇素数 $p\equiv 1,4 \pmod 5$ ，$p-1$ 是斐波那契数模 $p$ 的周期。即，奇素数 $p$ 的皮萨诺周期整除 $p-1$ 。
+结论 1：对于奇素数 $p\equiv 1,4 \pmod 5$，$p-1$ 是斐波那契数模 $p$ 的周期。即，奇素数 $p$ 的皮萨诺周期整除 $p-1$。
 
 证明：
 
-此时 $5^\frac{p-1}{2} \equiv 1\pmod p$ 。
+此时 $5^\frac{p-1}{2} \equiv 1\pmod p$。
 
 由二项式展开：
 
@@ -264,11 +264,11 @@ $$
 
 因为 $F_p$ 和 $F_{p+1}$ 两项都同余于 $1$，与 $F_1$ 和 $F_2$ 一致，所以 $p-1$ 是周期。
 
-结论2：对于奇素数 $p\equiv 2,3 \pmod 5$ ，$2p+2$ 是斐波那契数模 $p$ 的周期。即，奇素数 $p$ 的皮萨诺周期整除 $2p+2$ 。
+结论 2：对于奇素数 $p\equiv 2,3 \pmod 5$，$2p+2$ 是斐波那契数模 $p$ 的周期。即，奇素数 $p$ 的皮萨诺周期整除 $2p+2$。
 
 证明：
 
-此时 $5^\frac{p-1}{2} \equiv -1\pmod p$ 。
+此时 $5^\frac{p-1}{2} \equiv -1\pmod p$。
 
 由二项式展开：
 
@@ -280,7 +280,7 @@ $$
 F_{2p+1}=\frac{2}{2^{2p+1}\sqrt{5}}\left(C_{2p+1}^1\sqrt{5}+C_{2p+1}^3\sqrt{5}^3+\ldots+C_{2p+1}^{2p+1}\sqrt{5}^{2p+1}\right)
 $$
 
-模 $p$ 之后，在 $F_{2p}$ 式中，只有 $C_{2p}^p\equiv 2 \pmod p$ 项留了下来；在 $F_{2p+1}$ 式中，有 $C_{2p+1}^1\equiv 1 \pmod p$ 、 $C_{2p+1}^p\equiv 2 \pmod p$ 、 $C_{2p+1}^{2p+1}\equiv 1 \pmod p$ ，三项留了下来。
+模 $p$ 之后，在 $F_{2p}$ 式中，只有 $C_{2p}^p\equiv 2 \pmod p$ 项留了下来；在 $F_{2p+1}$ 式中，有 $C_{2p+1}^1\equiv 1 \pmod p$、$C_{2p+1}^p\equiv 2 \pmod p$、$C_{2p+1}^{2p+1}\equiv 1 \pmod p$，三项留了下来。
 
 $$
 F_{2p}\equiv\frac{1}{2}C_{2p}^p\sqrt{5}^{p-1}\equiv -1 \pmod p
@@ -292,7 +292,7 @@ $$
 
 于是 $F_{2p}$ 和 $F_{2p+1}$ 两项与 $F_{-2}$ 和 $F_{-1}$ 一致，所以 $2p+2$ 是周期。
 
-结论3：对于素数 $p$ ， $M$ 是斐波那契数模 $p^{k-1}$ 的周期，等价于 $Mp$ 是斐波那契数模 $p^k$ 的周期。特别地， $M$ 是模 $p^{k-1}$ 的皮萨诺周期，等价于 $Mp$ 是模 $p^k$ 的皮萨诺周期。
+结论 3：对于素数 $p$，$M$ 是斐波那契数模 $p^{k-1}$ 的周期，等价于 $Mp$ 是斐波那契数模 $p^k$ 的周期。特别地，$M$ 是模 $p^{k-1}$ 的皮萨诺周期，等价于 $Mp$ 是模 $p^k$ 的皮萨诺周期。
 
 证明：
 
@@ -336,7 +336,7 @@ $$
 v_2\left(a^t-1\right)=v_2\left(a-1\right)+v_2\left(a+1\right)+v_2(t)-1
 $$
 
-代入 $a$ 为 $\left(\frac{1+\sqrt{5}}{2}\right)$ 和 $\left(\frac{1-\sqrt{5}}{2}\right)$ ， $t$ 为 $M$ 和 $Mp$ ，上述条件也就等价于：
+代入 $a$ 为 $\left(\frac{1+\sqrt{5}}{2}\right)$ 和 $\left(\frac{1-\sqrt{5}}{2}\right)$，$t$ 为 $M$ 和 $Mp$，上述条件也就等价于：
 
 $$
 \left(\frac{1+\sqrt{5}}{2}\right)^{Mp} \equiv \left(\frac{1-\sqrt{5}}{2}\right)^{Mp}\equiv 1\pmod {p^k}
@@ -349,55 +349,45 @@ $$
 三个结论证完。据此可以写出代码：
 
 ```cpp
-struct prime
-{
-    unsigned long long p;
-    int times;
+struct prime {
+  unsigned long long p;
+  int times;
 };
 
 struct prime pp[2048];
 int pptop;
 
-unsigned long long get_cycle_from_mod(unsigned long long mod) // 这里求解的只是周期，不一定是最小正周期
+unsigned long long get_cycle_from_mod(
+    unsigned long long mod)  // 这里求解的只是周期，不一定是最小正周期
 {
-    pptop = 0;
-    srand(time(0));
-    while (n != 1)
-    {
-        __int128_t factor = (__int128_t) 10000000000 * 10000000000;
-        min_factor(mod, &factor); // 计算最小素因数
-        struct prime temp;
-        temp.p = factor;
-        for (temp.times = 0; mod % factor == 0; temp.times++)
-        {
-            mod /= factor;
-        }
-        pp[pptop] = temp;
-        pptop++;
+  pptop = 0;
+  srand(time(0));
+  while (n != 1) {
+    __int128_t factor = (__int128_t)10000000000 * 10000000000;
+    min_factor(mod, &factor);  // 计算最小素因数
+    struct prime temp;
+    temp.p = factor;
+    for (temp.times = 0; mod % factor == 0; temp.times++) {
+      mod /= factor;
     }
-    unsigned long long m = 1;
-    for (int i = 0; i < pptop; ++i)
-    {
-        int g;
-        if (pp[i].p == 2)
-        {
-            g = 3;
-        }
-        else if (pp[i].p == 5)
-        {
-            g = 20;
-        }
-        else if (pp[i].p % 5 == 1 || pp[i].p % 5 == 4)
-        {
-            g = pp[i].p - 1;
-        }
-        else
-        {
-            g = (pp[i].p + 1) << 1;
-        }
-        m = lcm(m, g * qpow(pp[i].p, pp[i].times - 1));
+    pp[pptop] = temp;
+    pptop++;
+  }
+  unsigned long long m = 1;
+  for (int i = 0; i < pptop; ++i) {
+    int g;
+    if (pp[i].p == 2) {
+      g = 3;
+    } else if (pp[i].p == 5) {
+      g = 20;
+    } else if (pp[i].p % 5 == 1 || pp[i].p % 5 == 4) {
+      g = pp[i].p - 1;
+    } else {
+      g = (pp[i].p + 1) << 1;
     }
-    return m;
+    m = lcm(m, g * qpow(pp[i].p, pp[i].times - 1));
+  }
+  return m;
 }
 ```
 
@@ -407,6 +397,6 @@ unsigned long long get_cycle_from_mod(unsigned long long mod) // 这里求解的
 - [SPOJ - Fibonacci Sum](http://www.spoj.com/problems/FIBOSUM/)
 - [HackerRank - Is Fibo](https://www.hackerrank.com/contests/codesprint5/challenges/is-fibo/problem)
 - [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem)
-- [洛谷 P4000 斐波那契数列](https://www.luogu.com.cn/problem/P4000)
+-   [洛谷 P4000 斐波那契数列](https://www.luogu.com.cn/problem/P4000)
 
     **本页面主要译自博文 [Числа Фибоначчи](http://e-maxx.ru/algo/fibonacci_numbers) 与其英文翻译版 [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
