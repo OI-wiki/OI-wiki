@@ -88,16 +88,16 @@ $$
 
     **证明**：
 
-    -   **若模 $m$ 不能被 $a$ 整除**，而因为 $a$ 是一个素数，那么 $\gcd(a, m) = 1$ 成立，根据欧拉定理，容易证明该式成立。
+    - **若模 $m$ 不能被 $a$ 整除**，而因为 $a$ 是一个素数，那么 $\gcd(a, m) = 1$ 成立，根据欧拉定理，容易证明该式成立。
 
-    -   **若模 $m$ 能被 $a$ 整除**，那么存在 $r$ 和 $m'$ 使得  $m = a^r m'$，且 $\gcd(a, m')=1$ 成立。所以根据欧拉定理有 $a^{\varphi(m')} \equiv 1 \pmod{m'}$。
+    -   **若模 $m$ 能被 $a$ 整除**，那么存在 $r$ 和 $m'$ 使得 $m = a^r m'$，且 $\gcd(a, m')=1$ 成立。所以根据欧拉定理有 $a^{\varphi(m')} \equiv 1 \pmod{m'}$。
 
         又由于 $\gcd(a^r, m')=1$，所以根据欧拉函数的求值规则，容易得到：$\varphi(m) = \varphi(m') \times (a-1)a^{r-1}$，即我们有：$\varphi(m') \mid \varphi(m)$。
 
         所以 $a^{\varphi(m')} \equiv 1 \pmod {m'}, \varphi(m') \mid \varphi(m) \Rightarrow a^{\varphi(m)} \equiv 1 \pmod {m'}$，即 $a^{\varphi(m)}=km'+1$，两边同时乘以 $a^r$，得 $a^{r+\varphi(m)} = km + a^r$（因为 $m = a^r m'$）
 
-        所以对于 $m$ 中素因子 $a$ 的次数 $r$ 满足： $a^r \equiv a^{r+\varphi(m)} \pmod m$。我们可以简单变换形式，得到**推论**：
-        
+        所以对于 $m$ 中素因子 $a$ 的次数 $r$ 满足：$a^r \equiv a^{r+\varphi(m)} \pmod m$。我们可以简单变换形式，得到 **推论**：
+
         $$
         b > r \Rightarrow a^b \equiv a^{r + ((b-r) \bmod \varphi(m))} \pmod {m}
         $$
@@ -105,7 +105,7 @@ $$
         又由于 $m = a^r m'$，所以 $\varphi(m) = \varphi(a^r) \varphi(m') \ge \varphi(a^r)=a^{r-1}(a-1) \ge r$（tips：$a$ 是素数，最小是 $2$，而 $r \ge 1$）。
 
         所以因为 $\varphi(m) \ge r$，故有：
-        
+
         $$
         a^r \equiv a^{r+\varphi(m)} \equiv a^{r \bmod \varphi(m)+\varphi(m)} \pmod m
         $$
@@ -122,7 +122,7 @@ $$
 
         即 $a^b\equiv a^{b \bmod \varphi(m)+\varphi(m)}\pmod m$。
 
-4.  **命题**：$a$ 为素数的幂的情况，该式成立。
+3.  **命题**：$a$ 为素数的幂的情况，该式成立。
 
     **证明**：
 
@@ -130,12 +130,12 @@ $$
 
         答案是肯定的，由命题 1 可知存在 $s$ 使得 $a^s\equiv 1 \pmod m$，所以 $p^{\mathrm{lcm}(s,k)} \equiv 1 \pmod {m}$，所以令 $s'=\frac{s}{\gcd(s,k)}$ 时，我们能有 $p^{s'k} \equiv 1 \pmod {m}$。
 
-        此时有关系： $s' \mid s$ 且 $s \mid \varphi(m)$，且 $r'= \lceil \frac{r}{k}\rceil \le r \le \varphi(m)$，由 $r',s'$ 与 $\varphi(m)$ 的关系，依然可以得到 $a^b\equiv a^{b \bmod \varphi(m)+\varphi(m)}\pmod m$。
+        此时有关系：$s' \mid s$ 且 $s \mid \varphi(m)$，且 $r'= \lceil \frac{r}{k}\rceil \le r \le \varphi(m)$，由 $r',s'$ 与 $\varphi(m)$ 的关系，依然可以得到 $a^b\equiv a^{b \bmod \varphi(m)+\varphi(m)}\pmod m$。
 
-5.  **合数**：$a$ 为合数的情况，该式成立。
+4.  **合数**：$a$ 为合数的情况，该式成立。
 
     **证明**：
-    
+
     -   只证 $a$ 拆成两个素数的幂的情况，大于两个的用数学归纳法可证。
 
         设 $a=a_1a_2$，其中 $a_i=p_i^{k_i}$，而 $a_i$ 的循环长度为 $s_i$；
