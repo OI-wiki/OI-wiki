@@ -76,6 +76,7 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 3. `fail[u]`：结点 $u$ 的 fail 指针。
 
 ```cpp
+// C++ Version
 void build() {
   for (int i = 0; i < 26; i++)
     if (tr[0][i]) q.push(tr[0][i]);
@@ -90,6 +91,23 @@ void build() {
     }
   }
 }
+```
+
+```python
+# Python Version
+def build():
+    for i in range(0, 26):
+        if tr[0][i] == 1:
+            q.append(tr[0][i])
+    while len(q) > 0:
+        u = q[0]
+        q.pop()
+        for i in range(0, 26):
+            if tr[u][i] == 1:
+                fail[tr[u][i]] = tr[fail[u]][i]
+                q.append(tr[u][i])
+            else:
+                tr[u][i] = tr[fail[u]][i]
 ```
 
 解释一下上面的代码：build 函数将结点按 BFS 顺序入队，依次求 fail 指针。这里的字典树根结点为 0，我们将根结点的子结点一一入队。若将根结点入队，则在第一次 BFS 的时候，会将根结点儿子的 fail 指针标记为本身。因此我们将根结点的儿子一一入队，而不是将根结点入队。
@@ -133,6 +151,7 @@ void build() {
 接下来分析匹配函数 `query()`：
 
 ```cpp
+// C++ Version
 int query(char *t) {
   int u = 0, res = 0;
   for (int i = 1; t[i]; i++) {
@@ -143,6 +162,22 @@ int query(char *t) {
   }
   return res;
 }
+```
+
+```python
+# Python Version
+def query(t):
+    u, res = 0, 0
+    i = 1
+    while t[i] == False:
+        u = tr[u][t[i] - ord('a')]
+        j = u
+        while j == True and e[j] != -1:
+            res += e[j]
+            e[j] = -1
+            j = fail[j]
+        i += 1
+    return res
 ```
 
 这里 $u$ 作为字典树上当前匹配到的结点，`res` 即返回的答案。循环遍历匹配串，$u$ 在字典树上跟踪当前字符。利用 fail 指针找出所有匹配的模式串，累加到答案中。然后清零。在上文中我们分析过，字典树的结构其实就是一个 trans 函数，而构建好这个函数后，在匹配字符串的过程中，我们会舍弃部分前缀达到最低限度的匹配。fail 指针则指向了更多的匹配状态。最后上一份图。对于刚才的自动机：

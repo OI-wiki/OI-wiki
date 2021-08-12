@@ -17,6 +17,7 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
 放一个结构体封装的模板：
 
 ```cpp
+// C++ Version
 struct trie {
   int nex[100000][26], cnt;
   bool exist[100000];  // 该结点结尾的字符串是否存在
@@ -40,6 +41,33 @@ struct trie {
     return exist[p];
   }
 };
+```
+
+```python
+# Python Version
+class trie:
+    nex = [[0 for i in range(26)] for j in range(100000)]
+    cnt = 0
+    exist = [False] * 100000 # 该结点结尾的字符串是否存在
+
+    def insert(s, l): # 插入字符串
+        p = 0
+        for i in range(0, l):
+            c = ord(s[i]) - ord('a')
+            if nex[p][c] == 0:
+                nex[p][c] = cnt # 如果没有，就添加结点
+                cnt += 1
+            p = nex[p][c]
+        exist[p] = True
+    
+    def find(s, l): # 查找字符串
+        p = 0
+        for i in range(0, l):
+            c = ord(s[i]) - ord('a')
+            if nex[p][c] == 0:
+                return False
+            p = nex[p][c]
+        return exist[p]
 ```
 
 ## 应用

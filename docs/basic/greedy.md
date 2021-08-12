@@ -96,7 +96,7 @@
 
 ??? note "参考代码"
     ```cpp
-    
+    --8<-- "docs/basic/code/greedy/greedy_1.cpp"
     ```
 
 ## 习题

@@ -28,22 +28,7 @@
 
 ??? note "参考代码"
     ```cpp
-    #include <cstdio>
-    int main(void) {
-      int n = 0, u = 0, d = 0;
-      while (scanf("%d %d %d", &n, &u, &d) && n != 0) {
-        int time = 0, dist = 0;
-        while (true) {
-          dist += u;
-          time++;
-          if (dist >= n) break;
-          dist -= d;
-          time++;
-        }
-        printf("%d\n", time);
-      }
-      return 0;
-    }
+    --8<-- "docs/basic/code/simulate/simulate_1.cpp"
     ```
 
 ## 习题
