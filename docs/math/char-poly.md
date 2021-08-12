@@ -351,7 +351,7 @@ $$
 $$
 \begin{aligned}
 f_{km-1}x^{km-1}+\cdots +f_1x+f_0&=(\cdots (f_{km-1}x^{k-1}+\cdots +f_{k(m-1)})x^k\\
-&+f_{k(m-1)-1}x^{k-1}+\cdots f_{k(m-2)})x^k\\
+&+f_{k(m-1)-1}x^{k-1}+\cdots +f_{k(m-2)})x^k\\
 &+\cdots\\
 &+f_{k-1}x^{k-1}+\cdots +f_1x+f_0
 \end{aligned}
