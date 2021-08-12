@@ -65,7 +65,7 @@ int main() {                // 定义 main 函数
 C 语言
 
 ```c
-#include <stdio.h>          // 引用头文件
+#include <stdio.h>  // 引用头文件
 
 int main() {                // 定义 main 函数
   printf("Hello, world!");  // 输出 Hello, world!
