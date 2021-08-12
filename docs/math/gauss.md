@@ -444,6 +444,5 @@ std::vector<bool> GaussElimination(int n, int m) // n 为未知数个数，m 为
 
 ## 练习题
 
-[Codeforces - 巫师和赌注](http://codeforces.com/contest/167/problem/E) 
-
-[luogu - SDOI2010 外星千足虫](https://www.luogu.com.cn/problem/P2447)
+- [Codeforces - 巫师和赌注](http://codeforces.com/contest/167/problem/E) 
+- [luogu - SDOI2010 外星千足虫](https://www.luogu.com.cn/problem/P2447)
