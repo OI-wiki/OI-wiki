@@ -1,4 +1,4 @@
-author: Chrogeek, Enter-tainer, HeRaNO, Ir1d, Marcythm, ShadowsEpic, StudyingFather, Xeonacid, bear-good, billchenchina, diauweb, diauweb, greyqz, kawa-yoiko, ouuan, partychicken, sshwy, stevebraveman, zhouyuyang2002
+author: Chrogeek, Enter-tainer, HeRaNO, Ir1d, Marcythm, ShadowsEpic, StudyingFather, Xeonacid, bear-good, billchenchina, diauweb, diauweb, greyqz, kawa-yoiko, ouuan, partychicken, sshwy, stevebraveman, zhouyuyang2002, renbaoshuo
 
 ## 定义
 
@@ -20,6 +20,10 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 [并查集](../ds/dsu.md)、[贪心](../basic/greedy.md)、[图的存储](./save.md)。
 
 ### 实现
+
+图示：
+
+![](./images/mst-2.apng)
 
 伪代码：
 
@@ -93,6 +97,10 @@ $$
 Prim 算法是另一种常见并且好写的最小生成树算法。该算法的基本思想是从一个结点开始，不断加点（而不是 Kruskal 算法的加边）。
 
 ### 实现
+
+图示：
+
+![](./images/mst-3.apng)
 
 具体来说，每次要选择距离最小的一个结点，以及用新的边更新其他结点的距离。
 
@@ -176,7 +184,7 @@ $$
 
 下面通过一张动态图来举一个例子（图源自 [维基百科](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm)）：
 
-![eg](./images/mst-1.gif)
+![eg](./images/mst-1.apng)
 
 当原图连通时，每次迭代连通块数量至少减半，算法只会迭代不超过 $O(\log V)$ 次，而原图不连通时相当于多个子问题，因此算法复杂度是 $O(E\log V)$ 的。给出算法的伪代码：（修改自 [维基百科](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm)）
 
