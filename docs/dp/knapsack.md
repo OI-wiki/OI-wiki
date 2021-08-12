@@ -80,18 +80,7 @@ for i in range(1, n + 1):
 
 ??? 例题代码
     ```cpp
-    #include <iostream>
-    const int maxn = 13010;
-    int n, W, w[maxn], v[maxn], f[maxn];
-    int main() {
-      std::cin >> n >> W;
-      for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
-      for (int i = 1; i <= n; i++)
-        for (int l = W; l >= w[i]; l--)
-          if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];
-      std::cout << f[W];
-      return 0;
-    }
+    --8<-- "docs/dp/code/knapsack/knapsack_1.cpp"
     ```
 
 ## 完全背包
@@ -125,20 +114,7 @@ $$
 
 ??? 例题代码
     ```cpp
-    #include <iostream>
-    const int maxn = 1e4 + 5;
-    const int maxW = 1e7 + 5;
-    int n, W, w[maxn], v[maxn];
-    long long f[maxW];
-    int main() {
-      std::cin >> W >> n;
-      for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
-      for (int i = 1; i <= n; i++)
-        for (int l = w[i]; l <= W; l++)
-          if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];
-      std::cout << f[W];
-      return 0;
-    }
+    --8<-- "docs/dp/code/knapsack/knapsack_2.cpp"
     ```
 
 ## 多重背包
