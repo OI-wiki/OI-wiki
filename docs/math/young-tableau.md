@@ -19,9 +19,8 @@
 
 以下表格中分别为整数分拆 $(5,4,1)$ 对应的杨图不同画法：
 
-|                英式画法               |                法式画法               |
-| :-------------------------------: | :-------------------------------: |
-| ![](./images/young-diagram-1.png) | ![](./images/young-diagram-2.png) |
+- 英式画法: ![](./images/young-diagram-1.png)             
+- 法式画法: ![](./images/young-diagram-2.png)
 
 ### 杨表
 
@@ -43,9 +42,7 @@ $1, 1, 2, 4, 10, 26, 76, 232, 764, 2620, 9496, \ldots$（[OEIS](https://en.wikip
 
 例如，将 $3$ 插入杨表 $(2, 5, 9)(6, 7)(8)$ 的步骤为：
 
-|                    第一步                   |                    第二步                   |                    第三步                   |                    第四步                   |
-| :--------------------------------------: | :--------------------------------------: | :--------------------------------------: | :--------------------------------------: |
-| ![](./images/young-tableau-insert-1.png) | ![](./images/young-tableau-insert-2.png) | ![](./images/young-tableau-insert-3.png) | ![](./images/young-tableau-insert-4.png) |
+![](./images/young-tableau-insert-1.png) ![](./images/young-tableau-insert-2.png) ![](./images/young-tableau-insert-3.png) ![](./images/young-tableau-insert-4.png)
 
 ### 变体
 
