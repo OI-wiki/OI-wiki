@@ -21,7 +21,7 @@
 
 |                英式画法               |                法式画法               |
 | :-------------------------------: | :-------------------------------: |
-| ![](./images/young-diagram-1.png) | ![](./images/young-diagram-2.png) |
+|<img src="./images/young-diagram-1.png"/> | <img src="./images/young-diagram-2.png"/> |
 
 ### 杨表
 
@@ -45,7 +45,7 @@ $1, 1, 2, 4, 10, 26, 76, 232, 764, 2620, 9496, \ldots$（[OEIS](https://en.wikip
 
 |                    第一步                   |                    第二步                   |                    第三步                   |                    第四步                   |
 | :--------------------------------------: | :--------------------------------------: | :--------------------------------------: | :--------------------------------------: |
-| ![](./images/young-tableau-insert-1.png) | ![](./images/young-tableau-insert-2.png) | ![](./images/young-tableau-insert-3.png) | ![](./images/young-tableau-insert-4.png) |
+|<img src="./images/young-tableau-insert-1.png"/> |<img src="./images/young-tableau-insert-2.png"/> |<img src="./images/young-tableau-insert-3.png"/>  | <img src="./images/young-tableau-insert-4.png"/> |
 
 ### 变体
 
@@ -67,11 +67,10 @@ $1, 1, 2, 4, 10, 26, 76, 232, 764, 2620, 9496, \ldots$（[OEIS](https://en.wikip
 
 ### 勾长
 
-|               杨表的表示               |               杨表的勾长计算               |
-| :-------------------------------: | :-------------------------------: |
-| ![](./images/young-tableau-2.png) | $5+4+1=10$ |
 
-给定一个共有 $n$ 个方格的杨表 $\pi_{\lambda}$，把 $1$ 到 $n$ 的 $n$ 个数字填入杨表中，使得每行从左到右，每列从下到上都是递增的。用 $dim_{\pi_{\lambda}}$ 表示这样的方法个数，如上图所示。
+![](./images/young-tableau-2.png)
+
+给定一个共有 $n$ 个方格的杨表 $\pi_{\lambda}$，把 $1$ 到 $n$ 的 $n$ 个数字填入杨表中，使得每行从左到右，每列从下到上都是递增的。用 $dim_{\pi_{\lambda}}$ 表示这样的方法个数，如上图所示，例图中杨表的勾长计算为 $5+4+1=10$ 。
 
 对于杨表中的一个方格 $v$，其 **勾长**  $hook(v)$ 等于同行右边的方格数加上同列上面的方格数，再加 1。
 
