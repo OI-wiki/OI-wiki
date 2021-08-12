@@ -65,7 +65,7 @@ void query(int l, int r, int x) {
     if (distr > q.top()) query(mid + 1, r, x);
   }
 }
-main() {
+int main() {
   scanf("%lld%lld", &n, &k);
   k *= 2;
   for (int i = 1; i <= k; i++) q.push(0);
