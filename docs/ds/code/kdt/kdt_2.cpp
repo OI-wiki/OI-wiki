@@ -1,18 +1,17 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <queue>
 using namespace std;
-#define int long long
 const int maxn = 100010;
-int n, k;
-priority_queue<int, vector<int>, greater<int> > q;
+long long n, k;
+priority_queue<long long, vector<long long>, greater<long long> > q;
 struct node {
-  int x, y;
+  long long x, y;
 } s[maxn];
 bool cmp1(node a, node b) { return a.x < b.x; }
 bool cmp2(node a, node b) { return a.y < b.y; }
-int lc[maxn], rc[maxn], L[maxn], R[maxn], D[maxn], U[maxn];
+long long lc[maxn], rc[maxn], L[maxn], R[maxn], D[maxn], U[maxn];
 void maintain(int x) {
   L[x] = R[x] = s[x].x;
   D[x] = U[x] = s[x].y;
@@ -42,16 +41,17 @@ int build(int l, int r) {
   maintain(mid);
   return mid;
 }
-int sq(int x) { return x * x; }
-int dist(int a, int b) {
+long long sq(long long x) { return x * x; }
+long long dist(int a, int b) {
   return max(sq(s[a].x - L[b]), sq(s[a].x - R[b])) +
          max(sq(s[a].y - D[b]), sq(s[a].y - U[b]));
 }
 void query(int l, int r, int x) {
   if (l > r) return;
-  int mid = (l + r) >> 1, t = sq(s[mid].x - s[x].x) + sq(s[mid].y - s[x].y);
+  int mid = (l + r) >> 1;
+  long long t = sq(s[mid].x - s[x].x) + sq(s[mid].y - s[x].y);
   if (t > q.top()) q.pop(), q.push(t);
-  int distl = dist(x, lc[mid]), distr = dist(x, rc[mid]);
+  long long distl = dist(x, lc[mid]), distr = dist(x, rc[mid]);
   if (distl > q.top() && distr > q.top()) {
     if (distl > distr) {
       query(l, mid - 1, x);
@@ -66,12 +66,12 @@ void query(int l, int r, int x) {
   }
 }
 int main() {
-  scanf("%lld%lld", &n, &k);
+  cin >> n >> k;
   k *= 2;
   for (int i = 1; i <= k; i++) q.push(0);
-  for (int i = 1; i <= n; i++) scanf("%lld%lld", &s[i].x, &s[i].y);
+  for (int i = 1; i <= n; i++) cin >> s[i].x >> s[i].y;
   build(1, n);
   for (int i = 1; i <= n; i++) query(1, n, i);
-  printf("%lld\n", q.top());
+  cout << q.top() << endl;
   return 0;
 }
