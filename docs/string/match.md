@@ -21,6 +21,7 @@
 ### 参考代码
 
 ```cpp
+// C++ Version
 /*
  * s：待匹配的主串
  * t：模式串
@@ -38,6 +39,19 @@ std::vector<int> match(char *s, char *t, int n, int m) {
   }
   return ans;
 }
+```
+
+```python
+# Python Version
+def match(s, t, n, m):
+    ans = []
+    for i in range(0, n - m + 1):
+        for j in range(0, m):
+            if s[i + j] != t[j]:
+                break
+        if j == m:
+            ans.append(i)
+    return ans
 ```
 
 ### 时间复杂度

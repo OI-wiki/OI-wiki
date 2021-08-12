@@ -20,6 +20,8 @@
 
 - 推荐使用 SVG 格式的图片[^ref4]，以获取较好的清晰度和缩放效果。
 
+- 动图如果无法或者不会制作 SVG 格式的，则推荐使用 APNG 格式[^apng]的文件。Windows 用户可使用 [ScreenToGif](https://www.screentogif.com) 录制，Linux 用户可使用 [Peek](https://github.com/phw/peek) 录制，注意需要在设置里调整为录制 APNG。其他情况则推荐先制作为 MP4 等视频文件再转换为 APNG，如果使用 ffmpeg 则可以使用 `ffmpeg -i filename.mp4 -f apng filename.apng -plays 0` 转换。[^intro-apng]
+
 - 同时具有源文件和导出图像的图片（例如 JPG 文件与 PSD 文件或者 SVG 图像与 TikZ TeX 源代码），建议将源文件以与图片相同的文件名保存于同一目录下。
 
 - 请确保您的文档中的引用链接的稳定性。**不推荐** 引用 **自建** 服务中的资源（如自建 OJ 里的题目）。建议在添加时同时将该外链存于互联网档案馆[^webarchive]，以防无法替代的链接失效。
@@ -491,3 +493,7 @@ $$
 [^ref4]: [SVG|MDN](https://developer.mozilla.org/zh-CN/docs/Web/SVG)
 
 [^webarchive]: [Save Page in Internet Archive](https://web.archive.org/save/)
+
+[^apng]: [APNG](https://en.wikipedia.org/wiki/APNG)
+
+[^intro-apng]: [OI-wiki/OI-wiki#3422](https://github.com/OI-wiki/OI-wiki/issues/3422)
