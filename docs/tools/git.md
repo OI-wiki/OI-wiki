@@ -7,6 +7,20 @@ Git 是目前使用最广泛的版本控制系统之一。**OI Wiki** 也使用�
 
 ### Windows
 
+#### 使用包管理器安装
+
+在 `scoop` 或 `winget` 可用的情况下，Git for Windows 可以使用以下命令安装：
+
+```powershell
+scoop install git
+#或者
+winget install Git.Git
+```
+
+这种安装方式的好处是安装过程由系统接管，相对安装向导而言和更为方便。
+
+#### 使用安装向导安装
+
 ???+warning
     本节以 Git for Windows 2.28.0（2020-07-27 更新）为例。安装页面的选项可能会随着时间而变动。
 
