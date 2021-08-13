@@ -78,7 +78,7 @@ void counting_sort(int p) {
 
 void radix_sort() {
   for (int i = k; i >= 1; --i) {
-    //借助计数排序完成对关键字的排序
+    // 借助计数排序完成对关键字的排序
     counting_sort(i);
   }
 }
