@@ -284,6 +284,7 @@ nav:
     - 分段打表: math/dictionary.md
     - 傅里叶-莫茨金消元法: math/fourier-motzkin-elimination.md
     - 序理论: math/order-theory.md
+    - 杨氏矩阵: math/young-tableau.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
     - 栈: ds/stack.md
