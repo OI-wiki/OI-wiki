@@ -24,6 +24,8 @@ author: HeRaNO, Xeonacid
 
 向上调整的时间复杂度是 $O(\log n)$ 的。
 
+![二叉堆的插入操作](./images/binary_heap_insert.svg)
+
 ### 删除操作
 
 删除操作指删除堆中最大的元素，即删除根结点。
