@@ -248,3 +248,8 @@ dfs(root, EMPTY_NODE);
 考察上面的遍历过程，若从根开始遍历，则访问到一个结点时 `from` 的值，就是其父结点的编号。
 
 通过这个方式，可以对于无向的输入求出所有结点的父结点，以及子结点列表。
+
+
+### reference
+https://blog.csdn.net/weixin_43357638/article/details/99730284 版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
+https://blog.csdn.net/weixin_43357638/article/details/99730284 版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
