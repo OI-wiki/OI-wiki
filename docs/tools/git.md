@@ -573,9 +573,9 @@ $ git clone git@github.com:OI-wiki/OI-wiki.git
 
 ## Git GUI Tools
 
-对于不熟悉命令行的同学，纯命令行的 Git 的上手难度可能会偏高，而借助 GUI 工具可以一定程度上降低 Git 的上手难度。此外，相比于命令行， GUI 工具在查看 diff 以及 log 时在体验上有一定程度的提高。
+对于不熟悉命令行的同学，纯命令行的 Git 的上手难度可能会偏高，而借助 GUI 工具可以一定程度上降低 Git 的上手难度。此外，相比于命令行，GUI 工具在查看 diff 以及 log 时在体验上有一定程度的提高。
 
-Git 本身自带有 GUI，市面上也有很多优秀的 Git GUI 工具，例如针对 Windows 用户的 TortoiseGit [^note5] ，支持 Windows 和 Mac 的 Sourcetree [^note6] 等。
+Git 本身自带有 GUI，市面上也有很多优秀的 Git GUI 工具，例如针对 Windows 用户的 TortoiseGit[^note5]，支持 Windows 和 Mac 的 Sourcetree[^note6]等。
 
 这里简单介绍一下 TortoiseGit 的使用。下载并安装好 TortoiseGit 之后，在本地仓库的目录下，单击鼠标右键，在右键菜单中就可以看到 Git 的各个功能。
 
