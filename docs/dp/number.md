@@ -43,42 +43,43 @@
 ???+note "参考代码"
     ```c++
     #include <cstdio>
-    int num[20] ;
-    long long a, b, f[20], pow[20] ;
-    long long cnta[10], cntb[10] ;
-
-    inline void Digit_Dp ( long long n, long long* cnt )  {
-        if ( !n )  return ;
-        long long N = n ;
-        int M ;
-        for ( M = 0 ; N ; num[++ M] = N % 10, N /= 10 ) ;
-        for ( int i = 1 ; i < M ; ++ i )  {
-            cnt[0] += f[i - 1] * 9 ;
-            for ( int j = 1 ; j < 10 ; ++ j )  cnt[j] += f[i - 1] * 9 + pow[i - 1] ;
-        }
-        n -= num[M] * pow[M - 1] ;
-        for ( int i = 1 ; i < num[M] ; ++ i )  cnt[i] += pow[M - 1] ;
-        for ( int i = 0 ; i < 10; ++ i )    cnt[i] += f[M - 1] * ( num[M] - 1 ) ;
-        cnt[num[M]] += n + 1 ;
-        for ( int i = M - 1 ; i ; -- i )  {
-            n -= num[i] * pow[i - 1] ;
-            for ( int j = 0 ; j < num[i] ; ++ j )  cnt[j] += pow[i - 1] ;
-            for ( int j = 0 ; j < 10; ++ j )    cnt[j] += f[i - 1] * num[i] ;
-            cnt[num[i]] += n + 1 ;
-        }
+    int num[20];
+    long long a, b, f[20], pow[20];
+    long long cnta[10], cntb[10];
+    
+    inline void Digit_Dp(long long n, long long* cnt) {
+      if (!n) return;
+      long long N = n;
+      int M;
+      for (M = 0; N; num[++M] = N % 10, N /= 10)
+        ;
+      for (int i = 1; i < M; ++i) {
+        cnt[0] += f[i - 1] * 9;
+        for (int j = 1; j < 10; ++j) cnt[j] += f[i - 1] * 9 + pow[i - 1];
+      }
+      n -= num[M] * pow[M - 1];
+      for (int i = 1; i < num[M]; ++i) cnt[i] += pow[M - 1];
+      for (int i = 0; i < 10; ++i) cnt[i] += f[M - 1] * (num[M] - 1);
+      cnt[num[M]] += n + 1;
+      for (int i = M - 1; i; --i) {
+        n -= num[i] * pow[i - 1];
+        for (int j = 0; j < num[i]; ++j) cnt[j] += pow[i - 1];
+        for (int j = 0; j < 10; ++j) cnt[j] += f[i - 1] * num[i];
+        cnt[num[i]] += n + 1;
+      }
     }
-
-    int main ( )  {
-        pow[0] = 1 ;
-        for ( int i = 1 ; i < 15 ; ++ i )  {
-            f[i] = f[i - 1] * 10 + pow[i - 1] ;
-            pow[i] = pow[i - 1] * 10 ;
-        }
-        scanf ( "%lld%lld", &a, &b ) ;
-        Digit_Dp ( a - 1, cnta ) ;
-        Digit_Dp ( b, cntb ) ;
-        for ( int i = 0 ; i <= 9 ; ++ i )
-            printf ( "%lld%c", cntb[i] - cnta[i], ( i ^ 9 ) ? ' ' : '\n' ) ;
+    
+    int main() {
+      pow[0] = 1;
+      for (int i = 1; i < 15; ++i) {
+        f[i] = f[i - 1] * 10 + pow[i - 1];
+        pow[i] = pow[i - 1] * 10;
+      }
+      scanf("%lld%lld", &a, &b);
+      Digit_Dp(a - 1, cnta);
+      Digit_Dp(b, cntb);
+      for (int i = 0; i <= 9; ++i)
+        printf("%lld%c", cntb[i] - cnta[i], (i ^ 9) ? ' ' : '\n');
     }
     ```
 
@@ -387,7 +388,6 @@
 
 ## 习题
 
-
 [Ahoi2009 self 同类分布](https://www.luogu.com.cn/problem/P4127)
 
 [洛谷  P3413 SAC#1 - 萌数](https://www.luogu.com.cn/problem/P3413)
@@ -406,5 +406,5 @@
 
 [数位 dp 总结 之 从入门到模板](https://blog.csdn.net/wust_zzwh/article/details/52100392)
 
-[BZOJ-1833 [ZJOI2010] count 数字计数 数位DP
+[BZOJ-1833 \[ZJOI2010\] count 数字计数 数位 DP
 版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。](https://blog.csdn.net/simpsonk/article/details/73007025)
