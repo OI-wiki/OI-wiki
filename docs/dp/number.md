@@ -42,47 +42,43 @@
 
 ???+note "参考代码"
     ```c++
-    #include <algorithm>
-    #include <cstdio>  //code by y2823774827y
-    #include <cstring>
-    #include <iostream>
-    #include <string>
-    using namespace std;
-    typedef long long LL;
-    inline LL Read() {
-      LL x(0), f(1);
-      char c = getchar();
-      while (c < '0' || c > '9') {
-        if (c == '-') f = -1;
-        c = getchar();
-      }
-      while (c >= '0' && c <= '9') x = (x << 3) + (x << 1) + c - '0', c = getchar();
-      return x * f;
+    #include <cstdio>
+    int num[20] ;
+    long long a, b, f[20], pow[20] ;
+    long long cnta[10], cntb[10] ;
+
+    inline void Digit_Dp ( long long n, long long* cnt )  {
+        if ( !n )  return ;
+        long long N = n ;
+        int M ;
+        for ( M = 0 ; N ; num[++ M] = N % 10, N /= 10 ) ;
+        for ( int i = 1 ; i < M ; ++ i )  {
+            cnt[0] += f[i - 1] * 9 ;
+            for ( int j = 1 ; j < 10 ; ++ j )  cnt[j] += f[i - 1] * 9 + pow[i - 1] ;
+        }
+        n -= num[M] * pow[M - 1] ;
+        for ( int i = 1 ; i < num[M] ; ++ i )  cnt[i] += pow[M - 1] ;
+        for ( int i = 0 ; i < 10; ++ i )    cnt[i] += f[M - 1] * ( num[M] - 1 ) ;
+        cnt[num[M]] += n + 1 ;
+        for ( int i = M - 1 ; i ; -- i )  {
+            n -= num[i] * pow[i - 1] ;
+            for ( int j = 0 ; j < num[i] ; ++ j )  cnt[j] += pow[i - 1] ;
+            for ( int j = 0 ; j < 10; ++ j )    cnt[j] += f[i - 1] * num[i] ;
+            cnt[num[i]] += n + 1 ;
+        }
     }
-    LL l, r;
-    LL a[20], cover[20], dp[20], countl[20], countr[20];
-    inline void Solve(LL num, LL *A) {
-      LL len(0), bit = num;
-      while (num) {
-        a[++len] = num % 10, num /= 10;
-      }
-      for (LL i = len; i >= 1; --i) {
-        for (LL j = 0; j < 10; ++j) A[j] += dp[i - 1] * a[i];  // 有第i位时的贡献
-        for (LL j = 0; j < a[i]; ++j) A[j] += cover[i - 1];  // i-1位以下的贡献
-        bit -= a[i] * cover[i - 1],
-            A[a[i]] += bit + 1,    // 第i位上的该数未补满i-1位
-            A[0] -= cover[i - 1];  // 减去前导0的个数
-      }
-    }
-    int main() {
-      cover[0] = 1;
-      for (LL i = 1; i <= 16; ++i) {
-        dp[i] = (dp[i - 1] << 3) + (dp[i - 1] << 1) + cover[i - 1],
-        cover[i] = (cover[i - 1] << 3) + (cover[i - 1] << 1);
-      }
-      l = Read(), r = Read(), Solve(l - 1, countl), Solve(r, countr);
-      for (LL i = 0; i < 10; ++i) printf("%lld ", countr[i] - countl[i]);
-      return 0;
+
+    int main ( )  {
+        pow[0] = 1 ;
+        for ( int i = 1 ; i < 15 ; ++ i )  {
+            f[i] = f[i - 1] * 10 + pow[i - 1] ;
+            pow[i] = pow[i - 1] * 10 ;
+        }
+        scanf ( "%lld%lld", &a, &b ) ;
+        Digit_Dp ( a - 1, cnta ) ;
+        Digit_Dp ( b, cntb ) ;
+        for ( int i = 0 ; i <= 9 ; ++ i )
+            printf ( "%lld%c", cntb[i] - cnta[i], ( i ^ 9 ) ? ' ' : '\n' ) ;
     }
     ```
 
@@ -409,3 +405,6 @@
 [数位 dp 介绍 - Young-children](https://www.cnblogs.com/young-children/p/11327950.html)
 
 [数位 dp 总结 之 从入门到模板](https://blog.csdn.net/wust_zzwh/article/details/52100392)
+
+[BZOJ-1833 [ZJOI2010] count 数字计数 数位DP
+版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。](https://blog.csdn.net/simpsonk/article/details/73007025)
