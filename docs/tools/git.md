@@ -571,11 +571,11 @@ $ git clone git@github.com:OI-wiki/OI-wiki.git
 
 将更改推送至远程仓库的过程与使用 HTTP(S) 连接类似。但使用 ssh 连接可以免去验证远程仓库帐号密码的过程。
 
-## GUI
+## Git GUI Tools
 
-对于不熟悉命令行的同学，纯命令行的 Git 的上手难度可能会偏高，而借助 GUI 工具可以一定程度上降低 Git 的上手难度。
+对于不熟悉命令行的同学，纯命令行的 Git 的上手难度可能会偏高，而借助 GUI 工具可以一定程度上降低 Git 的上手难度。此外，相比于命令行， GUI 工具在查看 diff 以及 log 时在体验上有一定程度的提高。
 
-Git 本身自带有 GUI，市面上也有很多优秀的 Git GUI 工具，例如针对 Windows 用户的 [TortoiseGit](https://tortoisegit.org/)，支持 Windows 和 Mac 的 [Sourcetree](https://www.sourcetreeapp.com/) 等。
+Git 本身自带有 GUI，市面上也有很多优秀的 Git GUI 工具，例如针对 Windows 用户的 TortoiseGit [^note5] ，支持 Windows 和 Mac 的 Sourcetree [^note6] 等。
 
 这里简单介绍一下 TortoiseGit 的使用。下载并安装好 TortoiseGit 之后，在本地仓库的目录下，单击鼠标右键，在右键菜单中就可以看到 Git 的各个功能。
 
@@ -598,3 +598,7 @@ Git 本身自带有 GUI，市面上也有很多优秀的 Git GUI 工具，例如
 [^note3]: 事实上 Git 还有一个针对系统上每一个用户及系统上所有仓库的通用配置文件，该配置文件覆盖范围最广，等级在用户配置文件之上。因为该配置实践中较少使用，这里不再展开。
 
 [^note4]: [Pro Git Book](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA) 中提供了可视化的 Rebase 过程图，借助图片读者可以更好地理解 Rebase 的机制。
+
+[^note5]: [TortoiseGit](https://tortoisegit.org/)
+
+[^note6]: [Sourcetree](https://www.sourcetreeapp.com/)
