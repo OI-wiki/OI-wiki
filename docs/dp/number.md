@@ -41,7 +41,6 @@
 现在来考虑前导 $0$，第 $i$ 位为前导 $0$ 时，实际上我们多算了填满 $i-1$ 位的次数，减去就好。
 
 ???+note "参考代码"
-
     ```c++
     #include <algorithm>
     #include <cstdio>  //code by y2823774827y
@@ -94,7 +93,6 @@
 详见代码注释
 
 ???+note "参考代码"
-
     ```c++
     #include <cstdio>  //code by Alphnia
     #include <cstring>
@@ -251,7 +249,7 @@
     ```
 
 ???+note "例4.[SPOJMYQ10](https://www.spoj.com/problems/MYQ10/en/)"
-    题面大意：假如手写下 $[n,m]$ 之间所有整数，会有多少数看起来和在镜子里看起来一模一样？（ $n,m<10^{44}, T<10^5$ )
+    题面大意：假如手写下 $[n,m]$ 之间所有整数，会有多少数看起来和在镜子里看起来一模一样？（$n,m<10^{44}, T<10^5$)
 
 注：由于这里考虑到的镜像，只有 $0,1,8$ 的镜像是自己本身。所以，这里的“一模一样”并不是传统意义上的回文串，而是只含有 $0,1,8$ 的回文串。
 
@@ -266,7 +264,6 @@
 需要额外注意的是，这道题的记忆化部分，不能用 `memset`，否则会导致超时。
 
 ???+note "参考代码"
-
     ```c++
     int check(char cc[]) {  // n的特判
       int strc = strlen(cc);
@@ -282,7 +279,7 @@
       if (now == 0) return 1ll;
       if (!fulc && f[now][eff][ful0] != -1)  //记忆化
         return f[now][eff][ful0];
-
+    
       int res = 0, maxk = fulc ? dig[now] : 9;
       for (int i = 0; i <= maxk; ++i) {
         if (i != 0 && i != 1 && i != 8) continue;
@@ -297,16 +294,16 @@
       if (!fulc) f[now][eff][ful0] = res;
       return res;
     }
-
+    
     char cc1[100], cc2[100];
     int strc, ansm, ansn;
-
+    
     int get(char cc[]) {  //处理封装
       strc = strlen(cc);
       for (int i = 0; i < strc; ++i) dig[strc - i] = cc[i] - '0';
       return dfs(strc, strc, 1, 1);
     }
-
+    
     scanf("%s%s", cc1, cc2);
     printf("%lld\n", get(cc2) - get(cc1) + check(cc1));
     ```
@@ -325,7 +322,6 @@
 转移很好想，详见代码 `main` 函数部分。
 
 ???+note "参考代码"
-
     ```c++
     #include <bits/stdc++.h>  //code by Alphnia
     using namespace std;
