@@ -399,8 +399,8 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 
 ## References
 
-[^note1]: [复活 SPFA - LHF 的博客](<https://www.luogu.com.cn/blog/LHF/fu-huo-spfa>)
+[^note1]: [复活 SPFA - LHF 的博客](https://www.luogu.com.cn/blog/LHF/fu-huo-spfa)
 
-[^note2]: [复活 SPFA - UNVRS 的博客](<https://www.luogu.com.cn/blog/UNVRS/SPFA-PMF>)
+[^note2]: [复活 SPFA - UNVRS 的博客](https://www.luogu.com.cn/blog/UNVRS/SPFA-PMF)
 
 **本页面部分内容译自博文 [Тернарный поиск](http://e-maxx.ru/algo/levit_algorithm) 与其英文翻译版 [D´Esopo-Pape algorithm](https://cp-algorithms.com/graph/desopo_pape.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
