@@ -157,7 +157,7 @@ int child[N][2];
 
 #### 先序遍历
 
-    ![preorder](/image/tree-basic-Preorder.png)
+![preorder](/image/tree-basic-Preorder.png)
 
 按照 **根，左，右** 的顺序遍历二叉树。
 
@@ -173,7 +173,7 @@ void preTrav(BiTree* root) {
 
 #### 中序遍历
 
-    ![inorder](/image/tree-basic-inorder.png)
+![inorder](/image/tree-basic-inorder.png)
 
 按照 **左，根，右** 的顺序遍历二叉树。
 
@@ -189,7 +189,7 @@ void midTrav(BiTree* root) {
 
 #### 后序遍历
 
-    ![Postorder](/image/tree-basic-Postorder.png)
+![Postorder](/image/tree-basic-Postorder.png)
 
 按照 **左，右，根** 的顺序遍历二叉树。
 
@@ -207,7 +207,7 @@ void lastTrav(BiTree* root) {
 
 已知中序遍历序列和另外一个序列可以求第三个序列。
 
-    ![reverse](/image/tree-basic-reverse.png)
+![reverse](/image/tree-basic-reverse.png)
 
 1. 前序的第一个是 root，后序的最后一个是 root。
 2. 先确定根节点，然后根据中序遍历，在根左边的为左子树，根右边的为右子树
