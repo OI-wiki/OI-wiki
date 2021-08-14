@@ -391,7 +391,7 @@ int main() {
 
 此题可以很好地帮助理解数位 dp 的原理。
 
-## 几道练习题
+## 习题
 
 [BZOJ 3679 数字之积](https://www.lydsy.com/JudgeOnline/problem.php?id=3679)
 
