@@ -405,12 +405,10 @@ int main() {
 
 [CF628D Magic Numbers](http://codeforces.com/problemset/problem/628/D)
 
-# 三、参考资料
+## References
 
-[小学生都能看懂的数位 dp - y2823774827y - 博客园 (cnblogs.com)](https://www.cnblogs.com/y2823774827y/p/10301145.html)
+[小学生都能看懂的数位 dp - y2823774827y](https://www.cnblogs.com/y2823774827y/p/10301145.html)
 
-[数位 dp 介绍 - Young-children - 博客园 (cnblogs.com)](https://www.cnblogs.com/young-children/p/11327950.html)
+[数位 dp 介绍 - Young-children](https://www.cnblogs.com/young-children/p/11327950.html)
 
-[(7 条消息）数位 dp 总结 之 从入门到模板*努力 - CSDN 博客*数位 dp 模板](https://blog.csdn.net/wust_zzwh/article/details/52100392)
-
-[add 数位 DP·Issue #2440·OI-wiki/OI-wiki (github.com)](https://github.com/OI-wiki/OI-wiki/issues/2440)
+[数位 dp 总结 之 从入门到模板](https://blog.csdn.net/wust_zzwh/article/details/52100392)
