@@ -249,7 +249,7 @@ int solve(int x) {
 }
 ```
 
-???+note "例3.[SPOJMYQ10](https://www.spoj.com/problems/MYQ10/en/)"
+???+note "例4.[SPOJMYQ10](https://www.spoj.com/problems/MYQ10/en/)"
 
 ​	题面大意：假如手写下$[n,m]$之间所有整数，会有多少数看起来和在镜子里看起来一模一样？$n,m<10^{44};T<10^5$
 
@@ -314,7 +314,7 @@ scanf("%s%s",cc1,cc2);
 printf("%lld\n",get(cc2)-get(cc1)+check(cc1));
 ```
 
-???+note "例4.[P3311 数数 ](https://www.luogu.com.cn/problem/P3311)"
+???+note "例5.[P3311 数数 ](https://www.luogu.com.cn/problem/P3311)"
 
 ​	题面：我们称一个正整数 $x$ 是幸运数，当且仅当它的十进制表示中不包含数字串集合$S$中任意一个元素作为其子串。例如当$ S = \{22, 333, 0233\}$ 时，$233233$ 是幸运数，$23332333$、$2023320233$、$32233223$ 不是幸运数。给定 $n$和 $S$，计算不大于 $n$的幸运数个数。
 
