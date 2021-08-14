@@ -728,7 +728,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ??? note " 习题 [「AIZU 2452」Pipeline Plans](https://vjudge.net/problem/Aizu-2452)"
     题目大意：现有一共 12 种图案的瓷砖，每种瓷砖数量给定。要求铺到一块可视为 $R*C$ 网格图的矩形地板上，一个格子铺一块瓷砖，且左上角格子的中心与右下角格子的中心通过瓷砖图案上的线联通。$(2 ≤ R × C ≤ 15)$
-
+    
     ![plug2](./images/plug2.png)
 
 ??? note " 习题 [「SDOI 2014」电路板](https://www.luogu.com.cn/problem/P3314)"
