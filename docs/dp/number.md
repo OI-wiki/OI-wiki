@@ -391,7 +391,6 @@
 
 ## 习题
 
-[BZOJ 3679 数字之积](https://www.lydsy.com/JudgeOnline/problem.php?id=3679)
 
 [Ahoi2009 self 同类分布](https://www.luogu.com.cn/problem/P4127)
 
