@@ -1,4 +1,4 @@
-author: Leasier
+author: Leasier, NanoApe
 
 ## 定义
 
@@ -201,7 +201,7 @@ while (!q.empty()) {
 
 虽然在大多数情况下 SPFA 跑得很快，但其最坏情况下的时间复杂度为 $O(NM)$，将其卡到这个复杂度也是不难的，所以考试时要谨慎使用（在没有负权边时最好使用 Dijkstra 算法，在有负权边且题目中的图没有特殊性质时，若 SPFA 是标算的一部分，题目不应当给出 Bellman-Ford 算法无法通过的数据范围）。
 
-???+note "Bellman-Ford 的其他可以被卡掉的优化"
+???+note "Bellman-Ford 的其他优化"
     除了队列优化（SPFA）之外，Bellman-Ford 还有其他形式的优化，这些优化在部分图上效果明显，但在某些特殊图上，最坏复杂度可能达到指数级。
     
     - 堆优化：将队列换成堆，与 Dijkstra 的区别是允许一个点多次入队。在有负权边的图可能被卡成指数级复杂度。
@@ -209,12 +209,10 @@ while (!q.empty()) {
     - LLL 优化：将普通队列换成双端队列，每次将入队结点距离和队内距离平均值比较，如果更大则插入至队尾，否则插入队首。
     - SLF 优化：将普通队列换成双端队列，每次将入队结点距离和队首比较，如果更大则插入至队尾，否则插入队首。
     - D´Esopo-Pape 算法：将普通队列换成双端队列，如果一个节点之前没有入队，则将其插入队尾，否则插入队首。
+    - RMF 优化[^note1]：先跑一次限定一个点的入队次数的 SPFA，然后把所有点到起点的距离按从小到大排序并依次加入队列（如果无法到达就不用加入队列），最后跑一次无限制的 SPFA。
+    - PMF 优化[^note2]：首先，我们考虑每次松弛前通过一些操作使得被松弛的点的权值尽可能的小，也就是用小于一个 $\log n$ 的时间复杂度维护一个近似的优先队列。对于队头向后和队尾向前，取出 $B_1$ 项与队头判断，如果权值更小即交换。同时在队内随机 $B_2$ 项做一样的判断。在松弛进行时，如果被松弛的结点入队且大于队尾，则与其交换，如果被松弛的结点在队内则与队尾判断交换，保证最小值在队尾。一般情况下，$B_1, B_2$ 取 $\lfloor \log \log n \rfloor + 1$ 最佳。
     
     更多优化以及针对这些优化的 Hack 方法，可以看 [fstqwq 在知乎上的回答](https://www.zhihu.com/question/292283275/answer/484871888)。
-
-???+note "Bellman-Ford 的其他目前还未被卡掉的优化"
-    - RMF 优化[1]：先跑一次限定一个点的入队次数的 SPFA，然后把所有点到起点的距离按从小到大排序并依次加入队列（如果无法到达就不用加入队列），最后跑一次无限制的 SPFA。
-    - PMF 优化[2]：首先，我们考虑每次松弛前通过一些操作使得被松弛的点的权值尽可能的小，也就是用小于一个 $\log n$ 的时间复杂度维护一个近似的优先队列。对于队头向后和队尾向前，取出 $B_1$ 项与队头判断，如果权值更小即交换。同时在队内随机 $B_2$ 项做一样的判断。在松弛进行时，如果被松弛的结点入队且大于队尾，则与其交换，如果被松弛的结点在队内则与队尾判断交换，保证最小值在队尾。一般情况下，$B_1, B_2$ 取 $\lfloor \log \log n \rfloor + 1$ 最佳。
 
 ## Dijkstra 算法
 
@@ -401,8 +399,8 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 
 ## References
 
-- [1][复活 SPFA - LHF 的博客](<https://www.luogu.com.cn/blog/LHF/fu-huo-spfa>)
+[^note1]: [复活 SPFA - LHF 的博客](<https://www.luogu.com.cn/blog/LHF/fu-huo-spfa>)
 
-- [2][复活 SPFA - UNVRS 的博客](<https://www.luogu.com.cn/blog/UNVRS/SPFA-PMF>)
+[^note2]: [复活 SPFA - UNVRS 的博客](<https://www.luogu.com.cn/blog/UNVRS/SPFA-PMF>)
 
 **本页面部分内容译自博文 [Тернарный поиск](http://e-maxx.ru/algo/levit_algorithm) 与其英文翻译版 [D´Esopo-Pape algorithm](https://cp-algorithms.com/graph/desopo_pape.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
