@@ -29,7 +29,7 @@
 ???+note " 例1 [P2602 数字计数](https://www.luogu.com.cn/problem/P2602)"
     题目大意：给定两个正整数 $a,b$，求在 $[a,b]$ 中的所有整数中，每个数码（digit）各出现了多少次。
 
-### 解法 $1$:
+### 方法 $1$:
 
 设数组 $dp_i$ 为满 $i$ 位的数中每个数字出现的次数（满位情况下每个数字出现次数相同故我们可以公用空间），此时忽略前导 0 的存在。而实际中显然像 0012 这样的数字我们是不会统计那两个 0 的，这个等会处理。
 
@@ -39,165 +39,165 @@
 2. 不仅要算原有位出现的次数，新加的该位也要算（第二位为 1:10,11......19)，数满 $i-1$ 位，故加上 $10^{i−1}$
 
 现在来考虑前导 $0$，第 $i$ 位为前导 $0$ 时，实际上我们多算了填满 $i-1$ 位的次数，减去就好。
+???+note "参考代码"
+    ```c++
+    #include <algorithm>
+    #include <cstdio>  //code by y2823774827y
+    #include <cstring>
+    #include <iostream>
+    #include <string>
+    using namespace std;
+    typedef long long LL;
+    inline LL Read() {
+      LL x(0), f(1);
+      char c = getchar();
+      while (c < '0' || c > '9') {
+        if (c == '-') f = -1;
+        c = getchar();
+      }
+      while (c >= '0' && c <= '9') x = (x << 3) + (x << 1) + c - '0', c = getchar();
+      return x * f;
+    }
+    LL l, r;
+    LL a[20], cover[20], dp[20], countl[20], countr[20];
+    inline void Solve(LL num, LL *A) {
+      LL len(0), bit = num;
+      while (num) {
+        a[++len] = num % 10, num /= 10;
+      }
+      for (LL i = len; i >= 1; --i) {
+        for (LL j = 0; j < 10; ++j) A[j] += dp[i - 1] * a[i];  //有第i位时的贡献
+        for (LL j = 0; j < a[i]; ++j) A[j] += cover[i - 1];  // i-1位以下的贡献
+        bit -= a[i] * cover[i - 1],
+            A[a[i]] += bit + 1,    //第i位上的该数未补满i-1位
+            A[0] -= cover[i - 1];  //减去前导0的个数
+      }
+    }
+    int main() {
+      cover[0] = 1;
+      for (LL i = 1; i <= 16; ++i) {
+        dp[i] = (dp[i - 1] << 3) + (dp[i - 1] << 1) + cover[i - 1],
+        cover[i] = (cover[i - 1] << 3) + (cover[i - 1] << 1);
+      }
+      l = Read(), r = Read(), Solve(l - 1, countl), Solve(r, countr);
+      for (LL i = 0; i < 10; ++i) printf("%lld ", countr[i] - countl[i]);
+      return 0;
+    }
+    ```
 
-```c++
-#include <algorithm>
-#include <cstdio>  //code by y2823774827y
-#include <cstring>
-#include <iostream>
-#include <string>
-using namespace std;
-typedef long long LL;
-inline LL Read() {
-  LL x(0), f(1);
-  char c = getchar();
-  while (c < '0' || c > '9') {
-    if (c == '-') f = -1;
-    c = getchar();
-  }
-  while (c >= '0' && c <= '9') x = (x << 3) + (x << 1) + c - '0', c = getchar();
-  return x * f;
-}
-LL l, r;
-LL a[20], cover[20], dp[20], countl[20], countr[20];
-inline void Solve(LL num, LL *A) {
-  LL len(0), bit = num;
-  while (num) {
-    a[++len] = num % 10, num /= 10;
-  }
-  for (LL i = len; i >= 1; --i) {
-    for (LL j = 0; j < 10; ++j) A[j] += dp[i - 1] * a[i];  //有第i位时的贡献
-    for (LL j = 0; j < a[i]; ++j) A[j] += cover[i - 1];  // i-1位以下的贡献
-    bit -= a[i] * cover[i - 1],
-        A[a[i]] += bit + 1,    //第i位上的该数未补满i-1位
-        A[0] -= cover[i - 1];  //减去前导0的个数
-  }
-}
-int main() {
-  cover[0] = 1;
-  for (LL i = 1; i <= 16; ++i) {
-    dp[i] = (dp[i - 1] << 3) + (dp[i - 1] << 1) + cover[i - 1],
-    cover[i] = (cover[i - 1] << 3) + (cover[i - 1] << 1);
-  }
-  l = Read(), r = Read(), Solve(l - 1, countl), Solve(r, countr);
-  for (LL i = 0; i < 10; ++i) printf("%lld ", countr[i] - countl[i]);
-  return 0;
-}
-```
-
-### 解法 $2$:
+### 方法 $2$:
 
 此题也可以使用记忆化搜索。$f[i]$ 表示不贴上限、无前导零时，位数为 $i$ 的答案。
 
 详见代码注释
-
-```c++
-#include <cstdio>  //code by Alphnia
-#include <cstring>
-#include <iostream>
-using namespace std;
-#define N 50005
-#define ll long long
-ll a, b;
-ll f[15], ksm[15], p[15], now[15];
-ll dfs(int u, int x, bool f0,
-       bool lim) {  // u表示位数，f0是否有前导零，lim是否都贴在上限上
-  if (!u) {
-    if (f0) f0 = 0;
-    return 0;
-  }
-  if (!lim && !f0 && (~f[u])) return f[u];
-  ll cnt = 0;
-  int lst = lim ? p[u] : 9;
-  for (int i = 0; i <= lst; i++) {  //枚举这位要填的数字
-    if (f0 && i == 0)
-      cnt += dfs(u - 1, x, 1, lim && i == lst);  //处理前导零
-    else if (i == x && lim && i == lst)
-      cnt += now[u - 1] + 1 +
-             dfs(u - 1, x, 0,
-                 lim && i == lst);  //此时枚举的前几位都贴在给定的上限上。
-    else if (i == x)
-      cnt += ksm[u - 1] + dfs(u - 1, x, 0, lim && i == lst);
-    else
-      cnt += dfs(u - 1, x, 0, lim && i == lst);
-  }
-  if ((!lim) && (!f0))
-    f[u] = cnt;  // only there is no limit or prezero this f can be kept until
-                 // next layer
-  return cnt;
-}
-ll gans(ll d, int dig) {
-  int len = 0;
-  memset(f, -1, sizeof(f));
-  while (d) {
-    p[++len] = d % 10;
-    d /= 10;
-    now[len] = now[len - 1] + p[len] * ksm[len - 1];
-  }
-  return dfs(len, dig, 1, 1);
-}
-int main() {
-  scanf("%lld%lld", &a, &b);
-  ksm[0] = 1;
-  for (int i = 1; i <= 12; i++) ksm[i] = ksm[i - 1] * 10ll;
-  for (int i = 0; i < 9; i++) printf("%lld ", gans(b, i) - gans(a - 1, i));
-  printf("%lld\n", gans(b, 9) - gans(a - 1, 9));
-  return 0;
-}
-```
+???+note "参考代码"
+    ```c++
+    #include <cstdio>  //code by Alphnia
+    #include <cstring>
+    #include <iostream>
+    using namespace std;
+    #define N 50005
+    #define ll long long
+    ll a, b;
+    ll f[15], ksm[15], p[15], now[15];
+    ll dfs(int u, int x, bool f0,
+           bool lim) {  // u表示位数，f0是否有前导零，lim是否都贴在上限上
+      if (!u) {
+        if (f0) f0 = 0;
+        return 0;
+      }
+      if (!lim && !f0 && (~f[u])) return f[u];
+      ll cnt = 0;
+      int lst = lim ? p[u] : 9;
+      for (int i = 0; i <= lst; i++) {  //枚举这位要填的数字
+        if (f0 && i == 0)
+          cnt += dfs(u - 1, x, 1, lim && i == lst);  //处理前导零
+        else if (i == x && lim && i == lst)
+          cnt += now[u - 1] + 1 +
+                 dfs(u - 1, x, 0,
+                     lim && i == lst);  //此时枚举的前几位都贴在给定的上限上。
+        else if (i == x)
+          cnt += ksm[u - 1] + dfs(u - 1, x, 0, lim && i == lst);
+        else
+          cnt += dfs(u - 1, x, 0, lim && i == lst);
+      }
+      if ((!lim) && (!f0))
+        f[u] = cnt;  // only there is no limit or prezero this f can be kept until
+                     // next layer
+      return cnt;
+    }
+    ll gans(ll d, int dig) {
+      int len = 0;
+      memset(f, -1, sizeof(f));
+      while (d) {
+        p[++len] = d % 10;
+        d /= 10;
+        now[len] = now[len - 1] + p[len] * ksm[len - 1];
+      }
+      return dfs(len, dig, 1, 1);
+    }
+    int main() {
+      scanf("%lld%lld", &a, &b);
+      ksm[0] = 1;
+      for (int i = 1; i <= 12; i++) ksm[i] = ksm[i - 1] * 10ll;
+      for (int i = 0; i < 9; i++) printf("%lld ", gans(b, i) - gans(a - 1, i));
+      printf("%lld\n", gans(b, 9) - gans(a - 1, 9));
+      return 0;
+    }
+    ```
 
 
 ???+note " 例2 [hdu 2089 不要62](https://acm.hdu.edu.cn/showproblem.php?pid=2089)"
     题面大意：统计一个区间内数位上不能有 4 也不能有连续的 62 的数有多少。
 
 没有 4 的话在枚举的时候判断一下，不枚举 4 就可以保证状态合法了，所以这个约束没有记忆化的必要，而对于 62 的话，涉及到两位，当前一位是 6 或者不是 6 这两种不同情况我计数是不相同的，所以要用状态来记录不同的方案数。$dp[pos][sta]$ 表示当前第 pos 位，前一位是否是 6 的状态，这里 sta 只需要取 0 和 1 两种状态就可以了，不是 6 的情况可视为同种，不会影响计数。
-
-```c++
-#include <cstdio>  //code by Alphnia
-#include <cstring>
-#include <iostream>
-using namespace std;
-int x, y, dp[15][3], p[50];
-inline int pre() {
-  memset(dp, 0, sizeof(dp));
-  dp[0][0] = 1;
-  for (int i = 1; i <= 10; i++) {
-    dp[i][0] = dp[i - 1][0] * 9 - dp[i - 1][1];
-    dp[i][1] = dp[i - 1][0];
-    dp[i][2] = dp[i - 1][2] * 10 + dp[i - 1][1] + dp[i - 1][0];
-  }
-}
-inline int cal(int x) {
-  int cnt = 0, ans = 0, tmp = x;
-  while (x) {
-    p[++cnt] = x % 10;
-    x /= 10;
-  }
-  bool flag = 0;
-  p[cnt + 1] = 0;
-  for (int i = cnt; i; i--) {  //从高到低枚举数位
-    ans += p[i] * dp[i - 1][2];
-    if (flag)
-      ans += p[i] * dp[i - 1][0];
-    else {
-      if (p[i] > 4) ans += dp[i - 1][0];
-      if (p[i] > 6) ans += dp[i - 1][1];
-      if (p[i] > 2 && p[i + 1] == 6) ans += dp[i][1];
-      if (p[i] == 4 || (p[i] == 2 && p[i + 1] == 6)) flag = 1;
+???+note "参考代码"
+    ```c++
+    #include <cstdio>  //code by Alphnia
+    #include <cstring>
+    #include <iostream>
+    using namespace std;
+    int x, y, dp[15][3], p[50];
+    inline int pre() {
+      memset(dp, 0, sizeof(dp));
+      dp[0][0] = 1;
+      for (int i = 1; i <= 10; i++) {
+        dp[i][0] = dp[i - 1][0] * 9 - dp[i - 1][1];
+        dp[i][1] = dp[i - 1][0];
+        dp[i][2] = dp[i - 1][2] * 10 + dp[i - 1][1] + dp[i - 1][0];
+      }
     }
-  }
-  return tmp - ans;
-}
-int main() {
-  pre();
-  while (~scanf("%d%d", &x, &y)) {
-    if (!x && !y) break;
-    x = min(x, y), y = max(x, y);
-    printf("%d\n", cal(y + 1) - cal(x));
-  }
-  return 0;
-}
-```
+    inline int cal(int x) {
+      int cnt = 0, ans = 0, tmp = x;
+      while (x) {
+        p[++cnt] = x % 10;
+        x /= 10;
+      }
+      bool flag = 0;
+      p[cnt + 1] = 0;
+      for (int i = cnt; i; i--) {  //从高到低枚举数位
+        ans += p[i] * dp[i - 1][2];
+        if (flag)
+          ans += p[i] * dp[i - 1][0];
+        else {
+          if (p[i] > 4) ans += dp[i - 1][0];
+          if (p[i] > 6) ans += dp[i - 1][1];
+          if (p[i] > 2 && p[i + 1] == 6) ans += dp[i][1];
+          if (p[i] == 4 || (p[i] == 2 && p[i + 1] == 6)) flag = 1;
+        }
+      }
+      return tmp - ans;
+    }
+    int main() {
+      pre();
+      while (~scanf("%d%d", &x, &y)) {
+        if (!x && !y) break;
+        x = min(x, y), y = max(x, y);
+        printf("%d\n", cal(y + 1) - cal(x));
+      }
+      return 0;
+    }
+    ```
 
 ???+note " 例3 [SCOI2009 windy 数 ](https://loj.ac/problem/10165)"
     题目大意：给定一个区间 $[l,r]$，求其中满足条件 **不含前导 $0$ 且相邻两个数字相差至少为 $2$** 的数字个数。
@@ -216,43 +216,43 @@ int main() {
 
 我们发现，尽管前缀所选择的状态不同，而 $f$ 的三个参数相同，答案就是一样的。为了防止这个答案被计算多次，可以使用记忆化搜索的方式实现。
 
-核心代码：
+???+note "参考代码"
 
-```cpp
-int dfs(int x, int st, int op)  // op=1 =;op=0 <
-{
-  if (!x) return 1;
-  if (!op && ~f[x][st]) return f[x][st];
-  int maxx = op ? dim[x] : 9, ret = 0;
-  for (int i = 0; i <= maxx; i++) {
-    if (abs(st - i) < 2) continue;
-    if (st == 11 && i == 0)
-      ret += dfs(x - 1, 11, op & (i == maxx));
-    else
-      ret += dfs(x - 1, i, op & (i == maxx));
-  }
-  if (!op) f[x][st] = ret;
-  return ret;
-}
-int solve(int x) {
-  memset(f, -1, sizeof f);
-  dim.clear();
-  dim.push_back(-1);
-  int t = x;
-  while (x) {
-    dim.push_back(x % 10);
-    x /= 10;
-  }
-  return dfs(dim.size() - 1, 11, 1);
-}
-```
+    ```cpp
+    int dfs(int x, int st, int op)  // op=1 =;op=0 <
+    {
+      if (!x) return 1;
+      if (!op && ~f[x][st]) return f[x][st];
+      int maxx = op ? dim[x] : 9, ret = 0;
+      for (int i = 0; i <= maxx; i++) {
+        if (abs(st - i) < 2) continue;
+        if (st == 11 && i == 0)
+          ret += dfs(x - 1, 11, op & (i == maxx));
+        else
+          ret += dfs(x - 1, i, op & (i == maxx));
+      }
+      if (!op) f[x][st] = ret;
+      return ret;
+    }
+    int solve(int x) {
+      memset(f, -1, sizeof f);
+      dim.clear();
+      dim.push_back(-1);
+      int t = x;
+      while (x) {
+        dim.push_back(x % 10);
+        x /= 10;
+      }
+      return dfs(dim.size() - 1, 11, 1);
+    }
+    ```
 
 ???+note "例4.[SPOJMYQ10](https://www.spoj.com/problems/MYQ10/en/)"
     题面大意：假如手写下 $[n,m]$ 之间所有整数，会有多少数看起来和在镜子里看起来一模一样？$n,m<10^{44};T<10^5$
 
 注：由于这里考虑到的镜像，只有 $0,1,8$ 的镜像是自己本身。所以，这里的“一模一样”并不是传统意义上的回文串，而是只含有 $0,1,8$ 的回文串。
 
-### 解法：
+
 
 首先，在数位 DP 过程中，显然只有 $0,1,8$ 不会被 ban。
 
@@ -263,57 +263,57 @@ int solve(int x) {
 我们需要用一个小数组记录一下之前的值。在未超过一半的长度时，只要不超上限就行；在超过一半的长度时，还需要判断是否和与之“镜面对称”的位相等。
 
 需要额外注意的是，这道题的记忆化部分，不能用 `memset`，否则会导致超时。
+???+note "参考代码"
+    ```c++
+    int check(char cc[]) {  // n的特判
+      int strc = strlen(cc);
+      for (int i = 0; i < strc; ++i) {
+        if (!(cc[i] == cc[strc - i - 1] &&
+              (cc[i] == '1' || cc[i] == '8' || cc[i] == '0')))
+          return 0ll;
+      }
+      return 1ll;
+    }
+    // now:当前位；eff:有效位；fulc:是否全顶格；ful0:是否全0
+    int dfs(int now, int eff, bool ful0, bool fulc) {
+      if (now == 0) return 1ll;
+      if (!fulc && f[now][eff][ful0] != -1)  //记忆化
+        return f[now][eff][ful0];
 
-```c++
-int check(char cc[]) {  // n的特判
-  int strc = strlen(cc);
-  for (int i = 0; i < strc; ++i) {
-    if (!(cc[i] == cc[strc - i - 1] &&
-          (cc[i] == '1' || cc[i] == '8' || cc[i] == '0')))
-      return 0ll;
-  }
-  return 1ll;
-}
-// now:当前位；eff:有效位；fulc:是否全顶格；ful0:是否全0
-int dfs(int now, int eff, bool ful0, bool fulc) {
-  if (now == 0) return 1ll;
-  if (!fulc && f[now][eff][ful0] != -1)  //记忆化
-    return f[now][eff][ful0];
+      int res = 0, maxk = fulc ? dig[now] : 9;
+      for (int i = 0; i <= maxk; ++i) {
+        if (i != 0 && i != 1 && i != 8) continue;
+        b[now] = i;
+        if (ful0 && i == 0)  //全前导0
+          res += dfs(now - 1, eff - 1, 1, 0);
+        else if (now > eff / 2)                                  //未过半程
+          res += dfs(now - 1, eff, 0, fulc && (dig[now] == i));  //已过半程
+        else if (b[now] == b[eff - now + 1])
+          res += dfs(now - 1, eff, 0, fulc && (dig[now] == i));
+      }
+      if (!fulc) f[now][eff][ful0] = res;
+      return res;
+    }
 
-  int res = 0, maxk = fulc ? dig[now] : 9;
-  for (int i = 0; i <= maxk; ++i) {
-    if (i != 0 && i != 1 && i != 8) continue;
-    b[now] = i;
-    if (ful0 && i == 0)  //全前导0
-      res += dfs(now - 1, eff - 1, 1, 0);
-    else if (now > eff / 2)                                  //未过半程
-      res += dfs(now - 1, eff, 0, fulc && (dig[now] == i));  //已过半程
-    else if (b[now] == b[eff - now + 1])
-      res += dfs(now - 1, eff, 0, fulc && (dig[now] == i));
-  }
-  if (!fulc) f[now][eff][ful0] = res;
-  return res;
-}
+    char cc1[100], cc2[100];
+    int strc, ansm, ansn;
 
-char cc1[100], cc2[100];
-int strc, ansm, ansn;
+    int get(char cc[]) {  //处理封装
+      strc = strlen(cc);
+      for (int i = 0; i < strc; ++i) dig[strc - i] = cc[i] - '0';
+      return dfs(strc, strc, 1, 1);
+    }
 
-int get(char cc[]) {  //处理封装
-  strc = strlen(cc);
-  for (int i = 0; i < strc; ++i) dig[strc - i] = cc[i] - '0';
-  return dfs(strc, strc, 1, 1);
-}
-
-scanf("%s%s", cc1, cc2);
-printf("%lld\n", get(cc2) - get(cc1) + check(cc1));
-```
+    scanf("%s%s", cc1, cc2);
+    printf("%lld\n", get(cc2) - get(cc1) + check(cc1));
+    ```
 
 ???+note "例5. [P3311 数数](https://www.luogu.com.cn/problem/P3311)"
     题面：我们称一个正整数 $x$ 是幸运数，当且仅当它的十进制表示中不包含数字串集合 $S$ 中任意一个元素作为其子串。例如当 $S = \{22, 333, 0233\}$ 时，$233233$ 是幸运数，$23332333$、$2023320233$、$32233223$ 不是幸运数。给定 $n$ 和 $S$，计算不大于 $n$ 的幸运数个数。答案对 $10^9 + 7$ 取模。
     
     $1≤n<10^1201，1 \leq m \leq 100，1 \leq \sum_{i = 1}^m |s_i| \leq 1500，\min_{i = 1}^m |s_i| \geq 1$，其中 $|s_i|$ 表示字符串 $s_i$ 的长度。$n$ 没有前导 $0$，但是 $s_i$ 可能有前导 $0$。
 
-### 解法
+
 
 阅读题面发现，如果将数字看成字符串，那么这就是需要完成一个多模匹配，自然而然就想到 AC 自动机。普通数位 dp 中，先从高到低枚举数位，再枚举每一位都填什么，在这道题中，我们也就自然地转化为枚举，然后枚举此时停在 AC 自动机上的哪个节点，从当前节点转移到它在 AC 自动机上的子节点。
 
@@ -322,71 +322,71 @@ printf("%lld\n", get(cc2) - get(cc1) + check(cc1));
 需要在 AC 自动机上给每个模式串的结尾节点都打上标记，dp 过程中一旦遇上就跳过。
 
 转移很好想，详见代码 main 函数部分。
-
-```c++
-#include <bits/stdc++.h>  //code by Alphnia
-using namespace std;
-#define N 1505
-#define ll long long
-#define mod 1000000007
-int n, m;
-char s[N], c[N];
-int ch[N][10], fail[N], ed[N], tot, len;
-inline void insert() {
-  int now = 0;
-  int L = strlen(s);
-  for (int i = 0; i < L; ++i) {
-    if (!ch[now][s[i] - '0']) ch[now][s[i] - '0'] = ++tot;
-    now = ch[now][s[i] - '0'];
-  }
-  ed[now] = 1;
-}
-queue<int> q;
-inline void build() {
-  for (int i = 0; i < 10; ++i)
-    if (ch[0][i]) q.push(ch[0][i]);
-  while (!q.empty()) {
-    int u = q.front();
-    q.pop();
-    for (int i = 0; i < 10; ++i) {
-      if (ch[u][i]) {
-        fail[ch[u][i]] = ch[fail[u]][i], q.push(ch[u][i]),
-        ed[ch[u][i]] |= ed[fail[ch[u][i]]];
-      } else
-        ch[u][i] = ch[fail[u]][i];
-    }
-  }
-  ch[0][0] = 0;
-}
-ll f[N][N][2], ans;
-inline void add(ll &x, ll y) { x = (x + y) % mod; }
-int main() {
-  scanf("%s", c);
-  n = strlen(c);
-  scanf("%d", &m);
-  for (int i = 1; i <= m; ++i) scanf("%s", s), insert();
-  build();
-  f[0][0][1] = 1;
-  for (int i = 0; i < n; ++i) {
-    for (int j = 0; j <= tot; ++j) {
-      if (ed[j]) continue;
-      for (int k = 0; k < 10; ++k) {
-        if (ed[ch[j][k]]) continue;
-        add(f[i + 1][ch[j][k]][0], f[i][j][0]);
-        if (k < c[i] - '0') add(f[i + 1][ch[j][k]][0], f[i][j][1]);
-        if (k == c[i] - '0') add(f[i + 1][ch[j][k]][1], f[i][j][1]);
+???+note "参考代码"
+    ```c++
+    #include <bits/stdc++.h>  //code by Alphnia
+    using namespace std;
+    #define N 1505
+    #define ll long long
+    #define mod 1000000007
+    int n, m;
+    char s[N], c[N];
+    int ch[N][10], fail[N], ed[N], tot, len;
+    inline void insert() {
+      int now = 0;
+      int L = strlen(s);
+      for (int i = 0; i < L; ++i) {
+        if (!ch[now][s[i] - '0']) ch[now][s[i] - '0'] = ++tot;
+        now = ch[now][s[i] - '0'];
       }
+      ed[now] = 1;
     }
-  }
-  for (int j = 0; j <= tot; ++j) {
-    if (ed[j]) continue;
-    add(ans, f[n][j][0]);
-    add(ans, f[n][j][1]);
-  }
-  printf("%lld\n", ans - 1);
-  return 0;
-}
-```
+    queue<int> q;
+    inline void build() {
+      for (int i = 0; i < 10; ++i)
+        if (ch[0][i]) q.push(ch[0][i]);
+      while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        for (int i = 0; i < 10; ++i) {
+          if (ch[u][i]) {
+            fail[ch[u][i]] = ch[fail[u]][i], q.push(ch[u][i]),
+            ed[ch[u][i]] |= ed[fail[ch[u][i]]];
+          } else
+            ch[u][i] = ch[fail[u]][i];
+        }
+      }
+      ch[0][0] = 0;
+    }
+    ll f[N][N][2], ans;
+    inline void add(ll &x, ll y) { x = (x + y) % mod; }
+    int main() {
+      scanf("%s", c);
+      n = strlen(c);
+      scanf("%d", &m);
+      for (int i = 1; i <= m; ++i) scanf("%s", s), insert();
+      build();
+      f[0][0][1] = 1;
+      for (int i = 0; i < n; ++i) {
+        for (int j = 0; j <= tot; ++j) {
+          if (ed[j]) continue;
+          for (int k = 0; k < 10; ++k) {
+            if (ed[ch[j][k]]) continue;
+            add(f[i + 1][ch[j][k]][0], f[i][j][0]);
+            if (k < c[i] - '0') add(f[i + 1][ch[j][k]][0], f[i][j][1]);
+            if (k == c[i] - '0') add(f[i + 1][ch[j][k]][1], f[i][j][1]);
+          }
+        }
+      }
+      for (int j = 0; j <= tot; ++j) {
+        if (ed[j]) continue;
+        add(ans, f[n][j][0]);
+        add(ans, f[n][j][1]);
+      }
+      printf("%lld\n", ans - 1);
+      return 0;
+    }
+    ```
 
 此题可以很好地帮助理解数位 dp 的原理。
 
