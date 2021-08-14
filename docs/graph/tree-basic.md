@@ -157,58 +157,51 @@ int child[N][2];
 
 #### 先序遍历
 
-
     ![preorder](/image/tree-basic-Preorder.png)
 
-按照**根，左，右**的顺序遍历二叉树。
+按照 **根，左，右** 的顺序遍历二叉树。
 
-~~~c++
+```c++
 void preTrav(BiTree* root) {
-	if (root) {
-		cout << root->key << " ";
-		preTrav(root->left);
-		preTrav(root->right);
-	}
+  if (root) {
+    cout << root->key << " ";
+    preTrav(root->left);
+    preTrav(root->right);
+  }
 }
-~~~
-
-
+```
 
 #### 中序遍历
 
     ![inorder](/image/tree-basic-inorder.png)
 
-按照**左，根，右**的顺序遍历二叉树。
+按照 **左，根，右** 的顺序遍历二叉树。
 
-~~~c++
+```c++
 void midTrav(BiTree* root) {
-	if (root) {
-		midTrav(root->left);
-		cout << root->key << " ";
-		midTrav(root->right);
-	}
+  if (root) {
+    midTrav(root->left);
+    cout << root->key << " ";
+    midTrav(root->right);
+  }
 }
-~~~
-
-
+```
 
 #### 后序遍历
 
     ![Postorder](/image/tree-basic-Postorder.png)
 
-按照**左，右，根**的顺序遍历二叉树。
+按照 **左，右，根** 的顺序遍历二叉树。
 
-~~~c++
+```c++
 void lastTrav(BiTree* root) {
-	if (root) {
-		lastTrav(root->left);
-		lastTrav(root->right);
-		cout << root->key << " ";
-	}
+  if (root) {
+    lastTrav(root->left);
+    lastTrav(root->right);
+    cout << root->key << " ";
+  }
 }
-~~~
-
-
+```
 
 #### 反推
 
@@ -216,7 +209,7 @@ void lastTrav(BiTree* root) {
 
     ![reverse](/image/tree-basic-reverse.png)
 
-1. 前序的第一个是root，后序的最后一个是root。
+1. 前序的第一个是 root，后序的最后一个是 root。
 2. 先确定根节点，然后根据中序遍历，在根左边的为左子树，根右边的为右子树
 3. 对于每一个子树可以看成一个全新的树，仍然遵循上面的规律。
 
