@@ -251,4 +251,4 @@ dfs(root, EMPTY_NODE);
 
 ## 参考资料与注释
 
-[二叉树：前序遍历、中序遍历、后续遍历 **(版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。)**](https://blog.csdn.net/weixin_43357638/article/details/99730284 
+[二叉树：前序遍历、中序遍历、后续遍历 **( 版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。)**]( https://blog.csdn.net/weixin_43357638/article/details/99730284 )
