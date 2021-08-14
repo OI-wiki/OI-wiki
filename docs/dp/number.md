@@ -146,7 +146,6 @@ int main() {
 }
 ```
 
-## 
 
 ???+note " 例2 [hdu 2089 不要62](https://acm.hdu.edu.cn/showproblem.php?pid=2089)"
     题面大意：统计一个区间内数位上不能有 4 也不能有连续的 62 的数有多少。
