@@ -1,4 +1,4 @@
-author: Leasier, NanoApe
+author: Leasier, Konano
 
 ## 定义
 
