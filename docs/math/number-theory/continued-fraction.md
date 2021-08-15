@@ -249,34 +249,34 @@ $$
     二次域 $Q(\sqrt{d})$ 中的四则运算与一类特殊形式的二阶方阵同构：
     
     $$
-    \left(\begin{array}\\ a&b\\db&a\\ \end{array}\right)
+    \left(\begin{array}{ccc} a&b\\db&a\\ \end{array}\right)
     $$
     
     比如，乘法的行为模式完全一致：
     
     $$
-    \left(\begin{array}\\ a_1&b_1\\db_1&a_1\\ \end{array}\right)\left(\begin{array}\\ a_2&b_2\\db_2&a_2\\ \end{array}\right)=\left(\begin{array}\\ a_1a_2+db_1b_2&a_1b_2+b_1a_2\\d\left(a_1b_2+b_1a_2\right)&a_1a_2+db_1b_2\\ \end{array}\right)
+    \left(\begin{array}{ccc} a_1&b_1\\db_1&a_1\\ \end{array}\right)\left(\begin{array}{ccc} a_2&b_2\\db_2&a_2\\ \end{array}\right)=\left(\begin{array}{ccc} a_1a_2+db_1b_2&a_1b_2+b_1a_2\\d\left(a_1b_2+b_1a_2\right)&a_1a_2+db_1b_2\\ \end{array}\right)
     $$
     
     因此二次有理数的一些性质可以由二阶方阵来解释。比如，范数恰好就是它的行列式：
     
     $$
-    N(a+b\sqrt{d})=\left|\begin{array}\\ a&b\\db&a\\ \end{array}\right|
+    N(a+b\sqrt{d})=\left|\begin{array}{ccc} a&b\\db&a\\ \end{array}\right|
     $$
     
     求倒数也就与伴随方阵求逆法一致。伴随方阵恰好就是它的共轭：
     
     $$
-    \left(\begin{array}\\ a&b\\db&a\\ \end{array}\right)^ast=\left(\begin{array}\\ a&-b\\-db&a\\ \end{array}\right)
+    \left(\begin{array}{ccc} a&b\\db&a\\ \end{array}\right)^ast=\left(\begin{array}{ccc} a&-b\\-db&a\\ \end{array}\right)
     $$
     
     这种二阶方阵的记法参考了二维坐标系的旋转矩阵：
     
     $$
-    \left(\begin{array}\\ \cos\theta&\sin\theta\\-\sin\theta&\cos\theta\\ \end{array}\right)
+    \left(\begin{array}{ccc} \cos\theta&\sin\theta\\-\sin\theta&\cos\theta\\ \end{array}\right)
     $$
     
-    二维坐标系的旋转矩阵的行为模式就像 d 为 -1 的特殊数域一样。
+    二维坐标系的旋转矩阵的行为模式就像 $d$ 为 $-1$ 的特殊数域一样。
 
 在下文中，主要研究实二次域。以下的二次有理数，特指实二次有理数，即 $d$ 应当为正。
 
