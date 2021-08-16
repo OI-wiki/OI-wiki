@@ -31,41 +31,41 @@
 
 *方法 $1$*:
 
-发现对于满  $\mathit{i}$  位的数，所有数字出现的次数都是相同的，故设数组 $dp_i$为满  $\mathit{i}$  位的数中每个数字出现的次数 ，此时暂时不处理前导0。则有$dp_i=10*dp_{i−1}+10^{i−1}$ ，这两部分前一个是来自前 $\mathit{i-1}$ 位数字的贡献，后一个是来自第 $\mathit{i}$ 位的数字的贡献。 
+发现对于满 $\mathit{i}$ 位的数，所有数字出现的次数都是相同的，故设数组 $dp_i$ 为满 $\mathit{i}$ 位的数中每个数字出现的次数，此时暂时不处理前导 0。则有 $dp_i=10*dp_{i−1}+10^{i−1}$，这两部分前一个是来自前 $\mathit{i-1}$ 位数字的贡献，后一个是来自第 $\mathit{i}$ 位的数字的贡献。
 
-有了 $\mathit{dp}$ 数组，我们来考虑如何统计答案。将上界按位分开，从高到低枚举，不贴着上界时，后面可以随便取值。贴着上界时，后面就只能取  0 到上界，分两部分分别计算贡献。最后考虑下前导$0$，第 $i$ 位为前导$0$时，此时 1 到 $ \mathit{i-1}$ 位也都是 0 ，也就是多算了将 $i-1$ 位填满的答案，需要额外减去。
+有了 $\mathit{dp}$ 数组，我们来考虑如何统计答案。将上界按位分开，从高到低枚举，不贴着上界时，后面可以随便取值。贴着上界时，后面就只能取  0 到上界，分两部分分别计算贡献。最后考虑下前导 $0$，第 $i$ 位为前导 $0$ 时，此时 1 到 $\mathit{i-1}$ 位也都是 0，也就是多算了将 $i-1$ 位填满的答案，需要额外减去。
 
 ??? note "参考代码"
     ```c++
-    #include<bits/stdc++.h>
+    #include <bits/stdc++.h>
     using namespace std;
-    #define rep(i,a,b) for(int i=(a);i<=(b);++i)
-    const int N =15;
+    #define rep(i, a, b) for (int i = (a); i <= (b); ++i)
+    const int N = 15;
     typedef long long ll;
-    ll l,r,dp[N],sum[N],mi[N];
-    ll ans1[N],ans2[N];
+    ll l, r, dp[N], sum[N], mi[N];
+    ll ans1[N], ans2[N];
     int a[N];
-    inline void solve(ll n,ll *ans){
-        ll tmp=n;
-        int len=0;
-        while(n)a[++len]=n%10,n/=10;
-        for(int i=len;i>=1;--i){
-            rep(j,0,9)ans[j]+=dp[i-1]*a[i];
-            rep(j,0,a[i]-1)ans[j]+=mi[i-1];
-            tmp-=mi[i-1]*a[i],ans[a[i]]+=tmp+1;
-            ans[0]-=mi[i-1];
-        }
+    inline void solve(ll n, ll *ans) {
+      ll tmp = n;
+      int len = 0;
+      while (n) a[++len] = n % 10, n /= 10;
+      for (int i = len; i >= 1; --i) {
+        rep(j, 0, 9) ans[j] += dp[i - 1] * a[i];
+        rep(j, 0, a[i] - 1) ans[j] += mi[i - 1];
+        tmp -= mi[i - 1] * a[i], ans[a[i]] += tmp + 1;
+        ans[0] -= mi[i - 1];
+      }
     }
-    int main(){
-        scanf("%lld%lld",&l,&r);
-        mi[0]=1ll;
-        rep(i,1,13){
-            dp[i]=dp[i-1]*10+mi[i-1];
-            mi[i]=10ll*mi[i-1];
-        }
-        solve(r,ans1),solve(l-1,ans2);
-        rep(i,0,9)printf("%lld ",ans1[i]-ans2[i]);
-        return 0;
+    int main() {
+      scanf("%lld%lld", &l, &r);
+      mi[0] = 1ll;
+      rep(i, 1, 13) {
+        dp[i] = dp[i - 1] * 10 + mi[i - 1];
+        mi[i] = 10ll * mi[i - 1];
+      }
+      solve(r, ans1), solve(l - 1, ans2);
+      rep(i, 0, 9) printf("%lld ", ans1[i] - ans2[i]);
+      return 0;
     }
     ```
 
@@ -383,5 +383,3 @@
 [CF55D Beautiful numbers](http://codeforces.com/problemset/problem/55/D)
 
 [CF628D Magic Numbers](http://codeforces.com/problemset/problem/628/D)
-
-
