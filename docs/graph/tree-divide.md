@@ -240,6 +240,7 @@ int main() {
 
 ???+ note "[例题 2 P2664 树上游戏](https://www.luogu.com.cn/problem/P2664)"
 
+
 一棵每个节点都给定颜色的树，定义 $s(i,j)$ 为 $\mathit{i}$ 到 $\mathit{j}$ 的颜色数量，$sum_{i}=\sum_{j=1}^n s(i,j)$
 
 对所有的 $1\leq i\leq n$，求 $sum_i$（$1 \le n, c_i \le 10^5$）
