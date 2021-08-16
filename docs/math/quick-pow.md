@@ -321,24 +321,18 @@ int main() {
 1. 选定一个数 $s$，预处理出 $a^0$ 到 $a^s$ 与 $a^{0\cdot s}$ 到 $a^{\lceil\frac ps\rceil\cdot s}$ 的值并存在一个（或两个）数组里；
 2. 对于每一次询问 $a^b\bmod p$，将 $b$ 拆分成 $\left\lfloor\dfrac bs\right\rfloor\cdot s+b\bmod s$，则 $a^b=a^{\lfloor\frac bs\rfloor\cdot s}\times a^{b\bmod s}$，可以 $O(1)$ 求出答案。
 
-关于这个数 $s$ 的选择，我们一般选择 $\sqrt p$ 或者一个大小适当的 $2$ 的次幂（选择 $\sqrt p$ 可以使预处理较优，选择 $2$ 的次幂可以使用位运算优化 / 简化计算）。
+关于这个数 $s$ 的选择，我们一般选择 $\sqrt p$ 或者一个大小适当的 $2$ 的次幂（选择 $\sqrt p$ 可以使预处理较优，选择 $2$ 的次幂可以使用位运算优化/简化计算）。
 
 ??? note " 参考代码"
     ```cpp
     int pow1[65536], pow2[65536];
-    void preproc(int a, int mod)
-    {
-        pow1[0] = pow2[0] = 1;
-        for (int i = 1; i < 65536; i++)
-            pow1[i] = 1LL * pow1[i - 1] * a % mod;
-        int pow65536 = 1LL * pow1[65535] * a % mod;
-        for (int i = 1; i < 65536; i++)
-            pow2[i] = 1LL * pow2[i - 1] * pow65536 % mod;
+    void preproc(int a, int mod) {
+      pow1[0] = pow2[0] = 1;
+      for (int i = 1; i < 65536; i++) pow1[i] = 1LL * pow1[i - 1] * a % mod;
+      int pow65536 = 1LL * pow1[65535] * a % mod;
+      for (int i = 1; i < 65536; i++) pow2[i] = 1LL * pow2[i - 1] * pow65536 % mod;
     }
-    int query(int pows)
-    {
-        return 1LL * pow1[pows & 65535] * pow2[pows >> 16];
-    }
+    int query(int pows) { return 1LL * pow1[pows & 65535] * pow2[pows >> 16]; }
     ```
 
 ## 习题
@@ -350,6 +344,6 @@ int main() {
 - [SPOJ - The last digit](http://www.spoj.com/problems/LASTDIG/)
 - [SPOJ - Locker](http://www.spoj.com/problems/LOCKER/)
 - [LA - 3722 Jewel-eating Monsters](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1723)
-- [SPOJ - Just add it](http://www.spoj.com/problems/ZSUM/)
+-   [SPOJ - Just add it](http://www.spoj.com/problems/ZSUM/)
 
     **本页面部分内容译自博文 [Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow) 与其英文翻译版 [Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
