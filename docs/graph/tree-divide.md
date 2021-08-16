@@ -112,6 +112,7 @@
 
 由于这里查询的是树上距离为 $[0,k]$ 的点对数量，所以我们用线段树来支持维护和查询。
 ??? note "参考代码"
+
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -236,8 +237,7 @@
     ```
 
 ??? note "[例题 3 P2664 树上游戏](https://www.luogu.com.cn/problem/P2664)"
-    一棵每个节点都给定颜色的树，定义 $s(i,j)$ 为 $\mathit{i}$ 到 $\mathit{j}$ 的颜色数量，$sum_{i}=\sum_{j=1}^n s(i,j)$
-    对所有的 $1\leq i\leq n$，求 $sum_i$（$1 \le n, c_i \le 10^5$）
+    一棵每个节点都给定颜色的树，定义 $s(i,j)$ 为 $\mathit{i}$ 到 $\mathit{j}$ 的颜色数量，$sum_{i}=\sum_{j=1}^n s(i,j)$ 对所有的 $1\leq i\leq n$，求 $sum_i$（$1 \le n, c_i \le 10^5$）
 
 这道题很考验对点分治思想的理解和应用，适合作为点分治的难度较高的例题和练习题。
 
@@ -318,7 +318,7 @@
       }
       v[c[u]]--;
     }
-
+    
     void clear(int u, int f, int now) {
       if (!v[c[u]]) now++;
       v[c[u]]++;
@@ -436,6 +436,7 @@
 
 有一个小技巧：每次用递归上一层的总大小 $\mathit{tot}$ 减去上一层的点的重儿子大小，得到的就是这一层的总大小。这样求重心就只需一次 DFS 了
 ???+note "参考代码"
+
     ```cpp
     #include <bits/stdc++.h>
 
