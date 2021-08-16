@@ -31,55 +31,41 @@
 
 *方法 $1$*:
 
-设数组 $dp_i$ 为满 $\mathit{i}$ 位的数中每个数字出现的次数（满位情况下每个数字出现次数相同故我们可以公用空间），此时忽略前导 0 的存在。而实际中显然像 0012 这样的数字我们是不会统计那两个 0 的，这个等会处理。
+发现对于满  $\mathit{i}$  位的数，所有数字出现的次数都是相同的，故设数组 $dp_i$为满  $\mathit{i}$  位的数中每个数字出现的次数 ，此时暂时不处理前导0。则有$dp_i=10*dp_{i−1}+10^{i−1}$ ，这两部分前一个是来自前 $\mathit{i-1}$ 位数字的贡献，后一个是来自第 $\mathit{i}$ 位的数字的贡献。 
 
-则 $dp_i=10*dp_{i−1}+10^{i−1}$ 比如从一位到两位：
+有了 $\mathit{dp}$ 数组，我们来考虑如何统计答案。将上界按位分开，从高到低枚举，不贴着上界时，后面可以随便取值。贴着上界时，后面就只能取  0 到上界，分两部分分别计算贡献。最后考虑下前导$0$，第 $i$ 位为前导$0$时，此时 1 到 $ \mathit{i-1}$ 位也都是 0 ，也就是多算了将 $i-1$ 位填满的答案，需要额外减去。
 
-1. $0-9$ 在第一位各出现一次，到两位时它们前面补上 $0-9$（第一位为 0：00,10......90）故在 $dp_{i−1}$ 基础上乘 $10$
-2. 不仅要算原有位出现的次数，新加的该位也要算（第二位为 1:10,11......19)，数满 $\mathit{i-1}$ 位，故加上 $10^{i−1}$
-
-现在来考虑前导 $0$，第 $\mathit{i}$ 位为前导 $0$ 时，实际上我们多算了填满 $\mathit{i-1}$ 位的次数，减去就好。
-
-???+note "参考代码"
+??? note "参考代码"
     ```c++
-    #include <cstdio>
-    int num[20];
-    long long a, b, f[20], pow[20];
-    long long cnta[10], cntb[10];
-    
-    inline void Digit_Dp(long long n, long long* cnt) {
-      if (!n) return;
-      long long N = n;
-      int M;
-      for (M = 0; N; num[++M] = N % 10, N /= 10)
-        ;
-      for (int i = 1; i < M; ++i) {
-        cnt[0] += f[i - 1] * 9;
-        for (int j = 1; j < 10; ++j) cnt[j] += f[i - 1] * 9 + pow[i - 1];
-      }
-      n -= num[M] * pow[M - 1];
-      for (int i = 1; i < num[M]; ++i) cnt[i] += pow[M - 1];
-      for (int i = 0; i < 10; ++i) cnt[i] += f[M - 1] * (num[M] - 1);
-      cnt[num[M]] += n + 1;
-      for (int i = M - 1; i; --i) {
-        n -= num[i] * pow[i - 1];
-        for (int j = 0; j < num[i]; ++j) cnt[j] += pow[i - 1];
-        for (int j = 0; j < 10; ++j) cnt[j] += f[i - 1] * num[i];
-        cnt[num[i]] += n + 1;
-      }
+    #include<bits/stdc++.h>
+    using namespace std;
+    #define rep(i,a,b) for(int i=(a);i<=(b);++i)
+    const int N =15;
+    typedef long long ll;
+    ll l,r,dp[N],sum[N],mi[N];
+    ll ans1[N],ans2[N];
+    int a[N];
+    inline void solve(ll n,ll *ans){
+        ll tmp=n;
+        int len=0;
+        while(n)a[++len]=n%10,n/=10;
+        for(int i=len;i>=1;--i){
+            rep(j,0,9)ans[j]+=dp[i-1]*a[i];
+            rep(j,0,a[i]-1)ans[j]+=mi[i-1];
+            tmp-=mi[i-1]*a[i],ans[a[i]]+=tmp+1;
+            ans[0]-=mi[i-1];
+        }
     }
-    
-    int main() {
-      pow[0] = 1;
-      for (int i = 1; i < 15; ++i) {
-        f[i] = f[i - 1] * 10 + pow[i - 1];
-        pow[i] = pow[i - 1] * 10;
-      }
-      scanf("%lld%lld", &a, &b);
-      Digit_Dp(a - 1, cnta);
-      Digit_Dp(b, cntb);
-      for (int i = 0; i <= 9; ++i)
-        printf("%lld%c", cntb[i] - cnta[i], (i ^ 9) ? ' ' : '\n');
+    int main(){
+        scanf("%lld%lld",&l,&r);
+        mi[0]=1ll;
+        rep(i,1,13){
+            dp[i]=dp[i-1]*10+mi[i-1];
+            mi[i]=10ll*mi[i-1];
+        }
+        solve(r,ans1),solve(l-1,ans2);
+        rep(i,0,9)printf("%lld ",ans1[i]-ans2[i]);
+        return 0;
     }
     ```
 
@@ -398,8 +384,4 @@
 
 [CF628D Magic Numbers](http://codeforces.com/problemset/problem/628/D)
 
-## 参考资料与注释
 
-[小学生都能看懂的数位 dp - y2823774827y](https://www.cnblogs.com/y2823774827y/p/10301145.html)
-
-[BZOJ-1833\[ZJOI2010\]count 数字计数 数位 DP (**版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。**)](https://blog.csdn.net/simpsonk/article/details/73007025)
