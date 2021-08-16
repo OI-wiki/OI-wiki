@@ -402,4 +402,4 @@
 
 [小学生都能看懂的数位 dp - y2823774827y](https://www.cnblogs.com/y2823774827y/p/10301145.html)
 
-[BZOJ-1833 \[ZJOI2010\] count 数字计数 数位 DP (**版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。**)](https://blog.csdn.net/simpsonk/article/details/73007025)
+[BZOJ-1833\[ZJOI2010\]count 数字计数 数位 DP (**版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。**)](https://blog.csdn.net/simpsonk/article/details/73007025)
