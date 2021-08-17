@@ -236,7 +236,7 @@
     }
     ```
 
-??? note "[例题 3 P2664 树上游戏](https://www.luogu.com.cn/problem/P2664)"
+??? note "[例题 3 Luogu P2664 树上游戏](https://www.luogu.com.cn/problem/P2664)"
     一棵每个节点都给定颜色的树，定义 $s(i,j)$ 为 $\mathit{i}$ 到 $\mathit{j}$ 的颜色数量，$\mathit{sum_{i}}=\sum_{j=1}^n s(i,j)$。对所有的 $1\leq i\leq n$，求 $sum_i$。（$1 \le n, c_i \le 10^5$）
 
 这道题很考验对点分治思想的理解和应用，适合作为点分治的难度较高的例题和练习题。
