@@ -70,26 +70,24 @@ Minimax 算法又叫极小化极大算法，是一种找出失败的最大可能
 
 ???+ note "参考代码"
     ```cpp
-    int alpha_beta(int u,int alph,int beta,bool is_max){
-        if(!son_num[u])return val[u];
-        if(is_max){
-            for(int i=0;i<son_num[u];++i){
-                int d=son[u][i];
-                alph=max(alph,alpha_beta(d,alph,beta,is_max^1));
-                if(alph>=beta)break;
-            }
-            return alph;
+    int alpha_beta(int u, int alph, int beta, bool is_max) {
+      if (!son_num[u]) return val[u];
+      if (is_max) {
+        for (int i = 0; i < son_num[u]; ++i) {
+          int d = son[u][i];
+          alph = max(alph, alpha_beta(d, alph, beta, is_max ^ 1));
+          if (alph >= beta) break;
         }
-        else{
-            for(int i=0;i<son_num[u];++i){
-                int d=son[u][i];
-                beta=min(beta,alpha_beta(d,alph,beta,is_max^1));
-                if(alph>=beta)break;
-            }
-            return beta;
+        return alph;
+      } else {
+        for (int i = 0; i < son_num[u]; ++i) {
+          int d = son[u][i];
+          beta = min(beta, alpha_beta(d, alph, beta, is_max ^ 1));
+          if (alph >= beta) break;
         }
+        return beta;
+      }
     }
     ```
 
-**本文部分引用自博文[详解 Minimax 算法与α-β剪枝\_文剑木然](https://blog.csdn.net/wenjianmuran/article/details/90633418)，遵循 CC 4.0 BY-SA 版权协议。**
-
+**本文部分引用自博文 [详解 Minimax 算法与α-β剪枝\_文剑木然](https://blog.csdn.net/wenjianmuran/article/details/90633418)，遵循 CC 4.0 BY-SA 版权协议。**
