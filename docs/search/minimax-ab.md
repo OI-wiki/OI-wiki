@@ -1,4 +1,4 @@
-此页面将简要介绍 minimax 算法和 $\alpha-\beta$ 剪枝
+此页面将简要介绍 minimax 算法和 $\alpha-\beta$ 剪枝。
 
 ## Minimax 算法
 
