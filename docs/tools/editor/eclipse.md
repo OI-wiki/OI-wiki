@@ -9,16 +9,18 @@ Eclipse 的本身只是一个框架平台，但是众多插件的支持，使得
 Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java 的下一代 IDE 开发环境，2001 年 11 月贡献给开源社区，现在它由非营利软件供应商联盟 Eclipse 基金会（Eclipse Foundation）管理。[^ref1]
 
 缺点：
+
 - 实测这个 IDE 打开速度比 Visual Studio 慢
 - 更新速度玄学，插件更新速度跟不上 IDE 的更新速度，对于经常更新的同学很不友好。
 
 优点：
+
 - 使用体验较好
 - 能够快速上手，所以比较推荐 OIer 用这个 IDE。
 
 ## 安装 & 配置指南
 
-对于大部分主流Linux发行版，Eclipse已经内置于其软件仓库中。这里介绍Windows下的安装和配置指南。
+对于大部分主流 Linux 发行版，Eclipse 已经内置于其软件仓库中。这里介绍 Windows 下的安装和配置指南。
 
 ### 前置
 
@@ -26,7 +28,7 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 #### 下载并安装 Java
 
-截至 2021-08-18，最新版本的 Eclipse 安装包已经附带了一个 Java 运行时环境（JRE）。如果需要独立的JRE，可以访问 [Java.com](https://www.java.com) 以下载。
+截至 2021-08-18，最新版本的 Eclipse 安装包已经附带了一个 Java 运行时环境（JRE）。如果需要独立的 JRE，可以访问 [Java.com](https://www.java.com) 以下载。
 
 ![](./images/eclipse1-1.png)
 
