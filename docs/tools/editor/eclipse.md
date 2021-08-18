@@ -26,15 +26,12 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 您需要安装 Java 和 MinGW。
 
-#### 下载并安装 Java
+#### 关于 Java
 
-截至 2021-08-18，最新版本的 Eclipse 安装包已经附带了一个 Java 运行时环境（JRE）。如果需要独立的 JRE，可以访问 [Java.com](https://www.java.com) 以下载。
+截至 2021-08-18，最新版本的 Eclipse 安装包已经附带了一个 Java 运行时环境（JRE）。如果需要独立的 JRE，可以访问 [Java.com](https://www.java.com) 或 [Oracle JDK Download](https://www.oracle.com/java/technologies/javase-downloads.html) 以下载。
 
-![](./images/eclipse1-1.png)
-
-![](./images/eclipse1-2.png)
-
-![](./images/eclipse1-3.png)
+???+warning "注意"
+    Eclipse 2020-09 及之后的版本需要 Java 11 及以后版本的运行时。然而，在 Java.com 获取到的 JRE 多为 Java 8。在下载时还请读者多加留意。
 
 #### 下载并安装 MinGW/TDM
 
