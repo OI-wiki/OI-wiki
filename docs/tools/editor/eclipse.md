@@ -14,11 +14,15 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 ## 安装 & 配置指南
 
+对于大部分主流Linux发行版，Eclipse已经内置于其软件仓库中。这里介绍Windows下的安装和配置指南。
+
 ### 前置
 
 您需要安装 Java 和 MinGW。
 
 #### 下载并安装 Java
+
+截至 2021-08-18，最新版本的 Eclipse 安装包已经附带了一个 Java 运行时环境（JRE）。如果需要独立的JRE，可以访问 [Java.com](https://www.java.com) 以下载。
 
 ![](./images/eclipse1-1.png)
 
@@ -26,7 +30,11 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 ![](./images/eclipse1-3.png)
 
-#### 下载并安装 MinGW
+#### 下载并安装 MinGW/TDM
+
+TDM-GCC 是一个 Microsoft Windows 下的一个编译器组合。其提供了最新的稳定版 GCC 编译器和包含了修补的 MinGW 运行时接口。在这里我们以安装 TDM-GCC 为例。
+
+TDM-GCC 套件的安装包可以从 GitHub Release 获取，亦可从 SourceForge 获取。其分为完整版和带有 `webdl` 标识的网络安装版。出于 GitHub Release 于中国大陆的低可用性，国内的用户建议从网络上相对更加友好的 [SourceForge](https://sourceforge.net/projects/tdm-gcc/) 获取完整版安装包。这里以 `tdm64-gcc-10.3.0-2` 为例。
 
 开始安装。
 
@@ -36,13 +44,13 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 ![](./images/eclipse1-5.png)
 
-选择安装目录。
+选择安装目录。默认为 `C:\TDM-GCC-64`。
 
 ![](./images/eclipse1-6.png)
 
-选择镜像下载加速源，此处可以直接用 SourceForge Default。
+选择需要安装的组件。这里按照默认设置进行。
 
-![](./images/eclipse1-7.png)
+![](./images/eclipse1-9.png)
 
 完成安装。
 
