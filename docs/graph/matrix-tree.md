@@ -134,7 +134,7 @@ $$
 
 **定理 1 (Kirchhoff's Matrix Tree)** 对于带边权的简单无向图 $G(V,E)$，若 $T(V,E_T)$ 是 $G$ 的生成树，定义 $\omega(T)=\prod_{e\in E_T}\omega(e)$，$\mathcal T$ 是 $G$ 所有生成树的集合，则 $G$ 的拉普拉斯矩阵的所有代数余子式的值等于 $\sum_{T\in\mathcal T}\omega(T)$。
 
-证明：根据引理 2，只需证明 $C_{1,1}=\sum_{T\in\mathcal T}\omega(T)$。对于一条边 $e=(u,v)$，定义 $\zeta(e,u)=v$，$\zeta(e,v)=u$。
+证明：根据性质 1，只需证明 $C_{1,1}=\sum_{T\in\mathcal T}\omega(T)$。对于一条边 $e=(u,v)$，定义 $\zeta(e,u)=v$，$\zeta(e,v)=u$。
 
 定义 $u_i<u_j\Leftrightarrow i<j$，$E=\{e_1,e_2,\cdots,e_{|E|}\}$，构造关联矩阵：
 
