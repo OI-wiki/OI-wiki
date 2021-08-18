@@ -61,7 +61,7 @@ TDM-GCC 套件的安装包可以从 GitHub Release 获取，亦可从 SourceForg
 
 ### 安装主体
 
-进入 Eclipse 官网的[下载页面](https://www.eclipse.org/downloads/)，
+进入 Eclipse 官网的 [下载页面](https://www.eclipse.org/downloads/)，
 
 ![](./images/eclipse2.png)
 
