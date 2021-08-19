@@ -37,7 +37,7 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 TDM-GCC 是一个 Microsoft Windows 下的一个编译器组合。其提供了最新的稳定版 GCC 编译器和包含了修补的 MinGW 运行时接口。在这里我们以安装 TDM-GCC 为例。
 
-TDM-GCC 套件的安装包可以从 GitHub Release 获取，亦可从 SourceForge 获取。其分为完整版和带有 `webdl` 标识的网络安装版。出于 GitHub Release 于中国大陆的低可用性，国内的用户建议从网络上相对更加友好的 [SourceForge](https://sourceforge.net/projects/tdm-gcc/) 获取完整版安装包。这里以 `tdm64-gcc-10.3.0-2` 为例。
+TDM-GCC 套件的安装包可以从 GitHub Release 获取，亦可从 SourceForge 获取。其分为完整版和带有 `webdl` 标识的网络安装版。出于 GitHub Release 于中国大陆的低可用性，国内的用户建议从网络上相对更加友好的 [SourceForge](https://sourceforge.net/projects/tdm-gcc/) 获取完整版安装包。这里以完整版安装包为例。
 
 开始安装。
 
