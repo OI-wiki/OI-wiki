@@ -158,7 +158,7 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 ???+note "对于Windows用户"
     在默认情况下，由于该工具的可执行文件为 `sh`，使得该工具在 Windows 下不可用。然而，用户可以对该工具进行修改，使其可用于 Windows 系统。
     
-    要进行修改，请先确保你的系统内有一个可用的 C++ 编译器（[TDM-GCC](https://jmeubank.github.io/tdm-gcc/) 就是一个不错的选择）。然后从默认工具添加 `编译运行 cpp`，将其中 `可执行文件` 从 `sh` 改为 `powershell`，参数改为 `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"`（若 `g++` 不在 `PATH` 环境变量中，则将其改为编译器的绝对路径）
+    要进行修改，请先确保你的系统内有一个可用的 C++ 编译器（[TDM-GCC](https://jmeubank.github.io/tdm-gcc/) 就是一个不错的选择）。然后从默认工具添加 `编译运行 cpp`，将其中 `可执行文件` 从 `sh` 改为 `powershell`，参数改为 `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"`（若 `g++` 不在 `PATH` 环境变量中，则将其改为编译器的绝对路径）（或者，如果使用 Clang，则将 `g++` 改为 `clang++`）即可。
 
 ##### Git Blame
 
