@@ -126,6 +126,9 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 
 ### 内置终端
 
+???+note "注意"
+    内置终端依赖了KDE的 Konsole[^ref1]，而 Konsole 为 *nix 独有包。也就是说，Windows 下该特性不可用。
+
 按<kbd>F4</kbd>可打开或关闭内置终端，也可点击左下角 `终端` 按钮打开，内置终端的当前目录会自动与当前文件保持一致，并随着你选择的文件而改变。其余与一般终端并无太大不同。
 
 ### 外部工具
@@ -161,3 +164,7 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 打开任意源文件，在外部工具里找到 `用 xxx 格式化`，点击即可。
 
 此处注意，`clang-format` 可格式化选中的文本。
+
+## 参考资料与脚注
+
+[^ref1]: [Arch Linux中对该包的描述](https://archlinux.org/packages/extra/x86_64/kate/)中，其可选依赖了`konsole`，描述为`open a terminal in Kate`(在Kate中打开一个终端)。
