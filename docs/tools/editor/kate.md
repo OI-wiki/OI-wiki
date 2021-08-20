@@ -122,7 +122,7 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 
 其中 `server` 里的每一项代表一种语言，在这个语言里，`command` 代表启动 LSP Server 所使用的命令，`command` 是一个数组，是所需要执行的命令以空格分词的结果；`url` 是 LSP 的网址；`rootIndicationFileNames` 是用于确定项目根目录的文件；`highlightingModeRegex` 则匹配某种语法高亮的名字，以确定使用哪个 LSP；如果存在 `use` 项，则代表使用 `use` 项对应的语言的配置。
 
-该配置项位于 `设置`→`配置 Kate`→`LSP 客户端`→`用户服务器设置`，其中 `LSP 客户端` 部分要在启用 `LSP 客户端` 插件后才可见。
+该配置项位于 `设置`→`配置 Kate`→`LSP 客户端`→`用户服务器设置`，其中 `LSP 客户端` 部分要在 `插件` 中启用 `LSP 客户端` 插件后才可见。
 
 ### 内置终端
 
