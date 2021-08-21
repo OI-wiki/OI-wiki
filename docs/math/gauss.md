@@ -398,6 +398,47 @@ $$
     }
     ```
 
+## 高斯消元法解异或方程组
+
+异或方程组是指形如
+
+$$
+\begin{cases}
+a_{1,1}x_1 \oplus a_{1,2}x_2 \oplus \cdots \oplus a_{1,n}x_n &= b_1\\
+a_{2,1}x_1 \oplus a_{2,2}x_2 \oplus \cdots \oplus a_{2,n}x_n &= b_2\\
+\cdots &\cdots \\ a_{m,1}x_1 \oplus a_{m,2}x_2 \oplus \cdots \oplus a_{m,n}x_n &= b_1
+\end{cases}
+$$
+
+的方程组，其中 $\oplus$ 表示“按位异或”（即 `xor` 或 C++ 中的 `^`），且式中所有系数/常数（即 $a_{i,j}$ 与 $b_i$）均为 $0$ 或 $1$。
+
+由于“异或”符合交换律与结合律，故可以按照高斯消元法逐步消元求解。值得注意的是，我们在消元的时候应使用“异或消元”而非“加减消元”，且不需要进行乘除改变系数（因为系数均为 $0$ 和 $1$）。
+
+注意到异或方程组的增广矩阵是 $01$ 矩阵（矩阵中仅含有 $0$ 与 $1$），所以我们可以使用 C++ 中的 `std::bitset` 进行优化，将时间复杂度降为 $O(\dfrac{n^2m}{\omega})$，其中 $n$ 为元的个数，$m$ 为方程条数，$\omega$ 一般为 $32$（与机器有关）。
+
+参考实现：
+
+```cpp
+std::bitset<1010> matrix[2010];  // matrix[1~n]：增广矩阵，0 位置为常数
+std::vector<bool> GaussElimination(
+    int n, int m)  // n 为未知数个数，m 为方程个数，返回方程组的解（多解 /
+                   // 无解返回一个空的 vector）
+{
+  for (int i = 1; i <= n; i++) {
+    int cur = i;
+    while (cur <= m && !matrix[cur].test(i)) cur++;
+    if (cur > m) return std::vector<bool>(0);
+    if (cur != i) swap(matrix[cur], matrix[i]);
+    for (int j = 1; j <= m; j++)
+      if (i != j && matrix[j].test(i)) matrix[j] ^= matrix[i];
+  }
+  std::vector<bool> ans(n + 1, 0);
+  for (int i = 1; i <= n; i++) ans[i] = matrix[i].test(0);
+  return ans;
+}
+```
+
 ## 练习题
 
-[Codeforces - 巫师和赌注](http://codeforces.com/contest/167/problem/E)
+- [Codeforces - 巫师和赌注](http://codeforces.com/contest/167/problem/E)
+- [luogu - SDOI2010 外星千足虫](https://www.luogu.com.cn/problem/P2447)

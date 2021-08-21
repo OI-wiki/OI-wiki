@@ -113,23 +113,23 @@ def quick_sort(alist, first, last):
 
 三路快速排序在处理含有多个重复值的数组时，效率远高于原始快速排序。其最佳时间复杂度为 $O(n)$。
 
-三路快速排序实现起来非常简单。下面给出了一种三路快排的 C++ 实现，其表现在模板题中并不输给 STL 的 sort。
+三路快速排序实现起来非常简单，下面给出了一种三路快排的 C++ 实现。
 
 ```cpp
 // C++ Version
 // 模板的T参数表示元素的类型，此类型需要定义小于（<）运算
 template <typename T>
-// arr为需要被排序的数组，len为数组长度
+// arr 为需要被排序的数组，len 为数组长度
 void quick_sort(T arr[], const int len) {
   if (len <= 1) return;
   // 随机选择基准（pivot）
   const T pivot = arr[rand() % len];
   // i：当前操作的元素
-  // j：第一个等于pivot的元素
-  // k：第一个大于pivot的元素
+  // j：第一个等于 pivot 的元素
+  // k：第一个大于 pivot 的元素
   int i = 0, j = 0, k = len;
-  // 完成一趟三路快排，将序列分为：小于pivot的元素 ｜ 等于pivot的元素 ｜
-  // 大于pivot的元素
+  // 完成一趟三路快排，将序列分为：
+  // 小于 pivot 的元素｜ 等于 pivot 的元素 ｜ 大于 pivot 的元素
   while (i < k) {
     if (arr[i] < pivot)
       swap(arr[i++], arr[j++]);
@@ -191,19 +191,19 @@ def quick_sort(arr, l, r):
 ### 实现（C++）
 
 ```cpp
-// 模板的T参数表示元素的类型，此类型需要定义小于（<）运算
+// 模板的 T 参数表示元素的类型，此类型需要定义小于（<）运算
 template <typename T>
-// arr为查找范围数组，rk为需要查找的排名（从0开始），len为数组长度
+// arr 为查找范围数组，rk 为需要查找的排名（从 0 开始），len 为数组长度
 T find_kth_element(T arr[], int rk, const int len) {
   if (len <= 1) return arr[0];
   // 随机选择基准（pivot）
   const T pivot = arr[rand() % len];
   // i：当前操作的元素
-  // j：第一个等于pivot的元素
-  // k：第一个大于pivot的元素
+  // j：第一个等于 pivot 的元素
+  // k：第一个大于 pivot 的元素
   int i = 0, j = 0, k = len;
-  // 完成一趟三路快排，将序列分为：小于pivot的元素 ｜ 等于pivot的元素 ｜
-  // 大于pivot的元素
+  // 完成一趟三路快排，将序列分为：
+  // 小于 pivot 的元素 ｜ 等于 pivot 的元素 ｜ 大于 pivot 的元素
   while (i < k) {
     if (arr[i] < pivot)
       swap(arr[i++], arr[j++]);
@@ -212,13 +212,14 @@ T find_kth_element(T arr[], int rk, const int len) {
     else
       i++;
   }
-  // 根据要找的排名与两条分界线的位置，去不同的区间递归查找第k大的数
-  // 如果小于pivot的元素个数比k多，则第k大的元素一定是一个小于pivot的元素
+  // 根据要找的排名与两条分界线的位置，去不同的区间递归查找第 k 大的数
+  // 如果小于 pivot 的元素个数比k多，则第 k 大的元素一定是一个小于 pivot 的元素
   if (rk < j) return find_kth_element(arr, rk, j);
-  // 否则，如果小于pivot和等于pivot的元素加起来也没有k多，则第k大的元素一定是一个大于pivot的元素
+  // 否则，如果小于 pivot 和等于 pivot 的元素加起来也没有 k 多，
+  // 则第 k 大的元素一定是一个大于 pivot 的元素
   else if (rk >= k)
     return find_kth_element(arr + k, rk - k, len - k);
-  // 否则，pivot就是第k大的元素
+  // 否则，pivot 就是第 k 大的元素
   return pivot;
 }
 ```
