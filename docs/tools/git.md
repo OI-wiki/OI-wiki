@@ -7,6 +7,8 @@ Git 是目前使用最广泛的版本控制系统之一。**OI Wiki** 也使用�
 
 ### Windows
 
+#### 使用安装向导安装
+
 ???+warning
     本节以 Git for Windows 2.28.0（2020-07-27 更新）为例。安装页面的选项可能会随着时间而变动。
 
@@ -68,6 +70,18 @@ Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Gi
 最后，该页面出现，Git 安装完成。此时可以取消勾选 `View Release Notes`，然后按下 `Next >` 直接退出；也可以直接按下 `Next >` 查看版本更新信息；亦可以勾选 `Launch Git Bash` 运行 Git 命令行。
 
 ![Git for Windows installation 8](images/git10.png)
+
+#### 使用包管理器安装
+
+在 [`scoop`](https://scoop.sh/) 或 [`winget`](https://github.com/microsoft/winget-cli) 可用的情况下，Git for Windows 可以使用以下命令安装：
+
+```powershell
+scoop install git
+#或者
+winget install Git.Git
+```
+
+这种安装方式的好处是安装过程由系统接管，相对安装向导而言更为方便。需要注意的是，这种方式默认编辑器为 `vim`。
 
 ### Linux
 
