@@ -99,7 +99,7 @@ $$
         所以对于 $m$ 中素因子 $a$ 的次数 $r$ 满足：$a^r \equiv a^{r+\varphi(m)} \pmod m$。我们可以简单变换形式，得到 **推论**：
 
         $$
-        b > r \Rightarrow a^b \equiv a^{r + ((b-r) \bmod \varphi(m))} \pmod {m}
+        b > r \implies a^b \equiv a^{r + ((b-r) \bmod \varphi(m))} \pmod {m}
         $$
 
         又由于 $m = a^r m'$，所以 $\varphi(m) = \varphi(a^r) \varphi(m') \ge \varphi(a^r)=a^{r-1}(a-1) \ge r$（tips：$a$ 是素数，最小是 $2$，而 $r \ge 1$）。
