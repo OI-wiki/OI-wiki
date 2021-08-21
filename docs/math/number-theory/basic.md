@@ -158,29 +158,16 @@ $a\equiv b \pmod \left(-m\right)$
 
 同余的性质：
 
-整数 a 同余于整数 b 模 m，等价于 a 和 b 被 m 除，余数相等。
-
-同余式可以相加减，可以相乘。
-
-设正整数 d 整除 m。如果 a 与 b 模 m 同余，则它们模 d 也同余。
-
-设整数 $d\neg 0$，那么
-
-$a\equiv b \pmod m$
-
-等价于
-
-$da\equiv db \pmod dm$
-
-同余式
-
-$ca\equiv cb \pmod m$
-
-等价于
-
-$a\equiv b \pmod \frac{m}{\gcd\left(c,m\right)}$
-
-特别地，当 c 与 m 互素时，相当于同余式两边直接消去 c。
+- 自反性：$a\equiv a \pmod m$.
+- 对称性：若 $a\equiv b \pmod m$, 则 $b\equiv a \pmod m$.
+- 传递性：若 $a\equiv b \pmod m, b\equiv c \pmod m$, 则 $a\equiv b\pmod m$.
+- 线性运算：若 $a,b,c,d\in \mathbf Z,m\in \mathbf N^*,a\equiv b\pmod m, c\equiv d\pmod m$ 则有：
+  - $a\pm c\equiv b\pm d \pmod m$.
+  - $a\times b\equiv b\times d\pmod m$.
+- 若 $a,b\in \mathbf Z, k,m\in \mathbf N^*, a\equiv b\pmod m$, 则 $ak\equiv bk\pmod {mk}$.
+- 若 $a,b\in \mathbf Z, d,m\in \mathbf N^*, d\mid a,d\mid b, d\mid m$,则当 $a\equiv b\pmod m$ 成立时，有 $\frac a d\equiv \frac b d \pmod{\frac m d}$.
+- 若 $a,b\in \mathbf Z, d,m\in \mathbf N^*,d\mid m$, 则当 $a\equiv b \pmod m$ 成立时，有 $a\equiv b\pmod d$ .
+- 若 $a,b\in \mathbf Z, d,m\in \mathbf N^*$,则当 $a\equiv b \pmod m$ 成立时，有 $\gcd \left( a,m\right)=\gcd \left(b,m\right)$, 若 $d$ 能整除 $m$ 及 $a,b$ 中的一个，则 $d$ 必定能整除 $a,b$ 中的另一个。
 
 还有性质是乘法逆元。见 [乘法逆元](./inverse.md)。
 
