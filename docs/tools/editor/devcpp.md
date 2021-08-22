@@ -2,7 +2,7 @@ author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe, DawnMagn
 
 ## 介绍
 
-Dev-C++ 是一套用于开发 C/C++（C++11）程序的自由的集成开发环境（IDE），并以 GPL 作为分发许可，使用 MinGW 及 GDB 作为编译系统与调试系统。Dev-C++ 运行在 Microsoft Windows 下。
+Dev-C++ 是一套用于开发 C/C++ 程序的自由的集成开发环境（IDE），并以 GPL 作为分发许可，使用 MinGW 及 GDB 作为编译系统与调试系统。Dev-C++ 运行在 Microsoft Windows 下。
 
 Dev-C++ 的优点在于界面简洁友好，安装便捷，支持单文件编译，因此成为了许多入门 OI 选手以及 C++ 语言初学者的首选。在 NOIP 中，提供 Windows 作为比赛系统的省份一般预置 Dev-C++。
 
@@ -95,7 +95,7 @@ Embarcadero Dev-C++[^ref1]是 Bloodshed Dev-C++ 和 Orwell Dev-C++ 的继任者�
 
 #### 更换语言标准
 
-使用新语言特性或试图让代码在旧标准中运行使用。
+使用新语言特性或试图让代码在旧标准下编译。
 
 选择 "代码生成" 子选项卡中的 "语言标准（-std)" 选项标签。
 
@@ -150,13 +150,13 @@ freopen("test.out", "w", stdout);
 #endif
 ```
 
-### 美化
-
 #### 代码格式化
 
 点击 Astyle-> 格式化当前文件 或 按 Ctrl+Shift+A 进行代码格式化。
 
 ![](./images/Dev-C++-17.png)
+
+### 美化
 
 #### 字体
 
