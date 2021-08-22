@@ -46,8 +46,8 @@ Embarcadero Dev-C++[^ref1]是 Bloodshed Dev-C++ 和 Orwell Dev-C++ 的继任者�
 - `Shift + F3`: 搜索上一个
 - `Ctrl + G`: 到指定行号
 - `Shift + Ctrl + G`: 到指定函数
-- `Ctrl +[1 ~ 9]`: 设置书签
-- `Alt +[1 ~ 9]`: 跳转书签
+- `Ctrl + [1 ~ 9]`: 设置书签
+- `Alt + [1 ~ 9]`: 跳转书签
 
 #### 显示部分
 
@@ -71,7 +71,7 @@ Embarcadero Dev-C++[^ref1]是 Bloodshed Dev-C++ 和 Orwell Dev-C++ 的继任者�
 
 ### 调试流程
 
-1. 将编译器配置设定为 "TDM-GCC 4.9.2 64-bit Debug"
+1. 将编译器配置设定为 `TDM-GCC 4.9.2 64-bit Debug`
 2. 按 `F4` 设置或取消调试断点
 3. 将光标放置在变量上，按 `Alt + A` 向调试窗口添加监控变量
 4. 按 `F5` 启动调试
