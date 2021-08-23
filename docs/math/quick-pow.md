@@ -268,49 +268,31 @@ long long binmul(long long a, long long b, long long m) {
 代码实现如下：
 
 ```cpp
-#include <bits/stdc++.h>
-using namespace std;
-int a[505], b[505], t[505], i, j;
-int mult(int x[], int y[])  // 高精度乘法
-{
-  memset(t, 0, sizeof(t));
-  for (i = 1; i <= x[0]; i++) {
-    for (j = 1; j <= y[0]; j++) {
-      if (i + j - 1 > 100) continue;
-      t[i + j - 1] += x[i] * y[j];
-      t[i + j] += t[i + j - 1] / 10;
-      t[i + j - 1] %= 10;
-      t[0] = i + j;
-    }
-  }
-  memcpy(b, t, sizeof(b));
-}
-void ksm(int p)  // 快速幂
-{
-  if (p == 1) {
-    memcpy(b, a, sizeof(b));
-    return;
-  }
-  ksm(p / 2);
-  mult(b, b);
-  if (p % 2 == 1) mult(b, a);
-}
-int main() {
-  int p;
-  scanf("%d", &p);
-  a[0] = 1;
-  a[1] = 2;
-  b[0] = 1;
-  b[1] = 1;
-  ksm(p);
-  for (i = 100; i >= 1; i--) {
-    if (i == 1) {
-      printf("%d\n", b[i] - 1);
-    } else
-      printf("%d", b[i]);
-  }
-}
+--8<-- "docs/math/code/quick-pow/quick-pow_1.cpp"
 ```
+
+### 同一底数与同一模数的预处理快速幂
+
+在同一底数与同一模数的条件下，可以利用分块思想，用一定的时间（一般是 $O(\sqrt n)$）预处理后用 $O(1)$ 的时间回答一次幂询问。
+
+算法的具体步骤是：
+
+1. 选定一个数 $s$，预处理出 $a^0$ 到 $a^s$ 与 $a^{0\cdot s}$ 到 $a^{\lceil\frac ps\rceil\cdot s}$ 的值并存在一个（或两个）数组里；
+2. 对于每一次询问 $a^b\bmod p$，将 $b$ 拆分成 $\left\lfloor\dfrac bs\right\rfloor\cdot s+b\bmod s$，则 $a^b=a^{\lfloor\frac bs\rfloor\cdot s}\times a^{b\bmod s}$，可以 $O(1)$ 求出答案。
+
+关于这个数 $s$ 的选择，我们一般选择 $\sqrt p$ 或者一个大小适当的 $2$ 的次幂（选择 $\sqrt p$ 可以使预处理较优，选择 $2$ 的次幂可以使用位运算优化/简化计算）。
+
+??? note " 参考代码"
+    ```cpp
+    int pow1[65536], pow2[65536];
+    void preproc(int a, int mod) {
+      pow1[0] = pow2[0] = 1;
+      for (int i = 1; i < 65536; i++) pow1[i] = 1LL * pow1[i - 1] * a % mod;
+      int pow65536 = 1LL * pow1[65535] * a % mod;
+      for (int i = 1; i < 65536; i++) pow2[i] = 1LL * pow2[i - 1] * pow65536 % mod;
+    }
+    int query(int pows) { return 1LL * pow1[pows & 65535] * pow2[pows >> 16]; }
+    ```
 
 ## 习题
 
