@@ -359,9 +359,9 @@ void remove(const int &c) {
   int i, j;
   L[R[c]] = L[c], R[L[c]] = R[c];
   //顺着这一列从上往下遍历
-  for(i = D[c]; i != c; i = D[i])
+  for (i = D[c]; i != c; i = D[i])
     //顺着这一行从左往右遍历
-    for(j = R[i]; j != i; j = R[j])
+    for (j = R[i]; j != i; j = R[j])
       U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
 }
 ```
@@ -570,8 +570,7 @@ bool dance(int dep) {
       void recover(const int &c) {
         rgi i, j;
         for (i = U[c]; i != c; i = U[i])
-          for (j = L[i]; j != i; j = L[j])
-            U[D[j]] = D[U[j]] = j, ++siz[col[j]];
+          for (j = L[i]; j != i; j = L[j]) U[D[j]] = D[U[j]] = j, ++siz[col[j]];
         L[R[c]] = R[L[c]] = c;
       }
       bool dance(int dep) {
@@ -585,11 +584,9 @@ bool dance(int dep) {
         remove(c);
         for (i = D[c]; i != c; i = D[i]) {
           stk[dep] = row[i];
-          for (j = R[i]; j != i; j = R[j])
-            remove(col[j]);
+          for (j = R[i]; j != i; j = R[j]) remove(col[j]);
           if (dance(dep + 1)) return 1;
-          for (j = L[i]; j != i; j = L[j])
-            recover(col[j]);
+          for (j = L[i]; j != i; j = L[j]) recover(col[j]);
         }
         recover(c);
         return 0;
