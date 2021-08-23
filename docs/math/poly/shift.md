@@ -191,7 +191,7 @@ $$
 ### 模素数意义下二项式系数前缀和
 
 ???+ note "例题 [LOJ 6386 组合数前缀和](https://loj.ac/p/6386)"
-    求 $\sum _ {i=0}^m\binom{n}{i}\bmod 998244353$，其中 $0\leq m\leq n\leq 9\times 10^8$。
+    求 $\displaystyle \sum _ {i=0}^m\binom{n}{i}\bmod 998244353$，其中 $0\leq m\leq n\leq 9\times 10^8$。
 
 考虑使用矩阵描述 $n!=n\cdot (n-1)!$ 这一步递推，我们有
 
