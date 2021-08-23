@@ -384,7 +384,7 @@ i+1&0\\1&i+1
 \end{bmatrix}
 $$
 
-在这里 ${n+1\brack 1}$ 和 ${n+1\brack 2}$ 为第一类无符号 Stirling 数。维护点值矩阵的方法同上。
+在这里 $\displaystyle {n+1\brack 1}$ 和 $\displaystyle {n+1\brack 2}$ 为第一类无符号 Stirling 数。维护点值矩阵的方法同上。
 
 ## 参考文献
 
