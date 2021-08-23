@@ -385,3 +385,9 @@ i+1&0\\1&i+1
 $$
 
 在这里 ${n+1\brack 1}$ 和 ${n+1\brack 2}$ 为第一类无符号 Stirling 数。维护点值矩阵的方法同上。
+
+## 参考文献
+
+- Alin Bostan, Pierrick Gaudry, and Eric Schost. Linear recurrences with polynomial coefficients and application to integer factorization and Cartier-Manin operator.
+- Min_25 的博客
+- [ZZQ 的博客-阶乘模大质数](https://www.cnblogs.com/zzqsblog/p/8408691.html)
