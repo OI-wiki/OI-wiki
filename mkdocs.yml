@@ -275,6 +275,7 @@ nav:
       - 容斥原理: math/combinatorics/inclusion-exclusion-principle.md
       - 抽屉原理: math/combinatorics/drawer-principle.md
       - Eulerian Number: math/combinatorics/eulerian.md
+      - 分拆数: math/combinatorics/partition.md
     - 概率初步: math/expectation.md
     - 置换群: math/permutation-group.md
     - 斐波那契数列: math/fibonacci.md
@@ -284,6 +285,7 @@ nav:
     - 分段打表: math/dictionary.md
     - 傅里叶-莫茨金消元法: math/fourier-motzkin-elimination.md
     - 序理论: math/order-theory.md
+    - 杨氏矩阵: math/young-tableau.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
     - 栈: ds/stack.md
@@ -446,6 +448,7 @@ nav:
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
     - 主元素问题: misc/main-element.md
+    - Garsia-Wachs 算法: misc/garsia-wachs.md
   - 专题:
     - RMQ: topic/rmq.md
     - 并查集应用: topic/dsu-app.md

@@ -1,4 +1,4 @@
-author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina, orzAtalod, luoguojie
+author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina, orzAtalod, luoguojie, Early0v0
 
 线段树是算法竞赛中常用的用来维护 **区间信息** 的数据结构。
 
@@ -43,7 +43,7 @@ void build(int s, int t, int p) {
   }
   int m = s + ((t - s) >> 1);
   // 移位运算符的优先级小于加减法，所以加上括号
-  // 如果写成 (s + t) >> 1 可能会时间超限
+  // 如果写成 (s + t) >> 1 可能会超出 int 范围
   build(s, m, p * 2), build(m + 1, t, p * 2 + 1);
   // 递归对左右区间建树
   d[p] = d[p * 2] + d[(p * 2) + 1];
