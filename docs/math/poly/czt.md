@@ -1,4 +1,4 @@
-Chirp-Z 变换也被称为 Bluestein 算法。与离散傅里叶变换类似，Chirp-Z 变换是给出多项式 $A(x)=\sum_{i=0}^na_ix^i\in\mathbb{C}\lbrack x\rbrack$ 和 $c\in\mathbb{C}\setminus \{0\}$ 求出 $A(1),A(c),A(c^2),\dots$ 的一种算法，不要求 $c$ 为单位根。也可用于数论变换。
+Chirp Z-变换也被称为 Bluestein 算法。与离散傅里叶变换类似，Chirp Z-变换是给出多项式 $A(x)=\sum_{i=0}^na_ix^i\in\mathbb{C}\lbrack x\rbrack$ 和 $c\in\mathbb{C}\setminus \{0\}$ 求出 $A(1),A(c),A(c^2),\dots$ 的一种算法，不要求 $c$ 为单位根。也可用于数论变换。
 
 ## 方法一
 
