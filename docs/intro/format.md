@@ -255,12 +255,10 @@
 
     建议使用源文章或者标签页的标题。
 
-    ???+ fail "示例"
-
+    ???+ fail "不推荐的写法"
           ```markdown
-          <!-- 不推荐的写法 -->
           请参考[这个页面](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
-          <!-- 不推荐的写法 -->
+          
           请参考 <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
           ```
           
@@ -268,10 +266,9 @@
 
           请参考 <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
 
-    ???+ success "示例"
+    ???+ success "推荐的写法"
 
           ```markdown
-          <!-- 推荐的写法 -->
           请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
           ```
 
