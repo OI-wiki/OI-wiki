@@ -83,9 +83,9 @@ $$
 3. 设 $B := B \cup C$,$S := S \cap T$。用筛选算法在 $H \leqslant G_{b_{1}}$ 中进行*成员资格测试*（Membership testing，检查集合（列表、集合、字典等）是否包含特定元素）。对 $G_{b_{1}}$ 测试每个 Schreier 生成器 $s$ 以查看 $s \in H$。如果都在 $H$ 中，那么有 $H = G_{b_{1}}$, 返回 $B，S$。否则到步骤 4。
 4. 否则有一个 Schreier 生成器 $s \in G_{b_{1}}$ 但 $s \notin H$。设 $S := S \cup {s}$。如果 $s$ 固定了 $B$ 的所有点，将一个由 $s$ 移动的 $\Omega$ 点附加到 $B$。回到步骤 2。
 
-当算法结束时，$B$ 为基，$S$ 是大小为 $O(n^{2}\logn)$ 的强生成集。
+当算法结束时，$B$ 为基，$S$ 是大小为 $O(n^{2}logn)$ 的强生成集。
 
-增量 Schreier-Sims 算法的运行时间为 $O(n^{8}\log^{3}n)$，即 $n$ 的多项式。$t$ 个生成器构建 Schreier 树需要 $O(n^{2}+nt)$，或对于 $t>n$ 为 $O(nt)$。因为已经用 $O(n^{2}\logn)$ 限制了 Schreier 生成器 $t$ 的数量，所以每个筛选过程都可以在 $nO(n(n^{2}\log n)) = O(n^{4}\logn)$ 中完成。
+增量 Schreier-Sims 算法的运行时间为 $O(n^{8}log^{3}n)$，即 $n$ 的多项式。$t$ 个生成器构建 Schreier 树需要 $O(n^{2}+nt)$，或对于 $t>n$ 为 $O(nt)$。因为已经用 $O(n^{2}logn)$ 限制了 Schreier 生成器 $t$ 的数量，所以每个筛选过程都可以在 $nO(n(n^{2}log n)) = O(n^{4}logn)$ 中完成。
 
 ## 代码
 
