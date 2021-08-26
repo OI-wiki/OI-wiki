@@ -90,17 +90,17 @@ $$
 ## 代码
 
 以下为基础 Schreier-Sims 算法的参考代码。
-    
+
 ??? note "参考代码"
     ```c++
     #include <iostream>
     using namespace std;
-
+    
     const int maxn = 50;     // Maximum size of omega = {1, ,n}
     const int maxr = 10000;  // Maximum number of generators
-
+    
     class Permutation {  // interface for permutations
-    public:
+     public:
       int p[maxn];                  // the images of the points 0..   maxn-1
       Permutation() { n = maxn; };  // constructors
       Permutation(int m) { n = m; };
@@ -150,20 +150,22 @@ $$
         cout << endl;
       }  // output
       void setn(int m) { n = m; }
-
-    private:
+    
+     private:
       int n;  // size of omega = {1, ,n}
     };
-
+    
     int n;                                   // size of omega = {1, ,n}
     int r;                                   // number of generators
     Permutation* g = new Permutation[maxr];  // the generators
     int nr;
     Permutation* newg = new Permutation[maxr];
     int cosreps;  // number of    (= size of orbit of alpha)
-    Permutation* cosrep = new Permutation[maxn];  // coset    representatives (to store the output of SchreierTree)
+    Permutation* cosrep =
+        new Permutation[maxn];  // coset    representatives (to store the output of
+                                // SchreierTree)
     Permutation undefined(maxn, 'u');
-
+    
     /****** ScheierTree ******/
     void ScheierTree(
         int alpha) {  // depth first search to determine the orbit of     alpha
@@ -181,7 +183,7 @@ $$
         }
       }
     }
-
+    
     void SchreierSims() {
       int alpha = 0;
       Permutation sg;
@@ -214,20 +216,20 @@ $$
       } while (cosreps > 1);
       cout << endl;
     }
-
+    
     int main() {
       cout << "n ( Size of Omega = {1..n} ) ? ";
       cin >> n;
       for (int j = 0; j < n; j++) {
-       g[j].setn(n);
-       newg[j].setn(n);
+        g[j].setn(n);
+        newg[j].setn(n);
       }
       undefined.setn(n);
-
+    
       cout << "How many group generators ? ";
       cin >> r;
       for (int j = 0; j < r; j++) g[j].input();
-
+    
       SchreierSims();
       delete[] g;
       delete[] newg;
@@ -235,7 +237,6 @@ $$
       return 0;
     }
     ```
-
 
 ## 例题
 
