@@ -90,151 +90,152 @@ $$
 ## 代码
 
 以下为基础 Schreier-Sims 算法的参考代码。
+    
+??? note "参考代码"
+    ```c++
+    #include <iostream>
+    using namespace std;
 
-```c++
-#include <iostream>
-using namespace std;
+    const int maxn = 50;     // Maximum size of omega = {1, ,n}
+    const int maxr = 10000;  // Maximum number of generators
 
-const int maxn = 50;     // Maximum size of omega = {1, ,n}
-const int maxr = 10000;  // Maximum number of generators
-
-class Permutation {  // interface for permutations
- public:
-  int p[maxn];                  // the images of the points 0..maxn-1
-  Permutation() { n = maxn; };  // constructors
-  Permutation(int m) { n = m; };
-  Permutation(int m, char c) {
-    n = m;
-    switch (c) {
-      case 'i':
-        for (int i = 0; i < n; i++) p[i] = i;
-        break;  // identity
-      default:
-        for (int i = 0; i < n; i++) p[i] = -1;
-        break;  // undefined
-    }
-  }
-  Permutation operator*(Permutation param) const {  // multiplication
-    Permutation result(n);
-    for (int i = 0; i < n; i++) result.p[i] = param.p[p[i]];
-    return (result);
-  }
-  void operator*=(Permutation param) {  // direct multiplication
-    for (int i = 0; i < n; i++) p[i] = param.p[p[i]];
-  }
-  Permutation inverse() const {  // inverse
-    Permutation result(n);
-    for (int i = 0; i < n; i++) result.p[p[i]] = i;
-    return (result);
-  }
-  bool isdefined() const { return (p[0] > -1); }  // if it is defined
-  bool isidentity() const {                       // if it is the identity
-    for (int i = 0; i < n; i++)
-      if (p[i] != i) return false;
-    return true;
-  }
-  bool operator==(Permutation param) const {  // comparison
-    for (int i = 0; i < n; i++)
-      if (param.p[i] != p[i]) return false;
-    return true;
-  }
-  void input() {
-    for (int i = 0; i < n; i++) {
-      cin >> p[i];
-      p[i]--;
-    }
-  }  // input
-  void output() const {
-    for (int i = 0; i < n; i++) cout << p[i] + 1 << " ";
-    cout << endl;
-  }  // output
-  void setn(int m) { n = m; }
-
- private:
-  int n;  // size of omega = {1, ,n}
-};
-
-int n;                                   // size of omega = {1, ,n}
-int r;                                   // number of generators
-Permutation* g = new Permutation[maxr];  // the generators
-int nr;
-Permutation* newg = new Permutation[maxr];
-int cosreps;  // number of    (= size of orbit of alpha)
-Permutation* cosrep = new Permutation[maxn];  // coset representatives (to store
-                                              // output of SchreierTree)
-Permutation undefined(maxn, 'u');
-
-/****** ScheierTree ******/
-void ScheierTree(
-    int alpha) {  // depth first search to determine the orbit of alpha
-  static Permutation gen(
-      n, 'i');    // group element moving original alpha to actual alpha
-  static int ag;  // image of actual alpha under generator g[j]
-  cosrep[alpha] = gen;
-  cosreps++;
-  for (int j = 0; j < r; j++) {
-    ag = g[j].p[alpha];
-    if (!cosrep[ag].isdefined()) {
-      gen *= g[j];
-      ScheierTree(ag);
-      gen *= g[j].inverse();
-    }
-  }
-}
-
-void SchreierSims() {
-  int alpha = 0;
-  Permutation sg;
-  cout << "THE ORDER OF THE GROUP:\n";
-  do {
-    cosreps = 0;
-    for (int i = 0; i < n; i++) cosrep[i] = undefined;
-    // get the coset representatives for G(alpha)
-    ScheierTree(alpha);
-    // schreier lemma loop to get the schreier generators
-    nr = 0;
-    for (int i = 0; i < n; i++) {
-      if (cosrep[i].isdefined())
-        for (int j = 0; j < r; j++) {
-          // calculate the (schreier) generators
-          sg = cosrep[i] * g[j] * cosrep[g[j].p[i]].inverse();
-          bool alreadyhavethis = sg.isidentity();
-          for (int k = 0; k < nr; k++)
-            if (sg == newg[k]) alreadyhavethis = true;
-          if (!alreadyhavethis) newg[nr++] = sg;
+    class Permutation {  // interface for permutations
+    public:
+      int p[maxn];                  // the images of the points 0..   maxn-1
+      Permutation() { n = maxn; };  // constructors
+      Permutation(int m) { n = m; };
+      Permutation(int m, char c) {
+        n = m;
+        switch (c) {
+          case 'i':
+            for (int i = 0; i < n; i++) p[i] = i;
+            break;  // identity
+          default:
+            for (int i = 0; i < n; i++) p[i] = -1;
+            break;  // undefined
         }
+      }
+      Permutation operator*(Permutation param) const {  //    multiplication
+        Permutation result(n);
+        for (int i = 0; i < n; i++) result.p[i] = param.p[p[i]];
+        return (result);
+      }
+      void operator*=(Permutation param) {  // direct multiplication
+        for (int i = 0; i < n; i++) p[i] = param.p[p[i]];
+      }
+      Permutation inverse() const {  // inverse
+        Permutation result(n);
+        for (int i = 0; i < n; i++) result.p[p[i]] = i;
+        return (result);
+      }
+      bool isdefined() const { return (p[0] > -1); }  // if it is     defined
+      bool isidentity() const {                       // if it is the     identity
+        for (int i = 0; i < n; i++)
+          if (p[i] != i) return false;
+        return true;
+      }
+      bool operator==(Permutation param) const {  // comparison
+        for (int i = 0; i < n; i++)
+          if (param.p[i] != p[i]) return false;
+        return true;
+      }
+      void input() {
+        for (int i = 0; i < n; i++) {
+          cin >> p[i];
+          p[i]--;
+        }
+      }  // input
+      void output() const {
+        for (int i = 0; i < n; i++) cout << p[i] + 1 << " ";
+        cout << endl;
+      }  // output
+      void setn(int m) { n = m; }
+
+    private:
+      int n;  // size of omega = {1, ,n}
+    };
+
+    int n;                                   // size of omega = {1, ,n}
+    int r;                                   // number of generators
+    Permutation* g = new Permutation[maxr];  // the generators
+    int nr;
+    Permutation* newg = new Permutation[maxr];
+    int cosreps;  // number of    (= size of orbit of alpha)
+    Permutation* cosrep = new Permutation[maxn];  // coset    representatives (to store the output of SchreierTree)
+    Permutation undefined(maxn, 'u');
+
+    /****** ScheierTree ******/
+    void ScheierTree(
+        int alpha) {  // depth first search to determine the orbit of     alpha
+      static Permutation gen(
+          n, 'i');    // group element moving original alpha to actual    alpha
+      static int ag;  // image of actual alpha under generator g[j]
+      cosrep[alpha] = gen;
+      cosreps++;
+      for (int j = 0; j < r; j++) {
+        ag = g[j].p[alpha];
+        if (!cosrep[ag].isdefined()) {
+          gen *= g[j];
+          ScheierTree(ag);
+          gen *= g[j].inverse();
+        }
+      }
     }
-    cout << cosreps << flush;
-    if (cosreps > 1) cout << "*";
-    r = 0;
-    for (int j = 0; j < nr; j++) {
-      g[r++] = newg[j];
+
+    void SchreierSims() {
+      int alpha = 0;
+      Permutation sg;
+      cout << "THE ORDER OF THE GROUP:\n";
+      do {
+        cosreps = 0;
+        for (int i = 0; i < n; i++) cosrep[i] = undefined;
+        // get the coset representatives for G(alpha)
+        ScheierTree(alpha);
+        // schreier lemma loop to get the schreier generators
+        nr = 0;
+        for (int i = 0; i < n; i++) {
+          if (cosrep[i].isdefined())
+            for (int j = 0; j < r; j++) {
+              // calculate the (schreier) generators
+              sg = cosrep[i] * g[j] * cosrep[g[j].p[i]].inverse();
+              bool alreadyhavethis = sg.isidentity();
+              for (int k = 0; k < nr; k++)
+                if (sg == newg[k]) alreadyhavethis = true;
+              if (!alreadyhavethis) newg[nr++] = sg;
+            }
+        }
+        cout << cosreps << flush;
+        if (cosreps > 1) cout << "*";
+        r = 0;
+        for (int j = 0; j < nr; j++) {
+          g[r++] = newg[j];
+        }
+        alpha++;
+      } while (cosreps > 1);
+      cout << endl;
     }
-    alpha++;
-  } while (cosreps > 1);
-  cout << endl;
-}
 
-int main() {
-  cout << "n ( Size of Omega = {1..n} ) ? ";
-  cin >> n;
-  for (int j = 0; j < n; j++) {
-    g[j].setn(n);
-    newg[j].setn(n);
-  }
-  undefined.setn(n);
+    int main() {
+      cout << "n ( Size of Omega = {1..n} ) ? ";
+      cin >> n;
+      for (int j = 0; j < n; j++) {
+       g[j].setn(n);
+       newg[j].setn(n);
+      }
+      undefined.setn(n);
 
-  cout << "How many group generators ? ";
-  cin >> r;
-  for (int j = 0; j < r; j++) g[j].input();
+      cout << "How many group generators ? ";
+      cin >> r;
+      for (int j = 0; j < r; j++) g[j].input();
 
-  SchreierSims();
-  delete[] g;
-  delete[] newg;
-  delete[] cosrep;
-  return 0;
-}
-```
+      SchreierSims();
+      delete[] g;
+      delete[] newg;
+      delete[] cosrep;
+      return 0;
+    }
+    ```
+
 
 ## 例题
 
