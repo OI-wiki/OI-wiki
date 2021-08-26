@@ -3,7 +3,7 @@
 **Schreier-Sims 算法** 是计算群论的一种算法，以数学家 Otto Schreier 和 Charles Sims 的名字命名。它可以在多项式时间（polynomial time）内找到有限置换群的阶数、查看给定排列是否包含在群中以及其他许多任务。Schreier-Sims 算法最早由 Sims 在 1970 年基于 Schreier 的子群引理引入。1991 年，Donald Knuth 基于此改进了时序。后来，又有了该算法更快的随机版本。
 
 ???+ note "注释"
-    **群论**(Group theory）是数学的一个分支。在数学和抽象代数中，群论研究称为群的代数结构。群是由一组元素和一个可以应用于该集合的两个元素的二元运算组成的系统。
+    **群论**（Group theory）是数学的一个分支。在数学和抽象代数中，群论研究称为群的代数结构。群是由一组元素和一个可以应用于该集合的两个元素的二元运算组成的系统。
 
 ## 背景
 
@@ -49,9 +49,9 @@ $$
 
 ### 强生成集
 
-定义 $G$ 的 **基**(base)$B$ 为一个序列 $B = (b_{1},\cdots,b_{k}) \subseteq \Omega$, 因此逐点稳定器（pointwise stabilizer)$G_{b_{1},\cdots, b_{k}}$ 是可以忽略不计的。
+定义 $G$ 的 **基**（base）$B$ 为一个序列 $B = (b_{1},\cdots,b_{k}) \subseteq \Omega$, 因此逐点稳定器（pointwise stabilizer）$G_{b_{1},\cdots, b_{k}}$ 是可以忽略不计的。
 
-定义 $G$ 相对于 $B$ 的 **强生成集**(SGS，strong generating set) 是一个对于每个 $i$ 有 $\langle S \cap G^{(i)} = G(i)$ 的集合 $S \subseteq G$，其中 $G^{(i)} := G_{b1,\cdots,bi}$,$G^{(0)} := G$。
+定义 $G$ 相对于 $B$ 的 **强生成集**（SGS，strong generating set) 是一个对于每个 $i$ 有 $\langle S \cap G^{(i)} = G(i)$ 的集合 $S \subseteq G$，其中 $G^{(i)} := G_{b1,\cdots,bi}$,$G^{(0)} := G$。
 
 ## 算法
 
@@ -72,7 +72,7 @@ $$
 
 **增量 Schreier-Sims 算法** 是常被用来构建强生成集的快速算法。
 
-如果有一个群 $G$ 的强生成集，因为已经得到了所有 $G^{(i)}$ 稳定器的生成器，那么很容易得到 $G$ 的阶。**部分基**(partial base)$B = [b_{1},\cdots, b_{k}]$ 和部分强生成集 $S$ 是集合 $B \in \Omega$ 和集合 $S \subseteq G$，使得 $S$ 的任何元素都不能固定 $B$ 的每个元素。
+如果有一个群 $G$ 的强生成集，因为已经得到了所有 $G^{(i)}$ 稳定器的生成器，那么很容易得到 $G$ 的阶。**部分基**（partial base）$B = [b_{1},\cdots, b_{k}]$ 和部分强生成集 $S$ 是集合 $B \in \Omega$ 和集合 $S \subseteq G$，使得 $S$ 的任何元素都不能固定 $B$ 的每个元素。
 
 增量 Schreier-Sims 算法可以将任意部分基和部分强生成集转化为基和强生成集。
 
@@ -80,12 +80,12 @@ $$
 
 1. 如果 $S = {}$，返回 $B, S$;
 2. 非空部分基 $B = (b_{1},\cdots, b_{k}]$。部分强生成集 $S$。集 $C:= [b_{2},\cdots,b_{k}]$,$T := S \cap G_{b1}$，并递归地应用于输入 $C, T$，以将它们修改为 $H = \langle T \rangle$ 的基和强生成集。
-3. 设 $B := B \cup C$,$S := S \cap T$。用筛选算法在 $H \leqslant G_{b_{1}}$ 中进行*成员资格测试*(Membership testing, 检查集合（列表、集合、字典等）是否包含特定元素）。对 $G_{b_{1}}$ 测试每个 Schreier 生成器 $s$ 以查看 $s \in H$。如果都在 $H$ 中，那么有 $H = G_{b_{1}}$, 返回 $B，S$。否则到步骤 4。
+3. 设 $B := B \cup C$,$S := S \cap T$。用筛选算法在 $H \leqslant G_{b_{1}}$ 中进行*成员资格测试*（Membership testing，检查集合（列表、集合、字典等）是否包含特定元素）。对 $G_{b_{1}}$ 测试每个 Schreier 生成器 $s$ 以查看 $s \in H$。如果都在 $H$ 中，那么有 $H = G_{b_{1}}$, 返回 $B，S$。否则到步骤 4。
 4. 否则有一个 Schreier 生成器 $s \in G_{b_{1}}$ 但 $s \notin H$。设 $S := S \cup {s}$。如果 $s$ 固定了 $B$ 的所有点，将一个由 $s$ 移动的 $\Omega$ 点附加到 $B$。回到步骤 2。
 
-当算法结束时，$B$ 为基，$S$ 是大小为 $O(n^{2}logn)$ 的强生成集。
+当算法结束时，$B$ 为基，$S$ 是大小为 $O(n^{2}\logn)$ 的强生成集。
 
-增量 Schreier-Sims 算法的运行时间为 $O(n^{8}log^{3}n)$，即 $n$ 的多项式。$t$ 个生成器构建 Schreier 树需要 $O(n^{2}+nt)$，或对于 $t>n$ 为 $O(nt)$。因为已经用 $O(n^{2}logn)$ 限制了 Schreier 生成器 $t$ 的数量，所以每个筛选过程都可以在 $nO(n(n^{2}log n)) = O(n^{4}logn)$ 中完成。
+增量 Schreier-Sims 算法的运行时间为 $O(n^{8}\log^{3}n)$，即 $n$ 的多项式。$t$ 个生成器构建 Schreier 树需要 $O(n^{2}+nt)$，或对于 $t>n$ 为 $O(nt)$。因为已经用 $O(n^{2}\logn)$ 限制了 Schreier 生成器 $t$ 的数量，所以每个筛选过程都可以在 $nO(n(n^{2}\log n)) = O(n^{4}\logn)$ 中完成。
 
 ## 代码
 
