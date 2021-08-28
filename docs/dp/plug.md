@@ -101,7 +101,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 #### 例题「Andrew Stankevich Contest 16 - Problem F」Pipe Layout
 
 ???+note " 例题 [「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
-    题目大意：求用一条回路覆盖 $N\times$ 棋盘的方案数。
+    题目大意：求用一条回路覆盖 $N\times M$ 棋盘的方案数。
 
 在上面的状态表示中我们每合并一组连通的插头，就会生成一条独立的回路，因而在本题中，我们还需要区分插头之间的连通性（出现了！）。这需要我们对状态进行额外的编码。
 
