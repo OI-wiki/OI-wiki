@@ -10,10 +10,10 @@
 
 群公理包含下述四个性质（有时略去封闭性，只有三个性质）：
 
-1. **封闭性**：对于所有 $G$ 中 $a, b$ ，运算 $a·b$ 的结果也在G中。
-2. **结合律**(Associativity)：对于 $G$ 中所有的 $a, b, c$ ，等式 $(a \cdot b)\cdot c = a \cdot (b \cdot c)$ 成立。
-3. **标识元**（Identity element）： $G$ 中存在一个元素 $e$ ，使得对于 $G$ 中的每一个 $a$ ，都有一个 $e \cdot a=a\cdot e=a$ 成立。这样的元素是独一无二的。它被称为群的标识元素。
-4. **逆元**(Inverse element)：对于每个 $G$ 中的 $a$ ，总存在 $G$ 中的一个元素 $b$ 使 $a \cdot b = b \cdot a = e$ ，此处 $e$ 为单位元。
+1. **封闭性**：对于所有 $G$ 中 $a, b$，运算 $a·b$ 的结果也在 G 中。
+2. **结合律**(Associativity)：对于 $G$ 中所有的 $a, b, c$，等式 $(a \cdot b)\cdot c = a \cdot (b \cdot c)$ 成立。
+3. **标识元**（Identity element）：$G$ 中存在一个元素 $e$，使得对于 $G$ 中的每一个 $a$，都有一个 $e \cdot a=a\cdot e=a$ 成立。这样的元素是独一无二的。它被称为群的标识元素。
+4. **逆元**(Inverse element)：对于每个 $G$ 中的 $a$，总存在 $G$ 中的一个元素 $b$ 使 $a \cdot b = b \cdot a = e$，此处 $e$ 为单位元。
 
 ## 群的基本概念
 
