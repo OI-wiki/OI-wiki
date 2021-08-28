@@ -276,8 +276,10 @@ nav:
       - 抽屉原理: math/combinatorics/drawer-principle.md
       - Eulerian Number: math/combinatorics/eulerian.md
       - 分拆数: math/combinatorics/partition.md
+    - 群论:
+      - 群论简介:  math/group-theory.md
+      - 置换群: math/permutation-group.md
     - 概率初步: math/expectation.md
-    - 置换群: math/permutation-group.md
     - 斐波那契数列: math/fibonacci.md
     - 博弈论: math/game-theory.md
     - 牛顿迭代法: math/newton.md
