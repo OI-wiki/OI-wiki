@@ -34,7 +34,7 @@
     "gulp-purifycss": "^0.2.0",
     "hexo-fs": "^3.1.0",
     "mathjax-node-page": "^3.2.0",
-    "remark-clang-format": "^1.8.0",
+    "remark-clang-format": "^2.6.0",
     "remark-cli": "^8.0.0",
     "remark-copywriting-correct": "^0.5.0",
     "remark-details": "^3.0.0",

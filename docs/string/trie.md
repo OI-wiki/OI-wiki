@@ -17,6 +17,7 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
 放一个结构体封装的模板：
 
 ```cpp
+// C++ Version
 struct trie {
   int nex[100000][26], cnt;
   bool exist[100000];  // 该结点结尾的字符串是否存在
@@ -42,6 +43,33 @@ struct trie {
 };
 ```
 
+```python
+# Python Version
+class trie:
+    nex = [[0 for i in range(26)] for j in range(100000)]
+    cnt = 0
+    exist = [False] * 100000 # 该结点结尾的字符串是否存在
+
+    def insert(s, l): # 插入字符串
+        p = 0
+        for i in range(0, l):
+            c = ord(s[i]) - ord('a')
+            if nex[p][c] == 0:
+                nex[p][c] = cnt # 如果没有，就添加结点
+                cnt += 1
+            p = nex[p][c]
+        exist[p] = True
+    
+    def find(s, l): # 查找字符串
+        p = 0
+        for i in range(0, l):
+            c = ord(s[i]) - ord('a')
+            if nex[p][c] == 0:
+                return False
+            p = nex[p][c]
+        return exist[p]
+```
+
 ## 应用
 
 ### 检索字符串
@@ -58,48 +86,7 @@ struct trie {
     
     ??? mdui-shadow-6 "参考代码"
         ```cpp
-        #include <cstdio>
-        
-        const int N = 500010;
-        
-        char s[60];
-        int n, m, ch[N][26], tag[N], tot = 1;
-        
-        int main() {
-          scanf("%d", &n);
-        
-          for (int i = 1; i <= n; ++i) {
-            scanf("%s", s + 1);
-            int u = 1;
-            for (int j = 1; s[j]; ++j) {
-              int c = s[j] - 'a';
-              if (!ch[u][c]) ch[u][c] = ++tot;
-              u = ch[u][c];
-            }
-            tag[u] = 1;
-          }
-        
-          scanf("%d", &m);
-        
-          while (m--) {
-            scanf("%s", s + 1);
-            int u = 1;
-            for (int j = 1; s[j]; ++j) {
-              int c = s[j] - 'a';
-              u = ch[u][c];
-              if (!u) break;  // 不存在对应字符的出边说明名字不存在
-            }
-            if (tag[u] == 1) {
-              tag[u] = 2;
-              puts("OK");
-            } else if (tag[u] == 2)
-              puts("REPEAT");
-            else
-              puts("WRONG");
-          }
-        
-          return 0;
-        }
+        --8<-- "docs/string/code/trie/trie_1.cpp"
         ```
 
 ### AC 自动机
@@ -126,69 +113,7 @@ trie 是 [AC 自动机](./ac-automaton.md) 的一部分。
     
     ??? mdui-shadow-6 "参考代码"
         ```cpp
-        #include <algorithm>
-        #include <cstdio>
-        
-        const int N = 100010;
-        
-        int head[N], nxt[N << 1], to[N << 1], weight[N << 1], cnt;
-        int n, dis[N], ch[N << 5][2], tot = 1, ans;
-        
-        void insert(int x) {
-          for (int i = 30, u = 1; i >= 0; --i) {
-            int c = ((x >> i) & 1);
-            if (!ch[u][c]) ch[u][c] = ++tot;
-            u = ch[u][c];
-          }
-        }
-        
-        void get(int x) {
-          int res = 0;
-          for (int i = 30, u = 1; i >= 0; --i) {
-            int c = ((x >> i) & 1);
-            if (ch[u][c ^ 1]) {
-              u = ch[u][c ^ 1];
-              res |= (1 << i);
-            } else
-              u = ch[u][c];
-          }
-          ans = std::max(ans, res);
-        }
-        
-        void add(int u, int v, int w) {
-          nxt[++cnt] = head[u];
-          head[u] = cnt;
-          to[cnt] = v;
-          weight[cnt] = w;
-        }
-        
-        void dfs(int u, int fa) {
-          insert(dis[u]);
-          get(dis[u]);
-          for (int i = head[u]; i; i = nxt[i]) {
-            int v = to[i];
-            if (v == fa) continue;
-            dis[v] = dis[u] ^ weight[i];
-            dfs(v, u);
-          }
-        }
-        
-        int main() {
-          scanf("%d", &n);
-        
-          for (int i = 1; i < n; ++i) {
-            int u, v, w;
-            scanf("%d%d%d", &u, &v, &w);
-            add(u, v, w);
-            add(v, u, w);
-          }
-        
-          dfs(1, 0);
-        
-          printf("%d", ans);
-        
-          return 0;
-        }
+        --8<-- "docs/string/code/trie/trie_2.cpp"
         ```
 
 ### 维护异或和
@@ -358,111 +283,7 @@ int merge(int a, int b) {
     
     ??? mdui-shadow-6 "参考代码"
         ```cpp
-        const int _ = 5e5 + 10;
-        namespace trie {
-        const int _n = _ * 25;
-        int rt[_];
-        int ch[_n][2];
-        int w[_n];  //`w[o]` 指节点 `o` 到其父亲节点这条边上数值的数量（权值）。
-        int xorv[_n];
-        int tot = 0;
-        void maintain(int o) {
-          w[o] = xorv[o] = 0;
-          if (ch[o][0]) {
-            w[o] += w[ch[o][0]];
-            xorv[o] ^= xorv[ch[o][0]] << 1;
-          }
-          if (ch[o][1]) {
-            w[o] += w[ch[o][1]];
-            xorv[o] ^= (xorv[ch[o][1]] << 1) | (w[ch[o][1]] & 1);
-          }
-        }
-        inline int mknode() {
-          ++tot;
-          ch[tot][0] = ch[tot][1] = 0;
-          w[tot] = 0;
-          return tot;
-        }
-        void insert(int &o, int x, int dp) {
-          if (!o) o = mknode();
-          if (dp > 20) return (void)(w[o]++);
-          insert(ch[o][x & 1], x >> 1, dp + 1);
-          maintain(o);
-        }
-        void erase(int o, int x, int dp) {
-          if (dp > 20) return (void)(w[o]--);
-          erase(ch[o][x & 1], x >> 1, dp + 1);
-          maintain(o);
-        }
-        void addall(int o) {
-          swap(ch[o][1], ch[o][0]);
-          if (ch[o][0]) addall(ch[o][0]);
-          maintain(o);
-        }
-        }  // namespace trie
-        
-        int head[_];
-        struct edges {
-          int node;
-          int nxt;
-        } edge[_ << 1];
-        int tot = 0;
-        void add(int u, int v) {
-          edge[++tot].nxt = head[u];
-          head[u] = tot;
-          edge[tot].node = v;
-        }
-        
-        int n, m;
-        int rt;
-        int lztar[_];
-        int fa[_];
-        void dfs0(int o, int f) {
-          fa[o] = f;
-          for (int i = head[o]; i; i = edge[i].nxt) {
-            int node = edge[i].node;
-            if (node == f) continue;
-            dfs0(node, o);
-          }
-        }
-        int V[_];
-        inline int get(int x) { return (fa[x] == -1 ? 0 : lztar[fa[x]]) + V[x]; }
-        int main() {
-          n = read(), m = read();
-          for (int i = 1; i < n; i++) {
-            int u = read(), v = read();
-            add(u, v);
-            add(rt = v, u);
-          }
-          dfs0(rt, -1);
-          for (int i = 1; i <= n; i++) {
-            V[i] = read();
-            if (fa[i] != -1) trie::insert(trie::rt[fa[i]], V[i], 0);
-          }
-          while (m--) {
-            int opt = read(), x = read();
-            if (opt == 1) {
-              lztar[x]++;
-              if (x != rt) {
-                if (fa[fa[x]] != -1) trie::erase(trie::rt[fa[fa[x]]], get(fa[x]), 0);
-                V[fa[x]]++;
-                if (fa[fa[x]] != -1) trie::insert(trie::rt[fa[fa[x]]], get(fa[x]), 0);
-              }
-              trie::addall(trie::rt[x]);
-            } else if (opt == 2) {
-              int v = read();
-              if (x != rt) trie::erase(trie::rt[fa[x]], get(x), 0);
-              V[x] -= v;
-              if (x != rt) trie::insert(trie::rt[fa[x]], get(x), 0);
-            } else {
-              int res = 0;
-              res = trie::xorv[trie::rt[x]];
-              res ^= get(fa[x]);
-              printf("%d\n", res);
-            }
-          }
-          return 0;
-        }
+        --8<-- "docs/string/code/trie/trie_3.cpp"
         ```
 
 ???+note "[【luogu-P6623】 【省选联考 2020 A 卷】 树](https://www.luogu.com.cn/problem/P6623)"

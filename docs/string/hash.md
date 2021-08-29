@@ -40,6 +40,7 @@ Hash 函数值一样时原字符串却不一样的现象我们成为哈希碰撞
 参考代码：（效率低下的版本，实际使用时一般不会这么写）
 
 ```cpp
+// C++ Version
 using std::string;
 
 const int M = 1e9 + 7;
@@ -58,6 +59,21 @@ int get_hash(const string& s) {
 bool cmp(const string& s, const string& t) {
   return get_hash(s) == get_hash(t);
 }
+```
+
+```python
+# Python Version
+M = int(1e9 + 7)
+B = 233
+
+def get_hash(s):
+    res = 0
+    for char in s:
+        res = (res * B + ord(char)) % M
+    return res
+
+def cmp(s, t):
+    return get_hash(s) == get_hash(t)
 ```
 
 ## Hash 的分析与改进
@@ -163,80 +179,7 @@ bool cmp(const string& s, const string& t) {
     
     ??? mdui-shadow-6 "参考代码"
         ```cpp
-        #include <bits/stdc++.h>
-        using namespace std;
-        
-        const int L = 1e6 + 5;
-        const int HASH_CNT = 2;
-        
-        int hashBase[HASH_CNT] = {29, 31};
-        int hashMod[HASH_CNT] = {int(1e9 + 9), 998244353};
-        
-        struct StringWithHash {
-          char s[L];
-          int ls;
-          int hsh[HASH_CNT][L];
-          int pwMod[HASH_CNT][L];
-          void init() {
-            ls = 0;
-            for (int i = 0; i < HASH_CNT; ++i) {
-              hsh[i][0] = 0;
-              pwMod[i][0] = 1;
-            }
-          }
-          StringWithHash() { init(); }
-          void extend(char c) {
-            s[++ls] = c;
-            for (int i = 0; i < HASH_CNT; ++i) {
-              pwMod[i][ls] = 1ll * pwMod[i][ls - 1] * hashBase[i] % hashMod[i];
-              hsh[i][ls] = (1ll * hsh[i][ls - 1] * hashBase[i] + c) % hashMod[i];
-            }
-          }
-          vector<int> getHash(int l, int r) {
-            vector<int> res(HASH_CNT, 0);
-            for (int i = 0; i < HASH_CNT; ++i) {
-              int t =
-                  (hsh[i][r] - 1ll * hsh[i][l - 1] * pwMod[i][r - l + 1]) % hashMod[i];
-              t = (t + hashMod[i]) % hashMod[i];
-              res[i] = t;
-            }
-            return res;
-          }
-        };
-        
-        bool equal(const vector<int> &h1, const vector<int> &h2) {
-          assert(h1.size() == h2.size());
-          for (unsigned i = 0; i < h1.size(); i++)
-            if (h1[i] != h2[i]) return false;
-          return true;
-        }
-        
-        int n;
-        StringWithHash s, t;
-        char str[L];
-        
-        void work() {
-          int len = strlen(str);
-          t.init();
-          for (int j = 0; j < len; ++j) t.extend(str[j]);
-          int d = 0;
-          for (int j = min(len, s.ls); j >= 1; --j) {
-            if (equal(t.getHash(1, j), s.getHash(s.ls - j + 1, s.ls))) {
-              d = j;
-              break;
-            }
-          }
-          for (int j = d; j < len; ++j) s.extend(str[j]);
-        }
-        int main() {
-          scanf("%d", &n);
-          for (int i = 1; i <= n; ++i) {
-            scanf("%s", str);
-            work();
-          }
-          printf("%s\n", s.s + 1);
-          return 0;
-        }
+        --8<-- "docs/string/code/hash/hash_1.cpp"
         ```
 
 **本页面部分内容译自博文 [строковый хеш](https://github.com/e-maxx-eng/e-maxx-eng/blob/61aff51f658644424c5e1b717f14fb7bf054ae80/src/string/string-hashing.md) 与其英文翻译版 [String Hashing](https://cp-algorithms.com/string/string-hashing.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
