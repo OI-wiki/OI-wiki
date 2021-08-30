@@ -102,9 +102,9 @@ $$
 
 而对于由 $n$ 个有向图游戏组成的组合游戏，设它们的起点分别为 $s_1, s_2, \ldots, s_n$，则有定理：**当且仅当 $\operatorname{SG}(s_1) \oplus \operatorname{SG}(s_2) \oplus \ldots \oplus \operatorname{SG}(s_n) \neq 0$ 时，这个游戏是先手必胜的。同时，这是这一个组合游戏的游戏状态 $x$ 的 SG 值。**
 
-这一定理被称作 SG 定理。
+这一定理被称作 **Sprague-Grundy 定理**(Sprague-Grundy Theorem), 简称 SG 定理。
 
-### SG 定理证明
+### SG 定理的证明
 
 可以使用数学归纳法来证明。
 
@@ -121,6 +121,20 @@ $$
 当移动到 SG 值较小的节点时，情况则会和 Nim 游戏一样，能够到达任何一个游戏状态 $x'$ 使得 $\operatorname{SG}(x')= \operatorname{SG}(s_1') \oplus \operatorname{SG}(s_2') \oplus \ldots \oplus \operatorname{SG}(s_n') < \operatorname{SG}(X)$（注意到前文已经假设 $x'$ 满足 SG 定理），但到达不了 SG 值为 $\operatorname{SG}(s_1) \oplus \operatorname{SG}(s_2) \oplus \ldots \oplus \operatorname{SG}(s_n)$ 的节点。
 
 所以状态 $x$ 符合 SG 定理。
+
+### SG 定理的应用
+
+SG 定理适用于**任何公平的两人游戏**, 它常被用于决定游戏的输赢结果。
+
+计算给定状态的 Grundy 值的步骤一般包括：
+
+- 获取从此状态所有可能的转换;
+
+- 每个转换都可以导致**一系列独立的博弈**（退化情况下只有一个）。计算每个独立博弈的 Grundy 值并对它们进行**异或求和**。
+
+- 在为每个转换计算了 Grundy 值之后，状态的值是这些数字的 $\operatorname{mex}$ 。
+
+- 如果该值为零，则当前状态为输，否则为赢。
 
 ## 将 Nim 游戏转换为有向图游戏
 
