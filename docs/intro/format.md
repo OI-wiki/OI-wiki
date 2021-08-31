@@ -314,7 +314,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
 - 为了统一且书写方便，复杂度分析时大 $O$ 记号请直接使用 `$O()$` 而不是 `$\mathcal O()$`。
 
-- 在表示等价关系时，请使用 `$\iff$` ，效果 $\iff$，而不是`$\Leftrightarrow$`，效果$\Leftrightarrow$。
+- 在表示等价关系时，请使用 `$\iff$`，效果 $\iff$，而不是 `$\Leftrightarrow$`，效果 $\Leftrightarrow$。
 
 - 分段函数环境 `cases`  **只能有两列**（即一个 `&` 分隔符）。
 
