@@ -124,13 +124,13 @@ $$
 
 **性质 1** 拉普拉斯矩阵 $L$ 的所有代数余子式 $C_{i,j}$ 的值都相等。
 
-证明：删去第 $i$ 行后，设列向量是 $\pmb r_1,\pmb r_2,\cdots,\pmb r_n$，则有 $\sum\pmb r_i=\pmb 0$。
+证明：删去第 $i$ 行后，设列向量是 $\boldsymbol r_1,\boldsymbol r_2,\cdots,\boldsymbol r_n$，则有 $\sum\boldsymbol r_i=\boldsymbol 0$。
 
-将余子式 $M_{i,j}$ 中除了 $\pmb r_k$ 之外的所有 $\pmb r_i$ 都加到 $\pmb r_k$ 上，得到 $A=[\pmb r_1,\cdots,\pmb r_{j-1},\pmb r_{j+1},\cdots,\pmb r_{k-1},-\pmb r_j,\pmb r_{k+1},\cdots,\pmb r_n]$。
+将余子式 $M_{i,j}$ 中除了 $\boldsymbol r_k$ 之外的所有 $\boldsymbol r_i$ 都加到 $\boldsymbol r_k$ 上，得到 $A=[\boldsymbol r_1,\cdots,\boldsymbol r_{j-1},\boldsymbol r_{j+1},\cdots,\boldsymbol r_{k-1},-\boldsymbol r_j,\boldsymbol r_{k+1},\cdots,\boldsymbol r_n]$。
 
-将 $-\pmb r_j$ 取反并通过交换两列移动到 $\pmb r_{j+1}$ 左边，得到 $|A|=M_{i,k}=(-1)^{1+(k-1)-(r+1)+1}M_{i,j}$，所以 $C_{i,j}=C_{i,k}$。
+将 $-\boldsymbol r_j$ 取反并通过交换两列移动到 $\boldsymbol r_{j+1}$ 左边，得到 $|A|=M_{i,k}=(-1)^{1+(k-1)-(r+1)+1}M_{i,j}$，所以 $C_{i,j}=C_{i,k}$。
 
-同理，删去第 $i$ 列后行向量之和为 $\pmb 0$，得到 $C_{j,i}=C_{k,i}$。
+同理，删去第 $i$ 列后行向量之和为 $\boldsymbol 0$，得到 $C_{j,i}=C_{k,i}$。
 
 **定理 1 (Kirchhoff's Matrix Tree)** 对于带边权的简单无向图 $G(V,E)$，若 $T(V,E_T)$ 是 $G$ 的生成树，定义 $\omega(T)=\prod_{e\in E_T}\omega(e)$，$\mathcal T$ 是 $G$ 所有生成树的集合，则 $G$ 的拉普拉斯矩阵的所有代数余子式的值等于 $\sum_{T\in\mathcal T}\omega(T)$。
 
