@@ -2,25 +2,7 @@ author: Wajov
 
 置换群通常用来解决一些涉及“本质不同”的计数问题，例如用 3 种颜色给一个立方体染色，求本质不同的方案数（经过翻转后相同的两种方案视为同一种）。
 
-## 群
-
-### 群的定义
-
-若集合 $S\neq\varnothing$ 和 $S$ 上的运算 $\cdot$ 构成的代数结构 $(S,\cdot)$ 满足以下性质：
-
-- 封闭性：$\forall a,b\in S,a\cdot b\in S$
-
-- 结合律：$\forall a,b,c\in S,(a\cdot b)\cdot c=a\cdot(b\cdot c)$
-
-- 单位元：$\exists e\in S,\forall a\in S,e\cdot a=a\cdot e=a$
-
-- 逆元：$\forall a\in S,\exists b\in S,a\cdot b=b\cdot a=e$，称 $b$ 为 $a$ 的逆元，记为 $a^{-1}$
-
-则称 $(S,\cdot)$ 为一个 **群**。例如，整数集和整数间的加法 $(\mathbb{Z},+)$ 构成一个群，单位元是 0，一个整数的逆元是它的相反数。
-
-### 子群的定义
-
-若 $(S,\cdot)$ 是群，$T$ 是 $S$ 的非空子集，且 $(T,\cdot)$ 也是群，则称 $(T,\cdot)$ 是 $(S,\cdot)$ 的 **子群**。
+有关群的定义、子群的定义，见[群论基础](./group-theory.md)。
 
 ## 置换
 

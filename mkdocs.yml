@@ -223,6 +223,7 @@ nav:
       - 线性同余方程: math/number-theory/linear-equation.md
       - 中国剩余定理: math/number-theory/crt.md
       - 二次剩余: math/number-theory/quad-residue.md
+      - 拉格朗日定理: math/number-theory/lagrange.md
       - BSGS: math/number-theory/bsgs.md
       - 原根: math/number-theory/primitive-root.md
       - 卢卡斯定理: math/number-theory/lucas.md
