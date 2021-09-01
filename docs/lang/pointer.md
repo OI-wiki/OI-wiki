@@ -154,7 +154,8 @@ int main() {
 }
 ```
 
-> `{}` 运算符可以用来初始化没有构造函数的结构。除此之外，使用 `{}` 运算符可以使得变量的初始化形式变得统一。详见“[list initialization (since C++11)](https://en.cppreference.com/w/cpp/language/list_initialization)”。
+???+ note 列表初始化
+    `{}` 运算符可以用来初始化没有构造函数的结构。除此之外，使用 `{}` 运算符可以使得变量的初始化形式变得统一。详见“[list initialization (since C++11)](https://en.cppreference.com/w/cpp/language/list_initialization)”。
 
 需要注意，当使用 `new` 申请的内存不再使用时，需要使用 `delete` 释放这块空间。不能对一块内存释放两次或以上。而对空指针 `nullptr` 使用 `delete` 操作是合法的。
 
@@ -167,8 +168,6 @@ size_t element_cnt = 5;
 int *p = new int[element_cnt];
 delete[] p;
 ```
-
-> 为了访问内存的效率更高，编译器在处理结构中成员的实际存储情况时，可能会将成员对齐在一定的字节位置，也就意味着结构中有空余的地方。因此，该结构所占用的空间可能大于其中所有成员所占空间的总和。
 
 ### 指向数组的指针
 
