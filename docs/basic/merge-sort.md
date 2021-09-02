@@ -68,7 +68,7 @@ void merge(int ll, int rr) {
   while (s < rr) {
     if (p >= mid || (q < rr && a[p] > a[q])) {
       t[s++] = a[q++];
-      // ans += mid - p - 1;
+      // ans += mid - p + 1;
     } else
       t[s++] = a[p++];
   }
