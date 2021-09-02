@@ -63,12 +63,12 @@ void merge(int ll, int rr) {
   if (rr - ll <= 1) return;
   int mid = ll + (rr - ll >> 1);
   merge(ll, mid);
-  merge(mid, rr);
+  merge(mid + 1, rr);
   int p = ll, q = mid, s = ll;
   while (s < rr) {
     if (p >= mid || (q < rr && a[p] > a[q])) {
       t[s++] = a[q++];
-      // ans += mid - p;
+      // ans += mid - p - 1;
     } else
       t[s++] = a[p++];
   }
