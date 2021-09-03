@@ -136,7 +136,7 @@ $$
 
 证明：根据性质 1，只需证明 $C_{1,1}=\sum_{T\in\mathcal T}\omega(T)$。对于一条边 $e=(u,v)$，定义 $\zeta(e,u)=v$，$\zeta(e,v)=u$。
 
-定义 $u_i<u_j\Leftrightarrow i<j$，$E=\{e_1,e_2,\cdots,e_{|E|}\}$，构造关联矩阵：
+定义 $u_i<u_j\iff i<j$，$E=\{e_1,e_2,\cdots,e_{|E|}\}$，构造关联矩阵：
 
 $$
 A_{i,j}=\begin{cases}\sqrt{\omega(e_j)} & u_i\in e_j\land u_i<\zeta(e_j,u_i) \\ -\sqrt{\omega(e_j)} & u_i\in e_j\land u_i>\zeta(e_j,u_i) \\ 0 & \text{otherwise}\end{cases}
