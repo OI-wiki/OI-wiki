@@ -4,9 +4,118 @@ author: hydingsy, hyp1231, ranwen
 
 莫比乌斯反演是数论中的重要内容。对于一些函数 $f(n)$，如果很难直接求出它的值，而容易求出其倍数和或约数和 $g(n)$，那么可以通过莫比乌斯反演简化运算，求得 $f(n)$ 的值。
 
-开始学习莫比乌斯反演前，需要先学习一些前置知识：[数论分块](./block.md)、[狄利克雷卷积](./dirichlet.md)。详见这两个文档。
+开始学习莫比乌斯反演前，需要先学习一些前置知识：[数论分块](./block.md)。
 
-### 公式
+### 莫比乌斯函数
+
+### 定义
+
+$\mu$ 为莫比乌斯函数，定义为
+
+$$
+\mu(n)=
+\begin{cases}
+1&n=1\\
+0&n\text{ 含有平方因子}\\
+(-1)^k&k\text{ 为 }n\text{ 的本质不同质因子个数}\\
+\end{cases}
+$$
+
+详细解释一下：
+
+令 $n=\prod_{i=1}^kp_i^{c_i}$，其中 $p_i$ 为质因子，$c_i\ge 1$。上述定义表示：
+
+1. $n=1$ 时，$\mu(n)=1$；
+2.  对于 $n\not= 1$ 时：
+    1. 当存在 $i\in [1,k]$，使得 $c_i > 1$ 时，$\mu(n)=0$，也就是说只要某个质因子出现的次数超过一次，$\mu(n)$ 就等于 $0$；
+    2. 当任意 $i\in[1,k]$，都有 $c_i=1$ 时，$\mu(n)=(-1)^k$，也就是说每个质因子都仅仅只出现过一次时，即 $n=\prod_{i=1}^kp_i$，$\{p_i\}_{i=1}^k$ 中个元素唯一时，$\mu(n)$ 等于 $-1$ 的 $k$ 次幂，此处 $k$ 指的便是仅仅只出现过一次的质因子的总个数。
+
+### 性质
+
+莫比乌斯函数不仅是积性函数，还有如下性质：
+
+$$
+\sum_{d\mid n}\mu(d)=
+\begin{cases}
+1&n=1\\
+0&n\neq 1\\
+\end{cases}
+$$
+
+即 $\sum_{d\mid n}\mu(d)=\varepsilon(n)$，$\mu * 1 =\varepsilon$
+
+### 证明
+
+设 $\displaystyle n=\prod_{i=1}^k{p_i}^{c_i},n'=\prod_{i=1}^k p_i$
+
+那么 $\displaystyle\sum_{d\mid n}\mu(d)=\sum_{d\mid n'}\mu(d)=\sum_{i=0}^k C_k^i\cdot(-1)^i=(1+(-1))^k$
+
+根据二项式定理，易知该式子的值在 $k=0$ 即 $n=1$ 时值为 $1$ 否则为 $0$，这也同时证明了 $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]=\varepsilon(n)$ 以及 $\mu\ast 1=\varepsilon$
+
+???+note "注"
+    这个性质意味着，莫比乌斯函数在狄利克雷生成函数中，等价于黎曼函数 $\zeta$ 的倒数。所以在狄利克雷卷积中，莫比乌斯函数是常数函数 $1$ 的逆元。
+
+### 补充结论
+
+反演结论：$\displaystyle [\gcd(i,j)=1]=\sum_{d\mid\gcd(i,j)}\mu(d)$
+
+**直接推导**：如果看懂了上一个结论，这个结论稍加思考便可以推出：如果 $\gcd(i,j)=1$ 的话，那么代表着我们按上个结论中枚举的那个 $n$ 是 $1$，也就是式子的值是 $1$，反之，有一个与 $[\gcd(i,j)=1]$ 相同的值：$0$
+
+**利用 $\varepsilon$ 函数**：根据上一结论，$[\gcd(i,j)=1]=\varepsilon(\gcd(i,j))$，将 $\varepsilon$ 展开即可。
+
+### 线性筛
+
+由于 $\mu$ 函数为积性函数，因此可以线性筛莫比乌斯函数（线性筛基本可以求所有的积性函数，尽管方法不尽相同）。
+
+???+ note "线性筛实现"
+    ```cpp
+    void getMu() {
+      mu[1] = 1;
+      for (int i = 2; i <= n; ++i) {
+        if (!flg[i]) p[++tot] = i, mu[i] = -1;
+        for (int j = 1; j <= tot && i * p[j] <= n; ++j) {
+          flg[i * p[j]] = 1;
+          if (i % p[j] == 0) {
+            mu[i * p[j]] = 0;
+            break;
+          }
+          mu[i * p[j]] = -mu[i];
+        }
+      }
+    }
+    ```
+
+### 拓展
+
+证明
+
+$$
+\varphi \ast 1=\operatorname{id}
+$$
+
+将 $n$ 分解质因数：$\displaystyle n=\prod_{i=1}^k {p_i}^{c_i}$
+
+首先，因为 $\varphi$ 是积性函数，故只要证明当 $n'=p^c$ 时 $\displaystyle\varphi \ast 1=\sum_{d\mid n'}\varphi(\frac{n'}{d})=\operatorname{id}$ 成立即可。
+
+因为 $p$ 是质数，于是 $d=p^0,p^1,p^2,\cdots,p^c$
+
+易知如下过程：
+
+$$
+\begin{aligned}
+\varphi \ast 1&=\sum_{d\mid n}\varphi(\frac{n}{d})\\
+&=\sum_{i=0}^c\varphi(p^i)\\
+&=1+p^0\cdot(p-1)+p^1\cdot(p-1)+\cdots+p^{c-1}\cdot(p-1)\\
+&=p^c\\
+&=\operatorname{id}\\
+\end{aligned}
+$$
+
+该式子两侧同时卷 $\mu$ 可得 $\displaystyle\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})$
+
+* * *
+
+### 莫比乌斯变换
 
 设 $f(n),g(n)$ 为两个数论函数。
 
