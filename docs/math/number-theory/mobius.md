@@ -110,49 +110,7 @@ $$
 
 ??? note "代码实现"
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    const int N = 50000;
-    int mu[N + 5], p[N + 5];
-    bool flg[N + 5];
-    void init() {
-      int tot = 0;
-      mu[1] = 1;
-      for (int i = 2; i <= N; ++i) {
-        if (!flg[i]) {
-          p[++tot] = i;
-          mu[i] = -1;
-        }
-        for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
-          flg[i * p[j]] = 1;
-          if (i % p[j] == 0) {
-            mu[i * p[j]] = 0;
-            break;
-          }
-          mu[i * p[j]] = -mu[i];
-        }
-      }
-      for (int i = 1; i <= N; ++i) mu[i] += mu[i - 1];
-    }
-    int solve(int n, int m) {
-      int res = 0;
-      for (int i = 1, j; i <= std::min(n, m); i = j + 1) {
-        j = std::min(n / (n / i), m / (m / i));
-        res += (mu[j] - mu[i - 1]) * (n / i) * (m / i);
-      }
-      return res;
-    }
-    int main() {
-      int T, a, b, c, d, k;
-      init();
-      for (scanf("%d", &T); T; --T) {
-        scanf("%d%d%d%d%d", &a, &b, &c, &d, &k);
-        printf("%d\n", solve(b / k, d / k) - solve(b / k, (c - 1) / k) -
-                           solve((a - 1) / k, d / k) +
-                           solve((a - 1) / k, (c - 1) / k));
-      }
-      return 0;
-    }
+    --8<-- "docs/math/code/mobius/mobius_1.cpp"
     ```
 
 ### [「SPOJ 5971」LCMSUM](https://www.spoj.com/problems/LCMSUM/)
@@ -261,35 +219,7 @@ $$
 
 ??? note "代码实现"
     ```cpp
-    #include <cstdio>
-    const int N = 1000000;
-    int tot, p[N + 5];
-    long long g[N + 5];
-    bool flg[N + 5];
-    
-    void solve() {
-      g[1] = 1;
-      for (int i = 2; i <= N; ++i) {
-        if (!flg[i]) p[++tot] = i, g[i] = 1ll * i * (i - 1) + 1;
-        for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
-          flg[i * p[j]] = 1;
-          if (i % p[j] == 0) {
-            g[i * p[j]] = g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];
-            break;
-          }
-          g[i * p[j]] = g[i] * g[p[j]];
-        }
-      }
-    }
-    int main() {
-      int T, n;
-      solve();
-      for (scanf("%d", &T); T; --T) {
-        scanf("%d", &n);
-        printf("%lld\n", (g[n] + 1) * n / 2);
-      }
-      return 0;
-    }
+    --8<-- "docs/math/code/mobius/mobius_2.cpp"
     ```
 
 ### [「BZOJ 2154」Crash 的数字表格](https://www.luogu.com.cn/problem/P1829)
@@ -366,59 +296,7 @@ $$
 
 ??? note "代码实现"
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    using std::min;
-    
-    const int N = 1e7;
-    const int mod = 20101009;
-    int n, m, mu[N + 5], p[N / 10 + 5], sum[N + 5];
-    bool flg[N + 5];
-    
-    void init() {
-      mu[1] = 1;
-      int tot = 0, k = min(n, m);
-      for (int i = 2; i <= k; ++i) {
-        if (!flg[i]) p[++tot] = i, mu[i] = -1;
-        for (int j = 1; j <= tot && i * p[j] <= k; ++j) {
-          flg[i * p[j]] = 1;
-          if (i % p[j] == 0) {
-            mu[i * p[j]] = 0;
-            break;
-          }
-          mu[i * p[j]] = -mu[i];
-        }
-      }
-      for (int i = 1; i <= k; ++i)
-        sum[i] = (sum[i - 1] + 1LL * i * i % mod * (mu[i] + mod)) % mod;
-    }
-    int Sum(int x, int y) {
-      return (1LL * x * (x + 1) / 2 % mod) * (1LL * y * (y + 1) / 2 % mod) % mod;
-    }
-    int func(int x, int y) {
-      int res = 0;
-      for (int i = 1, j; i <= min(x, y); i = j + 1) {
-        j = min(x / (x / i), y / (y / i));
-        res = (res + 1LL * (sum[j] - sum[i - 1] + mod) * Sum(x / i, y / i) % mod) %
-              mod;
-      }
-      return res;
-    }
-    int solve(int x, int y) {
-      int res = 0;
-      for (int i = 1, j; i <= min(x, y); i = j + 1) {
-        j = min(x / (x / i), y / (y / i));
-        res = (res +
-               1LL * (j - i + 1) * (i + j) / 2 % mod * func(x / i, y / i) % mod) %
-              mod;
-      }
-      return res;
-    }
-    int main() {
-      scanf("%d%d", &n, &m);
-      init();
-      printf("%d\n", solve(n, m));
-    }
+    --8<-- "docs/math/code/mobius/mobius_3.cpp"
     ```
 
 ### [「SDOI2015」约数个数和](https://loj.ac/problem/2185)
@@ -478,166 +356,7 @@ $$
 
 ??? note "代码实现"
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    #define int long long
-    using namespace std;
-    const int N = 5e4 + 5;
-    int n, m, T, pr[N], mu[N], d[N], t[N], cnt;  // t 表示 i 的最小质因子出现的次数
-    bool bp[N];
-    void prime_work(int k) {
-      bp[0] = bp[1] = 1, mu[1] = 1, d[1] = 1;
-      for (int i = 2; i <= k; i++) {
-        if (!bp[i]) pr[++cnt] = i, mu[i] = -1, d[i] = 2, t[i] = 1;
-        for (int j = 1; j <= cnt && i * pr[j] <= k; j++) {
-          bp[i * pr[j]] = 1;
-          if (i % pr[j] == 0) {
-            mu[i * pr[j]] = 0, d[i * pr[j]] = d[i] / (t[i] + 1) * (t[i] + 2),
-                   t[i * pr[j]] = t[i] + 1;
-            break;
-          } else
-            mu[i * pr[j]] = -mu[i], d[i * pr[j]] = d[i] << 1, t[i * pr[j]] = 1;
-        }
-      }
-      for (int i = 2; i <= k; i++) mu[i] += mu[i - 1], d[i] += d[i - 1];
-    }
-    int solve() {
-      int res = 0, mxi = min(n, m);
-      for (int i = 1, j; i <= mxi; i = j + 1)
-        j = min(n / (n / i), m / (m / i)),
-        res += d[n / i] * d[m / i] * (mu[j] - mu[i - 1]);
-      return res;
-    }
-    signed main() {
-      scanf("%lld", &T);
-      prime_work(50000);
-      while (T--) {
-        scanf("%lld%lld", &n, &m);
-        printf("%lld\n", solve());
-      }
-      return 0;
-    }
-    ```
-
-### [「luogu 3768」简单的数学题](https://www.luogu.com.cn/problem/P3768)
-
-求
-
-$$
-\sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot \gcd(i,j)\bmod p
-$$
-
-$$
-n\leq10^{10},5\times10^8\leq p\leq1.1\times10^9,p \text{是质数}
-$$
-
-看似是一道和 $\gcd$ 有关的题，不过由于带有系数，并不容易化简
-
-我们利用 $\varphi\ast1=\operatorname{id}$ 反演
-
-$$
-\begin{aligned}
-& \sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot \gcd(i,j)\\
-=&\sum_{i=1}^n\sum_{j=1}^ni\cdot j
-\sum_{d \mid i,d \mid j}\varphi(d)\\
-=&\sum_{d=1}^n\sum_{i=1}^n
-\sum_{j=1}^n[d \mid i,d \mid j]\cdot i\cdot j
-\cdot\varphi(d)\\
-=&\sum_{d=1}^n
-\sum_{i=1}^{\left\lfloor\frac{n}{d}\right\rfloor}
-\sum_{j=1}^{\left\lfloor\frac{n}{d}\right\rfloor}
-d^2\cdot i\cdot j\cdot\varphi(d)\\
-=&\sum_{d=1}^nd^2\cdot\varphi(d)
-\sum_{i=1}^{\left\lfloor\frac{n}{d}\right\rfloor}i
-\sum_{j=1}^{\left\lfloor\frac{n}{d}\right\rfloor}j\\
-=&\sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)
-\left(F(n)=\frac{1}{2}n\left(n+1\right)\right)\\
-\end{aligned}
-$$
-
-对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2$ 做数论分块，$d^2\varphi(d)$ 的前缀和用杜教筛处理：
-
-$$
-\begin{aligned}
-&f(n)=n^2\varphi(n)=(\operatorname{id}^2\varphi)(n)\\
-&S(n)=\sum_{i=1}^nf(i)=\sum_{i=1}^n(\operatorname{id}^2\varphi)(i)
-\end{aligned}
-$$
-
-杜教筛（见 [杜教筛 - 例 3](../du/#_8)）完了是这样的
-
-$$
-S(n)=\left(\frac{1}{2}n(n+1)\right)^2-\sum_{i=2}^ni^2S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-$$
-
-分块递归求解即可，复杂度 $O(n^{\frac{2}{3}})$.
-
-??? note "代码实现"
-    ```cpp
-    #include <cmath>
-    #include <cstdio>
-    #include <map>
-    #define int long long
-    using namespace std;
-    const signed N = 5e6, NP = 5e6, SZ = N;
-    int n, P, inv2, inv6, s[N];
-    signed phi[N], p[NP], cnt, pn;
-    bool bp[N];
-    map<int, int> s_map;
-    int ksm(int a, int m) {  // 求逆元用
-      int res = 1;
-      while (m) {
-        if (m & 1) res = res * a % P;
-        a = a * a % P, m >>= 1;
-      }
-      return res;
-    }
-    void prime_work(signed k) {  // 线性筛phi，s
-      bp[0] = bp[1] = 1, phi[1] = 1;
-      for (signed i = 2; i <= k; i++) {
-        if (!bp[i]) p[++cnt] = i, phi[i] = i - 1;
-        for (signed j = 1; j <= cnt && i * p[j] <= k; j++) {
-          bp[i * p[j]] = 1;
-          if (i % p[j] == 0) {
-            phi[i * p[j]] = phi[i] * p[j];
-            break;
-          } else
-            phi[i * p[j]] = phi[i] * phi[p[j]];
-        }
-      }
-      for (signed i = 1; i <= k; i++)
-        s[i] = (1ll * i * i % P * phi[i] % P + s[i - 1]) % P;
-    }
-    int s3(int k) {
-      return k %= P, (k * (k + 1) / 2) % P * ((k * (k + 1) / 2) % P) % P;
-    }  // 立方和
-    int s2(int k) {
-      return k %= P, k * (k + 1) % P * (k * 2 + 1) % P * inv6 % P;
-    }  // 平方和
-    int calc(int k) {  // 计算S(k)
-      if (k <= pn) return s[k];
-      if (s_map[k]) return s_map[k];  // 对于超过pn的用map离散存储
-      int res = s3(k), pre = 1, cur;
-      for (int i = 2, j; i <= k; i = j + 1)
-        j = k / (k / i), cur = s2(j),
-        res = (res - calc(k / i) * (cur - pre) % P) % P, pre = cur;
-      return s_map[k] = (res + P) % P;
-    }
-    int solve() {
-      int res = 0, pre = 0, cur;
-      for (int i = 1, j; i <= n; i = j + 1)
-        j = n / (n / i), cur = calc(j),
-        res = (res + (s3(n / i) * (cur - pre)) % P) % P, pre = cur;
-      return (res + P) % P;
-    }
-    signed main() {
-      scanf("%lld%lld", &P, &n);
-      inv2 = ksm(2, P - 2), inv6 = ksm(6, P - 2);
-      pn = (int)pow(n, 0.666667);  // n^(2/3)
-      prime_work(pn);
-      printf("%lld", solve());
-      return 0;
-    }  // 不要为了省什么内存把数组开小。。。卡了好几次80
+    --8<-- "docs/math/code/mobius/mobius_4.cpp"
     ```
 
 **另一种推导方式**
