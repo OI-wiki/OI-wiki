@@ -8,19 +8,19 @@ b 不被 a 整除记作 $a\nmid b$。
 
 整除的性质：
 
-$a\mid b\Leftrightarrow -a\mid b \Leftrightarrow a\mid -b\Leftrightarrow \left|a\right|\mid \left|b\right|$
+$a\mid b\iff -a\mid b \iff a\mid -b\iff \left|a\right|\mid \left|b\right|$
 
 $a\mid b\land b\mid c \Rightarrow a\mid c$
 
-$a\mid b\land a\mid c \Leftrightarrow \forall x,y\in\mathbb{Z}, a\mid xb+yc$
+$a\mid b\land a\mid c \iff \forall x,y\in\mathbb{Z}, a\mid xb+yc$
 
 $a\mid b\land b\mid a \Rightarrow b=\pm a$
 
-设 $m\neq 0$，那么 $a\mid b\Leftrightarrow ma\mid mb$。
+设 $m\neq 0$，那么 $a\mid b\iff ma\mid mb$。
 
 设 $b\neq 0$，那么 $a\mid b\Rightarrow \left|a\right|\leq \left|b\right|$。
 
-设 $a\neq 0, b=qa+c$，那么 $a\mid b\Leftrightarrow a\mid c$。
+设 $a\neq 0, b=qa+c$，那么 $a\mid b\iff a\mid c$。
 
 0 是所有非 0 整数的倍数。对于整数 $b\neq 0$，b 的约数只有有限个。
 
