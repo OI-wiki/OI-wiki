@@ -1,4 +1,4 @@
-author: Chrogeek, Enter-tainer, HeRaNO, Ir1d, Marcythm, ShadowsEpic, StudyingFather, Xeonacid, bear-good, billchenchina, diauweb, diauweb, greyqz, kawa-yoiko, ouuan, partychicken, sshwy, stevebraveman, zhouyuyang2002
+author: Chrogeek, Enter-tainer, HeRaNO, Ir1d, Marcythm, ShadowsEpic, StudyingFather, Xeonacid, bear-good, billchenchina, diauweb, diauweb, greyqz, kawa-yoiko, ouuan, partychicken, sshwy, stevebraveman, zhouyuyang2002, renbaoshuo
 
 ## 定义
 
@@ -20,6 +20,10 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 [并查集](../ds/dsu.md)、[贪心](../basic/greedy.md)、[图的存储](./save.md)。
 
 ### 实现
+
+图示：
+
+![](./images/mst-2.apng)
 
 伪代码：
 
@@ -93,6 +97,10 @@ $$
 Prim 算法是另一种常见并且好写的最小生成树算法。该算法的基本思想是从一个结点开始，不断加点（而不是 Kruskal 算法的加边）。
 
 ### 实现
+
+图示：
+
+![](./images/mst-3.apng)
 
 具体来说，每次要选择距离最小的一个结点，以及用新的边更新其他结点的距离。
 
@@ -176,7 +184,7 @@ $$
 
 下面通过一张动态图来举一个例子（图源自 [维基百科](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm)）：
 
-![eg](./images/mst-1.gif)
+![eg](./images/mst-1.apng)
 
 当原图连通时，每次迭代连通块数量至少减半，算法只会迭代不超过 $O(\log V)$ 次，而原图不连通时相当于多个子问题，因此算法复杂度是 $O(E\log V)$ 的。给出算法的伪代码：（修改自 [维基百科](https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm)）
 
@@ -532,11 +540,13 @@ int main() {
 
 ### 性质
 
-不难发现，最小生成树上两个点之间的简单路径上边权最大值 = Kruskal 重构树上两点之间的 LCA 的权值。
+不难发现，原图中两个点之间的所有简单路径上最大边权的最小值 = 最小生成树上两个点之间的简单路径上的最大值 = Kruskal 重构树上两点之间的 LCA 的权值。
 
-也就是说，到点 $x$ 的简单路径上边权最大值 $\leq val$ 的所有点 $y$ 均在 Kruskal 重构树上的某一棵子树内，且恰好为该子树的所有叶子节点。
+也就是说，到点 $x$ 的简单路径上最小边权最大值 $\leq val$ 的所有点 $y$ 均在 Kruskal 重构树上的某一棵子树内，且恰好为该子树的所有叶子节点。
 
 我们在 Kruskal 重构树上找到 $x$ 到根的路径上权值 $\leq val$ 的最浅的节点。显然这就是所有满足条件的节点所在的子树的根节点。
+
+如果需要求原图中两个点之间的所有简单路径上最大边权的最小值，则在跑 Kruskal 的过程中按边权大到小的顺序加边。
 
 ??? note "[「LOJ 137」最小瓶颈路 加强版](https://loj.ac/problem/137)"
     ```cpp

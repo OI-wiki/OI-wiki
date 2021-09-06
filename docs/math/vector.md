@@ -76,7 +76,7 @@ $$
 
 #### 判定两向量共线
 
-两个 **非零** 向量 $\boldsymbol a$ 与 $\boldsymbol b$ 共线 $\Leftrightarrow$ 有唯一实数 $\lambda$，使得 $\boldsymbol b=\lambda \boldsymbol a$。
+两个 **非零** 向量 $\boldsymbol a$ 与 $\boldsymbol b$ 共线 $\iff$ 有唯一实数 $\lambda$，使得 $\boldsymbol b=\lambda \boldsymbol a$。
 
 证明：由数乘的定义可知，对于 **非零** 向量 $\boldsymbol a$，如果存在实数 $\lambda$，使得 $\boldsymbol b=\lambda \boldsymbol a$，那么 $\boldsymbol a \parallel \boldsymbol b$。
 
@@ -148,11 +148,11 @@ $$
 
 #### 判定两向量垂直
 
-$\boldsymbol a \perp \boldsymbol b$ $\Leftrightarrow$ $\boldsymbol a\cdot \boldsymbol b=0$
+$\boldsymbol a \perp \boldsymbol b$ $\iff$ $\boldsymbol a\cdot \boldsymbol b=0$
 
 #### 判定两向量共线
 
-$\boldsymbol a = \lambda \boldsymbol b$ $\Leftrightarrow$ $|\boldsymbol a\cdot \boldsymbol b|=|\boldsymbol a||\boldsymbol b|$
+$\boldsymbol a = \lambda \boldsymbol b$ $\iff$ $|\boldsymbol a\cdot \boldsymbol b|=|\boldsymbol a||\boldsymbol b|$
 
 #### 数量积的坐标运算
 

@@ -29,6 +29,7 @@ Duval 算法运用了贪心的思想。算法过程中我们把串 $s$ 分成三
 下面的代码返回串 $s$ 的 Lyndon 分解方案。
 
 ```cpp
+// C++ Version
 // duval_algorithm
 vector<string> duval(string const& s) {
   int n = s.size(), i = 0;
@@ -51,6 +52,26 @@ vector<string> duval(string const& s) {
 }
 ```
 
+```python
+# Python Version
+# duval_algorithm
+def duval(s):
+    n, i = len(s), 0
+    factorization = []
+    while i < n:
+        j, k = i + 1, i
+        while j < n and s[k] <= s[j]:
+            if s[k] < s[j]:
+                k = i
+            else:
+                k += 1
+            j += 1
+        while i <= k:
+            factorization.append(s[i : j - k])
+            i += j - k
+    return factorization
+```
+
 ### 复杂度分析
 
 接下来我们证明一下这个算法的复杂度。
@@ -66,6 +87,7 @@ vector<string> duval(string const& s) {
 于是我们在分解的过程中记录每一次的近似 Lyndon 串的开头即可。
 
 ```cpp
+// C++ Version
 // smallest_cyclic_string
 string min_cyclic_string(string s) {
   s += s;
@@ -85,6 +107,27 @@ string min_cyclic_string(string s) {
   }
   return s.substr(ans, n / 2);
 }
+```
+
+```python
+# Python Version
+# smallest_cyclic_string
+def min_cyclic_string(s):
+    s += s
+    n = len(s)
+    i, ans = 0, 0
+    while i < n / 2:
+        ans = i
+        j, k = i + 1, i
+        while j < n and s[k] <= s[j]:
+            if s[k] < s[j]:
+                k = i
+            else:
+                k += 1
+            j += 1
+        while i <= k:
+            i += j - k
+    return s[ans : n / 2]
 ```
 
 ## 习题

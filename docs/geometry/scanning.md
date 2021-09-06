@@ -116,7 +116,7 @@
           s[i + n + 1] = y2;
         }
         sort(s + 1, s + (2 * n + 1));  // 离散化
-        sort(p, p + 2 * n, cmp);  // 把矩形的边的纵坐标从小到大排序
+        sort(p, p + 2 * n, cmp);  // 把矩形的边的横坐标从小到大排序
         build(1, 1, 2 * n);       // 建树
         memset(lazy, 0, sizeof(lazy));
         update(1, p[0].y1, p[0].y2, p[0].flag);

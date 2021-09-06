@@ -6,7 +6,56 @@
 
 参见：[`qsort`](https://zh.cppreference.com/w/c/algorithm/qsort)，[`std::qsort`](https://zh.cppreference.com/w/cpp/algorithm/qsort)
 
-该函数为 C 标准库实现的 [快速排序](quick-sort.md)，定义在 `<stdlib.h>` 中。在 C++ 标准库里，该函数定义在 `<cstdlib>` 中。
+该函数为 C 标准库实现的 [快速排序](./quick-sort.md)，定义在 `<stdlib.h>` 中。在 C++ 标准库里，该函数定义在 `<cstdlib>` 中。
+
+### qsort 与 bsearch 的比较函数
+
+qsort 函数有四个参数：数组名、元素个数、元素大小、比较规则。其中，比较规则通过指定比较函数来实现，指定不同的比较函数可以实现不同的排序规则。
+
+比较函数的参数限定为两个 const void 类型的指针。返回值规定为正数、负数和 0。
+
+比较函数的一种示例写法为：
+
+```c
+int compare(const void *p1, const void *p2)  // int 类型数组的比较函数
+{
+  int *a = (int *)p1;
+  int *b = (int *)p2;
+  if (*a > *b)
+    return 1;  // 返回正数表示 a 大于 b
+  else if (*a < *b)
+    return -1;  // 返回负数表示 a 小于 b
+  else
+    return 0;  // 返回 0 表示 a 与 b 等价
+}
+```
+
+注意：返回值用两个元素相减代替正负数是一种典型的错误写法，因为这样可能会导致溢出错误。
+
+以下是排序结构体的一个示例：
+
+```c
+struct eg  // 示例结构体
+{
+  int e;
+  int g;
+};
+
+int compare(const void *p1,
+            const void *p2)  // struct eg 类型数组的比较函数：按成员 e 排序
+{
+  struct eg *a = (struct eg *)p1;
+  struct eg *b = (struct eg *)p2;
+  if (a->e > b->e)
+    return 1;  // 返回正数表示 a 大于 b
+  else if (a->e < b->e)
+    return -1;  // 返回负数表示 a 小于 b
+  else
+    return 0;  // 返回 0 表示 a 与 b 等价
+}
+```
+
+这里也可以看出，等价不代表相等，只代表在此比较规则下两元素等价。
 
 ## std::sort
 
@@ -23,11 +72,15 @@ std::sort(a, a + n);
 std::sort(a, a + n, cmp);
 ```
 
-更为常见的库排序函数是 `std::sort` 函数。该函数的最后一个参数为二元比较函数，未指定 cmp 函数时，默认按从小到大的顺序排序。
+注意：sort 的比较函数的返回值是 true 和 false，用 true 和 false 表示两个元素的大小（先后）关系，这与 qsort 的三值比较函数的语义完全不同。具体内容详见上方给出的 sort 的文档。
+
+如果要将 sort 简单改写为 qsort，维持排序顺序整体上不变（不考虑等价的元素），需要将返回 true 改为 - 1，返回 false 改为 1。
+
+`std::sort` 函数是更常用的 C++ 库比较函数。该函数的最后一个参数为二元比较函数，未指定 `cmp` 函数时，默认按从小到大的顺序排序。
 
 旧版 C++ 标准中仅要求它的 **平均** 时间复杂度达到 $O(n\log n)$。C++11 标准以及后续标准要求它的 **最坏** 时间复杂度达到 $O(n\log n)$。
 
-C++ 标准并未严格要求此函数的实现算法，具体实现取决于编译器。[libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) 和 [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm) 中的实现算法都是 [内省排序](quick-sort.md#内省排序[^ref3])。
+C++ 标准并未严格要求此函数的实现算法，具体实现取决于编译器。[libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) 和 [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm) 中的实现都使用了 [内省排序](./quick-sort.md#4)。
 
 ## std::nth_element
 
@@ -40,11 +93,11 @@ std::nth_element(first, nth, last);
 std::nth_element(first, nth, last, cmp);
 ```
 
-它重排 $[first, last)$ 中的元素，使得 $nth$ 所指向的元素被更改为 $[first, last)$ 排好序后该位置会出现的元素。这个新的 $nth$ 元素前的所有元素小于或等于新的 $nth$ 元素后的所有元素。
+它重排 `[first, last)` 中的元素，使得 `nth` 所指向的元素被更改为 `[first, last)` 排好序后该位置会出现的元素。这个新的 `nth` 元素前的所有元素小于或等于新的 `nth` 元素后的所有元素。
 
 实现算法是未完成的内省排序。
 
-对于以上两种用法，C++ 标准要求它的平均时间复杂度为 $O(n)$，其中 n =`std::distance(first, last)`。
+对于以上两种用法，C++ 标准要求它的平均时间复杂度为 $O(n)$，其中 n 为 `std::distance(first, last)`。
 
 它常用于构建 [K-D Tree](../ds/kdt.md)。
 
@@ -70,19 +123,20 @@ std::stable_sort(first, last, cmp);
 用法：
 
 ```cpp
+// mid = first + k
 std::partial_sort(first, mid, last);
 std::partial_sort(first, mid, last, cmp);
 ```
 
-将序列中前 $k$ 元素按 cmp 给定的顺序进行原地排序，后面的元素不保证顺序。未指定 cmp 函数时，默认按从小到大的顺序排序。
+将序列中前 `k` 元素按 `cmp` 给定的顺序进行原地排序，后面的元素不保证顺序。未指定 `cmp` 函数时，默认按从小到大的顺序排序。
 
-复杂度：约 $(last-first)\log(mid-first)$ 次应用 `cmp`。
+复杂度：约 $(\mathit{last}-\mathit{first})\log(\mathit{mid}-\mathit{first})$ 次应用 `cmp`。
 
 原理：
 
-`std::partial_sort` 的思想是：对原始容器内区间为 $[first, mid)$ 的元素执行 `make_heap()` 操作，构造一个大根堆，然后将 $[mid, last)$ 中的每个元素和 $first$ 进行比较，保证 $first$ 内的元素为堆内的最大值。如果小于该最大值，则互换元素位置，并对 $[first, mid)$ 内的元素进行调整，使其保持最大堆序。比较完之后，再对 $[first, mid)$ 内的元素做一次对排序 `sort_heap()` 操作，使其按增序排列。注意，堆序和增序是不同的。
+`std::partial_sort` 的思想是：对原始容器内区间为 `[first, mid)` 的元素执行 `make_heap()` 操作，构造一个大根堆，然后将 `[mid, last)` 中的每个元素和 `first` 进行比较，保证 `first` 内的元素为堆内的最大值。如果小于该最大值，则互换元素位置，并对 `[first, mid)` 内的元素进行调整，使其保持最大堆序。比较完之后，再对 `[first, mid)` 内的元素做一次对排序 `sort_heap()` 操作，使其按增序排列。注意，堆序和增序是不同的。
 
-## 定义运算符
+## 自定义比较
 
 参见：[运算符重载](https://zh.cppreference.com/w/cpp/language/operators)
 
@@ -94,9 +148,9 @@ std::partial_sort(first, mid, last, cmp);
 
 ```cpp
 int a[1009], n = 10;
-// ......
-std::sort(a + 1, a + 1 + n);                  // 从小到大排序。
-std::sort(a + 1, a + 1 + n, greater<int>());  // 从大到小排序。
+// ...
+std::sort(a + 1, a + 1 + n);                  // 从小到大排序
+std::sort(a + 1, a + 1 + n, greater<int>());  // 从大到小排序
 ```
 
 ```cpp
@@ -110,10 +164,9 @@ struct data {
 bool cmp(const data u1, const data u2) {
   return (u1.a == u2.a) ? (u1.b > u2.b) : (u1.a > u2.a);
 }
-
-// ......
-std::sort(da + 1, da + 1 + 10);  // 使用结构体中定义的 < 运算符，从小到大排序。
-std::sort(da + 1, da + 1 + 10, cmp);  // 使用 cmp 函数进行比较，从大到小排序。
+// ...
+std::sort(da + 1, da + 1 + 10);  // 使用结构体中定义的 < 运算符，从小到大排序
+std::sort(da + 1, da + 1 + 10, cmp);  // 使用 cmp 函数进行比较，从大到小排序
 ```
 
 ### 严格弱序

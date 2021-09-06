@@ -1,4 +1,4 @@
-﻿# Project Information
+# Project Information
 site_name: OI Wiki
 site_description: OI Wiki 是一个编程竞赛知识整合站点，提供有趣又实用的编程竞赛知识以及其他有帮助的内容，帮助广大编程竞赛爱好者更快更深入地学习编程竞赛
 site_author: OI Wiki Team
@@ -71,6 +71,7 @@ nav:
     - Polygon: tools/polygon.md
     - OJ 工具: tools/oj-tool.md
     - LaTeX 入门: tools/latex.md
+    - Git: tools/git.md
   - 语言基础:
     - 语言基础简介: lang/index.md
     - C++ 基础:
@@ -118,6 +119,7 @@ nav:
     - Java 速成: lang/java.md
   - 算法基础:
     - 算法基础简介: basic/index.md
+    - 复杂度: basic/complexity.md
     - 枚举: basic/enumerate.md
     - 模拟: basic/simulate.md
     - 递归 & 分治: basic/divide-and-conquer.md
@@ -152,6 +154,7 @@ nav:
     - IDA*: search/idastar.md
     - 回溯法: search/backtracking.md
     - Dancing Links: search/dlx.md
+    - Alpha-Beta 剪枝: search/alpha-beta.md
     - 优化: search/opt.md
   - 动态规划:
     - 动态规划部分简介: dp/index.md
@@ -197,6 +200,7 @@ nav:
     - 序列自动机: string/seq-automaton.md
     - 最小表示法: string/minimal-string.md
     - Lyndon 分解: string/lyndon.md
+    - Main-Lorentz 算法: string/main-lorentz.md
   - 数学:
     - 数学部分简介: math/index.md
     - 符号: math/notation.md
@@ -207,36 +211,38 @@ nav:
     - 高精度计算: math/bignum.md
     - 平衡三进制: math/balanced-ternary.md
     - 数论:
-      - 素数: math/prime.md
-      - Meissel-Lehmer 算法: math/meissel-lehmer.md
-      - 最大公约数: math/gcd.md
-      - 欧拉函数: math/euler.md
-      - 筛法: math/sieve.md
-      - 欧拉定理 & 费马小定理: math/fermat.md
-      - 类欧几里德算法: math/euclidean.md
-      - 裴蜀定理: math/bezouts.md
-      - 乘法逆元: math/inverse.md
-      - 线性同余方程: math/linear-equation.md
-      - 中国剩余定理: math/crt.md
-      - 二次剩余: math/quad-residue.md
-      - BSGS: math/bsgs.md
-      - 原根: math/primitive-root.md
-      - 卢卡斯定理: math/lucas.md
-      - 莫比乌斯反演: math/mobius.md
-      - 杜教筛: math/du.md
-      - Powerful Number 筛: math/powerful-number.md
-      - Min_25 筛: math/min-25.md
-      - 洲阁筛: math/zhou.md
-      - 分解质因数: math/pollard-rho.md
-      - 连分数: math/continued-fraction.md
-      - Stern-Brocot 树与 Farey 序列: math/stern-brocot.md
-      - Pell 方程: math/pell-equation.md
+      - 数论基础: math/number-theory/basic.md
+      - 素数: math/number-theory/prime.md
+      - Meissel-Lehmer 算法: math/number-theory/meissel-lehmer.md
+      - 最大公约数: math/number-theory/gcd.md
+      - 欧拉函数: math/number-theory/euler.md
+      - 筛法: math/number-theory/sieve.md
+      - 欧拉定理 & 费马小定理: math/number-theory/fermat.md
+      - 类欧几里德算法: math/number-theory/euclidean.md
+      - 裴蜀定理: math/number-theory/bezouts.md
+      - 乘法逆元: math/number-theory/inverse.md
+      - 线性同余方程: math/number-theory/linear-equation.md
+      - 中国剩余定理: math/number-theory/crt.md
+      - 二次剩余: math/number-theory/quad-residue.md
+      - BSGS: math/number-theory/bsgs.md
+      - 原根: math/number-theory/primitive-root.md
+      - 卢卡斯定理: math/number-theory/lucas.md
+      - 莫比乌斯反演: math/number-theory/mobius.md
+      - 杜教筛: math/number-theory/du.md
+      - Powerful Number 筛: math/number-theory/powerful-number.md
+      - Min_25 筛: math/number-theory/min-25.md
+      - 洲阁筛: math/number-theory/zhou.md
+      - 分解质因数: math/number-theory/pollard-rho.md
+      - 连分数: math/number-theory/continued-fraction.md
+      - Stern-Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
+      - Pell 方程: math/number-theory/pell-equation.md
     - 多项式:
       - 多项式部分简介: math/poly/intro.md
       - 拉格朗日插值: math/poly/lagrange.md
       - 快速傅里叶变换: math/poly/fft.md
       - 快速数论变换: math/poly/ntt.md
       - 快速沃尔什变换: math/poly/fwt.md
+      - Chirp-Z 变换: math/poly/czt.md
       - 多项式求逆: math/poly/inv.md
       - 多项式开方: math/poly/sqrt.md
       - 多项式除法|取模: math/poly/div-mod.md
@@ -250,31 +256,40 @@ nav:
       - 生成函数简介: math/gen-func/intro.md
       - 普通生成函数: math/gen-func/ogf.md
       - 指数生成函数: math/gen-func/egf.md
+      - 狄利克雷生成函数: math/gen-func/dgf.md
     - 线性代数:
       - 向量: math/vector.md
       - 矩阵: math/matrix.md
       - 高斯消元: math/gauss.md
+      - 特征多项式: math/char-poly.md
       - 线性基: math/basis.md
     - 线性规划:
       - 线性规划简介: math/linear-programming.md
       - 单纯形算法: math/simplex.md
     - 组合数学:
-      - 排列组合: math/combination.md
-      - 卡特兰数: math/catalan.md
-      - 斯特林数: math/stirling.md
-      - 贝尔数: math/bell.md
-      - 伯努利数: math/bernoulli.md
-      - 康托展开: math/cantor.md
-      - 容斥原理: math/inclusion-exclusion-principle.md
-      - 抽屉原理: math/drawer-principle.md
-      - Eulerian Number: math/eulerian.md
+      - 排列组合: math/combinatorics/combination.md
+      - 卡特兰数: math/combinatorics/catalan.md
+      - 斯特林数: math/combinatorics/stirling.md
+      - 贝尔数: math/combinatorics/bell.md
+      - 伯努利数: math/combinatorics/bernoulli.md
+      - 康托展开: math/combinatorics/cantor.md
+      - 容斥原理: math/combinatorics/inclusion-exclusion-principle.md
+      - 抽屉原理: math/combinatorics/drawer-principle.md
+      - Eulerian Number: math/combinatorics/eulerian.md
+      - 分拆数: math/combinatorics/partition.md
+    - 群论:
+      - 群论简介:  math/group-theory.md
+      - 置换群: math/permutation-group.md
     - 概率初步: math/expectation.md
-    - 置换群: math/permutation-group.md
     - 斐波那契数列: math/fibonacci.md
     - 博弈论: math/game-theory.md
     - 牛顿迭代法: math/newton.md
     - 数值积分: math/integral.md
     - 分段打表: math/dictionary.md
+    - 傅里叶-莫茨金消元法: math/fourier-motzkin-elimination.md
+    - 序理论: math/order-theory.md
+    - 杨氏矩阵: math/young-tableau.md
+    - Schreier–Sims 算法: math/schreier-sims.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
     - 栈: ds/stack.md
@@ -332,6 +347,8 @@ nav:
       - Euler Tour Tree: ds/ett.md
       - Top Tree: ds/top-tree.md
     - 析合树: ds/divide-combine.md
+    - PQ 树: ds/pq-tree.md
+    - 手指树: ds/finger-tree.md
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论相关概念: graph/concept.md
@@ -409,7 +426,6 @@ nav:
     - 计算几何杂项: geometry/misc.md
   - 杂项:
     - 杂项简介: misc/index.md
-    - 复杂度: misc/complexity.md
     - 离散化: misc/discrete.md
     - 离线算法:
       - 离线算法简介: misc/offline.md
@@ -436,6 +452,7 @@ nav:
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
     - 主元素问题: misc/main-element.md
+    - Garsia-Wachs 算法: misc/garsia-wachs.md
   - 专题:
     - RMQ: topic/rmq.md
     - 并查集应用: topic/dsu-app.md
@@ -513,6 +530,7 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.magiclink
   - pymdownx.mark
+  - pymdownx.snippets
   - pymdownx.progressbar
   - pymdownx.smartsymbols
   - pymdownx.superfences:

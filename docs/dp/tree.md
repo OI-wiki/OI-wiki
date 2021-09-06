@@ -21,44 +21,7 @@
 代码：
 
 ```cpp
-#include <algorithm>
-#include <cstdio>
-using namespace std;
-struct edge {
-  int v, next;
-} e[6005];
-int head[6005], n, cnt, f[6005][2], ans, is_h[6005], vis[6005];
-void addedge(int u, int v) {
-  e[++cnt].v = v;
-  e[cnt].next = head[u];
-  head[u] = cnt;
-}
-void calc(int k) {
-  vis[k] = 1;
-  for (int i = head[k]; i; i = e[i].next) {  // 枚举该结点的每个子结点
-    if (vis[e[i].v]) continue;
-    calc(e[i].v);
-    f[k][1] += f[e[i].v][0];
-    f[k][0] += max(f[e[i].v][0], f[e[i].v][1]);
-  }
-  return;
-}
-int main() {
-  scanf("%d", &n);
-  for (int i = 1; i <= n; i++) scanf("%d", &f[i][1]);
-  for (int i = 1; i < n; i++) {
-    int l, k;
-    scanf("%d%d", &l, &k);
-    is_h[l] = 1;
-    addedge(k, l);
-  }
-  for (int i = 1; i <= n; i++)
-    if (!is_h[i]) {  // 从根结点开始DFS
-      calc(i);
-      printf("%d", max(f[i][1], f[i][0]));
-      return 0;
-    }
-}
+--8<-- "docs/dp/code/tree/tree_1.cpp"
 ```
 
 ### 习题
@@ -102,37 +65,7 @@ $f$ 的第二维可以很轻松地用滚动数组的方式省略掉，注意这�
 
 ??? note "参考代码"
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    #include <vector>
-    using namespace std;
-    int f[305][305], s[305], n, m;
-    vector<int> e[305];
-    int dfs(int u) {
-      int p = 1;
-      f[u][1] = s[u];
-      for (auto v : e[u]) {
-        int siz = dfs(v);
-        // 注意下面两重循环的上界和下界
-        // 只考虑已经合并过的子树，以及选的课程数超过 m+1 的状态没有意义
-        for (int i = min(p, m + 1); i; i--)
-          for (int j = 1; j <= siz && i + j <= m + 1; j++)
-            f[u][i + j] = max(f[u][i + j], f[u][i] + f[v][j]);
-        p += siz;
-      }
-      return p;
-    }
-    int main() {
-      scanf("%d%d", &n, &m);
-      for (int i = 1; i <= n; i++) {
-        int k;
-        scanf("%d%d", &k, &s[i]);
-        e[k].push_back(i);
-      }
-      dfs(0);
-      printf("%d", f[0][m + 1]);
-      return 0;
-    }
+    --8<-- "docs/dp/code/tree/tree_2.cpp"
     ```
 
 ### 习题
@@ -154,7 +87,7 @@ $f$ 的第二维可以很轻松地用滚动数组的方式省略掉，注意这�
 ???+note "例题 [[POI2008]STA-Station](https://www.luogu.com.cn/problem/P3478)"
     给定一个 $n$ 个点的树，请求出一个结点，使得以这个结点为根时，所有结点的深度之和最大。
 
-不妨令 $u$ 为当前结点，$v$ 为当前结点的子结点。首先需要用 $s_i$ 来表示以 $i$ 为根的子树中的结点个数，并且有 $s_u=\sum s_v$。显然需要一次 DFS 来计算所有的 $s_i$，这次的 DFS 就是预处理，我们得到了以某个结点为根时其子树中的结点总数。
+不妨令 $u$ 为当前结点，$v$ 为当前结点的子结点。首先需要用 $s_i$ 来表示以 $i$ 为根的子树中的结点个数，并且有 $s_u=1+\sum s_v$。显然需要一次 DFS 来计算所有的 $s_i$，这次的 DFS 就是预处理，我们得到了以某个结点为根时其子树中的结点总数。
 
 考虑状态转移，这里就是体现＂换根＂的地方了。令 $f_u$ 为以 $u$ 为根时，所有结点的深度之和。
 
@@ -170,67 +103,7 @@ $f_v\leftarrow f_u$ 可以体现换根，即以 $u$ 为根转移到以 $v$ 为�
 
 ??? note "参考代码"
     ```cpp
-    #include <bits/stdc++.h>
-    
-    using namespace std;
-    
-    int head[1000010 << 1], tot;
-    long long n, size[1000010], dep[1000010];
-    long long f[1000010];
-    
-    struct node {
-      int to, next;
-    } e[1000010 << 1];
-    
-    void add(int u, int v) {
-      e[++tot] = node{v, head[u]};
-      head[u] = tot;
-    }
-    
-    void dfs(int u, int fa) {
-      size[u] = 1;
-      dep[u] = dep[fa] + 1;
-      for (int i = head[u]; i; i = e[i].next) {
-        int v = e[i].to;
-        if (v != fa) {
-          dfs(v, u);
-          size[u] += size[v];
-        }
-      }
-    }
-    
-    void get_ans(int u, int fa) {
-      for (int i = head[u]; i; i = e[i].next) {
-        int v = e[i].to;
-        if (v != fa) {
-          f[v] = f[u] - size[v] * 2 + n;
-          get_ans(v, u);
-        }
-      }
-    }
-    
-    int main() {
-      scanf("%lld", &n);
-      int u, v;
-      for (int i = 1; i <= n - 1; i++) {
-        scanf("%d %d", &u, &v);
-        add(u, v);
-        add(v, u);
-      }
-      dfs(1, 1);
-      for (int i = 1; i <= n; i++) f[1] += dep[i];
-      get_ans(1, 1);
-      long long int ans = -1;
-      int id;
-      for (int i = 1; i <= n; i++) {
-        if (f[i] > ans) {
-          ans = f[i];
-          id = i;
-        }
-      }
-      printf("%d\n", id);
-      return 0;
-    }
+    --8<-- "docs/dp/code/tree/tree_3.cpp"
     ```
 
 ### 习题

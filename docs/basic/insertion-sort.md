@@ -6,6 +6,8 @@
 
 一个与插入排序相同的操作是打扑克牌时，从牌桌上抓一张牌，按牌面大小插到手牌后，再抓下一张牌。
 
+![insertion-sort-1-animate-example](images/insertion-sort-1-animate-example.svg)
+
 ## 性质
 
 ### 稳定性
@@ -40,6 +42,7 @@ $$
 ### C++
 
 ```cpp
+// C++ Version
 void insertion_sort(int* a, int n) {
   // 对 a[1],a[2],...,a[n] 进行插入排序
   for (int i = 2; i <= n; ++i) {
@@ -52,4 +55,18 @@ void insertion_sort(int* a, int n) {
     a[j + 1] = key;
   }
 }
+```
+
+### Python
+
+```python
+# Python Version
+def insertion_sort(a, n):
+    for i in range(2, n + 1):
+        key = a[i]
+        j = i - 1
+        while j > 0 and a[j] > key:
+            a[j + 1] = a[j]
+            j = j - 1
+        a[j + 1] = key
 ```

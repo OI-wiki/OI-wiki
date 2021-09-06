@@ -97,6 +97,7 @@ author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marc
 因为是连续的，所以只要与上一个元素进行比较即可。
 
 ```cpp
+// C++ Version
 int a[MAXN];
 int dp() {
   int now = 1, ans = 1;
@@ -111,6 +112,20 @@ int dp() {
 }
 ```
 
+```python
+# Python Version
+a = [0] * MAXN
+def dp():
+    now, ans = 1, 1
+    for i in range(2, n + 1):
+        if a[i] >= a[i + 1]:
+            now += 1
+        else:
+            now = 1
+        ans = max(now, ans)
+    return ans
+```
+
 ## 最长不下降子序列
 
 与最长连续不下降子序列不同的是，不需要这个子序列是连续的了。
@@ -122,6 +137,7 @@ int dp() {
 $O\left(n^2\right)$ 的算法。每一次从头扫描找出最佳答案。
 
 ```cpp
+// C++ Version
 int a[MAXN], d[MAXN];
 int dp() {
   d[1] = 1;
@@ -135,6 +151,21 @@ int dp() {
   }
   return ans;
 }
+```
+
+```python
+# Python Version
+a = [0] * MAXN
+d = [0] * MAXN
+def dp():
+    d[1] = 1
+    ans = 1
+    for i in range(2, n + 1):
+        for j in range(1, i):
+            if a[j] <= a[i]:
+                d[i] = max(d[i], d[j] + 1)
+                ans = max(ans, d[i])
+    return ans
 ```
 
 ### 稍复杂的第二种
@@ -155,6 +186,7 @@ $O\left(n \log n\right)$ 的算法，参考了这篇文章 <https://www.cnblogs.
 那么代码如下：
 
 ```cpp
+// C++ Version
 for (int i = 0; i < n; ++i) scanf("%d", a + i);
 memset(dp, 0x1f, sizeof dp);
 mx = dp[0];
@@ -163,6 +195,17 @@ for (int i = 0; i < n; ++i) {
 }
 ans = 0;
 while (dp[ans] != mx) ++ans;
+```
+
+```python
+# Python Version
+dp = [0x1f1f1f1f] * MAXN
+mx = dp[0]
+for i in range(0, n):
+    bisect.insort_left(dp, a[i], 0, len(dp))
+ans = 0
+while dp[ans] != mx:
+    ans += 1
 ```
 
 ## 经典问题（来自习题）

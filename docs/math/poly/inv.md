@@ -47,6 +47,19 @@ $$
 
 参见 [**Newton's Method**](./newton.md#newtons-method).
 
+### Graeffe 法
+
+欲求 $f^{-1}(x)\bmod x^{2n}$ 考虑
+
+$$
+\begin{aligned}
+f^{-1}(x)\bmod x^{2n}&= f(-x)(f(x)f(-x))^{-1}\bmod x^{2n}\\
+&=f(-x)g^{-1}(x^2)\bmod x^{2n}
+\end{aligned}
+$$
+
+只需求出 $g^{-1}(x)\bmod x^n$ 即可还原出 $g^{-1}(x^2)\bmod x^{2n}$ 因为 $f(x)f(-x)$ 是偶函数，时间复杂度同上。
+
 ## 代码
 
 ??? "多项式求逆"

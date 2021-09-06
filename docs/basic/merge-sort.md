@@ -43,7 +43,7 @@ $$
 13&\qquad p \gets rr\\
 14&\qquad q \gets mid\\
 15&\qquad\textbf{for}\text{ each } i \text{ in the } ll\dots rr-1\\
-16&\qquad\qquad\textbf{if}\ p\geqslant mid\ or\ q\lt rr\ and\ A[q]\lt A[p]\\
+16&\qquad\qquad\textbf{if}\ p\geqslant mid\ or\ q < rr\ and\ A[q] < A[p]\\
 17&\qquad\qquad\qquad T[i] \gets A[q]\\
 18&\qquad\qquad\qquad q \gets q+1\\
 19&\qquad\qquad\textbf{else}\\
@@ -56,8 +56,10 @@ $$
 ### C++
 
 ```cpp
+// C++ Version
 void merge(int ll, int rr) {
-  // 用来把 a[ll.. rr - 1] 这一区间的数排序。 t 数组是临时存放有序的版本用的。
+  // 用来把 a 数组 [ll, rr - 1] 这一区间的数排序。 t
+  // 数组是临时存放有序的版本用的。
   if (rr - ll <= 1) return;
   int mid = ll + (rr - ll >> 1);
   merge(ll, mid);
@@ -72,21 +74,46 @@ void merge(int ll, int rr) {
   }
   for (int i = ll; i < rr; ++i) a[i] = t[i];
 }
-//关键点在于一次性创建数组，避免在每次递归调用时创建，以避免对象的无谓构造和析构。
+// 关键点在于一次性创建数组，避免在每次递归调用时创建，以避免内存分配的耗时。
+```
+
+### Python
+
+```python
+# Python Version
+def merge_sort(ll, rr):
+    if rr - ll <= 1:
+        return
+    mid = math.floor((rr + ll) / 2)
+    merge_sort(ll, mid)
+    merge_sort(mid, rr)
+    p = s = ll
+    q = mid
+    while(s < rr):
+        if p >= mid or (q < rr and a[p] > a[q]):
+            s += 1
+            q += 1
+            t[s] = a[q]
+        else:
+            s += 1
+            p += 1
+            t[s] = a[p]
+    for i in range(ll, rr):
+        a[i] = t[i]
 ```
 
 ## 逆序对
 
 归并排序还可以用来求逆序对的个数。
 
-所谓逆序对，就是满足 $a_{i} > a_{j}$ 且 $i < j$ 的数对 $(i, j)$。
+所谓逆序对，就是对于一个数组 $a$，满足 $a_{i} > a_{j}$ 且 $i < j$ 的数对 $(i, j)$。
 
-代码实现中注释掉的 `ans += mid - p` 就是在统计逆序对个数。具体来说，算法把靠后的数放到前面了（较小的数放在前面），所以在这个数原来位置之前的、比它大的数都会和它形成逆序对，而这个个数就是还没有合并进去的数的个数，即为 `mid - p`。
+代码实现中注释掉的 `ans += mid - p` 就是在统计逆序对个数。具体来说，算法把靠后的数放到前面了（较小的数放在前面），所以在这个数原来位置之前的、比它大的数都会和它形成逆序对，而这个个数就是还没有合并进去的数的个数，即 `mid - p`。
 
 另外，逆序对也可以用 [树状数组](../ds/fenwick.md)、[线段树](../ds/seg.md) 等数据结构求解。这三种方法的时间复杂度都是 $O(n \log n)$。
 
 ## 外部链接
 
 - [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/)
-- [希尔排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
+- [归并排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
 - [逆序对 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E9%80%86%E5%BA%8F%E5%AF%B9)
