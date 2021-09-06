@@ -72,5 +72,5 @@ struct Edge {
 ## 参考资料
 
 1. [Class - zh.cppreference.com](https://zh.cppreference.com/w/cpp/language/class)
-1. [Data structures - cplusplus.com](http://www.cplusplus.com/doc/tutorial/structures/)
-1. [对齐方式 - Microsoft Docs](https://docs.microsoft.com/zh-cn/cpp/cpp/alignment-cpp-declarations)
+2. [Data structures - cplusplus.com](http://www.cplusplus.com/doc/tutorial/structures/)
+3. [对齐方式 - Microsoft Docs](https://docs.microsoft.com/zh-cn/cpp/cpp/alignment-cpp-declarations)
