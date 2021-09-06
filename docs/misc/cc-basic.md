@@ -2,7 +2,7 @@
 
 本文中许多结论都是不加证明的，如果有兴趣的话可以自行查阅相关证明。
 
-前置知识：[时间复杂度](./complexity.md)。
+前置知识：[时间复杂度](../basic/complexity.md)。
 
 ## 问题
 
@@ -325,6 +325,11 @@ $$
 复杂度类 $\mathsf{P}$ 与 $\mathsf{NP}$ 是否相等是计算复杂度理论中一个著名的尚未解决的问题。
 
 若 $\mathsf{P}=\mathsf{NP}$，可以得到 $\mathsf{NP}=\mathsf{co-NP}$，但反之不行（目前没有基于 $\mathsf{NP}=\mathsf{co-NP}$ 证明 $\mathsf{P}=\mathsf{NP}$ 的方法）。
+
+???+note "为什么 NP?=co-NP 不是显然的？"
+    由于 $\mathsf{NP}$ 问题和与其对应的 $\mathsf{co-NP}$ 问题答案相反，很容易有这种想法：对于一个 $\mathsf{co-NP}$ 问题，我只要将解决其补集的非确定性图灵机的输出反过来，就解决了该 $\mathsf{co-NP}$ 问题，所以 $\mathsf{NP}=\mathsf{co-NP}$。
+    
+    实际上，上面所说的这种方法确实能够解决该 $\mathsf{co-NP}$ 问题，但并没有找到一个非确定性图灵机来解决它：如果一个图灵机所做的事情是将一个非确定性图灵机的输出反过来，该图灵机并不是一个非确定性图灵机。因为，非确定性图灵机接受是在某个分支处接受，而拒绝是在所有分支处拒绝；而将其输出反过来，就变成了接受是在所有分支处，而拒绝是在一个分支处，而这样就不符合非确定性图灵机的定义了，所以能用该图灵机解决这个 $\mathsf{co-NP}$ 问题并不能使这个 $\mathsf{co-NP}$ 问题变成一个 $\mathsf{NP}$ 问题。
 
 若 $\mathsf{P}=\mathsf{NP}$，还可以得到 $\mathsf{EXPTIME}=\mathsf{NEXPTIME}$。
 

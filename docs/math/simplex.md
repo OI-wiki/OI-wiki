@@ -531,78 +531,7 @@ $$
 把对应出的系数矩阵代入到单纯形算法就可以求出最优解了。
 
 ```c++
-#include <algorithm>
-#include <cmath>
-#include <cstdio>
-#include <cstring>
-#include <iostream>
-using namespace std;
-typedef long long ll;
-const int M = 10005, N = 1005, INF = 1e9;
-const double eps = 1e-6;
-inline int read() {
-  char c = getchar();
-  int x = 0, f = 1;
-  while (c < '0' || c > '9') {
-    if (c == '-') f = -1;
-    c = getchar();
-  }
-  while (c >= '0' && c <= '9') {
-    x = x * 10 + c - '0';
-    c = getchar();
-  }
-  return x * f;
-}
-
-int n, m;
-double a[M][N], b[M], c[N], v;
-void pivot(int l, int e) {
-  b[l] /= a[l][e];
-  for (int j = 1; j <= n; j++)
-    if (j != e) a[l][j] /= a[l][e];
-  a[l][e] = 1 / a[l][e];
-
-  for (int i = 1; i <= m; i++)
-    if (i != l && fabs(a[i][e]) > 0) {
-      b[i] -= a[i][e] * b[l];
-      for (int j = 1; j <= n; j++)
-        if (j != e) a[i][j] -= a[i][e] * a[l][j];
-      a[i][e] = -a[i][e] * a[l][e];
-    }
-
-  v += c[e] * b[l];
-  for (int j = 1; j <= n; j++)
-    if (j != e) c[j] -= c[e] * a[l][j];
-  c[e] = -c[e] * a[l][e];
-
-  // swap(B[l],N[e])
-}
-
-double simplex() {
-  while (true) {
-    int e = 0, l = 0;
-    for (e = 1; e <= n; e++)
-      if (c[e] > eps) break;
-    if (e == n + 1) return v;
-    double mn = INF;
-    for (int i = 1; i <= m; i++)
-      if (a[i][e] > eps && mn > b[i] / a[i][e]) mn = b[i] / a[i][e], l = i;
-    if (mn == INF) return INF;  // unbounded
-    pivot(l, e);
-  }
-}
-
-int main() {
-  n = read();
-  m = read();
-  for (int i = 1; i <= n; i++) c[i] = read();
-  for (int i = 1; i <= m; i++) {
-    int s = read(), t = read();
-    for (int j = s; j <= t; j++) a[i][j] = 1;
-    b[i] = read();
-  }
-  printf("%d", (int)(simplex() + 0.5));
-}
+--8<-- "docs/math/code/simplex/simplex_1.cpp"
 ```
 
 ## 对偶原理

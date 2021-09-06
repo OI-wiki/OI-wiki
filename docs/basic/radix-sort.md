@@ -1,5 +1,5 @@
 ???+ warning
-    本页面要介绍的不是 [**计数排序**](counting-sort.md)。
+    本页面要介绍的不是 [**计数排序**](./counting-sort.md)。
 
 本页面将简要介绍基数排序。
 
@@ -78,7 +78,7 @@ void counting_sort(int p) {
 
 void radix_sort() {
   for (int i = k; i >= 1; --i) {
-    //借助计数排序完成对关键字的排序
+    // 借助计数排序完成对关键字的排序
     counting_sort(i);
   }
 }

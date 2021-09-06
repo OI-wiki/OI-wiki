@@ -50,4 +50,6 @@ $$
 
 ## 网络流 24 题
 
-<https://loj.ac/problems/tag/30>
+[LibreOJ](https://loj.ac/problems/tag/30)
+
+[洛谷](https://www.luogu.com.cn/problem/list?tag=332)

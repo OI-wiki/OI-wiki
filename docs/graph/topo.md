@@ -44,7 +44,7 @@ else
 
 可以参考该图
 
-![topo](images/topo.png)
+![topo](images/topo-example.svg)
 
 对其排序的结果就是：2 -> 8 -> 0 -> 3 -> 7 -> 1 -> 5 -> 6 -> 9 -> 4 -> 11 -> 10 -> 12
 
