@@ -107,6 +107,8 @@ int main() {
 }
 ```
 
+C++ 中引入了引用的概念，相对于指针来说，更易用，也更安全。详情可以参见 [C++：引用](./reference.md) 以及 [C 与 C++ 的区别：指针与引用](./c-cpp.md#指针与引用)。
+
 ### 动态创建类型
 
 除此之外，程序编写时往往会涉及到动态内存分配，即，程序会在运行时，向操作系统动态地申请或归还存放数据所需的内存。当程序通过调用操作系统接口申请内存时，操作系统将返回程序所申请空间的地址。要使用这块空间，我们需要将这块空间的地址存储在指针变量中。
@@ -264,4 +266,59 @@ int main() {
 
 ## 指向函数的指针
 
-（待补充）
+关于函数的介绍请参见 [C++ 函数](./func.md) 章节。
+
+简单地说，要调用一个函数，需要知晓该函数的参数类型、个数以及返回值类型，这些也统一称作接口类型。
+
+可以通过函数指针调用函数。有时候，若干个函数的接口类型是相同的，使用函数指针可以根据程序的运行 **动态地** 选择需要调用的函数。换句话说，可以在不修改一个函数的情况下，仅通过修改向其传入的参数（函数指针），使得该函数的行为发生变化。
+
+假设我们有若干针对 `int` 类型的二元运算函数，则函数的参数为 2 个 `int`，返回值亦为 `int`。下边是一个使用了函数指针的例子：
+
+```cpp
+#include <iostream>
+
+int (*binary_int_op)(int, int);
+
+int foo1(int a, int b) { return a * b + b; }
+
+int foo2(int a, int b) { return (a + b) * b; }
+
+int main() {
+  int choice;
+  std::cin >> choice;
+  if (choice == 1) {
+    binary_int_op = foo1;
+  } else {
+    binary_int_op = foo2;
+  }
+
+  int m, n;
+  std::cin >> m >> n;
+  std::cout << binary_int_op(m,n);
+}
+```
+
+???+ note `&`、`*` 和函数指针
+    在 C 语言中，诸如 `void (*p)() = foo;`、`void (*p)() = &foo;`、`void (*p)() = *foo;`、`void (*p)() = ***foo` 等写法的结果是一样的。
+    
+    因为函数（如 `foo`）是能够被隐式转换为指向函数的指针的，因此 `void (*p)() = foo;` 的写法能够成立。
+    
+    使用 `&` 运算符可以取得到对象的地址，这对函数也是成立的，因此 `void (*p)() = &foo;` 的写法仍然成立。
+    
+    对函数指针使用 `*` 运算符可以取得指针指向的函数，而对于 `**foo` 这样的写法来说，`*foo` 得到的是 `foo` 这个函数，紧接着又被隐式转换为指向 `foo` 的指针。如此类推，`**foo` 得到的最终还是指向 `foo` 的函数指针；用户尽可以使用任意多的 `*`，结果也是一样的。
+    
+    同理，在调用时使用类似 `(*p)()` 和 `p()` 的语句是一样的，可以省去 `*` 运算符。
+    
+    参考资料：[Why do function pointer definitions work with any number of ampersands '&' or asterisks '*'? - stackoverflow.com](https://stackoverflow.com/questions/6893285/why-do-function-pointer-definitions-work-with-any-number-of-ampersands-or-as)
+
+可以使用 `typdef` 关键字声明函数指针的类型。
+
+```cpp
+typedef int (*p_bi_int_op)(int, int);
+```
+
+这样我们就可以在之后使用 `p_bi_int_op` 这种类型，即指向“参数为 2 个 `int`，返回值亦为 `int`”的函数的指针。
+
+可以通过使用 `std::function` 来更方便的引用函数。（未完待续）
+
+使用函数指针，可以实现“回调函数”。（未完待续）
