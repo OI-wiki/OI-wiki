@@ -124,31 +124,7 @@ $$
 
 ??? note "代码实现"
     ```cpp
-    #include <bits/stdc++.h>
-    #define int long long
-    using namespace std;
-    const int S = 1e5 + 5;
-    int c[5], d[5], n, s;
-    int f[S];
-    signed main() {
-      scanf("%lld%lld%lld%lld%lld", &c[1], &c[2], &c[3], &c[4], &n);
-      f[0] = 1;
-      for (int j = 1; j <= 4; j++)
-        for (int i = 1; i < S; i++)
-          if (i >= c[j]) f[i] += f[i - c[j]];
-      for (int i = 1; i <= n; i++) {
-        scanf("%lld%lld%lld%lld%lld", &d[1], &d[2], &d[3], &d[4], &s);
-        int ans = 0;
-        for (int i = 1; i < 16; i++) {
-          int m = s, bit = 0;
-          for (int j = 1; j <= 4; j++)
-            if ((i >> (j - 1)) & 1) m -= (d[j] + 1) * c[j], bit++;
-          if (m >= 0) ans += (bit % 2 * 2 - 1) * f[m];
-        }
-        printf("%lld\n", f[s] - ans);
-      }
-      return 0;
-    }
+    --8<-- "docs/math/code/inclusion-exclusion-principle/inclusion-exclusion-principle_1.cpp"
     ```
 
 ## 错位排列计数
@@ -219,12 +195,12 @@ $$
 
 是不是很有容斥的味道了？由于容斥原理本身没有二元组的形式，因此我们把 **所有** 的边 $(i,j)$ 映射到 $T=\frac{n(n+1)}{2}$ 个整数上，假设将 $(i,j)$ 映射为 $k,1\leq k\leq T$，同时 $Q_{i,j}$ 映射为 $Q_k$. 那么属性 $x_i=x_j$ 则定义为 $P_k$.
 
-同时 S 可以表示为若干个 k 组成的集合，即 $S\Leftrightarrow K=\{k_1,k_2,\cdots,k_m\}$.（也就是说我们在边集与数集间建立了等价关系）。
+同时 S 可以表示为若干个 k 组成的集合，即 $S\iff K=\{k_1,k_2,\cdots,k_m\}$.（也就是说我们在边集与数集间建立了等价关系）。
 
 而 E 对应集合 $M=\left\{1,2,\cdots,\frac{n(n+1)}{2}\right\}$. 于是乎
 
 $$
-F(S)\Leftrightarrow F(\{ {k_i}\})=\left|\bigcap_{k_i}Q_{k_i}\right|
+F(S)\iff F(\{ {k_i}\})=\left|\bigcap_{k_i}Q_{k_i}\right|
 $$
 
 ### 逆向分析
