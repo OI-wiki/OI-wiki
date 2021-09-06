@@ -154,6 +154,7 @@ nav:
     - IDA*: search/idastar.md
     - 回溯法: search/backtracking.md
     - Dancing Links: search/dlx.md
+    - Alpha-Beta 剪枝: search/alpha-beta.md
     - 优化: search/opt.md
   - 动态规划:
     - 动态规划部分简介: dp/index.md
