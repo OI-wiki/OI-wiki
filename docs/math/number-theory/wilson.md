@@ -20,7 +20,7 @@ Wilson 定理指出 $(p!)_p=(p-1)!\equiv -1\pmod p$ 且可被推广至模素数 
 
 $(p^q!)_p\equiv \begin{cases}1&\text{if }p=2\text{ and }q\geq 3,\\-1&\text{otherwise.}\end{cases}$
 
-下文两个推论中的 $\pm 1$，均特指这样的定义：当模数 $p^q$ 取 8 及以上的 2 的幂时取 1，其余取 - 1。
+下文两个推论中的 $\pm 1$，均特指这样的定义：当模数 $p^q$ 取 $8$ 及以上的 $2$ 的幂时取 $1$，其余取 $-1$。
 
 ### 推论 1
 
