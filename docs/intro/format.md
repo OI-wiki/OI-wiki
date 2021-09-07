@@ -172,7 +172,7 @@
         
         2020 年 1 月 21 日，CCF 宣布恢复 NOIP。[^ref2]
 
--   建议使用主题扩展的 `???+note` 格式（即 [Admonition](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#changing-the-title)）来描述题面和参考代码。也可以用折叠框来表示其他需要补充介绍的内容。
+-   建议使用主题扩展的 `???+note` 格式（即 [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks)）来描述题面和参考代码。也可以用这种格式来展示其他需要补充介绍的内容。
 
     示例代码：
 
@@ -180,9 +180,9 @@
     ??? note "标题"
         这个文本框会被默认折叠。
 
-        推荐将**解题代码**放在折叠文本框内。
+        推荐将 **解题代码** 放在折叠文本框内。
 
-    ???+note "[标题](http://acm.hdu.edu.cn/showproblem.php?pid=1000)"
+    ???+note "[HDOJ 的“A + B Problem”](http://acm.hdu.edu.cn/showproblem.php?pid=1000)"
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
 
         而且推荐以这种方式**标注原题链接**。
@@ -206,7 +206,7 @@
 
     两种格式的区别是，带 `+` 的会默认保持展开，而不带 `+` 的会默认保持折叠。
 
-    折叠框语法 `???+note` 中 `note` 后的内容应以 `"` 包裹起来。其中的内容支持 Markdown 语法。
+    折叠框的标题，即 `???+note` 中 `note` 后的内容应以 `"` 包裹起来。其中的内容支持 Markdown 语法。详见 [Admonition - Changing the title](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#changing-the-title)。（不具备折叠功能的为一般的 Admonitions，参考 [Admonitions - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/admonitions)）
 
     如果需要嵌套折叠框，推荐使用 [MDUI 的阴影样式](https://www.mdui.org/docs/shadow#use)，提高内层折叠框的海拔。
 
