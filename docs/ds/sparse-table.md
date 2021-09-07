@@ -1,5 +1,7 @@
 ## 简介
 
+![ST 表示意图](images/st.svg)
+
 ST 表是用于解决 **可重复贡献问题** 的数据结构。
 
 ???+note "什么是可重复贡献问题？"
@@ -36,13 +38,13 @@ ST 表基于 [倍增](../basic/binary-lifting.md) 思想，可以做到 $\Theta(
 
 根据定义式，第二维就相当于倍增的时候“跳了 $2^j-1$ 步”，依据倍增的思路，写出状态转移方程：$f(i,j)=\max(f(i,j-1),f(i+2^{j-1},j-1))$。
 
-![](./images/st1.png)
+![](./images/st-preprocess-lift.svg)
 
 以上就是预处理部分。而对于查询，可以简单实现如下：
 
-对于每个询问 $[l,r]$，我们把它分成两部分：$f[l,l+2^s-1]$ 与 $f[r-2^s+1,r]$。
+对于每个询问 $[l,r]$，我们把它分成两部分：$f[l,l+2^s-1]$ 与 $f[r-2^s+1,r]$，其中 $s=\left\lfloor\log_2(r-l+1)\right\rfloor$。两部分的结果的最大值就是回答。
 
-其中 $s=\left\lfloor\log_2(r-l+1)\right\rfloor$。
+![ST 表的查询过程](./images/st-query.svg)
 
 根据上面对于“可重复贡献问题”的论证，由于最大值是“可重复贡献问题”，重叠并不会对区间最大值产生影响。又因为这两个区间完全覆盖了 $[l,r]$，可以保证答案的正确性。
 
@@ -51,45 +53,7 @@ ST 表基于 [倍增](../basic/binary-lifting.md) 思想，可以做到 $\Theta(
 [ST 表模板题](https://www.luogu.com.cn/problem/P3865)
 
 ```cpp
-#include <bits/stdc++.h>
-using namespace std;
-const int logn = 21;
-const int maxn = 2000001;
-int f[maxn][logn + 1], Logn[maxn + 1];
-inline int read() {
-  char c = getchar();
-  int x = 0, f = 1;
-  while (c < '0' || c > '9') {
-    if (c == '-') f = -1;
-    c = getchar();
-  }
-  while (c >= '0' && c <= '9') {
-    x = x * 10 + c - '0';
-    c = getchar();
-  }
-  return x * f;
-}
-void pre() {
-  Logn[1] = 0;
-  Logn[2] = 1;
-  for (int i = 3; i < maxn; i++) {
-    Logn[i] = Logn[i / 2] + 1;
-  }
-}
-int main() {
-  int n = read(), m = read();
-  for (int i = 1; i <= n; i++) f[i][0] = read();
-  pre();
-  for (int j = 1; j <= logn; j++)
-    for (int i = 1; i + (1 << j) - 1 <= n; i++)
-      f[i][j] = max(f[i][j - 1], f[i + (1 << (j - 1))][j - 1]);
-  for (int i = 1; i <= m; i++) {
-    int x = read(), y = read();
-    int s = Logn[y - x + 1];
-    printf("%d\n", max(f[x][s], f[y - (1 << s) + 1][s]));
-  }
-  return 0;
-}
+--8<-- "docs/ds/code/sparse-table/sparse-table_1.cpp"
 ```
 
 ## 注意点

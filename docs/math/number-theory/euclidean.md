@@ -51,20 +51,20 @@ $$
 
 $$
 j<\left\lfloor \frac{ai+b}{c} \right\rfloor
-\Leftrightarrow j+1\leq \left\lfloor \frac{ai+b}{c} \right\rfloor
-\Leftrightarrow j+1\leq \frac{ai+b}{c}\\
+\iff j+1\leq \left\lfloor \frac{ai+b}{c} \right\rfloor
+\iff j+1\leq \frac{ai+b}{c}\\
 $$
 
 然后可以做一些变换
 
 $$
-j+1\leq \frac{ai+b}{c} \Leftrightarrow jc+c\le ai+b \Leftrightarrow jc+c-b-1< ai
+j+1\leq \frac{ai+b}{c} \iff jc+c\le ai+b \iff jc+c-b-1< ai
 $$
 
 最后一步，向下取整得到：
 
 $$
-jc+c-b-1< ai\Leftrightarrow \left\lfloor\frac{jc+c-b-1}{a}\right\rfloor< i
+jc+c-b-1< ai\iff \left\lfloor\frac{jc+c-b-1}{a}\right\rfloor< i
 $$
 
 这一步的重要意义在于，我们可以把变量 $i$ 消掉了！具体地，令 $m=\left\lfloor \frac{an+b}{c} \right\rfloor$，那么原式化为
