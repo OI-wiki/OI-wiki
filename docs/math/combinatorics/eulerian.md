@@ -5,12 +5,12 @@
 
 $$
 A(n, m) = 
-\langle 
-\begin{aligned}
-& n \\
-& m - 1 \\
-\end{aligned}
-\rangle
+\left\langle 
+\begin{matrix}
+  n\\
+  m - 1
+\end{matrix}
+\right\rangle
 $$
 
 例如，从数字 $1$ 到 $3$ 一共有 $4$ 种排列使得恰好有一个元素比前面的数字大：
