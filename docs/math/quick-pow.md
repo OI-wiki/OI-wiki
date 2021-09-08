@@ -69,7 +69,7 @@ long long binpow(long long a, long long b) {
 def binpow(a, b):
     if b == 0:
         return 1
-    res = binpow(a, int(b / 2))
+    res = binpow(a, b // 2)
     if (b % 2) == 1:
         return res * res * a
     else:
