@@ -20,7 +20,7 @@
       y -= a / b * x;
     }
     ```
-
+    
     ```python
     # Python Version
     def exgcd(a, b, x, y):
@@ -56,7 +56,7 @@
       return ans;
     }
     ```
-
+    
     ```python
     # Python Version
     def qpow(a, b):
@@ -114,13 +114,14 @@ $$
       inv[i] = (long long)(p - p / i) * inv[p % i] % p;
     }
     ```
-
+    
     ```python
     # Python Version
     inv[1] = 1
     for i in range(2, n + 1):
         inv[i] = (p - p / i) * inv[p % i] % p
     ```
+
 使用 $p-\lfloor \dfrac{p}{i} \rfloor$ 来防止出现负数。
 
 另外我们注意到我们没有对 `inv[0]` 进行定义却可能会使用它：当 $i | p$ 成立时，我们在代码中会访问 `inv[p % i]`，也就是 `inv[0]`，这是因为当 $i | p$ 时不存在 $i$ 的逆元 $i^{-1}$。[线性同余方程](./linear-equation.md) 中指出，如果 $i$ 与 $p$ 不互素时不存在相应的逆元（当一般而言我们会使用一个大素数，比如 $10^9 + 7$ 来确保它有着有效的逆元）。因此需要指出的是：如果没有相应的逆元的时候，`inv[i]` 的值是未定义的。
@@ -155,7 +156,7 @@ $$
     for (int i = n; i >= 1; --i) sv[i - 1] = sv[i] * a[i] % p;
     for (int i = 1; i <= n; ++i) inv[i] = sv[i] * s[i - 1] % p;
     ```
-
+    
     ```python
     # Python Version
     s[0] = 1
