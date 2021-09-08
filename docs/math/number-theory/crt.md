@@ -59,7 +59,7 @@ def CRT(k, a, r):
     for i in range(1, k + 1):
         n = n * r[i]
     for i in range(1, k + 1):
-        m = n / r[i]; b = y = 0
+        m = n // r[i]; b = y = 0
         exgcd(m, r[i], b, y) # b * m mod r[i] = 1
         ans = (ans + a[i] * m * b % mod) % mod
     return (ans % mod + mod) % mod

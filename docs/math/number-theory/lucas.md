@@ -28,7 +28,7 @@ $$
     def Lucas(n, m, p):
       if m == 0:
           return 1
-      return (C(n % p, m % p, p) * Lucas(n / p, m / p, p)) % p
+      return (C(n % p, m % p, p) * Lucas(n // p, m // p, p)) % p
     ```
 
 ### Lucas 定理的证明

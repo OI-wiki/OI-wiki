@@ -34,7 +34,7 @@ def breakdown(N):
     for i in range(2, int(sqrt(N)) + 1):
         if N % i == 0: # 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
             while N % i == 0:
-                N = N / i
+                N = N // i
                 result.append(i)
     if N != 1: # 说明再经过操作之后 N 留下了一个素数
         result.append(N)

@@ -90,7 +90,7 @@ def isqrt_newton(n):
     x = 1
     decreased = False
     while True:
-        nx = (x + n / x) / 2
+        nx = (x + n // x) // 2
         if x == nx or (nx > x and decreased):
             break
         decreased = nx < x

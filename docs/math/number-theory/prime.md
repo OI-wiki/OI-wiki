@@ -155,7 +155,7 @@ def millerRabin(n):
         return n == 2
     a, b = n - 1, 0
     while a % 2 == 0:
-        a = a / 2
+        a = a // 2
         b = b + 1
     j = 0
     # test_time 为测试次数,建议设为不小于 8

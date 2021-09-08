@@ -50,14 +50,14 @@
       d = ex_gcd(b, a % b, x, y)
       temp = x
       x = y
-      y = temp - a / b * y
+      y = temp - a // b * y
       return d
 
     def liEu(a, b, c, x, y):
       d = ex_gcd(a, b, x, y)
       if c % d != 0:
           return 0
-      k = c / d
+      k = c // d
       x = x * k
       y = y * k
       return 1

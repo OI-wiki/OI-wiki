@@ -346,7 +346,7 @@ def pre():
             p[tot] = i
             tot = tot + 1
         j = 1
-        while j <= tot and i <= 1e7 / p[j]:
+        while j <= tot and i <= 1e7 // p[j]:
             v[i * p[j]] = 1
             if i % p[j] == 0:
                 mu[i * p[j]] = 0
@@ -398,11 +398,11 @@ def pre():
         if v[i] == 0:
             v[i] = 1; p[tot] = i; tot = tot + 1; d[i] = 2; num[i] = 1
         j = 1
-        while j <= tot and i <= n / p[j]:
+        while j <= tot and i <= n // p[j]:
             v[p[j] * i] = 1
             if i % p[j] == 0:
                 num[i * p[j]] = num[i] + 1
-                d[i * p[j]] = d[i] / num[i * p[j]] * (num[i * p[j]] + 1)
+                d[i * p[j]] = d[i] // num[i * p[j]] * (num[i * p[j]] + 1)
                 break
             else:
                 num[i * p[j]] = 1
@@ -444,11 +444,11 @@ def pre():
         if v[i] == 0:
             v[i] = 1; p[tot] = i; tot = tot + 1; g[i] = i + 1; f[i] = i + 1;
         j = 1
-        while j <= tot and i <= n / p[j]:
+        while j <= tot and i <= n // p[j]:
             v[p[j] * i] = 1
             if i % p[j] == 0:
                 g[i * p[j]] = g[i] * p[j] + 1
-                f[i * p[j]] = f[i] / g[i] * g[i * p[j]]
+                f[i * p[j]] = f[i] // g[i] * g[i * p[j]]
                 break
             else:
                 f[i * p[j]] = f[i] * f[p[j]]

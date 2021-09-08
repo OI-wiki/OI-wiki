@@ -112,11 +112,11 @@ $$
     l = 1; r = 0
     while l <= n:
         # 此处 l 意同 i, r 意同 j, 下个计算区间的l应为上个区间的 r+1
-        if k / l != 0:
-            r = min(k / (k / l), n)
+        if k // l != 0:
+            r = min(k // (k // l), n)
         else:
             r = n # l 大于 k 时
-            ans = ans - (k / l) * (r - l + 1) * (l + r) / 2
+            ans = ans - (k // l) * (r - l + 1) * (l + r) // 2
             # 这个区间内 k / i 均相等, 对 i 求和是等差数列求和
         l = r + 1
     ```

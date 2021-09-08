@@ -159,7 +159,7 @@ def Exgcd(a, b, x, y):
     d = Exgcd(b, a % b, x, y)
     t = x
     x = y
-    y = t - (a / b) * y
+    y = t - (a // b) * y
     return d
 ```
 
