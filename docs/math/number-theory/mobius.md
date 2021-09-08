@@ -112,7 +112,7 @@ $$
     l = 1; r = 0
     while l <= n:
         # 此处 l 意同 i, r 意同 j, 下个计算区间的l应为上个区间的 r+1
-        if k / l is not 0:
+        if k / l != 0:
             r = min(k / (k / l), n)
         else:
             r = n # l 大于 k 时

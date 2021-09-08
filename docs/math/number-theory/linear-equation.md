@@ -55,7 +55,7 @@
 
     def liEu(a, b, c, x, y):
       d = ex_gcd(a, b, x, y)
-      if c % d is not 0:
+      if c % d != 0:
           return 0
       k = c / d
       x = x * k
