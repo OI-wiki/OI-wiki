@@ -226,11 +226,6 @@ def isSameSign(x, y):
 void swap(int &a, int &b) { a ^= b ^= a ^= b; }
 ```
 
-```python
-def swap(a, b):
-    a, b = b, a
-```
-
 ### 操作一个数的二进制位
 
 获取一个数二进制的某一位：

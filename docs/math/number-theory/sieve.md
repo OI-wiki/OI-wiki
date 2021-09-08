@@ -45,7 +45,7 @@ def Eratosthenes(n):
             p = p + 1
             if i * i <= n:
                 j = i * i
-                while(j <= n):
+                while j <= n:
                     is_prime[j] = False
                     j = j + i
     return p
@@ -340,7 +340,7 @@ void pre() {
 # Python Version
 def pre():
     mu[1] = 1
-    for i in range(2, 1e7 + 1):
+    for i in range(2, int(1e7 + 1)):
         if v[i] == 0:
             mu[i] = -1
             p[tot] = i
