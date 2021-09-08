@@ -28,7 +28,7 @@
           x, y = 1, 0
           return
       exgcd(b, a % b, y, x)
-      y = y - (a / b * x)
+      y = y - (a // b * x)
     ```
 
 扩展欧几里得法和求解 [线性同余方程](./linear-equation.md) 是一个原理，在这里不展开解释。
@@ -119,7 +119,7 @@ $$
     # Python Version
     inv[1] = 1
     for i in range(2, n + 1):
-        inv[i] = (p - p / i) * inv[p % i] % p
+        inv[i] = (p - p // i) * inv[p % i] % p
     ```
 
 使用 $p-\lfloor \dfrac{p}{i} \rfloor$ 来防止出现负数。
