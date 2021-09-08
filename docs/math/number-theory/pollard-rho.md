@@ -149,7 +149,7 @@ $$
       return N;
     }
     ```
-
+    
     ```python
     # Python Version
     def Pollard_Rho(N):

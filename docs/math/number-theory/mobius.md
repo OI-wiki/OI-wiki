@@ -105,7 +105,7 @@ $$
              2;  // 这个区间内 k / i 均相等, 对 i 求和是等差数列求和
     }
     ```
-
+    
     ```python
     # Python Version
     ans = n * k
@@ -371,7 +371,7 @@ $$
       }
     }
     ```
-
+    
     ```python
     # Python Version
     def getMu():

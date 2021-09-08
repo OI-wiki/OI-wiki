@@ -40,7 +40,7 @@
       return 1;
     }
     ```
-
+    
     ```python
     # Python Version
     def ex_gcd(a, b ,x, y):
@@ -52,7 +52,7 @@
       x = y
       y = temp - a / b * y
       return d
-
+    
     def liEu(a, b, c, x, y):
       d = ex_gcd(a, b, x, y)
       if c % d != 0:

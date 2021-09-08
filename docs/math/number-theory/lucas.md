@@ -22,7 +22,7 @@ $$
       return (C(n % p, m % p, p) * Lucas(n / p, m / p, p)) % p;
     }
     ```
-
+    
     ```python
     # Python Version
     def Lucas(n, m, p):

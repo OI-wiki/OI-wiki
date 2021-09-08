@@ -83,7 +83,7 @@ $$
       }
     }
     ```
-
+    
     ```python
     # Python Version
     maxn = 2000 + 5
@@ -95,7 +95,6 @@ $$
             for j in range(2, i + 1):
                 bell[i][j] = bell[i - 1][j - 1] + bell[i][j - 1]
     ```
-
 
 ## 参考文献
 
