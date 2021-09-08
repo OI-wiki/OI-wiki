@@ -16,10 +16,19 @@ $$
 
 ???+note "代码实现"
     ```cpp
+    // C++ Version
     long long Lucas(long long n, long long m, long long p) {
       if (m == 0) return 1;
       return (C(n % p, m % p, p) * Lucas(n / p, m / p, p)) % p;
     }
+    ```
+
+    ```python
+    # Python Version
+    def Lucas(n, m, p):
+      if m == 0:
+          return 1
+      return (C(n % p, m % p, p) * Lucas(n / p, m / p, p)) % p
     ```
 
 ### Lucas 定理的证明
