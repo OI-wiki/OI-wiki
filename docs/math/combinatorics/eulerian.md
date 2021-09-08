@@ -69,12 +69,24 @@ $$
 ## 实现
 
 ```c++
+// C++ Version
 int eulerianNumber(int n, int m) {
   if (m >= n || n == 0) return 0;
   if (m == 0) return 1;
   return (((n - m) * eulerianNumber(n - 1, m - 1)) +
           ((m + 1) * eulerianNumber(n - 1, m)));
 }
+```
+
+```python
+# Python Version
+def eulerianNumber(n, m):
+    if m >= n or n == 0:
+        return 0
+    if m == 0:
+        return 1
+    return (((n - m) * eulerianNumber(n - 1, m - 1)) + \
+            ((m + 1) * eulerianNumber(n - 1, m)))
 ```
 
 ## 习题
