@@ -40,15 +40,15 @@ $$
 
 ## 霍夫曼编码
 
-在进行程序设计时，通常给每一个字符标记一个单独的代码来表示一组字符，即**编码**
+在进行程序设计时，通常给每一个字符标记一个单独的代码来表示一组字符，即 **编码**
 
-在进行二进制编码时，假设所有的代码都等长，那么表示 $n$ 个不同的字符需要 $\left \lceil log_2 \:n \right \rceil$ 位，称为**等长编码**
+在进行二进制编码时，假设所有的代码都等长，那么表示 $n$ 个不同的字符需要 $\left \lceil log_2 \:n \right \rceil$ 位，称为 **等长编码**
 
-如果每个字符的**使用频率相等**，那么等长编码无疑是空间效率最高的编码方法，而如果字符出现的频率不同，则可以让频率高的字符采用尽可能短的编码，频率低的字符采用尽可能长的编码，来构造出一种**不等长编码**，从而获得更好的空间效率
+如果每个字符的 **使用频率相等**，那么等长编码无疑是空间效率最高的编码方法，而如果字符出现的频率不同，则可以让频率高的字符采用尽可能短的编码，频率低的字符采用尽可能长的编码，来构造出一种 **不等长编码**，从而获得更好的空间效率
 
-在设计不等长编码时，要考虑解码的唯一性，如果一组编码中任一编码都不是其他任何一个编码的前缀，那么称这组编码为**前缀编码**，其保证了编码被解码时的唯一性
+在设计不等长编码时，要考虑解码的唯一性，如果一组编码中任一编码都不是其他任何一个编码的前缀，那么称这组编码为 **前缀编码**，其保证了编码被解码时的唯一性
 
-霍夫曼树可用于构造**最短的前缀编码**，即**霍夫曼编码**，其构造步骤如下：
+霍夫曼树可用于构造 **最短的前缀编码**，即 **霍夫曼编码**，其构造步骤如下：
 
 1）设需要编码的字符集为：$d_1,d_2,...,d_n$，他们在字符串中出现的频率为：$w_1,w_2,...,w_n$
 
@@ -162,23 +162,21 @@ int getWPL(int arr[], int n) {  //对于未建好的霍夫曼树，直接求其W
 
 ```C++
 typedef struct HNode {
-    int weight;
-    HNode *lchild, *rchild;
-} *Htree;
-void huffmanCoding(Htree root, int len, int arr[]) { //计算霍夫曼编码
-    if (root != NULL) {
-        if (root->lchild == NULL && root->rchild == NULL) {
-            printf("结点为%d的字符的编码为: ", root->weight);
-            for (int i = 0; i < len; i++)
-                printf("%d", arr[i]);
-            printf("\n");
-        } 
-        else {
-            arr[len] = 0;
-            huffmanCoding(root->lchild, len + 1, arr);
-            arr[len] = 1;
-            huffmanCoding(root->rchild, len + 1, arr);
-        }
+  int weight;
+  HNode *lchild, *rchild;
+} * Htree;
+void huffmanCoding(Htree root, int len, int arr[]) {  //计算霍夫曼编码
+  if (root != NULL) {
+    if (root->lchild == NULL && root->rchild == NULL) {
+      printf("结点为%d的字符的编码为: ", root->weight);
+      for (int i = 0; i < len; i++) printf("%d", arr[i]);
+      printf("\n");
+    } else {
+      arr[len] = 0;
+      huffmanCoding(root->lchild, len + 1, arr);
+      arr[len] = 1;
+      huffmanCoding(root->rchild, len + 1, arr);
     }
+  }
 }
 ```
