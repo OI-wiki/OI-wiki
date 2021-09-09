@@ -59,7 +59,7 @@ N-Puzzle 支持常见的基于图的搜索算法，如广度优先搜索和深�
 ???+note "[POJ 1077 - Eight](http://poj.org/problem?id=1077)"
     编写一个程序来解决由 $3 \times 3$ 的方块组成安排 8 拼图问题。
 
-## References
+## 参考资料与拓展阅读
 
 - [1][15 puzzle - Wikipedia](<https://en.wikipedia.org/wiki/15_puzzle>)
 - [2]jrdnjacobson,[How to Solve the 15 Puzzle - instructables](https://www.instructables.com/How-To-Solve-The-15-Puzzle/)

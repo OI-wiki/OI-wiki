@@ -90,7 +90,7 @@ $$
 
 抽象群主要来源是通过正规子群 $H$ 构造群 $G$ 的商群 $G/H$。如果群 $G$ 是集合 $X$ 上的置换群，则商群 $G/H$ 不再作用于 $X$；但是抽象群的概念允许人们不必担心这种差异。
 
-## References
+## 参考资料与拓展阅读
 
 - [1][Group (mathematics) - Wikipedia](<https://en.wikipedia.org/wiki/Group_(mathematics)>)
 - [2][Group theory - Wikipedia](<https://en.wikipedia.org/wiki/Group_theory>)
