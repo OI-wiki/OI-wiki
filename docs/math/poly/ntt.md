@@ -209,7 +209,7 @@ int main() {
 }
 ```
 
-## References
+## 参考资料与拓展阅读
 
 - [1][FWT(快速沃尔什变换)零基础详解qaq（ACM/OI）](<https://zhuanlan.zhihu.com/p/41867199>)
 - [2][FFT(快速傅里叶变换)0基础详解！附NTT（ACM/OI）](<https://zhuanlan.zhihu.com/p/40505277>)
