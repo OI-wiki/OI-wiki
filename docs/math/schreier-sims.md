@@ -243,7 +243,7 @@ $$
 ???+note "[Grand Prix of Yekaterinburg 2015 Problem H Heimdall](http://opencup.ru/files/ocg/gp5/problems1-e.pdf)"
     海姆达尔——阿斯加德最伟大的儿子之一，众神和世界之树的守护者。自古以来古他的主要职责就是守卫阿斯嘉德的入口——一座世界之间的桥梁。现存唯一古老的技术是将一定数量的桥梁结合起来，创造出一座穿越中间世界的桥梁。例如：如果第一座桥将物质从世界 A 传输到世界 B，第二座桥——从 B 到 C，那么它们的组合可以直接将物质从世界 A 传输到世界 C. 而且，这个古老的技术甚至可以让你自己结合一座桥。海姆达尔想知道——使用他所知道的桥梁以及它们的组合，可以创造出多少不同的桥梁。输入两个整数 $R$,$N$ 分别是海姆达尔发现的桥梁总数和宇宙中的世界数（$1 \leqslant N \leqslant 15$,$1 \leqslant R \leqslant 1000$）。接下来的 R 行包含这些桥的信息。每个桥由 $N$ 个整数 $a_{1}, a_{2},\cdots a_{n}$ 组成。其中 $a_{i}$ 表示物质可以通过当前的桥梁转移到世界 $i$。如果当前的桥不影响那些世界，$a_{i} = i$。请输出一个可以通过古老技术建造的不同桥梁的总数。
 
-## References
+## 参考资料与拓展阅读
 
 - [1][Schreier–Sims algorithm - Wikipedia](<https://en.wikipedia.org/wiki/Schreier%E2%80%93Sims_algorithm>)
 - [2]Knuth, Donald E，[Efficient representation of perm groups](https://arxiv.org/abs/math/9201304), Combinatorica 11 (1991), no. 1, 33–43.
