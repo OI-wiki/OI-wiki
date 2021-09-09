@@ -120,7 +120,7 @@ $$
     #include <string>
     #include <vector>
     using namespace std;
-
+    
     inline int read() {
       int x = 0, f = 1;
       char ch = getchar();
@@ -139,9 +139,9 @@ $$
       if (x >= 10) print(x / 10);
       putchar(x % 10 + '0');
     }
-
+    
     const int N = 300100, P = 998244353;
-
+    
     inline int qpow(int x, int y) {
       int res(1);
       while (y) {
@@ -151,9 +151,9 @@ $$
       }
       return res;
     }
-
+    
     int r[N];
-
+    
     void ntt(int *x, int lim, int opt) {
       register int i, j, k, m, gn, g, tmp;
       for (i = 0; i < lim; ++i)
@@ -176,11 +176,11 @@ $$
         for (i = 0; i < lim; ++i) x[i] = 1ll * x[i] * inv % P;
       }
     }
-
+    
     int A[N], B[N], C[N];
-
+    
     char a[N], b[N];
-
+    
     int main() {
       register int i, lim(1), n;
       scanf("%s", &a);
