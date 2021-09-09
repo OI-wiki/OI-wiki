@@ -53,6 +53,7 @@ $$
 如果只要求一个数的欧拉函数值，那么直接根据定义质因数分解的同时求就好了。这个过程可以用 [Pollard Rho](./pollard-rho.md) 算法优化。
 
 ```cpp
+// C++ Version
 int euler_phi(int n) {
   int m = int(sqrt(n + 0.5));
   int ans = n;
@@ -66,9 +67,25 @@ int euler_phi(int n) {
 }
 ```
 
+```python
+# Python Version
+def euler_phi(n):
+    m = int(sqrt(n + 0.5))
+    ans = n
+    for i in range(2, m + 1):
+        if n % i == 0:
+            ans = ans // i * (i - 1)
+            while n % i == 0:
+                n = n // i
+    if n > 1:
+        ans = ans // n * (n - 1)
+    return ans
+```
+
 注：如果将上面的程序改成如下形式，会提升一点效率：
 
 ```cpp
+// C++ Version
 int euler_phi(int n) {
   int ans = n;
   for (int i = 2; i * i <= n; i++)
@@ -79,6 +96,20 @@ int euler_phi(int n) {
   if (n > 1) ans = ans / n * (n - 1);
   return ans;
 }
+```
+
+```python
+# Python Version
+def euler_phi(n):
+    ans = n
+    for i in range(2, int(sqrt(n)) + 1):
+        if n % i == 0:
+            ans = ans // i * (i - 1)
+            while n % i == 0:
+                n = n / i
+    if n > 1:
+        ans = ans // n * (n - 1)
+    return ans
 ```
 
 如果是多个数的欧拉函数值，可以利用后面会提到的线性筛法来求得。

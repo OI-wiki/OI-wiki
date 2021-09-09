@@ -53,6 +53,7 @@ $$
 首先我们可以直接按照上述递归方法实现：
 
 ```cpp
+// C++ Version
 long long binpow(long long a, long long b) {
   if (b == 0) return 1;
   long long res = binpow(a, b / 2);
@@ -63,9 +64,22 @@ long long binpow(long long a, long long b) {
 }
 ```
 
+```python
+# Python Version
+def binpow(a, b):
+    if b == 0:
+        return 1
+    res = binpow(a, b // 2)
+    if (b % 2) == 1:
+        return res * res * a
+    else:
+        return res * res
+```
+
 第二种实现方法是非递归式的。它在循环的过程中将二进制位为 1 时对应的幂累乘到答案中。尽管两者的理论复杂度是相同的，但第二种在实践过程中的速度是比第一种更快的，因为递归会花费一定的开销。
 
 ```cpp
+// C++ Version
 long long binpow(long long a, long long b) {
   long long res = 1;
   while (b > 0) {
@@ -75,6 +89,18 @@ long long binpow(long long a, long long b) {
   }
   return res;
 }
+```
+
+```python
+# Python Version
+def binpow(a, b):
+    res = 1
+    while b > 0:
+        if (b & 1):
+            res = res * a
+        a = a * a
+        b >>= 1
+    return res
 ```
 
 模板：[Luogu P1226](https://www.luogu.com.cn/problem/P1226)
@@ -91,6 +117,7 @@ long long binpow(long long a, long long b) {
 既然我们知道取模的运算不会干涉乘法运算，因此我们只需要在计算的过程中取模即可。
 
 ```cpp
+// C++ Version
 long long binpow(long long a, long long b, long long m) {
   a %= m;
   long long res = 1;
@@ -101,6 +128,19 @@ long long binpow(long long a, long long b, long long m) {
   }
   return res;
 }
+```
+
+```python
+# Python Version
+def binpow(a, b, m):
+    a = a % m
+    res = 1
+    while b > 0:
+        if (b & 1):
+            res = res * a % m
+        a = a * a % m
+        b >>= 1
+    return res
 ```
 
 注意：根据费马小定理，如果 $m$ 是一个质数，我们可以计算 $x^{n\bmod (m-1)}$ 来加速算法过程。
