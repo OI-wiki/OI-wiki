@@ -2,7 +2,7 @@ author: ChungZH, Yukimaikoriya, tigerruanyifan, isdanni
 
 ## 简介
 
-**数论变换**(Number-theoretic transform, NTT)是[快速傅里叶变换](./fft.md)（FFT）在数论基础上的实现。
+**数论变换**(Number-theoretic transform, NTT）是 [快速傅里叶变换](./fft.md)（FFT）在数论基础上的实现。
 
 NTT 解决的是多项式乘法带模数的情况，可以说有些受模数的限制，数也比较大，
 
@@ -10,27 +10,27 @@ NTT 解决的是多项式乘法带模数的情况，可以说有些受模数的�
 
 ### 数论变换
 
-**数论变换**是一种计算折积（convolution）的快速算法。最常用算法就包括了前文提到的快速傅里叶变换。然而快速傅立叶变换具有一些实现上的缺点，举例来说，资料向量必须乘上复数系数的矩阵加以处理，而且每个复数系数的实部和虚部是一个正弦及余弦函数，因此大部分的系数都是浮点数，也就是说，必须做复数而且是浮点数的运算，因此计算量会比较大，而且浮点数运算产生的误差会比较大。
+**数论变换** 是一种计算折积（convolution）的快速算法。最常用算法就包括了前文提到的快速傅里叶变换。然而快速傅立叶变换具有一些实现上的缺点，举例来说，资料向量必须乘上复数系数的矩阵加以处理，而且每个复数系数的实部和虚部是一个正弦及余弦函数，因此大部分的系数都是浮点数，也就是说，必须做复数而且是浮点数的运算，因此计算量会比较大，而且浮点数运算产生的误差会比较大。
 
-在数学中，NTT是关于任意[环](../group-theory.md##环)上的离散傅立叶变换（DFT）。在有限域的情况下，通常称为数论变换 (NTT)。
+在数学中，NTT 是关于任意 [环](../group-theory.md##环) 上的离散傅立叶变换（DFT）。在有限域的情况下，通常称为数论变换 (NTT)。
 
 ### 离散傅里叶变换
 
-**离散傅里叶变换**(Discrete Fourier transform， DFT) 是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其DTFT的频域采样。
+**离散傅里叶变换**(Discrete Fourier transform，DFT) 是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DTFT 的频域采样。
 
-对于 $N$ 点序列 $\left\{x[n]\right\}_{0\le n <N}$ ，它的离散傅里叶变换（DFT）为
+对于 $N$ 点序列 $\left\{x[n]\right\}_{0\le n <N}$，它的离散傅里叶变换（DFT）为
 
 $$
 \hat{x}[k]=\sum_{n=0}^{N-1} e^{-i\frac{2\pi}{N}nk}x[n] \qquad k = 0,1,\ldots,N-1.
 $$
 
-其中 $e$ 是自然对数的底数， $i$ 是虚数单位。通常以符号 $\mathcal {F}$ 表示这一变换，即
+其中 $e$ 是自然对数的底数，$i$ 是虚数单位。通常以符号 $\mathcal {F}$ 表示这一变换，即
 
 $$
 \hat{x}=\mathcal{F}x
 $$
 
-它的**逆离散傅里叶变换**（IDFT）为：
+它的 **逆离散傅里叶变换**（IDFT）为：
 
 $$
 x\left[n\right]={1 \over N}\sum_{k=0}^{N-1} e^{ i\frac{2\pi}{N}nk}\hat{x}[k] \qquad n = 0,1,\ldots,N-1.
@@ -42,11 +42,11 @@ $$
 x=\mathcal{F}^{-1}\hat{x}
 $$
 
-实际上，DFT和IDFT变换式中和式前面的归一化系数并不重要。在上面的定义中，DFT和IDFT前的系数分别为 $1$ 和 $\frac {1}{N}$ 。有时我们会将这两个系数都改 $\frac  {1}{{\sqrt  {N}}}$ 。
+实际上，DFT 和 IDFT 变换式中和式前面的归一化系数并不重要。在上面的定义中，DFT 和 IDFT 前的系数分别为 $1$ 和 $\frac {1}{N}$。有时我们会将这两个系数都改 $\frac  {1}{{\sqrt  {N}}}$。
 
 #### 矩阵公式
 
-由于离散傅立叶变换是一个**线性**算子，所以它可以用矩阵乘法来描述。在矩阵表示法中，离散傅立叶变换表示如下：
+由于离散傅立叶变换是一个 **线性** 算子，所以它可以用矩阵乘法来描述。在矩阵表示法中，离散傅立叶变换表示如下：
 
 $$
 {\displaystyle {\begin{bmatrix}f_{0}\\f_{1}\\\vdots \\f_{n-1}\end{bmatrix}}={\begin{bmatrix}1&1&1&\cdots &1\\1&\alpha &\alpha ^{2}&\cdots &\alpha ^{n-1}\\1&\alpha ^{2}&\alpha ^{4}&\cdots &\alpha ^{2(n-1)}\\\vdots &\vdots &\vdots &&\vdots \\1&\alpha ^{n-1}&\alpha ^{2(n-1)}&\cdots &\alpha ^{(n-1)(n-1)}\\\end{bmatrix}}{\begin{bmatrix}v_{0}\\v_{1}\\\vdots \\v_{n-1}\end{bmatrix}}.}
@@ -83,7 +83,7 @@ $g$ 满足 $\operatorname{ord}_n(g)=\left|Z_n^\times\right|=\varphi(n)$，对于
 
 ## NTT
 
-**数论变换** (NTT)是通过将离散傅立叶变换化为 $F={\mathbb {Z}/p}$ ，整数模质数 $p$ 。这是一个**有限域**，只要 $n$ 可除 $p-1$ ，就存在本元 $n$ 次方根，所以我们有 $p=\xi n+1$ 对于 $a$ 正整数 $ξ$ 。具体来说，对于质数 $p=qn+1, (n=2^m)$, 原根 $g$ 满足 $g^{qn} \equiv 1 \pmod p$, 将 $g_n=g^q\pmod p$ 看做 $\omega_n$ 的等价，则其满足相似的性质，比如 $g_n^n \equiv 1 \pmod p, g_n^{n/2} \equiv -1 \pmod p$
+**数论变换**(NTT）是通过将离散傅立叶变换化为 $F={\mathbb {Z}/p}$，整数模质数 $p$。这是一个 **有限域**，只要 $n$ 可除 $p-1$，就存在本元 $n$ 次方根，所以我们有 $p=\xi n+1$ 对于 $a$ 正整数 $ξ$。具体来说，对于质数 $p=qn+1, (n=2^m)$, 原根 $g$ 满足 $g^{qn} \equiv 1 \pmod p$, 将 $g_n=g^q\pmod p$ 看做 $\omega_n$ 的等价，则其满足相似的性质，比如 $g_n^n \equiv 1 \pmod p, g_n^{n/2} \equiv -1 \pmod p$
 
 因为这里涉及到数论变化，所以 $N$（为了区分 FFT 中的 $n$，我们把这里的 $n$ 称为 $N$）可以比 FFT 中的 $n$ 大，但是只要把 $\frac{qN}{n}$ 看做这里的 $q$ 就行了，能够避免大小问题。
 
@@ -103,9 +103,9 @@ $$
 
 下面是一个大数相乘的模板，[参考来源](https://blog.csdn.net/blackjack_/article/details/79346433)。
 
-
 ??? note "参考代码"
-  ```cpp
+
+```cpp
 #include <algorithm>
 #include <bitset>
 #include <cmath>
@@ -207,11 +207,11 @@ int main() {
   puts("");
   return 0;
 }
-  ```
+```
 
 ## References
 
 - [1][FWT(快速沃尔什变换)零基础详解qaq（ACM/OI）](<https://zhuanlan.zhihu.com/p/41867199>)
-- [2][FFT(快速傅里叶变换)0基础详解！附NTT（ACM/OI）](https://zhuanlan.zhihu.com/p/40505277)
-- [3][Number-theoretic transform(NTT) - Wikipeia](https://en.wikipedia.org/wiki/Discrete_Fourier_transform_(general)#Number-theoretic_transform)
-- [4][Tutorial on FFT/NTT — The tough made simple. ( Part 1 )](https://codeforces.com/blog/entry/43499)
+- [2][FFT(快速傅里叶变换)0基础详解！附NTT（ACM/OI）](<https://zhuanlan.zhihu.com/p/40505277>)
+- [3][Number-theoretic transform(NTT) - Wikipeia](<https://en.wikipedia.org/wiki/Discrete_Fourier_transform_(general)#Number-theoretic_transform>)
+- [4][Tutorial on FFT/NTT — The tough made simple. ( Part 1 )](<https://codeforces.com/blog/entry/43499>)
