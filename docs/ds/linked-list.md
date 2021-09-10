@@ -17,10 +17,19 @@
 单向链表中包含数据域和指针域，其中数据域用于存放数据，指针域用来连接当前结点和下一节点。
 
 ```c++
+// C++ Version
 struct Node {
   int value;
   Node *next;
 };
+```
+
+```python
+# Python Version
+class Node:
+    def __init__(self, value = None, next = None): 
+        self.value = value
+        self.next = next
 ```
 
 ### 双向链表
@@ -28,6 +37,7 @@ struct Node {
 双向链表中同样有数据域和指针域，不同之处在于指针域有左右（或上一个、下一个）之分，用来连接上一个节点、当前结点、下一个结点。
 
 ```c++
+// C++ Version
 struct Node {
   int value;
   Node *left;
@@ -35,17 +45,36 @@ struct Node {
 };
 ```
 
+```python
+# Python Version
+class Node:
+    def __init__(self, value = None, left = None, right = None): 
+        self.value = value
+        self.left = left
+        self.right = right
+```
+
 ## 向链表中插入（写入）数据
 
 ### 单向链表
 
 ```c++
+// C++ Version
 void insertNode(int i, Node *p) {
   Node *node = new Node;
   node->value = i;
   node->next = p->next;
   p->next = node;
 }
+```
+
+```python
+# Python Version
+def insertNode(i, p):
+    node = Node()
+    node.value = i
+    node.next = p.next
+    p.next = node
 ```
 
 具体过程可参考下面这张图。
@@ -57,6 +86,7 @@ void insertNode(int i, Node *p) {
 上面介绍了简单的单向链表的插入数据，有时我们会将链表的头尾连接起来将链表变为循环链表
 
 ```c++
+// C++ Version
 void insertNode(int i, Node *p) {
   Node *node = new Node;
   node->value = i;
@@ -71,6 +101,20 @@ void insertNode(int i, Node *p) {
 }
 ```
 
+```python
+# Python Version
+def insertNode(i, p):
+    node = Node()
+    node.value = i
+    node.next = None
+    if p == None:
+        p = node
+        node.next = node
+    else:
+        node.next = p.next
+        p.next = node
+```
+
 由于是循环的链表，我们在插入数据时需要判断原链表是否为空，为空则自身循环，不为空则正常插入数据循环。具体过程可参考下面这张图。
 
 ![](./images/linked-list2.png)
@@ -78,6 +122,7 @@ void insertNode(int i, Node *p) {
 ### 双向循环链表
 
 ```c++
+// C++ Version
 void insertNode(int i, Node *p) {
   Node *node = new Node;
   node->value = i;
@@ -94,17 +139,41 @@ void insertNode(int i, Node *p) {
 }
 ```
 
+```python
+# Python Version
+def insertNode(i, p):
+    node = Node()
+    node.value = i
+    if p == None:
+        p = node
+        node.left = node
+        node.right = node
+    else:
+        node.left = p
+        node.right = p.right
+        p.right.left = node
+        p.right = node
+```
+
 ## 从链表中删除数据
 
 ### 单向（循环）链表
 
 ```c++
+// C++ Version
 void deleteNode(Node *p) {
   p->value = p->next->value;
   Node *t = p->next;
   p->next = p->next->next;
   delete t;
 }
+```
+
+```python
+# Python Version
+def deleteNode(p):
+    p.value = p.next.value
+    p.next = p.next.next
 ```
 
 从链表中删除某个结点时，将 p 的下一个结点 (p->next) 的值覆盖给 p 即可，与此同时更新 p 的下下个结点。具体过程可参考下面这张图。
@@ -121,4 +190,12 @@ void deleteNode(Node *&p) {
   p = p->right;
   delete t;
 }
+```
+
+```python
+# Python Version
+def deleteNode(p):
+    p.left.right = p.right
+    p.right.left = p.left
+    p = p.right
 ```
