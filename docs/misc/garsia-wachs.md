@@ -58,7 +58,7 @@ Garsia-Wachs 算法的第三阶段的证明，即存在另一棵具有相同距�
     $N$ 个史莱姆排成一排。最初左边第 $i$ 个史莱姆的大小为 $a_{i}$。Taro 试图将所有史莱姆组合成一个更大的史莱姆。他会反复执行以下操作，直到只有一个史莱姆：
     选择两个相邻的史莱姆，并将它们组合成一个新的史莱姆。新的史莱姆的大小为 $x+y$，其中 $x$ 和 $y$ 是组合之前史莱姆的大小。这一步骤有产生 $x+y$ 的成本。合成史莱姆时史莱姆的位置关系不会改变。找出可能发生的最小总成本。
 
-## References
+## 参考资料与拓展阅读
 
 - [1][Garsia–Wachs algorithm - Wikipedia](<https://en.wikipedia.org/wiki/Garsia%E2%80%93Wachs_algorithm>)
 - [2][Data.Algorithm.GarsiaWachs - Hackage Haskell](<https://hackage.haskell.org/package/garsia-wachs-1.2/docs/Data-Algorithm-GarsiaWachs.html>)
