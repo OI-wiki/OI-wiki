@@ -33,6 +33,7 @@
 ### 拉链法
 
 ```cpp
+// C++ Version
 const int SIZE = 1000000;
 const int M = 999997;
 struct HashTable {
@@ -57,6 +58,43 @@ struct HashTable {
     return value;
   }
 };
+```
+
+```python
+# Python Version
+M = 999997
+SIZE = 1000000
+class Node:
+    def __init__(self, next = None, value = None, key = None): 
+        self.next = next
+        self.value = value
+        self.key = key
+data = [Node()] * SIZE
+head = [0] * M
+size = 0
+def f(key):
+    return key % M
+def get(key):
+    p = head[f(key)]
+    while p:
+        if data[p].key == key:
+            return data[p].value
+        p = data[p].next
+        return -1
+def modify(key, value):
+    p = head[f(key)]
+    while p:
+        if data[p].key == key:
+            data[p].value = value
+            return data[p].value
+        p = data[p].next
+def add(key, value):
+    if get(key) != -1:
+        return -1
+    data[size] = Node(head[f(key)], value, key)
+    size = size + 1
+    head[f(key)] = size
+    return value
 ```
 
 这边再为大家提供一个封装过的模板，可以像 map 一样用，并且较短
