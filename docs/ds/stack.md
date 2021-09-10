@@ -25,6 +25,7 @@
 我们可以方便的使用数组来模拟一个栈，如下：
 
 ```cpp
+// C++ Version
 int stk[N];
 // 这里使用 stk[0]( 即 *stk ) 代表栈中元素数量，同时也是栈顶下标
 // 压栈 ：
@@ -35,6 +36,22 @@ int u = stk[*stk];
 if (*stk) --*stk;
 // 清空栈
 *stk = 0;
+```
+
+```python
+# Python Version
+stk = [0] * N
+# 这里使用 stk[0] 代表栈中元素数量，同时也是栈顶下标
+# 压栈 ：
+stk[stk[0]] = var1
+stk[0] = stk[0] + 1
+# 取栈顶 ：
+u = stk[stk[0]]
+# 弹栈 ：注意越界问题, *stk == 0 时不能继续弹出
+if stk[0]:
+    stk[0] = stk[0] - 1
+# 清空栈
+stk[0] = 0
 ```
 
 同时 STL 也提供了一个方法 `std::stack`
@@ -74,3 +91,23 @@ if (*stk) --*stk;
 其他运算符：
 
 `==`、`!=`、`<`、`<=`、`>`、`>=` 可以按照字典序比较两个 `stack` 的值
+
+在 Python 中，你可以使用列表来模拟一个队列
+
+```python
+stk = [5, 1, 4]
+
+# 使用 append() 向栈顶添加元素
+stk.append(2)
+stk.append(3)
+# >>> stk
+# [5, 1, 4, 2, 3]
+
+# 使用 pop 取出栈顶元素
+stk.pop()
+# >>> stk
+# [5, 1, 4, 2]
+
+# 使用 clear 清空栈
+stk.clear()
+```
