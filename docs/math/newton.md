@@ -39,6 +39,7 @@ $$
 在实现的时候注意设置合适的精度。代码如下
 
 ```cpp
+// C++ Version
 double sqrt_newton(double n) {
   const double eps = 1E-15;
   double x = 1;
@@ -51,11 +52,25 @@ double sqrt_newton(double n) {
 }
 ```
 
+```python
+# Python Version
+def sqrt_newton(n):
+    eps = 1e-15
+    x = 1
+    while True:
+        nx = (x + n / x) / 2
+        if abs(x - nx) < eps:
+            break
+        x = nx
+    return x
+```
+
 ## 求解整数平方根
 
 尽管我们可以调用 `sqrt()` 函数来获取平方根的值，但这里还是讲一下牛顿迭代法的变种算法，用于求不等式 $x^2\le n$ 的最大整数解。我们仍然考虑一个类似于牛顿迭代的过程，但需要在边界条件上稍作修改。如果 $x$ 在迭代的过程中上一次迭代值得近似解变小，而这一次迭代使得近似解变大，那么我们就不进行这次迭代，退出循环。
 
 ```cpp
+// C++ Version
 int isqrt_newton(int n) {
   int x = 1;
   bool decreased = false;
@@ -67,6 +82,20 @@ int isqrt_newton(int n) {
   }
   return x;
 }
+```
+
+```python
+# Python Version
+def isqrt_newton(n):
+    x = 1
+    decreased = False
+    while True:
+        nx = (x + n // x) // 2
+        if x == nx or (nx > x and decreased):
+            break
+        decreased = nx < x
+        x = nx
+    return x
 ```
 
 ## 高精度平方根

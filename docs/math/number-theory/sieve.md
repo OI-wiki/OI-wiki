@@ -13,6 +13,7 @@ author: inkydragon, TravorLZH
 如果我们从小到大考虑每个数，然后同时把当前这个数的所有（比自己大的）倍数记为合数，那么运行结束的时候没有被标记的数就是素数了。
 
 ```cpp
+// C++ Version
 int Eratosthenes(int n) {
   int p = 0;
   for (int i = 0; i <= n; ++i) is_prime[i] = 1;
@@ -29,6 +30,25 @@ int Eratosthenes(int n) {
   }
   return p;
 }
+```
+
+```python
+# Python Version
+def Eratosthenes(n):
+    p = 0
+    for i in range(0, n + 1):
+        is_prime[i] = True
+    is_prime[0] = is_prime[1] = False
+    for i in range(2, n + 1):
+        if is_prime[i]:
+            prime[p] = i
+            p = p + 1
+            if i * i <= n:
+                j = i * i
+                while j <= n:
+                    is_prime[j] = False
+                    j = j + i
+    return p
 ```
 
 以上为 **Eratosthenes 筛法**（埃拉托斯特尼筛法，简称埃氏筛法），时间复杂度是 $O(n\log\log n)$。
@@ -67,6 +87,7 @@ $$
 显然，要找到直到 $n$ 为止的所有素数，仅对不超过 $\sqrt n$ 的素数进行筛选就足够了。
 
 ```cpp
+// C++ Version
 int n;
 vector<char> is_prime(n + 1, true);
 is_prime[0] = is_prime[1] = false;
@@ -75,6 +96,18 @@ for (int i = 2; i * i <= n; i++) {
     for (int j = i * i; j <= n; j += i) is_prime[j] = false;
   }
 }
+```
+
+```python
+# Python Version
+is_prime = [True] * (n + 1)
+is_prime[0] = is_prime[1] = False
+for i in range(2, int(sqrt(n)) + 1):
+    if is_prime[i]:
+        j = i * i
+        while j <= n:
+            is_prime[j] = False
+            j += i
 ```
 
 这种优化不会影响渐进时间复杂度，实际上重复以上证明，我们将得到 $n \ln \ln \sqrt n + o(n)$，根据对数的性质，它们的渐进相同，但操作次数会明显减少。
@@ -149,6 +182,7 @@ int count_primes(int n) {
 如果能让每个合数都只被标记一次，那么时间复杂度就可以降到 $O(n)$ 了。
 
 ```cpp
+// C++ Version
 void init() {
   phi[1] = 1;
   for (int i = 2; i < MAXN; ++i) {
@@ -173,6 +207,33 @@ void init() {
     }
   }
 }
+```
+
+```python
+# Python Version
+def init():
+    phi[1] = 1
+    for i in range(2, MAXN):
+        if vis[i] == False:
+             phi[i] = i - 1
+             pri[cnt] = i
+             cnt = cnt + 1
+    for j in range(0, cnt):
+        if i * pri[j] >= MAXN:
+            break
+        vis[i * pri[j]] = 1
+        if i % pri[j]:
+            phi[i * pri[j]] = phi[i] * (pri[j] - 1)
+        else:
+            """
+            i % pri[j] == 0
+            换言之，i 之前被 pri[j] 筛过了
+            由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
+            pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
+            掉就好了
+            """
+            phi[i * pri[j]] = phi[i] * pri[j]
+            break
 ```
 
 上面代码中的 $phi$ 数组，会在下面提到。
@@ -208,6 +269,7 @@ $$
 $$
 
 ```cpp
+// C++ Version
 void pre() {
   memset(is_prime, 1, sizeof(is_prime));
   int cnt = 0;
@@ -231,11 +293,34 @@ void pre() {
 }
 ```
 
+```python
+# Python Version
+def pre():
+    cnt = 0
+    is_prime[1] = False
+    phi[1] = 1
+    for i in range(2, 5000001):
+        if is_prime[i]:
+            prime[cnt] = i
+            cnt = cnt + 1
+            phi[i] = i - 1
+        j = 1
+        while j <= cnt and i * prime[j] <= 5000000:
+            is_prime[i * prime[j]] = 0
+            if i % prime[j]:
+                phi[i * prime[j]] = phi[i] * phi[prime[j]]
+            else:
+                phi[i * prime[j]] = phi[i] * prime[j]
+                break
+            j = j + 1
+```
+
 ## 筛法求莫比乌斯函数
 
 ### 线性筛
 
 ```cpp
+// C++ Version
 void pre() {
   mu[1] = 1;
   for (int i = 2; i <= 1e7; ++i) {
@@ -249,6 +334,25 @@ void pre() {
       mu[i * p[j]] = -mu[i];
     }
   }
+```
+
+```python
+# Python Version
+def pre():
+    mu[1] = 1
+    for i in range(2, int(1e7 + 1)):
+        if v[i] == 0:
+            mu[i] = -1
+            p[tot] = i
+            tot = tot + 1
+        j = 1
+        while j <= tot and i <= 1e7 // p[j]:
+            v[i * p[j]] = 1
+            if i % p[j] == 0:
+                mu[i * p[j]] = 0
+                break
+            j = j + 1
+        mu[i * p[j]] = -mu[i]
 ```
 
 ## 筛法求约数个数
@@ -266,6 +370,7 @@ void pre() {
 因为 $d_i$ 是积性函数，所以可以使用线性筛。
 
 ```cpp
+// C++ Version
 void pre() {
   d[1] = 1;
   for (int i = 2; i <= n; ++i) {
@@ -285,11 +390,32 @@ void pre() {
 }
 ```
 
+```python
+# Python Version
+def pre():
+    d[1] = 1
+    for i in range(2, n + 1):
+        if v[i] == 0:
+            v[i] = 1; p[tot] = i; tot = tot + 1; d[i] = 2; num[i] = 1
+        j = 1
+        while j <= tot and i <= n // p[j]:
+            v[p[j] * i] = 1
+            if i % p[j] == 0:
+                num[i * p[j]] = num[i] + 1
+                d[i * p[j]] = d[i] // num[i * p[j]] * (num[i * p[j]] + 1)
+                break
+            else:
+                num[i * p[j]] = 1
+                d[i * p[j]] = d[i] * 2
+            j = j + 1
+```
+
 ## 筛法求约数和
 
 $f_i$ 表示 $i$ 的约数和，$g_i$ 表示 $i$ 的最小质因子的 $p+p^1+p^2+\dots p^k$.
 
 ```cpp
+// C++ Version
 void pre() {
   g[1] = f[1] = 1;
   for (int i = 2; i <= n; ++i) {
@@ -308,6 +434,27 @@ void pre() {
   }
   for (int i = 1; i <= n; ++i) f[i] = (f[i - 1] + f[i]) % Mod;
 }
+```
+
+```python
+# Python Version
+def pre():
+    g[1] = f[1] = 1
+    for i in range(2, n + 1):
+        if v[i] == 0:
+            v[i] = 1; p[tot] = i; tot = tot + 1; g[i] = i + 1; f[i] = i + 1;
+        j = 1
+        while j <= tot and i <= n // p[j]:
+            v[p[j] * i] = 1
+            if i % p[j] == 0:
+                g[i * p[j]] = g[i] * p[j] + 1
+                f[i * p[j]] = f[i] // g[i] * g[i * p[j]]
+                break
+            else:
+                f[i * p[j]] = f[i] * f[p[j]]
+                g[i * p[j]] = 1 + p[j]
+    for i in range(1, n + 1):
+        f[i] = (f[i - 1] + f[i]) % Mod
 ```
 
 ## 其他线性函数

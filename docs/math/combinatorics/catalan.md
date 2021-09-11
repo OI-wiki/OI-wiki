@@ -47,6 +47,7 @@ $$
     题目大意：入栈顺序为 $1,2,\ldots ,n$，求所有可能的出栈顺序的总数。
 
 ```cpp
+// C++ Version
 #include <iostream>
 using namespace std;
 int n;
@@ -59,6 +60,17 @@ int main() {
   cout << f[n] << endl;
   return 0;
 }
+```
+
+```python
+# Python Version
+f = [0] * 25
+f[0] = 1
+n = int(input())
+for i in range(1, n + 1):
+    f[i] = int(f[i - 1] * (4 * i - 2) // (i + 1))
+    # 这里用的是常见公式2
+print(f[n])
 ```
 
 ## 路径计数问题
