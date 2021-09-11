@@ -66,7 +66,7 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
 
 ### 常见性质
 
-- $f(n) = \Theta(g(n))\Leftrightarrow f(n)=O(g(n))\land f(n)=\Omega(g(n))$
+- $f(n) = \Theta(g(n))\iff f(n)=O(g(n))\land f(n)=\Omega(g(n))$
 - $f_1(n) + f_2(n) = O(\max(f_1(n), f_2(n)))$
 - $f_1(n) \times f_2(n) = O(f_1(n) \times f_2(n))$
 - $\forall a \neq 1, \log_a{n} = O(\log_2 n)$。由换底公式可以得知，任何对数函数无论底数为何，都具有相同的增长率，因此渐进时间复杂度中对数的底数一般省略不写。

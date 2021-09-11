@@ -93,16 +93,32 @@ $$
 
 ??? note "代码实现"
     ```cpp
+    // C++ Version
     long long ans = n * k;
     for (long long l = 1, r; l <= n;
-         l = r + 1) {  //此处l意同i,r意同j,下个计算区间的l应为上个区间的r+1
+         l = r + 1) {  //此处 l 意同 i, r 意同 j, 下个计算区间的l应为上个区间的 r+1
       if (k / l != 0)
         r = min(k / (k / l), n);
       else
-        r = n;  // l大于k时
+        r = n;  // l 大于 k 时
       ans -= (k / l) * (r - l + 1) * (l + r) /
-             2;  //这个区间内k/i均相等,对i求和是等差数列求和
+             2;  // 这个区间内 k / i 均相等, 对 i 求和是等差数列求和
     }
+    ```
+    
+    ```python
+    # Python Version
+    ans = n * k
+    l = 1; r = 0
+    while l <= n:
+        # 此处 l 意同 i, r 意同 j, 下个计算区间的l应为上个区间的 r+1
+        if k // l != 0:
+            r = min(k // (k // l), n)
+        else:
+            r = n # l 大于 k 时
+            ans = ans - (k // l) * (r - l + 1) * (l + r) // 2
+            # 这个区间内 k / i 均相等, 对 i 求和是等差数列求和
+        l = r + 1
     ```
 
 ???+note "二维数论分块"
@@ -339,6 +355,7 @@ $$
 
 ???+ note "线性筛实现"
     ```cpp
+    // C++ Version
     void getMu() {
       mu[1] = 1;
       for (int i = 2; i <= n; ++i) {
@@ -353,6 +370,23 @@ $$
         }
       }
     }
+    ```
+    
+    ```python
+    # Python Version
+    def getMu():
+    mu[1] = 1
+    for i in range(2, n + 1):
+        if flg[i] != 0:
+            p[tot] = i; tot = tot + 1; mu[i] = -1
+        j = 1
+        while j <= tot and i * p[j] <= n:
+            flg[i * p[j]] = 1
+            if i % p[j] == 0:
+                mu[i * p[j]] = 0
+                break
+            mu[i * p[j]] = mu[i * p[j]] - mu[i]
+            j = j + 1
     ```
 
 ### 拓展

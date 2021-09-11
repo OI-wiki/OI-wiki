@@ -19,7 +19,7 @@ FFT 是一种高效实现 DFT 的算法，称为快速傅立叶变换（Fast Fou
 系数表示法就是用一个多项式的各个项系数来表达这个多项式，即使用一个系数序列来表示多项式：
 
 $$
-f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \Leftrightarrow f(x) = \{a_0, a_1, \cdots,a_{n}\}
+f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \iff f(x) = \{a_0, a_1, \cdots,a_{n}\}
 $$
 
 ### 点值表示法
@@ -44,7 +44,7 @@ $$
 那么用点值表示法表示 $f(x)$ 如下
 
 $$
-f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \Leftrightarrow f(x) = \{(x_0,y_0),(x_1,y_1), \cdots,(x_n,y_{n})\}
+f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \iff f(x) = \{(x_0,y_0),(x_1,y_1), \cdots,(x_n,y_{n})\}
 $$
 
 通俗地说，多项式由系数表示法转为点值表示法的过程，就是 DFT 的过程。相对地，把一个多项式的点值表示法转化为系数表示法的过程，就是 IDFT。而 FFT 就是通过取某些特殊的 $x$ 的点值来加速 DFT 和 IDFT 的过程。

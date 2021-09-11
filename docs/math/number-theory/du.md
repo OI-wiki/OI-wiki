@@ -44,7 +44,7 @@ $h(x)=\sum_{d \mid x} f(d)g(\frac x d)$
 
 $$
 \sum_{i=1}^{n}\sum_{d \mid i}g(d)f\left(\frac{i}{d}\right)=\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-\Leftrightarrow
+\iff
 \sum_{i=1}^{n}(f\ast g)(i)=\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
 
