@@ -260,7 +260,6 @@ def kth(k):
         else:
             cnt = cnt + t[ret] # 扩展成功后 要更新之前求和的值
     return ret + 1
-
 ```
 
 时间戳优化：
