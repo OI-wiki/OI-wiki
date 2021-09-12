@@ -1,285 +1,12 @@
 author: hydingsy, hyp1231, ranwen
 
-## 简介
+## 莫比乌斯反演
 
 莫比乌斯反演是数论中的重要内容。对于一些函数 $f(n)$，如果很难直接求出它的值，而容易求出其倍数和或约数和 $g(n)$，那么可以通过莫比乌斯反演简化运算，求得 $f(n)$ 的值。
 
-开始学习莫比乌斯反演前，我们需要一些前置知识：**积性函数**、**Dirichlet 卷积**、**莫比乌斯函数**。
+开始学习莫比乌斯反演前，需要先学习一些前置知识：[数论分块](./block.md)、狄利克雷卷积。
 
-* * *
-
-## 前置知识
-
-### 引理 1
-
-$$
-\forall a,b,c\in\mathbb{Z},\left\lfloor\frac{a}{bc}\right\rfloor=\left\lfloor\frac{\left\lfloor\frac{a}{b}\right\rfloor}{c}\right\rfloor
-$$
-
-略证：
-
-$$
-\begin{aligned}
-&\frac{a}{b}=\left\lfloor\frac{a}{b}\right\rfloor+r(0\leq r<1)\\
-\implies
-&\left\lfloor\frac{a}{bc}\right\rfloor
-=\left\lfloor\frac{a}{b}\cdot\frac{1}{c}\right\rfloor
-=\left\lfloor \frac{1}{c}\left(\left\lfloor\frac{a}{b}\right\rfloor+r\right)\right\rfloor
-=\left\lfloor \frac{\left\lfloor\frac{a}{b}\right\rfloor}{c} +\frac{r}{c}\right\rfloor
-=\left\lfloor \frac{\left\lfloor\frac{a}{b}\right\rfloor}{c}\right\rfloor\\
-&&\square
-\end{aligned}
-$$
-
-??? note "关于证明最后的小方块"
-    QED 是拉丁词组“Quod Erat Demonstrandum”（这就是所要证明的）的缩写，代表证明完毕。现在的 QED 符号通常是 $\blacksquare$ 或者 $\square$。（[维基百科](https://zh.wikipedia.org/wiki/%E8%AD%89%E6%98%8E%E5%AE%8C%E7%95%A2)）
-
-### 引理 2
-
-$$
-\forall n \in \mathbb{N}_{+},  \left|\left\{ \lfloor \frac{n}{d} \rfloor \mid d \in \mathbb{N}_{+},d\leq n \right\}\right| \leq \lfloor 2\sqrt{n} \rfloor
-$$
-
-$|V|$ 表示集合 $V$ 的元素个数
-
-略证：
-
-对于 $d\leq \left\lfloor\sqrt{n}\right\rfloor$，$\left\lfloor\frac{n}{d}\right\rfloor$ 有 $\left\lfloor\sqrt{n}\right\rfloor$ 种取值
-
-对于 $d> \left\lfloor\sqrt{n}\right\rfloor$，有 $\left\lfloor\frac{n}{d}\right\rfloor\leq\left\lfloor\sqrt{n}\right\rfloor$，也只有 $\left\lfloor\sqrt{n}\right\rfloor$ 种取值
-
-综上，得证
-
-### 数论分块
-
-数论分块的过程大概如下：考虑含有 $\left\lfloor\frac{n}{i}\right\rfloor$ 的求和式子（$n$ 为常数）
-
-对于任意一个 $i(i\leq n)$，我们需要找到一个最大的 $j(i\leq j\leq n)$，使得 $\left\lfloor\frac{n}{i}\right\rfloor = \left\lfloor\frac{n}{j}\right\rfloor$.
-
-此时 $j=\left\lfloor\frac{n}{\left\lfloor\frac{n}{i}\right\rfloor}\right\rfloor$.
-
-显然 $j\leq n$，考虑证明 $j\geq i$：
-
-$$
-\begin{aligned}
-&\left\lfloor\frac{n}{i}\right\rfloor \leq \frac{n}{i}\\
-\implies
-&\left\lfloor\frac{n}{ \left\lfloor\frac{n}{i}\right\rfloor }\right\rfloor
-\geq \left\lfloor\frac{n}{ \frac{n}{i} }\right\rfloor
-= \left\lfloor i \right\rfloor=i \\
-\implies
-&i\leq \left\lfloor\frac{n}{ \left\lfloor\frac{n}{i}\right\rfloor }\right\rfloor=j\\
-&&\square
-\end{aligned}
-$$
-
-不妨设 $k=\left\lfloor\frac{n}{i}\right\rfloor$，考虑证明当 $\left\lfloor\frac{n}{j}\right\rfloor=k$ 时，$j$ 的最大值为 $\left\lfloor\frac{n}{k}\right\rfloor$：
-
-$$
-\left\lfloor\frac{n}{j}\right\rfloor=k
-\iff
-k\leq\frac{n}{j}<k+1
-\iff
-\frac{1}{k+1}<\frac{j}{n}\leq\frac{1}{k}
-\iff
-\frac{n}{k+1}<j\leq\frac{n}{k}
-$$
-
-又因为 $j$ 为整数 所以 $j_{max}=\left\lfloor\frac{n}{k}\right\rfloor$
-
-利用上述结论，我们每次以 $[i,j]$ 为一块，分块求和即可
-
-例如 [「luogu P2261」\[CQOI2007\]余数求和](https://www.luogu.com.cn/problem/P2261),$ans=\sum_{i=1}^n(k\bmod i)=\sum_{i=1}^nk-i\left\lfloor\frac{k}{i}\right\rfloor$.
-
-??? note "代码实现"
-    ```cpp
-    long long ans = n * k;
-    for (long long l = 1, r; l <= n;
-         l = r + 1) {  //此处l意同i,r意同j,下个计算区间的l应为上个区间的r+1
-      if (k / l != 0)
-        r = min(k / (k / l), n);
-      else
-        r = n;  // l大于k时
-      ans -= (k / l) * (r - l + 1) * (l + r) /
-             2;  //这个区间内k/i均相等,对i求和是等差数列求和
-    }
-    ```
-
-???+note "二维数论分块"
-    求
-    
-    $$
-    \sum_{i=1}^{\min (n,m)}\left\lfloor\frac{n}{i}    \right\rfloor\left\lfloor\frac{m}{i}    \right\rfloor
-    $$
-    
-    此时可将代码中 `r = n/(n/i)` 替换成 `r = min(n/(n/i), m/(m/i))`
-
-* * *
-
-## 积性函数
-
-### 定义
-
-若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y \in \mathbb{N}_{+},\gcd(x,y)=1$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为积性函数。
-
-若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y \in \mathbb{N}_{+}$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为完全积性函数。
-
-### 性质
-
-若 $f(x)$ 和 $g(x)$ 均为积性函数，则以下函数也为积性函数：
-
-$$
-\begin{aligned}
-h(x)&=f(x^p)\\
-h(x)&=f^p(x)\\
-h(x)&=f(x)g(x)\\
-h(x)&=\sum_{d\mid x}f(d)g(\frac{x}{d})
-\end{aligned}
-$$
-
-设 $x=\prod p_i^{k_i}$
-
-若 $F(x)$ 为积性函数，则有 $F(x)=\prod F(p_i^{k_i})$。
-
-若 $F(x)$ 为完全积性函数，则有 $F(x)=\prod F(p_i)^{k_i}$。
-
-### 例子
-
-- 单位函数：$\varepsilon(n)=[n=1]$（完全积性）
-- 恒等函数：$\operatorname{id}_k(n)=n^k$，$\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$。（完全积性）
-- 常数函数：$1(n)=1$（完全积性）
-- 除数函数：$\sigma_{k}(n)=\sum_{d\mid n}d^{k}$$\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$，$\sigma_{1}(n)$ 通常简记作 $\sigma(n)$。
-- 欧拉函数：$\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$
-- 莫比乌斯函数：$\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1,d^{2} \mid n \\ (-1)^{\omega(n)} & \texttt{otherwise}\end{cases}$，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它是一个加性函数。
-
-???+note "加性函数"
-    此处加性函数指数论上的加性函数 (Additive function)。对于加性函数 $\operatorname{f}$，当整数 $a,b$ 互质时，均有 $\operatorname{f}(ab)=\operatorname{f}(a)+\operatorname{f}(b)$。
-    应与代数中的加性函数 (Additive map) 区分。
-
-* * *
-
-## Dirichlet 卷积
-
-### 定义
-
-对于两个数论函数 $f(x)$ 和 $g(x)$，则它们的狄利克雷卷积得到的结果 $h(x)$ 定义为：
-
-$$
-h(x)=\sum_{d\mid x}{f(d)g\left(\dfrac xd \right)}=\sum_{ab=x}{f(a)g(b)}
-$$
-
-上式可以简记为：
-
-$$
-h=f*g
-$$
-
-狄利克雷卷积是数论函数的重要运算，数论函数的许多性质都是通过这个运算挖掘出来的。
-
-### 性质
-
-**交换律：** $f*g=g*f$。
-
-**结合律：**$(f*g)*h=f*(g*h)$。
-
-**分配律：**$(f+g)*h=f*h+g*h$。
-
-**等式的性质：** $f=g$ 的充要条件是 $f*h=g*h$，其中数论函数 $h(x)$ 要满足 $h(1)\ne 0$。
-
-> **证明：** 充分性是显然的。
->
-> 证明必要性，我们先假设存在 $x$，使得 $f(x)\ne g(y)$。那么我们找到最小的 $y\in \mathbb{N}$，满足 $f(y)\ne g(y)$，并设 $r=f*h-g*h=(f-g)*h$。
->
-> 则有：
->
-> $$
-> \begin{aligned}
-> r(y)&=\sum_{d\mid y}{(f(d)-g(d))h\left(\dfrac yd \right)}\\
-> &=(f(y)-g(y))h(1)\\
-> &\ne 0
-> \end{aligned}
-> $$
->
-> 则 $f*h$ 和 $g*h$ 在 $y$ 处的取值不一样，即有 $f*h\ne g*h$。矛盾，所以必要性成立。
->
-> **证毕**
-
-**单位元：** 单位函数 $\varepsilon$ 是 Dirichlet 卷积运算中的单位元，即对于任何数论函数 $f$，都有 $f*\varepsilon=f$。
-
-**逆元：** 对于任何一个满足 $f(x)\ne 0$ 的数论函数，如果有另一个数论函数 $g(x)$ 满足 $f*g=\varepsilon$，则称 $g(x)$ 是 $f(x)$ 的逆元。由 **等式的性质** 可知，逆元是唯一的。
-
-容易构造出 $g(x)$ 的表达式为：
-
-$$
-g(x)=\dfrac {\varepsilon(x)-\sum_{d\mid x,d\ne 1}{f(d)g\left(\dfrac {x}{d} \right)}}{f(1)}
-$$
-
-### 重要结论
-
-#### 两个积性函数的 Dirichlet 卷积也是积性函数
-
-**证明：** 设两个积性函数为 $f(x)$ 和 $g(x)$，再记 $h=f*g$。
-
-设 $\gcd(a,b)=1$，则：
-
-$$
-h(a)=\sum_{d_1\mid a}{f(d_1)g\left(\dfrac a{d_1} \right)},h(b)=\sum_{d_2\mid b}{f(d_2)g\left(\dfrac b{d_2} \right)},
-$$
-
-所以：
-
-$$
-\begin{aligned}
-h(a)h(b)&=\sum_{d_1\mid a}{f(d_1)g\left(\dfrac a{d_1} \right)}\sum_{d_2\mid b}{f(d_2)g\left(\dfrac b{d_2} \right)}\\
-&=\sum_{d\mid ab}{f(d)g\left(\dfrac {ab}d \right)}\\
-&=h(ab)
-\end{aligned}
-$$
-
-所以结论成立。
-
-**证毕**
-
-#### 积性函数的逆元也是积性函数
-
-**证明**：我们设 $f*g=\varepsilon$，并且不妨设 $f(1)=1$。考虑归纳法：
-
-- 若 $nm=1$，则 $g(nm)=g(1)=1$，结论显然成立；
-
--   若 $nm>1(\gcd(n,m)=1)$，假设现在对于所有的 $xy<nm(\gcd(x,y)=1)$，都有 $g(xy)=g(x)g(y)$，所以有：
-    $$
-    g(nm)=-\sum_{d\mid nm,d\ne 1}{f(d)g\left(\dfrac {nm}d \right)}=-\sum_{a\mid n,b\mid m,ab\ne 1}{f(ab)g\left(\dfrac {nm}{ab} \right)}
-    $$
-    又因为 $\dfrac{nm}{ab}<nm$，所以有：
-    $$
-    \begin{aligned}
-    g(nm)&=-\sum_{a\mid n,b\mid m,ab\ne 1}{f(ab)g\left(\dfrac {nm}{ab} \right)}\\\\
-    &=-\sum_{a\mid n,b\mid m,ab\ne 1}{f(a)f(b)g\left(\dfrac {n}{a} \right)g\left(\dfrac {m}{b} \right)}\\\\
-    &=f(1)f(1)g(n)g(m)-\sum_{a\mid n,b\mid m}{f(a)f(b)g\left(\dfrac {n}{a} \right)g\left(\dfrac {m}{b} \right)}\\\\
-    &=g(n)g(m)-\sum_{a\mid n}{f(a)g\left(\dfrac {n}{a} \right)}\sum_{b\mid m}{f(b)g\left(\dfrac {m}{b} \right)}\\\\
-    &=g(n)g(m)-\varepsilon(n)-\varepsilon(m)\\\\
-    &=g(n)g(m)
-    \end{aligned}
-    $$
-
-综合以上两点，结论成立。
-
-**证毕**
-
-### 例子
-
-$$
-\begin{aligned}
-\varepsilon=\mu \ast 1&\iff\varepsilon(n)=\sum_{d\mid n}\mu(d)\\
-d=1 \ast 1&\iff d(n)=\sum_{d\mid n}1\\
-\sigma=\operatorname{id} \ast 1&\iff\sigma(n)=\sum_{d\mid n}d\\
-\varphi=\mu \ast \operatorname{id}&\iff\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
-\end{aligned}
-$$
-
-* * *
-
-## 莫比乌斯函数
+### 莫比乌斯函数
 
 ### 定义
 
@@ -305,7 +32,7 @@ $$
 
 ### 性质
 
-莫比乌斯函数不但是积性函数，还有如下性质：
+莫比乌斯函数不仅是积性函数，还有如下性质：
 
 $$
 \sum_{d\mid n}\mu(d)=
@@ -325,6 +52,9 @@ $$
 
 根据二项式定理，易知该式子的值在 $k=0$ 即 $n=1$ 时值为 $1$ 否则为 $0$，这也同时证明了 $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]=\varepsilon(n)$ 以及 $\mu\ast 1=\varepsilon$
 
+???+note "注"
+    这个性质意味着，莫比乌斯函数在狄利克雷生成函数中，等价于黎曼函数 $\zeta$ 的倒数。所以在狄利克雷卷积中，莫比乌斯函数是常数函数 $1$ 的逆元。
+
 ### 补充结论
 
 反演结论：$\displaystyle [\gcd(i,j)=1]=\sum_{d\mid\gcd(i,j)}\mu(d)$
@@ -339,6 +69,7 @@ $$
 
 ???+ note "线性筛实现"
     ```cpp
+    // C++ Version
     void getMu() {
       mu[1] = 1;
       for (int i = 2; i <= n; ++i) {
@@ -353,6 +84,23 @@ $$
         }
       }
     }
+    ```
+    
+    ```python
+    # Python Version
+    def getMu():
+    mu[1] = 1
+    for i in range(2, n + 1):
+        if flg[i] != 0:
+            p[tot] = i; tot = tot + 1; mu[i] = -1
+        j = 1
+        while j <= tot and i * p[j] <= n:
+            flg[i * p[j]] = 1
+            if i % p[j] == 0:
+                mu[i * p[j]] = 0
+                break
+            mu[i * p[j]] = mu[i * p[j]] - mu[i]
+            j = j + 1
     ```
 
 ### 拓展
@@ -385,15 +133,20 @@ $$
 
 * * *
 
-## 莫比乌斯反演
-
-### 公式
+### 莫比乌斯变换
 
 设 $f(n),g(n)$ 为两个数论函数。
 
-如果有 $f(n)=\sum_{d\mid n}g(d)$，那么有 $g(n)=\sum_{d\mid n}\mu(d)f(\frac{n}{d})$。
+形式一：如果有 $f(n)=\sum_{d\mid n}g(d)$，那么有 $g(n)=\sum_{d\mid n}\mu(d)f(\frac{n}{d})$。
 
-如果有 $f(n)=\sum_{n|d}g(d)$，那么有 $g(n)=\sum_{n|d}\mu(\frac{d}{n})f(d)$。
+这种形式下，数论函数 $f(n)$ 称为数论函数 $g(n)$ 的莫比乌斯变换，数论函数 $g(n)$ 称为数论函数 $f(n)$ 的莫比乌斯逆变换（反演）。
+
+容易看出，数论函数 $g(n)$ 的莫比乌斯变换，就是将数论函数 $g(n)$ 与常数函数 $1$ 进行狄利克雷卷积。
+
+???+note "注"
+    根据狄利克雷卷积与狄利克雷生成函数的对应关系，数论函数 $g(n)$ 的莫比乌斯变换对应的狄利克雷生成函数，就是数论函数 $g(n)$ 的狄利克雷生成函数与黎曼函数 $\zeta$ 的乘积。
+
+形式二：如果有 $f(n)=\sum_{n|d}g(d)$，那么有 $g(n)=\sum_{n|d}\mu(\frac{d}{n})f(d)$。
 
 ### 证明
 

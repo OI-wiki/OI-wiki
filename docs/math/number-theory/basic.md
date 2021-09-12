@@ -8,19 +8,19 @@ b 不被 a 整除记作 $a\nmid b$。
 
 整除的性质：
 
-$a\mid b\Leftrightarrow -a\mid b \Leftrightarrow a\mid -b\Leftrightarrow \left|a\right|\mid \left|b\right|$
+$a\mid b\iff -a\mid b \iff a\mid -b\iff \left|a\right|\mid \left|b\right|$
 
 $a\mid b\land b\mid c \Rightarrow a\mid c$
 
-$a\mid b\land a\mid c \Leftrightarrow \forall x,y\in\mathbb{Z}, a\mid xb+yc$
+$a\mid b\land a\mid c \iff \forall x,y\in\mathbb{Z}, a\mid xb+yc$
 
 $a\mid b\land b\mid a \Rightarrow b=\pm a$
 
-设 $m\neq 0$，那么 $a\mid b\Leftrightarrow ma\mid mb$。
+设 $m\neq 0$，那么 $a\mid b\iff ma\mid mb$。
 
 设 $b\neq 0$，那么 $a\mid b\Rightarrow \left|a\right|\leq \left|b\right|$。
 
-设 $a\neq 0, b=qa+c$，那么 $a\mid b\Leftrightarrow a\mid c$。
+设 $a\neq 0, b=qa+c$，那么 $a\mid b\iff a\mid c$。
 
 0 是所有非 0 整数的倍数。对于整数 $b\neq 0$，b 的约数只有有限个。
 
@@ -158,29 +158,16 @@ $a\equiv b \pmod \left(-m\right)$
 
 同余的性质：
 
-整数 a 同余于整数 b 模 m，等价于 a 和 b 被 m 除，余数相等。
-
-同余式可以相加减，可以相乘。
-
-设正整数 d 整除 m。如果 a 与 b 模 m 同余，则它们模 d 也同余。
-
-设整数 $d\neg 0$，那么
-
-$a\equiv b \pmod m$
-
-等价于
-
-$da\equiv db \pmod dm$
-
-同余式
-
-$ca\equiv cb \pmod m$
-
-等价于
-
-$a\equiv b \pmod \frac{m}{\gcd\left(c,m\right)}$
-
-特别地，当 c 与 m 互素时，相当于同余式两边直接消去 c。
+- 自反性：$a\equiv a \pmod m$.
+- 对称性：若 $a\equiv b \pmod m$, 则 $b\equiv a \pmod m$.
+- 传递性：若 $a\equiv b \pmod m, b\equiv c \pmod m$, 则 $a\equiv b\pmod m$.
+-   线性运算：若 $a,b,c,d\in \mathbf Z,m\in \mathbf N^*,a\equiv b\pmod m, c\equiv d\pmod m$ 则有：
+    - $a\pm c\equiv b\pm d \pmod m$.
+    - $a\times b\equiv b\times d\pmod m$.
+- 若 $a,b\in \mathbf Z, k,m\in \mathbf N^*, a\equiv b\pmod m$, 则 $ak\equiv bk\pmod {mk}$.
+- 若 $a,b\in \mathbf Z, d,m\in \mathbf N^*, d\mid a,d\mid b, d\mid m$, 则当 $a\equiv b\pmod m$ 成立时，有 $\frac a d\equiv \frac b d \pmod{\frac m d}$.
+- 若 $a,b\in \mathbf Z, d,m\in \mathbf N^*,d\mid m$, 则当 $a\equiv b \pmod m$ 成立时，有 $a\equiv b\pmod d$.
+- 若 $a,b\in \mathbf Z, d,m\in \mathbf N^*$, 则当 $a\equiv b \pmod m$ 成立时，有 $\gcd \left( a,m\right)=\gcd \left(b,m\right)$, 若 $d$ 能整除 $m$ 及 $a,b$ 中的一个，则 $d$ 必定能整除 $a,b$ 中的另一个。
 
 还有性质是乘法逆元。见 [乘法逆元](./inverse.md)。
 
@@ -193,3 +180,49 @@ C 语言中的整数除法不是一律向下取整，而是向 0 取整。取模
 因此，一个负数模一个正数，结果会得到一个负数，这与数学上的习惯不同。
 
 C 语言对于除数或模数为负数的行为是未定义行为，结果未定。这一点也要特别注意。
+
+## 数论函数
+
+数论函数指定义域为正整数的函数。数论函数也可以视作一个数列。
+
+## 积性函数
+
+### 定义
+
+若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y \in \mathbb{N}_{+},\gcd(x,y)=1$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为积性函数。
+
+若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y \in \mathbb{N}_{+}$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为完全积性函数。
+
+### 性质
+
+若 $f(x)$ 和 $g(x)$ 均为积性函数，则以下函数也为积性函数：
+
+$$
+\begin{aligned}
+h(x)&=f(x^p)\\
+h(x)&=f^p(x)\\
+h(x)&=f(x)g(x)\\
+h(x)&=\sum_{d\mid x}f(d)g(\frac{x}{d})
+\end{aligned}
+$$
+
+设 $x=\prod p_i^{k_i}$
+
+若 $F(x)$ 为积性函数，则有 $F(x)=\prod F(p_i^{k_i})$。
+
+若 $F(x)$ 为完全积性函数，则有 $F(x)=\prod F(p_i)^{k_i}$。
+
+### 例子
+
+- 单位函数：$\varepsilon(n)=[n=1]$（完全积性）
+- 恒等函数：$\operatorname{id}_k(n)=n^k$，$\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$。（完全积性）
+- 常数函数：$1(n)=1$（完全积性）
+- 除数函数：$\sigma_{k}(n)=\sum_{d\mid n}d^{k}$$\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$，$\sigma_{1}(n)$ 通常简记作 $\sigma(n)$。
+- 欧拉函数：$\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$
+- 莫比乌斯函数：$\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1,d^{2} \mid n \\ (-1)^{\omega(n)} & \texttt{otherwise}\end{cases}$，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它是一个加性函数。
+
+???+note "加性函数"
+    此处加性函数指数论上的加性函数 (Additive function)。对于加性函数 $\operatorname{f}$，当整数 $a,b$ 互质时，均有 $\operatorname{f}(ab)=\operatorname{f}(a)+\operatorname{f}(b)$。
+    应与代数中的加性函数 (Additive map) 区分。
+
+* * *
