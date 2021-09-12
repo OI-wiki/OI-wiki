@@ -134,7 +134,6 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 ## 工具
 
 - [《100 个 gdb 小技巧》](https://github.com/hellogcc/100-gdb-tips)
-- [Algomation](http://www.algomation.com/)
 - [Algorithm Visualizer](http://algorithm-visualizer.org)
 - [cppreference](https://zh.cppreference.com/w/)：一个全面的 C 和 C++ 语言及其标准库的在线参考资料
 - [Compiler Explorer](https://godbolt.org)：在线查看编译后代码块对应的汇编语句，支持选择不同的编译器

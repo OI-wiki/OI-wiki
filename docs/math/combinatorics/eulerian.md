@@ -5,12 +5,12 @@
 
 $$
 A(n, m) = 
-\langle 
-\begin{aligned}
-& n \\
-& m - 1 \\
-\end{aligned}
-\rangle
+\left\langle 
+\begin{matrix}
+  n\\
+  m - 1
+\end{matrix}
+\right\rangle
 $$
 
 例如，从数字 $1$ 到 $3$ 一共有 $4$ 种排列使得恰好有一个元素比前面的数字大：
@@ -69,12 +69,24 @@ $$
 ## 实现
 
 ```c++
+// C++ Version
 int eulerianNumber(int n, int m) {
   if (m >= n || n == 0) return 0;
   if (m == 0) return 1;
   return (((n - m) * eulerianNumber(n - 1, m - 1)) +
           ((m + 1) * eulerianNumber(n - 1, m)));
 }
+```
+
+```python
+# Python Version
+def eulerianNumber(n, m):
+    if m >= n or n == 0:
+        return 0
+    if m == 0:
+        return 1
+    return (((n - m) * eulerianNumber(n - 1, m - 1)) + \
+            ((m + 1) * eulerianNumber(n - 1, m)))
 ```
 
 ## 习题

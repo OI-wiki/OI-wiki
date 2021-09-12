@@ -267,7 +267,7 @@ $$
 
 我们一般也只求它们模 $x^n$ 得到的结果，即截断到某一位得到的有限长结果。
 
-## References
+## 参考资料与拓展阅读
 
 - [**Picks's Blog**](https://picks.logdown.com)
 - [**Miskcoo's Space**](https://blog.miskcoo.com)

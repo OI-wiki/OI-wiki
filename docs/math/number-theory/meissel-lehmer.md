@@ -408,6 +408,6 @@ $$
 
 - 用前几个素数 $2,3,5$ 预处理计算可以节省更多的时间。
 
-## References
+## 参考资料与拓展阅读
 
 本文翻译自：[Computing $\pi(x)$: the Meissel, Lehmer, Lagarias, Miller, Odlyzko method](https://dl.acm.org/doi/abs/10.1090/s0025-5718-96-00674-6)

@@ -10,7 +10,7 @@ author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicu
 
 下面这张图展示了树状数组的工作原理：
 
-![](./images/fenwick1.png)
+![](./images/fenwick.svg)
 
 这个结构和线段树有些类似：用一个大节点表示一些小节点的信息，进行查询的时候只需要查询一些大节点而不是所有的小节点。
 
@@ -90,6 +90,8 @@ $$
 $$
 
 区间和可以用两个前缀和相减得到，因此只需要用两个树状数组分别维护 $\sum b_i$ 和 $\sum i \times b_i$，就能实现区间求和。
+
+![](images/fenwick-query.svg)
 
 代码如下
 
