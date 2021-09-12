@@ -84,7 +84,7 @@ $$
 
 这两种操作的实质就是将多项式在 **系数表示** 和 **点值表示** 间转化。
 
-## References
+## 参考资料与拓展阅读
 
 - [**Picks's Blog**](https://picks.logdown.com)
 - [**Miskcoo's Space**](https://blog.miskcoo.com)

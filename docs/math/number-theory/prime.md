@@ -11,12 +11,24 @@
 自然可以枚举从小到大的每个数看是否能整除
 
 ```cpp
+// C++ Version
 bool isPrime(a) {
   if (a < 2) return 0;
   for (int i = 2; i < a; ++i)
     if (a % i == 0) return 0;
   return 1;
 }
+```
+
+```python
+# Python Version
+def isPrime(a):
+    if a < 2:
+        return False
+    for i in range(2, a):
+        if a % i == 0:
+            return False
+    return True
 ```
 
 这样做是十分稳妥了，但是真的有必要每个数都去判断吗？
@@ -28,12 +40,24 @@ bool isPrime(a) {
 由于 $1$ 肯定是约数，所以不检验它。
 
 ```cpp
+// C++ Version
 bool isPrime(a) {
   if (a < 2) return 0;
   for (int i = 2; i * i <= a; ++i)
     if (a % i == 0) return 0;
   return 1;
 }
+```
+
+```python
+# Python Version
+def isPrime(a):
+    if a < 2:
+        return False
+    for i in range(2, int(sqrt(a)) + 1):
+        if a % i == 0:
+            return False
+    return True
 ```
 
 ### Miller-Rabin 素性测试
@@ -48,6 +72,7 @@ Miller-Rabin 素性测试（Miller–Rabin primality test）是进阶的素数�
 它的基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$
 
 ```cpp
+// C++ Version
 bool millerRabin(int n) {
   if (n < 3) return n == 2;
   // test_time 为测试次数,建议设为不小于 8
@@ -58,6 +83,20 @@ bool millerRabin(int n) {
   }
   return 1;
 }
+```
+
+```python
+# Python Version
+def millerRabin(n):
+    if n < 3:
+        return n == 2
+    # test_time 为测试次数,建议设为不小于 8
+    # 的整数以保证正确率,但也不宜过大,否则会影响效率
+    for i in range(1, test_time + 1):
+        a = random.randint(0, 32767) % (n - 2) + 2
+        if quickPow(a, n - 1, n) != 1:
+            return False
+    return True
 ```
 
 很遗憾，费马小定理的逆定理并不成立，换言之，满足了 $a^{n-1} \equiv 1 \pmod n$，$n$ 也不一定是素数。
@@ -89,6 +128,7 @@ bool millerRabin(int n) {
 比较正确的 Miller Rabin：（来自 fjzzq2002）
 
 ```cpp
+// C++ Version
 bool millerRabin(int n) {
   if (n < 3 || n % 2 == 0) return n == 2;
   int a = n - 1, b = 0;
@@ -106,6 +146,32 @@ bool millerRabin(int n) {
   }
   return 1;
 }
+```
+
+```python
+# Python Version
+def millerRabin(n):
+    if n < 3 or n % 2 == 0:
+        return n == 2
+    a, b = n - 1, 0
+    while a % 2 == 0:
+        a = a // 2
+        b = b + 1
+    j = 0
+    # test_time 为测试次数,建议设为不小于 8
+    # 的整数以保证正确率,但也不宜过大,否则会影响效率
+    for i in range(1, test_time + 1):
+        x = random.randint(0, 32767) % (n - 2) + 2
+        v = quickPow(x, a, n)
+        if v == 1:
+            continue
+        for j in range(0, b):
+            if v == n - 1:
+                break
+            v = v * v % n
+        if j >= b:
+            return False
+    return True
 ```
 
 ### 参考
@@ -184,37 +250,7 @@ bool millerRabin(int n) {
 上代码：
 
 ```cpp
-#include <stdio.h>
-#define ULL unsigned long long
-#define INF ~0ULL
-ULL p[16] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53};
-
-ULL ans;
-ULL n;
-
-// depth: 当前在枚举第几个素数。num: 当前因子数。
-// temp: 当前因子数量为 num
-// 的时候的数值。up：上一个素数的幂，这次应该小于等于这个幂次嘛
-void dfs(ULL depth, ULL temp, ULL num, ULL up) {
-  if (num > n || depth >= 16) return;
-  if (num == n && ans > temp) {
-    ans = temp;
-    return;
-  }
-  for (int i = 1; i <= up; i++) {
-    if (temp / p[depth] > ans) break;
-    dfs(depth + 1, temp = temp * p[depth], num * (i + 1), i);
-  }
-}
-
-int main() {
-  while (scanf("%llu", &n) != EOF) {
-    ans = INF;
-    dfs(0, 1, 1, 64);
-    printf("%llu\n", ans);
-  }
-  return 0;
-}
+--8<-- "docs/math/code/prime/prime_1.cpp"
 ```
 
 #### 求 n 以内因子数最多的数
@@ -224,35 +260,5 @@ int main() {
 思路同上，只不过要改改 dfs 的返回条件。注意这样的题目的数据范围，我一开始用了 int，应该是溢出了，在循环里可能就出不来了就超时了。上代码，0ms 过。注释就没必要写了上面写的很清楚了。
 
 ```cpp
-#include <cstdio>
-#include <iostream>
-#define ULL unsigned long long
-
-int p[16] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53};
-ULL n;
-ULL ans, ans_num;  // ans 为 n 以内的最大反素数（会持续更新），ans_sum 为 ans
-                   // 的因子数。
-
-void dfs(int depth, ULL temp, ULL num, int up) {
-  if (depth >= 16 || temp > n) return;
-  if (num > ans_num) {
-    ans = temp;
-    ans_num = num;
-  }
-  if (num == ans_num && ans > temp) ans = temp;
-  for (int i = 1; i <= up; i++) {
-    if (temp * p[depth] > n) break;
-    dfs(depth + 1, temp *= p[depth], num * (i + 1), i);
-  }
-  return;
-}
-
-int main() {
-  while (scanf("%llu", &n) != EOF) {
-    ans_num = 0;
-    dfs(0, 1, 1, 60);
-    printf("%llu\n", ans);
-  }
-  return 0;
-}
+--8<-- "docs/math/code/prime/prime_2.cpp"
 ```

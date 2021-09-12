@@ -76,7 +76,7 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 |      R     |           [RLanguageServer](https://github.com/REditorSupport/languageserver)          |
 |     zig    |                         [zls](https://github.com/zigtools/zls)                         |
 
-当打开对应语言的文件时，Kate 会自动拉起对应的 LSP Server。
+要启用 LSP 相关特性，需要前往菜单栏中 `设置`→`配置 Kate` 然后选择 `插件` 中 `LSP 客户端` 以启用相关特性。当打开对应语言的文件时，Kate 会自动拉起对应的 LSP Server。
 
 #### 增加配置
 
@@ -122,9 +122,12 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 
 其中 `server` 里的每一项代表一种语言，在这个语言里，`command` 代表启动 LSP Server 所使用的命令，`command` 是一个数组，是所需要执行的命令以空格分词的结果；`url` 是 LSP 的网址；`rootIndicationFileNames` 是用于确定项目根目录的文件；`highlightingModeRegex` 则匹配某种语法高亮的名字，以确定使用哪个 LSP；如果存在 `use` 项，则代表使用 `use` 项对应的语言的配置。
 
-该配置项位于 `设置`→`配置 Kate`→`LSP 客户端`→`用户服务器设置`。
+该配置项位于 `设置`→`配置 Kate`→`LSP 客户端`→`用户服务器设置`，其中 `LSP 客户端` 部分要在 `插件` 中启用 `LSP 客户端` 插件后才可见。
 
 ### 内置终端
+
+???+note "注意"
+    内置终端依赖了 KDE 的 Konsole[^ref1]，而 Konsole 为\*nix 独有包。也就是说，Windows 下该特性不可用。
 
 按<kbd>F4</kbd>可打开或关闭内置终端，也可点击左下角 `终端` 按钮打开，内置终端的当前目录会自动与当前文件保持一致，并随着你选择的文件而改变。其余与一般终端并无太大不同。
 
@@ -142,7 +145,7 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 
 ##### 手写配置添加
 
-进入配置页面后，点击左下角 `添加`→`添加工具`，然后按提示填写即可。注意可点击如下标志查看可使用的变量。
+进入配置页面后，点击左下角 `添加`→`添加工具`，然后按提示填写即可。可以参照 [此文档（英文）](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html) 来编写自己的外部工具配置。注意可点击如下标志查看可使用的变量。
 
 ![](images/kate-3-var.png)
 
@@ -150,7 +153,12 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 
 ##### 编译并执行单个 C++ 文件
 
-打开任意 C++ 源文件，在外部工具里找到 `编译执行 cpp`，点击即可。
+在\*nix 系统下，打开任意 C++ 源文件，在外部工具里找到 `编译执行 cpp`，点击即可。
+
+???+note "对于 Windows 用户"
+    在默认情况下，由于该工具的可执行文件为 `sh`，使得该工具在 Windows 下不可用。然而，用户可以对该工具进行修改，使其可用于 Windows 系统。
+    
+    要进行修改，请先确保你的系统内有一个可用的 C++ 编译器。然后从默认工具添加 `编译运行 cpp`，将其中 `可执行文件` 从 `sh` 改为 `powershell`，参数改为 `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"` [^note1][^note2]即可。
 
 ##### Git Blame
 
@@ -158,6 +166,20 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 
 ##### 格式化
 
-打开任意源文件，在外部工具里找到 `用 xxx 格式化`，点击即可。
+格式化功能要求对应包或应用程序可用，例如，C/C++ 的格式化要求 `clang-format` 可用。对于其他语言，用户可以前往外部工具配置中查看其默认可执行文件作为参考。
 
-此处注意，`clang-format` 可格式化选中的文本。
+打开任意源文件，在外部工具里找到 `用 xxx 格式化`，点击即可。另外，对于 C/C++ 语言的源文件，`clang-format` 可格式化选中的文本。
+
+## 相关外部链接
+
+- [The Kate Handbook](https://docs.kde.org/stable5/en/kate/kate/kate.pdf)
+- [关于如何手写自己的 LSP 客户端配置（英文）](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-lspclient.html#Configuration)
+- [关于如何手写自己的外部工具配置（英文）](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html)
+
+## 参考资料与脚注
+
+[^ref1]: [Arch Linux 中对该包的描述](https://archlinux.org/packages/extra/x86_64/kate/) 中，其可选依赖了 `konsole`，描述为 `open a terminal in Kate`（在 Kate 中打开一个终端）。
+
+[^note1]: 若 `g++` 不在 `PATH` 环境变量中，则将其改为编译器的绝对路径
+
+[^note2]: 或者，如果使用 Clang，则将 `g++` 改为 `clang++`。
