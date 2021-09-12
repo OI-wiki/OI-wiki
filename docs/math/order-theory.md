@@ -110,7 +110,7 @@ $a \leq m$ 意味着对于阶的所有元素 $a$，$a = m$。
 - $x \geq y$ 表示 $x \nless y$；
 - $x=y$ 表示 $x \nless y$ 和 $y \nless x$。这就是为什么上面第四条规则被称为等价的传递性。如果 $x \nless y$ 和 $y \nless x$，我们可以说“$x$ 和 $y$ 是不可比的”。
 
-## References
+## 参考资料与拓展阅读
 
 - [1][Order theory - From Academic Kids](<https://academickids.com/encyclopedia/index.php/Order_theory>)
 - [2][Binary Relation - Wikipedia](<https://en.wikipedia.org/wiki/Binary_relation>)

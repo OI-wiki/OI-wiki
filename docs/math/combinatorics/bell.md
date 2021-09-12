@@ -71,6 +71,7 @@ $$
 
 ??? note "参考实现"
     ```c++
+    // C++ Version
     const int maxn = 2000 + 5;
     int bell[maxn][maxn];
     void f(int n) {
@@ -81,6 +82,18 @@ $$
           bell[i][j] = bell[i - 1][j - 1] + bell[i][j - 1];
       }
     }
+    ```
+    
+    ```python
+    # Python Version
+    maxn = 2000 + 5
+    bell = [[0 for i in range(maxn)] for j in range(maxn)]
+    def f(n):
+        bell[1][1] = 1
+        for i in range(2, n + 1):
+            bell[i][1] = bell[i - 1][i - 1]
+            for j in range(2, i + 1):
+                bell[i][j] = bell[i - 1][j - 1] + bell[i][j - 1]
     ```
 
 ## 参考文献

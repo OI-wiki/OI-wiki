@@ -37,6 +37,7 @@ $$
 ### C 语言代码
 
 ```cpp
+// C++ Version
 LL CRT(int k, LL* a, LL* r) {
   LL n = 1, ans = 0;
   for (int i = 1; i <= k; i++) n = n * r[i];
@@ -47,6 +48,21 @@ LL CRT(int k, LL* a, LL* r) {
   }
   return (ans % mod + mod) % mod;
 }
+```
+
+### Python 语言代码
+
+```python
+# Python Version
+def CRT(k, a, r):
+    n = 1; ans = 0
+    for i in range(1, k + 1):
+        n = n * r[i]
+    for i in range(1, k + 1):
+        m = n // r[i]; b = y = 0
+        exgcd(m, r[i], b, y) # b * m mod r[i] = 1
+        ans = (ans + a[i] * m * b % mod) % mod
+    return (ans % mod + mod) % mod
 ```
 
 ## 算法的证明
@@ -141,6 +157,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
+    // C++ Version
     for (int i = 0; i < k; ++i) {
       x[i] = a[i];
       for (int j = 0; j < i; ++j) {
@@ -149,6 +166,17 @@ $$
         if (x[i] < 0) x[i] += p[i];
       }
     }
+    ```
+    
+    ```python
+    # Python Version
+    for i in range(0, k):
+        x[i] = a[i]
+        for j in range(0, i):
+            x[i] = r[j][i] * (x[i] - x[j])
+            x[i] = x[i] % p[i]
+            if (x[i] < 0):
+                x[i] = x[i] + p[i]
     ```
 
 该算法的时间复杂度为 $O(k^2)$。

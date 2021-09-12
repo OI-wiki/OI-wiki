@@ -18,6 +18,7 @@
 
 ???+note "代码实现"
     ```cpp
+    // C++ Version
     int ex_gcd(int a, int b, int& x, int& y) {
       if (b == 0) {
         x = 1;
@@ -38,4 +39,26 @@
       y *= k;
       return 1;
     }
+    ```
+    
+    ```python
+    # Python Version
+    def ex_gcd(a, b ,x, y):
+      if b == 0:
+          x = 1; y = 0
+          return a
+      d = ex_gcd(b, a % b, x, y)
+      temp = x
+      x = y
+      y = temp - a // b * y
+      return d
+    
+    def liEu(a, b, c, x, y):
+      d = ex_gcd(a, b, x, y)
+      if c % d != 0:
+          return 0
+      k = c // d
+      x = x * k
+      y = y * k
+      return 1
     ```

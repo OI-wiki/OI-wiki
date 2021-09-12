@@ -240,7 +240,7 @@ author: hyp1231
 
 [「CCPC 2017 网络赛」The Designer](https://vjudge.net/problem/HDU-6158)
 
-## References
+## 参考资料与拓展阅读
 
 - [Inversive geometry - Wikipedia](https://en.wikipedia.org/wiki/Inversive_geometry)
 
