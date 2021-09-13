@@ -14,29 +14,29 @@ author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613
 
 NOI 竞赛的环境要求如下。[^ref2]
 
-| 类别 | 软件或模块 | 版本 | 备注说明 |
-| :-- | :-- | :-- | :-- |
-| 系统 | Linux 内核 | `5.4.0-42-generic` | 64 位 x86 (AMD64) |
-| 语言环境 | GCC（`gcc` 和 `g++`） | `9.3.0` | C 和 C++ 编译器 |
-| | FPC | `3.0.4` | Pascal 编译器<!-- 现在谁还用 Pascal 打竞赛啊.jpg --> |
-| | Python 2 | `2.7` | 非竞赛语言 |
-| | Python 3 | `3.8` | 非竞赛语言 |
-| 调试工具 | GDB | `9.1` | |
-| | DDD | `3.3.12` | GDB 的 GUI 前端 |
-| 集成开发环境（IDE）| Code::Blocks | `20.03` | C/C++ IDE
-| | Lazarus | `2.0.6` | Pascal IDE |
-| | Geany | `1.36` | C/C++/Pascal（轻量级）IDE |
-| 文本编辑工具 | Visual Studio Code | `1.54.3` | |
-| | GNU Emacs | `26.3` | |
-| | gedit | `3.36.2` | |
-| | Vim | `8.1` | |
-| | Joe | `4.6` | |
-| | nano | `4.8` | |
-| | Sublime Text | `3.2.2` | |
-| 其它软件 | Firefox | `79.0` | 浏览器 |
-| | Midnight Commander (`mc`) | `4.8.24` | 文件管理器 |
-| | xterm (uxterm) | `3.5.3` | 终端 |
-| | Arbiter-local | `1.02` | 程序评测工具单机版 |
+| 类别          | 软件或模块                     | 版本                 | 备注说明                                     |
+| :---------- | :------------------------ | :----------------- | :--------------------------------------- |
+| 系统          | Linux 内核                  | `5.4.0-42-generic` | 64 位 x86 (AMD64)                         |
+| 语言环境        | GCC（`gcc` 和 `g++`）        | `9.3.0`            | C 和 C++ 编译器                              |
+|             | FPC                       | `3.0.4`            | Pascal 编译器<!-- 现在谁还用 Pascal 打竞赛啊.jpg --> |
+|             | Python 2                  | `2.7`              | 非竞赛语言                                    |
+|             | Python 3                  | `3.8`              | 非竞赛语言                                    |
+| 调试工具        | GDB                       | `9.1`              |                                          |
+|             | DDD                       | `3.3.12`           | GDB 的 GUI 前端                             |
+| 集成开发环境（IDE） | Code::Blocks              | `20.03`            | C/C++ IDE                                |
+|             | Lazarus                   | `2.0.6`            | Pascal IDE                               |
+|             | Geany                     | `1.36`             | C/C++/Pascal（轻量级）IDE                     |
+| 文本编辑工具      | Visual Studio Code        | `1.54.3`           |                                          |
+|             | GNU Emacs                 | `26.3`             |                                          |
+|             | gedit                     | `3.36.2`           |                                          |
+|             | Vim                       | `8.1`              |                                          |
+|             | Joe                       | `4.6`              |                                          |
+|             | nano                      | `4.8`              |                                          |
+|             | Sublime Text              | `3.2.2`            |                                          |
+| 其它软件        | Firefox                   | `79.0`             | 浏览器                                      |
+|             | Midnight Commander (`mc`) | `4.8.24`           | 文件管理器                                    |
+|             | xterm (uxterm)            | `3.5.3`            | 终端                                       |
+|             | Arbiter-local             | `1.02`             | 程序评测工具单机版                                |
 
 考场环境与一般联系环境会有一系列差异：
 
@@ -47,7 +47,7 @@ NOI 竞赛的环境要求如下。[^ref2]
 
 这有可能导致一系列的尴尬情况：
 
-- 想用 <kbd>Ctrl</kbd> + <kbd>C</kbd> 复制，结果退出了程序。
+- 想用<kbd>Ctrl</kbd>+<kbd>C</kbd>复制，结果退出了程序。
 - 平时 AC 的程序模板到了 Linux 上就 WA。
 
 为了防止考场上出现此类尴尬情况，我们必须要提前熟悉下 Linux 系统的操作方法。
@@ -141,46 +141,36 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 
 第一次运行 Ubuntu，需要完成初始化。
 
-```
-Installing, this may take a few minutes...
-```
+    Installing, this may take a few minutes...
 
 等待一两分钟时间，系统会提示创建新的用户帐户。
 
-```
-Please create a default UNIX user account. The username does not need to match your Windows username.
-For more information visit: https://aka.ms/wslusers
-Enter new UNIX username: chtholly
-```
+    Please create a default UNIX user account. The username does not need to match your Windows username.
+    For more information visit: https://aka.ms/wslusers
+    Enter new UNIX username: chtholly
 
 输入完用户名以后会提示输入密码。在 Linux 中，输入密码时屏幕上不显示文字属于正常现象。
 
-```
-Enter new UNIX password:
-```
+    Enter new UNIX password:
 
 设置好帐户名和密码后，WSL 就安装完成了。
 
-```
-Installation successful!
-To run a command as administrator (user "root"), use "sudo <command>".
-See "man sudo_root" for details.
+    Installation successful!
+    To run a command as administrator (user "root"), use "sudo <command>".
+    See "man sudo_root" for details.
 
-chtholly@SENIORIOUS:~$
-```
+    chtholly@SENIORIOUS:~$
 
 ## 基础配置
 
 初次安装好的系统不附带任何 C/C++ 编译器，需要手动配置环境。
 
-```
-$ gcc
-The program 'gcc' is currently not installed. You can install it by typing:
-sudo apt install gcc
-$ g++
-The program 'g++' is currently not installed. You can install it by typing:
-sudo apt install g++
-```
+    $ gcc
+    The program 'gcc' is currently not installed. You can install it by typing:
+    sudo apt install gcc
+    $ g++
+    The program 'g++' is currently not installed. You can install it by typing:
+    sudo apt install g++
 
 ### 更换为国内软件源
 
@@ -193,69 +183,57 @@ Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速�
 
 使用以下命令更新软件和软件源：
 
-```
-# cp /etc/apt/sources.list /etc/apt/sources.list.bak
-# vim /etc/apt/sources.list
-...（按 i 之后将上文的源右键粘贴进去，编辑完后按 Esc，再输入 :wq 和回车）
-# apt update
-# apt upgrade -y
-```
+    # cp /etc/apt/sources.list /etc/apt/sources.list.bak
+    # vim /etc/apt/sources.list
+    ...（按 i 之后将上文的源右键粘贴进去，编辑完后按 Esc，再输入 :wq 和回车）
+    # apt update
+    # apt upgrade -y
 
 ### 安装中文环境
 
-```
-# apt install  language-pack-zh-han* -y
-# locale-gen zh_CN.GB18030 && locale-gen zh_CN.UTF-8
-# apt install fontconfig -y
-# apt install fonts-noto-cjk -y # 中文字体
-# apt install fonts-wqy-microhei -y
-# apt install fonts-wqy-zenhei -y
-# dpkg-reconfigure locales
-```
+    # apt install  language-pack-zh-han* -y
+    # locale-gen zh_CN.GB18030 && locale-gen zh_CN.UTF-8
+    # apt install fontconfig -y
+    # apt install fonts-noto-cjk -y # 中文字体
+    # apt install fonts-wqy-microhei -y
+    # apt install fonts-wqy-zenhei -y
+    # dpkg-reconfigure locales
 
 使用 `sudo dpkg-reconfigure locales` 进入菜单，按空格选择带 `zh_CN` 的选项（推荐 `zh_CN.UTF-8 UTF-8`），选完后回车。
 
-```
-Locales to be generated:
+    Locales to be generated:
 
-    ...
-    [ ] zh_CN.GBK GBK
-    [*] zh_CN.UTF-8 UTF-8
-    [ ] zh_HK BIG5-HKSCS
-    ...
+        ...
+        [ ] zh_CN.GBK GBK
+        [*] zh_CN.UTF-8 UTF-8
+        [ ] zh_HK BIG5-HKSCS
+        ...
 
-        <Ok>            <Cancel>
-```
+            <Ok>            <Cancel>
 
 下一个菜单中选择 `zh_CN.UTF-8` 回车。
 
-```
-Default locale for the system environment:
+    Default locale for the system environment:
 
-             None
-             C.UTF-8
-             en_US.UTF-8
-            [zh_CN.UTF-8]
+                 None
+                 C.UTF-8
+                 en_US.UTF-8
+                [zh_CN.UTF-8]
 
-        <Ok>            <Cancel>
-```
+            <Ok>            <Cancel>
 
 之后关闭 Ubuntu 并重启，系统就会变成中文。
 
 再依次输入下列命令，把 `man` 帮助页替换为中文。[^ref6]
 
-```
-# apt install manpages-zh
-# sed -i 's|/usr/share/man|/usr/share/man/zh_CN|g' /etc/manpath.config
-```
+    # apt install manpages-zh
+    # sed -i 's|/usr/share/man|/usr/share/man/zh_CN|g' /etc/manpath.config
 
 可以用 `man help` 测试。
 
 ### 安装编译环境[^ref7]
 
-```
-# apt install -y build-essential vim ddd gdb fpc emacs gedit anjuta lazarus
-```
+    # apt install -y build-essential vim ddd gdb fpc emacs gedit anjuta lazarus
 
 GUIDE 的安装请参考 [Debian 或 Ubuntu 下 GUIDE 的安装](./editor/guide.md#debian-ubuntu)
 
@@ -264,13 +242,11 @@ GUIDE 的安装请参考 [Debian 或 Ubuntu 下 GUIDE 的安装](./editor/guide.
 
 以下为一个示例程序：
 
-```
-$ vim cpuid.cpp
-...
-$ g++ -Wall cpuid.cpp -o cpuid
-$ ./cpuid
-AMD Ryzen 5 1400 Quad-Core Processor
-```
+    $ vim cpuid.cpp
+    ...
+    $ g++ -Wall cpuid.cpp -o cpuid
+    $ ./cpuid
+    AMD Ryzen 5 1400 Quad-Core Processor
 
 ???+ note
     Linux 环境下可执行文件可不带扩展名，实现方式看上方命令。
@@ -283,25 +259,19 @@ AMD Ryzen 5 1400 Quad-Core Processor
 
 如果只想安装 Xfce，可以执行以下命令：
 
-```
-# apt install xfce4 tightvncserver -y
-```
+    # apt install xfce4 tightvncserver -y
 
 如果除 Xfce 外想要更多的软件，可以执行以下命令：
 
-```
-# sudo apt install xubuntu-desktop -y
-```
+    # sudo apt install xubuntu-desktop -y
 
 图形环境文件较大，下载解包需要一定时间。
 
 配置 xrdp：
 
-```
-# apt install xrdp -y
-$ echo "xfce4-session" >~/.xsession
-# service xrdp restart
-```
+    # apt install xrdp -y
+    $ echo "xfce4-session" >~/.xsession
+    # service xrdp restart
 
 为了防止和计算机本来带的远程桌面冲突，最好换一下端口。
 
@@ -309,11 +279,9 @@ $ echo "xfce4-session" >~/.xsession
 
 运行命令 `sudo sed 's/port=[0-9]{1,5}/port=qwq/' /etc/xrdp/xrdp.ini`，其中 `qwq` 为其他端口（如 `3390`）。
 
-```
-[globals]
-...
-port=3390
-```
+    [globals]
+    ...
+    port=3390
 
 运行 `sudo service xrdp restart`，然后去开始菜单，用 `localhost:qwq` 来访问。
 
@@ -363,17 +331,15 @@ $ xfce4-session
 
 硬盘分区作为文件夹在 `/mnt/` 里存放，因此可以直接交互，如直接编译二进制文件，或者往 Ubuntu 里传文件。
 
-```
-PS C:\Users\chtholly> bash
-chtholly@SENIORIOUS:/mnt/c/Users/chtholly$ echo "Hello world!" > hello
-chtholly@SENIORIOUS:/mnt/c/Users/chtholly$ exit
-PS C:\Users\chtholly> cat hello
-Hello world!
-PS C:\Users\chtholly> echo "Welcome!" > welcome
-PS C:\Users\chtholly> bash
-chtholly@SENIORIOUS:/mnt/c/Users/chtholly$ cat welcome
-Welcome!
-```
+    PS C:\Users\chtholly> bash
+    chtholly@SENIORIOUS:/mnt/c/Users/chtholly$ echo "Hello world!" > hello
+    chtholly@SENIORIOUS:/mnt/c/Users/chtholly$ exit
+    PS C:\Users\chtholly> cat hello
+    Hello world!
+    PS C:\Users\chtholly> echo "Welcome!" > welcome
+    PS C:\Users\chtholly> bash
+    chtholly@SENIORIOUS:/mnt/c/Users/chtholly$ cat welcome
+    Welcome!
 
 ### 配合 Visual Sudio Code 进行编辑
 
