@@ -173,7 +173,7 @@ chtholly@SENIORIOUS:~$
 
 初次安装好的系统不附带任何 C/C++ 编译器，需要手动配置环境。
 
-```
+```console
 $ gcc
 The program 'gcc' is currently not installed. You can install it by typing:
 sudo apt install gcc
@@ -193,7 +193,7 @@ Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速�
 
 使用以下命令更新软件和软件源：
 
-```
+```console
 # cp /etc/apt/sources.list /etc/apt/sources.list.bak
 # vim /etc/apt/sources.list
 ...（按 i 之后将上文的源右键粘贴进去，编辑完后按 Esc，再输入 :wq 和回车）
@@ -203,7 +203,7 @@ Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速�
 
 ### 安装中文环境
 
-```
+```console
 # apt install  language-pack-zh-han* -y
 # locale-gen zh_CN.GB18030 && locale-gen zh_CN.UTF-8
 # apt install fontconfig -y
@@ -244,7 +244,7 @@ Default locale for the system environment:
 
 再依次输入下列命令，把 `man` 帮助页替换为中文。[^ref6]
 
-```
+```console
 # apt install manpages-zh
 # sed -i 's|/usr/share/man|/usr/share/man/zh_CN|g' /etc/manpath.config
 ```
@@ -253,7 +253,7 @@ Default locale for the system environment:
 
 ### 安装编译环境[^ref7]
 
-```
+```console
 # apt install -y build-essential vim ddd gdb fpc emacs gedit anjuta lazarus
 ```
 
@@ -264,7 +264,7 @@ GUIDE 的安装请参考 [Debian 或 Ubuntu 下 GUIDE 的安装](./editor/guide.
 
 以下为一个示例程序：
 
-```
+```console
 $ vim cpuid.cpp
 ...
 $ g++ -Wall cpuid.cpp -o cpuid
@@ -283,13 +283,13 @@ AMD Ryzen 5 1400 Quad-Core Processor
 
 如果只想安装 Xfce，可以执行以下命令：
 
-```
+```console
 # apt install xfce4 tightvncserver -y
 ```
 
 如果除 Xfce 外想要更多的软件，可以执行以下命令：
 
-```
+```console
 # sudo apt install xubuntu-desktop -y
 ```
 
@@ -297,7 +297,7 @@ AMD Ryzen 5 1400 Quad-Core Processor
 
 配置 xrdp：
 
-```
+```console
 # apt install xrdp -y
 $ echo "xfce4-session" >~/.xsession
 # service xrdp restart
@@ -325,7 +325,7 @@ port=3390
 
 进入 Ubuntu 环境，安装 xterm：
 
-```bash
+```console
 # apt install xterm -y
 ```
 
@@ -341,7 +341,7 @@ port=3390
 
 之后再回到 Ubuntu，键入如下指令：
 
-```bash
+```console
 $ DISPLAY=:0 xterm
 ```
 
@@ -349,7 +349,7 @@ $ DISPLAY=:0 xterm
 
 如果使用了 xfce4，可以在弹出的窗口中使用如下命令激活 xfce4：
 
-```bash
+```console
 $ xfce4-session
 ```
 
@@ -363,15 +363,15 @@ $ xfce4-session
 
 硬盘分区作为文件夹在 `/mnt/` 里存放，因此可以直接交互，如直接编译二进制文件，或者往 Ubuntu 里传文件。
 
-```
+```console
 PS C:\Users\chtholly> bash
-chtholly@SENIORIOUS:/mnt/c/Users/chtholly$ echo "Hello world!" > hello
-chtholly@SENIORIOUS:/mnt/c/Users/chtholly$ exit
+/mnt/c/Users/chtholly$ echo "Hello world!" > hello
+/mnt/c/Users/chtholly$ exit
 PS C:\Users\chtholly> cat hello
 Hello world!
 PS C:\Users\chtholly> echo "Welcome!" > welcome
 PS C:\Users\chtholly> bash
-chtholly@SENIORIOUS:/mnt/c/Users/chtholly$ cat welcome
+/mnt/c/Users/chtholly$ cat welcome
 Welcome!
 ```
 
