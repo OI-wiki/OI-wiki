@@ -53,6 +53,18 @@ int q[SIZE], ql = 1, qr;
 
 数组模拟双端队列的方式与普通队列相同。
 
+在 Python 中，你可以直接使用 `collections.deque`
+
+```python
+from collections import deque
+queue = deque([1,2,3])
+
+queue.append(4)
+queue.appendleft(0)
+# >>> queue
+# deque([0, 1, 2, 3, 4])
+```
+
 ### 循环队列
 
 使用数组模拟队列会导致一个问题：随着时间的推移，整个队列会向数组的尾部移动，一旦到达数组的最末端，即使数组的前端还有空闲位置，再进行入队操作也会导致溢出（这种数组里实际有空闲位置而发生了上溢的现象被称为“假溢出”）。

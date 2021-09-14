@@ -35,6 +35,7 @@ $c_6$ 管理的是 $a_5$,$a_6$；$c_8$ 则管理全部 $8$ 个数。
 这时，我们引入一个函数——`lowbit`：
 
 ```cpp
+// C++ Version
 int lowbit(int x) {
   // x 的二进制表示中，最低位的 1 的位置。
   // lowbit(0b10110000) == 0b00010000
@@ -43,6 +44,19 @@ int lowbit(int x) {
   //          ~~~~~^~~
   return x & -x;
 }
+```
+
+```python
+# Python Version
+def lowbit(x):
+    """
+    x 的二进制表示中，最低位的 1 的位置。
+    lowbit(0b10110000) == 0b00010000
+             ~~~^~~~~
+    lowbit(0b11100100) == 0b00000100
+             ~~~~~^~~
+    """
+    return x & -x
 ```
 
 注释说明了 `lowbit` 的意思，对于 $x=88$：$88_{(10)}=1011000_{(2)}$   
@@ -55,6 +69,7 @@ $1000$ 对应的十进制是 $8$，所以 $c_{88}$ 一共管理 $8$ 个 $a$ 数�
 使用 lowbit 函数，我们可以实现很多操作，例如单点修改，将 $a_x$ 加上 $k$，只需要更新 $a_x$ 的所有上级：
 
 ```cpp
+// C++ Version
 void add(int x, int k) {
   while (x <= n) {  // 不能越界
     c[x] = c[x] + k;
@@ -63,9 +78,18 @@ void add(int x, int k) {
 }
 ```
 
+```python
+# Python Version
+def add(x, k):
+    while x <= n: # 不能越界
+        c[x] = c[x] + k
+        x = x + lowbit(x)
+```
+
 前缀求和：
 
 ```cpp
+// C++ Version
 int getsum(int x) {  // a[1]..a[x]的和
   int ans = 0;
   while (x >= 1) {
@@ -74,6 +98,16 @@ int getsum(int x) {  // a[1]..a[x]的和
   }
   return ans;
 }
+```
+
+```python
+# Python Version
+def getsum(x): # a[1]..a[x]的和
+    ans = 0
+    while x >= 1:
+        ans = ans + c[x]
+        x = x - lowbit(x)
+    return ans
 ```
 
 ## 区间加 & 区间求和
@@ -96,6 +130,7 @@ $$
 代码如下
 
 ```cpp
+// C++ Version
 int t1[MAXN], t2[MAXN], n;
 
 inline int lowbit(int x) { return x & (-x); }
@@ -127,6 +162,35 @@ long long getsum1(int l, int r) {
 }
 ```
 
+```python
+# Python Version
+t1 = [0] * MAXN, t2 = [0] * MAXN; n = 0
+
+def lowbit(x):
+    return x & (-x)
+
+def add(k, v):
+    v1 = k * v
+    while k <= n:
+        t1[k] = t1[k] + v; t2[k] = t2[k] + v1
+        k = k + lowbit(k)
+
+def getsum(t, k):
+    ret = 0
+    while k:
+        ret = ret + t[k]
+        k = k - lowbit(k)
+    return ret
+
+def add1(l, r, v):
+    add(l, v)
+    add(r + 1, -v)
+
+def getsum1(l, r):
+    return (r) * getsum(t1, r) - l * getsum(t1, l - 1) - \
+           (getsum(t2, r) - getsum(t2, l - 1))
+```
+
 ## Tricks
 
 $O(n)$ 建树：
@@ -134,6 +198,7 @@ $O(n)$ 建树：
 每一个节点的值是由所有与自己直接相连的儿子的值求和得到的。因此可以倒着考虑贡献，即每次确定完儿子的值后，用自己的值更新自己的直接父亲。
 
 ```cpp
+// C++ Version
 // O(n)建树
 void init() {
   for (int i = 1; i <= n; ++i) {
@@ -142,6 +207,16 @@ void init() {
     if (j <= n) t[j] += t[i];
   }
 }
+```
+
+```python
+# Python Version
+def init():
+    for i in range(1, n + 1):
+        t[i] = t[i] + a[i]
+        j = i + lowbit(i)
+        if j <= n:
+            t[j] = t[j] + t[i]
 ```
 
 $O(\log n)$ 查询第 $k$ 小/大元素。在此处只讨论第 $k$ 小，第 $k$ 大问题可以通过简单计算转化为第 $k$ 小问题。
@@ -157,10 +232,11 @@ $O(\log n)$ 查询第 $k$ 小/大元素。在此处只讨论第 $k$ 小，第 $k
 4. 将 $depth$ 减 1，回到步骤 2，直至 $depth$ 为 0
 
 ```cpp
-//权值树状数组查询第k小
+// C++ Version
+// 权值树状数组查询第k小
 int kth(int k) {
   int cnt = 0, ret = 0;
-  for (int i = log2(n); ~i; --i) {      // i与上文depth含义相同
+  for (int i = log2(n); ~i; --i) {      // i 与上文 depth 含义相同
     ret += 1 << i;                      // 尝试扩展
     if (ret >= n || cnt + t[ret] >= k)  // 如果扩展失败
       ret -= 1 << i;
@@ -171,12 +247,28 @@ int kth(int k) {
 }
 ```
 
+```python
+# Python Version
+# 权值树状数组查询第 k 小
+def kth(k):
+    cnt = 0; ret = 0
+    i = log2(n) # i 与上文 depth 含义相同
+    while ~i:
+        ret = ret + (1 << i) # 尝试扩展
+        if ret >= n or cnt + t[ret] >= k: # 如果扩展失败
+            ret = ret - (1 << i)
+        else:
+            cnt = cnt + t[ret] # 扩展成功后 要更新之前求和的值
+    return ret + 1
+```
+
 时间戳优化：
 
 对付多组数据很常见的技巧。如果每次输入新数据时，都暴力清空树状数组，就可能会造成超时。因此使用 $tag$ 标记，存储当前节点上次使用时间（即最近一次是被第几组数据使用）。每次操作时判断这个位置 $tag$ 中的时间和当前时间是否相同，就可以判断这个位置应该是 0 还是数组内的值。
 
 ```cpp
-//时间戳优化
+// C++ Version
+// 时间戳优化
 int tag[MAXN], t[MAXN], Tag;
 void reset() { ++Tag; }
 void add(int k, int v) {
@@ -194,6 +286,28 @@ int getsum(int k) {
   }
   return ret;
 }
+```
+
+```python
+# Python Version
+# 时间戳优化
+tag = [0] * MAXN; t = [0] * MAXN; Tag = 0
+def reset():
+    Tag = Tag + 1
+def add(k, v):
+    while k <= n:
+        if tag[k] != Tag:
+            t[k] = 0
+        t[k] = t[k] + v
+        tag[k] = Tag
+        k = k + lowbit(k)
+def getsum(k):
+    ret = 0
+    while k:
+        if tag[k] == Tag:
+            ret = ret + t[k]
+        k = k - lowbit(k)
+    return ret
 ```
 
 ## 例题
