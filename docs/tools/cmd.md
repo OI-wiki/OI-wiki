@@ -1,8 +1,44 @@
-author: StudyingFather, ayalhw, qinyihao, CoderOJ
+author: StudyingFather, ayalhw, qinyihao, CoderOJ, mcendu
 
 虽然图形界面能做的事情越来越多，但有很多高阶操作仍然需要使用命令行来解决。
 
 本页面将简要介绍命令行的一些使用方法。
+
+## 基础
+
+Windows 自带的命令行界面有两个。“命令提示符”（`cmd`）是其中较为古老的一个，功能也相对简单。PowerShell 是较新的一个命令行界面，自带的功能丰富，但相对臃肿。两个界面都可以在开始菜单中找到。
+
+类 Unix 系统（包含 macOS 和 Linux，以下称为 Unix）分为有图形界面和无图形界面两种情况。如果系统有图形界面（如使用 macOS 或者在 Linux 下安装了 GNOME、KDE 等图形界面），则命令行一般可以通过名为“终端”（Terminal 或 Console）的程序打开。没有图形界面的系统会在启动完成后自动打开命令行。
+
+Windows 下的命令行长这样：
+
+```console
+C:\Users\chtholly>
+```
+
+在命令行上输入的指令会显示在 `>` 以后。
+
+```console
+C:\Users\chtholly>echo "Hello World!"
+```
+
+Unix 下的命令行长这样（以 Debian/Ubuntu 为例，其它系统的命令行大体类似）：
+
+```console
+chtholly@seniorious:~$
+```
+
+在命令行上输入的指令会显示在 `$` 以后。
+
+```console
+chtholly@seniorious:~$ echo "Hello World!"
+```
+
+如果在 Unix 下使用 `root` 登录命令行，那么 `$` 会被替换成 `#`：
+
+```console
+root@seniorious:~# apt-get install gcc
+```
 
 ## 一些常用命令[^1]
 
