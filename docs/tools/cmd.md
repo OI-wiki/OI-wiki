@@ -166,21 +166,21 @@ Hello World!
 
 最新版本的 `clang++`、`g++` 以及 `MSVC`（部分支持）均已内置 `sanitizers`，但功能和使用方法有所不同，这里以 `clang++` 为例，它的使用方法如下：
 
-```bash
-% clang++ -fsanitize=<name> test.cc
+```console
+$ clang++ -fsanitize=<name> test.cc
 ```
 
 其中 `<name>` 即为要启用的功能（一个 `sanitizer` 可理解为一些功能的集合），例如：
 
-```bash
-% clang++ -fsanitize=memory test.cc # 启用 MemorySanitizer
-% clang++ -fsanitize=signed-integer-overflow test.cc # 启用有符号整型溢出检测
+```console
+$ clang++ -fsanitize=memory test.cc # 启用 MemorySanitizer
+$ clang++ -fsanitize=signed-integer-overflow test.cc # 启用有符号整型溢出检测
 ```
 
 之后直接像平常一样运行可执行文件即可，如果 sanitizer 检测到错误，则会输出到 `stderr` 流，例如：
 
-```bash
-% ./a.out
+```console
+$ ./a.out
 test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be represented in type 'int'
 ```
 
@@ -281,8 +281,8 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 
 有，那就是 **管道**，使用起来也非常简单，如下操作即可：
 
-```bash
-A | B
+```console
+$ A | B
 ```
 
 这会在内存创建一个管道，然后两个程序被同时启动。程序 A 每次要输出被重定向到这个管道中，而这个管道本身不会存储数据（其实有一个很小的缓冲区）。在 B 读取之前，A 的输出操作会被阻塞，等到 B 把数据读入以后，A 的输出才能继续进行。这样优美地解决了上述的问题，没有磁盘 IO 操作，两份代码同时运行，也没有额外消耗很多的内存储存中间结果。
@@ -293,18 +293,18 @@ A | B
 
 在 Unix 系统中，可以使用如下命令创建命名管道（以命名为 `my_pipe` 举例）：
 
-```bash
-mkfifo my_pipe
+```console
+$ mkfifo my_pipe
 ```
 
 这个时候使用 `ls` 命令列出当前目录下的文件，会发现多了一个 `my_pipe|` 的文件。这就创建了一个命名管道，文件名后的 `|` 代表这是一个管道文件。然后就可以像文件的重定向一样向这个管道中读写了。
 
 通过命名管道，我们可以通过这样的方式让两个程序交互：
 
-```bash
-mkfifo input output
-./checker > input < output # 这里一定要把 > input 写在前面，不然 shell 会先打开 output 管道，而这个管道现在并没有东西，会阻塞 checker 的运行。
-./my_code < input > output
+```console
+$ mkfifo input output
+$ ./checker > input < output # 这里一定要把 > input 写在前面，不然 shell 会先打开 output 管道，而这个管道现在并没有东西，会阻塞 checker 的运行。
+$ ./my_code < input > output
 ```
 
 使用完后，可以像普通文件一样用 `rm` 命令删除命名管道。
