@@ -27,8 +27,8 @@ author: StudyingFather, ayalhw, qinyihao, CoderOJ
 
 使用如下命令即可做到。
 
-```bash
-command < input > output
+```console
+$ command < input > output
 ```
 
 例如，`./prog < 1.in > 1.out` 这个命令就将让 `prog` 这个程序从当前目录下的 `1.in` 中读入数据，并将程序输出覆盖写入到 `1.out`。
@@ -52,7 +52,7 @@ command < input > output
 
 上面介绍的用法只是命令行命令的一小部分，还有很多命令没有涉及到。在命令行里输入帮助命令 `help`，可以查询所有命令以及它们的用途。
 
-下面给出 Windows 系统和类 Unix 系统（含 macOS 和 Linux）的命令对照表，以供参考。
+下面给出 Windows 系统和 Unix 系统的命令对照表，以供参考。
 
 | 分类   | Windows 系统 | Unix 系统 |
 | ---- | ---------- | -------- |
