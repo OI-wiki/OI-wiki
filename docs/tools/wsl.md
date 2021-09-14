@@ -196,7 +196,7 @@ Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速�
 ### 安装中文环境
 
 ```console
-# apt install  language-pack-zh-han* -y
+# apt install language-pack-zh-han* -y
 # locale-gen zh_CN.GB18030 && locale-gen zh_CN.UTF-8
 # apt install fontconfig -y
 # apt install fonts-noto-cjk -y # 中文字体
@@ -245,9 +245,9 @@ Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速�
 # apt install -y build-essential vim ddd gdb fpc emacs gedit anjuta lazarus
 ```
 
-GUIDE 的安装请参考 [Debian 或 Ubuntu 下 GUIDE 的安装](./editor/guide.md#debian-ubuntu)
+GUIDE 的安装请参考 [Debian 或 Ubuntu 下 GUIDE 的安装](./editor/guide.md#debian-ubuntu)。
 
-这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install <程序名>` 来安装别的。
+这里安装的是基础 + NOI 官方要求的环境，如有需要可以用 `apt install <程序名>` 来安装其它软件包。
 若想安装其他版本可以参考 Debian 官方的 [包管理手册](https://www.debian.org/doc/manuals/debian-reference/ch02.zh-cn.html)。
 
 以下为一个示例程序：
