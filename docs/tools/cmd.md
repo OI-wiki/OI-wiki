@@ -12,13 +12,13 @@ Windows 自带的命令行界面有两个。“命令提示符”（`cmd`）是�
 
 Windows 下的命令行长这样：
 
-```console
+```doscon
 C:\Users\chtholly>
 ```
 
 在命令行上输入的指令会显示在 `>` 以后。
 
-```console
+```doscon
 C:\Users\chtholly>echo "Hello World!"
 ```
 
@@ -82,7 +82,7 @@ $ command < input > output
 
 对于 Windows 系统，**当前目录也在命令行的默认搜索范围内**。例如 Windows 系统中，输入 `hello` 命令就可以执行当前目录下的 `hello.exe`。但是在 PowerShell 中，PowerShell 默认不会从当前目录寻找可执行文件（这与在 Unix 的行为一致），因而在 PowerShell 中需要使用相对路径或绝对路径调用当前目录下的可执行文件，例如 `.\hello.exe`，否则，你将看到以下报错：
 
-```console
+```ps1con
 PS> hello
 hello: The term 'hello' is not recognized as a name of a cmdlet,
 function, script file, or executable program.
