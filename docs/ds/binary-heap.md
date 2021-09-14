@@ -54,7 +54,7 @@ author: HeRaNO, Xeonacid
 
 考虑使用一个序列 $h$ 来表示堆。$h_i$ 的两个儿子分别是 $h_{2i}$ 和 $h_{2i+1}$，$1$ 是根结点：
 
-![h 的堆结构](./images/binary-heap1.png)
+![h 的堆结构](./images/binary-heap-array.svg)
 
 参考代码：
 
