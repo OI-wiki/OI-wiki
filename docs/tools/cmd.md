@@ -13,13 +13,13 @@ author: StudyingFather, ayalhw, qinyihao, CoderOJ
 - 相对路径：用相对当前路径的位置关系来描述位置。例如当前路径为 `~/folder`，则 `./a.cpp` 实际上指的就是 `~/folder/a.cpp` 这个文件。**随着当前路径的变化，相对路径描述的位置也可能发生改变**。
 -   绝对路径：用完整的路径来描述位置。例如 `~/folder/a.cpp` 就是一个绝对路径的例子。**绝对路径描述的位置不随当前路径的变化而改变**。
 
-    Windows/Linux 用 `.` 代表当前目录，`..` 代表当前目录的父目录。特别地，在 Linux 下，用 `~` 表示用户主目录（注意 `~` 由 shell 展开，因此在其他地方可能不可用）。
+    Windows/Unix 用 `.` 代表当前目录，`..` 代表当前目录的父目录。特别地，在 Unix 下，用 `~` 表示用户主目录（注意 `~` 由 shell 展开，因此在其他地方可能不可用）。
 
-在 Windows/Linux 下，使用 `cd <目录>` 命令可以切换当前的目录。例如，`cd folder` 会切换到当前目录的 `folder` 子目录；`cd ..` 会切换到当前目录的父目录。
+在 Windows/Unix 下，使用 `cd <目录>` 命令可以切换当前的目录。例如，`cd folder` 会切换到当前目录的 `folder` 子目录；`cd ..` 会切换到当前目录的父目录。
 
-在 Windows 下，使用 `dir` 命令可以列出当前目录的文件列表。在 Linux 下，列出文件列表的命令是 `ls`。特别的，在 PowerShell 下，可以使用与 Linux 相同的 `ls` 命令。
+在 Windows 下，使用 `dir` 命令可以列出当前目录的文件列表。在 Unix 下，列出文件列表的命令是 `ls`。特别的，在 PowerShell 下，可以使用与 Unix 相同的 `ls` 命令。
 
-在 Windows 下，使用 `md <目录>` 或者 `mkdir <目录>` 命令创建一个新目录，使用 `rd <目录>` 命令删除一个目录。在 Linux 下，这两个命令分别是 `mkdir` 和 `rmdir`。需要注意的是，**使用 `rd` 或是 `rmdir` 删除一个目录前，这个目录必须是空的**。如果想要删除非空目录（和该目录下的所有文件）的话，Linux 下可以执行 `rm -r <目录>` 命令，Windows 下可以执行 `rd /s <目录>` 命令。
+在 Windows 下，使用 `md <目录>` 或者 `mkdir <目录>` 命令创建一个新目录，使用 `rd <目录>` 命令删除一个目录。在 Unix 下，这两个命令分别是 `mkdir` 和 `rmdir`。需要注意的是，**使用 `rd` 或是 `rmdir` 删除一个目录前，这个目录必须是空的**。如果想要删除非空目录（和该目录下的所有文件）的话，Unix 下可以执行 `rm -r <目录>` 命令，Windows 下可以执行 `rd /s <目录>` 命令。
 
 ### 重定向机制
 
@@ -44,17 +44,17 @@ command < input > output
 
 当然，执行一个文件时，命令行并不会把所有目录下的文件都找一遍。环境变量 `PATH` 描述了命令行搜索路径的范围，命令行会在 `PATH` 中的路径寻找目标文件。
 
-对于 Windows 系统，**当前目录也在命令行的默认搜索范围内**。例如 Windows 系统中，输入 `hello` 命令就可以执行当前目录下的 `hello.exe`。但是在 PowerShell 中，PowerShell 默认不会从当前目录寻找可执行文件（这与在 Linux 的行为一致），因而在 PowerShell 中需要使用相对路径或绝对路径调用当前目录下的可执行文件，例如 `.\hello.exe`，否则，你将看到以下报错（以 cf-tool 的 cf.exe 为例）：![](./images/cmd-exec.png)
+对于 Windows 系统，**当前目录也在命令行的默认搜索范围内**。例如 Windows 系统中，输入 `hello` 命令就可以执行当前目录下的 `hello.exe`。但是在 PowerShell 中，PowerShell 默认不会从当前目录寻找可执行文件（这与在 Unix 的行为一致），因而在 PowerShell 中需要使用相对路径或绝对路径调用当前目录下的可执行文件，例如 `.\hello.exe`，否则，你将看到以下报错（以 cf-tool 的 cf.exe 为例）：![](./images/cmd-exec.png)
 
-在 Linux 系统中，**当前目录并不在命令行的默认搜索范围内**，所以执行当前目录下的 `hello` 程序的命令就变成了 `./hello`。
+在 Unix 系统中，**当前目录并不在命令行的默认搜索范围内**，所以执行当前目录下的 `hello` 程序的命令就变成了 `./hello`。
 
 ### 总结
 
 上面介绍的用法只是命令行命令的一小部分，还有很多命令没有涉及到。在命令行里输入帮助命令 `help`，可以查询所有命令以及它们的用途。
 
-下面给出 Windows 系统和 Linux 系统的命令对照表，以供参考。
+下面给出 Windows 系统和类 Unix 系统（含 macOS 和 Linux）的命令对照表，以供参考。
 
-| 分类   | Windows 系统 | Linux 系统 |
+| 分类   | Windows 系统 | Unix 系统 |
 | ---- | ---------- | -------- |
 | 文件列表 | `dir`      | `ls`     |
 | 切换目录 | `cd`       | `cd`     |
@@ -85,7 +85,7 @@ command < input > output
 - `-lm`，`-lgmp`: 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）。
 
 ???+ note
-    在 Linux 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数。[^have-to-link-libm-in-gcc]
+    在 Unix 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数。[^have-to-link-libm-in-gcc]
 
 #### 使用 GNU Make 的内置规则[^gnu-make-built-in-rules]
 
@@ -235,7 +235,7 @@ A | B
 
 有时候我们不只是要把一个程序的输出重定向到另一个的输入。比如在做 IO 交互题的时候，经常需要将 A 的输出重定向到 B 的输入，B 的输出重定向到 A 的输出，这个时候用上文提到的普通管道就无能为力了。而重定向到文件，有无法让两个程序同时运行。这个时候就需要一个长得像文件的管道——命名管道。
 
-在 Linux 系统中，可以使用如下命令创建命名管道（以命名为 `my_pipe` 举例）：
+在 Unix 系统中，可以使用如下命令创建命名管道（以命名为 `my_pipe` 举例）：
 
 ```bash
 mkfifo my_pipe
