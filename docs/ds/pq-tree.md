@@ -1,4 +1,4 @@
-author: isdanni
+author: isdanni, xyf007
 
 **PQ 树** 是一种基于树的数据结构，代表一组元素上的一系列排列，由 Kellogg S. Booth 和 George S. Lueker 于 1976 年发现命名。
 
@@ -34,6 +34,10 @@ PC 树，是由 Shiwei-Kuan Shih 和 Hen-Lian Hsu 于 [2001](https://www.researc
 但与 PQ 树不同的是，PC 树是无根的。与标记为 P 的任何非叶节点相邻的节点都可以像在 PQ 树中那样任意地重新排序，而与标记为 C 的任何非叶节点相邻的节点都具有固定的循环顺序，并且重新排序只能遵循逆序列。
 
 因此，PC 树只能表示每个顺序的任何循环排列或逆转也都在该集合中的顺序集合。但是，我们可以通过 `n+1` 个元素的 PC 树来模拟 `n` 个元素的 PQ 树，其中多余的元素用于使 PC 树成为根。在 PC 树上执行平面性测试算法所需的操作比 PQ 树上的相应操作要简单一些。
+
+## 习题
+
+[CF243E Matrix](http://codeforces.com/problemset/problem/243/E)
 
 ## 参考链接
 
