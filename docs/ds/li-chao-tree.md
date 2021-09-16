@@ -35,17 +35,17 @@
 
 2. 反之，$g$ 在左半区间 **一定** 最优，$f$ 在右半区间 **可能** 最优。
 
-![$k_f > k_g$，$f(m) < g(m)$](./images/li-chao-tree-2.svg)
+![$k_f > k_g$，$f(m) &lt; g(m)$](./images/li-chao-tree-2.svg)
 
 接下来考虑 $f$ 斜率小于 $g$ 的情况，
 
 1. 如果 $f$ 在 $m$ 处更优，则 $f$ 在左半区间 **一定** 最优，$g$ 在右半区间 **可能** 最优；
 
-![$k_f < k_g$，$f(m) > g(m)$](./images/li-chao-tree-4.svg)
+![$k_f &lt;k_g$，$f(m) > g(m)$](./images/li-chao-tree-4.svg)
 
 2. 反之，$g$ 在右半区间 **一定** 最优，$f$ 在左半区间 **可能** 最优。
 
-![$k_f < k_g$，$f(m) < g(m)$](./images/li-chao-tree-3.svg)
+![$k_f &lt;k_g$，$f(m) &lt; g(m)$](./images/li-chao-tree-3.svg)
 
 最后考虑新线段和旧线段斜率相同的情况，此时只需比较截距即可，截距大的一定在整个区间内更优。
 
