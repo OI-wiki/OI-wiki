@@ -38,10 +38,19 @@
 既然得到了 $\gcd(a, b) = \gcd(b, r)$，这里两个数的大小是不会增大的，那么我们也就得到了关于两个数的最大公约数的一个递归求法。
 
 ```cpp
+// C++ Version
 int gcd(int a, int b) {
   if (b == 0) return a;
   return gcd(b, a % b);
 }
+```
+
+```python
+# Python Version
+def gcd(a, b):
+    if b == 0:
+        return a
+    return gcd(b, a % b)
 ```
 
 递归至 `b==0`（即上一步的 `a%b==0`) 的情况再返回值即可。
@@ -126,6 +135,7 @@ $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\fra
 将 $x_2,y_2$ 不断代入递归求解直至 $\gcd$（最大公约数，下同）为 `0` 递归 `x=1,y=0` 回去求解。
 
 ```cpp
+// C++ Version
 int Exgcd(int a, int b, int &x, int &y) {
   if (!b) {
     x = 1;
@@ -138,6 +148,19 @@ int Exgcd(int a, int b, int &x, int &y) {
   y = t - (a / b) * y;
   return d;
 }
+```
+
+```python
+# Python Version
+def Exgcd(a, b, x, y):
+    if b == 0:
+        x, y = 1, 0
+        return a
+    d = Exgcd(b, a % b, x, y)
+    t = x
+    x = y
+    y = t - (a // b) * y
+    return d
 ```
 
 函数返回的值为 $\gcd$，在这个过程中计算 $x,y$ 即可。

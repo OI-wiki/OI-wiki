@@ -38,8 +38,8 @@ $$
 
 定义 $A=(P,[a,b]),B=(P,[x,y])$，且 $A,B\in I_P$。于是连续段的关系和运算可以表示为：
 
-1. $A\subseteq B\Leftrightarrow x\le a\wedge b\le y$.
-2. $A=B\Leftrightarrow a=x\wedge b=y$.
+1. $A\subseteq B\iff x\le a\wedge b\le y$.
+2. $A=B\iff a=x\wedge b=y$.
 3. $A\cap B=(P,[\max(a,x),\min(b,y)])$.
 4. $A\cup B=(P,[\min(a,x),\max(b,y)])$.
 5. $A\setminus B=(P,\{i|i\in[a,b]\wedge i\notin[x,y]\})$.

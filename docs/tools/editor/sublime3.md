@@ -198,7 +198,7 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
     只编译
     
     ```json
-    "cmd": [“g++","-Wall","${file}","-o","${file_path}/${file_base_name}"],
+    "cmd": ["g++","-Wall","${file}","-o","${file_path}/${file_base_name}"],
     ```
     
     在外部 CMD 运行

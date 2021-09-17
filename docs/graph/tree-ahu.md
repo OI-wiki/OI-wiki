@@ -15,7 +15,7 @@ AHU 算法用于判断两棵有根树是否同构。
 对于两棵有根树 $T_1(V_1,E_1,r_1)$ 和 $T_2(V_2,E_2,r_2)$，如果存在一个双射 $\varphi: V_1 \rightarrow V_2$，使得
 
 $$
-\forall u,v \in V_1,(u,v) \in E_1 \Leftrightarrow (\varphi(u),\varphi(v))  \in E_2
+\forall u,v \in V_1,(u,v) \in E_1 \iff (\varphi(u),\varphi(v))  \in E_2
 $$
 
 **且** $\varphi(r_1)=r_2$ 成立，那么称有根树 $T_1(V_1,E_1,r_1)$ 和 $T_2(V_2,E_2,r_2)$ 同构。
@@ -25,7 +25,7 @@ $$
 对于两棵无根树 $T_1(V_1,E_1)$ 和 $T_2(V_2,E_2)$，如果存在一个双射 $\varphi: V_1 \rightarrow V_2$，使得
 
 $$
-\forall u,v \in V_1,(u,v) \in E_1 \Leftrightarrow (\varphi(u),\varphi(v))  \in E_2
+\forall u,v \in V_1,(u,v) \in E_1 \iff (\varphi(u),\varphi(v))  \in E_2
 $$
 
 成立，那么称无根树 $T_1(V_1,E_1)$ 和 $T_2(V_2,E_2)$ 同构。

@@ -14,10 +14,19 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 ## 初始化
 
 ```cpp
+// C++ Version
 void makeSet(int size) {
   for (int i = 0; i < size; i++) fa[i] = i;  // i就在它本身的集合里
   return;
 }
+```
+
+```python
+# Python Version
+def makeSet(size):
+    for i in range(0, size):
+        fa[i] = i
+    return
 ```
 
 ## 查找
@@ -31,14 +40,26 @@ void makeSet(int size) {
 此处给出一种 C++ 的参考实现：
 
 ```cpp
+// C++ Version
 int fa[MAXN];  // 记录某个人的爸爸是谁，特别规定，祖先的爸爸是他自己
 int find(int x) {
   // 寻找x的祖先
   if (fa[x] == x)  // 如果x是祖先则返回
     return x;
   else
-    return find(fa[x]);  // 如果不是则x的爸爸问x的爷爷
+    return find(fa[x]);  // 如果不是则 x 的爸爸问 x 的爷爷
 }
+```
+
+```python
+# Python Version
+fa = [0] * MAXN # 记录某个人的爸爸是谁，特别规定，祖先的爸爸是他自己
+def find(x):
+    # 寻找x的祖先
+    if fa[x] == x:
+        return x # 如果x是祖先则返回
+    else:
+        return find(fa[x]) # 如果不是则 x 的爸爸问 x 的爷爷
 ```
 
 显然这样最终会返回 $x$ 的祖先。
@@ -52,11 +73,20 @@ int find(int x) {
 此处给出一种 C++ 的参考实现：
 
 ```cpp
+// C++ Version
 int find(int x) {
-  if (x != fa[x])  // x不是自身的父亲，即x不是该集合的代表
-    fa[x] = find(fa[x]);  // 查找x的祖先直到找到代表,于是顺手路径压缩
+  if (x != fa[x])  // x 不是自身的父亲，即 x 不是该集合的代表
+    fa[x] = find(fa[x]);  // 查找 x 的祖先直到找到代表，于是顺手路径压缩
   return fa[x];
 }
+```
+
+```python
+# Python Version
+def find(x):
+    if x != fa[x]: # x 不是自身的父亲，即 x 不是该集合的代表
+        fa[x] = find(fa[x]) # 查找 x 的祖先直到找到代表，于是顺手路径压缩
+    return fa[x]
 ```
 
 ## 合并
@@ -69,12 +99,22 @@ int find(int x) {
 此处给出一种 C++ 的参考实现：
 
 ```cpp
+// C++ Version
 void unionSet(int x, int y) {
   // x 与 y 所在家族合并
   x = find(x);
   y = find(y);
   fa[x] = y;  // 把 x 的祖先变成 y 的祖先的儿子
 }
+```
+
+```python
+# Python Version
+def unionSet(x, y):
+    # x 与 y 所在家族合并
+    x = find(x)
+    y = find(y)
+    fa[x] = y # 把 x 的祖先变成 y 的祖先的儿子
 ```
 
 ### 启发式合并（按秩合并）
@@ -92,6 +132,7 @@ void unionSet(int x, int y) {
 此处给出一种 C++ 的参考实现，其选择点数作为估价函数：
 
 ```cpp
+// C++ Version
 std::vector<int> size(N, 1);  // 记录并初始化子树的大小为 1
 void unionSet(int x, int y) {
   int xx = find(x), yy = find(y);
@@ -101,6 +142,19 @@ void unionSet(int x, int y) {
   fa[xx] = yy;
   size[yy] += size[xx];
 }
+```
+
+```python
+# Python Version
+size = [1] * N # 记录并初始化子树的大小为 1
+def unionSet(x, y):
+    xx = find(x); yy = find(y)
+    if xx == yy:
+        return
+    if size[xx] > size[yy]: # 保证小的合到大的里
+        xx, yy = yy, xx
+    fa[xx] = yy
+    size[yy] = size[yy] + size[xx]
 ```
 
 ## 时间复杂度及空间复杂度
@@ -143,7 +197,7 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
 
 相关专题见 [并查集应用](../topic/dsu-app.md)。
 
-## References
+## 参考资料与拓展阅读
 
 - [1]Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281.[ResearchGate PDF](https://www.researchgate.net/profile/Jan_Van_Leeuwen2/publication/220430653_Worst-case_Analysis_of_Set_Union_Algorithms/links/0a85e53cd28bfdf5eb000000/Worst-case-Analysis-of-Set-Union-Algorithms.pdf)
 - [2]Yao, A. C. (1985). On the expected performance of path compression algorithms.[SIAM Journal on Computing, 14(1), 129-133.](https://epubs.siam.org/doi/abs/10.1137/0214010?journalCode=smjcat)
