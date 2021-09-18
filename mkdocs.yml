@@ -430,6 +430,7 @@ nav:
   - 杂项:
     - 杂项简介: misc/index.md
     - 离散化: misc/discrete.md
+    - 双指针: misc/two-pointer.md
     - 离线算法:
       - 离线算法简介: misc/offline.md
       - CDQ 分治: misc/cdq-divide.md
