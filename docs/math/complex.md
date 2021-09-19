@@ -30,10 +30,7 @@
 
 纯虚数，虚数，实数，复数的关系如下图所示。
 
-![](./images/complex-1.png)
-
-<div style='text-align: center; color: #999'>图片来自：人教版高中数学 A 
-版选修 2-2 第 103 页</div>
+![](./images/complex-relation.svg)
 
 ## 复数的性质与运算
 
