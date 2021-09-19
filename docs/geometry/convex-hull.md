@@ -20,64 +20,57 @@
 
 常用的求法有 Graham 扫描法和 Andrew 算法。
 
-
-
 #### Graham 算法
-首先我们找出 $y$ 坐标最小，在此基础上 $x$ 坐标最小的点，也就是整张图最靠左下的点，这个点一定在凸包上，因为其他点之间的连线都不能将它围住。将它与第一个点交换，作为凸包的一个基准点。接下来最朴素的一个想法就是，我们按照一个逆时针旋转的顺序地找到凸包上的所有点，怎么才能将数组中存的点变成逆时针的顺序呢？我们可以以基准点为原点对其他点进行极角排序。不过，进行极角排序的时候也可以不用把具体的极角度数算出来，而是可以用判断叉积正负的方法来实现比较。
-$\overrightarrow{AB} \times \overrightarrow{AC} >0$ : $\overrightarrow{AB}$ 在 $\overrightarrow{AC}$ 的顺时针方向。
-$\overrightarrow{AB} \times \overrightarrow{AC} <0$ : $\overrightarrow{AB}$ 在 $\overrightarrow{AC}$ 的逆时针方向。
-$\overrightarrow{AB} \times \overrightarrow{AC} =0$ : $\overrightarrow{AB}$ 和 $\overrightarrow{AC}$ 共线。
-排好序后，我们先将前三个点放进一个栈中，由极角排序知这三个点一定是向下凸的，接着从 4 到 $n$ 遍历所有点，每访问到一个点 $i$ ，就先不断地比较 $mathit{stack}[top-1]$ 与 $mathit{stack}[top]$ 的连线在 $mathit{stack}[top-1]$ 与 $i$ 的连线的什么方向，如果是逆时针方向，说明在 $mathit{stack}[top]$ 这个点凹了进去，不符合凸包的性质，因此需要将栈顶弹出，弹到不能再弹后，再将 $i$ 加入栈顶。这样最终栈里储存的每个点都符合凸包的性质，且是以逆时针顺序排列的。算法整体复杂度为 $O(n\log n)$，由排序算法复杂度所限制。
+
+首先我们找出 $y$ 坐标最小，在此基础上 $x$ 坐标最小的点，也就是整张图最靠左下的点，这个点一定在凸包上，因为其他点之间的连线都不能将它围住。将它与第一个点交换，作为凸包的一个基准点。接下来最朴素的一个想法就是，我们按照一个逆时针旋转的顺序地找到凸包上的所有点，怎么才能将数组中存的点变成逆时针的顺序呢？我们可以以基准点为原点对其他点进行极角排序。不过，进行极角排序的时候也可以不用把具体的极角度数算出来，而是可以用判断叉积正负的方法来实现比较。$\overrightarrow{AB} \times \overrightarrow{AC} >0$:$\overrightarrow{AB}$ 在 $\overrightarrow{AC}$ 的顺时针方向。$\overrightarrow{AB} \times \overrightarrow{AC} <0$:$\overrightarrow{AB}$ 在 $\overrightarrow{AC}$ 的逆时针方向。$\overrightarrow{AB} \times \overrightarrow{AC} =0$:$\overrightarrow{AB}$ 和 $\overrightarrow{AC}$ 共线。
+排好序后，我们先将前三个点放进一个栈中，由极角排序知这三个点一定是向下凸的，接着从 4 到 $n$ 遍历所有点，每访问到一个点 $i$，就先不断地比较 $mathit{stack}[top-1]$ 与 $mathit{stack}[top]$ 的连线在 $mathit{stack}[top-1]$ 与 $i$ 的连线的什么方向，如果是逆时针方向，说明在 $mathit{stack}[top]$ 这个点凹了进去，不符合凸包的性质，因此需要将栈顶弹出，弹到不能再弹后，再将 $i$ 加入栈顶。这样最终栈里储存的每个点都符合凸包的性质，且是以逆时针顺序排列的。算法整体复杂度为 $O(n\log n)$，由排序算法复杂度所限制。
 
 ???+note "代码实现"
     ```cpp
-    struct PT{
-      double x,y;
-      PT(){}
-      PT(double a,double b):x(a),y(b){}
-      PT operator-(const PT &b)const{
-        return PT(x-b.x,y-b.y);
-      }
-    }A[N];
-    double cross(PT s,PT a,PT b){
-      return (a.x-s.x)*(b.y-s.y)-(b.x-s.x)*(a.y-s.y);
+    struct PT {
+      double x, y;
+      PT() {}
+      PT(double a, double b) : x(a), y(b) {}
+      PT operator-(const PT &b) const { return PT(x - b.x, y - b.y); }
+    } A[N];
+    double cross(PT s, PT a, PT b) {
+      return (a.x - s.x) * (b.y - s.y) - (b.x - s.x) * (a.y - s.y);
     }
-    double mo(PT a){
-      return sqrt(a.x*a.x+a.y*a.y);
+    double mo(PT a) { return sqrt(a.x * a.x + a.y * a.y); }
+    bool cmp(PT a, PT b) {
+      double tmp = cross(A[1], a, b);
+      if (fabs(tmp) < eps) {
+        return mo(a - A[1]) > mo(b - A[1]);
+      }
+      return tmp > 0;
     }
-    bool cmp(PT a,PT b){
-      double tmp=cross(A[1],a,b);
-      if(fabs(tmp)<eps){
-        return mo(a-A[1])>mo(b-A[1]);
+    int sta[N], top;
+    int main() {
+      scanf("%d", &n);
+      int id = 1;
+      for (int i = 1; i <= n; ++i) {
+        scanf("%lf%lf", &A[i].x, &A[i].y);
+        if (A[i].x < A[id].x)
+          id = i;
+        else if (A[i].x == A[id].x && A[i].y < A[id].y)
+          id = i;
       }
-      return tmp>0;
-    }
-    int sta[N],top;
-    int main(){
-      scanf("%d",&n);
-      int id=1;
-      for(int i=1;i<=n;++i){
-        scanf("%lf%lf",&A[i].x,&A[i].y);
-        if(A[i].x<A[id].x)id=i;
-        else if(A[i].x==A[id].x&&A[i].y<A[id].y)id=i;
+      swap(A[1], A[id]);
+      sort(A + 2, A + n + 1, cmp);
+      sta[1] = 1, sta[2] = 2, sta[3] = 3, top = 3;
+      for (int i = 4; i <= n; ++i) {
+        while (cross(A[sta[top - 1]], A[sta[top]], A[i]) < 0) top--;
+        sta[++top] = i;
       }
-      swap(A[1],A[id]);
-      sort(A+2,A+n+1,cmp);
-      sta[1]=1,sta[2]=2,sta[3]=3,top=3;
-      for(int i=4;i<=n;++i){
-        while(cross(A[sta[top-1]],A[sta[top]],A[i])<0)top--;
-        sta[++top]=i;
+      double ans = 0;
+      sta[++top] = 1;
+      for (int i = 2; i <= top; ++i) {
+        ans += mo(A[sta[i]] - A[sta[i - 1]]);
       }
-      double ans=0;
-      sta[++top]=1;
-      for(int i=2;i<=top;++i){
-        ans+=mo(A[sta[i]]-A[sta[i-1]]);
-      }
-      printf("%.2lf\n",ans);
+      printf("%.2lf\n", ans);
       return 0;
     }
     ```
-
 
 #### Andrew 算法
 
@@ -127,8 +120,6 @@ Andrew 算法是 Graham 算法的一个变种。该算法的时间复杂度也�
 $$
 \sum_{i=1}^{\textit{ans}}\left|\overrightarrow{h_ih_{i+1}}\right|
 $$
-
-
 
 ### 例题
 
