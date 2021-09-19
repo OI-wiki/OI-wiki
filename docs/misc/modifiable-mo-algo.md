@@ -64,179 +64,146 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 ??? 参考代码
     ```cpp
-    #include<bits/stdc++.h>
+    #include <bits/stdc++.h>
     using namespace std;
     int n, m, unit;
     int datat[1000001];
     int *anst;
     int cntq, cntu;
-    typedef pair<pair<int, int>, pair<int, int> > query; // l-range r-range time id 
+    typedef pair<pair<int, int>, pair<int, int> > query;  // l-range r-range time id
     query *qu;
     int *col;
-    inline int l(const query &now)
-    {
-        return now.first.first;
-    }
-    inline int r(const query &now)
-    {
-        return now.first.second;
-    }
-    inline int t(const query &now)
-    {
-        return now.second.first;
-    }
-    inline int i(const query &now)
-    {
-        return now.second.second;
-    }
+    inline int l(const query &now) { return now.first.first; }
+    inline int r(const query &now) { return now.first.second; }
+    inline int t(const query &now) { return now.second.first; }
+    inline int i(const query &now) { return now.second.second; }
     // sort排序尽量传functor而不是function, function-sort非常慢
-    struct cmp
-    {
-        inline bool operator()(const query &fir, const query &sec)
-        {
-            return make_pair(make_pair(l(fir) / unit, r(fir) / unit), make_pair(t(fir), i(fir))) < make_pair(make_pair(l(sec) / unit, r(sec) / unit), make_pair(t(sec), i(sec)));
-            // 原理是生成两个新的query, 但前两个关键字为原query对应关键字所在块
-        }
+    struct cmp {
+      inline bool operator()(const query &fir, const query &sec) {
+        return make_pair(make_pair(l(fir) / unit, r(fir) / unit),
+                         make_pair(t(fir), i(fir))) <
+               make_pair(make_pair(l(sec) / unit, r(sec) / unit),
+                         make_pair(t(sec), i(sec)));
+        // 原理是生成两个新的query, 但前两个关键字为原query对应关键字所在块
+      }
     };
-    typedef pair<int, int> update; // pos col
+    typedef pair<int, int> update;  // pos col
     update *up;
-    inline int p(const update &now)
-    {
-        return now.first;
+    inline int p(const update &now) { return now.first; }
+    inline int x(const update &now) { return now.second; }
+    inline void gc() {
+      delete[] qu;
+      delete[] up;
+      delete[] anst;
+      delete[] col;
     }
-    inline int x(const update &now)
-    {
-        return now.second;
+    inline void init(const int &nn, const int &nm) {
+      n = nn;
+      m = nm;
+      unit = pow(n, 2.0 / 3.0);
+      qu = new query[m]();
+      up = new update[m + 1]();
+      anst = new int[m]();
+      col = new int[n + 1]();
+      cntq = 0;
+      cntu = 0;
     }
-    inline void gc()
-    {
-        delete[] qu;
-        delete[] up;
-        delete[] anst;
-        delete[] col;
+    inline void addq(const int &L, const int &R) {
+      qu[cntq] = make_pair(make_pair(L, R), make_pair(cntu, cntq));
+      cntq = cntq + 1;
     }
-    inline void init(const int &nn, const int &nm)
-    {
-        n = nn;
-        m = nm;
-        unit = pow(n, 2.0 / 3.0);
-        qu = new query[m]();
-        up = new update[m + 1]();
-        anst = new int[m]();
-        col = new int[n + 1]();
-        cntq = 0;
-        cntu = 0;
+    inline void addu(const int &P, const int &X) {
+      cntu = cntu + 1;
+      up[cntu] = make_pair(P, X);
+      // 由于莫队主体中必须要有一个空修改作为初始状态, 故必须从1编号
     }
-    inline void addq(const int &L, const int &R)
+    inline void add(const int &x, int &ret)  // 事实上最开始是当作一个模版类写的,
+                                             // 因此没有定义如ans这类的全局变量
     {
-        qu[cntq] = make_pair(make_pair(L, R), make_pair(cntu, cntq));
-        cntq = cntq + 1;
+      if (datat[x] == 0) {
+        ret = ret + 1;
+      }
+      datat[x] = datat[x] + 1;
     }
-    inline void addu(const int &P, const int &X)
-    {
-        cntu = cntu + 1;
-        up[cntu] = make_pair(P, X);
-        // 由于莫队主体中必须要有一个空修改作为初始状态, 故必须从1编号
+    inline void del(const int &x, int &ret) {
+      datat[x] = datat[x] - 1;
+      if (datat[x] == 0) {
+        ret = ret - 1;
+      }
     }
-    inline void add(const int &x, int &ret) // 事实上最开始是当作一个模版类写的, 因此没有定义如ans这类的全局变量
-    {
-        if(datat[x] == 0)
+    inline void modify(const int &now, const int &id, int &ret) {
+      if (p(up[now]) >= l(qu[id]) && p(up[now]) <= r(qu[id])) {
+        del(col[p(up[now])], ret);
+        add(x(up[now]), ret);
+      }
+      swap(up[now].second, col[up[now].first]);
+    }
+    inline void generate() {
+      sort(qu, qu + cntq, cmp());
+      register int nl, nr, nt, na;
+      nl = 0;  // l-range
+      nr = 0;  // r-range
+      nt = 0;  // time
+      na = 0;  // ans
+      for (register int j = 0; j != cntq; j = j + 1) {
+        while (nl < l(qu[j]))  // 一行等价 while(nl < l(qu[j])) del(col[nl++], na);
         {
-            ret = ret + 1;
+          del(col[nl], na);
+          nl = nl + 1;
         }
-        datat[x] = datat[x] + 1;
+        while (nl > l(qu[j]))  // 一行等价 while(nl > l(qu[j])) add(col[--nl], na);
+        {
+          nl = nl - 1;
+          add(col[nl], na);
+        }
+        while (nr < r(qu[j]))  // 一行等价 while(nr < r(qu[j])) add(col[++nr], na);
+        {
+          nr = nr + 1;
+          add(col[nr], na);
+        }
+        while (nr > r(qu[j]))  // 一行等价 while(nr > r(qu[j])) add(col[nr--], na);
+        {
+          del(col[nr], na);
+          nr = nr - 1;
+        }
+        while (nt < t(qu[j]))  // 一行等价 while(nt < t(qu[j])) modify(++nt, j, na);
+        {
+          nt = nt + 1;
+          modify(nt, j, na);
+        }
+        while (nt > t(qu[j]))  // 一行等价 while(nt > t(qu[j])) modify(nt--, j, na);
+        {
+          modify(nt, j, na);
+          nt = nt - 1;
+        }
+        anst[i(qu[j])] = na;
+      }
     }
-    inline void del(const int &x, int &ret)
-    {
-        datat[x] = datat[x] - 1;
-        if(datat[x] == 0)
-        {
-            ret = ret - 1;
+    int main() {
+      cin >> n >> m;
+      init(n, m);
+      for (register int j = 0; j != n; j = j + 1) {
+        cin >> col[j + 1];
+      }
+      for (register int j = 0; j != m; j = j + 1) {
+        char ch;
+        cin >> ch;
+        if (ch == 'Q') {
+          int cl, cr;
+          cin >> cl >> cr;
+          addq(cl, cr);
         }
-    }
-    inline void modify(const int &now, const int &id, int &ret)
-    {
-        if(p(up[now]) >= l(qu[id]) && p(up[now]) <= r(qu[id]))
-        {
-            del(col[p(up[now])], ret);
-            add(x(up[now]), ret);
+        if (ch == 'R') {
+          int cp, cx;
+          cin >> cp >> cx;
+          addu(cp, cx);
         }
-        swap(up[now].second, col[up[now].first]);
-    }
-    inline void generate()
-    {
-        sort(qu, qu + cntq, cmp());
-        register int nl, nr, nt, na;
-        nl = 0; // l-range
-        nr = 0; // r-range
-        nt = 0; // time
-        na = 0; // ans
-        for(register int j = 0; j != cntq; j = j + 1)
-        {
-            while(nl < l(qu[j])) // 一行等价 while(nl < l(qu[j])) del(col[nl++], na);
-            {
-                del(col[nl], na);
-                nl = nl + 1;
-            }
-            while(nl > l(qu[j])) // 一行等价 while(nl > l(qu[j])) add(col[--nl], na);
-            {
-                nl = nl - 1;
-                add(col[nl], na);
-            }
-            while(nr < r(qu[j])) // 一行等价 while(nr < r(qu[j])) add(col[++nr], na);
-            {
-                nr = nr + 1;
-                add(col[nr], na);
-            }
-            while(nr > r(qu[j])) // 一行等价 while(nr > r(qu[j])) add(col[nr--], na);
-            {
-                del(col[nr], na);
-                nr = nr - 1;
-            }
-            while(nt < t(qu[j])) // 一行等价 while(nt < t(qu[j])) modify(++nt, j, na);
-            {
-                nt = nt + 1;
-                modify(nt, j, na);
-            }
-            while(nt > t(qu[j])) // 一行等价 while(nt > t(qu[j])) modify(nt--, j, na);
-            {
-                modify(nt, j, na);
-                nt = nt - 1;
-            }
-            anst[i(qu[j])] = na;
-        }
-    }
-    int main()
-    {
-        cin >> n >> m;
-        init(n, m);
-        for(register int j = 0; j != n; j = j + 1)
-        {
-            cin >> col[j + 1];
-        }
-        for(register int j = 0; j != m; j = j + 1)
-        {
-            char ch;
-            cin >> ch;
-            if(ch == 'Q')
-            {
-                int cl, cr;
-                cin >> cl >> cr;
-                addq(cl, cr);
-            }
-            if(ch == 'R')
-            {
-                int cp, cx;
-                cin >> cp >> cx;
-                addu(cp, cx);
-            }
-        }
-        generate();
-        for(register int j = 0; j != cntq; j = j + 1)
-        {
-            cout << anst[j] << endl;
-        }
-        gc();
-        return 0;
+      }
+      generate();
+      for (register int j = 0; j != cntq; j = j + 1) {
+        cout << anst[j] << endl;
+      }
+      gc();
+      return 0;
     }
     ```
