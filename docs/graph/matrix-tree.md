@@ -112,7 +112,7 @@ $$
 
 以下的内向也指根向，表示有向边的方向指向根。
 
-**引理 1 (Cauchy-Binet)** 给定 $n\times m$ 的矩阵 $A$ 和 $m\times n$ 的矩阵 $B$，则有
+**引理 1（Cauchy-Binet）** 给定 $n\times m$ 的矩阵 $A$ 和 $m\times n$ 的矩阵 $B$，则有
 
 $$
 |AB|=\sum_{|S|=n,S\subseteq[m]}|A_{[n],[S]}||B_{[S],[n]}|
