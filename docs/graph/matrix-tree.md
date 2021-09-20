@@ -122,7 +122,7 @@ $$
 
 与 [「NOI2021」路径交点](https://loj.ac/p/3533) 的模型相同，容易发现上式左右两侧计算的都是 $L$ 到 $R$ 的不相交路径组中，交点个数为偶数的方案数减去奇数的方案数，其中 $S$ 表示路径组经过的 $D$ 中的点。
 
-**性质 1** 拉普拉斯矩阵 $L$ 的所有代数余子式 $C_{i,j}$ 的值都相等。
+**性质 1** Laplace 矩阵 $L$ 的所有代数余子式 $C_{i,j}$ 的值都相等。
 
 证明：删去第 $i$ 行后，设列向量是 $\boldsymbol r_1,\boldsymbol r_2,\cdots,\boldsymbol r_n$，则有 $\sum\boldsymbol r_i=\boldsymbol 0$。
 
@@ -132,7 +132,7 @@ $$
 
 同理，删去第 $i$ 列后行向量之和为 $\boldsymbol 0$，得到 $C_{j,i}=C_{k,i}$。
 
-**定理 1 (Kirchhoff's Matrix Tree)** 对于带边权的简单无向图 $G(V,E)$，若 $T(V,E_T)$ 是 $G$ 的生成树，定义 $\omega(T)=\prod_{e\in E_T}\omega(e)$，$\mathcal T$ 是 $G$ 所有生成树的集合，则 $G$ 的拉普拉斯矩阵的所有代数余子式的值等于 $\sum_{T\in\mathcal T}\omega(T)$。
+**定理 1（Kirchhoff's Matrix Tree）** 对于带边权的简单无向图 $G(V,E)$，若 $T(V,E_T)$ 是 $G$ 的生成树，定义 $\omega(T)=\prod_{e\in E_T}\omega(e)$，$\mathcal T$ 是 $G$ 所有生成树的集合，则 $G$ 的 Laplace 矩阵的所有代数余子式的值等于 $\sum_{T\in\mathcal T}\omega(T)$。
 
 证明：根据性质 1，只需证明 $C_{1,1}=\sum_{T\in\mathcal T}\omega(T)$。对于一条边 $e=(u,v)$，定义 $\zeta(e,u)=v$，$\zeta(e,v)=u$。
 
@@ -156,7 +156,7 @@ $|B_{[n-1],[S]}|$ 的组合意义是对点 $u_2,\cdots,u_n$，分别选一条 $S
 
 于是只用考虑不存在环的情况，此时有向图只能是以 $1$ 为根的内向树，此时定向方案唯一（确定了边集和根），也就是每个点选择的出边都唯一，所以 $|B_{[n-1],[S]}|^2$ 即为该树的边权积，求和就得到 $\sum_{T\in\mathcal T}\omega(T)$。
 
-**性质 2** 设拉普拉斯矩阵的特征值为 $\lambda_1\ge\lambda_2\ge\cdots\ge\lambda_{|V|}$，则 $\lambda_{|V|}=0$。
+**性质 2** 设 Laplace 矩阵的特征值为 $\lambda_1\ge\lambda_2\ge\cdots\ge\lambda_{|V|}$，则 $\lambda_{|V|}=0$。
 
 证明：因为 $L=AA^T$，所以 $L$ 是半正定矩阵，特征值都非负。而 $|M|=0$，所以必定有 $\lambda=0$。
 
