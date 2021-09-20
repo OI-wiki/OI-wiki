@@ -206,7 +206,7 @@ $$
 
 **证明：** 必要性显然，下面用反证法证明充分性。
 
-当对于 $\varphi(m)$ 的每个素因数 $p$，都有 $a^{\frac{\varphi(m)}{p}}\not\equiv 1\pmod m$ 成立时，我们假设存在一个 $a$ ，其不是模 $m$ 的原根。
+当对于 $\varphi(m)$ 的每个素因数 $p$，都有 $a^{\frac{\varphi(m)}{p}}\not\equiv 1\pmod m$ 成立时，我们假设存在一个 $a$，其不是模 $m$ 的原根。
 
 因为 $a$ 不是 $m$ 的原根，则存在一个 $t<\varphi(m)$ 使得 $a^t\equiv 1\pmod{m}$。
 
