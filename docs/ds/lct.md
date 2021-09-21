@@ -198,17 +198,17 @@ inline int Access(int x) {
 }
 ```
 
-- 我们有这样一棵树，实线为实边，虚线为虚边。
+-   我们有这样一棵树，实线为实边，虚线为虚边。
 
-  ![initial tree](images/lct-access-1.svg)
+    ![initial tree](images/lct-access-1.svg)
 
-- 它的辅助树可能长成这样（构图方式不同可能 LCT 的结构也不同）。
+-   它的辅助树可能长成这样（构图方式不同可能 LCT 的结构也不同）。
 
-  ![initial auxtree](images/lct-access-2.svg)
+    ![initial auxtree](images/lct-access-2.svg)
 
-- 现在我们要 `Access(N)`, 把 $A$ 到 $N$ 路径上的边都变为实边，拉成一棵 Splay。
+-   现在我们要 `Access(N)`, 把 $A$ 到 $N$ 路径上的边都变为实边，拉成一棵 Splay。
 
-  ![access tree](images/lct-access-3.svg)
+    ![access tree](images/lct-access-3.svg)
 
 - 实现的方法是从下到上逐步更新 Splay。
 
@@ -218,27 +218,27 @@ inline int Access(int x) {
 
 - 由于认父不认子的性质，我们可以单方面的把 $N$ 的儿子改为 Null。
 
-- 于是原来的 AuxTree 就从下图变成了下下图。
+-   于是原来的 AuxTree 就从下图变成了下下图。
 
-  ![step 1 auxtree](images/lct-access-4.svg)
+    ![step 1 auxtree](images/lct-access-4.svg)
 
 - 下一步，我们把 $N$ 指向的 Father $I$ 也旋转到 $I$ 的 Splay 树根。
 
-- 原来的实边 $I$—$K$ 要去掉，这时候我们把 $I$ 的右儿子指向 $N$, 就得到了 $I$—$L$ 这样一棵 Splay。
+-   原来的实边 $I$—$K$ 要去掉，这时候我们把 $I$ 的右儿子指向 $N$, 就得到了 $I$—$L$ 这样一棵 Splay。
 
-  ![step 2 auxtree](images/lct-access-5.svg)
+    ![step 2 auxtree](images/lct-access-5.svg)
 
 - 接下来，按照刚刚的操作步骤，由于 $I$ 的 Father 指向 $H$, 我们把 $H$ 旋转到他所在 Splay Tree 的根，然后把 $H$ 的 rs 设为 $I$。
 
-- 之后的树是这样的。
+-   之后的树是这样的。
 
-  ![step 3 auxtree](images/lct-access-6.svg)
+    ![step 3 auxtree](images/lct-access-6.svg)
 
 - 同理我们 `Splay(A)`, 并把 $A$ 的右儿子指向 $H$。
 
-- 于是我们得到了这样一棵 AuxTree。并且发现 $A$—$N$ 的整个路径已经在同一棵 Splay 中了。大功告成！
+-   于是我们得到了这样一棵 AuxTree。并且发现 $A$—$N$ 的整个路径已经在同一棵 Splay 中了。大功告成！
 
-  ![step final auxtree](images/lct-access-7.svg)
+    ![step final auxtree](images/lct-access-7.svg)
 
 ```cpp
 // 回顾一下代码
