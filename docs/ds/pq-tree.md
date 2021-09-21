@@ -2,7 +2,7 @@ author: isdanni,xyf007
 
 PQ 树是一种基于树的数据结构，代表一组元素上的一系列排列，由 Kellogg S. Booth 和 George S. Lueker 于 1976 年发现命名，用来解决以下问题
 
-> 给出 $m$ 个集合 $S_i$，你要找到一个 $1\text{\textasciitilde}n$ 的排列，使得每个集合内的元素都相邻。
+> 给出 $m$ 个集合 $S_i$，你要找到一个 $1\sim n$ 的排列，使得每个集合内的元素都相邻。
 
 PQ 树可以在 $O(n+\sum|S_i|)$ 时间内构建。
 
