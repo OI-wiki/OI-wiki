@@ -55,7 +55,7 @@ mutation {{
   createIssue(input: {{
     repositoryId: "{id}",
     title: "{celebration} Stars Celebration",
-    labelIds: ["{res['label']['id']}"]
+    labelIds: ["{res['label']['id']}"],
     body: {json.dumps(f"""> To celebrate that our project's stars will soon reach {celebration}.
 > This issue will be closed in one week.
 
