@@ -76,6 +76,9 @@ mutation {{
 cc {" ".join(numbers)}
 """, ensure_ascii = False)}
   }}) {{
+    issue {{
+      number
+    }}
   }}
 }}
 '''
