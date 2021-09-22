@@ -59,7 +59,7 @@ mutation {{
     body: {json.dumps(f"""> To celebrate that our project's stars will soon reach {celebration}.
 > This issue will be closed in one week.
 
-为庆祝我们的 **OI Wiki** 项目 Stars 即将到达 {celebration}，特开此 Issue。
+为庆祝我们的 **OI Wiki** 项目 Stars 即将到达 {celebration}，特开此 Issue，大家也放松下。
 
 诸位维护本项目也都辛苦了，我刚刚看了下 Commits 也到达了 {res['defaultBranchRef']['target']['history']['totalCount']}，大家在本 Issue 里面想说什么就说什么吧（But please don't spam in this issue）。
 
@@ -71,7 +71,7 @@ mutation {{
 
 非常感谢这么长时间以来大家的支持，我们再接再厉～
 
-最后，祝大家在这特殊的时期身体健康，诸事顺遂。
+最后，祝大家身体健康，诸事顺遂。
 
 cc {" ".join(numbers)}
 """, ensure_ascii = False)}
