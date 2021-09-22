@@ -79,4 +79,6 @@ cc {" ".join(numbers)}
   }}
 }}
 '''
-    requests.post('https://api.github.com/graphql', json.dumps({ 'query': mutation }), headers = headers)
+    print(mutation)
+    mut = requests.post('https://api.github.com/graphql', json.dumps({ 'query': mutation }), headers = headers)
+    print(mut.text)
