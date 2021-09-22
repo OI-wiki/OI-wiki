@@ -71,7 +71,7 @@ mutation {{
 
 非常感谢这么长时间以来大家的支持，我们再接再厉～
 
-最后，祝大家身体健康，诸事顺遂。
+最后，祝大家身体健康，我们 {celebration * 2} stars 时再见。
 
 cc {" ".join(numbers)}
 """, ensure_ascii = False)}
