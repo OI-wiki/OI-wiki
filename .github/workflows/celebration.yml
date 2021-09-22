@@ -2,6 +2,7 @@ name: "Celebration"
 
 on:
   workflow_dispatch:
+  push:
   watch:
     types:
       - started
