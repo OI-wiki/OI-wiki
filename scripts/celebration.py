@@ -1,9 +1,9 @@
 import requests
 import json
-import os
+import sys
 
 headers = {
-    "Authorization": f'token {os.environ["GITHUB_TOKEN"]}'
+    "Authorization": f'token {sys.argv[1]}'
 }
 
 label = "Celebration / 庆贺"

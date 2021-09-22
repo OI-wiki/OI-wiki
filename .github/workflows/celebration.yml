@@ -12,4 +12,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: python scripts/celebration.py
+      - name: Celebrate
+        run: python scripts/celebration.py ${{ secrets.GITHUB_TOKEN }}
