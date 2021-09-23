@@ -65,7 +65,7 @@ struct treearray {
   }
 } ta;
 int rk[2][N];
-inline void solve(int l, int r, int t) { // 递归跑
+inline void solve(int l, int r, int t) {  // 递归跑
   if (r - l == 1) {
     return;
   }

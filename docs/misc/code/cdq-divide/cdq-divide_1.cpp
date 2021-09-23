@@ -25,9 +25,11 @@ struct data {
 } a[100010];
 int rv[100010];
 ll res;
-bool cmp1(const data& a, const data& b) { return a.val < b.val; } //重写两个比较
+bool cmp1(const data& a, const data& b) {
+  return a.val < b.val;
+}  //重写两个比较
 bool cmp2(const data& a, const data& b) { return a.del < b.del; }
-void solve(int l, int r) { // 底下是具体的式子，套用
+void solve(int l, int r) {  // 底下是具体的式子，套用
   if (r - l == 1) {
     return;
   }
