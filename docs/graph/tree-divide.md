@@ -22,7 +22,7 @@
 代码：
 
 ```cpp
-  -8<-- "docs/graph/code/tree-divide/tree-divide_1.cpp"
+  --8<-- "docs/graph/code/tree-divide/tree-divide_1.cpp"
 ```
 
 ??? note " 例题 [luogu  P4178 Tree](https://www.luogu.com.cn/problem/P4178)"
@@ -33,7 +33,7 @@
 由于这里查询的是树上距离为 $[0,k]$ 的点对数量，所以我们用线段树来支持维护和查询。
 
 ```cpp
-  -8<-- "docs/graph/code/tree-divide/tree-divide_2.cpp"
+  --8<-- "docs/graph/code/tree-divide/tree-divide_2.cpp"
 ```
 
 ## 边分治
