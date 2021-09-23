@@ -131,7 +131,7 @@ for i in range(0, N):
 
 ## 主定理 (Master Theorem)
 
-我们可以使用 Master Theorem 来快速的求得关于递归算法的复杂度。
+我们可以使用 Master Theorem 来快速地求得关于递归算法的复杂度。
 假设我们有递推关系式
 
 $$
