@@ -18,7 +18,7 @@ namespace sieve {
 const int maxp = 2000000 + 5;
 int vis[maxp], prime[maxp], tot;
 void init() {
-  memset(vis, 0,sizeof(vis));
+  memset(vis, 0, sizeof(vis));
   for (int i = 2; i < maxp; i++) {
     if (!vis[i]) prime[++tot] = i;
     for (int j = 1; j <= tot && prime[j] * i < maxp; j++) {

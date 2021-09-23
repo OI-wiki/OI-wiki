@@ -12,7 +12,7 @@ void add(int x, int y) {
   e[++tot] = (edge){y, head[x]};
   head[x] = tot;
 }
-void dfs1(int x) { // 第一次插入一个1
+void dfs1(int x) {  // 第一次插入一个1
   d[x] = 1;
   for (int i = head[x]; i; i = e[i].next)
     if (e[i].to != fa[x]) {
@@ -22,14 +22,14 @@ void dfs1(int x) { // 第一次插入一个1
       if (d[e[i].to] > d[mx[x]]) mx[x] = e[i].to;
     }
 }
-void dfs2(int x) { // 第二次合并
+void dfs2(int x) {  // 第二次合并
   dfn[x] = ++*dfn;
   f[x] = g + dfn[x];
   if (mx[x]) dfs2(mx[x]);
   for (int i = head[x]; i; i = e[i].next)
     if (e[i].to != fa[x] && e[i].to != mx[x]) dfs2(e[i].to);
 }
-void getans(int x) { // 暴力合并算答案
+void getans(int x) {  // 暴力合并算答案
   if (mx[x]) {
     getans(mx[x]);
     mxp[x] = mxp[mx[x]] + 1;
@@ -40,7 +40,7 @@ void getans(int x) { // 暴力合并算答案
     if (e[i].to != fa[x] && e[i].to != mx[x]) {
       getans(e[i].to);
       int len = d[e[i].to];
-      for(int j = 0 ; j <= len - 1 ; j++) {
+      for (int j = 0; j <= len - 1; j++) {
         f[x][j + 1] += f[e[i].to][j];
         if (f[x][j + 1] > f[x][mxp[x]]) mxp[x] = j + 1;
         if (f[x][j + 1] == f[x][mxp[x]] && j + 1 < mxp[x]) mxp[x] = j + 1;

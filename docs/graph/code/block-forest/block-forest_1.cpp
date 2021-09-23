@@ -13,7 +13,7 @@ int stk[MN], tp;
 
 int wgh[MN * 2];
 
-void Tarjan(int u) {//求点双
+void Tarjan(int u) {  //求点双
   low[u] = dfn[u] = ++dfc;
   stk[++tp] = u;
   ++num;
@@ -40,7 +40,7 @@ void Tarjan(int u) {//求点双
 
 int vis[MN * 2], siz[MN * 2];
 
-void DFS(int u, int fz) {//dfs求值
+void DFS(int u, int fz) {  // dfs求值
   vis[u] = 1;
   siz[u] = (u <= N);
   for (int v : T[u])

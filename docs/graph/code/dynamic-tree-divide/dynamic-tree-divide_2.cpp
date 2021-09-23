@@ -73,8 +73,10 @@ void calcsiz(int x, int fa) {
       siz[x] += siz[p[j]];
       maxx[x] = max(maxx[x], siz[p[j]]);
     }
-  maxx[x] = max(maxx[x], sum - siz[x]); // maxx[x] 表示以 x 为根时的最大子树大小
-  if (maxx[x] < maxx[rt]) rt = x; // 这里不能写 <= ，保证在第二次 calcsiz 时 rt 不改变
+  maxx[x] =
+      max(maxx[x], sum - siz[x]);  // maxx[x] 表示以 x 为根时的最大子树大小
+  if (maxx[x] < maxx[rt])
+    rt = x;  // 这里不能写 <= ，保证在第二次 calcsiz 时 rt 不改变
 }
 void dfs1(int x, int fa, int y, int d) {
   ch.update(ch.rt[y], 0, n, d, val[x]);
@@ -87,7 +89,7 @@ void dfs2(int x, int fa, int y, int d) {
     if (p[j] != fa && !vis[p[j]]) dfs2(p[j], x, y, d + 1);
 }
 void pre(int x) {
-  vis[x] = true; // 表示在之后的过程中不考虑 x 这个点
+  vis[x] = true;  // 表示在之后的过程中不考虑 x 这个点
   dfs2(x, -1, x, 0);
   for (int j = h[x]; j; j = nxt[j])
     if (!vis[p[j]]) {
@@ -95,11 +97,11 @@ void pre(int x) {
       maxx[rt] = inf;
       sum = siz[p[j]];
       calcsiz(p[j], -1);
-      calcsiz(rt, -1); // 计算两次，第二次求出以 rt 为根时的各子树大小
+      calcsiz(rt, -1);  // 计算两次，第二次求出以 rt 为根时的各子树大小
       dfs1(p[j], -1, rt, 1);
       fa[rt] = x;
       dep[rt] = dep[x] + 1;
-      pre(rt); // 记录点分树上的父亲
+      pre(rt);  // 记录点分树上的父亲
     }
 }
 int main() {

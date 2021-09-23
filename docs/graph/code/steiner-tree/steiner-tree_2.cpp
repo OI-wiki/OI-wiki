@@ -48,7 +48,8 @@ void dfs(P u, int s) {
   if (!pre[num(u)][s].second) return;
   ans[u.first][u.second] = 1;
   int nu = num(u);
-  if (pre[nu][s].first == u) dfs(u, s ^ pre[nu][s].second); //通过 dfs 来找到答案
+  if (pre[nu][s].first == u)
+    dfs(u, s ^ pre[nu][s].second);  //通过 dfs 来找到答案
   dfs(pre[nu][s].first, pre[nu][s].second);
 }
 
@@ -70,7 +71,7 @@ int main() {
     for (int i = 0; i < n * m; i++) {
       for (int subs = s & (s - 1); subs; subs = s & (subs - 1)) {
         if (f[i][s] > f[i][subs] + f[i][s ^ subs] - a[i]) {
-          f[i][s] = f[i][subs] + f[i][s ^ subs] - a[i]; // 状态转移
+          f[i][s] = f[i][subs] + f[i][s ^ subs] - a[i];  // 状态转移
           pre[i][s] = mp(mp(i / m, i % m), subs);
         }
       }

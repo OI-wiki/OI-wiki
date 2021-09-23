@@ -10,7 +10,7 @@ int cur, h[maxn], nxt[maxn], p[maxn];
 int siz[maxn], top[maxn], son[maxn], dep[maxn], fa[maxn], dfn[maxn], rnk[maxn],
     cnt;
 char op[10];
-inline void add_edge(int x, int y) { // 加边
+inline void add_edge(int x, int y) {  // 加边
   cur++;
   nxt[cur] = h[x];
   h[x] = cur;
@@ -41,14 +41,14 @@ struct SegTree {
     int mid = (l + r) >> 1;
     return query2(lc, l, mid, ql, qr) + query2(rc, mid + 1, r, ql, qr);
   }
-  void update(int o, int l, int r, int x, int t) { // 更新
+  void update(int o, int l, int r, int x, int t) {  // 更新
     if (l == r) {
       maxx[o] = sum[o] = t;
       return;
     }
     int mid = (l + r) >> 1;
     if (x <= mid)
-      update(lc, l, mid, x, t); // 左右分别更新
+      update(lc, l, mid, x, t);  // 左右分别更新
     else
       update(rc, mid + 1, r, x, t);
     sum[o] = sum[lc] + sum[rc];
@@ -77,7 +77,7 @@ void dfs2(int o, int t) {
   for (int j = h[o]; j; j = nxt[j])
     if (p[j] != son[o] && p[j] != fa[o]) dfs2(p[j], p[j]);
 }
-int querymax(int x, int y) { // 查询，看main函数理解一下
+int querymax(int x, int y) {  // 查询，看main函数理解一下
   int ret = -inf, fx = top[x], fy = top[y];
   while (fx != fy) {
     if (dep[fx] >= dep[fy])

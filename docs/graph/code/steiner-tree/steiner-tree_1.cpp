@@ -21,7 +21,7 @@ void add(int u, int v, int w) {
   head[u] = tot;
 }
 
-void dijkstra(int s) { // 求解最短路
+void dijkstra(int s) {  // 求解最短路
   memset(vis, 0, sizeof(vis));
   while (!q.empty()) {
     P item = q.top();
@@ -54,7 +54,8 @@ int main() {
   }
   for (int s = 1; s < (1 << k); s++) {
     for (int i = 1; i <= n; i++) {
-      for (int subs = s & (s - 1); subs; subs = s & (subs - 1)) // 状压 dp 可以看下题解里写的比较详细
+      for (int subs = s & (s - 1); subs;
+           subs = s & (subs - 1))  // 状压 dp 可以看下题解里写的比较详细
         dp[i][s] = min(dp[i][s], dp[i][subs] + dp[i][s ^ subs]);
       if (dp[i][s] != INF) q.push(P(dp[i][s], i));
     }

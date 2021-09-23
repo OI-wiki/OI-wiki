@@ -80,6 +80,7 @@
 
 ??? note "参考代码"
     "参考代码"
+    
     ```cpp
     --8<-- "docs/graph/code/2-sat/2-sat_1.cpp"
     ```
@@ -97,7 +98,7 @@
 下面给出第二种实现方法的代码。
 
 ??? note "参考代码"
-     ```cpp
+    ```cpp
     --8<-- "docs/graph/code/2-sat/2-sat_2.cpp"
     ```
 

@@ -26,9 +26,11 @@ void calcsiz(int x, int f) {
       siz[x] += siz[p[j]];
       maxx[x] = max(maxx[x], siz[p[j]]);
     }
-  maxx[x] = max(maxx[x], sum - siz[x]); // maxx[x] 表示以 x 为根时的最大子树大小
-  if (maxx[x] < maxx[rt]) rt = x; // 这里不能写 <= ，保证在第二次 calcsiz 时 rt 不改变
-} 
+  maxx[x] =
+      max(maxx[x], sum - siz[x]);  // maxx[x] 表示以 x 为根时的最大子树大小
+  if (maxx[x] < maxx[rt])
+    rt = x;  // 这里不能写 <= ，保证在第二次 calcsiz 时 rt 不改变
+}
 struct heap {
   priority_queue<int> A, B;  // heap=A-B
   void insert(int x) { A.push(x); }
@@ -56,19 +58,19 @@ void dfs(int x, int f, int d, heap& y) {
     if (p[j] != f && !vis[p[j]]) dfs(p[j], x, d + 1, y);
 }
 void pre(int x) {
-  vis[x] = true; // 不考虑 x
+  vis[x] = true;  // 不考虑 x
   for (int j = h[x]; j; j = nxt[j])
     if (!vis[p[j]]) {
       rt = 0;
       maxx[rt] = inf;
       sum = siz[p[j]];
       calcsiz(p[j], -1);
-      calcsiz(rt, -1); // 计算两次，第二次求出以 rt 为根时的各子树大小
+      calcsiz(rt, -1);  // 计算两次，第二次求出以 rt 为根时的各子树大小
       fa[rt] = x;
       dfs(p[j], -1, 1, dist[rt]);
       ch[x].insert(dist[rt].top());
       dep[rt] = dep[x] + 1;
-      pre(rt); // 记录点分树上的父亲
+      pre(rt);  // 记录点分树上的父亲
     }
   ch[x].insert(0);
   if (ch[x].size() >= 2)

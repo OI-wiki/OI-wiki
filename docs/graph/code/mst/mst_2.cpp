@@ -77,7 +77,7 @@ int fa[140010];
 
 int find(int x) { return fa[x] == 0 ? x : fa[x] = find(fa[x]); }
 
-void kruskal() { // 最小生成树
+void kruskal() {  // 最小生成树
   int tot = 0, cnt = n;
   sort(e + 1, e + m + 1);
   for (int i = 1; i <= m; i++) {
@@ -110,7 +110,7 @@ void initLog2() {
 }
 
 int main() {
-  initLog2(); // 预处理
+  initLog2();  // 预处理
   cin >> n >> m;
   for (int i = 1; i <= m; i++) {
     int u, v, val;

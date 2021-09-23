@@ -19,7 +19,7 @@ void addedge(int u, int v) {
 }
 
 int dfn[maxn], low[maxn], color[maxn], stk[maxn], ins[maxn], top, dfs_clock, c;
-void tarjan(int x) {//tarjan算法求强联通
+void tarjan(int x) {  // tarjan算法求强联通
   stk[++top] = x;
   ins[x] = 1;
   dfn[x] = low[x] = ++dfs_clock;

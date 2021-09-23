@@ -85,14 +85,14 @@ $prime(i)$ 表示第 $i$ 个质数。
 
 ??? "例题参考代码"
     ```cpp
-      -8<-- "docs/graph/code/tree-hash/tree-hash_1.cpp"
+    
     ```
 
 #### 做法二
 
 ??? "例题参考代码"
     ```cpp
-      -8<-- "docs/graph/code/tree-hash/tree-hash_2.cpp"
+    
     ```
 
 ### 例题二 [HDU 6647](http://acm.hdu.edu.cn/showproblem.php?pid=6647)
@@ -109,7 +109,7 @@ $prime(i)$ 表示第 $i$ 个质数。
 
 ??? "例题参考代码"
     ```cpp
-      -8<-- "docs/graph/code/tree-hash/tree-hash_3.cpp"
+    
     ```
 
 ## 写在最后

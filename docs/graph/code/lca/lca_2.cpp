@@ -3,13 +3,13 @@ using namespace std;
 
 const int N = 5e5 + 5;
 
-struct PlusMinusOneRMQ { // RMQ
+struct PlusMinusOneRMQ {  // RMQ
   // Copyright (C) 2018 Skqliao. All rights served.
   const static int M = 9;
 
   int blocklen, block, Minv[N], F[N / M * 2 + 5][M << 1], T[N], f[1 << M][M][M],
       S[N];
-  void init(int n) { // 初始化
+  void init(int n) {  // 初始化
     blocklen = std::max(1, (int)(log(n * 1.0) / log(2.0)) / 2);
     block = n / blocklen + (n % blocklen > 0);
     int total = 1 << (blocklen - 1);
@@ -93,7 +93,7 @@ void init(int n) {
   tot = 0;
   fill(head, head + n + 1, 0);
 }
-void addedge(int u, int v) { // 加边
+void addedge(int u, int v) {  // 加边
   ++tot;
   e[tot] = (Edge){v, head[u]};
   head[u] = tot;
@@ -123,12 +123,12 @@ void dfs(int u, int fa, int d) {
   }
 }
 
-void build_lca() { // like init
+void build_lca() {  // like init
   rmq.init(dfs_clock);
   rmq.initmin(dep, dfs_clock);
 }
 
-int LCA(int u, int v) { // 求解LCA，看题解用RMQ的方法
+int LCA(int u, int v) {  // 求解LCA，看题解用RMQ的方法
   int l = st[u], r = st[v];
   if (l > r) swap(l, r);
   return dfn[rmq.querymin(dep, l, r)];
