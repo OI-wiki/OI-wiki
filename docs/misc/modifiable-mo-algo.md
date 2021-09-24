@@ -64,206 +64,226 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 ??? 参考代码
     ```cpp
-    // 神Xeonacid说要用结构体, 弱弱GHOST不想造轮子,
-    // 于是得到了3个版本的query与update. OI-wiki会强制把太长的单行分行, GHOST尽量让
-    // // 一行等价 这类保持在一行内方便参考. 理论上,
-    // 整个程序中的int都应用size_t代替, 但包括CCF少爷机在内的机器均为64位架构,
-    // size_t相当于unsigned long, 常数可能会大到无法接受,
-    // 部分OJ(比如LOJ)可以选择64位架构(32位指针), 常数: 64位架构(32位指针) <
-    // 64位架构 < 32位架构. 如果标准高于C++17, 那么您有可能得到ISO C++17 does not
-    // allow 'register' storage class specifier [-Wregister]的警告. 对于#define
-    // option, 不建议使用2, 问就是常数太大T飞了(空间也几乎翻倍), 0与1效率相近.
-    #include <bits/stdc++.h>
-    using namespace std;
-    #define option 0
-    #if option == 0
-    typedef pair<pair<int, int>, pair<int, int>> query;
-    typedef pair<int, int> update;
-    #define l first.first   /* left-range */
-    #define r first.second  /* right-range */
-    #define t second.first  /* time */
-    #define i second.second /* id */
-    #define p first         /* position */
-    #define x second        /* color */
-    #endif
-    #if option == 1
-    struct query {
-      int l, r, t, i;
-      inline query(const int& L, const int& R, const int& T, const int& I)
-          : l(L), r(R), t(T), i(I) {}
-      inline query() : query(0, 0, 0, 0) {}
-      inline query(const pair<pair<int, int>, pair<int, int>>& data)
-          : query(data.first.first, data.first.second, data.second.first,
-                  data.second.second) {}
-    };
-    struct update {
-      int p, x;
-      inline update(const int& P, const int& X) : p(P), x(X) {}
-      inline update() : update(0, 0) {}
-      inline update(const pair<int, int>& data) : update(data.first, data.second) {}
-    };
-    #endif
-    #if option == 2
-    struct query : pair<pair<int, int>, pair<int, int>> {
-      int& l = first.first;
-      int& r = first.second;
-      int& t = second.first;
-      int& i = second.second;
-      inline query() : pair<pair<int, int>, pair<int, int>>() {}
-      inline query(const pair<pair<int, int>, pair<int, int>>& data)
-          : pair<pair<int, int>, pair<int, int>>(data) {}
-      inline query& operator=(const query& data) {
+// 神Xeonacid说要用结构体, 弱弱GHOST不想造轮子, 于是得到了3个版本的query与update. 
+// OI-wiki会强制把太长的单行分行, GHOST尽量让 // 一行等价 这类保持在一行内方便参考. 
+// 理论上, 整个程序中的int都应用size_t代替, 但包括CCF少爷机在内的机器均为64位架构, size_t相当于unsigned long, 常数可能会大到无法接受, 部分OJ(比如LOJ)可以选择64位架构(32位指针), 常数: 64位架构(32位指针) < 64位架构 < 32位架构. 
+// 如果标准高于C++17, 那么您有可能得到ISO C++17 does not allow 'register' storage class specifier [-Wregister]的警告. 
+// 对于#define option, 不建议使用2, 问就是常数太大T飞了(空间也几乎翻倍), 0与1效率相近. 
+#include<bits/stdc++.h>
+using namespace std;
+#define option 0
+#if option == 0
+typedef pair<pair<int, int>, pair<int, int>> query;
+typedef pair<int, int> update;
+#define l first.first /* left-range */
+#define r first.second /* right-range */
+#define t second.first /* time */
+#define i second.second /* id */
+#define p first /* position */
+#define x second /* color */
+#endif
+#if option == 1
+struct query
+{
+    int l, r, t, i;
+    inline query(const int& L, const int& R, const int& T, const int& I) : l(L), r(R), t(T), i(I) {}
+    inline query() : query(0, 0, 0, 0) {}
+    inline query(const pair<pair<int, int>, pair<int, int>>& data) : query(data.first.first, data.first.second, data.second.first, data.second.second) {}
+};
+struct update
+{
+    int p, x;
+    inline update(const int& P, const int& X) : p(P), x(X) {}
+    inline update() : update(0, 0) {}
+    inline update(const pair<int, int>& data) : update(data.first, data.second) {}
+};
+#endif
+#if option == 2
+struct query : pair<pair<int, int>, pair<int, int>>
+{
+    int& l = first.first;
+    int& r = first.second;
+    int& t = second.first;
+    int& i = second.second;
+    inline query() : pair<pair<int, int>, pair<int, int>>() {}
+    inline query(const pair<pair<int, int>, pair<int, int>>& data) : pair<pair<int, int>, pair<int, int>>(data) {}
+    inline query& operator=(const query& data)
+    {
         this->pair<pair<int, int>, pair<int, int>>::operator=(data);
         return *this;
-      }
-    };
-    struct update : pair<int, int> {
-      int& p = first;
-      int& x = second;
-      inline update() : pair<int, int>() {}
-      inline update(const pair<int, int>& data) : pair<int, int>(data) {}
-      inline update& operator=(const update& data) {
+    }
+};
+struct update : pair<int, int>
+{
+    int& p = first;
+    int& x = second;
+    inline update() : pair<int, int>() {}
+    inline update(const pair<int, int>& data) : pair<int, int>(data) {}
+    inline update& operator=(const update& data)
+    {
         this->pair<int, int>::operator=(data);
         return *this;
-      }
-    };
-    #endif
-    query* qu;
-    update* up;
-    int* col;
-    int n, m, unit;
-    int datat[1000001];  // 桶
-    int* anst;
-    int cntq, cntu;
-    // sort排序尽量传functor而不是function, function-sort非常慢
-    // 具体有多慢, 去试试不就知道了OVO
-    struct cmp {
-      inline bool operator()(const query& fir, const query& sec) {
+    }
+};
+#endif
+query* qu;
+update* up;
+int* col;
+int n, m, unit;
+int datat[1000001]; // 桶
+int* anst;
+int cntq, cntu;
+// sort排序尽量传functor而不是function, function-sort非常慢
+// 具体有多慢, 去试试不就知道了OVO
+struct cmp
+{
+    inline bool operator()(const query& fir, const query& sec)
+    {
         // 原理是生成两个新的query比较大小, 但前两个关键字为原query对应关键字所在块
-        return make_pair(make_pair(fir.l / unit, fir.r / unit),
-                         make_pair(fir.t, fir.i)) <
-               make_pair(make_pair(sec.l / unit, sec.r / unit),
-                         make_pair(sec.t, sec.i));
-      }
-    };
-    inline void gc() {
-      delete[] qu;
-      delete[] up;
-      delete[] anst;
-      delete[] col;
+        return make_pair(make_pair(fir.l / unit, fir.r / unit), make_pair(fir.t, fir.i)) < make_pair(make_pair(sec.l / unit, sec.r / unit), make_pair(sec.t, sec.i));
     }
-    inline void init(const int& nn, const int& nm) {
-      n = nn;
-      m = nm;
-      unit = pow(n, 2.0 / 3.0);
-      qu = new query[m]();
-      up = new update[m + 1]();
-      anst = new int[m]();
-      col = new int[n + 1]();
-      cntq = 0;
-      cntu = 0;
-    }
-    // 一行等价 qu[cntq++] = make_pair(make_pair(L, R), make_pair(cntu, cntq));
-    inline void addq(const int& L, const int& R) {
-      qu[cntq] = make_pair(make_pair(L, R), make_pair(cntu, cntq));
-      cntq = cntq + 1;
-    }
-    // 一行等价 up[++cntu] = make_pair(P, X);
-    inline void addu(const int& P, const int& X) {
-      cntu = cntu + 1;
-      up[cntu] = make_pair(P, X);
-      // 由于莫队主体中必须要有一个空修改作为初始状态, 故只能从1编号
-    }
-    // 事实上最开始是当作一个模版类写的, 因此没有定义如ans这类的全局变量
-    // 一行等价 if(datat[x]++ == 0) ++ret;
-    inline void add(const int& x, int& ret) {
-      if (datat[x] == 0) {
+};
+inline void gc()
+{
+    delete[] qu;
+    delete[] up;
+    delete[] anst;
+    delete[] col;
+}
+inline void init(const int& nn, const int& nm)
+{
+    n = nn;
+    m = nm;
+    unit = pow(n, 2.0 / 3.0);
+    qu = new query[m]();
+    up = new update[m + 1]();
+    anst = new int[m]();
+    col = new int[n + 1]();
+    cntq = 0;
+    cntu = 0;
+}
+// 一行等价 qu[cntq++] = make_pair(make_pair(L, R), make_pair(cntu, cntq));
+inline void addq(const int& L, const int& R) 
+{
+    qu[cntq] = make_pair(make_pair(L, R), make_pair(cntu, cntq));
+    cntq = cntq + 1;
+}
+// 一行等价 up[++cntu] = make_pair(P, X);
+inline void addu(const int& P, const int& X)
+{
+    cntu = cntu + 1;
+    up[cntu] = make_pair(P, X);
+    // 由于莫队主体中必须要有一个空修改作为初始状态, 故只能从1编号
+}
+// 事实上最开始是当作一个模版类写的, 因此没有定义如ans这类的全局变量
+// 一行等价 if(datat[x]++ == 0) ++ret;
+inline void add(const int& x, int& ret)
+{
+    if(datat[x] == 0)
+    {
         ret = ret + 1;
-      }
-      datat[x] = datat[x] + 1;
     }
-    // 一行等价 if(--datat[x] == 0) --ret;
-    inline void del(const int& x, int& ret) {
-      datat[x] = datat[x] - 1;
-      if (datat[x] == 0) {
+    datat[x] = datat[x] + 1;
+}
+// 一行等价 if(--datat[x] == 0) --ret;
+inline void del(const int& x, int& ret)
+{
+    datat[x] = datat[x] - 1;
+    if(datat[x] == 0)
+    {
         ret = ret - 1;
-      }
     }
-    inline void modify(const int& now, const int& id, int& ret) {
-      if (up[now].p >= qu[id].l && up[now].p <= qu[id].r) {
+}
+inline void modify(const int& now, const int& id, int& ret)
+{
+    if(up[now].p >= qu[id].l && up[now].p <= qu[id].r)
+    {
         del(col[up[now].p], ret);
         add(up[now].x, ret);
-      }
-      // 修改操作只需令x与原col[pos]交换即可,
-      // 这样下次需要回滚的时候就会将col[pos]换回来, 即消除修改操作的影响
-      swap(up[now].x, col[up[now].p]);
     }
-    inline void generate() {
-      sort(qu, qu + cntq, cmp());
-      register int nl, nr, nt, na;
-      nl = 0;
-      nr = 0;
-      nt = 0;
-      na = 0;
-      for (register int j = 0; j != cntq; j = j + 1) {
+    // 修改操作只需令x与原col[pos]交换即可, 这样下次需要回滚的时候就会将col[pos]换回来, 即消除修改操作的影响
+    swap(up[now].x, col[up[now].p]);
+}
+inline void generate()
+{
+    sort(qu, qu + cntq, cmp());
+    register int nl, nr, nt, na;
+    nl = 0;
+    nr = 0;
+    nt = 0;
+    na = 0;
+    for(register int j = 0; j != cntq; j = j + 1)
+    {
         // 一行等价 while(nl < qu[j].l) del(col[nl++], na);
-        while (nl < qu[j].l) {
-          del(col[nl], na);
-          nl = nl + 1;
+        while(nl < qu[j].l)
+        {
+            del(col[nl], na);
+            nl = nl + 1;
         }
         // 一行等价 while(nl > qu[j].l) add(col[--nl], na);
-        while (nl > qu[j].l) {
-          nl = nl - 1;
-          add(col[nl], na);
+        while(nl > qu[j].l)
+        {
+            nl = nl - 1;
+            add(col[nl], na);
         }
         // 一行等价 while(nr < qu[j].r) add(col[++nr], na);
-        while (nr < qu[j].r) {
-          nr = nr + 1;
-          add(col[nr], na);
+        while(nr < qu[j].r)
+        {
+            nr = nr + 1;
+            add(col[nr], na);
         }
         // 一行等价 while(nr > qu[j].r) add(col[nr--], na);
-        while (nr > qu[j].r) {
-          del(col[nr], na);
-          nr = nr - 1;
+        while(nr > qu[j].r)
+        {
+            del(col[nr], na);
+            nr = nr - 1;
         }
         // 一行等价 while(nt < qu[j].t) modify(++nt, j, na);
-        while (nt < qu[j].t) {
-          nt = nt + 1;
-          modify(nt, j, na);
+        while(nt < qu[j].t)
+        {
+            nt = nt + 1;
+            modify(nt, j, na);
         }
         // 一行等价 while(nt > qu[j].t) modify(nt--, j, na);
-        while (nt > qu[j].t) {
-          modify(nt, j, na);
-          nt = nt - 1;
+        while(nt > qu[j].t)
+        {
+            modify(nt, j, na);
+            nt = nt - 1;
         }
         anst[qu[j].i] = na;
-      }
     }
-    int main() {
-      cin >> n >> m;
-      init(n, m);
-      for (register int j = 0; j != n; j = j + 1) {
+}
+int main()
+{
+    cin >> n >> m;
+    init(n, m);
+    for(register int j = 0; j != n; j = j + 1)
+    {
         cin >> col[j + 1];
-      }
-      for (register int j = 0; j != m; j = j + 1) {
+    }
+    for(register int j = 0; j != m; j = j + 1)
+    {
         char ch;
         cin >> ch;
-        if (ch == 'Q') {
-          int cl, cr;
-          cin >> cl >> cr;
-          addq(cl, cr);
+        if(ch == 'Q')
+        {
+            int cl, cr;
+            cin >> cl >> cr;
+            addq(cl, cr);
         }
-        if (ch == 'R') {
-          int cp, cx;
-          cin >> cp >> cx;
-          addu(cp, cx);
+        if(ch == 'R')
+        {
+            int cp, cx;
+            cin >> cp >> cx;
+            addu(cp, cx);
         }
-      }
-      generate();
-      for (register int j = 0; j != cntq; j = j + 1) {
-        cout << anst[j] << endl;
-      }
-      gc();
-      return 0;
     }
+    generate();
+    for(register int j = 0; j != cntq; j = j + 1)
+    {
+        cout << anst[j] << endl;
+    }
+    gc();
+    return 0;
+}
     ```
