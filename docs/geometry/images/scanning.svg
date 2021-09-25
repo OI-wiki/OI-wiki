@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Partially created with Inkscape (http://www.inkscape.org/) -->
 <!-- Edited and animated with text editor -->
-<svg width="576" height="400" version="1.1" viewBox="0 0 576 384"
+<svg width="576" height="400" version="1.1" viewBox="0 0 576 400"
 	xmlns="http://www.w3.org/2000/svg">
 	<defs>
 		<marker id="TriangleOutM" overflow="visible" orient="auto">
@@ -78,7 +78,8 @@
 		<rect x="190.5" y="116.5" width="180" height="128"/>
 		<rect x="260.5" y="75.5" width="180" height="128"/>
 	</g>
-	<path d="m32 0h512" stroke-width="2" stroke="red">
+	<path d="m32 0h512" stroke-width="2" stroke="red"
+		transform="translate(0 75)">
 		<animateTransform type="translate" dur="7s" repeatCount="indefinite"
 			values="0 351;0 308.5;0 244.5; 0 203.5;0 180.5;0 116.5;
 				0 75.5; 0 75.5"
@@ -94,10 +95,10 @@
 		<path d="m32 351h512" marker-end="url(#TriangleOutM)"/>
 	</g>
 	<g id="labels" font-family="'Times New Roman', serif"
-		font-size="16px" text-align="center" text-anchor="middle">
-		<text x="528" y="368"  font-style="italic"
+		font-size="16px" style="text-align:center" text-anchor="middle">
+		<text x="528" y="368" font-style="italic"
 			style="line-height:1.25" xml:space="preserve">x</text>
-		<text x="20" y="48"  font-style="italic"
+		<text x="20" y="48" font-style="italic"
 			style="line-height:1.25" xml:space="preserve">y</text>
 		<text x="155" y="376" style="line-height:1.25"
 			xml:space="preserve">1</text>
