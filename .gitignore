@@ -10,3 +10,4 @@ bin/
 lib/
 pyvenv.cfg
 menv
+.gitignore
