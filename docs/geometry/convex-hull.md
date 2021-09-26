@@ -36,6 +36,7 @@
 
 ???+note "代码实现"
     ```cpp
+    // C++ Version
     // stk[] 是整型，存的是下标
     // p[] 存储向量或点
     tp = 0;                       // 初始化栈
@@ -61,6 +62,38 @@
     for (int i = 1; i <= tp; ++i)  // 复制到新数组中去
       h[i] = p[stk[i]];
     int ans = tp - 1;
+    ```
+
+    ```python
+    # Python Version
+    stk = [] # 是整型，存的是下标
+    p = [] # 存储向量或点
+    tp = 0 # 初始化栈
+    p.sort() # 对点进行排序
+    stk[tp] = 1
+    tp = tp + 1
+    # 栈内添加第一个元素，且不更新 used，使得 1 在最后封闭凸包时也对单调栈更新
+    for i in range(2, n + 1):
+        while tp >= 2 and (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0:
+            # 下一行 * 操作符被重载为叉积
+            used[stk[tp]] = 0
+            tp = tp - 1
+            used[i] = 1 # used 表示在凸壳上
+            stk[tp] = i
+            tp = tp + 1
+    tmp = tp # tmp 表示下凸壳大小
+    for i in range(n - 1, 0, -1):
+        if used[i] == False:
+            #      ↓求上凸壳时不影响下凸壳
+            while tp > tmp and (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0:
+                used[stk[tp]] = 0
+                tp = tp - 1
+                used[i] = 1
+                stk[tp] = i
+                tp = tp + 1
+    for i in range(1, tp + 1):
+        h[i] = p[stk[i]]
+    ans = tp - 1
     ```
 
 根据上面的代码，最后凸包上有 $\textit{ans}$ 个元素（额外存储了 $1$ 号点，因此 $h$ 数组中有 $\textit{ans}+1$ 个元素），并且按逆时针方向排序。周长就是
