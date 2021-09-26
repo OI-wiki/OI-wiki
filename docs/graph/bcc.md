@@ -38,7 +38,7 @@ void DFS(int p) {
 ```python
 # Python Version
 def DFS(p):
-    visited[p] = true
+    visited[p] = True
     for to in edge[p]:
         if visited[to] == False:
             DFS(to)
