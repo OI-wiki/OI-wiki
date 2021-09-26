@@ -6,3 +6,7 @@ mkdocs-material/
 .env
 .well-known/
 node_modules/
+bin/
+lib/
+pyvenv.cfg
+menv
