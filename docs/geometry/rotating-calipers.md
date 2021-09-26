@@ -40,7 +40,7 @@
       }
     }
     ```
-
+    
     ```python
     # Python Version
     sta = [] * N; top = 0 # 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
@@ -104,7 +104,7 @@ $$
       }
     }
     ```
-
+    
     ```python
     # Python Version
     def get_biggest():

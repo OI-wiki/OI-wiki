@@ -188,16 +188,16 @@ Bellman-Ford 算法所做的，就是不断尝试对图上每一条边进行松�
       return flag;
     }
     ```
-
+    
     ```python
     # Python Version
     class Edge:
         v = 0
         w = 0
-
+    
     e = [[Edge() for i in range(maxn)] for j in range(maxn)]
     dis = [63] * maxn
-
+    
     def bellmanford(n, s):
         dis[s] = 0
         for i in range(1, n + 1):
@@ -213,6 +213,7 @@ Bellman-Ford 算法所做的，就是不断尝试对图上每一条边进行松�
         # 第 n 轮循环仍然可以松弛时说明 s 点可以抵达一个负环
         return flag
     ```
+
 ### 队列优化：SPFA
 
 即 Shortest Path Faster Algorithm。
@@ -256,16 +257,16 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
       return true;
     }
     ```
-
+    
     ```python
     # Python Version
     class Edge:
         v = 0
         w = 0
-
+    
     e = [[Edge() for i in range(maxn)] for j in range(maxn)]
     dis = [63] * maxn; cnt = [] * maxn; vis = [] * maxn
-
+    
     q = []
     def spfa(n, s):
         dis[s] = 0; vis[s] = 1
@@ -377,7 +378,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
       }
     }
     ```
-
+    
     ```python
     # Python Version
     class Edge:

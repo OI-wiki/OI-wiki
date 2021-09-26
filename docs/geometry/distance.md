@@ -143,7 +143,7 @@ $$
       return 0;
     }
     ```
-
+    
     ```python
     # Python Version
     minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0
@@ -154,6 +154,7 @@ $$
         miny = min(miny, x - y); maxy = max(maxy, x - y)
     print(max(maxx - minx, maxy - miny))
     ```
+
 其实还有第二种做法，那就是把曼哈顿距离转化为切比雪夫距离求解，最后部分会讲到。
 
 ## 切比雪夫距离
@@ -303,7 +304,7 @@ $$
       return 0;
     }
     ```
-
+    
     ```python
     # Python Version
     minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0

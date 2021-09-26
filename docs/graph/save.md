@@ -58,27 +58,27 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
     
       return 0;
     }
-    ``` 
-
+    ```
+    
     ```python
     # Python Version
     class Edge:
         u = 0
         v = 0
-
+    
     n, m = map(lambda x:int(x), input().split())
-
+    
     e = [Edge()] * m; vis = [False] * n
-
+    
     for i in range(0, m):
         e[i].u, e[i].v = map(lambda x:int(x), input().split())
-
+    
     def find_edge(u, v):
         for i in range(1, m + 1):
             if e[i].u == u and e[i].v == v:
                 return True
         return False
-
+    
     def dfs(u):
         if vis[u]:
             return
@@ -151,19 +151,19 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
       return 0;
     }
     ```
-
+    
     ```python
     # Python Version
     vis = [False] * (n + 1)
     adj = [[False]] * (n + 1)
-
+    
     for i in range(1, m + 1):
         u, v = map(lambda x:int(x), input().split())
         adj[u][v] = True
-
+    
     def find_edge(u, v):
         return adj[u][v]
-
+    
     def dfs(u):
         if vis[u]:
             return
@@ -239,22 +239,22 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
       return 0;
     }
     ```
-
+    
     ```python
     # Python Version
     vis = [False] * (n + 1)
     adj = [[]] * (n + 1)
-
+    
     for i in range(1, m + 1):
         u, v = map(lambda x:int(x), input().split())
         adj[u].append(v)
-
+    
     def find_edge(u, v):
         for i in range(0, len(adj[u])):
             if adj[u][i] == v:
                 return True
         return False
-
+    
     def dfs(u):
         if vis[u]:
             return

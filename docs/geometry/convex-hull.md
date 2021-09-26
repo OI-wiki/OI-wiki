@@ -63,7 +63,7 @@
       h[i] = p[stk[i]];
     int ans = tp - 1;
     ```
-
+    
     ```python
     # Python Version
     stk = [] # 是整型，存的是下标
