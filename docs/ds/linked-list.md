@@ -19,7 +19,9 @@
 
 ### 单向链表
 
-单向链表中包含数据域和指针域，其中数据域用于存放数据，指针域用来连接当前结点和下一结点。
+单向链表中包含数据域和指针域，其中数据域用于存放数据，指针域用来连接当前结点和下一节点。
+
+![](images/list.svg)
 
 ```c++
 // C++ Version
@@ -40,6 +42,8 @@ class Node:
 ### 双向链表
 
 双向链表中同样有数据域和指针域。不同之处在于，指针域有左右（或上一个、下一个）之分，用来连接上一个结点、当前结点、下一个结点。
+
+![](images/double-list.svg)
 
 ```c++
 // C++ Version
@@ -71,7 +75,9 @@ class Node:
 
 具体过程可参考下图：
 
-![往单向列表中插入数据](./images/linked-list1.png)
+1. ![](./images/list-insert-1.svg)
+2. ![](./images/list-insert-2.svg)
+3. ![](./images/list-insert-3.svg)
 
 代码实现如下：
 
@@ -108,7 +114,9 @@ def insertNode(i, p):
 
 具体过程可参考下图：
 
-![将单向链表变为单向循环链表](./images/linked-list2.png)
+1. ![](./images/list-insert-cyclic-1.svg)
+2. ![](./images/list-insert-cyclic-2.svg)
+3. ![](./images/list-insert-cyclic-3.svg)
 
 代码实现如下：
 
@@ -207,7 +215,9 @@ def insertNode(i, p):
 
 具体过程可参考下图：
 
-![删除单向（循环）链表中的数据](./images/linked-list3.png)
+1. ![](./images/list-delete-1.svg)
+2. ![](./images/list-delete-2.svg)
+3. ![](./images/list-delete-3.svg)
 
 代码实现如下：
 
