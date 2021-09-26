@@ -214,6 +214,7 @@ nav:
       - 数论基础: math/number-theory/basic.md
       - 素数: math/number-theory/prime.md
       - 最大公约数: math/number-theory/gcd.md
+      - 数论分块: math/number-theory/sqrt-decomposition.md
       - 欧拉函数: math/number-theory/euler.md
       - 筛法: math/number-theory/sieve.md
       - Meissel-Lehmer 算法: math/number-theory/meissel-lehmer.md
@@ -254,6 +255,7 @@ nav:
       - 多项式三角函数: math/poly/tri-func.md
       - 多项式反三角函数: math/poly/inv-tri-func.md
       - 常系数齐次线性递推: math/linear-recurrence.md
+      - 多项式平移|连续点值平移: math/poly/shift.md
     - 生成函数:
       - 生成函数简介: math/gen-func/intro.md
       - 普通生成函数: math/gen-func/ogf.md

@@ -180,3 +180,49 @@ C 语言中的整数除法不是一律向下取整，而是向 0 取整。取模
 因此，一个负数模一个正数，结果会得到一个负数，这与数学上的习惯不同。
 
 C 语言对于除数或模数为负数的行为是未定义行为，结果未定。这一点也要特别注意。
+
+## 数论函数
+
+数论函数指定义域为正整数的函数。数论函数也可以视作一个数列。
+
+## 积性函数
+
+### 定义
+
+若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y \in \mathbb{N}_{+},\gcd(x,y)=1$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为积性函数。
+
+若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y \in \mathbb{N}_{+}$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为完全积性函数。
+
+### 性质
+
+若 $f(x)$ 和 $g(x)$ 均为积性函数，则以下函数也为积性函数：
+
+$$
+\begin{aligned}
+h(x)&=f(x^p)\\
+h(x)&=f^p(x)\\
+h(x)&=f(x)g(x)\\
+h(x)&=\sum_{d\mid x}f(d)g(\frac{x}{d})
+\end{aligned}
+$$
+
+设 $x=\prod p_i^{k_i}$
+
+若 $F(x)$ 为积性函数，则有 $F(x)=\prod F(p_i^{k_i})$。
+
+若 $F(x)$ 为完全积性函数，则有 $F(x)=\prod F(p_i)^{k_i}$。
+
+### 例子
+
+- 单位函数：$\varepsilon(n)=[n=1]$（完全积性）
+- 恒等函数：$\operatorname{id}_k(n)=n^k$，$\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$。（完全积性）
+- 常数函数：$1(n)=1$（完全积性）
+- 除数函数：$\sigma_{k}(n)=\sum_{d\mid n}d^{k}$$\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$，$\sigma_{1}(n)$ 通常简记作 $\sigma(n)$。
+- 欧拉函数：$\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$
+- 莫比乌斯函数：$\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1,d^{2} \mid n \\ (-1)^{\omega(n)} & \texttt{otherwise}\end{cases}$，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它是一个加性函数。
+
+???+note "加性函数"
+    此处加性函数指数论上的加性函数 (Additive function)。对于加性函数 $\operatorname{f}$，当整数 $a,b$ 互质时，均有 $\operatorname{f}(ab)=\operatorname{f}(a)+\operatorname{f}(b)$。
+    应与代数中的加性函数 (Additive map) 区分。
+
+* * *
