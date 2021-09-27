@@ -36,6 +36,7 @@ bfs(s) {
 C++：
 
 ```cpp
+// C++ Version
 void bfs(int u) {
   while (!Q.empty()) Q.pop();
   Q.push(u);
@@ -64,6 +65,37 @@ void restore(int x) {
   for (int i = 0; i < res.size(); ++i) printf("%d", res[i]);
   puts("");
 }
+```
+
+```python
+# Python Version
+def bfs(u):
+    Q = []
+    Q.append(u)
+    vis[u] = True
+    d[u] = 0
+    p[u] = -1
+    while len(Q) != 0:
+        u = Q[0]
+        Q.pop()
+        while i:
+            i = head[u]
+            if vis[e[i].t] == False:
+                Q.append(e[i].t)
+                vis[e[i].t] = True
+                d[e[i].t] = d[u] + 1
+                p[e[i].t] = u
+            i = e[i].x
+
+def restore(x):
+    res = []
+    while v != -1:
+        v = x
+        res.append(v)
+        v = p[v]
+    res.reverse()
+    for i in range(0, len(res)):
+        print(res[i])
 ```
 
 具体来说，我们用一个队列 Q 来记录要处理的节点，然后开一个 $vis[]$ 布尔数组来标记某个节点是否已经访问过了。

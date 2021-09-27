@@ -84,6 +84,7 @@ bool toposort() {
 ## DFS 算法
 
 ```cpp
+// C++ Version
 vector<int> G[MAXN];  // vector 实现的邻接表
 int c[MAXN];          // 标志数组
 vector<int> topo;     // 拓扑排序后的节点
@@ -110,6 +111,35 @@ bool toposort() {
   reverse(topo.begin(), topo.end());
   return true;
 }
+```
+
+```python
+# Python Version
+G = [] * MAXN
+c = [0] * MAXN
+topo = []
+
+def dfs(u):
+    c[u] = -1
+    for v in G[u]:
+        if c[v] < 0:
+            return False
+        elif c[v] == False:
+            if dfs(v) == False:
+                return False
+    c[u] = 1
+    topo.append(u)
+    return True
+
+def toposort():
+    topo = []
+    while u < n:
+        if c[u] == 0:
+            if dfs(u) == False:
+                return False
+        u = u + 1
+    topo.reverse()
+    return True
 ```
 
 时间复杂度：$O(E+V)$ 空间复杂度：$O(V)$
