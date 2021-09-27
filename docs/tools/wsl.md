@@ -295,13 +295,13 @@ $ echo "xfce4-session" >~/.xsession
 
 ![不换端口的结果](./images/wsl-result-of-not-changing-ports.png)
 
-运行命令 `sudo sed 's/port=[0-9]{1,5}/port=qwq/' /etc/xrdp/xrdp.ini`，其中 `qwq` 为其他端口（如 `3390`）。
+运行命令 `sudo sed 's/port=[0-9]{1,5}/port=otherport/' /etc/xrdp/xrdp.ini`，其中 `otherport` 为其他端口（如 `3390`）。
 
     [globals]
     ...
     port=3390
 
-运行 `sudo service xrdp restart`，然后去开始菜单，用 `localhost:qwq` 来访问。
+运行 `sudo service xrdp restart`，然后去开始菜单，用 `localhost:otherport` 来访问。
 
 ![](./images/wsl-login-using-non-root.png)
 
