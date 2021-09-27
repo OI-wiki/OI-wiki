@@ -150,7 +150,7 @@ $a\not\equiv b \pmod m$
 
 根据整除的性质，上述同余式也等价于：
 
-$a\equiv b \pmod \left(-m\right)$
+$a\equiv b \pmod {\left(-m\right)}$
 
 **如果没有特别说明，模数总是正整数。**
 
