@@ -229,6 +229,7 @@ nav:
       - 升幂定理: math/number-theory/lift-the-exponent.md
       - 卢卡斯定理: math/number-theory/lucas.md
       - 二次剩余: math/number-theory/quad-residue.md
+      - 拉格朗日定理: math/number-theory/lagrange.md
       - 原根: math/number-theory/primitive-root.md
       - BSGS: math/number-theory/bsgs.md
       - 莫比乌斯反演: math/number-theory/mobius.md
