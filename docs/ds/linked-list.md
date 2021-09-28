@@ -14,6 +14,8 @@
 
 ### 单向链表
 
+![](images/list.svg)
+
 单向链表中包含数据域和指针域，其中数据域用于存放数据，指针域用来连接当前结点和下一节点。
 
 ```c++
@@ -33,6 +35,8 @@ class Node:
 ```
 
 ### 双向链表
+
+![](images/double-list.svg)
 
 双向链表中同样有数据域和指针域，不同之处在于指针域有左右（或上一个、下一个）之分，用来连接上一个节点、当前结点、下一个结点。
 
@@ -79,7 +83,9 @@ def insertNode(i, p):
 
 具体过程可参考下面这张图。
 
-![](./images/linked-list1.png)
+1. ![](./images/list-insert-1.svg)
+2. ![](./images/list-insert-2.svg)
+3. ![](./images/list-insert-3.svg)
 
 ### 单向循环链表
 
@@ -117,7 +123,9 @@ def insertNode(i, p):
 
 由于是循环的链表，我们在插入数据时需要判断原链表是否为空，为空则自身循环，不为空则正常插入数据循环。具体过程可参考下面这张图。
 
-![](./images/linked-list2.png)
+1. ![](./images/list-insert-cyclic-1.svg)
+2. ![](./images/list-insert-cyclic-2.svg)
+3. ![](./images/list-insert-cyclic-3.svg)
 
 ### 双向循环链表
 
@@ -178,7 +186,9 @@ def deleteNode(p):
 
 从链表中删除某个结点时，将 p 的下一个结点 (p->next) 的值覆盖给 p 即可，与此同时更新 p 的下下个结点。具体过程可参考下面这张图。
 
-![](./images/linked-list3.png)
+1. ![](./images/list-delete-1.svg)
+2. ![](./images/list-delete-2.svg)
+3. ![](./images/list-delete-3.svg)
 
 ### 双向循环链表
 

@@ -1,0 +1,22 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+
+\tikzset{real edge/.style={-,solid,very thick}}
+\tikzset{virtual edge/.style={<-,dashed,thin}}
+
+\begin{document}
+\begin{tikzpicture}
+
+\scoped[every node/.style={solid,thin,circle,draw}]
+\node (A) {$A$}
+    child[virtual edge] {node (E) {$E$}
+        child[real edge] {node (C) {$C$}
+            child[virtual edge] {node (F) {$F$}}}
+        child[missing]}
+    child[real edge] {node (D) {$D$}
+        child[missing]
+        child[real edge] {node (B) {$B$}}};
+
+\end{tikzpicture}
+\end{document}
