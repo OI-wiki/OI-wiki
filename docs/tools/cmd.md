@@ -1,40 +1,81 @@
-author: StudyingFather, ayalhw, qinyihao, CoderOJ
+author: StudyingFather, ayalhw, qinyihao, CoderOJ, mcendu
 
 虽然图形界面能做的事情越来越多，但有很多高阶操作仍然需要使用命令行来解决。
 
 本页面将简要介绍命令行的一些使用方法。
 
-## 一些常用命令[^1]
+## 基础
+
+Windows 自带的命令行界面有两个。“命令提示符”（`cmd`）是其中较为古老的一个，功能也相对简单。PowerShell 是较新的一个命令行界面，自带的功能丰富，但相对臃肿。两个界面都可以在开始菜单中找到。
+
+类 Unix 系统（包含 macOS 和 Linux，以下称为 Unix）分为有图形界面和无图形界面两种情况。如果系统有图形界面（如使用 macOS 或者在 Linux 下安装了 GNOME、KDE 等图形界面），则命令行一般可以通过名为“终端”（Terminal 或 Console）的程序打开。没有图形界面的系统会在启动完成后自动进入命令行。
+
+Windows 下的命令行长这样：
+
+```doscon
+C:\Users\chtholly>
+```
+
+在命令行上输入的指令会显示在 `>` 以后。
+
+```doscon
+C:\Users\chtholly>echo "Hello World!"
+```
+
+Unix 下的命令行长这样（以 Debian/Ubuntu 为例，其它系统的命令行大体类似）：
+
+```console
+chtholly@seniorious:~$
+```
+
+在命令行上输入的指令会显示在 `$` 以后。
+
+```console
+chtholly@seniorious:~$ echo "Hello World!"
+```
+
+如果在 Unix 下使用 `root` 登录命令行，那么 `$` 会被替换成 `#`：
+
+```console
+root@seniorious:~# apt-get install gcc
+```
+
+命令行的 `>`，`$` 或 `#` 之前会显示一个路径，这个路径就是工作目录（working directory），或者当前目录。在 Unix 下当前目录有时会显示成类似 `~/folder` 的形式，最开头的 `~` 就是当前登录的用户的主目录。用户 `chtholly` 的主目录在不同系统下的位置是不同的；在 Linux 下，他的主目录位于 `/home/chtholly`，而在 macOS 下，她的主目录位于 `/Users/chtholly`。
+
+## 语法和常用命令[^1]
 
 ### 文件系统相关
 
 先介绍文件系统里描述位置的两种方式，相对路径和绝对路径。
 
 - 相对路径：用相对当前路径的位置关系来描述位置。例如当前路径为 `~/folder`，则 `./a.cpp` 实际上指的就是 `~/folder/a.cpp` 这个文件。**随着当前路径的变化，相对路径描述的位置也可能发生改变**。
+
 -   绝对路径：用完整的路径来描述位置。例如 `~/folder/a.cpp` 就是一个绝对路径的例子。**绝对路径描述的位置不随当前路径的变化而改变**。
 
-    Windows/Linux 用 `.` 代表当前目录，`..` 代表当前目录的父目录。特别地，在 Linux 下，用 `~` 表示用户主目录（注意 `~` 由 shell 展开，因此在其他地方可能不可用）。
+    Windows/Unix 用 `.` 代表当前目录，`..` 代表当前目录的父目录。特别地，在 Unix 下，用 `~` 表示用户主目录（注意 `~` 由 shell 展开，因此在其他地方可能不可用）。
 
-在 Windows/Linux 下，使用 `cd <目录>` 命令可以切换当前的目录。例如，`cd folder` 会切换到当前目录的 `folder` 子目录；`cd ..` 会切换到当前目录的父目录。
+在 Windows/Unix 下，使用 `pwd` 命令可以打印当前的目录，`cd <目录>` 命令可以切换当前的目录。例如，`cd folder` 会切换到当前目录的 `folder` 子目录；`cd ..` 会切换到当前目录的父目录。
 
-在 Windows 下，使用 `dir` 命令可以列出当前目录的文件列表。在 Linux 下，列出文件列表的命令是 `ls`。特别的，在 Windows Powershell 下，可以使用与 Linux 相同的 `ls` 命令。
+在 Windows 下，使用 `dir` 命令可以列出当前目录的文件列表。在 Unix 下，列出文件列表的命令是 `ls`。特别的，在 PowerShell 下，可以使用与 Unix 相同的 `ls` 命令。
 
-在 Windows 下，使用 `md <目录>` 或者 `mkdir <目录>` 命令创建一个新目录，使用 `rd <目录>` 命令删除一个目录。在 Linux 下，这两个命令分别是 `mkdir` 和 `rmdir`。需要注意的是，**使用 `rd` 或是 `rmdir` 删除一个目录前，这个目录必须是空的**。如果想要删除非空目录（和该目录下的所有文件）的话，Linux 下可以执行 `rm -r <目录>` 命令，Windows 下可以执行 `rd /s <目录>` 命令。
+在 Windows 下，使用 `md <目录>` 或者 `mkdir <目录>` 命令创建一个新目录，使用 `rd <目录>` 命令删除一个目录。在 Unix 下，这两个命令分别是 `mkdir` 和 `rmdir`。需要注意的是，**使用 `rd` 或是 `rmdir` 删除一个目录前，这个目录必须是空的**。如果想要删除非空目录（和该目录下的所有文件）的话，Unix 下可以执行 `rm -r <目录>` 命令，Windows 下可以执行 `rd /s <目录>` 命令。
 
 ### 重定向机制
 
 > 我编译了一个程序，它从标准输入读入，并输出到标准输出。然而输入文件和输出文件都很大，这时候能不能想办法把输入重定向到指定的输入文件，输出重定向到指定的输出文件呢？
 
-使用如下命令即可做到。
+使用如下命令即可实现。
 
-```bash
-command < input > output
+```console
+$ command < input > output
 ```
 
 例如，`./prog < 1.in > 1.out` 这个命令就将让 `prog` 这个程序从当前目录下的 `1.in` 中读入数据，并将程序输出覆盖写入到 `1.out`。
 
 ???+ warning
     `1.out` 原本的内容会被覆盖，如果想要在原输出文件末尾追加写入，请使用 `>>`，即 `./prog >> 1.out` 的方式做输出重定向
+
+cmd 和 PowerShell 只支持输出重定向，不支持输入重定向。
 
 事实上，大多数 OJ 都采用了这样的重定向机制。选手提交的程序采用标准输入输出，通过重定向机制，就可以让选手的程序从给定的输入文件读入数据，输出到指定的输出文件，再进行文件比较就可以评测了。
 
@@ -44,27 +85,47 @@ command < input > output
 
 当然，执行一个文件时，命令行并不会把所有目录下的文件都找一遍。环境变量 `PATH` 描述了命令行搜索路径的范围，命令行会在 `PATH` 中的路径寻找目标文件。
 
-对于 Windows 系统，**当前目录也在命令行的默认搜索范围内**。例如 Windows 系统中，输入 `hello` 命令就可以执行当前目录下的 `hello.exe`。但是在 PowerShell 中，PowerShell 默认不会从当前目录寻找可执行文件（这与在 Linux 的行为一致），因而在 PowerShell 中需要使用相对路径或绝对路径调用当前目录下的可执行文件，例如 `.\hello.exe`，否则，你将看到以下报错（以 cf-tool 的 cf.exe 为例）：![](./images/cmd-exec.png)
+对于 Windows 系统，**当前目录也在命令行的默认搜索范围内**。例如 Windows 系统中，输入 `hello` 命令就可以执行当前目录下的 `hello.exe`。但是在 PowerShell 中，PowerShell 默认不会从当前目录寻找可执行文件（这与在 Unix 的行为一致），因而在 PowerShell 中需要使用相对路径或绝对路径调用当前目录下的可执行文件，例如 `.\hello.exe`，否则，你将看到以下报错：
 
-在 Linux 系统中，**当前目录并不在命令行的默认搜索范围内**，所以执行当前目录下的 `hello` 程序的命令就变成了 `./hello`。
+```ps1con
+PS> hello
+hello: The term 'hello' is not recognized as a name of a cmdlet,
+function, script file, or executable program.
+Check the spelling of the name, or if a path was included, verify that
+the path is correct and try again.
+
+Suggestion [3,General]: The command hello was not found, but does exist
+in the current location. PowerShell does not load commands from the
+current location by default. If you trust this command, instead type:
+".\hello". See "get-help about_Command_Precedence" for more details.
+```
+
+在 Unix 系统中，**当前目录并不在命令行的默认搜索范围内**，所以执行当前目录下的 `hello` 程序的命令就变成了 `./hello`:
+
+```console
+$ hello
+hello: command not found
+$ ./hello
+Hello World!
+```
 
 ### 总结
 
-上面介绍的用法只是命令行命令的一小部分，还有很多命令没有涉及到。在命令行里输入帮助命令 `help`，可以查询所有命令以及它们的用途。
+上面介绍的用法只是命令行命令的一小部分，还有很多命令没有涉及到。在命令行里输入帮助命令 `help`，可以查询所有基本命令以及它们的用途。
 
-下面给出 Windows 系统和 Linux 系统的命令对照表，以供参考。
+下面给出 Windows 系统和 Unix 系统的命令对照表，以供参考。
 
-| 分类   | Windows 系统 | Linux 系统 |
-| ---- | ---------- | -------- |
-| 文件列表 | `dir`      | `ls`     |
-| 切换目录 | `cd`       | `cd`     |
-| 建立目录 | `md`       | `mkdir`  |
-| 删除目录 | `rd`       | `rmdir`  |
-| 比较文件 | `fc`       | `diff`   |
-| 复制文件 | `copy`     | `cp`     |
-| 移动文件 | `move`     | `mv`     |
-| 文件改名 | `ren`      | `mv`     |
-| 删除文件 | `del`      | `rm`     |
+| 分类   | Windows 系统 | Unix 系统 |
+| ---- | ---------- | ------- |
+| 文件列表 | `dir`      | `ls`    |
+| 切换目录 | `cd`       | `cd`    |
+| 建立目录 | `md`       | `mkdir` |
+| 删除目录 | `rd`       | `rmdir` |
+| 比较文件 | `fc`       | `diff`  |
+| 复制文件 | `copy`     | `cp`    |
+| 移动文件 | `move`     | `mv`    |
+| 文件改名 | `ren`      | `mv`    |
+| 删除文件 | `del`      | `rm`    |
 
 ## 使用命令行编译/调试
 
@@ -85,7 +146,7 @@ command < input > output
 - `-lm`，`-lgmp`: 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）。
 
 ???+ note
-    在 Linux 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数。[^have-to-link-libm-in-gcc]
+    在 Unix 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数。[^have-to-link-libm-in-gcc]
 
 #### 使用 GNU Make 的内置规则[^gnu-make-built-in-rules]
 
@@ -110,21 +171,21 @@ command < input > output
 
 最新版本的 `clang++`、`g++` 以及 `MSVC`（部分支持）均已内置 `sanitizers`，但功能和使用方法有所不同，这里以 `clang++` 为例，它的使用方法如下：
 
-```bash
-% clang++ -fsanitize=<name> test.cc
+```console
+$ clang++ -fsanitize=<name> test.cc
 ```
 
 其中 `<name>` 即为要启用的功能（一个 `sanitizer` 可理解为一些功能的集合），例如：
 
-```bash
-% clang++ -fsanitize=memory test.cc # 启用 MemorySanitizer
-% clang++ -fsanitize=signed-integer-overflow test.cc # 启用有符号整型溢出检测
+```console
+$ clang++ -fsanitize=memory test.cc # 启用 MemorySanitizer
+$ clang++ -fsanitize=signed-integer-overflow test.cc # 启用有符号整型溢出检测
 ```
 
 之后直接像平常一样运行可执行文件即可，如果 sanitizer 检测到错误，则会输出到 `stderr` 流，例如：
 
-```bash
-% ./a.out
+```console
+$ ./a.out
 test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be represented in type 'int'
 ```
 
@@ -225,8 +286,8 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 
 有，那就是 **管道**，使用起来也非常简单，如下操作即可：
 
-```bash
-A | B
+```console
+$ A | B
 ```
 
 这会在内存创建一个管道，然后两个程序被同时启动。程序 A 每次要输出被重定向到这个管道中，而这个管道本身不会存储数据（其实有一个很小的缓冲区）。在 B 读取之前，A 的输出操作会被阻塞，等到 B 把数据读入以后，A 的输出才能继续进行。这样优美地解决了上述的问题，没有磁盘 IO 操作，两份代码同时运行，也没有额外消耗很多的内存储存中间结果。
@@ -235,20 +296,20 @@ A | B
 
 有时候我们不只是要把一个程序的输出重定向到另一个的输入。比如在做 IO 交互题的时候，经常需要将 A 的输出重定向到 B 的输入，B 的输出重定向到 A 的输出，这个时候用上文提到的普通管道就无能为力了。而重定向到文件，有无法让两个程序同时运行。这个时候就需要一个长得像文件的管道——命名管道。
 
-在 Linux 系统中，可以使用如下命令创建命名管道（以命名为 `my_pipe` 举例）：
+在 Unix 系统中，可以使用如下命令创建命名管道（以命名为 `my_pipe` 举例）：
 
-```bash
-mkfifo my_pipe
+```console
+$ mkfifo my_pipe
 ```
 
 这个时候使用 `ls` 命令列出当前目录下的文件，会发现多了一个 `my_pipe|` 的文件。这就创建了一个命名管道，文件名后的 `|` 代表这是一个管道文件。然后就可以像文件的重定向一样向这个管道中读写了。
 
 通过命名管道，我们可以通过这样的方式让两个程序交互：
 
-```bash
-mkfifo input output
-./checker > input < output # 这里一定要把 > input 写在前面，不然 shell 会先打开 output 管道，而这个管道现在并没有东西，会阻塞 checker 的运行。
-./my_code < input > output
+```console
+$ mkfifo input output
+$ ./checker > input < output # 这里一定要把 > input 写在前面，不然 shell 会先打开 output 管道，而这个管道现在并没有东西，会阻塞 checker 的运行。
+$ ./my_code < input > output
 ```
 
 使用完后，可以像普通文件一样用 `rm` 命令删除命名管道。
