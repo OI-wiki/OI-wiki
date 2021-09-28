@@ -100,6 +100,7 @@ author: Ir1d, Anguei, hsfzLZH1
 下面是用 Bellman-Ford 算法判断图中是否存在负环的代码实现，请在调用前先保证图是连通的。
 
 ```cpp
+// C++ Version
 bool Bellman_Ford() {
   for (int i = 0; i < n; i++) {
     bool jud = false;
@@ -114,6 +115,28 @@ bool Bellman_Ford() {
       if (dist[i] > dist[p[j]] + w[j]) return false;
   return true;
 }
+```
+
+```python
+# Python Version
+def Bellman_Ford():
+    for i in range(0, n):
+        jud = False
+        for j in range(1, n + 1):
+            while ~k:
+                k = h[j]
+                if dist[j] > dist[p[k]] + w[k]:
+                    dist[j] = dist[p[k]] + w[k]; jud = True
+                k = nxt[k]
+        if jud == False:
+            break
+    for i in range(1, n + 1):
+        while ~j:
+            j = h[i]
+            if dist[i] > dist[p[j]] + w[j]:
+                return False
+            j = nxt[j]
+    return True
 ```
 
 ## 习题

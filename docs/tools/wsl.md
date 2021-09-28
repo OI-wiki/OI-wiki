@@ -12,20 +12,45 @@ author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613
 
 众所周知，尽管现在大部分学校的竞赛练习环境都是构建 XP 等 Windows 系操作系统，但是在 NOI 系列赛中，早已用上了 NOI Linux 这个 Ubuntu 操作系统的阉割版。
 
-> ![NOI 竞赛的环境要求](./images/wsl-noi-environment-requirements.png)
->
-> NOI 竞赛的环境要求[^ref2]
->
-> 或许大家对自己 Windows 环境下的 Dev-C++ 等都已熟识，但是当场景突然切换到 Linux 的时候，你会不会不知所措？
->
-> 「想用<kbd>Ctrl</kbd>+<kbd>C</kbd>复制，结果退出了程序」  
-> 「平时 AC 的程序模板到了 Linux 上就 WA」……
->
-> 为了防止考场上出现此类尴尬情况，我们必须要提前熟悉下 Linux 系统的操作方法。
+NOI 竞赛的环境要求如下。[^ref2]
 
-![平台差异（转自百度文库“NOIP 标准评测系统及相关问题”）](./images/wsl-platform-differences.png)
+| 类别          | 软件或模块                     | 版本                 | 备注说明                                     |
+| :---------- | :------------------------ | :----------------- | :--------------------------------------- |
+| 系统          | Linux 内核                  | `5.4.0-42-generic` | 64 位 x86 (AMD64)                         |
+| 语言环境        | GCC（`gcc` 和 `g++`）        | `9.3.0`            | C 和 C++ 编译器                              |
+|             | FPC                       | `3.0.4`            | Pascal 编译器<!-- 现在谁还用 Pascal 打竞赛啊.jpg --> |
+|             | Python 2                  | `2.7`              | 非竞赛语言                                    |
+|             | Python 3                  | `3.8`              | 非竞赛语言                                    |
+| 调试工具        | GDB                       | `9.1`              |                                          |
+|             | DDD                       | `3.3.12`           | GDB 的 GUI 前端                             |
+| 集成开发环境（IDE） | Code::Blocks              | `20.03`            | C/C++ IDE                                |
+|             | Lazarus                   | `2.0.6`            | Pascal IDE                               |
+|             | Geany                     | `1.36`             | C/C++/Pascal（轻量级）IDE                     |
+| 文本编辑工具      | Visual Studio Code        | `1.54.3`           |                                          |
+|             | GNU Emacs                 | `26.3`             |                                          |
+|             | gedit                     | `3.36.2`           |                                          |
+|             | Vim                       | `8.1`              |                                          |
+|             | Joe                       | `4.6`              |                                          |
+|             | nano                      | `4.8`              |                                          |
+|             | Sublime Text              | `3.2.2`            |                                          |
+| 其它软件        | Firefox                   | `79.0`             | 浏览器                                      |
+|             | Midnight Commander (`mc`) | `4.8.24`           | 文件管理器                                    |
+|             | xterm (uxterm)            | `3.5.3`            | 终端                                       |
+|             | Arbiter-local             | `1.02`             | 程序评测工具单机版                                |
 
-平台差异（转自百度文库“NOIP 标准评测系统及相关问题”）[^ref3]
+考场环境与一般联系环境会有一系列差异：
+
+- 命令行上的操作和图形界面上的操作会有差异。
+- Linux 和 Windows 的差异，如对于大小写的敏感性。
+- 不同编译器的行为（MSVC 和 GCC）和不同版本的编译器（Windows 上和 Linux 上的 GCC，32 位和 64 位的 Linux GCC，GCC 7 和 GCC 8 等）的行为，如变量初始化和对数组下标越界的处理，会有差异。
+- 不同评测系统（洛谷和 Arbiter）的超时检查和内存限制检查会有差异。
+
+这有可能导致一系列的尴尬情况：
+
+- 想用<kbd>Ctrl</kbd>+<kbd>C</kbd>复制，结果退出了程序。
+- 平时 AC 的程序模板到了 Linux 上就 WA。
+
+为了防止考场上出现此类尴尬情况，我们必须要提前熟悉下 Linux 系统的操作方法。
 
 虽然 NOI 的官网已经放出了 NOI Linux 的 ISO 镜像，但是如果跑虚拟机的话，配置也相当麻烦，包括激活 VMware，用 VMware 装系统开虚拟机等步骤，且 NOI Linux 默认自带图形界面，无法保证在低配系统上流畅运行。
 
@@ -116,15 +141,38 @@ WSL 1 的机制，总体上是在运行时将 Linux 系统调用翻译为 NT API
 
 第一次运行 Ubuntu，需要完成初始化。
 
-等待一两分钟时间，系统会提示创建新的用户帐户及其密码，请确保选择一个容易记住的密码。
+    Installing, this may take a few minutes...
 
-![初始化](./images/wsl-initialization.png)
+等待一两分钟时间，系统会提示创建新的用户帐户。
+
+    Please create a default UNIX user account. The username does not need to match your Windows username.
+    For more information visit: https://aka.ms/wslusers
+    Enter new UNIX username: chtholly
+
+输入完用户名以后会提示输入密码。在 Linux 中，输入密码时屏幕上不显示文字属于正常现象。
+
+    Enter new UNIX password:
+
+设置好帐户名和密码后，WSL 就安装完成了。
+
+    Installation successful!
+    To run a command as administrator (user "root"), use "sudo <command>".
+    See "man sudo_root" for details.
+
+    chtholly@SENIORIOUS:~$
 
 ## 基础配置
 
 初次安装好的系统不附带任何 C/C++ 编译器，需要手动配置环境。
 
-![不附带任何编译器的系统](./images/wsl-system-without-compiler.png)
+```console
+$ gcc
+The program 'gcc' is currently not installed. You can install it by typing:
+sudo apt install gcc
+$ g++
+The program 'g++' is currently not installed. You can install it by typing:
+sudo apt install g++
+```
 
 ### 更换为国内软件源
 
@@ -137,64 +185,76 @@ Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速�
 
 使用以下命令更新软件和软件源：
 
-```bash
-sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
-sudo vim /etc/apt/sources.list
-# （按 i 之后将上文的源右键粘贴进去，编辑完后按 Esc，再输入 :wq 和回车）
-sudo apt update
-sudo apt upgrade -y
+```console
+# cp /etc/apt/sources.list /etc/apt/sources.list.bak
+# vim /etc/apt/sources.list
+...（按 i 之后将上文的源右键粘贴进去，编辑完后按 Esc，再输入 :wq 和回车）
+# apt update
+# apt upgrade -y
 ```
-
-![示例](./images/wsl-change-mirror.png)
 
 ### 安装中文环境
 
-```bash
-sudo apt install  language-pack-zh-han* -y
-sudo locale-gen zh_CN.GB18030 && sudo locale-gen zh_CN.UTF-8
-# 中文字体，别忘了同意 EULA
-sudo apt install fontconfig -y
-sudo apt install ttf-mscorefonts-installer -y
-# 下面的再执行一遍以防万一
-sudo apt install -y --force-yes --no-install-recommends fonts-wqy-microhei
-sudo apt install -y --force-yes --no-install-recommends ttf-wqy-zenhei
-sudo dpkg-reconfigure locales
+```console
+# apt install language-pack-zh-han* -y
+# locale-gen zh_CN.GB18030 && locale-gen zh_CN.UTF-8
+# apt install fontconfig -y
+# apt install fonts-noto-cjk -y # 中文字体
+# apt install fonts-wqy-microhei -y
+# apt install fonts-wqy-zenhei -y
+# dpkg-reconfigure locales
 ```
 
-使用 `sudo dpkg-reconfigure locales` 进入菜单，按空格选择带 `zh_CN` 的选项（推荐 `zh_CN, UTF-8 UTF-8`），选完后回车，
+使用 `sudo dpkg-reconfigure locales` 进入菜单，按空格选择带 `zh_CN` 的选项（推荐 `zh_CN.UTF-8 UTF-8`），选完后回车。
 
-![安装中文环境 1](./images/wsl-install-chinese-environment-1.png)
+    Locales to be generated:
+
+        ...
+        [ ] zh_CN.GBK GBK
+        [*] zh_CN.UTF-8 UTF-8
+        [ ] zh_HK BIG5-HKSCS
+        ...
+
+            <Ok>            <Cancel>
 
 下一个菜单中选择 `zh_CN.UTF-8` 回车。
 
-![安装中文环境 2](./images/wsl-install-chinese-environment-2.png)
+    Default locale for the system environment:
 
-之后关闭 Ubuntu 并重启，系统就会变成中文。
+                 None
+                 C.UTF-8
+                 en_US.UTF-8
+                [zh_CN.UTF-8]
+
+            <Ok>            <Cancel>
+
+之后关闭 WSL 并重启，系统就会变成中文。
 
 再依次输入下列命令，把 `man` 帮助页替换为中文。[^ref6]
 
-```bash
-sudo apt install manpages-zh
-sudo sed -i 's|/usr/share/man|/usr/share/man/zh_CN|g' /etc/manpath.config
+```console
+# apt install manpages-zh
+# sed -i 's|/usr/share/man|/usr/share/man/zh_CN|g' /etc/manpath.config
 ```
 
 可以用 `man help` 测试。
 
 ### 安装编译环境[^ref7]
 
-```bash
-sudo apt install -y build-essential vim ddd gdb fpc emacs gedit anjuta lazarus
+```console
+# apt install -y build-essential vim ddd gdb fpc emacs gedit anjuta lazarus
 ```
 
-GUIDE 的安装请参考 [Debian 或 Ubuntu 下 GUIDE 的安装](./editor/guide.md#debian-ubuntu)
+GUIDE 的安装请参考 [Debian 或 Ubuntu 下 GUIDE 的安装](./editor/guide.md#debian-ubuntu)。
 
-这是基础的 + NOI 官方要求环境，如有需要可以用 `apt install 程序名` 来安装别的。
+这里安装的是基础 + NOI 官方要求的环境，如有需要可以用 `apt install <程序名>` 来安装其它软件包。
 若想安装其他版本可以参考 Debian 官方的 [包管理手册](https://www.debian.org/doc/manuals/debian-reference/ch02.zh-cn.html)。
 
 以下为一个示例程序：
 
-```bash
+```console
 $ vim cpuid.cpp
+...
 $ g++ -Wall cpuid.cpp -o cpuid
 $ ./cpuid
 AMD Ryzen 5 1400 Quad-Core Processor
@@ -207,34 +267,41 @@ AMD Ryzen 5 1400 Quad-Core Processor
 
 ### 安装图形环境，并使用远程桌面连接
 
-推荐图形环境用 xfce4，不臃肿。
+以下以 Xfce 为例。
 
-```bash
-sudo apt install xfce4 tightvncserver -y
-# 或使用
-sudo apt install xubuntu-desktop -y
-# xubuntu 安装的软件多，基础环境可用第一种
+如果只想安装 Xfce，可以执行以下命令：
+
+```console
+# apt install xfce4 tightvncserver -y
+```
+
+如果除 Xfce 外想要更多的软件，可以执行以下命令：
+
+```console
+# sudo apt install xubuntu-desktop -y
 ```
 
 图形环境文件较大，下载解包需要一定时间。
 
 配置 xrdp：
 
-```bash
-sudo apt install xrdp -y
-echo "xfce4-session" >~/.xsession
-sudo service xrdp restart
+```console
+# apt install xrdp -y
+$ echo "xfce4-session" >~/.xsession
+# service xrdp restart
 ```
 
 为了防止和计算机本来带的远程桌面冲突，最好换一下端口。
 
 ![不换端口的结果](./images/wsl-result-of-not-changing-ports.png)
 
-运行命令 `sudo sed 's/port=[0-9]{1,5}/port=qwq/' /etc/xrdp/xrdp.ini`，其中 `qwq` 为其他端口（如 `3390`）。
+运行命令 `sudo sed 's/port=[0-9]{1,5}/port=otherport/' /etc/xrdp/xrdp.ini`，其中 `otherport` 为其他端口（如 `3390`）。
 
-![](./images/wsl-change-port.png)
+    [globals]
+    ...
+    port=3390
 
-运行 `sudo service xrdp restart`，然后去开始菜单，用 `localhost: 配置的端口` 来访问。
+运行 `sudo service xrdp restart`，然后去开始菜单，用 `localhost:otherport` 来访问。
 
 ![](./images/wsl-login-using-non-root.png)
 
@@ -244,8 +311,8 @@ sudo service xrdp restart
 
 进入 Ubuntu 环境，安装 xterm：
 
-```bash
-sudo apt install xterm -y
+```console
+# apt install xterm -y
 ```
 
 退出 Ubuntu。
@@ -260,18 +327,16 @@ sudo apt install xterm -y
 
 之后再回到 Ubuntu，键入如下指令：
 
-```bash
-DISPLAY=:0 xterm
+```console
+$ DISPLAY=:0 xterm
 ```
 
 ![](./images/wsl-open-xterm.png)
 
-貌似只支持命令行。
-
 如果使用了 xfce4，可以在弹出的窗口中使用如下命令激活 xfce4：
 
-```bash
-xfce4-session
+```console
+$ xfce4-session
 ```
 
 ![](./images/wsl-open-xfce4-session.png)
@@ -284,9 +349,17 @@ xfce4-session
 
 硬盘分区作为文件夹在 `/mnt/` 里存放，因此可以直接交互，如直接编译二进制文件，或者往 Ubuntu 里传文件。
 
-![与 Windows 内原硬盘分区交互 1](./images/wsl-interact-with-windows-1.png)
-
-![与 Windows 内原硬盘分区交互 2](./images/wsl-interact-with-windows-2.png)
+```console
+PS C:\Users\chtholly> bash
+/mnt/c/Users/chtholly$ echo "Hello world!" > hello
+/mnt/c/Users/chtholly$ exit
+PS C:\Users\chtholly> cat hello
+Hello world!
+PS C:\Users\chtholly> echo "Welcome!" > welcome
+PS C:\Users\chtholly> bash
+/mnt/c/Users/chtholly$ cat welcome
+Welcome!
+```
 
 ### 配合 Visual Sudio Code 进行编辑
 

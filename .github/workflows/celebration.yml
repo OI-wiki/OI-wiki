@@ -1,0 +1,15 @@
+name: "Celebration"
+
+on:
+  workflow_dispatch:
+  watch:
+    types:
+      - started
+
+jobs:
+  celebrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Celebrate
+        run: python scripts/celebration.py ${{ secrets.GITHUB_TOKEN }}

@@ -232,6 +232,7 @@ nav:
       - 升幂定理: math/number-theory/lift-the-exponent.md
       - 卢卡斯定理: math/number-theory/lucas.md
       - 二次剩余: math/number-theory/quad-residue.md
+      - 拉格朗日定理: math/number-theory/lagrange.md
       - 原根: math/number-theory/primitive-root.md
       - BSGS: math/number-theory/bsgs.md
       - 莫比乌斯反演: math/number-theory/mobius.md
@@ -258,6 +259,7 @@ nav:
       - 多项式三角函数: math/poly/tri-func.md
       - 多项式反三角函数: math/poly/inv-tri-func.md
       - 常系数齐次线性递推: math/linear-recurrence.md
+      - 多项式平移|连续点值平移: math/poly/shift.md
     - 生成函数:
       - 生成函数简介: math/gen-func/intro.md
       - 普通生成函数: math/gen-func/ogf.md
