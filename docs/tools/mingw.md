@@ -1,3 +1,5 @@
+author: THE-NAMELESS-SPECTRE
+
 ## MinGW是什么? 
 
 对于OIer而言, 您可以单纯地把它当成Windows下的gcc(准确来讲, 叫能生成win可执行文件的gcc, 也就是所谓交叉编译器CrossCompiler). 
