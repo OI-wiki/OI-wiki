@@ -5,14 +5,14 @@ author: THE-NAMELESS-SPECTRE
 对于OIer而言, 您可以单纯地把它当成Windows下的gcc(准确来讲, 叫能生成win可执行文件的gcc, 也就是所谓交叉编译器CrossCompiler). 
 
 ???+note " [MinGW](https://sourceforge.net/projects/mingw/)"
-    MinGW: A native Windows port of the GNU Compiler Collection (GCC), with freely distributable import libraries and header files for building native Windows applications; includes extensions to the MSVC runtime to support C99 functionality. All of MinGW's software will execute on the 64bit Windows platforms. 
+    MinGW: A native Windows port of the GNU Compiler Collection (GCC), with freely distributable import libraries and header files for building native Windows applications; includes extensions to the MSVC runtime to support C99 functionality. All of MinGW's software will execute on the 64bit Windows platforms.
 
 目前大部分Windows下的C++编译/调试组件都是MinGW的64位衍生品[Mingw-w64](http://www.mingw-w64.org/), 后文提到的MinGW均指Mingw-w64. 
 
 ??? note " [LLVM MinGW](https://github.com/mstorsjo/llvm-mingw)"
-    Mingw-w64还有llvm版本, 可自行查看
+    Mingw-w64 还有 llvm 版本，可自行查看
 
-## MinGW的优势
+## MinGW 的优势
 
 - 轻量, 相比Visual Studio那几十G的安装包, 成百计的安装选项, 几乎没有人愿意为了编译一个小型单文件控制台程序去下这么一个庞然大物.
 - 是Dev-C++的默认编译器(大部分版本), 当OIer想要切换到其它编辑器的时候几乎都会想到MinGW作为配套组件.
@@ -24,9 +24,9 @@ author: THE-NAMELESS-SPECTRE
 
 这里只给大概思路
 
-[https://sourceforge.net/projects/mingw-w64/files/](https://sourceforge.net/projects/mingw-w64/files/)
+<https://sourceforge.net/projects/mingw-w64/files/>
 
-下载x86_64-posix-seh包, 当然其它的也可以, 具体区别不做赘述(时间, 篇幅等原因, 以后可能会施工), 在线安装器也可以, 但非常慢且不稳定, 需要一点聪明才智
+下载 x86_64-posix-seh 包，当然其它的也可以，具体区别不做赘述（时间，篇幅等原因，以后可能会施工）, 在线安装器也可以，但非常慢且不稳定，需要一点聪明才智
 
 解压到任意目录并将包中的bin(最外层的)加入环境变量即可. 
 
@@ -38,10 +38,10 @@ MinGW Windows build的版本较为落后(但对于OIer而言完全够用).
 
 实际上, 这是由于MinGW的Windows包长期无人维护导致的, 内置的GCC停留在8.1.0版本, 很多C++17特性尚未支持
 
-可以考虑使用Cygwin或Msys2下的MinGW, 或者在WSL下使用包管理器安装, winget不清楚是否支持
+可以考虑使用 Cygwin 或 Msys2 下的 MinGW, 或者在 WSL 下使用包管理器安装，winget 不清楚是否支持
 
 或者手动编译安装
 
-由于手头上只有Mac还是最低配的Intel MBP, 暂时无法实际验证
+由于手头上只有 Mac 还是最低配的 Intel MBP, 暂时无法实际验证
 
 可以参考[搭建你自己的 MinGW](https://guyutongxue.github.io/blogs/build_mingw.html)以及[niXman/mingw-builds: Scripts for building the dual-target(32 & 64 bit) MinGW-W64 compilers for 32 and 64 bit Windows](https://github.com/niXman/mingw-builds)
