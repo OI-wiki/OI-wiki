@@ -12,8 +12,6 @@
 
 最小割就是求得一个割 $(S,T)$ 使得割的容量 $c(S,T)$ 最小。
 
-* * *
-
 ## 证明
 
 ### 最大流最小割定理
@@ -33,8 +31,6 @@ f(s,t)=S\text{出边的总流量}-S\text{入边的总流量}=S\text{出边的总
 $$
 
 结合前面的不等式，我们可以知道此时 $f$ 已经达到最大。
-
-* * *
 
 ## 代码
 
@@ -106,7 +102,7 @@ $$
 
 ### 方案
 
-我们可以通过从源点 $s$ 开始 $\text{DFS}$，每次走残量大于 $0$ 的边，找到所有 $S$ 点集内的点。
+我们可以通过从源点 $s$ 开始 DFS，每次走残量大于 $0$ 的边，找到所有 $S$ 点集内的点。
 
 ```cpp
 void dfs(int u) {
@@ -120,9 +116,7 @@ void dfs(int u) {
 
 ### 割边数量
 
-只需要将每条边的容量变为 $1$，然后重新跑 $\text{Dinic}$ 即可。
-
-* * *
+只需要将每条边的容量变为 $1$，然后重新跑 Dinic 即可。
 
 ## 问题模型
 
@@ -134,13 +128,9 @@ void dfs(int u) {
 
 最小割就是最小花费。
 
-* * *
-
 ## 习题
 
 - [「USACO 4.4」Pollutant Control](https://www.luogu.com.cn/problem/P1344)
 - [「USACO 5.4」Telecowmunication](https://www.luogu.com.cn/problem/P1345)
 - [「Luogu 1361」小 M 的作物](https://www.luogu.com.cn/problem/P1361)
 - [「SHOI 2007」善意的投票](https://www.luogu.com.cn/problem/P2057)
-
-* * *
