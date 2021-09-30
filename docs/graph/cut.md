@@ -50,6 +50,7 @@ low[u] = min(low[u], num[v]);
 
 ??? "例题代码"
 
+
 ```cpp
   --8<-- "docs/graph/code/cut/cut_1.cpp"
 ```
