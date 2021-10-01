@@ -76,7 +76,7 @@ def find(x):
 
 ![](images/disjoint-set-compress.svg)
 
- C++ 的参考实现：
+C++ 的参考实现：
 
 ```cpp
 // C++ Version
