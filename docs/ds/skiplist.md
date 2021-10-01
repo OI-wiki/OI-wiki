@@ -1,4 +1,4 @@
-跳表（Skip List）是由 William Pugh 发明的一种查找数据结构，支持对数据的快速查找，插入和删除。
+跳表 (Skip List) 是由 William Pugh 发明的一种查找数据结构，支持对数据的快速查找，插入和删除。
 
 跳表的期望空间复杂度为 $O(n)$，跳表的查询，插入和删除操作的期望时间复杂度都为 $O(\log n)$。
 
@@ -68,13 +68,13 @@ int randomLevel() {
 
 ### 查询
 
-查询跳表中是否存在键值为 $key$ 的节点。具体实现时，可以设置两个哨兵节点以减少边界条件的讨论。
+查询跳表中是否存在键值为 `key` 的节点。具体实现时，可以设置两个哨兵节点以减少边界条件的讨论。
 
 ```cpp
 V& find(const K& key) {
   SkipListNode<K, V>* p = head;
 
-  // 找到该层最后一个键值小于key的节点，然后走向下一层
+  // 找到该层最后一个键值小于 key 的节点，然后走向下一层
   for (int i = level; i >= 0; --i) {
     while (p->forward[i]->key < key) {
       p = p->forward[i];
@@ -86,14 +86,14 @@ V& find(const K& key) {
   // 成功找到节点
   if (p->key == key) return p->value;
 
-  // 节点不存在，返回INVALID
+  // 节点不存在，返回 INVALID
   return tail->value;
 }
 ```
 
 ### 插入
 
-插入节点 $(key, value)$。插入节点的过程就是先执行一遍查询的过程，中途记录新节点是要插入哪一些节点的后面，最后再执行插入。每一层最后一个键值小于 $key$ 的节点，就是需要进行修改的节点。
+插入节点 `(key, value)`。插入节点的过程就是先执行一遍查询的过程，中途记录新节点是要插入哪一些节点的后面，最后再执行插入。每一层最后一个键值小于 `key` 的节点，就是需要进行修改的节点。
 
 ```cpp
 void insert(const K &key, const V &value) {
@@ -105,7 +105,7 @@ void insert(const K &key, const V &value) {
     while (p->forward[i]->key < key) {
       p = p->forward[i];
     }
-    // 第i层需要修改的节点为p
+    // 第 i 层需要修改的节点为 p
     update[i] = p;
   }
   p = p->forward[0];
@@ -125,7 +125,7 @@ void insert(const K &key, const V &value) {
 
   // 新建节点
   SkipListNode<K, V> *newNode = new SkipListNode<K, V>(key, value, lv);
-  // 在第0-lv层插入新节点
+  // 在第 0~lv 层插入新节点
   for (int i = lv; i >= 0; --i) {
     p = update[i];
     newNode->forward[i] = p->forward[i];
@@ -138,7 +138,7 @@ void insert(const K &key, const V &value) {
 
 ### 删除
 
-删除键为 $key$ 的节点。删除节点的过程就是先执行一遍查询的过程，中途记录要删的节点是在哪一些节点的后面，最后再执行删除。每一层最后一个键值小于 $key$ 的节点，就是需要进行修改的节点。
+删除键值为 `key` 的节点。删除节点的过程就是先执行一遍查询的过程，中途记录要删的节点是在哪一些节点的后面，最后再执行删除。每一层最后一个键值小于 `key` 的节点，就是需要进行修改的节点。
 
 ```cpp
 bool erase(const K &key) {
@@ -150,7 +150,7 @@ bool erase(const K &key) {
     while (p->forward[i]->key < key) {
       p = p->forward[i];
     }
-    // 第i层需要修改的节点为p
+    // 第 i 层需要修改的节点为 p
     update[i] = p;
   }
   p = p->forward[0];
@@ -160,18 +160,18 @@ bool erase(const K &key) {
 
   // 从最底层开始删除
   for (int i = 0; i <= level; ++i) {
-    // 如果这层没有p删除就完成了
+    // 如果这层没有 p 删除就完成了
     if (update[i]->forward[i] != p) {
       break;
     }
-    // 断开p的连接
+    // 断开 p 的连接
     update[i]->forward[i] = p->forward[i];
   }
 
   // 回收空间
   delete p;
 
-  // 删除节点可能会是最大层数减少
+  // 删除节点可能导致最大层数减少
   while (level > 0 && head->forward[level] == tail) --level;
 
   // 跳表长度
@@ -349,7 +349,7 @@ bool erase(const K &key) {
       }
     
       clock_t e = clock();
-      cout << "time elapse: " << (double)(e - s) / CLOCKS_PER_SEC << endl;
+      cout << "Time elapsed: " << (double)(e - s) / CLOCKS_PER_SEC << endl;
       // about 0.2s
     
       return 0;
@@ -368,7 +368,7 @@ bool erase(const K &key) {
 
 ## 参考资料
 
-1.  [Skip Lists: A Probabilistic Alternative to
+1. [Skip Lists: A Probabilistic Alternative to
     Balanced Trees](https://15721.courses.cs.cmu.edu/spring2018/papers/08-oltpindexes1/pugh-skiplists-cacm1990.pdf)
 2. [Skip List](https://en.wikipedia.org/wiki/Skip_list)
 3. [A Skip List Cookbook](http://cglab.ca/~morin/teaching/5408/refs/p90b.pdf)
