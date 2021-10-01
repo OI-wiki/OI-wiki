@@ -1,13 +1,13 @@
 author: THE-NAMELESS-SPECTRE
 
-## MinGW是什么? 
+## MinGW 是什么？
 
-对于OIer而言, 您可以单纯地把它当成Windows下的gcc(准确来讲, 叫能生成win可执行文件的gcc, 也就是所谓交叉编译器CrossCompiler). 
+对于 OIer 而言，您可以单纯地把它当成 Windows 下的 gcc（准确来讲，叫能生成 win 可执行文件的 gcc, 也就是所谓交叉编译器 CrossCompiler).
 
 ???+note " [MinGW](https://sourceforge.net/projects/mingw/)"
     MinGW: A native Windows port of the GNU Compiler Collection (GCC), with freely distributable import libraries and header files for building native Windows applications; includes extensions to the MSVC runtime to support C99 functionality. All of MinGW's software will execute on the 64bit Windows platforms.
 
-目前大部分Windows下的C++编译/调试组件都是MinGW的64位衍生品[Mingw-w64](http://www.mingw-w64.org/), 后文提到的MinGW均指Mingw-w64. 
+目前大部分 Windows 下的 C++ 编译/调试组件都是 MinGW 的 64 位衍生品 [Mingw-w64](http://www.mingw-w64.org/), 后文提到的 MinGW 均指 Mingw-w64.
 
 ??? note " [LLVM MinGW](https://github.com/mstorsjo/llvm-mingw)"
     Mingw-w64 还有 llvm 版本, 可自行查看. 
@@ -32,7 +32,7 @@ author: THE-NAMELESS-SPECTRE
 
 下载 x86_64-posix-seh 包，当然其它的也可以，具体区别不做赘述, 在线安装器也是可选的，但非常慢且不稳定，需要一点聪明才智
 
-解压到任意目录并将包中的bin(最外层的)加入环境变量即可. 
+解压到任意目录并将包中的 bin（最外层的）加入环境变量即可。
 
 ## 注意事项
 
