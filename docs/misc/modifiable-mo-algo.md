@@ -66,23 +66,13 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     ```cpp
     
     ```
-//理论上，整个程序中的 int 都应用 size_t 代替，但包括 CCF 少爷机在内的机器均为 64 位架构，size_t 相当于 uint64_t, 常数可能会大到无法接受，部分 OJ（比如 LOJ）可以选择 64 位架构（32 位指针）, 常数：64 位架构（32 位指针）&lt; 64 位架构 &lt; 32 位架构。
+
+//理论上，整个程序中的 int 都应用 size_t 代替，但包括 CCF 少爷机在内的机器均为 64 位架构，size_t 相当于 uint64_t, 常数可能会大到无法接受，部分 OJ（比如 LOJ）可以选择 64 位架构（32 位指针），常数：64 位架构（32 位指针）&lt;64 位架构&lt;32 位架构。
 //如果标准高于 C++17, 那么您有可能得到 ISO C++17 does not allow 'register' storage class specifier[-Wregister]的警告。
-//对于 #define option, 不建议使用 2, 问就是常数太大 T 飞了（空间也几乎翻倍）, 0 与 1 效率相近。
-\#include&lt;bits/stdc++.h>
-using namespace std;
-\#define option 0
-\#if option == 0
+//对于 #define option, 不建议使用 2, 问就是常数太大 T 飞了（空间也几乎翻倍），0 与 1 效率相近。#include&lt;bits/stdc++.h>
+using namespace std;#define option 0#if option == 0
 typedef pair&lt;pair&lt;int, int>, pair&lt;int, int>> query;
-typedef pair&lt;int, int> update;
-\#define l first.first/*left-range*/
-\#define r first.second/*right-range*/
-\#define t second.first/*time*/
-\#define i second.second/*id*/
-\#define p first/*position*/
-\#define x second/*color*/
-\#endif
-\#if option == 1
+typedef pair&lt;int, int> update;#define l first.first/*left-range*/#define r first.second/*right-range*/#define t second.first/*time*/#define i second.second/*id*/#define p first/*position*/#define x second/*color*/#endif#if option == 1
 struct query
 {
     int l, r, t, i;
@@ -96,9 +86,7 @@ struct update
     inline update(const int& P, const int& X) : p(P), x(X) {}
     inline update() : update(0, 0) {}
     inline update(const pair&lt;int, int>& data) : update(data.first, data.second) {}
-};
-\#endif
-\#if option == 2
+};#endif#if option == 2
 struct query : pair&lt;pair&lt;int, int>, pair&lt;int, int>>
 {
     int& l = first.first;
@@ -124,8 +112,7 @@ struct update : pair&lt;int, int>
         this->pair&lt;int, int>::operator=(data);
         return*this;
     }
-};
-\#endif
+};#endif
 query*qu;
 update*up;
 int*col;
@@ -139,7 +126,7 @@ struct cmp
 {inline bool operator()(const query& fir, const query& sec)
     {
 //原理是生成两个新的 query 比较大小，但前两个关键字为原 query 对应关键字所在块
-        return make_pair(make_pair(fir.l/unit, fir.r/unit), make_pair(fir.t, fir.i)) &lt; make_pair(make_pair(sec.l/unit, sec.r/unit), make_pair(sec.t, sec.i));
+        return make_pair(make_pair(fir.l/unit, fir.r/unit), make_pair(fir.t, fir.i))&lt;make_pair(make_pair(sec.l/unit, sec.r/unit), make_pair(sec.t, sec.i));
     }
 };
 inline void gc()
@@ -191,7 +178,7 @@ inline void del(const int& x, int& ret)
 }
 inline void modify(const int& now, const int& id, int& ret)
 {
-    if(up[now].p >= qu[id].l && up[now].p &lt;= qu[id].r)
+    if(up[now].p >= qu[id].l && up[now].p&lt;= qu[id].r)
     {
         del(col\[up[now].p], ret);
         add(up[now].x, ret);
@@ -208,8 +195,8 @@ inline void generate()
     na = 0;
     for(register int j = 0; j != cntq; j = j + 1)
     {
-//一行等价 while(nl &lt; qu[j].l) del(col[nl++], na);
-        while(nl &lt; qu[j].l)
+//一行等价 while(nl&lt;qu[j].l) del(col[nl++], na);
+        while(nl&lt;qu[j].l)
         {
             del(col[nl], na);
             nl = nl + 1;
@@ -220,8 +207,8 @@ inline void generate()
             nl = nl - 1;
             add(col[nl], na);
         }
-//一行等价 while(nr &lt; qu[j].r) add(col[++nr], na);
-        while(nr &lt; qu[j].r)
+//一行等价 while(nr&lt;qu[j].r) add(col[++nr], na);
+        while(nr&lt;qu[j].r)
         {
             nr = nr + 1;
             add(col[nr], na);
@@ -232,8 +219,8 @@ inline void generate()
             del(col[nr], na);
             nr = nr - 1;
         }
-//一行等价 while(nt &lt; qu[j].t) modify(++nt, j, na);
-        while(nt &lt; qu[j].t)
+//一行等价 while(nt&lt;qu[j].t) modify(++nt, j, na);
+        while(nt&lt;qu[j].t)
         {
             nt = nt + 1;
             modify(nt, j, na);
@@ -273,7 +260,7 @@ int main()
     generate();
     for(register int j = 0; j != cntq; j = j + 1)
     {
-        cout &lt;&lt; anst[j]&lt;&lt;endl;}
+        cout&lt;&lt;anst[j]&lt;&lt;endl;}
     gc();
     return 0;
 }
