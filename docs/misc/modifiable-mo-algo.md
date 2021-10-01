@@ -66,10 +66,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     ```cpp
     
     ```
-
-//神 Xeonacid 说要用结构体，弱弱 GHOST 不想造轮子，于是得到了 3 个版本的 query 与 update. 
-//OI-wiki 会强制把太长的单行分行，GHOST 尽量让//一行等价 这类保持在一行内方便参考。
-//理论上，整个程序中的 int 都应用 size_t 代替，但包括 CCF 少爷机在内的机器均为 64 位架构，size_t 相当于 unsigned long, 常数可能会大到无法接受，部分 OJ（比如 LOJ）可以选择 64 位架构（32 位指针）, 常数：64 位架构（32 位指针）&lt; 64 位架构 &lt; 32 位架构。
+//理论上，整个程序中的 int 都应用 size_t 代替，但包括 CCF 少爷机在内的机器均为 64 位架构，size_t 相当于 uint64_t, 常数可能会大到无法接受，部分 OJ（比如 LOJ）可以选择 64 位架构（32 位指针）, 常数：64 位架构（32 位指针）&lt; 64 位架构 &lt; 32 位架构。
 //如果标准高于 C++17, 那么您有可能得到 ISO C++17 does not allow 'register' storage class specifier[-Wregister]的警告。
 //对于 #define option, 不建议使用 2, 问就是常数太大 T 飞了（空间也几乎翻倍）, 0 与 1 效率相近。
 \#include&lt;bits/stdc++.h>
