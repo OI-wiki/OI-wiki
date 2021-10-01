@@ -95,7 +95,7 @@ void radix_sort() {
 #include <utility>
 
 void radix_sort(int n, int a[]) {
-  int *b = new int[n]; // 临时空间
+  int *b = new int[n];  // 临时空间
   int *cnt = new int[1 << 8];
   int mask = (1 << 8) - 1;
   int *x = a, *y = b;
