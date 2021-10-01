@@ -323,32 +323,43 @@ def getsum(l, r, s, t, p):
 
 - 标记永久化，如果确定懒惰标记不会在中途被加到溢出（即超过了该类型数据所能表示的最大范围），那么就可以将标记永久化。标记永久化可以避免下传懒惰标记，只需在进行询问时把标记的影响加到答案当中，从而降低程序常数。具体如何处理与题目特性相关，需结合题目来写。这也是树套树和可持久化数据结构中会用到的一种技巧。
 
-## 线段树基础题推荐
+## 例题
 
-### [luogu P3372【模板】线段树 1](https://www.luogu.com.cn/problem/P3372)
+???+ [luogu P3372【模板】线段树 1](https://www.luogu.com.cn/problem/P3372)
+    已知一个数列，你需要进行下面两种操作：
+    
+    - 将某区间每一个数加上 $k$。
+    - 求出某区间每一个数的和。
+    
+    ??? "参考代码"
+        ```cpp
+        --8<-- "docs/ds/code/seg/seg_1.cpp"
+        ```
 
-??? "参考代码"
-    ```cpp
-    --8<-- "docs/ds/code/seg/seg_1.cpp"
-    ```
+???+ [luogu P3373【模板】线段树 2](https://www.luogu.com.cn/problem/P3373)
+    已知一个数列，你需要进行下面三种操作：
+    
+    - 将某区间每一个数乘上 $x$。
+    - 将某区间每一个数加上 $x$。
+    - 求出某区间每一个数的和。
+    
+    ??? "参考代码"
+        ```cpp
+        --8<-- "docs/ds/code/seg/seg_2.cpp"
+        ```
 
-### [luogu P3373【模板】线段树 2](https://www.luogu.com.cn/problem/P3373)
+???+ [HihoCoder 1078 线段树的区间修改](https://cn.vjudge.net/problem/HihoCoder-1078)
+    假设货架上从左到右摆放了$N$种商品，并且依次标号为$1$到$N$，其中标号为$i$的商品的价格为$Pi$。小Hi的每次操作分为两种可能，第一种是修改价格——小Hi给出一段区间$[L, R]$和一个新的价格$NewP$，所有标号在这段区间中的商品的价格都变成$NewP$。第二种操作是询问——小Hi给出一段区间$[L, R]$，而小Ho要做的便是计算出所有标号在这段区间中的商品的总价格，然后告诉小Hi。
+    
+    ??? "参考代码"
+        ```cpp
+        --8<-- "docs/ds/code/seg/seg_3.cpp"
+        ```
 
-??? "参考代码"
-    ```cpp
-    --8<-- "docs/ds/code/seg/seg_2.cpp"
-    ```
-
-### [HihoCoder 1078 线段树的区间修改](https://cn.vjudge.net/problem/HihoCoder-1078)
-
-??? "参考代码"
-    ```cpp
-    --8<-- "docs/ds/code/seg/seg_3.cpp"
-    ```
-
-### [2018 Multi-University Training Contest 5 Problem G. Glad You Came](http://acm.hdu.edu.cn/showproblem.php?pid=6356)
-
-维护一下每个区间的永久标记就可以了，最后在线段树上跑一边 dfs 统计结果即可。注意打标记的时候加个剪枝优化，否则会 T。
+???+ [2018 Multi-University Training Contest 5 Problem G. Glad You Came](http://acm.hdu.edu.cn/showproblem.php?pid=6356)
+    
+    ??? "解题思路"
+        维护一下每个区间的永久标记就可以了，最后在线段树上跑一边 dfs 统计结果即可。注意打标记的时候加个剪枝优化，否则会 T。
 
 ## 拓展 - 猫树
 
