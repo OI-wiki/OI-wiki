@@ -262,7 +262,7 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 
 ### 帮助文档
 
-一般来说，命令行下的程序都附有“帮助”，Windows 下一般使用 `command /?` 或者 `command -?` 获取，Unix-like（例如 Linux) 上一般使用 `command --help` 获取（但是 BSD 下的“帮助”往往过分简略而难以使用）。
+一般来说，命令行下的程序都附有“帮助”，Windows 下一般使用 `command /?` 或者 `command -?` 获取，Unix-like（例如 Linux) 上一般使用 `command --help` 或者 `command -h` 获取（但是 BSD 下的“帮助”往往过分简略而难以使用）。
 
 此外，在 Unix-like 系统上，还有可通过 `man command` 获取的“手册”(manual)，相比“帮助”一般更为详细。
 
