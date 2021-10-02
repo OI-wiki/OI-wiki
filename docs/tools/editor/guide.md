@@ -1,6 +1,6 @@
 GUIDE（GAIT Universal IDE）是由北航 GAIT 研究组开发的、专门为 NOI 选手设计的、支持 C/C++/Pascal 三种程序设计语言的小型集成开发环境。
 
-自2021年9月1日起启用的 NOI Linux 2.0 不再包含 GUIDE。
+自 2021 年 9 月 1 日起启用的 NOI Linux 2.0 不再包含 GUIDE。
 
 ## 安装
 
