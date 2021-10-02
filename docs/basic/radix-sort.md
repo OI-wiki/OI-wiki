@@ -88,12 +88,12 @@ void radix_sort() {
 
 ???+ note "例题 [洛谷 P1177 【模板】快速排序](https://www.luogu.com.cn/problem/P1177)"
     给出 $n$ 个正整数，从小到大输出。
-
+    
     ```cpp
     #include <algorithm>
     #include <iostream>
     #include <utility>
-
+    
     void radix_sort(int n, int a[]) {
       int *b = new int[n];  // 临时空间
       int *cnt = new int[1 << 8];
@@ -112,7 +112,7 @@ void radix_sort() {
       delete[] cnt;
       delete[] b;
     }
-
+    
     int main() {
       std::ios::sync_with_stdio(false);
       std::cin.tie(0);
