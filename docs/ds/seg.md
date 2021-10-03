@@ -326,7 +326,6 @@ def getsum(l, r, s, t, p):
 ## 例题
 
 ???+ note "[luogu P3372【模板】线段树 1](https://www.luogu.com.cn/problem/P3372)"
-    
     已知一个数列，你需要进行下面两种操作：
     
     - 将某区间每一个数加上 $k$。
@@ -358,7 +357,6 @@ def getsum(l, r, s, t, p):
         ```
 
 ???+ note "[2018 Multi-University Training Contest 5 Problem G. Glad You Came](https://vjudge.net/problem/HDU-6356)"
-    
     ??? "解题思路"
         维护一下每个区间的永久标记就可以了，最后在线段树上跑一边 DFS 统计结果即可。注意打标记的时候加个剪枝优化，否则会 TLE。
 
