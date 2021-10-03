@@ -54,4 +54,4 @@ C99 后 C 语言支持 VLA （可变长数组），C++ 始终不支持
 
 ## 结构体初始化
 
-C99 后 C 语言支持结构体的[指派符初始化](https://en.cppreference.com/w/c/language/struct_initialization)，C++ 直到 C++20 才支持有顺序要求的指派符初始化（C 的沒有顺序要求也不要求必须都初始化）
+C99 后 C 语言支持结构体的 [指派符初始化](https://en.cppreference.com/w/c/language/struct_initialization)，C++ 直到 C++20 才支持有顺序要求的指派符初始化（C 语言没有顺序要求也不要求必须都初始化）
