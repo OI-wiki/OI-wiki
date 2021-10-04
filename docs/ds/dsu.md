@@ -13,13 +13,17 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ## 初始化
 
+C++ 的参考实现：
+
 ```cpp
 // C++ Version
 void makeSet(int size) {
-  for (int i = 0; i < size; i++) fa[i] = i;  // i就在它本身的集合里
+  for (int i = 0; i < size; i++) fa[i] = i;  // i 就在它本身的集合里
   return;
 }
 ```
+
+Python 的参考实现：
 
 ```python
 # Python Version
@@ -37,7 +41,7 @@ def makeSet(size):
 
 ![](images/disjoint-set-find.svg)
 
-此处给出一种 C++ 的参考实现：
+C++ 的参考实现：
 
 ```cpp
 // C++ Version
@@ -50,6 +54,8 @@ int find(int x) {
     return find(fa[x]);  // 如果不是则 x 的爸爸问 x 的爷爷
 }
 ```
+
+Python 的参考实现：
 
 ```python
 # Python Version
@@ -70,7 +76,7 @@ def find(x):
 
 ![](images/disjoint-set-compress.svg)
 
-此处给出一种 C++ 的参考实现：
+C++ 的参考实现：
 
 ```cpp
 // C++ Version
@@ -80,6 +86,8 @@ int find(int x) {
   return fa[x];
 }
 ```
+
+Python 的参考实现：
 
 ```python
 # Python Version
@@ -96,7 +104,7 @@ def find(x):
 
 ![](images/disjoint-set-merge.svg)
 
-此处给出一种 C++ 的参考实现：
+C++ 的参考实现：
 
 ```cpp
 // C++ Version
@@ -107,6 +115,8 @@ void unionSet(int x, int y) {
   fa[x] = y;  // 把 x 的祖先变成 y 的祖先的儿子
 }
 ```
+
+Python 的参考实现：
 
 ```python
 # Python Version
@@ -129,7 +139,7 @@ def unionSet(x, y):
 
 如果只使用启发式合并，而不使用路径压缩，时间复杂度为 $O(m\log n)$。由于路径压缩单次合并可能造成大量修改，有时路径压缩并不适合使用。例如，在可持久化并查集、线段树分治 + 并查集中，一般使用只启发式合并的并查集。
 
-此处给出一种 C++ 的参考实现，其选择点数作为估价函数：
+C++ 的参考实现，其选择点数作为估价函数：
 
 ```cpp
 // C++ Version
@@ -143,6 +153,8 @@ void unionSet(int x, int y) {
   size[yy] += size[xx];
 }
 ```
+
+Python 的参考实现：
 
 ```python
 # Python Version
