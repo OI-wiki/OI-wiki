@@ -1,6 +1,6 @@
 author: hsfzLZH1, Ir1d
 
-k-D Tree(KDT , k-Dimension Tree) 是一种可以 **高效处理 $k$ 维空间信息** 的数据结构。
+k-D Tree (KDT , k-Dimension Tree) 是一种可以 **高效处理 $k$ 维空间信息** 的数据结构。
 
 在结点数 $n$ 远大于 $2^k$ 时，应用 k-D Tree 的时间效率很好。
 

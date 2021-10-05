@@ -40,7 +40,7 @@ Notepad++ 是 Windows 操作系统下的文本编辑器，支持多国语言、�
 
 ![npp-install-3](./images/npp-install-3.png)
 
-最后一步，两个选项。第一个是创建桌面快捷方式，第二个是“不要用 %APPDATA%”，当你想要装在 U 盘里使用时务必勾选。
+最后一步，两个选项。第一个是创建桌面快捷方式，第二个是“不要用 % APPDATA%”，当你想要装在 U 盘里使用时务必勾选。
 
 最后点击“安装”开始安装。
 
@@ -112,7 +112,7 @@ Notepad++ 可以自动识别当前文件编码是 `UTF-8` 还是 `GB2312` 甚至
 
 它还可以自动识别换行符是 `CR`、`LF` 或 `CRLF`。不用担心下载下来的数据被吞换行。
 
-在底部信息栏，你可以看到 "Windows(CR LF)" 等字样，这就是当前文件的换行符。右击它，可以改变当前文件换行符。此操作配合“显示所有字符”更直观哟！
+在底部信息栏，你可以看到 "Windows (CR LF)" 等字样，这就是当前文件的换行符。右击它，可以改变当前文件换行符。此操作配合“显示所有字符”更直观哟！
 
 ## 高级玩法
 
@@ -179,7 +179,7 @@ Tips: 如果多次不成功，可以尝试新建一个与插件名相同的文�
 
 不只是编辑器！"Notepad++" 可谓神一样的存在，它可以通过傻瓜式地编译代码，甚至代替 IDE！这里以 C++ 为例
 
-1. 安装编译器并将其必要的文件目录添加到 PATH 环境变量中。（C++ 需要添加 %APPPATH%\\bin）当你在 cmd 中输入 g++ 时不再提示'g++'不是内部或外部命令……即可（中间可能需要重启电脑）。推荐 [下载 ConsolePauser](https://sourceforge.net/projects/orwelldevcpp/files/Tools/ConsolePauser.exe/download) 然后随便放并将其目录添加到环境变量（此为 Dev-C++ 的插件，在 Dev-C++ 软件根目录也有）。
+1. 安装编译器并将其必要的文件目录添加到 PATH 环境变量中。（C++ 需要添加 % APPPATH%\\bin）当你在 cmd 中输入 g++ 时不再提示 'g++' 不是内部或外部命令……即可（中间可能需要重启电脑）。推荐 [下载 ConsolePauser](https://sourceforge.net/projects/orwelldevcpp/files/Tools/ConsolePauser.exe/download) 然后随便放并将其目录添加到环境变量（此为 Dev-C++ 的插件，在 Dev-C++ 软件根目录也有）。
 
 2. 在菜单栏中选择“运行”->“运行……”，打开“运行”窗口。
 

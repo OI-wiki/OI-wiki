@@ -90,4 +90,4 @@ Minimax 算法又叫极小化极大算法，是一种找出失败的最大可能
     }
     ```
 
-**本文部分引用自博文 [详解 Minimax 算法与α-β剪枝\_文剑木然](https://blog.csdn.net/wenjianmuran/article/details/90633418)，遵循 CC 4.0 BY-SA 版权协议。**
+**本文部分引用自博文 [详解 Minimax 算法与 α-β 剪枝\_文剑木然](https://blog.csdn.net/wenjianmuran/article/details/90633418)，遵循 CC 4.0 BY-SA 版权协议。**

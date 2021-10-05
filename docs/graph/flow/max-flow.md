@@ -826,7 +826,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u
 
 ![HLPP](./images/1152.png)
 
-其中 pic13 到 pic14 执行了 Relabel(4)，并进行了 GAP 优化。
+其中 pic13 到 pic14 执行了 Relabel (4)，并进行了 GAP 优化。
 
 ## 脚注
 

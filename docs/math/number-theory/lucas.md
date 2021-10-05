@@ -205,7 +205,7 @@ $$
 \frac{n!}{q^{x}} = \frac{\left(\left\lfloor\frac{n}{q}\right\rfloor\right)!}{q^{x'}} \cdot {\left(\prod_{i,(i,q)=1}^{q^k}i\right)}^{\left\lfloor\frac{n}{q^k}\right\rfloor} \cdot \left(\prod_{i,(i,q)=1}^{n\bmod q^k}i\right)
 $$
 
-式中的 x 和 x'都表示把分子中所有的素数 q 都拿出来。改写成这样，每一项就完全不含 q 了。
+式中的 x 和 x' 都表示把分子中所有的素数 q 都拿出来。改写成这样，每一项就完全不含 q 了。
 
 递归的结果，三个部分中，左边部分随着递归结束而自然消失，中间部分可以利用 Wilson 定理的推论 0，右边部分就是推论 2 中的 $\prod_{j\geq 0}(N_j!)_p$。
 
