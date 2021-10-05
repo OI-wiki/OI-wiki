@@ -1,8 +1,12 @@
-### 数论分块
+# 数论分块
 
-数论分块可以在 $O{\sqrt{n}}$ 的时间里计算一些有除法下取整的和式。
+数论分块可以在 $O(\sqrt{n})$ 的时间里计算一些形如
 
-它主要利用了富比尼定理（Fubini's theorem），将 $n/d$ 相同的数打包同时计算。
+$$\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor$$
+
+，即含有除法向下取整的和式（当预处理出 $f(i)$ 的前缀和后或者可以在 $O(1)$ 直接求出 $\sum_{i=l}^rf(i)$）。
+
+它主要利用了富比尼定理（Fubini's theorem），将 $\left\lfloor\dfrac ni\right\rfloor$ 相同的数打包同时计算。
 
 ???+note "富比尼定理"
     又称“算两次”，以意大利数学家圭多·富比尼（Guido Fubini）命名。
@@ -16,7 +20,7 @@
 
 图中共分为了 $5$ 块，这 $5$ 块整点的最大纵坐标都相同。如果统计整点的个数，可以从纵向计数改为横向计数，直接计算 $5$ 个矩形即可。
 
-### 引理 1
+## 引理 1
 
 $$
 \forall a,b,c\in\mathbb{Z},\left\lfloor\frac{a}{bc}\right\rfloor=\left\lfloor\frac{\left\lfloor\frac{a}{b}\right\rfloor}{c}\right\rfloor
@@ -40,7 +44,7 @@ $$
 ??? note "关于证明最后的小方块"
     QED 是拉丁词组“Quod Erat Demonstrandum”（这就是所要证明的）的缩写，代表证明完毕。现在的 QED 符号通常是 $\blacksquare$ 或者 $\square$。（[维基百科](https://en.wikipedia.org/wiki/Q.E.D.)）
 
-### 引理 2
+## 引理 2
 
 $$
 \forall n \in \mathbb{N}_{+},  \left|\left\{ \lfloor \frac{n}{d} \rfloor \mid d \in \mathbb{N}_{+},d\leq n \right\}\right| \leq \lfloor 2\sqrt{n} \rfloor
@@ -56,66 +60,79 @@ $|V|$ 表示集合 $V$ 的元素个数
 
 综上，得证
 
-## 具体过程
+## 数论分块结论
 
-数论分块的过程大概如下：考虑含有 $\left\lfloor\frac{n}{i}\right\rfloor$ 的求和式子（$n$ 为常数）
+对于常数 $n$，使得式子
+$$
+\left\lfloor\dfrac ni\right\rfloor=\left\lfloor\dfrac nj\right\rfloor
+$$
+成立的最大的满足 $i\leq j\leq n$ 的 $j$ 的值为 $\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor$。即值 $\left\lfloor\dfrac ni\right\rfloor$ 所在的块的右端点为 $\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor$。
 
-对于任意一个 $i(i\leq n)$，我们需要找到一个最大的 $j(i\leq j\leq n)$，使得 $\left\lfloor\frac{n}{i}\right\rfloor = \left\lfloor\frac{n}{j}\right\rfloor$.
+??? note "证明过程"
+    令 $k=\left\lfloor\dfrac ni\right\rfloor$，可以知道 $k\leq\dfrac ni$。
+    
+    $$
+    \begin{align}
+    &\therefore \left\lfloor\dfrac nk\right\rfloor\geq\left\lfloor\\dfrac n{\frac ni}\right\rfloor=\lfloor i\rfloor=i\\
+    &\therefore j=\max{\text{满足条件的所有 }i}=i_{\max}=\left\lfloor\dfrac nk\right\rfloor=\left\lfloor\dfrac n{\left\lfloor\dfrac ni\right\rfloor}\right\rfloor \square
+    \end{align}
+    $$
 
-此时 $j=\left\lfloor\frac{n}{\left\lfloor\frac{n}{i}\right\rfloor}\right\rfloor$.
+数论分块的过程大概如下：考虑和式
 
-显然 $j\leq n$，考虑证明 $j\geq i$：
+$$\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor$$
+
+那么由于我们可以知道 $\left\lfloor\dfrac ni\right\rfloor$ 的值成一个块状分布（就是同样的值都聚集在连续的块中），那么就可以用数论分块加速计算，降低时间复杂度。
+
+利用上述结论，我们先求出 $f(i)$ 的**前缀和**（记作 $s(i)=\sum_{j=1}^i$f(j)），然后每次以 $[l,r]=[l,\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor]$ 为一块，分块求出贡献累加到结果中即可。
+
+伪代码如下：
 
 $$
-\begin{aligned}
-&\left\lfloor\frac{n}{i}\right\rfloor \leq \frac{n}{i}\\
-\implies
-&\left\lfloor\frac{n}{ \left\lfloor\frac{n}{i}\right\rfloor }\right\rfloor
-\geq \left\lfloor\frac{n}{ \frac{n}{i} }\right\rfloor
-= \left\lfloor i \right\rfloor=i \\
-\implies
-&i\leq \left\lfloor\frac{n}{ \left\lfloor\frac{n}{i}\right\rfloor }\right\rfloor=j\\
-&&\square
-\end{aligned}
+1 & \text{获取 }f(i)\text{ 函数的前缀和，记为 }s(i).\\
+2 & \textbf{Function }\text{Calculate(n)}: \text{（求解 }\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor\text{）}\\
+3 & \qquad l\gets 1\\
+4 & \qquad r\gets 0\\
+5 & \qquad result\gets 0\\
+6 & \qquad \textbf{While }l\leq n\textbf{ do}:\\
+7 & \qquad \qquad r\gets\left\lfloor\dfrac n{\lfloor\frac nl\rfloor}\right\rfloor\text{（计算右端点）}\\
+8 & \qquad \qquad result\gets (s(r)-s(l-1))\times\left\lfloor\dfrac n{\lfloor\frac nl\rfloor}\right\rfloor\text{（累加这一块的贡献，使用前缀和优化）}\\
+9 & \qquad \qquad l\gets r+1\text{（将左端点移到下一块）}\\
+10 & \qquad \textbf{Return }result\\
+11 & \textbf{End Function}\\
 $$
 
-不妨设 $k=\left\lfloor\frac{n}{i}\right\rfloor$，考虑证明当 $\left\lfloor\frac{n}{j}\right\rfloor=k$ 时，$j$ 的最大值为 $\left\lfloor\frac{n}{k}\right\rfloor$：
+???+note "例题：[UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)"
+    题意：$T$ 组数据，每组一个整数 $n$。对于每组数据，输出 $\sum_{i=1}^n\left\lfloor\dfrac ni\right\rfloor$。
+    
+    思路：如上推导，对于每一块相同的 $\left\lfloor\dfrac ni\right\rfloor$ 一起计算。时间复杂度为 $O(T\sqrt n)$。
 
-$$
-\left\lfloor\frac{n}{j}\right\rfloor=k
-\iff
-k\leq\frac{n}{j}<k+1
-\iff
-\frac{1}{k+1}<\frac{j}{n}\leq\frac{1}{k}
-\iff
-\frac{n}{k+1}<j\leq\frac{n}{k}
-$$
-
-又因为 $j$ 为整数 所以 $j_{max}=\left\lfloor\frac{n}{k}\right\rfloor$
-
-利用上述结论，我们每次以 $[i,j]$ 为一块，分块求和即可
-
-例如 [「luogu P2261」\[CQOI2007\]余数求和](https://www.luogu.com.cn/problem/P2261),$ans=\sum_{i=1}^n(k\bmod i)=\sum_{i=1}^nk-i\left\lfloor\frac{k}{i}\right\rfloor$.
-
-??? note "代码实现"
+??? note "参考实现"
     ```cpp
-    long long ans = n * k;
-    for (long long l = 1, r; l <= n;
-         l = r + 1) {  //此处l意同i,r意同j,下个计算区间的l应为上个区间的r+1
-      if (k / l != 0)
-        r = min(k / (k / l), n);
-      else
-        r = n;  // l大于k时
-      ans -= (k / l) * (r - l + 1) * (l + r) /
-             2;  //这个区间内k/i均相等,对i求和是等差数列求和
+    long long H(int n)
+    {
+        long long res = 0; // 储存结果
+        int l = 1, r; // 块左端点与右端点
+        while (l <= n)
+        {
+            r = n / (n / l); // 计算当前块的右端点
+            res += (r - l + 1) * 1LL * (n / l); // 累加这一块的贡献到结果中。乘上 1LL 防止溢出
+            l = r + 1; // 左端点移到下一块
+        }
+        return l;
     }
     ```
 
-???+note "二维数论分块"
-    求
+???+note "N 维数论分块"
+    求含有 $\left\lfloor\dfrac {a_1}i\right\rfloor$、$\left\lfloor\dfrac {a_2}i\right\rfloor\cdots\left\lfloor\dfrac {a_n}i\right\rfloor$ 的和式时，数论分块右端点的表达式从一维的 $\left\lfloor\dfrac ni\right\rfloor$ 变为 $\min\limits_{j=1}^n\{\left\lfloor\dfrac {a_j}i\right\rfloor\}$，即对于每一个块的右端点取最小（最接近左端点）的那个作为整体的右端点。可以借助下图理解：
     
-    $$
-    \sum_{i=1}^{\min (n,m)}\left\lfloor\frac{n}{i}    \right\rfloor\left\lfloor\frac{m}{i}    \right\rfloor
-    $$
+    ![多维数论分块图解](./images/n-dimension-sqrt-decomposition)
     
-    此时可将代码中 `r = n/(n/i)` 替换成 `r = min(n/(n/i), m/(m/i))`
+    一般我们用的较多的是二维形式，此时可将代码中 `r = n / (n / i)` 替换成 `r = min(n / (n / i), m / (m / i))`。
+    
+## 练习题
+由于数论分块一般配合[莫比乌斯反演](../mobius.md)用以进一步降低复杂度，故习题中会出现几道较为简单的莫反题（用 $\ast$ 号标注）。
+1. [CQOI2007 余数求和](https://www.luogu.com.cn/problem/P2261)（需要一点转化和特判）
+2. [UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)（几乎可以当做模板题）
+3. $\ast$ [POI2007 ZAP-Queries](https://www.luogu.com.cn/problem/P3455)（需要用到 $[n=1]=\sum_{d|n}\mu(n)$ 这一条莫反结论）
+
