@@ -120,7 +120,7 @@ $$
                (n / l);  // 累加这一块的贡献到结果中。乘上 1LL 防止溢出
         l = r + 1;  // 左端点移到下一块
       }
-      return l;
+      return res;
     }
     ```
 
@@ -131,9 +131,9 @@ $$
     
     一般我们用的较多的是二维形式，此时可将代码中 `r = n / (n / i)` 替换成 `r = min(n / (n / i), m / (m / i))`。
 
-## 练习题
+## 习题
 
 由于数论分块一般配合 [莫比乌斯反演](../mobius.md) 用以进一步降低复杂度，故习题中会出现几道较为简单的莫反题（用 $\ast$ 号标注）。
-1\.[CQOI2007 余数求和](https://www.luogu.com.cn/problem/P2261)（需要一点转化和特判）
-2\.[UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)（几乎可以当做模板题）
-3\.$\ast$  [POI2007 ZAP-Queries](https://www.luogu.com.cn/problem/P3455)（需要用到 $[n=1]=\sum_{d|n}\mu(n)$ 这一条莫反结论）
+1. [CQOI2007 余数求和](https://www.luogu.com.cn/problem/P2261)（需要一点转化和特判）
+2. [UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)（几乎可以当做模板题）
+3. $\ast$  [POI2007 ZAP-Queries](https://www.luogu.com.cn/problem/P3455)（需要用到 $[n=1]=\sum_{d|n}\mu(n)$ 这一条莫反结论）
