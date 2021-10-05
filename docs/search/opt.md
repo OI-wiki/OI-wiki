@@ -109,7 +109,7 @@ void dfs(状态) {
 
 ## 例题
 
-### 例题1
+### 例题 1
 
 ???+note "工作分配问题"
     **题目描述**
@@ -146,11 +146,12 @@ void dfs(状态) {
     ```text
     5
     ```
+
 ??? note "解法"
     由于每个人都必须分配到工作，在这里可以建一个二维数组 `time[i][j]`，表示 $i$ 个人完成 $j$ 号工作所花费的时间。给定一个循环，从第 1 个人开始循环分配工作，直到所有人都分配到。为第 $i$ 个人分配工作时，再循环检查每个工作是否已被分配，没有则分配给 $i$ 个人，否则检查下一个工作。可以用一个一维数组 `is_working[j]` 来表示第 $j$ 号工作是否已被分配，未分配则 `is_working[j]=0`，否则 `is_working[j]=1`。利用回溯思想，在工人循环结束后回到上一工人，取消此次分配的工作，而去分配下一工作直到可以分配为止。这样，一直回溯到第 1 个工人后，就能得到所有的可行解。
-
+    
     检查工作分配，其实就是判断取得可行解时的二维数组的第一维下标各不相同并且第二维下标各不相同。而我们是要得到完成这 $n$ 份工作的最小时间总和，即可行解中时间总和最小的一个，故需要再定义一个全局变量 `cost_time_total_min` 表示目前找到的解中最小的时间总和，初始 `cost_time_total_min` 为 `time[i][i]` 之和，即对角线工作时间相加之和。在所有人分配完工作时，比较 `count` 与 `cost_time_total_min` 的大小，如果 `count` 小于 `cost_time_total_min`，说明找到了一个最优解，此时就把 `count` 赋给 `cost_time_total_min`。
-
+    
     但考虑到算法的效率，这里还有一个剪枝优化的工作可以做。就是在每次计算局部费用变量 `count` 的值时，如果判断 `count` 已经大于 `cost_time_total_min`，就没必要再往下分配了，因为这时得到的解必然不是最优解。
 
 ??? note "参考代码"
@@ -158,7 +159,8 @@ void dfs(状态) {
     --8<-- "docs/search/code/opt/opt_1.cpp"
     ```
 
-### 例题2
+### 例题 2
+
 ???+note "[luogu P1120 小木棍 ［数据加强版］](https://www.luogu.com.cn/problem/P1120)"
     **题目描述**
     
@@ -185,80 +187,99 @@ void dfs(状态) {
     
     咕咕咕。
     
-    [参考题解](https://www.luogu.com.cn/blog/Kaori/solution-p1120
-    
+    [参考题解]\(<https://www.luogu.com.cn/blog/Kaori/solution-p1120>
+
 ??? note "参考代码"
     ```C++
-    #include<bits/stdc++.h>
+    #include <bits/stdc++.h>
     using namespace std;
-    inline int read(){
-        int x=0; bool f=1; char c=getchar();
-        for(;!isdigit(c);c=getchar()) if(c=='-') f=0;
-        for(; isdigit(c);c=getchar()) x=(x<<3)+(x<<1)+c-'0';
-        if(f) return x;
-        return 0-x;
+    inline int read() {
+      int x = 0;
+      bool f = 1;
+      char c = getchar();
+      for (; !isdigit(c); c = getchar())
+        if (c == '-') f = 0;
+      for (; isdigit(c); c = getchar()) x = (x << 3) + (x << 1) + c - '0';
+      if (f) return x;
+      return 0 - x;
     }
-    int n,m,a[66],next[66],cnt,sum,len;
-    bool used[66],ok; //used数组即优化5的vis数组，记录每根木棍是否用过；ok记录是否已找到答案。 
-    bool cmp(int a,int b){return a>b;}
-    void dfs(int k,int last,int rest){ //k为正在拼的木棍的编号，last为正在拼的木棍的前一节编号，rest为该木棍还未拼的长度
-        int i;
-        if(!rest){ //未拼的长度为0，说明这根原始长棍拼完了，准备拼下一个 
-            if(k==m){ok=1; return;} //优化6，全部拼完并符合要求，找到答案，直接返回 
-
-            for(i=1;i<=cnt;i++) //找一个还没用的最长的木棍打头即可。反正要想全都拼接成功，每根木棍都得用上 
-                if(!used[i]) break;
-            used[i]=1; 
-            dfs(k+1,i,len-a[i]);
-            used[i]=0;
-            if(ok) return; //优化6，找到答案就退出 
+    int n, m, a[66], next[66], cnt, sum, len;
+    bool used[66],
+        ok;  // used数组即优化5的vis数组，记录每根木棍是否用过；ok记录是否已找到答案。
+    bool cmp(int a, int b) { return a > b; }
+    void dfs(
+        int k, int last,
+        int rest) {  // k为正在拼的木棍的编号，last为正在拼的木棍的前一节编号，rest为该木棍还未拼的长度
+      int i;
+      if (!rest) {  //未拼的长度为0，说明这根原始长棍拼完了，准备拼下一个
+        if (k == m) {
+          ok = 1;
+          return;
+        }  //优化6，全部拼完并符合要求，找到答案，直接返回
+    
+        for (
+            i = 1; i <= cnt;
+            i++)  //找一个还没用的最长的木棍打头即可。反正要想全都拼接成功，每根木棍都得用上
+          if (!used[i]) break;
+        used[i] = 1;
+        dfs(k + 1, i, len - a[i]);
+        used[i] = 0;
+        if (ok) return;  //优化6，找到答案就退出
+      }
+      //优化4，二分找第一个 木棍长度不大于未拼长度rest 的位置
+      int l = last + 1, r = cnt, mid;
+      while (l < r) {
+        mid = (l + r) >> 1;
+        if (a[mid] <= rest)
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      for (i = l; i <= cnt; i++) {
+        if (!used[i]) {  //优化5，判断木棍是否用过
+          used[i] = 1;
+          dfs(k, i, rest - a[i]);
+          used[i] = 0;
+          if (ok) return;  //优化6，找到答案就退出
+    
+          if (rest == a[i] || rest == len) return;  //优化7
+          i = next[i];                              //优化3
+          if (i == cnt) return;
         }
-        //优化4，二分找第一个 木棍长度不大于未拼长度rest 的位置 
-        int l=last+1, r=cnt, mid;
-        while(l<r){
-            mid=(l+r)>>1;
-            if(a[mid]<=rest) r=mid;
-            else l=mid+1;
-        }
-        for(i=l;i<=cnt;i++){
-            if(!used[i]){ //优化5，判断木棍是否用过 
-                used[i]=1;
-                dfs(k,i,rest-a[i]);
-                used[i]=0;
-                if(ok) return; //优化6，找到答案就退出 
-
-                if(rest==a[i] || rest==len) return; //优化7 
-                i=next[i]; //优化3 
-                if(i==cnt) return;
-            }
-        }
-        //到了这里，说明这时候拼不成当前这根原始木棍了，传回失败信息并修改之前拼的木棍 
+      }
+      //到了这里，说明这时候拼不成当前这根原始木棍了，传回失败信息并修改之前拼的木棍
     }
-    int main(){
-        n=read();
-        int d;
-        for(int i=1;i<=n;i++){
-            d=read();
-            if(d>50) continue;
-            a[++cnt]=d;
-            sum+=d;
-        }
-        sort(a+1,a+cnt+1,cmp); //优化1，木棍按长度从大到小排序 
-        //优化3，预处理next数组 
-        next[cnt]=cnt;
-        for(int i=cnt-1;i>0;i--){
-            if(a[i]==a[i+1]) next[i]=next[i+1];
-            else next[i]=i;
-        }
-        for(len=a[1];len<=sum/2;len++){ //枚举原始长度 
-            if(sum%len!=0) continue; //如果不能拼出整数根 就跳过 
-            m=sum/len; //优化6中的那个计算 
-            ok=0;
-            used[1]=1;
-            dfs(1,1,len-a[1]);
-            used[1]=0;
-            if(ok){printf("%d\n",len); return 0;} //优化6，输出答案，退 
-        }
-        printf("%d\n",sum); return 0;
+    int main() {
+      n = read();
+      int d;
+      for (int i = 1; i <= n; i++) {
+        d = read();
+        if (d > 50) continue;
+        a[++cnt] = d;
+        sum += d;
+      }
+      sort(a + 1, a + cnt + 1, cmp);  //优化1，木棍按长度从大到小排序
+      //优化3，预处理next数组
+      next[cnt] = cnt;
+      for (int i = cnt - 1; i > 0; i--) {
+        if (a[i] == a[i + 1])
+          next[i] = next[i + 1];
+        else
+          next[i] = i;
+      }
+      for (len = a[1]; len <= sum / 2; len++) {  //枚举原始长度
+        if (sum % len != 0) continue;  //如果不能拼出整数根 就跳过
+        m = sum / len;                 //优化6中的那个计算
+        ok = 0;
+        used[1] = 1;
+        dfs(1, 1, len - a[1]);
+        used[1] = 0;
+        if (ok) {
+          printf("%d\n", len);
+          return 0;
+        }  //优化6，输出答案，退
+      }
+      printf("%d\n", sum);
+      return 0;
     }
     ```
