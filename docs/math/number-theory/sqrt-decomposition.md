@@ -2,7 +2,7 @@
 
 数论分块可以在 $O(\sqrt{n})$ 的时间里计算一些形如
 
-$$\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor$$
+$\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor$
 
 ，即含有除法向下取整的和式（当预处理出 $f(i)$ 的前缀和后或者可以在 $O(1)$ 直接求出 $\sum_{i=l}^rf(i)$）。
 
@@ -63,9 +63,11 @@ $|V|$ 表示集合 $V$ 的元素个数
 ## 数论分块结论
 
 对于常数 $n$，使得式子
+
 $$
 \left\lfloor\dfrac ni\right\rfloor=\left\lfloor\dfrac nj\right\rfloor
 $$
+
 成立的最大的满足 $i\leq j\leq n$ 的 $j$ 的值为 $\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor$。即值 $\left\lfloor\dfrac ni\right\rfloor$ 所在的块的右端点为 $\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor$。
 
 ??? note "证明过程"
@@ -80,11 +82,11 @@ $$
 
 数论分块的过程大概如下：考虑和式
 
-$$\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor$$
+$\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor$
 
 那么由于我们可以知道 $\left\lfloor\dfrac ni\right\rfloor$ 的值成一个块状分布（就是同样的值都聚集在连续的块中），那么就可以用数论分块加速计算，降低时间复杂度。
 
-利用上述结论，我们先求出 $f(i)$ 的**前缀和**（记作 $s(i)=\sum_{j=1}^i$f(j)），然后每次以 $[l,r]=[l,\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor]$ 为一块，分块求出贡献累加到结果中即可。
+利用上述结论，我们先求出 $f(i)$ 的 **前缀和**（记作 $s(i)=\sum_{j=1}^i$ f(j)），然后每次以 $[l,r]=[l,\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor]$ 为一块，分块求出贡献累加到结果中即可。
 
 伪代码如下：
 
@@ -109,17 +111,16 @@ $$
 
 ??? note "参考实现"
     ```cpp
-    long long H(int n)
-    {
-        long long res = 0; // 储存结果
-        int l = 1, r; // 块左端点与右端点
-        while (l <= n)
-        {
-            r = n / (n / l); // 计算当前块的右端点
-            res += (r - l + 1) * 1LL * (n / l); // 累加这一块的贡献到结果中。乘上 1LL 防止溢出
-            l = r + 1; // 左端点移到下一块
-        }
-        return l;
+    long long H(int n) {
+      long long res = 0;  // 储存结果
+      int l = 1, r;       // 块左端点与右端点
+      while (l <= n) {
+        r = n / (n / l);  // 计算当前块的右端点
+        res += (r - l + 1) * 1LL *
+               (n / l);  // 累加这一块的贡献到结果中。乘上 1LL 防止溢出
+        l = r + 1;  // 左端点移到下一块
+      }
+      return l;
     }
     ```
 
@@ -129,10 +130,10 @@ $$
     ![多维数论分块图解](./images/n-dimension-sqrt-decomposition)
     
     一般我们用的较多的是二维形式，此时可将代码中 `r = n / (n / i)` 替换成 `r = min(n / (n / i), m / (m / i))`。
-    
-## 练习题
-由于数论分块一般配合[莫比乌斯反演](../mobius.md)用以进一步降低复杂度，故习题中会出现几道较为简单的莫反题（用 $\ast$ 号标注）。
-1. [CQOI2007 余数求和](https://www.luogu.com.cn/problem/P2261)（需要一点转化和特判）
-2. [UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)（几乎可以当做模板题）
-3. $\ast$ [POI2007 ZAP-Queries](https://www.luogu.com.cn/problem/P3455)（需要用到 $[n=1]=\sum_{d|n}\mu(n)$ 这一条莫反结论）
 
+## 练习题
+
+由于数论分块一般配合 [莫比乌斯反演](../mobius.md) 用以进一步降低复杂度，故习题中会出现几道较为简单的莫反题（用 $\ast$ 号标注）。
+1\.[CQOI2007 余数求和](https://www.luogu.com.cn/problem/P2261)（需要一点转化和特判）
+2\.[UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)（几乎可以当做模板题）
+3\.$\ast$  [POI2007 ZAP-Queries](https://www.luogu.com.cn/problem/P3455)（需要用到 $[n=1]=\sum_{d|n}\mu(n)$ 这一条莫反结论）
