@@ -3,7 +3,7 @@
 set -e
 
 if [ ! -d "mkdocs-material" ] ; then
-  git clone --depth=1 https://github.com/OI-wiki/mkdocs-material.git
+  git clone git@github.com:OI-wiki/mkdocs-material.git
 fi
 
 if [ "$(uname)" == "Darwin" ] ; then
