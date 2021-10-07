@@ -1,7 +1,5 @@
 author: Ir1d, HeRaNO, NachtgeistW, i-Yirannn, bear-good, ranwen, CoelacanthusHex, billchenchina, Tiger3018, Xeonacid
 
-**评测软件** 是用于本地测试分数的软件。使用者在将代码提交到 OJ 前，可以使用评测软件对自己的程序估分。
-
 ## Arbiter
 
 **Arbiter** 为北京航空航天大学为 NOI Linux 开发的评测工具，现已用于各大 NOI 系列程序设计竞赛的评测。据吕凯风在 2016 年冬令营上的讲稿《下一代测评系统》，Arbiter 是由北京航空航天大学的团队（貌似叫 GAIT）在尹宝林老师的带领下开发完成的。
@@ -138,67 +136,3 @@ players/
 ### 评价
 
 Arbiter 在开发完成后就一直没有维护与更新，导致测评体验极差，UI 脱离现代审美，和 NOI Linux 自带的 GUIDE 一样沦为选手与教练疯狂吐槽的对象。北航相关项目负责人称该项目已经停止更新。
-
-## Cena
-
-**Cena** 是由刘其帅和李子星使用 Pascal 语言编写的开源评测工具，是流传最广泛的本地评测工具。Cena 最初开源于 Google Code 平台，由于不明原因 Google 删除了 Cena 项目。目前可以在 [Web Archive](https://web.archive.org/web/20131023112258/http://code.google.com/p/cena/) 上找到 Cena 的官网。
-
-Cena 对权限的限制不是很明确，测试的时候可以读测点 AC。
-
-Cena 的源代码托管于 [oi-archive/cena](https://github.com/oi-archive/cena)。
-
-## CCR Plus
-
-**CCR Plus** 是一款适用于 NOI 系列比赛的开源的跨平台测评环境，使用 Qt 编写，目前支持 Windows 和 Linux。
-
-源代码托管于 [sxyzccr/CCR-Plus](https://github.com/sxyzccr/CCR-Plus)。
-
-## Lemon
-
-???+ warning
-    macOS 下 Lemon 可能会出现内存测试不准确的情况，因为 macOS 缺少部分 Linux 的监测工具，且 Lemon-Linux 也没有针对 macOS 进行优化。
-
-**Lemon** 是 zhipeng-jia 编写的开源评测工具，源代码托管于 [zhipeng-jia/project-lemon](https://github.com/zhipeng-jia/project-lemon)。
-
-### 可直接运行的版本
-
-- Ir1d 提供了一份 Linux 下编译好的版本，源代码托管于 [FreestyleOJ/Project_lemon](https://github.com/FreestyleOJ/Project_lemon/tree/Built)。
-- （已停止维护）Menci 提供了一份更新的版本，源代码托管于 [Menci/Lemon](https://github.com/Menci/Lemon/)。
-- （已停止维护）Dust1404 维护了一份支持子文件夹和单题测试等功能的版本，源代码托管于 [Dust1404/Project_LemonPlus](https://github.com/Dust1404/Project_LemonPlus)。
-- iotang 和 Coelacanthus 维护了一份支持子文件夹和单题测试等功能的版本，源代码托管于 [Project-LemonLime/Project_LemonLime](https://github.com/Project-LemonLime/Project_LemonLime)。
-
-### 自行编译
-
-Ubuntu：
-
-```bash
-sudo apt update
-sudo apt install qt5-default build-essential git -y
-git clone --depth=1 https://github.com/Menci/Lemon.git
-cd lemon
-# 可以修改 -j 后面的数字来调整 make job 的线程数
-./make -j2
-sudo install -Dm755 -t /usr/bin/ Lemon
-```
-
-如要编译 LemonLime，请参阅 LemonLime 的 [编译手册](https://github.com/Project-LemonLime/Project_LemonLime/blob/master/BUILD.md)。
-
-### 数据格式
-
-首先打开 lemon 选择“新建试题”，然后打开新建试题的文件夹。
-
-题目和数据应该如以下格式所示：
-
-```text
-├── data
-│   ├── gendata.py
-│   ├── product
-│   │   ├── product100.in
-│   │   ├── product100.out
-│   │   ├── product10.in
-│   │   ├── product10.out
-│   │   ├── product11.in
-...
-```
-
-当所有试题添加完成后，回到 lemon 选择“自动添加试题”。此时题目和数据点将显示在 lemon 当中。
