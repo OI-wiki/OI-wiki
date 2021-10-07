@@ -1,6 +1,7 @@
 import requests
 import json
 import sys
+from datetime import datetime
 
 headers = {
     "Authorization": f'token {sys.argv[1]}'
@@ -20,6 +21,9 @@ query {{
             nodes {{
                 number
                 title
+                createdAt
+                closed
+                id
             }}
         }}
         defaultBranchRef {{
@@ -37,7 +41,7 @@ query {{
 
 res = requests.post('https://api.github.com/graphql', json.dumps({'query': query}), headers = headers).json()['data']['repository']
 
-id = res['id']
+repositoryId = res['id']
 stars = res['stargazerCount']
 issues = res['issues']['nodes']
 numbers = []
@@ -46,6 +50,21 @@ maxCelebration = 0
 for issue in issues:
     numbers.append('#' + str(issue['number']))
     maxCelebration = max(maxCelebration, int(issue['title'].split(' ')[0]))
+    timeDelta = (datetime.now() - datetime.fromisoformat(issue['createdAt'][0:-1]))
+    if timeDelta.days >= 7 and not issue['closed']:
+        mutation = f'''
+mutation {{
+    closeIssue(input: {{ issueId: "{issue['id']}"}}) {{
+        issue {{
+            number
+            closed
+        }}
+    }}
+}}
+'''
+        print(mutation)
+        mut = requests.post('https://api.github.com/graphql', json.dumps({ 'query': mutation }), headers = headers)
+        print(mut.text)
 
 celebration = maxCelebration * 2
 
@@ -53,7 +72,7 @@ if stars >= celebration - 1: # "will soon" reach
     mutation = f'''
 mutation {{
   createIssue(input: {{
-    repositoryId: "{id}",
+    repositoryId: "{repositoryId}",
     title: "{celebration} Stars Celebration",
     labelIds: ["{res['label']['id']}"],
     body: {json.dumps(f"""> To celebrate that our project's stars will soon reach {celebration}.
