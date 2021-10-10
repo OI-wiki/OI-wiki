@@ -1,4 +1,4 @@
-## 数论分块
+# 数论分块
 
 数论分块可以在 $O(\sqrt{n})$ 的时间里计算一些形如
 
@@ -20,7 +20,7 @@ $\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor$
 
 图中共分为了 $5$ 块，这 $5$ 块整点的最大纵坐标都相同。如果统计整点的个数，可以从纵向计数改为横向计数，直接计算 $5$ 个矩形即可。
 
-### 引理 1
+## 引理 1
 
 $$
 \forall a,b,c\in\mathbb{Z},\left\lfloor\frac{a}{bc}\right\rfloor=\left\lfloor\frac{\left\lfloor\frac{a}{b}\right\rfloor}{c}\right\rfloor
@@ -44,7 +44,7 @@ $$
 ??? note "关于证明最后的小方块"
     QED 是拉丁词组“Quod Erat Demonstrandum”（这就是所要证明的）的缩写，代表证明完毕。现在的 QED 符号通常是 $\blacksquare$ 或者 $\square$。（[维基百科](https://en.wikipedia.org/wiki/Q.E.D.)）
 
-### 引理 2
+## 引理 2
 
 $$
 \forall n \in \mathbb{N}_{+},  \left|\left\{ \lfloor \frac{n}{d} \rfloor \mid d \in \mathbb{N}_{+},d\leq n \right\}\right| \leq \lfloor 2\sqrt{n} \rfloor
@@ -60,7 +60,7 @@ $|V|$ 表示集合 $V$ 的元素个数
 
 综上，得证
 
-### 数论分块结论
+## 数论分块结论
 
 对于常数 $n$，使得式子
 
