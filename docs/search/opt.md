@@ -36,7 +36,7 @@ void dfs(状态) {
 **模板：**
 
 ```cpp
-int vst[MAXN];  // 记录状态是否被搜索过
+bool vst[状态数];  // 记录状态是否被搜索过
 int ans = 最坏情况;
 void dfs(状态) {
   if (vst[状态]) return;
