@@ -74,10 +74,10 @@ $$
     令 $k=\left\lfloor\dfrac ni\right\rfloor$，可以知道 $k\leq\dfrac ni$。
     
     $$
-    \begin{align}
-    &\therefore \left\lfloor\dfrac nk\right\rfloor\geq\left\lfloor\\dfrac n{\frac ni}\right\rfloor=\lfloor i\rfloor=i\\
+    \begin{aligned}
+    &\therefore \left\lfloor\dfrac nk\right\rfloor\geq\left\lfloor\dfrac n{\frac ni}\right\rfloor=\lfloor i\rfloor=i\\
     &\therefore j=\max{\text{满足条件的所有 }i}=i_{\max}=\left\lfloor\dfrac nk\right\rfloor=\left\lfloor\dfrac n{\left\lfloor\dfrac ni\right\rfloor}\right\rfloor \square
-    \end{align}
+    \end{aligned}
     $$
 
 数论分块的过程大概如下：考虑和式
@@ -91,6 +91,7 @@ $\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor$
 伪代码如下：
 
 $$
+\begin{array}{ll}
 1 & \text{获取 }f(i)\text{ 函数的前缀和，记为 }s(i).\\
 2 & \textbf{Function }\text{Calculate(n)}: \text{（求解 }\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor\text{）}\\
 3 & \qquad l\gets 1\\
@@ -102,6 +103,7 @@ $$
 9 & \qquad \qquad l\gets r+1\text{（将左端点移到下一块）}\\
 10 & \qquad \textbf{Return }result\\
 11 & \textbf{End Function}\\
+\end{array}
 $$
 
 ???+note "例题：[UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)"
