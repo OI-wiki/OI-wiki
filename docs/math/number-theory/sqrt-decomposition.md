@@ -1,5 +1,3 @@
-# 数论分块
-
 数论分块可以在 $O(\sqrt{n})$ 的时间里计算一些形如
 
 $\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor$
