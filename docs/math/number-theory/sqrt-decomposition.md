@@ -91,18 +91,18 @@ $\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor$
 $$
 \begin{array}{ll}
 1 & \text{获取 }f(i)\text{ 函数的前缀和，记为 }s(i).\\
-2 & \textbf{Function }\text{Calculate(n)}: \text{（求解 }\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor\text{）}\\
-3 & \qquad l\gets 1\\
-4 & \qquad r\gets 0\\
-5 & \qquad result\gets 0\\
-6 & \qquad \textbf{While }l\leq n\textbf{ do}:\\
-7 & \qquad \qquad r\gets\left\lfloor\dfrac n{\lfloor\frac nl\rfloor}\right\rfloor\text{（计算右端点）}\\
-8 & \qquad \qquad result\gets (s(r)-s(l-1))\times\left\lfloor\dfrac n{\lfloor\frac nl\rfloor}\right\rfloor\text{（累加这一块的贡献，使用前缀和优化）}\\
-9 & \qquad \qquad l\gets r+1\text{（将左端点移到下一块）}\\
-10 & \qquad \textbf{Return }result\\
-11 & \textbf{End Function}\\
+2 & l\gets 1\\
+3 & r\gets 0\\
+4 & result\gets 0\\
+5 & \textbf{while }l\leq n\textbf{ do}:\\
+6 & \qquad r\gets\left\lfloor\dfrac n{\lfloor\frac nl\rfloor}\right\rfloor\\
+7 & \qquad result\gets [s(r)-s(l-1)]\times\left\lfloor\dfrac n{\lfloor\frac nl\rfloor}\right\rfloor\\
+8 & \qquad l\gets r+1\\
+9 & \textbf{end while}\\
 \end{array}
 $$
+
+最终得到的 $result$ 即为所求的和式。
 
 ???+note "例题：[UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)"
     题意：$T$ 组数据，每组一个整数 $n$。对于每组数据，输出 $\sum_{i=1}^n\left\lfloor\dfrac ni\right\rfloor$。
