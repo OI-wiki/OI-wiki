@@ -1,8 +1,4 @@
-数论分块可以在 $O(\sqrt{n})$ 的时间里计算一些形如
-
-$\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor$
-
-，即含有除法向下取整的和式（当预处理出 $f(i)$ 的前缀和后或者可以在 $O(1)$ 直接求出 $\sum_{i=l}^rf(i)$）。
+数论分块可以快速计算一些含有除法向下取整的和式（即形如 $\sum_{i=1}^nf(i)g(\left\lfloor\dfrac ni\right\rfloor)$ 的和式）。当可以在 $O(1)$ 内计算 $f(r)-f(l)$ 或已经预处理出 $f$ 的前缀和时，数论分块就可以在 $O(\sqrt n)$ 的时间内计算上述和式的值。
 
 它主要利用了富比尼定理（Fubini's theorem），将 $\left\lfloor\dfrac ni\right\rfloor$ 相同的数打包同时计算。
 
@@ -127,7 +123,7 @@ $$
 ???+note "N 维数论分块"
     求含有 $\left\lfloor\dfrac {a_1}i\right\rfloor$、$\left\lfloor\dfrac {a_2}i\right\rfloor\cdots\left\lfloor\dfrac {a_n}i\right\rfloor$ 的和式时，数论分块右端点的表达式从一维的 $\left\lfloor\dfrac ni\right\rfloor$ 变为 $\min\limits_{j=1}^n\{\left\lfloor\dfrac {a_j}i\right\rfloor\}$，即对于每一个块的右端点取最小（最接近左端点）的那个作为整体的右端点。可以借助下图理解：
     
-    ![多维数论分块图解](./images/n-dimension-sqrt-decomposition)
+    ![多维数论分块图解](./images/n-dimension-sqrt-decomposition.png)
     
     一般我们用的较多的是二维形式，此时可将代码中 `r = n / (n / i)` 替换成 `r = min(n / (n / i), m / (m / i))`。
 
