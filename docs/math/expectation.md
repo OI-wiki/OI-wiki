@@ -123,7 +123,7 @@ $$
     若有一个连续型随机变量 $x$ 取值为 $\xi$ 的概率为 $p(\xi)$，则定义其期望 $E(x)$ 为：
     
     $$
-    E(x)=\int_{+\infty}_{-\infty}xp(x)\mathrm{d}x
+    E(x)=\int^{+\infty}_{-\infty}xp(x)\mathrm{d}x
     $$
 
 ### 性质
