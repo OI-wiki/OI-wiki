@@ -21,7 +21,7 @@ list<int> breakdown(int N) {
     }
   }
   if (N != 1) {  // 说明再经过操作之后 N 留下了一个素数
-    result.push_back(N)
+    result.push_back(N);
   }
   return result;
 }
