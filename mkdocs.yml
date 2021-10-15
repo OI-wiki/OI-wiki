@@ -273,9 +273,9 @@ nav:
     - 斐波那契数列: math/fibonacci.md
     - 博弈论: 
       - 博弈论简介: math/game-theory/intro.md
-      - 公平组合游戏: math/game-theory/impartial_game.md
-      - 非公平组合游戏: math/game-theory/partizan_game.md
-      - 反常游戏: math/game-theory/misere_game.md
+      - 公平组合游戏: math/game-theory/impartial-game.md
+      - 非公平组合游戏: math/game-theory/partizan-game.md
+      - 反常游戏: math/game-theory/misere-game.md
     - 牛顿迭代法: math/newton.md
     - 数值积分: math/integral.md
     - 分段打表: math/dictionary.md
