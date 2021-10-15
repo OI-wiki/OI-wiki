@@ -244,7 +244,7 @@ int main() {
 1. `#define int long long`+`signed main()`。通常用于避免忘记开 long long 导致的错误，或是调试时排除忘开 long long 导致错误的可能性。（也可能导致增大常数甚至 TLE，或者因为爆空间而 MLE）
 2. `#define For(i, l, r) for (int i = (l); i <= (r); ++i)`、`#define pb push_back`、`#define mid ((l + r) / 2)`，用于减短代码长度。
 
-不过，`#define` 也有优点，比如结合 `#if` 等预处理指令有奇效，比如：
+不过，`#define` 也有优点，比如结合 `#ifdef` 等预处理指令有奇效，比如：
 
 ```cpp
 #ifdef LINUX

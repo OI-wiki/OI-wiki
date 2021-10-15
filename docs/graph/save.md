@@ -15,6 +15,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 ??? note "参考代码"
     ```cpp
+    // C++ Version
     #include <iostream>
     #include <vector>
     
@@ -58,6 +59,34 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
       return 0;
     }
     ```
+    
+    ```python
+    # Python Version
+    class Edge:
+        u = 0
+        v = 0
+    
+    n, m = map(lambda x:int(x), input().split())
+    
+    e = [Edge()] * m; vis = [False] * n
+    
+    for i in range(0, m):
+        e[i].u, e[i].v = map(lambda x:int(x), input().split())
+    
+    def find_edge(u, v):
+        for i in range(1, m + 1):
+            if e[i].u == u and e[i].v == v:
+                return True
+        return False
+    
+    def dfs(u):
+        if vis[u]:
+            return
+        vis[u] = True
+        for i in range(1, m + 1):
+            if e[i].u == u:
+                dfs(e[i].v)
+    ```
 
 ### 复杂度
 
@@ -85,6 +114,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 ??? note "参考代码"
     ```cpp
+    // C++ Version
     #include <iostream>
     #include <vector>
     
@@ -121,6 +151,27 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
       return 0;
     }
     ```
+    
+    ```python
+    # Python Version
+    vis = [False] * (n + 1)
+    adj = [[False]] * (n + 1)
+    
+    for i in range(1, m + 1):
+        u, v = map(lambda x:int(x), input().split())
+        adj[u][v] = True
+    
+    def find_edge(u, v):
+        return adj[u][v]
+    
+    def dfs(u):
+        if vis[u]:
+            return
+        vis[u] = True
+        for v in range(1, n + 1):
+            if adj[u][v]:
+                dfs(v)
+    ```
 
 ### 复杂度
 
@@ -148,6 +199,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 ??? note "参考代码"
     ```cpp
+    // C++ Version
     #include <iostream>
     #include <vector>
     
@@ -187,6 +239,29 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
       return 0;
     }
     ```
+    
+    ```python
+    # Python Version
+    vis = [False] * (n + 1)
+    adj = [[]] * (n + 1)
+    
+    for i in range(1, m + 1):
+        u, v = map(lambda x:int(x), input().split())
+        adj[u].append(v)
+    
+    def find_edge(u, v):
+        for i in range(0, len(adj[u])):
+            if adj[u][i] == v:
+                return True
+        return False
+    
+    def dfs(u):
+        if vis[u]:
+            return
+        vis[u] = True
+        for i in range(0, len(adj[u])):
+            dfs(adj[u][i])
+    ```
 
 ### 复杂度
 
@@ -211,6 +286,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 本质上是用链表实现的邻接表，核心代码如下：
 
 ```cpp
+// C++ Version
 // head[u] 和 cnt 的初始值都为 -1
 void add(int u, int v) {
   nxt[++cnt] = head[u];  // 当前边的后继
@@ -222,6 +298,22 @@ void add(int u, int v) {
 for (int i = head[u]; ~i; i = nxt[i]) {  // ~i 表示 i != -1
   int v = to[i];
 }
+```
+
+```python
+# Python Version
+# head[u] 和 cnt 的初始值都为 -1
+def add(u, v):
+    nex[cnt] = head[u] # 当前边的后继
+    cnt = cnt + 1
+    head[u] = cnt # 起点 u 的第一条边
+    to[cnt] = v # 当前边的终点
+
+# 遍历 u 的出边
+i = head[u]
+while ~i: # ~i 表示 i != -1
+    v = to[i]
+    i = nxt[i]
 ```
 
 ??? note "参考代码"
