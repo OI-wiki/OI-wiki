@@ -54,13 +54,19 @@
     int fa[MXN][31], cost[MXN][31], dep[MXN];
     int n, m;
     int a, b, c;
+    
+    // dfs，用来为 lca 算法做准备。接受两个参数：dfs 起始节点和它的父亲节点。
     void dfs(int root, int fno) {
+      // 初始化：第 2^0 = 1 个祖先就是它的父亲节点，dep 也比父亲节点多 1。
       fa[root][0] = fno;
       dep[root] = dep[fa[root][0]] + 1;
+      // 初始化：其他的祖先节点：第 2^i 的祖先节点是第 2^(i-1) 的祖先节点的第
+      // 2^(i-1) 的祖先节点。
       for (int i = 1; i < 31; ++i) {
         fa[root][i] = fa[fa[root][i - 1]][i - 1];
         cost[root][i] = cost[fa[root][i - 1]][i - 1] + cost[root][i - 1];
       }
+      // 遍历子节点来进行 dfs。
       int sz = v[root].size();
       for (int i = 0; i < sz; ++i) {
         if (v[root][i] == fno) continue;
@@ -68,12 +74,18 @@
         dfs(v[root][i], root);
       }
     }
+    
+    // lca。用倍增算法算取 x 和 y 的 lca 节点。
     int lca(int x, int y) {
+      // 令 y 比 x 深。
       if (dep[x] > dep[y]) swap(x, y);
+      // 令 y 和 x 在一个深度。
       int tmp = dep[y] - dep[x], ans = 0;
       for (int j = 0; tmp; ++j, tmp >>= 1)
         if (tmp & 1) ans += cost[y][j], y = fa[y][j];
+      // 如果这个时候 y = x，那么 x，y 就都是它们自己的祖先。
       if (y == x) return ans;
+      // 不然的话，找到第一个不是它们祖先的两个点。
       for (int j = 30; j >= 0 && y != x; --j) {
         if (fa[x][j] != fa[y][j]) {
           ans += cost[x][j] + cost[y][j];
@@ -81,13 +93,17 @@
           y = fa[y][j];
         }
       }
+      // 返回结果。
       ans += cost[x][0] + cost[y][0];
       return ans;
     }
+    
     int main() {
+      // 初始化表示祖先的数组 fa，代价 cost 和深度 dep。
       memset(fa, 0, sizeof(fa));
       memset(cost, 0, sizeof(cost));
       memset(dep, 0, sizeof(dep));
+      // 读入树：节点数一共有 n 个。
       scanf("%d", &n);
       for (int i = 1; i < n; ++i) {
         scanf("%d %d %d", &a, &b, &c);
@@ -97,7 +113,9 @@
         w[a].push_back(c);
         w[b].push_back(c);
       }
+      // 为了计算 lca 而使用 dfs。
       dfs(1, 0);
+      // 查询 m 次，每一次查找两个节点的 lca 点。
       scanf("%d", &m);
       for (int i = 0; i < m; ++i) {
         scanf("%d %d", &a, &b);
@@ -287,164 +305,7 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
 
 ??? note "参考代码"
     ```cpp
-    #include <bits/stdc++.h>
-    using namespace std;
-    
-    const int N = 5e5 + 5;
-    
-    struct PlusMinusOneRMQ {
-      // Copyright (C) 2018 Skqliao. All rights served.
-      const static int M = 9;
-    
-      int blocklen, block, Minv[N], F[N / M * 2 + 5][M << 1], T[N], f[1 << M][M][M],
-          S[N];
-      void init(int n) {
-        blocklen = std::max(1, (int)(log(n * 1.0) / log(2.0)) / 2);
-        block = n / blocklen + (n % blocklen > 0);
-        int total = 1 << (blocklen - 1);
-        for (int i = 0; i < total; i++) {
-          for (int l = 0; l < blocklen; l++) {
-            f[i][l][l] = l;
-            int now = 0, minv = 0;
-            for (int r = l + 1; r < blocklen; r++) {
-              f[i][l][r] = f[i][l][r - 1];
-              if ((1 << (r - 1)) & i) {
-                now++;
-              } else {
-                now--;
-                if (now < minv) {
-                  minv = now;
-                  f[i][l][r] = r;
-                }
-              }
-            }
-          }
-        }
-        T[1] = 0;
-        for (int i = 2; i < N; i++) {
-          T[i] = T[i - 1];
-          if (!(i & (i - 1))) {
-            T[i]++;
-          }
-        }
-      }
-      void initmin(int a[], int n) {
-        for (int i = 0; i < n; i++) {
-          if (i % blocklen == 0) {
-            Minv[i / blocklen] = i;
-            S[i / blocklen] = 0;
-          } else {
-            if (a[i] < a[Minv[i / blocklen]]) {
-              Minv[i / blocklen] = i;
-            }
-            if (a[i] > a[i - 1]) {
-              S[i / blocklen] |= 1 << (i % blocklen - 1);
-            }
-          }
-        }
-        for (int i = 0; i < block; i++) {
-          F[i][0] = Minv[i];
-        }
-        for (int j = 1; (1 << j) <= block; j++) {
-          for (int i = 0; i + (1 << j) - 1 < block; i++) {
-            int b1 = F[i][j - 1], b2 = F[i + (1 << (j - 1))][j - 1];
-            F[i][j] = a[b1] < a[b2] ? b1 : b2;
-          }
-        }
-      }
-      int querymin(int a[], int L, int R) {
-        int idl = L / blocklen, idr = R / blocklen;
-        if (idl == idr)
-          return idl * blocklen + f[S[idl]][L % blocklen][R % blocklen];
-        else {
-          int b1 = idl * blocklen + f[S[idl]][L % blocklen][blocklen - 1];
-          int b2 = idr * blocklen + f[S[idr]][0][R % blocklen];
-          int buf = a[b1] < a[b2] ? b1 : b2;
-          int c = T[idr - idl - 1];
-          if (idr - idl - 1) {
-            int b1 = F[idl + 1][c];
-            int b2 = F[idr - 1 - (1 << c) + 1][c];
-            int b = a[b1] < a[b2] ? b1 : b2;
-            return a[buf] < a[b] ? buf : b;
-          }
-          return buf;
-        }
-      }
-    } rmq;
-    
-    int n, m, s;
-    
-    struct Edge {
-      int v, nxt;
-    } e[N * 2];
-    int tot, head[N];
-    void init(int n) {
-      tot = 0;
-      fill(head, head + n + 1, 0);
-    }
-    void addedge(int u, int v) {
-      ++tot;
-      e[tot] = (Edge){v, head[u]};
-      head[u] = tot;
-    
-      ++tot;
-      e[tot] = (Edge){u, head[v]};
-      head[v] = tot;
-    }
-    
-    int dfs_clock, dfn[N * 2], dep[N * 2], st[N];
-    
-    void dfs(int u, int fa, int d) {
-      st[u] = dfs_clock;
-    
-      dfn[dfs_clock] = u;
-      dep[dfs_clock] = d;
-      ++dfs_clock;
-    
-      int v;
-      for (int i = head[u]; i; i = e[i].nxt) {
-        v = e[i].v;
-        if (v == fa) continue;
-        dfs(v, u, d + 1);
-        dfn[dfs_clock] = u;
-        dep[dfs_clock] = d;
-        ++dfs_clock;
-      }
-    }
-    
-    void build_lca() {
-      rmq.init(dfs_clock);
-      rmq.initmin(dep, dfs_clock);
-    }
-    
-    int LCA(int u, int v) {
-      int l = st[u], r = st[v];
-      if (l > r) swap(l, r);
-      return dfn[rmq.querymin(dep, l, r)];
-    }
-    
-    int main() {
-      scanf("%d %d %d", &n, &m, &s);
-    
-      init(n);
-      int u, v;
-      for (int i = 1; i <= n - 1; ++i) {
-        scanf("%d %d", &u, &v);
-        addedge(u, v);
-      }
-    
-      dfs_clock = 0;
-      dfs(s, s, 0);
-    
-      build_lca();
-    
-      for (int i = 1; i <= m; ++i) {
-        scanf("%d %d", &u, &v);
-        printf("%d\n", LCA(u, v));
-      }
-    
-      return 0;
-    }
+      --8<-- "docs/graph/code/lca/lca_2.cpp"
     ```
 
 ## 习题

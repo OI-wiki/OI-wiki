@@ -128,6 +128,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
+    // C++ Version
     #include <bits/stdc++.h>
     using namespace std;
     int main() {
@@ -141,6 +142,17 @@ $$
       printf("%d\n", max(maxx - minx, maxy - miny));
       return 0;
     }
+    ```
+    
+    ```python
+    # Python Version
+    minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0
+    n = int(input())
+    for i in range(1, n + 1):
+        x, y = map(lambda x:int(x), input().split())
+        minx = min(minx, x + y); maxx = max(maxx, x + y)
+        miny = min(miny, x - y); maxy = max(maxy, x - y)
+    print(max(maxx - minx, maxy - miny))
     ```
 
 其实还有第二种做法，那就是把曼哈顿距离转化为切比雪夫距离求解，最后部分会讲到。
@@ -181,8 +193,8 @@ $$
 
 $$
 \begin{aligned}
-&y = x + 1  &(x \geq 0, y \geq 0) \\
-&y = -x + 1 &(x \leq 0, y \geq 0) \\
+&y = -x + 1 &(x \geq 0, y \geq 0) \\
+&y = x + 1 &(x \leq 0, y \geq 0) \\
 &y = x - 1  &(x \geq 0, y \leq 0)  \\
 &y = -x - 1  &(x \leq 0, y \leq 0) \\
 \end{aligned}
@@ -276,6 +288,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
+    // C++ Version
     #include <bits/stdc++.h>
     using namespace std;
     int main() {
@@ -290,6 +303,18 @@ $$
       printf("%d\n", max(maxx - minx, maxy - miny));
       return 0;
     }
+    ```
+    
+    ```python
+    # Python Version
+    minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0
+    n = int(input())
+    for i in range(1, n + 1):
+        a, b = map(lambda x:int(x), input().split())
+        x = a + b; y = a - b
+        minx = min(minx, x); maxx = max(maxx, x)
+        miny = min(miny, y); maxy = max(maxy, y)
+    print(max(maxx - minx, maxy - miny))
     ```
 
 对比两份代码，我们又能够发现，两种不同的思路，写出来的代码却是完全等价的，是不是很神奇呢？当然，更高深的东西需要大家另行研究。

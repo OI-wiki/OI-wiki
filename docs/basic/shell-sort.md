@@ -2,7 +2,7 @@
 
 ## 简介
 
-希尔排序（英语：Shell sort），也称为缩小增量排序法，是 [插入排序](insertion-sort.md) 的一种改进版本。希尔排序以它的发明者希尔（英语：Donald Shell）命名。
+希尔排序（英语：Shell sort），也称为缩小增量排序法，是 [插入排序](./insertion-sort.md) 的一种改进版本。希尔排序以它的发明者希尔（英语：Donald Shell）命名。
 
 ## 工作原理
 
@@ -33,6 +33,7 @@
 ### C++[^ref1]
 
 ```cpp
+// C++ Version
 template <typename T>
 void shell_sort(T array[], int length) {
   int h = 1;
@@ -48,6 +49,23 @@ void shell_sort(T array[], int length) {
     h = h / 3;
   }
 }
+```
+
+### Python
+
+```python
+# Python Version
+def shell_sort(array, length):
+    h = 1
+    while h < length / 3:
+        h = int(3 * h + 1)
+    while h >= 1:
+        for i in range(h, length):
+            j = i
+            while j >= h and array[j] < array[j - h]:
+                array[j], array[j - h] = array[j - h], array[j]
+                j -= h
+        h = int(h / 3)
 ```
 
 ## 参考资料与注释

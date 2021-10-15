@@ -15,10 +15,11 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [FZUOJ](http://acm.fzu.edu.cn/) 始于 2008 年，福州大学在线评测系统。
 - [HDU Online Judge](http://acm.hdu.edu.cn/) 始于 2005 年，杭州电子科技大学在线评测系统，有多校训练的题目。
 - [hihoCoder](https://hihocoder.com/) 始于 2012 年，面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（登录后方可查看题面）
+- [HydroOJ](https://hydro.ac/)：始于 2021 年，为开源项目 [Hydro](https://hydro.js.org/) 的官方站。用户可以创建自己的 [域](https://hydro.ac/discuss/6087cc44e098b0cd7dde1a0c)，域中可以使用题库、比赛、讨论等主站可以使用的功能。
 - [计蒜客](https://www.jisuanke.com/) 北京矩道优达网络科技有限公司旗下的核心产品，提供按知识点和难度筛选的信息学题库和 ICPC 题库。
 -   [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck)，可以将评测程序的运行时间精确到微秒。（题目较少）
     <!--  - [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。-->
-- [LibreOJ](https://loj.ac/)：始于 2017 年。基于开源项目 [SYZOJ](https://github.com/syzoj/syzoj)，Libre 取自由之意。题目所有测试数据以及提交的代码均对所有用户开放。目前由 [Menci](https://github.com/Menci) 维护。
+- [LibreOJ](https://loj.ac/)：始于 2017 年。基于开源项目 [SYZOJ NG](https://github.com/syzoj/syzoj-ng)，Libre 取自由之意。题目所有测试数据以及提交的代码均对所有用户开放。目前由 [Menci](https://github.com/Menci) 维护。
 - [Lutece](https://acm.uestc.edu.cn/home)：电子科技大学在线评测系统，始于 2018 年，[项目开源](https://github.com/lutece-awesome)。
 - [洛谷](https://www.luogu.com.cn/)：始于 2013 年，社区群体庞大，各类 OI 的真题和习题较全。提供有偿教育服务。
 - [牛客网](https://www.nowcoder.com/)：始于 2014 年，提供技术类求职备考、社群交流、企业招聘等服务。
@@ -114,7 +115,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   《具体数学》第二版 - Ronald L. Graham/Donald E. Knuth/Oren Patashnik  
     英文版原名*Concrete Mathematics*
 -   《组合数学》第五版 - Richard A.Brualdi  
-    英文版原名*Introductory Conbinatorics*
+    英文版原名*Introductory Combinatorics*
 - [Competitive Programmer's Handbook](https://cses.fi/book/index.html)
 -   《挑战程序设计竞赛》全套 - 秋叶拓哉，岩田阳一，北川宜稔
     通俗易懂。
@@ -133,7 +134,6 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 ## 工具
 
 - [《100 个 gdb 小技巧》](https://github.com/hellogcc/100-gdb-tips)
-- [Algomation](http://www.algomation.com/)
 - [Algorithm Visualizer](http://algorithm-visualizer.org)
 - [cppreference](https://zh.cppreference.com/w/)：一个全面的 C 和 C++ 语言及其标准库的在线参考资料
 - [Compiler Explorer](https://godbolt.org)：在线查看编译后代码块对应的汇编语句，支持选择不同的编译器

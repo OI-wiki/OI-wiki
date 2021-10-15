@@ -71,9 +71,9 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 -   同时使用位运算和逻辑运算符 `==` 并且未加括号。
     - 示例：`(x >> j) & 3 == 2`
 
-- `int` 字面量溢出。
+-   `int` 字面量溢出。
 
-- 示例：`long long x = 0x7f7f7f7f7f7f7f7f`，`1<<62`。
+    - 示例：`long long x = 0x7f7f7f7f7f7f7f7f`，`1<<62`。
 
 - 未初始化局部变量，导致局部变量被赋予垃圾初值。
 

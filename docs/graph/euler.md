@@ -81,7 +81,7 @@ $$
 
 设有 $m$ 个字母，希望构造一个有 $m^n$ 个扇形的圆盘，每个圆盘上放一个字母，使得圆盘上每连续 $n$ 位对应长为 $n$ 的符号串。转动一周（$m^n$ 次）后得到由 $m$ 个字母产生的长度为 $n$ 的 $m^n$ 个各不相同的符号串。
 
-![](images/euler1.png)
+![](images/euler1.svg)
 
 构造如下有向欧拉图：
 
@@ -97,7 +97,7 @@ $E = \{a_{j_1}a_{j_2}\cdots a_{j_{n-1}}|a_j \in S, 1 \leq j \leq n\}$
 
 边 $a_{j_1}a_{j_2}\cdots a_{j_{n-1}}$ 引入顶点 $a_{j_2}a_{j_3}\cdots a_{j_{n}}$。
 
-![](images/euler2.png)
+![](images/euler2.svg)
 
 这样的 $D$ 是连通的，且每个顶点入度等于出度（均等于 $m$），所以 $D$ 是有向欧拉图。
 
@@ -121,88 +121,7 @@ $E = \{a_{j_1}a_{j_2}\cdots a_{j_{n-1}}|a_j \in S, 1 \leq j \leq n\}$
 
 ??? note "示例代码"
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    #include <stack>
-    #include <vector>
-    using namespace std;
-    
-    struct edge {
-      int to;
-      bool exists;
-      int revref;
-    
-      bool operator<(const edge& b) const { return to < b.to; }
-    };
-    
-    vector<edge> beg[505];
-    int cnt[505];
-    
-    const int dn = 500;
-    stack<int> ans;
-    
-    void Hierholzer(int x) {  // 关键函数
-      for (int& i = cnt[x]; i < (int)beg[x].size();) {
-        if (beg[x][i].exists) {
-          edge e = beg[x][i];
-          beg[x][i].exists = 0;
-          beg[e.to][e.revref].exists = 0;
-          ++i;
-          Hierholzer(e.to);
-        } else {
-          ++i;
-        }
-      }
-      ans.push(x);
-    }
-    
-    int deg[505];
-    int reftop[505];
-    
-    int main() {
-      for (int i = 1; i <= dn; ++i) {
-        beg[i].reserve(1050);  // vector 用 reserve 避免动态分配空间，加快速度
-      }
-    
-      int m;
-      scanf("%d", &m);
-      for (int i = 1; i <= m; ++i) {
-        int a, b;
-        scanf("%d%d", &a, &b);
-        beg[a].push_back((edge){b, 1, 0});
-        beg[b].push_back((edge){a, 1, 0});
-        ++deg[a];
-        ++deg[b];
-      }
-    
-      for (int i = 1; i <= dn; ++i) {
-        if (!beg[i].empty()) {
-          sort(beg[i].begin(), beg[i].end());  // 为了要按字典序贪心，必须排序
-        }
-      }
-    
-      for (int i = 1; i <= dn; ++i) {
-        for (int j = 0; j < (int)beg[i].size(); ++j) {
-          beg[i][j].revref = reftop[beg[i][j].to]++;
-        }
-      }
-    
-      int bv = 0;
-      for (int i = 1; i <= dn; ++i) {
-        if (!deg[bv] && deg[i]) {
-          bv = i;
-        } else if (!(deg[bv] & 1) && (deg[i] & 1)) {
-          bv = i;
-        }
-      }
-    
-      Hierholzer(bv);
-    
-      while (!ans.empty()) {
-        printf("%d\n", ans.top());
-        ans.pop();
-      }
-    }
+      --8<-- "docs/graph/code/euler/euler_1.cpp"
     ```
 
 ## 习题

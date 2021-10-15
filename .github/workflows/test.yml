@@ -1,0 +1,25 @@
+name: Check example code
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: OI-wiki Offline Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install C++
+        run: sudo apt install g++
+      - name: Make the File list
+        run: find . -name *.cpp > res.txt
+      - name: Check the Code
+        run: python3 scripts/test.py      

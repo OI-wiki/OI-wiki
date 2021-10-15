@@ -85,39 +85,21 @@ $$
 
 本题中，还需要求解逆元。如果先分别计算出分子和分母，再将分子乘进分母的逆元，累加进最后的答案，时间复杂度的瓶颈就不会在求逆元上，时间复杂度为 $O(n^2)$。
 
+??? note "通常意义下拉格朗日插值的一种推导"
+    由于要求构造一个函数 $f(x)$ 过点 $P_1(x_1, y_1), P_2(x_2,y_2),\cdots,P_n(x_n,y_n)$。首先设第 $i$ 个点在 $x$ 轴上的投影为 $P_i^{\prime}(x_i,0)$。
+    
+    考虑构造 $n$ 个函数 $f_1(x), f_2(x), \cdots, f_n(x)$，使得对于第 $i$ 个函数 $f_i(x)$，其图像过 $\begin{cases}P_j^{\prime}(x_j,0),(j\neq i)\\P_i(x_i,y_i)\end{cases}$，则可知题目所求的函数 $f(x)=\sum\limits_{i=1}^nf_i(x)$。
+    
+    那么可以设 $f_i(x)=a\cdot\prod_{j\neq i}(x-x_j)$，将点 $P_i(x_i,y_i)$ 代入可以知道 $a=\dfrac{y_i}{\prod_{j\neq i} (x_i-x_j)}$，所以
+    
+    $f_i(x)=y_i\cdot\dfrac{\prod_{j\neq i} (x-x_j)}{\prod_{j\neq i} (x_i-x_j)}=y_i\cdot\prod_{j\neq i}\dfrac{x-x_j}{x_i-x_j}$。
+    
+    那么我们就可以从另一个角度推导出通常意义下（而非模意义下）拉格朗日插值的式子为：
+    
+    $f(x)=\sum_{i=1}^ny_i\cdot\prod_{j\neq i}\dfrac{x-x_j}{x_i-x_j}$。
+
 ### 代码实现
 
 ```cpp
-#include <cstdio>
-
-const int maxn = 2010;
-using ll = long long;
-ll mod = 998244353;
-ll n, k, x[maxn], y[maxn], ans, s1, s2;
-
-ll powmod(ll x, ll n) {
-  ll ret = 1ll;
-  while (n) {
-    if (n & 1) ret = ret * x % mod;
-    x = x * x % mod;
-    n >>= 1;
-  }
-  return ret;
-}
-
-ll inv(ll x) { return powmod(x, mod - 2); }
-
-int main() {
-  scanf("%lld%lld", &n, &k);
-  for (int i = 1; i <= n; i++) scanf("%lld%lld", x + i, y + i);
-  for (int i = 1; i <= n; i++) {
-    s1 = y[i] % mod;
-    s2 = 1ll;
-    for (int j = 1; j <= n; j++)
-      if (i != j) s1 = s1 * (k - x[j]) % mod, s2 = s2 * (x[i] - x[j]) % mod;
-    ans += s1 * inv(s2) % mod;
-  }
-  printf("%lld\n", (ans % mod + mod) % mod);
-  return 0;
-}
+--8<-- "docs/math/code/poly/lagrange/lagrange_1.cpp"
 ```

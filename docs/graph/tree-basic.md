@@ -49,9 +49,11 @@
 -   **后代（descendant）**：子结点和子结点的后代。  
     或者理解成：如果 $u$ 是 $v$ 的祖先，那么 $v$ 是 $u$ 的后代。
 
+![tree-definition.svg](images/tree-definition.svg)
+
 - **子树（subtree）**：删掉与父亲相连的边后，该结点所在的子图。
 
-![tree-basic.png](images/tree-basic.png)
+![tree-definition-subtree.svg](images/tree-definition-subtree.svg)
 
 ## 特殊的树
 
@@ -62,13 +64,17 @@
 -   **有根二叉树（rooted binary tree）**：每个结点最多只有两个儿子（子结点）的有根树称为二叉树。常常对两个子结点的顺序加以区分，分别称之为左子结点和右子结点。  
     大多数情况下，**二叉树** 一词均指有根二叉树。
 
-![tree-binary.png](images/tree-binary.png)
-
 - **完整二叉树（full/proper binary tree）**：每个结点的子结点数量均为 0 或者 2 的二叉树。换言之，每个结点或者是树叶，或者左右子树均非空。
+
+![](images/tree-binary-proper.svg)
 
 - **完全二叉树（complete binary tree）**：只有最下面两层结点的度数可以小于 2，且最下面一层的结点都集中在该层最左边的连续位置上。
 
+![](images/tree-binary-complete.svg)
+
 - **完美二叉树（perfect binary tree）**：所有叶结点的深度均相同的二叉树称为完美二叉树。
+
+![](images/tree-binary-perfect.svg)
 
 ???+warning
     Proper binary tree 的汉译名称不固定，且完全二叉树和满二叉树的定义在不同教材中定义不同，遇到的时候需根据上下文加以判断。
@@ -149,21 +155,63 @@ int child[N][2];
 
 ### 二叉树上 DFS
 
-（图待补）
-
 #### 先序遍历
 
-先访问根，再访问子节点。
+![preorder](images/tree-basic-Preorder.png)
+
+按照 **根，左，右** 的顺序遍历二叉树。
+
+```c++
+void preTrav(BiTree* root) {
+  if (root) {
+    cout << root->key << " ";
+    preTrav(root->left);
+    preTrav(root->right);
+  }
+}
+```
 
 #### 中序遍历
 
-先访问左子树，再访问根，再访问右子树。
+![inorder](images/tree-basic-inorder.png)
+
+按照 **左，根，右** 的顺序遍历二叉树。
+
+```c++
+void midTrav(BiTree* root) {
+  if (root) {
+    midTrav(root->left);
+    cout << root->key << " ";
+    midTrav(root->right);
+  }
+}
+```
 
 #### 后序遍历
 
-先访问子节点，再访问根。
+![Postorder](images/tree-basic-Postorder.png)
 
-已知中序遍历和另外一个可以求第三个。
+按照 **左，右，根** 的顺序遍历二叉树。
+
+```c++
+void lastTrav(BiTree* root) {
+  if (root) {
+    lastTrav(root->left);
+    lastTrav(root->right);
+    cout << root->key << " ";
+  }
+}
+```
+
+#### 反推
+
+已知中序遍历序列和另外一个序列可以求第三个序列。
+
+![reverse](images/tree-basic-reverse.png)
+
+1. 前序的第一个是 root，后序的最后一个是 root。
+2. 先确定根节点，然后根据中序遍历，在根左边的为左子树，根右边的为右子树。
+3. 对于每一个子树可以看成一个全新的树，仍然遵循上面的规律。
 
 ### 树上 BFS
 
@@ -200,3 +248,5 @@ dfs(root, EMPTY_NODE);
 考察上面的遍历过程，若从根开始遍历，则访问到一个结点时 `from` 的值，就是其父结点的编号。
 
 通过这个方式，可以对于无向的输入求出所有结点的父结点，以及子结点列表。
+
+**本页面部分内容引用自博文 [二叉树：前序遍历、中序遍历、后续遍历](https://blog.csdn.net/weixin_43357638/article/details/99730284)，遵循 CC 4.0 BY-SA 版权协议。**

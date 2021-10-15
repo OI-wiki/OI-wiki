@@ -8,7 +8,7 @@ author: AndrewWayne, GavinZhengOI, ChungZH, henryrabbit, Xeonacid, sshwy, Yukima
 
 离散傅里叶变换（Discrete Fourier Transform，缩写为 DFT），是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DTFT 的频域采样。
 
-FFT 是一种高效实现 DFT 的算法，称为快速傅立叶变换（Fast Fourier Transform，FFT）。它对傅里叶变换的理论并没有新的发现，但是对于在计算机系统或者说数字系统中应用离散傅立叶变换，可以说是进了一大步。快速数论变换 (NTT) 是快速傅里叶变换（FFT）在数论基础上的实现。
+FFT 是一种高效实现 DFT 的算法，称为 **快速傅立叶变换**（Fast Fourier Transform，FFT）。它对傅里叶变换的理论并没有新的发现，但是对于在计算机系统或者说数字系统中应用离散傅立叶变换，可以说是进了一大步。快速数论变换 (NTT) 是快速傅里叶变换（FFT）在数论基础上的实现。
 
 在 1965 年，Cooley 和 Tukey 发表了快速傅里叶变换算法。事实上 FFT 早在这之前就被发现过了，但是在当时现代计算机并未问世，人们没有意识到 FFT 的重要性。一些调查者认为 FFT 是由 Runge 和 König 在 1924 年发现的。但事实上高斯早在 1805 年就发明了这个算法，但一直没有发表。
 
@@ -19,7 +19,7 @@ FFT 是一种高效实现 DFT 的算法，称为快速傅立叶变换（Fast Fou
 系数表示法就是用一个多项式的各个项系数来表达这个多项式，即使用一个系数序列来表示多项式：
 
 $$
-f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \Leftrightarrow f(x) = \{a_0, a_1, \cdots,a_{n}\}
+f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \iff f(x) = \{a_0, a_1, \cdots,a_{n}\}
 $$
 
 ### 点值表示法
@@ -44,7 +44,7 @@ $$
 那么用点值表示法表示 $f(x)$ 如下
 
 $$
-f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \Leftrightarrow f(x) = \{(x_0,y_0),(x_1,y_1), \cdots,(x_n,y_{n})\}
+f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \iff f(x) = \{(x_0,y_0),(x_1,y_1), \cdots,(x_n,y_{n})\}
 $$
 
 通俗地说，多项式由系数表示法转为点值表示法的过程，就是 DFT 的过程。相对地，把一个多项式的点值表示法转化为系数表示法的过程，就是 IDFT。而 FFT 就是通过取某些特殊的 $x$ 的点值来加速 DFT 和 IDFT 的过程。
@@ -72,7 +72,7 @@ $$
 
 但是我们要的是系数表达式，接下来问题变成了从点值回到系数。如果我们带入到高斯消元法的方程组中去，会把复杂度变得非常高。光是计算 $x^i(0 \leq i \leq n)$ 就是 $n$ 项，这就已经 $O(n^2)$ 了，更别说还要把 $n+1$ 个方程进行消元……
 
-因此我们不去计算 $x^i$。$1$ 和 $-1$ 的幂都很好算，但是仅仅有两个也不够，我们至少需要 $n+1$ 个。利用我们刚学的长度为 $1$ 的虚数，这些数不管怎么乘长度都是 $1$。我们需要的是 $\omega^k=1$ 中的 $\omega$，容易想到 $-i$ 和 $1$ 是符合的。除此以外：
+因此我们不去计算 $x^i$。$1$ 和 $-1$ 的幂都很好算，但是仅仅有两个也不够，我们至少需要 $n+1$ 个。利用我们刚学的长度为 $1$ 的虚数，这些数不管怎么乘长度都是 $1$。我们需要的是 $\omega^k=1$ 中的 $\omega$，容易想到 $-i$ 和 $i$ 是符合的。除此以外：
 
 ![img](./images/fft2.jpg)
 
@@ -80,7 +80,7 @@ $$
 
 ### 定义
 
-严谨地，我们称 $x^n=1$ 在复数意义下的解是 $n$ 次复根。显然，这样的解有 $n$ 个，设 $\omega_n=e^{\frac{2\pi i}{n}}$，则 $x^n=1$ 的解集表示为 $\{\omega_n^k\mid k=0,1\cdots,n-1\}$。我们称 $\omega_n$ 是 $n$ 次单位复根（the $n$-th root of unity）。根据复平面的知识，$n$ 次单位复根是复平面把单位圆 $n$ 等分的第一个角所对应的向量。其他复根均可以用单位复根的幂表示。
+严谨地，我们称 $x^n=1$ 在复数意义下的解是 $n$ 次复根。显然，这样的解有 $n$ 个，设 $\omega_n=e^{\frac{2\pi i}{n}}$，则 $x^n=1$ 的解集表示为 $\{\omega_n^k\mid k=0,1\cdots,n-1\}$。我们称 $\omega_n$ 是 $n$ 次单位复根（the $n$-th root of unity）。根据复平面的知识，$n$ 次单位复根是复平面把单位圆 $n$ 等分的第一个角所对应的向量。其它复根均可以用单位复根的幂表示。
 
 另一方面，根据欧拉公式，还可以得到 $\omega_n=e^{\frac{2\pi i}{n}}=\cos\left(\dfrac{2\pi}{n}\right)+i\cdot \sin\left(\dfrac{2\pi}{n}\right)$。
 
@@ -88,7 +88,7 @@ $$
 
 ![img](./images/fft3.png)
 
-当 $n = 4$ 的时候，相当于把单位圆等分 $n=4$ 份。将每一份按照极角编号，那么我们只要知道 $\omega_4^1$（因为他的角度是相当于单位角度），就能知道 $\omega_4^0, \omega_4^1, \omega_4^2, \omega_4^3$。
+当 $n = 4$ 的时候，相当于把单位圆等分 $n=4$ 份。将每一份按照极角编号，那么我们只要知道 $\omega_4^1$（因为它的角度是相当于单位角度），就能知道 $\omega_4^0, \omega_4^1, \omega_4^2, \omega_4^3$。
 
 $\omega_4^0$ 恒等于 $1$，$\omega_4^2$ 的角度是 $\omega_4^1$ 的两倍，所以 $\omega_4^2 = (\omega_4^1)^2 = i^2=-1$，依次以此类推。
 
@@ -106,7 +106,7 @@ $$
 
 ## 快速傅里叶变换
 
-FFT 算法的基本思想是分治。就 DFT 来说，它分治地来求当 $x=\omega_n^k$ 的时候 $f(x)$ 的值。他的分治思想体现在将多项式分为奇次项和偶次项处理。
+FFT 算法的基本思想是分治。就 DFT 来说，它分治地来求当 $x=\omega_n^k$ 的时候 $f(x)$ 的值。它的分治思想体现在将多项式分为奇次项和偶次项处理。
 
 举个例子，对于一共 $8$ 项的多项式
 
@@ -135,7 +135,7 @@ $$
 那么原来的 $f(x)$ 用新函数表示为
 
 $$
-F(x)=G\left(x^2\right) + x  \times  H\left(x^2\right)
+f(x)=G\left(x^2\right) + x  \times  H\left(x^2\right)
 $$
 
 利用单位复根的性质得到
@@ -246,7 +246,7 @@ $$
 
 首先 $R(0)=0$。
 
-我们从小到大求 $R(x)$。因此在求 $R(x)$ 时，$R\left(\left\lfloor \dfrac{x}{2} \right\rfloor\right)$ 的值是已知的。因此我们把 $x$ 右移一位（除以 $2$），然后取反，再右移一位，就得到了 $x$  **除了（二进制）个位** 之外其他位的翻转结果。
+我们从小到大求 $R(x)$。因此在求 $R(x)$ 时，$R\left(\left\lfloor \dfrac{x}{2} \right\rfloor\right)$ 的值是已知的。因此我们把 $x$ 右移一位（除以 $2$），然后取反，再右移一位，就得到了 $x$  **除了（二进制）个位** 之外其它位的翻转结果。
 
 考虑个位的翻转结果：如果个位是 $0$，翻转之后最高位就是 $0$。如果个位是 $1$，则翻转后最高位是 $1$，因此还要加上 $\dfrac{len}{2}=2^{k-1}$。综上
 
@@ -299,7 +299,7 @@ $$
 \begin{bmatrix} a_0 \\ a_1 \\ a_2 \\ a_3 \\ \vdots \\ a_{n-1} \end{bmatrix}
 $$
 
-现在我们已经得到最左边的结果了，中间的 $x$ 值在目标多项式的点值表示中也是一一对应的，所以，根据矩阵的基础知识，我们只要在式子两边左乘中间那个大矩阵的逆矩阵就行了。由于这个矩阵的元素非常特殊，他的逆矩阵也有特殊的性质，就是每一项取倒数，再除以 $n$，就能得到他的逆矩阵。
+现在我们已经得到最左边的结果了，中间的 $x$ 值在目标多项式的点值表示中也是一一对应的，所以，根据矩阵的基础知识，我们只要在式子两边左乘中间那个大矩阵的逆矩阵就行了。由于这个矩阵的元素非常特殊，它的逆矩阵也有特殊的性质，就是每一项取倒数，再除以 $n$，就能得到它的逆矩阵。
 
 为了使计算的结果为原来的倒数，根据单位复根的性质并结合欧拉公式，可以得到
 
@@ -442,7 +442,7 @@ $$
           for (int k = j; k < j + h / 2; k++) {
             Complex u = y[k];
             Complex t = w * y[k + h / 2];
-            y[k] = u + t;  // 这就是吧两部分分治的结果加起来
+            y[k] = u + t;  // 这就是把两部分分治的结果加起来
             y[k + h / 2] = u - t;
             // 后半个 “step” 中的ω一定和 “前半个” 中的成相反数
             // “红圈”上的点转一整圈“转回来”，转半圈正好转成相反数
@@ -462,105 +462,7 @@ $$
 
 ??? "FFT 模板（ [HDU 1402](http://acm.hdu.edu.cn/showproblem.php?pid=1402) ）"
     ```cpp
-    #include <cmath>
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    
-    const double PI = acos(-1.0);
-    struct Complex {
-      double x, y;
-      Complex(double _x = 0.0, double _y = 0.0) {
-        x = _x;
-        y = _y;
-      }
-      Complex operator-(const Complex &b) const {
-        return Complex(x - b.x, y - b.y);
-      }
-      Complex operator+(const Complex &b) const {
-        return Complex(x + b.x, y + b.y);
-      }
-      Complex operator*(const Complex &b) const {
-        return Complex(x * b.x - y * b.y, x * b.y + y * b.x);
-      }
-    };
-    /*
-     * 进行 FFT 和 IFFT 前的反置变换
-     * 位置 i 和 i 的二进制反转后的位置互换
-     *len 必须为 2 的幂
-     */
-    void change(Complex y[], int len) {
-      int i, j, k;
-      for (int i = 1, j = len / 2; i < len - 1; i++) {
-        if (i < j) swap(y[i], y[j]);
-        // 交换互为小标反转的元素，i<j 保证交换一次
-        // i 做正常的 + 1，j 做反转类型的 + 1，始终保持 i 和 j 是反转的
-        k = len / 2;
-        while (j >= k) {
-          j = j - k;
-          k = k / 2;
-        }
-        if (j < k) j += k;
-      }
-    }
-    /*
-     * 做 FFT
-     *len 必须是 2^k 形式
-     *on == 1 时是 DFT，on == -1 时是 IDFT
-     */
-    void fft(Complex y[], int len, int on) {
-      change(y, len);
-      for (int h = 2; h <= len; h <<= 1) {
-        Complex wn(cos(2 * PI / h), sin(on * 2 * PI / h));
-        for (int j = 0; j < len; j += h) {
-          Complex w(1, 0);
-          for (int k = j; k < j + h / 2; k++) {
-            Complex u = y[k];
-            Complex t = w * y[k + h / 2];
-            y[k] = u + t;
-            y[k + h / 2] = u - t;
-            w = w * wn;
-          }
-        }
-      }
-      if (on == -1) {
-        for (int i = 0; i < len; i++) {
-          y[i].x /= len;
-        }
-      }
-    }
-    
-    const int MAXN = 200020;
-    Complex x1[MAXN], x2[MAXN];
-    char str1[MAXN / 2], str2[MAXN / 2];
-    int sum[MAXN];
-    
-    int main() {
-      while (scanf("%s%s", str1, str2) == 2) {
-        int len1 = strlen(str1);
-        int len2 = strlen(str2);
-        int len = 1;
-        while (len < len1 * 2 || len < len2 * 2) len <<= 1;
-        for (int i = 0; i < len1; i++) x1[i] = Complex(str1[len1 - 1 - i] - '0', 0);
-        for (int i = len1; i < len; i++) x1[i] = Complex(0, 0);
-        for (int i = 0; i < len2; i++) x2[i] = Complex(str2[len2 - 1 - i] - '0', 0);
-        for (int i = len2; i < len; i++) x2[i] = Complex(0, 0);
-        fft(x1, len, 1);
-        fft(x2, len, 1);
-        for (int i = 0; i < len; i++) x1[i] = x1[i] * x2[i];
-        fft(x1, len, -1);
-        for (int i = 0; i < len; i++) sum[i] = int(x1[i].x + 0.5);
-        for (int i = 0; i < len; i++) {
-          sum[i + 1] += sum[i] / 10;
-          sum[i] %= 10;
-        }
-        len = len1 + len2 - 1;
-        while (sum[len] == 0 && len > 0) len--;
-        for (int i = len; i >= 0; i--) printf("%c", sum[i] + '0');
-        printf("\n");
-      }
-      return 0;
-    }
+    --8<-- "docs/math/code/poly/fft/fft_1.cpp"
     ```
 
 ## 快速数论变换

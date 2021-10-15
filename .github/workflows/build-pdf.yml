@@ -47,6 +47,9 @@ jobs:
             cp -r notosans notoserif notosanscjk notoserifcjk robotomono cm-unicode/fonts/otf/* /usr/share/fonts
             fc-cache
             git clone https://github.com/OI-wiki/OI-Wiki-export.git --depth=1
+            cd ./OI-Wiki-export/remark-latex
+            npm i
+            cd ../..
             cd ./OI-Wiki-export/oi-wiki-export
             npm i
             node index.js ../../

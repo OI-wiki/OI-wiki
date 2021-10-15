@@ -48,11 +48,11 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 我们不难发现——其实很多点是没有用的。以下图为例：
 
-![vtree-1](images/vtree-1.png)
+![vtree-1](images/vtree-tree.svg)
 
 如果我们选取的关键点是：
 
-![vtree-2](images/vtree-2.png)
+![vtree-2](images/vtree-key-vertex.svg)
 
 图中只有两个红色的点是 **关键点**，而别的点全都是「非关键点」。
 
@@ -70,13 +70,13 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 下图中，红色结点是我们选择的关键点。红色和黑色结点都是虚树中的点。黑色的边是虚树中的边。
 
-![vtree-3](images/vtree-3.png)
+![vtree-3](images/vtree-vtree1.svg)
 
-![vtree-4](images/vtree-4.png)
+![vtree-4](images/vtree-vtree2.svg)
 
-![vtree-5](images/vtree-5.png)
+![vtree-5](images/vtree-vtree3.svg)
 
-![vtree-6](images/vtree-6.png)
+![vtree-6](images/vtree-vtree4.svg)
 
 因为任意两个关键点的 LCA 也是需要保存重要信息的，所以我们需要保存它们的 LCA，因此虚树中不一定只有关键点。
 
@@ -112,23 +112,23 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 假如当前的节点与栈顶节点的 LCA 就是栈顶节点的话，则说明它们是在一条链上的。所以直接把当前节点入栈就行了。
 
-![vtree-7](./images/vtree-7.png)
+![vtree-7](./images/vtree-add1.svg)
 
 假如当前节点与栈顶节点的 LCA 不是栈顶节点的话：
 
-![vtree-8](./images/vtree-8.png)
+![vtree-8](./images/vtree-add2.svg)
 
 这时，当前单调栈维护的链是：
 
-![vtree-9](./images/vtree-9.png)
+![vtree-9](./images/vtree-add3.svg)
 
 而我们需要把链变成：
 
-![vtree-10](./images/vtree-10.png)
+![vtree-10](./images/vtree-add4.svg)
 
-那么我们就把蓝色结点弹栈即可，在弹栈前别忘了向它在虚树中的父亲连边。
+那么我们就把用虚线标出的结点弹栈即可，在弹栈前别忘了向它在虚树中的父亲连边。
 
-![vtree-11](./images/vtree-11.png)
+![vtree-11](./images/vtree-add5.svg)
 
 假如弹出以后发现栈首不是 LCA 的话要让 LCA 入栈。
 
@@ -136,48 +136,48 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 下面给出一个具体的例子。假设我们要对下面这棵树的 4，6 和 7 号结点建立虚树：
 
-![vtree-12](./images/vtree-12.png)
+![vtree-12](./images/vtree-construction1.svg)
 
 那么步骤是这样的：
 
 - 将 3 个关键点 $6,4,7$ 按照 DFS 序排序，得到序列 $[4,6,7]$。
 - 将 $1$ 入栈。
 
-![vtree-13](./images/vtree-13.png)
+![vtree-13](./images/vtree-construction2.svg)
 
-我们用黄色的点代表在栈内的点，绿色的点代表从栈中弹出的点。
+我们用红色的点代表在栈内的点，青色的点代表从栈中弹出的点。
 
 - 取序列中第一个作为当前节点，也就是 $4$。再取栈顶元素，为 $1$。求 $1$ 和 $4$ 的 $LCA$：$LCA(1,4)=1$。
 - 发现 $LCA(1,4)=$ 栈顶元素，说明它们在虚树的一条链上，所以直接把当前节点 $4$ 入栈，当前栈为 $4,1$。
 
-![vtree-14](./images/vtree-14.png)
+![vtree-14](./images/vtree-construction3.svg)
 
 - 取序列第二个作为当前节点，为 $6$。再取栈顶元素，为 $4$。求 $6$ 和 $4$ 的 $LCA$：$LCA(6,4)=1$。
 - 发现 $LCA(6,4)\neq$ 栈顶元素，进入判断阶段。
 - 判断阶段：发现栈顶节点 $4$ 的 DFS 序是大于 $LCA(6,4)$ 的，但是次大节点（栈顶节点下面的那个节点）$1$ 的 DFS 序是等于 $LCA$ 的（其实 DFS 序相等说明节点也相等），说明 $LCA$ 已经入栈了，所以直接连接 $1\to4$ 的边，也就是 $LCA$ 到栈顶元素的边。并把 $4$ 从栈中弹出。
 
-![vtree-15](./images/vtree-15.png)
+![vtree-15](./images/vtree-construction4.svg)
 
 - 结束了判断阶段，将 $6$ 入栈，当前栈为 $6,1$。
 
-![vtree-16](./images/vtree-16.png)
+![vtree-16](./images/vtree-construction5.svg)
 
 - 取序列第三个作为当前节点，为 $7$。再取栈顶元素，为 $6$。求 $7$ 和 $6$ 的 $LCA$：$LCA(7,6)=3$。
 - 发现 $LCA(7,6)\neq$ 栈顶元素，进入判断阶段。
 - 判断阶段：发现栈顶节点 $6$ 的 DFS 序是大于 $LCA(7,6)$ 的，但是次大节点（栈顶节点下面的那个节点）$1$ 的 DFS 序是小于 $LCA$ 的，说明 $LCA$ 还没有入过栈，所以直接连接 $3\to6$ 的边，也就是 $LCA$ 到栈顶元素的边。把 $6$ 从栈中弹出，并且把 $LCA(6,7)$ 入栈。
 - 结束了判断阶段，将 $7$ 入栈，当前栈为 $1,3,7$。
 
-![vtree-17](./images/vtree-17.png)
+![vtree-17](./images/vtree-construction6.svg)
 
 - 发现序列里的 3 个节点已经全部加入过栈了，退出循环。
 - 此时栈中还有 3 个节点：$1,3,7$，很明显它们是一条链上的，所以直接链接：$1\to3$ 和 $3\to7$ 的边。
 - 虚树就建完啦！
 
-![vtree-18](./images/vtree-18.png)
+![vtree-18](./images/vtree-construction7.svg)
 
-我们接下来将那些没入过栈的点（非青绿色的点）删掉，对应的虚树长这个样子：
+我们接下来将那些没入过栈的点（非青色的点）删掉，对应的虚树长这个样子：
 
-![vtree-19](./images/vtree-19.png)
+![vtree-19](./images/vtree-construction8.svg)
 
 其中有很多细节，比如我是用邻接表存图的方式存虚树的，所以需要清空邻接表。但是直接清空整个邻接表是很慢的，所以我们在 **有一个从未入栈的元素入栈的时候清空该元素对应的邻接表** 即可。
 

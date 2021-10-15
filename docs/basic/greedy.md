@@ -56,37 +56,32 @@
 ??? note "解题思路"
     设排序后第 $i$ 个大臣左右手上的数分别为 $a_i, b_i$。考虑通过邻项交换法推导贪心策略。
     
-    用 $s$ 表示第 $i$ 个大臣前面所有人的 $a_i$ 的乘积，那么第 $i$ 个大臣得到的奖赏就是 $\dfrac{s} {b_i}$，第 $i + 1$ 个大臣得到的奖赏就是 $\dfrac{s \cdot a_{i+1}} {b_{i+1}}$。
+    用 $s$ 表示第 $i$ 个大臣前面所有人的 $a_i$ 的乘积，那么第 $i$ 个大臣得到的奖赏就是 $\dfrac{s} {b_i}$，第 $i + 1$ 个大臣得到的奖赏就是 $\dfrac{s \cdot a_i} {b_{i+1}}$。
     
     如果我们交换第 $i$ 个大臣与第 $i + 1$ 个大臣，那么此时的第 $i$ 个大臣得到的奖赏就是 $\dfrac{s} {b_{i+1}}$，第 $i + 1$ 个大臣得到的奖励就是 $\dfrac{s \cdot a_{i+1}} {b_i}$。
     
     如果交换前更优当且仅当
     
     $$
-    \max \left(\dfrac{s} {b_i}, \dfrac{s \cdot a_{i+1}} {b_{i+1}}\right)  < \max \left(\dfrac{s} {b_{i+1}}, \dfrac{s \cdot a_{i+1}} {b_i}\right)
+    \max \left(\dfrac{s} {b_i}, \dfrac{s \cdot a_i} {b_{i+1}}\right)  < \max \left(\dfrac{s} {b_{i+1}}, \dfrac{s \cdot a_{i+1}} {b_i}\right)
     $$
     
     提取出相同的 $s$ 并约分得到
     
     $$
-    \max \left(\dfrac{1} {b_i}, \dfrac{a_{i+1}} {b_{i+1}}\right)  < \max \left(\dfrac{1} {b_{i+1}}, \dfrac{a_{i+1}} {b_i}\right)
+    \max \left(\dfrac{1} {b_i}, \dfrac{a_i} {b_{i+1}}\right)  < \max \left(\dfrac{1} {b_{i+1}}, \dfrac{a_{i+1}} {b_i}\right)
     $$
     
     然后分式化成整式得到
     
     $$
-    \max (b_{i+1}, a_{i+1}\cdot b_i)  < \max (b_i, a_{i+1}\cdot b_{i+1})
+    \max (b_{i+1}, a_i\cdot b_i)  < \max (b_i, a_{i+1}\cdot b_{i+1})
     $$
     
     实现的时候我们将输入的两个数用一个结构体来保存并重载运算符：
     
     ```cpp
-    struct uv {
-      int a, b;
-      bool operator<(const uv &x) const {
-        return max(x.b, a * b) < max(b, x.a * x.b);
-      }
-    };
+    
     ```
 
 ### 后悔法的例题
@@ -101,43 +96,7 @@
 
 ??? note "参考代码"
     ```cpp
-    #include <algorithm>
-    #include <cmath>
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    #include <queue>
-    using namespace std;
-    struct f {
-      long long d;
-      long long x;
-    } a[100005];
-    bool cmp(f A, f B) { return A.d < B.d; }
-    priority_queue<long long, vector<long long>, greater<long long> > q;
-    
-    int main() {
-      long long n, i, j;
-      cin >> n;
-      for (i = 1; i <= n; i++) {
-        scanf("%d%d", &a[i].d, &a[i].x);
-      }
-      sort(a + 1, a + n + 1, cmp);
-      long long ans = 0;
-      for (i = 1; i <= n; i++) {
-        if (a[i].d <= q.size()) {
-          if (q.top() < a[i].x) {
-            ans += a[i].x - q.top();
-            q.pop();
-            q.push(a[i].x);
-          }
-        } else {
-          ans += a[i].x;
-          q.push(a[i].x);
-        }
-      }
-      cout << ans << endl;
-      return 0;
-    }
+    --8<-- "docs/basic/code/greedy/greedy_1.cpp"
     ```
 
 ## 习题

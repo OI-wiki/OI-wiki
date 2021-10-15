@@ -27,27 +27,7 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
 ??? 参考代码
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    using std::max;
-    const int N = 100010;
-    int n, a[N];
-    int l[N], r[N];
-    long long ans;
-    int main() {
-      while (scanf("%d", &n) != EOF && n) {
-        ans = 0;
-        for (int i = 1; i <= n; i++) scanf("%d", &a[i]), l[i] = r[i] = i;
-        for (int i = 1; i <= n; i++)
-          while (l[i] > 1 && a[i] <= a[l[i] - 1]) l[i] = l[l[i] - 1];
-        for (int i = n; i >= 1; i--)
-          while (r[i] < n && a[i] <= a[r[i] + 1]) r[i] = r[r[i] + 1];
-        for (int i = 1; i <= n; i++)
-          ans = max(ans, (long long)(r[i] - l[i] + 1) * a[i]);
-        printf("%lld\n", ans);
-      }
-      return 0;
-    }
+    --8<-- "docs/misc/code/hoverline/hoverline_1.cpp"
     ```
 
 ???+note "[UVA1619 感觉不错 Feel Good](https://www.luogu.com.cn/problem/UVA1619)"
@@ -57,41 +37,7 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
 ??? 参考代码
     ```cpp
-    #include <cstdio>
-    #include <cstring>
-    const int N = 100010;
-    int n, a[N], l[N], r[N];
-    long long sum[N];
-    long long ans;
-    int ansl, ansr;
-    bool fir = 1;
-    int main() {
-      while (scanf("%d", &n) != EOF) {
-        memset(a, -1, sizeof(a));
-        if (!fir)
-          printf("\n");
-        else
-          fir = 0;
-        ans = 0;
-        ansl = ansr = 1;
-        for (int i = 1; i <= n; i++) {
-          scanf("%d", &a[i]);
-          sum[i] = sum[i - 1] + a[i];
-          l[i] = r[i] = i;
-        }
-        for (int i = 1; i <= n; i++)
-          while (a[l[i] - 1] >= a[i]) l[i] = l[l[i] - 1];
-        for (int i = n; i >= 1; i--)
-          while (a[r[i] + 1] >= a[i]) r[i] = r[r[i] + 1];
-        for (int i = 1; i <= n; i++) {
-          long long x = a[i] * (sum[r[i]] - sum[l[i] - 1]);
-          if (ans < x || (ans == x && ansr - ansl > r[i] - l[i]))
-            ans = x, ansl = l[i], ansr = r[i];
-        }
-        printf("%lld\n%d %d\n", ans, ansl, ansr);
-      }
-      return 0;
-    }
+    --8<-- "docs/misc/code/hoverline/hoverline_2.cpp"
     ```
 
 ## 最大子矩形
@@ -103,29 +49,7 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
 ??? 参考代码
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    int m, n, a[1010], l[1010], r[1010], ans;
-    int main() {
-      scanf("%d%d", &n, &m);
-      for (int i = 1; i <= n; i++) {
-        char s[3];
-        for (int j = 1; j <= m; j++) {
-          scanf("%s", s);
-          if (s[0] == 'F')
-            a[j]++;
-          else if (s[0] == 'R')
-            a[j] = 0;
-        }
-        for (int j = 1; j <= m; j++)
-          while (a[l[j] - 1] >= a[j]) l[j] = l[l[j] - 1];
-        for (int j = m; j >= 1; j--)
-          while (a[r[j] + 1] >= a[j]) r[j] = r[r[j] + 1];
-        for (int j = 1; j <= m; j++) ans = std::max(ans, (r[j] + l[j] - 1) * a[j]);
-      }
-      printf("%d", ans * 3);
-      return 0;
-    }
+    --8<-- "docs/misc/code/hoverline/hoverline_3.cpp"
     ```
 
 ## 习题

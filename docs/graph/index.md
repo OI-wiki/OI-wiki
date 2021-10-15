@@ -2,4 +2,4 @@
 
 ## 参考资料
 
-<https://zh.wikipedia.org/wiki/图论>
+[图论 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/图论)
