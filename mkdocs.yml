@@ -57,7 +57,11 @@ nav:
       - Xcode: tools/editor/xcode.md
       - GUIDE: tools/editor/guide.md
       - Sublime Text: tools/editor/sublime.md
-    - 评测工具: tools/judgers.md
+    - 评测工具: 
+      - Arbiter: tools/judger/arbiter.md
+      - Cena: tools/judger/cena.md
+      - CCR Plus: tools/judger/ccr-plus.md
+      - Lemon: tools/judger/lemon.md
     - 命令行: tools/cmd.md
     - WSL (Windows 10): tools/wsl.md
     - Special Judge: tools/special-judge.md
