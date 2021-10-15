@@ -60,24 +60,5 @@ $$
 
 ???+ note "核心代码"
     ```cpp
-    void get_biggest() {
-      int j = 3, l = 2, r = 2;
-      double t1, t2, t3, ans = 2e10;
-      for (int i = 1; i <= top; ++i) {
-        while (sqr(sta[i], sta[i + 1], sta[j]) <=
-               sqr(sta[i], sta[i + 1], sta[j % top + 1]))
-          j = j % top + 1;
-        while (dot(sta[i + 1], sta[r % top + 1], sta[i]) >=
-               dot(sta[i + 1], sta[r], sta[i]))
-          r = r % top + 1;
-        if (i == 1) l = r;
-        while (dot(sta[i + 1], sta[l % top + 1], sta[i]) <=
-               dot(sta[i + 1], sta[l], sta[i]))
-          l = l % top + 1;
-        t1 = sqr(sta[i], sta[i + 1], sta[j]);
-        t2 = dot(sta[i + 1], sta[r], sta[i]) + dot(sta[i + 1], sta[l], sta[i]);
-        t3 = dot(sta[i + 1], sta[i + 1], sta[i]);
-        ans = min(ans, t1 * t2 / t3);
-      }
-    }
+    
     ```
