@@ -71,7 +71,7 @@ $$
         temp->lchild = temp->rchild = NULL;
         forest[i] = temp;
       }
-
+    
       for (int i = 1; i < n; i++) {  // n-1 次循环建哈夫曼树
         int minn = -1, minnSub;  // minn 为最小值树根下标，minnsub 为次小值树根下标
         for (int j = 0; j < n; j++) {
