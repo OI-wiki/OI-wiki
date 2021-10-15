@@ -46,8 +46,8 @@ $$
 $$
 \Phi(x)=
 \begin{cases}
-\alpha(n)\times \mathit{rnk}(x)& \mathit{rnk}(x)=0\text{或}x\text{为某棵树的根节点}&\\
-(\alpha(n)-\mathit{level}(x))\times \mathit{rnk}(x)-iter(x)& \mathit{otherwise}&
+\alpha(n)\times \mathit{rnk}(x)& \mathit{rnk}(x)=0\ \text{或}\ x\ \text{为某棵树的根节点}\\
+(\alpha(n)-\mathit{level}(x))\times \mathit{rnk}(x)-iter(x)& \text{otherwise}
 \end{cases}
 $$
 

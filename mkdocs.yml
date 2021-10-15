@@ -305,7 +305,9 @@ nav:
     - 队列: ds/queue.md
     - 链表: ds/linked-list.md
     - 哈希表: ds/hash.md
-    - 并查集: ds/dsu.md
+    - 并查集:
+      - 并查集: ds/dsu.md
+      - 并查集复杂度: ds/dsu-complexity.md
     - 堆:
       - 堆简介: ds/heap.md
       - 二叉堆: ds/binary-heap.md
