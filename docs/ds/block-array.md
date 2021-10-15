@@ -37,15 +37,15 @@ void Sort(int k) {
 }
 void Modify(int l, int r, int c) {
   int x = belong[l], y = belong[r];
-  if (x == y) // 区间在一个块内就直接修改
+  if (x == y)  // 区间在一个块内就直接修改
   {
     for (int i = l; i <= r; i++) a[i] += c;
     Sort(x);
     return;
   }
-  for (int i = l; i <= ed[x]; i++) a[i] += c;  // 直接修改起始段
-  for (int i = st[y]; i <= r; i++) a[i] += c;  // 直接修改结束段
-  for (int i = x + 1; i < y; i++) dlt[i] += c; // 中间的整块打上标记
+  for (int i = l; i <= ed[x]; i++) a[i] += c;   // 直接修改起始段
+  for (int i = st[y]; i <= r; i++) a[i] += c;   // 直接修改结束段
+  for (int i = x + 1; i < y; i++) dlt[i] += c;  // 中间的整块打上标记
   Sort(x);
   Sort(y);
 }
@@ -62,7 +62,7 @@ int Answer(int l, int r, int c) {
     if (a[i] + dlt[y] >= c) ans++;
   for (int i = x + 1; i <= y - 1; i++)
     ans += ed[i] - (lower_bound(t + st[i], t + ed[i] + 1, c - dlt[i]) - t) + 1;
-    // 用 lower_bound 找出中间每一个整块中第一个大于等于 c 的数的位置
+  // 用 lower_bound 找出中间每一个整块中第一个大于等于 c 的数的位置
   return ans;
 }
 ```
@@ -82,7 +82,7 @@ void Sort(int k) {
   sort(t + st[k], t + ed[k] + 1);
 }
 void PushDown(int x) {
-  if (dlt[x] != 0x3f3f3f3f3f3f3f3fll) // 用该值标记块内没有被整体赋值
+  if (dlt[x] != 0x3f3f3f3f3f3f3f3fll)  // 用该值标记块内没有被整体赋值
     for (int i = st[x]; i <= ed[x]; i++) a[i] = t[i] = dlt[x];
   dlt[x] = 0x3f3f3f3f3f3f3f3fll;
 }
