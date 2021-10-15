@@ -86,18 +86,19 @@ string findLongestWord(string s, vector<string>& dictionary) {
 
 ```cpp
 vector<int> twoSum(vector<int>& numbers, int target) {
-    int r=numbers.size()-1,l=0;
-    vector<int> ans;
-    ans.clear();
-    while(l<r){
-        if(numbers[l]+numbers[r]>target)r--;
-        else if(numbers[l]+numbers[r]==target){
-            ans.push_back(l+1),ans.push_back(r+1);
-            return ans;
-        }
-        else l++;
-    }
-    return ans;
+  int r = numbers.size() - 1, l = 0;
+  vector<int> ans;
+  ans.clear();
+  while (l < r) {
+    if (numbers[l] + numbers[r] > target)
+      r--;
+    else if (numbers[l] + numbers[r] == target) {
+      ans.push_back(l + 1), ans.push_back(r + 1);
+      return ans;
+    } else
+      l++;
+  }
+  return ans;
 }
 ```
 
