@@ -64,7 +64,7 @@ $$
     Htree createHuffmanTree(int arr[], int n) {
       Htree forest[N];
       Htree root = NULL;
-      for (int i = 0; i < n; i++) {  //将所有点存入森林
+      for (int i = 0; i < n; i++) {  // 将所有点存入森林
         Htree temp;
         temp = (Htree)malloc(sizeof(HNode));
         temp->weight = arr[i];
@@ -72,8 +72,8 @@ $$
         forest[i] = temp;
       }
 
-      for (int i = 1; i < n; i++) {  // n-1次循环建哈夫曼树
-        int minn = -1, minnSub;  // minn为最小值树根下标,minnsub为次小值树根下标
+      for (int i = 1; i < n; i++) {  // n-1 次循环建哈夫曼树
+        int minn = -1, minnSub;  // minn 为最小值树根下标，minnsub 为次小值树根下标
         for (int j = 0; j < n; j++) {
           if (forest[j] != NULL && minn == -1) {
             minn = j;
@@ -85,7 +85,7 @@ $$
           }
         }
     
-        for (int j = minnSub; j < n; j++) {  //根据minn与minnSub赋值
+        for (int j = minnSub; j < n; j++) {  // 根据 minn 与 minnSub 赋值
           if (forest[j] != NULL) {
             if (forest[j]->weight < forest[minn]->weight) {
               minnSub = minn;
@@ -96,14 +96,14 @@ $$
           }
         }
     
-        //建新树
+        // 建新树
         root = (Htree)malloc(sizeof(HNode));
         root->weight = forest[minn]->weight + forest[minnSub]->weight;
         root->lchild = forest[minn];
         root->rchild = forest[minnSub];
     
-        forest[minn] = root;     //指向新树的指针赋给minn位置
-        forest[minnSub] = NULL;  // minnSub位置为空
+        forest[minn] = root;     //指向新树的指针赋给 minn 位置
+        forest[minnSub] = NULL;  // minnSub 位置为空
       }
       return root;
     }
@@ -115,11 +115,11 @@ $$
       int weight;
       HNode *lchild, *rchild;
     } * Htree;
-    int getWPL(Htree root, int len) {  //递归实现，对于已经建好的霍夫曼树，求WPL
+    int getWPL(Htree root, int len) {  //递归实现，对于已经建好的霍夫曼树，求 WPL
       if (root == NULL)
         return 0;
       else {
-        if (root->lchild == NULL && root->rchild == NULL)  //叶节点
+        if (root->lchild == NULL && root->rchild == NULL)  // 叶节点
           return root->weight * len;
         else {
           int left = getWPL(root->lchild, len + 1);
@@ -132,8 +132,8 @@ $$
 
 ??? note "对于未建好的霍夫曼树，直接求其 WPL"
     ```C++
-    int getWPL(int arr[], int n) {  //对于未建好的霍夫曼树，直接求其WPL
-      priority_queue<int, vector<int>, greater<int>> huffman;  //小根堆
+    int getWPL(int arr[], int n) {  // 对于未建好的霍夫曼树，直接求其 WPL
+      priority_queue<int, vector<int>, greater<int>> huffman;  // 小根堆
       for (int i = 0; i < n; i++) huffman.push(arr[i]);
     
       int res = 0;
@@ -156,7 +156,7 @@ $$
       int weight;
       HNode *lchild, *rchild;
     } * Htree;
-    void huffmanCoding(Htree root, int len, int arr[]) {  //计算霍夫曼编码
+    void huffmanCoding(Htree root, int len, int arr[]) {  // 计算霍夫曼编码
       if (root != NULL) {
         if (root->lchild == NULL && root->rchild == NULL) {
           printf("结点为 %d 的字符的编码为: ", root->weight);
