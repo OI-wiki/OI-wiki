@@ -86,6 +86,22 @@ author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marc
 
 该做法的时间复杂度为 $O(n^2)$。
 
+```cpp
+// C++ Version
+int a[MAXN];
+int dp() {
+  int now = 1, ans = 1;
+  for (int i = 2; i <= n; i++) {
+    if (a[i] >= a[i - 1])
+      now++;
+    else
+      now = 1;
+    ans = max(now, ans);
+  }
+  return ans;
+}
+```
+
 ```python
 # Python Version
 a = [0] * MAXN
