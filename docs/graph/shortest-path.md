@@ -48,6 +48,7 @@
 上面两行都显然是对的，所以说这个做法空间是 $O(N^3)$，我们需要依次增加问题规模（$k$ 从 $1$ 到 $n$），判断任意两点在当前问题规模下的最短路。
 
 ```cpp
+// C++ Version
 for (k = 1; k <= n; k++) {
   for (x = 1; x <= n; x++) {
     for (y = 1; y <= n; y++) {
@@ -57,16 +58,25 @@ for (k = 1; k <= n; k++) {
 }
 ```
 
+```python
+# Python Version
+for k in range(1, n):
+    for x in range(1, n):
+        for y in range(1, n):
+            f[k][x][y] = min(f[k - 1][x][y], f[k - 1][x][k] + f[k - 1][k][y])
+```
+
 因为第一维对结果无影响，我们可以发现数组的第一维是可以省略的，于是可以直接改成 `f[x][y] = min(f[x][y], f[x][k]+f[k][y])`。
 
 ???+ note "证明第一维对结果无影响"
     我们注意到如果放在一个给定第一维 `k` 二维数组中，`f[x][k]` 与 `f[k][y]` 在某一行和某一列。而 `f[x][y]` 则是该行和该列的交叉点上的元素。
     
-    现在我们需要证明将 `f[k][x][y]` 直接在原地更改也不会更改它的结果：我们注意到 `f[k][x][y]` 的涵义是第一维为 `k-1` 这一行和这一列的所有元素的最小值，包含了 `f[k-1][i][j]`，那么我在原地进行更改也不会改变最小值的值，因为如果将该三维矩阵压缩为二维，则所求结果 `f[x][y]` 一开始即为原 `f[k-1][x][y]` 的值，最后依然会成为该行和该列的最小值。
+    现在我们需要证明将 `f[k][x][y]` 直接在原地更改也不会更改它的结果：我们注意到 `f[k][x][y]` 的涵义是第一维为 `k-1` 这一行和这一列的所有元素的最小值，包含了 `f[k-1][x][y]`，那么我在原地进行更改也不会改变最小值的值，因为如果将该三维矩阵压缩为二维，则所求结果 `f[x][y]` 一开始即为原 `f[k-1][x][y]` 的值，最后依然会成为该行和该列的最小值。
     
     故可以压缩。
 
 ```cpp
+// C++ Version
 for (k = 1; k <= n; k++) {
   for (x = 1; x <= n; x++) {
     for (y = 1; y <= n; y++) {
@@ -74,6 +84,14 @@ for (k = 1; k <= n; k++) {
     }
   }
 }
+```
+
+```python
+# Python Version
+for k in range(1, n):
+    for x in range(1, n):
+        for y in range(1, n):
+            f[x][y] = min(f[x][y], f[x][k] + f[k][y])
 ```
 
 综上时间复杂度是 $O(N^3)$，空间复杂度是 $O(N^2)$。
@@ -142,6 +160,7 @@ Bellman-Ford 算法所做的，就是不断尝试对图上每一条边进行松�
 
 ??? note "参考实现"
     ```cpp
+    // C++ Version
     struct edge {
       int v, w;
     };
@@ -169,6 +188,31 @@ Bellman-Ford 算法所做的，就是不断尝试对图上每一条边进行松�
       return flag;
     }
     ```
+    
+    ```python
+    # Python Version
+    class Edge:
+        v = 0
+        w = 0
+    
+    e = [[Edge() for i in range(maxn)] for j in range(maxn)]
+    dis = [63] * maxn
+    
+    def bellmanford(n, s):
+        dis[s] = 0
+        for i in range(1, n + 1):
+            flag = False
+            for u in range(1, n + 1):
+                for ed in e[u]:
+                    v = ed.v; w = ed.w
+                    if dis[v] > dis[u] + w:
+                        flag = True
+            # 没有可以松弛的边时就停止算法
+            if flag == False:
+                break
+        # 第 n 轮循环仍然可以松弛时说明 s 点可以抵达一个负环
+        return flag
+    ```
 
 ### 队列优化：SPFA
 
@@ -184,6 +228,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
 
 ??? note "参考实现"
     ```cpp
+    // C++ Version
     struct edge {
       int v, w;
     };
@@ -211,6 +256,35 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
       }
       return true;
     }
+    ```
+    
+    ```python
+    # Python Version
+    class Edge:
+        v = 0
+        w = 0
+    
+    e = [[Edge() for i in range(maxn)] for j in range(maxn)]
+    dis = [63] * maxn; cnt = [] * maxn; vis = [] * maxn
+    
+    q = []
+    def spfa(n, s):
+        dis[s] = 0; vis[s] = 1
+        q.append(s)
+        while len(q) != 0:
+            u = q[0]
+            q.pop(); vis[u] = 0
+            for ed in e[u]:
+                if dis[v] > dis[u] + w:
+                    dis[v] = dis[u] + w
+                    cnt[v] = cnt[u] + 1 # 记录最短路经过的边数
+                    if cnt[v] >= n:
+                        return False
+                    # 在不经过负环的情况下，最短路至多经过 n - 1 条边
+                    # 因此如果经过了多于 n 条边，一定说明经过了负环
+                    if vis[v] == True:
+                        q.append(v)
+                        vis[v] = True
     ```
 
 虽然在大多数情况下 SPFA 跑得很快，但其最坏情况下的时间复杂度为 $O(nm)$，将其卡到这个复杂度也是不难的，所以考试时要谨慎使用（在没有负权边时最好使用 Dijkstra 算法，在有负权边且题目中的图没有特殊性质时，若 SPFA 是标算的一部分，题目不应当给出 Bellman-Ford 算法无法通过的数据范围）。
@@ -283,6 +357,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
 
 ???+note "暴力实现"
     ```cpp
+    // C++ Version
     struct edge {
       int v, w;
     };
@@ -302,6 +377,27 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
         }
       }
     }
+    ```
+    
+    ```python
+    # Python Version
+    class Edge:
+        v = 0
+        w = 0
+    e = [[Edge() for i in range(maxn)] for j in range(maxn)]
+    dis = [63] * maxn; vis = [] * maxn
+    def dijkstra(n, s):
+        dis[s] = 0
+        for i in range(1, n + 1):
+            u = 0; mind = 0x3f3f3f3f
+            for j in range(1, n + 1):
+                if vis[j] == False and dis[v] < mind:
+                    u = j; mind = dis[j]
+            vis[u] = True
+            for ed in e[u]:
+                v = ed.v; w = ed.w
+                if dis[v] > dis[u] + w:
+                    dis[v] = dis[u] + w
     ```
 
 ???+note "优先队列实现"
@@ -411,8 +507,8 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 | 最短路算法    | Floyd      | Bellman-Ford | Dijkstra     | Johnson       |
 | -------- | ---------- | ------------ | ------------ | ------------- |
 | 最短路类型    | 每对结点之间的最短路 | 单源最短路        | 单源最短路        | 每对结点之间的最短路    |
-| 作用于      | 没有负环的图     | 任意图          | 非负权图         | 没有负环的图        |
-| 能否检测负环？  | 能          | 能            | 不能           | 不能            |
+| 作用于      | 任意图        | 任意图          | 非负权图         | 任意图           |
+| 能否检测负环？  | 能          | 能            | 不能           | 能             |
 | 推荐作用图的大小 | 小          | 中/小          | 大/中          | 大/中           |
 | 时间复杂度    | $O(N^3)$   | $O(NM)$      | $O(M\log M)$ | $O(NM\log M)$ |
 

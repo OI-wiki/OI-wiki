@@ -53,6 +53,7 @@ $$
 首先我们可以直接按照上述递归方法实现：
 
 ```cpp
+// C++ Version
 long long binpow(long long a, long long b) {
   if (b == 0) return 1;
   long long res = binpow(a, b / 2);
@@ -63,9 +64,22 @@ long long binpow(long long a, long long b) {
 }
 ```
 
+```python
+# Python Version
+def binpow(a, b):
+    if b == 0:
+        return 1
+    res = binpow(a, b // 2)
+    if (b % 2) == 1:
+        return res * res * a
+    else:
+        return res * res
+```
+
 第二种实现方法是非递归式的。它在循环的过程中将二进制位为 1 时对应的幂累乘到答案中。尽管两者的理论复杂度是相同的，但第二种在实践过程中的速度是比第一种更快的，因为递归会花费一定的开销。
 
 ```cpp
+// C++ Version
 long long binpow(long long a, long long b) {
   long long res = 1;
   while (b > 0) {
@@ -75,6 +89,18 @@ long long binpow(long long a, long long b) {
   }
   return res;
 }
+```
+
+```python
+# Python Version
+def binpow(a, b):
+    res = 1
+    while b > 0:
+        if (b & 1):
+            res = res * a
+        a = a * a
+        b >>= 1
+    return res
 ```
 
 模板：[Luogu P1226](https://www.luogu.com.cn/problem/P1226)
@@ -91,6 +117,7 @@ long long binpow(long long a, long long b) {
 既然我们知道取模的运算不会干涉乘法运算，因此我们只需要在计算的过程中取模即可。
 
 ```cpp
+// C++ Version
 long long binpow(long long a, long long b, long long m) {
   a %= m;
   long long res = 1;
@@ -101,6 +128,19 @@ long long binpow(long long a, long long b, long long m) {
   }
   return res;
 }
+```
+
+```python
+# Python Version
+def binpow(a, b, m):
+    a = a % m
+    res = 1
+    while b > 0:
+        if (b & 1):
+            res = res * a % m
+        a = a * a % m
+        b >>= 1
+    return res
 ```
 
 注意：根据费马小定理，如果 $m$ 是一个质数，我们可以计算 $x^{n\bmod (m-1)}$ 来加速算法过程。
@@ -239,9 +279,9 @@ $$
 
 于是在算出 $\left\lfloor\dfrac{ab}m\right\rfloor$ 后，两边的乘法和中间的减法部分都可以使用 `unsigned long long` 直接计算，现在我们只需要解决如何计算 $\left\lfloor\dfrac {ab}m\right\rfloor$。
 
-我们考虑先使用 `long double` 算出 $\dfrac ap$ 再乘上 $b$。
+我们考虑先使用 `long double` 算出 $\dfrac am$ 再乘上 $b$。
 
-既然使用了 `long double`，就无疑会有进度误差。极端情况就是第一个有效数字在小数点后一位。因为 `sizeof(long double)=16`，即 `long double` 的进度是 $64$ 位有效数字。所以 $\dfrac ap$ 从第 $65$ 位开始出错，误差范围为 $\left(-2^{-64},2^{64}\right)$。乘上 $b$ 这个 $64$ 位整数，误差范围为 $(-0.5,0.5)$，再加上 $0.5$ 误差范围为 $(0,1)$，取整后误差范围位 $\{0,1\}$。于是乘上 $-m$ 后，误差范围变成 $\{0,-m\}$，我们需要判断这两种情况。
+既然使用了 `long double`，就无疑会有精度误差。极端情况就是第一个有效数字（二进制下）在小数点后一位。在 `x86-64` 机器下，`long double` 将被解释成 $80$ 位拓展小数（即符号为 $1$ 位，指数为 $15$ 位，尾数为 $64$ 位），所以 `long double` 最多能精确表示的有效位数为 $64$[^note1]。所以 $\dfrac am$ 最差从第 $65$ 位开始出错，误差范围为 $\left(-2^{-64},2^{64}\right)$。乘上 $b$ 这个 $64$ 位整数，误差范围为 $(-0.5,0.5)$，再加上 $0.5$ 误差范围为 $(0,1)$，取整后误差范围位 $\{0,1\}$。于是乘上 $-m$ 后，误差范围变成 $\{0,-m\}$，我们需要判断这两种情况。
 
 因为 $m$ 在 `long long` 范围内，所以如果计算结果 $r$ 在 $[0,m)$ 时，直接返回 $r$，否则返回 $r+m$，当然你也可以直接返回 $(r+m)\bmod m$。
 
@@ -306,3 +346,7 @@ long long binmul(long long a, long long b, long long m) {
 -   [SPOJ - Just add it](http://www.spoj.com/problems/ZSUM/)
 
     **本页面部分内容译自博文 [Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow) 与其英文翻译版 [Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+
+## 参考资料与注释
+
+[^note1]: 参见 [C 语言小数表示法 - 维基百科](https://en.wikipedia.org/wiki/Double-precision_floating-point_format)

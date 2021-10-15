@@ -8,7 +8,7 @@ author: AndrewWayne, GavinZhengOI, ChungZH, henryrabbit, Xeonacid, sshwy, Yukima
 
 离散傅里叶变换（Discrete Fourier Transform，缩写为 DFT），是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DTFT 的频域采样。
 
-FFT 是一种高效实现 DFT 的算法，称为快速傅立叶变换（Fast Fourier Transform，FFT）。它对傅里叶变换的理论并没有新的发现，但是对于在计算机系统或者说数字系统中应用离散傅立叶变换，可以说是进了一大步。快速数论变换 (NTT) 是快速傅里叶变换（FFT）在数论基础上的实现。
+FFT 是一种高效实现 DFT 的算法，称为 **快速傅立叶变换**（Fast Fourier Transform，FFT）。它对傅里叶变换的理论并没有新的发现，但是对于在计算机系统或者说数字系统中应用离散傅立叶变换，可以说是进了一大步。快速数论变换 (NTT) 是快速傅里叶变换（FFT）在数论基础上的实现。
 
 在 1965 年，Cooley 和 Tukey 发表了快速傅里叶变换算法。事实上 FFT 早在这之前就被发现过了，但是在当时现代计算机并未问世，人们没有意识到 FFT 的重要性。一些调查者认为 FFT 是由 Runge 和 König 在 1924 年发现的。但事实上高斯早在 1805 年就发明了这个算法，但一直没有发表。
 
@@ -19,7 +19,7 @@ FFT 是一种高效实现 DFT 的算法，称为快速傅立叶变换（Fast Fou
 系数表示法就是用一个多项式的各个项系数来表达这个多项式，即使用一个系数序列来表示多项式：
 
 $$
-f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \Leftrightarrow f(x) = \{a_0, a_1, \cdots,a_{n}\}
+f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \iff f(x) = \{a_0, a_1, \cdots,a_{n}\}
 $$
 
 ### 点值表示法
@@ -44,7 +44,7 @@ $$
 那么用点值表示法表示 $f(x)$ 如下
 
 $$
-f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \Leftrightarrow f(x) = \{(x_0,y_0),(x_1,y_1), \cdots,(x_n,y_{n})\}
+f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \iff f(x) = \{(x_0,y_0),(x_1,y_1), \cdots,(x_n,y_{n})\}
 $$
 
 通俗地说，多项式由系数表示法转为点值表示法的过程，就是 DFT 的过程。相对地，把一个多项式的点值表示法转化为系数表示法的过程，就是 IDFT。而 FFT 就是通过取某些特殊的 $x$ 的点值来加速 DFT 和 IDFT 的过程。

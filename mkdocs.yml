@@ -56,7 +56,7 @@ nav:
       - Geany: tools/editor/geany.md
       - Xcode: tools/editor/xcode.md
       - GUIDE: tools/editor/guide.md
-      - Sublime Text 3: tools/editor/sublime3.md
+      - Sublime Text: tools/editor/sublime.md
     - 评测工具: tools/judgers.md
     - 命令行: tools/cmd.md
     - WSL (Windows 10): tools/wsl.md
@@ -154,6 +154,7 @@ nav:
     - IDA*: search/idastar.md
     - 回溯法: search/backtracking.md
     - Dancing Links: search/dlx.md
+    - Alpha-Beta 剪枝: search/alpha-beta.md
     - 优化: search/opt.md
   - 动态规划:
     - 动态规划部分简介: dp/index.md
@@ -212,26 +213,30 @@ nav:
     - 数论:
       - 数论基础: math/number-theory/basic.md
       - 素数: math/number-theory/prime.md
-      - Meissel-Lehmer 算法: math/number-theory/meissel-lehmer.md
       - 最大公约数: math/number-theory/gcd.md
+      - 数论分块: math/number-theory/sqrt-decomposition.md
       - 欧拉函数: math/number-theory/euler.md
       - 筛法: math/number-theory/sieve.md
-      - 欧拉定理 & 费马小定理: math/number-theory/fermat.md
-      - 类欧几里德算法: math/number-theory/euclidean.md
+      - Meissel-Lehmer 算法: math/number-theory/meissel-lehmer.md
+      - 分解质因数: math/number-theory/pollard-rho.md
       - 裴蜀定理: math/number-theory/bezouts.md
+      - 类欧几里德算法: math/number-theory/euclidean.md
+      - 欧拉定理 & 费马小定理: math/number-theory/fermat.md
       - 乘法逆元: math/number-theory/inverse.md
       - 线性同余方程: math/number-theory/linear-equation.md
       - 中国剩余定理: math/number-theory/crt.md
-      - 二次剩余: math/number-theory/quad-residue.md
-      - BSGS: math/number-theory/bsgs.md
-      - 原根: math/number-theory/primitive-root.md
+      - 威尔逊定理: math/number-theory/wilson.md
+      - 升幂定理: math/number-theory/lift-the-exponent.md
       - 卢卡斯定理: math/number-theory/lucas.md
+      - 二次剩余: math/number-theory/quad-residue.md
+      - 拉格朗日定理: math/number-theory/lagrange.md
+      - 原根: math/number-theory/primitive-root.md
+      - BSGS: math/number-theory/bsgs.md
       - 莫比乌斯反演: math/number-theory/mobius.md
       - 杜教筛: math/number-theory/du.md
       - Powerful Number 筛: math/number-theory/powerful-number.md
       - Min_25 筛: math/number-theory/min-25.md
       - 洲阁筛: math/number-theory/zhou.md
-      - 分解质因数: math/number-theory/pollard-rho.md
       - 连分数: math/number-theory/continued-fraction.md
       - Stern-Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - Pell 方程: math/number-theory/pell-equation.md
@@ -251,6 +256,7 @@ nav:
       - 多项式三角函数: math/poly/tri-func.md
       - 多项式反三角函数: math/poly/inv-tri-func.md
       - 常系数齐次线性递推: math/linear-recurrence.md
+      - 多项式平移|连续点值平移: math/poly/shift.md
     - 生成函数:
       - 生成函数简介: math/gen-func/intro.md
       - 普通生成函数: math/gen-func/ogf.md
@@ -276,8 +282,10 @@ nav:
       - 抽屉原理: math/combinatorics/drawer-principle.md
       - Eulerian Number: math/combinatorics/eulerian.md
       - 分拆数: math/combinatorics/partition.md
+    - 群论:
+      - 群论简介:  math/group-theory.md
+      - 置换群: math/permutation-group.md
     - 概率初步: math/expectation.md
-    - 置换群: math/permutation-group.md
     - 斐波那契数列: math/fibonacci.md
     - 博弈论: math/game-theory.md
     - 牛顿迭代法: math/newton.md
@@ -286,6 +294,7 @@ nav:
     - 傅里叶-莫茨金消元法: math/fourier-motzkin-elimination.md
     - 序理论: math/order-theory.md
     - 杨氏矩阵: math/young-tableau.md
+    - Schreier–Sims 算法: math/schreier-sims.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
     - 栈: ds/stack.md
@@ -345,6 +354,7 @@ nav:
     - 析合树: ds/divide-combine.md
     - PQ 树: ds/pq-tree.md
     - 手指树: ds/finger-tree.md
+    - 霍夫曼树: ds/huffman-tree.md
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论相关概念: graph/concept.md
@@ -449,6 +459,7 @@ nav:
     - 在一台机器上规划任务: misc/job-order.md
     - 主元素问题: misc/main-element.md
     - Garsia-Wachs 算法: misc/garsia-wachs.md
+    - 15-puzzle: misc/15-puzzle.md
   - 专题:
     - RMQ: topic/rmq.md
     - 并查集应用: topic/dsu-app.md

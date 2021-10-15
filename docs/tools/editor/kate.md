@@ -170,6 +170,12 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 
 打开任意源文件，在外部工具里找到 `用 xxx 格式化`，点击即可。另外，对于 C/C++ 语言的源文件，`clang-format` 可格式化选中的文本。
 
+### Git Blame
+
+要启用该特性，需要前往菜单栏中 `设置`→`配置 Kate` 然后选择 `插件` 中 `Git Blame`。
+
+启用该特性后，Kate 会在每一行后面以较浅字体显示在 Git 中最后于什么时间被谁修改，将鼠标移动到文字上会出现一个悬浮窗显示 commit 的具体信息。
+
 ## 相关外部链接
 
 - [The Kate Handbook](https://docs.kde.org/stable5/en/kate/kate/kate.pdf)

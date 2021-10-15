@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Partially created with Inkscape (http://www.inkscape.org/) -->
+<!-- Edited and animated with text editor -->
+<svg width="576" height="420" version="1.1" viewBox="0 0 576 420"
+	xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<marker id="TriangleOutM" overflow="visible" orient="auto">
+			<path transform="scale(.4)" d="m5.77 0-8.65 5v-10l8.65 5z"
+				fill="context-stroke" fill-rule="evenodd" 
+				stroke="context-stroke" stroke-width="1pt"/>
+		</marker>
+	</defs>
+	<g id="colored" stroke="none">
+		<rect x="120" y="244" width="180" height="64" fill="yellow">
+			<animate attributeName="height" dur="7s" repeatCount="indefinite"
+				values="0;0;64;64" keyTimes="0;0.142857;0.285714;1"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"/>
+			<animate attributeName="y" dur="7s" repeatCount="indefinite"
+				values="308;308;244;244" keyTimes="0;0.142857;0.285714;1"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"/>
+		</rect>
+		<rect x="120" y="203" width="250" height="41" fill="aqua">
+			<animate attributeName="height" dur="7s" repeatCount="indefinite"
+				values="0;0;41;41" keyTimes="0;0.285714;0.428571;1"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"/>
+			<animate attributeName="y" dur="7s" repeatCount="indefinite"
+				values="244;244;203;203" keyTimes="0;0.285714;0.428571;1"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"/>
+		</rect>
+		<rect x="120" y="180" width="320" height="23" fill="#ff80ff">
+			<animate attributeName="height" dur="7s" repeatCount="indefinite"
+				values="0;0;23;23" keyTimes="0;0.428571;0.571429;1"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"/>
+			<animate attributeName="y" dur="7s" repeatCount="indefinite"
+				values="203;203;180;180" keyTimes="0;0.428571;0.571429;1"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"/>
+		</rect>
+		<rect x="190" y="116" width="250" height="64" fill="aqua">
+			<animate attributeName="height" dur="7s" repeatCount="indefinite"
+				values="0;0;64;64" keyTimes="0;0.571429;0.714286;1"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"/>
+			<animate attributeName="y" dur="7s" repeatCount="indefinite"
+				values="180;180;116;116" keyTimes="0;0.571429;0.714286;1"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"/>
+		</rect>
+		<rect x="260" y="75" width="180" height="41" fill="yellow">
+			<animate attributeName="height" dur="7s" repeatCount="indefinite"
+				values="0;0;41;41" keyTimes="0;0.714286;0.857143;1"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"/>
+			<animate attributeName="y" dur="7s" repeatCount="indefinite"
+				values="116;116;75;75" keyTimes="0;0.714286;0.857143;1"
+				calcMode="spline"
+				keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1"/>
+		</rect>
+		<animate attributeName="fill-opacity" dur="7s"
+			repeatCount="indefinite" values="1;1;0"
+			keyTimes="0;0.857143;1"/>
+	</g>
+	<g id="references" fill="none" stroke="#000" stroke-width="1">
+		<path d="m120.5 352V180.5"/>
+		<path d="m190.5 352V116.5"/>
+		<path d="m260.5 352V75.5"/>
+		<path d="m300.5 352V180.5"/>
+		<path d="m370.5 352V116.5"/>
+		<path d="m440.5 352V75.5"/>
+	</g>
+	<g id="rectangles" fill="none" stroke="#000" stroke-width="3">
+		<rect x="120.5" y="180.5" width="180" height="128"/>
+		<rect x="190.5" y="116.5" width="180" height="128"/>
+		<rect x="260.5" y="75.5" width="180" height="128"/>
+	</g>
+	<path d="m32 0h512" stroke-width="2" stroke="red"
+		transform="translate(0 75)">
+		<animateTransform type="translate" dur="7s" repeatCount="indefinite"
+			values="0 351;0 308.5;0 244.5; 0 203.5;0 180.5;0 116.5;
+				0 75.5; 0 75.5"
+			calcMode="spline"
+			keySplines="0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0 0.5 1;
+				0.5 0 0.5 1; 0.5 0 0.5 1; 0.5 0.5 0.5 0.5"
+			attributeName="transform"/>
+		<animate attributeName="stroke-opacity" dur="7s"
+			repeatCount="indefinite" values="1;1;0" keyTimes="0;0.857143;1"/>
+	</path>
+	<g id="axes" fill="none" stroke="#000" stroke-width="2">
+		<path d="m33 352v-320" marker-end="url(#TriangleOutM)"/>
+		<path d="m32 351h512" marker-end="url(#TriangleOutM)"/>
+	</g>
+	<g id="labels" font-family="'Times New Roman', serif"
+		font-size="16px" style="text-align:center" text-anchor="middle">
+		<text x="528" y="368" font-style="italic"
+			style="line-height:1.25" xml:space="preserve">x</text>
+		<text x="20" y="48" font-style="italic"
+			style="line-height:1.25" xml:space="preserve">y</text>
+		<text x="20" y="400" font-style="italic"
+			style="line-height:1.25" xml:space="preserve">cnt</text>
+		<text x="155" y="376" style="line-height:1.25"
+			xml:space="preserve">1</text>
+		<text x="225" y="376" style="line-height:1.25"
+			xml:space="preserve">2</text>
+		<text x="280" y="376" style="line-height:1.25"
+			xml:space="preserve">3</text>
+		<text x="335" y="376" style="line-height:1.25"
+			xml:space="preserve">4</text>
+		<text x="405" y="376" style="line-height:1.25"
+			xml:space="preserve">5</text>
+	</g>
+	<g id="counts" font-family="'Times New Roman', serif"
+		font-size="16px" style="text-align:center" text-anchor="middle">
+		<g display="inline">
+		<text x="155" y="400" style="line-height:1.25"
+			xml:space="preserve">0</text>
+		<animate attributeName="display" repeatCount="indefinite" dur="7s" keyTimes="0;0.142857;0.571429;1" values="inline;none;inline;inline" />
+		</g>
+		<g display="none">
+		<text x="155" y="400" style="line-height:1.25"
+			xml:space="preserve">1</text>
+		<animate attributeName="display" repeatCount="indefinite" dur="7s" keyTimes="0;0.142857;0.571429;1" values="none;inline;none;none" />
+		</g>
+
+		<g display="inline">
+		<text x="225" y="400" style="line-height:1.25"
+			xml:space="preserve">0</text>
+			<animate attributeName="display" repeatCount="indefinite" dur="7s" keyTimes="0;0.142857;0.714286;1" values="inline;none;inline;inline" />
+		</g>
+		<g display="none">
+		<text x="225" y="400" style="line-height:1.25"
+			xml:space="preserve">1</text>
+			<animate attributeName="display" repeatCount="indefinite" dur="7s" keyTimes="0;0.142857;0.285714;0.571429;0.714286;1" values="none;inline;none;inline;none;none" />
+		</g>
+		<g display="none">
+		<text x="225" y="400" style="line-height:1.25"
+			xml:space="preserve">2</text>
+			<animate attributeName="display" repeatCount="indefinite" dur="7s" keyTimes="0;0.285714;0.571429;1" values="none;inline;none;none" />
+		</g>
+
+		<g display="inline">
+		<text x="280" y="400" style="line-height:1.25"
+			xml:space="preserve">0</text>
+			<animate attributeName="display" repeatCount="indefinite" dur="7s" keyTimes="0;0.142857;0.857143;1" values="inline;none;inline;inline" />
+		</g>
+		<g display="none">
+		<text x="280" y="400" style="line-height:1.25"
+			xml:space="preserve">1</text>
+			<animate attributeName="display" repeatCount="indefinite" dur="7s" keyTimes="0;0.142857;0.285714;0.714286;0.857143;1" values="none;inline;none;inline;none;none" />
+		</g>
+		<g display="none">
+		<text x="280" y="400" style="line-height:1.25"
+			xml:space="preserve">2</text>
+			<animate attributeName="display" repeatCount="indefinite" dur="7s" keyTimes="0;0.285714;0.428571;0.571429;0.714286;1" values="none;inline;none;inline;none;none" />
+		</g>
+		<g display="none">
+		<text x="280" y="400" style="line-height:1.25"
+			xml:space="preserve">3</text>
+			<animate attributeName="display" repeatCount="indefinite" dur="7s" keyTimes="0;0.428571;0.571429;1" values="none;inline;none;none" />
+		</g>
+
+		<g display="inline">
+		<text x="335" y="400" style="line-height:1.25"
+			xml:space="preserve">0</text>
+			<animate attributeName="display" repeatCount="indefinite" dur="7s" keyTimes="0;0.285714;0.857143;1" values="inline;none;inline;inline" />
+		</g>
+		<g display="none">
+		<text x="335" y="400" style="line-height:1.25"
+			xml:space="preserve">1</text>
+			<animate attributeName="display" repeatCount="indefinite" dur="7s" keyTimes="0;0.285714;0.428571;0.714286;0.857143;1" values="none;inline;none;inline;none;none" />
+		</g>
+		<g display="none">
+		<text x="335" y="400" style="line-height:1.25"
+			xml:space="preserve">2</text>
+			<animate attributeName="display" repeatCount="indefinite" dur="7s" keyTimes="0;0.428571;0.714286;1" values="none;inline;none;none" />
+		</g>
+
+		<g display="inline">
+		<text x="405" y="400" style="line-height:1.25"
+			xml:space="preserve">0</text>
+		<animate attributeName="display" repeatCount="indefinite" dur="7s" keyTimes="0;0.428571;0.857143;1" values="inline;none;inline;inline" />
+		</g>
+		<g display="none">
+		<text x="405" y="400" style="line-height:1.25"
+			xml:space="preserve">1</text>
+		<animate attributeName="display" repeatCount="indefinite" dur="7s" keyTimes="0;0.428571;0.857143;1" values="none;inline;none;none" />
+		</g>
+	</g>
+</svg>
