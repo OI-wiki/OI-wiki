@@ -16,13 +16,13 @@
 
 连接三个以上的点的最短网络
 
-![steiner-tree1](./images/steiner-tree1.png)
+![steiner-tree1](./images/steiner-tree-1.svg)
 
 在第一种情形，解是由五条线段组成的，其中有两个斯坦纳点（红色 $s_1,s_2$），在那里有三条线段相交且相互间的交角为 $120^{\circ}$。第二种情形的解含有三个斯坦纳点。第三种情形，一个或几个斯坦纳点可能退化，或被一个或几个给定的点所代替。
 
 我们将斯坦纳树的问题模型以图论形式呈现。
 
-![steiner-tree2](./images/steiner-tree2.png)
+![steiner-tree2](./images/steiner-tree-2.svg)
 
 对于形式一，如果令关键点为 $\{1,2,3,4\}$，可以发现若直接将这四个关键点相连的最小边权和是 12，显然这不是最优的。如果考虑使用 5 号节点那么最小边权和就会是 9，得到一个更优的答案。
 
@@ -47,72 +47,8 @@
 - 在当前的子集连通状态下进行边的松弛操作，$f(i,S)\leftarrow \min(f(i,S),f(j,S)+w(j,i))$。在下面的代码中用一个 `tree[tot]` 来记录两个相连节点 $i,j$ 的相关信息。
 
 ??? note "参考实现"
-    ```c++
-    #include <bits/stdc++.h>
-    
-    using namespace std;
-    
-    const int maxn = 510;
-    const int INF = 0x3f3f3f3f;
-    typedef pair<int, int> P;
-    int n, m, k;
-    
-    struct edge {
-      int to, next, w;
-    } e[maxn << 1];
-    
-    int head[maxn << 1], tree[maxn << 1], tot;
-    int dp[maxn][5000], vis[maxn];
-    int key[maxn];
-    priority_queue<P, vector<P>, greater<P> > q;
-    
-    void add(int u, int v, int w) {
-      e[++tot] = edge{v, head[u], w};
-      head[u] = tot;
-    }
-    
-    void dijkstra(int s) {
-      memset(vis, 0, sizeof(vis));
-      while (!q.empty()) {
-        P item = q.top();
-        q.pop();
-        if (vis[item.second]) continue;
-        vis[item.second] = 1;
-        for (int i = head[item.second]; i; i = e[i].next) {
-          if (dp[tree[i]][s] > dp[item.second][s] + e[i].w) {
-            dp[tree[i]][s] = dp[item.second][s] + e[i].w;
-            q.push(P(dp[tree[i]][s], tree[i]));
-          }
-        }
-      }
-    }
-    
-    int main() {
-      memset(dp, INF, sizeof(dp));
-      scanf("%d %d %d", &n, &m, &k);
-      int u, v, w;
-      for (int i = 1; i <= m; i++) {
-        scanf("%d %d %d", &u, &v, &w);
-        add(u, v, w);
-        tree[tot] = v;
-        add(v, u, w);
-        tree[tot] = u;
-      }
-      for (int i = 1; i <= k; i++) {
-        scanf("%d", &key[i]);
-        dp[key[i]][1 << (i - 1)] = 0;
-      }
-      for (int s = 1; s < (1 << k); s++) {
-        for (int i = 1; i <= n; i++) {
-          for (int subs = s & (s - 1); subs; subs = s & (subs - 1))
-            dp[i][s] = min(dp[i][s], dp[i][subs] + dp[i][s ^ subs]);
-          if (dp[i][s] != INF) q.push(P(dp[i][s], i));
-        }
-        dijkstra(s);
-      }
-      printf("%d\n", dp[key[1]][(1 << k) - 1]);
-      return 0;
-    }
+    ```cpp
+      --8<-- "docs/graph/code/steiner-tree/steiner-tree_1.cpp"
     ```
 
 另外一道经典例题 [\[WC2008\]游览计划](https://www.luogu.com.cn/problem/P4294)。
@@ -130,100 +66,8 @@
 用 `pre[i][s]` 记录转移到 $i$ 为根，连通状态集合为 $s$ 时的点与集合的信息。在 DP 结束后从 `pre[root][S]` 出发，寻找与集合里的点相连的那些点并逐步分解集合 $S$，用 ans 数组来记录被使用的那些点，当集合分解完毕时搜索也就结束了。
 
 ??? note "参考实现"
-    ```c++
-    #include <bits/stdc++.h>
-    
-    using namespace std;
-    
-    #define mp make_pair
-    typedef pair<int, int> P;
-    typedef pair<P, int> PP;
-    const int INF = 0x3f3f3f3f;
-    const int dx[] = {0, 0, -1, 1};
-    const int dy[] = {1, -1, 0, 0};
-    int n, m, K, root;
-    int f[101][1111], a[101], ans[11][11];
-    bool inq[101];
-    PP pre[101][1111];
-    queue<P> q;
-    
-    bool legal(P u) {
-      if (u.first >= 0 && u.second >= 0 && u.first < n && u.second < m) {
-        return true;
-      }
-      return false;
-    }
-    
-    int num(P u) { return u.first * m + u.second; }
-    
-    void spfa(int s) {
-      memset(inq, 0, sizeof(inq));
-      while (!q.empty()) {
-        P u = q.front();
-        q.pop();
-        inq[num(u)] = 0;
-        for (int d = 0; d < 4; d++) {
-          P v = mp(u.first + dx[d], u.second + dy[d]);
-          int du = num(u), dv = num(v);
-          if (legal(v) && f[dv][s] > f[du][s] + a[dv]) {
-            f[dv][s] = f[du][s] + a[dv];
-            if (!inq[dv]) {
-              inq[dv] = 1;
-              q.push(v);
-            }
-            pre[dv][s] = mp(u, s);
-          }
-        }
-      }
-    }
-    
-    void dfs(P u, int s) {
-      if (!pre[num(u)][s].second) return;
-      ans[u.first][u.second] = 1;
-      int nu = num(u);
-      if (pre[nu][s].first == u) dfs(u, s ^ pre[nu][s].second);
-      dfs(pre[nu][s].first, pre[nu][s].second);
-    }
-    
-    int main() {
-      memset(f, INF, sizeof(f));
-      scanf("%d %d", &n, &m);
-      int tot = 0;
-      for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-          scanf("%d", &a[tot]);
-          if (!a[tot]) {
-            f[tot][1 << (K++)] = 0;
-            root = tot;
-          }
-          tot++;
-        }
-      }
-      for (int s = 1; s < (1 << K); s++) {
-        for (int i = 0; i < n * m; i++) {
-          for (int subs = s & (s - 1); subs; subs = s & (subs - 1)) {
-            if (f[i][s] > f[i][subs] + f[i][s ^ subs] - a[i]) {
-              f[i][s] = f[i][subs] + f[i][s ^ subs] - a[i];
-              pre[i][s] = mp(mp(i / m, i % m), subs);
-            }
-          }
-          if (f[i][s] < INF) q.push(mp(i / m, i % m));
-        }
-        spfa(s);
-      }
-      printf("%d\n", f[root][(1 << K) - 1]);
-      dfs(mp(root / m, root % m), (1 << K) - 1);
-      for (int i = 0, tot = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-          if (!a[tot++])
-            putchar('x');
-          else
-            putchar(ans[i][j] ? 'o' : '_');
-        }
-        if (i != n - 1) printf("\n");
-      }
-      return 0;
-    }
+    ```cpp
+      --8<-- "docs/graph/code/steiner-tree/steiner-tree_2.cpp"
     ```
 
 ## 习题

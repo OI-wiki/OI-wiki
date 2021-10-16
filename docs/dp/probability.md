@@ -19,34 +19,7 @@
 
 ??? note "参考实现"
     ```c++
-    #include <bits/stdc++.h>
-    using namespace std;
-    
-    typedef long long ll;
-    int w, b;
-    double dp[1010][1010];
-    
-    int main() {
-      scanf("%d %d", &w, &b);
-      memset(dp, 0, sizeof(dp));
-      for (int i = 1; i <= w; i++) dp[i][0] = 1;
-      for (int i = 1; i <= b; i++) dp[0][i] = 0;
-      for (int i = 1; i <= w; i++) {
-        for (int j = 1; j <= b; j++) {
-          dp[i][j] += (double)i / (i + j);
-          if (j >= 3) {
-            dp[i][j] += (double)j / (i + j) * (j - 1) / (i + j - 1) * (j - 2) /
-                        (i + j - 2) * dp[i][j - 3];
-          }
-          if (i >= 1 && j >= 2) {
-            dp[i][j] += (double)j / (i + j) * (j - 1) / (i + j - 1) * i /
-                        (i + j - 2) * dp[i - 1][j - 2];
-          }
-        }
-      }
-      printf("%.9lf\n", dp[w][b]);
-      return 0;
-    }
+    --8<-- "docs/dp/code/probability/probability_1.cpp"
     ```
 
 ### 习题
@@ -58,9 +31,9 @@
 ## DP 求期望
 
 ??? note " 例题 [POJ2096 Collecting Bugs](http://poj.org/problem?id=2096)"
-    题目大意：一个软件有 s 个子系统，会产生 n 种 bug。某人一天发现一个 bug，这个 bug 属于某种 bug 分类，也属于某个子系统。每个 bug 属于某个子系统的概率是 $\frac{1}{s}$，属于某种 bug 分类的概率是 $\frac{1}{n}$。求发现 n 种 bug，且 s 个子系统都找到 bug 的期望天数。
+    题目大意：一个软件有 $s$ 个子系统，会产生 $n$ 种 bug。某人一天发现一个 bug，这个 bug 属于某种 bug 分类，也属于某个子系统。每个 bug 属于某个子系统的概率是 $\frac{1}{s}$，属于某种 bug 分类的概率是 $\frac{1}{n}$。求发现 $n$ 种 bug，且 $s$ 个子系统都找到 bug 的期望天数。
 
-令 $f_{i,j}$ 为已经找到 $i$ 种 bug 分类，$j$ 个子系统的 bug，达到目标状态的期望天数。这里的目标状态是找到 $n$ 种 bug 分类，$j$ 个子系统的 bug。那么就有 $f_{n,s}=0$，因为已经达到了目标状态，不需要用更多的天数去发现 bug 了，于是就以目标状态为起点开始递推，答案是 $f_{0,0}$。
+令 $f_{i,j}$ 为已经找到 $i$ 种 bug 分类，$j$ 个子系统的 bug，达到目标状态的期望天数。这里的目标状态是找到 $n$ 种 bug 分类，$s$ 个子系统的 bug。那么就有 $f_{n,s}=0$，因为已经达到了目标状态，不需要用更多的天数去发现 bug 了，于是就以目标状态为起点开始递推，答案是 $f_{0,0}$。
 
 考虑 $f_{i,j}$ 的状态转移：
 
@@ -74,30 +47,13 @@
 $$
 \begin{aligned}
 f_{i,j} &= p_1\cdot f_{i,j}+p_2\cdot f_{i,j+1}+p_3\cdot f_{i+1,j}+p_4\cdot f_{i+1,j+1} + 1\\
-&=(p_2\cdot f_{i,j+1}+p_3\cdot f_{i+1,j}+p_4\cdot f_{i+1,j+1}+1)\cdot(1-p_1)
+&= \frac{p_2\cdot f_{i,j+1}+p_3\cdot f_{i+1,j}+p_4\cdot f_{i+1,j+1}+1}{1-p_1}
 \end{aligned}
 $$
 
 ??? note "参考实现"
     ```c++
-    #include <cstdio>
-    using namespace std;
-    int n, s;
-    double dp[1010][1010];
-    int main() {
-      scanf("%d %d", &n, &s);
-      dp[n][s] = 0;
-      for (int i = n; i >= 0; i--) {
-        for (int j = s; j >= 0; j--) {
-          if (i == n && s == j) continue;
-          dp[i][j] = (dp[i][j + 1] * i * (s - j) + dp[i + 1][j] * (n - i) * j +
-                      dp[i + 1][j + 1] * (n - i) * (s - j) + n * s) /
-                     (n * s - i * j);
-        }
-      }
-      printf("%.4lf\n", dp[0][0]);
-      return 0;
-    }
+    --8<-- "docs/dp/code/probability/probability_2.cpp"
     ```
 
 ??? note "例题 [「NOIP2016」换教室](http://uoj.ac/problem/262)"
@@ -120,60 +76,7 @@ $$
 
 ??? note "参考实现"
     ```c++
-    #include <bits/stdc++.h>
-    
-    using namespace std;
-    
-    const int maxn = 2010;
-    int n, m, v, e;
-    int f[maxn][maxn], c[maxn], d[maxn];
-    double dp[maxn][maxn][2], p[maxn];
-    
-    int main() {
-      scanf("%d %d %d %d", &n, &m, &v, &e);
-      for (int i = 1; i <= n; i++) scanf("%d", &c[i]);
-      for (int i = 1; i <= n; i++) scanf("%d", &d[i]);
-      for (int i = 1; i <= n; i++) scanf("%lf", &p[i]);
-      for (int i = 1; i <= v; i++)
-        for (int j = 1; j < i; j++) f[i][j] = f[j][i] = 1e9;
-    
-      int u, V, w;
-      for (int i = 1; i <= e; i++) {
-        scanf("%d %d %d", &u, &V, &w);
-        f[u][V] = f[V][u] = min(w, f[u][V]);
-      }
-    
-      for (int k = 1; k <= v; k++)
-        for (int i = 1; i <= v; i++)
-          for (int j = 1; j < i; j++)
-            if (f[i][k] + f[k][j] < f[i][j]) f[i][j] = f[j][i] = f[i][k] + f[k][j];
-    
-      for (int i = 1; i <= n; i++)
-        for (int j = 0; j <= m; j++) dp[i][j][0] = dp[i][j][1] = 1e9;
-    
-      dp[1][0][0] = dp[1][1][1] = 0;
-      for (int i = 2; i <= n; i++)
-        for (int j = 0; j <= min(i, m); j++) {
-          dp[i][j][0] = min(dp[i - 1][j][0] + f[c[i - 1]][c[i]],
-                            dp[i - 1][j][1] + f[c[i - 1]][c[i]] * (1 - p[i - 1]) +
-                                f[d[i - 1]][c[i]] * p[i - 1]);
-          if (j != 0) {
-            dp[i][j][1] = min(dp[i - 1][j - 1][0] + f[c[i - 1]][d[i]] * p[i] +
-                                  f[c[i - 1]][c[i]] * (1 - p[i]),
-                              dp[i - 1][j - 1][1] +
-                                  f[c[i - 1]][c[i]] * (1 - p[i - 1]) * (1 - p[i]) +
-                                  f[c[i - 1]][d[i]] * (1 - p[i - 1]) * p[i] +
-                                  f[d[i - 1]][c[i]] * (1 - p[i]) * p[i - 1] +
-                                  f[d[i - 1]][d[i]] * p[i - 1] * p[i]);
-          }
-        }
-    
-      double ans = 1e9;
-      for (int i = 0; i <= m; i++) ans = min(dp[n][i][0], min(dp[n][i][1], ans));
-      printf("%.2lf", ans);
-    
-      return 0;
-    }
+    --8<-- "docs/dp/code/probability/probability_3.cpp"
     ```
 
 比较这两个问题可以发现，DP 求期望题目在对具体是求一个值或是最优化问题上会对方程得到转移方式有一些影响，但无论是 DP 求概率还是 DP 求期望，总是离不开概率知识和列出、化简计算公式的步骤，在写状态转移方程时需要思考的细节也类似。

@@ -1,5 +1,5 @@
 ???+ warning
-    本页面要介绍的不是 [**计数排序**](counting-sort.md)。
+    本页面要介绍的不是 [**计数排序**](./counting-sort.md)。
 
 本页面将简要介绍基数排序。
 
@@ -78,11 +78,54 @@ void counting_sort(int p) {
 
 void radix_sort() {
   for (int i = k; i >= 1; --i) {
-    //借助计数排序完成对关键字的排序
+    // 借助计数排序完成对关键字的排序
     counting_sort(i);
   }
 }
 ```
+
+实际上并非必须从后往前枚举才是稳定排序，只需对 `cnt` 数组进行等价于 `std::exclusive_scan` 的操作即可。
+
+???+ note "例题 [洛谷 P1177 【模板】快速排序](https://www.luogu.com.cn/problem/P1177)"
+    给出 $n$ 个正整数，从小到大输出。
+    
+    ```cpp
+    #include <algorithm>
+    #include <iostream>
+    #include <utility>
+    
+    void radix_sort(int n, int a[]) {
+      int *b = new int[n];  // 临时空间
+      int *cnt = new int[1 << 8];
+      int mask = (1 << 8) - 1;
+      int *x = a, *y = b;
+      for (int i = 0; i < 32; i += 8) {
+        for (int j = 0; j != (1 << 8); ++j) cnt[j] = 0;
+        for (int j = 0; j != n; ++j) ++cnt[x[j] >> i & mask];
+        for (int sum = 0, j = 0; j != (1 << 8); ++j) {
+          // 等价于 std::exclusive_scan(cnt, cnt + (1 << 8), cnt, 0);
+          sum += cnt[j], cnt[j] = sum - cnt[j];
+        }
+        for (int j = 0; j != n; ++j) y[cnt[x[j] >> i & mask]++] = x[j];
+        std::swap(x, y);
+      }
+      delete[] cnt;
+      delete[] b;
+    }
+    
+    int main() {
+      std::ios::sync_with_stdio(false);
+      std::cin.tie(0);
+      int n;
+      std::cin >> n;
+      int *a = new int[n];
+      for (int i = 0; i < n; ++i) std::cin >> a[i];
+      radix_sort(n, a);
+      for (int i = 0; i < n; ++i) std::cout << a[i] << ' ';
+      delete[] a;
+      return 0;
+    }
+    ```
 
 ## 参考资料与注释
 

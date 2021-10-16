@@ -7,7 +7,7 @@ author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul
 ???+note "[「USACO07 DEC」Charm Bracelet](https://www.luogu.com.cn/problem/P2871)"
     题意概要：有 $n$ 个物品和一个容量为 $W$ 的背包，每个物品有重量 $w_{i}$ 和价值 $v_{i}$ 两种属性，要求选若干物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量。
 
-在上述例题中，由于每个物体只有 $2$ 种可能的状态（取与不取），正如二进制中的 $0$ 和 $1$，这类问题便被称为「0-1 背包问题」。
+在上述例题中，由于每个物体只有两种可能的状态（取与不取），对应二进制中的 $0$ 和 $1$，这类问题便被称为「0-1 背包问题」。
 
 ## 0-1 背包
 
@@ -36,11 +36,23 @@ $$
 还有一点需要注意的是，很容易写出这样的错误核心代码：
 
 ```cpp
+// C++ Version
 for (int i = 1; i <= n; i++)
   for (int l = 0; l <= W - w[i]; l++)
     f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
 // 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]],f[i - 1][l] + w[i]),f[i][l +
 // w[i]]); 简化而来
+```
+
+```python
+# Python Version
+for i in range(1, n + 1):
+    l = 0
+    while l <= W - w[i]:
+        f[l + w[i]] = max(f[l] + v[i], f[l + w[i]])
+        l += 1
+# 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]],f[i - 1][l] + w[i]),f[i][l +
+# w[i]]) 简化而来
 ```
 
 这段代码哪里错了呢？枚举顺序错了。
@@ -52,24 +64,23 @@ for (int i = 1; i <= n; i++)
 因此实际核心代码为
 
 ```cpp
+// C++ Version
 for (int i = 1; i <= n; i++)
   for (int l = W; l >= w[i]; l--) f[l] = max(f[l], f[l - w[i]] + v[i]);
 ```
 
+```python
+# Python Version
+for i in range(1, n + 1):
+    l = W
+    while l >= w[i]:
+        f[l] = max(f[l], f[l - w[i]] + v[i])
+        l -= 1
+```
+
 ??? 例题代码
     ```cpp
-    #include <iostream>
-    const int maxn = 13010;
-    int n, W, w[maxn], v[maxn], f[maxn];
-    int main() {
-      std::cin >> n >> W;
-      for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
-      for (int i = 1; i <= n; i++)
-        for (int l = W; l >= w[i]; l--)
-          if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];
-      std::cout << f[W];
-      return 0;
-    }
+    --8<-- "docs/dp/code/knapsack/knapsack_1.cpp"
     ```
 
 ## 完全背包
@@ -96,32 +107,19 @@ $$
 
 理由是当我们这样转移时，$f_{i,j-w_i}$ 已经由 $f_{i,j-2\times w_i}$ 更新过，那么 $f_{i,j-w_i}$ 就是充分考虑了第 $i$ 件物品所选次数后得到的最优结果。换言之，我们通过局部最优子结构的性质重复使用了之前的枚举过程，优化了枚举的复杂度。
 
-与 0-1 背包相同地，我们可以将第一维去掉来优化空间复杂度。如果理解了 0-1 背包的优化方式，就不难明白压缩后的循环是正向的（也就是上文中提到的错误优化）。
+与 0-1 背包相同，我们可以将第一维去掉来优化空间复杂度。如果理解了 0-1 背包的优化方式，就不难明白压缩后的循环是正向的（也就是上文中提到的错误优化）。
 
 ??? note "[「Luogu P1616」疯狂的采药](https://www.luogu.com.cn/problem/P1616)"
     题意概要：有 $n$ 种物品和一个容量为 $W$ 的背包，每种物品有重量 $w_{i}$ 和价值 $v_{i}$ 两种属性，要求选若干个物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量。
 
 ??? 例题代码
     ```cpp
-    #include <iostream>
-    const int maxn = 1e4 + 5;
-    const int maxW = 1e7 + 5;
-    int n, W, w[maxn], v[maxn];
-    long long f[maxW];
-    int main() {
-      std::cin >> W >> n;
-      for (int i = 1; i <= n; i++) std::cin >> w[i] >> v[i];
-      for (int i = 1; i <= n; i++)
-        for (int l = w[i]; l <= W; l++)
-          if (f[l - w[i]] + v[i] > f[l]) f[l] = f[l - w[i]] + v[i];
-      std::cout << f[W];
-      return 0;
-    }
+    --8<-- "docs/dp/code/knapsack/knapsack_2.cpp"
     ```
 
 ## 多重背包
 
-多重背包也是 0-1 背包的一个变式。与 0-1 背包的区别在于每种物品 y 有 $k_i$ 个，而非 $1$ 个。
+多重背包也是 0-1 背包的一个变式。与 0-1 背包的区别在于每种物品有 $k_i$ 个，而非一个。
 
 一个很朴素的想法就是：把「每种物品选 $k_i$ 次」等价转换为「有 $k_i$ 个相同的物品，每个物品选一次」。这样就转换成了一个 0-1 背包模型，套用上文所述的方法就可已解决。状态转移方程如下：
 
@@ -156,6 +154,7 @@ $$
 
 ??? 二进制分组代码
     ```cpp
+    // C++ Version
     index = 0;
     for (int i = 1; i <= m; i++) {
       int c = 1, p, h, k;
@@ -170,10 +169,27 @@ $$
       list[index].v = h * k;
     }
     ```
+    
+    ```python
+    # Python Version
+    index = 0
+    for i in range(1, m + 1):
+        c = 1
+        p, h, k = map(lambda x:int(x), input().split())
+        while k - c > 0:
+            k -= c
+            list[index].w = c * p
+            index += 1
+            list[index].v = c * h
+            c *= 2
+        list[index].w = p * k
+        index += 1
+        list[index].v = h * k
+    ```
 
 ### 单调队列优化
 
-见 [单调队列/单调栈优化](opt/monotonous-queue-stack.md)。
+见 [单调队列/单调栈优化](./opt/monotonous-queue-stack.md)。
 
 习题：[「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.com.cn/problem/P1776)
 
@@ -195,7 +211,7 @@ for (循环物品种类) {
 ```
 
 ??? note "[「Luogu P1833」樱花](https://www.luogu.com.cn/problem/P1833)"
-    题意概要：有 $n$ 种樱花树和长度为 $T$ 的时间，有的樱花树只能看一遍，有的樱花树最多看 $A{i}$ 遍，有的樱花树可以看无数遍。每棵樱花树都有一个美学值 $C{i}$，求在 $T$ 的时间内看哪些樱花树能使美学值最高。
+    题意概要：有 $n$ 种樱花树和长度为 $T$ 的时间，有的樱花树只能看一遍，有的樱花树最多看 $A_{i}$ 遍，有的樱花树可以看无数遍。每棵樱花树都有一个美学值 $C_{i}$，求在 $T$ 的时间内看哪些樱花树能使美学值最高。
 
 ## 二维费用背包
 
@@ -208,11 +224,24 @@ for (循环物品种类) {
 例题核心代码：
 
 ```cpp
+// C++ Version
 for (int k = 1; k <= n; k++) {
   for (int i = m; i >= mi; i--)    // 对经费进行一层枚举
     for (int j = t; j >= ti; j--)  // 对时间进行一层枚举
       dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1);
 }
+```
+
+```python
+# Python Version
+for k in range(1, n + 1):
+    i = m
+    while i >= mi: # 对经费进行一层枚举
+        j = t
+        while j >= ti: # 对时间进行一层枚举
+            dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1)
+            j -= 1
+        i -= 1
 ```
 
 ## 分组背包
@@ -223,17 +252,28 @@ for (int k = 1; k <= n; k++) {
 
 这种题怎么想呢？其实是从「在所有物品中选择一件」变成了「从当前组中选择一件」，于是就对每一组进行一次 0-1 背包就可以了。
 
-再说一说如何进行存储。我们可以将 $t_{k,i}$ 表示第 $k$ 组的第 $i$ 件物品的编号是多少，再用 $cnt_k$ 表示第 $k$ 组物品有多少个。
+再说一说如何进行存储。我们可以将 $t_{k,i}$ 表示第 $k$ 组的第 $i$ 件物品的编号是多少，再用 $\mathit{cnt}_k$ 表示第 $k$ 组物品有多少个。
 
 例题核心代码：
 
 ```cpp
+// C++ Version
 for (int k = 1; k <= ts; k++)          // 循环每一组
   for (int i = m; i >= 0; i--)         // 循环背包容量
     for (int j = 1; j <= cnt[k]; j++)  // 循环该组的每一个物品
       if (i >= w[t[k][j]])
         dp[i] = max(dp[i],
                     dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
+```
+
+```python
+# Python Version
+for k in range(1, ts + 1): # 循环每一组
+    for i in range(m, -1, -1): # 循环背包容量
+        for j in range(1, cnt[k] + 1): # 循环该组的每一个物品
+            if i >= w[t[k][j]]:
+                dp[i] = max(dp[i], \
+                    dp[i - w[t[k][j]]] + c[t[k][j]]) # 像0-1背包一样状态转移
 ```
 
 这里要注意：**一定不能搞错循环顺序**，这样才能保证正确性。
@@ -266,9 +306,9 @@ for (int k = 1; k <= ts; k++)          // 循环每一组
 
 ```cpp
 int v = V;  // 记录当前的存储空间
-for (
-    从最后一件循环至第一件)  // 因为最后一件物品存储的是最终状态，所以从最后一件物品进行循环
-{
+
+// 因为最后一件物品存储的是最终状态，所以从最后一件物品进行循环
+for (从最后一件循环至第一件) {
   if (g[i][v]) {
     选了第 i 项物品;
     v -= 第 i 项物品的价值;
@@ -286,16 +326,16 @@ for (
 例如 0-1 背包问题的转移方程就变成了：
 
 $$
-dp_i=\sum(dp_i,dp_{i-c_i})
+\mathit{dp}_i=\sum(\mathit{dp}_i,\mathit{dp}_{i-c_i})
 $$
 
-初始条件：$dp_0=1$
+初始条件：$\mathit{dp}_0=1$
 
-因为当容量为 $0$ 时也有一个方案：什么都不装！
+因为当容量为 $0$ 时也有一个方案，即什么都不装。
 
 #### 求最优方案总数
 
-要求最优方案总数，我们要对 0-1 背包里的 dp 数组的定义稍作修改，DP 状态 $f_{i,j}$ 为在只能放前 $i$ 个物品的情况下，容量为 $j$ 的背包“正好装满”所能达到的最大总价值。
+要求最优方案总数，我们要对 0-1 背包里的 $\mathit{dp}$ 数组的定义稍作修改，DP 状态 $f_{i,j}$ 为在只能放前 $i$ 个物品的情况下，容量为 $j$ 的背包“正好装满”所能达到的最大总价值。
 
 这样修改之后，每一种 DP 状态都可以用一个 $g_{i,j}$ 来表示方案数。
 
@@ -314,8 +354,8 @@ $g_{i,j}$ 表示只考虑前 $i$ 个物品时背包体积“正好”是 $j$ 时
 初始条件：
 
 ```cpp
-memset(f, 0x3f3f, sizeof(f))  // 避免没有装满而进行了转移
-    f[0] = 0;
+memset(f, 0x3f3f, sizeof(f));  // 避免没有装满而进行了转移
+f[0] = 0;
 g[0] = 1;  // 什么都不装是一种方案
 ```
 
@@ -347,8 +387,6 @@ for (int i = 0; i <= V; i++) {
   }
 }
 ```
-
-#### 求第 k 优解
 
 ### 参考资料与注释
 

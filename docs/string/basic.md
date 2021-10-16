@@ -30,7 +30,7 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 ### 前缀
 
-**前缀** 是指从串首开始到某个位置 $i$ 结束的一个特殊子串。字符串 $S$ 的以 $i$ 结尾的前缀表示为 $\textit{Preffix(S,i)}$，也就是 $\textit{Preffix(S,i)}=S[0..i]$。
+**前缀** 是指从串首开始到某个位置 $i$ 结束的一个特殊子串。字符串 $S$ 的以 $i$ 结尾的前缀表示为 $\textit{Prefix(S,i)}$，也就是 $\textit{Prefix(S,i)}=S[0..i]$。
 
 **真前缀** 指除了 $S$ 本身的 $S$ 的前缀。
 
@@ -46,10 +46,10 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 ## 字符串的存储
 
-1. 使用 `char` 数组存储，用空字符 `\0` 表示字符串的结尾。（C 风格字符串）
-2. 使用 C++ 标准库提供的 [`string` 类](../lang/csl/string.md)。
-3. 字符串常量可以用字符串字面值（用双引号括起来的字符串）表示。
+- 使用 `char` 数组存储，用空字符 `\0` 表示字符串的结尾（C 风格字符串）。
+- 使用 C++ 标准库提供的 [`string` 类](../lang/csl/string.md)。
+- 字符串常量可以用字符串字面量（用双引号括起来的字符串）表示。
 
-## 参考资料
+## 参考资料与注释
 
-[后缀数组 by. 徐智磊](https://wenku.baidu.com/view/0dc03d2b1611cc7931b765ce0508763230127479.html)
+- [后缀数组 by. 徐智磊](https://wenku.baidu.com/view/0dc03d2b1611cc7931b765ce0508763230127479.html)

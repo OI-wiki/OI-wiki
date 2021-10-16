@@ -20,14 +20,14 @@ Tarjan 发明了很多算法结构。不少他发明的算法都以他的名字�
 
 在介绍该算法之前，先来了解 **DFS 生成树**，我们以下面的有向图为例：
 
-![scc1.png](./images/scc1.png)
+![DFS 生成树](./images/dfs-tree.svg)
 
 有向图的 DFS 生成树主要有 4 种边（不一定全部出现）：
 
-1. 树边（tree edge）：绿色边，每次搜索找到一个还没有访问过的结点的时候就形成了一条树边。
-2. 反祖边（back edge）：黄色边，也被叫做回边，即指向祖先结点的边。
-3. 横叉边（cross edge）：红色边，它主要是在搜索的时候遇到了一个已经访问过的结点，但是这个结点 **并不是** 当前结点的祖先时形成的。
-4. 前向边（forward edge）：蓝色边，它是在搜索的时候遇到子树中的结点的时候形成的。
+1. 树边（tree edge）：示意图中以黑色边表示，每次搜索找到一个还没有访问过的结点的时候就形成了一条树边。
+2. 反祖边（back edge）：示意图中以红色边表示（即 $7 \rightarrow 1$），也被叫做回边，即指向祖先结点的边。
+3. 横叉边（cross edge）：示意图中以蓝色边表示（即 $9 \rightarrow 7$），它主要是在搜索的时候遇到了一个已经访问过的结点，但是这个结点 **并不是** 当前结点的祖先时形成的。
+4. 前向边（forward edge）：示意图中以绿色边表示（即 $3 \rightarrow 6$），它是在搜索的时候遇到子树中的结点的时候形成的。
 
 我们考虑 DFS 生成树与强连通分量之间的关系。
 
@@ -72,6 +72,7 @@ Tarjan 发明了很多算法结构。不少他发明的算法都以他的名字�
 ### 实现
 
 ```cpp
+// C++ Version
 int dfn[N], low[N], dfncnt, s[N], in_stack[N], tp;
 int scc[N], sc;  // 结点 i 所在 scc 的编号
 int sz[N];       // 强连通 i 的大小
@@ -102,9 +103,41 @@ void tarjan(int u) {
 }
 ```
 
+```python
+# Python Version
+dfn = [] * N; low = [] * N; dfncnt = 0; s = [] * N; in_stack  = [] * N; tp = 0
+scc = [] * N; sc = 0 # 结点 i 所在 scc 的编号
+sz = [] * N # 强连通 i 的大小
+def tarjan(u):
+    low[u] = dfn[u] = dfncnt; s[tp] = u; in_stack[u] = 1
+    dfncnt = dfncnt + 1; tp = tp + 1
+    i = h[u]
+    while i:
+        v = e[i].t
+        if dfn[v] == False:
+            tarjan(v)
+            low[u] = min(low[u], low[v])
+        elif in_stack[v]:
+            low[u] = min(low[u], dfn[v])
+        i = e[i].nex
+    if dfn[u] == low[u]:
+        sc = sc + 1
+        while s[tp] != u:
+            scc[s[tp]] = sc
+            sz[sc] = sz[sc] + 1
+            in_stack[s[tp]] = 0
+            tp = tp - 1
+        scc[s[tp]] = sc
+        sz[sc] = sz[sc] + 1
+        in_stack[s[tp]] = 0
+        tp = tp - 1
+```
+
 时间复杂度 $O(n + m)$。
 
 ## Kosaraju 算法
+
+Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文上提出，但 Micha Sharir 最早发表了它。
 
 Kosaraju 算法依靠两次简单的 DFS 实现。
 
@@ -117,6 +150,7 @@ Kosaraju 算法依靠两次简单的 DFS 实现。
 ### 实现
 
 ```cpp
+// C++ Version
 // g 是原图，g2 是反图
 
 void dfs1(int u) {
@@ -144,6 +178,32 @@ void kosaraju() {
 }
 ```
 
+```python
+# Python Version
+def dfs1(u):
+    vis[u] = True
+    for v in g[u]:
+        if vis[v] == False:
+            dfs1(v)
+    s.append(u)
+
+def dfs2(u):
+    color[u] = sccCnt
+    for v in g2[u]:
+        if color[v] == False:
+            dfs2(v)
+
+def kosaraju(u):
+    sccCnt = 0
+    for i in range(1, n + 1):
+        if vis[i] == False:
+            dfs1(i)
+    for i in range(n, 0, -1):
+        if color[s[i]] == False:
+            sccCnt = sccCnt + 1
+            dfs2(s[i])
+```
+
 ## Garbow 算法
 
 Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 low 来计算强连通分量的根，Garbow 维护一个节点栈，并用第二个栈来确定何时从第一个栈中弹出属于同一个强连通分量的节点。从节点 $w$ 开始的 DFS 过程中，当一条路径显示这组节点都属于同一个强连通分量时，只要栈顶节点的访问时间大于根节点 $w$ 的访问时间，就从第二个栈中弹出这个节点，那么最后只留下根节点 $w$。在这个过程中每一个被弹出的节点都属于同一个强连通分量。
@@ -153,6 +213,7 @@ Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 l
 ### 实现
 
 ```cpp
+// C++ Version
 int garbow(int u) {
   stack1[++p1] = u;
   stack2[++p2] = u;
@@ -183,6 +244,38 @@ void find_scc(int n) {
   for (int i = 1; i <= n; i++)
     if (!low[i]) garbow(i);
 }
+```
+
+```python
+# Python Version
+def garbow(u):
+    stack1[p1] = u
+    stack2[p2] = u
+    p1 = p1 + 1; p2 = p2 + 1
+    low[u] = dfs_clock
+    dfs_clock = dfs_clock + 1
+    i = head[u]
+    while i:
+        v = e[i].to
+        if low[v] == False:
+            garbow(v)
+        elif sccno[v] == False:
+            while low[stack2[p2]] > low[v]:
+                p2 = p2 - 1
+    if stack2[p2] == u:
+        p2 = p2 - 1
+        scc_cnt = scc_cnt + 1
+        while stack1[p1] != u:
+            p1 = p1 - 1
+            sccno[stack1[p1]] = scc_cnt
+
+def find_scc(n):
+    dfs_clock = scc_cnt = 0
+    p1 = p2 = 0
+    sccno = []; low = []
+    for i in range(1, n + 1):
+        if low[i] == False:
+            garbow(i)
 ```
 
 ## 应用

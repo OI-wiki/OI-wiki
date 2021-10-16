@@ -4,13 +4,13 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 在笔者接下来的描述中，默认初始数组大小为 $n$。
 
-在笔者接下来的描述中，默认时间复杂度标记方式为 $O($ 数据预处理 $)-O($ 单次询问 $)$。
+在笔者接下来的描述中，默认时间复杂度标记方式为 $O($ 数据预处理 $) \sim O($ 单次询问 $)$。
 
 ## 单调栈
 
 由于 **OI Wiki** 中已有此部分的描述，本文仅给出 [链接](../ds/monotonous-stack.md)。这部分不再展开。
 
-时间复杂度 $O(m\log m)-O(\log n)$
+时间复杂度 $O(m\log m) \sim O(\log n)$
 
 空间复杂度 $O(n)$
 
@@ -18,7 +18,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 由于 **OI Wiki** 中已有此部分的描述，本文仅给出 [链接](../ds/sparse-table.md)。这部分不再展开。
 
-时间复杂度 $O(n\log n)-O(1)$
+时间复杂度 $O(n\log n) \sim O(1)$
 
 空间复杂度 $O(n\log n)$
 
@@ -26,7 +26,7 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 由于 **OI Wiki** 中已有此部分的描述，本文仅给出 [链接](../ds/seg.md)。这部分不再展开。
 
-时间复杂度 $O(n)-O(\log n)$
+时间复杂度 $O(n) \sim O(\log n)$
 
 空间复杂度 $O(n)$
 
@@ -46,7 +46,7 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 在 $S=\log n$ 时候，预处理复杂度达到最优，为 $O((n / \log n)\log n+(n / \log n)\times\log n\times\log \log n)=O(n\log \log n)$。
 
-时间复杂度 $O(n\log \log n)-O(1)$
+时间复杂度 $O(n\log \log n) \sim O(1)$
 
 空间复杂度 $O(n\log \log n)$
 
@@ -74,25 +74,9 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
     
     以上做法参考了 [P3793 由乃救爷爷](https://www.luogu.com.cn/problem/P3793) 中的题解。
 
-## 笛卡尔树在 RMQ 上的应用
+## 加减 1RMQ
 
-不了解笛卡尔树的朋友请移步 [笛卡尔树](../ds/cartesian-tree.md)。
-
-我们发现，原序列上两个点之间的 min/max，等于笛卡尔树上两个点的 LCA 的权值。
-
-这也说明，我们现在需要去解决的是如何 $O(n)-O(1)$ 树上两个点之间的 LCA 的。
-
-树上 LCA 在 [LCA](../graph/lca.md) 部分已经有描述，这里不再展开。
-
-这里我们需要采用的是基于 RMQ 的树上 LCA 算法。
-
-可能会有同学会问：为什么我们在绕了一圈之后，又回到了 RMQ 问题呢？
-
-别着急，我们来找一找这个 RMQ 问题的特殊性质：
-
-因为树的 dfs 序列的相邻两个节点互为父子关系，也就是说相邻两个节点深度差为 $\pm 1$。我们一般称这种相邻两个元素差为 1 的 RMQ 问题为 $\pm 1$ RMQ 问题。
-
-根据这个特性我们就可以改进 Four Russian 算法了。
+若序列满足相邻两元素相差为 1，在这个序列上做 RMQ 可以成为加减 1RMQ，根究这个特性可以改进 Four Russian 算法，做到 $O(n) \sim O(1)$ 的时间复杂度，$O(n)$ 的空间复杂度。
 
 由于 Four russian 算法的瓶颈在于块内 RMQ 问题，我们重点去讨论块内 RMQ 问题的优化。
 
@@ -106,10 +90,157 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 这样子 Four russian 预处理的时间复杂度就被优化到了 $O(n)$。
 
-结合笛卡尔树部分我们就可以实现 $O(n)-O(1)$ 的 RMQ 问题了。
+## 笛卡尔树在 RMQ 上的应用
 
-代码和例题由于在 LCA 部分已经给出 [链接](../graph/lca.md)，这里不再赘述。
+不了解笛卡尔树的朋友请移步 [笛卡尔树](../ds/cartesian-tree.md)。
 
-当然由于转化步数较多，$O(n)-O(1)$ RMQ 跑的比较慢。
+不难发现，原序列上两个点之间的 min/max，等于笛卡尔树上两个点的 LCA 的权值。根据这一点就可以借助 $O(n) \sim O(1)$ 求解树上两个点之间的 LCA 进而求解 RMQ。$O(n) \sim O(1)$ 树上 LCA 在 [LCA - 标准 RMQ](../graph/lca.md#rmq_1) 已经有描述，这里不再展开。
+
+总结一下，笛卡尔树在 RMQ 上的应用，就是通过将普通 RMQ 问题转化为 LCA 问题，进而转化为加减 1 RMQ 问题进行求解，时间复杂度为 $O(n) \sim O(1)$。当然由于转化步数较多，$O(n) \sim O(1)$ RMQ 常数较大。
+
+如果数据随机，还可以暴力在笛卡尔树上查找。此时的时间复杂度为期望 $O(n) \sim O(\log n)$，并且实际使用时这种算法的常数往往很小。
+
+### 例题 [Luogu P3865【模板】ST 表](https://www.luogu.com.cn/problem/P3865)
 
 如果数据随机，则我们还可以暴力在笛卡尔树上查找。此时的时间复杂度为期望 $O(n)-O(\log n)$，并且实际使用时这种算法的常数往往很小。
+
+## 基于状压的线性 RMQ 算法
+
+### 隐性要求
+
+- 序列的长度 $n$ 满足 $\log_2{n} \leq 64$
+
+### 前置知识
+
+- [Sparse Table](../ds/sparse-table.md)
+
+- 基本位运算
+
+- 前后缀极值
+
+### 算法原理
+
+将原序列 $A[1\cdots n]$ 分成每块长度为 $O(\log_2{n})$ 的 $O(\frac{n}{\log_2{n}})$ 块。
+
+> 听说令块长为 $1.5\times \log_2{n}$ 时常数较小。
+
+记录每块的最大值，并用 ST 表维护块间最大值，复杂度 $O(n)$。
+
+记录块中每个位置的前、后缀最大值 $Pre[1\cdots n], Sub[1\cdots n]$（$Pre[i]$ 即 $A[i]$ 到其所在块的块首的最大值），复杂度 $O(n)$。
+
+若查询的 $l,r$ 在两个不同块上，分别记为第 $bl,br$ 块，则最大值为 $[bl+1,br-1]$ 块间的最大值，以及 $Sub[l]$ 和 $Pre[r]$ 这三个数的较大值。
+
+现在的问题在于若 $l,r$ 在同一块中怎么办。
+
+将 $A[1\cdots r]$ 依次插入单调栈中，记录下标和值，满足值从栈底到栈顶递减，则 $A[l,r]$ 中的最大值为从栈底往上，单调栈中第一个满足其下标 $p \geq l$ 的值。
+
+由于 $A[p]$ 是 $A[l,r]$ 中的最大值，因而在插入 $A[p]$ 时，$A[l\cdots p-1]$ 都被弹出，且在插入 $A[p+1\cdots r]$ 时不可能将 $A[p]$ 弹出。
+
+而如果用 $0/1$ 表示每个数是否在栈中，就可以用整数状压，则 $p$ 为第 $l$ 位后的第一个 $1$ 的位置。
+
+由于块大小为 $O(\log_2{n})$，因而最多不超过 $64$ 位，可以用一个整数存下（即隐性条件的原因）。
+
+??? "参考代码"
+    ```cpp
+    #include <bits/stdc++.h>
+    
+    const int MAXN = 1e5 + 5;
+    const int MAXM = 20;
+    
+    struct RMQ {
+      int N, A[MAXN];
+      int blockSize;
+      int S[MAXN][MAXM], Pow[MAXM], Log[MAXN];
+      int Belong[MAXN], Pos[MAXN];
+      int Pre[MAXN], Sub[MAXN];
+      int F[MAXN];
+      void buildST() {
+        int cur = 0, id = 1;
+        Pos[0] = -1;
+        for (int i = 1; i <= N; ++i) {
+          S[id][0] = std::max(S[id][0], A[i]);
+          Belong[i] = id;
+          if (Belong[i - 1] != Belong[i])
+            Pos[i] = 0;
+          else
+            Pos[i] = Pos[i - 1] + 1;
+          if (++cur == blockSize) {
+            cur = 0;
+            ++id;
+          }
+        }
+        if (N % blockSize == 0) --id;
+        Pow[0] = 1;
+        for (int i = 1; i < MAXM; ++i) Pow[i] = Pow[i - 1] * 2;
+        for (int i = 2; i <= id; ++i) Log[i] = Log[i / 2] + 1;
+        for (int i = 1; i <= Log[id]; ++i) {
+          for (int j = 1; j + Pow[i] - 1 <= id; ++j) {
+            S[j][i] = std::max(S[j][i - 1], S[j + Pow[i - 1]][i - 1]);
+          }
+        }
+      }
+      void buildSubPre() {
+        for (int i = 1; i <= N; ++i) {
+          if (Belong[i] != Belong[i - 1])
+            Pre[i] = A[i];
+          else
+            Pre[i] = std::max(Pre[i - 1], A[i]);
+        }
+        for (int i = N; i >= 1; --i) {
+          if (Belong[i] != Belong[i + 1])
+            Sub[i] = A[i];
+          else
+            Sub[i] = std::max(Sub[i + 1], A[i]);
+        }
+      }
+      void buildBlock() {
+        static int S[MAXN], top;
+        for (int i = 1; i <= N; ++i) {
+          if (Belong[i] != Belong[i - 1])
+            top = 0;
+          else
+            F[i] = F[i - 1];
+          while (top > 0 && A[S[top]] <= A[i]) F[i] &= ~(1 << Pos[S[top--]]);
+          S[++top] = i;
+          F[i] |= (1 << Pos[i]);
+        }
+      }
+      void init() {
+        for (int i = 1; i <= N; ++i) scanf("%d", &A[i]);
+        blockSize = log2(N) * 1.5;
+        buildST();
+        buildSubPre();
+        buildBlock();
+      }
+      int queryMax(int l, int r) {
+        int bl = Belong[l], br = Belong[r];
+        if (bl != br) {
+          int ans1 = 0;
+          if (br - bl > 1) {
+            int p = Log[br - bl - 1];
+            ans1 = std::max(S[bl + 1][p], S[br - Pow[p]][p]);
+          }
+          int ans2 = std::max(Sub[l], Pre[r]);
+          return std::max(ans1, ans2);
+        } else {
+          return A[l + __builtin_ctz(F[r] >> Pos[l])];
+        }
+      }
+    } R;
+    
+    int M;
+    
+    int main() {
+      scanf("%d%d", &R.N, &M);
+      R.init();
+      for (int i = 0, l, r; i < M; ++i) {
+        scanf("%d%d", &l, &r);
+        printf("%d\n", R.queryMax(l, r));
+      }
+      return 0;
+    }
+    ```
+
+### 习题
+
+[\[BJOI 2020\]封印](https://loj.ac/problem/3298)：SAM+RMQ

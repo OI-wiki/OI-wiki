@@ -17,13 +17,18 @@ for (int i = 1; i <= num; i++) {
 }
 ```
 
-其中 `st[i] ed[i]` 为块的起点和终点，`size[i]` 为块的大小。
+其中 `st[i]` 和 `ed[i]` 为块的起点和终点，`size[i]` 为块的大小。
 
 ## 保存与修改块内信息
 
 ### 例题 1：[教主的魔法](https://www.luogu.com.cn/problem/P2801)
 
-我们要询问一个块内大于等于一个数的数的个数，所以需要一个 `t` 数组对块内排序。对于整块的修改，使用类似于标记永久化的方式保存。时间复杂度 $O(q\sqrt{n}\log n)$
+两种操作：
+
+1. 区间 $[x,y]$ 每个数都加上 $z$；
+2. 查询区间 $[x,y]$ 内大于等于 $z$ 的数的个数。
+
+我们要询问一个块内大于等于一个数的数的个数，所以需要一个 `t` 数组对块内排序，`a` 为原来的（未被排序的）数组。对于整块的修改，使用类似于标记永久化的方式，用 `dlt` 保存现在块内整体加上的值。设 $q$ 为查询和修改的操作次数总和，则时间复杂度 $O(q\sqrt{n}\log n)$。
 
 ```cpp
 void Sort(int k) {
@@ -32,14 +37,15 @@ void Sort(int k) {
 }
 void Modify(int l, int r, int c) {
   int x = belong[l], y = belong[r];
-  if (x == y) {
+  if (x == y)  // 区间在一个块内就直接修改
+  {
     for (int i = l; i <= r; i++) a[i] += c;
     Sort(x);
     return;
   }
-  for (int i = l; i <= ed[x]; i++) a[i] += c;
-  for (int i = st[y]; i <= r; i++) a[i] += c;
-  for (int i = x + 1; i < y; i++) dlt[i] += c;
+  for (int i = l; i <= ed[x]; i++) a[i] += c;   // 直接修改起始段
+  for (int i = st[y]; i <= r; i++) a[i] += c;   // 直接修改结束段
+  for (int i = x + 1; i < y; i++) dlt[i] += c;  // 中间的整块打上标记
   Sort(x);
   Sort(y);
 }
@@ -56,6 +62,7 @@ int Answer(int l, int r, int c) {
     if (a[i] + dlt[y] >= c) ans++;
   for (int i = x + 1; i <= y - 1; i++)
     ans += ed[i] - (lower_bound(t + st[i], t + ed[i] + 1, c - dlt[i]) - t) + 1;
+  // 用 lower_bound 找出中间每一个整块中第一个大于等于 c 的数的位置
   return ans;
 }
 ```
@@ -64,8 +71,8 @@ int Answer(int l, int r, int c) {
 
 两种操作：
 
-1. 区间 $[x,y]$ 每个数都变成 $z$
-2. 查询区间 $[x,y]$ 内小于等于 $z$ 的数的个数
+1. 区间 $[x,y]$ 每个数都变成 $z$；
+2. 查询区间 $[x,y]$ 内小于等于 $z$ 的数的个数。
 
 用 `dlt` 保存现在块内是否被整体赋值了。用一个值表示没有。对于边角块，查询前要 `pushdown`，把块内存的信息下放到每一个数上。赋值之后记得重新 `sort` 一遍。其他方面同上题。
 
@@ -75,7 +82,7 @@ void Sort(int k) {
   sort(t + st[k], t + ed[k] + 1);
 }
 void PushDown(int x) {
-  if (dlt[x] != 0x3f3f3f3f3f3f3f3fll)
+  if (dlt[x] != 0x3f3f3f3f3f3f3f3fll)  // 用该值标记块内没有被整体赋值
     for (int i = st[x]; i <= ed[x]; i++) a[i] = t[i] = dlt[x];
   dlt[x] = 0x3f3f3f3f3f3f3f3fll;
 }

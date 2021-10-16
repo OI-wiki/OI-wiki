@@ -24,6 +24,8 @@ author: HeRaNO, Xeonacid
 
 向上调整的时间复杂度是 $O(\log n)$ 的。
 
+![二叉堆的插入操作](./images/binary_heap_insert.svg)
+
 ### 删除操作
 
 删除操作指删除堆中最大的元素，即删除根结点。
@@ -52,7 +54,7 @@ author: HeRaNO, Xeonacid
 
 考虑使用一个序列 $h$ 来表示堆。$h_i$ 的两个儿子分别是 $h_{2i}$ 和 $h_{2i+1}$，$1$ 是根结点：
 
-![h 的堆结构](./images/binary-heap1.png)
+![h 的堆结构](./images/binary-heap-array.svg)
 
 参考代码：
 
@@ -153,45 +155,7 @@ $$
 
 ??? "参考代码"
     ```cpp
-    #include <cstdio>
-    #include <iostream>
-    #include <queue>
-    using namespace std;
-    int t, x;
-    int main() {
-      scanf("%d", &t);
-      while (t--) {
-        // 大根堆，维护前一半元素（存小值）
-        priority_queue<int, vector<int>, less<int> > a;
-        // 小根堆，维护后一半元素（存大值）
-        priority_queue<int, vector<int>, greater<int> > b;
-        while (scanf("%d", &x) && x) {
-          // 若为查询并删除操作，输出并删除大根堆堆顶元素
-          // 因为这题要求输出中位数中较小者（偶数个数字会存在两个中位数候选）
-          // 这个和上面的第k大讲解有稍许出入，但如果理解了上面的，这个稍微变通下便可理清
-          if (x == -1) {
-            printf("%d\n", a.top());
-            a.pop();
-          }
-          // 若为插入操作，根据大根堆堆顶的元素值，选择合适的堆进行插入
-          else {
-            if (a.empty() || x <= a.top())
-              a.push(x);
-            else
-              b.push(x);
-          }
-          // 对堆顶堆进行调整
-          if (a.size() > (a.size() + b.size() + 1) / 2) {
-            b.push(a.top());
-            a.pop();
-          } else if (a.size() < (a.size() + b.size() + 1) / 2) {
-            a.push(b.top());
-            b.pop();
-          }
-        }
-      }
-      return 0;
-    }
+    --8<-- "docs/ds/code/binary-heap/binary-heap_1.cpp"
     ```
 
 - 双倍经验：[SP15376 RMID - Running Median](https://www.luogu.com.cn/problem/SP15376)

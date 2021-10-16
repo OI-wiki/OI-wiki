@@ -1,0 +1,22 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}[every node/.style={circle,draw}]
+
+\node at (0,0) {$1$}
+    child {node {$2$}
+        child {node {$3$}
+            child {node {$4$}}
+            child {node {$5$}}}};
+
+\node at (4,0) {$1$}
+    child {node {$2$}
+        child {node {$3$}
+            child {node {$5$}}}
+        child {node {$4$}
+            child {node {$6$}}}};
+
+\end{tikzpicture}
+\end{document}

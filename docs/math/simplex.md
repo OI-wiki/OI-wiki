@@ -272,14 +272,14 @@ $$
 
 继续计算，我们得到：
 
-| $x_1$    | $x_2$   | $x_3$   | $x_4$   | $x_5$    | $x_6$   | $x_7$   | $b$      |
-| -------- | ------- | ------- | ------- | -------- | ------- | ------- | -------- |
-| $c_1=-1$ | $c_2=0$ | $c_3=0$ | $c_4=0$ | $c_5=-2$ | $c_6=0$ | $c_7=0$ | $-z=-32$ |
-| $1.5$    | $0$     | $1$     | $1.5$   | $0$      | $0$     | $-0.5$  | $3$      |
-| $1$      | $0$     | $0$     | $0$     | $1$      | $0$     | $0$     | $2$      |
-| $0$      | $0$     | $1$     | $0$     | $0$      | $1$     | $0$     | $3$      |
-| $0$      | $1$     | $0.33$  | $0$     | $0$      | $0$     | $0.33$  | $2$      |
-|          | $*$     |         | $*$     | $*$      | $*$     |         |          |
+| $x_1$    | $x_2$   | $x_3$   | $x_4$    | $x_5$   | $x_6$   | $x_7$    | $b$      |
+| -------- | ------- | ------- | -------- | ------- | ------- | -------- | -------- |
+| $c_1=-1$ | $c_2=0$ | $c_3=0$ | $c_4=-2$ | $c_5=0$ | $c_6=0$ | $c_7=-4$ | $-z=-32$ |
+| $1.5$    | $0$     | $1$     | $1.5$    | $0$     | $0$     | $-0.5$   | $3$      |
+| $1$      | $0$     | $0$     | $0$      | $1$     | $0$     | $0$      | $2$      |
+| $-1.5$   | $0$     | $0$     | $-1.5$   | $0$     | $1$     | $0.5$    | $0$      |
+| $-0.5$   | $1$     | $0$     | $-0.5$   | $0$     | $0$     | $0.5$    | $1$      |
+|          | $*$     | $*$     |          | $*$     | $*$     |          |          |
 
 此时我们发现，所有非轴的 $x$ 的系数全部小于零，即增大任何非轴的 $x$ 值并不能使得目标函数最大，从而得到最优解 $32$。
 
@@ -353,8 +353,8 @@ void Gaussian(pair<size_t, size_t> p) {  // 行变换
   for (size_t i = 0; i < cn; i++) {  // 主行归一化
     Matrix[x][i] /= norm;
   }
-  for (size_t i = 0; i < bn && i != x; i++) {
-    if (Matrix[i][y] != 0) {
+  for (size_t i = 0; i < bn; i++) {
+    if (i != x && Matrix[i][y] != 0) {
       double tmpnorm = Matrix[i][y];
       for (size_t j = 0; j < cn; j++) {
         Matrix[i][j] = Matrix[i][j] - tmpnorm * Matrix[x][j];
@@ -424,10 +424,6 @@ int main(int argc, char *argv[]) {
 */
 /////////////////////////////////////
 ```
-
-结果如下：
-
-![answer](./images/answer.png)
 
 ## 理论罗列
 
@@ -535,78 +531,7 @@ $$
 把对应出的系数矩阵代入到单纯形算法就可以求出最优解了。
 
 ```c++
-#include <algorithm>
-#include <cmath>
-#include <cstdio>
-#include <cstring>
-#include <iostream>
-using namespace std;
-typedef long long ll;
-const int M = 10005, N = 1005, INF = 1e9;
-const double eps = 1e-6;
-inline int read() {
-  char c = getchar();
-  int x = 0, f = 1;
-  while (c < '0' || c > '9') {
-    if (c == '-') f = -1;
-    c = getchar();
-  }
-  while (c >= '0' && c <= '9') {
-    x = x * 10 + c - '0';
-    c = getchar();
-  }
-  return x * f;
-}
-
-int n, m;
-double a[M][N], b[M], c[N], v;
-void pivot(int l, int e) {
-  b[l] /= a[l][e];
-  for (int j = 1; j <= n; j++)
-    if (j != e) a[l][j] /= a[l][e];
-  a[l][e] = 1 / a[l][e];
-
-  for (int i = 1; i <= m; i++)
-    if (i != l && fabs(a[i][e]) > 0) {
-      b[i] -= a[i][e] * b[l];
-      for (int j = 1; j <= n; j++)
-        if (j != e) a[i][j] -= a[i][e] * a[l][j];
-      a[i][e] = -a[i][e] * a[l][e];
-    }
-
-  v += c[e] * b[l];
-  for (int j = 1; j <= n; j++)
-    if (j != e) c[j] -= c[e] * a[l][j];
-  c[e] = -c[e] * a[l][e];
-
-  // swap(B[l],N[e])
-}
-
-double simplex() {
-  while (true) {
-    int e = 0, l = 0;
-    for (e = 1; e <= n; e++)
-      if (c[e] > eps) break;
-    if (e == n + 1) return v;
-    double mn = INF;
-    for (int i = 1; i <= m; i++)
-      if (a[i][e] > eps && mn > b[i] / a[i][e]) mn = b[i] / a[i][e], l = i;
-    if (mn == INF) return INF;  // unbounded
-    pivot(l, e);
-  }
-}
-
-int main() {
-  n = read();
-  m = read();
-  for (int i = 1; i <= n; i++) c[i] = read();
-  for (int i = 1; i <= m; i++) {
-    int s = read(), t = read();
-    for (int j = s; j <= t; j++) a[i][j] = 1;
-    b[i] = read();
-  }
-  printf("%d", (int)(simplex() + 0.5));
-}
+--8<-- "docs/math/code/simplex/simplex_1.cpp"
 ```
 
 ## 对偶原理
