@@ -7,30 +7,29 @@
 using namespace std;
 struct f {
   long long d;
-  long long x;
+  long long p;
 } a[100005];
 bool cmp(f A, f B) { return A.d < B.d; }
-priority_queue<long long, vector<long long>, greater<long long> >
-    q;  //小根堆维护最小值
+priority_queue<long long, vector<long long>, greater<long long> > q;
 
 int main() {
-  long long n, i, j;
+  long long n, i;
   cin >> n;
   for (i = 1; i <= n; i++) {
-    cin >> a[i].d >> a[i].x;
+    scanf("%lld%lld", &a[i].d, &a[i].p);
   }
   sort(a + 1, a + n + 1, cmp);
   long long ans = 0;
   for (i = 1; i <= n; i++) {
-    if (a[i].d <= q.size()) {  //符合条件
-      if (q.top() < a[i].x) {  //比较
-        ans += a[i].x - q.top();
+    if (a[i].d <= (int)q.size()) {
+      if (q.top() < a[i].p) {
+        ans += a[i].p - q.top();
         q.pop();
-        q.push(a[i].x);
+        q.push(a[i].p);
       }
-    } else {  //后悔
-      ans += a[i].x;
-      q.push(a[i].x);
+    } else {
+      ans += a[i].p;
+      q.push(a[i].p);
     }
   }
   cout << ans << endl;
