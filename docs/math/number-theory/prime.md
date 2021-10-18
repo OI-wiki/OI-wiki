@@ -273,11 +273,11 @@ def millerRabin(n):
     --8<-- "docs/math/code/prime/prime_2.cpp"
     ```
 
-## 参考资料
+## 参考资料与注释
 
-- [1]Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006) pp 197-217.
-- [2][数论部分第一节：素数与素性测试](<http://www.matrix67.com/blog/archives/234>)
-- [3][Miller-Rabin与Pollard-Rho学习笔记 - Bill Yang's Blog](<https://blog.bill.moe/miller-rabin-notes/>)
-- [4][Primality test - Wikipedia](<https://en.wikipedia.org/wiki/Primality_test>)
-- [5][桃子的算法笔记——反素数详解（acm/OI）](<https://zhuanlan.zhihu.com/p/41759808>)
-- [6][The Rabin-Miller Primality Test](<http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf>)
+1. Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006) pp 197-217.
+2. [数论部分第一节：素数与素性测试](<http://www.matrix67.com/blog/archives/234>)
+3. [Miller-Rabin与Pollard-Rho学习笔记 - Bill Yang's Blog](<https://blog.bill.moe/miller-rabin-notes/>)
+4. [Primality test - Wikipedia](<https://en.wikipedia.org/wiki/Primality_test>)
+5. [桃子的算法笔记——反素数详解（acm/OI）](<https://zhuanlan.zhihu.com/p/41759808>)
+6. [The Rabin-Miller Primality Test](<http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf>)
