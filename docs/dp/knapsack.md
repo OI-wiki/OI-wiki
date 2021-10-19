@@ -398,10 +398,10 @@ for (int i = 0; i <= V; i++) {
     $n \leq 100,v \leq 1000,k \leq 30$
 
 ??? note "核心代码"
-    ```
+    ```cpp
     memset(dp,0,sizeof(dp));
     int i,j,p,x,y,z;
-		scanf("%d%d%d",&n,&m,&K);
+    scanf("%d%d%d",&n,&m,&K);
     for(i=0;i<n;i++)scanf("%d",&w[i]);
     for(i=0;i<n;i++)scanf("%d",&c[i]);
     for(i=0;i<n;i++){
