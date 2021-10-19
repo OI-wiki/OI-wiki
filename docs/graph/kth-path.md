@@ -260,7 +260,7 @@ int main() {
       printf("%d\n", a.v);
       return 0;
     }
-    if (st.lc[a.x])//可并堆删除直接把左右儿子加入优先队列中
+    if (st.lc[a.x])  //可并堆删除直接把左右儿子加入优先队列中
       Q.push({st.lc[a.x], a.v - st.v[a.x].v + st.v[st.lc[a.x]].v});
     if (st.rc[a.x])
       Q.push({st.rc[a.x], a.v - st.v[a.x].v + st.v[st.rc[a.x]].v});
@@ -271,7 +271,6 @@ int main() {
   return 0;
 }
 ```
-
 
 ## 习题
 
