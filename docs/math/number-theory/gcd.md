@@ -112,7 +112,7 @@ $p_1^{\max(k_{a_1}, k_{b_1})}p_2^{\max(k_{a_2}, k_{b_2})} \cdots p_s^{\max(k_{a_
 
 扩展欧几里得算法（Extended Euclidean algorithm, EXGCD），常用于求 $ax+by=\gcd(a,b)$ 的一组可行解。
 
-### 证明
+### 求解过程
 
 设
 
@@ -165,6 +165,20 @@ def Exgcd(a, b, x, y):
 
 函数返回的值为 $\gcd$，在这个过程中计算 $x,y$ 即可。
 
+### 值域分析
+$ax+by=\gcd(a,b)$ 的解有无数个，显然其中有的解会爆 long long。  
+万幸的是，若 $b\not= 0$，扩展欧几里得算法求出的可行解必有 $|x|\le b,|y|\le a$。  
+下面给出这一性质的证明。
+
+- $\gcd(a,b)=b$ 时，$a\bmod b=0$，必在下一层终止递归。  
+  得到 $x_1=0,y_1=1$，显然 $a,b\ge 1\ge |x_1|,|y_1|$。
+- $\gcd(a,b)\not= b$ 时，设 $|x_2|\le (a\bmod b),|y_2|\le b$。  
+  因为 $x_1=y_2,y_1=x_2-{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2$  
+  所以 $|x_1|=|y_2|\le b,|y_1|\le|x_2|+|{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2|\le (a\bmod b)+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|$  
+  $\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)$  
+  $$a\bmod b=a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)\le a$$
+  因此 $|x_1|\le b,|y_1|\le a$ 成立。
+  
 ### 迭代法编写拓展欧几里得算法
 
 因为迭代的方法避免了递归，所以代码运行速度将比递归代码快一点。
