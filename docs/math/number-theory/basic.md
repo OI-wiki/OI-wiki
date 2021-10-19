@@ -171,15 +171,28 @@ $a\equiv b \pmod {\left(-m\right)}$
 
 还有性质是乘法逆元。见 [乘法逆元](./inverse.md)。
 
-## C 语言的整数除法和取模运算
+## C/C++ 的整数除法和取模运算
 
-在 C 语言中，整除除法和取模运算，与数学上习惯的取模和除法不一致。
+在 C/C++ 中，整数除法和取模运算，与数学上习惯的取模和除法不一致。
 
-C 语言中的整数除法不是一律向下取整，而是向 0 取整。取模也同理。
+对于所有标准版本的 C/C++，规定在整数除法中，
+1. 当除数为 0 时，行为未定义；
+2. 否则 `(a/b)*b + a%b` 的运算结果与 `a` 相等。
 
-因此，一个负数模一个正数，结果会得到一个负数，这与数学上的习惯不同。
+也就是说，取模运算的符号取决于除法如何取整；而除法如何取整，这是实现定义的（由编译器决定）。
 
-C 语言对于除数或模数为负数的行为是未定义行为，结果未定。这一点也要特别注意。
+**从 C99 和 C++11 标准版本起**，规定**商向零取整**（舍弃小数部分）。从此以下运算结果保证为真：
+
+```cpp
+5 % 3 == 2;
+5 % -3 == 2;
+-5 % 3 == -2;
+-5 % -3 == -2;
+```
+
+??? note "参考资料"
+    [Arithmetic operators (C) - cppreference.com](https://en.cppreference.com/w/c/language/operator_arithmetic)
+    [Arithmetic operators (C++) - cppreference.com](https://en.cppreference.com/w/cpp/language/operator_arithmetic)
 
 ## 数论函数
 
