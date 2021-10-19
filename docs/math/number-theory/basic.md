@@ -181,7 +181,7 @@ $a\equiv b \pmod {\left(-m\right)}$
 
 也就是说，取模运算的符号取决于除法如何取整；而除法如何取整，这是实现定义的（由编译器决定）。
 
-**从 C99 和 C++11 标准版本起**，规定 **商向零取整**（舍弃小数部分）。从此以下运算结果保证为真：
+**从 C99[^operatorc] 和 C++11[^operatorcpp] 标准版本起**，规定 **商向零取整**（舍弃小数部分）；取模的符号即与被除数相同。从此以下运算结果保证为真：
 
 ```text
 5 % 3 == 2;
@@ -189,9 +189,6 @@ $a\equiv b \pmod {\left(-m\right)}$
 -5 % 3 == -2;
 -5 % -3 == -2;
 ```
-
-??? note "参考资料"
-    [Arithmetic operators (C) - cppreference.com](https://en.cppreference.com/w/c/language/operator_arithmetic)  [Arithmetic operators (C++) - cppreference.com](https://en.cppreference.com/w/cpp/language/operator_arithmetic)
 
 ## 数论函数
 
@@ -238,3 +235,9 @@ $$
     应与代数中的加性函数 (Additive map) 区分。
 
 * * *
+
+## 参考资料
+
+[^operatorc]: [Arithmetic operators (C) - cppreference.com](https://en.cppreference.com/w/c/language/operator_arithmetic)
+
+[^operatorcpp]: [Arithmetic operators (C++) - cppreference.com](https://en.cppreference.com/w/cpp/language/operator_arithmetic)
