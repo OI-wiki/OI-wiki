@@ -179,7 +179,7 @@ $ax+by=\gcd(a,b)$ 的解有无数个，显然其中有的解会爆 long long。
     所以 $|x_1|=|y_2|\le b,|y_1|\le|x_2|+|{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2|\le (a\bmod b)+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|$    
     $\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)$     
     $$a\bmod b=a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)\le a$$   
-    因此 $|x_1|\le b,|y_1|\le a$ 成立。
+    因此 $|x_1|\le b,|y_1|\le a$ 成立。 
 
 ### 迭代法编写拓展欧几里得算法
 
