@@ -173,34 +173,30 @@ def unionSet(x, y):
 
 又有一个祖先抖了个机灵：「我们家族历史更悠久，人气更高，会有更多人想加入我们，因此你们加入我们从长远来看还是更加方便。」
 
-考虑到给每个结点一个**优先级**，每次合并时取根节点优先级较高的做父亲，那么的话我们会发现优先级高的秩更容易变大。
+考虑到给每个结点一个 **优先级**，每次合并时取根节点优先级较高的做父亲，那么的话我们会发现优先级高的秩更容易变大。
 
-我们注意到这个就是维护了多颗**大根堆**。
+我们注意到这个就是维护了多颗 **大根堆**。
 
 仿照 [Treap](https://oi-wiki.org/ds/treap/) 的方式，我们给每个结点赋予一个随机优先级，那么期望复杂度可以类似的证明为 $O(m\log n)$。
 
-用这个实现并查集，我们发现优先级完全不用修改，因此可以**减小常数**。
+用这个实现并查集，我们发现优先级完全不用修改，因此可以 **减小常数**。
 
-而且在可持久化并查集中，这也可以少开一个可持久化数组，从而**大大减小了空间**。
+而且在可持久化并查集中，这也可以少开一个可持久化数组，从而 **大大减小了空间**。
 
 C++ 的参考实现：
 
 ```cpp
 // C++ Version
 int priority[N];
-void getReady()
-{
-    srand(0);
-    for(int i=1;i<=n;i++)
-        priority[i]=rand();
+void getReady() {
+  srand(0);
+  for (int i = 1; i <= n; i++) priority[i] = rand();
 }
 void unionSet(int x, int y) {
-    int xx=find(x),yy=find(y);
-    if(xx==yy)
-        return;
-    if(priority[xx]>priority[yy])
-        std::swap(xx,yy);
-    fa[xx]=yy;
+  int xx = find(x), yy = find(y);
+  if (xx == yy) return;
+  if (priority[xx] > priority[yy]) std::swap(xx, yy);
+  fa[xx] = yy;
 }
 ```
 
