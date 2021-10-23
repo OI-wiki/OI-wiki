@@ -152,15 +152,11 @@ int Exgcd(int a, int b, int &x, int &y) {
 
 ```python
 # Python Version
-def Exgcd(a, b, x, y):
+def Exgcd(a, b):
     if b == 0:
-        x, y = 1, 0
-        return a
-    d = Exgcd(b, a % b, x, y)
-    t = x
-    x = y
-    y = t - (a // b) * y
-    return d
+        return a, 1, 0
+    d, x, y = Exgcd(b, a % b)
+    return d, y, x - (a // b) * y
 ```
 
 函数返回的值为 $\gcd$，在这个过程中计算 $x,y$ 即可。
