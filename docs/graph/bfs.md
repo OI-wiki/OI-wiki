@@ -73,19 +73,20 @@ Python：
 
 ```python
 # Python Version
+from queue import Queue
+
 def bfs(u):
-    Q = []
-    Q.append(u)
+    Q = Queue()
+    Q.put(u)
     vis[u] = True
     d[u] = 0
     p[u] = -1
-    while len(Q) != 0:
-        u = Q[0]
-        Q.pop()
+    while Q.qsize() != 0:
+        u = Q.get()
         while i:
             i = head[u]
             if vis[e[i].to] == False:
-                Q.append(e[i].to)
+                Q.put(e[i].to)
                 vis[e[i].to] = True
                 d[e[i].to] = d[u] + 1
                 p[e[i].to] = u
