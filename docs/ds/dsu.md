@@ -168,6 +168,25 @@ def unionSet(x, y):
     fa[xx] = yy
     size[yy] = size[yy] + size[xx]
 ```
+### 关于其他写法
+迭代法
+```cpp
+int get(int x) {
+	while(x!=fa[x])x=fa[x]=fa[fa[x]];
+	return x;
+}
+```
+不用预处理的
+```cpp
+int get(int x){
+	if(fa[x])return fa[x]=get(fa[x]);
+	return x;
+}
+void merge(int x,int y){
+	if(get(x)==get(y))return;//这行不能去掉
+	fa[get(x)]=get(y);
+}
+```
 
 ## 时间复杂度及空间复杂度
 
