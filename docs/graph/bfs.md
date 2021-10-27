@@ -15,6 +15,8 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
 
 ## 实现
 
+下文中 C++ 与 Python 的代码实现是基于 链式前向星 的存图方式，其实现可参考 [图的存储](./save.md) 页面。
+
 伪代码：
 
 ```text
@@ -46,12 +48,12 @@ void bfs(int u) {
   while (!Q.empty()) {
     u = Q.front();
     Q.pop();
-    for (int i = head[u]; i; i = e[i].x) {
-      if (!vis[e[i].t]) {
-        Q.push(e[i].t);
-        vis[e[i].t] = 1;
-        d[e[i].t] = d[u] + 1;
-        p[e[i].t] = u;
+    for (int i = head[u]; i; i = e[i].nxt) {
+      if (!vis[e[i].to]) {
+        Q.push(e[i].to);
+        vis[e[i].to] = 1;
+        d[e[i].to] = d[u] + 1;
+        p[e[i].to] = u;
       }
     }
   }
@@ -67,6 +69,8 @@ void restore(int x) {
 }
 ```
 
+Python：
+
 ```python
 # Python Version
 def bfs(u):
@@ -80,17 +84,17 @@ def bfs(u):
         Q.pop()
         while i:
             i = head[u]
-            if vis[e[i].t] == False:
-                Q.append(e[i].t)
-                vis[e[i].t] = True
-                d[e[i].t] = d[u] + 1
-                p[e[i].t] = u
-            i = e[i].x
+            if vis[e[i].to] == False:
+                Q.append(e[i].to)
+                vis[e[i].to] = True
+                d[e[i].to] = d[u] + 1
+                p[e[i].to] = u
+            i = e[i].nxt
 
 def restore(x):
     res = []
+    v = x
     while v != -1:
-        v = x
         res.append(v)
         v = p[v]
     res.reverse()
