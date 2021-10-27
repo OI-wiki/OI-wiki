@@ -99,7 +99,7 @@ def restore(x):
         print(res[i])
 ```
 
-具体来说，我们用一个队列 Q 来记录要处理的节点，然后开一个 $vis[]$ 布尔数组来标记某个节点是否已经访问过了。
+具体来说，我们用一个队列 Q 来记录要处理的节点，然后开一个 `vis[]` 布尔数组来标记某个节点是否已经访问过了。
 
 开始的时候，我们把起点 s 以外的节点的 vis 值设为 0，意思是没有访问过。然后把起点 s 放入队列 Q 中。
 
@@ -156,7 +156,7 @@ BFS 序列通常也不唯一。
 
 ## 双端队列 BFS
 
-如果你不了解双端队列 `deque` 的话，请参阅 [deque 相关章节](../lang/csl/sequence-container/#deque)。
+如果你不了解双端队列 `deque` 的话，请参阅 [deque 相关章节](../../lang/csl/sequence-container/#deque)。
 
 双端队列 BFS 又称 0-1 BFS。
 
