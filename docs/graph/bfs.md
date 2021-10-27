@@ -156,9 +156,9 @@ BFS 序列通常也不唯一。
 
 ## 双端队列 BFS
 
-如果你不了解双端队列 `deque` 的话，请到 STL-queue 中学习。
+如果你不了解双端队列 `deque` 的话，请参阅 [deque 相关章节](../lang/csl/sequence-container/#deque)。
 
-双端队列 BFS 又称 0-1 BFS
+双端队列 BFS 又称 0-1 BFS。    
 
 ### 适用范围
 
