@@ -69,19 +69,20 @@ void restore(int x) {
 
 ```python
 # Python Version
+from queue import Queue
+
 def bfs(u):
-    Q = []
-    Q.append(u)
+    Q = Queue()
+    Q.put(u)
     vis[u] = True
     d[u] = 0
     p[u] = -1
-    while len(Q) != 0:
-        u = Q[0]
-        Q.pop()
+    while Q.qsize() != 0:
+        u = Q.get()
         while i:
             i = head[u]
             if vis[e[i].t] == False:
-                Q.append(e[i].t)
+                Q.put(e[i].t)
                 vis[e[i].t] = True
                 d[e[i].t] = d[u] + 1
                 p[e[i].t] = u
