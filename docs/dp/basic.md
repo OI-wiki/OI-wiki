@@ -83,7 +83,7 @@ author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marc
 
 记录最优方案的时候可以不需要额外建表（优化空间），因为重新选择一遍（转移过程）也是 $O(1)$ 的。
 
-可参考此 [交互网页](http://lcs-demo.sourceforge.net/) 更好的理解 最长公共子序列 的实现过程。
+可参考此 [交互网页](http://lcs-demo.sourceforge.net/) 来更好地理解 LCS 的实现过程。
 
 ## 最优二叉搜索树
 
