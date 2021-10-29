@@ -250,7 +250,7 @@ nav:
       - 快速傅里叶变换: math/poly/fft.md
       - 快速数论变换: math/poly/ntt.md
       - 快速沃尔什变换: math/poly/fwt.md
-      - Chirp-Z 变换: math/poly/czt.md
+      - Chirp Z 变换: math/poly/czt.md
       - 多项式求逆: math/poly/inv.md
       - 多项式开方: math/poly/sqrt.md
       - 多项式除法|取模: math/poly/div-mod.md
