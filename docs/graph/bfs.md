@@ -15,6 +15,8 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
 
 ## 实现
 
+下文中 C++ 与 Python 的代码实现是基于 链式前向星 的存图方式，其实现可参考 [图的存储](./save.md) 页面。
+
 伪代码：
 
 ```text
@@ -46,12 +48,12 @@ void bfs(int u) {
   while (!Q.empty()) {
     u = Q.front();
     Q.pop();
-    for (int i = head[u]; i; i = e[i].x) {
-      if (!vis[e[i].t]) {
-        Q.push(e[i].t);
-        vis[e[i].t] = 1;
-        d[e[i].t] = d[u] + 1;
-        p[e[i].t] = u;
+    for (int i = head[u]; i; i = e[i].nxt) {
+      if (!vis[e[i].to]) {
+        Q.push(e[i].to);
+        vis[e[i].to] = 1;
+        d[e[i].to] = d[u] + 1;
+        p[e[i].to] = u;
       }
     }
   }
@@ -67,30 +69,33 @@ void restore(int x) {
 }
 ```
 
+Python：
+
 ```python
 # Python Version
+from queue import Queue
+
 def bfs(u):
-    Q = []
-    Q.append(u)
+    Q = Queue()
+    Q.put(u)
     vis[u] = True
     d[u] = 0
     p[u] = -1
-    while len(Q) != 0:
-        u = Q[0]
-        Q.pop()
+    while Q.qsize() != 0:
+        u = Q.get()
         while i:
             i = head[u]
-            if vis[e[i].t] == False:
-                Q.append(e[i].t)
-                vis[e[i].t] = True
-                d[e[i].t] = d[u] + 1
-                p[e[i].t] = u
-            i = e[i].x
+            if vis[e[i].to] == False:
+                Q.put(e[i].to)
+                vis[e[i].to] = True
+                d[e[i].to] = d[u] + 1
+                p[e[i].to] = u
+            i = e[i].nxt
 
 def restore(x):
     res = []
+    v = x
     while v != -1:
-        v = x
         res.append(v)
         v = p[v]
     res.reverse()
@@ -98,7 +103,7 @@ def restore(x):
         print(res[i])
 ```
 
-具体来说，我们用一个队列 Q 来记录要处理的节点，然后开一个 $vis[]$ 布尔数组来标记某个节点是否已经访问过了。
+具体来说，我们用一个队列 Q 来记录要处理的节点，然后开一个 `vis[]` 布尔数组来标记某个节点是否已经访问过了。
 
 开始的时候，我们把起点 s 以外的节点的 vis 值设为 0，意思是没有访问过。然后把起点 s 放入队列 Q 中。
 
@@ -155,9 +160,9 @@ BFS 序列通常也不唯一。
 
 ## 双端队列 BFS
 
-如果你不了解双端队列 `deque` 的话，请到 STL-queue 中学习。
+如果你不了解双端队列 `deque` 的话，请参阅 [deque 相关章节](../../lang/csl/sequence-container/#deque)。
 
-双端队列 BFS 又称 0-1 BFS
+双端队列 BFS 又称 0-1 BFS。
 
 ### 适用范围
 
