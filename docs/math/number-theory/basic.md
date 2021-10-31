@@ -173,15 +173,24 @@ $a\equiv b \pmod {\left(-m\right)}$
 
 还有性质是乘法逆元。见 [乘法逆元](./inverse.md)。
 
-## C 语言的整数除法和取模运算
+## C/C++ 的整数除法和取模运算
 
-在 C 语言中，整除除法和取模运算，与数学上习惯的取模和除法不一致。
+在 C/C++ 中，整数除法和取模运算，与数学上习惯的取模和除法不一致。
 
-C 语言中的整数除法不是一律向下取整，而是向 0 取整。取模也同理。
+对于所有标准版本的 C/C++，规定在整数除法中，
+1\. 当除数为 0 时，行为未定义；
+2\. 否则 `(a/b)*b + a%b` 的运算结果与 `a` 相等。
 
-因此，一个负数模一个正数，结果会得到一个负数，这与数学上的习惯不同。
+也就是说，取模运算的符号取决于除法如何取整；而除法如何取整，这是实现定义的（由编译器决定）。
 
-C 语言对于除数或模数为负数的行为是未定义行为，结果未定。这一点也要特别注意。
+**从 C99[^operatorc]和 C++11[^operatorcpp]标准版本起**，规定 **商向零取整**（舍弃小数部分）；取模的符号即与被除数相同。从此以下运算结果保证为真：
+
+```text
+5 % 3 == 2;
+5 % -3 == 2;
+-5 % 3 == -2;
+-5 % -3 == -2;
+```
 
 ## 数论函数
 
@@ -227,6 +236,12 @@ $$
     此处加性函数指数论上的加性函数 (Additive function)。对于加性函数 $\operatorname{f}$，当整数 $a,b$ 互质时，均有 $\operatorname{f}(ab)=\operatorname{f}(a)+\operatorname{f}(b)$。
     应与代数中的加性函数 (Additive map) 区分。
 
+* * *
+
 ## 参考资料与注释
 
 [^ref1]: [Are all primes (past 2 and 3) of the forms 6n+1 and 6n-1?](https://primes.utm.edu/notes/faq/six.html)
+
+[^operatorc]: [Arithmetic operators (C) - cppreference.com](https://en.cppreference.com/w/c/language/operator_arithmetic)
+
+[^operatorcpp]: [Arithmetic operators (C++) - cppreference.com](https://en.cppreference.com/w/cpp/language/operator_arithmetic)
