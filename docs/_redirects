@@ -34,6 +34,7 @@
 /lang/editor/devcpp /tools/editor/devcpp
 /lang/editor/geany /tools/editor/geany
 /basic/interaction /contest/interaction
+/basic/file-operation /lang/file-op
 /contest/construction /basic/construction
 /topic/cmd /tools/cmd
 /topic/problemsetting /contest/problemsetting
