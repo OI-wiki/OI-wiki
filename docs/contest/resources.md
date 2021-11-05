@@ -130,7 +130,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
     - 由西班牙 University of Valladolid 的两位教授编写。
     - 阅读 [经过翻译的在线电子版图书](http://www.tup.com.cn/upload/books/yz/030502-01.pdf)
     - 购买 [纸质版图书](http://www.tup.tsinghua.edu.cn/booksCenter/book_03050201.html)
--   《C++，挑战编程——程序设计竞赛进阶训练指南》 - 邱秋
+-   《C++，挑战编程——程序设计竞赛进阶训练指南》- 邱秋
     - [作者博客的介绍页](https://blog.csdn.net/metaphysis/article/details/90288252)
 
 ## 工具
