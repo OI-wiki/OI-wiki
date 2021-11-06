@@ -387,7 +387,7 @@ $$
 
 当且仅当 $j+k=0 \pmod{n}$ 时有 $S\left(\omega_n^{j+k}\right) = n$，否则为 $0$。因此 $A(\omega_n^k) = a_{n-k}\cdot n$。
 
-这意味着我们将 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 做 DFT 变换后，反转再除以 $n$，同样可以还原 $f(x)$ 的系数表示。
+这意味着我们将 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 做 DFT 变换后除以 $n$，再反转后 $n - 1$ 个元素，同样可以还原 $f(x)$ 的系数表示。
 
 ### 代码实现
 
@@ -452,7 +452,7 @@ $$
         }
       }
       if (on == -1) {
-        reverse(y, y + len);
+        reverse(y + 1, y + len);
         for (int i = 0; i < len; i++) {
           y[i].x /= len;
         }
