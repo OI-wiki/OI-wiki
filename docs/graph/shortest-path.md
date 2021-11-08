@@ -60,9 +60,9 @@ for (k = 1; k <= n; k++) {
 
 ```python
 # Python Version
-for k in range(1, n):
-    for x in range(1, n):
-        for y in range(1, n):
+for k in range(1, n+1):
+    for x in range(1, n+1):
+        for y in range(1, n+1):
             f[k][x][y] = min(f[k - 1][x][y], f[k - 1][x][k] + f[k - 1][k][y])
 ```
 
@@ -88,9 +88,9 @@ for (k = 1; k <= n; k++) {
 
 ```python
 # Python Version
-for k in range(1, n):
-    for x in range(1, n):
-        for y in range(1, n):
+for k in range(1, n+1):
+    for x in range(1, n+1):
+        for y in range(1, n+1):
             f[x][y] = min(f[x][y], f[x][k] + f[k][y])
 ```
 
