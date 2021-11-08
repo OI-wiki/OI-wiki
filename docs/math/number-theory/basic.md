@@ -165,7 +165,7 @@ $a\equiv b \pmod {\left(-m\right)}$
 - 传递性：若 $a\equiv b \pmod m, b\equiv c \pmod m$, 则 $a\equiv b\pmod m$.
 -   线性运算：若 $a,b,c,d\in \mathbf Z,m\in \mathbf N^*,a\equiv b\pmod m, c\equiv d\pmod m$ 则有：
     - $a\pm c\equiv b\pm d \pmod m$.
-    - $a\times b\equiv b\times d\pmod m$.
+    - $a\times c\equiv b\times d\pmod m$.
 - 若 $a,b\in \mathbf Z, k,m\in \mathbf N^*, a\equiv b\pmod m$, 则 $ak\equiv bk\pmod {mk}$.
 - 若 $a,b\in \mathbf Z, d,m\in \mathbf N^*, d\mid a,d\mid b, d\mid m$, 则当 $a\equiv b\pmod m$ 成立时，有 $\frac a d\equiv \frac b d \pmod{\frac m d}$.
 - 若 $a,b\in \mathbf Z, d,m\in \mathbf N^*,d\mid m$, 则当 $a\equiv b \pmod m$ 成立时，有 $a\equiv b\pmod d$.
