@@ -1,4 +1,4 @@
-author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken
+author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken, zhb2000
 
 动态规划应用于子问题重叠的情况：
 
@@ -328,6 +328,33 @@ $dp[i] = \min(dp[j] + cost[j][i])$
 ### 编辑距离
 
 变换操作有 $6$ 种，复制、替换、删除、插入、旋转、终止（结束转换过程）。
+
+下面介绍如何求解仅含替换、删除、插入三种操作的编辑距离问题（莱文斯坦距离），题面请见 [P2758 编辑距离](https://www.luogu.com.cn/problem/P2758)。
+
+我们用 $f(i,j)$ 表示将 $A[1..i]$ 转换为 $B[1..j]$ 所需的最少操作次数。请设想这样一种场景，$A[1..i]$ 经过若干次操作被改成了 $B[1..j]$，且**最后一步操作**是在 $A$ 的**末尾**进行的。不难看出，有三种策略可以把 $A[1..i]$ 修改为 $B[1..j]$：
+
+1. 先把 $A[1..i-1]$ 变得跟 $B[1..j]$ 一样，再删除 $A$ 末尾的字符；
+2. 先把 $A[1..i]$ 变得跟 $B[1..j-1]$ 一样，再在 $A$ 的末尾插入一个字符；
+3. 先把 $A[1..i-1]$ 变得跟 $B[1..j-1]$ 一样，再修改 $A$ 末尾的字符。
+
+于是可以写出状态转移方程：
+
+$$
+f(i,j)=\min
+\begin{cases}
+f(i-1,j)+1 \\
+f(i,j-1)+1 \\
+f(i-1,j-1)+
+\begin{cases}
+0,\;\textbf{if }A_i=B_j \\
+1,\;\textbf{if }A_i \neq B_j
+\end{cases}
+\end{cases}
+$$
+
+边界条件：$f(0,j)=j,\; f(i,0)=i,\; f(0,0)=0$
+
+问题答案：$f(n,m)$，其中 $n,m$ 分别表示字符串 $A,B$ 的长度。
 
 ### 最优对齐问题
 
