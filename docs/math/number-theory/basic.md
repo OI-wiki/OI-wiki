@@ -214,7 +214,7 @@ $$
 h(x)&=f(x^p)\\
 h(x)&=f^p(x)\\
 h(x)&=f(x)g(x)\\
-h(x)&=\sum_{d\mid x}f(d)g(\frac{x}{d})
+h(x)&=\sum_{d\mid x}f(d)g\left(\frac{x}{d}\right)
 \end{aligned}
 $$
 
@@ -231,7 +231,7 @@ $$
 - 常数函数：$1(n)=1$（完全积性）
 - 除数函数：$\sigma_{k}(n)=\sum_{d\mid n}d^{k}$$\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$，$\sigma_{1}(n)$ 通常简记作 $\sigma(n)$。
 - 欧拉函数：$\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$
-- 莫比乌斯函数：$\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1,d^{2} \mid n \\ (-1)^{\omega(n)} & \texttt{otherwise}\end{cases}$，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它是一个加性函数。
+- 莫比乌斯函数：$\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1,d^{2} \mid n \\ (-1)^{\omega(n)} & \text{otherwise}\end{cases}$，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它是一个加性函数。
 
 ???+note "加性函数"
     此处加性函数指数论上的加性函数 (Additive function)。对于加性函数 $\operatorname{f}$，当整数 $a,b$ 互质时，均有 $\operatorname{f}(ab)=\operatorname{f}(a)+\operatorname{f}(b)$。
