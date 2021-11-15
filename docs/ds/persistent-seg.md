@@ -172,8 +172,8 @@ int main() {
       scanf("%d%d", &a, &b);
       int root_a = getroot(root[i - 1], 1, n, a);
       int root_b = getroot(root[i - 1], 1, n, b);
-      if (tree[root_a].rank < tree[root_b].rank)
-        root[i] = update(root[i - 1], 1, n, root_a, root_b);  // 路径压缩，下同
+      if (tree[root_a].rank < tree[root_b].rank)  // 按秩合并
+        root[i] = update(root[i - 1], 1, n, root_a, root_b);
       else
         root[i] = update(root[i - 1], 1, n, root_b, root_a);
     } else if (op == 2) {
