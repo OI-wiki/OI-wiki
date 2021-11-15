@@ -7,6 +7,7 @@
 $b$ 不被 $a$ 整除记作 $a\nmid b$。
 
 整除的性质：
+
 - $a\mid b\iff-a\mid b\iff a\mid-b\iff|a|\mid|b|$
 - $a\mid b\land b\mid c\implies a\mid c$
 - $a\mid b\land a\mid c\iff\forall x,y\in\mathbf{Z}, a\mid(xb+yc)$
@@ -22,6 +23,7 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 对于整数 $b\ne0$，$b$ 的其他约数称为真约数（真因数、非显然约数、非显然因数）。
 
 约数的性质：
+
 - 设整数 $b\ne0$。当 $d$ 遍历 $b$ 的全体约数的时候，$\dfrac{b}{d}$ 也遍历 $b$ 的全体约数。
 - 设整数 $b>0$，则当 $d$ 遍历 $b$ 的全体正约数的时候，$\dfrac{b}{d}$ 也遍历 $b$ 的全体正约数。
 
@@ -42,6 +44,7 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 带余数除法的余数只有最小非负余数。**如果没有特别说明，余数总是指最小非负余数。**
 
 余数的性质：
+
 - 任一整数被正整数 $a$ 除后，余数一定是且仅是 $0$ 到 $(a-1)$ 这 $a$ 个数中的一个。
 - 相邻的 $a$ 个整数被正整数 $a$ 除后，恰好取到上述 $a$ 个余数。特别地，一定有且仅有一个数被 $a$ 整除。
 
@@ -76,6 +79,7 @@ $p$ 和 $-p$ 总是同为素数或者同为合数。**如果没有特别说明�
 整数的因数是素数，则该素数称为该整数的素因数（素约数）。
 
 素数与合数的简单性质：
+
 - 大于 $1$ 的整数 $a$ 是合数，等价于 $a$ 可以表示为整数 $d$ 和 $e$（$1<d,e<a$）的乘积。
 - 如果素数 $p$ 有大于 $1$ 的约数 $d$，那么 $d=p$。
 - 大于 $1$ 的整数 $a$ 一定可以表示为素数的乘积。
@@ -130,10 +134,11 @@ $$
 式中的 $b$ 是 $a$ 对模 $m$ 的剩余，这个概念与余数完全一致。通过限定 $b$ 的范围，相应的有 $a$ 对模 $m$ 的最小非负剩余、绝对最小剩余、最小正剩余。
 
 同余的性质：
+
 - 自反性：$a\equiv a\pmod m$。
 - 对称性：若 $a\equiv b\pmod m$，则 $b\equiv a\pmod m$。
 - 传递性：若 $a\equiv b\pmod m,b\equiv c\pmod m$，则 $a\equiv c\pmod m$。
-- 线性运算：若 $a,b,c,d\in\mathbf{Z},m\in\mathbf{N}^*,a\equiv b\pmod m,c\equiv d\pmod m$ 则有：
+-   线性运算：若 $a,b,c,d\in\mathbf{Z},m\in\mathbf{N}^*,a\equiv b\pmod m,c\equiv d\pmod m$ 则有：
     - $a\pm c\equiv b\pm d\pmod m$。
     - $a\times c\equiv b\times d\pmod m$。
 - 若 $a,b\in\mathbf{Z},k,m\in\mathbf{N}^*,a\equiv b\pmod m$, 则 $ak\equiv bk\pmod{mk}$。
