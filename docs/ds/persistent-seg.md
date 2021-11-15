@@ -110,8 +110,8 @@ int main() {
 主席树是实现可持久化并查集的便捷方式，在此也提供一个基于主席树的可持久化并查集实现示例。
 
 ```cpp
-#include <cstdio>
 #include <algorithm>
+#include <cstdio>
 const int N = 1e5, M = 2e5, Log4N = 19;  // 数据范围
 struct node {
   int val, rank, lchild, rchild;
@@ -129,7 +129,8 @@ int build(int l, int r) {  // 建树
   tree[now].rchild = build(mid + 1, r);
   return now;
 }
-int update(int x, int l, int r, int target, int newroot) {  // 合并操作-更新父亲节点信息
+int update(int x, int l, int r, int target,
+           int newroot) {  // 合并操作-更新父亲节点信息
   int now = ++tot;
   tree[now] = tree[x];
   if (l == r) {
@@ -154,14 +155,15 @@ int query(int x, int l, int r, int target) {  // 查询父亲节点
 }
 int getroot(int x, int l, int r, int target) {  // 查询根节点
   int ans = query(x, l, r, target);
-  if (ans == target) return ans;
-  else return getroot(x, l, r, ans);
+  if (ans == target)
+    return ans;
+  else
+    return getroot(x, l, r, ans);
 }
 int main() {
   int n, m;
   scanf("%d%d", &n, &m);
-  for (int i = 1; i <= n; i++)
-    init[i] = i;
+  for (int i = 1; i <= n; i++) init[i] = i;
   root[0] = build(1, n);
   int op, a, b, k;
   for (int i = 1; i <= m; i++) {
