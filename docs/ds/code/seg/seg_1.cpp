@@ -34,8 +34,7 @@ LL getsum(LL l, LL r, LL s, LL t, LL p) {
   b[p] = 0;
   LL sum = 0;
   if (l <= m)
-    sum =
-        getsum(l, r, s, m, p * 2);  //本行和下面的一行用来更新p*2和p*2+1的答案
+    sum = getsum(l, r, s, m, p * 2);  //本行和下面的一行用来更新p*2和p*2+1的答案
   if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
   return sum;
 }
