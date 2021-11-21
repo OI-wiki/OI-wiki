@@ -1,7 +1,7 @@
 # Set the base image to Ubuntu16.04
-FROM ubuntu:16.04
+FROM ubuntu:latest
 
-MAINTAINER frank-xjh "frank99-xu@outlook.com"
+# MAINTAINER frank-xjh "frank99-xu@outlook.com"
 
 WORKDIR /
 RUN apt-get update \
@@ -10,7 +10,7 @@ RUN apt-get update \
     && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && apt-get install -y nodejs
 
-RUN git clone https://github.com/OI-wiki/OI-wiki.git --depth=1 \
+RUN git clone https://hub.fastgit.org/OI-wiki/OI-wiki.git --depth=1 \
     && cd OI-wiki \
     && pip install -U -r requirements.txt \
     && npm install
