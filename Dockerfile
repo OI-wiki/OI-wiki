@@ -9,7 +9,8 @@ RUN apt-get update \
     && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && apt-get install -y nodejs
 
-RUN git clone https://hub.fastgit.org/OI-wiki/OI-wiki.git --depth=1 \
+# If you can't connect to GitHub, set WIKI_REPO to any mirror repo.
+RUN git clone ${WIKI_REPO:-https://github.com/OI-wiki/OI-wiki.git} --depth=1 \
     && cd OI-wiki \
     && pip install -U -r requirements.txt \
     && npm install
