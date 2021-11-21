@@ -1,4 +1,3 @@
-# Set the base image to Ubuntu16.04
 FROM ubuntu:latest
 
 # MAINTAINER frank-xjh "frank99-xu@outlook.com"
