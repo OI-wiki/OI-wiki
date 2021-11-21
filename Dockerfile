@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-# MAINTAINER frank-xjh "frank99-xu@outlook.com"
+LABEL org.oi-wiki.image.authors="frank99-xu@outlook.com mxr612@icloud.com coelacanthus@outlook.com"
 
 WORKDIR /
 RUN apt-get update \
