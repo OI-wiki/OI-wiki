@@ -1,3 +1,5 @@
+author: du33169
+
 ## 定义
 
 （还记得这些定义吗？在阅读下列内容之前，请务必了解 [图论相关概念](./concept.md) 中的基础部分。）
@@ -60,9 +62,9 @@ for (k = 1; k <= n; k++) {
 
 ```python
 # Python Version
-for k in range(1, n):
-    for x in range(1, n):
-        for y in range(1, n):
+for k in range(1, n + 1):
+    for x in range(1, n + 1):
+        for y in range(1, n + 1):
             f[k][x][y] = min(f[k - 1][x][y], f[k - 1][x][k] + f[k - 1][k][y])
 ```
 
@@ -88,9 +90,9 @@ for (k = 1; k <= n; k++) {
 
 ```python
 # Python Version
-for k in range(1, n):
-    for x in range(1, n):
-        for y in range(1, n):
+for k in range(1, n + 1):
+    for x in range(1, n + 1):
+        for y in range(1, n + 1):
             f[x][y] = min(f[x][y], f[x][k] + f[k][y])
 ```
 

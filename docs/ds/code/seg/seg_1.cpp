@@ -23,7 +23,7 @@ void update(LL l, LL r, LL c, LL s, LL t, LL p) {
   if (l <= m)
     update(l, r, c, s, m, p << 1);  //本行和下面的一行用来更新p*2和p*2+1的节点
   if (r > m) update(l, r, c, m + 1, t, (p << 1) | 1);
-  d[p] = d[p << 1] + d[(p << 1) | 1];  //懒标记相加
+  d[p] = d[p << 1] + d[(p << 1) | 1];  // 计算该节点区间和
 }
 LL getsum(LL l, LL r, LL s, LL t, LL p) {
   if (l <= s && t <= r) return d[p];

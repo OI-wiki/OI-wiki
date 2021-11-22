@@ -165,7 +165,7 @@ $a\equiv b \pmod {\left(-m\right)}$
 - 传递性：若 $a\equiv b \pmod m, b\equiv c \pmod m$, 则 $a\equiv b\pmod m$.
 -   线性运算：若 $a,b,c,d\in \mathbf Z,m\in \mathbf N^*,a\equiv b\pmod m, c\equiv d\pmod m$ 则有：
     - $a\pm c\equiv b\pm d \pmod m$.
-    - $a\times b\equiv b\times d\pmod m$.
+    - $a\times c\equiv b\times d\pmod m$.
 - 若 $a,b\in \mathbf Z, k,m\in \mathbf N^*, a\equiv b\pmod m$, 则 $ak\equiv bk\pmod {mk}$.
 - 若 $a,b\in \mathbf Z, d,m\in \mathbf N^*, d\mid a,d\mid b, d\mid m$, 则当 $a\equiv b\pmod m$ 成立时，有 $\frac a d\equiv \frac b d \pmod{\frac m d}$.
 - 若 $a,b\in \mathbf Z, d,m\in \mathbf N^*,d\mid m$, 则当 $a\equiv b \pmod m$ 成立时，有 $a\equiv b\pmod d$.
@@ -177,9 +177,10 @@ $a\equiv b \pmod {\left(-m\right)}$
 
 在 C/C++ 中，整数除法和取模运算，与数学上习惯的取模和除法不一致。
 
-对于所有标准版本的 C/C++，规定在整数除法中，
-1.当除数为 0 时，行为未定义；
-2.否则 `(a/b)*b + a%b` 的运算结果与 `a` 相等。
+对于所有标准版本的 C/C++，规定在整数除法中：
+
+1. 当除数为 0 时，行为未定义；
+2. 否则 `(a/b)*b + a%b` 的运算结果与 `a` 相等。
 
 也就是说，取模运算的符号取决于除法如何取整；而除法如何取整，这是实现定义的（由编译器决定）。
 

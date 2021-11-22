@@ -15,6 +15,11 @@ docker pull daocloud.io/sirius/oi-wiki
 docker pull ccr.ccs.tencentyun.com/oi-wiki/oi-wiki
 ```
 
+## 自行构建镜像
+
+可以使用的环境变量：
+- 可以设置 `WIKI_REPO` 来使用 Wiki 仓库的镜像站点（当未设置时自动使用 GitHub）
+
 ## 运行容器
 
 ```bash
