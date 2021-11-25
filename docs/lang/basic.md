@@ -77,6 +77,9 @@ int main() {
 
 `scanf` 与 `printf` 其实是 C 语言提供的函数。大多数情况下，它们的速度比 `cin` 和 `cout` 更快，并且能够方便地控制输入输出格式。
 
+???+note "读入输出优化"
+    `cin`/`cout` 和 `scanf`/`prinf` 的具体差别和读入输出优化，请参考 [读入、输出优化](../contest/io.md) 页面。
+
 ```cpp
 #include <cstdio>
 
