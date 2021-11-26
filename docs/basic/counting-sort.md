@@ -17,6 +17,8 @@
 2. 求出每个数出现次数的 [前缀和](./prefix-sum.md)；
 3. 利用出现次数的前缀和，从右至左计算每个数的排名。
 
+![counting sort animate example](images/counting-sort-1-animate-example.svg)
+
 ## 性质
 
 ### 稳定性
