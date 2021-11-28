@@ -218,22 +218,22 @@ def init():
              phi[i] = i - 1
              pri[cnt] = i
              cnt = cnt + 1
-    for j in range(0, cnt):
-        if i * pri[j] >= MAXN:
-            break
-        vis[i * pri[j]] = 1
-        if i % pri[j]:
-            phi[i * pri[j]] = phi[i] * (pri[j] - 1)
-        else:
-            """
-            i % pri[j] == 0
-            换言之，i 之前被 pri[j] 筛过了
-            由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
-            pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
-            掉就好了
-            """
-            phi[i * pri[j]] = phi[i] * pri[j]
-            break
+        for j in range(0, cnt):
+            if i * pri[j] >= MAXN:
+                break
+            vis[i * pri[j]] = 1
+            if i % pri[j]:
+                phi[i * pri[j]] = phi[i] * (pri[j] - 1)
+            else:
+                """
+                i % pri[j] == 0
+                换言之，i 之前被 pri[j] 筛过了
+                由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
+                pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
+                掉就好了
+                """
+                phi[i * pri[j]] = phi[i] * pri[j]
+                break
 ```
 
 上面代码中的 $phi$ 数组，会在下面提到。
@@ -442,7 +442,7 @@ def pre():
     g[1] = f[1] = 1
     for i in range(2, n + 1):
         if v[i] == 0:
-            v[i] = 1; p[tot] = i; tot = tot + 1; g[i] = i + 1; f[i] = i + 1;
+            v[i] = 1; p[tot] = i; tot = tot + 1; g[i] = i + 1; f[i] = i + 1
         j = 1
         while j <= tot and i <= n // p[j]:
             v[p[j] * i] = 1
