@@ -1,4 +1,4 @@
-author: AndrewWayne, GavinZhengOI, ChungZH, henryrabbit, Xeonacid, sshwy, Yukimaikoriya
+author: AndrewWayne, GavinZhengOI, ChungZH, henryrabbit, Xeonacid, sshwy, Yukimaikoriya, EarthMessenger
 
 前置知识：[复数](../complex.md)。
 
@@ -27,7 +27,9 @@ $$
 点值表示法是把这个多项式看成一个函数，从上面选取 $n+1$ 个点，从而利用这 $n+1$ 个点来唯一地表示这个函数。
 
 ???+note "为什么用 $n+1$ 个点就能唯一地表示这个函数"
-    想一下高斯消元法，两点确定一条直线。再来一个点，能确定这个直线中的另一个参数，那么也就是说 $n+1$ 个点能确定 $n$ 个参数（不考虑倍数点之类的没用点）。
+    法 I：想一下高斯消元法，两点确定一条直线。再来一个点，能确定这个直线中的另一个参数，那么也就是说 $n+1$ 个点能确定 $n$ 个参数（不考虑倍数点之类的没用点）。
+    
+    法 II：假设原命题错误，则我们可以找到两个不相等又有 $n + 1$ 个交点的函数 $f(x) = a_0 + a_1x + a_2x^2 + a_3x^3 + \cdots + a_nx^n$ 和 $g(x) = b_0 + b_1x + b_2x^2 + b_3x^3 + \cdots + b_nx^n$。我们令 $h(x) = f(x) - g(x)$，**$h(x)$ 显然是一个 $n$ 次函数**，且该函数与 $x$ 轴有 $n + 1$ 个交点，即**有 $n + 1$ 个根**。根据代数基本定理，$h(x)$ 是 $n + 1$ 次函数，矛盾。原命题成立。
 
 设
 
