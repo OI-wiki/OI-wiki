@@ -173,7 +173,6 @@ def millerRabin(n):
     while a % 2 == 0:
         a = a // 2
         b = b + 1
-    j = 0
     # test_time 为测试次数,建议设为不小于 8
     # 的整数以保证正确率,但也不宜过大,否则会影响效率
     for i in range(1, test_time + 1):
@@ -181,10 +180,12 @@ def millerRabin(n):
         v = quickPow(x, a, n)
         if v == 1:
             continue
-        for j in range(0, b):
+        j = 0
+        while j < b:
             if v == n - 1:
                 break
             v = v * v % n
+            j = j + 1
         if j >= b:
             return False
     return True
