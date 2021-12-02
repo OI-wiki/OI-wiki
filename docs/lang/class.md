@@ -89,6 +89,7 @@ class Object {
 };
 
 void Object::change_w(int _weight) { weight = _weight; }
+Object var;
 ```
 
 该类有一个打印 `Object` 成员元素的函数，以及更改成员元素 `weight` 的函数。
