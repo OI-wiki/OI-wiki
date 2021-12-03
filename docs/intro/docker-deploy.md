@@ -35,7 +35,7 @@ docker run -d -it [image]
 ## 使用容器
 
 ???+ note
-    示例基于 Ubuntu 16.04 部署。
+    示例基于 Ubuntu latest 部署。
 
 进入容器：
 
