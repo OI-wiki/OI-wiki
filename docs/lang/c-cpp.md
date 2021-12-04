@@ -50,8 +50,12 @@ C99 后 C 语言支持 VLA（可变长数组），C++ 始终不支持。
 
 ## 结构体初始化
 
-C99 后 C 语言支持结构体的 [指派符初始化](https://en.cppreference.com/w/c/language/struct_initialization)（但是在 C11 中为可选特性），C++ 直到 C++20 才支持有顺序要求的指派符初始化，且 C 语言的支持乱序、嵌套、与普通初始化器混用、数组的指派符初始化，这些 C++ 都不支持。
+C99 后 C 语言支持结构体的 [指派符初始化](https://en.cppreference.com/w/c/language/struct_initialization)（但是在 C11 中为可选特性），C++ 直到 C++20 才支持有顺序要求的指派符初始化，且 C 语言支持的乱序、嵌套、与普通初始化器混用、数组的指派符初始化特性 C++ 都不支持[^cpp-designated-init]。
 
 ## 注释语法
 
 C++ 风格单行注释 `//`，C 于 C99 前不支持。
+
+## 参考资料
+
+[^cpp-designated-init]: <https://en.cppreference.com/w/cpp/language/aggregate_initialization>
