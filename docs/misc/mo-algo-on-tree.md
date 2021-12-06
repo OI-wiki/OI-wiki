@@ -1,4 +1,4 @@
-author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan
+author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan, Linky
 
 ## 括号序树上莫队
 
@@ -18,7 +18,8 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
 这样的话，我们就把一棵树处理成了序列。
 
 ???+note "例题[「WC2013」糖果公园](https://uoj.ac/problem/58)"
-    题意：给你一棵树，每个点有颜色，每次询问
+
+    题意：给你一棵树，树上第 $i$ 个点颜色为 $c_i$ ，每次询问一条路径 $u_i$ , $v_i$ , 求这条路径上的 
     
     $\sum_{c}val_c\sum_{i=1}^{cnt_c}w_i$
     
