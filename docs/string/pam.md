@@ -187,7 +187,7 @@ $g[v]$ 表示 $v$ 所在等差数列的 $dp$ 值之和，且 $v$ 是这个等差
 
 例题：[Codeforces 932G Palindrome Partition](https://codeforces.com/problemset/problem/932/G)
 
-给定一个字符串 $s$，要求将 $s$ 划分为 $t_1, t_2, \dots, t_k$，其中 $k$ 是偶数，且 $t_i=t_{k-i}$，求这样的划分方案数。
+给定一个字符串 $s$，要求将 $s$ 划分为 $t_1, t_2, \dots, t_k$，其中 $k$ 是偶数，且 $t_i=t_{k-i+1}$，求这样的划分方案数。
 
 ??? note "题解"
     构造字符串 $t= s[0]s[n - 1]s[1]s[n - 2]s[2]s[n - 3] \dots s[n / 2 - 1]s[n / 2]$，问题等价于求 $t$ 的偶回文划分方案数，把上面的转移方程改成求和形式并且只在偶数位置更新 $dp$ 数组即可。时间复杂度 $O(n \log n)$，空间复杂度 $O(n)$。
