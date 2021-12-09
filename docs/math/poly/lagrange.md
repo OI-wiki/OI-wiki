@@ -45,7 +45,7 @@ $$
 $$
 \begin{cases}
 f(x)\equiv y_1\pmod{(x-x_1)}\\
-f(x)\equiv y_n\pmod{(x-x_2)}\\
+f(x)\equiv y_2\pmod{(x-x_2)}\\
 \cdots\\
 f(x)\equiv y_n\pmod{(x-x_n)}
 \end{cases}
