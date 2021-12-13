@@ -21,6 +21,7 @@ const int a = 0;  // a 的类型为 const int
 
 常引用和常指针也与常量类似，但区别在于他们是限制了访问，而没有更改原变量的类型。
   1
+
 ```cpp
 int a = 0;
 const int b = 0;
@@ -40,17 +41,16 @@ const int &r2 = a;
 const int &r4 = b;
 ```
 
-另外需要区分开的是“常类型指针(常指针)”和“常指针变量(指针常量)” 例如下列声明
+另外需要区分开的是“常类型指针（常指针）”和“常指针变量（指针常量）”例如下列声明
 
 ??? note "常指针和指针常量的通俗解释"
-    常指针: 指向的地址不可改变，但是地址对应的值可以改变
-    指针常量: 指向的地址可以改变，但地址对应的值不可改变
+    常指针：指向的地址不可改变，但是地址对应的值可以改变
+    指针常量：指向的地址可以改变，但地址对应的值不可改变
     除此之外，还存在“常指针常量”的写法，即指向的地址和其对应的值均不可改变
-    
 
 ```cpp
-int* const p1;        // 类型为int*的常指针，必须初始化
-const int* p2;        // 类型为const int*的普通指针
+int* const p1;  // 类型为int*的常指针，必须初始化
+const int* p2;  // 类型为const int*的普通指针
 const int* const p3;  // 类型为const int*的常指针，必须初始化 (即常指针常量)
 
 int (*f1)(int);  // 普通的函数指针
@@ -83,9 +83,9 @@ void sum(const std::vector<int> &data, int &total) {
 // 常成员的例子
 struct X {
   X();
-  const int* p;         // 类型为 const int* 的可变成员
-  int* const q;         // 类型为 int*       的常成员
-  const int* const k;   // 类型为 const int* 的常成员
+  const int* p;        // 类型为 const int* 的可变成员
+  int* const q;        // 类型为 int*       的常成员
+  const int* const k;  // 类型为 const int* 的常成员
 
   const int r() const;
   // 第一个 const 修饰返回值，而最后的 const 修饰的是这个成员函数。
