@@ -71,9 +71,9 @@ def floyd(n):
         for i in range(1, k):
             for j in range(1, i):
                 ans = min(ans, dis[i][j] + val[i][k] + val[k][j]) # 更新答案
-    for i in range(1, n + 1):
-        for j in range(1, n + 1):
-            dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j]) # 正常的 floyd 更新最短路矩阵
+        for i in range(1, n + 1):
+            for j in range(1, n + 1):
+                dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j]) # 正常的 floyd 更新最短路矩阵
     return ans
 ```
 
