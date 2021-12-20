@@ -29,6 +29,7 @@ jobs:
         run: |
           chmod +x ./scripts/build.sh && ./scripts/build.sh
           mkdocs build -v
+          bash ./scripts/post-build.sh
       - name: Render math
         run: node --max_old_space_size=3072 ./scripts/render_math.js
       - name: Gulp minify
