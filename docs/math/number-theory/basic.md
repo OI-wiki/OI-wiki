@@ -92,21 +92,23 @@ $b=qa+r, 1\leq r<\left|a\right|+1$
 
 若整数 $a\neg 0,\pm 1$ 且 a 不是素数，则称 a 为合数。
 
-p 和 $-p$ 总是同为素数或者同为合数。**如果没有特别说明，素数总是指正的素数。**
+$p$ 和 $-p$ 总是同为素数或者同为合数。**如果没有特别说明，素数总是指正的素数。**
 
 整数的因数是素数，则该素数称为该整数的素因数（素约数）。
 
 素数与合数的简单性质：
 
-大于 1 的整数 a 是合数，等价于 a 可以表示为 d 和 e 的乘积，d 和 e 都是大于 1 且小于 a 的整数。
+- 大于 $1$ 的整数 $a$ 是合数，等价于 $a$ 可以表示为整数 $d$ 和 $e$ 的乘积（$1<d,~e<a$）。
 
-如果素数 q 有大于 1 的约数 d，那么 d 与 q 相等。
+- 如果素数 $q$ 有大于 $1$ 的约数 $d$，那么 $d$ 与 $q$ 相等。
 
-大于 1 的整数 a 一定可以表示为素数的乘积。
+- 大于 $1$ 的整数 $a$ 一定可以表示为素数的乘积。
 
-对于合数 a，一定存在素数 p，$p\mid a, p\leq\sqrt{a}$。
+- 对于合数 $a$，一定存在素数 $p\leq \sqrt{a}$ 使得 $p\mid a$。
 
-素数有无穷多个。
+- 素数有无穷多个。
+
+- 所有大于 $3$ 的素数都可以表示为 $6n\pm 1$ 的形式[^ref1]。
 
 ## 算术基本定理
 
@@ -163,7 +165,7 @@ $a\equiv b \pmod {\left(-m\right)}$
 - 传递性：若 $a\equiv b \pmod m, b\equiv c \pmod m$, 则 $a\equiv b\pmod m$.
 -   线性运算：若 $a,b,c,d\in \mathbf Z,m\in \mathbf N^*,a\equiv b\pmod m, c\equiv d\pmod m$ 则有：
     - $a\pm c\equiv b\pm d \pmod m$.
-    - $a\times b\equiv b\times d\pmod m$.
+    - $a\times c\equiv b\times d\pmod m$.
 - 若 $a,b\in \mathbf Z, k,m\in \mathbf N^*, a\equiv b\pmod m$, 则 $ak\equiv bk\pmod {mk}$.
 - 若 $a,b\in \mathbf Z, d,m\in \mathbf N^*, d\mid a,d\mid b, d\mid m$, 则当 $a\equiv b\pmod m$ 成立时，有 $\frac a d\equiv \frac b d \pmod{\frac m d}$.
 - 若 $a,b\in \mathbf Z, d,m\in \mathbf N^*,d\mid m$, 则当 $a\equiv b \pmod m$ 成立时，有 $a\equiv b\pmod d$.
@@ -171,15 +173,25 @@ $a\equiv b \pmod {\left(-m\right)}$
 
 还有性质是乘法逆元。见 [乘法逆元](./inverse.md)。
 
-## C 语言的整数除法和取模运算
+## C/C++ 的整数除法和取模运算
 
-在 C 语言中，整除除法和取模运算，与数学上习惯的取模和除法不一致。
+在 C/C++ 中，整数除法和取模运算，与数学上习惯的取模和除法不一致。
 
-C 语言中的整数除法不是一律向下取整，而是向 0 取整。取模也同理。
+对于所有标准版本的 C/C++，规定在整数除法中：
 
-因此，一个负数模一个正数，结果会得到一个负数，这与数学上的习惯不同。
+1. 当除数为 0 时，行为未定义；
+2. 否则 `(a/b)*b + a%b` 的运算结果与 `a` 相等。
 
-C 语言对于除数或模数为负数的行为是未定义行为，结果未定。这一点也要特别注意。
+也就是说，取模运算的符号取决于除法如何取整；而除法如何取整，这是实现定义的（由编译器决定）。
+
+**从 C99[^operatorc]和 C++11[^operatorcpp]标准版本起**，规定 **商向零取整**（舍弃小数部分）；取模的符号即与被除数相同。从此以下运算结果保证为真：
+
+```text
+5 % 3 == 2;
+5 % -3 == 2;
+-5 % 3 == -2;
+-5 % -3 == -2;
+```
 
 ## 数论函数
 
@@ -226,3 +238,11 @@ $$
     应与代数中的加性函数 (Additive map) 区分。
 
 * * *
+
+## 参考资料与注释
+
+[^ref1]: [Are all primes (past 2 and 3) of the forms 6n+1 and 6n-1?](https://primes.utm.edu/notes/faq/six.html)
+
+[^operatorc]: [Arithmetic operators (C) - cppreference.com](https://en.cppreference.com/w/c/language/operator_arithmetic)
+
+[^operatorcpp]: [Arithmetic operators (C++) - cppreference.com](https://en.cppreference.com/w/cpp/language/operator_arithmetic)

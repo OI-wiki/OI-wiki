@@ -92,7 +92,7 @@ int n, m;
 
 cin >> n >> m;
 for (int i = 1; i <= n; ++i)
-  for (int j = 1; j <= n; ++j) cin >> pic[i][j];
+  for (int j = 1; j <= m; ++j) cin >> pic[i][j];
 ```
 
 同样地，你可以定义三维、四维，以及更高维的数组。

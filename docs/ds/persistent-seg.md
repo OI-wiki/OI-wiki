@@ -105,6 +105,14 @@ int main() {
 }
 ```
 
+## 拓展：基于主席树的可持久化并查集
+
+主席树是实现可持久化并查集的便捷方式，在此也提供一个基于主席树的可持久化并查集实现示例。
+
+```cpp
+--8<-- "docs/ds/code/persistent-seg/persistent-seg_1.cpp"
+```
+
 ## 参考
 
 <https://en.wikipedia.org/wiki/Persistent_data_structure>

@@ -1,6 +1,6 @@
 素数与合数的定义，见 [数论基础](./basic.md)。
 
-素数计数函数：小于或等于 $x$ 的素数的个数，用 $\pi(x)$ 表示。随着 $x$ 的增大，有这样的近似结果：$\pi(x) \sim \frac{x}{\ln(x)}$
+素数计数函数：小于或等于 $x$ 的素数的个数，用 $\pi(x)$ 表示。随着 $x$ 的增大，有这样的近似结果：$\pi(x) \sim \frac{x}{\ln(x)}$。
 
 ## 素数判定
 
@@ -60,16 +60,24 @@ def isPrime(a):
     return True
 ```
 
-### Miller-Rabin 素性测试
+### 素性测试
 
-Miller-Rabin 素性测试（Miller–Rabin primality test）是进阶的素数判定方法。
-对数 n 进行 k 轮测试的时间复杂度是 $O(k \log^3n)$，利用 FFT 等技术可以优化到 [$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)。
+**素性测试**(Primality test）是一类在 **不对给定数字进行素数分解**（prime factorization）的情况下，测试其是否为素数的算法。
+
+素性测试有两种：
+
+1. 确定性测试：绝对确定一个数是否为素数。常见示例包括 Lucas-Lehmer 测试和椭圆曲线素性证明。
+2. 概率性测试：通常比确定性测试快很多，但有可能（尽管概率很小）错误地将 [合数](../number-theory/basic.md#_6) 识别为质数（尽管反之则不会）。因此，通过概率素性测试的数字被称为 **可能素数**，直到它们的素数可以被确定性地证明。而通过测试但实际上是合数的数字则被称为 **伪素数**。有许多特定类型的伪素数，最常见的是费马伪素数，它们是满足费马小定理的合数。概率性测试的常见示例包括 Miller–Rabin 测试。
+
+接下来我们将着重介绍几个概率性素性测试：
 
 #### Fermat 素性测试
 
+**Fermat 素性检验** 是最简单的概率性素性检验。
+
 我们可以根据 [费马小定理](./fermat.md#_1) 得出一种检验素数的思路：
 
-它的基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$
+基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$
 
 ```cpp
 // C++ Version
@@ -99,25 +107,33 @@ def millerRabin(n):
     return True
 ```
 
+如果 $a^{n−1} \bmod n = 1$ 但 $n$ 不是素数，则 $n$ 被称为以 $a$ 为底的 **伪素数**。我们在实践中观察到，如果 $a^{n−1} \bmod n = 1$，那么 $n$ 通常是素数。但这里也有个反例：如果 $n = 341$ 且 $a = 2$，即使 $341 = 11 \cdot 31$ 是合数，有 $2^{340}\equiv 1 {\pmod {341}}$。事实上，$341$ 是最小的伪素数基数。
+
 很遗憾，费马小定理的逆定理并不成立，换言之，满足了 $a^{n-1} \equiv 1 \pmod n$，$n$ 也不一定是素数。
 
-#### 卡迈克尔数
+##### 卡迈克尔数
 
 上面的做法中随机地选择 $a$，很大程度地降低了犯错的概率。但是仍有一类数，上面的做法并不能准确地判断。
 
-对于合数 $n$，如果对于所有正整数 $a$，$a$ 和 $n$ 互素，都有同余式 $a^{n-1} \equiv 1 \pmod n$ 成立，则合数 $n$ 为卡迈克尔数（Carmichael Number），又称为费马伪素数。
+对于合数 $n$，如果对于所有正整数 $a$，$a$ 和 $n$ 互素，都有同余式 $a^{n-1} \equiv 1 \pmod n$ 成立，则合数 $n$ 为 **卡迈克尔数**（Carmichael Number），又称为 **费马伪素数**。
 
 比如，$561 = 3 \times 11 \times 17$ 就是一个卡迈克尔数。
 
 而且我们知道，若 $n$ 为卡迈克尔数，则 $m=2^{n}-1$ 也是一个卡迈克尔数，从而卡迈克尔数的个数是无穷的。[（OEIS:A006931）](https://oeis.org/A006931)
 
-#### 二次探测定理
+#### Miller-Rabin 素性测试
+
+**Miller-Rabin 素性测试**（Miller–Rabin primality test）是进阶的素数判定方法。它是由 Miller 和 Rabin 二人根据费马小定理的逆定理（费马测试）优化得到的。因为和许多类似算法一样，它是使用伪素数的概率性测试，我们必须使用慢得多的确定性算法来保证素性。然而，实际上没有已知的数字通过了高级概率性测试（例如 Rabin-Miller）但实际上却是复合的。因此我们可以放心使用。
+
+对数 n 进行 k 轮测试的时间复杂度是 $O(k \log^3n)$，利用 FFT 等技术可以优化到 [$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)。
+
+##### 二次探测定理
 
 如果 $p$ 是奇素数，则 $x^2 \equiv 1 \pmod p$ 的解为 $x \equiv 1 \pmod p$ 或者 $x \equiv p - 1 \pmod p$。
 
 要证明该定理，只需将上面的方程移项，再使用平方差公式，得到 $(x+1)(x-1) \equiv 0 \bmod p$，即可得出上面的结论。
 
-#### 实现
+##### 实现
 
 根据卡迈克尔数的性质，可知其一定不是 $p^e$。
 
@@ -125,7 +141,7 @@ def millerRabin(n):
 
 将 $a^{n-1} \equiv 1 \pmod n$ 中的指数 $n−1$ 分解为 $n−1=u \times 2^t$，在每轮测试中对随机出来的 $a$ 先求出 $a^{u} \pmod n$，之后对这个值执行最多 $t$ 次平方操作，若发现非平凡平方根时即可判断出其不是素数，否则通过此轮测试。
 
-比较正确的 Miller Rabin：（来自 fjzzq2002）
+这样得到了较正确的 Miller Rabin：（来自 fjzzq2002）
 
 ```cpp
 // C++ Version
@@ -157,7 +173,6 @@ def millerRabin(n):
     while a % 2 == 0:
         a = a // 2
         b = b + 1
-    j = 0
     # test_time 为测试次数,建议设为不小于 8
     # 的整数以保证正确率,但也不宜过大,否则会影响效率
     for i in range(1, test_time + 1):
@@ -165,33 +180,25 @@ def millerRabin(n):
         v = quickPow(x, a, n)
         if v == 1:
             continue
-        for j in range(0, b):
+        j = 0
+        while j < b:
             if v == n - 1:
                 break
             v = v * v % n
+            j = j + 1
         if j >= b:
             return False
     return True
 ```
 
-### 参考
-
-<http://www.matrix67.com/blog/archives/234>
-
-<https://blog.bill.moe/miller-rabin-notes/>
-
 ## 反素数
 
-### 定义
-
-如果某个正整数 $n$ 满足如下条件，则称为是反素数：
+如果某个正整数 $n$ 满足如下条件，则称为是 **反素数**：
   任何小于 $n$ 的正数的约数个数都小于 $n$ 的约数个数
 
 注：注意区分 [emirp](https://en.wikipedia.org/wiki/Emirp)，它是用来表示从后向前写读是素数的数。
 
 ### 简介
-
-（本段转载自 [桃酱的算法笔记](https://zhuanlan.zhihu.com/c_1005817911142838272)，原文戳 [链接](https://zhuanlan.zhihu.com/p/41759808)，已获得作者授权）
 
 其实顾名思义，素数就是因子只有两个的数，那么反素数，就是因子最多的数（并且因子个数相同的时候值最小），所以反素数是相对于一个集合来说的。
 
@@ -237,28 +244,41 @@ def millerRabin(n):
 
 4. 当前因子正好是我们想要的因子（此时判断是否需要更新最小 $ans$）
 
-然后 dfs 里面不断一层一层枚举次数继续往下迭代就好啦\~~
+然后 dfs 里面不断一层一层枚举次数继续往下迭代可以。
 
 ### 常见题型
 
-#### 求因子数一定的最小数
+1. 求因子数一定的最小数
 
-题目链接：<https://codeforces.com/problemset/problem/27/E>
+???+note " 例题 [Codeforces 27E. A number with a given number of divisors](https://codeforces.com/problemset/problem/27/E)"
+    求具有给定除数的最小自然数。请确保答案不超过 $10^{18}$。
 
-对于这种题，我们只要以因子数为 dfs 的返回条件基准，不断更新找到的最小值就可以了
+??? note "解题思路"
+    对于这种题，我们只要以因子数为 dfs 的返回条件基准，不断更新找到的最小值就可以了
 
-上代码：
+??? note "参考代码"
+    ```cpp
+    --8<-- "docs/math/code/prime/prime_1.cpp"
+    ```
 
-```cpp
---8<-- "docs/math/code/prime/prime_1.cpp"
-```
+2. 求 n 以内因子数最多的数
 
-#### 求 n 以内因子数最多的数
+???+note " 例题 [ZOJ - More Divisors](https://zoj.pintia.cn/problem-sets/91827364500/problems/91827366061)"
+    大家都知道我们使用十进制记数法，即记数的基数是 $10$。历史学家说这是因为人有十个手指，也许他们是对的。然而，这通常不是很方便，十只有四个除数——$1$、$2$、$5$ 和 $10$。因此，像 $\frac{1}{3}$、$\frac{1}{4}$ 或 $\frac{1}{6}$ 这样的分数不便于用十进制表示。从这个意义上说，以 $12$、$24$ 甚至 $60$ 为底会方便得多。主要原因是这些数字的除数要大得多——分别是 $6$、$8$ 和 $12$。请回答：除数最多的不超过 $n$ 的数是多少？
 
-<https://zoj.pintia.cn/problem-sets/91827364500/problems/91827366061>
+??? note "解题思路"
+    思路同上，只不过要改改 dfs 的返回条件。注意这样的题目的数据范围，我一开始用了 int，应该是溢出了，在循环里可能就出不来了就超时了。上代码，0ms 过。注释就没必要写了上面写的很清楚了。
 
-思路同上，只不过要改改 dfs 的返回条件。注意这样的题目的数据范围，我一开始用了 int，应该是溢出了，在循环里可能就出不来了就超时了。上代码，0ms 过。注释就没必要写了上面写的很清楚了。
+??? note "参考代码"
+    ```cpp
+    --8<-- "docs/math/code/prime/prime_2.cpp"
+    ```
 
-```cpp
---8<-- "docs/math/code/prime/prime_2.cpp"
-```
+## 参考资料与注释
+
+1. Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006) pp 197-217.
+2. [数论部分第一节：素数与素性测试](http://www.matrix67.com/blog/archives/234)
+3. [Miller-Rabin 与 Pollard-Rho 学习笔记 - Bill Yang's Blog](https://blog.bill.moe/miller-rabin-notes/)
+4. [Primality test - Wikipedia](https://en.wikipedia.org/wiki/Primality_test)
+5. [桃子的算法笔记——反素数详解（acm/OI）](https://zhuanlan.zhihu.com/p/41759808)
+6. [The Rabin-Miller Primality Test](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)

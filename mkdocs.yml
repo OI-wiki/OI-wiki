@@ -57,7 +57,11 @@ nav:
       - Xcode: tools/editor/xcode.md
       - GUIDE: tools/editor/guide.md
       - Sublime Text: tools/editor/sublime.md
-    - 评测工具: tools/judgers.md
+    - 评测工具: 
+      - Arbiter: tools/judger/arbiter.md
+      - Cena: tools/judger/cena.md
+      - CCR Plus: tools/judger/ccr-plus.md
+      - Lemon: tools/judger/lemon.md
     - 命令行: tools/cmd.md
     - WSL (Windows 10): tools/wsl.md
     - Special Judge: tools/special-judge.md
@@ -246,7 +250,7 @@ nav:
       - 快速傅里叶变换: math/poly/fft.md
       - 快速数论变换: math/poly/ntt.md
       - 快速沃尔什变换: math/poly/fwt.md
-      - Chirp-Z 变换: math/poly/czt.md
+      - Chirp Z 变换: math/poly/czt.md
       - 多项式求逆: math/poly/inv.md
       - 多项式开方: math/poly/sqrt.md
       - 多项式除法|取模: math/poly/div-mod.md
@@ -287,7 +291,11 @@ nav:
       - 置换群: math/permutation-group.md
     - 概率初步: math/expectation.md
     - 斐波那契数列: math/fibonacci.md
-    - 博弈论: math/game-theory.md
+    - 博弈论: 
+      - 博弈论简介: math/game-theory/intro.md
+      - 公平组合游戏: math/game-theory/impartial-game.md
+      - 非公平组合游戏: math/game-theory/partizan-game.md
+      - 反常游戏: math/game-theory/misere-game.md
     - 牛顿迭代法: math/newton.md
     - 数值积分: math/integral.md
     - 分段打表: math/dictionary.md
@@ -301,7 +309,9 @@ nav:
     - 队列: ds/queue.md
     - 链表: ds/linked-list.md
     - 哈希表: ds/hash.md
-    - 并查集: ds/dsu.md
+    - 并查集:
+      - 并查集: ds/dsu.md
+      - 并查集复杂度: ds/dsu-complexity.md
     - 堆:
       - 堆简介: ds/heap.md
       - 二叉堆: ds/binary-heap.md
@@ -433,6 +443,7 @@ nav:
   - 杂项:
     - 杂项简介: misc/index.md
     - 离散化: misc/discrete.md
+    - 双指针: misc/two-pointer.md
     - 离线算法:
       - 离线算法简介: misc/offline.md
       - CDQ 分治: misc/cdq-divide.md
@@ -460,6 +471,7 @@ nav:
     - 主元素问题: misc/main-element.md
     - Garsia-Wachs 算法: misc/garsia-wachs.md
     - 15-puzzle: misc/15-puzzle.md
+    - Kahan 求和: misc/kahan-summation.md
   - 专题:
     - RMQ: topic/rmq.md
     - 并查集应用: topic/dsu-app.md
