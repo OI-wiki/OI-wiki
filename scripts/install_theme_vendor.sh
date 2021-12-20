@@ -5,7 +5,7 @@ rm -rf "$VENDOR_DIR"
 
 # MathJax
 TEMP_DIR="$(mktemp -d -t "download-mathjax-XXXXXXXX")"
-MATHJAX_URL="https://registry.npmjs.org/mathjax/-/mathjax-2.7.5.tgz"
+MATHJAX_URL=${MATHJAX_URL:="https://registry.npmjs.org/mathjax/-/mathjax-2.7.5.tgz"}
 MATHJAX_REQUIRED_FILES=(
 	"config/TeX-MML-AM_CHTML.js"
 	"extensions/TeX"
@@ -25,7 +25,7 @@ rm -rf "$TEMP_DIR"
 
 # Material Icons
 TEMP_DIR="$(mktemp -d -t "download-material-icons-XXXXXXXX")"
-MATERIAL_ICONS_URL="https://registry.npmjs.org/material-icons/-/material-icons-0.2.3.tgz"
+MATERIAL_ICONS_URL=${MATERIAL_ICONS_URL:="https://registry.npmjs.org/material-icons/-/material-icons-0.2.3.tgz"}
 MATERIAL_ICONS_REQUIRED_FILES=(
 	"iconfont/material-icons.css"
 	"iconfont/MaterialIcons-Regular.woff"
@@ -42,7 +42,7 @@ rm -rf "$TEMP_DIR"
 
 # Gitalk
 TEMP_DIR="$(mktemp -d -t "download-gittalk-XXXXXXXX")"
-GITALK_REPO="git@github.com:OI-wiki/gitalk.git"
+GITALK_REPO=${GITALK_REPO:="git@github.com:OI-wiki/gitalk.git"}
 GITALK_BRANCH="mv1.0"
 GITALK_REQUIRED_FILES=(
 	"gitalk-component.js"
