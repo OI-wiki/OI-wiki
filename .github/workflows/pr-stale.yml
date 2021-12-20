@@ -20,5 +20,5 @@ jobs:
             感谢理解与支持。
           stale-pr-label: 'No Response / 失去响应'
           exempt-pr-labels: 'Busy Author / 作者正忙'
-          days-before-stale: 30
-          days-before-close: 14 
+          days-before-pr-stale: 30
+          days-before-pr-close: 14 
