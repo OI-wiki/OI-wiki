@@ -1,6 +1,14 @@
 VENDOR_DIR="mkdocs-material/material/assets/vendor"
 rm -rf "$VENDOR_DIR"
 
+function _when_error() {
+	echo -e "\nOops! Failed to fetch vendor resources!"
+	if [[ -d "$TEMP_DIR" ]]; then
+		echo "Check the temp directory: $TEMP_DIR"
+	fi
+}
+trap _when_error ERR
+
 # MathJax
 TEMP_DIR="$(mktemp -d -t "download-mathjax-XXXXXXXX")"
 MATHJAX_URL=${MATHJAX_URL:-"https://registry.npmjs.org/mathjax/-/mathjax-2.7.5.tgz"}
