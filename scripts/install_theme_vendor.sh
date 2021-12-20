@@ -1,3 +1,5 @@
+set -e
+
 VENDOR_DIR="mkdocs-material/material/assets/vendor"
 rm -rf "$VENDOR_DIR"
 
