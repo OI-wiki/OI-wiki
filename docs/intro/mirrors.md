@@ -3,13 +3,13 @@ OI Wiki 部署在国外服务器上，有时可能会因为各种原因，出现
 -   OI Wiki 主站，线路：DMIT
     - <https://oi-wiki.org>
 
--   维护者：OI Wiki，线路：阿里云
+-   维护者：OI Wiki，线路：阿里云，同步频率：与主站相同
     - <http://oi-wiki.com>
 
--   维护者：OI Wiki，线路：Netlify
+-   维护者：OI Wiki，线路：Netlify，同步频率：与主站相同
     - <https://demo.oi-wiki.org>
 
--   维护者：琴春（[vx.st](https://vx.st)), 线路：AWS
+-   维护者：琴春（[vx.st](https://vx.st)), 线路：AWS，同步频率：与主站相同
     - <https://oi-wiki.net>
     - <https://oi-wiki.wiki>
     - <https://oi-wiki.win>
@@ -22,5 +22,5 @@ OI Wiki 部署在国外服务器上，有时可能会因为各种原因，出现
     - <https://oiwiki.win>
     - <https://oiwiki.xyz>
 
--   维护者：Menci（[men.ci](https://men.ci)），线路：Azure + 阿里云 CDN
+-   维护者：Menci（[men.ci](https://men.ci)），线路：Azure + 阿里云 CDN，同步频率：与主站相同
     - <https://oi.wiki>
