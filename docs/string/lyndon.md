@@ -67,7 +67,7 @@ def duval(s):
                 k += 1
             j += 1
         while i <= k:
-            factorization.append(s[i : j - k])
+            factorization.append(s[i : i + j - k])
             i += j - k
     return factorization
 ```
@@ -127,7 +127,7 @@ def min_cyclic_string(s):
             j += 1
         while i <= k:
             i += j - k
-    return s[ans : n / 2]
+    return s[ans : ans + n / 2]
 ```
 
 ## 习题
