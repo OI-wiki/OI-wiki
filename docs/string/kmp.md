@@ -74,7 +74,7 @@ def prefix_function(s):
     pi = [0] * n
     for i in range(1, n):
         for j in range(i, -1, -1):
-            if s[0 : j] == s[i-j+1 : i+1]:
+            if s[0 : j] == s[i - j + 1 : i + 1]:
                 pi[i] = j
                 break
     return pi
@@ -124,7 +124,7 @@ def prefix_function(s):
     pi = [0] * n
     for i in range(1, n):
         for j in range(pi[i - 1] + 1, -1, -1):
-            if s[0 : j] == s[i - j + 1, j]:
+            if s[0 : j] == s[i - j + 1 : i + 1]:
                 pi[i] = j
                 break
     return pi
