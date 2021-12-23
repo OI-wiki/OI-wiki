@@ -14,8 +14,8 @@ jobs:
           stale-pr-message: |
             你好 :wave:
 
-            这个 Pull Request 已经30天未响应。
-            如果此 PR 在将来的14天内仍未恢复活动，它将被关闭。
+            这个 Pull Request 已经 30 天未响应。
+            如果此 PR 在将来的 14 天内仍未恢复活动，它将被关闭。
 
             感谢理解与支持。
           stale-pr-label: 'No Response / 失去响应'
