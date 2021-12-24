@@ -491,7 +491,7 @@ theme:
     accent: 'red'
   include_search_page: false
   search_index_only: true
-  favicon: 'https://cdn.jsdelivr.net/npm/oicdn@0.0.1/favicon.ico'
+  favicon: 'favicon.ico'
 
   logo:
     icon: 'school'
@@ -520,7 +520,7 @@ extra:
 
 extra_javascript:
   - '_static/js/extra.js?v=16'
-  - 'https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
+  - 'assets/vendor/mathjax/MathJax.js?config=TeX-MML-AM_CHTML'
 
 
 extra_css:
