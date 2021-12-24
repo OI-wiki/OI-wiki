@@ -59,6 +59,7 @@ nav:
       - GUIDE: tools/editor/guide.md
       - Sublime Text: tools/editor/sublime.md
     - 评测工具: 
+      - 评测工具简介: tools/judger/index.md
       - Arbiter: tools/judger/arbiter.md
       - Cena: tools/judger/cena.md
       - CCR Plus: tools/judger/ccr-plus.md
