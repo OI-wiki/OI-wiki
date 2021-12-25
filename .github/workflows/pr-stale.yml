@@ -2,7 +2,7 @@ name: 'Close Stale Pull Request'
 
 on:
   schedule:
-    - cron: '0 0 0 1/5 *'
+    - cron: '0 0 * * 0'
 
 jobs:
   stale:
