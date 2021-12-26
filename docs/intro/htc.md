@@ -100,10 +100,10 @@
 
 示例：
 
-- fix(ds/persistent-seg): 修改代码注释使描述更清晰
-- fix: tools/judger/index 不在目录中 (#3709)
-- feat(math/poly/fft): better proof
-- refactor(ds/stack): 整理页面内容
+- `fix(ds/persistent-seg): 修改代码注释使描述更清晰`
+- `fix: tools/judger/index 不在目录中 (#3709)`
+- `feat(math/poly/fft): better proof`
+- `refactor(ds/stack): 整理页面内容`
 
 ### 协作流程
 
