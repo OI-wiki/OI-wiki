@@ -1,6 +1,4 @@
-## 栈
-
-### 简介
+## 简介
 
 ![](./images/stack.svg)
 
@@ -24,7 +22,7 @@
     
     所以，在考虑数据结构是 LIFO 还是 FIFO 的时候，应当考虑在当前容器内的情况。
 
-### 使用数组模拟栈
+## 使用数组模拟栈
 
 我们可以方便的使用数组来模拟一个栈，如下：
 
@@ -66,7 +64,7 @@ if st[0]:
 st[0] = 0
 ```
 
-### C++ STL 中的栈
+## C++ STL 中的栈
 
 C++ 中的 STL 也提供了一个容器 `std::stack`，使用前需要引入 `stack` 头文件。
 
@@ -117,7 +115,7 @@ cout << st2.top() << endl;
 // 输出: 1
 ```
 
-### 使用 Python 中的 list 模拟栈
+## 使用 Python 中的 list 模拟栈
 
 在 Python 中，你可以使用列表来模拟一个栈：
 
@@ -139,6 +137,6 @@ st.pop()
 st.clear()
 ```
 
-### 参考资料
+## 参考资料
 
 1. [std::stack - zh.cppreference.com](https://zh.cppreference.com/w/cpp/container/stack)
