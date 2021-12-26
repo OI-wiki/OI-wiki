@@ -77,7 +77,7 @@ int query(int u, int v, int l, int r, int k) {  // 查询操作
   int mid = l + r >> 1,
       x = sum[ls[v]] - sum[ls[u]];  // 通过区间减法得到左儿子中所存储的数值个数
   if (l == r) return l;
-  if (k <= x)  // 要查询的位置比左儿子所存储的数值个数小，说明在左儿子中
+  if (k <= x)  // 若 k 小于等于 x ，则说明第 k 小的数字存储在在左儿子中
     return query(ls[u], ls[v], l, mid, k);
   else  // 否则说明在右儿子中
     return query(rs[u], rs[v], mid + 1, r, k - x);
