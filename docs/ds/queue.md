@@ -254,7 +254,7 @@ queue.appendleft(0)
     --8<-- "docs/ds/code/queue/queue_1.cpp"
     ```
 
-### 参考资料
+## 参考资料
 
 1. [std::queue - zh.cppreference.com](https://zh.cppreference.com/w/cpp/container/queue)
 2. [std::deque - zh.cppreference.com](https://zh.cppreference.com/w/cpp/container/deque)
