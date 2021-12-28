@@ -8,9 +8,6 @@ on:
     branches:
       - master
   workflow_dispatch:
-    inputs:
-      notes:
-        description: 'notes'
 
 jobs:
   build:
