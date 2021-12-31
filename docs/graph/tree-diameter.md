@@ -1,4 +1,4 @@
-** 树上任意两节点之间最长的简单路径即为树的「直径」。 **
+**树上任意两节点之间最长的简单路径即为树的「直径」。**
 
 前置知识：[树基础](./tree-basic.md)。
 
@@ -15,7 +15,7 @@
 
 首先从任意节点 $y$ 开始进行第一次 DFS，到达距离其最远的节点，记为 $z$，然后再从 $z$ 开始做第二次 DFS，到达距离 $z$ 最远的节点，记为 $z'$，则 $\delta(z,z')$ 即为树的直径。
 
-显然，如果第一次 DFS 到达的节点 $z$ 是直径的一端，那么第二次 DFS 到达的节点 $z'$ 一定是直径的一端。我们只需证明在任意情况下， $z$ 必为直径的一端。
+显然，如果第一次 DFS 到达的节点 $z$ 是直径的一端，那么第二次 DFS 到达的节点 $z'$ 一定是直径的一端。我们只需证明在任意情况下，$z$ 必为直径的一端。
 
 定理：在一棵树上，从任意节点 $y$ 开始进行一次 DFS，到达的距离其最远的节点 $z$ 必为直径的一端。
 
@@ -23,19 +23,19 @@
 
 - 若 $y$ 在 $\delta(s,t)$ 上：
 
-![y在s-t上](./images/tree-diameter1.svg)
+![y 在 s-t 上](./images/tree-diameter1.svg)
 
 有 $\delta(y,z) > \delta(y,t) \Longrightarrow \delta(x,z) > \delta(x,t) \Longrightarrow \delta(s,z) > \delta(s,t)$，与 $\delta(s,t)$ 为树上任意两节点之间最长的简单路径矛盾。
 
 - 若 $y$ 不在 $\delta(s,t)$ 上，且 $\delta(y,z)$ 与 $\delta(s,t)$ 存在重合路径：
 
-![y不在s-t上，y-z与s-t存在重合路径](./images/tree-diameter2.svg)
+![y 不在 s-t 上，y-z 与 s-t 存在重合路径](./images/tree-diameter2.svg)
 
 有 $\delta(y,z) > \delta(y,t) \Longrightarrow \delta(x,z) > \delta(x,t) \Longrightarrow \delta(s,z) > \delta(s,t)$，与 $\delta(s,t)$ 为树上任意两节点之间最长的简单路径矛盾。
 
 - 若 $y$ 不在 $\delta(s,t)$ 上，且 $\delta(y,z)$ 与 $\delta(s,t)$ 不存在重合路径：
 
-![y不在s-t上，y-z与s-t不存在重合路径](./images/tree-diameter3.svg)
+![y 不在 s-t 上，y-z 与 s-t 不存在重合路径](./images/tree-diameter3.svg)
 
 有 $\delta(y,z) > \delta(y,t) \Longrightarrow \delta(x',z) > \delta(x',t) \Longrightarrow \delta(x,z) > \delta(x,t) \Longrightarrow \delta(s,z) > \delta(s,t)$，与 $\delta(s,t)$ 为树上任意两节点之间最长的简单路径矛盾。
 
@@ -43,7 +43,6 @@
 
 ???+warning "负权边"
     上述证明过程建立在所有路径均不为负的前提下。如果树上存在负权边，则上述证明不成立。故若存在负权边，则无法使用两次 DFS 的方式求解直径。
-
 
 代码实现如下。
 
