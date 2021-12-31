@@ -10,16 +10,16 @@
     \node (t) at (3,1) {$t$};
     \node (y) at (0.5,0) {$y$};
     \node (z) at (2.5,0) {$z$};
-    \node (x) at (2,1) {$x$};
-    \node (xp) at (1.5,0) {$x'$};
+    \node (x) at (1,1) {$x$};
+    \node (xp) at (2,1) {$x'$};
 \end{scope}
 
 \path
     (s) edge (x)
-    (x) edge (t)
-    (y) edge (xp)
-    (xp) edge (z)
-    (x) edge (xp);
+	(x) edge (xp)
+	(xp) edge (t)
+	(y) edge (x)
+    (xp) edge (z);
 
 \end{tikzpicture}
 \end{document}
