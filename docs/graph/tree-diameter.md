@@ -2,7 +2,7 @@
 
 前置知识：[树基础](./tree-basic.md)。
 
-显然，树的直径不止一条。
+显然，一棵树可以有多条直径，他们的长度相等。
 
 可以用两次 DFS 或者树形 DP 的方法在 $O(n)$ 时间求出树的直径。
 
@@ -76,7 +76,7 @@ int main() {
 }
 ```
 
-如果需要求出直径上的所有节点，则可以在第二次 DFS 的过程中，记录每个点的前序节点，即可从直径的一端一路向前，遍历直径上所有的节点。
+如果需要求出一条直径上所有的节点，则可以在第二次 DFS 的过程中，记录每个点的前序节点，即可从直径的一端一路向前，遍历直径上所有的节点。
 
 ## 做法 2. 树形 DP
 
@@ -120,13 +120,13 @@ int main() {
 }
 ```
 
-如果需要求出直径上的所有节点，则可以在 DP 的过程中，记录下每个节点能向下延伸的最远距离与次远距离所对应的子节点，之后再找到对应的 $u$，使得 $d = d_1u + d_2u$，即可分别沿着从 $u$ 开始的最远距离和次远距离对应的子节点一路向下，遍历直径上所有的节点。
+如果需要求出一条直径上所有的节点，则可以在 DP 的过程中，记录下每个节点能向下延伸的最远距离与次远距离所对应的子节点，之后再找到对应的 $u$，使得 $d = d_1u + d_2u$，即可分别沿着从 $u$ 开始的最远距离和次远距离对应的子节点一路向下，遍历直径上所有的节点。
 
 ## 性质
 
 #### 若树上所有边边权均为正，则树的所有直径中点重合
 
-证明：使用反证法。设两条中点不重合的直径分别为 $\delta(s,t)$ 与 $\delta(s',t')$，中点分别为 $x$ 与 $x'$。有 $\delta(s,x) = \delta(x,t) = \delta(s',x') = \delta(x',t')$。
+证明：使用反证法。设两条中点不重合的直径分别为 $\delta(s,t)$ 与 $\delta(s',t')$，中点分别为 $x$ 与 $x'$。显然，$\delta(s,x) = \delta(x,t) = \delta(s',x') = \delta(x',t')$。
 
 ![无负权边的树所有直径的中点重合](./images/tree-diameter4.svg)
 
@@ -139,3 +139,6 @@ int main() {
 - [ZOJ 3820, Building Fire Stations](https://vjudge.net/problem/ZOJ-3820)
 - [CEOI2019/CodeForces 1192B. Dynamic Diameter](https://codeforces.com/contest/1192/problem/B)
 - [IPSC 2019 网络赛，Lightning Routing I](https://nanti.jisuanke.com/t/41398)
+- [NOIP2007 提高组 树网的核](https://www.luogu.com.cn/problem/P1099)
+- [SDOI2011 消防](https://www.luogu.com.cn/problem/P2491)
+- [APIO2010 巡逻](https://www.luogu.com.cn/problem/P3629)
