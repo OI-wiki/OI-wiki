@@ -348,7 +348,7 @@ def circumference(radius: float) -> float:
     return 2 * math.pi * radius
 ```
 
-自 Python 3.6 起 ([PEP 526](https://www.python.org/dev/peps/pep-0526/))，除了函数函数，变量也是可以类型标注的，你可以通过调用 `__annotations__` 来查看模块和类中所有的变量类型标注。
+自 Python 3.6 起 ([PEP 526](https://www.python.org/dev/peps/pep-0526/))，除了函数参数，变量也是可以类型标注的，你可以通过调用 `__annotations__` 来查看模块和类中所有的变量类型标注。
 
 ```python3.6+
 pi: float = 3.142
