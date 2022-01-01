@@ -74,13 +74,13 @@ void rotate(int x) {
 
 Splay 操作规定：每访问一个节点 $x$ 后都要强制将其旋转到根节点。
 
-Splay 操作即对 $x$ 做一系列的 **splay 步骤**。每次对 $x$ 做一次 splay 步骤，$x$ 到根节点的距离都会更近。定义 $p$ 为 $x$ 的父节点。Splay 步骤有三种，具体分为 $6$ 种情况：
+Splay 操作即对 $x$ 做一系列的 **splay 步骤**。每次对 $x$ 做一次 splay 步骤，$x$ 到根节点的距离都会更近。定义 $p$ 为 $x$ 的父节点。Splay 步骤有三种，具体分为六种情况：
 
 1. **zig**: 在 $p$ 是根节点时操作。Splay 树会根据 $x$ 和 $p$ 间的边旋转。$zig$ 存在是用于处理奇偶校验问题，仅当 $x$ 在 splay 操作开始时具有奇数深度时作为 splay 操作的最后一步执行。
 
 ![splay-zig](./images/splay-zig.png)
 
-即直接将 $x$ 左旋或右旋（图 $1,2$）
+即直接将 $x$ 左旋或右旋（图 1, 2）
 
 ![图 1](./images/splay-rotate1.svg)
 
@@ -90,7 +90,7 @@ Splay 操作即对 $x$ 做一系列的 **splay 步骤**。每次对 $x$ 做一�
 
 ![splay-zig-zig](./images/splay-zig-zig.gif)
 
-即首先将 $g$ 左旋或右旋，然后将 $x$ 右旋或左旋（图 $3,4$）。
+即首先将 $g$ 左旋或右旋，然后将 $x$ 右旋或左旋（图 3, 4）。
 
 ![图 3](./images/splay-rotate3.svg)
 
@@ -100,7 +100,7 @@ Splay 操作即对 $x$ 做一系列的 **splay 步骤**。每次对 $x$ 做一�
 
 ![splay-zig-zag](./images/splay-zig-zag.gif)
 
-即将 $x$ 先左旋再右旋、或先右旋再左旋（图 $5,6$）。
+即将 $x$ 先左旋再右旋、或先右旋再左旋（图 5, 6）。
 
 ![图 5](./images/splay-rotate5.svg)
 
@@ -119,7 +119,7 @@ void splay(int x) {
 
 #### Splay 操作的时间复杂度
 
-因为 zig 和 zag 是 **对称** 操作，我们只需要对 zig，zig−zig，zig−zag 操作分析复杂度。采用 [势能分析](../basic/complexity.md#势能分析)，定义一个 $n$ 个节点的 splay 树进行了 $m$ 次 splay 步骤。可记 $w(x)=[\log(size(x))]$, 定义势能函数为 $\varphi =\sum w(x)$,$\varphi (0) \leq n \log n$，在第 $i$ 次操作后势能为 $\varphi (i)$, 则我们只需要求出初始势能和每次的势能变化量的和即可。
+因为 zig 和 zag 是 **对称** 操作，我们只需要对 zig，zig−zig，zig−zag 操作分析复杂度。采用 [势能分析](../basic/complexity.md#_11)，定义一个 $n$ 个节点的 splay 树进行了 $m$ 次 splay 步骤。可记 $w(x)=[\log(size(x))]$, 定义势能函数为 $\varphi =\sum w(x)$,$\varphi (0) \leq n \log n$，在第 $i$ 次操作后势能为 $\varphi (i)$, 则我们只需要求出初始势能和每次的势能变化量的和即可。
 
 1. **zig**: 势能的变化量为 $1+w^{'}(x)+w^{'}(fa)−w(x)−w(fa) \leq 1+w^{'}(fa)−w(x) \leq 1+w^{'}(x)−w(x)$
 
