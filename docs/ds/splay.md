@@ -76,7 +76,7 @@ Splay 操作规定：每访问一个节点 $x$ 后都要强制将其旋转到根
 
 Splay 操作即对 $x$ 做一系列的 **splay 步骤**。每次对 $x$ 做一次 splay 步骤，$x$ 到根节点的距离都会更近。定义 $p$ 为 $x$ 的父节点。Splay 步骤有三种，具体分为 $6$ 种情况：
 
-1. $zig$: 在 $p$ 是根节点时操作。Splay 树会根据 $x$ 和 $p$ 间的边旋转。$zig$ 存在是用于处理奇偶校验问题，仅当 $x$ 在 splay 操作开始时具有奇数深度时作为 splay 操作的最后一步执行。
+1. **zig**: 在 $p$ 是根节点时操作。Splay 树会根据 $x$ 和 $p$ 间的边旋转。$zig$ 存在是用于处理奇偶校验问题，仅当 $x$ 在 splay 操作开始时具有奇数深度时作为 splay 操作的最后一步执行。
 
 ![splay-zig](./images/splay-zig.png)
 
@@ -86,7 +86,7 @@ Splay 操作即对 $x$ 做一系列的 **splay 步骤**。每次对 $x$ 做一�
 
 ![图 2](./images/splay-rotate2.svg)
 
-2. $zig-zig$: 在 $p$ 不是根节点且 $x$ 和 $p$ 都是右侧子节点或都是左侧子节点时操作。下方例图显示了 $x$ 和 $p$ 都是左侧子节点时的情况。Splay 树首先按照连接 $p$ 与其父节点 $g$ 边旋转，然后按照连接 $x$ 和 $p$ 的边旋转。
+2. **zig-zig**: 在 $p$ 不是根节点且 $x$ 和 $p$ 都是右侧子节点或都是左侧子节点时操作。下方例图显示了 $x$ 和 $p$ 都是左侧子节点时的情况。Splay 树首先按照连接 $p$ 与其父节点 $g$ 边旋转，然后按照连接 $x$ 和 $p$ 的边旋转。
 
 ![splay-zig-zig](./images/splay-zig-zig.gif)
 
@@ -96,7 +96,7 @@ Splay 操作即对 $x$ 做一系列的 **splay 步骤**。每次对 $x$ 做一�
 
 ![图 4](./images/splay-rotate4.svg)
 
-3. $zig-zag$: 在 $p$ 不是根节点且 $x$ 和 $p$ 一个是右侧子节点一个是左侧子节点时操作。Splay 树首先按 $p$ 和 $x$ 之间的边旋转，然后按 $x$ 和 $g$ 新生成的结果边旋转。
+3. **zig-zag**: 在 $p$ 不是根节点且 $x$ 和 $p$ 一个是右侧子节点一个是左侧子节点时操作。Splay 树首先按 $p$ 和 $x$ 之间的边旋转，然后按 $x$ 和 $g$ 新生成的结果边旋转。
 
 ![splay-zig-zag](./images/splay-zig-zag.gif)
 
@@ -119,13 +119,13 @@ void splay(int x) {
 
 #### Splay 操作的时间复杂度
 
-因为 $zig$ 和 $zag$ 是 **对称** 操作，我们只需要对 $zig$，$zig−zig$，$zig−zag$ 操作分析复杂度。采用 [势能分析](../basic/complexity.md##势能分析)，定义一个 $n$ 个节点的 splay 树进行了 $m$ 次 splay 步骤。可记 $w(x)=⌈\log(size(x))⌉$, 定义势能函数为 $\varphi =\sum w(x)$,$\varphi (0) \leq n \log n$，在第 $i$ 次操作后势能为 $\varphi (i)$, 则我们只需要求出初始势能和每次的势能变化量的和即可。
+因为 zig 和 zag 是 **对称** 操作，我们只需要对 zig， zig−zig， zig−zag 操作分析复杂度。采用 [势能分析](../basic/complexity.md#势能分析)，定义一个 $n$ 个节点的 splay 树进行了 $m$ 次 splay 步骤。可记 $w(x)=[\log(size(x))]$, 定义势能函数为 $\varphi =\sum w(x)$,$\varphi (0) \leq n \log n$，在第 $i$ 次操作后势能为 $\varphi (i)$, 则我们只需要求出初始势能和每次的势能变化量的和即可。
 
-1. $zig$: 势能的变化量为 $1+w^{'}(x)+w^{'}(fa)−w(x)−w(fa) \leq 1+w^{'}(fa)−w(x) \leq 1+w^{'}(x)−w(x)$
+1. **zig**: 势能的变化量为 $1+w^{'}(x)+w^{'}(fa)−w(x)−w(fa) \leq 1+w^{'}(fa)−w(x) \leq 1+w^{'}(x)−w(x)$
 
-2. $zig-zig$:  势能变化量为 $1+w^{'}(x)+w^{'}(fa)+w^{'}(g)−w(x)−w(fa)−w(g) \leq 1+w^{'}(fa)+w^{'}(g)−w(x)−w(fa) \leq 1+ w^{'}(x)+w^{'}(g)−2w(x) \leq 3(w^{'}(x)−w(x))$
+2. **zig-zig**:  势能变化量为 $1+w^{'}(x)+w^{'}(fa)+w^{'}(g)−w(x)−w(fa)−w(g) \leq 1+w^{'}(fa)+w^{'}(g)−w(x)−w(fa) \leq 1+ w^{'}(x)+w^{'}(g)−2w(x) \leq 3(w^{'}(x)−w(x))$
 
-3. $zig-zag$:  势能变化量为 $1+w^{′}(x)+w^{′}(fa)+w^{′}(g)−w(x)−w(fa)−w(g) \leq 1+w^{′}(fa)+w^{′}(g)−w(x)−w(fa) \leq 1+w^{′}(g)+w^{′}(fa)−2w(x) \leq 2 w^{′}(x)−w^{′}(g)−w^{′}(fa) + w^{′}(fa)+w^{′}(g)−w(x)−w(fa) \leq 2(w^{′}(x)−w(x))$
+3. **zig-zag**:  势能变化量为 $1+w^{′}(x)+w^{′}(fa)+w^{′}(g)−w(x)−w(fa)−w(g) \leq 1+w^{′}(fa)+w^{′}(g)−w(x)−w(fa) \leq 1+w^{′}(g)+w^{′}(fa)−2w(x) \leq 2 w^{′}(x)−w^{′}(g)−w^{′}(fa) + w^{′}(fa)+w^{′}(g)−w(x)−w(fa) \leq 2(w^{′}(x)−w(x))$
 
 由此可见，三种 splay 步骤的势能全部可以缩放为 $\leq 3(w^{′}(x)−w(x))$。假设 splay 操作一次依次访问了 $x_{1}, x_{2}, \cdots, x_{n}$, 最终 $x_{1}$ 成为根节点，我们可以得到：
 
@@ -133,11 +133,13 @@ $$
 3(w^{'}(x_{1})−w(x_{1})+w^{''}(x_{1})−w^{'}(x_{1})+ \cdots +w(n)−w^{'''}\cdots(x_{1}))+1=3(w(n)−w(x_{1}))+1 \leq \log n
 $$
 
+继而可得：
+
 $$
-\varphi (m)−\varphi (m−1)+\varphi (m−1)−\varphi (m−2)...+\varphi (1)−\varphi (0)+\varphi (0) =n \log n+m \log n
+\varphi (m)−\varphi (m−1)+\varphi (m−1)−\varphi (m−2)...+\varphi (1)−\varphi (0)+\varphi (0) = n \log n+m \log n
 $$
 
-因此，对于 $n$ 个节点的 splay 树，做一次 splay 操作的均摊复杂度为 $O(\log{n})$。因此基于 splay 的插入，查询，删除等操作的时间复杂度也为均摊 $O(\log{n})$。
+因此，对于 $n$ 个节点的 splay 树，做一次 splay 操作的均摊复杂度为 $O(\log n)$。因此基于 splay 的插入，查询，删除等操作的时间复杂度也为均摊 $O(\log n)$。
 
 ### 插入操作
 
