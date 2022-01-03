@@ -212,7 +212,7 @@ print(dfs(1, t))
 
 由上面的代码中可以看出：
 
-$\mathit{men}_{\mathit{pos},\mathit{tleft}} = \mathit{max}{(\mathit{men}_{\mathit{pos+1,tleft-tcost(pos)}}+mget(pos),\mathit{men}_{\mathit{post+1,tleft}})}$
+$\mathit{mem}_{\mathit{pos},\mathit{tleft}} = \mathit{max}{(\mathit{mem}_{\mathit{pos+1,tleft-tcost(pos)}}+mget(pos),\mathit{mem}_{\mathit{post+1,tleft}})}$
 
 这不就是 dp 的状态转移？
 
