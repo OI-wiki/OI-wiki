@@ -5,6 +5,7 @@
 using namespace std;
 typedef double db;
 const int N = 1e6 + 10;
+
 struct data {
   int h;
   int v;
@@ -12,31 +13,38 @@ struct data {
   int ma;
   db ca;
 } a[2][N];
+
 int n;
 bool tr;
 //底下是重写比较
+
 inline bool cmp1(const data& a, const data& b) {
   if (tr)
     return a.h > b.h;
   else
     return a.h < b.h;
 }
+
 inline bool cmp2(const data& a, const data& b) {
   if (tr)
     return a.v > b.v;
   else
     return a.v < b.v;
 }
+
 inline bool cmp3(const data& a, const data& b) {
   if (tr)
     return a.p < b.p;
   else
     return a.p > b.p;
 }
+
 inline bool cmp4(const data& a, const data& b) { return a.v == b.v; }
+
 struct treearray {
   int ma[2 * N];
   db ca[2 * N];
+
   inline void c(int x, int t, db c) {
     for (; x <= n; x += x & (-x)) {
       if (ma[x] == t) {
@@ -47,12 +55,14 @@ struct treearray {
       }
     }
   }
+
   inline void d(int x) {
     for (; x <= n; x += x & (-x)) {
       ma[x] = 0;
       ca[x] = 0;
     }
   }
+
   inline void q(int x, int& m, db& c) {
     for (; x > 0; x -= x & (-x)) {
       if (ma[x] == m) {
@@ -64,7 +74,9 @@ struct treearray {
     }
   }
 } ta;
+
 int rk[2][N];
+
 inline void solve(int l, int r, int t) {  // 递归跑
   if (r - l == 1) {
     return;
@@ -95,6 +107,7 @@ inline void solve(int l, int r, int t) {  // 递归跑
   solve(mid, r, t);
   sort(a[t] + l + 1, a[t] + r + 1, cmp1);
 }
+
 inline void ih(int t) {
   sort(a[t] + 1, a[t] + n + 1, cmp2);
   rk[t][1] = 1;
@@ -110,8 +123,10 @@ inline void ih(int t) {
     a[t][i].ca = 1;
   }
 }
+
 int len;
 db ans;
+
 int main() {
   scanf("%d", &n);
   for (int i = 1; i <= n; i++) {

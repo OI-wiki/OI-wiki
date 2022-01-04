@@ -2,6 +2,7 @@
 using namespace std;
 int n, s;
 double dp[1010][1010];
+
 int main() {
   scanf("%d %d", &n, &s);
   dp[n][s] = 0;

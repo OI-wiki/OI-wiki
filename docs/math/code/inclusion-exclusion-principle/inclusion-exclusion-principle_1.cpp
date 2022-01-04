@@ -3,6 +3,7 @@ using namespace std;
 const long long S = 1e5 + 5;
 long long c[5], d[5], n, s;
 long long f[S];
+
 int main() {
   scanf("%lld%lld%lld%lld%lld", &c[1], &c[2], &c[3], &c[4], &n);
   f[0] = 1;

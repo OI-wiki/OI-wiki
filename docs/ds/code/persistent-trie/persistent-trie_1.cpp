@@ -5,8 +5,10 @@ using namespace std;
 const int maxn = 600010;
 int n, q, a[maxn], s[maxn], l, r, x;
 char op;
+
 struct Trie {
   int cnt, rt[maxn], ch[maxn * 33][2], val[maxn * 33];
+
   void insert(int o, int lst, int v) {
     for (int i = 28; i >= 0; i--) {
       val[o] = val[lst] + 1;  // 在原版本的基础上更新
@@ -25,6 +27,7 @@ struct Trie {
     val[o] = val[lst] + 1;
     // printf("%d\n",o);
   }
+
   int query(int o1, int o2, int v) {
     int ret = 0;
     for (int i = 28; i >= 0; i--) {
@@ -39,6 +42,7 @@ struct Trie {
     return ret;
   }
 } st;
+
 int main() {
   scanf("%d%d", &n, &q);
   for (int i = 1; i <= n; i++) scanf("%d", a + i), s[i] = s[i - 1] ^ a[i];

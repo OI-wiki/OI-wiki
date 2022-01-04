@@ -2,6 +2,7 @@
 using namespace std;
 const int maxn = 13010;
 int n, W, w[maxn], v[maxn], f[maxn];
+
 int main() {
   cin >> n >> W;
   for (int i = 1; i <= n; i++) cin >> w[i] >> v[i];  //读入数据

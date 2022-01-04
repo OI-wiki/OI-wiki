@@ -11,6 +11,7 @@ int cur1, h1[maxn], nxt1[maxm], p1[maxm];
 double e, ww, w[maxm], f[maxn];
 double w1[maxm];
 bool tf[maxn];
+
 void add_edge(int x, int y, double z) {  //正向建图函数
   cur++;
   nxt[cur] = h[x];
@@ -18,6 +19,7 @@ void add_edge(int x, int y, double z) {  //正向建图函数
   p[cur] = y;
   w[cur] = z;
 }
+
 void add_edge1(int x, int y, double z) {  //反向建图函数
   cur1++;
   nxt1[cur1] = h1[x];
@@ -25,18 +27,25 @@ void add_edge1(int x, int y, double z) {  //反向建图函数
   p1[cur1] = y;
   w1[cur1] = z;
 }
+
 struct node {  //使用A*时所需的结构体
   int x;
   double v;
+
   bool operator<(node a) const { return v + f[x] > a.v + f[a.x]; }
 };
+
 priority_queue<node> q;
+
 struct node2 {  //计算t到所有结点最短路时所需的结构体
   int x;
   double v;
+
   bool operator<(node2 a) const { return v > a.v; }
 } x;
+
 priority_queue<node2> Q;
+
 int main() {
   scanf("%d%d%lf", &n, &m, &e);
   while (m--) {

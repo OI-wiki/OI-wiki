@@ -3,6 +3,7 @@ using namespace std;
 const int N = 11;
 long long f[2][1 << (N + 1)], *f0, *f1;
 int n, m;
+
 int main() {
   int T;
   cin >> T;

@@ -7,8 +7,10 @@ using namespace std;
 const int dx[4] = {1, -1, 0, 0}, dy[4] = {0, 0, 1, -1};
 int fx, fy;
 char ch;
+
 struct matrix {
   int a[5][5];
+
   bool operator<(matrix x) const {
     for (int i = 1; i <= 3; i++)
       for (int j = 1; j <= 3; j++)
@@ -16,6 +18,7 @@ struct matrix {
     return false;
   }
 } f, st;
+
 int h(matrix a) {
   int ret = 0;
   for (int i = 1; i <= 3; i++)
@@ -23,13 +26,17 @@ int h(matrix a) {
       if (a.a[i][j] != st.a[i][j]) ret++;
   return ret;
 }
+
 struct node {
   matrix a;
   int t;
+
   bool operator<(node x) const { return t + h(a) > x.t + h(x.a); }
 } x;
+
 priority_queue<node> q;  //搜索队列
 set<matrix> s;           //防止搜索队列重复
+
 int main() {
   st.a[1][1] = 1;  //定义标准表
   st.a[1][2] = 2;

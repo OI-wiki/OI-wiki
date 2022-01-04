@@ -3,6 +3,7 @@
 using namespace std;
 const int N = 105;
 int n, m, ans;
+
 struct Node {
   int a, b;  // a 代表时间，b 代表价值
   double f;

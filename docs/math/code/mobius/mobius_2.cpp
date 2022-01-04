@@ -22,6 +22,7 @@ void solve() {
     }
   }
 }
+
 int main() {
   int T, n;
   solve();  //预处理g数组

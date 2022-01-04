@@ -8,6 +8,7 @@ const int inf = 2e9;
 int n, m, a, b, c, q[maxn], rt, siz[maxn], maxx[maxn], dist[maxn];
 int cur, h[maxn], nxt[maxn], p[maxn], w[maxn];
 bool tf[10000010], ret[maxn], vis[maxn];
+
 void add_edge(int x, int y, int z) {  // 建图
   cur++;
   nxt[cur] = h[x];
@@ -15,7 +16,9 @@ void add_edge(int x, int y, int z) {  // 建图
   p[cur] = y;
   w[cur] = z;
 }
+
 int sum;
+
 void calcsiz(int x, int fa) {  // 这里是两个计算答案的
   siz[x] = 1;
   maxx[x] = 0;
@@ -28,14 +31,18 @@ void calcsiz(int x, int fa) {  // 这里是两个计算答案的
   maxx[x] = max(maxx[x], sum - siz[x]);
   if (maxx[x] < maxx[rt]) rt = x;
 }
+
 int dd[maxn], cnt;
+
 void calcdist(int x, int fa) {
   dd[++cnt] = dist[x];
   for (int j = h[x]; j; j = nxt[j])
     if (p[j] != fa && !vis[p[j]])
       dist[p[j]] = dist[x] + w[j], calcdist(p[j], x);
 }
+
 queue<int> tag;
+
 void dfz(int x, int fa) {  // 点分治具体
   tf[0] = true;
   tag.push(0);
@@ -62,6 +69,7 @@ void dfz(int x, int fa) {  // 点分治具体
       dfz(rt, x);
     }
 }
+
 int main() {
   scanf("%d%d", &n, &m);
   for (int i = 1; i < n; i++)

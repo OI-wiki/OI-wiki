@@ -7,6 +7,7 @@ const int maxn = 2000010;
 long long T, n, pri[maxn], cur, mu[maxn], sum_mu[maxn];
 bool vis[maxn];
 map<long long, long long> mp_mu;
+
 long long S_mu(long long x) {  //求mu的前缀和
   if (x < maxn) return sum_mu[x];
   if (mp_mu[x]) return mp_mu[x];  //如果map中已有该大小的mu值，则可直接返回
@@ -17,6 +18,7 @@ long long S_mu(long long x) {  //求mu的前缀和
   }
   return mp_mu[x] = ret;  //路径压缩，方便下次计算
 }
+
 long long S_phi(long long x) {  //求phi的前缀和
   long long ret = (long long)0;
   long long j;
@@ -26,6 +28,7 @@ long long S_phi(long long x) {  //求phi的前缀和
   }
   return (ret - 1) / 2 + 1;
 }
+
 int main() {
   scanf("%lld", &T);
   mu[1] = 1;

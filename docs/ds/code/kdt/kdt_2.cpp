@@ -6,12 +6,17 @@ using namespace std;
 const int maxn = 100010;
 long long n, k;
 priority_queue<long long, vector<long long>, greater<long long> > q;
+
 struct node {
   long long x, y;
 } s[maxn];
+
 bool cmp1(node a, node b) { return a.x < b.x; }
+
 bool cmp2(node a, node b) { return a.y < b.y; }
+
 long long lc[maxn], rc[maxn], L[maxn], R[maxn], D[maxn], U[maxn];
+
 void maintain(int x) {
   L[x] = R[x] = s[x].x;
   D[x] = U[x] = s[x].y;
@@ -22,6 +27,7 @@ void maintain(int x) {
     L[x] = min(L[x], L[rc[x]]), R[x] = max(R[x], R[rc[x]]),
     D[x] = min(D[x], D[rc[x]]), U[x] = max(U[x], U[rc[x]]);
 }
+
 int build(int l, int r) {
   if (l > r) return 0;
   int mid = (l + r) >> 1;
@@ -41,11 +47,14 @@ int build(int l, int r) {
   maintain(mid);
   return mid;
 }
+
 long long sq(long long x) { return x * x; }
+
 long long dist(int a, int b) {
   return max(sq(s[a].x - L[b]), sq(s[a].x - R[b])) +
          max(sq(s[a].y - D[b]), sq(s[a].y - U[b]));
 }
+
 void query(int l, int r, int x) {
   if (l > r) return;
   int mid = (l + r) >> 1;
@@ -65,6 +74,7 @@ void query(int l, int r, int x) {
     if (distr > q.top()) query(mid + 1, r, x);
   }
 }
+
 int main() {
   cin >> n >> k;
   k *= 2;

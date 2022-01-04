@@ -98,6 +98,7 @@ int n, t[maxn];
 // deg:次数
 // f:被开根数组
 // h:答案数组
+
 inline void sqrt(int deg, int *f, int *h) {
   if (deg == 1) {
     h[0] = 1;

@@ -6,6 +6,7 @@ using namespace std;
 int n, m, k, x, y, a, b, ans;
 int dx[4] = {0, 0, 1, -1}, dy[4] = {1, -1, 0, 0};  //四个方向
 bool vis[6][6];
+
 struct oo {
   int x, y, used[6][6];
 };

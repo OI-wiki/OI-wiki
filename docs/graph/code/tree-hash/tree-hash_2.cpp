@@ -95,6 +95,7 @@ class Solution {
 
   void solve() {}
 };
+
 Solution sol;
 
 int main() {}

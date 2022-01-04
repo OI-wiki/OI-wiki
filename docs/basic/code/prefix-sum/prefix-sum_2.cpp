@@ -3,6 +3,7 @@
 using namespace std;
 int a[103][103];
 int b[103][103];  // 前缀和数组，相当于上文的 sum[]
+
 int main() {
   int n, m;
   cin >> n >> m;

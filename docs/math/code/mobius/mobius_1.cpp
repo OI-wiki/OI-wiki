@@ -4,6 +4,7 @@ using namespace std;
 const int N = 50000;
 int mu[N + 5], p[N + 5];
 bool flg[N + 5];
+
 void init() {
   int tot = 0;
   mu[1] = 1;
@@ -23,6 +24,7 @@ void init() {
   }
   for (int i = 1; i <= N; ++i) mu[i] += mu[i - 1];
 }
+
 int solve(int n, int m) {
   int res = 0;
   for (int i = 1, j; i <= min(n, m); i = j + 1) {
@@ -31,6 +33,7 @@ int solve(int n, int m) {
   }
   return res;
 }
+
 int main() {
   int T, a, b, c, d, k;
   init();  //预处理mu数组

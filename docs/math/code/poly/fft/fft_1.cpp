@@ -4,27 +4,34 @@
 #include <iostream>
 using namespace std;
 const double PI = acos(-1.0);
+
 struct Complex {
   double x, y;
+
   Complex(double _x = 0.0, double _y = 0.0) {
     x = _x;
     y = _y;
   }
+
   Complex operator-(const Complex &b) const {
     return Complex(x - b.x, y - b.y);
   }
+
   Complex operator+(const Complex &b) const {
     return Complex(x + b.x, y + b.y);
   }
+
   Complex operator*(const Complex &b) const {
     return Complex(x * b.x - y * b.y, x * b.y + y * b.x);
   }
 };
+
 /*
  * 进行 FFT 和 IFFT 前的反置变换
  * 位置 i 和 i 的二进制反转后的位置互换
  *len 必须为 2 的幂
  */
+
 void change(Complex y[], int len) {
   int i, j, k;
   for (int i = 1, j = len / 2; i < len - 1; i++) {
@@ -39,11 +46,13 @@ void change(Complex y[], int len) {
     if (j < k) j += k;
   }
 }
+
 /*
  * 做 FFT
  *len 必须是 2^k 形式
  *on == 1 时是 DFT，on == -1 时是 IDFT
  */
+
 void fft(Complex y[], int len, int on) {
   change(y, len);
   for (int h = 2; h <= len; h <<= 1) {
@@ -97,4 +106,5 @@ int main() {
   }
   return 0;
 }
+
 //加油加油！

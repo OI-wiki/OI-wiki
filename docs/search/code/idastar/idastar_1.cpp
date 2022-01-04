@@ -11,6 +11,7 @@ int a, b, maxd;
 long long gcd(long long a, long long b) { return b == 0 ? a : gcd(b, a % b); }
 
 // 返回满足 1/c <= a/b 的最小 c 值
+
 inline int get_first(long long a, long long b) { return b / a + 1; }
 
 const int maxn = 100 + 5;
@@ -18,6 +19,7 @@ const int maxn = 100 + 5;
 long long v[maxn], ans[maxn];
 
 // 如果当前解 v 比目前最优解 ans 更优，更新 ans
+
 bool better(int d) {
   for (int i = d; i >= 0; i--)
     if (v[i] != ans[i]) {
@@ -27,6 +29,7 @@ bool better(int d) {
 }
 
 // 当前深度为 d，分母不能小于 from，分数之和恰好为 aa/bb
+
 bool dfs(int d, int from, long long aa, long long bb) {
   if (d == maxd) {
     if (bb % aa) return false;  // aa/bb 必须是埃及分数

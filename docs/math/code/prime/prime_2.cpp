@@ -11,6 +11,7 @@ unsigned long long ans,
 // temp: 当前因子数量为 num的时候的数值
 // num: 当前因子数
 // up：上一个素数的幂，这次应该小于等于这个幂次嘛
+
 void dfs(int depth, unsigned long long temp, unsigned long long num, int up) {
   if (depth >= 16 || temp > n) return;
   if (num > ans_num) {  //更新答案

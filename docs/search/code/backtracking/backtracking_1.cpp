@@ -1,6 +1,7 @@
 // 该代码为回溯法的 DFS 实现
 #include <cstdio>
 int ans[14], check[3][28] = {0}, sum = 0, n;
+
 void eq(int line) {
   if (line > n) {  //如果已经搜索完n行
     sum++;
@@ -27,6 +28,7 @@ void eq(int line) {
     }
   }
 }
+
 int main() {
   scanf("%d", &n);
   eq(1);

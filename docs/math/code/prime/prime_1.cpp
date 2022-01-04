@@ -10,6 +10,7 @@ unsigned long long n;
 // temp: 当前因子数量为 num的时候的数值
 // num: 当前因子数
 // up：上一个素数的幂，这次应该小于等于这个幂次嘛
+
 void dfs(unsigned long long depth, unsigned long long temp,
          unsigned long long num, unsigned long long up) {
   if (num > n || depth >= 16) return;  //边界条件

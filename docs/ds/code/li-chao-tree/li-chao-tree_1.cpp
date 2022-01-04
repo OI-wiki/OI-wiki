@@ -5,12 +5,16 @@
 #define MAXT 40000
 using namespace std;
 typedef pair<double, int> pdi;
+
 struct line {
   double k, b;
 } p[100005];
+
 int s[160005];
 int cnt;
+
 double calc(int id, int d) { return p[id].b + p[id].k * d; }
+
 void add(int x0, int y0, int x1, int y1) {
   cnt++;
   if (x0 == x1)  // 特判直线斜率不存在的情况
@@ -18,6 +22,7 @@ void add(int x0, int y0, int x1, int y1) {
   else
     p[cnt].k = 1.0 * (y1 - y0) / (x1 - x0), p[cnt].b = y0 - p[cnt].k * x0;
 }
+
 void update(int root, int cl, int cr, int l, int r, int u) {  //更新值
   int v = s[root], mid = (cl + cr) >> 1;
   int ls = root << 1, rs = root << 1 | 1;
@@ -48,6 +53,7 @@ void update(int root, int cl, int cr, int l, int r, int u) {  //更新值
   update(ls, cl, mid, l, r, u);
   update(rs, mid + 1, cr, l, r, u);
 }
+
 pdi pmax(pdi x, pdi y) {  // pair max函数
   if (x.first < y.first)
     return y;
@@ -56,6 +62,7 @@ pdi pmax(pdi x, pdi y) {  // pair max函数
   else
     return x.second < y.second ? x : y;
 }
+
 pdi query(int root, int l, int r, int d) {  //查询
   if (r < d || d < l) return {0, 0};
   int mid = (l + r) >> 1;
@@ -64,6 +71,7 @@ pdi query(int root, int l, int r, int d) {  //查询
   return pmax({res, s[root]}, pmax(query(root << 1, l, mid, d),
                                    query(root << 1 | 1, mid + 1, r, d)));
 }
+
 int main() {
   ios::sync_with_stdio(false);
   int n, lastans = 0;

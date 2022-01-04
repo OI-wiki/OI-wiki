@@ -23,6 +23,7 @@ const int N = 300010;
 struct Node {
   int ls, rs, d;
   ll val, add, mul;
+
   Node() {
     ls = rs = add = 0;
     d = mul = 1;

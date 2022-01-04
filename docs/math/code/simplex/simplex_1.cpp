@@ -5,6 +5,7 @@
 #include <iostream>
 using namespace std;
 const int M = 10005, N = 1005, INF = 1e9;
+
 inline int read() {  //快读
   char c = getchar();
   int x = 0, f = 1;
@@ -21,6 +22,7 @@ inline int read() {  //快读
 
 int n, m;
 double a[M][N], b[M], c[N], v;
+
 void pivot(int l, int e) {  //转轴操作函数
   b[l] /= a[l][e];
   for (int j = 1; j <= n; j++)

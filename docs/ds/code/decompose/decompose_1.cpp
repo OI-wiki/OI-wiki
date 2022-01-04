@@ -5,6 +5,7 @@ int id[50005], len;
 // id 表示块的编号, len=sqrt(n) , sqrt的时候时间复杂度最优
 long long a[50005], b[50005], s[50005];
 // a 数组表示数据数组, b 表示区间和, s 表示块长,因为块可能不是完整的所以要开数组
+
 void add(int l, int r, long long x) {  //区间加法
   int sid = id[l], eid = id[r];
   if (sid == eid) {  //在一个块中
@@ -17,6 +18,7 @@ void add(int l, int r, long long x) {  //区间加法
   for (int i = r; id[i] == eid; i--) a[i] += x, s[eid] += x;
   //以上两行不完整的块直接简单求和,就OK
 }
+
 long long query(int l, int r, long long p) {  //区间查询
   int sid = id[l], eid = id[r];
   long long ans = 0;
@@ -30,6 +32,7 @@ long long query(int l, int r, long long p) {  //区间查询
   //和上面的区间修改是一个道理
   return ans;
 }
+
 int main() {
   int n;
   cin >> n;
@@ -49,6 +52,7 @@ int main() {
   }
   return 0;
 }
+
 /*
 https://loj.ac/s/1151495
  */

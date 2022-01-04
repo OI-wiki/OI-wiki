@@ -10,6 +10,7 @@ namespace TR {
 struct Edge {
   int to, nxt, val;
 } e[400010];
+
 int cnt, head[140010];
 
 void addedge(int u, int v, int val = 0) {
@@ -18,6 +19,7 @@ void addedge(int u, int v, int val = 0) {
 }
 
 int val[140010];
+
 namespace LCA {
 int sec[280010], cnt;
 int pos[140010];
@@ -37,6 +39,7 @@ void dfs(int now, int fa) {
 }
 
 int dp[280010][20];
+
 void init() {
   dfs(2 * n - 1, 0);
   for (int i = 1; i <= 4 * n; i++) {
@@ -101,6 +104,7 @@ void kruskal() {  // 最小生成树
 
 int ans;
 int A, B, C, P;
+
 inline int rnd() { return A = (A * B + C) % P; }
 
 void initLog2() {

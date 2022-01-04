@@ -12,6 +12,7 @@ struct StringWithHash {
   int ls;
   int hsh[HASH_CNT][L];
   int pwMod[HASH_CNT][L];
+
   void init() {  //初始化
     ls = 0;
     for (int i = 0; i < HASH_CNT; ++i) {
@@ -19,7 +20,9 @@ struct StringWithHash {
       pwMod[i][0] = 1;
     }
   }
+
   StringWithHash() { init(); }
+
   void extend(char c) {
     s[++ls] = c;                          //记录字符数和每一个字符
     for (int i = 0; i < HASH_CNT; ++i) {  //双哈希的预处理
@@ -28,6 +31,7 @@ struct StringWithHash {
       hsh[i][ls] = (1ll * hsh[i][ls - 1] * hashBase[i] + c) % hashMod[i];
     }
   }
+
   vector<int> getHash(int l, int r) {  //得到哈希值
     vector<int> res(HASH_CNT, 0);
     for (int i = 0; i < HASH_CNT; ++i) {
@@ -64,6 +68,7 @@ void work() {
   }
   for (int j = d; j < len; ++j) s.extend(str[j]);  //更新答案数组
 }
+
 int main() {
   scanf("%d", &n);
   for (int i = 1; i <= n; ++i) {

@@ -8,22 +8,28 @@ int c[N];
 long long sum;
 int cnt[N];
 long long ans1[N], ans2[N];
+
 struct query {
   int l, r, id;
+
   bool operator<(const query &x) const {  //重载<运算符
     if (l / maxn != x.l / maxn) return l < x.l;
     return (l / maxn) & 1 ? r < x.r : r > x.r;
   }
 } a[N];
+
 void add(int i) {
   sum += cnt[i];
   cnt[i]++;
 }
+
 void del(int i) {
   cnt[i]--;
   sum -= cnt[i];
 }
+
 long long gcd(long long a, long long b) { return b ? gcd(b, a % b) : a; }
+
 int main() {
   scanf("%d%d", &n, &m);
   maxn = sqrt(n);

@@ -11,24 +11,30 @@ inline void inc(x_t &x, const y_t &y) {
   x += y;
   (mod <= x) && (x -= mod);
 }
+
 template <typename x_t, typename y_t>
 inline void dec(x_t &x, const y_t &y) {
   x -= y;
   (x < 0) && (x += mod);
 }
+
 template <typename x_t, typename y_t>
 inline int sum(const x_t &x, const y_t &y) {
   return x + y < mod ? x + y : (x + y - mod);
 }
+
 template <typename x_t, typename y_t>
 inline int sub(const x_t &x, const y_t &y) {
   return x < y ? x - y + mod : (x - y);
 }
+
 template <typename _Tp>
 inline int div2(const _Tp &x) {
   return ((x & 1) ? x + mod : x) >> 1;
 }
+
 //以上目的均为防负数和取模
+
 template <typename _Tp>
 inline long long sqrll(const _Tp &x) {  //平方函数
   return (long long)x * x;

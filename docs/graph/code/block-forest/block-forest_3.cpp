@@ -9,6 +9,7 @@ std::vector<int> G[MN], T[MN * 2];
 
 int dfn[MN * 2], low[MN], dfc;
 int stk[MN], tp;
+
 void Tarjan(int u) {  //求点双，准备建树
   low[u] = dfn[u] = ++dfc;
   stk[++tp] = u;
@@ -32,6 +33,7 @@ void Tarjan(int u) {  //求点双，准备建树
 }
 
 int dep[MN * 2], faz[MN * 2][18], dis[MN * 2];
+
 void DFS(int u, int fz) {
   dfn[u] = ++dfc;
   dep[u] = dep[faz[u][0] = fz] + 1;
@@ -40,6 +42,7 @@ void DFS(int u, int fz) {
   for (int v : T[u])
     if (v != fz) DFS(v, u);
 }
+
 int LCA(int x, int y) {  //最近公共祖先
   if (dep[x] < dep[y]) std::swap(x, y);
   for (int j = 0, d = dep[x] - dep[y]; d; ++j, d >>= 1)

@@ -1,5 +1,6 @@
 #include <cstdio>
 #define ll long long
+
 ll read() {
   ll w = 1, q = 0;
   char ch = ' ';
@@ -8,10 +9,13 @@ ll read() {
   while (ch >= '0' && ch <= '9') q = (ll)q * 10 + ch - '0', ch = getchar();
   return (ll)w * q;
 }
+
 int n, m;
 ll mod;
 ll a[100005], sum[400005], mul[400005], laz[400005];
+
 void up(int i) { sum[i] = (sum[(i << 1)] + sum[(i << 1) | 1]) % mod; }
+
 void pd(int i, int s, int t) {
   int l = (i << 1), r = (i << 1) | 1, mid = (s + t) >> 1;
   if (mul[i] != 1) {  //懒标记传递，两个懒标记
@@ -42,6 +46,7 @@ void pd(int i, int s, int t) {
   }
   return;
 }
+
 void build(int s, int t, int i) {
   mul[i] = 1;
   if (s == t) {
@@ -53,6 +58,7 @@ void build(int s, int t, int i) {
   build(mid + 1, t, (i << 1) | 1);
   up(i);
 }
+
 void chen(int l, int r, int s, int t, int i, ll z) {
   int mid = s + ((t - s) >> 1);
   if (l <= s && t <= r) {
@@ -69,6 +75,7 @@ void chen(int l, int r, int s, int t, int i, ll z) {
   if (mid + 1 <= r) chen(l, r, mid + 1, t, (i << 1) | 1, z);
   up(i);
 }
+
 void add(int l, int r, int s, int t, int i, ll z) {
   int mid = s + ((t - s) >> 1);
   if (l <= s && t <= r) {
@@ -83,6 +90,7 @@ void add(int l, int r, int s, int t, int i, ll z) {
   if (mid + 1 <= r) add(l, r, mid + 1, t, (i << 1) | 1, z);
   up(i);
 }
+
 ll getans(int l, int r, int s, int t,
           int i) {  //得到答案，可以看下上面懒标记助于理解
   int mid = s + ((t - s) >> 1);
@@ -94,6 +102,7 @@ ll getans(int l, int r, int s, int t,
   if (mid + 1 <= r) tot += getans(l, r, mid + 1, t, (i << 1) | 1);
   return tot % mod;
 }
+
 int main() {  //读入
   int i, j, x, y, bh;
   ll z;

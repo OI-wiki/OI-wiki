@@ -3,18 +3,22 @@
 #include <cstring>
 #include <queue>
 using namespace std;
+
 struct edge {
   int v, w, next;
 } e[40005];
+
 int head[10005], vis[10005], tot[10005], cnt;
 long long ans, dist[10005];
 queue<int> q;
+
 inline void addedge(int u, int v, int w) {  //加边
   e[++cnt].v = v;
   e[cnt].w = w;
   e[cnt].next = head[u];
   head[u] = cnt;
 }
+
 int main() {
   int n, m;
   scanf("%d%d", &n, &m);

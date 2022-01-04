@@ -1,4 +1,5 @@
 #include <cstdio>
+
 int main(void) {
   int n = 0, u = 0, d = 0;
   while (scanf("%d %d %d", &n, &u, &d) && n != 0) {

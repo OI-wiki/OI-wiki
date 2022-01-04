@@ -6,6 +6,7 @@ int n;
 namespace AC {
 int tr[N][26], tot;
 int e[N], fail[N];
+
 void insert(char *s) {
   int u = 0;
   for (int i = 1; s[i]; i++) {
@@ -14,7 +15,9 @@ void insert(char *s) {
   }
   e[u]++;  //尾为节点 u 的串的个数
 }
+
 queue<int> q;
+
 void build() {
   for (int i = 0; i < 26; i++)
     if (tr[0][i]) q.push(tr[0][i]);
@@ -31,6 +34,7 @@ void build() {
     }
   }
 }
+
 int query(char *t) {
   int u = 0, res = 0;
   for (int i = 1; t[i]; i++) {
@@ -44,6 +48,7 @@ int query(char *t) {
 }  // namespace AC
 
 char s[N];
+
 int main() {
   scanf("%d", &n);
   for (int i = 1; i <= n; i++) scanf("%s", s + 1), AC::insert(s);

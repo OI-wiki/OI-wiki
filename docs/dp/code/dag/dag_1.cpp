@@ -6,6 +6,7 @@ using namespace std;
 #define MAXV (500 + 5)
 int d[MAXN][3];
 int x[MAXN], y[MAXN], z[MAXN];
+
 int babylon_sub(int c, int rot, int n) {
   if (d[c][rot] != -1) {
     return d[c][rot];
@@ -34,6 +35,7 @@ int babylon_sub(int c, int rot, int n) {
   }
   return d[c][rot];
 }
+
 int babylon(int n) {
   for (int i = 0; i < n; i++) {
     d[i][0] = -1;
@@ -48,6 +50,7 @@ int babylon(int n) {
   }
   return r;
 }
+
 int main() {
   int t = 0;
   while (true) {  //死循环求答案

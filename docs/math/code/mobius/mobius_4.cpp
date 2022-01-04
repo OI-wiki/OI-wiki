@@ -5,6 +5,7 @@ const long long N = 5e4 + 5;
 long long n, m, T, pr[N], mu[N], d[N], t[N],
     cnt;  // t 表示 i 的最小质因子出现的次数
 bool bp[N];
+
 void prime_work(long long k) {
   bp[0] = bp[1] = 1, mu[1] = 1, d[1] = 1;
   for (long long i = 2; i <= k; i++) {  //线性筛
@@ -26,6 +27,7 @@ void prime_work(long long k) {
   for (long long i = 2; i <= k; i++)
     mu[i] += mu[i - 1], d[i] += d[i - 1];  //求前缀和
 }
+
 long long solve() {
   long long res = 0, mxi = min(n, m);
   for (long long i = 1, j; i <= mxi; i = j + 1) {  //整除分块

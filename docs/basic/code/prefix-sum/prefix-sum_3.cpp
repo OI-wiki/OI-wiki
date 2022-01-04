@@ -38,6 +38,7 @@ int lca(int x, int y) {  //求LCA，最近公共祖先
 }
 
 //用dfs求最大压力，回溯时将子树的权值加上
+
 void get_ans(int u, int father) {
   for (int i = head[u]; i; i = edge[i].next) {
     int to = edge[i].to;

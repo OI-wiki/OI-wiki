@@ -134,7 +134,9 @@ int merge(int x, int y) {  //板子，合并
   pushup(x);
   return x;
 }
+
 //以下俩是一个东西
+
 void pushup(int x) {
   if (!x) return;
   if (t[x].d != t[rs(x)].d + 1) {

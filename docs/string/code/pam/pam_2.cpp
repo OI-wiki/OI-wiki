@@ -3,15 +3,18 @@ using namespace std;
 typedef long long ll;
 const int mod = 1e9 + 7;
 const int maxn = 1000000 + 5;
+
 inline int add(int x, int y) {
   x += y;
   return x >= mod ? x -= mod : x;
 }
+
 namespace pam {
 int sz, tot, last;
 int ch[maxn][26], len[maxn], fail[maxn];
 int cnt[maxn], dep[maxn], dif[maxn], slink[maxn];
 char s[maxn];
+
 int node(int l) {  //建立一个长度为 l 的新节点
   sz++;
   memset(ch[sz], 0, sizeof(ch[sz]));
@@ -21,6 +24,7 @@ int node(int l) {  //建立一个长度为 l 的新节点
   dep[sz] = 0;
   return sz;
 }
+
 void clear() {  //初始化
   sz = -1;
   last = 0;
@@ -29,10 +33,12 @@ void clear() {  //初始化
   node(-1);
   fail[0] = 1;
 }
+
 int getfail(int x) {  //找到后缀回文
   while (s[tot - len[x] - 1] != s[tot]) x = fail[x];
   return x;
 }
+
 void insert(char c) {  //建树
   s[++tot] = c;
   int now = getfail(last);
@@ -51,12 +57,14 @@ void insert(char c) {  //建树
   cnt[last]++;
 }
 }  // namespace pam
+
 using pam::dif;
 using pam::fail;
 using pam::len;
 using pam::slink;
 int n, dp[maxn], g[maxn];
 char s[maxn], t[maxn];
+
 int main() {
   pam::clear();
   scanf("%s", s + 1);

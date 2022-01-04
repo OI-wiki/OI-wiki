@@ -4,6 +4,7 @@
 using namespace std;
 int f[305][305], s[305], n, m;
 vector<int> e[305];
+
 int dfs(int u) {
   int p = 1;
   f[u][1] = s[u];
@@ -18,6 +19,7 @@ int dfs(int u) {
   }
   return p;
 }
+
 int main() {
   scanf("%d%d", &n, &m);
   for (int i = 1; i <= n; i++) {

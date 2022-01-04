@@ -14,6 +14,7 @@ int n, m, d;
 int que[maxn];
 
 int fl = 1;
+
 void init() {
   memset(f, 207, sizeof(f));
   memset(que, 0, sizeof(que));

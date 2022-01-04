@@ -9,6 +9,7 @@ struct PlusMinusOneRMQ {  // RMQ
 
   int blocklen, block, Minv[N], F[N / M * 2 + 5][M << 1], T[N], f[1 << M][M][M],
       S[N];
+
   void init(int n) {  // 初始化
     blocklen = std::max(1, (int)(log(n * 1.0) / log(2.0)) / 2);
     block = n / blocklen + (n % blocklen > 0);
@@ -39,6 +40,7 @@ struct PlusMinusOneRMQ {  // RMQ
       }
     }
   }
+
   void initmin(int a[], int n) {
     for (int i = 0; i < n; i++) {
       if (i % blocklen == 0) {
@@ -63,6 +65,7 @@ struct PlusMinusOneRMQ {  // RMQ
       }
     }
   }
+
   int querymin(int a[], int L, int R) {
     int idl = L / blocklen, idr = R / blocklen;
     if (idl == idr)
@@ -88,11 +91,14 @@ int n, m, s;
 struct Edge {
   int v, nxt;
 } e[N * 2];
+
 int tot, head[N];
+
 void init(int n) {
   tot = 0;
   fill(head, head + n + 1, 0);
 }
+
 void addedge(int u, int v) {  // 加边
   ++tot;
   e[tot] = (Edge){v, head[u]};

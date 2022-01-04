@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int a[505], b[505], t[505], i, j;
+
 int mult(int x[], int y[])  // 高精度乘法
 {
   memset(t, 0, sizeof(t));
@@ -15,6 +16,7 @@ int mult(int x[], int y[])  // 高精度乘法
   }
   memcpy(b, t, sizeof(b));
 }
+
 void ksm(int p)  // 快速幂
 {
   if (p == 1) {
@@ -25,6 +27,7 @@ void ksm(int p)  // 快速幂
   mult(b, b);  //对b平方
   if (p % 2 == 1) mult(b, a);
 }
+
 int main() {
   int p;
   scanf("%d", &p);

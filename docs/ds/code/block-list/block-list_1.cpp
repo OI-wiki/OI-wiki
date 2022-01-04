@@ -3,20 +3,25 @@
 #include <cstring>
 using namespace std;
 static const int sqn = 1e3;
+
 struct node {  //定义块状链表
   node* nxt;
   int size;
   char d[(sqn << 1) + 5];
+
   node() { size = 0, nxt = NULL; }
+
   void pb(char c) { d[size++] = c; }
 }* head = NULL;
+
 char inits[(int)1e6 + 5];
 int llen, q;
+
 void readch(char& ch) {  //读入字符
-  do
-    ch = getchar();
+  do ch = getchar();
   while (!isalpha(ch));
 }
+
 void check(node* p) {  //判断，记得要分裂
   if (p->size >= (sqn << 1)) {
     node* q = new node;
@@ -24,6 +29,7 @@ void check(node* p) {  //判断，记得要分裂
     p->size = sqn, q->nxt = p->nxt, p->nxt = q;
   }
 }
+
 void insert(char c, int pos) {  //元素插入，借助链表来理解
   node* p = head;
   int tot, cnt;
@@ -39,6 +45,7 @@ void insert(char c, int pos) {  //元素插入，借助链表来理解
   p->d[cnt] = c, p->size++;
   check(p);
 }
+
 char query(int pos) {  //查询
   node* p;
   int tot, cnt;
@@ -48,6 +55,7 @@ char query(int pos) {  //查询
   tot -= p->size;
   return p->d[pos - tot - 1];
 }
+
 int main() {
   scanf("%s %d", inits, &q), llen = strlen(inits);
   node* p = new node;

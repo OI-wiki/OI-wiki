@@ -8,7 +8,9 @@ const int N = 100000 + 10, INF = 0x3f3f3f3f;
 
 struct node {
   int idx, val, par, ch[2];
+
   friend bool operator<(node a, node b) { return a.idx < b.idx; }
+
   void init(int _idx, int _val, int _par) {
     idx = _idx, val = _val, par = _par, ch[0] = ch[1] = 0;
   }
@@ -16,6 +18,7 @@ struct node {
 
 int root, top, stk[N];
 ll ans;
+
 int cartesian_build(int n) {  //建树，满足小根堆性质
   for (int i = 1; i <= n; i++) {
     int k = i - 1;
@@ -27,6 +30,7 @@ int cartesian_build(int n) {  //建树，满足小根堆性质
   }
   return tree[0].ch[1];
 }
+
 int dfs(int x) {  //一次dfs更新答案就可以了
   if (!x) return 0;
   int sz = dfs(tree[x].ch[0]);
@@ -34,6 +38,7 @@ int dfs(int x) {  //一次dfs更新答案就可以了
   ans = max(ans, (ll)(sz + 1) * tree[x].val);
   return sz + 1;
 }
+
 int main() {
   int n, hi;
   while (scanf("%d", &n), n) {

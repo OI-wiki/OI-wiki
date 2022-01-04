@@ -2,15 +2,20 @@
 using namespace std;
 
 const int MOD = 1e9 + 7;
+
 template <typename T>
 inline int mint(T x) {
   x %= MOD;
   if (x < 0) x += MOD;
   return x;
 }
+
 inline int add(int x, int y) { return x + y >= MOD ? x + y - MOD : x + y; }
+
 inline int mul(int x, int y) { return (long long)1 * x * y % MOD; }
+
 inline int sub(int x, int y) { return x < y ? x - y + MOD : x - y; }  //防止负数
+
 inline int qp(int x, int y) {
   int r = 1;
   for (; y; y >>= 1) {
@@ -19,6 +24,7 @@ inline int qp(int x, int y) {
   }
   return r;
 }
+
 inline int inv(int x) { return qp(x, MOD - 2); }
 
 namespace PNS {
@@ -66,6 +72,7 @@ void sieve(int n) {
 }
 
 int inv2, inv6;
+
 void init() {
   sieve(N - 1);
   for (int i = 1; i <= pcnt; ++i) h[i][0] = 1, h[i][1] = 0;
