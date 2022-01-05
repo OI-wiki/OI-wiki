@@ -74,7 +74,7 @@ def prefix_function(s):
     pi = [0] * n
     for i in range(1, n):
         for j in range(i, -1, -1):
-            if s[0 : j] == s[i - j + 1, j]:
+            if s[0 : j] == s[i - j + 1 : i + 1]:
                 pi[i] = j
                 break
     return pi
@@ -124,7 +124,7 @@ def prefix_function(s):
     pi = [0] * n
     for i in range(1, n):
         for j in range(pi[i - 1] + 1, -1, -1):
-            if s[0 : j] == s[i - j + 1, j]:
+            if s[0 : j] == s[i - j + 1 : i + 1]:
                 pi[i] = j
                 break
     return pi
@@ -300,7 +300,7 @@ $$
 
 由于 $\gcd(k, p)$ 整除 $p$，这意味着 $\gcd(k, p)$ 是 $r$ 的一个周期。又因为 $\pi[n - 1] > n - p$，故有 $n - \pi[n - 1] = k < p$，所以 $\gcd(k, p)$ 是一个比 $p$ 更小的 $r$ 的周期。因此字符串 $s$ 有一个长度为 $\gcd(k, p) < p$ 的压缩表示，同 $p$ 的最小性矛盾。
 
-综上所述，不存在一个长度小于 $n$ 的压缩表示，因此答案为 $n$。
+综上所述，不存在一个长度小于 $k$ 的压缩表示，因此答案为 $k$。
 
 [^1]: 在俄文版及英文版中该部分证明均疑似有误。本文章中的该部分证明由作者自行添加。
 

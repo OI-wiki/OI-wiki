@@ -4,7 +4,7 @@ author: sshwy, StudyingFather, orzAtalod
 
 首先我们介绍 Lyndon 分解的概念。
 
-Lyndon 串：对于字符串 $s$，如果 $s$ 的字典序严格小于 $s$ 的所有后缀的字典序，我们称 $s$ 是简单串，或者 **Lyndon 串**。举一些例子，`a`,`b`,`ab`,`aab`,`abb`,`ababb`,`abcd` 都是 Lyndon 串。当且仅当 $s$ 的字典序严格小于它的所有非平凡的循环同构串时，$s$ 才是 Lyndon 串。
+Lyndon 串：对于字符串 $s$，如果 $s$ 的字典序严格小于 $s$ 的所有后缀的字典序，我们称 $s$ 是简单串，或者 **Lyndon 串**。举一些例子，`a`,`b`,`ab`,`aab`,`abb`,`ababb`,`abcd` 都是 Lyndon 串。当且仅当 $s$ 的字典序严格小于它的所有非平凡的（非平凡：非空且不同于自身）循环同构串时，$s$ 才是 Lyndon 串。
 
 Lyndon 分解：串 $s$ 的 Lyndon 分解记为 $s=w_1w_2\cdots w_k$，其中所有 $w_i$ 为简单串，并且他们的字典序按照非严格单减排序，即 $w_1\ge w_2\ge\cdots\ge w_k$。可以发现，这样的分解存在且唯一。
 
@@ -67,7 +67,7 @@ def duval(s):
                 k += 1
             j += 1
         while i <= k:
-            factorization.append(s[i : j - k])
+            factorization.append(s[i : i + j - k])
             i += j - k
     return factorization
 ```
@@ -127,7 +127,7 @@ def min_cyclic_string(s):
             j += 1
         while i <= k:
             i += j - k
-    return s[ans : n / 2]
+    return s[ans : ans + n / 2]
 ```
 
 ## 习题
