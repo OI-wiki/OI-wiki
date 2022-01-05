@@ -18,7 +18,7 @@ echo "Downloading MathJax to $TEMP_DIR"
 echo "URL: $MATHJAX_URL"
 MATHJAX_REQUIRED_FILES=(
 	"config/TeX-MML-AM_CHTML.js"
-	"extensions/TeX"
+	"extensions"
 	"fonts/HTML-CSS/TeX/woff"
 	"jax/output/CommonHTML"
 	"jax/element"
