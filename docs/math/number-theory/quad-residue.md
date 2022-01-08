@@ -125,7 +125,7 @@ $$
 
 ## Cipolla 算法
 
-Cipolla 算法用于求解同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇素数且 $a$ 为二次剩余。算法可描述为找到 $r$ 满足 $r^2-a$ 为非二次剩余，$(r-x)^{(p+1)/2}\bmod f(x)$ 为一个解。
+Cipolla 算法用于求解同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇素数且 $a$ 为二次剩余。算法可描述为找到 $r$ 满足 $r^2-a$ 为非二次剩余，$(r-x)^{(p+1)/2}\bmod (x^2-(r^2-a))$ 为一个解。
 
 在复数域 $\mathbb{C}$ 中，记 $\mathrm{i}^2=-1$ 后 $\mathbb{C}=\lbrace a_0+a_1\mathrm{i}\mid a_0,a_1\in\mathbb{R}\rbrace$。考虑令 $x^2+1\in\mathbb{R}\lbrack x\rbrack$ 和实系数多项式的集合 $\mathbb{R}\lbrack x\rbrack$ 对 $x^2+1$ 取模后的集合记作 $\mathbb{R}\lbrack x\rbrack /(x^2+1)$，那么集合中的元素都可以表示为 $a_0+a_1x$ 的形式，其中 $a_0,a_1\in\mathbb{R}$，又因为 $x^2\equiv -1\pmod{\left(x^2+1\right)}$，考虑多项式的运算可以发现 $\mathbb{R}\lbrack x\rbrack /(x^2+1)$ 中元素的运算与 $\mathbb{C}$ 中一致。
 
@@ -189,6 +189,38 @@ $$
 $$
 
 所以 $x$ 的系数必须为零即 $a_0\equiv 0\pmod p$ 此时 $r^2-a\equiv a/a_1^2\pmod p$ 显然为模 $p$ 的二次剩余，不符合定义。因此 $a_1\equiv 0\pmod p$ 且 $a_0^2\equiv a\pmod p$。
+
+## Legendre 算法
+
+对于同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇素数且 $a$ 为二次剩余。Legendre 算法可描述为找到 $r$ 满足 $r^2-a$ 为非二次剩余，令 $a_0+a_1x=(r-x)^{(p-1)/2}\bmod (x^2-a)$，那么 $a_0\equiv 0\pmod p$ 且 $a_1^{-2}\equiv a\pmod p$。
+
+**证明**：考虑选择一个 $b$ 满足 $b^2\equiv a\pmod p$，那么 $(r-b)(r+b)=r^2-a$ 为非二次剩余，所以
+
+$$
+(r-b)^{(p-1)/2}(r+b)^{(p-1)/2}\equiv -1\pmod p
+$$
+
+存在环态射
+
+$$
+\begin{aligned}
+\phi:\mathbb{F}_p\lbrack x\rbrack/(x^2-a)&\to \mathbb{F}_p\times \mathbb{F}_p\\
+x&\mapsto (b,-b)
+\end{aligned}
+$$
+
+那么
+
+$$
+\begin{aligned}
+(a_0+a_1b,a_0-a_1b)&=\phi(a_0+a_1x)\\
+&=\phi(r-x)^{(p-1)/2}\\
+&=((r-b)^{(p-1)/2},(r+b)^{(p-1)/2})\\
+&=(\pm 1,\mp 1)
+\end{aligned}
+$$
+
+所以 $2a_0=(\pm 1)+(\mp 1)=0$ 而 $2a_1b=(\pm 1)-(\mp 1)=\pm 2$。
 
 ## Tonelli-Shanks 算法
 
