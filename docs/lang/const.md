@@ -51,7 +51,7 @@ const int &r4 = b;
 ```cpp
 int* const p1;  // 类型为int*的常指针，必须初始化
 const int* p2;  // 指向 const int 的普通指针
-const int* const p3;  // 类型为const int*的常指针，必须初始化 (即常指针常量)
+const int* const p3;  // 类型为const int*的常指针，必须初始化（即常指针常量）
 
 int (*f1)(int);  // 普通的函数指针
 // int (const *f2)(int); // 指向常函数的指针，不可行
