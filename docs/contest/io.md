@@ -318,4 +318,4 @@ struct IO {
 
 <http://meme.biology.tohoku.ac.jp/students/iwasaki/cxx/speed.html>
 
-[https://marc.info/？l=linux-kernel&m=95496636207616&w=2](https://marc.info/?l=linux-kernel&m=95496636207616&w=2)
+<https://marc.info/？l=linux-kernel&m=95496636207616&w=2>
