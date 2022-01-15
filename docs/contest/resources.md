@@ -87,7 +87,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   《啊哈算法》- 纪磊
     - 面向初学者或有初步兴趣的人群，有幽默配图。
 -   CCF 中学生计算机程序设计系列
-    -   《CCF 中学生计算机程序设计 - 入门篇》- 陈颖，邱桂香，朱全
+    -   《CCF 中学生计算机程序设计 - 入门篇》- 陈颖，邱桂香，朱全民
         - [建议配合勘误使用。](https://zhuanlan.zhihu.com/p/85215961)
     - 《CCF 中学生计算机程序设计 - 基础篇》- 江涛，宋新波，朱全民
     - 《CCF 中学生计算机程序设计 - 提高篇》- 徐先友，朱全民
