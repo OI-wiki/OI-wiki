@@ -2,21 +2,35 @@ author: Marcythm, yizr-cnyali, Chaigidel, Tiger3018, voidge, H-J-Granger, ouuan,
 
 在默认情况下，`std::cin/std::cout` 是极为迟缓的读入/输出方式，而 `scanf/printf` 比 `std::cin/std::cout` 快得多。
 
-可是为什么会这样呢？有没有什么办法解决读入输出缓慢的问题呢？
+???+note "注意" 
+    `cin`/`cout` 与 `scanf`/`printf` 的实际速度差会随编译器和操作系统的不同发生一定的改变。如果想要进行详细对比，请以实际测试结果为准。
+
+下文将详细介绍读入输出的优化方法。
 
 ## 关闭同步/解除绑定
 
 ### `std::ios::sync_with_stdio(false)`
 
-这个函数是一个“是否兼容 stdio”的开关，C++ 为了兼容 C，保证程序在使用了 `printf` 和 `std::cout` 的时候不发生混乱，将输出流绑到了一起。
+这个函数是一个“是否兼容 stdio”的开关，C++ 为了兼容 C，保证程序在使用了 `printf` 和 `std::cout` 的时候不发生混乱，将输出流绑到了一起。同步的输出流是线程安全的。
 
-这其实是 C++ 为了兼容而采取的保守措施。我们可以在进行 IO 操作之前将 stdio 解除绑定，但是在这样做之后要注意不能同时使用 `std::cin/std::cout` 和 `scanf/printf`。
+这其实是 C++ 为了兼容而采取的保守措施，也是使 `cin`/`cout` 速度较慢的主要原因。我们可以在进行 IO 操作之前将 stdio 解除绑定，但是在这样做之后要注意不能同时使用 `std::cin/std::cout` 和 `scanf/printf`。
 
 ### `tie`
 
 tie 是将两个 stream 绑定的函数，空参数的话返回当前的输出流指针。
 
-在默认的情况下 `std::cin` 绑定的是 `std::cout`，每次执行 `<<` 操作符的时候都要调用 `flush()`，这样会增加 IO 负担。可以通过 `std::cin.tie(0)`（0 表示 NULL）来解除 `std::cin` 与 `std::cout` 的绑定，进一步加快执行效率。
+在默认的情况下 `std::cin` 绑定的是 `std::cout`，每次执行 `<<` 操作符的时候都要调用 `flush()` 来清理 stream buffer，这样会增加 IO 负担。可以通过 `std::cin.tie(0)`（0 表示 NULL）来解除 `std::cin` 与 `std::cout` 的绑定，进一步加快执行效率。
+
+但需要注意的是，在解除了 `std::cin` 和 `std::cout` 的绑定后，程序中必须手动 `flush` 才能确保每次 `std::cout` 展现的内容可以在 `std::cin` 前出现。这是因为 `std::cout` 被 buffer 为默认设置。例如：
+
+```cpp
+std::cout
+    << "Please input your name: "
+    << std::flush;  // 或者: std::endl;
+                    // 因为每次调用std::endl都会flush输出缓冲区，而 \n 则不会。
+// 但请谨慎使用，过多的flush会影响程序效率
+std::cin >> name;
+```
 
 ### 代码实现
 
@@ -111,9 +125,13 @@ inline void write(int x) {
 
 ## 更快的读入/输出优化
 
-通过 `fread` 或者 `mmap` 可以实现更快的读入。其本质为一次性将输入文件读入一个巨大的缓存区，如此比逐个字符读入要快的多 (`getchar`,`putchar`）。因为硬盘的多次读写速度是要慢于内存的，所以先一次性读到缓存区里再从缓存区读入要快的多。
+通过 `fread` 或者 `mmap` 可以实现更快的读入。
 
-更通用的是 `fread`，因为 `mmap` 不能在 Windows 环境下使用。
+`fread` 能将需要的文件部分读入内存缓冲区。`mmap` 则会调度内核级函数，将文件一次性地映射到内存中，类似于可以指针引用的内存区域。所以在日常程序读写时，只需要重复读取部分文件可以使用 `fread`，因为如果用 `mmap` 反复读取一小块文件，做一次性内存映射并且内核处理 page fault 的花费会远比使用 `fread` 的内核级函数调度大。
+
+一次性读入缓冲区的操作比逐个字符读入（`getchar`,`putchar`）要快的多。因为硬盘的多次读写速度是要慢于直接读取内存的，所以先一次性读到缓存区里再从缓存区读入要快的多。并且 `mmap` 确保了进程间自动共享，存储区如果可以也会与内核缓存分享信息，确保了更少的拷贝操作。
+
+更通用的是 `fread`，因为 `mmap` 不能在 Windows 环境下使用（例如 CodeForces 的 tester）。
 
 `fread` 类似于参数为 `"%s"` 的 `scanf`，不过它更为快速，而且可以一次性读入若干个字符（包括空格换行等制表符），如果缓存区足够大，甚至可以一次性读入整个文件。
 
@@ -299,3 +317,5 @@ struct IO {
 <http://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html>
 
 <http://meme.biology.tohoku.ac.jp/students/iwasaki/cxx/speed.html>
+
+[https://marc.info/？l=linux-kernel&m=95496636207616&w=2](https://marc.info/?l=linux-kernel&m=95496636207616&w=2)
