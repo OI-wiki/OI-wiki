@@ -19,9 +19,9 @@ inline ll rd() {  // LLONG_MIN LMAX=9,223,372,036,854,775,807
 }
 const int N = 1e5 + 7;
 struct Tree {
-  int mx, _mx;
-  int ad, _ad;
-  int st, _st;
+  int mx, _mx;// 区间最大值 区间历史最大值
+  int ad, _ad;// 区间加标记 区间阶段历史最大加标记 
+  int st, _st;// 区间修改值 区间阶段历史最大修改标记 
 } g[N * 4];
 int a[N];
 int n, m;
@@ -44,10 +44,10 @@ inline void pushset(int u, int v, int _v) {
   g[u]._st = max(g[u]._st, _v), g[u].st = v;
 }
 inline void pushdown(int u, int l, int r) {
-  if (g[u].ad)
+  if (g[u].ad || g[u]._ad)
     pushadd(ls, g[u].ad, g[u]._ad), pushadd(rs, g[u].ad, g[u]._ad),
         g[u].ad = g[u]._ad = 0;
-  if (g[u].st != INT_MIN)
+  if (g[u].st != INT_MIN || g[u]._st != INT_MIN)
     pushset(ls, g[u].st, g[u]._st), pushset(rs, g[u].st, g[u]._st),
         g[u].st = g[u]._st = INT_MIN;
 }
