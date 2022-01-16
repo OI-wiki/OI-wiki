@@ -19,6 +19,6 @@ jobs:
 
             感谢理解与支持。
           stale-pr-label: 'No Response / 失去响应'
-          exempt-pr-labels: 'Busy Author / 作者正忙'
+          exempt-pr-labels: 'Busy Author / 作者正忙,Pending review / 等待审核,Pending merge / 等待合并,等待取消修改请求 / Pending Cancel Changes Request'
           days-before-pr-stale: 30
           days-before-pr-close: 14 
