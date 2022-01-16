@@ -19,9 +19,9 @@ inline ll rd() {  // LLONG_MIN LMAX=9,223,372,036,854,775,807
 }
 const int N = 1e5 + 7;
 struct Tree {
-  int mx, _mx;// 区间最大值 区间历史最大值
-  int ad, _ad;// 区间加标记 区间阶段历史最大加标记 
-  int st, _st;// 区间修改值 区间阶段历史最大修改标记 
+  int mx, _mx;  // 区间最大值 区间历史最大值
+  int ad, _ad;  // 区间加标记 区间阶段历史最大加标记
+  int st, _st;  // 区间修改值 区间阶段历史最大修改标记
 } g[N * 4];
 int a[N];
 int n, m;
