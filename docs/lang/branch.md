@@ -125,7 +125,25 @@ switch (i) {
 }
 ```
 
-以上代码运行后输出的结果为 WIKI，因为 break 的存在，接下来的语句就不会继续被执行了。default 语句不需要 break，因为下面没有语句了。
+以上代码运行后输出的结果为 WIKI，因为 break 的存在，接下来的语句就不会继续被执行了。最后一个语句不需要 break，因为下面没有语句了。
+
+处理入口编号不能重复，但可以颠倒。也就是说，入口编号的顺序不重要。各个case（包括default）的出现次序可任意。例如：
+
+```cpp
+char i = 'B';
+switch (i) {
+  case 'B':
+    cout << "WIKI" << endl;
+    break;
+
+  default:
+    cout << "Hello World" << endl;
+    break;
+  
+  case 'A':
+    cout << "OI" << endl;
+}
+```
 
 switch 的 case 分句中也可以选择性的加花括号。不过要注意的是，如果需要在 switch 语句中定义变量，花括号是必须要加的。例如：
 
