@@ -127,7 +127,7 @@ switch (i) {
 
 以上代码运行后输出的结果为 WIKI，因为 break 的存在，接下来的语句就不会继续被执行了。最后一个语句不需要 break，因为下面没有语句了。
 
-处理入口编号不能重复，但可以颠倒。也就是说，入口编号的顺序不重要。各个case（包括default）的出现次序可任意。例如：
+处理入口编号不能重复，但可以颠倒。也就是说，入口编号的顺序不重要。各个 case（包括 default）的出现次序可任意。例如：
 
 ```cpp
 char i = 'B';
@@ -139,7 +139,7 @@ switch (i) {
   default:
     cout << "Hello World" << endl;
     break;
-  
+
   case 'A':
     cout << "OI" << endl;
 }
