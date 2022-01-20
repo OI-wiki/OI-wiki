@@ -41,7 +41,7 @@ void insert(char c, int pos) {  //元素插入，借助链表来理解
 }
 char query(int pos) {  //查询
   node* p;
-  int tot, cnt;
+  int tot;
   for (p = head, tot = head->size; p != NULL && tot < pos;
        p = p->nxt, tot += p->size)
     ;
