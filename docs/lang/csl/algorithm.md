@@ -14,7 +14,7 @@ STL 提供了大约 100 个实现算法的模版函数，基本都包含在 `<al
     ```cpp
     // #include <random>
     std::mt19937 rng(std::random_device{}());
-    std::shuffle(v.begin(), v.end(), rng)；
+    std::shuffle(v.begin(), v.end(), rng) ；
     ```
 
 - `sort`：排序。`sort(v.begin(), v.end(), cmp)` 或 `sort(a + begin, a + end, cmp)`，其中 `end` 是排序的数组最后一个元素的后一位，`cmp` 为自定义的比较函数。
