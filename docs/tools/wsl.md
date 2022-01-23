@@ -10,7 +10,7 @@ author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613
 
 众所周知，尽管现在大部分学校的竞赛练习环境都是构建在 XP 等 Windows 系操作系统上，但是在 NOI 系列赛中，早已用上了 NOI Linux 这个 Ubuntu 操作系统的修改版。
 
-NOI 竞赛 (自2021年9月1日) 的环境要求如下。[^ref2]
+NOI 竞赛（自 2021 年 9 月 1 日）的环境要求如下。[^ref2]
 
 | 类别          | 软件或模块                     | 版本                 | 备注说明                                     |
 | :---------- | :------------------------ | :----------------- | :--------------------------------------- |
@@ -71,16 +71,16 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
     本部分适用于 Windows 10 版本 2004 及更高版本（内部版本 19041 及更高版本）或 Windows 11。
     
     如果你正在使用 2004 以下版本或你的电脑不支持虚拟化，请阅读下面的手动安装一节。
+    
+    如果你正在使用 Windows 10 1607 以下版本的 Windows，你的系统不支持 WSL。
 
-    如果你正在使用 Windows 10 1607 以下版本的 Windows，你的系统不支持 WSL。 
+1. 以管理员身份打开 Windows Powershell（右击 "开始" 按钮，选择 Windows PowerShell（管理员）或 Windows 终端（管理员）)
 
-1. 以管理员身份打开 Windows Powershell (右击 "开始" 按钮， 选择 Windows PowerShell (管理员) 或 Windows 终端 (管理员))
-
-2. 输入 `wsl --install`， 并等待所有组件自动安装完成。期间你可能需要重启你的计算机来启用必要的 Windows 功能。
+2. 输入 `wsl --install`，并等待所有组件自动安装完成。期间你可能需要重启你的计算机来启用必要的 Windows 功能。
 
 3. 安装完成后，你可以在 "开始" 菜单或 Windows 终端的标签页中找到你安装的发行版。
 
-4. 接下来，请转到下面 “配置分发版” 一节完成其他设置。
+4. 接下来，请转到下面“配置分发版”一节完成其他设置。
 
 ### 手动安装[^ref4]
 
@@ -146,7 +146,7 @@ wsl --set-default-version 2
 ???+ warning
     Microsoft Store 的 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。如果想获取稳定的 Ubuntu 长期支持版，可以在 Microsoft Store 安装 Ubuntu 的 LTS 版本。
 
-## 配置分发版 [^ref5]
+## 配置分发版[^ref5]
 
 本章以 Windows 自动安装的 Ubuntu 为例。
 
@@ -370,7 +370,6 @@ $ xfce4-session
 
 ![](./images/wsl-xfce.png)
 
-
 ### WSL 与 Windows 文件的互访问
 
 Windows 下的硬盘被自动挂载至 Linux 环境下的 `/mnt` 文件夹下。
@@ -393,7 +392,6 @@ Welcome!
 同样，也可以在资源管理器的路径或运行（Win+R）中直接输入 `\\wsl$` 来转到 WSL 的目录。
 
 也可以直接使用诸如 `\\wsl$\Ubuntu\home\` 的路径访问其子文件夹。
-
 
 ### 配合 Visual Sudio Code 进行编辑
 
@@ -424,7 +422,6 @@ Welcome!
 -   对系统资源的占用量？
 
     这个系统和 Windows 10 共用 Host，所以理论上是比虚拟机占用小的。
-
 
 ## 外部链接
 
