@@ -61,8 +61,6 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [Codeforces 上网友整理的一份教程合集](http://codeforces.com/blog/entry/57282)
 - [英文版 E-Maxx 算法教程](https://cp-algorithms.com/)
 - [演算法笔记](http://web.ntnu.edu.tw/~algo/)：台湾师范大学总结的教程
-- [algo.is](https://algo.is/t-414-aflv-competitive-programming-course-2016/)
-- [CS 97SI: Introduction to Programming Contests](http://web.stanford.edu/class/cs97si/)：斯坦福大学的一门课
 - [如何为 ACM-ICPC 做准备？- geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)
 - [Topcoder 整理的教程](https://www.topcoder.com/community/competitive-programming/tutorials/)
 - [校招面试指南](https://github.com/jwasham/coding-interview-university)
@@ -70,6 +68,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [Trinkle23897 的课件](https://github.com/Trinkle23897/oi_slides)
 - [huzecong 的课件](https://github.com/huzecong/oi-slides)
 - [Open Data Structure](https://opendatastructures.org/)：内含众多数据结构讲稿
+- [IOI Syllabus (2020)](https://www.cs.utexas.edu/users/utpc/courses/IOI.pdf)
 
 ## 书籍
 
@@ -132,6 +131,23 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
     - 购买 [纸质版图书](http://www.tup.tsinghua.edu.cn/booksCenter/book_03050201.html)
 -   《C++，挑战编程——程序设计竞赛进阶训练指南》- 邱秋
     - [作者博客的介绍页](https://blog.csdn.net/metaphysis/article/details/90288252)
+
+## 课程
+
+-   [Baylor: CSI 3144 (2006)](http://cs.baylor.edu/~contest/syllabus.txt)
+-   [CMU 15-295 (2021)](https://contest.cs.cmu.edu/295/)
+-   [Georgia Tech: CS 4540 (2020)](https://faculty.cc.gatech.edu/~rpeng/CS4540_F20/)
+-   [Georgia Tech: CS 6550 (2021)](https://faculty.cc.gatech.edu/~rpeng/CS6550_S21/)
+-   [LSU: CSC 2700 (2021)](http://isaac.lsu.edu/class/)
+-   [NUS: CS 3233 (2021)](https://www.comp.nus.edu.sg/~stevenha/cs3233.html)
+-   [Reykjavik: T-414-ÁFLV (2016)](https://algo.is/)
+-   [SPSU: Coursera (2019)](https://www.coursera.org/learn/competitive-programming-core-skills/)
+-   [Stanford: CS 97SI (2015)](https://web.stanford.edu/class/cs97si/)
+-   [Stonybrook: CSE 392 (2012)](https://www3.cs.stonybrook.edu/~skiena/392/)
+-   [TAMU: CSCE 430 (2021)](https://www.cs.utexas.edu/users/utpc/courses/TAMU-CSCE-430.pdf)
+-   [UBC: CPSC 490 (2021)](https://www.students.cs.ubc.ca/~cs-490/2019W2/problem-solving/)
+-   [UCF: COP 4516 (2021)](http://www.cs.ucf.edu/~dmarino/progcontests/cop4516/spr2021/)
+-   [VT: CS 2984/4984 (2020)](https://www.cs.utexas.edu/users/utpc/courses/VT-CS-2984-4984.pdf)
 
 ## 工具
 
