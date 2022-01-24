@@ -403,7 +403,7 @@ print(headline("type comments work", width=40))
 
 部分装饰器在竞赛中非常实用，比如 [`lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache)，可以为函数自动增加记忆化的能力，在递归算法中非常实用：
 
-***@lru_cache(maxsize=128,typed=False)***
+*@lru_cache(maxsize=128,typed=False)*
 
 - 传入的参数有 2 个 maxsize 和 typed，如果不传则 maxsize 的默认值为 128，typed 的默认值为 False。
 - 其中 maxsize 参数表示是的被装饰的方法最大可缓存结果数量，如果是默认值 128 则表示被装饰方法最多可缓存 128 个返回结果，如果 maxsize 传入为 None 则表示可以缓存无限个结果。
