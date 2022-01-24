@@ -50,7 +50,7 @@ NOI 竞赛（自 2021 年 9 月 1 日）的环境要求如下。[^ref2]
 
 为了防止考场上出现此类尴尬情况，我们必须要提前熟悉 Linux 系统的操作方法。
 
-虽然 NOI 的官网已经放出了 NOI Linux 的 ISO 镜像，但是如果跑虚拟机的话配置可能较为麻烦。且 NOI Linux 默认自带图形界面，无法保证在低配系统上流畅运行。
+虽然 NOI 的官网已经放出了 NOI Linux 的 ISO 镜像，虚拟机的配置较为麻烦。且由于 NOI Linux 默认自带图形界面，无法保证在低配系统上流畅运行。
 
 Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 年 5 月更新中升级到了 WSL 2。截至 2020 年 6 月 1 日，WSL 已支持安装 Ubuntu、openSUSE Leap、Kali、Debian 等主流 Linux 分发版。但 WSL 并不支持 NOI 评测用的 Arbiter。
 
@@ -291,6 +291,8 @@ AMD Ryzen 5 1400 Quad-Core Processor
 参见 [在适用于 Linux 的 Windows 子系统上运行 Linux GUI 应用（预览）](https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gui-apps)
 
 ### 安装图形环境，并使用远程桌面连接
+
+如果你使用的版本尚不支持 WSLg, 可以尝试使用以下指南开启图形界面功能。
 
 以下以 Xfce 为例。
 
