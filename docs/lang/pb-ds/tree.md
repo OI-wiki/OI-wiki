@@ -17,9 +17,9 @@ __gnu_pbds ::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
 - `Mapped`: 映射规则（Mapped-Policy）类型，如果要指示关联容器是 **集合**，类似于存储元素在 `std::set` 中，此处填入 `null_type`，低版本 `g++` 此处为 `null_mapped_type`；如果要指示关联容器是 **带值的集合**，类似于存储元素在 `std::map` 中，此处填入类似于 `std::map<Key, Value>` 的 `Value` 类型
 - `Cmp_Fn`: 关键字比较函子，例如 `std::less<Key>`
 - `Tag`: 选择使用何种底层数据结构类型，默认是 `rb_tree_tag`。`__gnu_pbds` 提供不同的三种平衡树，分别是：
-- `rb_tree_tag`：红黑树，一般使用这个，后两者的性能一般不如红黑树
-- `splay_tree_tag`：splay 树
-- `ov_tree_tag`：有序向量树，只是一个由 `vector` 实现的有序结构，类似于排序的 `vector` 来实现平衡树，性能取决于数据想不想卡你
+  - `rb_tree_tag`：红黑树，一般使用这个，后两者的性能一般不如红黑树
+  - `splay_tree_tag`：splay 树
+  - `ov_tree_tag`：有序向量树，只是一个由 `vector` 实现的有序结构，类似于排序的 `vector` 来实现平衡树，性能取决于数据想不想卡你
 - `Node_Update`：用于更新节点的策略，默认使用 `null_node_update`，若要使用 `order_of_key` 和 `find_by_order` 方法，需要使用 `tree_order_statistics_node_update`
 - `Allocator`：空间分配器类型
 
@@ -70,30 +70,30 @@ int main() {
   trr.insert(mp(4, cnt++));
   trr.insert(mp(3, cnt++));
   trr.insert(mp(2, cnt++));
-  //树上元素{{1,0},{2,4},{3,3},{4,2},{5,1}}
+  // 树上元素 {{1,0},{2,4},{3,3},{4,2},{5,1}}
   auto it = trr.lower_bound(mp(2, 0));
   trr.erase(it);
-  //树上元素{{1,0},{3,3},{4,2},{5,1}}
+  // 树上元素 {{1,0},{3,3},{4,2},{5,1}}
   auto it2 = trr.find_by_order(1);
   cout << (*it2).first << endl;
-  //输出排名0 1 2 3中的排名1的元素的first:1
+  // 输出排名 0 1 2 3 中的排名 1 的元素的 first:1
   int pos = trr.order_of_key(*it2);
   cout << pos << endl;
-  //输出排名
+  // 输出排名
   decltype(trr) newtr;
   trr.split(*it2, newtr);
   for (auto i = newtr.begin(); i != newtr.end(); ++i) {
     cout << (*i).first << ' ';
   }
   cout << endl;
-  //{4,2},{5,1}被放入新树
+  // {4,2},{5,1} 被放入新树
   trr.join(newtr);
   for (auto i = trr.begin(); i != trr.end(); ++i) {
     cout << (*i).first << ' ';
   }
   cout << endl;
   cout << newtr.size() << endl;
-  //将newtr树并入trr树，newtr树被删除。
+  // 将 newtr 树并入 trr 树，newtr 树被删除。
   return 0;
 }
 ```
