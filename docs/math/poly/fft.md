@@ -462,11 +462,14 @@ $$
     }
     ```
 
-??? "FFT 模板（ [HDU 1402](http://acm.hdu.edu.cn/showproblem.php?pid=1402) ）"
+??? "FFT 模板（ [「Luogu P1616」【模板】A*B Problem 升级版 ](https://www.luogu.com.cn/problem/P1919) ）"
     ```cpp
     --8<-- "docs/math/code/poly/fft/fft_1.cpp"
     ```
-
+??? "FFT 模板 三次转两次优化（ [「Luogu P1616」【模板】A*B Problem 升级版 ](https://www.luogu.com.cn/problem/P1919) ）"
+    ```cpp
+    --8<-- "docs/math/code/poly/fft/fft_2.cpp"
+    ```
 ## 快速数论变换
 
 若要计算的多项式系数是别的具有特殊意义的整数，那么 FFT 全部用浮点数运算，从时间上比整数运算慢，且只能用 long double 类型。
