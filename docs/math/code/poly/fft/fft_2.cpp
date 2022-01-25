@@ -77,21 +77,24 @@ int main() {
     int len2 = strlen(str2);
     int len = 1;
     while (len < len1 * 2 || len < len2 * 2) len *= 2;
-    // a * b 三次变两次优化 
-	// 适用于将两个多项式乘法中的三次FFT变成两次 
-	// 原理是：(a+bi)^2= (a^2-b^2) + 2abi
-	// FFT系数转点值乘法 转系数之后虚部除以2（乘0.5/len）即是结果 
-	for (int i = 0; i < len1 && i< len2; i++) x1[i] = Complex(str1[len1 - 1 - i] - '0', str2[len2 - 1 - i] - '0');
-    if(len1>=len2)
-    	for (int i = len2; i < len1; i++) x1[i] = Complex(str1[len1 - 1 - i] - '0', 0);
+    // a * b 三次变两次优化
+    // 适用于将两个多项式乘法中的三次FFT变成两次
+    // 原理是：(a+bi)^2= (a^2-b^2) + 2abi
+    // FFT系数转点值乘法 转系数之后虚部除以2（乘0.5/len）即是结果
+    for (int i = 0; i < len1 && i < len2; i++)
+      x1[i] = Complex(str1[len1 - 1 - i] - '0', str2[len2 - 1 - i] - '0');
+    if (len1 >= len2)
+      for (int i = len2; i < len1; i++)
+        x1[i] = Complex(str1[len1 - 1 - i] - '0', 0);
     else
-    	for (int i = len1; i < len2; i++) x1[i] = Complex(0, str2[len2 - 1 - i] - '0');	
+      for (int i = len1; i < len2; i++)
+        x1[i] = Complex(0, str2[len2 - 1 - i] - '0');
     for (int i = max(len1, len2); i < len; i++) x1[i] = Complex(0, 0);
     fft(x1, len, 1);
     for (int i = 0; i < len; i++) x1[i] = x1[i] * x1[i];
     fft(x1, len, -1);
-	double ilen=0.5/len;
-    for (int i = 0; i < len; i++) sum[i] = int(x1[i].y*ilen + 0.5);
+    double ilen = 0.5 / len;
+    for (int i = 0; i < len; i++) sum[i] = int(x1[i].y * ilen + 0.5);
     for (int i = 0; i < len; i++) {
       sum[i + 1] += sum[i] / 10;
       sum[i] %= 10;
