@@ -321,9 +321,10 @@ $lcp(i,sa[rk[i]-1])$：$AX$（$X$ 可能为空）
 
 ```cpp
 for (i = 1, k = 0; i <= n; ++i) {
+  if (rk[i] == 0) continue;
   if (k) --k;
   while (s[i + k] == s[sa[rk[i] - 1] + k]) ++k;
-  ht[rk[i]] = k;  // height太长了缩写为ht
+  height[rk[i]] = k;
 }
 ```
 
