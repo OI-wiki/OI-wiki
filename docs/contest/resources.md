@@ -165,7 +165,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [图论画板](https://csacademy.com/app/graph_editor/) 与 [GraphViz](http://www.graphviz.org/)
 - [Ubuntu Pastebin](https://paste.ubuntu.com)：可用于分享代码
 - [uDebug](https://www.udebug.com)：提供一些 OJ 题目的调试辅助
-- [USF](https://www.cs.usfca.edu/~galles/visualization/) 与 [VisuAlgo](https://visualgo.net/zh)：算法可视化
+- [USF](https://www.cs.usfca.edu/~galles/visualization/)：与 [VisuAlgo](https://visualgo.net/zh)：算法可视化
 - [Wolfram Alpha](https://www.wolframalpha.com/)：可以计算包括数学、科学技术、社会文化……等多个主题的问题
 
 ## 题集和资源
