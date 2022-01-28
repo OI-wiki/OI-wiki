@@ -182,4 +182,4 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [Vjudge](https://vjudge.net/)
 - [Project Euler](https://projecteuler.net/)
 - [Junior Training Sheet](https://goo.gl/unDETI)：对新手友好的训练计划
-- [USACO Guide](https://usaco.guide/) 针对 USACO 的各个级别分类的训练资源
+- [USACO Guide](https://usaco.guide/)：针对 USACO 的各个级别分类的训练资源
