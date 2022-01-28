@@ -133,7 +133,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
     - [作者博客的介绍页](https://blog.csdn.net/metaphysis/article/details/90288252)
 - [《数据结构（C++ 语言版 第 3 版）》- 邓俊辉，有配套课程](https://www.xuetangx.com/course/THU08091000384/)
 - [《计算几何：算法与应用》- 伯格（Berg,M.D.）著，邓俊辉 译，有配套课程](https://www.xuetangx.com/course/THU08091000327/) 英文版原名*Computational Geometry: Algorithms and Applications*
--   [《Handbook of Data Structures and Applications, Second Edition》](http://libgen.is/book/index.php?md5=5C96D1012E5BBEDA3EE79A31EDF5B0BF)
+-   [《Handbook of Data Structures and Applications, 2nd Edition》](https://www.routledge.com/Handbook-of-Data-Structures-and-Applications/Mehta-Sahni/p/book/9780367572006)
     - 由许多著名教授合著，内容较多。
 -   [算法详解 系列，卷 1,2 已有中文翻译，有配套课程](https://www.edx.org/course/algorithms-design-and-analysis)
     - 《Algorithms Illuminated, Part 1: The Basics》- Tim Roughgarden
