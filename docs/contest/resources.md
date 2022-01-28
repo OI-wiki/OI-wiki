@@ -109,12 +109,12 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
     - 《ACM 国际大学生程序设计竞赛系列 题目与解读》- 俞勇
 - 《算法竞赛入门到进阶》- 罗勇军，郭卫斌
 -   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein  
-    黑书，大学经典教材。英文版原名*Introduction to Algorithms*
+    黑书，大学经典教材。英文版原名 *Introduction to Algorithms*
     - [答案解析 (English)](https://github.com/walkccc/CLRS)
 -   《具体数学》第二版 - Ronald L. Graham/Donald E. Knuth/Oren Patashnik  
-    英文版原名*Concrete Mathematics*
+    英文版原名 *Concrete Mathematics*
 -   《组合数学》第五版 - Richard A.Brualdi  
-    英文版原名*Introductory Combinatorics*
+    英文版原名 *Introductory Combinatorics*
 - [Competitive Programmer's Handbook](https://cses.fi/book/index.html)
 -   《挑战程序设计竞赛》全套 - 秋叶拓哉，岩田阳一，北川宜稔
     通俗易懂。
@@ -131,11 +131,14 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
     - 购买 [纸质版图书](http://www.tup.tsinghua.edu.cn/booksCenter/book_03050201.html)
 -   《C++，挑战编程——程序设计竞赛进阶训练指南》- 邱秋
     - [作者博客的介绍页](https://blog.csdn.net/metaphysis/article/details/90288252)
-- [《数据结构（C++ 语言版 第 3 版）》- 邓俊辉，有配套课程](https://www.xuetangx.com/course/THU08091000384/)
-- [《计算几何：算法与应用》- 伯格（Berg,M.D.）著，邓俊辉 译，有配套课程](https://www.xuetangx.com/course/THU08091000327/) 英文版原名*Computational Geometry: Algorithms and Applications*
+- [《数据结构（C++ 语言版 第 3 版）》- 邓俊辉](https://dsa.cs.tsinghua.edu.cn/~deng/ds/dsacpp/index.htm)
+    - 建议随配套课程和习题解析一起使用。
+-   《计算几何：算法与应用》- 伯格（Berg,M.D.）著，邓俊辉 译  
+    英文版原名 *Computational Geometry: Algorithms and Applications*
 -   [《Handbook of Data Structures and Applications, 2nd Edition》](https://www.routledge.com/Handbook-of-Data-Structures-and-Applications/Mehta-Sahni/p/book/9780367572006)
-    - 由许多著名教授合著，内容较多。
--   [算法详解 系列，卷 1,2 已有中文翻译，有配套课程](https://www.edx.org/course/algorithms-design-and-analysis)
+    - 由许多著名教授合著，内容较多，建议有一定基础的阅读。
+-   算法详解 系列
+    - 面向有语言基础的初学者的教材，卷 1,2 已有中文翻译，建议同配套课程一起使用
     - 《Algorithms Illuminated, Part 1: The Basics》- Tim Roughgarden
     - 《Algorithms Illuminated, Part 2: Graph Algorithms and Data Structures》- Tim Roughgarden
     - 《Algorithms Illuminated, Part 3: Greedy Algorithms and Dynamic Programming》- Tim Roughgarden
@@ -157,6 +160,9 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [UBC: CPSC 490 (2021)](https://www.students.cs.ubc.ca/~cs-490/2019W2/problem-solving/)
 - [UCF: COP 4516 (2021)](http://www.cs.ucf.edu/~dmarino/progcontests/cop4516/spr2021/)
 - [VT: CS 2984/4984 (2020)](https://www.cs.utexas.edu/users/utpc/courses/VT-CS-2984-4984.pdf)
+- [THU: 数据结构](https://www.xuetangx.com/course/THU08091000384/)
+- [THU: 计算几何](https://www.xuetangx.com/course/THU08091000327/)
+- [StanfordOnline: Algorithms: Design and Analysis](https://www.edx.org/course/algorithms-design-and-analysis)
 
 ## 工具
 
