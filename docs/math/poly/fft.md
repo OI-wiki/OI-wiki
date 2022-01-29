@@ -1,4 +1,4 @@
-author: AndrewWayne, GavinZhengOI, ChungZH, henryrabbit, Xeonacid, sshwy, Yukimaikoriya
+author: AndrewWayne, GavinZhengOI, ChungZH, henryrabbit, Xeonacid, sshwy, Yukimaikoriya, EarthMessenger
 
 前置知识：[复数](../complex.md)。
 
@@ -8,7 +8,7 @@ author: AndrewWayne, GavinZhengOI, ChungZH, henryrabbit, Xeonacid, sshwy, Yukima
 
 离散傅里叶变换（Discrete Fourier Transform，缩写为 DFT），是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DTFT 的频域采样。
 
-FFT 是一种高效实现 DFT 的算法，称为快速傅立叶变换（Fast Fourier Transform，FFT）。它对傅里叶变换的理论并没有新的发现，但是对于在计算机系统或者说数字系统中应用离散傅立叶变换，可以说是进了一大步。快速数论变换 (NTT) 是快速傅里叶变换（FFT）在数论基础上的实现。
+FFT 是一种高效实现 DFT 的算法，称为 **快速傅立叶变换**（Fast Fourier Transform，FFT）。它对傅里叶变换的理论并没有新的发现，但是对于在计算机系统或者说数字系统中应用离散傅立叶变换，可以说是进了一大步。快速数论变换 (NTT) 是快速傅里叶变换（FFT）在数论基础上的实现。
 
 在 1965 年，Cooley 和 Tukey 发表了快速傅里叶变换算法。事实上 FFT 早在这之前就被发现过了，但是在当时现代计算机并未问世，人们没有意识到 FFT 的重要性。一些调查者认为 FFT 是由 Runge 和 König 在 1924 年发现的。但事实上高斯早在 1805 年就发明了这个算法，但一直没有发表。
 
@@ -19,7 +19,7 @@ FFT 是一种高效实现 DFT 的算法，称为快速傅立叶变换（Fast Fou
 系数表示法就是用一个多项式的各个项系数来表达这个多项式，即使用一个系数序列来表示多项式：
 
 $$
-f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \Leftrightarrow f(x) = \{a_0, a_1, \cdots,a_{n}\}
+f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \iff f(x) = \{a_0, a_1, \cdots,a_{n}\}
 $$
 
 ### 点值表示法
@@ -27,7 +27,9 @@ $$
 点值表示法是把这个多项式看成一个函数，从上面选取 $n+1$ 个点，从而利用这 $n+1$ 个点来唯一地表示这个函数。
 
 ???+note "为什么用 $n+1$ 个点就能唯一地表示这个函数"
-    想一下高斯消元法，两点确定一条直线。再来一个点，能确定这个直线中的另一个参数，那么也就是说 $n+1$ 个点能确定 $n$ 个参数（不考虑倍数点之类的没用点）。
+    法 I：想一下高斯消元法，两点确定一条直线。再来一个点，能确定这个直线中的另一个参数，那么也就是说 $n+1$ 个点能确定 $n$ 个参数（不考虑倍数点之类的没用点）。
+    
+    法 II：假设原命题错误，则我们可以找到两个不相等又有 $n + 1$ 个交点的函数 $f(x) = a_0 + a_1x + a_2x^2 + a_3x^3 + \cdots + a_nx^n$ 和 $g(x) = b_0 + b_1x + b_2x^2 + b_3x^3 + \cdots + b_nx^n$。我们令 $h(x) = f(x) - g(x)$，**$h(x)$ 显然是一个 $n$ 次函数**，且该函数与 $x$ 轴有 $n + 1$ 个交点，即 **有 $n + 1$ 个根**。根据代数基本定理，$h(x)$ 是 $n + 1$ 次函数，矛盾。原命题成立。
 
 设
 
@@ -44,7 +46,7 @@ $$
 那么用点值表示法表示 $f(x)$ 如下
 
 $$
-f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \Leftrightarrow f(x) = \{(x_0,y_0),(x_1,y_1), \cdots,(x_n,y_{n})\}
+f(x) = a_0+a_1x+a_2x^2+\cdots +a_{n}x^{n} \iff f(x) = \{(x_0,y_0),(x_1,y_1), \cdots,(x_n,y_{n})\}
 $$
 
 通俗地说，多项式由系数表示法转为点值表示法的过程，就是 DFT 的过程。相对地，把一个多项式的点值表示法转化为系数表示法的过程，就是 IDFT。而 FFT 就是通过取某些特殊的 $x$ 的点值来加速 DFT 和 IDFT 的过程。
@@ -135,7 +137,7 @@ $$
 那么原来的 $f(x)$ 用新函数表示为
 
 $$
-F(x)=G\left(x^2\right) + x  \times  H\left(x^2\right)
+f(x)=G\left(x^2\right) + x  \times  H\left(x^2\right)
 $$
 
 利用单位复根的性质得到
@@ -387,7 +389,7 @@ $$
 
 当且仅当 $j+k=0 \pmod{n}$ 时有 $S\left(\omega_n^{j+k}\right) = n$，否则为 $0$。因此 $A(\omega_n^k) = a_{n-k}\cdot n$。
 
-这意味着我们将 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 做 DFT 变换后，反转再除以 $n$，同样可以还原 $f(x)$ 的系数表示。
+这意味着我们将 $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ 做 DFT 变换后除以 $n$，再反转后 $n - 1$ 个元素，同样可以还原 $f(x)$ 的系数表示。
 
 ### 代码实现
 
@@ -452,7 +454,7 @@ $$
         }
       }
       if (on == -1) {
-        reverse(y, y + len);
+        reverse(y + 1, y + len);
         for (int i = 0; i < len; i++) {
           y[i].x /= len;
         }
@@ -462,105 +464,7 @@ $$
 
 ??? "FFT 模板（ [HDU 1402](http://acm.hdu.edu.cn/showproblem.php?pid=1402) ）"
     ```cpp
-    #include <cmath>
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    
-    const double PI = acos(-1.0);
-    struct Complex {
-      double x, y;
-      Complex(double _x = 0.0, double _y = 0.0) {
-        x = _x;
-        y = _y;
-      }
-      Complex operator-(const Complex &b) const {
-        return Complex(x - b.x, y - b.y);
-      }
-      Complex operator+(const Complex &b) const {
-        return Complex(x + b.x, y + b.y);
-      }
-      Complex operator*(const Complex &b) const {
-        return Complex(x * b.x - y * b.y, x * b.y + y * b.x);
-      }
-    };
-    /*
-     * 进行 FFT 和 IFFT 前的反置变换
-     * 位置 i 和 i 的二进制反转后的位置互换
-     *len 必须为 2 的幂
-     */
-    void change(Complex y[], int len) {
-      int i, j, k;
-      for (int i = 1, j = len / 2; i < len - 1; i++) {
-        if (i < j) swap(y[i], y[j]);
-        // 交换互为小标反转的元素，i<j 保证交换一次
-        // i 做正常的 + 1，j 做反转类型的 + 1，始终保持 i 和 j 是反转的
-        k = len / 2;
-        while (j >= k) {
-          j = j - k;
-          k = k / 2;
-        }
-        if (j < k) j += k;
-      }
-    }
-    /*
-     * 做 FFT
-     *len 必须是 2^k 形式
-     *on == 1 时是 DFT，on == -1 时是 IDFT
-     */
-    void fft(Complex y[], int len, int on) {
-      change(y, len);
-      for (int h = 2; h <= len; h <<= 1) {
-        Complex wn(cos(2 * PI / h), sin(on * 2 * PI / h));
-        for (int j = 0; j < len; j += h) {
-          Complex w(1, 0);
-          for (int k = j; k < j + h / 2; k++) {
-            Complex u = y[k];
-            Complex t = w * y[k + h / 2];
-            y[k] = u + t;
-            y[k + h / 2] = u - t;
-            w = w * wn;
-          }
-        }
-      }
-      if (on == -1) {
-        for (int i = 0; i < len; i++) {
-          y[i].x /= len;
-        }
-      }
-    }
-    
-    const int MAXN = 200020;
-    Complex x1[MAXN], x2[MAXN];
-    char str1[MAXN / 2], str2[MAXN / 2];
-    int sum[MAXN];
-    
-    int main() {
-      while (scanf("%s%s", str1, str2) == 2) {
-        int len1 = strlen(str1);
-        int len2 = strlen(str2);
-        int len = 1;
-        while (len < len1 * 2 || len < len2 * 2) len <<= 1;
-        for (int i = 0; i < len1; i++) x1[i] = Complex(str1[len1 - 1 - i] - '0', 0);
-        for (int i = len1; i < len; i++) x1[i] = Complex(0, 0);
-        for (int i = 0; i < len2; i++) x2[i] = Complex(str2[len2 - 1 - i] - '0', 0);
-        for (int i = len2; i < len; i++) x2[i] = Complex(0, 0);
-        fft(x1, len, 1);
-        fft(x2, len, 1);
-        for (int i = 0; i < len; i++) x1[i] = x1[i] * x2[i];
-        fft(x1, len, -1);
-        for (int i = 0; i < len; i++) sum[i] = int(x1[i].x + 0.5);
-        for (int i = 0; i < len; i++) {
-          sum[i + 1] += sum[i] / 10;
-          sum[i] %= 10;
-        }
-        len = len1 + len2 - 1;
-        while (sum[len] == 0 && len > 0) len--;
-        for (int i = len; i >= 0; i--) printf("%c", sum[i] + '0');
-        printf("\n");
-      }
-      return 0;
-    }
+    --8<-- "docs/math/code/poly/fft/fft_1.cpp"
     ```
 
 ## 快速数论变换

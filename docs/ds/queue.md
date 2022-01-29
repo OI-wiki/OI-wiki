@@ -1,19 +1,10 @@
 本页面介绍和队列有关的数据结构及其应用。
 
-## 队列
-
 ![](./images/queue.svg)
 
 队列（queue）是一种具有「先进入队列的元素一定先出队列」性质的表。由于该性质，队列通常也被称为先进先出（first in first out）表，简称 FIFO 表。
 
-C++ STL 中实现了 [队列 `std::queue`](https://zh.cppreference.com/w/cpp/container/queue) 和 [优先队列 `std::priority_queue`](https://zh.cppreference.com/w/cpp/container/priority_queue) 两个类，定义于头文件 [`<queue>`](https://zh.cppreference.com/w/cpp/header/queue) 中。
-
-???+note
-    `std::queue` 是容器适配器，默认的底层容器为双端队列 [`std::deque`](https://zh.cppreference.com/w/cpp/container/deque)。
-
-## 队列模拟
-
-### 数组模拟队列
+## 数组模拟队列
 
 通常用一个数组模拟一个队列，用两个变量标记队列的首尾。
 
@@ -21,26 +12,78 @@ C++ STL 中实现了 [队列 `std::queue`](https://zh.cppreference.com/w/cpp/con
 int q[SIZE], ql = 1, qr;
 ```
 
-- 插入元素：`q[++qr]=x;`
+队列操作对应的代码如下：
 
-- 删除元素：`++ql;`
+- 插入元素：`q[++qr] = x;`
+- 删除元素：`ql++;`
+- 访问队首：`q[ql]`
+- 访问队尾：`q[qr]`
+- 清空队列：`ql = 1; qr = 0;`
 
-- 访问队首/队尾：`q[ql]`/`q[qr]`
+## 双栈模拟队列
 
-- 清空队列：`ql=1;qr=0;`
+还有一种冷门的方法是使用两个 [栈](./stack.md) 来模拟一个队列。
 
-### 双栈模拟队列
-
-还有一种冷门的方法是双栈模拟队列。
-
-这种方法使用两个栈 F,S 模拟一个队列，其中 F 是队尾的栈，S 代表队首的栈，支持 push（在队尾插入），pop（在队首弹出）操作：
+这种方法使用两个栈 F, S 模拟一个队列，其中 F 是队尾的栈，S 代表队首的栈，支持 push（在队尾插入），pop（在队首弹出）操作：
 
 - push：插入到栈 F 中。
 - pop：如果 S 非空，让 S 弹栈；否则把 F 的元素倒过来压到 S 中（其实就是一个一个弹出插入，做完后是首位颠倒的），然后再让 S 弹栈。
 
 容易证明，每个元素只会进入/转移/弹出一次，均摊复杂度 $O(1)$。
 
-## 特殊的队列
+## C++ STL 中的队列
+
+C++ 在 STL 中提供了一个容器 `std::queue`，使用前需要先引入 `<queue>` 头文件。
+
+???+ info "STL 中对 `queue` 的定义"
+    ```cpp
+    // clang-format off
+    template<
+        class T,
+        class Container = std::deque<T>
+    > class queue;
+    ```
+    
+    `T` 为 queue 中要存储的数据类型。
+    
+    `Container` 为用于存储元素的底层容器类型。这个容器必须提供通常语义的下列函数：
+    
+    - `back()`
+    - `front()`
+    - `push_back()`
+    - `pop_front()`
+    
+    STL 容器 `std::deque` 和 `std::list` 满足这些要求。如果不指定，则默认使用 `std::deque` 作为底层容器。
+
+STL 中的 `queue` 容器提供了一众成员函数以供调用。其中较为常用的有：
+
+-   元素访问
+    - `q.front()` 返回队首元素
+    - `q.back()` 返回队尾元素
+-   修改
+    - `q.push()` 在队尾插入元素
+    - `q.pop()` 弹出队首元素
+-   容量
+    - `q.empty()` 队列是否为空
+    - `q.size()` 返回队列中元素的数量
+
+此外，`queue` 还提供了一些运算符。较为常用的是使用赋值运算符 `=` 为 `queue` 赋值，示例：
+
+```cpp
+std::queue<int> q1, q2;
+
+// 向 q1 的队尾插入 1
+q1.push(1);
+
+// 将 q1 赋值给 q2
+q2 = q1;
+
+// 输出 q2 的队首元素
+std::cout << q2.front() << std::endl;
+// 输出: 1
+```
+
+## 特殊队列
 
 ### 双端队列
 
@@ -52,6 +95,69 @@ int q[SIZE], ql = 1, qr;
 - 在队尾删除一个元素
 
 数组模拟双端队列的方式与普通队列相同。
+
+#### C++ STL 中的双端队列
+
+C++ 在 STL 中也提供了一个容器 `std::deque`，使用前需要先引入 `<deque>` 头文件。
+
+??? info "STL 中对 `deque` 的定义"
+    ```cpp
+    // clang-format off
+    template<
+        class T,
+        class Allocator = std::allocator<T>
+    > class deque;
+    ```
+    
+    `T` 为 deque 中要存储的数据类型。
+    
+    `Allocator` 为分配器，此处不做过多说明，一般保持默认即可。
+
+STL 中的 `queue` 容器提供了一众成员函数以供调用。其中较为常用的有：
+
+-   元素访问
+    - `q.front()` 返回队首元素
+    - `q.back()` 返回队尾元素
+-   修改
+    - `q.push_back()` 在队尾插入元素
+    - `q.pop_back()` 弹出队尾元素
+    - `q.push_front()` 在队首插入元素
+    - `q.pop_front()` 弹出队首元素
+    - `q.insert()` 在指定位置前插入元素（传入迭代器和元素）
+    - `q.erase()` 删除指定位置的元素（传入迭代器）
+-   容量
+    - `q.empty()` 队列是否为空
+    - `q.size()` 返回队列中元素的数量
+
+此外，`queue` 还提供了一些运算符。其中较为常用的有：
+
+- 使用赋值运算符 `=` 为 `deque` 赋值，类似 `queue`。
+- 使用 `[]` 访问元素，类似 `vector`。
+
+`<queue>` 头文件中还提供了优先队列 `std::priority_queue`，因其与 [堆](./heap.md) 更为相似，在此不作过多介绍。
+
+#### Python 中的双端队列
+
+在 Python 中，双端队列的容器由 `collections.deque` 提供。
+
+示例如下：
+
+```python
+from collections import deque
+
+# 新建一个 deque，并初始化内容为 [1, 2, 3]
+queue = deque([1, 2, 3])
+
+# 在队尾插入元素 4
+queue.append(4)
+
+# 在队首插入元素 0
+queue.appendleft(0)
+
+# 访问队列
+# >>> queue
+# deque([0, 1, 2, 3, 4])
+```
 
 ### 循环队列
 
@@ -145,107 +251,10 @@ int q[SIZE], ql = 1, qr;
 
 ??? note "参考代码"
     ```cpp
-    #include <algorithm>
-    #include <cctype>
-    #include <cmath>
-    #include <cstdio>
-    #include <cstdlib>
-    #include <cstring>
-    #include <iostream>
-    #include <map>
-    #include <queue>
-    #include <set>
-    #include <vector>
-    using namespace std;
-    typedef long long lld;
-    typedef long double lf;
-    typedef unsigned long long uld;
-    typedef pair<int, int> pii;
-    #define fi first
-    #define se second
-    #define pb push_back
-    #define mk make_pair
-    #define FOR(i, a, b) for (int i = (a); i <= (b); ++i)
-    #define ROF(i, a, b) for (int i = (a); i >= (b); --i)
-    /******************heading******************/
-    const int M = 5e4 + 5, P = 505;
-    int I, m, p;
-    inline int _(int d) { return (d + p) % p; }
-    namespace DQ {       // 双栈模拟双端队列
-    pii fr[M], bc[M];    // front,back; fi:w,se:v;
-    int tf = 0, tb = 0;  // top
-    int ff[M][P], fb[M][P];
-    void update(pii *s, int f[][P], int i) {  // update f[i] from f[i-1]
-      FOR(j, 0, p - 1) {
-        f[i][j] = f[i - 1][j];
-        if (~f[i - 1][_(j - s[i].fi)])
-          f[i][j] = max(f[i][j], f[i - 1][_(j - s[i].fi)] + s[i].se);
-      }
-    }
-    void push_front(pii x) { fr[++tf] = x, update(fr, ff, tf); }
-    void push_back(pii x) { bc[++tb] = x, update(bc, fb, tb); }
-    void pop_front() {
-      if (tf) {
-        --tf;
-        return;
-      }
-      int mid = (tb + 1) / 2, top = tb;
-      ROF(i, mid, 1) push_front(bc[i]);
-      tb = 0;
-      FOR(i, mid + 1, top) push_back(bc[i]);
-      --tf;
-    }
-    void pop_back() {
-      if (tb) {
-        --tb;
-        return;
-      }
-      int mid = (tf + 1) / 2, top = tf;
-      ROF(i, mid, 1) push_back(fr[i]);
-      tf = 0;
-      FOR(i, mid + 1, top) push_front(fr[i]);
-      --tb;
-    }
-    int q[M], ql, qr;
-    int query(int l, int r) {
-      const int *const f = ff[tf], *const g = fb[tb];
-      int ans = -1;
-      ql = 1, qr = 0;
-      FOR(i, l - p + 1, r - p + 1) {
-        int x = g[_(i)];
-        while (ql <= qr && g[q[qr]] <= x) --qr;
-        q[++qr] = _(i);
-      }
-      ROF(i, p - 1, 0) {
-        if (ql <= qr && ~f[i] && ~g[q[ql]]) ans = max(ans, f[i] + g[q[ql]]);
-        // 删 l-i，加 r-i+1
-        if (ql <= qr && _(l - i) == q[ql]) ++ql;
-        int x = g[_(r - i + 1)];
-        while (ql <= qr && g[q[qr]] <= x) --qr;
-        q[++qr] = _(r - i + 1);
-      }
-      return ans;
-    }
-    void init() { FOR(i, 1, P - 1) ff[0][i] = fb[0][i] = -1; }
-    }  // namespace DQ
-    int main() {
-      DQ::init();
-      scanf("%d%d%d", &I, &m, &p);
-      FOR(i, 1, m) {
-        char op[5];
-        int x, y;
-        scanf("%s%d%d", op, &x, &y);
-        if (op[0] == 'I' && op[1] == 'F')
-          DQ::push_front(mk(_(x), y));
-        else if (op[0] == 'I' && op[1] == 'G')
-          DQ::push_back(mk(_(x), y));
-        else if (op[0] == 'D' && op[1] == 'F')
-          DQ::pop_front();
-        else if (op[0] == 'D' && op[1] == 'G')
-          DQ::pop_back();
-        else
-          printf("%d\n", DQ::query(x, y));
-      }
-      return 0;
-    }
+    --8<-- "docs/ds/code/queue/queue_1.cpp"
     ```
+
+## 参考资料
+
+1. [std::queue - zh.cppreference.com](https://zh.cppreference.com/w/cpp/container/queue)
+2. [std::deque - zh.cppreference.com](https://zh.cppreference.com/w/cpp/container/deque)

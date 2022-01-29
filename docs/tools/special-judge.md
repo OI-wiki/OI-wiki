@@ -1,4 +1,4 @@
-author: Xeonacid, NachtgeistW, 2014CAIS01, sshwy, Chrogeek
+author: Xeonacid, NachtgeistW, 2014CAIS01, sshwy, Chrogeek, Menci
 
 本页面主要介绍部分评测工具/OJ 的 spj 编写方法。
 
@@ -24,7 +24,7 @@ Testlib 是一个 C++ 的库，用于辅助出题人使用 C++ 编写算法竞�
 
 必须使用 Testlib 作为 spj 的 评测工具/OJ：Codeforces、洛谷、UOJ 等。
 
-可以使用 Testlib 作为 spj 的 评测工具/OJ：LibreOJ (SYZOJ 2)、Lemon、牛客网等。
+可以使用 Testlib 作为 spj 的 评测工具/OJ：LibreOJ ([Lyrio](https://github.com/lyrio-dev))、Lemon、牛客网等。
 
 SYZOJ 2 所需的修改版 Testlib 托管于 [pastebin](https://pastebin.com/3GANXMG7)[^1]。
 

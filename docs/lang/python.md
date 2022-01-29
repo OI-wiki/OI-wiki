@@ -311,7 +311,7 @@ def headline(text: str, align: bool = True) -> str:
         return f" {text.title()} ".center(50, "o")
 
 print(headline("python type checking"))
-print(headline("use mypy", centered=True))
+print(headline("use mypy", align=True))
 ```
 
 但是这样添加类型提示没有运行时的效果——如果我们用错误类型的 `align` 参数，程序依然可以在不报错、不警告的情况下正常运行。

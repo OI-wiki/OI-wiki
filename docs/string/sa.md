@@ -272,59 +272,7 @@ for (i = 1; i <= n; ++i) {
 
 ??? note "参考代码"
     ```cpp
-    #include <cctype>
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    
-    using namespace std;
-    
-    const int N = 1000010;
-    
-    char s[N];
-    int n, sa[N], id[N], oldrk[N << 1], rk[N << 1], px[N], cnt[N];
-    
-    bool cmp(int x, int y, int w) {
-      return oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w];
-    }
-    
-    int main() {
-      int i, w, m = 200, p, l = 1, r, tot = 0;
-    
-      cin >> n;
-      r = n;
-    
-      for (i = 1; i <= n; ++i)
-        while (!isalpha(s[i] = getchar()))
-          ;
-      for (i = 1; i <= n; ++i) rk[i] = rk[2 * n + 2 - i] = s[i];
-    
-      n = 2 * n + 1;
-    
-      for (i = 1; i <= n; ++i) ++cnt[rk[i]];
-      for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-      for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
-    
-      for (w = 1; w < n; w <<= 1, m = p) {
-        for (p = 0, i = n; i > n - w; --i) id[++p] = i;
-        for (i = 1; i <= n; ++i)
-          if (sa[i] > w) id[++p] = sa[i] - w;
-        memset(cnt, 0, sizeof(cnt));
-        for (i = 1; i <= n; ++i) ++cnt[px[i] = rk[id[i]]];
-        for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-        for (i = n; i >= 1; --i) sa[cnt[px[i]]--] = id[i];
-        memcpy(oldrk, rk, sizeof(rk));
-        for (p = 0, i = 1; i <= n; ++i)
-          rk[sa[i]] = cmp(sa[i], sa[i - 1], w) ? p : ++p;
-      }
-    
-      while (l <= r) {
-        printf("%c", rk[l] < rk[n + 1 - r] ? s[l++] : s[r--]);
-        if ((++tot) % 80 == 0) puts("");
-      }
-    
-      return 0;
-    }
+    --8<-- "docs/string/code/sa/sa_1.cpp"
     ```
 
 ## height 数组
@@ -373,9 +321,10 @@ $lcp(i,sa[rk[i]-1])$：$AX$（$X$ 可能为空）
 
 ```cpp
 for (i = 1, k = 0; i <= n; ++i) {
+  if (rk[i] == 0) continue;
   if (k) --k;
   while (s[i + k] == s[sa[rk[i] - 1] + k]) ++k;
-  ht[rk[i]] = k;  // height太长了缩写为ht
+  height[rk[i]] = k;
 }
 ```
 
@@ -426,62 +375,7 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 
 ??? note "参考代码"
     ```cpp
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    #include <set>
-    
-    using namespace std;
-    
-    const int N = 40010;
-    
-    int n, k, a[N], sa[N], rk[N], oldrk[N], id[N], px[N], cnt[1000010], ht[N], ans;
-    multiset<int> t;  // multiset 是最好写的实现方式
-    
-    bool cmp(int x, int y, int w) {
-      return oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w];
-    }
-    
-    int main() {
-      int i, j, w, p, m = 1000000;
-    
-      scanf("%d%d", &n, &k);
-      --k;
-    
-      for (i = 1; i <= n; ++i) scanf("%d", a + i);
-      for (i = 1; i <= n; ++i) ++cnt[rk[i] = a[i]];
-      for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-      for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
-    
-      for (w = 1; w < n; w <<= 1, m = p) {
-        for (p = 0, i = n; i > n - w; --i) id[++p] = i;
-        for (i = 1; i <= n; ++i)
-          if (sa[i] > w) id[++p] = sa[i] - w;
-        memset(cnt, 0, sizeof(cnt));
-        for (i = 1; i <= n; ++i) ++cnt[px[i] = rk[id[i]]];
-        for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-        for (i = n; i >= 1; --i) sa[cnt[px[i]]--] = id[i];
-        memcpy(oldrk, rk, sizeof(rk));
-        for (p = 0, i = 1; i <= n; ++i)
-          rk[sa[i]] = cmp(sa[i], sa[i - 1], w) ? p : ++p;
-      }
-    
-      for (i = 1, j = 0; i <= n; ++i) {
-        if (j) --j;
-        while (a[i + j] == a[sa[rk[i] - 1] + j]) ++j;
-        ht[rk[i]] = j;
-      }
-    
-      for (i = 1; i <= n; ++i) {
-        t.insert(ht[i]);
-        if (i > k) t.erase(t.find(ht[i - k]));
-        ans = max(ans, *t.begin());
-      }
-    
-      cout << ans;
-    
-      return 0;
-    }
+    --8<-- "docs/string/code/sa/sa_2.cpp"
     ```
 
 ### 是否有某字符串在文本串中至少不重叠地出现了两次
@@ -491,6 +385,8 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 ### 连续的若干个相同子串
 
 我们可以枚举连续串的长度 $|s|$，按照 $|s|$ 对整个串进行分块，对相邻两块的块首进行 LCP 与 LCS 查询，具体可见[\[2009\]后缀数组——处理字符串的有力工具][2]。
+
+例题：[「NOI2016」优秀的拆分](https://loj.ac/p/2083)。
 
 ### 结合并查集
 
@@ -517,70 +413,7 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 
 ??? note "参考代码"
     ```cpp
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    
-    using namespace std;
-    
-    const int N = 500010;
-    
-    char s[N];
-    int n, sa[N], rk[N << 1], oldrk[N << 1], id[N], px[N], cnt[N], ht[N], sta[N],
-        top, l[N];
-    long long ans;
-    
-    bool cmp(int x, int y, int w) {
-      return oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w];
-    }
-    
-    int main() {
-      int i, k, w, p, m = 300;
-    
-      scanf("%s", s + 1);
-      n = strlen(s + 1);
-      ans = 1ll * n * (n - 1) * (n + 1) / 2;
-      for (i = 1; i <= n; ++i) ++cnt[rk[i] = s[i]];
-      for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-      for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
-    
-      for (w = 1; w < n; w <<= 1, m = p) {
-        for (p = 0, i = n; i > n - w; --i) id[++p] = i;
-        for (i = 1; i <= n; ++i)
-          if (sa[i] > w) id[++p] = sa[i] - w;
-        memset(cnt, 0, sizeof(cnt));
-        for (i = 1; i <= n; ++i) ++cnt[px[i] = rk[id[i]]];
-        for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-        for (i = n; i >= 1; --i) sa[cnt[px[i]]--] = id[i];
-        memcpy(oldrk, rk, sizeof(rk));
-        for (p = 0, i = 1; i <= n; ++i)
-          rk[sa[i]] = cmp(sa[i], sa[i - 1], w) ? p : ++p;
-      }
-    
-      for (i = 1, k = 0; i <= n; ++i) {
-        if (k) --k;
-        while (s[i + k] == s[sa[rk[i] - 1] + k]) ++k;
-        ht[rk[i]] = k;
-      }
-    
-      for (i = 1; i <= n; ++i) {
-        while (ht[sta[top]] > ht[i]) --top;
-        l[i] = i - sta[top];
-        sta[++top] = i;
-      }
-    
-      sta[++top] = n + 1;
-      ht[n + 1] = -1;
-      for (i = n; i >= 1; --i) {
-        while (ht[sta[top]] >= ht[i]) --top;
-        ans -= 2ll * ht[i] * l[i] * (sta[top] - i);
-        sta[++top] = i;
-      }
-    
-      cout << ans;
-    
-      return 0;
-    }
+    --8<-- "docs/string/code/sa/sa_3.cpp"
     ```
 
 类似的题目：[「HAOI2016」找相同字符](https://loj.ac/problem/2064)。

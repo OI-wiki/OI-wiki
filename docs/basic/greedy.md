@@ -56,32 +56,37 @@
 ??? note "解题思路"
     设排序后第 $i$ 个大臣左右手上的数分别为 $a_i, b_i$。考虑通过邻项交换法推导贪心策略。
     
-    用 $s$ 表示第 $i$ 个大臣前面所有人的 $a_i$ 的乘积，那么第 $i$ 个大臣得到的奖赏就是 $\dfrac{s} {b_i}$，第 $i + 1$ 个大臣得到的奖赏就是 $\dfrac{s \cdot a_{i+1}} {b_{i+1}}$。
+    用 $s$ 表示第 $i$ 个大臣前面所有人的 $a_i$ 的乘积，那么第 $i$ 个大臣得到的奖赏就是 $\dfrac{s} {b_i}$，第 $i + 1$ 个大臣得到的奖赏就是 $\dfrac{s \cdot a_i} {b_{i+1}}$。
     
     如果我们交换第 $i$ 个大臣与第 $i + 1$ 个大臣，那么此时的第 $i$ 个大臣得到的奖赏就是 $\dfrac{s} {b_{i+1}}$，第 $i + 1$ 个大臣得到的奖励就是 $\dfrac{s \cdot a_{i+1}} {b_i}$。
     
     如果交换前更优当且仅当
     
     $$
-    \max \left(\dfrac{s} {b_i}, \dfrac{s \cdot a_{i+1}} {b_{i+1}}\right)  < \max \left(\dfrac{s} {b_{i+1}}, \dfrac{s \cdot a_{i+1}} {b_i}\right)
+    \max \left(\dfrac{s} {b_i}, \dfrac{s \cdot a_i} {b_{i+1}}\right)  < \max \left(\dfrac{s} {b_{i+1}}, \dfrac{s \cdot a_{i+1}} {b_i}\right)
     $$
     
     提取出相同的 $s$ 并约分得到
     
     $$
-    \max \left(\dfrac{1} {b_i}, \dfrac{a_{i+1}} {b_{i+1}}\right)  < \max \left(\dfrac{1} {b_{i+1}}, \dfrac{a_{i+1}} {b_i}\right)
+    \max \left(\dfrac{1} {b_i}, \dfrac{a_i} {b_{i+1}}\right)  < \max \left(\dfrac{1} {b_{i+1}}, \dfrac{a_{i+1}} {b_i}\right)
     $$
     
     然后分式化成整式得到
     
     $$
-    \max (b_{i+1}, a_{i+1}\cdot b_i)  < \max (b_i, a_{i+1}\cdot b_{i+1})
+    \max (b_{i+1}, a_i\cdot b_i)  < \max (b_i, a_{i+1}\cdot b_{i+1})
     $$
     
     实现的时候我们将输入的两个数用一个结构体来保存并重载运算符：
     
     ```cpp
-    
+    struct uv {
+      int a, b;
+      bool operator<(const uv &x) const {
+        return max(x.b, a * b) < max(b, x.a * x.b);
+      }
+    };
     ```
 
 ### 后悔法的例题
@@ -91,12 +96,12 @@
 
 ??? note "解题思路"
     1. 先假设每一项工作都做，将各项工作按截止时间排序后入队；
-    2.  在判断第 i 项工作做与不做时，若其截至时间符合条件，则将其与队中报酬最小的元素比较，若第 i 项工作报酬较高（后悔），则 `ans += a[i].p - q.top()`。  
+    2.  在判断第 $i$ 项工作做与不做时，若其截至时间符合条件，则将其与队中报酬最小的元素比较，若第 $i$ 项工作报酬较高（后悔），则 `ans += a[i].p - q.top()`。
         用优先队列（小根堆）来维护队首元素最小。
 
 ??? note "参考代码"
     ```cpp
-    
+    --8<-- "docs/basic/code/greedy/greedy_1.cpp"
     ```
 
 ## 习题

@@ -75,11 +75,11 @@ int update(int k, int l, int r, int root) {  // 插入操作
 }
 int query(int u, int v, int l, int r, int k) {  // 查询操作
   int mid = l + r >> 1,
-      x = sum[ls[v]] - sum[ls[u]];  // 通过区间减法得到左儿子的信息
+      x = sum[ls[v]] - sum[ls[u]];  // 通过区间减法得到左儿子中所存储的数值个数
   if (l == r) return l;
-  if (k <= x)  // 说明在左儿子中
+  if (k <= x)  // 若 k 小于等于 x ，则说明第 k 小的数字存储在在左儿子中
     return query(ls[u], ls[v], l, mid, k);
-  else  // 说明在右儿子中
+  else  // 否则说明在右儿子中
     return query(rs[u], rs[v], mid + 1, r, k - x);
 }
 inline void init() {
@@ -103,6 +103,14 @@ int main() {
   work();
   return 0;
 }
+```
+
+## 拓展：基于主席树的可持久化并查集
+
+主席树是实现可持久化并查集的便捷方式，在此也提供一个基于主席树的可持久化并查集实现示例。
+
+```cpp
+--8<-- "docs/ds/code/persistent-seg/persistent-seg_1.cpp"
 ```
 
 ## 参考

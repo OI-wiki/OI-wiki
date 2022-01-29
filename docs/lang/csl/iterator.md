@@ -19,12 +19,8 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 // 在C++11后可以使用 auto iter = data.begin() 来简化上述代码
 ```
 
-???+warning "`auto` 在竞赛中的使用"
-    大部分选手都喜欢使用 `auto` 来代替繁琐的迭代器声明。但是需要注意的是，`auto` 需要 **C++11** 版本，而 NOI 系列比赛在评测时使用的是 **C++98**。
-    
-    NOI 官网上最新的 [NOI 系列活动标准竞赛环境](http://www.noi.cn/gynoi/jsgz/2018-08-13/710465.shtml) 明确了 C++ 编译器版本为 G++ 4.8.4，且编译指令为 `g++ test.cpp -o test`，并没有携带 `--std=c++11` 参数，而 gcc 从 6.0 版本起才将默认版本修改为 C++14。
-    
-    因此，在比赛时使用 `auto` 时需要注意 CE 爆零的风险。
+???+note "`auto` 在竞赛中的使用"
+    大部分选手都喜欢使用 `auto` 来代替繁琐的迭代器声明。根据 2021 年 9 月发布的 [关于 NOI 系列活动中编程语言使用限制的补充说明](https://www.noi.cn/xw/2021-09-01/735729.shtml)，NOI 系列比赛（包括 CSP J/S）在评测时将使用 **C++14**，这个版本已经支持了 `auto` 关键字。
 
 ## 分类
 

@@ -66,7 +66,7 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
 
 定义一个点 $v$ 被激活，当且仅当 $v$ 在加入 $A$ 中时，发现在 $A$ 存在一个点 $u$ 早于 $v$ 加入集合，并且在图 $G'' = (V', E'/C)$ 中，$u$ 与 $v$ 不在同一连通块。
 
-定义 $A_v = \{u|pos(u) < pos(v)\}$，也就是严格早于 $v$ 加入 $A$ 的边，令 $E_v$ 为 $E'$ 的诱导子图（点集为 $A_v \cup\{v\}$)。（注意包含点 $v$。）
+定义 $A_v = \{u|pos(u) < pos(v)\}$，也就是严格早于 $v$ 加入 $A$ 的点，令 $E_v$ 为 $E'$ 的诱导子图（点集为 $A_v \cup\{v\}$）的边集。（注意包含点 $v$。）
 
 定义诱导割 $C_v$ 为 $C \cap E_v$。$w(C_v) = \sum_{(i,j)\in C_v} d(i , j)$。
 
@@ -97,73 +97,7 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
 
 ??? note "[P5632 【模板】Stoer-Wagner算法](https://www.luogu.com.cn/problem/P5632)"
     ```cpp
-    #include <bits/stdc++.h>
-    using namespace std;
-    const int N = 601;
-    int fa[N], siz[N], edge[N][N];
-    int find(int x) { return fa[x] == x ? x : fa[x] = find(fa[x]); }
-    int dist[N], vis[N], bin[N];
-    int n, m;
-    int contract(int &s, int &t) {  // Find s,t
-      memset(dist, 0, sizeof(dist));
-      memset(vis, false, sizeof(vis));
-      int i, j, k, mincut, maxc;
-      for (i = 1; i <= n; i++) {
-        k = -1;
-        maxc = -1;
-        for (j = 1; j <= n; j++)
-          if (!bin[j] && !vis[j] && dist[j] > maxc) {
-            k = j;
-            maxc = dist[j];
-          }
-        if (k == -1) return mincut;
-        s = t;
-        t = k;
-        mincut = maxc;
-        vis[k] = true;
-        for (j = 1; j <= n; j++)
-          if (!bin[j] && !vis[j]) dist[j] += edge[k][j];
-      }
-      return mincut;
-    }
-    const int inf = 0x3f3f3f3f;
-    int Stoer_Wagner() {
-      int mincut, i, j, s, t, ans;
-      for (mincut = inf, i = 1; i < n; i++) {
-        ans = contract(s, t);
-        bin[t] = true;
-        if (mincut > ans) mincut = ans;
-        if (mincut == 0) return 0;
-        for (j = 1; j <= n; j++)
-          if (!bin[j]) edge[s][j] = (edge[j][s] += edge[j][t]);
-      }
-      return mincut;
-    }
-    int main() {
-      ios::sync_with_stdio(0), cin.tie(0);
-      cin >> n >> m;
-      if (m < n - 1) {
-        cout << 0;
-        return 0;
-      }
-      for (int i = 1; i <= n; ++i) fa[i] = i, siz[i] = 1;
-      for (int i = 1, u, v, w; i <= m; ++i) {
-        cin >> u >> v >> w;
-        int fu = find(u), fv = find(v);
-        if (fu != fv) {
-          if (siz[fu] > siz[fv]) swap(fu, fv);
-          fa[fu] = fv, siz[fv] += siz[fu];
-        }
-        edge[u][v] += w, edge[v][u] += w;
-      }
-      int fr = find(1);
-      if (siz[fr] != n) {
-        cout << 0;
-        return 0;
-      }
-      cout << Stoer_Wagner();
-      return 0;
-    }
+      --8<-- "docs/graph/code/stoer-wagner/stoer-wagner_1.cpp"
     ```
 
 * * *

@@ -90,46 +90,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ??? 例题代码
     ```cpp
-    #include <bits/stdc++.h>
-    using namespace std;
-    const int N = 11;
-    long long f[2][1 << (N + 1)], *f0, *f1;
-    int n, m;
-    int main() {
-      int T;
-      cin >> T;
-      for (int Case = 1; Case <= T; ++Case) {
-        cin >> n >> m;
-        f0 = f[0];
-        f1 = f[1];
-        fill(f1, f1 + (1 << m + 1), 0);
-        f1[0] = 1;
-        for (int i = 0; i < n; ++i) {
-          for (int j = 0; j < m; ++j) {
-            bool bad;
-            cin >> bad;
-            bad ^= 1;
-            swap(f0, f1);
-            fill(f1, f1 + (1 << m + 1), 0);
-    #define u f0[s]
-            for (int s = 0; s < 1 << m + 1; ++s)
-              if (u) {
-                bool lt = s >> j & 1, up = s >> j + 1 & 1;
-                if (bad) {
-                  if (!lt && !up) f1[s] += u;
-                } else {
-                  f1[s ^ 3 << j] += u;
-                  if (lt != up) f1[s] += u;
-                }
-              }
-          }
-          swap(f0, f1);
-          fill(f1, f1 + (1 << m + 1), 0);
-          for (int s = 0; s < 1 << m; ++s) f1[s << 1] = u;
-        }
-        printf("Case %d: There are %lld ways to eat the trees.\n", Case, f1[0]);
-      }
-    }
+    --8<-- "docs/dp/code/plug/plug_1.cpp"
     ```
 
 ??? note " 习题 [「ZJU 4231」The Hive II](https://vjudge.net/problem/ZOJ-3466)"
@@ -140,7 +101,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 #### 例题「Andrew Stankevich Contest 16 - Problem F」Pipe Layout
 
 ???+note " 例题 [「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
-    题目大意：求用一条回路覆盖 $N\times$ 棋盘的方案数。
+    题目大意：求用一条回路覆盖 $N\times M$ 棋盘的方案数。
 
 在上面的状态表示中我们每合并一组连通的插头，就会生成一条独立的回路，因而在本题中，我们还需要区分插头之间的连通性（出现了！）。这需要我们对状态进行额外的编码。
 
@@ -265,110 +226,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ??? 例题代码
     ```cpp
-    #include <bits/stdc++.h>
-    using namespace std;
-    #define REP(i, n) for (int i = 0; i < n; ++i)
-    const int M = 10;
-    const int offset = 3, mask = (1 << offset) - 1;
-    int n, m;
-    long long ans, d;
-    const int MaxSZ = 16796, Prime = 9973;
-    struct hashTable {
-      int head[Prime], next[MaxSZ], sz;
-      int state[MaxSZ];
-      long long key[MaxSZ];
-      inline void clear() {
-        sz = 0;
-        memset(head, -1, sizeof(head));
-      }
-      inline void push(int s) {
-        int x = s % Prime;
-        for (int i = head[x]; ~i; i = next[i]) {
-          if (state[i] == s) {
-            key[i] += d;
-            return;
-          }
-        }
-        state[sz] = s, key[sz] = d;
-        next[sz] = head[x];
-        head[x] = sz++;
-      }
-      void roll() { REP(i, sz) state[i] <<= offset; }
-    } H[2], *H0, *H1;
-    int b[M + 1], bb[M + 1];
-    int encode() {
-      int s = 0;
-      memset(bb, -1, sizeof(bb));
-      int bn = 1;
-      bb[0] = 0;
-      for (int i = m; i >= 0; --i) {
-    #define bi bb[b[i]]
-        if (!~bi) bi = bn++;
-        s <<= offset;
-        s |= bi;
-      }
-      return s;
-    }
-    void decode(int s) {
-      REP(i, m + 1) {
-        b[i] = s & mask;
-        s >>= offset;
-      }
-    }
-    void push(int j, int dn, int rt) {
-      b[j] = dn;
-      b[j + 1] = rt;
-      H1->push(encode());
-    }
-    int main() {
-    #ifdef ONLINE_JUDGE
-      freopen("pipe.in", "r", stdin);
-      freopen("pipe.out", "w", stdout);
-    #endif
-      cin >> n >> m;
-      if (m > n) swap(n, m);
-      H0 = H, H1 = H + 1;
-      H1->clear();
-      d = 1;
-      H1->push(0);
-      REP(i, n) {
-        REP(j, m) {
-          swap(H0, H1);
-          H1->clear();
-          REP(ii, H0->sz) {
-            decode(H0->state[ii]);
-            d = H0->key[ii];
-            int lt = b[j], up = b[j + 1];
-            bool dn = i != n - 1, rt = j != m - 1;
-            if (lt && up) {
-              if (lt == up) {
-                if (i == n - 1 && j == m - 1) {
-                  push(j, 0, 0);
-                }
-              } else {
-                REP(i, m + 1) if (b[i] == lt) b[i] = up;
-                push(j, 0, 0);
-              }
-            } else if (lt || up) {
-              int t = lt | up;
-              if (dn) {
-                push(j, t, 0);
-              }
-              if (rt) {
-                push(j, 0, t);
-              }
-            } else {
-              if (dn && rt) {
-                push(j, m, m);
-              }
-            }
-          }
-        }
-        H1->roll();
-      }
-      assert(H1->sz <= 1);
-      cout << (H1->sz == 1 ? H1->key[0] : 0) << endl;
-    }
+    --8<-- "docs/dp/code/plug/plug_2.cpp"
     ```
 
 #### 习题
@@ -459,140 +317,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ??? 例题代码
     ```cpp
-    #include <bits/stdc++.h>
-    using namespace std;
-    #define REP(i, n) for (int i = 0; i < n; ++i)
-    template <class T>
-    inline bool checkMax(T &a, const T b) {
-      return a < b ? a = b, 1 : 0;
-    }
-    const int N = 8, M = 8;
-    const int offset = 3, mask = (1 << offset) - 1;
-    int A[N + 1][M + 1];
-    int n, m;
-    int ans, d;
-    const int MaxSZ = 16796, Prime = 9973;
-    struct hashTable {
-      int head[Prime], next[MaxSZ], sz;
-      int state[MaxSZ];
-      int key[MaxSZ];
-      inline void clear() {
-        sz = 0;
-        memset(head, -1, sizeof(head));
-      }
-      inline void push(int s) {
-        int x = s % Prime;
-        for (int i = head[x]; ~i; i = next[i]) {
-          if (state[i] == s) {
-            checkMax(key[i], d);
-            return;
-          }
-        }
-        state[sz] = s, key[sz] = d;
-        next[sz] = head[x];
-        head[x] = sz++;
-      }
-      void roll() { REP(i, sz) state[i] <<= offset; }
-    } H[2][3], *H0, *H1;
-    int b[M + 1], bb[M + 1];
-    int encode() {
-      int s = 0;
-      memset(bb, -1, sizeof(bb));
-      int bn = 1;
-      bb[0] = 0;
-      for (int i = m; i >= 0; --i) {
-    #define bi bb[b[i]]
-        if (!~bi) bi = bn++;
-        s <<= offset;
-        s |= bi;
-      }
-      return s;
-    }
-    void decode(int s) {
-      REP(i, m + 1) {
-        b[i] = s & mask;
-        s >>= offset;
-      }
-    }
-    void push(int c, int j, int dn, int rt) {
-      b[j] = dn;
-      b[j + 1] = rt;
-      H1[c].push(encode());
-    }
-    void init() {
-      cin >> n >> m;
-      H0 = H[0], H1 = H[1];
-      REP(c, 3) H1[c].clear();
-      d = 0;
-      H1[0].push(0);
-      memset(A, 0, sizeof(A));
-      REP(i, n) REP(j, m) cin >> A[i][j];
-    }
-    void solve() {
-      ans = 0;
-      REP(i, n) {
-        REP(j, m) {
-          checkMax(ans, A[i][j]);
-          if (!A[i][j]) continue;
-          swap(H0, H1);
-          REP(c, 3) H1[c].clear();
-          REP(c, 3) REP(ii, H0[c].sz) {
-            decode(H0[c].state[ii]);
-            d = H0[c].key[ii] + A[i][j];
-            int lt = b[j], up = b[j + 1];
-            bool dn = A[i + 1][j], rt = A[i][j + 1];
-            if (lt && up) {
-              if (lt == up) {
-                // Cannot deploy here...
-              } else {
-                REP(i, m + 1) if (b[i] == lt) b[i] = up;
-                push(c, j, 0, 0);
-              }
-            } else if (lt || up) {
-              int t = lt | up;
-              if (dn) {
-                push(c, j, t, 0);
-              }
-              if (rt) {
-                push(c, j, 0, t);
-              }
-              if (c < 2) {
-                push(c + 1, j, 0, 0);
-              }
-            } else {
-              d -= A[i][j];
-              H1[c].push(H0[c].state[ii]);
-              d += A[i][j];  // skip
-              if (dn && rt) {
-                push(c, j, m, m);
-              }
-              if (c < 2) {
-                if (dn) {
-                  push(c + 1, j, m, 0);
-                }
-                if (rt) {
-                  push(c + 1, j, 0, m);
-                }
-              }
-            }
-          }
-        }
-        REP(c, 3) H1[c].roll();
-      }
-      REP(ii, H1[2].sz) checkMax(ans, H1[2].key[ii]);
-      cout << ans << endl;
-    }
-    int main() {
-    #ifndef ONLINE_JUDGE
-      freopen("in.txt", "r", stdin);
-    #endif
-      int T;
-      cin >> T;
-      while (T--) {
-        init();
-        solve();
-      }
-    }
+    --8<-- "docs/dp/code/plug/plug_3.cpp"
     ```
 
 #### 习题
@@ -794,159 +519,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ??? 例题代码
     ```cpp
-    #include <bits/stdc++.h>
-    using namespace std;
-    #define REP(i, n) for (int i = 0; i < n; ++i)
-    #define DWN(i, b, a) for (int i = b - 1; i >= a; --i)
-    typedef long long T_state;
-    typedef int T_key;
-    const int N = 8;
-    int n, m;
-    char A[N + 1][N + 1], B[N + 1][N + 1];
-    const int Offset = 5, Mask = (1 << Offset) - 1;
-    int c[N + 2];
-    int b[N + 2], bb[N + 3];
-    T_state encode() {
-      T_state s = 0;
-      memset(bb, -1, sizeof(bb));
-      int bn = 1;
-      bb[0] = 0;
-      for (int i = m; i >= 0; --i) {
-    #define bi bb[b[i]]
-        if (!~bi) bi = bn++;
-        s <<= Offset;
-        s |= (bi << 1) | c[i];
-      }
-      return s;
-    }
-    void decode(T_state s) {
-      REP(i, m + 1) {
-        b[i] = s & Mask;
-        c[i] = b[i] & 1;
-        b[i] >>= 1;
-        s >>= Offset;
-      }
-    }
-    const int Prime = 9979, MaxSZ = 1 << 20;
-    template <class T_state, class T_key>
-    struct hashTable {
-      int head[Prime];
-      int next[MaxSZ], sz;
-      T_state state[MaxSZ];
-      T_key key[MaxSZ];
-      int pre[MaxSZ];
-      void clear() {
-        sz = 0;
-        memset(head, -1, sizeof(head));
-      }
-      void push(T_state s, T_key d, T_state u) {
-        int x = s % Prime;
-        for (int i = head[x]; ~i; i = next[i]) {
-          if (state[i] == s) {
-            key[i] += d;
-            return;
-          }
-        }
-        state[sz] = s, key[sz] = d, pre[sz] = u;
-        next[sz] = head[x], head[x] = sz++;
-      }
-      void roll() { REP(ii, sz) state[ii] <<= Offset; }
-    };
-    hashTable<T_state, T_key> _H, H[N][N], *H0, *H1;
-    bool ok(int i, int j, int cc) {
-      if (cc == c[j + 1]) return true;
-      int up = b[j + 1];
-      if (!up) return true;
-      int c1 = 0, c2 = 0;
-      REP(i, m + 1) if (i != j + 1) {
-        if (b[i] == b[j + 1]) {
-          assert(c[i] == c[j + 1]);
-        }
-        if (c[i] == c[j + 1] && b[i] == b[j + 1]) ++c1;
-        if (c[i] == c[j + 1]) ++c2;
-      }
-      if (!c1) {               // 如果会生成新的封闭连通块
-        if (c2) return false;  // 如果轮廓线上还有相同的颜色
-        if (i < n - 1 || j < m - 2) return false;
-      }
-      return true;
-    }
-    void trans(int i, int j, int u, int cc) {
-      decode(H0->state[u]);
-      int lf = j ? c[j - 1] : -1, lu = b[j] ? c[j] : -1,
-          up = b[j + 1] ? c[j + 1] : -1;
-      if (lf == cc && up == cc) {
-        if (lu == cc) return;
-        int lf_b = b[j - 1], up_b = b[j + 1];
-        REP(i, m + 1) if (b[i] == up_b) { b[i] = lf_b; }
-        b[j] = lf_b;
-      } else if (lf == cc || up == cc) {
-        if (lf == cc)
-          b[j] = b[j - 1];
-        else
-          b[j] = b[j + 1];
-      } else {
-        if (i == n - 1 && j == m - 1 && lu == cc) return;
-        b[j] = m + 2;
-      }
-      c[j] = cc;
-      if (!ok(i, j, cc)) return;
-      H1->push(encode(), H0->key[u], u);
-    }
-    void init() {
-      cin >> n >> m;
-      REP(i, n) scanf("%s", A[i]);
-    }
-    void solve() {
-      H1 = &_H, H1->clear(), H1->push(0, 1, 0);
-      REP(i, n) {
-        REP(j, m) {
-          H0 = H1, H1 = &H[i][j], H1->clear();
-          REP(u, H0->sz) {
-            if (A[i][j] == '.' || A[i][j] == '#') trans(i, j, u, 0);
-            if (A[i][j] == '.' || A[i][j] == 'o') trans(i, j, u, 1);
-          }
-        }
-        H1->roll();
-      }
-    }
-    void print() {
-      T_key z = 0;
-      int u;
-      REP(i, H1->sz) {
-        decode(H1->state[i]);
-        if (*max_element(b + 1, b + m + 1) <= 2) {
-          z += H1->key[i];
-          u = i;
-        }
-      }
-      cout << z << endl;
-      if (z) {
-        DWN(i, n, 0) {
-          B[i][m] = 0;
-          DWN(j, m, 0) {
-            decode(H[i][j].state[u]);
-            int cc = j == m - 1 ? c[j + 1] : c[j];
-            B[i][j] = cc ? 'o' : '#';
-            u = H[i][j].pre[u];
-          }
-        }
-        REP(i, n) puts(B[i]);
-      }
-      puts("");
-    }
-    int main() {
-    #ifndef ONLINE_JUDGE
-      freopen("in.txt", "r", stdin);
-    #endif
-      int T;
-      cin >> T;
-      while (T--) {
-        init();
-        solve();
-        print();
-      }
-    }
+    --8<-- "docs/dp/code/plug/plug_4.cpp"
     ```
 
 ??? note " 习题 [「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://competitiveprogramming.info/topcoder/srm/round/9992/div/1)"
@@ -1136,30 +709,33 @@ if (s >> j & 1) {       // 如果已被覆盖
     ![4796](./images/4796.jpg)
 
 ??? note " 习题 [「ZOJ 2125」Rocket Mania](https://vjudge.net/problem/ZOJ-2125)"
-
+    题目大意：9\*6 的地图上每个格子里是一种管道（-,T,L,+ 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与第 X 行的左边界通过管道相连。
 
 ??? note " 习题 [「ZOJ 2126」Rocket Mania Plus](https://vjudge.net/problem/ZOJ-2126)"
-
+    题目大意：9\*6 的地图上每个格子里是一种管道（-,T,L,+ 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与左边界通过管道相连。
 
 ??? note " 习题 [「World Finals 2009/2010 Harbin」Channel](https://vjudge.net/problem/UVALive-4789)"
-    题目大意：。
+    题目大意：一张方格地图上用'.'表示空地、'#'表示石头，找到最长的一条路径满足：
+    1、起点在左上角，终点在右下角。
+    2、不能经过石头
+    3、路径自身不能在八连通的意义下成环。（即包括拐角处也不能接触）
 
 ??? note " 习题 [「HDU 3958」Tower Defence](https://vjudge.net/problem/HDU-3958)"
-    题目大意：。
+    题目大意：可以转化为求解一条从 $\mathit{S}$ 到 $\mathit{T}$ 的不能接触的最长路径，拐角处可以接触。
 
 ??? note " 习题 [「UVA 10531」Maze Statistics](https://vjudge.net/problem/UVA-10531)"
-    题目大意：。
+    题目大意：有一个 $N\times M$ 的图，每个格子有独立概率 $\mathit{p}$ 变成障碍物。你要从迷宫左上角走到迷宫右下角。求每个格子成为一个 **有解迷宫（即起点终点四联通）** 中的障碍物的概率。（$N \le 5$，$M \le 6$）
 
 ??? note " 习题 [「AIZU 2452」Pipeline Plans](https://vjudge.net/problem/Aizu-2452)"
-    题目大意：。
+    题目大意：现有一共 12 种图案的瓷砖，每种瓷砖数量给定。要求铺到一块可视为 $R\times C$ 网格图的矩形地板上，一个格子铺一块瓷砖，且左上角格子的中心与右下角格子的中心通过瓷砖图案上的线联通。$(2 \le R \times C \le 15)$
+    
+    ![plug2](./images/plug2.png)
 
 ??? note " 习题 [「SDOI 2014」电路板](https://www.luogu.com.cn/problem/P3314)"
-    题目大意：。
+    题目大意：一块 $N\times M$ 的电路板，上面有些位置是电线不能走的障碍，给定 $K$ 个格子对，要求每对格子都有电线相连，且电线之间互不相交。具体来说：为了保证电路线不相交，可以一条电路线从上边界进入当前格子，从左边界离开这个格子，另外一条电路线可以从下边界进入格子，从右边界出去。（需要注意的是：电路线本身是没有方向感念的，即格子对描述的边关系是无向边。）求满足要求的最短电线长度和方案数。输出对 25619849 取余数后的结果。
 
 ??? note " 习题 [「SPOJ CAKE3」Delicious Cake](https://vjudge.net/problem/SPOJ-CAKE3)"
-    题目大意：。
-
-.
+    题目大意：一块可视为 $N\times M$ 网格的蛋糕，现沿着格线将蛋糕切成数块，问有多少种不同的切割方法。切法相同当且仅当切成的每块蛋糕都形状相同且在同一位置上。（$min(N,M) \le 5, max(N,M) \le 130$）
 
 ## 本章注记
 

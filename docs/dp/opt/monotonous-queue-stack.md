@@ -19,7 +19,7 @@ author: Marcythm, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, Chung
 
 由于 $\max$ 里出现了一个确定的常量 $b_i$，我们可以将它提到外面去。
 
-$f_{i,j}=\max\{f_{i-1,k}+b_i+|a_i-j|\}=\max\{f_{i-1,k}-|a_i-j|\}+b_i$
+$f_{i,j}=\max\{f_{i-1,k}+b_i-|a_i-j|\}=\max\{f_{i-1,k}-|a_i-j|\}+b_i$
 
 如果确定了 $i$ 和 $j$ 的值，那么 $|a_i-j|$ 的值也是确定的，也可以将这一部分提到外面去。
 
@@ -31,58 +31,7 @@ $f_{i,j}=\max\{f_{i-1,k}+b_i+|a_i-j|\}=\max\{f_{i-1,k}-|a_i-j|\}+b_i$
 
 ???+ 参考代码
     ```cpp
-    #include <algorithm>
-    #include <cstring>
-    #include <iostream>
-    using namespace std;
-    typedef long long ll;
-    
-    const int maxn = 150000 + 10;
-    const int maxm = 300 + 10;
-    
-    ll f[2][maxn];
-    ll a[maxm], b[maxm], t[maxm];
-    int n, m, d;
-    
-    int que[maxn];
-    
-    int fl = 1;
-    void init() {
-      memset(f, 207, sizeof(f));
-      memset(que, 0, sizeof(que));
-      for (int i = 1; i <= n; i++) f[0][i] = 0;
-      fl = 1;
-    }
-    
-    void dp() {
-      init();
-      for (int i = 1; i <= m; i++) {
-        int l = 1, r = 0, k = 1;
-        for (int j = 1; j <= n; j++) {
-          for (; k <= min(1ll * n, j + d * (t[i] - t[i - 1])); k++) {
-            while (l <= r && f[fl ^ 1][que[r]] <= f[fl ^ 1][k]) r--;
-            que[++r] = k;
-          }
-    
-          while (l <= r && que[l] < max(1ll, j - d * (t[i] - t[i - 1]))) l++;
-          f[fl][j] = f[fl ^ 1][que[l]] - abs(a[i] - j) + b[i];
-        }
-    
-        fl ^= 1;
-      }
-    }
-    
-    int main() {
-      cin >> n >> m >> d;
-      for (int i = 1; i <= m; i++) cin >> a[i] >> b[i] >> t[i];
-    
-      // then dp
-      dp();
-      ll ans = -1e18;
-      for (int i = 1; i <= n; i++) ans = max(ans, f[fl ^ 1][i]);
-      cout << ans << endl;
-      return 0;
-    }
+    --8<-- "docs/dp/code/opt/monotonous-queue-stack/monotonous-queue-stack_1.cpp"
     ```
 
 讲完了，让我们归纳一下单调队列优化动态规划问题的基本形态：当前状态的所有值可以从上一个状态的某个连续的段的值得到，要对这个连续的段进行 RMQ 操作，相邻状态的段的左右区间满足非降的关系。

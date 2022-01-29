@@ -33,6 +33,7 @@ DFS 最显著的特征在于其 **递归调用自身**。同时与 BFS 类似，
 以链式前向星为例：（和上方伪代码每行一一对应）
 
 ```cpp
+// C++ Version
 void dfs(int u) {
   vis[u] = 1;
   for (int i = head[u]; i; i = e[i].x) {
@@ -43,6 +44,17 @@ void dfs(int u) {
 }
 ```
 
+```python
+# Python Version
+def dfs(u):
+    vis[u] = True
+    while i:
+        i = head[u]
+        if vis[e[i].t] == False:
+            dfs(v)
+        i = e[i].x
+```
+
 ### DFS 序列
 
 DFS 序列是指 DFS 调用过程中访问的节点编号的序列。
@@ -51,7 +63,7 @@ DFS 序列是指 DFS 调用过程中访问的节点编号的序列。
 
 ### 括号序列
 
-DFS 进入某个节点的时候记录一个左括号 `(`，退出某个节点的啥时候记录一个右括号 `)`。
+DFS 进入某个节点的时候记录一个左括号 `(`，退出某个节点的时候记录一个右括号 `)`。
 
 每个节点会出现两次。相邻两个节点的深度相差 1。
 

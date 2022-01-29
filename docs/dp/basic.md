@@ -1,4 +1,4 @@
-author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken
+author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken, zhb2000
 
 动态规划应用于子问题重叠的情况：
 
@@ -75,9 +75,15 @@ author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marc
 
 子序列允许不连续。
 
+假设两个字符串分别为 $S_1$ 与 $S_2$，同时创建一个二维数组 $c$ 储存不同状态下的最优解，即最长公共子序列长度。
+
+比如说，$c[i][j]$ 储存了 $S_1$ 前 $i$ 位字符与 $S_2$ 前 $j$ 位字符状态下的最优解。
+
 每个 $c[i][j]$ 只依赖于 $c[i - 1][j]$、$c[i][j - 1]$ 和 $c[i - 1][j - 1]$。
 
 记录最优方案的时候可以不需要额外建表（优化空间），因为重新选择一遍（转移过程）也是 $O(1)$ 的。
+
+可参考此 [交互网页](http://lcs-demo.sourceforge.net/) 来更好地理解 LCS 的实现过程。
 
 ## 最优二叉搜索树
 
@@ -97,6 +103,7 @@ author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marc
 因为是连续的，所以只要与上一个元素进行比较即可。
 
 ```cpp
+// C++ Version
 int a[MAXN];
 int dp() {
   int now = 1, ans = 1;
@@ -111,6 +118,20 @@ int dp() {
 }
 ```
 
+```python
+# Python Version
+a = [0] * MAXN
+def dp():
+    now, ans = 1, 1
+    for i in range(2, n + 1):
+        if a[i] >= a[i + 1]:
+            now += 1
+        else:
+            now = 1
+        ans = max(now, ans)
+    return ans
+```
+
 ## 最长不下降子序列
 
 与最长连续不下降子序列不同的是，不需要这个子序列是连续的了。
@@ -122,6 +143,7 @@ int dp() {
 $O\left(n^2\right)$ 的算法。每一次从头扫描找出最佳答案。
 
 ```cpp
+// C++ Version
 int a[MAXN], d[MAXN];
 int dp() {
   d[1] = 1;
@@ -135,6 +157,21 @@ int dp() {
   }
   return ans;
 }
+```
+
+```python
+# Python Version
+a = [0] * MAXN
+d = [0] * MAXN
+def dp():
+    d[1] = 1
+    ans = 1
+    for i in range(2, n + 1):
+        for j in range(1, i):
+            if a[j] <= a[i]:
+                d[i] = max(d[i], d[j] + 1)
+                ans = max(ans, d[i])
+    return ans
 ```
 
 ### 稍复杂的第二种
@@ -155,6 +192,7 @@ $O\left(n \log n\right)$ 的算法，参考了这篇文章 <https://www.cnblogs.
 那么代码如下：
 
 ```cpp
+// C++ Version
 for (int i = 0; i < n; ++i) scanf("%d", a + i);
 memset(dp, 0x1f, sizeof dp);
 mx = dp[0];
@@ -163,6 +201,17 @@ for (int i = 0; i < n; ++i) {
 }
 ans = 0;
 while (dp[ans] != mx) ++ans;
+```
+
+```python
+# Python Version
+dp = [0x1f1f1f1f] * MAXN
+mx = dp[0]
+for i in range(0, n):
+    bisect.insort_left(dp, a[i], 0, len(dp))
+ans = 0
+while dp[ans] != mx:
+    ans += 1
 ```
 
 ## 经典问题（来自习题）
@@ -279,6 +328,33 @@ $dp[i] = \min(dp[j] + cost[j][i])$
 ### 编辑距离
 
 变换操作有 $6$ 种，复制、替换、删除、插入、旋转、终止（结束转换过程）。
+
+下面介绍如何求解仅含替换、删除、插入三种操作的编辑距离问题（莱文斯坦距离），题面请见 [P2758 编辑距离](https://www.luogu.com.cn/problem/P2758)。
+
+我们用 $f(i,j)$ 表示将 $A[1..i]$ 转换为 $B[1..j]$ 所需的最少操作次数。请设想这样一种场景，$A[1..i]$ 经过若干次操作被改成了 $B[1..j]$，且 **最后一步操作** 是在 $A$ 的 **末尾** 进行的。不难看出，有三种策略可以把 $A[1..i]$ 修改为 $B[1..j]$：
+
+1. 先把 $A[1..i-1]$ 变得跟 $B[1..j]$ 一样，再删除 $A$ 末尾的字符；
+2. 先把 $A[1..i]$ 变得跟 $B[1..j-1]$ 一样，再在 $A$ 的末尾插入一个字符；
+3. 先把 $A[1..i-1]$ 变得跟 $B[1..j-1]$ 一样，再修改 $A$ 末尾的字符。
+
+于是可以写出状态转移方程：
+
+$$
+f(i,j)=\min
+\begin{cases}
+f(i-1,j)+1 \\
+f(i,j-1)+1 \\
+f(i-1,j-1)+
+\begin{cases}
+0,\;\textbf{if }A_i=B_j \\
+1,\;\textbf{if }A_i \neq B_j
+\end{cases}
+\end{cases}
+$$
+
+边界条件：$f(0,j)=j,\; f(i,0)=i,\; f(0,0)=0$
+
+问题答案：$f(n,m)$，其中 $n,m$ 分别表示字符串 $A,B$ 的长度。
 
 ### 最优对齐问题
 

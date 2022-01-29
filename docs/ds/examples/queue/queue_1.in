@@ -1,0 +1,13 @@
+0
+11 10
+QU 0 0
+QU 1 9
+IG 14 7
+IF 3 5
+QU 0 9
+IG 1 8
+DF
+QU 0 4
+IF 1 2
+DG
+QU 2 9

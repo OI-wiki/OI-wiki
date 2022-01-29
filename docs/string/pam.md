@@ -86,65 +86,7 @@
 
 ??? note "参考代码"
     ```cpp
-    #include <bits/stdc++.h>
-    using namespace std;
-    typedef long long ll;
-    const int maxn = 300000 + 5;
-    namespace pam {
-    int sz, tot, last;
-    int cnt[maxn], ch[maxn][26], len[maxn], fail[maxn];
-    char s[maxn];
-    int node(int l) {
-      sz++;
-      memset(ch[sz], 0, sizeof(ch[sz]));
-      len[sz] = l;
-      fail[sz] = cnt[sz] = 0;
-      return sz;
-    }
-    void clear() {
-      sz = -1;
-      last = 0;
-      s[tot = 0] = '$';
-      node(0);
-      node(-1);
-      fail[0] = 1;
-    }
-    int getfail(int x) {
-      while (s[tot - len[x] - 1] != s[tot]) x = fail[x];
-      return x;
-    }
-    void insert(char c) {
-      s[++tot] = c;
-      int now = getfail(last);
-      if (!ch[now][c - 'a']) {
-        int x = node(len[now] + 2);
-        fail[x] = ch[getfail(fail[now])][c - 'a'];
-        ch[now][c - 'a'] = x;
-      }
-      last = ch[now][c - 'a'];
-      cnt[last]++;
-    }
-    ll solve() {
-      ll ans = 0;
-      for (int i = sz; i >= 0; i--) {
-        cnt[fail[i]] += cnt[i];
-      }
-      for (int i = 1; i <= sz; i++) {
-        ans = max(ans, 1ll * len[i] * cnt[i]);
-      }
-      return ans;
-    }
-    }  // namespace pam
-    char s[maxn];
-    int main() {
-      pam::clear();
-      scanf("%s", s + 1);
-      for (int i = 1; s[i]; i++) {
-        pam::insert(s[i]);
-      }
-      printf("%lld\n", pam::solve());
-      return 0;
-    }
+    --8<-- "docs/string/code/pam/pam_1.cpp"
     ```
 
 ### 最小回文划分
@@ -245,89 +187,14 @@ $g[v]$ 表示 $v$ 所在等差数列的 $dp$ 值之和，且 $v$ 是这个等差
 
 例题：[Codeforces 932G Palindrome Partition](https://codeforces.com/problemset/problem/932/G)
 
-给定一个字符串 $s$，要求将 $s$ 划分为 $t_1, t_2, \dots, t_k$，其中 $k$ 是偶数，且 $t_i=t_{k-i}$，求这样的划分方案数。
+给定一个字符串 $s$，要求将 $s$ 划分为 $t_1, t_2, \dots, t_k$，其中 $k$ 是偶数，且 $t_i=t_{k-i+1}$，求这样的划分方案数。
 
 ??? note "题解"
     构造字符串 $t= s[0]s[n - 1]s[1]s[n - 2]s[2]s[n - 3] \dots s[n / 2 - 1]s[n / 2]$，问题等价于求 $t$ 的偶回文划分方案数，把上面的转移方程改成求和形式并且只在偶数位置更新 $dp$ 数组即可。时间复杂度 $O(n \log n)$，空间复杂度 $O(n)$。
 
 ??? note "参考代码"
     ```cpp
-    #include <bits/stdc++.h>
-    using namespace std;
-    typedef long long ll;
-    const int mod = 1e9 + 7;
-    const int maxn = 1000000 + 5;
-    inline int add(int x, int y) {
-      x += y;
-      return x >= mod ? x -= mod : x;
-    }
-    namespace pam {
-    int sz, tot, last;
-    int ch[maxn][26], len[maxn], fail[maxn];
-    int cnt[maxn], dep[maxn], dif[maxn], slink[maxn];
-    char s[maxn];
-    int node(int l) {
-      sz++;
-      memset(ch[sz], 0, sizeof(ch[sz]));
-      len[sz] = l;
-      fail[sz] = 0;
-      cnt[sz] = 0;
-      dep[sz] = 0;
-      return sz;
-    }
-    void clear() {
-      sz = -1;
-      last = 0;
-      s[tot = 0] = '$';
-      node(0);
-      node(-1);
-      fail[0] = 1;
-    }
-    int getfail(int x) {
-      while (s[tot - len[x] - 1] != s[tot]) x = fail[x];
-      return x;
-    }
-    void insert(char c) {
-      s[++tot] = c;
-      int now = getfail(last);
-      if (!ch[now][c - 'a']) {
-        int x = node(len[now] + 2);
-        fail[x] = ch[getfail(fail[now])][c - 'a'];
-        dep[x] = dep[fail[x]] + 1;
-        ch[now][c - 'a'] = x;
-        dif[x] = len[x] - len[fail[x]];
-        if (dif[x] == dif[fail[x]])
-          slink[x] = slink[fail[x]];
-        else
-          slink[x] = fail[x];
-      }
-      last = ch[now][c - 'a'];
-      cnt[last]++;
-    }
-    }  // namespace pam
-    using pam::dif;
-    using pam::fail;
-    using pam::len;
-    using pam::slink;
-    int n, dp[maxn], g[maxn];
-    char s[maxn], t[maxn];
-    int main() {
-      pam::clear();
-      scanf("%s", s + 1);
-      n = strlen(s + 1);
-      for (int i = 1, j = 0; i <= n; i++) t[++j] = s[i], t[++j] = s[n - i + 1];
-      dp[0] = 1;
-      for (int i = 1; i <= n; i++) {
-        pam::insert(t[i]);
-        for (int x = pam::last; x > 1; x = slink[x]) {
-          g[x] = dp[i - len[slink[x]] - dif[x]];
-          if (dif[x] == dif[fail[x]]) g[x] = add(g[x], g[fail[x]]);
-          if (i % 2 == 0) dp[i] = add(dp[i], g[x]);
-        }
-      }
-      printf("%d", dp[n]);
-      return 0;
-    }
+    --8<-- "docs/string/code/pam/pam_2.cpp"
     ```
 
 ## 例题

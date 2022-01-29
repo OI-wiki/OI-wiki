@@ -39,9 +39,27 @@ $$
 
 ## 例题
 
-[hdu5852 Intersection is not allowed!](http://acm.hdu.edu.cn/showproblem.php?pid=5852)
+???+note "例 1 [CF348D Turtles](https://codeforces.com/contest/348/problem/D)"
+    题意：有一个 $n\times m$ 的格点棋盘，其中某些格子可走，某些格子不可走。有一只海龟从 $(x, y)$ 只能走到 $(x+1, y)$ 和 $(x, y+1)$ 的位置，求海龟从 $(1, 1)$ 到 $(n, m)$ 的不相交路径数对 $10^9+7$ 取模之后的结果。$2\le n,m\le3000$。
 
-题意：有一个 $n\times n$ 的棋盘，一个棋子从 $(x, y)$ 只能走到 $(x, y+1)$ 或 $(x + 1, y)$，有 $k$ 个棋子，一开始第 $i$ 个棋子放在 $(1, a_i)$，最终要到 $(n, b_i)$，路径要两两不相交，求方案数对 $10^9+7$ 取模。$1\le n\le 10^5$，$1\le k\le 100$，保证 $1\le a_1<a_2<\dots<a_n\le n$，$1\le b_1<b_2<\dots<b_n\le n$。
+比较直接的 LGV 引理的应用。考虑所有合法路径，发现从 $(1,1)$ 出发一定要经过 $A=\{(1,2), (2,1)\}$，而到达终点一定要经过 $B=\{(n-1, m), (n, m-1)\}$，则 $A, B$ 可立即选定。应用 LGV 引理可得答案为：
+
+$$
+\begin{vmatrix}
+f(a_1, b_1) & f(a_1, b_2) \\
+f(a_2, b_1) & f(a_2, b_2)
+\end{vmatrix} = f(a_1, b_1)\times f(a_2, b_2) - f(a_1, b_2)\times f(a_2, b_1)
+$$
+
+其中 $f(a, b)$ 为图上 $a\rightarrow b$ 的路径数，带有障碍格点的路径计数问题可以直接做一个 $O(nm)$ 的 dp，则 $f$ 易求。最终复杂度 $O(nm)$。
+
+??? note "参考代码"
+    ```cpp
+      --8<-- "docs/graph/code/lgv/lgv_2.cpp"
+    ```
+
+???+note "例 2 [hdu5852 Intersection is not allowed!](http://acm.hdu.edu.cn/showproblem.php?pid=5852)"
+    题意：有一个 $n\times n$ 的棋盘，一个棋子从 $(x, y)$ 只能走到 $(x, y+1)$ 或 $(x + 1, y)$，有 $k$ 个棋子，一开始第 $i$ 个棋子放在 $(1, a_i)$，最终要到 $(n, b_i)$，路径要两两不相交，求方案数对 $10^9+7$ 取模。$1\le n\le 10^5$，$1\le k\le 100$，保证 $1\le a_1<a_2<\dots<a_n\le n$，$1\le b_1<b_2<\dots<b_n\le n$。
 
 观察到如果路径不相交就一定是 $a_i$ 到 $b_i$，因此 LGV 引理中一定有 $\sigma(S)_i=i$，不需要考虑符号问题。边权设为 $1$，直接套用引理即可。
 
@@ -53,78 +71,5 @@ $$
 
 ??? note "参考代码"
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    
-    typedef long long ll;
-    
-    const int K = 105;
-    const int N = 100005;
-    const int mod = 1e9 + 7;
-    
-    int T, n, k, a[K], b[K], fact[N << 1], m[K][K];
-    
-    int qpow(int x, int y) {
-      int out = 1;
-      while (y) {
-        if (y & 1) out = (ll)out * x % mod;
-        x = (ll)x * x % mod;
-        y >>= 1;
-      }
-      return out;
-    }
-    int c(int x, int y) {
-      return (ll)fact[x] * qpow(fact[y], mod - 2) % mod *
-             qpow(fact[x - y], mod - 2) % mod;
-    }
-    int main() {
-      fact[0] = 1;
-      for (int i = 1; i < N * 2; ++i) fact[i] = (ll)fact[i - 1] * i % mod;
-    
-      scanf("%d", &T);
-    
-      while (T--) {
-        scanf("%d%d", &n, &k);
-    
-        for (int i = 1; i <= k; ++i) scanf("%d", a + i);
-        for (int i = 1; i <= k; ++i) scanf("%d", b + i);
-    
-        for (int i = 1; i <= k; ++i) {
-          for (int j = 1; j <= k; ++j) {
-            if (a[i] <= b[j])
-              m[i][j] = c(b[j] - a[i] + n - 1, n - 1);
-            else
-              m[i][j] = 0;
-          }
-        }
-    
-        for (int i = 1; i < k; ++i) {
-          if (!m[i][i]) {
-            for (int j = i + 1; j <= k; ++j) {
-              if (m[j][i]) {
-                std::swap(m[i], m[j]);
-                break;
-              }
-            }
-          }
-          if (!m[i][i]) continue;
-          int inv = qpow(m[i][i], mod - 2);
-          for (int j = i + 1; j <= k; ++j) {
-            if (!m[j][i]) continue;
-            int mul = (ll)m[j][i] * inv % mod;
-            for (int p = i; p <= k; ++p) {
-              m[j][p] = (m[j][p] - (ll)m[i][p] * mul % mod + mod) % mod;
-            }
-          }
-        }
-    
-        int ans = 1;
-    
-        for (int i = 1; i <= k; ++i) ans = (ll)ans * m[i][i] % mod;
-    
-        printf("%d\n", ans);
-      }
-    
-      return 0;
-    }
+      --8<-- "docs/graph/code/lgv/lgv_1.cpp"
     ```

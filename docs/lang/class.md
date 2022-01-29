@@ -26,7 +26,7 @@ Object b, B[array_length];
 Object *c;
 ```
 
-与使用 `struct` 大同小异。该例定义了一个名为 `Object` 的类。该类拥有四个成员元素，分别为 `weight,value`；并在 `}` 后定义了一个数组 `B`。
+与使用 `struct` 大同小异。该例定义了一个名为 `Object` 的类。该类拥有两个成员元素，分别为 `weight,value`；并在 `}` 后使用该类型定义了一个数组 `e`。
 
 定义类的指针形同 [`struct`](./struct.md)。
 
@@ -89,6 +89,7 @@ class Object {
 };
 
 void Object::change_w(int _weight) { weight = _weight; }
+Object var;
 ```
 
 该类有一个打印 `Object` 成员元素的函数，以及更改成员元素 `weight` 的函数。

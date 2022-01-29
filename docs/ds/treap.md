@@ -1,12 +1,17 @@
 author: Dev-XYS
 
-treap 是一种弱平衡的二叉搜索树。treap 这个单词是 tree 和 heap 的组合，表明 treap 是一种由树和堆组合形成的数据结构。treap 的每个结点上要额外储存一个值 $priority$。treap 除了要满足二叉搜索树的性质之外，还需满足父节点的 $priority$ 大于等于两个儿子的 $priority$。而 $priority$ 是每个结点建立时随机生成的，因此 treap 是期望平衡的。
+Treap 是一种 **弱平衡** 的 **二叉搜索树**。它的数据结构由二叉树和二叉堆组合形成，名字也因此为 tree 和 heap 的组合。
 
-treap 分为旋转式和无旋式两种。两种 treap 都易于编写，但无旋式 treap 的操作方式使得它天生支持维护序列、可持久化等特性。这里以重新实现 `set<int>`（不可重集合）为例，介绍无旋式 treap。
+Treap 的每个结点上除了按照二叉搜索树排序的 $key$ 值外要额外储存一个叫 $priority$ 的值。它由每个结点建立时随机生成，并按照 **最大堆** 性质排序。因此 treap 除了要满足二叉搜索树的性质之外，还需满足父节点的 $priority$ 大于等于两个子节点的值。所以它是 **期望平衡** 的。搜索，插入和删除操作的期望时间复杂度为 $O(\log n)$。
 
-## 无旋式 treap 的核心操作
+Treap 分为旋转式和无旋式两种。两种结构都易于编写，但无旋 treap 的操作方式使得它天生支持维护序列、可持久化等特性。这里以重新实现 `set<int>`（不可重集合）为例，介绍无旋式 treap。
 
-无旋式 treap 又称分裂合并 treap。它仅有两种核心操作，即为分裂与合并。下面逐一介绍这两种操作。
+## 无旋 treap
+
+**无旋 treap** 又称分裂合并 treap。它仅有两种核心操作，即为 **分裂** 与 **合并**。下面逐一介绍这两种操作。
+
+???+ note "注释"
+    讲解无旋 treap 应当提到 **FHQ-Treap**(by 范浩强）。即可持久化，支持区间操作的无旋 Treap。更多内容请参照《范浩强谈数据结构》ppt。
 
 ### 分裂（split）
 
@@ -118,163 +123,28 @@ void erase(int key) {
 
 ## 旋转 treap
 
-旋转 treap 在做普通平衡树题的时候，是所有平衡树中常数较小的
+**旋转 treap** 维护平衡的方式为旋转，和 AVL 树的旋转操作类似，分为 **左旋** 和 **右旋**。即在满足二叉搜索树的条件下根据堆的优先级对 treap 进行平衡操作。
 
-维护平衡的方式为旋转。性质与普通二叉搜索树类似
+旋转 treap 在做普通平衡树题的时候，是所有平衡树中常数较小的。因为普通的二叉搜索树会被递增或递减的数据卡，用 treap 对每个节点定义一个权值，由 rand 得到，从而防止特殊数据卡。并且每次删除/插入时通过 rand 值决定要不要旋转即可，其他操作与二叉搜索树类似。
 
-因为普通的二叉搜索树会被递增或递减的数据卡，用 treap 对每个节点定义一个权值，由 rand 得到，从而防止特殊数据卡。
+### 插入
 
-每次删除/插入时通过 rand 值决定要不要旋转即可，其他操作与二叉搜索树类似
+插入为旋转 treap 的重要操作，因为它通过旋转保证了 treap 的平衡性质。在对旋转 treap 做插入操作时，通过对比该节点与其父节点的优先级完成。因为在插入时已经保证二叉搜索树的性质，所以为了维持 treap 的性质，用旋转操作来恢复平衡。以右旋为例，根节点由原来的父节点变为了父节点的子节点，原来的父节点下沉变为新父节点的子节点，其他节点通过左右子树性质维持不变。
 
-以下是 bzoj 普通平衡树模板代码
+### 删除
 
-```cpp
-#include <algorithm>
-#include <cstdio>
-#include <iostream>
+在对旋转 treap 做删除操作时，遵循堆的删除操作。通过将要删除的点与优先级较小的子节点不断交换，直到要删除的点变为叶节点。
 
-#define maxn 100005
-#define INF (1 << 30)
+## 代码
 
-int n;
+以下是 bzoj 普通平衡树模板代码。
 
-struct treap {
-  int l[maxn], r[maxn], val[maxn], rnd[maxn], size[maxn], w[maxn];
-  int sz, ans, rt;
-  inline void pushup(int x) { size[x] = size[l[x]] + size[r[x]] + w[x]; }
-  void lrotate(int &k) {
-    int t = r[k];
-    r[k] = l[t];
-    l[t] = k;
-    size[t] = size[k];
-    pushup(k);
-    k = t;
-  }
-  void rrotate(int &k) {
-    int t = l[k];
-    l[k] = r[t];
-    r[t] = k;
-    size[t] = size[k];
-    pushup(k);
-    k = t;
-  }
-  void insert(int &k, int x) {
-    if (!k) {
-      sz++;
-      k = sz;
-      size[k] = 1;
-      w[k] = 1;
-      val[k] = x;
-      rnd[k] = rand();
-      return;
-    }
-    size[k]++;
-    if (val[k] == x) {
-      w[k]++;
-    } else if (val[k] < x) {
-      insert(r[k], x);
-      if (rnd[r[k]] < rnd[k]) lrotate(k);
-    } else {
-      insert(l[k], x);
-      if (rnd[l[k]] < rnd[k]) rrotate(k);
-    }
-  }
+??? note "参考代码"
+    ```cpp
+    --8<-- "docs/ds/code/treap/treap_1.cpp"
+    ```
 
-  bool del(int &k, int x) {
-    if (!k) return false;
-    if (val[k] == x) {
-      if (w[k] > 1) {
-        w[k]--;
-        size[k]--;
-        return true;
-      }
-      if (l[k] == 0 || r[k] == 0) {
-        k = l[k] + r[k];
-        return true;
-      } else if (rnd[l[k]] < rnd[r[k]]) {
-        rrotate(k);
-        return del(k, x);
-      } else {
-        lrotate(k);
-        return del(k, x);
-      }
-    } else if (val[k] < x) {
-      bool succ = del(r[k], x);
-      if (succ) size[k]--;
-      return succ;
-    } else {
-      bool succ = del(l[k], x);
-      if (succ) size[k]--;
-      return succ;
-    }
-  }
-
-  int queryrank(int k, int x) {
-    if (!k) return 0;
-    if (val[k] == x)
-      return size[l[k]] + 1;
-    else if (x > val[k]) {
-      return size[l[k]] + w[k] + queryrank(r[k], x);
-    } else
-      return queryrank(l[k], x);
-  }
-
-  int querynum(int k, int x) {
-    if (!k) return 0;
-    if (x <= size[l[k]])
-      return querynum(l[k], x);
-    else if (x > size[l[k]] + w[k])
-      return querynum(r[k], x - size[l[k]] - w[k]);
-    else
-      return val[k];
-  }
-
-  void querypre(int k, int x) {
-    if (!k) return;
-    if (val[k] < x)
-      ans = k, querypre(r[k], x);
-    else
-      querypre(l[k], x);
-  }
-
-  void querysub(int k, int x) {
-    if (!k) return;
-    if (val[k] > x)
-      ans = k, querysub(l[k], x);
-    else
-      querysub(r[k], x);
-  }
-} T;
-
-int main() {
-  srand(123);
-  scanf("%d", &n);
-  int opt, x;
-  for (int i = 1; i <= n; i++) {
-    scanf("%d%d", &opt, &x);
-    if (opt == 1)
-      T.insert(T.rt, x);
-    else if (opt == 2)
-      T.del(T.rt, x);
-    else if (opt == 3) {
-      printf("%d\n", T.queryrank(T.rt, x));
-    } else if (opt == 4) {
-      printf("%d\n", T.querynum(T.rt, x));
-    } else if (opt == 5) {
-      T.ans = 0;
-      T.querypre(T.rt, x);
-      printf("%d\n", T.val[T.ans]);
-    } else if (opt == 6) {
-      T.ans = 0;
-      T.querysub(T.rt, x);
-      printf("%d\n", T.val[T.ans]);
-    }
-  }
-  return 0;
-}
-```
-
-## 练习题
+## 例题
 
 [普通平衡树](https://loj.ac/problem/104)
 

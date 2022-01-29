@@ -22,10 +22,6 @@
 
 - **生成树（spanning tree）**：一个连通无向图的生成子图，同时要求是树。也即在图的边集中选择 $n - 1$ 条，将所有顶点连通。
 
-- **结点的深度（depth）**：到根结点的路径上的边数。
-
-- **树的高度（height）**：所有结点的深度的最大值。
-
 - **无根树的叶结点（leaf node）**：度数不超过 $1$ 的结点。
 
 ???+question " 为什么不是度数恰为 $1$ ？"
@@ -43,6 +39,10 @@
 
 -   **子结点（child node）**：如果 $u$ 是 $v$ 的父亲，那么 $v$ 是 $u$ 的子结点。  
     子结点的顺序一般不加以区分，二叉树是一个例外。
+
+- **结点的深度（depth）**：到根结点的路径上的边数。
+
+- **树的高度（height）**：所有结点的深度的最大值。
 
 - **兄弟（sibling）**：同一个父亲的多个子结点互为兄弟。
 
@@ -155,21 +155,63 @@ int child[N][2];
 
 ### 二叉树上 DFS
 
-（图待补）
-
 #### 先序遍历
 
-先访问根，再访问子节点。
+![preorder](images/tree-basic-Preorder.png)
+
+按照 **根，左，右** 的顺序遍历二叉树。
+
+```c++
+void preTrav(BiTree* root) {
+  if (root) {
+    cout << root->key << " ";
+    preTrav(root->left);
+    preTrav(root->right);
+  }
+}
+```
 
 #### 中序遍历
 
-先访问左子树，再访问根，再访问右子树。
+![inorder](images/tree-basic-inorder.png)
+
+按照 **左，根，右** 的顺序遍历二叉树。
+
+```c++
+void midTrav(BiTree* root) {
+  if (root) {
+    midTrav(root->left);
+    cout << root->key << " ";
+    midTrav(root->right);
+  }
+}
+```
 
 #### 后序遍历
 
-先访问子节点，再访问根。
+![Postorder](images/tree-basic-Postorder.png)
 
-已知中序遍历和另外一个可以求第三个。
+按照 **左，右，根** 的顺序遍历二叉树。
+
+```c++
+void lastTrav(BiTree* root) {
+  if (root) {
+    lastTrav(root->left);
+    lastTrav(root->right);
+    cout << root->key << " ";
+  }
+}
+```
+
+#### 反推
+
+已知中序遍历序列和另外一个序列可以求第三个序列。
+
+![reverse](images/tree-basic-reverse.png)
+
+1. 前序的第一个是 root，后序的最后一个是 root。
+2. 先确定根节点，然后根据中序遍历，在根左边的为左子树，根右边的为右子树。
+3. 对于每一个子树可以看成一个全新的树，仍然遵循上面的规律。
 
 ### 树上 BFS
 
@@ -206,3 +248,5 @@ dfs(root, EMPTY_NODE);
 考察上面的遍历过程，若从根开始遍历，则访问到一个结点时 `from` 的值，就是其父结点的编号。
 
 通过这个方式，可以对于无向的输入求出所有结点的父结点，以及子结点列表。
+
+**本页面部分内容引用自博文 [二叉树：前序遍历、中序遍历、后续遍历](https://blog.csdn.net/weixin_43357638/article/details/99730284)，遵循 CC 4.0 BY-SA 版权协议。**

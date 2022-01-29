@@ -20,6 +20,8 @@
 
 - 推荐使用 SVG 格式的图片[^ref4]，以获取较好的清晰度和缩放效果。
 
+- 动图如果无法或者不会制作 SVG 格式的，则推荐使用 APNG 格式[^apng]的文件。Windows 用户可使用 [ScreenToGif](https://www.screentogif.com) 录制，Linux 用户可使用 [Peek](https://github.com/phw/peek) 录制，注意需要在设置里调整为录制 APNG。其他情况则推荐先制作为 MP4 等视频文件再转换为 APNG，如果使用 ffmpeg 则可以使用 `ffmpeg -i filename.mp4 -f apng filename.apng -plays 0` 转换。[^intro-apng]
+
 - 同时具有源文件和导出图像的图片（例如 JPG 文件与 PSD 文件或者 SVG 图像与 TikZ TeX 源代码），建议将源文件以与图片相同的文件名保存于同一目录下。
 
 - 请确保您的文档中的引用链接的稳定性。**不推荐** 引用 **自建** 服务中的资源（如自建 OJ 里的题目）。建议在添加时同时将该外链存于互联网档案馆[^webarchive]，以防无法替代的链接失效。
@@ -80,23 +82,22 @@
 
     **即使是空行，也必须保持与其他行一致的缩进。请不要使用编辑器的自动裁剪行末空格功能。**
 
-    示例：
-
-    ```text
-    ???+ warning
-        请记得在文本前面添加 4 个空格。其他的语法还是与 Markdown 语法一致。
+    ???+ success "示例"
+        ```text
+        ???+ warning
+            请记得在文本前面添加 4 个空格。其他的语法还是与 Markdown 语法一致。
+            
+            不添加 4 个空格的话，文本就不会出现在 Details 文本框里了。
+            
+            这个`???`是什么的问题会在下文解答。
+        ```
         
-        不添加 4 个空格的话，文本就不会出现在 Details 文本框里了。
-        
-        这个`???`是什么的问题会在下文解答。
-    ```
-
-    ???+ warning
-        请记得在文本前面添加 4 个空格。其他的语法还是与 Markdown 语法一致。
-        
-        不添加 4 个空格的话，文本就不会出现在 Details 文本框里了。
-        
-        这个 `???` 是什么的问题会在下文解答。
+        ???+ warning
+            请记得在文本前面添加 4 个空格。其他的语法还是与 Markdown 语法一致。
+            
+            不添加 4 个空格的话，文本就不会出现在 Details 文本框里了。
+            
+            这个 `???` 是什么的问题会在下文解答。
 
 - 代码样式的纯文本块请使用 ```` ```text````。直接使用 ```` ``` ```` 而不指定纯文本块里的语言，可能会导致内容被错误地缩进。
 
@@ -108,22 +109,21 @@
 - 注意 **括号** 的位置。句内括号与句外括号的位置不同。
 - 通常使用 **分号** 来表示列表环境中各复句之间的关系。
 - 请特别注意，我们通常习惯使用 `「` 与 `」` 来提高 **中文引号** 的辨识度。
-- 对于有序列表，推荐在每一项的后面添加 **分号**，在列表最后一项的后面添加 **句号**；对于无序列表，推荐在每一项的后面添加 **句号**。
+-   对于有序列表，推荐在每一项的后面添加 **分号**，在列表最后一项的后面添加 **句号**；对于无序列表，推荐在每一项的后面添加 **句号**。
 
-示例：
-
-> - 中学生学科竞赛主要包括信息学奥林匹克竞赛、信息学奥林匹克竞赛、信息学奥林匹克竞赛、信息学奥林匹克竞赛和信息学奥林匹克竞赛（谁写的这个示例，建议抬走）。
-> - “你吃了吗？”，李四问张三。
-> - 我想对你说：“我真是太喜欢你了。”
-> - 「苟利国家生死以，岂因祸福避趋之！」
-> - 张华考上了大学；李萍进了技校；我当了工人：我们都有美好的前途。[^note1]
-> -   以下是这个算法的基本流程：
->     1. 初始化到各点的距离为无穷大，将所有点设置为未被访问过，初始化一个队列；
->     2. 将起点放入队列，将起点设置为已被访问过，更新到起点的距离为 $0$；
->     3. 取出队首元素，将该元素设置为未被访问过；
->     4. 遍历所有与此元素相连的边，若到这个点存在更短的距离，则进行松弛操作；
->     5. 若这个点未被访问过，则将这个点放入队列，且设置这个点为已经访问过；
->     6. 回到第三步，直到队列为空。
+    ???+ success "示例"
+        - 中学生学科竞赛主要包括信息学奥林匹克竞赛、信息学奥林匹克竞赛、信息学奥林匹克竞赛、信息学奥林匹克竞赛和信息学奥林匹克竞赛（谁写的这个示例，建议抬走）。
+        - “你吃了吗？”，李四问张三。
+        - 我想对你说：“我真是太喜欢你了。”
+        - 「苟利国家生死以，岂因祸福避趋之！」
+        - 张华考上了大学；李萍进了技校；我当了工人：我们都有美好的前途。[^note1]
+        -   以下是这个算法的基本流程：
+            1. 初始化到各点的距离为无穷大，将所有点设置为未被访问过，初始化一个队列；
+            2. 将起点放入队列，将起点设置为已被访问过，更新到起点的距离为 $0$；
+            3. 取出队首元素，将该元素设置为未被访问过；
+            4. 遍历所有与此元素相连的边，若到这个点存在更短的距离，则进行松弛操作；
+            5. 若这个点未被访问过，则将这个点放入队列，且设置这个点为已经访问过；
+            6. 回到第三步，直到队列为空。
 
 #### Markdown 格式与主题扩展格式要求
 
@@ -131,19 +131,18 @@
 
 -   请正确使用 Markdown 的区块功能。插入行内代码请使用一对反引号包围代码区块；行间代码请使用一对 ```` ``` ```` 包围代码区块，其中反引号就是键盘左上角波浪线下面那个符号，行间代码请在第一个 ```` ``` ```` 的后面加上语言名称（如：```` ```cpp````）。
 
-    示例：
-
-    ````text
-    ```cpp
-    // #include<stdio.h>    //不好的写法
-    #include <cstdio>  //好的写法
-    ```
-    ````
-
-    ```cpp
-    // #include<stdio.h>    //不好的写法
-    #include <cstdio>  //好的写法
-    ```
+    ???+ success "示例"
+        ````text
+        ```cpp
+        // #include<stdio.h>    //不好的写法
+        #include <cstdio>  //好的写法
+        ```
+        ````
+        
+        ```cpp
+        // #include<stdio.h>    //不好的写法
+        #include <cstdio>  //好的写法
+        ```
 
 -   「参考资料与注释」使用 Markdown 的脚注功能进行编写。格式为：
 
@@ -156,33 +155,34 @@
 
     脚注的内容统一放在 `## 参考资料与注释` 二级标题下。
 
-    示例：
+    ???+ success "示例"
+        ```markdown
+        当 `#include <cxxxx>` 可以替代 `#include <xxxx.h>` 时，应使用前者。[^ref1]
+        
+        2020年1月21日，CCF宣布恢复NOIP。[^ref2]
+        
+        ## 参考资料与注释
+        
+        [^ref1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace)
+        
+        [^ref2]: [CCF关于恢复NOIP竞赛的公告-中国计算机学会](https://www.ccf.org.cn/c/2020-01-21/694716.shtml)
+        ```
+        
+        当 `#include <cxxxx>` 可以替代 `#include <xxxx.h>` 时，应使用前者。[^ref1]
+        
+        2020 年 1 月 21 日，CCF 宣布恢复 NOIP。[^ref2]
 
-    ```markdown
-    当 `#include <cxxxx>` 可以替代 `#include <xxxx.h>` 时，应使用前者。[^ref1]
+-   建议使用主题扩展的 `???+note` 格式（即 [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks)）来描述题面和参考代码。也可以用这种格式来展示其他需要补充介绍的内容。
 
-    2020年1月21日，CCF宣布恢复NOIP。[^ref2]
-
-    ## 参考资料与注释
-
-    [^ref1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace)
-
-    [^ref2]: [CCF关于恢复NOIP竞赛的公告-中国计算机学会](https://www.ccf.org.cn/c/2020-01-21/694716.shtml)
-    ```
-
-    当 `#include <cxxxx>` 可以替代 `#include <xxxx.h>` 时，应使用前者。[^ref1]
-
-    2020 年 1 月 21 日，CCF 宣布恢复 NOIP。[^ref2]
-
--   建议使用主题扩展的 `???+note` 格式来描述题面和参考代码。具体格式如下：
+    示例代码：
 
     ```text
     ??? note "标题"
         这个文本框会被默认折叠。
 
-        推荐将**解题代码**放在折叠文本框内。
+        推荐将 **解题代码** 放在折叠文本框内。
 
-    ???+note " [标题](http://acm.hdu.edu.cn/showproblem.php?pid=1000)"
+    ???+note "[HDOJ 的“A + B Problem”](http://acm.hdu.edu.cn/showproblem.php?pid=1000)"
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
 
         而且推荐以这种方式**标注原题链接**。
@@ -190,12 +190,14 @@
         注意双引号的位置。
     ```
 
+    效果：
+
     ??? note "标题"
         这个文本框会被默认折叠。
         
         推荐将 **解题代码** 放在折叠文本框内。
 
-    ???+note " [标题](http://acm.hdu.edu.cn/showproblem.php?pid=1000)"
+    ???+note "[HDOJ 的“A + B Problem”](http://acm.hdu.edu.cn/showproblem.php?pid=1000)"
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
         
         而且推荐以这种方式 **标注原题链接**。
@@ -203,6 +205,8 @@
         注意双引号的位置。
 
     两种格式的区别是，带 `+` 的会默认保持展开，而不带 `+` 的会默认保持折叠。
+
+    折叠框的标题，即 `???+note` 中 `note` 后的内容应以 `"` 包裹起来。其中的内容支持 Markdown 语法。详见 [Admonition - Changing the title](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#changing-the-title)。（不具备折叠功能的为一般的 Admonitions，参考 [Admonitions - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/admonitions)）
 
     如果需要嵌套折叠框，推荐使用 [MDUI 的阴影样式](https://www.mdui.org/docs/shadow#use)，提高内层折叠框的海拔。
 
@@ -236,19 +240,17 @@
 
 -   在页面的开头应有一段简短的文字（如「本页面将介绍……」），用于概述页面内容。
 
-    例：
-
-    > 本页面将列出在 **OI Wiki** 编写过程时推荐使用的格式规范与编辑方针。
+    ???+ success "示例"
+        本页面将列出在 **OI Wiki** 编写过程时推荐使用的格式规范与编辑方针。
 
 -   涉及到“前置知识”的页面，请在开头添加一行 **前置知识：……**，放在页面概述前。格式如下：
 
     `前置知识：[站内页面1](url1)、[站内页面2](url2)和[站内页面3](url3)`
 
-    例：
-
-    > 前置知识：[时间复杂度](../basic/complexity.md)
-    >
-    > 本页面将介绍基础的计算理论的知识。
+    ???+ success "示例"
+        前置知识：[时间复杂度](../basic/complexity.md)
+        
+        本页面将介绍基础的计算理论的知识。
 
 - 请注意文档结构。文档结构应当十分条理，层次清晰。请不要让诸如「五级标题」这种事情再次发生了，一篇正常的文章是用不到如此复杂的结构层次的。
 
@@ -258,16 +260,23 @@
 
     建议使用源文章或者标签页的标题。
 
-    ```markdown
-    <!-- 不推荐的写法 -->
-    请参考[这个页面](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
-    <!-- 不推荐的写法 -->
-    请参考 <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
-    <!-- 推荐的写法 -->
-    请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
-    ```
+    ???+ fail "不推荐的写法"
+        ```markdown
+        请参考[这个页面](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+        
+        请参考 <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
+        ```
+        
+        请参考 [这个页面](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+        
+        请参考 <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
 
-    > 请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+    ???+ success "推荐的写法"
+        ```markdown
+        请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+        ```
+        
+        请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
 
 - 受 Markdown 格式限制，`## 参考资料与注释` 二级标题必须放在文末。
 
@@ -311,6 +320,8 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 - 公式中不要使用中括号连缀（即 C++ 高维数组的表示方式）而多使用下标。即 $a_{i,j,k}$ 而不是 $a[i][j][k]$。在公式中下标较复杂的情况下建议改用多元函数（$f(i,j,k)$）或内联代码格式。对于一元简单函数使用 `$f_i$`、`$f(i)$` 或 `$f[i]$` 均可。
 
 - 为了统一且书写方便，复杂度分析时大 $O$ 记号请直接使用 `$O()$` 而不是 `$\mathcal O()$`。
+
+- 在表示等价关系时，请使用 `$\iff$`，效果 $\iff$，而不是 `$\Leftrightarrow$`，效果 $\Leftrightarrow$。
 
 - 分段函数环境 `cases`  **只能有两列**（即一个 `&` 分隔符）。
 
@@ -418,6 +429,32 @@ $$
 $$
 ```
 
+#### 代码块的格式要求
+
+代码块目前分为两种：片段和例题。
+
+关于片段代码：
+
+- 片段的代码内容请直接在 Markdown 文档中修改。
+
+关于例题代码：
+
+- 例题代码的表示形式为 `--8<-- "path"`，代码均存储在 `path` 中。路径通常为 `docs/主题/code/内容/内容_编号.cpp`。
+
+- 修改例题代码时，请保证你的代码是正确的。例题代码均拥有一组测试数据，存储在 `/docs/主题/examples/内容/内容_编号.in/ans` 中。
+
+如果你需要添加例题：
+
+- 请在 `docs/主题/code/内容` 中添加你的例题代码，并编号。通常，该 `内容` 文件夹中已经有了一个或者多个代码。例子：如果需要修改 `dag.md` 的代码，那么路径为 `docs/dp/code/dag`，其中 `dp` 为主题，而 `dag` 为内容。
+
+- 如果需要在所有例题的最后添加一个例题代码，请顺延目前的编号。比如已经存在了 `code/prefix-sum/prefix-sum_3.cpp`，如果需要在最后一个例题后继续添加一个例题，请将你的代码命名为 `prefix-sum_4.cpp` 并添加到 `docs/basic/code/prefix-sum` 中。
+
+- 如果需要在文章中间添加一个例题代码，请插入并改变原先的编号。比如已经存在了 `prefix-sum_2.cpp` 和 `prefix-sum_3.cpp`，如果你需要在第二个例题和第三个例题中间再添加一个例题，请将你的代码命名为 `prefix-sum_3.cpp` 并将原先的 `prefix-sum_3.cpp` 改名为 `prefix-sum_4.cpp` 同时 **在 Markdown 文档和测试数据存放的文件夹中同步修改编号**。
+
+- **别忘记，你还要对你的代码添加一组测试数据，以保证这个代码是可以成功运行的。** 你需要在 `docs/主题/examples/内容` 文件夹中添加一组测试数据，将输入数据存储为 `内容_编号.in`，将标准答案存储为 `内容_编号.ans`。
+
+- 最后，可以将代码添加到文档中了。请直接在文档中用添加代码块的格式，并将代码块内部直接写成 `--8<-- "你的代码路径"` 的格式就可以了。
+
 ## 图解
 
 可能上述要求把握起来有些困难，接下来我们给出一些图片来具体分析哪种格式应该使用，哪种不该使用：
@@ -472,7 +509,7 @@ $$
 
 ## 外部链接
 
-- [标点符号用法（GB/T 15834—2011）](http://www.moe.gov.cn/s78/A19/yxs_left/moe_810/s230/201001/W020190128580990138234.pdf)
+- [标点符号用法（GB/T 15834—2011）](http://www.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/W020190128580990138234.pdf)
 - [维基百科：格式手册/标点符号](https://zh.wikipedia.org/wiki/Wikipedia:%E6%A0%BC%E5%BC%8F%E6%89%8B%E5%86%8C/%E6%A0%87%E7%82%B9%E7%AC%A6%E5%8F%B7)
 - [中文文案排版指北（简体中文版）](https://mazhuang.org/wiki/chinese-copywriting-guidelines/)
 - [中文文案风格指南 - PDFE GUIDELINE](https://pdfe.github.io/GUIDELINE/#/others/copywriter)
@@ -491,3 +528,7 @@ $$
 [^ref4]: [SVG|MDN](https://developer.mozilla.org/zh-CN/docs/Web/SVG)
 
 [^webarchive]: [Save Page in Internet Archive](https://web.archive.org/save/)
+
+[^apng]: [APNG](https://en.wikipedia.org/wiki/APNG)
+
+[^intro-apng]: [OI-wiki/OI-wiki#3422](https://github.com/OI-wiki/OI-wiki/issues/3422)

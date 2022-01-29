@@ -17,6 +17,8 @@
 2. 求出每个数出现次数的 [前缀和](./prefix-sum.md)；
 3. 利用出现次数的前缀和，从右至左计算每个数的排名。
 
+![counting sort animate example](images/counting-sort-1-animate-example.svg)
+
 ## 性质
 
 ### 稳定性
@@ -68,20 +70,22 @@ void counting_sort() {
 
 ### Python
 
-    # Python Version
-    N = W = 100010
-    n = w = 0
-    a = b = [0] * N
-    cnt = [0] * W
+```python
+# Python Version
+N = W = 100010
+n = w = 0
+a = b = [0] * N
+cnt = [0] * W
 
-    def counting_sort():
-        for i in range(1, n + 1):
-            cnt[a[i]] += 1
-        for i in range(1, w + 1):
-            cnt[i] += cnt[i - 1]
-        for i in range(n, 0, -1):
-            b[cnt[a[i]] - 1] = a[i]
-            cnt[a[i]] -= 1
+def counting_sort():
+    for i in range(1, n + 1):
+        cnt[a[i]] += 1
+    for i in range(1, w + 1):
+        cnt[i] += cnt[i - 1]
+    for i in range(n, 0, -1):
+        b[cnt[a[i]] - 1] = a[i]
+        cnt[a[i]] -= 1
+```
 
 ## 参考资料与注释
 

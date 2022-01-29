@@ -1,7 +1,6 @@
-# Set the base image to Ubuntu16.04
-FROM ubuntu:16.04
+FROM ubuntu:latest
 
-MAINTAINER frank-xjh "frank99-xu@outlook.com"
+LABEL org.oi-wiki.image.authors="frank99-xu@outlook.com mxr612@icloud.com coelacanthus@outlook.com"
 
 WORKDIR /
 RUN apt-get update \
@@ -10,7 +9,8 @@ RUN apt-get update \
     && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && apt-get install -y nodejs
 
-RUN git clone https://github.com/OI-wiki/OI-wiki.git --depth=1 \
+# If you can't connect to GitHub, set WIKI_REPO to any mirror repo.
+RUN git clone ${WIKI_REPO:-https://github.com/OI-wiki/OI-wiki.git} --depth=1 \
     && cd OI-wiki \
     && pip install -U -r requirements.txt \
     && npm install

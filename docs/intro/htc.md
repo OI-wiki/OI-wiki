@@ -7,39 +7,45 @@
 ???+ warning
     在开始编写一段内容之前，请查阅 [Issues](https://github.com/OI-wiki/OI-wiki/issues)，确认没有别人在做相同的工作之后，开个 [新 issue](https://github.com/OI-wiki/OI-wiki/issues/new) 记录待编写的内容。
 
-### 我之前没怎么用过 GitHub
-
-参与 Wiki 的编写 **需要** 一个 GitHub 账号，**但不需要** 高超的 GitHub 技巧。
-
-假如我想要修改一个页面内容，应该怎么操作呢？
-
-1. 在 **OI Wiki** 网站上找到对应页面；
-2. 点击正文右上方、目录左侧的 **“编辑此页”**<i class="md-icon">edit</i>按钮，在阅读了本页面和 [格式手册](./format.md) 后点击“开始编辑”按钮；
-3. 在编辑框里编写你想修改的内容。另外，由于 **OI Wiki** 使用 Markdown 进行编写，如果想进行一些比较大的更改（比如扩充页面内容），你需要掌握一些 [Markdown 语法](https://markdown.tw/)；
-4. 写好了之后点下方的绿色按钮 Propose changes 提交修改。但是，GitHub 可能会提示你没有权限。不必担心！GitHub 会自动帮你将 **OI Wiki** 的所有文件复制一份，放到你的仓库中（fork）并创建申请合并更改的请求 (Pull Request)；
-5. 之后，点上方的绿色按钮 (Create pull request) 后，GitHub 会跳转到一个新的页面 Open a pull request。删掉方框里的文字，简单写写你做的修改，然后再点一下下面的绿色按钮 (Create pull request)；
-6. 不出意外的话，你的 PR 就顺利提交到仓库，等待合并了。之后，你就可以等待项目组合并你的分支，或者指出还要修改的地方。当然，你也可以给他人的 PR 提出修改意见，或者只是点赞/踩。如果有消息，会有邮件通知和/或出现在网页右上角的提醒（取决于你个人 Settings 中的设置）。
-
-引用维基百科的一句话：
+在这里引用维基百科的一句话：
 
 > 不要害怕编辑，勇于更新页面！[^ref1]
 
-在你的分支被合并 (merge) 到主分支 (master) 之前，你对 **OI Wiki** 所做的任何修改都不会出现在 **OI Wiki** 上。所以请不用担心“你的编辑会破坏 **OI Wiki** 正在显示的页面”一事。
+### 在 GitHub 上编辑
 
-如果还是不放心，可以参考 [如何使用 GitHub？](https://www.zhihu.com/question/20070065/answer/79557687)，或者试试 [GitHub 的官方教程](https://lab.github.com/)。
+参与 OI Wiki 的编写 **需要** 一个 GitHub 账号（可以前往 [GitHub 的账号注册页面](https://github.com/signup) 页面注册），但 **不需要** 高超的 GitHub 技巧，即使你是一名新手，只要按照下面所述的步骤操作，也能够 **非常出色** 地完成编辑。
 
-### 我之前用过 GitHub
+???+ tip
+    在你的更改被合并到 OI Wiki 的主仓库之前，你对 OI Wiki 的内容所作出的修改均不会出现在 OI Wiki 的主站上，所以无需担心你的修改会破坏 OI Wiki 上正在显示的内容。
+    
+    如果还是不放心，可以查看 [GitHub 的官方教程](https://lab.github.com/)。
 
-基本协作方式如下：
+#### 编辑单个页面内的内容
 
-1. Fork 主仓库到自己的仓库中；
-2. 当想要贡献某部分内容时，请务必仔细查看 **Issues**，以便确定是否有人已经开始了这项工作。当然，我们更希望你可以加入 QQ/Telegram 群组以方便交流；
-3. 依据 [格式手册](format.md) 编写内容；
-4. 在决定将内容推送到本仓库时，**请首先拉取本仓库代码进行合并，自行处理好冲突，同时确保在本地可以正常生成文档**，然后再将分支 PR 到主仓库的 master 分支上。
+1. 在 OI Wiki 上找到对应页面；
+2. 点击正文右上方（目录左侧）的 **「编辑此页」**（<i class="md-icon">edit</i>）按钮，在确认您已经阅读了本页面和 [格式手册](./format.md) 后点击按钮根据提示跳转到 GitHub 进行编辑；
+3. 在编辑框内编写你想修改的内容；
+4. 编写完成后滚动到页面下方，按照本文中 [commit 信息格式规范](#commit) 填写 commit 信息，之后点击 **Propose changes** 按钮提交修改。点击按钮后，GitHub 会自动帮你创建一份 OI Wiki 仓库的分支，并将你的提交添加到这个分支仓库。
+5. GitHub 会自动跳转到你的分支仓库的页面，此时页面上方会显示一个绿色的 **Create pull request** 按钮，点击后 GitHub 会跳转到一个创建 Pull Request 页面。向下滚动检查自己所作出的修改没有错误后，按照本文中 [Pull Request 信息格式规范](#pull-request) 一节中的规范书写 Pull Request 信息，然后点击页面上的绿色的 **Create pull request** 按钮创建 Pull Request。
+6. 不出意外的话，你的 Pull Request 就顺利提交到仓库，等待管理员审核并合并到主仓库中即可。
+
+在等待合并的时间里，你可以给他人的 Pull Request 提意见、点赞或者点踩。如果有新消息，会在网页右上角出现提示，并附有邮件提醒（取决于个人设置中配置的通知方式）。
+
+#### 编辑多个页面内的内容
+
+如果你需要同时编辑互相无关联的多个页面的内容，请按照上方的 [编辑单个页面内的内容](#_2) 一节一次修改所有页面。
+
+1. 打开 [OI-Wiki/OI-Wiki](https://github.com/OI-Wiki/OI-Wiki) 仓库，点击键盘上的<kbd>.</kbd>按钮（或者将 URL 中的 `github.com` 更改为 `github.dev`）[^ref2]，进入 GitHub 的网页版 VS Code 编辑器；
+2. 在编辑器中作出对页面源文件的更改，可以使用页面右上方的预览按钮（或按下<kbd>Ctrl+K</kbd><kbd>V</kbd>快捷键）在右侧打开预览界面；
+3. 修改完成后使用左侧的 Source Control 选项卡，并按照本文中 [commit 信息格式规范](#commit) 填写 commit 信息并提交，提交时会提示是否创建此仓库的分支，点击绿色的 **Fork Repository** 按钮即可。
+4. 提交后会在网页上方的中央弹出一个提示框，在第一次的提示框内填写标题，第二次的提示框内填写此提交要提交到的仓库内分支名称，之后右下角会弹出一个提示框，内容类似于 `Created Pull Request #1 for OI-Wiki/OI-Wiki.`，点击蓝字链接即可查看该 Pull Request。
 
 ### 使用 Git 在本地进行编辑
 
-虽然大多数情况下您可以直接在 GitHub 上进行编辑，但对于一些较复杂的更改（如一次需要修改较多文件等情况），我们更推荐使用 Git 在本地进行编辑。
+???+ warning
+    对于一般用户，我们更推荐使用上方所述的 GitHub 的 Web 编辑器进行编辑。
+
+虽然大多数情况下您可以直接在 GitHub 上进行编辑，但对于一些较为特殊的情况（如需要使用 GPG 签名），我们更推荐使用 Git 在本地进行编辑。
 
 大致流程如下：
 
@@ -51,7 +57,7 @@
 
 详细的操作方式可以参考 [Git](../tools/git.md) 页面。
 
-### commit 与 Pull Request 要求
+### Commit 信息格式规范
 
 对于提交时需要填写的 commit 信息，请遵守以下几点基本要求：
 
@@ -71,27 +77,44 @@
 - `refactor`：用于对一个页面进行重构（较大规模的更改）的情况。
 - `revert`：用于回退之前更改的情况。
 
+### Pull Request 信息格式规范
+
 对于 Pull Request，请遵守以下几点要求：
 
 1. 标题请写明本次 PR 的目的（做了 **什么** 工作，修复了 **什么** 问题）。
 2. 内容请简要叙述修改的内容。如果修复了一个 issue 的问题，请在内容中添加 `fix #xxxx` 字段，其中 `xxxx` 代表 issue 的编号。
-3. 推荐删除 commit message 中的模板信息（“首先，十分感谢……”这一段）。
+3. 推荐删除 pull request message 中的模板信息（“首先，十分感谢……”这一段）。
 
-下面是几个 PR 标题的示例：
+对于 Pull Request 的标题，推荐使用如下格式书写：
 
-- （错误）修复了一个 bug
-- （正确）修复了动态 dp 页面的一个公式 typo
-- （错误）添加了新内容
-- （正确）为时间复杂度页面添加了证明
+```plain
+<修改类型>(<文件名>): <修改的内容> (<对应 issue 的编号>)
+```
+
+修改类型分为如下几类：
+
+- `feat`：用于添加内容的情况。
+- `fix`：用于修正现有内容错误的情况。
+- `refactor`：用于对一个页面进行重构（较大规模的更改）的情况。
+- `revert`：用于回退之前更改的情况。
+
+示例：
+
+- `fix(ds/persistent-seg): 修改代码注释使描述更清晰`
+- `fix: tools/judger/index 不在目录中 (#3709)`
+- `feat(math/poly/fft): better proof`
+- `refactor(ds/stack): 整理页面内容`
 
 ### 协作流程
 
 1. 在收到一个新的 Pull Request 之后，GitHub 会给 reviewer 发送邮件；
-2. 与此同时，在 [Travis CI](https://travis-ci.org/OI-wiki/OI-wiki) 和 [Netlify](https://app.netlify.com/sites/oi-wiki) 上会运行两组测试，它们会把进度同步在 PR 页面的下方。Travis CI 主要用来确认 PR 中内容的修改不会影响到网站构建的进程；Netlify 用来把 PR 中的更新构建出来，方便 reviewer 审核（在测试完成后点击 Details 可以了解更多）；
+2. 与此同时，在 [GitHub Actions](https://github.com/OI-wiki/OI-wiki/actions) 和 [Netlify](https://app.netlify.com/sites/oi-wiki) 上会运行两组测试，它们会把进度同步在 PR 页面的下方。GitHub Actions 主要用来确认 PR 中内容的修改不会影响到网站构建的进程；Netlify 用来把 PR 中的更新构建出来，方便 reviewer 审核（在测试完成后点击 Details 可以了解更多）；
 3. 在足够多 reviewer 投票通过一个 PR 之后，这个 PR 才可以合并到 master 分支中；
-4. 在合并到 master 分支之后，Travis CI 会重新构建一遍网站内容，并更新到 gh-pages 分支；
+4. 在合并到 master 分支之后，GitHub Actions 会重新构建一遍网站内容，并更新到 gh-pages 分支；
 5. 这时服务器才会拉取 gh-pages 分支的更新，并重新部署最新版本的内容。
 
 ## 参考资料与注释
 
 [^ref1]: [维基百科：新手入门/编辑](https://zh.wikipedia.org/wiki/Wikipedia:%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80/%E7%B7%A8%E8%BC%AF)
+
+[^ref2]: [Web-based editor - GitHub Codespaces - GitHub Docs](https://docs.github.com/en/codespaces/developing-in-codespaces/web-based-editor)
