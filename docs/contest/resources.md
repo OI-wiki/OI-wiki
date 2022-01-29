@@ -140,9 +140,9 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   [算法详解 系列](https://www.algorithmsilluminated.org/)
     - 面向有语言基础的初学者的教材，建议同配套课程一起使用
     - 《Algorithms Illuminated, Part 1: The Basics》- Tim Roughgarden
-    - 《算法详解，卷1：算法基础》 - 徐波 译
+    - 《算法详解，卷 1：算法基础》- 徐波 译
     - 《Algorithms Illuminated, Part 2: Graph Algorithms and Data Structures》- Tim Roughgarden
-    - 《算法详解，卷2： 图算法和数据结构》 - 徐波 译
+    - 《算法详解，卷 2：图算法和数据结构》- 徐波 译
     - 《Algorithms Illuminated, Part 3: Greedy Algorithms and Dynamic Programming》- Tim Roughgarden
     - 《Algorithms Illuminated, Part 4: Algorithms for NP-Hard Problems》- Tim Roughgarden
 
