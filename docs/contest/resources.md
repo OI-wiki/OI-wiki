@@ -136,7 +136,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   《计算几何：算法与应用》- 伯格（Berg,M.D.）著，邓俊辉 译  
     英文版原名*Computational Geometry: Algorithms and Applications*
 -   [《Handbook of Data Structures and Applications, 2nd Edition》](https://www.routledge.com/Handbook-of-Data-Structures-and-Applications/Mehta-Sahni/p/book/9780367572006)
-    - 由许多著名教授如 Sarta jSahni、Hanan Samet、Weiss 等合著，内容较多，建议有一定基础的数据结构爱好者阅读。
+    - 由许多著名教授如 Sartaj Sahni、Hanan Samet、Weiss 等合著，内容较多，建议有一定基础的数据结构爱好者阅读。
 -   [算法详解 系列](https://www.algorithmsilluminated.org/)
     - 面向有语言基础的初学者的教材，建议同配套课程一起使用
     - 《Algorithms Illuminated, Part 1: The Basics》- Tim Roughgarden
