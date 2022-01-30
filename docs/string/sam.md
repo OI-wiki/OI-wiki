@@ -596,7 +596,7 @@ $$
 - [Codeforces 1037H Security](https://codeforces.com/problemset/problem/1037/H)
 - [Codeforces 666E Forensic Examination](https://codeforces.com/problemset/problem/666/E)
 - [HDu4416 Good Article Good sentence](https://vjudge.net/problem/HDU-4416)
-- [HDu4436 str2int](https://vjudge.net/problem/HDU-4436)
+- [HDu4436 str2int](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4398)
 - [HDu6583 Typewriter](https://vjudge.net/problem/HDU-6583)
 - [Codeforces 235C Cyclical Quest](https://codeforces.com/problemset/problem/235/C)
 - [CTSC2012 熟悉的文章](https://www.luogu.com.cn/problem/P4022)

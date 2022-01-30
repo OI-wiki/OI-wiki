@@ -120,11 +120,11 @@
 
 ## 练习
 
-- [「HDU1542」Atlantis](https://vjudge.net/problem/HDU-1542)
+- [「POJ1151」Atlantis](http://poj.org/problem?id=1151)
 
-- [「HDU1828」Picture](https://vjudge.net/problem/HDU-1828)
+- [「POJ1117」Picture](http://poj.org/problem?id=1117)
 
-- [「HDU3265」Posters](https://vjudge.net/problem/HDU-3265)
+- [「POJ3832」Posters](http://poj.org/problem?id=3832)
 
 ## 参考资料
 
