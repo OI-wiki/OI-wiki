@@ -105,8 +105,7 @@
         else
           cnt += dfs(u - 1, x, 0, lim && i == lst);
       }
-      if ((!lim) && (!f0))
-        f[u] = cnt;  // 只有不贴着上限和没有前导零才能记忆
+      if ((!lim) && (!f0)) f[u] = cnt;  // 只有不贴着上限和没有前导零才能记忆
       return cnt;
     }
     ll gans(ll d, int dig) {
