@@ -195,7 +195,7 @@ $$
 
 二维/多维前缀和：
 
-- [HDU 6514 Monitor](http://acm.hdu.edu.cn/showproblem.php?pid=6514)
+- [HDU 6514 Monitor](https://vjudge.net/problem/HDU-6514)
 - [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387)
 - [「HNOI2003」激光炸弹](https://www.luogu.com.cn/problem/P2280)
 

@@ -153,5 +153,5 @@ def calc(l, r, eps):
 ## 习题
 
 - [Luogu4525【模板】自适应辛普森法 1](https://www.luogu.com.cn/problem/P4525)
-- [HDU1724 Ellipse](http://acm.hdu.edu.cn/showproblem.php?pid=1724)
+- [HDU1724 Ellipse](https://vjudge.net/problem/HDU-1724)
 - [NOI2005 月下柠檬树](https://www.luogu.com.cn/problem/P4207)
