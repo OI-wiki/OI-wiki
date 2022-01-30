@@ -26,7 +26,7 @@
 
 ### 习题
 
-- [HDU 2196 Computer](http://acm.hdu.edu.cn/showproblem.php?pid=2196)
+- [HDU 2196 Computer](https://vjudge.net/problem/HDU-2196)
 
 - [POJ 1463 Strategic game](http://poj.org/problem?id=1463)
 

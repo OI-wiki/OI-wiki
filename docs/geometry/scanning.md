@@ -120,11 +120,11 @@
 
 ## 练习
 
-- [「HDU1542」Atlantis](http://acm.hdu.edu.cn/showproblem.php?pid=1542)
+- [「HDU1542」Atlantis](https://vjudge.net/problem/HDU-1542)
 
-- [「HDU1828」Picture](http://acm.hdu.edu.cn/showproblem.php?pid=1828)
+- [「HDU1828」Picture](https://vjudge.net/problem/HDU-1828)
 
-- [「HDU3265」Posters](http://acm.hdu.edu.cn/showproblem.php?pid=3265)
+- [「HDU3265」Posters](https://vjudge.net/problem/HDU-3265)
 
 ## 参考资料
 

@@ -182,7 +182,7 @@
 
         推荐将 **解题代码** 放在折叠文本框内。
 
-    ???+note "[HDOJ 的“A + B Problem”](http://acm.hdu.edu.cn/showproblem.php?pid=1000)"
+    ???+note "[HDOJ 的“A + B Problem”](https://vjudge.net/problem/HDU-1000)"
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
 
         而且推荐以这种方式**标注原题链接**。
@@ -197,7 +197,7 @@
         
         推荐将 **解题代码** 放在折叠文本框内。
 
-    ???+note "[HDOJ 的“A + B Problem”](http://acm.hdu.edu.cn/showproblem.php?pid=1000)"
+    ???+note "[HDOJ 的“A + B Problem”](https://vjudge.net/problem/HDU-1000)"
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
         
         而且推荐以这种方式 **标注原题链接**。

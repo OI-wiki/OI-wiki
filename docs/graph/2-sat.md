@@ -72,7 +72,7 @@
 
 ## 例题
 
-### **HDU3062 [Party](http://acm.hdu.edu.cn/showproblem.php?pid=3062)**
+### **HDU3062 [Party](https://vjudge.net/problem/HDU-3062)**
 
 > 题面：有 n 对夫妻被邀请参加一个聚会，因为场地的问题，每对夫妻中只有 $1$ 人可以列席。在 $2n$ 个人中，某些人之间有着很大的矛盾（当然夫妻之间是没有矛盾的），有矛盾的 $2$ 个人是不会同时出现在聚会上的。有没有可能会有 $n$ 个人同时列席？
 
@@ -102,6 +102,6 @@
 
 ## 练习题
 
-HDU1814 [和平委员会](http://acm.hdu.edu.cn/showproblem.php?pid=1814)
+HDU1814 [和平委员会](https://vjudge.net/problem/HDU-1814)
 
 POJ3683 [牧师忙碌日](http://poj.org/problem?id=3683)
