@@ -102,6 +102,6 @@
 
 ## 练习题
 
-[洛谷P5782 和平委员会](https://www.luogu.com.cn/problem/P5782)
+[洛谷 P5782 和平委员会](https://www.luogu.com.cn/problem/P5782)
 
 POJ3683 [牧师忙碌日](http://poj.org/problem?id=3683)
