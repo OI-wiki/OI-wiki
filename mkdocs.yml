@@ -57,6 +57,7 @@ nav:
       - Xcode: tools/editor/xcode.md
       - GUIDE: tools/editor/guide.md
       - Sublime Text: tools/editor/sublime.md
+      - CP Editor: tools/editor/cpeditor.md
     - 评测工具: 
       - 评测工具简介: tools/judger/index.md
       - Arbiter: tools/judger/arbiter.md
