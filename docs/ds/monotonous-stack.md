@@ -46,5 +46,5 @@ sta.push(x)
 
 ## 练习
 
-- [洛谷 P5788 【模板】单调栈](https://www.luogu.com.cn/problem/P5788)
+- [洛谷 P5788【模板】单调栈](https://www.luogu.com.cn/problem/P5788)
 - [洛谷 P1901 发射站](https://www.luogu.com.cn/problem/P1901)
