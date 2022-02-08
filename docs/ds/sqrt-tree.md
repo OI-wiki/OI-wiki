@@ -299,4 +299,4 @@ class SqrtTree {
 
 [CodeChef - SEGPROD](https://www.codechef.com/NOV17/problems/SEGPROD)
 
-**本页面主要译自 [Sqrt Tree](https://cp-algorithms.com/data_structures/sqrt-tree.html)，版权协议为 CC-BY-SA 4.0。**
+**本页面主要译自 [Sqrt Tree - Algorithms for Competitive Programming](https://cp-algorithms.com/data_structures/sqrt-tree.html)，版权协议为 CC-BY-SA 4.0。**
