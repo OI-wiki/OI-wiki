@@ -45,8 +45,8 @@ void Modify(int l, int r, int c) {
     Sort(x);
     return;
   }
-  for (int i = l; i <= ed[x]; i++) a[i] += c;   // 直接修改起始段
-  for (int i = st[y]; i <= r; i++) a[i] += c;   // 直接修改结束段
+  for (int i = l; i <= ed[x]; i++) a[i] += c;     // 直接修改起始段
+  for (int i = st[y]; i <= r; i++) a[i] += c;     // 直接修改结束段
   for (int i = x + 1; i < y; i++) delta[i] += c;  // 中间的块整体打上标记
   Sort(x);
   Sort(y);
@@ -63,7 +63,8 @@ int Answer(int l, int r, int c) {
   for (int i = st[y]; i <= r; i++)
     if (a[i] + delta[y] >= c) ans++;
   for (int i = x + 1; i <= y - 1; i++)
-    ans += ed[i] - (lower_bound(t + st[i], t + ed[i] + 1, c - delta[i]) - t) + 1;
+    ans +=
+        ed[i] - (lower_bound(t + st[i], t + ed[i] + 1, c - delta[i]) - t) + 1;
   // 用 lower_bound 找出中间每一个整块中第一个大于等于 c 的数的位置
   return ans;
 }
