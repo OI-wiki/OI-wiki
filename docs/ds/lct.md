@@ -1,6 +1,6 @@
 ## 简介
 
-Link/Cut Tree 是一种数据结构，我们用它来解决**动态树问题**。
+Link/Cut Tree 是一种数据结构，我们用它来解决 **动态树问题**。
 
 Link/Cut Tree 又称 Link-Cut Tree，简称 LCT，但它不叫动态树，动态树是指一类问题。
 
@@ -16,7 +16,7 @@ Splay Tree 是 LCT 的基础，但是 LCT 用的 Splay Tree 和普通的 Splay �
 - 查询两点间路径权值和。
 - 修改某点子树权值。
 - 查询某点子树权值和。
-      
+
 唔，看上去是一道树剖模版题。
 
 那么我们再加一个操作
@@ -29,7 +29,7 @@ Splay Tree 是 LCT 的基础，但是 LCT 用的 Splay Tree 和普通的 Splay �
 
 ## 动态树问题
 
-维护一个**森林**，支持删除某条边，加入某条边，并保证加边，删边之后仍是森林。我们要维护这个森林的一些信息。
+维护一个 **森林**，支持删除某条边，加入某条边，并保证加边，删边之后仍是森林。我们要维护这个森林的一些信息。
 
 一般的操作有两点连通性，两点路径权值和，连接两点和切断某条边、修改信息等。
 
@@ -105,7 +105,7 @@ Splay Tree 是 LCT 的基础，但是 LCT 用的 Splay Tree 和普通的 Splay �
 #### Splay 系函数（不会多做解释）
 
 1. `Get(x)` 获取 $x$ 是父亲的哪个儿子。
-2. `Splay(x)` 通过和 Rotate 操作联动实现把 $x$ 旋转到**当前 Splay 的根**。
+2. `Splay(x)` 通过和 Rotate 操作联动实现把 $x$ 旋转到 **当前 Splay 的根**。
 3. `Rotate(x)` 将 $x$ 向上旋转一层的操作。
 
 #### 新操作
@@ -164,7 +164,8 @@ inline void Rotate(int x) {
   PushUp(y), PushUp(x);
 }
 inline void Splay(int x) {
-  Update(x);  // 马上就能看到啦。在 Splay 之前要把旋转会经过的路径上的点都 PushDown
+  Update(
+      x);  // 马上就能看到啦。在 Splay 之前要把旋转会经过的路径上的点都 PushDown
   for (int fa; fa = f[x], !isRoot(x); Rotate(x)) {
     if (!isRoot(fa)) Rotate(Get(fa) == Get(x) ? fa : x);
   }
