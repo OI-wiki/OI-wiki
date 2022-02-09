@@ -88,7 +88,6 @@ $$
 Sequence 构造生成了所有可能的组合。
 
 ???+note "例"
-
     $$
     \begin{aligned}
     \operatorname{SEQ}(\lbrace a\rbrace)&=\lbrace \epsilon\rbrace +\lbrace a\rbrace +\lbrace (a,a)\rbrace +\lbrace (a,a,a)\rbrace +\cdots\\
@@ -116,19 +115,18 @@ $$
 其中 $Q$ 为 Pólya 准逆（quasi-inversion）。
 
 ???+note "例：有序有根树（ordered rooted tree）"
-    
     我们可以使用 Sequence 构造来定义有序有根树，即孩子之间的顺序有意义的有根树，设该组合类为 $\mathcal{T}$ 那么一棵树为一个根节点和树的 Sequence，即
-
+    
     $$
     \mathcal{T}=\lbrace \bullet\rbrace\times\operatorname{SEQ}(\mathcal{T})
     $$
-
+    
     对应 OGF 为
-
+    
     $$
     T(z)=\frac{z}{1-T(z)}
     $$
-
+    
     前几项系数为 `0 1 1 2 5 14 42 132 429 1430 4862 16796`，忽略常数项即 OEIS [A000108](http://oeis.org/A000108)。
 
 ### 集合的 Multiset 构造
@@ -136,7 +134,6 @@ $$
 Multiset 构造生成了所有可能的组合，但不区分仅排列不同的组合。
 
 ???+note "例"
-
     $$
     \begin{aligned}
     \operatorname{MSET}(\lbrace a\rbrace)&=\lbrace \epsilon\rbrace +\lbrace a\rbrace +\lbrace (a,a)\rbrace +\lbrace (a,a,a)\rbrace +\cdots\\
@@ -146,7 +143,7 @@ Multiset 构造生成了所有可能的组合，但不区分仅排列不同的�
     &+\cdots
     \end{aligned}
     $$
-
+    
     注意到 $\lbrace (b,a)\rbrace,\lbrace (a,b,a)\rbrace$ 在 $\operatorname{SEQ}(\lbrace a,b\rbrace)$ 中出现，但在 $\operatorname{MSET}(\lbrace a,b\rbrace)$ 没有出现。
 
 我们定义其递推式为
@@ -194,39 +191,36 @@ $$
 其中 $\operatorname{Exp}$ 为 Pólya 指数，也被称为 Euler 变换。
 
 ???+note "例题 [LOJ 6268. 分拆数](https://loj.ac/p/6268)"
-
     **题意**：令 $f(n)$ 表示将 $n$ 进行分拆的方案数，求 $f(1),f(2),\dots,f(10^5)$ 对 $998244353$ 取模的值。
-
+    
     **解**：设全体正整数类为 $\mathcal{I}$，那么 $\mathcal{I}=\operatorname{SEQ}_{\geq 1}(\mathcal{Z})=\mathcal{Z}\times \operatorname{SEQ}(\mathcal{Z})$（下标 $\geq 1$ 为有限制的构造，见后文）。所求即
-
+    
     $$
     \operatorname{MSET}(\mathcal{I})
     $$
-
+    
     对应 OGF 前几项系数为 `1 2 3 5 7 11 15 22 30 42`（忽略常数项）即 OEIS [A000041](https://oeis.org/A000041)。
 
 ???+note "例题 [洛谷 P4389 付公主的背包](https://www.luogu.com.cn/problem/P4389)"
-
     **题意**：给出 $n$ 种体积分别为 $v_1,\dots ,v_n$ 的商品和正整数 $m$，求体积为 $1,2,\dots,m$ 的背包装满的方案数（商品数量不限，有同体积的不同种商品）对 $998244353$ 取模的值。约定 $1\leq n,m\leq 10^5$ 且 $1\leq v_i\leq m$。
-
+    
     **解**：设商品的组合类为 $\mathcal{A}$，所求即 $\operatorname{MSET}(\mathcal{A})$ 对应 OGF 的系数。
 
 ???+note "例题 [洛谷 P5900 无标号无根树计数](https://www.luogu.com.cn/problem/P5900)"
-
     **题意**：求出 $n$ 个节点的无标号无根树的个数对 $998244353$ 取模的值。约定 $1\leq n\leq 2\times 10^5$。
-
+    
     **解**：设无标号有根树的组合类为 $\mathcal{T}$，那么
-
+    
     $$
     \mathcal{T}=\lbrace \bullet\rbrace\times\operatorname{MSET}(\mathcal{T})
     $$
-
+    
     根据 Richard Otter 的论文 [The Number of Trees](https://users.math.msu.edu/users/magyarp/Math482/Otter-Trees.pdf) 中的描述，对应无根树的 OGF 为
-
+    
     $$
     T(z)-\frac{1}{2}T^2(z)+\frac{1}{2}T(z^2)
     $$
-
+    
     前几项系数为 `1 1 1 2 3 6 11 23 47 106`（忽略常数项）即 OEIS [A000055](https://oeis.org/A000055)。
 
 ### 集合的 Powerset 构造
@@ -234,7 +228,6 @@ $$
 Powerset 构造生成了所有子集。
 
 ???+note "例"
-
     $$
     \begin{aligned}
     \operatorname{PSET}(\lbrace a\rbrace)&=\lbrace \epsilon\rbrace +\lbrace a\rbrace \\
@@ -285,19 +278,18 @@ $$
 其中 $\mathbf{S}$ 为等价关系，我们说 $(\alpha_1,\dots,\alpha_n)\mathbf{S}(\beta_1,\dots,\beta_n)$ 当且仅当存在任一循环位移 $\tau$ 对于所有 $j$ 都满足 $\beta_j=\alpha_{\tau(j)}$。
 
 ???+note "例"
-
     为了简便我们令 $\texttt{a},\texttt{b}$ 均为大小为 $1$ 的字符，这里仅列举大小为 $3$ 和 $4$ 的字符串：
-
+    
     $$
     \operatorname{CYC}(\lbrace \texttt{a},\texttt{b}\rbrace)_3=\lbrace \texttt{aaa}\rbrace +\lbrace \texttt{aab}\rbrace+\lbrace \texttt{abb}\rbrace+\lbrace \texttt{bbb}\rbrace
     $$
-
+    
     其中 $\texttt{aab}\mathbf{S}\texttt{baa}\mathbf{S}\texttt{aba}$ 只保留其一，同样的 $\texttt{abb}\mathbf{S}\texttt{bab}\mathbf{S}\texttt{bba}$ 只保留其一。
-
+    
     $$
     \operatorname{CYC}(\lbrace \texttt{a},\texttt{b}\rbrace)_4=\lbrace \texttt{aaaa}\rbrace +\lbrace \texttt{aaab}\rbrace+\lbrace \texttt{aabb}\rbrace+\lbrace \texttt{abbb}\rbrace+\lbrace \texttt{bbbb}\rbrace +\lbrace \texttt{abab}\rbrace
     $$
-
+    
     其中 $\texttt{aaab}\mathbf{S}\texttt{baaa}\mathbf{S}\texttt{abaa}\mathbf{S}\texttt{aaba}$，$\texttt{aabb}\mathbf{S}\texttt{baab}\mathbf{S}\texttt{bbaa}\mathbf{S}\texttt{abba}$，$\texttt{abbb}\mathbf{S}\texttt{babb}\mathbf{S}\texttt{bbab}\mathbf{S}\texttt{bbba}$ 和 $\texttt{abab}\mathbf{S}\texttt{baba}$。
 
 对应 OGF 为
@@ -382,9 +374,8 @@ $$
 对于 $\operatorname{CYC}_k(\mathcal{B})$ 同理。
 
 ??? note "使用上式计算 $\operatorname{MSET}_3(\mathcal{B})$ 和 $\operatorname{MSET}_4(\mathcal{B})$ 对应 OGF"
-
     尝试计算 $\mathcal{A}=\operatorname{MSET}_3(\mathcal{B})$ 为
-
+    
     $$
     \begin{aligned}
     \lbrack u^3\rbrack A(z,u)&= \frac{1}{0!}\left(\lbrack u^3\rbrack 1\right)+\frac{1}{1!}\left(\lbrack u^3\rbrack \left(\frac{u}{1}B(z)+\frac{u^2}{2}B(z^2)+\frac{u^3}{3}B(z^3)+\cdots \right)\right)\\
@@ -393,9 +384,9 @@ $$
     &=\frac{B(z)^3}{6}+\frac{B(z)B(z^2)}{2}+\frac{B(z)^3}{3}
     \end{aligned}
     $$
-
+    
     尝试计算 $\mathcal{A}=\operatorname{MSET}_4(\mathcal{B})$ 为
-
+    
     $$
     \begin{aligned}
     \lbrack u^4\rbrack A(z,u)&= \frac{1}{0!}\left(\lbrack u^4\rbrack 1\right)+\frac{1}{1!}\left(\lbrack u^4\rbrack \left(\frac{u}{1}B(z)+\frac{u^2}{2}B(z^2)+\frac{u^3}{3}B(z^3)+\frac{u^4}{4}B(z^4)+\cdots \right)\right)\\
@@ -412,7 +403,6 @@ $$
 需要注意的是对于有限制的构造 $\mathfrak{K}_k(\mathcal{B})$ 并没有要求 $\mathcal{B}_0=\varnothing$。
 
 ???+note "常用有限制的构造"
-
     $$
     \begin{aligned}
     \operatorname{PSET} _ {2}(\mathcal{A})&:\quad \frac{A(z)^2}{2}-\frac{A(z^2)}{2}\\
@@ -420,7 +410,7 @@ $$
     \operatorname{CYC} _ {2}(\mathcal{A})&:\quad \frac{A(z)^2}{2}+\frac{A(z^2)}{2}
     \end{aligned}
     $$
-
+    
     $$
     \begin{aligned}
     \operatorname{PSET} _ {3}(\mathcal{A})&:\quad \frac{A(z)^3}{6}-\frac{A(z)A(z^2)}{2}+\frac{A(z^3)}{3}\\
@@ -428,7 +418,7 @@ $$
     \operatorname{CYC} _ {3}(\mathcal{A})&:\quad \frac{A(z)^3}{3}+\frac{2A(z^3)}{3}\\
     \end{aligned}
     $$
-
+    
     $$
     \begin{aligned}
     \operatorname{PSET} _ {4}(\mathcal{A})&:\quad \frac{A(z)^4}{24}-\frac{A(z)^2A(z^2)}{4}+\frac{A(z)A(z^3)}{3}+\frac{A(z^2)^2}{8}-\frac{A(z^4)}{4}\\
@@ -440,23 +430,22 @@ $$
 上面的计算方法虽然有效但比较麻烦，读者可阅读 WolframMathWorld 网站的 [Pólya Enumeration Theorem](https://mathworld.wolfram.com/PolyaEnumerationTheorem.html) 和 [Cycle Index](https://mathworld.wolfram.com/CycleIndex.html) 等相关资料，后者 Cycle Index 在 OEIS 的生成函数表达式中也经常出现。
 
 ???+note "例题 [LOJ 6538. 烷基计数 加强版 加强版](https://loj.ac/p/6538)"
-
     **题意**：求出 $n$ 个节点的有根且根节点度数不超过 $3$，其余节点度数不超过 $4$ 的无序树的个数对 $998244353$ 取模的值。约定 $1\leq n\leq 10^5$。
-
+    
     **解**：设组合类为 $\mathcal{T}$ 那么
-
+    
     $$
     \mathcal{T}=\lbrace \bullet\rbrace\times\operatorname{MSET}_{0,1,2,3}(\mathcal{T})
     $$
-
+    
     对应 OGF 的系数，或令组合类 $\hat{\mathcal{T}}=\mathcal{T}+\lbrace \epsilon\rbrace$ 那么
-
+    
     $$
     \hat{\mathcal{T}}=\lbrace \epsilon\rbrace +\lbrace \bullet\rbrace\times\operatorname{MSET}_{3}(\hat{\mathcal{T}})
     $$
-
+    
     可得到相同的结果。
 
 ## 参考文献
 
-- Philippe Flajolet and Robert Sedgewick. [Analytic Combinatorics](http://algo.inria.fr/flajolet/Publications/books.html).
+- Philippe Flajolet and Robert Sedgewick.[Analytic Combinatorics](http://algo.inria.fr/flajolet/Publications/books.html).
