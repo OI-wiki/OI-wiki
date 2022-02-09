@@ -58,11 +58,11 @@ int find(int x) {
 
 // 非递归
 int find(int x) {
-    while (x != fa[x])  // 如果 x 不是祖先，就一直往上一辈找
-    {
-        x = fa[x];
-    }
-    return x;  // 如果 x 是祖先则返回
+  while (x != fa[x])  // 如果 x 不是祖先，就一直往上一辈找
+  {
+    x = fa[x];
+  }
+  return x;  // 如果 x 是祖先则返回
 }
 ```
 
