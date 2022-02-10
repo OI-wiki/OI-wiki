@@ -97,7 +97,7 @@ Sequence 构造生成了所有可能的组合。
     &+\cdots
     \end{aligned}
     $$
-
+    
     可以看到 $\lbrace (a,b)\rbrace ,\lbrace (b,a)\rbrace$ 这样组成部分的顺序不同的元素被生成了，可以认为 Sequence 构造生成了有序的组合。
 
 我们定义
