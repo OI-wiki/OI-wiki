@@ -133,7 +133,7 @@ $$
 
 ### 集合的 Multiset 构造
 
-Multiset 构造生成了所有可能的组合，但不区分仅排列不同的组合。
+Multiset 构造生成了所有可能的组合，但不区分组成部分的元素之间的顺序。
 
 ???+note "例"
     $$
@@ -277,7 +277,7 @@ $$
 \operatorname{CYC}(\mathcal{A})=\left(\operatorname{SEQ}(\mathcal{A})\setminus\lbrace \epsilon\rbrace\right)/\mathbf{S}
 $$
 
-其中 $\mathbf{S}$ 为等价关系，我们说 $(\alpha_1,\dots,\alpha_n)\mathbf{S}(\beta_1,\dots,\beta_n)$ 当且仅当存在任一循环位移 $\tau$ 对于所有 $j$ 都满足 $\beta_j=\alpha_{\tau(j)}$。
+其中 $\mathbf{S}$ 为等价关系，我们说 $(\alpha_1,\dots,\alpha_n)\mathbf{S}(\beta_1,\dots,\beta_n)$ 当且仅当存在任一循环移位 $\tau$ 对于所有 $j$ 都满足 $\beta_j=\alpha_{\tau(j)}$。
 
 ???+note "例"
     为了简便我们令 $\texttt{a},\texttt{b}$ 均为大小为 $1$ 的字符，这里仅列举大小为 $3$ 和 $4$ 的字符串：
