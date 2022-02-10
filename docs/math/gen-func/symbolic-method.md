@@ -69,7 +69,7 @@ $$
 A(z)\cdot B(z)
 $$
 
-因为 $(\alpha,\beta)$ 的大小为其组成部分的大小之和，那么显然也有
+我们定义 $(\alpha,\beta)$ 的大小为其组成部分的大小之和，那么显然也有
 
 $$
 \gamma =(\alpha_1,\alpha_2,\dots ,\alpha_n)\implies \lvert \gamma\rvert =\lvert \alpha_1\rvert +\lvert \alpha_2\rvert +\cdots +\lvert \alpha_n\rvert
@@ -97,6 +97,8 @@ Sequence 构造生成了所有可能的组合。
     &+\cdots
     \end{aligned}
     $$
+
+    可以看到 $\lbrace (a,b)\rbrace ,\lbrace (b,a)\rbrace$ 这样组成部分的顺序不同的元素被生成了，可以认为 Sequence 构造生成了有序的组合。
 
 我们定义
 
@@ -144,7 +146,7 @@ Multiset 构造生成了所有可能的组合，但不区分仅排列不同的�
     \end{aligned}
     $$
     
-    注意到 $\lbrace (b,a)\rbrace,\lbrace (a,b,a)\rbrace$ 在 $\operatorname{SEQ}(\lbrace a,b\rbrace)$ 中出现，但在 $\operatorname{MSET}(\lbrace a,b\rbrace)$ 没有出现。
+    注意到 $\lbrace (b,a)\rbrace,\lbrace (a,b,a)\rbrace$ 在 $\operatorname{SEQ}(\lbrace a,b\rbrace)$ 中出现，但在 $\operatorname{MSET}(\lbrace a,b\rbrace)$ 没有出现，可以认为 Multiset 生成了无序的组合。
 
 我们定义其递推式为
 
@@ -438,7 +440,7 @@ $$
     \mathcal{T}=\lbrace \bullet\rbrace\times\operatorname{MSET}_{0,1,2,3}(\mathcal{T})
     $$
     
-    对应 OGF 的系数，或令组合类 $\hat{\mathcal{T}}=\mathcal{T}+\lbrace \epsilon\rbrace$ 那么
+    或令组合类 $\hat{\mathcal{T}}=\mathcal{T}+\lbrace \epsilon\rbrace$ 那么
     
     $$
     \hat{\mathcal{T}}=\lbrace \epsilon\rbrace +\lbrace \bullet\rbrace\times\operatorname{MSET}_{3}(\hat{\mathcal{T}})
