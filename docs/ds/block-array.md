@@ -28,7 +28,9 @@ for (int i = 1; i <= num; i++) {
 1. 区间 $[x,y]$ 每个数都加上 $z$；
 2. 查询区间 $[x,y]$ 内大于等于 $z$ 的数的个数。
 
-我们要询问一个块内大于等于一个数的数的个数，所以需要一个 `t` 数组对块内排序，`a` 为原来的（未被排序的）数组。对于整块的修改，使用类似于标记永久化的方式，用 `dlt` 保存现在块内整体加上的值。设 $q$ 为查询和修改的操作次数总和，则时间复杂度 $O(q\sqrt{n}\log n)$。
+我们要询问一个块内大于等于一个数的数的个数，所以需要一个 `t` 数组对块内排序，`a` 为原来的（未被排序的）数组。对于整块的修改，使用类似于标记永久化的方式，用 `delta` 数组记录现在块内整体加上的值。设 $q$ 为查询和修改的操作次数总和，则时间复杂度 $O(q\sqrt{n}\log n)$。
+
+用 `delta` 数组记录每个块的整体赋值情况。
 
 ```cpp
 void Sort(int k) {
@@ -43,9 +45,9 @@ void Modify(int l, int r, int c) {
     Sort(x);
     return;
   }
-  for (int i = l; i <= ed[x]; i++) a[i] += c;   // 直接修改起始段
-  for (int i = st[y]; i <= r; i++) a[i] += c;   // 直接修改结束段
-  for (int i = x + 1; i < y; i++) dlt[i] += c;  // 中间的整块打上标记
+  for (int i = l; i <= ed[x]; i++) a[i] += c;     // 直接修改起始段
+  for (int i = st[y]; i <= r; i++) a[i] += c;     // 直接修改结束段
+  for (int i = x + 1; i < y; i++) delta[i] += c;  // 中间的块整体打上标记
   Sort(x);
   Sort(y);
 }
@@ -53,15 +55,16 @@ int Answer(int l, int r, int c) {
   int ans = 0, x = belong[l], y = belong[r];
   if (x == y) {
     for (int i = l; i <= r; i++)
-      if (a[i] + dlt[x] >= c) ans++;
+      if (a[i] + delta[x] >= c) ans++;
     return ans;
   }
   for (int i = l; i <= ed[x]; i++)
-    if (a[i] + dlt[x] >= c) ans++;
+    if (a[i] + delta[x] >= c) ans++;
   for (int i = st[y]; i <= r; i++)
-    if (a[i] + dlt[y] >= c) ans++;
+    if (a[i] + delta[y] >= c) ans++;
   for (int i = x + 1; i <= y - 1; i++)
-    ans += ed[i] - (lower_bound(t + st[i], t + ed[i] + 1, c - dlt[i]) - t) + 1;
+    ans +=
+        ed[i] - (lower_bound(t + st[i], t + ed[i] + 1, c - delta[i]) - t) + 1;
   // 用 lower_bound 找出中间每一个整块中第一个大于等于 c 的数的位置
   return ans;
 }
@@ -74,7 +77,7 @@ int Answer(int l, int r, int c) {
 1. 区间 $[x,y]$ 每个数都变成 $z$；
 2. 查询区间 $[x,y]$ 内小于等于 $z$ 的数的个数。
 
-用 `dlt` 保存现在块内是否被整体赋值了。用一个值表示没有。对于边角块，查询前要 `pushdown`，把块内存的信息下放到每一个数上。赋值之后记得重新 `sort` 一遍。其他方面同上题。
+用 `delta` 数组记录现在块内被整体赋值为何值。当该块未被整体赋值时，用一个特殊值（如 `0x3f3f3f3f3f3f3f3fll`）加以表示。对于边角块，查询前要 `pushdown`，把块内存的信息下放到每一个数上。赋值之后记得重新 `sort` 一遍。其他方面同上题。
 
 ```cpp
 void Sort(int k) {
@@ -82,9 +85,9 @@ void Sort(int k) {
   sort(t + st[k], t + ed[k] + 1);
 }
 void PushDown(int x) {
-  if (dlt[x] != 0x3f3f3f3f3f3f3f3fll)  // 用该值标记块内没有被整体赋值
-    for (int i = st[x]; i <= ed[x]; i++) a[i] = t[i] = dlt[x];
-  dlt[x] = 0x3f3f3f3f3f3f3f3fll;
+  if (delta[x] != 0x3f3f3f3f3f3f3f3fll)  // 用该值标记块内没有被整体赋值
+    for (int i = st[x]; i <= ed[x]; i++) a[i] = t[i] = delta[x];
+  delta[x] = 0x3f3f3f3f3f3f3f3fll;
 }
 void Modify(int l, int r, int c) {
   int x = belong[l], y = belong[r];
@@ -99,7 +102,7 @@ void Modify(int l, int r, int c) {
   for (int i = st[y]; i <= r; i++) a[i] = c;
   Sort(x);
   Sort(y);
-  for (int i = x + 1; i < y; i++) dlt[i] = c;
+  for (int i = x + 1; i < y; i++) delta[i] = c;
 }
 int Binary_Search(int l, int r, int c) {
   int ans = l - 1, mid;
@@ -126,9 +129,9 @@ int Answer(int l, int r, int c) {
   for (int i = st[y]; i <= r; i++)
     if (a[i] <= c) ans++;
   for (int i = x + 1; i <= y - 1; i++) {
-    if (0x3f3f3f3f3f3f3f3fll == dlt[i])
+    if (0x3f3f3f3f3f3f3f3fll == delta[i])
       ans += Binary_Search(st[i], ed[i], c) - st[i] + 1;
-    else if (dlt[i] <= c)
+    else if (delta[i] <= c)
       ans += size[i];
   }
   return ans;
