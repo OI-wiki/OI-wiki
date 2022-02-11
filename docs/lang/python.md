@@ -67,7 +67,7 @@ sudo apt install python3
 
 ### 关于镜像和 pip
 
-目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学](https://mirror.bjtu.edu.cn/python/)、[华为开源镜像站](https://mirrors.huaweicloud.com/python/) 和 [淘宝开源镜像站](https://npm.taobao.org/mirrors/python/) 在做，如果您有下载问题的话可以到那里尝试一下。
+目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学](https://mirror.bjtu.edu.cn/python/)和[华为开源镜像站](https://repo.huaweicloud.com/python//) 在做，如果您有下载问题的话可以到那里尝试一下。
 
 如果您还有使用 pip 安装其他模块的需求，请参照 [TUNA 的镜像更换帮助](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/)。
 
