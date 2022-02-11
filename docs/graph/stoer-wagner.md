@@ -66,7 +66,7 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
 
 定义一个点 $v$ 被激活，当且仅当 $v$ 在加入 $A$ 中时，发现在 $A$ 此时最后一个点 $u$ 早于 $v$ 加入集合，并且在图 $G'' = (V', E'/C)$ 中，$u$ 与 $v$ 不在同一连通块。
 
- ![Stoer-Wagner1](https://raw.githubusercontent.com/OI-wiki/OI-wiki/a0708ed19ecf65d0e51211ee747805d7a4175950/docs/graph/images/Stoer-Wagner1.png)
+ ![Stoer-Wagner1](./images/Stoer-Wagner1.png)
 
 如图，蓝色区域和黄色区域为两个不同的连通块，[] 中的数字为加入 $A$ 的顺序，灰色节点为活跃节点，白色节点则不是
 
