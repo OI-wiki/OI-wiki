@@ -110,7 +110,7 @@ Dinkelbach 算法的大概思想是每次用上一轮的答案当做新的 $L$ �
 
 为了节省篇幅，下面的代码只保留 `check` 部分。主程序和本题是类似的。
 
-### POJ2976 Dropping tests
+### [POJ2976 Dropping tests](http://poj.org/problem?id=2976)
 
 > 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$。
 >
@@ -131,7 +131,7 @@ inline bool check(double mid) {
 }
 ```
 
-### 洛谷 4377 Talent Show
+### [洛谷 4377 Talent Show](https://www.luogu.com.cn/problem/P4377)
 
 > 有 $n$ 个物品，每个物品有两个权值 $a$ 和 $b$。
 >
@@ -160,7 +160,7 @@ inline bool check(double mid) {
 }
 ```
 
-### POJ2728 Desert King
+### [POJ2728 Desert King](http://poj.org/problem?id=2728)
 
 > 每条边有两个权值 $a_i$ 和 $b_i$，求一棵生成树 $T$ 使得 $\displaystyle\frac{\sum_{e\in T}a_e}{\sum_{e\in T}b_e}$ 最小。
 
@@ -168,7 +168,7 @@ inline bool check(double mid) {
 
 代码就是求最小生成树，我就不放代码了。
 
-### [HNOI2009]最小圈
+### [[HNOI2009]最小圈](https://www.luogu.com.cn/problem/P3199)
 
 > 每条边的边权为 $w$，求一个环 $C$ 使得 $\displaystyle\frac{\sum_{e\in C}w}{|C|}$ 最小。
 
