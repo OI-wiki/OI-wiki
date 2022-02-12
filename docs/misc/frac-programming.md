@@ -168,7 +168,7 @@ inline bool check(double mid) {
 
 代码就是求最小生成树，我就不放代码了。
 
-### [[HNOI2009]最小圈](https://www.luogu.com.cn/problem/P3199)
+### [\[HNOI2009\] 最小圈](https://www.luogu.com.cn/problem/P3199)
 
 > 每条边的边权为 $w$，求一个环 $C$ 使得 $\displaystyle\frac{\sum_{e\in C}w}{|C|}$ 最小。
 

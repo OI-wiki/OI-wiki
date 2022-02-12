@@ -195,11 +195,11 @@ void solve(int l, int r, int L, int R)
       else
         q[i].k -= t, q2[++cnt2] = q[i];
     } else
-        // 是修改: 更新树状数组 & 分类
-        if (q[i].y <= m)
-      add(q[i].x, q[i].k), q1[++cnt1] = q[i];
-    else
-      q2[++cnt2] = q[i];
+      // 是修改: 更新树状数组 & 分类
+      if (q[i].y <= m)
+        add(q[i].x, q[i].k), q1[++cnt1] = q[i];
+      else
+        q2[++cnt2] = q[i];
   for (int i = 1; i <= cnt1; i++)
     if (q1[i].type == 0) add(q1[i].pos, -q1[i].k);  // 清空树状数组
   for (int i = 1; i <= cnt1; i++) q[L + i - 1] = q1[i];
