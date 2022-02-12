@@ -37,7 +37,7 @@ list<vector<char> > orz_list;
 
 ## 例题
 
-Big String POJ - 2887
+[POJ2887 Big String](http://poj.org/problem?id=2887)
 
 题解：
 很简单的模板题。代码如下：
