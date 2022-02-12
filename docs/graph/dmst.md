@@ -99,19 +99,27 @@ typedef long long ll;
 
 struct UnionFind {
   int fa[maxn << 1];
+
   UnionFind() { memset(fa, 0, sizeof(fa)); }
+
   void clear(int n) { memset(fa + 1, 0, sizeof(int) * n); }
+
   int find(int x) { return fa[x] ? fa[x] = find(fa[x]) : x; }
+
   int operator[](int x) { return find(x); }
 };
+
 struct Edge {
   int u, v, w, w0;
 };
+
 struct Heap {
   Edge *e;
   int rk, constant;
   Heap *lch, *rch;
+
   Heap(Edge *_e) : e(_e), rk(1), constant(0), lch(NULL), rch(NULL) {}
+
   void push() {
     if (lch) lch->constant += constant;
     if (rch) rch->constant += constant;
@@ -119,6 +127,7 @@ struct Heap {
     constant = 0;
   }
 };
+
 Heap *merge(Heap *x, Heap *y) {
   if (!x) return y;
   if (!y) return x;
@@ -132,6 +141,7 @@ Heap *merge(Heap *x, Heap *y) {
     x->rk = 1;
   return x;
 }
+
 Edge *extract(Heap *&x) {
   Edge *r = x->e;
   x->push();
@@ -162,7 +172,7 @@ void contract() {
   }
   mark[1] = true;
   for (int a = 1, b = 1, p; Q[a]; b = a, mark[b] = true) {
-    //寻找最小入边以及其端点，保证无环。
+    // 寻找最小入边以及其端点，保证无环。
     do {
       ed[a] = extract(Q[a]);
       a = id[ed[a]->u];
@@ -181,6 +191,7 @@ void contract() {
 }
 
 ll expand(int x, int r);
+
 ll expand_iter(int x) {
   ll r = 0;
   for (int u = nxt[x]; u != x; u = nxt[u]) {
@@ -191,6 +202,7 @@ ll expand_iter(int x) {
   }
   return r;
 }
+
 ll expand(int x, int t) {
   ll r = 0;
   for (; x != t; x = fa[x]) {
@@ -199,6 +211,7 @@ ll expand(int x, int t) {
   }
   return r;
 }
+
 void link(int u, int v, int w) { in[v].push_back({u, v, w, w}); }
 
 int main() {

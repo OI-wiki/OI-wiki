@@ -44,6 +44,7 @@
     ll l, r, dp[N], sum[N], mi[N];
     ll ans1[N], ans2[N];
     int a[N];
+    
     inline void solve(ll n, ll *ans) {
       ll tmp = n;
       int len = 0;
@@ -55,6 +56,7 @@
         ans[0] -= mi[i - 1];
       }
     }
+    
     int main() {
       scanf("%lld%lld", &l, &r);
       mi[0] = 1ll;
@@ -84,6 +86,7 @@
     #define ll long long
     ll a, b;
     ll f[15], ksm[15], p[15], now[15];
+    
     ll dfs(int u, int x, bool f0,
            bool lim) {  // u 表示位数，f0 是否有前导零，lim 是否都贴在上限上
       if (!u) {
@@ -108,6 +111,7 @@
       if ((!lim) && (!f0)) f[u] = cnt;  // 只有不贴着上限和没有前导零才能记忆
       return cnt;
     }
+    
     ll gans(ll d, int dig) {
       int len = 0;
       memset(f, -1, sizeof(f));
@@ -118,6 +122,7 @@
       }
       return dfs(len, dig, 1, 1);
     }
+    
     int main() {
       scanf("%lld%lld", &a, &b);
       ksm[0] = 1;
@@ -215,6 +220,7 @@
       if (!op) f[x][st] = ret;
       return ret;
     }
+    
     int solve(int x) {
       memset(f, -1, sizeof f);
       dim.clear();
@@ -254,6 +260,7 @@
       }
       return 1ll;
     }
+    
     // now: 当前位, eff: 有效位, fulc: 是否全顶格, ful0: 是否全0
     int dfs(int now, int eff, bool ful0, bool fulc) {
       if (now == 0) return 1ll;
@@ -311,6 +318,7 @@
     int n, m;
     char s[N], c[N];
     int ch[N][10], fail[N], ed[N], tot, len;
+    
     inline void insert() {
       int now = 0;
       int L = strlen(s);
@@ -320,7 +328,9 @@
       }
       ed[now] = 1;
     }
+    
     queue<int> q;
+    
     inline void build() {
       for (int i = 0; i < 10; ++i)
         if (ch[0][i]) q.push(ch[0][i]);
@@ -337,8 +347,11 @@
       }
       ch[0][0] = 0;
     }
+    
     ll f[N][N][2], ans;
+    
     inline void add(ll &x, ll y) { x = (x + y) % mod; }
+    
     int main() {
       scanf("%s", c);
       n = strlen(c);

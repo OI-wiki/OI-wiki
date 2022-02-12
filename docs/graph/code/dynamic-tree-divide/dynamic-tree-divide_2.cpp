@@ -5,8 +5,10 @@ using namespace std;
 const int maxn = 100010;
 const int inf = 2e9;
 const int ddd = 6000010;
+
 struct Segtree {
   int cnt, rt[maxn], sum[ddd], lc[ddd], rc[ddd];
+
   void update(int& o, int l, int r, int x, int v) {
     if (!o) o = ++cnt;
     if (l == r) {
@@ -20,6 +22,7 @@ struct Segtree {
       update(rc[o], mid + 1, r, x, v);
     sum[o] = sum[lc[o]] + sum[rc[o]];
   }
+
   int query(int o, int l, int r, int ql, int qr) {
     if (!o || r < ql || l > qr) return 0;
     if (ql <= l && r <= qr) return sum[o];
@@ -27,20 +30,25 @@ struct Segtree {
     return query(lc[o], l, mid, ql, qr) + query(rc[o], mid + 1, r, ql, qr);
   }
 } dist, ch;
+
 int n, m, val[maxn], u, v, op, x, y, lstans;
 int cur, h[maxn * 2], nxt[maxn * 2], p[maxn * 2];
+
 void add_edge(int x, int y) {
   cur++;
   nxt[cur] = h[x];
   h[x] = cur;
   p[cur] = y;
 }
+
 struct LCA {
   int dep[maxn], lg[maxn], fa[maxn][20];
+
   void dfs(int x, int f) {
     for (int j = h[x]; j; j = nxt[j])
       if (p[j] != f) dep[p[j]] = dep[x] + 1, fa[p[j]][0] = x, dfs(p[j], x);
   }
+
   void init() {
     dep[1] = 1;
     dfs(1, -1);
@@ -48,6 +56,7 @@ struct LCA {
     for (int j = 1; j <= lg[n]; j++)
       for (int i = 1; i <= n; i++) fa[i][j] = fa[fa[i][j - 1]][j - 1];
   }
+
   int query(int x, int y) {
     if (dep[x] > dep[y]) swap(x, y);
     int k = dep[y] - dep[x];
@@ -59,11 +68,14 @@ struct LCA {
       if (fa[x][i] != fa[y][i]) x = fa[x][i], y = fa[y][i];
     return fa[x][0];
   }
+
   int dist(int x, int y) { return dep[x] + dep[y] - 2 * dep[query(x, y)]; }
 } lca;
+
 int rt, sum, siz[maxn], maxx[maxn], fa[maxn];
 int d[maxn][20], dep[maxn];
 bool vis[maxn];
+
 void calcsiz(int x, int fa) {
   siz[x] = 1;
   maxx[x] = 0;
@@ -78,16 +90,19 @@ void calcsiz(int x, int fa) {
   if (maxx[x] < maxx[rt])
     rt = x;  // 这里不能写 <= ，保证在第二次 calcsiz 时 rt 不改变
 }
+
 void dfs1(int x, int fa, int y, int d) {
   ch.update(ch.rt[y], 0, n, d, val[x]);
   for (int j = h[x]; j; j = nxt[j])
     if (p[j] != fa && !vis[p[j]]) dfs1(p[j], x, y, d + 1);
 }
+
 void dfs2(int x, int fa, int y, int d) {
   dist.update(dist.rt[y], 0, n, d, val[x]);
   for (int j = h[x]; j; j = nxt[j])
     if (p[j] != fa && !vis[p[j]]) dfs2(p[j], x, y, d + 1);
 }
+
 void pre(int x) {
   vis[x] = true;  // 表示在之后的过程中不考虑 x 这个点
   dfs2(x, -1, x, 0);
@@ -104,6 +119,7 @@ void pre(int x) {
       pre(rt);  // 记录点分树上的父亲
     }
 }
+
 int main() {
   scanf("%d%d", &n, &m);
   for (int i = 1; i <= n; i++) scanf("%d", val + i);

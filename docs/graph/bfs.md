@@ -58,6 +58,7 @@ void bfs(int u) {
     }
   }
 }
+
 void restore(int x) {
   vector<int> res;
   for (int v = x; v != -1; v = p[v]) {

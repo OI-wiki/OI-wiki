@@ -177,20 +177,24 @@ const int N = 200010;
 
 int n, m, a[N], st1[N], st2[N], tp1, tp2, rt;
 int L[N], R[N], M[N], id[N], cnt, typ[N], bin[20], st[N], tp;
-//本篇代码原题应为 CERC2017 Intrinsic Interval
-// a数组即为原题中对应的排列
-// st1和st2分别两个单调栈，tp1、tp2为对应的栈顶，rt为析合树的根
-// L、R数组表示该析合树节点的左右端点，M数组的作用在析合树构造时有提到
-// id存储的是排列中某一位置对应的节点编号，typ用于标记析点还是合点
-// st为存储析合树节点编号的栈，tp为其栈顶
+
+// 本篇代码原题应为 CERC2017 Intrinsic Interval
+//  a数组即为原题中对应的排列
+//  st1和st2分别两个单调栈，tp1、tp2为对应的栈顶，rt为析合树的根
+//  L、R数组表示该析合树节点的左右端点，M数组的作用在析合树构造时有提到
+//  id存储的是排列中某一位置对应的节点编号，typ用于标记析点还是合点
+//  st为存储析合树节点编号的栈，tp为其栈顶
 struct RMQ {  // 预处理 RMQ（Max & Min）
   int lg[N], mn[N][17], mx[N][17];
+
   void chkmn(int& x, int y) {
     if (x > y) x = y;
   }
+
   void chkmx(int& x, int y) {
     if (x < y) x = y;
   }
+
   void build() {
     for (int i = bin[0] = 1; i < 20; ++i) bin[i] = bin[i - 1] << 1;
     for (int i = 2; i <= n; ++i) lg[i] = lg[i >> 1] + 1;
@@ -200,26 +204,33 @@ struct RMQ {  // 预处理 RMQ（Max & Min）
         mn[j][i] = min(mn[j][i - 1], mn[j + bin[i - 1]][i - 1]),
         mx[j][i] = max(mx[j][i - 1], mx[j + bin[i - 1]][i - 1]);
   }
+
   int ask_mn(int l, int r) {
     int t = lg[r - l + 1];
     return min(mn[l][t], mn[r - bin[t] + 1][t]);
   }
+
   int ask_mx(int l, int r) {
     int t = lg[r - l + 1];
     return max(mx[l][t], mx[r - bin[t] + 1][t]);
   }
 } D;
+
 // 维护 L_i
 
 struct SEG {  // 线段树
 #define ls (k << 1)
 #define rs (k << 1 | 1)
   int mn[N << 1], ly[N << 1];  // 区间加；区间最小值
+
   void pushup(int k) { mn[k] = min(mn[ls], mn[rs]); }
+
   void mfy(int k, int v) { mn[k] += v, ly[k] += v; }
+
   void pushdown(int k) {
     if (ly[k]) mfy(ls, ly[k]), mfy(rs, ly[k]), ly[k] = 0;
   }
+
   void update(int k, int l, int r, int x, int y, int v) {
     if (l == x && r == y) {
       mfy(k, v);
@@ -235,6 +246,7 @@ struct SEG {  // 线段树
       update(ls, l, mid, x, mid, v), update(rs, mid + 1, r, mid + 1, y, v);
     pushup(k);
   }
+
   int query(int k, int l, int r) {  // 询问 0 的位置
     if (l == r) return l;
     pushdown(k);
@@ -248,13 +260,16 @@ struct SEG {  // 线段树
 } T;
 
 int o = 1, hd[N], dep[N], fa[N][18];
+
 struct Edge {
   int v, nt;
 } E[N << 1];
+
 void add(int u, int v) {  // 树结构加边
   E[o] = (Edge){v, hd[u]};
   hd[u] = o++;
 }
+
 void dfs(int u) {
   for (int i = 1; bin[i] <= dep[u]; ++i) fa[u][i] = fa[fa[u][i - 1]][i - 1];
   for (int i = hd[u]; i; i = E[i].nt) {
@@ -264,11 +279,13 @@ void dfs(int u) {
     dfs(v);
   }
 }
+
 int go(int u, int d) {
   for (int i = 0; i < 18 && d; ++i)
     if (bin[i] & d) d ^= bin[i], u = fa[u][i];
   return u;
 }
+
 int lca(int u, int v) {
   if (dep[u] < dep[v]) swap(u, v);
   u = go(u, dep[u] - dep[v]);
@@ -334,6 +351,7 @@ void build() {
 
   rt = st[1];  // 栈中最后剩下的点是根结点
 }
+
 void query(int l, int r) {
   int x = id[l], y = id[r];
   int z = lca(x, y);
@@ -360,6 +378,7 @@ int main() {
   }
   return 0;
 }
+
 // 20190612
 // 析合树
 ```

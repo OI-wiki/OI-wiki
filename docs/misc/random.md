@@ -298,16 +298,21 @@ $$
     ```cpp
     #include <iostream>
     using namespace std;
+    
     struct myrand {
       int A, B, P, x;
+    
       myrand(int A, int B, int P) {
         this->A = A;
         this->B = B;
         this->P = P;
       }
+    
       int next() { return x = (A * x + B) % P; }  // 生成随机序列的下一个随机数
     };
+    
     myrand rnd(3, 5, 97);  // 初始化一个随机数生成器
+    
     int main() {
       int x = rnd.next();
       cout << x << endl;
@@ -332,9 +337,11 @@ $$
     #include <iostream>
     #include <vector>
     using namespace std;
+    
     struct myrand {
       vector<unsigned> vec;
       int l, j, k, cur;
+    
       myrand(int l, int j, int k) {
         this->l = l;
         this->j = j;
@@ -344,13 +351,16 @@ $$
           vec.push_back(rand());  // 先用其他方法生成随机序列中的前几个元素
         }
       }
+    
       unsigned next() {
         vec[cur] = vec[(cur - j + l) % l] * vec[(cur - k + l) % l];
         // 这里用 unsigned 类型是为了实现自动对 2^32 取模
         return vec[cur++];
       }
     };
+    
     myrand rnd(11, 4, 7);
+    
     int main() {
       unsigned x = rnd.next();
       cout << x << endl;

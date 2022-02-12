@@ -358,9 +358,9 @@ int col[MS], row[MS];
 void remove(const int &c) {
   int i, j;
   L[R[c]] = L[c], R[L[c]] = R[c];
-  //顺着这一列从上往下遍历
+  // 顺着这一列从上往下遍历
   for (i = D[c]; i != c; i = D[i])
-    //顺着这一行从左往右遍历
+    // 顺着这一行从左往右遍历
     for (j = R[i]; j != i; j = R[j])
       U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
 }

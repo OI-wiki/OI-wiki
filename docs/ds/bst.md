@@ -43,6 +43,7 @@ int findmin(int o) {
   if (!lc[o]) return o;
   return findmin(lc[o]);  // 一直向左儿子跳
 }
+
 int findmax(int o) {
   if (!rc[o]) return o;
   return findmax(rc[o]);  // 一直向右儿子跳
@@ -113,6 +114,7 @@ int deletemin(int& o) {
     return u;
   }
 }
+
 void del(int& o, int v) {
   // 注意 o 有可能会被修改
   siz[o]--;

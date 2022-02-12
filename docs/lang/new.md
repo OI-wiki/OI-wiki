@@ -54,10 +54,12 @@ for (int i : {1, 1, 4, 5, 1, 4}) std::cout << i;
 
 struct C {
   int a, b, c, d;
+
   C(int a = 0, int b = 0, int c = 0, int d = 0) : a(a), b(b), c(c), d(d) {}
 };
 
 int* begin(C& p) { return &p.a; }
+
 int* end(C& p) { return &p.d + 1; }
 
 int main() {
@@ -194,6 +196,7 @@ int main() {
 
 ```cpp
 int fact(int x) { return x ? x * fact(x - 1) : 1; }
+
 int main() {
   constexpr int a = fact(5);  // ERROR: 函数调用在常量表达式中必须具有常量值
   return 0;
@@ -275,7 +278,9 @@ std::cout << std::get<1>(tupA) << std::endl;
 
 struct Foo {
   Foo(int num) : num_(num) {}
+
   void print_add(int i) const { std::cout << num_ + i << '\n'; }
+
   int num_;
 };
 
@@ -446,6 +451,7 @@ ostream& operator<<(ostream& os, const vector<T>& V) {
 
 #define debug(...) _debug(#__VA_ARGS__, __VA_ARGS__)
 }  // namespace DEBUG
+
 using namespace DEBUG;
 
 int main(int argc, char* argv[]) {

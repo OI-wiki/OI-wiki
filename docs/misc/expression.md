@@ -60,6 +60,7 @@ author: Ir1d, Anguei, hsfzLZH1, siger-young, HeRaNO
       while (!oper.empty()) t += std::string(1, oper.top()) + " ", oper.pop();
       return t;
     }
+    
     int calc(const std::string &s) {  // 计算转换好的后缀表达式
       std::stack<int> num;
       std::stringstream ss;

@@ -74,6 +74,7 @@ void merge(int ll, int rr) {
   }
   for (int i = ll; i < rr; ++i) a[i] = t[i];
 }
+
 // 关键点在于一次性创建数组，避免在每次递归调用时创建，以避免内存分配的耗时。
 ```
 

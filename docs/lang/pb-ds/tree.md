@@ -63,6 +63,7 @@ __gnu_pbds ::tree<pair<int, int>, __gnu_pbds::null_type, less<pair<int, int> >,
                   __gnu_pbds::rb_tree_tag,
                   __gnu_pbds::tree_order_statistics_node_update>
     trr;
+
 int main() {
   int cnt = 0;
   trr.insert(mp(1, cnt++));

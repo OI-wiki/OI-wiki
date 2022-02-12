@@ -5,11 +5,14 @@
 #include <iostream>
 #include <queue>
 using namespace std;
+
 struct f {
   long long d;
   long long x;
 } a[100005];
+
 bool cmp(f A, f B) { return A.d < B.d; }
+
 priority_queue<long long, vector<long long>, greater<long long> >
     q;  // 小根堆维护最小值
 

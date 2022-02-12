@@ -155,6 +155,7 @@ inline void PushDown(int p) {
 
 ```cpp
 #define Get(x) (ch[f[x]][1] == x)
+
 inline void Rotate(int x) {
   int y = f[x], z = f[y], k = Get(x);
   if (!isRoot(y)) ch[z][ch[z][1] == y] = x;
@@ -163,6 +164,7 @@ inline void Rotate(int x) {
   ch[x][!k] = y, f[y] = x, f[x] = z;
   PushUp(y), PushUp(x);
 }
+
 inline void Splay(int x) {
   Update(
       x);  // 马上就能看到啦。在 Splay 之前要把旋转会经过的路径上的点都 PushDown
@@ -397,24 +399,30 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     const int mod = 51061;
     int n, q, u, v, c;
     char op;
+    
     struct Splay {
       int ch[maxn][2], fa[maxn], siz[maxn], val[maxn], sum[maxn], rev[maxn],
           add[maxn], mul[maxn];
+    
       void clear(int x) {
         ch[x][0] = ch[x][1] = fa[x] = siz[x] = val[x] = sum[x] = rev[x] = add[x] =
             0;
         mul[x] = 1;
       }
+    
       int getch(int x) { return (ch[fa[x]][1] == x); }
+    
       int isroot(int x) {
         clear(0);
         return ch[fa[x]][0] != x && ch[fa[x]][1] != x;
       }
+    
       void maintain(int x) {
         clear(0);
         siz[x] = (siz[ch[x][0]] + 1 + siz[ch[x][1]]) % mod;
         sum[x] = (sum[ch[x][0]] + val[x] + sum[ch[x][1]]) % mod;
       }
+    
       void pushdown(int x) {
         clear(0);
         if (mul[x] != 1) {
@@ -447,10 +455,12 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
           rev[x] = 0;
         }
       }
+    
       void update(int x) {
         if (!isroot(x)) update(fa[x]);
         pushdown(x);
       }
+    
       void print(int x) {
         if (!x) return;
         pushdown(x);
@@ -458,6 +468,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
         printf("%lld ", x);
         print(ch[x][1]);
       }
+    
       void rotate(int x) {
         int y = fa[x], z = fa[y], chx = getch(x), chy = getch(y);
         fa[x] = z;
@@ -470,20 +481,24 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
         maintain(x);
         maintain(z);
       }
+    
       void splay(int x) {
         update(x);
         for (int f = fa[x]; f = fa[x], !isroot(x); rotate(x))
           if (!isroot(f)) rotate(getch(x) == getch(f) ? f : x);
       }
+    
       void access(int x) {
         for (int f = 0; x; f = x, x = fa[x]) splay(x), ch[x][1] = f, maintain(x);
       }
+    
       void makeroot(int x) {
         access(x);
         splay(x);
         swap(ch[x][0], ch[x][1]);
         rev[x] ^= 1;
       }
+    
       int find(int x) {
         access(x);
         splay(x);
@@ -492,6 +507,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
         return x;
       }
     } st;
+    
     main() {
       scanf("%lld%lld", &n, &q);
       for (int i = 1; i <= n; i++) st.val[i] = 1, st.maintain(i);
@@ -560,11 +576,16 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     #include <cstring>
     using namespace std;
     const int maxn = 10010;
+    
     struct Splay {
       int ch[maxn][2], fa[maxn], tag[maxn];
+    
       void clear(int x) { ch[x][0] = ch[x][1] = fa[x] = tag[x] = 0; }
+    
       int getch(int x) { return ch[fa[x]][1] == x; }
+    
       int isroot(int x) { return ch[fa[x]][0] != x && ch[fa[x]][1] != x; }
+    
       void pushdown(int x) {
         if (tag[x]) {
           if (ch[x][0]) swap(ch[ch[x][0]][0], ch[ch[x][0]][1]), tag[ch[x][0]] ^= 1;
@@ -572,10 +593,12 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
           tag[x] = 0;
         }
       }
+    
       void update(int x) {
         if (!isroot(x)) update(fa[x]);
         pushdown(x);
       }
+    
       void rotate(int x) {
         int y = fa[x], z = fa[y], chx = getch(x), chy = getch(y);
         fa[x] = z;
@@ -585,20 +608,24 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
         ch[x][chx ^ 1] = y;
         fa[y] = x;
       }
+    
       void splay(int x) {
         update(x);
         for (int f = fa[x]; f = fa[x], !isroot(x); rotate(x))
           if (!isroot(f)) rotate(getch(x) == getch(f) ? f : x);
       }
+    
       void access(int x) {
         for (int f = 0; x; f = x, x = fa[x]) splay(x), ch[x][1] = f;
       }
+    
       void makeroot(int x) {
         access(x);
         splay(x);
         swap(ch[x][0], ch[x][1]);
         tag[x] ^= 1;
       }
+    
       int find(int x) {
         access(x);
         splay(x);
@@ -607,8 +634,10 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
         return x;
       }
     } st;
+    
     int n, q, x, y;
     char op[maxn];
+    
     int main() {
       scanf("%d%d", &n, &q);
       while (q--) {
@@ -663,23 +692,31 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     using namespace std;
     const int maxn = 200010;
     int f[maxn];
+    
     int findp(int x) { return f[x] ? f[x] = findp(f[x]) : x; }
+    
     void merge(int x, int y) {
       x = findp(x);
       y = findp(y);
       if (x != y) f[x] = y;
     }
+    
     struct Splay {
       int ch[maxn][2], fa[maxn], tag[maxn], siz[maxn];
+    
       void clear(int x) { ch[x][0] = ch[x][1] = fa[x] = tag[x] = siz[x] = 0; }
+    
       int getch(int x) { return ch[findp(fa[x])][1] == x; }
+    
       int isroot(int x) {
         return ch[findp(fa[x])][0] != x && ch[findp(fa[x])][1] != x;
       }
+    
       void maintain(int x) {
         clear(0);
         if (x) siz[x] = siz[ch[x][0]] + 1 + siz[ch[x][1]];
       }
+    
       void pushdown(int x) {
         if (tag[x]) {
           if (ch[x][0]) tag[ch[x][0]] ^= 1, swap(ch[ch[x][0]][0], ch[ch[x][0]][1]);
@@ -687,6 +724,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
           tag[x] = 0;
         }
       }
+    
       void print(int x) {
         if (!x) return;
         pushdown(x);
@@ -694,10 +732,12 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
         printf("%d ", x);
         print(ch[x][1]);
       }
+    
       void update(int x) {
         if (!isroot(x)) update(findp(fa[x]));
         pushdown(x);
       }
+    
       void rotate(int x) {
         x = findp(x);
         int y = findp(fa[x]), z = findp(fa[y]), chx = getch(x), chy = getch(y);
@@ -711,16 +751,19 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
         maintain(x);
         if (z) maintain(z);
       }
+    
       void splay(int x) {
         x = findp(x);
         update(x);
         for (int f = findp(fa[x]); f = findp(fa[x]), !isroot(x); rotate(x))
           if (!isroot(f)) rotate(getch(x) == getch(f) ? f : x);
       }
+    
       void access(int x) {
         for (int f = 0; x; f = x, x = findp(fa[x]))
           splay(x), ch[x][1] = f, maintain(x);
       }
+    
       void makeroot(int x) {
         x = findp(x);
         access(x);
@@ -728,6 +771,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
         tag[x] ^= 1;
         swap(ch[x][0], ch[x][1]);
       }
+    
       int find(int x) {
         x = findp(x);
         access(x);
@@ -736,17 +780,22 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
         splay(x);
         return x;
       }
+    
       void dfs(int x) {
         pushdown(x);
         if (ch[x][0]) dfs(ch[x][0]), merge(ch[x][0], x);
         if (ch[x][1]) dfs(ch[x][1]), merge(ch[x][1], x);
       }
     } st;
+    
     int n, m, q, x, y, cur, ans[maxn];
+    
     struct oper {
       int op, a, b;
     } s[maxn];
+    
     map<pair<int, int>, int> mp;
+    
     int main() {
       scanf("%d%d", &n, &m);
       for (int i = 1; i <= n; i++) st.maintain(i);
@@ -840,13 +889,18 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
     #include <set>
     using namespace std;
     const int maxn = 5000010;
+    
     struct Splay {
       int ch[maxn][2], fa[maxn], tag[maxn], val[maxn], minn[maxn];
+    
       void clear(int x) {
         ch[x][0] = ch[x][1] = fa[x] = tag[x] = val[x] = minn[x] = 0;
       }
+    
       int getch(int x) { return ch[fa[x]][1] == x; }
+    
       int isroot(int x) { return ch[fa[x]][0] != x && ch[fa[x]][1] != x; }
+    
       void maintain(int x) {
         if (!x) return;
         minn[x] = x;
@@ -857,6 +911,7 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
           if (val[minn[ch[x][1]]] < val[minn[x]]) minn[x] = minn[ch[x][1]];
         }
       }
+    
       void pushdown(int x) {
         if (tag[x]) {
           if (ch[x][0]) tag[ch[x][0]] ^= 1, swap(ch[ch[x][0]][0], ch[ch[x][0]][1]);
@@ -864,10 +919,12 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
           tag[x] = 0;
         }
       }
+    
       void update(int x) {
         if (!isroot(x)) update(fa[x]);
         pushdown(x);
       }
+    
       void print(int x) {
         if (!x) return;
         pushdown(x);
@@ -875,6 +932,7 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
         printf("%d ", x);
         print(ch[x][1]);
       }
+    
       void rotate(int x) {
         int y = fa[x], z = fa[y], chx = getch(x), chy = getch(y);
         fa[x] = z;
@@ -887,20 +945,24 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
         maintain(x);
         if (z) maintain(z);
       }
+    
       void splay(int x) {
         update(x);
         for (int f = fa[x]; f = fa[x], !isroot(x); rotate(x))
           if (!isroot(f)) rotate(getch(x) == getch(f) ? f : x);
       }
+    
       void access(int x) {
         for (int f = 0; x; f = x, x = fa[x]) splay(x), ch[x][1] = f, maintain(x);
       }
+    
       void makeroot(int x) {
         access(x);
         splay(x);
         tag[x] ^= 1;
         swap(ch[x][0], ch[x][1]);
       }
+    
       int find(int x) {
         access(x);
         splay(x);
@@ -908,10 +970,12 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
         splay(x);
         return x;
       }
+    
       void link(int x, int y) {
         makeroot(x);
         fa[x] = y;
       }
+    
       void cut(int x, int y) {
         makeroot(x);
         access(y);
@@ -920,13 +984,18 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
         maintain(y);
       }
     } st;
+    
     const int inf = 2e9 + 1;
     int n, m, ans, nww, x, y;
+    
     struct Edge {
       int u, v, w;
+    
       bool operator<(Edge x) const { return w < x.w; };
     } s[maxn];
+    
     multiset<int> mp;
+    
     int main() {
       scanf("%d%d", &n, &m);
       for (int i = 1; i <= n; i++) st.val[i] = inf, st.maintain(i);
@@ -1040,17 +1109,23 @@ st.siz2[y] += st.siz[x];
     using namespace std;
     const int maxn = 100010;
     typedef long long ll;
+    
     struct Splay {
       int ch[maxn][2], fa[maxn], siz[maxn], siz2[maxn], tag[maxn];
+    
       void clear(int x) {
         ch[x][0] = ch[x][1] = fa[x] = siz[x] = siz2[x] = tag[x] = 0;
       }
+    
       int getch(int x) { return ch[fa[x]][1] == x; }
+    
       int isroot(int x) { return ch[fa[x]][0] != x && ch[fa[x]][1] != x; }
+    
       void maintain(int x) {
         clear(0);
         if (x) siz[x] = siz[ch[x][0]] + 1 + siz[ch[x][1]] + siz2[x];
       }
+    
       void pushdown(int x) {
         if (tag[x]) {
           if (ch[x][0]) swap(ch[ch[x][0]][0], ch[ch[x][0]][1]), tag[ch[x][0]] ^= 1;
@@ -1058,10 +1133,12 @@ st.siz2[y] += st.siz[x];
           tag[x] = 0;
         }
       }
+    
       void update(int x) {
         if (!isroot(x)) update(fa[x]);
         pushdown(x);
       }
+    
       void rotate(int x) {
         int y = fa[x], z = fa[y], chx = getch(x), chy = getch(y);
         fa[x] = z;
@@ -1074,21 +1151,25 @@ st.siz2[y] += st.siz[x];
         maintain(x);
         maintain(z);
       }
+    
       void splay(int x) {
         update(x);
         for (int f = fa[x]; f = fa[x], !isroot(x); rotate(x))
           if (!isroot(f)) rotate(getch(x) == getch(f) ? f : x);
       }
+    
       void access(int x) {
         for (int f = 0; x; f = x, x = fa[x])
           splay(x), siz2[x] += siz[ch[x][1]] - siz[f], ch[x][1] = f, maintain(x);
       }
+    
       void makeroot(int x) {
         access(x);
         splay(x);
         swap(ch[x][0], ch[x][1]);
         tag[x] ^= 1;
       }
+    
       int find(int x) {
         access(x);
         splay(x);
@@ -1097,8 +1178,10 @@ st.siz2[y] += st.siz[x];
         return x;
       }
     } st;
+    
     int n, q, x, y;
     char op;
+    
     int main() {
       scanf("%d%d", &n, &q);
       while (q--) {
