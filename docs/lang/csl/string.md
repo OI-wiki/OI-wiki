@@ -1,4 +1,4 @@
-author: johnvp22, lr1d
+author: johnvp22, Ir1d
 
 ## `string` 是什么
 
@@ -41,9 +41,9 @@ printf("%s", s.c_str());  // 一定能够正确输出
 很多函数都可以返回 string 的长度：
 
 ```cpp
-printf("s 的长度为 %d", s.size());
-printf("s 的长度为 %d", s.length());
-printf("s 的长度为 %d", strlen(s.c_str()));
+printf("s 的长度为 %lu", s.size());
+printf("s 的长度为 %lu", s.length());
+printf("s 的长度为 %lu", strlen(s.c_str()));
 ```
 
 ???+note "这些函数的复杂度"
@@ -51,19 +51,101 @@ printf("s 的长度为 %d", strlen(s.c_str()));
     
     `size()` 和 `length()` 的复杂度在 C++98 中没有指定，在 C++11 中被指定为常数复杂度。但在常见的编译器上，即便是 C++98，这两个函数的复杂度也是常数。
 
+???+warning
+    这三个函数（以及下面将要提到的 `find` 函数）的返回值类型都是 `size_t`（`unsigned long`）。因此，这些返回值不支持直接与负数比较或运算，建议在需要时进行强制转换。
+
 ### 寻找某字符（串）第一次出现的位置
 
+`find(str,pos)` 函数可以用来查找字符串中一个字符/字符串在 `pos`（含）之后第一次出现的位置（若不传参给 `pos` 则默认为 `0`）。如果没有出现，则返回 `string::npos`（被定义为 `-1`，但类型仍为 `size_t`/`unsigned long`）。
+
+示例：
+
 ```cpp
-printf("字符 a 在 s 的 %d 位置第一次出现", s.find('a'));
-printf("字符串 t 在 s 的 %d 位置第一次出现", s.find(t));
-printf("在 s 中自 pos 位置起字符串 t 第一次出现在 %d 位置", s.find(t, pos));
+string s = "OI Wiki", t = "OI", u = "i";
+int pos = 5;
+printf("字符 I 在 s 的 %lu 位置第一次出现\n", s.find('I'));
+printf("字符 a 在 s 的 %lu 位置第一次出现\n", s.find('a'));
+printf("字符 a 在 s 的 %d 位置第一次出现\n", s.find('a'));
+printf("字符串 t 在 s 的 %lu 位置第一次出现\n", s.find(t));
+printf("在 s 中自 pos 位置起字符串 u 第一次出现在 %lu 位置", s.find(u, pos));
+```
+
+输出：
+
+```text
+字符 I 在 s 的 1 位置第一次出现
+字符 a 在 s 的 18446744073709551615 位置第一次出现 // 即为 size_t(-1)，具体数值与平台有关。
+字符 a 在 s 的 -1 位置第一次出现 // 强制转换为 int 类型则正常输出 -1
+字符串 t 在 s 的 0 位置第一次出现
+在 s 中自 pos 位置起字符串 u 第一次出现在 6 位置
 ```
 
 ### 截取子串
 
-`substr(pos, len)`，这个函数的参数是从 `pos` 位置开始截取最多 `len` 个字符（如果从 `pos` 开始的后缀长度不足 `len` 则截取这个后缀）。
+`substr(pos, len)` 函数的参数返回从 `pos` 位置开始截取最多 `len` 个字符组成的字符串（如果从 `pos` 开始的后缀长度不足 `len` 则截取这个后缀）。
+
+示例：
 
 ```cpp
-printf("从这个字符串的第二位开始的最多三个字符构成的子串是 %s",
-       s.substr(1, 3).c_str());
+string s = "OI Wiki", t = "OI";
+printf("从字符串 s 的第四位开始的最多三个字符构成的子串是 %s\n",
+       s.substr(3, 3).c_str());
+printf("从字符串 t 的第二位开始的最多三个字符构成的子串是 %s",
+       t.substr(1, 3).c_str());
+```
+
+输出：
+
+```text
+从字符串 s 的第二位开始的最多三个字符构成的子串是 Wik
+从字符串 t 的第二位开始的最多三个字符构成的子串是 I
+```
+
+### 插入/删除字符（串）
+
+`insert(index,count,ch)` 和 `insert(index,str)` 是比较常见的插入函数。它们分别表示在 `index` 处连续插入 `count` 次字符串 `ch` 和插入字符串 `str`。
+
+`erase(index,count)` 函数将字符串 `index` 位置开始（含）的 `count` 个字符删除（若不传参给 `count` 则表示删去 `count` 位置及以后的所有字符）。
+
+示例：
+
+```cpp
+string s = "OI Wiki", t = " Wiki";
+char u = '!';
+s.erase(2);
+printf("从字符串 s 的第三位开始删去所有字符后得到的字符串是 %s\n", s.c_str());
+s.insert(2, t);
+printf("在字符串 s 的第三位处插入字符串 t 后得到的字符串是 %s\n", s.c_str());
+s.insert(7, 3, u);
+printf("在字符串 s 的第八位处连续插入 3 次字符串 u 后得到的字符串是 %s",
+       s.c_str());
+```
+
+输出：
+
+```text
+从字符串 s 的第三位开始删去所有字符后得到的字符串是 OI
+在字符串 s 的第三位处插入字符串 t 后得到的字符串是 OI Wiki
+在字符串 s 的第八位处连续插入 3 次字符串 u 后得到的字符串是 OI Wiki!!!
+```
+
+### 替换字符（串）
+
+`replace(pos,count,str)` 和 `replace(first,last,str)` 是比较常见的替换函数。它们分别表示将从 `pos` 位置开始 `count` 个字符的子串替换为 `str` 以及将以 `first` 开始（含）、`last` 结束（不含）的子串替换为 `str`，其中 `first` 和 `last` 均为迭代器。
+
+示例：
+
+```cpp
+string s = "OI Wiki";
+s.replace(2, 5, "");
+printf("将字符串 s 的第 3~7 位替换为空串后得到的字符串是 %s\n", s.c_str());
+s.replace(s.begin(), s.begin() + 2, "NOI");
+printf("将字符串 s 的前两位替换为 NOI 后得到的字符串是 %s", s.c_str());
+```
+
+输出：
+
+```text
+将字符串 s 的第 3~7 位替换为空串后得到的字符串是 OI
+将字符串 s 的前两位替换为 NOI 后得到的字符串是 NOI
 ```
