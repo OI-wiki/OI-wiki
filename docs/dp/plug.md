@@ -33,6 +33,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     const int N = 11;
     long long f[2][1 << N], *f0, *f1;
     int n, m;
+    
     int main() {
       while (cin >> n >> m && n) {
         f0 = f[0];
@@ -121,6 +122,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 ??? note "代码实现"
     ```cpp
     int b[M + 1], bb[M + 1];
+    
     int encode() {
       int s = 0;
       memset(bb, -1, sizeof(bb));
@@ -134,6 +136,7 @@ if (s >> j & 1) {       // 如果已被覆盖
       }
       return s;
     }
+    
     void decode(int s) {
       REP(i, m + 1) {
         b[i] = s & mask;
@@ -151,14 +154,17 @@ if (s >> j & 1) {       // 如果已被覆盖
 ???+note "代码实现"
     ```cpp
     const int MaxSZ = 16796, Prime = 9973;
+    
     struct hashTable {
       int head[Prime], next[MaxSZ], sz;
       int state[MaxSZ];
       long long key[MaxSZ];
+    
       inline void clear() {
         sz = 0;
         memset(head, -1, sizeof(head));
       }
+    
       inline void push(int s) {
         int x = s % Prime;
         for (int i = head[x]; ~i; i = next[i]) {
@@ -171,6 +177,7 @@ if (s >> j & 1) {       // 如果已被覆盖
         next[sz] = head[x];
         head[x] = sz++;
       }
+    
       void roll() { REP(i, sz) state[i] <<= offset; }
     } H[2], *H0, *H1;
     ```
@@ -358,6 +365,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     const int Offset = 5, Mask = (1 << Offset) - 1;
     int c[N + 2];
     int b[N + 2], bb[N + 3];
+    
     T_state encode() {
       T_state s = 0;
       memset(bb, -1, sizeof(bb));
@@ -371,6 +379,7 @@ if (s >> j & 1) {       // 如果已被覆盖
       }
       return s;
     }
+    
     void decode(T_state s) {
       REP(i, m + 1) {
         b[i] = s & Mask;
@@ -388,6 +397,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 ???+note "代码实现"
     ```cpp
     const int Prime = 9979, MaxSZ = 1 << 20;
+    
     template <class T_state, class T_key>
     struct hashTable {
       int head[Prime];
@@ -395,10 +405,12 @@ if (s >> j & 1) {       // 如果已被覆盖
       T_state state[MaxSZ];
       T_key key[MaxSZ];
       int pre[MaxSZ];
+    
       void clear() {
         sz = 0;
         memset(head, -1, sizeof(head));
       }
+    
       void push(T_state s, T_key d, T_state u) {
         int x = s % Prime;
         for (int i = head[x]; ~i; i = next[i]) {
@@ -410,8 +422,10 @@ if (s >> j & 1) {       // 如果已被覆盖
         state[sz] = s, key[sz] = d, pre[sz] = u;
         next[sz] = head[x], head[x] = sz++;
       }
+    
       void roll() { REP(ii, sz) state[ii] <<= Offset; }
     };
+    
     hashTable<T_state, T_key> _H, H[N][N], *H0, *H1;
     ```
 
@@ -570,16 +584,19 @@ if (s >> j & 1) {       // 如果已被覆盖
     #include <bits/stdc++.h>
     using namespace std;
     #define REP(i, n) for (int i = 0; i < n; ++i)
+    
     template <class T>
     inline bool checkMin(T &a, const T b) {
       return b < a ? a = b, 1 : 0;
     }
+    
     const int N = 10, M = N;
     const int offset = 3, mask = (1 << offset) - 1;
     int n, m;
     int d;
     const int INF = 0x3f3f3f3f;
     int b[M + 1], bb[M + 1];
+    
     int encode() {
       int s = 0;
       memset(bb, -1, sizeof(bb));
@@ -593,21 +610,26 @@ if (s >> j & 1) {       // 如果已被覆盖
       }
       return s;
     }
+    
     void decode(int s) {
       REP(i, m + 1) {
         b[i] = s & mask;
         s >>= offset;
       }
     }
+    
     const int MaxSZ = 16796, Prime = 9973;
+    
     struct hashTable {
       int head[Prime], next[MaxSZ], sz;
       int state[MaxSZ];
       int key[MaxSZ];
+    
       inline void clear() {
         sz = 0;
         memset(head, -1, sizeof(head));
       }
+    
       inline void push(int s) {
         int x = s % Prime;
         for (int i = head[x]; ~i; i = next[i]) {
@@ -620,9 +642,12 @@ if (s >> j & 1) {       // 如果已被覆盖
         next[sz] = head[x];
         head[x] = sz++;
       }
+    
       void roll() { REP(i, sz) state[i] <<= offset; }
     } H[2], *H0, *H1;
+    
     char A[N + 1][M + 1];
+    
     void push(int i, int j, int dn, int rt) {
       b[j] = dn;
       b[j + 1] = rt;
@@ -633,6 +658,7 @@ if (s >> j & 1) {       // 如果已被覆盖
       }
       H1->push(encode());
     }
+    
     int solve() {
       cin >> n >> m;
       int ti, tj;
@@ -691,6 +717,7 @@ if (s >> j & 1) {       // 如果已被覆盖
       if (z == INF) z = -1;
       return z;
     }
+    
     int main() {
     #ifndef ONLINE_JUDGE
       freopen("in.txt", "r", stdin);

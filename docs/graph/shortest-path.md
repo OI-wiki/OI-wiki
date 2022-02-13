@@ -166,8 +166,10 @@ Bellman-Ford 算法所做的，就是不断尝试对图上每一条边进行松�
     struct edge {
       int v, w;
     };
+    
     vector<edge> e[maxn];
     int dis[maxn];
+    
     bool bellmanford(int n, int s) {
       memset(dis, 63, sizeof(dis));
       dis[s] = 0;
@@ -234,9 +236,11 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
     struct edge {
       int v, w;
     };
+    
     vector<edge> e[maxn];
     int dis[maxn], cnt[maxn], vis[maxn];
     queue<int> q;
+    
     bool spfa(int n, int s) {
       memset(dis, 63, sizeof(dis));
       dis[s] = 0, vis[s] = 1;
@@ -363,8 +367,10 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
     struct edge {
       int v, w;
     };
+    
     vector<edge> e[maxn];
     int dis[maxn], vis[maxn];
+    
     void dijkstra(int n, int s) {
       memset(dis, 63, sizeof(dis));
       dis[s] = 0;
@@ -407,13 +413,17 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
     struct edge {
       int v, w;
     };
+    
     struct node {
       int dis, u;
+    
       bool operator>(const node& a) const { return dis > a.dis; }
     };
+    
     vector<edge> e[maxn];
     int dis[maxn], vis[maxn];
     priority_queue<node, vector<node>, greater<node> > q;
+    
     void dijkstra(int n, int s) {
       memset(dis, 63, sizeof(dis));
       dis[s] = 0;

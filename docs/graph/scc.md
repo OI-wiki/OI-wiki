@@ -76,6 +76,7 @@ Tarjan 发明了很多算法结构。不少他发明的算法都以他的名字�
 int dfn[N], low[N], dfncnt, s[N], in_stack[N], tp;
 int scc[N], sc;  // 结点 i 所在 SCC 的编号
 int sz[N];       // 强连通 i 的大小
+
 void tarjan(int u) {
   low[u] = dfn[u] = ++dfncnt, s[++tp] = u, in_stack[u] = 1;
   for (int i = h[u]; i; i = e[i].nex) {

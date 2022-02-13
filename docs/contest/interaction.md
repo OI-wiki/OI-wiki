@@ -35,6 +35,7 @@ author: countercurrent-time, StudyingFather
                          23, 25, 29, 31, 37, 41, 43, 47, 49};
     int cnt = 0;
     char res[5];
+    
     int main() {
       for (int i : prime) {
         printf("%d\n", i);
@@ -65,6 +66,7 @@ author: countercurrent-time, StudyingFather
     const int N = 50005;
     int n, start, x;
     int a[N];
+    
     int main() {
       scanf("%d%d%d", &n, &start, &x);
       if (n < 2000) {
@@ -195,6 +197,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
     int T, h, chance;
     bool ok;
     vector<int> to[N], path;
+    
     bool read(int x) {
       if (to[x].empty()) {
         printf("? %d\n", x), fflush(stdout);
@@ -213,6 +216,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
       }
       return false;
     }
+    
     bool dfs(int x) {
       if (to[x].empty()) path.push_back(x);
       if (read(x)) return true;
@@ -220,6 +224,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
         if (to[i].empty()) return dfs(i);
       return false;
     }
+    
     void bfs(int s, int k) {
       queue<int> q;
       for (int i : to[s])
@@ -238,6 +243,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
       }
       printf("! %d\n", q.front()), fflush(stdout);
     }
+    
     int main() {
       for (scanf("%d", &T); T--;) {
         ok = false;
@@ -315,11 +321,17 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
     
     struct point {
       int x, y;
+    
       point(int x = 0, int y = 0) : x(x), y(y) {}
+    
       bool operator==(const point& tmp) const { return x == tmp.x && y == tmp.y; }
+    
       bool operator!=(const point& tmp) const { return !(*this == tmp); }
+    
       point side(int d) const { return point(x + dir[d][0], y + dir[d][1]); }
+    
       int check(int d) { return a[x + dir[d][0]][y + dir[d][1]]; }
+    
       int id() { return ::id[x][y]; }
     } start;
     
@@ -334,6 +346,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
       scanf("%d", &ret);
       return ret;
     }
+    
     bool walk(int d, std::stack<int>& st) {
       if (walk(d)) {
         st.push(d);
@@ -341,6 +354,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
       }
       return false;
     }
+    
     bool read() {
       if (scanf("%d%d%d", &n, &m, &k) != 3) return false;
       if (n == 0) return false;
@@ -357,11 +371,13 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
         }
       return true;
     }
+    
     void answer() {
       for (int i = 0; i < k; i++)
         printf("Answer %d %d\n", ans[i].first.id(), ans[i].second.id());
       fflush(stdout);
     }
+    
     // 单手扶墙法，因为靠墙的 Path 是极大闭合环，所以只需要在沿着 Path
     // 走的过程中没有碰到障碍就可以了
     void wall_follower_init(point x, int last, int wallside, point s) {
@@ -381,6 +397,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
         wall_follower_init(x.side(last), last, wallside, s);
       }
     }
+    
     void init() {
       int cnt = 1;
       for (int i = 0; i < n; i++)
@@ -409,9 +426,11 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
         }
       wall_follower_init(start, last, wallside, start);
     }
+    
     void undo(std::stack<int>& st) {
       while (!st.empty()) walk(st.top() ^ 2), st.pop();
     }
+    
     bool wall_follower(point x) {
       std::stack<int> st;
       bool ok = true;
@@ -432,6 +451,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
       if (ok == false) undo(st);
       return ok;
     }
+    
     // 确定自己当前在
     // x，使用“摸着石头过河”的方法，只需要沿着可以避开障碍、未知格子和传送门的方向走到
     // Path 就行。 在找传送门和配对传送门时使用
@@ -458,6 +478,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
       }
       std::reverse(v.begin(), v.end());
     }
+    
     bool move(point s, point t, std::stack<int>& st) {  // 在靠近传送门时使用
       static std::vector<int> v;
       v.clear();
@@ -466,6 +487,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
         if (walk(i, st) == false) return false;
       return true;
     }
+    
     // 尽可能快地向墙边移动
     bool make_sure(point x, int last) {
       if (a[x.x][x.y] == Path) return wall_follower(x);
@@ -478,6 +500,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
         }
       return false;
     }
+    
     void find_gate() {
       int cnt = 0;
       std::stack<int> st;
@@ -507,6 +530,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
             undo(st);
           }
     }
+    
     void make_gate_pair() {
       int cnt = 0;
       std::stack<int> st;
@@ -528,6 +552,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
               undo(st);
             }
     }
+    
     int main() {
       while (read()) {
         init();

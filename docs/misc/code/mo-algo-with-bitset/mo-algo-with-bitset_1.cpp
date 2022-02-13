@@ -8,13 +8,16 @@ const int N = 100005, M = N / 3 + 10;
 int n, m, maxn;
 int a[N], ans[M], cnt[N];
 bitset<N> sum[M], now;
+
 struct query {
   int l, r, id;
+
   bool operator<(const query& x) const {
     if (l / maxn != x.l / maxn) return l < x.l;
     return (l / maxn) & 1 ? r < x.r : r > x.r;
   }
 } q[M * 3];
+
 void static_set() {
   static int tmp[N];
   memcpy(tmp, a, sizeof(a));
@@ -22,14 +25,17 @@ void static_set() {
   for (int i = 1; i <= n; i++)
     a[i] = lower_bound(tmp + 1, tmp + n + 1, a[i]) - tmp;
 }
+
 void add(int x) {
   now.set(x + cnt[x]);
   cnt[x]++;
 }
+
 void del(int x) {
   cnt[x]--;
   now.reset(x + cnt[x]);
 }
+
 void solve() {
   int cnt = 0, tot = 0;
   now.reset();
@@ -55,6 +61,7 @@ void solve() {
   for (int i = 0; i < tot; i++)
     printf("%d\n", ans[i] - (int)sum[i].count() * 3);
 }
+
 int main() {
   scanf("%d%d", &n, &m);
   for (int i = 1; i <= n; i++) scanf("%d", &a[i]);

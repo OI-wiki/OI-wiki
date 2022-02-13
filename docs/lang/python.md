@@ -456,8 +456,10 @@ C++：
 struct qxx {
   int nex, t, v;
 };
+
 qxx e[M];
 int h[N], cnt;
+
 void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
 
 typedef pair<int, int> pii;
@@ -547,6 +549,7 @@ C++：
 
 ```cpp
 int n, m, s;
+
 int main() {
   scanf("%d%d%d", &n, &m, &s);
   for (int i = 1; i <= m; i++) {
@@ -592,8 +595,10 @@ if __name__ == '__main__':
     struct qxx {
       int nex, t, v;
     };
+    
     qxx e[M];
     int h[N], cnt;
+    
     void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
     
     typedef pair<int, int> pii;
@@ -617,6 +622,7 @@ if __name__ == '__main__':
     }
     
     int n, m, s;
+    
     int main() {
       scanf("%d%d%d", &n, &m, &s);
       for (int i = 1; i <= m; i++) {

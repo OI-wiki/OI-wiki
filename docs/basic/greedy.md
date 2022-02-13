@@ -83,6 +83,7 @@
     ```cpp
     struct uv {
       int a, b;
+    
       bool operator<(const uv &x) const {
         return max(x.b, a * b) < max(b, x.a * x.b);
       }

@@ -273,6 +273,7 @@ const long long INF64 = 0x3fffffffffffffffLL;
 
 struct Edge {
   int u, v, val;
+
   bool operator<(const Edge &other) const { return val < other.val; }
 };
 
@@ -287,6 +288,7 @@ class Tr {
   struct Edge {
     int to, nxt, val;
   } e[600010];
+
   int cnt, head[100010];
 
   int pnt[100010][22];
@@ -365,6 +367,7 @@ class Tr {
 } tr;
 
 int fa[100010];
+
 int find(int x) { return fa[x] == x ? x : fa[x] = find(fa[x]); }
 
 void Kruskal() {

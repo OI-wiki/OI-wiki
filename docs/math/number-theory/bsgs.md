@@ -85,6 +85,7 @@ $$
 ??? "参考代码"
     ```cpp
     int gcd(int a, int b) { return a ? gcd(b % a, a) : b; }
+    
     int powmod(int a, int b, int p) {
       int res = 1;
       while (b > 0) {
@@ -93,6 +94,7 @@ $$
       }
       return res;
     }
+    
     // Finds the primitive root modulo p
     int generator(int p) {
       vector<int> fact;
@@ -116,6 +118,7 @@ $$
       }
       return -1;
     }
+    
     // This program finds all numbers x such that x^k=a (mod n)
     int main() {
       int n, k, a;

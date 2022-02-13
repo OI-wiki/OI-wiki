@@ -2,3 +2,8 @@
 Language:        Cpp
 BasedOnStyle:    Google
 ColumnLimit:     80
+SeparateDefinitionBlocks: Always
+SpacesBeforeTrailingComments: 2
+SpacesInLineCommentPrefix:
+  Minimum: 1
+  Maximum: 1

@@ -116,10 +116,12 @@ void merge(int x, int y) {
       if (cnt[col[u]] == 0) ++totColor;
       cnt[col[u]]++;
     }
+    
     void del(int u) {
       cnt[col[u]]--;
       if (cnt[col[u]] == 0) --totColor;
     }
+    
     int getAns() { return totColor; }
     
     void dfs0(int u, int p) {

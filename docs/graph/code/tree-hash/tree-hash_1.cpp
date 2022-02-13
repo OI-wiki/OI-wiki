@@ -18,14 +18,17 @@ template <class _Tp>
 inline _Tp Max(const _Tp x, const _Tp y) {
   return x > y ? x : y;
 }
+
 template <class _Tp>
 inline void chkMax(_Tp &x, const _Tp y) {
   (x < y) && (x = y);
 }
+
 template <class _Tp>
 inline void chkMin(_Tp &x, const _Tp y) {
   (x > y) && (x = y);
 }
+
 template <class _Tp>
 inline void swap(_Tp &x, _Tp &y) {
   _Tp z = x;
@@ -36,6 +39,7 @@ inline void swap(_Tp &x, _Tp &y) {
 struct Edge {
   int v;
   Edge *las;
+
   inline Edge *init(const int to, Edge *const ls) {
     return v = to, las = ls, this;
   }
@@ -48,6 +52,7 @@ inline void lnk(const int u, const int v) {
 }
 
 u64 hval[maxn + 1];
+
 void calc(const int u, const int fa) {
   static u64 lis[maxn + 1];
   static int sz[maxn + 1];
@@ -70,6 +75,7 @@ void calc(const int u, const int fa) {
 }
 
 int sz[maxn + 1], mxsz[maxn + 1];
+
 void precalc(const int u, const int fa) {
   /* 找树的重心 */
   sz[u] = 1;

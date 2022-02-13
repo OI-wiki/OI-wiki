@@ -114,6 +114,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
         // 建议单步运行来观察效果
         #include <cstdio>
         #include <iostream>
+
         int main() {
           // 关闭同步后，cin/cout 将使用独立缓冲区，而不是将输出同步至 scanf/printf
           // 的缓冲区，从而减少 IO 耗时
@@ -123,7 +124,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
           // printf 的 '\n' 会刷新 printf 的缓冲区，导致输出错位
           printf("b\n");
           std::cout << "c\n";
-          //程序结束时，cout 的缓冲区才会被输出
+          // 程序结束时，cout 的缓冲区才会被输出
           return 0;
         }
         ```
@@ -167,6 +168,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
         class Foo {
          public:
           int a, b;
+
           // a 将在 b 前初始化，其值不确定
           Foo(int x) : b(x), a(b + 1) {}
         };

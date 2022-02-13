@@ -111,7 +111,7 @@ Node* merge(Node* a, Node* b) {
   a->fa = nullptr;
   b->fa = nullptr;  // 新增：维护fa指针
   b->xd = a->ch;
-  if (a->ch != nullptr)  //判断a的子节点是否为空 否则会空指针异常
+  if (a->ch != nullptr)  // 判断a的子节点是否为空 否则会空指针异常
     a->ch->fa = b;
   a->ch->fa = b;  // 新增：维护fa指针
   a->ch = b;

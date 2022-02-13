@@ -26,6 +26,7 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld
     int size[MAXN],  // 这个节点的“大小”（所有子树上节点数 + 该节点）
         weight[MAXN],  // 这个节点的“重量”
         centroid[2];   // 用于记录树的重心（存的是节点编号）
+    
     void GetCentroid(int cur, int fa) {  // cur 表示当前节点 (current)
       size[cur] = 1;
       weight[cur] = 0;

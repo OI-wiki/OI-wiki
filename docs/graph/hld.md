@@ -109,6 +109,7 @@ void dfs1(int o) {
       if (son[o] == -1 || siz[p[j]] > siz[son[o]]) son[o] = p[j];
     }
 }
+
 void dfs2(int o, int t) {
   top[o] = t;
   cnt++;

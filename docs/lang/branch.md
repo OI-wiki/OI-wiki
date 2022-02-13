@@ -74,6 +74,7 @@ switch 语句执行时，先求出选择句的值，然后根据选择句的值�
 
 ```cpp
 int i = 1;  // 这里的 i 的数据类型是整型 ，满足整数类型的表达式的要求
+
 switch (i) {
   case 1:
     cout << "OI WIKI" << endl;
@@ -82,6 +83,7 @@ switch (i) {
 
 ```cpp
 char i = 'A';
+
 // 这里的 i 的数据类型是字符型 ，但 char
 // 也是属于整数的类型，满足整数类型的表达式的要求
 switch (i) {
@@ -94,6 +96,7 @@ switch 语句中还要根据需求加入 break 语句进行中断，否则在对
 
 ```cpp
 char i = 'B';
+
 switch (i) {
   case 'A':
     cout << "OI" << endl;
@@ -111,6 +114,7 @@ switch (i) {
 
 ```cpp
 char i = 'B';
+
 switch (i) {
   case 'A':
     cout << "OI" << endl;
@@ -131,6 +135,7 @@ switch (i) {
 
 ```cpp
 char i = 'B';
+
 switch (i) {
   case 'B':
     cout << "WIKI" << endl;
@@ -149,6 +154,7 @@ switch 的 case 分句中也可以选择性的加花括号。不过要注意的�
 
 ```cpp
 char i = 'B';
+
 switch (i) {
   case 'A': {
     int i = 1, j = 2;

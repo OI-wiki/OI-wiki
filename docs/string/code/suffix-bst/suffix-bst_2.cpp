@@ -157,7 +157,7 @@ void solve() {
   for (int i = 1; i <= q; ++i) {
     scanf("%s", op);
 
-    //三种情况分别处理
+    // 三种情况分别处理
 
     if (op[0] == 'A') {  // ADD
       scanf("%s", a + 1);

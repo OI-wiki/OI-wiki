@@ -1,10 +1,13 @@
 #include <algorithm>
 #include <cstdio>
 const int N = 1e5, M = 2e5;  // 数据范围
+
 struct node {
   int val, rank, lchild, rchild;
 } tree[4 * N + M * 19];  // 每次操作增加节点数最多为 log2(4 * N) = 19
+
 int init[N + 1], root[M + 1], tot;
+
 int build(int l, int r) {  // 建树
   int now = ++tot;
   if (l == r) {
@@ -17,6 +20,7 @@ int build(int l, int r) {  // 建树
   tree[now].rchild = build(mid + 1, r);
   return now;
 }
+
 int update(int x, int l, int r, int target,
            int newroot) {  // 合并操作-更新父亲节点信息
   int now = ++tot;
@@ -33,6 +37,7 @@ int update(int x, int l, int r, int target,
     tree[now].rchild = update(tree[x].rchild, mid + 1, r, target, newroot);
   return now;
 }
+
 int query(int x, int l, int r, int target) {  // 查询父亲节点
   if (l == r) return tree[x].val;
   int mid = l + r >> 1;
@@ -41,6 +46,7 @@ int query(int x, int l, int r, int target) {  // 查询父亲节点
   else
     return query(tree[x].rchild, mid + 1, r, target);
 }
+
 int getroot(int x, int l, int r, int target) {  // 查询根节点
   int ans = query(x, l, r, target);
   if (ans == target)
@@ -48,6 +54,7 @@ int getroot(int x, int l, int r, int target) {  // 查询根节点
   else
     return getroot(x, l, r, ans);
 }
+
 int main() {
   int n, m;
   scanf("%d%d", &n, &m);

@@ -3,6 +3,7 @@
 #include <queue>
 using namespace std;
 int t, x;
+
 int main() {
   scanf("%d", &t);
   while (t--) {

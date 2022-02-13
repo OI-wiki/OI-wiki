@@ -24,7 +24,7 @@ int main() {
   const std::string& r2 = s;
 
   r1 += "ample";  // 修改 r1，即修改了 s
-  //  r2 += "!";               // 错误：不能通过到 const 的引用修改
+  // r2 += "!";               // 错误：不能通过到 const 的引用修改
   std::cout << r2 << '\n';  // 打印 r2，访问了s，输出 "Example"
 }
 ```
@@ -59,10 +59,10 @@ int main() {
 
 int main() {
   std::string s1 = "Test";
-  //  std::string&& r1 = s1;           // 错误：不能绑定到左值
+  // std::string&& r1 = s1;           // 错误：不能绑定到左值
 
   const std::string& r2 = s1 + s1;  // 可行：到常值的左值引用延长生存期
-  //  r2 += "Test";                    // 错误：不能通过到常值的引用修改
+  // r2 += "Test";                    // 错误：不能通过到常值的引用修改
 
   std::string&& r3 = s1 + s1;  // 可行：右值引用延长生存期
   r3 += "Test";  // 可行：能通过到非常值的右值引用修改
@@ -81,10 +81,10 @@ int main() {
 ```cpp
 int n1 = 1;
 int n2 = ++n1;
-int n3 = ++++n1;  // 因为是左值，所以可以继续操作
+int n3 = ++ ++n1;  // 因为是左值，所以可以继续操作
 int n4 = n1++;
-//  int n5 = n1++ ++;   // 错误，无法操作右值
-//  int n6 = n1 + ++n1; // 未定义行为
+// int n5 = n1++ ++;   // 错误，无法操作右值
+// int n6 = n1 + ++n1; // 未定义行为
 int&& n7 = n1++;  // 利用右值引用延长生命期
 int n8 = n7++;    // n8 = 1
 ```
@@ -128,6 +128,7 @@ std::vector<int>& getLVector() {  // 错误：返回局部变量的左值引用
   std::vector<int> x{1};
   return x;
 }
+
 std::vector<int>&& getRVector() {  // 错误：返回局部变量的右值引用
   std::vector<int> x{1};
   return std::move(x);
@@ -139,7 +140,9 @@ std::vector<int>&& getRVector() {  // 错误：返回局部变量的右值引用
 ```cpp
 struct Beta {
   Beta_ab ab;
+
   Beta_ab const& getAB() const& { return ab; }
+
   Beta_ab&& getAB() && { return std::move(ab); }
 };
 

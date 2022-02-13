@@ -122,6 +122,7 @@ Dinkelbach 算法的大概思想是每次用上一轮的答案当做新的 $L$ �
 
 ```cpp
 inline bool cmp(double x, double y) { return x > y; }
+
 inline bool check(double mid) {
   int s = 0;
   for (int i = 1; i <= n; ++i) c[i] = a[i] - mid * b[i];
@@ -149,6 +150,7 @@ inline bool check(double mid) {
 
 ```cpp
 double f[1010];
+
 inline bool check(double mid) {
   for (int i = 1; i <= W; i++) f[i] = -1e9;
   for (int i = 1; i <= n; i++)
@@ -168,7 +170,7 @@ inline bool check(double mid) {
 
 代码就是求最小生成树，我就不放代码了。
 
-### [[HNOI2009]最小圈](https://www.luogu.com.cn/problem/P3199)
+### [\[HNOI2009\]最小圈](https://www.luogu.com.cn/problem/P3199)
 
 > 每条边的边权为 $w$，求一个环 $C$ 使得 $\displaystyle\frac{\sum_{e\in C}w}{|C|}$ 最小。
 

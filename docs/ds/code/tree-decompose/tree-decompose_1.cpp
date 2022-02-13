@@ -114,7 +114,7 @@ int main() {
   return 0;
 }
 
-void dfs(int u) {  //根据题意找点
+void dfs(int u) {  // 根据题意找点
   int i, v, t = top;
   for (i = head[u]; i; i = nxt[i]) {
     v = to[i];

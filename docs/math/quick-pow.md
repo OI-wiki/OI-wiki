@@ -325,12 +325,14 @@ long long binmul(long long a, long long b, long long m) {
 ??? note " 参考代码"
     ```cpp
     int pow1[65536], pow2[65536];
+    
     void preproc(int a, int mod) {
       pow1[0] = pow2[0] = 1;
       for (int i = 1; i < 65536; i++) pow1[i] = 1LL * pow1[i - 1] * a % mod;
       int pow65536 = 1LL * pow1[65535] * a % mod;
       for (int i = 1; i < 65536; i++) pow2[i] = 1LL * pow2[i - 1] * pow65536 % mod;
     }
+    
     int query(int pows) { return 1LL * pow1[pows & 65535] * pow2[pows >> 16]; }
     ```
 
