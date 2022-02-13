@@ -59,10 +59,13 @@ class graph {
     int to;
     T cost;
   };
+
   vector<edge> edges;
   vector<vector<int> > g;
   int n;
+
   graph(int _n) : n(_n) { g.resize(n); }
+
   virtual int add(int from, int to, T cost) = 0;
 };
 
@@ -75,6 +78,7 @@ class undirectedgraph : public graph<T> {
   using graph<T>::n;
 
   undirectedgraph(int _n) : graph<T>(_n) {}
+
   int add(int from, int to, T cost = 1) {
     assert(0 <= from && from < n && 0 <= to && to < n);
     int id = (int)edges.size();
@@ -226,10 +230,13 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
         int to;
         T cost;
       };
+    
       vector<edge> edges;
       vector<vector<int> > g;
       int n;
+    
       graph(int _n) : n(_n) { g.resize(n); }
+    
       virtual int add(int from, int to, T cost) = 0;
     };
     
@@ -242,6 +249,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       using graph<T>::n;
     
       undirectedgraph(int _n) : graph<T>(_n) {}
+    
       int add(int from, int to, T cost = 1) {
         assert(0 <= from && from < n && 0 <= to && to < n);
         int id = (int)edges.size();
@@ -376,6 +384,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       }
       return match;
     }
+    
     int main() {
       ios::sync_with_stdio(0), cin.tie(0);
       int n, m;

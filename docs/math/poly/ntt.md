@@ -134,6 +134,7 @@ $$
       }
       return x * f;
     }
+    
     void print(int x) {
       if (x < 0) putchar('-'), x = -x;
       if (x >= 10) print(x / 10);

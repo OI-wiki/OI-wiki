@@ -56,6 +56,7 @@ int n, w[K], k, cnt[W];
 
 struct Element {
   int key[K];
+
   bool operator<(const Element& y) const {
     // 两个元素的比较流程
     for (int i = 1; i <= k; ++i) {

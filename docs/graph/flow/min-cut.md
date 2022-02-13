@@ -51,7 +51,9 @@ $$
     void add(int u, int v, int w) {
       ter[++tot] = v, nxt[tot] = lnk[u], lnk[u] = tot, val[tot] = w;
     }
+    
     void addedge(int u, int v, int w) { add(u, v, w), add(v, u, 0); }
+    
     int bfs(int s, int t) {
       memset(dep, 0, sizeof(dep));
       memcpy(cur, lnk, sizeof(lnk));
@@ -67,6 +69,7 @@ $$
       }
       return dep[t];
     }
+    
     int dfs(int u, int t, int flow) {
       if (u == t) return flow;
       int ans = 0;
@@ -80,6 +83,7 @@ $$
       if (ans < flow) dep[u] = -1;
       return ans;
     }
+    
     int dinic(int s, int t) {
       int ans = 0;
       while (bfs(s, t)) {
@@ -88,6 +92,7 @@ $$
       }
       return ans;
     }
+    
     int main() {
       scanf("%d%d%d%d", &n, &m, &s, &t);
       while (m--) {

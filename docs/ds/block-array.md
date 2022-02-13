@@ -37,6 +37,7 @@ void Sort(int k) {
   for (int i = st[k]; i <= ed[k]; i++) t[i] = a[i];
   sort(t + st[k], t + ed[k] + 1);
 }
+
 void Modify(int l, int r, int c) {
   int x = belong[l], y = belong[r];
   if (x == y)  // 区间在一个块内就直接修改
@@ -51,6 +52,7 @@ void Modify(int l, int r, int c) {
   Sort(x);
   Sort(y);
 }
+
 int Answer(int l, int r, int c) {
   int ans = 0, x = belong[l], y = belong[r];
   if (x == y) {
@@ -84,11 +86,13 @@ void Sort(int k) {
   for (int i = st[k]; i <= ed[k]; i++) t[i] = a[i];
   sort(t + st[k], t + ed[k] + 1);
 }
+
 void PushDown(int x) {
   if (delta[x] != 0x3f3f3f3f3f3f3f3fll)  // 用该值标记块内没有被整体赋值
     for (int i = st[x]; i <= ed[x]; i++) a[i] = t[i] = delta[x];
   delta[x] = 0x3f3f3f3f3f3f3f3fll;
 }
+
 void Modify(int l, int r, int c) {
   int x = belong[l], y = belong[r];
   PushDown(x);
@@ -104,6 +108,7 @@ void Modify(int l, int r, int c) {
   Sort(y);
   for (int i = x + 1; i < y; i++) delta[i] = c;
 }
+
 int Binary_Search(int l, int r, int c) {
   int ans = l - 1, mid;
   while (l <= r) {
@@ -115,6 +120,7 @@ int Binary_Search(int l, int r, int c) {
   }
   return ans;
 }
+
 int Answer(int l, int r, int c) {
   int ans = 0, x = belong[l], y = belong[r];
   PushDown(x);

@@ -7,6 +7,7 @@ int ans[N];
 // BIT begin
 int t[N];
 int a[N];
+
 int sum(int p) {
   int ans = 0;
   while (p) {
@@ -15,17 +16,21 @@ int sum(int p) {
   }
   return ans;
 }
+
 void add(int p, int x) {
   while (p <= n) {
     t[p] += x;
     p += p & (-p);
   }
 }
+
 // BIT end
 int tot = 0;
+
 struct Query {
   int l, r, k, id, type;  // set values to -1 when they are not used!
 } q[N * 2], q1[N * 2], q2[N * 2];
+
 void solve(int l, int r, int ql, int qr) {
   if (ql > qr) return;
   if (l == r) {
@@ -60,8 +65,10 @@ void solve(int l, int r, int ql, int qr) {
   solve(l, mid, ql, cnt1 + ql - 1);
   solve(mid + 1, r, cnt1 + ql, qr);
 }
+
 pair<int, int> b[N];
 int toRaw[N];
+
 int main() {
   scanf("%d%d", &n, &m);
   // read and discrete input data

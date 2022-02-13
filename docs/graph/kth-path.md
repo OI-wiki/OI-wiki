@@ -31,6 +31,7 @@ int n, m, s, t, k, u, v, ww, H[maxn], cnt[maxn];
 int cur, h[maxn], nxt[maxm], p[maxm], w[maxm];
 int cur1, h1[maxn], nxt1[maxm], p1[maxm], w1[maxm];
 bool tf[maxn];
+
 void add_edge(int x, int y, double z) {
   cur++;
   nxt[cur] = h[x];
@@ -38,6 +39,7 @@ void add_edge(int x, int y, double z) {
   p[cur] = y;
   w[cur] = z;
 }
+
 void add_edge1(int x, int y, double z) {
   cur1++;
   nxt1[cur1] = h1[x];
@@ -45,16 +47,23 @@ void add_edge1(int x, int y, double z) {
   p1[cur1] = y;
   w1[cur1] = z;
 }
+
 struct node {
   int x, v;
+
   bool operator<(node a) const { return v + H[x] > a.v + H[a.x]; }
 };
+
 priority_queue<node> q;
+
 struct node2 {
   int x, v;
+
   bool operator<(node2 a) const { return v > a.v; }
 } x;
+
 priority_queue<node2> Q;
+
 int main() {
   scanf("%d%d%d%d%d", &n, &m, &s, &t, &k);
   while (m--) {
@@ -164,8 +173,10 @@ $P'$ 有如下性质：
 using namespace std;
 const int maxn = 200010;
 int n, m, s, t, k, x, y, ww, cnt, fa[maxn];
+
 struct Edge {
   int cur, h[maxn], nxt[maxn], p[maxn], w[maxn];
+
   void add_edge(int x, int y, int z) {
     cur++;
     nxt[cur] = h[x];
@@ -174,18 +185,24 @@ struct Edge {
     w[cur] = z;
   }
 } e1, e2;
+
 int dist[maxn];
 bool tf[maxn], vis[maxn], ontree[maxn];
+
 struct node {
   int x, v;
+
   node* operator=(node a) {
     x = a.x;
     v = a.v;
     return this;
   }
+
   bool operator<(node a) const { return v > a.v; }
 } a;
+
 priority_queue<node> Q;
+
 void dfs(int x) {
   vis[x] = true;
   for (int j = e2.h[x]; j; j = e2.nxt[j])
@@ -193,15 +210,19 @@ void dfs(int x) {
       if (dist[e2.p[j]] == dist[x] + e2.w[j])
         fa[e2.p[j]] = x, ontree[j] = true, dfs(e2.p[j]);
 }
+
 struct LeftistTree {
   int cnt, rt[maxn], lc[maxn * 20], rc[maxn * 20], dist[maxn * 20];
   node v[maxn * 20];
+
   LeftistTree() { dist[0] = -1; }
+
   int newnode(node w) {
     cnt++;
     v[cnt] = w;
     return cnt;
   }
+
   int merge(int x, int y) {
     if (!x || !y) return x + y;
     if (v[x] < v[y]) swap(x, y);
@@ -214,12 +235,14 @@ struct LeftistTree {
     return p;
   }
 } st;
+
 void dfs2(int x) {
   vis[x] = true;
   if (fa[x]) st.rt[x] = st.merge(st.rt[x], st.rt[fa[x]]);
   for (int j = e2.h[x]; j; j = e2.nxt[j])
     if (fa[e2.p[j]] == x && !vis[e2.p[j]]) dfs2(e2.p[j]);
 }
+
 int main() {
   scanf("%d%d%d%d%d", &n, &m, &s, &t, &k);
   for (int i = 1; i <= m; i++)
@@ -260,7 +283,7 @@ int main() {
       printf("%d\n", a.v);
       return 0;
     }
-    if (st.lc[a.x])  //可并堆删除直接把左右儿子加入优先队列中
+    if (st.lc[a.x])  // 可并堆删除直接把左右儿子加入优先队列中
       Q.push({st.lc[a.x], a.v - st.v[a.x].v + st.v[st.lc[a.x]].v});
     if (st.rc[a.x])
       Q.push({st.rc[a.x], a.v - st.v[a.x].v + st.v[st.rc[a.x]].v});

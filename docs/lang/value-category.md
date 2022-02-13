@@ -83,6 +83,7 @@ std::vector<int> make_vector(...) {
   // ...
   return result;
 }
+
 std::vector<int> a = make_vector(...);
 ```
 
@@ -94,6 +95,7 @@ std::vector<int> a = make_vector(...);
 void make_vector(std::vector<int>& result, ...) {
   // ... (对 result 进行操作)
 }
+
 std::vecctor<int> a;
 make_vector(a, ...);
 ```

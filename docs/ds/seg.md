@@ -262,6 +262,7 @@ void update(int l, int r, int c, int s, int t, int p) {
   if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
   d[p] = d[p * 2] + d[p * 2 + 1];
 }
+
 int getsum(int l, int r, int s, int t, int p) {
   if (l <= s && t <= r) return d[p];
   int m = s + ((t - s) >> 1);

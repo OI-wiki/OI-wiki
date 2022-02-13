@@ -94,7 +94,9 @@ author: hyp1231
     
     struct Point {
       double x, y;
+    
       Point(double x = 0, double y = 0) : x(x), y(y) {}
+    
       const bool operator<(Point A) const { return x == A.x ? y < A.y : x < A.x; }
     };  // 点的定义
     
@@ -103,12 +105,15 @@ author: hyp1231
     Vector operator+(Vector A, Vector B) {
       return Vector(A.x + B.x, A.y + B.y);
     }  // 向量加法
+    
     Vector operator-(Vector A, Vector B) {
       return Vector(A.x - B.x, A.y - B.y);
     }  // 向量减法
+    
     Vector operator*(Vector A, double p) {
       return Vector(A.x * p, A.y * p);
     }  // 向量数乘
+    
     Vector operator/(Vector A, double p) {
       return Vector(A.x / p, A.y / p);
     }  // 向量数除
@@ -121,7 +126,9 @@ author: hyp1231
     }  // 与0的关系
     
     double Dot(Vector A, Vector B) { return A.x * B.x + A.y * B.y; }  // 向量点乘
+    
     double Length(Vector A) { return sqrt(Dot(A, A)); }  // 向量长度
+    
     double Cross(Vector A, Vector B) { return A.x * B.y - A.y * B.x; }  // 向量叉乘
     
     Point GetLineProjection(Point P, Point A, Point B) {
@@ -132,8 +139,11 @@ author: hyp1231
     struct Circle {
       Point c;
       double r;
+    
       Circle() : c(Point(0, 0)), r(0) {}
+    
       Circle(Point c, double r = 0) : c(c), r(r) {}
+    
       Point point(double a) {
         return Point(c.x + cos(a) * r, c.y + sin(a) * r);
       }  // 输入极角返回点坐标

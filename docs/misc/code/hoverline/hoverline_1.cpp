@@ -5,6 +5,7 @@ const int N = 100010;
 int n, a[N];
 int l[N], r[N];
 long long ans;
+
 int main() {
   while (scanf("%d", &n) != EOF && n) {
     ans = 0;

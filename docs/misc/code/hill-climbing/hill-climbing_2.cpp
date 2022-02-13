@@ -3,6 +3,7 @@
 const int N = 10005;
 int n, x[N], y[N], w[N];
 double ansx, ansy;
+
 void hillclimb() {
   double t = 1000;
   while (t > 1e-8) {
@@ -20,6 +21,7 @@ void hillclimb() {
       t *= 0.97;
   }
 }
+
 int main() {
   scanf("%d", &n);
   for (int i = 1; i <= n; ++i) {

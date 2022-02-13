@@ -89,8 +89,10 @@ struct Edge {
   int to, nxt, val;
 
   Edge() {}
+
   Edge(int to, int nxt, int val) : to(to), nxt(nxt), val(val) {}
 } e[300010];
+
 int head[150010], cnt;
 
 void addedge(int u, int v, int val) {

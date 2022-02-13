@@ -74,6 +74,7 @@ $$
     // C++ Version
     const int maxn = 2000 + 5;
     int bell[maxn][maxn];
+    
     void f(int n) {
       bell[1][1] = 1;
       for (int i = 2; i <= n; i++) {

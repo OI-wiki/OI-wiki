@@ -61,6 +61,7 @@ $$
       int weight;
       HNode *lchild, *rchild;
     } * Htree;
+    
     Htree createHuffmanTree(int arr[], int n) {
       Htree forest[N];
       Htree root = NULL;
@@ -102,7 +103,7 @@ $$
         root->lchild = forest[minn];
         root->rchild = forest[minnSub];
     
-        forest[minn] = root;     //指向新树的指针赋给 minn 位置
+        forest[minn] = root;     // 指向新树的指针赋给 minn 位置
         forest[minnSub] = NULL;  // minnSub 位置为空
       }
       return root;
@@ -115,7 +116,8 @@ $$
       int weight;
       HNode *lchild, *rchild;
     } * Htree;
-    int getWPL(Htree root, int len) {  //递归实现，对于已经建好的霍夫曼树，求 WPL
+    
+    int getWPL(Htree root, int len) {  // 递归实现，对于已经建好的霍夫曼树，求 WPL
       if (root == NULL)
         return 0;
       else {
@@ -156,6 +158,7 @@ $$
       int weight;
       HNode *lchild, *rchild;
     } * Htree;
+    
     void huffmanCoding(Htree root, int len, int arr[]) {  // 计算霍夫曼编码
       if (root != NULL) {
         if (root->lchild == NULL && root->rchild == NULL) {

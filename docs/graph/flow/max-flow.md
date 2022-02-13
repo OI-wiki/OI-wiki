@@ -59,6 +59,7 @@ EK 算法的时间复杂度为 $O(nm^2)$（其中 $n$ 为点数，$m$ 为边数�
     
     struct Edge {
       int from, to, cap, flow;
+    
       Edge(int u, int v, int c, int f) : from(u), to(v), cap(c), flow(f) {}
     };
     
@@ -172,6 +173,7 @@ Dinic 算法有两个优化：
     
     struct Edge {
       int from, to, cap, flow;
+    
       Edge(int u, int v, int c, int f) : from(u), to(v), cap(c), flow(f) {}
     };
     
@@ -285,12 +287,16 @@ MPM 算法在少于 $V$ 个阶段内结束。为了证明这一点，我们必�
       struct FlowEdge {
         int v, u;
         long long cap, flow;
+    
         FlowEdge() {}
+    
         FlowEdge(int _v, int _u, long long _cap, long long _flow)
             : v(_v), u(_u), cap(_cap), flow(_flow) {}
+    
         FlowEdge(int _v, int _u, long long _cap)
             : v(_v), u(_u), cap(_cap), flow(0ll) {}
       };
+    
       const long long flow_inf = 1e18;
       vector<FlowEdge> edges;
       vector<char> alive;
@@ -303,6 +309,7 @@ MPM 算法在少于 $V$ 个阶段内结束。为了证明这一点，我们必�
       vector<int> level;
       vector<int> q;
       int qh, qt;
+    
       void resize(int _n) {
         n = _n;
         ex.resize(n);
@@ -314,12 +321,15 @@ MPM 算法在少于 $V$ 个阶段内结束。为了证明这一点，我们必�
         in.resize(n);
         out.resize(n);
       }
+    
       MPM() {}
+    
       MPM(int _n, int _s, int _t) {
         resize(_n);
         s = _s;
         t = _t;
       }
+    
       void add_edge(int v, int u, long long cap) {
         edges.push_back(FlowEdge(v, u, cap));
         edges.push_back(FlowEdge(u, v, 0));
@@ -327,6 +337,7 @@ MPM 算法在少于 $V$ 个阶段内结束。为了证明这一点，我们必�
         adj[u].push_back(m + 1);
         m += 2;
       }
+    
       bool bfs() {
         while (qh < qt) {
           int v = q[qh++];
@@ -339,7 +350,9 @@ MPM 算法在少于 $V$ 个阶段内结束。为了证明这一点，我们必�
         }
         return level[t] != -1;
       }
+    
       long long pot(int v) { return min(pin[v], pout[v]); }
+    
       void remove_node(int v) {
         for (int i : in[v]) {
           int u = edges[i].v;
@@ -354,6 +367,7 @@ MPM 算法在少于 $V$ 个阶段内结束。为了证明这一点，我们必�
           pin[u] -= edges[i].cap - edges[i].flow;
         }
       }
+    
       void push(int from, int to, long long f, bool forw) {
         qh = qt = 0;
         ex.assign(n, 0);
@@ -397,6 +411,7 @@ MPM 算法在少于 $V$ 个阶段内结束。为了证明这一点，我们必�
           }
         }
       }
+    
       long long flow() {
         long long ans = 0;
         while (true) {
@@ -475,6 +490,7 @@ MPM 算法在少于 $V$ 个阶段内结束。为了证明这一点，我们必�
     ```cpp
     struct Edge {
       int from, to, cap, flow;
+    
       Edge(int u, int v, int c, int f) : from(u), to(v), cap(c), flow(f) {}
     };
     
@@ -676,6 +692,7 @@ $$
     const int N = 1e4 + 4, M = 1e5 + 5, INF = 0x3f3f3f3f;
     int n, m, s, t, maxflow, tot;
     int ht[N], ex[N];
+    
     void init() {  // 初始化
       for (int i = h[s]; i; i = e[i].nex) {
         const int &v = e[i].t;
@@ -683,12 +700,14 @@ $$
       }
       ht[s] = n;
     }
+    
     bool push(int ed) {
       const int &u = e[ed ^ 1].t, &v = e[ed].t;
       int flow = min(ex[u], e[ed].v);
       ex[u] -= flow, ex[v] += flow, e[ed].v -= flow, e[ed ^ 1].v += flow;
       return ex[u];  // 如果 u 仍溢出，返回 1
     }
+    
     void relabel(int u) {
       ht[u] = INF;
       for (int i = h[u]; i; i = e[i].nex)
@@ -737,17 +756,22 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u
     struct qxx {
       int nex, t, v;
     };
+    
     qxx e[M * 2 + 1];
     int h[N + 1], cnt = 1;
+    
     void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
+    
     void add_flow(int f, int t, int v) {
       add_path(f, t, v);
       add_path(t, f, 0);
     }
+    
     int ht[N + 1], ex[N + 1],
         gap[N];  // 高度; 超额流; gap 优化 gap[i] 为高度为 i 的节点的数量
-    stack<int> B[N];       // 桶 B[i] 中记录所有 ht[v]==i 的v
-    int level = 0;         // 溢出节点的最高高度
+    stack<int> B[N];  // 桶 B[i] 中记录所有 ht[v]==i 的v
+    int level = 0;    // 溢出节点的最高高度
+    
     int push(int u) {      // 尽可能通过能够推送的边推送超额流
       bool init = u == s;  // 是否在初始化
       for (int i = h[u]; i; i = e[i].nex) {
@@ -762,6 +786,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u
       }
       return 1;
     }
+    
     void relabel(int u) {  // 重贴标签（高度）
       ht[u] = INF;
       for (int i = h[u]; i; i = e[i].nex)
@@ -772,6 +797,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u
         ++gap[ht[u]];  // 新的高度，更新 gap
       }
     }
+    
     bool bfs_init() {
       memset(ht, 0x3f, sizeof(ht));
       queue<int> q;
@@ -786,11 +812,13 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u
       }
       return ht[s] != INF;  // 如果图不连通，返回 0
     }
+    
     // 选出当前高度最大的节点之一, 如果已经没有溢出节点返回 0
     int select() {
       while (B[level].size() == 0 && level > -1) level--;
       return level == -1 ? 0 : B[level].top();
     }
+    
     int hlpp() {                  // 返回最大流
       if (!bfs_init()) return 0;  // 图不连通
       memset(gap, 0, sizeof(gap));
@@ -811,6 +839,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u
       }
       return ex[t];
     }
+    
     int main() {
       scanf("%d%d%d%d", &n, &m, &s, &t);
       for (int i = 1, u, v, w; i <= m; i++) {

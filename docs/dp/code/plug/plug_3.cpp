@@ -1,23 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 template <class T>
 inline bool checkMax(T &a, const T b) {
   return a < b ? a = b, 1 : 0;
 }
+
 const int N = 8, M = 8;
 const int offset = 3, mask = (1 << offset) - 1;
 int A[N + 1][M + 1];
 int n, m;
 int ans, d;
 const int MaxSZ = 16796, Prime = 9973;
+
 struct hashTable {
   int head[Prime], next[MaxSZ], sz;
   int state[MaxSZ];
   int key[MaxSZ];
+
   inline void clear() {
     sz = 0;
     memset(head, -1, sizeof(head));
   }
+
   inline void push(int s) {
     int x = s % Prime;
     for (int i = head[x]; ~i; i = next[i]) {
@@ -30,11 +35,14 @@ struct hashTable {
     next[sz] = head[x];
     head[x] = sz++;
   }
+
   void roll() {
     for (int i = 0; i < sz; i++) state[i] <<= offset;
   }
 } H[2][3], *H0, *H1;
+
 int b[M + 1], bb[M + 1];
+
 int encode() {
   int s = 0;
   memset(bb, -1, sizeof(bb));
@@ -47,17 +55,20 @@ int encode() {
   }
   return s;
 }
+
 void decode(int s) {
   for (int i = 0; i < m + 1; i++) {
     b[i] = s & mask;
     s >>= offset;
   }
 }
+
 void push(int c, int j, int dn, int rt) {
   b[j] = dn;
   b[j + 1] = rt;
   H1[c].push(encode());
 }
+
 void init() {
   cin >> n >> m;
   H0 = H[0], H1 = H[1];
@@ -68,6 +79,7 @@ void init() {
   for (int i = 0; i < n; i++)
     for (int j = 0; j < m; j++) cin >> A[i][j];
 }
+
 void solve() {
   ans = 0;
   for (int i = 0; i < n; i++) {
@@ -127,6 +139,7 @@ void solve() {
   for (int ii = 0; ii < H1[2].sz; ii++) checkMax(ans, H1[2].key[ii]);
   cout << ans << endl;
 }
+
 int main() {
   int T;
   cin >> T;

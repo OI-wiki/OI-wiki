@@ -135,6 +135,7 @@ char org = 'c';
 
 ```c++
 int g = 20;  // 定义全局变量
+
 int main() {
   int g = 10;         // 定义局部变量
   printf("%d\n", g);  // 输出 g

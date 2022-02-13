@@ -338,11 +338,14 @@ $$
     using namespace std;
     #define MOD 100000007
     #define eps 1e-7
+    
     struct matrix {
       static const int maxn = 20;
       int n, m;
       double mat[maxn][maxn];
+    
       matrix() { memset(mat, 0, sizeof(mat)); }
+    
       void print() {
         cout << "MATRIX " << n << " " << m << endl;
         for (int i = 0; i < n; i++) {
@@ -352,12 +355,14 @@ $$
           cout << endl;
         }
       }
+    
       void random(int n) {
         this->n = n;
         this->m = n;
         for (int i = 0; i < n; i++)
           for (int j = 0; j < n; j++) mat[i][j] = rand() % 100;
       }
+    
       void initSquare() {
         this->n = 4;
         this->m = 4;
@@ -370,6 +375,7 @@ $$
         this->n--;  // 去一行
         this->m--;  // 去一列
       }
+    
       double gauss() {
         double ans = 1;
         for (int i = 0; i < n; i++) {
@@ -397,6 +403,7 @@ $$
         return abs(ans);
       }
     };
+    
     int main() {
       srand(1);
       matrix T;
@@ -431,6 +438,7 @@ $$
 
 ```cpp
 std::bitset<1010> matrix[2010];  // matrix[1~n]：增广矩阵，0 位置为常数
+
 std::vector<bool> GaussElimination(
     int n, int m)  // n 为未知数个数，m 为方程个数，返回方程组的解（多解 /
                    // 无解返回一个空的 vector）

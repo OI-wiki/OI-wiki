@@ -123,6 +123,7 @@ struct Point3D {
 struct Edge {
   int id;
   std::list<Edge>::iterator c;
+
   Edge(int id = 0) { this->id = id; }
 };
 

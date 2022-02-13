@@ -2,6 +2,7 @@
 using namespace std;
 
 int N, A[10000], B[10000];
+
 int main() {
   cin >> N;
   for (int i = 0; i < N; i++) {

@@ -28,7 +28,9 @@ Splay 是一种二叉查找树，它通过不断将某个节点旋转到根节�
 
 ```cpp
 void maintain(int x) { sz[x] = sz[ch[x][0]] + sz[ch[x][1]] + cnt[x]; }
+
 bool get(int x) { return x == ch[fa[x]][1]; }
+
 void clear(int x) { ch[x][0] = ch[x][1] = fa[x] = val[x] = sz[x] = cnt[x] = 0; }
 ```
 
@@ -280,12 +282,16 @@ void del(int k) {
 #include <cstdio>
 const int N = 100005;
 int rt, tot, fa[N], ch[N][2], val[N], cnt[N], sz[N];
+
 struct Splay {
   void maintain(int x) { sz[x] = sz[ch[x][0]] + sz[ch[x][1]] + cnt[x]; }
+
   bool get(int x) { return x == ch[fa[x]][1]; }
+
   void clear(int x) {
     ch[x][0] = ch[x][1] = fa[x] = val[x] = sz[x] = cnt[x] = 0;
   }
+
   void rotate(int x) {
     int y = fa[x], z = fa[y], chk = get(x);
     ch[y][chk] = ch[x][chk ^ 1];
@@ -297,11 +303,13 @@ struct Splay {
     maintain(x);
     maintain(y);
   }
+
   void splay(int x) {
     for (int f = fa[x]; f = fa[x], f; rotate(x))
       if (fa[f]) rotate(get(x) == get(f) ? f : x);
     rt = x;
   }
+
   void ins(int k) {
     if (!rt) {
       val[++tot] = k;
@@ -333,6 +341,7 @@ struct Splay {
       }
     }
   }
+
   int rk(int k) {
     int res = 0, cur = rt;
     while (1) {
@@ -349,6 +358,7 @@ struct Splay {
       }
     }
   }
+
   int kth(int k) {
     int cur = rt;
     while (1) {
@@ -364,6 +374,7 @@ struct Splay {
       }
     }
   }
+
   int pre() {
     int cur = ch[rt][0];
     if (!cur) return cur;
@@ -371,6 +382,7 @@ struct Splay {
     splay(cur);
     return cur;
   }
+
   int nxt() {
     int cur = ch[rt][1];
     if (!cur) return cur;
@@ -378,6 +390,7 @@ struct Splay {
     splay(cur);
     return cur;
   }
+
   void del(int k) {
     rk(k);
     if (cnt[rt] > 1) {

@@ -223,6 +223,7 @@ $$
         if (i % x) s = i % P * s % P;
       return s * calc(n / x, x, P) % P;
     }
+    
     LL multilucas(LL m, LL n, LL x, LL P) {
       int cnt = 0;
       for (LL i = m; i; i /= x) cnt += i / x;
@@ -231,6 +232,7 @@ $$
       return Pow(x, cnt, P) % P * calc(m, x, P) % P * inverse(calc(n, x, P), P) %
              P * inverse(calc(m - n, x, P), P) % P;
     }
+    
     LL exlucas(LL m, LL n, LL P) {
       int cnt = 0;
       LL p[20], a[20];
