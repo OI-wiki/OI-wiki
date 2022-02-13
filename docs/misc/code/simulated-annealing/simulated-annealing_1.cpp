@@ -34,7 +34,7 @@ void simulateAnneal() {
   }
 }
 int main() {
-  srand(time(0));
+  srand(0);
   scanf("%d", &n);
   for (int i = 1; i <= n; ++i) {
     scanf("%d%d%d", &x[i], &y[i], &w[i]);
