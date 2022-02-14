@@ -37,7 +37,7 @@ void simulateAnneal() {
 }
 
 int main() {
-  srand(0);
+  srand(0); // 注意，在实际使用中，不应使用固定的随机种子。
   scanf("%d", &n);
   for (int i = 1; i <= n; ++i) {
     scanf("%d%d%d", &x[i], &y[i], &w[i]);
