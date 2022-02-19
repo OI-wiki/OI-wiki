@@ -94,6 +94,7 @@ int main() {
     for (int i = 0; i < len; i++) x1[i] = x1[i] * x1[i];
     fft(x1, len, -1);
     double ilen = 0.5 / len;
+    // 除len是因为IDFT(第64行)的时候没有处理虚部
     for (int i = 0; i < len; i++) sum[i] = int(x1[i].y * ilen + 0.5);
     for (int i = 0; i < len; i++) {
       sum[i + 1] += sum[i] / 10;
