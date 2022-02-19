@@ -5,14 +5,14 @@ namespace pam {
 int sz, tot, last;
 int cnt[maxn], ch[maxn][26], len[maxn], fail[maxn];
 char s[maxn];
-int node(int l) {  //建立一个新节点，长度为 l
+int node(int l) {  // 建立一个新节点，长度为 l
   sz++;
   memset(ch[sz], 0, sizeof(ch[sz]));
   len[sz] = l;
   fail[sz] = cnt[sz] = 0;
   return sz;
 }
-void clear() {  //初始化
+void clear() {  // 初始化
   sz = -1;
   last = 0;
   s[tot = 0] = '$';
@@ -20,11 +20,11 @@ void clear() {  //初始化
   node(-1);
   fail[0] = 1;
 }
-int getfail(int x) {  //找后缀回文
+int getfail(int x) {  // 找后缀回文
   while (s[tot - len[x] - 1] != s[tot]) x = fail[x];
   return x;
 }
-void insert(char c) {  //建树
+void insert(char c) {  // 建树
   s[++tot] = c;
   int now = getfail(last);
   if (!ch[now][c - 'a']) {
@@ -40,7 +40,7 @@ long long solve() {
   for (int i = sz; i >= 0; i--) {
     cnt[fail[i]] += cnt[i];
   }
-  for (int i = 1; i <= sz; i++) {  //更新答案
+  for (int i = 1; i <= sz; i++) {  // 更新答案
     ans = max(ans, 1ll * len[i] * cnt[i]);
   }
   return ans;

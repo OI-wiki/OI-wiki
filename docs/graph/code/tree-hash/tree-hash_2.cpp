@@ -15,7 +15,7 @@ class Solution {
   std::vector<int> e[maxn];
   std::tr1::unordered_map<ull, int> id;
 
-  ull getHash(int now, int fa) {  //得到哈希值
+  ull getHash(int now, int fa) {  // 得到哈希值
     size[now] = 1;
     hashval[now] = 1;
     for (register it i = e[now].begin(); i != e[now].end(); ++i) {
@@ -29,7 +29,7 @@ class Solution {
     return hashval[now];
   }
 
-  void getRoot(int now, int fa) {  //找根，递归向上找
+  void getRoot(int now, int fa) {  // 找根，递归向上找
     int max = 0;
     size[now] = 1;
     for (register it i = e[now].begin(); i != e[now].end(); ++i) {

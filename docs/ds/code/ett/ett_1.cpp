@@ -84,7 +84,7 @@ void add(int x, int v) {
   int a, b, c;
   split(rt, rnk(s[x]) - 1, a, b);
   split(b, rnk(e[x]) - rnk(s[x]) + 1, b,
-        c);  //这里 b 是我们要进行操作的子树的括号序列。
+        c);  // 这里 b 是我们要进行操作的子树的括号序列。
   setTag(b, v);
   rt = merge(merge(a, b), c);
 }
@@ -101,9 +101,9 @@ void changeFa(int x, int y) {
   split(b, rnk(e[x]) - rnk(s[x]) + 1, b, c);
   a = merge(
       a,
-      c);  //因为我们确定不了要设置为父亲的节点在括号序列中的哪边，所以先把两边合并。
+      c);  // 因为我们确定不了要设置为父亲的节点在括号序列中的哪边，所以先把两边合并。
   split(a, rnk(s[y]), a, d);
-  rt = merge(merge(a, b), d);  //把要进行操作的子树放在父亲括号序列的最前面。
+  rt = merge(merge(a, b), d);  // 把要进行操作的子树放在父亲括号序列的最前面。
 }
 /*main function*/
 int n, m, w[N];

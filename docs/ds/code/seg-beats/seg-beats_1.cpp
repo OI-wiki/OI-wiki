@@ -44,12 +44,12 @@ inline void pushtag(int u, int tg) {  // 单纯地打标记，不暴搜
   sum[u] += (1ll * tg - mx[u]) * cn[u];
   mx[u] = tag[u] = tg;
 }
-inline void pushdown(int u) {  //下传标记
+inline void pushdown(int u) {  // 下传标记
   if (tag[u] == -1) return;
   pushtag(u << 1, tag[u]), pushtag(u << 1 | 1, tag[u]);
   tag[u] = -1;
 }
-void build(int u = 1, int l = 1, int r = n) {  //建树
+void build(int u = 1, int l = 1, int r = n) {  // 建树
   tag[u] = -1;
   if (l == r) {
     sum[u] = mx[u] = a[l], se[u] = -1, cn[u] = 1;
@@ -68,7 +68,7 @@ void modify_min(int L, int R, int v, int u = 1, int l = 1, int r = n) {
   if (mid < R) modify_min(L, R, v, u << 1 | 1, mid + 1, r);
   pushup(u);
 }
-int query_max(int L, int R, int u = 1, int l = 1, int r = n) {  //查询最值
+int query_max(int L, int R, int u = 1, int l = 1, int r = n) {  // 查询最值
   if (L <= l && r <= R) return mx[u];
   int mid = (l + r) >> 1, r1 = -1, r2 = -1;
   pushdown(u);
@@ -76,7 +76,7 @@ int query_max(int L, int R, int u = 1, int l = 1, int r = n) {  //查询最值
   if (mid < R) r2 = query_max(L, R, u << 1 | 1, mid + 1, r);
   return max(r1, r2);
 }
-long long query_sum(int L, int R, int u = 1, int l = 1, int r = n) {  //数值
+long long query_sum(int L, int R, int u = 1, int l = 1, int r = n) {  // 数值
   if (L <= l && r <= R) return sum[u];
   int mid = (l + r) >> 1;
   long long res = 0;
@@ -85,7 +85,7 @@ long long query_sum(int L, int R, int u = 1, int l = 1, int r = n) {  //数值
   if (mid < R) res += query_sum(L, R, u << 1 | 1, mid + 1, r);
   return res;
 }
-void go() {  //根据题意
+void go() {  // 根据题意
   n = rd(), m = rd();
   for (int i = 1; i <= n; i++) a[i] = rd();
   build();

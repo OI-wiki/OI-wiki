@@ -8,7 +8,7 @@ int ch[_n][2];
 int w[_n];  //`w[o]` 指节点 `o` 到其父亲节点这条边上数值的数量（权值）。
 int xorv[_n];
 int tot = 0;
-void maintain(int o) {  //维护w数组和xorv（权值的异或）数组
+void maintain(int o) {  // 维护w数组和xorv（权值的异或）数组
   w[o] = xorv[o] = 0;
   if (ch[o][0]) {
     w[o] += w[ch[o][0]];
@@ -19,7 +19,7 @@ void maintain(int o) {  //维护w数组和xorv（权值的异或）数组
     xorv[o] ^= (xorv[ch[o][1]] << 1) | (w[ch[o][1]] & 1);
   }
 }
-inline int mknode() {  //创造一个新的节点
+inline int mknode() {  // 创造一个新的节点
   ++tot;
   ch[tot][0] = ch[tot][1] = 0;
   w[tot] = 0;
@@ -36,7 +36,7 @@ void erase(int o, int x, int dp) {
   erase(ch[o][x & 1], x >> 1, dp + 1);
   maintain(o);
 }
-void addall(int o) {  //对所有节点+1即将所有节点的ch[o][1]和ch[o][0]交换
+void addall(int o) {  // 对所有节点+1即将所有节点的ch[o][1]和ch[o][0]交换
   swap(ch[o][1], ch[o][0]);
   if (ch[o][0]) addall(ch[o][0]);
   maintain(o);
@@ -59,9 +59,9 @@ int n, m;
 int rt;
 int lztar[_];
 int fa[_];
-void dfs0(int o, int f) {  //得到fa数组
+void dfs0(int o, int f) {  // 得到fa数组
   fa[o] = f;
-  for (int i = head[o]; i; i = edge[i].nxt) {  //遍历子节点
+  for (int i = head[o]; i; i = edge[i].nxt) {  // 遍历子节点
     int node = edge[i].node;
     if (node == f) continue;
     dfs0(node, o);
@@ -70,13 +70,13 @@ void dfs0(int o, int f) {  //得到fa数组
 int V[_];
 inline int get(int x) {
   return (fa[x] == -1 ? 0 : lztar[fa[x]]) + V[x];
-}  //权值函数
+}  // 权值函数
 int main() {
   cin >> n >> m;
   for (int i = 1; i < n; i++) {
     int u, v;
     cin >> u >> v;
-    add(u, v);  //双向建边
+    add(u, v);  // 双向建边
     add(rt = v, u);
   }
   dfs0(rt, -1);  // rt是随机的一个点
@@ -93,15 +93,15 @@ int main() {
         if (fa[fa[x]] != -1) trie::erase(trie::rt[fa[fa[x]]], get(fa[x]), 0);
         V[fa[x]]++;
         if (fa[fa[x]] != -1)
-          trie::insert(trie::rt[fa[fa[x]]], get(fa[x]), 0);  //重新插入
+          trie::insert(trie::rt[fa[fa[x]]], get(fa[x]), 0);  // 重新插入
       }
-      trie::addall(trie::rt[x]);  //对所有节点+1
+      trie::addall(trie::rt[x]);  // 对所有节点+1
     } else if (opt == 2) {
       int v;
       cin >> v;
       if (x != rt) trie::erase(trie::rt[fa[x]], get(x), 0);
       V[x] -= v;
-      if (x != rt) trie::insert(trie::rt[fa[x]], get(x), 0);  //重新插入
+      if (x != rt) trie::insert(trie::rt[fa[x]], get(x), 0);  // 重新插入
     } else {
       int res = 0;
       res = trie::xorv[trie::rt[x]];
