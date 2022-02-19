@@ -1,4 +1,4 @@
-author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, yizr-cnyali, i-Yirannn, H-J-Granger, NachtgeistW
+author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, yizr-cnyali, i-Yirannn, H-J-Granger, NachtgeistW, YuzhenQin
 
 ## 赛事简介
 
@@ -39,14 +39,6 @@ NOIP、NOI、省选都是 OI 赛制。
 选手在比赛时有多次提交机会。比赛实时评测并返回结果，如果提交的结果是错误的，不会有任何惩罚。每道题都有多个测试点，根据每道题通过的测试点的数量获得相应的分数。
 
 APIO、IOI 都是 IOI 赛制。目前国内比赛也在逐渐向 IOI 赛制靠拢。
-
-### ICPC 赛制
-
-一般是三个人使用一台机器。
-
-选手在比赛时有多次提交机会。比赛实时评测并返回结果，如果提交的结果错误会有罚时，错误次数越多，加罚的时间也越长。每个题目只有在所有数据点全部正确后才能得到分数。比赛排名根据做题数和罚时来评判。
-
-在 ICPC 相关赛事中，选手允许带一定量的纸质资料。
 
 ### Codeforces (CF) 赛制
 

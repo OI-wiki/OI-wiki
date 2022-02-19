@@ -177,6 +177,7 @@ for (auto x : s) cout << x << endl;
 struct cmp {
   bool operator()(int a, int b) { return a > b; }
 };
+
 set<int, cmp> s;
 ```
 

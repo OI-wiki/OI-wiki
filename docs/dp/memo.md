@@ -13,6 +13,7 @@
 int n, t;
 int tcost[103], mget[103];
 int ans = 0;
+
 void dfs(int pos, int tleft, int tans) {
   if (tleft < 0) return;
   if (pos == n + 1) {
@@ -22,6 +23,7 @@ void dfs(int pos, int tleft, int tans) {
   dfs(pos + 1, tleft, tans);
   dfs(pos + 1, tleft - tcost[pos], tans + mget[pos]);
 }
+
 int main() {
   cin >> t >> n;
   for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
@@ -76,6 +78,7 @@ emmmmmm……$30$ 分。
 // C++ Version
 int n, time;
 int tcost[103], mget[103];
+
 int dfs(int pos, int tleft) {
   if (pos == n + 1) return 0;
   int dfs1, dfs2 = -INF;
@@ -83,6 +86,7 @@ int dfs(int pos, int tleft) {
   if (tleft >= tcost[pos]) dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];
   return max(dfs1, dfs2);
 }
+
 int main() {
   cin >> time >> n;
   for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
@@ -136,6 +140,7 @@ emmmmmm……还是 30 分。
 int n, t;
 int tcost[103], mget[103];
 int mem[103][1003];
+
 int dfs(int pos, int tleft) {
   if (mem[pos][tleft] != -1) return mem[pos][tleft];
   if (pos == n + 1) return mem[pos][tleft] = 0;
@@ -144,6 +149,7 @@ int dfs(int pos, int tleft) {
   if (tleft >= tcost[pos]) dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];
   return mem[pos][tleft] = max(dfs1, dfs2);
 }
+
 int main() {
   memset(mem, -1, sizeof(mem));
   cin >> t >> n;
@@ -212,7 +218,7 @@ print(dfs(1, t))
 
 由上面的代码中可以看出：
 
-$\mathit{mem}_{\mathit{pos},\mathit{tleft} = \max\{mem_{\mathit{pos}+1},\mathit{tleft}-\mathit{tcost}(\mathit{pos})}+\mathit{mget}(\mathit{pos}),mem_{\mathit{pos}+1,\mathit{tleft}}\}$
+$\mathit{mem}_{\mathit{pos},\mathit{tleft}} = \max\{mem_{\mathit{pos}+1,\mathit{tleft}-\mathit{tcost}(\mathit{pos})}+\mathit{mget}(\mathit{pos}),mem_{\mathit{pos}+1,\mathit{tleft}}\}$
 
 这不就是 dp 的状态转移？
 
@@ -235,6 +241,7 @@ int dfs(int i, int j, int k) {
   if (mem[i][j][k] != -1) return mem[i][j][k];
   return mem[i][j][k] = dfs(i + 1, j + 1, k - a[j]) + dfs(i + 1, j, k);
 }
+
 int main() {
   memset(mem, -1, sizeof(mem));
   // 读入部分略去
@@ -277,6 +284,7 @@ int dfs(int i) {
     if (a[j] < a[i]) ret = max(ret, dfs(j) + 1);
   return mem[i] = ret;
 }
+
 int main() {
   memset(mem, -1, sizeof(mem));
   // 读入部分略去
@@ -349,12 +357,14 @@ dp 状态很显然：
 
 ```cpp
 int g[MAXN];
+
 int f(状态参数) {
   if (g[规模] != 无效数值) return g[规模];
   if (终止条件) return 最小子问题解;
   g[规模] = f(缩小规模);
   return g[规模];
 }
+
 int main() {
   // ...
   memset(g, 无效数值, sizeof(g));

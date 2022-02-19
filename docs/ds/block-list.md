@@ -14,7 +14,9 @@ struct node {
   node* nxt;
   int size;
   char d[(sqn << 1) + 5];
+
   node() { size = 0, nxt = NULL, memset(d, 0, sizeof(d)); }
+
   void pb(char c) { d[size++] = c; }
 };
 ```
@@ -37,7 +39,7 @@ list<vector<char> > orz_list;
 
 ## 例题
 
-Big String POJ - 2887
+[POJ2887 Big String](http://poj.org/problem?id=2887)
 
 题解：
 很简单的模板题。代码如下：

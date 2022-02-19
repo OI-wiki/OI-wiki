@@ -168,8 +168,10 @@ $$
     const int N = 200005;
     int n;
     double ans = 1e20;
+    
     struct point {
       double x, y;
+    
       point(double x = 0, double y = 0) : x(x), y(y) {}
     };
     

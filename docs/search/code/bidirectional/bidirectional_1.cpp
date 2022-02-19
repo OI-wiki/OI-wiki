@@ -12,9 +12,9 @@ long long a[40];
 int main() {
   cin >> n >> m;
   a[0] = 1;
-  for (int i = 1; i < n; ++i) a[i] = a[i - 1] * 2;  //进行预处理
+  for (int i = 1; i < n; ++i) a[i] = a[i - 1] * 2;  // 进行预处理
 
-  for (int i = 1; i <= m; ++i) {  //对输入的边的情况进行处理
+  for (int i = 1; i <= m; ++i) {  // 对输入的边的情况进行处理
     int u, v;
     cin >> u >> v;
     --u;
@@ -23,7 +23,7 @@ int main() {
     a[v] |= ((long long)1 << u);
   }
 
-  for (int i = 0; i < (1 << (n / 2)); ++i) {  //对前一半进行搜索
+  for (int i = 0; i < (1 << (n / 2)); ++i) {  // 对前一半进行搜索
     long long t = 0;
     int cnt = 0;
     for (int j = 0; j < n / 2; ++j) {
@@ -38,7 +38,7 @@ int main() {
       f[t] = min(f[t], cnt);
   }
 
-  for (int i = 0; i < (1 << (n - n / 2)); ++i) {  //对后一半进行搜索
+  for (int i = 0; i < (1 << (n - n / 2)); ++i) {  // 对后一半进行搜索
     long long t = 0;
     int cnt = 0;
     for (int j = 0; j < (n - n / 2); ++j) {

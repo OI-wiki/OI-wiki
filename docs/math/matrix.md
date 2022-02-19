@@ -56,6 +56,7 @@ inline mat operator*(const mat& T) const {
       }
   return res;
 }
+
 // 不如
 inline mat operator*(const mat& T) const {
   mat res;
@@ -77,7 +78,9 @@ inline mat operator*(const mat& T) const {
 ```cpp
 struct mat {
   LL a[sz][sz];
+
   inline mat() { memset(a, 0, sizeof a); }
+
   inline mat operator-(const mat& T) const {
     mat res;
     for (int i = 0; i < sz; ++i)
@@ -86,6 +89,7 @@ struct mat {
       }
     return res;
   }
+
   inline mat operator+(const mat& T) const {
     mat res;
     for (int i = 0; i < sz; ++i)
@@ -94,6 +98,7 @@ struct mat {
       }
     return res;
   }
+
   inline mat operator*(const mat& T) const {
     mat res;
     int r;
@@ -105,6 +110,7 @@ struct mat {
       }
     return res;
   }
+
   inline mat operator^(LL x) const {
     mat res, bas;
     for (int i = 0; i < sz; ++i) res.a[i][i] = 1;
@@ -151,7 +157,9 @@ const int mod = 1000000007;
 
 struct Matrix {
   int a[3][3];
+
   Matrix() { memset(a, 0, sizeof a); }
+
   Matrix operator*(const Matrix &b) const {
     Matrix res;
     for (int i = 1; i <= 2; ++i)

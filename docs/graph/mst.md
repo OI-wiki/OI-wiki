@@ -273,6 +273,7 @@ const long long INF64 = 0x3fffffffffffffffLL;
 
 struct Edge {
   int u, v, val;
+
   bool operator<(const Edge &other) const { return val < other.val; }
 };
 
@@ -287,6 +288,7 @@ class Tr {
   struct Edge {
     int to, nxt, val;
   } e[600010];
+
   int cnt, head[100010];
 
   int pnt[100010][22];
@@ -365,6 +367,7 @@ class Tr {
 } tr;
 
 int fa[100010];
+
 int find(int x) { return fa[x] == x ? x : fa[x] = find(fa[x]); }
 
 void Kruskal() {
@@ -489,11 +492,11 @@ int main() {
 
 不难发现，原图中两个点之间的所有简单路径上最大边权的最小值 = 最小生成树上两个点之间的简单路径上的最大值 = Kruskal 重构树上两点之间的 LCA 的权值。
 
-也就是说，到点 $x$ 的简单路径上最小边权最大值 $\leq val$ 的所有点 $y$ 均在 Kruskal 重构树上的某一棵子树内，且恰好为该子树的所有叶子节点。
+也就是说，到点 $x$ 的简单路径上最大边权的最小值 $\leq val$ 的所有点 $y$ 均在 Kruskal 重构树上的某一棵子树内，且恰好为该子树的所有叶子节点。
 
 我们在 Kruskal 重构树上找到 $x$ 到根的路径上权值 $\leq val$ 的最浅的节点。显然这就是所有满足条件的节点所在的子树的根节点。
 
-如果需要求原图中两个点之间的所有简单路径上最大边权的最小值，则在跑 Kruskal 的过程中按边权大到小的顺序加边。
+如果需要求原图中两个点之间的所有简单路径上最小边权的最大值，则在跑 Kruskal 的过程中按边权大到小的顺序加边。
 
 ??? note "[「LOJ 137」最小瓶颈路 加强版](https://loj.ac/problem/137)"
     ```cpp
@@ -511,4 +514,4 @@ int main() {
     
     询问的根节点可以使用 Kruskal 重构树上倍增的方式求出。
     
-    时间复杂度 $O((n+m+Q) \log n)$
+    时间复杂度 $O((n+m+Q) \log n)$。

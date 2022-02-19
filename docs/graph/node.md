@@ -34,8 +34,11 @@ $\text{dis}_{i, j} = \min\{\min\{\text{dis}_{from, j - 1}\}, \min\{\text{dis}_{f
     ```cpp
     struct State {    // 优先队列的结点结构体
       int v, w, cnt;  // cnt 表示已经使用多少次免费通行权限
+    
       State() {}
+    
       State(int v, int w, int cnt) : v(v), w(w), cnt(cnt) {}
+    
       bool operator<(const State &rhs) const { return w > rhs.w; }
     };
     

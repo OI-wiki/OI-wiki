@@ -1,11 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 const int N = 156, L = 1e6 + 6;
+
 namespace AC {
 const int SZ = N * 80;
 int tot, tr[SZ][26];
 int fail[SZ], idx[SZ], val[SZ];
 int cnt[N];  // 记录第 i 个字符串的出现次数
+
 void init() {
   memset(fail, 0, sizeof(fail));
   memset(tr, 0, sizeof(tr));
@@ -14,6 +16,7 @@ void init() {
   memset(idx, 0, sizeof(idx));
   tot = 0;
 }
+
 void insert(char *s, int id) {  // id 表示原始字符串的编号
   int u = 0;
   for (int i = 1; s[i]; i++) {
@@ -22,7 +25,9 @@ void insert(char *s, int id) {  // id 表示原始字符串的编号
   }
   idx[u] = id;  // 以 u 为结尾的字符串编号为 idx[u]
 }
+
 queue<int> q;
+
 void build() {
   for (int i = 0; i < 26; i++)
     if (tr[0][i]) q.push(tr[0][i]);
@@ -39,6 +44,7 @@ void build() {
     }
   }
 }
+
 int query(char *t) {  // 返回最大的出现次数
   int u = 0, res = 0;
   for (int i = 1; t[i]; i++) {
@@ -50,8 +56,10 @@ int query(char *t) {  // 返回最大的出现次数
   return res;
 }
 }  // namespace AC
+
 int n;
 char s[N][100], t[L];
+
 int main() {
   while (~scanf("%d", &n)) {
     if (n == 0) break;

@@ -87,6 +87,7 @@ $$
     class poly {
      private:
       std::vector<int> data;
+    
       void out(void) {
         for (int i = 0; i < (int)data.size(); ++i) printf("%d ", data[i]);
         puts("");
@@ -94,16 +95,23 @@ $$
     
      public:
       poly(std::size_t len = std::size_t(0)) { data = std::vector<int>(len); }
+    
       poly(const std::vector<int> &b) { data = b; }
+    
       poly(const poly &b) { data = b.data; }
+    
       void resize(std::size_t len, int val = 0) { data.resize(len, val); }
+    
       std::size_t size(void) const { return data.size(); }
+    
       void clear(void) { data.clear(); }
     #if __cplusplus >= 201103L
       void shrink_to_fit(void) { data.shrink_to_fit(); }
     #endif
       int &operator[](std::size_t b) { return data[b]; }
+    
       const int &operator[](std::size_t b) const { return data[b]; }
+    
       poly operator*(const poly &h) const;
       poly operator*=(const poly &h);
       poly operator*(const int &h) const;
@@ -139,6 +147,7 @@ $$
     }
     
     std::vector<int> rev;
+    
     void dft_for_module(std::vector<int> &f, int n, int b) {
       static std::vector<int> w;
       w.resize(n);
@@ -336,12 +345,17 @@ $$
     
     struct comp {
       long double x, y;
+    
       comp(long double _x = 0, long double _y = 0) : x(_x), y(_y) {}
+    
       comp operator*(const comp &b) const {
         return comp(x * b.x - y * b.y, x * b.y + y * b.x);
       }
+    
       comp operator+(const comp &b) const { return comp(x + b.x, y + b.y); }
+    
       comp operator-(const comp &b) const { return comp(x - b.x, y - b.y); }
+    
       comp conj(void) { return comp(x, -y); }
     };
     
@@ -395,6 +409,7 @@ $$
     class arbitrary_module_poly {
      private:
       std::vector<int> data;
+    
       int construct_element(int D, ll x, ll y, ll z) const {
         x %= mod, y %= mod, z %= mod;
         return ((ll)D * D * x % mod + (ll)D * y % mod + z) % mod;
@@ -402,27 +417,35 @@ $$
     
      public:
       int mod;
+    
       arbitrary_module_poly(std::size_t len = std::size_t(0),
                             int module_value = 1e9 + 7) {
         mod = module_value;
         data = std::vector<int>(len);
       }
+    
       arbitrary_module_poly(const std::vector<int> &b, int module_value = 1e9 + 7) {
         mod = module_value;
         data = b;
       }
+    
       arbitrary_module_poly(const arbitrary_module_poly &b) {
         mod = b.mod;
         data = b.data;
       }
+    
       void resize(std::size_t len, const int &val = 0) { data.resize(len, val); }
+    
       std::size_t size(void) const { return data.size(); }
+    
       void clear(void) { data.clear(); }
     #if __cplusplus >= 201103L
       void shrink_to_fit(void) { data.shrink_to_fit(); }
     #endif
       int &operator[](std::size_t b) { return data[b]; }
+    
       const int &operator[](std::size_t b) const { return data[b]; }
+    
       arbitrary_module_poly operator*(const arbitrary_module_poly &h) const;
       arbitrary_module_poly operator*=(const arbitrary_module_poly &h);
       arbitrary_module_poly operator*(const int &h) const;
@@ -613,6 +636,7 @@ $$
       f[0] = 0;
       return f;
     }
+    
     typedef arbitrary_module_poly m_poly;
     }  // namespace fstdlib
     
@@ -795,7 +819,7 @@ $$
 
 ## 习题
 
-- [HDU3625 Examining the Rooms](http://acm.hdu.edu.cn/showproblem.php?pid=3625)
+- [HDU3625 Examining the Rooms](https://vjudge.net/problem/HDU-3625)
 - [UOJ540 联合省选 2020 组合数问题](https://uoj.ac/problem/540)
 - [UOJ269 清华集训 2016 如何优雅地求和](https://uoj.ac/problem/269)
 

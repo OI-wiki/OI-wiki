@@ -176,8 +176,10 @@ $$
 ```cpp
 // 这里有个小细节等下会讲
 int unit;  // 块的大小
+
 struct node {
   int l, r, id;
+
   bool operator<(const node &x) const {
     return l / unit == x.l / unit
                ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r))
@@ -191,6 +193,7 @@ struct node {
 ```cpp
 struct node {
   int l, r, id;
+
   bool operator<(const node &x) const {
     if (l / unit != x.l / unit) return l < x.l;
     if ((l / unit) & 1)

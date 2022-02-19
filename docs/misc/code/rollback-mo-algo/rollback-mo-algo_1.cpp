@@ -8,6 +8,7 @@ int x[N], t[N], m;
 struct Query {
   int l, r, id;
 } Q[N];
+
 int pos[N], L[N], R[N], sz, tot;
 int cnt[N], __cnt[N];
 ll ans[N];

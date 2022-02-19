@@ -46,12 +46,23 @@ C++ 的参考实现：
 ```cpp
 // C++ Version
 int fa[MAXN];  // 记录某个人的爸爸是谁，特别规定，祖先的爸爸是他自己
+
+// 递归
 int find(int x) {
   // 寻找x的祖先
-  if (fa[x] == x)  // 如果x是祖先则返回
+  if (fa[x] == x)  // 如果 x 是祖先则返回
     return x;
   else
     return find(fa[x]);  // 如果不是则 x 的爸爸问 x 的爷爷
+}
+
+// 非递归
+int find(int x) {
+  while (x != fa[x])  // 如果 x 不是祖先，就一直往上一辈找
+  {
+    x = fa[x];
+  }
+  return x;  // 如果 x 是祖先则返回
 }
 ```
 
@@ -60,12 +71,20 @@ Python 的参考实现：
 ```python
 # Python Version
 fa = [0] * MAXN # 记录某个人的爸爸是谁，特别规定，祖先的爸爸是他自己
+
+# 递归
 def find(x):
     # 寻找x的祖先
     if fa[x] == x:
         return x # 如果x是祖先则返回
     else:
         return find(fa[x]) # 如果不是则 x 的爸爸问 x 的爷爷
+        
+# 非递归
+def find(x):
+    while x != fa[x]: # 如果 x 不是祖先，就一直往上一辈找
+        x = fa[x]
+    return x # 如果 x 是祖先则返回
 ```
 
 显然这样最终会返回 $x$ 的祖先。
@@ -144,6 +163,7 @@ C++ 的参考实现，其选择点数作为估价函数：
 ```cpp
 // C++ Version
 std::vector<int> size(N, 1);  // 记录并初始化子树的大小为 1
+
 void unionSet(int x, int y) {
   int xx = find(x), yy = find(y);
   if (xx == yy) return;

@@ -160,10 +160,12 @@ PQ 树有三种结点：**叶子结点**、**P 结点** 和 **Q 结点**。其�
 class PQTree {
  public:
   PQTree() {}
+
   void Init(int n) {
     n_ = n, rt_ = tot_ = n + 1;
     for (int i = 1; i <= n; i++) g_[rt_].emplace_back(i);
   }
+
   void Insert(const std::string &s) {
     s_ = s;
     Dfs0(rt_);
@@ -171,10 +173,12 @@ class PQTree {
     while (g_[rt_].size() == 1) rt_ = g_[rt_][0];
     Remove(rt_);
   }
+
   std::vector<int> ans() {
     DfsAns(rt_);
     return ans_;
   }
+
   ~PQTree() {}
 
  private:
@@ -182,16 +186,20 @@ class PQTree {
       col_[100001] /* 0-black 1-white 2-grey */;
   std::vector<int> g_[100001], ans_;
   std::string s_;
+
   void Fail() {
     std::cout << "NO\n";
     std::exit(0);
   }
+
   int NewNode(int ty) {
     int x = top_ ? pool_[top_--] : ++tot_;
     typ_[x] = ty;
     return x;
   }
+
   void Delete(int u) { g_[u].clear(), pool_[++top_] = u; }
+
   void Dfs0(int u) {  // get color of each node
     if (u >= 1 && u <= n_) {
       col_[u] = s_[u] == '1';
@@ -210,6 +218,7 @@ class PQTree {
     else
       col_[u] = 2;
   }
+
   bool Check(const std::vector<int> &v) {
     int p2 = -1;
     for (int i = 0; i < static_cast<int>(v.size()); i++)
@@ -229,6 +238,7 @@ class PQTree {
       if (col_[v[i]] != 1) return false;
     return true;
   }
+
   std::vector<int> Split(int u) {
     if (col_[u] != 2) return {u};
     std::vector<int> ng;
@@ -266,6 +276,7 @@ class PQTree {
     Delete(u);
     return ng;
   }
+
   void Work(int u) {
     if (col_[u] != 2) return;
     if (typ_[u]) {  // Q
@@ -319,6 +330,7 @@ class PQTree {
       }
     }
   }
+
   void Remove(int u) {  // remove the nodes with only one child
     for (auto &&v : g_[u]) {
       int tv = v;
@@ -330,6 +342,7 @@ class PQTree {
       v = tv, Remove(v);
     }
   }
+
   void DfsAns(int u) {
     if (u >= 1 && u <= n_) {
       ans_.emplace_back(u);

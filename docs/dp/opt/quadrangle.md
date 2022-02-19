@@ -199,6 +199,7 @@ $$
     int n;
     long long C(int i, int j);
     vector<long long> dp_before(n), dp_cur(n);
+    
     // compute dp_cur[l], ... dp_cur[r] (inclusive)
     void compute(int l, int r, int optl, int optr) {
       if (l > r) return;

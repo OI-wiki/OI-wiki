@@ -52,6 +52,7 @@ $$
 using namespace std;
 int n;
 long long f[25];
+
 int main() {
   f[0] = 1;
   cin >> n;

@@ -8,11 +8,14 @@ const int N = 1e5 + 5;
 const int maxn = N << 1;
 
 int n;
+
 struct Edge {
   int v, nxt;
 } e[maxn << 1];
+
 int head[maxn], sz[maxn], f[maxn], maxv[maxn], tag[maxn], tot, Max;
 vector<int> center[2], L[maxn], subtree_tags[maxn];
+
 void addedge(int u, int v) {  // 建图
   e[tot].v = v;
   e[tot].nxt = head[u];
