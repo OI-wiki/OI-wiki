@@ -208,7 +208,7 @@ void solve(int l, int r, int L, int R)
       else
         q2[++cnt2] = q[i];
   for (int i = 1; i <= cnt1; i++)
-    if (q1[i].type == 0) add(q1[i].pos, -q1[i].k);  // 清空树状数组
+    if (q1[i].type == 0) add(q1[i].x, -q1[i].k);  // 清空树状数组
   for (int i = 1; i <= cnt1; i++) q[L + i - 1] = q1[i];
   for (int i = 1; i <= cnt2; i++)
     q[L + cnt1 + i - 1] = q2[i];  // 将临时数组中的元素合并回原数组
