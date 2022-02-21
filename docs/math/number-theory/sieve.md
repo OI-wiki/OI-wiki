@@ -432,7 +432,6 @@ void pre() {
       }
     }
   }
-  for (int i = 1; i <= n; ++i) f[i] = (f[i - 1] + f[i]) % Mod;
 }
 ```
 
@@ -453,8 +452,6 @@ def pre():
             else:
                 f[i * p[j]] = f[i] * f[p[j]]
                 g[i * p[j]] = 1 + p[j]
-    for i in range(1, n + 1):
-        f[i] = (f[i - 1] + f[i]) % Mod
 ```
 
 ## 其他线性函数
