@@ -462,8 +462,8 @@ $$
     }
     ```
 
-??? "[FFT 模板](https://www.luogu.com.cn/problem/P1919)
-
+??? "[FFT 模板](https://www.luogu.com.cn/problem/P1919)"
+    
     ```cpp
     --8<-- "docs/math/code/poly/fft/fft_1.cpp"
     ```
