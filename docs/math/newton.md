@@ -6,7 +6,7 @@ author: Marcythm, sshwy, nutshellfool
 
 ## 算法描述
 
-初始时我们从给定的 $f(x)$ 和一个近似解 $x_0$ 开始。
+初始时我们从给定的 $f(x)$ 和一个近似解 $x_0$ 开始（初值的问题与 Newton 分形有关，可参考 3Blue1Brown 的[牛顿分形](https://www.bilibili.com/video/BV1HQ4y1q78v)）。
 
 假设我们目前的近似解是 $x_i$，我们画出与 $f(x)$ 切于点 $(x_i,f(x_i))$ 的直线 $l$，将 $l$ 与 $x$ 轴的交点横坐标记为 $x_{i+1}$，那么这就是一个更优的近似解。重复这个迭代的过程。
 根据导数的几何意义，可以得到如下关系：
