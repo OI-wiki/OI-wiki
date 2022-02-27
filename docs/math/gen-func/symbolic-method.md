@@ -297,7 +297,7 @@ $$
 对应 OGF 为
 
 $$
-\operatorname{Log}(A(z))=\sum _ {n\geq 1}\frac{\varphi(n)}{n}\ln\frac{1}{1-A(z^k)}
+\operatorname{Log}(A(z))=\sum _ {n\geq 1}\frac{\varphi(n)}{n}\ln\frac{1}{1-A(z^n)}
 $$
 
 其中 $\varphi$ 为 Euler 函数，$\operatorname{Log}$ 为 Pólya 对数。
