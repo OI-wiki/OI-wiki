@@ -1,0 +1,34 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\begin{document}
+\begin{tikzpicture}
+
+    \scoped[every node/.style={circle,draw,minimum size=8mm}]
+    \node[draw=teal] (A) at (0,0) {}
+        child {node (B) {}}
+        child {node[draw=teal] (C) {}
+            child {node (D) {}}
+            child {node (E) {}}
+            child {node[double] (F) {$a$}
+                [every node/.style={circle,draw=red,minimum size=8mm}]
+                child {node (G) {}}
+                child {node (H) {}
+                    child {node (I) {}
+                        node[left=5mm,rectangle,draw=none,color=red] {$a$ 的后代}}
+                    child {node (J) {}}}}
+            node[right=5mm,rectangle,draw=none] {$a$ 的父节点}}
+        node[right=5mm,rectangle,draw=none,text=teal] {$a$ 的祖先};
+
+    \draw[dash pattern=on 4pt off 2pt] (0,-3cm)
+        circle[x radius=1.5cm,y radius=0.75cm]
+        node[left=1.5cm] {$a$ 的兄弟};
+
+    \draw[dash pattern=on 4pt off 2pt] (2.25cm,-4.5cm)
+        circle[x radius=1.5cm,y radius=0.75cm]
+        node[left=1.5cm] {$a$ 的子节点};
+
+\end{tikzpicture}
+\end{document}
