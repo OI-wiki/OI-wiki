@@ -281,7 +281,7 @@ $\mathsf{\#P}$ 类问题不是判定问题，而是关于 $\mathsf{NP}$ 类问�
 
 例如，背包问题是 NP-hard 问题，但它有基于动态规划的伪多项式时间的解法。
 
-如果一个 NPC / NP-hard 问题有伪多项式时间的解法，则称这个问题是 **弱 NPC** / **弱 NP-hard** 问题。如果一个 NPC / NP-hard 问题在 $\mathsf{P} \ne \mathsf{NP}$ 的前提下没有伪多项式时间的解法，则称这个问题是 **强 NPC** / **强 NP-hard** 问题。
+如果一个 NPC/NP-hard 问题有伪多项式时间的解法，则称这个问题是 **弱 NPC**/**弱 NP-hard** 问题。如果一个 NPC/NP-hard 问题在 $\mathsf{P} \ne \mathsf{NP}$ 的前提下没有伪多项式时间的解法，则称这个问题是 **强 NPC**/**强 NP-hard** 问题。
 
 ## 可构造函数
 
