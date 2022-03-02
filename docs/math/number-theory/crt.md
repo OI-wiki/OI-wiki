@@ -44,9 +44,9 @@ LL CRT(int k, LL* a, LL* r) {
   for (int i = 1; i <= k; i++) {
     LL m = n / r[i], b, y;
     exgcd(m, r[i], b, y);  // b * m mod r[i] = 1
-    ans = (ans + a[i] * m * b % mod) % mod;
+    ans = (ans + a[i] * m * b % n) % n;
   }
-  return (ans % mod + mod) % mod;
+  return (ans % n + n) % n;
 }
 ```
 
@@ -61,8 +61,8 @@ def CRT(k, a, r):
     for i in range(1, k + 1):
         m = n // r[i]; b = y = 0
         exgcd(m, r[i], b, y) # b * m mod r[i] = 1
-        ans = (ans + a[i] * m * b % mod) % mod
-    return (ans % mod + mod) % mod
+        ans = (ans + a[i] * m * b % n) % n
+    return (ans % n + n) % n
 ```
 
 ## 算法的证明
