@@ -102,11 +102,15 @@ def quick_sort(alist, first, last):
 
 由于在每次划分元素的过程中，都会选择一个元素作为分界，所以划分元素的过程至多发生 $n$ 次。又由于划分元素的过程的每次内层的 `while` 循环都要做一次比较，所以总时间复杂度是 $O(n + X)$ 的。
 
-设 $a_i$ 为原数组中第 $i$ 小的数，定义 $A_{ij}$ 为 $\{ a_i, a_{i+1}, \dots, a_j \}$，$X_{ij} = \left\{ \begin{array}{l} 1, 当\ a_i\ 和\ a_j\ 比较 \\ 0, 当\ a_i\ 不和\ a_j\ 比较\end{array} \right.$。
+设 $a_i$ 为原数组中第 $i$ 小的数，定义 $A_{ij}$ 为 $\{ a_i, a_{i+1}, \dots, a_j \}$，$X_{ij} = \left\{ \begin{array}{l} 1, \text{当}\ a_i\ \text{和}\ a_j\ \text{比较} \\ 0, \text{当}\ a_i\ \text{不和}\ a_j\ \text{比较}\end{array} \right.$。
 
-显然每次选取的分界值是不同的，而元素只会和分界值比较，所以总比较次数 $X = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n X_{ij}$
+显然每次选取的分界值是不同的，而元素只会和分界值比较，所以总比较次数
 
-由期望的线性性，$E[X] = E \left[ \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n X_{ij} \right] = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n E[X_{ij}] = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n P(a_i\ 和\ a_j\ 比较)$。
+$\begin{aligned} X = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n X_{ij} \end{aligned}$
+
+由期望的线性性，
+
+$\begin{aligned} E[X] & = E \left[ \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n X_{ij} \right] \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n E[X_{ij}] \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n P(a_i\ \text{和}\ a_j\ \text{比较}) \end{aligned}$。
 
 **引理 2：** $a_i$ 和 $a_j$ 比较的充要条件是 $a_i$ 或 $a_j$ 是集合 $A_{ij}$ 中第一个被选中的分界值。
 
@@ -118,9 +122,13 @@ def quick_sort(alist, first, last):
 
 不失一般地，假设 $a_i$ 是集合 $A_{ij}$ 中第一个被选中的分界值。由于 $A_{ij}$ 中没有其他数选为分界值，所以 $A_{ij}$ 中的元素都在数组的同一子序列中。在以 $a_i$ 为分界值的划分中，$a_i$ 和当前子序列中所有元素都进行了比较，所以 $a_i$ 和 $a_j$ 进行了比较。
 
-考虑计算 $P(a_i\ 和\ a_j\ 比较)$。在 $A_{ij}$ 中某个元素被选为分界值之前，$A_{ij}$ 中的元素都在数组的同一子序列中。所以 $A_{ij}$ 中每个元素都会被等可能地第一个被选为分界值。由于 $A_{ij}$ 中有 $j - i + 1$ 个元素，由引理 2，$P(a_i 和 a_j 比较) = P(a_i 或 a_j 是集合 A_{ij} 中第一个被选中的分界值) = \dfrac{2}{j-i+1}$。
+考虑计算 $P(a_i\ \text{和}\ a_j\ \text{比较})$。在 $A_{ij}$ 中某个元素被选为分界值之前，$A_{ij}$ 中的元素都在数组的同一子序列中。所以 $A_{ij}$ 中每个元素都会被等可能地第一个被选为分界值。由于 $A_{ij}$ 中有 $j - i + 1$ 个元素，由引理 2，
 
-所以 $E[X] = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n P(a_i\ 和\ a_j\ 比较) = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n \dfrac{2}{j - i + 1} = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {k = 2} ^ {n - i + 1} \dfrac{2}{k} = \sum \limits _ {i = 1} ^ {n - 1} O(\log n) = O(n \log n)$。
+$P(a_i \text{和} a_j \text{比较}) = P(a_i \text{或} a_j \text{是集合} A_{ij} \text{中第一个被选中的分界值}) = \dfrac{2}{j-i+1}$。
+
+所以
+
+ $\begin{aligned} E[X] & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n P(a_i\ \text{和}\ a_j\ \text{比较}) \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n \dfrac{2}{j - i + 1} \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {k = 2} ^ {n - i + 1} \dfrac{2}{k} \\ & = \sum \limits _ {i = 1} ^ {n - 1} O(\log n) \\ & = O(n \log n) \end{aligned}$。
 
 由此，快速排序的期望时间复杂度为 $O(n \log n)$。
 
