@@ -70,7 +70,7 @@ $O(\sqrt{n})$ 找出所有 PN，计算出所有 $h$ 的有效值。对于 $h$ �
 
 对于第一部分，根据 $O(\sqrt{n})$ 内的素数个数为 $O\left(\dfrac{\sqrt{n}}{\log n}\right)$，每个素数 $p$ 的指数 $c$ 至多为 $\log n$，计算 $h(p^c)$ 需要循环 $(c - 1)$ 次，由此有第一部分的时间复杂度为 $O\left(\dfrac{\sqrt{n}}{\log n} \cdot \log n \cdot \log n\right) = O(\sqrt{n}\log{n})$，且这是一个宽松的上界。根据题目的不同还可以添加不同的优化，从而降低第一部分的时间复杂度。
 
-对于搜索部分，由于 $n$ 以内的 $PN$ 至多有 $O(\sqrt{n})$ 个，所以至多搜索 $O(\sqrt{n})$ 次。对于每一个 PN，根据计算 $G$ 的方法不同，时间复杂度也不同。例如，假设计算 $G\left(\left\lfloor \dfrac{n}{d}\right\rfloor\right)$ 的时间复杂度为 $O(1)$，则第二部分的复杂度为 $O(\sqrt{n})$。
+对于搜索部分，由于 $n$ 以内的 PN 至多有 $O(\sqrt{n})$ 个，所以至多搜索 $O(\sqrt{n})$ 次。对于每一个 PN，根据计算 $G$ 的方法不同，时间复杂度也不同。例如，假设计算 $G\left(\left\lfloor \dfrac{n}{d}\right\rfloor\right)$ 的时间复杂度为 $O(1)$，则第二部分的复杂度为 $O(\sqrt{n})$。
 
 特别地，若借助杜教筛计算 $G\left(\left\lfloor \dfrac{n}{d}\right\rfloor\right)$，则第二部分的时间复杂度为杜教筛的时间复杂度，即 $O(n^{\frac{2}{3}})$。因为若事先计算一次 $G(n)$，并且预先使用线性筛优化和用 `std::map` 记录较大的值，则杜教筛过程中用到的 $G\left(\left\lfloor \dfrac{n}{d}\right\rfloor\right)$ 都是线性筛中记录的或者 `std::map` 中记录的，这一点可以直接用程序验证。
 
