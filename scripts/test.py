@@ -26,11 +26,11 @@ for line in lines:
     indata = indata.replace('code', 'examples')
     outdata = outdata.replace('code', 'examples')
     ansdata = ansdata.replace('code', 'examples')
-    #判断测试是否要执行
+    # 判断测试是否要执行
     if os.path.exists(skiptest):
         print(cpp + ' test skipped')
         continue
-    
+
     cmd = 'g++ '+cpp+' -o '+name
     # 判断CE
     if os.system(cmd) == 0:
@@ -47,7 +47,7 @@ for line in lines:
     else:
         print(cpp+' Runtime Error')
         generate_annotations_and_exit(cpp, 'Runtime Error')
-    
+
     # 判断答案
     cmd = 'diff -b -B '+outdata+' '+ansdata
     if os.system(cmd) == 0:
