@@ -117,7 +117,7 @@ $$
       int midx = a[m].x;
       rec(l, m), rec(m + 1, r);
       inplace_merge(a + l, a + m + 1, a + r + 1, &cmp_y);
-      
+    
       static pt t[MAXN];
       int tsz = 0;
       for (int i = l; i <= r; ++i)
