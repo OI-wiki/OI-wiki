@@ -158,7 +158,7 @@ int main() {
 
 ## 线性基练习题
 
-[Luogu P3812【模板】线性基](https://www.luogu.com.cn/problem/P3812) & [Acwing 3164. 线性基](https://www.acwing.com/problem/content/description/3167)
+[Luogu P3812【模板】线性基](https://www.luogu.com.cn/problem/P3812)&[Acwing 3164. 线性基](https://www.acwing.com/problem/content/description/3167)
 
 [SGU 275 to xor or not xor](https://vjudge.net/problem/SGU-275)
 
