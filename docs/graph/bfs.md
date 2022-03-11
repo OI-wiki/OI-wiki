@@ -74,20 +74,20 @@ Python：
 
 ```python
 # Python Version
-from queue import Queue
+from collections import deque
 
 def bfs(u):
-    Q = Queue()
-    Q.put(u)
+    Q = deque() # common implementation of queue in Python
+    Q.append(u)
     vis[u] = True
     d[u] = 0
     p[u] = -1
-    while Q.qsize() != 0:
-        u = Q.get()
+    while len() != 0:
+        u = Q.popleft()
         while i:
             i = head[u]
             if vis[e[i].to] == False:
-                Q.put(e[i].to)
+                Q.append(e[i].to)
                 vis[e[i].to] = True
                 d[e[i].to] = d[u] + 1
                 p[e[i].to] = u
