@@ -52,7 +52,7 @@ inline void insert(long long x) {
 
 高斯消元法是从线性基本身含义的角度去构造线性基，可以求 $0/1$ 向量（二进制数）的线性基，也可以求非 $0/1$ 向量的线性基。
 
-如果只需要求 $0/1$ 的线性基，使用 [异或高斯消元](https://oiwiki.org/math/gauss/#_17) 即可。
+如果只需要求 $0/1$ 的线性基，使用 [异或高斯消元](./gauss.md#_17) 即可。
 
 #### 代码
 
@@ -102,7 +102,7 @@ int main() {
 
 - 高斯消元后的矩阵是一个阶梯矩阵。
 
-如果对这条性质的正确性不理解，可以跳转 [高斯消元](https://oiwiki.org/math/gauss)。
+如果对这条性质的正确性不理解，可以跳转 [高斯消元](./gauss.md)。
 
 提供一组样例：
 
@@ -158,7 +158,7 @@ int main() {
 
 ## 线性基练习题
 
-[Luogu P3812【模板】线性基](https://www.luogu.com.cn/problem/P3812)&[Acwing 3164. 线性基](https://www.acwing.com/problem/content/description/3167)
+[Luogu P3812【模板】线性基](https://www.luogu.com.cn/problem/P3812) & [Acwing 3164. 线性基](https://www.acwing.com/problem/content/description/3167)
 
 [SGU 275 to xor or not xor](https://vjudge.net/problem/SGU-275)
 
