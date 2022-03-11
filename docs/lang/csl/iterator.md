@@ -49,7 +49,7 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 
 可以使用 `std::advance(it, n)` 将迭代器 `it` 向后移动 `n` 步；若 `n` 为负数，则将迭代器向前移动 `n` 步。迭代器必须满足双向迭代器，否则行为未定义。
 
-在 C++11 以后可以使用 `std::next(it)` 获取向前迭代器 `it` 的后继（此时迭代器 `it` 不变），`std::next(it, n)` 获取向前迭代器 `it` 的第 `n` 个后继。
+在 C++11 以后可以使用 `std::next(it)` 获得向前迭代器 `it` 的后继（此时迭代器 `it` 不变），`std::next(it, n)` 获得向前迭代器 `it` 的第 `n` 个后继。
 
 在 C++11 以后可以使用 `std::prev(it)` 获得双向迭代器 `it` 的前驱（此时迭代器 `it` 不变），`std::prev(it, n)` 获得双向迭代器 `it` 的第 `n` 个前驱。
 
