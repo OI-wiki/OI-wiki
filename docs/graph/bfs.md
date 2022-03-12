@@ -82,7 +82,7 @@ def bfs(u):
     vis[u] = True
     d[u] = 0
     p[u] = -1
-    while len() != 0:
+    while len(Q) != 0:
         u = Q.popleft()
         while i:
             i = head[u]
