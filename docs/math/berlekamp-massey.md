@@ -6,9 +6,9 @@ Berlekamp-Massey 算法是一种用于求数列的最短递推式的算法。给
 
 定义一个数列 $\{a_0 \dots a_{n - 1} \}$ 的递推式为满足下式的序列 $\{r_0\dots r_m\}$：
 
-$$ \sum_{j = 0} ^ m r_i a_{i - j} = 0, \forall i \ge m $$
+$\sum_{j = 0} ^ m r_i a_{i - j} = 0, \forall i \ge m$
 
-其中 $r_0 = 1$。$m$ 称为该递推式的**阶数**。
+其中 $r_0 = 1$。$m$ 称为该递推式的 **阶数**。
 
 数列 $\{a_i\}$ 的最短递推式即为阶数最小的递推式。
 
@@ -16,7 +16,7 @@ $$ \sum_{j = 0} ^ m r_i a_{i - j} = 0, \forall i \ge m $$
 
 与上面定义的稍有不同，这里定义一个新的递推系数 $\{f_0 \dots f_{m - 1}\}$，满足：
 
-$$ a_i = \sum_{j = 0} ^ {m - 1} f_j a_{i - j - 1}, \forall i \ge m $$
+$a_i = \sum_{j = 0} ^ {m - 1} f_j a_{i - j - 1}, \forall i \ge m$
 
 容易看出 $f_i = -r_{i + 1}$，并且阶数 $m$ 与之前的定义是相同的。
 
@@ -31,17 +31,17 @@ $$ a_i = \sum_{j = 0} ^ {m - 1} f_j a_{i - j - 1}, \forall i \ge m $$
 
 如果这是第一次对递推系数进行修改，则说明 $a_i$ 是序列中的第一个非零项。这时直接令 $F_i$ 为 $i$ 个 $0$ 即可，显然这是一个合法的最短递推式。
 
-否则设上一次对递推系数进行修改时，已考虑的 $\{a_i\}$ 的项数为 $k$。如果存在一个序列 $G = \{g_0 \dots g_{m' - 1}\}$， 满足：
+否则设上一次对递推系数进行修改时，已考虑的 $\{a_i\}$ 的项数为 $k$。如果存在一个序列 $G = \{g_0 \dots g_{m' - 1}\}$，满足：
 
-$$ \sum_{j = 0} ^ {m' - 1} g_j a_{i' - j - 1} = 0, \forall i' \in [m', i) $$
+$\sum_{j = 0} ^ {m' - 1} g_j a_{i' - j - 1} = 0, \forall i' \in [m', i)$
 
 并且 $\sum_{j = 0} ^ {m' - 1} g_j a_{i - j - 1} = \Delta_i$，那么不难发现将 $F_k$ 与 $G$ 按位分别相加之后即可得到一个合法的递推系数 $F_i$。
 
 考虑如何构造 $G$。一种可行的构造方案是令
 
-$$ G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_k\} $$
+$G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_k\}$
 
-其中前面一共有 $i - k - 1$ 个 $0$，且最后的 $-\frac{\Delta_i}{\Delta_k} F_k$ 表示将 $F_k$ 每项乘以 $-\frac{\Delta_i}{\Delta_k}$后接在序列后面。
+其中前面一共有 $i - k - 1$ 个 $0$，且最后的 $-\frac{\Delta_i}{\Delta_k} F_k$ 表示将 $F_k$ 每项乘以 $-\frac{\Delta_i}{\Delta_k}$ 后接在序列后面。
 
 不难验证此时 $\sum_{j = 0} ^ {m' - 1} g_j a_{i - j - 1} = \Delta_k \frac{\Delta_i}{\Delta_k} = \Delta_i$，因此这样构造出的是一个合法的 $G$。将 $F_i$ 赋值为 $F_k$ 与 $G$ 逐项相加后的结果即可。
 
@@ -54,54 +54,48 @@ $$ G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_
 ??? note "参考实现"
     ```cpp
     vector<int> berlekamp_massey(const vector<int> &a) {
-        vector<int> v, last; // v is the answer, 0-based, p is the module
-        int k = -1, delta = 0;
-
-        for (int i = 0; i < (int)a.size(); i++) {
-
-            int tmp = 0;
-            for (int j = 0; j < (int)v.size(); j++)
-                tmp = (tmp + (long long)a[i - j - 1] * v[j]) % p;
-            
-            if (a[i] == tmp)
-                continue;
-            
-            if (k < 0) {
-                k = i;
-                delta = (a[i] - tmp + p) % p;
-                v = vector<int>(i + 1);
-
-                continue;
-            }
-
-            vector<int> u = v;
-            int val = (long long)(a[i] - tmp + p) * power(delta, p - 2) % p;
-
-            if (v.size() < last.size() + i - k)
-                v.resize(last.size() + i - k);
-            
-            (v[i - k - 1] += val) %= p;
-            
-            for (int j = 0; j < (int)last.size(); j++) {
-                v[i - k + j] = (v[i - k + j] - (long long)val * last[j]) % p;
-                if (v[i - k + j] < 0)
-                    v[i - k + j] += p;
-            }
-
-            if ((int)u.size() - i < (int)last.size() - k) {
-                last = u;
-                k = i;
-                delta = a[i] - tmp;
-                if (delta < 0)
-                    delta += p;
-            }
+      vector<int> v, last;  // v is the answer, 0-based, p is the module
+      int k = -1, delta = 0;
+    
+      for (int i = 0; i < (int)a.size(); i++) {
+        int tmp = 0;
+        for (int j = 0; j < (int)v.size(); j++)
+          tmp = (tmp + (long long)a[i - j - 1] * v[j]) % p;
+    
+        if (a[i] == tmp) continue;
+    
+        if (k < 0) {
+          k = i;
+          delta = (a[i] - tmp + p) % p;
+          v = vector<int>(i + 1);
+    
+          continue;
         }
-
-        for (auto &x : v)
-            x = (p - x) % p;
-        v.insert(v.begin(), 1);
-
-        return v; // $\forall i, \sum_{j = 0} ^ m a_{i - j} v_j = 0$
+    
+        vector<int> u = v;
+        int val = (long long)(a[i] - tmp + p) * power(delta, p - 2) % p;
+    
+        if (v.size() < last.size() + i - k) v.resize(last.size() + i - k);
+    
+        (v[i - k - 1] += val) %= p;
+    
+        for (int j = 0; j < (int)last.size(); j++) {
+          v[i - k + j] = (v[i - k + j] - (long long)val * last[j]) % p;
+          if (v[i - k + j] < 0) v[i - k + j] += p;
+        }
+    
+        if ((int)u.size() - i < (int)last.size() - k) {
+          last = u;
+          k = i;
+          delta = a[i] - tmp;
+          if (delta < 0) delta += p;
+        }
+      }
+    
+      for (auto &x : v) x = (p - x) % p;
+      v.insert(v.begin(), 1);
+    
+      return v;  // $\forall i, \sum_{j = 0} ^ m a_{i - j} v_j = 0$
     }
     ```
 
@@ -129,9 +123,9 @@ $$ G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_
 
 方阵 $A$ 的最小多项式是次数最小的并且满足 $f(A) = 0$ 的多项式 $f$。
 
-实际上最小多项式就是 $\{A^i\}$ 的最小递推式，所以直接调用 Berlekamp-Massey 算法就可以了。如果 $A$ 是一个$n$阶方阵，则显然最小多项式的次数不超过 $n$。
+实际上最小多项式就是 $\{A^i\}$ 的最小递推式，所以直接调用 Berlekamp-Massey 算法就可以了。如果 $A$ 是一个 $n$ 阶方阵，则显然最小多项式的次数不超过 $n$。
 
-瓶颈在于求出 $A^i$，因为如果直接每次做矩阵乘法的话复杂度会达到 $O(n^4)$。但考虑到求矩阵列的最短递推式时实际上求的是 $\{\mathbf{u}^T A^i \mathbf{v}\}$的最短递推式，因此我们只要求出 $A^i \mathbf{v}$ 就行了。
+瓶颈在于求出 $A^i$，因为如果直接每次做矩阵乘法的话复杂度会达到 $O(n^4)$。但考虑到求矩阵列的最短递推式时实际上求的是 $\{\mathbf{u}^T A^i \mathbf{v}\}$ 的最短递推式，因此我们只要求出 $A^i \mathbf{v}$ 就行了。
 
 假设 $A$ 有 $k$ 个非零项，则复杂度为 $O(kn + n^2)$。
 
@@ -141,7 +135,7 @@ $$ G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_
 
 实际上如果把 $A$ 乘上一个随机对角阵 $B$，则 $AB$ 的最小多项式有至少 $1 - \frac {2n^2 - n} p$ 的概率就是特征多项式。最后再除掉 $\text{det}\;B$ 就行了。
 
-设 $A$ 为 $n$ 阶方阵，且有 $k$ 个非零项, 则复杂度为 $O(kn + n ^ 2)$。
+设 $A$ 为 $n$ 阶方阵，且有 $k$ 个非零项，则复杂度为 $O(kn + n ^ 2)$。
 
 #### 求稀疏矩阵的秩
 
@@ -153,64 +147,62 @@ $$ G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_
 
 #### 解稀疏方程组
 
-**问题**：已知 $A \mathbf x = \mathbf b$, 其中 $A$ 是一个 $n \times n$ 的**满秩**稀疏矩阵，$\mathbf b$ 和 $\mathbf x$ 是 $1\times n$ 的列向量。$A, \mathbf b$ 已知，需要在低于 $n^\omega$ 的复杂度内解出 $x$。
+**问题**：已知 $A \mathbf x = \mathbf b$, 其中 $A$ 是一个 $n \times n$ 的 **满秩** 稀疏矩阵，$\mathbf b$ 和 $\mathbf x$ 是 $1\times n$ 的列向量。$A, \mathbf b$ 已知，需要在低于 $n^\omega$ 的复杂度内解出 $x$。
 
-**做法**：显然 $\mathbf x = A^{-1} \mathbf b$。如果我们能求出 $\{A^i \mathbf b\}$ ($i \ge 0$) 的最小递推式 $\{r_0 \dots r_{m - 1}\}$ ($m \le n$), 那么就有结论
+**做法**：显然 $\mathbf x = A^{-1} \mathbf b$。如果我们能求出 $\{A^i \mathbf b\}$($i \ge 0$) 的最小递推式 $\{r_0 \dots r_{m - 1}\}$($m \le n$), 那么就有结论
 
-$$ A^{-1} \mathbf b = -\frac 1 {r_{m - 1}} \sum_{i = 0} ^ {m - 2} A^i \mathbf b r_{m - 2 - i} $$
+$A^{-1} \mathbf b = -\frac 1 {r_{m - 1}} \sum_{i = 0} ^ {m - 2} A^i \mathbf b r_{m - 2 - i}$
 
 （证明略）
 
-因为 $A$ 是稀疏矩阵, 直接按定义递推出 $\mathbf b \dots A^{2n - 1} \mathbf b$ 即可。
+因为 $A$ 是稀疏矩阵，直接按定义递推出 $\mathbf b \dots A^{2n - 1} \mathbf b$ 即可。
 
 同样地，设 $A$ 中有 $k$ 个非零项，则复杂度为 $O(kn + n^2)$。
 
 ??? note "参考实现"
     ```cpp
-    vector<int> solve_sparse_equations(const vector<tuple<int, int, int> > &A, const vector<int> &b) {
-        int n = (int)b.size(); // 0-based
-
-        vector<vector<int> > f({b});
-
-        for (int i = 1; i < 2 * n; i++) {
-            vector<int> v(n);
-            auto &u = f.back();
-
-            for (auto [x, y, z] : A) // [x, y, value]
-                v[x] = (v[x] + (long long)u[y] * z) % p;
-
-            f.push_back(v);
-        }
-
-        vector<int> w(n);
-        mt19937 gen;
-        for (auto &x : w)
-            x = uniform_int_distribution<int>(1, p - 1)(gen);
-
-        vector<int> a(2 * n);
-        for (int i = 0; i < 2 * n; i++)
-            for (int j = 0; j < n; j++)
-                a[i] = (a[i] + (long long)f[i][j] * w[j]) % p;
-        
-        auto c = berlekamp_massey(a);
-        int m = (int)c.size();
-
-        vector<int> ans(n);
-
-        for (int i = 0; i < m - 1; i++)
-            for (int j = 0; j < n; j++)
-                ans[j] = (ans[j] + (long long)c[m - 2 - i] * f[i][j]) % p;
-
-        int inv = power(p - c[m - 1], p - 2);
-
-        for (int i = 0; i < n; i++)
-            ans[i] = (long long)ans[i] * inv % p;
-
-        return ans;
+    vector<int> solve_sparse_equations(const vector<tuple<int, int, int> > &A,
+                                       const vector<int> &b) {
+      int n = (int)b.size();  // 0-based
+    
+      vector<vector<int> > f({b});
+    
+      for (int i = 1; i < 2 * n; i++) {
+        vector<int> v(n);
+        auto &u = f.back();
+    
+        for (auto [x, y, z] : A)  // [x, y, value]
+          v[x] = (v[x] + (long long)u[y] * z) % p;
+    
+        f.push_back(v);
+      }
+    
+      vector<int> w(n);
+      mt19937 gen;
+      for (auto &x : w) x = uniform_int_distribution<int>(1, p - 1)(gen);
+    
+      vector<int> a(2 * n);
+      for (int i = 0; i < 2 * n; i++)
+        for (int j = 0; j < n; j++) a[i] = (a[i] + (long long)f[i][j] * w[j]) % p;
+    
+      auto c = berlekamp_massey(a);
+      int m = (int)c.size();
+    
+      vector<int> ans(n);
+    
+      for (int i = 0; i < m - 1; i++)
+        for (int j = 0; j < n; j++)
+          ans[j] = (ans[j] + (long long)c[m - 2 - i] * f[i][j]) % p;
+    
+      int inv = power(p - c[m - 1], p - 2);
+    
+      for (int i = 0; i < n; i++) ans[i] = (long long)ans[i] * inv % p;
+    
+      return ans;
     }
     ```
 
 ### 例题
 
 1. [LibreOJ #163. 高斯消元 2](https://loj.ac/p/163)
-2. [ICPC2021台北 Gym103443E. Composition with Large Red Plane, Yellow, Black, Gray, and Blue](https://codeforces.com/gym/103443/problem/E)
+2. [ICPC2021 台北 Gym103443E. Composition with Large Red Plane, Yellow, Black, Gray, and Blue](https://codeforces.com/gym/103443/problem/E)
