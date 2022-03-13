@@ -84,9 +84,9 @@ def bfs(u):
     p[u] = -1
     while len(Q) != 0:
         u = Q.popleft()
+        i = head[u]
         while i:
-            i = head[u]
-            if vis[e[i].to] == False:
+            if not vis[e[i].to]:
                 Q.append(e[i].to)
                 vis[e[i].to] = True
                 d[e[i].to] = d[u] + 1
