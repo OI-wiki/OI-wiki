@@ -129,6 +129,7 @@
       }
       return root;
     }
+    
     template <class Key, class Compare>
     typename Set<Key, Compare>::Node *Set<Key, Compare>::delete_min(
         Set::Node *root) const {
@@ -198,6 +199,7 @@
     #include <algorithm>
     #include <memory>
     #include <vector>
+    
     template <class Key, class Compare = std::less<Key>>
     class Set {
      private:

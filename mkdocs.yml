@@ -41,8 +41,7 @@ nav:
       - 读入、输出优化: contest/io.md
       - 常见错误: contest/common-mistakes.md
       - 常见技巧: contest/common-tricks.md
-    - 出题相关:
-      - 出题: contest/problemsetting.md
+    - 出题: contest/problemsetting.md
   - 工具软件:
     - 工具软件简介: tools/index.md
     - 代码编辑工具:
@@ -190,7 +189,7 @@ nav:
     - 字符串哈希: string/hash.md
     - 字典树 (Trie): string/trie.md
     - 前缀函数与 KMP 算法: string/kmp.md
-    - Boyer-Moore算法: string/bm.md
+    - Boyer-Moore 算法: string/bm.md
     - Z 函数（扩展 KMP）: string/z-func.md
     - 自动机: string/automaton.md
     - AC 自动机: string/ac-automaton.md
@@ -265,6 +264,7 @@ nav:
       - 多项式平移|连续点值平移: math/poly/shift.md
     - 生成函数:
       - 生成函数简介: math/gen-func/intro.md
+      - 符号化方法: math/gen-func/symbolic-method.md
       - 普通生成函数: math/gen-func/ogf.md
       - 指数生成函数: math/gen-func/egf.md
       - 狄利克雷生成函数: math/gen-func/dgf.md
@@ -383,7 +383,7 @@ nav:
       - 虚树: graph/virtual-tree.md
       - 树分治: graph/tree-divide.md
       - 动态树分治: graph/dynamic-tree-divide.md
-      - AHU算法: graph/tree-ahu.md
+      - AHU 算法: graph/tree-ahu.md
       - 树哈希: graph/tree-hash.md
     - 矩阵树定理: graph/matrix-tree.md
     - 有向无环图: graph/dag.md
@@ -456,7 +456,7 @@ nav:
         - 带修改莫队: misc/modifiable-mo-algo.md
         - 树上莫队: misc/mo-algo-on-tree.md
         - 回滚莫队: misc/rollback-mo-algo.md
-        - 莫队配合bitset: misc/mo-algo-with-bitset.md
+        - 莫队配合 bitset: misc/mo-algo-with-bitset.md
     - 分数规划: misc/frac-programming.md
     - 随机化:
       - 随机函数: misc/random.md

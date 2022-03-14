@@ -79,6 +79,7 @@ fclose(stdout);
 ```cpp
 #include <cstdio>
 #include <iostream>
+
 int main(void) {
   freopen("data.in", "r", stdin);
   freopen("data.out", "w", stdout);
@@ -157,6 +158,7 @@ fout.close();
 #include <fstream>
 ifstream fin("data.in");
 ofstream fout("data.out");
+
 int main(void) {
   /*
   中间的代码改变 cin 为 fin ，cout 为 fout 即可

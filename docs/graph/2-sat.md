@@ -38,6 +38,7 @@
       vector<int> g[maxn * 2];
       bool mark[maxn * 2];
       int s[maxn * 2], c;
+    
       bool dfs(int x) {
         if (mark[x ^ 1]) return false;
         if (mark[x]) return true;
@@ -47,15 +48,18 @@
           if (!dfs(g[x][i])) return false;
         return true;
       }
+    
       void init(int n) {
         this->n = n;
         for (int i = 0; i < n * 2; i++) g[i].clear();
         memset(mark, 0, sizeof(mark));
       }
+    
       void add_clause(int x, int y) {  // 这个函数随题意变化
         g[x].push_back(y ^ 1);         // 选了 x 就必须选 y^1
         g[y].push_back(x ^ 1);
       }
+    
       bool solve() {
         for (int i = 0; i < n * 2; i += 2)
           if (!mark[i] && !mark[i + 1]) {
@@ -72,7 +76,7 @@
 
 ## 例题
 
-### **HDU3062 [Party](http://acm.hdu.edu.cn/showproblem.php?pid=3062)**
+### **HDU3062 [Party](https://vjudge.net/problem/HDU-3062)**
 
 > 题面：有 n 对夫妻被邀请参加一个聚会，因为场地的问题，每对夫妻中只有 $1$ 人可以列席。在 $2n$ 个人中，某些人之间有着很大的矛盾（当然夫妻之间是没有矛盾的），有矛盾的 $2$ 个人是不会同时出现在聚会上的。有没有可能会有 $n$ 个人同时列席？
 
@@ -102,6 +106,6 @@
 
 ## 练习题
 
-HDU1814 [和平委员会](http://acm.hdu.edu.cn/showproblem.php?pid=1814)
+[洛谷 P5782 和平委员会](https://www.luogu.com.cn/problem/P5782)
 
 POJ3683 [牧师忙碌日](http://poj.org/problem?id=3683)

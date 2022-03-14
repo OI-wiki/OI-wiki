@@ -31,6 +31,7 @@
       y = temp - a / b * y;
       return d;
     }
+    
     bool liEu(int a, int b, int c, int& x, int& y) {
       int d = ex_gcd(a, b, x, y);
       if (c % d != 0) return 0;

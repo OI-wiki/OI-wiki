@@ -270,7 +270,9 @@ def kth(k):
 // C++ Version
 // 时间戳优化
 int tag[MAXN], t[MAXN], Tag;
+
 void reset() { ++Tag; }
+
 void add(int k, int v) {
   while (k <= n) {
     if (tag[k] != Tag) t[k] = 0;
@@ -278,6 +280,7 @@ void add(int k, int v) {
     k += lowbit(k);
   }
 }
+
 int getsum(int k) {
   int ret = 0;
   while (k) {

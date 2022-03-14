@@ -91,6 +91,7 @@ author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marc
 ```cpp
 // C++ Version
 int a[MAXN];
+
 int dp() {
   int now = 1, ans = 1;
   for (int i = 2; i <= n; i++) {
@@ -134,6 +135,7 @@ def dp():
 ```cpp
 // C++ Version
 int a[MAXN], d[MAXN];
+
 int dp() {
   d[1] = 1;
   int ans = 1;

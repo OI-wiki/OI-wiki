@@ -77,6 +77,9 @@ int main() {
 
 `scanf` 与 `printf` 其实是 C 语言提供的函数。大多数情况下，它们的速度比 `cin` 和 `cout` 更快，并且能够方便地控制输入输出格式。
 
+???+note "读入输出优化"
+    `cin`/`cout` 和 `scanf`/`prinf` 的具体差别和读入输出优化，请参考 [读入、输出优化](../contest/io.md) 页面。
+
 ```cpp
 #include <cstdio>
 
@@ -190,6 +193,7 @@ int main()
 ```cpp
 #include <iostream>
 #define n 233
+
 // n 不是变量，而是编译器会将代码中所有 n 文本替换为 233，但是作为标识符一部分的
 // n 的就不会被替换，如 fn 不会被替换成 f233，同样，字符串内的也不会被替换
 

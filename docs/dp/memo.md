@@ -18,6 +18,7 @@
 int n, t;
 int tcost[103], mget[103];
 int ans = 0;
+
 void dfs(int pos, int tleft, int tans) {
   if (tleft < 0) return;
   if (pos == n + 1) {
@@ -27,6 +28,7 @@ void dfs(int pos, int tleft, int tans) {
   dfs(pos + 1, tleft, tans);
   dfs(pos + 1, tleft - tcost[pos], tans + mget[pos]);
 }
+
 int main() {
   cin >> t >> n;
   for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
@@ -74,6 +76,7 @@ print(ans)
 int n, t;
 int tcost[103], mget[103];
 int mem[103][1003];
+
 int dfs(int pos, int tleft) {
   if (mem[pos][tleft] != -1)
     return mem[pos][tleft];  // 已经访问过的状态，直接返回之前记录的值
@@ -83,6 +86,7 @@ int dfs(int pos, int tleft) {
   if (tleft >= tcost[pos]) dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];
   return mem[pos][tleft] = max(dfs1, dfs2);  // 最后将当前状态的值存下来
 }
+
 int main() {
   memset(mem, -1, sizeof(mem));
   cin >> t >> n;

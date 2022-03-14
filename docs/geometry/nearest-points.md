@@ -101,7 +101,7 @@ $$
 
 下面是递归本身：假设在调用前 `a[]` 已按 $x_i$ 排序。如果 $r-l$ 过小，使用暴力算法计算 $h$，终止递归。
 
-我们使用 `std::merge()` 来执行归并排序，并创建辅助缓冲区 `t[]`，$B$ 存储在其中。
+我们使用 `std::inplace_merge()` 来执行归并排序，并创建辅助缓冲区 `t[]`，$B$ 存储在其中。
 
 ???+note "主体函数"
     ```cpp
@@ -116,10 +116,9 @@ $$
       int m = (l + r) >> 1;
       int midx = a[m].x;
       rec(l, m), rec(m + 1, r);
-      static pt t[MAXN];
-      merge(a + l, a + m + 1, a + m + 1, a + r + 1, t, &cmp_y);
-      copy(t, t + r - l + 1, a + l);
+      inplace_merge(a + l, a + m + 1, a + r + 1, &cmp_y);
     
+      static pt t[MAXN];
       int tsz = 0;
       for (int i = l; i <= r; ++i)
         if (abs(a[i].x - midx) < mindist) {
@@ -168,8 +167,10 @@ $$
     const int N = 200005;
     int n;
     double ans = 1e20;
+    
     struct point {
       double x, y;
+    
       point(double x = 0, double y = 0) : x(x), y(y) {}
     };
     

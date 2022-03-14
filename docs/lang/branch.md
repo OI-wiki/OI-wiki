@@ -74,6 +74,7 @@ switch 语句执行时，先求出选择句的值，然后根据选择句的值�
 
 ```cpp
 int i = 1;  // 这里的 i 的数据类型是整型 ，满足整数类型的表达式的要求
+
 switch (i) {
   case 1:
     cout << "OI WIKI" << endl;
@@ -82,6 +83,7 @@ switch (i) {
 
 ```cpp
 char i = 'A';
+
 // 这里的 i 的数据类型是字符型 ，但 char
 // 也是属于整数的类型，满足整数类型的表达式的要求
 switch (i) {
@@ -94,6 +96,7 @@ switch 语句中还要根据需求加入 break 语句进行中断，否则在对
 
 ```cpp
 char i = 'B';
+
 switch (i) {
   case 'A':
     cout << "OI" << endl;
@@ -111,6 +114,7 @@ switch (i) {
 
 ```cpp
 char i = 'B';
+
 switch (i) {
   case 'A':
     cout << "OI" << endl;
@@ -125,12 +129,32 @@ switch (i) {
 }
 ```
 
-以上代码运行后输出的结果为 WIKI，因为 break 的存在，接下来的语句就不会继续被执行了。default 语句不需要 break，因为下面没有语句了。
+以上代码运行后输出的结果为 WIKI，因为 break 的存在，接下来的语句就不会继续被执行了。最后一个语句不需要 break，因为下面没有语句了。
+
+处理入口编号不能重复，但可以颠倒。也就是说，入口编号的顺序不重要。各个 case（包括 default）的出现次序可任意。例如：
+
+```cpp
+char i = 'B';
+
+switch (i) {
+  case 'B':
+    cout << "WIKI" << endl;
+    break;
+
+  default:
+    cout << "Hello World" << endl;
+    break;
+
+  case 'A':
+    cout << "OI" << endl;
+}
+```
 
 switch 的 case 分句中也可以选择性的加花括号。不过要注意的是，如果需要在 switch 语句中定义变量，花括号是必须要加的。例如：
 
 ```cpp
 char i = 'B';
+
 switch (i) {
   case 'A': {
     int i = 1, j = 2;

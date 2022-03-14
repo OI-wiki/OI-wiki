@@ -131,6 +131,7 @@ $$
     // C++ Version
     #include <bits/stdc++.h>
     using namespace std;
+    
     int main() {
       int n, x, y, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
       scanf("%d", &n);
@@ -291,6 +292,7 @@ $$
     // C++ Version
     #include <bits/stdc++.h>
     using namespace std;
+    
     int main() {
       int n, x, y, a, b, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
       scanf("%d", &n);

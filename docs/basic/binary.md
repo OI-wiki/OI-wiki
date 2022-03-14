@@ -137,6 +137,7 @@ int upper(const void *p1, const void *p2) {
     ```cpp
     int a[1000005];
     int n, m;
+    
     bool check(int k) {  // 检查可行性，k 为锯片高度
       long long sum = 0;
       for (int i = 1; i <= n; i++)       // 检查每一棵树

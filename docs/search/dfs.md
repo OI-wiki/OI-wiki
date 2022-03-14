@@ -47,6 +47,7 @@ for i in range(1, n + 1):
 ```cpp
 // C++ Version
 int m, arr[103];  // arr 用于记录方案
+
 void dfs(int n, int i, int a) {
   if (n == 0) {
     for (int j = 1; j <= i - 1; ++j) printf("%d ", arr[j]);
@@ -59,6 +60,7 @@ void dfs(int n, int i, int a) {
     }
   }
 }
+
 // 主函数
 scanf("%d%d", &n, &m);
 dfs(n, 1, 1);

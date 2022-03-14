@@ -10,14 +10,17 @@ int cur, h[maxn], nxt[maxn], p[maxn];
 int siz[maxn], top[maxn], son[maxn], dep[maxn], fa[maxn], dfn[maxn], rnk[maxn],
     cnt;
 char op[10];
+
 inline void add_edge(int x, int y) {  // 加边
   cur++;
   nxt[cur] = h[x];
   h[x] = cur;
   p[cur] = y;
 }
+
 struct SegTree {
   int sum[maxn * 4], maxx[maxn * 4];
+
   void build(int o, int l, int r) {
     if (l == r) {
       sum[o] = maxx[o] = w[rnk[l]];
@@ -29,18 +32,21 @@ struct SegTree {
     sum[o] = sum[lc] + sum[rc];
     maxx[o] = std::max(maxx[lc], maxx[rc]);
   }
+
   int query1(int o, int l, int r, int ql, int qr) {  // 查询 max
     if (l > qr || r < ql) return -inf;
     if (ql <= l && r <= qr) return maxx[o];
     int mid = (l + r) >> 1;
     return std::max(query1(lc, l, mid, ql, qr), query1(rc, mid + 1, r, ql, qr));
   }
+
   int query2(int o, int l, int r, int ql, int qr) {  // 查询 sum
     if (l > qr || r < ql) return 0;
     if (ql <= l && r <= qr) return sum[o];
     int mid = (l + r) >> 1;
     return query2(lc, l, mid, ql, qr) + query2(rc, mid + 1, r, ql, qr);
   }
+
   void update(int o, int l, int r, int x, int t) {  // 更新
     if (l == r) {
       maxx[o] = sum[o] = t;
@@ -55,6 +61,7 @@ struct SegTree {
     maxx[o] = std::max(maxx[lc], maxx[rc]);
   }
 } st;
+
 void dfs1(int o) {
   son[o] = -1;
   siz[o] = 1;
@@ -67,6 +74,7 @@ void dfs1(int o) {
       if (son[o] == -1 || siz[p[j]] > siz[son[o]]) son[o] = p[j];
     }
 }
+
 void dfs2(int o, int t) {
   top[o] = t;
   cnt++;
@@ -77,6 +85,7 @@ void dfs2(int o, int t) {
   for (int j = h[o]; j; j = nxt[j])
     if (p[j] != son[o] && p[j] != fa[o]) dfs2(p[j], p[j]);
 }
+
 int querymax(int x, int y) {  // 查询，看main函数理解一下
   int ret = -inf, fx = top[x], fy = top[y];
   while (fx != fy) {
@@ -93,6 +102,7 @@ int querymax(int x, int y) {  // 查询，看main函数理解一下
     ret = std::max(ret, st.query1(1, 1, n, dfn[y], dfn[x]));
   return ret;
 }
+
 int querysum(int x, int y) {
   int ret = 0, fx = top[x], fy = top[y];
   while (fx != fy) {
@@ -109,6 +119,7 @@ int querysum(int x, int y) {
     ret += st.query2(1, 1, n, dfn[y], dfn[x]);
   return ret;
 }
+
 int main() {
   scanf("%d", &n);
   for (int i = 1; i < n; i++)

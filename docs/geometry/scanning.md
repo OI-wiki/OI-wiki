@@ -44,10 +44,10 @@
       int flag;
     } p[maxn << 3];  // 坐标
     
-    //定义sort比较
+    // 定义sort比较
     bool cmp(node2 a, node2 b) { return a.x < b.x; }
     
-    //上传
+    // 上传
     void pushup(int rt) {
       if (lazy[rt] > 0)
         cl[rt].sum = cl[rt].r - cl[rt].l;
@@ -55,7 +55,7 @@
         cl[rt].sum = cl[rt * 2].sum + cl[rt * 2 + 1].sum;
     }
     
-    //建树
+    // 建树
     void build(int rt, int l, int r) {
       if (r - l > 1) {
         cl[rt].l = s[l];
@@ -71,7 +71,7 @@
       return;
     }
     
-    //更新
+    // 更新
     void update(int rt, double y1, double y2, int flag) {
       if (cl[rt].l == y1 && cl[rt].r == y2) {
         lazy[rt] += flag;
@@ -120,11 +120,11 @@
 
 ## 练习
 
-- [「HDU1542」Atlantis](http://acm.hdu.edu.cn/showproblem.php?pid=1542)
+- [「POJ1151」Atlantis](http://poj.org/problem?id=1151)
 
-- [「HDU1828」Picture](http://acm.hdu.edu.cn/showproblem.php?pid=1828)
+- [「POJ1117」Picture](http://poj.org/problem?id=1117)
 
-- [「HDU3265」Posters](http://acm.hdu.edu.cn/showproblem.php?pid=3265)
+- [「POJ3832」Posters](http://poj.org/problem?id=3832)
 
 ## 参考资料
 

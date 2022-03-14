@@ -51,6 +51,7 @@
     
     char s[N];
     int n, w, sa[N], rk[N << 1], oldrk[N << 1];
+    
     // 为了防止访问 rk[i+w] 导致数组越界，开两倍数组。
     // 当然也可以在访问前判断是否越界，但直接开两倍数组方便一些。
     
@@ -195,6 +196,7 @@ for (i = 1; i <= n; ++i) {
     
     char s[N];
     int n, sa[N], rk[N], oldrk[N << 1], id[N], px[N], cnt[N];
+    
     // px[i] = rk[id[i]]（用于排序的数组所以叫 px）
     
     bool cmp(int x, int y, int w) {
@@ -321,9 +323,10 @@ $lcp(i,sa[rk[i]-1])$：$AX$（$X$ 可能为空）
 
 ```cpp
 for (i = 1, k = 0; i <= n; ++i) {
+  if (rk[i] == 0) continue;
   if (k) --k;
   while (s[i + k] == s[sa[rk[i] - 1] + k]) ++k;
-  ht[rk[i]] = k;  // height太长了缩写为ht
+  height[rk[i]] = k;
 }
 ```
 
@@ -384,6 +387,8 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 ### 连续的若干个相同子串
 
 我们可以枚举连续串的长度 $|s|$，按照 $|s|$ 对整个串进行分块，对相邻两块的块首进行 LCP 与 LCS 查询，具体可见[\[2009\]后缀数组——处理字符串的有力工具][2]。
+
+例题：[「NOI2016」优秀的拆分](https://loj.ac/p/2083)。
 
 ### 结合并查集
 

@@ -182,20 +182,19 @@ $$
 
 ## 习题
 
-* * *
-
 前缀和：
 
 - [洛谷 U53525 前缀和（例题）](https://www.luogu.com.cn/problem/U53525)
 - [洛谷 U69096 前缀和的逆](https://www.luogu.com.cn/problem/U69096)
 - [AT2412 最大の和](https://vjudge.net/problem/AtCoder-joi2007ho_a#author=wuyudi)
 - [「USACO16JAN」子共七 Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131)
+- [「USACO05JAN」Moo Volume S](https://www.luogu.com.cn/problem/P6067)
 
 * * *
 
 二维/多维前缀和：
 
-- [HDU 6514 Monitor](http://acm.hdu.edu.cn/showproblem.php?pid=6514)
+- [HDU 6514 Monitor](https://vjudge.net/problem/HDU-6514)
 - [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387)
 - [「HNOI2003」激光炸弹](https://www.luogu.com.cn/problem/P2280)
 

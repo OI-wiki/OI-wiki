@@ -32,12 +32,12 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
 
 ### 时间复杂度
 
-如果使用 [Bellman-Ford 算法](../shortest-path.md#bellman-ford) 求解最短路，每次找增广路的时间复杂度为 $O(nm)$。设该网络的最大流为 $f$，则最坏时间复杂度为 $O(nmf)$。事实上，这个时间复杂度是 **伪多项式的**。
+如果使用 [Bellman-Ford 算法](../shortest-path.md#bellman-ford) 求解最短路，每次找增广路的时间复杂度为 $O(nm)$。设该网络的最大流为 $f$，则最坏时间复杂度为 $O(nmf)$。事实上，SSP 算法是 [伪多项式时间](../../misc/cc-basic.md#pseudo-polynomial-time) 的。
 
-???+note "为什么 SSP 算法具有伪多项式时间复杂度？"
-    一般所说的 **多项式时间复杂度**，要求算法花费的时间，可以表示为一个关于输入数据规模 $n$ 的多项式函数。
+???+note "为什么 SSP 算法是伪多项式时间的？"
+    SSP 算法的时间复杂度有 $O(nmf)$ 的上界，这是一个关于值域的多项式，所以是伪多项式时间的。
     
-    而在 SSP 算法中，网络的最大流 $f$ 并不一定能表示为关于图的点数 $n$ 的多项式函数。事实上可以构造 $m=n^2,f=2^{n/2}$ 的网络[^note1]，该情况下 SSP 算法的时间复杂度将达到 $O(n^3 2^{n/2})$。这明显是指数时间复杂度。
+    可以构造 $m=n^2,f=2^{n/2}$ 的网络[^note1]使得 SSP 算法的时间复杂度达到 $O(n^3 2^{n/2})$，所以 SSP 算法不是多项式时间的。
 
 ### 实现
 
@@ -48,17 +48,22 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
     struct qxx {
       int nex, t, v, c;
     };
+    
     qxx e[M];
     int h[N], cnt = 1;
+    
     void add_path(int f, int t, int v, int c) {
       e[++cnt] = (qxx){h[f], t, v, c}, h[f] = cnt;
     }
+    
     void add_flow(int f, int t, int v, int c) {
       add_path(f, t, v, c);
       add_path(t, f, 0, -c);
     }
+    
     int dis[N], pre[N], incf[N];
     bool vis[N];
+    
     bool spfa() {
       memset(dis, 0x3f, sizeof(dis));
       queue<int> q;
@@ -76,7 +81,9 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
       }
       return incf[t];
     }
+    
     int maxflow, mincost;
+    
     void update() {
       maxflow += incf[t];
       for (int u = t; u != s; u = e[pre[u] ^ 1].t) {
@@ -84,6 +91,7 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
         mincost += incf[t] * e[pre[u]].c;
       }
     }
+    
     // 调用：while(spfa())update();
     ```
 
@@ -102,7 +110,9 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
     void add(int u, int v, int w, int c) {
       ter[++tot] = v, nxt[tot] = lnk[u], lnk[u] = tot, cap[tot] = w, cost[tot] = c;
     }
+    
     void addedge(int u, int v, int w, int c) { add(u, v, w, c), add(v, u, 0, -c); }
+    
     bool spfa(int s, int t) {
       memset(dis, 0x3f, sizeof(dis));
       memcpy(cur, lnk, sizeof(lnk));
@@ -121,6 +131,7 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
       }
       return dis[t] != INF;
     }
+    
     int dfs(int u, int t, int flow) {
       if (u == t) return flow;
       vis[u] = 1;
@@ -135,6 +146,7 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
       vis[u] = 0;
       return ans;
     }
+    
     int mcmf(int s, int t) {
       int ans = 0;
       while (spfa(s, t)) {
@@ -143,6 +155,7 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
       }
       return ans;
     }
+    
     int main() {
       int s, t;
       scanf("%d%d%d%d", &n, &m, &s, &t);
@@ -185,19 +198,26 @@ Primal-Dual 原始对偶算法的思路与 [Johnson 全源最短路径算法](..
     #include <queue>
     #define INF 0x3f3f3f3f
     using namespace std;
+    
     struct edge {
       int v, f, c, next;
     } e[100005];
+    
     struct node {
       int v, e;
     } p[10005];
+    
     struct mypair {
       int dis, id;
+    
       bool operator<(const mypair& a) const { return dis > a.dis; }
+    
       mypair(int d, int x) { dis = d, id = x; }
     };
+    
     int head[5005], dis[5005], vis[5005], h[5005];
     int n, m, s, t, cnt = 1, maxf, minc;
+    
     void addedge(int u, int v, int f, int c) {
       e[++cnt].v = v;
       e[cnt].f = f;
@@ -205,6 +225,7 @@ Primal-Dual 原始对偶算法的思路与 [Johnson 全源最短路径算法](..
       e[cnt].next = head[u];
       head[u] = cnt;
     }
+    
     bool dijkstra() {
       priority_queue<mypair> q;
       for (int i = 1; i <= n; i++) dis[i] = INF;
@@ -228,6 +249,7 @@ Primal-Dual 原始对偶算法的思路与 [Johnson 全源最短路径算法](..
       }
       return dis[t] != INF;
     }
+    
     void spfa() {
       queue<int> q;
       memset(h, 63, sizeof(h));
@@ -249,6 +271,7 @@ Primal-Dual 原始对偶算法的思路与 [Johnson 全源最短路径算法](..
         }
       }
     }
+    
     int main() {
       scanf("%d%d%d%d", &n, &m, &s, &t);
       for (int i = 1; i <= m; i++) {
@@ -285,6 +308,6 @@ Primal-Dual 原始对偶算法的思路与 [Johnson 全源最短路径算法](..
 
 ## 参考资料与注释
 
-[^note1]: 详细构造方法可以参考 [min_25 的博客](https://min-25.hatenablog.com/entry/2018/03/19/235802)。
+[^note1]: 详细构造方法可以参考 [min_25 的博客](https://web.archive.org/web/20211009144446/https://min-25.hatenablog.com/entry/2018/03/19/235802)。
 
 [^note2]: 在稀疏图上使用堆优化可以做到 $O(m \log n)$ 的时间复杂度，而在稠密图上不使用堆优化，可以做到 $O(n^2)$ 的时间复杂度。

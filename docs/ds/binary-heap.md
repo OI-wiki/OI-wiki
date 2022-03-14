@@ -65,6 +65,7 @@ void up(int x) {
     x /= 2;
   }
 }
+
 void down(int x) {
   while (x * 2 <= n) {
     t = x * 2;

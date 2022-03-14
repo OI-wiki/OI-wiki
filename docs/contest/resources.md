@@ -19,7 +19,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [计蒜客](https://www.jisuanke.com/) 北京矩道优达网络科技有限公司旗下的核心产品，提供按知识点和难度筛选的信息学题库和 ICPC 题库。
 -   [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck)，可以将评测程序的运行时间精确到微秒。（题目较少）
     <!--  - [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。-->
-- [LibreOJ](https://loj.ac/)：始于 2017 年。基于开源项目 [SYZOJ NG](https://github.com/syzoj/syzoj-ng)，Libre 取自由之意。题目所有测试数据以及提交的代码均对所有用户开放。目前由 [Menci](https://github.com/Menci) 维护。
+- [LibreOJ](https://loj.ac/)：始于 2017 年。基于开源项目 [Lyrio](https://github.com/lyrio-dev/lyrio)，Libre 取自由之意。题目所有测试数据以及提交的代码均对所有用户开放。目前由 [Menci](https://github.com/Menci) 维护。
 - [Lutece](https://acm.uestc.edu.cn/home)：电子科技大学在线评测系统，始于 2018 年，[项目开源](https://github.com/lutece-awesome)。
 - [洛谷](https://www.luogu.com.cn/)：始于 2013 年，社区群体庞大，各类 OI 的真题和习题较全。提供有偿教育服务。
 - [牛客网](https://www.nowcoder.com/)：始于 2014 年，提供技术类求职备考、社群交流、企业招聘等服务。
@@ -61,8 +61,6 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [Codeforces 上网友整理的一份教程合集](http://codeforces.com/blog/entry/57282)
 - [英文版 E-Maxx 算法教程](https://cp-algorithms.com/)
 - [演算法笔记](http://web.ntnu.edu.tw/~algo/)：台湾师范大学总结的教程
-- [algo.is](https://algo.is/t-414-aflv-competitive-programming-course-2016/)
-- [CS 97SI: Introduction to Programming Contests](http://web.stanford.edu/class/cs97si/)：斯坦福大学的一门课
 - [如何为 ACM-ICPC 做准备？- geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)
 - [Topcoder 整理的教程](https://www.topcoder.com/community/competitive-programming/tutorials/)
 - [校招面试指南](https://github.com/jwasham/coding-interview-university)
@@ -70,6 +68,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [Trinkle23897 的课件](https://github.com/Trinkle23897/oi_slides)
 - [huzecong 的课件](https://github.com/huzecong/oi-slides)
 - [Open Data Structure](https://opendatastructures.org/)：内含众多数据结构讲稿
+- [IOI Syllabus (2020)](https://www.cs.utexas.edu/users/utpc/courses/IOI.pdf)
 
 ## 书籍
 
@@ -87,7 +86,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   《啊哈算法》- 纪磊
     - 面向初学者或有初步兴趣的人群，有幽默配图。
 -   CCF 中学生计算机程序设计系列
-    -   《CCF 中学生计算机程序设计 - 入门篇》- 陈颖，邱桂香，朱全
+    -   《CCF 中学生计算机程序设计 - 入门篇》- 陈颖，邱桂香，朱全民
         - [建议配合勘误使用。](https://zhuanlan.zhihu.com/p/85215961)
     - 《CCF 中学生计算机程序设计 - 基础篇》- 江涛，宋新波，朱全民
     - 《CCF 中学生计算机程序设计 - 提高篇》- 徐先友，朱全民
@@ -132,6 +131,40 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
     - 购买 [纸质版图书](http://www.tup.tsinghua.edu.cn/booksCenter/book_03050201.html)
 -   《C++，挑战编程——程序设计竞赛进阶训练指南》- 邱秋
     - [作者博客的介绍页](https://blog.csdn.net/metaphysis/article/details/90288252)
+-   [《数据结构（C++ 语言版 第 3 版）》- 邓俊辉](https://dsa.cs.tsinghua.edu.cn/~deng/ds/dsacpp/index.htm)
+    - 建议随配套课程、配套课件和习题解析一起使用。
+-   《计算几何：算法与应用》- 伯格（Berg,M.D.）著，邓俊辉 译  
+    英文版原名*Computational Geometry: Algorithms and Applications*
+-   [《Handbook of Data Structures and Applications, 2nd Edition》](https://www.routledge.com/Handbook-of-Data-Structures-and-Applications/Mehta-Sahni/p/book/9780367572006)
+    - 由许多著名教授如 Sartaj Sahni、Hanan Samet、Weiss 等合著，内容较多，建议有一定基础的数据结构爱好者阅读。
+-   [算法详解 系列](https://www.algorithmsilluminated.org/)
+    - 面向有语言基础的初学者的教材，建议同配套课程一起使用
+    - 《Algorithms Illuminated, Part 1: The Basics》- Tim Roughgarden
+    - 《算法详解，卷 1：算法基础》- 徐波 译
+    - 《Algorithms Illuminated, Part 2: Graph Algorithms and Data Structures》- Tim Roughgarden
+    - 《算法详解，卷 2：图算法和数据结构》- 徐波 译
+    - 《Algorithms Illuminated, Part 3: Greedy Algorithms and Dynamic Programming》- Tim Roughgarden
+    - 《Algorithms Illuminated, Part 4: Algorithms for NP-Hard Problems》- Tim Roughgarden
+
+## 课程
+
+- [Baylor: CSI 3144 (2006)](http://cs.baylor.edu/~contest/syllabus.txt)
+- [CMU 15-295 (2021)](https://contest.cs.cmu.edu/295/)
+- [Georgia Tech: CS 4540 (2020)](https://faculty.cc.gatech.edu/~rpeng/CS4540_F20/)
+- [Georgia Tech: CS 6550 (2021)](https://faculty.cc.gatech.edu/~rpeng/CS6550_S21/)
+- [LSU: CSC 2700 (2021)](http://isaac.lsu.edu/class/)
+- [NUS: CS 3233 (2021)](https://www.comp.nus.edu.sg/~stevenha/cs3233.html)
+- [Reykjavik: T-414-ÁFLV (2016)](https://algo.is/)
+- [SPSU: Coursera (2019)](https://www.coursera.org/learn/competitive-programming-core-skills/)
+- [Stanford: CS 97SI (2015)](https://web.stanford.edu/class/cs97si/)
+- [Stonybrook: CSE 392 (2012)](https://www3.cs.stonybrook.edu/~skiena/392/)
+- [TAMU: CSCE 430 (2021)](https://www.cs.utexas.edu/users/utpc/courses/TAMU-CSCE-430.pdf)
+- [UBC: CPSC 490 (2021)](https://www.students.cs.ubc.ca/~cs-490/2019W2/problem-solving/)
+- [UCF: COP 4516 (2021)](http://www.cs.ucf.edu/~dmarino/progcontests/cop4516/spr2021/)
+- [VT: CS 2984/4984 (2020)](https://www.cs.utexas.edu/users/utpc/courses/VT-CS-2984-4984.pdf)
+- [THU: 数据结构](https://www.xuetangx.com/course/THU08091000384/)
+- [THU: 计算几何](https://www.xuetangx.com/course/THU08091000327/)
+- [StanfordOnline: Algorithms: Design and Analysis](https://www.algorithmsilluminated.org/)
 
 ## 工具
 
@@ -166,3 +199,4 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [Vjudge](https://vjudge.net/)
 - [Project Euler](https://projecteuler.net/)
 - [Junior Training Sheet](https://goo.gl/unDETI)：对新手友好的训练计划
+- [USACO Guide](https://usaco.guide/)：针对 USACO 的各个级别分类的训练资源

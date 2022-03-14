@@ -67,7 +67,7 @@ sudo apt install python3
 
 ### 关于镜像和 pip
 
-目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学](https://mirror.bjtu.edu.cn/python/)、[华为开源镜像站](https://mirrors.huaweicloud.com/python/) 和 [淘宝开源镜像站](https://npm.taobao.org/mirrors/python/) 在做，如果您有下载问题的话可以到那里尝试一下。
+目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学](https://mirror.bjtu.edu.cn/python/) 和 [华为开源镜像站](https://repo.huaweicloud.com/python/) 在做，如果您有下载问题的话可以到那里尝试一下。
 
 如果您还有使用 pip 安装其他模块的需求，请参照 [TUNA 的镜像更换帮助](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/)。
 
@@ -80,6 +80,7 @@ sudo apt install python3
 - [中国科学技术大学镜像站](http://mirrors.ustc.edu.cn/help/pypi.html)
 - [豆瓣的 PyPI 源](https://pypi.douban.com/simple)
 - [华为开源镜像站](https://mirrors.huaweicloud.com/)
+- 针对教育网内的镜像站，您可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上查看更多详情。
 
 ## 基本语法
 
@@ -397,6 +398,28 @@ print(headline("type comments work", width=40))
 
 这种注释不包含在类型标注中，你无法通过 `__annotations__` 找到它，同类型标注一样，你仍然可以通过 Mypy 运行得到类型检查结果。
 
+## 装饰器
+
+装饰器是一个函数，接受一个函数或方法作为其唯一的参数，并返回一个新函数或方法，其中整合了修饰后的函数或方法，并附带了一些额外的功能。简而言之，可以在不修改函数代码的情况下，增加函数的功能。相关知识可以参考 [官方文档](https://docs.python.org/3/glossary.html#term-decorator)。
+
+部分装饰器在竞赛中非常实用，比如 [`lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache)，可以为函数自动增加记忆化的能力，在递归算法中非常实用：
+
+`@lru_cache(maxsize=128,typed=False)`
+
+- 传入的参数有 2 个：`maxsize` 和 `typed`，如果不传则 `maxsize` 的默认值为 128，`typed` 的默认值为 `False`。
+- 其中 `maxsize` 参数表示的是 LRU 缓存的容量，即被装饰的方法的最大可缓存结果的数量。如果该参数值为 128，则表示被装饰方法最多可缓存 128 个返回结果；如果 `maxsize` 传入为 `None` 则表示可以缓存无限个结果。
+- 如果 `typed` 设置为 `True`，不同类型的函数参数将被分别缓存，例如，`f(3)` 和 `f(3.0)` 会缓存两次。
+
+以下是使用 `lru_cache` 优化计算斐波那契数列的例子：
+
+```python
+@lru_cache(maxsize=None)
+def fib(n):
+    if n < 2:
+        return n
+    return fib(n-1) + fib(n-2)
+```
+
 ## 常用内置库
 
 在这里介绍一些写算法可能用得到的内置库，具体用法可以自行搜索或者阅读 [官方文档](https://docs.python.org/3/library/index.html)。
@@ -455,8 +478,10 @@ C++：
 struct qxx {
   int nex, t, v;
 };
+
 qxx e[M];
 int h[N], cnt;
+
 void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
 
 typedef pair<int, int> pii;
@@ -546,6 +571,7 @@ C++：
 
 ```cpp
 int n, m, s;
+
 int main() {
   scanf("%d%d%d", &n, &m, &s);
   for (int i = 1; i <= m; i++) {
@@ -591,8 +617,10 @@ if __name__ == '__main__':
     struct qxx {
       int nex, t, v;
     };
+    
     qxx e[M];
     int h[N], cnt;
+    
     void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
     
     typedef pair<int, int> pii;
@@ -616,6 +644,7 @@ if __name__ == '__main__':
     }
     
     int n, m, s;
+    
     int main() {
       scanf("%d%d%d", &n, &m, &s);
       for (int i = 1; i <= m; i++) {

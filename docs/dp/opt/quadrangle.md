@@ -194,93 +194,24 @@ $$
 
 为了最小化运行时间，我们便需要应用分治法背后的思想。首先计算 $opt(i, \dfrac{m}{2})$ 然后计算 $opt(i, \dfrac{m}{4})$。通过递归地得到 $opt$ 的上下界，就可以达到 $O(n m \log m)$ 的时间复杂度。每一个 $opt(i, j)$ 的值只可能出现在 $\log m$ 个不同的节点中。
 
-???+note "例题 [洛谷 P5574[CmdOI2019]任务分配问题](https://www.luogu.com.cn/problem/P5574)"
-    给出一个 $1 \ldots n$ 的排列（$1 \leq n \leq 25000$），将该排列分为 $k$ 段（$1 \leq k \leq 25$），使得各段的逆序对数之和最小。
-
-设 $f(i,j)$ 表示将前 $i$ 个数分为 $j$ 段时，各段逆序对数和的最小值。
-
-容易写出状态转移方程：$f(i,j)=\min_{k=1}^{i-1} f(k,j-1)+c(k+1,i)$，其中 $c(k+1,i)$ 表示 $[k+1,i]$ 这个区间的逆序对数。
-
-转移过程可以倒序枚举 $k$，用树状数组来维护 $c(k+1,i)$。对于每个状态，转移的时间复杂度为 $O(n \log n)$，从而总时间复杂度为 $O(n^2 k \log n)$。
-
-注意到 $c(i,j+1)+c(i+1,j)=c(i,j)+c(i+1,j+1)$，满足四边形不等式，因此可以考虑决策单调性优化。应用前面提到的分治方法进行优化即可。
-
-由于只需分治 $O(\log n)$ 层，进行 $k$ 次分治，总时间复杂度被优化为 $(nk \log^2 n)$。
-
 ??? note "参考代码"
     ```cpp
-    #include <cstring>
-    #include <iostream>
-    using namespace std;
-    struct BIT {
-      int a[50005], n;
-      void init(int N) { n = N; }
-      int lowbit(int x) { return x & (-x); }
-      void update(int x, int y) {
-        while (x <= n) {
-          a[x] += y;
-          x += lowbit(x);
-        }
+    int n;
+    long long C(int i, int j);
+    vector<long long> dp_before(n), dp_cur(n);
+    
+    // compute dp_cur[l], ... dp_cur[r] (inclusive)
+    void compute(int l, int r, int optl, int optr) {
+      if (l > r) return;
+      int mid = (l + r) >> 1;
+      pair<long long, int> best = {INF, -1};
+      for (int k = optl; k <= min(mid, optr); k++) {
+        best = min(best, {dp_before[k] + C(k, mid), k});
       }
-      int query(int x) {
-        int ans = 0;
-        while (x) {
-          ans += a[x];
-          x -= lowbit(x);
-        }
-        return ans;
-      }
-    } tr;
-    int a[50005], f[50005], g[50005], sum;
-    int cl = 1, cr = 0, n, k;
-    void modify(int l, int r) {
-      while (cl < l) {
-        tr.update(a[cl], -1);
-        sum -= tr.query(a[cl] - 1);
-        cl++;
-      }
-      while (cl > l) {
-        cl--;
-        tr.update(a[cl], 1);
-        sum += tr.query(a[cl] - 1);
-      }
-      while (cr < r) {
-        cr++;
-        tr.update(a[cr], 1);
-        sum += tr.query(n) - tr.query(a[cr]);
-      }
-      while (cr > r) {
-        tr.update(a[cr], -1);
-        sum -= tr.query(n) - tr.query(a[cr]);
-        cr--;
-      }
-    }
-    void dfs(int l1, int r1, int l2, int r2) {
-      if (l1 > r1) return;
-      int mid = (l1 + r1) >> 1, p = mid;
-      for (int i = min(mid - 1, r2); i >= l2; i--) {
-        modify(i + 1, mid);
-        if (g[i] + sum < f[mid]) f[mid] = g[i] + sum, p = i;
-      }
-      dfs(l1, mid - 1, l2, p);
-      dfs(mid + 1, r1, p, r2);
-    }
-    int main() {
-      cin >> n >> k;
-      tr.init(n);
-      for (int i = 1; i <= n; i++) {
-        cin >> a[i];
-        a[i] = n + 1 - a[i];
-        modify(1, i);
-        f[i] = sum;
-      }
-      for (int i = 2; i <= k; i++) {
-        memcpy(g, f, sizeof(f));
-        memset(f, 63, sizeof(f));
-        dfs(1, n, 1, n);
-      }
-      cout << f[n] << endl;
-      return 0;
+      dp_cur[mid] = best.first;
+      int opt = best.second;
+      compute(l, mid - 1, optl, opt);
+      compute(mid + 1, r, opt, optr);
     }
     ```
 

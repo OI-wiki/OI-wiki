@@ -74,6 +74,7 @@
     int n, m, pa[N], pb[N];
     
     int nn, block_size, block_cnt, block_id[N], L[N], R[N], T[M][N];
+    
     void build(int n) {
       nn = n;
       block_size = sqrt(nn);
@@ -161,6 +162,7 @@
       struct node {
         node *l, *r;
         int sz, rnd, v;
+    
         node(int _v) : l(NULL), r(NULL), sz(1), rnd(rng()), v(_v) {}
       };
     
@@ -247,7 +249,9 @@
     
     // Fenwick Tree
     Treap T[N];
+    
     inline int lb(int x) { return x & -x; }
+    
     void ins(int x, int v) {
       for (; x <= n; x += lb(x)) T[x].ins(v);
     }
@@ -314,6 +318,7 @@
     
     // 分块
     int nn, b[N], block_size, block_cnt, block_id[N], L[N], R[N], T[M][N];
+    
     void build(int n) {
       nn = n;
       block_size = sqrt(nn);
@@ -427,6 +432,7 @@
         node *l, *r;
         unsigned rnd;
         int sz, v;
+    
         node(int _v) : l(NULL), r(NULL), rnd(rng()), sz(1), v(_v) {}
       };
     
@@ -505,6 +511,7 @@
     
     // Segment Tree
     Treap T[N << 2];
+    
     void insert(int x, int l, int r, int p, int val) {
       T[x].insert(val);
       if (l == r) return;

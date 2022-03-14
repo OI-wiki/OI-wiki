@@ -101,9 +101,12 @@ $$
     
     class Permutation {  // interface for permutations
      public:
-      int p[maxn];                  // the images of the points 0..   maxn-1
+      int p[maxn];  // the images of the points 0..   maxn-1
+    
       Permutation() { n = maxn; };  // constructors
+    
       Permutation(int m) { n = m; };
+    
       Permutation(int m, char c) {
         n = m;
         switch (c) {
@@ -115,40 +118,49 @@ $$
             break;  // undefined
         }
       }
-      Permutation operator*(Permutation param) const {  //    multiplication
+    
+      Permutation operator*(Permutation param) const {  // multiplication
         Permutation result(n);
         for (int i = 0; i < n; i++) result.p[i] = param.p[p[i]];
         return (result);
       }
+    
       void operator*=(Permutation param) {  // direct multiplication
         for (int i = 0; i < n; i++) p[i] = param.p[p[i]];
       }
+    
       Permutation inverse() const {  // inverse
         Permutation result(n);
         for (int i = 0; i < n; i++) result.p[p[i]] = i;
         return (result);
       }
+    
       bool isdefined() const { return (p[0] > -1); }  // if it is     defined
-      bool isidentity() const {                       // if it is the     identity
+    
+      bool isidentity() const {  // if it is the     identity
         for (int i = 0; i < n; i++)
           if (p[i] != i) return false;
         return true;
       }
+    
       bool operator==(Permutation param) const {  // comparison
         for (int i = 0; i < n; i++)
           if (param.p[i] != p[i]) return false;
         return true;
       }
+    
       void input() {
         for (int i = 0; i < n; i++) {
           cin >> p[i];
           p[i]--;
         }
       }  // input
+    
       void output() const {
         for (int i = 0; i < n; i++) cout << p[i] + 1 << " ";
         cout << endl;
       }  // output
+    
       void setn(int m) { n = m; }
     
      private:

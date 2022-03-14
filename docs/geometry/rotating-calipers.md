@@ -22,10 +22,15 @@
     // C++ Version
     int sta[N], top;  // 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
     bool is[N];
+    
     ll pf(ll x) { return x * x; }
+    
     ll dis(int p, int q) { return pf(a[p].x - a[q].x) + pf(a[p].y - a[q].y); }
+    
     ll sqr(int p, int q, int y) { return abs((a[q] - a[p]) * (a[y] - a[q])); }
+    
     ll mx;
+    
     void get_longest() {  // 求凸包直径
       int j = 3;
       if (top < 4) {
