@@ -174,7 +174,7 @@ Bellman-Ford 算法所做的，就是不断尝试对图上每一条边进行松�
     bool bellmanford(int n, int s) {
       memset(dis, 63, sizeof(dis));
       dis[s] = 0;
-      bool flag; // 判断一轮循环过程中是否发生松弛操作
+      bool flag;  // 判断一轮循环过程中是否发生松弛操作
       for (int i = 1; i <= n; i++) {
         flag = false;
         for (int u = 1; u <= n; u++) {
