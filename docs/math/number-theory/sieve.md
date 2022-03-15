@@ -192,7 +192,7 @@ void init() {
     for (int j = 0; j < cnt; ++j) {
       if (1ll * i * pri[j] >= MAXN) break;
       vis[i * pri[j]] = 1;
-      if(i % pri[j] == 0) {
+      if (i % pri[j] == 0) {
         // i % pri[j] == 0
         // 换言之，i 之前被 pri[j] 筛过了
         // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
@@ -455,7 +455,7 @@ def pre():
 
 ## 一般的积性函数
 
-假如一个 [积性函数](/math/number-theory/basic/#_10) $f$ 满足：对于任意质数 $p$ 和正整数 $k$，可以在 $O(1)$ 时间内计算 $f(p^k)$，那么可以在 $O(n)$ 时间内筛出 $f(1),f(2),\dots,f(n)$ 的值。
+假如一个 [积性函数](/math/number-theory/basic/#_10)  $f$ 满足：对于任意质数 $p$ 和正整数 $k$，可以在 $O(1)$ 时间内计算 $f(p^k)$，那么可以在 $O(n)$ 时间内筛出 $f(1),f(2),\dots,f(n)$ 的值。
 
 设合数 $n$ 的质因子分解是 $\prod_{i=1}^k p_i^{\alpha_i}$，其中 $p_1<p_2<\dots<p_k$ 为质数，我们在线性筛中记录 $g_n=p_1^{\alpha_1}$，假如 $n$ 被 $x\cdot p$ 筛掉（$p$ 是质数），那么 $g$ 满足如下递推式：
 
