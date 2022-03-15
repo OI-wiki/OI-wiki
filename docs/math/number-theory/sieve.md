@@ -227,12 +227,10 @@ def init():
                 break
 ```
 
-上面代码中的 phi 数组，会在下面提到。
-
 上面的这种 **线性筛法** 也称为 **Euler 筛法**（欧拉筛法）。
 
 ??? note
-    注意到筛法求素数的同时也得到了每个数的最小质因子
+    注意到筛法求素数的同时也得到了每个数的最小质因子。
 
 ## 筛法求欧拉函数
 
@@ -313,7 +311,7 @@ def pre():
 $$
 \mu(n)=
 \begin{cases}
-	0 & n' \bmod p_1 \neq 0\\
+	0 & n' \bmod p_1 \neq 0\\\\
 	-\mu(n') & \text{otherwise}
 \end{cases}
 $$
@@ -464,7 +462,7 @@ def pre():
 $$
 g_n=
 \begin{cases}
-	g_x\cdot p & x\bmod p=0\\
+	g_x\cdot p & x\bmod p=0\\\\
 	p & \text{otherwise}
 \end{cases}
 $$
