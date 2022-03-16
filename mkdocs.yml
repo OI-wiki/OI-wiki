@@ -65,6 +65,7 @@ nav:
       - Lemon: tools/judger/lemon.md
     - 命令行: tools/cmd.md
     - WSL (Windows 10): tools/wsl.md
+    - NOIwsl: tools/noiwsl.md
     - Special Judge: tools/special-judge.md
     - Testlib:
       - Testlib 简介: tools/testlib/index.md
