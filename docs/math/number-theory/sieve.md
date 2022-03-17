@@ -1,4 +1,4 @@
-author: inkydragon, TravorLZH
+author: inkydragon, TravorLZH, wood3
 
 ## 素数筛法
 
@@ -412,7 +412,7 @@ def pre():
 
 ## 筛法求约数和
 
-$f_i$ 表示 $i$ 的约数和，$g_i$ 表示 $i$ 的最小质因子的 $p+p^1+p^2+\dots p^k$.
+$f_i$ 表示 $i$ 的约数和，$g_i$ 表示 $i$ 的最小质因子的 $p^0+p^1+p^2+\dots p^k$.
 
 ```cpp
 // C++ Version
