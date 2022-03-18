@@ -1,8 +1,12 @@
-author: accelsao, thallium, Chrogeek, Enter-tainer, ksyx, StudyingFather, H-J-Granger, Henry-ZHR, countercurrent-time, william-song-shy
+author: accelsao, thallium, Chrogeek, Enter-tainer, ksyx, StudyingFather, H-J-Granger, Henry-ZHR, countercurrent-time, william-song-shy, XiaoQuQuSD
 
 为了描述方便将两个集合分成左和右两个部分，所有匹配边都是横跨左右两个集合，可以假想成男女配对。
 
 假设图有 $n$ 个顶点，$m$ 条边。
+
+## 题目描述
+
+给定一个二分图 $G$，即分左右两部分，各部分之间的点没有边连接，要求选出一些边，使得这些边没有公共顶点，且边的数量最大。
 
 ## 增广路算法 Augmenting Path Algorithm
 
@@ -114,6 +118,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 ??? note "[UOJ #78. 二分图最大匹配](https://uoj.ac/problem/78) "
     模板题
     
+
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
