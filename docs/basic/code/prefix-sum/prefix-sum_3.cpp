@@ -12,7 +12,7 @@ int power[maxn];
 int depth[maxn], lg[maxn];
 int n, k, ans = 0, tot = 0;
 
-void add(int x, int y) {  //加边
+void add(int x, int y) {  // 加边
   edge[++tot].to = y;
   edge[tot].next = head[x];
   head[x] = tot;
@@ -27,7 +27,7 @@ void dfs(int now, int father) {  // dfs求最大压力
     if (edge[i].to != father) dfs(edge[i].to, now);
 }
 
-int lca(int x, int y) {  //求LCA，最近公共祖先
+int lca(int x, int y) {  // 求LCA，最近公共祖先
   if (depth[x] < depth[y]) swap(x, y);
   while (depth[x] > depth[y]) x = fa[x][lg[depth[x] - depth[y]] - 1];
   if (x == y) return x;
@@ -37,7 +37,7 @@ int lca(int x, int y) {  //求LCA，最近公共祖先
   return fa[x][0];
 }
 
-//用dfs求最大压力，回溯时将子树的权值加上
+// 用dfs求最大压力，回溯时将子树的权值加上
 void get_ans(int u, int father) {
   for (int i = head[u]; i; i = edge[i].next) {
     int to = edge[i].to;
@@ -54,7 +54,7 @@ int main() {
   for (int i = 1; i <= n; i++) {
     lg[i] = lg[i - 1] + (1 << lg[i - 1] == i);
   }
-  for (int i = 1; i <= n - 1; i++) {  //建图
+  for (int i = 1; i <= n - 1; i++) {  // 建图
     scanf("%d %d", &x, &y);
     add(x, y);
     add(y, x);

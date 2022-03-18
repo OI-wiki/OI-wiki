@@ -6,13 +6,13 @@ inline int read() {
   while (!isdigit(ch = getchar())) f |= ch == '-';
   while (isdigit(ch)) x = (x << 1) + (x << 3) + (ch ^ 48), ch = getchar();
   return f ? -x : x;
-}  //快读
+}  // 快读
 struct DLX {
   static const int MAXSIZE = 1e5 + 10;
   int n, m, tot, first[MAXSIZE + 10], siz[MAXSIZE + 10];
   int L[MAXSIZE + 10], R[MAXSIZE + 10], U[MAXSIZE + 10], D[MAXSIZE + 10];
   int col[MAXSIZE + 10], row[MAXSIZE + 10];
-  void build(const int &r, const int &c) {  //进行build操作
+  void build(const int &r, const int &c) {  // 进行build操作
     n = r, m = c;
     for (register int i = 0; i <= c; ++i) {
       L[i] = i - 1, R[i] = i + 1;
@@ -22,7 +22,7 @@ struct DLX {
     memset(first, 0, sizeof(first));
     memset(siz, 0, sizeof(siz));
   }
-  void insert(const int &r, const int &c) {  //进行insert操作
+  void insert(const int &r, const int &c) {  // 进行insert操作
     col[++tot] = c, row[tot] = r, ++siz[c];
     D[tot] = D[c], U[D[c]] = tot, U[tot] = c, D[c] = tot;
     if (!first[r])
@@ -32,14 +32,14 @@ struct DLX {
       L[tot] = first[r], R[first[r]] = tot;
     }
   }
-  void remove(const int &c) {  //进行remove操作
+  void remove(const int &c) {  // 进行remove操作
     register int i, j;
     L[R[c]] = L[c], R[L[c]] = R[c];
     for (i = D[c]; i != c; i = D[i])
       for (j = R[i]; j != i; j = R[j])
         U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
   }
-  void recover(const int &c) {  //进行recover操作
+  void recover(const int &c) {  // 进行recover操作
     register int i, j;
     for (i = U[c]; i != c; i = U[i])
       for (j = L[i]; j != i; j = L[j]) U[D[j]] = D[U[j]] = j, ++siz[col[j]];

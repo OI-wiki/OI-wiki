@@ -16,7 +16,7 @@ struct SAM {
 } sam[N << 1];
 
 void insert(int x) {
-  int np = ++tot;  //新节点
+  int np = ++tot;  // 新节点
   sam[np].len = sam[p].len + 1;
   while (p && !sam[p].ch[x]) {
     sam[p].ch[x] = np;
@@ -67,8 +67,8 @@ int main() {
     nxt[b[i]] = i;
   }
 
-  //四种情况计算答案
-  // 1
+  // 四种情况计算答案
+  //  1
   int ans = N;
   for (int l = 1; l <= n; ++l) {
     for (int r = l, u = 1; r <= n; ++r) {

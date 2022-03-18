@@ -7,7 +7,7 @@ long long n, m, T, pr[N], mu[N], d[N], t[N],
 bool bp[N];
 void prime_work(long long k) {
   bp[0] = bp[1] = 1, mu[1] = 1, d[1] = 1;
-  for (long long i = 2; i <= k; i++) {  //线性筛
+  for (long long i = 2; i <= k; i++) {  // 线性筛
     if (!bp[i]) pr[++cnt] = i, mu[i] = -1, d[i] = 2, t[i] = 1;
     for (long long j = 1; j <= cnt && i * pr[j] <= k; j++) {
       bp[i * pr[j]] = 1;
@@ -24,11 +24,11 @@ void prime_work(long long k) {
     }
   }
   for (long long i = 2; i <= k; i++)
-    mu[i] += mu[i - 1], d[i] += d[i - 1];  //求前缀和
+    mu[i] += mu[i - 1], d[i] += d[i - 1];  // 求前缀和
 }
 long long solve() {
   long long res = 0, mxi = min(n, m);
-  for (long long i = 1, j; i <= mxi; i = j + 1) {  //整除分块
+  for (long long i = 1, j; i <= mxi; i = j + 1) {  // 整除分块
     j = min(n / (n / i), m / (m / i));
     res += d[n / i] * d[m / i] * (mu[j] - mu[i - 1]);
   }
@@ -37,7 +37,7 @@ long long solve() {
 
 int main() {
   scanf("%lld", &T);
-  prime_work(50000);  //预处理
+  prime_work(50000);  // 预处理
   while (T--) {
     scanf("%lld%lld", &n, &m);
     printf("%lld\n", solve());

@@ -27,20 +27,20 @@ int solve(int n, int m) {
   int res = 0;
   for (int i = 1, j; i <= min(n, m); i = j + 1) {
     j = min(n / (n / i), m / (m / i));
-    res += (mu[j] - mu[i - 1]) * (n / i) * (m / i);  //代推出来的式子
+    res += (mu[j] - mu[i - 1]) * (n / i) * (m / i);  // 代推出来的式子
   }
   return res;
 }
 int main() {
   int T, a, b, c, d, k;
-  init();  //预处理mu数组
+  init();  // 预处理mu数组
   scanf("%d", &T);
   for (int i = 1; i <= T; i++) {
     scanf("%d%d%d%d%d", &a, &b, &c, &d, &k);
-    //根据容斥原理，1<=x<=b&&1<=y<=d范围中的答案数减去1<=x<=b&&1<=y<=c-1范围中的答案数和
-    //  1<=x<=a-1&&1<=y<=d范围中的答案数再加上1<=x<=a-1&&1<=y<=c-1范围中的答案数
-    //  即可得到a<=x<=b&&c<=y<=d范围中的答案数
-    //这一步如果不懂可以画坐标图进行理解
+    // 根据容斥原理，1<=x<=b&&1<=y<=d范围中的答案数减去1<=x<=b&&1<=y<=c-1范围中的答案数和
+    //   1<=x<=a-1&&1<=y<=d范围中的答案数再加上1<=x<=a-1&&1<=y<=c-1范围中的答案数
+    //   即可得到a<=x<=b&&c<=y<=d范围中的答案数
+    // 这一步如果不懂可以画坐标图进行理解
     printf("%d\n", solve(b / k, d / k) - solve(b / k, (c - 1) / k) -
                        solve((a - 1) / k, d / k) +
                        solve((a - 1) / k, (c - 1) / k));

@@ -25,7 +25,7 @@ void dp() {
   init();
   for (int i = 1; i <= m; i++) {
     int l = 1, r = 0, k = 1;
-    for (int j = 1; j <= n; j++) {  //在这里使用了单调队列的优化，推式子详见上面
+    for (int j = 1; j <= n; j++) {  // 在这里使用了单调队列的优化，推式子详见上面
       for (; k <= min(1ll * n, j + d * (t[i] - t[i - 1])); k++) {
         while (l <= r && f[fl ^ 1][que[r]] <= f[fl ^ 1][k]) r--;
         que[++r] = k;

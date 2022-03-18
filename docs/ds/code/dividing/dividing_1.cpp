@@ -14,7 +14,7 @@ int getint()  // 本题没有负数输入，因此快读不需判断负号。
   return x;
 }
 
-void putll(lld x) {  //输出long long
+void putll(lld x) {  // 输出long long
   if (x / 10) putll(x / 10);
   putchar((x % 10) ^ '0');
 }
