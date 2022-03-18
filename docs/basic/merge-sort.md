@@ -61,7 +61,7 @@ void merge(int ll, int rr) {
   // 用来把 a 数组 [ll, rr - 1] 这一区间的数排序。 t
   // 数组是临时存放有序的版本用的。
   if (rr - ll <= 1) return;
-  int mid = ll + (rr - ll >> 1);
+  int mid = ll + ((rr - ll) >> 1);
   merge(ll, mid);
   merge(mid, rr);
   int p = ll, q = mid, s = ll;
