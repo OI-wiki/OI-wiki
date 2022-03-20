@@ -16,6 +16,11 @@ C99 标准加入了 `_Bool` 关键字（以及等效的 `bool` 宏）以及 `tru
 
 如果需要使用 `bool`，`true`，`false` 这三个宏，需要在程序中引入 `stdbool.h` 头文件。而使用 `_Bool` 则不需要引入任何额外头文件。
 
+???+warning "`bool` 等宏不是关键字"
+    只有 `_Bool` 是 C99 及之后标准定义的关键字，`bool`，`true`，`false` 这三个宏并非 C 语言中的关键字。而在 C++ 中，它们都是不可作为标识符的关键字。
+    
+    这意味着如果你的程序没有引入 `stdbool.h` 头文件，`bool`，`true`，`false` 均可以作为标识符使用。
+
 ```c
 bool x = true;  // 需要引入 stdbool.h
 _Bool x = 1;    // 不需要引入 stdbool.h
