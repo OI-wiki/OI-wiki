@@ -859,8 +859,8 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 ### 习题
 
 - [luogu P3950 部落冲突](https://www.luogu.com.cn/problem/P3950)
-- [bzoj 4998 星球联盟](https://www.lydsy.com/JudgeOnline/problem.php?id=4998)
-- [bzoj 2959 长跑](https://www.lydsy.com/JudgeOnline/problem.php?id=2959)
+- [bzoj 4998 星球联盟](https://hydro.ac/d/bzoj/p/4998)
+- [bzoj 2959 长跑](https://hydro.ac/d/bzoj/p/2959)
 
 ## 维护边权
 
