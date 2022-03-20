@@ -361,7 +361,7 @@ inline int Find(int p) {
 
 ## 习题
 
-- [「BZOJ 3282」Tree](https://lydsy.com/JudgeOnline/problem.php?id=3282)
+- [「BZOJ 3282」Tree](https://hydro.ac/d/bzoj/p/3282)
 - [「HNOI2010」弹飞绵羊](https://www.luogu.com.cn/problem/P3203)
 
 ## 维护树链信息
