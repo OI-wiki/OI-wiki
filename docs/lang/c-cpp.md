@@ -19,7 +19,7 @@ bool x = true;  // 需要引入 stdbool.h
 _Bool x = 1;    // 不需要引入 stdbool.h
 ```
 
-C23 起，`true` 和 `false` 成为 C 语言中的关键字，使用它们不需要再引入 `stdbool.h` 头文件。
+C23 起，`true` 和 `false` 成为 C 语言中的关键字，使用它们不需要再引入 `stdbool.h` 头文件[^true-false-become-keyword]。
 
 下表展示了 C 语言不同标准下，bool 类型支持的变化情况（作为对照，加入了 C++ 的支持情况）：
 
@@ -27,7 +27,7 @@ C23 起，`true` 和 `false` 成为 C 语言中的关键字，使用它们不需
 | ------------ | --------------------------------- | ----------------------------------------------------- | ------------------------- |
 | C89          | /                                 | /                                                     | 保留[^reserved-identifiers] |
 | C99 起，C23 以前 | 宏，与 `_Bool` 等价，需要 `stdbool.h` 头文件 | 宏，`true` 与 `1` 等价，`false` 与 `0` 等价，需要 `stdbool.h` 头文件 | 关键字                       |
-| C23 起        | 宏，与 `_Bool` 等价，需要 `stdbool.h` 头文件 | 关键字[^true-false-become-keyword]                       | 关键字                       |
+| C23 起        | 宏，与 `_Bool` 等价，需要 `stdbool.h` 头文件 | 关键字                       | 关键字                       |
 | C++          | 关键字                               | 关键字                                                   | 保留[^reserved-identifiers] |
 
 ## struct
@@ -82,6 +82,6 @@ C++ 风格单行注释 `//`，C 于 C99 前不支持。
 
 [^cpp-designated-init]: <https://en.cppreference.com/w/cpp/language/aggregate_initialization>
 
-[^true-false-become-keyword]: 自 C23 起，`true` 和 `false` 成为关键字，使用它们时不需要再引入 `stdbool.h`，详见 <https://en.cppreference.com/w/c/23>。
+[^true-false-become-keyword]: <https://en.cppreference.com/w/c/23>。
 
 [^reserved-identifiers]: C 和 C++ 均规定，以一个下划线跟着一个大写字母开头的标识符是被保留的，详见 <https://en.cppreference.com/w/c/language/identifier>。
