@@ -17,8 +17,8 @@ C99 标准加入了 `_Bool` 关键字（以及等效的 `bool` 宏）以及 `tru
 如果需要使用 `bool`，`true`，`false` 这三个宏，需要在程序中引入 `stdbool.h` 头文件。而使用 `_Bool` 则不需要引入任何额外头文件。
 
 ```c
-bool x = true; // 需要引入 stdbool.h
-_Bool x = 1; // 不需要引入 stdbool.h
+bool x = true;  // 需要引入 stdbool.h
+_Bool x = 1;    // 不需要引入 stdbool.h
 ```
 
 ## struct
