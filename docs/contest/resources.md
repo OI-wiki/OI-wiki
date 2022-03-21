@@ -32,7 +32,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [Universal Online Judge](https://uoj.ac/)：始于 2014 年，Universal 取通用之意，[项目开源](https://github.com/UniversalOJ/UOJ-System)；[VFK](https://github.com/vfleaking) 的 OJ：多原创比赛题和 CCF/THU 题，难度较高。
 - [Vijos](https://vijos.org/)：始于 2005 年。[服务端](https://github.com/vijos/vj4) 和 [评测机](https://github.com/vijos/jd4) 等项目开源。
 - [ZOJ](https://zoj.pintia.cn/home)：浙江大学在线评测系统，始于 2001 年。
-- [WZOI](https://wzoi.cc)：始于 2017 年，由浙江省温州中学维护的[开源](https://github.com/massimodong/wzoj)评测系统。
+- [WZOI](https://wzoi.cc)：始于 2017 年，由浙江省温州中学维护的 [开源](https://github.com/massimodong/wzoj) 评测系统。
 
 ### 国外
 
