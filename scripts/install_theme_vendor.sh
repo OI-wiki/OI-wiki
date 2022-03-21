@@ -1,4 +1,4 @@
-set -e
+set -euo pipefail
 
 VENDOR_DIR="mkdocs-material/material/assets/vendor"
 rm -rf "$VENDOR_DIR"

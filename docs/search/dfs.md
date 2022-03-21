@@ -79,7 +79,7 @@ def dfs(n, i, a):
             dfs(n - j, i + 1, j)  # 请仔细思考该行含义。
 
 # 主函数
-n, m = input().split(' ')
+n, m = map(int, input().split())
 dfs(n, 1, 1)
 ```
 

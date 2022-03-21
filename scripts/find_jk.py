@@ -5,7 +5,6 @@ Utility to find all non Chinese-Sigapore (kIICore G) IRG Source CJKs.
 """
 
 import os
-import functools
 import re
 
 # Unihan database is not included in this script.

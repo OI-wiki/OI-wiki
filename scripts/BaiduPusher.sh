@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-source /etc/profile
+
+set -euo pipefail
+
 ORG=24OI
 REPO=OI-wiki
 # Baidu Pusher 
