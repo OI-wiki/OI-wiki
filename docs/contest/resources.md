@@ -172,7 +172,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [Algorithm Visualizer](http://algorithm-visualizer.org)
 - [cppreference](https://zh.cppreference.com/w/)：一个全面的 C 和 C++ 语言及其标准库的在线参考资料
 - [Compiler Explorer](https://godbolt.org)：在线查看编译后代码块对应的汇编语句，支持选择不同的编译器
-- [C++ Insights](https://cppinsights.io/)：以编译器的视角去观察你的 C++ 源码
+- [C++ Insights](https://cppinsights.io/)：以编译器的视角去查看你的 C++ 源码
 - [Inverse Symbolic Calculator](http://wayback.cecm.sfu.ca/projects/ISC/ISCmain.html)：实数反查表达式，适用于反推常数
 - [$\rm\LaTeX$ 手写符号识别](http://detexify.kirelabs.org/classify.html)
 - [$\rm\LaTeX$ 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm)
