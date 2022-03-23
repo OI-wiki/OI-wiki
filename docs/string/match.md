@@ -49,7 +49,7 @@ def match(s, t, n, m):
         for j in range(0, m):
             if s[i + j] != t[j]:
                 break
-        if j == m:
+        if j == m-1:
             ans.append(i)
     return ans
 ```
