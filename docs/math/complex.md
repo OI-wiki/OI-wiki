@@ -286,7 +286,7 @@ $$
 1^z=\operatorname{exp} (2k\pi iz)
 $$
 
-这很抽象。以 $1$ 为底的指数函数不恒为 $1$ ，而是一个多值函数。只有式中 $k$ 为 $0$ 的时候才不恒为 $1$ ，即只有主值恒为 $1$ 。
+这很抽象。以 $1$ 为底的指数函数不恒为 $1$，而是一个多值函数。只有式中 $k$ 为 $0$ 的时候才不恒为 $1$，即只有主值恒为 $1$。
 
 于是一般指数函数可以记为：
 
@@ -394,13 +394,13 @@ $$
 
 ## C99 中的复数
 
-在 C99 标准中，有 &lt;complex.h> 头文件。
+在 C99 标准中，有&lt;complex.h> 头文件。
 
-在 &lt;complex.h> 头文件中，提供了 double complex、float complex 和 long double complex 三种类型。
+在&lt;complex.h> 头文件中，提供了 double complex、float complex 和 long double complex 三种类型。
 
 算术运算符'+'、'-'、'\*'和'/'，可以用于浮点数和复数的任意混合。当表达式两端有一个为复数时，计算结果为复数。
 
-头文件 &lt;complex.h> 提供了虚数单位 I，引入此头文件时，大写字母 I 不可以作为变量名使用。
+头文件&lt;complex.h> 提供了虚数单位 I，引入此头文件时，大写字母 I 不可以作为变量名使用。
 
 对于单个复数，&lt;complex.h> 提供了若干操作：creal 函数用于提取实部，cimag 函数用于提取虚部，cabs 函数用于计算模，carg 函数用于计算辐角主值。
 
@@ -416,11 +416,11 @@ $$
 
 ## C++ 中的复数
 
-在 C 里面的<ctype.h>，到 C++ 会变成<cctype>，几乎所有的头文件遵从这个命名规律。
+在 C 里面的 &lt;ctype.h>，到 C++ 会变成<cctype>，几乎所有的头文件遵从这个命名规律。
 
 但是，&lt;complex.h> 不遵守，C++ 没有<ccomplex>头文件。C++ 的复数直接是<complex>，并且装的东西和 C 完全不一样。
 
-很有趣。这是因为，在C++的第一个版本C++98，即已经有了<complex>，而C语言在C99才添加。
+很有趣。这是因为，在 C++ 的第一个版本 C++98，即已经有了<complex>，而 C 语言在 C99 才添加。
 
 在 C++ 中，复数类型定义使用 complex<float>、complex<double>和 complex<long double>。由于面向对象的多态性，下面函数的名字都是唯一的，无需 f 或 l 的后缀。
 
