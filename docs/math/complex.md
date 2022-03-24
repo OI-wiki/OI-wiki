@@ -147,16 +147,16 @@ $$
 称为复数 $z$ 的 **辐角**，记为：
 
 $$
-\theta= Arg z
+\theta= \operatorname{Arg} z
 $$
 
-任一个 **非零** 复数 $z$ 有无穷多个辐角。借助开头小写的 $arg z$ 表示 **其中一个特定值**，满足条件：
+任一个 **非零** 复数 $z$ 有无穷多个辐角。借助开头小写的 $\operatorname{arg} z$ 表示 **其中一个特定值**，满足条件：
 
 $$
--\pi<arg z \le \pi
+-\pi<\operatorname{arg} z \le \pi
 $$
 
-称 $arg z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$。
+称 $\operatorname{arg} z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$。
 
 称模小于 $1$ 的复数，在复平面上构成的图形为 **单位圆**。称模等于 $1$ 的复数为 **单位复数**，全体单位复数在复平面上构成的图形为 **单位圆周**。在不引起混淆的情况下，有时单位圆周也简称单位圆。
 
@@ -167,29 +167,29 @@ $$
 对于复数 $z=x+iy$，函数 $f(z)=e^x(\cos y+i\sin y)$ 满足 $f(z_1+z_2)=f(z_1)f(z_2)$。给出 **复指数函数** 的定义：
 
 $$
-exp z=e^x(\cos y+i\sin y)
+\operatorname{exp} z=e^x(\cos y+i\sin y)
 $$
 
 复指数函数在实数集上与实指数函数的定义完全一致。在复平面上拥有性质：
 
-模恒正：$|exp z|=exp x>0$。
+模恒正：$|\operatorname{exp} z|=\operatorname{exp} x>0$。
 
-辐角主值：$arg exp z=y$。
+辐角主值：$\operatorname{arg} \operatorname{exp} z=y$。
 
-加法定理：$exp (z_1+z_2)=exp (z_1)exp (z_2)$。
+加法定理：$\operatorname{exp} (z_1+z_2)=\operatorname{exp} (z_1)\operatorname{exp} (z_2)$。
 
-周期性：$exp z$ 是以 $2\pi i$ 为基本周期的周期函数。如果一个函数 $f(z)$ 的周期是某一周期的整倍数，称该周期为 **基本周期**。
+周期性：$\operatorname{exp} z$ 是以 $2\pi i$ 为基本周期的周期函数。如果一个函数 $f(z)$ 的周期是某一周期的整倍数，称该周期为 **基本周期**。
 
-这里将复指数函数记为 $exp$，是为了与下文的一般指数函数做区分。
+这里将复指数函数记为 $\operatorname{exp}$，是为了与下文的一般指数函数做区分。
 
 **复三角函数**（也简称 **三角函数**）的定义，是 **欧拉公式**：
 
 $$
-\cos z=\frac{exp (iz)+exp (-iz)}{2}
+\cos z=\frac{\operatorname{exp} (iz)+\operatorname{exp} (-iz)}{2}
 $$
 
 $$
-\sin z=\frac{exp (iz)-exp (-iz)}{2i}
+\sin z=\frac{\operatorname{exp} (iz)-\operatorname{exp} (-iz)}{2i}
 $$
 
 复三角函数在实数集上与实三角函数的定义完全一致。在复平面上拥有性质：
@@ -219,7 +219,7 @@ $$
 复数的 **三角形式** 和 **指数形式**，用于表示非零复数。
 
 $$
-z=r(\cos \theta +i\sin \theta)=r exp (i\theta)
+z=r(\cos \theta +i\sin \theta)=r \operatorname{exp} (i\theta)
 $$
 
 这两种形式用于计算复数的乘除两个运算以及后面的运算较为方便。如果只用高中见过的函数，可以使用三角形式。如果引入了复指数函数，写成等价的指数形式会更加方便。
@@ -228,7 +228,7 @@ $$
 
 在复数集之上定义的函数，函数值可能不再是一个具体的复数值，而是一个集合。
 
-一个例子，上述定义的辐角函数 $Arg z$ 就是这样。辐角函数的函数值是 $Arg z={arg z +2k\pi | k\in Z}$，为一个集合。
+一个例子，上述定义的辐角函数 $\operatorname{Arg} z$ 就是这样。辐角函数的函数值是 $\operatorname{Arg} z=\{\operatorname{arg} z +2k\pi | k\in Z\}$，为一个集合。
 
 如果对于每一个复数自变量，只有唯一的复数函数值与其对应，称为 **单值函数**。上述指数函数和三角函数都是单值函数。
 
@@ -241,25 +241,25 @@ $$
 规定 **复对数函数**（也简称 **对数函数**）是复指数函数的反函数。可以解得：
 
 $$
-Ln z=\ln{|z|}+i Arg z
+\operatorname{Ln} z=\ln{|z|}+i \operatorname{Arg} z
 $$
 
 对数函数的定义域为 **非零** 复数。由于辐角函数是多值函数，因此对数函数也是多值函数。相应地，记 **对数函数的主值** 为：
 
 $$
-\ln z=\ln{|z|}+i arg z
+\ln z=\ln{|z|}+i \operatorname{arg} z
 $$
 
 于是对数函数可以记为：
 
 $$
-Ln z=\{\ln z +2k\pi i| k\in Z\}
+\operatorname{Ln} z=\{\ln z +2k\pi i| k\in Z\}
 $$
 
 复对数函数拥有性质：
 
 $$
-Ln(z_1z_2)=Ln z_1 + Ln z_2
+\operatorname{Ln}(z_1z_2)=\operatorname{Ln} z_1 + \operatorname{Ln} z_2
 $$
 
 这个性质与实对数函数相同。而对数函数的主值不满足该性质。
@@ -269,35 +269,61 @@ $$
 **一般指数函数** 定义为：
 
 $$
-a^z=exp (z Ln a)
+a^z=\operatorname{exp} (z \operatorname{Ln} a)
 $$
 
-对于任意的 **非零** 复数 $a$，一般指数函数是多值函数。当 $a$ 的值取 $e$，且复对数函数取主值的时候，得到的单值函数是上文的 $exp$。
+对于任意的 **非零** 复数 $a$，一般指数函数是多值函数。
 
-这也意味着，上文的 $exp$ 和 $e$ 的幂，不等同。真正 $e$ 的幂是多值函数，而 $exp$ 只是一个形式上的记号，没有幂的含义。
+上述定义式展开是这样的：
+
+$$
+a^z=\operatorname{exp} (z \operatorname{Ln} a)=\operatorname{exp} (z\ln a +2k\pi iz)=\operatorname{exp} (z\ln a)\operatorname{exp} (2k\pi iz)
+$$
+
+虽然 $exp$ 函数以 $2\pi i$ 为周期，但是 $2k\pi iz$ 仍旧可以保证一般指数函数的多值性。以实数单位 $1$ 为底的指数函数应当是：
+
+$$
+1^z=\operatorname{exp} (2k\pi iz)
+$$
+
+这很抽象。以 $1$ 为底的指数函数不恒为 $1$ ，而是一个多值函数。只有式中 $k$ 为 $0$ 的时候才不恒为 $1$ ，即只有主值恒为 $1$ 。
+
+于是一般指数函数可以记为：
+
+$$
+a^z=\operatorname{exp} (z\ln a) 1^z
+$$
+
+以自然对数 $e$ 为底的指数函数应当是：
+
+$$
+e^z=\operatorname{exp} z \operatorname{exp} (2k\pi iz)
+$$
+
+单值函数 $\operatorname{exp}$ 是以自然对数 $e$ 为底的指数函数的主值，它与 $e$ 的幂不等同。真正 $e$ 的幂是多值函数，而 $\operatorname{exp}$ 只是一个形式上的记号，没有幂的含义。
 
 ## 一般幂函数与复数乘方开方
 
 **一般幂函数** 定义为：
 
 $$
-z^a=exp (a Ln z)
+z^a=\operatorname{exp} (a \operatorname{Ln} z)
 $$
 
 一般幂函数的取值情况需要分类讨论。将上述定义式展开：
 
 $$
-z^a=exp (a Ln z)=exp (a(\ln z +2k\pi i))=exp (a\ln z) exp (2k\pi ia)
+z^a=\operatorname{exp} (a \operatorname{Ln} z)=\operatorname{exp} (a(\ln z +2k\pi i))=\operatorname{exp} (a\ln z) \operatorname{exp} (2k\pi ia)
 $$
 
 根据 $a$ 的取值，分三种情形。
 
-如果 $a$ 为无理数或者虚数，$exp (2k\pi ia)$ 的值有无限多个，此时一般幂函数是多值函数，并且函数值集合为无限集。
+如果 $a$ 为无理数或者虚数，$\operatorname{exp} (2k\pi ia)$ 的值有无限多个，此时一般幂函数是多值函数，并且函数值集合为无限集。
 
 如果 $a=n$ 为整数，此时有：
 
 $$
-exp (2k\pi ia)=exp (2(kn)\pi ia)=1
+\operatorname{exp} (2k\pi ia)=\operatorname{exp} (2(kn)\pi ia)=1
 $$
 
 此时 $z^a$ 是单值函数。复数的整数次幂（乘方）是单值函数。
@@ -305,17 +331,17 @@ $$
 如果 $a=\frac{q}{p}$ 为有理数，其中 $gcd(q, p)=1$，此时有：
 
 $$
-exp (2k\pi ia)=exp (2k\pi i\frac{q}{p})
+\operatorname{exp} (2k\pi ia)=\operatorname{exp} (2k\pi i\frac{q}{p})
 $$
 
 只能取 $p$ 个不同的值，即 $k$ 为 $0$ 到 $p-1$ 之间的值。这 $p$ 个不同的值将单位圆周 $n$ 等分，就是下文的单位根。
 
 此时 $z^a$ 是多值函数，并且可以取到有限的 $p$ 个不同的值。复数的有理数次幂（开方）是多值函数，函数值集合为有限集。
 
-这里引入一个经典结论。根据复数乘法，模相乘，辐角相加，也可以用来计算乘方和开方（整数次幂与有理数次幂）。如果 $z=r exp (i\theta)$，则有：
+这里引入一个经典结论。根据复数乘法，模相乘，辐角相加，也可以用来计算乘方和开方（整数次幂与有理数次幂）。如果 $z=r \operatorname{exp} (i\theta)$，则有：
 
 $$
-z^n=r^n(exp (i\theta))^n=r^n(\cos n\theta +i\sin n\theta)
+z^n=r^n(\operatorname{exp} (i\theta))^n=r^n(\cos n\theta +i\sin n\theta)
 $$
 
 当模为 $1$ 的时候，就得到 **棣莫弗定理**（De Moivre's formula）：
@@ -330,7 +356,7 @@ $$
 
 称 $x^n=1$ 在复数意义下的解是 $n$ 次复根。显然，这样的解有 $n$ 个，称这 $n$ 个解都是 $n$ 次 **单位根** 或 **单位复根**（the $n$-th root of unity）。根据复平面的知识，$n$ 次单位根把单位圆 $n$ 等分。
 
-设 $\omega_n=e^{\frac{2\pi i}{n}}$（即幅角为 $2\pi \over n$ 的单位复数），则 $x^n=1$ 的解集表示为 $\{\omega_n^k\mid k=0,1\cdots,n-1\}$。
+设 $\omega_n=\operatorname{exp} \frac{2\pi i}{n}$（即幅角为 $2\pi \over n$ 的单位复数），则 $x^n=1$ 的解集表示为 $\{\omega_n^k\mid k=0,1\cdots,n-1\}$。
 
 如果不加说明，一般叙述的 $n$ 次单位根，是指从 $1$ 开始逆时针方向的第一个解，即上述 $\omega_n$，其它解均可以用 $\omega_n$ 的幂表示。
 
@@ -390,9 +416,11 @@ $$
 
 ## C++ 中的复数
 
-在 C 里面的<cctype>，到 C++ 会变成 &lt;ctype.h>，几乎所有的头文件遵从这个命名规律。
+在 C 里面的<ctype.h>，到 C++ 会变成<cctype>，几乎所有的头文件遵从这个命名规律。
 
-但是，&lt;complex.h> 不遵守，C++ 没有<ccomplex>头文件。这很有趣。C++ 的复数直接是<complex>，并且装的东西和 C 完全不一样。
+但是，&lt;complex.h> 不遵守，C++ 没有<ccomplex>头文件。C++ 的复数直接是<complex>，并且装的东西和 C 完全不一样。
+
+很有趣。这是因为，在C++的第一个版本C++98，即已经有了<complex>，而C语言在C99才添加。
 
 在 C++ 中，复数类型定义使用 complex<float>、complex<double>和 complex<long double>。由于面向对象的多态性，下面函数的名字都是唯一的，无需 f 或 l 的后缀。
 
