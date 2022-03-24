@@ -1,15 +1,15 @@
-author: Marcythm, hsfzLZH1, abc1763613206, greyqz, Ir1d, billchenchina, Chrogeek, Enter-tainer, StudyingFather, MrFoodinChina, luoguyuntianming, sshwy
+author: Marcythm, hsfzLZH1, abc1763613206, greyqz, Ir1d, billchenchina, Chrogeek, Enter-tainer, StudyingFather, MrFoodinChina, luoguyuntianming, sshwy, wood3
 
 ## 例题引入
 
 ???+note "[「HNOI2008」玩具装箱](https://loj.ac/problem/10188)"
-    有 $n$ 个玩具，第 $i$ 个玩具价值为 $c_i$。要求将这 $n$ 个玩具排成一排，分成若干段。对于一段 $[l,r]$，它的代价为 $(r-l+\sum_{i=L}^R c_i-L)^2$。求分段的最小代价。
+    有 $n$ 个玩具，第 $i$ 个玩具价值为 $c_i$。要求将这 $n$ 个玩具排成一排，分成若干段。对于一段 $[l,r]$，它的代价为 $(r-l+\sum_{i=l}^r c_i-L)^2$。其中 $L$ 是一个常量，求分段的最小代价。
     
-    $1\le n\le 5\times 10^4,1\le L,0\le c_i\le 10^7$。
+    $1\le n\le 5\times 10^4, 1\le L, c_i\le 10^7$。
 
 令 $f_i$ 表示前 $i$ 个物品，分若干段的最小代价。
 
-状态转移方程：$f_i=\min_{j<i}\{f_j+(pre_i-pre_j+i-j-1-L)^2\}$。
+状态转移方程：$f_i=\min_{j<i}\{f_j+(i-(j+1)+pre_i-pre_j-L)^2\}=\min_{j<i}\{f_j+(pre_i-pre_j+i-j-1-L)^2\}$。
 
 其中 $pre_i$ 表示前 $i$ 个数的和，即 $\sum_{j=1}^i c_j$。
 
@@ -63,9 +63,9 @@ $$
 在上述例题中，直线的斜率随 $i$ 单调变化，但是对于有些问题，斜率并不是单调的。这时我们需要维护凸包上的每一个节点，然后每次用当前的直线去切这个凸包。这个过程可以使用二分解决，因为凸包上相邻两个点的斜率是有单调性的。
 
 ???+note "玩具装箱 改"
-    有 $n$ 个玩具，第 $i$ 个玩具价值为 $c_i$。要求将这 $n$ 个玩具排成一排，分成若干段。对于一段 $[l,r]$，它的代价为 $(r-l+\sum_{i=L}^R c_i-L)^2$。求分段的最小代价。
+    有 $n$ 个玩具，第 $i$ 个玩具价值为 $c_i$。要求将这 $n$ 个玩具排成一排，分成若干段。对于一段 $[l,r]$，它的代价为 $(r-l+\sum_{i=l}^r c_i-L)^2$。其中 $L$ 是一个常量，求分段的最小代价。
     
-    $1\le n\le 5\times 10^4,1\le L,-10^7\le c_i\le 10^7$。
+    $1\le n\le 5\times 10^4,1\le L\le 10^7,-10^7\le c_i\le 10^7$。
 
 本题与「玩具装箱」问题唯一的区别是，玩具的价值可以为负。延续之前的思路，令 $f_i$ 表示前 $i$ 个物品，分若干段的最小代价。
 
