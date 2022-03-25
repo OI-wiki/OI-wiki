@@ -1,4 +1,4 @@
-author: inkydragon, TravorLZH, wood3
+author: inkydragon, TravorLZH, YOYO-UIAT, wood3
 
 ## 素数筛法
 
@@ -187,21 +187,17 @@ void init() {
   phi[1] = 1;
   for (int i = 2; i < MAXN; ++i) {
     if (!vis[i]) {
-      phi[i] = i - 1;
       pri[cnt++] = i;
     }
     for (int j = 0; j < cnt; ++j) {
       if (1ll * i * pri[j] >= MAXN) break;
       vis[i * pri[j]] = 1;
-      if (i % pri[j]) {
-        phi[i * pri[j]] = phi[i] * (pri[j] - 1);
-      } else {
+      if (i % pri[j] == 0) {
         // i % pri[j] == 0
         // 换言之，i 之前被 pri[j] 筛过了
         // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
         // pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
         // 掉就好了
-        phi[i * pri[j]] = phi[i] * pri[j];
         break;
       }
     }
@@ -212,19 +208,15 @@ void init() {
 ```python
 # Python Version
 def init():
-    phi[1] = 1
     for i in range(2, MAXN):
         if vis[i] == False:
-             phi[i] = i - 1
              pri[cnt] = i
              cnt = cnt + 1
         for j in range(0, cnt):
             if i * pri[j] >= MAXN:
                 break
             vis[i * pri[j]] = 1
-            if i % pri[j]:
-                phi[i * pri[j]] = phi[i] * (pri[j] - 1)
-            else:
+            if i % pri[j] == 0:
                 """
                 i % pri[j] == 0
                 换言之，i 之前被 pri[j] 筛过了
@@ -232,16 +224,13 @@ def init():
                 pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
                 掉就好了
                 """
-                phi[i * pri[j]] = phi[i] * pri[j]
                 break
 ```
-
-上面代码中的 $phi$ 数组，会在下面提到。
 
 上面的这种 **线性筛法** 也称为 **Euler 筛法**（欧拉筛法）。
 
 ??? note
-    注意到筛法求素数的同时也得到了每个数的最小质因子
+    注意到筛法求素数的同时也得到了每个数的最小质因子。
 
 ## 筛法求欧拉函数
 
@@ -317,7 +306,17 @@ def pre():
 
 ## 筛法求莫比乌斯函数
 
-### 线性筛
+根据莫比乌斯函数的定义，设 $n$ 是一个合数，$p_1$ 是 $n$ 的最小质因子，$n'=\frac{n}{p_1}$，有：
+
+$$
+\mu(n)=
+\begin{cases}
+	0 & n' \bmod p_1 \neq 0\\\\
+	-\mu(n') & \text{otherwise}
+\end{cases}
+$$
+
+若 $n$ 是质数，有 $\mu(n)=-1$。
 
 ```cpp
 // C++ Version
@@ -361,9 +360,9 @@ def pre():
 
 ### 约数个数定理
 
-定理：若 $n=\prod_{i=1}^mp_i^{c_i}$ 则 $d_i=\prod_{i=1}^mc_i+1$.
+定理：若 $n=\prod_{i=1}^m p_i^{c_i}$ 则 $d_i=\prod_{i=1}^m (c_i+1)$。
 
-证明：我们知道 $p_i^{c_i}$ 的约数有 $p_i^0,p_i^1,\dots ,p_i^{c_i}$ 共 $c_i+1$ 个，根据乘法原理，$n$ 的约数个数就是 $\prod_{i=1}^mc_i+1$.
+证明：我们知道 $p_i^{c_i}$ 的约数有 $p_i^0,p_i^1,\dots ,p_i^{c_i}$ 共 $c_i+1$ 个，根据乘法原理，$n$ 的约数个数就是 $\prod_{i=1}^m (c_i+1)$。
 
 ### 实现
 
@@ -454,6 +453,20 @@ def pre():
                 g[i * p[j]] = 1 + p[j]
 ```
 
-## 其他线性函数
+## 一般的积性函数
+
+假如一个 [积性函数](/math/number-theory/basic/#_10)  $f$ 满足：对于任意质数 $p$ 和正整数 $k$，可以在 $O(1)$ 时间内计算 $f(p^k)$，那么可以在 $O(n)$ 时间内筛出 $f(1),f(2),\dots,f(n)$ 的值。
+
+设合数 $n$ 的质因子分解是 $\prod_{i=1}^k p_i^{\alpha_i}$，其中 $p_1<p_2<\dots<p_k$ 为质数，我们在线性筛中记录 $g_n=p_1^{\alpha_1}$，假如 $n$ 被 $x\cdot p$ 筛掉（$p$ 是质数），那么 $g$ 满足如下递推式：
+
+$$
+g_n=
+\begin{cases}
+	g_x\cdot p & x\bmod p=0\\\\
+	p & \text{otherwise}
+\end{cases}
+$$
+
+假如 $n=g_n$，说明 $n$ 就是某个质数的次幂，可以 $O(1)$ 计算 $f(n)$；否则，$f(n)=f(\frac{n}{g_n})\cdot f(g_n)$。
 
 **本节部分内容译自博文 [Решето Эратосфена](http://e-maxx.ru/algo/eratosthenes_sieve) 与其英文翻译版 [Sieve of Eratosthenes](https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
