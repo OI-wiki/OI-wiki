@@ -1,4 +1,4 @@
-author: Xeonacid, ouuan, Ir1d, WAAutoMaton, Chrogeek, abc1763613206, Planet6174, i-Yirannn
+author: Xeonacid, ouuan, Ir1d, WAAutoMaton, Chrogeek, abc1763613206, Planet6174, i-Yirannn, opsiff
 
 ## `__gnu_pbds :: priority_queue`
 
@@ -36,7 +36,7 @@ __gnu_pbds ::priority_queue<T, Compare, Tag, Allocator>
 
     __gnu_pbds ::priority_queue<int> __gnu_pbds::priority_queue<int, greater<int> >
     __gnu_pbds ::priority_queue<int, greater<int>, pairing_heap_tag>
-    __gnu_pbds ::priority_queue<int>::point_iterator id; // 迭代器
+    __gnu_pbds ::priority_queue<int>::point_iterator id; // 点类型迭代器
     // 在 modify 和 push 的时候都会返回一个 point_iterator，下文会详细的讲使用方法
     id = q.push(1);
 
@@ -103,3 +103,38 @@ int main() {
   // q1中无元素，q2中元素 ：[1, 1, 1, 2, 3, 3, 5];
 }
 ```
+
+# __gnu_pbds 迭代器的失效保证(invalidation_guarantee)  
+在上述示例以及一些实践中(如使用本章的 pb-ds 堆来编写单源最短路等算法)，常常需要保存并使用堆的迭代器(如 `__gnu_pbds::priority_queue<int>::point_iterator` 等)。  
+可是对于 `__gnu_pbds::priority_queue` 中不同的 Tag 参数，其底层实现并不相同，迭代器的失效条件也不一样，根据 __gnu_pbds 库的设计有三种情况为： 
+1.基本失效保证(basic_invalidation_guarantee):即不修改容器时，点类型迭代器(point_iterator)、指针和引用(key/value)**保持**有效。
+2.点失效保证(point_invalidation_guarantee):继承于(1.),即**修改**容器后，点类型迭代器(point_iterator)、指针和引用(key/value)只要对应在容器中没被删除**保持**有效。
+3.范围失效保证(point_invalidation_guarantee):继承于(2.),即**修改**容器后，除(2)的特点以外，任何范围类型的迭代器(包括 begin(),end() 的返回)是正确的，具有范围失效保证的 Tag 有 rb_tree_tag,splay_tree_tag (适用于 __gnu_pbds::tree) 和 pat_trie_tag (适用于 __gnu_pbds::trie)。
+从运行下述代码中看出,在 `__gnu_pbds::priority_queue` 中除了 `binary_heap_tag` 为 `__gnu_pbds::basic_invalidation_guarantee` 在修改后迭代器会失效，其余的均为 `__gnu_pbds::point_invalidation_guarantee` 可以完成修改后点类型迭代器 (point_iterator) 不失效的需求。
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+#include<ext/pb_ds/assoc_container.hpp>
+#include<ext/pb_ds/priority_queue.hpp>
+using namespace __gnu_pbds;
+#include<cxxabi.h>
+template<typename T >
+void print_invalidation_guarantee(){
+	typedef typename __gnu_pbds::container_traits<T >::invalidation_guarantee gute;
+	cout<<abi::__cxa_demangle(typeid(gute).name(), 0, 0, 0)<<endl;
+}
+int main(){
+	typedef typename __gnu_pbds::priority_queue<int,greater<int>,pairing_heap_tag> pairing;
+	typedef typename __gnu_pbds::priority_queue<int,greater<int>,binary_heap_tag> binary;
+	typedef typename __gnu_pbds::priority_queue<int,greater<int>,binomial_heap_tag> binomial;
+	typedef typename __gnu_pbds::priority_queue<int,greater<int>,rc_binomial_heap_tag> rc_binomial;
+	typedef typename __gnu_pbds::priority_queue<int,greater<int>,thin_heap_tag> thin;
+	print_invalidation_guarantee<pairing>();
+	print_invalidation_guarantee<binary>();
+	print_invalidation_guarantee<binomial>();
+	print_invalidation_guarantee<rc_binomial>();
+	print_invalidation_guarantee<thin>();
+	return 0;
+}
+```
+
