@@ -83,7 +83,8 @@ int dfs(int pos, int tleft) {
   if (pos == n + 1) return mem[pos][tleft] = 0;
   int dfs1, dfs2 = -INF;
   dfs1 = dfs(pos + 1, tleft);
-  if (tleft >= tcost[pos]) dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos]; // 状态转移
+  if (tleft >= tcost[pos])
+    dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];  // 状态转移
   return mem[pos][tleft] = max(dfs1, dfs2);  // 最后将当前状态的值存下来
 }
 
@@ -135,7 +136,8 @@ int main() {
   for (int i = 1; i <= n; i++)
     for (int j = 0; j <= t; j++) {
       f[i][j] = f[i - 1][j];
-      if (j >= w[i]) f[i][j] = max(f[i][j], f[i - 1][j - w[i]] + v[i]); // 状态转移方程
+      if (j >= w[i])
+        f[i][j] = max(f[i][j], f[i - 1][j - w[i]] + v[i]);  // 状态转移方程
     }
   cout << f[n][t];
   return 0;
