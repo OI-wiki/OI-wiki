@@ -44,12 +44,15 @@ std::vector<int> match(char *s, char *t, int n, int m) {
 ```python
 # Python Version
 def match(s, t, n, m):
+    if m < 1:
+        return []
+
     ans = []
     for i in range(0, n - m + 1):
         for j in range(0, m):
             if s[i + j] != t[j]:
                 break
-        if j == m:
+        else:
             ans.append(i)
     return ans
 ```
