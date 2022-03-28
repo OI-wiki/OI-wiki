@@ -280,13 +280,13 @@ $$
 a^z=\operatorname{exp} (z \operatorname{Ln} a)=\operatorname{exp} (z\ln a +2k\pi iz)=\operatorname{exp} (z\ln a)\operatorname{exp} (2k\pi iz)
 $$
 
-虽然 $exp$ 函数以 $2\pi i$ 为周期，但是 $2k\pi iz$ 仍旧可以保证一般指数函数的多值性。以实数单位 $1$ 为底的指数函数应当是：
+一般指数函数的多值性来源于底数辐角的多值性。以实数单位 $1$ 为底的指数函数应当是：
 
 $$
 1^z=\operatorname{exp} (2k\pi iz)
 $$
 
-这很抽象。以 $1$ 为底的指数函数不恒为 $1$，而是一个多值函数。只有式中 $k$ 为 $0$ 的时候才不恒为 $1$，即只有主值恒为 $1$。
+以 $1$ 为底的指数函数不恒为 $1$，而是一个多值函数。这是因为 $1$ 的辐角不一定是 $0$，于是根据复数乘法“模相乘辐角相加”的规则，指数的结果也是多值的。只有式中 $k$ 为 $0$ 的时候才不恒为 $1$，即只有主值恒为 $1$。
 
 于是一般指数函数可以记为：
 
@@ -294,13 +294,15 @@ $$
 a^z=\operatorname{exp} (z\ln a) 1^z
 $$
 
+可以把指数函数的主值部分与其他部分以乘积的形式分开。
+
 以自然对数 $e$ 为底的指数函数应当是：
 
 $$
-e^z=\operatorname{exp} z \operatorname{exp} (2k\pi iz)
+e^z=\operatorname{exp} z 1^z
 $$
 
-单值函数 $\operatorname{exp}$ 是以自然对数 $e$ 为底的指数函数的主值，它与 $e$ 的幂不等同。真正 $e$ 的幂是多值函数，而 $\operatorname{exp}$ 只是一个形式上的记号，没有幂的含义。
+单值函数 $\operatorname{exp}$ 是以自然对数 $e$ 为底的指数函数的主值。真正以 $e$ 为底的指数函数是多值函数，而 $\operatorname{exp}$ 是一个形式上的记号，没有幂的含义。
 
 ## 一般幂函数与复数乘方开方
 
