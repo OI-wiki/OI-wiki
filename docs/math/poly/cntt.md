@@ -22,6 +22,6 @@ $n=2^{16}$ 时 $p_+=65537=2^{16}+1$ 的 $p_+-1$ 次单位根 $\omega=4+17573\tex
 
 ## 性能和应用
 
-[洛谷 P3803 评测记录](https://www.luogu.com.cn/record/list?pid=P3803&user=saisyc) 显示，按照 [*Optimization of number-theoretic transform in programming contests*](<>) 实现的 NTT 及与其同构的 CNTT, FFT 进行 $2^{21}\approx2.1\times10^6$ 长度的变换用时分别约为 $44,97,115$ 毫秒。
+[洛谷 P3803 评测记录](https://www.luogu.com.cn/record/list?pid=P3803&user=saisyc) 显示，按照 *Optimization of number-theoretic transform in programming contests* 实现的 NTT 及与其同构的 CNTT, FFT 进行 $2^{21}\approx2.1\times10^6$ 长度的变换用时分别约为 $44,97,115$ 毫秒。
 
 因此，对于模 $2^mk-1$ 型质数的卷积问题，CNTT 明显优于三模数 NTT 和拆系数 FFT。
