@@ -228,67 +228,145 @@ void swap(int &a, int &b) { a ^= b ^= a ^= b; }
 
 ### 操作一个数的二进制位
 
-获取一个数二进制的某一位：
+实现如下的几个基本操作：
 
-```cpp
-// C++ Version
-// 获取 a 的第 b 位，最低位编号为 0
-int getBit(int a, int b) { return (a >> b) & 1; }
-```
+1. 获取 $n$ 在二进制表示下的第 $k$ 位；
+2. 获取整数 $n$ 在二进制表示下的第 $0\sim k - 1$ 位（后 $k$ 位）；
+3. 对整数 $n$ 在二进制表示下的第 $k$ 位取反；
+4. 对整数 $n$ 在二进制表示下的第 $k$ 位赋值 $1$；
+5. 对整数 $n$ 在二进制表示下的第 $k$ 位赋值 $0$。
 
-```python
-# Python Version
-# 获取 a 的第 b 位，最低位编号为 0
-def getBit(a, b):
-    return (a >> b) & 1
-```
+- 操作一：「获取 $n$ 在二进制表示下的第 $k$ 位」
 
-将一个数二进制的某一位设置为 $0$：
+    考虑将 $n_k$ 置于第 $0$ 位，然后将 $n$ 与上 $1$（删除前导 $0$）。
 
-```cpp
-// C++ Version
-// 将 a 的第 b 位设置为 0 ，最低位编号为 0
-int unsetBit(int a, int b) { return a & ~(1 << b); }
-```
+    ```cpp
+    // C++ Version
+    // 获取 n 的第 k 位
+    int getBit(int n, int k) { return (n >> k) & 1; }
+    ```
 
-```python
-# Python Version
-# 将 a 的第 b 位设置为 0 ，最低位编号为 0
-def unsetBit(a, b):
-    return a & ~(1 << b)
-```
+    ```py
+    # Python Version
+    # 获取 n 的第 k 位
+    def getBit(n, k):
+        return (n >> k) & 1
+    ```
 
-将一个数二进制的某一位设置为 $1$：
+- 操作二：「获取整数 $n$ 在二进制表示下的第 $0\sim k - 1$ 位（后 $k$ 位）」
 
-```cpp
-// C++ Version
-// 将 a 的第 b 位设置为 1 ，最低位编号为 0
-int setBit(int a, int b) { return a | (1 << b); }
-```
+    考虑将 $n$ 与上 $k$ 个 $1$。
 
-```python
-# Python Version
-# 将 a 的第 b 位设置为 1 ，最低位编号为 0
-def setBit(a, b):
-    return a | (1 << b)
-```
+    构造一个二进制数 $a$，使 $n\&a$ 后保留 $n$ 的后 $k$ 位。
 
-将一个数二进制的某一位取反：
+    考虑将 $a_{1\sim k}$ 赋值为 $1$，$a_{1\sim k-1}$ 赋值为 $0$。
 
-```cpp
-// C++ Version
-// 将 a 的第 b 位取反 ，最低位编号为 0
-int flapBit(int a, int b) { return a ^ (1 << b); }
-```
+    把 $1$ 左移 $k$ 位，然后把 $a$ 减去 $1$。此时，$a_{1\sim k} = 1$，$a_{k + 1} = 0$。
 
-```python
-# Python Version
-# 将 a 的第 b 位取反 ，最低位编号为 0
-def flapBit(a, b):
-    return a ^ (1 << b)
-```
+    ```cpp
+    // C++ Version
+    // 获取 n 的后 k 位
+    int getBits(int n, int k) { return n & ((1 << k) - 1); }
+    ```
 
-这些操作相当于将一个 $32$ 位整型变量当作一个长度为 $32$ 的布尔数组。
+    ```py
+    # Python Version
+    # 获取 n 的后 k 位
+    def getBits(a, b):
+        return n & ((1 << k) - 1)
+    ```
+
+- 操作三：「对整数 $n$ 在二进制表示下的第 $k$ 位取反」
+
+	- 方法一：
+
+        「取反」操作可以使用异或。
+
+        构造一个二进制数 $a$，使 $n\oplus a$ 后 $n_k = 1$。
+
+        考虑把 $a_k$ 赋值为 $1$，$a_{1\sim k-1}$ 赋值为 $0$。
+
+        把 $1$ 左移 $k$ 位。此时 $a_k = 1$，$a_{1\sim k-1} = 0$。
+
+        ```cpp
+        // C++ Version
+        // 将 n 的第 k 位取反
+        int flapBit(int n, int k) { return n ^ (1 << k); }
+        ```
+
+        ```py
+        # Python Version
+        # 将 n 的第 k 位取反
+        def flapBit(n, k):
+            return n ^ (1 << k)
+        ```
+
+    - 方法二：
+
+        把取出整数 $n$ 在二进制表示下的第 $k$ 位后直接将其取反。
+
+        即将操作一所得取反。
+
+        ```cpp
+        // C++ Version
+        // 将 n 的第 k 位取反
+        int flapBit(int n, int k) { return ~((n >> k) & 1); }
+        ```
+
+        ```py
+        # Python Version
+        # 将 n 的第 k 位取反
+        def flapBit(n, k):
+            return ~((n >> k) & 1)
+        ```
+
+- 操作四：「对整数 $n$ 在二进制表示下的第 $k$ 位赋值 $1$」
+
+    「赋值 $1$」操作可以使用或。
+
+    构造一个二进制数 $a$，使 $n\mid a$ 后 $n_k = 1$。
+
+    考虑把 $a_k$ 赋值为 $1$，$a_{1\sim k-1}$ 赋值为 $0$。
+
+    把 $1$ 左移 $k$ 位。此时 $a_k = 1$，$a_{1\sim k-1} = 0$。
+
+    ```cpp
+    // C++ Version
+    // 将 n 的第 k 位赋值为 1
+    int setBit(int n, int k) { return n | (1 << k); }
+    ```
+
+    ```py
+    # Python Version
+    # 将 n 的第 k 位赋值为 1
+    def setBit(n, k):
+        return n | (1 << k)
+    ```
+
+- 操作五：「对整数 $n$ 在二进制表示下的第 $k$ 位赋值 $0$」
+
+    「赋值 $0$」操作可以使用与。
+
+    构造一个二进制数 $a$，使 $n\&a$ 后 $n_k = 0$。
+
+    考虑把 $a_k$ 赋值为 $0$，$a_{1\sim k-1}$ 赋值为 $1$。
+
+    把 $1$ 左移 $k$ 位，再将 $a$ 取反。此时 $a_k = 0$，$a_{1\sim k-1} = 1$。
+
+    ```cpp
+    // C++ Version
+    // 将 a 的第 b 位赋值为 0
+    int unsetBit(int a, int b) { return a & ~(1 << b); }
+    ```
+
+    ```py
+    # Python Version
+    # 将 a 的第 b 位赋值为 0
+    def unsetBit(a, b):
+        return a & ~(1 << b)
+    ```
+
+这些操作代码凝练，有效降低了时间复杂度和空间复杂度。相当于将一个 $32$ 位整型变量当作一个长度为 $32$ 的布尔数组。
 
 ### 模拟集合操作
 
