@@ -127,7 +127,7 @@ def millerRabin(n):
 
 对数 n 进行 k 轮测试的时间复杂度是 $O(k \log^3n)$，利用 FFT 等技术可以优化到 [$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)。
 
-另外，若 [generalized Riemann hypothesis](https://en.wikipedia.org/wiki/Generalized_Riemann_hypothesis) (GRH) 得到证明，则对数 n 最多只需要测试 $[2, \min\{n-2, \lfloor 2\log^2 n \rfloor\}]$ 中的整数即可，证明参见注释 7。
+另外，若 [generalized Riemann hypothesis](https://en.wikipedia.org/wiki/Generalized_Riemann_hypothesis)(GRH) 得到证明，则对数 n 最多只需要测试 $[2, \min\{n-2, \lfloor 2\log^2 n \rfloor\}]$ 中的整数即可，证明参见注释 7。
 
 ##### 二次探测定理
 
