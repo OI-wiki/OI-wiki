@@ -398,7 +398,7 @@ $$
 
 在 C99 标准中，有 `<complex.h>` 头文件。
 
-在&lt;complex.h> 头文件中，提供了 double complex、float complex 和 long double complex 三种类型。
+在 `<complex.h>` 头文件中，提供了 `double complex`、`float complex` 和 `long double complex` 三种类型。
 
 算术运算符'+'、'-'、'\*'和'/'，可以用于浮点数和复数的任意混合。当表达式两端有一个为复数时，计算结果为复数。
 
