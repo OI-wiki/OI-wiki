@@ -396,7 +396,7 @@ $$
 
 ## C99 中的复数
 
-在 C99 标准中，有&lt;complex.h> 头文件。
+在 C99 标准中，有 `<complex.h>` 头文件。
 
 在&lt;complex.h> 头文件中，提供了 double complex、float complex 和 long double complex 三种类型。
 
