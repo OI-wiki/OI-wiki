@@ -398,7 +398,7 @@ $$
 
 在 C99 标准中，有 `<complex.h>` 头文件。
 
-在 `<complex.h>` 头文件中，提供了 `double complex` 、 `float complex` 和 `long double complex` 三种类型。
+在 `<complex.h>` 头文件中，提供了 `double complex`、`float complex` 和 `long double complex` 三种类型。
 
 算术运算符'+'、'-'、'\*'和'/'，可以用于浮点数和复数的任意混合。当表达式两端有一个为复数时，计算结果为复数。
 
@@ -406,7 +406,7 @@ $$
 
 对于单个复数，`<complex.h>` 提供了若干操作：creal 函数用于提取实部，cimag 函数用于提取虚部，cabs 函数用于计算模，carg 函数用于计算辐角主值。
 
-所有的函数根据类型不同，都有三个。例如 creal 函数有 creal、crealf、creall 三个，用于处理对应的 `double` 、 `float` 和 `long double` 三种类型。末尾什么都不带的默认处理 double 类型。以下所有函数均遵从此规律，不再特别说明。
+所有的函数根据类型不同，都有三个。例如 creal 函数有 creal、crealf、creall 三个，用于处理对应的 `double`、`float` 和 `long double` 三种类型。末尾什么都不带的默认处理 double 类型。以下所有函数均遵从此规律，不再特别说明。
 
 这些函数返回值都是一般的浮点数。可以将普通浮点数直接赋值给复数，但是不可以将复数直接赋值给浮点数，而是需要使用上述提取操作。
 
@@ -418,13 +418,13 @@ $$
 
 ## C++ 中的复数
 
-在 C 里面的 `<ctype.h>` ，到 C++ 会变成 `<cctype>` ，几乎所有的头文件遵从这个命名规律。
+在 C 里面的 `<ctype.h>`，到 C++ 会变成 `<cctype>`，几乎所有的头文件遵从这个命名规律。
 
-但是， `<complex.h>` 不遵守，C++ 没有 `<ccomplex>` 头文件。C++ 的复数直接是 `<complex>` ，并且装的东西和 C 完全不一样。
+但是，`<complex.h>` 不遵守，C++ 没有 `<ccomplex>` 头文件。C++ 的复数直接是 `<complex>`，并且装的东西和 C 完全不一样。
 
-很有趣。这是因为，在 C++ 的第一个版本 C++98，即已经有了 `<complex>` ，而 C 语言在 C99 才添加。
+很有趣。这是因为，在 C++ 的第一个版本 C++98，即已经有了 `<complex>`，而 C 语言在 C99 才添加。
 
-在 C++ 中，复数类型定义使用 `complex<float>` 、 `complex<double>` 和 `complex<long double>` 。由于面向对象的多态性，下面函数的名字都是唯一的，无需 f 或 l 的后缀。
+在 C++ 中，复数类型定义使用 `complex<float>`、`complex<double>` 和 `complex<long double>`。由于面向对象的多态性，下面函数的名字都是唯一的，无需 f 或 l 的后缀。
 
 一个复数对象拥有成员函数 real 和 imag，可以访问实部和虚部。
 
