@@ -54,3 +54,38 @@ $\frac{n!}{p^{\sum_{j\geq 1}\lfloor \frac{n}{p^j}\rfloor}}\equiv (\pm 1)^{\sum_{
 $\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor -\lfloor m/p^j\rfloor -\lfloor r/p^j\rfloor\right)}}{p^{\nu(n!)-\nu(m!)-\nu(r!)}}\binom{n}{m}\equiv \frac{n!/p^{\nu(n!)}}{(m!/p^{\nu(m!)})(r!/p^{\nu(r!)})}\pmod{p^q}$
 
 右边的分母中括号内的项均在模 $p^q$ 意义下均存在逆元，可直接计算，而 $\pm 1$ 的与上述相同。
+
+???+note " 例题 [HDU 2973 - YAPTCHA](https://acm.hdu.edu.cn/showproblem.php?pid=2973)"
+    给定 $n$, 计算
+    
+    $\sum_{k=1}^n\left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor$
+
+??? note "解题思路"
+    若 $3k+7$ 是质数，则
+    
+    $(3k+6)!\equiv-1\pmod{3k+7}$
+
+    设 $(3k+6)!+1=k(3k+7)$
+
+    则
+
+    $$\left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\left\lfloor k-\left\lfloor k-\frac{1}{3k+7}\right\rfloor\right\rfloor=1$$
+
+    若 $3k+7$ 是质数，则有 $(3k+7)\mid(3k+6)!$，即
+
+    $$(3k+6)!\equiv 0\pmod{3k+7}$$
+
+    设 $(3k+6)!=k(3k+7)$
+
+    则
+
+    $$\left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\left\lfloor k+\frac{1}{3k+7}-k\right\rfloor=0$$
+
+    因此
+
+    $$\sum_{k=1}^n\left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\sum_{k=1}^n[3k+7\text{ is prime}]$$
+
+??? note "参考代码"
+    ```cpp
+    --8<-- "docs/math/code/wilson/wilson_1.cpp"
+    ```
