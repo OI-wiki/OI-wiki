@@ -118,11 +118,11 @@ $$
 |AB|=\sum_{|S|=n,S\subseteq[m]}|A_{[n],[S]}||B_{[S],[n]}|
 $$
 
-证明：考虑建出有向无环图 $G(V,E)$，$V=L\cup R\cup D$，    
-$L=\{l_1,l_2,\cdots,l_n\}$，$R=\{r_1,r_2,\cdots,r_n\}$，    
-$D=\{d_1,d_2,\cdots,d_m\}$，$E=E_L\cup E_R$，    
-$E_L=\{(l_i,d_j)\mid i\in[1,n],j\in [1,m]\}$，$E_R=\{(d_i,r_j)\mid i\in[1,m],j\in[1,n]\}$，    
-$\omega(l_i,d_j)=a_{i,j}$，$\omega(d_i,r_j)=b_{i,j}$。    
+证明：考虑建出有向无环图 $G(V,E)$，$V=L\cup R\cup D$，  
+$L=\{l_1,l_2,\cdots,l_n\}$，$R=\{r_1,r_2,\cdots,r_n\}$，  
+$D=\{d_1,d_2,\cdots,d_m\}$，$E=E_L\cup E_R$，  
+$E_L=\{(l_i,d_j)\mid i\in[1,n],j\in [1,m]\}$，$E_R=\{(d_i,r_j)\mid i\in[1,m],j\in[1,n]\}$，  
+$\omega(l_i,d_j)=a_{i,j}$，$\omega(d_i,r_j)=b_{i,j}$。
 
 与 [「NOI2021」路径交点](https://loj.ac/p/3533) 的模型相同，容易发现上式左右两侧计算的都是 $L$ 到 $R$ 的不相交路径组中，交点个数为偶数的方案数减去奇数的方案数，其中 $S$ 表示路径组经过的 $D$ 中的点。
 
