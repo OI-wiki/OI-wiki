@@ -11,30 +11,29 @@
 群公理包含下述四个性质（有时略去封闭性，只有三个性质）。若集合 $G\neq\varnothing$ 和 $G$ 上的运算 $\cdot$ 构成的代数结构 $(G,\cdot)$ 满足以下性质：
 
 1. **封闭性**：对于所有 $G$ 中 $a, b$，运算 $a·b$ 的结果也在 G 中。
-2. **结合律**(Associativity)：对于 $G$ 中所有的 $a, b, c$，等式 $(a \cdot b)\cdot c = a \cdot (b \cdot c)$ 成立。
-3. **标识元**（Identity element，也称单位元）：$G$ 中存在一个元素 $e$，使得对于 $G$ 中的每一个元素 $a$，都有一个 $e \cdot a=a\cdot e=a$ 成立。这样的元素是独一无二的。它被称为群的标识元素。
-4. **逆元**(Inverse element)：对于每个 $G$ 中的 $a$，总存在 $G$ 中的一个元素 $b$ 使 $a \cdot b = b \cdot a = e$，此处 $e$ 为单位元，称 $b$ 为 $a$ 的逆元，记为 $a^{-1}$。
+2. **结合律**（Associativity）：对于 $G$ 中所有的 $a, b, c$，等式 $(a \cdot b)\cdot c = a \cdot (b \cdot c)$ 成立。
+3. **单位元**（Identity element，也称幺元、标识元）：$G$ 中存在一个元素 $e$，使得对于 $G$ 中的每一个元素 $a$，都有一个 $e \cdot a=a\cdot e=a$ 成立。这样的元素是独一无二的。它被称为群的单位元。
+4. **逆元**（Inverse element）：对于每个 $G$ 中的 $a$，总存在 $G$ 中的一个元素 $b$ 使 $a \cdot b = b \cdot a = e$，此处 $e$ 为单位元，称 $b$ 为 $a$ 的逆元，记为 $a^{-1}$。
 
 则称 $(G,\cdot)$ 为一个 **群**。例如，整数集和整数间的加法 $(\mathbb{Z},+)$ 构成一个群，单位元是 0，一个整数的逆元是它的相反数。
 
 ### 群的衍生结构
-
 - 若代数结构 $(G,\cdot)$ 满足封闭性、结合律性质，则称 $(G,\cdot)$ 为一个 **半群**（Semigroup）。
 - 若半群 $(G,\cdot)$ 还满足单位元性质，则称 $(G,\cdot)$ 为一个 **幺半群**（Monoid）。
--   若群 $(G,\cdot)$ 还满足交换律  
-     **交换律**（Commutativity）：对于 $G$ 中所有的 $a,b$，等式 $a\cdot b=b\cdot a$ 成立。  
-    则称 $(G,\cdot)$ 为一个 **阿贝尔群**（abelian group），又称 **交换群**（Commutative group）。
+- 若群 $(G,\cdot)$ 还满足交换律  
+  **交换律**（Commutativity）：对于 $G$ 中所有的 $a,b$，等式 $a\cdot b=b\cdot a$ 成立。  
+  则称 $(G,\cdot)$ 为一个**阿贝尔群**（abelian group），又称**交换群**（Commutative group）。
 
 ## 环
 
-形式上，**环**（Ring）是一个集合 $R$ 及对 $R$ 的两个二元运算：加法 $+$ 和乘法 $\cdot$  
+形式上，**环**（Ring） 是一个集合 $R$ 及对 $R$ 的两个二元运算：加法 $+$ 和乘法 $\cdot$   
 （注意这里不是我们一般所熟知的四则运算加法和乘法）所组成的，  
 且满足如下性质的代数结构 $(R,+,\cdot)$：
 
-1. $(R,+)$ 构成交换群，其标识元记为 $0$，$R$ 中元素 $a$ 的加法逆元记为 $-a$。
+1. $(R,+)$ 构成交换群，其单位元记为 $0$，$R$ 中元素 $a$ 的加法逆元记为 $-a$。
 2. $(R,\cdot)$ 构成半群。
-3.  **分配律**（Distributivity）：对于 $R$ 中所有的 $a,b,c$，等式  
-     $a\cdot(b+c)=a\cdot b+a\cdot c$ 和 $(a+b)\cdot c=a\cdot c+b\cdot c$ 成立。
+3. **分配律**（Distributivity）：对于 $R$ 中所有的 $a,b,c$，等式  
+   $a\cdot(b+c)=a\cdot b+a\cdot c$ 和 $(a+b)\cdot c=a\cdot c+b\cdot c$ 成立。
 
 在抽象代数中，研究环的分支为 **环论**。
 
@@ -173,3 +172,4 @@ $$
 - [2][Group theory - Wikipedia](<https://en.wikipedia.org/wiki/Group_theory>)
 - [3][Group - Wolfram MathWorld](<https://mathworld.wolfram.com/Group.html>)
 - [4][Visual Group Theory](<https://www.youtube.com/playlist?list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv>)
+
