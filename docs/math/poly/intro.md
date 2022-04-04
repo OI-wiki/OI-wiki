@@ -1,4 +1,4 @@
-操纵 有限项/无限项 的多项式是 OI 数学中，尤其是生成函数中的重要内容。
+操纵 有限项/无限项 的多项式是 OI 数学中，尤其是生成函数中的重要内容。  
 
 需要指出，从大学数学分析的角度而言，将无限项的多项式（幂级数）  
 单纯地看作一个函数将导致敛散性的问题，例如
@@ -32,9 +32,9 @@ $f(x)=f_0+f_1x+f_2x^2+\cdots\quad(f_0,f_1,f_2,\cdots\in R)$
 
 $f(x)=f_0+f_1x+f_2x^2+\cdots+f_nx^n\quad(f_n\not =0)$
 
-则称 $n$ 为 $f(x)$ 的 **度数**（degree），记为 $\deg f$。
+则称 $n$ 为 $f(x)$ 的**度数**（degree），记为 $\deg f$ 。
 
-一般只用多项式称呼有限项的多项式，而用 **幂级数** 称呼无限项的多项式。
+一般只用多项式称呼有限项的多项式，而用**幂级数**称呼无限项的多项式。
 
 ### 加法
 
@@ -60,8 +60,8 @@ $$
 
 若 $R$ 为交换环或幺环，也能相应地验证卷积的交换律和单位元性质。
 
-若 $R$ 上存在 $2^n$ 次单位根，[快速傅里叶变换](https://oi-wiki.org/math/poly/fft/) 允许我们在  
- $\mathcal{O}(n2^n)$ 而不是 $\mathcal{O}(2^{2n})$ 的时间内计算两个 $2^n$ 次多项式的卷积。
+若 $R$ 上存在 $2^n$ 次单位根，[快速傅里叶变换](https://oi-wiki.org/math/poly/fft/) 允许我们在   
+$\mathcal{O}(n2^n)$ 而不是 $\mathcal{O}(2^{2n})$ 的时间内计算两个 $2^n$ 次多项式的卷积。 
 
 ### 复合
 
@@ -77,9 +77,9 @@ $$
 
 当 $f$ 为有限项多项式或 $g_0=0$ 时，该运算是良定义的，不涉及 $R$ 上的极限。
 
-可以证明 $\circ$ 满足结合律，且 $R$ 为幺半群时单位元为 $1\times x$。
+可以证明 $\circ$ 满足结合律，且 $R$ 为幺半群时单位元为 $1\times x$ 。
 
-$R$ 为素数域时，有限项多项式的复合有 $\mathcal{O}((n\log n)^{1.5})$ 的算法，但此算法常数较大，  
+$R$ 为素数域时，有限项多项式的复合有 $\mathcal{O}((n\log n)^{1.5})$ 的算法，但此算法常数较大，    
 实战中往往 $\mathcal{O}(n^2)$ 的一种“分块 FFT”算法具有更好的表现。
 
 ### 导数
@@ -93,6 +93,7 @@ $$
 其中 $kf_k=\underbrace{f_k+f_k+\cdots+f_k}_{k \text{个} f_k}$
 
 并验证加法法则、乘法法则、链式法则的正确性。
+
 
 ## 多项式的复杂运算
 
@@ -125,6 +126,7 @@ $$
 形式幂级数的指数和对数直接由其与麦克劳林级数的复合定义
 
 $$
+\exp f(x)=\sum_{k=0}^\infty\dfrac{f^k(x)}{k!}\\
 \ln{(1 - f(x))} = -\sum_{i = 1}^{+\infty} \frac{f^{i}(x)}{i}\\
 \ln{(1 + f(x))} = \sum_{i = 1}^{+\infty} \frac{(-1)^{i - 1}f^{i}(x)}{i}$$
 
@@ -175,11 +177,11 @@ $(x_{0}, y_{0}), (x_{1}, y_{1}), \dots, (x_{n}, y_{n})$
 ### 多项式因式分解和欧几里得
 
 有代数基本定理可得，复系数 $n$ 次多项式 $f$ 可唯一分解为如下形式
-$$
-
-a(x-x_1)^{c_1}(x-x_2)^{c_2}\\cdots(x-x_m)^{c_m}\\c_1+c_2+\\cdots+c_m=n,x_1,x_2,\\cdots,x_m \\text{互不相同}
 
 $$
+a(x-x_1)^{c_1}(x-x_2)^{c_2}\cdots(x-x_m)^{c_m}\\
+c_1+c_2+\cdots+c_m=n,x_1,x_2,\cdots,x_m \text{互不相同}$$
+
 类比数的最大公因数，可得多项式的最大公因式，且可用欧几里得算法计算
 
 $\gcd(f,0)=f,\gcd(f,g)=\gcd(g,f\bmod g)$
@@ -198,4 +200,3 @@ $P(x)f(x)+Q(x)g(x)=\gcd(P(x),Q(x))$
 - [**Miskcoo's Space**](https://blog.miskcoo.com)
 - [**Formal power series - Wikipedia**](https://en.wikipedia.org/wiki/Formal_power_series#The_ring_of_formal_power_series)
 - [**信息学竞赛中的生成函数计算理论框架**](https://github.com/wangr-x/OI-Public-Library-master/blob/main/IOI%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B6%E5%80%99%E9%80%89%E9%98%9F%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E4%BF%A1%E6%81%AF%E5%AD%A6%E7%AB%9E%E8%B5%9B%E4%B8%AD%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA%E6%A1%86%E6%9E%B6.pdf)
-$$
