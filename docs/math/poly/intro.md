@@ -16,27 +16,26 @@ $$
 
 环的一般定义详见 [群论简介](https://oi-wiki.org/math/group-theory/#_3)。
 
-对于一般环 $R$，$R$ 上的 **形式幂级数环**（
-    Formal power series ring） $R[[x]]$ 是一个 $R$ 上的自由模，  
-	其中的每个元素 $f$ 称为 **形式幂级数**（Formal power series），可表示为
+对于一般环 $R$，定义 $R$ 上的 **多项式环**（Polynomial ring）$R[x]$ 是一个 $R$ 上的自由模，  
+其中的每个元素 $f$ 称为 $R$ 上的 **多项式**（Polynomial），可表示为  
 
-$f=\left<f_0,f_1,f_2,\cdots\right>\quad(f_0,f_1,f_2,\cdots\in R)$
+$f=\left<f_0,f_1,f_2,\cdots,f_n\right>\quad(f_0,f_1,f_2,\cdots,f_n\in R\land(n=0\lor f_n\not =0))$
 
 或
 
-$f(x)=f_0+f_1x+f_2x^2+\cdots\quad(f_0,f_1,f_2,\cdots\in R)$
+$f(x)=f_0+f_1x+f_2x^2+\cdots+f_nx^n$
+
+其中 $n$ 被称为 $f(x)$ 的 **度数**（degree），记为 $\deg f$。
 
 此处我们认为 $x$ 只是一个形式符号，一个对系数位置的标识符。
 
-我们一般用 $[x^n]f(x)$ 来表示 $f_n$。
+如果我们还允许无穷项的存在，即
 
-若 $f(x)$ 为有限项多项式，即
+$f(x)=f_0+f_1x+f_2x^2+\cdots$
 
-$f(x)=f_0+f_1x+f_2x^2+\cdots+f_nx^n\quad(f_n\not =0)$
-
-则称 $n$ 为 $f(x)$ 的 **度数**（degree），记为 $\deg f$。
-
-一般只用多项式称呼有限项的多项式，而用 **幂级数**（Power series）称呼无限项的多项式。
+则可得到 **形式幂级数环**（
+    Formal power series ring）$R[[x]]$，  
+其中的每个元素 $f$ 称为 **形式幂级数**（Formal power series），以下简称幂级数。
 
 ### 加法
 
@@ -45,9 +44,9 @@ $f(x)=f_0+f_1x+f_2x^2+\cdots+f_nx^n\quad(f_n\not =0)$
 $f+g=\left<f_0+g_0,f_1+g_1,f_2+g_2,\cdots\right>$
 
 也即
-$$
 
-\\sum*{k=0}^{\\infty}f_kx^k+\\sum*{k=0}^\\infty g*kx^k=\\sum*{k=0}^{\\infty}(f_k+g_k)x^k$$
+$$
+\sum_{k=0}^{\infty}f_kx^k+\sum_{k=0}^\infty g_kx^k=\sum_{k=0}^{\infty}(f_k+g_k)x^k$$
 
 并验证 $(R[[x]],+)$ 的交换群性质——封闭性、交换律、结合律、单位元、逆元。
 
@@ -64,7 +63,7 @@ $$
 若 $R$ 为交换环或幺环，也能相应地验证形式幂级数乘法的交换律和单位元性质。
 
 若 $R$ 上存在 $2^n$ 次单位根，[快速傅里叶变换](https://oi-wiki.org/math/poly/fft/) 允许我们在  
- $\mathcal{O}(n2^n)$ 而不是 $\mathcal{O}(2^{2n})$ 的时间内计算两个 $2^n$ 次多项式的乘积。
+$\mathcal{O}(n2^n)$ 而不是 $\mathcal{O}(2^{2n})$ 的时间内计算两个 $2^n$ 次多项式的乘积。
 
 ### 复合
 
@@ -140,14 +139,14 @@ $$
 
 ### 复合逆
 
-对于满足 $f_0=0$ 且 $f_1\not=0$ 的形式幂级数 $f$，  
+对于满足 $f_0=0$ 且 $f_1\not=0$ 的形式幂级数 $f$ ，  
 其 **复合逆**（Compound inverse）为满足  
- $g(f(x))=f(g(x))=x$ 的形式幂级数 $g$。
-由拉格朗日反演可得对于任意整数 $n,k$ 有
+ $g(f(x))=f(g(x))=x$ 的形式幂级数 $g$。 
+由拉格朗日反演可得对于任意整数 $n,k$ 有  
 
 $n[x^n]f^k=k[x^{-k}]g^{-n}$
 
-注意此处我们允许有限个负数次项的存在，即 **形式洛朗级数**（Formal Laurent series）。
+注意此处我们允许有限个负数次项的存在，即  **形式洛朗级数**（Formal Laurent series）。
 
 ### 带余除法
 
@@ -157,7 +156,7 @@ $n[x^n]f^k=k[x^{-k}]g^{-n}$
 
 $f(x)=Q(x)g(x)+R(x),\deg R<\deg g$
 
-当 $\deg f\ge \deg g$ 时有 $\deg Q=\deg f-\deg g$，否则有 $Q(x)=0$。
+当 $\deg f\ge \deg g$ 时有 $\deg Q=\deg f-\deg g$，否则有 $Q(x)=0$。    
 
 我们称 $Q(x)$ 为 $g(x)$ 除 $f(x)$ 的 **商**（Quotient），$R(x)$ 为 $g(x)$ 除 $f(x)$ 的 **余数**（Remainder）。亦可记作
 
@@ -165,11 +164,11 @@ $f(x) \equiv R(x) \pmod{g(x)}$
 
 ### 多项式的多点求值和插值
 
-**多项式的多点求值**（Multi-point evaluation）即给出一个多项式 $f(x)$ 和 $n$ 个点 $x_{1}, x_{2}, \dots, x_{n}$，求
+**多项式的多点求值**（Multi-point evaluation） 即给出一个多项式 $f(x)$ 和 $n$ 个点 $x_{1}, x_{2}, \dots, x_{n}$，求
 
 $f(x_{1}), f(x_{2}), \dots, f(x_{n})$
 
-**多项式的插值**（Interpolation）即给出 $n + 1$ 个点
+**多项式的插值**（Interpolation） 即给出 $n + 1$ 个点
 
 $(x_{0}, y_{0}), (x_{1}, y_{1}), \dots, (x_{n}, y_{n})$
 
@@ -177,25 +176,38 @@ $(x_{0}, y_{0}), (x_{1}, y_{1}), \dots, (x_{n}, y_{n})$
 
 这两种操作的实质就是将多项式在 **系数表示** 和 **点值表示** 间转化。
 
-### 多项式因式分解和欧几里得
+### 多项式因式分解、欧几里得和模多项式意义下乘法逆元
 
 由代数基本定理可得，复系数 $n$ 次多项式 $f$ 可唯一分解为如下形式
 
 $a(x-x_1)^{c_1}(x-x_2)^{c_2}\cdots(x-x_m)^{c_m}\\
 c_1+c_2+\cdots+c_m=n,x_1,x_2,\cdots,x_m \text{互不相同}$
 
-类比数的最大公因数，可得多项式的 **最大公因式**（The greatest common factor），且可用欧几里得算法计算
+类比数的最大公因数，可得多项式的 **最大公因式**（The greatest common factor ），有定理：
+
+任意域 $P$ 上的多项式环 $P[[x]]$ 均为欧几里得整环，即可用欧几里得算法计算最大公因式
 
 $\gcd(f,0)=f,\gcd(f,g)=\gcd(g,f\bmod g)$
 
-同样的，可用扩展欧几里得给出
+在此基础上，可用扩展欧几里得给出
 
 $P(x)f(x)+Q(x)g(x)=\gcd(P(x),Q(x))$
 
 的一组特解 $(P(x),Q(x))$。
 
-[HALF-GCD](https://loj.ac/p/172) 允许我们在 $\mathcal{O}(n\log^2 n)$ 时间内计算多项式欧几里得，  
-从而解决模多项式意义下的求逆问题。
+[HALF-GCD](https://loj.ac/p/172) 允许我们在 $\mathcal{O}(n\log^2 n)$ 时间内计算多项式欧几里得。
+
+对于多项式 $f(x),g(x)$，$f(x)$ 在模 $g(x)$ 意义下的乘法逆元定义为满足
+
+$$f(x)P(x)\equiv 1\pmod{g(x)}$$
+
+的多项式 $P(x)$。这等价于求解
+
+$$f(x)P(x)+g(x)Q(x)=1$$
+
+的一组特解 $(P(x),Q(x))$。
+
+于是可得，$P(x)$ 存在当且仅当 $\gcd(f,g)=1$。
 
 ## 参考资料与拓展阅读
 
