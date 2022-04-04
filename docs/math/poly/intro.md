@@ -212,15 +212,17 @@ $(x_{0}, y_{0}), (x_{1}, y_{1}), \dots, (x_{n}, y_{n})$
 由代数基本定理可得，复系数 $n$ 次多项式 $f$ 可唯一分解为如下形式
 
 $$
-\begin{aligned}
-a(x-x_1)^{c_1}(x-x_2)^{c_2}\cdots(x-x_m)^{c_m}\\
-c_1+c_2+\cdots+c_m=n,x_1,x_2,\cdots,x_m \text{互不相同}
-\end{aligned}
+a(x-x_1)^{c_1}(x-x_2)^{c_2}\cdots(x-x_m)^{c_m}
 $$
 
-类比数的最大公因数，可得多项式的 **最大公因式**（The greatest common factor），有定理：
+$$
+c_1+c_2+\cdots+c_m=n,x_1,x_2,\cdots,x_m \text{互不相同}
+$$
 
-任意域 $P$ 上的多项式环 $P[x]$ 均为欧几里得整环，即可用欧几里得算法计算最大公因式
+类比数的最大公因数，可得多项式的 **最大公因式**（The greatest common factor）。
+
+对于一般的多项式环，有定理：任意域 $P$ 上的多项式环 $P[x]$ 均为欧几里得整环，  
+即多项式可唯一因式分解，且可用欧几里得算法计算最大公因式
 
 $$
 \gcd(f,0)=f,\gcd(f,g)=\gcd(g,f\bmod g)
