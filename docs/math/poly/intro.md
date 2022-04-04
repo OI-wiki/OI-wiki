@@ -44,9 +44,9 @@ $f(x)=f_0+f_1x+f_2x^2+\cdots$
 $f+g=\left<f_0+g_0,f_1+g_1,f_2+g_2,\cdots\right>$
 
 也即
-
 $$
-\sum_{k=0}^{\infty}f_kx^k+\sum_{k=0}^\infty g_kx^k=\sum_{k=0}^{\infty}(f_k+g_k)x^k$$
+
+\\sum*{k=0}^{\\infty}f_kx^k+\\sum*{k=0}^\\infty g*kx^k=\\sum*{k=0}^{\\infty}(f_k+g_k)x^k$$
 
 并验证 $(R[[x]],+)$ 的交换群性质——封闭性、交换律、结合律、单位元、逆元。
 
@@ -63,7 +63,7 @@ $$
 若 $R$ 为交换环或幺环，也能相应地验证形式幂级数乘法的交换律和单位元性质。
 
 若 $R$ 上存在 $2^n$ 次单位根，[快速傅里叶变换](https://oi-wiki.org/math/poly/fft/) 允许我们在  
-$O(n2^n)$ 而不是 $O(2^{2n})$ 的时间内计算两个 $2^n$ 次多项式的乘积。
+ $O(n2^n)$ 而不是 $O(2^{2n})$ 的时间内计算两个 $2^n$ 次多项式的乘积。
 
 ### 复合
 
@@ -141,7 +141,7 @@ $$
 
 对于满足 $f_0=0$ 且 $f_1\not=0$ 的形式幂级数 $f$，  
 其 **复合逆**（Compound inverse）为满足 $g(f(x))=f(g(x))=x$ 的形式幂级数 $g$。  
-由拉格朗日反演可得对于任意整数 $n,k$ 有  
+由拉格朗日反演可得对于任意整数 $n,k$ 有
 
 $n[x^n]f^k=k[x^{-k}]g^{-n}$
 
@@ -159,7 +159,7 @@ $n[x^n]f^k=k[x^{-k}]g^{-n}$
 
 $f(x)=Q(x)g(x)+R(x),\deg R<\deg g$
 
-当 $\deg f\ge \deg g$ 时有 $\deg Q=\deg f-\deg g$，否则有 $Q(x)=0$。  
+当 $\deg f\ge \deg g$ 时有 $\deg Q=\deg f-\deg g$，否则有 $Q(x)=0$。
 
 我们称 $Q(x)$ 为 $g(x)$ 除 $f(x)$ 的 **商**（Quotient），$R(x)$ 为 $g(x)$ 除 $f(x)$ 的 **余数**（Remainder）。亦可记作
 
