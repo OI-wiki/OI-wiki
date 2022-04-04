@@ -12,7 +12,7 @@
 
 1. **封闭性**：对于所有 $G$ 中 $a, b$，运算 $a·b$ 的结果也在 G 中。
 2. **结合律**（Associativity）：对于 $G$ 中所有的 $a, b, c$，等式 $(a \cdot b)\cdot c = a \cdot (b \cdot c)$ 成立。
-3. **单位元**（Identity element，也称幺元、标识元）：$G$ 中存在一个元素 $e$，使得对于 $G$ 中的每一个元素 $a$，都有一个 $e \cdot a=a\cdot e=a$ 成立。这样的元素是独一无二的。它被称为群的单位元。
+3. **标识元**（Identity element，也称单位元、幺元）：$G$ 中存在一个元素 $e$，使得对于 $G$ 中的每一个元素 $a$，都有一个 $e \cdot a=a\cdot e=a$ 成立。这样的元素是独一无二的。它被称为群的标识元素。
 4. **逆元**（Inverse element）：对于每个 $G$ 中的 $a$，总存在 $G$ 中的一个元素 $b$ 使 $a \cdot b = b \cdot a = e$，此处 $e$ 为单位元，称 $b$ 为 $a$ 的逆元，记为 $a^{-1}$。
 
 则称 $(G,\cdot)$ 为一个 **群**。例如，整数集和整数间的加法 $(\mathbb{Z},+)$ 构成一个群，单位元是 0，一个整数的逆元是它的相反数。
@@ -23,7 +23,7 @@
 - 若半群 $(G,\cdot)$ 还满足单位元性质，则称 $(G,\cdot)$ 为一个 **幺半群**（Monoid）。
 -   若群 $(G,\cdot)$ 还满足交换律  
      **交换律**（Commutativity）：对于 $G$ 中所有的 $a,b$，等式 $a\cdot b=b\cdot a$ 成立。  
-    则称 $(G,\cdot)$ 为一个 **阿贝尔群**（abelian group），又称 **交换群**（Commutative group）。
+    则称 $(G,\cdot)$ 为一个 **阿贝尔群**（abelian group），又称 **交换群**（commutative group）。
 
 ## 环
 
@@ -40,9 +40,9 @@
 
 ### 环的衍生结构
 
-- 若环 $R$ 上的乘法还满足交换律，则称 $R$ 为 **交换环**（Commutative ring）。
-- 若环 $R$ 存在乘法单位元 $1$，则称 $R$ 为 **幺环**（Ring with identity）。
-- 若幺环 $R$ 的所有非 $0$ 元素 $a$ 存在乘法逆元 $a^{-1}$，则称 $R$ 为 **除环**（Division ring）。
+- 若环 $R$ 上的乘法还满足交换律，则称 $R$ 为 **交换环**（commutative ring）。
+- 若环 $R$ 存在乘法单位元 $1$，则称 $R$ 为 **幺环**（ring with identity）。
+- 若幺环 $R$ 的所有非 $0$ 元素 $a$ 存在乘法逆元 $a^{-1}$，则称 $R$ 为 **除环**（division ring）。
 
 ## 域
 
