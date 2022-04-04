@@ -61,7 +61,7 @@ $$
 若 $R$ 为交换环或幺环，也能相应地验证卷积的交换律和单位元性质。
 
 若 $R$ 上存在 $2^n$ 次单位根，[快速傅里叶变换](https://oi-wiki.org/math/poly/fft/) 允许我们在  
-$\mathcal{O}(n2^n)$ 而不是 $\mathcal{O}(2^{2n})$ 的时间内计算两个 $2^n$ 次多项式的卷积。
+ $\mathcal{O}(n2^n)$ 而不是 $\mathcal{O}(2^{2n})$ 的时间内计算两个 $2^n$ 次多项式的卷积。
 
 ### 复合
 
@@ -196,3 +196,4 @@ $P(x)f(x)+Q(x)g(x)=\gcd(P(x),Q(x))$
 - [**Miskcoo's Space**](https://blog.miskcoo.com)
 - [**Formal power series - Wikipedia**](https://en.wikipedia.org/wiki/Formal_power_series#The_ring_of_formal_power_series)
 - [**信息学竞赛中的生成函数计算理论框架**](https://github.com/wangr-x/OI-Public-Library-master/blob/main/IOI%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B6%E5%80%99%E9%80%89%E9%98%9F%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E4%BF%A1%E6%81%AF%E5%AD%A6%E7%AB%9E%E8%B5%9B%E4%B8%AD%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA%E6%A1%86%E6%9E%B6.pdf)
+$$
