@@ -17,8 +17,8 @@ $$
 
 环的一般定义详见 [群论简介](https://oi-wiki.org/math/group-theory/#_3)。
 
-对于一般环 $R$，定义 $R$ 上的 **多项式环**（Polynomial ring）$R[x]$ 是一个 $R$ 上的自由模，  
-其中的每个元素 $f$ 称为 $R$ 上的 **多项式**（Polynomial），可表示为
+对于一般环 $R$，定义 $R$ 上的 **多项式环**（polynomial ring）$R[x]$ 是一个 $R$ 上的自由模，  
+其中的每个元素 $f$ 称为 $R$ 上的 **多项式**（polynomial），可表示为
 
 $$
 f=\left<f_0,f_1,f_2,\cdots,f_n\right>\quad(f_0,f_1,f_2,\cdots,f_n\in R\land(n=0\lor f_n\not =0))
@@ -41,8 +41,8 @@ f(x)=f_0+f_1x+f_2x^2+\cdots
 $$
 
 则可得到 **形式幂级数环**（
-    Formal power series ring）$R[[x]]$，  
-其中的每个元素 $f$ 称为 **形式幂级数**（Formal power series），以下简称幂级数。
+    formal power series ring）$R[[x]]$，  
+其中的每个元素 $f$ 称为 **形式幂级数**（formal power series），以下简称幂级数。
 
 ### 加法
 
@@ -119,7 +119,7 @@ $$
 ### 乘法逆元
 
 对于形式幂级数 $f$，若 $f_0\not=0$，定义其 **乘法逆元**  
-（Multiplicative Inversion）$f^{-1}$ 为另一形式幂级数，满足
+（multiplicative inversion）$f^{-1}$ 为另一形式幂级数，满足
 
 $$
 f\times f^{-1}=f^{-1}\times f=1
@@ -163,14 +163,14 @@ $$
 ### 复合逆
 
 对于满足 $f_0=0$ 且 $f_1\not=0$ 的形式幂级数 $f$，  
-其 **复合逆**（Compound inverse）为满足 $g(f(x))=f(g(x))=x$ 的形式幂级数 $g$。  
+其 **复合逆**（compound inversion）为满足 $g(f(x))=f(g(x))=x$ 的形式幂级数 $g$。  
 由拉格朗日反演可得对于任意整数 $n,k$ 有
 
 $$
 n[x^n]f^k=k[x^{-k}]g^{-n}
 $$
 
-注意此处我们允许有限个负数次项的存在，即 **形式洛朗级数**（Formal Laurent series）。
+注意此处我们允许有限个负数次项的存在，即 **形式洛朗级数**（formal Laurent series）。
 
 ## 多项式的复杂运算
 
@@ -188,22 +188,22 @@ $$
 
 当 $\deg f\ge \deg g$ 时有 $\deg Q=\deg f-\deg g$，否则有 $Q(x)=0$。
 
-我们称 $Q(x)$ 为 $g(x)$ 除 $f(x)$ 的 **商**（Quotient），  
-$R(x)$ 为 $g(x)$ 除 $f(x)$ 的 **余数**（Remainder）。亦可记作
+我们称 $Q(x)$ 为 $g(x)$ 除 $f(x)$ 的 **商**（quotient），  
+$R(x)$ 为 $g(x)$ 除 $f(x)$ 的 **余数**（remainder）。亦可记作
 
 $$
 f(x) \equiv R(x) \pmod{g(x)}
 $$
 
-### 多项式的多点求值和插值
+### 多点求值和插值
 
-**多项式的多点求值**（Multi-point evaluation）即给出一个多项式 $f(x)$ 和 $n$ 个点 $x_{1}, x_{2}, \dots, x_{n}$，求
+**多项式的多点求值**（multi-point evaluation）即给出一个多项式 $f(x)$ 和 $n$ 个点 $x_{1}, x_{2}, \dots, x_{n}$，求
 
 $$
 f(x_{1}), f(x_{2}),\cdots,f(x_{n})
 $$
 
-**多项式的插值**（Interpolation）即给出 $n + 1$ 个点
+**多项式的插值**（interpolation）即给出 $n + 1$ 个点
 
 $$
 (x_{0}, y_{0}), (x_{1}, y_{1}),\cdots,(x_{n}, y_{n})
@@ -213,7 +213,7 @@ $$
 
 这两种操作的实质就是将多项式在 **系数表示** 和 **点值表示** 间转化。
 
-### 多项式因式分解、欧几里得和模多项式意义下乘法逆元
+### 因式分解、欧几里得和模多项式意义下乘法逆元
 
 由代数基本定理可得，复系数 $n$ 次多项式 $f$ 可唯一分解为如下形式
 
@@ -222,10 +222,10 @@ a(x-x_1)^{c_1}(x-x_2)^{c_2}\cdots(x-x_m)^{c_m}
 $$
 
 $$
-c_1+c_2+\cdots+c_m=n,x_1,x_2,\cdots,x_m \text{互不相同}
+c_1+c_2+\cdots+c_m=n,x_1,x_2,\cdots,x_m \text{ 互不相同}
 $$
 
-类比数的最大公因数，可得多项式的 **最大公因式**（The greatest common factor）。
+类比数的最大公因数，可得多项式的 **最大公因式**（the greatest common factor）。
 
 对于一般的多项式环，有定理：任意 **域**  $P$ 上的多项式环 $P[x]$ 均为欧几里得整环，  
 即多项式可唯一因式分解，且可用欧几里得算法计算最大公因式
@@ -264,5 +264,6 @@ $$
 
 - [**Picks's Blog**](https://picks.logdown.com)
 - [**Miskcoo's Space**](https://blog.miskcoo.com)
+- [**Polynomial ring - Wikipedia**](https://en.wikipedia.org/wiki/Polynomial_ring)
 - [**Formal power series - Wikipedia**](https://en.wikipedia.org/wiki/Formal_power_series#The_ring_of_formal_power_series)
-- [**信息学竞赛中的生成函数计算理论框架**](https://github.com/wangr-x/OI-Public-Library-master/blob/main/IOI%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B6%E5%80%99%E9%80%89%E9%98%9F%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E4%BF%A1%E6%81%AF%E5%AD%A6%E7%AB%9E%E8%B5%9B%E4%B8%AD%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA%E6%A1%86%E6%9E%B6.pdf)
+- [**《信息学竞赛中的生成函数计算理论框架》**](https://github.com/wangr-x/OI-Public-Library-master/blob/main/IOI%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B6%E5%80%99%E9%80%89%E9%98%9F%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E4%BF%A1%E6%81%AF%E5%AD%A6%E7%AB%9E%E8%B5%9B%E4%B8%AD%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA%E6%A1%86%E6%9E%B6.pdf)
