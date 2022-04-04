@@ -52,11 +52,11 @@ $\displaystyle\sum_{k=0}^{\infty}f_kx^k+\sum_{k=0}^\infty g_kx^k=\sum_{k=0}^{\in
 ### 乘法
 
 $R[[x]]$ 中元素 $f,g$ 的乘法被定义为
-
-$$
-\left(\sum_{k=0}^\infty f_kx^k\right)\left(\sum_{k=0}^\infty g_kx^k\right)=\sum_{n=0}^{\infty}\left(\sum_{k=0}^nf_kg_{n-k}\right)x^n
 $$
 
+\\left(\\sum*{k=0}^\\infty f_kx^k\\right)\\left(\\sum*{k=0}^\\infty g*kx^k\\right)=\\sum*{n=0}^{\\infty}\\left(\\sum*{k=0}^nf_kg*{n-k}\\right)x^n
+
+$$
 我们可以验证形式幂级数乘法的结合律及其关于加法的分配律。
 
 若 $R$ 为交换环或幺环，也能相应地验证形式幂级数乘法的交换律和单位元性质。
@@ -71,11 +71,11 @@ $$
 $f^1=f,f^k=f^{k-1}\times f$
 
 在此基础上，定义 $R[[x]]$ 中元素 $f,g$ 的复合为
-
-$$
-(f\circ g)(x)=f(g(x))=f_0+\sum_{k=1}^{\infty}f_kg^k(x)
 $$
 
+(f\\circ g)(x)=f(g(x))=f*0+\\sum*{k=1}^{\\infty}f_kg^k(x)
+
+$$
 当 $f$ 为有限项多项式或 $g_0=0$ 时，该运算是良定义的，不涉及 $R$ 上的极限。
 
 可以证明 $\circ$ 满足结合律，且 $R$ 为幺半群时单位元为 $1\times x$。
@@ -86,11 +86,11 @@ $R$ 为素数域时，有限项多项式的复合有 $O((n\log n)^{1.5})$ 的算
 ### 导数
 
 尽管一般环上无拓扑结构更无完备性，我们依然可以定义形式幂级数的导数为
-
-$$
-\left(\sum_{k=0}^{\infty}f_kx^k\right)'=\sum_{k=1}^{\infty}kf_kx^{k-1}
 $$
 
+\\left(\\sum*{k=0}^{\\infty}f_kx^k\\right)'=\\sum*{k=1}^{\\infty}kf_kx^{k-1}
+
+$$
 其中 $kf_k=\underbrace{f_k+f_k+\cdots+f_k}_{k \text{个} f_k}$
 
 并验证加法法则、乘法法则、链式法则的正确性。
@@ -106,33 +106,31 @@ $$
 $f\times f^{-1}=f^{-1}\times f=1$
 
 用形式幂级数乘法定义展开该式，可得 $f^{-1}$ 系数的递推式
-
-$$
-f^{-1}_0=\dfrac{1}{f_0},f^{-1}_n=\dfrac{-1}{f_0}\sum_{k=0}^{n-1}f^{-1}_kf_{n-k}
 $$
 
+f^{-1}*0=\\dfrac{1}{f_0},f^{-1}\_n=\\dfrac{-1}{f_0}\\sum*{k=0}^{n-1}f^{-1}*kf*{n-k}
+
+$$
 直接用递推式计算是 $\mathcal{O}(n^2)$ 的，[运用 FFT](https://oi-wiki.org/math/poly/inv/) 可得到 $O(n\log n)$ 的算法。
 
 ### 与基本初等函数的复合
 
 形式幂级数与幂函数的复合（开根）由其与广义二项式定理的复合定义
-
-$$
-(1+f(x))^{r}=\sum_{k=0}^\infty\dbinom{r}{k}f^k(x)
 $$
 
+(1+f(x))^{r}=\\sum\_{k=0}^\\infty\\dbinom{r}{k}f^k(x)
+
+$$
 其中 $\dbinom{r}{k}=\dfrac{r^{\underline{k}}}{k!}=\displaystyle\prod_{j=0}^{k-1}\dfrac{r-j}{j+1}$ 为广义二项式系数。
 
 形式幂级数的指数和对数直接由其与麦克劳林级数的复合定义
-
-$$
-\begin{aligned}
-\exp f(x)=\sum_{k=0}^\infty\dfrac{f^k(x)}{k!}\\
-\ln{(1 - f(x))} = -\sum_{i = 1}^{+\infty} \frac{f^{i}(x)}{i}\\
-\ln{(1 + f(x))} = \sum_{i = 1}^{+\infty} \frac{(-1)^{i - 1}f^{i}(x)}{i}
-\end{aligned}
 $$
 
+\\begin{aligned}
+\\exp f(x)=\\sum*{k=0}^\\infty\\dfrac{f^k(x)}{k!}\\\\ln{(1 - f(x))} = -\\sum*{i = 1}^{+\\infty} \\frac{f^{i}(x)}{i}\\\\ln{(1 + f(x))} = \\sum\_{i = 1}^{+\\infty} \\frac{(-1)^{i - 1}f^{i}(x)}{i}
+\\end{aligned}
+
+$$
 套用定义可验证开根、指数和对数的大部分运算性质。  
 三角函数、反三角函数同理。
 
@@ -217,3 +215,4 @@ $f(x)P(x)+g(x)Q(x)=1$
 - [**Miskcoo's Space**](https://blog.miskcoo.com)
 - [**Formal power series - Wikipedia**](https://en.wikipedia.org/wiki/Formal_power_series#The_ring_of_formal_power_series)
 - [**信息学竞赛中的生成函数计算理论框架**](https://github.com/wangr-x/OI-Public-Library-master/blob/main/IOI%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B6%E5%80%99%E9%80%89%E9%98%9F%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E4%BF%A1%E6%81%AF%E5%AD%A6%E7%AB%9E%E8%B5%9B%E4%B8%AD%E7%9A%84%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA%E6%A1%86%E6%9E%B6.pdf)
+$$
