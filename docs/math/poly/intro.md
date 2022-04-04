@@ -131,7 +131,7 @@ $$
 f^{-1}_0=\dfrac{1}{f_0},f^{-1}_n=\dfrac{-1}{f_0}\sum_{k=0}^{n-1}f^{-1}_kf_{n-k}
 $$
 
-直接用递推式计算是 $\mathcal{O}(n^2)$ 的，[运用 FFT](https://oi-wiki.org/math/poly/inv/) 可得到 $O(n\log n)$ 的算法。
+直接用递推式计算前 $n$ 项是 $O(n^2)$ 的，[运用 FFT](https://oi-wiki.org/math/poly/inv/) 可得到 $O(n\log n)$ 的算法。
 
 ### 与基本初等函数的复合
 
