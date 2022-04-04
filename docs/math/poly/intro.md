@@ -18,7 +18,7 @@ $$
 环的一般定义详见 [群论简介](https://oi-wiki.org/math/group-theory/#_3)。
 
 对于一般环 $R$，定义 $R$ 上的 **多项式环**（Polynomial ring）$R[x]$ 是一个 $R$ 上的自由模，  
-其中的每个元素 $f$ 称为 $R$ 上的 **多项式**（Polynomial），可表示为  
+其中的每个元素 $f$ 称为 $R$ 上的 **多项式**（Polynomial），可表示为
 
 $f=\left<f_0,f_1,f_2,\cdots,f_n\right>\quad(f_0,f_1,f_2,\cdots,f_n\in R\land(n=0\lor f_n\not =0))$
 
