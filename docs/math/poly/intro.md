@@ -7,7 +7,8 @@ $$
 \begin{aligned}
 1+x+x^2+\cdots=\lim_{n\rightarrow\infty}(1+x+x^2+\cdots+x^n)\\
 =\lim_{n\rightarrow\infty}\dfrac{1-x^{n+1}}{1-x}=\dfrac{1}{1-x}\quad(-1<x<1)
-\end{aligned}$$
+\end{aligned}
+$$
 
 本部分将给出不基于数学分析的，多项式及其运算的严格化定义，  
 并给出其基于快速傅里叶变换的快速计算方法。
@@ -44,6 +45,9 @@ $f(x)=f_0+f_1x+f_2x^2+\cdots$
 $f+g=\left<f_0+g_0,f_1+g_1,f_2+g_2,\cdots\right>$
 
 也即
+
+$$
+\sum_{k=0}^\infty f_kx^k+\sum_{k=0}^\infty g_kx^k=\sum_{k=0}^\infty(f_k+g_k)x^k
 $$
 
 并验证 $(R[[x]],+)$ 的交换群性质——封闭性、交换律、结合律、单位元、逆元。
