@@ -20,11 +20,15 @@ $$
 对于一般环 $R$，定义 $R$ 上的 **多项式环**（Polynomial ring）$R[x]$ 是一个 $R$ 上的自由模，  
 其中的每个元素 $f$ 称为 $R$ 上的 **多项式**（Polynomial），可表示为
 
-$f=\left<f_0,f_1,f_2,\cdots,f_n\right>\quad(f_0,f_1,f_2,\cdots,f_n\in R\land(n=0\lor f_n\not =0))$
+$$
+f=\left<f_0,f_1,f_2,\cdots,f_n\right>\quad(f_0,f_1,f_2,\cdots,f_n\in R\land(n=0\lor f_n\not =0))
+$$
 
 或
 
-$f(x)=f_0+f_1x+f_2x^2+\cdots+f_nx^n$
+$$
+f(x)=f_0+f_1x+f_2x^2+\cdots+f_nx^n
+$$
 
 其中 $n$ 被称为 $f(x)$ 的 **度数**（degree），记为 $\deg f$。
 
@@ -32,7 +36,9 @@ $f(x)=f_0+f_1x+f_2x^2+\cdots+f_nx^n$
 
 如果我们还允许无穷项的存在，即
 
-$f(x)=f_0+f_1x+f_2x^2+\cdots$
+$$
+f(x)=f_0+f_1x+f_2x^2+\cdots
+$$
 
 则可得到 **形式幂级数环**（
     Formal power series ring）$R[[x]]$，  
@@ -42,7 +48,9 @@ $f(x)=f_0+f_1x+f_2x^2+\cdots$
 
 对于 $R[[x]]$ 中的元素 $f,g$，我们定义
 
-$f+g=\left<f_0+g_0,f_1+g_1,f_2+g_2,\cdots\right>$
+$$
+f+g=\left<f_0+g_0,f_1+g_1,f_2+g_2,\cdots\right>
+$$
 
 也即
 
@@ -71,7 +79,9 @@ $$
 
 定义 $R[[x]]$ 中元素 $f$ 的乘方为
 
-$f^1=f,f^k=f^{k-1}\times f$
+$$
+f^1=f,f^k=f^{k-1}\times f
+$$
 
 在此基础上，定义 $R[[x]]$ 中元素 $f,g$ 的复合为
 
@@ -94,7 +104,11 @@ $$
 \left(\sum_{k=0}^{\infty}f_kx^k\right)'=\sum_{k=1}^{\infty}kf_kx^{k-1}
 $$
 
-其中 $kf_k=\underbrace{f_k+f_k+\cdots+f_k}_{k \text{个} f_k}$
+其中 
+
+$$
+kf_k=\underbrace{f_k+f_k+\cdots+f_k}_{k \text{个} f_k}
+$$ 
 
 并验证加法法则、乘法法则、链式法则的正确性。
 
@@ -106,7 +120,9 @@ $$
 
 对于形式幂级数 $f$，若 $f_0\not=0$，定义其 **乘法逆元**（Multiplicative Inversion）$f^{-1}$ 为另一形式幂级数，满足
 
-$f\times f^{-1}=f^{-1}\times f=1$
+$$
+f\times f^{-1}=f^{-1}\times f=1
+$$
 
 用形式幂级数乘法定义展开该式，可得 $f^{-1}$ 系数的递推式
 
@@ -129,11 +145,15 @@ $$
 形式幂级数的指数和对数直接由其与麦克劳林级数的复合定义
 
 $$
-\begin{aligned}
-\exp f(x)=\sum_{k=0}^\infty\dfrac{f^k(x)}{k!}\\
-\ln{(1 - f(x))} = -\sum_{i = 1}^{+\infty} \frac{f^{i}(x)}{i}\\
+\exp f(x)=\sum_{k=0}^\infty\dfrac{f^k(x)}{k!}
+$$
+
+$$
+\ln{(1 - f(x))} = -\sum_{i = 1}^{+\infty} \frac{f^{i}(x)}{i}
+$$
+
+$$
 \ln{(1 + f(x))} = \sum_{i = 1}^{+\infty} \frac{(-1)^{i - 1}f^{i}(x)}{i}
-\end{aligned}
 $$
 
 套用定义可验证开根、指数和对数的大部分运算性质。  
@@ -145,7 +165,9 @@ $$
 其 **复合逆**（Compound inverse）为满足 $g(f(x))=f(g(x))=x$ 的形式幂级数 $g$。  
 由拉格朗日反演可得对于任意整数 $n,k$ 有
 
-$n[x^n]f^k=k[x^{-k}]g^{-n}$
+$$
+n[x^n]f^k=k[x^{-k}]g^{-n}
+$$
 
 注意此处我们允许有限个负数次项的存在，即 **形式洛朗级数**（Formal Laurent series）。
 
@@ -159,13 +181,17 @@ $n[x^n]f^k=k[x^{-k}]g^{-n}$
 
 对于多项式 $f(x),g(x)$，存在 **唯一** 的 $Q(x),R(x)$ 满足
 
-$f(x)=Q(x)g(x)+R(x),\deg R<\deg g$
+$$
+f(x)=Q(x)g(x)+R(x),\deg R<\deg g
+$$
 
 当 $\deg f\ge \deg g$ 时有 $\deg Q=\deg f-\deg g$，否则有 $Q(x)=0$。
 
 我们称 $Q(x)$ 为 $g(x)$ 除 $f(x)$ 的 **商**（Quotient），$R(x)$ 为 $g(x)$ 除 $f(x)$ 的 **余数**（Remainder）。亦可记作
 
-$f(x) \equiv R(x) \pmod{g(x)}$
+$$
+f(x) \equiv R(x) \pmod{g(x)}
+$$
 
 ### 多项式的多点求值和插值
 
@@ -196,11 +222,15 @@ $$
 
 任意域 $P$ 上的多项式环 $P[x]$ 均为欧几里得整环，即可用欧几里得算法计算最大公因式
 
-$\gcd(f,0)=f,\gcd(f,g)=\gcd(g,f\bmod g)$
+$$
+\gcd(f,0)=f,\gcd(f,g)=\gcd(g,f\bmod g)
+$$
 
 在此基础上，可用扩展欧几里得给出
 
-$P(x)f(x)+Q(x)g(x)=\gcd(P(x),Q(x))$
+$$
+P(x)f(x)+Q(x)g(x)=\gcd(P(x),Q(x))
+$$
 
 的一组特解 $(P(x),Q(x))$。
 
@@ -208,11 +238,15 @@ $P(x)f(x)+Q(x)g(x)=\gcd(P(x),Q(x))$
 
 对于多项式 $f(x),g(x)$，$f(x)$ 在模 $g(x)$ 意义下的乘法逆元定义为满足
 
-$f(x)P(x)\equiv 1\pmod{g(x)}$
+$$
+f(x)P(x)\equiv 1\pmod{g(x)}
+$$
 
 的多项式 $P(x)$。这等价于求解
 
-$f(x)P(x)+g(x)Q(x)=1$
+$$
+f(x)P(x)+g(x)Q(x)=1
+$$
 
 的一组特解 $(P(x),Q(x))$。
 
