@@ -45,9 +45,9 @@ $f(x)=f_0+f_1x+f_2x^2+\cdots+f_nx^n\quad(f_n\not =0)$
 $f+g=\left<f_0+g_0,f_1+g_1,f_2+g_2,\cdots\right>$
 
 也即
-
 $$
-\sum_{k=0}^{\infty}f_kx^k+\sum_{k=0}^\infty g_kx^k=\sum_{k=0}^{\infty}(f_k+g_k)x^k$$
+
+\\sum*{k=0}^{\\infty}f_kx^k+\\sum*{k=0}^\\infty g*kx^k=\\sum*{k=0}^{\\infty}(f_k+g_k)x^k$$
 
 并验证 $(R[[x]],+)$ 的交换群性质——封闭性、交换律、结合律、单位元、逆元。
 
@@ -64,7 +64,7 @@ $$
 若 $R$ 为交换环或幺环，也能相应地验证形式幂级数乘法的交换律和单位元性质。
 
 若 $R$ 上存在 $2^n$ 次单位根，[快速傅里叶变换](https://oi-wiki.org/math/poly/fft/) 允许我们在  
-$\mathcal{O}(n2^n)$ 而不是 $\mathcal{O}(2^{2n})$ 的时间内计算两个 $2^n$ 次多项式的乘积。
+ $\mathcal{O}(n2^n)$ 而不是 $\mathcal{O}(2^{2n})$ 的时间内计算两个 $2^n$ 次多项式的乘积。
 
 ### 复合
 
@@ -140,14 +140,14 @@ $$
 
 ### 复合逆
 
-对于满足 $f_0=0$ 且 $f_1\not=0$ 的形式幂级数 $f$ ，  
+对于满足 $f_0=0$ 且 $f_1\not=0$ 的形式幂级数 $f$，  
 其 **复合逆**（Compound inverse）为满足  
- $g(f(x))=f(g(x))=x$ 的形式幂级数 $g$。 
-由拉格朗日反演可得对于任意整数 $n,k$ 有  
+ $g(f(x))=f(g(x))=x$ 的形式幂级数 $g$。
+由拉格朗日反演可得对于任意整数 $n,k$ 有
 
 $n[x^n]f^k=k[x^{-k}]g^{-n}$
 
-注意此处我们允许有限个负数次项的存在，即  **形式洛朗级数**（Formal Laurent series）。
+注意此处我们允许有限个负数次项的存在，即 **形式洛朗级数**（Formal Laurent series）。
 
 ### 带余除法
 
@@ -157,7 +157,7 @@ $n[x^n]f^k=k[x^{-k}]g^{-n}$
 
 $f(x)=Q(x)g(x)+R(x),\deg R<\deg g$
 
-当 $\deg f\ge \deg g$ 时有 $\deg Q=\deg f-\deg g$，否则有 $Q(x)=0$。    
+当 $\deg f\ge \deg g$ 时有 $\deg Q=\deg f-\deg g$，否则有 $Q(x)=0$。
 
 我们称 $Q(x)$ 为 $g(x)$ 除 $f(x)$ 的 **商**（Quotient），$R(x)$ 为 $g(x)$ 除 $f(x)$ 的 **余数**（Remainder）。亦可记作
 
@@ -165,11 +165,11 @@ $f(x) \equiv R(x) \pmod{g(x)}$
 
 ### 多项式的多点求值和插值
 
-**多项式的多点求值**（Multi-point evaluation） 即给出一个多项式 $f(x)$ 和 $n$ 个点 $x_{1}, x_{2}, \dots, x_{n}$，求
+**多项式的多点求值**（Multi-point evaluation）即给出一个多项式 $f(x)$ 和 $n$ 个点 $x_{1}, x_{2}, \dots, x_{n}$，求
 
 $f(x_{1}), f(x_{2}), \dots, f(x_{n})$
 
-**多项式的插值**（Interpolation） 即给出 $n + 1$ 个点
+**多项式的插值**（Interpolation）即给出 $n + 1$ 个点
 
 $(x_{0}, y_{0}), (x_{1}, y_{1}), \dots, (x_{n}, y_{n})$
 
@@ -184,7 +184,7 @@ $(x_{0}, y_{0}), (x_{1}, y_{1}), \dots, (x_{n}, y_{n})$
 $a(x-x_1)^{c_1}(x-x_2)^{c_2}\cdots(x-x_m)^{c_m}\\
 c_1+c_2+\cdots+c_m=n,x_1,x_2,\cdots,x_m \text{互不相同}$
 
-类比数的最大公因数，可得多项式的 **最大公因式**（The greatest common factor ），且可用欧几里得算法计算
+类比数的最大公因数，可得多项式的 **最大公因式**（The greatest common factor），且可用欧几里得算法计算
 
 $\gcd(f,0)=f,\gcd(f,g)=\gcd(g,f\bmod g)$
 
