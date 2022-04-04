@@ -1,6 +1,6 @@
 ## 引入
 
-???+note "洛谷 4097 [HEOI2013]Segment"
+???+note "[洛谷 4097 [HEOI2013]Segment](https://www.luogu.com.cn/problem/P4097)"
     要求在平面直角坐标系下维护两个操作（强制在线）：
     
     1. 在平面上加入一条线段。记第 $i$ 条被插入的线段的标号为 $i$，该线段的两个端点分别为 $(x_0,y_0)$，$(x_1,y_1)$。
@@ -38,7 +38,7 @@
 
 根据上面的描述，查询过程的时间复杂度显然为 $O(\log n)$，而插入过程中，我们需要将原线段分割到 $O(\log n)$ 个区间中，对于每个区间，我们又需要花费 $O(\log n)$ 的时间更新该区间以及其子区间的最优线段，从而插入过程的时间复杂度为 $O(\log^2 n)$。
 
-??? note "[HEOI2013]Segment 参考代码"
+??? note "[[HEOI2013]Segment](https://www.luogu.com.cn/problem/P4097) 参考代码"
     ```cpp
     --8<-- "docs/ds/code/li-chao-tree/li-chao-tree_1.cpp"
     ```
