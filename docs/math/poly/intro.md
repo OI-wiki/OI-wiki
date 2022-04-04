@@ -44,8 +44,7 @@ $f(x)=f_0+f_1x+f_2x^2+\cdots$
 $f+g=\left<f_0+g_0,f_1+g_1,f_2+g_2,\cdots\right>$
 
 也即
-
-$$\sum_{k=0}^{\infty}f_kx^k+\sum_{k=0}^\infty g_kx^k=\sum_{k=0}^{\infty}(f_k+g_k)x^k$$
+$$
 
 并验证 $(R[[x]],+)$ 的交换群性质——封闭性、交换律、结合律、单位元、逆元。
 
