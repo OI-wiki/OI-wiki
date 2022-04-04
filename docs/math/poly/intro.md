@@ -17,7 +17,7 @@ $$
 
 环的一般定义详见 [群论简介](https://oi-wiki.org/math/group-theory/#_3)。
 
-对于一般环 $R$，定义 $R$ 上的 **多项式环**（polynomial ring）$R[x]$ 是一个 $R$ 上的自由模，  
+对于一般环 $R$，定义 $R$ 上的 **多项式环**（polynomial ring）$R[x]$，  
 其中的每个元素 $f$ 称为 $R$ 上的 **多项式**（polynomial），可表示为
 
 $$
