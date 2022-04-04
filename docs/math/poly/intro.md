@@ -104,11 +104,11 @@ $$
 \left(\sum_{k=0}^{\infty}f_kx^k\right)'=\sum_{k=1}^{\infty}kf_kx^{k-1}
 $$
 
-其中 
+其中
 
 $$
 kf_k=\underbrace{f_k+f_k+\cdots+f_k}_{k \text{个} f_k}
-$$ 
+$$
 
 并验证加法法则、乘法法则、链式法则的正确性。
 
