@@ -184,7 +184,7 @@ int count_primes(int n) {
 ```cpp
 // C++ Version
 void init() {
-  phi[1] = 1;
+  pri[1] = 1;
   for (int i = 2; i < MAXN; ++i) {
     if (!vis[i]) {
       pri[cnt++] = i;
