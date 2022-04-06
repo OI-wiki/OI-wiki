@@ -368,7 +368,7 @@ g[0] = 1;  // 什么都不装是一种方案
 ```cpp
 for (int i = 0; i < N; i++) {
   for (int j = V; j >= v[i]; j--) {
-    int tmp = max(dp[j], dp[j - v[i]] + w[i]);
+    int tmp = std::max(dp[j], dp[j - v[i]] + w[i]);
     int c = 0;
     if (tmp == dp[j]) c += cnt[j];                       // 如果从dp[j]转移
     if (tmp == dp[j - v[i]] + w[i]) c += cnt[j - v[i]];  // 如果从dp[j-v[i]]转移
@@ -378,7 +378,7 @@ for (int i = 0; i < N; i++) {
 }
 int max = 0;  // 寻找最优解
 for (int i = 0; i <= V; i++) {
-  max = max(max, dp[i]);
+  max = std::max(max, dp[i]);
 }
 int res = 0;
 for (int i = 0; i <= V; i++) {
