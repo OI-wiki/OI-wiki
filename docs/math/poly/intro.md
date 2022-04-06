@@ -252,7 +252,7 @@ $$
 
 其中 $\dbinom{r}{k}=\dfrac{r^{\underline{k}}}{k!}=\displaystyle\prod_{j=0}^{k-1}\dfrac{r-j}{j+1}$ 为广义二项式系数。
 
-反三角函数通过其与三角函数的互逆关系定义 
+反三角函数通过其与三角函数的互逆关系定义
 
 $$
 \arcsin(\sin x)=\arcsin\left(\dfrac{e^{ix}-e^{-ix}}{2i}\right)=x\Leftrightarrow \arcsin x=-i\ln(ix+\sqrt{1-x^2})
