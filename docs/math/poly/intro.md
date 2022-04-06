@@ -2,7 +2,7 @@
 
 以 [快速傅里叶变换](https://oi-wiki.org/math/poly/fft/) 为基石的多项式算法赋予了算法竞赛选手直接操纵生成函数的能力。
 
-但需要指出，从大学数学分析的角度而言，如果将无限项的多项式（幂级数）  
+但应指出，从大学数学分析的角度而言，若将无限项的多项式（幂级数）  
 单纯地看作一个函数，对它的许多处理并不是严谨的，例如
 
 $$
@@ -54,8 +54,7 @@ $$
 f(x)=f_0+f_1x+f_2x^2+\cdots
 $$
 
-则可得到 **形式幂级数环**（
-    formal power series ring）$R[[x]]$，  
+则可得到 **形式幂级数环**（formal power series ring）$R[[x]]$，  
 其中的每个元素 $f$ 称为 **形式幂级数**（formal power series），以下简称幂级数。
 
 ### 度数
@@ -68,7 +67,7 @@ $$
 
 我们将 $n$ 称为 $f(x)$ 的 **度数**（degree），记为 $\deg f$。
 
-除了 $f_k$ 以外，我们还使用 $[x^k]f(x)$ 表示 $f(x)$ 在 $x^k$ 处系数的值，例如
+除了 $f_k$ 以外，我们还使用 $[x^k]f(x)$ 提取 $f(x)$ 在 $x^k$ 处系数的值，例如
 
 $$
 [x^2](1-x)^3=3
@@ -158,7 +157,7 @@ $$
 
 我们规定 $f\circ g$ 存在当且仅当 $f$ 为有限项或 $g_0=0$，这样就不涉及 $R$ 上的极限了。
 
-对于所有有限项或满足常数项为 $0$ 的多项式的复合，$\circ$ 满足结合律，不满足交换律。  
+$\circ$ 满足结合律（$(f\circ g)\circ h$ 和 $f\circ (g\circ h)$ 均存在时），不满足交换律。  
 $R$ 为幺环时 $\circ$ 存在单位元 $1\times x$。
 
 FFT 可行时，有限项多项式的复合有 $O((n\log n)^{1.5})$ 的算法，但此算法常数较大，  
@@ -170,7 +169,7 @@ FFT 可行时，有限项多项式的复合有 $O((n\log n)^{1.5})$ 的算法，
 我们依然可以定义形式幂级数的 **形式导数**（formal derivative）为
 
 $$
-\left(\sum_{k=0}^{+\infty}f_kx^k\right)'=\sum_{k=1}^{\infty}kf_kx^{k-1}
+\left(\sum_{k=0}^{+\infty}f_kx^k\right)'=\sum_{k=1}^{+\infty}kf_kx^{k-1}
 $$
 
 其中
@@ -181,7 +180,7 @@ $$
 
 基本求导法则——加法法则、乘法法则、链式法则（复合允许的情况下）依然是正确的。
 
-如果 $R$ 上允许作除法，同样可以类似定义形式幂级数的形式积分。
+如果 $R$ 上允许作除法，同样可以类似定义形式幂级数的 **形式不定积分**（formal indefinite integral）。
 
 ## 形式幂级数的复杂运算
 
@@ -214,7 +213,7 @@ $$
 
 ### 基本初等函数
 
-我们将指数函数 $\exp$ 定义为满足 $\exp(0)=1$ 且 $\exp'=\exp$ 的幂级数。于是
+我们将指数函数 $\exp$ 定义为满足 $\exp 0=1$ 且 $\exp'=\exp$ 的幂级数。于是
 
 $$
 \exp_k=\dfrac{\exp_{k-1}}{k}\quad(k\ge 1)
@@ -224,33 +223,32 @@ $$
 \exp x=\sum_{k=0}^\infty\dfrac{x^k}{k!}
 $$
 
+对数函数 $\ln$ 通过其导数的积分定义
+
+$$
+\ln 1=0,(\ln(1-x))'=-\dfrac{1}{1-x}\Leftrightarrow\ln(1-x) = -\sum_{i = 1}^{+\infty} \frac{x^i}{i}
+$$
+
+开根通过 $\exp$ 和 $\ln$，或广义二项式等价定义
+
+$$
+(1+x)^r=e^{r\ln(1+x)}=\sum_{k=0}^{+\infty}\dbinom{r}{k}x^k
+$$
+其中 $\dbinom{r}{k}=\dfrac{r^{\underline{k}}}{k!}=\displaystyle\prod_{j=0}^{k-1}\dfrac{r-j}{j+1}$ 为广义二项式系数。
+
+在复合允许的范围内，开根、指数和对数的大部分运算性质在形式幂级数中仍成立。
+
 三角函数借助欧拉公式
 
 $$
 \exp ix=\cos x+i\sin x
 $$
 
-和三角恒等式
+和 $\tan x=\dfrac{\sin x}{\cos x}$ 定义。或者也通过和 $\exp$ 类似的方法等价定义为幂级数
 
 $$
-\tan x=\dfrac{\sin x}{\cos x}
+\cos 0=1,\sin 0=0,\cos'x=\sin x,\sin'x=\cos x
 $$
-
-定义。
-
-对数函数 $\ln$ 通过积分定义
-
-$$
-(\ln(1-x))'=-\dfrac{1}{1-x}\Leftrightarrow\ln(1-x) = -\sum_{i = 1}^{+\infty} \frac{x^i}{i}
-$$
-
-开根通过 $\exp$ 和 $\ln$ 定义
-
-$$
-(1+x)^r=e^{r\ln(1+x)}=\sum_{k=0}^{+\infty}\dbinom{r}{k}x^k
-$$
-
-其中 $\dbinom{r}{k}=\dfrac{r^{\underline{k}}}{k!}=\displaystyle\prod_{j=0}^{k-1}\dfrac{r-j}{j+1}$ 为广义二项式系数。
 
 反三角函数通过其与三角函数的互逆关系定义
 
@@ -258,8 +256,7 @@ $$
 \arcsin(\sin x)=\arcsin\left(\dfrac{e^{ix}-e^{-ix}}{2i}\right)=x\Leftrightarrow \arcsin x=-i\ln(ix+\sqrt{1-x^2})
 $$
 
-在复合允许的范围内，开根、指数和对数的大部分运算性质、  
-两角和、差公式等依然成立。
+三角恒等变换中不涉及 $\pi$ 的部分在形式幂级数中仍成立。
 
 ### 复合逆
 
@@ -277,7 +274,7 @@ $$
 
 ## 多项式的复杂运算
 
-以下运算假定都在一般 **域**  $P$ 上的多项式环 $P[x]$ 上进行。
+以下运算假定都在一般域  $P$ 上的多项式环 $P[x]$ 上进行。
 
 ### 带余除法
 
@@ -341,7 +338,7 @@ $$
 c_1+c_2+\cdots+c_m=n,x_1,x_2,\cdots,x_m \text{ 互不相同}
 $$
 
-此时类比数的最大公因数，可得多项式的 [**最大公因式**](https://oi-wiki.org/math/number-theory/gcd/)  
+此时类比正整数的最大公因数，可得多项式的 [**最大公因式**](https://oi-wiki.org/math/number-theory/gcd/)  
 （the greatest common divisor,gcd）。其可用欧几里得算法求解
 
 $$
