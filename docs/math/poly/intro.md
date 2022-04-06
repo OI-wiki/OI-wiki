@@ -133,7 +133,7 @@ $$
 $R[[x]]$ 中元素 $f,g$ 的乘法被定义为
 
 $$
-\left(\sum_{k=0}^\infty f_kx^k\right)\left(\sum_{k=0}^\infty g_kx^k\right)=\sum_{n=0}^{\infty}\left(\sum_{k=0}^nf_kg_{n-k}\right)x^n
+\left(\sum_{k=0}^{+\infty} f_kx^k\right)\left(\sum_{k=0}^{+\infty} g_kx^k\right)=\sum_{n=0}^{+\infty}\left(\sum_{k=0}^nf_kg_{n-k}\right)x^n
 $$
 
 形式幂级数乘法满足结合律，关于加法满足分配律。  
@@ -153,7 +153,7 @@ $$
 在此基础上，定义 $R[[x]]$ 中元素 $f,g$ 的复合为
 
 $$
-(f\circ g)(x)=f(g(x))=f_0+\sum_{k=1}^{\infty}f_kg^k(x)
+(f\circ g)(x)=f(g(x))=f_0+\sum_{k=1}^{+\infty}f_kg^k(x)
 $$
 
 我们规定 $f\circ g$ 存在当且仅当 $f$ 为有限项或 $g_0=0$，这样就不涉及 $R$ 上的极限了。
@@ -170,7 +170,7 @@ FFT 可行时，有限项多项式的复合有 $O((n\log n)^{1.5})$ 的算法，
 我们依然可以定义形式幂级数的 **形式导数**（formal derivative）为
 
 $$
-\left(\sum_{k=0}^{\infty}f_kx^k\right)'=\sum_{k=1}^{\infty}kf_kx^{k-1}
+\left(\sum_{k=0}^{+\infty}f_kx^k\right)'=\sum_{k=1}^{\infty}kf_kx^{k-1}
 $$
 
 其中
@@ -224,15 +224,6 @@ $$
 \exp x=\sum_{k=0}^\infty\dfrac{x^k}{k!}
 $$
 
-同理定义开根：将广义二项式 $f_r(x)=(1+x)^r$（$r$ 不是自然数）  
-定义为满足 $f_r(0)=1$ 且 $(1+x)f_r'(x)=rf_r(x)$ 的幂级数，归纳可得
-
-$$
-(1+x)^{r}=\sum_{k=0}^\infty\dbinom{r}{k}x^k
-$$
-
-其中 $\dbinom{r}{k}=\dfrac{r^{\underline{k}}}{k!}=\displaystyle\prod_{j=0}^{k-1}\dfrac{r-j}{j+1}$ 为广义二项式系数。
-
 三角函数借助欧拉公式
 
 $$
@@ -247,17 +238,28 @@ $$
 
 定义。
 
-对数函数 $\ln$ 和反三角函数通过积分定义
+对数函数 $\ln$ 通过积分定义
 
 $$
 (\ln(1-x))'=-\dfrac{1}{1-x}\Leftrightarrow\ln(1-x) = -\sum_{i = 1}^{+\infty} \frac{x^i}{i}
 $$
 
+开根通过 $\exp$ 和 $\ln$ 定义
+
 $$
-\arctan' x=\dfrac{1}{1+x^2}\Leftrightarrow \arctan x=\sum_{i=0}^{+\infty}\dfrac{(-1)^ix^{2i+1}}{2i+1}
+(1+x)^r=e^{r\ln(1+x)}=\sum_{k=0}^{+\infty}\dbinom{r}{k}x^k
 $$
 
-在复合允许的范围内，开根、指数和对数的大部分运算性质依然成立。
+其中 $\dbinom{r}{k}=\dfrac{r^{\underline{k}}}{k!}=\displaystyle\prod_{j=0}^{k-1}\dfrac{r-j}{j+1}$ 为广义二项式系数。
+
+反三角函数通过其与三角函数的互逆关系定义 
+
+$$
+\arcsin(\sin x)=\arcsin\left(\dfrac{e^{ix}-e^{-ix}}{2i}\right)=x\Leftrightarrow \arcsin x=-i\ln(ix+\sqrt{1-x^2})
+$$
+
+在复合允许的范围内，开根、指数和对数的大部分运算性质、  
+两角和、差公式等依然成立。
 
 ### 复合逆
 
