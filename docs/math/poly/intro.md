@@ -167,7 +167,7 @@ FFT 可行时，有限项多项式的复合有 $O((n\log n)^{1.5})$ 的算法，
 ### 导数
 
 尽管一般环甚至未必存在极限，  
-我们依然可以定义形式幂级数的 **形式导数**（formal derivative） 为
+我们依然可以定义形式幂级数的 **形式导数**（formal derivative）为
 
 $$
 \left(\sum_{k=0}^{\infty}f_kx^k\right)'=\sum_{k=1}^{\infty}kf_kx^{k-1}
@@ -216,11 +216,11 @@ $$
 
 我们将指数函数 $\exp$ 定义为满足 $\exp(0)=1$ 且 $\exp'=\exp$ 的幂级数。于是
 
-$$\exp_k=\dfrac{\exp_{k-1}}{k}\quad(k\ge 1)$$
+$\exp_k=\dfrac{\exp_{k-1}}{k}\quad(k\ge 1)$
 
-$$\exp x=\sum_{k=0}^\infty\dfrac{x^k}{k!}$$
+$\exp x=\sum_{k=0}^\infty\dfrac{x^k}{k!}$
 
-同理定义开根：将广义二项式 $f_r(x)=(1+x)^r$ （$r$ 不是自然数）  
+同理定义开根：将广义二项式 $f_r(x)=(1+x)^r$（$r$ 不是自然数）  
 定义为满足 $f_r(0)=1$ 且 $(1+x)f_r'(x)=rf_r(x)$ 的幂级数，归纳可得
 
 $$
@@ -253,7 +253,7 @@ $$
 \arctan' x=\dfrac{1}{1+x^2}\Leftrightarrow \arctan x=\sum_{i=0}^{+\infty}\dfrac{(-1)^ix^{2i+1}}{2i+1}
 $$
 
-在复合允许的范围内，开根、指数和对数的大部分运算性质依然成立。  
+在复合允许的范围内，开根、指数和对数的大部分运算性质依然成立。
 
 ### 复合逆
 
