@@ -216,9 +216,13 @@ $$
 
 我们将指数函数 $\exp$ 定义为满足 $\exp(0)=1$ 且 $\exp'=\exp$ 的幂级数。于是
 
-$\exp_k=\dfrac{\exp_{k-1}}{k}\quad(k\ge 1)$
+$$
+\exp_k=\dfrac{\exp_{k-1}}{k}\quad(k\ge 1)
+$$
 
-$\exp x=\sum_{k=0}^\infty\dfrac{x^k}{k!}$
+$$
+\exp x=\sum_{k=0}^\infty\dfrac{x^k}{k!}
+$$
 
 同理定义开根：将广义二项式 $f_r(x)=(1+x)^r$（$r$ 不是自然数）  
 定义为满足 $f_r(0)=1$ 且 $(1+x)f_r'(x)=rf_r(x)$ 的幂级数，归纳可得
