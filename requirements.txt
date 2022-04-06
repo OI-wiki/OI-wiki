@@ -1,3 +1,5 @@
-mkdocs>=1
-pymdown-extensions
-Pygments>=2.2,<2.4
+mkdocs~=1.2.3
+pymdown-extensions~=9.3
+Pygments~=2.3.1
+jinja2~=3.0.3
+markupsafe~=2.0.1

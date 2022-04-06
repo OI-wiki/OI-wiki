@@ -304,25 +304,25 @@ cout << det;
 
 $$
 \begin{pmatrix}
-0 & 1 & 0 & 1 \\
-1 & 0 & 1 & 0 \\
-0 & 1 & 0 & 1 \\
-1 & 0 & 1 & 0 \end{pmatrix}-\begin{pmatrix}
 2 & 0 & 0 & 0 \\
 0 & 2 & 0 & 0 \\
 0 & 0 & 2 & 0 \\
-0 & 0 & 0 & 2 \end{pmatrix}=\begin{pmatrix}
--2 & 1 & 0 & 1 \\
-1 & -2 & 1 & 0 \\
-0 & 1 & -2 & 1 \\
-1 & 0 & 1 & -2 \end{pmatrix}
+0 & 0 & 0 & 2 \end{pmatrix}-\begin{pmatrix}
+0 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 \\
+0 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 \end{pmatrix}=\begin{pmatrix}
+2 & -1 & 0 & -1 \\
+-1 & 2 & -1 & 0 \\
+0 & -1 & 2 & -1 \\
+-1 & 0 & -1 & 2 \end{pmatrix}
 $$
 
 $$
 \begin{vmatrix}
--2 & 1 & 0 \\
-1 & -2 & 1 \\
-0 & 1 & -2 \end{vmatrix} = 4
+2 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 2 \end{vmatrix} = 4
 $$
 
 可以用高斯消元解决，时间复杂度为 $O(n^3)$。

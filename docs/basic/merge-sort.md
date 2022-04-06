@@ -40,7 +40,7 @@ $$
 10& \qquad\text{merge0}(A,\ T,\ ll,\ mid)\\
 11&\qquad\text{merge0}(A,\ T,\ mid,\ rr)\\
 12&\\
-13&\qquad p \gets rr\\
+13&\qquad p \gets ll\\
 14&\qquad q \gets mid\\
 15&\qquad\textbf{for}\text{ each } i \text{ in the } ll\dots rr-1\\
 16&\qquad\qquad\textbf{if}\ p\geqslant mid\ or\ q < rr\ and\ A[q] < A[p]\\

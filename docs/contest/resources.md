@@ -31,6 +31,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [清澄](http://www.tsinsen.com/)：始于 2005 年，由 [胡伟栋](http://www.hhwdd.com/) 开发。自 2019 年 9 月 1 日起不再对外提供服务。
 - [Universal Online Judge](https://uoj.ac/)：始于 2014 年，Universal 取通用之意，[项目开源](https://github.com/UniversalOJ/UOJ-System)；[VFK](https://github.com/vfleaking) 的 OJ：多原创比赛题和 CCF/THU 题，难度较高。
 - [Vijos](https://vijos.org/)：始于 2005 年。[服务端](https://github.com/vijos/vj4) 和 [评测机](https://github.com/vijos/jd4) 等项目开源。
+- [WZOI](https://wzoi.cc)：始于 2017 年，由浙江省温州中学维护的 [开源](https://github.com/massimodong/wzoj) 评测系统。
 - [ZOJ](https://zoj.pintia.cn/home)：浙江大学在线评测系统，始于 2001 年。
 
 ### 国外
@@ -172,17 +173,20 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [Algorithm Visualizer](http://algorithm-visualizer.org)
 - [cppreference](https://zh.cppreference.com/w/)：一个全面的 C 和 C++ 语言及其标准库的在线参考资料
 - [Compiler Explorer](https://godbolt.org)：在线查看编译后代码块对应的汇编语句，支持选择不同的编译器
+- [C++ Insights](https://cppinsights.io/)：以编译器的视角去查看你的 C++ 源码
 - [Inverse Symbolic Calculator](http://wayback.cecm.sfu.ca/projects/ISC/ISCmain.html)：实数反查表达式，适用于反推常数
 - [$\rm\LaTeX$ 手写符号识别](http://detexify.kirelabs.org/classify.html)
 - [$\rm\LaTeX$ 数学公式参考](http://www.mohu.org/info/symbols/symbols.htm)
 - [Mathpix](https://mathpix.com/)：截图转 $\rm\LaTeX{}$
 - [OEIS](https://oeis.org)：整数数列搜索引擎
+- [Python Tutor](https://pythontutor.com/): 代码执行过程可视化
 - [Quick C++ Benchmark](https://quick-bench.com/)：在线比较两个及以上函数的运行速度
 - [Try It Online](https://tio.run)：在线运行 600+ 种语言的代码，支持 IO 交互，超时 60s，可以分享代码
 - [图论画板](https://csacademy.com/app/graph_editor/) 与 [GraphViz](http://www.graphviz.org/)
 - [Ubuntu Pastebin](https://paste.ubuntu.com)：可用于分享代码
 - [uDebug](https://www.udebug.com)：提供一些 OJ 题目的调试辅助
 - [USF](https://www.cs.usfca.edu/~galles/visualization/) 与 [VisuAlgo](https://visualgo.net/zh)：算法可视化
+- [Wandbox](https://wandbox.org/): 在线代码运行，支持 30+ 种语言，可以分享代码，支持不同编译器版本
 - [Wolfram Alpha](https://www.wolframalpha.com/)：可以计算包括数学、科学技术、社会文化……等多个主题的问题
 
 ## 题集和资源
