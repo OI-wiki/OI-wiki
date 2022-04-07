@@ -52,7 +52,7 @@ INFO: 恭喜你找到了隐藏彩蛋！
 ### 方式二：使用 代码编辑器 + 编译器 + 调试器
 -  [VS Code](../tools/editor/vscode.md)  
 
-    Visual Studio Code官方网站上有充足的文档解释如何进行C++的配置。一般而言VSCode需要搭配插件使用更为舒适。具体参见VScode官方网站。
+    Visual Studio Code 官方网站上有文档解释如何进行 C++ 的配置。一般而言 VS Code 搭配插件使用更方便，见 [VS Code 的官方网站](https://code.visualstudio.com/)。
 ## C++ 语法快速提要 Start Here
 
 C++ 程序都是从 `main` 这个部分开始运行的。
