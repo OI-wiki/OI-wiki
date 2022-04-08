@@ -276,10 +276,8 @@ $$
 由拉格朗日反演可得对于任意整数 $n,k$ 有
 
 $$
-n[x^n]f^k=k[x^{-k}]g^{-n}
+n[x^n]f^k=k[x^{n-k}]\left(\dfrac{x}{g}\right)^n
 $$
-
-注意此处我们允许有限个负数次项的存在，即 **形式洛朗级数**（formal Laurent series）。
 
 ## 多项式的复杂运算
 
