@@ -24,13 +24,13 @@
 
 以掷骰子为例，当样本空间记为 $\Omega=\{1,2,3,4,5,6\}$ 时，以下两个集合能够成为事件域：
 
-+ $\mathcal{F}_1 = \{ \varnothing, \Omega \}$
-+ $\mathcal{F}_2 = \{ \varnothing, \{1, 3, 5\}, \{2, 4, 6\}, \Omega \}$
+- $\mathcal{F}_1 = \{ \varnothing, \Omega \}$
+- $\mathcal{F}_2 = \{ \varnothing, \{1, 3, 5\}, \{2, 4, 6\}, \Omega \}$
 
 但以下两个集合则不能
 
-+ $\mathcal{F}_3 = \{ \varnothing, \{1\}, \Omega \}$（对补不封闭）
-+ $\mathcal{F}_4 = \{ \{1, 3, 5\}, \{2, 4, 6\} \}$ （不含有 $\varnothing$ 且对并不封闭）
+- $\mathcal{F}_3 = \{ \varnothing, \{1\}, \Omega \}$（对补不封闭）
+- $\mathcal{F}_4 = \{ \{1, 3, 5\}, \{2, 4, 6\} \}$（不含有 $\varnothing$ 且对并不封闭）
 
 ## 概率
 
