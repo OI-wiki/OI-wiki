@@ -6,7 +6,7 @@ Berlekamp-Massey 算法是一种用于求数列的最短递推式的算法。给
 
 定义一个数列 $\{a_0 \dots a_{n - 1} \}$ 的递推式为满足下式的序列 $\{r_0\dots r_m\}$：
 
-$\sum_{j = 0} ^ m r_i a_{i - j} = 0, \forall i \ge m$
+$\sum_{j = 0} ^ m r_j a_{i - j} = 0, \forall i \ge m$
 
 其中 $r_0 = 1$。$m$ 称为该递推式的 **阶数**。
 
