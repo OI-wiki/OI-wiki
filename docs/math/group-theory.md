@@ -23,7 +23,7 @@
 - 若半群 $(G,\cdot)$ 还满足单位元性质，则称 $(G,\cdot)$ 为一个 **幺半群**（monoid）。
 -   若群 $(G,\cdot)$ 还满足交换律  
      **交换律**（commutativity）：对于 $G$ 中所有的 $a,b$，等式 $a\cdot b=b\cdot a$ 成立。  
-    则称 $(G,\cdot)$ 为一个 **阿贝尔群**（abelian group），又称 **交换群**（commutative group）。
+    则称 $(G,\cdot)$ 为一个 **阿贝尔群**（Abelian group），又称 **交换群**（commutative group）。
 
 ## 环
 
