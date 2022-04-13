@@ -1,4 +1,4 @@
-author: sshwy
+author: sshwy ComeIntoCalm
 
 序列 $a$ 的指数生成函数（exponential generating function，EGF）定义为形式幂级数：
 
@@ -36,6 +36,49 @@ $$
 如何理解指数生成函数？我们定义序列 $a$ 的指数生成函数是 $F(x)=\sum_{n\ge 0}a_n\frac{x^n}{n!}$，但 $F(x)$ 实际上也是序列 $\langle \frac{a_n}{n!}\rangle$ 的普通生成函数。
 
 这两种理解没有任何问题。也就是说，不同的生成函数只是对问题理解方式的转变。
+##   补充：egf中多项式exp的组合意义
+
+这里定义多项式系数为二项式系数的推广，即
+$$
+\sum_{\sum_i^ka_i=n}\frac{n!}{k!\Pi_i^ka_i!}
+$$
+**1.**考虑子集划分的组合表示，设$F(n,k)$为$n$个有标号元素划分成$k$个非空集合的情况，$f_i$为$i$个元素组成一个集合内部的方案数，在不考虑复杂度的情况下组合表示为 
+$$
+F(n,k)=\frac{n!}{k!}\sum_{\sum_{i}^ka_i=n}\frac{\Pi_{i}^k f_{a_i}}{\Pi_i^k a_i!}
+$$
+设$F(n,k)$ egf为$G_k(x)$
+$$
+\begin{align}
+G_k(x)&=\sum_{i\geq0}^\infty F(i,k)[i]\frac{x^i}{i!}\\
+&=\sum_{i\geq 0}^\infty x^i\frac{1}{k!}\sum_{\sum_i^ka_i=i}\frac{\Pi_j^k f_{a_j}}{\Pi_j^ka_j!}\\
+&=\frac{1}{k!}F^k(x)\\
+&=[x^k]\exp(F(x))
+\end{align}
+$$
+
+考虑任意两个egf的乘积，
+$$
+H=FG=\sum_{n\geq 0}^\infty(\sum_{i\geq 0}^n\binom nif_ig_{n-i})\frac{x^n}{n!}
+$$
+**注意：**那么多个egf的乘积就是背包组合(显然，如果这是ogf，那么对应次没有多项式系数，那么元素就没有区别，即有重复；这也告诉egf和ogf有什么区别:有标号和无标号，而标号特质是由多项式系数表征出来的)
+
+**2.**考虑背包划分的递推表示，$F(n,k)$为$n$个有标号元素划分成$k$个非空集合(无标号)的情况，$g_i$为$i$个元素组成一个集合内部的方案数并令$f(x)$为$\{g_i\}$的egf
+$$
+\begin{align}
+F(n,k)&=\sum_{i=1}^{n-k+1}\binom niF(n-i,k-1)\times g_i\times \frac{1}{k!}
+\\&=\sum_{i=0}^n\binom ni F(n-i,k-1)\times g_i \times \frac{1}{k!}\\
+&=[x^k]\frac{1}{k!}F_{k-1}\times f\\
+&=[x^k]\frac{1}{k!}f^k\\
+&=[x^k]\exp(f(x))
+
+\end{align}
+$$
+上界是由非空集合划分推出的($n-(k-1)\geq i$(前$k-1$个集合最少有一个))，但是如果界外的都设为0，那么就没有影响
+
+显然**定义成划分为非空集合**是符合本身的意义的，如果**包含空集**，那么显然就不能构成这个$\exp$关系。
+
+总结多项式$\exp$的意义就是：**有标号元素构成的集合来生成集族有多少种情况**
+
 
 ## 排列与圆排列
 
