@@ -39,7 +39,7 @@ $$
 
 ## 补充：EGF 中多项式 exp 的组合意义
 
-首先定义多项式系数：
+首先定义多项式系数，是由二项式系数推广得到：
 
 $$
 \binom{n}{a_1,a_2,a_3,...,a_k}=\sum_{\sum_i^ka_i=n}\frac{n!}{k!\Pi_i^ka_i!}
@@ -54,12 +54,12 @@ $$
 设 $F(n,k)$ 的 EGF 为 $G_k(x)$
 
 $$
-\begin{align}
+\begin{aligned}
 G_k(x)&=\sum_{i\geq0}^\infty F(i,k)[i]\frac{x^i}{i!}\\
 &=\sum_{i=0}^\infty x^i\frac{1}{k!}\sum_{\sum_i^ka_i=i}\frac{\Pi_j^k f_{a_j}}{\Pi_j^ka_j!}\\
 &=\frac{1}{k!}F^k(x)\\
 &=[x^k]\exp(F(x))
-\end{align}
+\end{aligned}
 $$
 
 考虑任意两个 EGF 的乘积，
@@ -73,21 +73,21 @@ $$
 **2.** 考虑背包划分的递推表示，$F(n,k)$ 为 $n$ 个有标号元素划分成 $k$ 个非空集合（无标号）的情况，$g_i$ 为 $i$ 个元素组成一个集合内部的方案数并令 $f(x)$ 为 $\{g_i\}$ 的 EGF
 
 $$
-\begin{align}
+\begin{aligned}
 F(n,k)&=\sum_{i=1}^{n-k+1}\binom niF(n-i,k-1)\times g_i\times \frac{1}{k!}
 \\&=\sum_{i=0}^n\binom ni F(n-i,k-1)\times g_i \times \frac{1}{k!}\\
 &=[x^k]\frac{1}{k!}F_{k-1}\times f\\
 &=[x^k]\frac{1}{k!}f^k\\
 &=[x^k]\exp(f(x))
 
-\end{align}
+\end{aligned}
 $$
 
 上界是由非空集合划分推出的（$n-(k-1)\geq i$（前 $k-1$ 个集合最少有一个）)，但是如果界外的都设为 0，那么就没有影响
 
 显然 **定义成划分为非空集合** 是符合本身的意义的，如果 **包含空集**，那么就不能构成这个 $\exp$ 关系。
 
-总结多项式 $\exp$ 的意义就是：**有标号元素构成的集合的生成集族有多少种情况**，或划分为任意个非空子集的情况。
+总结多项式 $\exp$ 的意义就是：**有标号元素构成的集合的生成集族有多少种情况**，换句话说就是划分为任意个非空子集的总方案数。
 
 ## 排列与圆排列
 
