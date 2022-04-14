@@ -80,7 +80,6 @@ F_k(n)&=\sum_{i=1}^{n-k+1}\binom niF_{k-1}(n-i)\times g_i\times \frac{1}{k!}
 &=[x^k]\frac{1}{k!}F_{k-1}\times G\\
 &=[x^k]\frac{1}{k!}G^k\\
 &=[x^k]\exp(G(x))
-
 \end{aligned}
 $$
 
