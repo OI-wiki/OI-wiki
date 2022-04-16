@@ -228,7 +228,7 @@ class Test {
 
 ### 更高速的输入输出
 
-`Scanner` 和 `System.out.print` 在最开始会工作的很好，但是在处理更大的输入的时候会降低效率，因此我们会使用来自 Kattis 的 [Kattio.java](https://github.com/Kattis/kattio/blob/master/Kattio.java) 来提高 IO 效率。\[^Input & Output - USACO Guide]
+`Scanner` 和 `System.out.print` 在最开始会工作的很好，但是在处理更大的输入的时候会降低效率，因此我们会使用来自 Kattis 的 [Kattio.java](https://github.com/Kattis/kattio/blob/master/Kattio.java) 来提高 IO 效率。[^ref1]
 
 下方即为应包含在代码中的 IO 模板，由于 Kattis 的原 Kattio 包含一些并不常用的功能，下方的模板经过了一些调整（原 Kattio 使用 MIT 作为协议）。
 
@@ -421,4 +421,4 @@ class Add {
 
 ## 参考资料
 
-\[^Input & Output - USACO Guide]:<https://usaco.guide/general/input-output/#method-3---io-template>
+[^ref1]: [Input & Output - USACO Guide](https://usaco.guide/general/input-output/#method-3---io-template)
