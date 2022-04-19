@@ -85,7 +85,7 @@ $$
 
 这个方法今天还在现代计算机中进行快速运算，计算机程序包（如 MATLAB）中的多项式求根程序依据的原理也是这个算法。
 
-[林士谔。论劈因法解高阶特征方程根值的应用问题. 数学进展，1963(03):207-217.](https://cnki.net/kcms/detail/detail.aspx?filename=SXJZ196303000&dbcode=CJFD&dbname=CJFD1979)
+[林士谔。论劈因法解高阶特征方程根值的应用问题。数学进展，1963(03):207-217.](https://cnki.net/kcms/detail/detail.aspx?filename=SXJZ196303000&dbcode=CJFD&dbname=CJFD1979)
 
 ### 原理
 
