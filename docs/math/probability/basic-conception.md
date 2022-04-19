@@ -53,4 +53,4 @@
 
 我们在一开始提到，研究具体的随机现象时我们通常关注样本空间 $\Omega$、事件域 $\mathcal{F}$ 以及概率函数 $P$。我们将三元组 $(\Omega, \mathcal{F}, P)$ 称为一个概率空间。
 
-概率只有在确定的概率空间下讨论才有意义。著名的 [Bertrand 悖论](https://baike.baidu.com/item/%E8%B4%9D%E7%89%B9%E6%9C%97%E6%82%96%E8%AE%BA/9241081)就是由对样本空间 $\Omega$ 的定义不明确而产生的。
+概率只有在确定的概率空间下讨论才有意义。著名的 [Bertrand 悖论](https://baike.baidu.com/item/%E8%B4%9D%E7%89%B9%E6%9C%97%E6%82%96%E8%AE%BA/9241081) 就是由对样本空间 $\Omega$ 的定义不明确而产生的。
