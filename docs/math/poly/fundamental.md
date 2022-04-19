@@ -160,14 +160,16 @@ $$
 ### 代码
 
 ```C
+ // a是原始的多项式，n是多项式次数，p是待求的一次项，q是待求的常数项
 void Shie(
     double a[], int n, double *p,
     double
-        *q)  // a是原始的多项式，n是多项式次数，p是待求的一次项，q是待求的常数项
+        *q) 
 {
-  memset(b, 0, sizeof(b));  // 数组b是多项式a除以当前迭代二次三项式的商
-  memset(c, 0,
-         sizeof(c));  // 数组c是多项式b乘以x平方再除以当前迭代二次三项式的商
+ // 数组b是多项式a除以当前迭代二次三项式的商
+  memset(b, 0, sizeof(b)); 
+  // 数组c是多项式b乘以x平方再除以当前迭代二次三项式的商
+  memset(c, 0,sizeof(c));  
   *p = 0;
   *q = 0;
   double dp = 1;
