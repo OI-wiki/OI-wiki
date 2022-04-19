@@ -247,6 +247,7 @@ nav:
       - Pell 方程: math/number-theory/pell-equation.md
     - 多项式:
       - 多项式部分简介: math/poly/intro.md
+      - 代数基本定理: math/poly/fundamental.md
       - 拉格朗日插值: math/poly/lagrange.md
       - 快速傅里叶变换: math/poly/fft.md
       - 快速数论变换: math/poly/ntt.md
