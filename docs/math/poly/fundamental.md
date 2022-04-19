@@ -81,11 +81,9 @@ $$
 
 找到二次三项式因式之后，再从二次式中解实根或复根就极为容易。于是便有逐次 **找出一个二次因子** 来求得方程的复根的计算方法，这种方法避免了复数运算。
 
-在 1940 年 8 月、1943 年 8 月和 1947 年 7 月，林士谔先后在 MIT 出版的《数学物理》杂志上接连正式发表了 3 篇关于解算高阶方程式复根方法的论文，每次均有改进。
+在 1940 年 8 月、1943 年 8 月和 1947 年 7 月，林士谔先后在 MIT 出版的《数学物理》杂志上接连正式发表了 3 篇关于解算高阶方程式复根方法的论文 [^note1]，每次均有改进。
 
 这个方法今天还在现代计算机中进行快速运算，计算机程序包（如 MATLAB）中的多项式求根程序依据的原理也是这个算法。
-
-[林士谔。论劈因法解高阶特征方程根值的应用问题。数学进展，1963(03):207-217.](https://cnki.net/kcms/detail/detail.aspx?filename=SXJZ196303000&dbcode=CJFD&dbname=CJFD1979)
 
 ### 原理
 
@@ -160,17 +158,17 @@ $$
 ### 代码
 
 ```C
-// a是原始的多项式，n是多项式次数，p是待求的一次项，q是待求的常数项
+// a 是原始的多项式，n 是多项式次数，p 是待求的一次项，q 是待求的常数项
 void Shie(double a[], int n, double *p, double *q) {
-  // 数组b是多项式a除以当前迭代二次三项式的商
+  // 数组 b 是多项式 a 除以当前迭代二次三项式的商
   memset(b, 0, sizeof(b));
-  // 数组c是多项式b乘以x平方再除以当前迭代二次三项式的商
+  // 数组 c 是多项式 b 乘以 x 平方再除以当前迭代二次三项式的商
   memset(c, 0, sizeof(c));
   *p = 0;
   *q = 0;
   double dp = 1;
   double dq = 1;
-  while (dp > eps || dp < -eps || dq > eps || dq < -eps)  // eps自行设定
+  while (dp > eps || dp < -eps || dq > eps || dq < -eps)  // eps 自行设定
   {
     double p0 = p;
     double q0 = q;
@@ -196,3 +194,7 @@ void Shie(double a[], int n, double *p, double *q) {
   }
 }
 ```
+
+## 参考资料与注释
+
+[^note1]. [林士谔。论劈因法解高阶特征方程根值的应用问题。数学进展，1963(03):207-217.](https://cnki.net/kcms/detail/detail.aspx?filename=SXJZ196303000&dbcode=CJFD&dbname=CJFD1979)
