@@ -14,7 +14,7 @@
 
 $$
 I_A(\omega) = \begin{cases}
-    1, & \omega \in A \newline
+    1, & \omega \in A \\
     0, & \omega \notin A
 \end{cases}
 $$
