@@ -1,12 +1,17 @@
-## 例题
+记忆化搜索是一种通过记录已经遍历过的状态的信息，从而避免对同一状态重复遍历的搜索实现方式。
 
-在具体讲何为「记忆化搜索」前，先来看如下的例题：
-???+note "[NOIP 2005 采药](https://www.luogu.com.cn/problem/P1048)"
+因为记忆化搜索确保了每个状态只访问一次，它也是一种常见的动态规划实现方式。
+
+## 引子
+
+???+note "[[NOIP2005] 采药](https://www.luogu.com.cn/problem/P1048)"
     山洞里有 $M$ 株不同的草药，采每一株都需要一些时间 $t_i$，每一株也有它自身的价值 $v_i$。给你一段时间 $T$，在这段时间里，你可以采到一些草药。让采到的草药的总价值最大。
+    
+    $1 \leq T \leq 10^3$，$1 \leq t_i,v_i,M \leq 100$
 
-### [DFS](../search/dfs.md) 做法
+### 朴素的 [DFS](../search/dfs.md) 做法
 
-注：为了节省篇幅，本文中所有代码省略头文件。
+很容易实现这样一个朴素的搜索做法：在搜索时记录下当前准备选第几个物品、剩余的时间是多少、已经获得的价值是多少这三个参数，然后枚举当前物品是否被选，转移到相应的状态。
 
 ```cpp
 // C++ Version
@@ -38,7 +43,6 @@ int main() {
 tcost = [0] * 103
 mget = [0] * 103
 ans = 0
-
 def dfs(pos, tleft, tans):
     global ans
     if tleft < 0:
@@ -48,7 +52,6 @@ def dfs(pos, tleft, tans):
         return
     dfs(pos + 1, tleft, tans)
     dfs(pos + 1, tleft - tcost[pos], tans + mget[pos])
-
 t, n = map(lambda x:int(x), input().split())
 for i in range(1, n + 1):
     tcost[i], mget[i] = map(lambda x:int(x), input().split())
@@ -56,84 +59,17 @@ dfs(1, t, 0)
 print(ans)
 ```
 
-这就是个十分朴素的大暴搜是吧……
+这种做法的时间复杂度是指数级别的，并不能通过本题。
 
-emmmmmm……$30$ 分。
+### 优化
 
-### 优化一
+上面的做法为什么效率低下呢？因为同一个状态会被访问多次。
 
-然后我心血来潮，想不借助任何“外部变量”（就是 dfs 函数外且 **值随 dfs 运行而改变的变量**), 比如 `ans`
+如果我们每查询完一个状态后将该状态的信息存储下来，再次需要访问这个状态就可以直接使用之前计算得到的信息，从而避免重复计算。这充分利用了动态规划中很多问题具有大量重叠子问题的特点，属于用空间换时间的「记忆化」思想。
 
-把 `ans` 删了之后就有一个问题：我们拿什么来记录答案？
+具体到本题上，我们在朴素的 DFS 的基础上，增加一个数组 `mem` 来记录每个 `dfs(pos,tleft)` 的返回值。刚开始把 `mem` 中每个值都设成 `-1`（代表没求解过）。每次需要访问一个状态时，如果相应状态的值在 `mem` 中为 `-1`，则递归访问该状态。否则我们直接使用 `mem` 中已经存储过的值即可。
 
-答案很简单：
-
-**返回值！**
-
-此时 `dfs(pos,tleft)` 返回在时间 `tleft` 内采集 **后**  `pos` 个草药，能获得的最大收益
-
-不理解就看看代码吧：
-
-```cpp
-// C++ Version
-int n, time;
-int tcost[103], mget[103];
-
-int dfs(int pos, int tleft) {
-  if (pos == n + 1) return 0;
-  int dfs1, dfs2 = -INF;
-  dfs1 = dfs(pos + 1, tleft);
-  if (tleft >= tcost[pos]) dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];
-  return max(dfs1, dfs2);
-}
-
-int main() {
-  cin >> time >> n;
-  for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
-  cout << dfs(1, time) << endl;
-  return 0;
-}
-```
-
-```python
-# Python Version
-tcost = [0] * 103
-mget = [0] * 103
-
-def dfs(pos, tleft):
-    if pos == n + 1:
-        return 0
-    dfs1 = dfs2 = -INF
-    dfs1 = dfs(pos + 1, tleft)
-    if tleft >= tcost[pos]:
-        dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos]
-    return max(dfs1, dfs2)
-
-time, n = map(lambda x:int(x), input().split())
-for i in range(1, n + 1):
-    tcost[i], mget[i] = map(lambda x:int(x), input().split())
-print(dfs(1, time))
-```
-
-emmmmmm……还是 30 分。
-
-但这个时候，dfs 函数已经不需要借助任何外部变量了。
-
-### 优化二
-
-然后我非常无聊，将所有 dfs 的返回值都记录下来，竟然发现……
-
-**对于相同的 pos 和 tleft，dfs 的返回值总是相同的！**
-
-想一想也不奇怪，因为我们的 dfs 没有依赖任何外部变量。
-
-注：`tcost`、`mget` 这两个数组不算是外部变量，因为它们的值在 dfs 过程中不会被改变。
-
-然后？
-
-开个数组 `mem`, 记录下来每个 `dfs(pos,tleft)` 的返回值。刚开始把 `mem` 中每个值都设成 `-1`（代表没访问过）。每次刚刚进入一个 dfs 前（我们的 dfs 是递归调用的嘛），都判断 `mem[pos][tleft]` 是否为 `-1`, 如果是就正常执行并把答案记录到 `mem` 中，否则？
-
-**直接返回 mem 中的值！**
+通过这样的处理，我们确保了每个状态只会被访问一次，因此该算法的的时间复杂度为 $O(TM)$。
 
 ```cpp
 // C++ Version
@@ -142,12 +78,14 @@ int tcost[103], mget[103];
 int mem[103][1003];
 
 int dfs(int pos, int tleft) {
-  if (mem[pos][tleft] != -1) return mem[pos][tleft];
+  if (mem[pos][tleft] != -1)
+    return mem[pos][tleft];  // 已经访问过的状态，直接返回之前记录的值
   if (pos == n + 1) return mem[pos][tleft] = 0;
   int dfs1, dfs2 = -INF;
   dfs1 = dfs(pos + 1, tleft);
-  if (tleft >= tcost[pos]) dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];
-  return mem[pos][tleft] = max(dfs1, dfs2);
+  if (tleft >= tcost[pos])
+    dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];  // 状态转移
+  return mem[pos][tleft] = max(dfs1, dfs2);  // 最后将当前状态的值存下来
 }
 
 int main() {
@@ -176,90 +114,39 @@ def dfs(pos, tleft):
         dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos]
     mem[pos][tleft] = max(dfs1, dfs2)
     return mem[pos][tleft]
-
-
 t, n = map(lambda x:int(x), input().split())
 for i in range(1, n + 1):
     tcost[i], mget[i] = map(lambda x:int(x), input().split())
 print(dfs(1, t))
 ```
 
-此时 `mem` 的意义与 dfs 相同：
+## 与递推的联系与区别
 
-> 在时间 tleft 内采集 **后**  `pos` 个草药，能获得的最大收益
+在求解动态规划的问题时，记忆化搜索与递推的代码，在形式上是高度类似的。这是由于它们使用了相同的状态表示方式和类似的状态转移。也正因为如此，一般来说两种实现的时间复杂度是一样的。
 
-这能 AC？
-
-能。**这就是“采药”那题的 AC 代码**
-
-这就是记忆化搜索。
-
-## 总结
-
-记忆化搜索的特征：
-
-- 不依赖任何 **外部变量**
-- 答案以返回值的形式存在，而不能以参数的形式存在（就是不能将 dfs 定义成 `dfs(pos,tleft,nowans)`，这里面的 `nowans` 不符合要求）。
-- 对于相同一组参数，dfs 返回值总是相同的
-
-* * *
-
-## 记忆化搜索与动态规划的关系：
-
-有人会问：记忆化搜索难道不是搜索？
-
-是搜索。但个人认为它更像 dp：
-
-不信你看 `mem` 的意义：
-
-> 在时间 `tleft` 内采集 **后**  `pos` 个草药，能获得的最大收益
-
-这不就是 dp 的状态？
-
-由上面的代码中可以看出：
-
-$\mathit{mem}_{\mathit{pos},\mathit{tleft}} = \max\{mem_{\mathit{pos}+1,\mathit{tleft}-\mathit{tcost}(\mathit{pos})}+\mathit{mget}(\mathit{pos}),mem_{\mathit{pos}+1,\mathit{tleft}}\}$
-
-这不就是 dp 的状态转移？
-
-个人认为：
-
-> 记忆化搜索约等于动态规划，**（印象中）任何一个 dp 方程都能转为记忆化搜索**
-
-大部分记忆化搜索的状态/转移方程与 dp 都一样，时间复杂度/空间复杂度与 **不加优化的** dp 完全相同
-
-比如：
-
-$\mathit{dp}(i,j,k) = \mathit{dp}(i+1,j+1,k-a_j) + \mathit{dp}(i+1,j,k)$
-
-转为
+下面给出的是递推实现的代码（为了方便对比，没有添加滚动数组优化），通过对比可以发现二者在形式上的类似性。
 
 ```cpp
-// C++ Version
-int dfs(int i, int j, int k) {
-  // 判断边界条件
-  if (mem[i][j][k] != -1) return mem[i][j][k];
-  return mem[i][j][k] = dfs(i + 1, j + 1, k - a[j]) + dfs(i + 1, j, k);
-}
+const int maxn = 1010;
+int n, t, w[105], v[105], f[105][1005];
 
 int main() {
-  memset(mem, -1, sizeof(mem));
-  // 读入部分略去
-  cout << dfs(1, 0, 0) << endl;
+  cin >> n >> t;
+  for (int i = 1; i <= n; i++) cin >> w[i] >> v[i];
+  for (int i = 1; i <= n; i++)
+    for (int j = 0; j <= t; j++) {
+      f[i][j] = f[i - 1][j];
+      if (j >= w[i])
+        f[i][j] = max(f[i][j], f[i - 1][j - w[i]] + v[i]);  // 状态转移方程
+    }
+  cout << f[n][t];
+  return 0;
 }
 ```
 
-```python
-# Python Version
-def dfs(i, j, k):
-    # 判断边界条件
-    if mem[i][j][k] != -1:
-        return mem[i][j][k]
-    mem[i][j][k] = dfs(i + 1, j + 1, k - a[j]) + dfs(i + 1, j, k)
-    return mem[i][j][k]
-```
+在求解动态规划的问题时，记忆化搜索和递推，都确保了同一状态至多只被求解一次。而它们实现这一点的方式则略有不同：递推通过设置明确的访问顺序来避免重复访问，记忆化搜索虽然没有明确规定访问顺序，但通过给已经访问过的状态打标记的方式，也达到了同样的目的。
 
-* * *
+与递推相比，记忆化搜索因为不用明确规定访问顺序，在实现难度上有时低于递推，且能比较方便地处理边界情况，这是记忆化搜索的一大优势。但与此同时，记忆化搜索难以使用滚动数组等优化，且由于存在递归，运行效率会低于递推。因此应该视题目选择更适合的实现方式。
 
 ## 如何写记忆化搜索
 
@@ -311,63 +198,4 @@ def dfs(i):
 2. 将这个 dfs 改成“无需外部变量”的 dfs
 3. 添加记忆化数组
 
-举例：本文最开始介绍“什么是记忆化搜索”时举的“采药”那题的例子
-
-* * *
-
-## 记忆化搜索的优缺点
-
-优点：
-
-- 记忆化搜索可以避免搜到无用状态，特别是在有状态压缩时
-
-举例：给你一个有向图（注意不是完全图），经过每条边都有花费，求从点 $1$ 出发，经过每个点 **恰好一次** 后的最小花费（最后不用回到起点），保证路径存在。
-
-dp 状态很显然：
-
-设 $\mathit{dp}_{\mathit{pos},\mathit{mask}}$ 表示身处在 $\mathit{pos}$ 处，走过 $\mathit{mask}$（一个表示各个节点的访问情况的二进制数）中的顶点后的最小花费
-
-常规 $dp$ 的状态数为 $O(n\cdot 2^n)$，转移复杂度（所有的加在一起）为 $O(m)$
-
-但是！如果我们用记忆化搜索，就可以避免到很多无用的状态，比如 $pos$ 为起点却已经经过了多于一个点的情况。
-
-- 不需要注意转移顺序（这里的“转移顺序”指正常 dp 中 for 循环的嵌套顺序以及循环变量是递增还是递减）
-
-举例：用常规 dp 写“合并石子”需要先枚举区间长度然后枚举起点，但记忆化搜索直接枚举断点（就是枚举当前区间由哪两个区间合并而成）然后递归下去就行
-
-- 边界情况非常好处理，且能有效防止数组访问越界
-- 有些 dp（如区间 dp) 用记忆化搜索写很简单但正常 dp 很难
-- 记忆化搜索天生携带搜索天赋，可以使用技能“剪枝”！
-
-缺点：
-
-- 致命伤：不能滚动数组！
-- 有些优化比较难加
-- 由于递归，有时效率较低但不至于 TLE（状压 dp 除外）
-
-* * *
-
-## 记忆化搜索的注意事项
-
-- 千万别忘了加记忆化！（别笑，认真的）
-- 边界条件要加在检查当前数组值是否为非法数值（防止越界）
-- 数组不要开小了
-
-## 模板
-
-```cpp
-int g[MAXN];
-
-int f(状态参数) {
-  if (g[规模] != 无效数值) return g[规模];
-  if (终止条件) return 最小子问题解;
-  g[规模] = f(缩小规模);
-  return g[规模];
-}
-
-int main() {
-  // ...
-  memset(g, 无效数值, sizeof(g));
-  // ...
-}
-```
+举例：本文中“采药”的例子
