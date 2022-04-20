@@ -147,3 +147,56 @@ int main() {
 在求解动态规划的问题时，记忆化搜索和递推，都确保了同一状态至多只被求解一次。而它们实现这一点的方式则略有不同：递推通过设置明确的访问顺序来避免重复访问，记忆化搜索虽然没有明确规定访问顺序，但通过给已经访问过的状态打标记的方式，也达到了同样的目的。
 
 与递推相比，记忆化搜索因为不用明确规定访问顺序，在实现难度上有时低于递推，且能比较方便地处理边界情况，这是记忆化搜索的一大优势。但与此同时，记忆化搜索难以使用滚动数组等优化，且由于存在递归，运行效率会低于递推。因此应该视题目选择更适合的实现方式。
+
+
+## 如何写记忆化搜索
+
+### 方法一
+
+1. 把这道题的 dp 状态和方程写出来
+2. 根据它们写出 dfs 函数
+3. 添加记忆化数组
+
+举例：
+
+$dp_{i} = max\{dp_{j}+1\}\quad (1 \leq j < i \land a_{j}<a_{i})$（最长上升子序列）
+
+转为
+
+```cpp
+// C++ Version
+int dfs(int i) {
+  if (mem[i] != -1) return mem[i];
+  int ret = 1;
+  for (int j = 1; j < i; j++)
+    if (a[j] < a[i]) ret = max(ret, dfs(j) + 1);
+  return mem[i] = ret;
+}
+
+int main() {
+  memset(mem, -1, sizeof(mem));
+  // 读入部分略去
+  cout << dfs(n) << endl;
+}
+```
+
+```python
+# Python Version
+def dfs(i):
+    if mem[i] != -1:
+        return mem[i]
+    ret = 1
+    for j in range(1, i):
+        if a[j] < a[i]:
+            ret = max(ret, dfs(j) + 1)
+    mem[i] = ret
+    return mem[i]
+```
+
+### 方法二
+
+1. 写出这道题的暴搜程序（最好是 [dfs](../search/dfs.md))
+2. 将这个 dfs 改成“无需外部变量”的 dfs
+3. 添加记忆化数组
+
+举例：本文中“采药”的例子
