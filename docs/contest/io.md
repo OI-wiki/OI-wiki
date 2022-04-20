@@ -13,7 +13,7 @@ author: Marcythm, yizr-cnyali, Chaigidel, Tiger3018, voidge, H-J-Granger, ouuan,
 
 这个函数是一个“是否兼容 stdio”的开关，C++ 为了兼容 C，保证程序在使用了 `printf` 和 `std::cout` 的时候不发生混乱，将输出流绑到了一起。同步的输出流是线程安全的。
 
-这其实是 C++ 为了兼容而采取的保守措施，也是使 `cin`/`cout` 速度较慢的主要原因。我们可以在进行 IO 操作之前将 stdio 解除绑定，但是在这样做之后要注意不能同时使用 `std::cin/std::cout` 和 `scanf/printf`。
+这其实是 C++ 为了兼容而采取的保守措施，也是使 `cin`/`cout` 速度较慢的主要原因。我们可以在进行 IO 操作之前将 stdio 解除绑定，但是在这样做之后要注意不能同时使用 `std::cin` 和 `scanf` ，也不能同时使用 `std::cout` 和 `printf` ，但是可以使用 `std::cin` 和 `printf` ，也可以同时使用 `scanf` 和 `std::cout` 。
 
 ### `tie`
 
