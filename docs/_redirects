@@ -39,11 +39,11 @@
 /topic/cmd /tools/cmd
 /topic/problemsetting /contest/problemsetting
 /misc/io /contest/io
-math/gen-func/intro math/poly/intro
-math/gen-func/symbolic-method math/poly/symbolic-method
-math/gen-func/ogf math/poly/ogf
-math/gen-func/egf math/poly/egf
-math/gen-func/dgf math/poly/dgf
+/math/gen-func/intro /math/poly/intro
+/math/gen-func/symbolic-method /math/poly/symbolic-method
+/math/gen-func/ogf /math/poly/ogf
+/math/gen-func/egf /math/poly/egf
+/math/gen-func/dgf /math/poly/dgf
 /math/combination /math/combinatorics/combination
 /math/catalan /math/combinatorics/catalan
 /math/stirling /math/combinatorics/stirling
