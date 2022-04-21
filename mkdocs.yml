@@ -245,8 +245,8 @@ nav:
       - 连分数: math/number-theory/continued-fraction.md
       - Stern-Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - Pell 方程: math/number-theory/pell-equation.md
-    - 多项式:
-      - 多项式部分简介: math/poly/intro.md
+    - 多项式与生成函数:
+      - 简介: math/poly/intro.md
       - 拉格朗日插值: math/poly/lagrange.md
       - 快速傅里叶变换: math/poly/fft.md
       - 快速数论变换: math/poly/ntt.md
@@ -262,12 +262,10 @@ nav:
       - 多项式反三角函数: math/poly/inv-tri-func.md
       - 常系数齐次线性递推: math/linear-recurrence.md
       - 多项式平移|连续点值平移: math/poly/shift.md
-    - 生成函数:
-      - 生成函数简介: math/gen-func/intro.md
-      - 符号化方法: math/gen-func/symbolic-method.md
-      - 普通生成函数: math/gen-func/ogf.md
-      - 指数生成函数: math/gen-func/egf.md
-      - 狄利克雷生成函数: math/gen-func/dgf.md
+      - 符号化方法: math/poly/symbolic-method.md
+      - 普通生成函数: math/poly/ogf.md
+      - 指数生成函数: math/poly/egf.md
+      - 狄利克雷生成函数: math/poly/dgf.md
     - 线性代数:
       - 向量: math/vector.md
       - 矩阵: math/matrix.md
