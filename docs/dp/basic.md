@@ -109,20 +109,6 @@ int dp() {
 }
 ```
 
-```python
-# Python Version
-a = [0] * MAXN
-def dp():
-    now, ans = 1, 1
-    for i in range(2, n + 1):
-        if a[i] >= a[i + 1]:
-            now += 1
-        else:
-            now = 1
-        ans = max(now, ans)
-    return ans
-```
-
 ## 最长不下降子序列
 
 ???+note "最长不下降子序列问题"
