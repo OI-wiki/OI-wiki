@@ -93,6 +93,7 @@ $$
 该做法的时间复杂度为 $O(nm)$。
 
 另外，本题存在 $O\left(\dfrac{nm}{w}\right)$ 的算法[^ref1]。
+
 ```cpp
 // C++ Version
 int a[MAXN], b[MAXM], f[MAXN][MAXM];
@@ -211,4 +212,5 @@ while dp[ans] != mx:
 ## 参考资料与注释
 
 [^ref1]: [位运算求最长公共子序列 - -Wallace- - 博客园](https://www.cnblogs.com/-Wallace-/p/bit-lcs.html)
+
 [^ref2]: [最长不下降子序列 nlogn 算法详解 - lvmememe - 博客园](https://www.cnblogs.com/itlqs/p/5743114.html)
