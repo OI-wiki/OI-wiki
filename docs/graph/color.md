@@ -2,7 +2,7 @@
 
 （讨论的是无自环无向图）
 
-对无向图顶点着色，且相邻顶点不能同色。若 $G$ 是 $k$- 可着色的，但不是 $(k-1)$- 可着色的，则称 $k$ 是 $G$ 的色数，记为 $\chi'(G)$。
+对无向图顶点着色，且相邻顶点不能同色。若 $G$ 是 $k$- 可着色的，但不是 $(k-1)$- 可着色的，则称 $k$ 是 $G$ 的色数，记为 $\chi(G)$。
 
 对任意图 $G$，有 $\chi(G) \leq \Delta(G) + 1$，其中 $\Delta(G)$ 为最大度。
 
@@ -30,6 +30,61 @@ $$\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$$
 故该算法的时间复杂度为
 
 $$\Theta\left(n\max_{i=1}^n\min\{\deg(v_i)+1,i\}\right)$$
+
+#### 算法流程
+
+1. 将当前未着色的点按度数降序排列。
+1. 将第一个点染成一个未被使用的颜色。
+1. 顺次遍历接下来的点，若当前点和所有与第一个点颜色**相同**的点**不相邻**，则将该点染成与第一个点相同的颜色。
+1. 若仍有未着色的点，则回到步骤 1，否则结束。
+
+#### 正确性证明
+
+对于无自环无向图 G，设 $V(G):=\{v_1,v_2,\dots,v_n\}$ 满足。
+
+$$\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$$
+
+令 $V_0=\varnothing$, 我们取 $V(G)\setminus\bigcup_{i=0}^{m-1} V_i$ 中的子集 $V_m$, 其中的元素满足
+
+1. $v_{k_m}\in V_m$, 其中 $k_m=\min\{k:v_k\notin\bigcup_{i=0}^{m-1} V_i\}$
+1. 若
+    
+    $$\{v_{i_{m,1}},v_{i_{m,2}},\dots,v_{i_{m,l_m}}\}\subset V_m,~i_{m,1}<i_{m,2}<\dots<i_{m,l_m}$$
+    
+    则 $v_j\in V_m$ 当且仅当
+    
+    1. $j>i_{m,l_m}$
+    1. $v_j$ 与 $v_{i_{m,1}},v_{i_{m,2}},\dots,v_{i_{m,l_m}}$ 均不相邻
+
+显然若将 $V_i$ 中的点染成第 i 种颜色, 则该染色方案即为 Welsh—Powell 算法给出的方案, 显然
+
+- $$V_1\neq\varnothing$$
+- $$V_i\cap V_j=\varnothing\iff i\neq j$$
+- $$\exists \alpha(G)\in\Bbb{N}^*,\forall i>\alpha(G),~s.t.~ V_i=\varnothing$$
+
+我们只需要证明:
+
+$$\bigcup_{i=1}^{\alpha(G)} V_i=V(G)$$
+
+其中
+
+$$\chi(G)\leq\alpha(G)\leq\max_{i=1}^n\min\{\deg(v_i)+1,i\}$$
+
+上式左边的不等号显然成立, 我们考虑右边
+
+首先, 我们不难得出:
+
+若 $v\notin\bigcup_{i=1}^mV_i$, 则 v 与 $V_1,V_2,...,V_m$ 中分别至少有一个点相邻, 从而有 $\deg(v)\geq m$
+
+进而
+
+$$v_j\in\bigcup_{i=1}^{\deg(v_j)+1}V_i$$
+
+另一方面, 基于序列 $\{V_i\}$ 的构造方法, 我们不难发现
+
+$$v_j\in\bigcup_{i=1}^j V_i$$
+
+两式结合即得证
 
 ## 边着色
 
