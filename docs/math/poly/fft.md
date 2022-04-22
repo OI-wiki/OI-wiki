@@ -112,7 +112,7 @@ FFT 是一种高效实现 DFT 的算法，称为快速傅立叶变换（Fast Fou
 
 在 1965 年，Cooley 和 Tukey 发表了快速傅里叶变换算法。事实上 FFT 早在这之前就被发现过了，但是在当时现代计算机并未问世，人们没有意识到 FFT 的重要性。一些调查者认为 FFT 是由 Runge 和 König 在 1924 年发现的。但事实上高斯早在 1805 年就发明了这个算法，但一直没有发表。
 
-FFT 算法的基本思想是分治。就 DFT 来说，它分治地来求当 $x=\omega_n^k$ 的时候 $f(x)$ 的值。基2FFT的分治思想体现在将多项式分为奇次项和偶次项处理。
+FFT 算法的基本思想是分治。就 DFT 来说，它分治地来求当 $x=\omega_n^k$ 的时候 $f(x)$ 的值。基 2FFT 的分治思想体现在将多项式分为奇次项和偶次项处理。
 
 举个例子，对于一共 $8$ 项的多项式
 
@@ -144,7 +144,7 @@ $$
 f(x)=G\left(x^2\right) + x  \times  H\left(x^2\right)
 $$
 
-利用偶数次单位根的性质 $\omega^i_n = -\omega^{i + n/2}_n$ ，和 $G\left(x^2\right)$ 和 $H\left(x^2\right)$ 是偶函数，我们知道在复平面上 $\omega^i_n$ 和 $\omega^{i+n/2}_n$ 的 $G(x^2)$ 的 $H(x^2)$ 对应的值相同。得到
+利用偶数次单位根的性质 $\omega^i_n = -\omega^{i + n/2}_n$，和 $G\left(x^2\right)$ 和 $H\left(x^2\right)$ 是偶函数，我们知道在复平面上 $\omega^i_n$ 和 $\omega^{i+n/2}_n$ 的 $G(x^2)$ 的 $H(x^2)$ 对应的值相同。得到
 
 $$
 \begin{aligned}
@@ -187,29 +187,33 @@ $$
     const int MAX_N = 1 << 20;
     
     Comp tmp[MAX_N];
-    //rev=1,DFT; rev=-1,IDFT
-    void DFT(Comp*f, int n, int rev) {if (n == 1) return;
-      for (int i = 0; i<n; ++i) tmp[i]= f[i];
-    //偶数放左边，奇数放右边
-      for (int i = 0; i<n; ++i) {if (i & 1)
-          f[n/2 + i/2]= tmp[i];
+    
+    // rev=1,DFT; rev=-1,IDFT
+    void DFT(Comp* f, int n, int rev) {
+      if (n == 1) return;
+      for (int i = 0; i < n; ++i) tmp[i] = f[i];
+      // 偶数放左边，奇数放右边
+      for (int i = 0; i < n; ++i) {
+        if (i & 1)
+          f[n / 2 + i / 2] = tmp[i];
         else
-          f[i/2]= tmp[i];
+          f[i / 2] = tmp[i];
       }
-      Comp*g = f,*h = f + n/2;
-    //递归 DFT
-      DFT(g, n/2, rev), DFT(h, n/2, rev);
-    //cur 是当前单位复根，对于 k = 0 而言，它对应的单位复根 omega^0_n = 1。
-    //step 是两个单位复根的差，即满足 omega^k_n = step*omega^{k-1}*n，
-    //定义等价于 exp(I*(2*M_PI/n*rev))
-      Comp cur(1, 0), step(cos(2*M_PI/n), sin(2*M_PI*rev/n));
-      for (int k = 0; k<n/2; ++k) {//F(omega^k_n) = G(omega^k*{n/2}) + omega^k*n\*H(omega^k*{n/2})
-        tmp[k]= g[k]+ cur*h[k];
-    //F(omega^{k+n/2}*n) = G(omega^k*{n/2}) - omega^k_n*H(omega^k\_{n/2})
-        tmp[k + n/2]= g[k]- cur*h[k];
-        cur*= step;
+      Comp *g = f, *h = f + n / 2;
+      // 递归 DFT
+      DFT(g, n / 2, rev), DFT(h, n / 2, rev);
+      // cur 是当前单位复根，对于 k = 0 而言，它对应的单位复根 omega^0_n = 1。
+      // step 是两个单位复根的差，即满足 omega^k_n = step*omega^{k-1}*n，
+      // 定义等价于 exp(I*(2*M_PI/n*rev))
+      Comp cur(1, 0), step(cos(2 * M_PI / n), sin(2 * M_PI * rev / n));
+      for (int k = 0; k < n / 2;
+           ++k) {  // F(omega^k_n) = G(omega^k*{n/2}) + omega^k*n\*H(omega^k*{n/2})
+        tmp[k] = g[k] + cur * h[k];
+        // F(omega^{k+n/2}*n) = G(omega^k*{n/2}) - omega^k_n*H(omega^k\_{n/2})
+        tmp[k + n / 2] = g[k] - cur * h[k];
+        cur *= step;
       }
-      for (int i = 0; i<n; ++i) f[i]= tmp[i];
+      for (int i = 0; i < n; ++i) f[i] = tmp[i];
     }
     ```
 
@@ -217,7 +221,7 @@ $$
 
 ### 位逆序置换
 
-这个算法还可以从“分治”的角度继续优化。对于基2FFT，我们每一次都会把整个多项式的奇数次项和偶数次项系数分开，一直分到只剩下一个系数。但是，这个递归的过程需要更多的内存。因此，我们可以先“模仿递归”把这些系数在原数组中“拆分”，然后再“倍增”地去合并这些算出来的值。
+这个算法还可以从“分治”的角度继续优化。对于基 2FFT，我们每一次都会把整个多项式的奇数次项和偶数次项系数分开，一直分到只剩下一个系数。但是，这个递归的过程需要更多的内存。因此，我们可以先“模仿递归”把这些系数在原数组中“拆分”，然后再“倍增”地去合并这些算出来的值。
 
 以 $8$ 项多项式为例，模拟拆分的过程：
 
@@ -317,7 +321,7 @@ $$
 
 由于这个矩阵的元素非常特殊，它的逆矩阵也有特殊的性质，就是每一项 **取倒数**，再 **除以变换的长度 $n$**，就能得到它的逆矩阵。
 
-注意：傅里叶变换的长度，并不是多项式的长度，变换的长度应比乘积多项式的长度长。待相乘的多项式不够长，需要在高次项处补 $0$ 。
+注意：傅里叶变换的长度，并不是多项式的长度，变换的长度应比乘积多项式的长度长。待相乘的多项式不够长，需要在高次项处补 $0$。
 
 为了使计算的结果为原来的倒数，根据欧拉公式，可以得到
 
