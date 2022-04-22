@@ -10,6 +10,27 @@
 
 设连通图不是完全图也不是奇圈，则 $\chi(G) \leq \Delta(G)$。
 
+### Welsh—Powell 算法
+
+Welsh—Powell 算法是一种在**不限制最大着色数**时寻找着色方案的贪心算法。
+
+算法流程如下:
+
+1. 将当前未着色的点按度数降序排列。
+1. 将第一个点着色。
+1. 顺次遍历接下来的点, 若当前点和所有与第一个点颜色**相同**的点**不相邻**, 则将该点染成与第一个点相同的颜色。
+1. 若仍有未着色的点, 则回到步骤 1, 否则结束。
+
+对于无自环无向图 G 来说, 设 G 中的点 $\{v_1,v_2,...,v_n\}$ 满足
+
+$$\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$$
+
+按 Welsh—Powell 算法着色后的颜色数为 $\max_{i=1}^n\min\{\deg(v_i)+1,i\}$
+
+故该算法的时间复杂度为
+
+$$\Theta\left(n\max_{i=1}^n\min\{\deg(v_i)+1,i\}\right)$$
+
 ## 边着色
 
 对无向图的边着色，要求相邻的边涂不同种颜色。若 $G$ 是 $k$- 边可着色的，但不是 $(k-1)$- 边可着色的，则称 $k$ 是 $G$ 的边色数，记为 $\chi'(G)$。
@@ -79,3 +100,8 @@ $f(N_n, k) = k^n$
 $f(G,k)=\frac{\Pi_{i=1}^{p}{(f(H_i, k))}}{f(G[V_1], k)^{p-1}}$
 
 其中 $H_i=G[V_1 \cup V(G_i)]$
+
+## 参考资料
+
+1. [Graph coloring - Wikipedia](https://en.wikipedia.org/wiki/Graph_coloring)
+1. Welsh, D. J. A.; Powell, M. B. (1967), "[An upper bound for the chromatic number of a graph and its application to timetabling problems](https://doi.org/10.1093%2Fcomjnl%2F10.1.85)", The Computer Journal, 10 (1): 85–86
