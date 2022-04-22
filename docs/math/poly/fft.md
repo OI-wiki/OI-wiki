@@ -70,7 +70,7 @@ $$
 
 离散傅里叶变换仍旧是时域到频域的变换。由于求和形式的特殊性，可以有其他的解释方法。
 
-如果把序列 $x_n$ 看作多项式 $f(x)$ 的 $x^n$ 项系数，则计算得到的 $X_k$ 恰好是多项式 $f(x)$ 代入单位根 $e^{\frac{-2\pi ik}{N}}$ 的点值 $f(e^{\frac{-2\pi ik}{N}})$ 。
+如果把序列 $x_n$ 看作多项式 $f(x)$ 的 $x^n$ 项系数，则计算得到的 $X_k$ 恰好是多项式 $f(x)$ 代入单位根 $e^{\frac{-2\pi ik}{N}}$ 的点值 $f(e^{\frac{-2\pi ik}{N}})$。
 
 这便构成了卷积定理的另一种解释办法，即对多项式进行特殊的插值操作。离散傅里叶变换恰好是多项式在单位根处进行插值。
 
@@ -496,22 +496,28 @@ $$
     #include <iostream>
     
     const double PI = acos(-1.0);
+    
     struct Complex {
       double x, y;
+    
       Complex(double _x = 0.0, double _y = 0.0) {
         x = _x;
         y = _y;
       }
+    
       Complex operator-(const Complex &b) const {
         return Complex(x - b.x, y - b.y);
       }
+    
       Complex operator+(const Complex &b) const {
         return Complex(x + b.x, y + b.y);
       }
+    
       Complex operator*(const Complex &b) const {
         return Complex(x * b.x - y * b.y, x * b.y + y * b.x);
       }
     };
+    
     /*
      * 进行 FFT 和 IFFT 前的反置变换
      * 位置 i 和 i 的二进制反转后的位置互换
@@ -531,6 +537,7 @@ $$
         if (j < k) j += k;
       }
     }
+    
     /*
      * 做 FFT
      *len 必须是 2^k 形式
