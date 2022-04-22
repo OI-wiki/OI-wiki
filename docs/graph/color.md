@@ -18,7 +18,7 @@
 
 接下来，假设对于 $n-1$ 时的命题成立，下面我们要逐步强化命题。
 
-不妨只考虑 $\Delta(G)$-正则图，因为对于非正则图来说，可以看作在正则图里删去一些边构成的，而这一过程并不会影响结论。
+不妨只考虑 $\Delta(G)$- 正则图，因为对于非正则图来说，可以看作在正则图里删去一些边构成的，而这一过程并不会影响结论。
 
 对于任意不是完全图也不是奇圈的正则图 G，任取其中一点 v，考虑子图 $H:=G-v$，由归纳假设知 $\chi(H)\leq\Delta(H)=\Delta(G)$，接下来我们只需证明在 H 中插入 v 不会影响结论即可。
 
@@ -40,52 +40,52 @@
 
 ### Welsh—Powell 算法
 
-Welsh—Powell 算法是一种在**不限制最大着色数**时寻找着色方案的贪心算法。
+Welsh—Powell 算法是一种在 **不限制最大着色数** 时寻找着色方案的贪心算法。
 
 对于无自环无向图 G，设 $V(G):=\{v_1,v_2,...,v_n\}$ 满足。
 
-$$\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$$
+$\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
 
 按 Welsh—Powell 算法着色后的颜色数至多为 $\max_{i=1}^n\min\{\deg(v_i)+1,i\}$, 该算法的时间复杂度为 $O\left(n\max_{i=1}^n\min\{\deg(v_i)+1,i\}\right)=O(n^2)$。
 
 #### 算法流程
 
 1. 将当前未着色的点按度数降序排列。
-1. 将第一个点染成一个未被使用的颜色。
-1. 顺次遍历接下来的点，若当前点和所有与第一个点颜色**相同**的点**不相邻**，则将该点染成与第一个点相同的颜色。
-1. 若仍有未着色的点，则回到步骤 1, 否则结束。
+2. 将第一个点染成一个未被使用的颜色。
+3. 顺次遍历接下来的点，若当前点和所有与第一个点颜色 **相同** 的点 **不相邻**，则将该点染成与第一个点相同的颜色。
+4. 若仍有未着色的点，则回到步骤 1, 否则结束。
 
 #### 正确性证明
 
 对于无自环无向图 G，设 $V(G):=\{v_1,v_2,\dots,v_n\}$ 满足
 
-$$\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$$
+$\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
 
 令 $V_0=\varnothing$, 我们取 $V(G)\setminus\bigcup_{i=0}^{m-1} V_i$ 中的子集 $V_m$, 其中的元素满足
 
 1. $v_{k_m}\in V_m$, 其中 $k_m=\min\{k:v_k\notin\bigcup_{i=0}^{m-1} V_i\}$
-1. 若
-    
-    $$\{v_{i_{m,1}},v_{i_{m,2}},\dots,v_{i_{m,l_m}}\}\subset V_m,~i_{m,1}<i_{m,2}<\dots<i_{m,l_m}$$
-    
+2.  若
+
+    $\{v_{i_{m,1}},v_{i_{m,2}},\dots,v_{i_{m,l_m}}\}\subset V_m,~i_{m,1}<i_{m,2}<\dots<i_{m,l_m}$
+
     则 $v_j\in V_m$ 当且仅当
-    
+
     1. $j>i_{m,l_m}$
-    1. $v_j$ 与 $v_{i_{m,1}},v_{i_{m,2}},\dots,v_{i_{m,l_m}}$ 均不相邻
+    2. $v_j$ 与 $v_{i_{m,1}},v_{i_{m,2}},\dots,v_{i_{m,l_m}}$ 均不相邻
 
 显然若将 $V_i$ 中的点染成第 i 种颜色，则该染色方案即为 Welsh—Powell 算法给出的方案，显然有
 
-- $$V_1\neq\varnothing$$
-- $$V_i\cap V_j=\varnothing\iff i\neq j$$
-- $$\exists \alpha(G)\in\Bbb{N}^*,\forall i>\alpha(G),~s.t.~ V_i=\varnothing$$
+- $V_1\neq\varnothing$
+- $V_i\cap V_j=\varnothing\iff i\neq j$
+- $\exists \alpha(G)\in\Bbb{N}^*,\forall i>\alpha(G),~s.t.~ V_i=\varnothing$
 
 我们只需要证明：
 
-$$\bigcup_{i=1}^{\alpha(G)} V_i=V(G)$$
+$\bigcup_{i=1}^{\alpha(G)} V_i=V(G)$
 
 其中
 
-$$\chi(G)\leq\alpha(G)\leq\max_{i=1}^n\min\{\deg(v_i)+1,i\}$$
+$\chi(G)\leq\alpha(G)\leq\max_{i=1}^n\min\{\deg(v_i)+1,i\}$
 
 上式左边的不等号显然成立，我们考虑右边。
 
@@ -95,11 +95,11 @@ $$\chi(G)\leq\alpha(G)\leq\max_{i=1}^n\min\{\deg(v_i)+1,i\}$$
 
 进而
 
-$$v_j\in\bigcup_{i=1}^{\deg(v_j)+1}V_i$$
+$v_j\in\bigcup_{i=1}^{\deg(v_j)+1}V_i$
 
 另一方面，基于序列 $\{V_i\}$ 的构造方法，我们不难发现
 
-$$v_j\in\bigcup_{i=1}^j V_i$$
+$v_j\in\bigcup_{i=1}^j V_i$
 
 两式结合即得证。
 
@@ -107,35 +107,35 @@ $$v_j\in\bigcup_{i=1}^j V_i$$
 
 ![Orignal](images/color1.png)
 
-(由 [Graph Editor](https://csacademy.com/app/graph_editor/) 生成)
+（由 [Graph Editor](https://csacademy.com/app/graph_editor/) 生成）
 
 我们先对点按度数降序排序，得：
 
-| 次序                    | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 10  | 11  | 12  | 13  |
-| ----------------------- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 点的编号                | 4   | 5   | 0   | 2   | 9   | 1   | 3   | 6   | 10  | 12  | 7   | 8   | 11  |
-| 度数                    | 5   | 5   | 4   | 4   | 4   | 3   | 3   | 3   | 3   | 3   | 2   | 2   | 1   |
-| $\min\{\deg(v_i)+1,i\}$ | 1   | 2   | 3   | 4   | 5   | 4   | 4   | 4   | 4   | 4   | 3   | 3   | 2   |
+| 次序                      | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9  | 10 | 11 | 12 | 13 |
+| ----------------------- | - | - | - | - | - | - | - | - | -- | -- | -- | -- | -- |
+| 点的编号                    | 4 | 5 | 0 | 2 | 9 | 1 | 3 | 6 | 10 | 12 | 7  | 8  | 11 |
+| 度数                      | 5 | 5 | 4 | 4 | 4 | 3 | 3 | 3 | 3  | 3  | 2  | 2  | 1  |
+| $\min\{\deg(v_i)+1,i\}$ | 1 | 2 | 3 | 4 | 5 | 4 | 4 | 4 | 4  | 4  | 3  | 3  | 2  |
 
 所以 Welsh—Powell 算法着色后的颜色数最多为 5。
 
 另外因为该图有子图 $C_3$, 所以色数一定大于等于 3。
 
-- 第一次染色：
+-   第一次染色：
 
     ![Colored 1](images/color2.png)
 
-    染 ``4 9 3 11`` 号点。
-- 第二次染色：
+    染 `4 9 3 11` 号点。
+-   第二次染色：
 
     ![Colored 2](images/color3.png)
 
-    染 ``5 2 6 7 8`` 号点。
-- 第三次染色：
+    染 `5 2 6 7 8` 号点。
+-   第三次染色：
 
     ![Colored 3](images/color4.png)
 
-    染 ``0 1 10 12`` 号点。
+    染 `0 1 10 12` 号点。
 
 ## 边着色
 
@@ -210,4 +210,4 @@ $P(G,k)=\frac{\Pi_{i=1}^{p}{(P(H_i, k))}}{P(G[V_1], k)^{p-1}}$
 ## 参考资料
 
 1. [Graph coloring - Wikipedia](https://en.wikipedia.org/wiki/Graph_coloring)
-1. Welsh, D. J. A.; Powell, M. B. (1967), "[An upper bound for the chromatic number of a graph and its application to timetabling problems](https://doi.org/10.1093%2Fcomjnl%2F10.1.85)", The Computer Journal, 10 (1): 85–86
+2. Welsh, D. J. A.; Powell, M. B. (1967), "[An upper bound for the chromatic number of a graph and its application to timetabling problems](https://doi.org/10.1093%2Fcomjnl%2F10.1.85)", The Computer Journal, 10 (1): 85–86
