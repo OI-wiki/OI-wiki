@@ -1,4 +1,4 @@
-author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul
+author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul, xyf007
 
 前置知识：[动态规划部分简介](./index.md)。
 
@@ -314,9 +314,10 @@ int v = V;  // 记录当前的存储空间
 for (从最后一件循环至第一件) {
   if (g[i][v]) {
     选了第 i 项物品;
-    v -= 第 i 项物品的价值;
-  } else
+    v -= 第 i 项物品的重量;
+  } else {
     未选第 i 项物品;
+  }
 }
 ```
 
