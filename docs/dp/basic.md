@@ -1,4 +1,4 @@
-author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken, zhb2000
+author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken, zhb2000, xyf007
 
 本页面主要介绍了动态规划的基本思想，以及动态规划中状态及状态转移方程的设计思路，帮助各位初学者对动态规划有一个初步的了解。
 
@@ -78,45 +78,35 @@ author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marc
 ## 最长公共子序列
 
 ???+note "最长公共子序列问题"
-    给定两个长度为 $n$ 的序列 $A,B$（$n \leq 5000$），求出一个最长的序列，使得该序列既是 $A$ 的子序列，也是 $B$ 的子序列。
+    给定一个长度为 $n$ 的序列 $A$ 和一个 长度为 $m$ 的序列 $B$（$n,m \leq 5000$），求出一个最长的序列，使得该序列既是 $A$ 的子序列，也是 $B$ 的子序列。
 
-设 $f(i,j)$ 表示只考虑 $A$ 的前 $i$ 个元素，$B$ 的前 $j$ 个元素时的最长公共子序列的长度。则 $f(n,n)$ 即为所求结果。
+设 $f(i,j)$ 表示只考虑 $A$ 的前 $i$ 个元素，$B$ 的前 $j$ 个元素时的最长公共子序列的长度，则 $f(n,m)$ 即为所求结果。
 
-对于每个 $f(i,j)$，存在三种决策：如果 $A_i=B_j$，则可以将它接到公共子序列的末尾；另外两种决策分别是跳过 $A_i$ 或者 $B_j$。
+对于每个 $f(i,j)$，存在三种决策：如果 $A_i=B_j$，则可以将它接到公共子序列的末尾；另外两种决策分别是跳过 $A_i$ 或者 $B_j$。状态转移方程如下：
+
+$$
+f(i,j)=\begin{cases}f(i-1,j-1)+1&A_i=B_j\\\max(f(i-1,j),f(i,j-1))&A_i\ne B_j\end{cases}
+$$
 
 可参考 [SourceForge 的 LCS 交互网页](http://lcs-demo.sourceforge.net/) 来更好地理解 LCS 的实现过程。
 
-该做法的时间复杂度为 $O(n^2)$。
+该做法的时间复杂度为 $O(nm)$。
+
+另外，本题存在 $O\left(\dfrac{nm}{w}\right)$ 的算法[^ref1]。
 
 ```cpp
 // C++ Version
-int a[MAXN];
+int a[MAXN], b[MAXM], f[MAXN][MAXM];
 
 int dp() {
-  int now = 1, ans = 1;
-  for (int i = 2; i <= n; i++) {
-    if (a[i] >= a[i - 1])
-      now++;
-    else
-      now = 1;
-    ans = max(now, ans);
-  }
-  return ans;
+  for (int i = 1; i <= n; i++)
+    for (int j = 1; j <= m; j++)
+      if (a[i] == b[j])
+        f[i][j] = f[i - 1][j - 1] + 1;
+      else
+        f[i][j] = std::max(f[i - 1][j], f[i][j - 1]);
+  return f[n][m];
 }
-```
-
-```python
-# Python Version
-a = [0] * MAXN
-def dp():
-    now, ans = 1, 1
-    for i in range(2, n + 1):
-        if a[i] >= a[i + 1]:
-            now += 1
-        else:
-            now = 1
-        ans = max(now, ans)
-    return ans
 ```
 
 ## 最长不下降子序列
@@ -165,7 +155,7 @@ def dp():
     return ans
 ```
 
-### 算法二[^ref1]
+### 算法二[^ref2]
 
 当 $n$ 的范围扩大到 $n \leq 10^5$ 时，第一种做法就不够快了，下面给出了一个 $O(n \log n)$ 的做法。
 
@@ -207,4 +197,6 @@ while dp[ans] != mx:
 
 ## 参考资料与注释
 
-[^ref1]: [最长不下降子序列 nlogn 算法详解 - lvmememe - 博客园](https://www.cnblogs.com/itlqs/p/5743114.html)
+[^ref1]: [位运算求最长公共子序列 - -Wallace- - 博客园](https://www.cnblogs.com/-Wallace-/p/bit-lcs.html)
+
+[^ref2]: [最长不下降子序列 nlogn 算法详解 - lvmememe - 博客园](https://www.cnblogs.com/itlqs/p/5743114.html)
