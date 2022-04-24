@@ -122,7 +122,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
     - [译者博客的介绍页](http://blog.watashi.ws/2382/pccb-etc/)
 -   《算法概论》- Sanjoy Dasgupta/Christos Papadimitriou/Umesh Vazirani
     - 提纲挚领，但内容较少。
-- [Legend-K 的数据结构与算法的笔记](http://www.legend-k.com/Algorithm/Algorithm.pdf)
+- [Legend-K 的数据结构与算法的笔记](http://web.archive.org/web/20180826111306/http://www.legend-k.com/Algorithm/Algorithm.pdf)
 - [acm-cheat-sheet](https://github.com/soulmachine/acm-cheat-sheet)
 -   [Competitive Programmer’s Handbook](https://cses.fi/book/book.pdf)- Antti Laaksonen
     - 作者花了三年个人时间完成。面向算法竞赛，覆盖面广，详略得当。
