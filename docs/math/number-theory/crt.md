@@ -34,7 +34,7 @@ $$
     3. 计算 $c_i=m_im_i^{-1}$（**不要对 $n_i$ 取模**）。
 3. 方程组的唯一解为：$x=\sum_{i=1}^k a_ic_i \pmod n$。
 
-### C++ 语言代码
+### 代码实现
 
 ```cpp
 // C++ Version
@@ -49,8 +49,6 @@ LL CRT(int k, LL* a, LL* r) {
   return (ans % n + n) % n;
 }
 ```
-
-### Python 语言代码
 
 ```python
 # Python Version
