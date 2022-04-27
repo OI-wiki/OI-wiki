@@ -260,7 +260,7 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
       pos[t] = dfntot;
       dep[dfntot] = depth;
       for (int i = head[t]; i; i = side[i].next) {
-        dfs(side[i].to, t, depth + 1);
+        dfs(side[i].to, depth + 1);
         dfn[++dfntot] = t;
         dep[dfntot] = depth;
       }
