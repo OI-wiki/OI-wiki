@@ -116,7 +116,6 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
     英文版原名*Concrete Mathematics*
 -   《组合数学》第五版 - Richard A.Brualdi  
     英文版原名*Introductory Combinatorics*
-- [Competitive Programmer's Handbook](https://cses.fi/book/index.html)
 -   《挑战程序设计竞赛》全套 - 秋叶拓哉，岩田阳一，北川宜稔
     通俗易懂。
     - [译者博客的介绍页](http://blog.watashi.ws/2382/pccb-etc/)
