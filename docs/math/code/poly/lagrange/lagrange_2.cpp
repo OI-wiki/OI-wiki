@@ -1,20 +1,9 @@
 // By: Luogu@rui_er(122461)
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
 const int N = 1e6 + 5, mod = 1e9 + 7;
 
 int n, k, tab[N], p[N], pcnt, f[N], pre[N], suf[N], fac[N], inv[N], ans;
-
-template <typename T>
-void chkmin(T& x, T y) {
-  if (x > y) x = y;
-}
-
-template <typename T>
-void chkmax(T& x, T y) {
-  if (x < y) x = y;
-}
 
 int qpow(int x, int y) {
   int ans = 1;
