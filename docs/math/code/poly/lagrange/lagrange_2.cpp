@@ -1,13 +1,5 @@
 // By: Luogu@rui_er(122461)
 #include <bits/stdc++.h>
-#define rep(x, y, z) for (int x = y; x <= z; x++)
-#define per(x, y, z) for (int x = y; x >= z; x--)
-#define debug printf("Running %s on line %d...\n", __FUNCTION__, __LINE__)
-#define fileIO(s)                   \
-  do {                              \
-    freopen(s ".in", "r", stdin);   \
-    freopen(s ".out", "w", stdout); \
-  } while (false)
 using namespace std;
 typedef long long ll;
 const int N = 1e6 + 5, mod = 1e9 + 7;
@@ -33,7 +25,7 @@ int qpow(int x, int y) {
 
 void sieve(int lim) {
   f[1] = 1;
-  rep(i, 2, lim) {
+  for (int i = 2; i <= lim; i++) {
     if (!tab[i]) {
       p[++pcnt] = i;
       f[i] = qpow(i, k);
@@ -44,7 +36,7 @@ void sieve(int lim) {
       if (!(i % p[j])) break;
     }
   }
-  rep(i, 2, lim) f[i] = (f[i - 1] + f[i]) % mod;
+  for (int i = 2; i <= lim; i++) f[i] = (f[i - 1] + f[i]) % mod;
 }
 
 int main() {
@@ -52,15 +44,15 @@ int main() {
   sieve(k + 2);
   if (n <= k + 2) return printf("%d\n", f[n]) & 0;
   pre[0] = suf[k + 3] = 1;
-  rep(i, 1, k + 2) pre[i] = 1LL * pre[i - 1] * (n - i) % mod;
-  per(i, k + 2, 1) suf[i] = 1LL * suf[i + 1] * (n - i) % mod;
+  for (int i = 1; i <= k + 2; i++) pre[i] = 1LL * pre[i - 1] * (n - i) % mod;
+  for (int i = k + 2; i >= 1; i--) suf[i] = 1LL * suf[i + 1] * (n - i) % mod;
   fac[0] = inv[0] = fac[1] = inv[1] = 1;
-  rep(i, 2, k + 2) {
+  for (int i = 2; i <= k + 2; i++) {
     fac[i] = 1LL * fac[i - 1] * i % mod;
     inv[i] = 1LL * (mod - mod / i) * inv[mod % i] % mod;
   }
-  rep(i, 2, k + 2) inv[i] = 1LL * inv[i - 1] * inv[i] % mod;
-  rep(i, 1, k + 2) {
+  for (int i = 2; i <= k + 2; i++) inv[i] = 1LL * inv[i - 1] * inv[i] % mod;
+  for (int i = 1; i <= k + 2; i++) {
     int P = 1LL * pre[i - 1] * suf[i + 1] % mod;
     int Q = 1LL * inv[i - 1] * inv[k + 2 - i] % mod;
     int mul = ((k + 2 - i) & 1) ? -1 : 1;
