@@ -13,7 +13,7 @@
 
 当 $V$ 或 $E$ 是无限集合时，称 $G$ 为 **无限图**。
 
-图有多种，包括 **无向图 (Undirected graph)**，**有向图 (Directed graph)**，**混合图 (Mixed graph)** 等
+图有多种，包括 **无向图 (Undirected graph)**，**有向图 (Directed graph)**，**混合图 (Mixed graph)** 等。
 
 若 $G$ 为无向图，则 $E$ 中的每个元素为一个无序二元组 $(u, v)$，称作 **无向边 (Undirected edge)**，简称 **边 (Edge)**，其中 $u, v \in V$。设 $e = (u, v)$，则 $u$ 和 $v$ 称为 $e$ 的 **端点 (Endpoint)**。
 
