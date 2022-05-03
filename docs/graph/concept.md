@@ -195,7 +195,7 @@ $$
 
 若无向简单图 $G$ 满足任意不同两点间均有边，则称 $G$ 为 **完全图 (Complete graph)**，$n$ 阶完全图记作 $K_n$。若有向图 $G$ 满足任意不同两点间都有两条方向不同的边，则称 $G$ 为 **有向完全图 (Complete digraph)**。
 
-边集为空的图称为 **零图 (Null graph)**，$n$ 阶零图记作 $N_n$。易知，$N_n$ 为 $K_n$ 互为补图。
+边集为空的图称为 **无边图 (Edgeless graph)**、**空图 (Empty graph)** 或 **零图 (Null graph)**，$n$ 阶无边图记作 $\overline{K}_n$ 或 $N_n$。$N_n$ 与 $K_n$ 互为补图。
 
 若有向简单图 $G$ 满足任意不同两点间都有恰好一条边（单向），则称 $G$ 为 **竞赛图 (Tournament graph)**。
 
