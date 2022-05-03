@@ -197,6 +197,9 @@ $$
 
 边集为空的图称为 **无边图 (Edgeless graph)**、**空图 (Empty graph)** 或 **零图 (Null graph)**，$n$ 阶无边图记作 $\overline{K}_n$ 或 $N_n$。$N_n$ 与 $K_n$ 互为补图。
 
+!!! warning
+    **零图 (Null graph)** 也可指 **零阶图 (Order-zero graph)** $K_0$，即点集与边集均为空的图。
+
 若有向简单图 $G$ 满足任意不同两点间都有恰好一条边（单向），则称 $G$ 为 **竞赛图 (Tournament graph)**。
 
 若无向简单图 $G = \left( V, E \right)$ 的所有边恰好构成一个圈，则称 $G$ 为 **环图/圈图 (Cycle graph)**，$n$($n \geq 3$) 阶圈图记作 $C_n$。易知，一张图为圈图的充分必要条件是，它是 $2$- 正则连通图。
