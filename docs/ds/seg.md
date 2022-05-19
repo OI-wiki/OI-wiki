@@ -88,6 +88,9 @@ def build(s, t, p):
 // C++ Version
 int getsum(int l, int r, int s, int t, int p) {
   // [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
+  // 查询区间与当前区间不重叠
+  if (l > t || r < s)
+    return 0;
   if (l <= s && t <= r)
     return d[p];  // 当前区间为询问区间的子集时直接返回当前区间的和
   int m = s + ((t - s) >> 1), sum = 0;
@@ -102,6 +105,9 @@ int getsum(int l, int r, int s, int t, int p) {
 ```python
 # Python Version
 def getsum(l, r, s, t, p):
+    # 查询区间与当前区间不重叠
+    if l > t or r < s:
+        return 0
     # [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
     if l <= s and t <= r:
         return d[p] # 当前区间为询问区间的子集时直接返回当前区间的和
@@ -202,6 +208,9 @@ def update(l, r, c, s, t, p):
 // C++ Version
 int getsum(int l, int r, int s, int t, int p) {
   // [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
+  // 查询区间与当前区间不重叠
+  if (l > t || r < s)
+    return 0;
   if (l <= s && t <= r) return d[p];
   // 当前区间为询问区间的子集时直接返回当前区间的和
   int m = s + ((t - s) >> 1);
@@ -222,6 +231,9 @@ int getsum(int l, int r, int s, int t, int p) {
 # Python Version
 def getsum(l, r, s, t, p):
     # [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p为当前节点的编号
+    # 查询区间与当前区间不重叠
+    if l > t or r < s:
+        return 0
     if l <= s and t <= r:
         return d[p]
     # 当前区间为询问区间的子集时直接返回当前区间的和
@@ -266,6 +278,8 @@ void update(int l, int r, int c, int s, int t, int p) {
 }
 
 int getsum(int l, int r, int s, int t, int p) {
+  if (l > t || r < s)
+    return 0;
   if (l <= s && t <= r) return d[p];
   int m = s + ((t - s) >> 1);
   if (m[p]) {
@@ -302,6 +316,8 @@ def update(l, r, c, s, t, p):
     d[p] = d[p * 2] + d[p * 2 + 1]
 
 def getsum(l, r, s, t, p):
+    if l > t or r < s:
+        return 0
     if l <= s and t <= r:
         return d[p]
     m = s + ((t - s) >> 1)
