@@ -213,5 +213,5 @@ $$
 
 - [1][FWT(快速沃尔什变换)零基础详解qaq（ACM/OI）](<https://zhuanlan.zhihu.com/p/41867199>)
 - [2][FFT(快速傅里叶变换)0基础详解！附NTT（ACM/OI）](<https://zhuanlan.zhihu.com/p/40505277>)
-- [3][Number-theoretic transform(NTT) - Wikipeia](<https://en.wikipedia.org/wiki/Discrete_Fourier_transform_(general)#Number-theoretic_transform>)
+- [3][Number-theoretic transform(NTT) - Wikipedia](<https://en.wikipedia.org/wiki/Discrete_Fourier_transform_(general)#Number-theoretic_transform>)
 - [4][Tutorial on FFT/NTT — The tough made simple. ( Part 1 )](<https://codeforces.com/blog/entry/43499>)
