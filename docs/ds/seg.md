@@ -88,9 +88,6 @@ def build(s, t, p):
 // C++ Version
 int getsum(int l, int r, int s, int t, int p) {
   // [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
-  // 查询区间与当前区间不重叠
-  if (l > t || r < s)
-    return 0;
   if (l <= s && t <= r)
     return d[p];  // 当前区间为询问区间的子集时直接返回当前区间的和
   int m = s + ((t - s) >> 1), sum = 0;
@@ -105,9 +102,6 @@ int getsum(int l, int r, int s, int t, int p) {
 ```python
 # Python Version
 def getsum(l, r, s, t, p):
-    # 查询区间与当前区间不重叠
-    if l > t or r < s:
-        return 0
     # [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
     if l <= s and t <= r:
         return d[p] # 当前区间为询问区间的子集时直接返回当前区间的和
@@ -208,9 +202,6 @@ def update(l, r, c, s, t, p):
 // C++ Version
 int getsum(int l, int r, int s, int t, int p) {
   // [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
-  // 查询区间与当前区间不重叠
-  if (l > t || r < s)
-    return 0;
   if (l <= s && t <= r) return d[p];
   // 当前区间为询问区间的子集时直接返回当前区间的和
   int m = s + ((t - s) >> 1);
@@ -231,9 +222,6 @@ int getsum(int l, int r, int s, int t, int p) {
 # Python Version
 def getsum(l, r, s, t, p):
     # [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p为当前节点的编号
-    # 查询区间与当前区间不重叠
-    if l > t or r < s:
-        return 0
     if l <= s and t <= r:
         return d[p]
     # 当前区间为询问区间的子集时直接返回当前区间的和
@@ -266,11 +254,11 @@ void update(int l, int r, int c, int s, int t, int p) {
   }
   int m = s + ((t - s) >> 1);
   // 额外数组储存是否修改值
-  if (m[p]) {
+  if (v[p]) {
     d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m);
     b[p * 2] = b[p * 2 + 1] = b[p];
-    m[p * 2] = m[p * 2 + 1] = 1;
-    m[p] = 0;
+    v[p * 2] = v[p * 2 + 1] = 1;
+    v[p] = 0;
   }
   if (l <= m) update(l, r, c, s, m, p * 2);
   if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
@@ -278,15 +266,13 @@ void update(int l, int r, int c, int s, int t, int p) {
 }
 
 int getsum(int l, int r, int s, int t, int p) {
-  if (l > t || r < s)
-    return 0;
   if (l <= s && t <= r) return d[p];
   int m = s + ((t - s) >> 1);
-  if (m[p]) {
+  if (v[p]) {
     d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m);
     b[p * 2] = b[p * 2 + 1] = b[p];
-    m[p * 2] = m[p * 2 + 1] = 1;
-    m[p] = 0;
+    v[p * 2] = v[p * 2 + 1] = 1;
+    v[p] = 0;
   }
   int sum = 0;
   if (l <= m) sum = getsum(l, r, s, m, p * 2);
@@ -303,12 +289,12 @@ def update(l, r, c, s, t, p):
         b[p] = c
         return
     m = s + ((t - s) >> 1)
-    if m[p]:
+    if v[p]:
         d[p * 2] = b[p] * (m - s + 1)
         d[p * 2 + 1] = b[p] * (t - m)
         b[p * 2] = b[p * 2 + 1] = b[p]
-        m[p * 2] = m[p * 2 + 1] = 1
-        m[p] = 0
+        v[p * 2] = v[p * 2 + 1] = 1
+        v[p] = 0
     if l <= m:
         update(l, r, c, s, m, p * 2)
     if r > m:
@@ -316,17 +302,15 @@ def update(l, r, c, s, t, p):
     d[p] = d[p * 2] + d[p * 2 + 1]
 
 def getsum(l, r, s, t, p):
-    if l > t or r < s:
-        return 0
     if l <= s and t <= r:
         return d[p]
     m = s + ((t - s) >> 1)
-    if m[p]:
+    if v[p]:
         d[p * 2] = b[p] * (m - s + 1)
         d[p * 2 + 1] = b[p] * (t - m)
         b[p * 2] = b[p * 2 + 1] = b[p]
-        m[p * 2] = m[p * 2 + 1] = 1
-        m[p] = 0
+        v[p * 2] = v[p * 2 + 1] = 1
+        v[p] = 0
     sum = 0
     if l <= m:
         sum = getsum(l, r, s, m, p * 2)
