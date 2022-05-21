@@ -28,7 +28,6 @@ author: shuzhouliu
 
 ### 除以 0
 
-
 ???+ warning "示例"
     ```cpp
     int main() {
@@ -79,9 +78,7 @@ author: shuzhouliu
 
 ???+ success "正确的写法"
     ```cpp
-    bool ok(int x) {
-      return x == 23;
-    }
+    bool ok(int x) { return x == 23; }
     ```
 
 ### 尝试修改字符串字面量
