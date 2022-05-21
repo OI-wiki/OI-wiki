@@ -198,7 +198,6 @@ int upper(const void *p1, const void *p2) {
 
 ![example1](images/binary1.png)
 
-
 ### 代码实现
 
 ```cpp
