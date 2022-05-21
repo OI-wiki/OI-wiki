@@ -26,7 +26,17 @@ author: shuzhouliu
 
 此时，`a` 的值没有被初始化，所以理论上来说可能是任何数。
 
+一个更为明显的例子是将变量输出两遍，例如：
+```cpp
+int main() {
+  int a;
+  cout << a << ' ' << a;
+  return 0;
+}
+```
+
 ### 除以 0
+
 
 ???+ warning "示例"
     ```cpp
@@ -78,7 +88,9 @@ author: shuzhouliu
 
 ???+ success "正确的写法"
     ```cpp
-    bool ok(int x) { return x == 23; }
+    bool ok(int x) {
+      return x == 23;
+    }
     ```
 
 ### 尝试修改字符串字面量
