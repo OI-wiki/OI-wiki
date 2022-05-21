@@ -158,7 +158,8 @@ author: shuzhouliu
 ???+ success "正确的写法"
     ```cpp
     int main() {
-      int *p = ...;  // 非空值
+      int a = 0;
+      int *p = &a;  // 非空值
       printf("%d", *p);
       return 0;
     }
