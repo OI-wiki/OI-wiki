@@ -168,7 +168,7 @@ auto result5 = *v;      // 获取v指针指向的对象
 
 ## C++ 运算符优先级总表
 
-来自 [C++ Operator Precedence - cppreference](https://en.cppreference.com/w/cpp/language/operator_precedence#cite_note-1) ，有修改。
+来自 [C++ 运算符优先级 - cppreference](https://zh.cppreference.com/w/cpp/language/operator_precedence) ，有修改。
 
 |          运算符         |    描述    |                              例子                              | 可重载性 |
 | :------------------: | :------: | :----------------------------------------------------------: | :--: |
@@ -246,3 +246,5 @@ auto result5 = *v;      // 获取v指针指向的对象
 |         `|=`         |  位或赋值运算  |                     `flags |= new_flags;`                    |  可重载 |
 |       **第十七级别**      |          |                                                              |      |
 |          `,`         |   逗号分隔符  |          `for (i = 0, j = 0; i < 10; i++, j++) ...`          |  可重载 |
+
+需要注意的是，表中并未列出 `const_cast`、`static_cast`、`dynamic_cast`、`reinterpret_cast`、`typeid`、`sizeof...`、`noexcept` 及 `alignof` 等运算符，因为它们的使用形式与函数调用相同，不会出现歧义。
