@@ -166,7 +166,7 @@ author: shuzhouliu
     }
     ```
 
-### 数字越界
+### 有符号数溢出
 
 ???+ warning "示例"
     ```cpp
