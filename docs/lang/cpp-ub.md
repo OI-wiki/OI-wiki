@@ -121,31 +121,6 @@ author: shuzhouliu
     }
     ```
 
-### 一些神奇的操作
-
-一些神奇的操作也会导致未定义行为，例如：
-
-```cpp
-#include <iostream>
-using namespace std;
-const int N = 100001;
-int n, a[N];
-
-int main() {
-  cin >> n;
-  for (int i = 1; i <= n; i++) a[i] = i++;
-  return 0;
-}
-```
-
-还有
-
-```cpp
-printf("%d %d\n", ++n, power(2, n));
-```
-
-此处 $power(2, n) = 2^n$。
-
 ### 多次释放同一片内存
 
 ???+ warning "示例"
