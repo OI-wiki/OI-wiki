@@ -67,7 +67,7 @@ author: shuzhouliu
     }
     ```
 
-### 函数没有返回值
+### 除 main 外有返回值函数执行至结尾未执行任何 return 语句
 
 ???+ warning "示例"
     ```cpp
