@@ -98,8 +98,6 @@ author: shuzhouliu
     }
     ```
 
-注意 main(）第一行中赋值在 `c++11` 编译不通过。
-
 ???+ success "正确的写法"
     您可以用 `std::string` 以实现字符串功能：
     
