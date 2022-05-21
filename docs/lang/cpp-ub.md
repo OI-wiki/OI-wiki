@@ -1,6 +1,6 @@
 author: shuzhouliu
 
-## 常见的 Undefined Behavior
+## 常见的未定义行为
 
 ### 局部变量未初始化
 
