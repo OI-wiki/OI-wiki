@@ -182,7 +182,7 @@ printf("%d %d\n", ++n, power(2, n));
     }
     ```
 
-解决方法：先判断空指针，可以用 $p == nullptr$ 或 $!p$。
+解决方法：先判断空指针，可以用 `p == nullptr` 或 `!p`。
 
 ???+ success "正确的写法"
     ```cpp
