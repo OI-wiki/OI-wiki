@@ -28,7 +28,6 @@ author: shuzhouliu
 
 ### 除以 0
 
-> 这个在数学上就行不通好吗（
 
 ???+ warning "示例"
     ```cpp
