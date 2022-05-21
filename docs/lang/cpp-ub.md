@@ -80,8 +80,7 @@ author: shuzhouliu
 ???+ success "正确的写法"
     ```cpp
     bool ok(int x) {
-      if (x == 23) return true;
-      return false;
+      return x == 23;
     }
     ```
 
