@@ -379,7 +379,7 @@ int main() {
     }
     ```
 
-解决方法：`erase` 或 `delete` 或 `free` 操作不要多次使用。
+解决方法：使用 `erase` 或 `delete` 或 `free` 操作应注意不要对同一地址/对象多次使用。
 
 ???+ success "正确的写法"
     ```cpp
