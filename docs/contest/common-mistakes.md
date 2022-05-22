@@ -425,7 +425,7 @@ int main() {
     }
     ```
 
-正常输出应当是 `true`，但是在 `INT_MAX` 作为参数时输出 `false`，这时称为 `integer overflow`。
+正常输出应当是 `true`，但是在 `INT_MAX` 作为参数时输出 `false`，这时称为 `signed integer overflow`。
 
 解决方案：使用更大的数据类型（例如 `long long` 或 `__int128`），或判断溢出。
 
