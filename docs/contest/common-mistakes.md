@@ -307,7 +307,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
     - 也有可能被卡了。
 
-### 未定义行为（常见RE）
+### 未定义行为（常见 RE）
 
 #### 局部变量未初始化
 
@@ -453,7 +453,7 @@ int main() {
 
 一些常见的错误：
 
--   解引用野指针。
+- 解引用野指针。
 
 - 未初始化就解引用指针。
 
@@ -518,7 +518,6 @@ int main() {
 正常输出应当是 `true`，但是在 `INT_MAX` 作为参数时输出 `false`，这时称为 `integer overflow`。
 
 解决方案：使用更大的数据类型（例如 `long long` 或 `__int128`），或判断溢出。
-
 
 ### 会导致常数过大
 
