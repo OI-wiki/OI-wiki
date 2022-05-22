@@ -253,10 +253,12 @@ void update(int l, int r, int c, int s, int t, int p) {
     return;
   }
   int m = s + ((t - s) >> 1);
-  if (b[p]) {
-    d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
-          b[p * 2] = b[p * 2 + 1] = b[p];
-    b[p] = 0;
+  // 额外数组储存是否修改值
+  if (v[p]) {
+    d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m);
+    b[p * 2] = b[p * 2 + 1] = b[p];
+    v[p * 2] = v[p * 2 + 1] = 1;
+    v[p] = 0;
   }
   if (l <= m) update(l, r, c, s, m, p * 2);
   if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
@@ -266,10 +268,11 @@ void update(int l, int r, int c, int s, int t, int p) {
 int getsum(int l, int r, int s, int t, int p) {
   if (l <= s && t <= r) return d[p];
   int m = s + ((t - s) >> 1);
-  if (b[p]) {
-    d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
-          b[p * 2] = b[p * 2 + 1] = b[p];
-    b[p] = 0;
+  if (v[p]) {
+    d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m);
+    b[p * 2] = b[p * 2 + 1] = b[p];
+    v[p * 2] = v[p * 2 + 1] = 1;
+    v[p] = 0;
   }
   int sum = 0;
   if (l <= m) sum = getsum(l, r, s, m, p * 2);
@@ -286,11 +289,12 @@ def update(l, r, c, s, t, p):
         b[p] = c
         return
     m = s + ((t - s) >> 1)
-    if b[p]:
+    if v[p]:
         d[p * 2] = b[p] * (m - s + 1)
         d[p * 2 + 1] = b[p] * (t - m)
         b[p * 2] = b[p * 2 + 1] = b[p]
-        b[p] = 0
+        v[p * 2] = v[p * 2 + 1] = 1
+        v[p] = 0
     if l <= m:
         update(l, r, c, s, m, p * 2)
     if r > m:
@@ -301,11 +305,12 @@ def getsum(l, r, s, t, p):
     if l <= s and t <= r:
         return d[p]
     m = s + ((t - s) >> 1)
-    if b[p]:
+    if v[p]:
         d[p * 2] = b[p] * (m - s + 1)
         d[p * 2 + 1] = b[p] * (t - m)
         b[p * 2] = b[p * 2 + 1] = b[p]
-        b[p] = 0
+        v[p * 2] = v[p * 2 + 1] = 1
+        v[p] = 0
     sum = 0
     if l <= m:
         sum = getsum(l, r, s, m, p * 2)
