@@ -18,7 +18,6 @@ $$
 $$
 \begin{aligned}
 C ={}& A \times B \\
-  ={}& (5x^2 + 3x + 7)(7x^2 + 2x + 1) \\
   ={}& 35x^4 + 31x^3 + 60x^2 + 17x + 7
 \end{aligned}
 $$
