@@ -79,41 +79,45 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 ???+ warning "示例"
     ```cpp
-    int a; a++;
+    int a;
+    a++;
     cout << a << endl;
     ```
 
 ???+ success "正确的写法"
     ```cpp
-    int a = 0; a++;
+    int a = 0;
+    a++;
     cout << a << endl;
     ```
 
 此时，`a` 的值没有被初始化，所以理论上来说可能是任何数。
 
 ???+ note "未初始化变量会发生什么"
-  原文：[https://loj.ac/d/3679](https://loj.ac/d/3679)
 
-  例如我们在 C++ 中声明一个 int a; 但不初始化，可能有时候会认为 a 是一个“随机”（其实可能不是真的随机）的值，但是可能将其认为是一个固定的值，但实际上并非如此。
+原文：<https://loj.ac/d/3679>
 
-  我们在简单的测试代码中
+例如我们在 C++ 中声明一个 int a; 但不初始化，可能有时候会认为 a 是一个“随机”（其实可能不是真的随机）的值，但是可能将其认为是一个固定的值，但实际上并非如此。
 
-  https://wandbox.org/permlink/T2uiVe4n9Hg4EyWT
+我们在简单的测试代码中
 
-  代码是：
+<https://wandbox.org/permlink/T2uiVe4n9Hg4EyWT>
 
-  ```cpp
-  #include <iostream>
-  int main() {
-    int a;
-    std::cout << std::boolalpha << (a < 0 || a == 0 || a > 0);
-    return 0;
-  }
-  ```
+代码是：
 
-  在一些编译器和环境上开启优化后，其输出为 false。
+```cpp
+#include <iostream>
 
-  有兴趣的话可以看 [https://www.ralfj.de/blog/2019/07/14/uninit.html](https://www.ralfj.de/blog/2019/07/14/uninit.html)，尽管其实用 Rust 做的实验，但是本质是一样的。
+int main() {
+  int a;
+  std::cout << std::boolalpha << (a < 0 || a == 0 || a > 0);
+  return 0;
+}
+```
+
+在一些编译器和环境上开启优化后，其输出为 false。
+
+有兴趣的话可以看 <https://www.ralfj.de/blog/2019/07/14/uninit.html>，尽管其实用 Rust 做的实验，但是本质是一样的。
 
 - 局部变量与全局变量重名，导致全局变量被意外覆盖。（开 `-Wshadow` 就可检查此类错误。）
 
@@ -263,7 +267,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 ???+ warning "示例"
     ```cpp
-      cout << x / 0 << endl;
+    cout << x / 0 << endl;
     ```
 
 出现错误：RE。
@@ -340,17 +344,17 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     您可以用 `std::string` 以实现字符串功能：
     
     ```cpp
-      string p = "OI-wiki";
-      p[0] = 'o';
-      p[1] = 'i';
+    string p = "OI-wiki";
+    p[0] = 'o';
+    p[1] = 'i';
     ```
     
     您也可以使用 `char[]` 以实现字符串功能：
     
     ```cpp
-      char p[] = "OI-wiki";
-      p[0] = 'o';
-      p[1] = 'i';
+    char p[] = "OI-wiki";
+    p[0] = 'o';
+    p[1] = 'i';
     ```
 
 #### 多次释放同一片内存
@@ -365,9 +369,9 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 ???+ warning "示例"
     ```cpp
-      int *p = new int;
-      delete p;
-      delete p;
+    int *p = new int;
+    delete p;
+    delete p;
     ```
 
 出现错误：RE。
@@ -376,16 +380,16 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 ???+ success "正确的写法"
     ```cpp
-      int *p = new int;
-      delete p;
+    int *p = new int;
+    delete p;
     ```
 
 #### 访问空指针
 
 ???+ warning "示例"
     ```cpp
-      int *p = nullptr;
-      printf("%d", *p);
+    int *p = nullptr;
+    printf("%d", *p);
     ```
 
 出现错误：RE。
@@ -394,9 +398,9 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 ???+ success "正确的写法"
     ```cpp
-      int a = 0;
-      int *p = &a;  // 非空值
-      printf("%d", *p);
+    int a = 0;
+    int *p = &a;  // 非空值
+    printf("%d", *p);
     ```
 
 #### 有符号数溢出
