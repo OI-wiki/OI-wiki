@@ -79,35 +79,41 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 ???+ warning "示例"
     ```cpp
-    int main() {
-      int a;
-      a++;
-      cout << a << endl;
-      return 0;
-    }
+    int a; a++;
+    cout << a << endl;
     ```
 
 ???+ success "正确的写法"
     ```cpp
-    int main() {
-      int a = 0;
-      a++;
-      cout << a << endl;
-      return 0;
-    }
+    int a = 0; a++;
+    cout << a << endl;
     ```
 
 此时，`a` 的值没有被初始化，所以理论上来说可能是任何数。
 
-一个更为明显的例子是将变量输出两遍，例如：
+???+ note "未初始化变量会发生什么"
+  原文：[https://loj.ac/d/3679](https://loj.ac/d/3679)
 
-```cpp
-int main() {
-  int a;
-  cout << a << ' ' << a;
-  return 0;
-}
-```
+  例如我们在 C++ 中声明一个 int a; 但不初始化，可能有时候会认为 a 是一个“随机”（其实可能不是真的随机）的值，但是可能将其认为是一个固定的值，但实际上并非如此。
+
+  我们在简单的测试代码中
+
+  https://wandbox.org/permlink/T2uiVe4n9Hg4EyWT
+
+  代码是：
+
+  ```cpp
+  #include <iostream>
+  int main() {
+    int a;
+    std::cout << std::boolalpha << (a < 0 || a == 0 || a > 0);
+    return 0;
+  }
+  ```
+
+  在一些编译器和环境上开启优化后，其输出为 false。
+
+  有兴趣的话可以看 [https://www.ralfj.de/blog/2019/07/14/uninit.html](https://www.ralfj.de/blog/2019/07/14/uninit.html)，尽管其实用 Rust 做的实验，但是本质是一样的。
 
 - 局部变量与全局变量重名，导致全局变量被意外覆盖。（开 `-Wshadow` 就可检查此类错误。）
 
@@ -257,11 +263,7 @@ int main() {
 
 ???+ warning "示例"
     ```cpp
-    int main() {
-      int x = rand();
       cout << x / 0 << endl;
-      return 0;
-    }
     ```
 
 出现错误：RE。
@@ -287,12 +289,7 @@ int main() {
 ???+ warning "示例"
     ```cpp
     int h[4];
-    
-    int main() {
-      for (int i = 0; i <= 4; i++) cin >> h[i];
-      for (int i = 1; i <= 4; i++) cout << h[i] << endl;
-      return 0;
-    }
+    for (int i = 0; i <= 4; i++) cout << h[i] << endl;
     ```
 
 出现错误：WA 或 RE，视情况而定。
@@ -302,12 +299,7 @@ int main() {
 ???+ success "正确的写法"
     ```cpp
     int h[4];
-    
-    int main() {
-      for (int i = 0; i < 4; i++) cin >> h[i];
-      for (int i = 1; i < 4; i++) cout << h[i] << endl;
-      return 0;
-    }
+    for (int i = 1; i < 4; i++) cout << h[i] << endl;
     ```
 
 #### 除 main 外有返回值函数执行至结尾未执行任何 return 语句
@@ -334,12 +326,10 @@ int main() {
 
 ???+ warning "示例"
     ```cpp
-    int main() {
-      char *p = "OI-wiki";
-      p[0] = 'o';
-      p[1] = 'i';
-      return 0;
-    }
+    char *p = "OI-wiki";
+    p[0] = 'o';
+    p[1] = 'i';
+    return 0;
     ```
 
 这样定义并不符合 c++11 标准。
@@ -350,30 +340,24 @@ int main() {
     您可以用 `std::string` 以实现字符串功能：
     
     ```cpp
-    int main() {
       string p = "OI-wiki";
       p[0] = 'o';
       p[1] = 'i';
-      return 0;
-    }
     ```
     
     您也可以使用 `char[]` 以实现字符串功能：
     
     ```cpp
-    int main() {
       char p[] = "OI-wiki";
       p[0] = 'o';
       p[1] = 'i';
-      return 0;
-    }
     ```
 
 #### 多次释放同一片内存
 
 例如：
 
-- 解引用野指针。
+- 解引用野指针/空指针。
 
 - 未初始化就解引用指针。
 
@@ -381,12 +365,9 @@ int main() {
 
 ???+ warning "示例"
     ```cpp
-    int main() {
       int *p = new int;
       delete p;
       delete p;
-      return 0;
-    }
     ```
 
 出现错误：RE。
@@ -395,22 +376,16 @@ int main() {
 
 ???+ success "正确的写法"
     ```cpp
-    int main() {
       int *p = new int;
       delete p;
-      return 0;
-    }
     ```
 
 #### 访问空指针
 
 ???+ warning "示例"
     ```cpp
-    int main() {
       int *p = nullptr;
       printf("%d", *p);
-      return 0;
-    }
     ```
 
 出现错误：RE。
@@ -419,25 +394,12 @@ int main() {
 
 ???+ success "正确的写法"
     ```cpp
-    int main() {
       int a = 0;
       int *p = &a;  // 非空值
       printf("%d", *p);
-      return 0;
-    }
     ```
 
 #### 有符号数溢出
-
-???+ warning "示例"
-    ```cpp
-    bool dummy(int x) { return x + 1 > x; }
-    
-    int main() {
-      cout << boolalpha << dummy(INT_MAX) << endl;
-      return 0;
-    }
-    ```
 
 正常输出应当是 `true`，但是在 `INT_MAX` 作为参数时输出 `false`，这时称为 `signed integer overflow`。
 
@@ -446,6 +408,8 @@ int main() {
 正确的做法：使用更大的数据类型（例如 `long long` 或 `__int128`），或判断溢出。若保证无负数，亦可使用无符号整型。
 
 ### 会导致 RE
+
+- 解引用空指针。
 
 - 没删文件操作（某些 OJ）。
 
