@@ -319,7 +319,15 @@ $$
 
 ## 有限域中的平方根
 
-假设我们需要求解同余方程 $x^2\equiv a\pmod{p^n}$，其中 $p$ 为素数。不妨将 $a$ 记作一个 $p$-进制数，并用未定元 $x$ 替代 $p$，后在形式幂级数环 $\mathbb{F}_p\lbrack \lbrack x\rbrack \rbrack$ 上用 [形式幂级数的平方根](../poly/sqrt.md) 算法并截断即可，不难发现其给出了一个解的 $p$-进制表示。
+假设我们需要求解同余方程 $x^2\equiv a\pmod{p^n}$，其中 $p$ 为奇素数。不妨将 $a$ 记作一个 $p$-进制数，并用未定元 $x$ 替代 $p$，后在形式幂级数环 $\mathbb{F}_p\lbrack \lbrack x\rbrack \rbrack$ 上用 [形式幂级数的平方根](../poly/sqrt.md) 算法并截断即可，不难发现其给出了一个解的 $p$-进制表示。
+
+在 $p=2$ 时不能使用上述方法计算，但考虑 Newton 二项式定理：
+
+$$
+(1+t)^{1/2}=\sum_{k\geq 0}\binom{1/2}{k}t^k=1+\frac{1}{2}t-\frac{1}{8}t^2+\cdots
+$$
+
+在 $t\equiv 0\pmod{8}$ 时收敛，我们可以快速计算 $a\equiv 1\pmod{8}$ 时的解，若 $2^{b}\mid a$ 其中 $b>3$ 那么判断后也是简单的。读者可阅读 [Wikipedia](https://en.wikipedia.org/wiki/P-adic_number) 相关的概念。
 
 ## 习题
 
@@ -331,6 +339,7 @@ $$
 
 - <https://en.wikipedia.org/wiki/Quadratic_residue>
 - <https://en.wikipedia.org/wiki/Euler%27s_criterion>
+- <https://math.stackexchange.com/q/2299845>
 - Daniel. J. Bernstein. Faster Square Roots in Annoying Finite Fields.
 - S. Müller, On the computation of square roots in finite fields, Design, Codes and Cryptography, Vol.31, pp. 301-312, 2004.
 - A. Menezes, P. van Oorschot and S. Vanstone. Handbook of Applied Cryptography, 1996.
