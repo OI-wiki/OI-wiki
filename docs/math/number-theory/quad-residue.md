@@ -6,7 +6,9 @@ $$
 x^2 \equiv a \pmod p
 $$
 
-通俗一些，可以认为是求模意义下的开方。这里只讨论 $\boldsymbol{p}$ **为奇素数** 的求解方法。
+可以认为是在环 $\mathbb{Z}/p\mathbb{Z}$ 上计算平方根，当 $p$ 为素数或素数的幂次时，$\mathbb{Z}/p\mathbb{Z}=\mathbb{F}_p$ 是有限域，下文大部分将讨论 $p$ 为奇素数这种特殊的情况。
+
+对于 $\mathbb{F}_2$ 上平方根的计算是平凡的，更一般情况可以结合下文及 [中国剩余定理](./crt.md) 导出。
 
 后文可能在模 $p$ 显然的情况下简写成二次（非）剩余。
 
@@ -252,9 +254,9 @@ $$
 
 所以 $2a_0=(\pm 1)+(\mp 1)=0$ 而 $2a_1b=(\pm 1)-(\mp 1)=\pm 2$。
 
-## Tonelli-Shanks 算法
+## Tonelli–Shanks 算法
 
-Tonelli-Shanks 算法是基于离散对数求解同余方程 $x^2\equiv a\pmod p$ 的算法，其中 $p$ 为奇素数且 $a$ 为模 $p$ 的二次剩余。
+Tonelli–Shanks 算法是基于离散对数求解同余方程 $x^2\equiv a\pmod p$ 的算法，其中 $p$ 为奇素数且 $a$ 为模 $p$ 的二次剩余。
 
 令 $p-1=2^n\cdot m$ 其中 $m$ 为奇数。仍然使用随机方法寻找 $r\in\mathbb{F}_p$ 满足 $r$ 为二次非剩余。令 $g\equiv r^m\pmod p$ 且 $b\equiv a^{(m-1)/2}\pmod p$，那么存在整数 $e\in\lbrace 0,1,2,\dots ,2^n-1\rbrace$ 满足 $ab^2\equiv g^e\pmod p$。若 $a$ 为二次剩余，那么 $e$ 为偶数且 $\left(abg^{-e/2}\right)^2\equiv a\pmod p$。
 
@@ -315,6 +317,10 @@ $$
 
 正确性显然。
 
+## 有限域中的平方根
+
+假设我们需要求解同余方程 $x^2\equiv a\pmod{p^n}$，其中 $p$ 为素数。不妨将 $a$ 记作一个 $p$-进制数，并用未定元 $x$ 替代 $p$，后在形式幂级数环 $\mathbb{F}_p\lbrack \lbrack x\rbrack \rbrack$ 上用 [形式幂级数的平方根](../poly/sqrt.md) 算法并截断即可，不难发现其给出了一个解的 $p$-进制表示。
+
 ## 习题
 
 [【模板】二次剩余](https://www.luogu.com.cn/problem/P5491)
@@ -326,5 +332,5 @@ $$
 - <https://en.wikipedia.org/wiki/Quadratic_residue>
 - <https://en.wikipedia.org/wiki/Euler%27s_criterion>
 - Daniel. J. Bernstein. Faster Square Roots in Annoying Finite Fields.
-- S. Müller, On the computation of square roots in finite fields, Design, Codes and Cryptography, Vol.31, pp. 301-312, 2004
+- S. Müller, On the computation of square roots in finite fields, Design, Codes and Cryptography, Vol.31, pp. 301-312, 2004.
 - A. Menezes, P. van Oorschot and S. Vanstone. Handbook of Applied Cryptography, 1996.
