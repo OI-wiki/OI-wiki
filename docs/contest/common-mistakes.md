@@ -287,21 +287,9 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 - 写线段树的时候，`pushup` 或 `pushdown` 叶节点。
 
-???+ warning "示例"
-    ```cpp
-    int h[4];
-    for (int i = 0; i <= 4; i++) cout << h[i] << endl;
-    ```
-
 出现错误：WA 或 RE，视情况而定。
 
-正确的做法：不要越界，记得检查自己的代码。
-
-???+ success "正确的写法"
-    ```cpp
-    int h[4];
-    for (int i = 1; i < 4; i++) cout << h[i] << endl;
-    ```
+正确的做法：不要越界，记得检查自己的代码，使得下标访问数 `x` ，在定义的下标中。
 
 #### 除 main 外有返回值函数执行至结尾未执行任何 return 语句
 
