@@ -95,29 +95,29 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 ???+ note "未初始化变量会发生什么"
 
-原文：<https://loj.ac/d/3679>
+    原文：<https://loj.ac/d/3679>
 
-例如我们在 C++ 中声明一个 int a; 但不初始化，可能有时候会认为 a 是一个“随机”（其实可能不是真的随机）的值，但是可能将其认为是一个固定的值，但实际上并非如此。
+    例如我们在 C++ 中声明一个 int a; 但不初始化，可能有时候会认为 a 是一个“随机”（其实可能不是真的随机）的值，但是可能将其认为是一个固定的值，但实际上并非如此。
 
-我们在简单的测试代码中
+    我们在简单的测试代码中
 
-<https://wandbox.org/permlink/T2uiVe4n9Hg4EyWT>
+    <https://wandbox.org/permlink/T2uiVe4n9Hg4EyWT>
 
-代码是：
+    代码是：
 
-```cpp
-#include <iostream>
+    ```cpp
+    #include <iostream>
 
-int main() {
-  int a;
-  std::cout << std::boolalpha << (a < 0 || a == 0 || a > 0);
-  return 0;
-}
-```
+    int main() {
+        int a;
+        std::cout << std::boolalpha << (a < 0 || a == 0 || a > 0);
+        return 0;
+    }
+    ```
 
-在一些编译器和环境上开启优化后，其输出为 false。
+    在一些编译器和环境上开启优化后，其输出为 false。
 
-有兴趣的话可以看 <https://www.ralfj.de/blog/2019/07/14/uninit.html>，尽管其实用 Rust 做的实验，但是本质是一样的。
+    有兴趣的话可以看 <https://www.ralfj.de/blog/2019/07/14/uninit.html>，尽管其实用 Rust 做的实验，但是本质是一样的。
 
 - 局部变量与全局变量重名，导致全局变量被意外覆盖。（开 `-Wshadow` 就可检查此类错误。）
 
@@ -271,8 +271,6 @@ int main() {
     ```
 
 出现错误：RE。
-
-正确的做法：不要除以零。
 
 #### 数组（下标）越界
 
