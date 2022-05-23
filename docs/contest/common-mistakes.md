@@ -289,7 +289,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 出现错误：WA 或 RE，视情况而定。
 
-正确的做法：不要越界，记得检查自己的代码，使得下标访问数 `x` ，在定义的下标中。
+正确的做法：不要越界，记得检查自己的代码，使得下标访问数 `x`，在定义的下标中。
 
 #### 除 main 外有返回值函数执行至结尾未执行任何 return 语句
 
