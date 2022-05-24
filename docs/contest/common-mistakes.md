@@ -369,7 +369,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     delete p;
     ```
 
-#### 访问空指针
+#### 解引用空指针
 
 ???+ warning "示例"
     ```cpp
