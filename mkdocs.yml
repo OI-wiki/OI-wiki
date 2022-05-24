@@ -540,7 +540,7 @@ markdown_extensions:
   - meta
   - toc:
       permalink: true
-      slugify: !!python/name:pymdownx.slugs.uslugify
+      slugify: !!python/name:awesome-slugify.slugify
   - pymdownx.arithmatex
   - pymdownx.caret
   - pymdownx.critic
