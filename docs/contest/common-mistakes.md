@@ -269,8 +269,6 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     cout << x / 0 << endl;
     ```
 
-出现错误：RE。
-
 #### 数组（下标）越界
 
 例如：
@@ -287,8 +285,6 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 - 写线段树的时候，`pushup` 或 `pushdown` 叶节点。
 
-出现错误：WA 或 RE，视情况而定。
-
 正确的做法：不要越界，记得检查自己的代码，使得下标访问数 `x`，在定义的下标中。
 
 #### 除 main 外有返回值函数执行至结尾未执行任何 return 语句
@@ -301,8 +297,6 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     ```
 
 虽然有一个分支有 `return true`，但是其他分支却没有，结果未定义的。
-
-出现错误：WA。
 
 正确的做法：打开 warning，看一看自己有没有关于函数未 return 的警告。
 
@@ -359,8 +353,6 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     delete p;
     ```
 
-出现错误：RE。
-
 正确的方法：使用 `erase` 或 `delete` 或 `free` 操作应注意不要对同一地址/对象多次使用。
 
 ???+ success "正确的写法"
@@ -377,8 +369,6 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     printf("%d", *p);
     ```
 
-出现错误：RE。
-
 正确的做法：先判断空指针，可以用 `p == nullptr` 或 `!p`。
 
 ???+ success "正确的写法"
@@ -392,13 +382,9 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 正常输出应当是 `true`，但是在 `INT_MAX` 作为参数时输出 `false`，这时称为 `signed integer overflow`。
 
-出现错误：RE 或 WA。
-
 正确的做法：使用更大的数据类型（例如 `long long` 或 `__int128`），或判断溢出。若保证无负数，亦可使用无符号整型。
 
 ### 会导致 RE
-
-- 解引用空指针。
 
 - 没删文件操作（某些 OJ）。
 
