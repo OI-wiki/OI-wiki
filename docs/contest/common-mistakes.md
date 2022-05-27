@@ -78,29 +78,29 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 -   未初始化局部变量，导致局部变量被赋予垃圾初值。
 
     ???+ note "未初始化变量会发生什么"
-          原文：<https://loj.ac/d/3679> by @hly1204
-
-          例如我们在 C++ 中声明一个 int a; 但不初始化，可能有时候会认为 a 是一个“随机”（其实可能不是真的随机）的值，但是可能将其认为是一个固定的值，但实际上并非如此。
-
-          我们在简单的测试代码中
-
-          <https://wandbox.org/permlink/T2uiVe4n9Hg4EyWT>
-
-          代码是：
-
-          ```cpp
-          #include <iostream>
-
-          int main() {
-              int a;
-              std::cout << std::boolalpha << (a < 0 || a == 0 || a > 0);
-              return 0;
-          }
-          ```
-
-          在一些编译器和环境上开启优化后，其输出为 false。
-
-          有兴趣的话可以看 <https://www.ralfj.de/blog/2019/07/14/uninit.html>，尽管其实用 Rust 做的实验，但是本质是一样的。
+        原文：<https://loj.ac/d/3679> by @hly1204
+        
+        例如我们在 C++ 中声明一个 int a; 但不初始化，可能有时候会认为 a 是一个“随机”（其实可能不是真的随机）的值，但是可能将其认为是一个固定的值，但实际上并非如此。
+        
+        我们在简单的测试代码中
+        
+        <https://wandbox.org/permlink/T2uiVe4n9Hg4EyWT>
+        
+        代码是：
+        
+        ```cpp
+        #include <iostream>
+        
+        int main() {
+          int a;
+          std::cout << std::boolalpha << (a < 0 || a == 0 || a > 0);
+          return 0;
+        }
+        ```
+        
+        在一些编译器和环境上开启优化后，其输出为 false。
+        
+        有兴趣的话可以看 <https://www.ralfj.de/blog/2019/07/14/uninit.html>，尽管其实用 Rust 做的实验，但是本质是一样的。
 
 - 局部变量与全局变量重名，导致全局变量被意外覆盖。（开 `-Wshadow` 就可检查此类错误。）
 
@@ -280,12 +280,11 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 -   尝试修改字符串字面量
 
     ???+ warning "示例"
-
-          ```cpp
-              char *p = "OI-wiki";
-              p[0] = 'o';
-              p[1] = 'i';
-          ```
+        ```cpp
+        char *p = "OI-wiki";
+        p[0] = 'o';
+        p[1] = 'i';
+        ```
 
     这样定义并不符合 c++11 标准，迎丹使用其他 **合适** 的数据类型，例如 `std::string`,`char[]`。
 
