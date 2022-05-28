@@ -1,11 +1,16 @@
-# java进阶
+# java 进阶
 
 ## 详解快速读入与写入
-`Scanner`与`System.out.print`在读入大量数据的情况下效率很低，因此引入`StringTokenizer`与`StreamTokenizer`来提高输入效率，引入`PrintWriter`来提高输出效率。
-关于基础知识可以参考java速成部分
+
+`Scanner` 与 `System.out.print` 在读入大量数据的情况下效率很低，因此引入 `StringTokenizer` 与 `StreamTokenizer` 来提高输入效率，引入 `PrintWriter` 来提高输出效率。
+关于基础知识可以参考 java 速成部分
+
 ### StringTokenizer 与 StreamTokenizer
+
 如果你不想深究背后的原理，初学时可以直接将这个“框架”背下来
+
 #### 代码框架 StringTokenizer
+
 ```java
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -64,7 +69,9 @@ class Main{
     static FastReader in = new FastReader();
 }
 ```
+
 #### 代码框架 StreamTokenizer
+
 ```java
 import java.io.*;
 public class Main {
@@ -85,18 +92,28 @@ public class Main {
     }
 }
 ```
-#### StringTokenizer与StreamTokenizer和PrintWriter的分析与对比
-1. `StreamTokenizer`相较于`StringTokenizer`内存较小，速度较快，可忽略不计，但是`StreamTokenizer`会丢精度，读入部分数据会出现问题;
-    - `StreamTokenizer`源码存在Type，该Type根据你输入内容来决定类型，倘若你输入类似于`123oi`以**数字开头**的字符串，他会强制认为你的类型是double类型，因此在读入中以double类型去读String类型便会抛出异常;
-    - `StreamTokenizer`在读入1e14以上大小的数字会丢失精度;
-2. 在使用`PrintWriter`情况下，需注意在程序结束最后flush清除缓冲区，否则控制台将会没有输出。
+
+#### StringTokenizer 与 StreamTokenizer 和 PrintWriter 的分析与对比
+
+1.  `StreamTokenizer` 相较于 `StringTokenizer` 内存较小，速度较快，可忽略不计，但是 `StreamTokenizer` 会丢精度，读入部分数据会出现问题；
+    - `StreamTokenizer` 源码存在 Type，该 Type 根据你输入内容来决定类型，倘若你输入类似于 `123oi` 以 **数字开头** 的字符串，他会强制认为你的类型是 double 类型，因此在读入中以 double 类型去读 String 类型便会抛出异常；
+    - `StreamTokenizer` 在读入 1e14 以上大小的数字会丢失精度；
+2. 在使用 `PrintWriter` 情况下，需注意在程序结束最后 flush 清除缓冲区，否则控制台将会没有输出。
 
 ## 排序
-## BigInteger与数论
+
+## BigInteger 与数论
+
 ## 数据结构
+
 ### List
+
 ### Queue
+
 ### Set
+
 ### Map
-## Arrays与Collections
+
+## Arrays 与 Collections
+
 ## 其他
