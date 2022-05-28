@@ -122,6 +122,7 @@ nav:
     - Pascal 转 C++ 急救: lang/pas-cpp.md
     - Python 速成: lang/python.md
     - Java 速成: lang/java.md
+    - Java 进阶: lang/java-pro.md
   - 算法基础:
     - 算法基础简介: basic/index.md
     - 复杂度: basic/complexity.md
