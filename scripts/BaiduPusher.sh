@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-source /etc/profile
 ORG=24OI
 REPO=OI-wiki
 # Baidu Pusher 

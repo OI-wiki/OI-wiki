@@ -460,8 +460,8 @@ int main() {
 
 - [「Cerc2007」robotic sort 机械排序](https://www.luogu.com.cn/problem/P4402)
 - [二逼平衡树（树套树）](https://loj.ac/problem/106)
-- [bzoj 2827 千山鸟飞绝](http://www.lydsy.com/JudgeOnline/problem.php?id=2827)
-- [「Lydsy1706 月赛」K 小值查询](http://www.lydsy.com/JudgeOnline/problem.php?id=4923)
+- [bzoj 2827 千山鸟飞绝](https://hydro.ac/d/bzoj/p/2827)
+- [「Lydsy1706 月赛」K 小值查询](https://hydro.ac/d/bzoj/p/4923)
 
 ## 参考资料与注释
 

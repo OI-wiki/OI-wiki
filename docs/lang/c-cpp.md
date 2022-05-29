@@ -8,6 +8,28 @@ C++ 的模板在设计之初的一个用途就是用来替换宏定义。学会�
 
 C++ 中你仍然可以使用 C 风格的指针，但是对于变量传递而言，更推荐使用 C++ 的 [引用](./reference.md) 特性来实现类似的功能。由于引用指向的对象不能为空，因此可以避免一些空地址访问的问题。不过指针由于其灵活性，也仍然有其用武之处。值得一提的是，C 中的 `NULL` 空指针在 C++11 起有类型安全的替代品 `nullptr`。引用和指针之间可以通过 [`*` 和 `&` 运算符](./op.md) 相互转换。
 
+## bool
+
+与 C++ 不同的是，C 语言最初并没有布尔类型。
+
+C99 标准加入了 `_Bool` 关键字（以及等效的 `bool` 宏）以及 `true` 和 `false` 两个宏。如果需要使用 `bool`，`true`，`false` 这三个宏，需要在程序中引入 `stdbool.h` 头文件。而使用 `_Bool` 则不需要引入任何额外头文件。
+
+```c
+bool x = true;  // 需要引入 stdbool.h
+_Bool x = 1;    // 不需要引入 stdbool.h
+```
+
+C23 起，`true` 和 `false` 成为 C 语言中的关键字，使用它们不需要再引入 `stdbool.h` 头文件[^true-false-become-keyword]。
+
+下表展示了 C 语言不同标准下，bool 类型支持的变化情况（作为对照，加入了 C++ 的支持情况）：
+
+| 语言标准         | `bool`                            | `true`/`false`                                        | `_Bool`                   |
+| ------------ | --------------------------------- | ----------------------------------------------------- | ------------------------- |
+| C89          | /                                 | /                                                     | 保留[^reserved-identifiers] |
+| C99 起，C23 以前 | 宏，与 `_Bool` 等价，需要 `stdbool.h` 头文件 | 宏，`true` 与 `1` 等价，`false` 与 `0` 等价，需要 `stdbool.h` 头文件 | 关键字                       |
+| C23 起        | 宏，与 `_Bool` 等价，需要 `stdbool.h` 头文件 | 关键字                                                   | 关键字                       |
+| C++          | 关键字                               | 关键字                                                   | 保留[^reserved-identifiers] |
+
 ## struct
 
 尽管在 C 和 C++ 中都有 struct 的概念，但是他们对应的东西是不能混用的！C 中的 struct 用来描述一种固定的内存组织结构，而 C++ 中的 struct 就是一种类，**它与类唯一的区别就是它的成员和继承行为默认是 public 的**，而一般类的默认成员是 private 的。这一点在写 C/C++ 混合代码时尤其致命。
@@ -59,3 +81,7 @@ C++ 风格单行注释 `//`，C 于 C99 前不支持。
 ## 参考资料
 
 [^cpp-designated-init]: <https://en.cppreference.com/w/cpp/language/aggregate_initialization>
+
+[^true-false-become-keyword]: <https://en.cppreference.com/w/c/23>。
+
+[^reserved-identifiers]: C 和 C++ 均规定，以一个下划线跟着一个大写字母开头的标识符是被保留的，详见 <https://en.cppreference.com/w/c/language/identifier>。
