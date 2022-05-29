@@ -1,5 +1,7 @@
 # java 进阶
-以下内容均是基于jdk8的版本，不排除在更高版本中有部分的改动可能性
+
+以下内容均是基于 jdk8 的版本，不排除在更高版本中有部分的改动可能性
+
 ## 详解快速读入与写入
 
 `Scanner` 与 `System.out.print` 在读入大量数据的情况下效率很低，因此引入 `StringTokenizer` 与 `StreamTokenizer` 来提高输入效率，引入 `PrintWriter` 来提高输出效率。
@@ -101,13 +103,15 @@ public class Main {
 2. 在使用 `PrintWriter` 情况下，需注意在程序结束最后 flush 清除缓冲区，否则控制台将会没有输出。
 
 ## 排序
-关于java中sort函数的具体使用方法会在`Arrays`部分与`Collections`部分给出详细内容，该部分主要是对`Arrays.sort(int[])`与`Arrays.sort(Integer[])`的探讨。
-在java中，`Arrays.sort(int[])`底层是双端快排，`Arrays.sort(Integer[])`底层是归并排序。因此`Arrays.sort(int[])`的最坏时间复杂度是 $O(n^2)$，可以通过如下例题来验证。
+
+关于 java 中 sort 函数的具体使用方法会在 `Arrays` 部分与 `Collections` 部分给出详细内容，该部分主要是对 `Arrays.sort(int[])` 与 `Arrays.sort(Integer[])` 的探讨。
+在 java 中，`Arrays.sort(int[])` 底层是双端快排，`Arrays.sort(Integer[])` 底层是归并排序。因此 `Arrays.sort(int[])` 的最坏时间复杂度是 $O(n^2)$，可以通过如下例题来验证。
 
 ???+note "[[codeforces]Quality vs Quantity](https://www.luogu.com.cn/problem/P1216)"
-    题意概要: 有 $n$ 个数，你需要将其分为2组，是否能存在1组的长度小于另1组的同时和大于它。
+    题意概要：有 $n$ 个数，你需要将其分为 2 组，是否能存在 1 组的长度小于另 1 组的同时和大于它。
 
 ??? 例题代码
+
 ```java
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -184,7 +188,8 @@ public class Main{
     }
 }
 ```
-如果你将以上代码的a数组类型由`Integer`修改为`int` 则会TLE
+
+如果你将以上代码的 a 数组类型由 `Integer` 修改为 `int` 则会 TLE
 
 ## BigInteger 与数论
 
@@ -198,7 +203,7 @@ public class Main{
 
 ### Map
 
-## Arrays 
+## Arrays
 
 ## Collections
 
