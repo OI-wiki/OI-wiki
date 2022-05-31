@@ -1,11 +1,11 @@
-# java 进阶
+# Java 进阶
 
-以下内容均是基于 jdk8 的版本，不排除在更高版本中有部分的改动可能性
+以下内容均是基于 Jdk8 的版本，不排除在更高版本中有部分的改动可能性
 
 ## 排序
 
-关于 java 中 sort 函数的具体使用方法会在 `Arrays` 部分与 `Collections` 部分给出详细内容，该部分主要是对 `Arrays.sort(int[])` 与 `Arrays.sort(Integer[])` 的探讨。
-在 java 中，`Arrays.sort(int[])` 底层是双端快排，`Arrays.sort(Integer[])` 底层是归并排序。因此 `Arrays.sort(int[])` 的最坏时间复杂度是 $O(n^2)$，可以通过如下例题来验证。
+关于 Java 中 sort 函数的具体使用方法会在 `Arrays` 部分与 `Collections` 部分给出详细内容，该部分主要是对 `Arrays.sort(int[])` 与 `Arrays.sort(Integer[])` 的探讨。
+在 Java 中，`Arrays.sort(int[])` 底层是双端快排，`Arrays.sort(Integer[])` 底层是归并排序。因此 `Arrays.sort(int[])` 的最坏时间复杂度是 $O(n^2)$，可以通过如下例题来验证。
 
 ???+note "[[codeforces]Quality vs Quantity](https://www.luogu.com.cn/problem/P1216)"
     题意概要：有 $n$ 个数，你需要将其分为 2 组，是否能存在 1 组的长度小于另 1 组的同时和大于它。
@@ -50,7 +50,7 @@ public class Main{
             return Double.parseDouble(next());
         }
         String nextLine() {
-            String str = "";
+            String str="";
             try {
                 str = br.readLine();
             } catch (IOException e) {
@@ -78,7 +78,8 @@ public class Main{
                 out.println("YES");
                 return;
             }
-        }out.println("NO");
+        }
+        out.println("NO");
     }
     public static void main(String[] args) {
         int t=in.nextInt();
@@ -88,6 +89,7 @@ public class Main{
         }
     }
 }
+
 ```
 
 如果你将以上代码的 a 数组类型由 `Integer` 修改为 `int` 则会 TLE
@@ -115,6 +117,7 @@ class Main {
         out.flush();
     }
 }
+
 ```
 
 ### 基本运算
