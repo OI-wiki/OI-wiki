@@ -230,7 +230,7 @@ class Test {
 
 `Scanner` 和 `System.out.print` 在最开始会工作的很好，但是在处理更大的输入的时候会降低效率，因此我们会使用来自 Kattis 的 [Kattio.java](https://github.com/Kattis/kattio/blob/master/Kattio.java) 来提高 IO 效率。[^ref1]
 
-#### 使用Kattio+StringTokenizer作为输入
+#### 使用 Kattio+StringTokenizer 作为输入
 
 下方即为应包含在代码中的 IO 模板，由于 Kattis 的原 Kattio 包含一些并不常用的功能，下方的模板经过了一些调整（原 Kattio 使用 MIT 作为协议）。
 
@@ -282,7 +282,7 @@ class Test {
 }
 ```
 
-#### 使用StreamTokenizer作为输入
+#### 使用 StreamTokenizer 作为输入
 
 ```java
 import java.io.*;
@@ -311,8 +311,7 @@ public class Main {
     - `StreamTokenizer` 源码存在 Type，该 Type 根据你输入内容来决定类型，倘若你输入类似于 `123oi` 以 **数字开头** 的字符串，他会强制认为你的类型是 double 类型，因此在读入中以 double 类型去读 String 类型便会抛出异常；
     - `StreamTokenizer` 在读入 1e14 以上大小的数字会丢失精度；
 2. 在使用 `PrintWriter` 情况下，需注意在程序结束最后 flush 清除缓冲区，否则控制台将会没有输出。
-3. `Kattio`是继承自`PrintWriter`类，自身对象具有了`PrintWriter`的功能，因此可以直接调用`PrintWriter`类的函数输出，同时将StringTokenizer作为了自身的成员变量来修改。而第二种`Main`
-是同时将`StreamTokenizer` 与 `PrintWriter` 作为了自身的成员变量，因此在使用上有些许差距。
+3. `Kattio` 是继承自 `PrintWriter` 类，自身对象具有了 `PrintWriter` 的功能，因此可以直接调用 `PrintWriter` 类的函数输出，同时将 StringTokenizer 作为了自身的成员变量来修改。而第二种 `Main` 是同时将 `StreamTokenizer` 与 `PrintWriter` 作为了自身的成员变量，因此在使用上有些许差距。
 
 综上所述，在大部分情况下，`StringTokenizer` 的使用处境要优越于 `StreamTokenizer`，在极端 MLE 的情况下可以尝试 `StreamTokenizer`，同时 int 范围以上的数据 `StreamTokenizer` 处理是无能为力的
 
