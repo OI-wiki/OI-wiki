@@ -12,6 +12,7 @@
 
 ??? 例题代码
 
+
 ```java
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -123,6 +124,7 @@ class Main {
 }
 
 ```
+
 ### 基本运算
 
 以下均用 this 代替当前 BigIntger :
