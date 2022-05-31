@@ -92,11 +92,14 @@ public class Main{
 
 如果你将以上代码的 a 数组类型由 `Integer` 修改为 `int` 则会 TLE
 
-## BigInteger与数论
-`BigInteger`是Java提供的高精度计算类，可以很方便的解决高精度问题。
+## BigInteger 与数论
+
+`BigInteger` 是 Java 提供的高精度计算类，可以很方便的解决高精度问题。
 
 ### 创建对象
-BigInteger常用创建方式有如下二种：
+
+BigInteger 常用创建方式有如下二种：
+
 ```java
 
 import java.io.PrintWriter;
@@ -115,35 +118,37 @@ class Main {
 ```
 
 ### 基本运算
-以下均用this代替当前BigIntger :
 
-|   函数名   |   功能  |
-| :------------------:      | :-------------: |
-| abs()                     | 返回this的绝对值 |
-| negate()                  | 返回-this         |
-| add(BigInteger val)       |  返回this `+` val |
-| subtract(BigInteger val)  |  返回this `-` val |
-| multiply(BigInteger val)  |  返回this `*` val |
-| divide(BigInteger val)    |  返回this `/` val |
-| remainder(BigInteger val) |  返回this `%` val |
-| mod(BigInteger val) |  返回this mod val 总是返回非负数 |
-| pow(int e)         |  返回 $this^e$|
-| and(BigInteger val)       |  返回this `&` val |
-| or(BigInteger val)        |  返回this `|` val |
-| not()                     |  返回`~`this  |
-| xor(BigInteger val)       |  返回this `^` val |
-| shiftLeft(int n) | 返回this `<<` n |
-| shiftRight(int n) | 返回this `>>` n |
-| max(BigInteger val) | 返回this与val的较大值 |
-| min(BigInteger val) | 返回this与val的较小值 |
-| bitCount() | 返回this的二进制中不包括符号位的1的个数 |
-| bitLength()  | 返回this的二进制中不包括符号位的长度|
-| getLowestSetBit() | 返回this的二进制中最右边的位置|
-| compareTo(BigInteger val)   |  比较this和val值大小 |
-| toString() | 返回this的10进制字符串表示形式 |
-| toString(int radix) | 返回this的raidx进制字符串表示形式 |
+以下均用 this 代替当前 BigIntger :
 
-使用案例如下:
+|            函数名            |             功能             |        |
+| :-----------------------: | :------------------------: | ------ |
+|           abs()           |        返回 this 的绝对值        |        |
+|          negate()         |          返回 - this         |        |
+|    add(BigInteger val)    |       返回 this `+` val      |        |
+|  subtract(BigInteger val) |       返回 this `-` val      |        |
+|  multiply(BigInteger val) |       返回 this `*` val      |        |
+|   divide(BigInteger val)  |       返回 this `/` val      |        |
+| remainder(BigInteger val) |       返回 this `%` val      |        |
+|    mod(BigInteger val)    |   返回 this mod val 总是返回非负数  |        |
+|         pow(int e)        |         返回 $this^e$        |        |
+|    and(BigInteger val)    |       返回 this `&` val      |        |
+|     or(BigInteger val)    |         返回 this \`         | \` val |
+|           not()           |         返回 `~` this        |        |
+|    xor(BigInteger val)    |       返回 this `^` val      |        |
+|      shiftLeft(int n)     |       返回 this `<<` n       |        |
+|     shiftRight(int n)     |       返回 this `>>` n       |        |
+|    max(BigInteger val)    |     返回 this 与 val 的较大值     |        |
+|    min(BigInteger val)    |     返回 this 与 val 的较小值     |        |
+|         bitCount()        | 返回 this 的二进制中不包括符号位的 1 的个数 |        |
+|        bitLength()        |   返回 this 的二进制中不包括符号位的长度   |        |
+|     getLowestSetBit()     |     返回 this 的二进制中最右边的位置    |        |
+| compareTo(BigInteger val) |      比较 this 和 val 值大小     |        |
+|         toString()        |   返回 this 的 10 进制字符串表示形式   |        |
+|    toString(int radix)    |  返回 this 的 raidx 进制字符串表示形式 |        |
+
+使用案例如下：
+
 ```java
 
 import java.io.PrintWriter;
@@ -319,8 +324,11 @@ class Main {
 }
 
 ```
+
 ### 数学运算
-以下均用this代替当前BigIntger :
+
+以下均用 this 代替当前 BigIntger :
+
 ## 数据结构
 
 ### List
