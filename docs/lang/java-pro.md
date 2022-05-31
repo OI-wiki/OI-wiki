@@ -92,8 +92,235 @@ public class Main{
 
 如果你将以上代码的 a 数组类型由 `Integer` 修改为 `int` 则会 TLE
 
-## BigInteger 与数论
+## BigInteger与数论
+`BigInteger`是Java提供的高精度计算类，可以很方便的解决高精度问题。
 
+### 创建对象
+BigInteger常用创建方式有如下二种：
+```java
+
+import java.io.PrintWriter;
+import java.math.BigInteger;
+
+class Main {
+    static PrintWriter out=new PrintWriter(System.out);
+    public static void main(String[] args) {
+        BigInteger a=new BigInteger("12345678910");//将字符串以10进制的形式创建BigInteger对象
+        out.println(a);//a的值为 12345678910
+        BigInteger b=new BigInteger("1E",16);//将字符串以指定进制的形式创建BigInteger对象
+        out.println(b);//c的值为 30
+        out.flush();
+    }
+}
+```
+
+### 基本运算
+以下均用this代替当前BigIntger :
+
+|   函数名   |   功能  |
+| :------------------:      | :-------------: |
+| abs()                     | 返回this的绝对值 |
+| negate()                  | 返回-this         |
+| add(BigInteger val)       |  返回this `+` val |
+| subtract(BigInteger val)  |  返回this `-` val |
+| multiply(BigInteger val)  |  返回this `*` val |
+| divide(BigInteger val)    |  返回this `/` val |
+| remainder(BigInteger val) |  返回this `%` val |
+| mod(BigInteger val) |  返回this mod val 总是返回非负数 |
+| pow(int e)         |  返回 $this^e$|
+| and(BigInteger val)       |  返回this `&` val |
+| or(BigInteger val)        |  返回this `|` val |
+| not()                     |  返回`~`this  |
+| xor(BigInteger val)       |  返回this `^` val |
+| shiftLeft(int n) | 返回this `<<` n |
+| shiftRight(int n) | 返回this `>>` n |
+| max(BigInteger val) | 返回this与val的较大值 |
+| min(BigInteger val) | 返回this与val的较小值 |
+| bitCount() | 返回this的二进制中不包括符号位的1的个数 |
+| bitLength()  | 返回this的二进制中不包括符号位的长度|
+| getLowestSetBit() | 返回this的二进制中最右边的位置|
+| compareTo(BigInteger val)   |  比较this和val值大小 |
+| toString() | 返回this的10进制字符串表示形式 |
+| toString(int radix) | 返回this的raidx进制字符串表示形式 |
+
+使用案例如下:
+```java
+
+import java.io.PrintWriter;
+import java.math.BigInteger;
+
+class Main {
+    static PrintWriter out=new PrintWriter(System.out);
+    static BigInteger a,b;
+    static void abs(){
+        out.println("abs:");
+        a=new BigInteger("-123");
+        out.println(a.abs());//输出 123
+        a=new BigInteger("123");
+        out.println(a.abs());//输出 123
+    }
+    static void negate(){
+        out.println("negate:");
+        a=new BigInteger("-123");
+        out.println(a.negate());//输出 123
+        a=new BigInteger("123");
+        out.println(a.negate());//输出 -123
+    }
+    static void add(){
+        out.println("add:");
+        a=new BigInteger("123");
+        b=new BigInteger("123");
+        out.println(a.add(b));//输出 246
+    }
+    static void subtract(){
+        out.println("subtract:");
+        a=new BigInteger("123");
+        b=new BigInteger("123");
+        out.println(a.subtract(b));//输出 0
+    }
+    static void multiply(){
+        out.println("multiply:");
+        a=new BigInteger("12");
+        b=new BigInteger("12");
+        out.println(a.multiply(b));//输出 144
+    }
+    static void divide(){
+        out.println("divide:");
+        a=new BigInteger("12");
+        b=new BigInteger("11");
+        out.println(a.divide(b));//输出 1
+    }
+    static void remainder(){
+        out.println("remainder:");
+        a=new BigInteger("12");
+        b=new BigInteger("10");
+        out.println(a.remainder(b));//输出 2
+        a=new BigInteger("-12");
+        b=new BigInteger("10");
+        out.println(a.remainder(b));//输出 -2
+    }
+    static void mod(){
+        out.println("mod:");
+        a=new BigInteger("12");
+        b=new BigInteger("10");
+        out.println(a.mod(b));//输出 2
+        a=new BigInteger("-12");
+        b=new BigInteger("10");
+        out.println(a.mod(b));//输出 8
+    }
+    static void pow(){
+        out.println("pow:");
+        a=new BigInteger("2");
+        out.println(a.pow(10));//输出1024
+    }
+    static void and(){
+        out.println("and:");
+        a=new BigInteger("3"); // 11
+        b=new BigInteger("5"); //101
+        out.println(a.and(b));//输出1
+    }
+    static void or(){
+        out.println("or:");
+        a=new BigInteger("2"); // 10
+        b=new BigInteger("5"); //101
+        out.println(a.or(b));//输出7
+    }
+    static void not(){
+        out.println("not:");
+        a=new BigInteger("2147483647"); // 01111111 11111111 11111111 11111111
+        out.println(a.not());//输出-2147483648 二进制为：10000000 00000000 00000000 00000000
+    }
+    static void xor(){
+        out.println("xor:");
+        a=new BigInteger("6");//110
+        b=new BigInteger("5");//101
+        out.println(a.xor(b));//011 输出3
+    }
+    static void shiftLeft(){
+        out.println("shiftLeft:");
+        a=new BigInteger("1");
+        out.println(a.shiftLeft(10));// 输出1024
+    }
+    static void shiftRight(){
+        out.println("shiftRight:");
+        a=new BigInteger("1024");
+        out.println(a.shiftRight(8));//输出4
+    }
+    static void max(){
+        out.println("max:");
+        a=new BigInteger("6");
+        b=new BigInteger("5");
+        out.println(a.max(b));//输出6
+    }
+    static void min(){
+        out.println("min:");
+        a=new BigInteger("6");
+        b=new BigInteger("5");
+        out.println(a.min(b));//输出5
+    }
+    static void bitCount(){
+        out.println("bitCount:");
+        a=new BigInteger("6");//110
+        out.println(a.bitCount());//输出2
+    }
+    static void bitLength(){
+        out.println("bitLength:");
+        a=new BigInteger("6");//110
+        out.println(a.bitLength());//输出3
+    }
+    static void getLowestSetBit(){
+        out.println("getLowestSetBit:");
+        a=new BigInteger("8");//1000
+        out.println(a.getLowestSetBit());//输出3
+    }
+    static void compareTo(){
+        out.println("compareTo:");
+        a=new BigInteger("8");
+        b=new BigInteger("9");
+        out.println(a.compareTo(b)); //输出 -1
+        a=new BigInteger("8");
+        b=new BigInteger("8");
+        out.println(a.compareTo(b)); //输出 0
+        a=new BigInteger("8");
+        b=new BigInteger("7");
+        out.println(a.compareTo(b)); //输出 1
+    }
+    static void toStringTest(){
+        out.println("toString:");
+        a=new BigInteger("15");
+        out.println(a.toString());//输出15
+        out.println(a.toString(16));//输出f
+    }
+    public static void main(String[] args) {
+        abs();
+        negate();
+        add();
+        subtract();
+        multiply();
+        divide();
+        remainder();
+        mod();
+        pow();
+        and();
+        or();
+        not();
+        xor();
+        shiftLeft();
+        shiftRight();
+        max();
+        min();
+        bitCount();
+        bitLength();
+        getLowestSetBit();
+        compareTo();
+        toStringTest();
+        out.flush();
+    }
+}
+
+```
+### 数学运算
+以下均用this代替当前BigIntger :
 ## 数据结构
 
 ### List
