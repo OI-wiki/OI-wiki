@@ -12,7 +12,6 @@
 
 ??? 例题代码
 
-
 ```java
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,24 +20,26 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main{
-    static class FastReader{
+public class Main {
+    static class FastReader {
         StringTokenizer st;
         BufferedReader br;
-        public FastReader(){
-            br=new BufferedReader(new InputStreamReader(System.in));
+
+        public FastReader() {
+            br = new BufferedReader(new InputStreamReader(System.in));
         }
 
-        String next(){
-            while (st==null||!st.hasMoreElements()){
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
                 try {
-                    st=new StringTokenizer(br.readLine());
-                }catch (IOException e){
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
             return st.nextToken();
         }
+
         int nextInt() {
             return Integer.parseInt(next());
         }
@@ -46,11 +47,13 @@ public class Main{
         long nextLong() {
             return Long.parseLong(next());
         }
+
         double nextDouble() {
             return Double.parseDouble(next());
         }
+
         String nextLine() {
-            String str="";
+            String str = "";
             try {
                 str = br.readLine();
             } catch (IOException e) {
@@ -59,37 +62,39 @@ public class Main{
             return str;
         }
     }
+
     static PrintWriter out = new PrintWriter(System.out);
     static FastReader in = new FastReader();
-    static void solve(){
-        int n=in.nextInt();
-        Integer a[]=new Integer[n+10];
-        for(int i=1;i<=n;i++){
-            a[i]=in.nextInt();
+
+    static void solve() {
+        int n = in.nextInt();
+        Integer a[] = new Integer[n + 10];
+        for (int i = 1; i <= n; i++) {
+            a[i] = in.nextInt();
         }
-        Arrays.sort(a,1,n+1);
-        long left=a[1];
-        long right=0;
-        int x=n;
-        for(int i=2;i<x;i++,x--){
-            left=left+a[i];
-            right=right+a[x];
-            if(right>left) {
+        Arrays.sort(a, 1, n + 1);
+        long left = a[1];
+        long right = 0;
+        int x = n;
+        for (int i = 2; i < x; i++, x--) {
+            left = left + a[i];
+            right = right + a[x];
+            if (right > left) {
                 out.println("YES");
                 return;
             }
         }
         out.println("NO");
     }
+
     public static void main(String[] args) {
-        int t=in.nextInt();
-        while (t-->0){
+        int t = in.nextInt();
+        while (t-- > 0) {
             solve();
             out.flush();
         }
     }
 }
-
 ```
 
 如果你将以上代码的 a 数组类型由 `Integer` 修改为 `int` 则会 TLE
@@ -103,23 +108,21 @@ public class Main{
 BigInteger 常用创建方式有如下二种：
 
 ```java
-
 import java.io.PrintWriter;
 import java.math.BigInteger;
 
 class Main {
-    static PrintWriter out=new PrintWriter(System.out);
+    static PrintWriter out = new PrintWriter(System.out);
     public static void main(String[] args) {
-        BigInteger a=new BigInteger("12345678910");//将字符串以10进制的形式创建BigInteger对象
+        BigInteger a = new BigInteger("12345678910");//将字符串以10进制的形式创建BigInteger对象
         out.println(a);//a的值为 12345678910
-        BigInteger b=new BigInteger("1E",16);//将字符串以指定进制的形式创建BigInteger对象
+        BigInteger b = new BigInteger("1E", 16);//将字符串以指定进制的形式创建BigInteger对象
         out.println(b);//c的值为 30
         out.flush();
     }
 }
 
 ```
-
 ### 基本运算
 
 以下均用 this 代替当前 BigIntger :
@@ -157,148 +160,171 @@ class Main {
 import java.io.PrintWriter;
 import java.math.BigInteger;
 
-class Main {
-    static PrintWriter out=new PrintWriter(System.out);
-    static BigInteger a,b;
-    static void abs(){
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+    static BigInteger a, b;
+
+    static void abs() {
         out.println("abs:");
-        a=new BigInteger("-123");
+        a = new BigInteger("-123");
         out.println(a.abs());//输出 123
-        a=new BigInteger("123");
+        a = new BigInteger("123");
         out.println(a.abs());//输出 123
     }
-    static void negate(){
+
+    static void negate() {
         out.println("negate:");
-        a=new BigInteger("-123");
+        a = new BigInteger("-123");
         out.println(a.negate());//输出 123
-        a=new BigInteger("123");
+        a = new BigInteger("123");
         out.println(a.negate());//输出 -123
     }
-    static void add(){
+
+    static void add() {
         out.println("add:");
-        a=new BigInteger("123");
-        b=new BigInteger("123");
+        a = new BigInteger("123");
+        b = new BigInteger("123");
         out.println(a.add(b));//输出 246
     }
-    static void subtract(){
+
+    static void subtract() {
         out.println("subtract:");
-        a=new BigInteger("123");
-        b=new BigInteger("123");
+        a = new BigInteger("123");
+        b = new BigInteger("123");
         out.println(a.subtract(b));//输出 0
     }
-    static void multiply(){
+
+    static void multiply() {
         out.println("multiply:");
-        a=new BigInteger("12");
-        b=new BigInteger("12");
+        a = new BigInteger("12");
+        b = new BigInteger("12");
         out.println(a.multiply(b));//输出 144
     }
-    static void divide(){
+
+    static void divide() {
         out.println("divide:");
-        a=new BigInteger("12");
-        b=new BigInteger("11");
+        a = new BigInteger("12");
+        b = new BigInteger("11");
         out.println(a.divide(b));//输出 1
     }
-    static void remainder(){
+
+    static void remainder() {
         out.println("remainder:");
-        a=new BigInteger("12");
-        b=new BigInteger("10");
+        a = new BigInteger("12");
+        b = new BigInteger("10");
         out.println(a.remainder(b));//输出 2
-        a=new BigInteger("-12");
-        b=new BigInteger("10");
+        a = new BigInteger("-12");
+        b = new BigInteger("10");
         out.println(a.remainder(b));//输出 -2
     }
-    static void mod(){
+
+    static void mod() {
         out.println("mod:");
-        a=new BigInteger("12");
-        b=new BigInteger("10");
+        a = new BigInteger("12");
+        b = new BigInteger("10");
         out.println(a.mod(b));//输出 2
-        a=new BigInteger("-12");
-        b=new BigInteger("10");
+        a = new BigInteger("-12");
+        b = new BigInteger("10");
         out.println(a.mod(b));//输出 8
     }
-    static void pow(){
+
+    static void pow() {
         out.println("pow:");
-        a=new BigInteger("2");
+        a = new BigInteger("2");
         out.println(a.pow(10));//输出1024
     }
-    static void and(){
+
+    static void and() {
         out.println("and:");
-        a=new BigInteger("3"); // 11
-        b=new BigInteger("5"); //101
+        a = new BigInteger("3"); // 11
+        b = new BigInteger("5"); //101
         out.println(a.and(b));//输出1
     }
-    static void or(){
+
+    static void or() {
         out.println("or:");
-        a=new BigInteger("2"); // 10
-        b=new BigInteger("5"); //101
+        a = new BigInteger("2"); // 10
+        b = new BigInteger("5"); //101
         out.println(a.or(b));//输出7
     }
-    static void not(){
+
+    static void not() {
         out.println("not:");
-        a=new BigInteger("2147483647"); // 01111111 11111111 11111111 11111111
+        a = new BigInteger("2147483647"); // 01111111 11111111 11111111 11111111
         out.println(a.not());//输出-2147483648 二进制为：10000000 00000000 00000000 00000000
     }
-    static void xor(){
+
+    static void xor() {
         out.println("xor:");
-        a=new BigInteger("6");//110
-        b=new BigInteger("5");//101
+        a = new BigInteger("6");//110
+        b = new BigInteger("5");//101
         out.println(a.xor(b));//011 输出3
     }
-    static void shiftLeft(){
+
+    static void shiftLeft() {
         out.println("shiftLeft:");
-        a=new BigInteger("1");
+        a = new BigInteger("1");
         out.println(a.shiftLeft(10));// 输出1024
     }
-    static void shiftRight(){
+
+    static void shiftRight() {
         out.println("shiftRight:");
-        a=new BigInteger("1024");
+        a = new BigInteger("1024");
         out.println(a.shiftRight(8));//输出4
     }
-    static void max(){
+
+    static void max() {
         out.println("max:");
-        a=new BigInteger("6");
-        b=new BigInteger("5");
+        a = new BigInteger("6");
+        b = new BigInteger("5");
         out.println(a.max(b));//输出6
     }
-    static void min(){
+
+    static void min() {
         out.println("min:");
-        a=new BigInteger("6");
-        b=new BigInteger("5");
+        a = new BigInteger("6");
+        b = new BigInteger("5");
         out.println(a.min(b));//输出5
     }
-    static void bitCount(){
+
+    static void bitCount() {
         out.println("bitCount:");
-        a=new BigInteger("6");//110
+        a = new BigInteger("6");//110
         out.println(a.bitCount());//输出2
     }
-    static void bitLength(){
+
+    static void bitLength() {
         out.println("bitLength:");
-        a=new BigInteger("6");//110
+        a = new BigInteger("6");//110
         out.println(a.bitLength());//输出3
     }
-    static void getLowestSetBit(){
+
+    static void getLowestSetBit() {
         out.println("getLowestSetBit:");
-        a=new BigInteger("8");//1000
+        a = new BigInteger("8");//1000
         out.println(a.getLowestSetBit());//输出3
     }
-    static void compareTo(){
+
+    static void compareTo() {
         out.println("compareTo:");
-        a=new BigInteger("8");
-        b=new BigInteger("9");
+        a = new BigInteger("8");
+        b = new BigInteger("9");
         out.println(a.compareTo(b)); //输出 -1
-        a=new BigInteger("8");
-        b=new BigInteger("8");
+        a = new BigInteger("8");
+        b = new BigInteger("8");
         out.println(a.compareTo(b)); //输出 0
-        a=new BigInteger("8");
-        b=new BigInteger("7");
+        a = new BigInteger("8");
+        b = new BigInteger("7");
         out.println(a.compareTo(b)); //输出 1
     }
-    static void toStringTest(){
+
+    static void toStringTest() {
         out.println("toString:");
-        a=new BigInteger("15");
+        a = new BigInteger("15");
         out.println(a.toString());//输出15
         out.println(a.toString(16));//输出f
     }
+
     public static void main(String[] args) {
         abs();
         negate();
