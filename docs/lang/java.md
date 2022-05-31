@@ -310,7 +310,9 @@ public class Main {
 1.  `StreamTokenizer` 相较于 `StringTokenizer` 内存较小，当你在使用 java 标程却依旧 `MLE` 时可以尝试 `StreamTokenizer`，但是 `StreamTokenizer` 会丢精度，读入部分数据会出现问题；
     - `StreamTokenizer` 源码存在 Type，该 Type 根据你输入内容来决定类型，倘若你输入类似于 `123oi` 以 **数字开头** 的字符串，他会强制认为你的类型是 double 类型，因此在读入中以 double 类型去读 String 类型便会抛出异常；
     - `StreamTokenizer` 在读入 1e14 以上大小的数字会丢失精度；
+
 2. 在使用 `PrintWriter` 情况下，需注意在程序结束最后 flush 清除缓冲区，否则控制台将会没有输出。
+
 3. `Kattio` 是继承自 `PrintWriter` 类，自身对象具有了 `PrintWriter` 的功能，因此可以直接调用 `PrintWriter` 类的函数输出，同时将 StringTokenizer 作为了自身的成员变量来修改。而第二种 `Main` 是同时将 `StreamTokenizer` 与 `PrintWriter` 作为了自身的成员变量，因此在使用上有些许差距。
 
 综上所述，在大部分情况下，`StringTokenizer` 的使用处境要优越于 `StreamTokenizer`，在极端 MLE 的情况下可以尝试 `StreamTokenizer`，同时 int 范围以上的数据 `StreamTokenizer` 处理是无能为力的
