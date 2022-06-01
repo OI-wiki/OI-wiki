@@ -361,31 +361,32 @@ public class Main {
 以下均用 this 代替当前 BigIntger :
 
 ## 数据结构
-以下内容用法均基于Java里多态的性质，均是以实现接口的形式出现
+
+以下内容用法均基于 Java 里多态的性质，均是以实现接口的形式出现
 
 ### List 列表
 
-#### 1.ArrayList 
+#### 1.ArrayList
 
-#### 2.LinkedList 
+#### 2.LinkedList
 
 ### Queue 队列
 
-#### 1.LinkedList 
+#### 1.LinkedList
 
-#### 2.PriorityQueue 
+#### 2.PriorityQueue
 
 ### Set 集合
 
-#### 1.HashSet 
+#### 1.HashSet
 
-#### 2.LinkedHashSet 
+#### 2.LinkedHashSet
 
-#### 3.TreeSet 
+#### 3.TreeSet
 
 ### Map 哈希表
 
-#### 1.HashMap 
+#### 1.HashMap
 
 #### 2.LinkedHashMap
 
