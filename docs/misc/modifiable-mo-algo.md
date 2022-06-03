@@ -1,6 +1,6 @@
 author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan, renbaoshuo
 
-请确保您已经会普通莫队算法了。如果您还不会，请先阅读前面的“[普通莫队算法](./mo-algo.md)”。
+请确保您已经会普通莫队算法了。如果您还不会，请先阅读前面的[普通莫队算法](./mo-algo.md)。
 
 ## 特点
 
