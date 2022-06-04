@@ -4,7 +4,7 @@
 
 ## Lambda 表达式
 
-Lambda 表达式能够捕获作用域中的变量的无名函数对象。我们可以将其理解为一个匿名的内联函数, 可以用来替换独立函数或者函数对象，从而使代码更可读。但是从本质上来讲，Lambda表达式只是一种语法糖，因为它能完成的工作也可以用其他复杂的C++语法来实现。
+Lambda 表达式能够捕获作用域中的变量的无名函数对象。我们可以将其理解为一个匿名的内联函数，可以用来替换独立函数或者函数对象，从而使代码更可读。但是从本质上来讲，Lambda 表达式只是一种语法糖，因为它能完成的工作也可以用其他复杂的 C++ 语法来实现。
 
 下面是 Lambda 表达式的语法：
 
@@ -12,7 +12,7 @@ Lambda 表达式能够捕获作用域中的变量的无名函数对象。我们�
 [capture] (parameters) mutable -> return-type {statement}
 ```
 
-下面我们分别对其中的capture, parameters, mutable, return-type, statement进行介绍。
+下面我们分别对其中的 capture, parameters, mutable, return-type, statement 进行介绍。
 
 ### capture 捕获子句
 
@@ -34,14 +34,15 @@ Lambda 表达式以 capture 子句开头，它指定哪些变量被捕获，以�
 以下是一些常见的例子：
 
 ```cpp
-int a = 0;                       // Define an integer variable
-auto f = []()   { return a*9; }; // Error: 'a' cannot be accessed
-auto f = [a]()  { return a*9; }; // OK, 'a' is "captured" by value
-auto f = [&a]() { return a++; }; // OK, 'a' is "captured" by reference
-                                 //      Note: It is the responsibility of the programmer
-                                 //      to ensure that a is not destroyed before the
-                                 //      lambda is called.
-auto b = f();                    // Call the lambda function. a is taken from the capture list and not passed here.
+int a = 0;                         // Define an integer variable
+auto f = []() { return a * 9; };   // Error: 'a' cannot be accessed
+auto f = [a]() { return a * 9; };  // OK, 'a' is "captured" by value
+auto f = [&a]() { return a++; };   // OK, 'a' is "captured" by reference
+                                   //      Note: It is the responsibility of the
+                                  //      programmer to ensure that a is not
+                                  //      destroyed before the lambda is called.
+auto b = f();  // Call the lambda function. a is taken from the capture list and
+               // not passed here.
 ```
 
 ### parameters 参数列表
@@ -69,40 +70,39 @@ for (auto i : x) std::cout << i << " ";
 
 这将打印出 `x` 数组从大到小排序后的结果。
 
-由于 **parameters 参数列表** 是可选的，如果不将参数传递给 Lambda 表达式，并且其 Lambda 声明器不包含mutable，则可以省略空括号。
+由于 **parameters 参数列表** 是可选的，如果不将参数传递给 Lambda 表达式，并且其 Lambda 声明器不包含 mutable，则可以省略空括号。
 
 Lambda 表达式也可以将另一个 Lambda 表达式作为其自变量。
 
 一个例子：
 
 ```cpp
-#include <iostream>
 #include <functional>
+#include <iostream>
 
-int main()
-{
-    using namespace std;
+int main() {
+  using namespace std;
 
-    // The following code declares a lambda expression that returns
-    // another lambda expression that adds two numbers.
-    // The returned lambda expression captures parameter x by value.
-    auto addtwointegers = [](int x) -> function<int(int)> {
-        return [=](int y) { return x + y; };
-    };
+  // The following code declares a lambda expression that returns
+  // another lambda expression that adds two numbers.
+  // The returned lambda expression captures parameter x by value.
+  auto addtwointegers = [](int x) -> function<int(int)> {
+    return [=](int y) { return x + y; };
+  };
 
-    // The following code declares a lambda expression that takes another
-    // lambda expression as its argument.
-    // The lambda expression applies the argument z to the function f
-    // and multiplies by 2.
-    auto higherorder = [](const function<int(int)>& f, int z) {
-        return f(z) * 2;
-    };
+  // The following code declares a lambda expression that takes another
+  // lambda expression as its argument.
+  // The lambda expression applies the argument z to the function f
+  // and multiplies by 2.
+  auto higherorder = [](const function<int(int)>& f, int z) {
+    return f(z) * 2;
+  };
 
-    // Call the lambda expression that is bound to higherorder.
-    auto answer = higherorder(addtwointegers(7), 8);
+  // Call the lambda expression that is bound to higherorder.
+  auto answer = higherorder(addtwointegers(7), 8);
 
-    // Print the result, which is (7+8)*2.
-    cout << answer << endl;
+  // Print the result, which is (7+8)*2.
+  cout << answer << endl;
 }
 ```
 
@@ -110,14 +110,14 @@ int main()
 
 利用可变规范，Lambda 表达式的主体可以修改通过值捕获的变量。若使用此关键字，则 parameters **不可省略**（即使为空）。
 
-一个例子，使用 **capture 捕获字句** 中的例子，来观察a的值的变化：
+一个例子，使用 **capture 捕获字句** 中的例子，来观察 a 的值的变化：
 
 ```cpp
-int a = 0;                       // Define an integer variable
-auto func = [a]() mutable {++a; };
+int a = 0;  // Define an integer variable
+auto func = [a]() mutable { ++a; };
 ```
 
-此时a的值改变为1。
+此时 a 的值改变为 1。
 
 ### return-type 返回类型
 
