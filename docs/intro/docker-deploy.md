@@ -8,7 +8,7 @@
 ```bash
 # 以下命令在主机中运行其中一个即可
 # Docker Hub 镜像（官方镜像仓库）
-docker pull 24oi/oi-wiki
+docker pull oi-wiki/oi-wiki
 # DaoCloud Hub 镜像（国内镜像仓库）
 docker pull daocloud.io/sirius/oi-wiki
 # Tencent Hub 镜像（国内镜像仓库）
@@ -28,7 +28,7 @@ docker pull ccr.ccs.tencentyun.com/oi-wiki/oi-wiki
 docker run -d -it [image]
 ```
 
-- （必须）设置 `[image]` 以设置镜像。例如，从 Docker Hub 拉取的为 `24oi/oi-wiki`；DaoCloud Hub 拉取的则为 `daocloud.io/sirius/oi-wiki`。
+- （必须）设置 `[image]` 以设置镜像。例如，从 Docker Hub 拉取的为 `oi-wiki/oi-wiki`；DaoCloud Hub 拉取的则为 `daocloud.io/sirius/oi-wiki`。
 - （必须）设置 `-p [port]:8000` 以映射容器端口至主机端口（不写该语句则默认为不暴露端口。设置时请替换 `[port]` 为主机端口）。设置后可以在主机使用 `http://127.0.0.1:[port]` 访问 **OI Wiki**。
 - 设置 `--name [name]` 以设置容器名字。（默认空。设置时请替换 `[name]` 为自定义的容器名字。若想查看容器 id，则输入 `docker ps`）
 
