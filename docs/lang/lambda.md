@@ -4,7 +4,7 @@
 
 ## Lambda 表达式
 
-Lambda 表达式基于数学中的λ演算得名，直接对应于其中的lambda抽象。Lambda 表达式能够捕获作用域中的变量的无名函数对象。我们可以将其理解为一个匿名的内联函数，可以用来替换独立函数或者函数对象，从而使代码更可读。但是从本质上来讲，Lambda 表达式只是一种语法糖，因为它能完成的工作也可以用其他复杂的 C++ 语法来实现。
+Lambda 表达式基于数学中的λ演算得名，直接对应于其中的 lambda 抽象。Lambda 表达式能够捕获作用域中的变量的无名函数对象。我们可以将其理解为一个匿名的内联函数，可以用来替换独立函数或者函数对象，从而使代码更可读。但是从本质上来讲，Lambda 表达式只是一种语法糖，因为它能完成的工作也可以用其他复杂的 C++ 语法来实现。
 
 下面是 Lambda 表达式的语法：
 
@@ -39,8 +39,8 @@ auto f = []() { return a * 9; };   // Error: 'a' cannot be accessed
 auto f = [a]() { return a * 9; };  // OK, 'a' is "captured" by value
 auto f = [&a]() { return a++; };   // OK, 'a' is "captured" by reference
                                    //      Note: It is the responsibility of the
-                                  //      programmer to ensure that a is not
-                                  //      destroyed before the lambda is called.
+                                   // programmer to ensure that a is not
+// destroyed before the lambda is called.
 auto b = f();  // Call the lambda function. a is taken from the capture list and
                // not passed here.
 ```
