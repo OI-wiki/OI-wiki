@@ -292,7 +292,7 @@ class Test {
 import java.io.*;
 public class Main {
     // IO 代码
-    public static StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in),32768));
+    public static StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in), 32768));
     public static PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
     public static double nextDouble() throws IOException{ in.nextToken(); return in.nval; }
     public static float nextFloat() throws IOException { in.nextToken(); return (float)in.nval; }
