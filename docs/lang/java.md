@@ -303,7 +303,7 @@ public class Main {
     public static long nextLong() throws Exception{ in.nextToken();return (long)in.nval;}
     
     // 使用示例
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         int n=nextInt();
         out.println(n);
         out.flush();
