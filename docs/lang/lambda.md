@@ -84,7 +84,6 @@ int main() {
   using namespace std;
 
   // 返回另一个计算两数之和 Lambda 表达式
-  // The returned lambda expression captures parameter x by value.
   auto addtwointegers = [](int x) -> function<int(int)> {
     return [=](int y) { return x + y; };
   };
