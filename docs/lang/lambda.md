@@ -83,7 +83,7 @@ Lambda 表达式也可以将另一个 Lambda 表达式作为其自变量。
 int main() {
   using namespace std;
 
-  // The following code declares a lambda expression that returns
+  // 返回另一个计算两数之和 Lambda 表达式
   // another lambda expression that adds two numbers.
   // The returned lambda expression captures parameter x by value.
   auto addtwointegers = [](int x) -> function<int(int)> {
