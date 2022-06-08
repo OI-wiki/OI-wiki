@@ -40,7 +40,6 @@ auto f = [a]() { return a * 9; };  // OK, 'a' is "captured" by value
 auto f = [&a]() { return a++; };   // OK, 'a' is "captured" by reference
                                    //      Note: It is the responsibility of the
 auto b = f();  // a 在捕获列表里取出，不在参数列表传入
-               // not passed here.
 ```
 
 ### parameters 参数列表
