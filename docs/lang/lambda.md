@@ -128,7 +128,7 @@ auto lam = [](int a, int b) -> int
 
 ```cpp
 auto x1 = [](int i) { return i; };  // OK
-auto x2 = [] { return {1, 2}; };    // ERROR: 返回类型被推导为 void
+auto x2 = [] { return {1, 2}; };    // Error, 返回类型被推导为 void
 ```
 
 ### statement Lambda 主体
