@@ -154,8 +154,9 @@ fout.close();
 ### 模板
 
 ```cpp
-#include <cstdio>
 #include <fstream>
+using namespace std; // 两个类型都在 std 命名空间里
+
 ifstream fin("data.in");
 ofstream fout("data.out");
 
