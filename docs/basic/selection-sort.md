@@ -46,7 +46,7 @@ void selection_sort(int* a, int n) {
         ith = j;
       }
     }
-    swap(a[i],a[ith]);
+    swap(a[i], a[ith]);
   }
 }
 ```
