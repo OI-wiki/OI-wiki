@@ -62,7 +62,8 @@ int main() {
       l--;
       r--;
       if (l == 0)
-        printf("%d\n", max(s[n] ^ x, st.query(st.rt[r], st.rt[max(l - 1, 0)], s[n] ^ x)));
+        printf("%d\n", max(s[n] ^ x,
+                           st.query(st.rt[r], st.rt[max(l - 1, 0)], s[n] ^ x)));
       else
         printf("%d\n", st.query(st.rt[r], st.rt[max(l - 1, 0)], s[n] ^ x));
     }
