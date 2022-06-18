@@ -200,14 +200,45 @@ int upper(const void *p1, const void *p2) {
 
 ### 代码实现
 
+#### 伪代码
+
+$$
+\begin{array}{ll}
+1 & \textbf{Input. } \text{A range } [l, r] \text{ meaning the range of } x \text{.} \\
+2 & \textbf{Output. } \text{The maximum value of } x \text{ in the range.} \\
+3 & \textbf{Method. } \\
+4 & lmid\gets \frac{2l+r}{3} \\
+4 & rmid\gets \frac{l+2r}{3} \\
+5 & \textbf{if } f(lmid) > f(rmid) \\
+6 & \qquad r\gets rmid \\
+7 & \textbf{else } \\
+8 & \qquad l\gets lmid
+\end{array}
+$$
+
+#### C++
+
 ```cpp
-lmid = left + (right - left >> 1);
-rmid = lmid + (right - lmid >> 1);  // 对右侧区间取半
-if (cal(lmid) > cal(rmid))
-  right = rmid;
+lmid = (2 * l + r) / 3;
+rmid = (l + 2 * r) / 3;
+if (f(lmid) > f(rmid))
+  r = rmid;
 else
-  left = lmid;
+  l = lmid;
 ```
+
+### 例题讲解
+
+???+note "[P3382 【模板】三分法](https://www.luogu.com.cn/problem/P3382)"
+    给定一个 $N$ 次函数和范围 $[l, r]$，求出使函数在 $[l, x]$ 上单调递增且在 $[x, r]$ 上单调递减的唯一的 $x$ 的值。
+
+??? note "解题思路"
+    本题要求求 $N$ 次函数在 $[l, r]$ 取最大值时自变量的值，显然可以使用三分法。
+
+??? note "参考代码"
+    ```cpp
+    --8<-- "docs/basic/code/binary/binary_1.cpp"
+    ```
 
 ## 分数规划
 
