@@ -192,11 +192,11 @@ int upper(const void *p1, const void *p2) {
 
 - 如果 `lmid`（图中较左的蓝点）和 `rmid`（图中较右的蓝点）在最值的同侧（图中最值在两蓝点的右侧）：由函数为单峰函数可知二者中较大（小）的自变量值离最值的自变量值更近，舍去较远的点对应的区间（图中红色的区间）。
 
-![example1](images/binary2.svg)
+![example1](images/binary1.svg)
 
 - 如果函数的最值在 `lmid` 和 `rmid` 之间（图中两蓝点之间的区间）：由于最值在二者中间，可以舍去两侧的区间。但为和上一分类保持一致性，舍去较远的点对应的区间（图中红色的区间）。
 
-![example2](images/binary1.svg)
+![example2](images/binary2.svg)
 
 ### 代码实现
 
