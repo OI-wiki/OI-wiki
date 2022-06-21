@@ -14,6 +14,8 @@ Embarcadero Dev-C++[^ref1]是 Bloodshed Dev-C++ 和 Orwell Dev-C++ 的继任者�
 
 以上的 Dev-C++ 分发都被认为是「官方的」。此外，在 2015 年 Orwell Dev-C++ 停止更新后，因为教学需要，一位来自中国的个人开发者 [royqh1979](https://github.com/royqh1979) 决定继续开发他的 Dev-C++ 个人分支，命名为小熊猫 Dev-C++，集成了智能提示和高版本的 MinGW64，非常便于国内的个人使用和学习，项目官网位于 [小熊猫 Dev-C++](https://royqh.net/devcpp/download)，源代码托管于 [Github](https://github.com/royqh1979/Dev-Cpp)。
 
+在国内大部分信息学竞赛中，Dev-C++是官方指定IDE。
+
 ## 使用教程
 
 ### 常用快捷键
