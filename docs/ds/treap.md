@@ -17,7 +17,7 @@ Treap（树堆）是一种 **弱平衡** 的 **二叉搜索树**。它同时符�
 
 不难看出，如果用的是同一个值，那这两种数据结构的性质是矛盾的，所以我们再在搜索树的基础上，引入一个给堆的值 $\textit{priority}$。对于 $\textit{val}$ 值，我们维护搜索树的性质，对于 $\textit{priority}$ 值，我们维护堆的性质。其中 $\textit{priority}$ 这个值是随机给出的。
 
-下图就是一个 Treap 的例子（这里使用的是小根堆，即根节点的值最小）。![](https://ttzytt.com/img/treap/treap.svg)
+下图就是一个 Treap 的例子（这里使用的是小根堆，即根节点的值最小）。![](./images/treap-treap-example.svg)
 
 那我们为什么需要大费周章的去让这个数据结构符合树和堆的性质，并且随机给出堆的值呢？
 
@@ -35,7 +35,7 @@ Treap（树堆）是一种 **弱平衡** 的 **二叉搜索树**。它同时符�
 
 那……
 
-这个树就会变得非常“瘦长”（每次插入的节点都比前面的大，所以都被安排到右子节点了）：![](https://ttzytt.com/img/treap/search_tree_chain.svg)
+这个树就会变得非常“瘦长”（每次插入的节点都比前面的大，所以都被安排到右子节点了）：![](./images/treap-search-tree-chain.svg)
 
 不难看出，现在这个二叉搜索树已经退化成链了，查询的复杂度也从 $\log_2{n}$ 变成了线性。
 
@@ -215,7 +215,7 @@ struct Node {
 
 左旋和右旋操作是相互的，如下图。
 
-![](https://ttzytt.com/img/treap/rotate.svg)
+![](./images/treap-rotate.svg)
 
 ```cpp
 enum rot_type { LF = 1, RT = 0 };
