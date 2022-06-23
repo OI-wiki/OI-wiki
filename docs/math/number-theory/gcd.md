@@ -50,6 +50,8 @@ int gcd(int a, int b) {
 }
 ```
 
+另外，对于 C++14，我们可以使用自带的 ` __gcd(a,b)` 函数来求最大公约数。而对于 C++ 17，我们可以使用 [`<numeric>`](https://en.cppreference.com/w/cpp/header/numeric) 头中的 [`std::gcd`](https://en.cppreference.com/w/cpp/numeric/gcd) 与 [`std::lcm`](https://en.cppreference.com/w/cpp/numeric/lcm) 来求最大公约数和最小公倍数。
+
 ```java
 // Java Version
 class Main {
