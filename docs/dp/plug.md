@@ -82,6 +82,8 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 多条回路
 
+#### 例题
+
 ???+note " 例题 [「HDU 1693」Eat the Trees](https://vjudge.net/problem/HDU-1693)"
     题目大意：求用若干条回路覆盖 $N\times M$ 棋盘的方案数，有些位置有障碍。
 
@@ -94,12 +96,14 @@ if (s >> j & 1) {       // 如果已被覆盖
     --8<-- "docs/dp/code/plug/plug_1.cpp"
     ```
 
+#### 习题
+
 ??? note " 习题 [「ZJU 4231」The Hive II](https://vjudge.net/problem/ZOJ-3466)"
     题目大意：同上题，但格子变成了六边形。
 
 ### 一条回路
 
-#### 例题「Andrew Stankevich Contest 16 - Problem F」Pipe Layout
+#### 例题
 
 ???+note " 例题 [「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
     题目大意：求用一条回路覆盖 $N\times M$ 棋盘的方案数。
@@ -196,7 +200,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 关于哈希表的复杂度分析，以及开哈希和闭哈希的不同，可以参见 [《算法导论》](https://oi-wiki.org/intro/resources/#_5) 中关于散列表的相关章节。
 
-#### 状态转移讨论
+#### 状态转移
 
 ???+note "代码实现"
     ```cpp
@@ -239,23 +243,23 @@ if (s >> j & 1) {       // 如果已被覆盖
 #### 习题
 
 ??? note " 习题 [「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
-    题目大意：有障碍。
+    题目大意：求用一条回路覆盖 $N\times M$ 棋盘的方案数，有些位置有障碍。
 
-??? note " 习题 [「USACO 5.4.4」Betsy's Tours](http://oj.jzxx.net/problem.php?id=1695)"
+??? note " 习题 [「USACO 5.4.4」Betsy's Tours](https://nanti.jisuanke.com/t/T3533)"
     题目大意：一个 $N\times N$ 的方阵（$N\le 7$），求从左上角出发到左下角结束经过每个格子的路径总数。虽然是一条路径，但因为起点和终点固定，可以转化为一条回路问题。
 
 ??? note " 习题 [「POJ 1739」Tony's Tour](http://poj.org/problem?id=1739)"
-    题目大意：著名的男人八题系列之一。解法同上。
+    题目大意：一个 $N\times M$ 的棋盘，求从左下角出发到右下角结束经过每个格子的路径总数，有些位置有障碍。
 
 ??? note " 习题 [「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
-    题目大意：$n\le 1000,m=4$，每个回路需要统计两次（逆时针和顺时针），需要高精度。
+    题目大意：求用一条有向回路覆盖 $4\times N$ 的棋盘的方案数，需要高精度。
 
 ??? note " 习题 [「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
-    题目大意：对于每一个有 $m$ 条回路的方案，对答案的贡献是 $2^m$，求所有方案的贡献和。
+    题目大意：用多条回路覆盖 $n\times n$ 的方阵，每个有 $m$ 条回路的方案对答案的贡献是 $2^m$，求所有方案的贡献和。
 
 ### 一条路径
 
-#### 例题「ZOJ 3213」Beautiful Meadow
+#### 例题
 
 ???+note " 例题 [「ZOJ 3213」Beautiful Meadow](https://vjudge.net/problem/ZOJ-3213)"
     题目大意：一个 $N\times M$ 的方阵（$N,M\le 8$），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和。
@@ -335,7 +339,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     - 第 i 个参观的格点 (x, y)，满足 T[x][y]= L[i]
     - 路径的一端在棋盘的边界上
     
-    求可行的方案数 $\bmod 11192869$。
+    求可行的方案数。
 
 ## 染色模型
 
@@ -348,7 +352,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     
     ![black_and_white1](./images/black_and_white1.svg)
 
-#### 状态编码
+### 状态编码
 
 我们先考虑状态编码。不考虑连通性，那么就是 [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197)，不难用 [状压 DP](./state.md) 直接解决。现在我们需要在状态中同时体现颜色和连通性的信息，考察轮廓线上每个位置的状态，二进制的每 `Offset` 位描述轮廓线上的一个位置，因为只有黑白两种颜色，我们用最低位的奇偶性表示颜色，其余部分示连通性。
 
@@ -390,7 +394,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-#### 手写哈希
+### 手写哈希
 
 因为需要构造任意一组方案，这里的哈希表我们需要添加一组域 `pre[]` 来记录每个状态在上一阶段的任意一个前驱。
 
@@ -429,7 +433,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     hashTable<T_state, T_key> _H, H[N][N], *H0, *H1;
     ```
 
-#### 方案构造
+### 方案构造
 
 有了上面的信息，我们就可以容易的构造方案了。首先遍历当前哈希表中的状态，如果连通块数目不超过 $2$，那么统计进方案数。如果方案数不为 $0$，我们倒序用 `pre` 数组构造出方案，注意每一行的末尾因为我们执行了 `Roll()` 操作，颜色需要取 `c[j+1]`。
 
@@ -462,7 +466,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-#### 状态转移
+### 状态转移
 
 我们记：
 
@@ -536,6 +540,8 @@ if (s >> j & 1) {       // 如果已被覆盖
     --8<-- "docs/dp/code/plug/plug_4.cpp"
     ```
 
+### 习题
+
 ??? note " 习题 [「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://competitiveprogramming.info/topcoder/srm/round/9992/div/1)"
     题目大意：给一个棋盘图，每个格子有权值，求权值之和最小的连通块。
 
@@ -557,7 +563,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ## 实战篇
 
-### 例题「HDU 4113」Construct the Great Wall
+### 例题
 
 ???+note " 例题 [「HDU 4113」Construct the Great Wall](https://vjudge.net/problem/HDU-4113)"
     题目大意：在 $N\times M$ 的棋盘内构造一组回路，分割所有的 `x` 和 `o`。
@@ -728,22 +734,24 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
+### 习题
+
 ??? note " 习题 [「HDU 4796」Winter's Coming](https://vjudge.net/problem/HDU-4796)"
     题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白灰染色，要求所有黑色区域和白色区域连通，且黑色区域与白色区域分别与棋盘的上下边界连通，且其中黑色区域与白色区域不能相邻。每个格子有对应的代价，求一组染色方案，最小化灰色区域的代价。
     
     ![4796](./images/4796.jpg)
 
 ??? note " 习题 [「ZOJ 2125」Rocket Mania](https://vjudge.net/problem/ZOJ-2125)"
-    题目大意：9\*6 的地图上每个格子里是一种管道（-,T,L,+ 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与第 X 行的左边界通过管道相连。
+    题目大意：$9\times6$ 的地图上每个格子里是一种管道（`-`,`T`,`L`,`+` 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与第 X 行的左边界通过管道相连。
 
 ??? note " 习题 [「ZOJ 2126」Rocket Mania Plus](https://vjudge.net/problem/ZOJ-2126)"
-    题目大意：9\*6 的地图上每个格子里是一种管道（-,T,L,+ 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与左边界通过管道相连。
+    题目大意：$9\times6$ 的地图上每个格子里是一种管道（`-`,`T`,`L`,`+` 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与左边界通过管道相连。
 
 ??? note " 习题 [「World Finals 2009/2010 Harbin」Channel](https://vjudge.net/problem/UVALive-4789)"
-    题目大意：一张方格地图上用'.'表示空地、'#'表示石头，找到最长的一条路径满足：
-    1、起点在左上角，终点在右下角。
-    2、不能经过石头
-    3、路径自身不能在八连通的意义下成环。（即包括拐角处也不能接触）
+    题目大意：一张方格地图上用 `.` 表示空地、`#` 表示石头，找到最长的一条路径满足：
+      1. 起点在左上角，终点在右下角。
+      2. 不能经过石头。
+      3. 路径自身不能在八连通的意义下成环。（即包括拐角处也不能接触）
 
 ??? note " 习题 [「HDU 3958」Tower Defence](https://vjudge.net/problem/HDU-3958)"
     题目大意：可以转化为求解一条从 $\mathit{S}$ 到 $\mathit{T}$ 的不能接触的最长路径，拐角处可以接触。
@@ -757,7 +765,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     ![plug2](./images/plug2.png)
 
 ??? note " 习题 [「SDOI 2014」电路板](https://www.luogu.com.cn/problem/P3314)"
-    题目大意：一块 $N\times M$ 的电路板，上面有些位置是电线不能走的障碍，给定 $K$ 个格子对，要求每对格子都有电线相连，且电线之间互不相交。具体来说：为了保证电路线不相交，可以一条电路线从上边界进入当前格子，从左边界离开这个格子，另外一条电路线可以从下边界进入格子，从右边界出去。（需要注意的是：电路线本身是没有方向感念的，即格子对描述的边关系是无向边。）求满足要求的最短电线长度和方案数。输出对 25619849 取余数后的结果。
+    题目大意：一块 $N\times M$ 的电路板，上面有些位置是电线不能走的障碍，给定 $K$ 个格子对，要求每对格子都有电线相连，且电线之间互不相交（允许一条电路线从上边界进入当前格子，从左边界离开这个格子，另外一条电路线可以从下边界进入格子，从右边界出去）。视电线为无向边，求满足要求的最短电线长度和方案数。
 
 ??? note " 习题 [「SPOJ CAKE3」Delicious Cake](https://vjudge.net/problem/SPOJ-CAKE3)"
     题目大意：一块可视为 $N\times M$ 网格的蛋糕，现沿着格线将蛋糕切成数块，问有多少种不同的切割方法。切法相同当且仅当切成的每块蛋糕都形状相同且在同一位置上。（$min(N,M) \le 5, max(N,M) \le 130$）
