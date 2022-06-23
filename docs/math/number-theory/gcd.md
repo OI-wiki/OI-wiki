@@ -43,6 +43,30 @@ int gcd(int a, int b) {
   if (b == 0) return a;
   return gcd(b, a % b);
 }
+
+// A Simplified C++ Version
+int gcd(int a, int b) {
+  return b == 0 ? a : gcd(b, a % b);
+}
+```
+
+```java
+// Java Version
+class Main {
+  public int gcd(int a, int b) {
+    if (b == 0) return a;
+    return gcd(b, a % b);
+  }
+
+  public int simplifiedGcd(int a, int b) {
+    return b == 0 ? a : gcd(b, a % b);
+  }
+
+  public static void main(String[] args) {
+    System.out.println(gcd(12, 18));
+    System.out.println(simplifiedGcd(12, 18));
+  }
+}
 ```
 
 ```python
