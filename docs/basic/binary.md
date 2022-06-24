@@ -201,7 +201,6 @@ int upper(const void *p1, const void *p2) {
 ???+ warning "注意"
     在计算 `lmid` 和 `rmid` 时，请防止数据溢出的现象出现。
 
-
 ### 代码实现
 
 #### 伪代码
@@ -224,7 +223,7 @@ $$
 #### C++
 
 ```cpp
-while (rmid - lmid < eps){
+while (rmid - lmid < eps) {
   lmid = (2 * l + r) / 3;
   rmid = (l + 2 * r) / 3;
   if (f(lmid) > f(rmid))
