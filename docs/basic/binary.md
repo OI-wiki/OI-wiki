@@ -198,6 +198,10 @@ int upper(const void *p1, const void *p2) {
 
 ![example2](images/binary2.svg)
 
+???+ warning "注意"
+    在计算 `lmid` 和 `rmid` 时，请防止数据溢出的现象出现。
+
+
 ### 代码实现
 
 #### 伪代码
@@ -207,24 +211,27 @@ $$
 1 & \textbf{Input. } \text{A range } [l, r] \text{ meaning the range of } x \text{.} \\
 2 & \textbf{Output. } \text{The maximum value of } x \text{ in the range.} \\
 3 & \textbf{Method. } \\
-4 & lmid\gets \frac{2l+r}{3} \\
-4 & rmid\gets \frac{l+2r}{3} \\
-5 & \textbf{if } f(lmid) > f(rmid) \\
-6 & \qquad r\gets rmid \\
-7 & \textbf{else } \\
-8 & \qquad l\gets lmid
+4 & \textbf{while } rmid - lmid < eps\\
+5 & \qquad lmid\gets \frac{2l+r}{3} \\
+6 & \qquad rmid\gets \frac{l+2r}{3} \\
+7 & \qquad \textbf{if } f(lmid) > f(rmid) \\
+8 & \qquad \qquad r\gets rmid \\
+9 & \qquad \textbf{else } \\
+10 & \qquad \qquad l\gets lmid
 \end{array}
 $$
 
 #### C++
 
 ```cpp
-lmid = (2 * l + r) / 3;
-rmid = (l + 2 * r) / 3;
-if (f(lmid) > f(rmid))
-  r = rmid;
-else
-  l = lmid;
+while (rmid - lmid < eps){
+  lmid = (2 * l + r) / 3;
+  rmid = (l + 2 * r) / 3;
+  if (f(lmid) > f(rmid))
+    r = rmid;
+  else
+    l = lmid;
+}
 ```
 
 ### 例题讲解
