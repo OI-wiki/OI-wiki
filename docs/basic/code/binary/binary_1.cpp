@@ -8,13 +8,15 @@ double l, r, A[20], lmid, rmid;
 
 double f(double x) {
   double res = (double)0;
-  for (int i = N; i >= 0; i--) res += A[i] * pow(x, i);
+  for (int i = N; i >= 0; i--)
+    res += A[i] * pow(x, i);
   return res;
 }
 
 int main() {
   scanf("%d%lf%lf", &N, &l, &r);
-  for (int i = N; i >= 0; i--) scanf("%lf", &A[i]);
+  for (int i = N; i >= 0; i--)
+    scanf("%lf", &A[i]);
   while (r - l > eps) {
     lmid = (2 * l + r) / 3;
     rmid = (l + 2 * r) / 3;
