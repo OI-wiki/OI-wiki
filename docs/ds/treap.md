@@ -1,5 +1,3 @@
-author: Dev-XYS,[ttzytt](https://ttzytt.com)
-
 前置知识：[朴素二叉搜索树](https://oi-wiki.org/ds/bst/)
 
 ## 简介
