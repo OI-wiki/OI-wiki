@@ -1,4 +1,4 @@
-author: Dev-XYS,[ttzytt](https://ttzytt.com)
+author: Dev-XYS, [ttzytt](https://ttzytt.com)
 
 前置知识：[朴素二叉搜索树](https://oi-wiki.org/ds/bst/)
 
@@ -9,7 +9,7 @@ Treap（树堆）是一种 **弱平衡** 的 **二叉搜索树**。它同时符�
 其中，二叉搜索树的性质是：
 
 - 左子节点的值（$\textit{val}$）比父节点大
-- 右子节点的值（$\textit{priority}$）比父节点小（当然这也是可以反过来的）
+- 右子节点的值（$\textit{val}$）比父节点小（当然这也是可以反过来的）
 
 堆的性质是：
 
@@ -339,7 +339,6 @@ int _query_nex(Node *cur, int val) {
 ```
 
 ## 无旋 treap
-
 无旋 treap 的操作方式使得它天生支持维护序列、可持久化等特性。
 
 **无旋 treap** 又称分裂合并 treap。它仅有两种核心操作，即为 **分裂** 与 **合并**。通过这两种操作，在很多情况下可以比旋转 treap 更方便的实现别的操作。下面逐一介绍这两种操作。
@@ -348,12 +347,11 @@ int _query_nex(Node *cur, int val) {
     讲解无旋 treap 应当提到 **FHQ-Treap**(by 范浩强）。即可持久化，支持区间操作的无旋 Treap。更多内容请参照《范浩强谈数据结构》ppt。
 
 ### 分裂（split）
-
 #### 按值分裂
 
 分裂过程接受两个参数：根指针 $\textit{cur}$、关键值 $\textit{key}$。结果为将根指针指向的 treap 分裂为两个 treap，第一个 treap 所有结点的值（$\textit{val}$）小于等于 $\textit{key}$，第二个 treap 所有结点的值大于 $\textit{key}$。
 
-该过程首先判断 $\textit{key}$ 是否小于 $\textit{cur}$ 的值，若小于，则说明 $\textit{cur}$ 及其右子树全部小于 $\textit{key}（$\\textit{cur}$可能等于），$ 属于第二个 treap。当然，也可能有一部分的左子树的值大于 $\textit{key}$，所以还需要继续向左子树递归地分裂。对于大于 $\textit{key}$ 的那部分左子树，我们把它作为 $\textit{cur}$ 的左子树，这样，整个 $\textit{cur}$ 上的节点都是大于 $\textit{key}$ 的。
+该过程首先判断 $\textit{key}$ 是否小于 $\textit{cur}$ 的值，若小于，则说明 $\textit{cur}$ 及其右子树全部小于 $\textit{key}（$\textit{cur}$ 可能等于），$属于第二个 treap。当然，也可能有一部分的左子树的值大于 $\textit{key}$，所以还需要继续向左子树递归地分裂。对于大于 $\textit{key}$ 的那部分左子树，我们把它作为 $\textit{cur}$ 的左子树，这样，整个 $\textit{cur}$ 上的节点都是大于 $\textit{key}$ 的。
 
 相应的，如果 $\textit{key}$ 大于等于 $\textit{cur}$ 的值，说明 $\textit{cur}$ 的整个左子树以及其自身都小于 $\textit{key}$，属于分裂后的第一个 treap。并且，$\textit{cur}$ 的部分右子树也可能有部分小于 $\textit{key}$，因此我们需要继续递归地分裂右子树。把小于 $\textit{key}$ 的那部分作为 $\textit{cur}$ 的右子树，这样，整个 $\textit{cur}$ 上的节点都小于 $\textit{key}$。
 
@@ -363,29 +361,27 @@ int _query_nex(Node *cur, int val) {
 
 ```cpp
 pair<Node *, Node *> split(Node *cur, int key) {
-  if (cur == nullptr) return {nullptr, nullptr};
-  if (cur->val <= key) {
-    // cur 以及它的左子树一定属于分裂后的第一个树
-    auto temp = split(cur->ch[1], key);
-    // 但是它可能有部分右子树也比 key 小
-    cur->ch[1] = temp.first;
-    // 我们把小于 key 的那部分拿出来，作为 cur 的右子树，这样整个 cur 都是小于
-    // key 的 剩下的那部分右子树成为分裂后的第二个 treap
-    cur->upd_siz();
-    // 分裂过后树的大小会变化，需要更新
-    return {cur, temp.second};
-  } else {
-    // 同上
-    auto temp = split(cur->ch[0], key);
-    cur->ch[0] = temp.second;
-    cur->upd_siz();
-    return {temp.first, cur};
-  }
+    if (cur == nullptr) return {nullptr, nullptr};
+    if (cur->val <= key) {
+        // cur 以及它的左子树一定属于分裂后的第一个树
+        auto temp = split(cur->ch[1], key);
+        // 但是它可能有部分右子树也比 key 小
+        cur->ch[1] = temp.first;
+        // 我们把小于 key 的那部分拿出来，作为 cur 的右子树，这样整个 cur 都是小于 key 的
+        // 剩下的那部分右子树成为分裂后的第二个 treap
+        cur->upd_siz();
+        // 分裂过后树的大小会变化，需要更新
+        return {cur, temp.second};
+    } else {
+        // 同上
+        auto temp = split(cur->ch[0], key);
+        cur->ch[0] = temp.second; 
+        cur->upd_siz();
+        return {temp.first, cur};
+    }
 }
 ```
-
 #### 按排名分裂
-
 比起按值分裂，这个操作更像是旋转 treap 中的根据排名（某个节点的排名是树中所有小于此节点值的节点的数量 $+ 1$）查询值：
 
 此函数接受两个参数，节点指针 $\textit{cur}$ 和排名 $\textit{rk}$，返回分裂后的三个 treap。
@@ -395,41 +391,38 @@ pair<Node *, Node *> split(Node *cur, int key) {
 此操作的重点在于判断排名和 $\textit{cur}$ 相等的节点在树的哪个部分，这也是旋转 treap 根据排名查询值操作时的重要部分，在前文有非常详细的解释，这里不过多讲解。
 
 并且，此操作的递归部分和按值分裂也非常相似，这里不赘述。
-
 ```cpp
 #define _3 second.second
 #define _2 second.first
-
 pair<Node *, pair<Node *, Node *>> split_by_rk(Node *cur, int rk) {
-  if (cur == nullptr) return {nullptr, {nullptr, nullptr}};
-  int ls_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
-  if (rk <= ls_siz) {
-    // 排名和 cur 相等的节点在左子树
-    auto temp = split_by_rk(cur->ch[0], rk);
-    cur->ch[0] = temp._3;  // 返回的第三个 treap 中的排名都大于 rk
-    // cur 的左子树被设成 temp._3 后，整个 cur 中节点的排名都大于 rk
-    cur->upd_siz();
-    return {temp.first, {temp._2, cur}};
-  } else if (rk <= ls_siz + cur->cnt) {
-    // 和 cur 相等的就是当前节点
-    Node *lt = cur->ch[0];
-    Node *rt = cur->ch[1];
-    cur->ch[0] = cur->ch[1] = nullptr;
-    // 分裂后第二个 treap 只有一个节点，所有要把它的子树设置为空
-    return {lt, {cur, rt}};
-  } else {
-    // 排名和 cur 相等的节点在右子树
-    // 递归过程同上
-    auto temp = split_by_rk(cur->ch[1], rk - ls_siz - cur->cnt);
-    cur->ch[1] = temp.first;
-    cur->upd_siz();
-    return {cur, {temp._2, temp._3}};
-  }
+    if (cur == nullptr) return {nullptr, {nullptr, nullptr}};
+    int ls_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
+    if (rk <= ls_siz) {
+        // 排名和 cur 相等的节点在左子树
+        auto temp = split_by_rk(cur->ch[0], rk);
+        cur->ch[0] = temp._3; // 返回的第三个 treap 中的排名都大于 rk
+        // cur 的左子树被设成 temp._3 后，整个 cur 中节点的排名都大于 rk
+        cur->upd_siz();
+        return {temp.first, {temp._2, cur}};
+    } else if (rk <= ls_siz + cur->cnt) {
+        // 和 cur 相等的就是当前节点
+        Node* lt = cur->ch[0];
+        Node* rt = cur->ch[1];
+        cur->ch[0] = cur->ch[1] = nullptr;
+        // 分裂后第二个 treap 只有一个节点，所有要把它的子树设置为空
+        return {lt, {cur, rt}};
+    } else {
+        // 排名和 cur 相等的节点在右子树
+        // 递归过程同上
+        auto temp = split_by_rk(cur->ch[1], rk - ls_siz - cur->cnt);
+        cur->ch[1] = temp.first;
+        cur->upd_siz();
+        return {cur, {temp._2, temp._3}};
+    }
 }
 ```
 
 ### 合并（merge）
-
 合并过程接受两个参数：左 treap 的根指针 $\textit{u}$、右 treap 的根指针 $\textit{v}$。必须满足 $\textit{u}$ 中所有结点的值小于等于 $\textit{v}$ 中所有结点的值。一般来说，我们合并的两个 treap 都是原来从一个 treap 中分裂出去的，所以不难满足 $\textit{u}$ 中所有节点的值都小于 $\textit{v}$
 
 在旋转 treap 中，我们借助旋转操作来维护 $\textit{priority}$ 符合堆的性质，同时旋转时还不能改变树的性质。在无旋 treap 中，我们用合并达到相同的效果。
@@ -440,32 +433,31 @@ pair<Node *, pair<Node *, Node *>> split_by_rk(Node *cur, int rk) {
 
 ```cpp
 Node *merge(Node *u, Node *v) {
-  // 传进来的两个树的内部已经符合搜索树的性质了
-  // 并且 u 内所有节点的值 < v 内所有节点的值
-  // 所以在合并的时候需要维护堆的性质
-  // 这里用的是小根堆
-  if (u == nullptr && v == nullptr) return nullptr;
-  if (u != nullptr && v == nullptr) return u;
-  if (v != nullptr && u == nullptr) return v;
+    //传进来的两个树的内部已经符合搜索树的性质了
+    //并且 u 内所有节点的值 < v 内所有节点的值
+    //所以在合并的时候需要维护堆的性质
+    //这里用的是小根堆
+    if (u == nullptr && v == nullptr) return nullptr;
+    if (u != nullptr && v == nullptr) return u;
+    if (v != nullptr && u == nullptr) return v;
 
-  if (u->prio < v->prio) {
-    // u 的 prio 比较小，u应该作为父节点
-    u->ch[1] = merge(u->ch[1], v);
-    // 因为 v 比 u 大，所以把 v 作为 u 的右子树
-    u->upd_siz();
-    return u;
-  } else {
-    // v 比较小，v应该作为父节点
-    v->ch[0] = merge(u, v->ch[0]);
-    // u 比 v 小，所以递归时的参数是这样的
-    v->upd_siz();
-    return v;
-  }
+    if (u->prio < v->prio) {
+        // u 的 prio 比较小，u应该作为父节点
+        u->ch[1] = merge(u->ch[1], v);
+        //因为 v 比 u 大，所以把 v 作为 u 的右子树
+        u->upd_siz();
+        return u;
+    } else {
+        // v 比较小，v应该作为父节点
+        v->ch[0] = merge(u, v->ch[0]);
+        // u 比 v 小，所以递归时的参数是这样的
+        v->upd_siz();
+        return v;
+    }
 }
 ```
 
 ### 插入
-
 在无旋 treap 中，插入，删除，根据值查询排名等基础操作既可以用普通二叉查找树的方法实现，也可以用分裂和合并来实现。通常来说，使用分裂和合并来实现更加简洁，但是速度会慢一点[^ref3]。为了帮助更好的理解无旋 treap，下面的操作全部使用分裂和合并实现。
 
 在实现插入操作时，我们利用了分裂操作的一些性质。也就是值小于等于 $\textit{val}$ 的节点会被分到第一个 treap。
@@ -476,7 +468,6 @@ $$
 T_1 \le val\\
 T_2 > val
 $$
-
 其中 $T_1$ 表示分裂后所有被分到第一个 treap 的节点的集合，$T_2$ 则是第二个。
 
 如果我们再按照 $\textit{val} - 1$ 继续分裂 $T_1$，那么会产生下面两棵树，并符合以下条件：
@@ -493,115 +484,103 @@ $$
 在插入时，如果我们发现符合 $T_{1\ \text{right}}$ 的节点存在，那就可以直接增加重复次数，否则，就新开一个节点。
 
 注意把树分裂好了还需要用合并操作把它“粘”回去，这样下次还能继续使用。并且，还需要注意合并操作的参数顺序是有要求的，第一个树的所有节点的值都需要小于第二个。
-
 ```cpp
 void insert(int val) {
-  auto temp = split(root, val);
-  // 根据 val 的值把整个树分成两个
-  // 注意 split 的实现，等于 val 的子树是在左子树的
-  auto l_tr = split(temp.first, val - 1);
-  // l_tr 的左子树 <= val - 1，如果有 = val 的节点，那一定在右子树
-  Node *new_node;
-  if (l_tr.second == nullptr) {
+    auto temp = split(root, val);
+    //根据 val 的值把整个树分成两个
+    //注意 split 的实现，等于 val 的子树是在左子树的
+    auto l_tr = split(temp.first, val - 1);
+    // l_tr 的左子树 <= val - 1，如果有 = val 的节点，那一定在右子树
+    Node *new_node;
+    if (l_tr.second == nullptr) {
     // 没有这个节点就新开，否则直接增加重复次数。
-    new_node = new Node(val);
-  } else {
-    l_tr.second->cnt++;
-    l_tr.second->upd_siz();
-  }
-  Node *l_tr_combined =
-      merge(l_tr.first, l_tr.second == nullptr ? new_node : l_tr.second);
-  // 合并 T_1 left 和 T_1 right
-  root = merge(l_tr_combined, temp.second);
-  // 合并 T_1 和 T_2
+        new_node = new Node(val);
+    } else {
+        l_tr.second->cnt++;
+        l_tr.second->upd_siz();
+    }
+    Node *l_tr_combined = merge(l_tr.first, l_tr.second == nullptr ? new_node : l_tr.second);
+    //合并 T_1 left 和 T_1 right
+    root = merge(l_tr_combined, temp.second);
+    //合并 T_1 和 T_2
 }
 ```
 
 ### 删除
-
 删除操作也使用和插入操作相似的方法，找到值和 $\textit{val}$ 相等的节点，并且删除它。
 
 ```cpp
 void del(int val) {
-  auto temp = split(root, val);
-  auto l_tr = split(temp.first, val - 1);
-  if (l_tr.second->cnt > 1) {
-    // 如果这个节点的重复次数大于 1，减小即可
-    l_tr.second->cnt--;
-    l_tr.second->upd_siz();
-    l_tr.first = merge(l_tr.first, l_tr.second);
-  } else {
-    if (temp.first == l_tr.second) {
-      // 有可能整个 T_1 只有这个节点，所以也需要把这个点设成 null 来标注已经删除
-      temp.first = nullptr;
+    auto temp = split(root, val);
+    auto l_tr = split(temp.first, val - 1);
+    if (l_tr.second->cnt > 1) {
+        // 如果这个节点的重复次数大于 1，减小即可
+        l_tr.second->cnt--;
+        l_tr.second->upd_siz();
+        l_tr.first = merge(l_tr.first, l_tr.second);
+    } else {
+        if(temp.first == l_tr.second){
+            //有可能整个 T_1 只有这个节点，所以也需要把这个点设成 null 来标注已经删除
+            temp.first = nullptr;
+        }
+        delete l_tr.second;
+        l_tr.second = nullptr;
     }
-    delete l_tr.second;
-    l_tr.second = nullptr;
-  }
-  root = merge(l_tr.first, temp.second);
+    root = merge(l_tr.first, temp.second);
 }
 ```
 
 ### 根据值查询排名
-
-排名是比这个值小的节点的数量 $+ 1$，所以我们根据 $\textit{val} - 1$ 分裂当前树，那么分裂后的第一个树就符合：
-
+排名是比这个值小的节点的数量 $+ 1$，所以我们根据 $\textit{val} - 1$ 分裂当前树，那么分裂后的第一个树就符合:
 $$
 T_1 \le val - 1
 $$
-
 如果树的值和 $\textit{val}$ 为整数，那么 $T_1$ 就包含了所有值小于 $\textit{val}$ 的节点。
 
 ```cpp
 int qrank_by_val(Node* cur, int val) {
-  auto temp = split(cur, val - 1);
-  int ret = (temp.first == nullptr ? 0 : temp.first->siz) + 1;  // 根据定义 + 1
-  root = merge(temp.first, temp.second);  // 拆好了再粘回去
-  return ret;
-}
+        auto temp = split(cur, val - 1);
+        int ret = (temp.first == nullptr ? 0 : temp.first->siz) + 1; //根据定义 + 1
+        root = merge(temp.first, temp.second);  //拆好了再粘回去
+        return ret;
+    }
 ```
 
 ### 根据排名查询值
-
 调用 `split_by_rk()` 函数后，会返回分裂好的三个 treap，其中第二个只包含一个节点，它的排名等于 $\textit{rk}$，所以我们直接返回这个节点的 $\textit{val}$。
-
 ```cpp
 int qval_by_rank(Node *cur, int rk) {
-  auto temp = split_by_rk(cur, rk);
-  int ret = temp._2->val;
-  root = merge(temp.first, merge(temp._2, temp._3));
-  return ret;
+    auto temp = split_by_rk(cur, rk);
+    int ret = temp._2->val;
+    root = merge(temp.first, merge(temp._2, temp._3));
+    return ret;
 }
 ```
 
 ### 查询第一个比 val 小的节点
-
 可以把这个问题转化为，在比 $\textit{val}$ 小的所有节点中，找出排名最大的。我们根据 $\textit{val}$ 来分裂这个 treap，返回的第一个 treap 中的节点的值就全部小于 $\textit{val}$，然后我们调用 `qval_by_rank()` 找出这个树中值最大的节点。
-
 ```cpp
 int qprev(int val) {
-  auto temp = split(root, val - 1);
-  // temp.first 就是值小于 val 的子树
-  int ret = qval_by_rank(temp.first, temp.first->siz);
-  // 这里查询的是，所有小于 val 的节点里面，最大的那个的值
-  root = merge(temp.first, temp.second);
-  return ret;
+    auto temp = split(root, val - 1);
+    // temp.first 就是值小于 val 的子树
+    int ret = qval_by_rank(temp.first, temp.first->siz);
+    //这里查询的是，所有小于 val 的节点里面，最大的那个的值
+    root = merge(temp.first, temp.second);
+    return ret;
 }
 ```
-
 ### 查询第一个比 val 大的节点
-
 和上个操作类似，可以把这个问题转化为，在比 $\textit{val}$ 大的所有节点中，找出排名最大的。那么根据 $\textit{val}$ 分裂后，返回的第二个 treap 中的所有节点的值就大于 $\textit{val}$。
 
 然后我们去查询这个树中排名为 $1$ 的节点（也就是值最小的节点）的值，就可以成功查到第一个比 $\textit{val}$ 大的节点。
 
 ```cpp
 int qnex(int val) {
-  auto temp = split(root, val);
-  int ret = qval_by_rank(temp.second, 1);
-  // 查询所有大于 val 的子树里面，值最小的那个
-  root = merge(temp.first, temp.second);
-  return ret;
+    auto temp = split(root, val);
+    int ret = qval_by_rank(temp.second, 1);
+    //查询所有大于 val 的子树里面，值最小的那个
+    root = merge(temp.first, temp.second);
+    return ret;
 }
 ```
 
@@ -619,16 +598,15 @@ int qnex(int val) {
 
 方法三：观察到 treap 是笛卡尔树，利用笛卡尔树的 $O(n)$ 建树方法即可，用单调栈维护右链即可。
 
-### 无旋 treap 的区间操作
+### 无旋 treap 的区间操作 
 
 #### 建树
+无旋 treap 相比旋转 treap 的一大好处就是可以实现各种区间操作，下面我们以文艺平衡树的[模板题](https://loj.ac/problem/105)为例，介绍 treap 的区间操作。
 
-无旋 treap 相比旋转 treap 的一大好处就是可以实现各种区间操作，下面我们以文艺平衡树的 [模板题](https://loj.ac/problem/105) 为例，介绍 treap 的区间操作。
-
-> 您需要写一种数据结构（可参考题目标题），来维护一个有序数列。
+>您需要写一种数据结构（可参考题目标题），来维护一个有序数列。  
 >
-> 其中需要提供以下操作：翻转一个区间，例如原有序序列是 $5\ 4\ 3\ 2\ 1$，翻转区间是 $[2,4]$ 的话，结果是 $5\ 2\ 3\ 4\ 1$。
-> 对于 $100\%$ 的数据，$1 \le n$（初始区间长度）$m$（翻转次数）$\le 1e5$
+>其中需要提供以下操作：翻转一个区间，例如原有序序列是 $5\ 4\ 3\ 2\ 1$，翻转区间是 $[2,4]$ 的话，结果是 $5\ 2\ 3\ 4\ 1$。
+> 对于 $100\%$ 的数据，$1 \le n$（初始区间长度）$m$（翻转次数） $\le 1e5$
 
 在这道题目中，我们需要实现的是区间翻转，那么我们首先需要考虑如何建树，建出来的树需要是初始的区间。
 
@@ -644,13 +622,13 @@ int qnex(int val) {
 
 但是在 treap 中，按增序插入节点后，在合并操作时还会根据 $\textit{priority}$ 调整树的结构，在这样的情况下，如何确保中序遍历一定能正确的输出呢？
 
-可以参考 [笛卡尔树的单调栈建树方法](https://oi-wiki.org/ds/cartesian-tree/) 来理解这个问题。
+可以参考[笛卡尔树的单调栈建树方法](https://oi-wiki.org/ds/cartesian-tree/)来理解这个问题。
 
 设新插入的节点为 $\textit{u}$。
 
 首先，因为时递增的插入节点，每一个新插入的节点肯定会被连接到 treap 的右链（即从根结点一直往右子树走，经过的结点形成的链）上。
 
-从根节点开始，右链上的节点的 $\textit{priority}$ 是递增的（小根堆）。那我们可以找到右链上第一个 $\textit{priority}$ 大于 $\textit{u}$ 的节点，我们叫这个节点 $\textit{v}$，并把这个节点换成 $\textit{u}$。
+从根节点开始，右链上的节点的 $\textit{priority}$ 是递增的（小根堆）。那我们可以找到右链上第一个 $\textit{priority}$ 大于 $\textit{u}$ 的节点，我们叫这个节点 $\textit{v}$， 并把这个节点换成 $\textit{u}$。
 
 因为 $\textit{u}$ 一定大于这个树上其他的全部节点，我们需要把 $\textit{v}$ 以及它的子树作为 $\textit{u}$ 的左子树。并且此时 $\textit{u}$ 没有右子树。
 
@@ -662,7 +640,7 @@ int qnex(int val) {
 
 #### 区间翻转
 
-翻转 $[l, r]$ 这个区间时，基本思路是将树分裂成 $[1, l - 1],\ [l, r],\ [r + 1, n]$ 三个区间，再对中间的 $[l, r]$ 进行翻转[^ref4]。
+翻转 $[l, r]$ 这个区间时，基本思路是将树分裂成 $[1, l - 1],\ [l, r],\ [r + 1, n]$ 三个区间，再对中间的 $[l, r]$ 进行翻转 [^ref4]。
 
 翻转的具体操作是把区间内的子树的每一个左，右子节点交换位置。如下图就展示了翻转上图中 treap 的 $[3, 4]$ 和 $[3, 5]$ 区间后的 treap。
 
@@ -683,27 +661,24 @@ int qnex(int val) {
 以下为代码讲解，代码参考了[^ref4]。
 
 因为区间操作中大部分操作都和普通的无旋 treap 相同，所以这里只讲解和普通无旋 treap 不同的地方。
-
 #### 下传标记
-
 需要注意这里的懒标记代表需要把这个树中的每一个子节点交换位置。所以如果当前节点的子节点也有懒标记，那两次翻转就抵消了。如果子节点不需要翻转，那么这个懒标记就需要继续被下传到子节点上。
-
 ```cpp
 // 这里这个 pushdown 是 Node 类的成员函数，其中 to_rev 是懒标记
 inline void pushdown() {
-  swap(ch[0], ch[1]);
-  if (ch[0] != nullptr) ch[0]->to_rev ^= 1;
-  if (ch[1] != nullptr) ch[1]->to_rev ^= 1;
-  to_rev = false;
+    swap(ch[0], ch[1]);
+    if (ch[0] != nullptr)
+        ch[0]->to_rev ^= 1;
+    if (ch[1] != nullptr) ch[1]->to_rev ^= 1;
+    to_rev = false;
 }
 
-inline void check_tag() {
-  if (to_rev) pushdown();
+inline void check_tag(){
+    if(to_rev) pushdown();
 }
 ```
 
 #### 分裂
-
 注意在这个题目中，因为翻转操作，treap 中的 $\textit{val}$ 会不符合二叉搜索树的性质（见区间翻转部分的图），所以我们不能根据 $\textit{val}$ 来判断应该往左子树还是右子树递归。
 
 所以这里的分裂跟普通无旋 treap 中的按排名分裂更相似，是根据当前树的大小判断往左还是右子树递归的，换言之，我们是按照开始时这个节点在树中的位置来判断的。
@@ -711,87 +686,74 @@ inline void check_tag() {
 返回的第一个 treap 中节点的排名全部小于等于 $\textit{sz}$，而第二个 treap 中节点的排名则全部大于 $\textit{sz}$。
 
 ```cpp
-#define siz(_) (_ == nullptr ? 0 : _->siz)
-
+#define siz(_)(_ == nullptr ? 0 : _->siz)
 pair<Node*, Node*> split(Node* cur, int sz) {
-  // 按照树的大小判断
-  if (cur == nullptr) return {nullptr, nullptr};
-  cur->check_tag();
-  // 分裂前先下传
-  if (sz <= siz(cur->ch[0])) {
-    auto temp = split(cur->ch[0], sz);
-    cur->ch[0] = temp.second;
-    cur->upd_siz();
-    return {temp.first, cur};
-  } else {
-    auto temp = split(cur->ch[1],
-                      sz - siz(cur->ch[0]) -
-                          1);  // 这里的转换在有旋 treap 的 “根据排名查询值有讲”
-    cur->ch[1] = temp.first;
-    cur->upd_siz();
-    return {cur, temp.second};
-  }
+    //按照树的大小判断
+    if (cur == nullptr) return {nullptr, nullptr};
+    cur->check_tag();
+    //分裂前先下传
+    if(sz <= siz(cur->ch[0])){
+        auto temp = split(cur->ch[0], sz);
+        cur->ch[0] = temp.second;
+        cur->upd_siz();
+        return {temp.first, cur};
+    }else{
+        auto temp = split(cur->ch[1], sz - siz(cur->ch[0]) - 1); // 这里的转换在有旋 treap 的 “根据排名查询值有讲”
+        cur->ch[1] = temp.first;
+        cur->upd_siz();
+        return {cur, temp.second};
+    }
 }
 ```
-
 #### 合并
-
 唯一需要注意的是在合并前下传懒标记
-
 ```cpp
-Node *merge(Node *sm, Node *bg) {
-  // small, big
-  if (sm == nullptr && bg == nullptr) return nullptr;
-  if (sm != nullptr && bg == nullptr) return sm;
-  if (sm == nullptr && bg != nullptr) return bg;
-  sm->check_tag(), bg->check_tag();
-  if (sm->prio < bg->prio) {
-    sm->ch[1] = merge(sm->ch[1], bg);
-    sm->upd_siz();
-    return sm;
-  } else {
-    bg->ch[0] = merge(sm, bg->ch[0]);
-    bg->upd_siz();
-    return bg;
-  }
+Node* merge(Node *sm, Node *bg){ 
+    //small, big
+    if (sm == nullptr && bg == nullptr) return nullptr;
+    if (sm != nullptr && bg == nullptr) return sm;
+    if (sm == nullptr && bg != nullptr) return bg;
+    sm->check_tag(), bg->check_tag();
+    if(sm->prio < bg->prio){
+        sm->ch[1] = merge(sm->ch[1], bg);
+        sm->upd_siz();
+        return sm; 
+    }else{
+        bg->ch[0] = merge(sm, bg->ch[0]); 
+        bg->upd_siz();
+        return bg;
+    }
 }
 ```
-
 #### 区间翻转
-
 和前面介绍的一样，分裂出 $[1, l - 1],\ [l, r],\ [r + 1, n]$ 三个区间，然后对中间的区间打上标记后再合并。
-
 ```cpp
-void seg_rev(int l, int r) {
-  // 这里的 less 和 more 是相对于 l 的
-  auto less = split(root, l - 1);
-  // 所有小于等于 l - 1 的会在 less 的左子树
-  auto more = split(less.second, r - l + 1);
-  // 从 l 开始的前 r - l + 1 个元素的区间
-  more.first->to_rev = true;
-  root = merge(less.first, merge(more.first, more.second));
+void seg_rev(int l, int r){
+    //这里的 less 和 more 是相对于 l 的
+    auto less = split(root, l - 1);
+    //所有小于等于 l - 1 的会在 less 的左子树
+    auto more = split(less.second, r - l + 1);
+    //从 l 开始的前 r - l + 1 个元素的区间
+    more.first->to_rev = true;
+    root = merge(less.first, merge(more.first, more.second));
 }
 ```
 
 #### 中序遍历打印
-
 要注意在打印时要下传标记。
-
 ```cpp
-void print(Node* cur) {
-  if (cur == nullptr) return;
-  cur->check_tag();
-  // 中序遍历 -> 先左子树，再自己，最后右子树
-  print(cur->ch[0]);
-  cout << cur->val << " ";
-  print(cur->ch[1]);
+void print(Node* cur){
+    if(cur == nullptr) return;
+    cur->check_tag();
+    //中序遍历 -> 先左子树，再自己，最后右子树
+    print(cur->ch[0]);
+    cout<<cur->val<<" ";
+    print(cur->ch[1]);
 }
 ```
 
 ## 完整代码
-
 ### 旋转 treap
-
 #### 指针实现
 
 ??? note "完整代码"
@@ -1005,320 +967,305 @@ void print(Node* cur) {
     ```
 
 ### 无旋 treap
-
 #### 指针实现
-
 ??? note "完整代码"
     以下是前文讲解的代码的完整版本，是普通平衡树的模板代码。
-    
     ```cpp
-    
+
     // author: (ttzytt)[ttzytt.com]
     #include <bits/stdc++.h>
     using namespace std;
-    
     struct Node {
-      Node *ch[2];
-      int val, prio;
-      int cnt;
-      int siz;
-    
-      Node(int _val) : val(_val), cnt(1), siz(1) {
-        ch[0] = ch[1] = nullptr;
-        prio = rand();
-      }
-    
-      Node(Node *_node) {
-        val = _node->val, prio = _node->prio, cnt = _node->cnt, siz = _node->siz;
-      }
-    
-      inline void upd_siz() {
-        siz = cnt;
-        if (ch[0] != nullptr) siz += ch[0]->siz;
-        if (ch[1] != nullptr) siz += ch[1]->siz;
-      }
+        Node *ch[2];
+        int val, prio;
+        int cnt;
+        int siz;
+        Node(int _val) : val(_val), cnt(1), siz(1) {
+            ch[0] = ch[1] = nullptr;
+            prio = rand();
+        }
+        Node(Node *_node) {
+            val = _node->val, prio = _node->prio, cnt = _node->cnt,
+            siz = _node->siz;
+        }
+        inline void upd_siz() {
+            siz = cnt;
+            if (ch[0] != nullptr) siz += ch[0]->siz;
+            if (ch[1] != nullptr) siz += ch[1]->siz;
+        }
     };
-    
+
     struct none_rot_treap {
     #define _3 second.second
     #define _2 second.first
-      Node *root;
-    
-      pair<Node *, Node *> split(Node *cur, int key) {
-        if (cur == nullptr) return {nullptr, nullptr};
-        if (cur->val <= key) {
-          auto temp = split(cur->ch[1], key);
-          cur->ch[1] = temp.first;
-          cur->upd_siz();
-          return {cur, temp.second};
-        } else {
-          auto temp = split(cur->ch[0], key);
-          cur->ch[0] = temp.second;
-          cur->upd_siz();
-          return {temp.first, cur};
+        Node *root;
+        pair<Node *, Node *> split(Node *cur, int key) {
+            if (cur == nullptr) return {nullptr, nullptr};
+            if (cur->val <= key) {
+                auto temp = split(cur->ch[1], key);
+                cur->ch[1] = temp.first;
+                cur->upd_siz();
+                return {cur, temp.second};
+            } else {
+                auto temp = split(cur->ch[0], key);
+                cur->ch[0] = temp.second; 
+                cur->upd_siz();
+                return {temp.first, cur};
+            }
         }
-      }
-    
-      pair<Node *, pair<Node *, Node *>> split_by_rk(Node *cur, int rk) {
-        if (cur == nullptr) return {nullptr, {nullptr, nullptr}};
-        int ls_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
-        if (rk <= ls_siz) {
-          auto temp = split_by_rk(cur->ch[0], rk);
-          cur->ch[0] = temp._3;
-          cur->upd_siz();
-          return {temp.first, {temp._2, cur}};
-        } else if (rk <= ls_siz + cur->cnt) {
-          Node *lt = cur->ch[0];
-          Node *rt = cur->ch[1];
-          cur->ch[0] = cur->ch[1] = nullptr;
-          return {lt, {cur, rt}};
-        } else {
-          auto temp = split_by_rk(cur->ch[1], rk - ls_siz - cur->cnt);
-          cur->ch[1] = temp.first;
-          cur->upd_siz();
-          return {cur, {temp._2, temp._3}};
+
+        pair<Node *, pair<Node *, Node *>> split_by_rk(Node *cur, int rk) {
+            if (cur == nullptr) return {nullptr, {nullptr, nullptr}};
+            int ls_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
+            if (rk <= ls_siz) {
+                auto temp = split_by_rk(cur->ch[0], rk);
+                cur->ch[0] = temp._3;
+                cur->upd_siz();
+                return {temp.first, {temp._2, cur}};
+            } else if (rk <= ls_siz + cur->cnt) {
+                Node* lt = cur->ch[0];
+                Node* rt = cur->ch[1];
+                cur->ch[0] = cur->ch[1] = nullptr;
+                return {lt, {cur, rt}};
+            } else {
+                auto temp = split_by_rk(cur->ch[1], rk - ls_siz - cur->cnt);
+                cur->ch[1] = temp.first;
+                cur->upd_siz();
+                return {cur, {temp._2, temp._3}};
+            }
         }
-      }
-    
-      Node *merge(Node *u, Node *v) {
-        if (u == nullptr && v == nullptr) return nullptr;
-        if (u != nullptr && v == nullptr) return u;
-        if (v != nullptr && u == nullptr) return v;
-        if (u->prio < v->prio) {
-          u->ch[1] = merge(u->ch[1], v);
-          u->upd_siz();
-          return u;
-        } else {
-          v->ch[0] = merge(u, v->ch[0]);
-          v->upd_siz();
-          return v;
+
+        Node *merge(Node *u, Node *v) {
+            if (u == nullptr && v == nullptr) return nullptr;
+            if (u != nullptr && v == nullptr) return u;
+            if (v != nullptr && u == nullptr) return v;
+            if (u->prio < v->prio) {
+                u->ch[1] = merge(u->ch[1], v);
+                u->upd_siz();
+                return u;
+            } else {
+                v->ch[0] = merge(u, v->ch[0]);
+                v->upd_siz();
+                return v;
+            }
         }
-      }
-    
-      void insert(int val) {
-        auto temp = split(root, val);
-        auto l_tr = split(temp.first, val - 1);
-        Node *new_node;
-        if (l_tr.second == nullptr) {
-          new_node = new Node(val);
-        } else {
-          l_tr.second->cnt++;
-          l_tr.second->upd_siz();
+
+        void insert(int val) {
+            auto temp = split(root, val);
+            auto l_tr = split(temp.first, val - 1);
+            Node *new_node;
+            if (l_tr.second == nullptr) {
+                new_node = new Node(val);
+            } else {
+                l_tr.second->cnt++;
+                l_tr.second->upd_siz();
+            }
+            Node *l_tr_combined =
+                merge(l_tr.first, l_tr.second == nullptr ? new_node : l_tr.second);
+            root = merge(l_tr_combined, temp.second);
         }
-        Node *l_tr_combined =
-            merge(l_tr.first, l_tr.second == nullptr ? new_node : l_tr.second);
-        root = merge(l_tr_combined, temp.second);
-      }
-    
-      void del(int val) {
-        auto temp = split(root, val);
-        auto l_tr = split(temp.first, val - 1);
-        if (l_tr.second->cnt > 1) {
-          l_tr.second->cnt--;
-          l_tr.second->upd_siz();
-          l_tr.first = merge(l_tr.first, l_tr.second);
-        } else {
-          if (temp.first == l_tr.second) {
-            temp.first = nullptr;
-          }
-          delete l_tr.second;
-          l_tr.second = nullptr;
+
+        void del(int val) {
+            auto temp = split(root, val);
+            auto l_tr = split(temp.first, val - 1);
+            if (l_tr.second->cnt > 1) {
+                l_tr.second->cnt--;
+                l_tr.second->upd_siz();
+                l_tr.first = merge(l_tr.first, l_tr.second);
+            } else {
+                if(temp.first == l_tr.second){
+                    temp.first = nullptr;
+                }
+                delete l_tr.second;
+                l_tr.second = nullptr;
+            }
+            root = merge(l_tr.first, temp.second);
         }
-        root = merge(l_tr.first, temp.second);
-      }
-    
-      int qrank_by_val(Node *cur, int val) {
-        auto temp = split(cur, val - 1);
-        int ret = (temp.first == nullptr ? 0 : temp.first->siz) + 1;
-        root = merge(temp.first, temp.second);
-        return ret;
-      }
-    
-      int qval_by_rank(Node *cur, int rk) {
-        auto temp = split_by_rk(cur, rk);
-        int ret = temp._2->val;
-        root = merge(temp.first, merge(temp._2, temp._3));
-        return ret;
-      }
-    
-      int qprev(int val) {
-        auto temp = split(root, val - 1);
-        int ret = qval_by_rank(temp.first, temp.first->siz);
-        root = merge(temp.first, temp.second);
-        return ret;
-      }
-    
-      int qnex(int val) {
-        auto temp = split(root, val);
-        root = merge(temp.first, temp.second);
-        return ret;
-      }
+
+        int qrank_by_val(Node* cur, int val) {
+            auto temp = split(cur, val - 1);
+            int ret = (temp.first == nullptr ? 0 : temp.first->siz) + 1;
+            root = merge(temp.first, temp.second);
+            return ret;
+        }
+
+        int qval_by_rank(Node *cur, int rk) {
+            auto temp = split_by_rk(cur, rk);
+            int ret = temp._2->val;
+            root = merge(temp.first, merge(temp._2, temp._3));
+            return ret;
+        }
+
+        int qprev(int val) {
+            auto temp = split(root, val - 1);
+            int ret = qval_by_rank(temp.first, temp.first->siz);
+            root = merge(temp.first, temp.second);
+            return ret;
+        }
+        
+        int qnex(int val) {
+            auto temp = split(root, val);
+            root = merge(temp.first, temp.second);
+            return ret;
+        }
     };
-    
+
     none_rot_treap tr;
-    
     int main() {
-      srand(time(0));
-      int t;
-      scanf("%d", &t);
-      while (t--) {
-        int mode;
-        int num;
-        scanf("%d%d", &mode, &num);
-        switch (mode) {
-          case 1:
-            tr.insert(num);
-            break;
-          case 2:
-            tr.del(num);
-            break;
-          case 3:
-            printf("%d\n", tr.qrank_by_val(tr.root, num));
-            break;
-          case 4:
-            printf("%d\n", tr.qval_by_rank(tr.root, num));
-            break;
-          case 5:
-            printf("%d\n", tr.qprev(num));
-            break;
-          case 6:
-            printf("%d\n", tr.qnex(num));
-            break;
+        srand(time(0));
+        int t;
+        scanf("%d", &t);
+        while (t--) {
+            int mode;
+            int num;
+            scanf("%d%d", &mode, &num);
+            switch (mode) {
+                case 1:
+                    tr.insert(num);
+                    break;
+                case 2:
+                    tr.del(num);
+                    break;
+                case 3:
+                    printf("%d\n", tr.qrank_by_val(tr.root, num));
+                    break;
+                case 4:
+                    printf("%d\n", tr.qval_by_rank(tr.root, num));
+                    break;
+                case 5:
+                    printf("%d\n", tr.qprev(num));
+                    break;
+                case 6:
+                    printf("%d\n", tr.qnex(num));
+                    break;
+            }
         }
-      }
     }
-    ```
-
+    ``` 
 ### 无旋 treap 的区间操作
-
 #### 指针实现
-
 ??? note "完整代码"
     以下是前文讲解的代码的完整版本，是文艺平衡树题目的模板代码。
-    
     ```cpp
-    
-    // author: (ttzytt)[ttzytt.com]
+
+    //author: (ttzytt)[ttzytt.com]
     #include <bits/stdc++.h>
     using namespace std;
-    
-    // 参考：https://www.cnblogs.com/Equinox-Flower/p/10785292.html
+    //参考：https://www.cnblogs.com/Equinox-Flower/p/10785292.html
     struct Node {
-      Node* ch[2];
-      int val, prio;
-      int cnt;
-      int siz;
-      bool to_rev = false;  // 需要把这个子树下的每一个节点都翻转过来
-    
-      Node(int _val) : val(_val), cnt(1), siz(1) {
-        ch[0] = ch[1] = nullptr;
-        prio = rand();
-      }
-    
-      inline int upd_siz() {
-        siz = cnt;
-        if (ch[0] != nullptr) siz += ch[0]->siz;
-        if (ch[1] != nullptr) siz += ch[1]->siz;
-        return siz;
-      }
-    
-      inline void pushdown() {
-        swap(ch[0], ch[1]);
-        if (ch[0] != nullptr) ch[0]->to_rev ^= 1;
-        // 如果原来子节点也要翻转，那两次翻转就抵消了，如果子节点不翻转，那这个
-        //  tag 就需要继续被 push 到子节点上
-        if (ch[1] != nullptr) ch[1]->to_rev ^= 1;
-        to_rev = false;
-      }
-    
-      inline void check_tag() {
-        if (to_rev) pushdown();
-      }
+        Node* ch[2];
+        int val, prio;
+        int cnt;
+        int siz;
+        bool to_rev = false;  //需要把这个子树下的每一个节点都翻转过来
+        Node(int _val) : val(_val), cnt(1), siz(1) {
+            ch[0] = ch[1] = nullptr;
+            prio = rand();
+        }
+        inline int upd_siz() {
+            siz = cnt;
+            if (ch[0] != nullptr) siz += ch[0]->siz;
+            if (ch[1] != nullptr) siz += ch[1]->siz;
+            return siz;
+        }
+        inline void pushdown() {
+            swap(ch[0], ch[1]);
+            if (ch[0] != nullptr)
+                ch[0]->to_rev ^= 1;  
+                //如果原来子节点也要翻转，那两次翻转就抵消了，如果子节点不翻转，那这个
+                // tag 就需要继续被 push 到子节点上
+            if (ch[1] != nullptr) ch[1]->to_rev ^= 1;
+            to_rev = false;
+        }
+        inline void check_tag(){
+            if(to_rev) pushdown();
+        }
     };
-    
+
     struct Seg_treap {
-      Node* root;
-    #define siz(_) (_ == nullptr ? 0 : _->siz)
-    
-      pair<Node*, Node*> split(Node* cur, int sz) {
-        // 按照树的大小划分
-        if (cur == nullptr) return {nullptr, nullptr};
-        cur->check_tag();
-        if (sz <= siz(cur->ch[0])) {
-          // 左边的子树就够了
-          auto temp = split(cur->ch[0], sz);
-          // 左边的子树不一定全部需要，temp.second 是不需要的
-          cur->ch[0] = temp.second;
-          cur->upd_siz();
-          return {temp.first, cur};
-        } else {
-          // 左边的加上右边的一部分（当然也包括这个节点本身）
-          auto temp = split(cur->ch[1], sz - siz(cur->ch[0]) - 1);
-          cur->ch[1] = temp.first;
-          cur->upd_siz();
-          return {cur, temp.second};
+        Node* root;
+        #define siz(_)(_ == nullptr ? 0 : _->siz)
+        pair<Node*, Node*> split(Node* cur, int sz) {
+            //按照树的大小划分
+            if (cur == nullptr) return {nullptr, nullptr};
+            cur->check_tag();
+            if(sz <= siz(cur->ch[0])){
+                //左边的子树就够了
+                auto temp = split(cur->ch[0], sz);
+                //左边的子树不一定全部需要，temp.second 是不需要的
+                cur->ch[0] = temp.second;
+                cur->upd_siz();
+                return {temp.first, cur};
+            }else{
+                //左边的加上右边的一部分（当然也包括这个节点本身）
+                auto temp = split(cur->ch[1], sz - siz(cur->ch[0]) - 1);
+                cur->ch[1] = temp.first;
+                cur->upd_siz();
+                return {cur, temp.second};
+            }
         }
-      }
-    
-      Node* merge(Node* sm, Node* bg) {
-        // small, big
-        if (sm == nullptr && bg == nullptr) return nullptr;
-        if (sm != nullptr && bg == nullptr) return sm;
-        if (sm == nullptr && bg != nullptr) return bg;
-        sm->check_tag(), bg->check_tag();
-        if (sm->prio < bg->prio) {
-          sm->ch[1] = merge(sm->ch[1], bg);
-          sm->upd_siz();
-          return sm;
-        } else {
-          bg->ch[0] = merge(sm, bg->ch[0]);
-          bg->upd_siz();
-          return bg;
+
+        Node* merge(Node *sm, Node *bg){ 
+            //small, big
+            if (sm == nullptr && bg == nullptr) return nullptr;
+            if (sm != nullptr && bg == nullptr) return sm;
+            if (sm == nullptr && bg != nullptr) return bg;
+            sm->check_tag(), bg->check_tag();
+            if(sm->prio < bg->prio){
+                sm->ch[1] = merge(sm->ch[1], bg);
+                sm->upd_siz();
+                return sm; 
+            }else{
+                bg->ch[0] = merge(sm, bg->ch[0]); 
+                bg->upd_siz();
+                return bg;
+            }
         }
-      }
-    
-      void insert(int val) {
-        auto temp = split(root, val);
-        auto l_tr = split(temp.first, val - 1);
-        Node* new_node;
-        if (l_tr.second == nullptr) new_node = new Node(val);
-        Node* l_tr_combined =
-            merge(l_tr.first, l_tr.second == nullptr ? new_node : l_tr.second);
-        root = merge(l_tr_combined, temp.second);
-      }
-    
-      void seg_rev(int l, int r) {
-        // 这里的 less 和 more 是相对于 l 的
-        auto less = split(root, l - 1);
-        // 所有小于等于 l - 1 的会在 less 的左边
-        auto more = split(less.second, r - l + 1);
-        // 拿出从 l 开始的前 r - l + 1 个
-        more.first->to_rev = true;
-        root = merge(less.first, merge(more.first, more.second));
-      }
-    
-      void print(Node* cur) {
-        if (cur == nullptr) return;
-        cur->check_tag();
-        print(cur->ch[0]);
-        cout << cur->val << " ";
-        print(cur->ch[1]);
-      }
+
+        void insert(int val){
+            auto temp = split(root, val);
+            auto l_tr = split(temp.first, val - 1);
+            Node* new_node;
+            if(l_tr.second == nullptr)
+                new_node = new Node(val);
+            Node *l_tr_combined =
+                merge(l_tr.first, l_tr.second == nullptr ? new_node : l_tr.second);
+            root = merge(l_tr_combined, temp.second);
+        }
+
+        void seg_rev(int l, int r){
+            //这里的 less 和 more 是相对于 l 的
+            auto less = split(root, l - 1);
+            //所有小于等于 l - 1 的会在 less 的左边
+            auto more = split(less.second, r - l + 1);
+            //拿出从 l 开始的前 r - l + 1 个
+            more.first->to_rev = true;
+            root = merge(less.first, merge(more.first, more.second));
+        }
+
+        void print(Node* cur){
+            if(cur == nullptr) return;
+            cur->check_tag();
+            print(cur->ch[0]);
+            cout<<cur->val<<" ";
+            print(cur->ch[1]);
+        }
     };
-    
+
     Seg_treap tr;
-    
+
     int main() {
-      srand(time(0));
-      int n, m;
-      cin >> n >> m;
-      for (int i = 1; i <= n; i++) tr.insert(i);
-      while (m--) {
-        int l, r;
-        cin >> l >> r;
-        tr.seg_rev(l, r);
-      }
-      tr.print(tr.root);
+        srand(time(0));
+        int n, m;
+        cin>>n>>m;
+        for(int i = 1; i <= n; i++)
+            tr.insert(i);
+        while(m--){
+            int l, r;
+            cin>>l>>r;
+            tr.seg_rev(l, r);
+        }
+        tr.print(tr.root);
     }
     ```
 
@@ -1337,11 +1284,7 @@ void print(Node* cur) {
 ## 参考资料与注释
 
 [^ref1]: <https://ttzytt.com/2022/06/treap_note/>
-
-[^ref2]: 本图的设计参考了 [维基百科 treap 词条的配图](https://en.wikipedia.org/wiki/Treap)
-
-[^ref3]: <https://charleswu.site/archives/1051>
-
+[^ref2]: 本图的设计参考了[维基百科 treap 词条的配图](https://en.wikipedia.org/wiki/Treap)
+[^ref3]: [https://charleswu.site/archives/1051](https://charleswu.site/archives/1051)
 [^ref4]: <https://www.cnblogs.com/Equinox-Flower/p/10785292.html>
-
 [^ref5]: <https://www.luogu.com.cn/blog/85514/fhq-treap-xue-xi-bi-ji>
