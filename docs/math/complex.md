@@ -433,3 +433,5 @@ $$
 一个复数对象还拥有非成员函数：norm 为模的平方，conj 为共轭复数。
 
 一个复数对象还拥有非成员函数 exp、log（底为 e 的对数主值）、log10（底为 10 的对数主值，C 中没有）、pow、sqrt、sin、cos、tan，含义与 C 中的含义相同。
+
+在 C++14 及以后的版本中，定义了 [字面量运算符 `std::literals::complex_literals::""if, ""i, ""il`](https://zh.cppreference.com/w/cpp/numeric/complex/operator%22%22i)。例如输入 `100if`、`100i` 和 `100il`，三者将分别返回 `std::complex<float>{0.0f, 100.0f}`、`std::complex<double>{0.0, 100.0}` 以及 `std::complex<long double>{0.0l, 100.0l}`。这使得我们可以方便地书写形如 `auto z = 4 + 3i` 的复数声明。
