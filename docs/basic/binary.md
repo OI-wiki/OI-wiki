@@ -192,22 +192,86 @@ int upper(const void *p1, const void *p2) {
 
 - 如果 `lmid`（图中较左的蓝点）和 `rmid`（图中较右的蓝点）在最值的同侧（图中最值在两蓝点的右侧）：由函数为单峰函数可知二者中较大（小）的自变量值离最值的自变量值更近，舍去较远的点对应的区间（图中红色的区间）。
 
-![example1](images/binary2.svg)
+![example1](images/binary1.svg)
 
 - 如果函数的最值在 `lmid` 和 `rmid` 之间（图中两蓝点之间的区间）：由于最值在二者中间，可以舍去两侧的区间。但为和上一分类保持一致性，舍去较远的点对应的区间（图中红色的区间）。
 
-![example2](images/binary1.svg)
+![example2](images/binary2.svg)
+
+???+ warning "注意"
+    在计算 `lmid` 和 `rmid` 时，请防止数据溢出的现象出现。
 
 ### 代码实现
 
+#### 伪代码
+
+$$
+\begin{array}{ll}
+1 & \textbf{Input. } \text{A range } [l, r] \text{ meaning the range of } x \text{.} \\
+2 & \textbf{Output. } \text{The maximum value of } x \text{ in the range.} \\
+3 & \textbf{Method. } \\
+4 & \textbf{while } rmid - lmid < eps\\
+5 & \qquad lmid\gets \frac{2l+r}{3} \\
+6 & \qquad rmid\gets \frac{l+2r}{3} \\
+7 & \qquad \textbf{if } f(lmid) > f(rmid) \\
+8 & \qquad \qquad r\gets rmid \\
+9 & \qquad \textbf{else } \\
+10 & \qquad \qquad l\gets lmid
+\end{array}
+$$
+
+#### C++
+
 ```cpp
-lmid = left + (right - left >> 1);
-rmid = lmid + (right - lmid >> 1);  // 对右侧区间取半
-if (cal(lmid) > cal(rmid))
-  right = rmid;
-else
-  left = lmid;
+while (rmid - lmid < eps) {
+  lmid = (2 * l + r) / 3;
+  rmid = (l + 2 * r) / 3;
+  if (f(lmid) > f(rmid))
+    r = rmid;
+  else
+    l = lmid;
+}
 ```
+
+### 例题讲解
+
+???+note "[P3382 【模板】三分法](https://www.luogu.com.cn/problem/P3382)"
+    给定一个 $N$ 次函数和范围 $[l, r]$，求出使函数在 $[l, x]$ 上单调递增且在 $[x, r]$ 上单调递减的唯一的 $x$ 的值。
+
+??? note "解题思路"
+    本题要求求 $N$ 次函数在 $[l, r]$ 取最大值时自变量的值，显然可以使用三分法。
+
+??? note "参考代码"
+    ```cpp
+    #include <cmath>
+    #include <cstdio>
+    using namespace std;
+    
+    const double eps = 0.0000001;
+    int N;
+    double l, r, A[20], lmid, rmid;
+    
+    double f(double x) {
+      double res = (double)0;
+      for (int i = N; i >= 0; i--) res += A[i] * pow(x, i);
+      return res;
+    }
+    
+    int main() {
+      scanf("%d%lf%lf", &N, &l, &r);
+      for (int i = N; i >= 0; i--) scanf("%lf", &A[i]);
+      while (r - l > eps) {
+        lmid = (2 * l + r) / 3;
+        rmid = (l + 2 * r) / 3;
+        if (f(lmid) > f(rmid))
+          r = rmid;
+        else
+          l = lmid;
+      }
+      printf("%lf", l);
+      return 0;
+    }
+    ```
 
 ## 分数规划
 
