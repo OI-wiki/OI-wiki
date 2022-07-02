@@ -233,7 +233,7 @@ while (rmid - lmid < eps) {
 }
 ```
 
-### 例题讲解
+### 例题
 
 ???+note "[P3382 【模板】三分法](https://www.luogu.com.cn/problem/P3382)"
     给定一个 $N$ 次函数和范围 $[l, r]$，求出使函数在 $[l, x]$ 上单调递增且在 $[x, r]$ 上单调递减的唯一的 $x$ 的值。
@@ -272,6 +272,11 @@ while (rmid - lmid < eps) {
       return 0;
     }
     ```
+
+### 习题
+
+- [Uva 1476 - Error Curves](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4222)
+- [Uva 10385 - Duathlon](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=15&page=show_problem&problem=1326)
 
 ## 分数规划
 
