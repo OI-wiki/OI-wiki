@@ -29,8 +29,7 @@ jobs:
         run: npm install
       - name: Fetch Authors
         run: |
-          # Remove old authors cache
-          rm authors.json
+          rm -rf authors.json
 
           # Fetch authors list with 10 concurrency requests
           node scripts/fetch-authors.js 10
@@ -38,8 +37,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit Authors Cache
         run: |
-          git add authors.json
-          if git commit -m "chore: update authors cache on $(date '+%Y-%m-%d %H:%M:%S')"; then
-              git push
-          fi
+          git switch --orphan authors-cache
+          git add -f authors.json
+
+          git config user.name github-actions
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update authors cache on $(date '+%Y-%m-%d %H:%M:%S')"
+
+          git push -f origin authors-cache
 

@@ -41,9 +41,7 @@ jobs:
           chmod +x ./scripts/build.sh && ./scripts/build.sh
           mkdocs build -v
       - name: Render git history info
-        run: |
-          node scripts/fetch-authors.js # Update authors cache (incrementally)
-          node scripts/html-postprocess.js site
+        run: ./scripts/render_git_history_info.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Render math
