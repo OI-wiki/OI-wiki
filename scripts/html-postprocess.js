@@ -76,7 +76,7 @@ async function processFile(htmlFilePath) {
             .map(email => (
               authorsMap[email].githubUsername
               ? `${authorsMap[email].githubUsername}\ngithub` // GitHub username
-              : `${authorsMap[email].name}\ngit`              // Git name (when email not linked with GitHub)
+              : `${authorsMap[email].name}\ngit\n${email}`    // Git name (when email not linked with GitHub)
             ))
         ].reduce((count, author) => {
           if (AUTHORS_EXCLUDED.some(
@@ -98,10 +98,10 @@ async function processFile(htmlFilePath) {
       .map(([author]) => author);
     $(".page_contributors").html(
       authors.map(author => {
-        const [name, type] = author.split("\n");
+        const [name, type, email] = author.split("\n");
         return type === "github"
-               ? `<a href=https://github.com/${name} target="_blank">${name}</a>`
-               : name
+               ? `<a href="https://github.com/${name}" target="_blank">${name}</a>`
+               : `<a href="mailto:${email}" target="_blank">${name}</a>`
       }).join(", ")
     );
   } else {
