@@ -110,6 +110,7 @@ async function processFile(htmlFilePath) {
             ...coAuthorLog,
             ...commitsLog.map(l => l.authorEmail)
           ]
+            .map(email => email.toLowerCase())
             .filter(email => email in authorsMap)
             .map(email => (
               authorsMap[email].githubUsername

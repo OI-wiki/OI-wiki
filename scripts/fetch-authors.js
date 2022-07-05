@@ -47,7 +47,7 @@ async function fetchUserMap(since) {
         latestCommitTime = commitTime;
       }
 
-      const email = item.commit.author.email.toString();
+      const email = item.commit.author.email.toLowerCase();
       const name = item.commit.author.name;
       if (name.includes("[bot]")) continue;
       if (!(email in result)) result[email] = {};
