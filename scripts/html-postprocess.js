@@ -11,6 +11,8 @@ const AUTHORS_EXCLUDED = [
   "OI-wiki"
 ];
 
+const execFileAsync = util.promisify(child_process.execFile);
+
 /**
  * @type {Record<string, { name: string; githubUsername: string; }>}
  */
@@ -23,6 +25,42 @@ klaw(process.argv[2]).on("data", item => {
   if (item.stats.isFile() && item.path.toLowerCase().endsWith(".html"))
   processFile(item.path);
 });
+
+/**
+ * @param {string} sourceFilePath 
+ */
+async function readCommitsLog(sourceFilePath) {
+  const SEPARATOR = "\001";
+  const { stdout: commitsLog } = await execFileAsync(
+    "git", ["log", `--pretty=format:%cD${SEPARATOR}%aE`, `docs${sourceFilePath}`]
+  );
+
+  return commitsLog
+    .trim()
+    .split("\n")
+    .map(line => line.split(SEPARATOR))
+    .map(([commitDate, authorEmail]) => ({ commitDate, authorEmail }));
+}
+
+/**
+ * @param {string} sourceFilePath
+ */
+async function readCoAuthorLog(sourceFilePath) {
+  const { stdout: coAuthorLog } = await execFileAsync(
+    "bash", ["-c", `git log --pretty=format:%B "$FILENAME" | sed -nE 's/^Co-Authored-By: .+?<(.+)>/\\1/pi'`],
+    {
+      env: {
+        ...process.env,
+        FILENAME: `docs${sourceFilePath}`
+      }
+    }
+  );
+
+  return coAuthorLog
+    .trim()
+    .split("\n")
+    .map(s => s.trim());
+}
 
 /**
  * @param {string} htmlFilePath
@@ -38,17 +76,14 @@ async function processFile(htmlFilePath) {
     // Set link to git history
     $(".edit_history").attr("href", `https://github.com/${GITHUB_REPO}/commits/master/docs${sourceFilePath}`);
     
-    const SEPARATOR = "\001";
-    const { stdout: gitLog } = await util.promisify(child_process.execFile)("git", ["log", `--pretty=format:%cD${SEPARATOR}%aE`, `docs${sourceFilePath}`]);
-    const parsedGitLog = gitLog
-      .trim()
-      .split("\n")
-      .map(line => line.split(SEPARATOR))
-      .map(([commitDate, authorEmail]) => ({ commitDate, authorEmail }));
+    const [commitsLog, coAuthorLog] = await Promise.all([
+      readCommitsLog(sourceFilePath),
+      readCoAuthorLog(sourceFilePath)
+    ]);
 
     // "本页面最近更新"
     const latestDate = new Date(
-      parsedGitLog
+      commitsLog
         .map(l => +new Date(l.commitDate))
         .reduce(
           (latest, current) => Math.max(latest, current)
@@ -71,8 +106,11 @@ async function processFile(htmlFilePath) {
             .split(",")
             .map(username => `${username.trim()}\ngithub`),
           // From git history
-          ...parsedGitLog
-            .map(l => l.authorEmail)
+          ...[
+            ...coAuthorLog,
+            ...commitsLog.map(l => l.authorEmail)
+          ]
+            .filter(email => email in authorsMap)
             .map(email => (
               authorsMap[email].githubUsername
               ? `${authorsMap[email].githubUsername}\ngithub` // GitHub username
