@@ -36,7 +36,7 @@ author: linehk, persdre
 
 也就是说，如果函数 $f(n)=\Theta(g(n))$，那么我们能找到两个正数 $c_1, c_2$ 使得 $f(n)$ 被 $c_1\cdot g(n)$ 和 $c_2\cdot g(n)$ 夹在中间。
 
-例如，$3n^2+5n-3=\Theta(n^2)$, 这里的 $c_1, c_2, n_0$ 可以分别是 $2, 4, 100$。$n\sqrt {n} + n{\log^5 n} + m{\log m} +nm=\Theta(n\sqrt {n} + m{\log m} + nm)$，这里的$c_1, c_2, n_0$ 可以分别是 $1, 2, 100$。
+例如，$3n^2+5n-3=\Theta(n^2)$, 这里的 $c_1, c_2, n_0$ 可以分别是 $2, 4, 100$。$n\sqrt {n} + n{\log^5 n} + m{\log m} +nm=\Theta(n\sqrt {n} + m{\log m} + nm)$，这里的 $c_1, c_2, n_0$ 可以分别是 $1, 2, 100$。
 
 ### 大 O 符号
 
@@ -150,10 +150,9 @@ $$
 
 例如 $T(n) = 3 T\left(\frac{n}{2}\right)＋2n$，那么 $a=3, b=2, 1< {\log_2 3} <2$，那么 $\epsilon$ 可以取值为 $1$，从而满足第一种情况，所以 $T(n) = O(n^2)$。
 
-又例如 $T(n) = T\left(\frac{n}{2}\right) + 1$, 那么$a=1, b=2, {\log_2 1} = 0$，那么 $\epsilon$ 可以取值为 $1$，从而满足第二种情况，所以 $T(n) = \Theta(n^2)$。
+又例如 $T(n) = T\left(\frac{n}{2}\right) + 1$, 那么 $a=1, b=2, {\log_2 1} = 0$，那么 $\epsilon$ 可以取值为 $1$，从而满足第二种情况，所以 $T(n) = \Theta(n^2)$。
 
-再例如 $T(n) = T\left(\frac{n}{2}\right) + {\log n}$，那么$a=1, b=2, {\log_2 1}=0$，那么 $k$ 可以取值为 $1$，从而满足第三种情况，所以 $T(n) = \Theta(\log n)$。
-
+再例如 $T(n) = T\left(\frac{n}{2}\right) + {\log n}$，那么 $a=1, b=2, {\log_2 1}=0$，那么 $k$ 可以取值为 $1$，从而满足第三种情况，所以 $T(n) = \Theta(\log n)$。
 
 ## 均摊复杂度
 
