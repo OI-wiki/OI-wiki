@@ -16,6 +16,8 @@ git rev-parse --short HEAD | xargs -I % sed -i "s/githash: ''/githash: '%'/g" mk
 
 mkdocs build -v
 
+./scripts/render_git_history_info.sh
+
 # find ./site -type f -name '*.html' -exec node --max_old_space_size=512 ./scripts/render_math.js {} \;
 
 # find ./site -type f -name "*.html" -exec sed -i -E 's/([^"]*)(assets[^"]*)/https:\/\/cdn-for-oi-wiki.billchn.com\/\2/g' {} +

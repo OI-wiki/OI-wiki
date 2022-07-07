@@ -15,22 +15,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v2
         with:
           python-version: '3.x'
       - uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '18.x'
           check-latest: true
       - name: Install Python dependencies
         run: pip install -r requirements.txt
+      - name: Cache Node.js dependencies
+        uses: actions/cache@v2
+        id: cache-node
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
       - name: Install Node.js dependencies
-        run: npm install .
+        if: steps.cache-node.outputs.cache-hit != 'true'
+        run: npm install
       - name: Page Build
         run: |
           chmod +x ./scripts/build.sh && ./scripts/build.sh
           mkdocs build -v
-          bash ./scripts/post-build.sh
+      - name: Render git history info
+        run: ./scripts/render_git_history_info.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Render math
         run: node --max_old_space_size=3072 ./scripts/render_math.js
       - name: Gulp minify
