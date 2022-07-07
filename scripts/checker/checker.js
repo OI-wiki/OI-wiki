@@ -15,7 +15,7 @@ let errFlagFile = await getFileContent(runPath + "/checker_flag.json");
 let errFlag = JSON.parse(errFlagFile);
 main();
 async function main() {
-    let FileLog = await getChangedFilesByLog(), FileLs = await getChangedFilesByLs();
+    let FileLog = await getChangedFilesByLog(), FileLs = await getChangedFilesByDiff();
     let FileTotal = "";
     if (parg.after || parg.before || parg.author || parg.grep || parg.a)
         FileTotal += FileLog;
@@ -47,7 +47,7 @@ function getChangedFilesByLog() {
         });
     });
 }
-function getChangedFilesByLs() {
+function getChangedFilesByDiff() {
     let args = "";
     if (parg.f)
         args = parg.f + " ";
@@ -55,7 +55,7 @@ function getChangedFilesByLs() {
         args = runPath + "/../..";
     //console.log("git ls-files " + "--exclude-standard " + args);
     return new Promise((resolve, reject) => {
-        cmd.exec("git ls-files -mo --exclude-standard " + args, {
+        cmd.exec("git diff --cached --name-only " + args, {
             encoding: "utf-8",
         }, (error, stdout, stderr) => {
             if (error)
