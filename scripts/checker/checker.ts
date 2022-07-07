@@ -19,6 +19,19 @@ let errFlag = JSON.parse(errFlagFile);
 main();
 
 async function main() {
+	if (parg.h) {
+		console.log(
+			"Usage: \n" +
+				"\t-h\tShow help.\n" +
+				"\t-f <path>\tCheck specified path.\n" +
+				"\t-a\tCheck all files.\n" +
+				"\t-s\tSort results according to files' name.\n" +
+				"\t-r\tShow suggestions. Implies -s.\n" +
+				"\t-q\tCheck files quietly.\n" +
+				"\t--after=<time>, --before=<time>, --author=<time>, --grep<time>\tCheck matched files. Implies -a.\n"
+		);
+		exit(0);
+	}
 	let FileLog = await getChangedFilesByLog(),
 		FileLs = await getChangedFilesByDiff();
 	let FileTotal: string = "";
