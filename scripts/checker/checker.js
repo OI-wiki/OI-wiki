@@ -52,10 +52,10 @@ function getChangedFilesByDiff() {
     if (parg.f)
         args = parg.f + " ";
     else
-        args = runPath + "/../..";
+        args = "--cached " + runPath + "/../..";
     //console.log("git ls-files " + "--exclude-standard " + args);
     return new Promise((resolve, reject) => {
-        cmd.exec("git diff --cached --name-only " + args, {
+        cmd.exec("git diff --name-only " + args, {
             encoding: "utf-8",
         }, (error, stdout, stderr) => {
             if (error)

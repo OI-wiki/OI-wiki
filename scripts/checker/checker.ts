@@ -53,11 +53,11 @@ function getChangedFilesByLog(): Promise<string> {
 function getChangedFilesByDiff(): Promise<string> {
 	let args = "";
 	if (parg.f) args = parg.f + " ";
-	else args = runPath + "/../..";
+	else args = "--cached " + runPath + "/../..";
 	//console.log("git ls-files " + "--exclude-standard " + args);
 	return new Promise((resolve, reject) => {
 		cmd.exec(
-			"git diff --cached --name-only " + args,
+			"git diff --name-only " + args,
 			{
 				encoding: "utf-8",
 			},
