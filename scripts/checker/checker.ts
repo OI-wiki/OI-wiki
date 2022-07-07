@@ -11,7 +11,7 @@ import { exit } from "node:process";
 
 let parg = await yargs(hideBin(process.argv)).usage("$0 [args]").argv;
 let runPath = path.parse(process.argv[1]).dir;
-console.log("Running at: " + runPath);
+console.log("Checker running at: " + runPath);
 
 let errFlagFile: string = await getFileContent(runPath + "/checker_flag.json");
 let errFlag = JSON.parse(errFlagFile);
@@ -20,7 +20,7 @@ main();
 
 async function main() {
 	let FileLog = await getChangedFilesByLog(),
-		FileLs = await getChangedFilesByLs();
+		FileLs = await getChangedFilesByDiff();
 	let FileTotal: string = "";
 	if (parg.after || parg.before || parg.author || parg.grep || parg.a)
 		FileTotal += FileLog;
@@ -50,14 +50,14 @@ function getChangedFilesByLog(): Promise<string> {
 	});
 }
 
-function getChangedFilesByLs(): Promise<string> {
+function getChangedFilesByDiff(): Promise<string> {
 	let args = "";
 	if (parg.f) args = parg.f + " ";
 	else args = runPath + "/../..";
 	//console.log("git ls-files " + "--exclude-standard " + args);
 	return new Promise((resolve, reject) => {
 		cmd.exec(
-			"git ls-files -mo --exclude-standard " + args,
+			"git diff --cached --name-only " + args,
 			{
 				encoding: "utf-8",
 			},

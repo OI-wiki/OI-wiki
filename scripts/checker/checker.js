@@ -10,7 +10,7 @@ import { hideBin } from "yargs/helpers";
 import { exit } from "node:process";
 let parg = await yargs(hideBin(process.argv)).usage("$0 [args]").argv;
 let runPath = path.parse(process.argv[1]).dir;
-console.log("Running at: " + runPath);
+console.log("Checker running at: " + runPath);
 let errFlagFile = await getFileContent(runPath + "/checker_flag.json");
 let errFlag = JSON.parse(errFlagFile);
 main();
