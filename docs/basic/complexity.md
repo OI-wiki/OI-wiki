@@ -36,7 +36,7 @@ author: linehk, persdre
 
 也就是说，如果函数 $f(n)=\Theta(g(n))$，那么我们能找到两个正数 $c_1, c_2$ 使得 $f(n)$ 被 $c_1\cdot g(n)$ 和 $c_2\cdot g(n)$ 夹在中间。
 
-例如，$3n^2+5n-3=\Theta(n^2)$, 这里的 $c_1, c_2, n_0$ 可以分别是 $2, 4, 100$。$n\sqrt {n} + n{\log^5 n} + m{\log m} +nm=\Theta(n\sqrt {n} + m{\log m} + nm)$，这里的$c_1, c_2, n_0$ 可以分别是 $1, 2, 100$。
+例如，$3n^2+5n-3=\Theta(n^2)$, 这里的 $c_1, c_2, n_0$ 可以分别是 $2, 4, 100$。$n\sqrt {n} + n{\log^5 n} + m{\log m} +nm=\Theta(n\sqrt {n} + m{\log m} + nm)$，这里的 $c_1, c_2, n_0$ 可以分别是 $1, 2, 100$。
 
 ### 大 O 符号
 
@@ -153,24 +153,18 @@ $$
     
     对于第 $0$ 层（最高层），合并子问题需要花费 $f(n)$ 的时间
     对于第 $1$ 层（第一次划分出来的子问题），共有 $a$ 个子问题，每个子问题合并需要花费 $f\left(\frac{n}{b}\right)$ 的时间，所以合并总共要花费 $a \left(\frac{n}{b}\right)$ 的时间。
-    层层递推，我们可以写出类推树如下：
-    ![](https://i.imgur.com/b9bGOEH.png)
-    高度为 ${\log_b n}$，所以共有 $n^{\log_b a}$ 个叶子，从而
-    $T(n) = \Theta(n^{\log_b a}) + g(n)$，其中 $g(n) = \sum_{j = 0}^{\log_{b}{n - 1}} a^{j} f(n / b^{j})$。
-    case 1: $f(n) = O(n^{\log_b a-\epsilon})$，因此 $g(n) = O(n^{\log_b a})$。
+    层层递推，我们可以写出类推树如下：![](https://i.imgur.com/b9bGOEH.png)高度为 ${\log_b n}$，所以共有 $n^{\log_b a}$ 个叶子，从而 $T(n) = \Theta(n^{\log_b a}) + g(n)$，其中 $g(n) = \sum_{j = 0}^{\log_{b}{n - 1}} a^{j} f(n / b^{j})$。
+    case 1:$f(n) = O(n^{\log_b a-\epsilon})$，因此 $g(n) = O(n^{\log_b a})$。
     case 2: 首先 $g(n) = \Omega(f(n))$，又因为 $a f(n/b) <= c f(n)$，只要 $c$ 的取值是一个足够小的正数，且 $n$ 的取值足够大，因此可以推导出：$g(n) = O(f(n))$。两侧夹逼可以得出，$g(n) = \Theta(f(n))$。
-    case 3: $f(n) = \Theta(n^{\log_b a})，因此 $g(n) = O(n^{\log_b a} {\log n})$。
-    $T(n)$ 的结果可在 $g(n)$ 得出后显然得到。
-
+    case 3:$f(n) = \Theta(n^{\log_b a})，因此$ g(n) = O(n^{\\log_b a} {\\log n})$。$ T(n)$的结果可在$ g(n)$ 得出后显然得到。
 
 下面举几个例子来说明主定理如何使用。
 
 例如 $T(n) = 3 T\left(\frac{n}{2}\right)＋2n$，那么 $a=3, b=2, 1< {\log_2 3} <2$，那么 $\epsilon$ 可以取值为 $1$，从而满足第一种情况，所以 $T(n) = O(n^2)$。
 
-又例如 $T(n) = T\left(\frac{n}{2}\right) + 1$, 那么$a=1, b=2, {\log_2 1} = 0$，那么 $\epsilon$ 可以取值为 $1$，从而满足第二种情况，所以 $T(n) = \Theta(n^2)$。
+又例如 $T(n) = T\left(\frac{n}{2}\right) + 1$, 那么 $a=1, b=2, {\log_2 1} = 0$，那么 $\epsilon$ 可以取值为 $1$，从而满足第二种情况，所以 $T(n) = \Theta(n^2)$。
 
-再例如 $T(n) = T\left(\frac{n}{2}\right) + {\log n}$，那么$a=1, b=2, {\log_2 1}=0$，那么 $k$ 可以取值为 $1$，从而满足第三种情况，所以 $T(n) = \Theta(\log n)$。
-
+再例如 $T(n) = T\left(\frac{n}{2}\right) + {\log n}$，那么 $a=1, b=2, {\log_2 1}=0$，那么 $k$ 可以取值为 $1$，从而满足第三种情况，所以 $T(n) = \Theta(\log n)$。
 
 ## 均摊复杂度
 
