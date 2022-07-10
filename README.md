@@ -28,7 +28,7 @@
 
 我们在 [status.oi-wiki.org](https://status.oi-wiki.org) 维护了一份镜像站列表，它们的内容和 [oi-wiki.org](https://oi-wiki.org) 都是相同的。
 
-当然，也可以在本地部署。（**需要安装 Python3 和 Pipenv**）
+当然，也可以在本地部署。（**需要 Python 3**）
 
 [点击查看用 asciinema 录制的流程](https://asciinema.org/a/220681)
 
@@ -40,27 +40,27 @@ git clone https://github.com/OI-wiki/OI-wiki.git --depth=1
 cd OI-wiki
 
 # 安装 mkdocs
-pipenv install --pypi-mirror https://pypi.tuna.tsinghua.edu.cn/simple/
+pip3 install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
 # 使用我们的自定义主题（Windows 下请使用 Git Bash 执行）
 # 安装主题时将连接网络下载资源，可通过以下环境变量控制下载链接
-# scripts/pre-build/install-theme.sh:
+# scripts/install_theme.sh:
 # - THEME_REPO
-# scripts/pre-build/install-theme-vendor.sh:
+# scripts/install_theme_vendor.sh:
 # - MATHJAX_URL
 # - MATERIAL_ICONS_URL
 # - GITALK_REPO
-./scripts/pre-build/install-theme.sh
+chmod +x ./scripts/install_theme.sh && ./scripts/install_theme.sh
 
 # 两种方法（选其一即可）：
 # 1. 运行一个本地服务器，访问 http://127.0.0.1:8000 可以查看效果
-pipenv run mkdocs serve -v
+mkdocs serve -v
 
 # 2. 在 site 文件夹下得到静态页面
-pipenv run mkdocs build -v
+mkdocs build -v
 
 # 获取 mkdocs 的命令行工具的说明（解释了命令和参数的含义）
-pipenv run mkdocs --help
+mkdocs --help
 ```
 
 我们现在在服务器端渲染 MathJax，如果希望实现类似效果，可以参考 [build.yml](https://github.com/OI-wiki/OI-wiki/blob/master/.github/workflows/build.yml)。（需要安装 Node.js）

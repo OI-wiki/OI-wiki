@@ -114,7 +114,6 @@ nav:
       - 引用: lang/reference.md
       - 常值: lang/const.md
       - 新版 C++ 特性: lang/new.md
-      - Lambda 表达式: lang/lambda.md
       - pb_ds:
         - pb_ds 简介: lang/pb-ds/index.md
         - 堆: lang/pb-ds/pq.md

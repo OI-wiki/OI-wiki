@@ -22,17 +22,17 @@ jobs:
         id: cache
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
       - name: Install Dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile --production
+        run: npm install
       - name: Fetch Authors
         run: |
           rm -rf authors.json
 
           # Fetch authors list with 10 concurrency requests
-          yarn ts-node-esm scripts/post-build/commits-info/update-authors-cache.ts 10
+          node scripts/fetch-authors.js 10
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit Authors Cache
