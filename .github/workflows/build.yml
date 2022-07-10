@@ -38,20 +38,20 @@ jobs:
         run: yarn --frozen-lockfile --production
       - name: Page Build
         run: |
-          chmod +x ./scripts/build.sh && ./scripts/build.sh
+          ./scripts/pre-build/pre-build.sh
           mkdocs build -v
       - name: Render commits info
-        run: ./scripts/render-commits-info.sh
+        run: ./scripts/post-build/commits-info/render-commits-info.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Render math
-        run: yarn ts-node-esm ./scripts/render_math.ts
+        run: yarn ts-node-esm ./scripts/post-build/math/render_math.ts
         env:
           NODE_OPTIONS: --max_old_space_size=3072
       - name: Gulp minify
         run: yarn gulp -f gulpfile.cjs minify
       - name: Generate redirects
-        run: python scripts/gen_redirect.py
+        run: python scripts/post-build/redirect/generate-redirects.py
       - name: Deploy to gh-pages
         if: ${{ github.event_name == 'push' }}
         uses: peaceiris/actions-gh-pages@v3
@@ -59,9 +59,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
           force_orphan: true
-      - name: BaiduPusher
+      - name: Push to Baidu
         if: ${{ github.event_name == 'push' && github.repository_owner == 'oi-wiki' }}
         env:
-          site: oi-wiki.org
-          BaiduToken: ${{ secrets.BaiduToken }}
-        run: chmod +x scripts/BaiduPusher.sh && ./scripts/BaiduPusher.sh
+          SITE: oi-wiki.org
+          BAIDU_TOKEN: ${{ secrets.BaiduToken }}
+        run: ./scripts/post-deploy/baidu-push.sh
