@@ -71,7 +71,7 @@ $\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor -\lfloor m/p^j\rfloor -
     
     $\left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\left\lfloor k-\left\lfloor k-\frac{1}{3k+7}\right\rfloor\right\rfloor=1$
     
-    若 $3k+7$ 是质数，则有 $(3k+7)\mid(3k+6)!$，即
+    若 $3k+7$ 不是质数，则有 $(3k+7)\mid(3k+6)!$，即
     
     $(3k+6)!\equiv 0\pmod{3k+7}$
     

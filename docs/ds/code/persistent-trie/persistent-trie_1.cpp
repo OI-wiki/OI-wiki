@@ -61,10 +61,10 @@ int main() {
       scanf("%d%d%d", &l, &r, &x);
       l--;
       r--;
-      if (l == r && l == 0)
-        printf("%d\n", s[n] ^ x);  // 记得处理 l=r=1 的情况
+      if (l == 0)
+        printf("%d\n", max(s[n] ^ x, st.query(st.rt[r], st.rt[0], s[n] ^ x)));
       else
-        printf("%d\n", st.query(st.rt[r], st.rt[max(l - 1, 0)], x ^ s[n]));
+        printf("%d\n", st.query(st.rt[r], st.rt[l - 1], s[n] ^ x));
     }
   }
   return 0;
