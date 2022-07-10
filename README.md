@@ -44,13 +44,13 @@ pip3 install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
 # 使用我们的自定义主题（Windows 下请使用 Git Bash 执行）
 # 安装主题时将连接网络下载资源，可通过以下环境变量控制下载链接
-# scripts/install_theme.sh:
+# scripts/pre-build/install-theme.sh:
 # - THEME_REPO
-# scripts/install_theme_vendor.sh:
+# scripts/pre-build/install-theme-vendor.sh:
 # - MATHJAX_URL
 # - MATERIAL_ICONS_URL
 # - GITALK_REPO
-chmod +x ./scripts/install_theme.sh && ./scripts/install_theme.sh
+./scripts/pre-build/install-theme.sh
 
 # 两种方法（选其一即可）：
 # 1. 运行一个本地服务器，访问 http://127.0.0.1:8000 可以查看效果
