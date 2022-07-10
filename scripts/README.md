@@ -13,6 +13,7 @@
     - `baidu-push.sh, convert-sitemap.py` 将 sitemap 转换并推送到百度搜索
 -   `netlify` 用于 Netlify 上的预览构建的脚本（参见 `/netlify.toml`）
     - `build.sh` 在 Netlify 上的构建全过程（手动安装依赖）
+    - `install-python.sh` 在 Netlify 上安装指定版本的 Python
 
 以下是与构建无关的脚本：
 

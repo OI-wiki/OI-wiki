@@ -23,6 +23,6 @@ CODE_OF_CONDUCT.md  @Ir1d
 README.md   @Ir1d
 gulpfile.cjs @Ir1d @Enter-tainer
 package.json    @Ir1d @Enter-tainer
-requirements.txt    @Ir1d
+Pipenv    @Ir1d
 tsconfig.json @Menci
 netlify.toml @Menci
