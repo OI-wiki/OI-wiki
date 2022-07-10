@@ -207,8 +207,8 @@ int upper(const void *p1, const void *p2) {
 
 $$
 \begin{array}{ll}
-1 & \textbf{Input. } \text{A range } [l, r] \text{ meaning the range of } x \text{.} \\
-2 & \textbf{Output. } \text{The maximum value of } x \text{ in the range.} \\
+1 & \textbf{Input. } \text{A range } [l,r] \text{ meaning that the domain of } f(x) \text{.} \\
+2 & \textbf{Output. } \text{The maximum value of } f(x) \text{ and the value of } x \text{ at that time } \text{.} \\
 3 & \textbf{Method. } \\
 4 & \textbf{while } rmid - lmid < eps\\
 5 & \qquad lmid\gets \frac{2l+r}{3} \\
