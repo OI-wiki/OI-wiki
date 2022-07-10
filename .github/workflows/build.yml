@@ -51,8 +51,12 @@ jobs:
         run: yarn ts-node-esm ./scripts/post-build/math/render_math.ts
         env:
           NODE_OPTIONS: --max_old_space_size=3072
-      - name: Gulp minify
-        run: yarn gulp -f gulpfile.cjs minify
+      - name: Minify html
+        run: |
+          shopt -s globstar
+          wget https://file.mgt.moe/minify-html-cli -O /tmp/minify-html
+          chmod +x /tmp/minify-html
+          /tmp/minify-html --keep-closing-tags --minify-css ./site/**/*.html
       - name: Generate redirects
         run: pipenv run python scripts/post-build/redirect/generate-redirects.py
       - name: Deploy to gh-pages
