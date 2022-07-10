@@ -1,7 +1,10 @@
-const { Worker } = require('worker_threads');
-const Promise = require('bluebird');
+import { Worker } from "worker_threads";
+import Promise from "bluebird";
 
-class WorkerPool {
+export default class WorkerPool {
+  readonly workerPath: string;
+  readonly numOfThreads: number;
+
   _workers = [];
   _activeWorkers = [];
   _queue = [];
@@ -14,11 +17,13 @@ class WorkerPool {
 
   init() {
     if (this.numOfThreads < 1) {
-      throw new Error('Number of threads should be at least 1');
+      throw new Error("Number of threads should be at least 1");
     }
 
     for (let i = 0; i < this.numOfThreads; i++) {
-      const worker = new Worker(this.workerPath);
+      const worker = new Worker(this.workerPath, {
+        execArgv: ["--loader", "ts-node/esm"]
+      });
 
       this._workers[i] = worker;
       this._activeWorkers[i] = false;
@@ -57,7 +62,7 @@ class WorkerPool {
           }
           return resolve(result);
         }
-      }
+      };
 
       // No more idle workers
       if (restWorkerId === -1) {
@@ -67,26 +72,26 @@ class WorkerPool {
 
       // Let idle workers run
       this.runWorker(restWorkerId, queueItem);
-    })
+    });
   }
 
   async runWorker(workerId, queueItem) {
     const worker = this._workers[workerId];
     this._activeWorkers[workerId] = true;
 
-    const messageCallback = (result) => {
+    const messageCallback = result => {
       queueItem.callback(null, result);
       cleanUp();
     };
-    const errorCallback = (error) => {
+    const errorCallback = error => {
       queueItem.callback(error);
       cleanUp();
     };
 
     // Clear up listeners
     const cleanUp = () => {
-      worker.removeAllListeners('message');
-      worker.removeAllListeners('error');
+      worker.removeAllListeners("message");
+      worker.removeAllListeners("error");
 
       this._activeWorkers[workerId] = false;
 
@@ -95,14 +100,12 @@ class WorkerPool {
       }
 
       this.runWorker(workerId, this._queue.shift());
-    }
+    };
 
     // create listeners
-    worker.once('message', messageCallback);
-    worker.once('error', errorCallback);
+    worker.once("message", messageCallback);
+    worker.once("error", errorCallback);
     // Send data to other newly created workers
     worker.postMessage(queueItem.getData);
   }
 }
-
-module.exports = WorkerPool;

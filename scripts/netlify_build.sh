@@ -16,7 +16,7 @@ git rev-parse --short HEAD | xargs -I % sed -i "s/githash: ''/githash: '%'/g" mk
 
 mkdocs build -v
 
-./scripts/render_git_history_info.sh
+./scripts/render-commits-info.sh
 
 # find ./site -type f -name '*.html' -exec node --max_old_space_size=512 ./scripts/render_math.js {} \;
 
