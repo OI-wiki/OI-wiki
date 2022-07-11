@@ -37,8 +37,8 @@ int a = 0;
 auto f = []() { return a * 9; };   // Error, 无法访问 'a'
 auto f = [a]() { return a * 9; };  // OK, 'a' 被值“捕获”
 auto f = [&a]() { return a++; };   // OK, 'a' 被引用“捕获”
-                                   // 注意：请保证 Lambda 被调用时 a 没有被销毁
-auto b = f();                      // f 从捕获列表里获得 a 的值，无需通过参数传入 a
+                                  // 注意：请保证 Lambda 被调用时 a 没有被销毁
+auto b = f();  // f 从捕获列表里获得 a 的值，无需通过参数传入 a
 ```
 
 ### parameters 参数列表
