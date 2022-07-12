@@ -35,7 +35,7 @@ void change(Complex y[], int len) {
   int i, j, k;
 
   for (int i = 1, j = len / 2; i < len - 1; i++) {
-    if (i < j) swap(y[i], y[j]);
+    if (i < j) std::swap(y[i], y[j]);
 
     // 交换互为小标反转的元素，i<j 保证交换一次
     // i 做正常的 + 1，j 做反转类型的 + 1，始终保持 i 和 j 是反转的
