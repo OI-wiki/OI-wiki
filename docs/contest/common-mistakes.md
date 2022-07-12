@@ -248,10 +248,10 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 - 除以 0（求 0 的逆元）
 
-???+ warning "示例"
-    ```cpp
-    cout << x / 0 << endl;
-    ```
+    ???+ warning "示例"
+        ```cpp
+        cout << x / 0 << endl;
+        ```
 
 -   数组（下标）越界
 
