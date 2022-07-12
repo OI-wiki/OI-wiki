@@ -42,11 +42,12 @@
 
 ### 对于目录和引用的变更
 
-通常情况下，如果您需要添加一个新页面，或者修改已有页面在目录中的链接，您就需要对 [`mkdocs.yml`](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml) 文件作出改动。            
+通常情况下，如果您需要添加一个新页面，或者修改已有页面在目录中的链接，您就需要对 [`mkdocs.yml`](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml) 文件作出改动。
 
-添加新页面可以参考既有的格式。但除非是进行重构或修正名词，否则**我们不建议对既有页面的引用链接进行修改**，Pull Requests 中不必要的修改也将被驳回。     
+添加新页面可以参考既有的格式。但除非是进行重构或修正名词，否则 **我们不建议对既有页面的引用链接进行修改**，Pull Requests 中不必要的修改也将被驳回。
 
 如果您坚持要修改链接，请注意做好以下几点：
+
     - 修改链接可能会影响到作者信息统计，这时需要您更新当前文档中的 [author 字段](./faq.md#:~:text=Q：为什么-,作者信息统计处,-没有我的名字)，请对照当前页面中的 contributors 清单逐一填写。
     - 请需要在项目内搜索一下是否有内链需要更新。
     - 注意更新 [重定向文件](https://github.com/OI-wiki/OI-wiki/blob/master/docs/_redirects)，以避免在外站引用时出现死链。详见 [重定向文件](./faq.md:~:text=Q：-,重定向文件怎么用,-？)。
