@@ -246,7 +246,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 未定义行为会导致未知的结果，可能是 WA，RE 等。
 
--   除以 0（求 0 的逆元）
+- 除以 0（求 0 的逆元）
 
 ???+ warning "示例"
     ```cpp
