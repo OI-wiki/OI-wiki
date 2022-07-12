@@ -192,7 +192,7 @@ int upper(const void *p1, const void *p2) {
 
 ??? note "为什么不通过求导函数的零点来求极值点？"
     实际上，求出导数后，通过二分法求出导数的零点（由于函数是单峰函数，其导数在同一范围内的零点是唯一的）得到单峰函数的极值点是可行的。
-
+    
     但首先，对于一些函数，求导的过程和结果比较复杂。
     
     其次，某些题中需要求极值点的单峰函数并非一个单独的函数，而是多个函数进行特殊运算得到的函数（如求多个单调性不完全相同的一次函数的最小值的最大值）。
@@ -260,7 +260,7 @@ while (r - l > eps) {
 
 - [Uva 1476 - Error Curves](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4222)
 - [Uva 10385 - Duathlon](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=15&page=show_problem&problem=1326)
-- [UOJ 162 - 【清华集训 2015】灯泡测试](https://uoj.ac/problem/162)
+- [UOJ 162 -【清华集训 2015】灯泡测试](https://uoj.ac/problem/162)
 
 ## 分数规划
 
