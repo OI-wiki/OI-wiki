@@ -80,7 +80,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     ???+ note "未初始化变量会发生什么"
         原文：<https://loj.ac/d/3679> by @hly1204
         
-        例如我们在 C++ 中声明一个 int a; 但不初始化，可能有时候会认为 a 是一个“随机”（其实可能不是真的随机）的值，但是可能将其认为是一个固定的值，但实际上并非如此。
+        例如我们在 C++ 中声明一个 `int a;` 但不初始化，可能有时候会认为 `a` 是一个“随机”（其实可能不是真的随机）的值，但是可能将其认为是一个固定的值，但实际上并非如此。
         
         我们在简单的测试代码中
         
@@ -246,7 +246,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 未定义行为会导致未知的结果，可能是 WA，RE 等。
 
-#### 除以 0（求 0 的逆元）
+-   除以 0（求 0 的逆元）
 
 ???+ warning "示例"
     ```cpp
