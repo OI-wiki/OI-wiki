@@ -137,3 +137,7 @@ $$
 [POJ1113 Wall](http://poj.org/problem?id=1113)
 
 [「SHOI2012」信用卡凸包](https://www.luogu.com.cn/problem/P3829)
+
+## 参考资料与注释
+
+[^3d-v]: [三维凸包学习小记](https://www.cnblogs.com/xzyxzy/p/10225804.html)
