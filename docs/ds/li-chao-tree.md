@@ -46,6 +46,7 @@ void upd(int root, int cl, int cr, int u) {  // 对线段完全覆盖到的区�
   if (calc(u, mid) > calc(v, mid)) swap(u, v);
   if (calc(u, cl) > calc(v, cl)) upd(root << 1, cl, mid, u);
   if (calc(u, cr) > calc(v, cr)) upd(root << 1 | 1, mid + 1, cr, u);
+  // 上面两个 if 的条件最多只有一个成立，这保证了李超树的时间复杂度
 }
 ```
 
@@ -55,11 +56,11 @@ void upd(int root, int cl, int cr, int u) {  // 对线段完全覆盖到的区�
 void update(int root, int cl, int cr, int l, int r,
             int u) {  // 定位插入线段完全覆盖到的区间
   if (l <= cl && cr <= r) {
-    upd(root, cl, cr, u);
+    upd(root, cl, cr, u);  // 完全覆盖当前区间，更新当前区间的标记
     return;
   }
   int mid = (cl + cr) >> 1;
-  if (l <= mid) update(root << 1, cl, mid, l, r, u);
+  if (l <= mid) update(root << 1, cl, mid, l, r, u);  // 递归拆分区间
   if (mid < r) update(root << 1 | 1, mid + 1, cr, l, r, u);
 }
 ```
@@ -73,6 +74,17 @@ void update(int root, int cl, int cr, int l, int r,
 查询时，我们可以利用标记永久化思想，在包含 $x$ 的所有线段树区间（不超过 $O(\log n)$ 个）的标记线段中，比较得出最终答案。
 
 查询：
+
+```cpp
+pdi query(int root, int l, int r, int d) {  // 查询
+  if (r < d || d < l) return {0, 0};
+  int mid = (l + r) >> 1;
+  double res = calc(s[root], d);
+  if (l == r) return {res, s[root]};
+  return pmax({res, s[root]}, pmax(query(root << 1, l, mid, d),
+                                   query(root << 1 | 1, mid + 1, r, d)));
+}
+```
 
 根据上面的描述，查询过程的时间复杂度显然为 $O(\log n)$，而插入过程中，我们需要将原线段拆分到 $O(\log n)$ 个区间中，对于每个区间，我们又需要花费 $O(\log n)$ 的时间递归下传，从而插入过程的时间复杂度为 $O(\log^2 n)$。
 
