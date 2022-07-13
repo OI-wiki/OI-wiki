@@ -491,7 +491,7 @@ $$
 
 ??? "FFT 模板（ [HDU 1402 -	A * B Problem Plus](http://acm.hdu.edu.cn/showproblem.php?pid=1402) ）"
     ```cpp
-      --8<-- "docs/math/code/poly/ftt/ftt_3.cpp"
+      --8<-- "docs/math/code/poly/fft/fft_3.cpp"
     ```
 
 ## 参考文献
