@@ -16,7 +16,7 @@ jobs:
         with:
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
-          args: "-pdf -file-line-error -halt-on-error -interaction=batchmode -8bit -silent 2>&1 > /dev/null"
+          args: "-pdf -file-line-error -halt-on-error -interaction=batchmode -8bit -silent -logfilewarninglist-"
           pre_compile: |
             apk add unzip > /dev/null
             apk add wget > /dev/null
