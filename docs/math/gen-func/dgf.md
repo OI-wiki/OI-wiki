@@ -229,8 +229,8 @@ $$
 
 [^1]: <https://en.wikipedia.org/wiki/Generating_function#Dirichlet_series_generating_functions_(DGFs>)
 
-[^2]: <../number-theory/mobius.md#性质>
+[^2]: &lt;../number-theory/mobius.md# 性质>
 
-[^3]: <../number-theory/du.md#问题二>
+[^3]: &lt;../number-theory/du.md# 问题二>
 
-[^4]: <../number-theory/mobius.md#dirichlet>
+[^4]: &lt;../number-theory/mobius.md#dirichlet>
