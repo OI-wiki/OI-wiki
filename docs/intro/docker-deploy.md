@@ -20,6 +20,8 @@ docker pull ccr.ccs.tencentyun.com/oi-wiki/oi-wiki
 可以使用的环境变量：
 
 - 可以设置 `WIKI_REPO` 来使用 Wiki 仓库的镜像站点（当未设置时自动使用 GitHub）
+-   可以设置 `PYPI_MIRROR` 来使用 PyPI 仓库的镜像站点（当未设置时自动使用官方 PyPI）
+    - 在国内建议使用 TUNA 镜像站 `https://pypi.tuna.tsinghua.edu.cn/simple/`
 
 ## 运行容器
 
