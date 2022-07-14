@@ -353,7 +353,7 @@ int _query_nex(Node *cur, int val) {
 
 分裂过程接受两个参数：根指针 $\textit{cur}$、关键值 $\textit{key}$。结果为将根指针指向的 treap 分裂为两个 treap，第一个 treap 所有结点的值（$\textit{val}$）小于等于 $\textit{key}$，第二个 treap 所有结点的值大于 $\textit{key}$。
 
-该过程首先判断 $\textit{key}$ 是否小于 $\textit{cur}$ 的值，若小于，则说明 $\textit{cur}$ 及其右子树全部小于 $\textit{key}（$\\textit{cur}$可能等于），$ 属于第二个 treap。当然，也可能有一部分的左子树的值大于 $\textit{key}$，所以还需要继续向左子树递归地分裂。对于大于 $\textit{key}$ 的那部分左子树，我们把它作为 $\textit{cur}$ 的左子树，这样，整个 $\textit{cur}$ 上的节点都是大于 $\textit{key}$ 的。
+该过程首先判断 $\textit{key}$ 是否小于 $\textit{cur}$ 的值，若小于，则说明 $\textit{cur}$ 及其右子树全部小于 $\textit{key}$（$\textit{cur}$ 可能等于 $\textit{key}$），$属于第二个 treap。当然，也可能有一部分的左子树的值大于$\\textit{key}$，所以还需要继续向左子树递归地分裂。对于大于$\\textit{key}$的那部分左子树，我们把它作为$\\textit{cur}$的左子树，这样，整个$\\textit{cur}$上的节点都是大于$\\textit{key}$ 的。
 
 相应的，如果 $\textit{key}$ 大于等于 $\textit{cur}$ 的值，说明 $\textit{cur}$ 的整个左子树以及其自身都小于 $\textit{key}$，属于分裂后的第一个 treap。并且，$\textit{cur}$ 的部分右子树也可能有部分小于 $\textit{key}$，因此我们需要继续递归地分裂右子树。把小于 $\textit{key}$ 的那部分作为 $\textit{cur}$ 的右子树，这样，整个 $\textit{cur}$ 上的节点都小于 $\textit{key}$。
 
