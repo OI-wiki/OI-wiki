@@ -9,7 +9,7 @@
 
 在 Java 中，`Arrays.sort(int[])` 底层是双端快排，`Arrays.sort(Integer[])` 底层是归并排序。因此 `Arrays.sort(int[])` 的最坏时间复杂度是 $O(n^2)$，可以通过如下例题来验证。
 
-???+note "[[codeforces]Quality vs Quantity](https://www.luogu.com.cn/problem/P1216)"
+???+note "[Codeforces 1646B - Quality vs Quantity]([https://www.luogu.com.cn/problem/P1216](https://codeforces.com/problemset/problem/1646/B))"
     题意概要：有 $n$ 个数，你需要将其分为 2 组，是否能存在 1 组的长度小于另 1 组的同时和大于它。
 
 ??? note "例题代码"
