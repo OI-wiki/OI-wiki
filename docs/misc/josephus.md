@@ -36,7 +36,7 @@ int josephus(int n, int k) {
 
 对于 $k$ 较小 $n$ 较大的情况，本题还有一种复杂度为 $\Theta (k\log n)$ 的算法。
 
-考虑到我们每次走 $k$ 个删一个，那么在一圈以内我们可以删掉 $\left\lfloor\frac{n}{k}\right\rfloor$ 个，然后剩下了 $n-\left\lfloor\frac{n}{k}\right\rfloor$ 个人。这时我们在第 $\left\lfloor\frac{n}{k}\right\rfloor\cdot k$ 个人的位置上。而你发现这个东西它等于 $n-n\bmod k$。于是我们继续递归处理，算完后还原它的相对位置。得到如下的算法：
+考虑到我们每次走 $k$ 个删一个，那么在一圈以内我们可以删掉 $\left\lfloor\frac{n}{k}\right\rfloor$ 个，然后剩下了 $n-\left\lfloor\frac{n}{k}\right\rfloor$ 个人。这时我们在第 $\left\lfloor\frac{n}{k}\right\rfloor\cdot k$ 个人的位置上。而你发现它等于 $n-n\bmod k$。于是我们继续递归处理，算完后还原它的相对位置。还原相对位置的依据是：每次做一次删除都会把数到的第 $k$ 个人删除，他们的编号被之后的人逐个继承，也即用 $n-\left\lfloor\frac{n}{k}\right\rfloor$ 人环算时每 $k$ 个人即有 $1$ 个人的位置失算，因此在得数小于 $0$ 时，用还没有被删去 $k$ 倍数编号的 $n$ 人环的 的 $n$ 求模，在得数大于等于 $0$ 时，即可以直接乘 $\frac{k}{k-1}$, 于是得到如下的算法：
 
 ```cpp
 int josephus(int n, int k) {
