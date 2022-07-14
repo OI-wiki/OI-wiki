@@ -191,23 +191,23 @@ int upper(const void *p1, const void *p2) {
 如果需要求出单峰函数的极值点，通常使用二分法衍生出的三分法求单峰函数的极值点。
 
 ??? note "为什么不通过求导函数的零点来求极值点？"
-    实际上，求出导数后，通过二分法求出导数的零点（由于函数是单峰函数，其导数在同一范围内的零点是唯一的）得到单峰函数的极值点是可行的。
+    客观上，求出导数后，通过二分法求出导数的零点（由于函数是单峰函数，其导数在同一范围内的零点是唯一的）得到单峰函数的极值点是可行的。
     
     但首先，对于一些函数，求导的过程和结果比较复杂。
     
-    其次，某些题中需要求极值点的单峰函数并非一个单独的函数，而是多个函数进行特殊运算得到的函数（如求多个单调性不完全相同的一次函数的最小值的最大值）。
+    其次，某些题中需要求极值点的单峰函数并非一个单独的函数，而是多个函数进行特殊运算得到的函数（如求多个单调性不完全相同的一次函数的最小值的最大值）。此时函数的导函数可能是分段函数，且在函数某些点上可能不可导。
 
 ???+warning "注意"
     只要函数是单峰函数，三分法既可以求出其最大值，也可以求出其最小值。为行文方便，除特殊说明外，下文中均以求单峰函数的最小值为例。
 
-三分法与二分法的基本思想类似，但每次操作需在当前区间 $[l,r]$（下图中除去虚线范围内的部分）内任取两点 $lmid,rmid(lmid < rmid)$（下图中的两蓝点）。如下图，如果 $f(lmid)<f(rmid)$，则在 $[rmid,r]$（下图中的红色部分）中函数必然单调递增，极值点（下图中的绿点）必然不在这一区间内，可舍去其。反之亦然。
+三分法与二分法的基本思想类似，但每次操作需在当前区间 $[l,r]$（下图中除去虚线范围内的部分）内任取两点 $lmid,rmid(lmid < rmid)$（下图中的两蓝点）。如下图，如果 $f(lmid)<f(rmid)$，则在 $[rmid,r]$（下图中的红色部分）中函数必然单调递增，最小值所在点（下图中的绿点）必然不在这一区间内，可舍去这一区间。反之亦然。
 
 ![](images/binary1.svg)
 
 ???+ warning "注意"
-    在计算 `lmid` 和 `rmid` 时，需要防止数据溢出的现象出现。
+    在计算 $lmid$ 和 $rmid$ 时，需要防止数据溢出的现象出现。
 
-三分法每次操作会舍去两侧区间中的其中一个。为减少三分法的操作次数，应使两侧区间尽可能大。因此，每一次操作时的 $lmid$ 和 $rmid$ 分别取 $mid-eps$ 和 $mid+eps$ 是一个不错的选择。
+三分法每次操作会舍去两侧区间中的其中一个。为减少三分法的操作次数，应使两侧区间尽可能大。因此，每一次操作时的 $lmid$ 和 $rmid$ 分别取 $mid-\varepsilon$ 和 $mid+\varepsilon$ 是一个不错的选择。
 
 ### 代码实现
 
@@ -218,10 +218,10 @@ $$
 1 & \textbf{Input. } \text{A range } [l,r] \text{ meaning that the domain of } f(x) \text{.} \\
 2 & \textbf{Output. } \text{The maximum value of } f(x) \text{ and the value of } x \text{ at that time } \text{.} \\
 3 & \textbf{Method. } \\
-4 & \textbf{while } r - l > eps\\
+4 & \textbf{while } r - l > \varepsilon\\
 5 & \qquad mid\gets \frac{lmid+rmid}{2}\\
-5 & \qquad lmid\gets mid - eps \\
-6 & \qquad rmid\gets mid + eps \\
+5 & \qquad lmid\gets mid - \varepsilon \\
+6 & \qquad rmid\gets mid + \varepsilon \\
 7 & \qquad \textbf{if } f(lmid) < f(rmid) \\
 8 & \qquad \qquad r\gets mid \\
 9 & \qquad \textbf{else } \\
@@ -261,6 +261,7 @@ while (r - l > eps) {
 - [Uva 1476 - Error Curves](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4222)
 - [Uva 10385 - Duathlon](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=15&page=show_problem&problem=1326)
 - [UOJ 162 -【清华集训 2015】灯泡测试](https://uoj.ac/problem/162)
+- [洛谷 P7579 -「RdOI R2」称重（weigh）](https://www.luogu.com.cn/problem/P7579)
 
 ## 分数规划
 
