@@ -168,7 +168,7 @@ $$
     $$
     
     $$
-    case 3: f(n) = \Theta(n^{\log_b a})，因此 g(n) = O(n^{\\log_b a} {\\log n})。T(n) 的结果可在 g(n) 得出后显然得到。
+    case 3: f(n) = \Theta(n^{\log_b a})，因此 g(n) = O(n^{\log_b a} {\log n})。T(n) 的结果可在 g(n) 得出后显然得到。
     $$
 
 下面举几个例子来说明主定理如何使用。
