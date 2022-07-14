@@ -11,8 +11,10 @@
 我们先将所有点按照 $x_i$ 为第一关键字、$y_i$ 为第二关键字排序，并以点 $p_m (m = \lfloor \frac{n}{2} \rfloor)$ 为分界点，拆分点集为 $A_1,A_2$：
 
 $$
-A_1 = \{p_i \ \big | \ i = 0 \ldots m \}\\
-A_2 = \{p_i \ \big | \ i = m + 1 \ldots n-1 \}
+\begin{aligned}
+A_1 &= \{p_i \ \big | \ i = 0 \ldots m \}\\
+A_2 &= \{p_i \ \big | \ i = m + 1 \ldots n-1 \}
+\end{aligned}
 $$
 
 并递归下去，求出两点集各自内部的最近点对，设距离为 $h_1,h_2$，取较小值设为 $h$。

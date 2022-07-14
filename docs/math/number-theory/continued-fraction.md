@@ -481,34 +481,26 @@ $$
 以 $\sqrt{74}$ 为例，实际运算一下连分数算法：
 
 $$
-\sqrt{74}=8+(-8)+\sqrt{74}=\left[8,\frac{8+\sqrt{74}}{10}\right]\\
-=\left[8,1+\frac{-2+\sqrt{74}}{10}\right]=\left[8,1,\frac{2+\sqrt{74}}{7}\right]\\
-=\left[8,1,1+\frac{-5+\sqrt{74}}{7}\right]=\left[8,1,1,\frac{5+\sqrt{74}}{7}\right]\\
-=\left[8,1,1,1+\frac{-2+\sqrt{74}}{7}\right]=\left[8,1,1,1,\frac{2+\sqrt{74}}{10}\right]\\
-=\left[8,1,1,1,1+\frac{-8+\sqrt{74}}{10}\right]=\left[8,1,1,1,1,8+\sqrt{74}\right]\\
-=\left[8,1,1,1,1,16+(-8)+\sqrt{74}\right]=\left[8,\overline{1,1,1,1,16}\right]
+\begin{aligned}
+\sqrt{74}&=8+(-8)+\sqrt{74}=\left[8,\frac{8+\sqrt{74}}{10}\right]\\
+&=\left[8,1+\frac{-2+\sqrt{74}}{10}\right]=\left[8,1,\frac{2+\sqrt{74}}{7}\right]\\
+&=\left[8,1,1+\frac{-5+\sqrt{74}}{7}\right]=\left[8,1,1,\frac{5+\sqrt{74}}{7}\right]\\
+&=\left[8,1,1,1+\frac{-2+\sqrt{74}}{7}\right]=\left[8,1,1,1,\frac{2+\sqrt{74}}{10}\right]\\
+&=\left[8,1,1,1,1+\frac{-8+\sqrt{74}}{10}\right]=\left[8,1,1,1,1,8+\sqrt{74}\right]\\
+&=\left[8,1,1,1,1,16+(-8)+\sqrt{74}\right]=\left[8,\overline{1,1,1,1,16}\right]
+\end{aligned}
 $$
 
 各个余项分别是：
 
 $$
-r_1=\frac{8+\sqrt{74}}{10}=\left[\overline{1,1,1,1,16}\right]
-$$
-
-$$
-r_2=\frac{2+\sqrt{74}}{7}=\left[\overline{1,1,1,16,1}\right]
-$$
-
-$$
-r_3=\frac{5+\sqrt{74}}{7}=\left[\overline{1,1,16,1,1}\right]
-$$
-
-$$
-r_4=\frac{2+\sqrt{74}}{10}=\left[\overline{1,16,1,1,1}\right]
-$$
-
-$$
-r_5=8+\sqrt{74}=\left[\overline{16,1,1,1,1}\right]
+\begin{alignedat}{3}
+r_1&=\frac{8+\sqrt{74}}{10}&&=\left[\overline{1,1,1,1,16}\right]\\
+r_2&=\frac{2+\sqrt{74}}{7}&&=\left[\overline{1,1,1,16,1}\right]\\
+r_3&=\frac{5+\sqrt{74}}{7}&&=\left[\overline{1,1,16,1,1}\right]\\
+r_4&=\frac{2+\sqrt{74}}{10}&&=\left[\overline{1,16,1,1,1}\right]\\
+r_5&=8+\sqrt{74}&&=\left[\overline{16,1,1,1,1}\right]
+\end{alignedat}
 $$
 
 根据伽罗瓦连分数定理，对称的余项 $r_k$ 和 $r_{l+1-k}$ 循环部分恰好相反，因此互为倒数负共轭。
