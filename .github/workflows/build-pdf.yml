@@ -26,26 +26,22 @@ jobs:
             wget -q -O notosanscjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip"
             wget -q -O robotomono.zip "https://fonts.google.com/download?family=Roboto%20Mono"
             wget -q "http://mirrors.ctan.org/fonts/cm-unicode.zip"
-            ) > /dev/null
-            ( 
             unzip -q notosans.zip -d notosans
             unzip -q notoserif.zip -d notoserif
             unzip -q notosanscjk.zip -d notosanscjk
             unzip -q notoserifcjk.zip -d notoserifcjk
             unzip -q robotomono.zip -d robotomono
             unzip -q ./cm-unicode.zip
-            ) > /dev/null
-            (
             cp -r notosans notoserif notosanscjk notoserifcjk robotomono cm-unicode/fonts/otf/* /usr/share/fonts
             fc-cache
             git clone https://github.com/OI-wiki/OI-Wiki-export.git --depth=1
-            ) > /dev/null
             cd ./OI-Wiki-export/remark-latex
-            npm i > /dev/null
+            npm i
             cd ../..
             cd ./OI-Wiki-export/oi-wiki-export
-            npm i > /dev/null
-            node index.js ../../ > /dev/null
+            npm i
+            node index.js ../../
+            ) > /dev/null
           root_file: |
             oi-wiki-export.tex
       - uses: actions/upload-artifact@v2
