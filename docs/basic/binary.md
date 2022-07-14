@@ -188,26 +188,80 @@ int upper(const void *p1, const void *p2) {
 
 ### 简介
 
-三分法可以用来查找单峰函数的最大（小）值。
+如果需要求出单峰函数的极值点，通常使用二分法衍生出的三分法求单峰函数的极值点。
 
-- 如果 `lmid`（图中较左的蓝点）和 `rmid`（图中较右的蓝点）在最值的同侧（图中最值在两蓝点的右侧）：由函数为单峰函数可知二者中较大（小）的自变量值离最值的自变量值更近，舍去较远的点对应的区间（图中红色的区间）。
+??? note "为什么不通过求导函数的零点来求极值点？"
+    客观上，求出导数后，通过二分法求出导数的零点（由于函数是单峰函数，其导数在同一范围内的零点是唯一的）得到单峰函数的极值点是可行的。
+    
+    但首先，对于一些函数，求导的过程和结果比较复杂。
+    
+    其次，某些题中需要求极值点的单峰函数并非一个单独的函数，而是多个函数进行特殊运算得到的函数（如求多个单调性不完全相同的一次函数的最小值的最大值）。此时函数的导函数可能是分段函数，且在函数某些点上可能不可导。
 
-![example1](images/binary2.svg)
+???+warning "注意"
+    只要函数是单峰函数，三分法既可以求出其最大值，也可以求出其最小值。为行文方便，除特殊说明外，下文中均以求单峰函数的最小值为例。
 
-- 如果函数的最值在 `lmid` 和 `rmid` 之间（图中两蓝点之间的区间）：由于最值在二者中间，可以舍去两侧的区间。但为和上一分类保持一致性，舍去较远的点对应的区间（图中红色的区间）。
+三分法与二分法的基本思想类似，但每次操作需在当前区间 $[l,r]$（下图中除去虚线范围内的部分）内任取两点 $lmid,rmid(lmid < rmid)$（下图中的两蓝点）。如下图，如果 $f(lmid)<f(rmid)$，则在 $[rmid,r]$（下图中的红色部分）中函数必然单调递增，最小值所在点（下图中的绿点）必然不在这一区间内，可舍去这一区间。反之亦然。
 
-![example2](images/binary1.svg)
+![](images/binary1.svg)
+
+???+ warning "注意"
+    在计算 $lmid$ 和 $rmid$ 时，需要防止数据溢出的现象出现。
+
+三分法每次操作会舍去两侧区间中的其中一个。为减少三分法的操作次数，应使两侧区间尽可能大。因此，每一次操作时的 $lmid$ 和 $rmid$ 分别取 $mid-\varepsilon$ 和 $mid+\varepsilon$ 是一个不错的选择。
 
 ### 代码实现
 
+#### 伪代码
+
+$$
+\begin{array}{ll}
+1 & \textbf{Input. } \text{A range } [l,r] \text{ meaning that the domain of } f(x) \text{.} \\
+2 & \textbf{Output. } \text{The maximum value of } f(x) \text{ and the value of } x \text{ at that time } \text{.} \\
+3 & \textbf{Method. } \\
+4 & \textbf{while } r - l > \varepsilon\\
+5 & \qquad mid\gets \frac{lmid+rmid}{2}\\
+5 & \qquad lmid\gets mid - \varepsilon \\
+6 & \qquad rmid\gets mid + \varepsilon \\
+7 & \qquad \textbf{if } f(lmid) < f(rmid) \\
+8 & \qquad \qquad r\gets mid \\
+9 & \qquad \textbf{else } \\
+10 & \qquad \qquad l\gets mid
+\end{array}
+$$
+
+#### C++
+
 ```cpp
-lmid = left + (right - left >> 1);
-rmid = lmid + (right - lmid >> 1);  // 对右侧区间取半
-if (cal(lmid) > cal(rmid))
-  right = rmid;
-else
-  left = lmid;
+while (r - l > eps) {
+  mid = (lmid + rmid) / 2;
+  lmid = mid - eps;
+  rmid = mid + eps;
+  if (f(lmid) < f(rmid))
+    r = mid;
+  else
+    l = mid;
+}
 ```
+
+### 例题
+
+???+note "[洛谷 P3382 - 【模板】三分法](https://www.luogu.com.cn/problem/P3382)"
+    给定一个 $N$ 次函数和范围 $[l, r]$，求出使函数在 $[l, x]$ 上单调递增且在 $[x, r]$ 上单调递减的唯一的 $x$ 的值。
+
+??? note "解题思路"
+    本题要求求 $N$ 次函数在 $[l, r]$ 取最大值时自变量的值，显然可以使用三分法。
+
+??? note "参考代码"
+    ```cpp
+    --8<-- "docs/basic/code/binary/binary_1.cpp"
+    ```
+
+### 习题
+
+- [Uva 1476 - Error Curves](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4222)
+- [Uva 10385 - Duathlon](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=15&page=show_problem&problem=1326)
+- [UOJ 162 -【清华集训 2015】灯泡测试](https://uoj.ac/problem/162)
+- [洛谷 P7579 -「RdOI R2」称重（weigh）](https://www.luogu.com.cn/problem/P7579)
 
 ## 分数规划
 

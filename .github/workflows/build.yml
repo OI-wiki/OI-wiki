@@ -23,7 +23,7 @@ jobs:
           cache: pipenv
       - uses: actions/setup-node@v2
         with:
-          node-version: '18.x'
+          node-version: '16.x'
           check-latest: true
       - name: Install Python dependencies
         run: |
