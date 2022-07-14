@@ -46,9 +46,7 @@ void selection_sort(int* a, int n) {
         ith = j;
       }
     }
-    int t = a[i];
-    a[i] = a[ith];
-    a[ith] = t;
+    std::swap(a[i], a[ith]);
   }
 }
 ```

@@ -50,7 +50,7 @@ struct Node_t {
 ```cpp
 auto split(int x) {
   if (x > n) return odt.end();
-  auto it = --odt.upper_bound((Node_t){x, 0, 0});
+  auto it = --odt.upper_bound(Node_t{x, 0, 0});
   if (it->l == x) return it;
   int l = it->l, r = it->r, v = it->v;
   odt.erase(it);

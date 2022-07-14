@@ -66,3 +66,5 @@ $$
 [\[国家集训队\]墨墨的等式](https://www.luogu.com.cn/problem/P2371)
 
 [「NOIP2018」货币系统](https://loj.ac/problem/2951)
+
+[AGC057D - Sum Avoidance](https://atcoder.jp/contests/agc057/tasks/agc057_d)

@@ -16,6 +16,9 @@ $$
 
 注意到 $A,B$ 均小于 $\left \lceil \sqrt p \right \rceil$，所以时间复杂度为 $\Theta\left  (\sqrt p\right )$，用 `map` 则多一个 $\log$。
 
+??? note "为什么要求 $a$ 与 $p$ 互质"
+    注意到我们求出的是 $A,B$，我们需要保证从 $a^{A\left \lceil \sqrt p \right \rceil} \equiv ba^B \pmod p$ 可以推回 $a^{A\left \lceil \sqrt p \right \rceil -B} \equiv b \pmod p$，前式是后式左右两边除以 $a^B$ 得到，所以必须有 $a^B \perp p$ 即 $a\perp p$。
+
 ## 进阶篇
 
 求解

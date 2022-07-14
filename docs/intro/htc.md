@@ -18,7 +18,7 @@
 ???+ tip
     在你的更改被合并到 OI Wiki 的主仓库之前，你对 OI Wiki 的内容所作出的修改均不会出现在 OI Wiki 的主站上，所以无需担心你的修改会破坏 OI Wiki 上正在显示的内容。
     
-    如果还是不放心，可以查看 [GitHub 的官方教程](https://lab.github.com/)。
+    如果还是不放心，可以查看 [GitHub 的官方教程](https://skills.github.com/)。
 
 #### 编辑单个页面内的内容
 
@@ -39,6 +39,18 @@
 2. 在编辑器中作出对页面源文件的更改，可以使用页面右上方的预览按钮（或按下<kbd>Ctrl+K</kbd><kbd>V</kbd>快捷键）在右侧打开预览界面；
 3. 修改完成后使用左侧的 Source Control 选项卡，并按照本文中 [commit 信息格式规范](#commit) 填写 commit 信息并提交，提交时会提示是否创建此仓库的分支，点击绿色的 **Fork Repository** 按钮即可。
 4. 提交后会在网页上方的中央弹出一个提示框，在第一次的提示框内填写标题，第二次的提示框内填写此提交要提交到的仓库内分支名称，之后右下角会弹出一个提示框，内容类似于 `Created Pull Request #1 for OI-Wiki/OI-Wiki.`，点击蓝字链接即可查看该 Pull Request。
+
+### 对于目录和引用的变更
+
+通常情况下，如果您需要添加一个新页面，或者修改已有页面在目录中的链接，您就需要对 [`mkdocs.yml`](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml) 文件作出改动。
+
+添加新页面可以参考既有的格式。但除非是进行重构或修正名词，否则 **我们不建议对既有页面的引用链接进行修改**，Pull Requests 中不必要的修改也将被驳回。
+
+如果您坚持要修改链接，请注意做好以下几点：
+
+- 修改链接可能会影响到作者信息统计，这时需要您更新当前文档中的 [author 字段](./faq.md#:~:text=Q：为什么-,作者信息统计,-处没有我的)，请对照当前页面中的 contributors 清单逐一填写。
+- 请需要在项目内搜索一下是否有内链需要更新。
+- 注意更新 [重定向文件](https://github.com/OI-wiki/OI-wiki/blob/master/docs/_redirects)，以避免在外站引用时出现死链。详见 [重定向文件](./faq.md#:~:text=Q：-,重定向文件怎么用？,-A：_redirects)。
 
 ### 使用 Git 在本地进行编辑
 

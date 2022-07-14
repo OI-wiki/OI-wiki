@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "wiki for OI / ACM-ICPC",
   "main": "index.js",
+  "type": "module",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "scripts:format": "prettier --write \"scripts/**/*.ts\"",
+    "scripts:format:check": "prettier --check \"scripts/**/*.ts\"",
+    "docs:format:remark": "remark . -o"
   },
   "repository": {
     "type": "git",
@@ -25,24 +28,33 @@
   },
   "homepage": "https://github.com/OI-wiki/OI-wiki#readme",
   "dependencies": {
+    "@swc/core": "^1.2.210",
     "bluebird": "^3.7.2",
     "chalk": "^4.1.0",
+    "cheerio": "^1.0.0-rc.12",
     "cssnano": "^4.1.10",
-    "gulp": "^4.0.0",
-    "gulp-htmlmin": "^5.0.1",
-    "gulp-postcss": "^8.0.0",
-    "gulp-purifycss": "^0.2.0",
     "hexo-fs": "^3.1.0",
+    "klaw": "^4.0.1",
     "mathjax-node-page": "^3.2.0",
+    "octokit": "^1.8.1",
     "remark-clang-format": "^1.9.3",
     "remark-cli": "^8.0.0",
-    "remark-copywriting-correct": "^0.5.0",
+    "remark-copywriting-correct": "0.6.0",
     "remark-details": "^3.0.0",
     "remark-footnotes": "^1.0.0",
     "remark-lint-final-newline": "^1.0.2",
     "remark-lint-no-tabs": "^1.0.2",
     "remark-math": "^1.0.5",
     "remark-math-space": "^2.1",
-    "remark-preset-lint-markdown-style-guide": "^4.0.0"
+    "remark-preset-lint-markdown-style-guide": "^4.0.0",
+    "ts-node": "^10.8.2"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.36",
+    "@types/cheerio": "^0.22.31",
+    "@types/hexo-fs": "^0.2.10",
+    "@types/klaw": "^3.0.3",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
   }
 }
