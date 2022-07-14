@@ -207,7 +207,7 @@ int upper(const void *p1, const void *p2) {
 ???+ warning "注意"
     在计算 $lmid$ 和 $rmid$ 时，需要防止数据溢出的现象出现。
 
-三分法每次操作会舍去两侧区间中的其中一个。为减少三分法的操作次数，应使两侧区间尽可能大。因此，每一次操作时的 $lmid$ 和 $rmid$ 分别取 $mid-\mathrm{eps}$ 和 $mid+\mathrm{eps}$ 是一个不错的选择。
+三分法每次操作会舍去两侧区间中的其中一个。为减少三分法的操作次数，应使两侧区间尽可能大。因此，每一次操作时的 $lmid$ 和 $rmid$ 分别取 $mid-\varepsilon$ 和 $mid+\varepsilon$ 是一个不错的选择。
 
 ### 代码实现
 
@@ -218,10 +218,10 @@ $$
 1 & \textbf{Input. } \text{A range } [l,r] \text{ meaning that the domain of } f(x) \text{.} \\
 2 & \textbf{Output. } \text{The maximum value of } f(x) \text{ and the value of } x \text{ at that time } \text{.} \\
 3 & \textbf{Method. } \\
-4 & \textbf{while } r - l > \mathrm{eps}\\
+4 & \textbf{while } r - l > \varepsilon\\
 5 & \qquad mid\gets \frac{lmid+rmid}{2}\\
-5 & \qquad lmid\gets mid - \mathrm{eps} \\
-6 & \qquad rmid\gets mid + \mathrm{eps} \\
+5 & \qquad lmid\gets mid - \varepsilon \\
+6 & \qquad rmid\gets mid + \varepsilon \\
 7 & \qquad \textbf{if } f(lmid) < f(rmid) \\
 8 & \qquad \qquad r\gets mid \\
 9 & \qquad \textbf{else } \\
