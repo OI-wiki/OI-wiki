@@ -43,13 +43,10 @@ jobs:
         run: |
           ./scripts/pre-build/pre-build.sh
           pipenv run mkdocs build -v
-      - name: Render commits info
-        run: ./scripts/post-build/commits-info/render-commits-info.sh
+      - name: Post-process HTML
+        run: yarn ts-node-esm scripts/post-build/html-postprocess.ts commits-info math
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Render math
-        run: yarn ts-node-esm ./scripts/post-build/math/render_math.ts
-        env:
           NODE_OPTIONS: --max_old_space_size=3072
       - name: Minify html
         run: ./scripts/post-build/minify-html/minify-html.sh

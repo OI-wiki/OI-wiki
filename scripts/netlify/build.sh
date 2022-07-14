@@ -16,5 +16,5 @@ PREBUILD_NETLIFY=1 scripts/pre-build/pre-build.sh
 pipenv run mkdocs build -v
 
 # Post-build scripts
-scripts/post-build/commits-info/render-commits-info.sh
-scripts/post-build/minify-html/minify-html.sh
+export NODE_OPTIONS="--max_old_space_size=3072"
+yarn ts-node-esm scripts/post-build/html-postprocess.ts commits-info math
