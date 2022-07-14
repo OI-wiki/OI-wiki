@@ -18,19 +18,7 @@ jobs:
           latexmk_shell_escape: true
           args: "-pdf -file-line-error -halt-on-error -interaction=batchmode -8bit -silent -logfilewarninglist-"
           pre_compile: |
-            apk add unzip > /dev/null
-            apk add wget > /dev/null
-            apk add curl > /dev/null
-            apk add coreutils > /dev/null
-            apk add nodejs > /dev/null
-            apk add npm > /dev/null
-            apk add imagemagick > /dev/null
-            apk add libwebp > /dev/null
-            apk add librsvg > /dev/null
-            apk add git > /dev/null
-            apk add py-pygments > /dev/null
-            apk add inkscape > /dev/null
-            apk add libxml2 > /dev/null
+            apk add unzip wget curl coreutils nodejs npm imagemagick libwebp librsvg git py-pygments inkscape libxml2 > /dev/null
             wget -q -O notosans.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSans-hinted.zip" > /dev/null
             wget -q -O notoserif.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerif-hinted.zip" > /dev/null
             wget -q -O notoserifcjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKsc-hinted.zip" > /dev/null
