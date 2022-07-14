@@ -17,3 +17,4 @@ pipenv run mkdocs build -v
 
 # Post-build scripts
 scripts/post-build/commits-info/render-commits-info.sh
+scripts/post-build/minify-html/minify-html.sh
