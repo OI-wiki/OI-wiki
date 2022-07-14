@@ -16,7 +16,7 @@ jobs:
         with:
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
-          args: "-no-pdf -file-line-error -halt-on-error -interaction=batchmode -8bit -silent -logfilewarninglist-"
+          args: "-pdfxe -file-line-error -halt-on-error -interaction=nonstopmode -8bit -silent -logfilewarninglist- -pdfxelatex='xelatex --shell-escape %O %S -output-driver=\"xdvipdfmx -z0\"'"
           pre_compile: |
             apk add unzip wget curl coreutils nodejs npm imagemagick libwebp librsvg git py-pygments inkscape libxml2 > /dev/null
             (
