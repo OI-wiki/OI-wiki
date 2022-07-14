@@ -1,18 +1,11 @@
-import { isMainThread, parentPort } from "worker_threads";
-
-if (isMainThread) {
-  throw new Error("Its not a worker");
-}
-
-import Promise from "bluebird";
-import hexoFs from "hexo-fs";
 import chalk from "chalk";
-
 import mathjaxNodePage from "mathjax-node-page";
+import { HTMLElement } from "node-html-parser";
 import { promisify } from "util";
 
-const { readFile, writeFile } = hexoFs;
-const { green, red, yellow, bgRed } = chalk;
+import { TaskHandler } from "../html-postprocess.js";
+
+const { red, yellow, bgRed } = chalk;
 const { mjpage } = mathjaxNodePage;
 
 mjpage[promisify.custom] = input => {
@@ -34,11 +27,7 @@ mjpage[promisify.custom] = input => {
 
 const mathJaxRenderer = promisify(mjpage);
 
-async function renderMathJax(filename) {
-  const START_TIME = +new Date();
-
-  const content = await readFile(filename);
-
+async function renderMathJax(content: string, filename: string) {
   const preProcessed = content
     .replace(/<span class="MathJax_Preview">.+?<\/span><script type="math\/tex">/gi, '<script type="math/tex">')
     .replace(/<div class="MathJax_Preview">[\s\S]*?<\/div>/gi, "");
@@ -52,16 +41,13 @@ async function renderMathJax(filename) {
     console.error(e);
   }
 
-  if (result) {
-    const END_TIME = +new Date();
-    console.log(`${green("INFO")}  ${yellow(filename)} rendered finished (${(END_TIME - START_TIME) / 1000}s).`);
-    return writeFile(filename, result);
-  }
+  if (result) return result;
 
-  return;
+  return content;
 }
 
-parentPort.on("message", async filename => {
-  await renderMathJax(filename);
-  parentPort.postMessage("Done");
-});
+export const taskHandler = new (class implements TaskHandler<void> {
+  async process(document: HTMLElement, filePath: string) {
+    document.innerHTML = await renderMathJax(document.innerHTML, filePath);
+  }
+})();
