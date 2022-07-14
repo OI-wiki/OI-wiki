@@ -37,8 +37,10 @@ jobs:
             git clone https://github.com/OI-wiki/OI-Wiki-export.git --depth=1
             cd ./OI-Wiki-export/remark-latex
             npm i
+            ) > /dev/null
             cd ../..
             cd ./OI-Wiki-export/oi-wiki-export
+            (
             npm i
             node index.js ../../
             ) > /dev/null
