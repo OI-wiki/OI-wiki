@@ -104,7 +104,7 @@ void dfz(int x, int fa) {
       dfz(rt, x);
     }
 }
-int main() {
+signed main() {
   scanf("%lld", &n);
   for (int i = 1; i < n; i++)
     scanf("%lld%lld%lld", &a, &b, &c), add_edge(a, b, c), add_edge(b, a, c);
