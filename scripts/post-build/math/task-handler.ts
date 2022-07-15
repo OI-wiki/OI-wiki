@@ -137,7 +137,7 @@ export const taskHandler = new (class implements TaskHandler<void> {
     // Inject CSS <link> element (if rendered any math elements)
     if (mathElements.length > 0) {
       const htmlFilePathToRoot = path.relative(this.siteDir, filePath);
-      const cssFilePathToHtml = path.relative(htmlFilePathToRoot, MATHJAX_TARGET_CSS_FILE);
+      const cssFilePathToHtml = path.relative(path.dirname(htmlFilePathToRoot), MATHJAX_TARGET_CSS_FILE);
       document
         .querySelector("head")
         .insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="${cssFilePathToHtml}">`);
