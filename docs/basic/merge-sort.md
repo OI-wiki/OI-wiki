@@ -57,24 +57,33 @@ $$
 
 ```cpp
 // C++ Version
-void merge(int ll, int rr) {
+int a[100005], c[100005];
+void merge(int b, int e) {
   // 用来把 a 数组 [ll, rr - 1] 这一区间的数排序。 t
   // 数组是临时存放有序的版本用的。
-  if (rr - ll <= 1) return;
-  int mid = ll + ((rr - ll) >> 1);
-  merge(ll, mid);
-  merge(mid, rr);
-  int p = ll, q = mid, s = ll;
-  while (s < rr) {
-    if (p >= mid || (q < rr && a[p] > a[q])) {
-      t[s++] = a[q++];
-      // ans += mid - p;
-    } else
-      t[s++] = a[p++];
+  if (b == e) {
+    return ;
   }
-  for (int i = ll; i < rr; ++i) a[i] = t[i];
+  int mid = (b + e) / 2, i = b, j = mid + 1, k = b;
+  merge(b, mid);
+  merge(mid + 1, e);
+  while (i <= mid && j <= e) {
+    if (a[i] <= a[j]) {
+      c[k++] = a[i++];
+    } else {
+      c[k++] = a[j++];
+    }
+  }
+  while (i <= mid) {
+    c[k++] = a[i++];
+  }
+  while (j <= e) {
+    c[k++] = a[j++];
+  }
+  for (int l = b; l <= e; l++) {
+    a[l] = c[l];
+  }
 }
-
 // 关键点在于一次性创建数组，避免在每次递归调用时创建，以避免内存分配的耗时。
 ```
 
@@ -107,9 +116,55 @@ def merge_sort(ll, rr):
 
 归并排序还可以用来求逆序对的个数。
 
-所谓逆序对，就是对于一个数组 $a$，满足 $a_{i} > a_{j}$ 且 $i < j$ 的数对 $(i, j)$。
+所谓逆序对，就是对于一个数组 $a$，满足 $a_{i} > a_{j}$ 且 $i < j$ 的数对 $(i, j)$, 那么如何求逆序对呢? 
 
-代码实现中注释掉的 `ans += mid - p` 就是在统计逆序对个数。具体来说，算法把靠后的数放到前面了（较小的数放在前面），所以在这个数原来位置之前的、比它大的数都会和它形成逆序对，而这个个数就是还没有合并进去的数的个数，即 `mid - p`。
+1. 暴力枚举起始点和终止点. 时间复杂度 $O(n^2)$, 显然不是我们所想要的.
+2. 考虑利用归并排序的性质, 把靠后的数放到前面了（较小的数放在前面），所以在这个数原来位置之前的、比它大的数都会和它形成逆序对，而这个个数就是还没有合并进去的数的个数，即 `mid - p + 1`. 请看上面的归并排序程序, 当待合并的数组为:
+```
+x = {3, 6}
+y = {1}
+```
+的时候, $3$ 和 $6$ 都会被放在 $1$ 的前面, 于是可以得出这轮合并中形成了 2 个逆序对.
+
+可以通过参考下图, 进一步理解和体会:
+![image](https://user-images.githubusercontent.com/49180735/179234548-62458d45-84ec-4a8b-8fd1-fab495b052c2.png)
+
+下面给出求逆序对数量问题的模板:
+??? note "[洛谷P1908 - 逆序对](https://www.luogu.com.cn/problem/P1908)"
+    ```cpp
+    int ans = 0;
+    int a[100005], c[100005];
+    void merge(int b, int e) {
+      if (b == e) {
+        return ;
+      }
+      int mid = (b + e) / 2, i = b, j = mid + 1, k = b;
+      merge(b, mid);
+      merge(mid + 1, e);
+      while (i <= mid && j <= e) {
+        if (a[i] <= a[j]) {
+          c[k++] = a[i++];
+        } else {
+          cout << a[j] << ':' ; // 输出本轮找到的所有逆序对
+          for (int s = i; s <= mid; ++s) {
+            cout << a[s] << ' ' ;
+          }
+          cout << endl;
+          c[k++] = a[j++];
+          ans += mid - i + 1; // 统计逆序对个数
+        }
+      }
+      while (i <= mid) {
+        c[k++] = a[i++];
+      }
+      while (j <= e) {
+        c[k++] = a[j++];
+      }
+      for (int l = b; l <= e; l++) {
+        a[l] = c[l];
+      }
+    }
+    ```
 
 另外，逆序对也可以用 [树状数组](../ds/fenwick.md)、[线段树](../ds/seg.md) 等数据结构求解。这三种方法的时间复杂度都是 $O(n \log n)$。
 
