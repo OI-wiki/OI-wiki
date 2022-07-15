@@ -60,7 +60,11 @@ export class MathRenderer {
     const inputJax = new TeX({
       packages: {
         "[+]": MATHJAX_PACKAGES
-      }
+      },
+      macros: {
+        shl: "{\\space\\var|<<|\\space}",
+        shr: "{\\space\\var|>>|\\space}"
+      },
     });
     const outputJax = new CHTML<LiteElement, unknown, LiteDocument>({
       fontURL: path.relative(path.dirname(MATHJAX_TARGET_CSS_FILE), MATHJAX_TARGET_FONTS_DIR),
