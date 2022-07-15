@@ -16,19 +16,7 @@
 
 现在假设我们有一根线，从下往上开始扫描：
 
-![](./images/scanning-1.png)
-
-![](./images/scanning-2.png)
-
-![](./images/scanning-3.png)
-
-![](./images/scanning-4.png)
-
-![](./images/scanning-5.png)
-
-![](./images/scanning-6.png)
-
-![](./images/scanning-7.png)
+![](./images/scanning.svg)
 
 - 如图所示，我们可以把整个矩形分成如图各个颜色不同的小矩形，那么这个小矩形的高就是我们扫过的距离，那么剩下了一个变量，那就是矩形的长一直在变化。
 - 我们的线段树就是为了维护矩形的长，我们给每一个矩形的上下边进行标记，下面的边标记为 1，上面的边标记为 -1，每遇到一个矩形时，我们知道了标记为 1 的边，我们就加进来这一条矩形的长，等到扫描到 -1 时，证明这一条边需要删除，就删去，利用 1 和 -1 可以轻松的到这种状态。
@@ -56,10 +44,10 @@
       int flag;
     } p[maxn << 3];  // 坐标
     
-    //定义sort比较
+    // 定义sort比较
     bool cmp(node2 a, node2 b) { return a.x < b.x; }
     
-    //上传
+    // 上传
     void pushup(int rt) {
       if (lazy[rt] > 0)
         cl[rt].sum = cl[rt].r - cl[rt].l;
@@ -67,7 +55,7 @@
         cl[rt].sum = cl[rt * 2].sum + cl[rt * 2 + 1].sum;
     }
     
-    //建树
+    // 建树
     void build(int rt, int l, int r) {
       if (r - l > 1) {
         cl[rt].l = s[l];
@@ -83,7 +71,7 @@
       return;
     }
     
-    //更新
+    // 更新
     void update(int rt, double y1, double y2, int flag) {
       if (cl[rt].l == y1 && cl[rt].r == y2) {
         lazy[rt] += flag;
@@ -132,11 +120,11 @@
 
 ## 练习
 
-- [「HDU1542」Atlantis](http://acm.hdu.edu.cn/showproblem.php?pid=1542)
+- [「POJ1151」Atlantis](http://poj.org/problem?id=1151)
 
-- [「HDU1828」Picture](http://acm.hdu.edu.cn/showproblem.php?pid=1828)
+- [「POJ1177」Picture](http://poj.org/problem?id=1177)
 
-- [「HDU3265」Posters](http://acm.hdu.edu.cn/showproblem.php?pid=3265)
+- [「POJ3832」Posters](http://poj.org/problem?id=3832)
 
 ## 参考资料
 

@@ -11,6 +11,7 @@
 最简单的算法即为从 $[1,\sqrt N]$ 进行遍历。
 
 ```C++
+// C++ Version
 list<int> breakdown(int N) {
   list<int> result;
   for (int i = 2; i * i <= N; i++) {
@@ -20,10 +21,24 @@ list<int> breakdown(int N) {
     }
   }
   if (N != 1) {  // 说明再经过操作之后 N 留下了一个素数
-    result.push_back(N)
+    result.push_back(N);
   }
   return result;
 }
+```
+
+```python
+# Python Version
+def breakdown(N):
+    result = []
+    for i in range(2, int(sqrt(N)) + 1):
+        if N % i == 0: # 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
+            while N % i == 0:
+                N = N // i
+                result.append(i)
+    if N != 1: # 说明再经过操作之后 N 留下了一个素数
+        result.append(N)
+    return result
 ```
 
 我们能够证明 `result` 中的所有元素均为 `N` 的素因数。
@@ -56,15 +71,17 @@ $$
 由不等式 $1+x\le e^x$ 可得
 
 $$
+\begin{gathered}
 P(A) \le e^{-\frac{1}{n}}\times e^{-\frac{2}{n}}\times \dots \times e^{-\frac{k-1}{n}}=e^{-\frac{k(k-1)}{2n}}\le\frac{1}{2}\\
 e^{-\frac{k(k-1)}{2n}}\le\frac{1}{2}
+\end{gathered}
 $$
 
 然而我们可以得到一个不等式方程，$e^{-\frac{k(k-1)}{2n}}\le 1-p$，其中 $p$ 是一个概率。
 
 将 $n=365$ 代入，解得 $k=23$。所以一个房间中至少 23 人，使其中两个人生日相同的概率达到 $50\%$, 但这个数学事实十分反直觉，故称之为一个悖论。
 
-当 $k>60$，$n=365$ 时，出现两个人同一天生日的概率将大于 $99\%$。那么在一年有 $n$ 天的情况下，当房间中有 $\sqrt{n}$ 个人时，至少有两个人的生日相同的概率约为 $50\%$。
+当 $k>56$，$n=365$ 时，出现两个人同一天生日的概率将大于 $99\%$。那么在一年有 $n$ 天的情况下，当房间中有 $\sqrt{\dfrac{n}{\ln 2}}$ 个人时，至少有两个人的生日相同的概率约为 $50\%$。
 
 考虑一个问题，设置一个数据 $n$，在 $[1,1000]$ 里随机选取 $i$ 个数（$i=1$ 时就是它自己），使它们之间有两个数的差值为 $k$。当 $i=1$ 时成功的概率是 $\frac{1}{1000}$，当 $i=2$ 时成功的概率是 $\frac{1}{500}$（考虑绝对值，$k_2$ 可以取 $k_1-k$ 或 $k_1+k$），随着 $i$ 的增大，这个概率也会增大最后趋向于 1。
 
@@ -108,7 +125,7 @@ $$
 
 ### 时间复杂度分析
 
-我们期望枚举 $O(\sqrt{m})$ 个 $i$ 来分解出 $n$ 的一个非平凡因子 $\gcd(|x_i−x_j|,n)$，因此。Pollard-rho 算法能够在 $O(\sqrt{m})$ 的期望时间复杂度内分解出 $n$ 的一个非平凡因子，通过上面的分析可知 $O(\sqrt{m})\leq O(n^{\frac{1}{4}})$，那么 Pollard-rho 算法的总时间复杂度为 $O(n^{\frac{1}{4}})$。下面介绍两种实现算法，两种算法都可以在 $O(\sqrt{m}$ 的时间复杂度内完成。
+我们期望枚举 $O(\sqrt{m})$ 个 $i$ 来分解出 $n$ 的一个非平凡因子 $\gcd(|x_i−x_j|,n)$，因此。Pollard-rho 算法能够在 $O(\sqrt{m})$ 的期望时间复杂度内分解出 $n$ 的一个非平凡因子，通过上面的分析可知 $O(\sqrt{m})\leq O(n^{\frac{1}{4}})$，那么 Pollard-rho 算法的总时间复杂度为 $O(n^{\frac{1}{4}})$。下面介绍两种实现算法，两种算法都可以在 $O(\sqrt{m})$ 的时间复杂度内完成。
 
 ### Floyd 判环
 
@@ -120,6 +137,7 @@ $$
 
 ??? note "基于 Floyd 判环的 Pollard-Rho 算法"
     ```c++
+    // C++ Version
     ll Pollard_Rho(ll N) {
       ll c = rand() % (N - 1) + 1;
       ll t = f(0, c, N);
@@ -132,6 +150,21 @@ $$
       }
       return N;
     }
+    ```
+    
+    ```python
+    # Python Version
+    def Pollard_Rho(N):
+    c = random.randint(0, 32767) % (N - 1) + 1
+    t = f(0, c, N)
+    r = f(f(0, c, N), c, N)
+    while t != r:
+        d = gcd(abs(t - r), N)
+        if d > 1:
+            return d
+        t = f(t, c, N)
+        r = f(f(r, c, N), c, N)
+    return N
     ```
 
 ### 倍增优化
@@ -168,95 +201,5 @@ $$
 
 ??? note "参考实现"
     ```c++
-    #include <bits/stdc++.h>
-    
-    using namespace std;
-    
-    typedef long long ll;
-    #define lll __int128
-    
-    int t;
-    ll max_factor, n;
-    
-    ll gcd(ll a, ll b) {
-      if (b == 0) return a;
-      return gcd(b, a % b);
-    }
-    
-    ll quick_pow(ll x, ll p, ll mod) {
-      ll ans = 1;
-      while (p) {
-        if (p & 1) ans = (lll)ans * x % mod;
-        x = (lll)x * x % mod;
-        p >>= 1;
-      }
-      return ans;
-    }
-    
-    bool Miller_Rabin(ll p) {
-      if (p < 2) return 0;
-      if (p == 2) return 1;
-      if (p == 3) return 1;
-      ll d = p - 1, r = 0;
-      while (!(d & 1)) ++r, d >>= 1;
-      for (ll k = 0; k < 10; ++k) {
-        ll a = rand() % (p - 2) + 2;
-        ll x = quick_pow(a, d, p);
-        if (x == 1 || x == p - 1) continue;
-        for (int i = 0; i < r - 1; ++i) {
-          x = (lll)x * x % p;
-          if (x == p - 1) break;
-        }
-        if (x != p - 1) return 0;
-      }
-      return 1;
-    }
-    
-    ll f(ll x, ll c, ll n) { return ((lll)x * x + c) % n; }
-    
-    ll Pollard_Rho(ll x) {
-      ll s = 0, t = 0;
-      ll c = (ll)rand() % (x - 1) + 1;
-      int step = 0, goal = 1;
-      ll val = 1;
-      for (goal = 1;; goal <<= 1, s = t, val = 1) {
-        for (step = 1; step <= goal; ++step) {
-          t = f(t, c, x);
-          val = (lll)val * abs(t - s) % x;
-          if ((step % 127) == 0) {
-            ll d = gcd(val, x);
-            if (d > 1) return d;
-          }
-        }
-        ll d = gcd(val, x);
-        if (d > 1) return d;
-      }
-    }
-    
-    void fac(ll x) {
-      if (x <= max_factor || x < 2) return;
-      if (Miller_Rabin(x)) {
-        max_factor = max(max_factor, x);
-        return;
-      }
-      ll p = x;
-      while (p >= x) p = Pollard_Rho(x);
-      while ((x % p) == 0) x /= p;
-      fac(x), fac(p);
-    }
-    
-    int main() {
-      scanf("%d", &t);
-      while (t--) {
-        srand((unsigned)time(NULL));
-        max_factor = 0;
-        scanf("%lld", &n);
-        fac(n);
-        if (max_factor == n)
-          printf("Prime\n");
-        else
-          printf("%lld\n", max_factor);
-      }
-      return 0;
-    }
+    --8<-- "docs/math/code/pollard-rho/pollard-rho_1.cpp"
     ```

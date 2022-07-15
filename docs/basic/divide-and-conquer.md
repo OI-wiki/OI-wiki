@@ -40,7 +40,7 @@ int func(传入数值) {
 
     ```cpp
     // C++ Version
-    //不使用递归的归并排序算法
+    // 不使用递归的归并排序算法
     template <typename T>
     void merge_sort(vector<T> a) {
       int n = a.size();
@@ -49,7 +49,7 @@ int func(传入数值) {
           merge(a, start, start + seg - 1, std::min(start + seg + seg - 1, n - 1));
     }
 
-    //使用递归的归并排序算法
+    // 使用递归的归并排序算法
     template <typename T>
     void merge_sort(vector<T> a, int front, int end) {
       if (front >= end) return;
@@ -265,6 +265,7 @@ void traverse(TreeNode* root) {
               pathSum(root->right, sum);  // 右边路径总数（相信它能算出来）
           return leftPathSum + rightPathSum + pathImLeading;
         }
+        
         int count(TreeNode *node, int sum) {
           if (node == nullptr) return 0;
           // 能不能作为一条单独的路径呢？

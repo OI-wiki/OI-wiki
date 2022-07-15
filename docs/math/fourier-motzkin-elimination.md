@@ -86,7 +86,7 @@ $(-12 + 2y + 6z)/3 \leq (9 + 6y - 3z)/3$
 
 在编程语言中，[Racket](https://racket-lang.org/)，一种基于 Lisp 的多范式编程语言在 [fme - Fourier-Motzkin Elimination for Integer Systems)](https://docs.racket-lang.org/fme/index.html) 中对 FME 算法做了简单函数代数实现。
 
-## References
+## 参考资料与拓展阅读
 
 - [1]Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006) pp 197-217.
 - [2][Fourier–Motzkin elimination - Wikipedia](<https://en.wikipedia.org/wiki/Fourier%E2%80%93Motzkin_elimination>)

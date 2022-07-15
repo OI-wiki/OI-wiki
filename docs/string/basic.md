@@ -30,7 +30,7 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 ### 前缀
 
-**前缀** 是指从串首开始到某个位置 $i$ 结束的一个特殊子串。字符串 $S$ 的以 $i$ 结尾的前缀表示为 $\textit{Preffix(S,i)}$，也就是 $\textit{Preffix(S,i)}=S[0..i]$。
+**前缀** 是指从串首开始到某个位置 $i$ 结束的一个特殊子串。字符串 $S$ 的以 $i$ 结尾的前缀表示为 $\textit{Prefix(S,i)}$，也就是 $\textit{Prefix(S,i)}=S[0..i]$。
 
 **真前缀** 指除了 $S$ 本身的 $S$ 的前缀。
 

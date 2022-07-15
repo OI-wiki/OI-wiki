@@ -130,7 +130,7 @@ C++ 标准库中实现了差分函数 [`std::adjacent_difference`](https://zh.cp
 
 #### 点差分
 
-举例：对域树上的一些路径 $\delta(s_1,t_1), \delta(s_2,t_2), \delta(s_3,t_3)\dots$ 进行访问，问一条路径 $\delta(s,t)$ 上的点被访问的次数。
+举例：对树上的一些路径 $\delta(s_1,t_1), \delta(s_2,t_2), \delta(s_3,t_3)\dots$ 进行访问，问一条路径 $\delta(s,t)$ 上的点被访问的次数。
 
 对于一次 $\delta(s,t)$ 的访问，需要找到 $s$ 与 $t$ 的公共祖先，然后对这条路径上的点进行访问（点的权值加一），若采用 DFS 算法对每个点进行访问，由于有太多的路径需要访问，时间上承受不了。这里进行差分操作：
 
@@ -182,20 +182,19 @@ $$
 
 ## 习题
 
-* * *
-
 前缀和：
 
 - [洛谷 U53525 前缀和（例题）](https://www.luogu.com.cn/problem/U53525)
 - [洛谷 U69096 前缀和的逆](https://www.luogu.com.cn/problem/U69096)
 - [AT2412 最大の和](https://vjudge.net/problem/AtCoder-joi2007ho_a#author=wuyudi)
 - [「USACO16JAN」子共七 Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131)
+- [「USACO05JAN」Moo Volume S](https://www.luogu.com.cn/problem/P6067)
 
 * * *
 
 二维/多维前缀和：
 
-- [HDU 6514 Monitor](http://acm.hdu.edu.cn/showproblem.php?pid=6514)
+- [HDU 6514 Monitor](https://vjudge.net/problem/HDU-6514)
 - [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387)
 - [「HNOI2003」激光炸弹](https://www.luogu.com.cn/problem/P2280)
 

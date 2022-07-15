@@ -40,7 +40,7 @@ $$
 10& \qquad\text{merge0}(A,\ T,\ ll,\ mid)\\
 11&\qquad\text{merge0}(A,\ T,\ mid,\ rr)\\
 12&\\
-13&\qquad p \gets rr\\
+13&\qquad p \gets ll\\
 14&\qquad q \gets mid\\
 15&\qquad\textbf{for}\text{ each } i \text{ in the } ll\dots rr-1\\
 16&\qquad\qquad\textbf{if}\ p\geqslant mid\ or\ q < rr\ and\ A[q] < A[p]\\
@@ -61,7 +61,7 @@ void merge(int ll, int rr) {
   // 用来把 a 数组 [ll, rr - 1] 这一区间的数排序。 t
   // 数组是临时存放有序的版本用的。
   if (rr - ll <= 1) return;
-  int mid = ll + (rr - ll >> 1);
+  int mid = ll + ((rr - ll) >> 1);
   merge(ll, mid);
   merge(mid, rr);
   int p = ll, q = mid, s = ll;
@@ -74,6 +74,7 @@ void merge(int ll, int rr) {
   }
   for (int i = ll; i < rr; ++i) a[i] = t[i];
 }
+
 // 关键点在于一次性创建数组，避免在每次递归调用时创建，以避免内存分配的耗时。
 ```
 
@@ -115,5 +116,5 @@ def merge_sort(ll, rr):
 ## 外部链接
 
 - [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/)
-- [希尔排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
+- [归并排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
 - [逆序对 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E9%80%86%E5%BA%8F%E5%AF%B9)

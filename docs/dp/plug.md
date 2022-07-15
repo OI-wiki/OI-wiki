@@ -33,6 +33,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     const int N = 11;
     long long f[2][1 << N], *f0, *f1;
     int n, m;
+    
     int main() {
       while (cin >> n >> m && n) {
         f0 = f[0];
@@ -81,6 +82,8 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 多条回路
 
+#### 例题
+
 ???+note " 例题 [「HDU 1693」Eat the Trees](https://vjudge.net/problem/HDU-1693)"
     题目大意：求用若干条回路覆盖 $N\times M$ 棋盘的方案数，有些位置有障碍。
 
@@ -93,15 +96,17 @@ if (s >> j & 1) {       // 如果已被覆盖
     --8<-- "docs/dp/code/plug/plug_1.cpp"
     ```
 
+#### 习题
+
 ??? note " 习题 [「ZJU 4231」The Hive II](https://vjudge.net/problem/ZOJ-3466)"
     题目大意：同上题，但格子变成了六边形。
 
 ### 一条回路
 
-#### 例题「Andrew Stankevich Contest 16 - Problem F」Pipe Layout
+#### 例题
 
 ???+note " 例题 [「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
-    题目大意：求用一条回路覆盖 $N\times$ 棋盘的方案数。
+    题目大意：求用一条回路覆盖 $N\times M$ 棋盘的方案数。
 
 在上面的状态表示中我们每合并一组连通的插头，就会生成一条独立的回路，因而在本题中，我们还需要区分插头之间的连通性（出现了！）。这需要我们对状态进行额外的编码。
 
@@ -121,6 +126,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 ??? note "代码实现"
     ```cpp
     int b[M + 1], bb[M + 1];
+    
     int encode() {
       int s = 0;
       memset(bb, -1, sizeof(bb));
@@ -134,6 +140,7 @@ if (s >> j & 1) {       // 如果已被覆盖
       }
       return s;
     }
+    
     void decode(int s) {
       REP(i, m + 1) {
         b[i] = s & mask;
@@ -151,14 +158,17 @@ if (s >> j & 1) {       // 如果已被覆盖
 ???+note "代码实现"
     ```cpp
     const int MaxSZ = 16796, Prime = 9973;
+    
     struct hashTable {
       int head[Prime], next[MaxSZ], sz;
       int state[MaxSZ];
       long long key[MaxSZ];
+    
       inline void clear() {
         sz = 0;
         memset(head, -1, sizeof(head));
       }
+    
       inline void push(int s) {
         int x = s % Prime;
         for (int i = head[x]; ~i; i = next[i]) {
@@ -171,6 +181,7 @@ if (s >> j & 1) {       // 如果已被覆盖
         next[sz] = head[x];
         head[x] = sz++;
       }
+    
       void roll() { REP(i, sz) state[i] <<= offset; }
     } H[2], *H0, *H1;
     ```
@@ -189,7 +200,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 关于哈希表的复杂度分析，以及开哈希和闭哈希的不同，可以参见 [《算法导论》](https://oi-wiki.org/intro/resources/#_5) 中关于散列表的相关章节。
 
-#### 状态转移讨论
+#### 状态转移
 
 ???+note "代码实现"
     ```cpp
@@ -232,23 +243,23 @@ if (s >> j & 1) {       // 如果已被覆盖
 #### 习题
 
 ??? note " 习题 [「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
-    题目大意：有障碍。
+    题目大意：求用一条回路覆盖 $N\times M$ 棋盘的方案数，有些位置有障碍。
 
-??? note " 习题 [「USACO 5.4.4」Betsy's Tours](http://oj.jzxx.net/problem.php?id=1695)"
+??? note " 习题 [「USACO 5.4.4」Betsy's Tours](https://nanti.jisuanke.com/t/T3533)"
     题目大意：一个 $N\times N$ 的方阵（$N\le 7$），求从左上角出发到左下角结束经过每个格子的路径总数。虽然是一条路径，但因为起点和终点固定，可以转化为一条回路问题。
 
 ??? note " 习题 [「POJ 1739」Tony's Tour](http://poj.org/problem?id=1739)"
-    题目大意：著名的男人八题系列之一。解法同上。
+    题目大意：一个 $N\times M$ 的棋盘，求从左下角出发到右下角结束经过每个格子的路径总数，有些位置有障碍。
 
 ??? note " 习题 [「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
-    题目大意：$n\le 1000,m=4$，每个回路需要统计两次（逆时针和顺时针），需要高精度。
+    题目大意：求用一条有向回路覆盖 $4\times N$ 的棋盘的方案数，需要高精度。
 
 ??? note " 习题 [「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
-    题目大意：对于每一个有 $m$ 条回路的方案，对答案的贡献是 $2^m$，求所有方案的贡献和。
+    题目大意：用多条回路覆盖 $n\times n$ 的方阵，每个有 $m$ 条回路的方案对答案的贡献是 $2^m$，求所有方案的贡献和。
 
 ### 一条路径
 
-#### 例题「ZOJ 3213」Beautiful Meadow
+#### 例题
 
 ???+note " 例题 [「ZOJ 3213」Beautiful Meadow](https://vjudge.net/problem/ZOJ-3213)"
     题目大意：一个 $N\times M$ 的方阵（$N,M\le 8$），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和。
@@ -328,7 +339,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     - 第 i 个参观的格点 (x, y)，满足 T[x][y]= L[i]
     - 路径的一端在棋盘的边界上
     
-    求可行的方案数 $\bmod 11192869$。
+    求可行的方案数。
 
 ## 染色模型
 
@@ -341,7 +352,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     
     ![black_and_white1](./images/black_and_white1.svg)
 
-#### 状态编码
+### 状态编码
 
 我们先考虑状态编码。不考虑连通性，那么就是 [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197)，不难用 [状压 DP](./state.md) 直接解决。现在我们需要在状态中同时体现颜色和连通性的信息，考察轮廓线上每个位置的状态，二进制的每 `Offset` 位描述轮廓线上的一个位置，因为只有黑白两种颜色，我们用最低位的奇偶性表示颜色，其余部分示连通性。
 
@@ -358,6 +369,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     const int Offset = 5, Mask = (1 << Offset) - 1;
     int c[N + 2];
     int b[N + 2], bb[N + 3];
+    
     T_state encode() {
       T_state s = 0;
       memset(bb, -1, sizeof(bb));
@@ -371,6 +383,7 @@ if (s >> j & 1) {       // 如果已被覆盖
       }
       return s;
     }
+    
     void decode(T_state s) {
       REP(i, m + 1) {
         b[i] = s & Mask;
@@ -381,13 +394,14 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-#### 手写哈希
+### 手写哈希
 
 因为需要构造任意一组方案，这里的哈希表我们需要添加一组域 `pre[]` 来记录每个状态在上一阶段的任意一个前驱。
 
 ???+note "代码实现"
     ```cpp
     const int Prime = 9979, MaxSZ = 1 << 20;
+    
     template <class T_state, class T_key>
     struct hashTable {
       int head[Prime];
@@ -395,10 +409,12 @@ if (s >> j & 1) {       // 如果已被覆盖
       T_state state[MaxSZ];
       T_key key[MaxSZ];
       int pre[MaxSZ];
+    
       void clear() {
         sz = 0;
         memset(head, -1, sizeof(head));
       }
+    
       void push(T_state s, T_key d, T_state u) {
         int x = s % Prime;
         for (int i = head[x]; ~i; i = next[i]) {
@@ -410,12 +426,14 @@ if (s >> j & 1) {       // 如果已被覆盖
         state[sz] = s, key[sz] = d, pre[sz] = u;
         next[sz] = head[x], head[x] = sz++;
       }
+    
       void roll() { REP(ii, sz) state[ii] <<= Offset; }
     };
+    
     hashTable<T_state, T_key> _H, H[N][N], *H0, *H1;
     ```
 
-#### 方案构造
+### 方案构造
 
 有了上面的信息，我们就可以容易的构造方案了。首先遍历当前哈希表中的状态，如果连通块数目不超过 $2$，那么统计进方案数。如果方案数不为 $0$，我们倒序用 `pre` 数组构造出方案，注意每一行的末尾因为我们执行了 `Roll()` 操作，颜色需要取 `c[j+1]`。
 
@@ -448,7 +466,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-#### 状态转移
+### 状态转移
 
 我们记：
 
@@ -515,12 +533,14 @@ if (s >> j & 1) {       // 如果已被覆盖
     o#
     #o
 
-我们特判掉这种，这样在本题中，就可以偷懒不用记录之前是否已经生成了封闭的连通块了。
+我们特判掉这种情况，这样在本题中，就可以偷懒不用记录之前是否已经生成了封闭的连通块了。
 
 ??? 例题代码
     ```cpp
     --8<-- "docs/dp/code/plug/plug_4.cpp"
     ```
+
+### 习题
 
 ??? note " 习题 [「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://competitiveprogramming.info/topcoder/srm/round/9992/div/1)"
     题目大意：给一个棋盘图，每个格子有权值，求权值之和最小的连通块。
@@ -538,14 +558,12 @@ if (s >> j & 1) {       // 如果已被覆盖
     对于一颗生成树，每个节点的得分为 1+[有一条连向上的边]+[有一条连向左的边]。
     生成树的得分为所有节点的得分之积。
     
-    要求：
-    最小生成树的边权和
-    所有最小生成树的得分之和。
+    你需要求出：最小生成树的边权和，以及所有最小生成树的得分之和。
     （$n\le 800,m\le 7$）
 
 ## 实战篇
 
-### 例题「HDU 4113」Construct the Great Wall
+### 例题
 
 ???+note " 例题 [「HDU 4113」Construct the Great Wall](https://vjudge.net/problem/HDU-4113)"
     题目大意：在 $N\times M$ 的棋盘内构造一组回路，分割所有的 `x` 和 `o`。
@@ -570,16 +588,19 @@ if (s >> j & 1) {       // 如果已被覆盖
     #include <bits/stdc++.h>
     using namespace std;
     #define REP(i, n) for (int i = 0; i < n; ++i)
+    
     template <class T>
     inline bool checkMin(T &a, const T b) {
       return b < a ? a = b, 1 : 0;
     }
+    
     const int N = 10, M = N;
     const int offset = 3, mask = (1 << offset) - 1;
     int n, m;
     int d;
     const int INF = 0x3f3f3f3f;
     int b[M + 1], bb[M + 1];
+    
     int encode() {
       int s = 0;
       memset(bb, -1, sizeof(bb));
@@ -593,21 +614,26 @@ if (s >> j & 1) {       // 如果已被覆盖
       }
       return s;
     }
+    
     void decode(int s) {
       REP(i, m + 1) {
         b[i] = s & mask;
         s >>= offset;
       }
     }
+    
     const int MaxSZ = 16796, Prime = 9973;
+    
     struct hashTable {
       int head[Prime], next[MaxSZ], sz;
       int state[MaxSZ];
       int key[MaxSZ];
+    
       inline void clear() {
         sz = 0;
         memset(head, -1, sizeof(head));
       }
+    
       inline void push(int s) {
         int x = s % Prime;
         for (int i = head[x]; ~i; i = next[i]) {
@@ -620,9 +646,12 @@ if (s >> j & 1) {       // 如果已被覆盖
         next[sz] = head[x];
         head[x] = sz++;
       }
+    
       void roll() { REP(i, sz) state[i] <<= offset; }
     } H[2], *H0, *H1;
+    
     char A[N + 1][M + 1];
+    
     void push(int i, int j, int dn, int rt) {
       b[j] = dn;
       b[j + 1] = rt;
@@ -633,6 +662,7 @@ if (s >> j & 1) {       // 如果已被覆盖
       }
       H1->push(encode());
     }
+    
     int solve() {
       cin >> n >> m;
       int ti, tj;
@@ -691,6 +721,7 @@ if (s >> j & 1) {       // 如果已被覆盖
       if (z == INF) z = -1;
       return z;
     }
+    
     int main() {
     #ifndef ONLINE_JUDGE
       freopen("in.txt", "r", stdin);
@@ -703,36 +734,42 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
+### 习题
+
 ??? note " 习题 [「HDU 4796」Winter's Coming](https://vjudge.net/problem/HDU-4796)"
     题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白灰染色，要求所有黑色区域和白色区域连通，且黑色区域与白色区域分别与棋盘的上下边界连通，且其中黑色区域与白色区域不能相邻。每个格子有对应的代价，求一组染色方案，最小化灰色区域的代价。
     
     ![4796](./images/4796.jpg)
 
 ??? note " 习题 [「ZOJ 2125」Rocket Mania](https://vjudge.net/problem/ZOJ-2125)"
-
+    题目大意：$9\times6$ 的地图上每个格子里是一种管道（`-`,`T`,`L`,`+` 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与第 X 行的左边界通过管道相连。
 
 ??? note " 习题 [「ZOJ 2126」Rocket Mania Plus](https://vjudge.net/problem/ZOJ-2126)"
-
+    题目大意：$9\times6$ 的地图上每个格子里是一种管道（`-`,`T`,`L`,`+` 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与左边界通过管道相连。
 
 ??? note " 习题 [「World Finals 2009/2010 Harbin」Channel](https://vjudge.net/problem/UVALive-4789)"
-    题目大意：。
+    题目大意：一张方格地图上用 `.` 表示空地、`#` 表示石头，找到最长的一条路径满足：
+    
+    1. 起点在左上角，终点在右下角。
+    2. 不能经过石头。
+    3. 路径自身不能在八连通的意义下成环。（即包括拐角处也不能接触）
 
 ??? note " 习题 [「HDU 3958」Tower Defence](https://vjudge.net/problem/HDU-3958)"
-    题目大意：。
+    题目大意：可以转化为求解一条从 $\mathit{S}$ 到 $\mathit{T}$ 的不能接触的最长路径，拐角处可以接触。
 
 ??? note " 习题 [「UVA 10531」Maze Statistics](https://vjudge.net/problem/UVA-10531)"
-    题目大意：。
+    题目大意：有一个 $N\times M$ 的图，每个格子有独立概率 $\mathit{p}$ 变成障碍物。你要从迷宫左上角走到迷宫右下角。求每个格子成为一个 **有解迷宫（即起点终点四联通）** 中的障碍物的概率。（$N \le 5$，$M \le 6$）
 
 ??? note " 习题 [「AIZU 2452」Pipeline Plans](https://vjudge.net/problem/Aizu-2452)"
-    题目大意：。
+    题目大意：现有一共 12 种图案的瓷砖，每种瓷砖数量给定。要求铺到一块可视为 $R\times C$ 网格图的矩形地板上，一个格子铺一块瓷砖，且左上角格子的中心与右下角格子的中心通过瓷砖图案上的线联通。$(2 \le R \times C \le 15)$
+    
+    ![plug2](./images/plug2.png)
 
 ??? note " 习题 [「SDOI 2014」电路板](https://www.luogu.com.cn/problem/P3314)"
-    题目大意：。
+    题目大意：一块 $N\times M$ 的电路板，上面有些位置是电线不能走的障碍，给定 $K$ 个格子对，要求每对格子都有电线相连，且电线之间互不相交（允许一条电路线从上边界进入当前格子，从左边界离开这个格子，另外一条电路线可以从下边界进入格子，从右边界出去）。视电线为无向边，求满足要求的最短电线长度和方案数。
 
 ??? note " 习题 [「SPOJ CAKE3」Delicious Cake](https://vjudge.net/problem/SPOJ-CAKE3)"
-    题目大意：。
-
-.
+    题目大意：一块可视为 $N\times M$ 网格的蛋糕，现沿着格线将蛋糕切成数块，问有多少种不同的切割方法。切法相同当且仅当切成的每块蛋糕都形状相同且在同一位置上。（$min(N,M) \le 5, max(N,M) \le 130$）
 
 ## 本章注记
 

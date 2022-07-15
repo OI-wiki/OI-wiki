@@ -69,7 +69,7 @@ b = a;
 | 可移动（rvalue） | xvalue        | prvalue |
 | 不可移动        | lvalue        | 不存在     |
 
-注意不用有身份就意为着这个对象以后无法被访问，这样的对象显然是可以被移动的，所以不存在不拥有身份不可移动的值。
+注意不拥有身份就意味着这个对象以后无法被访问，这样的对象显然是可以被移动的，所以不存在不拥有身份不可移动的值。
 
 ## C++17 带来的新变化
 
@@ -83,6 +83,7 @@ std::vector<int> make_vector(...) {
   // ...
   return result;
 }
+
 std::vector<int> a = make_vector(...);
 ```
 
@@ -94,6 +95,7 @@ std::vector<int> a = make_vector(...);
 void make_vector(std::vector<int>& result, ...) {
   // ... (对 result 进行操作)
 }
+
 std::vecctor<int> a;
 make_vector(a, ...);
 ```

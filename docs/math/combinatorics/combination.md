@@ -55,8 +55,10 @@ $$
 如何理解上述公式？我们考虑 $n$ 个人 $m$($m \le n$) 个出来，不排队，不在乎顺序 $C_n^m$。如果在乎排列那么就是 $A_n^m$，如果不在乎那么就要除掉重复，那么重复了多少？同样选出的来的 $m$ 个人，他们还要“全排”得 $A_n^m$，所以得：
 
 $$
-\mathrm C_n^m \times m! = \mathrm A_n^m\\
-\mathrm C_n^m = \frac{\mathrm A_n^m}{m!} = \frac{n!}{m!(n-m)!}
+\begin{aligned}
+\mathrm C_n^m \times m! &= \mathrm A_n^m\\
+\mathrm C_n^m &= \frac{\mathrm A_n^m}{m!} = \frac{n!}{m!(n-m)!}
+\end{aligned}
 $$
 
 组合数也常用 $\displaystyle \binom{n}{m}$ 表示，读作「$n$ 选 $m$」，即 $\displaystyle \mathrm C_n^m=\binom{n}{m}$。实际上，后者表意清晰明了，美观简洁，因此现在数学界普遍采用 $\displaystyle \binom{n}{m}$ 的记号而非 $\mathrm C_n^m$。
@@ -269,7 +271,7 @@ $$
 \sum_{l=0}^n\binom{l}{k} = \binom{n+1}{k+1}\tag{10}
 $$
 
-可以通过组合意义证明，在恒等式证明中较常用。
+通过组合分析一一考虑 $S={a_1, a_2, \cdots, a_{n+1}}$ 的 $k+1$ 子集数可以得证，在恒等式证明中比较常用。
 
 $$
 \binom{n}{r}\binom{r}{k} = \binom{n}{k}\binom{n-k}{r-k}\tag{11}
@@ -282,9 +284,3 @@ $$
 $$
 
 其中 $F$ 是斐波那契数列。
-
-$$
-\sum_{l=0}^n \binom{l}{k} = \binom{n+1}{k+1}\tag{13}
-$$
-
-通过组合分析——考虑 $S={a_1, a_2, \cdots, a_{n+1}}$ 的 $k+1$ 子集数可以得证。
