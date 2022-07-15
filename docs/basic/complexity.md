@@ -152,11 +152,18 @@ $$
     依据上文提到的证明思路，具体证明过程如下
     
     对于第 $0$ 层（最高层），合并子问题需要花费 $f(n)$ 的时间
+    
     对于第 $1$ 层（第一次划分出来的子问题），共有 $a$ 个子问题，每个子问题合并需要花费 $f\left(\frac{n}{b}\right)$ 的时间，所以合并总共要花费 $a \left(\frac{n}{b}\right)$ 的时间。
-    层层递推，我们可以写出类推树如下：![](https://i.imgur.com/b9bGOEH.png)高度为 ${\log_b n}$，所以共有 $n^{\log_b a}$ 个叶子，从而 $T(n) = \Theta(n^{\log_b a}) + g(n)$，其中 $g(n) = \sum_{j = 0}^{\log_{b}{n - 1}} a^{j} f(n / b^{j})$。
-    case 1:$f(n) = O(n^{\log_b a-\epsilon})$，因此 $g(n) = O(n^{\log_b a})$。
-    case 2: 首先 $g(n) = \Omega(f(n))$，又因为 $a f(n/b) <= c f(n)$，只要 $c$ 的取值是一个足够小的正数，且 $n$ 的取值足够大，因此可以推导出：$g(n) = O(f(n))$。两侧夹逼可以得出，$g(n) = \Theta(f(n))$。
-    case 3:$f(n) = \Theta(n^{\log_b a})，因此$ g(n) = O(n^{\\log_b a} {\\log n})$。$ T(n)$的结果可在$ g(n)$ 得出后显然得到。
+    
+    层层递推，我们可以写出类推树如下：![](./images/master-theorem-proof.svg)
+    
+    这棵树的高度为 ${\log_b n}$，共有 $n^{\log_b a}$ 个叶子，从而 $T(n) = \Theta(n^{\log_b a}) + g(n)$，其中 $g(n) = \sum_{j = 0}^{\log_{b}{n - 1}} a^{j} f(n / b^{j})$。
+    
+    针对于第一种情况：$f(n) = O(n^{\log_b a-\epsilon})$，因此 $g(n) = O(n^{\log_b a})$。
+    
+    对于第二种情况而言：首先 $g(n) = \Omega(f(n))$，又因为 $a f(\dfrac{n}{b}) <= c f(n)$，只要 $c$ 的取值是一个足够小的正数，且 $n$ 的取值足够大，因此可以推导出：$g(n) = O(f(n)$)。两侧夹逼可以得出，$g(n) = \Theta(f(n))$。
+    
+    而对于第三种情况：$f(n) = \Theta(n^{\log_b a})$，因此 $g(n) = O(n^{\log_b a} {\log n})$。$T(n)$ 的结果可在 $g(n)$ 得出后显然得到。
 
 下面举几个例子来说明主定理如何使用。
 
