@@ -16,7 +16,7 @@ struct node {
 
 int root, top, stk[N];
 ll ans;
-int cartesian_build(int n) {  //建树，满足小根堆性质
+int cartesian_build(int n) {  // 建树，满足小根堆性质
   for (int i = 1; i <= n; i++) {
     int k = i - 1;
     while (tree[k].val > tree[i].val) k = tree[k].par;
@@ -27,7 +27,7 @@ int cartesian_build(int n) {  //建树，满足小根堆性质
   }
   return tree[0].ch[1];
 }
-int dfs(int x) {  //一次dfs更新答案就可以了
+int dfs(int x) {  // 一次dfs更新答案就可以了
   if (!x) return 0;
   int sz = dfs(tree[x].ch[0]);
   sz += dfs(tree[x].ch[1]);

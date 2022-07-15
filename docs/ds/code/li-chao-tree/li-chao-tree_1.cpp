@@ -18,16 +18,16 @@ void add(int x0, int y0, int x1, int y1) {
   else
     p[cnt].k = 1.0 * (y1 - y0) / (x1 - x0), p[cnt].b = y0 - p[cnt].k * x0;
 }
-void update(int root, int cl, int cr, int l, int r, int u) {  //更新值
+void update(int root, int cl, int cr, int l, int r, int u) {  // 更新值
   int v = s[root], mid = (cl + cr) >> 1;
   int ls = root << 1, rs = root << 1 | 1;
   double resu = calc(u, mid), resv = calc(v, mid);
-  if (r < cl || cr < l) return;  //区间问题
+  if (r < cl || cr < l) return;  // 区间问题
   if (l <= cl && cr <= r) {
     if (cl == cr) {
       if (resu > resv) s[root] = u;
       return;
-    }  //从此之下都是分段更新
+    }  // 从此之下都是分段更新
     if (p[v].k < p[u].k) {
       if (resu > resv) {
         s[root] = u;
@@ -56,7 +56,7 @@ pdi pmax(pdi x, pdi y) {  // pair max函数
   else
     return x.second < y.second ? x : y;
 }
-pdi query(int root, int l, int r, int d) {  //查询
+pdi query(int root, int l, int r, int d) {  // 查询
   if (r < d || d < l) return {0, 0};
   int mid = (l + r) >> 1;
   double res = calc(s[root], d);

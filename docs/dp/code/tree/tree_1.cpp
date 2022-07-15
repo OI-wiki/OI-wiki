@@ -5,7 +5,7 @@ struct edge {
   int v, next;
 } e[6005];
 int head[6005], n, cnt, f[6005][2], ans, is_h[6005], vis[6005];
-void addedge(int u, int v) {  //建图
+void addedge(int u, int v) {  // 建图
   e[++cnt].v = v;
   e[cnt].next = head[u];
   head[u] = cnt;
@@ -16,7 +16,7 @@ void calc(int k) {
     if (vis[e[i].v]) continue;
     calc(e[i].v);
     f[k][1] += f[e[i].v][0];
-    f[k][0] += max(f[e[i].v][0], f[e[i].v][1]);  //转移方程
+    f[k][0] += max(f[e[i].v][0], f[e[i].v][1]);  // 转移方程
   }
   return;
 }

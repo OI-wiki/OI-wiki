@@ -11,24 +11,24 @@
 #include <vector>
 using namespace std;
 /******************heading******************/
-const int M = 5e4 + 5, P = 505;  //定义常数
+const int M = 5e4 + 5, P = 505;  // 定义常数
 int I, m, p;
-inline int _(int d) { return (d + p) % p; }  //用于取模
+inline int _(int d) { return (d + p) % p; }  // 用于取模
 namespace DQ {                               // 双栈模拟双端队列
-pair<int, int> fr[M], bc[M];                 //二元组，详见题目3.4
+pair<int, int> fr[M], bc[M];                 // 二元组，详见题目3.4
 int tf = 0, tb = 0;  // 一端的top,因为是双端队列所以有俩
 int ff[M][P], fb[M][P];
 void update(pair<int, int> *s, int f[][P], int i) {  // 用f[i-1]更新f[i]
   for (int j = 0; j <= (p - 1); j++) {
     f[i][j] = f[i - 1][j];
-    if (~f[i - 1][_(j - s[i].first)])  //按位取反
+    if (~f[i - 1][_(j - s[i].first)])  // 按位取反
       f[i][j] = max(f[i][j], f[i - 1][_(j - s[i].first)] + s[i].second);
   }
 }
-//以下两行代码表示push入队列，很好理解
+// 以下两行代码表示push入队列，很好理解
 void push_front(pair<int, int> x) { fr[++tf] = x, update(fr, ff, tf); }
 void push_back(pair<int, int> x) { bc[++tb] = x, update(bc, fb, tb); }
-//以下两行代码表示从队列pop出元素
+// 以下两行代码表示从队列pop出元素
 void pop_front() {
   if (tf) {
     --tf;
@@ -39,7 +39,7 @@ void pop_front() {
   tb = 0;
   for (int i = (mid + 1); i <= top; i++) push_back(bc[i]);
   --tf;
-  //上面的代码，逻辑和普通队列是一样的
+  // 上面的代码，逻辑和普通队列是一样的
 }
 void pop_back() {
   if (tb) {
@@ -51,9 +51,9 @@ void pop_back() {
   tf = 0;
   for (int i = (mid + 1); i <= top; i++) push_front(fr[i]);
   --tb;
-  //上面的代码，逻辑和普通队列是一样的
+  // 上面的代码，逻辑和普通队列是一样的
 }
-int q[M], ql, qr;  //题目任务5要求的
+int q[M], ql, qr;  // 题目任务5要求的
 int query(int l, int r) {
   const int *const f = ff[tf], *const g = fb[tb];
   int ans = -1;
@@ -75,7 +75,7 @@ int query(int l, int r) {
 }
 void init() {
   for (int i = 1; i <= (P - 1); i++) ff[0][i] = fb[0][i] = -1;
-}  //初始化
+}  // 初始化
 }  // namespace DQ
 int main() {
   DQ::init();
