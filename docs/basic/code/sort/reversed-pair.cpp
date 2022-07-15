@@ -1,8 +1,9 @@
 int ans = 0;
 int a[100005], c[100005];
+
 void merge(int b, int e) {
   if (b == e) {
-    return ;
+    return;
   }
   int mid = (b + e) / 2, i = b, j = mid + 1, k = b;
   merge(b, mid);
@@ -11,9 +12,9 @@ void merge(int b, int e) {
     if (a[i] <= a[j]) {
       c[k++] = a[i++];
     } else {
-      cout << a[j] << ':' ;
+      cout << a[j] << ':';
       for (int s = i; s <= mid; ++s) {
-        cout << a[s] << ' ' ;
+        cout << a[s] << ' ';
       }
       cout << endl;
       c[k++] = a[j++];
