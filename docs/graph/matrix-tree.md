@@ -181,8 +181,10 @@ $$
 证明：发现定理 1 的证明中用到了两个关联矩阵，于是我们考虑使用两个不同的关联矩阵 $A,B$ 承担不同的功能。
 
 $$
-A_{i,j}=\begin{cases}\sqrt{\omega(e_j)} & u_i\text{ is }e_j\text{'s head} \\ -\sqrt{\omega(e_j)} & u_i\text{ is }e_j\text{'s tail} \\ 0 & \text{otherwise}\end{cases} \\
-B_{i,j}=\begin{cases}\sqrt{\omega(e_j)} & u_i\text{ is }e_j\text{'s head} \\ 0 & \text{otherwise}\end{cases}
+\begin{aligned}
+A_{i,j}&=\begin{cases}\sqrt{\omega(e_j)} & u_i\text{ is }e_j\text{'s head} \\ -\sqrt{\omega(e_j)} & u_i\text{ is }e_j\text{'s tail} \\ 0 & \text{otherwise}\end{cases} \\
+B_{i,j}&=\begin{cases}\sqrt{\omega(e_j)} & u_i\text{ is }e_j\text{'s head} \\ 0 & \text{otherwise}\end{cases}
+\end{aligned}
 $$
 
 与定理 1 中不同的是，关联矩阵 $B$ 限制了只有边的起点能选择这条边，剩下的讨论均与定理 1 相同。

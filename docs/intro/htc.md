@@ -18,7 +18,7 @@
 ???+ tip
     在你的更改被合并到 OI Wiki 的主仓库之前，你对 OI Wiki 的内容所作出的修改均不会出现在 OI Wiki 的主站上，所以无需担心你的修改会破坏 OI Wiki 上正在显示的内容。
     
-    如果还是不放心，可以查看 [GitHub 的官方教程](https://lab.github.com/)。
+    如果还是不放心，可以查看 [GitHub 的官方教程](https://skills.github.com/)。
 
 #### 编辑单个页面内的内容
 

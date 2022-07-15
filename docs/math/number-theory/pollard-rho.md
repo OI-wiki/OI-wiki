@@ -71,8 +71,10 @@ $$
 由不等式 $1+x\le e^x$ 可得
 
 $$
+\begin{gathered}
 P(A) \le e^{-\frac{1}{n}}\times e^{-\frac{2}{n}}\times \dots \times e^{-\frac{k-1}{n}}=e^{-\frac{k(k-1)}{2n}}\le\frac{1}{2}\\
 e^{-\frac{k(k-1)}{2n}}\le\frac{1}{2}
+\end{gathered}
 $$
 
 然而我们可以得到一个不等式方程，$e^{-\frac{k(k-1)}{2n}}\le 1-p$，其中 $p$ 是一个概率。

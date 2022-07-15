@@ -431,12 +431,10 @@ $$
 多组数据，求
 
 $$
-\sum_{i=1}^n\sum_{j=1}^md(i\cdot j)\\
-\left(d(n)=\sum_{i \mid n}1\right)
-n,m,T\leq5\times10^4
+\sum_{i=1}^n\sum_{j=1}^md(i\cdot j) \qquad \left(n,m,T\leq5\times10^4\right)
 $$
 
-其中 $d(n)$ 表示 $n$ 的约数个数
+其中 $d(n)=\sum_{i \mid n}1$，$d(n)$ 表示 $n$ 的约数个数
 
 要推这道题首先要了解 $d$ 函数的一个特殊性质
 
@@ -530,8 +528,11 @@ $\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) T^2\varphi(T
 对于数论函数 $f,g$ 和完全积性函数 $t$ 且 $t(1)=1$：
 
 $$
+\begin{gathered}
 f(n)=\sum_{i=1}^nt(i)g\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-\iff g(n)=\sum_{i=1}^n\mu(i)t(i)f\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+\iff\\
+g(n)=\sum_{i=1}^n\mu(i)t(i)f\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+\end{gathered}
 $$
 
 我们证明一下

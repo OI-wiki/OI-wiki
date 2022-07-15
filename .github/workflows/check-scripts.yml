@@ -27,8 +27,8 @@ jobs:
         id: cache-node
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
-          restore-keys: ${{ runner.os }}-node-
+          key: ${{ runner.os }}-node-dev-${{ hashFiles('yarn.lock') }}
+          restore-keys: ${{ runner.os }}-node-dev-
       - name: Install Node.js dependencies
         if: steps.cache-node.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile

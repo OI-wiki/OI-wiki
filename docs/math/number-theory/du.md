@@ -43,9 +43,11 @@ $h(x)=\sum_{d \mid x} f(d)g(\frac x d)$
 对于任意一个数论函数 $g$，必满足
 
 $$
-\sum_{i=1}^{n}\sum_{d \mid i}g(d)f\left(\frac{i}{d}\right)=\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+\begin{aligned}
+\sum_{i=1}^{n}\sum_{d \mid i}g(d)f\left(\frac{i}{d}\right)&=\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 \iff
-\sum_{i=1}^{n}(f\ast g)(i)=\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+\sum_{i=1}^{n}(f\ast g)(i)&=\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+\end{aligned}
 $$
 
 略证：

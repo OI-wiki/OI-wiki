@@ -11,18 +11,13 @@ function _when_error() {
 }
 trap _when_error ERR
 
-# MathJax
+# MathJax (will be removed on production build)
 TEMP_DIR="$(mktemp -d -t "download-mathjax-XXXXXXXX")"
-MATHJAX_URL=${MATHJAX_URL:-"https://registry.npmjs.org/mathjax/-/mathjax-2.7.5.tgz"}
+MATHJAX_URL=${MATHJAX_URL:-"https://registry.npmjs.org/mathjax/-/mathjax-3.2.2.tgz"}
 echo "Downloading MathJax to $TEMP_DIR"
 echo "URL: $MATHJAX_URL"
 MATHJAX_REQUIRED_FILES=(
-	"config/TeX-MML-AM_CHTML.js"
-	"extensions/TeX"
-	"fonts/HTML-CSS/TeX/woff"
-	"jax/output/CommonHTML"
-	"jax/element"
-	"MathJax.js"
+	"es5"
 )
 curl "$MATHJAX_URL" | tar -C "$TEMP_DIR" -xzf -
 for FILE in "${MATHJAX_REQUIRED_FILES[@]}"; do
