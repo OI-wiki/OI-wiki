@@ -2,7 +2,7 @@
 
 点分治适合处理大规模的树上路径信息问题。
 
-??? note " 例题 [luogu P3806【模板】点分治 1](https://www.luogu.com.cn/problem/P3806)"
+??? note " 例题 1 [Luogu P3806【模板】点分治 1](https://www.luogu.com.cn/problem/P3806)"
     给定一棵有 $n$ 个点的带边权树，$m$ 次询问，每次询问给出 $k$，询问树上距离为 $k$ 的点对是否存在。
     
     $n\le 10000,m\le 100,k\le 10000000$
@@ -19,22 +19,47 @@
 
 请注意在重新选择根节点之后一定要重新计算子树的大小，否则一点看似微小的改动就可能会使时间复杂度错误或正确性难以保证。
 
-代码：
+??? note "参考代码"
+    ```cpp
+    --8<-- "docs/graph/code/tree-divide/tree-divide_1.cpp"
+    ```
 
-```cpp
-  --8<-- "docs/graph/code/tree-divide/tree-divide_1.cpp"
-```
-
-??? note " 例题 [luogu  P4178 Tree](https://www.luogu.com.cn/problem/P4178)"
-    给定一棵有 $n$ 个点的带权树，给出 $k$，询问树上距离小于等于 $k$ 的点对数量。
+??? note " 例题 2 [Luogu P4178 Tree](https://www.luogu.com.cn/problem/P4178)"
+    给定一棵有 $n$ 个点的带权树，给出 $k$，询问树上距离为 $k$ 的点对数量。
     
     $n\le 40000,k\le 20000,w_i\le 1000$
 
 由于这里查询的是树上距离为 $[0,k]$ 的点对数量，所以我们用线段树来支持维护和查询。
+??? note "参考代码"
+    ```cpp
+    --8<-- "docs/graph/code/tree-divide/tree-divide_2.cpp"
+    ```
 
-```cpp
-  --8<-- "docs/graph/code/tree-divide/tree-divide_2.cpp"
-```
+??? note " 例题 3 [Luogu P2664 树上游戏](https://www.luogu.com.cn/problem/P2664)"
+    一棵每个节点都给定颜色的树，定义 $s(i,j)$ 为 $\mathit{i}$ 到 $\mathit{j}$ 的颜色数量，$\mathit{sum_{i}}=\sum_{j=1}^n s(i,j)$。对所有的 $1\leq i\leq n$，求 $sum_i$。（$1 \le n, c_i \le 10^5$）
+
+这道题很考验对点分治思想的理解和应用，适合作为点分治的难度较高的例题和练习题。
+
+首先，我们需要想明白一个转化。题目定义 $\mathit{sum_i}$ 是 $i$ 到所有节点路径上的颜色数量之和，可是如果用这个方法，在点分治中是不好统计答案的，因为这样很难合并从当前根出发的两棵子树的信息。所以我们想到将 $\mathit{sum_i}$ 的意义转化。对于每个颜色 $j$, 其中一个端点为 $i$ 且含有颜色 $j$ 的路径数量记为 $\mathit{cnt_j}$，$\mathit{sum_i}$ 其实就是 $\sum \mathit{cnt_j}$。这一步转化其实就是换了个观察对象，考虑的是每个颜色对 $\mathit{sum_i}$ 的 贡献。而 $\mathit{cnt_j}$ 其实很好处理出来，只需要每遇到一个新颜色，就 $\mathit{cnt_{col_u}}+=\mathit{size_u}$ 即可，其中 $\mathit{size_u}$ 为 u 的子树大小，意味着这个子树里的所有节点都在这个颜色上对 $u$ 的答案有一个贡献。
+
+考虑到点分治过程中，我们只需要分别考虑统计：
+
+1. 子树中以当前根节点为端点的路径对根的贡献
+2. lca 为当前根节点的路径对子树内每个点的贡献
+
+1 部分比较好办，由于点分治中，递归层数不超过 $\log{n}$，每一层我们都可以遍历全部子树，这个时候就可以使用 $\mathit{sum_i}$ 的定义式来在遍历子树的过程中顺便统计了。
+
+而针对 2 部分，设当前根节点 $u$ 的一个子节点为 $d$,$d$ 的子树里任取一个点为 $v$，那么 $v$ 的答案可以分为两部分：
+
+1. $(u, v)$ 路径上出现过的颜色，数量设为 $\mathit{num}$，$u$ 除了 $d$ 以外的其他所有子树的总大小设为 $\mathit{siz1}$, 那么这些出现过的颜色对 $v$ 的答案贡献为 $\mathit{num}\times \mathit{siz1}$。
+2. $(u, v)$ 路径上没有出现过的颜色 $j$，它们的贡献来自于 $u$ 除了 $d$ 以外的其他所有子树的 $\mathit{cnt_j}$，这部分答案为 $\sum_{j \notin (u, v)} \mathit{cnt_j}$。
+
+以上是全部统计思路，实现细节详见参考代码。
+
+??? note "参考代码"
+    ```c++
+    --8<-- "docs/graph/code/tree-divide/tree-divide_3.cpp"
+    ```
 
 ## 边分治
 
@@ -76,86 +101,86 @@
 
 ### 代码实现
 
-有一个小技巧：每次用递归上一层的总大小 $\mathit{tot}$ 减去上一层的点的重儿子大小，得到的就是这一层的总大小。这样求重心就只需一次 DFS 了
+有一个小技巧：每次用递归上一层的总大小 $\mathit{tot}$ 减去上一层的点的重儿子大小，得到的就是这一层的总大小。这样求重心就只需一次 DFS 了。
 
-```cpp
-#include <bits/stdc++.h>
+???+note "参考代码"
 
-using namespace std;
+    ```cpp
+    #include <bits/stdc++.h>
 
-typedef vector<int>::iterator IT;
+    using namespace std;
 
-struct Edge {
-  int to, nxt, val;
+    typedef vector<int>::iterator IT;
 
-  Edge() {}
+    struct Edge {
+      int to, nxt, val;
 
-  Edge(int to, int nxt, int val) : to(to), nxt(nxt), val(val) {}
-} e[300010];
+      Edge() {}
+      Edge(int to, int nxt, int val) : to(to), nxt(nxt), val(val) {}
+    } e[300010];
+    int head[150010], cnt;
 
-int head[150010], cnt;
+    void addedge(int u, int v, int val) {
+      e[++cnt] = Edge(v, head[u], val);
+      head[u] = cnt;
+    }
 
-void addedge(int u, int v, int val) {
-  e[++cnt] = Edge(v, head[u], val);
-  head[u] = cnt;
-}
+    int siz[150010], son[150010];
+    bool vis[150010];
 
-int siz[150010], son[150010];
-bool vis[150010];
+    int tot, lasttot;
+    int maxp, root;
 
-int tot, lasttot;
-int maxp, root;
+    void getG(int now, int fa) {
+      siz[now] = 1;
+      son[now] = 0;
+      for (int i = head[now]; i; i = e[i].nxt) {
+        int vs = e[i].to;
+        if (vs == fa || vis[vs]) continue;
+        getG(vs, now);
+        siz[now] += siz[vs];
+        son[now] = max(son[now], siz[vs]);
+      }
+      son[now] = max(son[now], tot - siz[now]);
+      if (son[now] < maxp) {
+        maxp = son[now];
+        root = now;
+      }
+    }
 
-void getG(int now, int fa) {
-  siz[now] = 1;
-  son[now] = 0;
-  for (int i = head[now]; i; i = e[i].nxt) {
-    int vs = e[i].to;
-    if (vs == fa || vis[vs]) continue;
-    getG(vs, now);
-    siz[now] += siz[vs];
-    son[now] = max(son[now], siz[vs]);
-  }
-  son[now] = max(son[now], tot - siz[now]);
-  if (son[now] < maxp) {
-    maxp = son[now];
-    root = now;
-  }
-}
+    struct Node {
+      int fa;
+      vector<int> anc;
+      vector<int> child;
+    } nd[150010];
 
-struct Node {
-  int fa;
-  vector<int> anc;
-  vector<int> child;
-} nd[150010];
+    int build(int now, int ntot) {
+      tot = ntot;
+      maxp = 0x7f7f7f7f;
+      getG(now, 0);
+      int g = root;
+      vis[g] = 1;
+      for (int i = head[g]; i; i = e[i].nxt) {
+        int vs = e[i].to;
+        if (vis[vs]) continue;
+        int tmp = build(vs, ntot - son[vs]);
+        nd[tmp].fa = now;
+        nd[now].child.push_back(tmp);
+      }
+      return g;
+    }
 
-int build(int now, int ntot) {
-  tot = ntot;
-  maxp = 0x7f7f7f7f;
-  getG(now, 0);
-  int g = root;
-  vis[g] = 1;
-  for (int i = head[g]; i; i = e[i].nxt) {
-    int vs = e[i].to;
-    if (vis[vs]) continue;
-    int tmp = build(vs, ntot - son[vs]);
-    nd[tmp].fa = now;
-    nd[now].child.push_back(tmp);
-  }
-  return g;
-}
+    int virtroot;
 
-int virtroot;
-
-int main() {
-  int n;
-  cin >> n;
-  for (int i = 1; i < n; i++) {
-    int u, v, val;
-    cin >> u >> v >> val;
-    addedge(u, v, val);
-    addedge(v, u, val);
-  }
-  virtroot = build(1, n);
-}
-```
+    int main() {
+      int n;
+      cin >> n;
+      for (int i = 1; i < n; i++) {
+        int u, v, val;
+        cin >> u >> v >> val;
+        addedge(u, v, val);
+        addedge(v, u, val);
+      }
+      virtroot = build(1, n);
+    }
+    ```
