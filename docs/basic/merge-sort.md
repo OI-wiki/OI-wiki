@@ -130,38 +130,7 @@ y = {1}
 下面给出求逆序对数量的模板：
 ??? note "[Luogu P1908 - 逆序对](https://www.luogu.com.cn/problem/P1908)"
     ```cpp
-    int ans = 0;
-    int a[100005], c[100005];
-    void merge(int b, int e) {
-      if (b == e) {
-        return ;
-      }
-      int mid = (b + e) / 2, i = b, j = mid + 1, k = b;
-      merge(b, mid);
-      merge(mid + 1, e);
-      while (i <= mid && j <= e) {
-        if (a[i] <= a[j]) {
-          c[k++] = a[i++];
-        } else {
-          cout << a[j] << ':' ; // 输出本轮找到的所有逆序对
-          for (int s = i; s <= mid; ++s) {
-            cout << a[s] << ' ' ;
-          }
-          cout << endl;
-          c[k++] = a[j++];
-          ans += mid - i + 1; // 统计逆序对个数
-        }
-      }
-      while (i <= mid) {
-        c[k++] = a[i++];
-      }
-      while (j <= e) {
-        c[k++] = a[j++];
-      }
-      for (int l = b; l <= e; l++) {
-        a[l] = c[l];
-      }
-    }
+    --8<-- "docs/basic/code/sort/mergesort_1.cpp"
     ```
 
 另外，逆序对也可以用 [树状数组](../ds/fenwick.md)、[线段树](../ds/seg.md) 等数据结构求解。这三种方法的时间复杂度都是 $O(n \log n)$。
