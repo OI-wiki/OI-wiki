@@ -39,10 +39,13 @@ int n, m, a[maxn], u[maxn], x[maxn], l[maxn], r[maxn], k[maxn], cur, cur1, cur2,
 char op[maxn];
 set<int> ST;
 map<int, int> mp;
+
 struct segment_tree  // 封装的动态开点权值线段树
 {
   int cur, rt[maxn * 4], sum[maxn * 60], lc[maxn * 60], rc[maxn * 60];
+
   void build(int& o) { o = ++cur; }
+
   void print(int o, int l, int r) {
     if (!o) return;
     if (l == r && sum[o]) printf("%d ", l);
@@ -50,6 +53,7 @@ struct segment_tree  // 封装的动态开点权值线段树
     print(lc[o], l, mid);
     print(rc[o], mid + 1, r);
   }
+
   void update(int& o, int l, int r, int x, int v) {
     if (!o) o = ++cur;
     sum[o] += v;
@@ -61,15 +65,19 @@ struct segment_tree  // 封装的动态开点权值线段树
       update(rc[o], mid + 1, r, x, v);
   }
 } st;
-//树状数组实现
+
+// 树状数组实现
 inline int lowbit(int o) { return (o & (-o)); }
+
 void upd(int o, int x, int v) {
   for (; o <= n; o += lowbit(o)) st.update(st.rt[o], 1, n, x, v);
 }
+
 void gtv(int o, int* A, int& p) {
   p = 0;
   for (; o; o -= lowbit(o)) A[++p] = st.rt[o];
 }
+
 int qry(int l, int r, int k) {
   if (l == r) return l;
   int mid = (l + r) >> 1, siz = 0;
@@ -86,6 +94,7 @@ int qry(int l, int r, int k) {
     return qry(mid + 1, r, k - siz);
   }
 }
+
 /*
 线段树实现
 void build(int o,int l,int r)

@@ -32,6 +32,7 @@
 ### C++
 
 ```cpp
+// C++ Version
 const int N = 100010;
 
 int n, w, a[N];
@@ -65,6 +66,38 @@ void bucket_sort() {
     }
   }
 }
+```
+
+### Python
+
+```python
+# Python Version
+N = 100010
+w = n = 0
+a = [0] * N
+bucket = [[] for i in range(N)]
+
+def insertion_sort(A):
+    for i in range(1, len(A)):
+        key = A[i]
+        j = i - 1
+        while j >= 0 and A[j] > key:
+            A[j + 1] = A[j]
+            j -= 1
+        A[j + 1] = key
+
+def bucket_sort():
+    bucket_size = int(w / n + 1)
+    for i in range(0, n):
+        bucket[i].clear()
+    for i in range(1, n + 1):
+        bucket[int(a[i] / bucket_size)].append(a[i])
+    p = 0
+    for i in range(0, n):
+        insertion_sort(bucket[i])
+        for j in range(0, len(bucket[i])):
+            a[p] = bucket[i][j]
+            p += 1
 ```
 
 ## 参考资料与注释

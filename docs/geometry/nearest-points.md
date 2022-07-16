@@ -11,8 +11,10 @@
 我们先将所有点按照 $x_i$ 为第一关键字、$y_i$ 为第二关键字排序，并以点 $p_m (m = \lfloor \frac{n}{2} \rfloor)$ 为分界点，拆分点集为 $A_1,A_2$：
 
 $$
-A_1 = \{p_i \ \big | \ i = 0 \ldots m \}\\
-A_2 = \{p_i \ \big | \ i = m + 1 \ldots n-1 \}
+\begin{aligned}
+A_1 &= \{p_i \ \big | \ i = 0 \ldots m \}\\
+A_2 &= \{p_i \ \big | \ i = m + 1 \ldots n-1 \}
+\end{aligned}
 $$
 
 并递归下去，求出两点集各自内部的最近点对，设距离为 $h_1,h_2$，取较小值设为 $h$。
@@ -101,7 +103,7 @@ $$
 
 下面是递归本身：假设在调用前 `a[]` 已按 $x_i$ 排序。如果 $r-l$ 过小，使用暴力算法计算 $h$，终止递归。
 
-我们使用 `std::merge()` 来执行归并排序，并创建辅助缓冲区 `t[]`，$B$ 存储在其中。
+我们使用 `std::inplace_merge()` 来执行归并排序，并创建辅助缓冲区 `t[]`，$B$ 存储在其中。
 
 ???+note "主体函数"
     ```cpp
@@ -116,10 +118,9 @@ $$
       int m = (l + r) >> 1;
       int midx = a[m].x;
       rec(l, m), rec(m + 1, r);
-      static pt t[MAXN];
-      merge(a + l, a + m + 1, a + m + 1, a + r + 1, t, &cmp_y);
-      copy(t, t + r - l + 1, a + l);
+      inplace_merge(a + l, a + m + 1, a + r + 1, &cmp_y);
     
+      static pt t[MAXN];
       int tsz = 0;
       for (int i = l; i <= r; ++i)
         if (abs(a[i].x - midx) < mindist) {
@@ -168,8 +169,10 @@ $$
     const int N = 200005;
     int n;
     double ans = 1e20;
+    
     struct point {
       double x, y;
+    
       point(double x = 0, double y = 0) : x(x), y(y) {}
     };
     
@@ -207,6 +210,19 @@ $$
     }
     ```
 
+## 期望线性做法
+
+其实，除了上面提到的时间复杂度为 $O(n \log n)$ 的做法，还有一种 **期望** 复杂度为 $O(n)$ 的算法。
+
+首先将点对 [随机打乱](../misc/random.md#shuffle)，我们将维护前缀点集的答案。考虑从前 $i - 1$ 个点求出第 $i$ 个点的答案。
+
+记前 $i - 1$ 个点的最近点对距离为 $s$，我们将平面以 $s$ 为边长划分为若干个网格，并存下每个网格内的点（使用 [哈希表](../ds/hash.md)），
+然后检查第 $i$ 个点所在网格的周围九个网格中的所有点，并更新答案。注意到需检查的点的个数是 $O(1)$ 的，因为前 $i - 1$ 个点的最近点对距离为 $s$，
+从而每个网格不超过 4 个点。
+
+如果这一过程中，答案被更新，我们就重构网格图，否则不重构。在前 $i$ 个点中，最近点对包含 $i$ 的概率为 $O\left(\frac{1}{i}\right)$，
+而重构网格的代价为 $O(i)$，从而第 $i$ 个点的期望代价为 $O(1)$。于是对于 $n$ 个点，该算法期望为 $O(n)$。
+
 ## 习题
 
 - [UVA 10245 "The Closest Pair Problem"\[难度：低\]](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1186)
@@ -217,7 +233,7 @@ $$
 
 * * *
 
-## References
+## 参考资料与拓展阅读
 
 **本页面中的分治算法部分主要译自博文 [Нахождение пары ближайших точек](http://e-maxx.ru/algo/nearest_points) 与其英文翻译版 [Finding the nearest pair of points](https://github.com/e-maxx-eng/e-maxx-eng/blob/master/src/geometry/nearest_points.md)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
 

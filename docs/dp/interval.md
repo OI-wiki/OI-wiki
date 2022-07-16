@@ -10,7 +10,7 @@
 
 **求解**：对整个问题设最优值，枚举合并点，将问题分解为左右两个部分，最后合并两个部分的最优值得到原问题的最优值。
 
-??? note " 例题[「NOI1995」石子合并](https://loj.ac/problem/10147)"
+??? note " 例题 [「NOI1995」石子合并](https://loj.ac/problem/10147)"
     题目大意：在一个环上有 $n$ 个数 $a_1,a_2,...,a_n$，进行 $n-1$ 次合并操作，每次操作将相邻的两堆合并成一堆，能获得新的一堆中的石子数量的和的得分。你需要最大化你的得分。
 
 考虑不在环上，而在一条链上的情况。
@@ -36,12 +36,23 @@
 ## 核心代码
 
 ```cpp
+// C++ Version
 for (len = 1; len <= n; len++)
   for (i = 1; i <= 2 * n - 1; i++) {
     int j = len + i - 1;
     for (k = i; k < j && k <= 2 * n - 1; k++)
       f[i][j] = max(f[i][j], f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1]);
   }
+```
+
+```python
+# Python Version
+for len in range(1, n + 1):
+    for i in range(1, 2 * n):
+        j = len + i - 1
+        while k < j and k <= 2 * n - 1:
+            f[i][j] = max(f[i][j], f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1])
+            k += 1
 ```
 
 ## 几道练习题

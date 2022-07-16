@@ -6,9 +6,7 @@
 
 换言之，存在一种方案，将节点划分成满足以上性质的两个集合。
 
-![](./images/bi-graph.png)
-
-（图源 [英文维基](https://en.wikipedia.org/wiki/Bipartite_graph)）
+![](./images/bi-graph.svg)
 
 ## 性质
 

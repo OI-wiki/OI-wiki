@@ -7,7 +7,7 @@
 ## 左值引用
 
 ??? note "左值和右值"
-    关于左值和右值，一个常见的误区是认为能出现在赋值运算符左侧的是左值，其余为右值。事实上常量、字符串字面量、函数名、数组名（作为变量名表达式）都是不能出现在赋值运算符左侧的左值。一种不容易出错的判断方法是，左值可以被取地址，而右值不可以。在 C++11 之后，为了完善移动语义，值的类别被进一步分为泛左值、纯右值和亡值，具体参见 [相关文档](https://zh.cppreference.com/w/cpp/language/value_category)。值得一提的是，尽管右值引用在 C++11 后才支持，但是右值概念却更早就被定义了。
+    如果你不知道什么是左值和右值，可以参考 [值类别](./value-category.md) 页面。
 
 ??? note "左值表达式"
     如果一个表达式返回的是左值，那么这个表达式被称为左值表达式。右值表达式亦然。
@@ -24,7 +24,7 @@ int main() {
   const std::string& r2 = s;
 
   r1 += "ample";  // 修改 r1，即修改了 s
-  //  r2 += "!";               // 错误：不能通过到 const 的引用修改
+  // r2 += "!";               // 错误：不能通过到 const 的引用修改
   std::cout << r2 << '\n';  // 打印 r2，访问了s，输出 "Example"
 }
 ```
@@ -59,10 +59,10 @@ int main() {
 
 int main() {
   std::string s1 = "Test";
-  //  std::string&& r1 = s1;           // 错误：不能绑定到左值
+  // std::string&& r1 = s1;           // 错误：不能绑定到左值
 
   const std::string& r2 = s1 + s1;  // 可行：到常值的左值引用延长生存期
-  //  r2 += "Test";                    // 错误：不能通过到常值的引用修改
+  // r2 += "Test";                    // 错误：不能通过到常值的引用修改
 
   std::string&& r3 = s1 + s1;  // 可行：右值引用延长生存期
   r3 += "Test";  // 可行：能通过到非常值的右值引用修改
@@ -81,10 +81,10 @@ int main() {
 ```cpp
 int n1 = 1;
 int n2 = ++n1;
-int n3 = ++++n1;  // 因为是左值，所以可以继续操作
+int n3 = ++ ++n1;  // 因为是左值，所以可以继续操作
 int n4 = n1++;
-//  int n5 = n1++ ++;   // 错误，无法操作右值
-//  int n6 = n1 + ++n1; // 未定义行为
+// int n5 = n1++ ++;   // 错误，无法操作右值
+// int n6 = n1 + ++n1; // 未定义行为
 int&& n7 = n1++;  // 利用右值引用延长生命期
 int n8 = n7++;    // n8 = 1
 ```
@@ -128,6 +128,7 @@ std::vector<int>& getLVector() {  // 错误：返回局部变量的左值引用
   std::vector<int> x{1};
   return x;
 }
+
 std::vector<int>&& getRVector() {  // 错误：返回局部变量的右值引用
   std::vector<int> x{1};
   return std::move(x);
@@ -139,7 +140,9 @@ std::vector<int>&& getRVector() {  // 错误：返回局部变量的右值引用
 ```cpp
 struct Beta {
   Beta_ab ab;
+
   Beta_ab const& getAB() const& { return ab; }
+
   Beta_ab&& getAB() && { return std::move(ab); }
 };
 

@@ -76,6 +76,7 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 3. `fail[u]`：结点 $u$ 的 fail 指针。
 
 ```cpp
+// C++ Version
 void build() {
   for (int i = 0; i < 26; i++)
     if (tr[0][i]) q.push(tr[0][i]);
@@ -90,6 +91,23 @@ void build() {
     }
   }
 }
+```
+
+```python
+# Python Version
+def build():
+    for i in range(0, 26):
+        if tr[0][i] == 1:
+            q.append(tr[0][i])
+    while len(q) > 0:
+        u = q[0]
+        q.pop()
+        for i in range(0, 26):
+            if tr[u][i] == 1:
+                fail[tr[u][i]] = tr[fail[u]][i]
+                q.append(tr[u][i])
+            else:
+                tr[u][i] = tr[fail[u]][i]
 ```
 
 解释一下上面的代码：build 函数将结点按 BFS 顺序入队，依次求 fail 指针。这里的字典树根结点为 0，我们将根结点的子结点一一入队。若将根结点入队，则在第一次 BFS 的时候，会将根结点儿子的 fail 指针标记为本身。因此我们将根结点的儿子一一入队，而不是将根结点入队。
@@ -120,7 +138,7 @@ void build() {
 5. 黄色的边：fail 指针
 6. 灰色的边：字典树的边
 
-可以发现，众多交错的黑色边将字典树变成了 **字典图**。图中省 s 略了连向根结点的黑边（否则会更乱）。我们重点分析一下结点 5 遍历时的情况。我们求 $\text{trans}[5][s]=6$ 的 fail 指针：
+可以发现，众多交错的黑色边将字典树变成了 **字典图**。图中省略了连向根结点的黑边（否则会更乱）。我们重点分析一下结点 5 遍历时的情况。我们求 $\text{trans}[5][s]=6$ 的 fail 指针：
 
 ![AC_automation_b_7.png](./images/ac-automaton2.png)
 
@@ -133,6 +151,7 @@ void build() {
 接下来分析匹配函数 `query()`：
 
 ```cpp
+// C++ Version
 int query(char *t) {
   int u = 0, res = 0;
   for (int i = 1; t[i]; i++) {
@@ -145,7 +164,23 @@ int query(char *t) {
 }
 ```
 
-这里 $u$ 作为字典树上当前匹配到的结点，`res` 即返回的答案。循环遍历匹配串，$u$ 在字典树上跟踪当前字符。利用 fail 指针找出所有匹配的模式串，累加到答案中。然后清零。对 $e[j]$ 取反的操作用来判断 $e[j]$ 是否等于 -1。在上文中我们分析过，字典树的结构其实就是一个 trans 函数，而构建好这个函数后，在匹配字符串的过程中，我们会舍弃部分前缀达到最低限度的匹配。fail 指针则指向了更多的匹配状态。最后上一份图。对于刚才的自动机：
+```python
+# Python Version
+def query(t):
+    u, res = 0, 0
+    i = 1
+    while t[i] == False:
+        u = tr[u][t[i] - ord('a')]
+        j = u
+        while j == True and e[j] != -1:
+            res += e[j]
+            e[j] = -1
+            j = fail[j]
+        i += 1
+    return res
+```
+
+这里 $u$ 作为字典树上当前匹配到的结点，`res` 即返回的答案。循环遍历匹配串，$u$ 在字典树上跟踪当前字符。利用 fail 指针找出所有匹配的模式串，累加到答案中。然后清零。在上文中我们分析过，字典树的结构其实就是一个 trans 函数，而构建好这个函数后，在匹配字符串的过程中，我们会舍弃部分前缀达到最低限度的匹配。fail 指针则指向了更多的匹配状态。最后上一份图。对于刚才的自动机：
 
 ![AC_automation_b_13.png](./images/ac-automaton3.png)
 
@@ -168,130 +203,14 @@ int query(char *t) {
     [LuoguP3808【模板】AC 自动机（简单版）](https://www.luogu.com.cn/problem/P3808)
     
     ```cpp
-    #include <bits/stdc++.h>
-    using namespace std;
-    const int N = 1e6 + 6;
-    int n;
-    
-    namespace AC {
-    int tr[N][26], tot;
-    int e[N], fail[N];
-    void insert(char *s) {
-      int u = 0;
-      for (int i = 1; s[i]; i++) {
-        if (!tr[u][s[i] - 'a']) tr[u][s[i] - 'a'] = ++tot;
-        u = tr[u][s[i] - 'a'];
-      }
-      e[u]++;
-    }
-    queue<int> q;
-    void build() {
-      for (int i = 0; i < 26; i++)
-        if (tr[0][i]) q.push(tr[0][i]);
-      while (q.size()) {
-        int u = q.front();
-        q.pop();
-        for (int i = 0; i < 26; i++) {
-          if (tr[u][i])
-            fail[tr[u][i]] = tr[fail[u]][i], q.push(tr[u][i]);
-          else
-            tr[u][i] = tr[fail[u]][i];
-        }
-      }
-    }
-    int query(char *t) {
-      int u = 0, res = 0;
-      for (int i = 1; t[i]; i++) {
-        u = tr[u][t[i] - 'a'];  // 转移
-        for (int j = u; j && e[j] != -1; j = fail[j]) {
-          res += e[j], e[j] = -1;
-        }
-      }
-      return res;
-    }
-    }  // namespace AC
-    
-    char s[N];
-    int main() {
-      scanf("%d", &n);
-      for (int i = 1; i <= n; i++) scanf("%s", s + 1), AC::insert(s);
-      scanf("%s", s + 1);
-      AC::build();
-      printf("%d", AC::query(s));
-      return 0;
-    }
+    --8<-- "docs/string/code/ac-automaton/ac-automaton_1.cpp"
     ```
 
 ???+ note "模板 2"
     [P3796【模板】AC 自动机（加强版）](https://www.luogu.com.cn/problem/P3796)
     
     ```cpp
-    #include <bits/stdc++.h>
-    using namespace std;
-    const int N = 156, L = 1e6 + 6;
-    namespace AC {
-    const int SZ = N * 80;
-    int tot, tr[SZ][26];
-    int fail[SZ], idx[SZ], val[SZ];
-    int cnt[N];  // 记录第 i 个字符串的出现次数
-    void init() {
-      memset(fail, 0, sizeof(fail));
-      memset(tr, 0, sizeof(tr));
-      memset(val, 0, sizeof(val));
-      memset(cnt, 0, sizeof(cnt));
-      memset(idx, 0, sizeof(idx));
-      tot = 0;
-    }
-    void insert(char *s, int id) {  // id 表示原始字符串的编号
-      int u = 0;
-      for (int i = 1; s[i]; i++) {
-        if (!tr[u][s[i] - 'a']) tr[u][s[i] - 'a'] = ++tot;
-        u = tr[u][s[i] - 'a'];
-      }
-      idx[u] = id;
-    }
-    queue<int> q;
-    void build() {
-      for (int i = 0; i < 26; i++)
-        if (tr[0][i]) q.push(tr[0][i]);
-      while (q.size()) {
-        int u = q.front();
-        q.pop();
-        for (int i = 0; i < 26; i++) {
-          if (tr[u][i])
-            fail[tr[u][i]] = tr[fail[u]][i], q.push(tr[u][i]);
-          else
-            tr[u][i] = tr[fail[u]][i];
-        }
-      }
-    }
-    int query(char *t) {  // 返回最大的出现次数
-      int u = 0, res = 0;
-      for (int i = 1; t[i]; i++) {
-        u = tr[u][t[i] - 'a'];
-        for (int j = u; j; j = fail[j]) val[j]++;
-      }
-      for (int i = 0; i <= tot; i++)
-        if (idx[i]) res = max(res, val[i]), cnt[idx[i]] = val[i];
-      return res;
-    }
-    }  // namespace AC
-    int n;
-    char s[N][100], t[L];
-    int main() {
-      while (~scanf("%d", &n)) {
-        if (n == 0) break;
-        AC::init();
-        for (int i = 1; i <= n; i++) scanf("%s", s[i] + 1), AC::insert(s[i], i);
-        AC::build();
-        scanf("%s", t + 1);
-        int x = AC::query(t);
-        printf("%d\n", x);
-        for (int i = 1; i <= n; i++)
-          if (AC::cnt[i] == x) printf("%s\n", s[i] + 1);
-      }
-      return 0;
-    }
+    --8<-- "docs/string/code/ac-automaton/ac-automaton_2.cpp"
     ```
 
 ## 拓展
@@ -319,7 +238,7 @@ KMP 自动机就是一个不断读入待匹配串，每次匹配时走到接受�
 $$
 trans_{i,c} =
 \begin{cases}
-i + 1,  & \text{if $b_{i} = c$} \\[2ex]
+i + 1,  & \text{if }b_{i} = c \\[2ex]
 \text{trans}_{next_{i},c}, & \text{else}
 \end{cases}
 $$

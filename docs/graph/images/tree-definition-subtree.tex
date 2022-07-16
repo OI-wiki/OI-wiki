@@ -1,0 +1,24 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\begin{document}
+\begin{tikzpicture}
+
+    \scoped[every node/.style={circle,draw,minimum size=8mm}]
+    \node (A) at (0,0) {}
+        child {node (B) {}}
+        child {node (C) {}
+            child {node (D) {}}
+            child {node (E) {}}
+            child {node[double,draw=red] (F) {$a$}
+                child[draw=red] {node (G) {}}
+                child[draw=red] {node (H) {}
+                    child {node (I) {}}
+                    child {node (J) {}}}}};
+
+    \node[text=red] at (3cm,-7cm) {$a$ 的子树};
+
+\end{tikzpicture}
+\end{document}

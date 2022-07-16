@@ -1,0 +1,26 @@
+name: 'Close Stale Pull Request'
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close Stale PR
+        uses: actions/stale@v4
+        with:
+          stale-pr-message: |
+            你好 :wave:
+
+            这个 Pull Request 已经 30 天未响应。
+            如果此 PR 在将来的 14 天内仍未恢复活动，它将被关闭。
+
+            感谢理解与支持。
+          stale-pr-label: 'No Response / 失去响应'
+          exempt-pr-labels: 'Busy Author / 作者正忙,Pending review / 等待审核,Pending merge / 等待合并,等待取消修改请求 / Pending Cancel Changes Request'
+          days-before-pr-stale: 30
+          days-before-pr-close: 14
+          days-before-issue-stale: -1
+          days-before-issue-close: -1

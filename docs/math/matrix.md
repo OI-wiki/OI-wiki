@@ -56,6 +56,7 @@ inline mat operator*(const mat& T) const {
       }
   return res;
 }
+
 // 不如
 inline mat operator*(const mat& T) const {
   mat res;
@@ -77,7 +78,9 @@ inline mat operator*(const mat& T) const {
 ```cpp
 struct mat {
   LL a[sz][sz];
+
   inline mat() { memset(a, 0, sizeof a); }
+
   inline mat operator-(const mat& T) const {
     mat res;
     for (int i = 0; i < sz; ++i)
@@ -86,6 +89,7 @@ struct mat {
       }
     return res;
   }
+
   inline mat operator+(const mat& T) const {
     mat res;
     for (int i = 0; i < sz; ++i)
@@ -94,6 +98,7 @@ struct mat {
       }
     return res;
   }
+
   inline mat operator*(const mat& T) const {
     mat res;
     int r;
@@ -105,6 +110,7 @@ struct mat {
       }
     return res;
   }
+
   inline mat operator^(LL x) const {
     mat res, bas;
     for (int i = 0; i < sz; ++i) res.a[i][i] = 1;
@@ -151,7 +157,9 @@ const int mod = 1000000007;
 
 struct Matrix {
   int a[3][3];
+
   Matrix() { memset(a, 0, sizeof a); }
+
   Matrix operator*(const Matrix &b) const {
     Matrix res;
     for (int i = 1; i <= 2; ++i)
@@ -189,8 +197,10 @@ int main() {
 这是一个稍微复杂一些的例子。
 
 $$
+\begin{gathered}
 f_{1} = f_{2} = 0\\
 f_{n} = 7f_{n-1}+6f_{n-2}+5n+4\times 3^n
+\end{gathered}
 $$
 
 我们发现，$f_n$ 和 $f_{n-1}, f_{n-2}, n$ 有关，于是考虑构造一个矩阵描述状态。

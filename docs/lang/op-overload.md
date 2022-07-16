@@ -33,16 +33,20 @@ C++ 自带的运算符，最初只定义了一些基本类型的运算规则。�
 #include <iostream>
 #include <queue>
 using namespace std;
+
 struct student {
   string name;
   int score;
 };
+
 struct cmp {
   bool operator()(const student& a, const student& b) const {
     return a.score < b.score || (a.score == b.score && a.name > b.name);
   }
 };
+
 priority_queue<student, vector<student>, cmp> pq;
+
 int main() {
   int n;
   cin >> n;
@@ -81,12 +85,14 @@ int main() {
 struct student {
   string name;
   int score;
+
   bool operator<(const student& a) const {
     return score < a.score || (score == a.score && name > a.name);
     // 上面省略了 this 指针，完整表达式如下：
     // this->score<a.score||(this->score==a.score&&this->name>a.name);
   }
 };
+
 priority_queue<student> pq;
 ```
 
@@ -97,9 +103,11 @@ struct student {
   string name;
   int score;
 };
+
 bool operator<(const student& a, const student& b) {
   return a.score < b.score || (a.score == b.score && a.name > b.name);
 }
+
 priority_queue<student> pq;
 ```
 

@@ -79,6 +79,7 @@ fclose(stdout);
 ```cpp
 #include <cstdio>
 #include <iostream>
+
 int main(void) {
   freopen("data.in", "r", stdin);
   freopen("data.out", "w", stdout);
@@ -153,10 +154,12 @@ fout.close();
 ### 模板
 
 ```cpp
-#include <cstdio>
 #include <fstream>
+using namespace std;  // 两个类型都在 std 命名空间里
+
 ifstream fin("data.in");
 ofstream fout("data.out");
+
 int main(void) {
   /*
   中间的代码改变 cin 为 fin ，cout 为 fout 即可

@@ -4,7 +4,7 @@ author: FFjet, ChungZH, frank-xjh, hsfzLZH1, Xarfa, AndrewWayne
 
 ## 双向同时搜索
 
-双向同时搜索的基本思路是从状态图上的起点和终点同时开始进行 [广搜](bfs.md) 或 [深搜](dfs.md)。如果发现搜索的两端相遇了，那么可以认为是获得了可行解。
+双向同时搜索的基本思路是从状态图上的起点和终点同时开始进行 [广搜](./bfs.md) 或 [深搜](./dfs.md)。如果发现搜索的两端相遇了，那么可以认为是获得了可行解。
 
 双向广搜的步骤：
 
@@ -49,65 +49,7 @@ Meet in the middle 算法没有正式译名，常见的翻译为「折半搜索�
 
 ??? note "参考代码"
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    #include <iostream>
-    #include <map>
-    
-    using namespace std;
-    
-    typedef long long ll;
-    
-    int n, m, ans = 0x7fffffff;
-    map<ll, int> f;
-    ll a[40];
-    
-    int main() {
-      cin >> n >> m;
-    
-      for (int i = 0; i < n; ++i) a[i] = (1ll << i);
-    
-      for (int i = 1; i <= m; ++i) {
-        int u, v;
-        cin >> u >> v;
-        --u;
-        --v;
-        a[u] |= (1ll << v);
-        a[v] |= (1ll << u);
-      }
-    
-      for (int i = 0; i < (1 << (n / 2)); ++i) {
-        ll t = 0;
-        int cnt = 0;
-        for (int j = 0; j < n / 2; ++j) {
-          if ((i >> j) & 1) {
-            t ^= a[j];
-            ++cnt;
-          }
-        }
-        if (!f.count(t))
-          f[t] = cnt;
-        else
-          f[t] = min(f[t], cnt);
-      }
-    
-      for (int i = 0; i < (1 << (n - n / 2)); ++i) {
-        ll t = 0;
-        int cnt = 0;
-        for (int j = 0; j < (n - n / 2); ++j) {
-          if ((i >> j) & 1) {
-            t ^= a[n / 2 + j];
-            ++cnt;
-          }
-        }
-        if (f.count(((1ll << n) - 1) ^ t))
-          ans = min(ans, cnt + f[((1ll << n) - 1) ^ t]);
-      }
-    
-      cout << ans;
-    
-      return 0;
-    }
+    --8<-- "docs/search/code/bidirectional/bidirectional_1.cpp"
     ```
 
 ## 外部链接

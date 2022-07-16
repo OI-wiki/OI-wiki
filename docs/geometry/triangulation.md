@@ -33,7 +33,7 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
 
 分治构造 DT 的第一步是将给定点集按照 $x$ 坐标 **升序** 排列，如下图是排好序的大小为 $10$ 的点集。
 
-![排好序的大小为 $10$ 的点集](./images/triangulation-2.svg)
+![排好序的大小为 10 的点集](./images/triangulation-2.svg)
 
 一旦点集有序，我们就可以不断地将其分成两个部分（分治），直到子点集大小不超过 $3$。然后这些子点集可以立刻剖分为一个三角形或线段。
 
@@ -123,6 +123,7 @@ struct Point3D {
 struct Edge {
   int id;
   std::list<Edge>::iterator c;
+
   Edge(int id = 0) { this->id = id; }
 };
 
@@ -280,7 +281,9 @@ Voronoi 图是 Delaunay 三角剖分的对偶图，可以使用构造 Delaunay �
 
 [ContestHunter. 无尽的毁灭](http://noi-test.zzstep.com/contest/Beta%20Round%20%EF%BC%832%20(%E6%96%B0%E7%96%86%E7%9C%81%E9%98%9F%E4%BA%92%E6%B5%8BWeek1-Day2)/%E6%97%A0%E5%B0%BD%E7%9A%84%E6%AF%81%E7%81%AD) 三角剖分求对偶图建 Voronoi 图
 
-## References
+[Codeforces Gym 103485M. Constellation collection](https://codeforces.com/gym/103485/problem/M) 三角剖分之后建图进行 Floodfill
+
+## 参考资料与拓展阅读
 
 - [1][Wikipedia - Triangulation (geometry)](<https://en.wikipedia.org/wiki/Triangulation_(geometry)>)
 - [2][Wikipedia - Delaunay triangulation](<https://en.wikipedia.org/wiki/Delaunay_triangulation>)
