@@ -40,17 +40,15 @@
 3. 修改完成后使用左侧的 Source Control 选项卡，并按照本文中 [commit 信息格式规范](#commit) 填写 commit 信息并提交，提交时会提示是否创建此仓库的分支，点击绿色的 **Fork Repository** 按钮即可。
 4. 提交后会在网页上方的中央弹出一个提示框，在第一次的提示框内填写标题，第二次的提示框内填写此提交要提交到的仓库内分支名称，之后右下角会弹出一个提示框，内容类似于 `Created Pull Request #1 for OI-Wiki/OI-Wiki.`，点击蓝字链接即可查看该 Pull Request。
 
-### 对于目录和引用的变更
+#### 向 Pull Request 追加更改
 
-通常情况下，如果您需要添加一个新页面，或者修改已有页面在目录中的链接，您就需要对 [`mkdocs.yml`](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml) 文件作出改动。
-
-添加新页面可以参考既有的格式。但除非是进行重构或修正名词，否则 **我们不建议对既有页面的引用链接进行修改**，Pull Requests 中不必要的修改也将被驳回。
-
-如果您坚持要修改链接，请注意做好以下几点：
-
-- 修改链接可能会影响到作者信息统计，这时需要您更新当前文档中的 [author 字段](./faq.md#:~:text=Q：为什么-,作者信息统计,-处没有我的)，请对照当前页面中的 contributors 清单逐一填写。
-- 请需要在项目内搜索一下是否有内链需要更新。
-- 注意更新 [重定向文件](https://github.com/OI-wiki/OI-wiki/blob/master/docs/_redirects)，以避免在外站引用时出现死链。详见 [重定向文件](./faq.md#:~:text=Q：-,重定向文件怎么用？,-A：_redirects)。
+1. 打开 [OI-Wiki 的 Pull Request 列表](https://github.com/OI-wiki/OI-wiki/pulls)，找到您提交的 Pull Request 并点击。
+2. Pull Request 页面的标题下方将会有一段例如 `<您的ID> wants to merge x commits into OI-wiki:master from <您的ID>:patch-1` 的文字，点击 `<您的ID>:patch-1` 部分。
+3. 您应该会被重定向到您的分支仓库中，而且文件列表左上角的分支名称是你提交 Pull Request 的分支名称（在本示例中应为 `patch-1`）。
+4. 进行您需要的更改。
+    * 如果您需要编辑单个文件或多个互相无关联的页面的内容，请直接找到你要的文件并进行更改，更改完成后滚动到页面下方，按照本文中 [commit 信息格式规范](#commit) 填写 commit 信息，之后点击 **Commit changes** 按钮提交修改。
+    * 如果您需要编辑多个文件，点击键盘上的<kbd>.</kbd>按钮（或者将 URL 中的 `github.com` 更改为 `github.dev`）[^ref2]，进入 GitHub 的网页版 VS Code 编辑器并作出更改。然后使用左侧的 Source Control 选项卡，并按照本文中 [commit 信息格式规范](#commit) 填写 commit 信息并提交修改。
+5. 这时你的更改会被自动追加在您的 Pull Request 中。
 
 ### 使用 Git 在本地进行编辑
 
@@ -62,12 +60,28 @@
 大致流程如下：
 
 1. 将主仓库 Fork 到自己的仓库中；
-2. 将 Fork 后的仓库克隆（clone）到本地；
+2. 将 Fork 后的分支仓库克隆（clone）到本地；
 3. 在本地进行修改后提交（commit）这些更改；
-4. 将这些更改推送（push）到你克隆的仓库；
+4. 将这些更改推送（push）到你克隆的分支仓库；
 5. 提交 Pull Request 至主仓库。
 
 详细的操作方式可以参考 [Git](../tools/git.md) 页面。
+
+#### 向 Pull Request 追加更改
+
+在 clone 下来的本地分支仓库中继续进行修改，并提交（commit）以及推送（push）这些更改即可。你的更改会被自动追加在 Pull Request 中。
+
+### 对于目录和引用的变更
+
+通常情况下，如果您需要添加一个新页面，或者修改已有页面在目录中的链接，您就需要对 [`mkdocs.yml`](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml) 文件作出改动。
+
+添加新页面可以参考既有的格式。但除非是进行重构或修正名词，否则 **我们不建议对既有页面的引用链接进行修改**，Pull Requests 中不必要的修改也将被驳回。
+
+如果您坚持要修改链接，请注意做好以下几点：
+
+- 修改链接可能会影响到作者信息统计，这时需要您更新当前文档中的 [author 字段](./faq.md#:~:text=Q：为什么-,作者信息统计,-处没有我的)，请对照当前页面中的 contributors 清单逐一填写。
+- 请需要在项目内搜索一下是否有内链需要更新。
+- 注意更新 [重定向文件](https://github.com/OI-wiki/OI-wiki/blob/master/docs/_redirects)，以避免在外站引用时出现死链。详见 [重定向文件](./faq.md#:~:text=Q：-,重定向文件怎么用？,-A：_redirects)。
 
 ### Commit 信息格式规范
 
@@ -121,9 +135,10 @@
 
 1. 在收到一个新的 Pull Request 之后，GitHub 会给 reviewer 发送邮件；
 2. 与此同时，在 [GitHub Actions](https://github.com/OI-wiki/OI-wiki/actions) 和 [Netlify](https://app.netlify.com/sites/oi-wiki) 上会运行两组测试，它们会把进度同步在 PR 页面的下方。GitHub Actions 主要用来确认 PR 中内容的修改不会影响到网站构建的进程；Netlify 用来把 PR 中的更新构建出来，方便 reviewer 审核（在测试完成后点击 Details 可以了解更多）；
-3. 在足够多 reviewer 投票通过一个 PR 之后，这个 PR 才可以合并到 master 分支中；
-4. 在合并到 master 分支之后，GitHub Actions 会重新构建一遍网站内容，并更新到 gh-pages 分支；
-5. 这时服务器才会拉取 gh-pages 分支的更新，并重新部署最新版本的内容。
+3. reviewer 可能会发现问题，并提出 `review` 或 `suggested changes`（建议更改，显示为灰色图标）/ `requested changes`（强制更改，显示为红色图标，只会在 reviewer 拥有 repo 写权限时出现）。一般来说，reviewer 也会附上建议和需要进行的更改，在这时，您将会需要继续向 Pull Request 追加其他更改。更改的方法可以参考 `在 GitHub 上编辑` 或者 `使用 Git 在本地进行编辑` 部分的 `向 Pull Request 追加更改` 部分。
+4. 在足够多 reviewer 投票通过一个 PR 之后，这个 PR 才可以合并到 master 分支中；
+5. 在合并到 master 分支之后，GitHub Actions 会重新构建一遍网站内容，并更新到 gh-pages 分支；
+6. 这时服务器才会拉取 gh-pages 分支的更新，并重新部署最新版本的内容。
 
 ## 参考资料与注释
 
