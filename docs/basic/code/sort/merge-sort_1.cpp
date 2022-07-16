@@ -2,7 +2,7 @@
 using namespace std;
 long long ans = 0;
 int n;
-int a[900009], t[900009];
+int a[500005], t[500005];
 
 void merge(int ll, int rr) {
   if (ll == rr) {
