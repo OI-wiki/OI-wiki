@@ -9,25 +9,24 @@ import { TaskHandler, log } from "../html-postprocess.js";
 
 const execFileAsync = util.promisify(child_process.execFile);
 
-async function readCommitsLog(sourceFilePath: string) {
-  const SEPARATOR = "\x01";
-  const { stdout: commitsLog } = await execFileAsync("git", [
-    "log",
-    `--pretty=format:%cD${SEPARATOR}%aE`,
-    `docs${sourceFilePath}`
-  ]);
-
-  return commitsLog
-    .trim()
-    .split("\n")
-    .map(line => line.split(SEPARATOR))
-    .map(([commitDate, authorEmail]) => ({ commitDate, authorEmail }));
-}
-
-async function readCoAuthorLog(sourceFilePath: string) {
-  const { stdout: coAuthorLog } = await execFileAsync(
+async function readCommitsLog(sourceFilePath: string): Promise<{ commitDate: Date; authorEmails: string[] }[]> {
+  const { stdout: log } = await execFileAsync(
     "bash",
-    ["-c", `git log --pretty=format:%B "$FILENAME" | sed -nE 's/^Co-Authored-By: .+?<(.+)>/\\1/pi'`],
+    [
+      "-c",
+      /**
+       * Format:
+       *
+       * >Date
+       * <AuthorEmail
+       * <CoAuthorEmail
+       * <...
+       * >Date
+       * <AuthorEmail
+       * <...
+       */
+      `git log --follow '--pretty=format:D %cD%n<%aE%n%w(0,2,2)%b' $FILENAME | sed -nE 's/^(D (.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
+    ],
     {
       env: {
         ...process.env,
@@ -36,10 +35,22 @@ async function readCoAuthorLog(sourceFilePath: string) {
     }
   );
 
-  return coAuthorLog
-    .trim()
-    .split("\n")
-    .map(s => s.trim());
+  const commits = log.trim().slice(1).split("\n>");
+  return commits.map(commit => {
+    /**
+     * Format:
+     *
+     * Date
+     * >AuthorEmail
+     * >CoAuthorEmail
+     * >...
+     */
+    const [dateLine, ...emailLines] = commit.split("\n");
+    return {
+      commitDate: new Date(dateLine),
+      authorEmails: Array.from(new Set(emailLines.map(emailLine => emailLine.slice(1).toLowerCase())))
+    };
+  });
 }
 
 const GITHUB_REPO = "OI-wiki/OI-wiki";
@@ -78,10 +89,7 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
       // Set link to git history
       $(".edit_history").setAttribute("href", `https://github.com/${GITHUB_REPO}/commits/master/docs${sourceFilePath}`);
 
-      const [commitsLog, coAuthorLog] = await Promise.all([
-        readCommitsLog(sourceFilePath),
-        readCoAuthorLog(sourceFilePath)
-      ]);
+      const commitsLog = await readCommitsLog(sourceFilePath);
 
       // "本页面最近更新"
       const latestDate = new Date(
@@ -102,8 +110,8 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
             .split(",")
             .map(username => `${username.trim()}\ngithub`),
           // From git history
-          ...[...coAuthorLog, ...commitsLog.map(l => l.authorEmail)]
-            .map(email => email.toLowerCase())
+          ...commitsLog
+            .flatMap(l => l.authorEmails)
             .filter(email => email in this.userMap)
             .map(
               email =>
