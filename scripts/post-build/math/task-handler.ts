@@ -111,6 +111,10 @@ export const taskHandler = new (class implements TaskHandler<void> {
     const cssDestFile = path.join(siteDir, MATHJAX_TARGET_CSS_FILE);
     await fs.promises.mkdir(path.dirname(cssDestFile), { recursive: true });
     await fs.promises.writeFile(cssDestFile, renderer.getCSS(), "utf-8");
+
+    log("Remove client-side rendering assets");
+    await fs.promises.rm(path.join(siteDir, "_static/js/math-csr.js"));
+    await fs.promises.rm(path.join(siteDir, "assets/vendor/mathjax"), { recursive: true });
   }
 
   siteDir: string;
