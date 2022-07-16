@@ -62,16 +62,20 @@
 我们根据数乘的定义，可以验证有如下运算律：
 
 $$
-\lambda(\mu \boldsymbol a)=(\lambda \mu)\boldsymbol a\\
-(\lambda+\mu)\boldsymbol a=\lambda \boldsymbol a+\mu \boldsymbol a\\
-\lambda(\boldsymbol a+\boldsymbol b)=\lambda \boldsymbol a+\lambda \boldsymbol b
+\begin{aligned}
+\lambda(\mu \boldsymbol a)&=(\lambda \mu)\boldsymbol a\\
+(\lambda+\mu)\boldsymbol a&=\lambda \boldsymbol a+\mu \boldsymbol a\\
+\lambda(\boldsymbol a+\boldsymbol b)&=\lambda \boldsymbol a+\lambda \boldsymbol b
+\end{aligned}
 $$
 
 特别地，我们有：
 
 $$
+\begin{gathered}
 (-\lambda)\boldsymbol a=-(\lambda \boldsymbol a)=-\lambda(\boldsymbol a)\\
 \lambda(\boldsymbol a-\boldsymbol b)=\lambda \boldsymbol a-\lambda \boldsymbol b
+\end{gathered}
 $$
 
 #### 判定两向量共线
@@ -115,9 +119,11 @@ $$
 若两向量 $\boldsymbol a=(m,n)$，$\boldsymbol b=(p,q)$，则：
 
 $$
-\boldsymbol a+\boldsymbol b=(m+p,n+q)\\
-\boldsymbol a-\boldsymbol b=(m-p,n-q)\\
-k\boldsymbol a=(km,kn)
+\begin{aligned}
+\boldsymbol a+\boldsymbol b&=(m+p,n+q)\\
+\boldsymbol a-\boldsymbol b&=(m-p,n-q)\\
+k\boldsymbol a&=(km,kn)
+\end{aligned}
 $$
 
 #### 求一个向量的坐标表示

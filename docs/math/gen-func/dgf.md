@@ -178,10 +178,13 @@ $$
 - 若 $nm=1$，则 $g(nm)=g(1)=1$，结论显然成立；
 
 -   若 $nm>1(\gcd(n,m)=1)$，假设现在对于所有的 $xy<nm(\gcd(x,y)=1)$，都有 $g(xy)=g(x)g(y)$，所以有：
+
     $$
     g(nm)=-\sum_{d\mid nm,d\ne 1}{f(d)g\left(\dfrac {nm}d \right)}=-\sum_{a\mid n,b\mid m,ab\ne 1}{f(ab)g\left(\dfrac {nm}{ab} \right)}
     $$
+
     又因为 $\dfrac{nm}{ab}<nm$，所以有：
+
     $$
     \begin{aligned}
     g(nm)&=-\sum_{a\mid n,b\mid m,ab\ne 1}{f(ab)g\left(\dfrac {nm}{ab} \right)}\\\\

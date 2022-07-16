@@ -162,6 +162,8 @@ def toposort():
 
 [CF 1385E](https://codeforces.com/problemset/problem/1385/E)：需要通过拓扑排序构造。
 
+[Luogu P1347](https://www.luogu.com.cn/problem/P1347): 拓扑排序模板。
+
 ## 参考
 
 1. 离散数学及其应用。ISBN:9787111555391

@@ -15,28 +15,43 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: pipenv
       - uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '16.x'
           check-latest: true
       - name: Install Python dependencies
-        run: pip install -r requirements.txt
+        run: |
+          curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python3
+          pipenv install
+      - name: Cache Node.js dependencies
+        uses: actions/cache@v2
+        id: cache-node
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+          restore-keys: ${{ runner.os }}-node-
       - name: Install Node.js dependencies
-        run: npm install .
+        if: steps.cache-node.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile --production
       - name: Page Build
         run: |
-          chmod +x ./scripts/build.sh && ./scripts/build.sh
-          mkdocs build -v
-          bash ./scripts/post-build.sh
-      - name: Render math
-        run: node --max_old_space_size=3072 ./scripts/render_math.js
-      - name: Gulp minify
-        run: npx gulp minify
+          ./scripts/pre-build/pre-build.sh
+          pipenv run mkdocs build -v
+      - name: Post-process HTML
+        run: yarn ts-node-esm scripts/post-build/html-postprocess.ts commits-info math
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_OPTIONS: --max_old_space_size=3072
+      - name: Minify html
+        run: ./scripts/post-build/minify-html/minify-html.sh
       - name: Generate redirects
-        run: python scripts/gen_redirect.py
+        run: pipenv run python scripts/post-build/redirect/generate-redirects.py
       - name: Deploy to gh-pages
         if: ${{ github.event_name == 'push' }}
         uses: peaceiris/actions-gh-pages@v3
@@ -44,9 +59,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
           force_orphan: true
-      - name: BaiduPusher
+      - name: Push to Baidu
         if: ${{ github.event_name == 'push' && github.repository_owner == 'oi-wiki' }}
         env:
-          site: oi-wiki.org
-          BaiduToken: ${{ secrets.BaiduToken }}
-        run: chmod +x scripts/BaiduPusher.sh && ./scripts/BaiduPusher.sh
+          SITE: oi-wiki.org
+          BAIDU_TOKEN: ${{ secrets.BaiduToken }}
+        run: ./scripts/post-deploy/baidu-push.sh

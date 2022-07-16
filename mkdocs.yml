@@ -114,11 +114,12 @@ nav:
       - 引用: lang/reference.md
       - 常值: lang/const.md
       - 新版 C++ 特性: lang/new.md
+      - Lambda 表达式: lang/lambda.md
       - pb_ds:
         - pb_ds 简介: lang/pb-ds/index.md
         - 堆: lang/pb-ds/pq.md
         - 平衡树: lang/pb-ds/tree.md
-    - C 与 C++ 区别: lang/c-cpp.md
+    - C 与 C++ 区别: lang/cpp-other-langs.md
     - Pascal 转 C++ 急救: lang/pas-cpp.md
     - Python 速成: lang/python.md
     - Java 速成: lang/java.md
@@ -247,9 +248,11 @@ nav:
       - Pell 方程: math/number-theory/pell-equation.md
     - 多项式:
       - 多项式部分简介: math/poly/intro.md
+      - 代数基本定理: math/poly/fundamental.md
       - 拉格朗日插值: math/poly/lagrange.md
       - 快速傅里叶变换: math/poly/fft.md
       - 快速数论变换: math/poly/ntt.md
+      - 快速复数论变换: math/poly/cntt.md
       - 快速沃尔什变换: math/poly/fwt.md
       - Chirp Z 变换: math/poly/czt.md
       - 多项式求逆: math/poly/inv.md
@@ -523,8 +526,8 @@ extra:
 
 extra_javascript:
   - '_static/js/extra.js?v=16'
-  - 'assets/vendor/mathjax/MathJax.js?config=TeX-MML-AM_CHTML'
-
+  - '_static/js/math-csr.js?math-csr'
+  - 'assets/vendor/mathjax/es5/tex-mml-chtml.js?math-csr'
 
 extra_css:
   - '_static/css/extra.css?v=13'
@@ -540,7 +543,8 @@ markdown_extensions:
   - meta
   - toc:
       permalink: true
-  - pymdownx.arithmatex
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.details

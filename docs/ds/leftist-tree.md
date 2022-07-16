@@ -133,7 +133,7 @@ int merge(int x, int y) {
   if (t[y].val < t[x].val) swap(x, y);
   if (rand() & 1)  // 随机选择是否交换左右子节点
     swap(t[x].ls, t[x].rs);
-  t[x].ls = merge(t[x].ls, t[y]);
+  t[x].ls = merge(t[x].ls, y);
   return x;
 }
 ```

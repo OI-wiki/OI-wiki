@@ -9,8 +9,10 @@
 最核心的操作是两个多项式的乘法，即给定多项式 $f(x)$ 和 $g(x)$：
 
 $$
-f(x)=a_0+a_1x+\dots+a_nx^n\quad \quad (1)\\ 
-g(x)=b_0+b_1x+\dots+b_mx^m\quad \quad (2)
+\begin{alignedat}{3}
+f(x)&=a_0+a_1x+\dots+a_nx^n\quad \quad &(1)\\
+g(x)&=b_0+b_1x+\dots+b_mx^m\quad \quad &(2)
+\end{alignedat}
 $$
 
 要计算多项式 $Q(x)=f(x)\cdot g(x)$：
@@ -56,8 +58,10 @@ $$
 对于一个多项式 $f(x)$，可以将其对数函数看作其与麦克劳林级数的复合：
 
 $$
-\ln{(1 - f(x))} = -\sum_{i = 1}^{+\infty} \frac{f^{i}(x)}{i}\\
-\ln{(1 + f(x))} = \sum_{i = 1}^{+\infty} \frac{(-1)^{i - 1}f^{i}(x)}{i}
+\begin{aligned}
+\ln{(1 - f(x))} &= -\sum_{i = 1}^{+\infty} \frac{f^{i}(x)}{i}\\
+\ln{(1 + f(x))} &= \sum_{i = 1}^{+\infty} \frac{(-1)^{i - 1}f^{i}(x)}{i}
+\end{aligned}
 $$
 
 其指数函数同样可以这样定义：
