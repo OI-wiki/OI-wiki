@@ -4,10 +4,13 @@ using namespace std;
 const int N = 200005;
 int h[N], nxt[N * 2], to[N * 2], c[N], gr;
 #define il inline
+
 il void tu(int x, int y) { to[++gr] = y, nxt[gr] = h[x], h[x] = gr; }
+
 typedef long long ll;
 int n, nn, siz[N], mn, rt;
 bool vis[N];
+
 void get_root(int u, int f) {
   siz[u] = 1;
   int mx = 0;
@@ -21,10 +24,12 @@ void get_root(int u, int f) {
   mx = max(mx, nn - siz[u]);
   if (mx < mn) mn = mx, rt = u;
 }
+
 ll ans[N], sum;
 int cnt[N], v[N];
 // sum实时统计的是cnt[i]的和
 int nowrt;
+
 void get_dis(int u, int f, int now) {  // now为当前树链上的颜色数量(不含u)
   siz[u] = 1;
   if (!v[c[u]]) {
@@ -44,6 +49,7 @@ void get_dis(int u, int f, int now) {  // now为当前树链上的颜色数量(�
     sum += cnt[c[u]];  // 回溯
   }
 }
+
 void get_cnt(int u, int f) {
   if (!v[c[u]]) {
     cnt[c[u]] += siz[u];
@@ -71,6 +77,7 @@ void clear(int u, int f, int now) {
   v[c[u]]--;
   cnt[c[u]] = 0;
 }
+
 void clear2(int u, int f) {
   cnt[c[u]] = 0;
   for (int i = h[u]; i; i = nxt[i]) {
@@ -79,7 +86,9 @@ void clear2(int u, int f) {
     clear2(d, u);
   }
 }
+
 int son[N];
+
 void divid(int u) {
   vis[u] = 1;
   int tot = 0;
@@ -120,6 +129,7 @@ void divid(int u) {
     divid(rt);
   }
 }
+
 int main() {
   scanf("%d", &n);
   int u, v;
