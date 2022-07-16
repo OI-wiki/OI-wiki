@@ -36,7 +36,7 @@ void maintain(int x) {
 
 int build(int l, int r) {
   if (l > r) return 0;
-  if (l == r){
+  if (l == r) {
     maintain(l);
     return l;
   }
