@@ -28,3 +28,7 @@ jobs:
         run: find . -name *.cpp > res.txt
       - name: Check the Code
         run: pipenv run python scripts/test.py
+      - uses: ntsd/auto-request-changes-action@v2
+        if: ${{ github.event.pull_request && failure() }}
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
