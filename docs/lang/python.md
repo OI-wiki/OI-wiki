@@ -60,11 +60,11 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学自由与开源软件镜像站](https://mirror.bjtu.edu.cn/python/) 和 [华为开源镜像站](https://repo.huaweicloud.com/python/)，可以到那里尝试下载 Python 安装文件。
 
-## pip
+## 安装第三方库
 
-`pip` 是首选的安装程序。从 Python 3.4 版本开始，它默认包含在 Python 二进制安装程序中。`pip` 的库主要存储在 [Python 包索引（PyPI）](https://pypi.org/) 上，用户也可以指定第三方的包托管平台。
+`pip` 是首选的安装第三方库的程序。自 Python 3.4 版本起，它被默认包含在 Python 二进制安装程序中。
 
-如果需要使用 pip 安装第三方模块，可参照 [pypi 镜像使用帮助 - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/)、[PyPI 镜像源使用帮助 — 中国科学技术大学镜像站](http://mirrors.ustc.edu.cn/help/pypi.html) 等使用帮助，使用对应镜像的镜像源下载第三方库。你可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上获取更多 PyPI 镜像源。
+`pip` 中的第三方库主要存储在 [Python 包索引（PyPI）](https://pypi.org/) 上，用户也可以指定其它第三方库的托管平台。使用方法可参照 [pypi 镜像使用帮助 - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/)、[PyPI 镜像源使用帮助 — 中国科学技术大学镜像站](http://mirrors.ustc.edu.cn/help/pypi.html) 等使用帮助。你可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上获取更多 PyPI 镜像源。
 
 ## 基本语法
 
@@ -72,7 +72,6 @@ Python 的语法简洁而易懂，也有许多官方和第三方文档与教程�
 
 ### 注释
 
-后文中会高频使用注释，故先介绍注释的语法。
 
 加入注释并不会对代码的运行产生影响，但加入注释可以使代码更加易懂易用。
 
