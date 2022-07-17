@@ -1,6 +1,6 @@
 ## 引入
 
-???+note "洛谷 4097 [HEOI2013]Segment"
+???+note "[洛谷 4097 [HEOI2013]Segment](https://www.luogu.com.cn/problem/P4097)"
     要求在平面直角坐标系下维护两个操作（强制在线）：
     
     1. 在平面上加入一条线段。记第 $i$ 条被插入的线段的标号为 $i$，该线段的两个端点分别为 $(x_0,y_0)$，$(x_1,y_1)$。
@@ -10,149 +10,87 @@
 
 我们发现，传统的线段树无法很好地维护这样的信息。这种情况下，**李超线段树** 便应运而生。
 
-## 概述
+## 李超线段树
 
-我们设法维护每个区间中，可能成为最优解的线段。
+我们可以把任务转化为维护如下操作：
 
-称一条线段在 $x=x_0$ 处最优，当且仅当该线段在 $x_0$ 处取值最大。
+- 加入一个一次函数，定义域为 $[l,r]$；
+- 给定 $k$，求定义域包含 $k$ 的所有一次函数中，在 $x=k$ 处取值最大的那个，如果有多个函数取值相同，选编号最小的。
 
-称一条线段能成为区间 $[l,r]$ 中的 **最优线段**，当且仅当：
+???+warning "注意"
+    当线段垂直于 $y$ 轴时，会出现除以零的情况。假设线段两端点分别为 $(x,y_0)$ 和 $(x,y_1)$，$y_0<y_1$，则插入定义域为 $[x,x]$ 的一次函数 $f(x)=0\cdot x+y_1$。
 
-1. 该线段的定义域完整覆盖了区间 $[l,r]$；
-2. 该线段在区间中点处最优。
+看到区间修改，我们按照线段树解决区间问题的常见方法，给每个节点一个懒标记。每个节点 $i$ 的懒标记都是一条线段，记为 $l_i$，表示要用 $l_i$ 更新该节点所表示的整个区间。
 
-现在我们需要插入一条线段，在这条线段完整覆盖的区间中，某些区间的最优线段可能发生改变。
+现在我们需要插入一条线段 $f$，考虑某个被新线段 $f$ 完整覆盖的线段树区间。若该区间无标记，直接打上用该线段更新的标记。
 
-考虑某个被新线段完整覆盖的区间，若该区间无最优线段，则该线段可以直接成为最优线段。
+如果该区间已经有标记了，由于标记难以合并，只能把标记下传。但是子节点也有自己的标记，也可能产生冲突，所以我们要递归下传标记。
 
-否则，设该区间的中点为 $mid$，我们拿新线段在中点处的值与原最优线段在中点处的值作比较。
+![](images/li-chao-tree-1.png)
 
-首先，如果新线段斜率大于原线段，
+如图，按新线段 $f$ 取值是否大于原标记 $g$，我们可以把当前区间分为两个子区间。其中 **肯定有一个子区间被左区间或右区间完全包含**，也就是说，在两条线段中，肯定有一条线段，只可能成为左区间的答案，或者只可能成为右区间的答案。我们用这条线段递归更新对应子树，用另一条线段作为懒标记更新整个区间，这就保证了递归下传的复杂度。当一条线段只可能成为左或右区间的答案时，才会被下传，所以不用担心漏掉某些线段。
 
-1. 如果新线段在 $mid$ 处更优，则新线段在右半区间 **一定** 最优，旧线段在左半区间 **可能** 最优；
-2. 反之，旧线段在左半区间 **一定** 最优，新线段在右半区间 **可能** 最优。
+具体来说，设当前区间的中点为 $m$，我们拿新线段 $f$ 在中点处的值与原最优线段 $g$ 在中点处的值作比较。
 
-结合图片理解一下（红色线段代表原来的最优线段，黑色线段代表新插入的线段，绿色直线则代表 $x=mid$ 这条直线）：
+如果新线段 $f$ 更优，则将 $f$ 和 $g$ 交换。那么现在考虑在中点处 $f$ 不如 $g$ 优的情况：
 
-![](./images/li-chao-tree1.png)
+1. 若在左端点处 $f$ 更优，那么 $f$ 和 $g$ 必然在左半区间中产生了交点，$f$ 只有在左区间才可能优于 $g$，递归到左儿子中进行下传；
+2. 若在右端点处 $f$ 更优，那么 $f$ 和 $g$ 必然在右半区间中产生了交点，$f$ 只有在右区间才可能优于 $g$，递归到右儿子中进行插入；
+3. 若在左右端点处 $g$ 都更优，那么 $f$ 不可能成为答案，不需要继续下传。
 
-![](./images/li-chao-tree2.png)
+最后将 $g$ 作为当前区间的懒标记。
 
-接下来考虑新线段斜率小于原线段的情况，
+下传标记：
 
-1. 如果新线段在 $mid$ 处更优，则新线段在左半区间 **一定** 最优，旧线段在右半区间 **可能** 最优；
-2. 反之，旧线段在右半区间 **一定** 最优，新线段在左半区间 **可能** 最优。
+```cpp
+void upd(int root, int cl, int cr, int u) {  // 对线段完全覆盖到的区间进行修改
+  int &v = s[root], mid = (cl + cr) >> 1;
+  if (calc(u, mid) > calc(v, mid)) swap(u, v);
+  if (calc(u, cl) > calc(v, cl)) upd(root << 1, cl, mid, u);
+  if (calc(u, cr) > calc(v, cr)) upd(root << 1 | 1, mid + 1, cr, u);
+  // 上面两个 if 的条件最多只有一个成立，这保证了李超树的时间复杂度
+}
+```
 
-再来两张图：
+拆分线段：
 
-![](./images/li-chao-tree3.png)
+```cpp
+void update(int root, int cl, int cr, int l, int r,
+            int u) {  // 定位插入线段完全覆盖到的区间
+  if (l <= cl && cr <= r) {
+    upd(root, cl, cr, u);  // 完全覆盖当前区间，更新当前区间的标记
+    return;
+  }
+  int mid = (cl + cr) >> 1;
+  if (l <= mid) update(root << 1, cl, mid, l, r, u);  // 递归拆分区间
+  if (mid < r) update(root << 1 | 1, mid + 1, cr, l, r, u);
+}
+```
 
-![](./images/li-chao-tree4.png)
+注意懒标记并不等价于在区间中点处取值最大的线段。
 
-最后考虑新线段和旧线段斜率相同的情况，此时只需比较截距即可，截距大的一定在整个区间内更优。
+![](images/li-chao-tree-2.png)
 
-确定完当前区间的最优线段后，我们需要递归进入子区间，更新最优线段可能改变的区间。
+如图，加入黄色线段后，只有红色节点的标记被更新，而绿色节点的标记还未被改变。但在第二、三、四个绿色区间的中点处显然黄色线段取值最大。
 
-这样的过程与一般线段树的递归过程类似，因此我们可以使用线段树来维护。
+查询时，我们可以利用标记永久化思想，在包含 $x$ 的所有线段树区间（不超过 $O(\log n)$ 个）的标记线段中，比较得出最终答案。
 
-现在考虑如何查询一个区间的最优线段。
+查询：
 
-查询过程利用了标记永久化的思想，简单地说，我们将所有包含 $x_0$ 区间（易知这样的区间只有 $O(\log n)$ 个）的最优线段拿出来，在这些线段中比较，从而得出最优线段。
+```cpp
+pdi query(int root, int l, int r, int d) {  // 查询
+  if (r < d || d < l) return {0, 0};
+  int mid = (l + r) >> 1;
+  double res = calc(s[root], d);
+  if (l == r) return {res, s[root]};
+  return pmax({res, s[root]}, pmax(query(root << 1, l, mid, d),
+                                   query(root << 1 | 1, mid + 1, r, d)));
+}
+```
 
-根据上面的描述，查询过程的时间复杂度显然为 $O(\log n)$，而插入过程中，我们需要将原线段分割到 $O(\log n)$ 个区间中，对于每个区间，我们又需要花费 $O(\log n)$ 的时间更新该区间以及其子区间的最优线段，从而插入过程的时间复杂度为 $O(\log^2 n)$。
+根据上面的描述，查询过程的时间复杂度显然为 $O(\log n)$，而插入过程中，我们需要将原线段拆分到 $O(\log n)$ 个区间中，对于每个区间，我们又需要花费 $O(\log n)$ 的时间递归下传，从而插入过程的时间复杂度为 $O(\log^2 n)$。
 
-??? note "[HEOI2013]Segment 参考代码"
+??? note "[[HEOI2013]Segment](https://www.luogu.com.cn/problem/P4097) 参考代码"
     ```cpp
-    #include <iostream>
-    #include <string>
-    #define MOD1 39989
-    #define MOD2 1000000000
-    #define MAXT 40000
-    using namespace std;
-    typedef pair<double, int> pdi;
-    struct line {
-      double k, b;
-    } p[100005];
-    int s[160005];
-    int cnt;
-    double calc(int id, int d) { return p[id].b + p[id].k * d; }
-    void add(int x0, int y0, int x1, int y1) {
-      cnt++;
-      if (x0 == x1)  // 特判直线斜率不存在的情况
-        p[cnt].k = 0, p[cnt].b = max(y0, y1);
-      else
-        p[cnt].k = 1.0 * (y1 - y0) / (x1 - x0), p[cnt].b = y0 - p[cnt].k * x0;
-    }
-    void update(int root, int cl, int cr, int l, int r, int u) {
-      int v = s[root], mid = (cl + cr) >> 1;
-      int ls = root << 1, rs = root << 1 | 1;
-      double resu = calc(u, mid), resv = calc(v, mid);
-      if (r < cl || cr < l) return;
-      if (l <= cl && cr <= r) {
-        if (cl == cr) {
-          if (resu > resv) s[root] = u;
-          return;
-        }
-        if (p[v].k < p[u].k) {
-          if (resu > resv) {
-            s[root] = u;
-            update(ls, cl, mid, l, r, v);
-          } else
-            update(rs, mid + 1, cr, l, r, u);
-        } else if (p[v].k > p[u].k) {
-          if (resu > resv) {
-            s[root] = u;
-            update(rs, mid + 1, cr, l, r, v);
-          } else
-            update(ls, cl, mid, l, r, u);
-        } else {
-          if (p[u].b > p[v].b) s[root] = u;
-        }
-        return;
-      }
-      update(ls, cl, mid, l, r, u);
-      update(rs, mid + 1, cr, l, r, u);
-    }
-    pdi pmax(pdi x, pdi y) {
-      if (x.first < y.first)
-        return y;
-      else if (x.first > y.first)
-        return x;
-      else
-        return x.second < y.second ? x : y;
-    }
-    pdi query(int root, int l, int r, int d) {
-      if (r < d || d < l) return {0, 0};
-      int mid = (l + r) >> 1;
-      double res = calc(s[root], d);
-      if (l == r) return {res, s[root]};
-      return pmax({res, s[root]}, pmax(query(root << 1, l, mid, d),
-                                       query(root << 1 | 1, mid + 1, r, d)));
-    }
-    int main() {
-      ios::sync_with_stdio(false);
-      int n, lastans = 0;
-      cin >> n;
-      while (n--) {
-        int op;
-        cin >> op;
-        if (op == 1) {
-          int x0, y0, x1, y1;
-          cin >> x0 >> y0 >> x1 >> y1;
-          x0 = (x0 + lastans - 1 + MOD1) % MOD1 + 1,
-          x1 = (x1 + lastans - 1 + MOD1) % MOD1 + 1;
-          y0 = (y0 + lastans - 1 + MOD2) % MOD2 + 1,
-          y1 = (y1 + lastans - 1 + MOD2) % MOD2 + 1;
-          if (x0 > x1) swap(x0, x1), swap(y0, y1);
-          add(x0, y0, x1, y1);
-          update(1, 1, MOD1, x0, x1, cnt);
-        } else {
-          int x;
-          cin >> x;
-          x = (x + lastans - 1 + MOD1) % MOD1 + 1;
-          cout << (lastans = query(1, 1, MOD1, x).second) << endl;
-        }
-      }
-      return 0;
-    }
+    --8<-- "docs/ds/code/li-chao-tree/li-chao-tree_1.cpp"
     ```

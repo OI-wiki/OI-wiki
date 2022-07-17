@@ -62,21 +62,25 @@
 我们根据数乘的定义，可以验证有如下运算律：
 
 $$
-\lambda(\mu \boldsymbol a)=(\lambda \mu)\boldsymbol a\\
-(\lambda+\mu)\boldsymbol a=\lambda \boldsymbol a+\mu \boldsymbol a\\
-\lambda(\boldsymbol a+\boldsymbol b)=\lambda \boldsymbol a+\lambda \boldsymbol b
+\begin{aligned}
+\lambda(\mu \boldsymbol a)&=(\lambda \mu)\boldsymbol a\\
+(\lambda+\mu)\boldsymbol a&=\lambda \boldsymbol a+\mu \boldsymbol a\\
+\lambda(\boldsymbol a+\boldsymbol b)&=\lambda \boldsymbol a+\lambda \boldsymbol b
+\end{aligned}
 $$
 
 特别地，我们有：
 
 $$
+\begin{gathered}
 (-\lambda)\boldsymbol a=-(\lambda \boldsymbol a)=-\lambda(\boldsymbol a)\\
 \lambda(\boldsymbol a-\boldsymbol b)=\lambda \boldsymbol a-\lambda \boldsymbol b
+\end{gathered}
 $$
 
 #### 判定两向量共线
 
-两个 **非零** 向量 $\boldsymbol a$ 与 $\boldsymbol b$ 共线 $\Leftrightarrow$ 有唯一实数 $\lambda$，使得 $\boldsymbol b=\lambda \boldsymbol a$。
+两个 **非零** 向量 $\boldsymbol a$ 与 $\boldsymbol b$ 共线 $\iff$ 有唯一实数 $\lambda$，使得 $\boldsymbol b=\lambda \boldsymbol a$。
 
 证明：由数乘的定义可知，对于 **非零** 向量 $\boldsymbol a$，如果存在实数 $\lambda$，使得 $\boldsymbol b=\lambda \boldsymbol a$，那么 $\boldsymbol a \parallel \boldsymbol b$。
 
@@ -115,9 +119,11 @@ $$
 若两向量 $\boldsymbol a=(m,n)$，$\boldsymbol b=(p,q)$，则：
 
 $$
-\boldsymbol a+\boldsymbol b=(m+p,n+q)\\
-\boldsymbol a-\boldsymbol b=(m-p,n-q)\\
-k\boldsymbol a=(km,kn)
+\begin{aligned}
+\boldsymbol a+\boldsymbol b&=(m+p,n+q)\\
+\boldsymbol a-\boldsymbol b&=(m-p,n-q)\\
+k\boldsymbol a&=(km,kn)
+\end{aligned}
 $$
 
 #### 求一个向量的坐标表示
@@ -148,11 +154,11 @@ $$
 
 #### 判定两向量垂直
 
-$\boldsymbol a \perp \boldsymbol b$ $\Leftrightarrow$ $\boldsymbol a\cdot \boldsymbol b=0$
+$\boldsymbol a \perp \boldsymbol b$ $\iff$ $\boldsymbol a\cdot \boldsymbol b=0$
 
 #### 判定两向量共线
 
-$\boldsymbol a = \lambda \boldsymbol b$ $\Leftrightarrow$ $|\boldsymbol a\cdot \boldsymbol b|=|\boldsymbol a||\boldsymbol b|$
+$\boldsymbol a = \lambda \boldsymbol b$ $\iff$ $|\boldsymbol a\cdot \boldsymbol b|=|\boldsymbol a||\boldsymbol b|$
 
 #### 数量积的坐标运算
 

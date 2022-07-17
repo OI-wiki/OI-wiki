@@ -439,6 +439,7 @@ $$
       int child[2];
       long long val;
     } nd[100010];
+    
     int root[100010];
     
     int merge(int u, int v) {

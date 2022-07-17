@@ -68,7 +68,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 使用 VS Code 打开一份代码，将鼠标悬停在行数左侧的空白区域，并单击出现的红点即可为该行代码设置断点。再次单击可取消设置断点。
 
-![](images/vscode-5.gif)
+![](images/vscode-5.apng)
 
 按下<kbd>F5</kbd>进入调试模式，编辑器上方会出现一个调试工具栏，四个蓝色按钮从左至右分别代表 GDB 中的 `continue`,`next`,`step` 和 `until`：
 

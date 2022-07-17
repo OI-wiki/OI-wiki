@@ -7,6 +7,8 @@ Git 是目前使用最广泛的版本控制系统之一。**OI Wiki** 也使用�
 
 ### Windows
 
+#### 使用安装向导安装
+
 ???+warning
     本节以 Git for Windows 2.28.0（2020-07-27 更新）为例。安装页面的选项可能会随着时间而变动。
 
@@ -68,6 +70,18 @@ Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Gi
 最后，该页面出现，Git 安装完成。此时可以取消勾选 `View Release Notes`，然后按下 `Next >` 直接退出；也可以直接按下 `Next >` 查看版本更新信息；亦可以勾选 `Launch Git Bash` 运行 Git 命令行。
 
 ![Git for Windows installation 8](images/git10.png)
+
+#### 使用包管理器安装
+
+在 [`scoop`](https://scoop.sh/) 或 [`winget`](https://github.com/microsoft/winget-cli) 可用的情况下，Git for Windows 可以使用以下命令安装：
+
+```powershell
+scoop install git
+#或者
+winget install Git.Git
+```
+
+这种安装方式的好处是安装过程由系统接管，相对安装向导而言更为方便。需要注意的是，这种方式默认编辑器为 `vim`。
 
 ### Linux
 
@@ -571,6 +585,20 @@ $ git clone git@github.com:OI-wiki/OI-wiki.git
 
 将更改推送至远程仓库的过程与使用 HTTP(S) 连接类似。但使用 ssh 连接可以免去验证远程仓库帐号密码的过程。
 
+## Git GUI Tools
+
+对于不熟悉命令行的同学，纯命令行的 Git 的上手难度可能会偏高，而借助 GUI 工具可以一定程度上降低 Git 的上手难度。此外，相比于命令行，GUI 工具在查看 diff 以及 log 时在体验上有一定程度的提高。
+
+Git 本身自带有 GUI，市面上也有很多优秀的 Git GUI 工具，例如针对 Windows 用户的 TortoiseGit[^note5]，支持 Windows 和 Mac 的 Sourcetree[^note6]等。
+
+这里简单介绍一下 TortoiseGit 的使用。下载并安装好 TortoiseGit 之后，在本地仓库的目录下，单击鼠标右键，在右键菜单中就可以看到 Git 的各个功能。
+
+![TortoiseGit Example](images/git11.png)
+
+详细的使用方法这里不再赘述，可以参考官网里的使用文档或者通过搜索引擎学习，例如 [TortoiseGit Manual](https://tortoisegit.org/docs/tortoisegit/index.html)。
+
+很多 GUI 工具都有官方中文支持，例如 Git Desktop 以及 TortoiseGit。但是还是会有部分翻译看起来较为变扭，推荐使用英文版本。
+
 ## 外部链接
 
 - [Git Reference](https://git-scm.com/docs)
@@ -586,3 +614,7 @@ $ git clone git@github.com:OI-wiki/OI-wiki.git
 [^note3]: 事实上 Git 还有一个针对系统上每一个用户及系统上所有仓库的通用配置文件，该配置文件覆盖范围最广，等级在用户配置文件之上。因为该配置实践中较少使用，这里不再展开。
 
 [^note4]: [Pro Git Book](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA) 中提供了可视化的 Rebase 过程图，借助图片读者可以更好地理解 Rebase 的机制。
+
+[^note5]: [TortoiseGit](https://tortoisegit.org/)
+
+[^note6]: [Sourcetree](https://www.sourcetreeapp.com/)

@@ -26,7 +26,9 @@
 struct Node_t {
   int l, r;
   mutable int v;
+
   Node_t(const int &il, const int &ir, const int &iv) : l(il), r(ir), v(iv) {}
+
   inline bool operator<(const Node_t &o) const { return l < o.l; }
 };
 ```
@@ -48,7 +50,7 @@ struct Node_t {
 ```cpp
 auto split(int x) {
   if (x > n) return odt.end();
-  auto it = --odt.upper_bound((Node_t){x, 0, 0});
+  auto it = --odt.upper_bound(Node_t{x, 0, 0});
   if (it->l == x) return it;
   int l = it->l, r = it->r, v = it->v;
   odt.erase(it);

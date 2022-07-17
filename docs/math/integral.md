@@ -65,6 +65,7 @@ $$
 #### 实现
 
 ```cpp
+// C++ Version
 const int N = 1000 * 1000;
 
 double simpson_integration(double a, double b) {
@@ -77,6 +78,23 @@ double simpson_integration(double a, double b) {
   s *= h / 3;
   return s;
 }
+```
+
+```python
+# Python Version
+N = 1000 * 1000
+
+def simpson_integration(a, b):
+    h = (b - a) / N
+    s = f(a) + f(b)
+    for i in range(1, N):
+        x = a + h * i
+        if i & 1:
+            s = s + f(x) * 4
+        else:
+            s = s + f(x) * 2
+    s = s * (h / 3)
+    return s
 ```
 
 ### 自适应辛普森法
@@ -98,10 +116,12 @@ double simpson_integration(double a, double b) {
 参考代码如下：
 
 ```cpp
+// C++ Version
 double simpson(double l, double r) {
   double mid = (l + r) / 2;
   return (r - l) * (f(l) + 4 * f(mid) + f(r)) / 6;  // 辛普森公式
 }
+
 double asr(double l, double r, double eqs, double ans, int step) {
   double mid = (l + r) / 2;
   double fl = simpson(l, mid), fr = simpson(mid, r);
@@ -110,13 +130,30 @@ double asr(double l, double r, double eqs, double ans, int step) {
   return asr(l, mid, eqs / 2, fl, step - 1) +
          asr(mid, r, eqs / 2, fr, step - 1);  // 否则分割成两段递归求解
 }
+
 double calc(double l, double r, double eps) {
   return asr(l, r, eps, simpson(l, r), 12);
 }
 ```
 
+```python
+# Python Version
+def simpson(l, r):
+    mid = (l + r) / 2
+    return (r - l) * (f(l) + 4 * f(mid) + f(r)) / 6 # 辛普森公式
+def asr(l, r, eqs, ans, step):
+    mid = (l + r) / 2
+    fl = simpson(l, mid); fr = simpson(mid, r)
+    if abs(fl + fr - ans) <= 15 * eqs and step < 0:
+        return fl + fr + (fl + fr - ans) / 15 # 足够相似的话就直接返回
+    return asr(l, mid, eqs / 2, fl, step - 1) + \
+           asr(mid, r, eqs / 2, fr, step - 1) # 否则分割成两段递归求解
+def calc(l, r, eps):
+    return asr(l, r, eps, simpson(l, r), 12)
+```
+
 ## 习题
 
 - [Luogu4525【模板】自适应辛普森法 1](https://www.luogu.com.cn/problem/P4525)
-- [HDU1724 Ellipse](http://acm.hdu.edu.cn/showproblem.php?pid=1724)
+- [HDU1724 Ellipse](https://vjudge.net/problem/HDU-1724)
 - [NOI2005 月下柠檬树](https://www.luogu.com.cn/problem/P4207)

@@ -1,0 +1,21 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\begin{document}
+\begin{tikzpicture}
+
+\draw (0,0) rectangle node {$1$} (1,1) 
+    (1,0) rectangle node[circle,draw] (A) {} (2,1);
+\draw (0,-2) rectangle node {$1$} (1,-1) 
+    (1,-2) rectangle node[circle,draw] (B) {} (2,-1);
+
+\draw[->] (A) -- ++(0,-1) -- ++(-0.5,0) -- ++(0,-0.5);
+\draw[->] (B) -- ++(1,0) -- ++(0,2) -- ++(0.5,0) node[right] {next};
+
+\node[above] at (1,1) {$p$};
+\node[below] at (1,-2) {node};
+
+\end{tikzpicture}
+\end{document}

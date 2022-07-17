@@ -28,7 +28,9 @@ Splay 是一种二叉查找树，它通过不断将某个节点旋转到根节�
 
 ```cpp
 void maintain(int x) { sz[x] = sz[ch[x][0]] + sz[ch[x][1]] + cnt[x]; }
+
 bool get(int x) { return x == ch[fa[x]][1]; }
+
 void clear(int x) { ch[x][0] = ch[x][1] = fa[x] = val[x] = sz[x] = cnt[x] = 0; }
 ```
 
@@ -44,7 +46,7 @@ void clear(int x) { ch[x][0] = ch[x][1] = fa[x] = val[x] = sz[x] = cnt[x] = 0; }
 
 在 Splay 中旋转分为两种：左旋和右旋。
 
-![](./images/splay2.png)
+![](./images/splay-rotate.svg)
 
 **具体分析旋转步骤**（假设需要旋转的节点为 $x$，其父亲为 $y$，以右旋为例）
 
@@ -70,11 +72,23 @@ void rotate(int x) {
 
 Splay 规定：每访问一个节点后都要强制将其旋转到根节点。此时旋转操作具体分为 $6$ 种情况讨论（其中 $x$ 为需要旋转到根的节点）
 
-![](./images/splay1.png)
-
 - 如果 $x$ 的父亲是根节点，直接将 $x$ 左旋或右旋（图 $1,2$）。
+
+![图 1](./images/splay-rotate1.svg)
+
+![图 2](./images/splay-rotate2.svg)
+
 - 如果 $x$ 的父亲不是根节点，且 $x$ 和父亲的儿子类型相同，首先将其父亲左旋或右旋，然后将 $x$ 右旋或左旋（图 $3,4$）。
+
+![图 3](./images/splay-rotate3.svg)
+
+![图 4](./images/splay-rotate4.svg)
+
 - 如果 $x$ 的父亲不是根节点，且 $x$ 和父亲的儿子类型不同，将 $x$ 左旋再右旋、或者右旋再左旋（图 $5,6$）。
+
+![图 5](./images/splay-rotate5.svg)
+
+![图 6](./images/splay-rotate6.svg)
 
 !!! tip
     请读者尝试自行模拟 $6$ 种旋转情况，以理解 Splay 的基本思想。
@@ -213,7 +227,7 @@ int nxt() {
 
 ### 合并两棵树
 
-合并两棵 Splay 树，设两棵树的根节点分别为 $x$ 和 $y$，那么我们要求 $x$ 树中的最大值小于 $y$ 树中的最小值。删除操作如下：
+合并两棵 Splay 树，设两棵树的根节点分别为 $x$ 和 $y$，那么我们要求 $x$ 树中的最大值小于 $y$ 树中的最小值。合并操作如下：
 
 - 如果 $x$ 和 $y$ 其中之一或两者都为空树，直接返回不为空的那一棵树的根节点或空树。
 - 否则将 $x$ 树中的最大值 $\operatorname{Splay}$ 到根，然后把它的右子树设置为 $y$ 并更新节点的信息，然后返回这个节点。
@@ -268,12 +282,16 @@ void del(int k) {
 #include <cstdio>
 const int N = 100005;
 int rt, tot, fa[N], ch[N][2], val[N], cnt[N], sz[N];
+
 struct Splay {
   void maintain(int x) { sz[x] = sz[ch[x][0]] + sz[ch[x][1]] + cnt[x]; }
+
   bool get(int x) { return x == ch[fa[x]][1]; }
+
   void clear(int x) {
     ch[x][0] = ch[x][1] = fa[x] = val[x] = sz[x] = cnt[x] = 0;
   }
+
   void rotate(int x) {
     int y = fa[x], z = fa[y], chk = get(x);
     ch[y][chk] = ch[x][chk ^ 1];
@@ -285,11 +303,13 @@ struct Splay {
     maintain(x);
     maintain(y);
   }
+
   void splay(int x) {
     for (int f = fa[x]; f = fa[x], f; rotate(x))
       if (fa[f]) rotate(get(x) == get(f) ? f : x);
     rt = x;
   }
+
   void ins(int k) {
     if (!rt) {
       val[++tot] = k;
@@ -321,6 +341,7 @@ struct Splay {
       }
     }
   }
+
   int rk(int k) {
     int res = 0, cur = rt;
     while (1) {
@@ -337,6 +358,7 @@ struct Splay {
       }
     }
   }
+
   int kth(int k) {
     int cur = rt;
     while (1) {
@@ -352,6 +374,7 @@ struct Splay {
       }
     }
   }
+
   int pre() {
     int cur = ch[rt][0];
     if (!cur) return cur;
@@ -359,6 +382,7 @@ struct Splay {
     splay(cur);
     return cur;
   }
+
   int nxt() {
     int cur = ch[rt][1];
     if (!cur) return cur;
@@ -366,6 +390,7 @@ struct Splay {
     splay(cur);
     return cur;
   }
+
   void del(int k) {
     rk(k);
     if (cnt[rt] > 1) {
@@ -435,8 +460,8 @@ int main() {
 
 - [「Cerc2007」robotic sort 机械排序](https://www.luogu.com.cn/problem/P4402)
 - [二逼平衡树（树套树）](https://loj.ac/problem/106)
-- [bzoj 2827 千山鸟飞绝](http://www.lydsy.com/JudgeOnline/problem.php?id=2827)
-- [「Lydsy1706 月赛」K 小值查询](http://www.lydsy.com/JudgeOnline/problem.php?id=4923)
+- [bzoj 2827 千山鸟飞绝](https://hydro.ac/d/bzoj/p/2827)
+- [「Lydsy1706 月赛」K 小值查询](https://hydro.ac/d/bzoj/p/4923)
 
 ## 参考资料与注释
 

@@ -6,7 +6,7 @@ author: Marcythm, sshwy, nutshellfool
 
 ## 算法描述
 
-初始时我们从给定的 $f(x)$ 和一个近似解 $x_0$ 开始。（$x_0$ 的值可任意取）
+初始时我们从给定的 $f(x)$ 和一个近似解 $x_0$ 开始（初值的问题与 Newton 分形有关，可参考 3Blue1Brown 的 [牛顿分形](https://www.bilibili.com/video/BV1HQ4y1q78v)）。
 
 假设我们目前的近似解是 $x_i$，我们画出与 $f(x)$ 切于点 $(x_i,f(x_i))$ 的直线 $l$，将 $l$ 与 $x$ 轴的交点横坐标记为 $x_{i+1}$，那么这就是一个更优的近似解。重复这个迭代的过程。
 根据导数的几何意义，可以得到如下关系：
@@ -39,6 +39,7 @@ $$
 在实现的时候注意设置合适的精度。代码如下
 
 ```cpp
+// C++ Version
 double sqrt_newton(double n) {
   const double eps = 1E-15;
   double x = 1;
@@ -51,11 +52,25 @@ double sqrt_newton(double n) {
 }
 ```
 
+```python
+# Python Version
+def sqrt_newton(n):
+    eps = 1e-15
+    x = 1
+    while True:
+        nx = (x + n / x) / 2
+        if abs(x - nx) < eps:
+            break
+        x = nx
+    return x
+```
+
 ## 求解整数平方根
 
 尽管我们可以调用 `sqrt()` 函数来获取平方根的值，但这里还是讲一下牛顿迭代法的变种算法，用于求不等式 $x^2\le n$ 的最大整数解。我们仍然考虑一个类似于牛顿迭代的过程，但需要在边界条件上稍作修改。如果 $x$ 在迭代的过程中上一次迭代值得近似解变小，而这一次迭代使得近似解变大，那么我们就不进行这次迭代，退出循环。
 
 ```cpp
+// C++ Version
 int isqrt_newton(int n) {
   int x = 1;
   bool decreased = false;
@@ -67,6 +82,20 @@ int isqrt_newton(int n) {
   }
   return x;
 }
+```
+
+```python
+# Python Version
+def isqrt_newton(n):
+    x = 1
+    decreased = False
+    while True:
+        nx = (x + n // x) // 2
+        if x == nx or (nx > x and decreased):
+            break
+        decreased = nx < x
+        x = nx
+    return x
 ```
 
 ## 高精度平方根

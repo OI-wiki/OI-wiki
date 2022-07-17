@@ -1,4 +1,4 @@
-author: Ir1d, cjsoft, Lans1ot
+author: Ir1d, cjsoft, Lans1ot, JasonkayZK
 类（class）是结构体的拓展，不仅能够拥有成员元素，还拥有成员函数。
 
 在面向对象编程（OOP）中，对象就是类的实例，也就是变量。
@@ -26,7 +26,7 @@ Object b, B[array_length];
 Object *c;
 ```
 
-与使用 `struct` 大同小异。该例定义了一个名为 `Object` 的类。该类拥有四个成员元素，分别为 `weight,value`；并在 `}` 后定义了一个数组 `B`。
+与使用 `struct` 大同小异。该例定义了一个名为 `Object` 的类。该类拥有两个成员元素，分别为 `weight,value`；并在 `}` 后使用该类型定义了一个数组 `e`。
 
 定义类的指针形同 [`struct`](./struct.md)。
 
@@ -81,14 +81,18 @@ class Object {
  public:
   int weight;
   int value;
+
   void print() {
     cout << weight << endl;
     return;
   }
+
   void change_w(int);
 };
 
 void Object::change_w(int _weight) { weight = _weight; }
+
+Object var;
 ```
 
 该类有一个打印 `Object` 成员元素的函数，以及更改成员元素 `weight` 的函数。
@@ -102,7 +106,9 @@ void Object::change_w(int _weight) { weight = _weight; }
 ??? note "何为重载"
     C++ 允许编写者为名称相同的函数或者运算符指定不同的定义。这称为 **重载**（overload）。
     
-    如果同名函数的参数种类、数量、返回类型不相同其中一者或多者两两不相同，则这些同名函数被看做是不同的。
+    如果同名函数的参数种类、数量中的一者或多者两两不相同，则这些同名函数被看做是不同的。
+    
+    需要注意的是：如果两个同名函数的区别仅仅是返回值的类型不同则无法进行重载，此时编译器会拒绝编译！
     
     如果在调用时不会出现混淆（指调用某些同名函数时，无法根据所填参数种类和数量唯一地判断出被调用函数。常发生在具有默认参数的函数中），则编译器会根据调用时所填参数判断应调用函数。
     
@@ -116,9 +122,13 @@ void Object::change_w(int _weight) { weight = _weight; }
 class Vector {
  public:
   int x, y;
+
   Vector() : x(0), y(0) {}
+
   Vector(int _x, int _y) : x(_x), y(_y) {}
+
   int operator*(const Vector& other) { return x * other.y + y * other.x; }
+
   Vector operator+(const Vector&);
   Vector operator-(const Vector&);
 };
@@ -130,7 +140,8 @@ Vector Vector::operator+(const Vector& other) {
 Vector Vector::operator-(const Vector& other) {
   return Vector(x - other.x, y - other.y);
 }
-//关于4,5行表示为x,y赋值，具体实现参见后文。
+
+// 关于4,5行表示为x,y赋值，具体实现参见后文。
 ```
 
 该例定义了一个向量类，并重载了 `* + -` 运算符，并分别代表向量内积，向量加，向量减。
@@ -169,6 +180,7 @@ class Object {
  public:
   int weight;
   int value;
+
   Object() {
     weight = 0;
     value = 0;
@@ -187,7 +199,7 @@ class Object {
 ??? note "关于定义(或重载)构造函数"
     一般来说，默认构造函数是不带参数的，这区别于构造函数。构造函数和默认构造函数的定义大同小异，只是参数数量上的不同。
     
-    构造函数可以被重载（当然首次被叫做定义）。需要注意的是，如果已经定义了构造函数，且构造函数的参数列表不为空，那么编译器便不会再生成无参数的默认构造函数。这会可能会使试图以默认方法构造变量的行为编译失败（指不填入初始化参数）。
+    构造函数可以被重载（当然首次被叫做定义）。需要注意的是，如果已经定义了构造函数，那么编译器便不会再生成无参数的默认构造函数。这会可能会使试图以默认方法构造变量的行为编译失败（指不填入初始化参数）。
 
 使用 C++11 或以上时，可以使用 `{}` 进行变量的初始化。
 
@@ -209,14 +221,17 @@ class Object {
  public:
   int weight;
   int value;
+
   Object() {
     weight = 0;
     value = 0;
   }
+
   Object(int _weight = 0, int _value = 0) {
     weight = _weight;
     value = _value;
   }
+
   // the same as
   // Object(int _weight,int _value):weight(_weight),value(_value) {}
 };
@@ -240,8 +255,10 @@ Object C{1, 2};  // ok,(C++11)
     class Node {
      public:
       int var;
+    
       Node(int _var) : var(_var) {}
     };
+    
     Node a = 1;
     ```
     
@@ -255,6 +272,7 @@ Object C{1, 2};  // ok,(C++11)
     class Node {
      public:
       int var;
+    
       explicit Node(int _var) : var(_var) {}
     };
     ```
@@ -281,10 +299,12 @@ class Object {
   int weight;
   int value;
   int* ned;
+
   Object() {
     weight = 0;
     value = 0;
   }
+
   ~Object() { delete ned; }
 };
 ```

@@ -4,8 +4,8 @@
 
 这类题目采用顺推，也就是从初始状态推向结果。同一般的 DP 类似的，难点依然是对状态转移方程的刻画，只是这类题目经过了概率论知识的包装。
 
-??? note "例题 [Codeforces 148 D Bag of mice](https://codeforces.com/problemset/problem/148/D)"
-    题目大意：袋子里有 w 只白鼠和 b 只黑鼠，公主和龙轮流从袋子里抓老鼠。谁先抓到白色老鼠谁就赢，如果袋子里没有老鼠了并且没有谁抓到白色老鼠，那么算龙赢。公主每次抓一只老鼠，龙每次抓完一只老鼠之后会有一只老鼠跑出来。每次抓的老鼠和跑出来的老鼠都是随机的。公主先抓。问公主赢的概率。
+???+note "例题 [Codeforces 148 D Bag of mice](https://codeforces.com/problemset/problem/148/D)"
+    题目大意：袋子里有 $w$ 只白鼠和 $b$ 只黑鼠，公主和龙轮流从袋子里抓老鼠。谁先抓到白色老鼠谁就赢，如果袋子里没有老鼠了并且没有谁抓到白色老鼠，那么算龙赢。公主每次抓一只老鼠，龙每次抓完一只老鼠之后会有一只老鼠跑出来。每次抓的老鼠和跑出来的老鼠都是随机的。公主先抓。问公主赢的概率。
 
 设 $f_{i,j}$ 为轮到公主时袋子里有 $i$ 只白鼠，$j$ 只黑鼠，公主赢的概率。初始化边界，$f_{0,j}=0$ 因为没有白鼠了算龙赢，$f_{i,0}=1$ 因为抓一只就是白鼠，公主赢。
 考虑 $f_{i,j}$ 的转移：
@@ -19,34 +19,7 @@
 
 ??? note "参考实现"
     ```c++
-    #include <bits/stdc++.h>
-    using namespace std;
-    
-    typedef long long ll;
-    int w, b;
-    double dp[1010][1010];
-    
-    int main() {
-      scanf("%d %d", &w, &b);
-      memset(dp, 0, sizeof(dp));
-      for (int i = 1; i <= w; i++) dp[i][0] = 1;
-      for (int i = 1; i <= b; i++) dp[0][i] = 0;
-      for (int i = 1; i <= w; i++) {
-        for (int j = 1; j <= b; j++) {
-          dp[i][j] += (double)i / (i + j);
-          if (j >= 3) {
-            dp[i][j] += (double)j / (i + j) * (j - 1) / (i + j - 1) * (j - 2) /
-                        (i + j - 2) * dp[i][j - 3];
-          }
-          if (i >= 1 && j >= 2) {
-            dp[i][j] += (double)j / (i + j) * (j - 1) / (i + j - 1) * i /
-                        (i + j - 2) * dp[i - 1][j - 2];
-          }
-        }
-      }
-      printf("%.9lf\n", dp[w][b]);
-      return 0;
-    }
+    --8<-- "docs/dp/code/probability/probability_1.cpp"
     ```
 
 ### 习题
@@ -57,7 +30,7 @@
 
 ## DP 求期望
 
-??? note " 例题 [POJ2096 Collecting Bugs](http://poj.org/problem?id=2096)"
+???+note " 例题 [POJ2096 Collecting Bugs](http://poj.org/problem?id=2096)"
     题目大意：一个软件有 $s$ 个子系统，会产生 $n$ 种 bug。某人一天发现一个 bug，这个 bug 属于某种 bug 分类，也属于某个子系统。每个 bug 属于某个子系统的概率是 $\frac{1}{s}$，属于某种 bug 分类的概率是 $\frac{1}{n}$。求发现 $n$ 种 bug，且 $s$ 个子系统都找到 bug 的期望天数。
 
 令 $f_{i,j}$ 为已经找到 $i$ 种 bug 分类，$j$ 个子系统的 bug，达到目标状态的期望天数。这里的目标状态是找到 $n$ 种 bug 分类，$s$ 个子系统的 bug。那么就有 $f_{n,s}=0$，因为已经达到了目标状态，不需要用更多的天数去发现 bug 了，于是就以目标状态为起点开始递推，答案是 $f_{0,0}$。
@@ -80,27 +53,10 @@ $$
 
 ??? note "参考实现"
     ```c++
-    #include <cstdio>
-    using namespace std;
-    int n, s;
-    double dp[1010][1010];
-    int main() {
-      scanf("%d %d", &n, &s);
-      dp[n][s] = 0;
-      for (int i = n; i >= 0; i--) {
-        for (int j = s; j >= 0; j--) {
-          if (i == n && s == j) continue;
-          dp[i][j] = (dp[i][j + 1] * i * (s - j) + dp[i + 1][j] * (n - i) * j +
-                      dp[i + 1][j + 1] * (n - i) * (s - j) + n * s) /
-                     (n * s - i * j);
-        }
-      }
-      printf("%.4lf\n", dp[0][0]);
-      return 0;
-    }
+    --8<-- "docs/dp/code/probability/probability_2.cpp"
     ```
 
-??? note "例题 [「NOIP2016」换教室](http://uoj.ac/problem/262)"
+???+note "例题 [「NOIP2016」换教室](http://uoj.ac/problem/262)"
     题目大意：牛牛要上 $n$ 个时间段的课，第 $i$ 个时间段在 $c_i$ 号教室，可以申请换到 $d_i$ 号教室，申请成功的概率为 $p_i$，至多可以申请 $m$ 节课进行交换。第 $i$ 个时间段的课上完后要走到第 $i+1$ 个时间段的教室，给出一张图 $v$ 个教室 $e$ 条路，移动会消耗体力，申请哪几门课程可以使他因在教室间移动耗费的体力值的总和的期望值最小，也就是求出最小的期望路程和。
 
 对于这个无向连通图，先用 Floyd 求出最短路，为后续的状态转移带来便利。以移动一步为一个阶段（从第 $i$ 个时间段到达第 $i+1$ 个时间段就是移动了一步），那么每一步就有 $p_i$ 的概率到 $d_i$，不过在所有的 $d_i$ 中只能选 $m$ 个，有 $1-p_i$ 的概率到 $c_i$，求出在 $n$ 个阶段走完后的最小期望路程和。
@@ -120,60 +76,7 @@ $$
 
 ??? note "参考实现"
     ```c++
-    #include <bits/stdc++.h>
-    
-    using namespace std;
-    
-    const int maxn = 2010;
-    int n, m, v, e;
-    int f[maxn][maxn], c[maxn], d[maxn];
-    double dp[maxn][maxn][2], p[maxn];
-    
-    int main() {
-      scanf("%d %d %d %d", &n, &m, &v, &e);
-      for (int i = 1; i <= n; i++) scanf("%d", &c[i]);
-      for (int i = 1; i <= n; i++) scanf("%d", &d[i]);
-      for (int i = 1; i <= n; i++) scanf("%lf", &p[i]);
-      for (int i = 1; i <= v; i++)
-        for (int j = 1; j < i; j++) f[i][j] = f[j][i] = 1e9;
-    
-      int u, V, w;
-      for (int i = 1; i <= e; i++) {
-        scanf("%d %d %d", &u, &V, &w);
-        f[u][V] = f[V][u] = min(w, f[u][V]);
-      }
-    
-      for (int k = 1; k <= v; k++)
-        for (int i = 1; i <= v; i++)
-          for (int j = 1; j < i; j++)
-            if (f[i][k] + f[k][j] < f[i][j]) f[i][j] = f[j][i] = f[i][k] + f[k][j];
-    
-      for (int i = 1; i <= n; i++)
-        for (int j = 0; j <= m; j++) dp[i][j][0] = dp[i][j][1] = 1e9;
-    
-      dp[1][0][0] = dp[1][1][1] = 0;
-      for (int i = 2; i <= n; i++)
-        for (int j = 0; j <= min(i, m); j++) {
-          dp[i][j][0] = min(dp[i - 1][j][0] + f[c[i - 1]][c[i]],
-                            dp[i - 1][j][1] + f[c[i - 1]][c[i]] * (1 - p[i - 1]) +
-                                f[d[i - 1]][c[i]] * p[i - 1]);
-          if (j != 0) {
-            dp[i][j][1] = min(dp[i - 1][j - 1][0] + f[c[i - 1]][d[i]] * p[i] +
-                                  f[c[i - 1]][c[i]] * (1 - p[i]),
-                              dp[i - 1][j - 1][1] +
-                                  f[c[i - 1]][c[i]] * (1 - p[i - 1]) * (1 - p[i]) +
-                                  f[c[i - 1]][d[i]] * (1 - p[i - 1]) * p[i] +
-                                  f[d[i - 1]][c[i]] * (1 - p[i]) * p[i - 1] +
-                                  f[d[i - 1]][d[i]] * p[i - 1] * p[i]);
-          }
-        }
-    
-      double ans = 1e9;
-      for (int i = 0; i <= m; i++) ans = min(dp[n][i][0], min(dp[n][i][1], ans));
-      printf("%.2lf", ans);
-    
-      return 0;
-    }
+    --8<-- "docs/dp/code/probability/probability_3.cpp"
     ```
 
 比较这两个问题可以发现，DP 求期望题目在对具体是求一个值或是最优化问题上会对方程得到转移方式有一些影响，但无论是 DP 求概率还是 DP 求期望，总是离不开概率知识和列出、化简计算公式的步骤，在写状态转移方程时需要思考的细节也类似。
@@ -181,15 +84,15 @@ $$
 ### 习题
 
 - [POJ2096 Collecting Bugs](http://poj.org/problem?id=2096)
-- [HDU3853 LOOPS](http://acm.hdu.edu.cn/showproblem.php?pid=3853)
-- [HDU4035 Maze](http://acm.hdu.edu.cn/showproblem.php?pid=4035)
+- [HDU3853 LOOPS](https://vjudge.net/problem/HDU-3853)
+- [HDU4035 Maze](https://vjudge.net/problem/HDU-4035)
 - [「NOIP2016」换教室](http://uoj.ac/problem/262)
 - [「SCOI2008」奖励关](https://www.luogu.com.cn/problem/P2473)
 
 ## 有后效性 DP
 
-??? note "[CodeForces 24 D Broken robot](https://codeforces.com/problemset/problem/24/D)"
-    题目大意：给出一个 $n*m$ 的矩阵区域，一个机器人初始在第 $x$ 行第 $y$ 列，每一步机器人会等概率地选择停在原地，左移一步，右移一步，下移一步，如果机器人在边界则不会往区域外移动，问机器人到达最后一行的期望步数。
+???+note "[CodeForces 24 D Broken robot](https://codeforces.com/problemset/problem/24/D)"
+    题目大意：给出一个 $n \times m$ 的矩阵区域，一个机器人初始在第 $x$ 行第 $y$ 列，每一步机器人会等概率地选择停在原地，左移一步，右移一步，下移一步，如果机器人在边界则不会往区域外移动，问机器人到达最后一行的期望步数。
 
 在 $m=1$ 时每次有 $\frac{1}{2}$ 的概率不动，有 $\frac{1}{2}$ 的概率向下移动一格，答案为 $2\cdot (n-x)$。
 设 $f_{i,j}$ 为机器人机器人从第 i 行第 j 列出发到达第 $n$ 行的期望步数，最终状态为 $f_{n,j}=0$。
@@ -270,7 +173,7 @@ $$
 ### 习题
 
 - [CodeForce 24 D Broken robot](https://codeforces.com/problemset/problem/24/D)
-- [HDU Time Travel](http://acm.hdu.edu.cn/showproblem.php?pid=4418)
+- [HDU Time Travel](https://vjudge.net/problem/HDU-4418)
 - [「HNOI2013」游走](https://loj.ac/problem/2383)
 
 ## 参考文献

@@ -47,6 +47,7 @@ for i in range(1, n + 1):
 ```cpp
 // C++ Version
 int m, arr[103];  // arr 用于记录方案
+
 void dfs(int n, int i, int a) {
   if (n == 0) {
     for (int j = 1; j <= i - 1; ++j) printf("%d ", arr[j]);
@@ -59,6 +60,7 @@ void dfs(int n, int i, int a) {
     }
   }
 }
+
 // 主函数
 scanf("%d%d", &n, &m);
 dfs(n, 1, 1);
@@ -77,7 +79,7 @@ def dfs(n, i, a):
             dfs(n - j, i + 1, j)  # 请仔细思考该行含义。
 
 # 主函数
-n, m = input().split(' ')
+n, m = map(int, input().split())
 dfs(n, 1, 1)
 ```
 
@@ -88,25 +90,5 @@ dfs(n, 1, 1)
 C++ 代码：
 
 ```cpp
-bool vis[N];  // 访问标记数组
-int a[N];     // 排列数组，按顺序储存当前搜索结果
-
-void dfs(int step) {
-  if (step == n + 1) {  // 边界
-    for (int i = 1; i <= n; i++) {
-      cout << setw(5) << a[i];
-    }
-    cout << endl;
-    return;
-  }
-  for (int i = 1; i <= n; i++) {
-    if (vis[i] == 0) {
-      vis[i] = 1;
-      a[step] = i;
-      dfs(step + 1);
-      vis[i] = 0;
-    }
-  }
-  return;
-}
+--8<-- "docs/search/code/dfs/dfs_1.cpp"
 ```
