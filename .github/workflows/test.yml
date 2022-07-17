@@ -32,3 +32,4 @@ jobs:
         if: ${{ github.event.pull_request && failure() }}
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+          comment-body: "请再检查一下您的代码使其通过编译"
