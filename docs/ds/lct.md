@@ -104,7 +104,7 @@ Splay Tree 是 LCT 的基础，但是 LCT 用的 Splay Tree 和普通的 Splay �
 
 #### Splay 系函数（不会多做解释）
 
-1. `Get(x)` 获取 $x$ 是父亲的哪个儿子。
+1. `GetChild(x)` 获取 $x$ 是父亲的哪个儿子。
 2. `Splay(x)` 通过和 Rotate 操作联动实现把 $x$ 旋转到 **当前 Splay 的根**。
 3. `Rotate(x)` 将 $x$ 向上旋转一层的操作。
 
@@ -132,7 +132,7 @@ Splay Tree 是 LCT 的基础，但是 LCT 用的 Splay Tree 和普通的 Splay �
 ### `PushUp()`
 
 ```cpp
-inline void PushUp(int p) {
+void PushUp(int p) {
   // maintain other variables
   siz[p] = siz[ls] + siz[rs] + 1;
 }
@@ -141,7 +141,7 @@ inline void PushUp(int p) {
 ### `PushDown()`
 
 ```cpp
-inline void PushDown(int p) {
+void PushDown(int p) {
   if (tag[p] != std_tag) {
     // pushdown the tag
     tag[p] = std_tag;
@@ -154,22 +154,24 @@ inline void PushDown(int p) {
 有些不一样了哦。
 
 ```cpp
-#define Get(x) (ch[f[x]][1] == x)
+bool GetChild(int x) {
+  return ch[f[x]][1] == x;
+}
 
-inline void Rotate(int x) {
-  int y = f[x], z = f[y], k = Get(x);
-  if (!isRoot(y)) ch[z][ch[z][1] == y] = x;
-  // 上面这句一定要写在前面，普通的 Splay 是不用的，因为 isRoot  (后面会讲)
+void Rotate(int x) {
+  int y = f[x], z = f[y], k = GetChild(x);
+  if (!IsRoot(y)) ch[z][ch[z][1] == y] = x;
+  // 上面这句一定要写在前面，普通的 Splay 是不用的，因为 IsRoot  (后面会讲)
   ch[y][k] = ch[x][!k], f[ch[x][!k]] = y;
   ch[x][!k] = y, f[y] = x, f[x] = z;
   PushUp(y), PushUp(x);
 }
 
-inline void Splay(int x) {
+void Splay(int x) {
   Update(
       x);  // 马上就能看到啦。在 Splay 之前要把旋转会经过的路径上的点都 PushDown
-  for (int fa; fa = f[x], !isRoot(x); Rotate(x)) {
-    if (!isRoot(fa)) Rotate(Get(fa) == Get(x) ? fa : x);
+  for (int fa; fa = f[x], !IsRoot(x); Rotate(x)) {
+    if (!IsRoot(fa)) Rotate(GetChild(fa) == GetChild(x) ? fa : x);
   }
 }
 ```
@@ -183,7 +185,9 @@ inline void Splay(int x) {
 ```cpp
 // 在前面我们已经说过，LCT 具有 如果一个儿子不是实儿子，他的父亲找不到它的性质
 // 所以当一个点既不是它父亲的左儿子，又不是它父亲的右儿子，它就是当前 Splay 的根
-#define isRoot(x) (ch[f[x]][0] != x && ch[f[x]][1] != x)
+bool IsRoot(int x) {
+  return ch[f[x]][0] != x && ch[f[x]][1] != x;
+}
 ```
 
 ### `Access()`
@@ -192,7 +196,7 @@ inline void Splay(int x) {
 // Access 是 LCT
 // 的核心操作，试想我们像求解一条路径，而这条路径恰好就是我们当前的一棵 Splay，
 // 直接调用其信息即可。先来看一下代码，再结合图来看看过程
-inline int Access(int x) {
+int Access(int x) {
   int p;
   for (p = 0; x; p = x, x = f[x]) {
     Splay(x), ch[x][1] = p, PushUp(x);
@@ -245,7 +249,7 @@ inline int Access(int x) {
 
 ```cpp
 // 回顾一下代码
-inline int Access(int x) {
+int Access(int x) {
   int p;
   for (p = 0; x; p = x, x = f[x]) {
     Splay(x), ch[x][1] = p, PushUp(x);
@@ -269,25 +273,25 @@ inline int Access(int x) {
 ### `Update()`
 
 ```cpp
-// 从上到下一层一层 pushDown 即可
+// 从上到下一层一层 PushDown 即可
 void Update(int p) {
-  if (!isRoot(p)) Update(f[p]);
-  pushDown(p);
+  if (!IsRoot(p)) Update(f[p]);
+  PushDown(p);
 }
 ```
 
-### `makeRoot()`
+### `MakeRoot()`
 
-- `Make_Root()` 的重要性丝毫不亚于 `Access()`。我们在需要维护路径信息的时候，一定会出现路径深度无法严格递增的情况，根据 AuxTree 的性质，这种路径是不能出现在一棵 Splay 中的。
-- 这时候我们需要用到 `Make_Root()`。
-- `Make_Root()` 的作用是使指定的点成为原树的根，考虑如何实现这种操作。
+- `MakeRoot()` 的重要性丝毫不亚于 `Access()`。我们在需要维护路径信息的时候，一定会出现路径深度无法严格递增的情况，根据 AuxTree 的性质，这种路径是不能出现在一棵 Splay 中的。
+- 这时候我们需要用到 `MakeRoot()`。
+- `MakeRoot()` 的作用是使指定的点成为原树的根，考虑如何实现这种操作。
 - 设 `Access(x)` 的返回值为 $y$，则此时 $x$ 到当前根的路径恰好构成一个 Splay，且该 Splay 的根为 $y$.
 - 考虑将树用有向图表示出来，给每条边定一个方向，表示从儿子到父亲的方向。容易发现换根相当于将 $x$ 到根的路径的所有边反向（请仔细思考）。
 - 因此将 $x$ 到当前根的路径翻转即可。
 - 由于 $y$ 是 $x$ 到当前根的路径所代表的 Splay 的根，因此将以 $y$ 为根的 Splay 树进行区间翻转即可。
 
 ```cpp
-inline void makeRoot(int p) {
+void MakeRoot(int p) {
   p = Access(p);
   swap(ch[p][0], ch[p][1]);
   tag[p] ^= 1;
@@ -296,12 +300,12 @@ inline void makeRoot(int p) {
 
 ### `Link()`
 
-- Link 两个点其实很简单，先 `Make_Root(x)`，然后把 $x$ 的父亲指向 $y$ 即可。显然，这个操作肯定不能发生在同一棵树内，所以记得先判一下。
+- Link 两个点其实很简单，先 `MakeRoot(x)`，然后把 $x$ 的父亲指向 $y$ 即可。显然，这个操作肯定不能发生在同一棵树内，所以记得先判一下。
 
 ```cpp
-inline void Link(int x, int p) {
-  makeRoot(x);
-  splay(x);
+void Link(int x, int p) {
+  MakeRoot(x);
+  Splay(x);
   f[x] = p;
 }
 ```
@@ -319,8 +323,8 @@ inline void Link(int x, int p) {
 - 如果保证合法，直接 `Split(x, y)`，这时候 $y$ 是根，$x$ 一定是它的儿子，双向断开即可。就像这样：
 
 ```cpp
-inline void Cut(int x, int p) {
-  makeRoot(x), Access(p), Splay(p), ls = f[x] = 0;
+void Cut(int x, int p) {
+  MakeRoot(x), Access(p), Splay(p), ls = f[x] = 0;
 }
 ```
 
@@ -343,11 +347,11 @@ inline void Cut(int x, int p) {
 - 注意，每次查询之后需要把查询到的答案对应的结点 `Splay` 上去以保证复杂度。
 
 ```cpp
-inline int Find(int p) {
+int Find(int p) {
   Access(p);
   Splay(p);
-  pushDown(p);
-  while (ls) p = ls, pushDown(p);
+  PushDown(p);
+  while (ls) p = ls, PushDown(p);
   Splay(p);
   return p;
 }
@@ -404,7 +408,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
       int ch[maxn][2], fa[maxn], siz[maxn], val[maxn], sum[maxn], rev[maxn],
           add[maxn], mul[maxn];
     
-      void clear(int x) {
+      void Clear(int x) {
         ch[x][0] = ch[x][1] = fa[x] = siz[x] = val[x] = sum[x] = rev[x] = add[x] =
             0;
         mul[x] = 1;
