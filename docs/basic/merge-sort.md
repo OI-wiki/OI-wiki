@@ -22,10 +22,12 @@
 // C++ version
 void merge(int l, int r) {
     if (r - l <= 1) return;
-    int mid = l + (r - l >> 1);
+    int mid = l + ((r - l) >> 1);
     merge(l, mid), merge(mid, r);
-    for (int i = l, j = mid, k = l; k < r; ++k)
-        tmp[k] = j == r || i < mid && a[i] <= a[j] ? a[i++] : a[j++];
+    for (int i = l, j = mid, k = l; k < r; ++k) {
+        if (j == r || (i < mid && a[i] <= a[j])) tmp[k] = a[i++];
+        else tmp[k] = a[j++];
+    }
     for (int i = l; i < r; ++i) a[i] = tmp[i];
 }
 ```
