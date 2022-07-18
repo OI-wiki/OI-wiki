@@ -1,0 +1,14 @@
+pull_request_rules:
+  - name: Automatic merge on approval
+    conditions:
+      - "base=master"
+      - "#approved-reviews-by>=2"
+      - "check-success=OI-Wiki Page Build"
+      - "check-success=OI-wiki Offline Test"
+      - or:
+          - "check-success=build"
+          - "check-success=OI-Wiki LaTeX Build"
+      - "label=mergify/can-merge"
+    actions:
+      merge:
+        method: squash
