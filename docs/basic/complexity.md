@@ -144,7 +144,7 @@ $$
 T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}) \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon})\\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
 $$
 
-需要注意的是，这里的第二种情况还需要满足 regularity condition, 即 $a f(n/b) <= c f(n)$，for some constant $k < 1$ and sufficiently large $n$。
+需要注意的是，这里的第二种情况还需要满足 regularity condition, 即 $a f(n/b) \leq c f(n)$，for some constant $k < 1$ and sufficiently large $n$。
 
 证明思路是是将规模为 $n$ 的问题，分解为 $a$ 个规模为 $(\frac{n}{b})$ 的问题，然后依次合并，直到合并到最高层。每一次合并子问题，都需要花费 $f(n)$ 的时间。
 
@@ -161,7 +161,7 @@ $$
     
     针对于第一种情况：$f(n) = O(n^{\log_b a-\epsilon})$，因此 $g(n) = O(n^{\log_b a})$。
     
-    对于第二种情况而言：首先 $g(n) = \Omega(f(n))$，又因为 $a f(\dfrac{n}{b}) <= c f(n)$，只要 $c$ 的取值是一个足够小的正数，且 $n$ 的取值足够大，因此可以推导出：$g(n) = O(f(n)$)。两侧夹逼可以得出，$g(n) = \Theta(f(n))$。
+    对于第二种情况而言：首先 $g(n) = \Omega(f(n))$，又因为 $a f(\dfrac{n}{b}) \leq c f(n)$，只要 $c$ 的取值是一个足够小的正数，且 $n$ 的取值足够大，因此可以推导出：$g(n) = O(f(n)$)。两侧夹逼可以得出，$g(n) = \Theta(f(n))$。
     
     而对于第三种情况：$f(n) = \Theta(n^{\log_b a})$，因此 $g(n) = O(n^{\log_b a} {\log n})$。$T(n)$ 的结果可在 $g(n)$ 得出后显然得到。
 
