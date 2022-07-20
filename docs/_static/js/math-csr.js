@@ -1,0 +1,5 @@
+MathJax = {
+  chtml: {
+    matchFontHeight: false
+  }
+};

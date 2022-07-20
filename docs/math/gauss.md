@@ -304,25 +304,25 @@ cout << det;
 
 $$
 \begin{pmatrix}
-0 & 1 & 0 & 1 \\
-1 & 0 & 1 & 0 \\
-0 & 1 & 0 & 1 \\
-1 & 0 & 1 & 0 \end{pmatrix}-\begin{pmatrix}
 2 & 0 & 0 & 0 \\
 0 & 2 & 0 & 0 \\
 0 & 0 & 2 & 0 \\
-0 & 0 & 0 & 2 \end{pmatrix}=\begin{pmatrix}
--2 & 1 & 0 & 1 \\
-1 & -2 & 1 & 0 \\
-0 & 1 & -2 & 1 \\
-1 & 0 & 1 & -2 \end{pmatrix}
+0 & 0 & 0 & 2 \end{pmatrix}-\begin{pmatrix}
+0 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 \\
+0 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 \end{pmatrix}=\begin{pmatrix}
+2 & -1 & 0 & -1 \\
+-1 & 2 & -1 & 0 \\
+0 & -1 & 2 & -1 \\
+-1 & 0 & -1 & 2 \end{pmatrix}
 $$
 
 $$
 \begin{vmatrix}
--2 & 1 & 0 \\
-1 & -2 & 1 \\
-0 & 1 & -2 \end{vmatrix} = 4
+2 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 2 \end{vmatrix} = 4
 $$
 
 可以用高斯消元解决，时间复杂度为 $O(n^3)$。
@@ -438,7 +438,6 @@ $$
 
 ```cpp
 std::bitset<1010> matrix[2010];  // matrix[1~n]：增广矩阵，0 位置为常数
-
 std::vector<bool> GaussElimination(
     int n, int m)  // n 为未知数个数，m 为方程个数，返回方程组的解（多解 /
                    // 无解返回一个空的 vector）
