@@ -414,6 +414,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
 
 ???+note "优先队列实现"
     ```cpp
+    // C++ Version
     struct edge {
       int v, w;
     };
@@ -446,6 +447,31 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
         }
       }
     }
+    ```
+    
+    ```python
+    # Python Version
+    def dijkstra(e,s):
+      '''
+      输入：
+      e:邻接表
+      s:起点
+      返回：
+      dis:从s到每个顶点的最短路长度
+      '''
+      dis = defaultdict(lambda:float("inf"))
+      dis[s] = 0
+      q = [(0,s)]
+      vis = set()
+      while q:
+          _, u = heapq.heappop(q)
+          if u in vis: continue
+          vis.add(u)
+          for v,w in e[u]:
+              if dis[v] > dis[u] + w:
+                  dis[v] = dis[u] + w
+                  heapq.heappush(q,(dis[v],v))
+      return dis
     ```
 
 ## Johnson 全源最短路径算法

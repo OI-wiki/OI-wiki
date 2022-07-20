@@ -47,8 +47,10 @@ $$
 最核心的操作是两个多项式的乘法，即给定多项式 $f(x)$ 和 $g(x)$：
 
 $$
-f(x)=a_0+a_1x+\dots+a_nx^n\quad \quad (1)\\ 
-g(x)=b_0+b_1x+\dots+b_mx^m\quad \quad (2)
+\begin{alignedat}{3}
+f(x)&=a_0+a_1x+\dots+a_nx^n\quad \quad &(1)\\
+g(x)&=b_0+b_1x+\dots+b_mx^m\quad \quad &(2)
+\end{alignedat}
 $$
 
 要计算多项式 $Q(x)=f(x)\cdot g(x)$：

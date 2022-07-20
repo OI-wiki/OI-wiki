@@ -30,8 +30,10 @@ $$
 进而可知：
 
 $$
-\rho ^2=x^2+y^2\\
-\tan \theta=\frac{y}{x}\ \ \ \ (x\not =0)
+\begin{aligned}
+\rho ^2&=x^2+y^2\\
+\tan \theta&=\frac{y}{x}\ \ \ \ (x\not =0)
+\end{aligned}
 $$
 
 于是，极角 $\theta=\arctan \frac{y}{x}$，这样就可以求出极角了。

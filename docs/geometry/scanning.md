@@ -122,7 +122,7 @@
 
 - [「POJ1151」Atlantis](http://poj.org/problem?id=1151)
 
-- [「POJ1117」Picture](http://poj.org/problem?id=1117)
+- [「POJ1177」Picture](http://poj.org/problem?id=1177)
 
 - [「POJ3832」Posters](http://poj.org/problem?id=3832)
 
