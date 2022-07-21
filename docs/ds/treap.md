@@ -19,9 +19,7 @@ Treap（树堆）是一种 **弱平衡** 的 **二叉搜索树**。它同时符�
 
 下图就是一个 Treap 的例子（这里使用的是小根堆，即根节点的值最小）。
 
-<div align=center width=70%>
-  <img width=70% src="../images/treap-treap-example.svg" >
-</div>
+![](images/treap-treap-example.svg)
 
 那我们为什么需要大费周章的去让这个数据结构符合树和堆的性质，并且随机给出堆的值呢？
 
@@ -41,9 +39,7 @@ Treap（树堆）是一种 **弱平衡** 的 **二叉搜索树**。它同时符�
 
 这个树就会变得非常“瘦长”（每次插入的节点都比前面的大，所以都被安排到右子节点了）：
 
-<div align=center width=50%>
-  <img width=50% src="../images/treap-search-tree-chain.svg" >
-</div>
+![](images/treap-search-tree-chain.svg)
 
 不难看出，现在这个二叉搜索树已经退化成链了，查询的复杂度也从 $\log_2{n}$ 变成了线性。
 
