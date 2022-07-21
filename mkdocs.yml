@@ -540,7 +540,7 @@ markdown_extensions:
   - footnotes
   - meta
   - toc:
-      permalink: true
+      permalink: ""
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.caret
