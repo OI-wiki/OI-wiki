@@ -50,7 +50,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 通常情况下，大部分的 Linux 发行版中已经自带了 Python。如果只打算学习 Python 语法，并无其它开发需求，不必另外安装 Python。
 
 ???+warning "注意"
-    在一些默认安装（指使用软件包管理器安装）Python 的系统（如 Unix 系统）中，应在终端中运行 `python3` 打开 Python 3 解释器。[^ref2]
+    在一些默认安装（指使用软件包管理器安装）Python 的系统（如 Unix 系统）中，应在终端中运行 `python3` 打开 Python 3 解释器。[^ref1]
 
 如果发行版自带 Python 版本过旧，可自行下载编译最新版本的 Python。此外，也可以通过 venv、conda、Nix 等工具管理 Python 工具链和 Python 软件包，创建隔离的虚拟环境，避免出现依赖问题。
 
@@ -191,7 +191,7 @@ Python 也支持对字符串进行切片获取字符串的子串。切片的格�
 'OI entered China in 1984. '
 ```
 
-Python 的字符串类型包含 Unicode 字符，这意味着任何字符串都会存储为 Unicode。[^ref3] 在 Python 中，可以对一个 Unicode 字符使用内置函数 `ord()` 将其转换为对应的 Unicode 编码，逆向的转换使用内置函数 `chr()`。
+Python 的字符串类型包含 Unicode 字符，这意味着任何字符串都会存储为 Unicode。[^ref2] 在 Python 中，可以对一个 Unicode 字符使用内置函数 `ord()` 将其转换为对应的 Unicode 编码，逆向的转换使用内置函数 `chr()`。
 
 如果想把数转换为对应的字符串，可使用 Python 内置函数 `str()`，也可以使用 f-string 实现；反之，可以使用 `int()` 和 `float()` 两个函数。
 
@@ -463,42 +463,40 @@ def fib(n):
 
 在这里介绍一些写算法可能用得到的内置库，具体用法可以自行搜索或者阅读 [官方文档](https://docs.python.org/3/library/index.html)。
 
-| 包名                                                                  | 用途               |
-| ------------------------------------------------------------------- | ---------------- |
-| [`array`](https://docs.python.org/3/library/array.html)             | 定长数组             |
-| [`argparse`](https://docs.python.org/3/library/argparse.html)       | 命令行参数处理          |
-| [`bisect`](https://docs.python.org/3/library/bisect.html)           | 二分查找             |
+| 库名 | 用途 |
+| ---- | ---- |
+| [`array`](https://docs.python.org/3/library/array.html) | 定长数组 |
+| [`argparse`](https://docs.python.org/3/library/argparse.html) | 命令行参数处理 |
+| [`bisect`](https://docs.python.org/3/library/bisect.html) | 二分查找 |
 | [`collections`](https://docs.python.org/3/library/collections.html) | 有序字典、双端队列等数据结构 |
-| [`fractions`](https://docs.python.org/3/library/fractions.html)     | 有理数              |
-| [`heapq`](https://docs.python.org/3/library/heapq.html)             | 基于堆的优先级队列        |
-| [`io`](https://docs.python.org/3/library/io.html)                   | 文件流、内存流          |
-| [`itertools`](https://docs.python.org/3/library/itertools.html)     | 迭代器            |
-| [`math`](https://docs.python.org/3/library/math.html)               | 数学函数           |
-| [`os.path`](https://docs.python.org/3/library/os.html)              | 系统路径等           |
-| [`random`](https://docs.python.org/3/library/random.html)           | 随机数              |
-| [`re`](https://docs.python.org/3/library/re.html)                   | 正则表达式            |
-| [`struct`](https://docs.python.org/3/library/struct.html)           | 转换结构体和二进制数据      |
-| [`sys`](https://docs.python.org/3/library/sys.html)                 | 系统信息             |
+| [`fractions`](https://docs.python.org/3/library/fractions.html) | 有理数 |
+| [`heapq`](https://docs.python.org/3/library/heapq.html) | 基于堆的优先级队列 |
+| [`io`](https://docs.python.org/3/library/io.html) | 文件流、内存流 |
+| [`itertools`](https://docs.python.org/3/library/itertools.html) | 迭代器 |
+| [`math`](https://docs.python.org/3/library/math.html) | 数学函数 |
+| [`os.path`](https://docs.python.org/3/library/os.html) | 系统路径等 |
+| [`random`](https://docs.python.org/3/library/random.html) | 随机数 |
+| [`re`](https://docs.python.org/3/library/re.html) | 正则表达式 |
+| [`struct`](https://docs.python.org/3/library/struct.html) | 转换结构体和二进制数据 |
+| [`sys`](https://docs.python.org/3/library/sys.html) | 系统信息 |
 
-## 对比 C++ 与 Python
+## 从例题对比 C++ 与 Python
 
-相信大部分算法竞赛选手已经熟练掌握了 C++ 的语法。接下来我们展示一下 Python 语法的一些应用。
 
-接下来的例子是 [Luogu P4779「【模板】单源最短路径（标准版）」](https://www.luogu.com.cn/problem/P4779) 的代码。我们将 C++ 代码与 Python 代码做出对比：
+??? note "[例题 洛谷 P4779「【模板】单源最短路径（标准版）」](https://www.luogu.com.cn/problem/P4779)"
+    给定一个 $n(1 \leq n \leq 10^5)$ 个点、$m(1 \leq m \leq 2\times 10^5)$ 条有向边的带非负权图，请你计算从 $s$ 出发，到每个点的距离。数据保证能从 $s$ 出发到任意点。
 
-从声明一些常量开始：
-
-C++：
+### 声明常量
 
 ```cpp
+// C++ Code
 #include <bits/stdc++.h>
 using namespace std;
 const int N = 1e5 + 5, M = 2e5 + 5;
 ```
 
-Python：
-
 ```python
+# Python Code
 try: # 引入优先队列模块
     import Queue as pq #python version < 3.0
 except ImportError:
@@ -509,11 +507,10 @@ M = int(2e5 + 5)
 INF = 0x3f3f3f3f
 ```
 
-然后是声明前向星结构体和一些其他变量。
-
-C++：
+### 声明前向星结构体和其它变量
 
 ```cpp
+// C++ Code
 struct qxx {
   int nex, t, v;
 };
@@ -528,9 +525,8 @@ priority_queue<pii, vector<pii>, greater<pii>> q;
 int dist[N];
 ```
 
-Python：
-
 ```python
+# Python Code
 class qxx:  # 前向星类（结构体）
     def __init__(self):
         self.nex = 0
@@ -556,11 +552,10 @@ def add_path(f, t, v):  # 在前向星中加边
     h[f] = cnt
 ```
 
-然后是求解最短路的 Dijkstra 算法代码：
-
-C++：
+### Dijkstra 算法
 
 ```cpp
+// C++ Code
 void dijkstra(int s) {
   memset(dist, 0x3f, sizeof(dist));
   dist[s] = 0, q.push(make_pair(0, s));
@@ -578,10 +573,9 @@ void dijkstra(int s) {
 }
 ```
 
-Python：
-
 ```python
-def nextedgeid(u):  # 生成器，可以用在for循环里
+# Python Code
+def nextedgeid(u):  # 生成器，可以用在 for 循环里
     i = h[u]
     while i:
         yield i
@@ -592,7 +586,7 @@ def dijkstra(s):
     dist[s] = 0
     q.put((0, s))
     while not q.empty():
-        u = q.get()  # get函数会顺便删除堆中对应的元素
+        u = q.get()  # get 函数会顺便删除堆中对应的元素
         if dist[u[1]] < u[0]:
             continue
         for i in nextedgeid(u[1]):
@@ -604,11 +598,10 @@ def dijkstra(s):
             q.put((dist[v], v))
 ```
 
-最后是主函数部分
-
-C++：
+### 主函数
 
 ```cpp
+// C++ Code
 int n, m, s;
 
 int main() {
@@ -627,7 +620,7 @@ int main() {
 Python：
 
 ```python
-# 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
+# Python Code
 if __name__ == '__main__':
     # 一行读入多个整数。注意它会把整行都读进来
     n, m, s = map(int, input().split())
@@ -637,12 +630,10 @@ if __name__ == '__main__':
 
     dijkstra(s)
 
-    for i in range(1, n+1):
-        # 两种输出语法都是可以用的
-        print("{}".format(dist[i]), end=' ')
-        # print("%d" % dist[i],end=' ')
+    for i in range(1, n + 1):
+        print(dist[i], end = ' ')
 
-    print()  # 结尾换行
+    print()
 ```
 
 完整的代码如下：
@@ -753,7 +744,7 @@ if __name__ == '__main__':
                 dist[v] = dist[u[1]]+w
                 q.put((dist[v], v))
     
-    # 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
+    # 如果你直接运行这个python代码（不是模块调用）就执行命令
     if __name__ == '__main__':
         # 一行读入多个整数。注意它会把整行都读进来
         n, m, s = map(int, input().split())
@@ -763,10 +754,8 @@ if __name__ == '__main__':
     
         dijkstra(s)
     
-        for i in range(1, n+1):
-            # 两种输出语法都是可以用的
-            print("{}".format(dist[i]), end=' ')
-            # print("%d" % dist[i],end=' ')
+        for i in range(1, n + 1):
+            print(dist[i], end = ' ')
     
         print()  # 结尾换行
     ```
@@ -782,8 +771,6 @@ if __name__ == '__main__':
 
 ## 参考资料和注释
 
-[^ref1]: [What’s New In Python 3.11 — Python 3.11.0 文档](https://docs.python.org/3.11/whatsnew/3.11.html#faster-cpython)
+[^ref1]: [2. Python 解释器 — Python 3 文档](https://docs.python.org/zh-cn/3/tutorial/interpreter.html#id1)
 
-[^ref2]: [2. Python 解释器 — Python 3 文档](https://docs.python.org/zh-cn/3/tutorial/interpreter.html#id1)
-
-[^ref3]: [Unicode 指南 — Python 3 文档](https://docs.python.org/zh-cn/3/howto/unicode.html#the-string-type)
+[^ref2]: [Unicode 指南 — Python 3 文档](https://docs.python.org/zh-cn/3/howto/unicode.html#the-string-type)
