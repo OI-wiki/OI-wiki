@@ -16,13 +16,13 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 有时也会用 $S[i..j]$，$i>j$ 来表示空串。
 
+举例来说，字符串 `abcd` 的所有子串为 `{a, b, c, d, ab, bc, cd, abc, bcd, abcd}`。
+
 ### 子序列
 
 字符串 $S$ 的 **子序列** 是从 $S$ 中将若干元素提取出来并不改变相对位置形成的序列，即 $S[p_1],S[p_2],\ldots,S[p_k]$，$1\le p_1< p_2<\cdots< p_k\le|S|$。
 
-一组字符串的 **公共子序列** 指同时是该组字符串的每个字符串子序列的序列。
-
-举例来说，字符串 `abcd` 的所有子序列为 `{a, b, ab, c, ac, bc, abc, d, ad, bd, abd, cd, acd, bcd, abcd}`；字符串 `abcde` 与字符串 `acde` 的所有公共子序列为 `{a, c, d, e, ac, ad, ae, cd, ce, de, ade，ace，cde，acde}`。
+举例来说，字符串 `abcd` 的所有子序列为 `{a, b, ab, c, ac, bc, abc, d, ad, bd, abd, cd, acd, bcd, abcd}`。
 
 ### 后缀
 
