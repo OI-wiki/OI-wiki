@@ -52,14 +52,8 @@ sudo apt install g++
 
 ### Arch Linux
 
-首先先更新软件包列表：
+使用命令直接安装即可：
 
 ```bash
-sudo pacman -Syu
-```
-
-再使用命令直接安装即可：
-
-```bash
-sudo pacman -Ss gcc
+sudo pacman -Syu gcc
 ```
