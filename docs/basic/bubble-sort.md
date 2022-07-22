@@ -24,6 +24,8 @@
 
 冒泡排序的平均时间复杂度为 $O(n^2)$。
 
+冒泡轮数的期望为 $n - \sqrt{\dfrac{\pi}{2} n} + \mathrm{O} \left( \sqrt{n} \right)$。
+
 ## 代码实现
 
 ### 伪代码
