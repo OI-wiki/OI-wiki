@@ -20,6 +20,10 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 字符串 $S$ 的 **子序列** 是从 $S$ 中将若干元素提取出来并不改变相对位置形成的序列，即 $S[p_1],S[p_2],\ldots,S[p_k]$，$1\le p_1< p_2<\cdots< p_k\le|S|$。
 
+一组字符串的 **公共子序列** 指同时是该组字符串的每个字符串子序列的序列。
+
+举例来说，字符串 `abcd` 的所有子序列为 `{a, b, ab, c, ac, bc, abc, d, ad, bd, abd, cd, acd, bcd, abcd}`；字符串 `abcde` 与字符串 `acde` 的所有公共子序列为 `{a, c, d, e, ac, ad, ae, cd, ce, de, ade，ace，cde，acde}`。
+
 ### 后缀
 
 **后缀** 是指从某个位置 $i$ 开始到整个串末尾结束的一个特殊子串。字符串 $S$ 的从 $i$ 开头的后缀表示为 $\textit{Suffix(S,i)}$，也就是 $\textit{Suffix(S,i)}=S[i..|S|-1]$。
