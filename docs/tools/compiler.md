@@ -57,3 +57,18 @@ sudo apt install g++
 ```bash
 sudo pacman -Syu gcc
 ```
+
+## macOS
+
+首先更新包管理器：
+
+```bash
+brew upgrade
+brew update
+```
+
+再使用命令直接安装即可：
+
+```bash
+brew install gcc
+```
