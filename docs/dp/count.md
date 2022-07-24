@@ -13,13 +13,13 @@ author: Persdre
 1. 含有阶乘的公式
 
 $$
-\mathrm C_n = \binom{2n}{n}-\binom{2n}{n-1} = \prod_{k=2}^n(\frac{n+k}{k})
+C_n = \dbinom{2n}{n}-\dbinom{2n}{n-1} = \prod_{k=2}^n(\frac{n+k}{k})
 $$
 
 2. dp 递推式
 
 $$
-\mathrm C_n = \sum_{i=0}^{N-1}\mathrm C_i\mathrm C_{n-i-1}
+C_n = \sum_{i=0}^{N-1}C_iC_{n-i-1}
 $$
 
 我们通常采用第二种方法计算。
