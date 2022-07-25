@@ -7,7 +7,7 @@
 
 > 本节 **性质** 部分内容翻译自 [wcipeg](http://wcipeg.com/wiki/Lowest_common_ancestor)，并做过修改。
 
-1. $\text{LCA}({u})=u$；
+1. $\text{LCA}(\{u\})=u$；
 2. $u$ 是 $v$ 的祖先，当且仅当 $\text{LCA}(u,v)=u$；
 3. 如果 $u$ 不为 $v$ 的祖先并且 $v$ 不为 $u$ 的祖先，那么 $u,v$ 分别处于 $\text{LCA}(u,v)$ 的两棵不同子树中；
 4. 前序遍历中，$\text{LCA}(S)$ 出现在所有 $S$ 中元素之前，后序遍历中 $\text{LCA}(S)$ 则出现在所有 $S$ 中元素之后；

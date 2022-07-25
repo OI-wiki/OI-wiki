@@ -572,17 +572,6 @@ DLX 的难点，不全在于链表的建立，而在于建模。
 
 ### 例题 2 [靶形数独](https://www.luogu.com.cn/problem/P1074)
 
-$$
-    \begin{pmatrix}
-      \color{Blue}0 & \color{Blue}0 & \color{Blue}1 & \color{Blue}0 & \color{Blue}1 & \color{Blue}1 & \color{Blue}0 \\
-      1 & 0 & \color{Red}0 & 1 & \color{Red}0 & \color{Red}0 & 1 \\
-      0 & 1 & \color{Red}1 & 0 & \color{Red}0 & \color{Red}1 & 0 \\
-      1 & 0 & \color{Red}0 & 1 & \color{Red}0 & \color{Red}0 & 0 \\
-      0 & 1 & \color{Red}0 & 0 & \color{Red}0 & \color{Red}0 & 1 \\
-      0 & 0 & \color{Red}0 & 1 & \color{Red}1 & \color{Red}0 & 1
-      \end{pmatrix}
-$$
-
 ??? note "解题思路"
     这一题与 [数独](https://www.luogu.com.cn/problem/P1784) 的模型构建 **一模一样**，主要区别在于答案的更新。
     

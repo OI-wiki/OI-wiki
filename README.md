@@ -30,8 +30,6 @@
 
 当然，也可以在本地部署。（**需要安装 Python3 和 Pipenv**）
 
-[点击查看用 asciinema 录制的流程](https://asciinema.org/a/220681)
-
 **如果遇到问题，可以查阅 [F.A.Q.](https://oi-wiki.org/intro/faq/) 来了解更多信息。**
 
 ```bash

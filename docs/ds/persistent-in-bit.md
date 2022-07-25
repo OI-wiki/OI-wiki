@@ -2,10 +2,10 @@
 
 如果区间变成动态的呢？即，如果还要求支持一种操作：单点修改某一位上的值，又该怎么办呢？
 
-??? note " 例题[二逼平衡树（树套树）](https://loj.ac/problem/106)"
+??? note "例题 [二逼平衡树（树套树）](https://loj.ac/problem/106)"
 
 
-??? note " 例题[ZOJ 2112 Dynamic Rankings](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemId=1112)"
+??? note "例题 [ZOJ 2112 Dynamic Rankings](https://zoj.pintia.cn/problem-sets/91827364500/problems/91827365611)"
 
 
 如果用 [线段树套平衡树](./balanced-in-seg.md) 中所论述的，用线段树套平衡树，即对于线段树的每一个节点，对于其所表示的区间维护一个平衡树，然后用二分来查找 $k$ 小值。由于每次查询操作都要覆盖多个区间，即有多个节点，但是平衡树并不能多个值一起查找，所以时间复杂度是 $O(n\log^3 n)$，并不是最优的。

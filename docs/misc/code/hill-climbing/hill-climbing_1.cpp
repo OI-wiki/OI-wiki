@@ -3,7 +3,7 @@ using namespace std;
 double ans[10001], cans[100001], dis[10001], tot, f[1001][1001];
 int n;
 
-double check() {
+void check() {
   tot = 0;
   for (int i = 1; i <= n + 1; i++) {
     dis[i] = 0;
