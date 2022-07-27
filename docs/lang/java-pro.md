@@ -141,7 +141,7 @@ class Main {
 |    mod(BigInteger val)    |   返回 this mod val 总是返回非负数  |       |
 |         pow(int e)        |         返回 $this^e$        |       |
 |    and(BigInteger val)    |       返回 this `&` val      |       |
-|     or(BigInteger val)    |          返回 this\`         | \`val |
+|     or(BigInteger val)    |          返回 this {$|$}         |       |
 |           not()           |         返回 `~` this        |       |
 |    xor(BigInteger val)    |       返回 this `^` val      |       |
 |      shiftLeft(int n)     |       返回 this `<<` n       |       |
