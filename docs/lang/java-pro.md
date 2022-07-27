@@ -7,7 +7,7 @@
 关于 Java 中 sort 函数的具体使用方法会在 `Arrays` 部分与 `Collections` 部分给出详细内容，该部分主要是对 `Arrays.sort(int[])` 与 `Arrays.sort(Integer[])` 的探讨。
 在 Java 中，`Arrays.sort(int[])` 底层是双端快排，`Arrays.sort(Integer[])` 底层是归并排序。因此 `Arrays.sort(int[])` 的最坏时间复杂度是 $O(n^2)$，可以通过如下例题来验证。
 
-???+note "[[codeforces]Quality vs Quantity](https://www.luogu.com.cn/problem/P1216)"
+???+note "[[Codeforces] Quality vs Quantity](https://www.luogu.com.cn/problem/P1216)"
     题意概要：有 $n$ 个数，你需要将其分为 2 组，是否能存在 1 组的长度小于另 1 组的同时和大于它。
 
 ??? 例题代码
@@ -141,7 +141,7 @@ class Main {
 |    mod(BigInteger val)    |   返回 this mod val 总是返回非负数  |    |   |
 |         pow(int e)        |         返回 $this^e$        |    |   |
 |    and(BigInteger val)    |       返回 this `&` val      |    |   |
-|     or(BigInteger val)    |         返回 this {$         | $} |   |
+|     or(BigInteger val)    |         返回 this `\|` val |   |    |   |
 |           not()           |         返回 `~` this        |    |   |
 |    xor(BigInteger val)    |       返回 this `^` val      |    |   |
 |      shiftLeft(int n)     |       返回 this `<<` n       |    |   |
