@@ -462,3 +462,47 @@ public class Main {
 ## Collections
 
 ## 其他
+
+### 1. -0.0!=0.0
+
+在java中，如果单纯是数值类型，-0.0=0.0。若是对象类型，则-0.0!=0.0。倘若你尝试用Set统计斜率数量时，这个问题就会带来麻烦。
+提供的解决方式是在所有的斜率加入Set前将值增加0.0。
+
+```java
+
+import java.io.PrintWriter;
+
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+
+    static void A() {
+        Double a = 0.0;
+        Double b = -0.0;
+        out.println(a.equals(b));//false
+        out.flush();
+    }
+
+    static void B() {
+        Double a = 0.0;
+        Double b = -0.0 + 0.0;
+        out.println(a.equals(b));//true
+        out.flush();
+    }
+
+    static void C() {
+        double a = 0.0;
+        double b = -0.0;
+        out.println(a == b);//true
+        out.flush();
+    }
+
+
+    public static void main(String[] args) {
+        A();
+        B();
+        C();
+    }
+}
+
+```
+    
