@@ -361,6 +361,70 @@ public class Main {
 
 以下均用 this 代替当前 BigIntger :
 
+|            函数名            |             功能             |    
+| :-----------------------: | :------------------------: | 
+|  gcd(BigInteger val)      |       返回this的绝对值与val的绝对值的最大公约数  |    
+|  isProbablePrime(int val) |       返回一个布尔值,判定this是否是素数         |    
+|  nextProbablePrime()    |         返回大于this的第一个素数    |   
+|  modPow(BigInteger b,BigInteger p) |  返回this `^` b `mod` p     |    
+|  modInverse(BigInteger p) |       返回a `mod` p的乘法逆元      |     
+
+
+使用案例如下：
+
+```java
+
+import java.io.PrintWriter;
+import java.math.BigInteger;
+
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+    static BigInteger a, b, p;
+
+    static void gcd() {//最大公约数
+        a = new BigInteger("120032414321432144212100");
+        b = new BigInteger("240231431243123412432140");
+        out.println(String.format("gcd(%s,%s)=%s", a.toString(), b.toString(), a.gcd(b).toString()));//gcd(120032414321432144212100,240231431243123412432140)=20
+    }
+
+    static void isPrime() {//判定该数是否是素数 基于米勒罗宾,参数越大准确性越高，复杂度越高。准确性为(1-1/(val*2))
+        a = new BigInteger("1200324143214321442127");
+        out.println("a:" + a.toString());
+        out.println(a.isProbablePrime(10) ? "a is prime" : "a is not prime");//a is not prime
+    }
+
+    static void nextPrime() {//找出该数的下一个素数
+        a = new BigInteger("1200324143214321442127");
+        out.println("a:" + a.toString());
+        out.println(String.format("a nextPrime is %s", a.nextProbablePrime().toString()));//a nextPrime is 1200324143214321442199
+    }
+
+    static void modPow() {//快速幂,比正常版本要快，内部有蒙特卡洛优化
+        a = new BigInteger("2");
+        b = new BigInteger("10");
+        p = new BigInteger("1000");
+        out.println(String.format("a:%s b:%s p:%s", a, b, p));
+        out.println(String.format("a^b mod p:%s", a.modPow(b, p).toString()));//24
+    }
+
+    static void modInverse() {//逆元
+        a = new BigInteger("10");
+        b = new BigInteger("3");
+        out.println(a.modInverse(b));//a ^ (p-2) mod p = 1
+    }
+
+    public static void main(String[] args) {
+        gcd();
+        isPrime();
+        nextPrime();
+        modPow();
+        modInverse();
+        out.flush();
+    }
+}
+
+```
+
 ## 数据结构
 
 以下内容用法均基于 Java 里多态的性质，均是以实现接口的形式出现
