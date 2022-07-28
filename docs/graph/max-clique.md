@@ -136,7 +136,7 @@ int main(){
 ## 例题
 
 ???+note "[POJ 2989: All Friends](http://poj.org/problem?id=2989)
-   题目大意：给出n个人，其中有m对朋友，求最大团数量。
+   题目大意：给出 $n$ 个人，其中有 $m$ 对朋友，求最大团数量。
 
 思路：模版题，要用 Bron-Kerbosch 算法
 
