@@ -220,12 +220,12 @@ $$
 3 & \textbf{Method. } \\
 4 & \textbf{while } r - l > \varepsilon\\
 5 & \qquad mid\gets \frac{lmid+rmid}{2}\\
-5 & \qquad lmid\gets mid - \varepsilon \\
-6 & \qquad rmid\gets mid + \varepsilon \\
-7 & \qquad \textbf{if } f(lmid) < f(rmid) \\
-8 & \qquad \qquad r\gets mid \\
-9 & \qquad \textbf{else } \\
-10 & \qquad \qquad l\gets mid
+6 & \qquad lmid\gets mid - \varepsilon \\
+7 & \qquad rmid\gets mid + \varepsilon \\
+8 & \qquad \textbf{if } f(lmid) < f(rmid) \\
+9 & \qquad \qquad r\gets mid \\
+10 & \qquad \textbf{else } \\
+11 & \qquad \qquad l\gets mid
 \end{array}
 $$
 
