@@ -909,6 +909,7 @@ Arrays.fill(int[],int val);
 ```
 ## Collections
 Collections是java.util中对集合操作的一个工具类。方法均为静态方法，可使用类名直接调用。
+
 常用函数：
 ### Collections.sort()
 Collections.sort()底层原理为将其中所有元素转化为数组调用Arrays.sort(),排完序后再赋值给原本的集合。又因为java中Collection类型均为对象类型，所以始终是归并排序去处理。
