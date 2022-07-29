@@ -24,7 +24,7 @@
 
 冒泡排序的平均时间复杂度为 $O(n^2)$。
 
-某一轮未冒泡即结束排序时，可以证明，冒泡轮数不大于 $k$ 的概率为 $\dfrac{k !}{n !} k^{n - k}$，由 Stirling 公式得冒泡轮数大于 $n - x \sqrt{n}$ 的概率趋近于 $\mathrm{e}^{-x^2/2}$，从而冒泡轮数的期望为 $n - \sqrt{\dfrac{\pi}{2} n} + \mathrm{O} \left( \sqrt{n} \right)$。
+可以证明，冒泡轮数不大于 $k$ 的概率为 $\dfrac{k !}{n !} k^{n - k}$，由 Stirling 公式得冒泡轮数大于 $n - x \sqrt{n}$ 的概率趋近于 $\mathrm{e}^{-x^2/2}$，从而冒泡轮数的期望为 $n - \sqrt{\dfrac{\pi}{2} n} + \mathrm{O} \left( \sqrt{n} \right)$。
 
 ## 代码实现
 
