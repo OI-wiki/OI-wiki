@@ -9,7 +9,7 @@
 
 在 Java 中，`Arrays.sort(int[])` 底层是双端快排，`Arrays.sort(Integer[])` 底层是归并排序。因此 `Arrays.sort(int[])` 的最坏时间复杂度是 $O(n^2)$，可以通过如下例题来验证。
 
-???+note "[Codeforces 1646B - Quality vs Quantity]([https://www.luogu.com.cn/problem/P1216](https://codeforces.com/problemset/problem/1646/B))"
+???+note "[Codeforces 1646B - Quality vs Quantity](https://codeforces.com/problemset/problem/1646/B)"
     题意概要：有 $n$ 个数，你需要将其分为 2 组，是否能存在 1 组的长度小于另 1 组的同时和大于它。
 
 ??? note "例题代码"
@@ -431,31 +431,31 @@ public class Main {
 
 ### List 列表
 
-#### 1.ArrayList
+#### 1. ArrayList
 
-#### 2.LinkedList
+#### 2. LinkedList
 
 ### Queue 队列
 
-#### 1.LinkedList
+#### 1. LinkedList
 
-#### 2.PriorityQueue
+#### 2. PriorityQueue
 
 ### Set 集合
 
-#### 1.HashSet
+#### 1. HashSet
 
-#### 2.LinkedHashSet
+#### 2. LinkedHashSet
 
-#### 3.TreeSet
+#### 3. TreeSet
 
 ### Map 哈希表
 
-#### 1.HashMap
+#### 1. HashMap
 
-#### 2.LinkedHashMap
+#### 2. LinkedHashMap
 
-#### 3.TreeMap
+#### 3. TreeMap
 
 ## Arrays
 
@@ -463,10 +463,10 @@ public class Main {
 
 ## 其他
 
-### 1. -0.0!=0.0
+### 1. -0.0 != 0.0
 
-在java中，如果单纯是数值类型，-0.0=0.0。若是对象类型，则-0.0!=0.0。倘若你尝试用Set统计斜率数量时，这个问题就会带来麻烦。
-提供的解决方式是在所有的斜率加入Set前将值增加0.0。
+在java中，如果单纯是数值类型，-0.0 = 0.0。若是对象类型，则 -0.0 != 0.0。倘若你尝试用Set统计斜率数量时，这个问题就会带来麻烦。
+提供的解决方式是在所有的斜率加入 Set 前将值增加 0.0。
 
 ```java
 
