@@ -507,7 +507,7 @@ public class Main {
         array.size();//时间复杂度为o(1)
         linked.size();//时间复杂度为o(1)
     }
-    static void set(){
+    static void set(){//该方法返回值为原本该位置元素的值
         array.set(0,1);//时间复杂度为o(1)
         linked.set(0,1);//最坏时间复杂度为o(n)
     }
@@ -809,11 +809,140 @@ public class Main {
     }
 }
 ```
+## Arrays
+Arrays是java.util中对数组操作的一个工具类。方法均为静态方法，可使用类名直接调用。
+
+常用函数：
+### Arrays.sort()
+Arrays.sort()是对数组进行的排序的方法，主要重载方法如下：
+```java
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class Main {
+    static int a[] = new int[10];
+    static Integer b[] = new Integer[10];
+    static int firstIdx, lastIdx;
+
+    public static void main(String[] args) {
+        Arrays.sort(a);\\1
+        Arrays.sort(a, firstIdx, lastIdx);\\2
+        Arrays.sort(b, new Comparator<Integer>() {\\3
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2 - o1;
+            }
+        });
+        Arrays.sort(b, firstIdx, lastIdx, new Comparator<Integer>() {\\4
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2 - o1;
+            }
+        });
+        //由于java8后有lambda表达式，第三个重载及第四个重载亦可写为
+        Arrays.sort(b, (x, y) -> {\\5
+            return y - x;
+        });
+        Arrays.sort(b, (x, y) -> {\\6
+            return y - x;
+        });
+    }
+}
+```
+__序号所对应的重载方法含义：__
+1. 对数组a进行排序，默认升序。
+2. 对数组a的指定位置进行排序，默认升序，排序区间为左开右闭`[firstIdx,lastIdx)` 。
+3. 对数组a以自定义的形式排序，第二个参数`-`第一个参数为降序,第一个参数`-`第二个参数为升序，当自定义排序比较器时，数组元素类型必须为对象类型。
+4. 对数组a的指定位置进行自定义排序，排序区间为左开右闭`[firstIdx,lastIdx)`，当自定义排序比较器时，数组元素类型必须为对象类型。
+5. 和3同理，用lambda表达式优化了代码长度。
+6. 和4同理，用lambda表达式优化了代码长度。
+
+__Arrays.sort()底层函数：__
+1. 当你`Arrays.sort`的参数数组元素类型为基本数据类型时(byte、short、char、int、long、double、float)时，默认为`DualPivotQuicksort`(双轴快排),复杂度最坏可以达到$O(n^2)$。
+2. 当你`Arrays.sort`的参数数组元素类型为非基本数据类型时），则默认为`legacyMergeSort`和`TimSort`(归并排序）,复杂度为$O(nlog_n)$。
+
+### Arrays.binarySearch()
+Arrays.binarySearch()是对数组连续区间进行二分搜索的方法，前提是数组必须有序，时间复杂度为$log_n$，主要重载方法如下：
+```java
+import java.util.Arrays;
+
+public class Main {
+    static int a[] = new int[10];
+    static Integer b[] = new Integer[10];
+    static int firstIdx, lastIdx;
+    static int key;
+
+    public static void main(String[] args) {
+        Arrays.binarySearch(a, key);\\1
+        Arrays.binarySearch(a, firstIdx, lastIdx, key);\\2
+    }
+}
+```
+源码如下：
+```java
+ private static int binarySearch0(int[] a, int fromIndex, int toIndex, int key) {
+        int low = fromIndex;
+        int high = toIndex - 1;
+
+        while (low <= high) {
+            int mid = (low + high) >>> 1;
+            int midVal = a[mid];
+
+            if (midVal < key)
+                low = mid + 1;
+            else if (midVal > key)
+                high = mid - 1;
+            else
+                return mid; // key found
+        }
+        return -(low + 1);  // key not found.
+    }
+```
+__序号所对应的重载方法含义：__
+1. 从数组a中二分查找是否存在key,如果存在，便返回其下标。若不存在，则返回一个负数。
+2. 从数组a中二分查找是否存在key,如果存在，便返回其下标,搜索区间为左开右闭`[firstIdx,lastIdx)`。若不存在，则返回一个负数。
+
+### Arrays.fill()
+Arrays.fill()是将数组中连续位置的元素赋值为统一元素
+```java
+Arrays.fill(int[],int val);
+```
+## Collections
+Collections是java.util中对集合操作的一个工具类。方法均为静态方法，可使用类名直接调用。
+常用函数：
+### Collections.sort()
+Collections.sort()底层原理为将其中所有元素转化为数组调用Arrays.sort(),排完序后再赋值给原本的集合。又因为java中Collection类型均为对象类型，所以始终是归并排序去处理。
+    
+该方法无法对集合指定区间排序。
+
+底层源码：
+```java
+  default void sort(Comparator<? super E> c) {
+        Object[] a = this.toArray();
+        Arrays.sort(a, (Comparator) c);
+        ListIterator<E> i = this.listIterator();
+        for (Object e : a) {
+            i.next();
+            i.set((E) e);
+        }
+    }
+```
+### Collections.binarySearch()
+`ColCollections.binarySearch()`是对集合中指定区间进行二分搜索,功能与`Arrays.binarySearch()`相同。
+```java
+Collections.binarySearch(list,key);
+```
+该方法无法无法对指定区间进行搜索。
+### Collections.swap()
+`Collections.swap()`功能是交换集合中指定二个位置的元素
+```java
+ Collections.swap(list,i,j);
+```
 ## 其他
 
 ### 1. -0.0 != 0.0
 
-在java中，如果单纯是数值类型，-0.0 = 0.0。若是对象类型，则 -0.0 != 0.0。倘若你尝试用Set统计斜率数量时，这个问题就会带来麻烦。
+在Java中，如果单纯是数值类型，-0.0 = 0.0。若是对象类型，则 -0.0 != 0.0。倘若你尝试用Set统计斜率数量时，这个问题就会带来麻烦。
 提供的解决方式是在所有的斜率加入 Set 前将值增加 0.0。
 
 ```java
