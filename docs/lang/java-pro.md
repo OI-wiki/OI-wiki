@@ -13,8 +13,8 @@
     题意概要：有 $n$ 个数，你需要将其分为 2 组，是否能存在 1 组的长度小于另 1 组的同时和大于它。
 
 ??? note "例题代码"
-    
-    ```java
+```java
+
     import java.io.BufferedReader;
     import java.io.IOException;
     import java.io.InputStreamReader;
@@ -97,7 +97,7 @@
             }
         }
     }
-    ```
+ ```
 
 如果你将以上代码的 a 数组类型由 `Integer` 修改为 `int` 则会 TLE。
 
@@ -105,7 +105,7 @@
 
 `BigInteger` 是 Java 提供的高精度计算类，可以很方便地解决高精度问题。
 
-### 创建对象
+### 初始化
 
 BigInteger 常用创建方式有如下二种：
 
@@ -427,40 +427,388 @@ public class Main {
 
 ## 数据结构
 
-以下内容用法均基于 Java 里多态的性质，均是以实现接口的形式出现
+以下内容用法均基于 Java 里多态的性质，均是以实现接口的形式出现。
 
-### List 列表
+### List 线性表
+####  ArrayList
+ArrayList是支持可以根据需求动态生长的数组，初始长度默认为10，如果超出当前长度便扩容$\frac{3}{2}$。
+ 
+##### 初始化
+```java
 
-#### 1. ArrayList
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
-#### 2. LinkedList
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+
+    public static void main(String[] args) {
+        List<Integer> list1=new ArrayList<>();//创建一个名字为list1的可自增数组，初始长度为默认10
+        List<Integer> list2=new ArrayList<>(30);//创建一个名字为list2的可自增数组,初始长度为30
+        List<Integer> list3=new ArrayList<>(list2);//创建一个名字为list3的可自增数组,使用list2里的元素和size作为自己的初始值
+    }
+}
+
+```
+####  LinkedList
+LinkedList是双链表
+##### 初始化
+```java
+import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+
+    public static void main(String[] args) {
+        List<Integer> list1 = new LinkedList<>();//创建一个名字为list1的双链表
+        List<Integer> list2 = new LinkedList<>(list1);//创建一个名字为list2的双链表，将list1内所有元素加入进来
+    }
+}
+
+```
+#### List常用方法
+以下均用 this 代替当前 `List<Integer>` :
+
+|            函数名            |             功能             |    
+| :-----------------------: | :------------------------: | 
+|          size()           |          返回 this 的长度        |    
+|          add(Integer val) |          在this尾部插入一个元素       |    
+|    add(int idx,Integer e)    |       在this指定位置插入一个元素     |   
+|  get(int idx)         |       返回this中第idx位置的值，若越界则抛出异常      |    
+|  set(int idx,Integer e) |     修改this中第idx位置的值    |    
+    
+使用案例及区别对比：
+```java
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+    static List<Integer> array=new ArrayList<>();
+    static List<Integer> linked=new LinkedList<>();
+    static void add(){
+        array.add(1);//时间复杂度为o(1)
+        linked.add(1);//时间复杂度为o(1)
+    }
+    static void get(){
+        array.get(10);//时间复杂度为o(1)
+        linked.get(10);//时间复杂度为o(11)
+    }
+    static void addIdx(){
+        array.add(0,2);//最坏情况下时间复杂度为o(n)
+        linked.add(0,2);//最坏情况下时间复杂度为o(n)
+    }
+    static void size(){
+        array.size();//时间复杂度为o(1)
+        linked.size();//时间复杂度为o(1)
+    }
+    static void set(){
+        array.set(0,1);//时间复杂度为o(1)
+        linked.set(0,1);//最坏时间复杂度为o(n)
+    }
+  
+}
+```
+#### 遍历List的三种方法
+```java
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+    static List<Integer> array = new ArrayList<>();
+    static List<Integer> linked = new LinkedList<>();
+
+    static void function1() {//朴素遍历
+        for (int i = 0; i < array.size(); i++) out.println(array.get(i));//遍历自增数组，复杂度为O(n)
+        for (int i = 0; i < linked.size(); i++)
+            out.println(linked.get(i));//遍历双链表，复杂度为O(n^2)，因为LinkedList的get(i)复杂度是O(i)
+    }
+
+    static void function2() {//增强for循环遍历
+        for (int e : array) out.println(e);
+        for (int e : linked) out.println(e);//复杂度均为o(n)
+    }
+
+    static void function3() {//迭代器遍历
+        Iterator<Integer> iterator1 = array.iterator();
+        Iterator<Integer> iterator2 = linked.iterator();
+        while (iterator1.hasNext()) {
+            out.println(iterator1.next());
+        }
+        while (iterator2.hasNext()) {
+            out.println(iterator2.next());
+        }//复杂度均为o(n)
+    }
+
+}
+
+```
 
 ### Queue 队列
+####  LinkedList
+可以使用LinkedList实现普通队列。
+##### 初始化：
+```java
+Queue<Integer> q=new LinkedList<>();
+```
+####  PriorityQueue
+PriorityQueue是优先队列，默认是小根堆。
+##### 初始化：
+```java
+Queue<Integer> q1=new PriorityQueue<>();//小根堆
+Queue<Integer> q2=new PriorityQueue<>((x,y)->{return y-x;});//大根堆
+```
+#### Queue常用方法
+以下均用 this 代替当前 `Queue<Integer>` :
 
-#### 1. LinkedList
+|            函数名            |             功能             |    
+| :-----------------------: | :------------------------: | 
+|          size()           |          返回 this 的长度        |    
+|          add(Integer val) |          入队       |    
+|          offer(Integer val) |          入队       |    
+|       isEmpty()    |       判断队列是否为空，为空则返回true     |   
+|   peek()         |       返回队头元素      |    
+| poll() |   返回队头元素并删除   |    
 
-#### 2. PriorityQueue
+使用案例及区别对比：
+```java
+import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+    static Queue<Integer> q1 = new LinkedList<>();
+    static Queue<Integer> q2 = new PriorityQueue<>();
+
+    static void add() {//add和offer功能上没有差距，区别是是否会抛出异常
+        q1.add(1);//时间复杂度为o(1)
+        q2.add(1);//时间复杂度为o(logn)
+    }
+
+    static void isEmpty() {
+        q1.isEmpty();//时间复杂度为o(1)
+        q2.isEmpty();//空间复杂度为o(1)
+    }
+
+    static void size() {
+        q1.size();//时间复杂度为o(1)
+        q2.size();//返回q2的长度
+    }
+
+    static void peek() {
+        q1.peek();//时间复杂度为o(1)
+        q2.peek();//时间复杂度为o(logn)
+    }
+
+    static void poll() {
+        q1.poll();//时间复杂度为o(1)
+        q2.poll();//时间复杂度为o(logn)
+    }
+}
+```
+#### 遍历Queue
+```java
+import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+    static Queue<Integer> q1 = new LinkedList<>();
+    static Queue<Integer> q2 = new PriorityQueue<>();
+
+    static void test() {
+        while (!q1.isEmpty()) {//复杂度为o(n)
+            out.println(q1.poll());
+        }
+        while (!q2.isEmpty()) {//复杂度为o(nlogn)
+            out.println(q2.poll());
+        }
+    }
+
+}
+```
 ### Set 集合
+set是保持容器中的元素不重复的一种数据结构。
+####  HashSet
+随机插入的Set。
+##### 初始化
+```java
+Set<Integer> s1 = new HashSet<>();
+```
+####  LinkedHashSet
+保持插入顺序的Set。
+##### 初始化
+```java
+Set<Integer> s2 = new LinkedHashSet<>();
+```
+####  TreeSet
+保持容器中元素有序的Set，默认为升序。
+##### 初始化
+```java
+Set<Integer> s3 = new TreeSet<>();
+Set<Integer> s4=new TreeSet<>((x,y)->{return y-x;});//降序
+```
+#### Set常用方法
+以下均用 this 代替当前 `Set<Integer>` :
+|            函数名            |             功能             |    
+| :-----------------------: | :------------------------: | 
+|          size()           |          返回 this 的长度        |    
+|          add(Integer val) |          插入一个元素进this      |
+|          contains(Integer val) |          判断this中是否有元素val       |
+| addAll(Collection e) | 将一个容器里的所有元素添加进this|
+| retainAll(Collection e) | 将this改为两个容器内相同的元素|
+| removeAll(Collection e) | 将this中与e相同的元素删除 |
 
-#### 1. HashSet
+使用案例：求并集、交集、差集。
+```java
+import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-#### 2. LinkedHashSet
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+    static Set<Integer> s1 = new HashSet<>();
+    static Set<Integer> s2 = new LinkedHashSet<>();
 
-#### 3. TreeSet
+    static void add() {
+        s1.add(1);
+    }
 
+    static void contains() {//判断set中是否有元素值为2，有则返回true，否则返回false
+        s1.contains(2);
+    }
+
+    static void test1() {//s1与s2的并集
+        Set<Integer> res = new HashSet<>();
+        res.addAll(s1);
+        res.addAll(s2);
+    }
+
+    static void test2() {//s1与s2的交集
+        Set<Integer> res = new HashSet<>();
+        res.addAll(s1);
+        res.retainAll(s2);
+    }
+
+    static void test3() {//差集：s1-s2
+        Set<Integer> res = new HashSet<>();
+        res.addAll(s1);
+        res.removeAll(s2);
+    }
+}
+```
+#### 遍历Set
+```java
+import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+    static Set<Integer> s1 = new HashSet<>();
+    static Set<Integer> s2 = new LinkedHashSet<>();
+
+    static void test() {
+        for (int key : s1) {
+            out.println(key);
+        }
+    }
+}
+```
 ### Map 哈希表
+Map是维护键值对`<Key,Value>`的一种数据结构，其中Key唯一。
+####  HashMap
+随机位置插入的Map。
+##### 初始化
+```java
+Map<Integer, Integer> map1 = new HashMap<>();
+```
+####  LinkedHashMap
+保持插入顺序的Map。
+##### 初始化
+```java
+Map<Integer, Integer> map2 = new LinkedHashMap<>();
+```
+####  TreeMap
+保持key有序的Map，默认升序
+##### 初始化
+```java
+Map<Integer, Integer> map3 = new TreeMap<>();
+Map<Integer, Integer> map4 = new TreeMap<>((x,y)->{return y-x;});//降序
+```
+#### Map常用方法
+以下均用 this 代替当前 `Map<Integer,Integer>` :
+|            函数名            |             功能             |    
+| :-----------------------: | :------------------------: | 
+|          put(Integer key,Integer value)           |          插入一个元素进this       |    
+|          size() |      返回this的长度      |
+|          containsKey(Integer val) |          判断this中是否有元素key为val       |
+| get(Integer key) | 将this中对应的key的value返回|
+| keySet | 将this中所有元素的key作为集合返回 |
 
-#### 1. HashMap
+使用案例:
+```java
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
-#### 2. LinkedHashMap
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
 
-#### 3. TreeMap
+    static Map<Integer, Integer> map1 = new HashMap<>();
+    static Map<Integer, Integer> map2 = new LinkedHashMap<>();
+    static Map<Integer, Integer> map3 = new TreeMap<>();
+    static Map<Integer, Integer> map4 = new TreeMap<>((x,y)->{return y-x;});
 
-## Arrays
+    static void put(){//将key为1，value为1的元素返回
+        map1.put(1,1);
+    }
+    static void get(){//将key为1的value返回
+        map1.get(1);
+    }
+    static void containsKey(){//判断是否有key为1的键值对
+        map1.containsKey(1);
+    }
+    static void KeySet(){
+        map1.keySet();
+    }
+}
+```
+#### 遍历Map
+```java
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
-## Collections
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
 
+    static Map<Integer, Integer> map1 = new HashMap<>();
+
+    static void print() {
+        for (int key : map1.keySet()) {
+            out.println(key + " " + map1.get(key));
+        }
+    }
+}
+```
 ## 其他
 
 ### 1. -0.0 != 0.0
