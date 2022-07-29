@@ -2,104 +2,99 @@
 
 ???+ warning "注意"
     以下内容均基于 Java JDK 8 版本编写，不排除在更高版本中有部分改动的可能性。
+    
+## 更高速的输入输出
 
-## 排序
+`Scanner` 和 `System.out.print` 在最开始会工作的很好，但是在处理更大的输入的时候会降低效率，因此我们会需要使用一些方法来提高 IO 速度。
 
-关于 Java 中 sort 函数的具体使用方法会在 `Arrays` 部分与 `Collections` 部分给出详细内容，该部分主要是对 `Arrays.sort(int[])` 与 `Arrays.sort(Integer[])` 的探讨。
+### 使用 Kattio + StringTokenizer 作为输入
 
-在 Java 中，`Arrays.sort(int[])` 底层是双端快排，`Arrays.sort(Integer[])` 底层是归并排序。因此 `Arrays.sort(int[])` 的最坏时间复杂度是 $O(n^2)$，可以通过如下例题来验证。
+最常用的方法之一是使用来自 Kattis 的 [Kattio.java](https://github.com/Kattis/kattio/blob/master/Kattio.java) 来提高 IO 效率。[^ref1]这个方法会将 `StringTokenizer` 与 `PrintWriter` 包装在一个类中方便使用。而在具体进行解题的时候（假如赛会/组织方允许）可以直接使用这个模板。
 
-???+note "[Codeforces 1646B - Quality vs Quantity](https://codeforces.com/problemset/problem/1646/B)"
-    题意概要：有 $n$ 个数，你需要将其分为 2 组，是否能存在 1 组的长度小于另 1 组的同时和大于它。
+下方即为应包含在代码中的 IO 模板，由于 Kattis 的原 Kattio 包含一些并不常用的功能，下方的模板经过了一些调整（原 Kattio 使用 MIT 作为协议）。
 
-??? note "例题代码"
 ```java
-
-    import java.io.BufferedReader;
-    import java.io.IOException;
-    import java.io.InputStreamReader;
-    import java.io.PrintWriter;
-    import java.util.Arrays;
-    import java.util.StringTokenizer;
-    
-    public class Main {
-        static class FastReader {
-            StringTokenizer st;
-            BufferedReader br;
-    
-            public FastReader() {
-                br = new BufferedReader(new InputStreamReader(System.in));
-            }
-    
-            String next() {
-                while (st == null || !st.hasMoreElements()) {
-                    try {
-                        st = new StringTokenizer(br.readLine());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                return st.nextToken();
-            }
-    
-            int nextInt() {
-                return Integer.parseInt(next());
-            }
-    
-            long nextLong() {
-                return Long.parseLong(next());
-            }
-    
-            double nextDouble() {
-                return Double.parseDouble(next());
-            }
-    
-            String nextLine() {
-                String str = "";
-                try {
-                    str = br.readLine();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return str;
-            }
-        }
-    
-        static PrintWriter out = new PrintWriter(System.out);
-        static FastReader in = new FastReader();
-    
-        static void solve() {
-            int n = in.nextInt();
-            Integer a[] = new Integer[n + 10];
-            for (int i = 1; i <= n; i++) {
-                a[i] = in.nextInt();
-            }
-            Arrays.sort(a, 1, n + 1);
-            long left = a[1];
-            long right = 0;
-            int x = n;
-            for (int i = 2; i < x; i++, x--) {
-                left = left + a[i];
-                right = right + a[x];
-                if (right > left) {
-                    out.println("YES");
-                    return;
-                }
-            }
-            out.println("NO");
-        }
-    
-        public static void main(String[] args) {
-            int t = in.nextInt();
-            while (t-- > 0) {
-                solve();
-                out.flush();
-            }
-        }
+class Kattio extends PrintWriter {
+    private BufferedReader r;
+    private StringTokenizer st;
+    // 标准 IO
+    public Kattio() { this(System.in,System.out); }
+    public Kattio(InputStream i, OutputStream o) {
+        super(o);
+        r = new BufferedReader(new InputStreamReader(i));
     }
- ```
+    // 文件 IO
+    public Kattio(String intput, String output) throws IOException {
+        super(output);
+        r = new BufferedReader(new FileReader(intput));
+    }
+    // 在没有其他输入时返回 null
+    public String next() {
+        try {
+            while (st == null || !st.hasMoreTokens())
+                st = new StringTokenizer(r.readLine());
+            return st.nextToken();
+        } catch (Exception e) {}
+        return null;
+    }
+    public int nextInt() { return Integer.parseInt(next()); }
+    public double nextDouble() { return Double.parseDouble(next()); }
+    public long nextLong() { return Long.parseLong(next()); }
+}
+```
 
-如果你将以上代码的 a 数组类型由 `Integer` 修改为 `int` 则会 TLE。
+而下方代码简单展示了 Kattio 的使用：
+
+```java
+class Test {
+    public static void main(String[] args) {
+        Kattio io = new Kattio();
+        // 字符串输入
+        String str = io.next();
+        // int 输入
+        int num = io.nextInt();
+        // 输出
+        io.println("Result");
+        // 请确保关闭 IO 流以确保输出被正确写入
+        io.close();
+    }
+}
+```
+
+### 使用 StreamTokenizer 作为输入
+
+在某些情况使用 `StringTokenizer` 会出现 MLE（Memory Limit Exceeded，超过内存上限）错误，此时我们需要使用 `StreamTokenizer` 作为输入。
+
+```java
+import java.io.*;
+public class Main {
+    // IO 代码
+    public static StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in), 32768));
+    public static PrintWriter out = new PrintWriter(new OutputStreamWriter(System.out));
+    public static double nextDouble() throws IOException { in.nextToken(); return in.nval; }
+    public static float nextFloat() throws IOException { in.nextToken(); return (float)in.nval; }
+    public static int nextInt() throws IOException { in.nextToken(); return (int)in.nval; }
+    public static String next() throws IOException { return in.sval; }
+    public static long nextLong() throws Exception { in.nextToken(); return (long)in.nval;}
+    
+    // 使用示例
+    public static void main(String[] args) throws Exception {
+        int n=nextInt();
+        out.println(n);
+        out.flush();
+    }
+}
+```
+
+### Kattio + StringTokenizer 的方法与 StreamTokenizer 的方法之间的分析与对比
+
+1.  `StreamTokenizer` 相较于 `StringTokenizer` 使用的内存较少，当你在使用 Java 标程却依旧出现 `MLE` 错误时可以尝试使用 `StreamTokenizer`，但是 `StreamTokenizer` 会丢失精度，读入部分数据时会出现问题；
+    - `StreamTokenizer` 源码存在 `Type`，该 `Type` 根据你输入内容来决定类型，倘若你输入类似于 `123oi` 以 **数字开头** 的字符串，他会强制认为你的类型是 double 类型，因此在读入中以 `double` 类型去读 `String` 类型便会抛出异常；
+    - `StreamTokenizer` 在读入 `1e14` 以上大小的数字会丢失精度；
+2. 在使用 `PrintWriter` 情况下，需注意在程序结束最后 `close()` 关闭输出流或在需要输出的时候使用 `flush()` 清除缓冲区，否则内容将不会被写入到控制台/文件中。
+3. `Kattio` 是继承自 `PrintWriter` 类，自身对象具有了 `PrintWriter` 的功能，因此可以直接调用 `PrintWriter` 类的函数输出，同时将 `StringTokenizer` 作为了自身的成员变量来修改。而第二种 `Main` 是同时将 `StreamTokenizer` 与 `PrintWriter` 作为了自身的成员变量，因此在使用上有些许差距。
+
+综上所述，在大部分情况下，`StringTokenizer` 的使用处境要优越于 `StreamTokenizer`，在极端 MLE 的情况下可以尝试 `StreamTokenizer`，同时 int 范围以上的数据 `StreamTokenizer` 处理是无能为力的
 
 ## BigInteger 与数论
 
@@ -908,6 +903,100 @@ __Arrays.sort()底层函数：__
 1. 当你 `Arrays.sort` 的参数数组元素类型为基本数据类型时 `(byte、short、char、int、long、double、float)` 时，默认为 `DualPivotQuicksort` (双轴快排),复杂度最坏可以达到$O(n^2)$。
 2. 当你 `Arrays.sort` 的参数数组元素类型为非基本数据类型时），则默认为 `legacyMergeSort` 和 `TimSort` (归并排序）,复杂度为$O(nlog_n)$。
 
+可以通过如下代码验证：
+
+???+note "[Codeforces 1646B - Quality vs Quantity](https://codeforces.com/problemset/problem/1646/B)"
+    题意概要：有 $n$ 个数，你需要将其分为 2 组，是否能存在 1 组的长度小于另 1 组的同时和大于它。
+
+??? note "例题代码"
+```java
+
+    import java.io.BufferedReader;
+    import java.io.IOException;
+    import java.io.InputStreamReader;
+    import java.io.PrintWriter;
+    import java.util.Arrays;
+    import java.util.StringTokenizer;
+    
+    public class Main {
+        static class FastReader {
+            StringTokenizer st;
+            BufferedReader br;
+    
+            public FastReader() {
+                br = new BufferedReader(new InputStreamReader(System.in));
+            }
+    
+            String next() {
+                while (st == null || !st.hasMoreElements()) {
+                    try {
+                        st = new StringTokenizer(br.readLine());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                return st.nextToken();
+            }
+    
+            int nextInt() {
+                return Integer.parseInt(next());
+            }
+    
+            long nextLong() {
+                return Long.parseLong(next());
+            }
+    
+            double nextDouble() {
+                return Double.parseDouble(next());
+            }
+    
+            String nextLine() {
+                String str = "";
+                try {
+                    str = br.readLine();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return str;
+            }
+        }
+    
+        static PrintWriter out = new PrintWriter(System.out);
+        static FastReader in = new FastReader();
+    
+        static void solve() {
+            int n = in.nextInt();
+            Integer a[] = new Integer[n + 10];
+            for (int i = 1; i <= n; i++) {
+                a[i] = in.nextInt();
+            }
+            Arrays.sort(a, 1, n + 1);
+            long left = a[1];
+            long right = 0;
+            int x = n;
+            for (int i = 2; i < x; i++, x--) {
+                left = left + a[i];
+                right = right + a[x];
+                if (right > left) {
+                    out.println("YES");
+                    return;
+                }
+            }
+            out.println("NO");
+        }
+    
+        public static void main(String[] args) {
+            int t = in.nextInt();
+            while (t-- > 0) {
+                solve();
+                out.flush();
+            }
+        }
+    }
+ ```
+
+如果你将以上代码的 a 数组类型由 `Integer` 修改为 `int` 则会 TLE。
+
 ### Arrays.binarySearch()
 `Arrays.binarySearch()` 是对数组连续区间进行二分搜索的方法，前提是数组必须有序，时间复杂度为$log_n$，主要重载方法如下：
 ```java
@@ -1030,4 +1119,3 @@ public class Main {
 }
 
 ```
-    
