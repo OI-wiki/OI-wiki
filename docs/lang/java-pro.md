@@ -424,10 +424,43 @@ public class Main {
 }
 
 ```
+## 继承
 
-## 数据结构
+基于已有的设计创造新的设计，就是面向对象程序设计中的继承。在继承中，新的类不是凭空产生的，而是基于一个已经存在的类而定义出来的。通过继承，新的类自动获得了基础类中所有的成员，包括成员变量和方法，包括各种访问属性的成员，无论是 `public` 还是 `private` 。显然，通过继承来定义新的类，远比从头开始写一个新的类要简单快捷和方便。继承是支持代码重用的重要手段之一。
+
+在 `java` 中，继承的关键字为 `extends`,且只支持单继承，但可以实现多接口。
+
+子类继承父类,所有的父类的成员，包括变量和方法，都成为了子类的成员，除了构造方法。构造方法是父类所独有的，因为它们的名字就是类的名字，所以父类的构造方法在子类中不存在。除此之外，子类继承得到了父类所有的成员。
+
+每个成员有不同的访问属性，子类继承得到了父类所有的成员，但是不同的访问属性使得子类在使用这些成员时有所不同：有些父类的成员直接成为子类的对外的界面，有些则被深深地隐藏起来，即使子类自己也不能直接访问。
+
+下表列出了不同访问属性的父类成员在子类中的访问属性：
+
+|           父类成员访问属性         |             在父类中的含义         |         在子类中的含义         |
+| :-----------------------: | :------------------------: | :------------------------: | 
+|           public           |        对所有人开放      | 对所有人开放        |
+|           protected           |       只有包内其它类、自己和子类可以访问       | 只有包内其它类、自己和子类可以访问        |
+|           缺省(default)           |        只有包内其它类可以访问        | 如果子类与父类在同一个包内：只有包内其它类可以访问。否则：相当于private，不能访问|
+|           private           |        只有自己可以访问        | 不能访问       |
+
+## 多态
+在 `Java` 中当把一个对象赋值给一个变量时,对象的类型必须与变量的类型相匹配。但由于 `Java` 有继承的概念，便可重新定义为 __一个变量可以保存其所声明的类型或该类型的任何子类型__。
+
+如果一个类型实现了接口，也可以称之为该接口的子类型。
+
+`Java`中保存对象类型的变量是多态变量。“多态”这个术语(字面意思是许多形态)是指一个变量可以保存不同类型(即其声明的类型或任何子类型)的对象。
+
+多态变量：
+1. Java的对象变量是多态的，它们能保存不止一种类型的对象。
+2. 它们可以保存的是声明类型的对象，或声明类型子类的对象。
+3. 当把子类的对象赋给父类的变量的时候，就发生了向上转型。
+
+## Collection
+
+`Collection` 是 `Java` 中对象的集合。通俗的说，是存放对象类型的数据结构。
 
 以下内容用法均基于 `Java` 里多态的性质，均是以实现接口的形式出现。
+常用接口为：`List` 、`Queue` 、 `Set` 、 `Map`。
 
 ### List 线性表
 ####  ArrayList
@@ -469,6 +502,7 @@ public class Main {
 }
 
 ```
+
 #### List常用方法
 以下均用 `this` 代替当前 `List<Integer>` :
 
@@ -489,29 +523,34 @@ import java.util.List;
 
 public class Main {
     static PrintWriter out = new PrintWriter(System.out);
-    static List<Integer> array=new ArrayList<>();
-    static List<Integer> linked=new LinkedList<>();
-    static void add(){
+    static List<Integer> array = new ArrayList<>();
+    static List<Integer> linked = new LinkedList<>();
+
+    static void add() {
         array.add(1);//时间复杂度为o(1)
         linked.add(1);//时间复杂度为o(1)
     }
-    static void get(){
+
+    static void get() {
         array.get(10);//时间复杂度为o(1)
         linked.get(10);//时间复杂度为o(11)
     }
-    static void addIdx(){
-        array.add(0,2);//最坏情况下时间复杂度为o(n)
-        linked.add(0,2);//最坏情况下时间复杂度为o(n)
+
+    static void addIdx() {
+        array.add(0, 2);//最坏情况下时间复杂度为o(n)
+        linked.add(0, 2);//最坏情况下时间复杂度为o(n)
     }
-    static void size(){
+
+    static void size() {
         array.size();//时间复杂度为o(1)
         linked.size();//时间复杂度为o(1)
     }
-    static void set(){//该方法返回值为原本该位置元素的值
-        array.set(0,1);//时间复杂度为o(1)
-        linked.set(0,1);//最坏时间复杂度为o(n)
+
+    static void set() {//该方法返回值为原本该位置元素的值
+        array.set(0, 1);//时间复杂度为o(1)
+        linked.set(0, 1);//最坏时间复杂度为o(n)
     }
-  
+
 }
 ```
 #### 遍历List的三种方法
@@ -528,14 +567,21 @@ public class Main {
     static List<Integer> linked = new LinkedList<>();
 
     static void function1() {//朴素遍历
-        for (int i = 0; i < array.size(); i++) out.println(array.get(i));//遍历自增数组，复杂度为O(n)
-        for (int i = 0; i < linked.size(); i++)
+        for (int i = 0; i < array.size(); i++) {
+            out.println(array.get(i));//遍历自增数组，复杂度为O(n)
+        }
+        for (int i = 0; i < linked.size(); i++) {
             out.println(linked.get(i));//遍历双链表，复杂度为O(n^2)，因为LinkedList的get(i)复杂度是O(i)
+        }
     }
 
     static void function2() {//增强for循环遍历
-        for (int e : array) out.println(e);
-        for (int e : linked) out.println(e);//复杂度均为o(n)
+        for (int e : array) {
+            out.println(e);
+        }
+        for (int e : linked) {
+            out.println(e);//复杂度均为o(n)
+        }
     }
 
     static void function3() {//迭代器遍历
@@ -558,14 +604,15 @@ public class Main {
 可以使用 `LinkedList` 实现普通队列。
 ##### 初始化：
 ```java
-Queue<Integer> q=new LinkedList<>();
+Queue<Integer> q = new LinkedList<>();
 ```
+`LinkedList` 底层实现了 `List` 接口与 `Deque` 接口，而 `Deque` 接口继承自 `Queue` 接口，所以LinkedList可以同时实现 `List` 与 `Queue` 。 
 ####  PriorityQueue
 `PriorityQueue` 是优先队列，默认是小根堆。
 ##### 初始化：
 ```java
-Queue<Integer> q1=new PriorityQueue<>();//小根堆
-Queue<Integer> q2=new PriorityQueue<>((x,y)->{return y-x;});//大根堆
+Queue<Integer> q1 = new PriorityQueue<>();//小根堆
+Queue<Integer> q2 = new PriorityQueue<>((x,y)->{return y-x;});//大根堆
 ```
 #### Queue常用方法
 以下均用 `this` 代替当前 `Queue<Integer>` :
@@ -730,7 +777,7 @@ public class Main {
     }
 }
 ```
-### Map 哈希表
+### Map 映射
 `Map` 是维护键值对 `<Key,Value>` 的一种数据结构，其中 `Key` 唯一。
 ####  HashMap
 随机位置插入的 `Map`。
