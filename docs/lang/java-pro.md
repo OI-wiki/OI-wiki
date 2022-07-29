@@ -103,11 +103,11 @@
 
 ## BigInteger 与数论
 
-`BigInteger` 是 Java 提供的高精度计算类，可以很方便地解决高精度问题。
+`BigInteger` 是 `Java` 提供的高精度计算类，可以很方便地解决高精度问题。
 
 ### 初始化
 
-BigInteger 常用创建方式有如下二种：
+`BigInteger` 常用创建方式有如下二种：
 
 ```java
 import java.io.PrintWriter;
@@ -128,7 +128,7 @@ class Main {
 
 ### 基本运算
 
-以下均用 this 代替当前 BigIntger :
+以下均用 `this` 代替当前 `BigIntger` :
 
 |            函数名            |             功能             |    
 | :-----------------------: | :------------------------: | 
@@ -359,7 +359,7 @@ public class Main {
 
 ### 数学运算
 
-以下均用 this 代替当前 BigIntger :
+以下均用 `this` 代替当前 `BigIntger` :
 
 |            函数名            |             功能             |    
 | :-----------------------: | :------------------------: | 
@@ -427,11 +427,11 @@ public class Main {
 
 ## 数据结构
 
-以下内容用法均基于 Java 里多态的性质，均是以实现接口的形式出现。
+以下内容用法均基于 `Java` 里多态的性质，均是以实现接口的形式出现。
 
 ### List 线性表
 ####  ArrayList
-ArrayList是支持可以根据需求动态生长的数组，初始长度默认为10，如果超出当前长度便扩容$\frac{3}{2}$。
+`ArrayList`是支持可以根据需求动态生长的数组，初始长度默认为10，如果超出当前长度便扩容$\frac{3}{2}$。
  
 ##### 初始化
 ```java
@@ -452,7 +452,7 @@ public class Main {
 
 ```
 ####  LinkedList
-LinkedList是双链表
+`LinkedList`是双链表
 ##### 初始化
 ```java
 import java.io.PrintWriter;
@@ -470,7 +470,7 @@ public class Main {
 
 ```
 #### List常用方法
-以下均用 this 代替当前 `List<Integer>` :
+以下均用 `this` 代替当前 `List<Integer>` :
 
 |            函数名            |             功能             |    
 | :-----------------------: | :------------------------: | 
@@ -555,20 +555,20 @@ public class Main {
 
 ### Queue 队列
 ####  LinkedList
-可以使用LinkedList实现普通队列。
+可以使用`LinkedList`实现普通队列。
 ##### 初始化：
 ```java
 Queue<Integer> q=new LinkedList<>();
 ```
 ####  PriorityQueue
-PriorityQueue是优先队列，默认是小根堆。
+`PriorityQueue`是优先队列，默认是小根堆。
 ##### 初始化：
 ```java
 Queue<Integer> q1=new PriorityQueue<>();//小根堆
 Queue<Integer> q2=new PriorityQueue<>((x,y)->{return y-x;});//大根堆
 ```
 #### Queue常用方法
-以下均用 this 代替当前 `Queue<Integer>` :
+以下均用 `this` 代替当前 `Queue<Integer>` :
 
 |            函数名            |             功能             |    
 | :-----------------------: | :------------------------: | 
@@ -662,7 +662,7 @@ Set<Integer> s3 = new TreeSet<>();
 Set<Integer> s4=new TreeSet<>((x,y)->{return y-x;});//降序
 ```
 #### Set常用方法
-以下均用 this 代替当前 `Set<Integer>` :
+以下均用 `this` 代替当前 `Set<Integer>` :
 |            函数名            |             功能             |    
 | :-----------------------: | :------------------------: | 
 |          size()           |          返回 this 的长度        |    
@@ -752,7 +752,7 @@ Map<Integer, Integer> map3 = new TreeMap<>();
 Map<Integer, Integer> map4 = new TreeMap<>((x,y)->{return y-x;});//降序
 ```
 #### Map常用方法
-以下均用 this 代替当前 `Map<Integer,Integer>` :
+以下均用 `this` 代替当前 `Map<Integer,Integer>` :
 |            函数名            |             功能             |    
 | :-----------------------: | :------------------------: | 
 |          put(Integer key,Integer value)           |          插入一个元素进this       |    
@@ -810,11 +810,11 @@ public class Main {
 }
 ```
 ## Arrays
-Arrays是java.util中对数组操作的一个工具类。方法均为静态方法，可使用类名直接调用。
+`Arrays`是`java.util`中对数组操作的一个工具类。方法均为静态方法，可使用类名直接调用。
 
 常用函数：
 ### Arrays.sort()
-Arrays.sort()是对数组进行的排序的方法，主要重载方法如下：
+`Arrays.sort()`是对数组进行的排序的方法，主要重载方法如下：
 ```java
 import java.util.Arrays;
 import java.util.Comparator;
@@ -862,7 +862,7 @@ __Arrays.sort()底层函数：__
 2. 当你`Arrays.sort`的参数数组元素类型为非基本数据类型时），则默认为`legacyMergeSort`和`TimSort`(归并排序）,复杂度为$O(nlog_n)$。
 
 ### Arrays.binarySearch()
-Arrays.binarySearch()是对数组连续区间进行二分搜索的方法，前提是数组必须有序，时间复杂度为$log_n$，主要重载方法如下：
+`Arrays.binarySearch()`是对数组连续区间进行二分搜索的方法，前提是数组必须有序，时间复杂度为$log_n$，主要重载方法如下：
 ```java
 import java.util.Arrays;
 
@@ -903,16 +903,16 @@ __序号所对应的重载方法含义：__
 2. 从数组a中二分查找是否存在key,如果存在，便返回其下标,搜索区间为左开右闭`[firstIdx,lastIdx)`。若不存在，则返回一个负数。
 
 ### Arrays.fill()
-Arrays.fill()是将数组中连续位置的元素赋值为统一元素
+`Arrays.fill()`是将数组中连续位置的元素赋值为统一元素
 ```java
 Arrays.fill(int[],int val);
 ```
 ## Collections
-Collections是java.util中对集合操作的一个工具类。方法均为静态方法，可使用类名直接调用。
+`Collections`是`ava.util`中对集合操作的一个工具类。方法均为静态方法，可使用类名直接调用。
 
 常用函数：
 ### Collections.sort()
-Collections.sort()底层原理为将其中所有元素转化为数组调用Arrays.sort(),排完序后再赋值给原本的集合。又因为java中Collection类型均为对象类型，所以始终是归并排序去处理。
+`Collections.sort()`底层原理为将其中所有元素转化为数组调用`Arrays.sort()`,排完序后再赋值给原本的集合。又因为`Java`中`Collection`的元素类型均为对象类型，所以始终是归并排序去处理。
     
 该方法无法对集合指定区间排序。
 
