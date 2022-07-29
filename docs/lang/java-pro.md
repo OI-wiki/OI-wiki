@@ -431,7 +431,7 @@ public class Main {
 
 ### List 线性表
 ####  ArrayList
-`ArrayList`是支持可以根据需求动态生长的数组，初始长度默认为10，如果超出当前长度便扩容$\frac{3}{2}$。
+`ArrayList` 是支持可以根据需求动态生长的数组，初始长度默认为10，如果超出当前长度便扩容$\frac{3}{2}$。
  
 ##### 初始化
 ```java
@@ -452,7 +452,7 @@ public class Main {
 
 ```
 ####  LinkedList
-`LinkedList`是双链表
+`LinkedList` 是双链表
 ##### 初始化
 ```java
 import java.io.PrintWriter;
@@ -555,13 +555,13 @@ public class Main {
 
 ### Queue 队列
 ####  LinkedList
-可以使用`LinkedList`实现普通队列。
+可以使用 `LinkedList` 实现普通队列。
 ##### 初始化：
 ```java
 Queue<Integer> q=new LinkedList<>();
 ```
 ####  PriorityQueue
-`PriorityQueue`是优先队列，默认是小根堆。
+`PriorityQueue` 是优先队列，默认是小根堆。
 ##### 初始化：
 ```java
 Queue<Integer> q1=new PriorityQueue<>();//小根堆
@@ -641,21 +641,21 @@ public class Main {
 }
 ```
 ### Set 集合
-set是保持容器中的元素不重复的一种数据结构。
+`Set` 是保持容器中的元素不重复的一种数据结构。
 ####  HashSet
-随机插入的Set。
+随机位置插入的 `Set`。
 ##### 初始化
 ```java
 Set<Integer> s1 = new HashSet<>();
 ```
 ####  LinkedHashSet
-保持插入顺序的Set。
+保持插入顺序的 `Set`。
 ##### 初始化
 ```java
 Set<Integer> s2 = new LinkedHashSet<>();
 ```
 ####  TreeSet
-保持容器中元素有序的Set，默认为升序。
+保持容器中元素有序的 `Set`，默认为升序。
 ##### 初始化
 ```java
 Set<Integer> s3 = new TreeSet<>();
@@ -731,21 +731,21 @@ public class Main {
 }
 ```
 ### Map 哈希表
-Map是维护键值对`<Key,Value>`的一种数据结构，其中Key唯一。
+`Map` 是维护键值对 `<Key,Value>` 的一种数据结构，其中 `Key` 唯一。
 ####  HashMap
-随机位置插入的Map。
+随机位置插入的 `Map`。
 ##### 初始化
 ```java
 Map<Integer, Integer> map1 = new HashMap<>();
 ```
 ####  LinkedHashMap
-保持插入顺序的Map。
+保持插入顺序的 `Map`。
 ##### 初始化
 ```java
 Map<Integer, Integer> map2 = new LinkedHashMap<>();
 ```
 ####  TreeMap
-保持key有序的Map，默认升序
+保持 `key` 有序的 `Map` ，默认升序。
 ##### 初始化
 ```java
 Map<Integer, Integer> map3 = new TreeMap<>();
@@ -810,7 +810,7 @@ public class Main {
 }
 ```
 ## Arrays
-`Arrays`是`java.util`中对数组操作的一个工具类。方法均为静态方法，可使用类名直接调用。
+`Arrays` 是 `java.util` 中对数组操作的一个工具类。方法均为静态方法，可使用类名直接调用。
 
 常用函数：
 ### Arrays.sort()
@@ -851,18 +851,18 @@ public class Main {
 ```
 __序号所对应的重载方法含义：__
 1. 对数组a进行排序，默认升序。
-2. 对数组a的指定位置进行排序，默认升序，排序区间为左开右闭`[firstIdx,lastIdx)` 。
+2. 对数组a的指定位置进行排序，默认升序，排序区间为左开右闭 `[firstIdx,lastIdx)` 。
 3. 对数组a以自定义的形式排序，第二个参数`-`第一个参数为降序,第一个参数`-`第二个参数为升序，当自定义排序比较器时，数组元素类型必须为对象类型。
-4. 对数组a的指定位置进行自定义排序，排序区间为左开右闭`[firstIdx,lastIdx)`，当自定义排序比较器时，数组元素类型必须为对象类型。
+4. 对数组a的指定位置进行自定义排序，排序区间为左开右闭 `[firstIdx,lastIdx)` ，当自定义排序比较器时，数组元素类型必须为对象类型。
 5. 和3同理，用lambda表达式优化了代码长度。
 6. 和4同理，用lambda表达式优化了代码长度。
 
 __Arrays.sort()底层函数：__
-1. 当你`Arrays.sort`的参数数组元素类型为基本数据类型时(byte、short、char、int、long、double、float)时，默认为`DualPivotQuicksort`(双轴快排),复杂度最坏可以达到$O(n^2)$。
-2. 当你`Arrays.sort`的参数数组元素类型为非基本数据类型时），则默认为`legacyMergeSort`和`TimSort`(归并排序）,复杂度为$O(nlog_n)$。
+1. 当你 `Arrays.sort` 的参数数组元素类型为基本数据类型时 `(byte、short、char、int、long、double、float)` 时，默认为 `DualPivotQuicksort` (双轴快排),复杂度最坏可以达到$O(n^2)$。
+2. 当你 `Arrays.sort` 的参数数组元素类型为非基本数据类型时），则默认为 `legacyMergeSort` 和 `TimSort` (归并排序）,复杂度为$O(nlog_n)$。
 
 ### Arrays.binarySearch()
-`Arrays.binarySearch()`是对数组连续区间进行二分搜索的方法，前提是数组必须有序，时间复杂度为$log_n$，主要重载方法如下：
+`Arrays.binarySearch()` 是对数组连续区间进行二分搜索的方法，前提是数组必须有序，时间复杂度为$log_n$，主要重载方法如下：
 ```java
 import java.util.Arrays;
 
@@ -899,20 +899,20 @@ public class Main {
     }
 ```
 __序号所对应的重载方法含义：__
-1. 从数组a中二分查找是否存在key,如果存在，便返回其下标。若不存在，则返回一个负数。
-2. 从数组a中二分查找是否存在key,如果存在，便返回其下标,搜索区间为左开右闭`[firstIdx,lastIdx)`。若不存在，则返回一个负数。
+1. 从数组a中二分查找是否存在 `key` ,如果存在，便返回其下标。若不存在，则返回一个负数。
+2. 从数组a中二分查找是否存在 `key` ,如果存在，便返回其下标,搜索区间为左开右闭 `[firstIdx,lastIdx)` 。若不存在，则返回一个负数。
 
 ### Arrays.fill()
-`Arrays.fill()`是将数组中连续位置的元素赋值为统一元素
+`Arrays.fill()` 是将数组中连续位置的元素赋值为统一元素
 ```java
 Arrays.fill(int[],int val);
 ```
 ## Collections
-`Collections`是`ava.util`中对集合操作的一个工具类。方法均为静态方法，可使用类名直接调用。
+`Collections` 是 `java.util` 中对集合操作的一个工具类。方法均为静态方法，可使用类名直接调用。
 
 常用函数：
 ### Collections.sort()
-`Collections.sort()`底层原理为将其中所有元素转化为数组调用`Arrays.sort()`,排完序后再赋值给原本的集合。又因为`Java`中`Collection`的元素类型均为对象类型，所以始终是归并排序去处理。
+`Collections.sort()` 底层原理为将其中所有元素转化为数组调用 `Arrays.sort()` ,排完序后再赋值给原本的集合。又因为 `Java` 中 `Collection` 的元素类型均为对象类型，所以始终是归并排序去处理。
     
 该方法无法对集合指定区间排序。
 
@@ -929,7 +929,7 @@ Arrays.fill(int[],int val);
     }
 ```
 ### Collections.binarySearch()
-`ColCollections.binarySearch()`是对集合中指定区间进行二分搜索,功能与`Arrays.binarySearch()`相同。
+`Collections.binarySearch()` 是对集合中指定区间进行二分搜索,功能与 `Arrays.binarySearch()` 相同。
 ```java
 Collections.binarySearch(list,key);
 ```
@@ -943,7 +943,7 @@ Collections.binarySearch(list,key);
 
 ### 1. -0.0 != 0.0
 
-在Java中，如果单纯是数值类型，-0.0 = 0.0。若是对象类型，则 -0.0 != 0.0。倘若你尝试用Set统计斜率数量时，这个问题就会带来麻烦。
+在 `Java` 中，如果单纯是数值类型，-0.0 = 0.0 。若是对象类型，则 -0.0 != 0.0 。倘若你尝试用 `Set` 统计斜率数量时，这个问题就会带来麻烦。
 提供的解决方式是在所有的斜率加入 Set 前将值增加 0.0。
 
 ```java
