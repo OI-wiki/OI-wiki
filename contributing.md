@@ -8,15 +8,15 @@
 
 #### 目录
 
-[CoC](#CoC)
+[行为准则](#行为准则)
 
 [如何参与](#如何参与)
 
 [我需要遵循什么？](#我需要遵循什么)
 
-## CoC
+## 行为准则
 
-您可以在 [此处](CODE_OF_CONDUCT.md) 找到 OI Wiki 的 Code of Conduct。
+您可以在 [此处](CODE_OF_CONDUCT.md) 找到 OI Wiki 的行为准则。
 
 ## 如何参与
 
