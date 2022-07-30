@@ -820,7 +820,7 @@ public class Main {
     static Map<Integer, Integer> map4 = new TreeMap<>((x,y)->{return y-x;});
 
     static void put(){//将key为1，value为1的元素返回
-        map1.put(1,1);
+        map1.put(1, 1);
     }
     static void get(){//将key为1的value返回
         map1.get(1);
