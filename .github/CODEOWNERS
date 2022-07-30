@@ -10,7 +10,7 @@
 .github/workflows/celebration.yml   @ouuan
 .github/workflows/pr-stale.yml	@CoelacanthusHex
 .github/ISSUE_TEMPLATE/	@Ir1d
-.github/CONTRIBUTING.md	@Ir1d
+.github/CONTRIBUTING.md	@Ir1d @shuzhouliu
 .github/FUNDING.yml @Ir1d
 Dockerfile  @CoelacanthusHex
 docs/intro/docker-deploy.md @CoelacanthusHex
@@ -26,4 +26,3 @@ package.json    @Ir1d @Enter-tainer
 Pipenv    @Ir1d
 tsconfig.json @Menci
 netlify.toml @Menci
-contributing.md @shuzhouliu
