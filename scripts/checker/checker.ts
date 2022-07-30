@@ -48,7 +48,7 @@ function getChangedFilesByLog(): Promise<string> {
 	if (parg.author) args += '--author="' + parg.author + '" ';
 	if (parg.grep) args += '--grep="' + parg.grep + '" ';
 	if (parg.f) args += parg.f + " ";
-	//console.log('git log --format="" --name-only ' + args);
+	if (parg.d) console.log("[debug]Running: " + 'git log --format="" --name-only ' + args);
 	return new Promise((resolve, reject) => {
 		cmd.exec(
 			'git log --format="" --name-only ' + args,
@@ -67,7 +67,7 @@ function getChangedFilesByDiff(): Promise<string> {
 	let args = "";
 	if (parg.f) args = parg.f + " ";
 	else args = "--cached " + runPath + "/../..";
-	//console.log("git ls-files " + "--exclude-standard " + args);
+	if (parg.d) console.log("[debug]Running: " + "git ls-files " + "--exclude-standard " + args);
 	return new Promise((resolve, reject) => {
 		cmd.exec(
 			"git diff --name-only " + args,
@@ -83,8 +83,6 @@ function getChangedFilesByDiff(): Promise<string> {
 }
 
 function parseFileList(fileBuf: string) {
-	//console.log(fileBuf);
-
 	let fileList: string[] = new Array();
 	while (fileBuf.length > 0) {
 		let file = fileBuf.substring(0, fileBuf.search(/\n/));
@@ -123,7 +121,6 @@ async function checkFile(file: string) {
 	let fileBase = pFile.base;
 	let fileName = pFile.name;
 	let fileExt: string = pFile.ext;
-	//console.log(fileName);
 
 	//Check file name valid
 	let errList: string[] = new Array();
@@ -158,7 +155,6 @@ async function checkFile(file: string) {
 	let fileContent: string = await getFileContent(file);
 
 	let fileTree = unified().use(remarkParse).parse(fileContent);
-	//console.log(fileTree);
 
 	visit(fileTree, (node) => {
 		if (node.type !== "image") return;
@@ -228,13 +224,10 @@ async function checkFile(file: string) {
 	});
 
 	while (fileContent.search(/```/) !== -1) {
-		//console.log(fileContent.length);
 		let fileCut = fileContent.substring(fileContent.search(/```/) + 3);
 		let fileCode = fileCut.substring(0, fileCut.search(/```/));
-		//console.log(fileCut);
 
 		fileCode = fileCode.replaceAll(/[^\r\n]/g, " ");
-		//console.log(fileCode);
 
 		fileContent =
 			fileContent.substring(0, fileContent.search(/```/)) +
@@ -247,9 +240,7 @@ async function checkFile(file: string) {
 	fileTree = unified().use(remarkParse).parse(fileContent);
 
 	visit(fileTree, (node) => {
-		//console.log(node);
 		if (node.type === "heading") {
-			//console.log(node);
 			if (errFlag.h1Used && node.depth === 1)
 				errList.push(
 					h1Used(file, node.position?.start.line, node.position?.start.column)
@@ -310,8 +301,6 @@ async function checkFile(file: string) {
 			}
 
 			if (errFlag.doubleEqualSigns && node.value.search(/\=\=/) !== -1) {
-				//console.log(node.value);
-				//console.log("codeFlag: " + codeFlag);
 				errList.push(
 					doubleEqualSigns(
 						file,
@@ -387,7 +376,6 @@ async function checkFile(file: string) {
 			}
 
 			if (errFlag.useChoose && node.value.search(/\\choose/) !== -1) {
-				//console.log(node);
 				errList.push(
 					useChoose(
 						file,
@@ -406,7 +394,6 @@ async function checkFile(file: string) {
 					node.value.search(RegExp("\\b" + word + "\\b")) !== -1 &&
 					node.value.search(RegExp("\\\\" + word + "\\b")) === -1
 				) {
-					//console.log(node);
 					errList.push(
 						wordUsageIllegal(
 							file,
@@ -426,7 +413,6 @@ async function checkFile(file: string) {
 				}
 		}
 	});
-	//console.log(errList);
 
 	return errList;
 }
@@ -438,9 +424,6 @@ function getFileContent(file: string): Promise<string> {
 				console.error(err);
 				reject(err);
 			}
-			//console.log("----------------------------");
-			//console.log(data.substring(0, 20));
-			//console.log("----------------------------");
 			resolve(data);
 		});
 	});
