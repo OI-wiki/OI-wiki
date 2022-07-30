@@ -9,40 +9,33 @@ import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import { exit } from "node:process";
 
-let parg;
-let runPath: string;
-let errFlagFile: string;
-let errFlag;
+//main start
+let parg = await yargs(hideBin(process.argv)).usage("$0 [args]").argv;
+let runPath = path.parse(process.argv[1]).dir;
+console.log("Checker running at: " + runPath);
 
-main();
-
-async function main() {
-  parg = await yargs(hideBin(process.argv)).usage("$0 [args]").argv;
-  runPath = path.parse(process.argv[1]).dir;
-  console.log("Checker running at: " + runPath);
-
-  errFlagFile = await getFileContent(runPath + "/checker_flag.json");
-  errFlag = JSON.parse(errFlagFile);
-  if (parg.h) {
-    console.log(
-      "Usage: \n" +
-        "\t-h\tShow help.\n" +
-        "\t-f <path>\tCheck specified path.\n" +
-        "\t-a\tCheck all files.\n" +
-        "\t-s\tSort results according to files' name.\n" +
-        "\t-r\tShow suggestions. Implies -s.\n" +
-        "\t-q\tCheck files quietly.\n" +
-        "\t--after=<time>, --before=<time>, --author=<time>, --grep<time>\tCheck matched files. Implies -a.\n"
-    );
-    exit(0);
-  }
-  let FileLog = await getChangedFilesByLog(),
-    FileLs = await getChangedFilesByDiff();
-  let FileTotal: string = "";
-  if (parg.after || parg.before || parg.author || parg.grep || parg.a) FileTotal += FileLog;
-  else FileTotal += FileLs;
-  checkFiles(parseFileList(FileTotal));
+let errFlagFile = await getFileContent(runPath + "/checker_flag.json");
+let errFlag = JSON.parse(errFlagFile);
+if (parg.h) {
+  console.log(
+    "Usage: \n" +
+      "\t-h\tShow help.\n" +
+      "\t-f <path>\tCheck specified path.\n" +
+      "\t-a\tCheck all files.\n" +
+      "\t-s\tSort results according to files' name.\n" +
+      "\t-r\tShow suggestions. Implies -s.\n" +
+      "\t-q\tCheck files quietly.\n" +
+      "\t--after=<time>, --before=<time>, --author=<time>, --grep<time>\tCheck matched files. Implies -a.\n"
+  );
+  exit(0);
 }
+let FileLog = await getChangedFilesByLog(),
+  FileLs = await getChangedFilesByDiff();
+let FileTotal: string = "";
+if (parg.after || parg.before || parg.author || parg.grep || parg.a) FileTotal += FileLog;
+else FileTotal += FileLs;
+checkFiles(parseFileList(FileTotal));
+//main end
 
 function getChangedFilesByLog(): Promise<string> {
   let args = "";
