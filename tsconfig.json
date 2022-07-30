@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "resolveJsonModule": true,
-    "strict": true,
-    "module": "ESNext",
-    "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2021",
+    "module": "ES2022",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "target": "ES2022",
+    "strict": false,
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./scripts",

@@ -61,6 +61,7 @@
   },
   "devDependencies": {
     "@types/klaw": "^3.0.3",
+    "@types/yargs": "^17.0.10",
     "prettier": "^2.7.1",
     "typescript": "^4.7.4"
   }
