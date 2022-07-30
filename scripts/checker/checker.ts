@@ -9,16 +9,20 @@ import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import { exit } from "node:process";
 
-let parg = await yargs(hideBin(process.argv)).usage("$0 [args]").argv;
-let runPath = path.parse(process.argv[1]).dir;
-console.log("Checker running at: " + runPath);
-
-let errFlagFile: string = await getFileContent(runPath + "/checker_flag.json");
-let errFlag = JSON.parse(errFlagFile);
+let parg;
+let runPath: string;
+let errFlagFile: string;
+let errFlag;
 
 main();
 
 async function main() {
+	parg = await yargs(hideBin(process.argv)).usage("$0 [args]").argv;
+	runPath = path.parse(process.argv[1]).dir;
+	console.log("Checker running at: " + runPath);
+	
+	errFlagFile = await getFileContent(runPath + "/checker_flag.json");
+	errFlag = JSON.parse(errFlagFile);
 	if (parg.h) {
 		console.log(
 			"Usage: \n" +
