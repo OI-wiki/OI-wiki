@@ -1,4 +1,4 @@
-author: HeRaNO, konnyakuxzy
+author: HeRaNO, konnyakuxzy, littlefrog
 
 [![./images/kuaizhuanglianbiao.png](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")
 
@@ -39,7 +39,9 @@ list<vector<char> > orz_list;
 ## STL 中的 `rope`
 
 ### 导入
-STL 中的 `rope` 也起到相当于块状链表的作用，它采用可持久化平衡树实现，可在 $O(\sqrt{n})$ 的时间复杂度内完成随机访问和插入、删除元素的操作。
+STL 中的 `rope` 也起到块状链表的作用，它采用可持久化平衡树实现，可完成随机访问和插入、删除元素的操作。
+
+由于 `rope` 并不是真正的用块状链表来实现，所以它的时间复杂度并不等同于块状链表，而是相当于可持久化平衡树的复杂度（即 $O(\log n)$）。
 
 可以使用如下方法来引入：
 ```cpp
