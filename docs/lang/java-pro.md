@@ -1004,7 +1004,7 @@ __Arrays.sort()底层函数：__
 如果你将以上代码的 a 数组类型由 `Integer` 修改为 `int` 则会 TLE。
 
 ### Arrays.binarySearch()
-`Arrays.binarySearch()` 是对数组连续区间进行二分搜索的方法，前提是数组必须有序，时间复杂度为$log_n$，主要重载方法如下：
+`Arrays.binarySearch()` 是对数组连续区间进行二分搜索的方法，前提是数组必须有序，时间复杂度为$O(\log_n)$，主要重载方法如下：
 ```java
 import java.util.Arrays;
 
