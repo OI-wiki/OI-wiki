@@ -505,7 +505,7 @@ public class Main {
 | :-----------------------: | :------------------------: | 
 |          size()           |          返回 this 的长度        |    
 |          add(Integer val) |          在this尾部插入一个元素       |    
-|    add(int idx,Integer e)    |       在this指定位置插入一个元素     |   
+|    add(int idx, Integer e)    |       在this指定位置插入一个元素     |   
 |  get(int idx)         |       返回this中第idx位置的值，若越界则抛出异常      |    
 |  set(int idx,Integer e) |     修改this中第idx位置的值    |    
     
