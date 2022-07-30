@@ -701,7 +701,7 @@ Set<Integer> s2 = new LinkedHashSet<>();
 ##### 初始化
 ```java
 Set<Integer> s3 = new TreeSet<>();
-Set<Integer> s4=new TreeSet<>((x,y)->{return y-x;});//降序
+Set<Integer> s4 = new TreeSet<>((x,y)->{return y-x;});//降序
 ```
 #### Set常用方法
 以下均用 `this` 代替当前 `Set<Integer>` :
