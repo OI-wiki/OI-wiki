@@ -1047,7 +1047,7 @@ __序号所对应的重载方法含义：__
 ### Arrays.fill()
 `Arrays.fill()` 是将数组中连续位置的元素赋值为统一元素
 ```java
-Arrays.fill(int[],int val);
+Arrays.fill(int[], int val);
 ```
 ## Collections
 `Collections` 是 `java.util` 中对集合操作的一个工具类。方法均为静态方法，可使用类名直接调用。
