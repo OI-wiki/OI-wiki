@@ -76,6 +76,6 @@ If you find someone not following the guidelines here, feel free to contribute y
 
 + It is recommended to keep track with your pull request. Please don't open a pull request, and stop keeping track. It will keep the OI Wiki editors and maintainers busy.
 
-+ Remember that you are in a community, and you need to accept others to contribute, along with their contributed content, whether it is with quality or not, maybe even collaborate. If you cannot agree with this concept, feel free to fork this repository and make your changes by your own. On the other hand, your ideas might not be as good as others, so listen to other.
++ Remember that you are in a community, and you need to accept others to contribute, along with their contributed content, whether it is with quality or not, maybe even collaborate. If you cannot agree with this concept, feel free to fork this repository and make your changes by your own. On the other hand, your ideas might not be perfect, so listen to other.
 
 By contributing to the community, you agree that the OI Wiki organization can block users who violate the community guidelines and damage the harmony of the community.
