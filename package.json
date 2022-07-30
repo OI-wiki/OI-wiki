@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "wiki for OI / ACM-ICPC",
   "main": "index.js",
+  "type": "module",
   "directories": {
     "doc": "docs"
   },
@@ -29,6 +30,7 @@
   "homepage": "https://github.com/OI-wiki/OI-wiki#readme",
   "dependencies": {
     "@swc/core": "^1.2.210",
+    "chalk": "^4.1.0",
     "colors": "^1.4.0",
     "cross-env": "^7.0.3",
     "klaw": "^4.0.1",
