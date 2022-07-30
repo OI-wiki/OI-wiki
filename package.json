@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "description": "wiki for OI / ACM-ICPC",
   "main": "index.js",
-  "type": "module",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "check": "tsc && node ./scripts/checker/checker.js"
+    "check": "tsc && node ./scripts/checker/checker.mjs"
   },
   "repository": {
     "type": "git",
