@@ -1,4 +1,3 @@
-# Chinese
 ## OI Wiki 贡献指南
 
 :+1::tada: 首先，感谢您抽出宝贵时间为本项目做出贡献！ :tada::+1:
@@ -38,44 +37,3 @@
 + 请记住，您在一个社区中，您需要学会接受其他人的贡献，以及他们贡献的内容，无论质量高低，甚至可能和他们协作。如果您不同意这个观点，请随时 fork 这个仓库并自己进行更改。另一方面，你的想法可能不够完善，所以要听取别人的意见。
 
 通过为社区做出贡献，您同意 OI Wiki 组织可以禁止违反社区准则并破坏社区和谐的用户访问组织。
-
-# English
-## Contributing to OI Wiki
-
-:+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
-
-The following is a set of guidelines for contributing to OI Wiki, which are hosted in the [OI Wiki Organization](https://github.com/oi-wiki/) on GitHub. 
-
-Use your best judgment, and feel free to propose changes to this document in a pull request.
-
-#### Table Of Contents
-
-[Code of Conduct](#code-of-conduct)
-
-[How Can I Contribute?](#how-can-i-contribute)
-
-[What do I Need to Follow?](#what-do-i-need-to-follow)
-
-## Code of Conduct
-
-You can find the OI Wiki Code of Conduct [here](CODE_OF_CONDUCT.md).
-
-## How Can I Contribute?
-
-You can see details on how to contribute in [HTC - OI Wiki](https://oi-wiki.org/intro/htc/).
-
-Also, please read guidelines on format in the [Format Guide](https://oi-wiki.org/intro/format/).
-
-## What do I Need to Follow?
-
-If you find someone not following the guidelines here, feel free to contribute yourself or contact [hi@oi-wiki.org](mailto:hi@oi-wiki.org).
-
-+ We welcome you to review other pull requests, but please comment in a friendly way. Such comments that cast negative reviews will deeply hurt the community contributors' feelings, and therefore is not recommended to do so. When you find a problem in a pull request, a further pull request is welcome, but it is not welcome to speak negatively of the contributors (pull request authors), while you have no constructiveness in this pull request.
-
-+ Please read carefully before commenting on an issue or a pull request.
-
-+ It is recommended to keep track with your pull request. Please don't open a pull request, and stop keeping track. It will keep the OI Wiki editors and maintainers busy.
-
-+ Remember that you are in a community, and you need to accept others to contribute, along with their contributed content, whether it is with quality or not, maybe even collaborate. If you cannot agree with this concept, feel free to fork this repository and make your changes by your own. On the other hand, your ideas might not be perfect, so listen to other.
-
-By contributing to the community, you agree that the OI Wiki organization can block users who violate the community guidelines and damage the harmony of the community.
