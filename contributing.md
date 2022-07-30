@@ -20,7 +20,7 @@
 
 ## 如何参与
 
-您可以在 [HTC - OI Wiki](https://oi-wiki.org/intro/htc/) 中查看有关如何参与的详细信息。
+您可以在 [How to contribute](https://oi-wiki.org/intro/htc/) 中查看有关如何参与的详细信息。
 
 此外，请阅读 [格式指南](https://oi-wiki.org/intro/format/) 中的相关内容。
 
