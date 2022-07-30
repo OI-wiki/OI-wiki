@@ -773,7 +773,7 @@ public class Main {
 }
 ```
 ### Map 映射
-`Map` 是维护键值对 `<Key,Value>` 的一种数据结构，其中 `Key` 唯一。
+`Map` 是维护键值对 `<Key, Value>` 的一种数据结构，其中 `Key` 唯一。
 ####  HashMap
 随机位置插入的 `Map`。
 ##### 初始化
