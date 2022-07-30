@@ -7,8 +7,10 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "check": "tsc && node ./scripts/checker/checker.mjs"
+    "ts-node-esm": "cross-env NODE_NO_WARNINGS=1 node --loader ts-node/esm",
+    "scripts:format": "prettier --write \"scripts/**/*.ts\"",
+    "scripts:format:check": "prettier --check \"scripts/**/*.ts\"",
+    "docs:format:remark": "remark . -o"
   },
   "repository": {
     "type": "git",
