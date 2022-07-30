@@ -473,7 +473,7 @@ public class Main {
 
     public static void main(String[] args) {
         List<Integer> list1 = new ArrayList<>();//创建一个名字为list1的可自增数组，初始长度为默认10
-        List<Integer> list2=new ArrayList<>(30);//创建一个名字为list2的可自增数组,初始长度为30
+        List<Integer> list2 = new ArrayList<>(30);//创建一个名字为list2的可自增数组,初始长度为30
         List<Integer> list3=new ArrayList<>(list2);//创建一个名字为list3的可自增数组,使用list2里的元素和size作为自己的初始值
     }
 }
