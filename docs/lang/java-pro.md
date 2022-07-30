@@ -361,7 +361,7 @@ public class Main {
 |  gcd(BigInteger val)      |       返回this的绝对值与val的绝对值的最大公约数  |    
 |  isProbablePrime(int val) |       返回一个布尔值,判定this是否是素数         |    
 |  nextProbablePrime()    |         返回大于this的第一个素数    |   
-|  modPow(BigInteger b,BigInteger p) |  返回this `^` b `mod` p     |    
+|  modPow(BigInteger b, BigInteger p) |  返回this `^` b `mod` p     |    
 |  modInverse(BigInteger p) |       返回a `mod` p的乘法逆元      |     
 
 
