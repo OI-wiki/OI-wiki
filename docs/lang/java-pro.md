@@ -794,7 +794,7 @@ Map<Integer, Integer> map3 = new TreeMap<>();
 Map<Integer, Integer> map4 = new TreeMap<>((x,y)->{return y-x;});//降序
 ```
 #### Map常用方法
-以下均用 `this` 代替当前 `Map<Integer,Integer>` :
+以下均用 `this` 代替当前 `Map<Integer, Integer>` :
 |            函数名            |             功能             |    
 | :-----------------------: | :------------------------: | 
 |          put(Integer key,Integer value)           |          插入一个元素进this       |    
