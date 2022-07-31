@@ -151,5 +151,5 @@ int main()
 
 ## 参考资料
 - [团问题 - 维基百科](https://en.wikipedia.org/wiki/Clique_problem)
-- [无向图的极大团、最大团(Bron-Kerbosch算法)](https://blog.csdn.net/yo_bc/article/details/77453478)
+- [无向图的极大团、最大团（Bron-Kerbosch 算法）](https://blog.csdn.net/yo_bc/article/details/77453478)
 - [最大团问题——Bron-Kerbosch算法](https://hallelujahjeff.github.io/2018/04/12/34/)
