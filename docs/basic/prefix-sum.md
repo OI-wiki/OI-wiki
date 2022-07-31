@@ -200,6 +200,14 @@ $$
 
 * * *
 
+基于 DP 计算高维前缀和：
+
+- [CF 165E Compatible Numbers](https://codeforces.com/contest/165/problem/E)
+- [CF 383E Vowels](https://codeforces.com/problemset/problem/383/E)
+- [ARC 100C Or Plus Max](https://atcoder.jp/contests/arc100/tasks/arc100_c)
+
+* * *
+
 树上前缀和：
 
 - [LOJ 10134.Dis](https://loj.ac/problem/10134)
