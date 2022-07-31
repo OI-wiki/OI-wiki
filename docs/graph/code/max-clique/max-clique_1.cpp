@@ -1,79 +1,75 @@
-#include <algorithm>
 #include <cstdio>
+#include <cstring>
 #include <iostream>
+#include <algorithm>
 using namespace std;
+const int MAXN = 105;
 
-int n, m;
-bool G[N][N];
-int cnt[N];    // cnt[i]为>=i的最大团点数
-int group[N];  // 最大团的点
-int vis[N];    // 记录点的位置
-int res;       // 最大团的数目
+struct MaxClique {
+	bool g[MAXN][MAXN];
+	int n, dp[MAXN], st[MAXN][MAXN], ans;
+	//	dp[i]表示第i个点之后能组成的最大团的大小，
+	// 	st[i][j]表示算法中第i层dfs所需要的点的集合，保存有可能是最大团其中之一的点
 
-bool dfs(int pos, int num) {  // num为当前独立集中的点数
-  for (int i = pos + 1; i <= n; i++) {
-    if (cnt[i] + num <= res)  // 剪枝，若取i但cnt[i]+已经取了的点数仍<ans
-      return false;
+	void init(int n) {
+		this->n = n;
+		memset(g, false, sizeof(g));
+	}
 
-    if (G[pos][i]) {  // 与当前团中元素比较，取Non-N(i)
-      int j;
-      for (j = 0; j < num; j++)
-        if (!G[i][vis[j]]) break;
-      if (j == num) {  // 若为空，则皆与i相邻，则此时将i加入到最大团中
-        vis[num] = i;
-        if (dfs(i, num + 1)) return true;
-      }
-    }
-  }
+	void addedge(int u, int v, int w) {
+		g[u][v] = w;
+	}
 
-  if (num > res) {  // 每添加一个点最多使最大团数+1,后面的搜索就没有意义了
-    for (int i = 0; i < num; i++)  // 最大团的元素
-      group[i] = vis[i];
-    res = num;  // 最大团中点的数目
-    return true;
-  }
-  return false;
-}
+	bool dfs(int sz, int num) {
+		if (sz == 0) {
+			if (num > ans) {
+				ans = num;
+				return true;
+			}
+			return false;
+		}
+		for (int i = 0; i < sz; i++) {		// 在第num层的集合中枚举一个点i
+			if (sz - i + num <= ans) return false;	// 剪枝1
+			int u = st[num][i];
+			if (dp[u] + num <= ans) return false;	// 剪枝2
+			int cnt = 0;
+			for (int j = i + 1; j < sz; j++) {	// 在第num层遍历在i之后的且与i所相连的点，并且加入第num+1层集合
+				if (g[u][st[num][j]])
+					st[num + 1][cnt++] = st[num][j];
+			}
+			if (dfs(cnt, num + 1)) return true;
+		}
+		return false;
+	}
 
-void maxClique() {
-  res = -1;
-  for (int i = n; i > 0; i--) {  // 枚举所有点
-    vis[0] = i;
-    dfs(i, 1);
-    cnt[i] = res;
-  }
-}
+	int solver() {
+		ans = 0;
+		memset(dp, 0, sizeof(dp));
+		for (int i = n; i >= 1; i--) {
+			int cnt = 0;
+			for (int j = i + 1; j <= n; j++) {	// 初始化第1层集合
+				if (g[i][j]) st[1][cnt++] = j;
+			}
+			dfs(cnt, 1);
+			dp[i] = ans;
+		}
+		return ans;
+	}
+
+}maxclique;
 
 int main() {
-  int T;
-  scanf("%d", &T);
-  while (T--) {
-    memset(G, 0, sizeof(G));
-
-    scanf("%d%d", &n, &m);
-    for (int i = 0; i < m; i++) {
-      int x, y;
-      scanf("%d%d", &x, &y);
-      G[x][y] = 1;
-      G[y][x] = 1;
-    }
-
-    // 建立反图
-    for (int i = 1; i <= n; i++) {
-      for (int j = 1; j <= n; j++) {
-        if (i == j)
-          G[i][j] = 0;
-        else
-          G[i][j] ^= 1;
-      }
-    }
-    maxClique();
-
-    if (res < 0) res = 0;
-    printf("%d\n", res);           // 最大团的个数
-    for (int i = 0; i < res; i++)  // 最大团中的顶点
-      printf("%d ", group[i]);
-    printf("\n");
-  }
-  return 0;
+	int n;
+	while (scanf("%d", &n), n) {
+		maxclique.init(n);
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= n; j++) {
+				int x;
+				scanf("%d", &x);
+				maxclique.addedge(i, j, x);
+			}
+		}
+		printf("%d\n", maxclique.solver());
+	}
+	return 0;
 }

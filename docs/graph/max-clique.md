@@ -29,7 +29,7 @@ author: Persdre
     2. 从集合 $P$ 中删除顶点 $v$，并将顶点 $v$ 添加到集合 $X$ 中
     3. 若集合 $P,X$ 都为空，则集合 $R$ 即为最大团
 
-此方法也可继续优化。为了节省时间让算法更快的回溯，可以通过设定关键点(Pivot Vertex)来进行搜索。另一种优化思路是在开始时把所有点排序，枚举时按照下标顺序，防止重复。
+此方法也可继续优化。为了节省时间让算法更快的回溯，可以通过设定关键点（pivot vertex）来进行搜索。另一种优化思路是在开始时把所有点排序，枚举时按照下标顺序，防止重复。
 
 ## 代码实现
 
@@ -65,7 +65,7 @@ BronKerbosch1(R, P, X):
 
 伪代码：
 
-```cpp
+```text
  BronKerbosch(All, Some, None):  
      if Some and None are both empty:  
          report All as a maximal clique //所有点已选完，且没有不能选的点,累加答案  
@@ -88,68 +88,19 @@ BronKerbosch1(R, P, X):
 
 加入优化后的 C++ 代码实现：
 
-```cpp
-#include <cstdio>
-#include <cstring>
-using namespace std;
-const int maxn = 130;
-bool mp[maxn][maxn];
-int some[maxn][maxn], none[maxn][maxn], all[maxn][maxn];
-int n, m, ans;
-void dfs(int d, int an, int sn, int nn)
-{
-	if(!sn && !nn) ++ans;
-	int u = some[d][0];
-	for(int i = 0; i < sn; ++i)
-	{
-		int v = some[d][i];
-		if(mp[u][v]) continue;
-		for(int j = 0; j < an; ++j)
-		all[d+1][j] = all[d][j];
-		all[d+1][an] = v;
-		int tsn = 0, tnn = 0;
-		for(int j = 0; j < sn; ++j)
-		if(mp[v][some[d][j]])
-		some[d+1][tsn++] = some[d][j];
-		for(int j = 0; j < nn; ++j)
-		if(mp[v][none[d][j]])
-		none[d+1][tnn++] = none[d][j];
-		dfs(d+1, an+1, tsn, tnn);
-		some[d][i] = 0, none[d][nn++] = v;
-		if(ans > 1000) return;
-	}
-}
-int work()
-{
-	ans = 0;
-	for(int i = 0; i < n; ++i) some[1][i] = i+1;
-	dfs(1, 0, n, 0);
-	return ans;
-}
-int main()
-{
-	while(~scanf("%d %d", &n, &m))
-	{
-		memset(mp, 0, sizeof mp);
-		for(int i = 1; i <= m; ++i)
-		{
-			int u, v;
-			scanf("%d %d", &u, &v);
-			mp[u][v] = mp[v][u] = 1;
-		}
-		int tmp = work();
-		if(tmp > 1000) puts("Too many maximal sets of friends.");
-		else printf("%d\n", tmp);
-	}
-	return 0;
-}
-```
+??? note "实现代码"
+    ```cpp
+      --8<-- "docs/graph/code/max-clique/max-clique_2.cpp"
+    ```
 
 ## 习题
 
 - [ZOJ 1492 最大团](https://zoj.pintia.cn/problem-sets/91827364500/problems/91827364991)
+- [POJ 1419 无向图最大团](http://poj.org/problem?id=1419)
+- [POJ 1129 广播电台](http://poj.org/problem?id=1129)
 
 ## 参考资料
 - [团问题 - 维基百科](https://en.wikipedia.org/wiki/Clique_problem)
 - [无向图的极大团、最大团（Bron-Kerbosch 算法）](https://blog.csdn.net/yo_bc/article/details/77453478)
 - [最大团问题——Bron-Kerbosch算法](https://hallelujahjeff.github.io/2018/04/12/34/)
+- [最大团问题](https://www.cnblogs.com/zhj5chengfeng/archive/2013/07/29/3224092.html)
