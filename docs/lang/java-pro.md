@@ -958,8 +958,8 @@ __Arrays.sort()底层函数：__
 ???+note "[Codeforces 1646B - Quality vs Quantity](https://codeforces.com/problemset/problem/1646/B)"
     题意概要：有 $n$ 个数，你需要将其分为 2 组，是否能存在 1 组的长度小于另 1 组的同时和大于它。
 
-??? note "例题代码"
-```java
+???+note "例题代码"
+    ```java
 
     import java.io.BufferedReader;
     import java.io.IOException;
@@ -1043,7 +1043,7 @@ __Arrays.sort()底层函数：__
             }
         }
     }
- ```
+    ```
 
 如果你将以上代码的 a 数组类型由 `Integer` 修改为 `int` 则会 TLE。
 
