@@ -58,6 +58,7 @@ struct MaxClique {
 
 }maxclique;
 
+
 int main() {
 	int n;
 	while (scanf("%d", &n), n) {
