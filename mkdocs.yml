@@ -210,12 +210,13 @@ nav:
   - 数学:
     - 数学部分简介: math/index.md
     - 符号: math/notation.md
-    - 复数: math/complex.md
-    - 位运算: math/bit.md
-    - 快速幂: math/quick-pow.md
     - 进位制: math/base.md
-    - 高精度计算: math/bignum.md
+    - 位运算: math/bit.md
     - 平衡三进制: math/balanced-ternary.md
+    - 高精度计算: math/bignum.md
+    - 快速幂: math/quick-pow.md
+    - 坐标系: math/coordinate.md
+    - 复数: math/complex.md
     - 数论:
       - 数论基础: math/number-theory/basic.md
       - 素数: math/number-theory/prime.md
@@ -271,12 +272,15 @@ nav:
       - 指数生成函数: math/poly/egf.md
       - 狄利克雷生成函数: math/poly/dgf.md
     - 线性代数:
-      - 线性代数简介: math/linear-algebra-index.md
-      - 向量: math/vector.md
-      - 矩阵: math/matrix.md
-      - 高斯消元: math/gauss.md
-      - 特征多项式: math/char-poly.md
-      - 线性基: math/basis.md
+      - 线性代数简介: math/linear-algebra/index.md
+      - 向量: math/linear-algebra/vector.md
+      - 内积和外积: math/linear-algebra/product.md
+      - 矩阵: math/linear-algebra/matrix.md
+      - 行列式: math/linear-algebra/determinant.md
+      - 高斯消元: math/linear-algebra/gauss.md
+      - 线性相关: math/linear-algebra/correlation.md
+      - 线性基: math/linear-algebra/basis.md
+      - 特征多项式: math/linear-algebra/char-poly.md
     - 线性规划:
       - 线性规划简介: math/linear-programming.md
       - 单纯形算法: math/simplex.md
@@ -300,12 +304,12 @@ nav:
       - 条件概率与独立性: math/probability/conditional-probability.md
       - 随机变量: math/probability/random-variable.md
       - 随机变量的数字特征: math/probability/exp-var.md
-    - 斐波那契数列: math/fibonacci.md
     - 博弈论: 
       - 博弈论简介: math/game-theory/intro.md
       - 公平组合游戏: math/game-theory/impartial-game.md
       - 非公平组合游戏: math/game-theory/partizan-game.md
       - 反常游戏: math/game-theory/misere-game.md
+    - 斐波那契数列: math/fibonacci.md
     - 牛顿迭代法: math/newton.md
     - 数值积分: math/integral.md
     - 分段打表: math/dictionary.md
@@ -439,7 +443,6 @@ nav:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
     - 三维计算几何基础: geometry/3d.md
-    - 极坐标系: geometry/polar-coordinate.md
     - 距离: geometry/distance.md
     - Pick 定理: geometry/pick.md
     - 三角剖分: geometry/triangulation.md

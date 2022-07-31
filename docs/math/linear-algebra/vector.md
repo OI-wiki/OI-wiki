@@ -5,6 +5,12 @@
 > 平面的向量交错生长/织成/忧伤的网
 > ——《膜你抄》
 
+在本文之前，特别说明一下翻译的相关问题。由于历史原因，数学学科和物理学科关于“vector”一词的翻译不同。
+
+在物理学科，一般翻译成“矢量”，并且与“标量”一词相对。在数学学科，一般翻译成“向量”。这种翻译的差别还有“本征”与“特征”、“幺正”与“酉”，等等。
+
+在OI Wiki，主要面向计算机等工程类相关学科，与数学学科关系更近一些，因此采用“向量”这个词汇。
+
 ### 定义及相关概念
 
 **向量**：既有大小又有方向的量称为向量。数学上研究的向量为 **自由向量**，即只要不改变它的大小和方向，起点和终点可以任意平行移动的向量。记作 $\vec a$ 或 $\boldsymbol{a}$。
@@ -138,40 +144,6 @@ $$
 
 若 $A,B,C$ 三点共线，则 $\overrightarrow{OB}=\lambda \overrightarrow{OA}+(1-\lambda)\overrightarrow{OC}$。
 
-### 向量的数量积
-
-已知两个向量 $\boldsymbol a,\boldsymbol b$，它们的夹角为 $\theta$，那么：
-
-$$
-\boldsymbol a \cdot \boldsymbol b=|\boldsymbol a||\boldsymbol b|\cos \theta
-$$
-
-就是这两个向量的 **数量积**，也叫 **点积** 或 **内积**。其中称 $|\boldsymbol a|\cos \theta$ 为 $\boldsymbol a$ 在 $\boldsymbol b$ 方向上的投影。数量积的几何意义即为：数量积 $\boldsymbol a \cdot \boldsymbol b$ 等于 $\boldsymbol a$ 的模与 $\boldsymbol b$ 在 $\boldsymbol a$ 方向上的投影的乘积。
-
-我们发现，这种运算得到的结果是一个实数，为标量，并不属于向量的线性运算。
-
-数量积运算有以下应用：
-
-#### 判定两向量垂直
-
-$\boldsymbol a \perp \boldsymbol b$ $\iff$ $\boldsymbol a\cdot \boldsymbol b=0$
-
-#### 判定两向量共线
-
-$\boldsymbol a = \lambda \boldsymbol b$ $\iff$ $|\boldsymbol a\cdot \boldsymbol b|=|\boldsymbol a||\boldsymbol b|$
-
-#### 数量积的坐标运算
-
-若 $\boldsymbol a=(m,n),\boldsymbol b=(p,q),$ 则 $\boldsymbol a\cdot \boldsymbol b=mp+nq$
-
-#### 向量的模
-
-$|\boldsymbol a|=\sqrt {m^2+n^2}$
-
-#### 两向量的夹角
-
-$\cos \theta=\cfrac{\boldsymbol a\cdot\boldsymbol b}{|\boldsymbol a||\boldsymbol b|}$
-
 ### 扩展
 
 #### 向量与矩阵
@@ -181,21 +153,6 @@ $\cos \theta=\cfrac{\boldsymbol a\cdot\boldsymbol b}{|\boldsymbol a||\boldsymbol
 我们发现，矩阵运算的相关法则与向量运算相似，于是考虑将向量写成矩阵形式，这样就将向量问题化为矩阵问题了。
 
 详细内容请参考线性代数。
-
-#### 向量积
-
-我们定义向量 $\boldsymbol a,\boldsymbol b$ 的向量积为一个向量，记为 $\boldsymbol a\times \boldsymbol b$，其模与方向定义如下：
-
-1. $|\boldsymbol a\times \boldsymbol b|=|\boldsymbol a||\boldsymbol b|\sin \langle \boldsymbol a,\boldsymbol b\rangle$；
-2. $\boldsymbol a\times \boldsymbol b$ 与 $\boldsymbol a,\boldsymbol b$ 都垂直，且 $\boldsymbol a,\boldsymbol b,\boldsymbol a\times \boldsymbol b$ 符合右手法则。
-
-向量积也叫外积。
-
-由于向量积涉及到空间几何与线性代数知识，所以并未在高中课本中出现。然而注意到向量积的模，联想到三角形面积计算公式 $S=\frac{1}{2}ab\sin C$，我们可以发现向量积的几何意义是：**$|\boldsymbol a\times \boldsymbol b|$ 是以 $\boldsymbol a,\boldsymbol b$ 为邻边的平行四边形的面积**。
-
-知道这个，多边形面积就很好算了。
-
-我们有一个不完全的坐标表示：记 $\boldsymbol a=(m,n),\boldsymbol b=(p,q)$，那么两个向量的向量积的竖坐标为 $mq-np$，我们根据右手法则和竖坐标符号可以推断出 $\boldsymbol b$ 相对于 $\boldsymbol a$ 的方向，若在逆时针方向竖坐标为正值，反之为负值，简记为 **顺负逆正**。
 
 #### 向量旋转
 
@@ -257,26 +214,4 @@ $$
 
 公理 5-8 描述的是“缩放”与“叠加”的关联。可以结合二维平面上的箭头来理解。
 
-## 极坐标与极坐标系
 
-### 任意角与弧度制
-
-（为人教版高中数学必修一内容）
-
-我们在初中学习过角度值，但是角度不是一个数，这给我们深入研究带来了一定的困难，还有其他的问题无法解释清，所以我们换用弧度制描述角。
-
-首先我们用旋转的思路定义角，角可以看成平面内一条射线绕其端点从一个位置旋转到另一个位置形成的图形。开始的位置称为始边，结束的位置称为终边。
-
-我们规定，按 **逆时针** 方向旋转形成的角叫做 **正角**，按 **顺时针** 方向旋转所形成的角叫做 **负角**，如果这条射线没有做任何旋转，称为 **零角**。这样我们就把角的概念推向了 **任意角**。
-
-然后我们介绍 **弧度制**，把长度等于半径长的弧所对的圆心角称为 $1$ 弧度的角，用符号 $\text{rad}$ 表示，读作：弧度。
-
-一般地，正角的弧度数为正，负角的弧度数为负，零角的弧度数为 $0$，如果半径为 $r$ 的圆的圆心角 $\alpha$ 所对弧长为 $l$，则 $|\alpha|=\frac{l}{r}$。利用这个公式还可以写出弧长和扇形面积公式，在此略过。
-
-那么，我们发现 $360^\circ$ 的角弧度数为 $2\pi$，这样有了对应关系之后，我们可以进行角度值和弧度制的转化了。
-
-我们考虑一个角，将其终边再旋转一周，甚至多周，始边位置不动，那么终边位置永远是相同的，我们称这些角为 **终边位置相同的角**。
-
-与角 $\alpha$ 终边位置相同的角的集合很容易得出，为 $\{\theta\mid \theta=\alpha+2k\pi,k\in \mathbb{Z}\}$。
-
-可以理解为：给这个角的边不停加转一圈，终边位置不变。
