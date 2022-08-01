@@ -149,6 +149,7 @@ nav:
     - 二分: basic/binary.md
     - 倍增: basic/binary-lifting.md
     - 构造: basic/construction.md
+    - 计算理论基础: basic/cc-basic.md
   - 搜索:
     - 搜索部分简介: search/index.md
     - DFS（搜索）: search/dfs.md
@@ -473,7 +474,6 @@ nav:
       - 爬山算法: misc/hill-climbing.md
       - 模拟退火: misc/simulated-annealing.md
     - 悬线法: misc/hoverline.md
-    - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
     - 约瑟夫问题: misc/josephus.md
     - 格雷码: misc/gray-code.md
