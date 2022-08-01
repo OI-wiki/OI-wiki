@@ -1,4 +1,4 @@
-author: inkydragon, TravorLZH, YOYO-UIAT, wood3
+author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
 
 ## 素数筛法
 
@@ -8,7 +8,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3
 
 ### 埃拉托斯特尼筛法
 
-考虑这样一件事情：如果 $x$ 是合数，那么 $x$ 的倍数也一定是合数。利用这个结论，我们可以避免很多次不必要的检测。
+考虑这样一件事情：对于任意一个大于 $1$ 的正整数 $n$，那么它的 $x$ 倍就是合数（$x > 1$）。利用这个结论，我们可以避免很多次不必要的检测。
 
 如果我们从小到大考虑每个数，然后同时把当前这个数的所有（比自己大的）倍数记为合数，那么运行结束的时候没有被标记的数就是素数了。
 
@@ -184,7 +184,6 @@ int count_primes(int n) {
 ```cpp
 // C++ Version
 void init() {
-  phi[1] = 1;
   for (int i = 2; i < MAXN; ++i) {
     if (!vis[i]) {
       pri[cnt++] = i;

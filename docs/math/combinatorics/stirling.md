@@ -33,8 +33,10 @@ $$
 显然
 
 $$
-G_i=k^n\\
-G_i=\sum\limits_{j=0}^i\binom{i}{j}F_j
+\begin{aligned}
+G_i&=k^n\\
+G_i&=\sum\limits_{j=0}^i\binom{i}{j}F_j
+\end{aligned}
 $$
 
 根据二项式反演

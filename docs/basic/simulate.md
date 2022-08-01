@@ -33,6 +33,6 @@
 
 ## 习题
 
-- [【NOIP2014】生活大爆炸版石头剪刀布 - Universal Online Judge](https://uoj.ac/problem/15)
-- [3750: 魔兽世界 - OpenJudge](http://bailian.openjudge.cn/practice/3750/)
+- [「NOIP2014」生活大爆炸版石头剪刀布 - Universal Online Judge](https://uoj.ac/problem/15)
+- [「OpenJudge 3750」魔兽世界](http://bailian.openjudge.cn/practice/3750/)
 - [「SDOI2010」猪国杀 - LibreOJ](https://loj.ac/problem/2885)

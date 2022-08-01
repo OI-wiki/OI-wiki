@@ -1,4 +1,4 @@
-author: linehk
+author: linehk, persdre
 
 时间复杂度和空间复杂度是衡量一个算法效率的重要标准。
 
@@ -36,7 +36,7 @@ author: linehk
 
 也就是说，如果函数 $f(n)=\Theta(g(n))$，那么我们能找到两个正数 $c_1, c_2$ 使得 $f(n)$ 被 $c_1\cdot g(n)$ 和 $c_2\cdot g(n)$ 夹在中间。
 
-例如，$3n^2+5n-3=\Theta(n^2)$,$n\sqrt n + n\log^5 n+m\log m+nm=\Theta(n\sqrt n+m\log m+nm)$。
+例如，$3n^2+5n-3=\Theta(n^2)$, 这里的 $c_1, c_2, n_0$ 可以分别是 $2, 4, 100$。$n\sqrt {n} + n{\log^5 n} + m{\log m} +nm=\Theta(n\sqrt {n} + m{\log m} + nm)$，这里的 $c_1, c_2, n_0$ 可以分别是 $1, 2, 100$。
 
 ### 大 O 符号
 
@@ -132,7 +132,7 @@ for i in range(0, N):
 ## 主定理 (Master Theorem)
 
 我们可以使用 Master Theorem 来快速求得关于递归算法的复杂度。
-假设我们有递推关系式
+ Master Theorem 递推关系式如下
 
 $$
 T(n) = a T\left(\frac{n}{b}\right)＋f(n)\qquad \forall n > b
@@ -141,21 +141,50 @@ $$
 那么
 
 $$
-T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}) \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon}) \\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
+T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}) \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon})\\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
 $$
+
+需要注意的是，这里的第二种情况还需要满足 regularity condition, 即 $a f(n/b) \leq c f(n)$，for some constant $k < 1$ and sufficiently large $n$。
+
+证明思路是是将规模为 $n$ 的问题，分解为 $a$ 个规模为 $(\frac{n}{b})$ 的问题，然后依次合并，直到合并到最高层。每一次合并子问题，都需要花费 $f(n)$ 的时间。
+
+??? note "证明过程"
+    依据上文提到的证明思路，具体证明过程如下
+    
+    对于第 $0$ 层（最高层），合并子问题需要花费 $f(n)$ 的时间
+    
+    对于第 $1$ 层（第一次划分出来的子问题），共有 $a$ 个子问题，每个子问题合并需要花费 $f\left(\frac{n}{b}\right)$ 的时间，所以合并总共要花费 $a \left(\frac{n}{b}\right)$ 的时间。
+    
+    层层递推，我们可以写出类推树如下：![](./images/master-theorem-proof.svg)
+    
+    这棵树的高度为 ${\log_b n}$，共有 $n^{\log_b a}$ 个叶子，从而 $T(n) = \Theta(n^{\log_b a}) + g(n)$，其中 $g(n) = \sum_{j = 0}^{\log_{b}{n - 1}} a^{j} f(n / b^{j})$。
+    
+    针对于第一种情况：$f(n) = O(n^{\log_b a-\epsilon})$，因此 $g(n) = O(n^{\log_b a})$。
+    
+    对于第二种情况而言：首先 $g(n) = \Omega(f(n))$，又因为 $a f(\dfrac{n}{b}) \leq c f(n)$，只要 $c$ 的取值是一个足够小的正数，且 $n$ 的取值足够大，因此可以推导出：$g(n) = O(f(n)$)。两侧夹逼可以得出，$g(n) = \Theta(f(n))$。
+    
+    而对于第三种情况：$f(n) = \Theta(n^{\log_b a})$，因此 $g(n) = O(n^{\log_b a} {\log n})$。$T(n)$ 的结果可在 $g(n)$ 得出后显然得到。
+
+下面举几个例子来说明主定理如何使用。
+
+例如 $T(n) = 3 T\left(\frac{n}{2}\right)＋2n$，那么 $a=3, b=2, 1< {\log_2 3} <2$，那么 $\epsilon$ 可以取值为 $1$，从而满足第一种情况，所以 $T(n) = O(n^2)$。
+
+又例如 $T(n) = T\left(\frac{n}{2}\right) + 1$, 那么 $a=1, b=2, {\log_2 1} = 0$，那么 $\epsilon$ 可以取值为 $1$，从而满足第二种情况，所以 $T(n) = \Theta(n^2)$。
+
+再例如 $T(n) = T\left(\frac{n}{2}\right) + {\log n}$，那么 $a=1, b=2, {\log_2 1}=0$，那么 $k$ 可以取值为 $1$，从而满足第三种情况，所以 $T(n) = \Theta(\log n)$。
 
 ## 均摊复杂度
 
 算法往往是会对内存中的数据进行修改的，而同一个算法的多次执行，就会通过对数据的修改而互相影响。
 
-例如快速排序中的“按大小分类”操作，单次执行的最坏时间复杂度，看似是 $O(n)$ 的。
-但是由于快排的分治过程，先前的“分类”操作每次都减小了数组长度，所以实际的总复杂度 $O(n \log n)$，分摊在每一次“分类”操作上，是 $O(\log n)$。
+例如快速排序中的“按大小分类”操作，单次执行的最坏时间复杂度，看似是 $O(n)$ 的，但是由于快排的分治过程，先前的“分类”操作每次都减小了数组长度，所以实际的总复杂度 $O(n \log n)$，分摊在每一次“分类”操作上，是 $O(\log n)$。
 
 多次操作的总复杂度除以操作次数，就是这种操作的 **均摊复杂度**。
 
 ## 势能分析
 
 势能分析，是一种求均摊复杂度上界的方法。
+
 求均摊复杂度，关键是表达出先前操作对当前操作的影响。势能分析用一个函数来表达此种影响。
 
 定义“状态”$S$：即某一时刻的所有数据。*在快排的例子中，一个“状态”就是当前过程需要排序的下标区间*
@@ -182,7 +211,7 @@ $$
 
 因此，若 $p_i = O(T(n))$，则 $O(T(n))$ 是均摊复杂度的一个上界。
 
-势能分析使用中有很多技巧，案例在此不题。
+势能分析在实际应用中有很多技巧，在此不详细展开。
 
 ## 空间复杂度
 
@@ -190,4 +219,4 @@ $$
 
 ## 计算复杂性
 
-本文内容主要是从算法分析的角度对复杂度进行了介绍，如果有兴趣的话可以在 [计算复杂性](../misc/cc-basic.md) 进行更深入的了解。
+本文主要从算法分析的角度对复杂度进行了介绍，如果有兴趣的话可以在 [计算复杂性](../misc/cc-basic.md) 进行更深入的了解。

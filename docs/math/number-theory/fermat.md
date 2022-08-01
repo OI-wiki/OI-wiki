@@ -29,7 +29,10 @@ $$
 设 $f=(p-1)!$, 则 $f\equiv a\times A_1\times a\times A_2\times a \times A_3 \dots \times  A_{p-1} \pmod p$
 
 $$
-a^{p-1}\times f \equiv f \pmod p \\ 	a^{p-1} \equiv 1 \pmod p
+\begin{aligned}
+a^{p-1}\times f &\equiv f \pmod p \\
+a^{p-1} &\equiv 1 \pmod p
+\end{aligned}
 $$
 
 证毕。
