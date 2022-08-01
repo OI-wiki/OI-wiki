@@ -33,18 +33,18 @@ int work() {
 }
 
 int main() {
-  while (~scanf("%d %d", &n, &m)) {
-    memset(mp, 0, sizeof mp);
-    for (int i = 1; i <= m; ++i) {
-      int u, v;
-      scanf("%d %d", &u, &v);
-      mp[u][v] = mp[v][u] = 1;
-    }
-    int tmp = work();
-    if (tmp > 1000)
-      puts("Too many maximal sets of friends.");
-    else
-      printf("%d\n", tmp);
-  }
+//  while (~scanf("%d %d", &n, &m)) {
+//    memset(mp, 0, sizeof mp);
+//    for (int i = 1; i <= m; ++i) {
+//      int u, v;
+//      scanf("%d %d", &u, &v);
+//      mp[u][v] = mp[v][u] = 1;
+//    }
+//    int tmp = work();
+//    if (tmp > 1000)
+//      puts("Too many maximal sets of friends.");
+//    else
+//      printf("%d\n", tmp);
+//  }
   return 0;
 }

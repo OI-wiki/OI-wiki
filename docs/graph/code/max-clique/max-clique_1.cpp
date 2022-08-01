@@ -9,8 +9,8 @@ struct MaxClique {
   bool g[MAXN][MAXN];
   int n, dp[MAXN], st[MAXN][MAXN], ans;
 
-  //	dp[i]表示第i个点之后能组成的最大团的大小，
-  // 	st[i][j]表示算法中第i层dfs所需要的点的集合，保存有可能是最大团其中之一的点
+  // dp[i]表示第i个点之后能组成的最大团的大小，
+  // st[i][j]表示算法中第i层dfs所需要的点的集合，保存有可能是最大团其中之一的点
 
   void init(int n) {
     this->n = n;
@@ -59,17 +59,17 @@ struct MaxClique {
 } maxclique;
 
 int main() {
-  int n;
-  while (scanf("%d", &n), n) {
-    maxclique.init(n);
-    for (int i = 1; i <= n; i++) {
-      for (int j = 1; j <= n; j++) {
-        int x;
-        scanf("%d", &x);
-        maxclique.addedge(i, j, x);
-      }
-    }
-    printf("%d\n", maxclique.solver());
-  }
+//  int n;
+//  while (scanf("%d", &n), n) {
+//    maxclique.init(n);
+//    for (int i = 1; i <= n; i++) {
+//      for (int j = 1; j <= n; j++) {
+//        int x;
+//        scanf("%d", &x);
+//        maxclique.addedge(i, j, x);
+//      }
+//    }
+//    printf("%d\n", maxclique.solver());
+//  }
   return 0;
 }
