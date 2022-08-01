@@ -59,17 +59,17 @@ struct MaxClique {
 } maxclique;
 
 int main() {
-//  int n;
-//  while (scanf("%d", &n), n) {
-//    maxclique.init(n);
-//    for (int i = 1; i <= n; i++) {
-//      for (int j = 1; j <= n; j++) {
-//        int x;
-//        scanf("%d", &x);
-//        maxclique.addedge(i, j, x);
-//      }
-//    }
-//    printf("%d\n", maxclique.solver());
-//  }
+  // int n;
+  // while (scanf("%d", &n), n) {
+  //   maxclique.init(n);
+  //   for (int i = 1; i <= n; i++) {
+  //     for (int j = 1; j <= n; j++) {
+  //       int x;
+  //       scanf("%d", &x);
+  //       maxclique.addedge(i, j, x);
+  //     }
+  //   }
+  //   printf("%d\n", maxclique.solver());
+  // }
   return 0;
 }
