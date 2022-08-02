@@ -595,8 +595,7 @@ JDK 中的 `TreeMap` 和 `TreeSet` 都是使用红黑树作为底层数据结构
 
 下面的代码是用红黑树实现的 `Map`，即有序不可重映射：
 
-???
-
+??? note "完整代码"
     ```cpp
     /**
      * @file RBTreeMap.hpp
