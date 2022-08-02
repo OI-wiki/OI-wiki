@@ -4,7 +4,7 @@
 
 .github/config.yml  @Ir1d
 .github/pull_request_template.md    @Ir1d
-.github/workflows/build-pdf.yml	@Enter-tainer
+.github/workflows/build-pdf.yml	@Enter-tainer @shuzhouliu
 .github/workflows/build.yml @billchenchina
 .github/workflows/build-authors-cache.yml @Menci
 .github/workflows/celebration.yml   @ouuan
