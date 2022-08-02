@@ -76,6 +76,7 @@
 /math/pollard-rho /math/number-theory/pollard-rho
 /math/continued-fraction /math/number-theory/continued-fraction
 /math/pell-equation /math/number-theory/pell-equation
+/math/quick-pow /math/fast-power
 /misc/complexity /basic/complexity
 /math/sign /math/notation
 /graph/tree-misc /graph/tree-centroid
