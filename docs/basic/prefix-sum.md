@@ -1,6 +1,8 @@
 ## 前缀和
 
-前缀和是一种重要的预处理，能大大降低查询的时间复杂度。可以简单理解为“数列的前 $n$ 项的和”。[^note1]
+### 定义
+
+前缀和可以简单理解为「数列的前 $n$ 项的和」，是一种重要的预处理方式，能大大降低查询的时间复杂度。[^note1]
 
 C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cppreference.com/w/cpp/algorithm/partial_sum)，定义于头文件 `<numeric>` 中。
 
@@ -98,11 +100,13 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
 
 ## 差分
 
+### 解释
+
 差分是一种和前缀和相对的策略，可以当做是求和的逆运算。
 
 这种策略的定义是令 $b_i=\begin{cases}a_i-a_{i-1}\,&i \in[2,n] \\ a_1\,&i=1\end{cases}$
 
-简单性质：
+### 性质
 
 - $a_i$ 的值是 $b_i$ 的前缀和，即 $a_n=\sum\limits_{i=1}^nb_i$
 - 计算 $a_i$ 的前缀和 $sum=\sum\limits_{i=1}^na_i=\sum\limits_{i=1}^n\sum\limits_{j=1}^{i}b_j=\sum\limits_{i}^n(n-i+1)b_i$
