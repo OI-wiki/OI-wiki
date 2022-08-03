@@ -214,7 +214,7 @@ nav:
     - 位运算: math/bit.md
     - 平衡三进制: math/balanced-ternary.md
     - 高精度计算: math/bignum.md
-    - 快速幂: math/quick-pow.md
+    - 快速幂: math/binary-exponentiation.md
     - 坐标系: math/coordinate.md
     - 复数: math/complex.md
     - 数论:

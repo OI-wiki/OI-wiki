@@ -83,6 +83,7 @@
 /math/continued-fraction /math/number-theory/continued-fraction
 /math/pell-equation /math/number-theory/pell-equation
 /math/stern-brocot /math/number-theory/stern-brocot
+/math/quick-pow /math/binary-exponentiation
 /math/sign /math/notation
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut
