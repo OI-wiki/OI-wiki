@@ -13,8 +13,7 @@ struct node {  //定义块状链表
 char inits[(int)1e6 + 5];
 int llen, q;
 void readch(char& ch) {  //读入字符
-  do
-    ch = getchar();
+  do ch = getchar();
   while (!isalpha(ch));
 }
 void check(node* p) {  //判断，记得要分裂
