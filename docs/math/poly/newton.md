@@ -40,7 +40,7 @@ $$
 
 ## 例题
 
-### <span id="inv">[多项式求逆](../inv)</span>
+### [多项式求逆](../inv)
 
 设给定函数为 $h\left(x\right)$，有方程：
 
@@ -86,7 +86,7 @@ $$
 T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)
 $$
 
-### <span id="exp">[多项式 exp](../ln-exp)</span>
+### [多项式 exp](../ln-exp)
 
 设给定函数为 $h\left(x\right)$，有方程：
 

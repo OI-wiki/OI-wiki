@@ -1,62 +1,58 @@
 ## 关于 Python
 
-Python 是一种目前已在世界上广泛使用的解释型面向对象语言，非常适合用来测试算法片段和原型，也可以用来刷一些 OJ。
+Python 是一门已在世界上广泛使用的解释型语言。它提供了高效的高级数据结构，还能简单有效地面向对象编程，也可以在算法竞赛。
 
-### 为什么要学习 Python
+### Python 的优点
 
-- Python 是一种 **解释型** 语言：类似于 PHP 与 Perl，它在开发过程中无需编译，即开即用，跨平台兼容性好。
-- Python 是一种 **交互式** 语言：我们可以在命令行的提示符 `>>>` 后直接输入代码，这将使代码更易于调试。
-- Python 易读性强，且在世界广泛使用，从简单的输入输出到科学计算甚至于大型 Web 应用，都能够在使用过程中比其他语言 **更快获得支持**，**更快解决问题**，学习 Python 能为以后的学习和工作增加一项实用能力。
-- 哦，还有一个最重要的：它在各平台下的环境易于配置，并且目前市面上大部分流行的 Linux 发行版（甚至于 `NOI Linux`）中也大都 **内置** 了个版本比较旧的 Python，这意味着尽管我们无法用 Python 提交，但能真正在考场上使用它，让它成为我们的好帮手。
+- Python 是一门 **解释型** 语言：Python 不需要编译和链接，可以在一定程度上减少操作步骤。
+- Python 是一门 **交互式** 语言：Python 解释器实现了交互式操作，可以直接在终端输入并执行指令。
+- Python **易学易用**：Python 提供了大量的数据结构，也支持开发大型程序。
+- Python **兼容性强**：Python 同时支持 Windows、macOS 和 Unix 操作系统。
+- Python **实用性强**：从简单的输入输出到科学计算甚至于大型 WEB 应用，都可以写出适合的 Python 程序。
+- Python **程序简洁、易读**：Python 代码通常比实现同种功能的其他语言的代码短。
+- Python **支持拓展**：Python 会开发 C 语言程序（即 CPython），支持把 Python 解释器和用 C 语言开发的应用链接，用 Python 扩展和控制该应用。
 
-### 学习 Python 时需要注意的事项
+### 学习 Python 的注意事项
 
-- 目前的 Python 分为 Python 2 和 Python 3 两个版本，其中 Python 2 虽然 [几近废弃](https://pythonclock.org/)，但是仍被一些老旧系统和代码所使用。我们通常不能确定在考场上可以使用的版本。此处 **介绍较新版本的 Python**。但还是建议读者确认考场环境，了解一下 Python 2 的相关语法，并比较两者之间的差异。如果遇到 Python 2 的代码，可以尝试自带的 [`2to3`](https://docs.python.org/zh-cn/3/library/2to3.html) 工具将其转换为 Python 3 的代码。
-- Python 的设计理念和语法结构与 C++ 的差异还是比较大的，它隐藏了许多底层的细节，呈现出实用且优雅的风格，刚开始可能让 C++ 用户十分不适应，接触一段时间后用户可能又会喜欢上它的简洁，但再深入探究可能又会感到厌倦，这因人而异。
-- Python 是面向对象的语言，而算法竞赛中使用的 C++ 往往只是 C with STL，了解面向对象的思想有助于写出更 Pythonic 的代码并理解 Python 中的一些看起来奇怪的特性。
+- 目前主要使用的 Python 版本是 Python 3.7 及以上的版本，Python 2 和 Python 3.6 及以前的 Python 3 已经 [不被支持](https://devguide.python.org/versions/#unsupported-versions)，但仍被一些老旧系统与代码所使用。本文将 **介绍较新版本的 Python**。如果遇到 Python 2 代码，可以尝试 [`2to3`](https://docs.python.org/zh-cn/3/library/2to3.html) 程序将 Python 2 代码转换为 Python 3 代码。
+- Python 的设计理念和语法结构 **与一些其他语言的差异较大** ，隐藏了许多底层细节，所以呈现出实用而优雅的风格。
+- Python 是高度动态的解释型语言，因此其 **程序运行速度相对较慢**，尤其在使用其内置的 `for` 循环语句时。在使用 Python 时，应尽量使用 `filter`、`map` 等内置函数，或使用 [列表生成](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) 语法的手段来提高程序性能。
 
 ## 环境搭建
 
 ### Windows
 
-访问 <https://www.python.org/downloads/>，下载自己需要的版本并安装。
-另外为了方便，请务必勾选 `Add Python 3.x to PATH` 以确保将 Python 加入环境变量！
-如在如下的 Python 3.7.4 安装界面中，应该如图勾选最下一项复选框。
+访问 <https://www.python.org/downloads/> 下载自己需要的版本并安装。
+为了方便，请务必勾选复选框 `Add Python 3.x to PATH` 以将 Python 加入环境变量。
 
-![py3.7.4](./images/python1.png)
+如下图，在 Python 3.7.4 版本的安装界面中，应勾选最后一项复选框。
 
-安装完成后，你可以在开始菜单找到安装好的 Python。
+![](./images/python1.png)
 
-![start](./images/python2.png)
+安装完成后，可以在开始菜单找到安装好的 Python。
 
-此外，你还可以在命令提示符中运行 Python。
+![](./images/python2.png)
 
-正常启动后，它会先显示欢迎信息与版本信息以及版权声明，之后就会出现提示符 `>>>`，一般情况下如下所示：
+此外，可以在命令提示符中运行 Python。
+
+正常启动 Python 解释器后，它会先显示欢迎信息等内容，之后就会出现提示符 `>>>`，大致如下所示：
 
 ```console
-$ python3
-Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:54:40) [MSC v.1900 64 bit (AMD64)] on win32
+Python 3.10.1 (tags/v3.10.1:2cd268a, Dec  6 2021, 19:10:37) [MSC v.1929 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-这就是 Python 的 **IDLE**。
-
-???+ note "何谓 [**IDLE**](https://docs.python.org/zh-cn/3/glossary.html#term-idle)？"
-    Python 的 IDLE，「集成开发与学习环境」的英文缩写。是 Python 标准发行版附带的基本编程器和解释器环境。在其他 Python 发行版（如 Anaconda）中还包含 [IPython](https://ipython.org/)，[Spyder](https://www.spyder-ide.org/) 等更加先进的 IDE。
-
-此外，也可以在 Microsoft 商店 [免费获取 Python](https://www.microsoft.com/store/productId/9P7QFQMJRFP7)。
+此外，也可以在 Microsoft Store 中免费而快捷地获取 Python。
 
 ### macOS/Linux
 
-通常情况下，正如上文所说，大部分的 Linux 发行版中已经自带了 Python，如果只打算学学语法并无特别需求，一般情况下不用再另外安装。通常而言，在 Linux 终端中运行 `python2` 进入的是 Python 2，而运行 `python3` 进入的是 Python 3。
+通常情况下，大部分的 Linux 发行版中已经自带了 Python。如果只打算学习 Python 语法，并无其它开发需求，不必另外安装 Python。
 
-如果发行版自带 Python 版本过于老旧，可以自行下载编译最新版本 Python 源码，不过我们更推荐使用 venv、conda、Nix 等工具来管理 Python 工具链和 Python 软件包，创建隔离的虚拟环境，避免出现依赖问题。
+???+warning "注意"
+    在一些默认安装（指使用软件包管理器安装）Python 的系统（如 Unix 系统）中，应在终端中运行 `python3` 打开 Python 3 解释器。[^ref1]
 
-???+ note "运行 `python` 还是 `python3` ？"
-    根据 [Python 3 官方文档](https://docs.python.org/zh-cn/3/tutorial/interpreter.html) 的说法，在 Unix 系统中，Python 3.X 解释器 **默认安装**（指使用软件包管理器安装）后的执行文件并不一定叫作 `python`，以免与可能同时安装的 Python 2.X 冲突。同样的，默认安装的 pip 软件也是类似的情况，Python 3 包管理器的文件名为 `pip3`。`python` 这个名字指向 `python2` 还是 `python3` 则视系统和系统版本确定。所以，当使用 Python 3 有关的时，请使用 `python3` 和 `pip3` 以确保准确，同理，Python 2 最好使用 `python2` 和 `pip2`。
-
-### 运行程序
+如果发行版自带 Python 版本过旧，可自行下载编译最新版本的 Python。此外，也可以通过 venv、conda、Nix 等工具管理 Python 工具链和 Python 软件包，创建隔离的虚拟环境，避免出现依赖问题。
 
 作为一种解释型语言，Python 的执行方式和 C++ 有所不同，这种差异在使用 IDE 编程时往往得不到体现，因此这里需要强调一下运行程序的不同方式。
 
@@ -64,38 +60,32 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 但若要编写完整的程序，你最好还是新建一个文本文件（通常后缀为 `.py`），然后在命令行中执行 `python3 filename.py`，就能够运行代码看到结果了。
 
-### 关于镜像和 pip
+### 通过镜像下载安装文件
 
-目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学](https://mirror.bjtu.edu.cn/python/)、[华为开源镜像站](https://mirrors.huaweicloud.com/python/) 和 [淘宝开源镜像站](https://npm.taobao.org/mirrors/python/) 在做，如果有下载问题的话可以到那里尝试一下。
+目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学自由与开源软件镜像站](https://mirror.bjtu.edu.cn/python/) 和 [华为开源镜像站](https://repo.huaweicloud.com/python/)，可以到那里尝试下载 Python 安装文件。
 
-如果还有使用 pip 安装其他模块的需求，请参照 [TUNA 的镜像更换帮助](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/)。
+## 使用 `pip` 安装第三方库
 
-???+ note "[**pip**](https://pypi.org/project/pip/) 是什么？"
-    Python 的生命力很大程度上来自于丰富的第三方库，编写一些实用程序时「调库」是常规操作，而 pip 就是 Python 用来安装第三方 Python 库的默认包管理器。它的功能很强大，能够处理版本依赖关系，还能通过 wheel 文件支持二进制安装。pip 的库现在托管在 [PyPI](https://pypi.org)（即「Python 包索引」）平台上，用户也可以指定第三方的包托管平台。
+Python 的生命力很大程度上来自于丰富的第三方库，编写一些实用程序时「调库」是常规操作，`pip` 是首选的安装第三方库的程序。自 Python 3.4 版本起，它被默认包含在 Python 二进制安装程序中。
 
-关于 PyPI 的镜像，可以使用如下大镜像站的资源：
-
-- [清华大学 TUNA 镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/)
-- [中国科学技术大学镜像站](http://mirrors.ustc.edu.cn/help/pypi.html)
-- [豆瓣的 PyPI 源](https://pypi.douban.com/simple)
-- [华为开源镜像站](https://mirrors.huaweicloud.com/)
-- 针对教育网内的镜像站，您可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上查看更多详情。
+`pip` 中的第三方库主要存储在 [Python 包索引（PyPI）](https://pypi.org/) 上，用户也可以指定其它第三方库的托管平台。使用方法可参照 [pypi 镜像使用帮助 - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/)、[PyPI 镜像源使用帮助 — 中国科学技术大学镜像站](http://mirrors.ustc.edu.cn/help/pypi.html) 等使用帮助。你可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上获取更多 PyPI 镜像源。
 
 ## 基本语法
 
-Python 以其简洁易懂的语法而出名，它的文档也是非常友好，这里仅介绍一些对 OIer 比较实用的语言特性，如果你看完本教程后仍有疑惑，我们强烈建议通读一遍其官网的 [Python 教程](https://docs.python.org/zh-cn/3/tutorial/index.html)。
+Python 的语法简洁而易懂，也有许多官方和第三方文档与教程。这里仅介绍一些对 OIer 比较实用的语言特性，你可以在 [Python 文档](https://docs.python.org/zh-cn/3/) 和 [Python Wiki](https://wiki.python.org/moin/) 等网页上了解更多关于 Python 的教程。
 
-### 关于注释
+### 注释
 
-鉴于后文中会高频用到注释，我们先来了解一下注释的语法。
+
+加入注释并不会对代码的运行产生影响，但加入注释可以使代码更加易懂易用。
 
 ```python
 # 用 # 字符开头的是单行注释
 
-""" 跨多行字符串会用三个引号
-    包裹，但也常被用来做多
-    行注释. (NOTE: 在字符串中
-    不会考虑缩进问题)
+"""
+跨多行字符串会用三引号（即三
+个单引号或三个双引号）包裹，
+但也通常被用于注释
 """
 ```
 
@@ -107,7 +97,7 @@ Python 以其简洁易懂的语法而出名，它的文档也是非常友好，�
 
 在 Python 中，你无需事先声明变量名及其类型，直接赋值即可创建各种类型的变量：
 
-```python3
+```console
 >>> x = -3  # 语句结尾不用加分号
 >>> x
 -3
@@ -183,7 +173,7 @@ True
 
 特别地，Python 用 `**` 即可进行幂运算，还通过内置的 `pow(a, b, mod)` 提供了 [快速幂](../math/quick-pow.md) 的高效实现。
 
-同时 Python 还提供大整数支持，但是浮点数与 C/C++ 一样存在误差。
+Python 中，还可以使用 `**` 运算符和内置的 `pow(base, exp, mod=None)` 函数进行幂运算，使用 `abs(x)` 求数的绝对值。
 
 ```python3
 >>> 3 ** 4 # 幂运算
@@ -395,10 +385,12 @@ array([[0., 0., 0.],
 >>> a1[0, 0] = 1 # 更友好的语法
 >>> a1.shape # 数组的形状
 (3, 3)
+
 >>> a1[:2, :2] # 取前两行、前两列构成的子阵，无拷贝
 array([[1, 0],
        [0, 0]])
->>> a1[0, 2] # 获取第1和3列，无拷贝
+
+>>> a1[0, 2] # 获取第 1、3 列，无拷贝
 array([[1, 0],
        [0, 0],
        [0, 0]])
@@ -406,11 +398,12 @@ array([[1, 0],
 1
 >>> a1.flatten() # 将数组展平
 array([1, 0, 0, 0, 0, 0, 0, 0, 0])
->>> np.sort(a1, axis=1) # 沿行方向对数组进行排序，返回排序结果
+
+>>> np.sort(a1, axis = 1) # 沿行方向对数组进行排序，返回排序结果
 array([[0, 0, 1],
        [0, 0, 0],
        [0, 0, 0]])
->>> a1.sort(axis=1) # 沿行方向对数组进行原地排序
+>>> a1.sort(axis = 1) # 沿行方向对数组进行原地排序
 ```
 
 #### 使用 `array`
@@ -424,7 +417,7 @@ array([[0, 0, 1],
 Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成，`print()` 的用法十分符合直觉：
 
 ```python
->>> a = [1,2,3]; print(a[-1])  # 默认末尾换行
+>>> a = [1,2,3]; print(a[-1])  # 打印时默认末尾换行
 3
 >>> print(ans[0], ans[1])  # 可以输出任意多个变量，默认以空格间隔
 1 2
@@ -546,7 +539,7 @@ if 4 >= 3 > 2 and 3 != 5 == 5 != 7:
 
 #### 异常处理
 
-尽管 C++ 中有 [try 块](https://zh.cppreference.com/w/cpp/language/try_catch) 用于异常处理，但竞赛中一般从不使用，而 Python 更推荐 [EAFP](https://docs.python.org/zh-cn/3/glossary.html#term-eafp) 风格，故而代码中使用 [`try-except`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-try-statement) 语句是常见做法，在后文介绍 `dict` 这一结构时还会用到，这里展示：
+尽管 C++ 中有 [try 块](https://zh.cppreference.com/w/cpp/language/try_catch) 用于异常处理，但竞赛中一般从不使用，而 Python 中常见的是 [EAFP](https://docs.python.org/zh-cn/3/glossary.html#term-eafp) 风格，故而代码中可能大量使用 [`try-except`](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#the-try-statement) 语句，在后文介绍 `dict` 这一结构时还会用到，这里展示：
 
 ```python
 s = "OI-wiki"
@@ -617,7 +610,7 @@ else:
 
 # 经典场景 统计出现次数 
 # 新键不存在于原字典，需要额外处理
-try:  # EAFP(Easier to Ask for Forgiveness than Permission) 风格
+try:  # EAFP (Easier to Ask for Forgiveness than Permission) 风格
     cnter[key] += 1
 except KeyError:
     cnter[key] = 1
@@ -694,11 +687,14 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
 
 Python 3.5 后引入了类型标注，允许设置函数参数和返回值的类型，但只是作为提示，并没有实际的限制作用，需要静态检查工具才能排除这类错误（例如 [PyCharm](https://www.jetbrains.com/pycharm/) 和 [Mypy](http://mypy-lang.org/)），所以显得有些鸡肋，对于 OIer 来说更是只需了解，可按如下方式对函数的参数和返回值设置类型标注：
 
-```python
-import math
+def headline(
+    text,           # type: str
+    width = 80,       # type: int
+    fill_char = "-",  # type: str
+):                  # type: (...) -> str
+    return f" {text.title()} ".center(width, fill_char)
 
-def circumference(radius: float) -> float:
-    return 2 * math.pi * radius
+print(headline("type comments work", width = 40))
 ```
 
 除了函数参数，变量也是可以类型标注的，你可以通过调用 `__annotations__` 来查看函数中所有的类型标注。变量类型标注赋予了 Python 静态语言的性质，即声明与赋值分离：
@@ -727,53 +723,51 @@ NameError: name 'nothing' is not defined
 以下是使用 `lru_cache` 优化计算斐波那契数列的例子：
 
 ```python
-@lru_cache(maxsize=None)
+@lru_cache(maxsize = None)
 def fib(n):
     if n < 2:
         return n
-    return fib(n-1) + fib(n-2)
+    return fib(n - 1) + fib(n - 2)
 ```
 
 ## 常用内置库
 
 在这里介绍一些写算法可能用得到的内置库，具体用法可以自行搜索或者阅读 [官方文档](https://docs.python.org/3/library/index.html)。
 
-| 包名                                                                  | 用途               |
-| ------------------------------------------------------------------- | ---------------- |
-| [`array`](https://docs.python.org/3/library/array.html)             | 定长数组             |
-| [`argparse`](https://docs.python.org/3/library/argparse.html)       | 命令行参数处理          |
-| [`bisect`](https://docs.python.org/3/library/bisect.html)           | 二分查找             |
-| [`collections`](https://docs.python.org/3/library/collections.html) | 提供有序字典、双端队列等数据结构 |
-| [`fractions`](https://docs.python.org/3/library/fractions.html)     | 有理数              |
-| [`heapq`](https://docs.python.org/3/library/heapq.html)             | 基于堆的优先级队列        |
-| [`io`](https://docs.python.org/3/library/io.html)                   | 文件流、内存流          |
-| [`itertools`](https://docs.python.org/3/library/itertools.html)     | 迭代器相关            |
-| [`math`](https://docs.python.org/3/library/math.html)               | 常用数学函数           |
-| [`os.path`](https://docs.python.org/3/library/os.html)              | 系统路径相关           |
-| [`random`](https://docs.python.org/3/library/random.html)           | 随机数              |
-| [`re`](https://docs.python.org/3/library/re.html)                   | 正则表达式            |
-| [`struct`](https://docs.python.org/3/library/struct.html)           | 转换结构体和二进制数据      |
-| [`sys`](https://docs.python.org/3/library/sys.html)                 | 系统信息             |
+| 库名 | 用途 |
+| ---- | ---- |
+| [`array`](https://docs.python.org/3/library/array.html) | 定长数组 |
+| [`argparse`](https://docs.python.org/3/library/argparse.html) | 命令行参数处理 |
+| [`bisect`](https://docs.python.org/3/library/bisect.html) | 二分查找 |
+| [`collections`](https://docs.python.org/3/library/collections.html) | 有序字典、双端队列等数据结构 |
+| [`fractions`](https://docs.python.org/3/library/fractions.html) | 有理数 |
+| [`heapq`](https://docs.python.org/3/library/heapq.html) | 基于堆的优先级队列 |
+| [`io`](https://docs.python.org/3/library/io.html) | 文件流、内存流 |
+| [`itertools`](https://docs.python.org/3/library/itertools.html) | 迭代器 |
+| [`math`](https://docs.python.org/3/library/math.html) | 数学函数 |
+| [`os.path`](https://docs.python.org/3/library/os.html) | 系统路径等 |
+| [`random`](https://docs.python.org/3/library/random.html) | 随机数 |
+| [`re`](https://docs.python.org/3/library/re.html) | 正则表达式 |
+| [`struct`](https://docs.python.org/3/library/struct.html) | 转换结构体和二进制数据 |
+| [`sys`](https://docs.python.org/3/library/sys.html) | 系统信息 |
 
-## 对比 C++ 与 Python
+## 从例题对比 C++ 与 Python
 
-相信大部分算法竞赛选手已经熟练掌握了 C++98 的语法。接下来我们展示一下 Python 语法的一些应用。
 
-接下来的例子是 [Luogu P4779「【模板】单源最短路径（标准版）」](https://www.luogu.com.cn/problem/P4779) 的代码。我们将 C++ 代码与 Python 代码做出对比：
+??? note "[例题 洛谷 P4779 【模板】单源最短路径（标准版）](https://www.luogu.com.cn/problem/P4779)"
+    给定一个 $n(1 \leq n \leq 10^5)$ 个点、$m(1 \leq m \leq 2\times 10^5)$ 条有向边的带非负权图，请你计算从 $s$ 出发，到每个点的距离。数据保证能从 $s$ 出发到任意点。
 
-从声明一些常量开始：
-
-C++：
+### 声明常量
 
 ```cpp
+// C++ Code
 #include <bits/stdc++.h>
 using namespace std;
 const int N = 1e5 + 5, M = 2e5 + 5;
 ```
 
-Python：
-
-```python3
+```python
+# Python Code
 try: # 引入优先队列模块
     import Queue as pq #python version < 3.0
 except ImportError:
@@ -784,11 +778,10 @@ M = int(2e5 + 5)
 INF = 0x3f3f3f3f
 ```
 
-然后是声明前向星结构体和一些其他变量。
-
-C++：
+### 声明前向星结构体和其它变量
 
 ```cpp
+// C++ Code
 struct qxx {
   int nex, t, v;
 };
@@ -803,9 +796,8 @@ priority_queue<pii, vector<pii>, greater<pii>> q;
 int dist[N];
 ```
 
-Python：
-
 ```python
+# Python Code
 class qxx:  # 前向星类（结构体）
     def __init__(self):
         self.nex = 0
@@ -820,7 +812,7 @@ dist = [INF for i in range(N)]
 q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
 
 def add_path(f, t, v):  # 在前向星中加边
-    # 如果要修改全局变量，要使用global来声明
+    # 如果要修改全局变量，要使用 global 来声明
     global cnt, e, h
     # 调试时的输出语句，多个变量使用元组
     # print("add_path(%d,%d,%d)" % (f,t,v))
@@ -831,11 +823,10 @@ def add_path(f, t, v):  # 在前向星中加边
     h[f] = cnt
 ```
 
-然后是求解最短路的 Dijkstra 算法代码：
-
-C++：
+### Dijkstra 算法
 
 ```cpp
+// C++ Code
 void dijkstra(int s) {
   memset(dist, 0x3f, sizeof(dist));
   dist[s] = 0, q.push(make_pair(0, s));
@@ -853,10 +844,9 @@ void dijkstra(int s) {
 }
 ```
 
-Python：
-
 ```python
-def nextedgeid(u):  # 生成器，可以用在for循环里
+# Python Code
+def nextedgeid(u):  # 生成器，可以用在 for 循环里
     i = h[u]
     while i:
         yield i
@@ -867,7 +857,7 @@ def dijkstra(s):
     dist[s] = 0
     q.put((0, s))
     while not q.empty():
-        u = q.get()  # get函数会顺便删除堆中对应的元素
+        u = q.get()  # get 函数会顺便删除堆中对应的元素
         if dist[u[1]] < u[0]:
             continue
         for i in nextedgeid(u[1]):
@@ -879,11 +869,10 @@ def dijkstra(s):
             q.put((dist[v], v))
 ```
 
-最后是主函数部分
-
-C++：
+### 主函数
 
 ```cpp
+// C++ Code
 int n, m, s;
 
 int main() {
@@ -899,10 +888,8 @@ int main() {
 }
 ```
 
-Python：
-
 ```python
-# 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
+# Python Code
 if __name__ == '__main__':
     # 一行读入多个整数。注意它会把整行都读进来
     n, m, s = map(int, input().split())
@@ -912,12 +899,10 @@ if __name__ == '__main__':
 
     dijkstra(s)
 
-    for i in range(1, n+1):
-        # 两种输出语法都是可以用的
-        print("{}".format(dist[i]), end=' ')
-        # print("%d" % dist[i],end=' ')
+    for i in range(1, n + 1):
+        print(dist[i], end = ' ')
 
-    print()  # 结尾换行
+    print()
 ```
 
 完整的代码如下：
@@ -973,11 +958,75 @@ if __name__ == '__main__':
     ```
 
 ??? note "Python"
-    ```python3
+    ```python
     try:  # 引入优先队列模块
         import Queue as pq  # python version < 3.0
     except ImportError:
         import queue as pq  # python3.*
+    
+    N = int(1e5+5)
+    M = int(2e5+5)
+    INF = 0x3f3f3f3f
+    
+    class qxx:  # 前向星类（结构体）
+        def __init__(self):
+            self.nex = 0
+            self.t = 0
+            self.v = 0
+    
+    e = [qxx() for i in range(M)]  # 链表
+    h = [0 for i in range(N)]
+    cnt = 0
+    
+    dist = [INF for i in range(N)]
+    q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
+    
+    def add_path(f, t, v):  # 在前向星中加边
+        # 如果要修改全局变量，要使用 global 来声名
+        global cnt, e, h
+        # 调试时的输出语句，多个变量使用元组
+        # print("add_path(%d,%d,%d)" % (f,t,v))
+        cnt += 1
+        e[cnt].nex = h[f]
+        e[cnt].t = t
+        e[cnt].v = v
+        h[f] = cnt
+    
+    def nextedgeid(u):  # 生成器，可以用在 for 循环里
+        i = h[u]
+        while i:
+            yield i
+            i = e[i].nex
+    
+    def dijkstra(s):
+        dist[s] = 0
+        q.put((0, s))
+        while not q.empty():
+            u = q.get()
+            if dist[u[1]] < u[0]:
+                continue
+            for i in nextedgeid(u[1]):
+                v = e[i].t
+                w = e[i].v
+                if dist[v] <= dist[u[1]]+w:
+                    continue
+                dist[v] = dist[u[1]]+w
+                q.put((dist[v], v))
+    
+    
+    if __name__ == '__main__':
+        # 一行读入多个整数。注意它会把整行都读进来
+        n, m, s = map(int, input().split())
+        for i in range(m):
+            u, v, w = map(int, input().split())
+            add_path(u, v, w)
+    
+        dijkstra(s)
+    
+        for i in range(1, n + 1):
+            print(dist[i], end = ' ')
+    
+        print()  # 结尾换行
     ```
 
 ```python
@@ -1055,5 +1104,10 @@ if __name__ == '__main__':
 3. Learn Python3 In Y Minutes，<https://learnxinyminutes.com/docs/python3/>
 4. Real Python Tutorials，<https://realpython.com/>
 5. 廖雪峰的 Python 教程，<https://www.liaoxuefeng.com/wiki/1016959663602400/>
-6. GeeksforGeeks: Python Tutorials，<https://www.geeksforgeeks.org/python-programming-language/>
-7. Python 最佳实践指南，<https://pythonguidecn.readthedocs.io/zh/latest/writing/gotchas.html>
+6. GeeksforGeeks: Python Tutorials,<https://www.geeksforgeeks.org/python-programming-language/>
+
+## 参考资料和注释
+
+[^ref1]: [2. Python 解释器 — Python 3 文档](https://docs.python.org/zh-cn/3/tutorial/interpreter.html#id1)
+
+[^ref2]: [Unicode 指南 — Python 3 文档](https://docs.python.org/zh-cn/3/howto/unicode.html#the-string-type)

@@ -212,7 +212,7 @@ nav:
     - 符号: math/notation.md
     - 复数: math/complex.md
     - 位运算: math/bit.md
-    - 快速幂: math/quick-pow.md
+    - 快速幂: math/binary-exponentiation.md
     - 进位制: math/base.md
     - 高精度计算: math/bignum.md
     - 平衡三进制: math/balanced-ternary.md
@@ -243,11 +243,12 @@ nav:
       - Powerful Number 筛: math/number-theory/powerful-number.md
       - Min_25 筛: math/number-theory/min-25.md
       - 洲阁筛: math/number-theory/zhou.md
+      - 二次域: math/number-theory/quadratic.md
       - 连分数: math/number-theory/continued-fraction.md
       - Stern-Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - Pell 方程: math/number-theory/pell-equation.md
-    - 多项式:
-      - 多项式部分简介: math/poly/intro.md
+    - 多项式与生成函数:
+      - 简介: math/poly/intro.md
       - 代数基本定理: math/poly/fundamental.md
       - 拉格朗日插值: math/poly/lagrange.md
       - 快速傅里叶变换: math/poly/fft.md
@@ -265,13 +266,12 @@ nav:
       - 多项式反三角函数: math/poly/inv-tri-func.md
       - 常系数齐次线性递推: math/linear-recurrence.md
       - 多项式平移|连续点值平移: math/poly/shift.md
-    - 生成函数:
-      - 生成函数简介: math/gen-func/intro.md
-      - 符号化方法: math/gen-func/symbolic-method.md
-      - 普通生成函数: math/gen-func/ogf.md
-      - 指数生成函数: math/gen-func/egf.md
-      - 狄利克雷生成函数: math/gen-func/dgf.md
+      - 符号化方法: math/poly/symbolic-method.md
+      - 普通生成函数: math/poly/ogf.md
+      - 指数生成函数: math/poly/egf.md
+      - 狄利克雷生成函数: math/poly/dgf.md
     - 线性代数:
+      - 线性代数简介: math/linear-algebra-index.md
       - 向量: math/vector.md
       - 矩阵: math/matrix.md
       - 高斯消元: math/gauss.md
@@ -294,7 +294,12 @@ nav:
     - 群论:
       - 群论简介:  math/group-theory.md
       - 置换群: math/permutation-group.md
-    - 概率初步: math/expectation.md
+    - 概率论:
+      - 快速上手: math/expectation.md
+      - 基本概念: math/probability/basic-conception.md
+      - 条件概率与独立性: math/probability/conditional-probability.md
+      - 随机变量: math/probability/random-variable.md
+      - 随机变量的数字特征: math/probability/exp-var.md
     - 斐波那契数列: math/fibonacci.md
     - 博弈论: 
       - 博弈论简介: math/game-theory/intro.md
@@ -542,7 +547,7 @@ markdown_extensions:
   - footnotes
   - meta
   - toc:
-      permalink: true
+      permalink: ""
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.caret

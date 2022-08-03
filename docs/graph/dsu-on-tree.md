@@ -201,6 +201,8 @@ void merge(int x, int y) {
 
 [UOJ284 快乐游戏鸡](https://uoj.ac/problem/284)
 
+[CF1709E XOR Tree](https://codeforces.com/contest/1709/problem/E)
+
 ### 参考资料/扩展阅读
 
 [CF741D 作者介绍的 dsu on tree](http://codeforces.com/blog/entry/44351)
