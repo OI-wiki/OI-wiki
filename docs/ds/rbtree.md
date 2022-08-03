@@ -250,7 +250,7 @@ return;
 
 ### 删除操作
 
-红黑树的删除操作情况繁多，较为复杂。这部分内容主要通过代码示例来进行讲解。大多数红黑树的实现选择将节点的删除以及删除之后的维护写在同一个函数或逻辑块中（例如 [Wikipedia](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) 给出的 [代码示例](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal_of_a_black_non-root_leaf)，[linux 内核中的 rbtree][https://github.com/torvalds/linux/blob/master/lib/rbtree.c]以及 GNU libstdc++ 中的 [`std::_Rb_tree`](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/bits/stl_tree.h) 都使用了类似的写法）。笔者则认为这种实现方式并不利于对算法本身的理解，因此，本文给出的示例代码参考了 OpenJDK 中 [`TreeMap`](https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/TreeMap.java) 的实现，将删除操作本身与删除后的平衡维护操作解耦成两个独立的函数，并对这两部分的逻辑单独进行分析。
+红黑树的删除操作情况繁多，较为复杂。这部分内容主要通过代码示例来进行讲解。大多数红黑树的实现选择将节点的删除以及删除之后的维护写在同一个函数或逻辑块中（例如 [Wikipedia](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) 给出的 [代码示例](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Removal_of_a_black_non-root_leaf)，[linux 内核中的 rbtree](https://github.com/torvalds/linux/blob/master/lib/rbtree.c) 以及 GNU libstdc++ 中的 [`std::_Rb_tree`](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/bits/stl_tree.h) 都使用了类似的写法）。笔者则认为这种实现方式并不利于对算法本身的理解，因此，本文给出的示例代码参考了 OpenJDK 中 [`TreeMap`](https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/TreeMap.java) 的实现，将删除操作本身与删除后的平衡维护操作解耦成两个独立的函数，并对这两部分的逻辑单独进行分析。
 
 #### Case 0
 
