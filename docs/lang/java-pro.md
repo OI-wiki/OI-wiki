@@ -894,7 +894,7 @@ Map<Integer, Integer> map2 = new LinkedHashMap<>();
 
 #### TreeMap
 
-保持 `key` 有序的 `Map` ，默认升序。
+保持 `key` 有序的 `Map`，默认升序。
 
 ##### 初始化
 
