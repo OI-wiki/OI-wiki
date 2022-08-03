@@ -427,8 +427,8 @@ public class Main {
 1. `Integer` 是 `int` 的包装类，`int` 则是 `Java` 的一种基本类型数据。
 2. `Integer` 类型实例后才能使用，而 `int` 类型不需要。
 3. `Integer` 实际对应的引用，当 `new` 一个 `Integer` 时，实际上生成了一个对象，而 `int` 则是直接存储数据。
-4. `Integer` 的默认值是 `null` ，可接受 `null` 和 `int` 类型的数据， `int`默认值是 `0` ，不能接受 `null` 类型的数据。
-5. `Integer` 判定二个变量是否相同使用 `==` 可能会导致不正确的结果, 因此只能使用 `equals()`,而 `int` 可以直接使用 `==`。
+4. `Integer` 的默认值是 `null`，可接受 `null` 和 `int` 类型的数据， `int` 默认值是 `0`，不能接受 `null` 类型的数据。
+5. `Integer` 判定二个变量是否相同使用 `==` 可能会导致不正确的结果，因此只能使用 `equals()`，而 `int` 可以直接使用 `==`。
 
 ## 继承
 
@@ -511,7 +511,7 @@ List<Integer> list1 = new LinkedList<>();
 
 #### ArrayList
 
-`ArrayList` 是支持可以根据需求动态生长的数组，初始长度默认为10，如果超出当前长度便扩容 $\dfrac{3}{2}$。
+`ArrayList` 是支持可以根据需求动态生长的数组，初始长度默认为 10，如果超出当前长度便扩容 $\dfrac{3}{2}$。
 
 ##### 初始化
 
@@ -747,10 +747,10 @@ public class Main {
     static Queue<Integer> q2 = new PriorityQueue<>();
 
     static void test() {
-        while (!q1.isEmpty()) {//复杂度为o(n)
+        while (!q1.isEmpty()) {//复杂度为 o(n)
             out.println(q1.poll());
         }
-        while (!q2.isEmpty()) {//复杂度为o(nlogn)
+        while (!q2.isEmpty()) {//复杂度为 o(nlogn)
             out.println(q2.poll());
         }
     }
@@ -800,11 +800,11 @@ Set<Integer> s4 = new TreeSet<>((x,y)->{return y-x;});//降序
 |         函数名          |               功能               |
 |:-----------------------:|:--------------------------------:|
 |         size()          |         返回 this 的长度         |
-|    add(Integer val)     |        插入一个元素进this        |
-|  contains(Integer val)  |     判断this中是否有元素val      |
-|  addAll(Collection e)   | 将一个容器里的所有元素添加进this |
-| retainAll(Collection e) |  将this改为两个容器内相同的元素  |
-| removeAll(Collection e) |    将this中与e相同的元素删除     |
+|    add(Integer val)     |        插入一个元素进 this        |
+|  contains(Integer val)  |     判断 this 中是否有元素 val      |
+|  addAll(Collection e)   | 将一个容器里的所有元素添加进 this |
+| retainAll(Collection e) |  将 this 改为两个容器内相同的元素  |
+| removeAll(Collection e) |    将 this 中与 e 相同的元素删除     |
 
 使用案例：求并集、交集、差集。
 
@@ -823,17 +823,17 @@ public class Main {
         s1.add(1);
     }
 
-    static void contains() {//判断set中是否有元素值为2，有则返回true，否则返回false
+    static void contains() {//判断 set 中是否有元素值为 2，有则返回 true，否则返回 false
         s1.contains(2);
     }
 
-    static void test1() {//s1与s2的并集
+    static void test1() {//s1 与 s2 的并集
         Set<Integer> res = new HashSet<>();
         res.addAll(s1);
         res.addAll(s2);
     }
 
-    static void test2() {//s1与s2的交集
+    static void test2() {//s1 与 s2 的交集
         Set<Integer> res = new HashSet<>();
         res.addAll(s1);
         res.retainAll(s2);
@@ -847,7 +847,7 @@ public class Main {
 }
 ```
 
-#### 遍历Set
+#### 遍历 Set
 
 ```java
 import java.io.PrintWriter;
@@ -903,17 +903,17 @@ Map<Integer, Integer> map3 = new TreeMap<>();
 Map<Integer, Integer> map4 = new TreeMap<>((x,y)->{return y-x;});//降序
 ```
 
-#### Map常用方法
+#### Map 常用方法
 
 以下均用 `this` 代替当前 `Map<Integer, Integer>` :
 
 |             函数名             |               功能                |
 |:------------------------------:|:---------------------------------:|
-| put(Integer key,Integer value) |        插入一个元素进this         |
-|             size()             |          返回this的长度           |
-|    containsKey(Integer val)    |   判断this中是否有元素key为val    |
-|        get(Integer key)        |   将this中对应的key的value返回    |
-|             keySet             | 将this中所有元素的key作为集合返回 |
+| put(Integer key,Integer value) |        插入一个元素进 this         |
+|             size()             |          返回 this 的长度           |
+|    containsKey(Integer val)    |   判断 this 中是否有元素 key 为 val    |
+|        get(Integer key)        |   将 this 中对应的 key 的 value 返回    |
+|             keySet             | 将 this 中所有元素的key作为集合返回 |
 
 使用案例:
 
@@ -932,13 +932,13 @@ public class Main {
     static Map<Integer, Integer> map3 = new TreeMap<>();
     static Map<Integer, Integer> map4 = new TreeMap<>((x,y)->{return y-x;});
 
-    static void put(){//将key为1，value为1的元素返回
+    static void put(){//将 key 为 1、value 为 1 的元素返回
         map1.put(1, 1);
     }
-    static void get(){//将key为1的value返回
+    static void get(){//将 key 为 1 的 value 返回
         map1.get(1);
     }
-    static void containsKey(){//判断是否有key为1的键值对
+    static void containsKey(){//判断是否有 key 为 1 的键值对
         map1.containsKey(1);
     }
     static void KeySet(){
@@ -967,7 +967,7 @@ public class Main {
 }
 ```
 
-当然，在面向对象的世界里，你的参数是什么都可以，包括Collection与自定义类型。
+当然，在面向对象的世界里，你的参数是什么都可以，包括 `Collection` 与自定义类型。
 
 例如 `Map` 也可以定义为：
 
@@ -1009,7 +1009,7 @@ public class Main {
                 return o2 - o1;
             }
         });
-        //由于java8后有lambda表达式，第三个重载及第四个重载亦可写为
+        //由于 Java 8 后有 lambda 表达式，第三个重载及第四个重载亦可写为
         Arrays.sort(b, (x, y) -> {\\5
             return y - x;
         });
@@ -1022,17 +1022,17 @@ public class Main {
 
 **序号所对应的重载方法含义：**
 
-1. 对数组a进行排序，默认升序。
-2. 对数组a的指定位置进行排序，默认升序，排序区间为左开右闭 `[firstIdx, lastIdx)` 。
-3. 对数组a以自定义的形式排序，第二个参数`-`第一个参数为降序,第一个参数`-`第二个参数为升序，当自定义排序比较器时，数组元素类型必须为对象类型。
-4. 对数组a的指定位置进行自定义排序，排序区间为左开右闭 `[firstIdx, lastIdx)` ，当自定义排序比较器时，数组元素类型必须为对象类型。
-5. 和3同理，用lambda表达式优化了代码长度。
-6. 和4同理，用lambda表达式优化了代码长度。
+1. 对数组 a 进行排序，默认升序。
+2. 对数组 a 的指定位置进行排序，默认升序，排序区间为左开右闭 `[firstIdx, lastIdx)` 。
+3. 对数组 a 以自定义的形式排序，第二个参数 `-` 第一个参数为降序,第一个参数 `-` 第二个参数为升序，当自定义排序比较器时，数组元素类型必须为对象类型。
+4. 对数组 a 的指定位置进行自定义排序，排序区间为左开右闭 `[firstIdx, lastIdx)` ，当自定义排序比较器时，数组元素类型必须为对象类型。
+5. 和 3 同理，用 lambda 表达式优化了代码长度。
+6. 和 4 同理，用 lambda 表达式优化了代码长度。
 
 **Arrays.sort()底层函数：**
 
-1. 当你 `Arrays.sort` 的参数数组元素类型为基本数据类型时 `(byte、short、char、int、long、double、float)` 时，默认为 `DualPivotQuicksort` (双轴快排),复杂度最坏可以达到$O(n^2)$。
-2. 当你 `Arrays.sort` 的参数数组元素类型为非基本数据类型时），则默认为 `legacyMergeSort` 和 `TimSort` (归并排序）,复杂度为$O(nlog_n)$。
+1. 当你 `Arrays.sort` 的参数数组元素类型为基本数据类型时 `(byte、short、char、int、long、double、float)` 时，默认为 `DualPivotQuicksort` (双轴快排)，复杂度最坏可以达到$O(n^2)$。
+2. 当你 `Arrays.sort` 的参数数组元素类型为非基本数据类型时），则默认为 `legacyMergeSort` 和 `TimSort` (归并排序），复杂度为$O(nlog_n)$。
 
 可以通过如下代码验证：
 
@@ -1171,8 +1171,8 @@ public class Main {
 
 **序号所对应的重载方法含义：**
 
-1. 从数组a中二分查找是否存在 `key` ,如果存在，便返回其下标。若不存在，则返回一个负数。
-2. 从数组a中二分查找是否存在 `key` ,如果存在，便返回其下标,搜索区间为左开右闭 `[firstIdx,lastIdx)` 。若不存在，则返回一个负数。
+1. 从数组 a 中二分查找是否存在 `key`，如果存在，便返回其下标。若不存在，则返回一个负数。
+2. 从数组 a 中二分查找是否存在 `key`，如果存在，便返回其下标,搜索区间为左开右闭 `[firstIdx,lastIdx)` 。若不存在，则返回一个负数。
 
 ### Arrays.fill()
 
@@ -1190,7 +1190,7 @@ Arrays.fill(int[], int val);
 
 ### Collections.sort()
 
-`Collections.sort()` 底层原理为将其中所有元素转化为数组调用 `Arrays.sort()` ,排完序后再赋值给原本的集合。又因为 `Java` 中 `Collection` 的元素类型均为对象类型，所以始终是归并排序去处理。
+`Collections.sort()` 底层原理为将其中所有元素转化为数组调用 `Arrays.sort()`，完成排序后再赋值给原本的集合。又因为 Java 中 `Collection` 的元素类型均为对象类型，所以始终是归并排序去处理。
 
 该方法无法对集合指定区间排序。
 
@@ -1220,7 +1220,7 @@ Collections.binarySearch(list,key);
 
 ### Collections.swap()
 
-`Collections.swap()`功能是交换集合中指定二个位置的元素
+`Collections.swap()` 功能是交换集合中指定二个位置的元素
 
 ```java
  Collections.swap(list,i,j);
