@@ -255,6 +255,7 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
 ???+note "参考代码"
     ```cpp
     int dfn[N << 1], dep[N << 1], dfntot = 0;
+    
     void dfs(int t, int depth) {
       dfn[++dfntot] = t;
       pos[t] = dfntot;
@@ -265,6 +266,7 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
         dep[dfntot] = depth;
       }
     }
+    
     void st_preprocess() {
       lg[0] = -1;  // 预处理 lg 代替库函数 log2 来优化常数
       for (int i = 1; i <= (N << 1); ++i) lg[i] = lg[i >> 1] + 1;
