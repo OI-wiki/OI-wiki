@@ -110,7 +110,7 @@ $=\sum_{d=1}^n \mu(d) {\lfloor \frac n d \rfloor}^2$
 
 #### 使用杜教筛求解
 
-求 $S(i)=\sum_{i=1}^n\varphi(i)$.
+求 $S(n)=\sum_{i=1}^n\varphi(i)$.
 
 同样的，$\varphi\ast 1=ID$
 
