@@ -230,8 +230,8 @@ $$
 
 具体来说，对于集合 $V$、域 $P$，定义了以下运算：
 
-+ 加法运算：$V+V\mapsto V$，记为 $u+v$，其中 $u,v\in V$
-+ 标量乘法：$P\times V\mapsto V$，记为 $pv$，其中 $p\in P,v\in V$
+- 加法运算：$V+V\mapsto V$，记为 $u+v$，其中 $u,v\in V$
+- 标量乘法：$P\times V\mapsto V$，记为 $pv$，其中 $p\in P,v\in V$
 
 且满足以下公理：
 
