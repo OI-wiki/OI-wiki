@@ -969,7 +969,7 @@ public class Main {
 
 当然，在面向对象的世界里，你的参数是什么都可以，包括Collection与自定义类型。
 
-例如`Map`也可以定义为：
+例如 `Map` 也可以定义为：
 
 ```java
 Map<String,Set<Int>> map = new HashMap<>();
