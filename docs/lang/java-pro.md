@@ -134,7 +134,7 @@ class Main {
 |  multiply(BigInteger val) |       返回 this `*` val      |    
 |   divide(BigInteger val)  |       返回 this `/` val      |    
 | remainder(BigInteger val) |       返回 this `%` val      |    
-|    mod(BigInteger val)    |   返回 this mod val 总是返回非负数  |
+|    mod(BigInteger val)    |   返回 this `mod` val         |
 |         pow(int e)        |         返回 $this^e$        |
 |    and(BigInteger val)    |       返回 this `&` val      |  
 |     or(BigInteger val)    |         返回 this `\|` val |      
@@ -500,7 +500,7 @@ List<Integer> list1 = new LinkedList<>();
 
 ### List 线性表
 ####  ArrayList
-`ArrayList` 是支持可以根据需求动态生长的数组，初始长度默认为10，如果超出当前长度便扩容$\dfrac{3}{2}$。
+`ArrayList` 是支持可以根据需求动态生长的数组，初始长度默认为10，如果超出当前长度便扩容 $\dfrac{3}{2}$。
  
 ##### 初始化
 ```java
