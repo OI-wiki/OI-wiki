@@ -533,7 +533,7 @@ public class Main {
 
 #### LinkedList
 
-`LinkedList` 是双链表
+`LinkedList` 是双链表。
 
 ##### 初始化
 
