@@ -713,7 +713,7 @@ AVL 树的其他操作（Predecessor、Successor、Select、Rank 等）与普通
         //   L   S    ==========>    N   R
         //      / \                 / \
         //     M   R               L   M
-        // clang-format on
+       clang-format on
         NodePtr successor = node->right;
         node->right = successor->left;
         successor->left = node;
@@ -732,7 +732,7 @@ AVL 树的其他操作（Predecessor、Successor、Select、Rank 等）与普通
         //     S   R  ==========>  L   N
         //    / \                     / \
         //   L   M                   M   R
-        // clang-format on
+     clang-format on
         NodePtr successor = node->left;
         node->left = successor->right;
         successor->right = node;
