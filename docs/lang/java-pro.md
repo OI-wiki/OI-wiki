@@ -233,9 +233,9 @@ public class Main {
 
     static void and() {
         out.println("and:");
-        a = new BigInteger("3"); // 11
-        b = new BigInteger("5"); //101
-        out.println(a.and(b));//输出1
+        a = new BigInteger("3"); // 11 
+        b = new BigInteger("5"); //  101 
+        out.println(a.and(b));//  输出1 
     }
 
     static void or() {
