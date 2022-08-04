@@ -1261,9 +1261,8 @@ JDK 中的 `TreeMap` 和 `TreeSet` 都是使用红黑树作为底层数据结构
         // N                   S
         // \   r-rotate(N)   / \
             //     S   R  ==========>  L   N
-        / \                     / \
-            //   L   M                   M   R
-        assert(node != nullptr && node->left != nullptr);
+        / \ /  // L   M                   M   R
+            assert(node != nullptr && node->left != nullptr);
     
         NodePtr parent = node->parent;
         Direction direction = node->direction();
