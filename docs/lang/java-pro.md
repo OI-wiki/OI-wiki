@@ -1216,7 +1216,7 @@ Arrays.fill(int[], int val);
 Collections.binarySearch(list,key);
 ```
 
-该方法无法无法对指定区间进行搜索。
+该方法无法对指定区间进行搜索。
 
 ### Collections.swap()
 
