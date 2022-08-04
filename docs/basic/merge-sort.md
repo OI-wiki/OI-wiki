@@ -1,12 +1,14 @@
-## 简介
+## 定义
 
 归并排序（[merge sort](https://en.wikipedia.org/wiki/Merge_sort)）是高效的基于比较的稳定排序算法。
+
+## 性质
 
 归并排序基于分治思想将数组分段排序后合并，时间复杂度在最优、最坏与平均情况下均为 $\Theta (n \log n)$，空间复杂度为 $\Theta (n)$。
 
 归并排序可以只使用 $\Theta (1)$ 的辅助空间，但为便捷通常使用与原数组等长的辅助数组。
 
-## 实现
+## 过程
 
 由于已分段排序，各非空段的首元素的最小值即是数组的最小值，不断从数组中取出当前最小值至辅助数组即可使其有序，最后将其从辅助数组复制至原数组。
 
@@ -16,19 +18,23 @@
 
 为保证排序的复杂度，通常将数组分为尽量等长的两段（$mid = \left\lfloor \dfrac{l + r}{2} \right\rfloor$）。
 
+## 实现
+
 ### C++
 
 ```cpp
 // C++ version
 void merge(int l, int r) {
-    if (r - l <= 1) return;
-    int mid = l + ((r - l) >> 1);
-    merge(l, mid), merge(mid, r);
-    for (int i = l, j = mid, k = l; k < r; ++k) {
-        if (j == r || (i < mid && a[i] <= a[j])) tmp[k] = a[i++];
-        else tmp[k] = a[j++];
-    }
-    for (int i = l; i < r; ++i) a[i] = tmp[i];
+  if (r - l <= 1) return;
+  int mid = l + ((r - l) >> 1);
+  merge(l, mid), merge(mid, r);
+  for (int i = l, j = mid, k = l; k < r; ++k) {
+    if (j == r || (i < mid && a[i] <= a[j]))
+      tmp[k] = a[i++];
+    else
+      tmp[k] = a[j++];
+  }
+  for (int i = l; i < r; ++i) a[i] = tmp[i];
 }
 ```
 
