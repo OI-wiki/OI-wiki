@@ -365,6 +365,4 @@ class Add {
 
 在该文件中需使用 `Add` 为类名方可编译通过。
 
-## 参考资料
 
-[^ref1]: [Input & Output - USACO Guide](https://usaco.guide/general/input-output?lang=java#method-3---io-template)
