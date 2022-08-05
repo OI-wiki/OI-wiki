@@ -415,7 +415,7 @@ public class Main {
     }
 }
 ```
-
+关于米勒罗宾相关知识可以查阅[miller-rabin 素性测试](https://oi.wiki/math/number-theory/prime/#miller-rabin)
 
 
 ## 基本数据类型与包装数据类型
