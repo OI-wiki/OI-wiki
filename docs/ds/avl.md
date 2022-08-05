@@ -124,7 +124,7 @@ AVL 树的其他操作（Predecessor、Successor、Select、Rank 等）与普通
 
 ??? note "参考代码"
     ```cpp
-    `--8<-- "docs/ds/code/avl-tree/AvlTreeMap.hpp"
+    --8<-- "docs/ds/code/avl-tree/AvlTreeMap.hpp"
     ```
 
 ## 其他资料

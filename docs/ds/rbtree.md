@@ -596,7 +596,7 @@ JDK 中的 `TreeMap` 和 `TreeSet` 都是使用红黑树作为底层数据结构
 
 ??? note "完整代码"
     ```cpp
-    `--8<-- "docs/ds/code/rbtree/RBTreeMap.hpp"
+    --8<-- "docs/ds/code/rbtree/RBTreeMap.hpp"
     ```
 
 ## 其他资料
