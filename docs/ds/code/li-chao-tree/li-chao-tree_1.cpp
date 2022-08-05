@@ -6,12 +6,12 @@
 using namespace std;
 typedef pair<double, int> pdi;
 
-const double eps=1e-9;
+const double eps = 1e-9;
 
 int cmp(double x, double y) {
-	if(x - y > eps) return 1;
-	if(y - x > eps) return -1;
-	return 0;
+  if (x - y > eps) return 1;
+  if (y - x > eps) return -1;
+  return 0;
 }
 
 struct line {
@@ -35,10 +35,8 @@ void upd(int root, int cl, int cr, int u) {  // 对线段完全覆盖到的区�
   int &v = s[root], mid = (cl + cr) >> 1;
   if (cmp(calc(u, mid), calc(v, mid)) == 1) swap(u, v);
   int bl = cmp(calc(u, cl), calc(v, cl)), br = cmp(calc(u, cr), calc(v, cr));
-  if (bl == 1 || (!bl && u < v))
-  	upd(root << 1, cl, mid, u);
-  if (br == 1 || (!br && u < v))
-  	upd(root << 1 | 1, mid + 1, cr, u);
+  if (bl == 1 || (!bl && u < v)) upd(root << 1, cl, mid, u);
+  if (br == 1 || (!br && u < v)) upd(root << 1 | 1, mid + 1, cr, u);
 }
 
 void update(int root, int cl, int cr, int l, int r,
