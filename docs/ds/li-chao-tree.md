@@ -43,12 +43,12 @@
 下传标记：
 
 ```cpp
-const double eps=1e-9;
+const double eps = 1e-9;
 
-int cmp(double x, double y) { // 因为用到了浮点数，所以会有精度误差
-	if(x - y > eps) return 1;
-	if(y - x > eps) return -1;
-	return 0;
+int cmp(double x, double y) {  // 因为用到了浮点数，所以会有精度误差
+  if (x - y > eps) return 1;
+  if (y - x > eps) return -1;
+  return 0;
 }
 
 //...
@@ -57,11 +57,10 @@ void upd(int root, int cl, int cr, int u) {  // 对线段完全覆盖到的区�
   int &v = s[root], mid = (cl + cr) >> 1;
   if (cmp(calc(u, mid), calc(v, mid)) == 1) swap(u, v);
   int bl = cmp(calc(u, cl), calc(v, cl)), br = cmp(calc(u, cr), calc(v, cr));
-  if (bl == 1 || (!bl && u < v)) // 在此题中记得判线段编号 
-  	upd(root << 1, cl, mid, u);
-  if (br == 1 || (!br && u < v))
-  	upd(root << 1 | 1, mid + 1, cr, u);
-	// 上面两个 if 的条件最多只有一个成立，这保证了李超树的时间复杂度
+  if (bl == 1 || (!bl && u < v))  // 在此题中记得判线段编号
+    upd(root << 1, cl, mid, u);
+  if (br == 1 || (!br && u < v)) upd(root << 1 | 1, mid + 1, cr, u);
+  // 上面两个 if 的条件最多只有一个成立，这保证了李超树的时间复杂度
 }
 ```
 
