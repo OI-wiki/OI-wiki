@@ -94,7 +94,7 @@ public class Main {
 2. 在使用 `PrintWriter` 情况下，需注意在程序结束最后 `close()` 关闭输出流或在需要输出的时候使用 `flush()` 清除缓冲区，否则内容将不会被写入到控制台/文件中。
 3. `Kattio` 是继承自 `PrintWriter` 类，自身对象具有了 `PrintWriter` 的功能，因此可以直接调用 `PrintWriter` 类的函数输出，同时将 `StringTokenizer` 作为了自身的成员变量来修改。而第二种 `Main` 是同时将 `StreamTokenizer` 与 `PrintWriter` 作为了自身的成员变量，因此在使用上有些许差距。
 
-综上所述，在大部分情况下，`StringTokenizer` 的使用处境要优越于 `StreamTokenizer`，在极端 MLE 的情况下可以尝试 `StreamTokenizer`，同时 `int` 范围以上的数据 `StreamTokenizer` 处理是无能为力的
+综上所述，在大部分情况下，`StringTokenizer` 的使用处境要优越于 `StreamTokenizer`，在极端 MLE 的情况下可以尝试 `StreamTokenizer`，同时 `int` 范围以上的数据 `StreamTokenizer` 处理是无能为力的。
 
 ## BigInteger 与数论
 
@@ -356,9 +356,9 @@ public class Main {
 
 |               函数名               |                   功能                    |
 |:----------------------------------:|:-----------------------------------------:|
-|        gcd(BigInteger val)         | 返回this的绝对值与val的绝对值的最大公约数 |
-|      isProbablePrime(int val)      |     返回一个布尔值,判定this是否是素数     |
-|        nextProbablePrime()         |         返回大于this的第一个素数          |
+|        gcd(BigInteger val)         | 返回 this 的绝对值与 val 的绝对值的最大公约数 |
+|      isProbablePrime(int val)      |     返回一个表示 this 是否是素数的布尔值     |
+|        nextProbablePrime()         |         返回第一个大于 this 的素数          |
 | modPow(BigInteger b, BigInteger p) |          返回this `^` b `mod` p           |
 |      modInverse(BigInteger p)      |          返回a `mod` p的乘法逆元          |
 
@@ -390,7 +390,7 @@ public class Main {
         out.println(String.format("a nextPrime is %s", a.nextProbablePrime().toString()));  // a nextPrime is 1200324143214321442199 
     }
 
-    static void modPow() {  // 快速幂,比正常版本要快，内部有蒙特卡洛优化 
+    static void modPow() {  // 快速幂，比正常版本要快，内部有蒙特卡洛优化 
         a = new BigInteger("2");
         b = new BigInteger("10");
         p = new BigInteger("1000");
@@ -457,7 +457,7 @@ public class Main {
 
 如果一个类型实现了接口，也可以称之为该接口的子类型。
 
-Java 中保存对象类型的变量是多态变量。“多态”这个术语(字面意思是许多形态)是指一个变量可以保存不同类型(即其声明的类型或任何子类型)的对象。
+Java 中保存对象类型的变量是多态变量。“多态”这个术语（字面意思是许多形态）是指一个变量可以保存不同类型（即其声明的类型或任何子类型）的对象。
 
 多态变量：
 
@@ -467,16 +467,19 @@ Java 中保存对象类型的变量是多态变量。“多态”这个术语(�
 
 ## 泛型
 
-泛型：指在类定义时不会设置类中的属性或方法参数的具体类型，而是在类使用时（创建对象）再进行类型的定义。会在编译期检查类型是否错误。
+泛型指在类定义时不设置类中的属性或方法参数的具体类型，而是在使用（或创建对象）时再进行类型的定义。泛型本质是参数化类型，即所操作的数据类型被指定为一个参数。
+
+泛型提供了编译时类型安全检测的机制，该机制允许编译时检测非法类型。
 
 ## Collection
 
-`Collection` 是 Java 中的接口，被多个泛型容器接口所实现。在这里，`Collection`是指代存放对象类型的数据结构。
+`Collection` 是 Java 中的接口，被多个泛型容器接口所实现。在这里，`Collection` 是指代存放对象类型的数据结构。
 
 Java 中的 `Collection` 元素类型定义时必须为对象，不能为基本数据类型。
 
 以下内容用法均基于 Java 里多态的性质，均是以实现接口的形式出现。
-常用接口为：`List` 、`Queue` 、 `Set` 、 `Map`。
+
+常用的接口包括 `List`、`Queue`、`Set` 和 `Map`。
 
 ### 容器定义
 
@@ -488,7 +491,7 @@ Java 中的 `Collection` 元素类型定义时必须为对象，不能为基本�
 List<Integer> list1 = new LinkedList<>();
 ```
 
-倘若你不指定数据类型，而当成 `Object` 类型随意添加数据，在 `Java8` 中虽能编译通过，但会有很多警告风险。
+倘若你不指定数据类型，而当成 `Object` 类型随意添加数据，在 Java 8 中虽能编译通过，但会有很多警告风险。
 
 例如:
 
@@ -503,7 +506,7 @@ List<Integer> list1 = new LinkedList<>();
 
 因此：
 
-如果没有特殊需求的话不推荐这么做第2种行为，编译器无法帮你检查存入的数据是否安全， `list.get(index)` 取值时无法明确数据的类型（取到的数据类型都为 `Object` ），需要手动转回原来的类型，稍有不慎可能出现误转型异常。
+如果没有特殊需求的话不推荐这么做第 2 种行为，编译器无法帮忙检查存入的数据是否安全，`list.get(index)` 取值时无法明确数据的类型（取到的数据类型都为 `Object`），需要手动转回原来的类型，稍有不慎可能出现误转型异常。
 
 如果是明确了类型如 `List<Integer>` ，此时编译器会检查放入的数据类型，只能放入整数的数据。以及声明集合变量时只能使用包装类型 `List<Integer>` 或者自定义的 `Class`，而不能是基本类型  `List<int>`。
 
@@ -1032,7 +1035,7 @@ public class Main {
 
 **Arrays.sort()底层函数：**
 
-1. 当你 `Arrays.sort` 的参数数组元素类型为基本数据类型时 `(byte、short、char、int、long、double、float)` 时，默认为 `DualPivotQuicksort` (双轴快排)，复杂度最坏可以达到$O(n^2)$。
+1. 当你 `Arrays.sort` 的参数数组元素类型为基本数据类型（`byte`、`short`、`char`、`int`、`long`、`double`、`float`）时，默认为 `DualPivotQuicksort`（双轴快排），复杂度最坏可以达到 $O(n^2)$。
 2. 当你 `Arrays.sort` 的参数数组元素类型为非基本数据类型时），则默认为 `legacyMergeSort` 和 `TimSort` (归并排序），复杂度为$O(nlog_n)$。
 
 可以通过如下代码验证：
@@ -1177,7 +1180,7 @@ public class Main {
 
 ### Arrays.fill()
 
-`Arrays.fill()` 是将数组中连续位置的元素赋值为统一元素
+`Arrays.fill()` 方法将数组中连续位置的元素赋值为统一元素。其接受的参数为数组、`fromIndex`、`toIndex` 和需要填充的数。方法执行后，数组左闭右开区间 `[firstIdx,lastIdx)` 内的所有元素的值均为需要填充的数。
 
 ```java
 Arrays.fill(int[], int val);
