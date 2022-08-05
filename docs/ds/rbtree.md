@@ -75,9 +75,8 @@ void rotateLeft(ConstNodePtr node) {
   //   L   S    ==========>    N   R
   //      / \                 / \
   //     M   R               L   M
- clang-format on
   assert(node != nullptr && node->right != nullptr);
-
+  // clang-format on
   NodePtr parent = node->parent;
   Direction direction = node->direction();
 
