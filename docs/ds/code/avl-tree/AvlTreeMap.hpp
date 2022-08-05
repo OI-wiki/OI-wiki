@@ -587,7 +587,7 @@ class AvlTreeMap {
     //   L   S    ==========>    N   R
     //      / \                 / \
     //     M   R               L   M
-    // clang-format on
+   clang-format on
     NodePtr successor = node->right;
     node->right = successor->left;
     successor->left = node;
@@ -606,7 +606,7 @@ class AvlTreeMap {
     //     S   R  ==========>  L   N
     //    / \                     / \
     //   L   M                   M   R
-    // clang-format on
+ clang-format on
     NodePtr successor = node->left;
     node->left = successor->right;
     successor->right = node;

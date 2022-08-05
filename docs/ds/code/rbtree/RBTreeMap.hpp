@@ -631,7 +631,7 @@ class RBTreeMap {
     //   L   S    ==========>    N   R
     //      / \                 / \
     //     M   R               L   M
-    // clang-format on
+   clang-format on
     assert(node != nullptr && node->right != nullptr);
 
     NodePtr parent = node->parent;
@@ -667,7 +667,7 @@ class RBTreeMap {
     //     S   R  ==========>  L   N
     //    / \                     / \
     //   L   M                   M   R
-    // clang-format on
+ clang-format on
     assert(node != nullptr && node->left != nullptr);
 
     NodePtr parent = node->parent;
