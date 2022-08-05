@@ -96,6 +96,7 @@ public class Main {
 
 综上所述，在大部分情况下，`StringTokenizer` 的使用处境要优越于 `StreamTokenizer`，在极端 MLE 的情况下可以尝试 `StreamTokenizer`，同时 `int` 范围以上的数据 `StreamTokenizer` 处理是无能为力的。
 
+
 ## BigInteger 与数论
 
 `BigInteger` 是 Java 提供的高精度计算类，可以很方便地解决高精度问题。
@@ -228,78 +229,78 @@ public class Main {
     static void pow() {
         out.println("pow:");
         a = new BigInteger("2");
-        out.println(a.pow(10));  // 输出1024 
+        out.println(a.pow(10));  // 输出 1024 
     }
 
     static void and() {
         out.println("and:");
         a = new BigInteger("3");  // 11 
         b = new BigInteger("5");  // 101 
-        out.println(a.and(b));  // 输出1 
+        out.println(a.and(b));  // 输出 1 
     }
 
     static void or() {
         out.println("or:");
         a = new BigInteger("2");  // 10 
         b = new BigInteger("5");  // 101 
-        out.println(a.or(b));  // 输出7 
+        out.println(a.or(b));  // 输出 7 
     }
 
     static void not() {
         out.println("not:");
         a = new BigInteger("2147483647");  // 01111111 11111111 11111111 11111111 
-        out.println(a.not());  // 输出-2147483648 二进制为：10000000 00000000 00000000 00000000 
+        out.println(a.not());  // 输出 -2147483648 二进制为：10000000 00000000 00000000 00000000 
     }
 
     static void xor() {
         out.println("xor:");
         a = new BigInteger("6");  // 110 
         b = new BigInteger("5");  // 101 
-        out.println(a.xor(b));  // 011 输出3 
+        out.println(a.xor(b));  // 011 输出 3 
     }
 
     static void shiftLeft() {
         out.println("shiftLeft:");
         a = new BigInteger("1");
-        out.println(a.shiftLeft(10));  // 输出1024 
+        out.println(a.shiftLeft(10));  // 输出 1024 
     }
 
     static void shiftRight() {
         out.println("shiftRight:");
         a = new BigInteger("1024");
-        out.println(a.shiftRight(8));  // 输出4 
+        out.println(a.shiftRight(8));  // 输出 4 
     }
 
     static void max() {
         out.println("max:");
         a = new BigInteger("6");
         b = new BigInteger("5");
-        out.println(a.max(b));  // 输出6 
+        out.println(a.max(b));  // 输出 6 
     }
 
     static void min() {
         out.println("min:");
         a = new BigInteger("6");
         b = new BigInteger("5");
-        out.println(a.min(b));  // 输出5 
+        out.println(a.min(b));  // 输出 5 
     }
 
     static void bitCount() {
         out.println("bitCount:");
         a = new BigInteger("6");  // 110 
-        out.println(a.bitCount());  // 输出2 
+        out.println(a.bitCount());  // 输出 2 
     }
 
     static void bitLength() {
         out.println("bitLength:");
         a = new BigInteger("6");  // 110 
-        out.println(a.bitLength());  // 输出3 
+        out.println(a.bitLength());  // 输出 3 
     }
 
     static void getLowestSetBit() {
         out.println("getLowestSetBit:");
         a = new BigInteger("8");  // 1000 
-        out.println(a.getLowestSetBit());  // 输出3 
+        out.println(a.getLowestSetBit());  // 输出 3 
     }
 
     static void compareTo() {
@@ -318,8 +319,8 @@ public class Main {
     static void toStringTest() {
         out.println("toString:");
         a = new BigInteger("15");
-        out.println(a.toString());  // 输出15 
-        out.println(a.toString(16));  // 输出f 
+        out.println(a.toString());  // 输出 15 
+        out.println(a.toString(16));  // 输出 f 
     }
 
     public static void main(String[] args) {
@@ -415,6 +416,8 @@ public class Main {
 }
 ```
 
+
+
 ## 基本数据类型与包装数据类型
 
 ### 基本类型与包装类型简介
@@ -422,13 +425,61 @@ public class Main {
 1. 由于基本类型没有面向对象的特征，为了他们参加到面向对象的开发中， Java 为八个基本类型提供了对应的包装类。
 2. 八个包装类分别是`Byte` ，`Double` ，`Float` ，`Integer` ，`Long` ，`Short` ，`Character`，`Boolean`。
 
-### Integer 与 int 的区别
+    对应关系如下 :
+
+
+    |              基本数据类型             |                  包装数据类型                 |
+    |:------------------------------------:|:-------------------------------------------:|
+    |               `byte`                 |               `Byte`                        |
+    |               `short`                |               `Short`                       |
+    |               `boolean`              |               `Boolean`                     |
+    |               `char`                 |               `Character`                   |
+    |               `int`                  |               `Integer`                     |
+    |               `long`                 |               `Long`                        |
+    |               `float`                |               `Float`                       |
+    |               `double`               |               `Double`                      |
+
+### 基本数据类型与包装类型的区别
+
+此处以 `int` 与 `Integer` 举例：
 
 1. `Integer` 是 `int` 的包装类，`int` 则是 Java 的一种基本类型数据。
 2. `Integer` 类型实例后才能使用，而 `int` 类型不需要。
 3. `Integer` 实际对应的引用，当 `new` 一个 `Integer` 时，实际上生成了一个对象，而 `int` 则是直接存储数据。
 4. `Integer` 的默认值是 `null`，可接受 `null` 和 `int` 类型的数据， `int` 默认值是 `0`，不能接受 `null` 类型的数据。
 5. `Integer` 判定二个变量是否相同使用 `==` 可能会导致不正确的结果，因此只能使用 `equals()`，而 `int` 可以直接使用 `==`。
+
+### 基本数据类型与包装数据类型的装箱与拆箱
+
+此处以 `int` 与 `Integer` 举例：
+
+ `Integer` 的本质是对象， `int` 是基本类型，正常来说两个类型之间是不能直接赋值的。
+ 需要将基础类型转换为包装类型，这种做法称为装箱，反过来则称为拆箱。
+
+```java
+    // 基本类型
+    int value1 = 1;
+    // 装箱转换为包装类型
+    Integer integer = Integer.valueOf(value1);
+    // 拆箱转换为基本类型
+    int value2 = integer.intValue();
+```
+Java 5 开始引入自动装箱拆箱机制。
+
+```java
+    Integer integer = 1;
+    int value = integer;
+```
+warning:虽然 JDK 增加了自动装箱拆箱的机制，但在声明变量时请选择合适的类型，因为包装类型 `Integer` 可以接受 `null`，而基本类型 `int` 不能接受 `null`，如果使用 `null` 值的包装类型进行拆箱操作时会出现异常。
+
+```java
+    Integer integer = Integer.valueOf(null);
+    integer.intValue();  // 抛出 java.lang.NumberFormatException 异常
+
+    Integer integer = null;
+    integer.intValue();  // 抛出 java.lang.NumberFormatException 异常
+```
+
 
 ## 继承
 
@@ -451,6 +502,7 @@ public class Main {
 |  缺省(default)   |       只有包内其它类可以访问       | 如果子类与父类在同一个包内：只有包内其它类可以访问。否则：相当于 private，不能访问 |
 |     private      |          只有自己可以访问          |                                     不能访问                                      |
 
+
 ## 多态
 
 在 Java 中当把一个对象赋值给一个变量时，对象的类型必须与变量的类型相匹配。但由于 Java 有继承的概念，便可重新定义为 **一个变量可以保存其所声明的类型或该类型的任何子类型**。
@@ -465,11 +517,194 @@ Java 中保存对象类型的变量是多态变量。“多态”这个术语（
 2. 它们可以保存的是声明类型的对象，或声明类型子类的对象。
 3. 当把子类的对象赋给父类的变量的时候，就发生了向上转型。
 
+
 ## 泛型
 
 泛型指在类定义时不设置类中的属性或方法参数的具体类型，而是在使用（或创建对象）时再进行类型的定义。泛型本质是参数化类型，即所操作的数据类型被指定为一个参数。
 
 泛型提供了编译时类型安全检测的机制，该机制允许编译时检测非法类型。
+
+
+## 接口
+接口（英文：Interface），在 Java 编程语言中是一个抽象类型，是抽象方法的集合，接口通常以 `interface` 来声明。一个类通过实现接口的方式，从而来继承接口的抽象方法。
+
+接口并不是类，编写接口的方式和类很相似，但是它们属于不同的概念。类描述对象的属性和方法。接口则包含类要实现的方法。
+
+除非实现接口的类是抽象类，否则该类要定义接口中的所有方法。
+
+接口无法被实例化，但是可以被实现。一个实现接口的类，必须实现接口内所描述的所有方法，否则就必须声明为抽象类。另外，在 Java 中，接口类型可用来声明一个变量，他们可以成为一个空指针，或是被绑定在一个以此接口实现的对象。
+
+### 接口与类的区别：
+1. 接口不能用于实例化对象。
+2. 接口没有构造方法。
+3. 接口中所有的方法必须是抽象方法，Java 8 之后 接口中可以使用 default 关键字修饰的非抽象方法。
+4. 接口不能包含成员变量，除了 static 和 final 变量。
+5. 接口不是被类继承了，而是要被类实现。
+6. 接口支持多继承，类不支持多继承。
+
+### 接口的声明
+```java
+[可见度] interface 接口名称 [extends 其他的接口名] {
+        // 声明变量
+        // 抽象方法
+}
+```
+### 接口的实现
+```java
+...implements 接口名称[, 其他接口名称, 其他接口名称..., ...] ...
+```
+
+
+## Java Lambda 表达式
+
+Lambda 表达式，也可称为闭包，它是 Java 8 发布的最重要的新特性。
+
+Lambda 允许把函数作为一个方法的参数（函数作为参数传递进方法中）。
+
+使用 Lambda 表达式可以使代码变的更加简洁紧凑。
+
+### 语法
+
+**可选类型声明**：不需要声明参数类型，编译器可以统一识别参数值。
+
+**可选的参数圆括号**：一个参数无需定义圆括号，但多个参数需要定义圆括号。
+
+**可选的大括号**：如果主体包含了一个语句，就不需要使用大括号。
+
+**可选的返回关键字**：如果主体只有一个表达式返回值则编译器会自动返回值，大括号需要指定表达式返回了一个数值。
+
+Lambda 表达式声明方式如下：
+
+以字符串数组按长度排序的自定义比较器为例：
+
+1. 参数，箭头，一个表达式。
+```java
+import java.util.Arrays;
+
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+
+    public static void main(String[] args) {
+        String[] plants = {"Mercury", "venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"};
+        Arrays.sort(plants, (String first, String second) -> (first.length() - second.length()));
+        for (String word : plants) {
+            out.print(word + " ");
+        }
+        out.close();
+    }
+}
+   
+```
+2. 参数，箭头，多条语句。
+```java
+import java.io.PrintWriter;
+import java.util.Arrays;
+
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+
+    public static void main(String[] args) {
+        String[] plants = {"Mercury", "venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"};
+        Arrays.sort(plants, (first, second) ->
+        {
+            // 形参不写类型，可以从上下文判断出
+            int result = first.length() - second.length();
+            return result;
+        });
+        for (String word : plants) {
+            out.print(word + " ");
+        }
+        out.close();
+    }
+}
+
+```
+-> 是一个推导符号，表示前面的括号接收到参数，推导后面的返回值（其实就是传递了方法。
+
+3. 常用形式：
+
+```java
+// 1. 不需要参数,返回值为 5  
+() -> 5  
+  
+// 2. 接收一个参数(数字类型),返回其2倍的值  
+x -> 2 * x  
+  
+// 3. 接受2个参数(数字),并返回他们的差值  
+(x, y) -> x – y  
+  
+// 4. 接收2个int型整数,返回他们的和  
+(int x, int y) -> x + y  
+  
+// 5. 接受一个 string 对象,并在控制台打印,不返回任何值(看起来像是返回void)  
+(String s) -> System.out.print(s)
+```
+### 函数式接口
+
+1. 是一个接口，符合 java接口定义。
+2. 只包含一个抽象方法的接口。
+3. 因为只有一个未实现的方法，所以lambda表达式可以自动填上去。
+
+函数式接口使用方式如下：
+1. 输出长度为2的倍数的字符串。
+
+```java
+import java.io.PrintWriter;
+
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+
+    public static void main(String[] args) {
+        String[] plants = {"Mercury", "venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"};
+        Test test = s -> {  // Lambda 表达式作为函数式接口的实例
+            if (s.length() % 2 == 0) {
+                return true;
+            }
+            return false;
+        };
+        for (String word : plants) {
+            if (test.check(word)) {
+                out.print(word + " ");
+            }
+        }
+        out.close();
+    }
+}
+
+interface Test {
+    public boolean check(String s);
+}
+```
+2. 实现加减乘除四则运算。
+```java
+import java.io.PrintWriter;
+
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+
+    public static double calc(double a, double b, Calculator util) {
+        return util.operation(a, b);
+    }
+
+    public static void main(String[] args) {
+        Calculator util[] = new Calculator[4];  // 定义函数式接口数组
+        util[0] = (a, b) -> a + b;
+        util[1] = (a, b) -> a - b;
+        util[2] = (a, b) -> a * b;
+        util[3] = (a, b) -> a / b;
+        double a = 20, b = 15;
+        for (Calculator c : util) {
+            System.out.println(calc(a, b, c));
+        }
+        out.close();
+    }
+}
+
+interface Calculator {
+    public double operation(double a, double b);
+}
+```
+
 
 ## Collection
 
@@ -483,7 +718,7 @@ Java 中的 `Collection` 元素类型定义时必须为对象，不能为基本�
 
 ### 容器定义
 
-当定义泛型容器类时，需要在定义时指定数据类型。
+1. 当定义泛型容器类时，需要在定义时指定数据类型。
 
 例如：
 
@@ -491,7 +726,7 @@ Java 中的 `Collection` 元素类型定义时必须为对象，不能为基本�
 List<Integer> list1 = new LinkedList<>();
 ```
 
-倘若你不指定数据类型，而当成 `Object` 类型随意添加数据，在 Java 8 中虽能编译通过，但会有很多警告风险。
+2. 倘若你不指定数据类型，而当成 `Object` 类型随意添加数据，在 Java 8 中虽能编译通过，但会有很多警告风险。
 
 例如:
 
@@ -976,7 +1211,7 @@ public class Main {
 例如 `Map` 也可以定义为：
 
 ```java
-Map<String,Set<Int>> map = new HashMap<>();
+Map<String,Set<Integer>> map = new HashMap<>();
 ```
 
 ## Arrays
@@ -1229,6 +1464,7 @@ Collections.binarySearch(list,key);
 ```java
  Collections.swap(list,i,j);
 ```
+
 
 ## 其他
 
