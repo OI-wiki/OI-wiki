@@ -138,7 +138,7 @@ class Main {
 |    `mod(BigInteger val)`    |             返回 this `mod` val             |
 |        `pow(int e)`         |                返回 $this^e$                |
 |    `and(BigInteger val)`    |              返回 this `&` val              |
-|    `or(BigInteger val)`     |             返回 this `\|` val              |
+|    `or(BigInteger val)`     |             返回 this `|` val              |
 |           `not()`           |                返回 `~` this                |
 |    `xor(BigInteger val)`    |              返回 this `^` val              |
 |     `shiftLeft(int n)`      |              返回 this `<<` n               |
