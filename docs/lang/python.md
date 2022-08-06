@@ -180,6 +180,10 @@ Python 的字符串类型还有 [许多方便的功能](https://docs.python.org/
 
 #### 数据类型判断
 
+### 输出和输入
+
+#### 输出
+
 对于一个变量，可以使用 `type(object)` 返回变量的类型，例如 `type(8)` 和 `type('a')` 的值分别为 `<class 'int'>` 和 `<class 'str'>`。
 
 Python 中，还可以使用 `**` 运算符和内置的 `pow(base, exp, mod=None)` 函数进行幂运算，使用 `abs(x)` 求数的绝对值。
