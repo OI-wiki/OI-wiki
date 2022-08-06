@@ -475,7 +475,7 @@ Integer integer = Integer.valueOf(null);
 integer.intValue();  // 抛出 java.lang.NumberFormatException 异常
 
 Integer integer = null;
-integer.intValue();  // 抛出 java.lang.NumberFormatException 异常
+integer.intValue();  // 抛出 java.lang.NullPointerException 异常
 ```
 
 ## 继承
