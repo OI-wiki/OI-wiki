@@ -140,6 +140,10 @@
 5. 在合并到 master 分支之后，GitHub Actions 会重新构建一遍网站内容，并更新到 gh-pages 分支；
 6. 这时服务器才会拉取 gh-pages 分支的更新，并重新部署最新版本的内容。
 
+## 贡献指南
+
+请您在编辑前查看 [OI Wiki 贡献指南](https://github.com/OI-wiki/OI-wiki/blob/master/.github/CONTRIBUTING.md)，以更好地和社区贡献者进行合作、交流。
+
 ## 参考资料与注释
 
 [^ref1]: [维基百科：新手入门/编辑](https://zh.wikipedia.org/wiki/Wikipedia:%E6%96%B0%E6%89%8B%E5%85%A5%E9%96%80/%E7%B7%A8%E8%BC%AF)
