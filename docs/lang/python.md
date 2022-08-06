@@ -223,7 +223,6 @@ Traceback (most recent call last):
 TypeError: 'str' object does not support item assignment
 ```
 
-
 除了索引，字符串还支持*切片*，它的设计非常精妙又符合直觉，格式为 `s[左闭索引:右开索引:步长]`：
 
 ```pycon
