@@ -351,6 +351,7 @@ nav:
       - AVL 树: ds/avl.md
       - 替罪羊树: ds/sgt.md
       - 笛卡尔树: ds/cartesian-tree.md
+      - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
     - 跳表: ds/skiplist.md
     - 可持久化数据结构:
