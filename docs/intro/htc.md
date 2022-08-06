@@ -2,6 +2,10 @@
 
 这篇文章将主要叙述参与 **OI Wiki** 编写的写作过程。请您在撰稿或者修正 Wiki 页面以前，仔细阅读以下内容，以帮助您完成更高质量的内容。
 
+## 贡献指南
+
+请您在编辑前查看 [OI Wiki 贡献指南](https://github.com/OI-wiki/OI-wiki/blob/master/.github/CONTRIBUTING.md)，以更好地和社区贡献者进行合作、交流。
+
 ## 参与协作
 
 ???+ warning
@@ -139,10 +143,6 @@
 4. 在足够多 reviewer 投票通过一个 PR 之后，这个 PR 才可以合并到 master 分支中；
 5. 在合并到 master 分支之后，GitHub Actions 会重新构建一遍网站内容，并更新到 gh-pages 分支；
 6. 这时服务器才会拉取 gh-pages 分支的更新，并重新部署最新版本的内容。
-
-## 贡献指南
-
-请您在编辑前查看 [OI Wiki 贡献指南](https://github.com/OI-wiki/OI-wiki/blob/master/.github/CONTRIBUTING.md)，以更好地和社区贡献者进行合作、交流。
 
 ## 参考资料与注释
 
