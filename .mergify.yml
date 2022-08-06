@@ -9,6 +9,7 @@ pull_request_rules:
           - "check-success=build"
           - "check-success=OI-Wiki LaTeX Build"
       - "label=mergify/can-merge"
+      - "label!=Waiting other PRs / 等待其它 PR"
     actions:
       merge:
         method: squash
