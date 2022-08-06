@@ -2,7 +2,7 @@ author: StudyingFather, NachtgeistW, countercurrent-time, Ir1d, H-J-Granger, Chr
 
 在算法竞赛中，有多种多样的问题类型。
 
-## 传统题<span id="traditional"></span>
+## 传统题
 
 **传统题** 是目前算法竞赛中较为常见的题型。
 
@@ -29,7 +29,7 @@ author: StudyingFather, NachtgeistW, countercurrent-time, Ir1d, H-J-Granger, Chr
 
 在 ICPC 赛事中，你的程序需要在一道题目的所有测试点上都取得 AC 状态，才能视为通过相应的题目。在 OI 赛事中，在一个测试点中取得 AC 状态，即可拿到该测试点的分数[^note7]。
 
-## 提交答案题<span id="output-only"></span>
+## 提交答案题
 
 **提交答案题** 是直接提交答案的题目。该种题目一般会给出输入文件，要求提交包含有 `XXX1.out`、`XXX2.out`、`XXX3.out`…`XXXn.out` 的压缩包、文件夹或纯文件。
 
@@ -42,7 +42,7 @@ author: StudyingFather, NachtgeistW, countercurrent-time, Ir1d, H-J-Granger, Chr
 - 手玩。这种方法简单粗暴，但是遇到较大的数据就没辙了。
 - 编写一个程序来获得答案文件。
 
-## 交互题<span id="interaction"></span>
+## 交互题
 
 **交互题** 是需要选手程序与测评程序交互来完成任务的题目。一类常见的情形是，选手程序向测评程序发出询问，并得到其反馈。测评程序可能对选手的询问作出限制，或调整应答策略来尽可能增加询问次数，这也给题目带来了更多变化。
 
@@ -101,7 +101,7 @@ STDIO 交互的一个明显优势在于它可以支持任何编程语言，但�
 
 如果自己设计题目或举办比赛，需要对二者认真权衡和比较。
 
-## 通信题<span id="communication"></span>
+## 通信题
 
 **通信题** 是需要两个选手程序进行通信，合作完成某项任务的题目。第一个程序接收问题的输入，并产生某些输出；第二个程序的输入会与第一个的输出相关（有时是原封不动地作为一个参数，有时会由评测端处理得到），它需要产生问题的解。
 
@@ -126,7 +126,7 @@ STDIO 交互的一个明显优势在于它可以支持任何编程语言，但�
 
 这种题在 [LeetCode](https://leetcode.com/) 和 [PTA - 拼题 A](https://pintia.cn/problem-sets) 上比较多见。
 
-## 其他类型<span id=""></span>
+## 其他类型
 
 ??? 例题 "Quine"
     [Quine](https://loj.ac/problem/4)

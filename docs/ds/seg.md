@@ -1,4 +1,4 @@
-author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina, orzAtalod, luoguojie, Early0v0
+author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina, orzAtalod, luoguojie, Early0v0, wy-luke
 
 线段树是算法竞赛中常用的用来维护 **区间信息** 的数据结构。
 
@@ -207,9 +207,9 @@ int getsum(int l, int r, int s, int t, int p) {
   int m = s + ((t - s) >> 1);
   if (b[p]) {
     // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
-    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m),
-        b[p * 2] += b[p], b[p * 2 + 1] += b[p];  // 将标记下传给子节点
-    b[p] = 0;                                    // 清空当前节点的标记
+    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m);
+    b[p * 2] += b[p], b[p * 2 + 1] += b[p];  // 将标记下传给子节点
+    b[p] = 0;                                // 清空当前节点的标记
   }
   int sum = 0;
   if (l <= m) sum = getsum(l, r, s, m, p * 2);

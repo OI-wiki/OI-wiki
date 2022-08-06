@@ -8,6 +8,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "ts-node-esm": "cross-env NODE_NO_WARNINGS=1 node --loader ts-node/esm",
     "scripts:format": "prettier --write \"scripts/**/*.ts\"",
     "scripts:format:check": "prettier --check \"scripts/**/*.ts\"",
     "docs:format:remark": "remark . -o"
@@ -29,13 +30,12 @@
   "homepage": "https://github.com/OI-wiki/OI-wiki#readme",
   "dependencies": {
     "@swc/core": "^1.2.210",
-    "bluebird": "^3.7.2",
     "chalk": "^4.1.0",
-    "cheerio": "^1.0.0-rc.12",
-    "cssnano": "^4.1.10",
-    "hexo-fs": "^3.1.0",
+    "cross-env": "^7.0.3",
     "klaw": "^4.0.1",
-    "mathjax-node-page": "^3.2.0",
+    "node-fetch": "^3.2.8",
+    "mathjax-full": "^3.2.2",
+    "node-html-parser": "^5.3.3",
     "octokit": "^1.8.1",
     "remark-clang-format": "^1.9.3",
     "remark-cli": "^8.0.0",
@@ -50,9 +50,6 @@
     "ts-node": "^10.8.2"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.36",
-    "@types/cheerio": "^0.22.31",
-    "@types/hexo-fs": "^0.2.10",
     "@types/klaw": "^3.0.3",
     "prettier": "^2.7.1",
     "typescript": "^4.7.4"

@@ -1,81 +1,41 @@
-本页面将简要介绍归并排序。
+## 定义
 
-## 简介
-
-归并排序（英语：merge sort）是一种采用了 [分治](./divide-and-conquer.md) 思想的排序算法。
-
-## 工作原理
-
-归并排序分为三个步骤：
-
-1. 将数列划分为两部分；
-2. 递归地分别对两个子序列进行归并排序；
-3. 合并两个子序列。
-
-不难发现，归并排序的前两步都很好实现，关键是如何合并两个子序列。注意到两个子序列在第二步中已经保证了都是有序的了，第三步中实际上是想要把两个 **有序** 的序列合并起来。
+归并排序（[merge sort](https://en.wikipedia.org/wiki/Merge_sort)）是高效的基于比较的稳定排序算法。
 
 ## 性质
 
-归并排序是一种稳定的排序算法。
+归并排序基于分治思想将数组分段排序后合并，时间复杂度在最优、最坏与平均情况下均为 $\Theta (n \log n)$，空间复杂度为 $\Theta (n)$。
 
-归并排序的最优时间复杂度、平均时间复杂度和最坏时间复杂度均为 $O(n\log n)$。
+归并排序可以只使用 $\Theta (1)$ 的辅助空间，但为便捷通常使用与原数组等长的辅助数组。
 
-归并排序的空间复杂度为 $O(n)$。
+## 过程
 
-## 代码实现
+由于已分段排序，各非空段的首元素的最小值即是数组的最小值，不断从数组中取出当前最小值至辅助数组即可使其有序，最后将其从辅助数组复制至原数组。
 
-### 伪代码
+为保证排序的正确性，应注意从数组中取出当前最小值可能导致非空段变为空，后段为空时（`j == r`）前段的首元素是当前最小值，否则在前段非空时（`i < mid`）比较前后段的首元素。
 
-$$
-\begin{array}{ll}
-1 & \textbf{Input. }\text{待排序的数组}A\text{和用作临时存储的数组}T\\
-2 & \textbf{Output. }\text{数组}A\text{中的元素将会按照不减的顺序进行稳定排序}\\
-3 & \textbf{Method.}\\
-4 & \text{merge}(A,\ T)\\
-5 & \qquad\text{merge0}(A,\ T,\ 0,\ A.length)\\
-6 & \text{merge0}(A,\ T,\ ll,\ rr)\\
-7 & \qquad \textbf{if}\ \ rr - ll \leqslant 1\\
-8 & \qquad\qquad \textbf{return}\\
-9 & \qquad mid \gets \large\lfloor\frac{ll+rr}{2}\rfloor\\
-10& \qquad\text{merge0}(A,\ T,\ ll,\ mid)\\
-11&\qquad\text{merge0}(A,\ T,\ mid,\ rr)\\
-12&\\
-13&\qquad p \gets ll\\
-14&\qquad q \gets mid\\
-15&\qquad\textbf{for}\text{ each } i \text{ in the } ll\dots rr-1\\
-16&\qquad\qquad\textbf{if}\ p\geqslant mid\ or\ q < rr\ and\ A[q] < A[p]\\
-17&\qquad\qquad\qquad T[i] \gets A[q]\\
-18&\qquad\qquad\qquad q \gets q+1\\
-19&\qquad\qquad\textbf{else}\\
-20&\qquad\qquad\qquad T[i] \gets A[p]\\
-21&\qquad\qquad\qquad p \gets p+1\\
-22&\qquad \text{copy }T[ll\dots rr-1] \text{ to } A[ll\dots rr-1]\\
-\end{array}
-$$
+为保证排序的稳定性，前段首元素小于或等于后段首元素时（`a[i] <= a[j]`）而非小于时（`a[i] < a[j]`）就要作为最小值。
+
+为保证排序的复杂度，通常将数组分为尽量等长的两段（$mid = \left\lfloor \dfrac{l + r}{2} \right\rfloor$）。
+
+## 实现
 
 ### C++
 
 ```cpp
-// C++ Version
-void merge(int ll, int rr) {
-  // 用来把 a 数组 [ll, rr - 1] 这一区间的数排序。 t
-  // 数组是临时存放有序的版本用的。
-  if (rr - ll <= 1) return;
-  int mid = ll + ((rr - ll) >> 1);
-  merge(ll, mid);
-  merge(mid, rr);
-  int p = ll, q = mid, s = ll;
-  while (s < rr) {
-    if (p >= mid || (q < rr && a[p] > a[q])) {
-      t[s++] = a[q++];
-      // ans += mid - p;
-    } else
-      t[s++] = a[p++];
+// C++ version
+void merge(int l, int r) {
+  if (r - l <= 1) return;
+  int mid = l + ((r - l) >> 1);
+  merge(l, mid), merge(mid, r);
+  for (int i = l, j = mid, k = l; k < r; ++k) {
+    if (j == r || (i < mid && a[i] <= a[j]))
+      tmp[k] = a[i++];
+    else
+      tmp[k] = a[j++];
   }
-  for (int i = ll; i < rr; ++i) a[i] = t[i];
+  for (int i = l; i < r; ++i) a[i] = tmp[i];
 }
-
-// 关键点在于一次性创建数组，避免在每次递归调用时创建，以避免内存分配的耗时。
 ```
 
 ### Python
@@ -105,13 +65,11 @@ def merge_sort(ll, rr):
 
 ## 逆序对
 
-归并排序还可以用来求逆序对的个数。
+逆序对是 $i < j$ 且 $a_i > a_j$ 的有序数对 $(i, j)$。
 
-所谓逆序对，就是对于一个数组 $a$，满足 $a_{i} > a_{j}$ 且 $i < j$ 的数对 $(i, j)$。
+排序后的数组无逆序对，归并排序的合并操作中每次后段首元素被作为当前最小值取出时前段剩余元素个数之和即是合并操作减少的逆序对数量；故归并排序计算逆序对数量的额外时间复杂度为 $\Theta (n \log n)$，对于 C++ 代码将 `a[j++]` 替换为 `(cnt += mid - i, a[j++])` 即可。
 
-代码实现中注释掉的 `ans += mid - p` 就是在统计逆序对个数。具体来说，算法把靠后的数放到前面了（较小的数放在前面），所以在这个数原来位置之前的、比它大的数都会和它形成逆序对，而这个个数就是还没有合并进去的数的个数，即 `mid - p`。
-
-另外，逆序对也可以用 [树状数组](../ds/fenwick.md)、[线段树](../ds/seg.md) 等数据结构求解。这三种方法的时间复杂度都是 $O(n \log n)$。
+此外，逆序对计数即是将元素依次加入数组时统计当前大于其的元素数量，将数组离散化后即是区间求和问题，使用树状数组或线段树解决的时间复杂度为 $\operatorname{O} (n \log n)$ 且空间复杂度为 $\Theta (n)$。
 
 ## 外部链接
 

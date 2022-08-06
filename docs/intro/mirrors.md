@@ -24,7 +24,6 @@ OI Wiki 部署在国外服务器上，有时可能会因为各种原因，出现
     - <https://oiwiki.vx.st>
     - <https://oiwiki.wiki>
     - <https://oiwiki.win>
-    - <https://oiwiki.xyz>
     - <https://oiwiki.com>
 
 -   维护者：Menci（[men.ci](https://men.ci)），线路：Azure + 阿里云 CDN，同步频率：与主站相同

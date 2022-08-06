@@ -8,6 +8,7 @@ mkdocs = "*"
 pymdown-extensions = "*"
 pygments = "*"
 beautifulsoup4 = "*"
+requests = "*"
 
 [dev-packages]
 

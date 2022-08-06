@@ -119,10 +119,11 @@ nav:
         - pb_ds 简介: lang/pb-ds/index.md
         - 堆: lang/pb-ds/pq.md
         - 平衡树: lang/pb-ds/tree.md
-    - C 与 C++ 区别: lang/cpp-other-langs.md
+    - C++ 与其他常用语言的区别: lang/cpp-other-langs.md
     - Pascal 转 C++ 急救: lang/pas-cpp.md
     - Python 速成: lang/python.md
     - Java 速成: lang/java.md
+    - Java 进阶: lang/java-pro.md
   - 算法基础:
     - 算法基础简介: basic/index.md
     - 复杂度: basic/complexity.md
@@ -212,7 +213,7 @@ nav:
     - 符号: math/notation.md
     - 复数: math/complex.md
     - 位运算: math/bit.md
-    - 快速幂: math/quick-pow.md
+    - 快速幂: math/binary-exponentiation.md
     - 进位制: math/base.md
     - 高精度计算: math/bignum.md
     - 平衡三进制: math/balanced-ternary.md
@@ -243,11 +244,12 @@ nav:
       - Powerful Number 筛: math/number-theory/powerful-number.md
       - Min_25 筛: math/number-theory/min-25.md
       - 洲阁筛: math/number-theory/zhou.md
+      - 二次域: math/number-theory/quadratic.md
       - 连分数: math/number-theory/continued-fraction.md
       - Stern-Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - Pell 方程: math/number-theory/pell-equation.md
-    - 多项式:
-      - 多项式部分简介: math/poly/intro.md
+    - 多项式与生成函数:
+      - 简介: math/poly/intro.md
       - 代数基本定理: math/poly/fundamental.md
       - 拉格朗日插值: math/poly/lagrange.md
       - 快速傅里叶变换: math/poly/fft.md
@@ -265,13 +267,12 @@ nav:
       - 多项式反三角函数: math/poly/inv-tri-func.md
       - 常系数齐次线性递推: math/linear-recurrence.md
       - 多项式平移|连续点值平移: math/poly/shift.md
-    - 生成函数:
-      - 生成函数简介: math/gen-func/intro.md
-      - 符号化方法: math/gen-func/symbolic-method.md
-      - 普通生成函数: math/gen-func/ogf.md
-      - 指数生成函数: math/gen-func/egf.md
-      - 狄利克雷生成函数: math/gen-func/dgf.md
+      - 符号化方法: math/poly/symbolic-method.md
+      - 普通生成函数: math/poly/ogf.md
+      - 指数生成函数: math/poly/egf.md
+      - 狄利克雷生成函数: math/poly/dgf.md
     - 线性代数:
+      - 线性代数简介: math/linear-algebra-index.md
       - 向量: math/vector.md
       - 矩阵: math/matrix.md
       - 高斯消元: math/gauss.md
@@ -294,7 +295,12 @@ nav:
     - 群论:
       - 群论简介:  math/group-theory.md
       - 置换群: math/permutation-group.md
-    - 概率初步: math/expectation.md
+    - 概率论:
+      - 快速上手: math/expectation.md
+      - 基本概念: math/probability/basic-conception.md
+      - 条件概率与独立性: math/probability/conditional-probability.md
+      - 随机变量: math/probability/random-variable.md
+      - 随机变量的数字特征: math/probability/exp-var.md
     - 斐波那契数列: math/fibonacci.md
     - 博弈论: 
       - 博弈论简介: math/game-theory/intro.md
@@ -346,6 +352,7 @@ nav:
       - AVL 树: ds/avl.md
       - 替罪羊树: ds/sgt.md
       - 笛卡尔树: ds/cartesian-tree.md
+      - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
     - 跳表: ds/skiplist.md
     - 可持久化数据结构:
@@ -526,8 +533,8 @@ extra:
 
 extra_javascript:
   - '_static/js/extra.js?v=16'
-  - 'assets/vendor/mathjax/MathJax.js?config=TeX-MML-AM_CHTML'
-
+  - '_static/js/math-csr.js?math-csr'
+  - 'assets/vendor/mathjax/es5/tex-mml-chtml.js?math-csr'
 
 extra_css:
   - '_static/css/extra.css?v=13'
@@ -542,8 +549,9 @@ markdown_extensions:
   - footnotes
   - meta
   - toc:
-      permalink: true
-  - pymdownx.arithmatex
+      permalink: ""
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.details

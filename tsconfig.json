@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
-    "module": "ES2022",
+    "module": "Node16",
     "moduleResolution": "Node16",
     "esModuleInterop": true,
-    "target": "ES2022",
+    "resolveJsonModule": true,
+    "target": "ES2021",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./scripts",
     "noEmit": true,
+    "strictBindCallApply": true,
     "skipLibCheck": true
   },
   "exclude": ["node_modules"],
