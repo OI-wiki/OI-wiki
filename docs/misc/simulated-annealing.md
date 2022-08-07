@@ -49,53 +49,7 @@ $$
 此处代码以 [「BZOJ 3680」吊打 XXX](https://www.luogu.com.cn/problem/P1337)（求 $n$ 个点的带权类费马点）为例。
 
 ```cpp
-#include <cmath>
-#include <cstdio>
-#include <cstdlib>
-#include <ctime>
-
-const int N = 10005;
-int n, x[N], y[N], w[N];
-double ansx, ansy, dis;
-
-double Rand() { return (double)rand() / RAND_MAX; }
-double calc(double xx, double yy) {
-  double res = 0;
-  for (int i = 1; i <= n; ++i) {
-    double dx = x[i] - xx, dy = y[i] - yy;
-    res += sqrt(dx * dx + dy * dy) * w[i];
-  }
-  if (res < dis) dis = res, ansx = xx, ansy = yy;
-  return res;
-}
-void simulateAnneal() {
-  double t = 100000;
-  double nowx = ansx, nowy = ansy;
-  while (t > 0.001) {
-    double nxtx = nowx + t * (Rand() * 2 - 1);
-    double nxty = nowy + t * (Rand() * 2 - 1);
-    double delta = calc(nxtx, nxty) - calc(nowx, nowy);
-    if (exp(-delta / t) > Rand()) nowx = nxtx, nowy = nxty;
-    t *= 0.97;
-  }
-  for (int i = 1; i <= 1000; ++i) {
-    double nxtx = ansx + t * (Rand() * 2 - 1);
-    double nxty = ansy + t * (Rand() * 2 - 1);
-    calc(nxtx, nxty);
-  }
-}
-int main() {
-  srand(time(0));
-  scanf("%d", &n);
-  for (int i = 1; i <= n; ++i) {
-    scanf("%d%d%d", &x[i], &y[i], &w[i]);
-    ansx += x[i], ansy += y[i];
-  }
-  ansx /= n, ansy /= n, dis = calc(ansx, ansy);
-  simulateAnneal();
-  printf("%.3lf %.3lf\n", ansx, ansy);
-  return 0;
-}
+--8<-- "docs/misc/code/simulated-annealing/simulated-annealing_1.cpp"
 ```
 
 * * *
@@ -114,7 +68,7 @@ int main() {
 
 可以把主程序中的 `simulateAnneal();` 换成 `while ((double)clock()/CLOCKS_PER_SEC < MAX_TIME) simulateAnneal();`。这样子就会一直跑模拟退火，直到用时即将超过时间限制。
 
-这里的 `MAX_TIME` 是一个自定义的略小于时限的数。
+这里的 `MAX_TIME` 是一个自定义的略小于时限的数（单位：秒）。
 
 * * *
 

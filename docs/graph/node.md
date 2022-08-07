@@ -6,15 +6,15 @@ author: Anguei, sshwy, Xeonacid, Ir1d, MonkeyOliver, hsfzLZH1
 
 如果把结点转化成边，那么这个问题就可以套板子解决了。
 
-我们考虑把有流量限制的结点转化成这样一种形式：由两个结点 $u,v$ 和一条边 $<u,v>$ 组成的部分。其中，结点 $u$ 承接所有从原图上其他点的出发到原图上该点的边，结点 $v$ 引出所有从原图上该点出发到达原图上其他点的边。边 $<u,v>$ 的流量限制为原图该点的流量限制，再套板子就可以解决本题。这就是拆点的基本思想。
+我们考虑把有流量限制的结点转化成这样一种形式：由两个结点 $u,v$ 和一条边 $\left\langle u,v \right\rangle$ 组成的部分。其中，结点 $u$ 承接所有从原图上其他点的出发到原图上该点的边，结点 $v$ 引出所有从原图上该点出发到达原图上其他点的边。边 $\left\langle u,v \right\rangle$ 的流量限制为原图该点的流量限制，再套板子就可以解决本题。这就是拆点的基本思想。
 
 如果原图是这样：
 
-![](./images/node1.png)
+![](./images/node.svg)
 
 拆点之后的图是这个样子：
 
-![](./images/node2.png)
+![](./images/node-split.svg)
 
 ## 分层图最短路
 
@@ -34,8 +34,11 @@ $\text{dis}_{i, j} = \min\{\min\{\text{dis}_{from, j - 1}\}, \min\{\text{dis}_{f
     ```cpp
     struct State {    // 优先队列的结点结构体
       int v, w, cnt;  // cnt 表示已经使用多少次免费通行权限
+    
       State() {}
+    
       State(int v, int w, int cnt) : v(v), w(w), cnt(cnt) {}
+    
       bool operator<(const State &rhs) const { return w > rhs.w; }
     };
     

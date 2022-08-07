@@ -21,6 +21,7 @@ $$
 我们每次比较 $i$ 和 $j$ 开始的循环同构，把当前比较到的位置记作 $k$，每次遇到不一样的字符时便把大的跳过，最后剩下的就是最优解。
 
 ```cpp
+// C++ Version
 int k = 0, i = 0, j = 1;
 while (k < n && i < n && j < n) {
   if (sec[(i + k) % n] == sec[(j + k) % n]) {
@@ -37,6 +38,23 @@ while (k < n && i < n && j < n) {
 i = min(i, j);
 ```
 
+```python
+# Python Version
+k, i, j = 0, 0, 1
+while k < n and i < n and j < n:
+    if sec[(i + k) % n] == sec[(j + k) % n]:
+        k += 1
+    else:
+        if sec[(i + k) % n] > sec[(j + k) % n]:
+            i += 1
+        else:
+            j += 1
+        k = 0
+        if i == j:
+            i += 1
+i = min(i, j)
+```
+
 随机数据下表现良好，但是可以构造特殊数据卡掉。
 
 例如：对于 $\texttt{aaa}\cdots\texttt{aab}$, 不难发现这个算法的复杂度退化为 $O(n^2)$。
@@ -50,10 +68,10 @@ i = min(i, j);
 考虑对于一对字符串 $A,B$, 它们在原字符串 $S$ 中的起始位置分别为 $i,j$, 且它们的前 $k$ 个字符均相同，即
 
 $$
-A[i \cdots i+k-1]=B[j \cdots j+k-1]
+S[i \cdots i+k-1]=S[j \cdots j+k-1]
 $$
 
-不妨先考虑 $A[i+k]>B[j+k]$ 的情况，我们发现起始位置下标 $l$ 满足 $i\le l\le i+k$ 的字符串均不能成为答案。因为对于任意一个字符串 $S_{i+p}$（表示以 $i+p$ 为起始位置的字符串）一定存在字符串 $S_{j+p}$ 比它更优。
+不妨先考虑 $S[i+k]>S[j+k]$ 的情况，我们发现起始位置下标 $l$ 满足 $i\le l\le i+k$ 的字符串均不能成为答案。因为对于任意一个字符串 $S_{i+p}$（表示以 $i+p$ 为起始位置的字符串，$p \in [0, k]$）一定存在字符串 $S_{j+p}$ 比它更优。
 
 所以我们比较时可以跳过下标 $l\in [i,i+k]$, 直接比较 $S_{i+k+1}$
 
@@ -73,6 +91,7 @@ $O(n)$
 ### 代码
 
 ```cpp
+// C++ Version
 int k = 0, i = 0, j = 1;
 while (k < n && i < n && j < n) {
   if (sec[(i + k) % n] == sec[(j + k) % n]) {
@@ -84,4 +103,21 @@ while (k < n && i < n && j < n) {
   }
 }
 i = min(i, j);
+```
+
+```python
+# Python Version
+k, i, j = 0, 0, 1
+while k < n and i < n and j < n:
+    if sec[(i + k) % n] == sec[(j + k) % n]:
+        k += 1
+    else:
+        if sec[(i + k) % n] > sec[(j + k) % n]:
+            i = i + k + 1
+        else:
+            j = j + k + 1
+        if i == j:
+            i += 1
+        k = 0
+i = min(i, j)
 ```

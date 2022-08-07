@@ -46,8 +46,8 @@ $$
 $$
 \Phi(x)=
 \begin{cases}
-\alpha(n)\times \mathit{rnk}(x)& \mathit{rnk}(x)=0\text{或}x\text{为某棵树的根节点}&\\
-(\alpha(n)-\mathit{level}(x))\times \mathit{rnk}(x)-iter(x)& \mathit{otherwise}&
+\alpha(n)\times \mathit{rnk}(x)& \mathit{rnk}(x)=0\ \text{或}\ x\ \text{为某棵树的根节点}\\
+(\alpha(n)-\mathit{level}(x))\times \mathit{rnk}(x)-iter(x)& \text{otherwise}
 \end{cases}
 $$
 
@@ -102,7 +102,7 @@ $$
 
 这个问题也就是问，如果我们不按秩合并，会有哪些性质被破坏，导致并查集的时间复杂度不能保证为 $\Theta(m\alpha(n))$。
 
-如果我们在合并的时候，$rnk$ 较大的合并到了 $rnk$ 较小的节点上面，我们就将那个 $rnk$ 较小的节点的 $rnk$ 值设为另一个节点的 $rnk$ 值加一。这样，我们就能保证 $rnk(fa(x))\geq rnk(x)+1$，从而不会出现类似于满地 complie error 一样的性质不符合。
+如果我们在合并的时候，$rnk$ 较大的合并到了 $rnk$ 较小的节点上面，我们就将那个 $rnk$ 较小的节点的 $rnk$ 值设为另一个节点的 $rnk$ 值加一。这样，我们就能保证 $rnk(fa(x))\geq rnk(x)+1$，从而不会出现类似于满地 compile error 一样的性质不符合。
 
 显然，如果这样子的话，我们破坏的就是 $union(x,y)$ 函数「y 的势能最多增加 $\alpha(n)$」这一句。
 
@@ -110,7 +110,7 @@ $$
 
 二项树（实际上和一般的二项树不太一样），其中 j 是常数，$T_k$ 为一个 $T_{k-1}$ 加上一个 $T_{k-j}$ 作为根节点的儿子。
 
-![我们的二项树](./images/dsu_complexy1.png)
+![我们的二项树](./images/dsu_complexity1.png)
 
 边界条件，$T_1$ 到 $T_j$ 都是一个单独的点。
 

@@ -1,3 +1,0 @@
-mkdocs>=1
-pymdown-extensions
-Pygments>=2.2,<2.4

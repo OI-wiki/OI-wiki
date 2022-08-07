@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./scripts",
+    "noEmit": true,
+    "strictBindCallApply": true,
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "swc": true
+  }
+}
