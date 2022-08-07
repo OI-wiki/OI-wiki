@@ -45,7 +45,7 @@ int main() {
   scanf("%lld", &h);
   scanf("%lld %lld %lld", &x, &y, &z);
   if (x == 1 || y == 1 || z == 1) {
-    printf("%d\n", h);
+    printf("%lld\n", h);
     return 0;
   }
   for (int i = 0; i < x; i++) {

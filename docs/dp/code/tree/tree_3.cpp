@@ -10,12 +10,12 @@ struct node {
   int to, next;
 } e[1000010 << 1];
 
-void add(int u, int v) {  //建图
+void add(int u, int v) {  // 建图
   e[++tot] = node{v, head[u]};
   head[u] = tot;
 }
 
-void dfs(int u, int fa) {  //预处理dfs
+void dfs(int u, int fa) {  // 预处理dfs
   size[u] = 1;
   dep[u] = dep[fa] + 1;
   for (int i = head[u]; i; i = e[i].next) {
@@ -27,7 +27,7 @@ void dfs(int u, int fa) {  //预处理dfs
   }
 }
 
-void get_ans(int u, int fa) {  //第二次dfs换根dp
+void get_ans(int u, int fa) {  // 第二次dfs换根dp
   for (int i = head[u]; i; i = e[i].next) {
     int v = e[i].to;
     if (v != fa) {
@@ -50,7 +50,7 @@ int main() {
   get_ans(1, 1);
   long long int ans = -1;
   int id;
-  for (int i = 1; i <= n; i++) {  //统计答案
+  for (int i = 1; i <= n; i++) {  // 统计答案
     if (f[i] > ans) {
       ans = f[i];
       id = i;

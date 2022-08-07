@@ -1,13 +1,13 @@
 ## 定义
 
 最近公共祖先简称 LCA（Lowest Common Ancestor）。两个节点的最近公共祖先，就是这两个点的公共祖先里面，离根最远的那个。
-为了方便，我们记某点集 $S={v_1,v_2,\ldots,v_n}$ 的最近公共祖先为 $\text{LCA}(v_1,v_2,\ldots,v_n)$ 或 $\text{LCA}(S)$。
+为了方便，我们记某点集 $S=\{v_1,v_2,\ldots,v_n\}$ 的最近公共祖先为 $\text{LCA}(v_1,v_2,\ldots,v_n)$ 或 $\text{LCA}(S)$。
 
 ## 性质
 
 > 本节 **性质** 部分内容翻译自 [wcipeg](http://wcipeg.com/wiki/Lowest_common_ancestor)，并做过修改。
 
-1. $\text{LCA}({u})=u$；
+1. $\text{LCA}(\{u\})=u$；
 2. $u$ 是 $v$ 的祖先，当且仅当 $\text{LCA}(u,v)=u$；
 3. 如果 $u$ 不为 $v$ 的祖先并且 $v$ 不为 $u$ 的祖先，那么 $u,v$ 分别处于 $\text{LCA}(u,v)$ 的两棵不同子树中；
 4. 前序遍历中，$\text{LCA}(S)$ 出现在所有 $S$ 中元素之前，后序遍历中 $\text{LCA}(S)$ 则出现在所有 $S$ 中元素之后；
@@ -36,7 +36,7 @@
 另外倍增算法可以通过交换 `fa` 数组的两维使较小维放在前面。这样可以减少 cache miss 次数，提高程序效率。
 
 !!! 例题
-    [HDU 2586 How far away?](http://acm.hdu.edu.cn/showproblem.php?pid=2586) 树上最短路查询。原题为多组数据，以下代码为针对单组数据的情况编写的。
+    [HDU 2586 How far away?](https://vjudge.net/problem/HDU-2586) 树上最短路查询。原题为多组数据，以下代码为针对单组数据的情况编写的。
 
 可先求出 LCA，再结合性质 $7$ 进行解答。也可以直接在求 LCA 时求出结果。
 
@@ -255,16 +255,18 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
 ???+note "参考代码"
     ```cpp
     int dfn[N << 1], dep[N << 1], dfntot = 0;
+    
     void dfs(int t, int depth) {
       dfn[++dfntot] = t;
       pos[t] = dfntot;
       dep[dfntot] = depth;
       for (int i = head[t]; i; i = side[i].next) {
-        dfs(side[i].to, t, depth + 1);
+        dfs(side[i].to, depth + 1);
         dfn[++dfntot] = t;
         dep[dfntot] = depth;
       }
     }
+    
     void st_preprocess() {
       lg[0] = -1;  // 预处理 lg 代替库函数 log2 来优化常数
       for (int i = 1; i <= (N << 1); ++i) lg[i] = lg[i >> 1] + 1;

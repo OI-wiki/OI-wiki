@@ -2,10 +2,10 @@
 
 如果区间变成动态的呢？即，如果还要求支持一种操作：单点修改某一位上的值，又该怎么办呢？
 
-??? note " 例题[二逼平衡树（树套树）](https://loj.ac/problem/106)"
+??? note "例题 [二逼平衡树（树套树）](https://loj.ac/problem/106)"
 
 
-??? note " 例题[ZOJ 2112 Dynamic Rankings](http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemId=1112)"
+??? note "例题 [ZOJ 2112 Dynamic Rankings](https://zoj.pintia.cn/problem-sets/91827364500/problems/91827365611)"
 
 
 如果用 [线段树套平衡树](./balanced-in-seg.md) 中所论述的，用线段树套平衡树，即对于线段树的每一个节点，对于其所表示的区间维护一个平衡树，然后用二分来查找 $k$ 小值。由于每次查询操作都要覆盖多个区间，即有多个节点，但是平衡树并不能多个值一起查找，所以时间复杂度是 $O(n\log^3 n)$，并不是最优的。
@@ -39,10 +39,13 @@ int n, m, a[maxn], u[maxn], x[maxn], l[maxn], r[maxn], k[maxn], cur, cur1, cur2,
 char op[maxn];
 set<int> ST;
 map<int, int> mp;
+
 struct segment_tree  // 封装的动态开点权值线段树
 {
   int cur, rt[maxn * 4], sum[maxn * 60], lc[maxn * 60], rc[maxn * 60];
+
   void build(int& o) { o = ++cur; }
+
   void print(int o, int l, int r) {
     if (!o) return;
     if (l == r && sum[o]) printf("%d ", l);
@@ -50,6 +53,7 @@ struct segment_tree  // 封装的动态开点权值线段树
     print(lc[o], l, mid);
     print(rc[o], mid + 1, r);
   }
+
   void update(int& o, int l, int r, int x, int v) {
     if (!o) o = ++cur;
     sum[o] += v;
@@ -61,15 +65,19 @@ struct segment_tree  // 封装的动态开点权值线段树
       update(rc[o], mid + 1, r, x, v);
   }
 } st;
-//树状数组实现
+
+// 树状数组实现
 inline int lowbit(int o) { return (o & (-o)); }
+
 void upd(int o, int x, int v) {
   for (; o <= n; o += lowbit(o)) st.update(st.rt[o], 1, n, x, v);
 }
+
 void gtv(int o, int* A, int& p) {
   p = 0;
   for (; o; o -= lowbit(o)) A[++p] = st.rt[o];
 }
+
 int qry(int l, int r, int k) {
   if (l == r) return l;
   int mid = (l + r) >> 1, siz = 0;
@@ -86,6 +94,7 @@ int qry(int l, int r, int k) {
     return qry(mid + 1, r, k - siz);
   }
 }
+
 /*
 线段树实现
 void build(int o,int l,int r)

@@ -68,7 +68,7 @@ $$
 
 可以把主程序中的 `simulateAnneal();` 换成 `while ((double)clock()/CLOCKS_PER_SEC < MAX_TIME) simulateAnneal();`。这样子就会一直跑模拟退火，直到用时即将超过时间限制。
 
-这里的 `MAX_TIME` 是一个自定义的略小于时限的数。
+这里的 `MAX_TIME` 是一个自定义的略小于时限的数（单位：秒）。
 
 * * *
 

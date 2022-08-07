@@ -2,12 +2,15 @@ name: Build LaTeX document
 
 on:
   push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
 
 jobs:
   build:
+    name: OI-Wiki LaTeX Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

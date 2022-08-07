@@ -1,34 +1,44 @@
-//仔细推一下就是和三维偏序差不多的式子了，基本就是一个三维偏序的板子
+// 仔细推一下就是和三维偏序差不多的式子了，基本就是一个三维偏序的板子
 #include <algorithm>
 #include <cstdio>
 using namespace std;
 typedef long long ll;
 int n;
 int m;
+
 struct treearray {
   int ta[200010];
+
   inline void ub(int& x) { x += x & (-x); }
+
   inline void db(int& x) { x -= x & (-x); }
+
   inline void c(int x, int t) {
     for (; x <= n + 1; ub(x)) ta[x] += t;
   }
+
   inline int sum(int x) {
     int r = 0;
     for (; x > 0; db(x)) r += ta[x];
     return r;
   }
 } ta;
+
 struct data {
   int val;
   int del;
   int ans;
 } a[100010];
+
 int rv[100010];
 ll res;
+
 bool cmp1(const data& a, const data& b) {
   return a.val < b.val;
-}  //重写两个比较
+}  // 重写两个比较
+
 bool cmp2(const data& a, const data& b) { return a.del < b.del; }
+
 void solve(int l, int r) {  // 底下是具体的式子，套用
   if (r - l == 1) {
     return;
@@ -77,6 +87,7 @@ void solve(int l, int r) {  // 底下是具体的式子，套用
   sort(a + l + 1, a + r + 1, cmp1);
   return;
 }
+
 int main() {
   scanf("%d%d", &n, &m);
   for (int i = 1; i <= n; i++) {

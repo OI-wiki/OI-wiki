@@ -3,6 +3,7 @@
 using namespace std;
 long long sta[2005], sit[2005], f[15][2005][105];
 int n, k, cnt;
+
 void dfs(int x, int num, int cur) {
   if (cur >= n) {  // 有新的合法状态
     sit[++cnt] = x;
@@ -13,12 +14,14 @@ void dfs(int x, int num, int cur) {
   dfs(x + (1 << cur), num + 1,
       cur + 2);  // cur位置放国王，与它相邻的位置不能再放国王
 }
+
 bool compatible(int j, int x) {
   if (sit[j] & sit[x]) return false;
   if ((sit[j] << 1) & sit[x]) return false;
   if (sit[j] & (sit[x] << 1)) return false;
   return true;
 }
+
 int main() {
   cin >> n >> k;
   dfs(0, 0, 0);  // 先预处理一行的所有合法状态

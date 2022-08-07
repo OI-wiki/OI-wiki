@@ -48,7 +48,6 @@
 
 ??? note "参考代码"
     ```cpp
-    // 该代码为回溯法的 DFS 实现
     --8<-- "docs/search/code/backtracking/backtracking_1.cpp"
     ```
 
@@ -59,6 +58,5 @@
 
 ??? note "参考代码"
     ```cpp
-    // 该代码为回溯法的 BFS 实现
     --8<-- "docs/search/code/backtracking/backtracking_2.cpp"
     ```

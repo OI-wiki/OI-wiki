@@ -4,7 +4,7 @@ author: Alex-McAvoy
 
 设二叉树具有 $n$ 个带权叶结点，从根结点到各叶结点的路径长度与相应叶节点权值的乘积之和称为 **树的带权路径长度（Weighted Path Length of Tree，WPL）**。
 
-设 $w_i$ 为二叉树地 $i$ 个叶结点的权值，$l_i$ 为从根结点到第 $i$ 个叶结点的路径长度，则 WPL 计算公式如下：
+设 $w_i$ 为二叉树第 $i$ 个叶结点的权值，$l_i$ 为从根结点到第 $i$ 个叶结点的路径长度，则 WPL 计算公式如下：
 
 $$
 WPL=\sum_{i=1}^nw_il_i
@@ -61,6 +61,7 @@ $$
       int weight;
       HNode *lchild, *rchild;
     } * Htree;
+    
     Htree createHuffmanTree(int arr[], int n) {
       Htree forest[N];
       Htree root = NULL;
@@ -102,7 +103,7 @@ $$
         root->lchild = forest[minn];
         root->rchild = forest[minnSub];
     
-        forest[minn] = root;     //指向新树的指针赋给 minn 位置
+        forest[minn] = root;     // 指向新树的指针赋给 minn 位置
         forest[minnSub] = NULL;  // minnSub 位置为空
       }
       return root;
@@ -115,7 +116,8 @@ $$
       int weight;
       HNode *lchild, *rchild;
     } * Htree;
-    int getWPL(Htree root, int len) {  //递归实现，对于已经建好的霍夫曼树，求 WPL
+    
+    int getWPL(Htree root, int len) {  // 递归实现，对于已经建好的霍夫曼树，求 WPL
       if (root == NULL)
         return 0;
       else {
@@ -156,6 +158,7 @@ $$
       int weight;
       HNode *lchild, *rchild;
     } * Htree;
+    
     void huffmanCoding(Htree root, int len, int arr[]) {  // 计算霍夫曼编码
       if (root != NULL) {
         if (root->lchild == NULL && root->rchild == NULL) {

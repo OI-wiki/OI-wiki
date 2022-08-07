@@ -72,12 +72,6 @@
 
 - 行间公式前后各要有一行空行，否则会被当做是行内公式。
 
--   涉及到目录的更改的时候：
-    - 需要改动 `mkdocs.yml`。
-    - 如果影响到作者信息统计，需要更新 [author 字段](./faq.md#_11)（不改动目录的时候不需要维护 author 字段）。
-    - 需要在项目内搜索一下是否有内链需要更新。
-    - 如果造成了死链，麻烦更新 [重定向文件](https://github.com/OI-wiki/OI-wiki/blob/master/docs/_redirects)。详见 [重定向文件](./faq.md#_11)。
-
 -   使用 `???` 或 `!!!` 开头的 Details 语法时，每一行要包括在 Details 语法的文本框的文本，开头必须至少有 4 个空格。
 
     **即使是空行，也必须保持与其他行一致的缩进。请不要使用编辑器的自动裁剪行末空格功能。**
@@ -182,7 +176,7 @@
 
         推荐将 **解题代码** 放在折叠文本框内。
 
-    ???+note "[HDOJ 的“A + B Problem”](http://acm.hdu.edu.cn/showproblem.php?pid=1000)"
+    ???+note "[HDOJ 的“A + B Problem”](https://vjudge.net/problem/HDU-1000)"
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
 
         而且推荐以这种方式**标注原题链接**。
@@ -197,7 +191,7 @@
         
         推荐将 **解题代码** 放在折叠文本框内。
 
-    ???+note "[HDOJ 的“A + B Problem”](http://acm.hdu.edu.cn/showproblem.php?pid=1000)"
+    ???+note "[HDOJ 的“A + B Problem”](https://vjudge.net/problem/HDU-1000)"
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的“A + B Problem”。
         
         而且推荐以这种方式 **标注原题链接**。
@@ -509,7 +503,7 @@ $$
 
 ## 外部链接
 
-- [标点符号用法（GB/T 15834—2011）](http://www.moe.gov.cn/s78/A19/yxs_left/moe_810/s230/201001/W020190128580990138234.pdf)
+- [标点符号用法（GB/T 15834—2011）](http://www.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/W020190128580990138234.pdf)
 - [维基百科：格式手册/标点符号](https://zh.wikipedia.org/wiki/Wikipedia:%E6%A0%BC%E5%BC%8F%E6%89%8B%E5%86%8C/%E6%A0%87%E7%82%B9%E7%AC%A6%E5%8F%B7)
 - [中文文案排版指北（简体中文版）](https://mazhuang.org/wiki/chinese-copywriting-guidelines/)
 - [中文文案风格指南 - PDFE GUIDELINE](https://pdfe.github.io/GUIDELINE/#/others/copywriter)

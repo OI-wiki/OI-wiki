@@ -32,11 +32,13 @@ const int gety[] = {0, 1, 1, 2,  1,  2,  3,  1, 2,  3,  4,  1, 2, 3, 4,  5,  1,
                     6, 7, 8, 9,  10, 1,  2,  3, 4,  5,  6,  7, 8, 9, 10, 11, 1,
                     2, 3, 4, 5,  6,  7,  8,  9, 10, 11, 12, 1, 2, 3, 4,  5,  6,
                     7, 8, 9, 10, 11, 12, 13, 1, 2,  3,  4,  5, 6, 7, 8,  9};
+
 struct DLX {
   static const int MS = 1e5 + 10;
   int n, m, tot, first[MS], siz[MS];
   int L[MS], R[MS], U[MS], D[MS];
   int col[MS], row[MS];
+
   void build(const int &r, const int &c) {
     n = r, m = c;
     for (register int i = 0; i <= c; ++i) {
@@ -47,6 +49,7 @@ struct DLX {
     memset(first, 0, sizeof(first));
     memset(siz, 0, sizeof(siz));
   }
+
   void insert(const int &r, const int &c) {  // insert
     col[++tot] = c, row[tot] = r, ++siz[c];
     D[tot] = D[c], U[D[c]] = tot, U[tot] = c, D[c] = tot;
@@ -56,6 +59,7 @@ struct DLX {
       R[tot] = R[first[r]], L[R[first[r]]] = tot, L[tot] = first[r],
       R[first[r]] = tot;  // !
   }
+
   void remove(const int &c) {  // remove
     register int i, j;
     L[R[c]] = L[c], R[L[c]] = R[c];
@@ -63,12 +67,14 @@ struct DLX {
       for (j = R[i]; j != i; j = R[j])
         U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
   }
+
   void recover(const int &c) {  // recover
     register int i, j;
     for (i = U[c]; i != c; i = U[i])
       for (j = L[i]; j != i; j = L[j]) U[D[j]] = D[U[j]] = j, ++siz[col[j]];
     L[R[c]] = R[L[c]] = c;
   }
+
   bool dance() {  // dance
     if (!R[0]) return 1;
     register int i, j, c = R[0];
@@ -88,6 +94,7 @@ struct DLX {
     return 0;
   }
 } solver;
+
 int main() {
   for (register int i = 1; i <= 10; ++i) scanf("%s", ans[i] + 1);
   for (register int i = 1; i <= 10; ++i)

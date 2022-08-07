@@ -8,7 +8,7 @@
 
 比如邀请人来吃喜酒，夫妻二人必须去一个，然而某些人之间有矛盾（比如 A 先生与 B 女士有矛盾，C 女士不想和 D 先生在一起），那么我们要确定能否避免来人之间没有矛盾，有时需要方案。这是一类生活中常见的问题。
 
-使用布尔方程表示上述问题。设 $a$ 表示 A 先生去参加，那么 B 女士就不能参加（$\neg a$)；$b$ 表示 C 女士参加，那么 $\neg b$ 也一定成立（D 先生不参加）。总结一下，即 $(a \vee b)$（变量 $a, b$ 至少满足一个）。对这些变量关系建有向图，则有：$\neg a\Rightarrow b\wedge\neg b\Rightarrow a$（$a$ 不成立则 $b$ 一定成立；同理，$b$ 不成立则 $a$ 一定成立）。建图之后，我们就可以使用缩点算法来求解 2-SAT 问题了。
+使用布尔方程表示上述问题。设 $a$ 表示 A 先生去参加，那么 B 女士就不能参加（$\neg a$)；$b$ 表示 C 女士参加，那么 $\neg b$ 也一定成立（D 先生不参加）。总结一下，即 $(a \vee b)$（变量 $a, b$ 至少满足一个）。对这些变量关系建有向图，则有：$\neg a\to b\wedge\neg b\to a$（$a$ 不成立则 $b$ 一定成立；同理，$b$ 不成立则 $a$ 一定成立）。建图之后，我们就可以使用缩点算法来求解 2-SAT 问题了。
 
 ## 常用解决方法
 
@@ -20,7 +20,7 @@
 
 然后通过这样子建边我们跑一遍 Tarjan SCC 判断是否有一个集合中的两个元素在同一个 SCC 中，若有则输出不可能，否则输出方案。构造方案只需要把几个不矛盾的 SCC 拼起来就好了。
 
-输出方案时可以通过变量在图中的拓扑序确定该变量的取值。如果变量 $\neg x$ 的拓扑序在 $x$ 之后，那么取 $x$ 值为真。应用到 Tarjan 算法的缩点，即 $x$ 所在 SCC 编号在 $\neg x$ 之前时，取 $x$ 为真。因为 Tarjan 算法求强连通分量时使用了栈，所以 Tarjan 求得的 SCC 编号相当于反拓扑序。
+输出方案时可以通过变量在图中的拓扑序确定该变量的取值。如果变量 $x$ 的拓扑序在 $\neg x$ 之后，那么取 $x$ 值为真。应用到 Tarjan 算法的缩点，即 $x$ 所在 SCC 编号在 $\neg x$ 之前时，取 $x$ 为真。因为 Tarjan 算法求强连通分量时使用了栈，所以 Tarjan 求得的 SCC 编号相当于反拓扑序。
 
 显然地，时间复杂度为 $O(n+m)$。
 
@@ -38,6 +38,7 @@
       vector<int> g[maxn * 2];
       bool mark[maxn * 2];
       int s[maxn * 2], c;
+    
       bool dfs(int x) {
         if (mark[x ^ 1]) return false;
         if (mark[x]) return true;
@@ -47,15 +48,18 @@
           if (!dfs(g[x][i])) return false;
         return true;
       }
+    
       void init(int n) {
         this->n = n;
         for (int i = 0; i < n * 2; i++) g[i].clear();
         memset(mark, 0, sizeof(mark));
       }
+    
       void add_clause(int x, int y) {  // 这个函数随题意变化
         g[x].push_back(y ^ 1);         // 选了 x 就必须选 y^1
         g[y].push_back(x ^ 1);
       }
+    
       bool solve() {
         for (int i = 0; i < n * 2; i += 2)
           if (!mark[i] && !mark[i + 1]) {
@@ -72,7 +76,7 @@
 
 ## 例题
 
-### **HDU3062 [Party](http://acm.hdu.edu.cn/showproblem.php?pid=3062)**
+### **HDU3062 [Party](https://vjudge.net/problem/HDU-3062)**
 
 > 题面：有 n 对夫妻被邀请参加一个聚会，因为场地的问题，每对夫妻中只有 $1$ 人可以列席。在 $2n$ 个人中，某些人之间有着很大的矛盾（当然夫妻之间是没有矛盾的），有矛盾的 $2$ 个人是不会同时出现在聚会上的。有没有可能会有 $n$ 个人同时列席？
 
@@ -102,6 +106,6 @@
 
 ## 练习题
 
-HDU1814 [和平委员会](http://acm.hdu.edu.cn/showproblem.php?pid=1814)
+[洛谷 P5782 和平委员会](https://www.luogu.com.cn/problem/P5782)
 
 POJ3683 [牧师忙碌日](http://poj.org/problem?id=3683)

@@ -10,6 +10,7 @@ DFS（深度优先搜索）是一种常见的算法，大部分的题目都可�
 
 ```cpp
 int ans = 最坏情况, now;  // now 为当前答案
+
 void dfs(传入数值) {
   if (到达目的地) ans = 从当前解与已有解中选最优;
   for (遍历所有可能性)
@@ -36,6 +37,7 @@ void dfs(传入数值) {
 ```cpp
 int g[MAXN];  // 定义记忆化数组
 int ans = 最坏情况, now;
+
 void dfs f(传入数值) {
   if (g[规模] != 无效数值) return;  // 或记录解，视情况而定
   if (到达目的地) ans = 从当前解与已有解中选最优;  // 输出解，视情况而定
@@ -46,6 +48,7 @@ void dfs f(传入数值) {
       撤回操作;
     }
 }
+
 int main() {
   // ...
   memset(g, 无效数值, sizeof(g));  // 初始化记忆化数组
@@ -61,6 +64,7 @@ int main() {
 
 ```cpp
 int ans = 最坏情况, now;
+
 void dfs(传入数值) {
   if (now比ans的答案还要差) return;
   if (到达目的地) ans = 从当前解与已有解中选最优;
@@ -81,6 +85,7 @@ void dfs(传入数值) {
 
 ```cpp
 int ans = 最坏情况, now;
+
 void dfs(传入数值) {
   if (当前解已不可用) return;
   if (到达目的地) ans = 从当前解与已有解中选最优;

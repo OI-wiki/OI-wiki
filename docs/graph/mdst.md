@@ -97,17 +97,21 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
     ll d[MAXN][MAXN], dd[MAXN][MAXN], rk[MAXN][MAXN], val[MAXN];
     const ll INF = 1e17;
     int n, m;
+    
     bool cmp(int a, int b) { return val[a] < val[b]; }
+    
     void floyd() {
       for (int k = 1; k <= n; k++)
         for (int i = 1; i <= n; i++)
           for (int j = 1; j <= n; j++) d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
     }
+    
     struct node {
       ll u, v, w;
     } a[MAXN * (MAXN - 1) / 2];
+    
     void solve() {
-      //求图的绝对中心
+      // 求图的绝对中心
       floyd();
       for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= n; j++) {
@@ -117,14 +121,14 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
         sort(rk[i] + 1, rk[i] + 1 + n, cmp);
       }
       ll P = 0, ansP = INF;
-      //在点上
+      // 在点上
       for (int i = 1; i <= n; i++) {
         if (d[i][rk[i][n]] * 2 < ansP) {
           ansP = d[i][rk[i][n]] * 2;
           P = i;
         }
       }
-      //在边上
+      // 在边上
       int f1 = 0, f2 = 0;
       ll disu = INT_MIN, disv = INT_MIN, ansL = INF;
       for (int i = 1; i <= m; i++) {
@@ -142,7 +146,7 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
         }
       }
       cout << min(ansP, ansL) / 2 << '\n';
-      //最小路径生成树
+      // 最小路径生成树
       vector<pii> pp;
       for (int i = 1; i <= 501; ++i)
         for (int j = 1; j <= 501; ++j) dd[i][j] = INF;
@@ -193,11 +197,13 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
           if (x != n && y != n) cout << x << ' ' << y << '\n';
       }
     }
+    
     void init() {
       for (int i = 1; i <= 501; ++i)
         for (int j = 1; j <= 501; ++j) d[i][j] = INF;
       for (int i = 1; i <= 501; ++i) d[i][i] = 0;
     }
+    
     int main() {
       init();
       cin >> n >> m;

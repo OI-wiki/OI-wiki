@@ -10,11 +10,13 @@ using namespace std;
 /*FHQ TREAP*/
 int rt, tot, f[N], rnd[N], ls[N], rs[N], siz[N], tag[N], val[N], sum[N], pd[N],
     pds[N];
+
 void pushup(int x) {
   siz[x] = siz[ls[x]] + siz[rs[x]] + 1;
   sum[x] = sum[ls[x]] + sum[rs[x]] + val[x];
   pds[x] = pds[ls[x]] + pds[rs[x]] + pd[x];
 }
+
 void link(int x, int c, int y) {
   if (c)
     rs[x] = y;
@@ -23,6 +25,7 @@ void link(int x, int c, int y) {
   if (y) f[y] = x;
   pushup(x);
 }
+
 int newNode(int x, int y) {
   siz[++tot] = 1;
   val[tot] = sum[tot] = x;
@@ -30,16 +33,19 @@ int newNode(int x, int y) {
   rnd[tot] = rand();
   return tot;
 }
+
 void setTag(int x, int v) {
   tag[x] += v;
   sum[x] += v * pds[x];
   val[x] += v * pd[x];
 }
+
 void pushdown(int x) {
   if (ls[x]) setTag(ls[x], tag[x]);
   if (rs[x]) setTag(rs[x], tag[x]);
   tag[x] = 0;
 }
+
 void split(int now, int k, int &x, int &y) {
   f[now] = 0;
   if (!now) {
@@ -57,6 +63,7 @@ void split(int now, int k, int &x, int &y) {
     link(y, 0, ls[y]);
   }
 }
+
 int merge(int x, int y) {
   if (!x || !y) return x | y;
   if (rnd[x] < rnd[y]) {
@@ -69,6 +76,7 @@ int merge(int x, int y) {
     return y;
   }
 }
+
 int rnk(int x) {
   int c = 1, ans = 0;
   while (x) {
@@ -78,16 +86,19 @@ int rnk(int x) {
   }
   return ans;
 }
+
 /*ETT*/
 int s[N], e[N];
+
 void add(int x, int v) {
   int a, b, c;
   split(rt, rnk(s[x]) - 1, a, b);
   split(b, rnk(e[x]) - rnk(s[x]) + 1, b,
-        c);  //这里 b 是我们要进行操作的子树的括号序列。
+        c);  // 这里 b 是我们要进行操作的子树的括号序列。
   setTag(b, v);
   rt = merge(merge(a, b), c);
 }
+
 int query(int x) {
   int a, b;
   split(rt, rnk(s[x]), a, b);
@@ -95,24 +106,28 @@ int query(int x) {
   rt = merge(a, b);
   return ans;
 }
+
 void changeFa(int x, int y) {
   int a, b, c, d;
   split(rt, rnk(s[x]) - 1, a, b);
   split(b, rnk(e[x]) - rnk(s[x]) + 1, b, c);
   a = merge(
       a,
-      c);  //因为我们确定不了要设置为父亲的节点在括号序列中的哪边，所以先把两边合并。
+      c);  // 因为我们确定不了要设置为父亲的节点在括号序列中的哪边，所以先把两边合并。
   split(a, rnk(s[y]), a, d);
-  rt = merge(merge(a, b), d);  //把要进行操作的子树放在父亲括号序列的最前面。
+  rt = merge(merge(a, b), d);  // 把要进行操作的子树放在父亲括号序列的最前面。
 }
+
 /*main function*/
 int n, m, w[N];
 vector<int> v[N];
+
 void dfs(int x) {
   rt = merge(rt, s[x] = newNode(w[x], 1));
   for (auto to : v[x]) dfs(to);
   rt = merge(rt, e[x] = newNode(-w[x], -1));
 }
+
 signed main() {
   cin >> n;
   for (int i = 2; i <= n; i++) {

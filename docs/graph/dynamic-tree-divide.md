@@ -31,6 +31,7 @@ void calcsiz(int x, int f) {
   if (maxx[x] < maxx[rt])
     rt = x;  // 这里不能写 <= ，保证在第二次 calcsiz 时 rt 不改变
 }
+
 void pre(int x) {
   vis[x] = true;  // 表示在之后的过程中不考虑 x 这个点
   for (int j = h[x]; j; j = nxt[j])
@@ -44,6 +45,7 @@ void pre(int x) {
       pre(rt);  // 记录点分树上的父亲
     }
 }
+
 int main() {
   sum = n;
   rt = 0;

@@ -5,14 +5,17 @@ const int offset = 3, mask = (1 << offset) - 1;
 int n, m;
 long long ans, d;
 const int MaxSZ = 16796, Prime = 9973;
+
 struct hashTable {
   int head[Prime], next[MaxSZ], sz;
   int state[MaxSZ];
   long long key[MaxSZ];
+
   inline void clear() {
     sz = 0;
     memset(head, -1, sizeof(head));
   }
+
   inline void push(int s) {
     int x = s % Prime;
     for (int i = head[x]; ~i; i = next[i]) {
@@ -25,11 +28,14 @@ struct hashTable {
     next[sz] = head[x];
     head[x] = sz++;
   }
+
   void roll() {
     for (int i = 0; i < sz; i++) state[i] <<= offset;
   }
 } H[2], *H0, *H1;
+
 int b[M + 1], bb[M + 1];
+
 int encode() {
   int s = 0;
   memset(bb, -1, sizeof(bb));
@@ -42,17 +48,20 @@ int encode() {
   }
   return s;
 }
+
 void decode(int s) {
   for (int i = 0; i < m + 1; i++) {
     b[i] = s & mask;
     s >>= offset;
   }
 }
+
 void push(int j, int dn, int rt) {
   b[j] = dn;
   b[j + 1] = rt;
   H1->push(encode());
 }
+
 int main() {
   cin >> n >> m;
   if (m > n) swap(n, m);

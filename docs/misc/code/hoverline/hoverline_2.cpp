@@ -6,6 +6,7 @@ long long sum[N];
 long long ans;
 int ansl, ansr;
 bool fir = 1;
+
 int main() {
   while (scanf("%d", &n) != EOF) {
     memset(a, -1, sizeof(a));

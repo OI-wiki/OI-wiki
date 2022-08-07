@@ -57,8 +57,10 @@
 struct Query {
   int id, k;  // 这个询问的编号, 这个询问的k
 };
+
 int ans[N];        // ans[i] 表示编号为i的询问的答案
 int check(int x);  // 返回原数列中小于等于x的数的个数
+
 void solve(int l, int r, vector<Query> q)
 // 请补全这个函数
 {
@@ -106,13 +108,16 @@ void solve(int l, int r, vector<Query> q) {
 struct Num {
   int p, x;
 };  // 位于数列中第 p 项的数的值为 x
+
 struct Query {
   int l, r, k, id;
 };  // 一个编号为 id, 询问 [l,r] 中第 k 小数的询问
+
 int ans[N];
 void add(int p, int x);  // 树状数组, 在 p 位置加上 x
 int query(int p);        // 树状数组, 求 [1,p] 的和
 void clear();            // 树状数组, 清空
+
 void solve(int l, int r, vector<Num> a, vector<Query> q)
 // a中为给定数列中值在值域区间 [l,r] 中的数
 {
@@ -170,12 +175,14 @@ struct Opt {
   // k 表示当前操作是插入(1)还是擦除(-1), 更新树状数组时使用.
   // id 记录每个操作原先的编号, 因二分过程中操作顺序会被打散
 };
+
 Opt q[N], q1[N], q2[N];
 // q 为所有操作,
 // 二分过程中, 分到左边的操作存到 q1 中, 分到右边的操作存到 q2 中.
 int ans[N];
 void add(int p, int x);
 int query(int p);  // 树状数组函数, 含义见题3
+
 void solve(int l, int r, int L, int R)
 // 当前的值域范围为 [l,r], 处理的操作的区间为 [L,R]
 {
@@ -195,13 +202,13 @@ void solve(int l, int r, int L, int R)
       else
         q[i].k -= t, q2[++cnt2] = q[i];
     } else
-        // 是修改: 更新树状数组 & 分类
-        if (q[i].y <= m)
-      add(q[i].x, q[i].k), q1[++cnt1] = q[i];
-    else
-      q2[++cnt2] = q[i];
+      // 是修改: 更新树状数组 & 分类
+      if (q[i].y <= m)
+        add(q[i].x, q[i].k), q1[++cnt1] = q[i];
+      else
+        q2[++cnt2] = q[i];
   for (int i = 1; i <= cnt1; i++)
-    if (q1[i].type == 0) add(q1[i].pos, -q1[i].k);  // 清空树状数组
+    if (q1[i].type == 0) add(q1[i].x, -q1[i].k);  // 清空树状数组
   for (int i = 1; i <= cnt1; i++) q[L + i - 1] = q1[i];
   for (int i = 1; i <= cnt2; i++)
     q[L + cnt1 + i - 1] = q2[i];  // 将临时数组中的元素合并回原数组

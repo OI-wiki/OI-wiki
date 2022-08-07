@@ -156,6 +156,7 @@ std::sort(a + 1, a + 1 + n, greater<int>());  // 从大到小排序
 ```cpp
 struct data {
   int a, b;
+
   bool operator<(const data rhs) const {
     return (a == rhs.a) ? (b < rhs.b) : (a < rhs.a);
   }
@@ -164,6 +165,7 @@ struct data {
 bool cmp(const data u1, const data u2) {
   return (u1.a == u2.a) ? (u1.b > u2.b) : (u1.a > u2.a);
 }
+
 // ...
 std::sort(da + 1, da + 1 + 10);  // 使用结构体中定义的 < 运算符，从小到大排序
 std::sort(da + 1, da + 1 + 10, cmp);  // 使用 cmp 函数进行比较，从大到小排序

@@ -23,6 +23,7 @@ const int N = 300010;
 struct Node {
   int ls, rs, d;
   ll val, add, mul;
+
   Node() {
     ls = rs = add = 0;
     d = mul = 1;
@@ -73,7 +74,7 @@ int main() {
 }
 
 void dfs(int u) {
-  int i, v;  //根据题意开始dfs
+  int i, v;  // 根据题意开始dfs
   for (i = head[u]; i; i = nxt[i]) {
     v = to[i];
     dep[v] = dep[u] + 1;
@@ -103,7 +104,7 @@ void add(int u, int v) {
   to[cnt] = v;
 }
 
-int merge(int x, int y) {  //合并
+int merge(int x, int y) {  // 合并
   if (!x || !y) return x | y;
   if (t[x].val > t[y].val) swap(x, y);
   pushdown(x);

@@ -1,4 +1,4 @@
-author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina, orzAtalod, luoguojie, Early0v0
+author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina, orzAtalod, luoguojie, Early0v0, wy-luke
 
 线段树是算法竞赛中常用的用来维护 **区间信息** 的数据结构。
 
@@ -92,9 +92,9 @@ int getsum(int l, int r, int s, int t, int p) {
     return d[p];  // 当前区间为询问区间的子集时直接返回当前区间的和
   int m = s + ((t - s) >> 1), sum = 0;
   if (l <= m) sum += getsum(l, r, s, m, p * 2);
-  // 如果左儿子代表的区间 [l, m] 与询问区间有交集, 则递归查询左儿子
+  // 如果左儿子代表的区间 [s, m] 与询问区间有交集, 则递归查询左儿子
   if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
-  // 如果右儿子代表的区间 [m + 1, r] 与询问区间有交集, 则递归查询右儿子
+  // 如果右儿子代表的区间 [m + 1, t] 与询问区间有交集, 则递归查询右儿子
   return sum;
 }
 ```
@@ -108,10 +108,10 @@ def getsum(l, r, s, t, p):
     m = s + ((t - s) >> 1); sum = 0
     if l <= m:
         sum = sum + getsum(l, r, s, m, p * 2)
-    # 如果左儿子代表的区间 [l, m] 与询问区间有交集, 则递归查询左儿子
+    # 如果左儿子代表的区间 [s, m] 与询问区间有交集, 则递归查询左儿子
     if r > m:
         sum = sum + getsum(l, r, m + 1, t, p * 2 + 1)
-    # 如果右儿子代表的区间 [m + 1, r] 与询问区间有交集, 则递归查询右儿子
+    # 如果右儿子代表的区间 [m + 1, t] 与询问区间有交集, 则递归查询右儿子
     return sum
 ```
 
@@ -137,7 +137,7 @@ def getsum(l, r, s, t, p):
 
 接下来我们查询一下 $[4,4]$ 区间上各数字的和。
 
-我们通过递归找到 $[3,4]$ 区间，发现该区间并非我们的目标区间，且该区间上还存在标记。这时候就到标记下放的时间了。我们将该区间的两个子区间的信息更新，并清除该区间上的标记。
+我们通过递归找到 $[4,5]$ 区间，发现该区间并非我们的目标区间，且该区间上还存在标记。这时候就到标记下放的时间了。我们将该区间的两个子区间的信息更新，并清除该区间上的标记。
 
 ![](./images/segt4.svg)
 
@@ -207,9 +207,9 @@ int getsum(int l, int r, int s, int t, int p) {
   int m = s + ((t - s) >> 1);
   if (b[p]) {
     // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
-    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m),
-        b[p * 2] += b[p], b[p * 2 + 1] += b[p];  // 将标记下传给子节点
-    b[p] = 0;                                    // 清空当前节点的标记
+    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m);
+    b[p * 2] += b[p], b[p * 2 + 1] += b[p];  // 将标记下传给子节点
+    b[p] = 0;                                // 清空当前节点的标记
   }
   int sum = 0;
   if (l <= m) sum = getsum(l, r, s, m, p * 2);
@@ -253,22 +253,26 @@ void update(int l, int r, int c, int s, int t, int p) {
     return;
   }
   int m = s + ((t - s) >> 1);
-  if (b[p]) {
-    d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
-          b[p * 2] = b[p * 2 + 1] = b[p];
-    b[p] = 0;
+  // 额外数组储存是否修改值
+  if (v[p]) {
+    d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m);
+    b[p * 2] = b[p * 2 + 1] = b[p];
+    v[p * 2] = v[p * 2 + 1] = 1;
+    v[p] = 0;
   }
   if (l <= m) update(l, r, c, s, m, p * 2);
   if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
   d[p] = d[p * 2] + d[p * 2 + 1];
 }
+
 int getsum(int l, int r, int s, int t, int p) {
   if (l <= s && t <= r) return d[p];
   int m = s + ((t - s) >> 1);
-  if (b[p]) {
-    d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m),
-          b[p * 2] = b[p * 2 + 1] = b[p];
-    b[p] = 0;
+  if (v[p]) {
+    d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m);
+    b[p * 2] = b[p * 2 + 1] = b[p];
+    v[p * 2] = v[p * 2 + 1] = 1;
+    v[p] = 0;
   }
   int sum = 0;
   if (l <= m) sum = getsum(l, r, s, m, p * 2);
@@ -285,11 +289,12 @@ def update(l, r, c, s, t, p):
         b[p] = c
         return
     m = s + ((t - s) >> 1)
-    if b[p]:
+    if v[p]:
         d[p * 2] = b[p] * (m - s + 1)
         d[p * 2 + 1] = b[p] * (t - m)
         b[p * 2] = b[p * 2 + 1] = b[p]
-        b[p] = 0
+        v[p * 2] = v[p * 2 + 1] = 1
+        v[p] = 0
     if l <= m:
         update(l, r, c, s, m, p * 2)
     if r > m:
@@ -300,11 +305,12 @@ def getsum(l, r, s, t, p):
     if l <= s and t <= r:
         return d[p]
     m = s + ((t - s) >> 1)
-    if b[p]:
+    if v[p]:
         d[p * 2] = b[p] * (m - s + 1)
         d[p * 2 + 1] = b[p] * (t - m)
         b[p * 2] = b[p * 2 + 1] = b[p]
-        b[p] = 0
+        v[p * 2] = v[p * 2 + 1] = 1
+        v[p] = 0
     sum = 0
     if l <= m:
         sum = getsum(l, r, s, m, p * 2)

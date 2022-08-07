@@ -283,6 +283,17 @@ for (int i = 0; i < n; ++i) {
 cout << det;
 ```
 
+## 矩阵求逆
+
+对于方阵 $A$，若存在方阵 $A^{-1}$，使得 $A \times A^{-1} = A^{-1} \times A = I$，则称矩阵 $A$ 可逆，$A^{-1}$ 被称为它的逆矩阵。
+
+给出 $n$ 阶方阵 $A$，求解其逆矩阵的方法如下：
+
+1. 构造 $n \times 2n$ 的矩阵 $(A, I_n)$；
+2. 用高斯消元法将其化简为最简形 $(I_n, A^{-1})$，即可得到 $A$ 的逆矩阵 $A^{-1}$。如果最终最简形的左半部分不是单位矩阵 $I_n$，则矩阵 $A$ 不可逆。
+
+该方法的正确性证明需要用到较多线性代数的知识，限于篇幅这里不再给出。感兴趣的读者可以自行查阅相关资料。
+
 ## 生成树计数
 
 一个无向图的生成树个数为邻接矩阵度数矩阵去一行一列的行列式。
@@ -293,25 +304,25 @@ cout << det;
 
 $$
 \begin{pmatrix}
-0 & 1 & 0 & 1 \\
-1 & 0 & 1 & 0 \\
-0 & 1 & 0 & 1 \\
-1 & 0 & 1 & 0 \end{pmatrix}-\begin{pmatrix}
 2 & 0 & 0 & 0 \\
 0 & 2 & 0 & 0 \\
 0 & 0 & 2 & 0 \\
-0 & 0 & 0 & 2 \end{pmatrix}=\begin{pmatrix}
--2 & 1 & 0 & 1 \\
-1 & -2 & 1 & 0 \\
-0 & 1 & -2 & 1 \\
-1 & 0 & 1 & -2 \end{pmatrix}
+0 & 0 & 0 & 2 \end{pmatrix}-\begin{pmatrix}
+0 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 \\
+0 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 \end{pmatrix}=\begin{pmatrix}
+2 & -1 & 0 & -1 \\
+-1 & 2 & -1 & 0 \\
+0 & -1 & 2 & -1 \\
+-1 & 0 & -1 & 2 \end{pmatrix}
 $$
 
 $$
 \begin{vmatrix}
--2 & 1 & 0 \\
-1 & -2 & 1 \\
-0 & 1 & -2 \end{vmatrix} = 4
+2 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 2 \end{vmatrix} = 4
 $$
 
 可以用高斯消元解决，时间复杂度为 $O(n^3)$。
@@ -327,11 +338,14 @@ $$
     using namespace std;
     #define MOD 100000007
     #define eps 1e-7
+    
     struct matrix {
       static const int maxn = 20;
       int n, m;
       double mat[maxn][maxn];
+    
       matrix() { memset(mat, 0, sizeof(mat)); }
+    
       void print() {
         cout << "MATRIX " << n << " " << m << endl;
         for (int i = 0; i < n; i++) {
@@ -341,12 +355,14 @@ $$
           cout << endl;
         }
       }
+    
       void random(int n) {
         this->n = n;
         this->m = n;
         for (int i = 0; i < n; i++)
           for (int j = 0; j < n; j++) mat[i][j] = rand() % 100;
       }
+    
       void initSquare() {
         this->n = 4;
         this->m = 4;
@@ -359,6 +375,7 @@ $$
         this->n--;  // 去一行
         this->m--;  // 去一列
       }
+    
       double gauss() {
         double ans = 1;
         for (int i = 0; i < n; i++) {
@@ -386,6 +403,7 @@ $$
         return abs(ans);
       }
     };
+    
     int main() {
       srand(1);
       matrix T;
@@ -420,6 +438,7 @@ $$
 
 ```cpp
 std::bitset<1010> matrix[2010];  // matrix[1~n]：增广矩阵，0 位置为常数
+
 std::vector<bool> GaussElimination(
     int n, int m)  // n 为未知数个数，m 为方程个数，返回方程组的解（多解 /
                    // 无解返回一个空的 vector）

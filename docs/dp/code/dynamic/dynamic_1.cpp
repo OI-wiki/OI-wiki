@@ -15,7 +15,9 @@ int cnt, tot, a[maxn], f[maxn][2];
 
 struct matrix {
   int g[2][2];
+
   matrix() { memset(g, 0, sizeof(g)); }
+
   matrix operator*(const matrix &b) const  // 重载矩阵乘
   {
     matrix c;

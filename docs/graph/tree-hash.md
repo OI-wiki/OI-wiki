@@ -95,7 +95,7 @@ $prime(i)$ 表示第 $i$ 个质数。
       --8<-- "docs/graph/code/tree-hash/tree-hash_2.cpp"
     ```
 
-### 例题二 [HDU 6647](http://acm.hdu.edu.cn/showproblem.php?pid=6647)
+### 例题二 [HDU 6647](https://vjudge.net/problem/HDU-6647)
 
 题目要求的是遍历一棵无根树产生的本质不同括号序列方案数。
 

@@ -8,6 +8,7 @@ int n, x[N], y[N], w[N];
 double ansx, ansy, dis;
 
 double Rand() { return (double)rand() / RAND_MAX; }
+
 double calc(double xx, double yy) {
   double res = 0;
   for (int i = 1; i <= n; ++i) {
@@ -17,6 +18,7 @@ double calc(double xx, double yy) {
   if (res < dis) dis = res, ansx = xx, ansy = yy;
   return res;
 }
+
 void simulateAnneal() {
   double t = 100000;
   double nowx = ansx, nowy = ansy;
@@ -33,8 +35,9 @@ void simulateAnneal() {
     calc(nxtx, nxty);
   }
 }
+
 int main() {
-  srand(time(0));
+  srand(0);  // 注意，在实际使用中，不应使用固定的随机种子。
   scanf("%d", &n);
   for (int i = 1; i <= n; ++i) {
     scanf("%d%d%d", &x[i], &y[i], &w[i]);

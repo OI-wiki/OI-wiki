@@ -8,16 +8,20 @@ using namespace std;
 int Index, instack[maxn], DFN[maxn], LOW[maxn];
 int tot, color[maxn];
 int numedge, head[maxn];
+
 struct Edge {
   int nxt, to;
 } edge[maxm];
+
 int sta[maxn], top;
 int n, m;
+
 void add(int x, int y) {
   edge[++numedge].to = y;
   edge[numedge].nxt = head[x];
   head[x] = numedge;
 }
+
 void tarjan(int x) {  // 缩点看不懂请移步强连通分量上面有一个链接可以点。
   sta[++top] = x;
   instack[x] = 1;
@@ -38,6 +42,7 @@ void tarjan(int x) {  // 缩点看不懂请移步强连通分量上面有一个�
     } while (sta[top--] != x);
   }
 }
+
 bool solve() {
   for (int i = 0; i < 2 * n; i++)
     if (!DFN[i]) tarjan(i);
@@ -45,6 +50,7 @@ bool solve() {
     if (color[i] == color[i + 1]) return 0;
   return 1;
 }
+
 void init() {
   top = 0;
   tot = 0;
@@ -57,6 +63,7 @@ void init() {
   memset(color, 0, sizeof(color));
   memset(head, 0, sizeof(head));
 }
+
 int main() {
   while (~scanf("%d%d", &n, &m)) {
     init();
