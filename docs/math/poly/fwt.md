@@ -1,4 +1,4 @@
-author: Xeonacid
+author: Xeonacid, nocriz
 
 （本文转载自 [桃酱的算法笔记](https://zhuanlan.zhihu.com/c_1005817911142838272)，原文戳 [链接](https://zhuanlan.zhihu.com/p/41867199)，已获得作者授权）
 
@@ -111,3 +111,11 @@ $$
 $$
 UFWT[A'] = merge(\frac{UFWT[A_1'] - UFWT[A_0']}{2}, \frac{UFWT[A_1'] + UFWT[A_0']}{2})
 $$
+
+## 例题
+
+???+note "[【CF103329F】【XXII Opencup, Grand Prix of XiAn】The Struggle](https://codeforces.com/gym/103329/problem/F)"
+    给出一个椭圆 $E$，其中所有整点的坐标均在 $[1,4 \cdot 10^6]$ 之间。求 $\sum_{(x,y) \in E} (x \oplus y)^{33}x^{-2}y^{-1} \mod 10^9+7$ 的值。
+    
+    ??? mdui-shadow-6 "题解"
+        这是一道比较不裸的题，出题人提供了详细的英文题解，具体请见 [此链接](https://codeforces.com/blog/entry/96518)。

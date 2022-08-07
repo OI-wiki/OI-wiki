@@ -760,7 +760,7 @@ $\rightarrow$ 在同一文件夹下新建一个同名的 BibTeX 文件，用正�
 
 ## 更多阅读
 
-一份（不太）简短的 LATEX 2ε 介绍 <https://github.com/OI-wiki/libs/blob/master/latex/lshort-zh-cn.pdf> 或 110 分钟了解 LaTeX 2.
+一份（不太）简短的 LATEX 2ε 介绍 <https://github.com/CTeX-org/lshort-zh-cn/releases/download/v6.02/lshort-zh-cn.pdf> 或 112 分钟了解 LaTeX 2ε.
 
 LaTeX Project <http://www.latex-project.org/> Official website - has links to documentation, information about installing LATEX on your own computer, and information about where to look for help.
 

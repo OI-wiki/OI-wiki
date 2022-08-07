@@ -36,10 +36,10 @@ s1.push(2);
 s1.push(1);
 std::stack<int> s2(s1);
 s1.pop();
-std::cout << s1.size() << " " << s2.size() << endl;  // 1 2
-std::cout << s1.top() << " " << s2.top() << endl;    // 2 1
+std::cout << s1.size() << " " << s2.size() << std::endl;  // 1 2
+std::cout << s1.top() << " " << s2.top() << std::endl;    // 2 1
 s1.pop();
-std::cout << s1.empty() << " " << s2.empty() << endl;  // 1 0
+std::cout << s1.empty() << " " << s2.empty() << std::endl;  // 1 0
 ```
 
 ## 队列
@@ -79,10 +79,10 @@ q1.push(2);
 q1.push(1);
 std::queue<int> q2(q1);
 q1.pop();
-std::cout << q1.size() << " " << q2.size() << endl;    // 1 2
-std::cout << q1.front() << " " << q2.front() << endl;  // 1 2
+std::cout << q1.size() << " " << q2.size() << std::endl;    // 1 2
+std::cout << q1.front() << " " << q2.front() << std::endl;  // 1 2
 q1.pop();
-std::cout << q1.empty() << " " << q2.empty() << endl;  // 1 0
+std::cout << q1.empty() << " " << q2.empty() << std::endl;  // 1 0
 ```
 
 ## 优先队列

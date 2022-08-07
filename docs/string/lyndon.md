@@ -4,7 +4,7 @@ author: sshwy, StudyingFather, orzAtalod
 
 首先我们介绍 Lyndon 分解的概念。
 
-Lyndon 串：对于字符串 $s$，如果 $s$ 的字典序严格小于 $s$ 的所有后缀的字典序，我们称 $s$ 是简单串，或者 **Lyndon 串**。举一些例子，`a`,`b`,`ab`,`aab`,`abb`,`ababb`,`abcd` 都是 Lyndon 串。当且仅当 $s$ 的字典序严格小于它的所有非平凡的循环同构串时，$s$ 才是 Lyndon 串。
+Lyndon 串：对于字符串 $s$，如果 $s$ 的字典序严格小于 $s$ 的所有后缀的字典序，我们称 $s$ 是简单串，或者 **Lyndon 串**。举一些例子，`a`,`b`,`ab`,`aab`,`abb`,`ababb`,`abcd` 都是 Lyndon 串。当且仅当 $s$ 的字典序严格小于它的所有非平凡的（非平凡：非空且不同于自身）循环同构串时，$s$ 才是 Lyndon 串。
 
 Lyndon 分解：串 $s$ 的 Lyndon 分解记为 $s=w_1w_2\cdots w_k$，其中所有 $w_i$ 为简单串，并且他们的字典序按照非严格单减排序，即 $w_1\ge w_2\ge\cdots\ge w_k$。可以发现，这样的分解存在且唯一。
 
@@ -29,6 +29,7 @@ Duval 算法运用了贪心的思想。算法过程中我们把串 $s$ 分成三
 下面的代码返回串 $s$ 的 Lyndon 分解方案。
 
 ```cpp
+// C++ Version
 // duval_algorithm
 vector<string> duval(string const& s) {
   int n = s.size(), i = 0;
@@ -51,6 +52,26 @@ vector<string> duval(string const& s) {
 }
 ```
 
+```python
+# Python Version
+# duval_algorithm
+def duval(s):
+    n, i = len(s), 0
+    factorization = []
+    while i < n:
+        j, k = i + 1, i
+        while j < n and s[k] <= s[j]:
+            if s[k] < s[j]:
+                k = i
+            else:
+                k += 1
+            j += 1
+        while i <= k:
+            factorization.append(s[i : i + j - k])
+            i += j - k
+    return factorization
+```
+
 ### 复杂度分析
 
 接下来我们证明一下这个算法的复杂度。
@@ -66,6 +87,7 @@ vector<string> duval(string const& s) {
 于是我们在分解的过程中记录每一次的近似 Lyndon 串的开头即可。
 
 ```cpp
+// C++ Version
 // smallest_cyclic_string
 string min_cyclic_string(string s) {
   s += s;
@@ -85,6 +107,27 @@ string min_cyclic_string(string s) {
   }
   return s.substr(ans, n / 2);
 }
+```
+
+```python
+# Python Version
+# smallest_cyclic_string
+def min_cyclic_string(s):
+    s += s
+    n = len(s)
+    i, ans = 0, 0
+    while i < n / 2:
+        ans = i
+        j, k = i + 1, i
+        while j < n and s[k] <= s[j]:
+            if s[k] < s[j]:
+                k = i
+            else:
+                k += 1
+            j += 1
+        while i <= k:
+            i += j - k
+    return s[ans : ans + n / 2]
 ```
 
 ## 习题

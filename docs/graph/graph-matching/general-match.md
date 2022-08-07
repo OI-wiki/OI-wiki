@@ -1,4 +1,4 @@
-author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR
+author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI
 
 ## 带花树算法（Blossom Algorithm）
 
@@ -7,6 +7,8 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR
 此算法是第一个给出证明说最大匹配有多项式复杂度。
 
 一般图匹配和二分图匹配（bipartite matching）不同的是，图可能存在奇环。
+
+![general-matching-1](./images/general-matching-1.png)
 
 以此图为例，若直接取反（匹配边和未匹配边对调），会使得取反后的 $M$ 不合法，某些点会出现在两条匹配上，而问题就出在奇环。
 
@@ -59,10 +61,13 @@ class graph {
     int to;
     T cost;
   };
+
   vector<edge> edges;
   vector<vector<int> > g;
   int n;
+
   graph(int _n) : n(_n) { g.resize(n); }
+
   virtual int add(int from, int to, T cost) = 0;
 };
 
@@ -75,6 +80,7 @@ class undirectedgraph : public graph<T> {
   using graph<T>::n;
 
   undirectedgraph(int _n) : graph<T>(_n) {}
+
   int add(int from, int to, T cost = 1) {
     assert(0 <= from && from < n && 0 <= to && to < n);
     int id = (int)edges.size();
@@ -226,10 +232,13 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
         int to;
         T cost;
       };
+    
       vector<edge> edges;
       vector<vector<int> > g;
       int n;
+    
       graph(int _n) : n(_n) { g.resize(n); }
+    
       virtual int add(int from, int to, T cost) = 0;
     };
     
@@ -242,6 +251,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       using graph<T>::n;
     
       undirectedgraph(int _n) : graph<T>(_n) {}
+    
       int add(int from, int to, T cost = 1) {
         assert(0 <= from && from < n && 0 <= to && to < n);
         int id = (int)edges.size();
@@ -376,6 +386,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       }
       return match;
     }
+    
     int main() {
       ios::sync_with_stdio(0), cin.tie(0);
       int n, m;

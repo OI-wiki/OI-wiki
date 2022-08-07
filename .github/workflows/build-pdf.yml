@@ -2,12 +2,15 @@ name: Build LaTeX document
 
 on:
   push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
 
 jobs:
   build:
+    name: OI-Wiki LaTeX Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -47,6 +50,9 @@ jobs:
             cp -r notosans notoserif notosanscjk notoserifcjk robotomono cm-unicode/fonts/otf/* /usr/share/fonts
             fc-cache
             git clone https://github.com/OI-wiki/OI-Wiki-export.git --depth=1
+            cd ./OI-Wiki-export/remark-latex
+            npm i
+            cd ../..
             cd ./OI-Wiki-export/oi-wiki-export
             npm i
             node index.js ../../

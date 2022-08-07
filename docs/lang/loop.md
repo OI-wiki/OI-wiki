@@ -14,7 +14,7 @@ for (初始化; 判断条件; 更新) {
 
 执行顺序：
 
-![](images/loop1.png)
+![](images/for-loop.svg)
 
 e.g. 读入 n 个数：
 
@@ -38,7 +38,7 @@ while (判断条件) {
 
 执行顺序：
 
-![](images/loop2.png)
+![](images/while-loop.svg)
 
 e.g. 验证 3x+1 猜想：
 
@@ -64,7 +64,7 @@ do {
 
 执行顺序：
 
-![](images/loop3.png)
+![](images/do-while-loop.svg)
 
 与 while 语句的区别在于，do...while 语句是先执行循环体再进行判断的。
 

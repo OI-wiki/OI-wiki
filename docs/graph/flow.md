@@ -46,8 +46,10 @@ $$
 
 ### 最小割
 
-割其实就是删边的意思，当然最小割就是割掉 $X$ 条边来让 $S$ 跟 $T$ 不互通。我们要求 $X$ 条边加起来的流量综合最小。这就是最小割问题。
+割其实就是删边的意思，当然最小割就是割掉 $X$ 条边来让 $S$ 跟 $T$ 不互通。我们要求 $X$ 条边加起来的流量总和最小。这就是最小割问题。
 
 ## 网络流 24 题
 
-<https://loj.ac/problems/tag/30>
+[LibreOJ](https://loj.ac/problems/tag/30)
+
+[洛谷](https://www.luogu.com.cn/problem/list?tag=332)

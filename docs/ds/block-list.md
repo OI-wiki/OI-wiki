@@ -1,4 +1,4 @@
-author: HeRaNO, konnyakuxzy
+author: HeRaNO, konnyakuxzy, littlefrog
 
 [![./images/kuaizhuanglianbiao.png](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")
 
@@ -14,7 +14,9 @@ struct node {
   node* nxt;
   int size;
   char d[(sqn << 1) + 5];
+
   node() { size = 0, nxt = NULL, memset(d, 0, sizeof(d)); }
+
   void pb(char c) { d[size++] = c; }
 };
 ```
@@ -35,81 +37,42 @@ struct node {
 list<vector<char> > orz_list;
 ```
 
+## STL 中的 `rope`
+
+### 导入
+
+STL 中的 `rope` 也起到块状链表的作用，它采用可持久化平衡树实现，可完成随机访问和插入、删除元素的操作。
+
+由于 `rope` 并不是真正的用块状链表来实现，所以它的时间复杂度并不等同于块状链表，而是相当于可持久化平衡树的复杂度（即 $O(\log n)$）。
+
+可以使用如下方法来引入：
+
+```cpp
+#include <ext/rope>
+using namespace __gnu_cxx;
+```
+
+???+ warning "关于双下划线开头的库函数"
+    OI 中，关于能否使用双下划线开头的库函数曾经一直不确定，2021 年 CCF 发布的 [关于 NOI 系列活动中编程语言使用限制的补充说明](https://www.noi.cn/xw/2021-09-01/735729.shtml) 中提到「允许使用以下划线开头的库函数或宏，但具有明确禁止操作的库函数和宏除外」。故 `rope` 目前可以在 OI 中正常使用。
+
+### 基本操作
+
+|             操作            |               作用              |
+| :-----------------------: | :---------------------------: |
+|      `rope <int > a`      | 初始化 `rope`（与 `vector` 等容器很相似） |
+|      `a.push_back(x)`     |       在 `a` 的末尾添加元素 `x`       |
+|     `a.insert(pos, x)`    |   在 `a` 的 `pos` 个位置添加元素 `x`   |
+|     `a.erase(pos, x)`     |  在 `a` 的 `pos` 个位置删除 `x` 个元素  |
+|     `a.at(x)` 或 `a[x]`    |       访问 `a` 的第 `x` 个元素       |
+| `a.length()` 或 `a.size()` |           获取 `a` 的大小          |
+
 ## 例题
 
-Big String POJ - 2887
+[POJ2887 Big String](http://poj.org/problem?id=2887)
 
 题解：
 很简单的模板题。代码如下：
 
 ```cpp
-#include <cctype>
-#include <cstdio>
-#include <cstring>
-using namespace std;
-static const int sqn = 1e3;
-struct node {
-  node* nxt;
-  int size;
-  char d[(sqn << 1) + 5];
-  node() { size = 0, nxt = NULL; }
-  void pb(char c) { d[size++] = c; }
-}* head = NULL;
-char inits[(int)1e6 + 5];
-int llen, q;
-void readch(char& ch) {
-  do
-    ch = getchar();
-  while (!isalpha(ch));
-}
-void check(node* p) {
-  if (p->size >= (sqn << 1)) {
-    node* q = new node;
-    for (int i = sqn; i < p->size; i++) q->pb(p->d[i]);
-    p->size = sqn, q->nxt = p->nxt, p->nxt = q;
-  }
-}
-void insert(char c, int pos) {
-  node* p = head;
-  int tot, cnt;
-  if (pos > llen++) {
-    while (p->nxt != NULL) p = p->nxt;
-    p->pb(c), check(p);
-    return;
-  }
-  for (tot = head->size; p != NULL && tot < pos; p = p->nxt, tot += p->size)
-    ;
-  tot -= p->size, cnt = pos - tot - 1;
-  for (int i = p->size - 1; i >= cnt; i--) p->d[i + 1] = p->d[i];
-  p->d[cnt] = c, p->size++;
-  check(p);
-}
-char query(int pos) {
-  node* p;
-  int tot, cnt;
-  for (p = head, tot = head->size; p != NULL && tot < pos;
-       p = p->nxt, tot += p->size)
-    ;
-  tot -= p->size;
-  return p->d[pos - tot - 1];
-}
-int main() {
-  scanf("%s %d", inits, &q), llen = strlen(inits);
-  node* p = new node;
-  head = p;
-  for (int i = 0; i < llen; i++) {
-    if (i % sqn == 0 && i) p->nxt = new node, p = p->nxt;
-    p->pb(inits[i]);
-  }
-  char a;
-  int k;
-  while (q--) {
-    readch(a);
-    if (a == 'Q')
-      scanf("%d", &k), printf("%c\n", query(k));
-    else
-      readch(a), scanf("%d", &k), insert(a, k);
-  }
-  return 0;
-}
+--8<-- "docs/ds/code/block-list/block-list_1.cpp"
 ```
