@@ -64,7 +64,7 @@ author: frank-xjh, qiqistyle
       for (int j = 0; j < i; ++j)
         if (a[i] + a[j] == 0) ++ans;
     ```
-
+    
     ```python
     # Python Version
     for i in range(0, n):
