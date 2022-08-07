@@ -132,7 +132,7 @@ int dp() {
   d[1] = 1;
   int ans = 1;
   for (int i = 2; i <= n; i++) {
-    for (int j = 1; j < i; j++)
+    for (int j = 0; j < i; j++)
       if (a[j] <= a[i]) {
         d[i] = max(d[i], d[j] + 1);
         ans = max(ans, d[i]);
