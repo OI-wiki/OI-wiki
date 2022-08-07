@@ -14,9 +14,11 @@ typedef pair<int, int> PII;
 const int mod = 998244353;
 const int inf = 1 << 30;
 const int maxn = 100000 + 5;
+
 namespace sieve {
 const int maxp = 2000000 + 5;
 int vis[maxp], prime[maxp], tot;
+
 void init() {
   memset(vis, 0, sizeof(vis));
   for (int i = 2; i < maxp; i++) {
@@ -28,11 +30,14 @@ void init() {
   }
 }
 }  // namespace sieve
+
 namespace MyIO {
 struct fastIO {
   char s[100000];
   int it, len;
+
   fastIO() { it = len = 0; }
+
   inline char get() {
     if (it < len) return s[it++];
     it = 0;
@@ -42,6 +47,7 @@ struct fastIO {
     else
       return s[it++];
   }
+
   bool notend() {
     char c = get();
     while (c == ' ' || c == '\n') c = get();
@@ -49,6 +55,7 @@ struct fastIO {
     return c != EOF;
   }
 } buff;
+
 inline int gi() {
   int r = 0;
   bool ng = 0;
@@ -59,16 +66,20 @@ inline int gi() {
   return ng ? -r : r;
 }
 }  // namespace MyIO
+
 namespace {
 inline int add(int x, int y) {
   x += y;
   return x >= mod ? x -= mod : x;
 }
+
 inline int sub(int x, int y) {
   x -= y;
   return x < 0 ? x += mod : x;
 }
+
 inline int mul(int x, int y) { return 1ll * x * y % mod; }
+
 inline int qpow(int x, ll n) {
   int r = 1;
   while (n > 0) {
@@ -78,8 +89,10 @@ inline int qpow(int x, ll n) {
   }
   return r;
 }
+
 inline int inv(int x) { return qpow(x, mod - 2); }
 }  // namespace
+
 using MyIO::gi;
 using sieve::prime;
 int ping[maxn], pingv[maxn];
@@ -90,7 +103,9 @@ map<ull, int>::iterator it;
 ull hashval[maxn], hashrt[maxn];
 ull srchashval[maxn], srchashrt[maxn];
 int dp[maxn], rdp[maxn];
+
 ull pack(ull val, int sz) { return 2ull + 3ull * val + 7ull * prime[sz + 1]; }
+
 void predfs(int u, int ff) {
   siz[u] = dp[u] = 1;
   hashval[u] = 1;
@@ -111,7 +126,9 @@ void predfs(int u, int ff) {
     dp[u] = mul(dp[u], pingv[it->second]);
   }
 }
+
 set<ull> qc;
+
 void dfs(int u, int ff) {
   if (!qc.count(hashrt[u])) {
     qc.insert(hashrt[u]);
@@ -133,6 +150,7 @@ void dfs(int u, int ff) {
     dfs(v, u);
   }
 }
+
 int main() {
   sieve::init();
   ping[0] = pingv[0] = 1;

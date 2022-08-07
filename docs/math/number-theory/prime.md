@@ -127,6 +127,8 @@ def millerRabin(n):
 
 对数 n 进行 k 轮测试的时间复杂度是 $O(k \log^3n)$，利用 FFT 等技术可以优化到 [$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)。
 
+另外，假设 [广义 Riemann 猜想](https://en.wikipedia.org/wiki/Generalized_Riemann_hypothesis)(generalized Riemann hypothesis, GRH) 成立，则对数 n 最多只需要测试 $[2, \min\{n-2, \lfloor 2\ln^2 n \rfloor\}]$ 中的全部整数即可 **确定** 数 n 的素性，证明参见注释 7。
+
 ##### 二次探测定理
 
 如果 $p$ 是奇素数，则 $x^2 \equiv 1 \pmod p$ 的解为 $x \equiv 1 \pmod p$ 或者 $x \equiv p - 1 \pmod p$。
@@ -173,7 +175,6 @@ def millerRabin(n):
     while a % 2 == 0:
         a = a // 2
         b = b + 1
-    j = 0
     # test_time 为测试次数,建议设为不小于 8
     # 的整数以保证正确率,但也不宜过大,否则会影响效率
     for i in range(1, test_time + 1):
@@ -181,10 +182,12 @@ def millerRabin(n):
         v = quickPow(x, a, n)
         if v == 1:
             continue
-        for j in range(0, b):
+        j = 0
+        while j < b:
             if v == n - 1:
                 break
             v = v * v % n
+            j = j + 1
         if j >= b:
             return False
     return True
@@ -281,3 +284,4 @@ def millerRabin(n):
 4. [Primality test - Wikipedia](https://en.wikipedia.org/wiki/Primality_test)
 5. [桃子的算法笔记——反素数详解（acm/OI）](https://zhuanlan.zhihu.com/p/41759808)
 6. [The Rabin-Miller Primality Test](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)
+7. Bach, Eric , "[Explicit bounds for primality testing and related problems](https://doi.org/10.2307%2F2008811)", Mathematics of Computation, 55:191 (1990) pp 355–380.

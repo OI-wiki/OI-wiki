@@ -7,6 +7,7 @@ long long n, P, inv2, inv6, s[N];
 int phi[N], p[NP], cnt, pn;
 bool bp[N];
 map<long long, long long> s_map;
+
 long long ksm(long long a, long long m) {  // 求逆元用
   long long res = 1;
   while (m) {
@@ -15,6 +16,7 @@ long long ksm(long long a, long long m) {  // 求逆元用
   }
   return res;
 }
+
 void prime_work(int k) {  // 线性筛phi，s
   bp[0] = bp[1] = 1, phi[1] = 1;
   for (int i = 2; i <= k; i++) {

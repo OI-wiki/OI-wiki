@@ -49,7 +49,7 @@ void dfs(P u, int s) {
   ans[u.first][u.second] = 1;
   int nu = num(u);
   if (pre[nu][s].first == u)
-    dfs(u, s ^ pre[nu][s].second);  //通过 dfs 来找到答案
+    dfs(u, s ^ pre[nu][s].second);  // 通过 dfs 来找到答案
   dfs(pre[nu][s].first, pre[nu][s].second);
 }
 

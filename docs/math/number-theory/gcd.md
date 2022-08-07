@@ -27,7 +27,7 @@
 
 反过来也需要证明：
 
-设 $d \mid b,~\mid (a \bmod b)$，我们还是可以像之前一样得到以下式子 $\frac{a\bmod b}{d}=\frac{a}{d}-\frac{b}{d}k,~\frac{a\bmod b}{d}+\frac{b}{d}k=\frac{a}{d}$。
+设 $d \mid b,~d\mid (a \bmod b)$，我们还是可以像之前一样得到以下式子 $\frac{a\bmod b}{d}=\frac{a}{d}-\frac{b}{d}k,~\frac{a\bmod b}{d}+\frac{b}{d}k=\frac{a}{d}$。
 
 因为左边式子显然为整数，所以 $\frac{a}{d}$ 也为整数，即 $d \mid a$，所以 $b,a\bmod b$ 的公约数也是 $a,b$ 的公约数。
 
@@ -38,10 +38,28 @@
 既然得到了 $\gcd(a, b) = \gcd(b, r)$，这里两个数的大小是不会增大的，那么我们也就得到了关于两个数的最大公约数的一个递归求法。
 
 ```cpp
-// C++ Version
+// C++ Version 1
 int gcd(int a, int b) {
   if (b == 0) return a;
   return gcd(b, a % b);
+}
+
+// C++ Version 2
+int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
+```
+
+另外，对于 C++14，我们可以使用自带的 ` __gcd(a,b)` 函数来求最大公约数。而对于 C++ 17，我们可以使用 [`<numeric>`](https://en.cppreference.com/w/cpp/header/numeric) 头中的 [`std::gcd`](https://en.cppreference.com/w/cpp/numeric/gcd) 与 [`std::lcm`](https://en.cppreference.com/w/cpp/numeric/lcm) 来求最大公约数和最小公倍数。
+
+```java
+// Java Version 1
+public int gcd(int a, int b) {
+  if (b == 0) return a;
+  return gcd(b, a % b);
+}
+
+// Java Version 2
+public int gcd(int a, int b) {
+  return b == 0 ? a : gcd(b, a % b);
 }
 ```
 
@@ -112,7 +130,7 @@ $p_1^{\max(k_{a_1}, k_{b_1})}p_2^{\max(k_{a_2}, k_{b_2})} \cdots p_s^{\max(k_{a_
 
 扩展欧几里得算法（Extended Euclidean algorithm, EXGCD），常用于求 $ax+by=\gcd(a,b)$ 的一组可行解。
 
-### 证明
+### 求解过程
 
 设
 
@@ -160,6 +178,21 @@ def Exgcd(a, b):
 ```
 
 函数返回的值为 $\gcd$，在这个过程中计算 $x,y$ 即可。
+
+### 值域分析
+
+$ax+by=\gcd(a,b)$ 的解有无数个，显然其中有的解会爆 long long。  
+万幸的是，若 $b\not= 0$，扩展欧几里得算法求出的可行解必有 $|x|\le b,|y|\le a$。  
+下面给出这一性质的证明。
+
+-   $\gcd(a,b)=b$ 时，$a\bmod b=0$，必在下一层终止递归。  
+    得到 $x_1=0,y_1=1$，显然 $a,b\ge 1\ge |x_1|,|y_1|$。
+-   $\gcd(a,b)\not= b$ 时，设 $|x_2|\le (a\bmod b),|y_2|\le b$。  
+    因为 $x_1=y_2,y_1=x_2-{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2$   
+    所以 $|x_1|=|y_2|\le b,|y_1|\le|x_2|+|{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2|\le (a\bmod b)+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|$  
+    $\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)$   
+    $a\bmod b=a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)\le a$   
+    因此 $|x_1|\le b,|y_1|\le a$ 成立。
 
 ### 迭代法编写拓展欧几里得算法
 

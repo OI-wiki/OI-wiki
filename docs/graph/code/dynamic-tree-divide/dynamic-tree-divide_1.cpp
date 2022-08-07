@@ -9,14 +9,17 @@ int n, a, b, m, x, col[maxn];
 // 0 off 1 on
 char op;
 int cur, h[maxn * 2], nxt[maxn * 2], p[maxn * 2];
+
 void add_edge(int x, int y) {
   cur++;
   nxt[cur] = h[x];
   h[x] = cur;
   p[cur] = y;
 }
+
 bool vis[maxn];
 int rt, sum, siz[maxn], maxx[maxn], fa[maxn], dep[maxn];
+
 void calcsiz(int x, int f) {
   siz[x] = 1;
   maxx[x] = 0;
@@ -31,18 +34,24 @@ void calcsiz(int x, int f) {
   if (maxx[x] < maxx[rt])
     rt = x;  // 这里不能写 <= ，保证在第二次 calcsiz 时 rt 不改变
 }
+
 struct heap {
   priority_queue<int> A, B;  // heap=A-B
+
   void insert(int x) { A.push(x); }
+
   void erase(int x) { B.push(x); }
+
   int top() {
     while (!B.empty() && A.top() == B.top()) A.pop(), B.pop();
     return A.top();
   }
+
   void pop() {
     while (!B.empty() && A.top() == B.top()) A.pop(), B.pop();
     A.pop();
   }
+
   int top2() {
     int t = top(), ret;
     pop();
@@ -50,13 +59,16 @@ struct heap {
     A.push(t);
     return ret;
   }
+
   int size() { return A.size() - B.size(); }
 } dist[maxn], ch[maxn], ans;
+
 void dfs(int x, int f, int d, heap& y) {
   y.insert(d);
   for (int j = h[x]; j; j = nxt[j])
     if (p[j] != f && !vis[p[j]]) dfs(p[j], x, d + 1, y);
 }
+
 void pre(int x) {
   vis[x] = true;  // 不考虑 x
   for (int j = h[x]; j; j = nxt[j])
@@ -78,18 +90,22 @@ void pre(int x) {
   else if (ch[x].size())
     ans.insert(ch[x].top());
 }
+
 struct LCA {
   int dep[maxn], lg[maxn], fa[maxn][20];
+
   void dfs(int x, int f) {
     for (int j = h[x]; j; j = nxt[j])
       if (p[j] != f) dep[p[j]] = dep[x] + 1, fa[p[j]][0] = x, dfs(p[j], x);
   }
+
   void init() {
     dfs(1, -1);
     for (int i = 2; i <= n; i++) lg[i] = lg[i / 2] + 1;
     for (int j = 1; j <= lg[n]; j++)
       for (int i = 1; i <= n; i++) fa[i][j] = fa[fa[i][j - 1]][j - 1];
   }
+
   int query(int x, int y) {
     if (dep[x] > dep[y]) swap(x, y);
     int k = dep[y] - dep[x];
@@ -101,9 +117,12 @@ struct LCA {
       if (fa[x][i] != fa[y][i]) x = fa[x][i], y = fa[y][i];
     return fa[x][0];
   }
+
   int dist(int x, int y) { return dep[x] + dep[y] - 2 * dep[query(x, y)]; }
 } lca;
+
 int d[maxn][20];
+
 int main() {
   scanf("%d", &n);
   for (int i = 1; i < n; i++)

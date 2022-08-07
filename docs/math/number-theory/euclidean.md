@@ -184,10 +184,13 @@ $$
     using namespace std;
     const int P = 998244353;
     int i2 = 499122177, i6 = 166374059;
+    
     struct data {
       data() { f = g = h = 0; }
+    
       int f, g, h;
     };  // 三个函数打包
+    
     data calc(int n, int a, int b, int c) {
       int ac = a / c, bc = b / c, m = (a * n + b) / c, n1 = n + 1, n21 = n * 2 + 1;
       data d;
@@ -218,7 +221,9 @@ $$
       d.h = (d.h % P + P) % P;
       return d;
     }
+    
     int T, n, a, b, c;
+    
     signed main() {
       scanf("%lld", &T);
       while (T--) {

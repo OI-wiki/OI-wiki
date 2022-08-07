@@ -405,10 +405,10 @@ $$
     **证明**：对于 $m=2^{\alpha}$，$\alpha\in\mathbb{N}^{*},\alpha\geq 3$，则对任意奇数 $a=2k+1$ 均有：
 
     $$
-    \begin{aligned}a^{2^{\alpha-2}}&=(2k+1)^{2^{\alpha-2}}\\&\equiv 1+C_{2^{\alpha-2}}^1(2k)+C_{2^{\alpha-2}}^{2}(2k)^{2}\\&\equiv1+2^{\alpha-1}k+2^{\alpha-1}(2^{\alpha-2}-1)k^2\\&\equiv 1+2^{\alpha-1}(k+(2^{\alpha-2}-1)k)\\&\equiv 1 \pmod {2^{\alpha}}\end{aligned}
+    \begin{aligned}a^{2^{\alpha-2}}&=(2k+1)^{2^{\alpha-2}}\\&\equiv 1+C_{2^{\alpha-2}}^1(2k)+C_{2^{\alpha-2}}^{2}(2k)^{2}\\&\equiv1+2^{\alpha-1}k+2^{\alpha-1}(2^{\alpha-2}-1)k^2\\&\equiv 1+2^{\alpha-1}(k+(2^{\alpha-2}-1)k^2)\\&\equiv 1 \pmod {2^{\alpha}}\end{aligned}
     $$
 
-    其中最后一步用到 $k$ 与 $(2^{\alpha-2}-1)k$ 同奇偶，故其和为偶数。
+    其中最后一步用到 $k$ 与 $(2^{\alpha-2}-1)k^2$ 同奇偶，故其和为偶数。
 
     若 $m$ 不是 $2$ 的幂，且 $m$ 为符合题目条件的数，则可设 $m=rt$，这里 $2<r<t$ 且 $\gcd(r,t)=1$。
 

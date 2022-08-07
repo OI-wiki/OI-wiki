@@ -166,15 +166,21 @@ Bellman-Ford 算法所做的，就是不断尝试对图上每一条边进行松�
     struct edge {
       int v, w;
     };
+    
     vector<edge> e[maxn];
     int dis[maxn];
+    const int inf = 0x3f3f3f3f;
+    
     bool bellmanford(int n, int s) {
       memset(dis, 63, sizeof(dis));
       dis[s] = 0;
-      bool flag;
+      bool flag;  // 判断一轮循环过程中是否发生松弛操作
       for (int i = 1; i <= n; i++) {
         flag = false;
         for (int u = 1; u <= n; u++) {
+          if (dis[u] == inf) continue;
+          // 无穷大与常数加减仍然为无穷大
+          // 因此最短路长度为 inf 的点引出的边不可能发生松弛操作
           for (auto ed : e[u]) {
             int v = ed.v, w = ed.w;
             if (dis[v] > dis[u] + w) {
@@ -234,9 +240,11 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
     struct edge {
       int v, w;
     };
+    
     vector<edge> e[maxn];
     int dis[maxn], cnt[maxn], vis[maxn];
     queue<int> q;
+    
     bool spfa(int n, int s) {
       memset(dis, 63, sizeof(dis));
       dis[s] = 0, vis[s] = 1;
@@ -363,8 +371,10 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
     struct edge {
       int v, w;
     };
+    
     vector<edge> e[maxn];
     int dis[maxn], vis[maxn];
+    
     void dijkstra(int n, int s) {
       memset(dis, 63, sizeof(dis));
       dis[s] = 0;
@@ -404,16 +414,21 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
 
 ???+note "优先队列实现"
     ```cpp
+    // C++ Version
     struct edge {
       int v, w;
     };
+    
     struct node {
       int dis, u;
+    
       bool operator>(const node& a) const { return dis > a.dis; }
     };
+    
     vector<edge> e[maxn];
     int dis[maxn], vis[maxn];
     priority_queue<node, vector<node>, greater<node> > q;
+    
     void dijkstra(int n, int s) {
       memset(dis, 63, sizeof(dis));
       dis[s] = 0;
@@ -432,6 +447,31 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
         }
       }
     }
+    ```
+    
+    ```python
+    # Python Version
+    def dijkstra(e,s):
+      '''
+      输入：
+      e:邻接表
+      s:起点
+      返回：
+      dis:从s到每个顶点的最短路长度
+      '''
+      dis = defaultdict(lambda:float("inf"))
+      dis[s] = 0
+      q = [(0,s)]
+      vis = set()
+      while q:
+          _, u = heapq.heappop(q)
+          if u in vis: continue
+          vis.add(u)
+          for v,w in e[u]:
+              if dis[v] > dis[u] + w:
+                  dis[v] = dis[u] + w
+                  heapq.heappush(q,(dis[v],v))
+      return dis
     ```
 
 ## Johnson 全源最短路径算法

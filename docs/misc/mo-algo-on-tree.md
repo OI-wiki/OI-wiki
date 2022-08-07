@@ -1,4 +1,4 @@
-author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan
+author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan, Linky
 
 ## 括号序树上莫队
 
@@ -18,7 +18,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
 这样的话，我们就把一棵树处理成了序列。
 
 ???+note "例题[「WC2013」糖果公园](https://uoj.ac/problem/58)"
-    题意：给你一棵树，每个点有颜色，每次询问
+    题意：给你一棵树，树上第 $i$ 个点颜色为 $c_i$，每次询问一条路径 $u_i$,$v_i$, 求这条路径上的
     
     $\sum_{c}val_c\sum_{i=1}^{cnt_c}w_i$
     
@@ -59,10 +59,12 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
     struct edge {
       int to, nxt;
     } e[maxn];
+    
     int cnt1 = 0, cnt2 = 0;  // 时间戳
     
     struct query {
       int l, r, t, id;
+    
       bool operator<(const query &b) const {
         return (pos[l] < pos[b.l]) || (pos[l] == pos[b.l] && pos[r] < pos[b.r]) ||
                (pos[l] == pos[b.l] && pos[r] == pos[b.r] && t < b.t);
@@ -237,7 +239,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
 所以我们每次不标记 LCA，到需要询问答案时再将 LCA 标记，然后再撤销。
 
 ```cpp
-//取反路径上除LCA以外的所有节点
+// 取反路径上除LCA以外的所有节点
 void move(int x, int y) {
   if (dp[x] < dp[y]) swap(x, y);
   while (dp[x] > dp[y]) update(x), x = fa[x];
@@ -252,8 +254,9 @@ void move(int x, int y) {
 int bl[100002], bls = 0;  // 属于的块，块的数量
 unsigned step;            // 块大小
 int fa[100002], dp[100002], hs[100002] = {0}, sz[100002] = {0};
-//父节点，深度，重儿子，大小
+// 父节点，深度，重儿子，大小
 stack<int> sta;
+
 void dfs1(int x) {
   sz[x] = 1;
   unsigned ss = sta.size();
@@ -271,6 +274,7 @@ void dfs1(int x) {
     }
   sta.push(x);
 }
+
 // main
 if (!sta.empty()) {
   bls++;  // 这一行可写可不写
@@ -284,8 +288,8 @@ if (!sta.empty()) {
 
 设块的大小为 $unit$：
 
-- 对于 x 指针，由于每个块中节点的距离在 $unit$ 左右，每个块中 x 指针移动 $unit^2$ 次（$unit\times dis_max$），共计 $n\times unit$（$unit^2 \times (n\div unit)$）次；
-- 对于 y 指针，每个块中最多移动 $O(n)$ 次，共计 $n^2\div unit$（$n \times (n \div unit)$）次。
+- 对于 x 指针，由于每个块中节点的距离在 $unit$ 左右，每个块中 x 指针移动 $unit^2$ 次（$unit\times dis_{max}$），共计 $n\times unit$ 次（$unit^2 \times (\frac{n}{unit})$）；
+- 对于 y 指针，每个块中最多移动 $O(n)$ 次，共计 $\frac{n^2}{unit}$ 次（$n \times (\frac{n}{unit})$）。
 
 加起来大概在根号处取得最小值（由于树上莫队块的大小不固定，所以不一定要严格按照）。
 
@@ -297,6 +301,7 @@ if (!sta.empty()) {
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
+    
     inline int gi() {
       register int x, c, op = 1;
       while (c = getchar(), c < '0' || c > '9')
@@ -306,16 +311,20 @@ if (!sta.empty()) {
         x = (x << 3) + (x << 1) + (c ^ 48);
       return x * op;
     }
+    
     int head[100002], nxt[200004], ver[200004], tot = 0;
+    
     void add(int x, int y) {
       ver[++tot] = y, nxt[tot] = head[x], head[x] = tot;
       ver[++tot] = x, nxt[tot] = head[y], head[y] = tot;
     }
+    
     int bl[100002], bls = 0;
     unsigned step;
     int fa[100002], dp[100002], hs[100002] = {0}, sz[100002] = {0}, top[100002],
                                 id[100002];
     stack<int> sta;
+    
     void dfs1(int x) {
       sz[x] = 1;
       unsigned ss = sta.size();
@@ -332,7 +341,9 @@ if (!sta.empty()) {
         }
       sta.push(x);
     }
+    
     int cnt = 0;
+    
     void dfs2(int x, int hf) {
       top[x] = hf, id[x] = ++cnt;
       if (!hs[x]) return;
@@ -340,6 +351,7 @@ if (!sta.empty()) {
       for (int i = head[x]; i; i = nxt[i])
         if (ver[i] != fa[x] && ver[i] != hs[x]) dfs2(ver[i], ver[i]);
     }
+    
     int lca(int x, int y) {
       while (top[x] != top[y]) {
         if (dp[top[x]] < dp[top[y]]) swap(x, y);
@@ -347,17 +359,22 @@ if (!sta.empty()) {
       }
       return dp[x] < dp[y] ? x : y;
     }
+    
     struct qu {
       int x, y, t, id;
+    
       bool operator<(const qu a) const {
         return bl[x] == bl[a.x] ? (bl[y] == bl[a.y] ? t < a.t : bl[y] < bl[a.y])
                                 : bl[x] < bl[a.x];
       }
     } q[100001];
+    
     int qs = 0;
+    
     struct ch {
       int x, y, b;
     } upd[100001];
+    
     int ups = 0;
     long long ans[100001];
     int b[100001] = {0};
@@ -366,6 +383,7 @@ if (!sta.empty()) {
     long long v[100001];
     long long now = 0;
     bool vis[100001] = {0};
+    
     void back(int t) {
       if (vis[upd[t].x]) {
         now -= w[b[upd[t].y]--] * v[upd[t].y];
@@ -373,6 +391,7 @@ if (!sta.empty()) {
       }
       a[upd[t].x] = upd[t].b;
     }
+    
     void change(int t) {
       if (vis[upd[t].x]) {
         now -= w[b[upd[t].b]--] * v[upd[t].b];
@@ -380,6 +399,7 @@ if (!sta.empty()) {
       }
       a[upd[t].x] = upd[t].y;
     }
+    
     void update(int x) {
       if (vis[x])
         now -= w[b[a[x]]--] * v[a[x]];
@@ -387,11 +407,13 @@ if (!sta.empty()) {
         now += w[++b[a[x]]] * v[a[x]];
       vis[x] ^= 1;
     }
+    
     void move(int x, int y) {
       if (dp[x] < dp[y]) swap(x, y);
       while (dp[x] > dp[y]) update(x), x = fa[x];
       while (x != y) update(x), update(y), x = fa[x], y = fa[y];
     }
+    
     int main() {
       int n = gi(), m = gi(), k = gi();
       step = (int)pow(n, 0.6);

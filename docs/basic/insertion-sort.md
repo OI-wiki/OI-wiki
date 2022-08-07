@@ -1,12 +1,12 @@
 本页面将简要介绍插入排序。
 
-## 简介
+## 定义
 
-插入排序（英语：Insertion sort）是一种简单直观的排序算法。它的工作原理为将待排列元素划分为“已排序”和“未排序”两部分，每次从“未排序的”元素中选择一个插入到“已排序的”元素中的正确位置。
+插入排序（英语：Insertion sort）是一种简单直观的排序算法。它的工作原理为将待排列元素划分为「已排序」和「未排序」两部分，每次从「未排序的」元素中选择一个插入到「已排序的」元素中的正确位置。
 
 一个与插入排序相同的操作是打扑克牌时，从牌桌上抓一张牌，按牌面大小插到手牌后，再抓下一张牌。
 
-![insertion-sort-1-animate-example](images/insertion-sort-1-animate-example.svg)
+![insertion sort animate example](images/insertion-sort-1-animate-example.svg)
 
 ## 性质
 

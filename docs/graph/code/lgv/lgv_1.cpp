@@ -18,10 +18,12 @@ int qpow(int x, int y) {
   }
   return out;
 }
+
 int c(int x, int y) {
   return (ll)fact[x] * qpow(fact[y], mod - 2) % mod *
          qpow(fact[x - y], mod - 2) % mod;
 }
+
 int main() {
   fact[0] = 1;
   for (int i = 1; i < N * 2; ++i) fact[i] = (ll)fact[i - 1] * i % mod;

@@ -11,7 +11,9 @@ bool vis[maxn];
 struct Edge {
   int v, nxt;
 } e[maxn * 100];
+
 int head[maxn], tot = 1;
+
 void addedge(int u, int v) {
   e[tot].v = v;
   e[tot].nxt = head[u];
@@ -19,6 +21,7 @@ void addedge(int u, int v) {
 }
 
 int dfn[maxn], low[maxn], color[maxn], stk[maxn], ins[maxn], top, dfs_clock, c;
+
 void tarjan(int x) {  // tarjan算法求强联通
   stk[++top] = x;
   ins[x] = 1;

@@ -4,10 +4,14 @@
 struct Edge {
   int x, y, z;
 };
+
 int f[100001];
 Edge a[100001];
+
 int cmp(const Edge& a, const Edge& b) { return a.z < b.z; }
+
 int find(int x) { return f[x] == x ? x : f[x] = find(f[x]); }
+
 int main() {
   int t;
   scanf("%d", &t);

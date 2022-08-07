@@ -1,6 +1,8 @@
 ## 前缀和
 
-前缀和是一种重要的预处理，能大大降低查询的时间复杂度。可以简单理解为“数列的前 $n$ 项的和”。[^note1]
+### 定义
+
+前缀和可以简单理解为「数列的前 $n$ 项的和」，是一种重要的预处理方式，能大大降低查询的时间复杂度。[^note1]
 
 C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cppreference.com/w/cpp/algorithm/partial_sum)，定义于头文件 `<numeric>` 中。
 
@@ -98,11 +100,13 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
 
 ## 差分
 
+### 解释
+
 差分是一种和前缀和相对的策略，可以当做是求和的逆运算。
 
 这种策略的定义是令 $b_i=\begin{cases}a_i-a_{i-1}\,&i \in[2,n] \\ a_1\,&i=1\end{cases}$
 
-简单性质：
+### 性质
 
 - $a_i$ 的值是 $b_i$ 的前缀和，即 $a_n=\sum\limits_{i=1}^nb_i$
 - 计算 $a_i$ 的前缀和 $sum=\sum\limits_{i=1}^na_i=\sum\limits_{i=1}^n\sum\limits_{j=1}^{i}b_j=\sum\limits_{i}^n(n-i+1)b_i$
@@ -130,7 +134,7 @@ C++ 标准库中实现了差分函数 [`std::adjacent_difference`](https://zh.cp
 
 #### 点差分
 
-举例：对域树上的一些路径 $\delta(s_1,t_1), \delta(s_2,t_2), \delta(s_3,t_3)\dots$ 进行访问，问一条路径 $\delta(s,t)$ 上的点被访问的次数。
+举例：对树上的一些路径 $\delta(s_1,t_1), \delta(s_2,t_2), \delta(s_3,t_3)\dots$ 进行访问，问一条路径 $\delta(s,t)$ 上的点被访问的次数。
 
 对于一次 $\delta(s,t)$ 的访问，需要找到 $s$ 与 $t$ 的公共祖先，然后对这条路径上的点进行访问（点的权值加一），若采用 DFS 算法对每个点进行访问，由于有太多的路径需要访问，时间上承受不了。这里进行差分操作：
 
@@ -182,22 +186,29 @@ $$
 
 ## 习题
 
-* * *
-
 前缀和：
 
 - [洛谷 U53525 前缀和（例题）](https://www.luogu.com.cn/problem/U53525)
 - [洛谷 U69096 前缀和的逆](https://www.luogu.com.cn/problem/U69096)
 - [AT2412 最大の和](https://vjudge.net/problem/AtCoder-joi2007ho_a#author=wuyudi)
 - [「USACO16JAN」子共七 Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131)
+- [「USACO05JAN」Moo Volume S](https://www.luogu.com.cn/problem/P6067)
 
 * * *
 
 二维/多维前缀和：
 
-- [HDU 6514 Monitor](http://acm.hdu.edu.cn/showproblem.php?pid=6514)
+- [HDU 6514 Monitor](https://vjudge.net/problem/HDU-6514)
 - [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387)
 - [「HNOI2003」激光炸弹](https://www.luogu.com.cn/problem/P2280)
+
+* * *
+
+基于 DP 计算高维前缀和：
+
+- [CF 165E Compatible Numbers](https://codeforces.com/contest/165/problem/E)
+- [CF 383E Vowels](https://codeforces.com/problemset/problem/383/E)
+- [ARC 100C Or Plus Max](https://atcoder.jp/contests/arc100/tasks/arc100_c)
 
 * * *
 

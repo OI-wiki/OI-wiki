@@ -50,14 +50,18 @@
     ```cpp
     #define MAXN 2000000
     #define CHAR_NUM 30
+    
     struct Trie {
       int next[MAXN][CHAR_NUM];  // 转移
       int tot;                   // 节点总数：[0, tot)
+    
       void init() { tot = 1; }
+    
       int insertTrie(int cur, int c) {
         if (next[cur][c]) return next[cur][c];
         return next[cur][c] = tot++;
       }
+    
       void insert(const string &s) {
         int root = 0;
         for (auto ch : s) root = insertTrie(root, ch - 'a');
@@ -74,7 +78,7 @@
 - 对于节点 `i`，其 `len[i]` 和它在字典树中的深度相同
 - 如果我们对字典树进行拓扑排序，我们可以得到一串根据 `len` 不递减的序列。$BFS$ 的结果相同
 
-而后缀自动机在建立的过程中，可以视为不断的插入 `len` 严格递增的值，且插值为 $1$。所以我们可以将对字典树进行拓扑排序后的结果做为一个队列，然后按照这个队列的顺序不断地插入到后缀自动机中。
+而后缀自动机在建立的过程中，可以视为不断的插入 `len` 严格递增的值，且差值为 $1$。所以我们可以将对字典树进行拓扑排序后的结果做为一个队列，然后按照这个队列的顺序不断地插入到后缀自动机中。
 
 由于在普通后缀自动机上，其前一个节点的 `len` 值为固定值，即为 `last` 节点的 `len`。但是在广义后缀自动机中，插入的队列是一个不严格递增的数列。所以对于每一个值，对于它的 `last` 应该是已知而且固定的，在字典树上，即为其父亲节点。
 
@@ -115,6 +119,7 @@
       int link[MAXN];            // 后缀链接，link
       int next[MAXN][CHAR_NUM];  // 转移
       int tot;                   // 节点总数：[0, tot)
+    
       int insertSAM(int last, int c) {
         int cur = next[last][c];
         len[cur] = len[last] + 1;
@@ -148,6 +153,7 @@
         link[q] = clone;
         return cur;
       }
+    
       void build() {
         queue<pair<int, int>> q;
         for (int i = 0; i < 26; ++i)

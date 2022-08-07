@@ -60,8 +60,8 @@ void solve() {
 $$
 \begin{aligned}
 & O(\sqrt{n}(\max{}_1-1)+\sqrt{n}(\max{}_2-\max{}_1)+\sqrt{n}(\max{}_3-\max{}_2)+\cdots+\sqrt{n}(\max{}_{\lceil\sqrt{n}\rceil}-\max{}_{\lceil\sqrt{n}\rceil-1))} \\
-= & O(\sqrt{n}\cdot(\max{}_1-1+\max{}_2-\max{}_1+\max{}_3-\max{}_2+\cdots+\max{}_{\lceil\sqrt{n}\rceil-1}-\max{}_{\lceil\sqrt{n}\rceil-2}+\max{}_{\lceil\sqrt{n}\rceil}-\max{}_{\lceil\sqrt{n}\rceil-1)}) \\
-= & O(\sqrt{n}\cdot(\max{}_{\lceil\sqrt{n}\rceil-1}))\\
+= \phantom{} & O(\sqrt{n}\cdot(\max{}_1-1+\max{}_2-\max{}_1+\max{}_3-\max{}_2+\cdots+\max{}_{\lceil\sqrt{n}\rceil-1}-\max{}_{\lceil\sqrt{n}\rceil-2}+\max{}_{\lceil\sqrt{n}\rceil}-\max{}_{\lceil\sqrt{n}\rceil-1)}) \\
+= \phantom{} & O(\sqrt{n}\cdot(\max{}_{\lceil\sqrt{n}\rceil-1}))\\
 \end{aligned}
 $$
 
@@ -176,8 +176,10 @@ $$
 ```cpp
 // 这里有个小细节等下会讲
 int unit;  // 块的大小
+
 struct node {
   int l, r, id;
+
   bool operator<(const node &x) const {
     return l / unit == x.l / unit
                ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r))
@@ -191,6 +193,7 @@ struct node {
 ```cpp
 struct node {
   int l, r, id;
+
   bool operator<(const node &x) const {
     if (l / unit != x.l / unit) return l < x.l;
     if ((l / unit) & 1)

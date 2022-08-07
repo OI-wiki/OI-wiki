@@ -42,7 +42,7 @@
     tp = 0;                       // 初始化栈
     std::sort(p + 1, p + 1 + n);  // 对点进行排序
     stk[++tp] = 1;
-    //栈内添加第一个元素，且不更新 used，使得 1 在最后封闭凸包时也对单调栈更新
+    // 栈内添加第一个元素，且不更新 used，使得 1 在最后封闭凸包时也对单调栈更新
     for (int i = 2; i <= n; ++i) {
       while (tp >= 2  // 下一行 * 操作符被重载为叉积
              && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
@@ -53,7 +53,7 @@
     int tmp = tp;  // tmp 表示下凸壳大小
     for (int i = n - 1; i > 0; --i)
       if (!used[i]) {
-        //      ↓求上凸壳时不影响下凸壳
+        // ↓求上凸壳时不影响下凸壳
         while (tp > tmp && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
           used[stk[tp--]] = 0;
         used[i] = 1;
@@ -102,6 +102,30 @@ $$
 \sum_{i=1}^{\textit{ans}}\left|\overrightarrow{h_ih_{i+1}}\right|
 $$
 
+## 三维凸包
+
+### 基础知识
+
+> 圆的反演：反演中心为 $O$，反演半径为 $R$，若经过 $O$ 的直线经过 $P$,$P′$，且 $OP\times OP′=R^{2}$，则称 $P$、$P′$ 关于 $O$ 互为反演。
+
+求凸包：
+
+- 首先对其微小扰动，避免出现四点共面的情况。
+- 对于一个已知凸包，新增一个点 $P$，将 $P$ 视作一个点光源，向凸包做射线，可以知道，光线的可见面和不可见面一定是由若干条棱隔开的。
+-   将光的可见面删去，并新增由其分割棱与 $P$ 构成的平面。
+    重复此过程即可，由 [Pick 定理](./pick.md)、欧拉公式（在凸多面体中，其顶点 $V$、边数 $E$ 及面数 $F$ 满足 $V−E+F=2$）和圆的反演，复杂度 $O(n^2)$。[^3d-v]
+
+### 模板题
+
+[P4724【模板】三维凸包](https://www.luogu.com.cn/problem/P4724)
+
+重复上述过程即可得到答案。
+
+???+ note "代码实现"
+    ```cpp
+    --8<-- "docs/geometry/code/3d/3d_1.cpp"
+    ```
+
 ### 例题
 
 [UVA11626 Convex Hull](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=78&page=show_problem&problem=2673)
@@ -113,3 +137,7 @@ $$
 [POJ1113 Wall](http://poj.org/problem?id=1113)
 
 [「SHOI2012」信用卡凸包](https://www.luogu.com.cn/problem/P3829)
+
+## 参考资料与注释
+
+[^3d-v]: [三维凸包学习小记](https://www.cnblogs.com/xzyxzy/p/10225804.html)

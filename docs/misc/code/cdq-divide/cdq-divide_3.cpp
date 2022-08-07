@@ -15,33 +15,43 @@ int tp[N];
 int lf[N];
 int rt[N];
 int co[N];
+
 struct modi {
   int t;
   int pos;
   int pre;
   int va;
+
   friend bool operator<(modi a, modi b) { return a.pre < b.pre; }
 } md[10 * N];
+
 int tp1;
+
 struct qry {
   int t;
   int l;
   int r;
   int ans;
+
   friend bool operator<(qry a, qry b) { return a.l < b.l; }
 } qr[N];
+
 int tp2;
 int cnt;
+
 inline bool cmp(const qry& a, const qry& b) { return a.t < b.t; }
+
 inline void modify(int pos, int co)  // 修改函数
 {
   if (npre[pos] == co) return;
   md[++tp1] = (modi){++cnt, pos, npre[pos], -1};
   md[++tp1] = (modi){++cnt, pos, npre[pos] = co, 1};
 }
+
 namespace prew {
 int lst[2 * N];
 map<int, int> mp;  // 提前离散化
+
 inline void prew() {
   scanf("%d%d", &n, &m);
   for (int i = 1; i <= n; i++) scanf("%d", &a[i]), mp[a[i]] = 1;
@@ -59,21 +69,28 @@ inline void prew() {
   for (int i = 1; i <= n; i++) npre[i] = pre[i];
 }
 }  // namespace prew
+
 namespace colist {
 struct data {
   int l;
   int r;
   int x;
+
   friend bool operator<(data a, data b) { return a.r < b.r; }
 };
+
 set<data> s;
+
 struct nod {
   int l;
   int r;
+
   friend bool operator<(nod a, nod b) { return a.r < b.r; }
 };
+
 set<nod> c[2 * N];
 set<int> bd;
+
 inline void split(int mid) {  // 将一个节点拆成两个节点
   SDI it = s.lower_bound((data){0, mid, 0});
   data p = *it;
@@ -85,6 +102,7 @@ inline void split(int mid) {  // 将一个节点拆成两个节点
   c[p.x].insert((nod){p.l, mid});
   c[p.x].insert((nod){mid + 1, p.r});
 }
+
 inline void del(set<data>::iterator it) {  // 删除一个迭代器
   bd.insert(it->l);
   SNI it1, it2;
@@ -94,6 +112,7 @@ inline void del(set<data>::iterator it) {  // 删除一个迭代器
   c[it->x].erase(it1);
   s.erase(it);
 }
+
 inline void ins(data p) {  // 插入一个节点
   s.insert(p);
   SNI it = c[p.x].insert((nod){p.l, p.r}).first;
@@ -102,6 +121,7 @@ inline void ins(data p) {  // 插入一个节点
     bd.insert(it->l);
   }
 }
+
 inline void stv(int l, int r, int x) {  // 区间赋值
   if (l != 1) split(l - 1);
   split(r);
@@ -126,6 +146,7 @@ inline void stv(int l, int r, int x) {  // 区间赋值
   }
   bd.clear();
 }
+
 inline void ih() {
   int nc = a[1];
   int ccnt = 1;  // 将连续的一段插入到set中
@@ -142,27 +163,35 @@ inline void ih() {
       c[a[n]].insert((nod){n - ccnt + 1, n});
 }
 }  // namespace colist
+
 namespace CDQ {
 struct treearray  // 树状数组
 {
   int ta[N];
+
   inline void c(int x, int t) {
     for (; x <= n; x += x & (-x)) ta[x] += t;
   }
+
   inline void d(int x) {
     for (; x <= n; x += x & (-x)) ta[x] = 0;
   }
+
   inline int q(int x) {
     int r = 0;
     for (; x; x -= x & (-x)) r += ta[x];
     return r;
   }
+
   inline void clear() {
     for (int i = 1; i <= n; i++) ta[i] = 0;
   }
 } ta;
+
 int srt[N];
+
 inline bool cmp1(const int& a, const int& b) { return pre[a] < pre[b]; }
+
 inline void solve(int l1, int r1, int l2, int r2, int L, int R) {  // CDQ
   if (l1 == r1 || l2 == r2) return;
   int mid = (L + R) / 2;
@@ -182,6 +211,7 @@ inline void solve(int l1, int r1, int l2, int r2, int L, int R) {  // CDQ
     for (int i = l1 + 1; i <= mid1; i++) ta.d(md[i].pos);
   }
 }
+
 inline void mainsolve() {
   colist::ih();
   for (int i = 1; i <= m; i++)
@@ -203,6 +233,7 @@ inline void mainsolve() {
   for (int i = 1; i <= tp2; i++) printf("%d\n", qr[i].ans);
 }
 }  // namespace CDQ
+
 int main() {
   prew::prew();
   CDQ::mainsolve();

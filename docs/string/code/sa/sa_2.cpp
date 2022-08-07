@@ -20,7 +20,7 @@ int main() {
   scanf("%d%d", &n, &k);
   --k;
 
-  for (i = 1; i <= n; ++i) scanf("%d", a + i);  //求后缀数组
+  for (i = 1; i <= n; ++i) scanf("%d", a + i);  // 求后缀数组
   for (i = 1; i <= n; ++i) ++cnt[rk[i] = a[i]];
   for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
   for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
@@ -38,13 +38,13 @@ int main() {
       rk[sa[i]] = cmp(sa[i], sa[i - 1], w) ? p : ++p;
   }
 
-  for (i = 1, j = 0; i <= n; ++i) {  //求 height
+  for (i = 1, j = 0; i <= n; ++i) {  // 求 height
     if (j) --j;
     while (a[i + j] == a[sa[rk[i] - 1] + j]) ++j;
     ht[rk[i]] = j;
   }
 
-  for (i = 1; i <= n; ++i) {  //求所有最小值的最大值
+  for (i = 1; i <= n; ++i) {  // 求所有最小值的最大值
     t.insert(ht[i]);
     if (i > k) t.erase(t.find(ht[i - k]));
     ans = max(ans, *t.begin());

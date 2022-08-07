@@ -109,6 +109,7 @@ void dfs1(int o) {
       if (son[o] == -1 || siz[p[j]] > siz[son[o]]) son[o] = p[j];
     }
 }
+
 void dfs2(int o, int t) {
   top[o] = t;
   cnt++;
@@ -501,8 +502,8 @@ DP 数组的长度我们可以根据子树最深节点算出。
 
 [「SDOI2011」染色](https://www.luogu.com.cn/problem/P2486)
 
-[「SDOI2014」旅行](https://www.lydsy.com/JudgeOnline/problem.php?id=3531)
+[「SDOI2014」旅行](https://hydro.ac/d/bzoj/p/3531)
 
-[「POI2014」Hotel 加强版](https://www.lydsy.com/JudgeOnline/problem.php?id=4543)（长链剖分优化 DP)
+[「POI2014」Hotel 加强版](https://hydro.ac/d/bzoj/p/4543)（长链剖分优化 DP)
 
-[攻略](https://www.lydsy.com/JudgeOnline/problem.php?id=3252)（长链剖分优化贪心）
+[攻略](https://hydro.ac/d/bzoj/p/3252)（长链剖分优化贪心）

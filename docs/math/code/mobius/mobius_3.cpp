@@ -27,16 +27,16 @@ int func(int x, int y) {
 int solve(int x, int y) {
   int res = 0;
   int j;
-  for (int i = 1; i <= min(x, y); i = j + 1) {  //整除分块处理
+  for (int i = 1; i <= min(x, y); i = j + 1) {  // 整除分块处理
     j = min(x / (x / i), y / (y / i));
     res = (res + (long long)1 * (j - i + 1) * (i + j) / 2 % mod *
                      func(x / i, y / i) % mod) %
-          mod;  //！每步取模防爆
+          mod;  // ！每步取模防爆
   }
   return res;
 }
 
-void init() {  //线性筛
+void init() {  // 线性筛
   mu[1] = 1;
   int tot = 0, k = min(n, m);
   for (int i = 2; i <= k; ++i) {

@@ -4,10 +4,13 @@ const int N = 100005;
 typedef long long ll;
 int mxq[N], mnq[N];
 int D, ans, n, hx, rx, hn, rn;
+
 struct la {
   int x, y;
+
   bool operator<(const la &y) const { return x < y.x; }
 } a[N];
+
 int main() {
   scanf("%d%d", &n, &D);
   for (int i = 1; i <= n; ++i) {

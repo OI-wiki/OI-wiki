@@ -7,18 +7,24 @@ typedef long long ll;
 int n;
 int m;
 int ask;
+
 struct bcj {
   int fa[20010];
   int size[20010];
+
   struct opt {
     int u;
     int v;
   };
+
   stack<opt> st;
+
   inline void ih() {
     for (int i = 1; i <= n; i++) fa[i] = i, size[i] = 1;
   }
+
   inline int f(int x) { return (fa[x] == x) ? x : f(fa[x]); }
+
   inline void u(int x, int y) {  // 带撤回
     int u = f(x);
     int v = f(y);
@@ -31,41 +37,49 @@ struct bcj {
     o.v = v;
     st.push(o);
   }
+
   inline void undo() {
     opt o = st.top();
     st.pop();
     fa[o.v] = o.v;
     size[o.u] -= size[o.v];
   }
+
   inline void clear(int tim) {
     while (st.size() > tim) {
       undo();
     }
   }
 } s, s1;
+
 struct edge  // 静态边
 {
   int u;
   int v;
   ll val;
   int mrk;
+
   friend bool operator<(edge a, edge b) { return a.val < b.val; }
 } e[50010];
+
 struct moved {
   int u;
   int v;
 };  // 动态边
+
 struct query {
   int num;
   ll val;
   ll ans;
 } q[50010];
+
 bool book[50010];  // 询问
 vector<edge> ve[30];
 vector<moved> vq;
 vector<edge> tr;
 ll res[30];
 int tim[30];
+
 inline void pushdown(int dep)  // 缩边
 {
   tr.clear();  // 这里要复制一份，以免无法回撤操作
@@ -107,6 +121,7 @@ inline void pushdown(int dep)  // 缩边
   }
   return;
 }
+
 inline void solve(int l, int r, int dep) {
   tim[dep] = s.st.size();
   int mid = (l + r) / 2;
@@ -177,6 +192,7 @@ inline void solve(int l, int r, int dep) {
   s.clear(tim[dep - 1]);
   return;  // 时间倒流至上一层
 }
+
 int main() {
   scanf("%d%d%d", &n, &m, &ask);
   s.ih();

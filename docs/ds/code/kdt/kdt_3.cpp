@@ -4,21 +4,27 @@
 using namespace std;
 const int maxn = 200010;
 int n, op, xl, xr, yl, yr, lstans;
+
 struct node {
   int x, y, v;
 } s[maxn];
+
 bool cmp1(int a, int b) { return s[a].x < s[b].x; }
+
 bool cmp2(int a, int b) { return s[a].y < s[b].y; }
+
 double a = 0.725;
 int rt, cur, d[maxn], lc[maxn], rc[maxn], L[maxn], R[maxn], D[maxn], U[maxn],
     siz[maxn], sum[maxn];
 int g[maxn], t;
+
 void print(int x) {
   if (!x) return;
   print(lc[x]);
   g[++t] = x;
   print(rc[x]);
 }
+
 void maintain(int x) {
   siz[x] = siz[lc[x]] + siz[rc[x]] + 1;
   sum[x] = sum[lc[x]] + sum[rc[x]] + s[x].v;
@@ -31,6 +37,7 @@ void maintain(int x) {
     L[x] = min(L[x], L[rc[x]]), R[x] = max(R[x], R[rc[x]]),
     D[x] = min(D[x], D[rc[x]]), U[x] = max(U[x], U[rc[x]]);
 }
+
 int build(int l, int r) {
   if (l > r) return 0;
   int mid = (l + r) >> 1;
@@ -50,12 +57,15 @@ int build(int l, int r) {
   maintain(g[mid]);
   return g[mid];
 }
+
 void rebuild(int& x) {
   t = 0;
   print(x);
   x = build(1, t);
 }
+
 bool bad(int x) { return a * siz[x] <= (double)max(siz[lc[x]], siz[rc[x]]); }
+
 void insert(int& x, int v) {
   if (!x) {
     x = v;
@@ -76,6 +86,7 @@ void insert(int& x, int v) {
   maintain(x);
   if (bad(x)) rebuild(x);
 }
+
 int query(int x) {
   if (!x || xr < L[x] || xl > R[x] || yr < D[x] || yl > U[x]) return 0;
   if (xl <= L[x] && R[x] <= xr && yl <= D[x] && U[x] <= yr) return sum[x];
@@ -84,6 +95,7 @@ int query(int x) {
     ret += s[x].v;
   return query(lc[x]) + query(rc[x]) + ret;
 }
+
 int main() {
   scanf("%d", &n);
   while (~scanf("%d", &op)) {

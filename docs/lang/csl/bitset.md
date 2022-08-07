@@ -234,6 +234,7 @@ $$
 ??? "参考代码"
     ```cpp
     bitset<N> vis;
+    
     void Prime(int n) {
       vis.set();
       vis[0] = vis[1] = 0;
