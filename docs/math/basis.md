@@ -46,6 +46,6 @@ inline void insert(long long x) {
 
 [SGU 275 to xor or not xor](https://vjudge.net/problem/SGU-275)
 
-[HDU 3949 XOR](https://loj.ac/problem/161)
+[HDU 3949 XOR](https://vjudge.net/problem/HDU-3949)
 
 [Luogu P4151\[WC2011\]最大 XOR 和路径](https://www.luogu.com.cn/problem/P4151)

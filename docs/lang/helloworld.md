@@ -54,6 +54,7 @@ C++ 语言
 #include <iostream>  // 引用头文件
 
 using namespace std;
+
 // 引入命名空间（相关阅读 https://oi-wiki.org/lang/namespace/#using ）
 
 int main() {                // 定义 main 函数
@@ -65,7 +66,7 @@ int main() {                // 定义 main 函数
 C 语言
 
 ```c
-#include <stdio.h>          // 引用头文件
+#include <stdio.h>  // 引用头文件
 
 int main() {                // 定义 main 函数
   printf("Hello, world!");  // 输出 Hello, world!
@@ -73,4 +74,4 @@ int main() {                // 定义 main 函数
 }
 ```
 
-注意：C 语言在这里仅做参考（它基本上已经过时），C++ 完全兼容 C 语言，并且拥有许多新的功能，可以让选手在赛场上事半功倍。具体请见 [C 与 C++ 区别](/lang/c-cpp/)
+注意：C 语言在这里仅做参考，C++ 基本兼容 C 语言，并且拥有许多新的功能，可以让选手在赛场上事半功倍。具体请见 [C++ 与其他常用语言区别](./cpp-other-langs.md)

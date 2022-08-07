@@ -21,6 +21,7 @@ author: LeoJacob, Marcythm, minghu6
 Z 函数的朴素算法复杂度为 $O(n^2)$：
 
 ```cpp
+// C++ Version
 vector<int> z_function_trivial(string s) {
   int n = (int)s.length();
   vector<int> z(n);
@@ -28,6 +29,17 @@ vector<int> z_function_trivial(string s) {
     while (i + z[i] < n && s[z[i]] == s[i + z[i]]) ++z[i];
   return z;
 }
+```
+
+```python
+# Python Version
+def z_function_trivial(s):
+    n = len(s)
+    z = [0] * n
+    for i in range(1, n):
+        while i + z[i] < n and s[z[i]] == s[i + z[i]]:
+            z[i] += 1
+    return z
 ```
 
 ## 线性算法
@@ -46,13 +58,14 @@ vector<int> z_function_trivial(string s) {
     - 若 $z[i-l] < r-i+1$，则 $z[i] = z[i-l]$。
     - 否则 $z[i-l]\ge r-i+1$，这时我们令 $z[i] = r-i+1$，然后暴力枚举下一个字符扩展 $z[i]$ 直到不能扩展为止。
 - 如果 $i>r$，那么我们直接按照朴素算法，从 $s[i]$ 开始比较，暴力求出 $z[i]$。
-- 在求出 $z[i]$ 后，如果 $z[i]>r$，我们就需要更新 $[l,r]$，即令 $l=i, r=i+z[i]-1$。
+- 在求出 $z[i]$ 后，如果 $i+z[i]-1>r$，我们就需要更新 $[l,r]$，即令 $l=i, r=i+z[i]-1$。
 
 可以访问 [这个网站](https://personal.utdallas.edu/~besp/demo/John2010/z-algorithm.htm) 来看 Z 函数的模拟过程。
 
 ## 实现
 
 ```cpp
+// C++ Version
 vector<int> z_function(string s) {
   int n = (int)s.length();
   vector<int> z(n);
@@ -67,6 +80,25 @@ vector<int> z_function(string s) {
   }
   return z;
 }
+```
+
+```python
+# Python Version
+def z_function(s):
+    n = len(s)
+    z = [0] * n
+    l, r = 0, 0
+    for i in range(1, n):
+        if i <= r and z[i - l] < r - i + 1:
+            z[i] = z[i - l]
+        else:
+            z[i] = max(0, r - i + 1)
+            while i + z[i] < n and s[z[i]] == s[i + z[i]]:
+                z[i] += 1
+        if i + z[i] - 1 > r:
+            l = i
+            r = i + z[i] - 1
+    return z
 ```
 
 ## 复杂度分析

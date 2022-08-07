@@ -15,7 +15,7 @@ author: Marcythm, partychicken, Xeonacid
 
 您一眼秒了它，这不是板子吗？
 
-定义状态 $f_{i,j}$ 为 $A$ 的前 $i$ 位与 $B$ 的前 $j$ 位最长公共子串，则有
+定义状态 $f_{i,j}$ 为 $A$ 的前 $i$ 位与 $B$ 的前 $j$ 位最长公共子序列，则有
 
 $$
 f_{i,j}=

@@ -38,8 +38,8 @@ $$
 
 定义 $A=(P,[a,b]),B=(P,[x,y])$，且 $A,B\in I_P$。于是连续段的关系和运算可以表示为：
 
-1. $A\subseteq B\Leftrightarrow x\le a\wedge b\le y$.
-2. $A=B\Leftrightarrow a=x\wedge b=y$.
+1. $A\subseteq B\iff x\le a\wedge b\le y$.
+2. $A=B\iff a=x\wedge b=y$.
 3. $A\cap B=(P,[\max(a,x),\min(b,y)])$.
 4. $A\cup B=(P,[\min(a,x),\max(b,y)])$.
 5. $A\setminus B=(P,\{i|i\in[a,b]\wedge i\notin[x,y]\})$.
@@ -48,7 +48,7 @@ $$
 
 ### 连续段的性质
 
-连续段的一些显而易见的性质。我们定义 $A,B\in I_P,A \cap B \neq \varnothing$，那么有 $A\cup B,A\cap B,A\setminus B,B\setminus A\in I_P$。
+连续段的一些显而易见的性质。我们定义 $A,B\in I_P,A \cap B \neq \varnothing,A \notin B,B \notin A$，那么有 $A\cup B,A\cap B,A\setminus B,B\setminus A\in I_P$。
 
 证明？证明的本质就是集合的交并差的运算。
 
@@ -116,15 +116,15 @@ $$
 
 我们认为，如果当前点能够成为栈顶结点的儿子，那么栈顶结点是一个合点。如果是析点，那么你合并后这个析点就存在一个子连续段，不满足析点的性质。因此一定是合点。
 
-如果无法成为栈顶结点的儿子，那么我们就看栈顶连续的若干个点能否与当前点一起合并。设 $l$ 为当前点所在区间的左端点。我们计算 $L$ 表示右端点下标为 $i$ 的连续段中，左端点 $< l$ 的最大值。当前结点为 $P_i$，栈顶结点记为 $t$。
+如果无法成为栈顶结点的儿子，那么我们就看栈顶连续的若干个点能否与当前点一起合并。设 $l$ 为当前点所在区间的左端点。我们计算 $L_i$ 表示右端点下标为 $i$ 的连续段中，左端点 $< l$ 的最大值。当前结点为 $P_i$，栈顶结点记为 $t$。
 
-1. 如果 $L$ 不存在，那么显然当前结点无法合并；
-2. 如果 $t_l=L$，那么这就是两个结点合并，合并后就是一个 **合点**；
-3. 否则在栈中一定存在一个点 $t'$ 的左端点 ${t'}_l=L$，那么一定可以从当前结点合并到 $t’$ 形成一个 **析点**；
+1. 如果 $L_i$ 不存在，那么显然当前结点无法合并；
+2. 如果 $t_l=L_i$，那么这就是两个结点合并，合并后就是一个 **合点**；
+3. 否则在栈中一定存在一个点 $t'$ 的左端点 ${t'}_l=L_i$，那么一定可以从当前结点合并到 $t’$ 形成一个 **析点**；
 
 #### 判断能否合并
 
-最后，我们考虑如何处理 $L$。事实上，一个连续段 $(P,[l,r])$ 等价于区间极差与区间长度 -1 相等。即
+最后，我们考虑如何处理 $L_i$。事实上，一个连续段 $(P,[l,r])$ 等价于区间极差与区间长度 -1 相等。即
 
 $$
 \max_{l\le i\le r}P_i-\min_{l\le i\le r}P_i=r-l
@@ -177,20 +177,24 @@ const int N = 200010;
 
 int n, m, a[N], st1[N], st2[N], tp1, tp2, rt;
 int L[N], R[N], M[N], id[N], cnt, typ[N], bin[20], st[N], tp;
-//本篇代码原题应为 CERC2017 Intrinsic Interval
-// a数组即为原题中对应的排列
-// st1和st2分别两个单调栈，tp1、tp2为对应的栈顶，rt为析合树的根
-// L、R数组表示该析合树节点的左右端点，M数组的作用在析合树构造时有提到
-// id存储的是排列中某一位置对应的节点编号，typ用于标记析点还是合点
-// st为存储析合树节点编号的栈，tp为其栈顶
+
+// 本篇代码原题应为 CERC2017 Intrinsic Interval
+// a 数组即为原题中对应的排列
+// st1 和 st2 分别两个单调栈，tp1、tp2 为对应的栈顶，rt 为析合树的根
+// L、R 数组表示该析合树节点的左右端点，M 数组的作用在析合树构造时有提到
+// id 存储的是排列中某一位置对应的节点编号，typ 用于标记析点还是合点
+// st 为存储析合树节点编号的栈，tp为其栈顶
 struct RMQ {  // 预处理 RMQ（Max & Min）
   int lg[N], mn[N][17], mx[N][17];
+
   void chkmn(int& x, int y) {
     if (x > y) x = y;
   }
+
   void chkmx(int& x, int y) {
     if (x < y) x = y;
   }
+
   void build() {
     for (int i = bin[0] = 1; i < 20; ++i) bin[i] = bin[i - 1] << 1;
     for (int i = 2; i <= n; ++i) lg[i] = lg[i >> 1] + 1;
@@ -200,26 +204,33 @@ struct RMQ {  // 预处理 RMQ（Max & Min）
         mn[j][i] = min(mn[j][i - 1], mn[j + bin[i - 1]][i - 1]),
         mx[j][i] = max(mx[j][i - 1], mx[j + bin[i - 1]][i - 1]);
   }
+
   int ask_mn(int l, int r) {
     int t = lg[r - l + 1];
     return min(mn[l][t], mn[r - bin[t] + 1][t]);
   }
+
   int ask_mx(int l, int r) {
     int t = lg[r - l + 1];
     return max(mx[l][t], mx[r - bin[t] + 1][t]);
   }
 } D;
+
 // 维护 L_i
 
 struct SEG {  // 线段树
 #define ls (k << 1)
 #define rs (k << 1 | 1)
   int mn[N << 1], ly[N << 1];  // 区间加；区间最小值
+
   void pushup(int k) { mn[k] = min(mn[ls], mn[rs]); }
+
   void mfy(int k, int v) { mn[k] += v, ly[k] += v; }
+
   void pushdown(int k) {
     if (ly[k]) mfy(ls, ly[k]), mfy(rs, ly[k]), ly[k] = 0;
   }
+
   void update(int k, int l, int r, int x, int y, int v) {
     if (l == x && r == y) {
       mfy(k, v);
@@ -235,6 +246,7 @@ struct SEG {  // 线段树
       update(ls, l, mid, x, mid, v), update(rs, mid + 1, r, mid + 1, y, v);
     pushup(k);
   }
+
   int query(int k, int l, int r) {  // 询问 0 的位置
     if (l == r) return l;
     pushdown(k);
@@ -248,13 +260,16 @@ struct SEG {  // 线段树
 } T;
 
 int o = 1, hd[N], dep[N], fa[N][18];
+
 struct Edge {
   int v, nt;
 } E[N << 1];
+
 void add(int u, int v) {  // 树结构加边
   E[o] = (Edge){v, hd[u]};
   hd[u] = o++;
 }
+
 void dfs(int u) {
   for (int i = 1; bin[i] <= dep[u]; ++i) fa[u][i] = fa[fa[u][i - 1]][i - 1];
   for (int i = hd[u]; i; i = E[i].nt) {
@@ -264,11 +279,13 @@ void dfs(int u) {
     dfs(v);
   }
 }
+
 int go(int u, int d) {
   for (int i = 0; i < 18 && d; ++i)
     if (bin[i] & d) d ^= bin[i], u = fa[u][i];
   return u;
 }
+
 int lca(int u, int v) {
   if (dep[u] < dep[v]) swap(u, v);
   u = go(u, dep[u] - dep[v]);
@@ -293,7 +310,7 @@ void build() {
     // 维护单调栈的目的是辅助线段树从 i-1 更新到 i。
     // 更新到 i 后，只需要查询全局最小值即可知道是否有解
 
-    while (tp1 && a[i] <= a[st1[tp1]])  // 单调递増的栈，维护 Min
+    while (tp1 && a[i] <= a[st1[tp1]])  // 单调递增的栈，维护 Min
       T.update(1, 1, n, st1[tp1 - 1] + 1, st1[tp1], a[st1[tp1]]), tp1--;
     while (tp2 && a[i] >= a[st2[tp2]])
       T.update(1, 1, n, st2[tp2 - 1] + 1, st2[tp2], -a[st2[tp2]]), tp2--;
@@ -304,16 +321,16 @@ void build() {
     st2[++tp2] = i;
 
     id[i] = ++cnt;
-    L[cnt] = R[cnt] = i;  // 这里的 L,R 是指值域的上下界
+    L[cnt] = R[cnt] = i;  // 这里的 L,R 是指节点所对应区间的左右端点
     int le = T.query(1, 1, n), now = cnt;
     while (tp && L[st[tp]] >= le) {
       if (typ[st[tp]] && judge(M[st[tp]], i)) {
         // 判断是否能成为儿子，如果能就做
-        R[st[tp]] = i, add(st[tp], now), now = st[tp--];
+        R[st[tp]] = i, M[st[tp]] = L[now], add(st[tp], now), now = st[tp--];
       } else if (judge(L[st[tp]], i)) {
         typ[++cnt] = 1;  // 合点一定是被这样建出来的
         L[cnt] = L[st[tp]], R[cnt] = i, M[cnt] = L[now];
-        // 这里M数组的作用是保证合点的儿子排列是单调的
+        // 这里M数组是记录节点最右面的儿子的左端点，用于上方能否成为儿子的判断
         add(cnt, st[tp--]), add(cnt, now);
         now = cnt;
       } else {
@@ -321,8 +338,7 @@ void build() {
         // 如果从当前结点开始不能构成连续段，就合并。
         // 直到找到一个结点能构成连续段。而且我们一定能找到这样
         // 一个结点。
-        do
-          add(cnt, st[tp--]);
+        do add(cnt, st[tp--]);
         while (tp && !judge(L[st[tp]], i));
         L[cnt] = L[st[tp]], R[cnt] = i, add(cnt, st[tp--]);
         now = cnt;
@@ -335,13 +351,14 @@ void build() {
 
   rt = st[1];  // 栈中最后剩下的点是根结点
 }
+
 void query(int l, int r) {
   int x = id[l], y = id[r];
   int z = lca(x, y);
   if (typ[z] & 1)
     l = L[go(x, dep[x] - dep[z] - 1)], r = R[go(y, dep[y] - dep[z] - 1)];
   // 合点这里特判的原因是因为这个合点不一定是最小的包含l，r的连续段.
-  // 具体可以在上面的例图上试一下查询7,10
+  // 因为合点所代表的区间的子区间也都是连续段，而我们只需要其中的一段就够了。
   else
     l = L[z], r = R[z];
   printf("%d %d\n", l, r);
@@ -361,6 +378,7 @@ int main() {
   }
   return 0;
 }
+
 // 20190612
 // 析合树
 ```

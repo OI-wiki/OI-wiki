@@ -40,9 +40,9 @@
 
 显然，圆方树中每条边连接一个圆点和一个方点。
 
-下面有一张图，来自 WC 的 PPT，显示了一张图对应的点双和圆方树形态。[^ref2]
+下面的图显示了一张图对应的点双和圆方树形态。[^ref2]
 
-![](./images/block-forest-1.png)
+![](./images/block-forest1.svg)![](./images/block-forest2.svg)![](./images/block-forest3.svg)
 
 圆方树的点数小于 $2n$，这是因为割点的数量小于 $n$，所以请注意各种数组大小要开两倍。
 
@@ -66,7 +66,7 @@
 `low[u]` 存储的是节点 $u$ 的 DFS 树中的子树中的某个点 $v$ 通过 **最多一次返祖边或向父亲的树边** 能访问到的点的 **最小** DFS 序。  
 如果没有听说过 Tarjan 算法可能会有点难理解，让我们举个例子吧：
 
-![](./images/block-forest-2.png)
+![](./images/block-forest4.svg)
 
 （可以发现这张图其实和上面图片中的图等价）  
 这里树边从上至下用直线画出，返祖边从下至上用曲线画出。节点的编号便是它的 DFS 序。
@@ -82,6 +82,7 @@
 我们可以很容易地写出计算 `dfn` 和 `low` 的 DFS 函数（初始时 `dfn` 数组清零）：
 
 ```cpp
+// C++ Version
 void Tarjan(int u) {
   low[u] = dfn[u] = ++dfc;                // low 初始化为当前节点 dfn
   for (int v : G[u]) {                    // 遍历 u 的相邻节点
@@ -92,6 +93,19 @@ void Tarjan(int u) {
       low[u] = std::min(low[u], dfn[v]);  // 已访问的和 dfn 取 min
   }
 }
+```
+
+```python
+# Python Version
+def Tarjan(u):
+    low[u] = dfn[u] = dfc # low 初始化为当前节点 dfn
+    dfc = dfc + 1
+    for v in G[u]: # 遍历 u 的相邻节点
+        if dfn[v] == False: # 如果未访问过
+            Tarjan(v) # 递归
+            low[u] = min(low[u], low[v]) # 未访问的和 low 取 min
+        else:
+            low[u] = min(low[u], dfn[v]) # 已访问的和 dfn 取 min
 ```
 
 接下来，我们考虑点双和 DFS 树以及这两个数组之间的关联。
@@ -204,7 +218,7 @@ int main() {
 
 这个例子对应的图（包含了重边和孤立点的情况）：
 
-![](./images/block-forest-3.png)
+![](./images/block-forest5.svg)
 
 ## 例题
 
@@ -253,79 +267,7 @@ int main() {
     
     ??? mdui-shadow-6 "参考代码"
         ```cpp
-        #include <algorithm>
-        #include <cstdio>
-        #include <vector>
-        
-        const int MN = 100005;
-        
-        int N, M, cnt;
-        std::vector<int> G[MN], T[MN * 2];
-        long long Ans;
-        
-        int dfn[MN], low[MN], dfc, num;
-        int stk[MN], tp;
-        
-        int wgh[MN * 2];
-        
-        void Tarjan(int u) {
-          low[u] = dfn[u] = ++dfc;
-          stk[++tp] = u;
-          ++num;
-          for (int v : G[u]) {
-            if (!dfn[v]) {
-              Tarjan(v);
-              low[u] = std::min(low[u], low[v]);
-              if (low[v] == dfn[u]) {
-                wgh[++cnt] = 0;
-                for (int x = 0; x != v; --tp) {
-                  x = stk[tp];
-                  T[cnt].push_back(x);
-                  T[x].push_back(cnt);
-                  ++wgh[cnt];
-                }
-                T[cnt].push_back(u);
-                T[u].push_back(cnt);
-                ++wgh[cnt];
-              }
-            } else
-              low[u] = std::min(low[u], dfn[v]);
-          }
-        }
-        
-        int vis[MN * 2], siz[MN * 2];
-        
-        void DFS(int u, int fz) {
-          vis[u] = 1;
-          siz[u] = (u <= N);
-          for (int v : T[u])
-            if (v != fz) {
-              DFS(v, u);
-              Ans += 2ll * wgh[u] * siz[u] * siz[v];
-              siz[u] += siz[v];
-            }
-          Ans += 2ll * wgh[u] * siz[u] * (num - siz[u]);
-        }
-        
-        int main() {
-          scanf("%d%d", &N, &M);
-          for (int u = 1; u <= N; ++u) wgh[u] = -1;
-          cnt = N;
-          for (int i = 1; i <= M; ++i) {
-            int u, v;
-            scanf("%d%d", &u, &v);
-            G[u].push_back(v);
-            G[v].push_back(u);
-          }
-          for (int u = 1; u <= N; ++u)
-            if (!dfn[u]) {
-              num = 0;
-              Tarjan(u), --tp;
-              DFS(u, 0);
-            }
-          printf("%lld\n", Ans);
-          return 0;
-        }
+         --8<-- "docs/graph/code/block-forest/block-forest_1.cpp"
         ```
     
     顺带一提，刚刚的测试用例在这题的答案是 $212$。
@@ -355,146 +297,7 @@ int main() {
     
     ??? mdui-shadow-6 "参考代码"
         ```cpp
-        #include <algorithm>
-        #include <cstdio>
-        #include <set>
-        #include <vector>
-        
-        const int MN = 100005;
-        const int MS = 524288;
-        const int Inf = 0x7fffffff;
-        
-        int N, M, Q, cnt;
-        int w[MN * 2];
-        std::vector<int> G[MN], T[MN * 2];
-        std::multiset<int> S[MN * 2];
-        
-        int dfn[MN * 2], low[MN], dfc;
-        int stk[MN], tp;
-        
-        void Tarjan(int u) {
-          low[u] = dfn[u] = ++dfc;
-          stk[++tp] = u;
-          for (int v : G[u]) {
-            if (!dfn[v]) {
-              Tarjan(v);
-              low[u] = std::min(low[u], low[v]);
-              if (low[v] == dfn[u]) {
-                ++cnt;
-                for (int x = 0; x != v; --tp) {
-                  x = stk[tp];
-                  T[cnt].push_back(x);
-                  T[x].push_back(cnt);
-                }
-                T[cnt].push_back(u);
-                T[u].push_back(cnt);
-              }
-            } else
-              low[u] = std::min(low[u], dfn[v]);
-          }
-        }
-        
-        int idf[MN * 2], faz[MN * 2], siz[MN * 2], dep[MN * 2], son[MN * 2],
-            top[MN * 2];
-        
-        void DFS0(int u, int fz) {
-          faz[u] = fz, dep[u] = dep[fz] + 1, siz[u] = 1;
-          for (int v : T[u])
-            if (v != fz) {
-              DFS0(v, u);
-              siz[u] += siz[v];
-              if (siz[son[u]] < siz[v]) son[u] = v;
-            }
-        }
-        
-        void DFS1(int u, int fz, int tp) {
-          dfn[u] = ++dfc, idf[dfc] = u, top[u] = tp;
-          if (son[u]) DFS1(son[u], u, tp);
-          for (int v : T[u])
-            if (v != fz && v != son[u]) DFS1(v, u, v);
-        }
-        
-        #define li (i << 1)
-        #define ri (i << 1 | 1)
-        #define mid ((l + r) >> 1)
-        #define ls li, l, mid
-        #define rs ri, mid + 1, r
-        
-        int dat[MS];
-        
-        void Build(int i, int l, int r) {
-          if (l == r) {
-            dat[i] = w[idf[l]];
-            return;
-          }
-          Build(ls), Build(rs);
-          dat[i] = std::min(dat[li], dat[ri]);
-        }
-        
-        void Mdf(int i, int l, int r, int p, int x) {
-          if (l == r) {
-            dat[i] = x;
-            return;
-          }
-          if (p <= mid)
-            Mdf(ls, p, x);
-          else
-            Mdf(rs, p, x);
-          dat[i] = std::min(dat[li], dat[ri]);
-        }
-        
-        int Qur(int i, int l, int r, int a, int b) {
-          if (r < a || b < l) return Inf;
-          if (a <= l && r <= b) return dat[i];
-          return std::min(Qur(ls, a, b), Qur(rs, a, b));
-        }
-        
-        int main() {
-          scanf("%d%d%d", &N, &M, &Q);
-          for (int i = 1; i <= N; ++i) scanf("%d", &w[i]);
-          cnt = N;
-          for (int i = 1; i <= M; ++i) {
-            int u, v;
-            scanf("%d%d", &u, &v);
-            G[u].push_back(v);
-            G[v].push_back(u);
-          }
-          Tarjan(1), DFS0(1, 0), dfc = 0, DFS1(1, 0, 1);
-          for (int i = 1; i <= N; ++i)
-            if (faz[i]) S[faz[i]].insert(w[i]);
-          for (int i = N + 1; i <= cnt; ++i) w[i] = *S[i].begin();
-          Build(1, 1, cnt);
-          for (int q = 1; q <= Q; ++q) {
-            char opt[3];
-            int x, y;
-            scanf("%s%d%d", opt, &x, &y);
-            if (*opt == 'C') {
-              Mdf(1, 1, cnt, dfn[x], y);
-              if (faz[x]) {
-                int u = faz[x];
-                S[u].erase(S[u].lower_bound(w[x]));
-                S[u].insert(y);
-                if (w[u] != *S[u].begin()) {
-                  w[u] = *S[u].begin();
-                  Mdf(1, 1, cnt, dfn[u], w[u]);
-                }
-              }
-              w[x] = y;
-            } else {
-              int Ans = Inf;
-              while (top[x] != top[y]) {
-                if (dep[top[x]] < dep[top[y]]) std::swap(x, y);
-                Ans = std::min(Ans, Qur(1, 1, cnt, dfn[top[x]], dfn[x]));
-                x = faz[top[x]];
-              }
-              if (dfn[x] > dfn[y]) std::swap(x, y);
-              Ans = std::min(Ans, Qur(1, 1, cnt, dfn[x], dfn[y]));
-              if (x > N) Ans = std::min(Ans, w[faz[x]]);
-              printf("%d\n", Ans);
-            }
-          }
-          return 0;
-        }
+          --8<-- "docs/graph/code/block-forest/block-forest_2.cpp"
         ```
 
 ???+note "[「SDOI2018」战略游戏](https://loj.ac/p/2562)"
@@ -519,93 +322,7 @@ int main() {
     
     ??? mdui-shadow-6 "参考代码"
         ```cpp
-        #include <algorithm>
-        #include <cstdio>
-        #include <vector>
-        
-        const int MN = 100005;
-        
-        int N, M, Q, cnt;
-        std::vector<int> G[MN], T[MN * 2];
-        
-        int dfn[MN * 2], low[MN], dfc;
-        int stk[MN], tp;
-        void Tarjan(int u) {
-          low[u] = dfn[u] = ++dfc;
-          stk[++tp] = u;
-          for (int v : G[u]) {
-            if (!dfn[v]) {
-              Tarjan(v);
-              low[u] = std::min(low[u], low[v]);
-              if (low[v] == dfn[u]) {
-                ++cnt;
-                for (int x = 0; x != v; --tp) {
-                  x = stk[tp];
-                  T[cnt].push_back(x);
-                  T[x].push_back(cnt);
-                }
-                T[cnt].push_back(u);
-                T[u].push_back(cnt);
-              }
-            } else
-              low[u] = std::min(low[u], dfn[v]);
-          }
-        }
-        
-        int dep[MN * 2], faz[MN * 2][18], dis[MN * 2];
-        void DFS(int u, int fz) {
-          dfn[u] = ++dfc;
-          dep[u] = dep[faz[u][0] = fz] + 1;
-          dis[u] = dis[fz] + (u <= N);
-          for (int j = 0; j < 17; ++j) faz[u][j + 1] = faz[faz[u][j]][j];
-          for (int v : T[u])
-            if (v != fz) DFS(v, u);
-        }
-        int LCA(int x, int y) {
-          if (dep[x] < dep[y]) std::swap(x, y);
-          for (int j = 0, d = dep[x] - dep[y]; d; ++j, d >>= 1)
-            if (d & 1) x = faz[x][j];
-          if (x == y) return x;
-          for (int j = 17; ~j; --j)
-            if (faz[x][j] != faz[y][j]) x = faz[x][j], y = faz[y][j];
-          return faz[x][0];
-        }
-        
-        int main() {
-          int Ti;
-          scanf("%d", &Ti);
-          while (Ti--) {
-            scanf("%d%d", &N, &M);
-            for (int i = 1; i <= N; ++i) {
-              G[i].clear();
-              dfn[i] = low[i] = 0;
-            }
-            for (int i = 1; i <= N * 2; ++i) T[i].clear();
-            for (int i = 1, x, y; i <= M; ++i) {
-              scanf("%d%d", &x, &y);
-              G[x].push_back(y);
-              G[y].push_back(x);
-            }
-            cnt = N;
-            dfc = 0, Tarjan(1), --tp;
-            dfc = 0, DFS(1, 0);
-            scanf("%d", &Q);
-            while (Q--) {
-              static int S, A[MN];
-              scanf("%d", &S);
-              int Ans = -2 * S;
-              for (int i = 1; i <= S; ++i) scanf("%d", &A[i]);
-              std::sort(A + 1, A + S + 1, [](int i, int j) { return dfn[i] < dfn[j]; });
-              for (int i = 1; i <= S; ++i) {
-                int u = A[i], v = A[i % S + 1];
-                Ans += dis[u] + dis[v] - 2 * dis[LCA(u, v)];
-              }
-              if (LCA(A[1], A[S]) <= N) Ans += 2;
-              printf("%d\n", Ans / 2);
-            }
-          }
-          return 0;
-        }
+          --8<-- "docs/graph/code/block-forest/block-forest_3.cpp"
         ```
 
 ## 外部链接

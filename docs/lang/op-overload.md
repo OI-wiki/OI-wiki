@@ -21,7 +21,7 @@ C++ 自带的运算符，最初只定义了一些基本类型的运算规则。�
 
 下面将给出几个重载运算符的示例。
 
-### 函数调用运算符<span id="function"></span>
+### 函数调用运算符
 
 函数调用运算符 `()` 只能重载为成员函数。通过对一个类重载 `()` 运算符，可以使该类的对象能像函数一样调用。
 
@@ -33,16 +33,20 @@ C++ 自带的运算符，最初只定义了一些基本类型的运算规则。�
 #include <iostream>
 #include <queue>
 using namespace std;
+
 struct student {
   string name;
   int score;
 };
+
 struct cmp {
   bool operator()(const student& a, const student& b) const {
     return a.score < b.score || (a.score == b.score && a.name > b.name);
   }
 };
+
 priority_queue<student, vector<student>, cmp> pq;
+
 int main() {
   int n;
   cin >> n;
@@ -58,7 +62,7 @@ int main() {
 }
 ```
 
-### 自增自减运算符<span id="incdec"></span>
+### 自增自减运算符
 
 自增自减运算符分为两类，前置和后置。为了能将两类运算符区别开来，对于后置自增自减运算符，重载的时候需要添加一个类型为 `int` 的空置形参。
 
@@ -71,7 +75,7 @@ int main() {
 | 前置              | `T& T::operator++();`   | `T& operator++(T& a);`     |
 | 后置              | `T T::operator++(int);` | `T operator++(T& a, int);` |
 
-### 比较运算符<span id="compare"></span>
+### 比较运算符
 
 在 `std::sort` 和一些 STL 容器中，需要用到 `<` 运算符。在使用自定义类型时，我们需要手动重载。
 
@@ -81,12 +85,14 @@ int main() {
 struct student {
   string name;
   int score;
+
   bool operator<(const student& a) const {
     return score < a.score || (score == a.score && name > a.name);
     // 上面省略了 this 指针，完整表达式如下：
     // this->score<a.score||(this->score==a.score&&this->name>a.name);
   }
 };
+
 priority_queue<student> pq;
 ```
 
@@ -97,9 +103,11 @@ struct student {
   string name;
   int score;
 };
+
 bool operator<(const student& a, const student& b) {
   return a.score < b.score || (a.score == b.score && a.name > b.name);
 }
+
 priority_queue<student> pq;
 ```
 

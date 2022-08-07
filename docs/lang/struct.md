@@ -65,7 +65,12 @@ struct Edge {
 
 详见 [类](./class.md)
 
+## 注意事项
+
+为了访问内存的效率更高，编译器在处理结构中成员的实际存储情况时，可能会将成员对齐在一定的字节位置，也就意味着结构中有空余的地方。因此，该结构所占用的空间可能大于其中所有成员所占空间的总和。
+
 ## 参考资料
 
-1. [cppreference class](https://zh.cppreference.com/w/cpp/language/class)
-2. [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/)
+1. [Class - zh.cppreference.com](https://zh.cppreference.com/w/cpp/language/class)
+2. [Data structures - cplusplus.com](http://www.cplusplus.com/doc/tutorial/structures/)
+3. [对齐方式 - Microsoft Docs](https://docs.microsoft.com/zh-cn/cpp/cpp/alignment-cpp-declarations)

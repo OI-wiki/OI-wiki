@@ -36,10 +36,10 @@ s1.push(2);
 s1.push(1);
 std::stack<int> s2(s1);
 s1.pop();
-std::cout << s1.size() << " " << s2.size() << endl;  // 1 2
-std::cout << s1.top() << " " << s2.top() << endl;    // 2 1
+std::cout << s1.size() << " " << s2.size() << std::endl;  // 1 2
+std::cout << s1.top() << " " << s2.top() << std::endl;    // 2 1
 s1.pop();
-std::cout << s1.empty() << " " << s2.empty() << endl;  // 1 0
+std::cout << s1.empty() << " " << s2.empty() << std::endl;  // 1 0
 ```
 
 ## 队列
@@ -79,10 +79,10 @@ q1.push(2);
 q1.push(1);
 std::queue<int> q2(q1);
 q1.pop();
-std::cout << q1.size() << " " << q2.size() << endl;    // 1 2
-std::cout << q1.front() << " " << q2.front() << endl;  // 1 2
+std::cout << q1.size() << " " << q2.size() << std::endl;    // 1 2
+std::cout << q1.front() << " " << q2.front() << std::endl;  // 1 2
 q1.pop();
-std::cout << q1.empty() << " " << q2.empty() << endl;  // 1 0
+std::cout << q1.empty() << " " << q2.empty() << std::endl;  // 1 0
 ```
 
 ## 优先队列
@@ -101,9 +101,19 @@ std::priority_queue<TypeName, Container> q;  // 使用 Container 作为底层容
 std::priority_queue<TypeName, Container, Compare> q;
 // 使用 Container 作为底层容器，使用 Compare 作为比较类型
 
-// 默认使用底层容器 vector，比较类型 less<TypeName>（此时为它的 top()
-// 返回为最大值） 若希望 top() 返回最小值，可令比较类型为 greater<TypeName>
+// 默认使用底层容器 vector
+// 比较类型 less<TypeName>（此时为它的 top() 返回为最大值）
+// 若希望 top() 返回最小值，可令比较类型为 greater<TypeName>
 // 注意：不可跳过 Container 直接传入 Compare
+
+// 从 C++11 开始，如果使用 lambda 函数自定义 Compare
+// 则需要将其作为构造函数的参数代入，如：
+auto cmp = [](const std::pair<int, int> &l, const std::pair<int, int> &r) {
+  return l.second < r.second;
+};
+std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int> >,
+                    decltype(cmp)>
+    pq(cmp);
 ```
 
 ### 成员函数

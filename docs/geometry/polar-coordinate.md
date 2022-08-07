@@ -2,7 +2,7 @@ author: Ir1d, HeRaNO, Chrogeek, abc1763613206
 
 ## 极坐标与极坐标系
 
-（本节为人教版高中数学选修 4-4 内容）
+（本节为旧人教版高中数学选修 4-4 内容）
 
 我们考虑实际情况，比如航海，我们说「点 $B$ 在点 $A$ 的北偏东 $30^\circ$ 方向上，距离为 $100$ 米」，而不是「以 $A$ 为原点建立平面直角坐标系，$B(50,50\sqrt 3)$」。
 
@@ -30,8 +30,10 @@ $$
 进而可知：
 
 $$
-\rho ^2=x^2+y^2\\
-\tan \theta=\frac{y}{x}\ \ \ \ (x\not =0)
+\begin{aligned}
+\rho ^2&=x^2+y^2\\
+\tan \theta&=\frac{y}{x}\ \ \ \ (x\not =0)
+\end{aligned}
 $$
 
 于是，极角 $\theta=\arctan \frac{y}{x}$，这样就可以求出极角了。

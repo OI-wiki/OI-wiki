@@ -1,0 +1,27 @@
+name: 添加新功能
+description: 申请添加某个新功能
+title: "[功能请求] "
+labels: ["Feature Request / 功能请求", "help wanted / 需要帮助"]
+
+body:
+- type: markdown
+  attributes:
+    value: 欢迎为 OI Wiki 提出新的 Issue！烦请填写以下表单：
+- type: textarea
+  id: page
+  attributes:
+    label: 我遇到的问题是
+  validations:
+    required: true
+- type: textarea
+  id: problem
+  attributes:
+    label: 我希望能有这样的解决方案
+  validations:
+    required: true
+- type: textarea
+  id: alternate
+  attributes:
+    label: 我觉得这些备选方案也可以接受
+  validations:
+    required: false

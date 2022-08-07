@@ -1,11 +1,7 @@
-author: Ir1d, Marcythm, YanWQ-monad, x4Cx58x54
+author: Ir1d, Marcythm, YanWQ-monad, x4Cx58x54, rui_er
 
-!!! note "例题 [Luogu P4781【模板】拉格朗日插值](https://www.luogu.com.cn/problem/P4781)"
-
-
-### 题目大意
-
-给出 $n$ 个点 $P_i(x_i,y_i)$，将过这 $n$ 个点的最多 $n-1$ 次的多项式记为 $f(x)$，求 $f(k)$ 的值。
+???+ note "例题 [Luogu P4781【模板】拉格朗日插值](https://www.luogu.com.cn/problem/P4781)"
+    给出 $n$ 个点 $P_i(x_i,y_i)$，将过这 $n$ 个点的最多 $n-1$ 次的多项式记为 $f(x)$，求 $f(k)$ 的值。
 
 ### 方法 1：差分法
 
@@ -34,23 +30,52 @@ $$
 
 ### 方法 3：拉格朗日插值法
 
-如图所示，将每一个点 $(x_i, y_i)$ 在 $x$ 轴上的投影 $(x_i, 0)$ 记为 $H_i$。对每一个 $i$，我们选择一个点集 $\lbrace P_i\rbrace \cup \lbrace H_j \vert 1 \le j\le n, j \neq i\rbrace$，作过这 $n$ 个点的至多 $n-1$ 次的线 $g_i(x)$。图中 $f(x)$ 用黑线表示，$g_i(x)$ 用彩色线表示。
+在 [多项式部分简介](../poly/intro.md) 里我们已经定义了多项式除法。
 
-![example](./images/lagrange-interpolation.png)
-
-这样，我们得到了 $n$ 个 $g_i(x)\;(1 \le i \le n)$，它们都在各自对应的 $x_i$ 处的值为 $y_i$，并且在其它 $x_j\ (j \neq i)$ 处值为 $0$。所以很容易构造出 $g_i(x)$ 的表达式：
+那么我们会有：
 
 $$
-g_i(x) = y_i\prod_{j\neq i }\frac{x-x_j}{x_i-x_j}.
+f(x)\equiv f(a)\pmod{(x-a)}
 $$
 
-很容易通过将每一个 $x_i$ 代入上式以验证此其正确性。最后，我们所求的 $f(x)=\sum_{i=1}^{n}g_i(x)$，即各 $g_i(x)$ 之和。因为对于每一个 $i$，都只有一条 $g_i$ 经过 $P_i$，其余 $g_j$ 都经过 $H_i$，故它们相加后在 $x_i$ 的取值仍为 $y_i$，即最后的和函数总是过所有 $P_i$ 的。
+这是显然的，因为 $f(x)-f(a)=(a_0-a_0)+a_1(x^1-a^1)+a_1(x^2-a^2)+\cdots +a_n(x^n-a^n)$，这个式子显然有 $(x-a)$ 这个因式，所以得证。
 
-公式整理得：
+这样我们就可以列一个关于 $f(x)$ 的多项式线性同余方程组：
 
 $$
-f(x)=\sum_{i=1}^{n} y_i\prod_{j\neq i }\frac{x-x_j}{x_i-x_j}
+\begin{cases}
+f(x)\equiv y_1\pmod{(x-x_1)}\\
+f(x)\equiv y_2\pmod{(x-x_2)}\\
+\cdots\\
+f(x)\equiv y_n\pmod{(x-x_n)}
+\end{cases}
 $$
+
+我们根据中国剩余定理，有：
+
+$$
+M=\prod_{i=1}^n{(x-x_i)},m_i=\dfrac M{x-x_i}=\prod_{j\ne i}{(x-x_j)}
+$$
+
+则 $m_i$ 模 $(x-x_i)$ 意义下的逆元就是：
+
+$$
+m_i^{-1}=\prod_{j\ne i}{\dfrac 1{x_i-x_j}}
+$$
+
+所以就有：
+
+$$
+f(x)\equiv\sum_{i=1}^n{y_im_im_i^{-1}}\equiv\sum_{i=1}^n{y_i\prod_{j\ne i}{\dfrac {x-x_j}{x_i-x_j}}}\pmod M
+$$
+
+所以在模意义下 $f(x)$ 就是唯一的，即：
+
+$$
+f(x)=\sum_{i=1}^n{y_i\prod_{j\ne i}{\dfrac {x-x_j}{x_i-x_j}}}
+$$
+
+这就是拉格朗日插值的表达式。
 
 如果要将每一项的系数都算出来，时间复杂度仍为 $O(n^2)$，但是本题中只用求出 $f(k)$ 的值，所以在计算上式的过程中直接将 $k$ 代入即可。
 
@@ -60,39 +85,64 @@ $$
 
 本题中，还需要求解逆元。如果先分别计算出分子和分母，再将分子乘进分母的逆元，累加进最后的答案，时间复杂度的瓶颈就不会在求逆元上，时间复杂度为 $O(n^2)$。
 
+??? note "通常意义下拉格朗日插值的一种推导"
+    由于要求构造一个函数 $f(x)$ 过点 $P_1(x_1, y_1), P_2(x_2,y_2),\cdots,P_n(x_n,y_n)$。首先设第 $i$ 个点在 $x$ 轴上的投影为 $P_i^{\prime}(x_i,0)$。
+    
+    考虑构造 $n$ 个函数 $f_1(x), f_2(x), \cdots, f_n(x)$，使得对于第 $i$ 个函数 $f_i(x)$，其图像过 $\begin{cases}P_j^{\prime}(x_j,0),(j\neq i)\\P_i(x_i,y_i)\end{cases}$，则可知题目所求的函数 $f(x)=\sum\limits_{i=1}^nf_i(x)$。
+    
+    那么可以设 $f_i(x)=a\cdot\prod_{j\neq i}(x-x_j)$，将点 $P_i(x_i,y_i)$ 代入可以知道 $a=\dfrac{y_i}{\prod_{j\neq i} (x_i-x_j)}$，所以
+    
+    $f_i(x)=y_i\cdot\dfrac{\prod_{j\neq i} (x-x_j)}{\prod_{j\neq i} (x_i-x_j)}=y_i\cdot\prod_{j\neq i}\dfrac{x-x_j}{x_i-x_j}$。
+    
+    那么我们就可以从另一个角度推导出通常意义下（而非模意义下）拉格朗日插值的式子为：
+    
+    $f(x)=\sum_{i=1}^ny_i\cdot\prod_{j\neq i}\dfrac{x-x_j}{x_i-x_j}$。
+
 ### 代码实现
 
 ```cpp
-#include <cstdio>
-
-const int maxn = 2010;
-using ll = long long;
-ll mod = 998244353;
-ll n, k, x[maxn], y[maxn], ans, s1, s2;
-
-ll powmod(ll x, ll n) {
-  ll ret = 1ll;
-  while (n) {
-    if (n & 1) ret = ret * x % mod;
-    x = x * x % mod;
-    n >>= 1;
-  }
-  return ret;
-}
-
-ll inv(ll x) { return powmod(x, mod - 2); }
-
-int main() {
-  scanf("%lld%lld", &n, &k);
-  for (int i = 1; i <= n; i++) scanf("%lld%lld", x + i, y + i);
-  for (int i = 1; i <= n; i++) {
-    s1 = y[i] % mod;
-    s2 = 1ll;
-    for (int j = 1; j <= n; j++)
-      if (i != j) s1 = s1 * (k - x[j]) % mod, s2 = s2 * (x[i] - x[j]) % mod;
-    ans += s1 * inv(s2) % mod;
-  }
-  printf("%lld\n", (ans % mod + mod) % mod);
-  return 0;
-}
+--8<-- "docs/math/code/poly/lagrange/lagrange_1.cpp"
 ```
+
+### 横坐标是连续整数的拉格朗日插值
+
+如果已知点的横坐标是连续整数，我们可以做到 $O(n)$ 插值。
+
+设要求 $n$ 次多项式为 $f(x)$，我们已知 $f(1),\cdots,f(n+1)$（$1\le i\le n+1$），考虑代入上面的插值公式：
+
+$$
+\begin{aligned}
+f(x)&=\sum\limits_{i=1}^{n+1}y_i\prod\limits_{j\ne i}\frac{x-x_j}{x_i-x_j}\\
+&=\sum\limits_{i=1}^{n+1}y_i\prod\limits_{j\ne i}\frac{x-j}{i-j}
+\end{aligned}
+$$
+
+后面的累乘可以分子分母分别考虑，不难得到分子为：
+
+$$
+\dfrac{\prod\limits_{j=1}^{n+1}(x-j)}{x-i}
+$$
+
+分母的 $i-j$ 累乘可以拆成两段阶乘来算：
+
+$$
+(-1)^{n+1-i}\cdot(i-1)!\cdot(n+1-i)!
+$$
+
+于是横坐标为 $1,\cdots,n+1$ 的插值公式：
+
+$$
+f(x)=\sum\limits_{i=1}^{n+1}y_i\cdot\frac{\prod\limits_{j=1}^{n+1}(x-j)}{(x-i)\cdot(-1)^{n+1-i}\cdot(i-1)!\cdot(n+1-i)!}
+$$
+
+预处理 $(x-i)$ 前后缀积、阶乘阶乘逆，然后代入这个式子，复杂度为 $O(n)$。
+
+???+ note "例题 [CF622F The Sum of the k-th Powers](https://codeforces.com/contest/622/problem/F)"
+    给出 $n,k$，求 $\sum\limits_{i=1}^ni^k$ 对 $10^9+7$ 取模的值。
+
+本题中，答案是一个 $k+1$ 次多项式，因此我们可以线性筛出 $1^i,\cdots,(k+2)^i$ 的值然后进行 $O(n)$ 插值。
+
+??? note "代码实现"
+    ```cpp
+    --8<-- "docs/math/code/poly/lagrange/lagrange_2.cpp"
+    ```
