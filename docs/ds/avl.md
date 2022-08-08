@@ -118,6 +118,17 @@ Maintain-Balanced(p)
 
 AVL 树的其他操作（Predecessor、Successor、Select、Rank 等）与普通的二叉搜索树相同。
 
+## 参考代码
+
+下面的代码是用 AVL 树实现的 `Map`，即有序不可重映射：
+
+??? note "参考代码"
+    ```cpp
+    --8<-- "docs/ds/code/avl-tree/AvlTreeMap.hpp"
+    ```
+
 ## 其他资料
 
 在 [AVL Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html) 可以观察 AVL 树维护平衡的过程。
+
+[维基百科 -- AVL 树](https://en.wikipedia.org/wiki/AVL_tree)

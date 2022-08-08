@@ -3,7 +3,7 @@
 ## 例题
 
 ???+note "[「SCOI2005」互不侵犯](https://loj.ac/problem/2153)"
-    在 $N\times N$ 的棋盘里面放 $K$ 个国王（$1 \leq N \leq 9，$ 1\\leq K\\leq N\\times N$），使他们互不攻击，共有多少种摆放方案。
+    在 $N\times N$ 的棋盘里面放 $K$ 个国王（$1 \leq N \leq 9, 1 \leq K \leq N \times N$），使他们互不攻击，共有多少种摆放方案。
     
     国王能攻击到它上下左右，以及左上左下右上右下八个方向上附近的各一个格子，共 $8$ 个格子。
 

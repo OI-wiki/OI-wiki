@@ -123,6 +123,7 @@ nav:
     - Pascal 转 C++ 急救: lang/pas-cpp.md
     - Python 速成: lang/python.md
     - Java 速成: lang/java.md
+    - Java 进阶: lang/java-pro.md
   - 算法基础:
     - 算法基础简介: basic/index.md
     - 复杂度: basic/complexity.md
@@ -212,7 +213,7 @@ nav:
     - 符号: math/notation.md
     - 复数: math/complex.md
     - 位运算: math/bit.md
-    - 快速幂: math/quick-pow.md
+    - 快速幂: math/binary-exponentiation.md
     - 进位制: math/base.md
     - 高精度计算: math/bignum.md
     - 平衡三进制: math/balanced-ternary.md
@@ -271,6 +272,7 @@ nav:
       - 指数生成函数: math/poly/egf.md
       - 狄利克雷生成函数: math/poly/dgf.md
     - 线性代数:
+      - 线性代数简介: math/linear-algebra-index.md
       - 向量: math/vector.md
       - 矩阵: math/matrix.md
       - 高斯消元: math/gauss.md
@@ -350,6 +352,7 @@ nav:
       - AVL 树: ds/avl.md
       - 替罪羊树: ds/sgt.md
       - 笛卡尔树: ds/cartesian-tree.md
+      - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
     - 跳表: ds/skiplist.md
     - 可持久化数据结构:
