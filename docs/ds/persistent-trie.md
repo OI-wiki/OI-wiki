@@ -1,6 +1,6 @@
 可持久化 Trie 的方式和可持久化线段树的方式是相似的，即每次只修改被添加或值被修改的节点，而保留没有被改动的节点，在上一个版本的基础上连边，使最后每个版本的 Trie 树的根遍历所能分离出的 Trie 树都是完整且包含全部信息的。
 
-大部分的可持久化 Trie 题中，Trie 都是以 [01-Trie](https://oi-wiki.org/string/trie/#_5) 的形式出现的。
+大部分的可持久化 Trie 题中，Trie 都是以 [01-Trie](../string/trie.md#维护异或极值) 的形式出现的。
 
 ??? note " 例题[最大异或和](https://www.luogu.com.cn/problem/P4735)"
     对一个长度为 $n$ 的数组 $a$ 维护以下操作：
