@@ -42,7 +42,7 @@ $$
 $$
 \begin{aligned}
 F(n) &= \sum_{i = 1}^{n} f(i)\\
-     &= \sum_{i = 1}^{n} \sum_{d|i} h(i) g\left(\frac{i}{d}\right)\\
+     &= \sum_{i = 1}^{n} \sum_{d|i} h(d) g\left(\frac{i}{d}\right)\\
      &= \sum_{d=1}^{n} \sum_{i=1}^{\lfloor \frac{n}{d}\rfloor} h(d) g(i)\\
      &= \sum_{d=1}^{n} h(d) \sum_{i=1}^{\lfloor \frac{n}{d}\rfloor}  g(i) \\
      &= \sum_{d=1}^{n} h(d) G\left(\left\lfloor \frac{n}{d}\right\rfloor\right)\\
