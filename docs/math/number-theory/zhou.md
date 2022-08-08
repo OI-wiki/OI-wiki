@@ -2,7 +2,7 @@ author: Early0v0
 
 ## 前置知识
 
-- [积性函数](/math/mobius/#_4)
+- [积性函数](./mobius.md#积性函数)
 
 ## 定义
 

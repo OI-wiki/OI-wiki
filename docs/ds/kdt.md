@@ -59,7 +59,7 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
 ## 邻域查询
 
 ???+note " 例题[luogu P1429 平面最近点对（加强版）](https://www.luogu.com.cn/problem/P1429)"
-    给定平面上的 $n$ 个点 $(x_i,y_i)$，找出平面上最近两个点对之间的 [欧几里得距离](../geometry/distance.md#_1)。
+    给定平面上的 $n$ 个点 $(x_i,y_i)$，找出平面上最近两个点对之间的 [欧几里得距离](../geometry/distance.md#欧氏距离)。
     
     $2\le n\le 200000 , 0\le x_i,y_i\le 10^9$
 
