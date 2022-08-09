@@ -16,13 +16,14 @@ Dockerfile  @CoelacanthusHex
 docs/intro/docker-deploy.md @CoelacanthusHex
 scripts/    @Ir1d @billchenchina
 .prettierrc   @Menci
+scripts/checker/    @llh721113
 .clang-format   @Ir1d
 .remarkignore   @Enter-tainer
 .remarkrc   @Ir1d @Enter-tainer
 CODE_OF_CONDUCT.md  @Ir1d
 README.md   @Ir1d
 gulpfile.cjs @Ir1d @Enter-tainer
-package.json    @Ir1d @Enter-tainer
+package.json    @Ir1d @Enter-tainer @llh721113
 Pipenv    @Ir1d
 tsconfig.json @Menci
 netlify.toml @Menci
