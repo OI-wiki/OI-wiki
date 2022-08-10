@@ -2,10 +2,9 @@ FROM ubuntu:22.04
 
 LABEL org.oi-wiki.image.authors="frank99-xu@outlook.com mxr612@icloud.com coelacanthus@outlook.com"
 
-ARG LISTEN_IP=0.0.0.0
-ARG LISTEN_PORT=8000
-ENV LISTEN_IP=${LISTEN_IP}
-ENV LISTEN_PORT=${LISTEN_PORT}
+ARG WIKI_REPO PYPI_MIRROR LISTEN_IP LISTEN_PORT
+ENV LISTEN_IP=${LISTEN_IP:-0.0.0.0}
+ENV LISTEN_PORT=${LISTEN_PORT:-8000}
 
 WORKDIR /
 RUN apt-get update \
