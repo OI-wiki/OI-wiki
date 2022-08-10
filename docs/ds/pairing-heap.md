@@ -7,7 +7,7 @@
 配对堆是一棵满足堆性质的带权多叉树（如下图），即每个节点的权值都小于或等于他的所有儿子（以小根堆为例，下同）。  
 ![](./images/pairingheap1.png)
 
-通常我们使用儿子-兄弟表示法储存一个配对堆（如下图），一个节点的所有儿子节点形成一个单向链表。每个节点储存第一个儿子的指针，即链表的头节点；和他的右兄弟的指针。
+通常我们使用儿子 - 兄弟表示法储存一个配对堆（如下图），一个节点的所有儿子节点形成一个单向链表。每个节点储存第一个儿子的指针，即链表的头节点；和他的右兄弟的指针。
 
 这种方式便于实现配对堆，也将方便复杂度分析。
 
@@ -15,10 +15,10 @@
 
 ```cpp
 struct Node {
-  T v;            // T为权值类型
-  Node *child, *sibling;  
-    // child 指向该节点第一个儿子，sibling 指向该节点的下一个兄弟。
-    // 若该节点没有儿子/下个兄弟则指针指向 nullptr。
+  T v;  // T为权值类型
+  Node *child, *sibling;
+  // child 指向该节点第一个儿子，sibling 指向该节点的下一个兄弟。
+  // 若该节点没有儿子/下个兄弟则指针指向 nullptr。
 };
 ```
 
@@ -34,22 +34,20 @@ struct Node {
 
 ### 合并
 
-合并两个配对堆的操作很简单，首先令两个根节点较小的一个为新的根节点，然后将较大的根节点作为它的儿子插入进去。（见下图）
-![](./images/pairingheap3.png)  
+合并两个配对堆的操作很简单，首先令两个根节点较小的一个为新的根节点，然后将较大的根节点作为它的儿子插入进去。（见下图）![](./images/pairingheap3.png)
 
 需要注意的是，一个节点的儿子链表是按插入时间排序的，即最右边的节点最早成为父节点的儿子，最左边的节点最近成为父节点的儿子。
 
 ```cpp
-Node* meld(Node *x, Node* y)
-{
-    // 若有一个为空则直接返回另一个
-    if (x == nullptr) return y;
-    if (y == nullptr) return x;
-    if (x->v > y-> v ) std::swap(x,y);// swap后x为权值小的堆，y为权值大的堆
-    // 将y设为x的儿子
-    y->sibling = x->child;
-    x->child = y;
-    return x; // 新的根节点为 x
+Node* meld(Node* x, Node* y) {
+  // 若有一个为空则直接返回另一个
+  if (x == nullptr) return y;
+  if (y == nullptr) return x;
+  if (x->v > y->v) std::swap(x, y);  // swap后x为权值小的堆，y为权值大的堆
+  // 将y设为x的儿子
+  y->sibling = x->child;
+  x->child = y;
+  return x;  // 新的根节点为 x
 }
 ```
 
@@ -68,7 +66,7 @@ Node* meld(Node *x, Node* y)
 为了保证总的均摊复杂度，需要使用一个“两步走”的合并方法：
 
 1. 把儿子们两两配成一对，用 `meld` 操作把被配成同一对的两个儿子合并到一起（见下图 1)，
-2. 将新产生的堆 **从右往左** （即老的儿子到新的儿子的方向）挨个合并在一起（见下图 2）。
+2. 将新产生的堆 **从右往左**（即老的儿子到新的儿子的方向）挨个合并在一起（见下图 2）。
 
 ![](./images/pairingheap4.jpg)
 
@@ -78,12 +76,12 @@ Node* meld(Node *x, Node* y)
 
 ```cpp
 Node* merges(Node* x) {
-  if (x == nullptr || x->sibling == nullptr) 
+  if (x == nullptr || x->sibling == nullptr)
     return x;  // 如果该树为空或他没有下一个兄弟，就不需要合并了，return。
-  Node *y = x->sibling; // y 为 x 的下一个兄弟
-  Node *c = y->sibling; // c 是再下一个兄弟
-  x->sibling = y->sibling = nullptr; // 拆散
-  return meld(merges(c), meld(x, y)); // 核心部分
+  Node* y = x->sibling;                // y 为 x 的下一个兄弟
+  Node* c = y->sibling;                // c 是再下一个兄弟
+  x->sibling = y->sibling = nullptr;   // 拆散
+  return meld(merges(c), meld(x, y));  // 核心部分
 }
 ```
 
@@ -108,71 +106,67 @@ Node* delete_min(Node* x) { return merges(x->child); }
 首先节点的定义修改为：
 
 ```cpp
-struct Node
-{
-    LL v;
-    int id;
-    Node *child,*sibling;
-    Node *father; // 新增：父指针，若该节点为根节点则指向空节点 nullptr
+struct Node {
+  LL v;
+  int id;
+  Node *child, *sibling;
+  Node *father;  // 新增：父指针，若该节点为根节点则指向空节点 nullptr
 };
 ```
 
 `meld` 操作修改为：
 
 ```cpp
-Node* meld(Node *x, Node* y)
-{
-    if (x == nullptr) return y;
-    if (y == nullptr) return x;
-    if (x->v > y-> v ) std::swap(x,y);
-    if (x->child!=nullptr) { //新增：维护父指针
-        x->child->father=y;
-    }
-    y->sibling = x->child;
-    y->father = x; // 新增：维护父指针
-    x->child = y;
-    return x;
+Node* meld(Node* x, Node* y) {
+  if (x == nullptr) return y;
+  if (y == nullptr) return x;
+  if (x->v > y->v) std::swap(x, y);
+  if (x->child != nullptr) {  //新增：维护父指针
+    x->child->father = y;
+  }
+  y->sibling = x->child;
+  y->father = x;  // 新增：维护父指针
+  x->child = y;
+  return x;
 }
 ```
 
 `merges` 操作修改为：
 
 ```cpp
-Node* merges(Node *x)
-{
-    if (x==nullptr) return nullptr;
-    x->father = nullptr; //新增：维护父指针
-    if (x->sibling == nullptr) return x;
-    Node *y = x->sibling, *c = y->sibling;
-    y->father = nullptr; //新增：维护父指针
-    x->sibling = y->sibling = nullptr;
-    return meld(merges(c), meld(x, y));
+Node *merges(Node *x) {
+  if (x == nullptr) return nullptr;
+  x->father = nullptr;  //新增：维护父指针
+  if (x->sibling == nullptr) return x;
+  Node *y = x->sibling, *c = y->sibling;
+  y->father = nullptr;  //新增：维护父指针
+  x->sibling = y->sibling = nullptr;
+  return meld(merges(c), meld(x, y));
 }
 ```
 
 现在我们来考虑如何实现 `decrease-key` 操作。  
-首先我们发现，当我们减少节点 `x` 的权值之后 ，以 `x` 为根的子树仍然满足配对堆性质，但 `x` 的父亲和 `x` 之间可能不再满足堆性质。  
-因此我们把整棵以 `x` 为根的子树剖出来，现在两棵树都符合配对堆性质了，然后把他们合并起来，就完成了全部操作。  
+首先我们发现，当我们减少节点 `x` 的权值之后，以 `x` 为根的子树仍然满足配对堆性质，但 `x` 的父亲和 `x` 之间可能不再满足堆性质。  
+因此我们把整棵以 `x` 为根的子树剖出来，现在两棵树都符合配对堆性质了，然后把他们合并起来，就完成了全部操作。
 
 ```cpp
 // root为堆的根，x为要操作的节点，v为新的权值，调用时需保证 v <= x->v
 // 返回值为新的根节点
-Node* decrease_key(Node *root, Node *x, LL v)
-{
-    x->v=v; // 更新权值
-    if (x == root) return x; // 如果 x 为根，则直接返回
-    // 把x从fa的子节点中剖出去，这里要分x的位置讨论一下。
-    if (x->father->child == x) {
-        x->father->child = x->sibling;
-    } else {
-        x->father->sibling = x->sibling;
-    }
-    if (x->sibling!=nullptr) {
-        x->sibling->father = x->father;
-    }
-    x->sibling = nullptr;
-    x->father = nullptr;
-    return meld(root,x); // 重新合并 x 和根节点
+Node *decrease_key(Node *root, Node *x, LL v) {
+  x->v = v;                 // 更新权值
+  if (x == root) return x;  // 如果 x 为根，则直接返回
+  // 把x从fa的子节点中剖出去，这里要分x的位置讨论一下。
+  if (x->father->child == x) {
+    x->father->child = x->sibling;
+  } else {
+    x->father->sibling = x->sibling;
+  }
+  if (x->sibling != nullptr) {
+    x->sibling->father = x->father;
+  }
+  x->sibling = nullptr;
+  x->father = nullptr;
+  return meld(root, x);  // 重新合并 x 和根节点
 }
 ```
 
@@ -182,12 +176,9 @@ Node* decrease_key(Node *root, Node *x, LL v)
 
 原论文[^ref1]仅将复杂度分析到 `meld` 和 `delete-min` 操作均为均摊 $O(\log n)$，但提出猜想认为其各操作都有和斐波那契堆相同的复杂度。
 
-遗憾的是，后续发现，不维护额外信息的配对堆，在特定的操作序列下， `decrease-key` 操作的均摊复杂度下界至少为 $\Omega (\log \log n)$ [^ref2]。
+遗憾的是，后续发现，不维护额外信息的配对堆，在特定的操作序列下，`decrease-key` 操作的均摊复杂度下界至少为 $\Omega (\log \log n)$[^ref2]。
 
-目前对复杂度上界比较好的估计有， Iacono 的 $O(1)$ `meld`， $O(\log n)$ `decrease-key` [^ref3]；Pettie 的 $O(2^{2 \sqrt{\log \log n}})$ `meld` 和 `decrease-key` [^ref4]。需要注意的是，前述复杂度均为均摊复杂度，因此不能对各结果分别取最小值。
-
-
-
+目前对复杂度上界比较好的估计有，Iacono 的 $O(1)$ `meld`，$O(\log n)$ `decrease-key`[^ref3]；Pettie 的 $O(2^{2 \sqrt{\log \log n}})$ `meld` 和 `decrease-key`[^ref4]。需要注意的是，前述复杂度均为均摊复杂度，因此不能对各结果分别取最小值。
 
 ## 参考文献
 
@@ -199,6 +190,6 @@ Node* decrease_key(Node *root, Node *x, LL v)
 
 [^ref4]: [Towards a Final Analysis of Pairing Heaps](http://web.eecs.umich.edu/~pettie/papers/focs05.pdf)
 
-[^ref5]: https://en.wikipedia.org/wiki/Pairing_heap
+[^ref5]: <https://en.wikipedia.org/wiki/Pairing_heap>
 
-[^ref6]: https://brilliant.org/wiki/pairing-heap/
+[^ref6]: <https://brilliant.org/wiki/pairing-heap/>
