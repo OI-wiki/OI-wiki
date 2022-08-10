@@ -5,7 +5,7 @@ import { HTMLElement } from "node-html-parser";
 
 import { mathjax } from "mathjax-full/js/mathjax.js";
 import { TeX } from "mathjax-full/js/input/tex.js";
-import { CHTML } from "mathjax-full/js/output/chtml.js";
+import { SVG } from "mathjax-full/js/output/svg.js";
 import { LiteAdaptor, liteAdaptor } from "mathjax-full/js/adaptors/liteAdaptor.js";
 import { HTMLHandler } from "mathjax-full/js/handlers/html/HTMLHandler.js";
 import { SafeHandler } from "mathjax-full/js/ui/safe/SafeHandler.js";
@@ -62,10 +62,7 @@ export class MathRenderer {
         "[+]": MATHJAX_PACKAGES
       }
     });
-    const outputJax = new CHTML<LiteElement, unknown, LiteDocument>({
-      fontURL: path.relative(path.dirname(MATHJAX_TARGET_CSS_FILE), MATHJAX_TARGET_FONTS_DIR),
-      adaptiveCSS: false
-    });
+    const outputJax = new SVG<LiteElement, unknown, LiteDocument>;
 
     mathjax.handlers.register(SafeHandler(new HTMLHandler(this.adaptor)));
 
@@ -75,7 +72,6 @@ export class MathRenderer {
     });
 
     this.document.updateDocument();
-    this.css = this.adaptor.textContent(outputJax.chtmlStyles);
   }
 
   getCSS() {
