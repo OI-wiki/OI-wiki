@@ -62,7 +62,7 @@ export class MathRenderer {
         "[+]": MATHJAX_PACKAGES
       }
     });
-    const outputJax = new SVG<LiteElement, unknown, LiteDocument>;
+    const outputJax = new SVG<LiteElement, unknown, LiteDocument>();
 
     mathjax.handlers.register(SafeHandler(new HTMLHandler(this.adaptor)));
 
