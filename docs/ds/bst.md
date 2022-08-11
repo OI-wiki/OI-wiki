@@ -199,7 +199,7 @@ int querykth(int o, int k) {
 
 一段可行的代码为：
 
-```C
+```cpp
 
 int zig(int now)//以now为中心右旋
 {
