@@ -344,7 +344,7 @@ nav:
     - 区间最值操作 & 区间历史最值: ds/seg-beats.md
     - 划分树: ds/dividing.md
     - 二叉搜索树 & 平衡树:
-      - 二叉搜索树简介: ds/bst.md
+      - 简介: ds/bst.md
       - Treap: ds/treap.md
       - Splay: ds/splay.md
       - WBLT: ds/wblt.md
