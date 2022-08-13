@@ -6,7 +6,7 @@ Link/Cut Tree 又称 Link-Cut Tree，简称 LCT，但它不叫动态树，动态
 
 Splay Tree 是 LCT 的基础，但是 LCT 用的 Splay Tree 和普通的 Splay 在细节处不太一样（进行了一些扩展）。
 
-这是一个和 Splay 一样只需要写几 (yi) 个 (dui) 核心函数就能实现一切的数据结构。
+这是一个和 Splay 一样只需要写几个核心函数就能实现一切的数据结构。（虽然有时并非“几个”这么简单）
 
 ## 问题引入
 
@@ -166,8 +166,7 @@ inline void Rotate(int x) {
 }
 
 inline void Splay(int x) {
-  Update(
-      x);  // 马上就能看到啦。在 Splay 之前要把旋转会经过的路径上的点都 PushDown
+  Update(x);  // 马上就能看到啦。在 Splay 之前要把旋转会经过的路径上的点都 PushDown
   for (int fa; fa = f[x], !isRoot(x); Rotate(x)) {
     if (!isRoot(fa)) Rotate(Get(fa) == Get(x) ? fa : x);
   }
@@ -176,7 +175,7 @@ inline void Splay(int x) {
 
 如果上面的几个函数你看不懂，请移步 [Splay](./splay.md)。
 
-下面要开始 LCT 独有的函数了哦。
+接下来，我们介绍几个 LCT 所独有的函数：
 
 ### `isRoot()`
 
@@ -310,7 +309,7 @@ inline void Link(int x, int p) {
 
 - `Split` 操作意义很简单，就是拿出一棵 Splay，维护的是 $x$ 到 $y$ 的路径。
 - 先 `MakeRoot(x)`，然后 `Access(y)`。如果要 $y$ 做根，再 `Splay(y)`。
-- 就这三句话，没写代码，需要的时候可以直接打这三个就好辣！
+- 就这三句话，没写代码，需要的时候可以直接打这三个就可以了。
 - 另外 Split 这三个操作直接可以把需要的路径拿出到 $y$ 的子树上，那不是随便干嘛咯。
 
 ### `Cut()`
