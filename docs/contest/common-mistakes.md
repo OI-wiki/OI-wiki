@@ -286,7 +286,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
         p[1] = 'i';
         ```
 
-    这样试图修改字符串字面量会导致**未定义行为**，应当使用其他 **合适** 的数据类型，例如 `std::string`,`char[]`。
+    这样试图修改字符串字面量会导致**未定义行为**，应当使用其他 **合适** 的数据类型，例如 `std::string`, `char[]`。
 
 -   多次释放/非法解引用一片内存
 
