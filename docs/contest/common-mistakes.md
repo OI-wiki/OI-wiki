@@ -75,7 +75,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
     - 示例：`long long x = 0x7f7f7f7f7f7f7f7f`，`1<<62`。
 
--   未初始化局部变量，导致局部变量被赋予垃圾初值。
+-   未初始化局部变量。
 
     ???+ note "未初始化变量会发生什么"
         原文：<https://loj.ac/d/3679> by @hly1204
@@ -100,7 +100,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
         
         在一些编译器和环境上开启优化后，其输出为 false。
         
-        有兴趣的话可以看 <https://www.ralfj.de/blog/2019/07/14/uninit.html>，尽管其实用 Rust 做的实验，但是本质是一样的。
+        有兴趣的话可以看 <https://www.ralfj.de/blog/2019/07/14/uninit.html>，尽管其是用 Rust 做的实验，但是本质是一样的。
 
 - 局部变量与全局变量重名，导致全局变量被意外覆盖。（开 `-Wshadow` 就可检查此类错误。）
 
@@ -275,7 +275,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
     即使有一个分支有返回值，但是其他分支却没有，结果也是未定义的。
 
-    可以开 `-Wall` 选项，看一看自己有没有关于函数未 return 的警告。
+    可以向编译选项中追加 `-Wall`，检查编译器是否给出有关于函数未 return 的警告。
 
 -   尝试修改字符串字面量
 
