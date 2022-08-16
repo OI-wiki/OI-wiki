@@ -1,18 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
-template<typename T>
+
+template <typename T>
 class SparseTable {
   using VT = vector<T>;
   using VVT = vector<VT>;
   using func_type = function<T(const T &, const T &)>;
 
   VVT ST;
-  static T default_func(const T &t1, const T &t2) {
-    return max(t1, t2);
-  }
+
+  static T default_func(const T &t1, const T &t2) { return max(t1, t2); }
+
   func_type op;
 
-public:
+ public:
   SparseTable<T>(const vector<T> &v, func_type _func = default_func) {
     op = _func;
     int len = v.size(), l1 = ceil(log2(len)) + 1;
