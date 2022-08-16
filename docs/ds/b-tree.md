@@ -338,5 +338,6 @@ if not leaf[x] then
 
 ## 参考资料
 
-[B 树详解](https://www.cnblogs.com/lwhkdash/p/5313877.html)   
- [B 树、B + 树索引算法原理（上）](https://www.codedump.info/post/20200609-btree-1/) [B 树，B + 树详解](https://www.cnblogs.com/lianzhilei/p/11250589.html)
+- [B 树详解](https://www.cnblogs.com/lwhkdash/p/5313877.html)   
+- [B 树、B + 树索引算法原理（上）](https://www.codedump.info/post/20200609-btree-1/) 
+- [B 树，B + 树详解](https://www.cnblogs.com/lianzhilei/p/11250589.html)
