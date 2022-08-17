@@ -57,7 +57,7 @@
 		<rect x="30" y="150" width="30" height="20" fill="rgb(255, 255, 255)" />
 		<text x="44.5" y="164.5">3</text>
 		<rect x="40" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
-		<rect x="360" y="150" width="30" height="20" fill="rgb(255, 255, 255)" />
+		<rect x="360" y="150" width="30" height="20" fill="#cccccc" />
 		<text x="374.5" y="164.5">19</text>
 		<rect x="360" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
 		<rect x="380" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
