@@ -1,6 +1,6 @@
 ## 向量
 
-（为人教版高中数学必修二内容）（旧教材为必修四）
+（为人教(A)版数学课本必修四内容，人教(B)版必修二内容）
 
 ### 定义及相关概念
 
@@ -8,11 +8,11 @@
 
 **有向线段**：带有方向的线段称为有向线段。有向线段有三要素：**起点，方向，长度**，知道了三要素，终点就唯一确定。我们用有向线段表示向量。
 
-**向量的模**：有向线段 $\overrightarrow{AB}$ 的长度称为向量的模，即为这个向量的大小。记为：$|\overrightarrow{AB}|$ 或 $|\boldsymbol{a}|$。
+**向量的模**：有向线段 $\overrightarrow{AB}$ 的长度称为向量的模，即为这个向量的大小。记为：$|\overrightarrow{AB}|$。
 
 **零向量**：模为 $0$ 的向量。零向量的方向任意。记为：$\vec 0$ 或 $\boldsymbol{0}$。
 
-**单位向量**：模为 $1$ 的向量称为该方向上的单位向量。
+**单位向量**：模为 $1$ 的向量称为该方向上的单位向量。一般记为$\vec e$ 或 $\boldsymbol{e}$。
 
 **平行向量**：方向相同或相反的两个 **非零** 向量。记作：$\boldsymbol a\parallel \boldsymbol b$。对于多个互相平行的向量，可以任作一条直线与这些向量平行，那么任一组平行向量都可以平移到同一直线上，所以平行向量又叫 **共线向量**。
 
@@ -135,6 +135,9 @@ $$
 
 若 $A,B,C$ 三点共线，则 $\overrightarrow{OB}=\lambda \overrightarrow{OA}+(1-\lambda)\overrightarrow{OC}$。
 
+#### 三点共线判定的拓展
+在三角形 $ABC$ 中，若 $D$ 为$BC$的 $n$ 等分点（$n\ BD=k\ DC$）,则有：$\overrightarrow{AD}=\frac{n}{k+n}\overrightarrow{AB}+\frac{k}{k+n}\overrightarrow{AC}$
+
 ### 向量的数量积
 
 已知两个向量 $\boldsymbol a,\boldsymbol b$，它们的夹角为 $\theta$，那么：
@@ -168,6 +171,19 @@ $|\boldsymbol a|=\sqrt {m^2+n^2}$
 #### 两向量的夹角
 
 $\cos \theta=\cfrac{\boldsymbol a\cdot\boldsymbol b}{|\boldsymbol a||\boldsymbol b|}$
+
+
+### 在三维空间中的拓展（立体几何/空间向量）
+在空间中，以上部分所述的所有内容均成立。更有：
+#### 空间向量基本定理
+定理内容：如果两个向量 $\boldsymbol{e_1},\boldsymbol{e_2},\boldsymbol{e_3}$ 不共面，那么存在唯一实数对 $(x,y,z)$，使得空间中任意向量 $\boldsymbol p$ 满足 $\mathbf p=x\boldsymbol{e_1}+y\boldsymbol{e_2}+z\boldsymbol{e_3}$。
+根据空间向量基本定理，我们同样可以使用三个相互垂直的基底 $\boldsymbol{e_1},\boldsymbol{e_2},\boldsymbol{e_3}$ 作为正交基底，建立**空间直角坐标系**并用一个三元组 $(x,y,z)$ 作为坐标表示空间向量。
+#### 共面向量基本定理
+如果存在两个不共线的向量 $\boldsymbol{x},\boldsymbol{y}$,则向量 $\boldsymbol{p}$ 与 $\boldsymbol{x},\boldsymbol{y}$ 共面的充要条件是存在唯一实数对 $(a,b)$ 使得 $\boldsymbol{p}=a\boldsymbol{x}+b\boldsymbol{y}$。
+#### 法向量
+对于一个面 $ABCD$，其法向量 $\boldsymbol{n}$ 与这个面垂直。
+
+计算方法：任取两个面内直线 $\overrightarrow{AB},\overrightarrow{AD}$，使得 $\overrightarrow{AB} \cdot \boldsymbol{n}=\boldsymbol{0}$ 且 $\overrightarrow{AD} \cdot \boldsymbol{n}=\boldsymbol{0}$，利用坐标法即可计算。
 
 ### 扩展
 
