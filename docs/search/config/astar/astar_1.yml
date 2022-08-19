@@ -4,4 +4,7 @@ solution:
   cpp: code/astar_1.cpp
 target:
 - '!test'
+testcases:
+  answer: docs/search/examples/astar/astar_1.out
+  input: docs/search/examples/astar/astar_1.in
 version: 1000
