@@ -75,19 +75,171 @@ TODO：举个例子。
 
 以下以非旋 Treap 为例介绍 ETT 的实现，需要读者事先了解使用非旋 Treap 维护区间操作的相关内容。
 
+`Split` 和 `Merge` 都是非旋 Treap 的基本操作了，这里不再赘述。
+
+### SplitUp2(u)
+
+假设 $u$ 所在的序列为 $L$ ，将 $L$ 在 $u$ 处拆分成序列 $L^1$ 和 $L^2$，前者包含$L$中 $u$ 之前的元素以及 $u$ ，后者包含剩余元素。
+
+如果 Treap 额外维护父亲指针的话，就可以实现 $O(\log n)$ 的时间内计算一个 Treap 节点对应元素在序列中的位置，再根据位置去 Split 就可以实现上述功能。
+
+当然，也可以自底向上地实现上述功能。具体就是，在从 $u$ 对应节点往根跳的过程中，根据二叉搜索树的性质就可以确定每个节点在 $u$之前还是之后，根据这点就可以计算 $u$ 在序列中的位置，也可以确定每个节点属于拆分后的那一棵树。
+
+```cpp
+/*
+ * Bottom up split treap p into 2 treaps a and b.
+ *   - a: a treap containing nodes with position less than or equal to p.
+ *   - b: a treap containing nodes with postion greater than p.
+ *
+ * In the other word, split sequence containning p into two sequences, the first one contains
+ * elements before p and element p, the second one contains elements after p.
+ */
+static std::pair<Node*, Node*> SplitUp2(Node* p) {
+  ASSERT(p != nullptr);
+
+  Node *a = nullptr, *b = nullptr;
+  b = p->right_;
+  if (b)
+    b->parent_ = nullptr;
+  p->right_ = nullptr;
+
+  bool is_p_left_child_of_parent = false;
+  bool is_from_left_child = false;
+  while (p) {
+    Node* parent = p->parent_;
+
+    if (parent) {
+      is_p_left_child_of_parent = (parent->left_ == p);
+      if (is_p_left_child_of_parent) {
+        parent->left_ = nullptr;
+      } else {
+        parent->right_ = nullptr;
+      }
+      p->parent_ = nullptr;
+    }
+
+    if (!is_from_left_child) {
+      a = Merge(p, a);
+    } else {
+      b = Merge(b, p);
+    }
+
+    is_from_left_child = is_p_left_child_of_parent;
+    p->Maintain();
+    p = parent;
+  }
+
+  return {a, b};
+}
+```
+
+### SplitUp3(u)
+
+假设 $u$ 所在的序列为 $L$ ，将 $L$ 在 $u$ 处拆分成序列 $L^1$, $u$ 和 $L^2$，前者包含$L$中 $u$ 之前的元素，后者包含剩余元素。
+
+在 SplitUp2 的基础上稍作修改即可。
+
 ### MakeRoot(u)
 
-### Link(u, v)
+基于 SplitUp2 以及 Merge 即可实现。
 
-### Cut(u, v)
+```cpp
+void MakeRoot(int u) {
+  Node* vertex_u = vertices_[u];
 
-## 应用
+  int position_u = Treap::GetPosition(vertex_u);
 
-### 维护连通性
+  auto [L1, L2] = Treap::SplitUp2(vertex_u);
+  ASSERT(GetSize(L1) == position_u);
+
+  Treap::Merge(L2, L1);
+}
+```
+
+### Insert(u, v)
+
+即前文提到的 `Link(u, v)` ，基于 SplitUp2 以及 Merge 即可实现。
+
+```cpp
+void Insert(int u, int v) {
+  ASSERT(not tree_edges_[u].count(v));
+  ASSERT(not tree_edges_[v].count(u));
+
+  Node* vertex_u = vertices_[u];
+  Node* vertex_v = vertices_[v];
+
+  Node* edge_uv = AllocateNode(u, v);
+  Node* edge_vu = AllocateNode(v, u);
+  tree_edges_[u][v] = edge_uv;
+  tree_edges_[v][u] = edge_vu;
+
+  int position_u = Treap::GetPosition(vertex_u);
+  int position_v = Treap::GetPosition(vertex_v);
+
+  auto [L11, L12] = Treap::SplitUp2(vertex_u);
+  auto [L21, L22] = Treap::SplitUp2(vertex_v);
+
+  ASSERT(GetSize(L11) == position_u);
+  ASSERT(GetSize(L21) == position_v);
+
+  Node* result = nullptr;
+  result = Treap::Merge(result, L12);
+  result = Treap::Merge(result, L11);
+  result = Treap::Merge(result, edge_uv);
+  result = Treap::Merge(result, L22);
+  result = Treap::Merge(result, L21);
+  result = Treap::Merge(result, edge_vu);
+}
+```
+
+### Delete(u, v)
+
+即前文提到的 `Cut(u, v)` ，基于 SplitUp3 以及 Merge 即可实现。
+
+```cpp
+void Delete(int u, int v) {
+  ASSERT(tree_edges_[u].count(v));
+  ASSERT(tree_edges_[v].count(u));
+
+  Node* edge_uv = tree_edges_[u][v];
+  Node* edge_vu = tree_edges_[v][u];
+  tree_edges_[u].erase(v);
+  tree_edges_[v].erase(u);
+
+  int position_uv = Treap::GetPosition(edge_uv);
+  int position_vu = Treap::GetPosition(edge_vu);
+  if (position_uv > position_vu) {
+    std::swap(edge_uv, edge_vu);
+    std::swap(position_uv, position_vu);
+  }
+
+  auto [L1, uv, _] = Treap::SplitUp3(edge_uv);
+  ASSERT(GetSize(L1) == position_uv - 1);
+  ASSERT(GetSize(uv) == 1);
+
+  auto [L2, vu, L3] = Treap::SplitUp3(edge_vu);
+  ASSERT(GetSize(L2) == position_vu - position_uv - 1);
+  ASSERT(GetSize(vu) == 1);
+
+  L1 = Treap::Merge(L1, L3);
+
+  FreeNode(edge_uv);
+  FreeNode(edge_vu);
+}
+```
+
+## 维护连通性
 
 点 $u$ 和点 $v$ 连通，当且仅当两个点属于同一棵树 $T$ ，即 $(u, u)$ 和 $(v, v)$ 属于 $ETR(T)$ ，这可以根据对应的 Treap 节点所在的 Treap 的根是否相同判断。
 
-### 维护子树信息
+### 例题 [P2147 [SDOI2008] 洞穴勘测](https://www.luogu.com.cn/problem/P2147)
+
+维护连通性的模板题。
+
+??? 参考代码
+???
+
+## 维护子树信息
 
 下面以子树节点数量为例进行说明。
 
@@ -95,13 +247,21 @@ TODO：举个例子。
 
 类似地，可以将子树最小值等操作转化成序列最小值等平衡树经典操作然后维护。
 
-### 维护树链信息
+### 例题 [LOJ #2230. 「BJOI2014」大融合](https://loj.ac/p/2230)
+
+??? 参考代码
+???
+
+## 维护树链信息
 
 可以使用一个比较常见的技巧就是借助括号序的性质将树链信息转化成区间信息，然后就可以借助数据结构维护序列从而维护树链信息了。但是这个技巧要求维护的信息满足**可减性**。
 
-ETT 的序列操作可能会把括号序中的右括号移动到左括号前，所以维护树链点权和之类的信息时还需要额外注意，操作时不能改变对应左右括号的先后顺序。
+操作前面介绍的动态树操作对应的序列操作可能会把括号序中的右括号移动到左括号前，所以维护树链点权和之类的信息时还需要额外注意，操作时不能改变对应左右括号的先后顺序，而这可能需要重新思考动态树操作对应的序列操作，甚至重新思考维护什么 DFS 序。
 
 此外， ETT 很难维护树链修改。
+
+### 例题 [「星际探索」](https://darkbzoj.cc/problem/3786)
+
 
 ## 参考资料
 
