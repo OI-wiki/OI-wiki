@@ -268,7 +268,7 @@ void Delete(int u, int v) {
 
 ??? 参考代码
     ```cpp
-    --8<-- "docs/ds/ett/ett_1.cpp"
+    --8<-- "docs/ds/code/ett/ett_1.cpp"
     ```
 
 ## 参考资料
