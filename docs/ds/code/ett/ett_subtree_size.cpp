@@ -1,11 +1,13 @@
 #include <bits/stdc++.h>
 
-#define CPPIO std::ios::sync_with_stdio(false), std::cin.tie(0), std::cout.tie(0);
+#define CPPIO \
+  std::ios::sync_with_stdio(false), std::cin.tie(0), std::cout.tie(0);
 #define freep(p) p ? delete p, p = nullptr, void(1) : void(0)
 
 #if defined(BACKLIGHT) && !defined(NASSERT)
-#define ASSERT(x)                                                                         \
-  ((x) || (fprintf(stderr, "assertion failed (" __FILE__ ":%d): \"%s\"\n", __LINE__, #x), \
+#define ASSERT(x)                                                          \
+  ((x) || (fprintf(stderr, "assertion failed (" __FILE__ ":%d): \"%s\"\n", \
+                   __LINE__, #x),                                          \
            assert(false), false))
 #else
 #define ASSERT(x) ;
@@ -35,12 +37,13 @@ int main(int argc, char* argv[]) {
 /**
  * Dynamic Forest Maintained With Euler Tour Tree.
  *
- * As said in reference, link and cut operation of dynamic trees can be transformed into sequence
- * split and sequence merge operation, which can be easily maintained using balanced search trees
- * like Treap.
+ * As said in reference, link and cut operation of dynamic trees can be
+ * transformed into sequence split and sequence merge operation, which can be
+ * easily maintained using balanced search trees like Treap.
  *
- * @reference: Dynamic trees as search trees via euler tours, applied to the network simplex
- * algorithm by Robert E. Tarjan. https://link.springer.com/article/10.1007/BF02614369
+ * @reference: Dynamic trees as search trees via euler tours, applied to the
+ * network simplex algorithm by Robert E. Tarjan.
+ * https://link.springer.com/article/10.1007/BF02614369
  */
 class DynamicForest {
  private:
@@ -95,11 +98,9 @@ class DynamicForest {
   static inline int GetSize(Node* p) { return p == nullptr ? 0 : p->size_; }
 
   static inline Node* FindRoot(Node* p) {
-    if (!p)
-      return nullptr;
+    if (!p) return nullptr;
 
-    while (p->parent_ != nullptr)
-      p = p->parent_;
+    while (p->parent_ != nullptr) p = p->parent_;
     return p;
   }
 
@@ -109,8 +110,7 @@ class DynamicForest {
     ss << "Node [\n";
 
     std::function<void(Node*)> dfs = [&](Node* p) {
-      if (!p)
-        return;
+      if (!p) return;
       dfs(p->left_);
       ss << "(" << p->from_ << "," << p->to_ << "),";
       dfs(p->right_);
@@ -140,15 +140,14 @@ class DynamicForest {
   class Treap {
    public:
     /**
-     * Merge two treap a and b into a single treap, with keys in a less than keys in b.
+     * Merge two treap a and b into a single treap, with keys in a less than
+     * keys in b.
      *
      * In the other word, concating sequence a and sequence b.
      */
     static Node* Merge(Node* a, Node* b) {
-      if (a == nullptr)
-        return b;
-      if (b == nullptr)
-        return a;
+      if (a == nullptr) return b;
+      if (b == nullptr) return a;
 
       if (a->priority_ < b->priority_) {
         a->right_ = Merge(a->right_, b);
@@ -164,7 +163,8 @@ class DynamicForest {
     /**
      * Get the number of nodes with keys less than or equal to the key of p.
      *
-     * In the other word, the the 1-based index of p inside the sequencec containing p.
+     * In the other word, the the 1-based index of p inside the sequencec
+     * containing p.
      */
     static int GetPosition(Node* p) {
       ASSERT(p != nullptr);
@@ -179,12 +179,11 @@ class DynamicForest {
     }
 
     /**
-     * Split sequence containning p into two sequences, the first one contains the first k elements,
-     * the second one contains the remaining elements.
+     * Split sequence containning p into two sequences, the first one contains
+     * the first k elements, the second one contains the remaining elements.
      */
     static std::pair<Node*, Node*> Split(Node* p, int k) {
-      if (!p)
-        return {nullptr, nullptr};
+      if (!p) return {nullptr, nullptr};
 
       std::pair<Node*, Node*> result;
 
@@ -204,11 +203,9 @@ class DynamicForest {
 
       p->Maintain();
 
-      if (result.first)
-        result.first->parent_ = nullptr;
+      if (result.first) result.first->parent_ = nullptr;
 
-      if (result.second)
-        result.second->parent_ = nullptr;
+      if (result.second) result.second->parent_ = nullptr;
 
       return result;
     }
@@ -218,16 +215,16 @@ class DynamicForest {
      *   - a: a treap containing nodes with position less than or equal to p.
      *   - b: a treap containing nodes with postion greater than p.
      *
-     * In the other word, split sequence containning p into two sequences, the first one contains
-     * elements before p and element p, the second one contains elements after p.
+     * In the other word, split sequence containning p into two sequences, the
+     * first one contains elements before p and element p, the second one
+     * contains elements after p.
      */
     static std::pair<Node*, Node*> SplitUp2(Node* p) {
       ASSERT(p != nullptr);
 
       Node *a = nullptr, *b = nullptr;
       b = p->right_;
-      if (b)
-        b->parent_ = nullptr;
+      if (b) b->parent_ = nullptr;
       p->right_ = nullptr;
 
       bool is_p_left_child_of_parent = false;
@@ -265,21 +262,19 @@ class DynamicForest {
      *   - b: a treap containing nodes with key greater than p.
      *   - c: a treap containing nodes with key equal p.
      *
-     * In the other word, split sequence containning p into three sequences, the first one contains
-     * elements before p, the second one contains element p, the third one contains elements after
-     * p.
+     * In the other word, split sequence containning p into three sequences, the
+     * first one contains elements before p, the second one contains element p,
+     * the third one contains elements after p.
      */
     static std::tuple<Node*, Node*, Node*> SplitUp3(Node* p) {
       ASSERT(p != nullptr);
 
       Node* a = p->left_;
-      if (a)
-        a->parent_ = nullptr;
+      if (a) a->parent_ = nullptr;
       p->left_ = nullptr;
 
       Node* b = p->right_;
-      if (b)
-        b->parent_ = nullptr;
+      if (b) b->parent_ = nullptr;
       p->right_ = nullptr;
 
       Node* c = p;
@@ -332,8 +327,7 @@ class DynamicForest {
   DynamicForest(int n) : n_(n), vertices_(n_), tree_edges_(n_) {
     ASSERT(n_ > 0);
 
-    for (int i = 0; i < n_; ++i)
-      vertices_[i] = AllocateNode(i, i);
+    for (int i = 0; i < n_; ++i) vertices_[i] = AllocateNode(i, i);
   }
 
   ~DynamicForest() {
@@ -442,8 +436,7 @@ class DynamicForest {
     ss << "DynamicForest [\n";
 
     std::function<void(Node*)> dfs = [&](Node* p) {
-      if (!p)
-        return;
+      if (!p) return;
       dfs(p->left_);
       ss << "(" << p->from_ << "," << p->to_ << "),";
       dfs(p->right_);
@@ -475,7 +468,9 @@ class DynamicForest {
   std::vector<Node*> vertices_;
   std::vector<std::map<int, Node*>> tree_edges_;
 };
-std::mt19937 DynamicForest::rng_(std::chrono::steady_clock::now().time_since_epoch().count());
+
+std::mt19937 DynamicForest::rng_(
+    std::chrono::steady_clock::now().time_since_epoch().count());
 
 void solve_case(int Case) {
   int n, q;
@@ -490,7 +485,8 @@ void solve_case(int Case) {
       t.Insert(u, v);
     } else if (op[0] == 'Q') {
       t.Delete(u, v);
-      int ans = i64(1) * t.GetComponentNumberOfVertex(u) * t.GetComponentNumberOfVertex(v);
+      int ans = i64(1) * t.GetComponentNumberOfVertex(u) *
+                t.GetComponentNumberOfVertex(v);
       t.Insert(u, v);
       std::cout << ans << "\n";
     }
