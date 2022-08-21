@@ -1,5 +1,5 @@
 ???+ warning "注意"
-    下文中的欧拉数特指 Eulerian Number。注意与 Euler numbers，Euler's number 作区分。
+    下文中的欧拉数特指 Eulerian number。注意与 Euler number，以及 Euler's number （指与欧拉相关的数学常数例如 $\gamma$ 或 $e$）作区分。
 
 在计算组合中，**欧拉数**（Eulerian Number）是从 $1$ 到 $n$ 中正好满足 $m$ 个元素大于前一个元素（具有 $m$ 个“上升”的排列）条件的排列 **个数**。定义为：
 
