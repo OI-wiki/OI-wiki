@@ -8,22 +8,24 @@ using namespace std;
 int MAX = 3;
 
 class BPTree;
+
 class Node {
   bool IS_LEAF;
   int *key, size;
   Node **ptr;
   friend class BPTree;
 
-   public:
+ public:
   Node();
 };
+
 class BPTree {
   Node *root;
   void insertInternal(int, Node *, Node *);
   void removeInternal(int, Node *, Node *);
   Node *findParent(Node *, Node *);
 
-   public:
+ public:
   BPTree();
   void search(int);
   void insert(int);
@@ -31,13 +33,14 @@ class BPTree {
   void display(Node *);
   Node *getRoot();
 };
+
 Node::Node() {
   key = new int[MAX];
   ptr = new Node *[MAX + 1];
 }
-BPTree::BPTree() {
-  root = NULL;
-}
+
+BPTree::BPTree() { root = NULL; }
+
 void BPTree::insert(int x) {
   if (root == NULL) {
     root = new Node;
@@ -62,8 +65,7 @@ void BPTree::insert(int x) {
     }
     if (cursor->size < MAX) {
       int i = 0;
-      while (x > cursor->key[i] && i < cursor->size)
-        i++;
+      while (x > cursor->key[i] && i < cursor->size) i++;
       for (int j = cursor->size; j > i; j--) {
         cursor->key[j] = cursor->key[j - 1];
       }
@@ -78,8 +80,7 @@ void BPTree::insert(int x) {
         virtualNode[i] = cursor->key[i];
       }
       int i = 0, j;
-      while (x > virtualNode[i] && i < MAX)
-        i++;
+      while (x > virtualNode[i] && i < MAX) i++;
       for (int j = MAX + 1; j > i; j--) {
         virtualNode[j] = virtualNode[j - 1];
       }
@@ -110,11 +111,11 @@ void BPTree::insert(int x) {
     }
   }
 }
+
 void BPTree::insertInternal(int x, Node *cursor, Node *child) {
   if (cursor->size < MAX) {
     int i = 0;
-    while (x > cursor->key[i] && i < cursor->size)
-      i++;
+    while (x > cursor->key[i] && i < cursor->size) i++;
     for (int j = cursor->size; j > i; j--) {
       cursor->key[j] = cursor->key[j - 1];
     }
@@ -135,8 +136,7 @@ void BPTree::insertInternal(int x, Node *cursor, Node *child) {
       virtualPtr[i] = cursor->ptr[i];
     }
     int i = 0, j;
-    while (x > virtualKey[i] && i < MAX)
-      i++;
+    while (x > virtualKey[i] && i < MAX) i++;
     for (int j = MAX + 1; j > i; j--) {
       virtualKey[j] = virtualKey[j - 1];
     }
@@ -163,10 +163,12 @@ void BPTree::insertInternal(int x, Node *cursor, Node *child) {
       newRoot->size = 1;
       root = newRoot;
     } else {
-      insertInternal(cursor->key[cursor->size], findParent(root, cursor), newInternal);
+      insertInternal(cursor->key[cursor->size], findParent(root, cursor),
+                     newInternal);
     }
   }
 }
+
 Node *BPTree::findParent(Node *cursor, Node *child) {
   Node *parent;
   if (cursor->IS_LEAF || (cursor->ptr[0])->IS_LEAF) {
@@ -178,12 +180,12 @@ Node *BPTree::findParent(Node *cursor, Node *child) {
       return parent;
     } else {
       parent = findParent(cursor->ptr[i], child);
-      if (parent != NULL)
-        return parent;
+      if (parent != NULL) return parent;
     }
   }
   return parent;
 }
+
 void BPTree::remove(int x) {
   if (root == NULL) {
     cout << "Tree empty\n";
@@ -304,6 +306,7 @@ void BPTree::remove(int x) {
     }
   }
 }
+
 void BPTree::removeInternal(int x, Node *cursor, Node *child) {
   if (cursor == root) {
     if (cursor->size == 1) {
@@ -351,8 +354,7 @@ void BPTree::removeInternal(int x, Node *cursor, Node *child) {
   if (cursor->size >= (MAX + 1) / 2 - 1) {
     return;
   }
-  if (cursor == root)
-    return;
+  if (cursor == root) return;
   Node *parent = findParent(root, cursor);
   int leftSibling, rightSibling;
   for (pos = 0; pos < parent->size + 1; pos++) {
@@ -424,6 +426,7 @@ void BPTree::removeInternal(int x, Node *cursor, Node *child) {
     removeInternal(parent->key[rightSibling - 1], parent, rightNode);
   }
 }
+
 void BPTree::display(Node *cursor) {
   if (cursor != NULL) {
     for (int i = 0; i < cursor->size; i++) {
@@ -437,9 +440,8 @@ void BPTree::display(Node *cursor) {
     }
   }
 }
-Node *BPTree::getRoot() {
-  return root;
-}
+
+Node *BPTree::getRoot() { return root; }
 
 int main() {
   BPTree node;
