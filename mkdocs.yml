@@ -280,7 +280,7 @@ nav:
       - 斯特林数: math/combinatorics/stirling.md
       - 贝尔数: math/combinatorics/bell.md
       - 伯努利数: math/combinatorics/bernoulli.md
-      - 恩廷格数: math/combinatorics/entringer.md
+      - Entringer Number: math/combinatorics/entringer.md
       - Eulerian Number: math/combinatorics/eulerian.md
       - 分拆数: math/combinatorics/partition.md
     - 线性代数:
