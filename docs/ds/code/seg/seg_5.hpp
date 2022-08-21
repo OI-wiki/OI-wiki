@@ -49,28 +49,28 @@ class SegTreeLazyRangeSet {
     }
 
 public:
-	explicit SegTreeLazyRangeSet<T>(vector<T> v) {
-		n = v.size();
-		n4 = n * 4;
-		tree = vector<T>(n4, 0);
-		lazy = vector<T>(n4, 0);
-		arr = &v;
-		end = n - 1;
-		root = 1;
-		build(0, end, 1);
-		arr = nullptr;
-	}
-	void show(int p, int depth = 0) {
-		if (p > n4 || tree[p] == 0) return;
-		show(p * 2, depth + 1);
-		for (int i = 0; i < depth; ++i) putchar('\t');
-		printf("%d:%d\n", tree[p], lazy[p]);
-		show(p * 2 + 1, depth + 1);
-	}
-	T range_sum(int l, int r) {
-		return range_sum(l, r, 0, end, root);
-	}
-	void range_set(int l, int r, int val) {
-		range_set(l, r, val, 0, end, root);
-	}
+    explicit SegTreeLazyRangeSet<T>(vector<T> v) {
+        n = v.size();
+        n4 = n * 4;
+        tree = vector<T>(n4, 0);
+        lazy = vector<T>(n4, 0);
+        arr = &v;
+        end = n - 1;
+        root = 1;
+        build(0, end, 1);
+        arr = nullptr;
+    }
+    void show(int p, int depth = 0) {
+        if (p > n4 || tree[p] == 0) return;
+        show(p * 2, depth + 1);
+        for (int i = 0; i < depth; ++i) putchar('\t');
+        printf("%d:%d\n", tree[p], lazy[p]);
+        show(p * 2 + 1, depth + 1);
+    }
+    T range_sum(int l, int r) {
+        return range_sum(l, r, 0, end, root);
+    }
+    void range_set(int l, int r, int val) {
+        range_set(l, r, val, 0, end, root);
+    }
 };
