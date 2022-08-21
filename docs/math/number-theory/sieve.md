@@ -289,8 +289,8 @@ def pre():
     phi[1] = 1
     for i in range(2, 5000001):
         if is_prime[i]:
-            prime[cnt] = i
             cnt = cnt + 1
+            prime[cnt] = i
             phi[i] = i - 1
         j = 1
         while j <= cnt and i * prime[j] <= 5000000:
@@ -341,8 +341,8 @@ def pre():
     for i in range(2, int(1e7 + 1)):
         if v[i] == 0:
             mu[i] = -1
-            p[tot] = i
             tot = tot + 1
+            p[tot] = i
         j = 1
         while j <= tot and i <= 1e7 // p[j]:
             v[i * p[j]] = 1
@@ -394,7 +394,7 @@ def pre():
     d[1] = 1
     for i in range(2, n + 1):
         if v[i] == 0:
-            v[i] = 1; p[tot] = i; tot = tot + 1; d[i] = 2; num[i] = 1
+            v[i] = 1; tot = tot + 1; p[tot] = i; d[i] = 2; num[i] = 1
         j = 1
         while j <= tot and i <= n // p[j]:
             v[p[j] * i] = 1
@@ -439,7 +439,7 @@ def pre():
     g[1] = f[1] = 1
     for i in range(2, n + 1):
         if v[i] == 0:
-            v[i] = 1; p[tot] = i; tot = tot + 1; g[i] = i + 1; f[i] = i + 1
+            v[i] = 1; tot = tot + 1; p[tot] = i; g[i] = i + 1; f[i] = i + 1
         j = 1
         while j <= tot and i <= n // p[j]:
             v[p[j] * i] = 1
