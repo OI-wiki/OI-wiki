@@ -65,7 +65,8 @@
 /math/linear-equation /math/number-theory/linear-equation
 /math/crt /math/number-theory/crt
 /math/quad-residue /math/number-theory/quad-residue
-/math/bsgs /math/number-theory/bsgs
+/math/bsgs /math/number-theory/discrete-logarithm
+/math/number-theory/bsgs /math/number-theory/discrete-logarithm
 /math/primitive-root /math/number-theory/primitive-root
 /math/lucas /math/number-theory/lucas
 /math/mobius /math/number-theory/mobius

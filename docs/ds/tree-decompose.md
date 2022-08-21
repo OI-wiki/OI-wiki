@@ -2,7 +2,7 @@ author: ouuan, Ir1d, Marcythm, Xeonacid
 
 ## 树分块的方式
 
-可以参考 [真 - 树上莫队](../misc/mo-algo.md#_14)。
+可以参考 [真 - 树上莫队](../misc/mo-algo-on-tree.md)。
 
 也可以参考 [ouuan 的博客/莫队、带修莫队、树上莫队详解/树上莫队](https://ouuan.github.io/莫队、带修莫队、树上莫队详解/#树上莫队)。
 

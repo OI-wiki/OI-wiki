@@ -14,7 +14,9 @@ $\sigma(x)=\sum_{i \mid n} i$
 
 $\varphi(x)=\sum_{i=1}^x 1[\gcd(x,i)=1]$
 
-$\mu(x)=\begin{cases}1&\ x=1 \\(-1)^k& \ \prod_{i=1}^k q_i=1\\0 &\ \max\{q_i\}>1\end{cases}$
+设 $x = \prod \limits_{i=1} ^ {k} p_i ^ {\alpha_i}$，$p_i$ 为质数，
+
+$\mu(x)=\begin{cases}1&\ x=1 \\(-1)^k& \ \forall \alpha_i =  1 \\0 &\ \max\{\alpha_i\}>1\end{cases}$
 
 积性函数有如下性质：
 
