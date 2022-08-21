@@ -332,14 +332,14 @@ def getsum(l, r, s, t, p):
 ## C++模板
 
 ??? "SegTreeLazyRangeAdd 可以区间加/求和的线段树模板"
-```cpp
---8<-- "docs/ds/code/seg/seg_4.hpp"
-```
+    ```cpp
+    --8<-- "docs/ds/code/seg/seg_4.hpp"
+    ```
 
 ??? "SegTreeLazyRangeSet 可以区间修改/求和的线段树模板"
-```cpp
---8<-- "docs/ds/code/seg/seg_5.hpp"
-```
+    ```cpp
+    --8<-- "docs/ds/code/seg/seg_5.hpp"
+    ```
 
 ## 例题
 
