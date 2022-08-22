@@ -79,23 +79,22 @@ $$
 
 在证明之前先给出一个直观的理解。见下图：
 
-\documentclass[tikz]{standalone}
-\usetikzlibrary{graphs, graphs.standard}
-\begin{document}
-\begin{tikzpicture}
-\tikzstyle{every node}=[draw,shape=circle,fill=yellow];
-\graph [nodes={draw, circle}, clockwise, radius=1in, nodes, n=11, V={g,...,m,c,d,e,f}, ->, edge={bend left=10,>=stealth}] {
-	subgraph C_n [name=outer]
-};
+\\documentclass[tikz]{standalone}
+\\usetikzlibrary{graphs, graphs.standard}
+\\begin{document}
+\\begin{tikzpicture}
+\\tikzstyle{every node}=[draw,shape=circle,fill=yellow];
+\\graph[nodes={draw, circle}, clockwise, radius=1in, nodes, n=11, V={g,...,m,c,d,e,f}, ->, edge={bend left=10,>=stealth}]{
+	subgraph C_n[name=outer]};
 
-\node (b) [below right of=outer c] [left of=outer m] {$b$};
-\node (a) [below right of=b] [below left of=outer l] {$a$};
+\\node (b)[below right of=outer c][left of=outer m]{$b$};
+\\node (a)[below right of=b][below left of=outer l]{$a$};
 
-\draw [->] (a) -- (b);
-\draw [->] (b) -- (outer c);
+\\draw[->]\(a) -- (b);
+\\draw[->]\(b) -- (outer c);
 
-\end{tikzpicture}
-\end{document}
+\\end{tikzpicture}
+\\end{document}
 
 我们需要知道的是，在 $\pmod m$ 的条件下，$a^b \bmod m$ 的取值范围一定在 $[0, m)$，而 $a^i \bmod m = (a^{i-1} \bmod m) \times a \bmod m$，那么对于任意一个数 $a$，那么我们很容易就能知道它的 **后继**，在有限的空间内这一定会形成一个循环。
 
