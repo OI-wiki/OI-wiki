@@ -2,11 +2,11 @@
 
 ## 二分法
 
-### 简介
+### 定义
 
 二分查找（英语：binary search），也称折半搜索（英语：half-interval search）、对数搜索（英语：logarithmic search），是用来在一个有序数组中查找某一元素的算法。
 
-### 工作原理
+### 过程
 
 以在一个升序数组中查找一个数为例。
 
@@ -26,7 +26,7 @@
 
 递归（无尾调用消除）版本的二分查找的空间复杂度为 $O(\log n)$。
 
-### 代码实现
+### 实现
 
 ```cpp
 int binary_search(int start, int end, int key) {
@@ -72,7 +72,7 @@ C++ 标准库中实现了查找首个不小于给定值的元素的函数 [`std:
 
 bsearch 函数为 C 标准库实现的二分查找，定义在 `<stdlib.h>` 中。在 C++ 标准库里，该函数定义在 `<cstdlib>` 中。qsort 和 bsearch 是 C 语言中唯二的两个算法类函数。
 
-bsearch 函数相比 qsort（[排序相关 STL](./stl-sort.md)）的四个参数，在最左边增加了参数“待查元素的地址”。之所以按照地址的形式传入，是为了方便直接套用与 qsort 相同的比较函数，从而实现排序后的立即查找。因此这个参数不能直接传入具体值，而是要先将待查值用一个变量存储，再传入该变量地址。
+bsearch 函数相比 qsort（[排序相关 STL](./stl-sort.md)）的四个参数，在最左边增加了参数「待查元素的地址」。之所以按照地址的形式传入，是为了方便直接套用与 qsort 相同的比较函数，从而实现排序后的立即查找。因此这个参数不能直接传入具体值，而是要先将待查值用一个变量存储，再传入该变量地址。
 
 于是 bsearch 函数总共有五个参数：待查元素的地址、数组名、元素个数、元素大小、比较规则。比较规则仍然通过指定比较函数实现，详见 [排序相关 STL](./stl-sort.md)。
 
@@ -119,7 +119,7 @@ int upper(const void *p1, const void *p2) {
 
 ### 二分答案
 
-解题的时候往往会考虑枚举答案然后检验枚举的值是否正确。若满足单调性，则满足使用二分法的条件。把这里的枚举换成二分，就变成了“二分答案”。
+解题的时候往往会考虑枚举答案然后检验枚举的值是否正确。若满足单调性，则满足使用二分法的条件。把这里的枚举换成二分，就变成了「二分答案」。
 
 ???+note "[Luogu P1873 砍树](https://www.luogu.com.cn/problem/P1873)"
     伐木工人米尔科需要砍倒 $M$ 米长的木材。这是一个对米尔科来说很容易的工作，因为他有一个漂亮的新伐木机，可以像野火一样砍倒森林。不过，米尔科只被允许砍倒单行树木。
@@ -186,7 +186,7 @@ int upper(const void *p1, const void *p2) {
 
 ## 三分法
 
-### 简介
+### 引入
 
 如果需要求出单峰函数的极值点，通常使用二分法衍生出的三分法求单峰函数的极值点。
 
@@ -209,7 +209,7 @@ int upper(const void *p1, const void *p2) {
 
 三分法每次操作会舍去两侧区间中的其中一个。为减少三分法的操作次数，应使两侧区间尽可能大。因此，每一次操作时的 $lmid$ 和 $rmid$ 分别取 $mid-\varepsilon$ 和 $mid+\varepsilon$ 是一个不错的选择。
 
-### 代码实现
+### 实现
 
 #### 伪代码
 
@@ -220,12 +220,12 @@ $$
 3 & \textbf{Method. } \\
 4 & \textbf{while } r - l > \varepsilon\\
 5 & \qquad mid\gets \frac{lmid+rmid}{2}\\
-5 & \qquad lmid\gets mid - \varepsilon \\
-6 & \qquad rmid\gets mid + \varepsilon \\
-7 & \qquad \textbf{if } f(lmid) < f(rmid) \\
-8 & \qquad \qquad r\gets mid \\
-9 & \qquad \textbf{else } \\
-10 & \qquad \qquad l\gets mid
+6 & \qquad lmid\gets mid - \varepsilon \\
+7 & \qquad rmid\gets mid + \varepsilon \\
+8 & \qquad \textbf{if } f(lmid) < f(rmid) \\
+9 & \qquad \qquad r\gets mid \\
+10 & \qquad \textbf{else } \\
+11 & \qquad \qquad l\gets mid
 \end{array}
 $$
 

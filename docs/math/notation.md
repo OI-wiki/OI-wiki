@@ -4,7 +4,7 @@ author: sshwy, hsfzLZH1, Enter-tainer
 
 ### 渐进符号
 
-请参见 [复杂度](../basic/complexity.md#_3)。
+请参见 [复杂度](../basic/complexity.md#渐进符号)。
 
 ### 整除/同余理论常见符号
 
@@ -18,7 +18,7 @@ author: sshwy, hsfzLZH1, Enter-tainer
 
 求和符号：$\sum$ 符号，表示满足特定条件的数的和。举几个例子：
 
-- $\sum_{i=1}^n i$ 表示 $1+2+\dotsb+n$ 的和。其中 $i$ 是一个变量，在求和符号的意义下 $i$ 通常是 **正整数或者非负整数**（除非特殊说明）。这个式子的含义可以理解为，$i$ 从 $1$ 循环到 $n$，所有 $i$ 的和。这个式子用代码的形式很容易表达。当然，学过简单的组合数学的同学都知道 $\sum_{i=1}^n i=\frac{n(n+1)}{2}$。
+- $\sum_{i=1}^n i$ 表示 $1+2+\dotsb+n$ 的和。其中 $i$ 是一个变量，在求和符号的意义下 $i$ 通常是 **正整数或者非负整数**（除非特殊说明）。这个式子的含义可以理解为，$i$ 从 $1$ 循环到 $n$，所有 $i$ 的和。这个式子用代码的形式很容易表达。当然，学过简单的组合数学的同学都知道 $\sum_{i=1}^n i=\dfrac{n(n+1)}{2}$。
 - $\sum_{S\subseteq T}|S|$ 表示所有被 $T$ 包含的集合的大小的和。
 - $\sum_{p\le n,p\perp n}1$ 表示的是 $n$ 以内有多少个与 $n$ 互质的数，即 $\varphi(n)$，$\varphi$ 是欧拉函数。
 
@@ -33,5 +33,5 @@ author: sshwy, hsfzLZH1, Enter-tainer
 ### 其他常见符号
 
 1. 阶乘符号 $!$，$n!$ 表示 $1\times 2\times 3\times \dotsb \times n$。特别地，$0!=1$。
-2. 向下取整符号：$\lfloor x\rfloor$，表示小于等于 $x$ 的最大的整数。常用于分数，比如分数的向下取整 $\left\lfloor\frac{x}{y}\right\rfloor$。
+2. 向下取整符号：$\lfloor x\rfloor$，表示小于等于 $x$ 的最大的整数。常用于分数，比如分数的向下取整 $\left\lfloor\dfrac{x}{y}\right\rfloor$。
 3. 向上取整符号：$\lceil x\rceil$，与向下取整符号相对，表示大于等于 $x$ 的最小的整数。

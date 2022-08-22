@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the LaTeX document
-        uses: xu-cheng/latex-action@v2
+        uses: OI-wiki/latex-action@v1.0.0
         with:
           latexmk_use_xelatex: true
           latexmk_shell_escape: true

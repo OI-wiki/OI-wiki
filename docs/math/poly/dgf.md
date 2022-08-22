@@ -232,8 +232,8 @@ $$
 
 [^1]: <https://en.wikipedia.org/wiki/Generating_function#Dirichlet_series_generating_functions_(DGFs>)
 
-[^2]: <https://oi-wiki.org/math/mobius/#_4>
+[^2]: [https://oi-wiki.org/math/number-theory/mobius/](../number-theory/mobius.md#性质)
 
-[^3]: <https://oi-wiki.org/math/du/#_7>
+[^3]: [https://oi-wiki.org/math/number-theory/du/](../number-theory/du.md#问题二)
 
-[^4]: <https://oi-wiki.org/math/mobius/#dirichlet>
+[^4]: [https://oi-wiki.org/math/number-theory/mobius/](../number-theory/mobius.md#dirichlet)
