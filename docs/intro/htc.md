@@ -2,6 +2,10 @@
 
 这篇文章将主要叙述参与 **OI Wiki** 编写的写作过程。请您在撰稿或者修正 Wiki 页面以前，仔细阅读以下内容，以帮助您完成更高质量的内容。
 
+## 贡献指南
+
+请您在编辑前查看 [OI Wiki 贡献指南](https://github.com/OI-wiki/OI-wiki/blob/master/.github/CONTRIBUTING.md)，以更好地和社区贡献者进行合作、交流。
+
 ## 参与协作
 
 ???+ warning
