@@ -36,7 +36,7 @@ $$
 k\log_g x\equiv 0\pmod\varphi(n)
 $$
 
-同样转化为一个模 $\varphi(n)$ 意义下的线性不定方程问题。这个方程始终有解 $1$ ，并且也可以构造其他形式的解。可以设：
+同样转化为一个模 $\varphi(n)$ 意义下的线性不定方程问题。这个方程始终有解 $1$，并且也可以构造其他形式的解。可以设：
 
 $$
 \omega_k\equiv g^{\frac{\varphi(n)}{\gcd(k,\varphi(n))}}\pmod n
