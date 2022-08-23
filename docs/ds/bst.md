@@ -189,36 +189,36 @@ int querykth(int o, int k) {
 
 ### 右旋操作和左旋操作
 
-保证中序遍历序列不变的平衡调整，基本操作为**右旋（rotate right 或者 zig）**和**左旋（rotate left 或者 zag）**。这两种操作均不改变中序遍历序列。
+保证中序遍历序列不变的平衡调整，基本操作为 **右旋（rotate right 或者 zig）** 和 **左旋（rotate left 或者 zag）**。这两种操作均不改变中序遍历序列。
 
-在这里先介绍右旋，右旋也称为“右单旋转”或“LL平衡旋转”。对于结点 $A$ 的右旋操作是指：将 $A$ 的左孩子 $B$ 向右上旋转，代替 $A$ 成为根节点，将 $A$ 结点向右下旋转成为 $B$ 的右子树的根结点，$B$ 的原来的右子树变为 $A$ 的左子树。
+在这里先介绍右旋，右旋也称为“右单旋转”或“LL 平衡旋转”。对于结点 $A$ 的右旋操作是指：将 $A$ 的左孩子 $B$ 向右上旋转，代替 $A$ 成为根节点，将 $A$ 结点向右下旋转成为 $B$ 的右子树的根结点，$B$ 的原来的右子树变为 $A$ 的左子树。
 
 右旋操作只改变了三组结点关联，相当于对三组边进行循环置换一下，因此需要暂存一个结点再进行轮换更新。
 
 对于右旋操作一般的更新顺序是：暂存 $B$ 结点，先让 $A$ 的左孩子指向 $B$ 的右子树 $BR$，再让 $B$ 的右孩子指针指向 $A$（$A$ 被它的父结点指向），最后让 $A$ 的父结点指向暂存的 $B$。整个操作只要找到 $A$ 的父节点孩子即可完成。
 
-完全同理，有对应的左旋操作，也称为“左单旋转”或“RR平衡旋转”。左旋操作与右旋操作互为镜像。
+完全同理，有对应的左旋操作，也称为“左单旋转”或“RR 平衡旋转”。左旋操作与右旋操作互为镜像。
 
 一段可行的代码为：
 
 ```cpp
 
-int zig(int now) { //以now为中心右旋
-	int lchild=nodes[now].lchild;// 暂存A的左孩子B节点
-	nodes[now].lchild=nodes[lchild].rchild;// 将A的左孩子指向B的右子树BR
-	nodes[lchild].rchild=now;// 将B的右孩子指针指向A
-	update(nodes[lchild].rchild);// 更新旋转后A与B两个节点的信息
-	update(lchild);
-	return lchild;// 让A的父节点指向最初暂存的B
+int zig(int now) {                           //以now为中心右旋
+  int lchild = nodes[now].lchild;            // 暂存A的左孩子B节点
+  nodes[now].lchild = nodes[lchild].rchild;  // 将A的左孩子指向B的右子树BR
+  nodes[lchild].rchild = now;                // 将B的右孩子指针指向A
+  update(nodes[lchild].rchild);  // 更新旋转后A与B两个节点的信息
+  update(lchild);
+  return lchild;  // 让A的父节点指向最初暂存的B
 }
 
-int zag(int now) { //以now为中心左旋
-	int rchild=nodes[now].rchild;
-	nodes[now].rchild=nodes[rchild].lchild;
-	nodes[rchild].lchild=now;
-	update(nodes[rchild].lchild);
-	update(rchild);
-	return rchild;
+int zag(int now) {  //以now为中心左旋
+  int rchild = nodes[now].rchild;
+  nodes[now].rchild = nodes[rchild].lchild;
+  nodes[rchild].lchild = now;
+  update(nodes[rchild].lchild);
+  update(rchild);
+  return rchild;
 }
 
 ```

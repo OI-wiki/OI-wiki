@@ -34,7 +34,7 @@ docker build -t [name][:tag] . --build-arg [variable1]=[value1] [variable2]=[val
 - 可以设置 `WIKI_REPO` 来使用 Wiki 仓库的镜像站点（当未设置时自动使用 GitHub）
 -   可以设置 `PYPI_MIRROR` 来使用 PyPI 仓库的镜像站点（当未设置时自动使用官方 PyPI）
     - 在国内建议使用 TUNA 镜像站 `https://pypi.tuna.tsinghua.edu.cn/simple/`
-- 可以设置 `LISTEN_IP` 来更改监听 IP（当未设置时为 `0.0.0.0` ，即监听所有 IP 的访问）
+- 可以设置 `LISTEN_IP` 来更改监听 IP（当未设置时为 `0.0.0.0`，即监听所有 IP 的访问）
 - 可以设置 `LISTEN_PORT` 来更改监听端口（当未设置时为 `8000`）
 
 示例：
