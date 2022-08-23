@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="405.32956" height="224.24083" id="svg2" version="1.1" inkscape:version="0.48.3.1 r9886" sodipodi:docname="BinaryTreesRotations.svg">
+  <title id="title4108">Binary Tree Rotations</title>
+  <defs id="defs4">
+    <linearGradient inkscape:collect="always" id="linearGradient3931">
+      <stop style="stop-color:#d6fa32;stop-opacity:1;" offset="0" id="stop3933"/>
+      <stop style="stop-color:#d6fa32;stop-opacity:0;" offset="1" id="stop3935"/>
+    </linearGradient>
+    <inkscape:path-effect effect="spiro" id="path-effect3888" is_visible="true"/>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient3931" id="linearGradient3937" x1="218.87801" y1="222.03635" x2="244.35455" y2="222.03635" gradientUnits="userSpaceOnUse"/>
+    <inkscape:path-effect effect="spiro" id="path-effect3888-2" is_visible="true"/>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient3931-2" id="linearGradient3937-1" x1="218.87801" y1="222.03635" x2="244.35455" y2="222.03635" gradientUnits="userSpaceOnUse"/>
+    <linearGradient inkscape:collect="always" id="linearGradient3931-2">
+      <stop style="stop-color:#d6fa32;stop-opacity:1;" offset="0" id="stop3933-6"/>
+      <stop style="stop-color:#d6fa32;stop-opacity:0;" offset="1" id="stop3935-0"/>
+    </linearGradient>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient3931" id="linearGradient4102" gradientUnits="userSpaceOnUse" x1="218.87801" y1="222.03635" x2="244.35455" y2="222.03635"/>
+  </defs>
+  <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="1.43" inkscape:cx="253.23706" inkscape:cy="84.547008" inkscape:document-units="px" inkscape:current-layer="g3782" showgrid="false" inkscape:connector-spacing="0" fit-margin-top="0" fit-margin-left="0" fit-margin-right="0" fit-margin-bottom="0" inkscape:window-width="1366" inkscape:window-height="706" inkscape:window-x="-8" inkscape:window-y="-8" inkscape:window-maximized="1"/>
+  <metadata id="metadata7">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <dc:title>Binary Tree Rotations</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Josell7</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:date>26 - september - 2012</dc:date>
+        <dc:language>Universal</dc:language>
+        <dc:description>Jesus is the saviour. Read apologetics.</dc:description>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(-9.9346439,-13.279038)">
+    <g id="g3782">
+      <g id="g3807" transform="translate(197.87234,100)"/>
+      <g id="g4104" transform="translate(-45.839153,-7.563309)">
+        <path style="fill:#31b1f6;fill-opacity:0.33333333;stroke:none" d="m 248.05598,54.489842 0,58.510638 23.21277,-29.255318 -23.21277,-29.25532" id="path3886" inkscape:path-effect="#path-effect3888" inkscape:original-d="m 248.05598,54.489842 0,58.510638 23.21277,-29.255318 z" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc"/>
+        <path style="fill:#31b1f6;fill-opacity:0.33333333;stroke:none" d="m 271.26875,104.92504 0,58.51064 -23.21277,-29.25532 23.21277,-29.25532" id="path3886-4" inkscape:path-effect="#path-effect3888-2" inkscape:original-d="m 271.26875,104.92504 0,58.51064 -23.21277,-29.25532 z" inkscape:connector-curvature="0" sodipodi:nodetypes="cccc"/>
+      </g>
+      <g id="g4071" transform="translate(3.4965035,-5.5547802)">
+        <path style="opacity:0.99557525;fill:#d6fa32;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" d="m 66.6901,19.833818 c -17.94925,0 -32.5,14.55075 -32.5,32.5 0,17.949247 13.32734,32.499997 31.27659,32.499997 17.94926,0 33.72341,-14.55075 33.72341,-32.499997 0,-17.94925 -14.55075,-32.5 -32.5,-32.5 z" id="path3815" inkscape:connector-curvature="0" sodipodi:nodetypes="sssss"/>
+        <path style="opacity:0.99557525;fill:#18eb13;fill-opacity:0.57894736;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" d="m 135.09919,116.29873 c -17.94925,0 -32.5,14.55075 -32.5,32.5 0,17.94924 13.32734,32.5 31.27659,32.5 17.94926,0 33.72341,-14.55076 33.72341,-32.5 0,-17.94925 -14.55075,-32.5 -32.5,-32.5 z" id="path3815-4" inkscape:connector-curvature="0" sodipodi:nodetypes="sssss"/>
+        <g id="g3896" transform="translate(-38.464885,56.002184)">
+          <path inkscape:connection-start-point="d4" inkscape:connection-start="#path3815-4" sodipodi:nodetypes="cc" transform="translate(-86.010635,-79.778408)" inkscape:connector-curvature="0" inkscape:connector-type="polyline" id="path3874" d="m 242.49653,200.7772 -23.61542,38.99757" style="fill:url(#linearGradient4102);stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"/>
+          <path inkscape:connection-start-point="d4" inkscape:connection-start="#path3815-4" sodipodi:nodetypes="cc" transform="translate(-86.010635,-79.778408)" inkscape:connector-curvature="0" inkscape:connector-type="polyline" id="path3876" d="m 275.35704,200.47498 23.94366,42.32761" style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"/>
+        </g>
+        <text xml:space="preserve" style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans" x="5.5943904" y="143.97057" id="text3902" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan3904" x="5.5943904" y="143.97057" style="font-size:24px">α</tspan></text>
+        <text xml:space="preserve" style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans" x="81.902985" y="238.30511" id="text3902-8" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan3904-8" x="81.902985" y="238.30511" style="font-size:24px">β</tspan></text>
+        <text sodipodi:linespacing="125%" id="text3927" y="237.79144" x="172.11278" style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans" xml:space="preserve"><tspan style="font-size:24px" y="237.79144" x="172.11278" id="tspan3929" sodipodi:role="line">γ</tspan></text>
+        <path inkscape:connector-curvature="0" inkscape:connector-type="polyline" id="path3892" d="m 169.79588,124.20573 0,0" style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"/>
+        <path inkscape:connection-start-point="d4" inkscape:connection-start="#path3815" inkscape:connector-curvature="0" inkscape:connector-type="polyline" id="path3988" d="M 48.39663,79.771386 19.58042,122.99155" style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"/>
+        <path inkscape:connection-end-point="d4" inkscape:connection-end="#path3815" inkscape:connection-start-point="d4" inkscape:connection-start="#path3815-4" inkscape:connector-curvature="0" inkscape:connector-type="polyline" id="path3992" d="M 116.29752,122.28615 85.22438,78.469345" style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"/>
+      </g>
+      <g id="g4087" transform="translate(-131.46851,-18.221463)">
+        <path style="opacity:0.99557525;fill:#18ea13;fill-opacity:0.57647059;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" d="m 487.85535,33.549461 c 17.94925,0 32.5,14.55075 32.5,32.5 0,17.94925 -13.32734,32.500003 -31.27659,32.500003 -17.94926,0 -33.72341,-14.550753 -33.72341,-32.500003 0,-17.94925 14.55075,-32.5 32.5,-32.5 z" id="path3815-49" inkscape:connector-curvature="0" sodipodi:nodetypes="sssss"/>
+        <path style="opacity:0.99557525;fill:#d6fa32;fill-opacity:0.99607843;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" d="m 419.44626,130.01437 c 17.94925,0 32.5,14.55075 32.5,32.5 0,17.94924 -13.32734,32.5 -31.27659,32.5 -17.94926,0 -33.72341,-14.55076 -33.72341,-32.5 0,-17.94925 14.55075,-32.5 32.5,-32.5 z" id="path3815-4-4" inkscape:connector-curvature="0" sodipodi:nodetypes="sssss"/>
+        <text xml:space="preserve" style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans" x="373.40247" y="246.49741" id="text3902-6" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan3904-2" x="373.40247" y="246.49741" style="font-size:24px">α</tspan></text>
+        <text xml:space="preserve" style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans" x="452.50827" y="249.92284" id="text3902-8-4" sodipodi:linespacing="125%"><tspan sodipodi:role="line" id="tspan3904-8-5" x="452.50827" y="249.92284" style="font-size:24px">β</tspan></text>
+        <text sodipodi:linespacing="125%" id="text3927-8" y="154.30426" x="535.0257" style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans" xml:space="preserve"><tspan style="font-size:24px" y="154.30426" x="535.0257" id="tspan3929-8" sodipodi:role="line">γ</tspan></text>
+        <path inkscape:connector-curvature="0" inkscape:connector-type="polyline" id="path3892-1" d="m 384.74957,137.92137 0,0" style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"/>
+        <path inkscape:connection-start-point="d4" inkscape:connection-start="#path3815-49" inkscape:connector-curvature="0" inkscape:connector-type="polyline" id="path3988-2" d="m 506.14882,93.487033 28.81621,43.220157" style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"/>
+        <path inkscape:connection-end-point="d4" inkscape:connection-end="#path3815-49" inkscape:connection-start-point="d4" inkscape:connection-start="#path3815-4-4" inkscape:connector-curvature="0" inkscape:connector-type="polyline" id="path3992-1" d="M 438.24793,136.0018 469.32107,92.184992" style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"/>
+        <path inkscape:connection-start-point="d4" inkscape:connection-start="#path3815-4-4" inkscape:connector-curvature="0" inkscape:connector-type="polyline" id="path4067" d="m 436.33366,190.82946 21.68421,36.3579" style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"/>
+        <path inkscape:connection-start-point="d4" inkscape:connection-start="#path3815-4-4" inkscape:connector-curvature="0" inkscape:connector-type="polyline" id="path4069" d="M 403.32009,190.21338 381.7941,227.18736" style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"/>
+      </g>
+    </g>
+  </g>
+</svg>

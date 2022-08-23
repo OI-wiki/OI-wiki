@@ -198,7 +198,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 - `push()` 状态转移函数，其中 `d` 是一个全局变量（偷懒），表示每次状态转移所带来的增量。如果找到的话就 `+=`，否则就创建一个状态为 `s`，关键字为 `d` 的新节点。
 - `roll()` 迭代完一整行之后，滚动轮廓线。
 
-关于哈希表的复杂度分析，以及开哈希和闭哈希的不同，可以参见 [《算法导论》](https://oi-wiki.org/intro/resources/#_5) 中关于散列表的相关章节。
+关于哈希表的复杂度分析，以及开哈希和闭哈希的不同，可以参见 [《算法导论》](../contest/resources.md#书籍) 中关于散列表的相关章节。
 
 #### 状态转移
 
@@ -780,7 +780,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 多米诺骨牌覆盖
 
-[「HDU 1400」Mondriaan’s Dream](https://vjudge.net/problem/HDU-1400) 也出现在 [《算法竞赛入门经典训练指南》](https://oi-wiki.org/intro/resources/#_5) 中，并作为《轮廓线上的动态规划》一节的例题。[多米诺骨牌覆盖（Domino tiling）](https://en.wikipedia.org/wiki/Domino_tiling) 是一组非常经典的数学问题，稍微修改其数据范围就可以得到不同难度，需要应用不同的算法解决的子问题。
+[「HDU 1400」Mondriaan’s Dream](https://vjudge.net/problem/HDU-1400) 也出现在 [《算法竞赛入门经典训练指南》](../contest/resources.md#书籍) 中，并作为《轮廓线上的动态规划》一节的例题。[多米诺骨牌覆盖（Domino tiling）](https://en.wikipedia.org/wiki/Domino_tiling) 是一组非常经典的数学问题，稍微修改其数据范围就可以得到不同难度，需要应用不同的算法解决的子问题。
 
 当限定 $m=2$ 时，多米诺骨牌覆盖等价于斐波那契数列。[《具体数学》](https://www.csie.ntu.edu.tw/~r97002/temp/Concrete%20Mathematics%202e.pdf) 中使用了该问题以引出斐波那契数列，并使用了多种方法得到其解析解。
 

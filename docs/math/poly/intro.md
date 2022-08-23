@@ -4,7 +4,7 @@
 
 以 [快速傅里叶变换](https://oi-wiki.org/math/poly/fft/) 为基石的多项式算法赋予了算法竞赛选手直接操纵生成函数的能力。
 
-## Basic Concepts
+## 基本概念
 
 对于求和式 $\sum a_nx^n$，如果是有限项相加，称为多项式，记作 $f(x)=\sum_{n=0}^m a_nx^n$。
 
@@ -12,7 +12,7 @@
 
 研究多项式算术时先考虑较简单的多项式，幂级数概念仅用于方便理解。到了数学分析中会进一步研究幂级数的敛散性。
 
-环、域及其衍生结构的一般定义详见 [群论简介](https://oi-wiki.org/math/group-theory/#_3)。
+环、域及其衍生结构的一般定义详见 [群论简介](../group-theory.md#群的衍生结构)。
 
 对于一般环 $R$，定义 $R$ 上的 **多项式环**（polynomial ring）$R[x]$。
 
@@ -40,7 +40,7 @@ $$
 
 ### 多项式的度
 
-对于一个多项式 $f(x)$，称其最高次项的次数为该多项式的 **度（Degree）**，也称次数，记作 $\operatorname{deg}{f}$。
+对于一个多项式 $f(x)$，称其最高次项的次数为该多项式的 **度（degree）**，也称次数，记作 $\operatorname{deg}{f}$。
 
 ### 多项式的乘法
 
@@ -224,7 +224,7 @@ $$
 \end{aligned}
 $$
 
-当 $\operatorname{deg}{f} \ge \operatorname{deg}{g}$ 时有 $\operatorname{deg}{Q} = \operatorname{deg}{f} - \operatorname{deg}{g}$，否则有 $Q(x) = 0$。我们称 $Q(x)$ 为 $g(x)$ 除 $f(x)$ 的 **商（Quotient）**，$R(x)$ 为 $g(x)$ 除 $f(x)$ 的 **余数（Remainder）**。
+当 $\operatorname{deg}{f} \ge \operatorname{deg}{g}$ 时有 $\operatorname{deg}{Q} = \operatorname{deg}{f} - \operatorname{deg}{g}$，否则有 $Q(x) = 0$。我们称 $Q(x)$ 为 $g(x)$ 除 $f(x)$ 的 **商（quotient）**，$R(x)$ 为 $g(x)$ 除 $f(x)$ 的 **余数（remainder）**。
 
 ## 模多项式
 
@@ -262,13 +262,13 @@ $$
 
 ### 多项式的多点求值和插值
 
-**多项式的多点求值（Multi-point evaluation）** 即给出一个多项式 $f(x)$ 和 $n$ 个点 $x_{1}, x_{2}, \dots, x_{n}$，求
+**多项式的多点求值（multi-point evaluation）** 即给出一个多项式 $f(x)$ 和 $n$ 个点 $x_{1}, x_{2}, \dots, x_{n}$，求
 
 $$
 f(x_{1}), f(x_{2}), \dots, f(x_{n})
 $$
 
-**多项式的插值（Interpolation）** 即给出 $n+1$ 个点
+**多项式的插值（interpolation）** 即给出 $n+1$ 个点
 
 $$
 (x_{0}, y_{0}), (x_{1}, y_{1}), \dots, (x_{n}, y_{n})
@@ -328,7 +328,7 @@ c_1+c_2+\cdots+c_m=n,x_1,x_2,\cdots,x_m \text{ 互不相同}
 $$
 
 此时类比正整数的最大公因数，可得多项式的 [**最大公因式**](https://oi-wiki.org/math/number-theory/gcd/)  
-（the greatest common divisor,gcd）。其可用欧几里得算法求解
+（greatest common divisor, gcd）。其可用欧几里得算法求解
 
 $$
 \gcd(f,0)=f,\gcd(f,g)=\gcd(g,f\bmod g)
@@ -368,7 +368,7 @@ $$
 \end{aligned}
 $$
 
-则称 $g(x)$ 为 $f(x)$ 在模 $h(x)$ 意义下的 **逆元（Inverse Element）**。当多项式欧几里得允许时，逆元存在当且仅当 $\gcd(f,g)=1$。
+则称 $g(x)$ 为 $f(x)$ 在模 $h(x)$ 意义下的 **逆元（inverse element）**。当多项式欧几里得允许时，逆元存在当且仅当 $\gcd(f,g)=1$。
 
 模多项式 $h(x)$ 意义下逆元总是唯一的。如果多项式 $f(x)$ 的次数也小于 $h(x)$，则得到的 $g(x)$ 与 $f(x)$ 互为逆元。
 

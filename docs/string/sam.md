@@ -309,7 +309,7 @@ void sam_extend(char c) {
 
 ### 额外信息
 
-观察 [实现](#_8) 中的结构体的每个变量。实际上，尽管 SAM 本身由 `next` 组成，但 SAM 构造算法中作为辅助变量的 `link` 和 `len` 在应用中常常比 `next` 重要，甚至可以抛开 `next` 单独使用。
+观察 [实现](#实现) 中的结构体的每个变量。实际上，尽管 SAM 本身由 `next` 组成，但 SAM 构造算法中作为辅助变量的 `link` 和 `len` 在应用中常常比 `next` 重要，甚至可以抛开 `next` 单独使用。
 
 设字符串的长度为 $n$，考虑 `extend` 操作中 `cur` 变量的值，这个节点对应的状态是<u>执行 `extend` 操作时的当前字符串</u>，即字符串的一个前缀，每个前缀有一个终点。这样得到的 $n$ 个节点，对应了 $n$ 个不同的 **终点**。设第 $i$ 个节点为 $v_i$，对应的是 $S_{1 \ldots i}$，终点是 $i$。姑且把这些节点称之为“终点节点”。
 
@@ -560,7 +560,7 @@ string lcs(const string &S, const string &T) {
       bestpos = i;
     }
   }
-  return t.substr(bestpos - best + 1, best);
+  return T.substr(bestpos - best + 1, best);
 }
 ```
 
