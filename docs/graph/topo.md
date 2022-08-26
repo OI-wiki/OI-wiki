@@ -83,32 +83,34 @@ bool toposort() {
 
 ## DFS 算法
 
+借助 DFS 完成拓扑排序：在访问完一个结点之后把它加到当前拓扑序的**首部**。
+
+当 `c[u] == 0` 时，表示从来没有被访问过（从来没有调用过 `dfs(u)`）；`c[u] == 1` 时，表示已经访问过，而且还递归访问过它的所有子孙（即调用过 `dfs(u)` 且已返回）；`c[u] == -1` 时表示正在访问（即递归调用 `dfs[u]` 正在栈帧中，尚未返回）。
+
 ```cpp
 // C++ Version
 vector<int> G[MAXN];  // vector 实现的邻接表
 int c[MAXN];          // 标志数组
-vector<int> topo;     // 拓扑排序后的节点
+int topo[MAXN], t;    // 拓扑排序后的节点
 
 bool dfs(int u) {
   c[u] = -1;
-  for (int v : G[u]) {
+  for (auto v : G[u]) {
     if (c[v] < 0)
       return false;
-    else if (!c[v])
-      if (!dfs(v)) return false;
+    else if (c[v] == 0 && !dfs(v))
+      return false;
   }
   c[u] = 1;
-  topo.push_back(u);
+  topo[--t] = u;
   return true;
 }
-
 bool toposort() {
-  topo.clear();
+  t = n;
   memset(c, 0, sizeof(c));
-  for (int u = 0; u < n; u++)
-    if (!c[u])
-      if (!dfs(u)) return false;
-  reverse(topo.begin(), topo.end());
+  for (int i = 1; i <= n; i++)
+    if (!c[i])
+      if (!dfs(i)) return false;
   return true;
 }
 ```
@@ -169,3 +171,4 @@ def toposort():
 1. 离散数学及其应用。ISBN:9787111555391
 2. <https://blog.csdn.net/dm_vincent/article/details/7714519>
 3. Topological sorting,<https://en.wikipedia.org/w/index.php?title=Topological_sorting&oldid=854351542>
+4. 《算法竞赛入门经典》
