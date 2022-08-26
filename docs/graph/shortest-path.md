@@ -292,7 +292,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
                         return False
                     # 在不经过负环的情况下，最短路至多经过 n - 1 条边
                     # 因此如果经过了多于 n 条边，一定说明经过了负环
-                    if vis[v] == True:
+                    if vis[v] == False:
                         q.append(v)
                         vis[v] = True
     ```
