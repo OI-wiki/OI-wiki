@@ -393,7 +393,7 @@ pair<Node *, Node *> split(Node *cur, int key) {
 并且，此操作的递归部分和按值分裂也非常相似，这里不赘述。
 
 ```cpp
-tuple < Node*, Node*, Node* > split_by_rk(Node *cur, int rk) {
+tuple<Node *, Node *, Node *> split_by_rk(Node *cur, int rk) {
   if (cur == nullptr) return {nullptr, nullptr, nullptr};
   int ls_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
   if (rk <= ls_siz) {
@@ -1059,27 +1059,27 @@ void print(Node* cur) {
         }
       }
     
-      tuple < Node*, Node*, Node* > split_by_rk(Node *cur, int rk) {
-    	if (cur == nullptr) return {nullptr, nullptr, nullptr};
-    	int ls_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
-    	if (rk <= ls_siz) {
-    	  Node *l, *mid, *r;
-    	  tie(l, mid, r) = split_by_rk(cur->ch[0], rk);
-    	  cur->ch[0] = r;
-    	  cur->upd_siz();
-    	  return {l, mid, cur};
-    	} else if (rk <= ls_siz + cur->cnt) {
-    	  Node *lt = cur->ch[0];
-    	  Node *rt = cur->ch[1];
-    	  cur->ch[0] = cur->ch[1] = nullptr;
-    	  return {lt, cur, rt};
-    	} else {
-    	  Node *l, *mid, *r;
-    	  tie(l, mid, r) = split_by_rk(cur->ch[1], rk - ls_siz - cur->cnt);
-    	  cur->ch[1] = l;
-    	  cur->upd_siz();
-    	  return {cur, mid, r};
-    	}
+      tuple<Node *, Node *, Node *> split_by_rk(Node *cur, int rk) {
+        if (cur == nullptr) return {nullptr, nullptr, nullptr};
+        int ls_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
+        if (rk <= ls_siz) {
+          Node *l, *mid, *r;
+          tie(l, mid, r) = split_by_rk(cur->ch[0], rk);
+          cur->ch[0] = r;
+          cur->upd_siz();
+          return {l, mid, cur};
+        } else if (rk <= ls_siz + cur->cnt) {
+          Node *lt = cur->ch[0];
+          Node *rt = cur->ch[1];
+          cur->ch[0] = cur->ch[1] = nullptr;
+          return {lt, cur, rt};
+        } else {
+          Node *l, *mid, *r;
+          tie(l, mid, r) = split_by_rk(cur->ch[1], rk - ls_siz - cur->cnt);
+          cur->ch[1] = l;
+          cur->upd_siz();
+          return {cur, mid, r};
+        }
       }
     
       Node *merge(Node *u, Node *v) {
@@ -1153,7 +1153,7 @@ void print(Node* cur) {
     
       int qnex(int val) {
         auto temp = split(root, val);
-    	int ret = qval_by_rank(temp.second, 1);
+        int ret = qval_by_rank(temp.second, 1);
         root = merge(temp.first, temp.second);
         return ret;
       }
