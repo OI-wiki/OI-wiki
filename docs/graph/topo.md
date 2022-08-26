@@ -25,9 +25,9 @@
 首先看来自 [Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm) 的伪代码
 
 ```text
-L← Empty list that will contain the sorted elements
+L ← Empty list that will contain the sorted elements
 S ← Set of all nodes with no incoming edges
-while S is non-empty do
+while S is not empty do
     remove a node n from S
     insert n into L
     for each node m with an edge e from n to m do
@@ -35,9 +35,9 @@ while S is non-empty do
         if m has no other incoming edges then
             insert m into S
 if graph has edges then
-    return error (graph has at least onecycle)
+    return error (graph has at least one cycle)
 else
-    return L (a topologically sortedorder)
+    return L (a topologically sorted order)
 ```
 
 代码的核心是维持一个入度为 0 的顶点的集合。
