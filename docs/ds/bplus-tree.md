@@ -2,7 +2,7 @@ author: Persdre
 
 ## B+ 树简介
 
-我们之前已经介绍过 [B 树](docs/ds/b-tree.md)。B+ 树是 B 树的一个升级，它比B树更适合实际应用中操作系统的文件索引和数据库索引。目前现代关系型数据库最广泛的支持索引结构就是 B+ 树。
+我们之前已经介绍过 [B 树](docs/ds/b-tree.md)。B+ 树是 B 树的一个升级，它比 B 树更适合实际应用中操作系统的文件索引和数据库索引。目前现代关系型数据库最广泛的支持索引结构就是 B+ 树。
 
 B+ 树是一种多叉排序树，即每个节点通常有多个孩子。一棵 B+ 树包含根节点、内部节点和叶子节点。根节点可能是一个叶子节点，也可能是一个包含两个或两个以上孩子节点的节点。
 
@@ -11,9 +11,9 @@ B+ 树的特点是能够保持数据稳定有序，其插入与修改拥有较�
 首先我们介绍一下一棵 $m$ 阶 B+ 树的特性。$m$ 表示这个树的每一个节点最多可以拥有的子节点个数。一棵 $m$ 阶的 B+ 树和 B 树的差异在于：
 
 1. 有 $n$ 棵子树的节点中含有 $n$ 个关键字（即每个关键字对应一棵子树）。
-2. 所有叶子节点中包含了全部关键字的信息， 及指向含这些关键字记录的指针，且叶子节点本身依关键字的大小自小而大顺序链接。
+2. 所有叶子节点中包含了全部关键字的信息，及指向含这些关键字记录的指针，且叶子节点本身依关键字的大小自小而大顺序链接。
 3. 所有的非叶子节点可以看成是索引部分，节点中仅含有其子树（根节点）中的最大（或最小）关键字。
-4. 除根节点外，其他所有节点中所含关键字的个数最少有 $\lceil \dfrac{m}{2} \rceil$ (注意：B 树中除根以外的所有非叶子节点至少有 $\lceil \dfrac{m}{2} \rceil$ 棵子树)。
+4. 除根节点外，其他所有节点中所含关键字的个数最少有 $\lceil \dfrac{m}{2} \rceil$（注意：B 树中除根以外的所有非叶子节点至少有 $\lceil \dfrac{m}{2} \rceil$ 棵子树）。
 
 同时，B+ 树为了方便范围查询，叶子节点之间还用指针串联起来。
 
@@ -23,11 +23,11 @@ B+ 树的特点是能够保持数据稳定有序，其插入与修改拥有较�
 
 ## B+ 树相比于 B 树的优势
 
-由于索引节点上只有索引而没有数据，所以索引节点上能存储比B树更多的索引，这样树的高度就会更矮。树的高度越矮，磁盘寻道的次数就会越少。
+由于索引节点上只有索引而没有数据，所以索引节点上能存储比 B 树更多的索引，这样树的高度就会更矮。树的高度越矮，磁盘寻道的次数就会越少。
 
 因为数据都集中在叶子节点，而所有叶子节点的高度相同，那么可以在叶子节点中增加前后指针，指向同一个父节点的相邻兄弟节点，这样可以更好地支持查询一个值的前驱或后继，使连续访问更容易实现。
 
-比如这样的 SQL 语句：`select * from tbl where t > 10` ，如果使用 B+ 树存储数据的话，可以首先定位到数据为 10 的节点，再沿着它的 `next` 指针一路找到所有在该叶子节点右边的叶子节点，返回这些节点包含的数据。
+比如这样的 SQL 语句：`select * from tbl where t > 10`，如果使用 B+ 树存储数据的话，可以首先定位到数据为 10 的节点，再沿着它的 `next` 指针一路找到所有在该叶子节点右边的叶子节点，返回这些节点包含的数据。
 
 而如果使用 B 树结构，由于数据既可以存储在内部节点也可以存储在叶子节点，连续访问的实现会更加繁琐（需要在树的内部结构中进行移动）。
 
@@ -67,15 +67,13 @@ B+ 树的查找过程和 B 树类似。假设需要查找的键值是 $k$，那�
 
 ```cpp
 T find(V key) {
-    int i = 0;
-    while(i < this.number){
-        if(key.compareTo((V) this.keys[i]) <= 0)
-            break;
-        i++;
-    }
-    if(this.number == i)
-        return null;
-    return this.childs[i].find(key);
+  int i = 0;
+  while (i < this.number) {
+    if (key.compareTo((V)this.keys[i]) <= 0) break;
+    i++;
+  }
+  if (this.number == i) return null;
+  return this.childs[i].find(key);
 }
 ```
 
@@ -88,8 +86,8 @@ B+ 树只在叶子节点的层级上就可以实现整棵树的遍历。从根�
 B+ 树的插入算法与 B 树的相近：
 
 1. 若为空树，创建一个叶子节点，然后将记录插入其中，此时这个叶子节点也是根节点，插入操作结束。
-2. 针对叶子类型节点：根据关键字找到叶子节点，向这个叶子节点插入记录。插入后，若当前节点关键字的个数小于 $m$，则插入结束。否则将这个叶子节点分裂成左右两个叶子节点，左叶子节点包含前 $m/2$ 个记录，右节点包含剩下的记录，将第 $m/2+1$ 个记录的关键字进位到父节点中（父节点一定是索引类型节点），进位到父节点的关键字左孩子指针向左节点,右孩子指针向右节点。将当前节点的指针指向父节点，然后执行第3步。
-3. 针对索引类型节点（内部节点）：若当前节点关键字的个数小于等于 $m-1$，则插入结束。否则，将这个索引类型节点分裂成两个索引节点，左索引节点包含前 $(m-1)/2$ 个 key，右节点包含 $m-(m-1)/2$ 个 key，将第 $m/2$ 个关键字进位到父节点中，进位到父节点的关键字左孩子指向左节点, 进位到父节点的关键字右孩子指向右节点。将当前节点的指针指向父节点，然后重复这一步。
+2. 针对叶子类型节点：根据关键字找到叶子节点，向这个叶子节点插入记录。插入后，若当前节点关键字的个数小于 $m$，则插入结束。否则将这个叶子节点分裂成左右两个叶子节点，左叶子节点包含前 $m/2$ 个记录，右节点包含剩下的记录，将第 $m/2+1$ 个记录的关键字进位到父节点中（父节点一定是索引类型节点），进位到父节点的关键字左孩子指针向左节点，右孩子指针向右节点。将当前节点的指针指向父节点，然后执行第 3 步。
+3. 针对索引类型节点（内部节点）：若当前节点关键字的个数小于等于 $m-1$，则插入结束。否则，将这个索引类型节点分裂成两个索引节点，左索引节点包含前 $(m-1)/2$ 个 key，右节点包含 $m-(m-1)/2$ 个 key，将第 $m/2$ 个关键字进位到父节点中，进位到父节点的关键字左孩子指向左节点，进位到父节点的关键字右孩子指向右节点。将当前节点的指针指向父节点，然后重复这一步。
 
 比如在下图的 B+ 树中，插入新的数据 10：
 
@@ -107,7 +105,7 @@ B+ 树的插入算法与 B 树的相近：
 
 ![](images/bplus-tree-10.png)
 
-$[2,3,4,5]$ 分裂成了 $[2,3]$ 和 $[4,5]$ ，因此需要在这两个节点之间新增一个索引值，这个值应该满足：
+$[2,3,4,5]$ 分裂成了 $[2,3]$ 和 $[4,5]$，因此需要在这两个节点之间新增一个索引值，这个值应该满足：
 
 1. 大于左子树的最大值；
 2. 小于等于右子树的最小值。
@@ -120,128 +118,124 @@ $[2,3,4,5]$ 分裂成了 $[2,3]$ 和 $[4,5]$ ，因此需要在这两个节点�
 
 ```cpp
 void BPTree::insert(int x) {
-    if (root == NULL) {
-        root = new Node;
-        root->key[0] = x;
-        root->IS_LEAF = true;
-        root->size = 1;
-        root->parent = NULL;
-    } else {
-        Node *cursor = root;
-        Node *parent;
+  if (root == NULL) {
+    root = new Node;
+    root->key[0] = x;
+    root->IS_LEAF = true;
+    root->size = 1;
+    root->parent = NULL;
+  } else {
+    Node* cursor = root;
+    Node* parent;
 
-        while (cursor->IS_LEAF == false) {
-            parent = cursor;
-            for (int i = 0; i < cursor->size; i++) {
-                if (x < cursor->key[i]) {
-                    cursor = cursor->ptr[i];
-                    break;
-                }
-
-                if (i == cursor->size - 1) {
-                    cursor = cursor->ptr[i + 1];
-                    break;
-                }
-            }
+    while (cursor->IS_LEAF == false) {
+      parent = cursor;
+      for (int i = 0; i < cursor->size; i++) {
+        if (x < cursor->key[i]) {
+          cursor = cursor->ptr[i];
+          break;
         }
-        if (cursor->size < MAX) {
-            insertVal(x,cursor);
-            cursor->parent = parent;
-            cursor->ptr[cursor->size] = cursor->ptr[cursor->size - 1];
-            cursor->ptr[cursor->size - 1] = NULL;
-        } else split(x, parent, cursor);
-    }
-}
 
-void BPTree::split(int x, Node * parent, Node *cursor) {
-    Node* LLeaf=new Node;
-    Node* RLeaf=new Node;
-    insertVal(x,cursor);
-    LLeaf->IS_LEAF=RLeaf->IS_LEAF=true;
-    LLeaf->size=(MAX+1)/2;
-    RLeaf->size=(MAX+1)-(MAX+1)/2;
-    for(int i=0;i<MAX+1;i++)LLeaf->ptr[i]=cursor->ptr[i];
-    LLeaf->ptr[LLeaf->size]= RLeaf;
-    RLeaf->ptr[RLeaf->size]= LLeaf->ptr[MAX];
-    LLeaf->ptr[MAX] = NULL;
-    for (int i = 0;i < LLeaf->size; i++) {
-        LLeaf->key[i]= cursor->key[i];
+        if (i == cursor->size - 1) {
+          cursor = cursor->ptr[i + 1];
+          break;
+        }
+      }
     }
-    for (int i = 0,j=LLeaf->size;i < RLeaf->size; i++,j++) {
-        RLeaf->key[i]= cursor->key[j];
-    }
-    if(cursor==root){
-        Node* newRoot=new Node;
-        newRoot->key[0] = RLeaf->key[0];
-        newRoot->ptr[0] = LLeaf;
-        newRoot->ptr[1] = RLeaf;
-        newRoot->IS_LEAF = false;
-        newRoot->size = 1;
-        root = newRoot;
-        LLeaf->parent=RLeaf->parent=newRoot;
-    }
-    else {insertInternal(RLeaf->key[0],parent,LLeaf,RLeaf);}
-
-}
-
-void BPTree::insertInternal(int x,Node* cursor,Node* LLeaf,Node* RRLeaf)
-{
-
     if (cursor->size < MAX) {
-       auto i=insertVal(x,cursor);
-        for (int j = cursor->size;j > i + 1; j--) {
-            cursor->ptr[j]= cursor->ptr[j - 1];
-            }
-        cursor->ptr[i]=LLeaf;
-        cursor->ptr[i + 1] = RRLeaf;
+      insertVal(x, cursor);
+      cursor->parent = parent;
+      cursor->ptr[cursor->size] = cursor->ptr[cursor->size - 1];
+      cursor->ptr[cursor->size - 1] = NULL;
+    } else
+      split(x, parent, cursor);
+  }
+}
+
+void BPTree::split(int x, Node* parent, Node* cursor) {
+  Node* LLeaf = new Node;
+  Node* RLeaf = new Node;
+  insertVal(x, cursor);
+  LLeaf->IS_LEAF = RLeaf->IS_LEAF = true;
+  LLeaf->size = (MAX + 1) / 2;
+  RLeaf->size = (MAX + 1) - (MAX + 1) / 2;
+  for (int i = 0; i < MAX + 1; i++) LLeaf->ptr[i] = cursor->ptr[i];
+  LLeaf->ptr[LLeaf->size] = RLeaf;
+  RLeaf->ptr[RLeaf->size] = LLeaf->ptr[MAX];
+  LLeaf->ptr[MAX] = NULL;
+  for (int i = 0; i < LLeaf->size; i++) {
+    LLeaf->key[i] = cursor->key[i];
+  }
+  for (int i = 0, j = LLeaf->size; i < RLeaf->size; i++, j++) {
+    RLeaf->key[i] = cursor->key[j];
+  }
+  if (cursor == root) {
+    Node* newRoot = new Node;
+    newRoot->key[0] = RLeaf->key[0];
+    newRoot->ptr[0] = LLeaf;
+    newRoot->ptr[1] = RLeaf;
+    newRoot->IS_LEAF = false;
+    newRoot->size = 1;
+    root = newRoot;
+    LLeaf->parent = RLeaf->parent = newRoot;
+  } else {
+    insertInternal(RLeaf->key[0], parent, LLeaf, RLeaf);
+  }
+}
+
+void BPTree::insertInternal(int x, Node* cursor, Node* LLeaf, Node* RRLeaf) {
+  if (cursor->size < MAX) {
+    auto i = insertVal(x, cursor);
+    for (int j = cursor->size; j > i + 1; j--) {
+      cursor->ptr[j] = cursor->ptr[j - 1];
     }
+    cursor->ptr[i] = LLeaf;
+    cursor->ptr[i + 1] = RRLeaf;
+  }
 
-    else {
-
-        Node* newLchild = new Node;
-        Node* newRchild = new Node;
-        Node* virtualPtr[MAX + 2];
-        for (int i = 0; i < MAX + 1; i++) {
-            virtualPtr[i] = cursor->ptr[i];
-        }
-        int i=insertVal(x,cursor);
-        for (int j = MAX + 2;j > i + 1; j--) {
-            virtualPtr[j]= virtualPtr[j - 1];
-        }
-        virtualPtr[i]=LLeaf;
-        virtualPtr[i + 1] = RRLeaf;
-        newLchild->IS_LEAF=newRchild->IS_LEAF = false;
-      	//这里和叶子节点有区别
-        newLchild->size= (MAX + 1) / 2;
-        newRchild->size= MAX - (MAX + 1) /2;
-        for (int i = 0;i < newLchild->size;i++) {
-
-            newLchild->key[i]= cursor->key[i];
-        }
-        for (int i = 0, j = newLchild->size+1;i < newRchild->size;i++, j++) {
-
-            newRchild->key[i]= cursor->key[j];
-        }
-        for (int i = 0;i < LLeaf->size + 1;i++) {
-            newLchild->ptr[i]= virtualPtr[i];
-        }
-        for (int i = 0, j = LLeaf->size + 1;i < RRLeaf->size + 1;i++, j++) {
-            newRchild->ptr[i]= virtualPtr[j];
-        }
-        if (cursor == root) {
-            Node* newRoot = new Node;
-            newRoot->key[0]= cursor->key[newLchild->size];
-            newRoot->ptr[0] = newLchild;
-            newRoot->ptr[1] = newRchild;
-            newRoot->IS_LEAF = false;
-            newRoot->size = 1;
-            root = newRoot;
-            newLchild->parent=newRchild->parent=newRoot;
-        }
-        else {
-            insertInternal(cursor->key[newLchild->size],cursor->parent,newLchild,newRchild);
-        }
+  else {
+    Node* newLchild = new Node;
+    Node* newRchild = new Node;
+    Node* virtualPtr[MAX + 2];
+    for (int i = 0; i < MAX + 1; i++) {
+      virtualPtr[i] = cursor->ptr[i];
     }
+    int i = insertVal(x, cursor);
+    for (int j = MAX + 2; j > i + 1; j--) {
+      virtualPtr[j] = virtualPtr[j - 1];
+    }
+    virtualPtr[i] = LLeaf;
+    virtualPtr[i + 1] = RRLeaf;
+    newLchild->IS_LEAF = newRchild->IS_LEAF = false;
+    //这里和叶子节点有区别
+    newLchild->size = (MAX + 1) / 2;
+    newRchild->size = MAX - (MAX + 1) / 2;
+    for (int i = 0; i < newLchild->size; i++) {
+      newLchild->key[i] = cursor->key[i];
+    }
+    for (int i = 0, j = newLchild->size + 1; i < newRchild->size; i++, j++) {
+      newRchild->key[i] = cursor->key[j];
+    }
+    for (int i = 0; i < LLeaf->size + 1; i++) {
+      newLchild->ptr[i] = virtualPtr[i];
+    }
+    for (int i = 0, j = LLeaf->size + 1; i < RRLeaf->size + 1; i++, j++) {
+      newRchild->ptr[i] = virtualPtr[j];
+    }
+    if (cursor == root) {
+      Node* newRoot = new Node;
+      newRoot->key[0] = cursor->key[newLchild->size];
+      newRoot->ptr[0] = newLchild;
+      newRoot->ptr[1] = newRchild;
+      newRoot->IS_LEAF = false;
+      newRoot->size = 1;
+      root = newRoot;
+      newLchild->parent = newRchild->parent = newRoot;
+    } else {
+      insertInternal(cursor->key[newLchild->size], cursor->parent, newLchild,
+                     newRchild);
+    }
+  }
 }
 
 ```
@@ -263,7 +257,6 @@ B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关�
 可以参考 [B 树](docs/ds/b-tree.md) 中的删除章节。
 
 ???+note "参考代码"
-
     ```c++
     // Deletion operation on a B+ tree in C++
     #include <climits>
@@ -727,7 +720,7 @@ B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关�
 
 ## 参考资料
 
-- [B+ tree wikipedia](https://en.wikipedia.org/wiki/B%2B_tree)  
-- [B 树、B+ 树索引算法原理（下）](https://www.codedump.info/post/20200615-btree-2/) 
-- [B+ 树详解+代码实现（插入篇）](https://www.cnblogs.com/JayL-zxl/p/14304178.html)
+- [B+ tree wikipedia](https://en.wikipedia.org/wiki/B%2B_tree)
+- [B 树、B+ 树索引算法原理（下）](https://www.codedump.info/post/20200615-btree-2/)
+- [B+ 树详解 + 代码实现（插入篇）](https://www.cnblogs.com/JayL-zxl/p/14304178.html)
 - [Deletion from a B+ Tree](https://www.programiz.com/dsa/deletion-from-a-b-plus-tree)
