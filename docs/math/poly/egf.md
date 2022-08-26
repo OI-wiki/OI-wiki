@@ -1,4 +1,4 @@
-author: sshwy
+author: sshwy, ComeIntoCalm
 
 序列 $a$ 的指数生成函数（exponential generating function，EGF）定义为形式幂级数：
 
