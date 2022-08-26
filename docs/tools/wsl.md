@@ -221,7 +221,7 @@ AMD Ryzen 5 1400 Quad-Core Processor
 2.  下载 Linux 内核更新包
 
     - [x64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi) 的内核更新包。
-    - [arm64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi) 的内核更新包。
+    - [ARM64/AArch64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi) 的内核更新包。
 
 3.  设置分发版版本
 
