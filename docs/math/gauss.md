@@ -438,6 +438,7 @@ $$
 
 ```cpp
 std::bitset<1010> matrix[2010];  // matrix[1~n]：增广矩阵，0 位置为常数
+
 std::vector<bool> GaussElimination(
     int n, int m)  // n 为未知数个数，m 为方程个数，返回方程组的解（多解 /
                    // 无解返回一个空的 vector）

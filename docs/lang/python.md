@@ -15,7 +15,7 @@ Python 是一门已在世界上广泛使用的解释型语言。它提供了高�
 ### 学习 Python 的注意事项
 
 - 目前主要使用的 Python 版本是 Python 3.7 及以上的版本，Python 2 和 Python 3.6 及以前的 Python 3 已经 [不被支持](https://devguide.python.org/versions/#unsupported-versions)，但仍被一些老旧系统与代码所使用。本文将 **介绍较新版本的 Python**。如果遇到 Python 2 代码，可以尝试 [`2to3`](https://docs.python.org/zh-cn/3/library/2to3.html) 程序将 Python 2 代码转换为 Python 3 代码。
-- Python 的设计理念和语法结构 **与一些其他语言的差异较大** ，隐藏了许多底层细节，所以呈现出实用而优雅的风格。
+- Python 的设计理念和语法结构 **与一些其他语言的差异较大**，隐藏了许多底层细节，所以呈现出实用而优雅的风格。
 - Python 是高度动态的解释型语言，因此其 **程序运行速度相对较慢**，尤其在使用其内置的 `for` 循环语句时。在使用 Python 时，应尽量使用 `filter`、`map` 等内置函数，或使用 [列表生成](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) 语法的手段来提高程序性能。
 
 ## 环境搭建
@@ -64,14 +64,13 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 `pip` 是首选的安装第三方库的程序。自 Python 3.4 版本起，它被默认包含在 Python 二进制安装程序中。
 
-`pip` 中的第三方库主要存储在 [Python 包索引（PyPI）](https://pypi.org/) 上，用户也可以指定其它第三方库的托管平台。使用方法可参照 [pypi 镜像使用帮助 - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/)、[PyPI 镜像源使用帮助 — 中国科学技术大学镜像站](http://mirrors.ustc.edu.cn/help/pypi.html) 等使用帮助。你可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上获取更多 PyPI 镜像源。
+`pip` 中的第三方库主要存储在 [Python 包索引（PyPI）](https://pypi.org/) 上，用户也可以指定其它第三方库的托管平台。使用方法可参照 [pypi 镜像使用帮助 - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/)、[PyPI 镜像源使用帮助—中国科学技术大学镜像站](http://mirrors.ustc.edu.cn/help/pypi.html) 等使用帮助。你可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上获取更多 PyPI 镜像源。
 
 ## 基本语法
 
 Python 的语法简洁而易懂，也有许多官方和第三方文档与教程。你可以在 [Python 文档](https://docs.python.org/zh-cn/3/) 和 [Python Wiki](https://wiki.python.org/moin/) 等网页上了解更多关于 Python 的教程。
 
 ### 注释
-
 
 加入注释并不会对代码的运行产生影响，但加入注释可以使代码更加易懂易用。
 
@@ -191,13 +190,14 @@ Python 也支持对字符串进行切片获取字符串的子串。切片的格�
 'OI entered China in 1984. '
 ```
 
-Python 的字符串类型包含 Unicode 字符，这意味着任何字符串都会存储为 Unicode。[^ref2] 在 Python 中，可以对一个 Unicode 字符使用内置函数 `ord()` 将其转换为对应的 Unicode 编码，逆向的转换使用内置函数 `chr()`。
+Python 的字符串类型包含 Unicode 字符，这意味着任何字符串都会存储为 Unicode。[^ref2]在 Python 中，可以对一个 Unicode 字符使用内置函数 `ord()` 将其转换为对应的 Unicode 编码，逆向的转换使用内置函数 `chr()`。
 
 如果想把数转换为对应的字符串，可使用 Python 内置函数 `str()`，也可以使用 f-string 实现；反之，可以使用 `int()` 和 `float()` 两个函数。
 
 Python 的字符串类型还有 [许多方便的功能](https://docs.python.org/zh-cn/3/library/stdtypes.html#text-sequence-type-str)。由于本文篇幅有限，这里不一一介绍。
 
 #### 数据类型判断
+
 对于一个变量，可以使用 `type(object)` 返回变量的类型，例如 `type(8)` 和 `type('a')` 的值分别为 `<class 'int'>` 和 `<class 'str'>`。
 
 ### 输出和输入
@@ -241,7 +241,7 @@ print(a + b)
 
 #### `list` 类型
 
-Python 支持多种复合数据类型，可将不同值组合在一起。最常用的 `list` ，类型是用方括号标注、逗号分隔的一组值。例如，`[1, 2, 3]` 和 `['a','b','c']` 都是列表。
+Python 支持多种复合数据类型，可将不同值组合在一起。最常用的 `list`，类型是用方括号标注、逗号分隔的一组值。例如，`[1, 2, 3]` 和 `['a','b','c']` 都是列表。
 
 列表可以是空列表（即 `[]`），也可以包含不同类型的元素。列表支持索引和切片访问某一或某些元素。
 
@@ -464,25 +464,24 @@ def fib(n):
 
 在这里介绍一些写算法可能用得到的内置库，具体用法可以自行搜索或者阅读 [官方文档](https://docs.python.org/3/library/index.html)。
 
-| 库名 | 用途 |
-| ---- | ---- |
-| [`array`](https://docs.python.org/3/library/array.html) | 定长数组 |
-| [`argparse`](https://docs.python.org/3/library/argparse.html) | 命令行参数处理 |
-| [`bisect`](https://docs.python.org/3/library/bisect.html) | 二分查找 |
+| 库名                                                                  | 用途             |
+| ------------------------------------------------------------------- | -------------- |
+| [`array`](https://docs.python.org/3/library/array.html)             | 定长数组           |
+| [`argparse`](https://docs.python.org/3/library/argparse.html)       | 命令行参数处理        |
+| [`bisect`](https://docs.python.org/3/library/bisect.html)           | 二分查找           |
 | [`collections`](https://docs.python.org/3/library/collections.html) | 有序字典、双端队列等数据结构 |
-| [`fractions`](https://docs.python.org/3/library/fractions.html) | 有理数 |
-| [`heapq`](https://docs.python.org/3/library/heapq.html) | 基于堆的优先级队列 |
-| [`io`](https://docs.python.org/3/library/io.html) | 文件流、内存流 |
-| [`itertools`](https://docs.python.org/3/library/itertools.html) | 迭代器 |
-| [`math`](https://docs.python.org/3/library/math.html) | 数学函数 |
-| [`os.path`](https://docs.python.org/3/library/os.html) | 系统路径等 |
-| [`random`](https://docs.python.org/3/library/random.html) | 随机数 |
-| [`re`](https://docs.python.org/3/library/re.html) | 正则表达式 |
-| [`struct`](https://docs.python.org/3/library/struct.html) | 转换结构体和二进制数据 |
-| [`sys`](https://docs.python.org/3/library/sys.html) | 系统信息 |
+| [`fractions`](https://docs.python.org/3/library/fractions.html)     | 有理数            |
+| [`heapq`](https://docs.python.org/3/library/heapq.html)             | 基于堆的优先级队列      |
+| [`io`](https://docs.python.org/3/library/io.html)                   | 文件流、内存流        |
+| [`itertools`](https://docs.python.org/3/library/itertools.html)     | 迭代器            |
+| [`math`](https://docs.python.org/3/library/math.html)               | 数学函数           |
+| [`os.path`](https://docs.python.org/3/library/os.html)              | 系统路径等          |
+| [`random`](https://docs.python.org/3/library/random.html)           | 随机数            |
+| [`re`](https://docs.python.org/3/library/re.html)                   | 正则表达式          |
+| [`struct`](https://docs.python.org/3/library/struct.html)           | 转换结构体和二进制数据    |
+| [`sys`](https://docs.python.org/3/library/sys.html)                 | 系统信息           |
 
 ## 从例题对比 C++ 与 Python
-
 
 ??? note "[例题 洛谷 P4779 【模板】单源最短路径（标准版）](https://www.luogu.com.cn/problem/P4779)"
     给定一个 $n(1 \leq n \leq 10^5)$ 个点、$m(1 \leq m \leq 2\times 10^5)$ 条有向边的带非负权图，请你计算从 $s$ 出发，到每个点的距离。数据保证能从 $s$ 出发到任意点。
@@ -770,6 +769,6 @@ if __name__ == '__main__':
 
 ## 参考资料和注释
 
-[^ref1]: [2. Python 解释器 — Python 3 文档](https://docs.python.org/zh-cn/3/tutorial/interpreter.html#id1)
+[^ref1]: [2. Python 解释器—Python 3 文档](https://docs.python.org/zh-cn/3/tutorial/interpreter.html#id1)
 
-[^ref2]: [Unicode 指南 — Python 3 文档](https://docs.python.org/zh-cn/3/howto/unicode.html#the-string-type)
+[^ref2]: [Unicode 指南—Python 3 文档](https://docs.python.org/zh-cn/3/howto/unicode.html#the-string-type)

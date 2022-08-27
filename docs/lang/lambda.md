@@ -163,25 +163,28 @@ int main() {
 
 struct AbstractCallable {
   AbstractCallable(int v) : v_(v) {}
+
   virtual ~AbstractCallable() = default;
-  virtual int operator()(int) const = 0; // 纯虚函数需要继承后实现才可以实例化
+  virtual int operator()(int) const = 0;  // 纯虚函数需要继承后实现才可以实例化
   int v_;
 };
 
 AbstractCallable *get_CallableObject() {
   struct Callable : public AbstractCallable {
     Callable() : AbstractCallable(10) {}
+
     int operator()(int k) const override {
       std::cout << v_ + k << std::endl;
       return v_ - 10;
     }
   };
+
   return new Callable;
 }
 
 int main() {
   auto t = get_CallableObject();
-  std::cout << t->operator()(5); // 或者等价的 `(*t)(5);`
+  std::cout << t->operator()(5);  // 或者等价的 `(*t)(5);`
   delete t;
   return 0;
 }
@@ -189,13 +192,13 @@ int main() {
 
 在写 Lambda 表达式时，我们几乎都可以将其等价的映射为上面这种形式。
 
-| Lambda 表达式相关语法 | 类的语法 |
-| :- | :- |
-| capture 捕获子句 | 构造函数 |
-| - | 析构函数 |
-| 使用 `std::function` 包装传递 | 基类指针/引用传递 |
-| 拷贝多个 Lambda 的函数对象 | 自定义的拷贝函数 |
-| `mutable` | `operator()` 函数是否为 `const` |
+| Lambda 表达式相关语法          | 类的语法                       |
+| :---------------------- | :------------------------- |
+| capture 捕获子句            | 构造函数                       |
+| -                       | 析构函数                       |
+| 使用 `std::function` 包装传递 | 基类指针/引用传递                  |
+| 拷贝多个 Lambda 的函数对象       | 自定义的拷贝函数                   |
+| `mutable`               | `operator()` 函数是否为 `const` |
 
 在 Lambda 的捕获子句中分为引用捕获和按值捕获（暂不考虑比较特殊的捕获 `this` 等），而在类的构造函数中我们可以更精细的控制这一点，另外自定义的析构函数的存在也方便我们更好的扩展，缺点是不够「匿名」，因为仍需要类名。
 
