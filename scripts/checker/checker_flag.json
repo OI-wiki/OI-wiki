@@ -1,0 +1,20 @@
+{
+	"fileNameInvalid": true,
+	"fileNameNotLower": true,
+	"fileNameLine": true,
+	"imgRefNameInvalid": true,
+	"imgRefFromWeb": true,
+	"imgFormatNotRecommended": true,
+	"h1Used": true,
+	"tooDeepHeading": true,
+	"emptysetUsed": true,
+	"doubleEqualSigns": true,
+	"tooManySquareBrackets": true,
+	"threeDotsUsage": true,
+	"useSplitAndEqnarray": true,
+	"unequalSignIllegal": true,
+	"useChoose": true,
+	"wordUsageIllegal": true,
+	"OIWIKINotBold": true,
+	"deleteLineUsed": true
+}

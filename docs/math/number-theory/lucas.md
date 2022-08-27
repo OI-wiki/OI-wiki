@@ -33,7 +33,7 @@ $$
 
 ### Lucas 定理的证明
 
-考虑 $\displaystyle\binom{p}{n} \bmod p$ 的取值，注意到 $\displaystyle\binom{p}{n} = \frac{p!}{n!(p-n)!}$，分子的质因子分解中 $p$ 次项恰为 $1$，因此只有当 $n = 0$ 或 $n = p$ 的时候 $n!(p-n)!$ 的质因子分解中含有 $p$，因此 $\displaystyle\binom{p}{n} \bmod p = [n = 0 \vee n = p]$。进而我们可以得出
+考虑 $\displaystyle\binom{p}{n} \bmod p$ 的取值，注意到 $\displaystyle\binom{p}{n} = \frac{p!}{n!(p-n)!}$，分子的质因子分解中 $p$ 的次数恰好为 $1$，因此只有当 $n = 0$ 或 $n = p$ 的时候 $n!(p-n)!$ 的质因子分解中含有 $p$，因此 $\displaystyle\binom{p}{n} \bmod p = [n = 0 \vee n = p]$。进而我们可以得出
 
 $$
 \begin{align}
@@ -104,23 +104,23 @@ Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是�
 
 要求计算二项式系数 $\binom{n}{m}\bmod M$，其中 $M$ 可能为合数。
 
-考虑利用 [中国剩余定理](./crt.md) 合并答案，这种情况下我们只需求出 $\binom{n}{m}\bmod p^q$ 的值即可（其中 $p$ 为素数且 $q$ 为正整数）。
+考虑利用 [中国剩余定理](./crt.md) 合并答案，这种情况下我们只需求出 $\binom{n}{m}\bmod p^\alpha$ 的值即可（其中 $p$ 为素数且 $\alpha$ 为正整数）。
 
-根据 **唯一分解定理**，将 $p$ 质因数分解：
+根据 **唯一分解定理**，将 $M$ 质因数分解：
 
 $$
-p={q_1}^{\alpha_1}\cdot{q_2}^{\alpha_2}\cdots{q_r}^{\alpha_r}=\prod_{i=1}^{r}{q_i}^{\alpha_i}
+M={p_1}^{\alpha_1}\cdot{p_2}^{\alpha_2}\cdots{p_r}^{\alpha_r}=\prod_{i=1}^{r}{p_i}^{\alpha_i}
 $$
 
-对于任意 $i,j$，有 ${q_i}^{\alpha_i}$ 与 ${q_j}^{\alpha_j}$ 互质，所以可以构造如下 $r$ 个同余方程：
+对于任意 $i,j$，有 ${p_i}^{\alpha_i}$ 与 ${p_j}^{\alpha_j}$ 互质，所以可以构造如下 $r$ 个同余方程：
 
 $$
 \left\{
 \begin{aligned}
-a_1\equiv \displaystyle\binom{n}{m}&\pmod {{q_1}^{\alpha_1}}\\
-a_2\equiv \displaystyle\binom{n}{m}&\pmod {{q_2}^{\alpha_2}}\\
+a_1\equiv \displaystyle\binom{n}{m}&\pmod {{p_1}^{\alpha_1}}\\
+a_2\equiv \displaystyle\binom{n}{m}&\pmod {{p_2}^{\alpha_2}}\\
 &\cdots\\
-a_r\equiv \displaystyle\binom{n}{m}&\pmod {{q_r}^{\alpha_r}}\\
+a_r\equiv \displaystyle\binom{n}{m}&\pmod {{p_r}^{\alpha_r}}\\
 \end{aligned}
 \right.
 $$
@@ -129,11 +129,11 @@ $$
 
 #### 第二部分：移除分子分母中的素数
 
-根据同余的定义，$\displaystyle a_i=\binom{n}{m}\bmod {q_i}^{\alpha_i}$，问题转化成，求 $\displaystyle \binom{n}{m} \bmod q^k$（$q$ 为质数）的值。
+根据同余的定义，$\displaystyle a_i=\binom{n}{m}\bmod {p_i}^{\alpha_i}$，问题转化成，求 $\displaystyle \binom{n}{m} \bmod p^\alpha$（$p$ 为质数）的值。
 
-根据组合数定义 $\displaystyle \binom{n}{m} = \frac{n!}{m! (n-m)!}$，$\displaystyle \binom{n}{m} \bmod q^k = \frac{n!}{m! (n-m)!} \bmod q^k$。
+根据组合数定义 $\displaystyle \binom{n}{m} = \frac{n!}{m! (n-m)!}$，$\displaystyle \binom{n}{m} \bmod p^\alpha = \frac{n!}{m! (n-m)!} \bmod p^\alpha$。
 
-由于式子是在模 $q^k$ 意义下，所以分母要算乘法逆元。
+由于式子是在模 $p^\alpha$ 意义下，所以分母要算乘法逆元。
 
 同余方程 $ax \equiv 1 \pmod p$（即乘法逆元）**有解** 的充要条件为 $\gcd(a,p)=1$（裴蜀定理），
 
@@ -142,10 +142,10 @@ $$
 所以将原式转化为：
 
 $$
-\frac{\frac{n!}{q^x}}{\frac{m!}{q^y}\frac{(n-m)!}{q^z}}q^{x-y-z} \bmod q^k
+\frac{\frac{n!}{p^x}}{\frac{m!}{p^y}\frac{(n-m)!}{p^z}}p^{x-y-z} \bmod p^\alpha
 $$
 
-$x$ 表示 $n!$ 中包含多少个 $q$ 因子，$y, z$ 同理。
+$x$ 表示 $n!$ 中包含多少个 $p$ 因子，$y, z$ 同理。
 
 #### 第三部分：Wilson 定理的推论
 

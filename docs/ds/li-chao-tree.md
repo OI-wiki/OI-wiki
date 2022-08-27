@@ -35,19 +35,33 @@
 如果新线段 $f$ 更优，则将 $f$ 和 $g$ 交换。那么现在考虑在中点处 $f$ 不如 $g$ 优的情况：
 
 1. 若在左端点处 $f$ 更优，那么 $f$ 和 $g$ 必然在左半区间中产生了交点，$f$ 只有在左区间才可能优于 $g$，递归到左儿子中进行下传；
-2. 若在右端点处 $f$ 更优，那么 $f$ 和 $g$ 必然在右半区间中产生了交点，$f$ 只有在右区间才可能优于 $g$，递归到右儿子中进行插入；
+2. 若在右端点处 $f$ 更优，那么 $f$ 和 $g$ 必然在右半区间中产生了交点，$f$ 只有在右区间才可能优于 $g$，递归到右儿子中进行下传；
 3. 若在左右端点处 $g$ 都更优，那么 $f$ 不可能成为答案，不需要继续下传。
+
+除了这两种情况之外，还有一种情况是 $f$ 和 $g$ 刚好交于中点，在程序实现时可以归入中点处 $f$ 不如 $g$ 优的情况，结果会往 $f$ 更优的一个端点进行递归下传。
 
 最后将 $g$ 作为当前区间的懒标记。
 
 下传标记：
 
 ```cpp
+const double eps = 1e-9;
+
+int cmp(double x, double y) {  // 因为用到了浮点数，所以会有精度误差
+  if (x - y > eps) return 1;
+  if (y - x > eps) return -1;
+  return 0;
+}
+
+//...
+
 void upd(int root, int cl, int cr, int u) {  // 对线段完全覆盖到的区间进行修改
   int &v = s[root], mid = (cl + cr) >> 1;
-  if (calc(u, mid) > calc(v, mid)) swap(u, v);
-  if (calc(u, cl) > calc(v, cl)) upd(root << 1, cl, mid, u);
-  if (calc(u, cr) > calc(v, cr)) upd(root << 1 | 1, mid + 1, cr, u);
+  if (cmp(calc(u, mid), calc(v, mid)) == 1) swap(u, v);
+  int bl = cmp(calc(u, cl), calc(v, cl)), br = cmp(calc(u, cr), calc(v, cr));
+  if (bl == 1 || (!bl && u < v))  // 在此题中记得判线段编号
+    upd(root << 1, cl, mid, u);
+  if (br == 1 || (!br && u < v)) upd(root << 1 | 1, mid + 1, cr, u);
   // 上面两个 if 的条件最多只有一个成立，这保证了李超树的时间复杂度
 }
 ```

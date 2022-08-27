@@ -86,7 +86,7 @@ alias l='ls -CF'
 alias wiki-upd='export LC_ALL=C.UTF-8 && cd /OI-wiki && git pull origin master'
 alias wiki-theme='export LC_ALL=C.UTF-8 && cd /OI-wiki && ./scripts/pre-build/install-theme.sh'
 alias wiki-bld='export LC_ALL=C.UTF-8 && cd /OI-wiki && pipenv run mkdocs build -v'
-alias wiki-svr='export LC_ALL=C.UTF-8 && cd /OI-wiki && pipenv run mkdocs serve -v'
+alias wiki-svr='export LC_ALL=C.UTF-8 && cd /OI-wiki && pipenv run mkdocs serve -v -a ${LISTEN_IP}:${LISTEN_PORT}'
 alias wiki-bld-math='export LC_ALL=C.UTF-8 && cd /OI-wiki && pipenv run mkdocs build -v && env NODE_OPTIONS="--max_old_space_size=3072" yarn ts-node-esm ./scripts/post-build/math/render_math.ts'
 alias wiki-o='export LC_ALL=C.UTF-8 && cd /OI-wiki && yarn remark ./docs -o --silent'
 

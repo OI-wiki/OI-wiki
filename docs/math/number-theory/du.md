@@ -14,7 +14,9 @@ $\sigma(x)=\sum_{i \mid n} i$
 
 $\varphi(x)=\sum_{i=1}^x 1[\gcd(x,i)=1]$
 
-$\mu(x)=\begin{cases}1&\ x=1 \\(-1)^k& \ \prod_{i=1}^k q_i=1\\0 &\ \max\{q_i\}>1\end{cases}$
+设 $x = \prod \limits_{i=1} ^ {k} p_i ^ {\alpha_i}$，$p_i$ 为质数，
+
+$\mu(x)=\begin{cases}1&\ x=1 \\(-1)^k& \ \forall \alpha_i =  1 \\0 &\ \max\{\alpha_i\}>1\end{cases}$
 
 积性函数有如下性质：
 
@@ -110,7 +112,7 @@ $=\sum_{d=1}^n \mu(d) {\lfloor \frac n d \rfloor}^2$
 
 #### 使用杜教筛求解
 
-求 $S(i)=\sum_{i=1}^n\varphi(i)$.
+求 $S(n)=\sum_{i=1}^n\varphi(i)$.
 
 同样的，$\varphi\ast 1=ID$
 
