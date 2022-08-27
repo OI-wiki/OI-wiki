@@ -188,7 +188,7 @@ $$
 
 前缀和：
 
-- [洛谷 U53525 前缀和（例题）](https://www.luogu.com.cn/problem/U53525)
+- [洛谷 B3612 【深进1.例1】求区间和](https://www.luogu.com.cn/problem/B3612)
 - [洛谷 U69096 前缀和的逆](https://www.luogu.com.cn/problem/U69096)
 - [AT2412 最大の和](https://vjudge.net/problem/AtCoder-joi2007ho_a#author=wuyudi)
 - [「USACO16JAN」子共七 Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131)
