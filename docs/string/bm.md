@@ -173,6 +173,7 @@ $$
 ### 最初的匹配算法
 
 #### 解释
+
 现在看这样一个利用 $delta_1$ 和 $delta_2$ 进行字符串匹配的算法：
 
 $$
@@ -914,18 +915,19 @@ B5S 基本想法是：
     pub struct BytesBloomFilter {
         mask: u64,
     }
-   
+    ```
+
     impl BytesBloomFilter {
         pub fn new() -> Self {
             SimpleBloomFilter {
                 mask: 0,
             }
         }
-    
+
         fn insert(&mut self, byte: &u8) {
             (self.mask) |= 1u64 << (byte & 63);
         }
-    
+
         fn contains(&self, char: &u8) -> bool {
             (self.mask & (1u64 << (byte & 63))) != 0
         }

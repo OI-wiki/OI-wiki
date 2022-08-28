@@ -331,6 +331,7 @@ int n, m, idx, first[MS], siz[MS];
 int L[MS], R[MS], U[MS], D[MS];
 int col[MS], row[MS];
 ```
+
 ### 过程
 
 #### remove 操作
@@ -362,17 +363,18 @@ int col[MS], row[MS];
 `remove` 函数的代码实现如下：
 
 ???+note "实现"
-  ```cpp
-  void remove(const int &c) {
-    int i, j;
-    L[R[c]] = L[c], R[L[c]] = R[c];
-    // 顺着这一列从上往下遍历
-    for (i = D[c]; i != c; i = D[i])
-      // 顺着这一行从左往右遍历
-      for (j = R[i]; j != i; j = R[j])
-        U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
-  }
-  ```
+
+```cpp
+void remove(const int &c) {
+  int i, j;
+  L[R[c]] = L[c], R[L[c]] = R[c];
+  // 顺着这一列从上往下遍历
+  for (i = D[c]; i != c; i = D[i])
+    // 顺着这一行从左往右遍历
+    for (j = R[i]; j != i; j = R[j])
+      U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
+}
+```
 
 #### recover 操作
 
@@ -385,13 +387,14 @@ int col[MS], row[MS];
 `recover(c)` 的代码实现如下：
 
 ???+note "实现"
-  ```cpp
-  void recover(const int &c) {
-    int i, j;
-    IT(i, U, c) IT(j, L, i) U[D[j]] = D[U[j]] = j, ++siz[col[j]];
-    L[R[c]] = R[L[c]] = c;
-  }
-  ```
+
+```cpp
+void recover(const int &c) {
+  int i, j;
+  IT(i, U, c) IT(j, L, i) U[D[j]] = D[U[j]] = j, ++siz[col[j]];
+  L[R[c]] = R[L[c]] = c;
+}
+```
 
 #### build 操作
 
@@ -410,18 +413,19 @@ int col[MS], row[MS];
 `build(r, c)` 的代码实现如下：
 
 ???+note "实现"
-  ```cpp
-  void build(const int &r, const int &c) {
-    n = r, m = c;
-    for (int i = 0; i <= c; ++i) {
-      L[i] = i - 1, R[i] = i + 1;
-      U[i] = D[i] = i;
-    }
-    L[0] = c, R[c] = 0, idx = c;
-    memset(first, 0, sizeof(first));
-    memset(siz, 0, sizeof(siz));
+
+```cpp
+void build(const int &r, const int &c) {
+  n = r, m = c;
+  for (int i = 0; i <= c; ++i) {
+    L[i] = i - 1, R[i] = i + 1;
+    U[i] = D[i] = i;
   }
-  ```
+  L[0] = c, R[c] = 0, idx = c;
+  memset(first, 0, sizeof(first));
+  memset(siz, 0, sizeof(siz));
+}
+```
 
 #### insert 操作
 
@@ -476,18 +480,19 @@ int col[MS], row[MS];
 `insert(r, c)` 的代码实现如下：
 
 ???+note "实现"
-  ```cpp
-  void insert(const int &r, const int &c) {
-    row[++idx] = r, col[idx] = c, ++siz[c];
-    U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
-    if (!first[r])
-      first[r] = L[idx] = R[idx] = idx;
-    else {
-      L[idx] = first[r], R[idx] = R[first[r]];
-      L[R[first[r]]] = idx, R[first[r]] = idx;
-    }
+
+```cpp
+void insert(const int &r, const int &c) {
+  row[++idx] = r, col[idx] = c, ++siz[c];
+  U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
+  if (!first[r])
+    first[r] = L[idx] = R[idx] = idx;
+  else {
+    L[idx] = first[r], R[idx] = R[first[r]];
+    L[R[first[r]]] = idx, R[first[r]] = idx;
   }
-  ```
+}
+```
 
 #### dance 操作
 
@@ -502,25 +507,26 @@ int col[MS], row[MS];
 `dance()` 的代码实现如下：
 
 ???+note "实现"
-  ```cpp
-  bool dance(int dep) {
-    int i, j, c = R[0];
-    if (!R[0]) {
-      ans = dep;
-      return 1;
-    }
-    IT(i, R, 0) if (siz[i] < siz[c]) c = i;
-    remove(c);
-    IT(i, D, c) {
-      stk[dep] = row[i];
-      IT(j, R, i) remove(col[j]);
-      if (dance(dep + 1)) return 1;
-      IT(j, L, i) recover(col[j]);
-    }
-    recover(c);
-    return 0;
+
+```cpp
+bool dance(int dep) {
+  int i, j, c = R[0];
+  if (!R[0]) {
+    ans = dep;
+    return 1;
   }
-  ```
+  IT(i, R, 0) if (siz[i] < siz[c]) c = i;
+  remove(c);
+  IT(i, D, c) {
+    stk[dep] = row[i];
+    IT(j, R, i) remove(col[j]);
+    if (dance(dep + 1)) return 1;
+    IT(j, L, i) recover(col[j]);
+  }
+  recover(c);
+  return 0;
+}
+```
 
 其中 `stk[]` 用来记录答案。
 

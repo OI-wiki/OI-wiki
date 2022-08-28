@@ -177,35 +177,36 @@ $$
 而且该算法的实现出人意料的短且直观：
 
 ???+note "实现"
-  ```cpp
-  // C++ Version
-  vector<int> prefix_function(string s) {
-    int n = (int)s.length();
-    vector<int> pi(n);
-    for (int i = 1; i < n; i++) {
-      int j = pi[i - 1];
-      while (j > 0 && s[i] != s[j]) j = pi[j - 1];
-      if (s[i] == s[j]) j++;
-      pi[i] = j;
-    }
-    return pi;
-  }
-  ```
 
-  ```python
-  # Python Version
-  def prefix_function(s):
-      n = len(s)
-      pi = [0] * n
-      for i in range(1, n):
-          j = pi[i - 1]
-          while j > 0 and s[i] != s[j]:
-              j = pi[j - 1]
-          if s[i] == s[j]:
-              j += 1
-          pi[i] = j
-      return pi
-  ```
+```cpp
+// C++ Version
+vector<int> prefix_function(string s) {
+  int n = (int)s.length();
+  vector<int> pi(n);
+  for (int i = 1; i < n; i++) {
+    int j = pi[i - 1];
+    while (j > 0 && s[i] != s[j]) j = pi[j - 1];
+    if (s[i] == s[j]) j++;
+    pi[i] = j;
+  }
+  return pi;
+}
+```
+
+```python
+# Python Version
+def prefix_function(s):
+    n = len(s)
+    pi = [0] * n
+    for i in range(1, n):
+        j = pi[i - 1]
+        while j > 0 and s[i] != s[j]:
+            j = pi[j - 1]
+        if s[i] == s[j]:
+            j += 1
+        pi[i] = j
+    return pi
+```
 
 这是一个 **在线** 算法，即其当数据到达时处理它——举例来说，你可以一个字符一个字符的读取字符串，立即处理它们以计算出每个字符的前缀函数值。该算法仍然需要存储字符串本身以及先前计算过的前缀函数值，但如果我们已经预先知道该字符串前缀函数的最大可能取值 $M$，那么我们仅需要存储该字符串的前 $M + 1$ 个字符以及对应的前缀函数值。
 
@@ -303,22 +304,23 @@ for i in range(0, n + 1):
 假定 $n$ 可被 $k$ 整除。那么字符串可被划分为长度为 $k$ 的若干块。根据前缀函数的定义，该字符串长度为 $n - k$ 的前缀等于其后缀。但是这意味着最后一个块同倒数第二个块相等，并且倒数第二个块同倒数第三个块相等，等等。作为其结果，所有块都是相等的，因此我们可以将字符串 $s$ 压缩至长度 $k$。
 
 ???+note "证明"
-  诚然，我们仍需证明该值为最优解。实际上，如果有一个比 $k$ 更小的压缩表示，那么前缀函数的最后一个值 $\pi[n - 1]$ 必定比 $n - k$ 要大。因此 $k$ 就是答案。
-  
-  现在假设 $n$ 不可以被 $k$ 整除，我们将通过反证法证明这意味着答案为 $n$[^1]。假设其最小压缩表示 $r$ 的长度为 $p$（$p$ 整除 $n$），字符串 $s$ 被划分为 $n / p \ge 2$ 块。那么前缀函数的最后一个值 $\pi[n - 1]$ 必定大于 $n - p$（如果等于则 $n$ 可被 $k$ 整除），也即其所表示的后缀将部分的覆盖第一个块。现在考虑字符串的第二个块。该块有两种解释：第一种为 $r_0 r_1 \dots r_{p - 1}$，另一种为 $r_{p - k} r_{p - k + 1} \dots r_{p - 1} r_0 r_1 \dots r_{p - k - 1}$。由于两种解释对应同一个字符串，因此可得到 $p$ 个方程组成的方程组，该方程组可简写为 $r_{(i + k) \bmod p} = r_{i \bmod p}$，其中 $\cdot \bmod p$ 表示模 $p$ 意义下的最小非负剩余。
-  
-  $$
-  \begin{gathered}
-  \overbrace{r_0 ~ r_1 ~ r_2 ~ r_3 ~ r_4 ~ r_5}^p ~ \overbrace{r_0 ~ r_1 ~ r_2 ~ r_3 ~ r_4 r_5}^p \\
-  r_0 ~ r_1 ~ r_2 ~ r_3 ~ \underbrace{\overbrace{r_0 ~ r_1 ~ r_2 ~ r_3 ~ r_4 ~ r_5}^p ~ r_0 ~ r_1}_{\pi[11] = 8}
-  \end{gathered}
-  $$
-  
-  根据扩展欧几里得算法我们可以得到一组 $x$ 和 $y$ 使得 $xk + yp = \gcd(k, p)$。通过与等式 $pk - kp = 0$ 适当叠加我们可以得到一组 $x' > 0$ 和 $y' < 0$ 使得 $x'k + y'p = \gcd(k, p)$。这意味着通过不断应用前述方程组中的方程我们可以得到新的方程组 $r_{(i + \gcd(k, p)) \bmod p} = r_{i \bmod p}$。
-  
-  由于 $\gcd(k, p)$ 整除 $p$，这意味着 $\gcd(k, p)$ 是 $r$ 的一个周期。又因为 $\pi[n - 1] > n - p$，故有 $n - \pi[n - 1] = k < p$，所以 $\gcd(k, p)$ 是一个比 $p$ 更小的 $r$ 的周期。因此字符串 $s$ 有一个长度为 $\gcd(k, p) < p$ 的压缩表示，同 $p$ 的最小性矛盾。
-  
-  综上所述，不存在一个长度小于 $k$ 的压缩表示，因此答案为 $k$。
+
+诚然，我们仍需证明该值为最优解。实际上，如果有一个比 $k$ 更小的压缩表示，那么前缀函数的最后一个值 $\pi[n - 1]$ 必定比 $n - k$ 要大。因此 $k$ 就是答案。
+
+现在假设 $n$ 不可以被 $k$ 整除，我们将通过反证法证明这意味着答案为 $n$[^1]。假设其最小压缩表示 $r$ 的长度为 $p$（$p$ 整除 $n$），字符串 $s$ 被划分为 $n / p \ge 2$ 块。那么前缀函数的最后一个值 $\pi[n - 1]$ 必定大于 $n - p$（如果等于则 $n$ 可被 $k$ 整除），也即其所表示的后缀将部分的覆盖第一个块。现在考虑字符串的第二个块。该块有两种解释：第一种为 $r_0 r_1 \dots r_{p - 1}$，另一种为 $r_{p - k} r_{p - k + 1} \dots r_{p - 1} r_0 r_1 \dots r_{p - k - 1}$。由于两种解释对应同一个字符串，因此可得到 $p$ 个方程组成的方程组，该方程组可简写为 $r_{(i + k) \bmod p} = r_{i \bmod p}$，其中 $\cdot \bmod p$ 表示模 $p$ 意义下的最小非负剩余。
+
+$$
+\begin{gathered}
+\overbrace{r_0 ~ r_1 ~ r_2 ~ r_3 ~ r_4 ~ r_5}^p ~ \overbrace{r_0 ~ r_1 ~ r_2 ~ r_3 ~ r_4 r_5}^p \\
+r_0 ~ r_1 ~ r_2 ~ r_3 ~ \underbrace{\overbrace{r_0 ~ r_1 ~ r_2 ~ r_3 ~ r_4 ~ r_5}^p ~ r_0 ~ r_1}_{\pi[11] = 8}
+\end{gathered}
+$$
+
+根据扩展欧几里得算法我们可以得到一组 $x$ 和 $y$ 使得 $xk + yp = \gcd(k, p)$。通过与等式 $pk - kp = 0$ 适当叠加我们可以得到一组 $x' > 0$ 和 $y' < 0$ 使得 $x'k + y'p = \gcd(k, p)$。这意味着通过不断应用前述方程组中的方程我们可以得到新的方程组 $r_{(i + \gcd(k, p)) \bmod p} = r_{i \bmod p}$。
+
+由于 $\gcd(k, p)$ 整除 $p$，这意味着 $\gcd(k, p)$ 是 $r$ 的一个周期。又因为 $\pi[n - 1] > n - p$，故有 $n - \pi[n - 1] = k < p$，所以 $\gcd(k, p)$ 是一个比 $p$ 更小的 $r$ 的周期。因此字符串 $s$ 有一个长度为 $\gcd(k, p) < p$ 的压缩表示，同 $p$ 的最小性矛盾。
+
+综上所述，不存在一个长度小于 $k$ 的压缩表示，因此答案为 $k$。
 
 [^1]: 在俄文版及英文版中该部分证明均疑似有误。本文章中的该部分证明由作者自行添加。
 
@@ -337,42 +339,44 @@ $$
 因此，即使没有字符串 $t$，我们同样可以应用构造转移表的算法构造一个转移表 $( \text { old } \pi , c ) \rightarrow \text { new } _ { - } \pi$：
 
 ???+note "实现"
-  ```cpp
-  void compute_automaton(string s, vector<vector<int>>& aut) {
-    s += '#';
-    int n = s.size();
-    vector<int> pi = prefix_function(s);
-    aut.assign(n, vector<int>(26));
-    for (int i = 0; i < n; i++) {
-      for (int c = 0; c < 26; c++) {
-        int j = i;
-        while (j > 0 && 'a' + c != s[j]) j = pi[j - 1];
-        if ('a' + c == s[j]) j++;
-        aut[i][c] = j;
-      }
+
+```cpp
+void compute_automaton(string s, vector<vector<int>>& aut) {
+  s += '#';
+  int n = s.size();
+  vector<int> pi = prefix_function(s);
+  aut.assign(n, vector<int>(26));
+  for (int i = 0; i < n; i++) {
+    for (int c = 0; c < 26; c++) {
+      int j = i;
+      while (j > 0 && 'a' + c != s[j]) j = pi[j - 1];
+      if ('a' + c == s[j]) j++;
+      aut[i][c] = j;
     }
   }
-  ```
+}
+```
 
 然而在这种形式下，对于小写字母表，算法的时间复杂度为 $O(|\Sigma|n^2)$。注意到我们可以应用动态规划来利用表中已计算过的部分。只要我们从值 $j$ 变化到 $\pi[j - 1]$，那么我们实际上在说转移 $(j, c)$ 所到达的状态同转移 $(\pi[j - 1], c)$ 一样，但该答案我们之前已经精确计算过了。
 
 ???+note "实现"
-  ```cpp
-  void compute_automaton(string s, vector<vector<int>>& aut) {
-    s += '#';
-    int n = s.size();
-    vector<int> pi = prefix_function(s);
-    aut.assign(n, vector<int>(26));
-    for (int i = 0; i < n; i++) {
-      for (int c = 0; c < 26; c++) {
-        if (i > 0 && 'a' + c != s[i])
-          aut[i][c] = aut[pi[i - 1]][c];
-        else
-          aut[i][c] = i + ('a' + c == s[i]);
-      }
+
+```cpp
+void compute_automaton(string s, vector<vector<int>>& aut) {
+  s += '#';
+  int n = s.size();
+  vector<int> pi = prefix_function(s);
+  aut.assign(n, vector<int>(26));
+  for (int i = 0; i < n; i++) {
+    for (int c = 0; c < 26; c++) {
+      if (i > 0 && 'a' + c != s[i])
+        aut[i][c] = aut[pi[i - 1]][c];
+      else
+        aut[i][c] = i + ('a' + c == s[i]);
     }
   }
-  ```
+}
+```
 
 最终我们可在 $O(|\Sigma|n)$ 的时间复杂度内构造该自动机。
 

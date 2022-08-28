@@ -14,22 +14,23 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面。�
 当然是三重循环，参考代码如下：
 
 ???+note "实现"
-  ```cpp
-  // C++ Version
-  for (int i = 1; i <= n; ++i)
-    for (int j = i; j <= n; ++j)
-      for (int k = j; k <= n; ++k)
-        if (i + j + k == n) printf("%d = %d + %d + %d\n", n, i, j, k);
-  ```
-  
-  ```python
-  # Python Version
-  for i in range(1, n + 1):
-      for j in range(i, n + 1):
-          for k in range(j, n + 1):
-              if i + j + k == n:
-                  print("%d = %d + %d + %d" % (n, i, j, k))
-  ```
+
+```cpp
+// C++ Version
+for (int i = 1; i <= n; ++i)
+  for (int j = i; j <= n; ++j)
+    for (int k = j; k <= n; ++k)
+      if (i + j + k == n) printf("%d = %d + %d + %d\n", n, i, j, k);
+```
+
+```python
+# Python Version
+for i in range(1, n + 1):
+    for j in range(i, n + 1):
+        for k in range(j, n + 1):
+            if i + j + k == n:
+                print("%d = %d + %d + %d" % (n, i, j, k))
+```
 
 那如果是分解成四个整数呢？再加一重循环？
 
@@ -50,44 +51,45 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面。�
 代码如下：
 
 ???+note "实现"
-  ```cpp
-  // C++ Version
-  int m, arr[103];  // arr 用于记录方案
-  
-  void dfs(int n, int i, int a) {
-    if (n == 0) {
-      for (int j = 1; j <= i - 1; ++j) printf("%d ", arr[j]);
-      printf("\n");
-    }
-    if (i <= m) {
-      for (int j = a; j <= n; ++j) {
-        arr[i] = j;
-        dfs(n - j, i + 1, j);  // 请仔细思考该行含义。
-      }
+
+```cpp
+// C++ Version
+int m, arr[103];  // arr 用于记录方案
+
+void dfs(int n, int i, int a) {
+  if (n == 0) {
+    for (int j = 1; j <= i - 1; ++j) printf("%d ", arr[j]);
+    printf("\n");
+  }
+  if (i <= m) {
+    for (int j = a; j <= n; ++j) {
+      arr[i] = j;
+      dfs(n - j, i + 1, j);  // 请仔细思考该行含义。
     }
   }
-  
-  // 主函数
-  scanf("%d%d", &n, &m);
-  dfs(n, 1, 1);
-  ```
-  
-  ```python
-  # Python Version
-  arr = [0] * 103  # arr 用于记录方案
-  
-  def dfs(n, i, a):
-      if n == 0:
-          print(arr[1:i])
-      if i <= m:
-          for j in range(a, n + 1):
-              arr[i] = j
-              dfs(n - j, i + 1, j)  # 请仔细思考该行含义。
-  
-  # 主函数
-  n, m = map(int, input().split())
-  dfs(n, 1, 1)
-  ```
+}
+
+// 主函数
+scanf("%d%d", &n, &m);
+dfs(n, 1, 1);
+```
+
+```python
+# Python Version
+arr = [0] * 103  # arr 用于记录方案
+
+def dfs(n, i, a):
+    if n == 0:
+        print(arr[1:i])
+    if i <= m:
+        for j in range(a, n + 1):
+            arr[i] = j
+            dfs(n - j, i + 1, j)  # 请仔细思考该行含义。
+
+# 主函数
+n, m = map(int, input().split())
+dfs(n, 1, 1)
+```
 
 ## 例题
 
