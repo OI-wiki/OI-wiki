@@ -42,7 +42,7 @@
 /math/basis /math/linear-algebra/basis
 /math/char-poly /math/linear-algebra/char-poly
 /math/gauss /math/linear-algebra/gauss
-/math/index /math/linear-algebra/index
+/math/linear-algebra-index /math/linear-algebra/index
 /math/martix /math/linear-algebra/martix
 /math/vector /math/linear-algebra/vector
 /math/gen-func/intro /math/poly/intro
