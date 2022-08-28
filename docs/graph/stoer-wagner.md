@@ -58,7 +58,7 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
 
 （若 $(i, j) \notin E'$，则 $d(i, j) = 0$）。
 
-容易知道所有点加入 $A$ 的顺序是固定的，令 $\operaorname{ord}(i)$ 表示第 $i$ 个加入 $A$ 的点，$t = \operaorname{ord}(|V'|)$；$\operatorname{pos}(v)$ 表示 $v$ 被加入 $A$ 后 $|A|$ 的大小，即 $v$ 被加入的顺序。
+容易知道所有点加入 $A$ 的顺序是固定的，令 $\operatorname{ord}(i)$ 表示第 $i$ 个加入 $A$ 的点，$t = \operatorname{ord}(|V'|)$；$\operatorname{pos}(v)$ 表示 $v$ 被加入 $A$ 后 $|A|$ 的大小，即 $v$ 被加入的顺序。
 
 则对任意点 $s$，一个 $s$ 到 $t$ 的割即为 $w(t)$。
 
