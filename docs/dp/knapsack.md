@@ -387,6 +387,7 @@ g[0] = 1;  // 什么都不装是一种方案
 
 ???+note "实现"
 
+
 ```cpp
 for (int i = 0; i < N; i++) {
   for (int j = V; j >= v[i]; j--) {

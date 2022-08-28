@@ -303,6 +303,7 @@ $height[rk[i]]\ge height[rk[i-1]]-1$
 
 ???+note "证明"
 
+
 当 $height[rk[i-1]]\le1$ 时，上式显然成立（右边小于等于 $0$）。
 
 当 $height[rk[i-1]]>1$ 时：

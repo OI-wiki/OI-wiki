@@ -15,6 +15,7 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面。�
 
 ???+note "实现"
 
+
 ```cpp
 // C++ Version
 for (int i = 1; i <= n; ++i)
@@ -51,6 +52,7 @@ for i in range(1, n + 1):
 代码如下：
 
 ???+note "实现"
+
 
 ```cpp
 // C++ Version

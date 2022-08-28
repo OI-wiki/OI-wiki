@@ -81,6 +81,7 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 ???+note "实现"
 
+
 ```cpp
 // C++ Version
 void build() {

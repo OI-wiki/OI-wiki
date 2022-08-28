@@ -24,6 +24,7 @@ Z 函数的朴素算法复杂度为 $O(n^2)$：
 
 ???+note "实现"
 
+
 ```cpp
 // C++ Version
 vector<int> z_function_trivial(string s) {

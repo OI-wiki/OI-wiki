@@ -364,6 +364,7 @@ int col[MS], row[MS];
 
 ???+note "实现"
 
+
 ```cpp
 void remove(const int &c) {
   int i, j;
@@ -387,6 +388,7 @@ void remove(const int &c) {
 `recover(c)` 的代码实现如下：
 
 ???+note "实现"
+
 
 ```cpp
 void recover(const int &c) {
@@ -413,6 +415,7 @@ void recover(const int &c) {
 `build(r, c)` 的代码实现如下：
 
 ???+note "实现"
+
 
 ```cpp
 void build(const int &r, const int &c) {
@@ -481,6 +484,7 @@ void build(const int &r, const int &c) {
 
 ???+note "实现"
 
+
 ```cpp
 void insert(const int &r, const int &c) {
   row[++idx] = r, col[idx] = c, ++siz[c];
@@ -507,6 +511,7 @@ void insert(const int &r, const int &c) {
 `dance()` 的代码实现如下：
 
 ???+note "实现"
+
 
 ```cpp
 bool dance(int dep) {

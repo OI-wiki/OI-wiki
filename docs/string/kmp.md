@@ -178,6 +178,7 @@ $$
 
 ???+note "实现"
 
+
 ```cpp
 // C++ Version
 vector<int> prefix_function(string s) {
@@ -305,6 +306,7 @@ for i in range(0, n + 1):
 
 ???+note "证明"
 
+
 诚然，我们仍需证明该值为最优解。实际上，如果有一个比 $k$ 更小的压缩表示，那么前缀函数的最后一个值 $\pi[n - 1]$ 必定比 $n - k$ 要大。因此 $k$ 就是答案。
 
 现在假设 $n$ 不可以被 $k$ 整除，我们将通过反证法证明这意味着答案为 $n$[^1]。假设其最小压缩表示 $r$ 的长度为 $p$（$p$ 整除 $n$），字符串 $s$ 被划分为 $n / p \ge 2$ 块。那么前缀函数的最后一个值 $\pi[n - 1]$ 必定大于 $n - p$（如果等于则 $n$ 可被 $k$ 整除），也即其所表示的后缀将部分的覆盖第一个块。现在考虑字符串的第二个块。该块有两种解释：第一种为 $r_0 r_1 \dots r_{p - 1}$，另一种为 $r_{p - k} r_{p - k + 1} \dots r_{p - 1} r_0 r_1 \dots r_{p - k - 1}$。由于两种解释对应同一个字符串，因此可得到 $p$ 个方程组成的方程组，该方程组可简写为 $r_{(i + k) \bmod p} = r_{i \bmod p}$，其中 $\cdot \bmod p$ 表示模 $p$ 意义下的最小非负剩余。
@@ -340,6 +342,7 @@ $$
 
 ???+note "实现"
 
+
 ```cpp
 void compute_automaton(string s, vector<vector<int>>& aut) {
   s += '#';
@@ -360,6 +363,7 @@ void compute_automaton(string s, vector<vector<int>>& aut) {
 然而在这种形式下，对于小写字母表，算法的时间复杂度为 $O(|\Sigma|n^2)$。注意到我们可以应用动态规划来利用表中已计算过的部分。只要我们从值 $j$ 变化到 $\pi[j - 1]$，那么我们实际上在说转移 $(j, c)$ 所到达的状态同转移 $(\pi[j - 1], c)$ 一样，但该答案我们之前已经精确计算过了。
 
 ???+note "实现"
+
 
 ```cpp
 void compute_automaton(string s, vector<vector<int>>& aut) {

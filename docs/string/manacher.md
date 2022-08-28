@@ -42,6 +42,7 @@ $$
 
 ???+note "实现"
 
+
 ```cpp
 // C++ Version
 vector<int> d1(n), d2(n);
