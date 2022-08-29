@@ -141,6 +141,6 @@ $$
 
 ## 参考资料与注释
 
-- [https://en.wikipedia.org/wiki/Rotating_calipers](https://en.wikipedia.org/wiki/Rotating_calipers)
+- <https://en.wikipedia.org/wiki/Rotating_calipers>
 
-- [http://www-cgrl.cs.mcgill.ca/~godfried/research/calipers.html](http://www-cgrl.cs.mcgill.ca/~godfried/research/calipers.html)
+- <http://www-cgrl.cs.mcgill.ca/~godfried/research/calipers.html>
