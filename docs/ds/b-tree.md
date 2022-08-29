@@ -127,7 +127,7 @@ void BTree::insert(int k) {
 
       // 新的根节点更新为 s
       root = s;
-    } else  //根节点未满，调用insertNonFull()函数进行插入
+    } else  //根节点未满，调用 insertNonFull() 函数进行插入
       root->insertNonFull(k);
   }
 }
