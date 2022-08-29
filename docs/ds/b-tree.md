@@ -59,21 +59,19 @@ B 树的中序遍历与二叉搜索树的中序遍历也很相似，从最左边
 遍历的代码如下：
 
 ```cpp
-BTreeNode *BTreeNode::search(int k) {
-  void BTreeNode::traverse() {
-    // 有 n 个键和 n+1 个孩子
-    // 遍历 n 个键和前 n 个孩子
-    int i;
-    for (i = 0; i < n; i++) {
-      // 如果当前节点不是叶子节点, 在打印 key[i] 之前,
-      // 先遍历以 C[i] 为根的子树.
-      if (leaf == false) C[i]->traverse();
-      cout << " " << keys[i];
-    }
-
-    // 打印以最后一个孩子为根的子树
+void BTreeNode::traverse() {
+  // 有 n 个键和 n+1 个孩子
+  // 遍历 n 个键和前 n 个孩子
+  int i;
+  for (i = 0; i < n; i++) {
+    // 如果当前节点不是叶子节点, 在打印 key[i] 之前,
+    // 先遍历以 C[i] 为根的子树.
     if (leaf == false) C[i]->traverse();
+    cout << " " << keys[i];
   }
+
+  // 打印以最后一个孩子为根的子树
+  if (leaf == false) C[i]->traverse();
 }
 ```
 
