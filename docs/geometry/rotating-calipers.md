@@ -130,3 +130,17 @@ $$
             t3 = dot(sta[i + 1], sta[i + 1], sta[i])
             ans = min(ans, t1 * t2 / t3)
     ```
+
+## 练习
+
+- [POJ 3608. Bridge Across Islands](https://vjudge.net/problem/POJ-3608)
+
+- [2011 ACM-ICPC World Finals, Problem K. Trash Removal](https://vjudge.net/problem/Gym-101175K)
+
+- [ICPC WF Moscow Invitational Contest - Online Mirror, Problem F. Framing Pictures](https://codeforces.com/contest/1578/problem/F)
+
+## 参考资料与注释
+
+- [https://en.wikipedia.org/wiki/Rotating_calipers](https://en.wikipedia.org/wiki/Rotating_calipers)
+
+- [http://www-cgrl.cs.mcgill.ca/~godfried/research/calipers.html](http://www-cgrl.cs.mcgill.ca/~godfried/research/calipers.html)
