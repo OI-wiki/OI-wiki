@@ -173,6 +173,7 @@ $$
 ### 最初的匹配算法
 
 #### 解释
+
 现在看这样一个利用 $delta_1$ 和 $delta_2$ 进行字符串匹配的算法：
 
 $$
@@ -914,9 +915,9 @@ B5S 基本想法是：
     pub struct BytesBloomFilter {
         mask: u64,
     }
-   
-    impl BytesBloomFilter {
-        pub fn new() -> Self {
+    ```
+    
+    impl BytesBloomFilter {pub fn new() -> Self {
             SimpleBloomFilter {
                 mask: 0,
             }
@@ -929,7 +930,11 @@ B5S 基本想法是：
         fn contains(&self, char: &u8) -> bool {
             (self.mask & (1u64 << (byte & 63))) != 0
         }
+    
     }
+    
+    ```
+    
     ```
 
 Bloom 过滤器设设计通过牺牲准确率（实际还有运行时间）来极大地节省存储空间的 `Set` 类型的数据结构，它的特点是会将集合中不存在的项误判为存在（False Positives，简称 FP），但不会把集合中存在的项判断为不存在（False Negatives，简称 FN），因此使用它可能会因为 FP 而没有得到最大的字符跳转，但不会因为 FN 而跳过本应匹配的字符。

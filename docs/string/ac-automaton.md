@@ -80,40 +80,42 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 3. `fail[u]`：结点 $u$ 的 fail 指针。
 
 ???+note "实现"
-  ```cpp
-  // C++ Version
-  void build() {
-    for (int i = 0; i < 26; i++)
-      if (tr[0][i]) q.push(tr[0][i]);
-    while (q.size()) {
-      int u = q.front();
-      q.pop();
-      for (int i = 0; i < 26; i++) {
-        if (tr[u][i])
-          fail[tr[u][i]] = tr[fail[u]][i], q.push(tr[u][i]);
-        else
-          tr[u][i] = tr[fail[u]][i];
-      }
+
+
+```cpp
+// C++ Version
+void build() {
+  for (int i = 0; i < 26; i++)
+    if (tr[0][i]) q.push(tr[0][i]);
+  while (q.size()) {
+    int u = q.front();
+    q.pop();
+    for (int i = 0; i < 26; i++) {
+      if (tr[u][i])
+        fail[tr[u][i]] = tr[fail[u]][i], q.push(tr[u][i]);
+      else
+        tr[u][i] = tr[fail[u]][i];
     }
   }
-  ```
-  
-  ```python
-  # Python Version
-  def build():
-      for i in range(0, 26):
-          if tr[0][i] == 1:
-              q.append(tr[0][i])
-      while len(q) > 0:
-          u = q[0]
-          q.pop()
-          for i in range(0, 26):
-              if tr[u][i] == 1:
-                  fail[tr[u][i]] = tr[fail[u]][i]
-                  q.append(tr[u][i])
-              else:
-                  tr[u][i] = tr[fail[u]][i]
-  ```
+}
+```
+
+```python
+# Python Version
+def build():
+    for i in range(0, 26):
+        if tr[0][i] == 1:
+            q.append(tr[0][i])
+    while len(q) > 0:
+        u = q[0]
+        q.pop()
+        for i in range(0, 26):
+            if tr[u][i] == 1:
+                fail[tr[u][i]] = tr[fail[u]][i]
+                q.append(tr[u][i])
+            else:
+                tr[u][i] = tr[fail[u]][i]
+```
 
 ### 解释
 

@@ -153,13 +153,13 @@
 ### 实现
 
 ???+note "参考代码"
-
     ```c++
     #include <cstdio>  //code by Alphnia
     #include <cstring>
     #include <iostream>
     using namespace std;
     int x, y, dp[15][3], p[50];
+    
     inline int pre() {
       memset(dp, 0, sizeof(dp));
       dp[0][0] = 1;
@@ -169,6 +169,7 @@
         dp[i][2] = dp[i - 1][2] * 10 + dp[i - 1][1] + dp[i - 1][0];
       }
     }
+    
     inline int cal(int x) {
       int cnt = 0, ans = 0, tmp = x;
       while (x) {
@@ -190,6 +191,7 @@
       }
       return tmp - ans;
     }
+    
     int main() {
       pre();
       while (~scanf("%d%d", &x, &y)) {
