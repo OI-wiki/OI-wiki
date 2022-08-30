@@ -289,8 +289,8 @@ def pre():
     phi[1] = 1
     for i in range(2, 5000001):
         if is_prime[i]:
-            prime[cnt] = i
             cnt = cnt + 1
+            prime[cnt] = i
             phi[i] = i - 1
         j = 1
         while j <= cnt and i * prime[j] <= 5000000:
@@ -341,8 +341,8 @@ def pre():
     for i in range(2, int(1e7 + 1)):
         if v[i] == 0:
             mu[i] = -1
-            p[tot] = i
             tot = tot + 1
+            p[tot] = i
         j = 1
         while j <= tot and i <= 1e7 // p[j]:
             v[i * p[j]] = 1
@@ -394,7 +394,7 @@ def pre():
     d[1] = 1
     for i in range(2, n + 1):
         if v[i] == 0:
-            v[i] = 1; p[tot] = i; tot = tot + 1; d[i] = 2; num[i] = 1
+            v[i] = 1; tot = tot + 1; p[tot] = i; d[i] = 2; num[i] = 1
         j = 1
         while j <= tot and i <= n // p[j]:
             v[p[j] * i] = 1
@@ -439,7 +439,7 @@ def pre():
     g[1] = f[1] = 1
     for i in range(2, n + 1):
         if v[i] == 0:
-            v[i] = 1; p[tot] = i; tot = tot + 1; g[i] = i + 1; f[i] = i + 1
+            v[i] = 1; tot = tot + 1; p[tot] = i; g[i] = i + 1; f[i] = i + 1
         j = 1
         while j <= tot and i <= n // p[j]:
             v[p[j] * i] = 1
@@ -454,7 +454,7 @@ def pre():
 
 ## 一般的积性函数
 
-假如一个 [积性函数](/math/number-theory/basic/#_10)  $f$ 满足：对于任意质数 $p$ 和正整数 $k$，可以在 $O(1)$ 时间内计算 $f(p^k)$，那么可以在 $O(n)$ 时间内筛出 $f(1),f(2),\dots,f(n)$ 的值。
+假如一个 [积性函数](./basic.md#积性函数)  $f$ 满足：对于任意质数 $p$ 和正整数 $k$，可以在 $O(1)$ 时间内计算 $f(p^k)$，那么可以在 $O(n)$ 时间内筛出 $f(1),f(2),\dots,f(n)$ 的值。
 
 设合数 $n$ 的质因子分解是 $\prod_{i=1}^k p_i^{\alpha_i}$，其中 $p_1<p_2<\dots<p_k$ 为质数，我们在线性筛中记录 $g_n=p_1^{\alpha_1}$，假如 $n$ 被 $x\cdot p$ 筛掉（$p$ 是质数），那么 $g$ 满足如下递推式：
 
