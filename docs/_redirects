@@ -39,6 +39,7 @@
 /topic/cmd /tools/cmd
 /topic/problemsetting /contest/problemsetting
 /misc/io /contest/io
+/misc/complexity /basic/complexity
 /math/gen-func/intro /math/poly/intro
 /math/gen-func/symbolic-method /math/poly/symbolic-method
 /math/gen-func/ogf /math/poly/ogf
@@ -51,6 +52,7 @@
 /math/bernoulli /math/combinatorics/bernoulli
 /math/cantor /math/combinatorics/cantor
 /math/inclusion-exclusion-principle /math/combinatorics/inclusion-exclusion-principle
+/math/fibonacci /math/combinatorics/fibonacci
 /math/drawer-principle /math/combinatorics/drawer-principle
 /math/eulerian /math/combinatorics/eulerian
 /math/prime /math/number-theory/prime
@@ -77,8 +79,8 @@
 /math/pollard-rho /math/number-theory/pollard-rho
 /math/continued-fraction /math/number-theory/continued-fraction
 /math/pell-equation /math/number-theory/pell-equation
+/math/stern-brocot /math/number-theory/stern-brocot
 /math/quick-pow /math/binary-exponentiation
-/misc/complexity /basic/complexity
 /math/sign /math/notation
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut
@@ -91,4 +93,3 @@
 /topic/graph-matching/bigraph-weight-match /graph/graph-matching/bigraph-weight-match
 /topic/graph-matching/general-weight-match /graph/graph-matching/general-weight-match
 /lang/variable /lang/var
-/math/stern-brocot /math/number-theory/stern-brocot
