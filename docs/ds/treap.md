@@ -393,33 +393,32 @@ pair<Node *, Node *> split(Node *cur, int key) {
 并且，此操作的递归部分和按值分裂也非常相似，这里不赘述。
 
 ```cpp
-#define _3 second.second
-#define _2 second.first
-
-pair<Node *, pair<Node *, Node *>> split_by_rk(Node *cur, int rk) {
-  if (cur == nullptr) return {nullptr, {nullptr, nullptr}};
+tuple<Node *, Node *, Node *> split_by_rk(Node *cur, int rk) {
+  if (cur == nullptr) return {nullptr, nullptr, nullptr};
   int ls_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
   if (rk <= ls_siz) {
     // 排名和 cur 相等的节点在左子树
-    auto temp = split_by_rk(cur->ch[0], rk);
-    cur->ch[0] = temp._3;  // 返回的第三个 treap 中的排名都大于 rk
-    // cur 的左子树被设成 temp._3 后，整个 cur 中节点的排名都大于 rk
+    Node *l, *mid, *r;
+    tie(l, mid, r) = split_by_rk(cur->ch[0], rk);
+    cur->ch[0] = r;  // 返回的第三个 treap 中的排名都大于 rk
+    // cur 的左子树被设成 r 后，整个 cur 中节点的排名都大于 rk
     cur->upd_siz();
-    return {temp.first, {temp._2, cur}};
+    return {l, mid, cur};
   } else if (rk <= ls_siz + cur->cnt) {
     // 和 cur 相等的就是当前节点
     Node *lt = cur->ch[0];
     Node *rt = cur->ch[1];
     cur->ch[0] = cur->ch[1] = nullptr;
     // 分裂后第二个 treap 只有一个节点，所有要把它的子树设置为空
-    return {lt, {cur, rt}};
+    return {lt, cur, rt};
   } else {
     // 排名和 cur 相等的节点在右子树
     // 递归过程同上
-    auto temp = split_by_rk(cur->ch[1], rk - ls_siz - cur->cnt);
-    cur->ch[1] = temp.first;
+    Node *l, *mid, *r;
+    tie(l, mid, r) = split_by_rk(cur->ch[1], rk - ls_siz - cur->cnt);
+    cur->ch[1] = l;
     cur->upd_siz();
-    return {cur, {temp._2, temp._3}};
+    return {cur, mid, r};
   }
 }
 ```
@@ -567,9 +566,10 @@ int qrank_by_val(Node* cur, int val) {
 
 ```cpp
 int qval_by_rank(Node *cur, int rk) {
-  auto temp = split_by_rk(cur, rk);
-  int ret = temp._2->val;
-  root = merge(temp.first, merge(temp._2, temp._3));
+  Node *l, *mid, *r;
+  tie(l, mid, r) = split_by_rk(cur, rk);
+  int ret = mid->val;
+  root = merge(merge(l, mid), r);
   return ret;
 }
 ```
@@ -1059,24 +1059,26 @@ void print(Node* cur) {
         }
       }
     
-      pair<Node *, pair<Node *, Node *>> split_by_rk(Node *cur, int rk) {
-        if (cur == nullptr) return {nullptr, {nullptr, nullptr}};
+      tuple<Node *, Node *, Node *> split_by_rk(Node *cur, int rk) {
+        if (cur == nullptr) return {nullptr, nullptr, nullptr};
         int ls_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
         if (rk <= ls_siz) {
-          auto temp = split_by_rk(cur->ch[0], rk);
-          cur->ch[0] = temp._3;
+          Node *l, *mid, *r;
+          tie(l, mid, r) = split_by_rk(cur->ch[0], rk);
+          cur->ch[0] = r;
           cur->upd_siz();
-          return {temp.first, {temp._2, cur}};
+          return {l, mid, cur};
         } else if (rk <= ls_siz + cur->cnt) {
           Node *lt = cur->ch[0];
           Node *rt = cur->ch[1];
           cur->ch[0] = cur->ch[1] = nullptr;
-          return {lt, {cur, rt}};
+          return {lt, cur, rt};
         } else {
-          auto temp = split_by_rk(cur->ch[1], rk - ls_siz - cur->cnt);
-          cur->ch[1] = temp.first;
+          Node *l, *mid, *r;
+          tie(l, mid, r) = split_by_rk(cur->ch[1], rk - ls_siz - cur->cnt);
+          cur->ch[1] = l;
           cur->upd_siz();
-          return {cur, {temp._2, temp._3}};
+          return {cur, mid, r};
         }
       }
     
@@ -1135,9 +1137,10 @@ void print(Node* cur) {
       }
     
       int qval_by_rank(Node *cur, int rk) {
-        auto temp = split_by_rk(cur, rk);
-        int ret = temp._2->val;
-        root = merge(temp.first, merge(temp._2, temp._3));
+        Node *l, *mid, *r;
+        tie(l, mid, r) = split_by_rk(cur, rk);
+        int ret = mid->val;
+        root = merge(merge(l, mid), r);
         return ret;
       }
     
@@ -1150,6 +1153,7 @@ void print(Node* cur) {
     
       int qnex(int val) {
         auto temp = split(root, val);
+        int ret = qval_by_rank(temp.second, 1);
         root = merge(temp.first, temp.second);
         return ret;
       }
