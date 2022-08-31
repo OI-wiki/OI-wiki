@@ -368,10 +368,9 @@ nav:
       - 线段树套线段树: ds/seg-in-seg.md
       - 平衡树套线段树: ds/seg-in-balanced.md
       - 线段树套平衡树: ds/balanced-in-seg.md
-      - 树状数组套主席树: ds/persistent-in-bit.md
+      - 树状数组套权值线段树: ds/seg-in-bit.md
       - 分块套树状数组: ds/bit-in-block-array.md
     - K-D Tree: ds/kdt.md
-    - 珂朵莉树: ds/odt.md
     - 动态树:
       - Link Cut Tree: ds/lct.md
       - Euler Tour Tree: ds/ett.md
@@ -487,6 +486,7 @@ nav:
     - Garsia-Wachs 算法: misc/garsia-wachs.md
     - 15-puzzle: misc/15-puzzle.md
     - Kahan 求和: misc/kahan-summation.md
+    - 珂朵莉树: misc/odt.md
   - 专题:
     - RMQ: topic/rmq.md
     - 并查集应用: topic/dsu-app.md

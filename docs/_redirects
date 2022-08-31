@@ -36,9 +36,8 @@
 /basic/interaction /contest/interaction
 /basic/file-operation /lang/file-op
 /contest/construction /basic/construction
-/topic/cmd /tools/cmd
-/topic/problemsetting /contest/problemsetting
 /misc/io /contest/io
+/misc/complexity /basic/complexity
 /math/gen-func/intro /math/poly/intro
 /math/gen-func/symbolic-method /math/poly/symbolic-method
 /math/gen-func/ogf /math/poly/ogf
@@ -78,12 +77,14 @@
 /math/continued-fraction /math/number-theory/continued-fraction
 /math/pell-equation /math/number-theory/pell-equation
 /math/quick-pow /math/binary-exponentiation
-/misc/complexity /basic/complexity
 /math/sign /math/notation
+/math/stern-brocot /math/number-theory/stern-brocot
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut
 /graph/misc /graph/concept
 /graph/basic /graph/save
+/topic/cmd /tools/cmd
+/topic/problemsetting /contest/problemsetting
 /topic/graph-matching/graph-match /graph/graph-matching/graph-match
 /topic/graph-matching/augment /graph/graph-matching/augment
 /topic/graph-matching/bigraph-match /graph/graph-matching/bigraph-match
@@ -91,4 +92,5 @@
 /topic/graph-matching/bigraph-weight-match /graph/graph-matching/bigraph-weight-match
 /topic/graph-matching/general-weight-match /graph/graph-matching/general-weight-match
 /lang/variable /lang/var
-/math/stern-brocot /math/number-theory/stern-brocot
+/ds/persistent-in-bit /ds/seg-in-bit
+/ds/odt /misc/odt
