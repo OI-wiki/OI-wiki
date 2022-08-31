@@ -1,6 +1,6 @@
 ## 名称简介
 
-珂朵莉树（Chtholly Tree），又名老司机树ODT（Old Driver Tree）。起源自 [CF896C](https://codeforces.com/problemset/problem/896/C)。
+珂朵莉树（Chtholly Tree），又名老司机树 ODT（Old Driver Tree）。起源自 [CF896C](https://codeforces.com/problemset/problem/896/C)。
 
 注意，这种想法的本质是基于数据随机的“颜色段均摊”，而不是一种数据结构，下文介绍的操作是这种想法的具体实现方法。
 
