@@ -352,6 +352,7 @@ nav:
       - WBLT: ds/wblt.md
       - Size Balanced Tree: ds/sbt.md
       - AVL 树: ds/avl.md
+      - B 树: ds/b-tree.md
       - 替罪羊树: ds/sgt.md
       - 笛卡尔树: ds/cartesian-tree.md
       - 红黑树: ds/rbtree.md
