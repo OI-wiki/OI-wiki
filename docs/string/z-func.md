@@ -2,13 +2,15 @@ author: LeoJacob, Marcythm, minghu6
 
 约定：字符串下标以 $0$ 为起点。
 
+## 定义
+
 对于个长度为 $n$ 的字符串 $s$。定义函数 $z[i]$ 表示 $s$ 和 $s[i,n-1]$（即以 $s[i]$ 开头的后缀）的最长公共前缀（LCP）的长度。$z$ 被称为 $s$ 的 **Z 函数**。特别地，$z[0] = 0$。
 
 国外一般将计算该数组的算法称为 **Z Algorithm**，而国内则称其为 **扩展 KMP**。
 
 这篇文章介绍在 $O(n)$ 时间复杂度内计算 Z 函数的算法以及其各种应用。
 
-## 样例
+## 解释
 
 下面若干样例展示了对于不同字符串的 Z 函数：
 
@@ -19,6 +21,9 @@ author: LeoJacob, Marcythm, minghu6
 ## 朴素算法
 
 Z 函数的朴素算法复杂度为 $O(n^2)$：
+
+???+note "实现"
+
 
 ```cpp
 // C++ Version
@@ -62,7 +67,7 @@ def z_function_trivial(s):
 
 可以访问 [这个网站](https://personal.utdallas.edu/~besp/demo/John2010/z-algorithm.htm) 来看 Z 函数的模拟过程。
 
-## 实现
+### 实现
 
 ```cpp
 // C++ Version
