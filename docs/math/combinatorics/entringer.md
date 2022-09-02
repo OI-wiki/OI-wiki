@@ -1,9 +1,9 @@
+## 恩特林格数
 
-## 恩特林格数	
+恩特林格数（Entringer number）$E(n,k)$(OEIS A008281) 是满足下述方案的 $0$ 到 $n$ 共 $n+1$ 个数的置换数目：
 
-恩特林格数（Entringer number）$E(n,k)$ (OEIS A008281) 是满足下述方案的 $0$ 到 $n$ 共 $n+1$ 个数的置换数目：
- - 首元素是 $k$ 。
- - 首元素的下一个元素比首元素小，再下一个元素比前一个元素大，再下一个元素比前一个元素小……后面相邻元素的大小关系均满足这样的规则。
+- 首元素是 $k$。
+- 首元素的下一个元素比首元素小，再下一个元素比前一个元素大，再下一个元素比前一个元素小……后面相邻元素的大小关系均满足这样的规则。
 
 恩特林格数的初值有：
 
@@ -23,7 +23,7 @@ $$
 
 ## Seidel-Entringer-Arnold 三角
 
-恩特林格数的一个适当排列的数字三角，称为 Seidel-Entringer-Arnold 三角（Seidel-Entringer-Arnold triangle） (OEIS A008280) 。该三角是按照“牛耕”顺序（ox-plowing order）排列的恩特林格数 $E_(n,k)$：
+恩特林格数的一个适当排列的数字三角，称为 Seidel-Entringer-Arnold 三角（Seidel-Entringer-Arnold triangle）(OEIS A008280)。该三角是按照“牛耕”顺序（ox-plowing order）排列的恩特林格数 $E_(n,k)$：
 
 $$
 E_(0,0)\\
@@ -180,7 +180,7 @@ $$
 
 将 $A_n$ 称为“zigzag 数”也有原因：记 $E_n$ 是欧拉数（Euler number），$B_n$ 是伯努利数。
 
-当 $n$ 为偶数时，偶数项下标的 zigzag 数也称“正割数” $S_n$ 或者“zig 数”。有关系：
+当 $n$ 为偶数时，偶数项下标的 zigzag 数也称“正割数”$S_n$ 或者“zig 数”。有关系：
 
 $$
 A_n=i^nE_n
@@ -192,7 +192,7 @@ $$
 1, 1, 5, 61, 1385, \cdots
 $$
 
-当 $n$ 为奇数时，奇数项下标的 zigzag 数也称“正切数” $T_n$ 或者“zag 数”。有关系：
+当 $n$ 为奇数时，奇数项下标的 zigzag 数也称“正切数”$T_n$ 或者“zag 数”。有关系：
 
 $$
 A_n=-\frac{{2i}^{n+1}(2^{n+1}-1)B_{n+1}}{n+1}
