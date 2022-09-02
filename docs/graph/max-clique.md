@@ -67,11 +67,11 @@ BronKerbosch1(R, P, X):
 ```text
  BronKerbosch(All, Some, None):  
      if Some and None are both empty:  
-         report All as a maximal clique //所有点已选完，且没有不能选的点,累加答案  
-     for each vertex v in Some: //枚举Some中的每一个元素  
+         report All as a maximal clique // 所有点已选完，且没有不能选的点，累加答案  
+     for each vertex v in Some: // 枚举 Some 中的每一个元素  
          BronKerbosch1(All ⋃ {v}, Some ⋂ N(v), None ⋂ N(v))   
-         //将v加入All，显然只有与v为朋友的人才能作为备选，None中也只有与v为朋友的才会对接下来造成影响  
-         Some := Some - {v} //已经搜过，在Some中删除，加入None  
+         // 将 v 加入 All，显然只有与 v 为朋友的人才能作为备选，None 中也只有与 v 为朋友的才会对接下来造成影响  
+         Some := Some - {v} // 已经搜过，从 Some 中删除，加入 None  
          None := None ⋃ {v} 
 ```
 
