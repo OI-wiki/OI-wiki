@@ -60,41 +60,42 @@ $$
 
 ??? note "示例代码"
     ```cpp
+    
+    ```
 
 bool delim(char c) {
     return c == ' ';
 }
 
 bool is_op(char c) {
-    return c == '+' || c == '-' || c == '*' || c == '/';
+    return c == '+' || c == '-' || c == '\*' || c == '/';
 }
 
 int priority (char op) {
     if (op == '+' || op == '-')
         return 1;
-    if (op == '*' || op == '/')
+    if (op == '\*' || op == '/')
         return 2;
     return -1;
 }
 
-void process_op(stack<int>& st, char op) {
-    int r = st.top(); st.pop();
+void process_op(stack<int>& st, char op) {int r = st.top(); st.pop();
     int l = st.top(); st.pop();
     switch (op) {
         case '+': st.push(l + r); break;
         case '-': st.push(l - r); break;
-        case '*': st.push(l * r); break;
-        case '/': st.push(l / r); break;
+        case '*': st.push(l*r); break;
+        case '/': st.push(l/r); break;
     }
 }
 
 int evaluate(string& s) {
-    stack<int> st;
-    stack<char> op;
-    for (int i = 0; i < (int)s.size(); i++) {
+    stack<int>st;
+    stack<char>op;
+    for (int i = 0; i &lt; (int)s.size(); i++) {
         if (delim(s[i]))
             continue;
-        
+
         if (s[i] == '(') {
             op.push('(');
         } else if (s[i] == ')') {
@@ -124,6 +125,7 @@ int evaluate(string& s) {
         op.pop();
     }
     return st.top();
+
 }
 
     ```
@@ -142,7 +144,7 @@ int evaluate(string& s) {
 
 右结合意味着，每当优先级相等时，必须从右到左计算运算符。
 
-如上所述，一元运算符通常是右结合的。右结合运算符的另一个示例是求幂运算符。对于 $a \wedge b \wedge c$，通常被视为$a^{b^c}$，而不是$(a^b)^c$。
+如上所述，一元运算符通常是右结合的。右结合运算符的另一个示例是求幂运算符。对于 $a \wedge b \wedge c$，通常被视为 $a^{b^c}$，而不是 $(a^b)^c$。
 
 为了正确地处理这类运算符，相应的改动是，如果优先级相等，将推迟运算符的出栈操作。
 
@@ -150,119 +152,121 @@ int evaluate(string& s) {
 
 ```cpp
 
-while (!op.empty() && priority(op.top()) >= priority(cur_op))
-
+while (!op.empty() && priority(op.top()) >= priority(cur_op)) 
 ```
 
 换成
 
 ```cpp
 
-while (!op.empty() && (
-        (left_assoc(cur_op) && priority(op.top()) >= priority(cur_op)) ||
-        (!left_assoc(cur_op) && priority(op.top()) > priority(cur_op))
-    ))
+while (!op.empty() &&
+       ((left_assoc(cur_op) && priority(op.top()) >= priority(cur_op)) ||
+        (!left_assoc(cur_op) && priority(op.top()) > priority(cur_op))))
 
 ```
 
-其中left_assoc是一个函数，它决定运算符是否为左结合的。
+其中 left_assoc 是一个函数，它决定运算符是否为左结合的。
 
-这里是二进制运算符$+$、$-$、$\*$、$\/$和一元运算符$+$和$-$的实现：
+这里是二进制运算符 $+$、$-$、$\*$、$\/$ 和一元运算符 $+$ 和 $-$ 的实现：
 
 ```cpp
 
-bool delim(char c) {
-    return c == ' ';
-}
+bool delim(char c) { return c == ' '; }
 
-bool is_op(char c) {
-    return c == '+' || c == '-' || c == '*' || c == '/';
-}
+bool is_op(char c) { return c == '+' || c == '-' || c == '*' || c == '/'; }
 
-bool is_unary(char c) {
-    return c == '+' || c=='-';
-}
+bool is_unary(char c) { return c == '+' || c == '-'; }
 
-int priority (char op) {
-    if (op < 0) // unary operator
-        return 3;
-    if (op == '+' || op == '-')
-        return 1;
-    if (op == '*' || op == '/')
-        return 2;
-    return -1;
+int priority(char op) {
+  if (op < 0)  // unary operator
+    return 3;
+  if (op == '+' || op == '-') return 1;
+  if (op == '*' || op == '/') return 2;
+  return -1;
 }
 
 void process_op(stack<int>& st, char op) {
-    if (op < 0) {
-        int l = st.top(); st.pop();
-        switch (-op) {
-            case '+': st.push(l); break;
-            case '-': st.push(-l); break;
-        }
-    } else {
-        int r = st.top(); st.pop();
-        int l = st.top(); st.pop();
-        switch (op) {
-            case '+': st.push(l + r); break;
-            case '-': st.push(l - r); break;
-            case '*': st.push(l * r); break;
-            case '/': st.push(l / r); break;
-        }
+  if (op < 0) {
+    int l = st.top();
+    st.pop();
+    switch (-op) {
+      case '+':
+        st.push(l);
+        break;
+      case '-':
+        st.push(-l);
+        break;
     }
+  } else {
+    int r = st.top();
+    st.pop();
+    int l = st.top();
+    st.pop();
+    switch (op) {
+      case '+':
+        st.push(l + r);
+        break;
+      case '-':
+        st.push(l - r);
+        break;
+      case '*':
+        st.push(l * r);
+        break;
+      case '/':
+        st.push(l / r);
+        break;
+    }
+  }
 }
 
 int evaluate(string& s) {
-    stack<int> st;
-    stack<char> op;
-    bool may_be_unary = true;
-    for (int i = 0; i < (int)s.size(); i++) {
-        if (delim(s[i]))
-            continue;
-        
-        if (s[i] == '(') {
-            op.push('(');
-            may_be_unary = true;
-        } else if (s[i] == ')') {
-            while (op.top() != '(') {
-                process_op(st, op.top());
-                op.pop();
-            }
-            op.pop();
-            may_be_unary = false;
-        } else if (is_op(s[i])) {
-            char cur_op = s[i];
-            if (may_be_unary && is_unary(cur_op))
-                cur_op = -cur_op;
-            while (!op.empty() && (
-                    (cur_op >= 0 && priority(op.top()) >= priority(cur_op)) ||
-                    (cur_op < 0 && priority(op.top()) > priority(cur_op))
-                )) {
-                process_op(st, op.top());
-                op.pop();
-            }
-            op.push(cur_op);
-            may_be_unary = true;
-        } else {
-            int number = 0;
-            while (i < (int)s.size() && isalnum(s[i]))
-                number = number * 10 + s[i++] - '0';
-            --i;
-            st.push(number);
-            may_be_unary = false;
-        }
-    }
+  stack<int> st;
+  stack<char> op;
+  bool may_be_unary = true;
+  for (int i = 0; i < (int)s.size(); i++) {
+    if (delim(s[i])) continue;
 
-    while (!op.empty()) {
+    if (s[i] == '(') {
+      op.push('(');
+      may_be_unary = true;
+    } else if (s[i] == ')') {
+      while (op.top() != '(') {
         process_op(st, op.top());
         op.pop();
+      }
+      op.pop();
+      may_be_unary = false;
+    } else if (is_op(s[i])) {
+      char cur_op = s[i];
+      if (may_be_unary && is_unary(cur_op)) cur_op = -cur_op;
+      while (!op.empty() &&
+             ((cur_op >= 0 && priority(op.top()) >= priority(cur_op)) ||
+              (cur_op < 0 && priority(op.top()) > priority(cur_op)))) {
+        process_op(st, op.top());
+        op.pop();
+      }
+      op.push(cur_op);
+      may_be_unary = true;
+    } else {
+      int number = 0;
+      while (i < (int)s.size() && isalnum(s[i]))
+        number = number * 10 + s[i++] - '0';
+      --i;
+      st.push(number);
+      may_be_unary = false;
     }
-    return st.top();
+  }
+
+  while (!op.empty()) {
+    process_op(st, op.top());
+    op.pop();
+  }
+  return st.top();
 }
 
 ```
 
-**本页面主要译自博文[Разбор выражений. Обратная польская нотация](https://e-maxx.ru/algo/expressions_parsing)与其英文翻译版[Expression parsing](https://cp-algorithms.com/string/expression_parsing.html))。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+**本页面主要译自博文 [Разбор выражений. Обратная польская нотация](https://e-maxx.ru/algo/expressions_parsing) 与其英文翻译版 [Expression parsing](https://cp-algorithms.com/string/expression_parsing.html))。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
 
 ## 习题
 
