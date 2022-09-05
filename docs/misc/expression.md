@@ -71,8 +71,8 @@ $$
       return -1;
     }
     
-    void process_op(stack<int>& st, char op) {//也可以用于计算后缀表达式
-      int r = st.top();// 取出栈顶元素，注意顺序
+    void process_op(stack<int>& st, char op) {  //也可以用于计算后缀表达式
+      int r = st.top();                         // 取出栈顶元素，注意顺序
       st.pop();
       int l = st.top();
       st.pop();
@@ -92,28 +92,28 @@ $$
       }
     }
     
-    int evaluate(string& s) {//也可以改造为中缀表达式转换后缀表达式
+    int evaluate(string& s) {  //也可以改造为中缀表达式转换后缀表达式
       stack<int> st;
       stack<char> op;
       for (int i = 0; i < (int)s.size(); i++) {
         if (delim(s[i])) continue;
     
         if (s[i] == '(') {
-          op.push('(');// 2. 如果遇到左括号，那么将其放在运算符栈上
-        } else if (s[i] == ')') {// 3. 如果遇到右括号，执行一对括号内的所有运算符
+          op.push('(');  // 2. 如果遇到左括号，那么将其放在运算符栈上
+        } else if (s[i] == ')') {  // 3. 如果遇到右括号，执行一对括号内的所有运算符
           while (op.top() != '(') {
             process_op(st, op.top());
-            op.pop();// 不断输出栈顶元素，直至遇到左括号
+            op.pop();  // 不断输出栈顶元素，直至遇到左括号
           }
-          op.pop();// 左括号出栈
-        } else if (is_op(s[i])) {// 4. 如果遇到其他运算符
+          op.pop();                // 左括号出栈
+        } else if (is_op(s[i])) {  // 4. 如果遇到其他运算符
           char cur_op = s[i];
           while (!op.empty() && priority(op.top()) >= priority(cur_op)) {
             process_op(st, op.top());
-            op.pop();// 不断输出所有运算优先级大于等于当前运算符的运算符
+            op.pop();  // 不断输出所有运算优先级大于等于当前运算符的运算符
           }
-          op.push(cur_op);// 新的运算符入运算符栈
-        } else {// 1. 如果遇到数字，直接输出该数字
+          op.push(cur_op);  // 新的运算符入运算符栈
+        } else {            // 1. 如果遇到数字，直接输出该数字
           int number = 0;
           while (i < (int)s.size() && isalnum(s[i]))
             number = number * 10 + s[i++] - '0';
@@ -199,7 +199,7 @@ while (!op.empty() &&
             st.push(-l);
             break;
         }
-      } else {// 取出栈顶元素，注意顺序
+      } else {  // 取出栈顶元素，注意顺序
         int r = st.top();
         st.pop();
         int l = st.top();
@@ -229,27 +229,27 @@ while (!op.empty() &&
         if (delim(s[i])) continue;
     
         if (s[i] == '(') {
-          op.push('(');// 2. 如果遇到左括号，那么将其放在运算符栈上
+          op.push('(');  // 2. 如果遇到左括号，那么将其放在运算符栈上
           may_be_unary = true;
-        } else if (s[i] == ')') {// 3. 如果遇到右括号，执行一对括号内的所有运算符
+        } else if (s[i] == ')') {  // 3. 如果遇到右括号，执行一对括号内的所有运算符
           while (op.top() != '(') {
             process_op(st, op.top());
-            op.pop();// 不断输出栈顶元素，直至遇到左括号
+            op.pop();  // 不断输出栈顶元素，直至遇到左括号
           }
-          op.pop();// 左括号出栈
+          op.pop();  // 左括号出栈
           may_be_unary = false;
-        } else if (is_op(s[i])) {// 4. 如果遇到其他运算符
+        } else if (is_op(s[i])) {  // 4. 如果遇到其他运算符
           char cur_op = s[i];
           if (may_be_unary && is_unary(cur_op)) cur_op = -cur_op;
           while (!op.empty() &&
                  ((cur_op >= 0 && priority(op.top()) >= priority(cur_op)) ||
                   (cur_op < 0 && priority(op.top()) > priority(cur_op)))) {
             process_op(st, op.top());
-            op.pop();// 不断输出所有运算优先级大于等于当前运算符的运算符
+            op.pop();  // 不断输出所有运算优先级大于等于当前运算符的运算符
           }
-          op.push(cur_op);// 新的运算符入运算符栈
+          op.push(cur_op);  // 新的运算符入运算符栈
           may_be_unary = true;
-        } else {// 1. 如果遇到数字，直接输出该数字
+        } else {  // 1. 如果遇到数字，直接输出该数字
           int number = 0;
           while (i < (int)s.size() && isalnum(s[i]))
             number = number * 10 + s[i++] - '0';
