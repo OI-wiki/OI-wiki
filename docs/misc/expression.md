@@ -71,7 +71,7 @@ $$
       return -1;
     }
     
-    void process_op(stack<int>& st, char op) {  //也可以用于计算后缀表达式
+    void process_op(stack<int>& st, char op) {  // 也可以用于计算后缀表达式
       int r = st.top();                         // 取出栈顶元素，注意顺序
       st.pop();
       int l = st.top();
@@ -92,7 +92,7 @@ $$
       }
     }
     
-    int evaluate(string& s) {  //也可以改造为中缀表达式转换后缀表达式
+    int evaluate(string& s) {  // 也可以改造为中缀表达式转换后缀表达式
       stack<int> st;
       stack<char> op;
       for (int i = 0; i < (int)s.size(); i++) {
