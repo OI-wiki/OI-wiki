@@ -77,20 +77,9 @@ $$
 
 #### 直观理解
 
-在证明之前先给出一个直观的理解。见下图：
+需要知道的是，在 $\pmod m$ 的条件下，$a^b \bmod m$ 的取值范围一定在 $[0, m)$，而 $a^i \bmod m = (a^{i-1} \bmod m) \times a \bmod m$，那么对于任意一个数 $a$，那么很容易就能知道它的 **后继**，在有限的空间内这一定会形成一个循环。
 
-\\documentclass[tikz]{standalone}\\usetikzlibrary{graphs, graphs.standard}\\begin{document}\\begin{tikzpicture}\\tikzstyle{every node}=[draw,shape=circle,fill=yellow];\\graph[nodes={draw, circle}, clockwise, radius=1in, nodes, n=11, V={g,...,m,c,d,e,f}, ->, edge={bend left=10,>=stealth}]{
-	subgraph C_n[name=outer]};
-
-\\node (b)[below right of=outer c][left of=outer m]{$b$};\\node (a)[below right of=b][below left of=outer l]{$a$};
-
-\\draw[->]\(a) -- (b);\\draw[->]\(b) -- (outer c);
-
-\\end{tikzpicture}\\end{document}
-
-我们需要知道的是，在 $\pmod m$ 的条件下，$a^b \bmod m$ 的取值范围一定在 $[0, m)$，而 $a^i \bmod m = (a^{i-1} \bmod m) \times a \bmod m$，那么对于任意一个数 $a$，那么我们很容易就能知道它的 **后继**，在有限的空间内这一定会形成一个循环。
-
-在扩展欧拉定理中，循环分为纯循环和混循环（其中纯循环中不存在节点有两个前驱，而混循环则反之，如上图）。而 $a^i \mod n$ 形成的序列可以是一个混循环，那么我们只需要知道循环节的长度，和前面那一小段未进入循环节的长度，就可以根据这个性质来进行降幂了。
+在扩展欧拉定理中，循环分为纯循环和混循环。其中纯循环中不存在节点有两个前驱，而混循环则反之。而 $a^i \mod n$ 形成的序列可以是一个混循环，那么只需要知道循环节的长度，和前面那一小段未进入循环节的长度，就可以根据这个性质来进行降幂了。
 
 值得注意的是，无论是费马小定理，还是（扩展）欧拉定理，一个很重要的应用就是降幂，从而将不可能的表达式化为可能。
 
