@@ -272,6 +272,11 @@ while (!op.empty() &&
 
 ## 习题
 
+## 习题
+
 1. [表达式求值（NOIP2013）](https://vijos.org/p/1849)
+
+## 参考资料
+**本页面主要译自博文 [Разбор выражений. Обратная польская нотация](https://e-maxx.ru/algo/expressions_parsing) 与其英文翻译版 [Expression parsing](https://cp-algorithms.com/string/expression_parsing.html))。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
 2. [后缀表达式](https://www.luogu.com.cn/problem/P1449)
 3. [Transform the Expression](https://www.spoj.com/problems/ONP/)
