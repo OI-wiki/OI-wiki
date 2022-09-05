@@ -19,7 +19,7 @@ author: Ir1d, Anguei, hsfzLZH1, siger-young, HeRaNO
 逆波兰表达式（后缀表达式）是书写数学表达式的一种形式，其中运算符位于其操作数之后。例如，以下表达式：
 
 $$
-a+b\*c\*d+(e-f)\*(g\*h+i)
+a+b*c*d+(e-f)*(g*h+i)
 $$
 
 可以用逆波兰表达式书写：
