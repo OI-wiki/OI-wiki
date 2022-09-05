@@ -321,8 +321,7 @@ void build() {
         // 如果从当前结点开始不能构成连续段，就合并。
         // 直到找到一个结点能构成连续段。而且我们一定能找到这样
         // 一个结点。
-        do
-          add(cnt, st[tp--]);
+        do add(cnt, st[tp--]);
         while (tp && !judge(L[st[tp]], i));
         L[cnt] = L[st[tp]], R[cnt] = i, add(cnt, st[tp--]);
         now = cnt;

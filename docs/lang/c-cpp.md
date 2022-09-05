@@ -15,9 +15,9 @@ C++ 中你仍然可以使用 C 风格的指针，但是对于变量传递而言�
 另外，声明 struct 时 C++ 也不需要像 C 那么繁琐，C 版本：
 
 ```c
-typedef struct Node_t{
-    struct Node_t *next;
-    int key;
+typedef struct Node_t {
+  struct Node_t *next;
+  int key;
 } Node;
 ```
 

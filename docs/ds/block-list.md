@@ -58,8 +58,7 @@ struct node {
 char inits[(int)1e6 + 5];
 int llen, q;
 void readch(char& ch) {
-  do
-    ch = getchar();
+  do ch = getchar();
   while (!isalpha(ch));
 }
 void check(node* p) {
