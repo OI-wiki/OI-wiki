@@ -15,7 +15,7 @@ $$
 当模 $n$ 存在原根 $g$ 的时候，两边取对数：
 
 $$
-k\log_g x\equiv\log_g a\pmod\varphi(n)
+k\log_g x\equiv\log_g a\pmod{\varphi(n)}
 $$
 
 从而转化为一个模 $\varphi(n)$ 意义下的线性不定方程问题。
@@ -33,7 +33,7 @@ $$
 当模 $n$ 存在原根 $g$ 的时候，两边取对数：
 
 $$
-k\log_g x\equiv 0\pmod\varphi(n)
+k\log_g x\equiv 0\pmod{\varphi(n)}
 $$
 
 同样转化为一个模 $\varphi(n)$ 意义下的线性不定方程问题。这个方程始终有解 $1$，并且也可以构造其他形式的解。可以设：
@@ -113,7 +113,7 @@ $$
 的全体解，即与它等价的取对数之后的方程
 
 $$
-k\log_g x\equiv\log_g a\pmod\varphi(n)
+k\log_g x\equiv\log_g a\pmod{\varphi(n)}
 $$
 
 的全体解。
