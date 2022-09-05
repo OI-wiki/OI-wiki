@@ -48,7 +48,7 @@
 
 ??? note "参考实现"
     ```cpp
-      --8<-- "docs/graph/code/steiner-tree/steiner-tree_1.cpp"
+    --8<-- "docs/graph/code/steiner-tree/steiner-tree_1.cpp"
     ```
 
 另外一道经典例题 [\[WC2008\]游览计划](https://www.luogu.com.cn/problem/P4294)。
@@ -67,15 +67,12 @@
 
 ??? note "参考实现"
     ```cpp
-      --8<-- "docs/graph/code/steiner-tree/steiner-tree_2.cpp"
+    --8<-- "docs/graph/code/steiner-tree/steiner-tree_2.cpp"
     ```
 
 ## 习题
 
-[【模板】最小斯坦纳树](https://www.luogu.com.cn/problem/P6192)
-
-[\[WC2008\]游览计划](https://www.luogu.com.cn/problem/P4294)
-
-[\[JLOI2015\]管道连接](https://loj.ac/problem/2110)
-
-[\[APIO2013\]机器人](https://www.luogu.com.cn/problem/P3638)
+- [【模板】最小斯坦纳树](https://www.luogu.com.cn/problem/P6192)
+- [\[WC2008\]游览计划](https://www.luogu.com.cn/problem/P4294)
+- [\[JLOI2015\]管道连接](https://loj.ac/problem/2110)
+- [\[APIO2013\]机器人](https://www.luogu.com.cn/problem/P3638)
