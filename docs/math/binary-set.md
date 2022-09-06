@@ -1,15 +1,14 @@
-
 ## 二进制集合操作
 
-一个数的二进制表示可以看作是一个集合（$0$ 表示不在集合中，$1$ 表示在集合中）。比如集合 $\{1,3,4,8\}$ ，可以表示成 $(100011010)_2$ 。而对应的位运算也就可以看作是对集合进行的操作。
+一个数的二进制表示可以看作是一个集合（$0$ 表示不在集合中，$1$ 表示在集合中）。比如集合 $\{1,3,4,8\}$，可以表示成 $(100011010)_2$。而对应的位运算也就可以看作是对集合进行的操作。
 
-| 操作   |    集合表示     |         位运算语句          |
-| ------ | :-------------: | :-------------------------: |
-| 交集   |   $a \cap b$    |           `a & b`           |
-| 并集   |   $a \cup b$    |            `a|b`            |
-| 补集   |    $\bar{a}$    | `~a` （全集为二进制都是 1） |
-| 差集   | $a \setminus b$ |         `a & (~b)`          |
-| 对称差 | $a\triangle b$  |           `a ^ b`           |
+| 操作  |       集合表示      |       位运算语句      |     |
+| --- | :-------------: | :--------------: | --- |
+| 交集  |    $a \cap b$   |      `a & b`     |     |
+| 并集  |    $a \cup b$   |        \`a       | b\` |
+| 补集  |    $\bar{a}$    | `~a`（全集为二进制都是 1） |     |
+| 差集  | $a \setminus b$ |    `a & (~b)`    |     |
+| 对称差 |  $a\triangle b$ |      `a ^ b`     |     |
 
 在进一步介绍集合的子集遍历操作之前，先看位运算的有关应用例子。
 
@@ -60,7 +59,7 @@ def isPowerOfTwo(n):
 int s = m;
 while (s > 0) {
   // s 是 m 的一个非空子集
- s = (s-1) & m;
+  s = (s - 1) & m;
 }
 ```
 
@@ -68,17 +67,17 @@ while (s > 0) {
 
 ```cpp
 // 降序遍历 m 的非空子集
-for (int s=m; s; s=(s-1)&m)
- // s 是 m 的一个非空子集
+for (int s = m; s; s = (s - 1) & m)
+// s 是 m 的一个非空子集
 ```
 
 这两段代码都不会处理等于 $0$ 的子掩码，要想处理等于 $0$ 的子掩码可以使用其他办法，例如：
 
 ```cpp
 // 降序遍历 m 的子集
-for (int s=m; ; s=(s-1)&m) {
- // s 是 m 的一个子集
- if (s==0)  break;
+for (int s = m;; s = (s - 1) & m) {
+  // s 是 m 的一个子集
+  if (s == 0) break;
 }
 ```
 
@@ -92,7 +91,7 @@ for (int s=m; ; s=(s-1)&m) {
 
 因此，该算法按降序生成该掩码的所有子掩码，每次迭代仅执行两个操作。
 
-特殊情况是 $s=0$ 。在执行 $s-1$ 之后得到 $-1$，其中所有位都为 $1$。在 $(s-1)\&m$ 操作之后将得到新的 $s$ 等于 $m$。因此，如果循环不以 $s=0$ 结束，算法的循环将无法终止。
+特殊情况是 $s=0$。在执行 $s-1$ 之后得到 $-1$，其中所有位都为 $1$。在 $(s-1)\&m$ 操作之后将得到新的 $s$ 等于 $m$。因此，如果循环不以 $s=0$ 结束，算法的循环将无法终止。
 
 使用 $\text{popcount}(m)$ 表示 $m$ 二进制中 $1$ 的个数，用这种方法可以在 $O(2^{\text{popcount}(m)})$ 的时间复杂度内遍历集合 $m$ 的子集。
 
@@ -101,10 +100,10 @@ for (int s=m; ; s=(s-1)&m) {
 在使用掩码动态编程的问题中，有时会希望对于每个掩码，遍历掩码的所有子掩码：
 
 ```cpp
-for (int m=0; m<(1<<n); ++m)
-	// 降序遍历 m 的非空子集
-	for (int s=m; s; s=(s-1)&m)
-	 // s 是 m 的一个非空子集
+for (int m = 0; m < (1 << n); ++m)
+  // 降序遍历 m 的非空子集
+  for (int s = m; s; s = (s - 1) & m)
+// s 是 m 的一个非空子集
 ```
 
 这样做可以遍历大小为 $n$ 的集合的每个子集的子集。
@@ -112,15 +111,16 @@ for (int m=0; m<(1<<n); ++m)
 接下来证明，该操作的时间复杂度为 $O(3^n)$，$n$ 为掩码总共的位数，即集合中元素的总数。
 
 考虑第 $i$ 位，即集合中第 $i$ 个元素，有三种情况：
- - 在掩码 $m$中为 $0$，因此在子掩码 $s$ 中为 $0$，即元素不在大小子集中。
- - 在 $m$ 中为 $1$，但在 $s$ 中为 $0$，即元素只在大子集中，不在小子集中。
- - 在 $m$ 和 $s$ 中均为 $1$，即元素同时在大小子集中。
+
+- 在掩码 $m$ 中为 $0$，因此在子掩码 $s$ 中为 $0$，即元素不在大小子集中。
+- 在 $m$ 中为 $1$，但在 $s$ 中为 $0$，即元素只在大子集中，不在小子集中。
+- 在 $m$ 和 $s$ 中均为 $1$，即元素同时在大小子集中。
 
 总共有 $n$ 位，因此有 $3^n$ 个不同的组合。
 
 还有一种证明方法是：
 
-如果掩码 $m$ 具有 $k$ 个 $1$，那么它有 $2^k$ 个子掩码。对于给定的 $k$，对应有 $C_n^k$ 个掩码 $m$ ，那么所有掩码的总数为：
+如果掩码 $m$ 具有 $k$ 个 $1$，那么它有 $2^k$ 个子掩码。对于给定的 $k$，对应有 $C_n^k$ 个掩码 $m$，那么所有掩码的总数为：
 
 $$
 \sum_{k=0}^n C_n^k 2^n
@@ -130,12 +130,12 @@ $$
 
 ### 参考资料
 
-**本页面主要译自博文[Перебор всех подмасок данной маски](http://e-maxx.ru/algo/all_submasks)与其英文翻译版[Submask Enumeration](https://cp-algorithms.com/algebra/all-submasks.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+**本页面主要译自博文 [Перебор всех подмасок данной маски](http://e-maxx.ru/algo/all_submasks) 与其英文翻译版 [Submask Enumeration](https://cp-algorithms.com/algebra/all-submasks.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
 
 ### 习题
 
- - [Atcoder - Close Group](https://atcoder.jp/contests/abc187/tasks/abc187_f)
- - [Codeforces - Nuclear Fusion](http://codeforces.com/problemset/problem/71/E)
- - [Codeforces - Sandy and Nuts](http://codeforces.com/problemset/problem/599/E)
- - [Uva 1439 - Exclusive Access 2](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4185)
- - [UVa 11825 - Hackers' Crackdown](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2925)
+- [Atcoder - Close Group](https://atcoder.jp/contests/abc187/tasks/abc187_f)
+- [Codeforces - Nuclear Fusion](http://codeforces.com/problemset/problem/71/E)
+- [Codeforces - Sandy and Nuts](http://codeforces.com/problemset/problem/599/E)
+- [Uva 1439 - Exclusive Access 2](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4185)
+- [UVa 11825 - Hackers' Crackdown](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2925)
