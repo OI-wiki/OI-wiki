@@ -128,7 +128,7 @@ $$
 
 上面的和等于使用二项式定理对 $(1+2)^n$ 的展开，因此有 $3^n$ 个不同的组合。
 
-## 参考资料
+### 参考资料
 
 **本页面主要译自博文[Перебор всех подмасок данной маски](http://e-maxx.ru/algo/all_submasks)与其英文翻译版[Submask Enumeration](https://cp-algorithms.com/algebra/all-submasks.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
 
