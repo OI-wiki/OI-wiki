@@ -57,6 +57,7 @@
 /math/bernoulli /math/combinatorics/bernoulli
 /math/cantor /math/combinatorics/cantor
 /math/inclusion-exclusion-principle /math/combinatorics/inclusion-exclusion-principle
+/math/fibonacci /math/combinatorics/fibonacci
 /math/drawer-principle /math/combinatorics/drawer-principle
 /math/eulerian /math/combinatorics/eulerian
 /math/prime /math/number-theory/prime
