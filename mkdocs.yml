@@ -278,7 +278,8 @@ nav:
       - 抽屉原理: math/combinatorics/drawer-principle.md
       - 容斥原理: math/combinatorics/inclusion-exclusion-principle.md
       - 康托展开: math/combinatorics/cantor.md
-      - 斐波那契数列: math/fibonacci.md
+      - 斐波那契数列: math/combinatorics/fibonacci.md
+      - 错位排列: math/combinatorics/derangement.md
       - 卡特兰数: math/combinatorics/catalan.md
       - 斯特林数: math/combinatorics/stirling.md
       - 贝尔数: math/combinatorics/bell.md
