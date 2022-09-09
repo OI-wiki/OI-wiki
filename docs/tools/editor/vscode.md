@@ -66,7 +66,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 #### LLDB
 
-如果需要采用 LLDB，需要安装另外一款扩展 [^ref1] —— [CodeLLDB](https://github.com/vadimcn/vscode-lldb/)。从 该项目的 Release 页面下载 .vsix 文件后，从 VS Code 的扩展页面安装。
+如果需要采用 LLDB，需要安装另外一款扩展 [^ref1] —— [CodeLLDB](https://github.com/vadimcn/vscode-lldb/)。从该项目的 Release 页面下载 .vsix 文件后[^ref2]，从 VS Code 的扩展页面安装。
 
 ![](images/vscode-9.png)
 
@@ -127,7 +127,7 @@ sudo pacman -S clang
 brew install llvm
 ```
 
-Windows 用户在 [LLVM-MinGW](https://github.com/mstorsjo/llvm-mingw/releases/) 上下载二进制文件并安装，该版本集成了 MinGW-W64，避免缺少头文件[^ref2]。
+Windows 用户在 [LLVM-MinGW](https://github.com/mstorsjo/llvm-mingw/releases/) 上下载二进制文件并安装，该版本集成了 MinGW-W64，避免缺少头文件[^ref3]。
 
 ### VS Code 插件
 
@@ -139,5 +139,6 @@ Windows 用户在 [LLVM-MinGW](https://github.com/mstorsjo/llvm-mingw/releases/)
 
 ## 参考资料与注释
 
-[^ref1]: VS Code 的 C/C++ 插件如果选择 lldb 作调试器，则会默认采用 lldb-mi程序，而它已经被 LLVM 开发团队从项目中分离出来，需要自己编译该程序。而它本身就有一些bug，使用体验和方便程度都不如 CodeLLDB插件。
-[^ref2]: 使用MSVC构建的官方版本 [LLVM Download Page](https://releases.llvm.org/download.html) 由于需要搭配MSVC使用（MSVC需要占用2G左右的空间，不安装会出现缺少头文件的问题），所以推荐直接安装 LLVM-MinGW。
+[^ref1]: VS Code 的 C/C++ 插件如果选择 lldb 作调试器，则会默认采用 lldb-mi程序，而它已经被 LLVM 开发团队从项目中分离出来，需要自己编译该程序。而它本身就有一些 bug，使用体验和方便程度都不如 CodeLLDB插件。
+[^ref2]: 从插件商店安装 CodeLLDB 后它会再从 GitHub 下载本体，下载速度奇慢，有时下载出错，所以最好直接下载本体然后安装。更新也可直接按照以上步骤下载安装。
+[^ref3]: 使用MSVC构建的官方版本 [LLVM Download Page](https://releases.llvm.org/download.html) 由于需要搭配 MSVC 使用（ MSVC 需要占用 2G 左右的空间，不安装会出现缺少头文件的问题），所以推荐直接安装 LLVM-MinGW。
