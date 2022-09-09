@@ -376,7 +376,7 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 例题：[「USACO06DEC」Milk Patterns](https://www.luogu.com.cn/problem/P2852)。
 
 ??? note "题解"
-    出现至少 $k$ 次意味着后缀排序后有至少连续 $k$ 个后缀的 LCP 是这个子串。
+    出现至少 $k$ 次意味着后缀排序后有至少连续 $k$ 个后缀以这个子串作为公共前缀。
     
     所以，求出每相邻 $k-1$ 个 $height$ 的最小值，再求这些最小值的最大值就是答案。
     
