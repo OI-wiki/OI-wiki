@@ -127,43 +127,6 @@ $$
     --8<-- "docs/math/code/inclusion-exclusion-principle/inclusion-exclusion-principle_1.cpp"
     ```
 
-## 错位排列计数
-
-???+note "错位排列计数"
-    对于 $1\sim n$ 的排列 $P$ 如果满足 $P_i\neq i$，则称 $P$ 是 $n$ 的错位排列。求 $n$ 的错位排列数。
-
-全集 $U$ 即为 $1\sim n$ 的排列，$|U|=n!$；属性就是 $P_i\neq i$. 套用补集的公式，问题变成求 $\left|\bigcup_{i=1}^n\overline{S_i}\right|$.
-
-我们知道 $\overline{S_i}$ 的含义是满足 $P_i=i$ 的排列的数量。用容斥原理把问题式子展开，我们需要对若干个特定的集合的交集求大小，即
-
-$$
-\left|\bigcap_{i=1}^{k}S_{a_i}\right|
-$$
-
-其中我们省略了 $a_i<a_{i+1}$ 的条件以方便表示。上述 $k$ 个集合的交集表示有 $k$ 个变量满足 $P_{a_i}=a_i$ 的排列数，而剩下 $n-k$ 个数的位置任意，因此排列数
-
-$$
-\left|\bigcap_{i=1}^{k}S_{a_i}\right|=(n-k)!
-$$
-
-那么选择 $k$ 个元素的方案数为 $C_n^k$，因此有
-
-$$
-\begin{split}
-\left|\bigcup_{i=1}^n\overline{S_i}\right|
-&=\sum_{k=1}^n(-1)^{k-1}\sum_{a_{1,\cdots,k} }\left|\bigcap_{i=1}^{k}S_{a_i}\right|\\
-&=\sum_{k=1}^n(-1)^{k-1}C_n^k(n-k)!\\
-&=\sum_{k=1}^n(-1)^{k-1}\frac{n!}{k!}\\
-&=n!\sum_{k=1}^n\frac{(-1)^{k-1} }{k!}
-\end{split}
-$$
-
-因此 $n$ 的错位排列数为
-
-$$
-D_n=n!-n!\sum_{k=1}^n\frac{(-1)^{k-1} }{k!}=n!\sum_{k=0}^n\frac{(-1)^k}{k!}
-$$
-
 ## 完全图子图染色问题
 
 前面的三道题都是容斥原理的正向运用，这道题则需要用到容斥原理逆向分析。
