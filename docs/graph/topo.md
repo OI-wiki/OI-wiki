@@ -56,24 +56,26 @@ else
 
 ### 实现
 
-伪代码：
+```cpp
+int n, m;
+vector<int> G[MAXN];
+int in[MAXN];  // 存储每个结点的入度
 
-```text
 bool toposort() {
-  q = new queue();
-  for (i = 0; i < n; i++)
-    if (in_deg[i] == 0) q.push(i);
-  ans = new vector();
-  while (!q.empty()) {
-    u = q.pop();
-    ans.push_back(u);
-    for each edge(u, v) {
-      if (--in_deg[v] == 0) q.push(v);
+  vector<int> L;
+  queue<int> S;
+  for (int i = 1; i <= n; i++)
+    if (in[i] == 0) S.push(i);
+  while (!S.empty()) {
+    int u = S.front();
+    S.pop();
+    L.push_back(u);
+    for (auto v : G[u]) {
+      if (--in[v] == 0) { S.push(v); }
     }
   }
-  if (ans.size() == n) {
-    for (i = 0; i < n; i++)
-      std::cout << ans[i] << std::endl;
+  if (L.size() == n) {
+    for (auto i : L) cout << i << ' ';
     return true;
   } else {
     return false;
