@@ -14,24 +14,25 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ## 初始化
 
-C++ 的参考实现：
+初始时，每个元素都位于一个单独的集合，表示为一棵只有根节点的树。方便起见，我们将根节点的父亲设为自己。
 
 ```cpp
 // C++ Version
-void makeSet(int size) {
-  for (int i = 0; i < size; i++) fa[i] = i;  // i 就在它本身的集合里
-  return;
-}
-```
+struct dsu {
+    vector<size_t> pa;
 
-Python 的参考实现：
+    dsu(size_t size) {
+        pa.resize(size);
+        iota(pa.begin(), pa.end(), 0);
+    }
+};
+```
 
 ```python
 # Python Version
-def makeSet(size):
-    for i in range(0, size):
-        fa[i] = i
-    return
+class Dsu:
+    def __init__(self, size):
+        self.pa = list(range(size))
 ```
 
 ## 查找
