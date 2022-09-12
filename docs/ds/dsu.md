@@ -9,8 +9,10 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 - 合并（Union）：合并两个元素所属集合（合并对应的树）
 - 查询（Find）：查询某个元素所属集合（查询对应的树的根节点），这可以用于判断两个元素是否属于同一集合
 
+并查集在经过修改后可以支持单个元素的删除操作，使用动态开点线段树还可以实现可持久化并查集。
+
 !!! warning
-    并查集不支持集合的分离，但是并查集在经过修改后可以支持集合中单个元素的删除操作（详见 UVA11987 Almost Union-Find）。使用动态开点线段树还可以实现可持久化并查集。
+    并查集不支持集合的分离。
 
 ## 初始化
 
@@ -147,7 +149,39 @@ class Dsu:
         self.size[x] += self.size[y]
 ```
 
-## 时间复杂度及空间复杂度
+## 删除
+
+要删除一个叶子节点，我们可以将其父亲设为自己。为了保证要删除的元素都是叶子，我们可以预先为每个节点制作副本，并将其副本作为父亲。
+
+```cpp
+// C++ Version
+struct dsu {
+    vector<size_t> pa, size;
+
+    dsu(size_t size) {
+        pa.resize(size + size);
+        for (size_t i = 0; i != size; ++i) pa[i] = pa[i + size] = i + size;
+        this->size.resize(size + size, 1);
+    }
+
+    void erase(size_t x) {
+        pa[x] = x;
+    }
+}
+```
+
+```python
+# Python Version
+class Dsu:
+    def __init__(self, size):
+        self.pa = list(range(size, size * 2)) * 2
+        self.size = [1] * size * 2
+
+    def erase(self, x):
+        self.pa[x] = x
+```
+
+## 复杂度
 
 ### 时间复杂度
 
