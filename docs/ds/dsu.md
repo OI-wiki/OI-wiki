@@ -35,87 +35,44 @@ class Dsu:
         self.pa = list(range(size))
 ```
 
-## 查找
+## 查询
 
-通俗地讲一个故事：几个家族进行宴会，但是家族普遍长寿，所以人数众多。由于长时间的分离以及年龄的增长，这些人逐渐忘掉了自己的亲人，只记得自己的爸爸是谁了，而最长者（称为「祖先」）的父亲已经去世，他只知道自己是祖先。为了确定自己是哪个家族，他们想出了一个办法，只要问自己的爸爸是不是祖先，一层一层的向上问，直到问到祖先。如果要判断两人是否在同一家族，只要看两人的祖先是不是同一人就可以了。
-
-在这样的思想下，并查集的查找算法诞生了。
+我们需要沿着树向上移动，直至找到根节点。
 
 ![](images/disjoint-set-find.svg)
 
-C++ 的参考实现：
-
 ```cpp
 // C++ Version
-int fa[MAXN];  // 记录某个人的爸爸是谁，特别规定，祖先的爸爸是他自己
-
-// 递归
-int find(int x) {
-  // 寻找x的祖先
-  if (fa[x] == x)  // 如果 x 是祖先则返回
-    return x;
-  else
-    return find(fa[x]);  // 如果不是则 x 的爸爸问 x 的爷爷
-}
-
-// 非递归
-int find(int x) {
-  while (x != fa[x])  // 如果 x 不是祖先，就一直往上一辈找
-  {
-    x = fa[x];
-  }
-  return x;  // 如果 x 是祖先则返回
+size_t find(size_t x) {
+    return pa[x] == x ? x : find(pa[x]);
 }
 ```
-
-Python 的参考实现：
 
 ```python
 # Python Version
-fa = [0] * MAXN # 记录某个人的爸爸是谁，特别规定，祖先的爸爸是他自己
-
-# 递归
-def find(x):
-    # 寻找x的祖先
-    if fa[x] == x:
-        return x # 如果x是祖先则返回
-    else:
-        return find(fa[x]) # 如果不是则 x 的爸爸问 x 的爷爷
-        
-# 非递归
-def find(x):
-    while x != fa[x]: # 如果 x 不是祖先，就一直往上一辈找
-        x = fa[x]
-    return x # 如果 x 是祖先则返回
+def find(self, x):
+    return x if self.pa[x] == x else self.find(self.pa[x])
 ```
-
-显然这样最终会返回 $x$ 的祖先。
 
 ### 路径压缩
 
-这样的确可以达成目的，但是显然效率实在太低。为什么呢？因为我们使用了太多没用的信息，我的祖先是谁与我父亲是谁没什么关系，这样一层一层找太浪费时间，不如我直接当祖先的儿子，问一次就可以出结果了。甚至祖先是谁都无所谓，只要这个人可以代表我们家族就能得到想要的效果。**把在路径上的每个节点都直接连接到根上**，这就是路径压缩。
+查询过程中经过的每个元素都属于该集合，我们可以将其直接连到根节点以加快后续查询。
 
 ![](images/disjoint-set-compress.svg)
 
-C++ 的参考实现：
-
 ```cpp
 // C++ Version
-int find(int x) {
-  if (x != fa[x])  // x 不是自身的父亲，即 x 不是该集合的代表
-    fa[x] = find(fa[x]);  // 查找 x 的祖先直到找到代表，于是顺手路径压缩
-  return fa[x];
+size_t find(size_t x) {
+    return pa[x] == x ? x : pa[x] = find(pa[x]);
 }
 ```
 
-Python 的参考实现：
-
 ```python
 # Python Version
-def find(x):
-    if x != fa[x]: # x 不是自身的父亲，即 x 不是该集合的代表
-        fa[x] = find(fa[x]) # 查找 x 的祖先直到找到代表，于是顺手路径压缩
-    return fa[x]
+def find(self, x):
+    if self.pa[x] != x:
+        self.pa[x] = self.find(self.pa[x])
+    return self.pa[x]
 ```
 
 ## 合并
