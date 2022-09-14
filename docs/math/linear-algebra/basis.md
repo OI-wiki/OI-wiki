@@ -1,46 +1,97 @@
 author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, RUIN-RISE, wjy-yy, rsdbkhusky, ouuan, Menci, Tiphereth-A
 
-线性基是向量空间的一组基，通常可以解决有关异或的一些题目。
+前置知识：[线性空间](./linear-space.md)
 
-通俗一点的讲法就是由一个集合构造出来的另一个集合。
+线性基是线性空间的一组基，是研究线性空间的重要工具。
 
-## 性质
+## Hamel 基
 
-它有以下几个性质：
+### 定义
 
-1. 线性基的元素能相互线性组合得到原集合的元素的所有线性组合得到的值。
+称线性空间 $V$ 的一个极大线性无关组为 $V$ 的一组 **Hamel 基** 或 **线性基**，简称 **基**。
 
-2. 线性基是满足性质 1 的最小的集合。
+规定线性空间 $\{\theta\}$ 的基为空集。
 
-3. 线性基能线性组合得到的所有元素的组合方式唯一（性质 2 的推论）。
+另外，将 $V$ 的 **维数** 记作 $\dim V$, 定义如下：
 
-4. 一个线性空间的线性基不一定唯一，但每组线性基中的元素数量是唯一的。
+- 若基是有限集合，则定义 $V$ 的 **维数** 为基的元素个数。
+- 若基不是有限集合，则定义 $V$ 的 **维数** 为$ \infty$.
 
-举个例子，有一个二维空间（你可以理解为二维平面上所有点组成的集合），求他的线性基。
+### 存在性
 
-这是我们最熟悉的一组线性基了，$\widehat{i}$ 和 $\widehat{j}$，他显然是一组合法的线性基。
+由 Zorn 引理，我们可以证明：任意线性空间均存在 Hamel 基。
 
-![](./images/basis1.png)
+证明思路如下：
 
-$\begin{bmatrix}-1\\0.5\end{bmatrix}$ 和 $\begin{bmatrix}1\\1\end{bmatrix}$ 也是一组合法的线性基。
+设线性空间 $V$ 的全体线性无关向量组为 $\mathscr{F}$, 显然 $(\mathscr{F},\subseteq)$ 构成偏序集。
 
-![](./images/basis2.png)
+容易验证 $(\mathscr{F},\subseteq)$ 上的任意全序子集均有上界，故由 Zorn 引理，$\mathscr{F}$ 有极大元 $F$.
 
-但 $\begin{bmatrix}-1\\0.5\end{bmatrix}$ 和 $\begin{bmatrix}1\\-0.5\end{bmatrix}$ 不是一组合法的线性基，不满足性质 1。
+容易验证 $F$ 即为线性空间 $V$ 的 Hamel 基。
 
-![](./images/basis3.png)
+### 性质（有限维）
 
-$\begin{bmatrix}-1\\0.5\end{bmatrix}$、$\begin{bmatrix}1\\1\end{bmatrix}$ 和 $\begin{bmatrix}0.5\\-0.5\end{bmatrix}$ 也不是一组合法的线性基，不满足性质 2。
+对于有限维线性空间 $V$, 设其维数为 $n$, 则：
 
-![](./images/basis4.png)
+1. $V$ 中的任意 $n+1$ 个向量线性相关。
+1. $V$ 中的任意 $n$ 个线性无关的向量均为 $V$ 的基。
+1. 若 $V$ 中的任意向量均可被向量组 $a_1,a_2,\dots,a_n$ 线性表出，则其是 $V$ 的一个基。
+   
+   <details open>
+   <summary>证明</summary>
 
-## 构造方法
+   任取 $V$ 中的一组基 $b_1,b_2,\dots,b_n$, 由已知条件, 向量组 $b_1,b_2,\dots,b_n$ 可被 $a_1,a_2,\dots,a_n$ 线性表出, 故
 
-算法竞赛中，我们常用线性基处理一些和异或有关的问题，我们在接下来求的线性基和线性代数中的线性基略有不同，异或线性基中的元素在组合时不能像线性代数中的线性基那样可以使用任意实数做系数，而是只能使用 $0$ 或 $1$ 做系数（选或不选）。
+   $$n=\operatorname{rank}\{b_1,b_2,\dots,b_n\}\leq\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq n$$
 
-形式化的说，一组异或线性基 $\{a_1,a_2\cdots a_n\}$ 能组合成的元素的集合是一个大小为 $2^n$ 的集合，集合中的每个元素形如 $(b_1\times a_1)~\text{xor}~(b_2\times a_2)~\text{xor}\cdots(b_n\times a_n),b_i\in\{0,1\}$。
+   因此 $\operatorname{rank}\{a_1,a_2,\dots,a_n\}=n$
 
-### 贪心法
+   </details>
+   
+1. $V$ 中任意线性无关向量组 $a_1,a_2,\dots,a_m$ 均可通过插入一些向量使得其变为 $V$ 的一个基。
+
+### 例子
+
+考虑 $\Bbb{R}^2$ 的基。
+
+1. 如图
+   
+   ![](./images/basis1.png)
+
+    $u,v$ 是一组基。
+
+1. 如图
+   
+   ![](./images/basis2.png)
+
+    $u,v$ 是一组基。
+
+1. 如图
+   
+   ![](./images/basis3.png)
+
+    $u,v$ 不是一组基，因为 $u=-v$.
+
+1. 如图
+   
+   ![](./images/basis4.png)
+
+    $u,v,w$ 不是一组基，因为 $u+4v+6w=\theta$.
+
+## 应用
+
+线性基在 OI 中的应用一般包含以下方面：
+
+1. 对给定的向量组，找到一组极大线性无关组（或其张成的线性空间的一组基）。
+1. 向给定的向量组插入某些向量，在插入操作后的向量组中找到一组极大线性无关组（或其张成的线性空间的一组基）。
+1. 对找到的一组极大线性无关组（或基），判断某向量能否被其线性表出
+1. 求极大线性无关组（或基）的秩。
+1. 对找到的一组极大线性无关组（或基），求其张成的线性空间中的最大元/最小元。
+
+特别地：
+
+- 若限定向量均在 $\Bbb{Z}_2^n$ 下，则称找到的基为 **异或线性基**。
+- 若限定向量均在 $\Bbb{R}^n$ 下，则称找到的基为 **实数线性基**。
 
 ### 构造方法
 
@@ -161,3 +212,8 @@ $\begin{bmatrix}-1\\0.5\end{bmatrix}$、$\begin{bmatrix}1\\1\end{bmatrix}$ 和 $
 [HDU 3949 XOR](https://vjudge.net/problem/HDU-3949)
 
 [Luogu P4151\[WC2011\]最大 XOR 和路径](https://www.luogu.com.cn/problem/P4151)
+
+## 参考资料与注释
+
+1. 丘维声, 高等代数（下）. 北京大学出版社.
+1. [Hamel Basis -- from Wolfram MathWorld](https://mathworld.wolfram.com/HamelBasis.html)
