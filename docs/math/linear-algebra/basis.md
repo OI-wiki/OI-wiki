@@ -36,18 +36,15 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 1. $V$ 中的任意 $n+1$ 个向量线性相关。
 1. $V$ 中的任意 $n$ 个线性无关的向量均为 $V$ 的基。
 1. 若 $V$ 中的任意向量均可被向量组 $a_1,a_2,\dots,a_n$ 线性表出，则其是 $V$ 的一个基。
-   
-   <details open>
-   <summary>证明</summary>
 
-   任取 $V$ 中的一组基 $b_1,b_2,\dots,b_n$, 由已知条件, 向量组 $b_1,b_2,\dots,b_n$ 可被 $a_1,a_2,\dots,a_n$ 线性表出, 故
+    ???+ note "证明"
+      
+      任取 $V$ 中的一组基 $b_1,b_2,\dots,b_n$, 由已知条件, 向量组 $b_1,b_2,\dots,b_n$ 可被 $a_1,a_2,\dots,a_n$ 线性表出, 故
+      
+      $$n=\operatorname{rank}\{b_1,b_2,\dots,b_n\}\leq\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq n$$
+      
+      因此 $\operatorname{rank}\{a_1,a_2,\dots,a_n\}=n$
 
-   $$n=\operatorname{rank}\{b_1,b_2,\dots,b_n\}\leq\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq n$$
-
-   因此 $\operatorname{rank}\{a_1,a_2,\dots,a_n\}=n$
-
-   </details>
-   
 1. $V$ 中任意线性无关向量组 $a_1,a_2,\dots,a_m$ 均可通过插入一些向量使得其变为 $V$ 的一个基。
 
 ### 例子
@@ -55,26 +52,26 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 考虑 $\Bbb{R}^2$ 的基。
 
 1. 如图
-   
-   ![](./images/basis1.png)
+
+    ![](./images/basis1.png)
 
     $u,v$ 是一组基。
 
 1. 如图
-   
-   ![](./images/basis2.png)
+
+    ![](./images/basis2.png)
 
     $u,v$ 是一组基。
 
 1. 如图
-   
-   ![](./images/basis3.png)
+
+    ![](./images/basis3.png)
 
     $u,v$ 不是一组基，因为 $u=-v$.
 
 1. 如图
-   
-   ![](./images/basis4.png)
+
+    ![](./images/basis4.png)
 
     $u,v,w$ 不是一组基，因为 $u+4v+6w=\theta$.
 
@@ -109,9 +106,7 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
 查询某个数是否能被异或出来，类似于插入，如果最后插入的数 $p$ 被异或成了 $0$，则能被异或出来。
 
-???+note "代码"
-    > （洛谷 P3812 [【模板】线性基](https://www.luogu.com.cn/problem/P3812)）：
-    
+???+note "代码（洛谷 P3812 [【模板】线性基](https://www.luogu.com.cn/problem/P3812)）"
     ```cpp
     --8<-- "docs/math/code/basis/basis_1.cpp"
     ```
@@ -120,9 +115,7 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
 高斯消元法相当于从线性方程组的角度去构造线性基，正确性显然。
 
-???+note "代码"
-    > （洛谷 P3812 [【模板】线性基](https://www.luogu.com.cn/problem/P3812)）：
-    
+???+note "代码（洛谷 P3812 [【模板】线性基](https://www.luogu.com.cn/problem/P3812)）"
     ```cpp
     --8<-- "docs/math/code/basis/basis_2.cpp"
     ```
@@ -201,15 +194,12 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
 ### 练习题
 
-[Luogu P3812【模板】线性基](https://www.luogu.com.cn/problem/P3812)
-
-[Acwing 3164. 线性基](https://www.acwing.com/problem/content/description/3167)
-
-[SGU 275 to xor or not xor](https://vjudge.net/problem/SGU-275)
-
-[HDU 3949 XOR](https://vjudge.net/problem/HDU-3949)
-
-[Luogu P4151\[WC2011\]最大 XOR 和路径](https://www.luogu.com.cn/problem/P4151)
+- [Luogu P3812【模板】线性基](https://www.luogu.com.cn/problem/P3812)
+- [Acwing 3164. 线性基](https://www.acwing.com/problem/content/description/3167)
+- [SGU 275 to xor or not xor](https://vjudge.net/problem/SGU-275)
+- [HDU 3949 XOR](https://vjudge.net/problem/HDU-3949)
+- [HDU 6579 Operation](https://vjudge.net/problem/HDU-6579)
+- [Luogu P4151\[WC2011\]最大 XOR 和路径](https://www.luogu.com.cn/problem/P4151)
 
 ## 参考资料与注释
 
