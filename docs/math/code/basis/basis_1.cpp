@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 using ull = unsigned long long;
 
 ull p[64];

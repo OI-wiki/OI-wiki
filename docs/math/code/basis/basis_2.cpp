@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 using ull = unsigned long long;
 const int MAXN = 1e5 + 5;
 inline ull deg(ull num, int deg) { return num & (1ull << deg); }
@@ -12,7 +11,7 @@ int main() {
   for (int col = 63; ~col && row <= n; --col) {
     for (int i = row; i <= n; ++i) {
       if (deg(a[i], col)) {
-        swap(a[row], a[i]);
+        std::swap(a[row], a[i]);
         break;
       }
     }

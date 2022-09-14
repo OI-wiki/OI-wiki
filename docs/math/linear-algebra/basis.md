@@ -195,7 +195,7 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
 ### 时间复杂度
 
-设向量长度为 $n$, 总数为 $m$, 则时间复杂度为 $O(nm)$.
+设向量长度为 $n$, 总数为 $m$, 则时间复杂度为 $O(nm)$. 其中高斯消元法的常数略大。
 
 ### 练习题
 
