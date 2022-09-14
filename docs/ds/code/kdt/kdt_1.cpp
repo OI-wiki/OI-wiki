@@ -35,7 +35,11 @@ void maintain(int x) {
 }
 
 int build(int l, int r) {
-  if (l >= r) return 0;
+  if (l > r) return 0;
+  if (l == r) {
+    maintain(l);
+    return l;
+  }
   int mid = (l + r) >> 1;
   double avx = 0, avy = 0, vax = 0, vay = 0;  // average variance
   for (int i = l; i <= r; i++) avx += s[i].x, avy += s[i].y;
