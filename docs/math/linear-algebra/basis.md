@@ -197,6 +197,8 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
 设向量长度为 $n$, 总数为 $m$, 则时间复杂度为 $O(nm)$. 其中高斯消元法的常数略大。
 
+若是实数线性基，则时间复杂度为 $O(n^2m)$.
+
 ### 练习题
 
 [Luogu P3812【模板】线性基](https://www.luogu.com.cn/problem/P3812)
