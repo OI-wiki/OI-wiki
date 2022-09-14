@@ -213,5 +213,5 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
 ## 参考资料与注释
 
-1. 丘维声, 高等代数（下）. 北京大学出版社.
+1. 丘维声, 高等代数（下）. 清华大学出版社.
 1. [Hamel Basis -- from Wolfram MathWorld](https://mathworld.wolfram.com/HamelBasis.html)

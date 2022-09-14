@@ -203,3 +203,8 @@ author: codewasp942, Tiphereth-A
     若 $V_1+V_2$ 不是直和, 则存在 $\beta\in V_1+V_2$ 使得$\beta=\beta_1+\beta_2=\gamma_1+\gamma_2$, 其中 $\beta_1,\gamma_1\in V_1,\beta_2,\gamma_2\in V_2$ 且 $\beta_1,\beta_2,\gamma_1,\gamma_2)$ 互不相同。
     
     进而 $\theta\ne\beta_1-\gamma_1=\gamma_2-\beta_2\in V_1\cap V_2$, 与条件矛盾。
+
+## 参考资料与注释
+
+1. 丘维声, 高等代数（下）. 清华大学出版社.
+1. [Vector space](https://en.wikipedia.org/w/index.php?title=Vector_space&oldid=1108546097). _Wikipedia, The Free Encyclopedia_.
