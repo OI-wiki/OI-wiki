@@ -55,13 +55,12 @@ author: codewasp942, Tiphereth-A
 1. 无零因子：$\forall\alpha\in V,k\in\mathbb{P}$, 有 $k\alpha=\theta\implies k=0\lor\alpha=\theta$.
 1. 加法的消去律：$\forall\alpha,\beta,\gamma\in V$, 有 $\alpha+\beta=\alpha+\gamma\implies\beta=\gamma$.
    
-   ???+note
-        实际上，加法的消去律可以替换定义中的「加法单位元」和「加法逆元」两条。
+   > 实际上，加法的消去律可以替换定义中的「加法单位元」和「加法逆元」两条。
 
 
 ### 例子
 
-1. $\Bbb{P}^n$ 关于数域 $\Bbb{P}$ 上的加法和乘法构成 $\Bbb{P}$ 上的一个线性空间。例如 $\Bbb{P}$ 可以是 $\R$, $\Complex$, $\N_p$($p$ 为素数) 等
+1. $\Bbb{P}^n$ 关于数域 $\Bbb{P}$ 上的加法和乘法构成 $\Bbb{P}$ 上的一个线性空间。例如 $\Bbb{P}$ 可以是 $\Bbb{R}$, $\Bbb{C}$, $\Bbb{N}_p$($p$ 为素数) 等
 1. 数域 $\Bbb{P}$ 上的 $n\times m$ 阶矩阵 $\Bbb{P}^{n\times m}$ 关于矩阵的加法和数乘构成 $\Bbb{P}$ 上的一个线性空间。
 1. 数域 $\Bbb{P}$ 上的一元多项式环 $\Bbb{P}[x]$ 关于多项式的加法和数乘构成 $\Bbb{P}$ 上的一个线性空间。
 1. 区间 $[a,b]$ 上的全体连续函数（记作 $C[a,b]$）关于「函数加法」和「值与连续函数的数乘」构成值域上的一个线性空间。
@@ -73,18 +72,9 @@ author: codewasp942, Tiphereth-A
 对线性空间 $(V,+,\cdot,\Bbb{P})$,
 
 1. 称 $a_1,a_2,\dots,a_n\in V$ 为 $V$ 的一个 **向量组**。
-1. 对于 $k_1,k_2,\dots,k_n\in\Bbb{P}$, 称
-
-   $$\sum_{i=1}^nk_ia_i$$
-
-   为向量组 $a_1,a_2,\dots,a_n$ 的一个 **线性组合**。
-
+1. 对于 $k_1,k_2,\dots,k_n\in\Bbb{P}$, 称 $\sum_{i=1}^nk_ia_i$ 为向量组 $a_1,a_2,\dots,a_n$ 的一个 **线性组合**。
 1. 若向量 $\beta\in V$ 可以表示为向量组 $a_1,a_2,\dots,a_n$ 的一个线性组合，则称 $\beta$ 能被向量组 $a_1,a_2,\dots,a_n$ **线性表出**。
-1. 对于 $k_1,k_2,\dots,k_n\in\Bbb{P}$, 若向量组 $a_1,a_2,\dots,a_n$ 满足
-
-   $$\sum_{i=1}^nk_ia_i=\theta\iff k_i=0, i=1,2,\dots,n$$
-
-   则称向量组 $a_1,a_2,\dots,a_n$ **线性无关**，否则称向量组 $a_1,a_2,\dots,a_n$ **线性相关**。
+1. 对于 $k_1,k_2,\dots,k_n\in\Bbb{P}$, 若向量组 $a_1,a_2,\dots,a_n$ 满足 $\sum_{i=1}^nk_ia_i=\theta\iff k_i=0, i=1,2,\dots,n$, 则称向量组 $a_1,a_2,\dots,a_n$ **线性无关**，否则称向量组 $a_1,a_2,\dots,a_n$ **线性相关**。
 
 #### 性质
 
@@ -106,11 +96,7 @@ author: codewasp942, Tiphereth-A
 1. 对于向量组 $b_1,b_2,\dots,b_m$, 令 $\{a_1,a_2,\dots,a_n\}\subseteq\{b_1,b_2,\dots,b_m\}$, 若
 
    - 向量组 $a_1,a_2,\dots,a_n$ 线性无关。
-   - $\forall\beta\in\{b_1,b_2,\dots,b_m\}\setminus\{a_1,a_2,\dots,a_n\}$, 向量组
-
-     $$a_1,a_2,\dots,a_n,\beta$$
-
-     线性相关。
+   - $\forall\beta\in\{b_1,b_2,\dots,b_m\}\setminus\{a_1,a_2,\dots,a_n\}$, 向量组 $a_1,a_2,\dots,a_n,\beta$ 线性相关。
 
    则称向量组 $a_1,a_2,\dots,a_n$ 为向量组 $b_1,b_2,\dots,b_m$ 中的一个 **极大线性无关组**。类似地，可定义线性空间 $V$ 的极大线性无关组。
 
@@ -119,9 +105,7 @@ author: codewasp942, Tiphereth-A
    称向量组 $b_1,b_2,\dots,b_m$ 的极大线性无关组的大小为向量组的 **秩**，记作 $\operatorname{rank}\{b_1,b_2,\dots,b_m\}$, 规定 $\operatorname{rank}\{\theta,\theta,\dots,\theta\}=0$.
 
 1. 若向量组 $a_1,a_2,\dots,a_n$ 能线性表出向量组 $b_1,b_2,\dots,b_m$ 中的所有向量，称向量组 $b_1,b_2,\dots,b_m$ 能被向量组 $a_1,a_2,\dots,a_n$ 线性表出。
-1. 若向量组 $a_1,a_2,\dots,a_n$ 能被向量组 $b_1,b_2,\dots,b_m$ 线性表出，且向量组 $b_1,b_2,\dots,b_m$ 能被向量组 $a_1,a_2,\dots,a_n$ 线性表出，则称两向量组 **等价**，记作
-
-   $$\{a_1,a_2,\dots,a_n\}\cong\{b_1,b_2,\dots,b_m\}$$
+1. 若向量组 $a_1,a_2,\dots,a_n$ 能被向量组 $b_1,b_2,\dots,b_m$ 线性表出，且向量组 $b_1,b_2,\dots,b_m$ 能被向量组 $a_1,a_2,\dots,a_n$ 线性表出，则称两向量组 **等价**，记作 $\{a_1,a_2,\dots,a_n\}\cong\{b_1,b_2,\dots,b_m\}$
 
 #### 性质
 
@@ -140,15 +124,11 @@ author: codewasp942, Tiphereth-A
 
 ### 线性包
 
-对线性空间 $(V,+,\cdot,\Bbb{P})$, 称
-
-$$\left\{v=\sum_{i=1}^nk_ia_i:a_i\in V,k_i\in\Bbb{P},i=1,2,\dots,n\right\}$$
-
-为由向量组 $a_1,a_2,\dots,a_n$ 张成的线性空间（或**线性包**），记作 $\operatorname{span}\{a_1,a_2,\dots,a_n\}$.
+对线性空间 $(V,+,\cdot,\Bbb{P})$, 称 $\left\{v=\sum_{i=1}^nk_ia_i:a_i\in V,k_i\in\Bbb{P},i=1,2,\dots,n\right\}$ 为由向量组 $a_1,a_2,\dots,a_n$ 张成的线性空间（或**线性包**），记作 $\operatorname{span}\{a_1,a_2,\dots,a_n\}$.
 
 ### 线性子空间
 
-对线性空间 $(V,+,\cdot,\Bbb{P})$, 若代数系统 $$(V_1,+,\cdot,\Bbb{P}) 满足：
+对线性空间 $(V,+,\cdot,\Bbb{P})$, 若代数系统 $(V_1,+,\cdot,\Bbb{P})$ 满足：
 
 1. $\varnothing\ne V_1$.
 1. $V_1\subseteq V$.
@@ -181,15 +161,12 @@ $$\left\{v=\sum_{i=1}^nk_ia_i:a_i\in V,k_i\in\Bbb{P},i=1,2,\dots,n\right\}$$
 
 #### 例子
 
-对于线性空间 $V=\R^3$, 设线性空间
+对于线性空间 $V=\Bbb{R}^3$, 设线性空间
 
-$$V_1:=\{(x,0,0)|x\in\R\}$$
-
-$$V_2:=\{(x,y,0)|x,y\in\R\}$$
-
-$$V_3:=\{(0,y,z)|y,z\in\R\}$$
-
-$$V_4:=\{(x,0,z)|x,z\in\R\}$$
+- $V_1:=\{(x,0,0)|x\in\Bbb{R}\}$
+- $V_2:=\{(x,y,0)|x,y\in\Bbb{R}\}$
+- $V_3:=\{(0,y,z)|y,z\in\Bbb{R}\}$
+- $V_4:=\{(x,0,z)|x,z\in\Bbb{R}\}$
 
 则：
 
@@ -208,14 +185,12 @@ $$V_4:=\{(x,0,z)|x,z\in\R\}$$
 3. $\theta$ 拆分为 $V_1$ 和 $V_2$ 中向量的和的方式唯一。
 4. $V_1\cap V_2=\{\theta\}$.
 
-???+note 证明
+???+note "证明"
     $1\implies 2$: 由定义立得。
     
     $2 \implies 3$:
     
-    令 $\beta=\beta_1+\beta_2$, 其中 $\beta_1\in V_1, \beta_2\in V_2$, 若 $\theta=\alpha_1+\alpha_2$, $\theta\ne\alpha_1\in V_1,\alpha_2\in V_2$, 则
-    
-    $$\beta=\beta+\theta=(\beta_1+\alpha_1)+(\beta_2+\alpha_2)$$
+    令 $\beta=\beta_1+\beta_2$, 其中 $\beta_1\in V_1, \beta_2\in V_2$, 若 $\theta=\alpha_1+\alpha_2$, $\theta\ne\alpha_1\in V_1,\alpha_2\in V_2$, 则 $\beta=\beta+\theta=(\beta_1+\alpha_1)+(\beta_2+\alpha_2)$.
     
     而 $\beta_1\ne\beta_1+\alpha_1$, 与条件矛盾。
     
@@ -227,8 +202,4 @@ $$V_4:=\{(x,0,z)|x,z\in\R\}$$
     
     若 $V_1+V_2$ 不是直和, 则存在 $\beta\in V_1+V_2$ 使得$\beta=\beta_1+\beta_2=\gamma_1+\gamma_2$, 其中 $\beta_1,\gamma_1\in V_1,\beta_2,\gamma_2\in V_2$ 且 $\beta_1,\beta_2,\gamma_1,\gamma_2)$ 互不相同。
     
-    进而
-    
-    $$\theta\ne\beta_1-\gamma_1=\gamma_2-\beta_2\in V_1\cap V_2$$
-
-    与条件矛盾。
+    进而 $\theta\ne\beta_1-\gamma_1=\gamma_2-\beta_2\in V_1\cap V_2$, 与条件矛盾。
