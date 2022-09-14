@@ -1,3 +1,5 @@
+author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, RUIN-RISE, wjy-yy, rsdbkhusky, ouuan, Menci, Tiphereth-A
+
 线性基是向量空间的一组基，通常可以解决有关异或的一些题目。
 
 通俗一点的讲法就是由一个集合构造出来的另一个集合。
