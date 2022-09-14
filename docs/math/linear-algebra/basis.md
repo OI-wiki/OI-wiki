@@ -42,27 +42,15 @@ $\begin{bmatrix}-1\\0.5\end{bmatrix}$、$\begin{bmatrix}1\\1\end{bmatrix}$ 和 $
 
 ### 贪心法
 
-对原集合的每个数 $p$ 转为二进制，从高位向低位扫，对于第 $x$ 位是 $1$ 的，如果 $a_x$ 不存在，那么令 $a_x=p$ 并结束扫描，如果存在，令 $p=p~\text{xor}~a_x$。
+### 构造方法
 
-代码：
+因为异或线性基与实数线性基没有本质差别，所以接下来以异或线性基为例，实数线性基版本的代码只需做一点简单修改即可。
 
-```cpp
-inline void insert(long long x) {
-  for (int i = 55; i + 1; i--) {
-    if (!(x >> i))  // x的第i位是0
-      continue;
-    if (!p[i]) {
-      p[i] = x;
-      break;
-    }
-    x ^= p[i];
-  }
-}
-```
+#### 贪心法
 
-查询原集合内任意几个元素 $\text{xor}$ 的最大值，就可以用线性基解决。
+对原集合的每个数 $p$ 转为二进制，从高位向低位扫，对于第 $x$ 位是 $1$ 的，如果 $a_x$ 不存在，那么令 $a_x \leftarrow p$ 并结束扫描，如果存在，令 $p\leftarrow p~\text{xor}~a_x$。
 
-将线性基从高位向低位扫，若 $\text{xor}$ 上当前扫到的 $a_x$ 答案变大，就把答案异或上 $a_x$。
+查询原集合内任意几个元素 $\text{xor}$ 的最大值，只需将线性基从高位向低位扫，若 $\text{xor}$ 上当前扫到的 $a_x$ 答案变大，就把答案异或上 $a_x$。
 
 为什么能行呢？因为从高往低位扫，若当前扫到第 $i$ 位，意味着可以保证答案的第 $i$ 位为 $1$，且后面没有机会改变第 $i$ 位。
 
@@ -70,50 +58,23 @@ inline void insert(long long x) {
 
 查询某个数是否能被异或出来，类似于插入，如果最后插入的数 $p$ 被异或成了 $0$，则能被异或出来。
 
-### 高斯消元法
+???+note "代码"
+    > （洛谷 P3812 [【模板】线性基](https://www.luogu.com.cn/problem/P3812)）：
+    
+    ```cpp
+    --8<-- "docs/math/code/basis/basis_1.cpp"
+    ```
 
-高斯消元法是从线性基本身含义的角度去构造线性基，可以求 $0/1$ 向量（二进制数）的线性基，也可以求非 $0/1$ 向量的线性基。
+#### 高斯消元法
 
-如果只需要求 $0/1$ 的线性基，使用 [异或高斯消元](./gauss.md#_17) 即可。
+高斯消元法相当于从线性方程组的角度去构造线性基，正确性显然。
 
-#### 代码
-
-```cpp
-#include <bits/stdc++.h>
-using namespace std;
-typedef unsigned long long ull;
-const int MAXn = 1e5;
-inline ull deg(ull num, int deg) { return num & (1ull << deg); }
-int n;
-ull a[MAXn + 10];
-int main() {
-  scanf("%d", &n);
-  for (int i = 1; i <= n; ++i) scanf("%llu", &a[i]);
-  int row = 1;
-  for (int col = 63; ~col && row <= n; --col) {
-    for (int i = row; i <= n; ++i) {
-      if (deg(a[i], col)) {
-        swap(a[row], a[i]);
-        break;
-      }
-    }
-    if (!deg(a[row], col)) continue;
-    for (int i = 1; i <= n; ++i) {
-      if (i == row) continue;
-      if (deg(a[i], col)) {
-        a[i] ^= a[row];
-      }
-    }
-    ++row;
-  }
-  ull ans = 0;
-  for (int i = 1; i < row; ++i) {
-    ans ^= a[i];
-  }
-  printf("%llu\n", ans);
-  return 0;
-}
-```
+???+note "代码"
+    > （洛谷 P3812 [【模板】线性基](https://www.luogu.com.cn/problem/P3812)）：
+    
+    ```cpp
+    --8<-- "docs/math/code/basis/basis_2.cpp"
+    ```
 
 #### 性质
 
