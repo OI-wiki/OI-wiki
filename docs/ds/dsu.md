@@ -23,8 +23,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 struct dsu {
     vector<size_t> pa;
 
-    dsu(size_t size) {
-        pa.resize(size);
+    explicit dsu(size_t size): pa(size) {
         iota(pa.begin(), pa.end(), 0);
     }
 };
@@ -116,10 +115,8 @@ def union(self, x, y):
 struct dsu {
     vector<size_t> pa, size;
 
-    dsu(size_t size) {
-        pa.resize(size);
+    explicit dsu(size_t _size): pa(_size), size(_size, 1) {
         iota(pa.begin(), pa.end(), 0);
-        this->size.resize(size, 1);
     }
 
     void unite(size_t x, size_t y) {
@@ -158,10 +155,9 @@ class Dsu:
 struct dsu {
     vector<size_t> pa, size;
 
-    dsu(size_t size) {
-        pa.resize(size + size);
-        for (size_t i = 0; i != size; ++i) pa[i] = pa[i + size] = i + size;
-        this->size.resize(size + size, 1);
+    explicit dsu(size_t _size): pa(_size * 2), size(_size * 2, 1) {
+        iota(pa.begin(), pa.begin() + _size, _size);
+        iota(pa.begin() + _size, pa.end(), _size);
     }
 
     void erase(size_t x) {
