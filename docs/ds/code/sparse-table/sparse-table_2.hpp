@@ -14,7 +14,7 @@ class SparseTable {
   func_type op;
 
  public:
-  SparseTable<T>(const vector<T> &v, func_type _func = default_func) {
+  SparseTable(const vector<T> &v, func_type _func = default_func) {
     op = _func;
     int len = v.size(), l1 = ceil(log2(len)) + 1;
     ST.assign(len, VT(l1, 0));
