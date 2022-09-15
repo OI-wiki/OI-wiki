@@ -2,12 +2,12 @@ author: codewasp942, Tiphereth-A
 
 ## 定义
 
-线性空间（向量空间）是线性代数的基本概念与重要研究对象。线性空间是由向量集合 $V$、域 $\Bbb{P}$、加法运算 $+$ 和标量乘法组成的模类代数结构。域的定义详见 [群论简介](./../group-theory.md)。
+线性空间（向量空间）是线性代数的基本概念与重要研究对象。线性空间是由向量集合 $V$、域 $\Bbb{P}$、加法运算 $+$ 和标量乘法（数乘）组成的模类代数结构。域的定义详见 [群论简介](./../group-theory.md)。
 
 具体来说，对于集合 $V$、域 $\Bbb{P}$，定义了以下封闭的运算：
 
-- 加法运算：$+:V\times V\mapsto V$，记为 $u+v$，其中 $u,v\in V$
-- 标量乘法：$\cdot:\Bbb{P}\times V\mapsto V$，记为 $p\cdot v$ 或 $pv$，其中 $p\in \Bbb{P},v\in V$
+- 加法：$+:V\times V\mapsto V$，记为 $u+v$，其中 $u,v\in V$
+- 数乘：$\cdot:\Bbb{P}\times V\mapsto V$，记为 $p\cdot v$ 或 $pv$，其中 $p\in \Bbb{P},v\in V$
 
 且满足以下公理：
 
@@ -149,17 +149,20 @@ author: codewasp942, Tiphereth-A
 1. 不难验证：加法和数乘在 $V_1\cap V_2$ 上封闭，故可称 $V_1\cap V_2$ 为线性空间 $V_1$ 和 $V_2$ 的**交**。
    
     类似地，可定义多个线性空间的交 $\bigcap_{i=1}^m V_i$.
+
 1. 若线性空间 $V$ 满足 $V=\{u+v|u\in V_1,v\in V_2\}$, 则称 $V$ 为线性空间 $V_1$ 和 $V_2$ 的**和**，记为 $V=V_1+V_2$.
 
     可以验证：$V_1+V_2$ 是包含 $V_1\cup V_2$ 的最小子空间。
 
     类似地，可定义多个线性空间的和 $\sum_{i=1}^m V_i$.
+
 1. 设 $V=V_1+V_2$, 若线性空间 $V$ 中的任意元素 $v$, 均只能找到唯一一组向量 $v_1,v_2$ 满足 $v=v_1+v_2$, 则称 $V$ 为线性空间 $V_1$ 和 $V_2$ 的**直和** (direct sum)，记为 $V_1\oplus V_2$.
 
     类似地，可定义多个线性空间的直和 $\bigoplus_{i=1}^m V_i$.
+
 1. $V_1$ 与 $V_2$ 的 **直积** $V_1\times V_2$ 定义为二者的笛卡儿积关于如下的加法和数乘构成 $\Bbb{P}$ 上的线性空间：
-   1. $+:(V_1\times V_2)\times(V_1\times V_2)\mapsto V_1\times V_2; ((u_1,v_1),(u_2,v_2))\to (u_1+u_2,v_1+v_2)$
-   1. $\cdot:\Bbb{P}\times(V_1\times V_2)\mapsto V_1\times V_2; (k,(u,u))\to (ku,kv)$
+    1. $+:(V_1\times V_2)\times(V_1\times V_2)\mapsto V_1\times V_2; ((u_1,v_1),(u_2,v_2))\to (u_1+u_2,v_1+v_2)$
+    1. $\cdot:\Bbb{P}\times(V_1\times V_2)\mapsto V_1\times V_2; (k,(u,u))\to (ku,kv)$
     
     类似地，可定义多个线性空间的直积 $\prod_{i=1}^m V_i$.
 
@@ -172,7 +175,7 @@ author: codewasp942, Tiphereth-A
 - $V_3:=\{(0,y,z)|y,z\in\Bbb{R}\}$.
 - $V_4:=\{(x,0,z)|x,z\in\Bbb{R}\}$.
 
-则：
+则
 
 1. $V_1<V_2<V$, $V_3<V$.
 1. $V_2=V_1+V_2$.
@@ -183,23 +186,23 @@ author: codewasp942, Tiphereth-A
 #### 性质
 
 1. 令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，和集合的交一样，线性空间的交适用如下法则：
-   1. 交换律：$V_1\cap V_2=V_2\cap V_1$.
-   1. 结合律：$V_1\cap(V_2\cap V_3)=(V_1\cap V_2)\cap V_3$.
+    1. 交换律：$V_1\cap V_2=V_2\cap V_1$.
+    1. 结合律：$V_1\cap(V_2\cap V_3)=(V_1\cap V_2)\cap V_3$.
 1. 令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，类似于集合的并，线性空间的和适用如下法则：
-   1. 交换律：$V_1+V_2=V_2+V_1$.
-   1. 结合律：$V_1+(V_2+V_3)=(V_1+V_2)+V_3$.
+    1. 交换律：$V_1+V_2=V_2+V_1$.
+    1. 结合律：$V_1+(V_2+V_3)=(V_1+V_2)+V_3$.
 1. 令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，线性空间的交与并有如下关系：
-   1. $V_1\cap (V_2+V_3)\supseteq (V_1\cap V_2)+(V_1\cap V_3)$.
-   1. $V_1+(V_2\cap V_3)\subseteq (V_1+V_2)\cap (V_1+V_3)$.
+    1. $V_1\cap (V_2+V_3)\supseteq (V_1\cap V_2)+(V_1\cap V_3)$.
+    1. $V_1+(V_2\cap V_3)\subseteq (V_1+V_2)\cap (V_1+V_3)$.
 1. $\operatorname{span}\{a_1,a_2,\dots,a_n\}+\operatorname{span}\{b_1,b_2,\dots,b_m\}=\operatorname{span}\{a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_m\}$.
 1. 令 $V_1,V_2$ 是关于 $\Bbb{P}$ 的线性空间，则下列诸款等价：
 
-   1. $V_1+V_2=V_1\oplus V_2$.
-   2. $\exists \beta\in V_1+V_2$, 使得拆分为 $V_1$ 和 $V_2$ 中的向量和的方式唯一（任意 $\to$ 存在）。
-   3. $\theta$ 拆分为 $V_1$ 和 $V_2$ 中向量的和的方式唯一。
-   4. $V_1\cap V_2=\{\theta\}$.
+    1. $V_1+V_2=V_1\oplus V_2$.
+    2. $\exists \beta\in V_1+V_2$, 使得拆分为 $V_1$ 和 $V_2$ 中的向量和的方式唯一（任意 $\to$ 存在）。
+    3. $\theta$ 拆分为 $V_1$ 和 $V_2$ 中向量的和的方式唯一。
+    4. $V_1\cap V_2=\{\theta\}$.
 
-   ???+note "证明"
+    ???+note "证明"
         $1\implies 2$: 由定义立得。
         
         $2 \implies 3$:
@@ -228,15 +231,15 @@ author: codewasp942, Tiphereth-A
 则称 $\sigma$ 是 $V$ 到 $V'$ 的 **同构映射**，此时称 $V$ 与 $V'$ **同构**，记为 $V\cong V'$.
 
 ???+ note
-   若 $\sigma$ 是单射，则可定义**单同态**；若 $\sigma$ 是满射，则可定义**满同态**。
+    若 $\sigma$ 是单射，则可定义**单同态**；若 $\sigma$ 是满射，则可定义**满同态**。
 
 #### 性质
 
 1. 域 $\Bbb{P}$ 上的两线性空间同构当且仅当其维数相等
 2. （1 的推论）域 $\Bbb{P}$ 上的 $n$ 维线性空间与线性空间 $\Bbb{P}^n$ 同构
-   
-   ???+ note
-      本性质说明我们基本上可以将坐标和向量等同看待。
+
+    ???+ note
+        本性质说明我们基本上可以将坐标和向量等同看待。
 
 ## 参考资料与注释
 
