@@ -9,7 +9,7 @@ author: codewasp942, Tiphereth-A
 - 加法：$+:V\times V\mapsto V$，记为 $u+v$，其中 $u,v\in V$
 - 数乘：$\cdot:\Bbb{P}\times V\mapsto V$，记为 $p\cdot v$ 或 $pv$，其中 $p\in \Bbb{P},v\in V$
 
-且满足以下公理：
+且满足以下条件：
 
 1. **加法交换律**：$\forall \mathbf u,\mathbf v\in V$，$\mathbf u+\mathbf v=\mathbf v+\mathbf u$
 2. **加法结合律**：$\forall\mathbf u,\mathbf v,\mathbf w\in V$，$\mathbf u+(\mathbf v+\mathbf w)=(\mathbf u+\mathbf v)+\mathbf w$
