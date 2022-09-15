@@ -57,7 +57,6 @@ author: codewasp942, Tiphereth-A
    
    > 实际上，加法的消去律可以替换定义中的「加法单位元」和「加法逆元」两条。
 
-
 ### 例子
 
 1. $\Bbb{P}^n$ 关于数域 $\Bbb{P}$ 上的加法和乘法构成 $\Bbb{P}$ 上的一个线性空间。例如 $\Bbb{P}$ 可以是 $\Bbb{R}$, $\Bbb{C}$, $\Bbb{N}_p$($p$ 为素数) 等
@@ -192,7 +191,8 @@ author: codewasp942, Tiphereth-A
 1. 令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，线性空间的交与并有如下关系：
    1. $V_1\cap (V_2+V_3)\supseteq (V_1\cap V_2)+(V_1\cap V_3)$.
    1. $V_1+(V_2\cap V_3)\subseteq (V_1+V_2)\cap (V_1+V_3)$.
-1. 令 $V$ 是关于 $\Bbb{P}$ 的线性空间，$V_1,V_2\leqslant V$, 则下列诸款等价：
+1. $\operatorname{span}\{a_1,a_2,\dots,a_n\}+\operatorname{span}\{b_1,b_2,\dots,b_m\}=\operatorname{span}\{a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_m\}$.
+1. 令 $V_1,V_2$ 是关于 $\Bbb{P}$ 的线性空间，则下列诸款等价：
 
    1. $V_1+V_2=V_1\oplus V_2$.
    2. $\exists \beta\in V_1+V_2$, 使得拆分为 $V_1$ 和 $V_2$ 中的向量和的方式唯一（任意 $\to$ 存在）。

@@ -1,6 +1,6 @@
 author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, RUIN-RISE, wjy-yy, rsdbkhusky, ouuan, Menci, Tiphereth-A
 
-前置知识：[线性空间](./linear-space.md) 的定义以及相关概念中的线性相关、线性无关、极大线性无关组。
+前置知识：[线性空间](./linear-space.md) 的定义以及相关概念中的线性相关、线性无关、极大线性无关组、子空间等。
 
 线性基是线性空间的一组基，是研究线性空间的重要工具。
 
@@ -31,21 +31,47 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
 ### 性质（有限维）
 
-对于有限维线性空间 $V$, 设其维数为 $n$, 则：
+1. 对于有限维线性空间 $V$, 设其维数为 $n$, 则：
 
-1. $V$ 中的任意 $n+1$ 个向量线性相关。
-1. $V$ 中的任意 $n$ 个线性无关的向量均为 $V$ 的基。
-1. 若 $V$ 中的任意向量均可被向量组 $a_1,a_2,\dots,a_n$ 线性表出，则其是 $V$ 的一个基。
+   1. $V$ 中的任意 $n+1$ 个向量线性相关。
+   1. $V$ 中的任意 $n$ 个线性无关的向量均为 $V$ 的基。
+   1. 若 $V$ 中的任意向量均可被向量组 $a_1,a_2,\dots,a_n$ 线性表出，则其是 $V$ 的一个基。
+
+        ???+ note "证明"
+            
+            任取 $V$ 中的一组基 $b_1,b_2,\dots,b_n$, 由已知条件, 向量组 $b_1,b_2,\dots,b_n$ 可被 $a_1,a_2,\dots,a_n$ 线性表出, 故
+            
+            $$n=\operatorname{rank}\{b_1,b_2,\dots,b_n\}\leq\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq n$$
+            
+            因此 $\operatorname{rank}\{a_1,a_2,\dots,a_n\}=n$
+
+   1. $V$ 中任意线性无关向量组 $a_1,a_2,\dots,a_m$ 均可通过插入一些向量使得其变为 $V$ 的一个基。
+
+1. （子空间维数公式）令 $V_1,V_2$ 是关于 $\Bbb{P}$ 的有限维线性空间，且 $V_1+V_2$ 和 $V_1\cap V_2$ 也是有限维的，则：
+   
+   $\dim V_1+\dim V_2=\dim(V_1+V_2)+\dim(V_1\cap V_2)$
 
     ???+ note "证明"
-      
-      任取 $V$ 中的一组基 $b_1,b_2,\dots,b_n$, 由已知条件, 向量组 $b_1,b_2,\dots,b_n$ 可被 $a_1,a_2,\dots,a_n$ 线性表出, 故
-      
-      $$n=\operatorname{rank}\{b_1,b_2,\dots,b_n\}\leq\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq n$$
-      
-      因此 $\operatorname{rank}\{a_1,a_2,\dots,a_n\}=n$
+        
+        设 $\dum V_1=n_1$, $\dim V_2=n_2$, $\dim(V_1\cap V_2)=m$.
+        
+        取 $V_1\cap V_2$ 的一组基 $a_1,a_2,\dots,a_m$, 将其分别扩充为 $V_1$ 和 $V_2$ 中的基：$a_1,a_2,\dots,a_m,b_1,b_2,\dots,b_{n_1-m}$ 和 $a_1,a_2,\dots,a_m,c_1,c_2,\dots,c_{n_2-m}$.
+        
+        接下来只需证明向量组 $a_1,a_2,\dots,a_m,b_1,b_2,\dots,b_{n_1-m},c_1,c_2,\dots,c_{n_2-m}$ 线性无关即可。
+        
+        设 $\sum_{i=1}^m r_ia_i+\sum_{i=1}^{n_1-m} s_ib_i+\sum_{i=1}^{n_2-m} t_ic_i=\theta$.
+        
+        则 $\sum_{i=1}^{n_2-m} t_ic_i=-\sum_{i=1}^m r_ia_i-\sum_{i=1}^{n_1-m} s_ib_i$.
+        
+        注意到上式左边在 $V_2$ 中，右边在 $V_1$ 中，故两边均在 $V_1\cap V_2$ 中，因此 $\sum_{i=1}^{n_2-m} t_ic_i=\sum_{i=1}^m k_ia_i$
+        
+        故 $t_1=t_2=\dots=t_{n_2-m}=k_1=k_2=\dots=k_m=0$, 进而 $r_1=r_2=\dots=r_m=s_1=s_2=\dots=s_{n_1-m}=t_1=t_2=\dots=t_{n_2-m}=0$
 
-1. $V$ 中任意线性无关向量组 $a_1,a_2,\dots,a_m$ 均可通过插入一些向量使得其变为 $V$ 的一个基。
+1. 令 $V_1,V_2$ 是关于 $\Bbb{P}$ 的有限维线性空间，且 $V_1+V_2$ 和 $V_1\cap V_2$ 也是有限维的，则下列诸款等价：
+
+   1. $V_1+V_2=V_1\oplus V_2$.
+   1. $\dim V_1+\dim V_2=\dim(V_1+V_2)$.
+   1. 若 $a_1,a_2,\dots,a_n$ 是 $V_1$ 的一组基，$b_1,b_2,\dots,b_m$ 是 $V_2$ 的一组基，则 $a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_m$ 是 $V_1+V_2$ 的一组基。
 
 ### 例子
 
