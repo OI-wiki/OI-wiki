@@ -2,7 +2,7 @@ author: codewasp942, Tiphereth-A
 
 ## 定义
 
-线性空间是线性代数的基本概念与重要研究对象。线性空间是由向量集合 $V$、域 $\Bbb{P}$、加法运算 $+$ 和标量乘法组成的代数结构。域的定义详见 [群论简介](./../group-theory.md)。
+线性空间（向量空间）是线性代数的基本概念与重要研究对象。线性空间是由向量集合 $V$、数域 $\Bbb{P}$、加法运算 $+$ 和标量乘法组成的模类代数结构。域的定义详见 [群论简介](./../group-theory.md)。
 
 具体来说，对于集合 $V$、域 $\Bbb{P}$，定义了以下封闭的运算：
 
@@ -116,7 +116,7 @@ author: codewasp942, Tiphereth-A
    - 若向量组 $a_1,a_2,\dots,a_n$ 线性无关，则 $n\leq m$.
 1. 等价的线性无关向量组的大小相等。
 
-   向量组的任意极大线性无关组的大小均相等。
+    向量组的任意极大线性无关组的大小均相等。
 
 1. 向量组线性无关当且仅当其秩等于其大小。
 1. 若向量组 $a_1,a_2,\dots,a_n$ 能被线性表出向量组 $b_1,b_2,\dots,b_m$ 线性表出，则 $\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq\operatorname{rank}\{b_1,b_2,\dots,b_m\}$.
@@ -143,30 +143,35 @@ author: codewasp942, Tiphereth-A
 1. $\forall u,v\in V_1$, $u+v\in V_1$.
 1. $\forall v\in V_1$, $\forall k\in \Bbb{P}$, $kv\in V_1$.
 
-### 线性空间的交、和与直和
+### 交、和与直和、直积
 
 对线性空间 $(V_1,+,\cdot,\Bbb{P})$ 与 $(V_2,+,\cdot,\Bbb{P})$,
 
-1. 若线性空间 $V$ 满足
+1. 不难验证：加法和数乘在 $V_1\cap V_2$ 上封闭，故可称 $V_1\cap V_2$ 为线性空间 $V_1$ 和 $V_2$ 的**交**。
    
-   1. $V\leq V_1$
-   1. $V\leq V_2$
-   1. $\forall u\in V$, $\forall v\in (V_1\cup V_2)\setminus V$, $u+v\notin V$
-   
-   则称 $V$ 为线性空间 $V_1$ 和 $V_2$ 的**交**
-
-   显然 $V\subseteq V_1\cap V_2$, 等号只在 $V_1\subseteq V_2$ 或 $V_2\subseteq V_1$ 时取得。
+    类似地，可定义多个线性空间的交 $\bigcap_{i=1}^m V_i$.
 1. 若线性空间 $V$ 满足 $V=\{u+v|u\in V_1,v\in V_2\}$, 则称 $V$ 为线性空间 $V_1$ 和 $V_2$ 的**和**，记为 $V=V_1+V_2$.
+
+    可以验证：$V_1+V_2$ 是包含 $V_1\cup V_2$ 的最小子空间。
+
+    类似地，可定义多个线性空间的和 $\sum_{i=1}^m V_i$.
 1. 设 $V=V_1+V_2$, 若线性空间 $V$ 中的任意元素 $v$, 均只能找到唯一一组向量 $v_1,v_2$ 满足 $v=v_1+v_2$, 则称 $V$ 为线性空间 $V_1$ 和 $V_2$ 的**直和** (direct sum)，记为 $V_1\oplus V_2$.
+
+    类似地，可定义多个线性空间的直和 $\bigoplus_{i=1}^m V_i$.
+1. $V_1$ 与 $V_2$ 的 **直积** $V_1\times V_2$ 定义为二者的笛卡儿积关于如下的加法和数乘构成 $\Bbb{P}$ 上的线性空间：
+   1. $+:(V_1\times V_2)\times(V_1\times V_2)\mapsto V_1\times V_2; ((u_1,v_1),(u_2,v_2))\to (u_1+u_2,v_1+v_2)$
+   1. $\cdot:\Bbb{P}\times(V_1\times V_2)\mapsto V_1\times V_2; (k,(u,u))\to (ku,kv)$
+    
+    类似地，可定义多个线性空间的直积 $\prod_{i=1}^m V_i$.
 
 #### 例子
 
 对于线性空间 $V=\Bbb{R}^3$, 设线性空间
 
-- $V_1:=\{(x,0,0)|x\in\Bbb{R}\}$
-- $V_2:=\{(x,y,0)|x,y\in\Bbb{R}\}$
-- $V_3:=\{(0,y,z)|y,z\in\Bbb{R}\}$
-- $V_4:=\{(x,0,z)|x,z\in\Bbb{R}\}$
+- $V_1:=\{(x,0,0)|x\in\Bbb{R}\}$.
+- $V_2:=\{(x,y,0)|x,y\in\Bbb{R}\}$.
+- $V_3:=\{(0,y,z)|y,z\in\Bbb{R}\}$.
+- $V_4:=\{(x,0,z)|x,z\in\Bbb{R}\}$.
 
 则：
 
@@ -178,31 +183,40 @@ author: codewasp942, Tiphereth-A
 
 #### 性质
 
-令$V$为线性空间，$V_1,V_2\leqslant V$, 则下列诸款等价：
+1. 令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，和集合的交一样，线性空间的交适用如下法则：
+   1. 交换律：$V_1\cap V_2=V_2\cap V_1$.
+   1. 结合律：$V_1\cap(V_2\cap V_3)=(V_1\cap V_2)\cap V_3$.
+1. 令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，类似于集合的并，线性空间的和适用如下法则：
+   1. 交换律：$V_1+V_2=V_2+V_1$.
+   1. 结合律：$V_1+(V_2+V_3)=(V_1+V_2)+V_3$.
+1. 令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，线性空间的交与并有如下关系：
+   1. $V_1\cap (V_2+V_3)\supseteq (V_1\cap V_2)+(V_1\cap V_3)$.
+   1. $V_1+(V_2\cap V_3)\subseteq (V_1+V_2)\cap (V_1+V_3)$.
+1. 令 $V$ 是关于 $\Bbb{P}$ 的线性空间，$V_1,V_2\leqslant V$, 则下列诸款等价：
 
-1. $V_1+V_2=V_1\oplus V_2$.
-2. $\exists \beta\in V_1+V_2$, 使得拆分为 $V_1$ 和 $V_2$ 中的向量和的方式唯一（任意 $\to$ 存在）。
-3. $\theta$ 拆分为 $V_1$ 和 $V_2$ 中向量的和的方式唯一。
-4. $V_1\cap V_2=\{\theta\}$.
+   1. $V_1+V_2=V_1\oplus V_2$.
+   2. $\exists \beta\in V_1+V_2$, 使得拆分为 $V_1$ 和 $V_2$ 中的向量和的方式唯一（任意 $\to$ 存在）。
+   3. $\theta$ 拆分为 $V_1$ 和 $V_2$ 中向量的和的方式唯一。
+   4. $V_1\cap V_2=\{\theta\}$.
 
-???+note "证明"
-    $1\implies 2$: 由定义立得。
-    
-    $2 \implies 3$:
-    
-    令 $\beta=\beta_1+\beta_2$, 其中 $\beta_1\in V_1, \beta_2\in V_2$, 若 $\theta=\alpha_1+\alpha_2$, $\theta\ne\alpha_1\in V_1,\alpha_2\in V_2$, 则 $\beta=\beta+\theta=(\beta_1+\alpha_1)+(\beta_2+\alpha_2)$.
-    
-    而 $\beta_1\ne\beta_1+\alpha_1$, 与条件矛盾。
-    
-    $3 \implies 4$:
-    
-    在 $V_1$ 和 $V_2$ 中取一非零向量 $\alpha$, 则 $\theta=\alpha+(-\alpha)=(-\alpha)+\alpha$, 这与条件矛盾。
-    
-    $4 \implies 1$:
-    
-    若 $V_1+V_2$ 不是直和, 则存在 $\beta\in V_1+V_2$ 使得$\beta=\beta_1+\beta_2=\gamma_1+\gamma_2$, 其中 $\beta_1,\gamma_1\in V_1,\beta_2,\gamma_2\in V_2$ 且 $\beta_1,\beta_2,\gamma_1,\gamma_2)$ 互不相同。
-    
-    进而 $\theta\ne\beta_1-\gamma_1=\gamma_2-\beta_2\in V_1\cap V_2$, 与条件矛盾。
+   ???+note "证明"
+        $1\implies 2$: 由定义立得。
+        
+        $2 \implies 3$:
+        
+        令 $\beta=\beta_1+\beta_2$, 其中 $\beta_1\in V_1, \beta_2\in V_2$, 若 $\theta=\alpha_1+\alpha_2$, $\theta\ne\alpha_1\in V_1,\alpha_2\in V_2$, 则 $\beta=\beta+\theta=(\beta_1+\alpha_1)+(\beta_2+\alpha_2)$.
+        
+        而 $\beta_1\ne\beta_1+\alpha_1$, 与条件矛盾。
+        
+        $3 \implies 4$:
+        
+        在 $V_1$ 和 $V_2$ 中取一非零向量 $\alpha$, 则 $\theta=\alpha+(-\alpha)=(-\alpha)+\alpha$, 这与条件矛盾。
+        
+        $4 \implies 1$:
+        
+        若 $V_1+V_2$ 不是直和, 则存在 $\beta\in V_1+V_2$ 使得$\beta=\beta_1+\beta_2=\gamma_1+\gamma_2$, 其中 $\beta_1,\gamma_1\in V_1,\beta_2,\gamma_2\in V_2$ 且 $\beta_1,\beta_2,\gamma_1,\gamma_2)$ 互不相同。
+        
+        进而 $\theta\ne\beta_1-\gamma_1=\gamma_2-\beta_2\in V_1\cap V_2$, 与条件矛盾。
 
 ## 参考资料与注释
 
