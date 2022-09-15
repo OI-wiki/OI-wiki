@@ -73,6 +73,9 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
    1. $\dim V_1+\dim V_2=\dim(V_1+V_2)$.
    1. 若 $a_1,a_2,\dots,a_n$ 是 $V_1$ 的一组基，$b_1,b_2,\dots,b_m$ 是 $V_2$ 的一组基，则 $a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_m$ 是 $V_1+V_2$ 的一组基。
 
+    ???+ note
+        1,3 两条可推广到无限维线性空间中
+
 ### 例子
 
 考虑 $\Bbb{R}^2$ 的基。
