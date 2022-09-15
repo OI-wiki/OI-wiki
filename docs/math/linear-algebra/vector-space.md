@@ -2,7 +2,7 @@ author: codewasp942, Tiphereth-A
 
 ## 定义
 
-线性空间（向量空间）是线性代数的基本概念与重要研究对象。线性空间是由向量集合 $V$、数域 $\Bbb{P}$、加法运算 $+$ 和标量乘法组成的模类代数结构。域的定义详见 [群论简介](./../group-theory.md)。
+线性空间（向量空间）是线性代数的基本概念与重要研究对象。线性空间是由向量集合 $V$、域 $\Bbb{P}$、加法运算 $+$ 和标量乘法组成的模类代数结构。域的定义详见 [群论简介](./../group-theory.md)。
 
 具体来说，对于集合 $V$、域 $\Bbb{P}$，定义了以下封闭的运算：
 
@@ -217,6 +217,26 @@ author: codewasp942, Tiphereth-A
         若 $V_1+V_2$ 不是直和, 则存在 $\beta\in V_1+V_2$ 使得$\beta=\beta_1+\beta_2=\gamma_1+\gamma_2$, 其中 $\beta_1,\gamma_1\in V_1,\beta_2,\gamma_2\in V_2$ 且 $\beta_1,\beta_2,\gamma_1,\gamma_2)$ 互不相同。
         
         进而 $\theta\ne\beta_1-\gamma_1=\gamma_2-\beta_2\in V_1\cap V_2$, 与条件矛盾。
+
+### 同构
+
+设 $V,V'$ 均为域 $\Bbb{P}$ 上的线性空间，若存在双射 $\sigma:V\mapsto V'$ 且保持加法与数乘，即 $\forall u,v\in V$, $\forall k\in\Bbb{P}$ 满足：
+
+1. $\sigma(u+v)=\sigma(u)+\sigma(v)$
+1. $\sigma(ku)=k\sigma(u)$
+
+则称 $\sigma$ 是 $V$ 到 $V'$ 的 **同构映射**，此时称 $V$ 与 $V'$ **同构**，记为 $V\cong V'$.
+
+???+ note
+   若 $\sigma$ 是单射，则可定义**单同态**；若 $\sigma$ 是满射，则可定义**满同态**。
+
+#### 性质
+
+1. 域 $\Bbb{P}$ 上的两线性空间同构当且仅当其维数相等
+2. （1 的推论）域 $\Bbb{P}$ 上的 $n$ 维线性空间与线性空间 $\Bbb{P}^n$ 同构
+   
+   ???+ note
+      本性质说明我们基本上可以将坐标和向量等同看待。
 
 ## 参考资料与注释
 
