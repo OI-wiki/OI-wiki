@@ -1,8 +1,10 @@
 ## Lucas 定理
 
+### 引入
+
 Lucas 定理用于求解大组合数取模的问题，其中模数必须为素数。正常的组合数运算可以通过递推公式求解（详见 [排列组合](../combinatorics/combination.md)），但当问题规模很大，而模数是一个不大的质数的时候，就不能简单地通过递推求解来得到答案，需要用到 Lucas 定理。
 
-### 求解方式
+### 定义
 
 Lucas 定理内容如下：对于质数 $p$，有
 
@@ -14,7 +16,7 @@ $$
 
 时间复杂度为 $O(f(p) + g(n)\log n)$，其中 $f(n)$ 为预处理组合数的复杂度，$g(n)$ 为单次求组合数的复杂度。
 
-???+note "代码实现"
+???+note "实现"
     ```cpp
     // C++ Version
     long long Lucas(long long n, long long m, long long p) {
@@ -31,7 +33,7 @@ $$
       return (C(n % p, m % p, p) * Lucas(n // p, m // p, p)) % p
     ```
 
-### Lucas 定理的证明
+### 证明
 
 考虑 $\displaystyle\binom{p}{n} \bmod p$ 的取值，注意到 $\displaystyle\binom{p}{n} = \frac{p!}{n!(p-n)!}$，分子的质因子分解中 $p$ 的次数恰好为 $1$，因此只有当 $n = 0$ 或 $n = p$ 的时候 $n!(p-n)!$ 的质因子分解中含有 $p$，因此 $\displaystyle\binom{p}{n} \bmod p = [n = 0 \vee n = p]$。进而我们可以得出
 
@@ -98,7 +100,7 @@ $v_2(C_m^n)=S_2(n)+S_2(m-n)-S_2(m)$
 
 Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是素数的情况，就需要用到 exLucas 定理。
 
-### 求解思路
+### 过程
 
 #### 第一部分：中国剩余定理
 
@@ -157,7 +159,9 @@ $$
 
 的值。这时可以利用 [Wilson 定理的推论](./wilson.md)。如果难以理解，可以看看下面的解释。
 
-#### 一个示例：22! mod 9
+#### 解释
+
+一个示例：22! mod 9
 
 先考虑 $n! \bmod q^k$，
 
@@ -211,7 +215,7 @@ $$
 
 下面这种写法，拥有单次询问 $O(p\log p)$ 的时间复杂度。其中 `int inverse(int x)` 函数返回 $x$ 在模 $p$ 意义下的逆元。
 
-???+note "代码实现"
+???+note "实现"
     ```cpp
     LL calc(LL n, LL x, LL P) {
       if (!n) return 1;

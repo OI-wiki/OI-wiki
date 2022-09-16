@@ -1,10 +1,10 @@
-## Wilson 定理
+## 定义
 
-### 内容
+Wilson 定理：对于素数 $p$ 有 $(p-1)!\equiv -1\pmod p$。
 
-对于素数 $p$ 有 $(p-1)!\equiv -1\pmod p$。
+## 证明
 
-证明：我们知道在模奇素数 $p$ 意义下，$1,2,\dots ,p-1$ 都存在逆元且唯一，那么只需要将一个数与其逆元配对发现其乘积均为（同余意义下）$1$，但前提是这个数的逆元不等于自身。那么很显然 $(p-1)!\bmod p$ 就是逆元等于其自身的数的乘积，这两个数为 $\pm 1$。在 $p$ 为 $2$ 时单独讨论即可。
+我们知道在模奇素数 $p$ 意义下，$1,2,\dots ,p-1$ 都存在逆元且唯一，那么只需要将一个数与其逆元配对发现其乘积均为（同余意义下）$1$，但前提是这个数的逆元不等于自身。那么很显然 $(p-1)!\bmod p$ 就是逆元等于其自身的数的乘积，这两个数为 $\pm 1$。在 $p$ 为 $2$ 时单独讨论即可。
 
 对于整数 $n$，令 $(n!)_p$ 表示所有小于等于 $n$ 但不能被 $p$ 整除的正整数的乘积，即 $(n!)_p=n!/(\lfloor n/p\rfloor !p^{\lfloor n/p\rfloor})$。
 
@@ -26,20 +26,21 @@ $(p^q!)_p\equiv \begin{cases}1&\text{if }p=2\text{ and }q\geq 3,\\-1&\text{other
 
 对于素数 $p$、正整数 $q$、非负整数 $n$ 和 $N_0=n\bmod{p^q}$ 有 $(n!)_p\equiv (\pm 1)^{\lfloor n/{p^q}\rfloor}(N_0!)_p\pmod{p^q}$。
 
-证明：令 $\displaystyle \prod '$ 表示不能被 $p$ 整除的数的乘积，有
-
-$$
-\begin{aligned}
-(n!)_p&=\prod_{1\leq r\leq n}'r\\
-&=\left(\prod_{i=0}^{\lfloor n/p^q \rfloor -1}\prod_{1\leq j\leq p^q}'(ip^q+j)\right)\left(\prod_{1\leq j\leq N_0}'(\lfloor n/p^q\rfloor p^q+j)\right)\\
-&\equiv ((p^q!)_p)^{\lfloor n/p^q\rfloor}(N_0!)_p\\
-&\equiv (\pm 1)^{\lfloor n/p^q\rfloor}(N_0!)_p\pmod{p^q}
-\end{aligned}
-$$
-
-将 $1\times 2\times 3\times \cdots \times n$ 记为 $(0\times p^q+1)\times (0\times p^q+2)\times \cdots \times (\lfloor n/p^q\rfloor p^q+N_0)$ 就得到了上述第二行。
-
-至此得到了
+???note "证明"
+    证明：令 $\displaystyle \prod '$ 表示不能被 $p$ 整除的数的乘积，有
+    
+    $$
+    \begin{aligned}
+    (n!)_p&=\prod_{1\leq r\leq n}'r\\
+    &=\left(\prod_{i=0}^{\lfloor n/p^q \rfloor -1}\prod_{1\leq j\leq p^q}'(ip^q+j)\right)\left(\prod_{1\leq j\leq N_0}'(\lfloor n/p^q\rfloor p^q+j)\right)\\
+    &\equiv ((p^q!)_p)^{\lfloor n/p^q\rfloor}(N_0!)_p\\
+    &\equiv (\pm 1)^{\lfloor n/p^q\rfloor}(N_0!)_p\pmod{p^q}
+    \end{aligned}
+    $$
+    
+    将 $1\times 2\times 3\times \cdots \times n$ 记为 $(0\times p^q+1)\times (0\times p^q+2)\times \cdots \times (\lfloor n/p^q\rfloor p^q+N_0)$ 就得到了上述第二行。
+    
+    至此得到了
 
 ### 推论 2
 
@@ -54,6 +55,8 @@ $\frac{n!}{p^{\sum_{j\geq 1}\lfloor \frac{n}{p^j}\rfloor}}\equiv (\pm 1)^{\sum_{
 $\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor -\lfloor m/p^j\rfloor -\lfloor r/p^j\rfloor\right)}}{p^{\nu(n!)-\nu(m!)-\nu(r!)}}\binom{n}{m}\equiv \frac{n!/p^{\nu(n!)}}{(m!/p^{\nu(m!)})(r!/p^{\nu(r!)})}\pmod{p^q}$
 
 右边的分母中括号内的项均在模 $p^q$ 意义下均存在逆元，可直接计算，而 $\pm 1$ 的与上述相同。
+
+## 例题
 
 ???+note " 例题 [HDU 2973 - YAPTCHA](https://acm.hdu.edu.cn/showproblem.php?pid=2973)"
     给定 $n$, 计算
