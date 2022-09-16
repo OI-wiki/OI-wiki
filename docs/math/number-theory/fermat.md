@@ -1,4 +1,4 @@
-author: PeterlitsZo
+author: PeterlitsZo, Tiphereth-A
 
 ## 费马小定理
 
@@ -76,6 +76,8 @@ $$
 ### 证明
 
 #### 直观理解
+
+![fermat1](https://user-images.githubusercontent.com/62847935/190575814-d111963a-faa1-4f97-845a-43824fb45464.svg)
 
 需要知道的是，在 $\pmod m$ 的条件下，$a^b \bmod m$ 的取值范围一定在 $[0, m)$，而 $a^i \bmod m = (a^{i-1} \bmod m) \times a \bmod m$，那么对于任意一个数 $a$，那么很容易就能知道它的 **后继**，在有限的空间内这一定会形成一个循环。
 
