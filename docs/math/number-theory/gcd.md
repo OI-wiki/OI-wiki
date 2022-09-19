@@ -22,19 +22,19 @@
 我们通过证明可以得到 $\gcd(a,b)=\gcd(b,a \bmod b)$，过程如下：
 
 ???+note "证明"
-  设 $a=bk+c$，显然有 $c=a \bmod b$。设 $d \mid a,~d \mid b$，则 $c=a-bk, \frac{c}{d}=\frac{a}{d}-\frac{b}{d}k$。
-  
-  由右边的式子可知 $\frac{c}{d}$ 为整数，即 $d \mid c$ 所以对于 $a,b$ 的公约数，它也会是 $a \bmod b$ 的公约数。
-  
-  反过来也需要证明：
-  
-  设 $d \mid b,~d\mid (a \bmod b)$，我们还是可以像之前一样得到以下式子 $\frac{a\bmod b}{d}=\frac{a}{d}-\frac{b}{d}k,~\frac{a\bmod b}{d}+\frac{b}{d}k=\frac{a}{d}$。
-  
-  因为左边式子显然为整数，所以 $\frac{a}{d}$ 也为整数，即 $d \mid a$，所以 $b,a\bmod b$ 的公约数也是 $a,b$ 的公约数。
-  
-  既然两式公约数都是相同的，那么最大公约数也会相同。
-  
-  所以得到式子 $\gcd(a,b)=\gcd(b,a\bmod b)$
+    设 $a=bk+c$，显然有 $c=a \bmod b$。设 $d \mid a,~d \mid b$，则 $c=a-bk, \frac{c}{d}=\frac{a}{d}-\frac{b}{d}k$。
+    
+    由右边的式子可知 $\frac{c}{d}$ 为整数，即 $d \mid c$ 所以对于 $a,b$ 的公约数，它也会是 $a \bmod b$ 的公约数。
+    
+    反过来也需要证明：
+    
+    设 $d \mid b,~d\mid (a \bmod b)$，我们还是可以像之前一样得到以下式子 $\frac{a\bmod b}{d}=\frac{a}{d}-\frac{b}{d}k,~\frac{a\bmod b}{d}+\frac{b}{d}k=\frac{a}{d}$。
+    
+    因为左边式子显然为整数，所以 $\frac{a}{d}$ 也为整数，即 $d \mid a$，所以 $b,a\bmod b$ 的公约数也是 $a,b$ 的公约数。
+    
+    既然两式公约数都是相同的，那么最大公约数也会相同。
+    
+    所以得到式子 $\gcd(a,b)=\gcd(b,a\bmod b)$
 
 既然得到了 $\gcd(a, b) = \gcd(b, r)$，这里两个数的大小是不会增大的，那么我们也就得到了关于两个数的最大公约数的一个递归求法。
 
@@ -85,14 +85,14 @@ def gcd(a, b):
 欧几里得算法的时间效率如何呢？下面我们证明，欧几里得算法的时间复杂度为 $O(\log n)$。
 
 ???+note "证明"
-  当我们求 $\gcd(a,b)$ 的时候，会遇到两种情况：
-  
-  - $a < b$，这时候 $\gcd(a,b)=\gcd(b,a)$；
-  - $a \geq b$，这时候 $\gcd(a,b)=\gcd(b,a \bmod b)$，而对 $a$ 取模会让 $a$ 至少折半。这意味着这一过程最多发生 $O(\log n)$ 次。
-  
-  第一种情况发生后一定会发生第二种情况，因此第一种情况的发生次数一定 **不多于** 第二种情况的发生次数。
-  
-  从而我们最多递归 $O(\log n)$ 次就可以得出结果。
+    当我们求 $\gcd(a,b)$ 的时候，会遇到两种情况：
+    
+    - $a < b$，这时候 $\gcd(a,b)=\gcd(b,a)$；
+    - $a \geq b$，这时候 $\gcd(a,b)=\gcd(b,a \bmod b)$，而对 $a$ 取模会让 $a$ 至少折半。这意味着这一过程最多发生 $O(\log n)$ 次。
+    
+    第一种情况发生后一定会发生第二种情况，因此第一种情况的发生次数一定 **不多于** 第二种情况的发生次数。
+    
+    从而我们最多递归 $O(\log n)$ 次就可以得出结果。
 
 事实上，假如我们试着用欧几里得算法去求 [斐波那契数列](../fibonacci.md) 相邻两项的最大公约数，会让该算法达到最坏复杂度。
 
@@ -194,14 +194,14 @@ $ax+by=\gcd(a,b)$ 的解有无数个，显然其中有的解会爆 long long。
 下面给出这一性质的证明。
 
 ??? note "证明"
-  -   $\gcd(a,b)=b$ 时，$a\bmod b=0$，必在下一层终止递归。  
-      得到 $x_1=0,y_1=1$，显然 $a,b\ge 1\ge |x_1|,|y_1|$。
-  -   $\gcd(a,b)\not= b$ 时，设 $|x_2|\le (a\bmod b),|y_2|\le b$。  
-      因为 $x_1=y_2,y_1=x_2-{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2$   
-      所以 $|x_1|=|y_2|\le b,|y_1|\le|x_2|+|{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2|\le (a\bmod b)+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|$  
-      $\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)$   
-      $a\bmod b=a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)\le a$   
-      因此 $|x_1|\le b,|y_1|\le a$ 成立。
+    -   $\gcd(a,b)=b$ 时，$a\bmod b=0$，必在下一层终止递归。  
+        得到 $x_1=0,y_1=1$，显然 $a,b\ge 1\ge |x_1|,|y_1|$。
+    -   $\gcd(a,b)\not= b$ 时，设 $|x_2|\le (a\bmod b),|y_2|\le b$。  
+        因为 $x_1=y_2,y_1=x_2-{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2$   
+        所以 $|x_1|=|y_2|\le b,|y_1|\le|x_2|+|{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2|\le (a\bmod b)+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|$  
+        $\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)$   
+        $a\bmod b=a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)\le a$   
+        因此 $|x_1|\le b,|y_1|\le a$ 成立。
 
 ### 迭代法编写扩展欧几里得算法
 
