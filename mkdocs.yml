@@ -252,7 +252,7 @@ nav:
       - Stern-Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - Pell 方程: math/number-theory/pell-equation.md
     - 多项式与生成函数:
-      - 简介: math/poly/intro.md
+      - 多项式与生成函数简介: math/poly/intro.md
       - 代数基本定理: math/poly/fundamental.md
       - 拉格朗日插值: math/poly/lagrange.md
       - 快速傅里叶变换: math/poly/fft.md
@@ -351,7 +351,7 @@ nav:
     - 区间最值操作 & 区间历史最值: ds/seg-beats.md
     - 划分树: ds/dividing.md
     - 二叉搜索树 & 平衡树:
-      - 二叉搜索树简介: ds/bst.md
+      - 二叉搜索树 & 平衡树: ds/bst.md
       - Treap: ds/treap.md
       - Splay: ds/splay.md
       - WBLT: ds/wblt.md
