@@ -200,47 +200,47 @@ $$
 $$
 
 ???+note "证明"
-  一种证法可以定量计算。根据连分数中的定理有
-  
-  $$
-  \left|x-\frac{p_k}{q_k}\right|=\frac{1}{q_k(r_{k+1}q_k+q_{k-1})}
-  $$
-  
-  由于
-  
-  $$
-  a_{k+1}<\lfloor r_{k+1}\rfloor<a_{k+1}+1
-  $$
-  
-  因此
-  
-  $$
-  q_{k+1}=a_{k+1}q_k+q_{k-1}<r_{k+1}q_k+q_{k-1}<a_{k+1}q_k+q_k+q_{k-1}=q_k+q_{k+1}
-  $$
-  
-  取倒数即证毕。
-  
-  另一种证法使用中间分数。首先，两个相邻渐进分数之间的距离有
-  
-  $$
-  \left|\frac{p_{k+1}}{q_{k+1}}-\frac{p_k}{q_k}\right|=\frac{1}{q_{k+1}q_k}
-  $$
-  
-  由于 $x$ 本身介于两个相邻渐进分数之间，到其中一个渐进分数的距离 $\left|x-\frac{p_k}{q_k}\right|$ 一定小于 $\frac{1}{q_{k+1}q_k}$。不等式右边即证毕。
-  
-  对于不等式左边，由于对于固定的 $k$，两头的中间分数就是渐进分数，因此有位置关系
-  
-  $$
-  \frac{p_{k-1}}{q_{k-1}}=F_{k,0}~F{k,1}~\frac{p_{k+1}}{q_{k+1}}~x~\frac{p_k}{q_k}
-  $$
-  
-  因此有距离关系
-  
-  $$
-  \left|x-\frac{p_{k-1}}{q_{k-1}}\right|>|F_{k,0}-F_{k,1}|=\frac{1}{q_{k-1}(q_k+q_{k+1})}
-  $$
-  
-  更换下标，不等式左边即证毕。
+    一种证法可以定量计算。根据连分数中的定理有
+    
+    $$
+    \left|x-\frac{p_k}{q_k}\right|=\frac{1}{q_k(r_{k+1}q_k+q_{k-1})}
+    $$
+    
+    由于
+    
+    $$
+    a_{k+1}<\lfloor r_{k+1}\rfloor<a_{k+1}+1
+    $$
+    
+    因此
+    
+    $$
+    q_{k+1}=a_{k+1}q_k+q_{k-1}<r_{k+1}q_k+q_{k-1}<a_{k+1}q_k+q_k+q_{k-1}=q_k+q_{k+1}
+    $$
+    
+    取倒数即证毕。
+    
+    另一种证法使用中间分数。首先，两个相邻渐进分数之间的距离有
+    
+    $$
+    \left|\frac{p_{k+1}}{q_{k+1}}-\frac{p_k}{q_k}\right|=\frac{1}{q_{k+1}q_k}
+    $$
+    
+    由于 $x$ 本身介于两个相邻渐进分数之间，到其中一个渐进分数的距离 $\left|x-\frac{p_k}{q_k}\right|$ 一定小于 $\frac{1}{q_{k+1}q_k}$。不等式右边即证毕。
+    
+    对于不等式左边，由于对于固定的 $k$，两头的中间分数就是渐进分数，因此有位置关系
+    
+    $$
+    \frac{p_{k-1}}{q_{k-1}}=F_{k,0}~F{k,1}~\frac{p_{k+1}}{q_{k+1}}~x~\frac{p_k}{q_k}
+    $$
+    
+    因此有距离关系
+    
+    $$
+    \left|x-\frac{p_{k-1}}{q_{k-1}}\right|>|F_{k,0}-F_{k,1}|=\frac{1}{q_{k-1}(q_k+q_{k+1})}
+    $$
+    
+    更换下标，不等式左边即证毕。
 
 在使用中这个定理经常放缩一下。由于 $q_k\leq q_{k+1}$，有
 
@@ -353,41 +353,41 @@ $$
 它的逆定理并不成立，中间分数不一定是最佳有理逼近。
 
 ???+note "证明"
-  首先，$a_0$ 与 $a_0+1$ 中必有一个是 $x$ 的分母为 $1$ 的最佳有理逼近。它们分别是 $F_{1,0}$ 和 $F_{0,1}$。其他分母更大的第一类最优逼近肯定介于这两个数中间。
-  
-  当然，除非 $x=n+\frac{1}{2}$ 为半奇数。这时两边距离一样，$x$ 没有分母为 $1$ 的最佳有理逼近，不过这属于连分数太短的情况。
-  
-  当 $n$ 增加时，渐近分数从 $F_{1,0}$ 和 $F_{0,1}$ 两边向中间排布。由于 $F_{k,a_{k+1}}=F_{k+2,0}$，有分布
-  
-  $$
-  F_{1,0}<F_{1,1}\leq F_{1,a_2}=F_{3,0}<\ldots<x<\ldots<F_{2,0}=F_{0,a_1}≤F_{0,1}
-  $$
-  
-  因为中间分数可以任意接近 $x$，从而任何一个不是中间分数的有理数 $\frac{a}{b}$，一定介于两个同阶的渐近分数 F*{k,r} 与 F*{k,r+1} 之间。其位置分布情况为：
-  
-  $$
-  F_{k,r}~\frac{a}{b}~F_{k,r+1}~x
-  $$
-  
-  于是有
-  
-  $$
-  \left|F_{k,r}-\frac{a}{b}\right|<|F_{k,r+1}-F_{k,r}|=\frac{1}{((r+1)q_k+q_{k-1})(rq_k+q_{k-1})}
-  $$
-  
-  另一方面，$\frac{a}{b}$ 与中间分数 $F_{k,r}$，有
-  
-  $$
-  \left|F_{k,r}-\frac{a}{b}\right|=\frac{|a(rq_k+q_{k-1})-b(rp_k+p_{k-1})|}{b(rq_k+q_{k-1})}\geq\frac{1}{b(rq_k+q_{k-1})}
-  $$
-  
-  因此有 $b>(r+1)q_k+q_{k-1}$。介于 $F_{k,r}$ 和 $F_{k,r+1}$ 之间的有理数，分母一定大于 $F_{k,r+1}$ 的分母。由位置分布可以看出
-  
-  $$
-  \left|x-\frac{a}{b}\right|>|x-F_{k,r+1}|
-  $$
-  
-  分母更小的分数 $F_{k,r+1}$ 到 $x$ 的距离更近。因此，非中间分数的 $\frac{a}{b}$ 不可能是最佳有理逼近。证毕。
+    首先，$a_0$ 与 $a_0+1$ 中必有一个是 $x$ 的分母为 $1$ 的最佳有理逼近。它们分别是 $F_{1,0}$ 和 $F_{0,1}$。其他分母更大的第一类最优逼近肯定介于这两个数中间。
+    
+    当然，除非 $x=n+\frac{1}{2}$ 为半奇数。这时两边距离一样，$x$ 没有分母为 $1$ 的最佳有理逼近，不过这属于连分数太短的情况。
+    
+    当 $n$ 增加时，渐近分数从 $F_{1,0}$ 和 $F_{0,1}$ 两边向中间排布。由于 $F_{k,a_{k+1}}=F_{k+2,0}$，有分布
+    
+    $$
+    F_{1,0}<F_{1,1}\leq F_{1,a_2}=F_{3,0}<\ldots<x<\ldots<F_{2,0}=F_{0,a_1}≤F_{0,1}
+    $$
+    
+    因为中间分数可以任意接近 $x$，从而任何一个不是中间分数的有理数 $\frac{a}{b}$，一定介于两个同阶的渐近分数 F*{k,r} 与 F*{k,r+1} 之间。其位置分布情况为：
+    
+    $$
+    F_{k,r}~\frac{a}{b}~F_{k,r+1}~x
+    $$
+    
+    于是有
+    
+    $$
+    \left|F_{k,r}-\frac{a}{b}\right|<|F_{k,r+1}-F_{k,r}|=\frac{1}{((r+1)q_k+q_{k-1})(rq_k+q_{k-1})}
+    $$
+    
+    另一方面，$\frac{a}{b}$ 与中间分数 $F_{k,r}$，有
+    
+    $$
+    \left|F_{k,r}-\frac{a}{b}\right|=\frac{|a(rq_k+q_{k-1})-b(rp_k+p_{k-1})|}{b(rq_k+q_{k-1})}\geq\frac{1}{b(rq_k+q_{k-1})}
+    $$
+    
+    因此有 $b>(r+1)q_k+q_{k-1}$。介于 $F_{k,r}$ 和 $F_{k,r+1}$ 之间的有理数，分母一定大于 $F_{k,r+1}$ 的分母。由位置分布可以看出
+    
+    $$
+    \left|x-\frac{a}{b}\right|>|x-F_{k,r+1}|
+    $$
+    
+    分母更小的分数 $F_{k,r+1}$ 到 $x$ 的距离更近。因此，非中间分数的 $\frac{a}{b}$ 不可能是最佳有理逼近。证毕。
 
 ## 渐进分数的等价性质
 
@@ -500,36 +500,36 @@ $$
 勒让德判别法的原始表述是一个等价关系，这里给出的形式相对简化与宽松，是一个渐进分数的充分条件而非必要条件。
 
 ???+note "证明"
-  假设 $\frac{p}{q}$ 不是渐进分数，则存在 $0<b\leq q$，且 $\frac{a}{b}\neq\frac{p}{q}$ 使得
-  
-  $$
-  |bx-a|\leq|qx-p|<\frac{1}{2q}
-  $$
-  
-  于是有
-  
-  $$
-  \left|x-\frac{a}{b}\right|<\frac{1}{2qb}
-  $$
-  
-  此时首先两个分数之间的距离有
-  
-  $$
-  \left|\frac{p}{q}-\frac{a}{b}\right|=\frac{|pb-aq|}{qb}\geq\frac{1}{qb}
-  $$
-  
-  又有绝对值不等式
-  
-  $$
-  \left|\frac{p}{q}-\frac{a}{b}\right|=\left|\frac{p}{q}-x+x-\frac{a}{b}\right|\leq\left|\frac{p}{q}-x\right|+\left|x-\frac{a}{b}\right|<\frac{b+q}{2bq^2}
-  $$
-  
-  连起来有
-  
-  $$
-  \frac{1}{qb}\leq\left|\frac{p}{q}-\frac{a}{b}\right|<\frac{b+q}{2bq^2}
-  $$
-  
-  整理有 $b>q$。这与假设矛盾。证毕。
+    假设 $\frac{p}{q}$ 不是渐进分数，则存在 $0<b\leq q$，且 $\frac{a}{b}\neq\frac{p}{q}$ 使得
+    
+    $$
+    |bx-a|\leq|qx-p|<\frac{1}{2q}
+    $$
+    
+    于是有
+    
+    $$
+    \left|x-\frac{a}{b}\right|<\frac{1}{2qb}
+    $$
+    
+    此时首先两个分数之间的距离有
+    
+    $$
+    \left|\frac{p}{q}-\frac{a}{b}\right|=\frac{|pb-aq|}{qb}\geq\frac{1}{qb}
+    $$
+    
+    又有绝对值不等式
+    
+    $$
+    \left|\frac{p}{q}-\frac{a}{b}\right|=\left|\frac{p}{q}-x+x-\frac{a}{b}\right|\leq\left|\frac{p}{q}-x\right|+\left|x-\frac{a}{b}\right|<\frac{b+q}{2bq^2}
+    $$
+    
+    连起来有
+    
+    $$
+    \frac{1}{qb}\leq\left|\frac{p}{q}-\frac{a}{b}\right|<\frac{b+q}{2bq^2}
+    $$
+    
+    整理有 $b>q$。这与假设矛盾。证毕。
 
 **本页面主要译自博文 [Дерево Штерна-Броко. Ряд Фарея](http://e-maxx.ru/algo/stern_brocot_farey) 与其英文翻译版 [The Stern-Brocot Tree and Farey Sequences](https://cp-algorithms.com/others/stern_brocot_tree_farey_sequences.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

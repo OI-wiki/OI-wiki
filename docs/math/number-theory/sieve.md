@@ -60,34 +60,34 @@ def Eratosthenes(n):
 以上为 **Eratosthenes 筛法**（埃拉托斯特尼筛法，简称埃氏筛法），时间复杂度是 $O(n\log\log n)$。
 
 ???+note "证明"
-  现在我们就来看看推导过程：
-  
-  如果每一次对数组的操作花费 1 个单位时间，则时间复杂度为：
-  
-  $$
-  O\left(n\sum_{k=1}^{\pi(n)}{1\over p_k}\right)
-  $$
-  
-  其中 $p_k$ 表示第 $k$ 小的素数。根据 Mertens 第二定理，存在常数 $B_1$ 使得：
-  
-  $$
-  \sum_{k=1}^{\pi(n)}{1\over p_k}=\log\log n+B_1+O\left(1\over\log n\right)
-  $$
-  
-  所以 **Eratosthenes 筛法** 的时间复杂度为 $O(n\log\log n)$。接下来我们证明 Mertens 第二定理的弱化版本 $\sum_{k\le\pi(n)}1/p_k=O(\log\log n)$：
+    现在我们就来看看推导过程：
+    
+    如果每一次对数组的操作花费 1 个单位时间，则时间复杂度为：
+    
+    $$
+    O\left(n\sum_{k=1}^{\pi(n)}{1\over p_k}\right)
+    $$
+    
+    其中 $p_k$ 表示第 $k$ 小的素数。根据 Mertens 第二定理，存在常数 $B_1$ 使得：
+    
+    $$
+    \sum_{k=1}^{\pi(n)}{1\over p_k}=\log\log n+B_1+O\left(1\over\log n\right)
+    $$
+    
+    所以 **Eratosthenes 筛法** 的时间复杂度为 $O(n\log\log n)$。接下来我们证明 Mertens 第二定理的弱化版本 $\sum_{k\le\pi(n)}1/p_k=O(\log\log n)$：
 
-  根据 $\pi(n)=\Theta(n/\log n)$，可知第 $n$ 个素数的大小为 $\Theta(n\log n)$。于是就有
-  
-  $$
-  \begin{aligned}
-  \sum_{k=1}^{\pi(n)}{1\over p_k}
-  &=O\left(\sum_{k=2}^{\pi(n)}{1\over k\log k}\right) \\
-  &=O\left(\int_2^{\pi(n)}{\mathrm dx\over x\log x}\right) \\
-  &=O(\log\log\pi(n))=O(\log\log n)
-  \end{aligned}
-  $$
-  
-  当然，上面的做法效率仍然不够高效，应用下面几种方法可以稍微提高算法的执行效率。
+    根据 $\pi(n)=\Theta(n/\log n)$，可知第 $n$ 个素数的大小为 $\Theta(n\log n)$。于是就有
+    
+    $$
+    \begin{aligned}
+    \sum_{k=1}^{\pi(n)}{1\over p_k}
+    &=O\left(\sum_{k=2}^{\pi(n)}{1\over k\log k}\right) \\
+    &=O\left(\int_2^{\pi(n)}{\mathrm dx\over x\log x}\right) \\
+    &=O(\log\log\pi(n))=O(\log\log n)
+    \end{aligned}
+    $$
+    
+    当然，上面的做法效率仍然不够高效，应用下面几种方法可以稍微提高算法的执行效率。
 
 #### 筛至平方根
 
@@ -146,36 +146,36 @@ for i in range(2, int(sqrt(n)) + 1):
 以下实现使用块筛选来计算小于等于 $n$ 的质数数量。
 
 ???+note "实现"
-  ```cpp
-  int count_primes(int n) {
-    const int S = 10000;
-    vector<int> primes;
-    int nsqrt = sqrt(n);
-    vector<char> is_prime(nsqrt + 1, true);
-    for (int i = 2; i <= nsqrt; i++) {
-      if (is_prime[i]) {
-        primes.push_back(i);
-        for (int j = i * i; j <= nsqrt; j += i) is_prime[j] = false;
+    ```cpp
+    int count_primes(int n) {
+      const int S = 10000;
+      vector<int> primes;
+      int nsqrt = sqrt(n);
+      vector<char> is_prime(nsqrt + 1, true);
+      for (int i = 2; i <= nsqrt; i++) {
+        if (is_prime[i]) {
+          primes.push_back(i);
+          for (int j = i * i; j <= nsqrt; j += i) is_prime[j] = false;
+        }
       }
+      int result = 0;
+      vector<char> block(S);
+      for (int k = 0; k * S <= n; k++) {
+        fill(block.begin(), block.end(), true);
+        int start = k * S;
+        for (int p : primes) {
+          int start_idx = (start + p - 1) / p;
+          int j = max(start_idx, p) * p - start;
+          for (; j < S; j += p) block[j] = false;
+        }
+        if (k == 0) block[0] = block[1] = false;
+        for (int i = 0; i < S && start + i <= n; i++) {
+          if (block[i]) result++;
+        }
+      }
+      return result;
     }
-    int result = 0;
-    vector<char> block(S);
-    for (int k = 0; k * S <= n; k++) {
-      fill(block.begin(), block.end(), true);
-      int start = k * S;
-      for (int p : primes) {
-        int start_idx = (start + p - 1) / p;
-        int j = max(start_idx, p) * p - start;
-        for (; j < S; j += p) block[j] = false;
-      }
-      if (k == 0) block[0] = block[1] = false;
-      for (int i = 0; i < S && start + i <= n; i++) {
-        if (block[i]) result++;
-      }
-    }
-    return result;
-  }
-  ```
+    ```
 
 分块筛分的渐进时间复杂度与埃氏筛法是一样的（除非块非常小），但是所需的内存将缩小为 $O(\sqrt{n} + S)$，并且有更好的缓存结果。
 另一方面，对于每一对块和区间 $[1, \sqrt{n}]$ 中的素数都要进行除法，而对于较小的块来说，这种情况要糟糕得多。
