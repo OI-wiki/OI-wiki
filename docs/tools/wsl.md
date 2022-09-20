@@ -55,8 +55,8 @@ NOI 竞赛（自 2021 年 9 月 1 日）的环境要求如下。[^ref2]
 Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 年 5 月更新中升级到了 WSL 2。截至 2020 年 6 月 1 日，WSL 已支持安装 Ubuntu、openSUSE Leap、Kali、Debian 等主流 Linux 分发版。但 WSL 并不支持 NOI 评测用的 Arbiter。
 
 ???+ note "[什么是 Linux 子系统（WSL）](https://zh.wikipedia.org/zh-cn/%E9%80%82%E7%94%A8%E4%BA%8E_Linux_%E7%9A%84_Windows_%E5%AD%90%E7%B3%BB%E7%BB%9F) "
-适用于 Linux 的 Windows 子系统（英语：Windows Subsystem for Linux，简称 WSL）是一个为在 Windows 10、Windows 11 与 Windows Server 2019 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。
-
+    适用于 Linux 的 Windows 子系统（英语：Windows Subsystem for Linux，简称 WSL）是一个为在 Windows 10、Windows 11 与 Windows Server 2019 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。
+    
     WSL 可让开发人员按原样运行 GNU/Linux 环境 - 包括大多数命令行工具、实用工具和应用程序 - 且不会产生虚拟机开销。
     
     WSL 仅在版本 1607 之后的 64 位版本的 Windows 10 中可用。它也可在 Windows Server 2019 中使用。
@@ -68,8 +68,8 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 ### 自动安装
 
 ???+ warning
-本部分适用于 Windows 10 版本 2004 及更高版本（内部版本 19041 及更高版本）或 Windows 11。
-
+    本部分适用于 Windows 10 版本 2004 及更高版本（内部版本 19041 及更高版本）或 Windows 11。
+    
     如果你正在使用 2004 以下版本或你的电脑不支持虚拟化，请阅读下面的手动安装一节。
     
     如果你正在使用 Windows 10 1607 以下版本的 Windows，你的系统不支持 WSL。
@@ -85,7 +85,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 ### 手动安装[^ref4]
 
 ???+ warning
-下面介绍手动安装 WSL 的步骤。如果你已经完成了自动安装，请跳过此部分。
+    下面介绍手动安装 WSL 的步骤。如果你已经完成了自动安装，请跳过此部分。
 
 #### 启用适用于 Linux 的 Windows 子系统
 
@@ -129,7 +129,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 WSL 1 与 WSL 2 的区别，请见 [比较 WSL 2 和 WSL 1](https://docs.microsoft.com/zh-cn/windows/wsl/compare-versions)
 
 ??? note "关于 systemd"
-WSL 1 完全不支持 systemd（这意味着一些需要 systemd 的功能无法实现或需要别的 hack），WSL 2 可以使用 [genie](https://github.com/arkane-systems/genie)。
+    WSL 1 完全不支持 systemd（这意味着一些需要 systemd 的功能无法实现或需要别的 hack），WSL 2 可以使用 [genie](https://github.com/arkane-systems/genie)。
 此外，[yuk7/arch-systemctl-alt](https://github.com/yuk7/arch-systemctl-alt) 项目提供了一个在 WSL 1 与 2 都可用的 alternative script，但是它只具有部分兼容且只在 ArchWSL 进行了测试。
 
 ```powershell
@@ -144,7 +144,7 @@ wsl --set-default-version 2
 进入 Microsoft Store，搜索“Ubuntu”，然后选择“Ubuntu”，点击“安装”进行安装。也可打开 [Ubuntu 的商店页面](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6)。
 
 ???+ warning
-Microsoft Store 的 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。如果想获取稳定的 Ubuntu 长期支持版，可以在 Microsoft Store 安装 Ubuntu 的 LTS 版本。
+    Microsoft Store 的 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。如果想获取稳定的 Ubuntu 长期支持版，可以在 Microsoft Store 安装 Ubuntu 的 LTS 版本。
 
 ## 配置分发版[^ref5]
 
@@ -198,8 +198,8 @@ sudo apt install g++
 Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速度，如 [清华 TUNA 的软件源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)。
 
 ???+ warning  "使用与自己系统版本匹配的软件源"
-请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a` 查看 Ubuntu 版本）。
-
+    请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a` 查看 Ubuntu 版本）。
+    
     除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！
 
 使用以下命令更新软件和软件源：
@@ -280,7 +280,7 @@ AMD Ryzen 5 1400 Quad-Core Processor
 ```
 
 ???+ note
-Linux 环境下可执行文件可不带扩展名，实现方式看上方命令。
+    Linux 环境下可执行文件可不带扩展名，实现方式看上方命令。
 
 ## 进阶操作
 
@@ -412,11 +412,11 @@ Welcome!
 ## WSL1 升级为 WSL2
 
 ???+ warning
-请确认已经完成前面 WSL1 的安装步骤。
+    请确认已经完成前面 WSL1 的安装步骤。
 
 执行命令 `wsl -l -v` 可以看到 WSL 版本号是 1，需要执行升级，才能到 2。
 
-1.  启用虚拟机功能
+1.  启用“虚拟机平台”功能
 
     使用 PowerShell 以管理员身份运行：
 
