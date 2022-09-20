@@ -26,14 +26,14 @@ $$
 
 具体来说，设 $(V,+)$ 是一个阿贝尔群，$\Bbb{P}$ 是一个域。
 
-定义 $\Bbb{P}$ 中的数与 $V$ 中元素的一种代数运算，称为**数乘**：$\cdot:\Bbb{P}\times V\mapsto V$，记为 $p\cdot v$ 或 $pv$，其中 $p\in \Bbb{P},v\in V$。
+定义 $\Bbb{P}$ 中的数与 $V$ 中元素的一种代数运算，称为**数乘**：$\cdot:\Bbb{P}\times V\mapsto V$，记为 $p\cdot v$ 或 $pv$，其中 $p$ 在域 $\Bbb{P}$ 中，$v$ 在阿贝尔群 $V$ 中。
 
 且满足以下条件：
 
-1. **数乘对向量加法分配律**：对于 $\mathbf u,\mathbf v\in V,a\in \Bbb{P}$，$a(\mathbf u+\mathbf v)=a\mathbf u+a\mathbf v$。
-2. **数乘对标量加法分配律**：对于 $a,b\in \Bbb{P},\mathbf u\in V$，$(a+b)\mathbf u=a\mathbf u+b\mathbf u$。
-3. **数乘结合律（一致于域乘法）**：对于 $a,b\in \Bbb{P},\mathbf u\in V$，$a(b\mathbf u)=(ab)\mathbf u$。
-4. **标量乘法单位元**：令 $1\in \Bbb{P}$ 是 $\Bbb{P}$ 的乘法单位元，则对于 $u\in V$，$1\mathbf u=\mathbf u$。
+1. **数乘对向量加法分配律**：对于 $\mathbf u,\mathbf v\in V,a\in \Bbb{P}$，$a(\mathbf u+\mathbf v)=a\mathbf u+a\mathbf v$
+2. **数乘对标量加法分配律**：对于 $a,b\in \Bbb{P},\mathbf u\in V$，$(a+b)\mathbf u=a\mathbf u+b\mathbf u$
+3. **数乘结合律（一致于域乘法）**：对于 $a,b\in \Bbb{P},\mathbf u\in V$，$a(b\mathbf u)=(ab)\mathbf u$
+4. **标量乘法单位元**：令 $1\in \Bbb{P}$ 是 $\Bbb{P}$ 的乘法单位元，则对于 $u\in V$，$1\mathbf u=\mathbf u$
 
 则称代数系统 $(V,+,\cdot,\mathbb{P})$ 是 $V$ 关于 $+,\cdot$ 构成 $\Bbb{P}$ 上的一个 **线性空间**，$\Bbb{P}$ 为线性空间的 **基域**，$V$ 中元素称为 **向量**，$\Bbb{P}$ 中元素称为 **标量**。当域 $\Bbb{P}$ 为实数域时，称为实线性空间。当域 $\Bbb{P}$ 为复数域时，称为复线性空间。
 
@@ -76,7 +76,7 @@ $$
 
 ### 例子
 
-1. $\Bbb{P}^n$ 关于数域 $\Bbb{P}$ 上的加法和乘法构成 $\Bbb{P}$ 上的一个线性空间。例如 $\Bbb{P}$ 可以是 $\Bbb{R}$, $\Bbb{C}$, $\Bbb{N}_p$($p$ 为素数) 等
+1. $\Bbb{P}^n$ 关于数域 $\Bbb{P}$ 上的加法和乘法构成 $\Bbb{P}$ 上的一个线性空间。例如 $\Bbb{P}$ 可以是 $\Bbb{R}$, $\Bbb{C}$, $\Bbb{N}_p$($p$ 为素数) 等。
 1. 数域 $\Bbb{P}$ 上的 $n\times m$ 阶矩阵 $\Bbb{P}^{n\times m}$ 关于矩阵的加法和数乘构成 $\Bbb{P}$ 上的一个线性空间。
 1. 数域 $\Bbb{P}$ 上的一元多项式环 $\Bbb{P}[x]$ 关于多项式的加法和数乘构成 $\Bbb{P}$ 上的一个线性空间。
 1. 区间 $[a,b]$ 上的全体连续函数（记作 $C[a,b]$）关于「函数加法」和「值与连续函数的数乘」构成值域上的一个线性空间。
@@ -85,7 +85,7 @@ $$
 
 ### 线性相关、线性无关
 
-对线性空间 $(V,+,\cdot,\Bbb{P})$,
+对线性空间 $(V,+,\cdot,\Bbb{P})$：
 
 1. 称 $a_1,a_2,\dots,a_n\in V$ 为 $V$ 的一个 **向量组**。
 1. 对于 $k_1,k_2,\dots,k_n\in\Bbb{P}$, 称 $\sum_{i=1}^nk_ia_i$ 为向量组 $a_1,a_2,\dots,a_n$ 的一个 **线性组合**。
@@ -137,7 +137,7 @@ $$
 
    很巧的是，按顺序删，留下的向量，恰好就是“按行看”观点里面，高斯消元法剩下的行最简形矩阵中，元素 $1$ 所在的列。
 
-   称向量组 $b_1,b_2,\dots,b_m$ 的极大线性无关组的大小为向量组的 **秩**，记作 $\operatorname{rank}\{b_1,b_2,\dots,b_m\}$, 规定 $\operatorname{rank}\{\theta,\theta,\dots,\theta\}=0$.
+   称向量组 $b_1,b_2,\dots,b_m$ 的极大线性无关组的大小为向量组的 **秩**，记作 $\operatorname{rank}\{b_1,b_2,\dots,b_m\}$, 规定 $\operatorname{rank}\{\theta,\theta,\dots,\theta\}=0$。
 
    于是，向量组的秩的定义与矩阵的秩的定义完全一致。
 
@@ -239,20 +239,20 @@ $$
 
 对线性空间 $(V,+,\cdot,\Bbb{P})$, 若代数系统 $(V_1,+,\cdot,\Bbb{P})$ 满足：
 
-1. $\varnothing\ne V_1$.
-1. $V_1\subseteq V$.
-1. $V_1$ 关于 $+,\cdot$ 构成$\mathbb{P}$上的线性空间。
+1. $\varnothing\ne V_1$
+1. $V_1\subseteq V$
+1. $V_1$ 关于 $+,\cdot$ 构成$\mathbb{P}$上的线性空间
 
 则称 $V_1$ 为 $V$ 的线性子空间，简称子空间，记作 $V_1\leq V$。
 
 任何空间 $V$ 都有两个**平凡子空间**：它本身 $V$ 与零子空间。零子空间只含零向量，不含有线性无关的向量。
 
-若第 2 条中的 $\subseteq$ 换为 $\subset$, 则称 $V_1$ 为 $V$ 的线性真子空间，记作 $V_1<V$.
+若第 2 条中的 $\subseteq$ 换为 $\subset$, 则称 $V_1$ 为 $V$ 的线性真子空间，记作 $V_1<V$。
 
 不难证明：线性空间 $V$ 的非空子集 $V_1$ 是其线性子空间当且仅当线性运算在 $V_1$ 上封闭，即：
 
-1. $\forall u,v\in V_1$, $u+v\in V_1$。
-1. $\forall v\in V_1$, $\forall k\in \Bbb{P}$, $kv\in V_1$。
+1. $\forall u,v\in V_1$, $u+v\in V_1$
+1. $\forall v\in V_1$, $\forall k\in \Bbb{P}$, $kv\in V_1$
 
 ### 交、和与直和、直积
 
@@ -282,18 +282,18 @@ $$
 
 对于线性空间 $V=\Bbb{R}^3$，设线性空间：
 
-- $V_1:=\{(x,0,0)|x\in\Bbb{R}\}$。
-- $V_2:=\{(x,y,0)|x,y\in\Bbb{R}\}$。
-- $V_3:=\{(0,y,z)|y,z\in\Bbb{R}\}$。
-- $V_4:=\{(x,0,z)|x,z\in\Bbb{R}\}$。
+- $V_1:=\{(x,0,0)|x\in\Bbb{R}\}$
+- $V_2:=\{(x,y,0)|x,y\in\Bbb{R}\}$
+- $V_3:=\{(0,y,z)|y,z\in\Bbb{R}\}$
+- $V_4:=\{(x,0,z)|x,z\in\Bbb{R}\}$
 
 则
 
-1. $V_1<V_2<V$, $V_3<V$。
-1. $V_2=V_1+V_2$。
-1. $V=V_1\oplus V_3=V_2+V_3$。
-1. $V_2\oplus V_3=V_4$, $V_2\oplus V_4=V_3$, $V_3\oplus V_4=V_2$。
-1. $V_2+V_3\leq V$。
+1. $V_1<V_2<V$, $V_3<V$
+1. $V_2=V_1+V_2$
+1. $V=V_1\oplus V_3=V_2+V_3$
+1. $V_2\oplus V_3=V_4$, $V_2\oplus V_4=V_3$, $V_3\oplus V_4=V_2$
+1. $V_2+V_3\leq V$
 
 #### 性质
 
@@ -337,8 +337,8 @@ $$
 
 设 $V,V'$ 均为域 $\Bbb{P}$ 上的线性空间，若存在双射 $\sigma:V\mapsto V'$ 且保持加法与数乘，即 $\forall u,v\in V$, $\forall k\in\Bbb{P}$ 满足：
 
-1. $\sigma(u+v)=\sigma(u)+\sigma(v)$。
-1. $\sigma(ku)=k\sigma(u)$。
+1. $\sigma(u+v)=\sigma(u)+\sigma(v)$
+1. $\sigma(ku)=k\sigma(u)$
 
 则称 $\sigma$ 是 $V$ 到 $V'$ 的 **同构映射**，此时称 $V$ 与 $V'$ **同构**，记为 $V\cong V'$。
 
