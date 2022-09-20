@@ -296,7 +296,7 @@ nav:
       - 高斯消元: math/linear-algebra/gauss.md
       - 线性空间: math/linear-algebra/vector-space.md
       - Hamel基: math/linear-algebra/basis.md
-      - 线性变换: math/linear-algebra/linear-transformation
+      - 线性变换: math/linear-algebra/linear-transformation.md
       - 特征多项式: math/linear-algebra/char-poly.md
     - 线性规划:
       - 线性规划简介: math/linear-programming.md
