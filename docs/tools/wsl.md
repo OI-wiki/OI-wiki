@@ -409,6 +409,36 @@ Welcome!
 
 同时，也可以参考 Visual Studio Code 的官方文档中关于 WSL 的内容（[Remote development in WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial)），这篇文章包含从 WSL 安装到配合插件使用的全流程的更详细的介绍。
 
+## WSL1 升级为 WSL2
+
+???+ warning
+    请确认已经完成前面 WSL1 的安装步骤。
+
+执行命令 `wsl -l -v` 可以看到 WSL 版本号是 1，需要执行升级，才能到 2。
+
+1.  启用“虚拟机平台”功能
+
+    使用 PowerShell 以管理员身份运行：
+
+    ```shell
+    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+    ```
+
+    然后 **重启电脑**。
+
+2.  下载 Linux 内核更新包
+
+    - [x64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi) 的内核更新包。
+    - [ARM64/AArch64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi) 的内核更新包。
+
+3.  设置分发版版本
+
+    执行命令：`wsl --set-version <分发版名称> <版本号>`
+
+    如：将 Ubuntu18.04 设置为 WSL2 的命令为 `wsl --set-version Ubuntu-18.04 2`
+
+    这一步比较耗时，执行完成后通过命令 `wsl -l -v` 来检查升级是否成功。
+
 ## FAQ
 
 参见：[常见问题](https://docs.microsoft.com/zh-cn/windows/wsl/faq)，[WSL 2 常见问题解答](https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-faq)
@@ -432,6 +462,7 @@ Welcome!
 - [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://dowww.spencerwoo.com)
 - [GitHub 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL)
 - [排查适用于 Linux 的 Windows 子系统问题](https://docs.microsoft.com/zh-cn/windows/wsl/troubleshooting)
+- [WSL1 升级为 WSL2](https://www.cnblogs.com/stulzq/p/13926936.html)
 
 ## 参考资料与注释
 
