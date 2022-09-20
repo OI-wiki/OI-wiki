@@ -97,7 +97,7 @@ $$
 线性表示或线性相关的式子，可以写成内积的形式或矩阵：
 
 $$
-\beta=k_1a_1+k_2a_2+\cdots+k_ra_r=(a_1,a_2\cdots,a_r)\left(\begin{aligned}\begin{array}{|c|}k_1\\k_2\\cdots\\k_r\end{array}\end{aligned}\right)
+\beta=k_1a_1+k_2a_2+\cdots+k_ra_r=(a_1,a_2\cdots,a_r)\begin{pmatrix} k_1 \\ k_2 \\ \vdots \\ k_r \end{pmatrix}
 $$
 
 根据习惯，把向量 $a$ 按顺序并排写在左边；把标量 $k$ 按顺序竖着写在右边，构成一个“列向量”。
