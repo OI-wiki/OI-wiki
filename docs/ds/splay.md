@@ -124,40 +124,40 @@ void splay(int x) {
 1. **zig**: 势能的变化量为 
 
 $$
-\begin{align}
-1+w'(x)+w'(fa)−w(x)−w(fa) \leq & 1+w'(fa)−w(x) \\
-\leq & 1+w'(x)−w(x)
-\end{align}
+\begin{aligned}
+1+w'(x)+w'(fa)−w(x)−w(fa) & \leq 1+w'(fa)−w(x) \\
+& \leq 1+w'(x)−w(x)
+\end{aligned}
 $$
 
 2. **zig-zig**:  势能变化量为 
 
 $$
-\begin{align}
-1+w'(x)+w'(fa)+w'(g)−w(x)−w(fa)−w(g) \leq & 1+w'(fa)+w'(g)−w(x)−w(fa) \\
-\leq & 1+ w'(x)+w'(g)−2w(x) \\
-\leq & 3(w'(x)−w(x))
-\end{align}
+\begin{aligned}
+1+w'(x)+w'(fa)+w'(g)−w(x)−w(fa)−w(g) & \leq 1+w'(fa)+w'(g)−w(x)−w(fa) \\
+& \leq 1+ w'(x)+w'(g)−2w(x) \\
+& \leq 3(w'(x)−w(x))
+\end{aligned}
 $$
 
 3. **zig-zag**:  势能变化量为 
 
 $$
-\begin{align}
-1+w'(x)+w'(fa)+w'(g)−w(x)−w(fa)−w(g) \leq & 1+w'(fa)+w'(g)−w(x)−w(fa) \\
-\leq & 1+w'(g)+w'(fa)−2w(x) \\
-\leq & 2 w'(x)−w'(g)−w'(fa) + w'(fa)+w'(g)−w(x)−w(fa) \\
-\leq & 2(w'(x)−w(x))
-\end{align}
+\begin{aligned}
+1+w'(x)+w'(fa)+w'(g)−w(x)−w(fa)−w(g) & \leq 1+w'(fa)+w'(g)−w(x)−w(fa) \\
+& \leq 1+w'(g)+w'(fa)−2w(x) \\
+& \leq 2 w'(x)−w'(g)−w'(fa) + w'(fa)+w'(g)−w(x)−w(fa) \\
+& \leq 2(w'(x)−w(x))
+\end{aligned}
 $$
 
 由此可见，三种 splay 步骤的势能全部可以缩放为 $\leq 3(w'(x)−w(x))$. 令 $w^{(n)}(x)=w^{(n-1)}'(x)$, $w^{(0)}(x)=w(x)$, 假设 splay 操作一次依次访问了 $x_{1}, x_{2}, \cdots, x_{n}$, 最终 $x_{1}$ 成为根节点，我们可以得到：
 
 $$
-\begin{align}
-3(\sum_{i=0}^{n-2}(w^{(i+1)}(x_{1})-w^{(i)}(x_{1}))+w(n)−w^{(n-1)}(x_{1}))+1 = & 3(w(n)−w(x_{1}))+1 \\
-\leq & \log n
-\end{align}
+\begin{aligned}
+3\left(\sum_{i=0}^{n-2}\left(w^{(i+1)}(x_{1})-w^{(i)}(x_{1})\right)+w(n)−w^{(n-1)}(x_{1})\right)+1 & = 3(w(n)−w(x_{1}))+1 \\
+& \leq \log n
+\end{aligned}
 $$
 
 继而可得：
