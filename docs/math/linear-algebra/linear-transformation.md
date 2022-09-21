@@ -62,7 +62,7 @@ $$
 定理：设 $T$ 是由空间 $V$ 到空间 $W$ 的线性映射，$V$ 的维数有限，则 $N(T)$ 及 $R(T)$ 均为有限维，且有：
 
 $$
-dim N(T)+dim R(T)=dim V
+\operatorname{dim} N(T)+\operatorname{dim} R(T)=\operatorname{dim} V
 $$
 
 即 $T$ 的亏加秩等于其定义域 $V$ 的维数。
