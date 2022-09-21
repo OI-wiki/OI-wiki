@@ -64,13 +64,13 @@ $$
 
 对线性空间 $(V,+,\cdot,\Bbb{P})$,
 
-1. $\theta$ 唯一。
-1. $\forall\alpha\in V$, $-\alpha$ 唯一。
-1. $\exists 0\in\mathbb{P}$, $\forall\alpha\in V$, 有 $0\alpha=\theta$。
-1. $\forall k\in\mathbb{P}$, 有 $k\theta=\theta$。
-1. $(-1)\alpha=-\alpha,~\forall\alpha\in V$。
-1. 无零因子：$\forall\alpha\in V,k\in\mathbb{P}$, 有 $k\alpha=\theta\implies k=0\lor\alpha=\theta$。
-1. 加法的消去律：$\forall\alpha,\beta,\gamma\in V$, 有 $\alpha+\beta=\alpha+\gamma\implies\beta=\gamma$。
+1. $\theta$ 唯一
+1. $\forall\alpha\in V$, $-\alpha$ 唯一
+1. $\exists 0\in\mathbb{P}$, $\forall\alpha\in V$, 有 $0\alpha=\theta$
+1. $\forall k\in\mathbb{P}$, 有 $k\theta=\theta$
+1. $(-1)\alpha=-\alpha,~\forall\alpha\in V$
+1. 无零因子：$\forall\alpha\in V,k\in\mathbb{P}$, 有 $k\alpha=\theta\implies k=0\lor\alpha=\theta$
+1. 加法的消去律：$\forall\alpha,\beta,\gamma\in V$, 有 $\alpha+\beta=\alpha+\gamma\implies\beta=\gamma$
    
    > 实际上，加法的消去律是阿贝尔群的性质。
 
@@ -122,9 +122,9 @@ $$
 
 线性相关可以理解为“多余”，说明向量组内部有的向量可以被其他向量表出，可以删去。删完了之后，将剩下极大线性无关组。
 
-对线性空间 $(V,+,\cdot,\Bbb{P})$,
+对线性空间 $(V,+,\cdot,\Bbb{P})$：
 
-1. 对于向量组 $b_1,b_2,\dots,b_m$, 令 $\{a_1,a_2,\dots,a_n\}\subseteq\{b_1,b_2,\dots,b_m\}$, 若
+1. 对于向量组 $b_1,b_2,\dots,b_m$, 令 $\{a_1,a_2,\dots,a_n\}\subseteq\{b_1,b_2,\dots,b_m\}$, 若有：
 
    - 向量组 $a_1,a_2,\dots,a_n$ 线性无关。
    - $\forall\beta\in\{b_1,b_2,\dots,b_m\}\setminus\{a_1,a_2,\dots,a_n\}$, 向量组 $a_1,a_2,\dots,a_n,\beta$ 线性相关。
@@ -220,7 +220,7 @@ $$
 由定义，对于像空间 $R(A)$ 中的每一个元素 $y$，均有相应的表示：
 
 $$
-y=k_1\alpha_1+k_2\alpha_2+\cdots+k_n\alpha_n=(\alpha_1,\alpha_2,\cdots,\alpha_n)\left(\begin{aligned}\begin{array}{|c|}k_1\\k_2\\cdots\\k_n\end{array}\end{aligned}\right)=A\left(\begin{aligned}\begin{array}{|c|}k_1\\k_2\\cdots\\k_n\end{array}\end{aligned}\right)
+y=k_1\alpha_1+k_2\alpha_2+\cdots+k_n\alpha_n=(\alpha_1,\alpha_2,\cdots,\alpha_n)\begin{pmatrix}k_1\\k_2\\\vdots\\k_n\end{pmatrix}=A\begin{pmatrix}k_1\\k_2\\\vdots\\k_n\end{array}\end{pmatrix}
 $$
 
 因此像空间 $R(A)$ 就是对于任意向量 $x$，$Ax$ 的**值域**。
@@ -256,7 +256,7 @@ $$
 
 ### 交、和与直和、直积
 
-对线性空间 $(V_1,+,\cdot,\Bbb{P})$ 与 $(V_2,+,\cdot,\Bbb{P})$，
+对线性空间 $(V_1,+,\cdot,\Bbb{P})$ 与 $(V_2,+,\cdot,\Bbb{P})$：
 
 1. 不难验证：加法和数乘在 $V_1\cap V_2$ 上封闭，故可称 $V_1\cap V_2$ 为线性空间 $V_1$ 和 $V_2$ 的**交**。
    
@@ -273,8 +273,8 @@ $$
     类似地，可定义多个线性空间的直和 $\bigoplus_{i=1}^m V_i$。
 
 1. $V_1$ 与 $V_2$ 的 **直积** $V_1\times V_2$ 定义为二者的笛卡儿积关于如下的加法和数乘构成 $\Bbb{P}$ 上的线性空间：
-    1. $+:(V_1\times V_2)\times(V_1\times V_2)\mapsto V_1\times V_2; ((u_1,v_1),(u_2,v_2))\to (u_1+u_2,v_1+v_2)$。
-    1. $\cdot:\Bbb{P}\times(V_1\times V_2)\mapsto V_1\times V_2; (k,(u,u))\to (ku,kv)$。
+    1. $+:(V_1\times V_2)\times(V_1\times V_2)\mapsto V_1\times V_2; ((u_1,v_1),(u_2,v_2))\to (u_1+u_2,v_1+v_2)$
+    1. $\cdot:\Bbb{P}\times(V_1\times V_2)\mapsto V_1\times V_2; (k,(u,u))\to (ku,kv)$
     
     类似地，可定义多个线性空间的直积 $\prod_{i=1}^m V_i$。
 
@@ -298,21 +298,21 @@ $$
 #### 性质
 
 1. 令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，和集合的交一样，线性空间的交适用如下法则：
-    1. 交换律：$V_1\cap V_2=V_2\cap V_1$。
-    1. 结合律：$V_1\cap(V_2\cap V_3)=(V_1\cap V_2)\cap V_3$。
+    1. 交换律：$V_1\cap V_2=V_2\cap V_1$
+    1. 结合律：$V_1\cap(V_2\cap V_3)=(V_1\cap V_2)\cap V_3$
 1. 令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，类似于集合的并，线性空间的和适用如下法则：
-    1. 交换律：$V_1+V_2=V_2+V_1$。
-    1. 结合律：$V_1+(V_2+V_3)=(V_1+V_2)+V_3$。
+    1. 交换律：$V_1+V_2=V_2+V_1$
+    1. 结合律：$V_1+(V_2+V_3)=(V_1+V_2)+V_3$
 1. 令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，线性空间的交与并有如下关系：
-    1. $V_1\cap (V_2+V_3)\supseteq (V_1\cap V_2)+(V_1\cap V_3)$。
-    1. $V_1+(V_2\cap V_3)\subseteq (V_1+V_2)\cap (V_1+V_3)$。
-1. $\operatorname{span}\{a_1,a_2,\dots,a_n\}+\operatorname{span}\{b_1,b_2,\dots,b_m\}=\operatorname{span}\{a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_m\}$。
+    1. $V_1\cap (V_2+V_3)\supseteq (V_1\cap V_2)+(V_1\cap V_3)$
+    1. $V_1+(V_2\cap V_3)\subseteq (V_1+V_2)\cap (V_1+V_3)$
+1. $\operatorname{span}\{a_1,a_2,\dots,a_n\}+\operatorname{span}\{b_1,b_2,\dots,b_m\}=\operatorname{span}\{a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_m\}$
 1. 令 $V_1,V_2$ 是关于 $\Bbb{P}$ 的线性空间，则下列诸款等价：
 
-    1. $V_1+V_2=V_1\oplus V_2$。
-    2. $\exists \beta\in V_1+V_2$, 使得拆分为 $V_1$ 和 $V_2$ 中的向量和的方式唯一（任意 $\to$ 存在）。
-    3. $\theta$ 拆分为 $V_1$ 和 $V_2$ 中向量的和的方式唯一。
-    4. $V_1\cap V_2=\{\theta\}$。
+    1. $V_1+V_2=V_1\oplus V_2$
+    2. $\exists \beta\in V_1+V_2$, 使得拆分为 $V_1$ 和 $V_2$ 中的向量和的方式唯一（任意 $\to$ 存在）
+    3. $\theta$ 拆分为 $V_1$ 和 $V_2$ 中向量的和的方式唯一
+    4. $V_1\cap V_2=\{\theta\}$
 
     ???+note "证明"
         $1\implies 2$：由定义立得。
