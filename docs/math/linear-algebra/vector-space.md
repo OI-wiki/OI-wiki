@@ -330,7 +330,7 @@ $$
 对于矩阵 $A$，它的 $n$ 个列为向量 $\alpha$，称 $n$ 个列向量 $\alpha$ 张成的空间为 $A$ 的**像空间**，或者记作**列空间**，记作：
 
 $$
-R(A)=span\{\alpha_1,\alpha_2,\cdots,\alpha_n\}
+R(A)=\operatorname{span}\{\alpha_1,\alpha_2,\cdots,\alpha_n\}
 $$
 
 根据后文维数的定义，像空间的维数等于矩阵 $A$ 的秩。
