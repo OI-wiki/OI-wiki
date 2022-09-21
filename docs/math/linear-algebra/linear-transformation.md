@@ -143,7 +143,7 @@ $$
 设 $n$ 个向量 $x$ 是 $n$ 维空间 $V$ 的一个基，对于 $V$ 中任意的向量 $y$，令 $y$ 为：
 
 $$
-y=a_1x_1+a_2x_2+\cdots+a_nx_n=(x_1,x_2\cdots,x_n)\begin{pmatrix}a_1\\a_2\\cdots\\a_n\end{pmatrix}
+y=a_1x_1+a_2x_2+\cdots+a_nx_n=(x_1,x_2\cdots,x_n)\begin{pmatrix}a_1\\a_2\\\vdots\\a_n\end{pmatrix}
 $$
 
 称列向量：
@@ -161,19 +161,19 @@ $$
 设 $V$ 的维数为 $n$，$L(V)$ 中有变换 $T$，$T$ 在基 $\alpha_1,\cdots,\alpha_n$ 下的矩阵为 $A$。设：
 
 $$
-\xi=(\alpha_1,\cdots,\alpha_n)\begin{pmatrix}x_1\\x_2\\cdots\\x_n\end{pmatrix}
+\xi=(\alpha_1,\cdots,\alpha_n)\begin{pmatrix}x_1\\x_2\\\vdots\\x_n\end{pmatrix}
 $$
 
 且有：
 
 $$
-T\xi=T(\alpha_1,\cdots,\alpha_n)\begin{pmatrix}y_1\\y_2\\cdots\\y_n\end{pmatrix}
+T\xi=T(\alpha_1,\cdots,\alpha_n)\begin{pmatrix}y_1\\y_2\\\vdots\\y_n\end{pmatrix}
 $$
 
 则有：
 
 $$
-T\xi=T(\alpha_1,\cdots,\alpha_n)\begin{pmatrix}y_1\\y_2\\cdots\\y_n\end{pmatrix}=(\alpha_1,\cdots,\alpha_n)A\begin{pmatrix}x_1\\x_2\\cdots\\x_n\end{pmatrix}
+T\xi=T(\alpha_1,\cdots,\alpha_n)\begin{pmatrix}y_1\\y_2\\\vdots\\y_n\end{pmatrix}=(\alpha_1,\cdots,\alpha_n)A\begin{pmatrix}x_1\\x_2\\\vdots\\x_n\end{pmatrix}
 $$
 
 空间 $V$ 中的列向量点本质上都是“基乘坐标”的形式。空间 $V$ 中的列向量点 $x$，本身用了单位阵 $I$ 作为基，即 $x=Ix$。
@@ -191,7 +191,7 @@ $$
 设 $n$ 个向量 $x$ 与 $n$ 个向量 $y$ 是空间 $V$ 的两组基。对于 $1\leq i\leq n$，令每个向量 $y_i$ 在基 $x_1,x_2,\cdots,x_n$ 下的坐标为：
 
 $$
-y_i=(x_1,x_2\cdots,x_n)\begin{pmatrix}a_{1i}\\a_{2i}\\cdots\\a_{ni}\end{pmatrix}
+y_i=(x_1,x_2\cdots,x_n)\begin{pmatrix}a_{1i}\\a_{2i}\\\vdots\\a_{ni}\end{pmatrix}
 $$
 
 于是 $n$ 个向量 $y$ 排成等式左边的矩阵，$n$ 个坐标排成等式右边的矩阵 $A$：
@@ -209,7 +209,7 @@ $$
 设 $n$ 个向量 $x$ 与 $n$ 个向量 $y$ 是空间 $V$ 的两组基。对于空间 $V$ 中的同一个向量 $z$，有：
 
 $$
-z=(x_1,x_2\cdots,x_n)\begin{pmatrix}\xi_1\\\xi_2\\cdots\\\xi_n\end{pmatrix}=(y_1,y_2\cdots,y_n)\begin{pmatrix}\eta_1\\\eta_2\\cdots\\\eta_n\end{pmatrix}
+z=(x_1,x_2\cdots,x_n)\begin{pmatrix}\xi_1\\\xi_2\\\vdots\\\xi_n\end{pmatrix}=(y_1,y_2\cdots,y_n)\begin{pmatrix}\eta_1\\\eta_2\\\vdots\\\eta_n\end{pmatrix}
 $$
 
 代入上文的
@@ -221,13 +221,13 @@ $$
 由唯一性，得到：
 
 $$
-\begin{pmatrix}\xi_1\\\xi_2\\cdots\\\xi_n\end{pmatrix}=A\begin{pmatrix}\eta_1\\\eta_2\\cdots\\\eta_n\end{pmatrix}
+\begin{pmatrix}\xi_1\\\xi_2\\\vdots\\\xi_n\end{pmatrix}=A\begin{pmatrix}\eta_1\\\eta_2\\\vdots\\\eta_n\end{pmatrix}
 $$
 
 或者
 
 $$
-\begin{pmatrix}\eta_1\\\eta_2\\cdots\\\eta_n\end{pmatrix}=A^{-1}\begin{pmatrix}\xi_1\\\xi_2\\cdots\\\xi_n\end{pmatrix}
+\begin{pmatrix}\eta_1\\\eta_2\\\vdots\\\eta_n\end{pmatrix}=A^{-1}\begin{pmatrix}\xi_1\\\xi_2\\\vdots\\\xi_n\end{pmatrix}
 $$
 
 这是纯粹坐标之间的变换，坐标变换公式均在标量域中。由于前文做了区分，线性空间与阿贝尔群中的向量是“抽象的向量”，而坐标与过渡矩阵的元素均在标量域中，视为“具体的向量”，两种向量应当视为“不同的东西”。
