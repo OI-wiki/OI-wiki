@@ -149,7 +149,7 @@ $$
 称列向量：
 
 $$
-\begin{pmatrix}a_1\\a_2\\cdots\\a_n\end{pmatrix}
+\begin{pmatrix}a_1\\a_2\\\vdots\\a_n\end{pmatrix}
 $$
 
 为向量 $y$ 在基 $x_1,x_2,\cdots,x_n$ 下的**坐标**。
