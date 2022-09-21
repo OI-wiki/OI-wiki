@@ -338,7 +338,7 @@ $$
 由定义，对于像空间 $R(A)$ 中的每一个元素 $y$，均有相应的表示：
 
 $$
-y=k_1\alpha_1+k_2\alpha_2+\cdots+k_n\alpha_n=(\alpha_1,\alpha_2,\cdots,\alpha_n)\begin{pmatrix}k_1\\k_2\\\vdots\\k_n\end{pmatrix}=A\begin{pmatrix}k_1\\k_2\\\vdots\\k_n\end{array}\end{pmatrix}
+y=k_1\alpha_1+k_2\alpha_2+\cdots+k_n\alpha_n=(\alpha_1,\alpha_2,\cdots,\alpha_n)\begin{pmatrix}k_1\\k_2\\\vdots\\k_n\end{pmatrix}=A\begin{pmatrix}k_1\\k_2\\\vdots\\k_n\end{pmatrix}
 $$
 
 因此像空间 $R(A)$ 就是对于任意向量 $x$，$Ax$ 的**值域**。
