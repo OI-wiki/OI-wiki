@@ -94,7 +94,7 @@ $$
 
 规定零向量与任意向量线性相关。
 
-线性表示或线性相关的式子，可以写成内积的形式或矩阵：
+线性表示或线性相关的式子，可以写成矩阵乘法的形式：
 
 $$
 \beta=k_1a_1+k_2a_2+\cdots+k_ra_r=(a_1,a_2\cdots,a_r)\begin{pmatrix} k_1 \\ k_2 \\ \vdots \\ k_r \end{pmatrix}
