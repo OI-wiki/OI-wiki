@@ -1,0 +1,10 @@
+id: oi-wiki:graph/tree-hash-3
+name: Tree Hash
+solution:
+  cpp: /docs/graph/code/tree-hash/tree-hash_3.cpp
+target:
+- '!test'
+testcases:
+  answer: /docs/graph/examples/tree-hash/tree-hash_3.out
+  input: /docs/graph/examples/tree-hash/tree-hash_3.in
+version: 1000
