@@ -67,7 +67,7 @@ $$
 这也是一个修正的阶乘，只是维数小得多。它是：
 
 $$
-(\lfloor \frac{n}{p} \rfloor !)_p
+\left(\left\lfloor \frac{n}{p} \right\rfloor !\right)_p
 $$
 
 因此，在计算修改的阶乘 $(n!)_p$ 中，执行了 $O(p)$ 个操作，剩下的是计算 $(\lfloor \frac{n}{p} \rfloor !)_p$，于是有了递归，递归深度为 $O(\log_p n)$，因此算法的总时间复杂度为 $O(p \log_p n)$。
