@@ -1,4 +1,4 @@
-前置知识：[矩阵](../math/matrix.md)，[树链剖分](../graph/hld.md)。
+前置知识：[矩阵](../math/linear-algebra/matrix.md)，[树链剖分](../graph/hld.md)。
 
 动态 DP 问题是猫锟在 WC2018 讲的黑科技，一般用来解决树上的带有点权（边权）修改操作的 DP 问题。
 

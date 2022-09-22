@@ -1,6 +1,6 @@
 author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, RUIN-RISE, wjy-yy, rsdbkhusky, ouuan, Menci, Tiphereth-A
 
-前置知识：[线性空间](./linear-space.md) 的定义以及相关概念中的线性相关、线性无关、极大线性无关组、子空间等。
+前置知识：[线性空间](./vector-space.md) 的定义以及相关概念中的线性相关、线性无关、极大线性无关组、子空间等。
 
 线性基是线性空间的一组基，是研究线性空间的重要工具。
 
