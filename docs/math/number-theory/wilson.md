@@ -132,7 +132,7 @@ int multiplicity_factorial(int n, int p) {
 很容易证明，这个公式与前面的部分使用了相同的想法。删除所有不包含因子 $p$ 的元素，保留元素 $\lfloor \frac{n}{p} \rfloor$ 。从它们中移除因子 $p$，可以得到乘积：
 
 $$
-1 \cdot 2 \cdots \lfloor \frac{n}{p} \rfloor = \lfloor \frac{n}{p} \rfloor !
+1 \cdot 2 \cdots \left\lfloor \frac{n}{p} \right\rfloor = \left\lfloor \frac{n}{p} \right\rfloor !
 $$
 
 然后再次得到递归。
