@@ -12,7 +12,7 @@ author: codewasp942, Tiphereth-A
 
 具体来说，设 $(V,+)$ 是一个阿贝尔群，$\Bbb{P}$ 是一个域。
 
-定义 $\Bbb{P}$ 中的数与 $V$ 中元素的一种代数运算，称为**数乘**：$\cdot:\Bbb{P}\times V\mapsto V$，记为 $p\cdot v$ 或 $pv$，其中 $p$ 在域 $\Bbb{P}$ 中，$v$ 在阿贝尔群 $V$ 中。
+定义 $\Bbb{P}$ 中的数与 $V$ 中元素的一种代数运算，称为**数乘**：$\cdot:\Bbb{P}\times V\mapsto V$，记为 $p\cdot v$ 或 $pv$，其中 $p$ 在域 $\Bbb{P}$ 中，$v$ 在阿贝尔群 $V$ 中。要求该数乘运算是封闭的，运算结果始终有意义，也在群 $V$ 中。
 
 且满足以下条件：
 
