@@ -145,7 +145,7 @@ $$
 设 $n$ 个向量 $x$ 是 $n$ 维空间 $V$ 的一个基，对于 $V$ 中任意的向量 $y$，令 $y$ 为：
 
 $$
-y=a_1x_1+a_2x_2+\cdots+a_nx_n=(x_1,x_2\cdots,x_n)\begin{pmatrix}a_1\\a_2\\\vdots\\a_n\end{pmatrix}
+y=a_1x_1+a_2x_2+\cdots+a_nx_n=(x_1,x_2,\cdots,x_n)\begin{pmatrix}a_1\\a_2\\\vdots\\a_n\end{pmatrix}
 $$
 
 称列向量：
