@@ -196,7 +196,7 @@ $$
 
 1. $V_1$ 与 $V_2$ 的 **直积** $V_1\times V_2$ 定义为二者的笛卡儿积关于如下的加法和数乘构成 $\Bbb{P}$ 上的线性空间：
     1. $+:(V_1\times V_2)\times(V_1\times V_2)\mapsto V_1\times V_2; ((u_1,v_1),(u_2,v_2))\to (u_1+u_2,v_1+v_2)$
-    1. $\cdot:\Bbb{P}\times(V_1\times V_2)\mapsto V_1\times V_2; (k,(u,u))\to (ku,kv)$
+    1. $\cdot:\Bbb{P}\times(V_1\times V_2)\mapsto V_1\times V_2; (k,(u,v))\to (ku,kv)$
     
     类似地，可定义多个线性空间的直积 $\prod_{i=1}^m V_i$。
 
