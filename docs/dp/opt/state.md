@@ -51,7 +51,7 @@ $$
 设 $f_{s,i}$ 表示从点 $1$ 出发，仅经过点集 $s$ 中的点能否到达点 $i$。记 $g$ 为原图的邻接矩阵。则有
 
 $$
-f_{s, i} = \bigvee_{j\in s, j\neq i}f_{s - \\{i\\}, j}\wedge g_{j, i} \left(i\in s\right)
+f_{s, i} = \bigvee_{j\in s, j\neq i}f_{s \setminus \{i\}, j}\wedge g_{j, i} \left(i\in s\right)
 $$
 
 时间复杂度 $O(n^2 \times 2^n)$，写得好看或许能过，但是并不优美。
