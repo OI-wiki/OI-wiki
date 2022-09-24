@@ -386,30 +386,28 @@ g[0] = 1;  // 什么都不装是一种方案
 最后我们通过找到最优解的价值，把 $g_{j}$ 数组里取到最优解的所有方案数相加即可。
 
 ???+note "实现"
-
-
-```cpp
-for (int i = 0; i < N; i++) {
-  for (int j = V; j >= v[i]; j--) {
-    int tmp = std::max(dp[j], dp[j - v[i]] + w[i]);
-    int c = 0;
-    if (tmp == dp[j]) c += cnt[j];                       // 如果从dp[j]转移
-    if (tmp == dp[j - v[i]] + w[i]) c += cnt[j - v[i]];  // 如果从dp[j-v[i]]转移
-    dp[j] = tmp;
-    cnt[j] = c;
-  }
-}
-int max = 0;  // 寻找最优解
-for (int i = 0; i <= V; i++) {
-  max = std::max(max, dp[i]);
-}
-int res = 0;
-for (int i = 0; i <= V; i++) {
-  if (dp[i] == max) {
-    res += cnt[i];  // 求和最优解方案数
-  }
-}
-```
+    ```cpp
+    for (int i = 0; i < N; i++) {
+      for (int j = V; j >= v[i]; j--) {
+        int tmp = std::max(dp[j], dp[j - v[i]] + w[i]);
+        int c = 0;
+        if (tmp == dp[j]) c += cnt[j];                       // 如果从dp[j]转移
+        if (tmp == dp[j - v[i]] + w[i]) c += cnt[j - v[i]];  // 如果从dp[j-v[i]]转移
+        dp[j] = tmp;
+        cnt[j] = c;
+      }
+    }
+    int max = 0;  // 寻找最优解
+    for (int i = 0; i <= V; i++) {
+      max = std::max(max, dp[i]);
+    }
+    int res = 0;
+    for (int i = 0; i <= V; i++) {
+      if (dp[i] == max) {
+        res += cnt[i];  // 求和最优解方案数
+      }
+    }
+    ```
 
 #### 背包的第 k 优解
 
