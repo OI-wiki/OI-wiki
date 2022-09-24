@@ -193,13 +193,13 @@ $$
 设 $n$ 个向量 $x$ 与 $n$ 个向量 $y$ 是空间 $V$ 的两组基。对于 $1\leq i\leq n$，令每个向量 $y_i$ 在基 $x_1,x_2,\cdots,x_n$ 下的坐标为：
 
 $$
-y_i=(x_1,x_2\cdots,x_n)\begin{pmatrix}a_{1i}\\a_{2i}\\\vdots\\a_{ni}\end{pmatrix}
+y_i=(x_1,x_2,\cdots,x_n)\begin{pmatrix}a_{1i}\\a_{2i}\\\vdots\\a_{ni}\end{pmatrix}
 $$
 
 于是 $n$ 个向量 $y$ 排成等式左边的矩阵，$n$ 个坐标排成等式右边的矩阵 $A$：
 
 $$
-(y_1,y_2\cdots,y_n)=(x_1,x_2\cdots,x_n)A
+(y_1,y_2,\cdots,y_n)=(x_1,x_2,\cdots,x_n)A
 $$
 
 矩阵 $A$ 称为由基 $x_1,x_2\cdots,x_n$ 到基 $y_1,y_2\cdots,y_n$ 的**过渡矩阵**，也称为变换矩阵。
@@ -211,7 +211,7 @@ $$
 设 $n$ 个向量 $x$ 与 $n$ 个向量 $y$ 是空间 $V$ 的两组基。对于空间 $V$ 中的同一个向量 $z$，有：
 
 $$
-z=(x_1,x_2\cdots,x_n)\begin{pmatrix}\xi_1\\\xi_2\\\vdots\\\xi_n\end{pmatrix}=(y_1,y_2\cdots,y_n)\begin{pmatrix}\eta_1\\\eta_2\\\vdots\\\eta_n\end{pmatrix}
+z=(x_1,x_2,\cdots,x_n)\begin{pmatrix}\xi_1\\\xi_2\\\vdots\\\xi_n\end{pmatrix}=(y_1,y_2\cdots,y_n)\begin{pmatrix}\eta_1\\\eta_2\\\vdots\\\eta_n\end{pmatrix}
 $$
 
 代入上文的
