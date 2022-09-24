@@ -164,47 +164,45 @@ void maintain(int o) {
 - 插入和删除，只需要修改叶子节点的 `w[]` 即可，在回溯的过程中一路维护即可。
 
 ???+note "实现"
-
-
-```cpp
-namespace trie {
-const int MAXH = 21;
-int ch[_ * (MAXH + 1)][2], w[_ * (MAXH + 1)], xorv[_ * (MAXH + 1)];
-int tot = 0;
-
-int mknode() {
-  ++tot;
-  ch[tot][1] = ch[tot][0] = w[tot] = xorv[tot] = 0;
-  return tot;
-}
-
-void maintain(int o) {
-  w[o] = xorv[o] = 0;
-  if (ch[o][0]) {
-    w[o] += w[ch[o][0]];
-    xorv[o] ^= xorv[ch[o][0]] << 1;
-  }
-  if (ch[o][1]) {
-    w[o] += w[ch[o][1]];
-    xorv[o] ^= (xorv[ch[o][1]] << 1) | (w[ch[o][1]] & 1);
-  }
-  w[o] = w[o] & 1;
-}
-
-void insert(int &o, int x, int dp) {
-  if (!o) o = mknode();
-  if (dp > MAXH) return (void)(w[o]++);
-  insert(ch[o][x & 1], x >> 1, dp + 1);
-  maintain(o);
-}
-
-void erase(int o, int x, int dp) {
-  if (dp > 20) return (void)(w[o]--);
-  erase(ch[o][x & 1], x >> 1, dp + 1);
-  maintain(o);
-}
-}  // namespace trie
-```
+    ```cpp
+    namespace trie {
+    const int MAXH = 21;
+    int ch[_ * (MAXH + 1)][2], w[_ * (MAXH + 1)], xorv[_ * (MAXH + 1)];
+    int tot = 0;
+    
+    int mknode() {
+      ++tot;
+      ch[tot][1] = ch[tot][0] = w[tot] = xorv[tot] = 0;
+      return tot;
+    }
+    
+    void maintain(int o) {
+      w[o] = xorv[o] = 0;
+      if (ch[o][0]) {
+        w[o] += w[ch[o][0]];
+        xorv[o] ^= xorv[ch[o][0]] << 1;
+      }
+      if (ch[o][1]) {
+        w[o] += w[ch[o][1]];
+        xorv[o] ^= (xorv[ch[o][1]] << 1) | (w[ch[o][1]] & 1);
+      }
+      w[o] = w[o] & 1;
+    }
+    
+    void insert(int &o, int x, int dp) {
+      if (!o) o = mknode();
+      if (dp > MAXH) return (void)(w[o]++);
+      insert(ch[o][x & 1], x >> 1, dp + 1);
+      maintain(o);
+    }
+    
+    void erase(int o, int x, int dp) {
+      if (dp > 20) return (void)(w[o]--);
+      erase(ch[o][x & 1], x >> 1, dp + 1);
+      maintain(o);
+    }
+    }  // namespace trie
+    ```
 
 #### 全局加一
 
