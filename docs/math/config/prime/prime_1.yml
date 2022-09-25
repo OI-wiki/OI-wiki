@@ -1,10 +1,10 @@
 id: oi-wiki:math/prime-1
 name: Prime
 solution:
-  cpp: /docs/math/code/prime/prime_1.cpp
+  cpp: docs/math/code/prime/prime_1.cpp
 target:
 - '!test'
 testcases:
-  answer: /docs/math/examples/prime/prime_1.out
-  input: /docs/math/examples/prime/prime_1.in
+  answer: docs/math/examples/prime/prime_1.out
+  input: docs/math/examples/prime/prime_1.in
 version: 1000
