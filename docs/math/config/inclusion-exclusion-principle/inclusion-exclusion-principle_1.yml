@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/math/examples/inclusion-exclusion-principle/inclusion-exclusion-principle_1.out
+  answer: docs/math/examples/inclusion-exclusion-principle/inclusion-exclusion-principle_1.ans
   input: docs/math/examples/inclusion-exclusion-principle/inclusion-exclusion-principle_1.in
 version: 1000

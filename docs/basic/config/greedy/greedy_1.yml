@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/basic/examples/greedy/greedy_1.out
+  answer: docs/basic/examples/greedy/greedy_1.ans
   input: docs/basic/examples/greedy/greedy_1.in
 version: 1000

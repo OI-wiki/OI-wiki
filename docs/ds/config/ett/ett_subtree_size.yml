@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/ds/examples/ett/ett_subtree_size.out
+  answer: docs/ds/examples/ett/ett_subtree_size.ans
   input: docs/ds/examples/ett/ett_subtree_size.in
 version: 1000

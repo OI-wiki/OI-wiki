@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/misc/examples/hoverline/hoverline_1.out
+  answer: docs/misc/examples/hoverline/hoverline_1.ans
   input: docs/misc/examples/hoverline/hoverline_1.in
 version: 1000

@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/graph/examples/lca/lca_2.out
+  answer: docs/graph/examples/lca/lca_2.ans
   input: docs/graph/examples/lca/lca_2.in
 version: 1000

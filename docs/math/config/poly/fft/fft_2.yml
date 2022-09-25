@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/math/examples/poly/fft/fft_2.out
+  answer: docs/math/examples/poly/fft/fft_2.ans
   input: docs/math/examples/poly/fft/fft_2.in
 version: 1000

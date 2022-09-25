@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/dp/examples/probability/probability_1.out
+  answer: docs/dp/examples/probability/probability_1.ans
   input: docs/dp/examples/probability/probability_1.in
 version: 1000

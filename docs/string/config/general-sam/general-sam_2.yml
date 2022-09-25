@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/string/examples/general-sam/general-sam_2.out
+  answer: docs/string/examples/general-sam/general-sam_2.ans
   input: docs/string/examples/general-sam/general-sam_2.in
 version: 1000

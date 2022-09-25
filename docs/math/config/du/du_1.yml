@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/math/examples/du/du_1.out
+  answer: docs/math/examples/du/du_1.ans
   input: docs/math/examples/du/du_1.in
 version: 1000

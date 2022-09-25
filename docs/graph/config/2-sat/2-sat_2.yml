@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/graph/examples/2-sat/2-sat_2.out
+  answer: docs/graph/examples/2-sat/2-sat_2.ans
   input: docs/graph/examples/2-sat/2-sat_2.in
 version: 1000

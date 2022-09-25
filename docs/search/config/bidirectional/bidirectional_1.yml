@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/search/examples/bidirectional/bidirectional_1.out
+  answer: docs/search/examples/bidirectional/bidirectional_1.ans
   input: docs/search/examples/bidirectional/bidirectional_1.in
 version: 1000

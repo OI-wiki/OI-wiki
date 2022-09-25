@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/string/examples/suffix-bst/suffix-bst_1.out
+  answer: docs/string/examples/suffix-bst/suffix-bst_1.ans
   input: docs/string/examples/suffix-bst/suffix-bst_1.in
 version: 1000

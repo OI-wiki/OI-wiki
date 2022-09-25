@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/graph/examples/mst/mst_1.out
+  answer: docs/graph/examples/mst/mst_1.ans
   input: docs/graph/examples/mst/mst_1.in
 version: 1000

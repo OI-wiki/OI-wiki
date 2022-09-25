@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/search/examples/backtracking/backtracking_1.out
+  answer: docs/search/examples/backtracking/backtracking_1.ans
   input: docs/search/examples/backtracking/backtracking_1.in
 version: 1000

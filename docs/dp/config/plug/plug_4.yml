@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/dp/examples/plug/plug_4.out
+  answer: docs/dp/examples/plug/plug_4.ans
   input: docs/dp/examples/plug/plug_4.in
 version: 1000

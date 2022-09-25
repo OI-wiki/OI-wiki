@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/basic/examples/prefix-sum/prefix-sum_1.out
+  answer: docs/basic/examples/prefix-sum/prefix-sum_1.ans
   input: docs/basic/examples/prefix-sum/prefix-sum_1.in
 version: 1000

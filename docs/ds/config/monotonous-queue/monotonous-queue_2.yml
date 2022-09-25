@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/ds/examples/monotonous-queue/monotonous-queue_2.out
+  answer: docs/ds/examples/monotonous-queue/monotonous-queue_2.ans
   input: docs/ds/examples/monotonous-queue/monotonous-queue_2.in
 version: 1000

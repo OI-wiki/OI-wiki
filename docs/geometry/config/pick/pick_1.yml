@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/geometry/examples/pick/pick_1.out
+  answer: docs/geometry/examples/pick/pick_1.ans
   input: docs/geometry/examples/pick/pick_1.in
 version: 1000

@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/math/examples/pollard-rho/pollard-rho_1.out
+  answer: docs/math/examples/pollard-rho/pollard-rho_1.ans
   input: docs/math/examples/pollard-rho/pollard-rho_1.in
 version: 1000

@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/misc/examples/modifiable-mo-algo/modifiable-mo-algo_1.out
+  answer: docs/misc/examples/modifiable-mo-algo/modifiable-mo-algo_1.ans
   input: docs/misc/examples/modifiable-mo-algo/modifiable-mo-algo_1.in
 version: 1000

@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/misc/examples/cdq-divide/cdq-divide_3.out
+  answer: docs/misc/examples/cdq-divide/cdq-divide_3.ans
   input: docs/misc/examples/cdq-divide/cdq-divide_3.in
 version: 1000

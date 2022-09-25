@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/math/examples/mobius/mobius_4.out
+  answer: docs/math/examples/mobius/mobius_4.ans
   input: docs/math/examples/mobius/mobius_4.in
 version: 1000

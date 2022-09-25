@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/geometry/examples/3d/3d_1.out
+  answer: docs/geometry/examples/3d/3d_1.ans
   input: docs/geometry/examples/3d/3d_1.in
 version: 1000

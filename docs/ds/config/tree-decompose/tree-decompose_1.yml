@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/ds/examples/tree-decompose/tree-decompose_1.out
+  answer: docs/ds/examples/tree-decompose/tree-decompose_1.ans
   input: docs/ds/examples/tree-decompose/tree-decompose_1.in
 version: 1000
