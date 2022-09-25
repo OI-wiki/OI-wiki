@@ -117,6 +117,7 @@ nav:
       - Lambda 表达式: lang/lambda.md
       - pb_ds:
         - pb_ds 简介: lang/pb-ds/index.md
+        - Hash 表: lang/pb-ds/hash.md
         - 堆: lang/pb-ds/pq.md
         - 平衡树: lang/pb-ds/tree.md
     - C++ 与其他常用语言的区别: lang/cpp-other-langs.md
