@@ -1,10 +1,10 @@
 id: oi-wiki:graph/bfs-1
 name: BFS
 solution:
-  cpp: /docs/graph/code/bfs/bfs_1.cpp
+  cpp: docs/graph/code/bfs/bfs_1.cpp
 target:
 - '!test'
 testcases:
-  answer: /docs/graph/examples/bfs/bfs_1.out
-  input: /docs/graph/examples/bfs/bfs_1.in
+  answer: docs/graph/examples/bfs/bfs_1.out
+  input: docs/graph/examples/bfs/bfs_1.in
 version: 1000

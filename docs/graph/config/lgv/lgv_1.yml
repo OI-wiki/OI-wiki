@@ -1,10 +1,10 @@
 id: oi-wiki:graph/lgv-1
 name: LGV
 solution:
-  cpp: /docs/graph/code/lgv/lgv_1.cpp
+  cpp: docs/graph/code/lgv/lgv_1.cpp
 target:
 - '!test'
 testcases:
-  answer: /docs/graph/examples/lgv/lgv_1.out
-  input: /docs/graph/examples/lgv/lgv_1.in
+  answer: docs/graph/examples/lgv/lgv_1.out
+  input: docs/graph/examples/lgv/lgv_1.in
 version: 1000
