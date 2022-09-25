@@ -3,7 +3,7 @@ name: DLX
 solution:
   cpp: docs/search/code/dlx/dlx_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/search/examples/dlx/dlx_1.out
   input: docs/search/examples/dlx/dlx_1.in

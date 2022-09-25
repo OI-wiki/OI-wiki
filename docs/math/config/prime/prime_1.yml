@@ -3,7 +3,7 @@ name: Prime
 solution:
   cpp: docs/math/code/prime/prime_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/math/examples/prime/prime_1.out
   input: docs/math/examples/prime/prime_1.in

@@ -3,7 +3,7 @@ name: Hoverline
 solution:
   cpp: docs/misc/code/hoverline/hoverline_2.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/misc/examples/hoverline/hoverline_2.out
   input: docs/misc/examples/hoverline/hoverline_2.in

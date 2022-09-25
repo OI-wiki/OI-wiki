@@ -3,7 +3,7 @@ name: Li Chao Tree
 solution:
   cpp: docs/ds/code/li-chao-tree/li-chao-tree_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/ds/examples/li-chao-tree/li-chao-tree_1.out
   input: docs/ds/examples/li-chao-tree/li-chao-tree_1.in

@@ -3,7 +3,7 @@ name: Monotonous-Queue-Stack DP
 solution:
   cpp: docs/dp/code/opt/monotonous-queue-stack/monotonous-queue-stack_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/dp/examples/opt/monotonous-queue-stack/monotonous-queue-stack_1.out
   input: docs/dp/examples/opt/monotonous-queue-stack/monotonous-queue-stack_1.in

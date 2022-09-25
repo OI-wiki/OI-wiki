@@ -3,7 +3,7 @@ name: Mobius
 solution:
   cpp: docs/math/code/mobius/mobius_3.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/math/examples/mobius/mobius_3.out
   input: docs/math/examples/mobius/mobius_3.in

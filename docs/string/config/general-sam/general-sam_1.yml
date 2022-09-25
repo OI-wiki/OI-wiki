@@ -3,7 +3,7 @@ name: General Sam
 solution:
   cpp: docs/string/code/general-sam/general-sam_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/string/examples/general-sam/general-sam_1.out
   input: docs/string/examples/general-sam/general-sam_1.in

@@ -3,7 +3,7 @@ name: BFS
 solution:
   cpp: docs/graph/code/bfs/bfs_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/graph/examples/bfs/bfs_1.out
   input: docs/graph/examples/bfs/bfs_1.in

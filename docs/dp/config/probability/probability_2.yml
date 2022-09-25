@@ -3,7 +3,7 @@ name: Probability DP
 solution:
   cpp: docs/dp/code/probability/probability_2.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/dp/examples/probability/probability_2.out
   input: docs/dp/examples/probability/probability_2.in

@@ -3,7 +3,7 @@ name: Mod Shortest Path
 solution:
   cpp: docs/graph/code/mod-shortest-path/mod-shortest-path_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/graph/examples/mod-shortest-path/mod-shortest-path_1.out
   input: docs/graph/examples/mod-shortest-path/mod-shortest-path_1.in

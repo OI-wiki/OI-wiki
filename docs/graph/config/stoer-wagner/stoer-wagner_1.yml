@@ -3,7 +3,7 @@ name: Stoer Wagner
 solution:
   cpp: docs/graph/code/stoer-wagner/stoer-wagner_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/graph/examples/stoer-wagner/stoer-wagner_1.out
   input: docs/graph/examples/stoer-wagner/stoer-wagner_1.in

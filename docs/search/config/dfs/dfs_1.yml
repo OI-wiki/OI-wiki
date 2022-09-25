@@ -3,7 +3,7 @@ name: DFS
 solution:
   cpp: docs/search/code/dfs/dfs_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/search/examples/dfs/dfs_1.out
   input: docs/search/examples/dfs/dfs_1.in

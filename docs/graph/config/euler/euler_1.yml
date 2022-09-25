@@ -3,7 +3,7 @@ name: Euler Algorithm
 solution:
   cpp: docs/graph/code/euler/euler_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/graph/examples/euler/euler_1.out
   input: docs/graph/examples/euler/euler_1.in

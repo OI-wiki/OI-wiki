@@ -3,7 +3,7 @@ name: Cartesian Tree
 solution:
   cpp: docs/ds/code/cartesian-tree/cartesian-tree_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/ds/examples/cartesian-tree/cartesian-tree_1.out
   input: docs/ds/examples/cartesian-tree/cartesian-tree_1.in

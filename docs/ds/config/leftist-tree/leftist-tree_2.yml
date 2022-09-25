@@ -3,7 +3,7 @@ name: Leftist Tree
 solution:
   cpp: docs/ds/code/leftist-tree/leftist-tree_2.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/ds/examples/leftist-tree/leftist-tree_2.out
   input: docs/ds/examples/leftist-tree/leftist-tree_2.in

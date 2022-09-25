@@ -3,7 +3,7 @@ name: Pollard Rho
 solution:
   cpp: docs/math/code/pollard-rho/pollard-rho_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/math/examples/pollard-rho/pollard-rho_1.out
   input: docs/math/examples/pollard-rho/pollard-rho_1.in

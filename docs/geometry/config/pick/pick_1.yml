@@ -3,7 +3,7 @@ name: Pick
 solution:
   cpp: docs/geometry/code/pick/pick_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/geometry/examples/pick/pick_1.out
   input: docs/geometry/examples/pick/pick_1.in

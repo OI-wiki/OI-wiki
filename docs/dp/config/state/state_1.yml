@@ -3,7 +3,7 @@ name: State DP
 solution:
   cpp: docs/dp/code/state/state_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/dp/examples/state/state_1.out
   input: docs/dp/examples/state/state_1.in

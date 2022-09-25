@@ -3,7 +3,7 @@ name: Simplex
 solution:
   cpp: docs/math/code/simplex/simplex_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/math/examples/simplex/simplex_1.out
   input: docs/math/examples/simplex/simplex_1.in

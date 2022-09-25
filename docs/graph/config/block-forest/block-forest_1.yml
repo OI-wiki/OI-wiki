@@ -3,7 +3,7 @@ name: Block Forest
 solution:
   cpp: docs/graph/code/block-forest/block-forest_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/graph/examples/block-forest/block-forest_1.out
   input: docs/graph/examples/block-forest/block-forest_1.in

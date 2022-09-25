@@ -3,7 +3,7 @@ name: SEG
 solution:
   cpp: docs/ds/code/seg/seg_2.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/ds/examples/seg/seg_2.out
   input: docs/ds/examples/seg/seg_2.in

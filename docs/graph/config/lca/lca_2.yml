@@ -3,7 +3,7 @@ name: LCA
 solution:
   cpp: docs/graph/code/lca/lca_2.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/graph/examples/lca/lca_2.out
   input: docs/graph/examples/lca/lca_2.in

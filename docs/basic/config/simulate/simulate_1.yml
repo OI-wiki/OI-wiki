@@ -3,7 +3,7 @@ name: Simulate Algorithm
 solution:
   cpp: docs/basic/code/simulate/simulate_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/basic/examples/simulate/simulate_1.out
   input: docs/basic/examples/simulate/simulate_1.in

@@ -3,7 +3,7 @@ name: FFT
 solution:
   cpp: docs/math/code/poly/fft/fft_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/math/examples/poly/fft/fft_1.out
   input: docs/math/examples/poly/fft/fft_1.in

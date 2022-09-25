@@ -3,7 +3,7 @@ name: Wilson
 solution:
   cpp: docs/math/code/wilson/wilson_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/math/examples/wilson/wilson_1.out
   input: docs/math/examples/wilson/wilson_1.in

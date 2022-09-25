@@ -3,7 +3,7 @@ name: Du
 solution:
   cpp: docs/math/code/du/du_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/math/examples/du/du_1.out
   input: docs/math/examples/du/du_1.in

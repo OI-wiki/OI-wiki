@@ -3,7 +3,7 @@ name: Powerful Number
 solution:
   cpp: docs/math/code/powerful-number/powerful-number_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/math/examples/powerful-number/powerful-number_1.out
   input: docs/math/examples/powerful-number/powerful-number_1.in

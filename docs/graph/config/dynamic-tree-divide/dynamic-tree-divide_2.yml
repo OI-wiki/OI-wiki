@@ -3,7 +3,7 @@ name: Dynamic Tree Divide
 solution:
   cpp: docs/graph/code/dynamic-tree-divide/dynamic-tree-divide_2.cpp
 target:
-- '!test'
+- 'test'
 testcases:
   answer: docs/graph/examples/dynamic-tree-divide/dynamic-tree-divide_2.out
   input: docs/graph/examples/dynamic-tree-divide/dynamic-tree-divide_2.in
