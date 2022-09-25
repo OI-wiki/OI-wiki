@@ -330,7 +330,7 @@ def getsum(l, r, s, t, p):
 ```cpp
 // root 表示整棵线段树的根结点；cnt 表示当前结点个数
 int n, cnt, root;
-int sum[n*2], ls[n*2], rs[n*2];
+int sum[n * 2], ls[n * 2], rs[n * 2];
 // 用法：upd(root, 1, n, p, f);
 void upd(int& rt, int l, int r, int p, int f) { // 引用传参
   if (!rt) rt = ++cnt;  // 当结点为空时，创建一个新的结点
