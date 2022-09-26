@@ -343,7 +343,7 @@ void pre() {
       if (i % p[j] == 0) {
         mu[i * p[j]] = 0;
         break;
-      }else{
+      } else {
         mu[i * p[j]] = -mu[i];
       }
     }
