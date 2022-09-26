@@ -10,6 +10,8 @@
 
 ## Tarjan 算法
 
+### 引入
+
 Robert E. Tarjan（罗伯特·塔扬，1948~），生于美国加州波莫纳，计算机科学家。
 
 Tarjan 发明了很多算法和数据结构。不少他发明的算法都以他的名字命名，以至于有时会让人混淆几种不同的算法。比如求各种连通分量的 Tarjan 算法，求 LCA（Lowest Common Ancestor，最近公共祖先）的 Tarjan 算法。并查集、Splay、Toptree 也是 Tarjan 发明的。
@@ -54,6 +56,8 @@ Tarjan 发明了很多算法和数据结构。不少他发明的算法都以他�
 
 将上述算法写成伪代码：
 
+???+note "实现"
+    ```text
     TARJAN_SEARCH(int u)
         vis[u]=true
         low[u]=dfn[u]=++dfncnt
@@ -64,6 +68,7 @@ Tarjan 发明了很多算法和数据结构。不少他发明的算法都以他�
                 low[u]=min(low[u],low[v]) // 回溯
             else if v has been in the stack then
                 low[u]=min(low[u],dfn[v])
+    ```
 
 对于一个连通分量图，我们很容易想到，在该连通图中有且仅有一个 $u$ 使得 $\textit{dfn}_u=\textit{low}_u$。该结点一定是在深度遍历的过程中，该连通分量中第一个被访问过的结点，因为它的 dfn 和 low 值最小，不会被该连通分量中的其他结点所影响。
 
@@ -138,7 +143,11 @@ def tarjan(u):
 
 ## Kosaraju 算法
 
+### 引入
+
 Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文上提出，但 Micha Sharir 最早发表了它。
+
+### 过程
 
 该算法依靠两次简单的 DFS 实现：
 
@@ -206,6 +215,8 @@ def kosaraju(u):
 ```
 
 ## Garbow 算法
+
+### 过程
 
 Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 low 来计算强连通分量的根，Garbow 维护一个节点栈，并用第二个栈来确定何时从第一个栈中弹出属于同一个强连通分量的节点。从节点 $w$ 开始的 DFS 过程中，当一条路径显示这组节点都属于同一个强连通分量时，只要栈顶节点的访问时间大于根节点 $w$ 的访问时间，就从第二个栈中弹出这个节点，那么最后只留下根节点 $w$。在这个过程中每一个被弹出的节点都属于同一个强连通分量。
 
