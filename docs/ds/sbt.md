@@ -1,4 +1,4 @@
-Size Balanced Tree (SBT) 是由中国 IO 选手陈启峰在 2007 年提出的一种自平衡二叉搜索树 (Self-Balanced Binary Search Tree, SBBST), 通过检查子树的节点数量进行自身的平衡维护. 相比于红黑树, AVL 等主流自平衡二叉搜索树而言, Size Balanced Tree 支持在 $O(logn)$的时间复杂度内查询某个键值在树中的排名 (rank).
+Size Balanced Tree (SBT) 是由中国 IO 选手陈启峰在 2007 年提出的一种自平衡二叉搜索树 (Self-Balanced Binary Search Tree, SBBST), 通过检查子树的节点数量进行自身的平衡维护. 相比于红黑树, AVL 等主流自平衡二叉搜索树而言, Size Balanced Tree 支持在 $O(\log n)$的时间复杂度内查询某个键值在树中的排名 (rank).
 
 ## 节点定义
 
@@ -203,7 +203,7 @@ if (compare(key, node->key)) {
 
 根据 Size Balanced Tree 的提出者陈启峰在其论文中对于删除操作的描述:
 
-> It can result in a destroyed SBT. But with the insertion above, a BST is still kept at the height of $O(logn)$ where $n$ is the total number of insertions, not the current size.
+> It can result in a destroyed SBT. But with the insertion above, a BST is still kept at the height of $O(\log n)$ where $n$ is the total number of insertions, not the current size.
 
 删除操作虽然有可能使得 SBT 的性质被打破, 但并不会使树的高度增高, 因此不会影响后续操作的效率. 但在实际情况下, 如果在一次批量插入操作后只进行大量的删除和查询操作, 依然有可能由于树的失衡影响整体效率, 因此本文在实现 SBT 的删除操作时依然选择加入平衡维护. 参考代码如下:
 
@@ -333,7 +333,7 @@ bool remove(NodePtr & node, K key, NodeConsumer action) {
 
 ### 查询排名
 
-由于 SBT 节点中储存了子树节点个数的信息, 因此可以在$O(logn)$的时间复杂度下查询某个`key`的排名(或者大于/小于某个`key`的节点个数). 示例代码如下:
+由于 SBT 节点中储存了子树节点个数的信息, 因此可以在$O(\log n)$的时间复杂度下查询某个`key`的排名(或者大于/小于某个`key`的节点个数). 示例代码如下:
 
 ```c++
 USize countLess(ConstNodePtr node, K key, bool countEqual = false) const {
