@@ -14,14 +14,12 @@ Size Balanced Tree (SBT) 是由中国 IO 选手陈启峰在 2007 年提出的一
 
 Size Balanced Tree 中任意节点$N$满足如下几条性质:
 
-$$
-\begin{aligned}
-    & \operatorname{size}(\text{N.left}) \ge \operatorname{size}(\text{N.right.left}) \\
-    & \operatorname{size}(\text{N.left}) \ge \operatorname{size}(\text{N.right.right}) \\
-    & \operatorname{size}(\text{N.right}) \ge \operatorname{size}(\text{N.left.left}) \\
-    & \operatorname{size}(\text{N.right}) \ge \operatorname{size}(\text{N.left.right})
-\end{aligned}
-$$
+```
+size(N.left) >= size(N.right.left)
+size(N.left) >= size(N.right.right)
+size(N.right) >= size(N.left.left)
+size(N.right) >= size(N.left.right)
+```
 
 使用自然语言可描述为: 任意节点的`size`不小于其兄弟节点(Sibling)的所有子节点(Nephew)的`size`.
 
@@ -83,7 +81,7 @@ static void rotateRight(NodePtr & node) {
 
 #### Case 1
 
-$\operatorname{size}(\text{N.left}) \lt \operatorname{size}(\text{N.right.left})$
+`size(N.left) < size(N.right.left)`
 
 ```c++
 if (size(node->right->left) > size(node->left)) {
@@ -106,7 +104,7 @@ if (size(node->right->left) > size(node->left)) {
 
 #### Case 2
 
-$\operatorname{size}(\text{N.left}) \lt \operatorname{size}(\text{N.right.right})$
+`size(N.left) < size(N.right.right)`
 
 ```c++
 if (size(node->right->right) > size(node->left)) {
@@ -127,7 +125,7 @@ if (size(node->right->right) > size(node->left)) {
 
 #### Case 3
 
-$\operatorname{size}(\text{N.right}) \lt \operatorname{size}(\text{N.left.left})$
+`size(N.right) < size(N.left.left)`
 
 ```c++
 if (size(node->left->left) > size(node->right)) {
@@ -148,7 +146,7 @@ if (size(node->left->left) > size(node->right)) {
 
 #### Case 4
 
-$\operatorname{size}(\text{N.right}) \lt \operatorname{size}(\text{N.left.right})$
+`size(N.right) < size(N.left.right)`
 
 ```c++
 if (size(node->left->right) > size(node->right)) {
