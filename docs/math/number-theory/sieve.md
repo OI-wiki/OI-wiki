@@ -343,10 +343,12 @@ void pre() {
       if (i % p[j] == 0) {
         mu[i * p[j]] = 0;
         break;
+      } else {
+        mu[i * p[j]] = -mu[i];
       }
-      mu[i * p[j]] = -mu[i];
     }
   }
+}
 ```
 
 ```python
@@ -364,8 +366,9 @@ def pre():
             if i % p[j] == 0:
                 mu[i * p[j]] = 0
                 break
+            else:
+                mu[i * p[j]] = -mu[i]
             j = j + 1
-        mu[i * p[j]] = -mu[i]
 ```
 
 ## 筛法求约数个数
