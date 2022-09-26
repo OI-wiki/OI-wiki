@@ -16,10 +16,10 @@ Size Balanced Tree 中任意节点$N$满足如下几条性质:
 
 $$
 \begin{aligned}
-    & size(N.left) \ge size(N.right.left) \\
-    & size(N.left) \ge size(N.right.right) \\
-    & size(N.right) \ge size(N.left.left) \\
-    & size(N.right) \ge size(N.left.right)
+    & \operatorname{size}(\text{N.left}) \ge \operatorname{size}(\text{N.right.left}) \\
+    & \operatorname{size}(\text{N.left}) \ge \operatorname{size}(\text{N.right.right}) \\
+    & \operatorname{size}(\text{N.right}) \ge \operatorname{size}(\text{N.left.left}) \\
+    & \operatorname{size}(\text{N.right}) \ge \operatorname{size}(\text{N.left.right})
 \end{aligned}
 $$
 
@@ -83,7 +83,7 @@ static void rotateRight(NodePtr & node) {
 
 #### Case 1
 
-$size(N.left) \lt size(N.right.left)$
+$\operatorname{size}(\text{N.left}) \lt \operatorname{size}(\text{N.right.left})$
 
 ```c++
 if (size(node->right->left) > size(node->left)) {
@@ -106,7 +106,7 @@ if (size(node->right->left) > size(node->left)) {
 
 #### Case 2
 
-$size(N.left) \lt size(N.right.right)$
+$\operatorname{size}(\text{N.left}) \lt \operatorname{size}(\text{N.right.right})$
 
 ```c++
 if (size(node->right->right) > size(node->left)) {
@@ -127,7 +127,7 @@ if (size(node->right->right) > size(node->left)) {
 
 #### Case 3
 
-$size(N.right) \lt size(N.left.left)$
+$\operatorname{size}(\text{N.right}) \lt \operatorname{size}(\text{N.left.left})$
 
 ```c++
 if (size(node->left->left) > size(node->right)) {
@@ -148,7 +148,7 @@ if (size(node->left->left) > size(node->right)) {
 
 #### Case 4
 
-$size(N.right) \lt size(N.left.right)$
+$\operatorname{size}(\text{N.right}) \lt \operatorname{size}(\text{N.left.right})$
 
 ```c++
 if (size(node->left->right) > size(node->right)) {
