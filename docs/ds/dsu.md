@@ -2,190 +2,194 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ![](images/disjoint-set.svg)
 
-## 引入
+并查集是一种树形的数据结构，顾名思义，它用于处理一些不交集的 **合并** 及 **查询** 问题。
+它支持两种操作：
 
-并查集是一种用于管理元素所属集合的数据结构，实现为一个森林，其中每棵树表示一个集合，树中的节点表示对应集合中的元素。
-
-顾名思义，并查集支持两种操作：
-
-- 合并（Union）：合并两个元素所属集合（合并对应的树）
-- 查询（Find）：查询某个元素所属集合（查询对应的树的根节点），这可以用于判断两个元素是否属于同一集合
-
-并查集在经过修改后可以支持单个元素的删除操作，使用动态开点线段树还可以实现可持久化并查集。
+- 查找（Find）：确定某个元素处于哪个子集；
+- 合并（Union）：将两个子集合并成一个集合。
 
 !!! warning
-    并查集不支持集合的分离。
+    并查集不支持集合的分离，但是并查集在经过修改后可以支持集合中单个元素的删除操作（详见 UVA11987 Almost Union-Find）。使用动态开点线段树还可以实现可持久化并查集。
 
 ## 初始化
 
-初始时，每个元素都位于一个单独的集合，表示为一棵只有根节点的树。方便起见，我们将根节点的父亲设为自己。
+C++ 的参考实现：
 
-???+note "实现"
-    ```cpp
-    // C++ Version
-    struct dsu {
-        vector<size_t> pa;
-        
-        explicit dsu(size_t size): pa(size) {
-            iota(pa.begin(), pa.end(), 0);
-        }
-    };
-    ```
-    
-    ```python
-    # Python Version
-    class Dsu:
-        def __init__(self, size):
-            self.pa = list(range(size))
-    ```
+```cpp
+// C++ Version
+void makeSet(int size) {
+  for (int i = 0; i < size; i++) fa[i] = i;  // i 就在它本身的集合里
+  return;
+}
+```
 
-## 查询
+Python 的参考实现：
 
-我们需要沿着树向上移动，直至找到根节点。
+```python
+# Python Version
+def makeSet(size):
+    for i in range(0, size):
+        fa[i] = i
+    return
+```
+
+## 查找
+
+通俗地讲一个故事：几个家族进行宴会，但是家族普遍长寿，所以人数众多。由于长时间的分离以及年龄的增长，这些人逐渐忘掉了自己的亲人，只记得自己的爸爸是谁了，而最长者（称为「祖先」）的父亲已经去世，他只知道自己是祖先。为了确定自己是哪个家族，他们想出了一个办法，只要问自己的爸爸是不是祖先，一层一层的向上问，直到问到祖先。如果要判断两人是否在同一家族，只要看两人的祖先是不是同一人就可以了。
+
+在这样的思想下，并查集的查找算法诞生了。
 
 ![](images/disjoint-set-find.svg)
 
-???+note "实现"
-    ```cpp
-    // C++ Version
-    size_t find(size_t x) {
-        return pa[x] == x ? x : find(pa[x]);
-    }
-    ```
-    
-    ```python
-    # Python Version
-    def find(self, x):
-        return x if self.pa[x] == x else self.find(self.pa[x])
-    ```
+C++ 的参考实现：
+
+```cpp
+// C++ Version
+int fa[MAXN];  // 记录某个人的爸爸是谁，特别规定，祖先的爸爸是他自己
+
+// 递归
+int find(int x) {
+  // 寻找x的祖先
+  if (fa[x] == x)  // 如果 x 是祖先则返回
+    return x;
+  else
+    return find(fa[x]);  // 如果不是则 x 的爸爸问 x 的爷爷
+}
+
+// 非递归
+int find(int x) {
+  while (x != fa[x])  // 如果 x 不是祖先，就一直往上一辈找
+  {
+    x = fa[x];
+  }
+  return x;  // 如果 x 是祖先则返回
+}
+```
+
+Python 的参考实现：
+
+```python
+# Python Version
+fa = [0] * MAXN # 记录某个人的爸爸是谁，特别规定，祖先的爸爸是他自己
+
+# 递归
+def find(x):
+    # 寻找x的祖先
+    if fa[x] == x:
+        return x # 如果x是祖先则返回
+    else:
+        return find(fa[x]) # 如果不是则 x 的爸爸问 x 的爷爷
+        
+# 非递归
+def find(x):
+    while x != fa[x]: # 如果 x 不是祖先，就一直往上一辈找
+        x = fa[x]
+    return x # 如果 x 是祖先则返回
+```
+
+显然这样最终会返回 $x$ 的祖先。
 
 ### 路径压缩
 
-查询过程中经过的每个元素都属于该集合，我们可以将其直接连到根节点以加快后续查询。
+这样的确可以达成目的，但是显然效率实在太低。为什么呢？因为我们使用了太多没用的信息，我的祖先是谁与我父亲是谁没什么关系，这样一层一层找太浪费时间，不如我直接当祖先的儿子，问一次就可以出结果了。甚至祖先是谁都无所谓，只要这个人可以代表我们家族就能得到想要的效果。**把在路径上的每个节点都直接连接到根上**，这就是路径压缩。
 
 ![](images/disjoint-set-compress.svg)
 
-???+note "实现"
-    ```cpp
-    // C++ Version
-    size_t find(size_t x) {
-        return pa[x] == x ? x : pa[x] = find(pa[x]);
-    }
-    ```
-    
-    ```python
-    # Python Version
-    def find(self, x):
-        if self.pa[x] != x:
-            self.pa[x] = self.find(self.pa[x])
-        return self.pa[x]
-    ```
+C++ 的参考实现：
+
+```cpp
+// C++ Version
+int find(int x) {
+  if (x != fa[x])  // x 不是自身的父亲，即 x 不是该集合的代表
+    fa[x] = find(fa[x]);  // 查找 x 的祖先直到找到代表，于是顺手路径压缩
+  return fa[x];
+}
+```
+
+Python 的参考实现：
+
+```python
+# Python Version
+def find(x):
+    if x != fa[x]: # x 不是自身的父亲，即 x 不是该集合的代表
+        fa[x] = find(fa[x]) # 查找 x 的祖先直到找到代表，于是顺手路径压缩
+    return fa[x]
+```
 
 ## 合并
 
-要合并两棵树，我们只需要将一棵树的根节点连到另一棵树的根节点。
+宴会上，一个家族的祖先突然对另一个家族说：我们两个家族交情这么好，不如合成一家好了。另一个家族也欣然接受了。  
+我们之前说过，并不在意祖先究竟是谁，所以只要其中一个祖先变成另一个祖先的儿子就可以了。
 
 ![](images/disjoint-set-merge.svg)
 
-???+note "实现"
-    ```cpp
-    // C++ Version
-    void unite(size_t x, size_t y) {
-        pa[find(x)] = find(y);
-    }
-    ```
-    
-    ```python
-    # Python Version
-    def union(self, x, y):
-        self.pa[self.find(x)] = self.find(y)
-    ```
+C++ 的参考实现：
 
-### 启发式合并
+```cpp
+// C++ Version
+void unionSet(int x, int y) {
+  // x 与 y 所在家族合并
+  x = find(x);
+  y = find(y);
+  fa[x] = y;  // 把 x 的祖先变成 y 的祖先的儿子
+}
+```
 
-合并时，选择哪棵树的根节点作为新树的根节点会影响未来操作的复杂度。我们可以将节点较少或深度较小的树连到另一棵，以免发生退化。
+Python 的参考实现：
 
-??? note "具体复杂度讨论"
-    由于需要我们支持的只有集合的合并、查询操作，当我们需要将两个集合合二为一时，无论将哪一个集合连接到另一个集合的下面，都能得到正确的结果。但不同的连接方法存在时间复杂度的差异。具体来说，如果我们将一棵点数与深度都较小的集合树连接到一棵更大的集合树下，显然相比于另一种连接方案，接下来执行查找操作的用时更小（也会带来更优的最坏时间复杂度）。
+```python
+# Python Version
+def unionSet(x, y):
+    # x 与 y 所在家族合并
+    x = find(x)
+    y = find(y)
+    fa[x] = y # 把 x 的祖先变成 y 的祖先的儿子
+```
 
-    当然，我们不总能遇到恰好如上所述的集合————点数与深度都更小。鉴于点数与深度这两个特征都很容易维护，我们常常从中择一，作为估价函数。而无论选择哪一个，时间复杂度都为 $O (m\alpha(m,n))$，具体的证明可参见 References 中引用的论文。
+### 启发式合并（按秩合并）
 
-    在算法竞赛的实际代码中，即便不使用启发式合并，代码也往往能够在规定时间内完成任务。在 Tarjan 的论文[1]中，证明了不使用启发式合并、只使用路径压缩的最坏时间复杂度是 $O (m \log n)$。在姚期智的论文[2]中，证明了不使用启发式合并、只使用路径压缩，在平均情况下，时间复杂度依然是 $O (m\alpha(m,n))$。
+一个祖先突然抖了个机灵：「你们家族人比较少，搬家到我们家族里比较方便，我们要是搬过去的话太费事了。」
 
-    如果只使用启发式合并，而不使用路径压缩，时间复杂度为 $O(m\log n)$。由于路径压缩单次合并可能造成大量修改，有时路径压缩并不适合使用。例如，在可持久化并查集、线段树分治 + 并查集中，一般使用只启发式合并的并查集。
+由于需要我们支持的只有集合的合并、查询操作，当我们需要将两个集合合二为一时，无论将哪一个集合连接到另一个集合的下面，都能得到正确的结果。但不同的连接方法存在时间复杂度的差异。具体来说，如果我们将一棵点数与深度都较小的集合树连接到一棵更大的集合树下，显然相比于另一种连接方案，接下来执行查找操作的用时更小（也会带来更优的最坏时间复杂度）。
 
-按节点数合并的参考实现：
+当然，我们不总能遇到恰好如上所述的集合————点数与深度都更小。鉴于点数与深度这两个特征都很容易维护，我们常常从中择一，作为估价函数。而无论选择哪一个，时间复杂度都为 $O (m\alpha(m,n))$，具体的证明可参见 References 中引用的论文。
 
-???+note "实现"
-    ```cpp
-    // C++ Version
-    struct dsu {
-        vector<size_t> pa, size;
-    
-        explicit dsu(size_t _size): pa(_size), size(_size, 1) {
-            iota(pa.begin(), pa.end(), 0);
-        }
-    
-        void unite(size_t x, size_t y) {
-            x = find(x), y = find(y);
-            if (x == y) return;
-            if (size[x] < size[y]) swap(x, y);
-            pa[y] = x;
-            size[x] += size[y];
-        }
-    }
-    ```
-    
-    ```python
-    # Python Version
-    class Dsu:
-        def __init__(self, size):
-            self.pa = list(range(size))
-            self.size = [1] * size
-    
-        def union(self, x, y):
-            x, y = self.find(x), self.find(y)
-            if x == y:
-                return
-            if self.size[x] < self.size[y]:
-                x, y = y, x
-            self.pa[y] = x
-            self.size[x] += self.size[y]
-    ```
+在算法竞赛的实际代码中，即便不使用启发式合并，代码也往往能够在规定时间内完成任务。在 Tarjan 的论文[1]中，证明了不使用启发式合并、只使用路径压缩的最坏时间复杂度是 $O (m \log n)$。在姚期智的论文[2]中，证明了不使用启发式合并、只使用路径压缩，在平均情况下，时间复杂度依然是 $O (m\alpha(m,n))$。
 
-## 删除
+如果只使用启发式合并，而不使用路径压缩，时间复杂度为 $O(m\log n)$。由于路径压缩单次合并可能造成大量修改，有时路径压缩并不适合使用。例如，在可持久化并查集、线段树分治 + 并查集中，一般使用只启发式合并的并查集。
 
-要删除一个叶子节点，我们可以将其父亲设为自己。为了保证要删除的元素都是叶子，我们可以预先为每个节点制作副本，并将其副本作为父亲。
+C++ 的参考实现，其选择点数作为估价函数：
 
-???+note "实现"
-    ```cpp
-    // C++ Version
-    struct dsu {
-        vector<size_t> pa, size;
-    
-        explicit dsu(size_t _size): pa(_size * 2), size(_size * 2, 1) {
-            iota(pa.begin(), pa.begin() + _size, _size);
-            iota(pa.begin() + _size, pa.end(), _size);
-        }
-    
-        void erase(size_t x) {
-            pa[x] = x;
-        }
-    }
-    ```
-    
-    ```python
-    # Python Version
-    class Dsu:
-        def __init__(self, size):
-            self.pa = list(range(size, size * 2)) * 2
-            self.size = [1] * size * 2
-    
-        def erase(self, x):
-            self.pa[x] = x
-    ```
+```cpp
+// C++ Version
+std::vector<int> size(N, 1);  // 记录并初始化子树的大小为 1
 
-## 复杂度
+void unionSet(int x, int y) {
+  int xx = find(x), yy = find(y);
+  if (xx == yy) return;
+  if (size[xx] > size[yy])  // 保证小的合到大的里
+    swap(xx, yy);
+  fa[xx] = yy;
+  size[yy] += size[xx];
+}
+```
+
+Python 的参考实现：
+
+```python
+# Python Version
+size = [1] * N # 记录并初始化子树的大小为 1
+def unionSet(x, y):
+    xx = find(x); yy = find(y)
+    if xx == yy:
+        return
+    if size[xx] > size[yy]: # 保证小的合到大的里
+        xx, yy = yy, xx
+    fa[xx] = yy
+    size[yy] = size[yy] + size[xx]
+```
+
+## 时间复杂度及空间复杂度
 
 ### 时间复杂度
 
