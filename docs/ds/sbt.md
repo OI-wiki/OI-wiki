@@ -358,4 +358,6 @@ USize countGreater(ConstNodePtr node, K key, bool countEqual = false) const {
 下面的代码是用 SBT 实现的 `Map`，即有序不可重映射：
 
 ??? note "完整代码"
-    `cpp --8<-- "docs/ds/code/size-balanced-tree/SizeBalancedTreeMap.hpp" `
+    ```cpp
+    --8<-- "docs/ds/code/size-balanced-tree/SizeBalancedTreeMap.hpp"
+    ```
