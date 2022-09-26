@@ -3,8 +3,8 @@ name: OPT
 solution:
   cpp: docs/search/code/opt/opt_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/search/examples/opt/opt_1.out
+  answer: docs/search/examples/opt/opt_1.ans
   input: docs/search/examples/opt/opt_1.in
 version: 1000

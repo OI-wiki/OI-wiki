@@ -3,8 +3,8 @@ name: Max Clique
 solution:
   cpp: docs/graph/code/max-clique/max-clique_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/graph/examples/max-clique/max-clique_1.out
+  answer: docs/graph/examples/max-clique/max-clique_1.ans
   input: docs/graph/examples/max-clique/max-clique_1.in
 version: 1000

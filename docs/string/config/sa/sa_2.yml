@@ -3,8 +3,8 @@ name: SA
 solution:
   cpp: docs/string/code/sa/sa_2.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/string/examples/sa/sa_2.out
+  answer: docs/string/examples/sa/sa_2.ans
   input: docs/string/examples/sa/sa_2.in
 version: 1000

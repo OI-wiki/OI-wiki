@@ -3,8 +3,8 @@ name: Monotonous Queue
 solution:
   cpp: docs/ds/code/monotonous-queue/monotonous-queue_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/ds/examples/monotonous-queue/monotonous-queue_1.out
+  answer: docs/ds/examples/monotonous-queue/monotonous-queue_1.ans
   input: docs/ds/examples/monotonous-queue/monotonous-queue_1.in
 version: 1000

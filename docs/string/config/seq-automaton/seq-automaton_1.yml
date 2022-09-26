@@ -3,8 +3,8 @@ name: Seq Automaton
 solution:
   cpp: docs/string/code/seq-automaton/seq-automaton_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/string/examples/seq-automaton/seq-automaton_1.out
+  answer: docs/string/examples/seq-automaton/seq-automaton_1.ans
   input: docs/string/examples/seq-automaton/seq-automaton_1.in
 version: 1000

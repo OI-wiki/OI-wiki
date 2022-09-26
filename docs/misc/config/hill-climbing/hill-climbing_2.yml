@@ -3,8 +3,8 @@ name: Hill Climbing
 solution:
   cpp: docs/misc/code/hill-climbing/hill-climbing_2.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/misc/examples/hill-climbing/hill-climbing_2.out
+  answer: docs/misc/examples/hill-climbing/hill-climbing_2.ans
   input: docs/misc/examples/hill-climbing/hill-climbing_2.in
 version: 1000

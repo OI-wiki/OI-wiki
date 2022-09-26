@@ -3,8 +3,8 @@ name: Knapsack DP
 solution:
   cpp: docs/dp/code/knapsack/knapsack_2.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/dp/examples/knapsack/knapsack_2.out
+  answer: docs/dp/examples/knapsack/knapsack_2.ans
   input: docs/dp/examples/knapsack/knapsack_2.in
 version: 1000

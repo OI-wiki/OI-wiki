@@ -3,8 +3,8 @@ name: KDT
 solution:
   cpp: docs/ds/code/kdt/kdt_3.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/ds/examples/kdt/kdt_3.out
+  answer: docs/ds/examples/kdt/kdt_3.ans
   input: docs/ds/examples/kdt/kdt_3.in
 version: 1000

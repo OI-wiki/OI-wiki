@@ -3,8 +3,8 @@ name: 2 Sat
 solution:
   cpp: docs/graph/code/2-sat/2-sat_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/graph/examples/2-sat/2-sat_1.out
+  answer: docs/graph/examples/2-sat/2-sat_1.ans
   input: docs/graph/examples/2-sat/2-sat_1.in
 version: 1000

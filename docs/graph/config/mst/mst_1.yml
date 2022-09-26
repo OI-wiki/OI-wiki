@@ -3,8 +3,8 @@ name: MST
 solution:
   cpp: docs/graph/code/mst/mst_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/graph/examples/mst/mst_1.out
+  answer: docs/graph/examples/mst/mst_1.ans
   input: docs/graph/examples/mst/mst_1.in
 version: 1000

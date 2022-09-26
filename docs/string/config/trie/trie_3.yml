@@ -3,8 +3,8 @@ name: Trie
 solution:
   cpp: docs/string/code/trie/trie_3.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/string/examples/trie/trie_3.out
+  answer: docs/string/examples/trie/trie_3.ans
   input: docs/string/examples/trie/trie_3.in
 version: 1000

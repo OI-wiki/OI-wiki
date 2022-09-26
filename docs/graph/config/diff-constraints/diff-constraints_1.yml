@@ -3,8 +3,8 @@ name: Diff Constraints
 solution:
   cpp: docs/graph/code/diff-constraints/diff-constraints_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/graph/examples/diff-constraints/diff-constraints_1.out
+  answer: docs/graph/examples/diff-constraints/diff-constraints_1.ans
   input: docs/graph/examples/diff-constraints/diff-constraints_1.in
 version: 1000

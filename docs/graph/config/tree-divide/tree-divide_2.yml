@@ -3,8 +3,8 @@ name: Tree Divide
 solution:
   cpp: docs/graph/code/tree-divide/tree-divide_2.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/graph/examples/tree-divide/tree-divide_2.out
+  answer: docs/graph/examples/tree-divide/tree-divide_2.ans
   input: docs/graph/examples/tree-divide/tree-divide_2.in
 version: 1000

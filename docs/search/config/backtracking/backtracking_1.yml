@@ -3,8 +3,8 @@ name: Backtracking Search
 solution:
   cpp: docs/search/code/backtracking/backtracking_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/search/examples/backtracking/backtracking_1.out
+  answer: docs/search/examples/backtracking/backtracking_1.ans
   input: docs/search/examples/backtracking/backtracking_1.in
 version: 1000

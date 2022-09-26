@@ -3,8 +3,8 @@ name: Plug DP
 solution:
   cpp: docs/dp/code/plug/plug_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/dp/examples/plug/plug_1.out
+  answer: docs/dp/examples/plug/plug_1.ans
   input: docs/dp/examples/plug/plug_1.in
 version: 1000

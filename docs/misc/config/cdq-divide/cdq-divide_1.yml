@@ -3,8 +3,8 @@ name: Cdq Divide
 solution:
   cpp: docs/misc/code/cdq-divide/cdq-divide_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: docs/misc/examples/cdq-divide/cdq-divide_1.out
+  answer: docs/misc/examples/cdq-divide/cdq-divide_1.ans
   input: docs/misc/examples/cdq-divide/cdq-divide_1.in
 version: 1000
