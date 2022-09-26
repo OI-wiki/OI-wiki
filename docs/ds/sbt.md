@@ -81,7 +81,9 @@ static void rotateRight(NodePtr & node) {
 
 ### 维护
 
-#### Case 1: $size(N.left) \lt size(N.right.left)$
+#### Case 1
+
+$size(N.left) \lt size(N.right.left)$
 
 ```c++
 if (size(node->right->left) > size(node->left)) {
@@ -102,7 +104,9 @@ if (size(node->right->left) > size(node->left)) {
 }
 ```
 
-#### Case 2: $size(N.left) \lt size(N.right.right)$
+#### Case 2
+
+$size(N.left) \lt size(N.right.right)$
 
 ```c++
 if (size(node->right->right) > size(node->left)) {
@@ -121,7 +125,9 @@ if (size(node->right->right) > size(node->left)) {
 }
 ```
 
-#### Case 3: $size(N.right) \lt size(N.left.left)$
+#### Case 3
+
+$size(N.right) \lt size(N.left.left)$
 
 ```c++
 if (size(node->left->left) > size(node->right)) {
@@ -140,7 +146,9 @@ if (size(node->left->left) > size(node->right)) {
 }
 ```
 
-#### Case 4: $size(N.right) \lt size(N.left.right)$
+#### Case 4
+
+$size(N.right) \lt size(N.left.right)$
 
 ```c++
 if (size(node->left->right) > size(node->right)) {
