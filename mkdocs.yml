@@ -309,6 +309,7 @@ nav:
       - 条件概率与独立性: math/probability/conditional-probability.md
       - 随机变量: math/probability/random-variable.md
       - 随机变量的数字特征: math/probability/exp-var.md
+      - 概率不等式: math/probability/concentration-inequality.md
     - 博弈论: 
       - 博弈论简介: math/game-theory/intro.md
       - 公平组合游戏: math/game-theory/impartial-game.md
