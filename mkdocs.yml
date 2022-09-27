@@ -354,7 +354,7 @@ nav:
     - 二叉搜索树 & 平衡树:
       - 二叉搜索树 & 平衡树: ds/bst.md
       - Treap: ds/treap.md
-      - Splay: ds/splay.md
+      - Splay 树: ds/splay.md
       - WBLT: ds/wblt.md
       - Size Balanced Tree: ds/sbt.md
       - AVL 树: ds/avl.md
