@@ -187,6 +187,32 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
             self.size[self.find(x)] -= 1
     ```
 
+## 移动
+
+与删除类似，通过以副本作为父亲，保证要移动的元素都是叶子。
+
+???+note "实现"
+    ```cpp
+    // C++ Version
+    void move(size_t x, size_t y) {
+        auto fx = find(x), fy = find(y);
+        if (fx == fy) return;
+        pa[x] = fy;
+        --size[fx], ++size[fy];
+    }
+    ```
+
+    ```python
+    # Python Version
+    def move(self, x, y):
+        fx, fy = self.find(x), self.find(y)
+        if fx == fy:
+            return
+        self.pa[x] = fy
+        self.size[fx] -= 1
+        self.size[fy] += 1
+    ```
+
 ## 复杂度
 
 ### 时间复杂度
