@@ -48,7 +48,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 ???+note "实现"
     ```cpp
     // C++ Version
-    size_t find(size_t x) {
+    size_t dsu::find(size_t x) {
         return pa[x] == x ? x : find(pa[x]);
     }
     ```
@@ -68,7 +68,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 ???+note "实现"
     ```cpp
     // C++ Version
-    size_t find(size_t x) {
+    size_t dsu::find(size_t x) {
         return pa[x] == x ? x : pa[x] = find(pa[x]);
     }
     ```
@@ -90,7 +90,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 ???+note "实现"
     ```cpp
     // C++ Version
-    void unite(size_t x, size_t y) {
+    void dsu::unite(size_t x, size_t y) {
         pa[find(x)] = find(y);
     }
     ```
@@ -194,7 +194,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 ???+note "实现"
     ```cpp
     // C++ Version
-    void move(size_t x, size_t y) {
+    void dsu::move(size_t x, size_t y) {
         auto fx = find(x), fy = find(y);
         if (fx == fy) return;
         pa[x] = fy;
