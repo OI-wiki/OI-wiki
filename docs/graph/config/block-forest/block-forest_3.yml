@@ -1,0 +1,10 @@
+id: oi-wiki:graph/block-forest-3
+name: Block Forest
+solution:
+  cpp: docs/graph/code/block-forest/block-forest_3.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/examples/block-forest/block-forest_3.ans
+  input: docs/graph/examples/block-forest/block-forest_3.in
+version: 1000

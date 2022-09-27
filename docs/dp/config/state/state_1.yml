@@ -1,0 +1,10 @@
+id: oi-wiki:dp/state-1
+name: State DP
+solution:
+  cpp: docs/dp/code/state/state_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/dp/examples/state/state_1.ans
+  input: docs/dp/examples/state/state_1.in
+version: 1000

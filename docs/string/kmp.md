@@ -4,7 +4,9 @@ author: Ir1d, LeoJacob, Xeonacid, greyqz, StudyingFather, Marcythm, minghu6, Bac
 
 关于字符串前缀、真前缀，后缀、真后缀的定义详见 [字符串基础](./basic.md)
 
-## 前缀函数定义
+## 前缀函数
+
+### 定义
 
 给定一个长度为 $n$ 的字符串 $s$，其 **前缀函数** 被定义为一个长度为 $n$ 的数组 $\pi$。
 其中 $\pi[i]$ 的定义是：
@@ -22,6 +24,8 @@ $$
 $$
 
 特别地，规定 $\pi[0]=0$。
+
+### 过程
 
 举例来说，对于字符串 `abcabcd`，
 
@@ -43,6 +47,8 @@ $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
 
 ## 计算前缀函数的朴素算法
 
+### 过程
+
 一个直接按照定义计算前缀函数的算法流程：
 
 - 在一个循环中以 $i = 1\to n - 1$ 的顺序计算前缀函数 $\pi[i]$ 的值（$\pi[0]$ 被赋值为 $0$）。
@@ -50,39 +56,40 @@ $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
 - 如果当前长度下真前缀和真后缀相等，则此时长度为 $\pi[i]$，否则令 j 自减 1，继续匹配，直到 $j=0$。
 - 如果 $j = 0$ 并且仍没有任何一次匹配，则置 $\pi[i] = 0$ 并移至下一个下标 $i + 1$。
 
-具体实现如下：
-
-```cpp
-// C++ Version
-vector<int> prefix_function(string s) {
-  int n = (int)s.length();
-  vector<int> pi(n);
-  for (int i = 1; i < n; i++)
-    for (int j = i; j >= 0; j--)
-      if (s.substr(0, j) == s.substr(i - j + 1, j)) {
-        pi[i] = j;
-        break;
-      }
-  return pi;
-}
-```
-
-```python
-# Python Version
-def prefix_function(s):
-    n = len(s)
-    pi = [0] * n
-    for i in range(1, n):
-        for j in range(i, -1, -1):
-            if s[0 : j] == s[i - j + 1 : i + 1]:
-                pi[i] = j
-                break
-    return pi
-```
-
-注：
-
-- `string substr (size_t pos = 0, size_t len = npos) const;`
+???+note "实现"
+    具体实现如下：
+    
+    ```cpp
+    // C++ Version
+    vector<int> prefix_function(string s) {
+      int n = (int)s.length();
+      vector<int> pi(n);
+      for (int i = 1; i < n; i++)
+        for (int j = i; j >= 0; j--)
+          if (s.substr(0, j) == s.substr(i - j + 1, j)) {
+            pi[i] = j;
+            break;
+          }
+      return pi;
+    }
+    ```
+    
+    ```python
+    # Python Version
+    def prefix_function(s):
+        n = len(s)
+        pi = [0] * n
+        for i in range(1, n):
+            for j in range(i, -1, -1):
+                if s[0 : j] == s[i - j + 1 : i + 1]:
+                    pi[i] = j
+                    break
+        return pi
+    ```
+    
+    注：
+    
+    - `string substr (size_t pos = 0, size_t len = npos) const;`
 
 显见该算法的时间复杂度为 $O(n^3)$，具有很大的改进空间。
 
@@ -100,35 +107,36 @@ $$
 
 所以当移动到下一个位置时，前缀函数的值要么增加一，要么维持不变，要么减少。
 
-此时的改进的算法为：
-
-```cpp
-// C++ Version
-vector<int> prefix_function(string s) {
-  int n = (int)s.length();
-  vector<int> pi(n);
-  for (int i = 1; i < n; i++)
-    for (int j = pi[i - 1] + 1; j >= 0; j--)  // improved: j=i => j=pi[i-1]+1
-      if (s.substr(0, j) == s.substr(i - j + 1, j)) {
-        pi[i] = j;
-        break;
-      }
-  return pi;
-}
-```
-
-```python
-# Python Version
-def prefix_function(s):
-    n = len(s)
-    pi = [0] * n
-    for i in range(1, n):
-        for j in range(pi[i - 1] + 1, -1, -1):
-            if s[0 : j] == s[i - j + 1 : i + 1]:
-                pi[i] = j
-                break
-    return pi
-```
+???+note "实现"
+    此时的改进的算法为：
+    
+    ```cpp
+    // C++ Version
+    vector<int> prefix_function(string s) {
+      int n = (int)s.length();
+      vector<int> pi(n);
+      for (int i = 1; i < n; i++)
+        for (int j = pi[i - 1] + 1; j >= 0; j--)  // improved: j=i => j=pi[i-1]+1
+          if (s.substr(0, j) == s.substr(i - j + 1, j)) {
+            pi[i] = j;
+            break;
+          }
+      return pi;
+    }
+    ```
+    
+    ```python
+    # Python Version
+    def prefix_function(s):
+        n = len(s)
+        pi = [0] * n
+        for i in range(1, n):
+            for j in range(pi[i - 1] + 1, -1, -1):
+                if s[0 : j] == s[i - j + 1 : i + 1]:
+                    pi[i] = j
+                    break
+        return pi
+    ```
 
 在这个初步改进的算法中，在计算每个 $\pi[i]$ 时，最好的情况是第一次字符串比较就完成了匹配，也就是说基础的字符串比较次数是 `n-1` 次。
 
@@ -166,35 +174,36 @@ $$
 
 而且该算法的实现出人意料的短且直观：
 
-```cpp
-// C++ Version
-vector<int> prefix_function(string s) {
-  int n = (int)s.length();
-  vector<int> pi(n);
-  for (int i = 1; i < n; i++) {
-    int j = pi[i - 1];
-    while (j > 0 && s[i] != s[j]) j = pi[j - 1];
-    if (s[i] == s[j]) j++;
-    pi[i] = j;
-  }
-  return pi;
-}
-```
-
-```python
-# Python Version
-def prefix_function(s):
-    n = len(s)
-    pi = [0] * n
-    for i in range(1, n):
-        j = pi[i - 1]
-        while j > 0 and s[i] != s[j]:
-            j = pi[j - 1]
-        if s[i] == s[j]:
-            j += 1
-        pi[i] = j
-    return pi
-```
+???+note "实现"
+    ```cpp
+    // C++ Version
+    vector<int> prefix_function(string s) {
+      int n = (int)s.length();
+      vector<int> pi(n);
+      for (int i = 1; i < n; i++) {
+        int j = pi[i - 1];
+        while (j > 0 && s[i] != s[j]) j = pi[j - 1];
+        if (s[i] == s[j]) j++;
+        pi[i] = j;
+      }
+      return pi;
+    }
+    ```
+    
+    ```python
+    # Python Version
+    def prefix_function(s):
+        n = len(s)
+        pi = [0] * n
+        for i in range(1, n):
+            j = pi[i - 1]
+            while j > 0 and s[i] != s[j]:
+                j = pi[j - 1]
+            if s[i] == s[j]:
+                j += 1
+            pi[i] = j
+        return pi
+    ```
 
 这是一个 **在线** 算法，即其当数据到达时处理它——举例来说，你可以一个字符一个字符的读取字符串，立即处理它们以计算出每个字符的前缀函数值。该算法仍然需要存储字符串本身以及先前计算过的前缀函数值，但如果我们已经预先知道该字符串前缀函数的最大可能取值 $M$，那么我们仅需要存储该字符串的前 $M + 1$ 个字符以及对应的前缀函数值。
 
@@ -205,6 +214,8 @@ def prefix_function(s):
 该算法由 Knuth、Pratt 和 Morris 在 1977 年共同发布<sup>[\[1\]](https://epubs.siam.org/doi/abs/10.1137/0206024)</sup>。
 
 该任务是前缀函数的一个典型应用。
+
+#### 过程
 
 给定一个文本 $t$ 和一个字符串 $s$，我们尝试找到并展示 $s$ 在 $t$ 中的所有出现（occurrence）。
 
@@ -236,24 +247,27 @@ def prefix_function(s):
 
 首先让我们来解决第一个问题。考虑位置 $i$ 的前缀函数值 $\pi[i]$。根据定义，其意味着字符串 $s$ 一个长度为 $\pi[i]$ 的前缀在位置 $i$ 出现并以 $i$ 为右端点，同时不存在一个更长的前缀满足前述定义。与此同时，更短的前缀可能以该位置为右端点。容易看出，我们遇到了在计算前缀函数时已经回答过的问题：给定一个长度为 $j$ 的前缀，同时其也是一个右端点位于 $i$ 的后缀，下一个更小的前缀长度 $k < j$ 是多少？该长度的前缀需同时也是一个右端点为 $i$ 的后缀。因此以位置 $i$ 为右端点，有长度为 $\pi[i]$ 的前缀，有长度为 $\pi[\pi[i] - 1]$ 的前缀，有长度为 $\pi[\pi[\pi[i] - 1] - 1]$ 的前缀，等等，直到长度变为 $0$。故而我们可以通过下述方式计算答案。
 
-```cpp
-// C++ Version
-vector<int> ans(n + 1);
-for (int i = 0; i < n; i++) ans[pi[i]]++;
-for (int i = n - 1; i > 0; i--) ans[pi[i - 1]] += ans[i];
-for (int i = 0; i <= n; i++) ans[i]++;
-```
+???+note "实现"
+    ```cpp
+    // C++ Version
+    vector<int> ans(n + 1);
+    for (int i = 0; i < n; i++) ans[pi[i]]++;
+    for (int i = n - 1; i > 0; i--) ans[pi[i - 1]] += ans[i];
+    for (int i = 0; i <= n; i++) ans[i]++;
+    ```
+    
+    ```python
+    # Python Version
+    ans = [0] * (n + 1)
+    for i in range(0, n):
+        ans[pi[i]] += 1
+    for i in range(n - 1, 0, -1):
+        ans[pi[i - 1]] += ans[i]
+    for i in range(0, n + 1):
+        ans[i] += 1
+    ```
 
-```python
-# Python Version
-ans = [0] * (n + 1)
-for i in range(0, n):
-    ans[pi[i]] += 1
-for i in range(n - 1, 0, -1):
-    ans[pi[i - 1]] += ans[i]
-for i in range(0, n + 1):
-    ans[i] += 1
-```
+#### 解释
 
 在上述代码中我们首先统计每个前缀函数值在数组 $\pi$ 中出现了多少次，然后再计算最后答案：如果我们知道长度为 $i$ 的前缀出现了恰好 $\text{ans}[i]$ 次，那么该值必须被叠加至其最长的既是后缀也是前缀的子串的出现次数中。在最后，为了统计原始的前缀，我们对每个结果加 $1$。
 
@@ -285,22 +299,23 @@ for i in range(0, n + 1):
 
 假定 $n$ 可被 $k$ 整除。那么字符串可被划分为长度为 $k$ 的若干块。根据前缀函数的定义，该字符串长度为 $n - k$ 的前缀等于其后缀。但是这意味着最后一个块同倒数第二个块相等，并且倒数第二个块同倒数第三个块相等，等等。作为其结果，所有块都是相等的，因此我们可以将字符串 $s$ 压缩至长度 $k$。
 
-诚然，我们仍需证明该值为最优解。实际上，如果有一个比 $k$ 更小的压缩表示，那么前缀函数的最后一个值 $\pi[n - 1]$ 必定比 $n - k$ 要大。因此 $k$ 就是答案。
-
-现在假设 $n$ 不可以被 $k$ 整除，我们将通过反证法证明这意味着答案为 $n$[^1]。假设其最小压缩表示 $r$ 的长度为 $p$（$p$ 整除 $n$），字符串 $s$ 被划分为 $n / p \ge 2$ 块。那么前缀函数的最后一个值 $\pi[n - 1]$ 必定大于 $n - p$（如果等于则 $n$ 可被 $k$ 整除），也即其所表示的后缀将部分的覆盖第一个块。现在考虑字符串的第二个块。该块有两种解释：第一种为 $r_0 r_1 \dots r_{p - 1}$，另一种为 $r_{p - k} r_{p - k + 1} \dots r_{p - 1} r_0 r_1 \dots r_{p - k - 1}$。由于两种解释对应同一个字符串，因此可得到 $p$ 个方程组成的方程组，该方程组可简写为 $r_{(i + k) \bmod p} = r_{i \bmod p}$，其中 $\cdot \bmod p$ 表示模 $p$ 意义下的最小非负剩余。
-
-$$
-\begin{gathered}
-\overbrace{r_0 ~ r_1 ~ r_2 ~ r_3 ~ r_4 ~ r_5}^p ~ \overbrace{r_0 ~ r_1 ~ r_2 ~ r_3 ~ r_4 r_5}^p \\
-r_0 ~ r_1 ~ r_2 ~ r_3 ~ \underbrace{\overbrace{r_0 ~ r_1 ~ r_2 ~ r_3 ~ r_4 ~ r_5}^p ~ r_0 ~ r_1}_{\pi[11] = 8}
-\end{gathered}
-$$
-
-根据扩展欧几里得算法我们可以得到一组 $x$ 和 $y$ 使得 $xk + yp = \gcd(k, p)$。通过与等式 $pk - kp = 0$ 适当叠加我们可以得到一组 $x' > 0$ 和 $y' < 0$ 使得 $x'k + y'p = \gcd(k, p)$。这意味着通过不断应用前述方程组中的方程我们可以得到新的方程组 $r_{(i + \gcd(k, p)) \bmod p} = r_{i \bmod p}$。
-
-由于 $\gcd(k, p)$ 整除 $p$，这意味着 $\gcd(k, p)$ 是 $r$ 的一个周期。又因为 $\pi[n - 1] > n - p$，故有 $n - \pi[n - 1] = k < p$，所以 $\gcd(k, p)$ 是一个比 $p$ 更小的 $r$ 的周期。因此字符串 $s$ 有一个长度为 $\gcd(k, p) < p$ 的压缩表示，同 $p$ 的最小性矛盾。
-
-综上所述，不存在一个长度小于 $k$ 的压缩表示，因此答案为 $k$。
+???+note "证明"
+    诚然，我们仍需证明该值为最优解。实际上，如果有一个比 $k$ 更小的压缩表示，那么前缀函数的最后一个值 $\pi[n - 1]$ 必定比 $n - k$ 要大。因此 $k$ 就是答案。
+    
+    现在假设 $n$ 不可以被 $k$ 整除，我们将通过反证法证明这意味着答案为 $n$[^1]。假设其最小压缩表示 $r$ 的长度为 $p$（$p$ 整除 $n$），字符串 $s$ 被划分为 $n / p \ge 2$ 块。那么前缀函数的最后一个值 $\pi[n - 1]$ 必定大于 $n - p$（如果等于则 $n$ 可被 $k$ 整除），也即其所表示的后缀将部分的覆盖第一个块。现在考虑字符串的第二个块。该块有两种解释：第一种为 $r_0 r_1 \dots r_{p - 1}$，另一种为 $r_{p - k} r_{p - k + 1} \dots r_{p - 1} r_0 r_1 \dots r_{p - k - 1}$。由于两种解释对应同一个字符串，因此可得到 $p$ 个方程组成的方程组，该方程组可简写为 $r_{(i + k) \bmod p} = r_{i \bmod p}$，其中 $\cdot \bmod p$ 表示模 $p$ 意义下的最小非负剩余。
+    
+    $$
+    \begin{gathered}
+    \overbrace{r_0 ~ r_1 ~ r_2 ~ r_3 ~ r_4 ~ r_5}^p ~ \overbrace{r_0 ~ r_1 ~ r_2 ~ r_3 ~ r_4 r_5}^p \\
+    r_0 ~ r_1 ~ r_2 ~ r_3 ~ \underbrace{\overbrace{r_0 ~ r_1 ~ r_2 ~ r_3 ~ r_4 ~ r_5}^p ~ r_0 ~ r_1}_{\pi[11] = 8}
+    \end{gathered}
+    $$
+    
+    根据扩展欧几里得算法我们可以得到一组 $x$ 和 $y$ 使得 $xk + yp = \gcd(k, p)$。通过与等式 $pk - kp = 0$ 适当叠加我们可以得到一组 $x' > 0$ 和 $y' < 0$ 使得 $x'k + y'p = \gcd(k, p)$。这意味着通过不断应用前述方程组中的方程我们可以得到新的方程组 $r_{(i + \gcd(k, p)) \bmod p} = r_{i \bmod p}$。
+    
+    由于 $\gcd(k, p)$ 整除 $p$，这意味着 $\gcd(k, p)$ 是 $r$ 的一个周期。又因为 $\pi[n - 1] > n - p$，故有 $n - \pi[n - 1] = k < p$，所以 $\gcd(k, p)$ 是一个比 $p$ 更小的 $r$ 的周期。因此字符串 $s$ 有一个长度为 $\gcd(k, p) < p$ 的压缩表示，同 $p$ 的最小性矛盾。
+    
+    综上所述，不存在一个长度小于 $k$ 的压缩表示，因此答案为 $k$。
 
 [^1]: 在俄文版及英文版中该部分证明均疑似有误。本文章中的该部分证明由作者自行添加。
 
@@ -318,41 +333,43 @@ $$
 
 因此，即使没有字符串 $t$，我们同样可以应用构造转移表的算法构造一个转移表 $( \text { old } \pi , c ) \rightarrow \text { new } _ { - } \pi$：
 
-```cpp
-void compute_automaton(string s, vector<vector<int>>& aut) {
-  s += '#';
-  int n = s.size();
-  vector<int> pi = prefix_function(s);
-  aut.assign(n, vector<int>(26));
-  for (int i = 0; i < n; i++) {
-    for (int c = 0; c < 26; c++) {
-      int j = i;
-      while (j > 0 && 'a' + c != s[j]) j = pi[j - 1];
-      if ('a' + c == s[j]) j++;
-      aut[i][c] = j;
+???+note "实现"
+    ```cpp
+    void compute_automaton(string s, vector<vector<int>>& aut) {
+      s += '#';
+      int n = s.size();
+      vector<int> pi = prefix_function(s);
+      aut.assign(n, vector<int>(26));
+      for (int i = 0; i < n; i++) {
+        for (int c = 0; c < 26; c++) {
+          int j = i;
+          while (j > 0 && 'a' + c != s[j]) j = pi[j - 1];
+          if ('a' + c == s[j]) j++;
+          aut[i][c] = j;
+        }
+      }
     }
-  }
-}
-```
+    ```
 
 然而在这种形式下，对于小写字母表，算法的时间复杂度为 $O(|\Sigma|n^2)$。注意到我们可以应用动态规划来利用表中已计算过的部分。只要我们从值 $j$ 变化到 $\pi[j - 1]$，那么我们实际上在说转移 $(j, c)$ 所到达的状态同转移 $(\pi[j - 1], c)$ 一样，但该答案我们之前已经精确计算过了。
 
-```cpp
-void compute_automaton(string s, vector<vector<int>>& aut) {
-  s += '#';
-  int n = s.size();
-  vector<int> pi = prefix_function(s);
-  aut.assign(n, vector<int>(26));
-  for (int i = 0; i < n; i++) {
-    for (int c = 0; c < 26; c++) {
-      if (i > 0 && 'a' + c != s[i])
-        aut[i][c] = aut[pi[i - 1]][c];
-      else
-        aut[i][c] = i + ('a' + c == s[i]);
+???+note "实现"
+    ```cpp
+    void compute_automaton(string s, vector<vector<int>>& aut) {
+      s += '#';
+      int n = s.size();
+      vector<int> pi = prefix_function(s);
+      aut.assign(n, vector<int>(26));
+      for (int i = 0; i < n; i++) {
+        for (int c = 0; c < 26; c++) {
+          if (i > 0 && 'a' + c != s[i])
+            aut[i][c] = aut[pi[i - 1]][c];
+          else
+            aut[i][c] = i + ('a' + c == s[i]);
+        }
+      }
     }
-  }
-}
-```
+    ```
 
 最终我们可在 $O(|\Sigma|n)$ 的时间复杂度内构造该自动机。
 

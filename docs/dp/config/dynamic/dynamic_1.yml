@@ -1,0 +1,10 @@
+id: oi-wiki:dp/dynamic-1
+name: Dynamic DP
+solution:
+  cpp: docs/dp/code/dynamic/dynamic_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/dp/examples/dynamic/dynamic_1.ans
+  input: docs/dp/examples/dynamic/dynamic_1.in
+version: 1000

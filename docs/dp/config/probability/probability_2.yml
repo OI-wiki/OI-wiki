@@ -1,0 +1,10 @@
+id: oi-wiki:dp/probability-2
+name: Probability DP
+solution:
+  cpp: docs/dp/code/probability/probability_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/dp/examples/probability/probability_2.ans
+  input: docs/dp/examples/probability/probability_2.in
+version: 1000

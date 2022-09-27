@@ -5,9 +5,7 @@
 ## 求凸包直径
 
 ???+ note "例题 1 : [Luogu P1452 Beauty Contest G  ](https://www.luogu.com.cn/problem/P1452)"
-
-
-​	给定平面上 $n$ 个点，求所有点对之间的最长距离。（$2\leq n \leq 50000,|x|,|y| \leq 10^4$)
+    给定平面上 $n$ 个点，求所有点对之间的最长距离。（$2\leq n \leq 50000,|x|,|y| \leq 10^4$)
 
 首先使用任何一种凸包算法求出给定所有点的凸包，有着最长距离的点对一定在凸包上。而由于凸包的形状，我们发现，逆时针地遍历凸包上的边，对于每条边都找到离这条边最远的点，那么这时随着边的转动，对应的最远点也在逆时针旋转，不会有反向的情况，这意味着我们可以在逆时针枚举凸包上的边时，记录并维护一个当前最远点，并不断计算、更新答案。
 
@@ -132,3 +130,14 @@ $$
             t3 = dot(sta[i + 1], sta[i + 1], sta[i])
             ans = min(ans, t1 * t2 / t3)
     ```
+
+## 练习
+
+- [POJ 3608. Bridge Across Islands](http://poj.org/problem?id=3608)
+- [2011 ACM-ICPC World Finals, Problem K. Trash Removal](https://codeforces.com/gym/101175)
+- [ICPC WF Moscow Invitational Contest - Online Mirror, Problem F. Framing Pictures](https://codeforces.com/contest/1578/problem/F)
+
+## 参考资料与注释
+
+- <https://en.wikipedia.org/wiki/Rotating_calipers>
+- <http://www-cgrl.cs.mcgill.ca/~godfried/research/calipers.html>

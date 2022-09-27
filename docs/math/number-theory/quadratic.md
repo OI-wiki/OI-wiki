@@ -1,11 +1,13 @@
 ## 二次有理数
 
+### 定义
+
 二次有理数：整系数一元二次方程的解。
 
 ???+note "用词说明"
-    在初等数论书上，“二次有理数”写为“二次无理数”。这是因为，**二次有理数不是有理数，而是无理数**。在近世代数书上，写为“二次有理数”或者“二次代数数”，表明它与有理数拥有相似的性质。
+    在初等数论书上，「二次有理数」写为「二次无理数」。这是因为，**二次有理数不是有理数，而是无理数**。在近世代数书上，写为「二次有理数」或者「二次代数数」，表明它与有理数拥有相似的性质。
     
-    同样地，还有“二次整数”。二次整数不是整数。“二次有理数”一词与“二次整数”相对应，与有理数和整数的关系完全一致，有理数是整数的比值。
+    同样地，还有「二次整数」。二次整数不是整数。「二次有理数」一词与「二次整数」相对应，与有理数和整数的关系完全一致，有理数是整数的比值。
 
 二次有理数有以下的表示法，一定可以写成：
 
@@ -117,9 +119,9 @@ Gauss 猜想有无穷个类数为 1 的实二次域，这个问题至今没有�
 
 参见 OEIS：
 
-\[[http://oeis.org/A048981|A048981 Squarefree values of n for which the quadratic field Q(sqrt(n)) is norm-Euclidean]]
+[Squarefree values of n for which the quadratic field Q(sqrt(n)) is norm-Euclidean](http://oeis.org/A048981|A048981)
 
-\[[http://oeis.org/A003172|A003172 Q(sqrt(n)) is a unique factorization domain (or simple quadratic field)]]
+[Q(sqrt(n)) is a unique factorization domain (or simple quadratic field)](http://oeis.org/A003172|A003172)
 
 ### 相伴与唯一分解
 

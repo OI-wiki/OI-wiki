@@ -25,12 +25,13 @@
     ```
 
 ??? note " 例题 2 [Luogu P4178 Tree](https://www.luogu.com.cn/problem/P4178)"
-    给定一棵有 $n$ 个点的带权树，给出 $k$，询问树上距离为 $k$ 的点对数量。
+    给定一棵有 $n$ 个点的带权树，给出 $k$，询问树上距离小于等于 $k$ 的点对数量。
     
     $n\le 40000,k\le 20000,w_i\le 1000$
 
 由于这里查询的是树上距离为 $[0,k]$ 的点对数量，所以我们用线段树来支持维护和查询。
 ??? note "参考代码"
+
     ```cpp
     --8<-- "docs/graph/code/tree-divide/tree-divide_2.cpp"
     ```
@@ -104,33 +105,34 @@
 有一个小技巧：每次用递归上一层的总大小 $\mathit{tot}$ 减去上一层的点的重儿子大小，得到的就是这一层的总大小。这样求重心就只需一次 DFS 了。
 
 ???+note "参考代码"
-
     ```cpp
     #include <bits/stdc++.h>
-
+    
     using namespace std;
-
+    
     typedef vector<int>::iterator IT;
-
+    
     struct Edge {
       int to, nxt, val;
-
+    
       Edge() {}
+    
       Edge(int to, int nxt, int val) : to(to), nxt(nxt), val(val) {}
     } e[300010];
+    
     int head[150010], cnt;
-
+    
     void addedge(int u, int v, int val) {
       e[++cnt] = Edge(v, head[u], val);
       head[u] = cnt;
     }
-
+    
     int siz[150010], son[150010];
     bool vis[150010];
-
+    
     int tot, lasttot;
     int maxp, root;
-
+    
     void getG(int now, int fa) {
       siz[now] = 1;
       son[now] = 0;
@@ -147,13 +149,13 @@
         root = now;
       }
     }
-
+    
     struct Node {
       int fa;
       vector<int> anc;
       vector<int> child;
     } nd[150010];
-
+    
     int build(int now, int ntot) {
       tot = ntot;
       maxp = 0x7f7f7f7f;
@@ -169,9 +171,9 @@
       }
       return g;
     }
-
+    
     int virtroot;
-
+    
     int main() {
       int n;
       cin >> n;
