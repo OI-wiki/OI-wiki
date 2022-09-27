@@ -11,10 +11,10 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 - 合并（Union）：合并两个元素所属集合（合并对应的树）
 - 查询（Find）：查询某个元素所属集合（查询对应的树的根节点），这可以用于判断两个元素是否属于同一集合
 
-并查集在经过修改后可以支持单个元素的删除操作，使用动态开点线段树还可以实现可持久化并查集。
+并查集在经过修改后可以支持单个元素的删除、移动；使用动态开点线段树还可以实现可持久化并查集。
 
 !!! warning
-    并查集不支持集合的分离。
+    并查集无法以较低复杂度实现集合的分离。
 
 ## 初始化
 
@@ -48,7 +48,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 ???+note "实现"
     ```cpp
     // C++ Version
-    size_t find(size_t x) {
+    size_t dsu::find(size_t x) {
         return pa[x] == x ? x : find(pa[x]);
     }
     ```
@@ -68,7 +68,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 ???+note "实现"
     ```cpp
     // C++ Version
-    size_t find(size_t x) {
+    size_t dsu::find(size_t x) {
         return pa[x] == x ? x : pa[x] = find(pa[x]);
     }
     ```
@@ -90,7 +90,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 ???+note "实现"
     ```cpp
     // C++ Version
-    void unite(size_t x, size_t y) {
+    void dsu::unite(size_t x, size_t y) {
         pa[find(x)] = find(y);
     }
     ```
@@ -122,7 +122,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
     struct dsu {
         vector<size_t> pa, size;
     
-        explicit dsu(size_t _size): pa(_size), size(_size, 1) {
+        explicit dsu(size_t size_): pa(size_), size(size_, 1) {
             iota(pa.begin(), pa.end(), 0);
         }
     
@@ -133,7 +133,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
             pa[y] = x;
             size[x] += size[y];
         }
-    }
+    };
     ```
     
     ```python
@@ -163,15 +163,16 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
     struct dsu {
         vector<size_t> pa, size;
     
-        explicit dsu(size_t _size): pa(_size * 2), size(_size * 2, 1) {
-            iota(pa.begin(), pa.begin() + _size, _size);
-            iota(pa.begin() + _size, pa.end(), _size);
+        explicit dsu(size_t size_): pa(size_ * 2), size(size_ * 2, 1) {
+            iota(pa.begin(), pa.begin() + size_, size_);
+            iota(pa.begin() + size_, pa.end(), size_);
         }
     
         void erase(size_t x) {
             pa[x] = x;
+            --size[find(x)];
         }
-    }
+    };
     ```
     
     ```python
@@ -183,6 +184,33 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
     
         def erase(self, x):
             self.pa[x] = x
+            self.size[self.find(x)] -= 1
+    ```
+
+## 移动
+
+与删除类似，通过以副本作为父亲，保证要移动的元素都是叶子。
+
+???+note "实现"
+    ```cpp
+    // C++ Version
+    void dsu::move(size_t x, size_t y) {
+        auto fx = find(x), fy = find(y);
+        if (fx == fy) return;
+        pa[x] = fy;
+        --size[fx], ++size[fy];
+    }
+    ```
+
+    ```python
+    # Python Version
+    def move(self, x, y):
+        fx, fy = self.find(x), self.find(y)
+        if fx == fy:
+            return
+        self.pa[x] = fy
+        self.size[fx] -= 1
+        self.size[fy] += 1
     ```
 
 ## 复杂度
@@ -207,7 +235,26 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
 
 我们还可以在并查集的边上定义某种权值、以及这种权值在路径压缩时产生的运算，从而解决更多的问题。比如对于经典的「NOI2001」食物链，我们可以在边权上维护模 3 意义下的加法群。
 
-## 经典题目
+## 例题
+
+???+note "[UVA11987 Almost Union-Find](https://www.luogu.com.cn/problem/UVA11987)"
+    实现类似并查集的数据结构，支持以下操作：
+
+    1. 合并两个元素所属集合
+    2. 移动单个元素
+    3. 查询某个元素所属集合的大小及元素和
+
+    ??? mdui-shadow-6 "参考代码（C++）"
+        ```cpp
+        --8<-- "docs/ds/code/dsu/dsu_1.cpp"
+        ```
+
+    ??? mdui-shadow-6 "参考代码（Python）"
+        ```python
+        --8<-- "docs/ds/code/dsu/dsu_1.py"
+        ```
+
+## 习题
 
 [「NOI2015」程序自动分析](https://uoj.ac/problem/127)
 
@@ -216,8 +263,6 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
 [「NOI2001」食物链](https://www.luogu.com.cn/problem/P2024)
 
 [「NOI2002」银河英雄传说](https://www.luogu.com.cn/problem/P1196)
-
-[UVA11987 Almost Union-Find](https://www.luogu.com.cn/problem/UVA11987)
 
 ## 其他应用
 
