@@ -133,7 +133,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
             pa[y] = x;
             size[x] += size[y];
         }
-    }
+    };
     ```
     
     ```python
@@ -171,7 +171,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
         void erase(size_t x) {
             pa[x] = x;
         }
-    }
+    };
     ```
     
     ```python
