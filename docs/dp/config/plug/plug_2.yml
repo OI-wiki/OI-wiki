@@ -1,0 +1,10 @@
+id: oi-wiki:dp/plug-2
+name: Plug DP
+solution:
+  cpp: docs/dp/code/plug/plug_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/dp/examples/plug/plug_2.ans
+  input: docs/dp/examples/plug/plug_2.in
+version: 1000

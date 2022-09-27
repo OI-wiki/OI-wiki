@@ -1,0 +1,10 @@
+id: oi-wiki:graph/mst-2
+name: MST
+solution:
+  cpp: docs/graph/code/mst/mst_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/examples/mst/mst_2.ans
+  input: docs/graph/examples/mst/mst_2.in
+version: 1000

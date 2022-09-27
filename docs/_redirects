@@ -57,6 +57,7 @@
 /math/bernoulli /math/combinatorics/bernoulli
 /math/cantor /math/combinatorics/cantor
 /math/inclusion-exclusion-principle /math/combinatorics/inclusion-exclusion-principle
+/math/fibonacci /math/combinatorics/fibonacci
 /math/drawer-principle /math/combinatorics/drawer-principle
 /math/eulerian /math/combinatorics/eulerian
 /math/prime /math/number-theory/prime
@@ -99,3 +100,5 @@
 /topic/graph-matching/general-match /graph/graph-matching/general-match
 /topic/graph-matching/bigraph-weight-match /graph/graph-matching/bigraph-weight-match
 /topic/graph-matching/general-weight-match /graph/graph-matching/general-weight-match
+/ds/persistent-in-bit /ds/seg-in-bit
+/ds/odt /misc/odt

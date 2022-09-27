@@ -1,5 +1,7 @@
 在学习最小直径生成树（Minimum Diameter Spanning Tree）前建议先阅读 [树的直径](./tree-diameter.md) 的内容。
 
+## 定义
+
 在无向图的所有生成树中，直径最小的那一棵生成树就是最小直径生成树。
 
 ## 图的绝对中心
@@ -32,7 +34,7 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
 
 图的绝对中心可能在某个结点上，用距离预选结点最远的那个结点来更新，即 $\textit{ans}\leftarrow \min(\textit{ans},d(i,\textit{rk}(i,n))\times 2)$。
 
-### 算法流程
+### 过程
 
 1. 使用多源最短路算法（[Floyd](./shortest-path.md#floyd)，[Johnson](./shortest-path.md#johnson) 等），求出 $d$ 数组；
 
@@ -42,7 +44,7 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
 
 4. 图的绝对中心可能在某条边上，枚举所有的边。对于一条边 $w(u,v)$ 从距离 $u$ 最远的结点开始更新。当出现 $d(v,\textit{rk}(u,i)) > \max_{j=i+1}^n d(v,\textit{rk}(u,j))$ 的情况时，用 $\textit{ans}\leftarrow  \min(\textit{ans}, d(u,\textit{rk}(u,i))+\max_{j=i+1}^n d(v,\textit{rk}(u,j))+w(u,v))$ 来更新。因为这种情况会使图的绝对中心改变。
 
-??? note "参考实现"
+??? note "实现"
     ```cpp
     bool cmp(int a, int b) { return val[a] < val[b]; }
     
@@ -87,7 +89,7 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
 
 求解最小直径生成树首先需要找到图的绝对中心。以图的绝对中心为起点，生成一个最短路径树，那么就可以得到最小直径生成树了。
 
-??? note "参考实现"
+??? note "实现"
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;

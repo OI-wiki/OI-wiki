@@ -100,13 +100,11 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
 > **引理 3：** 考虑一个 $\operatorname{endpos}$ 等价类，将类中的所有子串按长度非递增的顺序排序。每个子串都不会比它前一个子串长，与此同时每个子串也是它前一个子串的后缀。换句话说，对于同一等价类的任一两子串，较短者为较长者的后缀，且该等价类中的子串长度恰好覆盖整个区间 $[x,y]$。
 
 ???+note "证明"
-
-
-如果 $\operatorname{endpos}$ 等价类中只包含一个子串，引理显然成立。现在我们来讨论子串元素个数大于 $1$ 的等价类。
-
-由引理 1，两个不同的 $\operatorname{endpos}$ 等价的字符串中，较短者总是较长者的真后缀。因此，等价类中没有等长的字符串。
-
-记 $w$ 为等价类中最长的字符串、$u$ 为等价类中最短的字符串。由引理 1，字符串 $u$ 是字符串 $w$ 的真后缀。现在考虑长度在区间 $[\left|u\right|,\left|w\right|]$ 中的 $w$ 的任意后缀。容易看出，这个后缀也在同一等价类中，因为这个后缀只能在字符串 $s$ 中以 $w$ 的一个后缀的形式存在（也因为较短的后缀 $u$ 在 $s$ 中只以 $w$ 的后缀的形式存在）。因此，由引理 1，这个后缀和字符串 $w$ 的 $\operatorname{endpos}$ 相同。
+    如果 $\operatorname{endpos}$ 等价类中只包含一个子串，引理显然成立。现在我们来讨论子串元素个数大于 $1$ 的等价类。
+    
+    由引理 1，两个不同的 $\operatorname{endpos}$ 等价的字符串中，较短者总是较长者的真后缀。因此，等价类中没有等长的字符串。
+    
+    记 $w$ 为等价类中最长的字符串、$u$ 为等价类中最短的字符串。由引理 1，字符串 $u$ 是字符串 $w$ 的真后缀。现在考虑长度在区间 $[\left|u\right|,\left|w\right|]$ 中的 $w$ 的任意后缀。容易看出，这个后缀也在同一等价类中，因为这个后缀只能在字符串 $s$ 中以 $w$ 的一个后缀的形式存在（也因为较短的后缀 $u$ 在 $s$ 中只以 $w$ 的后缀的形式存在）。因此，由引理 1，这个后缀和字符串 $w$ 的 $\operatorname{endpos}$ 相同。
 
 ### 后缀链接 `link`
 
@@ -254,38 +252,36 @@ void sam_init() {
 最终我们给出主函数的实现：给当前行末增加一个字符，对应地在之前的基础上建造自动机。
 
 ???+note "实现"
-
-
-```cpp
-void sam_extend(char c) {
-  int cur = sz++;
-  st[cur].len = st[last].len + 1;
-  int p = last;
-  while (p != -1 && !st[p].next.count(c)) {
-    st[p].next[c] = cur;
-    p = st[p].link;
-  }
-  if (p == -1) {
-    st[cur].link = 0;
-  } else {
-    int q = st[p].next[c];
-    if (st[p].len + 1 == st[q].len) {
-      st[cur].link = q;
-    } else {
-      int clone = sz++;
-      st[clone].len = st[p].len + 1;
-      st[clone].next = st[q].next;
-      st[clone].link = st[q].link;
-      while (p != -1 && st[p].next[c] == q) {
-        st[p].next[c] = clone;
+    ```cpp
+    void sam_extend(char c) {
+      int cur = sz++;
+      st[cur].len = st[last].len + 1;
+      int p = last;
+      while (p != -1 && !st[p].next.count(c)) {
+        st[p].next[c] = cur;
         p = st[p].link;
       }
-      st[q].link = st[cur].link = clone;
+      if (p == -1) {
+        st[cur].link = 0;
+      } else {
+        int q = st[p].next[c];
+        if (st[p].len + 1 == st[q].len) {
+          st[cur].link = q;
+        } else {
+          int clone = sz++;
+          st[clone].len = st[p].len + 1;
+          st[clone].next = st[q].next;
+          st[clone].link = st[q].link;
+          while (p != -1 && st[p].next[c] == q) {
+            st[p].next[c] = clone;
+            p = st[p].link;
+          }
+          st[q].link = st[cur].link = clone;
+        }
+      }
+      last = cur;
     }
-  }
-  last = cur;
-}
-```
+    ```
 
 正如之前提到的一样，如果你用内存换时间（空间复杂度为 $O(n\left|\Sigma\right|)$，其中 $\left|\Sigma\right|$ 为字符集大小），你可以在 $O(n)$ 的时间内构造字符集大小任意的 SAM。但是这样你需要为每一个状态储存一个大小为 $\left|\Sigma\right|$ 的数组（用于快速跳转到转移的字符），和另外一个所有转移的链表（用于快速在转移中迭代）。
 

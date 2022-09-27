@@ -1,0 +1,10 @@
+id: oi-wiki:math/du-1
+name: Du
+solution:
+  cpp: docs/math/code/du/du_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/examples/du/du_1.ans
+  input: docs/math/examples/du/du_1.in
+version: 1000

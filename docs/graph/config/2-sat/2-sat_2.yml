@@ -1,0 +1,10 @@
+id: oi-wiki:graph/2-sat-2
+name: 2 Sat
+solution:
+  cpp: docs/graph/code/2-sat/2-sat_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/examples/2-sat/2-sat_2.ans
+  input: docs/graph/examples/2-sat/2-sat_2.in
+version: 1000

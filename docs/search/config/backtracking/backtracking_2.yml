@@ -1,0 +1,10 @@
+id: oi-wiki:search/backtracking-2
+name: Backtracking Search
+solution:
+  cpp: docs/search/code/backtracking/backtracking_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/search/examples/backtracking/backtracking_2.ans
+  input: docs/search/examples/backtracking/backtracking_2.in
+version: 1000

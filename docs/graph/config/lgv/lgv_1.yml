@@ -1,0 +1,10 @@
+id: oi-wiki:graph/lgv-1
+name: LGV
+solution:
+  cpp: docs/graph/code/lgv/lgv_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/examples/lgv/lgv_1.ans
+  input: docs/graph/examples/lgv/lgv_1.in
+version: 1000
