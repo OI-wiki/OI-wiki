@@ -1,8 +1,12 @@
-author: accelsao, thallium, Chrogeek, Enter-tainer, ksyx, StudyingFather, H-J-Granger, Henry-ZHR, countercurrent-time, william-song-shy, 5ab-juruo
+author: accelsao, thallium, Chrogeek, Enter-tainer, ksyx, StudyingFather, H-J-Granger, Henry-ZHR, countercurrent-time, william-song-shy, 5ab-juruo, XiaoQuQuSD
 
 为了描述方便将两个集合分成左和右两个部分，所有匹配边都是横跨左右两个集合，可以假想成男女配对。
 
 假设图有 $n$ 个顶点，$m$ 条边。
+
+## 题目描述
+
+给定一个二分图 $G$，即分左右两部分，各部分之间的点没有边连接，要求选出一些边，使得这些边没有公共顶点，且边的数量最大。
 
 ## 增广路算法 Augmenting Path Algorithm
 
@@ -12,9 +16,11 @@ author: accelsao, thallium, Chrogeek, Enter-tainer, ksyx, StudyingFather, H-J-Gr
 那么只要从起始点开始 DFS 遍历直到找到某个未匹配点，$O(m)$。
 未找到增广路时，我们拓展的路也称为 **交错树**。
 
+### 性质
+
 因为要枚举 $n$ 个点，总复杂度为 $O(nm)$。
 
-### 代码
+### 实现
 
 ```cpp
 struct augment_path {

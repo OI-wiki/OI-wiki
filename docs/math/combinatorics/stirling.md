@@ -1,7 +1,7 @@
 ## 第二类斯特林数（Stirling Number）
 
 ??? note "为什么先介绍第二类斯特林数"
-    虽然被称作“第二类”，第二类斯特林数却在斯特林的相关著作和具体数学中被首先描述，同时也比第一类斯特林数常用得多。
+  虽然被称作「第二类」，第二类斯特林数却在斯特林的相关著作和具体数学中被首先描述，同时也比第一类斯特林数常用得多。
 
 **第二类斯特林数**（斯特林子集数）$\begin{Bmatrix}n\\ k\end{Bmatrix}$，也可记做 $S(n,k)$，表示将 $n$ 个两两不同的元素，划分为 $k$ 个互不区分的非空子集的方案数。
 
@@ -65,7 +65,7 @@ $$
 
 下面的代码使用了名为 `poly` 的多项式类，仅供参考。
 
-??? note "参考代码"
+??? note "实现"
     ```cpp
     #ifndef _FEISTDLIB_POLY_
     #define _FEISTDLIB_POLY_
@@ -669,20 +669,21 @@ int main() {
 
 那么 $\begin{Bmatrix}i\\k\end{Bmatrix}=\dfrac{\left[\dfrac{x^i}{i!}\right]F^k(x)}{k!}$，$O(n\log n)$ 计算多项式幂即可。实际使用时比 $O(n\log n)$ 的方法 1 要慢。
 
-```cpp
-int main() {
-  scanf("%d%d", &n, &k);
-  poly f(n + 1);
-  fact[0] = 1;
-  for (int i = 1; i <= n; ++i) fact[i] = (ll)fact[i - 1] * i % mod;
-  for (int i = 1; i <= n; ++i) f[i] = qpow(fact[i], mod - 2);
-  f = exp(log(f >> 1) * k) << k, f.resize(n + 1);
-  int inv = qpow(fact[k], mod - 2);
-  for (int i = 0; i <= n; ++i)
-    printf("%lld ", (ll)f[i] * fact[i] % mod * inv % mod);
-  return 0;
-}
-```
+???+note "实现"
+  ```cpp
+  int main() {
+    scanf("%d%d", &n, &k);
+    poly f(n + 1);
+    fact[0] = 1;
+    for (int i = 1; i <= n; ++i) fact[i] = (ll)fact[i - 1] * i % mod;
+    for (int i = 1; i <= n; ++i) f[i] = qpow(fact[i], mod - 2);
+    f = exp(log(f >> 1) * k) << k, f.resize(n + 1);
+    int inv = qpow(fact[k], mod - 2);
+    for (int i = 0; i <= n; ++i)
+      printf("%lld ", (ll)f[i] * fact[i] % mod * inv % mod);
+    return 0;
+  }
+  ```
 
 ## 第一类斯特林数（Stirling Number）
 
