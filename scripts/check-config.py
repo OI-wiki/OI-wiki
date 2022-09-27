@@ -18,7 +18,7 @@ with open(filename) as file_object:
 for line in lines:
     line=line[:-1]
     with open(line) as f:
-        temp=yaml.load(f.read())
+        temp=yaml.load(f.read(),Loader=yaml.FullLoader)
         testcases=temp['testcases']
         answer=testcases['answer']
         input=testcases['input']
