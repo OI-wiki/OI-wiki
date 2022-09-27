@@ -122,7 +122,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
     struct dsu {
         vector<size_t> pa, size;
     
-        explicit dsu(size_t _size): pa(_size), size(_size, 1) {
+        explicit dsu(size_t size_): pa(size_), size(size_, 1) {
             iota(pa.begin(), pa.end(), 0);
         }
     
@@ -163,9 +163,9 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
     struct dsu {
         vector<size_t> pa, size;
     
-        explicit dsu(size_t _size): pa(_size * 2), size(_size * 2, 1) {
-            iota(pa.begin(), pa.begin() + _size, _size);
-            iota(pa.begin() + _size, pa.end(), _size);
+        explicit dsu(size_t size_): pa(size_ * 2), size(size_ * 2, 1) {
+            iota(pa.begin(), pa.begin() + size_, size_);
+            iota(pa.begin() + size_, pa.end(), size_);
         }
     
         void erase(size_t x) {
