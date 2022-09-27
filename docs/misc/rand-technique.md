@@ -2,7 +2,7 @@ author: Ir1d, partychicken, ouuan, Marcythm, TianyiQ
 
 ## 概述
 
-前置知识：[随机函数](../misc/random.md) 和 [概率初步](../math/expectation.md)
+前置知识：[随机函数](../misc/random.md) 和 [概率初步](../math/probability/basic-conception.md)
 
 本文将对 OI/ICPC 中的随机化相关技巧做一个简单的分类，并对每个分类予以介绍。本文也将介绍一些在 OI/ICPC 中很少使用，但与 OI/ICPC 在风格等方面较为贴近的方法，这些内容前将用 `(*)` 标注。
 
