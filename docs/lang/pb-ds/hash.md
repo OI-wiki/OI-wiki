@@ -8,7 +8,7 @@ cc_hash_table<Key_Type, Val_Type> h;	//拉链法
 gp_hash_table<Key_Type, Val_Type> h;	//探测法
 ```
 
-在阅读之前，请确保熟悉 [`Hash表`](https://oi-wiki.org/ds/hash/) 的相关内容。
+在阅读之前，请确保熟悉 [`Hash表`](../../ds/hash.md) 的相关内容。
 
 ## 模板形参
 
