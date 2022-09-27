@@ -245,14 +245,14 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
     3. 查询某个元素所属集合的大小及元素和
 
     ??? mdui-shadow-6 "参考代码（C++）"
-    ```cpp
-    --8<-- "docs/ds/code/dsu/dsu_1.cpp"
-    ```
+        ```cpp
+        --8<-- "docs/ds/code/dsu/dsu_1.cpp"
+        ```
 
     ??? mdui-shadow-6 "参考代码（Python）"
-    ```python
-    --8<-- "docs/ds/code/dsu/dsu_1.py"
-    ```
+        ```python
+        --8<-- "docs/ds/code/dsu/dsu_1.py"
+        ```
 
 ## 习题
 
