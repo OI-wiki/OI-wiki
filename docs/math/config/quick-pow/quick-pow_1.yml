@@ -1,0 +1,10 @@
+id: oi-wiki:math/quick-pow-1
+name: Quick Pow
+solution:
+  cpp: docs/math/code/quick-pow/quick-pow_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/examples/quick-pow/quick-pow_1.ans
+  input: docs/math/examples/quick-pow/quick-pow_1.in
+version: 1000

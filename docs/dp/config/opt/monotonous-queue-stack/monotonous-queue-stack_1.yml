@@ -1,0 +1,10 @@
+id: oi-wiki:dp/monotonous-queue-stack-1
+name: Monotonous-Queue-Stack DP
+solution:
+  cpp: docs/dp/code/opt/monotonous-queue-stack/monotonous-queue-stack_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/dp/examples/opt/monotonous-queue-stack/monotonous-queue-stack_1.ans
+  input: docs/dp/examples/opt/monotonous-queue-stack/monotonous-queue-stack_1.in
+version: 1000

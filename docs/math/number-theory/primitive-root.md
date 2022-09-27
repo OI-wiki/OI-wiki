@@ -183,6 +183,8 @@ $$
 
 > **原根**：设 $m \in \mathbb{N}^{*}$，$a\in \mathbb{Z}$。若 $\gcd(a,m)=1$，且 $\delta_m(a)=\varphi(m)$，则称 $a$ 为模 $m$ 的原根。
 
+$g$ 满足 $\operatorname{ord}_n(g)=\left|Z_n^\times\right|=\varphi(n)$，对于质数 $p$，也就是说 $g^i \bmod p, 0 \leq i < p$ 结果互不相同。
+
 ???+note "注"
     在抽象代数中，原根就是循环群的生成元。这个概念只在模 $m$ 缩剩余系关于乘法形成的群中有“原根”这个名字，在一般的循环群中都称作“生成元”。
     
@@ -235,6 +237,8 @@ $$
 ### 原根存在定理
 
 > **原根存在定理**：一个数 $m$ 存在原根当且仅当 $m=2,4,p^{\alpha},2p^{\alpha}$，其中 $p$ 为奇素数，$\alpha\in \mathbb{N}^{*}$。
+
+模 $n$ 有原根的充要条件 :$n = 2, 4, p^e, 2 \times p^e$。
 
 我们来证明它，分成 $m=2,4$、$m=p^{\alpha}$、$m=2p^{\alpha}$ 与 $m\ne 2,4,p,p^{\alpha}$，四个部分。
 

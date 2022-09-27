@@ -1,0 +1,10 @@
+id: oi-wiki:basic/greedy-1
+name: Greedy Algorithm
+solution:
+  cpp: docs/basic/code/greedy/greedy_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/basic/examples/greedy/greedy_1.ans
+  input: docs/basic/examples/greedy/greedy_1.in
+version: 1000

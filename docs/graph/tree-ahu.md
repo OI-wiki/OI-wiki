@@ -66,37 +66,39 @@ $$
 
 ### 命名算法
 
-$$
-\begin{array}{ll}
-1 & \textbf{Input. } \text{A rooted tree }T\\
-2 & \textbf{Output. } \text{The name of rooted tree }T\\
-3 & \text{ASSIGN-NAME(u)}\\
-4 & \qquad \text{if  } u \text{  is a leaf}\\
-5 & \qquad \qquad \text{NAME(} u \text{) = (0)}\\
-6 & \qquad \text{else }\\
-7 & \qquad \qquad \text{for all child } v \text{ of } u\\
-8 & \qquad \qquad \qquad \text{ASSIGN-NAME(}v\text{)}\\
-9 & \qquad \text{sort the names of the children of }u\\
-10 & \qquad \text{concatenate the names of all children }u\text{ to temp}\\
-11 & \qquad \text{NAME(} u \text{) = (temp)}
-\end{array}
-$$
+???+note "实现"
+    $$
+    \begin{array}{ll}
+    1 & \textbf{Input. } \text{A rooted tree }T\\
+    2 & \textbf{Output. } \text{The name of rooted tree }T\\
+    3 & \text{ASSIGN-NAME(u)}\\
+    4 & \qquad \text{if  } u \text{  is a leaf}\\
+    5 & \qquad \qquad \text{NAME(} u \text{) = (0)}\\
+    6 & \qquad \text{else }\\
+    7 & \qquad \qquad \text{for all child } v \text{ of } u\\
+    8 & \qquad \qquad \qquad \text{ASSIGN-NAME(}v\text{)}\\
+    9 & \qquad \text{sort the names of the children of }u\\
+    10 & \qquad \text{concatenate the names of all children }u\text{ to temp}\\
+    11 & \qquad \text{NAME(} u \text{) = (temp)}
+    \end{array}
+    $$
 
 ### AHU 算法
 
-$$
-\begin{array}{ll}
-1 & \textbf{Input. } \text{Two rooted trees }T_1(V_1,E_1,r_1)\text{ and }T_2(V_2,E_2,r_2) \\
-2 & \textbf{Output. } \text{Whether these two trees are isomorphic}\\
-3 & \text{AHU}(T_1(V_1,E_1,r_1), T_2(V_2,E_2,r_2))\\
-4 & \qquad \text{ASSIGN-NAME(}r_1\text{)}\\
-5 & \qquad \text{ASSIGN-NAME(}r_2\text{)}\\
-6 & \qquad \text{if  NAME}(r_1) = \text{NAME}(r_2)\\
-7 & \qquad \qquad \text{return true}\\
-8 & \qquad \text{else}\\
-10 & \qquad \qquad \text{return false}
-\end{array}
-$$
+???+note "实现"
+    $$
+    \begin{array}{ll}
+    1 & \textbf{Input. } \text{Two rooted trees }T_1(V_1,E_1,r_1)\text{ and }T_2(V_2,E_2,r_2) \\
+    2 & \textbf{Output. } \text{Whether these two trees are isomorphic}\\
+    3 & \text{AHU}(T_1(V_1,E_1,r_1), T_2(V_2,E_2,r_2))\\
+    4 & \qquad \text{ASSIGN-NAME(}r_1\text{)}\\
+    5 & \qquad \text{ASSIGN-NAME(}r_2\text{)}\\
+    6 & \qquad \text{if  NAME}(r_1) = \text{NAME}(r_2)\\
+    7 & \qquad \qquad \text{return true}\\
+    8 & \qquad \text{else}\\
+    10 & \qquad \qquad \text{return false}
+    \end{array}
+    $$
 
 ### 复杂度证明
 

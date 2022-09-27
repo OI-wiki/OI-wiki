@@ -1,0 +1,10 @@
+id: oi-wiki:math/mobius-5
+name: Mobius
+solution:
+  cpp: docs/math/code/mobius/mobius_5.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/examples/mobius/mobius_5.ans
+  input: docs/math/examples/mobius/mobius_5.in
+version: 1000
