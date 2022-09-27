@@ -81,7 +81,7 @@ void BTreeNode::traverse() {
 
 ### 查找
 
-假设需要查找排名第 $k$ 大的元素。
+假设需要查找排名第 $x$ 大的元素。
 
 ```cpp
 inline int find(Node *u,int x) {
