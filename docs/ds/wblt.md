@@ -1,6 +1,10 @@
 author: hsfzLZH1, cesonic
 
+## 引入
+
 WBLT，全称 Weight Balanced Leafy Tree，一种不常见的平衡树写法，但是具有常数较小，可以当做可并堆使用的优点。
+
+## 性质与过程
 
 类似于 WBT（weight-balanced trees），WBLT 体现了 leafy 的性质，即节点多，怎么多呢？
 
@@ -13,6 +17,8 @@ WBLT，全称 Weight Balanced Leafy Tree，一种不常见的平衡树写法，�
 因为 WBLT 同时满足堆的性质，我们可以用它来实现堆和可并堆。
 
 而在旋转的过程中，会产生很多垃圾节点，我们采用垃圾回收的方式就可以回收废弃节点，将建立节点的操作稍作修改即可。
+
+## 实现
 
 附上普通平衡树代码：
 

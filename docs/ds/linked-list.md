@@ -1,6 +1,6 @@
 本页面将简要介绍链表。
 
-## 简介
+## 引入
 
 链表是一种用于存储数据的数据结构，通过如链条一般的指针来连接元素。它的特点是插入与删除数据十分方便，但寻找与读取数据的表现欠佳。
 
@@ -23,21 +23,22 @@
 
 ![](images/list.svg)
 
-```c++
-// C++ Version
-struct Node {
-  int value;
-  Node *next;
-};
-```
-
-```python
-# Python Version
-class Node:
-    def __init__(self, value = None, next = None): 
-        self.value = value
-        self.next = next
-```
+???+note "实现"
+    ```c++
+    // C++ Version
+    struct Node {
+      int value;
+      Node *next;
+    };
+    ```
+    
+    ```python
+    # Python Version
+    class Node:
+        def __init__(self, value = None, next = None): 
+            self.value = value
+            self.next = next
+    ```
 
 ### 双向链表
 
@@ -45,23 +46,24 @@ class Node:
 
 ![](images/double-list.svg)
 
-```c++
-// C++ Version
-struct Node {
-  int value;
-  Node *left;
-  Node *right;
-};
-```
-
-```python
-# Python Version
-class Node:
-    def __init__(self, value = None, left = None, right = None): 
-        self.value = value
-        self.left = left
-        self.right = right
-```
+???+note "实现"
+    ```c++
+    // C++ Version
+    struct Node {
+      int value;
+      Node *left;
+      Node *right;
+    };
+    ```
+    
+    ```python
+    # Python Version
+    class Node:
+        def __init__(self, value = None, left = None, right = None): 
+            self.value = value
+            self.left = left
+            self.right = right
+    ```
 
 ## 向链表中插入（写入）数据
 
@@ -81,24 +83,25 @@ class Node:
 
 代码实现如下：
 
-```c++
-// C++ Version
-void insertNode(int i, Node *p) {
-  Node *node = new Node;
-  node->value = i;
-  node->next = p->next;
-  p->next = node;
-}
-```
-
-```python
-# Python Version
-def insertNode(i, p):
-    node = Node()
-    node.value = i
-    node.next = p.next
-    p.next = node
-```
+???+note "实现"
+    ```c++
+    // C++ Version
+    void insertNode(int i, Node *p) {
+      Node *node = new Node;
+      node->value = i;
+      node->next = p->next;
+      p->next = node;
+    }
+    ```
+    
+    ```python
+    # Python Version
+    def insertNode(i, p):
+        node = Node()
+        node.value = i
+        node.next = p.next
+        p.next = node
+    ```
 
 ### 单向循环链表
 
@@ -120,35 +123,36 @@ def insertNode(i, p):
 
 代码实现如下：
 
-```c++
-// C++ Version
-void insertNode(int i, Node *p) {
-  Node *node = new Node;
-  node->value = i;
-  node->next = NULL;
-  if (p == NULL) {
-    p = node;
-    node->next = node;
-  } else {
-    node->next = p->next;
-    p->next = node;
-  }
-}
-```
-
-```python
-# Python Version
-def insertNode(i, p):
-    node = Node()
-    node.value = i
-    node.next = None
-    if p == None:
-        p = node
-        node.next = node
-    else:
-        node.next = p.next
-        p.next = node
-```
+???+note "实现"
+    ```c++
+    // C++ Version
+    void insertNode(int i, Node *p) {
+      Node *node = new Node;
+      node->value = i;
+      node->next = NULL;
+      if (p == NULL) {
+        p = node;
+        node->next = node;
+      } else {
+        node->next = p->next;
+        p->next = node;
+      }
+    }
+    ```
+    
+    ```python
+    # Python Version
+    def insertNode(i, p):
+        node = Node()
+        node.value = i
+        node.next = None
+        if p == None:
+            p = node
+            node.next = node
+        else:
+            node.next = p.next
+            p.next = node
+    ```
 
 ### 双向循环链表
 
@@ -166,39 +170,40 @@ def insertNode(i, p):
 
 代码实现如下：
 
-```c++
-// C++ Version
-void insertNode(int i, Node *p) {
-  Node *node = new Node;
-  node->value = i;
-  if (p == NULL) {
-    p = node;
-    node->left = node;
-    node->right = node;
-  } else {
-    node->left = p;
-    node->right = p->right;
-    p->right->left = node;
-    p->right = node;
-  }
-}
-```
-
-```python
-# Python Version
-def insertNode(i, p):
-    node = Node()
-    node.value = i
-    if p == None:
-        p = node
-        node.left = node
-        node.right = node
-    else:
-        node.left = p
-        node.right = p.right
-        p.right.left = node
-        p.right = node
-```
+???+note "实现"
+    ```c++
+    // C++ Version
+    void insertNode(int i, Node *p) {
+      Node *node = new Node;
+      node->value = i;
+      if (p == NULL) {
+        p = node;
+        node->left = node;
+        node->right = node;
+      } else {
+        node->left = p;
+        node->right = p->right;
+        p->right->left = node;
+        p->right = node;
+      }
+    }
+    ```
+    
+    ```python
+    # Python Version
+    def insertNode(i, p):
+        node = Node()
+        node.value = i
+        if p == None:
+            p = node
+            node.left = node
+            node.right = node
+        else:
+            node.left = p
+            node.right = p.right
+            p.right.left = node
+            p.right = node
+    ```
 
 ## 从链表中删除数据
 
@@ -221,22 +226,23 @@ def insertNode(i, p):
 
 代码实现如下：
 
-```c++
-// C++ Version
-void deleteNode(Node *p) {
-  p->value = p->next->value;
-  Node *t = p->next;
-  p->next = p->next->next;
-  delete t;
-}
-```
-
-```python
-# Python Version
-def deleteNode(p):
-    p.value = p.next.value
-    p.next = p.next.next
-```
+???+note "实现"
+    ```c++
+    // C++ Version
+    void deleteNode(Node *p) {
+      p->value = p->next->value;
+      Node *t = p->next;
+      p->next = p->next->next;
+      delete t;
+    }
+    ```
+    
+    ```python
+    # Python Version
+    def deleteNode(p):
+        p.value = p.next.value
+        p.next = p.next.next
+    ```
 
 ### 双向循环链表
 
@@ -250,20 +256,31 @@ def deleteNode(p):
 
 代码实现如下：
 
-```c++
-void deleteNode(Node *&p) {
-  p->left->right = p->right;
-  p->right->left = p->left;
-  Node *t = p;
-  p = p->right;
-  delete t;
-}
-```
+???+note "实现"
+    ```c++
+    void deleteNode(Node *&p) {
+      p->left->right = p->right;
+      p->right->left = p->left;
+      Node *t = p;
+      p = p->right;
+      delete t;
+    }
+    ```
+    
+    ```python
+    # Python Version
+    def deleteNode(p):
+        p.left.right = p.right
+        p.right.left = p.left
+        p = p.right
+    ```
 
-```python
-# Python Version
-def deleteNode(p):
-    p.left.right = p.right
-    p.right.left = p.left
-    p = p.right
-```
+## 技巧
+
+### 异或链表
+
+异或链表（XOR Linked List）本质上还是 **双向链表**，但它利用按位异或的值，仅使用一个指针的内存大小便可以实现双向链表的功能。
+
+我们在结构 `Node` 中定义 `lr = left ^ right`，即前后两个元素地址的 **按位异或值**。正向遍历时用前一个元素的地址异
+或当前节点的 `lr` 可得到后一个元素的地址，反向遍历时用后一个元素的地址异或当前节点的 `lr` 又可得到前一个的元素地址。
+这样一来，便可以用一半的内存实现双向链表同样的功能。

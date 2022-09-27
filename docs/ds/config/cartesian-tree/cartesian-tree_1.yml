@@ -1,0 +1,10 @@
+id: oi-wiki:ds/cartesian-tree-1
+name: Cartesian Tree
+solution:
+  cpp: docs/ds/code/cartesian-tree/cartesian-tree_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/cartesian-tree/cartesian-tree_1.ans
+  input: docs/ds/examples/cartesian-tree/cartesian-tree_1.in
+version: 1000
