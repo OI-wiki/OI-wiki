@@ -217,6 +217,7 @@ nav:
     - 平衡三进制: math/balanced-ternary.md
     - 高精度计算: math/bignum.md
     - 快速幂: math/binary-exponentiation.md
+    - 置换和排列: math/binary-exponentiation.md
     - 弧度制与坐标系: math/coordinate.md
     - 复数: math/complex.md
     - 数论:
