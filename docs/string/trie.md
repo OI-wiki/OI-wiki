@@ -58,8 +58,8 @@ class trie:
         for i in range(0, l):
             c = ord(s[i]) - ord('a')
             if nex[p][c] == 0:
-                nex[p][c] = cnt # 如果没有，就添加结点
                 cnt += 1
+                nex[p][c] = cnt # 如果没有，就添加结点
             p = nex[p][c]
         exist[p] = True
     
