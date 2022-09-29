@@ -42,7 +42,7 @@ $$\sum_{i=0}^m{n\choose i}{m\choose i}={n+m\choose m}$$
 
 根据基础的组合数学知识推导，有：
 
-$$\sum_{i=0}^m{n\choose i}{m\choose m-i}={n+m\choose m}$$
+$$\sum_{i=0}^m{n\choose i}{m\choose i}=\sum_{i=0}^m{n\choose i}{m\choose m-i}={n+m\choose m}$$
 
 其中 $n+m\choose m$ 是我们较为熟悉的网格图路径计数的方案数。所以我们可以考虑其组合意义的证明。
 
