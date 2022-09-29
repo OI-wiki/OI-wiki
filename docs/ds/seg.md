@@ -331,34 +331,35 @@ def getsum(l, r, s, t, p):
 // root 表示整棵线段树的根结点；cnt 表示当前结点个数
 int n, cnt, root;
 int sum[n * 2], ls[n * 2], rs[n * 2];
-// 用法：upd(root, 1, n, p, f);
-void upd(int& rt, int l, int r, int p, int f) { // 引用传参
-  if (!rt) rt = ++cnt;  // 当结点为空时，创建一个新的结点
-  if (l == r) {
-    sum[rt] += f;
+
+// 用法：update(root, 1, n, x, f); 其中 x 为待修改节点的编号
+void update(int& p, int s, int t, int x, int f) { // 引用传参
+  if (!p) p = ++cnt;  // 当结点为空时，创建一个新的结点
+  if (s == t) {
+    sum[p] += f;
     return;
   }  
-  int m = (l + r) >> 1;
-  if (p <= m)
-    upd(ls[rt], l, m, p, f);
+  int m = s + ((t - s) >> 1);
+  if (x <= m)
+    update(ls[p], s, m, x, f);
   else
-    upd(rs[rt], m + 1, r, p, f);
-  sum[rt] = sum[ls[rt]] + sum[rs[rt]];  // pushup
+    update(rs[p], m + 1, t, x, f);
+  sum[p] = sum[ls[p]] + sum[rs[p]];  // pushup
 }
 ```
 
 区间询问：
 
 ```cpp
-// 用法：query(root, 1, n, L, R);
-int query(int rt, int l, int r, int L, int R) {
-  if (!rt) return 0;  // 如果结点为空，返回 0
-  if (l >= L && r <= R) return sum[rt];
-  int m = (l + r) >> 1, ans = 0;
-  if (L <= m)
-    ans += query(ls[rt], l, m, L, R);
-  if (R > m)
-    ans += query(rs[rt], m + 1, r, L, R);
+// 用法：query(root, 1, n, l, r);
+int query(int p, int s, int t, int l, int r) {
+  if (!p) return 0;  // 如果结点为空，返回 0
+  if (s >= l && t <= r) return sum[p];
+  int m = s + ((t - s) >> 1), ans = 0;
+  if (l <= m)
+    ans += query(ls[p], s, m, l, r);
+  if (r > m)
+    ans += query(rs[p], m + 1, t, l, r);
   return ans;
 }
 ```
