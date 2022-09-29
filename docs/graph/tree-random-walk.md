@@ -40,7 +40,7 @@ $$f(u) = d(u) + \sum\limits_{v \in \text{son}_u}f(v)$$
 
 设 $g(u)$ 代表 $p_u$ 结点走到其子结点 $u$ 的期望距离，则有：
 
-$$g(u) = \cfrac{w(p_u,u) + \left(w(p_u,p_{p_u})+g(p_u)+g(u)\right) + \sum\limits_{s \in {sibling}_u}(w(p_u,s)+f(s)+g(u))}{d(p_u)}$$
+$$g(u) = \cfrac{w(p_u,u) + \left(w(p_u,p_{p_u})+g(p_u)+g(u)\right) + \sum\limits_{s \in \textit{sibling}_u}(w(p_u,s)+f(s)+g(u))}{d(p_u)}$$
 
 分子中的第一部分代表直接走向了子结点 $u$，第二部分代表先走向了父结点再由父结点走回来然后再向 $u$ 结点走，第三部分代表先走向 $u$ 结点的兄弟结点再由其走回来然后再向 $u$ 结点走；分母 $d(p_u)$ 代表从 $p_u$ 结点走向其任何邻接点的概率相同。
 
