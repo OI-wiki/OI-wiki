@@ -58,4 +58,4 @@ $$\sum_{i=0}^m{n\choose i}{m\choose i}=\sum_{i=0}^m{n\choose i}{m\choose m-i}={n
 
 ## 参考资料与注释
 
-1.[Vandermonde's Convolution Formula](https://www.cut-the-knot.org/arithmetic/algebra/VandermondeConvolution.shtml#)
+1. [Vandermonde's Convolution Formula](https://www.cut-the-knot.org/arithmetic/algebra/VandermondeConvolution.shtml#)
