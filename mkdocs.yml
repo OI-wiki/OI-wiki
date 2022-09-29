@@ -293,6 +293,7 @@ nav:
       - 向量: math/linear-algebra/vector.md
       - 内积和外积: math/linear-algebra/product.md
       - 矩阵: math/linear-algebra/matrix.md
+      - 初等变换: math/linear-algebra/elementary-operations.md
       - 高斯消元: math/linear-algebra/gauss.md
       - 线性空间: math/linear-algebra/vector-space.md
       - Hamel基: math/linear-algebra/basis.md
