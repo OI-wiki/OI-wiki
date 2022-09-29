@@ -4,7 +4,7 @@
 
 ## 范德蒙德卷积公式
 
-$$\sum_{i=0}^k{n\choose i}{m\choose k-i}={n+m\choose k}$$
+$$\sum_{i=0}^k\binom{n}{i}\binom{m}{k-i}=\binom{n+m}{k}$$
 
 ### 证明
 
@@ -12,16 +12,16 @@ $$\sum_{i=0}^k{n\choose i}{m\choose k-i}={n+m\choose k}$$
 
 $$
 \begin{aligned}
-\sum_{k=0}^{n+m}{n+m\choose k}x^k&=(x+1)^{n+m}\\
+\sum_{k=0}^{n+m}\binom{n+m}{k}x^k&=(x+1)^{n+m}\\
 &=(x+1)^n(x+1)^m\\
-&=\sum_{r=0}^n{n\choose r}x^r\sum_{s=0}^m{m\choose s}x^s\\
-&=\sum_{k=0}^{n+m}\sum_{r=0}^k{n\choose r}{m\choose k-r}x^k\\
+&=\sum_{r=0}^n\binom{n}{r}x^r\sum_{s=0}^m\binom{m}{s}x^s\\
+&=\sum_{k=0}^{n+m}\sum_{r=0}^k\binom{n}{r}\binom{m}{k-r}x^k\\
 \end{aligned}
 $$
 
 即有：
 
-$${n+m\choose k}=\sum_{r=0}^k{n\choose r}{m\choose k-r}$$
+$$\binom{n+m}{k}=\sum_{r=0}^k\binom{n}{r}\binom{m}{k-r}$$
 
 若考虑其组合意义证明：
 
@@ -31,37 +31,37 @@ $${n+m\choose k}=\sum_{r=0}^k{n\choose r}{m\choose k-r}$$
 
 ### 推论 1 及证明
 
-$$\sum_{i=-r}^{s}{n\choose r+i}{m\choose s-i}={n+m\choose r+s}$$
+$$\sum_{i=-r}^{s}\binom{n}{r+i}\binom{m}{s-i}=\binom{n+m}{r+s}$$
 
 证明与原公式证明相似。
 
 ### 推论 2 及证明
 
-$$\sum_{i=1}^n{n\choose i}{n\choose i-1}={2n\choose n-1}$$
+$$\sum_{i=1}^n\binom{n}{i}\binom{n}{i-1}=\binom{2n}{n-1}$$
 
 根据基础的组合数学知识推导，有：
 
-$$\sum_{i=1}^n{n\choose i}{n\choose i-1}=\sum_{i=0}^{n-1}{n\choose i+1}{n\choose i}=\sum_{i=0}^{n-1}{n\choose n-1-i}{n\choose i}={2n\choose n-1}$$
+$$\sum_{i=1}^n\binom{n}{i}\binom{n}{i-1}=\sum_{i=0}^{n-1}\binom{n}{i+1}\binom{n}{i}=\sum_{i=0}^{n-1}\binom{n}{n-1-i}\binom{n}{i}=\binom{2n}{n-1}$$
 
 ### 推论 3 及证明
 
-$$\sum_{i=0}^n{n\choose i}^2={2n\choose n}$$
+$$\sum_{i=0}^n\binom{n}{i}^2=\binom{2n}{n}$$
 
 根据基础的组合数学知识推导，有：
 
-$$\sum_{i=0}^n{n\choose i}^2=\sum_{i=0}^n{n\choose i}{n\choose n-i}={2n\choose n}$$
+$$\sum_{i=0}^n\binom{n}{i}^2=\sum_{i=0}^n\binom{n}{i}\binom{n}{n-i}=\binom{2n}{n}$$
 
 ### 推论 4 及证明
 
-$$\sum_{i=0}^m{n\choose i}{m\choose i}={n+m\choose m}$$
+$$\sum_{i=0}^m\binom{n}{i}\binom{m}{i}=\binom{n+m}{m}$$
 
 根据基础的组合数学知识推导，有：
 
-$$\sum_{i=0}^m{n\choose i}{m\choose i}=\sum_{i=0}^m{n\choose i}{m\choose m-i}={n+m\choose m}$$
+$$\sum_{i=0}^m\binom{n}{i}\binom{m}{i}=\sum_{i=0}^m\binom{n}{i}\binom{m}{m-i}=\binom{n+m}{m}$$
 
-其中 $n+m\choose m$ 是我们较为熟悉的网格图路径计数的方案数。所以我们可以考虑其组合意义的证明。
+其中 $\binom{n+m}{m}$ 是我们较为熟悉的网格图路径计数的方案数。所以我们可以考虑其组合意义的证明。
 
-在一张网格图中，从 $(0,0)$ 走到 $(n,m)$ 共走 $n+m$ 步。规定 $(0,0)$ 位于网格图左上角，其中向下走了 $n$ 步，向右走了 $m$ 步，方案数为 $n+m\choose m$。
+在一张网格图中，从 $(0,0)$ 走到 $(n,m)$ 共走 $n+m$ 步。规定 $(0,0)$ 位于网格图左上角，其中向下走了 $n$ 步，向右走了 $m$ 步，方案数为 $\binom{n+m}{m}$。
 
 换个视角，我们将 $n+m$ 步拆成两部分走，先走 $n$ 步，再走 $m$ 步，那么 $n$ 步中若有 $i$ 步向右，则 $m$ 步中就有 $m-i$ 步向右，故得证。
 
