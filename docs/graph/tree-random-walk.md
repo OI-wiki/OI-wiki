@@ -21,10 +21,10 @@ $$f(u) = \cfrac{w(u,p_u) + \sum\limits_{v \in \textit{son}_u}(w(u,v) + f(v) + f(
 
 $$
 \begin{aligned}
-    f(u) &= \cfrac{w(u,p_u) + \sum\limits_{v \in {son}_u}(w(u,v) + f(v) + f(u))}{d(u)} \\
-         &= \cfrac{w(u,p_u) + \sum\limits_{v \in {son}_u}(w(u,v) + f(v)) + (d(u)-1)f(u)}{d(u)} \\
-         &= w(u,p_u) + \sum\limits_{v \in {son}_u}(w(u,v) + f(v)) \\
-         &= \sum\limits_{(u,t) \in E}w(u,t) + \sum\limits_{v \in {son}_u}f(v)
+    f(u) &= \cfrac{w(u,p_u) + \sum\limits_{v \in \textit{son}_u}(w(u,v) + f(v) + f(u))}{d(u)} \\
+         &= \cfrac{w(u,p_u) + \sum\limits_{v \in \textit{son}_u}(w(u,v) + f(v)) + (d(u)-1)f(u)}{d(u)} \\
+         &= w(u,p_u) + \sum\limits_{v \in \textit{son}_u}(w(u,v) + f(v)) \\
+         &= \sum\limits_{(u,t) \in E}w(u,t) + \sum\limits_{v \in \textit{son}_u}f(v)
 \end{aligned}
 $$
 
