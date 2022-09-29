@@ -26,7 +26,7 @@ $$
 
 #### 统一定义
 
-设随机变量 $X$ 的分布函数为 $F(x)$，若 [Stieltjes 积分](https://baike.baidu.com/item/%E9%BB%8E%E6%9B%BC%EF%BC%8D%E6%96%AF%E8%92%82%E5%B0%94%E6%9D%B0%E6%96%AF%E7%A7%AF%E5%88%86/15572209)
+设随机变量 $X$ 的分布函数为 $F(x)$，若 [Stieltjes 积分](https://en.wikipedia.org/wiki/Riemann%E2%80%93Stieltjes_integral)
 
 $$
 \int_{\mathbb{R}} x \text{d} F(x)
