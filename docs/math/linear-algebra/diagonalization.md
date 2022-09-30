@@ -12,7 +12,7 @@ $$
 对于特征子空间 $E(\lambda_i)=N(\lambda_i I-A)$，由亏加秩定理有：
 
 $$
-r(\lambda_i I-A)+dim N(\lambda_i I-A)=n
+r(\lambda_i I-A)+\operatorname{dim} N(\lambda_i I-A)=n
 $$
 
 因此，特征子空间 $E(\lambda_i)$ 的维数为：
