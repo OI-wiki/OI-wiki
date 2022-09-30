@@ -2,7 +2,6 @@
 using ull = unsigned long long;
 
 ull p[64];
-
 inline void insert(ull x) {
   for (int i = 63; ~i; --i) {
     if (!(x >> i))  // x 的第 i 位是 0

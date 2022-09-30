@@ -605,7 +605,7 @@ class SizeBalancedTreeMap {
     //   L   S    ==========>    N   R
     //      / \                 / \
     //     M   R               L   M
-   clang-format on
+    // clang-format on
     NodePtr successor = node->right;
     node->right = successor->left;
     successor->left = node;
@@ -625,7 +625,7 @@ class SizeBalancedTreeMap {
     //     S   R  ==========>  L   N
     //    / \                     / \
     //   L   M                   M   R
- clang-format on
+    // clang-format on
     NodePtr successor = node->left;
     node->left = successor->right;
     successor->right = node;
@@ -656,7 +656,7 @@ class SizeBalancedTreeMap {
         //     L  <R>   ==========>   [M]  N
         //    /                             \
         //  [M]                             <R>
-     clang-format on
+        // clang-format on
         rotateRight(node);
         fixBalance(node->right);
         fixBalance(node);
@@ -669,7 +669,7 @@ class SizeBalancedTreeMap {
         //   L  <R>  ==========>  [M] <R>   ==========>   L   N
         //    \                   /                            \
         //    [M]                L                             <R>
-       clang-format on
+        // clang-format on
         rotateLeft(node->left);
         rotateRight(node);
         fixBalance(node->left);
@@ -688,7 +688,7 @@ class SizeBalancedTreeMap {
         //  <L>  R    ==========>    N  [M]
         //        \                 /
         //        [M]             <L>
-       clang-format on
+        // clang-format on
         rotateLeft(node);
         fixBalance(node->left);
         fixBalance(node);
@@ -701,7 +701,7 @@ class SizeBalancedTreeMap {
         //  <L>  R   ==========>  <L> [M]   ==========>   N   R
         //      /                       \                /
         //    [M]                        R             <L>
-       clang-format on
+        // clang-format on
         rotateRight(node->right);
         rotateLeft(node);
         fixBalance(node->left);
