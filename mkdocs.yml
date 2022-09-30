@@ -299,6 +299,7 @@ nav:
       - Hamel基: math/linear-algebra/basis.md
       - 线性映射: math/linear-algebra/linear-mapping.md
       - 特征多项式: math/linear-algebra/char-poly.md
+      - 对角化: math/linear-algebra/diagonalization.md
     - 线性规划:
       - 线性规划简介: math/linear-programming.md
       - 单纯形算法: math/simplex.md
