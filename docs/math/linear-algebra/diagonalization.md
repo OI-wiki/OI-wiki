@@ -18,7 +18,7 @@ $$
 因此，特征子空间 $E(\lambda_i)$ 的维数为：
 
 $$
-dim E(\lambda_i)=n-r(\lambda_i I-A)
+\operatorname{dim} E(\lambda_i)=n-r(\lambda_i I-A)
 $$
 
 也称为 $\lambda_i$ 的**几何重数**。
@@ -93,7 +93,7 @@ $$
 - 以下公式成立：
 
 $$
-dim E(\lambda_1)+\cdots+dim E(\lambda_m)=n
+\operatorname{dim} E(\lambda_1)+\cdots+\operatorname{dim} E(\lambda_m)=n
 $$
 
 前文已经指出，特征多项式的分解式中特征值的次数称为代数重数，特征子空间的维数称为几何重数。这个定理也表明，矩阵 $A$ 可对角化，等价于 $A$ 的每个特征值 $\lambda$ 的代数重数都等于它的几何重数。
