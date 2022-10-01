@@ -209,7 +209,7 @@ $[2,3,4,5]$ 分裂成了 $[2,3]$ 和 $[4,5]$，因此需要在这两个节点之
         virtualPtr[i] = LLeaf;
         virtualPtr[i + 1] = RRLeaf;
         newLchild->IS_LEAF = newRchild->IS_LEAF = false;
-        //这里和叶子节点有区别
+        // 这里和叶子节点有区别
         newLchild->size = (MAX + 1) / 2;
         newRchild->size = MAX - (MAX + 1) / 2;
         for (int i = 0; i < newLchild->size; i++) {
@@ -235,7 +235,7 @@ $[2,3,4,5]$ 分裂成了 $[2,3]$ 和 $[4,5]$，因此需要在这两个节点之
           newLchild->parent = newRchild->parent = newRoot;
         } else {
           insertInternal(cursor->key[newLchild->size], cursor->parent, newLchild,
-                        newRchild);
+                         newRchild);
         }
       }
     }

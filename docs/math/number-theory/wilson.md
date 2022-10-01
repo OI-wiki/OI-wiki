@@ -16,7 +16,7 @@ Wilson 定理指出 $(p!)_p=(p-1)!\equiv -1\pmod p$ 且可被推广至模素数 
 
 只有当阶乘同时出现在分数的分子和分母中时，这个问题才有意义。否则，后续项 $p!$ 将减少为零。但在分数中，因子 $p$ 可以抵消，结果将是非零。
 
-因此，要计算 $n! \bmod p$ ，而不考虑阶乘中出现因数 $p$。写下素因子分解，去掉所有因子 $p$，并计算乘积模。
+因此，要计算 $n! \bmod p$，而不考虑阶乘中出现因数 $p$。写下素因子分解，去掉所有因子 $p$，并计算乘积模。
 
 用 $(n!)_p$ 表示这个修改的因子。例如：
 
@@ -82,7 +82,7 @@ $$
 0!,~ 1!,~ \dots,~ (p-1)!
 $$
 
-因此有时间复杂度 $O(p + \log_p n)$ 。如果需要多次调用函数，则可以在函数外部进行预计算，于是计算 $(n!)_p$ 拥有 $O(\log_p n)$ 的时间复杂度。
+因此有时间复杂度 $O(p + \log_p n)$。如果需要多次调用函数，则可以在函数外部进行预计算，于是计算 $(n!)_p$ 拥有 $O(\log_p n)$ 的时间复杂度。
 
 ```cpp
 int factmod(int n, int p) {
@@ -126,7 +126,7 @@ int multiplicity_factorial(int n, int p) {
 }
 ```
 
-很容易证明，这个公式与前面的部分使用了相同的想法。删除所有不包含因子 $p$ 的元素，保留元素 $\lfloor \frac{n}{p} \rfloor$ 。从它们中移除因子 $p$，可以得到乘积：
+很容易证明，这个公式与前面的部分使用了相同的想法。删除所有不包含因子 $p$ 的元素，保留元素 $\lfloor \frac{n}{p} \rfloor$。从它们中移除因子 $p$，可以得到乘积：
 
 $$
 1 \cdot 2 \cdots \left\lfloor \frac{n}{p} \right\rfloor = \left\lfloor \frac{n}{p} \right\rfloor !
@@ -241,5 +241,4 @@ $\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor -\lfloor m/p^j\rfloor -
     --8<-- "docs/math/code/wilson/wilson_1.cpp"
     ```
 
-**本页面主要译自博文[Вычисление факториала по модулю](http://e-maxx.ru/algo/modular_factorial)与其英文翻译版[Factorial modulo p](https://cp-algorithms.com/algebra/factorial-modulo.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
-
+**本页面主要译自博文 [Вычисление факториала по модулю](http://e-maxx.ru/algo/modular_factorial) 与其英文翻译版 [Factorial modulo p](https://cp-algorithms.com/algebra/factorial-modulo.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
