@@ -137,4 +137,8 @@ struct QueryTree {
 
 ### 习题
 
-[Codeforces - Connect and Disconnect](https://codeforces.com/gym/100551/problem/A)  [Codeforces - Addition on Segments](https://codeforces.com/contest/981/problem/E)  [Codeforces - Extending Set of Points](https://codeforces.com/contest/1140/problem/F)
+[Codeforces - Connect and Disconnect](https://codeforces.com/gym/100551/problem/A)  
+
+[Codeforces - Addition on Segments](https://codeforces.com/contest/981/problem/E) 
+
+[Codeforces - Extending Set of Points](https://codeforces.com/contest/1140/problem/F)
