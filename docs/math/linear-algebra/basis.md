@@ -42,7 +42,9 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
         ???+ note "证明"
             任取 $V$ 中的一组基 $b_1,b_2,\dots,b_n$, 由已知条件，向量组 $b_1,b_2,\dots,b_n$ 可被 $a_1,a_2,\dots,a_n$ 线性表出，故
             
-            $n=\operatorname{rank}\{b_1,b_2,\dots,b_n\}\leq\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq n$
+            $$
+            n=\operatorname{rank}\{b_1,b_2,\dots,b_n\}\leq\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq n
+            $$
             
             因此 $\operatorname{rank}\{a_1,a_2,\dots,a_n\}=n$
 

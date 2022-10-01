@@ -289,6 +289,7 @@ nav:
       - Entringer Number: math/combinatorics/entringer.md
       - Eulerian Number: math/combinatorics/eulerian.md
       - 分拆数: math/combinatorics/partition.md
+      - 范德蒙德卷积: math/combinatorics/vandermonde-convolution.md
     - 线性代数:
       - 线性代数简介: math/linear-algebra/index.md
       - 向量: math/linear-algebra/vector.md
@@ -364,6 +365,7 @@ nav:
       - B 树: ds/b-tree.md
       - B+ 树: ds/bplus-tree.md
       - 替罪羊树: ds/sgt.md
+      - Leafy Tree: ds/leafy-tree.md
       - 笛卡尔树: ds/cartesian-tree.md
       - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md

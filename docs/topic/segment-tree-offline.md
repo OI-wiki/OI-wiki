@@ -22,8 +22,7 @@
 
 此实现用于动态连接问题。它可以添加边、删除边和计算连接的零部件数量。
 
-```C++
-
+```cpp
 struct dsu_save {
   int v, rnkv, u, rnku;
 
@@ -123,18 +122,21 @@ struct QueryTree {
       if (q.united) dsu.rollback();
     }
   }
-
+  
   vector<int> solve() {
     vector<int> ans(T);
     dfs(1, 0, T - 1, ans);
     return ans;
   }
 };
-
 ```
 
 **本页面主要译自博文 [Deleting from a data structure](https://cp-algorithms.com/data_structures/deleting_in_log_n.html)，版权协议为 CC-BY-SA 4.0。**
 
 ### 习题
 
-[Codeforces - Connect and Disconnect](https://codeforces.com/gym/100551/problem/A)  [Codeforces - Addition on Segments](https://codeforces.com/contest/981/problem/E)  [Codeforces - Extending Set of Points](https://codeforces.com/contest/1140/problem/F)
+[Codeforces - Connect and Disconnect](https://codeforces.com/gym/100551/problem/A)
+
+[Codeforces - Addition on Segments](https://codeforces.com/contest/981/problem/E)
+
+[Codeforces - Extending Set of Points](https://codeforces.com/contest/1140/problem/F)
