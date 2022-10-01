@@ -2,40 +2,33 @@
 
 ## 定义
 
-通过图中所有边恰好一次且行遍所有顶点的通路称为欧拉通路。
-
-通过图中所有边恰好一次且行遍所有顶点的回路称为欧拉回路。
-
-具有欧拉回路的无向图或有向图称为欧拉图。
-
-具有欧拉通路但不具有欧拉回路的无向图或有向图称为半欧拉图。
-
-有向图也可以有类似的定义。
-
-非形式化地讲，欧拉图就是从任意一个点开始都可以一笔画完整个图，半欧拉图必须从某个点开始才能一笔画完整个图。
+- **欧拉回路**：通过图中每条边恰好一次的回路
+- **欧拉通路**：通过图中每条边恰好一次的通路
+- **欧拉图**：具有欧拉回路的图
+- **半欧拉图**：具有欧拉通路但不具有欧拉回路的图
 
 ## 性质
 
 欧拉图中所有顶点的度数都是偶数。
 
-若 $G$ 是欧拉图，则它为若干个边不重的圈的并。
-
-若 $G$ 是半欧拉图，则它为若干个边不重的圈和一条简单路径的并。
+若 $G$ 是欧拉图，则它为若干个环的并，且每条边被包含在奇数个环内。
 
 ## 判别法
 
-对于无向图 $G$，$G$ 是欧拉图当且仅当 $G$ 是连通的且没有奇度顶点。
-
-对于无向图 $G$，$G$ 是半欧拉图当且仅当 $G$ 是连通的且 $G$ 中恰有 $0$ 个或 $2$ 个奇度顶点。
-
-对于有向图 $G$，$G$ 是欧拉图当且仅当 $G$ 的所有顶点属于同一个强连通分量且每个顶点的入度和出度相同。
-
-对于有向图 $G$，$G$ 是半欧拉图当且仅当
-
-- 如果将 $G$ 中的所有有向边退化为无向边时，那么 $G$ 的所有顶点属于同一个连通分量。
-- 最多只有一个顶点的出度与入度差为 $1$。
-- 最多只有一个顶点的入度与出度差为 $1$。
-- 所有其他顶点的入度和出度相同。
+1.  无向图是欧拉图当且仅当：
+    - 非零度顶点是连通的
+    - 顶点的度数都是偶数
+2.  无向图是半欧拉图当且仅当：
+    - 非零度顶点是连通的
+    - 恰有 0 或 2 个奇度顶点
+3.  有向图是欧拉图当且仅当：
+    - 非零度顶点是强连通的
+    - 每个顶点的入度和出度相等
+4.  有向图是半欧拉图当且仅当：
+    - 非零度顶点是弱连通的
+    - 至多一个顶点的出度与入度之差为 1
+    - 至多一个顶点的入度与出度之差为 1
+    - 其他顶点的入度和出度相等
 
 ## 求欧拉回路或欧拉路
 
@@ -51,7 +44,11 @@
 
 也称逐步插入回路法。
 
+#### 过程
+
 算法流程为从一条回路开始，每次任取一条目前回路中的点，将其替换为一条简单回路，以此寻找到一条欧拉回路。如果从路开始的话，就可以寻找到一条欧拉路。
+
+#### 实现
 
 Hierholzer 算法的暴力实现如下：
 
@@ -73,6 +70,8 @@ $$
 \end{array}
 $$
 
+#### 性质
+
 这个算法的时间复杂度约为 $O(nm+m^2)$。实际上还有复杂度更低的实现方法，就是将找回路的 DFS 和 Hierholzer 算法的递归合并，边找回路边使用 Hierholzer 算法。
 
 如果需要输出字典序最小的欧拉路或欧拉回路的话，因为需要将边排序，时间复杂度是 $\Theta(n+m\log m)$（计数排序或者基数排序可以优化至 $\Theta(n+m)$）。如果不需要排序，时间复杂度是 $\Theta(n+m)$。
@@ -83,7 +82,7 @@ $$
 
 设有 $m$ 个字母，希望构造一个有 $m^n$ 个扇形的圆盘，每个圆盘上放一个字母，使得圆盘上每连续 $n$ 位对应长为 $n$ 的符号串。转动一周（$m^n$ 次）后得到由 $m$ 个字母产生的长度为 $n$ 的 $m^n$ 个各不相同的符号串。
 
-![](images/euler1.png)
+![](images/euler1.svg)
 
 构造如下有向欧拉图：
 
@@ -99,7 +98,7 @@ $E = \{a_{j_1}a_{j_2}\cdots a_{j_{n-1}}|a_j \in S, 1 \leq j \leq n\}$
 
 边 $a_{j_1}a_{j_2}\cdots a_{j_{n-1}}$ 引入顶点 $a_{j_2}a_{j_3}\cdots a_{j_{n}}$。
 
-![](images/euler2.png)
+![](images/euler2.svg)
 
 这样的 $D$ 是连通的，且每个顶点入度等于出度（均等于 $m$），所以 $D$ 是有向欧拉图。
 
@@ -123,88 +122,7 @@ $E = \{a_{j_1}a_{j_2}\cdots a_{j_{n-1}}|a_j \in S, 1 \leq j \leq n\}$
 
 ??? note "示例代码"
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    #include <stack>
-    #include <vector>
-    using namespace std;
-    
-    struct edge {
-      int to;
-      bool exists;
-      int revref;
-    
-      bool operator<(const edge& b) const { return to < b.to; }
-    };
-    
-    vector<edge> beg[505];
-    int cnt[505];
-    
-    const int dn = 500;
-    stack<int> ans;
-    
-    void Hierholzer(int x) {  // 关键函数
-      for (int& i = cnt[x]; i < (int)beg[x].size();) {
-        if (beg[x][i].exists) {
-          edge e = beg[x][i];
-          beg[x][i].exists = 0;
-          beg[e.to][e.revref].exists = 0;
-          ++i;
-          Hierholzer(e.to);
-        } else {
-          ++i;
-        }
-      }
-      ans.push(x);
-    }
-    
-    int deg[505];
-    int reftop[505];
-    
-    int main() {
-      for (int i = 1; i <= dn; ++i) {
-        beg[i].reserve(1050);  // vector 用 reserve 避免动态分配空间，加快速度
-      }
-    
-      int m;
-      scanf("%d", &m);
-      for (int i = 1; i <= m; ++i) {
-        int a, b;
-        scanf("%d%d", &a, &b);
-        beg[a].push_back((edge){b, 1, 0});
-        beg[b].push_back((edge){a, 1, 0});
-        ++deg[a];
-        ++deg[b];
-      }
-    
-      for (int i = 1; i <= dn; ++i) {
-        if (!beg[i].empty()) {
-          sort(beg[i].begin(), beg[i].end());  // 为了要按字典序贪心，必须排序
-        }
-      }
-    
-      for (int i = 1; i <= dn; ++i) {
-        for (int j = 0; j < (int)beg[i].size(); ++j) {
-          beg[i][j].revref = reftop[beg[i][j].to]++;
-        }
-      }
-    
-      int bv = 0;
-      for (int i = 1; i <= dn; ++i) {
-        if (!deg[bv] && deg[i]) {
-          bv = i;
-        } else if (!(deg[bv] & 1) && (deg[i] & 1)) {
-          bv = i;
-        }
-      }
-    
-      Hierholzer(bv);
-    
-      while (!ans.empty()) {
-        printf("%d\n", ans.top());
-        ans.pop();
-      }
-    }
+      --8<-- "docs/graph/code/euler/euler_1.cpp"
     ```
 
 ## 习题

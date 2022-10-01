@@ -1,10 +1,16 @@
 author: FFjet, ChungZH, frank-xjh, hsfzLZH1, Xarfa, AndrewWayne
 
-本页面将简要介绍两种双向搜索算法：双向同时搜索和 Meet in the middle。
+本页面将简要介绍两种双向搜索算法：「双向同时搜索」和「Meet in the middle」。
 
 ## 双向同时搜索
 
-双向同时搜索的基本思路是从状态图上的起点和终点同时开始进行 [广搜](bfs.md) 或 [深搜](dfs.md)。如果发现搜索的两端相遇了，那么可以认为是获得了可行解。
+### 定义
+
+双向同时搜索的基本思路是从状态图上的起点和终点同时开始进行 [广搜](./bfs.md) 或 [深搜](./dfs.md)。
+
+如果发现搜索的两端相遇了，那么可以认为是获得了可行解。
+
+### 过程
 
 双向广搜的步骤：
 
@@ -31,13 +37,23 @@ while (队列 q 不为空)
 ## Meet in the middle
 
 ???+warning
-    本节要介绍的不是 [**二分搜索**](../basic/binary.md)（二分搜索的另外一个译名为“折半搜索”）。
+    本节要介绍的不是 [**二分搜索**](../basic/binary.md)（二分搜索的另外一个译名为「折半搜索」）。
 
-Meet in the middle 算法没有正式译名，常见的翻译为「折半搜索」、「双向搜索」或「中途相遇」。它适用于输入数据较小，但还没小到能直接使用暴力搜索的情况。
+### 引入
 
-主要思想是将整个搜索过程分成两半，分别搜索，最后将两半的结果合并。
+Meet in the middle 算法没有正式译名，常见的翻译为「折半搜索」、「双向搜索」或「中途相遇」。
+
+它适用于输入数据较小，但还没小到能直接使用暴力搜索的情况。
+
+### 过程
+
+Meet in the middle 算法的主要思想是将整个搜索过程分成两半，分别搜索，最后将两半的结果合并。
+
+### 性质
 
 暴力搜索的复杂度往往是指数级的，而改用 meet in the middle 算法后复杂度的指数可以减半，即让复杂度从 $O(a^b)$ 降到 $O(a^{b/2})$。
+
+### 例题
 
 ???+note "例题 [「USACO09NOV」灯 Lights](https://www.luogu.com.cn/problem/P2962)"
     有 $n$ 盏灯，每盏灯与若干盏灯相连，每盏灯上都有一个开关，如果按下一盏灯上的开关，这盏灯以及与之相连的所有灯的开关状态都会改变。一开始所有灯都是关着的，你需要将所有灯打开，求最小的按开关次数。
@@ -49,65 +65,7 @@ Meet in the middle 算法没有正式译名，常见的翻译为「折半搜索�
 
 ??? note "参考代码"
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    #include <iostream>
-    #include <map>
-    
-    using namespace std;
-    
-    typedef long long ll;
-    
-    int n, m, ans = 0x7fffffff;
-    map<ll, int> f;
-    ll a[40];
-    
-    int main() {
-      cin >> n >> m;
-    
-      for (int i = 0; i < n; ++i) a[i] = (1ll << i);
-    
-      for (int i = 1; i <= m; ++i) {
-        int u, v;
-        cin >> u >> v;
-        --u;
-        --v;
-        a[u] |= (1ll << v);
-        a[v] |= (1ll << u);
-      }
-    
-      for (int i = 0; i < (1 << (n / 2)); ++i) {
-        ll t = 0;
-        int cnt = 0;
-        for (int j = 0; j < n / 2; ++j) {
-          if ((i >> j) & 1) {
-            t ^= a[j];
-            ++cnt;
-          }
-        }
-        if (!f.count(t))
-          f[t] = cnt;
-        else
-          f[t] = min(f[t], cnt);
-      }
-    
-      for (int i = 0; i < (1 << (n - n / 2)); ++i) {
-        ll t = 0;
-        int cnt = 0;
-        for (int j = 0; j < (n - n / 2); ++j) {
-          if ((i >> j) & 1) {
-            t ^= a[n / 2 + j];
-            ++cnt;
-          }
-        }
-        if (f.count(((1ll << n) - 1) ^ t))
-          ans = min(ans, cnt + f[((1ll << n) - 1) ^ t]);
-      }
-    
-      cout << ans;
-    
-      return 0;
-    }
+    --8<-- "docs/search/code/bidirectional/bidirectional_1.cpp"
     ```
 
 ## 外部链接

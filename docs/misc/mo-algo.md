@@ -4,7 +4,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 假设 $n=m$，那么对于序列上的区间询问问题，如果从 $[l,r]$ 的答案能够 $O(1)$ 扩展到 $[l-1,r],[l+1,r],[l,r+1],[l,r-1]$（即与 $[l,r]$ 相邻的区间）的答案，那么可以在 $O(n\sqrt{n})$ 的复杂度内求出所有询问的答案。
 
-## 实现
+## 解释
 
 离线后排序，顺序处理每个询问，暴力从上一个区间的答案转移到下一个区间答案（一步一步移动即可）。
 
@@ -12,7 +12,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 对于区间 $[l,r]$, 以 $l$ 所在块的编号为第一关键字，$r$ 为第二关键字从小到大排序。
 
-## 模板
+## 实现
 
 ```cpp
 inline void move(int pos, int sign) {
@@ -41,33 +41,34 @@ void solve() {
 
 接着就到了莫队算法的精髓了，下面我们用通俗易懂的初中方法来证明它的时间复杂度是 $O(n\sqrt{n})$；
 
-证：令每一块中 $L$ 的最大值为 $\max_1,\max_2,\max_3, \cdots , \max_{\lceil\sqrt{n}\rceil}$。
-
-由第一次排序可知，$\max_1 \le \max_2 \le \cdots \le \max_{\lceil\sqrt{n}\rceil}$。
-
-显然，对于每一块暴力求出第一个询问的时间复杂度为 $O(n)$。
-
-考虑最坏的情况，在每一块中，$R$ 的最大值均为 $n$，每次修改操作均要将 $L$ 由 $\max_{i - 1}$ 修改至 $\max_i$ 或由 $\max_i$ 修改至 $\max_{i - 1}$。
-
-考虑 $R$：因为 $R$ 在块中已经排好序，所以在同一块修改完它的时间复杂度为 $O(n)$。对于所有块就是 $O(n\sqrt{n})$。
-
-重点分析 $L$：因为每一次改变的时间复杂度都是 $O(\max_i-\max_{i-1})$ 的，所以在同一块中时间复杂度为 $O(\sqrt{n}\cdot(\max_i-\max_{i-1}))$。
-
-将每一块 $L$ 的时间复杂度合在一起，可以得到：
-
-对于 $L$ 的总时间复杂度为
-
-$$
-\begin{aligned}
-& O(\sqrt{n}(\max{}_1-1)+\sqrt{n}(\max{}_2-\max{}_1)+\sqrt{n}(\max{}_3-\max{}_2)+\cdots+\sqrt{n}(\max{}_{\lceil\sqrt{n}\rceil}-\max{}_{\lceil\sqrt{n}\rceil-1))} \\
-= & O(\sqrt{n}\cdot(\max{}_1-1+\max{}_2-\max{}_1+\max{}_3-\max{}_2+\cdots+\max{}_{\lceil\sqrt{n}\rceil-1}-\max{}_{\lceil\sqrt{n}\rceil-2}+\max{}_{\lceil\sqrt{n}\rceil}-\max{}_{\lceil\sqrt{n}\rceil-1)}) \\
-= & O(\sqrt{n}\cdot(\max{}_{\lceil\sqrt{n}\rceil-1}))\\
-\end{aligned}
-$$
-
-（裂项求和）
-
-由题可知 $\max_{\lceil\sqrt{n}\rceil}$ 最大为 $n$，所以 $L$ 的总时间复杂度最坏情况下为 $O(n\sqrt{n})$。
+???+note "证明"
+    证：令每一块中 $L$ 的最大值为 $\max_1,\max_2,\max_3, \cdots , \max_{\lceil\sqrt{n}\rceil}$。
+    
+    由第一次排序可知，$\max_1 \le \max_2 \le \cdots \le \max_{\lceil\sqrt{n}\rceil}$。
+    
+    显然，对于每一块暴力求出第一个询问的时间复杂度为 $O(n)$。
+    
+    考虑最坏的情况，在每一块中，$R$ 的最大值均为 $n$，每次修改操作均要将 $L$ 由 $\max_{i - 1}$ 修改至 $\max_i$ 或由 $\max_i$ 修改至 $\max_{i - 1}$。
+    
+    考虑 $R$：因为 $R$ 在块中已经排好序，所以在同一块修改完它的时间复杂度为 $O(n)$。对于所有块就是 $O(n\sqrt{n})$。
+    
+    重点分析 $L$：因为每一次改变的时间复杂度都是 $O(\max_i-\max_{i-1})$ 的，所以在同一块中时间复杂度为 $O(\sqrt{n}\cdot(\max_i-\max_{i-1}))$。
+    
+    将每一块 $L$ 的时间复杂度合在一起，可以得到：
+    
+    对于 $L$ 的总时间复杂度为
+    
+    $$
+    \begin{aligned}
+    & O(\sqrt{n}(\max{}_1-1)+\sqrt{n}(\max{}_2-\max{}_1)+\sqrt{n}(\max{}_3-\max{}_2)+\cdots+\sqrt{n}(\max{}_{\lceil\sqrt{n}\rceil}-\max{}_{\lceil\sqrt{n}\rceil-1))} \\
+    = \phantom{} & O(\sqrt{n}\cdot(\max{}_1-1+\max{}_2-\max{}_1+\max{}_3-\max{}_2+\cdots+\max{}_{\lceil\sqrt{n}\rceil-1}-\max{}_{\lceil\sqrt{n}\rceil-2}+\max{}_{\lceil\sqrt{n}\rceil}-\max{}_{\lceil\sqrt{n}\rceil-1)}) \\
+    = \phantom{} & O(\sqrt{n}\cdot(\max{}_{\lceil\sqrt{n}\rceil-1}))\\
+    \end{aligned}
+    $$
+    
+    （裂项求和）
+    
+    由题可知 $\max_{\lceil\sqrt{n}\rceil}$ 最大为 $n$，所以 $L$ 的总时间复杂度最坏情况下为 $O(n\sqrt{n})$。
 
 综上所述，莫队算法的时间复杂度为 $O(n\sqrt{n})$；
 
@@ -91,6 +92,8 @@ $$
     题目大意：
     
     有一个长度为 $n$ 的序列 $\{c_i\}$。现在给出 $m$ 个询问，每次给出两个数 $l,r$，从编号在 $l$ 到 $r$ 之间的数中随机选出两个不同的数，求两个数相等的概率。
+
+### 过程
 
 思路：莫队算法模板题。
 
@@ -148,65 +151,16 @@ $$
     
     这 4 种正确写法的共同特点是，前两步先扩大区间（`l--` 或 `r++`），后两步再缩小区间（`l++` 或 `r--`）。这样写，前两步是扩大区间，可以保持 $l\le r+1$；执行完前两步后，$l\le l'\le r'\le r$ 一定成立，再执行后两步只会把区间缩小到 $[l',r']$，依然有 $l\le r+1$，因此这样写是正确的。
 
+### 实现
+
 ??? 参考代码
     ```cpp
-    #include <algorithm>
-    #include <cmath>
-    #include <cstdio>
-    using namespace std;
-    const int N = 50005;
-    int n, m, maxn;
-    int c[N];
-    long long sum;
-    int cnt[N];
-    long long ans1[N], ans2[N];
-    struct query {
-      int l, r, id;
-      bool operator<(const query &x) const {
-        if (l / maxn != x.l / maxn) return l < x.l;
-        return (l / maxn) & 1 ? r < x.r : r > x.r;
-      }
-    } a[N];
-    void add(int i) {
-      sum += cnt[i];
-      cnt[i]++;
-    }
-    void del(int i) {
-      cnt[i]--;
-      sum -= cnt[i];
-    }
-    long long gcd(long long a, long long b) { return b ? gcd(b, a % b) : a; }
-    int main() {
-      scanf("%d%d", &n, &m);
-      maxn = sqrt(n);
-      for (int i = 1; i <= n; i++) scanf("%d", &c[i]);
-      for (int i = 0; i < m; i++) scanf("%d%d", &a[i].l, &a[i].r), a[i].id = i;
-      sort(a, a + m);
-      for (int i = 0, l = 1, r = 0; i < m; i++) {
-        if (a[i].l == a[i].r) {
-          ans1[a[i].id] = 0, ans2[a[i].id] = 1;
-          continue;
-        }
-        while (l > a[i].l) add(c[--l]);
-        while (r < a[i].r) add(c[++r]);
-        while (l < a[i].l) del(c[l++]);
-        while (r > a[i].r) del(c[r--]);
-        ans1[a[i].id] = sum;
-        ans2[a[i].id] = (long long)(r - l + 1) * (r - l) / 2;
-      }
-      for (int i = 0; i < m; i++) {
-        if (ans1[i] != 0) {
-          long long g = gcd(ans1[i], ans2[i]);
-          ans1[i] /= g, ans2[i] /= g;
-        } else
-          ans2[i] = 1;
-        printf("%lld/%lld\n", ans1[i], ans2[i]);
-      }
-      return 0;
-    }
+    --8<-- "docs/misc/code/mo-algo/mo-algo_1.cpp"
     ```
 
 ## 普通莫队的优化
+
+### 过程
 
 我们看一下下面这组数据
 
@@ -222,6 +176,8 @@ $$
 
 什么是奇偶化排序？奇偶化排序即对于属于奇数块的询问，r 按从小到大排序，对于属于偶数块的排序，r 从大到小排序，这样我们的 r 指针在处理完这个奇数块的问题后，将在返回的途中处理偶数块的问题，再向 n 移动处理下一个奇数块的问题，优化了 r 指针的移动次数，一般情况下，这种优化能让程序快 30% 左右。
 
+### 实现
+
 排序代码：
 
 压行
@@ -229,8 +185,10 @@ $$
 ```cpp
 // 这里有个小细节等下会讲
 int unit;  // 块的大小
+
 struct node {
   int l, r, id;
+
   bool operator<(const node &x) const {
     return l / unit == x.l / unit
                ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r))
@@ -244,6 +202,7 @@ struct node {
 ```cpp
 struct node {
   int l, r, id;
+
   bool operator<(const node &x) const {
     if (l / unit != x.l / unit) return l < x.l;
     if ((l / unit) & 1)

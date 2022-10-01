@@ -1,8 +1,10 @@
 本页面将简要介绍启发式搜索及其用法。
 
-## 简介
+## 定义
 
-启发式搜索（英文：heuristic search）是一种改进的搜索算法。它在普通搜索算法的基础上引入了启发式函数，该函数的作用是基于已有的信息对搜索的每一个分支选择都做估价，进而选择分支。简单来说，启发式搜索就是对取和不取都做分析，从中选取更优解或删去无效解。
+启发式搜索（英文：heuristic search）是一种在普通搜索算法的基础上引入了启发式函数的搜索算法。
+
+启发式函数的作用是基于已有的信息对搜索的每一个分支选择都做估价，进而选择分支。简单来说，启发式搜索就是对取和不取都做分析，从中选取更优解或删去无效解。
 
 ## 例题
 
@@ -20,45 +22,5 @@
 
 ??? note "示例代码"
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    using namespace std;
-    const int N = 105;
-    int n, m, ans;
-    struct Node {
-      int a, b;  // a 代表时间，b 代表价值
-      double f;
-    } node[N];
-    
-    bool operator<(Node p, Node q) { return p.f > q.f; }
-    
-    int f(int t, int v) {
-      int tot = 0;
-      for (int i = 1; t + i <= n; i++)
-        if (v >= node[t + i].a) {
-          v -= node[t + i].a;
-          tot += node[t + i].b;
-        } else
-          return (int)(tot + v * node[t + i].f);
-      return tot;
-    }
-    
-    void work(int t, int p, int v) {
-      ans = max(ans, v);
-      if (t > n) return;
-      if (f(t, p) + v > ans) work(t + 1, p, v);
-      if (node[t].a <= p) work(t + 1, p - node[t].a, v + node[t].b);
-    }
-    
-    int main() {
-      scanf("%d %d", &m, &n);
-      for (int i = 1; i <= n; i++) {
-        scanf("%d %d", &node[i].a, &node[i].b);
-        node[i].f = 1.0 * node[i].b / node[i].a;
-      }
-      sort(node + 1, node + n + 1);
-      work(1, m, 0);
-      printf("%d\n", ans);
-      return 0;
-    }
+    --8<-- "docs/search/code/heuristic/heuristic_1.cpp"
     ```

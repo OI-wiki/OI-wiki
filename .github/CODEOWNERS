@@ -1,0 +1,29 @@
+# Lines starting with '#' are comments.
+# Each line is a file pattern followed by one or more owners.
+# You can use github users with @user or email addresses
+
+.github/config.yml  @Ir1d
+.github/pull_request_template.md    @Ir1d
+.github/workflows/build-pdf.yml	@Enter-tainer
+.github/workflows/build.yml @billchenchina
+.github/workflows/build-authors-cache.yml @Menci
+.github/workflows/celebration.yml   @ouuan
+.github/workflows/pr-stale.yml	@CoelacanthusHex
+.github/ISSUE_TEMPLATE/	@Ir1d
+.github/CONTRIBUTING.md	@Ir1d @shuzhouliu
+.github/FUNDING.yml @Ir1d
+Dockerfile  @CoelacanthusHex
+docs/intro/docker-deploy.md @CoelacanthusHex
+scripts/    @Ir1d @billchenchina
+.prettierrc   @Menci
+scripts/checker/    @llh721113
+.clang-format   @Ir1d
+.remarkignore   @Enter-tainer
+.remarkrc   @Ir1d @Enter-tainer
+CODE_OF_CONDUCT.md  @Ir1d
+README.md   @Ir1d
+gulpfile.cjs @Ir1d @Enter-tainer
+package.json    @Ir1d @Enter-tainer @llh721113
+Pipenv    @Ir1d
+tsconfig.json @Menci
+netlify.toml @Menci

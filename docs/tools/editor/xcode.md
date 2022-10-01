@@ -1,4 +1,4 @@
-author: shenyouran, Xeonacid, StudyingFather
+author: shenyouran, Xeonacid, StudyingFather, CoelacanthusHex
 
 ## 简介
 
@@ -64,7 +64,9 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 
 ![](images/xcode-10.jpg)
 
-这是因为 Xcode 是默认不兼容万能头文件的。我们可以通过新建头文件的方法来使用万能头文件。
+这是因为在 macOS 上默认使用 [libc++](https://libcxx.llvm.org/) 作为 C++ 标准库实现，而万能头 `bits/stdc++.h` 是 [GNU libstdc++](https://gcc.gnu.org/onlinedocs/libstdc++/) 所独有的。
+
+不过，我们可以手动编写一个万能头文件来使用。
 
 ### 步骤 1
 
@@ -74,9 +76,15 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 cd /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
 ```
 
+如果 Xcode 版本大于等于 12.5，那么
+
+```bash
+cd /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/
+```
+
 ### 步骤 2
 
-创建 bits 文件夹并进入：
+创建 `bits` 文件夹并进入：
 
 ```bash
 mkdir bits
@@ -103,7 +111,7 @@ vim stdc++.h
     ```cpp
     // C++ includes used for precompiling -*- C++ -*-
     
-    // Copyright (C) 2003-2019 Free Software Foundation, Inc.
+    // Copyright (C) 2003-2020 Free Software Foundation, Inc.
     //
     // This file is part of the GNU ISO C++ Library.  This library is free
     // software; you can redistribute it and/or modify it under the
@@ -157,11 +165,14 @@ vim stdc++.h
     #include <ccomplex>
     #include <cfenv>
     #include <cinttypes>
-    #include <cstdalign>
     #include <cstdbool>
     #include <cstdint>
     #include <ctgmath>
+    /* https://stackoverflow.com/a/25892335/15125422 */
+    #if defined(__GLIBCXX__) || defined(__GLIBCPP__)
+    #include <cstdalign>
     #include <cuchar>
+    #endif
     #endif
     
     // C++
@@ -235,18 +246,32 @@ vim stdc++.h
     #include <string_view>
     #include <variant>
     #endif
+    
+    #if __cplusplus > 201703L
+    #include <bit>
+    #include <compare>
+    #include <concepts>
+    #include <numbers>
+    #include <ranges>
+    #include <span>
+    #include <stop_token>
+    // #include <syncstream>
+    #include <version>
+    #endif
     ```
+
+该文件来源于 [10.2.0 版本的 libstdc++](https://github.com/gcc-mirror/gcc/blob/ee5c3db6c5b2c3332912fb4c9cfa2864569ebd9a/libstdc++-v3/include/precompiled/stdc++.h) 并经少许修改以兼容 libc++。
 
 按键盘左上角的<kbd>Esc</kbd>退出编辑模式，然后直接输入 `:wq` 并换行即可保存文件。
 
 ### 步骤 3
 
-关闭终端，回到 Xcode。重新按下⌘B/⌘R 进行编译，发现编译成功：
+关闭终端，回到 Xcode。重新按下 ⌘B/⌘R 进行编译，发现编译成功：
 
 ![](images/xcode-13.jpg)
 
 ## 优缺点
 
-【优点】由苹果开发，适合 Mac 用户，界面齐全、美观。
+优点：由苹果开发，适合 Mac 用户，界面齐全、美观。
 
-【缺点】Xcode 主要用来苹果程序的开发，对于竞赛来说功能冗余，安装包大小较大，而且仅能在 Mac 端上使用。
+缺点：Xcode 主要用来苹果程序的开发，对于竞赛来说功能冗余，安装包大小较大，而且仅能在 Mac 端上使用。

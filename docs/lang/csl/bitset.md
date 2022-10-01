@@ -122,7 +122,7 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
 
 现在的问题是，如何通过一个可重集的约数构成的可重集得到该可重集中某个数的个数。
 
-令原可重集为 $A$，其约数构成的可重集为 $A'$，我们要求 $A$ 中 $x$ 的个数，用 [莫比乌斯反演](../../math/mobius.md) 推一推：
+令原可重集为 $A$，其约数构成的可重集为 $A'$，我们要求 $A$ 中 $x$ 的个数，用 [莫比乌斯反演](../../math/number-theory/mobius.md) 推一推：
 
 $$
 \begin{aligned}&\sum\limits_{i\in A}[\frac i x=1]\\=&\sum\limits_{i\in A}\sum\limits_{d|\frac i x}\mu(d)\\=&\sum\limits_{d\in A',x|d}\mu(\frac d x)\end{aligned}
@@ -210,6 +210,39 @@ $$
       printf("%s", ans);
     
       return 0;
+    }
+    ```
+
+### 与埃氏筛结合
+
+由于 `bitset` 快速的连续读写效率，使得它非常适合用于与埃氏筛结合打质数表。
+
+使用的方式也很简单，只需要将埃氏筛中的布尔数组替换成 `bitset` 即可。
+
+??? "速度测试"
+    以下代码均使用 `g++-4.8 code.cpp -O2` 命令行编译，CPU 使用 Intel i5-8259U 进行测试。测试结果取十次平均值。
+    
+    | 算法            | $5 \times 10^7$ | $10^8$ | $5 \times 10^8$ |
+    | ------------- | --------------- | ------ | --------------- |
+    | 埃氏筛 + 布尔数组    | 386ms           | 773ms  | 4.41s           |
+    | 欧拉筛 + 布尔数组    | 257ms           | 521ms  | 2.70s           |
+    | 埃氏筛 +`bitset` | 219ms           | 492ms  | 2.66s           |
+    | 欧拉筛 +`bitset` | 332ms           | 661ms  | 3.21s           |
+    
+    从测试结果中可知，时间复杂度 $O(n \log \log n)$ 的埃氏筛在使用 `bitset` 优化后速度甚至超过时间复杂度 $O(n)$ 的欧拉筛，而欧拉筛在使用 `bitset` 后会出现「负优化」的情况。
+
+??? "参考代码"
+    ```cpp
+    bitset<N> vis;
+    
+    void Prime(int n) {
+      vis.set();
+      vis[0] = vis[1] = 0;
+      for (int i = 2; i * i <= n; i++) {
+        if (vis[i]) {
+          for (int j = i << 1; j <= n; j += i) vis[j] = 0;
+        }
+      }
     }
     ```
 

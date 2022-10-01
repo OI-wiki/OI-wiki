@@ -1,15 +1,15 @@
 author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
-## 引子
+## 引入
 
 ???+ note "[「SDOI2011」消耗战](https://www.luogu.com.cn/problem/P2495)"
-    ### 题目描述
+    **题目描述**
     
     在一场战争中，战场由 $n$ 个岛屿和 $n-1$ 个桥梁组成，保证每两个岛屿间有且仅有一条路径可达。现在，我军已经侦查到敌军的总部在编号为 $1$ 的岛屿，而且他们已经没有足够多的能源维系战斗，我军胜利在望。已知在其他 $k$ 个岛屿上有丰富能源，为了防止敌军获取能源，我军的任务是炸毁一些桥梁，使得敌军不能到达任何能源丰富的岛屿。由于不同桥梁的材质和结构不同，所以炸毁不同的桥梁有不同的代价，我军希望在满足目标的同时使得总代价最小。
     
     侦查部门还发现，敌军有一台神秘机器。即使我军切断所有能源之后，他们也可以用那台机器。机器产生的效果不仅仅会修复所有我军炸毁的桥梁，而且会重新随机资源分布（但可以保证的是，资源不会分布到 $1$ 号岛屿上）。不过侦查部门还发现了这台机器只能够使用 $m$ 次，所以我们只需要把每次任务完成即可。
     
-    ### 输入格式
+    **输入格式**
     
     第一行一个整数 $n$，代表岛屿数量。
     
@@ -19,15 +19,15 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
     
     接下来 $m$ 行，每行一个整数 $k_i$，代表第 $i$ 次后，有 $k_i$ 个岛屿资源丰富，接下来 $k$ 个整数 $h_1,h_2,\cdots ,h_k$，表示资源丰富岛屿的编号。
     
-    ### 输出格式
+    **输出格式**
     
     输出有 $m$ 行，分别代表每次任务的最小代价。
     
-    ### 数据范围
+    **数据范围**
     
     对于 $100\%$ 的数据，$2\le n\le 2.5\times 10^5,m\ge 1,\sum k_i\le 5\times 10^5,1\le k_i\le n-1$。
 
-## 虚树 Virtual Tree
+### 过程
 
 对于上面那题，我们不难发现——如果树的点数很少，那么我们可以直接跑 DP。
 
@@ -46,13 +46,15 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 听起来很有意思。
 
+### 解释
+
 我们不难发现——其实很多点是没有用的。以下图为例：
 
-![vtree-1](images/vtree-1.png)
+![vtree-1](images/vtree-tree.svg)
 
 如果我们选取的关键点是：
 
-![vtree-2](images/vtree-2.png)
+![vtree-2](images/vtree-key-vertex.svg)
 
 图中只有两个红色的点是 **关键点**，而别的点全都是「非关键点」。
 
@@ -64,25 +66,29 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 因此我们需要 **浓缩信息，把一整颗大树浓缩成一颗小树**。
 
+## 虚树 Virtual Tree
+
 由此我们引出了 **「虚树」** 这个概念。
 
 我们先直观地来看看虚树的样子。
 
 下图中，红色结点是我们选择的关键点。红色和黑色结点都是虚树中的点。黑色的边是虚树中的边。
 
-![vtree-3](images/vtree-3.png)
+![vtree-3](images/vtree-vtree1.svg)
 
-![vtree-4](images/vtree-4.png)
+![vtree-4](images/vtree-vtree2.svg)
 
-![vtree-5](images/vtree-5.png)
+![vtree-5](images/vtree-vtree3.svg)
 
-![vtree-6](images/vtree-6.png)
+![vtree-6](images/vtree-vtree4.svg)
 
 因为任意两个关键点的 LCA 也是需要保存重要信息的，所以我们需要保存它们的 LCA，因此虚树中不一定只有关键点。
 
 不难发现虚树中祖先后代的关系并不会改变。（就是不会出现原本 $a$ 是 $b$ 的祖先结果后面 $a$ 变成 $b$ 的后代了之类的鬼事）
 
 但我们不可能 $O(k^2)$ 暴力枚举 LCA，所以我们不难想到——首先将关键点按 DFS 序排序，然后排完序以后相邻的两个关键点（相邻指的是在排序后的序列中下标差值的绝对值等于 1）求一下 LCA，并把它加入虚树。
+
+### 过程
 
 因为可能多个节点的 LCA 可能是同一个，所以我们不能多次将它加入虚树。
 
@@ -112,23 +118,23 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 假如当前的节点与栈顶节点的 LCA 就是栈顶节点的话，则说明它们是在一条链上的。所以直接把当前节点入栈就行了。
 
-![vtree-7](./images/vtree-7.png)
+![vtree-7](./images/vtree-add1.svg)
 
 假如当前节点与栈顶节点的 LCA 不是栈顶节点的话：
 
-![vtree-8](./images/vtree-8.png)
+![vtree-8](./images/vtree-add2.svg)
 
 这时，当前单调栈维护的链是：
 
-![vtree-9](./images/vtree-9.png)
+![vtree-9](./images/vtree-add3.svg)
 
 而我们需要把链变成：
 
-![vtree-10](./images/vtree-10.png)
+![vtree-10](./images/vtree-add4.svg)
 
-那么我们就把蓝色结点弹栈即可，在弹栈前别忘了向它在虚树中的父亲连边。
+那么我们就把用虚线标出的结点弹栈即可，在弹栈前别忘了向它在虚树中的父亲连边。
 
-![vtree-11](./images/vtree-11.png)
+![vtree-11](./images/vtree-add5.svg)
 
 假如弹出以后发现栈首不是 LCA 的话要让 LCA 入栈。
 
@@ -136,50 +142,52 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 
 下面给出一个具体的例子。假设我们要对下面这棵树的 4，6 和 7 号结点建立虚树：
 
-![vtree-12](./images/vtree-12.png)
+![vtree-12](./images/vtree-construction1.svg)
 
 那么步骤是这样的：
 
 - 将 3 个关键点 $6,4,7$ 按照 DFS 序排序，得到序列 $[4,6,7]$。
 - 将 $1$ 入栈。
 
-![vtree-13](./images/vtree-13.png)
+![vtree-13](./images/vtree-construction2.svg)
 
-我们用黄色的点代表在栈内的点，绿色的点代表从栈中弹出的点。
+我们用红色的点代表在栈内的点，青色的点代表从栈中弹出的点。
 
 - 取序列中第一个作为当前节点，也就是 $4$。再取栈顶元素，为 $1$。求 $1$ 和 $4$ 的 $LCA$：$LCA(1,4)=1$。
 - 发现 $LCA(1,4)=$ 栈顶元素，说明它们在虚树的一条链上，所以直接把当前节点 $4$ 入栈，当前栈为 $4,1$。
 
-![vtree-14](./images/vtree-14.png)
+![vtree-14](./images/vtree-construction3.svg)
 
 - 取序列第二个作为当前节点，为 $6$。再取栈顶元素，为 $4$。求 $6$ 和 $4$ 的 $LCA$：$LCA(6,4)=1$。
 - 发现 $LCA(6,4)\neq$ 栈顶元素，进入判断阶段。
 - 判断阶段：发现栈顶节点 $4$ 的 DFS 序是大于 $LCA(6,4)$ 的，但是次大节点（栈顶节点下面的那个节点）$1$ 的 DFS 序是等于 $LCA$ 的（其实 DFS 序相等说明节点也相等），说明 $LCA$ 已经入栈了，所以直接连接 $1\to4$ 的边，也就是 $LCA$ 到栈顶元素的边。并把 $4$ 从栈中弹出。
 
-![vtree-15](./images/vtree-15.png)
+![vtree-15](./images/vtree-construction4.svg)
 
 - 结束了判断阶段，将 $6$ 入栈，当前栈为 $6,1$。
 
-![vtree-16](./images/vtree-16.png)
+![vtree-16](./images/vtree-construction5.svg)
 
 - 取序列第三个作为当前节点，为 $7$。再取栈顶元素，为 $6$。求 $7$ 和 $6$ 的 $LCA$：$LCA(7,6)=3$。
 - 发现 $LCA(7,6)\neq$ 栈顶元素，进入判断阶段。
 - 判断阶段：发现栈顶节点 $6$ 的 DFS 序是大于 $LCA(7,6)$ 的，但是次大节点（栈顶节点下面的那个节点）$1$ 的 DFS 序是小于 $LCA$ 的，说明 $LCA$ 还没有入过栈，所以直接连接 $3\to6$ 的边，也就是 $LCA$ 到栈顶元素的边。把 $6$ 从栈中弹出，并且把 $LCA(6,7)$ 入栈。
 - 结束了判断阶段，将 $7$ 入栈，当前栈为 $1,3,7$。
 
-![vtree-17](./images/vtree-17.png)
+![vtree-17](./images/vtree-construction6.svg)
 
 - 发现序列里的 3 个节点已经全部加入过栈了，退出循环。
 - 此时栈中还有 3 个节点：$1,3,7$，很明显它们是一条链上的，所以直接链接：$1\to3$ 和 $3\to7$ 的边。
 - 虚树就建完啦！
 
-![vtree-18](./images/vtree-18.png)
+![vtree-18](./images/vtree-construction7.svg)
 
-我们接下来将那些没入过栈的点（非青绿色的点）删掉，对应的虚树长这个样子：
+我们接下来将那些没入过栈的点（非青色的点）删掉，对应的虚树长这个样子：
 
-![vtree-19](./images/vtree-19.png)
+![vtree-19](./images/vtree-construction8.svg)
 
 其中有很多细节，比如我是用邻接表存图的方式存虚树的，所以需要清空邻接表。但是直接清空整个邻接表是很慢的，所以我们在 **有一个从未入栈的元素入栈的时候清空该元素对应的邻接表** 即可。
+
+### 实现
 
 建立虚树的 C++ 代码大概长这样：
 

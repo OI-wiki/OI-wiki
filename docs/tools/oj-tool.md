@@ -6,9 +6,9 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 源码托管在 [xalanq/cf-tool](https://github.com/xalanq/cf-tool) 上。
 
-![](./images/cf-tool1.jpg)
+![cf-tool 使用截图 1](./images/oj-tool-1.jpg)
 
-![](./images/cf-tool2.jpg)
+![cf-tool 使用截图 2](./images/oj-tool-2.jpg)
 
 ### 特点
 
@@ -119,7 +119,9 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 图片演示：
 
-![演示](images/cf-tool3.gif)
+![Competitive Companion 使用演示](images/oj-tool-3.apng)
+
+使用 [zqxyz73](https://github.com/zqxyz73) 同学的 [bytetools](https://github.com/zqxyz73/bytetools) 完成演示。
 
 ## CP Editor
 

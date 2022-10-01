@@ -1,6 +1,10 @@
 author: hsfzLZH1, cesonic
 
+## 引入
+
 WBLT，全称 Weight Balanced Leafy Tree，一种不常见的平衡树写法，但是具有常数较小，可以当做可并堆使用的优点。
+
+## 性质与过程
 
 类似于 WBT（weight-balanced trees），WBLT 体现了 leafy 的性质，即节点多，怎么多呢？
 
@@ -13,6 +17,8 @@ WBLT，全称 Weight Balanced Leafy Tree，一种不常见的平衡树写法，�
 因为 WBLT 同时满足堆的性质，我们可以用它来实现堆和可并堆。
 
 而在旋转的过程中，会产生很多垃圾节点，我们采用垃圾回收的方式就可以回收废弃节点，将建立节点的操作稍作修改即可。
+
+## 实现
 
 附上普通平衡树代码：
 
@@ -33,17 +39,20 @@ void newnode(int &cur, int v) {
   size[cur] = 1;
   val[cur] = v;
 }
+
 void copynode(int x, int y) {
   size[x] = size[y];
   ls[x] = ls[y];
   rs[x] = rs[y];
   val[x] = val[y];
 }
+
 void merge(int l, int r) {
   size[++cnt] = size[l] + size[r];
   val[cnt] = val[r];
   ls[cnt] = l, rs[cnt] = r;
 }
+
 void rotate(int cur, bool flag) {
   if (flag) {
     merge(ls[cur], ls[rs[cur]]);
@@ -55,6 +64,7 @@ void rotate(int cur, bool flag) {
     ls[cur] = ls[ls[cur]];
   }
 }
+
 void maintain(int cur) {
   if (size[ls[cur]] > size[rs[cur]] * ratio)
     rotate(cur, 0);
@@ -65,11 +75,13 @@ void maintain(int cur) {
   else if (size[rs[cur]] > size[ls[cur]] * ratio)
     rotate(rs[cur], 0), rotate(cur, 1);
 }
+
 void pushup(int cur) {
   if (!size[ls[cur]]) return;
   size[cur] = size[ls[cur]] + size[rs[cur]];
   val[cur] = val[rs[cur]];
 }
+
 void insert(int cur, int x) {
   if (size[cur] == 1) {
     newnode(ls[cur], min(x, val[cur]));
@@ -81,6 +93,7 @@ void insert(int cur, int x) {
   insert(x > val[ls[cur]] ? rs[cur] : ls[cur], x);
   pushup(cur);
 }
+
 void erase(int cur, int x) {
   if (size[cur] == 1) {
     cur = ls[fa] == cur ? rs[fa] : ls[fa];
@@ -92,18 +105,21 @@ void erase(int cur, int x) {
   erase(x > val[ls[cur]] ? rs[cur] : ls[cur], x);
   pushup(cur);
 }
+
 int find(int cur, int x) {
   if (size[cur] == x) return val[cur];
   maintain(cur);
   if (x > size[ls[cur]]) return find(rs[cur], x - size[ls[cur]]);
   return find(ls[cur], x);
 }
+
 int rnk(int cur, int x) {
   if (size[cur] == 1) return 1;
   maintain(cur);
   if (x > val[ls[cur]]) return rnk(rs[cur], x) + size[ls[cur]];
   return rnk(ls[cur], x);
 }
+
 int main() {
   scanf("%d", &n);
   newnode(root, 2147383647);  // 使根不改变

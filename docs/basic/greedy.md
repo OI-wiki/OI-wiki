@@ -1,18 +1,18 @@
 本页面将简要介绍贪心算法。
 
-## 简介
+## 引入
 
-贪心算法（英语：greedy algorithm），是用计算机来模拟一个“贪心”的人做出决策的过程。这个人十分贪婪，每一步行动总是按某种指标选取最优的操作。而且他目光短浅，总是只看眼前，并不考虑以后可能造成的影响。
+贪心算法（英语：greedy algorithm），是用计算机来模拟一个「贪心」的人做出决策的过程。这个人十分贪婪，每一步行动总是按某种指标选取最优的操作。而且他目光短浅，总是只看眼前，并不考虑以后可能造成的影响。
 
 可想而知，并不是所有的时候贪心法都能获得最优解，所以一般使用贪心法的时候，都要确保自己能证明其正确性。
 
-## 详细介绍
+## 解释
 
 ### 适用范围
 
 贪心算法在有最优子结构的问题中尤为有效。最优子结构的意思是问题能够分解成子问题来解决，子问题的最优解能递推到最终问题的最优解。[^ref1]
 
-### 证明方法
+### 证明
 
 贪心算法有两种证明方法：反证法和归纳法。一般情况下，一道题只会用到其中的一种方法来证明。
 
@@ -56,26 +56,26 @@
 ??? note "解题思路"
     设排序后第 $i$ 个大臣左右手上的数分别为 $a_i, b_i$。考虑通过邻项交换法推导贪心策略。
     
-    用 $s$ 表示第 $i$ 个大臣前面所有人的 $a_i$ 的乘积，那么第 $i$ 个大臣得到的奖赏就是 $\dfrac{s} {b_i}$，第 $i + 1$ 个大臣得到的奖赏就是 $\dfrac{s \cdot a_{i+1}} {b_{i+1}}$。
+    用 $s$ 表示第 $i$ 个大臣前面所有人的 $a_i$ 的乘积，那么第 $i$ 个大臣得到的奖赏就是 $\dfrac{s} {b_i}$，第 $i + 1$ 个大臣得到的奖赏就是 $\dfrac{s \cdot a_i} {b_{i+1}}$。
     
     如果我们交换第 $i$ 个大臣与第 $i + 1$ 个大臣，那么此时的第 $i$ 个大臣得到的奖赏就是 $\dfrac{s} {b_{i+1}}$，第 $i + 1$ 个大臣得到的奖励就是 $\dfrac{s \cdot a_{i+1}} {b_i}$。
     
     如果交换前更优当且仅当
     
     $$
-    \max \left(\dfrac{s} {b_i}, \dfrac{s \cdot a_{i+1}} {b_{i+1}}\right)  < \max \left(\dfrac{s} {b_{i+1}}, \dfrac{s \cdot a_{i+1}} {b_i}\right)
+    \max \left(\dfrac{s} {b_i}, \dfrac{s \cdot a_i} {b_{i+1}}\right)  < \max \left(\dfrac{s} {b_{i+1}}, \dfrac{s \cdot a_{i+1}} {b_i}\right)
     $$
     
     提取出相同的 $s$ 并约分得到
     
     $$
-    \max \left(\dfrac{1} {b_i}, \dfrac{a_{i+1}} {b_{i+1}}\right)  < \max \left(\dfrac{1} {b_{i+1}}, \dfrac{a_{i+1}} {b_i}\right)
+    \max \left(\dfrac{1} {b_i}, \dfrac{a_i} {b_{i+1}}\right)  < \max \left(\dfrac{1} {b_{i+1}}, \dfrac{a_{i+1}} {b_i}\right)
     $$
     
     然后分式化成整式得到
     
     $$
-    \max (b_{i+1}, a_{i+1}\cdot b_i)  < \max (b_i, a_{i+1}\cdot b_{i+1})
+    \max (b_{i+1}, a_i\cdot b_i)  < \max (b_i, a_{i+1}\cdot b_{i+1})
     $$
     
     实现的时候我们将输入的两个数用一个结构体来保存并重载运算符：
@@ -83,6 +83,7 @@
     ```cpp
     struct uv {
       int a, b;
+    
       bool operator<(const uv &x) const {
         return max(x.b, a * b) < max(b, x.a * x.b);
       }
@@ -96,49 +97,20 @@
 
 ??? note "解题思路"
     1. 先假设每一项工作都做，将各项工作按截止时间排序后入队；
-    2.  在判断第 i 项工作做与不做时，若其截至时间符合条件，则将其与队中报酬最小的元素比较，若第 i 项工作报酬较高（后悔），则 `ans += a[i].p - q.top()`。  
+    2.  在判断第 `i` 项工作做与不做时，若其截至时间符合条件，则将其与队中报酬最小的元素比较，若第 `i` 项工作报酬较高（后悔），则 `ans += a[i].p - q.top()`。  
         用优先队列（小根堆）来维护队首元素最小。
+    3. 当 `a[i].d<=q.size()` 可以这么理解从 0 开始到 `a[i].d` 这个时间段只能做 `a[i].d` 个任务，而若 `q.size()>=a[i].d` 说明完成 `q.size()` 个任务时间大于等于 `a[i].d` 的时间，所以当第 `i` 个任务获利比较大的时候应该把最小的任务从优先级队列中换出。
 
 ??? note "参考代码"
     ```cpp
-    #include <algorithm>
-    #include <cmath>
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    #include <queue>
-    using namespace std;
-    struct f {
-      long long d;
-      long long x;
-    } a[100005];
-    bool cmp(f A, f B) { return A.d < B.d; }
-    priority_queue<long long, vector<long long>, greater<long long> > q;
-    
-    int main() {
-      long long n, i, j;
-      cin >> n;
-      for (i = 1; i <= n; i++) {
-        scanf("%d%d", &a[i].d, &a[i].x);
-      }
-      sort(a + 1, a + n + 1, cmp);
-      long long ans = 0;
-      for (i = 1; i <= n; i++) {
-        if (a[i].d <= q.size()) {
-          if (q.top() < a[i].x) {
-            ans += a[i].x - q.top();
-            q.pop();
-            q.push(a[i].x);
-          }
-        } else {
-          ans += a[i].x;
-          q.push(a[i].x);
-        }
-      }
-      cout << ans << endl;
-      return 0;
-    }
+    --8<-- "docs/basic/code/greedy/greedy_1.cpp"
     ```
+
+##### 复杂度分析
+
+- 空间复杂度：当输入 $n$ 个任务时使用 $n$ 个 $a$ 数组元素，优先队列中最差情况下会储存 $n$ 个元素，则空间复杂度为 $O(n)$。
+
+- 时间复杂度：`std::sort` 的时间复杂度为 $O(n\log n)$，维护优先队列的时间复杂度为 $O(n\log n)$，综上所述，时间复杂度为 $O(n\log n)$。
 
 ## 习题
 

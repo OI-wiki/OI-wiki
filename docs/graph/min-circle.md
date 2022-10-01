@@ -1,14 +1,19 @@
-## 问题
+## 引入
 
-给出一个图，问其中的有 $n$ 个节点构成的边权和最小的环 $(n\ge 3)$ 是多大。
+???+question "问题"
+    给出一个图，问其中的有 $n$ 个节点构成的边权和最小的环 $(n\ge 3)$ 是多大。
 
 图的最小环也称围长。
+
+## 过程
 
 ### 暴力解法
 
 设 $u$ 和 $v$ 之间有一条边长为 $w$ 的边，$dis(u,v)$ 表示删除 $u$ 和 $v$ 之间的连边之后，$u$ 和 $v$ 之间的最短路。
 
-那么最小环是 $dis(u,v)+w$。
+那么无向图中的最小环是 $dis(u,v)+w$。
+
+注意若是在有向图中求最小环，相对应的公式要修改，最小环是 $dis(v,u)+w$。
 
 总时间复杂度 $O(n^2m)$。
 
@@ -16,13 +21,19 @@
 
 相关链接：[最短路/Dijkstra](https://oi-wiki.org/graph/shortest-path/#dijkstra)
 
+#### 过程
+
 枚举所有边，每一次求删除一条边之后对这条边的起点跑一次 Dijkstra，道理同上。
+
+#### 性质
 
 时间复杂度 $O(m(n+m)\log n)$。
 
 ### Floyd
 
 相关链接：[最短路/Floyd](https://oi-wiki.org/graph/shortest-path/#floyd)
+
+#### 过程
 
 记原图中 $u,v$ 之间边的边权为 $val\left(u,v\right)$。
 
@@ -32,12 +43,18 @@
 
 故在循环时对于每个 $k$ 枚举满足 $i<k,j<k$ 的 $(i,j)$，更新答案即可。
 
+#### 性质
+
 时间复杂度：$O(n^3)$
+
+#### 实现
 
 下面给出 C++ 的参考实现：
 
 ```cpp
+// C++ Version
 int val[maxn + 1][maxn + 1];  // 原图的邻接矩阵
+
 inline int floyd(const int &n) {
   static int dis[maxn + 1][maxn + 1];  // 最短路矩阵
   for (int i = 1; i <= n; ++i)
@@ -54,6 +71,26 @@ inline int floyd(const int &n) {
   }
   return ans;
 }
+```
+
+```python
+# Python Version
+val = [[0 for i in range(maxn + 1)] for j in range(maxn + 1)] # 原图的邻接矩阵
+
+def floyd(n):
+    dis = [[0 for i in range(maxn + 1)] for j in range(maxn + 1)] # 最短路矩阵
+    for i in range(1, n + 1):
+        for j in range(1, n + 1):
+            dis[i][j] = val[i][j] # 初始化最短路矩阵
+    ans = inf
+    for k in range(1, n + 1):
+        for i in range(1, k):
+            for j in range(1, i):
+                ans = min(ans, dis[i][j] + val[i][k] + val[k][j]) # 更新答案
+        for i in range(1, n + 1):
+            for j in range(1, n + 1):
+                dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j]) # 正常的 floyd 更新最短路矩阵
+    return ans
 ```
 
 ## 例题

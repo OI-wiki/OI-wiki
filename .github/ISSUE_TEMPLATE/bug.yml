@@ -1,0 +1,31 @@
+name: "内容无关的 bug"
+description: "指出出现的问题"
+title: "[BUG] "
+labels: ["Other Bug / 内容无关的 Bug"]
+
+body:
+- type: markdown
+  attributes:
+    value: 欢迎为 OI Wiki 提出新的 Issue！烦请填写以下表单：
+- type: checkboxes
+  id: confirm
+  attributes:
+    label: 请选择：
+    options:
+    - label: 我已经读过了 [F.A.Q.](https://oi-wiki.org/intro/faq/)，进行了搜索，但没有得到答案
+      required: true
+    - label: 我正在着手修复这个问题
+      required: false
+- type: textarea
+  id: problem
+  attributes:
+    label: 我遇到了这样的问题
+    description: 配上截图可以更清晰地表述你的问题
+  validations:
+    required: true
+- type: textarea
+  id: reproduce
+  attributes:
+    label: 我确认这个问题可以这样复现
+  validations:
+    required: false

@@ -1,15 +1,15 @@
-## 最小树形图
+## 定义
 
 有向图上的最小生成树（Directed Minimum Spanning Tree）称为最小树形图。
 
 常用的算法是朱刘算法（也称 Edmonds 算法），可以在 $O(nm)$ 时间内解决最小树形图问题。
 
-### 流程
+## 过程
 
 1. 对于每个点，选择它入度最小的那条边
 2. 如果没有环，算法终止；否则进行缩环并更新其他点到环的距离。
 
-### 代码
+## 实现
 
 ```cpp
 bool solve() {
@@ -64,6 +64,8 @@ Tarjan 提出了一种能够在 $O(m+n\log n)$ 时间内解决最小树形图问
 
 这里的算法描述以及参考代码基于 Uri Zwick 教授的课堂讲义，更多的细节可以参考原文。
 
+### 过程
+
 Tarjan 的算法分为 **收缩** 与 **伸展** 两个过程。接下来先介绍 **收缩** 的过程。
 
 我们需要假设输入的图是满足强连通的，如果不满足那么就加入 $O(n)$ 条边使其满足，并且这些边的边权是无穷大的。
@@ -86,7 +88,7 @@ Tarjan 的算法分为 **收缩** 与 **伸展** 两个过程。接下来先介�
 
 伸展过程是相对简单的，以原先要求的根节点 $r$ 为起始点，对 $r$ 到收缩树的根上的每一个环进行伸展。再以 $r$ 的祖先结点 $f_r$ 为起始点，将其到根的环展开，直到遍历完所有的结点。
 
-### 代码
+### 实现
 
 ```cpp
 #include <bits/stdc++.h>
@@ -99,19 +101,27 @@ typedef long long ll;
 
 struct UnionFind {
   int fa[maxn << 1];
+
   UnionFind() { memset(fa, 0, sizeof(fa)); }
+
   void clear(int n) { memset(fa + 1, 0, sizeof(int) * n); }
+
   int find(int x) { return fa[x] ? fa[x] = find(fa[x]) : x; }
+
   int operator[](int x) { return find(x); }
 };
+
 struct Edge {
   int u, v, w, w0;
 };
+
 struct Heap {
   Edge *e;
   int rk, constant;
   Heap *lch, *rch;
+
   Heap(Edge *_e) : e(_e), rk(1), constant(0), lch(NULL), rch(NULL) {}
+
   void push() {
     if (lch) lch->constant += constant;
     if (rch) rch->constant += constant;
@@ -119,6 +129,7 @@ struct Heap {
     constant = 0;
   }
 };
+
 Heap *merge(Heap *x, Heap *y) {
   if (!x) return y;
   if (!y) return x;
@@ -132,6 +143,7 @@ Heap *merge(Heap *x, Heap *y) {
     x->rk = 1;
   return x;
 }
+
 Edge *extract(Heap *&x) {
   Edge *r = x->e;
   x->push();
@@ -181,6 +193,7 @@ void contract() {
 }
 
 ll expand(int x, int r);
+
 ll expand_iter(int x) {
   ll r = 0;
   for (int u = nxt[x]; u != x; u = nxt[u]) {
@@ -191,6 +204,7 @@ ll expand_iter(int x) {
   }
   return r;
 }
+
 ll expand(int x, int t) {
   ll r = 0;
   for (; x != t; x = fa[x]) {
@@ -199,6 +213,7 @@ ll expand(int x, int t) {
   }
   return r;
 }
+
 void link(int u, int v, int w) { in[v].push_back({u, v, w, w}); }
 
 int main() {

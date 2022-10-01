@@ -2,11 +2,17 @@ author: Chrogeek, frank-xjh, ChungZH, hsfzLZH1, Marcythm, Planet6174, partychick
 
 ## 欧氏距离
 
+### 二维空间
+
+#### 定义
+
 欧氏距离，一般也称作欧几里得距离。在平面直角坐标系中，设点 $A,B$ 的坐标分别为 $A(x_1,y_1),B(x_2,y_2)$，则两点间的欧氏距离为：
 
 $$
 \left | AB \right | = \sqrt{\left ( x_2 - x_1 \right )^2 + \left ( y_2 - y_1 \right )^2}
 $$
+
+#### 解释
 
 举个例子，若在平面直角坐标系中，有两点 $A(6,5),B(2,2)$，通过公式，我们很容易得到 $A,B$ 两点间的欧氏距离：
 
@@ -19,6 +25,10 @@ $$
 $$
 |P| = \sqrt{x^2+y^2}
 $$
+
+### n 维空间
+
+#### 引入
 
 那么，三维空间中两点的欧氏距离公式呢？我们来观察下图。
 
@@ -33,6 +43,8 @@ $$
 \end{aligned}
 $$
 
+#### 定义
+
 由此可得，三维空间中欧氏距离的距离公式为：
 
 $$
@@ -41,6 +53,8 @@ $$
 |P| = \sqrt{x^2+y^2+z^2}
 \end{gathered}
 $$
+
+#### 解释
 
 [NOIP2017 提高组 奶酪](https://uoj.ac/problem/332) 就运用了这一知识，可以作为欧氏距离的例题。
 
@@ -57,11 +71,15 @@ $$
 
 ## 曼哈顿距离
 
+### 定义
+
 在二维空间内，两个点之间的曼哈顿距离（Manhattan distance）为它们横坐标之差的绝对值与纵坐标之差的绝对值之和。设点 $A(x_1,y_1),B(x_2,y_2)$，则 $A,B$ 之间的曼哈顿距离用公式可以表示为：
 
 $$
 d(A,B) = |x_1 - x_2| + |y_1 - y_2|
 $$
+
+### 解释
 
 观察下图：
 
@@ -87,6 +105,8 @@ d(A,B) &= |x_1 - y_1| + |x_2 - y_2| + \cdot \cdot \cdot + |x_n - y_n|\\
 &= \sum_{i = 1}^{n}|x_i - y_i|
 \end{aligned}
 $$
+
+### 性质
 
 除了公式之外，曼哈顿距离还具有以下数学性质：
 
@@ -128,8 +148,10 @@ $$
 
 ??? note "参考代码"
     ```cpp
+    // C++ Version
     #include <bits/stdc++.h>
     using namespace std;
+    
     int main() {
       int n, x, y, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
       scanf("%d", &n);
@@ -142,10 +164,23 @@ $$
       return 0;
     }
     ```
+    
+    ```python
+    # Python Version
+    minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0
+    n = int(input())
+    for i in range(1, n + 1):
+        x, y = map(lambda x:int(x), input().split())
+        minx = min(minx, x + y); maxx = max(maxx, x + y)
+        miny = min(miny, x - y); maxy = max(maxy, x - y)
+    print(max(maxx - minx, maxy - miny))
+    ```
 
 其实还有第二种做法，那就是把曼哈顿距离转化为切比雪夫距离求解，最后部分会讲到。
 
 ## 切比雪夫距离
+
+### 定义
 
 切比雪夫距离（Chebyshev distance）是向量空间中的一种度量，二个点之间的距离定义为其各坐标数值差的最大值。[^ref1]
 
@@ -155,6 +190,16 @@ $$
 d(A,B) = \max(|x_1 - x_2|, |y_1 - y_2|)
 $$
 
+$n$ 维空间中切比雪夫距离的距离公式可以表示为：
+
+$$
+\begin{aligned}
+d(x,y) &= \max\begin{Bmatrix} |x_1 - y_1|,|x_2 - y_2|,\cdot \cdot \cdot,|x_n - y_n|\end{Bmatrix} \\
+&= \max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in [1, n])\end{aligned}
+$$
+
+### 解释
+
 仍然是这个例子，下图中 $A,B$ 的坐标分别为 $A(25,20),B(10,10)$。
 
 ![Chebyshev-dis](./images/distance-2.svg)
@@ -163,15 +208,9 @@ $$
 d(A,B) = \max(|20 - 10|, |25 - 10|) = \max(10, 15) = 15
 $$
 
-$n$ 维空间中切比雪夫距离的距离公式：
-
-$$
-\begin{aligned}
-d(x,y) &= \max\begin{Bmatrix} |x_1 - y_1|,|x_2 - y_2|,\cdot \cdot \cdot,|x_n - y_n|\end{Bmatrix} \\
-&= \max\begin{Bmatrix} |x_i - y_i|\end{Bmatrix}(i \in [1, n])\end{aligned}
-$$
-
 ## 曼哈顿距离与切比雪夫距离的相互转化
+
+### 过程
 
 首先，我们考虑画出平面直角坐标系上所有到原点的曼哈顿距离为 $1$ 的点。
 
@@ -181,8 +220,8 @@ $$
 
 $$
 \begin{aligned}
-&y = x + 1  &(x \geq 0, y \geq 0) \\
-&y = -x + 1 &(x \leq 0, y \geq 0) \\
+&y = -x + 1 &(x \geq 0, y \geq 0) \\
+&y = x + 1 &(x \leq 0, y \geq 0) \\
 &y = x - 1  &(x \geq 0, y \leq 0)  \\
 &y = -x - 1  &(x \leq 0, y \leq 0) \\
 \end{aligned}
@@ -218,6 +257,8 @@ $$
 将这两幅图对比，我们会神奇地发现：
 
 这 $2$ 个正方形是相似图形。
+
+### 证明
 
 所以，曼哈顿距离与切比雪夫距离之间会不会有联系呢？
 
@@ -276,8 +317,10 @@ $$
 
 ??? note "参考代码"
     ```cpp
+    // C++ Version
     #include <bits/stdc++.h>
     using namespace std;
+    
     int main() {
       int n, x, y, a, b, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
       scanf("%d", &n);
@@ -290,6 +333,18 @@ $$
       printf("%d\n", max(maxx - minx, maxy - miny));
       return 0;
     }
+    ```
+    
+    ```python
+    # Python Version
+    minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0
+    n = int(input())
+    for i in range(1, n + 1):
+        a, b = map(lambda x:int(x), input().split())
+        x = a + b; y = a - b
+        minx = min(minx, x); maxx = max(maxx, x)
+        miny = min(miny, y); maxy = max(maxy, y)
+    print(max(maxx - minx, maxy - miny))
     ```
 
 对比两份代码，我们又能够发现，两种不同的思路，写出来的代码却是完全等价的，是不是很神奇呢？当然，更高深的东西需要大家另行研究。
