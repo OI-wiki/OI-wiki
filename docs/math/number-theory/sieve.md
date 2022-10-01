@@ -190,52 +190,50 @@ for i in range(2, int(sqrt(n)) + 1):
 如果能让每个合数都只被标记一次，那么时间复杂度就可以降到 $O(n)$ 了。
 
 ???+note "实现"
-
-
-```cpp
-// C++ Version
-void init() {
-  for (int i = 2; i < MAXN; ++i) {
-    if (!vis[i]) {
-      pri[cnt++] = i;
-    }
-    for (int j = 0; j < cnt; ++j) {
-      if (1ll * i * pri[j] >= MAXN) break;
-      vis[i * pri[j]] = 1;
-      if (i % pri[j] == 0) {
-        // i % pri[j] == 0
-        // 换言之，i 之前被 pri[j] 筛过了
-        // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
-        // pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
-        // 掉就好了
-        break;
+    ```cpp
+    // C++ Version
+    void init() {
+      for (int i = 2; i < MAXN; ++i) {
+        if (!vis[i]) {
+          pri[cnt++] = i;
+        }
+        for (int j = 0; j < cnt; ++j) {
+          if (1ll * i * pri[j] >= MAXN) break;
+          vis[i * pri[j]] = 1;
+          if (i % pri[j] == 0) {
+            // i % pri[j] == 0
+            // 换言之，i 之前被 pri[j] 筛过了
+            // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
+            // pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
+            // 掉就好了
+            break;
+          }
+        }
       }
     }
-  }
-}
-```
-
-```python
-# Python Version
-def init():
-    for i in range(2, MAXN):
-        if vis[i] == False:
-            pri[cnt] = i
-            cnt = cnt + 1
-        for j in range(0, cnt):
-            if i * pri[j] >= MAXN:
-                break
-            vis[i * pri[j]] = 1
-            if i % pri[j] == 0:
-                """
-                i % pri[j] == 0
-                换言之，i 之前被 pri[j] 筛过了
-                由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
-                pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
-                掉就好了
-                """
-                break
-```
+    ```
+    
+    ```python
+    # Python Version
+    def init():
+        for i in range(2, MAXN):
+            if vis[i] == False:
+                pri[cnt] = i
+                cnt = cnt + 1
+            for j in range(0, cnt):
+                if i * pri[j] >= MAXN:
+                    break
+                vis[i * pri[j]] = 1
+                if i % pri[j] == 0:
+                    """
+                    i % pri[j] == 0
+                    换言之，i 之前被 pri[j] 筛过了
+                    由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
+                    pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
+                    掉就好了
+                    """
+                    break
+    ```
 
 上面的这种 **线性筛法** 也称为 **Euler 筛法**（欧拉筛法）。
 

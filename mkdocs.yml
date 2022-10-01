@@ -217,6 +217,7 @@ nav:
     - 平衡三进制: math/balanced-ternary.md
     - 高精度计算: math/bignum.md
     - 快速幂: math/binary-exponentiation.md
+    - 置换和排列: math/permulation.md
     - 弧度制与坐标系: math/coordinate.md
     - 复数: math/complex.md
     - 数论:
@@ -305,11 +306,11 @@ nav:
       - 群论简介:  math/group-theory.md
       - 置换群: math/permutation-group.md
     - 概率论:
-      - 快速上手: math/expectation.md
       - 基本概念: math/probability/basic-conception.md
       - 条件概率与独立性: math/probability/conditional-probability.md
       - 随机变量: math/probability/random-variable.md
       - 随机变量的数字特征: math/probability/exp-var.md
+      - 概率不等式: math/probability/concentration-inequality.md
     - 博弈论: 
       - 博弈论简介: math/game-theory/intro.md
       - 公平组合游戏: math/game-theory/impartial-game.md
@@ -406,6 +407,7 @@ nav:
       - 动态树分治: graph/dynamic-tree-divide.md
       - AHU 算法: graph/tree-ahu.md
       - 树哈希: graph/tree-hash.md
+      - 树上随机游走: graph/tree-random-walk.md
     - 矩阵树定理: graph/matrix-tree.md
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
