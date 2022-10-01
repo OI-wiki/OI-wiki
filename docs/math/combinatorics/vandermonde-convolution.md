@@ -4,7 +4,7 @@
 
 ## 范德蒙德卷积公式
 
-$$\sum_{i=0}^k\binom{n}{i}\binom{m}{k-i}=\binom{n+m}{k}$$
+$\sum_{i=0}^k\binom{n}{i}\binom{m}{k-i}=\binom{n+m}{k}$
 
 ### 证明
 
@@ -21,7 +21,7 @@ $$
 
 即有：
 
-$$\binom{n+m}{k}=\sum_{r=0}^k\binom{n}{r}\binom{m}{k-r}$$
+$\binom{n+m}{k}=\sum_{r=0}^k\binom{n}{r}\binom{m}{k-r}$
 
 若考虑其组合意义证明：
 
@@ -31,33 +31,33 @@ $$\binom{n+m}{k}=\sum_{r=0}^k\binom{n}{r}\binom{m}{k-r}$$
 
 ### 推论 1 及证明
 
-$$\sum_{i=-r}^{s}\binom{n}{r+i}\binom{m}{s-i}=\binom{n+m}{r+s}$$
+$\sum_{i=-r}^{s}\binom{n}{r+i}\binom{m}{s-i}=\binom{n+m}{r+s}$
 
 证明与原公式证明相似。
 
 ### 推论 2 及证明
 
-$$\sum_{i=1}^n\binom{n}{i}\binom{n}{i-1}=\binom{2n}{n-1}$$
+$\sum_{i=1}^n\binom{n}{i}\binom{n}{i-1}=\binom{2n}{n-1}$
 
 根据基础的组合数学知识推导，有：
 
-$$\sum_{i=1}^n\binom{n}{i}\binom{n}{i-1}=\sum_{i=0}^{n-1}\binom{n}{i+1}\binom{n}{i}=\sum_{i=0}^{n-1}\binom{n}{n-1-i}\binom{n}{i}=\binom{2n}{n-1}$$
+$\sum_{i=1}^n\binom{n}{i}\binom{n}{i-1}=\sum_{i=0}^{n-1}\binom{n}{i+1}\binom{n}{i}=\sum_{i=0}^{n-1}\binom{n}{n-1-i}\binom{n}{i}=\binom{2n}{n-1}$
 
 ### 推论 3 及证明
 
-$$\sum_{i=0}^n\binom{n}{i}^2=\binom{2n}{n}$$
+$\sum_{i=0}^n\binom{n}{i}^2=\binom{2n}{n}$
 
 根据基础的组合数学知识推导，有：
 
-$$\sum_{i=0}^n\binom{n}{i}^2=\sum_{i=0}^n\binom{n}{i}\binom{n}{n-i}=\binom{2n}{n}$$
+$\sum_{i=0}^n\binom{n}{i}^2=\sum_{i=0}^n\binom{n}{i}\binom{n}{n-i}=\binom{2n}{n}$
 
 ### 推论 4 及证明
 
-$$\sum_{i=0}^m\binom{n}{i}\binom{m}{i}=\binom{n+m}{m}$$
+$\sum_{i=0}^m\binom{n}{i}\binom{m}{i}=\binom{n+m}{m}$
 
 根据基础的组合数学知识推导，有：
 
-$$\sum_{i=0}^m\binom{n}{i}\binom{m}{i}=\sum_{i=0}^m\binom{n}{i}\binom{m}{m-i}=\binom{n+m}{m}$$
+$\sum_{i=0}^m\binom{n}{i}\binom{m}{i}=\sum_{i=0}^m\binom{n}{i}\binom{m}{m-i}=\binom{n+m}{m}$
 
 其中 $\binom{n+m}{m}$ 是我们较为熟悉的网格图路径计数的方案数。所以我们可以考虑其组合意义的证明。
 
