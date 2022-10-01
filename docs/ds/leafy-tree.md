@@ -191,7 +191,6 @@ int main() {
       printf("%d\n", pre(a));
     else if (t == 6)
       printf("%d\n", nxt(a));
-    //		debug(root);printf("\n");
   }
   return 0;
 }
