@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
-#define update(u) if (u->lf->size) u->size = u->lf->size + u->rf->size, u->val = u->rf->val
+#define update(u) \
+  if (u->lf->size) u->size = u->lf->size + u->rf->size, u->val = u->rf->val
 #define new_Node(a, b, c, d) (&(*st[cnt++] = Node(a, b, c, d)))
 #define merge(a, b) new_Node(a->size + b->size, b->val, a, b)
 #define ratio 4
