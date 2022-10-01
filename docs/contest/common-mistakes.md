@@ -123,7 +123,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
           // printf 的 '\n' 会刷新 printf 的缓冲区，导致输出错位
           printf("b\n");
           std::cout << "c\n";
-          //程序结束时，cout 的缓冲区才会被输出
+          // 程序结束时，cout 的缓冲区才会被输出
           return 0;
         }
         ```

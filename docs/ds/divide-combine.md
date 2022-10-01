@@ -177,12 +177,12 @@ const int N = 200010;
 
 int n, m, a[N], st1[N], st2[N], tp1, tp2, rt;
 int L[N], R[N], M[N], id[N], cnt, typ[N], bin[20], st[N], tp;
-//本篇代码原题应为 CERC2017 Intrinsic Interval
-// a数组即为原题中对应的排列
-// st1和st2分别两个单调栈，tp1、tp2为对应的栈顶，rt为析合树的根
-// L、R数组表示该析合树节点的左右端点，M数组的作用在析合树构造时有提到
-// id存储的是排列中某一位置对应的节点编号，typ用于标记析点还是合点
-// st为存储析合树节点编号的栈，tp为其栈顶
+// 本篇代码原题应为 CERC2017 Intrinsic Interval
+//  a数组即为原题中对应的排列
+//  st1和st2分别两个单调栈，tp1、tp2为对应的栈顶，rt为析合树的根
+//  L、R数组表示该析合树节点的左右端点，M数组的作用在析合树构造时有提到
+//  id存储的是排列中某一位置对应的节点编号，typ用于标记析点还是合点
+//  st为存储析合树节点编号的栈，tp为其栈顶
 struct RMQ {  // 预处理 RMQ（Max & Min）
   int lg[N], mn[N][17], mx[N][17];
   void chkmn(int& x, int y) {

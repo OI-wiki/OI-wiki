@@ -162,7 +162,7 @@ void contract() {
   }
   mark[1] = true;
   for (int a = 1, b = 1, p; Q[a]; b = a, mark[b] = true) {
-    //寻找最小入边以及其端点，保证无环。
+    // 寻找最小入边以及其端点，保证无环。
     do {
       ed[a] = extract(Q[a]);
       a = id[ed[a]->u];

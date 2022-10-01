@@ -11,7 +11,7 @@
 当当前的结点下标为 `i` 时，父结点、左子结点和右子结点的选择方式如下：
 
 ```cpp
-//这里 floor 函数将实数映射到最小的前导整数。
+// 这里 floor 函数将实数映射到最小的前导整数。
 iParent(i) = floor((i - 1) / 2);
 iLeftChild(i) = 2 * i + 1;
 iRightChild(i) = 2 * i + 2;

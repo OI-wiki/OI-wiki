@@ -39,7 +39,7 @@ int func(传入数值) {
 1.  结构清晰，可读性强。例如，分别用不同的方法实现 [归并排序](merge-sort.md)：
 
     ```cpp
-    //不使用递归的归并排序算法
+    // 不使用递归的归并排序算法
     template <typename T>
     void merge_sort(vector<T> a) {
       int n = a.size();
@@ -48,7 +48,7 @@ int func(传入数值) {
           merge(a, start, start + seg - 1, std::min(start + seg + seg - 1, n - 1));
     }
 
-    //使用递归的归并排序算法
+    // 使用递归的归并排序算法
     template <typename T>
     void merge_sort(vector<T> a, int front, int end) {
       if (front >= end) return;

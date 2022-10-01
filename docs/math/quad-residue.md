@@ -138,18 +138,18 @@ $\therefore x\equiv (a+i)^{\frac{p+1}{2}} \equiv n^{\frac{1}{2}}\pmod p$
     ll n, p;
     ll w;
     
-    struct num {  //建立一个复数域
+    struct num {  // 建立一个复数域
       ll x, y;
     };
     
-    num mul(num a, num b, ll p) {  //复数乘法
+    num mul(num a, num b, ll p) {  // 复数乘法
       num ans = {0, 0};
       ans.x = ((a.x * b.x % p + a.y * b.y % p * w % p) % p + p) % p;
       ans.y = ((a.x * b.y % p + a.y * b.x % p) % p + p) % p;
       return ans;
     }
     
-    ll binpow_real(ll a, ll b, ll p) {  //实部快速幂
+    ll binpow_real(ll a, ll b, ll p) {  // 实部快速幂
       ll ans = 1;
       while (b) {
         if (b & 1) ans = ans * a % p;
@@ -159,7 +159,7 @@ $\therefore x\equiv (a+i)^{\frac{p+1}{2}} \equiv n^{\frac{1}{2}}\pmod p$
       return ans % p;
     }
     
-    ll binpow_imag(num a, ll b, ll p) {  //虚部快速幂
+    ll binpow_imag(num a, ll b, ll p) {  // 虚部快速幂
       num ans = {1, 0};
       while (b) {
         if (b & 1) ans = mul(ans, a, p);
@@ -174,7 +174,7 @@ $\therefore x\equiv (a+i)^{\frac{p+1}{2}} \equiv n^{\frac{1}{2}}\pmod p$
       if (p == 2) return n;
       if (binpow_real(n, (p - 1) / 2, p) == p - 1) return -1;
       ll a;
-      while (1) {  //生成随机数再检验找到满足非二次剩余的a
+      while (1) {  // 生成随机数再检验找到满足非二次剩余的a
         a = rand() % p;
         w = ((a * a % p - n) % p + p) % p;
         if (binpow_real(w, (p - 1) / 2, p) == p - 1) break;

@@ -131,7 +131,7 @@ int pop(int x) {
 int merge(int x, int y) {
   if (!x || !y) return x | y;
   if (t[y].val < t[x].val) swap(x, y);
-  if (rand() & 1)  //随机选择是否交换左右子节点
+  if (rand() & 1)  // 随机选择是否交换左右子节点
     swap(t[x].ls, t[x].rs);
   t[x].ls = merge(t[x].ls, t[y]);
   return x;

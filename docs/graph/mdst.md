@@ -107,7 +107,7 @@
       ll u, v, w;
     } a[MAXN * (MAXN - 1) / 2];
     void solve() {
-      //求图的绝对中心
+      // 求图的绝对中心
       floyd();
       for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= n; j++) {
@@ -117,14 +117,14 @@
         sort(rk[i] + 1, rk[i] + 1 + n, cmp);
       }
       ll P = 0, ansP = INF;
-      //在点上
+      // 在点上
       for (int i = 1; i <= n; i++) {
         if (d[i][rk[i][n]] * 2 < ansP) {
           ansP = d[i][rk[i][n]] * 2;
           P = i;
         }
       }
-      //在边上
+      // 在边上
       int f1 = 0, f2 = 0;
       ll disu = INT_MIN, disv = INT_MIN, ansL = INF;
       for (int i = 1; i <= m; i++) {
@@ -142,7 +142,7 @@
         }
       }
       cout << min(ansP, ansL) / 2 << '\n';
-      //最小路径生成树
+      // 最小路径生成树
       vector<pii> pp;
       for (int i = 1; i <= 501; ++i)
         for (int j = 1; j <= 501; ++j) dd[i][j] = INF;

@@ -130,7 +130,7 @@ Vector Vector::operator+(const Vector& other) {
 Vector Vector::operator-(const Vector& other) {
   return Vector(x - other.x, y - other.y);
 }
-//关于4,5行表示为x,y赋值，具体实现参见后文。
+// 关于4,5行表示为x,y赋值，具体实现参见后文。
 ```
 
 该例定义了一个向量类，并重载了 `* + -` 运算符，并分别代表向量内积，向量加，向量减。

@@ -70,16 +70,16 @@ int main() {
   trr.insert(mp(4, cnt++));
   trr.insert(mp(3, cnt++));
   trr.insert(mp(2, cnt++));
-  //树上元素{{1,0},{2,4},{3,3},{4,2},{5,1}}
+  // 树上元素{{1,0},{2,4},{3,3},{4,2},{5,1}}
   auto it = trr.lower_bound(mp(2, 0));
   trr.erase(it);
-  //树上元素{{1,0},{3,3},{4,2},{5,1}}
+  // 树上元素{{1,0},{3,3},{4,2},{5,1}}
   auto it2 = trr.find_by_order(1);
   cout << (*it2).first << endl;
-  //输出排名0 1 2 3中的排名1的元素的first:1
+  // 输出排名0 1 2 3中的排名1的元素的first:1
   int pos = trr.order_of_key(*it2);
   cout << pos << endl;
-  //输出排名
+  // 输出排名
   decltype(trr) newtr;
   trr.split(*it2, newtr);
   for (auto i = newtr.begin(); i != newtr.end(); ++i) {
@@ -93,7 +93,7 @@ int main() {
   }
   cout << endl;
   cout << newtr.size() << endl;
-  //将newtr树并入trr树，newtr树被删除。
+  // 将newtr树并入trr树，newtr树被删除。
   return 0;
 }
 

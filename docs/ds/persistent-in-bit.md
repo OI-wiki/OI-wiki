@@ -61,7 +61,7 @@ struct segment_tree  // 封装的动态开点权值线段树
       update(rc[o], mid + 1, r, x, v);
   }
 } st;
-//树状数组实现
+// 树状数组实现
 inline int lowbit(int o) { return (o & (-o)); }
 void upd(int o, int x, int v) {
   for (; o <= n; o += lowbit(o)) st.update(st.rt[o], 1, n, x, v);
