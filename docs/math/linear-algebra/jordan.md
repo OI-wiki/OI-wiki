@@ -132,20 +132,20 @@ $$
 定理：设 $\lambda$ 矩阵的秩是 $r$，则 $A(\lambda)$ 一定等价于：
 
 $$
-\begin{pmartix}
+\begin{pmatrix}
 D(\lambda) & 0\\
 0 & 0\\
-\end{pmartix}
+\end{pmatrix}
 $$
 
 其中：
 
 $$
-D(\lambda)=\begin{pmartix}
+D(\lambda)=\begin{pmatrix}
 d_1(\lambda) &  & \\
  & \ddots & \\
  &  & d_r(\lambda)\\
-\end{pmartix}
+\end{pmatrix}
 $$
 
 每一个 $d_i(\lambda)$ 是一个首 $1$ 多项式，并且相邻两个多项式有整除关系 $d_i(\lambda)|d_{i+1}(\lambda)$。
@@ -215,14 +215,14 @@ $$
 矩阵
 
 $$
-\begin{pmartix}
+\begin{pmatrix}
 \lambda & 1 & 0 & \cdots & 0 & 0\\
 0 & \lambda & 1 & \cdots & 0 & 0\\
 0 & 0 & \lambda & \cdots & 0 & 0\\
 \vdots & \vdots & \vdots &  & \vdots & \vdots\\
 0 & 0 & 0 & \cdots & \lambda & 1\\
 0 & 0 & 0 & \cdots & 0 & \lambda\\
-\end{pmartix}
+\end{pmatrix}
 $$
 
 主对角线上的元素都是 $\lambda$，紧邻主对角线上方的元素都是 $1$，其余位置都是 $0$，叫做属于 $\lambda$ 的一个 Jordan 矩阵，或称 Jordan 块。
@@ -232,23 +232,23 @@ $$
 定理：设 $T$ 是 $n$ 维空间 $V$ 的一个变换，$\lambda_1,\cdots,\lambda_k$ 是 $T$ 的一切互不相同的特征值，那么存在一个基，使得 $T$ 关于这个基的矩阵有形状：
 
 $$
-\begin{pmartix}
+\begin{pmatrix}
 B_1 &  &  $ 0\\
  & B_2 &  $ \\
  &  & \ddots $ \\
 0 &  &  $ B_k\\
-\end{pmartix}
+\end{pmatrix}
 $$
 
 其中
 
 $$
-B_i=\begin{pmartix}
+B_i=\begin{pmatrix}
 J_{i1} &  &  $ 0\\
  & J_{i2} &  $ \\
  &  & \ddots $ \\
 0 &  &  $ J_{is_i}\\
-\end{pmartix}
+\end{pmatrix}
 $$
 
 其中 $J_{i1},\cdots,J_{is_i}$ 都是属于 $\lambda_i$ 的 Jordan 块。
@@ -292,33 +292,33 @@ $$
 在每一个循环子空间 $W_{ij}$ 里，取一个循环基并倒序排列，凑成 $V_i$ 的一个基，于是 $T_i$ 关于这个基的矩阵有形状：
 
 $$
-N_i=\begin{pmartix}
+N_i=\begin{pmatrix}
 N_{i1} &  &  $ 0\\
  & N_{i2} &  $ \\
  &  & \ddots $ \\
 0 &  &  $ N_{is_i}\\
-\end{pmartix}
+\end{pmatrix}
 $$
 
 全体 $N_{ij}$ 均为幂零 Jordan 块。于是对于 $V_i$ 上述选取的基，$S_i$ 对应的矩阵是：
 
 $$
-B_i=\begin{pmartix}
+B_i=\begin{pmatrix}
 \lambda_i &  &  $ 0\\
  & \lambda_i &  $ \\
  &  & \ddots $ \\
 0 &  &  $ \lambda_i\\
-\end{pmartix}+\begin{pmartix}
+\end{pmatrix}+\begin{pmatrix}
 N_{i1} &  &  $ 0\\
  & N_{i2} &  $ \\
  &  & \ddots $ \\
 0 &  &  $ N_{is_i}\\
-\end{pmartix}=\begin{pmartix}
+\end{pmatrix}=\begin{pmatrix}
 J_{i1} &  &  $ 0\\
  & J_{i2} &  $ \\
  &  & \ddots $ \\
 0 &  &  $ J_{is_i}\\
-\end{pmartix}
+\end{pmatrix}
 $$
 
 这里 $J_{i1},J_{i2},\cdots,J_{is_i}$ 都是属于 $\lambda_i$ 的 Jordan 块。
@@ -328,12 +328,12 @@ $$
 形如：
 
 $$
-\begin{pmartix}
+\begin{pmatrix}
 J_1 &  &  $ 0\\
  & J_2 &  $ \\
  &  & \ddots $ \\
 0 &  &  $ J_m\\
-\end{pmartix}
+\end{pmatrix}
 $$
 
 的 $n$ 阶矩阵，其中每一个 $J_i$ 都是一个 Jordan 块，叫做一个 Jordan 标准型。
@@ -347,13 +347,13 @@ $$
 定理：对于矩阵 $A$ 的 Jordan 标准型中，每一个 Jordan 块：
 
 $$
-J_i=\begin{pmartix}
+J_i=\begin{pmatrix}
 \lambda_i & 1 &  &  & \\
  & \lambda_i & 1 &  & \\
  &  & \ddots & \ddots & \\
  &  &  & \ddots & 1\\
  &  &  &  & \lambda_i\\
-\end{pmartix}
+\end{pmatrix}
 $$
 
 对应于特征矩阵 $\lambda I-A$ 的一个初等因子 ${(\lambda-\lambda_i)}^{n_i}$，特征矩阵 $\lambda I-A$ 的全体初等因子对应于矩阵 $A$ 的 Jordan 标准型中的全体 Jordan 块。
