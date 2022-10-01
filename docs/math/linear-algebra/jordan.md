@@ -233,10 +233,10 @@ $$
 
 $$
 \begin{pmatrix}
-B_1 &  &  $ 0\\
- & B_2 &  $ \\
- &  & \ddots $ \\
-0 &  &  $ B_k\\
+B_1 &  &  & 0\\
+ & B_2 &  & \\
+ &  & \ddots & \\
+0 &  &  & B_k\\
 \end{pmatrix}
 $$
 
@@ -244,10 +244,10 @@ $$
 
 $$
 B_i=\begin{pmatrix}
-J_{i1} &  &  $ 0\\
- & J_{i2} &  $ \\
- &  & \ddots $ \\
-0 &  &  $ J_{is_i}\\
+J_{i1} &  &  & 0\\
+ & J_{i2} &  & \\
+ &  & \ddots & \\
+0 &  &  & J_{is_i}\\
 \end{pmatrix}
 $$
 
@@ -293,10 +293,10 @@ $$
 
 $$
 N_i=\begin{pmatrix}
-N_{i1} &  &  $ 0\\
- & N_{i2} &  $ \\
- &  & \ddots $ \\
-0 &  &  $ N_{is_i}\\
+N_{i1} &  &  & 0\\
+ & N_{i2} &  & \\
+ &  & \ddots & \\
+0 &  &  & N_{is_i}\\
 \end{pmatrix}
 $$
 
@@ -304,20 +304,20 @@ $$
 
 $$
 B_i=\begin{pmatrix}
-\lambda_i &  &  $ 0\\
- & \lambda_i &  $ \\
- &  & \ddots $ \\
-0 &  &  $ \lambda_i\\
+\lambda_i &  &  & 0\\
+ & \lambda_i &  & \\
+ &  & \ddots & \\
+0 &  &  & \lambda_i\\
 \end{pmatrix}+\begin{pmatrix}
-N_{i1} &  &  $ 0\\
- & N_{i2} &  $ \\
- &  & \ddots $ \\
-0 &  &  $ N_{is_i}\\
+N_{i1} &  &  & 0\\
+ & N_{i2} &  & \\
+ &  & \ddots & \\
+0 &  &  & N_{is_i}\\
 \end{pmatrix}=\begin{pmatrix}
-J_{i1} &  &  $ 0\\
- & J_{i2} &  $ \\
- &  & \ddots $ \\
-0 &  &  $ J_{is_i}\\
+J_{i1} &  &  & 0\\
+ & J_{i2} &  & \\
+ &  & \ddots & \\
+0 &  &  & J_{is_i}\\
 \end{pmatrix}
 $$
 
@@ -329,10 +329,10 @@ $$
 
 $$
 \begin{pmatrix}
-J_1 &  &  $ 0\\
- & J_2 &  $ \\
- &  & \ddots $ \\
-0 &  &  $ J_m\\
+J_1 &  &  & 0\\
+ & J_2 &  & \\
+ &  & \ddots & \\
+0 &  &  & J_m\\
 \end{pmatrix}
 $$
 
