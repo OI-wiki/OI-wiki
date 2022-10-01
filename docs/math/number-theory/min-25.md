@@ -8,7 +8,7 @@ author: Marcythm, Xeonacid
 
 ## 性质
 
-其可以在 $O\left(\frac{n^{\frac{3}{4}}}{\log{n}}\right)$ 或 $\Theta\left(n^{1 - \epsilon}\right)$ 的时间复杂度下解决一类 **积性函数** 的前缀和问题。 
+其可以在 $O\left(\frac{n^{\frac{3}{4}}}{\log{n}}\right)$ 或 $\Theta\left(n^{1 - \epsilon}\right)$ 的时间复杂度下解决一类 **积性函数** 的前缀和问题。
 
 要求：$f(p)$ 是一个关于 $p$ 的项数较少的多项式或可以快速求值；$f(p^{c})$ 可以快速求值。
 

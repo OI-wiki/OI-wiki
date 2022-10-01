@@ -70,7 +70,8 @@
 拆分线段：
 
 ???+note "实现"
-```cpp
+
+````cpp
     void update(int root, int cl, int cr, int l, int r,
                 int u) {  // 定位插入线段完全覆盖到的区间
       if (l <= cl && cr <= r) {
@@ -111,3 +112,5 @@
     ```cpp
     --8<-- "docs/ds/code/li-chao-tree/li-chao-tree_1.cpp"
     ```
+
+````

@@ -74,7 +74,9 @@ bool toposort() {
     S.pop();
     L.push_back(u);
     for (auto v : G[u]) {
-      if (--in[v] == 0) { S.push(v); }
+      if (--in[v] == 0) {
+        S.push(v);
+      }
     }
   }
   if (L.size() == n) {
