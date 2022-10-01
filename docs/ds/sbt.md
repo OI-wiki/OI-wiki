@@ -14,10 +14,12 @@ Size Balanced Tree (SBT) 是由中国 IO 选手陈启峰在 2007 年提出的一
 
 Size Balanced Tree 中任意节点 $N$ 满足如下几条性质：
 
-    size(N.left) >= size(N.right.left)
-    size(N.left) >= size(N.right.right)
-    size(N.right) >= size(N.left.left)
-    size(N.right) >= size(N.left.right)
+```text
+size(N.left) >= size(N.right.left)
+size(N.left) >= size(N.right.right)
+size(N.right) >= size(N.left.left)
+size(N.right) >= size(N.left.right)
+```
 
 使用自然语言可描述为：任意节点的 `size` 不小于其兄弟节点（Sibling）的所有子节点（Nephew）的 `size`.
 
