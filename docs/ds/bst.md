@@ -45,7 +45,7 @@ findmin 和 findmax 函数分别返回最小值和最大值所对应的结点编
       if (!lc[o]) return o;
       return findmin(lc[o]);  // 一直向左儿子跳
     }
-
+    
     int findmax(int o) {
       if (!rc[o]) return o;
       return findmax(rc[o]);  // 一直向右儿子跳
@@ -210,7 +210,7 @@ findmin 和 findmax 函数分别返回最小值和最大值所对应的结点编
 ???+note "实现"
     ```cpp
     
-    int zig(int now) {                           //以now为中心右旋
+    int zig(int now) {                           // 以now为中心右旋
       int lchild = nodes[now].lchild;            // 暂存A的左孩子B节点
       nodes[now].lchild = nodes[lchild].rchild;  // 将A的左孩子指向B的右子树BR
       nodes[lchild].rchild = now;                // 将B的右孩子指针指向A
@@ -219,7 +219,7 @@ findmin 和 findmax 函数分别返回最小值和最大值所对应的结点编
       return lchild;  // 让A的父节点指向最初暂存的B
     }
     
-    int zag(int now) {  //以now为中心左旋
+    int zag(int now) {  // 以now为中心左旋
       int rchild = nodes[now].rchild;
       nodes[now].rchild = nodes[rchild].lchild;
       nodes[rchild].lchild = now;

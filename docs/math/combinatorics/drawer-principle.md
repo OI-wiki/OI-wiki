@@ -1,6 +1,6 @@
 ## 定义
 
-抽屉原理，亦称鸽巢原理（the pigeonhole principle)。 
+抽屉原理，亦称鸽巢原理（the pigeonhole principle)。
 
 它常被用于证明存在性证明和求最坏情况下的解。
 

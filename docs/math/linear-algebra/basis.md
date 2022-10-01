@@ -31,24 +31,29 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
 ### 性质（有限维）
 
-1. 对于有限维线性空间 $V$, 设其维数为 $n$, 则：
+1.  对于有限维线性空间 $V$, 设其维数为 $n$, 则：
+
     1. $V$ 中的任意 $n+1$ 个向量线性相关。
-    1. $V$ 中的任意 $n$ 个线性无关的向量均为 $V$ 的基。
-    1. 若 $V$ 中的任意向量均可被向量组 $a_1,a_2,\dots,a_n$ 线性表出，则其是 $V$ 的一个基。
+
+    2. $V$ 中的任意 $n$ 个线性无关的向量均为 $V$ 的基。
+
+    3.  若 $V$ 中的任意向量均可被向量组 $a_1,a_2,\dots,a_n$ 线性表出，则其是 $V$ 的一个基。
 
         ???+ note "证明"
-            任取 $V$ 中的一组基 $b_1,b_2,\dots,b_n$, 由已知条件, 向量组 $b_1,b_2,\dots,b_n$ 可被 $a_1,a_2,\dots,a_n$ 线性表出, 故
+            任取 $V$ 中的一组基 $b_1,b_2,\dots,b_n$, 由已知条件，向量组 $b_1,b_2,\dots,b_n$ 可被 $a_1,a_2,\dots,a_n$ 线性表出，故
             
-            $$n=\operatorname{rank}\{b_1,b_2,\dots,b_n\}\leq\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq n$$
+            $$
+            n=\operatorname{rank}\{b_1,b_2,\dots,b_n\}\leq\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq n
+            $$
             
             因此 $\operatorname{rank}\{a_1,a_2,\dots,a_n\}=n$
 
-    1. $V$ 中任意线性无关向量组 $a_1,a_2,\dots,a_m$ 均可通过插入一些向量使得其变为 $V$ 的一个基。
+    4. $V$ 中任意线性无关向量组 $a_1,a_2,\dots,a_m$ 均可通过插入一些向量使得其变为 $V$ 的一个基。
 
-1. （子空间维数公式）令 $V_1,V_2$ 是关于 $\Bbb{P}$ 的有限维线性空间，且 $V_1+V_2$ 和 $V_1\cap V_2$ 也是有限维的，则 $\dim V_1+\dim V_2=\dim(V_1+V_2)+\dim(V_1\cap V_2)$
+2.  （子空间维数公式）令 $V_1,V_2$ 是关于 $\Bbb{P}$ 的有限维线性空间，且 $V_1+V_2$ 和 $V_1\cap V_2$ 也是有限维的，则 $\dim V_1+\dim V_2=\dim(V_1+V_2)+\dim(V_1\cap V_2)$
 
     ???+ note "证明"
-        设 $\dim V_1=n_1$, $\dim V_2=n_2$, $\dim(V_1\cap V_2)=m$.
+        设 $\dim V_1=n_1$,$\dim V_2=n_2$,$\dim(V_1\cap V_2)=m$.
         
         取 $V_1\cap V_2$ 的一组基 $a_1,a_2,\dots,a_m$, 将其分别扩充为 $V_1$ 和 $V_2$ 中的基：$a_1,a_2,\dots,a_m,b_1,b_2,\dots,b_{n_1-m}$ 和 $a_1,a_2,\dots,a_m,c_1,c_2,\dots,c_{n_2-m}$.
         
@@ -62,11 +67,11 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
         
         故 $t_1=t_2=\dots=t_{n_2-m}=k_1=k_2=\dots=k_m=0$, 进而 $r_1=r_2=\dots=r_m=s_1=s_2=\dots=s_{n_1-m}=t_1=t_2=\dots=t_{n_2-m}=0$
 
-1. 令 $V_1,V_2$ 是关于 $\Bbb{P}$ 的有限维线性空间，且 $V_1+V_2$ 和 $V_1\cap V_2$ 也是有限维的，则下列诸款等价：
+3.  令 $V_1,V_2$ 是关于 $\Bbb{P}$ 的有限维线性空间，且 $V_1+V_2$ 和 $V_1\cap V_2$ 也是有限维的，则下列诸款等价：
 
     1. $V_1+V_2=V_1\oplus V_2$.
-    1. $\dim V_1+\dim V_2=\dim(V_1+V_2)$.
-    1. 若 $a_1,a_2,\dots,a_n$ 是 $V_1$ 的一组基，$b_1,b_2,\dots,b_m$ 是 $V_2$ 的一组基，则 $a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_m$ 是 $V_1+V_2$ 的一组基。
+    2. $\dim V_1+\dim V_2=\dim(V_1+V_2)$.
+    3. 若 $a_1,a_2,\dots,a_n$ 是 $V_1$ 的一组基，$b_1,b_2,\dots,b_m$ 是 $V_2$ 的一组基，则 $a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_m$ 是 $V_1+V_2$ 的一组基。
 
     ???+ note
         1,3 两条可推广到无限维线性空间中
@@ -75,25 +80,25 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
 考虑 $\Bbb{R}^2$ 的基。
 
-1. 如图
+1.  如图
 
     ![](./images/basis1.png)
 
     $u,v$ 是一组基。
 
-1. 如图
+2.  如图
 
     ![](./images/basis2.png)
 
     $u,v$ 是一组基。
 
-1. 如图
+3.  如图
 
     ![](./images/basis3.png)
 
     $u,v$ 不是一组基，因为 $u=-v$.
 
-1. 如图
+4.  如图
 
     ![](./images/basis4.png)
 
@@ -104,10 +109,10 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 线性基在 OI 中的应用一般包含以下方面：
 
 1. 对给定的向量组，找到一组极大线性无关组（或其张成的线性空间的一组基）。
-1. 向给定的向量组插入某些向量，在插入操作后的向量组中找到一组极大线性无关组（或其张成的线性空间的一组基）。
-1. 对找到的一组极大线性无关组（或基），判断某向量能否被其线性表出
-1. 求极大线性无关组（或基）的秩。
-1. 对找到的一组极大线性无关组（或基），求其张成的线性空间中的最大元/最小元。
+2. 向给定的向量组插入某些向量，在插入操作后的向量组中找到一组极大线性无关组（或其张成的线性空间的一组基）。
+3. 对找到的一组极大线性无关组（或基），判断某向量能否被其线性表出
+4. 求极大线性无关组（或基）的秩。
+5. 对找到的一组极大线性无关组（或基），求其张成的线性空间中的最大元/最小元。
 
 特别地：
 
@@ -153,7 +158,7 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
 高斯消元法构造出的线性基满足如下性质：
 
-- 高斯消元后的矩阵是一个行简化阶梯形矩阵。
+-   高斯消元后的矩阵是一个行简化阶梯形矩阵。
 
     > 该性质包含了贪心法构造的线性基满足的两条性质
 
@@ -227,5 +232,5 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
 ## 参考资料与注释
 
-1. 丘维声, 高等代数（下）. 清华大学出版社.
-1. [Hamel Basis -- from Wolfram MathWorld](https://mathworld.wolfram.com/HamelBasis.html)
+1. 丘维声，高等代数（下）。清华大学出版社。
+2. [Hamel Basis -- from Wolfram MathWorld](https://mathworld.wolfram.com/HamelBasis.html)

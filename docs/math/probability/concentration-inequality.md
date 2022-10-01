@@ -90,7 +90,6 @@ $$
 P\{ X \leq a \} = P\{ e^{tX} > e^{ta} \} \leq \frac{E e^{tX}}{e^{ta}}
 $$
 
-
 ### Poisson 试验之和的 Chernoff 不等式
 
 算法竞赛中涉及的随机变量通常没有那么「一般」，我们可以用概率论中的 Poisson 试验对其进行描述。
@@ -138,31 +137,30 @@ Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望
 
 ??? note "解答"
     记 $X_i$ 表示事件“随机生成的第 $i$ 个点在单位圆内”，则圆内总点数 $X = \sum_{i=1}^{n} X_i$。我们需要找到一个合适的 $n$ 使得
-
+    
     $$
     P\left\{ \left| \frac{4X}{n} - \pi \right| \geq \epsilon \pi \right\} \leq \delta
     $$
-
+    
     上式等价于
-
+    
     $$
     P\left\{ \left| X - \frac{\pi}{4}n \right| \geq \epsilon \cdot \frac{\pi}{4}n  \right\} \leq \delta
     $$
-
+    
     根据 Chernoff 不等式，我们只需令
-
+    
     $$
     2 \exp\left( - \frac{1}{3} \epsilon^2 \cdot \frac{\pi}{4}n \right) \leq \delta
     $$
-
+    
     即可，由此可解得
-
+    
     $$
     n \geq \frac{12}{\pi} \epsilon^{-2} \ln \frac{2}{\delta}
     $$
     
     即当 $n = \Omega(\epsilon^{-2} \ln \frac{1}{\delta})$ 时可以达到需要的准确率。
-
 
 随机算法的正确性或复杂度经常依赖于某些“坏事件”不发生或很少发生。例如，快速排序的复杂度依赖于“所选的 `pivot` 元素几乎是最小或最大元素”这一坏事件较少发生。
 
@@ -174,7 +172,7 @@ Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望
 
 ??? note "解答"
     假如只有一个奖球，则抽取 $M=n\log\epsilon^{-1}$ 次即可保证，因为 $M$ 次全不中的概率
-
+    
     $$
     \Big(1-\dfrac 1n\Big)^{n\log\epsilon^{-1}}\leq e^{\log\epsilon}=\epsilon
     $$

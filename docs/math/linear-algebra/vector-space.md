@@ -12,7 +12,7 @@ author: codewasp942, Tiphereth-A
 
 具体来说，设 $(V,+)$ 是一个阿贝尔群，$\Bbb{P}$ 是一个域。
 
-定义 $\Bbb{P}$ 中的数与 $V$ 中元素的一种代数运算，称为**数乘**：$\cdot:\Bbb{P}\times V\mapsto V$，记为 $p\cdot v$ 或 $pv$，其中 $p$ 在域 $\Bbb{P}$ 中，$v$ 在阿贝尔群 $V$ 中。要求该数乘运算是封闭的，运算结果始终有意义，也在群 $V$ 中。
+定义 $\Bbb{P}$ 中的数与 $V$ 中元素的一种代数运算，称为 **数乘**：$\cdot:\Bbb{P}\times V\mapsto V$，记为 $p\cdot v$ 或 $pv$，其中 $p$ 在域 $\Bbb{P}$ 中，$v$ 在阿贝尔群 $V$ 中。要求该数乘运算是封闭的，运算结果始终有意义，也在群 $V$ 中。
 
 且满足以下条件：
 
@@ -27,7 +27,7 @@ author: codewasp942, Tiphereth-A
 
 称加法群中的零元为零向量，记作 $\mathbf 0$ 或 $\mathbf\theta$。
 
-原阿贝尔群中向量的加减法，与线性空间新定义的数乘，统称为**线性运算**。
+原阿贝尔群中向量的加减法，与线性空间新定义的数乘，统称为 **线性运算**。
 
 ???+note
     为行文方便，下文中：
@@ -51,21 +51,21 @@ author: codewasp942, Tiphereth-A
 对线性空间 $(V,+,\cdot,\Bbb{P})$,
 
 1. $\theta$ 唯一
-1. $\forall\alpha\in V$, $-\alpha$ 唯一
-1. $\exists 0\in\mathbb{P}$, $\forall\alpha\in V$, 有 $0\alpha=\theta$
-1. $\forall k\in\mathbb{P}$, 有 $k\theta=\theta$
-1. $(-1)\alpha=-\alpha,~\forall\alpha\in V$
-1. 无零因子：$\forall\alpha\in V,k\in\mathbb{P}$, 有 $k\alpha=\theta\implies k=0\lor\alpha=\theta$
-1. 加法的消去律：$\forall\alpha,\beta,\gamma\in V$, 有 $\alpha+\beta=\alpha+\gamma\implies\beta=\gamma$
-   
-   > 实际上，加法的消去律是阿贝尔群的性质。
+2. $\forall\alpha\in V$,$-\alpha$ 唯一
+3. $\exists 0\in\mathbb{P}$,$\forall\alpha\in V$, 有 $0\alpha=\theta$
+4. $\forall k\in\mathbb{P}$, 有 $k\theta=\theta$
+5. $(-1)\alpha=-\alpha,~\forall\alpha\in V$
+6. 无零因子：$\forall\alpha\in V,k\in\mathbb{P}$, 有 $k\alpha=\theta\implies k=0\lor\alpha=\theta$
+7.  加法的消去律：$\forall\alpha,\beta,\gamma\in V$, 有 $\alpha+\beta=\alpha+\gamma\implies\beta=\gamma$
+
+    > 实际上，加法的消去律是阿贝尔群的性质。
 
 ### 例子
 
-1. $\Bbb{P}^n$ 关于数域 $\Bbb{P}$ 上的加法和乘法构成 $\Bbb{P}$ 上的一个线性空间。例如 $\Bbb{P}$ 可以是 $\Bbb{R}$, $\Bbb{C}$, $\Bbb{N}_p$($p$ 为素数) 等。
-1. 数域 $\Bbb{P}$ 上的 $n\times m$ 阶矩阵 $\Bbb{P}^{n\times m}$ 关于矩阵的加法和数乘构成 $\Bbb{P}$ 上的一个线性空间。
-1. 数域 $\Bbb{P}$ 上的一元多项式环 $\Bbb{P}[x]$ 关于多项式的加法和数乘构成 $\Bbb{P}$ 上的一个线性空间。
-1. 区间 $[a,b]$ 上的全体连续函数（记作 $C[a,b]$）关于「函数加法」和「值与连续函数的数乘」构成值域上的一个线性空间。
+1. $\Bbb{P}^n$ 关于数域 $\Bbb{P}$ 上的加法和乘法构成 $\Bbb{P}$ 上的一个线性空间。例如 $\Bbb{P}$ 可以是 $\Bbb{R}$,$\Bbb{C}$,$\Bbb{N}_p$($p$ 为素数）等。
+2. 数域 $\Bbb{P}$ 上的 $n\times m$ 阶矩阵 $\Bbb{P}^{n\times m}$ 关于矩阵的加法和数乘构成 $\Bbb{P}$ 上的一个线性空间。
+3. 数域 $\Bbb{P}$ 上的一元多项式环 $\Bbb{P}[x]$ 关于多项式的加法和数乘构成 $\Bbb{P}$ 上的一个线性空间。
+4. 区间 $[a,b]$ 上的全体连续函数（记作 $C[a,b]$）关于「函数加法」和「值与连续函数的数乘」构成值域上的一个线性空间。
 
 ## 相关概念
 
@@ -74,9 +74,9 @@ author: codewasp942, Tiphereth-A
 对线性空间 $(V,+,\cdot,\Bbb{P})$：
 
 1. 称 $a_1,a_2,\dots,a_n\in V$ 为 $V$ 的一个 **向量组**。
-1. 对于 $k_1,k_2,\dots,k_n\in\Bbb{P}$, 称 $\sum_{i=1}^nk_ia_i$ 为向量组 $a_1,a_2,\dots,a_n$ 的一个 **线性组合**。
-1. 若向量 $\beta\in V$ 可以表示为向量组 $a_1,a_2,\dots,a_n$ 的一个线性组合，则称 $\beta$ 能被向量组 $a_1,a_2,\dots,a_n$ **线性表出**。
-1. 对于 $k_1,k_2,\dots,k_n\in\Bbb{P}$, 若向量组 $a_1,a_2,\dots,a_n$ 满足 $\sum_{i=1}^nk_ia_i=\theta\iff k_i=0, i=1,2,\dots,n$, 则称向量组 $a_1,a_2,\dots,a_n$ **线性无关**，否则称向量组 $a_1,a_2,\dots,a_n$ **线性相关**。
+2. 对于 $k_1,k_2,\dots,k_n\in\Bbb{P}$, 称 $\sum_{i=1}^nk_ia_i$ 为向量组 $a_1,a_2,\dots,a_n$ 的一个 **线性组合**。
+3. 若向量 $\beta\in V$ 可以表示为向量组 $a_1,a_2,\dots,a_n$ 的一个线性组合，则称 $\beta$ 能被向量组 $a_1,a_2,\dots,a_n$  **线性表出**。
+4. 对于 $k_1,k_2,\dots,k_n\in\Bbb{P}$, 若向量组 $a_1,a_2,\dots,a_n$ 满足 $\sum_{i=1}^nk_ia_i=\theta\iff k_i=0, i=1,2,\dots,n$, 则称向量组 $a_1,a_2,\dots,a_n$  **线性无关**，否则称向量组 $a_1,a_2,\dots,a_n$  **线性相关**。
 
 规定零向量与任意向量线性相关。
 
@@ -99,10 +99,10 @@ $$
 对线性空间 $(V,+,\cdot,\Bbb{P})$,
 
 1. 若向量组的一部分线性相关，则向量组线性相关。若向量组线性无关，则其任意非空部分均线性无关。简记为：**“大无关、小无关”；“小相关、大相关”**。
-1. 含 $\theta$ 的向量组线性相关。
-1. 向量组线性相关当且仅当向量组的某个向量可以由其余向量线性表出。
-1. 若向量 $\beta$ 可被向量组 $a_1,a_2,\dots,a_n$ 线性表出，则表出方式唯一当且仅当向量组 $a_1,a_2,\dots,a_n$ 线性无关。
-1. 若向量组 $a_1,a_2,\dots,a_n$ 线性无关，则向量 $\beta$ 可被向量组 $a_1,a_2,\dots,a_n$ 线性表出当且仅当向量组 $a_1,a_2,\dots,a_n,\beta$ 线性相关。
+2. 含 $\theta$ 的向量组线性相关。
+3. 向量组线性相关当且仅当向量组的某个向量可以由其余向量线性表出。
+4. 若向量 $\beta$ 可被向量组 $a_1,a_2,\dots,a_n$ 线性表出，则表出方式唯一当且仅当向量组 $a_1,a_2,\dots,a_n$ 线性无关。
+5. 若向量组 $a_1,a_2,\dots,a_n$ 线性无关，则向量 $\beta$ 可被向量组 $a_1,a_2,\dots,a_n$ 线性表出当且仅当向量组 $a_1,a_2,\dots,a_n,\beta$ 线性相关。
 
 ### 极大线性无关组、秩
 
@@ -110,50 +110,54 @@ $$
 
 对线性空间 $(V,+,\cdot,\Bbb{P})$：
 
-1. 对于向量组 $b_1,b_2,\dots,b_m$, 令 $\{a_1,a_2,\dots,a_n\}\subseteq\{b_1,b_2,\dots,b_m\}$, 若有：
+1.  对于向量组 $b_1,b_2,\dots,b_m$, 令 $\{a_1,a_2,\dots,a_n\}\subseteq\{b_1,b_2,\dots,b_m\}$, 若有：
 
-   - 向量组 $a_1,a_2,\dots,a_n$ 线性无关。
-   - $\forall\beta\in\{b_1,b_2,\dots,b_m\}\setminus\{a_1,a_2,\dots,a_n\}$, 向量组 $a_1,a_2,\dots,a_n,\beta$ 线性相关。
+    - 向量组 $a_1,a_2,\dots,a_n$ 线性无关。
+    - $\forall\beta\in\{b_1,b_2,\dots,b_m\}\setminus\{a_1,a_2,\dots,a_n\}$, 向量组 $a_1,a_2,\dots,a_n,\beta$ 线性相关。
 
-   则称向量组 $a_1,a_2,\dots,a_n$ 为向量组 $b_1,b_2,\dots,b_m$ 中的一个 **极大线性无关组**。类似地，可定义线性空间 $V$ 的极大线性无关组。
+    则称向量组 $a_1,a_2,\dots,a_n$ 为向量组 $b_1,b_2,\dots,b_m$ 中的一个 **极大线性无关组**。类似地，可定义线性空间 $V$ 的极大线性无关组。
 
-   规定向量组 $\theta,\theta,\dots,\theta$ 的极大线性无关组为空集，于是全 $0$ 矩阵对应的向量组没有极大线性无关组。
+    规定向量组 $\theta,\theta,\dots,\theta$ 的极大线性无关组为空集，于是全 $0$ 矩阵对应的向量组没有极大线性无关组。
 
-   从向量组删向量的删法不唯一，因此极大线性无关组也不唯一。习惯上从左到右按顺序删。
+    从向量组删向量的删法不唯一，因此极大线性无关组也不唯一。习惯上从左到右按顺序删。
 
-   很巧的是，按顺序删，留下的向量，恰好就是“按行看”观点里面，高斯消元法剩下的行最简形矩阵中，元素 $1$ 所在的列。
+    很巧的是，按顺序删，留下的向量，恰好就是“按行看”观点里面，高斯消元法剩下的行最简形矩阵中，元素 $1$ 所在的列。
 
-   称向量组 $b_1,b_2,\dots,b_m$ 的极大线性无关组的大小为向量组的 **秩**，记作 $\operatorname{rank}\{b_1,b_2,\dots,b_m\}$, 规定 $\operatorname{rank}\{\theta,\theta,\dots,\theta\}=0$。
+    称向量组 $b_1,b_2,\dots,b_m$ 的极大线性无关组的大小为向量组的 **秩**，记作 $\operatorname{rank}\{b_1,b_2,\dots,b_m\}$, 规定 $\operatorname{rank}\{\theta,\theta,\dots,\theta\}=0$。
 
-   于是，向量组的秩的定义与矩阵的秩的定义完全一致。
+    于是，向量组的秩的定义与矩阵的秩的定义完全一致。
 
-1. 若向量组 $a_1,a_2,\dots,a_n$ 能线性表出向量组 $b_1,b_2,\dots,b_m$ 中的所有向量，称向量组 $b_1,b_2,\dots,b_m$ 能被向量组 $a_1,a_2,\dots,a_n$ 线性表出。
-1. 若向量组 $a_1,a_2,\dots,a_n$ 能被向量组 $b_1,b_2,\dots,b_m$ 线性表出，且向量组 $b_1,b_2,\dots,b_m$ 能被向量组 $a_1,a_2,\dots,a_n$ 线性表出，则称两向量组 **等价**，记作 $\{a_1,a_2,\dots,a_n\}\cong\{b_1,b_2,\dots,b_m\}$。
+2. 若向量组 $a_1,a_2,\dots,a_n$ 能线性表出向量组 $b_1,b_2,\dots,b_m$ 中的所有向量，称向量组 $b_1,b_2,\dots,b_m$ 能被向量组 $a_1,a_2,\dots,a_n$ 线性表出。
 
-   向量组的 **等价** 就是向量组张成的空间相同。张成空间相同的向量组相互等价，张成空间不同的向量组不等价。
+3.  若向量组 $a_1,a_2,\dots,a_n$ 能被向量组 $b_1,b_2,\dots,b_m$ 线性表出，且向量组 $b_1,b_2,\dots,b_m$ 能被向量组 $a_1,a_2,\dots,a_n$ 线性表出，则称两向量组 **等价**，记作 $\{a_1,a_2,\dots,a_n\}\cong\{b_1,b_2,\dots,b_m\}$。
 
-   向量组等价比矩阵等价条件更强，不仅要求秩相同，还要求空间完全一样。因此，把两个矩阵 **横向** 拼在一起，秩不能发生变化。
+    向量组的 **等价** 就是向量组张成的空间相同。张成空间相同的向量组相互等价，张成空间不同的向量组不等价。
 
-   矩阵等价仅要求秩相同，因此矩阵等价表示前一个矩阵或空间，可以通过可逆变换，到达后一个矩阵或空间。
+    向量组等价比矩阵等价条件更强，不仅要求秩相同，还要求空间完全一样。因此，把两个矩阵 **横向** 拼在一起，秩不能发生变化。
+
+    矩阵等价仅要求秩相同，因此矩阵等价表示前一个矩阵或空间，可以通过可逆变换，到达后一个矩阵或空间。
 
 #### 性质
 
 对线性空间 $(V,+,\cdot,\Bbb{P})$,
 
-1. 设向量组 $a_1,a_2,\dots,a_n$ 能被线性表出向量组 $b_1,b_2,\dots,b_m$ 线性表出。
-   - 若 $n>m$, 则向量组 $a_1,a_2,\dots,a_n$ 线性相关。
-   - 若向量组 $a_1,a_2,\dots,a_n$ 线性无关，则 $n\leq m$。
-1. 等价的线性无关向量组的大小相等。
+1.  设向量组 $a_1,a_2,\dots,a_n$ 能被线性表出向量组 $b_1,b_2,\dots,b_m$ 线性表出。
+    - 若 $n>m$, 则向量组 $a_1,a_2,\dots,a_n$ 线性相关。
+    - 若向量组 $a_1,a_2,\dots,a_n$ 线性无关，则 $n\leq m$。
+
+2.  等价的线性无关向量组的大小相等。
 
     向量组的任意极大线性无关组的大小均相等。
 
-1. 向量组线性无关当且仅当其秩等于其大小。
-1. 若向量组 $a_1,a_2,\dots,a_n$ 能被线性表出向量组 $b_1,b_2,\dots,b_m$ 线性表出，则 $\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq\operatorname{rank}\{b_1,b_2,\dots,b_m\}$。
-1. 等价的向量组的秩相等。
+3. 向量组线性无关当且仅当其秩等于其大小。
+
+4. 若向量组 $a_1,a_2,\dots,a_n$ 能被线性表出向量组 $b_1,b_2,\dots,b_m$ 线性表出，则 $\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq\operatorname{rank}\{b_1,b_2,\dots,b_m\}$。
+
+5. 等价的向量组的秩相等。
 
 ### 线性包
 
-对于线性空间 $(V,+,\cdot,\Bbb{P})$，$\left\{v=\sum_{i=1}^nk_ia_i:a_i\in V,k_i\in\Bbb{P},i=1,2,\dots,n\right\}$ 也构成一个线性空间，称为由向量组 $a_1,a_2,\dots,a_n$ **张成**的线性空间（或**线性包**），记作 $\operatorname{span}\{a_1,a_2,\dots,a_n\}$。
+对于线性空间 $(V,+,\cdot,\Bbb{P})$，$\left\{v=\sum_{i=1}^nk_ia_i:a_i\in V,k_i\in\Bbb{P},i=1,2,\dots,n\right\}$ 也构成一个线性空间，称为由向量组 $a_1,a_2,\dots,a_n$  **张成** 的线性空间（或 **线性包**），记作 $\operatorname{span}\{a_1,a_2,\dots,a_n\}$。
 
 这里的 $n$ 个向量 $a$ 不一定线性无关。
 
@@ -162,42 +166,43 @@ $$
 对线性空间 $(V,+,\cdot,\Bbb{P})$, 若代数系统 $(V_1,+,\cdot,\Bbb{P})$ 满足：
 
 1. $\varnothing\ne V_1$
-1. $V_1\subseteq V$
-1. $V_1$ 关于 $+,\cdot$ 构成$\mathbb{P}$上的线性空间
+2. $V_1\subseteq V$
+3. $V_1$ 关于 $+,\cdot$ 构成 $\mathbb{P}$ 上的线性空间
 
 则称 $V_1$ 为 $V$ 的线性子空间，简称子空间，记作 $V_1\leq V$。
 
-任何空间 $V$ 都有两个**平凡子空间**：它本身 $V$ 与零子空间。零子空间只含零向量，不含有线性无关的向量。
+任何空间 $V$ 都有两个 **平凡子空间**：它本身 $V$ 与零子空间。零子空间只含零向量，不含有线性无关的向量。
 
 若第 2 条中的 $\subseteq$ 换为 $\subset$, 则称 $V_1$ 为 $V$ 的线性真子空间，记作 $V_1<V$。
 
 不难证明：线性空间 $V$ 的非空子集 $V_1$ 是其线性子空间当且仅当线性运算在 $V_1$ 上封闭，即：
 
-1. $\forall u,v\in V_1$, $u+v\in V_1$
-1. $\forall v\in V_1$, $\forall k\in \Bbb{P}$, $kv\in V_1$
+1. $\forall u,v\in V_1$,$u+v\in V_1$
+2. $\forall v\in V_1$,$\forall k\in \Bbb{P}$,$kv\in V_1$
 
 ### 交、和与直和、直积
 
 对线性空间 $(V_1,+,\cdot,\Bbb{P})$ 与 $(V_2,+,\cdot,\Bbb{P})$：
 
-1. 不难验证：加法和数乘在 $V_1\cap V_2$ 上封闭，故可称 $V_1\cap V_2$ 为线性空间 $V_1$ 和 $V_2$ 的**交**。
-   
+1.  不难验证：加法和数乘在 $V_1\cap V_2$ 上封闭，故可称 $V_1\cap V_2$ 为线性空间 $V_1$ 和 $V_2$ 的 **交**。
+
     类似地，可定义多个线性空间的交 $\bigcap_{i=1}^m V_i$。
 
-1. 若线性空间 $V$ 满足 $V=\{u+v|u\in V_1,v\in V_2\}$, 则称 $V$ 为线性空间 $V_1$ 和 $V_2$ 的**和**，记为 $V=V_1+V_2$。
+2.  若线性空间 $V$ 满足 $V=\{u+v|u\in V_1,v\in V_2\}$, 则称 $V$ 为线性空间 $V_1$ 和 $V_2$ 的 **和**，记为 $V=V_1+V_2$。
 
     可以验证：$V_1+V_2$ 是包含 $V_1\cup V_2$ 的最小子空间。
 
     类似地，可定义多个线性空间的和 $\sum_{i=1}^m V_i$。
 
-1. 设 $V=V_1+V_2$, 若线性空间 $V$ 中的任意元素 $v$, 均只能找到唯一一组向量 $v_1,v_2$ 满足 $v=v_1+v_2$, 则称 $V$ 为线性空间 $V_1$ 和 $V_2$ 的**直和** (direct sum)，记为 $V_1\oplus V_2$。
+3.  设 $V=V_1+V_2$, 若线性空间 $V$ 中的任意元素 $v$, 均只能找到唯一一组向量 $v_1,v_2$ 满足 $v=v_1+v_2$, 则称 $V$ 为线性空间 $V_1$ 和 $V_2$ 的 **直和**(direct sum)，记为 $V_1\oplus V_2$。
 
     类似地，可定义多个线性空间的直和 $\bigoplus_{i=1}^m V_i$。
 
-1. $V_1$ 与 $V_2$ 的 **直积** $V_1\times V_2$ 定义为二者的笛卡儿积关于如下的加法和数乘构成 $\Bbb{P}$ 上的线性空间：
+4.  $V_1$ 与 $V_2$ 的 **直积**  $V_1\times V_2$ 定义为二者的笛卡儿积关于如下的加法和数乘构成 $\Bbb{P}$ 上的线性空间：
+
     1. $+:(V_1\times V_2)\times(V_1\times V_2)\mapsto V_1\times V_2; ((u_1,v_1),(u_2,v_2))\to (u_1+u_2,v_1+v_2)$
-    1. $\cdot:\Bbb{P}\times(V_1\times V_2)\mapsto V_1\times V_2; (k,(u,v))\to (ku,kv)$
-    
+    2. $\cdot:\Bbb{P}\times(V_1\times V_2)\mapsto V_1\times V_2; (k,(u,v))\to (ku,kv)$
+
     类似地，可定义多个线性空间的直积 $\prod_{i=1}^m V_i$。
 
 #### 例子
@@ -211,25 +216,25 @@ $$
 
 则
 
-1. $V_1<V_2<V$, $V_3<V$
-1. $V_2=V_1+V_2$
-1. $V=V_1\oplus V_3=V_2+V_3$
-1. $V_2\oplus V_3=V_4$, $V_2\oplus V_4=V_3$, $V_3\oplus V_4=V_2$
-1. $V_2+V_3\leq V$
+1. $V_1<V_2<V$,$V_3<V$
+2. $V_2=V_1+V_2$
+3. $V=V_1\oplus V_3=V_2+V_3$
+4. $V_2\oplus V_3=V_4$,$V_2\oplus V_4=V_3$,$V_3\oplus V_4=V_2$
+5. $V_2+V_3\leq V$
 
 #### 性质
 
-1. 令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，和集合的交一样，线性空间的交适用如下法则：
+1.  令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，和集合的交一样，线性空间的交适用如下法则：
     1. 交换律：$V_1\cap V_2=V_2\cap V_1$
-    1. 结合律：$V_1\cap(V_2\cap V_3)=(V_1\cap V_2)\cap V_3$
-1. 令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，类似于集合的并，线性空间的和适用如下法则：
+    2. 结合律：$V_1\cap(V_2\cap V_3)=(V_1\cap V_2)\cap V_3$
+2.  令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，类似于集合的并，线性空间的和适用如下法则：
     1. 交换律：$V_1+V_2=V_2+V_1$
-    1. 结合律：$V_1+(V_2+V_3)=(V_1+V_2)+V_3$
-1. 令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，线性空间的交与并有如下关系：
+    2. 结合律：$V_1+(V_2+V_3)=(V_1+V_2)+V_3$
+3.  令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，线性空间的交与并有如下关系：
     1. $V_1\cap (V_2+V_3)\supseteq (V_1\cap V_2)+(V_1\cap V_3)$
-    1. $V_1+(V_2\cap V_3)\subseteq (V_1+V_2)\cap (V_1+V_3)$
-1. $\operatorname{span}\{a_1,a_2,\dots,a_n\}+\operatorname{span}\{b_1,b_2,\dots,b_m\}=\operatorname{span}\{a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_m\}$
-1. 令 $V_1,V_2$ 是关于 $\Bbb{P}$ 的线性空间，则下列诸款等价：
+    2. $V_1+(V_2\cap V_3)\subseteq (V_1+V_2)\cap (V_1+V_3)$
+4. $\operatorname{span}\{a_1,a_2,\dots,a_n\}+\operatorname{span}\{b_1,b_2,\dots,b_m\}=\operatorname{span}\{a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_m\}$
+5.  令 $V_1,V_2$ 是关于 $\Bbb{P}$ 的线性空间，则下列诸款等价：
 
     1. $V_1+V_2=V_1\oplus V_2$
     2. $\exists \beta\in V_1+V_2$, 使得拆分为 $V_1$ 和 $V_2$ 中的向量和的方式唯一（任意 $\to$ 存在）
@@ -241,7 +246,7 @@ $$
         
         $2 \implies 3$：
         
-        令 $\beta=\beta_1+\beta_2$, 其中 $\beta_1\in V_1, \beta_2\in V_2$, 若 $\theta=\alpha_1+\alpha_2$, $\theta\ne\alpha_1\in V_1,\alpha_2\in V_2$, 则 $\beta=\beta+\theta=(\beta_1+\alpha_1)+(\beta_2+\alpha_2)$。
+        令 $\beta=\beta_1+\beta_2$, 其中 $\beta_1\in V_1, \beta_2\in V_2$, 若 $\theta=\alpha_1+\alpha_2$,$\theta\ne\alpha_1\in V_1,\alpha_2\in V_2$, 则 $\beta=\beta+\theta=(\beta_1+\alpha_1)+(\beta_2+\alpha_2)$。
         
         而 $\beta_1\ne\beta_1+\alpha_1$, 与条件矛盾。
         
@@ -251,26 +256,26 @@ $$
         
         $4 \implies 1$：
         
-        若 $V_1+V_2$ 不是直和, 则存在 $\beta\in V_1+V_2$ 使得$\beta=\beta_1+\beta_2=\gamma_1+\gamma_2$, 其中 $\beta_1,\gamma_1\in V_1,\beta_2,\gamma_2\in V_2$ 且 $\beta_1,\beta_2,\gamma_1,\gamma_2)$ 互不相同。
+        若 $V_1+V_2$ 不是直和，则存在 $\beta\in V_1+V_2$ 使得 $\beta=\beta_1+\beta_2=\gamma_1+\gamma_2$, 其中 $\beta_1,\gamma_1\in V_1,\beta_2,\gamma_2\in V_2$ 且 $\beta_1,\beta_2,\gamma_1,\gamma_2)$ 互不相同。
         
         进而 $\theta\ne\beta_1-\gamma_1=\gamma_2-\beta_2\in V_1\cap V_2$, 与条件矛盾。
 
 ### 同构
 
-设 $V,V'$ 均为域 $\Bbb{P}$ 上的线性空间，若存在双射 $\sigma:V\mapsto V'$ 且保持加法与数乘，即 $\forall u,v\in V$, $\forall k\in\Bbb{P}$ 满足：
+设 $V,V'$ 均为域 $\Bbb{P}$ 上的线性空间，若存在双射 $\sigma:V\mapsto V'$ 且保持加法与数乘，即 $\forall u,v\in V$,$\forall k\in\Bbb{P}$ 满足：
 
 1. $\sigma(u+v)=\sigma(u)+\sigma(v)$
-1. $\sigma(ku)=k\sigma(u)$
+2. $\sigma(ku)=k\sigma(u)$
 
 则称 $\sigma$ 是 $V$ 到 $V'$ 的 **同构映射**，此时称 $V$ 与 $V'$ **同构**，记为 $V\cong V'$。
 
 ???+ note
-    若 $\sigma$ 是单射，则可定义**单同态**；若 $\sigma$ 是满射，则可定义**满同态**。
+    若 $\sigma$ 是单射，则可定义 **单同态**；若 $\sigma$ 是满射，则可定义 **满同态**。
 
 #### 性质
 
 1. 域 $\Bbb{P}$ 上的两线性空间同构当且仅当其维数相等。
-2. （1 的推论）域 $\Bbb{P}$ 上的 $n$ 维线性空间与线性空间 $\Bbb{P}^n$ 同构。
+2.  （1 的推论）域 $\Bbb{P}$ 上的 $n$ 维线性空间与线性空间 $\Bbb{P}^n$ 同构。
 
     ???+ note
         本性质说明我们基本上可以将坐标和向量等同看待。
@@ -321,13 +326,13 @@ $$
 
 对于矩阵 $A$，令 $W$ 为方程 $Ax=0$ 的全体解 $x$ 构成的集合，则 $W$ 是一个线性空间，$W$ 的标量域与 $A$ 的元素所在的域相同。
 
-称此时的 $W$ 为矩阵 $A$ 的**核空间**，记作 $N(A)$。
+称此时的 $W$ 为矩阵 $A$ 的 **核空间**，记作 $N(A)$。
 
-矩阵 $A$ 的核空间 $N(A)$ 就是方程 $Ax=0$ 的**解空间**。根据后文基的定义，该方程的**基础解系**就是核空间的基。
+矩阵 $A$ 的核空间 $N(A)$ 就是方程 $Ax=0$ 的 **解空间**。根据后文基的定义，该方程的 **基础解系** 就是核空间的基。
 
 如果矩阵 $A$ 是可逆矩阵，则 $A$ 的核空间 $N(A)$ 只含零向量。
 
-对于矩阵 $A$，它的 $n$ 个列为向量 $\alpha$，称 $n$ 个列向量 $\alpha$ 张成的空间为 $A$ 的**像空间**，或者记作**列空间**，记作：
+对于矩阵 $A$，它的 $n$ 个列为向量 $\alpha$，称 $n$ 个列向量 $\alpha$ 张成的空间为 $A$ 的 **像空间**，或者记作 **列空间**，记作：
 
 $$
 R(A)=\operatorname{span}\{\alpha_1,\alpha_2,\cdots,\alpha_n\}
@@ -341,9 +346,9 @@ $$
 y=k_1\alpha_1+k_2\alpha_2+\cdots+k_n\alpha_n=(\alpha_1,\alpha_2,\cdots,\alpha_n)\begin{pmatrix}k_1\\k_2\\\vdots\\k_n\end{pmatrix}=A\begin{pmatrix}k_1\\k_2\\\vdots\\k_n\end{pmatrix}
 $$
 
-因此像空间 $R(A)$ 就是对于任意向量 $x$，$Ax$ 的**值域**。
+因此像空间 $R(A)$ 就是对于任意向量 $x$，$Ax$ 的 **值域**。
 
-同理可以定义 $A$ 的**行空间**，即 $A$ 的转置的值域 $R(A^T)$。
+同理可以定义 $A$ 的 **行空间**，即 $A$ 的转置的值域 $R(A^T)$。
 
 由于矩阵的行秩等于列秩，行空间的维数也为矩阵的秩，因此转置改变像空间，而不改变像空间的维数。
 
@@ -355,5 +360,5 @@ $$
 
 ## 参考资料与注释
 
-1. 丘维声, 高等代数（下）. 清华大学出版社.
-1. [Vector space](https://en.wikipedia.org/w/index.php?title=Vector_space&oldid=1108546097). _Wikipedia, The Free Encyclopedia_.
+1. 丘维声，高等代数（下）。清华大学出版社。
+2. [Vector space](https://en.wikipedia.org/w/index.php?title=Vector_space&oldid=1108546097).*Wikipedia, The Free Encyclopedia*.
