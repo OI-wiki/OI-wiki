@@ -101,7 +101,7 @@
       double res = calc(s[root], d);
       if (l == r) return {res, s[root]};
       return pmax({res, s[root]}, pmax(query(root << 1, l, mid, d),
-                                      query(root << 1 | 1, mid + 1, r, d)));
+                                       query(root << 1 | 1, mid + 1, r, d)));
     }
     ```
 

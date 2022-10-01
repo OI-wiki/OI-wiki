@@ -128,7 +128,7 @@ void splay(int x) {
 
 因为 zig 和 zag 是 **对称** 操作，我们只需要对 zig，zig−zig，zig−zag 操作分析复杂度。采用 [势能分析](../basic/complexity.md#势能分析)，定义一个 $n$ 个节点的 splay 树进行了 $m$ 次 splay 步骤。可记 $w(x)=[\log(\operatorname{size}(x))]$, 定义势能函数为 $\varphi =\sum w(x)$,$\varphi (0) \leq n \log n$，在第 $i$ 次操作后势能为 $\varphi (i)$, 则我们只需要求出初始势能和每次的势能变化量的和即可。
 
-1. **zig**: 势能的变化量为 
+1. **zig**: 势能的变化量为
 
 $$
 \begin{aligned}
@@ -137,7 +137,7 @@ $$
 \end{aligned}
 $$
 
-2. **zig-zig**:  势能变化量为 
+2. **zig-zig**:  势能变化量为
 
 $$
 \begin{aligned}
@@ -147,7 +147,7 @@ $$
 \end{aligned}
 $$
 
-3. **zig-zag**:  势能变化量为 
+3. **zig-zag**:  势能变化量为
 
 $$
 \begin{aligned}
@@ -158,7 +158,7 @@ $$
 \end{aligned}
 $$
 
-由此可见，三种 splay 步骤的势能全部可以缩放为 $\leq 3(w'(x)−w(x))$. 令 $w^{(n)}(x)=w'^{(n-1)}(x)$, $w^{(0)}(x)=w(x)$, 假设 splay 操作一次依次访问了 $x_{1}, x_{2}, \cdots, x_{n}$, 最终 $x_{1}$ 成为根节点，我们可以得到：
+由此可见，三种 splay 步骤的势能全部可以缩放为 $\leq 3(w'(x)−w(x))$. 令 $w^{(n)}(x)=w'^{(n-1)}(x)$,$w^{(0)}(x)=w(x)$, 假设 splay 操作一次依次访问了 $x_{1}, x_{2}, \cdots, x_{n}$, 最终 $x_{1}$ 成为根节点，我们可以得到：
 
 $$
 \begin{aligned}
@@ -340,6 +340,7 @@ int nxt() {
 - 否则，合并它的左右两棵子树即可。
 
 #### 实现
+
 ```cpp
 void del(int k) {
   rk(k);

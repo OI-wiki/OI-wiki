@@ -6,13 +6,13 @@ $$
 ax\equiv b\pmod n
 $$
 
-的方程称为 **线性同余方程**（Congruence Equation）。其中，$a$、$b$和$n$为给定整数，$x$为未知数。需要从区间$[0, n-1]$中求解$x$，当解不唯一时需要求出全体解。
+的方程称为 **线性同余方程**（Congruence Equation）。其中，$a$、$b$ 和 $n$ 为给定整数，$x$ 为未知数。需要从区间 $[0, n-1]$ 中求解 $x$，当解不唯一时需要求出全体解。
 
 ## 用逆元求解
 
-首先考虑简单的情况，当$a$和$n$互素（coprime或relatively prime）时，即 $\gcd(a, n) = 1$。
+首先考虑简单的情况，当 $a$ 和 $n$ 互素（coprime 或 relatively prime）时，即 $\gcd(a, n) = 1$。
 
-此时可以计算$a$的逆元，并将方程的两边乘以$a$的逆元，可以得到唯一解。
+此时可以计算 $a$ 的逆元，并将方程的两边乘以 $a$ 的逆元，可以得到唯一解。
 
 ### 证明
 
@@ -20,27 +20,27 @@ $$
 x\equiv ba ^ {- 1} \pmod n
 $$
 
-接下来考虑 $a$ 和 $n$ 不互素（not coprime），即$\gcd(a, n) \ne 1$的情况。此时不一定有解。例如，$2x\equiv 1\pmod 4$没有解。
+接下来考虑 $a$ 和 $n$ 不互素（not coprime），即 $\gcd(a, n) \ne 1$ 的情况。此时不一定有解。例如，$2x\equiv 1\pmod 4$ 没有解。
 
-设$g = \gcd(a, n)$，即$a$和$n$的最大公约数，其中$a$和$n$在本例中大于1。
+设 $g = \gcd(a, n)$，即 $a$ 和 $n$ 的最大公约数，其中 $a$ 和 $n$ 在本例中大于 1。
 
-当$b$不能被$g$整除时无解。此时，对于任意的$x$，方程$ax\equiv b\pmod n$的左侧始终可被$g$整除，而右侧不可被$g$整除，因此无解。
+当 $b$ 不能被 $g$ 整除时无解。此时，对于任意的 $x$，方程 $ax\equiv b\pmod n$ 的左侧始终可被 $g$ 整除，而右侧不可被 $g$ 整除，因此无解。
 
-如果$g$整除$b$，则通过将方程两边$a$、$b$和$n$除以$g$，得到一个新的方程：
+如果 $g$ 整除 $b$，则通过将方程两边 $a$、$b$ 和 $n$ 除以 $g$，得到一个新的方程：
 
 $$
 a^{'}x\equiv b^{'} \pmod{n^{'}}
 $$
 
-其中$a^{'}$和$n^{'}$已经互素，这种情形已经解决，于是得到$x^{'}$作为$x$的解。
+其中 $a^{'}$ 和 $n^{'}$ 已经互素，这种情形已经解决，于是得到 $x^{'}$ 作为 $x$ 的解。
 
-很明显，$x^{'}$也将是原始方程的解。这不是唯一的解。可以看出，原始方程有如下$g$个解：
+很明显，$x^{'}$ 也将是原始方程的解。这不是唯一的解。可以看出，原始方程有如下 $g$ 个解：
 
 $$
 x_i\equiv (x^{'} + i\cdot n^{'}) \pmod n \quad \text{for } i = 0 \ldots g-1
 $$
 
-总之，线性同余方程的**解的数量**等于$g = \gcd(a, n)$或等于$0$。
+总之，线性同余方程的 **解的数量** 等于 $g = \gcd(a, n)$ 或等于 $0$。
 
 ## 用扩展欧几里得算法求解
 
@@ -52,7 +52,7 @@ $$
 ax + nk = b
 $$
 
-其中$x$和$k$是未知数。这两个方程是等价的，有整数解的充要条件为 $\gcd(a,n) \mid b$。
+其中 $x$ 和 $k$ 是未知数。这两个方程是等价的，有整数解的充要条件为 $\gcd(a,n) \mid b$。
 
 应用扩展欧几里德算法可以求解该线性不定方程。根据定理 1，对于线性不定方程 $ax+nk=b$，可以先用扩展欧几里得算法求出一组 $x_0,k_0$，也就是 $ax_0+nk_0=\gcd(a,n)$，然后两边同时除以 $\gcd(a,n)$，再乘 $b$。就得到了方程
 
@@ -138,8 +138,8 @@ $$
       return 1
     ```
 
-**本页面主要译自博文[Модульное линейное уравнение первого порядка](http://e-maxx.ru/algo/diofant_1_equation)与其英文翻译版[Linear Congruence Equation](https://cp-algorithms.com/algebra/linear_congruence_equation.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+**本页面主要译自博文 [Модульное линейное уравнение первого порядка](http://e-maxx.ru/algo/diofant_1_equation) 与其英文翻译版 [Linear Congruence Equation](https://cp-algorithms.com/algebra/linear_congruence_equation.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
 
 ### 习题
-    
+
 [「NOIP2012」同余方程](https://loj.ac/problem/2605)

@@ -159,7 +159,7 @@ $1000$ 对应的十进制是 $8$，所以 $c_{88}$ 一共管理 $8$ 个 $a$ 数�
     
     long long getsum1(int l, int r) {
       return (r + 1ll) * getsum(t1, r) - 1ll * l * getsum(t1, l - 1) -
-            (getsum(t2, r) - getsum(t2, l - 1));
+             (getsum(t2, r) - getsum(t2, l - 1));
     }
     ```
     
