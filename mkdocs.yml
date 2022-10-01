@@ -110,7 +110,7 @@ nav:
         - pb_ds 简介: lang/pb-ds/index.md
         - 堆: lang/pb-ds/pq.md
         - 平衡树: lang/pb-ds/tree.md
-    - C 与 C++ 区别: lang/c-cpp.md
+    - C++ 与其他常用语言的区别: lang/cpp-other-langs.md
     - Pascal 转 C++ 急救: lang/pas-cpp.md
     - Python 速成: lang/python.md
     - Java 速成: lang/java.md
@@ -213,11 +213,11 @@ nav:
       - 乘法逆元: math/inverse.md
       - 线性同余方程: math/linear-equation.md
       - 中国剩余定理: math/crt.md
-      - 二次剩余: math/quad-residue.md
+      - 二次剩余: math/number-theory/quad-residue.md
       - BSGS: math/bsgs.md
       - 原根: math/primitive-root.md
       - 卢卡斯定理: math/lucas.md
-      - 莫比乌斯反演: math/mobius.md
+      - 莫比乌斯反演: math/number-theory/mobius.md
       - 杜教筛: math/du.md
       - Min_25 筛: math/min-25.md
       - 洲阁筛: math/zhou.md
@@ -316,7 +316,7 @@ nav:
       - 线段树套线段树: ds/seg-in-seg.md
       - 平衡树套线段树: ds/seg-in-balanced.md
       - 线段树套平衡树: ds/balanced-in-seg.md
-      - 树状数组套主席树: ds/persistent-in-bit.md
+      - 树状数组套权值线段树: ds/seg-in-bit.md
       - 分块套树状数组: ds/bit-in-block-array.md
     - K-D Tree: ds/kdt.md
     - 珂朵莉树: ds/odt.md
