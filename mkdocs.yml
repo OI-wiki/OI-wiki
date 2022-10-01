@@ -289,6 +289,7 @@ nav:
       - Entringer Number: math/combinatorics/entringer.md
       - Eulerian Number: math/combinatorics/eulerian.md
       - 分拆数: math/combinatorics/partition.md
+      - 范德蒙德卷积: math/combinatorics/vandermonde-convolution.md
     - 线性代数:
       - 线性代数简介: math/linear-algebra/index.md
       - 向量: math/linear-algebra/vector.md
