@@ -191,6 +191,7 @@ for i in range(2, int(sqrt(n)) + 1):
 
 ???+note "实现"
 
+
 ```cpp
 // C++ Version
 void init() {

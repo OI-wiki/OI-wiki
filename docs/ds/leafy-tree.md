@@ -205,4 +205,4 @@ int main() {
 
 - [WBLT 学习笔记](https://shiroi-he.gitee.io/blog/2020/07/23/WBLT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/)
 - [Leafy Tree](https://www.cnblogs.com/onionQAQ/p/10979867.html)
-- [Luogu P2286 \[HNOI2004\] 宠物收养场](https://www.programminghunter.com/article/64011263567/)
+- [Luogu P2286\[HNOI2004\]宠物收养场](https://www.programminghunter.com/article/64011263567/)

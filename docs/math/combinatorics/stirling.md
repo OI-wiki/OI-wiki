@@ -2,6 +2,7 @@
 
 ??? note "为什么先介绍第二类斯特林数"
 
+
 虽然被称作「第二类」，第二类斯特林数却在斯特林的相关著作和具体数学中被首先描述，同时也比第一类斯特林数常用得多。
 
 **第二类斯特林数**（斯特林子集数）$\begin{Bmatrix}n\\ k\end{Bmatrix}$，也可记做 $S(n,k)$，表示将 $n$ 个两两不同的元素，划分为 $k$ 个互不区分的非空子集的方案数。
@@ -671,6 +672,7 @@ int main() {
 那么 $\begin{Bmatrix}i\\k\end{Bmatrix}=\dfrac{\left[\dfrac{x^i}{i!}\right]F^k(x)}{k!}$，$O(n\log n)$ 计算多项式幂即可。实际使用时比 $O(n\log n)$ 的方法 1 要慢。
 
 ???+note "实现"
+
 
 ```cpp
 int main() {

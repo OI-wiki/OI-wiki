@@ -329,7 +329,7 @@ bool remove(NodePtr& node, K key, NodeConsumer action) {
 
 ### 查询排名
 
-由于 SBT 节点中储存了子树节点个数的信息，因此可以在 $O(\log n)$ 的时间复杂度下查询某个 `key` 的排名（或者大于/小于某个 `key` 的节点个数）. 示例代码如下：
+由于 SBT 节点中储存了子树节点个数的信息，因此可以在 $O(\log n)$ 的时间复杂度下查询某个 `key` 的排名（或者大于/小于某个 `key` 的节点个数）。示例代码如下：
 
 ```c++
 USize countLess(ConstNodePtr node, K key, bool countEqual = false) const {

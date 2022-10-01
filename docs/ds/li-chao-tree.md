@@ -71,6 +71,7 @@
 
 ???+note "实现"
 
+
 ````cpp
     void update(int root, int cl, int cr, int l, int r,
                 int u) {  // 定位插入线段完全覆盖到的区间
