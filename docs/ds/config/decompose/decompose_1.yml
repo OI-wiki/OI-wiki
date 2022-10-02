@@ -1,0 +1,10 @@
+id: oi-wiki:ds/decompose-1
+name: Decompose
+solution:
+  cpp: docs/ds/code/decompose/decompose_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/decompose/decompose_1.ans
+  input: docs/ds/examples/decompose/decompose_1.in
+version: 1000

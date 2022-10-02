@@ -1,0 +1,10 @@
+id: oi-wiki:ds/sparse-table-1
+name: Sparse Table
+solution:
+  cpp: docs/ds/code/sparse-table/sparse-table_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/sparse-table/sparse-table_1.ans
+  input: docs/ds/examples/sparse-table/sparse-table_1.in
+version: 1000

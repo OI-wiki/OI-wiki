@@ -1,0 +1,10 @@
+id: oi-wiki:misc/hoverline-1
+name: Hoverline
+solution:
+  cpp: docs/misc/code/hoverline/hoverline_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/misc/examples/hoverline/hoverline_1.ans
+  input: docs/misc/examples/hoverline/hoverline_1.in
+version: 1000

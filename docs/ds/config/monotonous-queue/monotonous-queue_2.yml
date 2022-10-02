@@ -1,0 +1,10 @@
+id: oi-wiki:ds/monotonous-queue-2
+name: Monotonous Queue
+solution:
+  cpp: docs/ds/code/monotonous-queue/monotonous-queue_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/monotonous-queue/monotonous-queue_2.ans
+  input: docs/ds/examples/monotonous-queue/monotonous-queue_2.in
+version: 1000

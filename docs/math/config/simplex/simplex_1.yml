@@ -1,0 +1,10 @@
+id: oi-wiki:math/simplex-1
+name: Simplex
+solution:
+  cpp: docs/math/code/simplex/simplex_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/examples/simplex/simplex_1.ans
+  input: docs/math/examples/simplex/simplex_1.in
+version: 1000

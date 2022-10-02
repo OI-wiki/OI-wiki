@@ -1,0 +1,10 @@
+id: oi-wiki:graph/cut-1
+name: Cut
+solution:
+  cpp: docs/graph/code/cut/cut_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/examples/cut/cut_1.ans
+  input: docs/graph/examples/cut/cut_1.in
+version: 1000

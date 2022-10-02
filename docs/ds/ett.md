@@ -206,6 +206,7 @@ void Delete(int u, int v) {
 
 点 $u$ 和点 $v$ 连通，当且仅当两个点属于同一棵树 $T$，即 $(u, u)$ 和 $(v, v)$ 属于 $\operatorname{ETR}(T)$，这可以根据点 $u$ 和点 $v$ 对应的 Treap 节点所在的 Treap 的根是否相同判断。
 
+
 ### 例题 [P2147 \[SDOI2008\] 洞穴勘测](https://www.luogu.com.cn/problem/P2147)
 
 维护连通性的模板题。

@@ -1,0 +1,10 @@
+id: oi-wiki:string/trie-2
+name: Trie
+solution:
+  cpp: docs/string/code/trie/trie_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/string/examples/trie/trie_2.ans
+  input: docs/string/examples/trie/trie_2.in
+version: 1000

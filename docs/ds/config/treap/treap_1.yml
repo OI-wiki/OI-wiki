@@ -1,0 +1,10 @@
+id: oi-wiki:ds/treap-1
+name: Treap
+solution:
+  cpp: docs/ds/code/treap/treap_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/treap/treap_1.ans
+  input: docs/ds/examples/treap/treap_1.in
+version: 1000

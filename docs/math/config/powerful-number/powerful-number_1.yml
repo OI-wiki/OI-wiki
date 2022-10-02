@@ -1,0 +1,10 @@
+id: oi-wiki:math/powerful-number-1
+name: Powerful Number
+solution:
+  cpp: docs/math/code/powerful-number/powerful-number_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/examples/powerful-number/powerful-number_1.ans
+  input: docs/math/examples/powerful-number/powerful-number_1.in
+version: 1000

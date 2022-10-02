@@ -1,10 +1,10 @@
 id: oi-wiki:search/astar-1
 name: A Star Search
 solution:
-  cpp: code/astar_1.cpp
+  cpp: docs/search/code/astar/astar_1.cpp
 target:
-- '!test'
+- 'test'
 testcases:
-  answer: examples/astar/astar_1.out
-  input: examples/astar/astar_1.in
+  answer: docs/search/examples/astar/astar_1.ans
+  input: docs/search/examples/astar/astar_1.in
 version: 1000

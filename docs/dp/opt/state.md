@@ -51,7 +51,7 @@ $$
 设 $f_{s,i}$ 表示从点 $1$ 出发，仅经过点集 $s$ 中的点能否到达点 $i$。记 $g$ 为原图的邻接矩阵。则有
 
 $$
-f_{s, i} = \bigcap_{j\in s, j\neq i}f_{s - \left\{i\right\}, j}\cap g_{j, i} \left(i\in s\right)
+f_{s, i} = \bigvee_{j\in s, j\neq i}f_{s \setminus \{i\}, j}\wedge g_{j, i} \left(i\in s\right)
 $$
 
 时间复杂度 $O(n^2 \times 2^n)$，写得好看或许能过，但是并不优美。
@@ -62,4 +62,4 @@ $$
 
 我们可以考虑对于每个状态 $s$ 将 $f_{s,1},f_{s,2},\dots,f_{s,n}$ 压成一个 `int`，发现我们可以将邻接矩阵同样压缩后进行 $O(1)$ 转移。
 
-时间复杂度 $O(n\times 2^n)$, 可以通过这道题。
+时间复杂度 $O(n^2/w\times 2^n)$, 可以通过这道题，其中 $w$ 为 `int` 的位数。

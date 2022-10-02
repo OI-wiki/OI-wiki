@@ -1,0 +1,10 @@
+id: oi-wiki:string/seq-automaton-1
+name: Seq Automaton
+solution:
+  cpp: docs/string/code/seq-automaton/seq-automaton_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/string/examples/seq-automaton/seq-automaton_1.ans
+  input: docs/string/examples/seq-automaton/seq-automaton_1.in
+version: 1000
