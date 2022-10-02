@@ -122,6 +122,7 @@ struct QueryTree {
       if (q.united) dsu.rollback();
     }
   }
+
   vector<int> solve() {
     vector<int> ans(T);
     dfs(1, 0, T - 1, ans);
