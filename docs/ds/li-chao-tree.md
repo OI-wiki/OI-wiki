@@ -111,5 +111,3 @@
     ```cpp
     --8<-- "docs/ds/code/li-chao-tree/li-chao-tree_1.cpp"
     ```
-
-````
