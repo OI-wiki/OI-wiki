@@ -121,7 +121,7 @@ Node* meld(Node* x, Node* y) {
   if (x == nullptr) return y;
   if (y == nullptr) return x;
   if (x->v > y->v) std::swap(x, y);
-  if (x->child != nullptr) {  //新增：维护父指针
+  if (x->child != nullptr) {  // 新增：维护父指针
     x->child->father = y;
   }
   y->sibling = x->child;
@@ -136,10 +136,10 @@ Node* meld(Node* x, Node* y) {
 ```cpp
 Node *merges(Node *x) {
   if (x == nullptr) return nullptr;
-  x->father = nullptr;  //新增：维护父指针
+  x->father = nullptr;  // 新增：维护父指针
   if (x->sibling == nullptr) return x;
   Node *y = x->sibling, *c = y->sibling;
-  y->father = nullptr;  //新增：维护父指针
+  y->father = nullptr;  // 新增：维护父指针
   x->sibling = y->sibling = nullptr;
   return meld(merges(c), meld(x, y));
 }
