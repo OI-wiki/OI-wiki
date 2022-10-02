@@ -23,29 +23,27 @@ author: LeoJacob, Marcythm, minghu6
 Z 函数的朴素算法复杂度为 $O(n^2)$：
 
 ???+note "实现"
-
-
-```cpp
-// C++ Version
-vector<int> z_function_trivial(string s) {
-  int n = (int)s.length();
-  vector<int> z(n);
-  for (int i = 1; i < n; ++i)
-    while (i + z[i] < n && s[z[i]] == s[i + z[i]]) ++z[i];
-  return z;
-}
-```
-
-```python
-# Python Version
-def z_function_trivial(s):
-    n = len(s)
-    z = [0] * n
-    for i in range(1, n):
-        while i + z[i] < n and s[z[i]] == s[i + z[i]]:
-            z[i] += 1
-    return z
-```
+    ```cpp
+    // C++ Version
+    vector<int> z_function_trivial(string s) {
+      int n = (int)s.length();
+      vector<int> z(n);
+      for (int i = 1; i < n; ++i)
+        while (i + z[i] < n && s[z[i]] == s[i + z[i]]) ++z[i];
+      return z;
+    }
+    ```
+    
+    ```python
+    # Python Version
+    def z_function_trivial(s):
+        n = len(s)
+        z = [0] * n
+        for i in range(1, n):
+            while i + z[i] < n and s[z[i]] == s[i + z[i]]:
+                z[i] += 1
+        return z
+    ```
 
 ## 线性算法
 
@@ -163,6 +161,7 @@ def z_function(s):
 - [LA 6439 - Pasti Pas!](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=588&page=show_problem&problem=4450)
 - [Codechef - Chef and Strings](https://www.codechef.com/problems/CHSTR)
 - [Codeforces - Prefixes and Suffixes](http://codeforces.com/problemset/problem/432/D)
+- [Leetcode 2223 - Sum of Scores of Built Strings](https://leetcode.com/problems/sum-of-scores-of-built-strings/)
 
 * * *
 

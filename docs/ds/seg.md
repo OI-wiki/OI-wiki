@@ -333,6 +333,53 @@ def getsum(l, r, s, t, p):
     return sum
 ```
 
+### 动态开点线段树
+
+前面讲到堆式储存的情况下，需要给线段树开 $4n$ 大小的数组。为了节省空间，我们可以不一次性建好树，而是在最初只建立一个根结点代表整个区间。当我们需要访问某个子区间时，才建立代表这个区间的子结点。这样我们不再使用 $2p$ 和 $2p+1$ 代表 $p$ 结点的儿子，而是用 $\text{ls}$ 和 $\text{rs}$ 记录儿子的编号。总之，动态开点线段树的核心思想就是：**结点只有在有需要的时候才被创建**。
+
+单次操作的时间复杂度是不变的，为 $O(\log n)$。由于每次操作都有可能创建并访问全新的一系列结点，因此 $m$ 次单点操作后结点的数量规模是 $O(m\log n)$。最多也只需要 $2n-1$ 个结点，没有浪费。
+
+单点修改：
+
+```cpp
+// root 表示整棵线段树的根结点；cnt 表示当前结点个数
+int n, cnt, root;
+int sum[n * 2], ls[n * 2], rs[n * 2];
+
+// 用法：update(root, 1, n, x, f); 其中 x 为待修改节点的编号
+void update(int& p, int s, int t, int x, int f) { // 引用传参
+  if (!p) p = ++cnt;  // 当结点为空时，创建一个新的结点
+  if (s == t) {
+    sum[p] += f;
+    return;
+  }  
+  int m = s + ((t - s) >> 1);
+  if (x <= m)
+    update(ls[p], s, m, x, f);
+  else
+    update(rs[p], m + 1, t, x, f);
+  sum[p] = sum[ls[p]] + sum[rs[p]];  // pushup
+}
+```
+
+区间询问：
+
+```cpp
+// 用法：query(root, 1, n, l, r);
+int query(int p, int s, int t, int l, int r) {
+  if (!p) return 0;  // 如果结点为空，返回 0
+  if (s >= l && t <= r) return sum[p];
+  int m = s + ((t - s) >> 1), ans = 0;
+  if (l <= m)
+    ans += query(ls[p], s, m, l, r);
+  if (r > m)
+    ans += query(rs[p], m + 1, t, l, r);
+  return ans;
+}
+```
+
+区间修改也是一样的，不过下放标记时要注意如果缺少孩子，就直接创建一个新的孩子。或者使用标记永久化技巧。
+
 ## 一些优化
 
 这里总结几个线段树的优化：

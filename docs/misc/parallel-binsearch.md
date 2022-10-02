@@ -1,4 +1,4 @@
-## 引子
+## 引入
 
 在信息学竞赛中，有一部分题可以使用二分的办法来解决。但是当这种题目有多次询问且每次询问我们对每个查询都直接二分，可能会收获一个 TLE。这时候我们就会用到整体二分。整体二分的主体思路就是把多个查询一起解决。（所以这是一个离线算法）
 
@@ -16,7 +16,7 @@
 >
 >     ——许昊然《浅谈数据结构题几个非经典解法》
 
-## 思路
+## 解释
 
 记 $[l,r]$ 为答案的值域，$[L,R]$ 为答案的定义域。（也就是说求答案时仅考虑下标在区间 $[L,R]$ 内的操作和询问，这其中询问的答案在 $[l,r]$ 内）
 
@@ -27,7 +27,7 @@
 
 需要注意的是，在整体二分过程中，若当前处理的值域为 $[l,r]$，则此时最终答案范围不在 $[l,r]$ 的询问会在其他时候处理。
 
-## 详解
+## 过程
 
 注：
 
@@ -78,23 +78,24 @@ void solve(int l, int r, vector<Query> q)
 
 参考代码如下
 
-```cpp
-void solve(int l, int r, vector<Query> q) {
-  int m = (l + r) / 2;
-  if (l == r) {
-    for (unsigned i = 0; i < q.size(); i++) ans[q[i].id] = l;
-    return;
-  }
-  vector<int> q1, q2;
-  for (unsigned i = 0; i < q.size(); i++)
-    if (q[i].k <= check(m))
-      q1.push_back(q[i]);
-    else
-      q[i].k -= check(m), q2.push_back(q[i]);
-  solve(l, m, q1), solve(m + 1, r, q2);
-  return;
-}
-```
+???+note "实现"
+    ```cpp
+    void solve(int l, int r, vector<Query> q) {
+      int m = (l + r) / 2;
+      if (l == r) {
+        for (unsigned i = 0; i < q.size(); i++) ans[q[i].id] = l;
+        return;
+      }
+      vector<int> q1, q2;
+      for (unsigned i = 0; i < q.size(); i++)
+        if (q[i].k <= check(m))
+          q1.push_back(q[i]);
+        else
+          q[i].k -= check(m), q2.push_back(q[i]);
+      solve(l, m, q1), solve(m + 1, r, q2);
+      return;
+    }
+    ```
 
 ### 区间查询第 k 小：对只询问指定区间的处理
 
@@ -104,47 +105,48 @@ void solve(int l, int r, vector<Query> q) {
 
 参考代码（关键部分）
 
-```cpp
-struct Num {
-  int p, x;
-};  // 位于数列中第 p 项的数的值为 x
-
-struct Query {
-  int l, r, k, id;
-};  // 一个编号为 id, 询问 [l,r] 中第 k 小数的询问
-
-int ans[N];
-void add(int p, int x);  // 树状数组, 在 p 位置加上 x
-int query(int p);        // 树状数组, 求 [1,p] 的和
-void clear();            // 树状数组, 清空
-
-void solve(int l, int r, vector<Num> a, vector<Query> q)
-// a中为给定数列中值在值域区间 [l,r] 中的数
-{
-  int m = (l + r) / 2;
-  if (l == r) {
-    for (unsigned i = 0; i < q.size(); i++) ans[q[i].id] = l;
-    return;
-  }
-  vector<Num> a1, a2;
-  vector<Query> q1, q2;
-  for (unsigned i = 0; i < a.size(); i++)
-    if (a[i].x <= m)
-      a1.push_back(a[i]), add(a[i].p, 1);
-    else
-      a2.push_back(a[i]);
-  for (unsigned i = 0; i < q.size(); i++) {
-    int t = query(q[i].r) - query(q[i].l - 1);
-    if (q[i].k <= t)
-      q1.push_back(q[i]);
-    else
-      q[i].k -= t, q2.push_back(q[i]);
-  }
-  clear();
-  solve(l, m, a1, q1), solve(m + 1, r, a2, q2);
-  return;
-}
-```
+???+note "实现"
+    ```cpp
+    struct Num {
+      int p, x;
+    };  // 位于数列中第 p 项的数的值为 x
+    
+    struct Query {
+      int l, r, k, id;
+    };  // 一个编号为 id, 询问 [l,r] 中第 k 小数的询问
+    
+    int ans[N];
+    void add(int p, int x);  // 树状数组, 在 p 位置加上 x
+    int query(int p);        // 树状数组, 求 [1,p] 的和
+    void clear();            // 树状数组, 清空
+    
+    void solve(int l, int r, vector<Num> a, vector<Query> q)
+    // a中为给定数列中值在值域区间 [l,r] 中的数
+    {
+      int m = (l + r) / 2;
+      if (l == r) {
+        for (unsigned i = 0; i < q.size(); i++) ans[q[i].id] = l;
+        return;
+      }
+      vector<Num> a1, a2;
+      vector<Query> q1, q2;
+      for (unsigned i = 0; i < a.size(); i++)
+        if (a[i].x <= m)
+          a1.push_back(a[i]), add(a[i].p, 1);
+        else
+          a2.push_back(a[i]);
+      for (unsigned i = 0; i < q.size(); i++) {
+        int t = query(q[i].r) - query(q[i].l - 1);
+        if (q[i].k <= t)
+          q1.push_back(q[i]);
+        else
+          q[i].k -= t, q2.push_back(q[i]);
+      }
+      clear();
+      solve(l, m, a1, q1), solve(m + 1, r, a2, q2);
+      return;
+    }
+    ```
 
 下面提供 [【模板】可持久化线段树 2（主席树）](https://www.luogu.com.cn/problem/P3834) 一题使用整体二分的，偏向竞赛风格的写法。
 
@@ -167,55 +169,56 @@ void solve(int l, int r, vector<Num> a, vector<Query> q)
 
 关键部分参考代码
 
-```cpp
-struct Opt {
-  int x, y, k, type, id;
-  // 对于询问, type = 1, x, y 表示区间左右边界, k 表示询问第 k 小
-  // 对于修改, type = 0, x 表示修改位置, y 表示修改后的值,
-  // k 表示当前操作是插入(1)还是擦除(-1), 更新树状数组时使用.
-  // id 记录每个操作原先的编号, 因二分过程中操作顺序会被打散
-};
-
-Opt q[N], q1[N], q2[N];
-// q 为所有操作,
-// 二分过程中, 分到左边的操作存到 q1 中, 分到右边的操作存到 q2 中.
-int ans[N];
-void add(int p, int x);
-int query(int p);  // 树状数组函数, 含义见题3
-
-void solve(int l, int r, int L, int R)
-// 当前的值域范围为 [l,r], 处理的操作的区间为 [L,R]
-{
-  if (l > r || L > R) return;
-  int cnt1 = 0, cnt2 = 0, m = (l + r) / 2;
-  // cnt1, cnt2 分别为分到左边, 分到右边的操作数
-  if (l == r) {
-    for (int i = L; i <= R; i++)
-      if (q[i].type == 1) ans[q[i].id] = l;
-    return;
-  }
-  for (int i = L; i <= R; i++)
-    if (q[i].type == 1) {  // 是询问: 进行分类
-      int t = query(q[i].y) - query(q[i].x - 1);
-      if (q[i].k <= t)
-        q1[++cnt1] = q[i];
-      else
-        q[i].k -= t, q2[++cnt2] = q[i];
-    } else
-      // 是修改: 更新树状数组 & 分类
-      if (q[i].y <= m)
-        add(q[i].x, q[i].k), q1[++cnt1] = q[i];
-      else
-        q2[++cnt2] = q[i];
-  for (int i = 1; i <= cnt1; i++)
-    if (q1[i].type == 0) add(q1[i].x, -q1[i].k);  // 清空树状数组
-  for (int i = 1; i <= cnt1; i++) q[L + i - 1] = q1[i];
-  for (int i = 1; i <= cnt2; i++)
-    q[L + cnt1 + i - 1] = q2[i];  // 将临时数组中的元素合并回原数组
-  solve(l, m, L, L + cnt1 - 1), solve(m + 1, r, L + cnt1, R);
-  return;
-}
-```
+???+note "实现"
+    ```cpp
+    struct Opt {
+      int x, y, k, type, id;
+      // 对于询问, type = 1, x, y 表示区间左右边界, k 表示询问第 k 小
+      // 对于修改, type = 0, x 表示修改位置, y 表示修改后的值,
+      // k 表示当前操作是插入(1)还是擦除(-1), 更新树状数组时使用.
+      // id 记录每个操作原先的编号, 因二分过程中操作顺序会被打散
+    };
+    
+    Opt q[N], q1[N], q2[N];
+    // q 为所有操作,
+    // 二分过程中, 分到左边的操作存到 q1 中, 分到右边的操作存到 q2 中.
+    int ans[N];
+    void add(int p, int x);
+    int query(int p);  // 树状数组函数, 含义见题3
+    
+    void solve(int l, int r, int L, int R)
+    // 当前的值域范围为 [l,r], 处理的操作的区间为 [L,R]
+    {
+      if (l > r || L > R) return;
+      int cnt1 = 0, cnt2 = 0, m = (l + r) / 2;
+      // cnt1, cnt2 分别为分到左边, 分到右边的操作数
+      if (l == r) {
+        for (int i = L; i <= R; i++)
+          if (q[i].type == 1) ans[q[i].id] = l;
+        return;
+      }
+      for (int i = L; i <= R; i++)
+        if (q[i].type == 1) {  // 是询问: 进行分类
+          int t = query(q[i].y) - query(q[i].x - 1);
+          if (q[i].k <= t)
+            q1[++cnt1] = q[i];
+          else
+            q[i].k -= t, q2[++cnt2] = q[i];
+        } else
+          // 是修改: 更新树状数组 & 分类
+          if (q[i].y <= m)
+            add(q[i].x, q[i].k), q1[++cnt1] = q[i];
+          else
+            q2[++cnt2] = q[i];
+      for (int i = 1; i <= cnt1; i++)
+        if (q1[i].type == 0) add(q1[i].x, -q1[i].k);  // 清空树状数组
+      for (int i = 1; i <= cnt1; i++) q[L + i - 1] = q1[i];
+      for (int i = 1; i <= cnt2; i++)
+        q[L + cnt1 + i - 1] = q2[i];  // 将临时数组中的元素合并回原数组
+      solve(l, m, L, L + cnt1 - 1), solve(m + 1, r, L + cnt1, R);
+      return;
+    }
+    ```
 
 ### 参考习题
 
