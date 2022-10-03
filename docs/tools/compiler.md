@@ -169,6 +169,11 @@ JDK 版本有很多，本文以 OpenJDK 为例
 
 ### Windows
 
+??? note "LLVM 在 Windows 上的坑"
+    由于 LLVM 在 Windows 上缺失标准库，所以你仍需安装 MSVC 或 GCC
+
+#### 直接安装
+
 访问 [LLVM](https://github.com/llvm/llvm-project/releases/latest) 的下载页面，选择 LLVM-\*-win64.exe 下载
 
 如果你的网络质量不佳，你也可以选择访问 [清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LatestRelease/) 进行下载。
@@ -183,6 +188,14 @@ JDK 版本有很多，本文以 OpenJDK 为例
     InstalledDir: <omitted>
 
 类似物即代表成功
+
+#### Scoop 安装
+
+打开 PowerShell，运行以下脚本
+
+    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+    irm get.scoop.sh | iex
+    scoop install llvm
 
 ### Linux
 
