@@ -117,9 +117,10 @@ struct Node {
       Node *father;  // 新增：父指针，若该节点为根节点则指向空节点 nullptr
     };
     ```
-    
-    `meld` 操作修改为：
-    
+
+`meld` 操作修改为：
+
+???+note "实现"
     ```cpp
     Node* meld(Node* x, Node* y) {
       if (x == nullptr) return y;
