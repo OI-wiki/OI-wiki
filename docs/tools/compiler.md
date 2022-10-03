@@ -4,7 +4,7 @@
 
 ### Windows
 
-##### 手动下载安装 
+#### 手动下载安装 
 
 方便起见，我们在 Windows 系统下使用由 MinGW-w64 项目提供的 GCC 编译器。
 
@@ -37,7 +37,7 @@
 
 ![](./images/compiler6.png)
 
-##### Scoop 安装
+#### Scoop 安装
 
 打开 PowerShell，运行以下脚本
 
@@ -49,7 +49,7 @@ scoop install mingw-winlibs
 
 ### Linux
 
-##### Debian/Ubuntu
+#### Debian/Ubuntu
 
 首先先更新软件包列表：
 
@@ -63,7 +63,7 @@ sudo apt update
 sudo apt install g++
 ```
 
-##### Arch Linux
+#### Arch Linux
 
 使用命令直接安装即可：
 
@@ -71,7 +71,7 @@ sudo apt install g++
 sudo pacman -Syu gcc
 ```
 
-##### openSUSE
+#### openSUSE
 
 使用命令直接安装即可：
 
@@ -120,7 +120,7 @@ OpenJDK 64-Bit Server VM Temurin-18.0.2.1+1 (build 18.0.2.1+1, mixed mode, shari
 
 类似物即可算作成功
 
-##### Scoop 安装
+#### Scoop 安装
 
 打开 PowerShell，运行以下脚本
 
