@@ -4,7 +4,7 @@
 
 ### Windows
 
-#### 手动下载安装 
+#### 手动下载安装
 
 方便起见，我们在 Windows 系统下使用由 MinGW-w64 项目提供的 GCC 编译器。
 
@@ -41,11 +41,9 @@
 
 打开 PowerShell，运行以下脚本
 
-```
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-irm get.scoop.sh | iex
-scoop install mingw-winlibs
-```
+    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+    irm get.scoop.sh | iex
+    scoop install mingw-winlibs
 
 ### Linux
 
@@ -75,9 +73,7 @@ sudo pacman -Syu gcc
 
 使用命令直接安装即可：
 
-```
-sudo zypper in gcc-c++
-```
+    sudo zypper in gcc-c++
 
 ### macOS
 
@@ -112,11 +108,9 @@ JDK 版本有很多，本文以 OpenJDK 为例
 
 随后打开终端，输入 `java --version` 并回车，出现
 
-```
-openjdk 18.0.2.1 2022-08-18                                                                                             
-OpenJDK Runtime Environment Temurin-18.0.2.1+1 (build 18.0.2.1+1)                                                       
-OpenJDK 64-Bit Server VM Temurin-18.0.2.1+1 (build 18.0.2.1+1, mixed mode, sharing) 
-```
+    openjdk 18.0.2.1 2022-08-18                                                                                             
+    OpenJDK Runtime Environment Temurin-18.0.2.1+1 (build 18.0.2.1+1)                                                       
+    OpenJDK 64-Bit Server VM Temurin-18.0.2.1+1 (build 18.0.2.1+1, mixed mode, sharing) 
 
 类似物即可算作成功
 
@@ -124,13 +118,10 @@ OpenJDK 64-Bit Server VM Temurin-18.0.2.1+1 (build 18.0.2.1+1, mixed mode, shari
 
 打开 PowerShell，运行以下脚本
 
-```
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-irm get.scoop.sh | iex
-scoop bucket add java
-scoop install openjdk18
-```
-
+    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+    irm get.scoop.sh | iex
+    scoop bucket add java
+    scoop install openjdk18
 
 ### Linux
 
@@ -138,9 +129,7 @@ scoop install openjdk18
 
 使用命令直接安装即可：
 
-```
-sudo zypper in java-18-openjdk-devel
-```
+    sudo zypper in java-18-openjdk-devel
 
 ## Python 3 (CPython 3)
 
@@ -152,17 +141,15 @@ sudo zypper in java-18-openjdk-devel
 
 打开 .exe，勾选 Add to path 后点击 Install Now。
 
-完成后打开终端，输入 `python` 并回车，出现REPL代表安装成功
+完成后打开终端，输入 `python` 并回车，出现 REPL 代表安装成功
 
 #### Scoop 安装
 
 打开 PowerShell，运行以下脚本
 
-```
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-irm get.scoop.sh | iex
-scoop install python
-```
+    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+    irm get.scoop.sh | iex
+    scoop install python
 
 #### Microsoft Store 安装
 
@@ -176,15 +163,13 @@ scoop install python
 
 使用命令直接安装即可：
 
-```
-sudo zypper in python3
-```
+    sudo zypper in python3
 
-## LLVM 
+## LLVM
 
 ### Windows
 
-访问 [LLVM](https://github.com/llvm/llvm-project/releases/latest) 的下载页面，选择 LLVM-*-win64.exe 下载
+访问 [LLVM](https://github.com/llvm/llvm-project/releases/latest) 的下载页面，选择 LLVM-\*-win64.exe 下载
 
 如果你的网络质量不佳，你也可以选择访问 [清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LatestRelease/) 进行下载。
 
@@ -192,12 +177,10 @@ sudo zypper in python3
 
 打开终端，输入 `clang++ --version` 并回车，出现
 
-```
-clang version 15.0.1
-Target: x86_64-pc-windows-msvc
-Thread model: posix
-InstalledDir: <omitted>
-```
+    clang version 15.0.1
+    Target: x86_64-pc-windows-msvc
+    Thread model: posix
+    InstalledDir: <omitted>
 
 类似物即代表成功
 
@@ -207,13 +190,11 @@ InstalledDir: <omitted>
 
 使用命令直接安装即可：
 
-```
-sudo zypper in llvm clang
-```
+    sudo zypper in llvm clang
 
 ## MSVC (Visual Studio)
 
-访问 [Visual Studio](https://visualstudio.microsoft.com/zh-hans/) 的下载页面，将光标移动到 下载 Visual Studio，在下来菜单中点击 Community 2022下载。
+访问 [Visual Studio](https://visualstudio.microsoft.com/zh-hans/) 的下载页面，将光标移动到 下载 Visual Studio，在下来菜单中点击 Community 2022 下载。
 
 打开安装器，选择 Community 2022 安装。
 
