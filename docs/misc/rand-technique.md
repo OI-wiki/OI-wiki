@@ -2,7 +2,7 @@ author: Ir1d, partychicken, ouuan, Marcythm, TianyiQ
 
 ## 概述
 
-前置知识：[随机函数](../misc/random.md) 和 [概率初步](../math/expectation.md)
+前置知识：[随机函数](../misc/random.md) 和 [概率初步](../math/probability/basic-conception.md)
 
 本文将对 OI/ICPC 中的随机化相关技巧做一个简单的分类，并对每个分类予以介绍。本文也将介绍一些在 OI/ICPC 中很少使用，但与 OI/ICPC 在风格等方面较为贴近的方法，这些内容前将用 `(*)` 标注。
 
@@ -31,7 +31,7 @@ author: Ir1d, partychicken, ouuan, Marcythm, TianyiQ
 
 于是我们可以对每个 $v$ 设置布尔变量 $B_v$，其取值表示 $v$ 被染成两种剩余的颜色中的哪一种。借助 2-SAT 模型即可以 $O(n+m)$ 的复杂度解决这个问题。
 
-这样做，单次的正确率是 $\big(\frac 23\big)^n$。将算法重复运行 $-\big(\frac 32\big)^n\log \epsilon$ 次，只要有一次得到解就输出，这样即可保证 $1-\epsilon$ 的正确率。（详见后文中“自然常数的使用”和“抽奖问题”）
+这样做，单次的正确率是 $\big(\frac 23\big)^n$。将算法重复运行 $-\big(\frac 32\big)^n\log \epsilon$ 次，只要有一次得到解就输出，这样即可保证 $1-\epsilon$ 的正确率。（详见后文中“概率上界的分析”）
 
 * * *
 
@@ -482,107 +482,14 @@ $$
 
 ### 概率上界的分析
 
-随机算法的正确性或复杂度经常依赖于某些“坏事件”不发生或很少发生。例如，快速排序的复杂度依赖于“所选的 `pivot` 元素几乎是最小或最大元素”这一坏事件较少发生。
+详见 [概率不等式](../math/probability/concentration-inequality.md) 页面。
 
-本节介绍几个常用于分析“坏事件”发生概率的工具。
-
-#### 工具
-
-**Union Bound**：记 $A_{1\cdots m}$ 为坏事件，则
-
-$$
-\mathrm{Pr}\Big[\bigcup\limits_{i=1}^m A_i \Big]\leq \sum\limits_{i=1}^m \mathrm{Pr}[A_i]
-$$
-
-- 即：坏事件中至少一者发生的概率，不超过每一个的发生概率之和。
-
-- 证明：回到概率的定义，把事件看成单位事件的集合，发现这个结论是显然的。
-
--   这一结论还可以稍作加强：
-
-    - 坏事件中至少一者发生的概率，**不小于** 每一个的发生概率之和，减掉每两个同时发生的概率之和。
-    - 坏事件中至少一者发生的概率，**不超过** 每一个的发生概率之和，减掉每两个同时发生的概率之和，加上每三个同时发生的概率之和。
-    - ……
-    - 随着层数越来越多，交替出现的上界和下界也越来越紧。这一系列结论形式上类似容斥原理，证明过程也和容斥类似，这里略去。
-
-* * *
+除了上述页面中提到的各种不等式外，推导过程中还经常会用到以下结论：
 
 **自然常数的使用**：$\Big(1-\dfrac 1n\Big)^n\leq \dfrac 1e,\forall n\geq1$
 
 - 左式关于 $n\geq 1$ 单调递增且在 $+\infty$ 处的极限是 $\dfrac 1e$，因此有这个结论。
-
-- 这告诉我们，如果 $n$ 个互相独立的坏事件，每个的发生概率为 $1-\dfrac 1n$，则它们全部发生的概率至多为 $\dfrac 1e$。
-
-* * *
-
-**(\*) Hoeffding** 不等式：若 $X_{1\cdots n}$ 为互相独立的实随机变量且 $X_i\in [a_i,b_i]$，记随机变量 $X:=\sum\limits_{i=1}^n X_i$，则
-
-$$
-\mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geq t\Big]\leq2\exp {-\dfrac {t^2}{\sum\limits_{i=1}^n (b_i-a_i)^2}}
-$$
-
-- 这一不等式限制了随机变量偏离其期望值的程度。从经验上讲，如果 $\mathrm{E}[X]$ 不太接近 $a_1+\cdots+a_n$，则该不等式给出的界往往相对比较紧；如果非常接近的话（例如在 [UOJ #72 全新做法](https://matthew99.blog.uoj.ac/blog/5511) 中），给出的界则往往很松，此时更好的选择是使用 (\*)[Chernoff Bound](https://en.wikipedia.org/wiki/Chernoff_bound)，它和 Hoeffding 不等式同属于 (\*)[Concentration Inequality](https://en.wikipedia.org/wiki/Concentration_inequality)。
-
-#### 例子
-
-???+ note "例：抽奖问题"
-    一个箱子里有 $n$ 个球，其中恰有 $k$ 个球对应着大奖。你要进行若干次独立、等概率的随机抽取，每次抽完之后会把球放回箱子。请问抽多少次能保证以至少 $1-\epsilon$ 的概率，满足 **每一个** 奖球都被抽到至少一次？给出一个上界即可，不要求精确答案。
-
-与该问题类似的模型经常出现在随机算法的复杂度分析中。
-
-???+ note "解答"
-    假如只有一个奖球，则抽取 $M:=-n\log\epsilon$ 次即可保证，因为 $M$ 次全不中的概率 $\Big(1-\dfrac 1n\Big)^{n\cdot (-\log\epsilon)}\leq e^{\log\epsilon}=\epsilon$。
-    
-    现在有 $k>1$ 个奖球，那么根据 Union Bound，我们只需保证每个奖球被漏掉的概率都不超过 $\dfrac \epsilon k$ 即可。于是答案是 $-n\log\dfrac \epsilon k$。
-
-* * *
-
-???+ note "例：(\*)随机选取一半元素"
-    给出一个算法，从 $n$ 个元素中等概率随机选取一个大小为 $\dfrac n2$ 的子集，保证 $n$ 是偶数。你能使用的唯一的随机源是一枚均匀硬币，同时请你尽量减少抛硬币的次数（不要求最少）。
-
-???+ note "解法"
-    首先可以想到这样的算法：
-    
-    - 通过抛 $n$ 次硬币，可以从所有子集中等概率随机选一个。
-    -   不断重复这一过程，直到选出的子集大小恰好为 $\dfrac n2$。
-        - 注意到大小为 $\dfrac n2$ 的子集至少占所有子集的 $\dfrac 1n$，因此重复次数的期望值 $\leq n$。
-    
-    这一算法期望需要抛 $n^2$ 次硬币。
-    
-    另一个算法：
-    
-    -   我们可以通过抛期望 $2\lceil\log_2 n\rceil$ 次硬币来实现随机 $n$ 选 1。
-        - 具体方法：随机生成 $\lceil\log_2 n\rceil$ 位的二进制数，如果大于等于 $n$ 则重新随机，否则选择对应编号（编号从 0 开始）的元素并结束过程。
-    - 然后我们从所有元素中选一个，再从剩下的元素中再选一个，以此类推，直到选出 $\dfrac n2$ 个元素为止。
-    
-    这一算法期望需要抛 $n\lceil\log_2 n\rceil$ 次硬币。
-    
-    将两个算法缝合起来：
-    
-    - 先用第一个算法随机得到一个子集。
-    - 如果该子集大小不到 $\dfrac n2$，则利用第二个算法不断添加元素，直到将大小补到 $\dfrac n2$。
-    - 如果该子集大小超过 $\dfrac n2$，则利用第二个算法不断删除元素，直到将大小削到 $\dfrac n2$。
-    
-    尝试分析第二、第三步所需的操作次数（即添加/删除元素的次数）：
-    
-    - 记 01 随机变量 $X_i$ 表示 $i$ 是否被选入初始的子集，令 $X:=X_1+\cdots+X_n$ 表示子集大小，则第二、第三步所需的操作次数等于 $\big|X-\mathrm{E}[X]\big|$。在 Hoeffding 不等式中取 $t=c\cdot\sqrt n$（其中 $c$ 为任意常数），得到 $\mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geq t\Big]\leq 2e^{-c^2}$。也就是说，我们可以通过允许 $\Theta(\sqrt n)$ 级别的偏移，来得到任意小的常数级别的失败概率。
-    
-    至此我们已经说明：该算法可以以很大概率保证抛硬币次数在 $n+\Theta(\sqrt n\log n)$ 以内。
-    
-    - 其中 $n$ 来自获得初始子集的抛硬币次数；$\Theta(\sqrt n\log n)$ 是 $\Theta(\sqrt n)$ 次添加/删除元素的总开销。
-    
-    ??? mdui-shadow-6 "计算期望复杂度"
-        我们再从另一个角度分析，尝试计算该算法的期望抛硬币次数。
-        
-        用 Hoeffding 不等式求第二、第三步中操作次数期望值的上界：
-        
-        $$
-        \mathrm{E}\Big[\big|X-\mathrm{E}[X]\big|\Big]=\int\limits_0^\infty \mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geq t\Big]\mathrm{d}t\leq2\int\limits_0^\infty \exp {-\dfrac {t^2}n}\mathrm{d}t=\sqrt{\pi n}
-        $$
-        
-        从而第二、第三步所需抛硬币次数的期望值是 $\sqrt{\pi n}\cdot2\lceil\log_2 n\rceil$。
-        
-        综上，该算法期望需要抛 $n+2\sqrt{\pi n}\lceil\log_2 n\rceil$ 次硬币。
+- 这告诉我们，如果 $n$ 个互相独立的事件，每个的发生概率为 $1-\dfrac 1n$，则它们全部发生的概率至多为 $\dfrac 1e$。
 
 ### 「耦合」思想
 

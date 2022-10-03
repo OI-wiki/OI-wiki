@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="442px"
+	height="149px" viewBox="-0.5 -0.5 442 149" style="background-color: rgb(255, 255, 255);">
+	<defs>
+		<style>
+			text {
+				font-family: sans-serif;
+				text-anchor: middle;
+				font-size: 12px;
+				fill: rgb(0, 0, 0);
+			}
+
+			path,
+			rect {
+				stroke: rgb(0, 0, 0);
+			}
+		</style>
+	</defs>
+	<g>
+		<rect x="220" y="110" width="30" height="20" fill="rgb(255, 255, 255)" />
+		<text x="234.5" y="124.5">14</text>
+		<rect x="220" y="130" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="240" y="130" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="250" y="110" width="30" height="20" fill="rgb(255, 255, 255)" />
+		<text x="264.5" y="124.5">16</text>
+		<rect x="260" y="130" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="300" y="110" width="30" height="20" fill="rgb(255, 255, 255)" />
+		<text x="314.5" y="124.5">19</text>
+		<rect x="300" y="130" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="320" y="130" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="330" y="110" width="30" height="20" fill="#ffffff" />
+		<text x="344.5" y="124.5">23</text>
+		<rect x="340" y="130" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="140" y="110" width="30" height="20" fill="#ffffff" />
+		<text x="154.5" y="124.5">11</text>
+		<rect x="140" y="130" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="160" y="130" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="170" y="110" width="30" height="20" fill="#ffffff" />
+		<text x="184.5" y="124.5">12</text>
+		<rect x="180" y="130" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="380" y="110" width="60" height="30" fill="#ffffff" stroke="none" />
+		<rect x="380" y="110" width="30" height="20" fill="#ffffff" />
+		<text x="394.5" y="124.5">25</text>
+		<rect x="380" y="130" width="20" height="10" fill="#ffffff" />
+		<rect x="400" y="130" width="20" height="10" fill="#ffffff" />
+		<rect x="410" y="110" width="30" height="20" fill="#ffffff" />
+		<text x="424.5" y="124.5">26</text>
+		<rect x="420" y="130" width="20" height="10" fill="#ffffff" />
+		<rect x="160" y="0" width="120" height="30" fill="#ffffff" stroke="none" />
+		<rect x="160" y="0" width="30" height="20" fill="#cccccc" />
+		<text x="174.5" y="14.5">7</text>
+		<rect x="160" y="20" width="20" height="10" fill="#ffffff" />
+		<rect x="180" y="20" width="25" height="10" fill="#ffffff" />
+		<rect x="190" y="0" width="30" height="20" fill="#cccccc" />
+		<text x="204.5" y="14.5">13</text>
+		<rect x="205" y="20" width="30" height="10" fill="#ffffff" />
+		<rect x="220" y="0" width="30" height="20" fill="#cccccc" />
+		<text x="234.5" y="14.5">17</text>
+		<rect x="235" y="20" width="25" height="10" fill="#ffffff" />
+		<rect x="250" y="0" width="30" height="20" fill="#cccccc" />
+		<text x="264.5" y="14.5">24</text>
+		<rect x="260" y="20" width="20" height="10" fill="#ffffff" />
+		<rect x="0" y="110" width="120" height="30" fill="#ffffff" stroke="none" />
+		<rect x="0" y="110" width="30" height="20" fill="#ffffff" />
+		<text x="14.5" y="124.5">1</text>
+		<rect x="0" y="130" width="20" height="10" fill="#ffffff" />
+		<rect x="20" y="130" width="25" height="10" fill="#ffffff" />
+		<rect x="30" y="110" width="30" height="20" fill="#ffffff" />
+		<text x="44.5" y="124.5">3</text>
+		<rect x="45" y="130" width="30" height="10" fill="#ffffff" />
+		<rect x="60" y="110" width="30" height="20" fill="#ffffff" />
+		<text x="74.5" y="124.5">4</text>
+		<rect x="75" y="130" width="25" height="10" fill="#ffffff" />
+		<rect x="90" y="110" width="30" height="20" fill="#ffffff" />
+		<text x="104.5" y="124.5">6</text>
+		<rect x="100" y="130" width="20" height="10" fill="#ffffff" />
+		<path d="M 163.53 30 L 64.05 106.87" fill="none" stroke-miterlimit="10" />
+		<path d="M 60.88 109.32 L 63.23 105.82 L 64.87 107.93 Z" fill="rgb(0, 0, 0)" stroke-miterlimit="10" />
+		<path d="M 191.18 30 L 171.31 105.05" fill="none" stroke-miterlimit="10" />
+		<path d="M 170.29 108.92 L 170.02 104.71 L 172.6 105.39 Z" fill="rgb(0, 0, 0)" stroke-miterlimit="10" />
+		<path d="M 221.76 30 L 248.3 105.17" fill="none" stroke-miterlimit="10" />
+		<path d="M 249.63 108.95 L 247.04 105.62 L 249.55 104.73 Z" fill="rgb(0, 0, 0)" stroke-miterlimit="10" />
+		<path d="M 252.35 30 L 326.44 106.33" fill="none" stroke-miterlimit="10" />
+		<path d="M 329.22 109.2 L 325.48 107.26 L 327.39 105.4 Z" fill="rgb(0, 0, 0)" stroke-miterlimit="10" />
+		<path d="M 278.24 30 L 405.63 107.34" fill="none" stroke-miterlimit="10" />
+		<path d="M 409.04 109.42 L 404.93 108.48 L 406.32 106.2 Z" fill="rgb(0, 0, 0)" stroke-miterlimit="10" />
+	</g>
+</svg>

@@ -1,0 +1,10 @@
+id: oi-wiki:math/sqrt-1
+name: Sqrt Algorithm
+solution:
+  cpp: docs/math/code/poly/sqrt/sqrt_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/examples/poly/sqrt/sqrt_1.ans
+  input: docs/math/examples/poly/sqrt/sqrt_1.in
+version: 1000

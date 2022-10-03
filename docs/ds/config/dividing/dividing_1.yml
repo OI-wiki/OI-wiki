@@ -1,0 +1,10 @@
+id: oi-wiki:ds/dividing-1
+name: Dividing
+solution:
+  cpp: docs/ds/code/dividing/dividing_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/dividing/dividing_1.ans
+  input: docs/ds/examples/dividing/dividing_1.in
+version: 1000

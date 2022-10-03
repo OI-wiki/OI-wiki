@@ -1,0 +1,10 @@
+id: oi-wiki:geometry/3d-1
+name: 3D
+solution:
+  cpp: docs/geometry/code/3d/3d_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/geometry/examples/3d/3d_1.ans
+  input: docs/geometry/examples/3d/3d_1.in
+version: 1000

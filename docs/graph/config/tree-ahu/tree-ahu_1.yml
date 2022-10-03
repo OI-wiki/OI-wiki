@@ -1,0 +1,10 @@
+id: oi-wiki:graph/tree-ahu-1
+name: Tree Ahu
+solution:
+  cpp: docs/graph/code/tree-ahu/tree-ahu_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/examples/tree-ahu/tree-ahu_1.ans
+  input: docs/graph/examples/tree-ahu/tree-ahu_1.in
+version: 1000

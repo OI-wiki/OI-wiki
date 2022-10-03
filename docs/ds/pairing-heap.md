@@ -1,4 +1,4 @@
-## 简介
+## 引入
 
 配对堆是一个支持插入，查询/删除最小值，合并，修改元素等操作的数据结构，是一种可并堆。有速度快和结构简单的优势，但由于其为基于势能分析的均摊复杂度，无法可持久化。
 
@@ -26,7 +26,7 @@ struct Node {
 
 配对堆通过一套精心设计的操作顺序来保证它的总复杂度，原论文[^ref1]将其称为“一种自调整的堆（Self Adjusting Heap）”。在这方面和 Splay 树（在原论文中被称作“Self Adjusting Binary Tree”）颇有相似之处。
 
-## 各项操作的实现
+## 过程
 
 ### 查询最小值
 
@@ -38,18 +38,19 @@ struct Node {
 
 需要注意的是，一个节点的儿子链表是按插入时间排序的，即最右边的节点最早成为父节点的儿子，最左边的节点最近成为父节点的儿子。
 
-```cpp
-Node* meld(Node* x, Node* y) {
-  // 若有一个为空则直接返回另一个
-  if (x == nullptr) return y;
-  if (y == nullptr) return x;
-  if (x->v > y->v) std::swap(x, y);  // swap后x为权值小的堆，y为权值大的堆
-  // 将y设为x的儿子
-  y->sibling = x->child;
-  x->child = y;
-  return x;  // 新的根节点为 x
-}
-```
+???+note "实现"
+    ```cpp
+    Node* meld(Node* x, Node* y) {
+      // 若有一个为空则直接返回另一个
+      if (x == nullptr) return y;
+      if (y == nullptr) return x;
+      if (x->v > y->v) std::swap(x, y);  // swap后x为权值小的堆，y为权值大的堆
+      // 将y设为x的儿子
+      y->sibling = x->child;
+      x->child = y;
+      return x;  // 新的根节点为 x
+    }
+    ```
 
 ### 插入
 
@@ -74,16 +75,17 @@ Node* meld(Node* x, Node* y) {
 
 先实现一个辅助函数 `merges`，作用是合并一个节点的所有兄弟。
 
-```cpp
-Node* merges(Node* x) {
-  if (x == nullptr || x->sibling == nullptr)
-    return x;  // 如果该树为空或他没有下一个兄弟，就不需要合并了，return。
-  Node* y = x->sibling;                // y 为 x 的下一个兄弟
-  Node* c = y->sibling;                // c 是再下一个兄弟
-  x->sibling = y->sibling = nullptr;   // 拆散
-  return meld(merges(c), meld(x, y));  // 核心部分
-}
-```
+???+note "实现"
+    ```cpp
+    Node* merges(Node* x) {
+      if (x == nullptr || x->sibling == nullptr)
+        return x;  // 如果该树为空或他没有下一个兄弟，就不需要合并了，return。
+      Node* y = x->sibling;                // y 为 x 的下一个兄弟
+      Node* c = y->sibling;                // c 是再下一个兄弟
+      x->sibling = y->sibling = nullptr;   // 拆散
+      return meld(merges(c), meld(x, y));  // 核心部分
+    }
+    ```
 
 最后一句话是该函数的核心，这句话分三部分：
 
@@ -95,9 +97,10 @@ Node* merges(Node* x) {
 
 有了 `merges` 函数，`delete-min` 操作就显然了。
 
-```cpp
-Node* delete_min(Node* x) { return merges(x->child); }
-```
+???+note "实现"
+    ```cpp
+    Node* delete_min(Node* x) { return merges(x->child); }
+    ```
 
 ### 减小一个元素的值
 
@@ -105,70 +108,74 @@ Node* delete_min(Node* x) { return merges(x->child); }
 
 首先节点的定义修改为：
 
-```cpp
-struct Node {
-  LL v;
-  int id;
-  Node *child, *sibling;
-  Node *father;  // 新增：父指针，若该节点为根节点则指向空节点 nullptr
-};
-```
+???+note "实现"
+    ```cpp
+    struct Node {
+      LL v;
+      int id;
+      Node *child, *sibling;
+      Node *father;  // 新增：父指针，若该节点为根节点则指向空节点 nullptr
+    };
+    ```
 
 `meld` 操作修改为：
 
-```cpp
-Node* meld(Node* x, Node* y) {
-  if (x == nullptr) return y;
-  if (y == nullptr) return x;
-  if (x->v > y->v) std::swap(x, y);
-  if (x->child != nullptr) {  //新增：维护父指针
-    x->child->father = y;
-  }
-  y->sibling = x->child;
-  y->father = x;  // 新增：维护父指针
-  x->child = y;
-  return x;
-}
-```
+???+note "实现"
+    ```cpp
+    Node* meld(Node* x, Node* y) {
+      if (x == nullptr) return y;
+      if (y == nullptr) return x;
+      if (x->v > y->v) std::swap(x, y);
+      if (x->child != nullptr) {  // 新增：维护父指针
+        x->child->father = y;
+      }
+      y->sibling = x->child;
+      y->father = x;  // 新增：维护父指针
+      x->child = y;
+      return x;
+    }
+    ```
 
 `merges` 操作修改为：
 
-```cpp
-Node *merges(Node *x) {
-  if (x == nullptr) return nullptr;
-  x->father = nullptr;  //新增：维护父指针
-  if (x->sibling == nullptr) return x;
-  Node *y = x->sibling, *c = y->sibling;
-  y->father = nullptr;  //新增：维护父指针
-  x->sibling = y->sibling = nullptr;
-  return meld(merges(c), meld(x, y));
-}
-```
+???+note "实现"
+    ```cpp
+    Node *merges(Node *x) {
+      if (x == nullptr) return nullptr;
+      x->father = nullptr;  // 新增：维护父指针
+      if (x->sibling == nullptr) return x;
+      Node *y = x->sibling, *c = y->sibling;
+      y->father = nullptr;  // 新增：维护父指针
+      x->sibling = y->sibling = nullptr;
+      return meld(merges(c), meld(x, y));
+    }
+    ```
 
 现在我们来考虑如何实现 `decrease-key` 操作。  
 首先我们发现，当我们减少节点 `x` 的权值之后，以 `x` 为根的子树仍然满足配对堆性质，但 `x` 的父亲和 `x` 之间可能不再满足堆性质。  
 因此我们把整棵以 `x` 为根的子树剖出来，现在两棵树都符合配对堆性质了，然后把他们合并起来，就完成了全部操作。
 
-```cpp
-// root为堆的根，x为要操作的节点，v为新的权值，调用时需保证 v <= x->v
-// 返回值为新的根节点
-Node *decrease_key(Node *root, Node *x, LL v) {
-  x->v = v;                 // 更新权值
-  if (x == root) return x;  // 如果 x 为根，则直接返回
-  // 把x从fa的子节点中剖出去，这里要分x的位置讨论一下。
-  if (x->father->child == x) {
-    x->father->child = x->sibling;
-  } else {
-    x->father->sibling = x->sibling;
-  }
-  if (x->sibling != nullptr) {
-    x->sibling->father = x->father;
-  }
-  x->sibling = nullptr;
-  x->father = nullptr;
-  return meld(root, x);  // 重新合并 x 和根节点
-}
-```
+???+note "实现"
+    ```cpp
+    // root为堆的根，x为要操作的节点，v为新的权值，调用时需保证 v <= x->v
+    // 返回值为新的根节点
+    Node *decrease_key(Node *root, Node *x, LL v) {
+      x->v = v;                 // 更新权值
+      if (x == root) return x;  // 如果 x 为根，则直接返回
+      // 把x从fa的子节点中剖出去，这里要分x的位置讨论一下。
+      if (x->father->child == x) {
+        x->father->child = x->sibling;
+      } else {
+        x->father->sibling = x->sibling;
+      }
+      if (x->sibling != nullptr) {
+        x->sibling->father = x->father;
+      }
+      x->sibling = nullptr;
+      x->father = nullptr;
+      return meld(root, x);  // 重新合并 x 和根节点
+    }
+    ```
 
 ## 复杂度分析
 

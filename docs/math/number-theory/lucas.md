@@ -1,8 +1,10 @@
 ## Lucas 定理
 
+### 引入
+
 Lucas 定理用于求解大组合数取模的问题，其中模数必须为素数。正常的组合数运算可以通过递推公式求解（详见 [排列组合](../combinatorics/combination.md)），但当问题规模很大，而模数是一个不大的质数的时候，就不能简单地通过递推求解来得到答案，需要用到 Lucas 定理。
 
-### 求解方式
+### 定义
 
 Lucas 定理内容如下：对于质数 $p$，有
 
@@ -14,7 +16,7 @@ $$
 
 时间复杂度为 $O(f(p) + g(n)\log n)$，其中 $f(n)$ 为预处理组合数的复杂度，$g(n)$ 为单次求组合数的复杂度。
 
-???+note "代码实现"
+???+note "实现"
     ```cpp
     // C++ Version
     long long Lucas(long long n, long long m, long long p) {
@@ -31,7 +33,7 @@ $$
       return (C(n % p, m % p, p) * Lucas(n // p, m // p, p)) % p
     ```
 
-### Lucas 定理的证明
+### 证明
 
 考虑 $\displaystyle\binom{p}{n} \bmod p$ 的取值，注意到 $\displaystyle\binom{p}{n} = \frac{p!}{n!(p-n)!}$，分子的质因子分解中 $p$ 的次数恰好为 $1$，因此只有当 $n = 0$ 或 $n = p$ 的时候 $n!(p-n)!$ 的质因子分解中含有 $p$，因此 $\displaystyle\binom{p}{n} \bmod p = [n = 0 \vee n = p]$。进而我们可以得出
 
@@ -64,41 +66,11 @@ $$
 
 注意前者只有在 $p$ 的倍数位置才有取值，而后者最高次项为 $n\bmod p \le p-1$，因此这两部分的卷积在任何一个位置只有最多一种方式贡献取值，即在前者部分取 $p$ 的倍数次项，后者部分取剩余项，即 $\displaystyle\binom{n}{m}\bmod p = \binom{\left\lfloor n/p \right\rfloor}{\left\lfloor m/p\right\rfloor}\cdot\binom{n\bmod p}{m\bmod p}\bmod p$。
 
-## 素数在阶乘中的幂次
-
-Legengre 在 1808 年指出 $n!$ 中含有的素数 $p$ 的幂次为 $\sum_{j\geq 1}\lfloor n/p^j\rfloor$。
-
-证明：将 $n!$ 记为 $1\times 2\times \cdots \times p\times \cdots \times 2p\times \cdots \times \lfloor n/p\rfloor p\times \cdots \times n$ 那么其中 $p$ 的倍数有 $p\times 2p\times \cdots \times \lfloor n/p\rfloor p=p^{\lfloor n/p\rfloor }\lfloor n/p\rfloor !$ 然后在 $\lfloor n/p\rfloor !$ 中继续寻找 $p$ 的倍数即可，这是一个递归的过程。为了方便记 $\nu(n!)=\sum_{j\geq 1}\lfloor n/p^j\rfloor$。
-
-另一种其他地方比较常见的公式，用到了 p 进制下各位数字和：
-
-$v_p(n!)=\frac{n-S_p(n)}{p-1}$
-
-与等比数列求和公式很相似。由于涉及各位数字和，利用数学归纳法可以轻松证明。
-
-特别地，阶乘中 2 的幂次是：
-
-$v_2(n!)=n-S_2(n)$
-
-### 素数在组合数中的幂次
-
-组合数对一个数取模的结果，往往构成分形结构，例如谢尔宾斯基三角形就可以通过组合数模 2 得到。
-
-$v_p(C_m^n)=\frac{S_p(n)+S_p(m-n)-S_p(m)}{p-1}$
-
-如果仔细分析，p 是否整除组合数其实和上下标在 p 进制下减法是否需要借位有关。这就有了 Kummer 定理。
-
-**Kummer 定理：p 在组合数 $C_m^n$ 中的幂次，恰好是 p 进制下 m 减掉 n 需要借位的次数。**
-
-特别地，组合数中 2 的幂次是：
-
-$v_2(C_m^n)=S_2(n)+S_2(m-n)-S_2(m)$
-
 ## exLucas 定理
 
 Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是素数的情况，就需要用到 exLucas 定理。
 
-### 求解思路
+### 过程
 
 #### 第一部分：中国剩余定理
 
@@ -157,7 +129,9 @@ $$
 
 的值。这时可以利用 [Wilson 定理的推论](./wilson.md)。如果难以理解，可以看看下面的解释。
 
-#### 一个示例：22! mod 9
+#### 解释
+
+一个示例：22! mod 9
 
 先考虑 $n! \bmod q^k$，
 
@@ -211,7 +185,7 @@ $$
 
 下面这种写法，拥有单次询问 $O(p\log p)$ 的时间复杂度。其中 `int inverse(int x)` 函数返回 $x$ 在模 $p$ 意义下的逆元。
 
-???+note "代码实现"
+???+note "实现"
     ```cpp
     LL calc(LL n, LL x, LL P) {
       if (!n) return 1;

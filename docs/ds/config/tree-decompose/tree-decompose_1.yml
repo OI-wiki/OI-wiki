@@ -1,0 +1,10 @@
+id: oi-wiki:ds/tree-decompose-1
+name: Tree Decompose
+solution:
+  cpp: docs/ds/code/tree-decompose/tree-decompose_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/tree-decompose/tree-decompose_1.ans
+  input: docs/ds/examples/tree-decompose/tree-decompose_1.in
+version: 1000

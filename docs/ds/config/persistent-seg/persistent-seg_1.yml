@@ -1,0 +1,10 @@
+id: oi-wiki:ds/persistent-seg-1
+name: Persistent Seg
+solution:
+  cpp: docs/ds/code/persistent-seg/persistent-seg_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/persistent-seg/persistent-seg_1.ans
+  input: docs/ds/examples/persistent-seg/persistent-seg_1.in
+version: 1000
