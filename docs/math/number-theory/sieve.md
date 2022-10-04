@@ -323,7 +323,7 @@ def pre():
 $$
 \mu(n)=
 \begin{cases}
-	0 & n' \bmod p_1 \neq 0\\\\
+	0 & n' \bmod p_1 = 0\\\\
 	-\mu(n') & \text{otherwise}
 \end{cases}
 $$
