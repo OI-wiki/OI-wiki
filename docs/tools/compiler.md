@@ -41,9 +41,11 @@
 
 打开 PowerShell，运行以下脚本
 
-    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-    irm get.scoop.sh | iex
-    scoop install mingw-winlibs
+```powershell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+irm get.scoop.sh | iex
+scoop install mingw-winlibs
+```
 
 ### Linux
 
@@ -73,7 +75,9 @@ sudo pacman -Syu gcc
 
 使用命令直接安装即可：
 
-    sudo zypper in gcc-c++
+```bash
+sudo zypper in gcc-c++
+```
 
 ### macOS
 
@@ -108,9 +112,11 @@ JDK 版本有很多，本文以 OpenJDK 为例
 
 随后打开终端，输入 `java --version` 并回车，出现
 
-    openjdk 18.0.2.1 2022-08-18                                                                                             
-    OpenJDK Runtime Environment Temurin-18.0.2.1+1 (build 18.0.2.1+1)                                                       
-    OpenJDK 64-Bit Server VM Temurin-18.0.2.1+1 (build 18.0.2.1+1, mixed mode, sharing) 
+```text
+openjdk 18.0.2.1 2022-08-18                                                                                             
+OpenJDK Runtime Environment Temurin-18.0.2.1+1 (build 18.0.2.1+1)                                                       
+OpenJDK 64-Bit Server VM Temurin-18.0.2.1+1 (build 18.0.2.1+1, mixed mode, sharing) 
+```
 
 类似物即可算作成功
 
@@ -118,10 +124,12 @@ JDK 版本有很多，本文以 OpenJDK 为例
 
 打开 PowerShell，运行以下脚本
 
-    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-    irm get.scoop.sh | iex
-    scoop bucket add java
-    scoop install openjdk18
+```powershell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+irm get.scoop.sh | iex
+scoop bucket add java
+scoop install openjdk18
+```
 
 ### Linux
 
@@ -129,7 +137,9 @@ JDK 版本有很多，本文以 OpenJDK 为例
 
 使用命令直接安装即可：
 
-    sudo zypper in java-18-openjdk-devel
+```bash
+sudo zypper in java-18-openjdk-devel
+```
 
 ## Python 3 (CPython 3)
 
@@ -147,9 +157,11 @@ JDK 版本有很多，本文以 OpenJDK 为例
 
 打开 PowerShell，运行以下脚本
 
-    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-    irm get.scoop.sh | iex
-    scoop install python
+```powershell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+irm get.scoop.sh | iex
+scoop install python
+```
 
 #### Microsoft Store 安装
 
@@ -163,7 +175,9 @@ JDK 版本有很多，本文以 OpenJDK 为例
 
 使用命令直接安装即可：
 
-    sudo zypper in python3
+```bash
+sudo zypper in python3
+```
 
 ## LLVM
 
@@ -182,10 +196,12 @@ JDK 版本有很多，本文以 OpenJDK 为例
 
 打开终端，输入 `clang++ --version` 并回车，出现
 
-    clang version 15.0.1
-    Target: x86_64-pc-windows-msvc
-    Thread model: posix
-    InstalledDir: <omitted>
+```text
+clang version 15.0.1
+Target: x86_64-pc-windows-msvc
+Thread model: posix
+InstalledDir: <omitted>
+```
 
 类似物即代表成功
 
@@ -193,9 +209,11 @@ JDK 版本有很多，本文以 OpenJDK 为例
 
 打开 PowerShell，运行以下脚本
 
-    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-    irm get.scoop.sh | iex
-    scoop install llvm
+```powershell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+irm get.scoop.sh | iex
+scoop install llvm
+```
 
 ### Linux
 
@@ -203,7 +221,9 @@ JDK 版本有很多，本文以 OpenJDK 为例
 
 使用命令直接安装即可：
 
-    sudo zypper in llvm clang
+```bash
+sudo zypper in llvm clang
+```
 
 ## MSVC (Visual Studio)
 
