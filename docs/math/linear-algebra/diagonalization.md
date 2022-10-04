@@ -71,7 +71,7 @@ $$
 这意味着，$T$ 在某组基下的矩阵是准对角阵：
 
 $$
-diag\{A_1,A_2,\cdots,A_S\}
+\operatorname{diag}\{A_1,A_2,\cdots,A_S\}
 $$
 
 其中，$A_i$ 是 $T_i$ 在对应基下的矩阵。
