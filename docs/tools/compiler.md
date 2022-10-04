@@ -39,7 +39,7 @@
 
 #### Scoop 安装
 
-打开 PowerShell，运行以下脚本
+打开 PowerShell，运行以下脚本：
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -96,19 +96,19 @@ brew install gcc
 
 ## JDK
 
-JDK 版本有很多，本文以 OpenJDK 为例
+JDK 版本有很多，本文以 OpenJDK 为例。
 
 ### Windows
 
 #### 直接下载安装
 
-访问 [Adoptium OpenJDK](https://adoptium.net/zh-CN/temurin/releases) 的下载页面，选择合适的版本，本文选择了 Windows 下的 x64 Java 18
+访问 [Adoptium OpenJDK](https://adoptium.net/zh-CN/temurin/releases) 的下载页面，选择合适的版本，本文选择了 Windows 下的 x64 Java 18。
 
 点击右侧的 msi 文件进行下载。
 
 如果你的网络质量不佳，你也可以选择访问 [清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/Adoptium/) 进行下载。
 
-下载完成后打开 .msi 文件，持续点击 Next，即可完成安装
+下载完成后打开 .msi 文件，持续点击 Next，即可完成安装。
 
 随后打开终端，输入 `java --version` 并回车，出现
 
@@ -118,11 +118,11 @@ OpenJDK Runtime Environment Temurin-18.0.2.1+1 (build 18.0.2.1+1)
 OpenJDK 64-Bit Server VM Temurin-18.0.2.1+1 (build 18.0.2.1+1, mixed mode, sharing) 
 ```
 
-类似物即可算作成功
+类似物即可算作成功。
 
 #### Scoop 安装
 
-打开 PowerShell，运行以下脚本
+打开 PowerShell，运行以下脚本：
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -147,15 +147,15 @@ sudo zypper in java-18-openjdk-devel
 
 #### 直接下载安装
 
-访问 [Python](https://www.python.org/downloads/) 的下载页面，点击页面中央的黄色按钮进行下载
+访问 [Python](https://www.python.org/downloads/) 的下载页面，点击页面中央的黄色按钮进行下载。
 
 打开 .exe，勾选 Add to path 后点击 Install Now。
 
-完成后打开终端，输入 `python` 并回车，出现 REPL 代表安装成功
+完成后打开终端，输入 `python` 并回车，出现 REPL 代表安装成功。
 
 #### Scoop 安装
 
-打开 PowerShell，运行以下脚本
+打开 PowerShell，运行以下脚本：
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -165,9 +165,9 @@ scoop install python
 
 #### Microsoft Store 安装
 
-打开 Microsoft Store，搜索 Python
+打开 Microsoft Store，搜索 Python。
 
-点击第一个搜索结果，点击蓝色的安装，等待安装完成。
+点击第一个搜索结果，点击安装，等待安装完成。
 
 ### Linux
 
@@ -184,15 +184,15 @@ sudo zypper in python3
 ### Windows
 
 ??? note "LLVM 在 Windows 上的坑"
-    由于 LLVM 在 Windows 上缺失标准库，所以你仍需安装 MSVC 或 GCC
+    由于 LLVM 在 Windows 上缺失标准库，所以你仍需安装 MSVC 或 GCC。
 
 #### 直接安装
 
-访问 [LLVM](https://github.com/llvm/llvm-project/releases/latest) 的下载页面，选择 LLVM-\*-win64.exe 下载
+访问 [LLVM](https://github.com/llvm/llvm-project/releases/latest) 的下载页面，选择 LLVM-\*-win64.exe 下载。
 
 如果你的网络质量不佳，你也可以选择访问 [清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LatestRelease/) 进行下载。
 
-打开 .exe 文件，安装时勾选 Add LLVM to system PATH for current user，随后一直点击下一步即可安装完成
+打开 .exe 文件，安装时勾选 Add LLVM to system PATH for current user，随后一直点击下一步即可安装完成。
 
 打开终端，输入 `clang++ --version` 并回车，出现
 
@@ -203,11 +203,11 @@ Thread model: posix
 InstalledDir: <omitted>
 ```
 
-类似物即代表成功
+类似物即代表成功。
 
 #### Scoop 安装
 
-打开 PowerShell，运行以下脚本
+打开 PowerShell，运行以下脚本：
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
