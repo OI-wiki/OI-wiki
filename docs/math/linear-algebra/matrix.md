@@ -102,7 +102,7 @@ $$
 主对角线之外的元素均为 $0$ 的方阵称为对角矩阵，一般记作：
 
 $$
-diag\{\lambda_1,\cdots,\lambda_n\}
+\operatorname{diag}\{\lambda_1,\cdots,\lambda_n\}
 $$
 
 式中的 $\lambda_1,\cdots,\lambda_n$ 是主对角线上的元素。
