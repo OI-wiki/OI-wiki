@@ -53,6 +53,7 @@ nav:
       - Notepad++: tools/editor/npp.md
       - Kate: tools/editor/kate.md
       - Dev-C++: tools/editor/devcpp.md
+      - CLion: tools/editor/clion.md
       - Geany: tools/editor/geany.md
       - Xcode: tools/editor/xcode.md
       - GUIDE: tools/editor/guide.md
