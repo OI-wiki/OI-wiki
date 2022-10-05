@@ -178,3 +178,18 @@ add_compile_options(-std=c++17 -DDEBUG)
 
 其他 CMake 的功能请参考 [CMake 官方文档](https://cmake.org/documentation/)
 
+## 免费获取 CLion IDE 许可证
+
+CLion 为付费产品, 但是可以通过教育邮箱或开源项目申请特殊许可证. 申请之后不仅可以免费使用正版 CLion IDE, 还可以免费使用 JetBrains 公司开发的其他付费产品.
+
+### 使用教育邮箱获取
+
+进入官网的 [Free Educational Licenses 页面](https://www.jetbrains.com/community/education/#students), 点击 `Apply` 按钮, 填写相关信息即可申请.
+
+<img src="./images/clion-edu.png" alt="Educational Licenses" style="zoom:50%;" />
+
+### 使用开源项目获取
+
+如果您是某个开源项目的核心开发者或维护者之一, 您可以尝试申请开源开发许可证 (Open Source Development License). 申请流程与教育许可证类似, 但需要填写开源项目的仓库地址.
+
+<img src="./images/clion-oss.png" alt="Open Source Development License" style="zoom:50%;" />
