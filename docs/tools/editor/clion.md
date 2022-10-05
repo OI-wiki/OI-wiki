@@ -1,5 +1,3 @@
-# CLion
-
 ## 简介
 
 CLion 是一款由 JetBrains 公司开发的功能丰富且强大的跨平台 C/C++ 集成开发环境（IDE).
@@ -65,7 +63,7 @@ vim ~/.local/share/applications/clion.desktop
 
 下载并安装 [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/)
 
-<img src="./images/clion-jetbrains-toolbox.png" alt="JetBrains Toolbox" style="zoom: 50%;" />
+![JetBrains Toolbox](./images/clion-jetbrains-toolbox.png)
 
 通过该工具可以安装 JetBrains 公司开发的 IDE 产品，并且可以快速访问并打开您通过 JetBrains 旗下 IDE 创建的工程和项目。
 
@@ -146,7 +144,7 @@ sudo dnf install clang clang++ llvm lldb # you can also choose to use clang tool
 
 新安装的 CLion 会自动检测系统中的 C/C++ 开发工具链，如果已安装的工具链无法自动检测到，可在 `Settings` 中找到 `Build, Execution, Deployment`>`Toolchains` 进行手动配置。
 
-<img src="./images/clion-toolchain.png" alt="Config Toolchains" style="zoom:50%;" />
+![Config Toolchains](./images/clion-toolchain.png)
 
 ### CMake
 
@@ -154,7 +152,7 @@ sudo dnf install clang clang++ llvm lldb # you can also choose to use clang tool
 
 CLion 默认使用 [CMake](https://cmake.org/) 作为构建工具，关于 CMake 的设置可以在 `Build, Execution, Deployment`>`Toolchains`>`CMake` 中修改。
 
-<img src="./images/clion-cmake.png" alt="CMake Settings" style="zoom:50%;" />
+![CMake Settings](./images/clion-cmake.png)
 
 #### 编译选项
 
@@ -174,10 +172,10 @@ CLion 为付费产品，但是可以通过教育邮箱或开源项目申请特�
 
 进入官网的 [Free Educational Licenses 页面](https://www.jetbrains.com/community/education/#students), 点击 `Apply` 按钮，填写相关信息即可申请。
 
-<img src="./images/clion-edu.png" alt="Educational Licenses" style="zoom:50%;" />
+![Educational Licenses](./images/clion-edu.png)
 
 ### 使用开源项目获取
 
 如果您是某个开源项目的核心开发者或维护者之一，您可以尝试申请开源开发许可证 (Open Source Development License). 申请流程与教育许可证类似，但需要填写开源项目的仓库地址。
 
-<img src="./images/clion-oss.png" alt="Open Source Development License" style="zoom:50%;" />
+![Open Source Development License](./images/clion-oss.png)
