@@ -49,7 +49,7 @@ vim ~/.local/share/applications/clion.desktop
 
 在文件中添加如下内容
 
-```toml
+```ini
 [Desktop Entry]
 Version=1.0
 Type=Application
