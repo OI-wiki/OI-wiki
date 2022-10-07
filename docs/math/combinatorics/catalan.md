@@ -74,6 +74,94 @@ for i in range(1, n + 1):
 print(f[n])
 ```
 
+## 封闭形式
+
+卡特兰数的递推式为
+
+$$
+H_n=\sum_{i=0}^{n-1}H_{i}H_{n-i-1} \quad (n\ge 2)
+$$
+
+其中 $H_0=1,H_1=1$。设它的普通生成函数为 $H(x)$。
+
+我们发现卡特兰数的递推式与卷积的形式很相似，因此我们用卷积来构造关于 $H(x)$ 的方程：
+
+$$
+\begin{aligned}
+H(x)&=\sum_{n\ge 0}H_nx^n\\
+&=1+\sum_{n\ge 1}\sum_{i=0}^{n-1}H_ix^iH_{n-i-1}x^{n-i-1}x\\
+&=1+x\sum_{i\ge 0}H_{i}x^i\sum_{n\ge 0}H_{n}x^{n}\\
+&=1+xH^2(x)
+\end{aligned}
+$$
+
+解得
+
+$$
+H(x)=\frac{1\pm \sqrt{1-4x}}{2x}
+$$
+
+那么这就产生了一个问题：我们应该取哪一个根呢？我们将其分子有理化：
+
+$$
+H(x)=\frac{2}{1\mp \sqrt{1-4x}}
+$$
+
+代入 $x=0$，我们得到的是 $H(x)$ 的常数项，也就是 $H_0$。当 $H(x)=\dfrac{2}{1+\sqrt{1-4x}}$ 的时候有 $H(0)=1$，满足要求。而另一个解会出现分母为 $0$ 的情况（不收敛），舍弃。
+
+因此我们得到了卡特兰数生成函数的封闭形式：
+
+$$
+H(x)=\frac{1- \sqrt{1-4x}}{2x}
+$$
+
+接下来我们要将其展开。但注意到它的分母不是斐波那契数列那样的多项式形式，因此不方便套用等比数列的展开形式。在这里我们需要使用牛顿二项式定理。我们来先展开 $\sqrt{1-4x}$：
+
+$$
+\begin{aligned}
+(1-4x)^{\frac{1}{2}}
+&=\sum_{n\ge 0}\binom{\frac{1}{2}}{n}(-4x)^n\\
+&=1+\sum_{n\ge 1}\frac{\left(\frac{1}{2}\right)^{\underline{n}}}{n!}(-4x)^n
+\end{aligned} \tag{1}
+$$
+
+注意到
+
+$$
+\begin{aligned}
+\left(\frac{1}{2}\right)^{\underline{n}}
+&=\frac{1}{2}\frac{-1}{2}\frac{-3}{2}\cdots\frac{-(2n-3)}{2}\\
+&=\frac{(-1)^{n-1}(2n-3)!!}{2^n}\\
+&=\frac{(-1)^{n-1}(2n-2)!}{2^n(2n-2)!!}\\
+&=\frac{(-1)^{n-1}(2n-2)!}{2^{2n-1}(n-1)!}
+\end{aligned}
+$$
+
+这里使用了双阶乘的化简技巧。那么带回 $(1)$ 得到
+
+$$
+\begin{aligned}
+(1-4x)^{\frac{1}{2}}
+&=1+\sum_{n\ge 1}\frac{(-1)^{n-1}(2n-2)!}{2^{2n-1}(n-1)!n!}(-4x)^n\\
+&=1-\sum_{n\ge 1}\frac{(2n-2)!}{(n-1)!n!}2x^n\\
+&=1-\sum_{n\ge 1}\binom{2n-1}{n}\frac{1}{(2n-1)}2x^n
+\end{aligned}
+$$
+
+带回原式得到
+
+$$
+\begin{aligned}
+H(x)&=\frac{1- \sqrt{1-4x}}{2x}\\
+&=\frac{1}{2x}\sum_{n\ge 1}\binom{2n-1}{n}\frac{1}{(2n-1)}2x^n\\
+&=\sum_{n\ge 1}\binom{2n-1}{n}\frac{1}{(2n-1)}x^{n-1}\\
+&=\sum_{n\ge 0}\binom{2n+1}{n+1}\frac{1}{(2n+1)}x^{n}\\
+&=\sum_{n\ge 0}\binom{2n}{n}\frac{1}{n+1}x^{n}\\
+\end{aligned}
+$$
+
+这样我们就得到了卡特兰数的通项公式。
+
 ## 路径计数问题
 
 非降路径是指只能向上或向右走的路径。
