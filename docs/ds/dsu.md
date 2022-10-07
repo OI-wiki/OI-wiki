@@ -161,8 +161,8 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
       }
     
       void erase(size_t x) {
-        pa[x] = x;
         --size[find(x)];
+        pa[x] = x;
       }
     };
     ```
@@ -175,8 +175,8 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
             self.size = [1] * size * 2
     
         def erase(self, x):
-            self.pa[x] = x
             self.size[self.find(x)] -= 1
+            self.pa[x] = x
     ```
 
 ## 移动
