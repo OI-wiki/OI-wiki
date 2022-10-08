@@ -19,9 +19,15 @@ C++ 内置了六种基本数据类型：
 
 ### 字符型
 
-`char` 类型的变量用于存放字符（实际上存储的仍然是整数，一般通过 [ASCII 编码](http://www.asciitable.com/) 实现字符与整数的一一对应）。`char` 的位数一般为 $8$ 位。
+`signed char`、`unsigned char`、`char` 这三种类型的变量用于存放字符（实际上存储的仍然是整数，一般通过 [ASCII 编码](http://www.asciitable.com/) 实现字符与整数的一一对应），位数一般为 $8$ 位。
 
-一般情况下，`char` 的表示范围在 $-128 \sim 127$ 之间。
+-   `signed char`：有符号字符表示的类型，表示范围在 $-128 \sim 127$ 之间。
+-   `unsigned char`：无符号字符表示的类型，表示范围在 $0 \sim 255$ 之间。
+-   `char` 拥有与 `signed char` 或 `unsigned char` 之一相同的表示和对齐，但始终是独立的类型。
+
+    `char` 的符号性取决于编译器和目标平台：ARM 和 PowerPC 的默认设置通常没有符号，而 x86 与 x64 的默认设置通常有符号。
+
+    GCC 可以在编译参数中添加 `-fsigned-char` 或 `-funsigned-char` 指定将 `char` 视作 `signed char` 或 `unsigned char`，其他编译器请参照文档。
 
 ### 整型
 
