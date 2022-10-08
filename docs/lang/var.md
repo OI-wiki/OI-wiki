@@ -116,8 +116,6 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 - 源类型为 `signed char`、`signed short / short` 时，可提升为 `int`。
 - 源类型为 `unsigned char`、`unsigned short` 时，若 `int` 能保有源类型的值范围，则可提升为 `int`，否则可提升为 `unsigned int`。（`C++20` 起 `char8_t` 也适用本规则）
 - `char` 的提升规则取决于其底层类型是 `signed char` 还是 `unsigned char`。
-- （C++11 前）`wchar_t` 可转换到以下列表中能保有它的整个值范围的首个类型：`int`、`unsigned int`、`long`、`unsigned long`。
-- （C++11 起）`wchar_t`、`char16_t` 及 `char32_t` 可转换到以下列表中能保有它的整个值范围的首个类型：`int`、`unsigned int`、`long`、`unsigned long`、`long long`、`unsigned long long`。
 - `bool` 类型可转换到 `int`：`false` 变为 `0`，`true` 变为 `1`。
 - 若目标类型的值范围包含源类型，且源类型的值范围不能被 `int` 和 `unsigned int` 包含，则源类型可提升为目标类型。[^note4]
 
@@ -253,4 +251,4 @@ a = 3;
 [^note1]: 自 C++20 起生效。C++20 前结果是实现定义的。详见 [整型转换 - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2)。
 [^note2]: 定义一个变量时，除了类型说明符之外，还可以包含其他说明符。详见 [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)。
 [^note3]: 更准确的说法是 [声明点](https://zh.cppreference.com/w/cpp/language/scope#.E5.A3.B0.E6.98.8E.E7.82.B9)。
-[^note4]: 不包含位域和枚举类型，详见 [整型转换 - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2)。
+[^note4]: 不包含宽字符类型、位域和枚举类型，详见 [整型转换 - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2)。
