@@ -102,14 +102,19 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 
 数值提升遵循如下规则：
 
-- 对于整数类型：
+- 整数提升：
 
     - 原类型为 `signed char`、`signed short / short` 时，可提升为 `int`。
     - 原类型为 `unsigned char`、`unsigned short` 时，若 `int` 能保有原类型的值范围，则可提升为 `int`，否则可提升为 `unsigned int`。（`C++20` 起 `char8_t` 也适用本规则）
     - `char` 的提升规则取决于其底层类型是 `signed char` 还是 `unsigned char`。
     - （C++11 前）`wchar_t` 可转换到以下列表中能保有它的整个值范围的首个类型：`int`、`unsigned int`、`long`、`unsigned long`。
     - （C++11 起）`wchar_t`、`char16_t` 及 `char32_t` 可转换到以下列表中能保有它的整个值范围的首个类型：`int`、`unsigned int`、`long`、`unsigned long`、`long long`、`unsigned long long`。
-    - 原类型为位域时，若 `int` 能保有原类型的值范围，则可提升为 `int`；否则若 `unsigned int` 能保有原类型的值范围，则可提升为 `unsigned int`；其余情况不进行数值提升。
+    - 原类型为位域时，若 `int` 能保有原类型的值范围，则可提升为 `int`；否则若 `unsigned int` 能保有原类型的值范围，则可提升为 `unsigned int`；其余情况不应用整数提升。
+    - 原类型为枚举类型（C++11 起为无作用域枚举类型）时：
+        - 底层类型不固定时，
+            - C++11 前可转换到以下列表中能保有它的整个值范围的首个类型：`int`、`unsigned int`、`long`、`unsigned long`。如果值范围更大，那么不应用整数提升。
+            - C++11 起可转换到以下列表中能保有它的整个值范围的首个类型：`int`、`unsigned int`、`long`、`unsigned long`、`long long`、`unsigned long long`、扩展整数类型（以大小顺序，有符号优先于无符号）（如 GCC 下的 `__int128_t`）。如果值范围更大，那么不应用整数提升。
+        - 底层类型固定时，若其可转换到它的底层类型，而当底层类型也适用整数提升时，那么也可以转换到提升后的底层类型。到未提升的底层类型的转换优先于重载决议。
     - 若目标类型的值范围包含原类型，且原类型的值范围不能被 `int` 和 `unsigned int` 包含，则原类型可提升为目标类型。
 
         ???+warning 注意
@@ -123,7 +128,7 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
     - `(unsigned char)'\0' - (unsigned char)'\xff'` 会首先将 `(unsigned char)'\0'` 提升为 `(int)0`、将 `(unsigned char)'\xff'` 提升为 `(int)255`, 再进行 `int` 间的运算, 最终结果为 `(int)-255`。
     - （假定 `int` 为 32 位，`unsigned short` 为 16 位）`false - (unsigned short)12` 会首先将 `false` 提升为 `(int)0`、将 `(unsigned short)12` 提升为 `(int)12`, 再进行 `int` 间的运算, 最终结果为 `(int)-12`。
 
-- 对于浮点类型：位宽较小的浮点数可以提升为位宽较大的浮点数（例如 `float` 类型的变量和 `double` 类型的变量进行算术运算时，会将 `float` 类型变量提升为 `double` 类型变量），其值不变。
+- 浮点提升：位宽较小的浮点数可以提升为位宽较大的浮点数（例如 `float` 类型的变量和 `double` 类型的变量进行算术运算时，会将 `float` 类型变量提升为 `double` 类型变量），其值不变。
 
 ### 数值转换
 
@@ -192,6 +197,10 @@ a = 3;
 如果修改了常量的值，在编译环节就会报错：`error: assignment of read-only variable‘a’`。
 
 ## 参考资料与注释
+
+- [隐式转换 - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion)
+- [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)
+- [作用域 - cppreference.com](https://zh.cppreference.com/w/cpp/language/scope)
 
 [^note1]: 自 C++20 起生效。C++20 前结果是实现定义的。详见 [整型转换 - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2)。
 [^note2]: 定义一个变量时，除了类型说明符之外，还可以包含其他说明符。详见 [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)。
