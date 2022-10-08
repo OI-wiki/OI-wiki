@@ -109,52 +109,52 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 
 ???+ note
     C 风格的可变参数域在传值过程中会自动实施数值提升。如：
-
+    
     ???+ mdui-shadow-6 "测试代码"
         ```c
-        #include <stdio.h>
         #include <stdarg.h>
-
+        #include <stdio.h>
+        
         void test(int tot, ...) {
-            va_list valist;
-            int i;
-
-            // 初始化可变参数列表
-            va_start(valist, tot);
-
-            for (i = 0; i < tot; ++i) {
-                // 获取第 i 个变量的值
-                double xx = va_arg(valist, double); // Correct
-                // float xx = va_arg(valist, float); // Wrong
-
-                // 输出第 i 个变量的底层存储内容
-                printf("i = %d, value = 0x%016llx\n", i, *(long long *)(&xx));
-            }
-
-            // 清理可变参数列表的内存
-            va_end(valist);
+          va_list valist;
+          int i;
+        
+          // 初始化可变参数列表
+          va_start(valist, tot);
+        
+          for (i = 0; i < tot; ++i) {
+            // 获取第 i 个变量的值
+            double xx = va_arg(valist, double);  // Correct
+            // float xx = va_arg(valist, float); // Wrong
+        
+            // 输出第 i 个变量的底层存储内容
+            printf("i = %d, value = 0x%016llx\n", i, *(long long *)(&xx));
+          }
+        
+          // 清理可变参数列表的内存
+          va_end(valist);
         }
-
+        
         int main() {
-            float f;
-            double fd, d;
-            f = 123.;   // 0x42f60000
-            fd = 123.;  // 0x405ec00000000000
-            d = 456.;   // 0x407c800000000000
-            test(3, f, fd, d);
+          float f;
+          double fd, d;
+          f = 123.;   // 0x42f60000
+          fd = 123.;  // 0x405ec00000000000
+          d = 456.;   // 0x407c800000000000
+          test(3, f, fd, d);
         }
         ```
-
+    
     在调用 `test` 时，`f` 提升为 `double`，从而底层存储内容和 `fd` 相同，输出为
-
+    
     ```text
     i = 0, value = 0x405ec00000000000
     i = 1, value = 0x405ec00000000000
     i = 2, value = 0x407c800000000000
     ```
-
+    
     若将 `double xx = va_arg(valist, double);` 改为 `float xx = va_arg(valist, float);`，GCC 应该给出一条类似下文的警告：
-
+    
     ```text
     In file included from test.c:2:
     test.c: In function ‘test’:
@@ -164,9 +164,9 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
     test.c:14:35: note: (so you should pass ‘double’ not ‘float’ to ‘va_arg’)
     test.c:14:35: note: if this code is reached, the program will abort
     ```
-
+    
     此时的程序将会在输出前终止。
-
+    
     这一点也能解释为什么 `printf` 的 `%f` 既能匹配 `float` 也能匹配 `double`。
 
 #### 整数提升
