@@ -124,7 +124,7 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 ???+warning "注意"
     `char`->`short` 不是数值提升，因为 `char` 要优先提升为 `int / unsigned int`，之后是 `int / unsigned int`->`short`，不满足数值提升的条件。
 
-如（以下假定 `int` 为 32 位，`unsigned short` 为 16 位，`signed char` 和 `unsigned char` 为 8 位，`sbool` 为 1 位）
+如（以下假定 `int` 为 32 位，`unsigned short` 为 16 位，`signed char` 和 `unsigned char` 为 8 位，`bool` 为 1 位）
 
 - `(signed char)'\0' - (signed char)'\xff'` 会先将 `(signed char)'\0'` 提升为 `(int)0`、将 `(signed char)'\xff'` 提升为 `(int)-1`, 再进行 `int` 间的运算，最终结果为 `(int)1`。
 - `(unsigned char)'\0' - (unsigned char)'\xff'` 会先将 `(unsigned char)'\0'` 提升为 `(int)0`、将 `(unsigned char)'\xff'` 提升为 `(int)255`, 再进行 `int` 间的运算，最终结果为 `(int)-255`。
@@ -141,7 +141,7 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 ???+note "注意"
     数值提升优先于数值转换。如 `bool`->`int` 时是数值提升而非数值转换。
 
-#### 整数类型间的转换
+#### 整数转换
 
 -   如果目标类型为位宽为 $x$ 的无符号整数类型，则转换结果是原值 $\bmod 2^x$ 后的结果。
 
@@ -170,11 +170,11 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 
 - 如果源类型是 `bool`，则 `false` 转为对应类型的 0，`true` 转为对应类型的 1。
 
-#### 浮点类型间的转换
+#### 浮点转换
 
 位宽较大的浮点数转换为位宽较小的浮点数，会将该数舍入到目标类型下最接近的值。
 
-#### 浮点与整数的转换
+#### 浮点整数转换
 
 -   浮点数转换为整数时，会舍弃浮点数的全部小数部分。
 
