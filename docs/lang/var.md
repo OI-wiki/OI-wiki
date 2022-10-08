@@ -30,7 +30,7 @@ C++ 内置了六种基本数据类型：
   GCC 可以在编译参数中添加 `-fsigned-char` 或 `-funsigned-char` 指定将 `char` 视作 `signed char` 或 `unsigned char`，其他编译器请参照文档。
 
 ???+warning 注意
-与其他整型不同，`char`、`signed char`、`unsigned char` 是三种不同的类型。
+    与其他整型不同，`char`、`signed char`、`unsigned char` 是三种不同的类型。
 
 ### 整型
 
@@ -72,19 +72,22 @@ int 类型的变量用于存储整数。
     
     例如 `int`，`signed`，`int signed`，`signed int` 表示同一类型，而 `unsigned long` 和 `unsigned long int` 表示同一类型。
 
-### 单精度浮点型
+### 浮点型
 
-`float` 类型为单精度浮点类型。一般为 $32$ 位。
+包括以下三种：
 
-其表示范围在 $-3.4\times 10^{38}$ 到 $3.4\times 10^{38}$ 之间。
+- `float`：单精度浮点类型。如果支持就会匹配 IEEE-754 binary32 格式。
+- `double`：双精度浮点类型。如果支持就会匹配 IEEE-754 binary64 格式。
+- `long double`：扩展精度浮点类型。如果支持就会匹配 IEEE-754 binary128 格式，否则如果支持就会匹配 IEEE-754 binary64 扩展格式，否则匹配某种精度优于 binary64 而值域至少和 binary64 一样好的非 IEEE-754 扩展浮点格式，否则匹配 IEEE-754 binary64 格式。
+
+| 浮点格式                   | 位宽      | 最小正绝对值                | 最大正绝对值               | 精度位数         |
+| -------------------------- | --------- | --------------------------- | -------------------------- | ---------------- |
+| IEEE-754 binary32 格式     | $32$      | $1.2\times 10^{-38}$        | $3.4\times 10^{38}$        | $6\sim 9$        |
+| IEEE-754 binary64 格式     | $64$      | $2.2\times 10^{-308}$       | $1.8\times 10^{308}$       | $15\sim 17$      |
+| IEEE-754 binary64 扩展格式 | $\geq 80$ | $\leq 3.4\times 10^{-4932}$ | $\geq 1.2\times 10^{4932}$ | $\geq 18\sim 21$ |
+| IEEE-754 binary128 格式    | $128$     | $3.4\times 10^{-4932}$      | $1.2\times 10^{4932}$      | $33\sim 36$      |
 
 因为 `float` 类型表示范围较小，且精度不高，实际应用中常使用 `double` 类型（双精度浮点型）表示浮点数。
-
-### 双精度浮点型
-
-`double` 类型为双精度浮点型。一般为 $64$ 位。
-
-其表示范围在 $-1.7\times 10^{-308}$ 到 $1.7\times 10^{308}$ 之间。
 
 ### 无类型
 
@@ -118,7 +121,7 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 - `bool` 类型可转换到 `int`：`false` 变为 `0`，`true` 变为 `1`。
 - 若目标类型的值范围包含源类型，且源类型的值范围不能被 `int` 和 `unsigned int` 包含，则源类型可提升为目标类型。[^note4]
 
-???+warning 注意
+???+warning "注意"
     `char` -> `short` 不是数值提升，因为 `char` 要优先提升为 `int / unsigned int`，之后是 `int / unsigned int` -> `short`，不满足数值提升的条件。
 
 如（以下假定 `int` 为 32 位，`unsigned short` 为 16 位，`signed char` 和 `unsigned char` 为 8 位，`sbool` 为 1 位）
@@ -135,13 +138,15 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 
 数值转换过程中，值可能会发生改变。
 
-???+note 注意
+???+note "注意"
     数值提升优先于数值转换。如 `bool` -> `int` 时是数值提升而非数值转换。
 
 #### 整数类型间的转换
 
 - 如果目标类型为位宽为 $x$ 的无符号整数类型，则转换结果是原值 $\bmod 2^x$ 后的结果。
+
   - 若目标类型位宽大于源类型位宽：
+
     - 若源类型为有符号类型，一般情况下需先进行符号位扩展再转换。
 
       如
@@ -172,13 +177,13 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 
 - 浮点数转换为整数时，会舍弃浮点数的全部小数部分。
 
-    如果目标类型是 `bool`，则是 [布尔转换](#布尔转换)。
+  如果目标类型是 `bool`，则是 [布尔转换](#布尔转换)。
 
 - 整数转换为浮点数时，会舍入到目标类型下最接近的值。
-    
-    如果该值不能适应到目标类型中，那么行为未定义。
-    
-    如果源类型是 `bool`，那么 `false` 转换为零，而 `true` 转换为一。 
+
+  如果该值不能适应到目标类型中，那么行为未定义。
+
+  如果源类型是 `bool`，那么 `false` 转换为零，而 `true` 转换为一。
 
 #### 布尔转换
 
@@ -239,6 +244,8 @@ a = 3;
 
 ## 参考资料与注释
 
+- [基础类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/types)
+- William Kahan (1 October 1997). ["Lecture Notes on the Status of IEEE Standard 754 for Binary Floating-Point Arithmetic"](https://people.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF).
 - [隐式转换 - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion)
 - [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)
 - [作用域 - cppreference.com](https://zh.cppreference.com/w/cpp/language/scope)
