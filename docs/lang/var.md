@@ -29,6 +29,9 @@ C++ 内置了六种基本数据类型：
 
     GCC 可以在编译参数中添加 `-fsigned-char` 或 `-funsigned-char` 指定将 `char` 视作 `signed char` 或 `unsigned char`，其他编译器请参照文档。
 
+???+warning 注意
+    与其他整型不同，`char`、`signed char`、`unsigned char` 是三种不同的类型。
+
 ### 整型
 
 int 类型的变量用于存储整数。
