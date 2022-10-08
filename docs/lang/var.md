@@ -29,7 +29,7 @@ C++ 内置了六种基本数据类型：
 
     GCC 可以在编译参数中添加 `-fsigned-char` 或 `-funsigned-char` 指定将 `char` 视作 `signed char` 或 `unsigned char`，其他编译器请参照文档。
 
-???+warning 注意
+???+warning "注意"
     与其他整型不同，`char`、`signed char`、`unsigned char` 是三种不同的类型。
 
 ### 整型
@@ -245,11 +245,11 @@ a = 3;
 
 ## 参考资料与注释
 
-- [基础类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/types)
-- William Kahan (1 October 1997).["Lecture Notes on the Status of IEEE Standard 754 for Binary Floating-Point Arithmetic"](https://people.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF).
-- [隐式转换 - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion)
-- [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)
-- [作用域 - cppreference.com](https://zh.cppreference.com/w/cpp/language/scope)
+1. [基础类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/types)
+1. William Kahan (1 October 1997).["Lecture Notes on the Status of IEEE Standard 754 for Binary Floating-Point Arithmetic"](https://people.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF).
+1. [隐式转换 - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion)
+1. [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)
+1. [作用域 - cppreference.com](https://zh.cppreference.com/w/cpp/language/scope)
 
 [^note1]: 自 C++20 起生效。C++20 前结果是实现定义的。详见 [整型转换 - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2)。
 
