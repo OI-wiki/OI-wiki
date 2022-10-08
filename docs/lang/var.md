@@ -157,7 +157,7 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 
     ```text
     In file included from test.c:2:
-    test.c: In function ‘test1’:
+    test.c: In function ‘test’:
     test.c:14:35: warning: ‘float’ is promoted to ‘double’ when passed through ‘...’
       14 |         float xx = va_arg(valist, float);
          |                                   ^
