@@ -179,7 +179,11 @@ int dfs(int i) {
 int main() {
   memset(mem, -1, sizeof(mem));
   // 读入部分略去
-  cout << dfs(n) << endl;
+  int ret = 0;
+  for (int j = 1; j <= n; j++) {
+    ret = max(ret, dfs(j));
+  }
+  cout << ret << endl;
 }
 ```
 
