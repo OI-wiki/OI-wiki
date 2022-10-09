@@ -1,4 +1,4 @@
-author: Marcythm, zyf0726, hsfzLZH1, MingqiHuang, Ir1d, greyqz, billchenchina, Chrogeek, StudyingFather
+author: Marcythm, zyf0726, hsfzLZH1, MingqiHuang, Ir1d, greyqz, billchenchina, Chrogeek, StudyingFather, NFLSCode
 
 ## 区间类（2D1D）动态规划中的应用
 
@@ -186,7 +186,7 @@ $$
 
 总共有 $n \times m$ 个状态，每个状态有 $O(m)$ 个决策，上述 dp 问题的时间复杂度就是 $O(n m^2)$。
 
-> 实际上此形式也有同样的结论，可以在 $O(n m)$ 复杂度解决，读者可以模仿 2D1D 类似的给出证明。
+> 实际上此形式也有同样的结论，可以在 $O((n+m)m)$ 复杂度解决（且 **只需要满足四边形不等式即可**），读者可以模仿 2D1D 类似的给出证明。
 
 令 $opt(i, j)$ 为使上述表达式最小化的 $k$ 的值。如果对于所有的 $i, j$ 都有 $opt(i, j) \leq opt(i, j + 1)$，那么我们就可以用分治法来优化 dp 问题。
 
