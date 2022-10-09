@@ -108,7 +108,7 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 ???+ note
     C 风格的可变参数域在传值过程中会进行默认参数提升。如：
     
-    ???+ mdui-shadow-6 "测试代码"
+    ???+ mdui-shadow-6 "示例代码"
         ```c
         #include <stdarg.h>
         #include <stdio.h>
