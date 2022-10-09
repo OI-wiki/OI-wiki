@@ -179,7 +179,7 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 - 源类型为 `unsigned char`、`unsigned short` 时，若 `int` 能保有源类型的值范围，则可提升为 `int`，否则可提升为 `unsigned int`。（`C++20` 起 `char8_t` 也适用本规则）
 - `char` 的提升规则取决于其底层类型是 `signed char` 还是 `unsigned char`。
 - `bool` 类型可转换到 `int`：`false` 变为 `0`，`true` 变为 `1`。
-- 若目标类型的值范围包含源类型，且源类型的值范围不能被 `int` 和 `unsigned int` 包含，则源类型可提升为目标类型。[^note9]
+- 若目标类型的值范围包含源类型，且源类型的值范围不能被 `int` 和 `unsigned int` 包含，则源类型可提升为目标类型。[^note6]
 
 ???+warning "注意"
     `char`->`short` 不是数值提升，因为 `char` 要优先提升为 `int / unsigned int`，之后是 `int / unsigned int`->`short`，不满足数值提升的条件。
@@ -222,7 +222,7 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 
         如将 `(unsigned int)4'294'967'295`（`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`）转换为 `unsigned short` 类型时，先进行截断，得到 `0b1111'1111'1111'1111`，再进行整数转换，结果为 `(unsigned short)65'535`（`(unsigned short)0b1111'1111'1111'1111`）。
 
--   如果目标类型为位宽为 $x$ 的带符号整数类型，则 **一般情况下**，转换结果可以认为是原值 $\bmod 2^x$ 后的结果。[^note6]
+-   如果目标类型为位宽为 $x$ 的带符号整数类型，则 **一般情况下**，转换结果可以认为是原值 $\bmod 2^x$ 后的结果。[^note7]
 
     例如将 `(unsigned int)4'294'967'295`（`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`）转换为 `short` 类型时，结果为 `(short)-1`（`(short)0b1111'1111'1111'1111`）。
 
@@ -252,7 +252,7 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 
 ## 定义变量
 
-简单地说[^note7]，定义一个变量，需要包含类型说明符（指明变量的类型），以及要定义的变量名。
+简单地说[^note8]，定义一个变量，需要包含类型说明符（指明变量的类型），以及要定义的变量名。
 
 例如，下面这几条语句都是变量定义语句。
 
@@ -270,7 +270,7 @@ char org = 'c';
 
 作用域是变量可以发挥作用的代码块。
 
-全局变量的作用域，自其定义之处开始[^note8]，至文件结束位置为止。
+全局变量的作用域，自其定义之处开始[^note9]，至文件结束位置为止。
 
 局部变量的作用域，自其定义之处开始，至代码块结束位置为止。
 
@@ -311,10 +311,10 @@ a = 3;
 4. [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)
 5. [作用域 - cppreference.com](https://zh.cppreference.com/w/cpp/language/scope)
 
-[^note6]: 自 C++20 起生效。C++20 前结果是实现定义的。详见 [整型转换 - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2)。
+[^note6]: 不包含宽字符类型、位域和枚举类型，详见 [整型转换 - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2)。
 
-[^note7]: 定义一个变量时，除了类型说明符之外，还可以包含其他说明符。详见 [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)。
+[^note7]: 自 C++20 起生效。C++20 前结果是实现定义的。详见 [整型转换 - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2)。
 
-[^note8]: 更准确的说法是 [声明点](https://zh.cppreference.com/w/cpp/language/scope#.E5.A3.B0.E6.98.8E.E7.82.B9)。
+[^note8]: 定义一个变量时，除了类型说明符之外，还可以包含其他说明符。详见 [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)。
 
-[^note9]: 不包含宽字符类型、位域和枚举类型，详见 [整型转换 - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2)。
+[^note9]: 更准确的说法是 [声明点](https://zh.cppreference.com/w/cpp/language/scope#.E5.A3.B0.E6.98.8E.E7.82.B9)。
