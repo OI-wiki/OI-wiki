@@ -96,7 +96,7 @@ int main() {
 
 ```cpp
 int f(int x);
-int f(int * p);
+int f(int* p);
 ```
 
 在调用 `f(NULL)` 时，实际调用的函数的类型是 `int(int)` 而不是 `int(int *)`.
@@ -109,11 +109,11 @@ C++ 规定 `nullptr` 可以隐式转换为任何指针类型，这种转换结�
 
 ```cpp
 namespace std {
-  typedef decltype(nullptr) nullptr_t;
+typedef decltype(nullptr) nullptr_t;
 }
 ```
 
-另外，C++11 起 `NULL` 宏的实现也被修改为了:
+另外，C++11 起 `NULL` 宏的实现也被修改为了：
 
 ```cpp
 // C++11 起
