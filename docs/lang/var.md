@@ -408,14 +408,14 @@ a = 3;
 ## 参考资料与注释
 
 1. [Working Draft, Standard for Programming Language C++](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4917.pdf)
-1. [类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/type)
-2. C 语言的 [算术类型 - cppreference.com](https://zh.cppreference.com/w/c/language/arithmetic_types)
-3. [基础类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/types)
-4. [定宽整数类型 (C++11 起）- cppreference.com](https://zh.cppreference.com/w/cpp/types/integer)
-5. William Kahan (1 October 1997).["Lecture Notes on the Status of IEEE Standard 754 for Binary Floating-Point Arithmetic"](https://people.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF).
-6. [隐式转换 - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion)
-7. [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)
-8. [作用域 - cppreference.com](https://zh.cppreference.com/w/cpp/language/scope)
+2. [类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/type)
+3. C 语言的 [算术类型 - cppreference.com](https://zh.cppreference.com/w/c/language/arithmetic_types)
+4. [基础类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/types)
+5. [定宽整数类型 (C++11 起）- cppreference.com](https://zh.cppreference.com/w/cpp/types/integer)
+6. William Kahan (1 October 1997).["Lecture Notes on the Status of IEEE Standard 754 for Binary Floating-Point Arithmetic"](https://people.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF).
+7. [隐式转换 - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion)
+8. [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)
+9. [作用域 - cppreference.com](https://zh.cppreference.com/w/cpp/language/scope)
 
 [^note10]: 包括数组类型、引用类型、指针类型、类类型、函数类型等。由于本篇文章是面向初学者的，故不在本文做具体介绍。具体请参阅 [类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/type)
 
