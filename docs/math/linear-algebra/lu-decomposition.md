@@ -1,4 +1,3 @@
-
 LU 分解又名为三角分解，将一个可逆阵 $A$ 分解为一个下三角矩阵 $L$ 和一个上三角矩阵 $U$ 的乘积，即具有基本形式：
 
 $$
@@ -128,19 +127,19 @@ $$
 算法变为：
 
 ```c
-    for(i=k+1;i<=n;i++)
-    {
-        a[i][k]/=a[k][k];//对矩阵L的当前列乘非零数
-        for(j=k+1;j<=n;j++)
-        {
-            a[i][j]-=a[i][k]*a[k][j];//对右下方整个部分进行倍乘操作，当前行被留下作为矩阵 $U$ 的行
-        }
-    }
+for (i = k + 1; i <= n; i++) {
+  a[i][k] /= a[k][k];  // 对矩阵L的当前列乘非零数
+  for (j = k + 1; j <= n; j++) {
+    a[i][j] -=
+        a[i][k] *
+        a[k][j];  // 对右下方整个部分进行倍乘操作，当前行被留下作为矩阵 $U$ 的行
+  }
+}
 ```
 
 ### 实现
 
-这里以使用 Doolittle 分解计算矩阵的行列式为例。求出 $L$ 和 $U$之后，$A$ 的行列式等于矩阵 $U$ 主对角线上所有元素的乘积。
+这里以使用 Doolittle 分解计算矩阵的行列式为例。求出 $L$ 和 $U$ 之后，$A$ 的行列式等于矩阵 $U$ 主对角线上所有元素的乘积。
 
 这里给出一个 java 版本的实现。
 
@@ -254,13 +253,13 @@ LDU 分解是 LU 分解的推广。
 
 不同于 Doolittle 分解和 Crout 分解，在 LDU 分解中的矩阵 $L$ 和 $U$ 均为单位三角矩阵。
 
-设 $A$ 是可逆矩阵，则存在唯一的单位下三角矩阵 $L$ ，对角矩阵 $D=diag\{d_1,d_2,\cdots,d_n\}$ 和单位上三角矩阵 $U$，使得：
+设 $A$ 是可逆矩阵，则存在唯一的单位下三角矩阵 $L$，对角矩阵 $D=diag\{d_1,d_2,\cdots,d_n\}$ 和单位上三角矩阵 $U$，使得：
 
 $$
 A=LDU
 $$
 
-等价于$A$ 的顺序主子式均非零。
+等价于 $A$ 的顺序主子式均非零。
 
 ## Cholesky 分解
 
@@ -276,4 +275,4 @@ $$
 
 这里指出，如果 Hermite 矩阵是正定的，则存在下三角矩阵完成上述酉合同变换。
 
-**本页面主要译自博文[Calculating the determinant using Kraut method](https://cp-algorithms.com/linear_algebra/determinant-kraut.html)，版权协议为 CC-BY-SA 4.0。** 
+**本页面主要译自博文 [Calculating the determinant using Kraut method](https://cp-algorithms.com/linear_algebra/determinant-kraut.html)，版权协议为 CC-BY-SA 4.0。**
