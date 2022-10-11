@@ -417,7 +417,7 @@ a = 3;
 8. [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)
 9. [作用域 - cppreference.com](https://zh.cppreference.com/w/cpp/language/scope)
 
-[^note10]: 参见 https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3054.pdf
+[^note10]: 参见 <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3054.pdf>
 
 [^note11]: 包括数组类型、引用类型、指针类型、类类型、函数类型等。由于本篇文章是面向初学者的，故不在本文做具体介绍。具体请参阅 [类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/type)
 
