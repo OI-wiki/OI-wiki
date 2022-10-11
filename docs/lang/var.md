@@ -143,7 +143,52 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
 
 ## 定宽整数类型
 
-pass
+C++11 起提供了定宽整数的支持，具体如下：
+
+- `<cstdint>`：提供了若干定宽整数的类型和各定宽整数类型最大值、最小值等的宏常量。
+- `<cinttypes>`：为定宽整数类型提供了用于 `std::fprintf` 系列函数和 `std::fscanf` 系列函数的格式宏常量。
+
+定宽整数有如下几种:
+
+- `intN_t`: 宽度 **恰为** $N$ 位的有符号整数类型, 如 `int32_t`.
+- `int_fastN_t`: 宽度 **至少** 有 $N$ 位的 **最快的** 有符号整数类型, 如 `int_fast32_t`.
+- `int_leastN_t`: 宽度 **至少** 有 $N$ 位的 **最小的** 有符号整数类型, 如 `int_least32_t`.
+
+无符号版本只需在有符号版本前加一个字母 u 即可，如 `uint32_t`, `uint_least8_t`.
+
+标准规定必须实现如下 32 种类型:
+
+`int_fast8_t`, `int_fast16_t`, `int_fast32_t`, `int_fast64_t`,
+
+`int_least8_t`, `int_least16_t`, `int_least32_t`, `int_least64_t`,
+
+`uint_fast8_t`, `uint_fast16_t`, `uint_fast32_t`, `uint_fast64_t`,
+
+`uint_least8_t`, `uint_least16_t`, `uint_least32_t`, `uint_least64_t`.
+
+绝大多数编译器在此基础上都实现了如下 8 种类型：
+
+`int8_t`, `int16_t`, `int32_t`, `int64_t`,
+
+`uint8_t`, `uint16_t`, `uint32_t`, `uint64_t`.
+
+在实现了对应类型的情况下，C++ 标准规定必须实现表示对应类型的最大值、最小值、位宽的宏常量，格式为将类型名末尾的 `_t` 去掉后转大写并添加后缀:
+
+- `_MAX` 表示最大值，如 `INT32_MAX` 即为 `int32_t` 的最大值。
+- `_MIN` 表示最小值，如 `INT32_MIN` 即为 `int32_t` 的最小值。
+
+另外，C++17 起在 `<limits>` 中提供了 `std::numeric_limits` 类模板，用于查询各种算数类型的属性，如最大值、最小值、是否是整形、是否有符号等。
+
+```cpp
+#include<limits>
+#include<cstdint>
+
+std::numeric_limits<int32_t>::max(); // int32_t 的最大值, 2'147'483'647
+std::numeric_limits<int32_t>::min(); // int32_t 的最小值, -2'147'483'648
+
+std::numeric_limits<double>::min(); // double 的最小值, 约为 2.22507e-308
+std::numeric_limits<double>::epsilon(); // 1.0 与 double 的下个可表示值的差, 约为 2.22045e-16
+```
 
 ## 类型转换
 
@@ -358,6 +403,7 @@ a = 3;
 1. [类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/type)
 1. C 语言的 [算术类型 - cppreference.com](https://zh.cppreference.com/w/c/language/arithmetic_types)
 1. [基础类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/types)
+1. [定宽整数类型 (C++11 起) - cppreference.com](https://zh.cppreference.com/w/cpp/types/integer)
 1. William Kahan (1 October 1997).["Lecture Notes on the Status of IEEE Standard 754 for Binary Floating-Point Arithmetic"](https://people.eecs.berkeley.edu/~wkahan/ieee754status/IEEE754.PDF).
 1. [隐式转换 - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion)
 1. [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)
