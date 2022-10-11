@@ -47,7 +47,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 - [ICPC Live Archive](https://icpcarchive.ecs.baylor.edu/) 存档了 1990 年至今的 ICPC 区域赛和总决赛题目；但部分比赛的评测数据仅为样例数据，且对 Special Judge 的支持不完善。
 - [ICPC Problem Archive](https://judge.icpc.global) 基于 Kattis 系统；存档了 2012 年至今的 ICPC 全球总决赛题目，并且会在总决赛开赛时同步发放题目（但不会有同步赛）。
 - [Kattis](https://open.kattis.com/) 题库主要包含类似 ICPC 比赛的题目；根据用户解题情况评定用户等级，推荐适合该用户水平的 trivial/easy/medium/hard 四类难度的题目，其中题目难度采用类 [ELO 等级分](https://zh.wikipedia.org/wiki/%E7%AD%89%E7%BA%A7%E5%88%86) 系统来评估。
-- [LeetCode](https://leetcode.com/) 码农面试刷题网站，有中文分站：[LeetCode China](https://leetcode-cn.com/)。
+- [LeetCode](https://leetcode.com/) 码农面试刷题网站，有中文分站：[LeetCode China](https://leetcode.cn)。
 - [Light OJ](http://lightoj.com) 一个快挂了的 OJ，`www` 域名无法访问，请使用 [根域名](http://lightoj.com) 访问
 - [opentrains](http://opentrains.snarknews.info/) 俄罗斯 [Open Cup](http://opencup.ru/) 比赛的训练平台，基于 [ejudge](https://ejudge.ru/) 开源系统搭建，支持虚拟比赛；题库包含历年 Open Cup 赛题以及 Petrozavodsk 训练营的题目。
 - [SPOJ](http://www.spoj.com) 始于 2003 年，其后台系统 [Sphere Engine](https://sphere-engine.com/) 于 2008 年商业化；支持题目点赞和标签功能。
