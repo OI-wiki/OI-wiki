@@ -121,7 +121,7 @@ typedef decltype(nullptr) nullptr_t;
 ```
 
 ???+ note "C 语言对空指针常量的改进"
-    基于类似的原因，C23 也引入了 `nullptr` 作为空指针常量[^note1]。
+    基于类似的原因，C23 也引入了 `nullptr` 作为空指针常量，同时引入了 `nullptr_t` 作为其类型[^note1]。
 
 ## 指针的进阶使用
 
