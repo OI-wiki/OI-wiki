@@ -120,6 +120,9 @@ typedef decltype(nullptr) nullptr_t;
 #define NULL nullptr
 ```
 
+???+ note "C 语言对空指针常量的改进"
+    基于类似的原因，C23 也引入了 `nullptr` 作为空指针常量[^note1]。
+
 ## 指针的进阶使用
 
 使用指针，使得程序编写者可以操作程序运行时中各处的数据，而不必局限于作用域。
@@ -359,3 +362,7 @@ typedef int (*p_bi_int_op)(int, int);
 可以通过使用 `std::function` 来更方便的引用函数。（未完待续）
 
 使用函数指针，可以实现“回调函数”。（未完待续）
+
+## 参考资料与注释
+
+[^note1]: 参见 [Introduce the nullptr constant](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3042.htm)
