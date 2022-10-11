@@ -136,7 +136,7 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
 另外，浮点类型可以支持一些特殊值：
 
 - 无穷（正或负）：`INFINITY`.
-- 负零：`-0.0`，例如 `1.0 / 0.0 == INFINITY`, `1.0 / -0.0 == INFINITY`.
+- 负零：`-0.0`，例如 `1.0 / 0.0 == INFINITY`, `1.0 / -0.0 == -INFINITY`.
 - 非数（NaN）：`std::nan`, `NAN`，一般可以由 `0.0 / 0.0` 之类的运算产生。它与任何值（包括自身）比较都不相等，C++11 后可以 使用 `std::isnan` 判断一个浮点数是不是 NaN.
 
 ### 无类型
