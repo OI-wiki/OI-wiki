@@ -1,4 +1,4 @@
-高斯-若尔当消元法（Gauss-Jordan elimination）是求解线性方程组的经典算法，它在当代数学中有着重要的地位和价值，是线性代数课程教学的重要组成部分。
+高斯 - 若尔当消元法（Gauss-Jordan elimination）是求解线性方程组的经典算法，它在当代数学中有着重要的地位和价值，是线性代数课程教学的重要组成部分。
 
 本算法为 Gauss-Jordan 消元法，是 Jordan 在 1887 年描述的 Gauss 方法的变体。
 
@@ -10,7 +10,7 @@
 
 ## 线性方程组
 
-给定一个含有 $n$个未知数的线性方程组（SLAE）。要求求解方程组：确定它是否有解，只有一个解还是无穷多个解。如果它至少有一个解，求出其中任何一个。
+给定一个含有 $n$ 个未知数的线性方程组（SLAE）。要求求解方程组：确定它是否有解，只有一个解还是无穷多个解。如果它至少有一个解，求出其中任何一个。
 
 从形式上讲，问题的表述为解方程组：
 
@@ -23,7 +23,7 @@ a_{n1} x_1 + a_{n2} x_2 + &\dots + a_{nm} x_m = b_n
 \end{align}
 $$
 
-其中，系数$a_{ij}$和$b_i$是已知的，变量$x_i$是未知的。
+其中，系数 $a_{ij}$ 和 $b_i$ 是已知的，变量 $x_i$ 是未知的。
 
 这个问题还有一个简单的矩阵表示法：
 
@@ -31,7 +31,7 @@ $$
 Ax = b
 $$
 
-其中$A$是系数$A_{ij}$的大小为 $n \times m$ 的矩阵，称为系数矩阵，$b$是大小为$n$的列向量。
+其中 $A$ 是系数 $A_{ij}$ 的大小为 $n \times m$ 的矩阵，称为系数矩阵，$b$ 是大小为 $n$ 的列向量。
 
 本文的算法也可用于求解模为任意数 $p$ 的方程，即：
 
@@ -123,26 +123,26 @@ $$
 
 ## 概述
 
-算法是对每个方程中的变量进行“顺序消除”，直到每个方程只剩下一个变量。如果$n=m$，可以将其视为将矩阵$A$转换为单位矩阵，并在这种明显的情况下求解方程，其中解是唯一的，并且等于系数$b_i$。
+算法是对每个方程中的变量进行“顺序消除”，直到每个方程只剩下一个变量。如果 $n=m$，可以将其视为将矩阵 $A$ 转换为单位矩阵，并在这种明显的情况下求解方程，其中解是唯一的，并且等于系数 $b_i$。
 
 ### 消元法理论的核心
 
-Gauss-Jordan算法的核心是初等行变换：
+Gauss-Jordan 算法的核心是初等行变换：
 
-* 对换变换：可以交换两个方程。
-* 倍乘变换和倍加变换：任何方程都可以替换为该行（具有非零系数）和其他一些行（具有任意系数）的线性组合。
+- 对换变换：可以交换两个方程。
+- 倍乘变换和倍加变换：任何方程都可以替换为该行（具有非零系数）和其他一些行（具有任意系数）的线性组合。
 
-在第一步中，Gauss-Jordan算法将第一行除以$a_{11}$。然后，该算法将第一行添加到其余行中，使第一列中的系数变为全零。为了实现这一点，要在第i行添加第一行乘以$-a_{i1}$，同时对向量$b$执行此操作。
+在第一步中，Gauss-Jordan 算法将第一行除以 $a_{11}$。然后，该算法将第一行添加到其余行中，使第一列中的系数变为全零。为了实现这一点，要在第 i 行添加第一行乘以 $-a_{i1}$，同时对向量 $b$ 执行此操作。
 
-在某种意义上，它的行为就像向量$b$是矩阵$A$的第 $m+1$ 列一样，两者拼起来构成增广矩阵。
+在某种意义上，它的行为就像向量 $b$ 是矩阵 $A$ 的第 $m+1$ 列一样，两者拼起来构成增广矩阵。
 
-因此，在第一步之后，矩阵$A$的第一列将由第一行的$1$和其他行的$0$组成。
+因此，在第一步之后，矩阵 $A$ 的第一列将由第一行的 $1$ 和其他行的 $0$ 组成。
 
-类似地，执行算法的第二步，考虑第二行的第二列。首先，该行除以$a_{22}$，然后从其他行中减去该行，使所有第二列变为$0$（第二行除外）。
+类似地，执行算法的第二步，考虑第二行的第二列。首先，该行除以 $a_{22}$，然后从其他行中减去该行，使所有第二列变为 $0$（第二行除外）。
 
-对矩阵$A$的所有列继续此过程。如果$n=m$，则$A$将成为单位矩阵。
+对矩阵 $A$ 的所有列继续此过程。如果 $n=m$，则 $A$ 将成为单位矩阵。
 
-未引入对换变换的 Gauss-Jordan 算法与LU分解的算法几乎一致，LU分解的算法仅执行上三角部分。
+未引入对换变换的 Gauss-Jordan 算法与 LU 分解的算法几乎一致，LU 分解的算法仅执行上三角部分。
 
 ## 高斯消元五步骤法
 
@@ -314,14 +314,13 @@ $$
 
 引出秩的概念，是“按行看”观点的完结，后文线性相关部分进入重要的“按列看”观点。
 
-
 ## 搜索旋转（pivoting）元素
 
 在第 $i$ 步，如果 $a_{i}$ 为零，则无法直接应用所描述的方法。必须首先选择一个旋转（pivoting）行：找到矩阵中为相应元素不为零的一行，然后交换到当前第 $i$ 行。
 
 注意，这里交换的是行而不是列。这是因为如果交换列，那么在找到解决方案时，必须记住交换回正确的位置。因此，交换行要容易得多。
 
-在许多实现中，当 $a_{ii} \neq 0$时，仍然使用一些启发式算法（heuristic）来交换第 $i$ 行和一些旋转（pivoting）行，例如选择绝对值最大的 $a_{ji}$ 为旋转行。在后面的步骤中，此启发式算法用于减少矩阵的值范围。如果没有这种启发式方法，即使对于大小约为 $20$ 的矩阵，错误也会太大，并可能导致C++浮点数据类型溢出。
+在许多实现中，当 $a_{ii} \neq 0$ 时，仍然使用一些启发式算法（heuristic）来交换第 $i$ 行和一些旋转（pivoting）行，例如选择绝对值最大的 $a_{ji}$ 为旋转行。在后面的步骤中，此启发式算法用于减少矩阵的值范围。如果没有这种启发式方法，即使对于大小约为 $20$ 的矩阵，错误也会太大，并可能导致 C++ 浮点数据类型溢出。
 
 ## 一般情况
 
@@ -343,69 +342,61 @@ $$
 
 ```cpp
 const double EPS = 1e-9;
-const int INF = 2; // it doesn't actually have to be infinity or a big number
+const int INF = 2;  // it doesn't actually have to be infinity or a big number
 
-int gauss (vector < vector<double> > a, vector<double> & ans) {
-	int n = (int) a.size();
-	int m = (int) a[0].size() - 1;
+int gauss(vector<vector<double> > a, vector<double>& ans) {
+  int n = (int)a.size();
+  int m = (int)a[0].size() - 1;
 
-	vector<int> where (m, -1);
-	for (int col=0, row=0; col<m && row<n; ++col) {
-		int sel = row;
-		for (int i=row; i<n; ++i)
-			if (abs (a[i][col]) > abs (a[sel][col]))
-				sel = i;
-		if (abs (a[sel][col]) < EPS)
-			continue;
-		for (int i=col; i<=m; ++i)
-			swap (a[sel][i], a[row][i]);
-		where[col] = row;
+  vector<int> where(m, -1);
+  for (int col = 0, row = 0; col < m && row < n; ++col) {
+    int sel = row;
+    for (int i = row; i < n; ++i)
+      if (abs(a[i][col]) > abs(a[sel][col])) sel = i;
+    if (abs(a[sel][col]) < EPS) continue;
+    for (int i = col; i <= m; ++i) swap(a[sel][i], a[row][i]);
+    where[col] = row;
 
-		for (int i=0; i<n; ++i)
-			if (i != row) {
-				double c = a[i][col] / a[row][col];
-				for (int j=col; j<=m; ++j)
-					a[i][j] -= a[row][j] * c;
-			}
-		++row;
-	}
+    for (int i = 0; i < n; ++i)
+      if (i != row) {
+        double c = a[i][col] / a[row][col];
+        for (int j = col; j <= m; ++j) a[i][j] -= a[row][j] * c;
+      }
+    ++row;
+  }
 
-	ans.assign (m, 0);
-	for (int i=0; i<m; ++i)
-		if (where[i] != -1)
-			ans[i] = a[where[i]][m] / a[where[i]][i];
-	for (int i=0; i<n; ++i) {
-		double sum = 0;
-		for (int j=0; j<m; ++j)
-			sum += ans[j] * a[i][j];
-		if (abs (sum - a[i][m]) > EPS)
-			return 0;
-	}
+  ans.assign(m, 0);
+  for (int i = 0; i < m; ++i)
+    if (where[i] != -1) ans[i] = a[where[i]][m] / a[where[i]][i];
+  for (int i = 0; i < n; ++i) {
+    double sum = 0;
+    for (int j = 0; j < m; ++j) sum += ans[j] * a[i][j];
+    if (abs(sum - a[i][m]) > EPS) return 0;
+  }
 
-	for (int i=0; i<m; ++i)
-		if (where[i] == -1)
-			return INF;
-	return 1;
+  for (int i = 0; i < m; ++i)
+    if (where[i] == -1) return INF;
+  return 1;
 }
 ```
 
 实现的说明：
 
-*该函数使用两个指针-当前列 $col$ 和当前行 $row$。
+\* 该函数使用两个指针 - 当前列 $col$ 和当前行 $row$。
 
-*对于每个变量 $x_i$，值 $where(i)$ 是该列不为零的行。这个向量是必需的，因为一些变量可以是独立的。
+\* 对于每个变量 $x_i$，值 $where(i)$ 是该列不为零的行。这个向量是必需的，因为一些变量可以是独立的。
 
-*在这个实现中，当前的第 $i$ 行没有如上所述被 $a_{ii}$ 分割，因此最终矩阵不是单位矩阵，尽管分割第 $i$ 行显然有助于减少错误。
+\* 在这个实现中，当前的第 $i$ 行没有如上所述被 $a_{ii}$ 分割，因此最终矩阵不是单位矩阵，尽管分割第 $i$ 行显然有助于减少错误。
 
-*找到解决方案后，将其插入矩阵中，以检查系统是否至少有一个解决方案。如果测试解决方案成功，则函数返回 $1$ 或 $\inf$，具体取决于是否至少有一个自变量。
+\* 找到解决方案后，将其插入矩阵中，以检查系统是否至少有一个解决方案。如果测试解决方案成功，则函数返回 $1$ 或 $\inf$，具体取决于是否至少有一个自变量。
 
 ## 复杂度
 
 算法由 $m$ 个阶段组成，每个阶段：
 
-*搜索并重新排列旋转行。当使用上述启发式时，这需要 $O(n + m)$ 。
+\* 搜索并重新排列旋转行。当使用上述启发式时，这需要 $O(n + m)$。
 
-*如果找到当前列中的旋转元素，则必须将此方程添加到所有其他方程中，这需要花费 $O(nm)$ 时间。
+\* 如果找到当前列中的旋转元素，则必须将此方程添加到所有其他方程中，这需要花费 $O(nm)$ 时间。
 
 因此，算法的最终复杂度为 $O(\min (n, m)nm)$。
 
@@ -417,9 +408,9 @@ int gauss (vector < vector<double> > a, vector<double> & ans) {
 
 通过将算法分为两个阶段：正向和反向，可以将之前的实现速度提高两倍：
 
-*正向：与前面的实现类似，但当前行只添加到它后面的行中。因此得到一个上三角矩阵而不是对角矩阵。
+\* 正向：与前面的实现类似，但当前行只添加到它后面的行中。因此得到一个上三角矩阵而不是对角矩阵。
 
-*反向：当矩阵是上三角矩阵时，首先计算最后一个变量的值。然后代入此值求解下一个变量的值。然后代入这两个值求解下一个变量的值。
+\* 反向：当矩阵是上三角矩阵时，首先计算最后一个变量的值。然后代入此值求解下一个变量的值。然后代入这两个值求解下一个变量的值。
 
 反向只需要 $O(nm)$，这比正向快得多。在正向阶段，将操作数减少一半，从而减少实现的运行时间。
 
@@ -430,24 +421,22 @@ int gauss (vector < vector<double> > a, vector<double> & ans) {
 取模的 SLAE 求解仍然可以使用所描述的算法。如果模数为 2，可以使用逐位运算和 C++ bitset 类型，更快地执行 Gauss-Jordan 算法：
 
 ```cpp
-int gauss (vector < bitset<N> > a, int n, int m, bitset<N> & ans) {
-	vector<int> where (m, -1);
-	for (int col=0, row=0; col<m && row<n; ++col) {
-		for (int i=row; i<n; ++i)
-			if (a[i][col]) {
-				swap (a[i], a[row]);
-				break;
-			}
-		if (! a[row][col])
-			continue;
-		where[col] = row;
+int gauss(vector<bitset<N> > a, int n, int m, bitset<N>& ans) {
+  vector<int> where(m, -1);
+  for (int col = 0, row = 0; col < m && row < n; ++col) {
+    for (int i = row; i < n; ++i)
+      if (a[i][col]) {
+        swap(a[i], a[row]);
+        break;
+      }
+    if (!a[row][col]) continue;
+    where[col] = row;
 
-		for (int i=0; i<n; ++i)
-			if (i != row && a[i][col])
-				a[i] ^= a[row];
-		++row;
-	}
-        // The rest of implementation is the same as above
+    for (int i = 0; i < n; ++i)
+      if (i != row && a[i][col]) a[i] ^= a[row];
+    ++row;
+  }
+  // The rest of implementation is the same as above
 }
 ```
 
@@ -459,7 +448,7 @@ int gauss (vector < bitset<N> > a, int n, int m, bitset<N> & ans) {
 
 上述实现中使用的启发式方法，在实践中效果很好。它实现了和完全旋转（full pivoting）几乎相同的效果，即在其子矩阵的全部行和全部列所有元素中搜索旋转行。
 
-不过应该注意，这两种启发式都取决于原始方程的缩放比例。例如，如果其中一个等式乘以$10^6$，那么几乎可以肯定在第一步中会选择这个等式作为旋转行。因此可以修改为更复杂的启发式，称为隐式旋转（implicit pivoting）。
+不过应该注意，这两种启发式都取决于原始方程的缩放比例。例如，如果其中一个等式乘以 $10^6$，那么几乎可以肯定在第一步中会选择这个等式作为旋转行。因此可以修改为更复杂的启发式，称为隐式旋转（implicit pivoting）。
 
 隐式旋转将整行进行比较，就像每行都被规范化了一样，这样最大的元素将是一个整体。要实现此方法，需要保持每行的最大值为 $1$，但这可能会导致累积错误的增加。
 
@@ -721,15 +710,15 @@ std::vector<bool> GaussElimination(
 
 ## 练习题
 
-* [Codeforces - 巫师和赌注](http://codeforces.com/contest/167/problem/E)
-* [luogu - SDOI2010 外星千足虫](https://www.luogu.com.cn/problem/P2447)
-* [Spoj - Xor Maximization](http://www.spoj.com/problems/XMAX/)
-* [Codechef - Knight Moving](https://www.codechef.com/SEP12/problems/KNGHTMOV)
-* [Lightoj - Graph Coloring](http://lightoj.com/volume_showproblem.php?problem=1279)
-* [UVA 12910 - Snakes and Ladders](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4775)
-* [TIMUS1042 Central Heating](http://acm.timus.ru/problem.aspx?space=1&num=1042)
-* [TIMUS1766 Humpty Dumpty](http://acm.timus.ru/problem.aspx?space=1&num=1766)
-* [TIMUS1266 Kirchhoff's Law](http://acm.timus.ru/problem.aspx?space=1&num=1266)
-* [Codeforces - No game no life](https://codeforces.com/problemset/problem/1411/G)
+- [Codeforces - 巫师和赌注](http://codeforces.com/contest/167/problem/E)
+- [luogu - SDOI2010 外星千足虫](https://www.luogu.com.cn/problem/P2447)
+- [Spoj - Xor Maximization](http://www.spoj.com/problems/XMAX/)
+- [Codechef - Knight Moving](https://www.codechef.com/SEP12/problems/KNGHTMOV)
+- [Lightoj - Graph Coloring](http://lightoj.com/volume_showproblem.php?problem=1279)
+- [UVA 12910 - Snakes and Ladders](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4775)
+- [TIMUS1042 Central Heating](http://acm.timus.ru/problem.aspx?space=1&num=1042)
+- [TIMUS1766 Humpty Dumpty](http://acm.timus.ru/problem.aspx?space=1&num=1766)
+- [TIMUS1266 Kirchhoff's Law](http://acm.timus.ru/problem.aspx?space=1&num=1266)
+- [Codeforces - No game no life](https://codeforces.com/problemset/problem/1411/G)
 
-**本页面主要译自博文[Метод Гаусса решения системы линейных уравнений](http://e-maxx.ru/algo/linear_systems_gauss)与其英文翻译版[Gauss method for solving system of linear equations](https://cp-algorithms.com/linear_algebra/linear-system-gauss.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+**本页面主要译自博文 [Метод Гаусса решения системы линейных уравнений](http://e-maxx.ru/algo/linear_systems_gauss) 与其英文翻译版 [Gauss method for solving system of linear equations](https://cp-algorithms.com/linear_algebra/linear-system-gauss.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
