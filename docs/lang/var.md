@@ -190,18 +190,19 @@ C++11 起提供了定宽整数的支持，具体如下：
     
     ???+ mdui-shadow-6 "示例代码"
         ```cpp
-        #include<cstdint>
-        #include<algorithm>
-        #include<iostream>
-
+        #include <algorithm>
+        #include <cstdint>
+        #include <iostream>
+        
         int main() {
-            long long a;
-            int64_t b;
-            std::cin >> a >> b;
-            std::cout << std::max(a,b) << std::endl;
-            return 0;
+          long long a;
+          int64_t b;
+          std::cin >> a >> b;
+          std::cout << std::max(a, b) << std::endl;
+          return 0;
         }
         ```
+    
     `int64_t` 在 64 位 Windows 下一般为 `long long int`, 而在 64 位 Linux 下一般为 `long int`, 所以这段代码在使用 64 位 Linux 下的 GCC 时不能通过编译，而使用 64 位 Windows 下的 MSVC 时可以通过编译，因为 `std::max` 要求输入的两个参数类型必须相同。
 
 此外，C++17 起在 `<limits>` 中提供了 `std::numeric_limits` 类模板，用于查询各种算数类型的属性，如最大值、最小值、是否是整形、是否有符号等。
