@@ -4,7 +4,7 @@ C++ 的类型系统由如下几部分组成：
 
 1.  基础类型（括号内为代表关键词/代表类型）
     1. 无类型/`void` 型 (`void`)
-    2. (C++11 起）空指针类型 (`std::nullptr_t`)
+    2. （C++11 起）空指针类型 (`std::nullptr_t`)
     3.  算术类型
         1. 整数类型 (`int`)
         2. 布尔类型/`bool` 型 (`bool`)
@@ -185,7 +185,27 @@ C++11 起提供了定宽整数的支持，具体如下：
 - `_MAX` 表示最大值，如 `INT32_MAX` 即为 `int32_t` 的最大值。
 - `_MIN` 表示最小值，如 `INT32_MIN` 即为 `int32_t` 的最小值。
 
-另外，C++17 起在 `<limits>` 中提供了 `std::numeric_limits` 类模板，用于查询各种算数类型的属性，如最大值、最小值、是否是整形、是否有符号等。
+???+warning "注意"
+    定宽整数类型本质上是普通整数类型的类型别名，所以混用定宽整数类型和普通整数类型可能会影响跨平台编译，如 `int64_t` 在 64 位 Windows 下一般为 `long long int`, 而在 64 位 Linux 下一般为 `long int`. 例如：
+    
+    ???+ mdui-shadow-6 "示例代码"
+        ```cpp
+        #include<cstdint>
+        #include<algorithm>
+        #include<iostream>
+
+        int main() {
+            long long a;
+            int64_t b;
+            std::cin >> a >> b;
+            std::cout << std::max(a,b) << std::endl;
+            return 0;
+        }
+        ```
+    
+    这段代码在使用 64 位 Linux 下的 GCC 时不能通过编译，而使用 64 位 Windows 下的 MSVC 时可以通过编译。因为 `std::max` 要求输入的两个参数类型必须相同。
+
+此外，C++17 起在 `<limits>` 中提供了 `std::numeric_limits` 类模板，用于查询各种算数类型的属性，如最大值、最小值、是否是整形、是否有符号等。
 
 ```cpp
 #include <cstdint>
