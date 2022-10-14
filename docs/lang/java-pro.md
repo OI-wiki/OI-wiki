@@ -391,7 +391,7 @@ public class Main {
         out.println(String.format("a nextPrime is %s", a.nextProbablePrime().toString()));  // a nextPrime is 1200324143214321442199 
     }
 
-    static void modPow() {  // 快速幂，比正常版本要快，内部有蒙特卡洛优化 
+    static void modPow() {  // 快速幂，比正常版本要快，内部有 Montgomery 优化 
         a = new BigInteger("2");
         b = new BigInteger("10");
         p = new BigInteger("1000");
