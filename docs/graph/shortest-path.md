@@ -137,7 +137,7 @@ Bellman-Ford 算法是一种基于松弛（relax）操作的最短路算法，�
 
 ### 过程
 
-先介绍 Bellman-Ford 算法要用到的松弛操作（Djikstra 算法也会用到松弛操作）。
+先介绍 Bellman-Ford 算法要用到的松弛操作（Dijkstra 算法也会用到松弛操作）。
 
 对于边 $(u,v)$，松弛操作对应下面的式子：$dis(v) = \min(dis(v), dis(u) + w(u, v))$。
 
