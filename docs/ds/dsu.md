@@ -154,18 +154,15 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
     // C++ Version
     struct dsu {
       vector<size_t> pa, size;
-      size_t new_node;
     
       explicit dsu(size_t size_) : pa(size_ * 2), size(size_ * 2, 1) {
         iota(pa.begin(), pa.begin() + size_, size_);
         iota(pa.begin() + size_, pa.end(), size_);
-        new_node = size_ * 2;
       }
     
       void erase(size_t x) {
         --size[find(x)];
-        pa[x] = new_node;
-        pa[new_node] = new_node++;
+        pa.push_back((pa[x] = pa.size()) + 1);
       }
     };
     ```
@@ -176,13 +173,11 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
         def __init__(self, size):
             self.pa = list(range(size, size * 2)) * 2
             self.size = [1] * size * 2
-            self.new_node = size * 2
     
         def erase(self, x):
             self.size[self.find(x)] -= 1
-            self.pa[x] = self.new_node
-            self.pa[new_node] = self.new_node
-            self.new_node +=1
+            self.pa[x] = len(self.pa)
+            self.pa.append(len(self.pa) + 1)
     ```
 
 ## 移动
