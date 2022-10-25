@@ -1,4 +1,4 @@
-author: Ir1d, greyqz, yjl9903, partychicken, ChungZH, qq1010903229, Marcythm, Acfboy
+author: Ir1d, greyqz, yjl9903, partychicken, ChungZH, qq1010903229, Marcythm, Acfboy, Lyccrius
 
 ## 引入
 
@@ -43,9 +43,11 @@ DFS 最显著的特征在于其 **递归调用自身**。同时与 BFS 类似，
 void dfs(int u) {
   vis[u] = 1;
   for (int i = head[u]; i; i = e[i].x) {
-    if (!vis[e[i].t]) {
-      dfs(v);
+    int v = e[i].t;
+    if (vis[v]) {
+      continue;
     }
+    dfs(v);
   }
 }
 ```
