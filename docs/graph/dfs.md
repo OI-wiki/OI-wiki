@@ -42,7 +42,7 @@ DFS 最显著的特征在于其 **递归调用自身**。同时与 BFS 类似，
 // C++ Version
 void dfs(int u) {
   vis[u] = 1;
-  for (int i = head[u]; i; i = e[i].x) {
+  for (int i = head[u]; i; i = e[i].next) {
     int v = e[i].t;
     if (vis[v]) {
       continue;
