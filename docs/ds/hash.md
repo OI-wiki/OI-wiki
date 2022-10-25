@@ -45,7 +45,7 @@ struct HashTable {
 
   int head[M], size;
 
-  int f(int key) { return key % M; }
+  int f(int key) { return (key % M + M) % M; }
 
   int get(int key) {
     for (int p = head[f(key)]; p; p = data[p].next)
@@ -117,7 +117,9 @@ struct hash_map {  // 哈希表模板
   data e[SZ << 1];  // SZ 是 const int 表示大小
   int h[SZ], cnt;
 
-  int hash(long long u) { return u % SZ; }
+  int hash(long long u) { return (u % SZ + SZ) % SZ; }
+  // 这里使用 (u % SZ + SZ) % SZ 而非 u % SZ 的原因是
+  // C++ 中的 % 运算无法将负数转为正数
 
   int& operator[](long long u) {
     int hu = hash(u);  // 获取头指针

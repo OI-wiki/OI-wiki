@@ -99,7 +99,11 @@ struct Node {
 
 ???+note "实现"
     ```cpp
-    Node* delete_min(Node* x) { return merges(x->child); }
+    Node* delete_min(Node* x) {
+      Node* t = merges(x->child);
+      delete x;  // 如果需要内存回收
+      return t;
+    }
     ```
 
 ### 减小一个元素的值
