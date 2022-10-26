@@ -104,7 +104,7 @@ $i^{-1} \equiv -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1} \pmod p$
 $$
 i^{-1} \equiv \begin{cases}
     1,                                           & \text{if } i = 1, \\
-    -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1}, & \text{otherwises}.
+    -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1}, & \text{otherwise}.
 \end{cases} \pmod p
 $$
 
