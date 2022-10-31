@@ -97,7 +97,7 @@ struct ConstMember {
 int main() {
     const int a = 1;
     int b = 1;
-    struct ConstMember c = {.p = &a, .q = &b};
+    struct ConstMember c = {.p = &a, .q = &b}; // 指派初始化器是C++20中的一种语法
     // *(c.p) = 2; // 常类型指针无法改变指向的值
     c.p = &b;   // 常类型指针可以改变指针指向
     *(c.q) = 2; // 常指针变量可以改变指向的值
