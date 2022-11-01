@@ -67,7 +67,7 @@
       while b:
           if b & 1:
               ans = (a * ans) % p
-              a = (a * a) % p
+          a = (a * a) % p
           b >>= 1
       return ans
     ```
