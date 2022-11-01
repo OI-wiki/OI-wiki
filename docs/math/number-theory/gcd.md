@@ -43,8 +43,8 @@
 ```cpp
 // C / C++ Version 1
 int gcd(int a, int b) {
-    if (b == 0) return a;
-    return gcd(b, a % b);
+  if (b == 0) return a;
+  return gcd(b, a % b);
 }
 
 // C / C++ Version 2
@@ -81,12 +81,12 @@ def gcd(a, b):
 ```cpp
 // C / C++ Version
 int gcd(int a, int b) {
-    while(b != 0) {
-        int tmp = a;
-        a = b;
-        b = tmp % b;
-    }
-    return a;
+  while (b != 0) {
+    int tmp = a;
+    a = b;
+    b = tmp % b;
+  }
+  return a;
 }
 ```
 
@@ -197,16 +197,16 @@ $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\fra
 ```cpp
 // C++ Version
 int Exgcd(int a, int b, int &x, int &y) {
-    if (!b) {
-        x = 1;
-        y = 0;
-        return a;
-    }
-    int d = Exgcd(b, a % b, x, y);
-    int t = x;
-    x = y;
-    y = t - (a / b) * y;
-    return d;
+  if (!b) {
+    x = 1;
+    y = 0;
+    return a;
+  }
+  int d = Exgcd(b, a % b, x, y);
+  int t = x;
+  x = y;
+  y = t - (a / b) * y;
+  return d;
 }
 ```
 
