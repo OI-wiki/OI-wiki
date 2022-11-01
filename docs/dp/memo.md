@@ -1,8 +1,10 @@
+## 定义
+
 记忆化搜索是一种通过记录已经遍历过的状态的信息，从而避免对同一状态重复遍历的搜索实现方式。
 
 因为记忆化搜索确保了每个状态只访问一次，它也是一种常见的动态规划实现方式。
 
-## 引子
+## 引入
 
 ???+note "[[NOIP2005] 采药](https://www.luogu.com.cn/problem/P1048)"
     山洞里有 $M$ 株不同的草药，采每一株都需要一些时间 $t_i$，每一株也有它自身的价值 $v_i$。给你一段时间 $T$，在这段时间里，你可以采到一些草药。让采到的草药的总价值最大。
@@ -13,51 +15,52 @@
 
 很容易实现这样一个朴素的搜索做法：在搜索时记录下当前准备选第几个物品、剩余的时间是多少、已经获得的价值是多少这三个参数，然后枚举当前物品是否被选，转移到相应的状态。
 
-```cpp
-// C++ Version
-int n, t;
-int tcost[103], mget[103];
-int ans = 0;
-
-void dfs(int pos, int tleft, int tans) {
-  if (tleft < 0) return;
-  if (pos == n + 1) {
-    ans = max(ans, tans);
-    return;
-  }
-  dfs(pos + 1, tleft, tans);
-  dfs(pos + 1, tleft - tcost[pos], tans + mget[pos]);
-}
-
-int main() {
-  cin >> t >> n;
-  for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
-  dfs(1, t, 0);
-  cout << ans << endl;
-  return 0;
-}
-```
-
-```python
-# Python Version
-tcost = [0] * 103
-mget = [0] * 103
-ans = 0
-def dfs(pos, tleft, tans):
-    global ans
-    if tleft < 0:
-        return
-    if pos == n + 1:
-        ans = max(ans, tans)
-        return
-    dfs(pos + 1, tleft, tans)
-    dfs(pos + 1, tleft - tcost[pos], tans + mget[pos])
-t, n = map(lambda x:int(x), input().split())
-for i in range(1, n + 1):
-    tcost[i], mget[i] = map(lambda x:int(x), input().split())
-dfs(1, t, 0)
-print(ans)
-```
+???+note "实现"
+    ```cpp
+    // C++ Version
+    int n, t;
+    int tcost[103], mget[103];
+    int ans = 0;
+    
+    void dfs(int pos, int tleft, int tans) {
+      if (tleft < 0) return;
+      if (pos == n + 1) {
+        ans = max(ans, tans);
+        return;
+      }
+      dfs(pos + 1, tleft, tans);
+      dfs(pos + 1, tleft - tcost[pos], tans + mget[pos]);
+    }
+    
+    int main() {
+      cin >> t >> n;
+      for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
+      dfs(1, t, 0);
+      cout << ans << endl;
+      return 0;
+    }
+    ```
+    
+    ```python
+    # Python Version
+    tcost = [0] * 103
+    mget = [0] * 103
+    ans = 0
+    def dfs(pos, tleft, tans):
+        global ans
+        if tleft < 0:
+            return
+        if pos == n + 1:
+            ans = max(ans, tans)
+            return
+        dfs(pos + 1, tleft, tans)
+        dfs(pos + 1, tleft - tcost[pos], tans + mget[pos])
+    t, n = map(lambda x:int(x), input().split())
+    for i in range(1, n + 1):
+        tcost[i], mget[i] = map(lambda x:int(x), input().split())
+    dfs(1, t, 0)
+    print(ans)
+    ```
 
 这种做法的时间复杂度是指数级别的，并不能通过本题。
 
@@ -71,54 +74,55 @@ print(ans)
 
 通过这样的处理，我们确保了每个状态只会被访问一次，因此该算法的的时间复杂度为 $O(TM)$。
 
-```cpp
-// C++ Version
-int n, t;
-int tcost[103], mget[103];
-int mem[103][1003];
-
-int dfs(int pos, int tleft) {
-  if (mem[pos][tleft] != -1)
-    return mem[pos][tleft];  // 已经访问过的状态，直接返回之前记录的值
-  if (pos == n + 1) return mem[pos][tleft] = 0;
-  int dfs1, dfs2 = -INF;
-  dfs1 = dfs(pos + 1, tleft);
-  if (tleft >= tcost[pos])
-    dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];  // 状态转移
-  return mem[pos][tleft] = max(dfs1, dfs2);  // 最后将当前状态的值存下来
-}
-
-int main() {
-  memset(mem, -1, sizeof(mem));
-  cin >> t >> n;
-  for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
-  cout << dfs(1, t) << endl;
-  return 0;
-}
-```
-
-```python
-# Python Version
-tcost = [0] * 103
-mget = [0] * 103
-mem = [[-1 for i in range(1003)] for j in range(103)]
-def dfs(pos, tleft):
-    if mem[pos][tleft] != -1:
+???+note "实现"
+    ```cpp
+    // C++ Version
+    int n, t;
+    int tcost[103], mget[103];
+    int mem[103][1003];
+    
+    int dfs(int pos, int tleft) {
+      if (mem[pos][tleft] != -1)
+        return mem[pos][tleft];  // 已经访问过的状态，直接返回之前记录的值
+      if (pos == n + 1) return mem[pos][tleft] = 0;
+      int dfs1, dfs2 = -INF;
+      dfs1 = dfs(pos + 1, tleft);
+      if (tleft >= tcost[pos])
+        dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];  // 状态转移
+      return mem[pos][tleft] = max(dfs1, dfs2);  // 最后将当前状态的值存下来
+    }
+    
+    int main() {
+      memset(mem, -1, sizeof(mem));
+      cin >> t >> n;
+      for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
+      cout << dfs(1, t) << endl;
+      return 0;
+    }
+    ```
+    
+    ```python
+    # Python Version
+    tcost = [0] * 103
+    mget = [0] * 103
+    mem = [[-1 for i in range(1003)] for j in range(103)]
+    def dfs(pos, tleft):
+        if mem[pos][tleft] != -1:
+            return mem[pos][tleft]
+        if pos == n + 1:
+            mem[pos][tleft] = 0
+            return mem[pos][tleft]
+        dfs1 = dfs2 = -INF
+        dfs1 = dfs(pos + 1, tleft)
+        if tleft >= tcost[pos]:
+            dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos]
+        mem[pos][tleft] = max(dfs1, dfs2)
         return mem[pos][tleft]
-    if pos == n + 1:
-        mem[pos][tleft] = 0
-        return mem[pos][tleft]
-    dfs1 = dfs2 = -INF
-    dfs1 = dfs(pos + 1, tleft)
-    if tleft >= tcost[pos]:
-        dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos]
-    mem[pos][tleft] = max(dfs1, dfs2)
-    return mem[pos][tleft]
-t, n = map(lambda x:int(x), input().split())
-for i in range(1, n + 1):
-    tcost[i], mget[i] = map(lambda x:int(x), input().split())
-print(dfs(1, t))
-```
+    t, n = map(lambda x:int(x), input().split())
+    for i in range(1, n + 1):
+        tcost[i], mget[i] = map(lambda x:int(x), input().split())
+    print(dfs(1, t))
+    ```
 
 ## 与递推的联系与区别
 
@@ -175,7 +179,11 @@ int dfs(int i) {
 int main() {
   memset(mem, -1, sizeof(mem));
   // 读入部分略去
-  cout << dfs(n) << endl;
+  int ret = 0;
+  for (int j = 1; j <= n; j++) {
+    ret = max(ret, dfs(j));
+  }
+  cout << ret << endl;
 }
 ```
 
@@ -195,7 +203,7 @@ def dfs(i):
 ### 方法二
 
 1. 写出这道题的暴搜程序（最好是 [dfs](../search/dfs.md))
-2. 将这个 dfs 改成“无需外部变量”的 dfs
+2. 将这个 dfs 改成「无需外部变量」的 dfs
 3. 添加记忆化数组
 
-举例：本文中“采药”的例子
+举例：本文中「采药」的例子

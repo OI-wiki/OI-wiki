@@ -1,3 +1,5 @@
+## 定义
+
 一个数 $a$，如果不是 $p$ 的倍数且模 $p$ 同余于某个数的平方，则称 $a$ 为模 $p$ 的 **二次剩余**。而一个不是 $p$ 的倍数的数 $b$，不同余于任何数的平方，则称 $b$ 为模 $p$ 的 **二次非剩余**。
 
 对二次剩余求解，也就是对常数 $a$ 解下面的这个方程：
@@ -6,9 +8,9 @@ $$
 x^2 \equiv a \pmod p
 $$
 
-通俗一些，可以认为是求模意义下的开方。这里只讨论 $\boldsymbol{p}$ **为奇素数** 的求解方法。
+通俗一些，可以认为是求模意义下的 **开平方** 运算。对于更高次方的开方的简单讨论，可以参见离散对数一文。
 
-后文可能在模 $p$ 显然的情况下简写成二次（非）剩余。
+这里只讨论 $\boldsymbol{p}$ **为奇素数** 的求解方法。后文可能在模 $p$ 显然的情况下简写成二次（非）剩余。
 
 ## Legendre 符号
 
@@ -25,6 +27,8 @@ $$
 下表为部分 Legendre 符号的值![](./images/quad_residue.png)
 
 ## Euler 判别准则
+
+### 定义
 
 对于奇素数 $p$ 和 $p\nmid a$ 有
 
@@ -88,6 +92,8 @@ $$
 
 ## 二次剩余和二次非剩余的数量
 
+### 定义
+
 对于奇素数 $p$ 和集合 $\left\lbrace 1,2,\dots ,p-1\right\rbrace$，在模 $p$ 意义下二次剩余的数量等于二次非剩余的数量。
 
 ### 证明
@@ -125,9 +131,11 @@ $$
 
 ### Atkin 算法
 
+#### 过程
+
 仍然考虑上述同余方程，此时 $p\bmod 8=5$，那么令 $b\equiv (2a)^{(p-5)/8}\pmod p$ 和 $\mathrm{i}\equiv 2ab^2\pmod p$ 那么此时 $\mathrm{i}^2\equiv -1\pmod p$ 且 $ab(\mathrm{i}-1)\bmod p$ 为一个解。
 
-**证明**：
+#### 证明
 
 $$
 \begin{aligned}
@@ -155,7 +163,13 @@ $$
 
 ## Cipolla 算法
 
-Cipolla 算法用于求解同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇素数且 $a$ 为二次剩余。算法可描述为找到 $r$ 满足 $r^2-a$ 为二次非剩余，$(r-x)^{(p+1)/2}\bmod (x^2-(r^2-a))$ 为一个解。
+### 定义
+
+Cipolla 算法用于求解同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇素数且 $a$ 为二次剩余。
+
+### 过程
+
+算法可描述为找到 $r$ 满足 $r^2-a$ 为二次非剩余，$(r-x)^{(p+1)/2}\bmod (x^2-(r^2-a))$ 为一个解。
 
 在复数域 $\mathbb{C}$ 中，记 $\mathrm{i}^2=-1$ 后 $\mathbb{C}=\lbrace a_0+a_1\mathrm{i}\mid a_0,a_1\in\mathbb{R}\rbrace$。考虑令 $x^2+1\in\mathbb{R}\lbrack x\rbrack$ 和实系数多项式的集合 $\mathbb{R}\lbrack x\rbrack$ 对 $x^2+1$ 取模后的集合记作 $\mathbb{R}\lbrack x\rbrack /(x^2+1)$，那么集合中的元素都可以表示为 $a_0+a_1x$ 的形式，其中 $a_0,a_1\in\mathbb{R}$，又因为 $x^2\equiv -1\pmod{\left(x^2+1\right)}$，考虑多项式的运算可以发现 $\mathbb{R}\lbrack x\rbrack /(x^2+1)$ 中元素的运算与 $\mathbb{C}$ 中一致。
 
@@ -165,7 +179,7 @@ Cipolla 算法用于求解同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇�
 
 若 $a\equiv 0\pmod p$ 那么 $r^2-a$ 为二次剩余，此时解显然为 $x\equiv 0\pmod p$。所以假设 $a\not\equiv 0\pmod p$。使得 $r^2-a$ 为非零二次剩余的选择有 $(p-3)/2$ 个，而使得 $r^2\equiv a\pmod p$ 的选择恰有两个，那么有 $(p-1)/2$ 种选择可以使得 $r^2-a$ 为二次非剩余，使用随机方法平均约两次可得 $r$。
 
-**证明**：
+### 证明
 
 令 $f(x)=x^2-(r^2-a)\in\mathbb{F}_p\lbrack x\rbrack$ 和 $a_0+a_1x=(r-x)^{(p+1)/2}\bmod (x^2-(r^2-a))$ 那么有 $a_0^2\equiv a\pmod p$ 且 $a_1\equiv 0\pmod p$。
 
@@ -222,9 +236,13 @@ $$
 
 ## Legendre 算法
 
+### 定义
+
 对于同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇素数且 $a$ 为二次剩余。Legendre 算法可描述为找到 $r$ 满足 $r^2-a$ 为二次非剩余，令 $a_0+a_1x=(r-x)^{(p-1)/2}\bmod (x^2-a)$，那么 $a_0\equiv 0\pmod p$ 且 $a_1^{-2}\equiv a\pmod p$。
 
-**证明**：考虑选择一个 $b$ 满足 $b^2\equiv a\pmod p$，那么 $(r-b)(r+b)=r^2-a$ 为二次非剩余，所以
+### 证明
+
+考虑选择一个 $b$ 满足 $b^2\equiv a\pmod p$，那么 $(r-b)(r+b)=r^2-a$ 为二次非剩余，所以
 
 $$
 (r-b)^{(p-1)/2}(r+b)^{(p-1)/2}\equiv -1\pmod p
@@ -254,11 +272,13 @@ $$
 
 ## Tonelli-Shanks 算法
 
+### 定义
+
 Tonelli-Shanks 算法是基于离散对数求解同余方程 $x^2\equiv a\pmod p$ 的算法，其中 $p$ 为奇素数且 $a$ 为模 $p$ 的二次剩余。
 
 令 $p-1=2^n\cdot m$ 其中 $m$ 为奇数。仍然使用随机方法寻找 $r\in\mathbb{F}_p$ 满足 $r$ 为二次非剩余。令 $g\equiv r^m\pmod p$ 且 $b\equiv a^{(m-1)/2}\pmod p$，那么存在整数 $e\in\lbrace 0,1,2,\dots ,2^n-1\rbrace$ 满足 $ab^2\equiv g^e\pmod p$。若 $a$ 为二次剩余，那么 $e$ 为偶数且 $\left(abg^{-e/2}\right)^2\equiv a\pmod p$。
 
-**证明**：
+### 证明
 
 $$
 \begin{aligned}

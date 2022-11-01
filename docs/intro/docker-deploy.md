@@ -17,9 +17,32 @@ docker pull ccr.ccs.tencentyun.com/oi-wiki/oi-wiki
 
 ## 自行构建镜像
 
+```bash
+# 以下命令在主机中运行
+# 克隆 Git 仓库
+git clone https://github.com/OI-wiki/OI-wiki.git
+cd OI-wiki/
+# 构建镜像
+docker build -t [name][:tag] . --build-arg [variable1]=[value1] [variable2]=[value2]...
+```
+
+- （必须）设置 `[name]` 以设置镜像名，（可选）设置 `[tag]` 以设置镜像标签（若设置，则运行时镜像名由两部分构成）。
+- 可以通过 `--build-arg` 参数设置环境变量。
+
 可以使用的环境变量：
 
 - 可以设置 `WIKI_REPO` 来使用 Wiki 仓库的镜像站点（当未设置时自动使用 GitHub）
+-   可以设置 `PYPI_MIRROR` 来使用 PyPI 仓库的镜像站点（当未设置时自动使用官方 PyPI）
+    - 在国内建议使用 TUNA 镜像站 `https://pypi.tuna.tsinghua.edu.cn/simple/`
+- 可以设置 `LISTEN_IP` 来更改监听 IP（当未设置时为 `0.0.0.0`，即监听所有 IP 的访问）
+- 可以设置 `LISTEN_PORT` 来更改监听端口（当未设置时为 `8000`）
+
+示例：
+
+```bash
+docker build -t OI_Wiki . --build-arg WIKI_REPO=https://hub.fastgit.xyz/OI-wiki/OI-wiki.git PYPI_MIRROR=https://pypi.tuna.tsinghua.edu.cn/simple/
+# 构建一个名为 OI_Wiki （标签默认）的镜像，使用 FastGit 服务加速克隆，使用 TUNA 镜像站。
+```
 
 ## 运行容器
 

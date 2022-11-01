@@ -1,6 +1,6 @@
-本文介绍模意义下乘法运算的逆元（Modular Multiplicative Inverse），并介绍如何使用扩展欧几里德算法（Extended Euclidean algorithm）求解乘法逆元
+本文介绍模意义下乘法运算的逆元（Modular Multiplicative Inverse），并介绍如何使用扩展欧几里德算法（Extended Euclidean algorithm）求解乘法逆元。
 
-## 逆元简介
+## 定义
 
 如果一个线性同余方程 $ax \equiv 1 \pmod b$，则 $x$ 称为 $a \bmod b$ 的逆元，记作 $a^{-1}$。
 
@@ -8,7 +8,7 @@
 
 ### 扩展欧几里得法
 
-???+note "模板代码"
+???+note "实现"
     ```cpp
     // C++ Version
     void exgcd(int a, int b, int& x, int& y) {
@@ -35,6 +35,8 @@
 
 ### 快速幂法
 
+#### 证明
+
 因为 $ax \equiv 1 \pmod b$；
 
 所以 $ax \equiv a^{b-1} \pmod b$（根据 [费马小定理](./fermat.md)）；
@@ -43,7 +45,7 @@
 
 然后我们就可以用快速幂来求了。
 
-???+note "模板代码"
+???+note "实现"
     ```cpp
     // C++ Version
     inline int qpow(long long a, int b) {
@@ -65,7 +67,7 @@
       while b:
           if b & 1:
               ans = (a * ans) % p
-              a = (a * a) % p
+          a = (a * a) % p
           b >>= 1
       return ans
     ```
@@ -102,11 +104,11 @@ $i^{-1} \equiv -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1} \pmod p$
 $$
 i^{-1} \equiv \begin{cases}
     1,                                           & \text{if } i = 1, \\
-    -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1}, & \text{otherwises}.
+    -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1}, & \text{otherwise}.
 \end{cases} \pmod p
 $$
 
-???+note "代码实现"
+???+note "实现"
     ```cpp
     // C++ Version
     inv[1] = 1;
@@ -146,7 +148,7 @@ $$
 
 所以我们就在 $O(n + \log p)$ 的时间内计算出了 $n$ 个数的逆元。
 
-???+note "代码实现"
+???+note "实现"
     ```cpp
     // C++ Version
     s[0] = 1;

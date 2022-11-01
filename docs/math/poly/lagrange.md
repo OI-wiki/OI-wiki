@@ -1,4 +1,4 @@
-author: Ir1d, Marcythm, YanWQ-monad, x4Cx58x54
+author: Ir1d, Marcythm, YanWQ-monad, x4Cx58x54, rui_er
 
 ???+ note "例题 [Luogu P4781【模板】拉格朗日插值](https://www.luogu.com.cn/problem/P4781)"
     给出 $n$ 个点 $P_i(x_i,y_i)$，将过这 $n$ 个点的最多 $n-1$ 次的多项式记为 $f(x)$，求 $f(k)$ 的值。
@@ -24,13 +24,13 @@ $$
 
 设 $f(x)=\sum_{i=0}^{n-1} a_ix^i$ 将每个 $x_i$ 代入 $f(x)$，有 $f(x_i)=y_i$，这样就可以得到一个由 $n$ 条 $n$ 元一次方程所组成的方程组，然后使用 **高斯消元** 解该方程组求出每一项 $a_i$，即确定了 $f(x)$ 的表达式。
 
-如果您不知道什么是高斯消元，请看 [高斯消元](../gauss.md)。
+如果您不知道什么是高斯消元，请看 [高斯消元](../linear-algebra/gauss.md)。
 
 时间复杂度 $O(n^3)$，对给出点的坐标无要求。
 
 ### 方法 3：拉格朗日插值法
 
-在 [多项式部分简介](../poly/intro.md) 里我们已经定义了多项式除法。
+在 [多项式部分简介](./intro.md) 里我们已经定义了多项式除法。
 
 那么我们会有：
 
@@ -103,3 +103,46 @@ $$
 ```cpp
 --8<-- "docs/math/code/poly/lagrange/lagrange_1.cpp"
 ```
+
+### 横坐标是连续整数的拉格朗日插值
+
+如果已知点的横坐标是连续整数，我们可以做到 $O(n)$ 插值。
+
+设要求 $n$ 次多项式为 $f(x)$，我们已知 $f(1),\cdots,f(n+1)$（$1\le i\le n+1$），考虑代入上面的插值公式：
+
+$$
+\begin{aligned}
+f(x)&=\sum\limits_{i=1}^{n+1}y_i\prod\limits_{j\ne i}\frac{x-x_j}{x_i-x_j}\\
+&=\sum\limits_{i=1}^{n+1}y_i\prod\limits_{j\ne i}\frac{x-j}{i-j}
+\end{aligned}
+$$
+
+后面的累乘可以分子分母分别考虑，不难得到分子为：
+
+$$
+\dfrac{\prod\limits_{j=1}^{n+1}(x-j)}{x-i}
+$$
+
+分母的 $i-j$ 累乘可以拆成两段阶乘来算：
+
+$$
+(-1)^{n+1-i}\cdot(i-1)!\cdot(n+1-i)!
+$$
+
+于是横坐标为 $1,\cdots,n+1$ 的插值公式：
+
+$$
+f(x)=\sum\limits_{i=1}^{n+1}y_i\cdot\frac{\prod\limits_{j=1}^{n+1}(x-j)}{(x-i)\cdot(-1)^{n+1-i}\cdot(i-1)!\cdot(n+1-i)!}
+$$
+
+预处理 $(x-i)$ 前后缀积、阶乘阶乘逆，然后代入这个式子，复杂度为 $O(n)$。
+
+???+ note "例题 [CF622F The Sum of the k-th Powers](https://codeforces.com/contest/622/problem/F)"
+    给出 $n,k$，求 $\sum\limits_{i=1}^ni^k$ 对 $10^9+7$ 取模的值。
+
+本题中，答案是一个 $k+1$ 次多项式，因此我们可以线性筛出 $1^i,\cdots,(k+2)^i$ 的值然后进行 $O(n)$ 插值。
+
+??? note "代码实现"
+    ```cpp
+    --8<-- "docs/math/code/poly/lagrange/lagrange_2.cpp"
+    ```

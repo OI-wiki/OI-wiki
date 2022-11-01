@@ -2,7 +2,7 @@ author: Early0v0
 
 ## 前置知识
 
-- [积性函数](/math/mobius/#_4)
+- [积性函数](./mobius.md#积性函数)
 
 ## 定义
 
@@ -24,7 +24,7 @@ author: Early0v0
 - 对于任意 $[1,n]$ 内的整数，其至多只有一个 $>\sqrt n$ 的质因子。
 - 利用 $\left\lfloor\dfrac ni\right\rfloor(i\in[1,n]\cap\mathbb N)$ 只有 $\sqrt n$ 级别个取值的性质来降低时间复杂度。
 
-## 思路
+## 过程
 
 将 $[1,n]$ 内的所有整数按是否有 $>\sqrt n$ 的质因子分为两类：
 

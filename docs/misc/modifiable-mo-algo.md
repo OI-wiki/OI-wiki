@@ -1,6 +1,6 @@
-author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan
+author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan, renbaoshuo
 
-请确保您已经会普通莫队算法了。如果您还不会，请先阅读前面的“普通莫队算法”。
+请确保您已经会普通莫队算法了。如果您还不会，请先阅读前面的 [普通莫队算法](./mo-algo.md)。
 
 ## 特点
 
@@ -29,9 +29,10 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 还是来证明一下时间复杂度：
 
-- 左右端点所在块不变，时间在排序后单调向右移，这样的复杂度是 $O(n)$；
-- 若左右端点所在块改变，时间一次最多会移动 $n$ 个格子，时间复杂度 $O(n)$；
-- 左端点所在块一共有 $n^{\frac{1}{3}}$ 中，右端点也是 $n^{\frac{1}{3}}$ 种，一共 ${n^{\frac{1}{3}}}\times{n^{\frac{1}{3}}}=n^{\frac{2}{3}}$ 种，每种乘上移动的复杂度 $O(n)$，总复杂度 $O(n^{\frac{5}{3}})$。
+???+note "证明"
+    - 左右端点所在块不变，时间在排序后单调向右移，这样的复杂度是 $O(n)$；
+    - 若左右端点所在块改变，时间一次最多会移动 $n$ 个格子，时间复杂度 $O(n)$；
+    - 左端点所在块一共有 $n^{\frac{1}{3}}$ 中，右端点也是 $n^{\frac{1}{3}}$ 种，一共 ${n^{\frac{1}{3}}}\times{n^{\frac{1}{3}}}=n^{\frac{2}{3}}$ 种，每种乘上移动的复杂度 $O(n)$，总复杂度 $O(n^{\frac{5}{3}})$。
 
 ## 例题
 
@@ -44,6 +45,8 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 我们不难发现，如果不带操作 1（修改）的话，我们就能轻松用普通莫队解决。
 
 但是题目还带单点修改，所以用 **带修改的莫队**。
+
+### 过程
 
 先考虑普通莫队的做法：
 
@@ -61,6 +64,8 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 - 还原这个修改：等于加上一个修改第 $pos$ 项、把颜色 $b$ 改成颜色 $a$ 的修改。
 
 因此这道题就这样用带修改莫队轻松解决啦！
+
+### 实现
 
 ??? 参考代码
     ```cpp

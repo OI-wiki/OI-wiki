@@ -1,0 +1,10 @@
+id: oi-wiki:search/opt-1
+name: OPT
+solution:
+  cpp: docs/search/code/opt/opt_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/search/examples/opt/opt_1.ans
+  input: docs/search/examples/opt/opt_1.in
+version: 1000

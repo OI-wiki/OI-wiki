@@ -2,7 +2,7 @@
 
 # 欢迎来到 **OI Wiki**！
 
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-brightgreen?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/OI-wiki/OI-wiki)  [![GitHub Actions](https://img.shields.io/github/workflow/status/OI-Wiki/OI-Wiki/Build?style=flat-square)](https://github.com/OI-wiki/OI-wiki/actions?query=workflow%3ABuild)  [![Uptime Robot Status](https://img.shields.io/uptimerobot/status/m781254113-3e3bac467c64fc99eafd383e.svg?style=flat-square)](https://status.oi-wiki.org/) [![Telegram](https://img.shields.io/badge/Telegram-OI%20Wiki-%232CA5E0?style=flat-square&logo=telegram)](https://t.me/OIwiki)  [![QQ](https://img.shields.io/badge/QQ%20group-OI%20Wiki-blue?style=flat-square&logo=tencent-qq)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)  [![GitHub watchers](https://img.shields.io/github/watchers/OI-Wiki/OI-Wiki.svg?style=social&label=Watch)](https://github.com/OI-wiki/OI-wiki)  [![GitHub stars](https://img.shields.io/github/stars/OI-Wiki/OI-Wiki.svg?style=social&label=Stars)](https://github.com/OI-wiki/OI-wiki)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-brightgreen?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/OI-wiki/OI-wiki)  [![GitHub Actions](https://img.shields.io/github/workflow/status/OI-Wiki/OI-Wiki/Build?style=flat-square)](https://github.com/OI-wiki/OI-wiki/actions?query=workflow%3ABuild)  [![Uptime Robot Status](https://img.shields.io/uptimerobot/status/m781254113-3e3bac467c64fc99eafd383e.svg?style=flat-square)](https://status.oi-wiki.org/) [![Telegram](https://img.shields.io/badge/Telegram-OI%20Wiki-%232CA5E0?style=flat-square&logo=telegram)](https://t.me/OI_wiki)  [![QQ](https://img.shields.io/badge/QQ%20group-OI%20Wiki-blue?style=flat-square&logo=tencent-qq)](https://jq.qq.com/?_wv=1027&k=5EfkM6K)  [![GitHub watchers](https://img.shields.io/github/watchers/OI-Wiki/OI-Wiki.svg?style=social&label=Watch)](https://github.com/OI-wiki/OI-wiki)  [![GitHub stars](https://img.shields.io/github/stars/OI-Wiki/OI-Wiki.svg?style=social&label=Stars)](https://github.com/OI-wiki/OI-wiki)
 
 * * *
 
@@ -28,9 +28,7 @@
 
 我们在 [status.oi-wiki.org](https://status.oi-wiki.org) 维护了一份镜像站列表，它们的内容和 [oi-wiki.org](https://oi-wiki.org) 都是相同的。
 
-当然，也可以在本地部署。（**需要 Python 3**）
-
-[点击查看用 asciinema 录制的流程](https://asciinema.org/a/220681)
+当然，也可以在本地部署。（**需要安装 Python3 和 Pipenv**）
 
 **如果遇到问题，可以查阅 [F.A.Q.](https://oi-wiki.org/intro/faq/) 来了解更多信息。**
 
@@ -40,27 +38,27 @@ git clone https://github.com/OI-wiki/OI-wiki.git --depth=1
 cd OI-wiki
 
 # 安装 mkdocs
-pip3 install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+pipenv install --pypi-mirror https://pypi.tuna.tsinghua.edu.cn/simple/
 
 # 使用我们的自定义主题（Windows 下请使用 Git Bash 执行）
 # 安装主题时将连接网络下载资源，可通过以下环境变量控制下载链接
-# scripts/install_theme.sh:
+# scripts/pre-build/install-theme.sh:
 # - THEME_REPO
-# scripts/install_theme_vendor.sh:
+# scripts/pre-build/install-theme-vendor.sh:
 # - MATHJAX_URL
 # - MATERIAL_ICONS_URL
 # - GITALK_REPO
-chmod +x ./scripts/install_theme.sh && ./scripts/install_theme.sh
+./scripts/pre-build/install-theme.sh
 
 # 两种方法（选其一即可）：
 # 1. 运行一个本地服务器，访问 http://127.0.0.1:8000 可以查看效果
-mkdocs serve -v
+pipenv run mkdocs serve -v
 
 # 2. 在 site 文件夹下得到静态页面
-mkdocs build -v
+pipenv run mkdocs build -v
 
 # 获取 mkdocs 的命令行工具的说明（解释了命令和参数的含义）
-mkdocs --help
+pipenv run mkdocs --help
 ```
 
 我们现在在服务器端渲染 MathJax，如果希望实现类似效果，可以参考 [build.yml](https://github.com/OI-wiki/OI-wiki/blob/master/.github/workflows/build.yml)。（需要安装 Node.js）

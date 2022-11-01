@@ -1,16 +1,18 @@
 author: LeverImmy
 
-本页面将介绍精确覆盖问题，解决这个问题的算法 X 算法，以及用来优化 X 算法的双向十字链表 Dancing Link。本页也将介绍如何在建模的配合下使用 DLX 解决一些搜索题。
+本页面将介绍精确覆盖问题，解决这个问题的算法「X 算法」，以及用来优化 X 算法的双向十字链表 Dancing Link。本页也将介绍如何在建模的配合下使用 DLX 解决一些搜索题。
 
 ## 精确覆盖问题
 
-### 问题定义
+### 定义
 
 精确覆盖问题（英文：Exact Cover Problem) 是指给定许多集合 $S_i (1 \le i \le n)$ 以及一个集合 $X$，求满足以下条件的无序多元组 $(T_1, T_2, \cdots , T_m)$：
 
 1. $\forall i, j \in [1, m],T_i\bigcap T_j = \varnothing (i \neq j)$
 2. $X = \bigcup\limits_{i = 1}^{m}T_i$
 3. $\forall i \in[1, m], T_i \in \{S_1, S_2, \cdots, S_n\}$
+
+### 解释
 
 例如，若给出
 
@@ -48,7 +50,9 @@ $$
 
 > 其中第 $i$ 行表示着 $S_i$，而这一行的每个数依次表示 $[1 \in S_i],[3 \in S_i],[5 \in S_i],\cdots,[119 \in S_i]$。
 
-### 暴力 1
+### 实现
+
+#### 暴力 1
 
 一种方法是枚举选择哪些行，最后检查这个方案是否合法。
 
@@ -56,7 +60,7 @@ $$
 
 而每次检查都需要 $O(nm)$ 的时间复杂度。所以总的复杂度是 $O(nm\cdot2^n)$。
 
-??? note "代码实现"
+??? note "实现"
     ```cpp
     int ok = 0;
     for (int state = 0; state < 1 << n; ++state) {  // 枚举每行是否被选
@@ -85,7 +89,7 @@ $$
     if (!ok) puts("No solution.");
     ```
 
-### 暴力 2
+#### 暴力 2
 
 考虑到 01 矩阵的特殊性质，每一行都可以看做一个 $m$ 位二进制数。
 
@@ -97,7 +101,7 @@ $$
 
 而每次计算 `tmp` 都需要 $O(n)$ 的时间复杂度。所以总的复杂度为 $O(n\cdot2^n)$。
 
-??? note "代码实现"
+??? note "实现"
     ```cpp
     int ok = 0;
     for (int i = 1; i <= n; ++i)
@@ -122,6 +126,8 @@ $$
 ## X 算法
 
 Donald E. Knuth 提出了 X 算法 (Algorithm X)，其思想与刚才的暴力差不多，但是方便优化。
+
+### 过程
 
 继续以上文中中提到的例子为载体，得到一个这样的 01 矩阵：
 
@@ -287,11 +293,11 @@ $$
 
     如果 $M'$ 不为空，则跳转至步骤 1。
 
-不难看出，X 算法需要大量的“删除行”、“删除列”和“恢复行”、“恢复列”的操作。
+不难看出，X 算法需要大量的「删除行」、「删除列」和「恢复行」、「恢复列」的操作。
 
 Donald E. Knuth 想到了用双向十字链表来维护这些操作。
 
-而在双向十字链表上不断跳跃的过程被形象地比喻成“跳跃”，因此被用来优化 X 算法的双向十字链表也被称为“Dancing Links”。
+而在双向十字链表上不断跳跃的过程被形象地比喻成「跳跃」，因此被用来优化 X 算法的双向十字链表也被称为「Dancing Links」。
 
 ## Dancing Links 优化的 X 算法
 
@@ -326,7 +332,9 @@ int L[MS], R[MS], U[MS], D[MS];
 int col[MS], row[MS];
 ```
 
-### remove 操作
+### 过程
+
+#### remove 操作
 
 `remove(c)` 表示在 Dancing Links 中删除第 $c$ 列以及与其相关的行和列。
 
@@ -354,19 +362,20 @@ int col[MS], row[MS];
 
 `remove` 函数的代码实现如下：
 
-```cpp
-void remove(const int &c) {
-  int i, j;
-  L[R[c]] = L[c], R[L[c]] = R[c];
-  // 顺着这一列从上往下遍历
-  for (i = D[c]; i != c; i = D[i])
-    // 顺着这一行从左往右遍历
-    for (j = R[i]; j != i; j = R[j])
-      U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
-}
-```
+???+note "实现"
+    ```cpp
+    void remove(const int &c) {
+      int i, j;
+      L[R[c]] = L[c], R[L[c]] = R[c];
+      // 顺着这一列从上往下遍历
+      for (i = D[c]; i != c; i = D[i])
+        // 顺着这一行从左往右遍历
+        for (j = R[i]; j != i; j = R[j])
+          U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
+    }
+    ```
 
-### recover 操作
+#### recover 操作
 
 `recover(c)` 表示在 Dancing Links 中还原第 $c$ 列以及与其相关的行和列。
 
@@ -376,15 +385,16 @@ void remove(const int &c) {
 
 `recover(c)` 的代码实现如下：
 
-```cpp
-void recover(const int &c) {
-  int i, j;
-  IT(i, U, c) IT(j, L, i) U[D[j]] = D[U[j]] = j, ++siz[col[j]];
-  L[R[c]] = R[L[c]] = c;
-}
-```
+???+note "实现"
+    ```cpp
+    void recover(const int &c) {
+      int i, j;
+      IT(i, U, c) IT(j, L, i) U[D[j]] = D[U[j]] = j, ++siz[col[j]];
+      L[R[c]] = R[L[c]] = c;
+    }
+    ```
 
-### build 操作
+#### build 操作
 
 `build(r, c)` 表示新建一个大小为 $r \times c$，即有 $r$ 行，$c$ 列的 Dancing Links。
 
@@ -400,20 +410,21 @@ void recover(const int &c) {
 
 `build(r, c)` 的代码实现如下：
 
-```cpp
-void build(const int &r, const int &c) {
-  n = r, m = c;
-  for (int i = 0; i <= c; ++i) {
-    L[i] = i - 1, R[i] = i + 1;
-    U[i] = D[i] = i;
-  }
-  L[0] = c, R[c] = 0, idx = c;
-  memset(first, 0, sizeof(first));
-  memset(siz, 0, sizeof(siz));
-}
-```
+???+note "实现"
+    ```cpp
+    void build(const int &r, const int &c) {
+      n = r, m = c;
+      for (int i = 0; i <= c; ++i) {
+        L[i] = i - 1, R[i] = i + 1;
+        U[i] = D[i] = i;
+      }
+      L[0] = c, R[c] = 0, idx = c;
+      memset(first, 0, sizeof(first));
+      memset(siz, 0, sizeof(siz));
+    }
+    ```
 
-### insert 操作
+#### insert 操作
 
 `insert(r, c)` 表示在第 $r$ 行，第 $c$ 列插入一个结点。
 
@@ -465,20 +476,21 @@ void build(const int &r, const int &c) {
 
 `insert(r, c)` 的代码实现如下：
 
-```cpp
-void insert(const int &r, const int &c) {
-  row[++idx] = r, col[idx] = c, ++siz[c];
-  U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
-  if (!first[r])
-    first[r] = L[idx] = R[idx] = idx;
-  else {
-    L[idx] = first[r], R[idx] = R[first[r]];
-    L[R[first[r]]] = idx, R[first[r]] = idx;
-  }
-}
-```
+???+note "实现"
+    ```cpp
+    void insert(const int &r, const int &c) {
+      row[++idx] = r, col[idx] = c, ++siz[c];
+      U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
+      if (!first[r])
+        first[r] = L[idx] = R[idx] = idx;
+      else {
+        L[idx] = first[r], R[idx] = R[first[r]];
+        L[R[first[r]]] = idx, R[first[r]] = idx;
+      }
+    }
+    ```
 
-### dance 操作
+#### dance 操作
 
 `dance()` 即为递归地删除以及还原各个行列的过程。
 
@@ -490,25 +502,26 @@ void insert(const int &r, const int &c) {
 
 `dance()` 的代码实现如下：
 
-```cpp
-bool dance(int dep) {
-  int i, j, c = R[0];
-  if (!R[0]) {
-    ans = dep;
-    return 1;
-  }
-  IT(i, R, 0) if (siz[i] < siz[c]) c = i;
-  remove(c);
-  IT(i, D, c) {
-    stk[dep] = row[i];
-    IT(j, R, i) remove(col[j]);
-    if (dance(dep + 1)) return 1;
-    IT(j, L, i) recover(col[j]);
-  }
-  recover(c);
-  return 0;
-}
-```
+???+note "实现"
+    ```cpp
+    bool dance(int dep) {
+      int i, j, c = R[0];
+      if (!R[0]) {
+        ans = dep;
+        return 1;
+      }
+      IT(i, R, 0) if (siz[i] < siz[c]) c = i;
+      remove(c);
+      IT(i, D, c) {
+        stk[dep] = row[i];
+        IT(j, R, i) remove(col[j]);
+        if (dance(dep + 1)) return 1;
+        IT(j, L, i) recover(col[j]);
+      }
+      recover(c);
+      return 0;
+    }
+    ```
 
 其中 `stk[]` 用来记录答案。
 
@@ -521,7 +534,7 @@ bool dance(int dep) {
     --8<-- "docs/search/code/dlx/dlx_1.cpp"
     ```
 
-## 时间复杂度
+## 性质
 
 DLX 递归及回溯的次数与矩阵中 $1$ 的个数有关，与矩阵的 $r, c$ 等参数无关。因此，它的时间复杂度是 **指数级** 的，理论复杂度大概在 $O(c^n)$ 左右，其中 $c$ 为某个非常接近于 $1$ 的常数，$n$ 为矩阵中 $1$ 的个数。
 
@@ -571,17 +584,6 @@ DLX 的难点，不全在于链表的建立，而在于建模。
     ```
 
 ### 例题 2 [靶形数独](https://www.luogu.com.cn/problem/P1074)
-
-$$
-    \begin{pmatrix}
-      \color{Blue}0 & \color{Blue}0 & \color{Blue}1 & \color{Blue}0 & \color{Blue}1 & \color{Blue}1 & \color{Blue}0 \\
-      1 & 0 & \color{Red}0 & 1 & \color{Red}0 & \color{Red}0 & 1 \\
-      0 & 1 & \color{Red}1 & 0 & \color{Red}0 & \color{Red}1 & 0 \\
-      1 & 0 & \color{Red}0 & 1 & \color{Red}0 & \color{Red}0 & 0 \\
-      0 & 1 & \color{Red}0 & 0 & \color{Red}0 & \color{Red}0 & 1 \\
-      0 & 0 & \color{Red}0 & 1 & \color{Red}1 & \color{Red}0 & 1
-      \end{pmatrix}
-$$
 
 ??? note "解题思路"
     这一题与 [数独](https://www.luogu.com.cn/problem/P1784) 的模型构建 **一模一样**，主要区别在于答案的更新。

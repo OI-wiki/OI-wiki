@@ -1,4 +1,6 @@
-author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina, orzAtalod, luoguojie, Early0v0
+author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina, orzAtalod, luoguojie, Early0v0, wy-luke
+
+## 引入
 
 线段树是算法竞赛中常用的用来维护 **区间信息** 的数据结构。
 
@@ -18,6 +20,8 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
 
 ### 线段树的基本结构与建树
 
+#### 过程
+
 线段树将每个长度不为 $1$ 的区间划分成左右两个区间递归求解，把整个线段划分为一个树形结构，通过合并左右两区间信息来求得该区间的信息。这种数据结构可以方便的进行大部分的区间操作。
 
 有个大小为 $5$ 的数组 $a=\{10,11,12,13,14\}$，要将其转化为线段树，有以下做法：设线段树的根节点编号为 $1$，用数组 $d$ 来保存我们的线段树，$d_i$ 用来保存线段树上编号为 $i$ 的节点的值（这里每个节点所维护的值就是这个节点所表示的区间总和）。
@@ -32,7 +36,9 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
 
 在实现时，我们考虑递归建树。设当前的根节点为 $p$，如果根节点管辖的区间长度已经是 $1$，则可以直接根据 $a$ 数组上相应位置的值初始化该节点。否则我们将该区间从中点处分割为两个子区间，分别进入左右子节点递归建树，最后合并两个子节点的信息。
 
-此处给出 C++ 的代码实现，可参考注释理解：
+#### 实现
+
+此处给出代码实现，可参考注释理解：
 
 ```cpp
 // C++ Version
@@ -72,6 +78,8 @@ def build(s, t, p):
 
 ### 线段树的区间查询
 
+#### 过程
+
 区间查询，比如求区间 $[l,r]$ 的总和（即 $a_l+a_{l+1}+ \cdots +a_r$）、求区间最大值/最小值等操作。
 
 ![](./images/segt1.svg)
@@ -82,7 +90,9 @@ def build(s, t, p):
 
 一般地，如果要查询的区间是 $[l,r]$，则可以将其拆成最多为 $O(\log n)$ 个 **极大** 的区间，合并这些区间即可求出 $[l,r]$ 的答案。
 
-此处给出 C++ 的代码实现，可参考注释理解：
+#### 实现
+
+此处给出代码实现，可参考注释理解：
 
 ```cpp
 // C++ Version
@@ -117,6 +127,8 @@ def getsum(l, r, s, t, p):
 
 ### 线段树的区间修改与懒惰标记
 
+#### 过程
+
 如果要求修改区间 $[l,r]$，把所有包含在区间 $[l,r]$ 中的节点都遍历一次、修改一次，时间复杂度无法承受。我们这里要引入一个叫做 **「懒惰标记」** 的东西。
 
 懒惰标记，简单来说，就是通过延迟对节点信息的更改，从而减少可能不必要的操作次数。每次执行修改时，我们通过打标记的方法表明该节点对应的区间在某一次操作中被更改，但不更新该节点的子节点的信息。实质性的修改则在下一次访问带有标记的节点时才进行。
@@ -142,6 +154,8 @@ def getsum(l, r, s, t, p):
 ![](./images/segt4.svg)
 
 现在 $6$、$7$ 两个节点的值变成了最新的值，查询的结果也是准确的。
+
+#### 实现
 
 接下来给出在存在标记的情况下，区间修改和查询操作的参考实现。
 
@@ -207,9 +221,9 @@ int getsum(int l, int r, int s, int t, int p) {
   int m = s + ((t - s) >> 1);
   if (b[p]) {
     // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
-    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m),
-        b[p * 2] += b[p], b[p * 2 + 1] += b[p];  // 将标记下传给子节点
-    b[p] = 0;                                    // 清空当前节点的标记
+    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m);
+    b[p * 2] += b[p], b[p * 2 + 1] += b[p];  // 将标记下传给子节点
+    b[p] = 0;                                // 清空当前节点的标记
   }
   int sum = 0;
   if (l <= m) sum = getsum(l, r, s, m, p * 2);
@@ -319,6 +333,51 @@ def getsum(l, r, s, t, p):
     return sum
 ```
 
+### 动态开点线段树
+
+前面讲到堆式储存的情况下，需要给线段树开 $4n$ 大小的数组。为了节省空间，我们可以不一次性建好树，而是在最初只建立一个根结点代表整个区间。当我们需要访问某个子区间时，才建立代表这个区间的子结点。这样我们不再使用 $2p$ 和 $2p+1$ 代表 $p$ 结点的儿子，而是用 $\text{ls}$ 和 $\text{rs}$ 记录儿子的编号。总之，动态开点线段树的核心思想就是：**结点只有在有需要的时候才被创建**。
+
+单次操作的时间复杂度是不变的，为 $O(\log n)$。由于每次操作都有可能创建并访问全新的一系列结点，因此 $m$ 次单点操作后结点的数量规模是 $O(m\log n)$。最多也只需要 $2n-1$ 个结点，没有浪费。
+
+单点修改：
+
+```cpp
+// root 表示整棵线段树的根结点；cnt 表示当前结点个数
+int n, cnt, root;
+int sum[n * 2], ls[n * 2], rs[n * 2];
+
+// 用法：update(root, 1, n, x, f); 其中 x 为待修改节点的编号
+void update(int& p, int s, int t, int x, int f) {  // 引用传参
+  if (!p) p = ++cnt;  // 当结点为空时，创建一个新的结点
+  if (s == t) {
+    sum[p] += f;
+    return;
+  }
+  int m = s + ((t - s) >> 1);
+  if (x <= m)
+    update(ls[p], s, m, x, f);
+  else
+    update(rs[p], m + 1, t, x, f);
+  sum[p] = sum[ls[p]] + sum[rs[p]];  // pushup
+}
+```
+
+区间询问：
+
+```cpp
+// 用法：query(root, 1, n, l, r);
+int query(int p, int s, int t, int l, int r) {
+  if (!p) return 0;  // 如果结点为空，返回 0
+  if (s >= l && t <= r) return sum[p];
+  int m = s + ((t - s) >> 1), ans = 0;
+  if (l <= m) ans += query(ls[p], s, m, l, r);
+  if (r > m) ans += query(rs[p], m + 1, t, l, r);
+  return ans;
+}
+```
+
+区间修改也是一样的，不过下放标记时要注意如果缺少孩子，就直接创建一个新的孩子。或者使用标记永久化技巧。
+
 ## 一些优化
 
 这里总结几个线段树的优化：
@@ -328,6 +387,18 @@ def getsum(l, r, s, t, p):
 - 下放懒惰标记可以写一个专门的函数 `pushdown`，从儿子节点更新当前节点也可以写一个专门的函数 `maintain`（或者对称地用 `pushup`），降低代码编写难度。
 
 - 标记永久化：如果确定懒惰标记不会在中途被加到溢出（即超过了该类型数据所能表示的最大范围），那么就可以将标记永久化。标记永久化可以避免下传懒惰标记，只需在进行询问时把标记的影响加到答案当中，从而降低程序常数。具体如何处理与题目特性相关，需结合题目来写。这也是树套树和可持久化数据结构中会用到的一种技巧。
+
+## C++ 模板
+
+??? "SegTreeLazyRangeAdd 可以区间加/求和的线段树模板"
+    ```cpp
+    --8<-- "docs/ds/code/seg/seg_4.hpp"
+    ```
+
+??? "SegTreeLazyRangeSet 可以区间修改/求和的线段树模板"
+    ```cpp
+    --8<-- "docs/ds/code/seg/seg_5.hpp"
+    ```
 
 ## 例题
 

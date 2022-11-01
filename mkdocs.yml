@@ -53,6 +53,7 @@ nav:
       - Notepad++: tools/editor/npp.md
       - Kate: tools/editor/kate.md
       - Dev-C++: tools/editor/devcpp.md
+      - CLion: tools/editor/clion.md
       - Geany: tools/editor/geany.md
       - Xcode: tools/editor/xcode.md
       - GUIDE: tools/editor/guide.md
@@ -64,6 +65,7 @@ nav:
       - CCR Plus: tools/judger/ccr-plus.md
       - Lemon: tools/judger/lemon.md
     - 命令行: tools/cmd.md
+    - 编译器: tools/compiler.md
     - WSL (Windows 10): tools/wsl.md
     - Special Judge: tools/special-judge.md
     - Testlib:
@@ -114,14 +116,16 @@ nav:
       - 引用: lang/reference.md
       - 常值: lang/const.md
       - 新版 C++ 特性: lang/new.md
+      - Lambda 表达式: lang/lambda.md
       - pb_ds:
         - pb_ds 简介: lang/pb-ds/index.md
         - 堆: lang/pb-ds/pq.md
         - 平衡树: lang/pb-ds/tree.md
-    - C 与 C++ 区别: lang/c-cpp.md
+    - C++ 与其他常用语言的区别: lang/cpp-other-langs.md
     - Pascal 转 C++ 急救: lang/pas-cpp.md
     - Python 速成: lang/python.md
     - Java 速成: lang/java.md
+    - Java 进阶: lang/java-pro.md
   - 算法基础:
     - 算法基础简介: basic/index.md
     - 复杂度: basic/complexity.md
@@ -209,12 +213,15 @@ nav:
   - 数学:
     - 数学部分简介: math/index.md
     - 符号: math/notation.md
-    - 复数: math/complex.md
-    - 位运算: math/bit.md
-    - 快速幂: math/quick-pow.md
     - 进位制: math/base.md
-    - 高精度计算: math/bignum.md
+    - 位运算: math/bit.md
+    - 二进制集合操作: math/binary-set.md
     - 平衡三进制: math/balanced-ternary.md
+    - 高精度计算: math/bignum.md
+    - 快速幂: math/binary-exponentiation.md
+    - 置换和排列: math/permulation.md
+    - 弧度制与坐标系: math/coordinate.md
+    - 复数: math/complex.md
     - 数论:
       - 数论基础: math/number-theory/basic.md
       - 素数: math/number-theory/prime.md
@@ -233,23 +240,27 @@ nav:
       - 威尔逊定理: math/number-theory/wilson.md
       - 升幂定理: math/number-theory/lift-the-exponent.md
       - 卢卡斯定理: math/number-theory/lucas.md
-      - 二次剩余: math/number-theory/quad-residue.md
       - 拉格朗日定理: math/number-theory/lagrange.md
       - 原根: math/number-theory/primitive-root.md
-      - BSGS: math/number-theory/bsgs.md
+      - 离散对数: math/number-theory/discrete-logarithm.md
+      - 剩余与单位根: math/number-theory/residue.md
+      - 二次剩余: math/number-theory/quad-residue.md
       - 莫比乌斯反演: math/number-theory/mobius.md
       - 杜教筛: math/number-theory/du.md
       - Powerful Number 筛: math/number-theory/powerful-number.md
       - Min_25 筛: math/number-theory/min-25.md
       - 洲阁筛: math/number-theory/zhou.md
+      - 二次域: math/number-theory/quadratic.md
       - 连分数: math/number-theory/continued-fraction.md
       - Stern-Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - Pell 方程: math/number-theory/pell-equation.md
-    - 多项式:
-      - 多项式部分简介: math/poly/intro.md
+    - 多项式与生成函数:
+      - 多项式与生成函数简介: math/poly/intro.md
+      - 代数基本定理: math/poly/fundamental.md
       - 拉格朗日插值: math/poly/lagrange.md
       - 快速傅里叶变换: math/poly/fft.md
       - 快速数论变换: math/poly/ntt.md
+      - 快速复数论变换: math/poly/cntt.md
       - 快速沃尔什变换: math/poly/fwt.md
       - Chirp Z 变换: math/poly/czt.md
       - 多项式求逆: math/poly/inv.md
@@ -262,37 +273,49 @@ nav:
       - 多项式反三角函数: math/poly/inv-tri-func.md
       - 常系数齐次线性递推: math/linear-recurrence.md
       - 多项式平移|连续点值平移: math/poly/shift.md
-    - 生成函数:
-      - 生成函数简介: math/gen-func/intro.md
-      - 符号化方法: math/gen-func/symbolic-method.md
-      - 普通生成函数: math/gen-func/ogf.md
-      - 指数生成函数: math/gen-func/egf.md
-      - 狄利克雷生成函数: math/gen-func/dgf.md
-    - 线性代数:
-      - 向量: math/vector.md
-      - 矩阵: math/matrix.md
-      - 高斯消元: math/gauss.md
-      - 特征多项式: math/char-poly.md
-      - 线性基: math/basis.md
-    - 线性规划:
-      - 线性规划简介: math/linear-programming.md
-      - 单纯形算法: math/simplex.md
+      - 符号化方法: math/poly/symbolic-method.md
+      - 普通生成函数: math/poly/ogf.md
+      - 指数生成函数: math/poly/egf.md
+      - 狄利克雷生成函数: math/poly/dgf.md
     - 组合数学:
       - 排列组合: math/combinatorics/combination.md
+      - 抽屉原理: math/combinatorics/drawer-principle.md
+      - 容斥原理: math/combinatorics/inclusion-exclusion-principle.md
+      - 康托展开: math/combinatorics/cantor.md
+      - 斐波那契数列: math/combinatorics/fibonacci.md
+      - 错位排列: math/combinatorics/derangement.md
       - 卡特兰数: math/combinatorics/catalan.md
       - 斯特林数: math/combinatorics/stirling.md
       - 贝尔数: math/combinatorics/bell.md
       - 伯努利数: math/combinatorics/bernoulli.md
-      - 康托展开: math/combinatorics/cantor.md
-      - 容斥原理: math/combinatorics/inclusion-exclusion-principle.md
-      - 抽屉原理: math/combinatorics/drawer-principle.md
+      - Entringer Number: math/combinatorics/entringer.md
       - Eulerian Number: math/combinatorics/eulerian.md
       - 分拆数: math/combinatorics/partition.md
+      - 范德蒙德卷积: math/combinatorics/vandermonde-convolution.md
+    - 线性代数:
+      - 线性代数简介: math/linear-algebra/index.md
+      - 向量: math/linear-algebra/vector.md
+      - 内积和外积: math/linear-algebra/product.md
+      - 矩阵: math/linear-algebra/matrix.md
+      - 高斯消元: math/linear-algebra/gauss.md
+      - 线性空间: math/linear-algebra/vector-space.md
+      - Hamel基: math/linear-algebra/basis.md
+      - 线性映射: math/linear-algebra/linear-mapping.md
+      - 特征多项式: math/linear-algebra/char-poly.md
+      - 对角化: math/linear-algebra/diagonalization.md
+      - Jordan标准型: math/linear-algebra/jordan.md
+    - 线性规划:
+      - 线性规划简介: math/linear-programming.md
+      - 单纯形算法: math/simplex.md
     - 群论:
       - 群论简介:  math/group-theory.md
       - 置换群: math/permutation-group.md
-    - 概率初步: math/expectation.md
-    - 斐波那契数列: math/fibonacci.md
+    - 概率论:
+      - 基本概念: math/probability/basic-conception.md
+      - 条件概率与独立性: math/probability/conditional-probability.md
+      - 随机变量: math/probability/random-variable.md
+      - 随机变量的数字特征: math/probability/exp-var.md
+      - 概率不等式: math/probability/concentration-inequality.md
     - 博弈论: 
       - 博弈论简介: math/game-theory/intro.md
       - 公平组合游戏: math/game-theory/impartial-game.md
@@ -335,14 +358,18 @@ nav:
     - 区间最值操作 & 区间历史最值: ds/seg-beats.md
     - 划分树: ds/dividing.md
     - 二叉搜索树 & 平衡树:
-      - 二叉搜索树简介: ds/bst.md
+      - 二叉搜索树 & 平衡树: ds/bst.md
       - Treap: ds/treap.md
-      - Splay: ds/splay.md
+      - Splay 树: ds/splay.md
       - WBLT: ds/wblt.md
       - Size Balanced Tree: ds/sbt.md
       - AVL 树: ds/avl.md
+      - B 树: ds/b-tree.md
+      - B+ 树: ds/bplus-tree.md
       - 替罪羊树: ds/sgt.md
+      - Leafy Tree: ds/leafy-tree.md
       - 笛卡尔树: ds/cartesian-tree.md
+      - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
     - 跳表: ds/skiplist.md
     - 可持久化数据结构:
@@ -356,10 +383,9 @@ nav:
       - 线段树套线段树: ds/seg-in-seg.md
       - 平衡树套线段树: ds/seg-in-balanced.md
       - 线段树套平衡树: ds/balanced-in-seg.md
-      - 树状数组套主席树: ds/persistent-in-bit.md
+      - 树状数组套权值线段树: ds/seg-in-bit.md
       - 分块套树状数组: ds/bit-in-block-array.md
     - K-D Tree: ds/kdt.md
-    - 珂朵莉树: ds/odt.md
     - 动态树:
       - Link Cut Tree: ds/lct.md
       - Euler Tour Tree: ds/ett.md
@@ -386,6 +412,7 @@ nav:
       - 动态树分治: graph/dynamic-tree-divide.md
       - AHU 算法: graph/tree-ahu.md
       - 树哈希: graph/tree-hash.md
+      - 树上随机游走: graph/tree-random-walk.md
     - 矩阵树定理: graph/matrix-tree.md
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
@@ -427,11 +454,11 @@ nav:
     - Prufer 序列: graph/prufer.md
     - LGV 引理: graph/lgv.md
     - 弦图: graph/chord.md
+    - 最大团搜索算法: graph/max-clique.md
   - 计算几何:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
     - 三维计算几何基础: geometry/3d.md
-    - 极坐标系: geometry/polar-coordinate.md
     - 距离: geometry/distance.md
     - Pick 定理: geometry/pick.md
     - 三角剖分: geometry/triangulation.md
@@ -475,10 +502,12 @@ nav:
     - Garsia-Wachs 算法: misc/garsia-wachs.md
     - 15-puzzle: misc/15-puzzle.md
     - Kahan 求和: misc/kahan-summation.md
+    - 珂朵莉树: misc/odt.md
   - 专题:
     - RMQ: topic/rmq.md
     - 并查集应用: topic/dsu-app.md
     - 括号序列: topic/bracket.md
+    - 线段树与离线询问: topic/segment-tree-offline.md
   - 关于 Hulu:
     -  关于 Hulu: intro/hulu.md
 
@@ -523,8 +552,8 @@ extra:
 
 extra_javascript:
   - '_static/js/extra.js?v=16'
-  - 'assets/vendor/mathjax/MathJax.js?config=TeX-MML-AM_CHTML'
-
+  - '_static/js/math-csr.js?math-csr'
+  - 'assets/vendor/mathjax/es5/tex-mml-chtml.js?math-csr'
 
 extra_css:
   - '_static/css/extra.css?v=13'
@@ -539,8 +568,10 @@ markdown_extensions:
   - footnotes
   - meta
   - toc:
-      permalink: true
-  - pymdownx.arithmatex
+      permalink: ""
+      slugify: !!python/name:pymdownx.slugs.uslugify
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.details

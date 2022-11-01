@@ -1,6 +1,8 @@
-author: PeterlitsZo
+author: PeterlitsZo, Tiphereth-A
 
 ## 费马小定理
+
+### 定义
 
 若 $p$ 为素数，$\gcd(a, p) = 1$，则 $a^{p - 1} \equiv 1 \pmod{p}$。
 
@@ -29,7 +31,10 @@ $$
 设 $f=(p-1)!$, 则 $f\equiv a\times A_1\times a\times A_2\times a \times A_3 \dots \times  A_{p-1} \pmod p$
 
 $$
-a^{p-1}\times f \equiv f \pmod p \\ 	a^{p-1} \equiv 1 \pmod p
+\begin{aligned}
+a^{p-1}\times f &\equiv f \pmod p \\
+a^{p-1} &\equiv 1 \pmod p
+\end{aligned}
 $$
 
 证毕。
@@ -48,6 +53,8 @@ $$
 
 在了解欧拉定理（Euler's theorem）之前，请先了解 [欧拉函数](./euler.md)。定理内容如下：
 
+### 定义
+
 若 $\gcd(a, m) = 1$，则 $a^{\varphi(m)} \equiv 1 \pmod{m}$。
 
 ### 证明
@@ -60,6 +67,8 @@ $$
 
 ## 扩展欧拉定理
 
+### 定义
+
 $$
 a^b \equiv \begin{cases}
   a^{b \bmod \varphi(m)},                &\gcd(a,m) =  1,                   \\
@@ -68,9 +77,25 @@ a^b \equiv \begin{cases}
 \end{cases} \pmod m
 $$
 
-（读者可能对第二行是有疑问的。这一行表达的意思是：如果 $b < \varphi(m)$ 的话，那么就不能降幂了。主要是题目中 $m$ 不会太大，而如果 $b < \varphi(m)$，那么自然复杂度是可以接受的。而如果 $b \ge \varphi(m)$ 的话，那么复杂度可能超出预期了，这个时候我们才需要降幂来降低复杂度。）
+### 解释
+
+读者可能对第二行产生疑问，这一行表达的意思是：如果 $b < \varphi(m)$ 的话，就不能降幂了。
+
+主要是因为题目中 $m$ 不会太大，而如果 $b < \varphi(m)$，自然复杂度是可以接受的。而如果 $b \ge \varphi(m)$ 的话，复杂度可能就超出预期了，这个时候我们才需要降幂来降低复杂度。
 
 ### 证明
+
+#### 直观理解
+
+![fermat1](./images/fermat.svg)
+
+需要知道的是，在 $\pmod m$ 的条件下，$a^b \bmod m$ 的取值范围一定在 $[0, m)$，而 $a^i \bmod m = (a^{i-1} \bmod m) \times a \bmod m$，那么对于任意一个数 $a$，那么很容易就能知道它的 **后继**，在有限的空间内这一定会形成一个循环。
+
+在扩展欧拉定理中，循环分为纯循环和混循环。其中纯循环中不存在节点有两个前驱，而混循环则反之。而 $a^i \mod n$ 形成的序列可以是一个混循环，那么只需要知道循环节的长度，和前面那一小段未进入循环节的长度，就可以根据这个性质来进行降幂了。
+
+值得注意的是，无论是费马小定理，还是（扩展）欧拉定理，一个很重要的应用就是降幂，从而将不可能的表达式化为可能。
+
+#### 形式证明
 
 证明转载自 [synapse7](http://blog.csdn.net/synapse7/article/details/19610361)，并进行了一些整理。
 

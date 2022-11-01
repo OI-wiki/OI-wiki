@@ -14,12 +14,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.10'
+          cache: pipenv
+      - name: Install Python dependencies
+        run: |
+          curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python3
+          pipenv install
       - name: Install C++
-        run: sudo apt install g++
+        run: sudo apt-get install -y g++
       - name: Make the File list
         run: find . -name *.cpp > res.txt
       - name: Check the Code
-        run: python3 scripts/test.py      
+        run: pipenv run python scripts/test.py

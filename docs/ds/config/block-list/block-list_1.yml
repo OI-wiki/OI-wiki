@@ -1,0 +1,10 @@
+id: oi-wiki:ds/block-list-1
+name: Block List
+solution:
+  cpp: docs/ds/code/block-list/block-list_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/block-list/block-list_1.ans
+  input: docs/ds/examples/block-list/block-list_1.in
+version: 1000
