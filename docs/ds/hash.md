@@ -118,6 +118,7 @@ struct hash_map {  // 哈希表模板
   int h[SZ], cnt;
 
   int hash(long long u) { return (u % SZ + SZ) % SZ; }
+
   // 这里使用 (u % SZ + SZ) % SZ 而非 u % SZ 的原因是
   // C++ 中的 % 运算无法将负数转为正数
 
