@@ -148,9 +148,13 @@
 
 #### 性质
 
-Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(n)$，Tarjan 算法处理所有 $m$ 次询问的时间复杂度为 $O(n + m)$。但是 Tarjan 算法的常数比倍增算法大。
+Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(n)$。
 
-需要注意的是，Tarjan 算法中使用的并查集性质比较特殊，在仅使用路径压缩优化的情况下，单次调用 `find()` 函数的时间复杂度为均摊 $O(1)$，而不是 $O(\log n)$。具体可以见 [并查集部分的引用：A Linear-Time Algorithm for a Special Case of Disjoint Set Union](../ds/dsu.md#references)。
+朴素的 Tarjan 算法处理所有 $m$ 次询问的时间复杂度为 $O(m + \alpha(m+n, n) + n)$，。但是 Tarjan 算法的常数比倍增算法大。存在 $O(m + n)$ 的实现。
+
+~~需要注意的是，Tarjan 算法中使用的并查集性质比较特殊，在仅使用路径压缩优化的情况下，单次调用 `find()` 函数的时间复杂度为均摊 $\sout{O(1)}$，而不是 $\sout{O(\log n)}$。具体可以见 [并查集部分的引用：A Linear-Time Algorithm for a Special Case of Disjoint Set Union](../ds/dsu.md#references)。~~
+
+**注意：以下的朴素 Tarjan 实现复杂度为 $O(m + \alpha(m+n, n) + n)$。如果需要追求严格线性，可以参考 [Gabow 和 Tarjan 于 1983 年的论文](https://dl.acm.org/doi/pdf/10.1145/800061.808753 )。其中给出了一种复杂度为 $O(m + n)$ 的方法。**
 
 #### 实现
 
