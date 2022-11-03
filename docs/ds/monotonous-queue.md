@@ -1,8 +1,8 @@
-author: Link-cute, Xeonacid, ouuan, Alphnia
+author: Link-cute, Xeonacid, ouuan, Alphnia, Lyccrius
 
 ## 引入
 
-在学习单调队列前，让我们先来看一道例题。
+在学习单调队列（有序队列）前，让我们先来看一道例题。
 
 ???+note "例题"
     [Sliding Window](http://poj.org/problem?id=2823)
