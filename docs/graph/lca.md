@@ -279,7 +279,7 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
 
 ???+note "参考代码"
     ```cpp
-    int dfn[N << 1], pos[N << 1], dfntot = 0;
+    int dfn[N << 1], pos[N], dfntot = 0;
     
     void dfs(int t) {
       dfn[++dfntot] = t;
