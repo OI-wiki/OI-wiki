@@ -279,16 +279,14 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
 
 ???+note "参考代码"
     ```cpp
-    int dfn[N << 1], dep[N << 1], dfntot = 0;
+    int dfn[N << 1], pos[N << 1], dfntot = 0;
     
-    void dfs(int t, int depth) {
+    void dfs(int t) {
       dfn[++dfntot] = t;
       pos[t] = dfntot;
-      dep[dfntot] = depth;
       for (int i = head[t]; i; i = side[i].next) {
-        dfs(side[i].to, depth + 1);
+        dfs(side[i].to);
         dfn[++dfntot] = t;
-        dep[dfntot] = depth;
       }
     }
     
@@ -298,7 +296,7 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
       for (int i = 1; i <= (N << 1) - 1; ++i) st[0][i] = dfn[i];
       for (int i = 1; i <= lg[(N << 1) - 1]; ++i)
         for (int j = 1; j + (1 << i) - 1 <= ((N << 1) - 1); ++j)
-            st[i][j] = dep[st[i - 1][j]] < dep[st[i - 1][j + (1 << i - 1)]
+            st[i][j] = pos[st[i - 1][j]] < pos[st[i - 1][j + (1 << i - 1)]
                             ? st[i - 1][j]
                             : st[i - 1][j + (1 << i - 1)];
     }
