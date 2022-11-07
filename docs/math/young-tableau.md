@@ -11,7 +11,7 @@
 
 ### 杨图
 
-**杨图**（Young diagram，使用点表示时又称 [Ferrers 图](https://en.wikipedia.org/wiki/Partition_(number_theory)#Ferrers_diagram)，在[分拆数](./combinatorics/partition.md#ferrers-%E5%9B%BE)一节中有相关介绍）是一个有限的框或单元格集合，左对齐排列，行长按非递增顺序排列。如果把杨图每行的方格数列出，我们得到了一个非负整数 $n$（总方格数）的 **整数分拆**(integer partition)$\lambda$。因此，我们可以将杨图的形状看作 $\lambda$，因为它携带与其整数拆分相同的信息。
+**杨图**（Young diagram，使用点表示时又称 [Ferrers 图](https://en.wikipedia.org/wiki/Partition_(number_theory)#Ferrers_diagram)，在 [分拆数](./combinatorics/partition.md#ferrers-%E5%9B%BE) 一节中有相关介绍）是一个有限的框或单元格集合，左对齐排列，行长按非递增顺序排列。如果把杨图每行的方格数列出，我们得到了一个非负整数 $n$（总方格数）的 **整数分拆**(integer partition)$\lambda$。因此，我们可以将杨图的形状看作 $\lambda$，因为它携带与其整数拆分相同的信息。
 
 杨图之间的包含关系定义了整数分拆上的一个偏序关系，此关系拥有格的结构，被称为 **杨格**(Young's lattice)。如果把杨图各列的方格数列出，则会得到整数分拆 $\lambda$ 的「共轭分拆」，或「转置分拆」，它所对应到的杨图可由原本的杨图沿主对角线作镜射对称而得。
 
