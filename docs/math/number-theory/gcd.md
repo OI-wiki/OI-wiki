@@ -242,11 +242,10 @@ $ax+by=\gcd(a,b)$ 的解有无数个，显然其中有的解会爆 long long。
 首先，当 $x = 1$，$y = 0$，$x_1 = 0$，$y_1 = 1$ 时，显然有：
 
 $$
-\begin{aligned}
-ax + by &= a
-\\
-ax_1 + by_1 &= b
-\end{aligned}
+\begin{cases}
+    ax + by     & = a \\
+    ax_1 + by_1 & = b
+\end{cases}
 $$
 
 成立。
@@ -261,9 +260,14 @@ $$
 
 $$
 \begin{aligned}
-& (ax + by = a, ax_1 + by_1 = b)
-\\
-\rightarrow & (ax_1 + by_1 = b, a(x - qx_1) + b(y - qy_1) = a - qb)
+                & \begin{cases}
+                      ax + by     & = a \\
+                      ax_1 + by_1 & = b
+                  \end{cases}                    \\
+    \rightarrow & \begin{cases}
+                      ax_1 + by_1               & = b      \\
+                      a(x - qx_1) + b(y - qy_1) & = a - qb
+                  \end{cases}
 \end{aligned}
 $$
 
