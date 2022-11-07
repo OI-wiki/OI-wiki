@@ -4,8 +4,6 @@
 
 在高中初等数学中，排列组合多是利用列表、枚举等方法解题。
 
-* * *
-
 ## 加法 & 乘法原理
 
 ### 加法原理
@@ -39,7 +37,7 @@ $$
 全排列：$n$ 个人全部来排队，队长为 $n$。第一个位置可以选 $n$ 个，第二位置可以选 $n-1$ 个，以此类推得：
 
 $$
-\mathrm A_n^n = n(n-1)(n-2) \cdots 3 × 2 × 1 = n!
+\mathrm A_n^n = n(n-1)(n-2) \cdots 3 \times 2 \times 1 = n!
 $$
 
 全排列是排列数的一个特殊情况。
@@ -158,13 +156,13 @@ $$
 设 $n$ 为正整数，$x_i$ 为实数，
 
 $$
-(x_1 + x_2 + \cdots + x_t)^n = \sum_{满足 n_1 + \cdots + n_t=n 的非负整数解} \binom{n}{n_1n_2\cdots n_t} x_1^{n_1}x_2^{n_2}\cdots x_t^{n_t}
+(x_1 + x_2 + \cdots + x_t)^n = \sum_{满足 n_1 + \cdots + n_t=n 的非负整数解} \binom{n}{n_1,n_2,\cdots,n_t} x_1^{n_1}x_2^{n_2}\cdots x_t^{n_t}
 $$
 
-其中的 $\dbinom{n}{n_1,n_2,\cdots ,n_t}$ 是多项式系数，它的性质也很相似：
+其中的 $\dbinom{n}{n_1,n_2,\cdots,n_t}$ 是多项式系数，它的性质也很相似：
 
 $$
-\sum{\binom{n}{n_1n_2\cdots n_t}} = t^n
+\sum{\binom{n}{n_1,n_2,\cdots,n_t}} = t^n
 $$
 
 ## 排列与组合进阶篇
