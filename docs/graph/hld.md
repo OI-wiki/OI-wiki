@@ -290,6 +290,7 @@ $1 \le n, m, \le 10^5$。
 对于此题提供一份完全由指针实现的代码。
 
 ??? note "参考代码"
+
 ```cpp
   --8<-- "docs/graph/code/hld/hld_4.cpp"
 ```
