@@ -270,7 +270,9 @@ $$
 ```cpp
 // C++ Version
 void pre() {
-  memset(is_prime, 1, sizeof(is_prime));
+  for (int i = 1; i <= 5000000; i++) {
+    is_prime[i] = 1;
+  }
   int cnt = 0;
   is_prime[1] = 0;
   phi[1] = 1;
