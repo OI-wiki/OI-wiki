@@ -209,7 +209,7 @@ int main() {
 template <typename T>
 inline T read(void) {
   T ret(0);
-  short flag(1);
+  int flag(1);
   char c = getchar();
   while (c != '-' && !isdigit(c)) c = getchar();
   if (c == '-') flag = -1, c = getchar();
