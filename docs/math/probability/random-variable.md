@@ -2,7 +2,7 @@
 
 ### 随机变量
 
-给定概率空间 $(\Omega, \mathcal{F}, P)$，定义在样本空间 $\Omega$ 上的函数 $X : \Omega \to \mathbb{R}$ 若满足：对任意 $t \in [0, 1]$ 都有
+给定概率空间 $(\Omega, \mathcal{F}, P)$，定义在样本空间 $\Omega$ 上的函数 $X : \Omega \to \mathbb{R}$ 若满足：对任意 $t \in \mathbb{R}$ 都有
 
 $$
 \{ \omega \in \Omega : X(\omega) < t \} \in \mathcal{F}
