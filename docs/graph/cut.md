@@ -77,7 +77,7 @@ low[u] = min(low[u], num[v]);
 
 ```cpp
 // C++ Version
-int low[MAXN], dfn[MAXN], iscut[MAXN], dfs_clock;
+int low[MAXN], dfn[MAXN], dfs_clock;
 bool isbridge[MAXN];
 vector<int> G[MAXN];
 int cnt_bridge;
@@ -104,7 +104,7 @@ void tarjan(int u, int fa) {
 
 ```python
 # Python Version
-low = [] * MAXN; dfn = [] * MAXN; iscut = [] * MAXN; dfs_clock = 0
+low = [] * MAXN; dfn = [] * MAXN; dfs_clock = 0
 isbridge = [False] * MAXN
 G = [[0 for i in range(MAXN)] for j in range(MAXN)]
 cnt_bridge = 0
