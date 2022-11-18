@@ -66,7 +66,7 @@ void merge(const int *aBegin, const int *aEnd, const int *bBegin, const int *bEn
 
 也可使用 `<algorithm>` 库的 `merge` 函数，用法与上述指针式写法的相同。
 
-### 分治法实现归并排序：分解
+### 分治法实现归并排序
 
 1. 当数组长度为 $1$ 时，该数组就已经是有序的，不用再分解。
 
