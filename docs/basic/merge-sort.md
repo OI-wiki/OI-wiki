@@ -27,11 +27,11 @@ C / C++:
 void merge(const int *a, size_t aLen, const int *b, size_t bLen, int *c) {
   size_t i = 0, j = 0, k = 0;
   while(i < aLen && j < bLen) {
-    if(b[j] < a[i]) { // <!> b[j] < a[i], keep stable
+    if(b[j] < a[i]) { // <!> 先判断 b[j] < a[i]，保证稳定性
       c[k] = b[j];
       ++j;
     }
-    else { // <!> a[i] <= b[j], keep stable
+    else {
       c[k] = a[i];
       ++i;
     }
@@ -66,6 +66,26 @@ void merge(const int *aBegin, const int *aEnd, const int *bBegin, const int *bEn
 
 也可使用 `<algorithm>` 库的 `merge` 函数，用法与上述指针式写法的相同。
 
+Python:
+
+```python
+def merge(a, b):
+    i, j = 0, 0
+    c = []
+    while(i < len(a) and j < len(b)):
+        # <!> 先判断 b[j] < a[i]，保证稳定性
+        if(b[j] < a[i]):
+            c.append(b[j])
+            j += 1
+        else:
+            c.append(a[i])
+            i += 1
+    # 此时一个数组已空，另一个数组非空，将非空的数组并入 c 中
+    c.extend(a[i:])
+    c.extend(b[j:])
+    return c
+```
+
 ### 分治法实现归并排序
 
 1. 当数组长度为 $1$ 时，该数组就已经是有序的，不用再分解。
@@ -78,7 +98,7 @@ void merge(const int *aBegin, const int *aEnd, const int *bBegin, const int *bEn
 
 参考代码：
 
-注意下面的代码所表示的区间是 $[l, r)$。
+注意下面的代码所表示的区间分别是 $[l, r)$，$[l, mid)$，$[mid, r)$。
 
 C / C++:
 
@@ -100,27 +120,15 @@ Python:
 
 ```python
 # Python Version
-def merge_sort(ll, rr):
+def merge_sort(a, ll, rr):
     if rr - ll <= 1:
         return
     # 分解
-    mid = math.floor((rr + ll) / 2)
-    merge_sort(ll, mid)
-    merge_sort(mid, rr)
+    mid = (rr + ll) // 2
+    merge_sort(a, ll, mid)
+    merge_sort(a, mid, rr)
     # 合并
-    p = s = ll
-    q = mid
-    while(s < rr):
-        if p >= mid or (q < rr and a[p] > a[q]):
-            s += 1
-            q += 1
-            t[s] = a[q]
-        else:
-            s += 1
-            p += 1
-            t[s] = a[p]
-    for i in range(ll, rr):
-        a[i] = t[i]
+    a[ll:rr] = merge(a[ll:mid], a[mid:rr])
 ```
 
 ### 倍增法实现归并排序
@@ -150,7 +158,7 @@ C / C++:
 void merge_sort(int *a, size_t n) {
   int tmp[1024] = {}; // 请结合实际情况设置 tmp 数组的长度（与 a 相同），或使用 vector；先将合并的结果放在 tmp 里，再返回到数组 a
   for (size_t seg = 1; seg < n; seg <<= 1) {
-    for (size_t left1 = 0; left1 < n - seg; left1 += seg + seg) {
+    for (size_t left1 = 0; left1 < n - seg; left1 += seg + seg) { // n - seg: 如果最后只有一个段就不用合并
       size_t right1 = left1 + seg;
       size_t left2  = right1;
       size_t right2 = std::min(left2 + seg, n); // <!> 注意最后一个段的边界
@@ -166,7 +174,7 @@ void merge_sort(int *a, size_t n) {
 
 逆序对是 $i < j$ 且 $a_i > a_j$ 的有序数对 $(i, j)$。
 
-排序后的数组无逆序对，归并排序的合并操作中，每次后段首元素被作为当前最小值取出时，前段剩余元素个数之和即是合并操作减少的逆序对数量；故归并排序计算逆序对数量的额外时间复杂度为 $\Theta (n \log n)$，对于 C++ 代码将 `merge` 过程的 `if(b[j] < a[i])` 部分加上 `cnt += aLen - i` 或 `cnt += aEnd - aBegin` 即可。
+排序后的数组无逆序对，归并排序的合并操作中，每次后段首元素被作为当前最小值取出时，前段剩余元素个数之和即是合并操作减少的逆序对数量；故归并排序计算逆序对数量的额外时间复杂度为 $\Theta (n \log n)$，对于 C / C++ 代码将 `merge` 过程的 `if(b[j] < a[i])` 部分加上 `cnt += aLen - i` 或 `cnt += aEnd - aBegin` 即可，对于 Python 代码将 `merge` 过程的 `if(b[j] < a[i])` 部分加上 `cnt += len(a) - i` 即可。
 
 此外，逆序对计数即是将元素依次加入数组时统计当前大于其的元素数量，将数组离散化后即是区间求和问题，使用树状数组或线段树解决的时间复杂度为 $\operatorname{O} (n \log n)$ 且空间复杂度为 $\Theta (n)$。
 
