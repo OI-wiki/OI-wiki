@@ -170,6 +170,20 @@ void merge_sort(int *a, size_t n) {
 }
 ```
 
+Python:
+
+```python
+def merge_sort(a):
+    seg = 1
+    while seg < len(a):
+        for l1 in range(0, len(a) - seg, seg + seg):
+            r1 = l1 + seg
+            l2 = r1
+            r2 = l2 + seg
+            a[l1:r2] = merge(a[l1:r1], a[l2:r2])
+    seg <<= 1
+```
+
 ## 逆序对
 
 逆序对是 $i < j$ 且 $a_i > a_j$ 的有序数对 $(i, j)$。
