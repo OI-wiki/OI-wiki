@@ -36,5 +36,5 @@ author: sshwy, hsfzLZH1, Enter-tainer
 2. 向下取整符号：$\lfloor x\rfloor$，表示小于等于 $x$ 的最大的整数。常用于分数，比如分数的向下取整 $\left\lfloor\dfrac{x}{y}\right\rfloor$。
 3. 向上取整符号：$\lceil x\rceil$，与向下取整符号相对，表示大于等于 $x$ 的最小的整数。
 4. 组合数：$\binom{x}{y}$
-5. 第一类斯特林数：$x\brack y$
+5. 第一类斯特林数：$x\brack y$，表示把x个不同元素构成y个互不区分的非空轮换的排列方案数。
 6. 第二类斯特林数：$x\brace y$
