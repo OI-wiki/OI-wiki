@@ -69,7 +69,7 @@ StartupNotify=true
 
 ![JetBrains Toolbox](./images/clion-jetbrains-toolbox.png)
 
-通过该工具可以安装 JetBrains 公司开发的 IDE 产品，并且可以快速访问并打开您通过 JetBrains 旗下 IDE 创建的工程和项目。
+通过该工具可以安装 JetBrains 公司开发的 IDE 产品，并且可以快速访问并打开您通过 JetBrains 旗下 IDE 创建的工程和项目，以及接收软件升级信息。
 
 ### 方法三：通过 Snap 安装 (Linux)
 
