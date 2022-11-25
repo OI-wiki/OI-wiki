@@ -1,4 +1,4 @@
-author: Ir1d, tsagaanbar
+author: Ir1d, tsagaanbar, yang-lile
 
 ## 函数的声明
 
@@ -62,7 +62,7 @@ void say_hello() {
 函数声明时候写出的参数，可以理解为在函数 **当前次调用的内部** 可以使用的变量，这些变量的值由调用处传入的值初始化。看下面这个例子：
 
 ```cpp
-int foo(int, int);
+void foo(int, int);
 
 /* ... */
 
