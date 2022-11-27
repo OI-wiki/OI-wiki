@@ -94,61 +94,76 @@ bool toposort() {
 
 ```cpp
 // C++ Version
-vector<int> G[MAXN];  // vector 实现的邻接表
-int c[MAXN];          // 标志数组
-vector<int> topo;     // 拓扑排序后的节点
+using Graph = vector<vector<int>>;  // 邻接表
 
-bool dfs(int u) {
-  c[u] = -1;
-  for (int v : G[u]) {
-    if (c[v] < 0)
-      return false;
-    else if (!c[v])
-      if (!dfs(v)) return false;
+struct TopoSort {
+  enum class Status : uint8_t { to_visit, visiting, visited };
+
+  const Graph& graph;
+  const int n;
+  vector<Status> status;
+  vector<int> order;
+  vector<int>::reverse_iterator it;
+
+  TopoSort(const Graph& graph)
+      : graph(graph),
+        n(graph.size()),
+        status(n, Status::to_visit),
+        order(n),
+        it(order.rbegin()) {}
+
+  bool sort() {
+    for (int i = 0; i < n; ++i) {
+      if (status[i] == Status::to_visit && !dfs(i)) return false;
+    }
+    return true;
   }
-  c[u] = 1;
-  topo.push_back(u);
-  return true;
-}
 
-bool toposort() {
-  topo.clear();
-  memset(c, 0, sizeof(c));
-  for (int u = 0; u < n; u++)
-    if (!c[u])
-      if (!dfs(u)) return false;
-  reverse(topo.begin(), topo.end());
-  return true;
-}
+  bool dfs(const int u) {
+    status[u] = Status::visiting;
+    for (const int v : graph[u]) {
+      if (status[v] == Status::visiting) return false;
+      if (status[v] == Status::to_visit && !dfs(v)) return false;
+    }
+    status[u] = Status::visited;
+    *it++ = u;
+    return true;
+  }
+};
 ```
 
 ```python
 # Python Version
-G = [] * MAXN
-c = [0] * MAXN
-topo = []
+from enum import Enum, auto
 
-def dfs(u):
-    c[u] = -1
-    for v in G[u]:
-        if c[v] < 0:
-            return False
-        elif c[v] == False:
-            if dfs(v) == False:
-                return False
-    c[u] = 1
-    topo.append(u)
-    return True
 
-def toposort():
-    topo = []
-    while u < n:
-        if c[u] == 0:
-            if dfs(u) == False:
+class Status(Enum):
+    to_visit = auto()
+    visiting = auto()
+    visited = auto()
+
+
+def topo_sort(graph: list[list[int]]) -> list[int] | None:
+    n = len(graph)
+    status = [Status.to_visit] * n
+    order = []
+
+    def dfs(u: int) -> bool:
+        status[u] = Status.visiting
+        for v in graph[u]:
+            if status[v] == Status.visiting:
                 return False
-        u = u + 1
-    topo.reverse()
-    return True
+            if status[v] == Status.to_visit and not dfs(v):
+                return False
+        status[u] = Status.visited
+        order.append(u)
+        return True
+
+    for i in range(n):
+        if status[i] == Status.to_visit and not dfs(i):
+            return None
+
+    return order[::-1]
 ```
 
 时间复杂度：$O(E+V)$ 空间复杂度：$O(V)$
