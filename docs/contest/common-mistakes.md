@@ -311,36 +311,32 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     正常输出应当是 `true`，但是在 `INT_MAX` 作为 `x` 时输出 `false`，这时称为 `signed integer overflow`。
 
     可以使用更大的数据类型（例如 `long long` 或 `__int128`），或判断溢出。若保证无负数，亦可使用无符号整型。
-    
+
     有符号整数溢出可能影响编译优化，例如代码：
-    
+
     ```cpp
     int foo(int x) {
-        if(x > x + 1)
-            return 1;
-        return 0;
+      if (x > x + 1) return 1;
+      return 0;
     }
     ```
-    
+
     可能被编译器直接优化为：
-    
+
     ```cpp
-    int foo(int x) {
-        return 0;
-    }
+    int foo(int x) { return 0; }
     ```
-    
+
     因为编译器可以假定有符号整数永远不会溢出，因此 `x > x + 1` 恒成立。
-    
+
 -   使用未初始化的变量
 
     ???+ warning "示例"
         ```cpp
         int foo(int a) {
-            int t; /* 没有初始化 */
-            if (/* 使用 */ t > 3) 
-                return a;
-            return 0;
+          int t; /* 没有初始化 */
+          if (/* 使用 */ t > 3) return a;
+          return 0;
         }
         ```
 
