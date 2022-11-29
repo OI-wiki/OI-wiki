@@ -330,7 +330,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     }
     ```
     
-    因为编译器可以假定有符号整数永远不会溢出，因此 `x > x + 1` 恒成立，。
+    因为编译器可以假定有符号整数永远不会溢出，因此 `x > x + 1` 恒成立。
     
 -   使用未初始化的变量
 
