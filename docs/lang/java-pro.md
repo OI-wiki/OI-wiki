@@ -361,7 +361,7 @@ public class Main {
 |      `isProbablePrime(int val)`      |     返回一个表示 this 是否是素数的布尔值     |
 |        `nextProbablePrime()`         |         返回第一个大于 this 的素数          |
 | `modPow(BigInteger b, BigInteger p)` |          返回 this `^` b `mod` p           |
-|      modInverse(BigInteger p)      |          返回 a `mod` p 的乘法逆元          |
+|      `modInverse(BigInteger p)`      |          返回 a `mod` p 的乘法逆元          |
 
 使用案例如下：
 
