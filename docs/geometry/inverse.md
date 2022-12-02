@@ -1,5 +1,7 @@
 author: hyp1231
 
+## 引入
+
 反演变换适用于题目中存在多个圆/直线之间的相切关系的情况。利用反演变换的性质，在反演空间求解问题，可以大幅简化计算。
 
 ## 定义
@@ -10,6 +12,8 @@ author: hyp1231
 - $|OP| \cdot |OP'| = R^2$
 
 则称点 $P$ 和点 $P'$ 互为反演点。
+
+## 解释
 
 下图所示即为平面上一点 $P$ 的反演：
 
@@ -36,8 +40,10 @@ author: hyp1231
         根据反演变换定义：
 
         $$
-        |OC|\cdot|OC'| = (|OA|+r_1)\cdot(|OB|-r_2) = R^2 \\ 
-        |OD|\cdot|OD'| = (|OA|-r_1)\cdot(|OB|+r_2) = R^2
+        \begin{aligned}
+        |OC|\cdot|OC'| &= (|OA|+r_1)\cdot(|OB|-r_2) = R^2 \\
+        |OD|\cdot|OD'| &= (|OA|-r_1)\cdot(|OB|+r_2) = R^2
+        \end{aligned}
         $$
 
         消掉 $|OB|$，解方程即可。
@@ -45,8 +51,10 @@ author: hyp1231
     -   记点 $O$ 坐标为 $(x_0, y_0)$，点 $A$ 坐标为 $x_1, y_1$，点 $B$ 坐标为 $x_2, y_2$，则有：
 
         $$
-        x_2 = x_0 + \frac{|OB|}{|OA|} (x_1 - x_0) \\ 
-        y_2 = y_0 + \frac{|OB|}{|OA|} (y_1 - y_0)
+        \begin{aligned}
+        x_2 &= x_0 + \frac{|OB|}{|OA|} (x_1 - x_0) \\
+        y_2 &= y_0 + \frac{|OB|}{|OA|} (y_1 - y_0)
+        \end{aligned}
         $$
 
         其中 $|OB|$ 可在上述求 $r_2$ 的过程中计算得到。

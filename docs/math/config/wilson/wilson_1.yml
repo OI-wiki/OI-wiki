@@ -1,0 +1,10 @@
+id: oi-wiki:math/wilson-1
+name: Wilson
+solution:
+  cpp: docs/math/code/wilson/wilson_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/examples/wilson/wilson_1.ans
+  input: docs/math/examples/wilson/wilson_1.in
+version: 1000

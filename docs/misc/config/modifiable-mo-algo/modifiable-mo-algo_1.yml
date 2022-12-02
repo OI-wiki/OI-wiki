@@ -1,0 +1,10 @@
+id: oi-wiki:misc/modifiable-mo-algo-1
+name: Modifiable Mo Algo
+solution:
+  cpp: docs/misc/code/modifiable-mo-algo/modifiable-mo-algo_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/misc/examples/modifiable-mo-algo/modifiable-mo-algo_1.ans
+  input: docs/misc/examples/modifiable-mo-algo/modifiable-mo-algo_1.in
+version: 1000

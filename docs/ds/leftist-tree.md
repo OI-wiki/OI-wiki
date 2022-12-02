@@ -24,33 +24,35 @@
 
 参考代码：
 
-```cpp
-int merge(int x, int y) {
-  if (!x || !y) return x | y;  // 若一个堆为空则返回另一个堆
-  if (t[x].val > t[y].val) swap(x, y);  // 取值较小的作为根
-  t[x].rs = merge(t[x].rs, y);          // 递归合并右儿子与另一个堆
-  if (t[t[x].rs].d > t[t[x].ls].d)
-    swap(t[x].ls, t[x].rs);   // 若不满足左偏性质则交换左右儿子
-  t[x].d = t[t[x].rs].d + 1;  // 更新dist
-  return x;
-}
-```
+???+note "实现"
+    ```cpp
+    int merge(int x, int y) {
+      if (!x || !y) return x | y;  // 若一个堆为空则返回另一个堆
+      if (t[x].val > t[y].val) swap(x, y);  // 取值较小的作为根
+      t[x].rs = merge(t[x].rs, y);          // 递归合并右儿子与另一个堆
+      if (t[t[x].rs].d > t[t[x].ls].d)
+        swap(t[x].ls, t[x].rs);   // 若不满足左偏性质则交换左右儿子
+      t[x].d = t[t[x].rs].d + 1;  // 更新dist
+      return x;
+    }
+    ```
 
-由于左偏性质，每递归一层，其中一个堆根节点的 $\mathrm{dist}$ 就会减小 $1$，而“一棵有 $n$ 个节点的二叉树，根的 $\mathrm{dist}$ 不超过 $\left\lceil\log (n+1)\right\rceil$”，所以合并两个大小分别为 $n$ 和 $m$ 的堆复杂度是 $O(\log n+\log m)$。
+由于左偏性质，每递归一层，其中一个堆根节点的 $\mathrm{dist}$ 就会减小 $1$，而「一棵有 $n$ 个节点的二叉树，根的 $\mathrm{dist}$ 不超过 $\left\lceil\log (n+1)\right\rceil$」，所以合并两个大小分别为 $n$ 和 $m$ 的堆复杂度是 $O(\log n+\log m)$。
 
 左偏树还有一种无需交换左右儿子的写法：将 $\mathrm{dist}$ 较大的儿子视作左儿子，$\mathrm{dist}$ 较小的儿子视作右儿子：
 
-```cpp
-int& rs(int x) { return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d]; }
-
-int merge(int x, int y) {
-  if (!x || !y) return x | y;
-  if (t[x].val < t[y].val) swap(x, y);
-  rs(x) = merge(rs(x), y);
-  t[x].d = t[rs(x)].d + 1;
-  return x;
-}
-```
+???+note "实现"
+    ```cpp
+    int& rs(int x) { return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d]; }
+    
+    int merge(int x, int y) {
+      if (!x || !y) return x | y;
+      if (t[x].val < t[y].val) swap(x, y);
+      rs(x) = merge(rs(x), y);
+      t[x].d = t[rs(x)].d + 1;
+      return x;
+    }
+    ```
 
 ## 左偏树的其它操作
 
@@ -68,30 +70,31 @@ int merge(int x, int y) {
 
 先将左右儿子合并，然后自底向上更新 $\mathrm{dist}$、不满足左偏性质时交换左右儿子，当 $\mathrm{dist}$ 无需更新时结束递归：
 
-```cpp
-int& rs(int x) { return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d]; }
-
-// 有了 pushup，直接 merge 左右儿子就实现了删除节点并保持左偏性质
-int merge(int x, int y) {
-  if (!x || !y) return x | y;
-  if (t[x].val < t[y].val) swap(x, y);
-  t[rs(x) = merge(rs(x), y)].fa = x;
-  pushup(x);
-  return x;
-}
-
-void pushup(int x) {
-  if (!x) return;
-  if (t[x].d != t[rs(x)].d + 1) {
-    t[x].d = t[rs(x)].d + 1;
-    pushup(t[x].fa);
-  }
-}
-```
+???+note "实现"
+    ```cpp
+    int& rs(int x) { return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d]; }
+    
+    // 有了 pushup，直接 merge 左右儿子就实现了删除节点并保持左偏性质
+    int merge(int x, int y) {
+      if (!x || !y) return x | y;
+      if (t[x].val < t[y].val) swap(x, y);
+      t[rs(x) = merge(rs(x), y)].fa = x;
+      pushup(x);
+      return x;
+    }
+    
+    void pushup(int x) {
+      if (!x) return;
+      if (t[x].d != t[rs(x)].d + 1) {
+        t[x].d = t[rs(x)].d + 1;
+        pushup(t[x].fa);
+      }
+    }
+    ```
 
 #### 复杂度证明
 
-我们令当前 `pushup` 的这个节点为 $x$，其父亲为 $y$，一个节点的“初始 $\mathrm{dist}$”为它在 `pushup` 前的 $\mathrm{dist}$。我们先 `pushup` 一下删除的节点，然后从其父亲开始起讨论复杂度。
+我们令当前 `pushup` 的这个节点为 $x$，其父亲为 $y$，一个节点的「初始 $\mathrm{dist}$」为它在 `pushup` 前的 $\mathrm{dist}$。我们先 `pushup` 一下删除的节点，然后从其父亲开始起讨论复杂度。
 
 继续递归下去有两种情况：
 
@@ -106,37 +109,39 @@ void pushup(int x) {
 
 在根打上标记，删除根/合并堆（访问儿子）时下传标记即可：
 
-```cpp
-int merge(int x, int y) {
-  if (!x || !y) return x | y;
-  if (t[x].val > t[y].val) swap(x, y);
-  pushdown(x);
-  t[x].rs = merge(t[x].rs, y);
-  if (t[t[x].rs].d > t[t[x].ls].d) swap(t[x].ls, t[x].rs);
-  t[x].d = t[t[x].rs].d + 1;
-  return x;
-}
-
-int pop(int x) {
-  pushdown(x);
-  return merge(t[x].ls, t[x].rs);
-}
-```
+???+note "实现"
+    ```cpp
+    int merge(int x, int y) {
+      if (!x || !y) return x | y;
+      if (t[x].val > t[y].val) swap(x, y);
+      pushdown(x);
+      t[x].rs = merge(t[x].rs, y);
+      if (t[t[x].rs].d > t[t[x].ls].d) swap(t[x].ls, t[x].rs);
+      t[x].d = t[t[x].rs].d + 1;
+      return x;
+    }
+    
+    int pop(int x) {
+      pushdown(x);
+      return merge(t[x].ls, t[x].rs);
+    }
+    ```
 
 ### 随机合并
 
 直接贴上代码
 
-```cpp
-int merge(int x, int y) {
-  if (!x || !y) return x | y;
-  if (t[y].val < t[x].val) swap(x, y);
-  if (rand() & 1)  // 随机选择是否交换左右子节点
-    swap(t[x].ls, t[x].rs);
-  t[x].ls = merge(t[x].ls, y);
-  return x;
-}
-```
+???+note "实现"
+    ```cpp
+    int merge(int x, int y) {
+      if (!x || !y) return x | y;
+      if (t[y].val < t[x].val) swap(x, y);
+      if (rand() & 1)  // 随机选择是否交换左右子节点
+        swap(t[x].ls, t[x].rs);
+      t[x].ls = merge(t[x].ls, y);
+      return x;
+    }
+    ```
 
 可以看到该实现方法唯一不同之处便是采用了随机数来实现合并，这样一来便可以省去 $\mathrm{dist}$ 的相关计算。且平均时间复杂度亦为 $O(\log n)$，详细证明可参考 [Randomized Heap](https://cp-algorithms.com/data_structures/randomized_heap.html)。
 

@@ -1,8 +1,12 @@
+## 引入
+
 我知道，很多人在第一次看到这个东西的时侯是非常兴奋的。（别问我为什么知道）不过这个自动机啊它叫作 `Automaton`，不是 `Automation`，让萌新失望啦。切入正题。似乎在初学自动机相关的内容时，许多人难以建立对自动机的初步印象，尤其是在自学的时侯。而这篇文章就是为你们打造的。笔者在自学 AC 自动机后花费两天时间制作若干的 gif，呈现出一个相对直观的自动机形态。尽管这个图似乎不太可读，但这绝对是在作者自学的时侯，画得最认真的 gif 了。另外有些小伙伴问这个 gif 拿什么画的。笔者用 Windows 画图软件制作。
 
 ## 概述
 
 AC 自动机是 **以 Trie 的结构为基础**，结合 **KMP 的思想** 建立的。
+
+## 解释
 
 简单来说，建立一个 AC 自动机有两个步骤：
 
@@ -40,10 +44,10 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 构建 fail 指针，可以参考 KMP 中构造 Next 指针的思想。
 
-考虑字典树中当前的结点 $u$，$u$ 的父结点是 $p$，$p$ 通过字符 `c` 的边指向 $u$，即 $trie[p,c]=u$。假设深度小于 $u$ 的所有结点的 fail 指针都已求得。
+考虑字典树中当前的结点 $u$，$u$ 的父结点是 $p$，$p$ 通过字符 `c` 的边指向 $u$，即 $trie[p,\mathtt{c}]=u$。假设深度小于 $u$ 的所有结点的 fail 指针都已求得。
 
-1. 如果 $\text{trie}[\text{fail}[p],c]$ 存在：则让 u 的 fail 指针指向 $\text{trie}[\text{fail}[p],c]$。相当于在 $p$ 和 $\text{fail}[p]$ 后面加一个字符 `c`，分别对应 $u$ 和 $fail[u]$。
-2. 如果 $\text{trie}[\text{fail}[p],c]$ 不存在：那么我们继续找到 $\text{trie}[\text{fail}[\text{fail}[p]],c]$。重复 1 的判断过程，一直跳 fail 指针直到根结点。
+1. 如果 $\text{trie}[\text{fail}[p],\mathtt{c}]$ 存在：则让 u 的 fail 指针指向 $\text{trie}[\text{fail}[p],\mathtt{c}]$。相当于在 $p$ 和 $\text{fail}[p]$ 后面加一个字符 `c`，分别对应 $u$ 和 $fail[u]$。
+2. 如果 $\text{trie}[\text{fail}[p],\mathtt{c}]$ 不存在：那么我们继续找到 $\text{trie}[\text{fail}[\text{fail}[p]],\mathtt{c}]$。重复 1 的判断过程，一直跳 fail 指针直到根结点。
 3. 如果真的没有，就让 fail 指针指向根结点。
 
 如此即完成了 $\text{fail}[u]$ 的构建。
@@ -75,57 +79,62 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 2. 队列 `q`：用于 BFS 遍历字典树。
 3. `fail[u]`：结点 $u$ 的 fail 指针。
 
-```cpp
-// C++ Version
-void build() {
-  for (int i = 0; i < 26; i++)
-    if (tr[0][i]) q.push(tr[0][i]);
-  while (q.size()) {
-    int u = q.front();
-    q.pop();
-    for (int i = 0; i < 26; i++) {
-      if (tr[u][i])
-        fail[tr[u][i]] = tr[fail[u]][i], q.push(tr[u][i]);
-      else
-        tr[u][i] = tr[fail[u]][i];
+???+note "实现"
+    ```cpp
+    // C++ Version
+    void build() {
+      for (int i = 0; i < 26; i++)
+        if (tr[0][i]) q.push(tr[0][i]);
+      while (q.size()) {
+        int u = q.front();
+        q.pop();
+        for (int i = 0; i < 26; i++) {
+          if (tr[u][i])
+            fail[tr[u][i]] = tr[fail[u]][i], q.push(tr[u][i]);
+          else
+            tr[u][i] = tr[fail[u]][i];
+        }
+      }
     }
-  }
-}
-```
-
-```python
-# Python Version
-def build():
-    for i in range(0, 26):
-        if tr[0][i] == 1:
-            q.append(tr[0][i])
-    while len(q) > 0:
-        u = q[0]
-        q.pop()
+    ```
+    
+    ```python
+    # Python Version
+    def build():
         for i in range(0, 26):
-            if tr[u][i] == 1:
-                fail[tr[u][i]] = tr[fail[u]][i]
-                q.append(tr[u][i])
-            else:
-                tr[u][i] = tr[fail[u]][i]
-```
+            if tr[0][i] == 1:
+                q.append(tr[0][i])
+        while len(q) > 0:
+            u = q[0]
+            q.pop()
+            for i in range(0, 26):
+                if tr[u][i] == 1:
+                    fail[tr[u][i]] = tr[fail[u]][i]
+                    q.append(tr[u][i])
+                else:
+                    tr[u][i] = tr[fail[u]][i]
+    ```
+
+### 解释
 
 解释一下上面的代码：build 函数将结点按 BFS 顺序入队，依次求 fail 指针。这里的字典树根结点为 0，我们将根结点的子结点一一入队。若将根结点入队，则在第一次 BFS 的时候，会将根结点儿子的 fail 指针标记为本身。因此我们将根结点的儿子一一入队，而不是将根结点入队。
 
 然后开始 BFS：每次取出队首的结点 u（$\text{fail}[u]$ 在之前的 BFS 过程中已求得），然后遍历字符集（这里是 0-25，对应 a-z，即 $u$ 的各个子节点）：
 
-1. 如果 $\text{trans}[u][i]$ 存在，我们就将 $\text{trans}[u][i]$ 的 fail 指针赋值为 $\text{trans}[\text{fail}[u]][i]$。这里似乎有一个问题。根据之前的讲解，我们应该用 while 循环，不停的跳 fail 指针，判断是否存在字符 `i` 对应的结点，然后赋值，但是这里通过特殊处理简化了这些代码。
-2. 否则，令 $\text{trans}[u][i]$ 指向 $\text{trans}[\text{fail}[u]][i]$ 的状态。
+1. 如果 $\text{trans}[u][\mathtt{i}]$ 存在，我们就将 $\text{trans}[u][\mathtt{i}]$ 的 fail 指针赋值为 $\text{trans}[\text{fail}[u]][\mathtt{i}]$。这里似乎有一个问题。根据之前的讲解，我们应该用 while 循环，不停的跳 fail 指针，判断是否存在字符 `i` 对应的结点，然后赋值，但是这里通过特殊处理简化了这些代码。
+2. 否则，令 $\text{trans}[u][\mathtt{i}]$ 指向 $\text{trans}[\text{fail}[u]][\mathtt{i}]$ 的状态。
 
 这里的处理是，通过 `else` 语句的代码修改字典树的结构。没错，它将不存在的字典树的状态链接到了失配指针的对应状态。在原字典树中，每一个结点代表一个字符串 $S$，是某个模式串的前缀。而在修改字典树结构后，尽管增加了许多转移关系，但结点（状态）所代表的字符串是不变的。
 
-而 $\text{trans}[S][c]$ 相当于是在 $S$ 后添加一个字符 `c` 变成另一个状态 $S'$。如果 $S'$ 存在，说明存在一个模式串的前缀是 $S'$，否则我们让 $\text{trans}[S][c]$ 指向 $\text{trans}[\text{fail}[S]][c]$。由于 $\text{fail}[S]$ 对应的字符串是 $S$ 的后缀，因此 $\text{trans}[\text{fail}[S]][c]$ 对应的字符串也是 $S'$ 的后缀。
+而 $\text{trans}[S][\mathtt{c}]$ 相当于是在 $S$ 后添加一个字符 `c` 变成另一个状态 $S'$。如果 $S'$ 存在，说明存在一个模式串的前缀是 $S'$，否则我们让 $\text{trans}[S][\mathtt{c}]$ 指向 $\text{trans}[\text{fail}[S]][\mathtt{c}]$。由于 $\text{fail}[S]$ 对应的字符串是 $S$ 的后缀，因此 $\text{trans}[\text{fail}[S]][\mathtt{c}]$ 对应的字符串也是 $S'$ 的后缀。
 
 换言之在 Trie 上跳转的时侯，我们只会从 $S$ 跳转到 $S'$，相当于匹配了一个 $S'$；但在 AC 自动机上跳转的时侯，我们会从 $S$ 跳转到 $S'$ 的后缀，也就是说我们匹配一个字符 `c`，然后舍弃 $S$ 的部分前缀。舍弃前缀显然是能匹配的。那么 fail 指针呢？它也是在舍弃前缀啊！试想一下，如果文本串能匹配 $S$，显然它也能匹配 $S$ 的后缀。所谓的 fail 指针其实就是 $S$ 的一个后缀集合。
 
 `tr` 数组还有另一种比较简单的理解方式：如果在位置 $u$ 失配，我们会跳转到 $\text{fail}[u]$ 的位置。所以我们可能沿着 fail 数组跳转多次才能来到下一个能匹配的位置。所以我们可以用 `tr` 数组直接记录记录下一个能匹配的位置，这样就能节省下很多时间。
 
 这样修改字典树的结构，使得匹配转移更加完善。同时它将 fail 指针跳转的路径做了压缩（就像并查集的路径压缩），使得本来需要跳很多次 fail 指针变成跳一次。
+
+### 过程
 
 好的，我知道大家都受不了长篇叙述。上图！我们将之前的 GIF 图改一下：
 
@@ -149,6 +158,8 @@ def build():
 ## 多模式匹配
 
 接下来分析匹配函数 `query()`：
+
+### 实现
 
 ```cpp
 // C++ Version
@@ -179,6 +190,8 @@ def query(t):
         i += 1
     return res
 ```
+
+### 解释
 
 这里 $u$ 作为字典树上当前匹配到的结点，`res` 即返回的答案。循环遍历匹配串，$u$ 在字典树上跟踪当前字符。利用 fail 指针找出所有匹配的模式串，累加到答案中。然后清零。在上文中我们分析过，字典树的结构其实就是一个 trans 函数，而构建好这个函数后，在匹配字符串的过程中，我们会舍弃部分前缀达到最低限度的匹配。fail 指针则指向了更多的匹配状态。最后上一份图。对于刚才的自动机：
 

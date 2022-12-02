@@ -20,7 +20,7 @@ void add_edge(int x, int y, int z) {
 
 int sum;
 
-void calcsiz(int x, int fa) {  // 点分治的计算
+void calcsiz(int x, int fa) {
   siz[x] = 1;
   maxx[x] = 0;
   for (int j = h[x]; j; j = nxt[j])
@@ -44,7 +44,7 @@ void calcdist(int x, int fa) {
 
 queue<int> tag;
 
-struct segtree {  // 用线段树来支持维护和查询
+struct segtree {
   int cnt, rt, lc[maxn], rc[maxn], sum[maxn];
 
   void clear() {
@@ -63,7 +63,7 @@ struct segtree {  // 用线段树来支持维护和查询
     print(rc[o], mid + 1, r);
   }
 
-  void update(int& o, int l, int r, int x, int v) {  // 更新
+  void update(int& o, int l, int r, int x, int v) {
     if (!o) o = ++cnt;
     if (l == r) {
       sum[o] += v;
@@ -88,7 +88,7 @@ struct segtree {  // 用线段树来支持维护和查询
   }
 } st;
 
-void dfz(int x, int fa) {  // 具体点分治的实现
+void dfz(int x, int fa) {
   // tf[0]=true;tag.push(0);
   st.update(st.rt, 1, 20000000, 1, 1);
   tag.push(1);
@@ -117,7 +117,7 @@ void dfz(int x, int fa) {  // 具体点分治的实现
     }
 }
 
-main() {
+signed main() {
   scanf("%lld", &n);
   for (int i = 1; i < n; i++)
     scanf("%lld%lld%lld", &a, &b, &c), add_edge(a, b, c), add_edge(b, a, c);

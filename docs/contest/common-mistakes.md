@@ -1,4 +1,4 @@
-author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
+author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu
 
 本页面主要列举一些竞赛中很多人经常会出现的错误。
 
@@ -75,7 +75,32 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
     - 示例：`long long x = 0x7f7f7f7f7f7f7f7f`，`1<<62`。
 
-- 未初始化局部变量，导致局部变量被赋予垃圾初值。
+-   未初始化局部变量。
+
+    ???+ note "未初始化变量会发生什么"
+        原文：<https://loj.ac/d/3679> by @hly1204
+        
+        例如我们在 C++ 中声明一个 `int a;` 但不初始化，可能有时候会认为 `a` 是一个“随机”（其实可能不是真的随机）的值，但是可能将其认为是一个固定的值，但实际上并非如此。
+        
+        我们在简单的测试代码中
+        
+        <https://wandbox.org/permlink/T2uiVe4n9Hg4EyWT>
+        
+        代码是：
+        
+        ```cpp
+        #include <iostream>
+        
+        int main() {
+          int a;
+          std::cout << std::boolalpha << (a < 0 || a == 0 || a > 0);
+          return 0;
+        }
+        ```
+        
+        在一些编译器和环境上开启优化后，其输出为 false。
+        
+        有兴趣的话可以看 <https://www.ralfj.de/blog/2019/07/14/uninit.html>，尽管其是用 Rust 做的实验，但是本质是一样的。
 
 - 局部变量与全局变量重名，导致全局变量被意外覆盖。（开 `-Wshadow` 就可检查此类错误。）
 
@@ -195,7 +220,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 ???+ warning
     在正式比赛中会尽量保证选手答题的环境和最终测试的环境相同。
     
-    本节内容仅适用于模拟赛等情况，而我们也建议出题人尽量让数据符合 [数据格式](../problemsetting/#_29)。
+    本节内容仅适用于模拟赛等情况，而我们也建议出题人尽量让数据符合 [数据格式](../problemsetting/#数据的格式)。
 
 不同的操作系统使用不同的符号来标记换行，以下为几种常用系统的换行符：
 
@@ -217,10 +242,105 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
 - 使用 `scanf(" %c",&c)` 过滤掉所有空白字符。
 
-### 会导致 RE
+### 会导致未知的结果
 
--   对整数除以 $0$。
-    - 对 $0$ 求逆元。
+未定义行为会导致未知的结果，可能是 WA，RE 等。编译器通常会假定你的程序不会出现未定义行为，因此出现开 O2 与不开 O2 代码行为不一致的情况。
+
+-   除以 0（求 0 的逆元）
+
+    ???+ warning "示例"
+        ```cpp
+        cout << x / 0 << endl;
+        ```
+
+-   数组（下标）越界
+
+    例如：
+
+    - 未正确设置循环的初值导致访问了下标为 -1 的值。
+
+    - 无向图边表未开 2 倍。
+
+    - 线段树未开 4 倍空间。
+
+    - 看错数据范围，少打一个零。
+
+    - 错误预估了算法的空间复杂度。
+
+    -   写线段树的时候，`pushup` 或 `pushdown` 叶节点。
+
+        正确的做法：不要越界，记得检查自己的代码，使得下标访问数 `x`，在定义的下标中。
+
+-   除 main 外有返回值函数执行至结尾未执行任何 return 语句
+
+    即使有一个分支有返回值，但是其他分支却没有，结果也是未定义的。
+
+    可以向编译选项中追加 `-Wall`，检查编译器是否给出有关于函数未 return 的警告。
+
+-   尝试修改字符串字面量
+
+    ???+ warning "示例"
+        ```cpp
+        char *p = "OI-wiki";
+        p[0] = 'o';
+        p[1] = 'i';
+        ```
+
+    这样试图修改字符串字面量会导致 **未定义行为**，应当使用其他 **合适** 的数据类型，例如 `std::string` 和 `char[]`。
+
+-   多次释放/非法解引用一片内存
+
+    例如：
+
+    - 未初始化就解引用指针。
+
+    -   指针指向的内存区域已经释放。
+
+        使用 `erase` 或 `delete` 或 `free` 操作应注意不要对同一地址/对象多次使用。
+
+-   解引用空指针/野指针
+
+    对于空指针：先应该判断空指针，可以用 `p == nullptr` 或 `!p`。
+
+    对于野指针：可以释放指针的时候将其置为 `nullptr` 以规避。
+
+-   有符号数溢出
+
+    例如我们有一个表达式 `x+1 > x`。
+
+    正常输出应当是 `true`，但是在 `INT_MAX` 作为 `x` 时输出 `false`，这时称为 `signed integer overflow`。
+
+    可以使用更大的数据类型（例如 `long long` 或 `__int128`），或判断溢出。若保证无负数，亦可使用无符号整型。
+
+    有符号整数溢出可能影响编译优化，例如代码：
+
+    ```cpp
+    int foo(int x) {
+      if (x > x + 1) return 1;
+      return 0;
+    }
+    ```
+
+    可能被编译器直接优化为：
+
+    ```cpp
+    int foo(int x) { return 0; }
+    ```
+
+    因为编译器可以假定有符号整数永远不会溢出，因此 `x > x + 1` 恒成立。
+
+-   使用未初始化的变量
+
+    ???+ warning "示例"
+        ```cpp
+        int foo(int a) {
+          int t; /* 没有初始化 */
+          if (/* 使用 */ t > 3) return a;
+          return 0;
+        }
+        ```
+
+### 会导致 RE
 
 - 没删文件操作（某些 OJ）。
 
@@ -248,8 +368,6 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
         return block[a.l] < block[b.l];
     }
     ```
-
-- 解引用空指针。
 
 ### 会导致 TLE
 
@@ -307,28 +425,6 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
     - 也有可能被卡了。
 
-### [未定义行为](https://zh.cppreference.com/w/cpp/language/ub)
-
--   数组越界。多数会引发 RE。
-
-    - 未正确设置循环的初值导致访问了下标为 -1 的值。
-
-    - 无向图边表未开 2 倍。
-
-    - 线段树未开 4 倍空间。
-
-    - 看错数据范围，少打一个零。
-
-    - 错误预估了算法的空间复杂度。
-
-    - 写线段树的时候，`pushup` 或 `pushdown` 叶节点。
-
--   解引用野指针。
-
-    - 未初始化就解引用指针。
-
-    - 指针指向的内存区域已经释放。
-
 ### 会导致常数过大
 
 -   定义模数的时候，未定义为常量。
@@ -337,7 +433,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit
 
         ```cpp
         // int mod = 998244353;      // 错误
-        const int mod = 998244353  // 正确，方便编译器按常量处理
+        const int mod = 998244353;  // 正确，方便编译器按常量处理
         ```
 
 - 使用了不必要的递归（尾递归不在此列）。

@@ -1,6 +1,8 @@
+## 定义
+
 字典树，英文名 trie。顾名思义，就是一个像字典一样的树。
 
-## 简介
+## 引入
 
 先放一张图：
 
@@ -12,7 +14,7 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
 
 有时需要标记插入进 trie 的是哪些字符串，每次插入完成时在这个字符串所代表的节点处打上标记即可。
 
-## 代码实现
+## 实现
 
 放一个结构体封装的模板：
 
@@ -49,26 +51,26 @@ struct trie {
 class trie:
     nex = [[0 for i in range(26)] for j in range(100000)]
     cnt = 0
-    exist = [False] * 100000 # 该结点结尾的字符串是否存在
+    exist = [False] * 100000  # 该结点结尾的字符串是否存在
 
-    def insert(s, l): # 插入字符串
+    def insert(self, s):  # 插入字符串
         p = 0
-        for i in range(0, l):
-            c = ord(s[i]) - ord('a')
-            if nex[p][c] == 0:
-                nex[p][c] = cnt # 如果没有，就添加结点
-                cnt += 1
-            p = nex[p][c]
-        exist[p] = True
-    
-    def find(s, l): # 查找字符串
+        for i in s:
+            c = ord(i) - ord('a')
+            if not self.nex[p][c]:
+                self.cnt += 1
+                self.nex[p][c] = self.cnt  # 如果没有，就添加结点
+            p = self.nex[p][c]
+        self.exist[p] = True
+
+    def find(self, s):  # 查找字符串
         p = 0
-        for i in range(0, l):
-            c = ord(s[i]) - ord('a')
-            if nex[p][c] == 0:
+        for i in s:
+            c = ord(i) - ord('a')
+            if not self.nex[p][c]:
                 return False
-            p = nex[p][c]
-        return exist[p]
+            p = self.nex[p][c]
+        return self.exist[p]
 ```
 
 ## 应用
@@ -161,45 +163,46 @@ void maintain(int o) {
 
 - 插入和删除，只需要修改叶子节点的 `w[]` 即可，在回溯的过程中一路维护即可。
 
-```cpp
-namespace trie {
-const int MAXH = 21;
-int ch[_ * (MAXH + 1)][2], w[_ * (MAXH + 1)], xorv[_ * (MAXH + 1)];
-int tot = 0;
-
-int mknode() {
-  ++tot;
-  ch[tot][1] = ch[tot][0] = w[tot] = xorv[tot] = 0;
-  return tot;
-}
-
-void maintain(int o) {
-  w[o] = xorv[o] = 0;
-  if (ch[o][0]) {
-    w[o] += w[ch[o][0]];
-    xorv[o] ^= xorv[ch[o][0]] << 1;
-  }
-  if (ch[o][1]) {
-    w[o] += w[ch[o][1]];
-    xorv[o] ^= (xorv[ch[o][1]] << 1) | (w[ch[o][1]] & 1);
-  }
-  w[o] = w[o] & 1;
-}
-
-void insert(int &o, int x, int dp) {
-  if (!o) o = mknode();
-  if (dp > MAXH) return (void)(w[o]++);
-  insert(ch[o][x & 1], x >> 1, dp + 1);
-  maintain(o);
-}
-
-void erase(int o, int x, int dp) {
-  if (dp > 20) return (void)(w[o]--);
-  erase(ch[o][x & 1], x >> 1, dp + 1);
-  maintain(o);
-}
-}  // namespace trie
-```
+???+note "实现"
+    ```cpp
+    namespace trie {
+    const int MAXH = 21;
+    int ch[_ * (MAXH + 1)][2], w[_ * (MAXH + 1)], xorv[_ * (MAXH + 1)];
+    int tot = 0;
+    
+    int mknode() {
+      ++tot;
+      ch[tot][1] = ch[tot][0] = w[tot] = xorv[tot] = 0;
+      return tot;
+    }
+    
+    void maintain(int o) {
+      w[o] = xorv[o] = 0;
+      if (ch[o][0]) {
+        w[o] += w[ch[o][0]];
+        xorv[o] ^= xorv[ch[o][0]] << 1;
+      }
+      if (ch[o][1]) {
+        w[o] += w[ch[o][1]];
+        xorv[o] ^= (xorv[ch[o][1]] << 1) | (w[ch[o][1]] & 1);
+      }
+      w[o] = w[o] & 1;
+    }
+    
+    void insert(int &o, int x, int dp) {
+      if (!o) o = mknode();
+      if (dp > MAXH) return (void)(w[o]++);
+      insert(ch[o][x & 1], x >> 1, dp + 1);
+      maintain(o);
+    }
+    
+    void erase(int o, int x, int dp) {
+      if (dp > 20) return (void)(w[o]--);
+      erase(ch[o][x & 1], x >> 1, dp + 1);
+      maintain(o);
+    }
+    }  // namespace trie
+    ```
 
 #### 全局加一
 
@@ -215,13 +218,15 @@ void addall(int o) {
 }
 ```
 
+##### 过程
+
 我们思考一下二进制意义下 `+1` 是如何操作的。
 
 我们只需要从低位到高位开始找第一个出现的 `0`，把它变成 `1`，然后这个位置后面的 `1` 都变成 `0` 即可。
 
 下面给出几个例子感受一下：（括号内的数字表示其对应的十进制数字）
 
-    1000(10)  + 1 = 1001(11)  ;
+    1000(8)  + 1 = 1001(9)  ;
     10011(19) + 1 = 10100(20) ;
     11111(31) + 1 = 100000(32);
     10101(21) + 1 = 10110(22) ;
@@ -241,7 +246,10 @@ void addall(int o) {
 
 其实合并 trie 非常简单，就是考虑一下我们有一个 `int merge(int a, int b)` 函数，这个函数传入两个 trie 树位于同一相对位置的结点编号，然后合并完成后返回合并完成的结点编号。
 
+#### 过程
+
 考虑怎么实现？
+
 分三种情况：
 
 - 如果 `a` 没有这个位置上的结点，新合并的结点就是 `b`
@@ -249,6 +257,8 @@ void addall(int o) {
 -   如果 `a`,`b` 都存在，那就把 `b` 的信息合并到 `a` 上，新合并的结点就是 `a`，然后递归操作处理 a 的左右儿子。
 
     **提示**：如果需要的合并是将 a，b 合并到一棵新树上，这里可以新建结点，然后合并到这个新结点上，这里的代码实现仅仅是将 b 的信息合并到 a 上。
+
+#### 实现
 
 ```cpp
 int merge(int a, int b) {

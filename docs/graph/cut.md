@@ -1,4 +1,4 @@
-author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005
+author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005, 0xis-cn
 
 相关阅读：[双连通分量](./bcc.md)，
 
@@ -8,7 +8,7 @@ author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005
 
 > 对于一个无向图，如果把一个点删除后这个图的极大连通分量数增加了，那么这个点就是这个图的割点（又称割顶）。
 
-### 如何实现？
+### 过程
 
 如果我们尝试删除每个点，并且判断这个图的连通性，那么复杂度会特别的高。所以要介绍一个常用的算法：Tarjan。
 
@@ -30,7 +30,7 @@ author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005
 
 然后我们开始 DFS，我们判断某个点是否是割点的根据是：对于某个顶点 $u$，如果存在至少一个顶点 $v$（$u$ 的儿子），使得 $low_v \geq num_u$，即不能回到祖先，那么 $u$ 点为割点。
 
-另外，如果搜到了自己（在环中），如果他有两个及以上的儿子，那么他一定是割点了，如果只有一个儿子，那么把它删掉，不会有任何的影响。比如下面这个图，此处形成了一个环，从树上来讲它有 2 个儿子：
+此根据惟独不适用于搜索的起始点，其需要特殊考虑：若该点不是割点，则其他路径亦能到达全部结点，因此从起始点只「向下搜了一次」，即在搜索树内仅有一个子结点。如果在搜索树内有两个及以上的儿子，那么他一定是割点了（设想上图从 2 开始搜索，搜索树内应有两个子结点：3 或 4 及 5 或 6）。如果只有一个儿子，那么把它删掉，不会有任何的影响。比如下面这个图，此处形成了一个环。
 
 ![](./images/cut3.svg)
 
@@ -65,19 +65,19 @@ low[u] = min(low[u], num[v]);
 
 红色的边就是割边。
 
-### 实现
+### 过程
 
 和割点差不多，只要改一处：$low_v>num_u$ 就可以了，而且不需要考虑根节点的问题。
 
 割边是和是不是根节点没关系的，原来我们求割点的时候是指点 $v$ 是不可能不经过父节点 $u$ 为回到祖先节点（包括父节点），所以顶点 $u$ 是割点。如果 $low_v=num_u$ 表示还可以回到父节点，如果顶点 $v$ 不能回到祖先也没有另外一条回到父亲的路，那么 $u-v$ 这条边就是割边。
 
-### 代码实现
+### 实现
 
 下面代码实现了求割边，其中，当 `isbridge[x]` 为真时，`(father[x],x)` 为一条割边。
 
 ```cpp
 // C++ Version
-int low[MAXN], dfn[MAXN], iscut[MAXN], dfs_clock;
+int low[MAXN], dfn[MAXN], dfs_clock;
 bool isbridge[MAXN];
 vector<int> G[MAXN];
 int cnt_bridge;
@@ -104,7 +104,7 @@ void tarjan(int u, int fa) {
 
 ```python
 # Python Version
-low = [] * MAXN; dfn = [] * MAXN; iscut = [] * MAXN; dfs_clock = 0
+low = [] * MAXN; dfn = [] * MAXN; dfs_clock = 0
 isbridge = [False] * MAXN
 G = [[0 for i in range(MAXN)] for j in range(MAXN)]
 cnt_bridge = 0

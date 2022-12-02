@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "wiki for OI / ACM-ICPC",
   "main": "index.js",
+  "type": "module",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "ts-node-esm": "cross-env NODE_NO_WARNINGS=1 node --loader ts-node/esm",
+    "scripts:format": "prettier --write \"scripts/**/*.ts\"",
+    "scripts:format:check": "prettier --check \"scripts/**/*.ts\"",
+    "docs:format:remark": "remark . -o"
   },
   "repository": {
     "type": "git",
@@ -25,24 +29,36 @@
   },
   "homepage": "https://github.com/OI-wiki/OI-wiki#readme",
   "dependencies": {
-    "bluebird": "^3.7.2",
+    "@swc/core": "^1.2.210",
     "chalk": "^4.1.0",
-    "cssnano": "^4.1.10",
-    "gulp": "^4.0.0",
-    "gulp-htmlmin": "^5.0.1",
-    "gulp-postcss": "^8.0.0",
-    "gulp-purifycss": "^0.2.0",
-    "hexo-fs": "^3.1.0",
-    "mathjax-node-page": "^3.2.0",
+    "colors": "^1.4.0",
+    "cross-env": "^7.0.3",
+    "klaw": "^4.0.1",
+    "mathjax-full": "^3.2.2",
+    "node-fetch": "^3.2.8",
+    "node-html-parser": "^5.3.3",
+    "octokit": "^1.8.1",
+    "remark": "^14.0.2",
     "remark-clang-format": "^1.9.3",
     "remark-cli": "^8.0.0",
-    "remark-copywriting-correct": "^0.5.0",
+    "remark-copywriting-correct": "0.6.0",
     "remark-details": "^3.0.0",
     "remark-footnotes": "^1.0.0",
     "remark-lint-final-newline": "^1.0.2",
     "remark-lint-no-tabs": "^1.0.2",
-    "remark-math": "^1.0.5",
+    "remark-math": "^5.1.1",
     "remark-math-space": "^2.1",
-    "remark-preset-lint-markdown-style-guide": "^4.0.0"
+    "remark-parse": "^10.0.1",
+    "remark-preset-lint-markdown-style-guide": "^4.0.0",
+    "ts-node": "^10.8.2",
+    "unified": "^10.1.2",
+    "unist-util-visit": "^4.1.0",
+    "yargs": "^17.5.1"
+  },
+  "devDependencies": {
+    "@types/klaw": "^3.0.3",
+    "@types/yargs": "^17.0.10",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
   }
 }

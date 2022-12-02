@@ -2,15 +2,21 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
 
 ## 素数筛法
 
+### 引入
+
 如果我们想要知道小于等于 $n$ 有多少个素数呢？
 
 一个自然的想法是对于小于等于 $n$ 的每个数进行一次质数检验。这种暴力的做法显然不能达到最优复杂度。
 
 ### 埃拉托斯特尼筛法
 
+#### 过程
+
 考虑这样一件事情：对于任意一个大于 $1$ 的正整数 $n$，那么它的 $x$ 倍就是合数（$x > 1$）。利用这个结论，我们可以避免很多次不必要的检测。
 
 如果我们从小到大考虑每个数，然后同时把当前这个数的所有（比自己大的）倍数记为合数，那么运行结束的时候没有被标记的数就是素数了。
+
+#### 实现
 
 ```cpp
 // C++ Version
@@ -53,34 +59,35 @@ def Eratosthenes(n):
 
 以上为 **Eratosthenes 筛法**（埃拉托斯特尼筛法，简称埃氏筛法），时间复杂度是 $O(n\log\log n)$。
 
-现在我们就来看看推导过程：
-
-如果每一次对数组的操作花费 1 个单位时间，则时间复杂度为：
-
-$$
-O\left(n\sum_{k=1}^{\pi(n)}{1\over p_k}\right)
-$$
-
-其中 $p_k$ 表示第 $k$ 小的素数。根据 Mertens 第二定理，存在常数 $B_1$ 使得：
-
-$$
-\sum_{k=1}^{\pi(n)}{1\over p_k}=\log\log n+B_1+O\left(1\over\log n\right)
-$$
-
-所以 **Eratosthenes 筛法** 的时间复杂度为 $O(n\log\log n)$。接下来我们证明 Mertens 第二定理的弱化版本 $\sum_{k\le\pi(n)}1/p_k=O(\log\log n)$：
-
-根据 $\pi(n)=\Theta(n/\log n)$，可知第 $n$ 个素数的大小为 $\Theta(n\log n)$。于是就有
-
-$$
-\begin{aligned}
-\sum_{k=1}^{\pi(n)}{1\over p_k}
-&=O\left(\sum_{k=2}^{\pi(n)}{1\over k\log k}\right) \\
-&=O\left(\int_2^{\pi(n)}{\mathrm dx\over x\log x}\right) \\
-&=O(\log\log\pi(n))=O(\log\log n)
-\end{aligned}
-$$
-
-当然，上面的做法效率仍然不够高效，应用下面几种方法可以稍微提高算法的执行效率。
+???+note "证明"
+    现在我们就来看看推导过程：
+    
+    如果每一次对数组的操作花费 1 个单位时间，则时间复杂度为：
+    
+    $$
+    O\left(n\sum_{k=1}^{\pi(n)}{1\over p_k}\right)
+    $$
+    
+    其中 $p_k$ 表示第 $k$ 小的素数。根据 Mertens 第二定理，存在常数 $B_1$ 使得：
+    
+    $$
+    \sum_{k=1}^{\pi(n)}{1\over p_k}=\log\log n+B_1+O\left(1\over\log n\right)
+    $$
+    
+    所以 **Eratosthenes 筛法** 的时间复杂度为 $O(n\log\log n)$。接下来我们证明 Mertens 第二定理的弱化版本 $\sum_{k\le\pi(n)}1/p_k=O(\log\log n)$：
+    
+    根据 $\pi(n)=\Theta(n/\log n)$，可知第 $n$ 个素数的大小为 $\Theta(n\log n)$。于是就有
+    
+    $$
+    \begin{aligned}
+    \sum_{k=1}^{\pi(n)}{1\over p_k}
+    &=O\left(\sum_{k=2}^{\pi(n)}{1\over k\log k}\right) \\
+    &=O\left(\int_2^{\pi(n)}{\mathrm dx\over x\log x}\right) \\
+    &=O(\log\log\pi(n))=O(\log\log n)
+    \end{aligned}
+    $$
+    
+    当然，上面的做法效率仍然不够高效，应用下面几种方法可以稍微提高算法的执行效率。
 
 #### 筛至平方根
 
@@ -138,38 +145,39 @@ for i in range(2, int(sqrt(n)) + 1):
 
 以下实现使用块筛选来计算小于等于 $n$ 的质数数量。
 
-```cpp
-int count_primes(int n) {
-  const int S = 10000;
-  vector<int> primes;
-  int nsqrt = sqrt(n);
-  vector<char> is_prime(nsqrt + 1, true);
-  for (int i = 2; i <= nsqrt; i++) {
-    if (is_prime[i]) {
-      primes.push_back(i);
-      for (int j = i * i; j <= nsqrt; j += i) is_prime[j] = false;
+???+note "实现"
+    ```cpp
+    int count_primes(int n) {
+      const int S = 10000;
+      vector<int> primes;
+      int nsqrt = sqrt(n);
+      vector<char> is_prime(nsqrt + 1, true);
+      for (int i = 2; i <= nsqrt; i++) {
+        if (is_prime[i]) {
+          primes.push_back(i);
+          for (int j = i * i; j <= nsqrt; j += i) is_prime[j] = false;
+        }
+      }
+      int result = 0;
+      vector<char> block(S);
+      for (int k = 0; k * S <= n; k++) {
+        fill(block.begin(), block.end(), true);
+        int start = k * S;
+        for (int p : primes) {
+          int start_idx = (start + p - 1) / p;
+          int j = max(start_idx, p) * p - start;
+          for (; j < S; j += p) block[j] = false;
+        }
+        if (k == 0) block[0] = block[1] = false;
+        for (int i = 0; i < S && start + i <= n; i++) {
+          if (block[i]) result++;
+        }
+      }
+      return result;
     }
-  }
-  int result = 0;
-  vector<char> block(S);
-  for (int k = 0; k * S <= n; k++) {
-    fill(block.begin(), block.end(), true);
-    int start = k * S;
-    for (int p : primes) {
-      int start_idx = (start + p - 1) / p;
-      int j = max(start_idx, p) * p - start;
-      for (; j < S; j += p) block[j] = false;
-    }
-    if (k == 0) block[0] = block[1] = false;
-    for (int i = 0; i < S && start + i <= n; i++) {
-      if (block[i]) result++;
-    }
-  }
-  return result;
-}
-```
+    ```
 
-分块筛分的渐进时间复杂度与埃氏筛法是一样的（除非块非常小），但是所需的内存将缩小为 $O(\sqrt{n} + S)$，并且有更好的缓存结果。
+分块筛法的渐进时间复杂度与埃氏筛法是一样的（除非块非常小），但是所需的内存将缩小为 $O(\sqrt{n} + S)$，并且有更好的缓存结果。
 另一方面，对于每一对块和区间 $[1, \sqrt{n}]$ 中的素数都要进行除法，而对于较小的块来说，这种情况要糟糕得多。
 因此，在选择常数 $S$ 时要保持平衡。
 
@@ -181,54 +189,55 @@ int count_primes(int n) {
 
 如果能让每个合数都只被标记一次，那么时间复杂度就可以降到 $O(n)$ 了。
 
-```cpp
-// C++ Version
-void init() {
-  for (int i = 2; i < MAXN; ++i) {
-    if (!vis[i]) {
-      pri[cnt++] = i;
-    }
-    for (int j = 0; j < cnt; ++j) {
-      if (1ll * i * pri[j] >= MAXN) break;
-      vis[i * pri[j]] = 1;
-      if (i % pri[j] == 0) {
-        // i % pri[j] == 0
-        // 换言之，i 之前被 pri[j] 筛过了
-        // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
-        // pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
-        // 掉就好了
-        break;
+???+note "实现"
+    ```cpp
+    // C++ Version
+    void init() {
+      for (int i = 2; i < MAXN; ++i) {
+        if (!vis[i]) {
+          pri[cnt++] = i;
+        }
+        for (int j = 0; j < cnt; ++j) {
+          if (1ll * i * pri[j] >= MAXN) break;
+          vis[i * pri[j]] = 1;
+          if (i % pri[j] == 0) {
+            // i % pri[j] == 0
+            // 换言之，i 之前被 pri[j] 筛过了
+            // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
+            // pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
+            // 掉就好了
+            break;
+          }
+        }
       }
     }
-  }
-}
-```
-
-```python
-# Python Version
-def init():
-    for i in range(2, MAXN):
-        if vis[i] == False:
-             pri[cnt] = i
-             cnt = cnt + 1
-        for j in range(0, cnt):
-            if i * pri[j] >= MAXN:
-                break
-            vis[i * pri[j]] = 1
-            if i % pri[j] == 0:
-                """
-                i % pri[j] == 0
-                换言之，i 之前被 pri[j] 筛过了
-                由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
-                pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
-                掉就好了
-                """
-                break
-```
+    ```
+    
+    ```python
+    # Python Version
+    def init():
+        for i in range(2, MAXN):
+            if vis[i] == False:
+                pri[cnt] = i
+                cnt = cnt + 1
+            for j in range(0, cnt):
+                if i * pri[j] >= MAXN:
+                    break
+                vis[i * pri[j]] = 1
+                if i % pri[j] == 0:
+                    """
+                    i % pri[j] == 0
+                    换言之，i 之前被 pri[j] 筛过了
+                    由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
+                    pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
+                    掉就好了
+                    """
+                    break
+    ```
 
 上面的这种 **线性筛法** 也称为 **Euler 筛法**（欧拉筛法）。
 
-??? note
+???+note
     注意到筛法求素数的同时也得到了每个数的最小质因子。
 
 ## 筛法求欧拉函数
@@ -256,10 +265,14 @@ $$
 \end{aligned}
 $$
 
+### 实现
+
 ```cpp
 // C++ Version
 void pre() {
-  memset(is_prime, 1, sizeof(is_prime));
+  for (int i = 1; i <= 5000000; i++) {
+    is_prime[i] = 1;
+  }
   int cnt = 0;
   is_prime[1] = 0;
   phi[1] = 1;
@@ -289,8 +302,8 @@ def pre():
     phi[1] = 1
     for i in range(2, 5000001):
         if is_prime[i]:
-            prime[cnt] = i
             cnt = cnt + 1
+            prime[cnt] = i
             phi[i] = i - 1
         j = 1
         while j <= cnt and i * prime[j] <= 5000000:
@@ -305,17 +318,21 @@ def pre():
 
 ## 筛法求莫比乌斯函数
 
+### 定义
+
 根据莫比乌斯函数的定义，设 $n$ 是一个合数，$p_1$ 是 $n$ 的最小质因子，$n'=\frac{n}{p_1}$，有：
 
 $$
 \mu(n)=
 \begin{cases}
-	0 & n' \bmod p_1 \neq 0\\\\
+	0 & n' \bmod p_1 = 0\\\\
 	-\mu(n') & \text{otherwise}
 \end{cases}
 $$
 
 若 $n$ 是质数，有 $\mu(n)=-1$。
+
+### 实现
 
 ```cpp
 // C++ Version
@@ -328,10 +345,12 @@ void pre() {
       if (i % p[j] == 0) {
         mu[i * p[j]] = 0;
         break;
+      } else {
+        mu[i * p[j]] = -mu[i];
       }
-      mu[i * p[j]] = -mu[i];
     }
   }
+}
 ```
 
 ```python
@@ -341,16 +360,17 @@ def pre():
     for i in range(2, int(1e7 + 1)):
         if v[i] == 0:
             mu[i] = -1
-            p[tot] = i
             tot = tot + 1
+            p[tot] = i
         j = 1
         while j <= tot and i <= 1e7 // p[j]:
             v[i * p[j]] = 1
             if i % p[j] == 0:
                 mu[i * p[j]] = 0
                 break
+            else:
+                mu[i * p[j]] = -mu[i]
             j = j + 1
-        mu[i * p[j]] = -mu[i]
 ```
 
 ## 筛法求约数个数
@@ -394,7 +414,7 @@ def pre():
     d[1] = 1
     for i in range(2, n + 1):
         if v[i] == 0:
-            v[i] = 1; p[tot] = i; tot = tot + 1; d[i] = 2; num[i] = 1
+            v[i] = 1; tot = tot + 1; p[tot] = i; d[i] = 2; num[i] = 1
         j = 1
         while j <= tot and i <= n // p[j]:
             v[p[j] * i] = 1
@@ -411,6 +431,8 @@ def pre():
 ## 筛法求约数和
 
 $f_i$ 表示 $i$ 的约数和，$g_i$ 表示 $i$ 的最小质因子的 $p^0+p^1+p^2+\dots p^k$.
+
+### 实现
 
 ```cpp
 // C++ Version
@@ -439,7 +461,7 @@ def pre():
     g[1] = f[1] = 1
     for i in range(2, n + 1):
         if v[i] == 0:
-            v[i] = 1; p[tot] = i; tot = tot + 1; g[i] = i + 1; f[i] = i + 1
+            v[i] = 1; tot = tot + 1; p[tot] = i; g[i] = i + 1; f[i] = i + 1
         j = 1
         while j <= tot and i <= n // p[j]:
             v[p[j] * i] = 1
@@ -454,7 +476,7 @@ def pre():
 
 ## 一般的积性函数
 
-假如一个 [积性函数](/math/number-theory/basic/#_10)  $f$ 满足：对于任意质数 $p$ 和正整数 $k$，可以在 $O(1)$ 时间内计算 $f(p^k)$，那么可以在 $O(n)$ 时间内筛出 $f(1),f(2),\dots,f(n)$ 的值。
+假如一个 [积性函数](./basic.md#积性函数)  $f$ 满足：对于任意质数 $p$ 和正整数 $k$，可以在 $O(1)$ 时间内计算 $f(p^k)$，那么可以在 $O(n)$ 时间内筛出 $f(1),f(2),\dots,f(n)$ 的值。
 
 设合数 $n$ 的质因子分解是 $\prod_{i=1}^k p_i^{\alpha_i}$，其中 $p_1<p_2<\dots<p_k$ 为质数，我们在线性筛中记录 $g_n=p_1^{\alpha_1}$，假如 $n$ 被 $x\cdot p$ 筛掉（$p$ 是质数），那么 $g$ 满足如下递推式：
 

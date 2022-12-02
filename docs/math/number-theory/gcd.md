@@ -1,4 +1,4 @@
-## 最大公约数
+## 定义
 
 最大公约数即为 Greatest Common Divisor，常缩写为 gcd。
 
@@ -10,6 +10,8 @@
 
 ### 欧几里得算法
 
+#### 过程
+
 如果我们已知两个数 $a$ 和 $b$，如何求出二者的最大公约数呢？
 
 不妨设 $a > b$
@@ -19,29 +21,48 @@
 
 我们通过证明可以得到 $\gcd(a,b)=\gcd(b,a \bmod b)$，过程如下：
 
-* * *
-
-设 $a=bk+c$，显然有 $c=a \bmod b$。设 $d \mid a,~d \mid b$，则 $c=a-bk, \frac{c}{d}=\frac{a}{d}-\frac{b}{d}k$。
-
-由右边的式子可知 $\frac{c}{d}$ 为整数，即 $d \mid c$ 所以对于 $a,b$ 的公约数，它也会是 $a \bmod b$ 的公约数。
-
-反过来也需要证明：
-
-设 $d \mid b,~d\mid (a \bmod b)$，我们还是可以像之前一样得到以下式子 $\frac{a\bmod b}{d}=\frac{a}{d}-\frac{b}{d}k,~\frac{a\bmod b}{d}+\frac{b}{d}k=\frac{a}{d}$。
-
-因为左边式子显然为整数，所以 $\frac{a}{d}$ 也为整数，即 $d \mid a$，所以 $b,a\bmod b$ 的公约数也是 $a,b$ 的公约数。
-
-既然两式公约数都是相同的，那么最大公约数也会相同。
-
-所以得到式子 $\gcd(a,b)=\gcd(b,a\bmod b)$
+???+note "证明"
+    设 $a=bk+c$，显然有 $c=a \bmod b$。设 $d \mid a,~d \mid b$，则 $c=a-bk, \frac{c}{d}=\frac{a}{d}-\frac{b}{d}k$。
+    
+    由右边的式子可知 $\frac{c}{d}$ 为整数，即 $d \mid c$，所以对于 $a,b$ 的公约数，它也会是 $a \bmod b$ 的公约数。
+    
+    反过来也需要证明：
+    
+    设 $d \mid b,~d\mid (a \bmod b)$，我们还是可以像之前一样得到以下式子 $\frac{a\bmod b}{d}=\frac{a}{d}-\frac{b}{d}k,~\frac{a\bmod b}{d}+\frac{b}{d}k=\frac{a}{d}$。
+    
+    因为左边式子显然为整数，所以 $\frac{a}{d}$ 也为整数，即 $d \mid a$，所以 $b,a\bmod b$ 的公约数也是 $a,b$ 的公约数。
+    
+    既然两式公约数都是相同的，那么最大公约数也会相同。
+    
+    所以得到式子 $\gcd(a,b)=\gcd(b,a\bmod b)$
 
 既然得到了 $\gcd(a, b) = \gcd(b, r)$，这里两个数的大小是不会增大的，那么我们也就得到了关于两个数的最大公约数的一个递归求法。
 
+#### 实现
+
 ```cpp
-// C++ Version
+// C++ Version 1
 int gcd(int a, int b) {
   if (b == 0) return a;
   return gcd(b, a % b);
+}
+
+// C++ Version 2
+int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
+```
+
+另外，对于 C++14，我们可以使用自带的 ` __gcd(a,b)` 函数来求最大公约数。而对于 C++ 17，我们可以使用 [`<numeric>`](https://en.cppreference.com/w/cpp/header/numeric) 头中的 [`std::gcd`](https://en.cppreference.com/w/cpp/numeric/gcd) 与 [`std::lcm`](https://en.cppreference.com/w/cpp/numeric/lcm) 来求最大公约数和最小公倍数。
+
+```java
+// Java Version 1
+public int gcd(int a, int b) {
+  if (b == 0) return a;
+  return gcd(b, a % b);
+}
+
+// Java Version 2
+public int gcd(int a, int b) {
+  return b == 0 ? a : gcd(b, a % b);
 }
 ```
 
@@ -59,20 +80,21 @@ def gcd(a, b):
 
 如果两个数 $a$ 和 $b$ 满足 $\gcd(a, b) = 1$，我们称 $a$ 和 $b$ 互质。
 
-* * *
+#### 性质
 
 欧几里得算法的时间效率如何呢？下面我们证明，欧几里得算法的时间复杂度为 $O(\log n)$。
 
-当我们求 $\gcd(a,b)$ 的时候，会遇到两种情况：
+???+note "证明"
+    当我们求 $\gcd(a,b)$ 的时候，会遇到两种情况：
+    
+    - $a < b$，这时候 $\gcd(a,b)=\gcd(b,a)$；
+    - $a \geq b$，这时候 $\gcd(a,b)=\gcd(b,a \bmod b)$，而对 $a$ 取模会让 $a$ 至少折半。这意味着这一过程最多发生 $O(\log n)$ 次。
+    
+    第一种情况发生后一定会发生第二种情况，因此第一种情况的发生次数一定 **不多于** 第二种情况的发生次数。
+    
+    从而我们最多递归 $O(\log n)$ 次就可以得出结果。
 
-- $a < b$，这时候 $\gcd(a,b)=\gcd(b,a)$；
-- $a \geq b$，这时候 $\gcd(a,b)=\gcd(b,a \bmod b)$，而对 $a$ 取模会让 $a$ 至少折半。这意味着这一过程最多发生 $O(\log n)$ 次。
-
-第一种情况发生后一定会发生第二种情况，因此第一种情况的发生次数一定 **不多于** 第二种情况的发生次数。
-
-从而我们最多递归 $O(\log n)$ 次就可以得出结果。
-
-事实上，假如我们试着用欧几里得算法去求 [斐波那契数列](../fibonacci.md) 相邻两项的最大公约数，会让该算法达到最坏复杂度。
+事实上，假如我们试着用欧几里得算法去求 [斐波那契数列](../combinatorics/fibonacci.md) 相邻两项的最大公约数，会让该算法达到最坏复杂度。
 
 ### 多个数的最大公约数
 
@@ -82,11 +104,13 @@ def gcd(a, b):
 
 接下来我们介绍如何求解最小公倍数（Least Common Multiple, LCM）。
 
+### 定义
+
 一组整数的公倍数，是指同时是这组数中每一个数的倍数的数。0 是任意一组整数的公倍数。
 
 一组整数的最小公倍数，是指所有正的公倍数里面，最小的一个数。
 
-### 两个数的
+### 两个数
 
 设 $a = p_1^{k_{a_1}}p_2^{k_{a_2}} \cdots p_s^{k_{a_s}}$，$b = p_1^{k_{b_1}}p_2^{k_{b_2}} \cdots p_s^{k_{b_s}}$
 
@@ -104,7 +128,7 @@ $p_1^{\max(k_{a_1}, k_{b_1})}p_2^{\max(k_{a_2}, k_{b_2})} \cdots p_s^{\max(k_{a_
 
 要求两个数的最小公倍数，先求出最大公约数即可。
 
-### 多个数的
+### 多个数
 
 可以发现，当我们求出两个数的 $\gcd$ 时，求最小公倍数是 $O(1)$ 的复杂度。那么对于多个数，我们其实没有必要求一个共同的最大公约数再去处理，最直接的方法就是，当我们算出两个数的 $\gcd$，或许在求多个数的 $\gcd$ 时候，我们将它放入序列对后面的数继续求解，那么，我们转换一下，直接将最小公倍数放入序列即可。
 
@@ -112,7 +136,7 @@ $p_1^{\max(k_{a_1}, k_{b_1})}p_2^{\max(k_{a_2}, k_{b_2})} \cdots p_s^{\max(k_{a_
 
 扩展欧几里得算法（Extended Euclidean algorithm, EXGCD），常用于求 $ax+by=\gcd(a,b)$ 的一组可行解。
 
-### 求解过程
+### 过程
 
 设
 
@@ -133,6 +157,8 @@ $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\fra
 因为 $a=a,b=b$，所以 $x_1=y_2,y_1=x_2-\lfloor\frac{a}{b}\rfloor y_2$
 
 将 $x_2,y_2$ 不断代入递归求解直至 $\gcd$（最大公约数，下同）为 `0` 递归 `x=1,y=0` 回去求解。
+
+### 实现
 
 ```cpp
 // C++ Version
@@ -167,16 +193,17 @@ $ax+by=\gcd(a,b)$ 的解有无数个，显然其中有的解会爆 long long。
 万幸的是，若 $b\not= 0$，扩展欧几里得算法求出的可行解必有 $|x|\le b,|y|\le a$。  
 下面给出这一性质的证明。
 
--   $\gcd(a,b)=b$ 时，$a\bmod b=0$，必在下一层终止递归。  
-    得到 $x_1=0,y_1=1$，显然 $a,b\ge 1\ge |x_1|,|y_1|$。
--   $\gcd(a,b)\not= b$ 时，设 $|x_2|\le (a\bmod b),|y_2|\le b$。  
-    因为 $x_1=y_2,y_1=x_2-{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2$   
-    所以 $|x_1|=|y_2|\le b,|y_1|\le|x_2|+|{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2|\le (a\bmod b)+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|$  
-    $\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)$   
-    $a\bmod b=a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)\le a$   
-    因此 $|x_1|\le b,|y_1|\le a$ 成立。
+??? note "证明"
+    -   $\gcd(a,b)=b$ 时，$a\bmod b=0$，必在下一层终止递归。  
+        得到 $x_1=0,y_1=1$，显然 $a,b\ge 1\ge |x_1|,|y_1|$。
+    -   $\gcd(a,b)\not= b$ 时，设 $|x_2|\le (a\bmod b),|y_2|\le b$。  
+        因为 $x_1=y_2,y_1=x_2-{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2$   
+        所以 $|x_1|=|y_2|\le b,|y_1|\le|x_2|+|{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2|\le (a\bmod b)+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|$  
+        $\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)$   
+        $a\bmod b=a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)\le a$   
+        因此 $|x_1|\le b,|y_1|\le a$ 成立。
 
-### 迭代法编写拓展欧几里得算法
+### 迭代法编写扩展欧几里得算法
 
 因为迭代的方法避免了递归，所以代码运行速度将比递归代码快一点。
 

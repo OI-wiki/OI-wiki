@@ -1,8 +1,10 @@
 本页面将简要介绍 A\*算法。
 
-## 简介
+## 定义
 
 A\*搜索算法（英文：A\*search algorithm，A\*读作 A-star），简称 A\*算法，是一种在图形平面上，对于有多个节点的路径求出最低通过成本的算法。它属于图遍历（英文：Graph traversal）和最佳优先搜索算法（英文：Best-first search），亦是 [BFS](./bfs.md) 的改进。
+
+## 过程
 
 定义起点 $s$，终点 $t$，从起点（初始状态）开始的距离函数 $g(x)$，到终点（最终状态）的距离函数 $h(x)$，$h^{\ast}(x)$[^note1]，以及每个点的估价函数 $f(x)=g(x)+h(x)$。
 
@@ -12,7 +14,7 @@ A\*算法每次从优先队列中取出一个 $f$ 最小的元素，然后更新
 
 上述条件下，如果 $h$ 满足三角形不等式，则 A\*算法不会将重复结点加入队列。
 
-当 $h=0$ 时，A\*算法变为 [Dijkstra](./../graph/shortest-path.md/#dijkstra)；当 $h=0$ 并且边权为 $1$ 时变为 [BFS](./bfs.md)。
+当 $h=0$ 时，A\*算法变为 [Dijkstra](./../graph/shortest-path.md#dijkstra)；当 $h=0$ 并且边权为 $1$ 时变为 [BFS](./bfs.md)。
 
 ## 例题
 

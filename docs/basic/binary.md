@@ -2,11 +2,11 @@
 
 ## 二分法
 
-### 简介
+### 定义
 
 二分查找（英语：binary search），也称折半搜索（英语：half-interval search）、对数搜索（英语：logarithmic search），是用来在一个有序数组中查找某一元素的算法。
 
-### 工作原理
+### 过程
 
 以在一个升序数组中查找一个数为例。
 
@@ -26,7 +26,7 @@
 
 递归（无尾调用消除）版本的二分查找的空间复杂度为 $O(\log n)$。
 
-### 代码实现
+### 实现
 
 ```cpp
 int binary_search(int start, int end, int key) {
@@ -72,7 +72,7 @@ C++ 标准库中实现了查找首个不小于给定值的元素的函数 [`std:
 
 bsearch 函数为 C 标准库实现的二分查找，定义在 `<stdlib.h>` 中。在 C++ 标准库里，该函数定义在 `<cstdlib>` 中。qsort 和 bsearch 是 C 语言中唯二的两个算法类函数。
 
-bsearch 函数相比 qsort（[排序相关 STL](./stl-sort.md)）的四个参数，在最左边增加了参数“待查元素的地址”。之所以按照地址的形式传入，是为了方便直接套用与 qsort 相同的比较函数，从而实现排序后的立即查找。因此这个参数不能直接传入具体值，而是要先将待查值用一个变量存储，再传入该变量地址。
+bsearch 函数相比 qsort（[排序相关 STL](./stl-sort.md)）的四个参数，在最左边增加了参数「待查元素的地址」。之所以按照地址的形式传入，是为了方便直接套用与 qsort 相同的比较函数，从而实现排序后的立即查找。因此这个参数不能直接传入具体值，而是要先将待查值用一个变量存储，再传入该变量地址。
 
 于是 bsearch 函数总共有五个参数：待查元素的地址、数组名、元素个数、元素大小、比较规则。比较规则仍然通过指定比较函数实现，详见 [排序相关 STL](./stl-sort.md)。
 
@@ -119,7 +119,7 @@ int upper(const void *p1, const void *p2) {
 
 ### 二分答案
 
-解题的时候往往会考虑枚举答案然后检验枚举的值是否正确。若满足单调性，则满足使用二分法的条件。把这里的枚举换成二分，就变成了“二分答案”。
+解题的时候往往会考虑枚举答案然后检验枚举的值是否正确。若满足单调性，则满足使用二分法的条件。把这里的枚举换成二分，就变成了「二分答案」。
 
 ???+note "[Luogu P1873 砍树](https://www.luogu.com.cn/problem/P1873)"
     伐木工人米尔科需要砍倒 $M$ 米长的木材。这是一个对米尔科来说很容易的工作，因为他有一个漂亮的新伐木机，可以像野火一样砍倒森林。不过，米尔科只被允许砍倒单行树木。
@@ -186,25 +186,82 @@ int upper(const void *p1, const void *p2) {
 
 ## 三分法
 
-### 简介
+### 引入
 
-三分法可以用来查找凸函数的最大（小）值。
+如果需要求出单峰函数的极值点，通常使用二分法衍生出的三分法求单峰函数的极值点。
 
-画一下图能够帮助理解（图待补）
+??? note "为什么不通过求导函数的零点来求极值点？"
+    客观上，求出导数后，通过二分法求出导数的零点（由于函数是单峰函数，其导数在同一范围内的零点是唯一的）得到单峰函数的极值点是可行的。
+    
+    但首先，对于一些函数，求导的过程和结果比较复杂。
+    
+    其次，某些题中需要求极值点的单峰函数并非一个单独的函数，而是多个函数进行特殊运算得到的函数（如求多个单调性不完全相同的一次函数的最小值的最大值）。此时函数的导函数可能是分段函数，且在函数某些点上可能不可导。
 
-- 如果 `lmid` 和 `rmid` 在最大（小）值的同一侧：由于单调性，一定是二者中较大（小）的那个离最值近一些，较远的那个点对应的区间不可能包含最值，所以可以舍弃。
-- 如果在两侧：由于最值在二者中间，我们舍弃两侧的一个区间后，也不会影响最值，所以可以舍弃。
+???+warning "注意"
+    只要函数是单峰函数，三分法既可以求出其最大值，也可以求出其最小值。为行文方便，除特殊说明外，下文中均以求单峰函数的最小值为例。
 
-### 代码实现
+三分法与二分法的基本思想类似，但每次操作需在当前区间 $[l,r]$（下图中除去虚线范围内的部分）内任取两点 $lmid,rmid(lmid < rmid)$（下图中的两蓝点）。如下图，如果 $f(lmid)<f(rmid)$，则在 $[rmid,r]$（下图中的红色部分）中函数必然单调递增，最小值所在点（下图中的绿点）必然不在这一区间内，可舍去这一区间。反之亦然。
+
+![](images/binary1.svg)
+
+???+ warning "注意"
+    在计算 $lmid$ 和 $rmid$ 时，需要防止数据溢出的现象出现。
+
+三分法每次操作会舍去两侧区间中的其中一个。为减少三分法的操作次数，应使两侧区间尽可能大。因此，每一次操作时的 $lmid$ 和 $rmid$ 分别取 $mid-\varepsilon$ 和 $mid+\varepsilon$ 是一个不错的选择。
+
+### 实现
+
+#### 伪代码
+
+$$
+\begin{array}{ll}
+1 & \textbf{Input. } \text{A range } [l,r] \text{ meaning that the domain of } f(x) \text{.} \\
+2 & \textbf{Output. } \text{The maximum value of } f(x) \text{ and the value of } x \text{ at that time } \text{.} \\
+3 & \textbf{Method. } \\
+4 & \textbf{while } r - l > \varepsilon\\
+5 & \qquad mid\gets \frac{lmid+rmid}{2}\\
+6 & \qquad lmid\gets mid - \varepsilon \\
+7 & \qquad rmid\gets mid + \varepsilon \\
+8 & \qquad \textbf{if } f(lmid) < f(rmid) \\
+9 & \qquad \qquad r\gets mid \\
+10 & \qquad \textbf{else } \\
+11 & \qquad \qquad l\gets mid
+\end{array}
+$$
+
+#### C++
 
 ```cpp
-lmid = left + (right - left >> 1);
-rmid = lmid + (right - lmid >> 1);  // 对右侧区间取半
-if (cal(lmid) > cal(rmid))
-  right = rmid;
-else
-  left = lmid;
+while (r - l > eps) {
+  mid = (lmid + rmid) / 2;
+  lmid = mid - eps;
+  rmid = mid + eps;
+  if (f(lmid) < f(rmid))
+    r = mid;
+  else
+    l = mid;
+}
 ```
+
+### 例题
+
+???+note "[洛谷 P3382 - 【模板】三分法](https://www.luogu.com.cn/problem/P3382)"
+    给定一个 $N$ 次函数和范围 $[l, r]$，求出使函数在 $[l, x]$ 上单调递增且在 $[x, r]$ 上单调递减的唯一的 $x$ 的值。
+
+??? note "解题思路"
+    本题要求求 $N$ 次函数在 $[l, r]$ 取最大值时自变量的值，显然可以使用三分法。
+
+??? note "参考代码"
+    ```cpp
+    --8<-- "docs/basic/code/binary/binary_1.cpp"
+    ```
+
+### 习题
+
+- [Uva 1476 - Error Curves](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4222)
+- [Uva 10385 - Duathlon](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=15&page=show_problem&problem=1326)
+- [UOJ 162 -【清华集训 2015】灯泡测试](https://uoj.ac/problem/162)
+- [洛谷 P7579 -「RdOI R2」称重（weigh）](https://www.luogu.com.cn/problem/P7579)
 
 ## 分数规划
 

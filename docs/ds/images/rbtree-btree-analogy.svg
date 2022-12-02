@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="702" height="251" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<metadata>
+	<rdf:RDF>
+		<cc:Work rdf:about="">
+			<dc:format>image/svg+xml</dc:format>
+			<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+		</cc:Work>
+	</rdf:RDF>
+</metadata>
+<g style="fill:none;stroke:none;stroke-width:2;stroke-dasharray:none;font-family:Arial,sans-serif;font-size:14">
+	<rect x="0" y="0" width="702" height="251" style="fill:#ffffff"/>
+	<g style="fill:#f0f0f0;stroke:#000000;stroke-dasharray:2,2">
+		<rect width="164" height="69" x="271" y="20"/>
+		<rect width="164" height="69" x="16" y="156"/>
+		<rect width="164" height="69" x="186" y="156"/>
+		<rect width="164" height="69" x="356" y="156"/>
+		<rect width="164" height="69" x="526" y="156"/>
+	</g>
+	<g>
+		<g>
+			<path style="stroke:#000000" d="M319,55L343,55"/>
+			<path style="fill:#000000" d="M329,51L329,59L315,55L329,51z"/>
+		</g>
+		<g>
+			<path style="stroke:#000000" d="M387,55L362,55"/>
+			<path style="fill:#000000" d="M377,51L377,59L390,55L377,51z"/>
+		</g>
+		<path style="fill:#000000;stroke:#000000" d="M168,400.36218A23.5,26,0,1,1,121,400.36218A23.5,26,0,1,1,168,400.36218z" transform="matrix(0.8260015,0,0,0.7465783,233.54092,-244.03955)"/>
+		<text style="fill:#ffffff;font-size:24" x="339" y="63"><tspan>13</tspan></text>
+	</g>
+	<g>
+		<g>
+			<path style="stroke:#000000" d="M294,54L132,161"/>
+			<path style="fill:#000000" d="M138,149L145,161L110,175L138,149z"/>
+		</g>
+		<g>
+			<path style="stroke:#000000" d="M294,54L278,145"/>
+			<path style="fill:#000000" d="M273,133L287,135L275,172L273,133z"/>
+		</g>
+		<path style="fill:#ff0000;stroke:#000000" d="M168,400.36218A23.5,26,0,1,1,121,400.36218A23.5,26,0,1,1,168,400.36218z" transform="matrix(0.8260015,0,0,0.7465783,176.05945,-244.03955)"/>
+		<text style="fill:#ffffff;font-size:24" x="289" y="63"><tspan>8</tspan></text>
+	</g>
+	<g>
+		<g>
+			<path style="stroke:#000000" d="M410,54L426,145"/>
+			<path style="fill:#000000" d="M431,134L418,136L430,172L431,134z"/>
+		</g>
+		<g>
+			<path style="stroke:#000000" d="M410,54L572,161"/>
+			<path style="fill:#000000" d="M566,149L559,161L594,175L566,149z"/>
+		</g>
+		<path style="fill:#ff0000;stroke:#000000" d="M168,400.36218A23.5,26,0,1,1,121,400.36218A23.5,26,0,1,1,168,400.36218z" transform="matrix(0.8260015,0,0,0.7465783,291.2261,-244.03955)"/>
+		<text style="fill:#ffffff;font-size:24" x="396" y="63"><tspan>17</tspan></text>
+	</g>
+	<g>
+		<g>
+			<path style="stroke:#000000" d="M70,191L94,191"/>
+			<path style="fill:#000000" d="M74,187L74,195L60,191L74,187z"/>
+		</g>
+		<g>
+			<path style="stroke:#000000" d="M132,191L107,191"/>
+			<path style="fill:#000000" d="M122,187L122,195L135,191L122,187z"/>
+		</g>
+		<path style="fill:#000000;stroke:#000000" d="M168,400.36218A23.5,26,0,1,1,121,400.36218A23.5,26,0,1,1,168,400.36218z" transform="matrix(0.8260015,0,0,0.7465783,-21.45908,-108.03953)"/>
+		<text style="fill:#ffffff;font-size:24" x="90" y="199"><tspan>1</tspan></text>
+	</g>
+	<g>
+		<path style="fill:#ff0000;stroke:#000000" d="M168,400.36218A23.5,26,0,1,1,121,400.36218A23.5,26,0,1,1,168,400.36218z" transform="matrix(0.8260015,0,0,0.7465783,-78.94055,-108.03953)"/>
+		<g>
+			<rect style="fill:#000000" width="29" height="17" x="26" y="183"/>
+			<text style="fill:#ffffff" x="29" y="196"><tspan>NIL</tspan></text>
+		</g>
+	</g>
+	<g>
+		<path style="fill:#ff0000;stroke:#000000" d="M168,400.36218A23.5,26,0,1,1,121,400.36218A23.5,26,0,1,1,168,400.36218z" transform="matrix(0.8260015,0,0,0.7465783,36.2261,-108.03953)"/>
+		<text style="fill:#ffffff;font-size:24" x="149" y="199"><tspan>6</tspan></text>
+		<g>
+			<rect style="fill:#000000" width="29" height="17" x="111" y="224"/>
+			<text style="fill:#ffffff" x="115" y="237"><tspan>NIL</tspan></text>
+		</g>
+		<g>
+			<rect style="fill:#000000" width="29" height="17" x="146" y="224"/>
+			<text style="fill:#ffffff" x="149" y="237"><tspan>NIL</tspan></text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path style="stroke:#000000" d="M234,191L258,191"/>
+			<path style="fill:#000000" d="M244,187L244,195L230,191L244,187z"/>
+		</g>
+		<g>
+			<path style="stroke:#000000" d="M302,191L277,191"/>
+			<path style="fill:#000000" d="M292,187L292,195L305,191L292,187z"/>
+		</g>
+		<path style="fill:#000000;stroke:#000000" d="M168,400.36218A23.5,26,0,1,1,121,400.36218A23.5,26,0,1,1,168,400.36218z" transform="matrix(0.8260015,0,0,0.7465783,148.54091,-108.03953)"/>
+		<text style="fill:#ffffff;font-size:24" x="255" y="199"><tspan>11</tspan></text>
+	</g>
+	<g>
+		<path style="fill:#ff0000;stroke:#000000" d="M168,400.36218A23.5,26,0,1,1,121,400.36218A23.5,26,0,1,1,168,400.36218z" transform="matrix(0.8260015,0,0,0.7465783,91.05944,-108.03953)"/>
+		<g>
+			<rect style="fill:#000000" width="29" height="17" x="196" y="183"/>
+			<text style="fill:#ffffff" x="199" y="196"><tspan>NIL</tspan></text>
+		</g>
+	</g>
+	<g>
+		<path style="fill:#ff0000;stroke:#000000" d="M168,400.36218A23.5,26,0,1,1,121,400.36218A23.5,26,0,1,1,168,400.36218z" transform="matrix(0.8260015,0,0,0.7465783,206.22609,-108.03953)"/>
+		<g>
+			<rect style="fill:#000000" width="29" height="17" x="311" y="183"/>
+			<text style="fill:#ffffff" x="315" y="196"><tspan>NIL</tspan></text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path style="stroke:#000000" d="M404,191L428,191"/>
+			<path style="fill:#000000" d="M414,187L414,195L400,191L414,187z"/>
+		</g>
+		<g>
+			<path style="stroke:#000000" d="M472,191L447,191"/>
+			<path style="fill:#000000" d="M462,187L462,195L475,191L462,187z"/>
+		</g>
+		<path style="fill:#000000;stroke:#000000" d="M168,400.36218A23.5,26,0,1,1,121,400.36218A23.5,26,0,1,1,168,400.36218z" transform="matrix(0.8260015,0,0,0.7465783,318.54091,-108.03953)"/>
+		<text style="fill:#ffffff;font-size:24" x="424" y="199"><tspan>15</tspan></text>
+	</g>
+	<g>
+		<path style="fill:#ff0000;stroke:#000000" d="M168,400.36218A23.5,26,0,1,1,121,400.36218A23.5,26,0,1,1,168,400.36218z" transform="matrix(0.8260015,0,0,0.7465783,261.05944,-108.03953)"/>
+		<g>
+			<rect style="fill:#000000" width="29" height="17" x="366" y="183"/>
+			<text style="fill:#ffffff" x="369" y="196"><tspan>NIL</tspan></text>
+		</g>
+	</g>
+	<g>
+		<path style="fill:#ff0000;stroke:#000000" d="M168,400.36218A23.5,26,0,1,1,121,400.36218A23.5,26,0,1,1,168,400.36218z" transform="matrix(0.8260015,0,0,0.7465783,376.22609,-108.03953)"/>
+		<g>
+			<rect style="fill:#000000" width="29" height="17" x="481" y="183"/>
+			<text style="fill:#ffffff" x="485" y="196"><tspan>NIL</tspan></text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<path style="stroke:#000000" d="M574,191L598,191"/>
+			<path style="fill:#000000" d="M584,187L584,195L570,191L584,187z"/>
+		</g>
+		<g>
+			<path style="stroke:#000000" d="M642,191L617,191"/>
+			<path style="fill:#000000" d="M632,187L632,195L645,191L632,187z"/>
+		</g>
+		<path style="fill:#000000;stroke:#000000" d="M168,400.36218A23.5,26,0,1,1,121,400.36218A23.5,26,0,1,1,168,400.36218z" transform="matrix(0.8260015,0,0,0.7465783,488.54091,-108.03953)"/>
+		<text style="fill:#ffffff;font-size:24" x="595" y="199"><tspan>25</tspan></text>
+	</g>
+	<g>
+		<path style="fill:#ff0000;stroke:#000000" d="M168,400.36218A23.5,26,0,1,1,121,400.36218A23.5,26,0,1,1,168,400.36218z" transform="matrix(0.8260015,0,0,0.7465783,431.05944,-108.03953)"/>
+		<text style="fill:#ffffff;font-size:24" x="537" y="199"><tspan>22</tspan></text>
+		<g>
+			<rect style="fill:#000000" width="29" height="17" x="529" y="224"/>
+			<text style="fill:#ffffff" x="533" y="237"><tspan>NIL</tspan></text>
+		</g>
+		<g>
+			<rect style="fill:#000000" width="29" height="17" x="564" y="224"/>
+			<text style="fill:#ffffff" x="567" y="237"><tspan>NIL</tspan></text>
+		</g>
+	</g>
+	<g>
+		<path style="fill:#ff0000;stroke:#000000" d="M168,400.36218A23.5,26,0,1,1,121,400.36218A23.5,26,0,1,1,168,400.36218z" transform="matrix(0.8260015,0,0,0.7465783,546.22609,-108.03953)"/>
+		<text style="fill:#ffffff;font-size:24" x="652" y="199"><tspan>27</tspan></text>
+		<g>
+			<rect style="fill:#000000" width="29" height="17" x="623" y="224"/>
+			<text style="fill:#ffffff" x="626" y="237"><tspan>NIL</tspan></text>
+		</g>
+		<g>
+			<rect style="fill:#000000" width="29" height="17" x="657" y="224"/>
+			<text style="fill:#ffffff" x="661" y="237"><tspan>NIL</tspan></text>
+		</g>
+	</g>
+</g>
+</svg>

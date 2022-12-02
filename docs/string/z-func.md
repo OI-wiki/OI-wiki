@@ -2,13 +2,15 @@ author: LeoJacob, Marcythm, minghu6
 
 约定：字符串下标以 $0$ 为起点。
 
+## 定义
+
 对于个长度为 $n$ 的字符串 $s$。定义函数 $z[i]$ 表示 $s$ 和 $s[i,n-1]$（即以 $s[i]$ 开头的后缀）的最长公共前缀（LCP）的长度。$z$ 被称为 $s$ 的 **Z 函数**。特别地，$z[0] = 0$。
 
 国外一般将计算该数组的算法称为 **Z Algorithm**，而国内则称其为 **扩展 KMP**。
 
 这篇文章介绍在 $O(n)$ 时间复杂度内计算 Z 函数的算法以及其各种应用。
 
-## 样例
+## 解释
 
 下面若干样例展示了对于不同字符串的 Z 函数：
 
@@ -20,27 +22,28 @@ author: LeoJacob, Marcythm, minghu6
 
 Z 函数的朴素算法复杂度为 $O(n^2)$：
 
-```cpp
-// C++ Version
-vector<int> z_function_trivial(string s) {
-  int n = (int)s.length();
-  vector<int> z(n);
-  for (int i = 1; i < n; ++i)
-    while (i + z[i] < n && s[z[i]] == s[i + z[i]]) ++z[i];
-  return z;
-}
-```
-
-```python
-# Python Version
-def z_function_trivial(s):
-    n = len(s)
-    z = [0] * n
-    for i in range(1, n):
-        while i + z[i] < n and s[z[i]] == s[i + z[i]]:
-            z[i] += 1
-    return z
-```
+???+note "实现"
+    ```cpp
+    // C++ Version
+    vector<int> z_function_trivial(string s) {
+      int n = (int)s.length();
+      vector<int> z(n);
+      for (int i = 1; i < n; ++i)
+        while (i + z[i] < n && s[z[i]] == s[i + z[i]]) ++z[i];
+      return z;
+    }
+    ```
+    
+    ```python
+    # Python Version
+    def z_function_trivial(s):
+        n = len(s)
+        z = [0] * n
+        for i in range(1, n):
+            while i + z[i] < n and s[z[i]] == s[i + z[i]]:
+                z[i] += 1
+        return z
+    ```
 
 ## 线性算法
 
@@ -62,7 +65,7 @@ def z_function_trivial(s):
 
 可以访问 [这个网站](https://personal.utdallas.edu/~besp/demo/John2010/z-algorithm.htm) 来看 Z 函数的模拟过程。
 
-## 实现
+### 实现
 
 ```cpp
 // C++ Version
@@ -158,6 +161,7 @@ def z_function(s):
 - [LA 6439 - Pasti Pas!](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=588&page=show_problem&problem=4450)
 - [Codechef - Chef and Strings](https://www.codechef.com/problems/CHSTR)
 - [Codeforces - Prefixes and Suffixes](http://codeforces.com/problemset/problem/432/D)
+- [Leetcode 2223 - Sum of Scores of Built Strings](https://leetcode.com/problems/sum-of-scores-of-built-strings/)
 
 * * *
 

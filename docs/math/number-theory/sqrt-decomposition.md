@@ -3,7 +3,7 @@
 它主要利用了富比尼定理（Fubini's theorem），将 $\left\lfloor\dfrac ni\right\rfloor$ 相同的数打包同时计算。
 
 ???+note "富比尼定理"
-    又称“算两次”，以意大利数学家圭多·富比尼（Guido Fubini）命名。
+    又称「算两次」，以意大利数学家圭多·富比尼（Guido Fubini）命名。
     富比尼定理的积分形式：只要二重积分 $\int\int |f(x,y)|dxdy$ 有界，则可以逐次计算二重积分，并且可以交换逐次积分的顺序。
     积分号也是特殊的求和号，因此在一般求和中，富比尼定理往往呈现为更换计数顺序，即交换两个求和号。
     组合数学中的富比尼定理表现为，用两种不同的方法计算同一个量，从而建立相等关系。
@@ -64,7 +64,7 @@ $$
 
 成立的最大的满足 $i\leq j\leq n$ 的 $j$ 的值为 $\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor$。即值 $\left\lfloor\dfrac ni\right\rfloor$ 所在的块的右端点为 $\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor$。
 
-??? note "证明过程"
+??? note "证明"
     令 $k=\left\lfloor\dfrac ni\right\rfloor$，可以知道 $k\leq\dfrac ni$。
     
     $$
@@ -73,6 +73,8 @@ $$
     &\therefore j=\max{\text{满足条件的所有 }i}=i_{\max}=\left\lfloor\dfrac nk\right\rfloor=\left\lfloor\dfrac n{\left\lfloor\dfrac ni\right\rfloor}\right\rfloor \square
     \end{aligned}
     $$
+
+## 过程
 
 数论分块的过程大概如下：考虑和式
 

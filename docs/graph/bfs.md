@@ -215,6 +215,12 @@ while (队列不为空) {
 
 - [「NOIP2017」奶酪](https://uoj.ac/problem/332)
 
+双端队列 BFS：
+
+- [CF1063B. Labyrinth](https://codeforces.com/problemset/problem/1063/B)
+- [CF173B. Chamber of Secrets](https://codeforces.com/problemset/problem/173/B)
+- [「BalticOI 2011 Day1」打开灯泡 Switch the Lamp On](https://loj.ac/p/2632)
+
 ## 参考
 
 <https://cp-algorithms.com/graph/breadth-first-search.html>

@@ -16,6 +16,8 @@
 
 ## Kahn 算法
 
+### 过程
+
 初始状态下，集合 $S$ 装着所有入度为 $0$ 的点，$L$ 是一个空列表。
 
 每次从 $S$ 中取出一个点 $u$（可以随便取）放入 $L$, 然后将 $u$ 的所有边 $(u, v_1), (u, v_2), (u, v_3) \cdots$ 删除。对于边 $(u, v)$，若将该边删除后点 $v$ 的入度变为 $0$，则将 $v$ 放入 $S$ 中。
@@ -24,21 +26,22 @@
 
 首先看来自 [Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm) 的伪代码
 
-```text
-L← Empty list that will contain the sorted elements
-S ← Set of all nodes with no incoming edges
-while S is non-empty do
-    remove a node n from S
-    insert n into L
-    for each node m with an edge e from n to m do
-        remove edge e from the graph
-        if m has no other incoming edges then
-            insert m into S
-if graph has edges then
-    return error (graph has at least onecycle)
-else
-    return L (a topologically sortedorder)
-```
+???+note "实现"
+    ```text
+    L ← Empty list that will contain the sorted elements
+    S ← Set of all nodes with no incoming edges
+    while S is not empty do
+        remove a node n from S
+        insert n into L
+        for each node m with an edge e from n to m do
+            remove edge e from the graph
+            if m has no other incoming edges then
+                insert m into S
+    if graph has edges then
+        return error (graph has at least one cycle)
+    else
+        return L (a topologically sorted order)
+    ```
 
 代码的核心是维持一个入度为 0 的顶点的集合。
 
@@ -56,24 +59,28 @@ else
 
 ### 实现
 
-伪代码：
+```cpp
+int n, m;
+vector<int> G[MAXN];
+int in[MAXN];  // 存储每个结点的入度
 
-```text
 bool toposort() {
-  q = new queue();
-  for (i = 0; i < n; i++)
-    if (in_deg[i] == 0) q.push(i);
-  ans = new vector();
-  while (!q.empty()) {
-    u = q.pop();
-    ans.push_back(u);
-    for each edge(u, v) {
-      if (--in_deg[v] == 0) q.push(v);
+  vector<int> L;
+  queue<int> S;
+  for (int i = 1; i <= n; i++)
+    if (in[i] == 0) S.push(i);
+  while (!S.empty()) {
+    int u = S.front();
+    S.pop();
+    L.push_back(u);
+    for (auto v : G[u]) {
+      if (--in[v] == 0) {
+        S.push(v);
+      }
     }
   }
-  if (ans.size() == n) {
-    for (i = 0; i < n; i++)
-      std::cout << ans[i] << std::endl;
+  if (L.size() == n) {
+    for (auto i : L) cout << i << ' ';
     return true;
   } else {
     return false;
@@ -83,63 +90,80 @@ bool toposort() {
 
 ## DFS 算法
 
+### 实现
+
 ```cpp
 // C++ Version
-vector<int> G[MAXN];  // vector 实现的邻接表
-int c[MAXN];          // 标志数组
-vector<int> topo;     // 拓扑排序后的节点
+using Graph = vector<vector<int>>;  // 邻接表
 
-bool dfs(int u) {
-  c[u] = -1;
-  for (int v : G[u]) {
-    if (c[v] < 0)
-      return false;
-    else if (!c[v])
-      if (!dfs(v)) return false;
+struct TopoSort {
+  enum class Status : uint8_t { to_visit, visiting, visited };
+
+  const Graph& graph;
+  const int n;
+  vector<Status> status;
+  vector<int> order;
+  vector<int>::reverse_iterator it;
+
+  TopoSort(const Graph& graph)
+      : graph(graph),
+        n(graph.size()),
+        status(n, Status::to_visit),
+        order(n),
+        it(order.rbegin()) {}
+
+  bool sort() {
+    for (int i = 0; i < n; ++i) {
+      if (status[i] == Status::to_visit && !dfs(i)) return false;
+    }
+    return true;
   }
-  c[u] = 1;
-  topo.push_back(u);
-  return true;
-}
 
-bool toposort() {
-  topo.clear();
-  memset(c, 0, sizeof(c));
-  for (int u = 0; u < n; u++)
-    if (!c[u])
-      if (!dfs(u)) return false;
-  reverse(topo.begin(), topo.end());
-  return true;
-}
+  bool dfs(const int u) {
+    status[u] = Status::visiting;
+    for (const int v : graph[u]) {
+      if (status[v] == Status::visiting) return false;
+      if (status[v] == Status::to_visit && !dfs(v)) return false;
+    }
+    status[u] = Status::visited;
+    *it++ = u;
+    return true;
+  }
+};
 ```
 
 ```python
 # Python Version
-G = [] * MAXN
-c = [0] * MAXN
-topo = []
+from enum import Enum, auto
 
-def dfs(u):
-    c[u] = -1
-    for v in G[u]:
-        if c[v] < 0:
-            return False
-        elif c[v] == False:
-            if dfs(v) == False:
-                return False
-    c[u] = 1
-    topo.append(u)
-    return True
 
-def toposort():
-    topo = []
-    while u < n:
-        if c[u] == 0:
-            if dfs(u) == False:
+class Status(Enum):
+    to_visit = auto()
+    visiting = auto()
+    visited = auto()
+
+
+def topo_sort(graph: list[list[int]]) -> list[int] | None:
+    n = len(graph)
+    status = [Status.to_visit] * n
+    order = []
+
+    def dfs(u: int) -> bool:
+        status[u] = Status.visiting
+        for v in graph[u]:
+            if status[v] == Status.visiting:
                 return False
-        u = u + 1
-    topo.reverse()
-    return True
+            if status[v] == Status.to_visit and not dfs(v):
+                return False
+        status[u] = Status.visited
+        order.append(u)
+        return True
+
+    for i in range(n):
+        if status[i] == Status.to_visit and not dfs(i):
+            return None
+
+    return order[::-1]
 ```
 
 时间复杂度：$O(E+V)$ 空间复杂度：$O(V)$
