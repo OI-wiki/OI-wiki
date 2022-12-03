@@ -77,6 +77,39 @@ a[1] = 1;
 a[2] = 2;
 ```
 
+### 循环判断外提 (Loop Unswitching)
+
+循环判断外提将循环中的条件式移到循环之外，然后在外部的两个条件各放置两个循环，这样可以增加循环向量化、并行化的可能性（通常简单循环更容易被向量化）。
+
+```cpp
+// clang-format off
+void before(int x) {
+  for(;/* i in some range */;) {
+    /* A */;
+    if (/* condition */ x % 2) {
+      /* B */;
+    }
+    /* C */;
+  }
+}
+
+void after(int x) {
+  if (/* condition */ x % 2) {
+    for(;/* i in some range */;) {
+      /* A */;
+      /* B */; // 直接执行 B ，不进行循环判断
+      /* C */;
+    }
+  } else {
+     for(;/* i in some range */;) {
+      /* A */; 
+               // 不执行 B
+      /* C */;
+    }
+  }
+}
+```
+
 ### 代码布局优化 (Code Layout Optimizations)
 
 程序在执行时，可以将执行的路径分为冷热路径 (cold/hot path)。CPU 跳转执行，绝大多数情况下没有直接顺序执行快，后者通常被编译器作者称为 "fallthrough"。与之对应的，经常被执行到的代码成为热代码，与之相对的成为冷代码。OI 代码中，如果有一段是循环中的特判边界条件，或者异常处理，类似的逻辑，则此部分代码为冷代码。
