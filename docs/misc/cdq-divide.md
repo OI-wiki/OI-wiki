@@ -245,6 +245,4 @@ CDQ 分治的递归树如下所示。
 
 - [从《Cash》谈一类分治算法的应用](https://www.cs.princeton.edu/~danqic/papers/divide-and-conquer.pdf)
 
-## 参考资料与注释
 
-[^ref1]: [陈丹琦：我希望女生能得到更多机会，男女生之间的 gap 会逐渐不存在的](https://www.sohu.com/a/454907115_629135)
