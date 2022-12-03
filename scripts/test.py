@@ -31,7 +31,7 @@ for line in lines:
         print(cpp + ' test skipped')
         continue
 
-    cmd = 'g++ '+cpp+' -o '+name
+    cmd = 'g++ -std=c++14 '+cpp+' -o '+name
     # 判断CE
     if os.system(cmd) == 0:
         print(cpp+' Successfully compiled')
