@@ -6,7 +6,7 @@ using namespace std;
 typedef double db;
 const int N = 1e6 + 10;
 
-struct data {
+struct data1 {
   int h;
   int v;
   int p;
@@ -18,28 +18,28 @@ int n;
 bool tr;
 
 // 底下是重写比较
-inline bool cmp1(const data& a, const data& b) {
+inline bool cmp1(const data1& a, const data1& b) {
   if (tr)
     return a.h > b.h;
   else
     return a.h < b.h;
 }
 
-inline bool cmp2(const data& a, const data& b) {
+inline bool cmp2(const data1& a, const data1& b) {
   if (tr)
     return a.v > b.v;
   else
     return a.v < b.v;
 }
 
-inline bool cmp3(const data& a, const data& b) {
+inline bool cmp3(const data1& a, const data1& b) {
   if (tr)
     return a.p < b.p;
   else
     return a.p > b.p;
 }
 
-inline bool cmp4(const data& a, const data& b) { return a.v == b.v; }
+inline bool cmp4(const data1& a, const data1& b) { return a.v == b.v; }
 
 struct treearray {
   int ma[2 * N];
