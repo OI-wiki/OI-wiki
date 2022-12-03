@@ -3,6 +3,7 @@
 using namespace std;
 
 int head[1000010 << 1], tot;
+//因为github最近的c++标准升级为了17，所以修改了size变量名为size1
 long long n, size1[1000010], dep[1000010];
 long long f[1000010];
 
