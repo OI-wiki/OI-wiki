@@ -3,7 +3,7 @@
 #include <map>
 #include <set>
 #define SNI set<nod>::iterator
-#define SDI set<data>::iterator
+#define SDI set<data1>::iterator
 using namespace std;
 const int N = 1e5 + 10;
 int n;
@@ -71,15 +71,15 @@ inline void prew() {
 }  // namespace prew
 
 namespace colist {
-struct data {
+struct data1 {
   int l;
   int r;
   int x;
 
-  friend bool operator<(data a, data b) { return a.r < b.r; }
+  friend bool operator<(data1 a, data1 b) { return a.r < b.r; }
 };
 
-set<data> s;
+set<data1> s;
 
 struct nod {
   int l;
@@ -92,18 +92,18 @@ set<nod> c[2 * N];
 set<int> bd;
 
 inline void split(int mid) {  // 将一个节点拆成两个节点
-  SDI it = s.lower_bound((data){0, mid, 0});
-  data p = *it;
+  SDI it = s.lower_bound((data1){0, mid, 0});
+  data1 p = *it;
   if (mid == p.r) return;
   s.erase(p);
-  s.insert((data){p.l, mid, p.x});
-  s.insert((data){mid + 1, p.r, p.x});
+  s.insert((data1){p.l, mid, p.x});
+  s.insert((data1){mid + 1, p.r, p.x});
   c[p.x].erase((nod){p.l, p.r});
   c[p.x].insert((nod){p.l, mid});
   c[p.x].insert((nod){mid + 1, p.r});
 }
 
-inline void del(set<data>::iterator it) {  // 删除一个迭代器
+inline void del(set<data1>::iterator it) {  // 删除一个迭代器
   bd.insert(it->l);
   SNI it1, it2;
   it1 = it2 = c[it->x].find((nod){it->l, it->r});
@@ -113,7 +113,7 @@ inline void del(set<data>::iterator it) {  // 删除一个迭代器
   s.erase(it);
 }
 
-inline void ins(data p) {  // 插入一个节点
+inline void ins(data1 p) {  // 插入一个节点
   s.insert(p);
   SNI it = c[p.x].insert((nod){p.l, p.r}).first;
   ++it;
@@ -127,13 +127,13 @@ inline void stv(int l, int r, int x) {  // 区间赋值
   split(r);
   int p = l;  // split两下之后删掉所有区间
   while (p != r + 1) {
-    SDI it = s.lower_bound((data){0, p, 0});
+    SDI it = s.lower_bound((data1){0, p, 0});
     p = it->r + 1;
     del(it);
   }
-  ins((data){l, r, x});  // 扫一遍set处理所有变化的pre值
+  ins((data1){l, r, x});  // 扫一遍set处理所有变化的pre值
   for (set<int>::iterator it = bd.begin(); it != bd.end(); ++it) {
-    SDI it1 = s.lower_bound((data){0, *it, 0});
+    SDI it1 = s.lower_bound((data1){0, *it, 0});
     if (*it != it1->l)
       modify(*it, *it - 1);
     else {
@@ -152,14 +152,14 @@ inline void ih() {
   int ccnt = 1;  // 将连续的一段插入到set中
   for (int i = 2; i <= n; i++)
     if (nc != a[i]) {
-      s.insert((data){i - ccnt, i - 1, nc}),
+      s.insert((data1){i - ccnt, i - 1, nc}),
           c[nc].insert((nod){i - ccnt, i - 1});
       nc = a[i];
       ccnt = 1;
     } else {
       ccnt++;
     }
-  s.insert((data){n - ccnt + 1, n, a[n]}),
+  s.insert((data1){n - ccnt + 1, n, a[n]}),
       c[a[n]].insert((nod){n - ccnt + 1, n});
 }
 }  // namespace colist
