@@ -5,6 +5,7 @@
 using namespace std;
 typedef double db;
 const int N = 1e6 + 10;
+
 //因为github最近的c++标准升级为了17，所以修改了data变量名为data1
 struct data1 {
   int h;
