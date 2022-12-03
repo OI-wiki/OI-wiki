@@ -22,7 +22,7 @@ CP Editor 专为算法竞赛设计，不像其它 IDE 主要是为了开发设�
 
 **解压后的文件**
 
-双击 `cpeditor.exe` 即可打开编辑器
+双击 `cpeditor.exe` 即可打开编辑器。
 
 ![cp-port-1](images/cp-port-1.png)
 
@@ -54,7 +54,7 @@ CP Editor 专为算法竞赛设计，不像其它 IDE 主要是为了开发设�
 
     ![cp-setup-5](images/cp-setup-5.png)
 
-安装完成之后打开 `cpeditor` 如果出现如下界面就代表安装成功了，就可以跳转到 **基础配置** 来进行一些必要的设置了
+安装完成之后打开 `cpeditor` 如果出现如下界面就代表安装成功了，就可以跳转到 **基础配置** 来进行一些必要的设置了！
 
 ![cp-success-1](images/cp-success-1.png)
 
@@ -62,7 +62,9 @@ CP Editor 专为算法竞赛设计，不像其它 IDE 主要是为了开发设�
 
 > CP Editor 内部没有集成编译器，需要自己安装配置编译器，如有需要请参考本站关于编译器安装相关的文章 \[^note1]
 
--   设置默认语言   编辑器默认的语言为 `C++`
+-   设置默认语言   
+
+    编辑器默认的语言为 `C++`。
 
     ![cp-setting-lang-2](images/cp-setting-lang-2.png)
 
@@ -78,7 +80,7 @@ CP Editor 专为算法竞赛设计，不像其它 IDE 主要是为了开发设�
 
 ![image-20221203151818134](images/cp-setting-lang-4.png)
 
-> 完成了以上的基本操作你就可以使用最基本的功能了
+> 完成了以上的基本操作你就可以使用最基本的功能了。
 
 ## 参考资料
 
