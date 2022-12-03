@@ -244,4 +244,3 @@ CDQ 分治的递归树如下所示。
 ## 拓展阅读
 
 - [从《Cash》谈一类分治算法的应用](https://www.cs.princeton.edu/~danqic/papers/divide-and-conquer.pdf)
-
