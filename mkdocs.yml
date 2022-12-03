@@ -121,6 +121,7 @@ nav:
         - pb_ds 简介: lang/pb-ds/index.md
         - 堆: lang/pb-ds/pq.md
         - 平衡树: lang/pb-ds/tree.md
+      - 编译优化: lang/optimizations.md
     - C++ 与其他常用语言的区别: lang/cpp-other-langs.md
     - Pascal 转 C++ 急救: lang/pas-cpp.md
     - Python 速成: lang/python.md
