@@ -15,7 +15,7 @@ int tp[N];
 int lf[N];
 int rt[N];
 int co[N];
-
+//因为github最近的c++标准升级为了17，所以修改了data变量名为data1
 struct modi {
   int t;
   int pos;
