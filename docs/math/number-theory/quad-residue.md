@@ -234,6 +234,26 @@ $$
 
 所以 $x$ 的系数必须为零即 $a_0\equiv 0\pmod p$ 此时考虑 Legendre 符号为完全积性函数可知 $r^2-a\equiv a/a_1^2\pmod p$ 显然为二次剩余，不符合定义。因此 $a_1\equiv 0\pmod p$ 且 $a_0^2\equiv a\pmod p$。
 
+## Bostan–Mori 算法
+
+该算法基于 Cipolla 算法，我们将问题转换为 [常系数齐次线性递推](../linear-recurrence.md) 再应用 Bostan–Mori 算法。考虑另一种常见的 Cipolla 算法的描述为 $b=x^{\left(p+1\right)/2}\bmod{\left(x^2-tx+a\right)}$ 为满足 $b^2\equiv a\pmod{p}$ 的一个解，其中 $x^2-tx+a\in \mathbb{F}_p\lbrack x\rbrack$ 为不可约多项式。选取 $t$ 同样使用随机。证明过程略。参考文献中的算法我们可以发现问题可转化为求解形式幂级数的乘法逆元的某一项系数：
+
+$$
+b=\left\lbrack x^{(p+1)/2}\right\rbrack\dfrac{1}{1-tx+ax^2}
+$$
+
+且
+
+$$
+\left\lbrack x^n\right\rbrack\dfrac{k_0+k_1x}{1+k_2x+k_3x^2}=
+\begin{cases}
+\left\lbrack x^{(n-1)/2}\right\rbrack\dfrac{k_1-k_0k_2+k_1k_3x}{1+(2k_3-k_2^2)x+k_3^2x^2},&\text{若 }n\bmod 2=1\\
+\left\lbrack x^{n/2}\right\rbrack\dfrac{k_0+(k_0k_3-k_1k_2)x}{1+(2k_3-k_2^2)x+k_3^2x^2},&\text{若 }n\neq 0
+\end{cases}
+$$
+
+而 $n=0$ 时显然有 $\left\lbrack x^0\right\rbrack\dfrac{k_0+k_1x}{1+k_2x+k_3x^2}=k_0$，该算法乘法次数相较于 Cipolla 算法更少。
+
 ## Legendre 算法
 
 ### 定义
@@ -270,11 +290,11 @@ $$
 
 所以 $2a_0=(\pm 1)+(\mp 1)=0$ 而 $2a_1b=(\pm 1)-(\mp 1)=\pm 2$。
 
-## Tonelli-Shanks 算法
+## Tonelli–Shanks 算法
 
 ### 定义
 
-Tonelli-Shanks 算法是基于离散对数求解同余方程 $x^2\equiv a\pmod p$ 的算法，其中 $p$ 为奇素数且 $a$ 为模 $p$ 的二次剩余。
+Tonelli–Shanks 算法是基于离散对数求解同余方程 $x^2\equiv a\pmod p$ 的算法，其中 $p$ 为奇素数且 $a$ 为模 $p$ 的二次剩余。
 
 令 $p-1=2^n\cdot m$ 其中 $m$ 为奇数。仍然使用随机方法寻找 $r\in\mathbb{F}_p$ 满足 $r$ 为二次非剩余。令 $g\equiv r^m\pmod p$ 且 $b\equiv a^{(m-1)/2}\pmod p$，那么存在整数 $e\in\lbrace 0,1,2,\dots ,2^n-1\rbrace$ 满足 $ab^2\equiv g^e\pmod p$。若 $a$ 为二次剩余，那么 $e$ 为偶数且 $\left(abg^{-e/2}\right)^2\equiv a\pmod p$。
 
@@ -343,8 +363,9 @@ $$
 
 ## 参考文献
 
-- <https://en.wikipedia.org/wiki/Quadratic_residue>
-- <https://en.wikipedia.org/wiki/Euler%27s_criterion>
-- Daniel. J. Bernstein. Faster Square Roots in Annoying Finite Fields.
-- S. Müller, On the computation of square roots in finite fields, Design, Codes and Cryptography, Vol.31, pp. 301-312, 2004
-- A. Menezes, P. van Oorschot and S. Vanstone. Handbook of Applied Cryptography, 1996.
+1. <https://en.wikipedia.org/wiki/Quadratic_residue>
+2. <https://en.wikipedia.org/wiki/Euler%27s_criterion>
+3. Daniel. J. Bernstein. Faster Square Roots in Annoying Finite Fields.
+4. S. Müller, On the computation of square roots in finite fields, Design, Codes and Cryptography, Vol.31, pp. 301-312, 2004
+5. A. Menezes, P. van Oorschot and S. Vanstone. Handbook of Applied Cryptography, 1996.
+6. Alin Bostan, Ryuhei Mori. [A Simple and Fast Algorithm for Computing the N-th Term of a Linearly Recurrent Sequence](https://arxiv.org/abs/2008.08822).
