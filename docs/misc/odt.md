@@ -6,7 +6,7 @@
 
 ## 前置知识
 
-会用 STL 的 set 就行。
+会用 STL 的 [set](../lang/csl/associative-container.md#set) 就行。
 
 ## 核心思想
 
