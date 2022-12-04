@@ -137,6 +137,10 @@ Windows 用户在 [LLVM-MinGW](https://github.com/mstorsjo/llvm-mingw/releases/)
 
 现在就可以享受 clangd 的自动补全等功能了。
 
+如果需要中文支持，可在搜索栏中输入 `chinese` 找到 简体中文插件并安装
+
+<img width="975" alt="截屏2022-12-04 15 52 23" src="https://user-images.githubusercontent.com/76860915/205480123-baabf9fa-40ce-4d14-b01c-ea0a3fc351a8.png">
+
 ## 参考资料与注释
 
 [^ref1]: VS Code 的 C/C++ 插件如果选择 lldb 作调试器，则会默认采用 lldb-mi 程序，而它已经被 LLVM 开发团队从项目中分离出来，需要自己编译该程序。而它本身就有一些 bug，使用体验和方便程度都不如 CodeLLDB 插件。
