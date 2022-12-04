@@ -34,7 +34,7 @@ CP Editor 专为算法竞赛设计，不像其它 IDE 主要是为了开发设�
 
 下载 `xxxxx-setup.exe` 来进行安装，下载完成后双击下载的文件进入安装界面。
 
-- 是否为所有用户安装
+-   是否为所有用户安装
 
     ![cp-setup-1](images/cp-setup-1.png)
 
@@ -42,11 +42,11 @@ CP Editor 专为算法竞赛设计，不像其它 IDE 主要是为了开发设�
 
     ![cp-setup-2](images/cp-setup-2.png)
 
-- 选择安装路径
+-   选择安装路径
 
     ![cp-setup-3](images/cp-setup-3.png)
 
-- 是否创建桌面快捷方式
+-   是否创建桌面快捷方式
 
     ![cp-setup-4](images/cp-setup-4.png)
 
