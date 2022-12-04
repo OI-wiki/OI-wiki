@@ -10,7 +10,7 @@ CP Editor 专为算法竞赛设计，不像其它 IDE 主要是为了开发设�
 
 ![cp-download](images/cp-download.png)
 
-使用下载速度较快的 Gitee 镜像来进行下载 [cpeditor 发行版 - Gitee.com](https://gitee.com/ouuan/cpeditor/releases)
+推荐使用下载速度较快的 Gitee 镜像来进行下载 [cpeditor 发行版 - Gitee.com](https://gitee.com/ouuan/cpeditor/releases)
 
 ![cp-download](images/cp-gitee-down.png)
 
