@@ -12,7 +12,7 @@ if [[ "$PREBUILD_NETLIFY" == "1" ]]; then
 fi
 
 if [ ! -d "$THEME_NAME" ] ; then
-  git clone --depth=1 "${THEME_REPO:-https://github.com/OI-wiki/mkdocs-material.git}" "$THEME_NAME"
+  git clone --depth=1 "${THEME_REPO:-https://github.com/littlefrogfromthenorth/mkdocs-material.git}" "$THEME_NAME"
 fi
 git -C "$THEME_NAME" log -1
 
