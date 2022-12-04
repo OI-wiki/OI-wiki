@@ -59,6 +59,61 @@ int test() { return 234; }
 
 注意，这个代码首先进行了常量折叠，使得返回值可以确定为 234，a, b 为不活跃变量，因此删除。
 
+### 循环旋转 (Loop Rotate)
+
+将循环从 "for" 形式，转换为 "do-while" 形式，前面再多加一个条件判断。这个变换主要为其他变换做准备。
+
+```cpp
+for (int i = 0; i < n; ++i) {
+  auto v = *p;
+  use(v);
+}
+```
+
+变换为
+
+```cpp
+if (0 < n) {
+  do {
+    auto v = *p;
+    use(v);
+    ++i;
+  } while (i < n);
+}
+```
+
+### 循环不变量外提 (Loop Invariant Code Motion)
+
+基于别名分析 (Alias Analysis)，将循环中被证明是不变量（可能包含内存访问，load/store，因此依赖别名分析）的代码外提出循环体，这样可以让循环体内部少一些代码。
+
+```cpp
+for (int i = 0; i < n; ++i) {
+  auto v = *p;
+  use(v);
+}
+```
+
+这个代码直观来看可以外提为：
+
+```cpp
+auto v = *p;
+for (int i = 0; i < n; ++i) {
+  use(v);
+}
+```
+
+但实际上，如果 `n <= 0`，这个循环永远不会被进入，但我们又执行了一条多的指令（可能有副作用！）。因此，循环通常被 Rotate 为 do-while 形式，这样可以方便插入一个 "loop guard"。之后再进行循环不变量外提。
+
+```cpp
+if (0 < n) {  // loop guard
+  auto v = *p;
+  do {
+    use(v);
+    ++i;
+  } while (i < n);
+}
+```
+
 ### 循环展开 (Loop Unroll)
 
 循环包含循环体和各类分支语句，需要现代 CPU 进行一定的分支预测。直接把循环展开，用一定的代码大小来换取运行时间。
