@@ -516,4 +516,4 @@
 ## 参考资料与拓展阅读
 
 - [Left-Leaning Red-Black Trees](https://sedgewick.io/wp-content/themes/sedgewick/papers/2008LLRB.pdf)-  Robert Sedgewick Princeton University
-- [Balanced Search Trees](https://algs4.cs.princeton.edu/33balanced/)-\_Algorithms_Robert Sedgewick | Kevin Wayne
+- [Balanced Search Trees](https://algs4.cs.princeton.edu/lectures/keynote/33BalancedSearchTrees-2x2.pdf)-\_Algorithms_Robert Sedgewick | Kevin Wayne
