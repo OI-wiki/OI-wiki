@@ -47,7 +47,6 @@ pipenv install --pypi-mirror https://pypi.tuna.tsinghua.edu.cn/simple/
 # scripts/pre-build/install-theme-vendor.sh:
 # - MATHJAX_URL
 # - MATERIAL_ICONS_URL
-# - GITALK_REPO
 ./scripts/pre-build/install-theme.sh
 
 # 两种方法（选其一即可）：
