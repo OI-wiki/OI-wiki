@@ -922,16 +922,16 @@ Queue<Integer> q = new LinkedList<>();
 Queue<Integer> q = new ArrayDeque<>();
 ```
 
-`ArrayDeque` 底层实现了`Deque` 接口，而 `Deque` 接口继承自 `Queue` 接口，所以 `ArrayDeque` 可以实现 `Queue` 。
+`ArrayDeque` 底层实现了 `Deque` 接口，而 `Deque` 接口继承自 `Queue` 接口，所以 `ArrayDeque` 可以实现 `Queue`。
 
-#### LinkedList 与 ArrayDeque 在实现Queue接口上两者的区别
+#### LinkedList 与 ArrayDeque 在实现 Queue 接口上的区别
 
-1. **数据结构**：在数据结构上，ArrayDeque 和 LinkedList 都实现了 Java Deque 双端队列接口。但 ArrayDeque 没有实现了 Java List 列表接口，所以不具备根据索引位置操作的行为。
-2. **线程安全**：ArrayDeque 和 LinkedList 都不考虑线程同步，不保证线程安全
-3. **底层实现**：在底层实现上，ArrayDeque 是基于动态数组的，而 LinkedList 是基于双向链表的。
-4. **在遍历速度上**：ArrayDeque 是一块连续内存空间，基于局部性原理能够更好地命中 CPU 缓存行，而 LinkedList 是离散的内存空间对缓存行不友好。
-5. **在操作速度上**：ArrayDeque 和 LinkedList 的栈和队列行为都是 O(1) 时间复杂度，ArrayDeque 的入栈和入队有可能会触发扩容，但从均摊分析上看依然是 O(1) 时间复杂度。
-6. **额外内存消耗上**：ArrayDeque 在数组的头指针和尾指针外部有闲置空间，而 LinkedList 在节点上增加了前驱和后继指针。
+1. **数据结构**：在数据结构上，`ArrayDeque` 和 `LinkedList` 都实现了 Java Deque 双端队列接口。但 `ArrayDeque` 没有实现了 Java List 列表接口，所以不具备根据索引位置操作的行为。
+2. **线程安全**：`ArrayDeque` 和 `LinkedList` 都不考虑线程同步，不保证线程安全。
+3. **底层实现**：在底层实现上，`ArrayDeque` 是基于动态数组的，而 `LinkedList` 是基于双向链表的。
+4. **在遍历速度上**：`ArrayDeque` 是一块连续内存空间，基于局部性原理能够更好地命中 CPU 缓存行，而 `LinkedList` 是离散的内存空间对缓存行不友好。
+5. **在操作速度上**：`ArrayDeque` 和 `LinkedList` 的栈和队列行为都是 $O(1)$ 时间复杂度，`ArrayDeque` 的入栈和入队有可能会触发扩容，但从均摊分析上看依然是 $O(1)$ 时间复杂度。
+6. **额外内存消耗上**：`ArrayDeque` 在数组的头指针和尾指针外部有闲置空间，而 `LinkedList` 在节点上增加了前驱和后继指针。
 
 #### PriorityQueue
 
