@@ -1,8 +1,8 @@
-author:  zarrtic
+author: zarrtic
 
 ## 简介
 
-CP Editor 专为算法竞赛设计，不像其它 IDE 主要是为了开发设计的。它可以帮助你自动化编译、运行、测试，从而让你专注于算法设计。它甚至可以从各种算法竞赛网站上获取样例，将代码提交到 Codeforces 上！
+[CP Editor](https://github.com/cpeditor/cpeditor) 专为算法竞赛设计，不像其它 IDE 主要是为了开发设计的。它可以帮助你自动化编译、运行、测试，从而让你专注于算法设计。它甚至可以从各种算法竞赛网站上获取样例，将代码提交到 Codeforces 上！
 
 ## 下载
 
@@ -15,6 +15,9 @@ CP Editor 专为算法竞赛设计，不像其它 IDE 主要是为了开发设�
 ![cp-download](images/cp-gitee-down.png)
 
 ## 安装
+
+???+note "提示"
+    开箱即用版本和安装版本只需要选择一个安装即可。
 
 ### 开箱即用版本
 
@@ -60,7 +63,7 @@ CP Editor 专为算法竞赛设计，不像其它 IDE 主要是为了开发设�
 
 ## 基础配置
 
-> CP Editor 内部没有集成编译器，需要自己安装配置编译器，如有需要请参考本站关于编译器安装相关的文章[^note1]
+> CP Editor 内部没有集成编译器，需要自己安装配置编译器，如有需要请参考本站关于编译器安装相关的文章[^compiler]。
 
 -   设置默认语言
 
@@ -84,4 +87,4 @@ CP Editor 专为算法竞赛设计，不像其它 IDE 主要是为了开发设�
 
 ## 参考资料
 
-[^note1]: [编译器 - OI Wiki (oi-wiki.org)](https://oi-wiki.org/tools/compiler/)
+[^compiler]: [编译器 - OI Wiki](https://oi-wiki.org/tools/compiler/)
