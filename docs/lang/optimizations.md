@@ -521,7 +521,7 @@ GCC 和 Clang 都支持这个 Sanitizer。包括如下检查项：
 
 应用这项检查会让你的程序慢 2x 左右。
 
-### Undefined Behavior Sanitizer -fsanitize=undefiend
+### Undefined Behavior Sanitizer -fsanitize=undefined
 
 <https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html>
 
