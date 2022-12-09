@@ -113,6 +113,7 @@ void Del(int& k, int p) {
   if (!k)
     return;
   else {
+    sz[k]--;
     if (w[k] == p) {
       if (wn[k]) wn[k]--;
     } else {
