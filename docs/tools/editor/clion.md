@@ -194,4 +194,4 @@ CLion 为付费产品，但是可以通过教育邮箱或开源项目申请特�
 
 如果您是某个开源项目的核心开发者或维护者之一，您可以尝试申请开源开发许可证 (Open Source Development License). 申请流程与教育许可证类似，但需要填写开源项目的仓库地址。
 
-![Open Source Development License](./images/clion-oss.png) 
+![Open Source Development License](./images/clion-oss.png)
