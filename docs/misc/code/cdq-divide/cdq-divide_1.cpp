@@ -85,7 +85,7 @@ int main() {
   std::sort(e + 1, e + n + 1, cmpA);
   for (int i = 1; i <= n; i++) {
     t++;
-    if (e[i].a != e[i + 1]) {
+    if (e[i] != e[i + 1]) {
       m++;
       ue[m].a = e[i].a;
       ue[m].b = e[i].b;
