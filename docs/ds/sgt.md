@@ -105,7 +105,7 @@ void Ins(int& k, int p) {
 
 ### 删除
 
-惰性删除，到达空结点则忽略，对于每一个经过的节点 `sz[k]--`，找到对应结点则 `wn[k]--`。递归结束后，可重构节点要重构。
+惰性删除，到达空结点则忽略，找到对应结点则 `wn[k]--`，`sz[k]--`。递归结束后，可重构节点要重构。
 
 ```cpp
 void Del(int& k, int p) {
@@ -192,163 +192,19 @@ inline int MyPost(int k, int p) { return MyAt(k, MyUprBd(k, p)); }
 
 ## 整体实现
 
-下面的实现以 [洛谷 P6136【模板】普通平衡树（数据加强版）](https://www.luogu.com.cn/problem/P6136) 为例。
+???+note "[洛谷 P6136【模板】普通平衡树（数据加强版）](https://www.luogu.com.cn/problem/P6136)"
+    您需要写一种数据结构（可参考题目标题），来维护一些整数，其中需要提供以下操作：
 
-```cpp
-#include <bits/stdc++.h>
-#define int long long
-using namespace std;
-
-namespace ScapegoatTree {
-#define ls (t[i].l)
-#define rs (t[i].r)
-
-struct node {
-  int s, sz, sd, cnt, l, r, w;
-
-  void init(int weight) {
-    w = weight;
-    l = r = 0;
-    s = sz = sd = cnt = 1;
-  }
-} t[10000005];
-
-int root, tot;
-const double alpha = 0.7;
-
-void pushup(int i) {
-  t[i].s = t[ls].s + t[rs].s + 1;
-  t[i].sz = t[ls].sz + t[rs].sz + t[i].cnt;
-  t[i].sd = t[ls].sd + t[rs].sd + (t[i].cnt > 0);
-}
-
-bool need_rebuild(int i) {
-  if (t[i].cnt == 0) return false;
-  if (alpha * t[i].s <= (double)(max(t[ls].s, t[rs].s))) return true;
-  if ((double)t[i].sd <= alpha * t[i].s) return true;
-  return false;
-}
-
-namespace Rebuild {
-void flatten(int i, vector<int> &seq) {
-  if (!i) return;
-  flatten(ls, seq);
-  if (t[i].cnt) seq.push_back(i);
-  flatten(rs, seq);
-}
-
-int build(int l, int r, const vector<int> &seq) {
-  if (l == r) return 0;
-  int mid = (l + r) >> 1;
-  int i = seq[mid];
-  ls = build(l, mid, seq);
-  rs = build(mid + 1, r, seq);
-  pushup(i);
-  return i;
-}
-}  // namespace Rebuild
-
-void rebuild(int &i) {
-  vector<int> seq;
-  seq.push_back(0);
-  Rebuild::flatten(i, seq);
-  i = Rebuild::build(1, seq.size(), seq);
-}
-
-void newnode(int &i, int v) {
-  i = (++tot);
-  if (!root) root = i;
-  t[i].init(v);
-}
-
-void insert(int &i, int v) {
-  if (!i) {
-    newnode(i, v);
-    return;
-  }
-  if (t[i].w == v)
-    t[i].cnt++;
-  else if (t[i].w > v)
-    insert(ls, v);
-  else
-    insert(rs, v);
-  pushup(i);
-  if (need_rebuild(i)) rebuild(i);
-}
-
-void remove(int &i, int v) {
-  if (!i) return;
-  t[i].sz--;
-  if (t[i].w == v) {
-    if (t[i].cnt > 0) t[i].cnt--;
-    return;
-  }
-  if (t[i].w > v)
-    remove(ls, v);
-  else
-    remove(rs, v);
-  pushup(i);
-  if (need_rebuild(i)) rebuild(i);
-}
-
-int kth(int &i, int k) {
-  if (!i) return 0;
-  if (t[ls].sz >= k) return kth(ls, k);
-  if (t[ls].sz < k - t[i].cnt) return kth(rs, k - t[ls].sz - t[i].cnt);
-  return t[i].w;
-}
-
-int rnk(int &i, int v) {
-  if (!i) return 1;
-  if (t[i].w > v) return rnk(ls, v);
-  if (t[i].w < v) return rnk(rs, v) + t[ls].sz + t[i].cnt;
-  return t[ls].sz + 1;
-}
-
-int upper_bound(int &i, int v, bool great = 0) {
-  if (!i) return !great;
-  if (t[i].w == v && t[i].cnt > 0) return t[ls].sz + (!great) * (t[i].cnt + 1);
-  if (!great) {
-    if (v < t[i].w) return upper_bound(ls, v);
-    return upper_bound(rs, v) + t[ls].sz + t[i].cnt;
-  }
-  if (t[i].w < v) return upper_bound(rs, v, 1) + t[ls].sz + t[i].cnt;
-  return upper_bound(ls, v, 1);
-}
-
-int pre(int &i, int v) { return kth(i, upper_bound(i, v, 1)); }
-
-int next(int &i, int v) { return kth(i, upper_bound(i, v)); }
-}  // namespace ScapegoatTree
-
-int last = 0, ans = 0;
-
-signed main() {
-  ios::sync_with_stdio(false);
-  cin.tie(0);
-  cout.tie(0);
-  int m, n;
-  cin >> m >> n;
-  while (m--) {
-    int v;
-    cin >> v;
-    ScapegoatTree::insert(ScapegoatTree::root, v);
-  }
-  while (n--) {
-    int op, x;
-    cin >> op >> x;
-    x ^= last;
-    if (op == 1) ScapegoatTree::insert(ScapegoatTree::root, x);
-    if (op == 2) ScapegoatTree::remove(ScapegoatTree::root, x);
-    if (op == 3) last = ScapegoatTree::rnk(ScapegoatTree::root, x);
-    if (op == 4) last = ScapegoatTree::kth(ScapegoatTree::root, x);
-    if (op == 5) last = ScapegoatTree::pre(ScapegoatTree::root, x);
-    if (op == 6) last = ScapegoatTree::next(ScapegoatTree::root, x);
-    if (op == 3 || op == 4 || op == 5 || op == 6) {
-      ans ^= last;
-    }
-  }
-  cout << ans;
-  return 0;
-}
-```
+	1. 插入一个整数 $x$。
+	2. 删除一个整数 $x$（若有多个相同的数，只删除一个）。
+	3. 查询整数 $x$ 的排名（排名定义为比当前数小的数的个数 $+1$）。
+	4. 查询排名为 $x$ 的数（如果不存在，则认为是排名小于 $x$ 的最大数。保证 $x$ 不会超过当前数据结构中数的总数）。
+	5. 求 $x$ 的前驱（前驱定义为小于 $x$，且最大的数）。
+	6. 求 $x$ 的后继（后继定义为大于 $x$，且最小的数）。
+	
+	本题**强制在线**，保证所有操作合法（操作 $2$ 保证存在至少一个 $x$，操作 $4,5,6$ 保证存在答案）。
+	
+	??? mdui-shadow-6 "参考代码"
+		```cpp
+		--8<-- "docs/ds/code/sgt/sgt_1.cpp"
+		```
