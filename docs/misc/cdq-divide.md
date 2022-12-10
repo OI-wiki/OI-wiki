@@ -36,9 +36,8 @@ CDQ 分治解决这类问题的算法流程如下：
 
 ### 例题
 
-???+ [三维偏序](https://www.luogu.com.cn/problem/P3810)
-    给定一个序列，每个点有 $ a_i,b_i,c_i $ 三个属性，试求：这个序列里有多少对点对 $(i,j)$ 满足 $ a_j \leq a_i $ 且 $ b_j \leq b_i $ 且 $ c_j \leq c_i $ 且 $ j \ne i $ 的 $j。
-    
+???+[三维偏序](https://www.luogu.com.cn/problem/P3810) 给定一个序列，每个点有 $a_i,b_i,c_i$ 三个属性，试求：这个序列里有多少对点对 $(i,j)$ 满足 $a_j \leq a_i$ 且 $b_j \leq b_i$ 且 $c_j \leq c_i$ 且 $j \ne i$ 的 $j。
+
     ??? 解题思路
         三维偏序是 CDQ 分治的经典问题。
         
@@ -138,7 +137,7 @@ CDQ 分治解决这类问题的算法流程如下：
     	    for (int k = l; k < i; k++) BIT.Add(ue[k].c, -ue[k].cnt);
     	    return;
         }
-    
+
         int main() {
     	    scanf("%d%d", &n, &k);
     	    for (int i = 1; i <= n; i++) scanf("%d%d%d", &e[i].a, &e[i].b, &e[i].c);
