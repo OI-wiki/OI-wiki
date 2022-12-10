@@ -59,7 +59,7 @@ CDQ 分治解决这类问题的算法流程如下：
 
     ??? 示例代码
         ```cpp
-        --8<-- "docs/misc/code/cdq-divide/cdq-divide_0.cpp"
+        --8<-- "docs/misc/code/cdq-divide/cdq-divide_5.cpp"
         ```
 
 * * *
