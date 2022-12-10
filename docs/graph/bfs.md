@@ -194,7 +194,7 @@ while (队列不为空) {
 #### 代码
 
 ```cpp
-  --8<-- "docs/graph/code/bfs/bfs_1.cpp"
+--8<-- "docs/graph/code/bfs/bfs_1.cpp"
 ```
 
 ## 优先队列 BFS
