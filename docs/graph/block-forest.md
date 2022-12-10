@@ -82,32 +82,34 @@
 我们可以很容易地写出计算 `dfn` 和 `low` 的 DFS 函数（初始时 `dfn` 数组清零）：
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    void Tarjan(int u) {
-      low[u] = dfn[u] = ++dfc;                // low 初始化为当前节点 dfn
-      for (int v : G[u]) {                    // 遍历 u 的相邻节点
-        if (!dfn[v]) {                        // 如果未访问过
-          Tarjan(v);                          // 递归
-          low[u] = std::min(low[u], low[v]);  // 未访问的和 low 取 min
-        } else
-          low[u] = std::min(low[u], dfn[v]);  // 已访问的和 dfn 取 min
-      }
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def Tarjan(u):
-        low[u] = dfn[u] = dfc # low 初始化为当前节点 dfn
-        dfc = dfc + 1
-        for v in G[u]: # 遍历 u 的相邻节点
-            if dfn[v] == False: # 如果未访问过
-                Tarjan(v) # 递归
-                low[u] = min(low[u], low[v]) # 未访问的和 low 取 min
-            else:
-                low[u] = min(low[u], dfn[v]) # 已访问的和 dfn 取 min
-    ```
+        ```cpp
+        void Tarjan(int u) {
+          low[u] = dfn[u] = ++dfc;                // low 初始化为当前节点 dfn
+          for (int v : G[u]) {                    // 遍历 u 的相邻节点
+            if (!dfn[v]) {                        // 如果未访问过
+              Tarjan(v);                          // 递归
+              low[u] = std::min(low[u], low[v]);  // 未访问的和 low 取 min
+            } else
+              low[u] = std::min(low[u], dfn[v]);  // 已访问的和 dfn 取 min
+          }
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def Tarjan(u):
+            low[u] = dfn[u] = dfc # low 初始化为当前节点 dfn
+            dfc = dfc + 1
+            for v in G[u]: # 遍历 u 的相邻节点
+                if dfn[v] == False: # 如果未访问过
+                    Tarjan(v) # 递归
+                    low[u] = min(low[u], low[v]) # 未访问的和 low 取 min
+                else:
+                    low[u] = min(low[u], dfn[v]) # 已访问的和 dfn 取 min
+        ```
 
 接下来，我们考虑点双和 DFS 树以及这两个数组之间的关联。
 

@@ -40,100 +40,98 @@
 
 ## 实现
 
-### C++
+=== "C++"
 
-```cpp
-// C++ Version
-int n, a[maxn], tmp[maxn << 1];
+    ```cpp
+    int n, a[maxn], tmp[maxn << 1];
 
-int winner(int pos1, int pos2) {
-  int u = pos1 >= n ? pos1 : tmp[pos1];
-  int v = pos2 >= n ? pos2 : tmp[pos2];
-  if (tmp[u] <= tmp[v]) return u;
-  return v;
-}
+    int winner(int pos1, int pos2) {
+      int u = pos1 >= n ? pos1 : tmp[pos1];
+      int v = pos2 >= n ? pos2 : tmp[pos2];
+      if (tmp[u] <= tmp[v]) return u;
+      return v;
+    }
 
-void creat_tree(int &value) {
-  for (int i = 0; i < n; i++) tmp[n + i] = a[i];
-  for (int i = 2 * n - 1; i > 1; i -= 2) {
-    int k = i / 2;
-    int j = i - 1;
-    tmp[k] = winner(i, j);
-  }
-  value = tmp[tmp[1]];
-  tmp[tmp[1]] = INF;
-}
+    void creat_tree(int &value) {
+      for (int i = 0; i < n; i++) tmp[n + i] = a[i];
+      for (int i = 2 * n - 1; i > 1; i -= 2) {
+        int k = i / 2;
+        int j = i - 1;
+        tmp[k] = winner(i, j);
+      }
+      value = tmp[tmp[1]];
+      tmp[tmp[1]] = INF;
+    }
 
-void recreat(int &value) {
-  int i = tmp[1];
-  while (i > 1) {
-    int j, k = i / 2;
-    if (i % 2 == 0 && i < 2 * n - 1)
-      j = i + 1;
-    else
-      j = i - 1;
-    tmp[k] = winner(i, j);
-    i = k;
-  }
-  value = tmp[tmp[1]];
-  tmp[tmp[1]] = INF;
-}
+    void recreat(int &value) {
+      int i = tmp[1];
+      while (i > 1) {
+        int j, k = i / 2;
+        if (i % 2 == 0 && i < 2 * n - 1)
+          j = i + 1;
+        else
+          j = i - 1;
+        tmp[k] = winner(i, j);
+        i = k;
+      }
+      value = tmp[tmp[1]];
+      tmp[tmp[1]] = INF;
+    }
 
-void tournament_sort() {
-  int value;
-  creat_tree(value);
-  for (int i = 0; i < n; i++) {
-    a[i] = value;
-    recreat(value);
-  }
-}
-```
+    void tournament_sort() {
+      int value;
+      creat_tree(value);
+      for (int i = 0; i < n; i++) {
+        a[i] = value;
+        recreat(value);
+      }
+    }
+    ```
 
-### Python
+=== "Python"
 
-```python
-# Python Version
-n = 0
-a = [0] * maxn
-tmp = [0] * maxn * 2
+    ```python
+    n = 0
+    a = [0] * maxn
+    tmp = [0] * maxn * 2
 
-def winner(pos1, pos2):
-    u = pos1 if pos1 >= n else tmp[pos1]
-    v = pos2 if pos2 >= n else tmp[pos2]
-    if tmp[u] <= tmp[v]:
-        return u
-    return v
+    def winner(pos1, pos2):
+        u = pos1 if pos1 >= n else tmp[pos1]
+        v = pos2 if pos2 >= n else tmp[pos2]
+        if tmp[u] <= tmp[v]:
+            return u
+        return v
 
-def creat_tree(value):
-    for i in range(0, n):
-        tmp[n + 1] = a[i]
-    for i in range(2 * n -1, 1, -2):
-        k = int(i / 2)
-        j = i - 1
-        tmp[k] = winner(i, j)
-    value = tmp[tmp[i]]
-    tmp[tmp[i]] = INF
-
-def recreat(value):
-    i = tmp[1]
-    while i > 1:
-        j = k = int(i / 2)
-        if i % 2 == 0 and i < 2 * n - 1:
-            j = i + 1
-        else:
+    def creat_tree(value):
+        for i in range(0, n):
+            tmp[n + 1] = a[i]
+        for i in range(2 * n -1, 1, -2):
+            k = int(i / 2)
             j = i - 1
-        tmp[k] = winner(i, j)
-        i = k
-    value = tmp[tmp[1]]
-    tmp[tmp[1]] = INF
+            tmp[k] = winner(i, j)
+        value = tmp[tmp[i]]
+        tmp[tmp[i]] = INF
 
-def tournament_sort():
-    value = 0
-    creat_tree(value)
-    for i in range(0, n):
-        a[i] = value
-        recreat(value)
-```
+    def recreat(value):
+        i = tmp[1]
+        while i > 1:
+            j = k = int(i / 2)
+            if i % 2 == 0 and i < 2 * n - 1:
+                j = i + 1
+            else:
+                j = i - 1
+            tmp[k] = winner(i, j)
+            i = k
+        value = tmp[tmp[1]]
+        tmp[tmp[1]] = INF
+
+    def tournament_sort():
+        value = 0
+        creat_tree(value)
+        for i in range(0, n):
+            a[i] = value
+            recreat(value)
+    ```
 
 ## 外部链接
 
