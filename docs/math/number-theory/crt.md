@@ -36,32 +36,34 @@ $$
 
 ## 实现
 
-```cpp
-// C++ Version
-LL CRT(int k, LL* a, LL* r) {
-  LL n = 1, ans = 0;
-  for (int i = 1; i <= k; i++) n = n * r[i];
-  for (int i = 1; i <= k; i++) {
-    LL m = n / r[i], b, y;
-    exgcd(m, r[i], b, y);  // b * m mod r[i] = 1
-    ans = (ans + a[i] * m * b % n) % n;
-  }
-  return (ans % n + n) % n;
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def CRT(k, a, r):
-    n = 1; ans = 0
-    for i in range(1, k + 1):
-        n = n * r[i]
-    for i in range(1, k + 1):
-        m = n // r[i]; b = y = 0
-        exgcd(m, r[i], b, y) # b * m mod r[i] = 1
-        ans = (ans + a[i] * m * b % n) % n
-    return (ans % n + n) % n
-```
+    ```cpp
+    LL CRT(int k, LL* a, LL* r) {
+      LL n = 1, ans = 0;
+      for (int i = 1; i <= k; i++) n = n * r[i];
+      for (int i = 1; i <= k; i++) {
+        LL m = n / r[i], b, y;
+        exgcd(m, r[i], b, y);  // b * m mod r[i] = 1
+        ans = (ans + a[i] * m * b % n) % n;
+      }
+      return (ans % n + n) % n;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def CRT(k, a, r):
+        n = 1; ans = 0
+        for i in range(1, k + 1):
+            n = n * r[i]
+        for i in range(1, k + 1):
+            m = n // r[i]; b = y = 0
+            exgcd(m, r[i], b, y) # b * m mod r[i] = 1
+            ans = (ans + a[i] * m * b % n) % n
+        return (ans % n + n) % n
+    ```
 
 ## 证明
 
@@ -154,28 +156,30 @@ x_k=(...((a_k-x_1)r_{1,k}-x_2)r_{2,k})-...)r_{k-1,k} \bmod p_k
 $$
 
 ??? note "实现"
-    ```cpp
-    // C++ Version
-    for (int i = 0; i < k; ++i) {
-      x[i] = a[i];
-      for (int j = 0; j < i; ++j) {
-        x[i] = r[j][i] * (x[i] - x[j]);
-        x[i] = x[i] % p[i];
-        if (x[i] < 0) x[i] += p[i];
-      }
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    for i in range(0, k):
-        x[i] = a[i]
-        for j in range(0, i):
-            x[i] = r[j][i] * (x[i] - x[j])
-            x[i] = x[i] % p[i]
-            if (x[i] < 0):
-                x[i] = x[i] + p[i]
-    ```
+        ```cpp
+        for (int i = 0; i < k; ++i) {
+          x[i] = a[i];
+          for (int j = 0; j < i; ++j) {
+            x[i] = r[j][i] * (x[i] - x[j]);
+            x[i] = x[i] % p[i];
+            if (x[i] < 0) x[i] += p[i];
+          }
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        for i in range(0, k):
+            x[i] = a[i]
+            for j in range(0, i):
+                x[i] = r[j][i] * (x[i] - x[j])
+                x[i] = x[i] % p[i]
+                if (x[i] < 0):
+                    x[i] = x[i] + p[i]
+        ```
 
 该算法的时间复杂度为 $O(k^2)$。实际上 Garner 算法并不要求模数为质数，只要求模数两两互质，我们有如下伪代码：
 

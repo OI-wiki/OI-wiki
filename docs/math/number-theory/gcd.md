@@ -40,77 +40,85 @@
 
 #### 实现
 
-```cpp
-// C / C++ Version 1
-int gcd(int a, int b) {
-  if (b == 0) return a;
-  return gcd(b, a % b);
-}
+=== "C++"
 
-// C / C++ Version 2
-int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
-```
+    ```cpp
+    // Version 1
+    int gcd(int a, int b) {
+      if (b == 0) return a;
+      return gcd(b, a % b);
+    }
 
-另外，对于 C++14，我们可以使用自带的 ` __gcd(a,b)` 函数来求最大公约数。而对于 C++ 17，我们可以使用 [`<numeric>`](https://en.cppreference.com/w/cpp/header/numeric) 头中的 [`std::gcd`](https://en.cppreference.com/w/cpp/numeric/gcd) 与 [`std::lcm`](https://en.cppreference.com/w/cpp/numeric/lcm) 来求最大公约数和最小公倍数。
+    // Version 2
+    int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
+    ```
 
-```java
-// Java Version 1
-public int gcd(int a, int b) {
-    if (b == 0) return a;
-    return gcd(b, a % b);
-}
+=== "Java"
 
-// Java Version 2
-public int gcd(int a, int b) {
-    return b == 0 ? a : gcd(b, a % b);
-}
-```
+    ```java
+    // Version 1
+    public int gcd(int a, int b) {
+        if (b == 0) return a;
+        return gcd(b, a % b);
+    }
 
-```python
-# Python Version
-def gcd(a, b):
-    if b == 0:
-        return a
-    return gcd(b, a % b)
-```
+    // Version 2
+    public int gcd(int a, int b) {
+        return b == 0 ? a : gcd(b, a % b);
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def gcd(a, b):
+        if b == 0:
+            return a
+        return gcd(b, a % b)
+    ```
 
 递归至 `b == 0`（即上一步的 `a % b == 0`) 的情况再返回值即可。
 
 根据上述递归求法，我们也可以写出一个迭代求法：
 
-```cpp
-// C / C++ Version
-int gcd(int a, int b) {
-  while (b != 0) {
-    int tmp = a;
-    a = b;
-    b = tmp % b;
-  }
-  return a;
-}
-```
+=== "C++"
 
-```java
-// Java Version
-public int gcd(int a, int b) {
-    while(b != 0) {
+    ```cpp
+    int gcd(int a, int b) {
+      while (b != 0) {
         int tmp = a;
         a = b;
         b = tmp % b;
+      }
+      return a;
     }
-    return a;
-}
-```
+    ```
 
-```python
-# Python Version
-def gcd(a, b):
-    while b != 0:
-        a, b = b, a % b
-    return a
-```
+=== "Java"
+
+    ```java
+    public int gcd(int a, int b) {
+        while(b != 0) {
+            int tmp = a;
+            a = b;
+            b = tmp % b;
+        }
+        return a;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def gcd(a, b):
+        while b != 0:
+            a, b = b, a % b
+        return a
+    ```
 
 上述算法都可被称作欧几里得算法（Euclidean algorithm）。
+
+另外，对于 C++14，我们可以使用自带的 ` __gcd(a,b)` 函数来求最大公约数。而对于 C++ 17，我们可以使用 [`<numeric>`](https://en.cppreference.com/w/cpp/header/numeric) 头中的 [`std::gcd`](https://en.cppreference.com/w/cpp/numeric/gcd) 与 [`std::lcm`](https://en.cppreference.com/w/cpp/numeric/lcm) 来求最大公约数和最小公倍数。
 
 如果两个数 $a$ 和 $b$ 满足 $\gcd(a, b) = 1$，我们称 $a$ 和 $b$ 互质。
 
@@ -194,30 +202,32 @@ $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\fra
 
 ### 实现
 
-```cpp
-// C++ Version
-int Exgcd(int a, int b, int &x, int &y) {
-  if (!b) {
-    x = 1;
-    y = 0;
-    return a;
-  }
-  int d = Exgcd(b, a % b, x, y);
-  int t = x;
-  x = y;
-  y = t - (a / b) * y;
-  return d;
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def Exgcd(a, b):
-    if b == 0:
-        return a, 1, 0
-    d, x, y = Exgcd(b, a % b)
-    return d, y, x - (a // b) * y
-```
+    ```cpp
+    int Exgcd(int a, int b, int &x, int &y) {
+      if (!b) {
+        x = 1;
+        y = 0;
+        return a;
+      }
+      int d = Exgcd(b, a % b, x, y);
+      int t = x;
+      x = y;
+      y = t - (a / b) * y;
+      return d;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def Exgcd(a, b):
+        if b == 0:
+            return a, 1, 0
+        d, x, y = Exgcd(b, a % b)
+        return d, y, x - (a // b) * y
+    ```
 
 函数返回的值为 $\gcd$，在这个过程中计算 $x,y$ 即可。
 

@@ -63,41 +63,39 @@ $$
 \end{array}
 $$
 
-### C++
+=== "C++"
 
-```cpp
-// C++ Version
-const int N = 100010;
-const int W = 100010;
+    ```cpp
+    const int N = 100010;
+    const int W = 100010;
 
-int n, w, a[N], cnt[W], b[N];
+    int n, w, a[N], cnt[W], b[N];
 
-void counting_sort() {
-  memset(cnt, 0, sizeof(cnt));
-  for (int i = 1; i <= n; ++i) ++cnt[a[i]];
-  for (int i = 1; i <= w; ++i) cnt[i] += cnt[i - 1];
-  for (int i = n; i >= 1; --i) b[cnt[a[i]]--] = a[i];
-}
-```
+    void counting_sort() {
+        memset(cnt, 0, sizeof(cnt));
+        for (int i = 1; i <= n; ++i) ++cnt[a[i]];
+        for (int i = 1; i <= w; ++i) cnt[i] += cnt[i - 1];
+        for (int i = n; i >= 1; --i) b[cnt[a[i]]--] = a[i];
+    }
+    ```
 
-### Python
+=== "Python"
 
-```python
-# Python Version
-N = W = 100010
-n = w = 0
-a = b = [0] * N
-cnt = [0] * W
+    ```python
+    N = W = 100010
+    n = w = 0
+    a = b = [0] * N
+    cnt = [0] * W
 
-def counting_sort():
-    for i in range(1, n + 1):
-        cnt[a[i]] += 1
-    for i in range(1, w + 1):
-        cnt[i] += cnt[i - 1]
-    for i in range(n, 0, -1):
-        b[cnt[a[i]] - 1] = a[i]
-        cnt[a[i]] -= 1
-```
+    def counting_sort():
+        for i in range(1, n + 1):
+            cnt[a[i]] += 1
+        for i in range(1, w + 1):
+            cnt[i] += cnt[i - 1]
+        for i in range(n, 0, -1):
+            b[cnt[a[i]] - 1] = a[i]
+            cnt[a[i]] -= 1
+    ```
 
 ## 参考资料与注释
 
