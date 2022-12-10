@@ -271,7 +271,7 @@
     
     ??? mdui-shadow-6 "参考代码"
         ```cpp
-         --8<-- "docs/graph/code/block-forest/block-forest_1.cpp"
+        --8<-- "docs/graph/code/block-forest/block-forest_1.cpp"
         ```
     
     顺带一提，刚刚的测试用例在这题的答案是 $212$。
@@ -301,7 +301,7 @@
     
     ??? mdui-shadow-6 "参考代码"
         ```cpp
-          --8<-- "docs/graph/code/block-forest/block-forest_2.cpp"
+        --8<-- "docs/graph/code/block-forest/block-forest_2.cpp"
         ```
 
 ???+note "[「SDOI2018」战略游戏](https://loj.ac/p/2562)"
@@ -326,7 +326,7 @@
     
     ??? mdui-shadow-6 "参考代码"
         ```cpp
-          --8<-- "docs/graph/code/block-forest/block-forest_3.cpp"
+        --8<-- "docs/graph/code/block-forest/block-forest_3.cpp"
         ```
 
 ## 外部链接

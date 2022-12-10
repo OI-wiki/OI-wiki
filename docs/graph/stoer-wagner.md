@@ -107,7 +107,7 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
 
 ??? note "[P5632 【模板】Stoer-Wagner算法](https://www.luogu.com.cn/problem/P5632)"
     ```cpp
-      --8<-- "docs/graph/code/stoer-wagner/stoer-wagner_1.cpp"
+    --8<-- "docs/graph/code/stoer-wagner/stoer-wagner_1.cpp"
     ```
 
 * * *

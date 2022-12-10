@@ -32,7 +32,7 @@ author: Ir1d, Anguei, hsfzLZH1
 
 ??? note "参考代码"
     ```cpp
-      --8<-- "docs/graph/code/diff-constraints/diff-constraints_1.cpp"
+    --8<-- "docs/graph/code/diff-constraints/diff-constraints_1.cpp"
     ```
 
 ### 例题 [P4926\[1007\]倍杀测量者](https://www.luogu.com.cn/problem/P4926)
