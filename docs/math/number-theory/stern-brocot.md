@@ -99,7 +99,7 @@ $$
 
 <figure><img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Stern-brocot-index.svg" width="500px"/></figure>
 
-在这种索引中，连分数表示规定了有理数的**游程长度编码**（run-length encoding）。
+在这种索引中，连分数表示规定了有理数的 **游程长度编码**（run-length encoding）。
 
 对于 $\frac{5}{2} = [2;2] = [2;1,1]$，其索引为 $1011_2$，其游程长度编码（考虑按升序排列的位）为 $[2;1,1]$。
 
@@ -159,12 +159,14 @@ def find(x, y, a = 0, b = 1, c = 1, d = 0):
 ```
 
 #### 例题
+
 !!! 例题 "比较连分数的大小"
     对于 $A=[a_0; a_1, \dots, a_n]$ 和 $B=[b_0; b_1, \dots, b_m]$，哪个分数更小？
+
 ??? "解答"
     假设 $A$ 和 $B$ 是无理数，它们的连分数表示是 Stern-Brocot 树中的无限下降。
     
-    正如已经提到的，在这个表示中，$a_0$ 表示下降中右转的次数，$a_1$ 表示随后左转的次数，依此类推。因此，当比较 $a_k$ 和 $b_k$ 时，如果 $a_k=b_k$，应该继续比较$a_{k+1}$和$b_{k+1}$。否则，如果在右下降，应该检查是否 $a_k<b_k$；如果在左下降，应检查 $a_k>b_k$，以判断 $a<b$。
+    正如已经提到的，在这个表示中，$a_0$ 表示下降中右转的次数，$a_1$ 表示随后左转的次数，依此类推。因此，当比较 $a_k$ 和 $b_k$ 时，如果 $a_k=b_k$，应该继续比较 $a_{k+1}$ 和 $b_{k+1}$。否则，如果在右下降，应该检查是否 $a_k<b_k$；如果在左下降，应检查 $a_k>b_k$，以判断 $a<b$。
     
     换言之，对于无理数 $A$ 和 $B$，当且仅当字典序（lexicographical comparison）有 $(a_0, -a_1, a_2, -a_3, \dots) < (b_0, -b_1, b_2, -b_3, \dots)$ 时，将是 $A<B$。
     
@@ -172,20 +174,21 @@ def find(x, y, a = 0, b = 1, c = 1, d = 0):
     
     哪一个对应于 $A-\varepsilon$，哪一个对应于 $A+\varepsilon$，可以通过 $n$ 的奇偶性或通过将它们作为无理数进行比较来确定。
     === "Python"
+    
         ```py
         # check if a < b assuming that a[-1] = b[-1] = infty and a != b
         def less(a, b):
             a = [(-1)**i*a[i] for i in range(len(a))]
             b = [(-1)**i*b[i] for i in range(len(b))]
             return a < b
-
+    
         # [a0; a1, ..., ak] -> [a0, a1, ..., ak-1, 1]
         def expand(a):
             if a: # empty a = inf
                 a[-1] -= 1
                 a.append(1)
             return a
-
+    
         # return a-eps, a+eps
         def pm_eps(a):
             b = expand(a.copy())
@@ -196,6 +199,7 @@ def find(x, y, a = 0, b = 1, c = 1, d = 0):
 
 !!! 例题 "最佳内点"
     对于 $\frac{0}{1} \leq \frac{p_0}{q_0} < \frac{p_1}{q_1} \leq \frac{1}{0}$，找到有理数 $\frac{p}{q}$ 使得 $(q; p)$ 在字典序最小，并且 $\frac{p_0}{q_0} < \frac{p}{q} < \frac{p_1}{q_1}$。
+
 ??? "解答"
     就 Stern-Brocot 树而言，这意味着需要找到 $\frac{p_0}{q_0}$ 和 $\frac{p_1}{q_1}$ 的 LCA。由于 Stern-Brocot 树和连分数之间的联系，该 LCA 将大致对应于 $\frac{p_0}{q_0}$ 和 $\frac{p_1}{q_1}$ 的连分数表示的最大公共前缀。
     
@@ -203,6 +207,7 @@ def find(x, y, a = 0, b = 1, c = 1, d = 0):
     
     对于有理数 $r_0$ 和 $r_1$，其中之一可能是 LCA 本身，这需要对其进行讨论。为了简化有理数 $r_0$ 和 $r_1$ 的解决方案，可以使用前面问题中导出的 $r_0 + \varepsilon$ 和 $r_1 - \varepsilon$ 的连分数表示。
     === "Python"
+    
         ```py
         # finds lexicographically smallest (q, p)
         # such that p0/q0 < p/q < p1/q1
@@ -223,6 +228,7 @@ def find(x, y, a = 0, b = 1, c = 1, d = 0):
     您得到 $N$ 个正整数对 $(C_i, J_i)$。您需要找到一个正整数对 $(x, y)$，这样 $C_i x + J_i y$ 就是一个严格递增的序列。
     
     在这类配对中，找到词典中最小的一对。
+
 ??? "解答"
     重新表述语句，$A_i x + B_i y$ 对于所有 $i$ 都必须为正，其中 $A_i = C_i - C_{i-1}$，$B_i = J_i - J_{i-1}$。
     
@@ -230,13 +236,14 @@ def find(x, y, a = 0, b = 1, c = 1, d = 0):
     
     1. $A_i, B_i > 0$ 可以忽略，因为正在查找 $x, y > 0$。
     2. $A_i, B_i \leq 0$ 将提供“IMPOSSIBLE”作为答案。
-    3. $A_i > 0$, $B_i \leq 0$。这样的约束相当于 $\frac{y}{x} < \frac{A_i}{-B_i}$。
-    4. $A_i \leq 0$, $B_i > 0$。这样的约束相当于 $\frac{y}{x} > \frac{-A_i}{B_i}$。
+    3. $A_i > 0$,$B_i \leq 0$。这样的约束相当于 $\frac{y}{x} < \frac{A_i}{-B_i}$。
+    4. $A_i \leq 0$,$B_i > 0$。这样的约束相当于 $\frac{y}{x} > \frac{-A_i}{B_i}$。
     
     让 $\frac{p_0}{q_0}$ 是第四组中最大的 $\frac{-A_i}{B_i}$，而 $\frac{p_1}{q_1}$ 则是第三组中最小的 $\frac{A_i}{-B_i}$。
     
     现在的问题是，给定 $\frac{p_0}{q_0} < \frac{p_1}{q_1}$，找到一个分数 $\frac{p}{q}$ 使得 $(q;p)$ 在字典上最小，并且 $\frac{p_0}{q_0} < \frac{p}{q} < \frac{p_1}{q_1}$。
     === "Python"
+    
         ```py
             def solve():
             n = int(input())
@@ -261,10 +268,11 @@ def find(x, y, a = 0, b = 1, c = 1, d = 0):
                             p1, q1 = A, -B
             if p0*q1 >= p1*q0 or fail:
                 return 'IMPOSSIBLE'
-
+    
             p, q = middle(p0, q0, p1, q1)
             return str(q) + ' ' + str(p)
         ```
+
 ### Calkin-Wilf 树
 
 #### 定义
@@ -296,12 +304,12 @@ def find(x, y, a = 0, b = 1, c = 1, d = 0):
 
 相应地，$\frac{p}{q} = [a_0; a_1, \dots, a_k]$ 的子节点为
 
-1. $\frac{p+q}{q}=1+\frac{p}{q}$，即$[a_0+1; a_1, \dots, a_k]$。
+1. $\frac{p+q}{q}=1+\frac{p}{q}$，即 $[a_0+1; a_1, \dots, a_k]$。
 2. $\frac{p}{p+q} = \frac{1}{1+\frac{q}{p}}$，对于 $a_0>0$，它是 $[0, 1, a_0, a_1, \dots, a_k]$；对于 $a_0=0$，则是 $[0, a_1+1, a_2, \dots, a_k]$。
 
 值得注意的是，如果以广度优先搜索顺序枚举 Calkin-Wilf 树的顶点（即，根有一个数字 $1$，而顶点 $v$ 的子节点有相应的索引 $2v$ 和 $2v+1$），Calkin-Welf 树中有理数的索引将与 Stern-Brocot 树中的索引相同。
 
-因此，Stern-Brocot 树和 Calkin-Wilf 树的相同级别上的数字是相同的，但它们的排序通过**位反转排列**（bit-reversal permutation）而不同。
+因此，Stern-Brocot 树和 Calkin-Wilf 树的相同级别上的数字是相同的，但它们的排序通过 **位反转排列**（bit-reversal permutation）而不同。
 
 ## Farey 序列
 
