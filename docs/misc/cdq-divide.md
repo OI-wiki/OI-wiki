@@ -59,7 +59,7 @@ CDQ 分治解决这类问题的算法流程如下：
 
     ??? 示例代码
         ```cpp
-        --8<-- "docs/misc/code/cdq-divide/cdq-divide_5.cpp"
+        --8<-- "docs/misc/code/cdq-divide/cdq-divide_1.cpp"
         ```
 
 * * *
@@ -71,7 +71,7 @@ CDQ 分治解决这类问题的算法流程如下：
     
     ??? 示例代码
         ```cpp
-        --8<-- "docs/misc/code/cdq-divide/cdq-divide_1.cpp"
+        --8<-- "docs/misc/code/cdq-divide/cdq-divide_2.cpp"
         ```
 
 ## CDQ 分治优化 1D/1D 动态规划的转移
@@ -142,7 +142,7 @@ CDQ 分治的递归树如下所示。
     
     ??? 参考代码
         ```cpp
-        --8<-- "docs/misc/code/cdq-divide/cdq-divide_2.cpp"
+        --8<-- "docs/misc/code/cdq-divide/cdq-divide_3.cpp"
         ```
 
 ## 将动态问题转化为静态问题
@@ -198,7 +198,7 @@ CDQ 分治的递归树如下所示。
     
     ??? 参考代码
         ```cpp
-        --8<-- "docs/misc/code/cdq-divide/cdq-divide_3.cpp"
+        --8<-- "docs/misc/code/cdq-divide/cdq-divide_4.cpp"
         ```
 
 * * *
@@ -244,7 +244,7 @@ CDQ 分治的递归树如下所示。
     
     ??? 示例代码
         ```cpp
-        --8<-- "docs/misc/code/cdq-divide/cdq-divide_4.cpp"
+        --8<-- "docs/misc/code/cdq-divide/cdq-divide_5.cpp"
         ```
 
 ## 拓展阅读
