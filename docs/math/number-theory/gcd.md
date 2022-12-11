@@ -41,13 +41,13 @@
 #### 实现
 
 ```cpp
-// C++ Version 1
+// C / C++ Version 1
 int gcd(int a, int b) {
   if (b == 0) return a;
   return gcd(b, a % b);
 }
 
-// C++ Version 2
+// C / C++ Version 2
 int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
 ```
 
@@ -56,13 +56,13 @@ int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
 ```java
 // Java Version 1
 public int gcd(int a, int b) {
-  if (b == 0) return a;
-  return gcd(b, a % b);
+    if (b == 0) return a;
+    return gcd(b, a % b);
 }
 
 // Java Version 2
 public int gcd(int a, int b) {
-  return b == 0 ? a : gcd(b, a % b);
+    return b == 0 ? a : gcd(b, a % b);
 }
 ```
 
@@ -74,9 +74,43 @@ def gcd(a, b):
     return gcd(b, a % b)
 ```
 
-递归至 `b==0`（即上一步的 `a%b==0`) 的情况再返回值即可。
+递归至 `b == 0`（即上一步的 `a % b == 0`) 的情况再返回值即可。
 
-上述算法被称作欧几里得算法（Euclidean algorithm）。
+根据上述递归求法，我们也可以写出一个迭代求法：
+
+```cpp
+// C / C++ Version
+int gcd(int a, int b) {
+  while (b != 0) {
+    int tmp = a;
+    a = b;
+    b = tmp % b;
+  }
+  return a;
+}
+```
+
+```java
+// Java Version
+public int gcd(int a, int b) {
+    while(b != 0) {
+        int tmp = a;
+        a = b;
+        b = tmp % b;
+    }
+    return a;
+}
+```
+
+```python
+# Python Version
+def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+```
+
+上述算法都可被称作欧几里得算法（Euclidean algorithm）。
 
 如果两个数 $a$ 和 $b$ 满足 $\gcd(a, b) = 1$，我们称 $a$ 和 $b$ 互质。
 
@@ -205,6 +239,40 @@ $ax+by=\gcd(a,b)$ 的解有无数个，显然其中有的解会爆 long long。
 
 ### 迭代法编写扩展欧几里得算法
 
+首先，当 $x = 1$，$y = 0$，$x_1 = 0$，$y_1 = 1$ 时，显然有：
+
+$$
+\begin{cases}
+    ax + by     & = a \\
+    ax_1 + by_1 & = b
+\end{cases}
+$$
+
+成立。
+
+已知 $a\bmod b = a - (\lfloor \frac{a}{b} \rfloor \times b)$，下面令 $q = \lfloor \frac{a}{b} \rfloor$。参考迭代法求 gcd，每一轮的迭代过程可以表示为：
+
+$$
+(a, b) \rightarrow (b, a - qb)
+$$
+
+将迭代过程中的 $a$ 替换为 $ax + by = a$，$b$ 替换为 $ax_1 + by_1 = b$，可以得到：
+
+$$
+\begin{aligned}
+                & \begin{cases}
+                      ax + by     & = a \\
+                      ax_1 + by_1 & = b
+                  \end{cases}                    \\
+    \rightarrow & \begin{cases}
+                      ax_1 + by_1               & = b      \\
+                      a(x - qx_1) + b(y - qy_1) & = a - qb
+                  \end{cases}
+\end{aligned}
+$$
+
+据此就可以得到迭代法求 exgcd。
+
 因为迭代的方法避免了递归，所以代码运行速度将比递归代码快一点。
 
 ```cpp
@@ -223,7 +291,7 @@ int gcd(int a, int b, int& x, int& y) {
 
 如果你仔细观察 $a_1$ 和 $b_1$，你会发现，他们在迭代版本的欧几里德算法中取值完全相同，并且以下公式无论何时（在 while 循环之前和每次迭代结束时）都是成立的：$x \cdot a +y \cdot b =a_1$ 和 $x_1 \cdot a +y_1 \cdot b= b_1$。因此，该算法肯定能正确计算出 $\gcd$。
 
-最后我们知道 $a_1$ 就是要求的 $\gcd$，有 $x \cdot a +y \cdot b =g$。
+最后我们知道 $a_1$ 就是要求的 $\gcd$，有 $x \cdot a +y \cdot b = g$。
 
 #### 矩阵的解释
 
