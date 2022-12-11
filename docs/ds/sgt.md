@@ -205,7 +205,6 @@ inline int MyPost(int k, int p) { return MyAt(k, MyUprBd(k, p)); }
     本题 **强制在线**，保证所有操作合法（操作 $2$ 保证存在至少一个 $x$，操作 $4,5,6$ 保证存在答案）。
     
     ??? mdui-shadow-6 "参考代码"
-    
         ```cpp
         --8<-- "docs/ds/code/sgt/sgt_1.cpp"
         ```
