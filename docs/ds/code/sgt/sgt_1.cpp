@@ -82,7 +82,8 @@ void insert(int &i, int v) {
 void remove(int &i, int v) {
   if (!i) return;
   if (t[i].w == v) {
-    if (t[i].cnt > 0) t[i].cnt--, t[i].sz--;
+    if (t[i].cnt > 0) t[i].cnt--;
+    t[i].sz--;
     return;
   }
   if (t[i].w > v)
