@@ -1,6 +1,6 @@
 ## 连分数
 
-**连分数**是实数作为有理数的特定收敛序列的表示。它们在竞争性编程（competitive programming）中很有用，因为它们易于计算，并且可以有效地用于在分母不超过给定值的所有数字中，找到基础实数（underlying real number）的最佳可能有理近似（best possible rational approximation）。
+**连分数** 是实数作为有理数的特定收敛序列的表示。它们在竞争性编程（competitive programming）中很有用，因为它们易于计算，并且可以有效地用于在分母不超过给定值的所有数字中，找到基础实数（underlying real number）的最佳可能有理近似（best possible rational approximation）。
 
 除此之外，连分数与欧几里得算法密切相关，这使得它们在一系列数论问题中非常有用。
 
@@ -35,7 +35,8 @@ $$
     r=a_0 + \frac{1}{a_1 + \frac{1}{\dots + \frac{1}{a_k}}}
     $$
     
-    称为有理数 $r$ 的**连分数表示**，并简短地表示为 $r=[a_0;a_1,a_2,\dots,a_k]$。
+    称为有理数 $r$ 的 **连分数表示**，并简短地表示为 $r=[a_0;a_1,a_2,\dots,a_k]$。
+
 ??? 示例
     设 $r = \frac{5}{3}$。有两种方法可以将其表示为连分数：
     
@@ -75,7 +76,7 @@ $[a_0,a_1,a_2,a_3]=[a_0,a_1,a_2,a_3-1,1]$
     r = a_0 + \frac{1}{a_1 + \frac{1}{a_2+\dots}} = \lim\limits_{k \to \infty} r_k
     $$
     
-    被称为无理数 $r$ 的**连分数表示**，并简短地表示为 $r = [a_0;a_1,a_2,\dots]$。
+    被称为无理数 $r$ 的 **连分数表示**，并简短地表示为 $r = [a_0;a_1,a_2,\dots]$。
 
 注意，对于 $r=[a_0;a_1,\dots]$ 和整数 $k$，有 $r+k = [a_0+k; a_1, \dots]$。
 
@@ -84,17 +85,18 @@ $[a_0,a_1,a_2,a_3]=[a_0,a_1,a_2,a_3-1,1]$
 ## 渐进分数
 
 !!! "定义"
-    在上面的定义中，有理数 $r_0, r_1, r_2, \dots$ 称为 $r$ 的**渐进分数**（convergents，意为“收敛”）。
+    在上面的定义中，有理数 $r_0, r_1, r_2, \dots$ 称为 $r$ 的 **渐进分数**（convergents，意为“收敛”）。
     
     相应地，单个 $r_k = [a_0; a_1, \dots, a_k] = \frac{p_k}{q_k}$ 称为 $r$ 的第 $k$ 个渐进分数。
+
 ??? 示例
-    考虑 $r = [1; 1, 1, 1, \dots]$。可以通过归纳法证明 $r_k = \frac{F_{k+2}}{F_{k+1}}$，其中 $F_k$ 是斐波那契序列，定义为 $F_0 = 0$、$F_1 = 1$ 和 $F_{k} = F_{k-1} + F_{k-2}$。从Binet公式可知
+    考虑 $r = [1; 1, 1, 1, \dots]$。可以通过归纳法证明 $r_k = \frac{F_{k+2}}{F_{k+1}}$，其中 $F_k$ 是斐波那契序列，定义为 $F_0 = 0$、$F_1 = 1$ 和 $F_{k} = F_{k-1} + F_{k-2}$。从 Binet 公式可知
     
     $$
     r_k = \frac{\phi^{k+2} - \psi^{k+2}}{\phi^{k+1} - \psi^{k+1}}
     $$
     
-    其中 $\phi = \frac{1+\sqrt{5}}{2} \approx 1.618$ 是黄金比率， $\psi = \frac{1-\sqrt{5}}{2} = -\frac{1}{\phi} \approx -0.618$。因此
+    其中 $\phi = \frac{1+\sqrt{5}}{2} \approx 1.618$ 是黄金比率，$\psi = \frac{1-\sqrt{5}}{2} = -\frac{1}{\phi} \approx -0.618$。因此
     
     $$
     r = 1+\frac{1}{1+\frac{1}{1+\dots}}=\lim\limits_{k \to \infty} r_k = \phi = \frac{1+\sqrt{5}}{2}.
@@ -105,15 +107,16 @@ $[a_0,a_1,a_2,a_3]=[a_0,a_1,a_2,a_3-1,1]$
     $$
     r = 1+\frac{1}{r} \implies r^2 = r + 1
     $$
+
 !!! "定义"
-    设 $r_k = [a_0; a_1, \dots, a_{k-1}, a_k]$。对于 $1 \leq t \leq a_k$，$[a_0; a_1, \dots, a_{k-1}, t]$称为**中间分数**（semiconvergents，“semi”意为“半”）。
+    设 $r_k = [a_0; a_1, \dots, a_{k-1}, a_k]$。对于 $1 \leq t \leq a_k$，$[a_0; a_1, \dots, a_{k-1}, t]$ 称为 **中间分数**（semiconvergents，“semi”意为“半”）。
     
-    通常将大于 $r$ 的分数称为**上**（upper）渐进分数或中间分数，将小于 $r$ 者称为**下**（lower）渐进分数或中间分数。
+    通常将大于 $r$ 的分数称为 **上**（upper）渐进分数或中间分数，将小于 $r$ 者称为 **下**（lower）渐进分数或中间分数。
 
 ### 余项和部分商
 
 !!! "定义"
-    作为渐进分数的补充，定义**余项**（完全商，complete quotients）为 $s_k = [a_k; a_{k+1}, a_{k+2}, \dots]$。
+    作为渐进分数的补充，定义 **余项**（完全商，complete quotients）为 $s_k = [a_k; a_{k+1}, a_{k+2}, \dots]$。
     
     相应地，将单个 $s_k$ 称为 $r$ 的第 $k$ 个完全商。
 
@@ -176,6 +179,7 @@ $$
 由此，$\frac{p_k}{q_k} = [a_0; a_1, \dots, a_k]$ 的 $\gcd(p_k, q_k) = 1$。因此，渐进分数总是不可约的。
 
 === "C++"
+
     ```cpp
     auto fraction(int p, int q) {
         vector<int> a;
@@ -186,7 +190,9 @@ $$
         return a;
     }
     ```
+
 === "Python"
+
     ```py
     def fraction(p, q):
         a = []
@@ -349,9 +355,9 @@ $$
     从上面的循环可以看出，$q_k$ 的增长速度至少与斐波那契数一样快。
     
     在下图中可以看到收敛 $r_k$ 渐进分数 $r=\frac{1+\sqrt 5}{2}$ 的可视化：
-
+    
     ![](https://upload.wikimedia.org/wikipedia/commons/b/b4/Golden_ration_convergents.svg)
-
+    
     无理数 $r=\frac{1+\sqrt 5}{2}$ 由蓝色虚线表示。奇数渐进分数从上面接近它，偶数渐进分数从下面接近它。
 
 实数 x 也可以写成：
@@ -408,13 +414,13 @@ $$
 
 继续看前面定义的渐近分数。对于 $r=[a_0, a_1, a_2, \dots]$，其渐近分数为
 
-\begin{gather}
-r_0=[a_0],\\r_1=[a_0, a_1],\\ \dots,\\ r_k=[a_0, a_1, \dots, a_k].
-\end{gather}
+\\begin{gather}
+r_0=[a_0],\\r_1=[a_0, a_1],\\\\dots,\\r_k=[a_0, a_1, \dots, a_k].
+\\end{gather}
 
 渐近分数是连分数的核心概念，因此研究它们的性质很重要。
 
-对于数字 $r$，其第$k$个渐近分数 $r_k = \frac{p_k}{q_k}$ 可以计算为
+对于数字 $r$，其第 $k$ 个渐近分数 $r_k = \frac{p_k}{q_k}$ 可以计算为
 
 $$
 r_k = \frac{P_k(a_0,a_1,\dots,a_k)}{P_{k-1}(a_1,\dots,a_k)} = \frac{a_k p_{k-1} + p_{k-2}}{a_k q_{k-1} + q_{k-2}}
@@ -432,7 +438,7 @@ x_k & 1 & 0 & \dots & 0 \\
 \end{bmatrix}_{\textstyle .}
 $$
 
-因此，$r_k$是 $r_{k-1}$ 和 $r_{k-2}$ 的加权中间值（mediant）。
+因此，$r_k$ 是 $r_{k-1}$ 和 $r_{k-2}$ 的加权中间值（mediant）。
 
 为了一致性，定义了两个额外的渐近分数 $r_{-1} = \frac{1}{0}$ 和 $r_{-2} = \frac{0}{1}$。
 
@@ -498,6 +504,7 @@ $$
 把渐进分数计算为一对序列 $p_{-2}, p_{-1}, p_0, p_1, \dots, p_k$ 和 $q_{-2}, q_{-1}, q_0, q_1, \dots, q_k$：
 
 === "C++"
+
     ```cpp
     auto convergents(vector<int> a) {
         vector<int> p = {0, 1};
@@ -509,7 +516,9 @@ $$
         return make_pair(p, q);
     }
     ```
+
 === "Python"
+
     ```py
     def convergents(a):
         p = [0, 1]
@@ -613,8 +622,10 @@ $$
     $$
     \left|r-\frac{p_k}{q_k}\right| \leq \frac{1}{q_k q_{k+1}} \leq \frac{1}{q_k^2}
     $$
+
 !!! 例题 "扩展欧几里得"
     您将获得 $A, B, C \in \mathbb Z$。查找 $x, y \in \mathbb Z$，使 $Ax + By = C$.
+
 ??? "解答"
     虽然这个问题通常是用扩展欧几里得算法解决的，但有一个简单而直接的连分数的解决方案。
     
@@ -626,6 +637,7 @@ $$
     
     其中 $g = \gcd(A, B)$。如果 $C$ 可被 $g$ 整除，则解为 $x = (-1)^{k-1}\frac{C}{g} q_{k-1}$ 和 $y = (-1)^{k}\frac{C}{g} p_{k-1}$。
     === "Python"
+    
         ```py
         # return (x, y) such that Ax+By=C
         # assumes that such (x, y) exists
@@ -641,7 +653,7 @@ $$
 连分数的另一个重要概念是所谓的线性分式变换（Linear fractional transformations）。
 
 !!! "定义"
-    **线性分式变换**是一个函数 $f : \mathbb R \to \mathbb R$，使得 $f(x) = \frac{ax+b}{cx+d}$ 对于一些 $a,b,c,d \in \mathbb R$。
+    **线性分式变换** 是一个函数 $f : \mathbb R \to \mathbb R$，使得 $f(x) = \frac{ax+b}{cx+d}$ 对于一些 $a,b,c,d \in \mathbb R$。
 
 线性分式变换 $L_0(x)=\frac{a_0 x + b_0}{c_0 x + d_0}$ 和 $L_1(x)=\frac{a_1 x + b_1}{c_1 x + d_1}$ 的组合 $(L_0 \circ L_1)(x) = L_0(L_1(x))$ 也是线性分式变换：
 
@@ -657,6 +669,7 @@ $$
 
 !!! "[DMOPC '19 Contest 7 P4 - Bob and Continued Fractions](https://dmoj.ca/problem/dmopc19c7p4)"
     给您一个正整数数组 $a_1, \dots, a_n$。您需要回答 $m$ 查询。每个查询都要计算 $[a_l; a_{l+1}, \dots, a_r]$。
+
 ??? "解答"
     如果能够连接连分数，则可以用线段树来解决这个问题。
     
@@ -675,14 +688,16 @@ $$
     $$
     
     变换的组合是关联的，因此可以在线段树的每个节点中计算其子树中变换的组合。
+
 !!! 例题 "连分数的线性分式变换"
     设 $L(x) = \frac{ax+b}{cx+d}$。对于 $A=[a_0; a_1, \dots, a_n]$，计算 $L(A)$ 的连分数表示 $[b_0; b_1, \dots, b_m]$。
     
     从而，对任意的 $\frac{p}{q}$，可以计算 $A + \frac{p}{q} = \frac{qA + p}{q}$ 和 $A \cdot \frac{p}{q} = \frac{p A}{q}$。
+
 ??? "解答"
     如上所述，$[a_0; a_1, \dots, a_k] = (L_{a_0} \circ L_{a_1} \circ \dots \circ L_{a_k})(\infty)$，因此 $L([a_0; a_1, \dots, a_k]) = (L \circ L_{a_0} \circ L_{a_1} \circ \dots L_{a_k})(\infty)$。
     
-    因此，通过依次添加 $L_{a_0}$, $L_{a_1}$ 等，可以计算
+    因此，通过依次添加 $L_{a_0}$,$L_{a_1}$ 等，可以计算
     
     $$
     (L \circ L_{a_0} \circ \dots \circ L_{a_k})(x) = L\left(\frac{p_k x + p_{k-1}}{q_k x + q_{k-1}}\right)=\frac{a_k x + b_k}{c_k x + d_k}
@@ -690,12 +705,13 @@ $$
     
     由于 $L(x)$ 是可逆的，因此在 $x$ 中也是单调的。因此，对于任何 $x \geq 0$，都有 $L(\frac{p_k x + p_{k-1}}{q_k x + q_{k-1}})$ 介于 $L(\frac{p_k}{q_k}) = \frac{a_k}{c_k}$ 和 $L(\frac{p_{k-1}}{q_{k-1}}) = \frac{b_k}{d_k}$ 之间。
     
-    此外，对于 $x=[a_{k+1}; \dots, a_n]$，它等于 $L(A)$。因此， $b_0 = \lfloor L(A) \rfloor$ 介于 $\lfloor L(\frac{p_k}{q_k}) \rfloor$ 和 $\lfloor L(\frac{p_{k-1}}{q_{k-1}}) \rfloor$ 之间。当它们相等时，它们也等于 $b_0$。
+    此外，对于 $x=[a_{k+1}; \dots, a_n]$，它等于 $L(A)$。因此，$b_0 = \lfloor L(A) \rfloor$ 介于 $\lfloor L(\frac{p_k}{q_k}) \rfloor$ 和 $\lfloor L(\frac{p_{k-1}}{q_{k-1}}) \rfloor$ 之间。当它们相等时，它们也等于 $b_0$。
     
     请注意，$L(A) = (L_{b_0} \circ L_{b_1} \circ \dots \circ L_{b_m})(\infty)$。知道 $b_0$ 后，可以用当前变换合成 $L_{b_0}^{-1}$，并继续添加 $L_{a_{k+1}}$、$L_{a_{k+2}}$ 等，寻找新的下界（floor）以达成一致，从中可以推断 $b_1$ 等，直到恢复 $[b_0; b_1, \dots, b_m]$ 的所有值。
 
 !!! 例题 "连分数算法"
     Let $A=[a_0; a_1, \dots, a_n]$ and $B=[b_0; b_1, \dots, b_m]$. Compute the continued fraction representations of $A+B$ and $A \cdot B$.
+
 ??? "解答"
     这里的想法与前面的问题类似，但不应使用 $L(x) = \frac{ax+b}{cx+d}$，而应考虑双线性分数变换 $L(x, y) = \frac{axy+bx+cy+d}{exy+fx+gy+h}$。
     
@@ -716,9 +732,9 @@ $$
 ## 纯循环连分数
 
 !!! "定义"
-    如果存在 $k$ 使得 $x = [a_0; a_1, \dots, a_k, x]$，则连分数 $x = [a_0; a_1, \dots]$ 被称为**纯循环**（periodic）。
+    如果存在 $k$ 使得 $x = [a_0; a_1, \dots, a_k, x]$，则连分数 $x = [a_0; a_1, \dots]$ 被称为 **纯循环**（periodic）。
     
-    如果 $x = [a_0; a_1, \dots, a_k, y]$，其中 $y$ 是纯循环，则连分数 $x = [a_0; a_1, \dots]$ 被称为**混循环**（eventually periodic）。
+    如果 $x = [a_0; a_1, \dots, a_k, y]$，其中 $y$ 是纯循环，则连分数 $x = [a_0; a_1, \dots]$ 被称为 **混循环**（eventually periodic）。
 
 例如纯循环连分数：
 
@@ -797,6 +813,7 @@ $$
 
 !!! 例题 "二次有理数"
     找到 $\alpha = \frac{x+y\sqrt{n}}{z}$ 的连分数，其中 $x, y, z, n \in \mathbb Z$ 和 $n > 0$ 不是完全平方。
+
 ??? "解答"
     对于数字的第 $k$ 个完全商 $s_k$，通常认为
     
@@ -826,14 +843,15 @@ $$
     
     因此，如果表示 $t_k = x_k - y_k a_k$，将有
     
-    \begin{align}
-    x_{k+1} &=& z_k t_k, \\ y_{k+1} &=& -y_k z_k, \\ z_{k+1} &=& t_k^2 - y_k^2 n
-    \end{align}
+    \\begin{align}
+    x*{k+1} &=& z_k t_k,\\y*{k+1} &=& -y*k z_k,\\z*{k+1} &=& t_k^2 - y_k^2 n
+    \\end{align}
     
     这种表示法的优点在于，如果将 $x_{k+1}, y_{k+1}, z_{k+1}$ 减去它们的最大公约数，结果将是唯一的。因此，可以使用它来检查当前状态是否已经重复，以及检查具有此状态的上一个索引的位置。
     
     下面是计算 $\alpha = \sqrt n$ 的连分数表示的代码：
     === "Python"
+    
         ```py
         # compute the continued fraction of sqrt(n)
         def sqrt(n):
@@ -846,7 +864,7 @@ $$
                 x, y, z = z*t, -z*y, t**2 - n*x**2
                 g = math.gcd(x, math.gcd(y, z))
                 return x // g, y // g, z // g
-
+    
             used = dict()
             for i in range(n):
                 used[x, y, z] = i
@@ -855,7 +873,7 @@ $$
                     return a
         ```
     
-    使用相同的“step”函数，但不同的初始 $x$, $y$ 和 $z$，可以计算任意 $\frac{x+y \sqrt{n}}{z}$。
+    使用相同的“step”函数，但不同的初始 $x$,$y$ 和 $z$，可以计算任意 $\frac{x+y \sqrt{n}}{z}$。
 
 ### 伽罗瓦连分数定理
 
@@ -994,38 +1012,40 @@ $$
 在后面的 Pell 方程一节中将指出，在根号 $d$ 的连分数中，循环节 $l$ 的奇偶性，将直接决定 Pell 方程中的 $-1$ 形式是否有解。
 
 !!! "[Tavrida NU Akai Contest - Continued Fraction](https://timus.online/problem.aspx?space=1&num=1814)"
-    你得到了 $x$ 和 $k$, $x$ 不是一个完全平方数。让 $\sqrt x = [a_0; a_1, \dots]$，找到 $\frac{p_k}{q_k}=[a_0; a_1, \dots, a_k]$ 的 $0 \leq k \leq 10^9$。
+    你得到了 $x$ 和 $k$,$x$ 不是一个完全平方数。让 $\sqrt x = [a_0; a_1, \dots]$，找到 $\frac{p_k}{q_k}=[a_0; a_1, \dots, a_k]$ 的 $0 \leq k \leq 10^9$。
+
 ??? "解答"
-    在计算完 $\sqrt x$ 的周期后，可以使用连分数表示引起的线性分数变换上的二进制幂来计算 $a_k$ 。要查找结果转换，请将大小为 $T$ 的周期压缩为单个转换，并将其重复 $\lfloor \frac{k-1}{T}\rfloor$ 次，然后手动将其与其余转换组合。
+    在计算完 $\sqrt x$ 的周期后，可以使用连分数表示引起的线性分数变换上的二进制幂来计算 $a_k$。要查找结果转换，请将大小为 $T$ 的周期压缩为单个转换，并将其重复 $\lfloor \frac{k-1}{T}\rfloor$ 次，然后手动将其与其余转换组合。
     === "Python"
+    
         ```py
         x, k = map(int, input().split())
-
+    
         mod = 10**9+7
-        
+    
         # compose (A[0]*x + A[1]) / (A[2]*x + A[3]) and (B[0]*x + B[1]) / (B[2]*x + B[3])
         def combine(A, B):
             return [t % mod for t in [A[0]*B[0]+A[1]*B[2], A[0]*B[1]+A[1]*B[3], A[2]*B[0]+A[3]*B[2], A[2]*B[1]+A[3]*B[3]]]
-
+    
         A = [1, 0, 0, 1] # (x + 0) / (0*x + 1) = x
-
+    
         a = sqrt(x)
-
+    
         T = len(a) - 1 # period of a
-
+    
         # apply ak + 1/x = (ak*x+1)/(1x+0) to (Ax + B) / (Cx + D)
         for i in reversed(range(1, len(a))):
             A = combine([a[i], 1, 1, 0], A)
-
+    
         def bpow(A, n):
             return [1, 0, 0, 1] if not n else combine(A, bpow(A, n-1)) if n % 2 else bpow(combine(A, A), n // 2)
-
+    
         C = (0, 1, 0, 0) # = 1 / 0
         while k % T:
             i = k % T
             C = combine([a[i], 1, 1, 0], C)
             k -= 1
-
+    
         C = combine(bpow(A, k // T), C)
         C = combine([a[0], 1, 1, 0], C)
         print(str(C[1]) + '/' + str(C[3]))
@@ -1083,6 +1103,7 @@ $$
     $$
     s_k = -\frac{\vec r_{k-2} \times \vec r}{\vec r_{k-1} \times \vec r}
     $$
+
 !!! 例题 "鼻子拉伸算法"
     每次将 $\vec r_{k-1}$ 添加到向量 $\vec p$ 时，$\vec p \times \vec r$ 的值都会增加 $\vec r_{k-1} \times \vec r$。
     
@@ -1099,7 +1120,7 @@ $$
     
     此过程生成接近直线的指数较长的向量。
     
-    对于这一特性，Boris Delaunay将生成结果收敛向量的过程称为**鼻子拉伸算法**（Nose stretching algorithm）。
+    对于这一特性，Boris Delaunay 将生成结果收敛向量的过程称为 **鼻子拉伸算法**（Nose stretching algorithm）。
 
 如果观察在点 $\vec r_{k-2}$、$\vec r_{k}$ 和 $\vec 0$ 上绘制的三角形，会注意到它的加倍面积是
 
@@ -1112,7 +1133,7 @@ $$
 这反过来意味着，具有奇数系数的 $\vec r_k$ 形成了线 $y=rx$ 上方 $x \geq 0$ 的格点凸包，而具有偶数系数的 $\vec r_k$ 形成线 $y=rx$ 下方 $x > 0$ 的格点凸包。
 
 !!! "定义"
-    这些多边形也被称为**克莱因多边形**（Klein polygons），以费利克斯·克莱因（Felix Klein）的名字命名，他首次提出了对连续分数的几何解释。
+    这些多边形也被称为 **克莱因多边形**（Klein polygons），以费利克斯·克莱因（Felix Klein）的名字命名，他首次提出了对连续分数的几何解释。
 
 ## 例题
 
@@ -1120,12 +1141,13 @@ $$
 
 !!! 例题 "线下凸包"
     找到格点 $(x;y)$ 的凸包，使得 $r=[a_0;a_1,\dots,a_k]=\frac{p_k}{q_k}$ 的 $0 \leq x \leq N$ 和 $0 \leq y \leq rx$。
+
 ??? "解答"
     如果我们考虑无界集合 $0 \leq x$，则上凸包将由线 $y=rx$ 本身给出。
     
     然而，在附加约束 $x \leq N$ 的情况下，最终需要偏离直线以保持适当的凸包。
     
-    设 $t = \lfloor \frac{N}{q_k}\rfloor$，则对于整数 $1 \leq \alpha \leq t$ ，在 $(0;0)$ 之后的外壳上的第一个 $t$ 格点是 $\alpha \cdot (q_k; p_k)$。
+    设 $t = \lfloor \frac{N}{q_k}\rfloor$，则对于整数 $1 \leq \alpha \leq t$，在 $(0;0)$ 之后的外壳上的第一个 $t$ 格点是 $\alpha \cdot (q_k; p_k)$。
     
     然而，$(t+1)(q_k; p_k)$ 不能是下一个格点，因为 $(t+1)q_k$ 大于 $N$。
     
@@ -1148,6 +1170,7 @@ $$
     
     现在，可以将 $(\Delta x; \Delta y)$ 添加到 $(x;y)$ 中 $k = \lfloor \frac{N-x}{\Delta x} \rfloor$ 次，然后再超过 $N$，之后将尝试下一个中间分数。
     === "C++"
+    
         ```cpp
         // returns [ah, ph, qh] such that points r[i]=(ph[i], qh[i]) constitute upper convex hull
         // of lattice points on 0 <= x <= N and 0 <= y <= r * x, where r = [a0; a1, a2, ...]
@@ -1158,7 +1181,7 @@ $$
             vector ah = {t};
             vector ph = {0, t*p.back()};
             vector qh = {0, t*q.back()};
-
+    
             for(int i = q.size() - 1; i >= 0; i--) {
                 if(i % 2) {
                     while(qh.back() + q[i - 1] <= N) {
@@ -1175,7 +1198,9 @@ $$
             return make_tuple(ah, ph, qh);
         }
         ```
+    
     === "Python"
+    
         ```py
         # returns [ah, ph, qh] such that points r[i]=(ph[i], qh[i]) constitute upper convex hull
         # of lattice points on 0 <= x <= N and 0 <= y <= r * x, where r = [a0; a1, a2, ...]
@@ -1198,8 +1223,10 @@ $$
                         qh.append(qh[-1] + k * dq)
             return ah, ph, qh
         ```
+
 !!! "[Timus - Crime and Punishment](https://timus.online/problem.aspx?space=1&num=1430)"
     您将得到整数 $A$、$B$ 和 $N$。查找 $x \geq 0$ 和 $y \geq 0$，使 $Ax + By \leq N$ 和 $Ax + By$ 达到最大值。
+
 ??? "解答"
     在这个问题中有 $1 \leq A, B, N \leq 2 \cdot 10^9$，因此可以用 $O(\sqrt N)$ 来解决。但是，有一个 $O(\log N)$ 解决方案包含连分数。
     
@@ -1209,6 +1236,7 @@ $$
     
     这个问题的核心解决方案思想基本上重复了前面的问题，但不是使用下中间分数来偏离直线，而是使用上中间分数来接近直线，而不跨越直线，也不违反 $x \leq N$。不幸的是，与前一个问题不同，您需要确保在靠近 $y=\frac{Ax+B}{C}$ 线时不会越过该线，因此在计算中间分数的系数 $t$ 时应牢记这一点。
     === "Python"
+    
         ```py
         # (x, y) such that y = (A*x+B) // C,
         # Cy - Ax is max and 0 <= x <= N.
@@ -1234,24 +1262,27 @@ $$
                         qh.append(qh[-1] + k*dq)
                         ph.append(ph[-1] + k*dp)
             return qh[-1], ph[-1]
-
+    
         def solve(A, B, N):
             x, y = closest(A, N % A, B, N // A)
             return N // A - x, y
         ```
+
 !!! "[June Challenge 2017 - Euler Sum](https://www.codechef.com/problems/ES)"
     计算 $\sum\limits_{x=1}^N \lfloor ex \rfloor$，其中 $e = [2; 1, 2, 1, 1, 4, 1, 1, 6, 1, \dots, 1, 2n, 1, \dots]$ 是自然对数的底，$N \leq 10^{4000}$。
+
 ??? "解答"
     此和等于格点 $(x;y)$ 的数量，使得 $1 \leq x \leq N$ 和 $1 \leq y \leq ex$。
     
     在构造了 $y=ex$ 以下的点的凸包之后，可以使用 Pick 定理计算这个数：
     === "C++"
+    
         ```cpp
         // sum floor(k * x) for k in [1, N] and x = [a0; a1, a2, ...]
         int sum_floor(auto a, int N) {
             N++;
             auto [ah, ph, qh] = hull(a, N);
-
+    
             // The number of lattice points within a vertical right trapezoid
             // on points (0; 0) - (0; y1) - (dx; y2) - (dx; 0) that has
             // a+1 integer points on the segment (0; y1) - (dx; y2).
@@ -1260,7 +1291,7 @@ $$
                 int A = (y1 + y2) * dx;
                 return (A - b + 2) / 2 + b - (y2 + 1);
             };
-
+    
             int ans = 0;
             for(size_t i = 1; i < qh.size(); i++) {
                 ans += picks(ph[i - 1], ph[i], qh[i] - qh[i - 1], ah[i - 1]);
@@ -1268,13 +1299,15 @@ $$
             return ans - N;
         }
         ```
+    
     === "Python"
+    
         ```py
         # sum floor(k * x) for k in [1, N] and x = [a0; a1, a2, ...]
         def sum_floor(a, N):
             N += 1
             ah, ph, qh = hull(a, N)
-
+    
             # The number of lattice points within a vertical right trapezoid
             # on points (0; 0) - (0; y1) - (dx; y2) - (dx; 0) that has
             # a+1 integer points on the segment (0; y1) - (dx; y2).
@@ -1282,14 +1315,16 @@ $$
                 b = y1 + y2 + a + dx
                 A = (y1 + y2) * dx
                 return (A - b + 2) // 2 + b - (y2 + 1)
-
+    
             ans = 0
             for i in range(1, len(qh)):
                 ans += picks(ph[i-1], ph[i], qh[i]-qh[i-1], ah[i-1])
             return ans - N
         ``` 
+
 !!! "[NAIPC 2019 - It's a Mod, Mod, Mod, Mod World](https://open.kattis.com/problems/itsamodmodmodmodworld)"
     给定 $p$、$q$ 和 $n$，计算 $\sum\limits_{i=1}^n [p \cdot i \bmod q]$。
+
 ??? "解答"
     如果您注意到 $a \bmod b = a - \lfloor \frac{a}{b} \rfloor b$，则此问题会减少到上一个问题。有了这个事实，总数减少到
     
@@ -1299,18 +1334,23 @@ $$
     
     然而，将 $x$ 从 $1$ 到 $N$ 的 $\lfloor rx \rfloor$ 相加，是我们能够从上一个问题中得出的结果。
     === "C++"
+    
         ```cpp
         void solve(int p, int q, int N) {
             cout << p * N * (N + 1) / 2 - q * sum_floor(fraction(p, q), N) << "\n";
         }
         ```
+    
     === "Python"
+    
         ```py
         def solve(p, q, N):
             return p * N * (N + 1) // 2 - q * sum_floor(fraction(p, q), N)
         ``` 
+
 !!! "[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)"
     给定 $N$、$M$、$A$ 和 $B$，计算 $\sum\limits_{i=0}^{N-1} \lfloor \frac{A \cdot i + B}{M} \rfloor$。
+
 ??? "解答"
     这是迄今为止技术上最麻烦的问题。
     
@@ -1322,6 +1362,7 @@ $$
     
     也就是说，要在 $[0, N-1]$ 上的线 $y=\frac{Ax+B}{M}$ 下方构造全凸包，可以将其构造到与 $[0, N-1]$ 的线最近的点，然后继续，就像该线通过该点一样，重用用于构造 $B=0$ 的凸包的算法：
     === "Python"
+    
         ```py
         # hull of lattice (x, y) such that C*y <= A*x+B
         def hull(A, B, C, N):
@@ -1332,7 +1373,7 @@ $$
             ah = []
             ph = [B // C]
             qh = [0]
-
+    
             def insert(dq, dp):
                 k = (N - qh[-1]) // dq
                 if diff(dq, dp) > 0:
@@ -1340,7 +1381,7 @@ $$
                 ah.append(k)
                 qh.append(qh[-1] + k*dq)
                 ph.append(ph[-1] + k*dp)
-
+    
             for i in range(1, len(q) - 1):
                 if i % 2 == 0:
                     while diff(qh[-1] + q[i+1], ph[-1] + p[i+1]) <= B:
@@ -1350,9 +1391,9 @@ $$
                         if dq < 0 or qh[-1] + dq > N:
                             break
                         insert(dq, dp)
-
+    
             insert(q[-1], p[-1])
-
+    
             for i in reversed(range(len(q))):
                 if i % 2 == 1:
                     while qh[-1] + q[i-1] <= N:
@@ -1362,16 +1403,18 @@ $$
                         insert(dq, dp)
             return ah, ph, qh
         ```
+
 !!! "[OKC 2 - From Modular to Rational](https://codeforces.com/gym/102354/problem/I)"
     有一个有理数 $\frac{p}{q}$，即 $1 \leq p, q \leq 10^9$。您可以询问几个素数 $m$ 的 $p q^{-1}$ 模 $m \sim 10^9$ 的值。恢复 $\frac{p}{q}$。
-
+    
     等效公式：查找提供最小 $Ax \;\bmod\; M$ 的 $x$ 代表 $1 \leq x \leq N$。
+
 ??? "解答"
     根据中国剩余定理，要求结果模化几个素数与要求其模化其乘积是相同的。因此，在不丧失一般性的情况下，假设知道余数模足够大的数 $m$。
     
-    对于给定的余数 $r$，可能有几种可能的解决方案 $(p, q)$ 到 $p \equiv qr \pmod m$ 。然而，如果 $(p_1, q_1)$ 和 $(p_2, q_2)$ 都是解，那么它也认为 $p_1 q_2 \equiv p_2 q_1 \pmod m$。假设 $\frac{p_1}{q_1} \neq \frac{p_2}{q_2}$，则意味着 $|p_1 q_2 - p_2 q_1|$ 至少为 $m$。
+    对于给定的余数 $r$，可能有几种可能的解决方案 $(p, q)$ 到 $p \equiv qr \pmod m$。然而，如果 $(p_1, q_1)$ 和 $(p_2, q_2)$ 都是解，那么它也认为 $p_1 q_2 \equiv p_2 q_1 \pmod m$。假设 $\frac{p_1}{q_1} \neq \frac{p_2}{q_2}$，则意味着 $|p_1 q_2 - p_2 q_1|$ 至少为 $m$。
     
-    题面有 $1 \leq p, q \leq 10^9$，因此，如果 $p_1, q_1$ 和 $p_2, q_2$ 最多都是 $10^9$ 的话，那么差额最多为 $10^{18}$。对于 $m > 10^{18}$ ，这意味着具有 $\frac{p}{q}$ 的解 $1 \leq p, q \leq 10^9$ 作为有理数是唯一的。
+    题面有 $1 \leq p, q \leq 10^9$，因此，如果 $p_1, q_1$ 和 $p_2, q_2$ 最多都是 $10^9$ 的话，那么差额最多为 $10^{18}$。对于 $m > 10^{18}$，这意味着具有 $\frac{p}{q}$ 的解 $1 \leq p, q \leq 10^9$ 作为有理数是唯一的。
     
     因此，问题归结为，给定 $r$ 模 $m$，找到任何 $q$，使得 $1 \leq q \leq 10^9$ 和 $qr \;\bmod\; m \leq 10^9$。
     
@@ -1383,6 +1426,7 @@ $$
     
     就连分数而言，这意味着 $\frac{k}{q}$ 是 $\frac{r}{m}$ 的最佳丢番图近似值，并且仅检查 $\frac{r}{m}$ 的下中间分数就足够了。
     === "Python"
+    
         ```py
         # find Q that minimizes Q*r mod m for 1 <= k <= n < m 
         def mod_min(r, n, m):
@@ -1396,13 +1440,13 @@ $$
 
 ## 习题
 
-* [UVa OJ - Continued Fractions](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=775)
-* [ProjectEuler+ #64: Odd period square roots](https://www.hackerrank.com/contests/projecteuler/challenges/euler064/problem)
-* [Codeforces Round #184 (Div. 2) - Continued Fractions](https://codeforces.com/contest/305/problem/B)
-* [Codeforces Round #201 (Div. 1) - Doodle Jump](https://codeforces.com/contest/346/problem/E)
-* [Codeforces Round #325 (Div. 1) - Alice, Bob, Oranges and Apples](https://codeforces.com/contest/585/problem/C)
-* [POJ Founder Monthly Contest 2008.03.16 - A Modular Arithmetic Challenge](http://poj.org/problem?id=3530)
-* [2019 Multi-University Training Contest 5 - fraction](http://acm.hdu.edu.cn/showproblem.php?pid=6624)
-* [SnackDown 2019 Elimination Round - Election Bait](https://www.codechef.com/SNCKEL19/problems/EBAIT)
+- [UVa OJ - Continued Fractions](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=775)
+- [ProjectEuler+ #64: Odd period square roots](https://www.hackerrank.com/contests/projecteuler/challenges/euler064/problem)
+- [Codeforces Round #184 (Div. 2) - Continued Fractions](https://codeforces.com/contest/305/problem/B)
+- [Codeforces Round #201 (Div. 1) - Doodle Jump](https://codeforces.com/contest/346/problem/E)
+- [Codeforces Round #325 (Div. 1) - Alice, Bob, Oranges and Apples](https://codeforces.com/contest/585/problem/C)
+- [POJ Founder Monthly Contest 2008.03.16 - A Modular Arithmetic Challenge](http://poj.org/problem?id=3530)
+- [2019 Multi-University Training Contest 5 - fraction](http://acm.hdu.edu.cn/showproblem.php?pid=6624)
+- [SnackDown 2019 Elimination Round - Election Bait](https://www.codechef.com/SNCKEL19/problems/EBAIT)
 
 **本页面主要译自博文 [Continued fractions](https://cp-algorithms.com/algebra/continued-fractions.html)，版权协议为 CC-BY-SA 4.0。**
