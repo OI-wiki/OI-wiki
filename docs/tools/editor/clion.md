@@ -6,7 +6,7 @@ CLion 是一款由 JetBrains 公司开发的功能丰富且强大的跨平台 C/
 
 ## 官方教程
 
-[学习Clion](https://www.jetbrains.com/clion/learn/)
+[学习 Clion](https://www.jetbrains.com/clion/learn/)
 
 ## 安装
 
