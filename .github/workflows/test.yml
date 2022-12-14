@@ -4,9 +4,16 @@ on:
   push:
     branches:
       - master
+    paths:
+      - '**.cpp'
+      - '/scripts/test.py'
   pull_request:
     branches:
       - master
+    paths:
+      - '**.cpp'
+      - '/scripts/test.py'
+  workflow_dispatch:
 
 jobs:
   test:
