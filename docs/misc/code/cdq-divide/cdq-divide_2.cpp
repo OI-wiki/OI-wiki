@@ -1,164 +1,119 @@
-// 一道二维最长上升子序列的题
-// 为了确定某一个元素是否在最长上升子序列中可以正反跑两遍 CDQ
+// 仔细推一下就是和三维偏序差不多的式子了，基本就是一个三维偏序的板子
 #include <algorithm>
 #include <cstdio>
 using namespace std;
-typedef double db;
-const int N = 1e6 + 10;
-
-struct data {
-  int h;
-  int v;
-  int p;
-  int ma;
-  db ca;
-} a[2][N];
-
+typedef long long ll;
 int n;
-bool tr;
-
-// 底下是重写比较
-inline bool cmp1(const data& a, const data& b) {
-  if (tr)
-    return a.h > b.h;
-  else
-    return a.h < b.h;
-}
-
-inline bool cmp2(const data& a, const data& b) {
-  if (tr)
-    return a.v > b.v;
-  else
-    return a.v < b.v;
-}
-
-inline bool cmp3(const data& a, const data& b) {
-  if (tr)
-    return a.p < b.p;
-  else
-    return a.p > b.p;
-}
-
-inline bool cmp4(const data& a, const data& b) { return a.v == b.v; }
+int m;
 
 struct treearray {
-  int ma[2 * N];
-  db ca[2 * N];
+  int ta[200010];
 
-  inline void c(int x, int t, db c) {
-    for (; x <= n; x += x & (-x)) {
-      if (ma[x] == t) {
-        ca[x] += c;
-      } else if (ma[x] < t) {
-        ca[x] = c;
-        ma[x] = t;
-      }
-    }
+  inline void ub(int& x) { x += x & (-x); }
+
+  inline void db(int& x) { x -= x & (-x); }
+
+  inline void c(int x, int t) {
+    for (; x <= n + 1; ub(x)) ta[x] += t;
   }
 
-  inline void d(int x) {
-    for (; x <= n; x += x & (-x)) {
-      ma[x] = 0;
-      ca[x] = 0;
-    }
-  }
-
-  inline void q(int x, int& m, db& c) {
-    for (; x > 0; x -= x & (-x)) {
-      if (ma[x] == m) {
-        c += ca[x];
-      } else if (m < ma[x]) {
-        c = ca[x];
-        m = ma[x];
-      }
-    }
+  inline int sum(int x) {
+    int r = 0;
+    for (; x > 0; db(x)) r += ta[x];
+    return r;
   }
 } ta;
 
-int rk[2][N];
+struct data {
+  int val;
+  int del;
+  int ans;
+} a[100010];
 
-inline void solve(int l, int r, int t) {  // 递归跑
+int rv[100010];
+ll res;
+
+bool cmp1(const data& a, const data& b) {
+  return a.val < b.val;
+}  // 重写两个比较
+
+bool cmp2(const data& a, const data& b) { return a.del < b.del; }
+
+void solve(int l, int r) {  // 底下是具体的式子，套用
   if (r - l == 1) {
     return;
   }
   int mid = (l + r) / 2;
-  solve(l, mid, t);
-  sort(a[t] + mid + 1, a[t] + r + 1, cmp1);
-  int p = l + 1;
-  for (int i = mid + 1; i <= r; i++) {
-    for (; (cmp1(a[t][p], a[t][i]) || a[t][p].h == a[t][i].h) && p <= mid;
-         p++) {
-      ta.c(a[t][p].v, a[t][p].ma, a[t][p].ca);
+  solve(l, mid);
+  solve(mid, r);
+  int i = l + 1;
+  int j = mid + 1;
+  while (i <= mid) {
+    while (a[i].val > a[j].val && j <= r) {
+      ta.c(a[j].del, 1);
+      j++;
     }
-    db c = 0;
-    int m = 0;
-    ta.q(a[t][i].v, m, c);
-    if (a[t][i].ma < m + 1) {
-      a[t][i].ma = m + 1;
-      a[t][i].ca = c;
-    } else if (a[t][i].ma == m + 1) {
-      a[t][i].ca += c;
+    a[i].ans += ta.sum(m + 1) - ta.sum(a[i].del);
+    i++;
+  }
+  i = l + 1;
+  j = mid + 1;
+  while (i <= mid) {
+    while (a[i].val > a[j].val && j <= r) {
+      ta.c(a[j].del, -1);
+      j++;
     }
+    i++;
   }
-  for (int i = l + 1; i <= mid; i++) {
-    ta.d(a[t][i].v);
+  i = mid;
+  j = r;
+  while (j > mid) {
+    while (a[j].val < a[i].val && i > l) {
+      ta.c(a[i].del, 1);
+      i--;
+    }
+    a[j].ans += ta.sum(m + 1) - ta.sum(a[j].del);
+    j--;
   }
-  sort(a[t] + mid, a[t] + r + 1, cmp3);
-  solve(mid, r, t);
-  sort(a[t] + l + 1, a[t] + r + 1, cmp1);
+  i = mid;
+  j = r;
+  while (j > mid) {
+    while (a[j].val < a[i].val && i > l) {
+      ta.c(a[i].del, -1);
+      i--;
+    }
+    j--;
+  }
+  sort(a + l + 1, a + r + 1, cmp1);
+  return;
 }
-
-inline void ih(int t) {
-  sort(a[t] + 1, a[t] + n + 1, cmp2);
-  rk[t][1] = 1;
-  for (int i = 2; i <= n; i++) {
-    rk[t][i] = (cmp4(a[t][i], a[t][i - 1])) ? rk[t][i - 1] : i;
-  }
-  for (int i = 1; i <= n; i++) {
-    a[t][i].v = rk[t][i];
-  }
-  sort(a[t] + 1, a[t] + n + 1, cmp3);
-  for (int i = 1; i <= n; i++) {
-    a[t][i].ma = 1;
-    a[t][i].ca = 1;
-  }
-}
-
-int len;
-db ans;
 
 int main() {
-  scanf("%d", &n);
+  scanf("%d%d", &n, &m);
   for (int i = 1; i <= n; i++) {
-    scanf("%d%d", &a[0][i].h, &a[0][i].v);
-    a[0][i].p = i;
-    a[1][i].h = a[0][i].h;
-    a[1][i].v = a[0][i].v;
-    a[1][i].p = i;
+    scanf("%d", &a[i].val);
+    rv[a[i].val] = i;
   }
-  ih(0);
-  solve(0, n, 0);
-  tr = 1;
-  ih(1);
-  solve(0, n, 1);
-  tr = 1;
-  sort(a[0] + 1, a[0] + n + 1, cmp3);
-  sort(a[1] + 1, a[1] + n + 1, cmp3);
-  for (int i = 1; i <= n; i++) {
-    len = max(len, a[0][i].ma);
-  }
-  printf("%d\n", len);
-  for (int i = 1; i <= n; i++) {
-    if (a[0][i].ma == len) {
-      ans += a[0][i].ca;
-    }
+  for (int i = 1; i <= m; i++) {
+    int p;
+    scanf("%d", &p);
+    a[rv[p]].del = i;
   }
   for (int i = 1; i <= n; i++) {
-    if (a[0][i].ma + a[1][i].ma - 1 == len) {
-      printf("%.5lf ", (a[0][i].ca * a[1][i].ca) / ans);
-    } else {
-      printf("0.00000 ");
-    }
+    if (a[i].del == 0) a[i].del = m + 1;
+  }
+  for (int i = 1; i <= n; i++) {
+    res += ta.sum(n + 1) - ta.sum(a[i].val);
+    ta.c(a[i].val, 1);
+  }
+  for (int i = 1; i <= n; i++) {
+    ta.c(a[i].val, -1);
+  }
+  solve(0, n);
+  sort(a + 1, a + n + 1, cmp2);
+  for (int i = 1; i <= m; i++) {
+    printf("%lld\n", res);
+    res -= a[i].ans;
   }
   return 0;
 }
