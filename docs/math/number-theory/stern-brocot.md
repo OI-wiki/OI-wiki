@@ -173,7 +173,6 @@ def find(x, y, a = 0, b = 1, c = 1, d = 0):
     现在，正式使用 $\infty$ 作为连分数表示的元素，可以模拟无理数 $A-\varepsilon$ 和 $A+\varepsilon$，即比 $A$ 小（大）但比任何其他实数大（小）的元素。具体而言，对于 $A=[a_0; a_1, \dots, a_n]$，这两个元素中的一个可以模拟 $[a_0; a_1, \dots, a_n, \infty]$，另一个可以模拟 $[a_0; a_1, \dots, a_n - 1, 1, \infty]$。
     
     哪一个对应于 $A-\varepsilon$，哪一个对应于 $A+\varepsilon$，可以通过 $n$ 的奇偶性或通过将它们作为无理数进行比较来确定。
-    === "Python"
     
         ```py
         # check if a < b assuming that a[-1] = b[-1] = infty and a != b
@@ -206,7 +205,6 @@ def find(x, y, a = 0, b = 1, c = 1, d = 0):
     因此，如果 $\frac{p_0}{q_0} = [a_0; a_1, \dots, a_{k-1}, a_k, \dots]$ 和 $\frac{p_1}{q_1} = [a_0; a_1, \dots, a_{k-1}, b_k, \dots]$ 是无理数，则 LCA 为 $[a_0; a_1, \dots, \min(a_k, b_k)+1]$。
     
     对于有理数 $r_0$ 和 $r_1$，其中之一可能是 LCA 本身，这需要对其进行讨论。为了简化有理数 $r_0$ 和 $r_1$ 的解决方案，可以使用前面问题中导出的 $r_0 + \varepsilon$ 和 $r_1 - \varepsilon$ 的连分数表示。
-    === "Python"
     
         ```py
         # finds lexicographically smallest (q, p)
@@ -242,7 +240,6 @@ def find(x, y, a = 0, b = 1, c = 1, d = 0):
     让 $\frac{p_0}{q_0}$ 是第四组中最大的 $\frac{-A_i}{B_i}$，而 $\frac{p_1}{q_1}$ 则是第三组中最小的 $\frac{A_i}{-B_i}$。
     
     现在的问题是，给定 $\frac{p_0}{q_0} < \frac{p_1}{q_1}$，找到一个分数 $\frac{p}{q}$ 使得 $(q;p)$ 在字典上最小，并且 $\frac{p_0}{q_0} < \frac{p}{q} < \frac{p_1}{q_1}$。
-    === "Python"
     
         ```py
             def solve():
