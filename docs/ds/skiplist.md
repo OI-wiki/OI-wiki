@@ -239,7 +239,7 @@ bool erase(const K &key) {
       int randomLevel() {
         int lv = 1;
         while ((rand() & S) < PS) ++lv;
-        return MAXL > lv? lv: MAXL;
+        return MAXL > lv ? lv : MAXL;
       }
     
       void insert(const K &key, const V &value) {
