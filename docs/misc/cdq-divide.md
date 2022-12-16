@@ -240,7 +240,7 @@ CDQ 分治的递归树如下所示。
         ```cpp
         --8<-- "docs/misc/code/cdq-divide/cdq-divide_4.cpp"
         ```
- 
+
 ## 参考资料与注释
 
 [^ref1]: [从《Cash》谈一类分治算法的应用](https://www.cs.princeton.edu/~danqic/papers/divide-and-conquer.pdf)
