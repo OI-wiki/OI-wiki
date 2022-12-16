@@ -1,22 +1,44 @@
+/* Logo title */
+.md-header__topic:first-child {
+  font-weight: initial !important;
+}
+
+/* Code font size in <details> */
+details .linenos, details code {
+  font-size: inherit !important;
+}
+
+/* Code block / tab in details */
+details > summary + .highlight:last-child, details > summary + .tabbed-set:last-child { margin: 0 -0.6rem !important; }
+details > summary + .highlight:last-child > .highlighttable { margin: 0 !important; }
+
+/* Table full width */
+.md-typeset__table { display: block !important; }
+.md-typeset table:not(.highlighttable) { display: table !important; }
+
 .md-typeset table:not([class]) th {
     min-width: 0rem;
 }
-blockquote.page-copyright{
-  margin: 20px 0;
-  padding-left: 1.5rem;
-  border-left: 5px solid #ff1700; /* Just change the color value and that's it*/
+
+.headerlink { transform: translateY(-2.5px); }
+
+.md-nav__link[for=__toc] .md-icon { margin-left: auto !important; }
+
+blockquote.page-time {
+  margin: 20px 0 !important;
+  border-left-color: #64b5f6 !important; /* Just change the color value and that's it*/
 }
-blockquote.page-time{
-  margin: 20px 0;
-  padding-left: 1.5rem;
-  border-left: 5px solid #64b5f6; /* Just change the color value and that's it*/
+blockquote.page-copyright {
+  margin: 20px 0 !important;
+  border-left-color: #ff1700 !important; /* Just change the color value and that's it*/
 }
 blockquote.page-copyright i.md-icon {
   display: inline-block;
-  transform: translateY(3.5px);
-  font-size: 0.9rem;
   margin-right: 5px;
+  transform: translateY(3.5px);
+  width: 18px;
 }
+
 #myBtn {
     display: none;
     position: fixed; 
@@ -35,83 +57,26 @@ blockquote.page-copyright i.md-icon {
     background-color: #d3d3d3; 
 }
 
-span.mjpage {
-  overflow: auto;
+#color-button > button {
+  cursor: pointer;
+  transition: opacity .25s;
+  display: inline-block;
+  width: 6.5rem;
+  margin-bottom: 0.2rem;
+  padding: 1.2rem 0.4rem 0.2rem;
+  font-size: 0.64rem;
+  text-align: left;
 }
 
-span.mjpage > svg {
-    overflow-x: scroll;
-    max-width: none !important;
+#color-button > button[data-md-color-primary] {
+  background-color: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+}
+#color-button > button[data-md-color-primary=white] {
+  box-shadow: inset 0 0 0.05rem rgb(0 0 0 / 54%);
 }
 
-span.mjpage__block > svg {
-    min-width: 80%;
-    max-width: none !important;
+#color-button > button[data-md-color-accent] {
+  background-color: var(--md-accent-fg-color);
+  color: var(--md-code-bg-color);
 }
-
-.md-icon, .md-clipboard::before, .md-nav__title::before, .md-nav__button, .md-nav__link::after, .md-search-result__article--document::before, .md-source-file::before, .md-typeset .admonition > .admonition-title::before, .md-typeset details > .admonition-title::before, .md-typeset .admonition > summary::before, .md-typeset details > summary::before, .md-typeset .footnote-backref, .md-typeset .critic.comment::before, .md-typeset summary::after, .md-typeset .task-list-control .task-list-indicator::before {
-  font-family: 'Material Icons' !important; /* over ride is needed*/
-  font-style: normal !important; /* over ride is needed*/
-  font-variant: nomal !important; /* over ride is needed*/
-}
-
-#color-button {
-  text-align: unset !important;
-}
-
-.md-sidebar--primary {
-  z-index: 14 !important;
-}
-
-.md-header  {
-  z-index: 12 !important;
-}
-
-/* h1, h2, h3, h4 {
-  font-weight: 500 !important;
-}
-
-h2 {
-  font-size: 2.8rem !important;
-}
-
-h3 {
-  font-size: 2.4rem !important;
-}
-
-h4 {
-  font-size: 2.0rem !important;
-}
-
-h5 {
-  font-size: 1.6rem !important;
-}
- */
-
- /* https://www.mdui.org/docs/shadow */
-
-.mdui-shadow-0{-webkit-box-shadow:none!important;box-shadow:none!important}
-.mdui-shadow-1{-webkit-box-shadow:0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12)!important;box-shadow:0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12)!important}
-.mdui-shadow-2{-webkit-box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)!important;box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)!important}
-.mdui-shadow-3{-webkit-box-shadow:0 3px 3px -2px rgba(0,0,0,.2),0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12)!important;box-shadow:0 3px 3px -2px rgba(0,0,0,.2),0 3px 4px 0 rgba(0,0,0,.14),0 1px 8px 0 rgba(0,0,0,.12)!important}
-.mdui-shadow-4{-webkit-box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12)!important;box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12)!important}
-.mdui-shadow-5{-webkit-box-shadow:0 3px 5px -1px rgba(0,0,0,.2),0 5px 8px 0 rgba(0,0,0,.14),0 1px 14px 0 rgba(0,0,0,.12)!important;box-shadow:0 3px 5px -1px rgba(0,0,0,.2),0 5px 8px 0 rgba(0,0,0,.14),0 1px 14px 0 rgba(0,0,0,.12)!important}
-.mdui-shadow-6{-webkit-box-shadow:0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12)!important;box-shadow:0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12)!important}
-.mdui-shadow-7{-webkit-box-shadow:0 4px 5px -2px rgba(0,0,0,.2),0 7px 10px 1px rgba(0,0,0,.14),0 2px 16px 1px rgba(0,0,0,.12)!important;box-shadow:0 4px 5px -2px rgba(0,0,0,.2),0 7px 10px 1px rgba(0,0,0,.14),0 2px 16px 1px rgba(0,0,0,.12)!important}
-.mdui-shadow-8{-webkit-box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)!important;box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)!important}
-.mdui-shadow-9{-webkit-box-shadow:0 5px 6px -3px rgba(0,0,0,.2),0 9px 12px 1px rgba(0,0,0,.14),0 3px 16px 2px rgba(0,0,0,.12)!important;box-shadow:0 5px 6px -3px rgba(0,0,0,.2),0 9px 12px 1px rgba(0,0,0,.14),0 3px 16px 2px rgba(0,0,0,.12)!important}
-.mdui-shadow-10{-webkit-box-shadow:0 6px 6px -3px rgba(0,0,0,.2),0 10px 14px 1px rgba(0,0,0,.14),0 4px 18px 3px rgba(0,0,0,.12)!important;box-shadow:0 6px 6px -3px rgba(0,0,0,.2),0 10px 14px 1px rgba(0,0,0,.14),0 4px 18px 3px rgba(0,0,0,.12)!important}
-.mdui-shadow-11{-webkit-box-shadow:0 6px 7px -4px rgba(0,0,0,.2),0 11px 15px 1px rgba(0,0,0,.14),0 4px 20px 3px rgba(0,0,0,.12)!important;box-shadow:0 6px 7px -4px rgba(0,0,0,.2),0 11px 15px 1px rgba(0,0,0,.14),0 4px 20px 3px rgba(0,0,0,.12)!important}
-.mdui-shadow-12{-webkit-box-shadow:0 7px 8px -4px rgba(0,0,0,.2),0 12px 17px 2px rgba(0,0,0,.14),0 5px 22px 4px rgba(0,0,0,.12)!important;box-shadow:0 7px 8px -4px rgba(0,0,0,.2),0 12px 17px 2px rgba(0,0,0,.14),0 5px 22px 4px rgba(0,0,0,.12)!important}
-.mdui-shadow-13{-webkit-box-shadow:0 7px 8px -4px rgba(0,0,0,.2),0 13px 19px 2px rgba(0,0,0,.14),0 5px 24px 4px rgba(0,0,0,.12)!important;box-shadow:0 7px 8px -4px rgba(0,0,0,.2),0 13px 19px 2px rgba(0,0,0,.14),0 5px 24px 4px rgba(0,0,0,.12)!important}
-.mdui-shadow-14{-webkit-box-shadow:0 7px 9px -4px rgba(0,0,0,.2),0 14px 21px 2px rgba(0,0,0,.14),0 5px 26px 4px rgba(0,0,0,.12)!important;box-shadow:0 7px 9px -4px rgba(0,0,0,.2),0 14px 21px 2px rgba(0,0,0,.14),0 5px 26px 4px rgba(0,0,0,.12)!important}
-.mdui-shadow-15{-webkit-box-shadow:0 8px 9px -5px rgba(0,0,0,.2),0 15px 22px 2px rgba(0,0,0,.14),0 6px 28px 5px rgba(0,0,0,.12)!important;box-shadow:0 8px 9px -5px rgba(0,0,0,.2),0 15px 22px 2px rgba(0,0,0,.14),0 6px 28px 5px rgba(0,0,0,.12)!important}
-.mdui-shadow-16{-webkit-box-shadow:0 8px 10px -5px rgba(0,0,0,.2),0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12)!important;box-shadow:0 8px 10px -5px rgba(0,0,0,.2),0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12)!important}
-.mdui-shadow-17{-webkit-box-shadow:0 8px 11px -5px rgba(0,0,0,.2),0 17px 26px 2px rgba(0,0,0,.14),0 6px 32px 5px rgba(0,0,0,.12)!important;box-shadow:0 8px 11px -5px rgba(0,0,0,.2),0 17px 26px 2px rgba(0,0,0,.14),0 6px 32px 5px rgba(0,0,0,.12)!important}
-.mdui-shadow-18{-webkit-box-shadow:0 9px 11px -5px rgba(0,0,0,.2),0 18px 28px 2px rgba(0,0,0,.14),0 7px 34px 6px rgba(0,0,0,.12)!important;box-shadow:0 9px 11px -5px rgba(0,0,0,.2),0 18px 28px 2px rgba(0,0,0,.14),0 7px 34px 6px rgba(0,0,0,.12)!important}
-.mdui-shadow-19{-webkit-box-shadow:0 9px 12px -6px rgba(0,0,0,.2),0 19px 29px 2px rgba(0,0,0,.14),0 7px 36px 6px rgba(0,0,0,.12)!important;box-shadow:0 9px 12px -6px rgba(0,0,0,.2),0 19px 29px 2px rgba(0,0,0,.14),0 7px 36px 6px rgba(0,0,0,.12)!important}
-.mdui-shadow-20{-webkit-box-shadow:0 10px 13px -6px rgba(0,0,0,.2),0 20px 31px 3px rgba(0,0,0,.14),0 8px 38px 7px rgba(0,0,0,.12)!important;box-shadow:0 10px 13px -6px rgba(0,0,0,.2),0 20px 31px 3px rgba(0,0,0,.14),0 8px 38px 7px rgba(0,0,0,.12)!important}
-.mdui-shadow-21{-webkit-box-shadow:0 10px 13px -6px rgba(0,0,0,.2),0 21px 33px 3px rgba(0,0,0,.14),0 8px 40px 7px rgba(0,0,0,.12)!important;box-shadow:0 10px 13px -6px rgba(0,0,0,.2),0 21px 33px 3px rgba(0,0,0,.14),0 8px 40px 7px rgba(0,0,0,.12)!important}
-.mdui-shadow-22{-webkit-box-shadow:0 10px 14px -6px rgba(0,0,0,.2),0 22px 35px 3px rgba(0,0,0,.14),0 8px 42px 7px rgba(0,0,0,.12)!important;box-shadow:0 10px 14px -6px rgba(0,0,0,.2),0 22px 35px 3px rgba(0,0,0,.14),0 8px 42px 7px rgba(0,0,0,.12)!important}
-.mdui-shadow-23{-webkit-box-shadow:0 11px 14px -7px rgba(0,0,0,.2),0 23px 36px 3px rgba(0,0,0,.14),0 9px 44px 8px rgba(0,0,0,.12)!important;box-shadow:0 11px 14px -7px rgba(0,0,0,.2),0 23px 36px 3px rgba(0,0,0,.14),0 9px 44px 8px rgba(0,0,0,.12)!important}
-.mdui-shadow-24{-webkit-box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12)!important;box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12)!important}

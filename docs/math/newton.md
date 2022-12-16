@@ -42,32 +42,34 @@ $$
 
 ### 实现
 
-```cpp
-// C++ Version
-double sqrt_newton(double n) {
-  const double eps = 1E-15;
-  double x = 1;
-  while (true) {
-    double nx = (x + n / x) / 2;
-    if (abs(x - nx) < eps) break;
-    x = nx;
-  }
-  return x;
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def sqrt_newton(n):
-    eps = 1e-15
-    x = 1
-    while True:
-        nx = (x + n / x) / 2
-        if abs(x - nx) < eps:
-            break
-        x = nx
-    return x
-```
+    ```cpp
+    double sqrt_newton(double n) {
+      const double eps = 1E-15;
+      double x = 1;
+      while (true) {
+        double nx = (x + n / x) / 2;
+        if (abs(x - nx) < eps) break;
+        x = nx;
+      }
+      return x;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def sqrt_newton(n):
+        eps = 1e-15
+        x = 1
+        while True:
+            nx = (x + n / x) / 2
+            if abs(x - nx) < eps:
+                break
+            x = nx
+        return x
+    ```
 
 ## 求解整数平方根
 
@@ -75,34 +77,36 @@ def sqrt_newton(n):
 
 ### 实现
 
-```cpp
-// C++ Version
-int isqrt_newton(int n) {
-  int x = 1;
-  bool decreased = false;
-  for (;;) {
-    int nx = (x + n / x) >> 1;
-    if (x == nx || (nx > x && decreased)) break;
-    decreased = nx < x;
-    x = nx;
-  }
-  return x;
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def isqrt_newton(n):
-    x = 1
-    decreased = False
-    while True:
-        nx = (x + n // x) // 2
-        if x == nx or (nx > x and decreased):
-            break
-        decreased = nx < x
-        x = nx
-    return x
-```
+    ```cpp
+    int isqrt_newton(int n) {
+      int x = 1;
+      bool decreased = false;
+      for (;;) {
+        int nx = (x + n / x) >> 1;
+        if (x == nx || (nx > x && decreased)) break;
+        decreased = nx < x;
+        x = nx;
+      }
+      return x;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def isqrt_newton(n):
+        x = 1
+        decreased = False
+        while True:
+            nx = (x + n // x) // 2
+            if x == nx or (nx > x and decreased):
+                break
+            decreased = nx < x
+            x = nx
+        return x
+    ```
 
 ## 高精度平方根
 

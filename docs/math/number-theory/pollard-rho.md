@@ -10,36 +10,38 @@
 
 最简单的算法即为从 $[1,\sqrt N]$ 进行遍历。
 
-```C++
-// C++ Version
-list<int> breakdown(int N) {
-  list<int> result;
-  for (int i = 2; i * i <= N; i++) {
-    if (N % i == 0) {  // 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
-      while (N % i == 0) N /= i;
-      result.push_back(i);
-    }
-  }
-  if (N != 1) {  // 说明再经过操作之后 N 留下了一个素数
-    result.push_back(N);
-  }
-  return result;
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def breakdown(N):
-    result = []
-    for i in range(2, int(sqrt(N)) + 1):
-        if N % i == 0: # 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
-            while N % i == 0:
-                N = N // i
-                result.append(i)
-    if N != 1: # 说明再经过操作之后 N 留下了一个素数
-        result.append(N)
-    return result
-```
+    ```cpp
+    list<int> breakdown(int N) {
+      list<int> result;
+      for (int i = 2; i * i <= N; i++) {
+        if (N % i == 0) {  // 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
+          while (N % i == 0) N /= i;
+          result.push_back(i);
+        }
+      }
+      if (N != 1) {  // 说明再经过操作之后 N 留下了一个素数
+        result.push_back(N);
+      }
+      return result;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def breakdown(N):
+        result = []
+        for i in range(2, int(sqrt(N)) + 1):
+            if N % i == 0: # 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
+                while N % i == 0:
+                    N = N // i
+                    result.append(i)
+        if N != 1: # 说明再经过操作之后 N 留下了一个素数
+            result.append(N)
+        return result
+    ```
 
 我们能够证明 `result` 中的所有元素均为 `N` 的素因数。
 
@@ -144,36 +146,38 @@ $$
 我们每次令 $d=\gcd(|x_i-x_j|,n)$，判断 d 是否满足 $1< d< n$，若满足则可直接返回 $d$。由于 $x_i$ 是一个伪随机数列，必定会形成环，在形成环时就不能再继续操作了，直接返回 n 本身，并且在后续操作里调整随机常数 $c$，重新分解。
 
 ??? note "基于 Floyd 判环的 Pollard-Rho 算法"
-    ```c++
-    // C++ Version
-    ll Pollard_Rho(ll N) {
-      ll c = rand() % (N - 1) + 1;
-      ll t = f(0, c, N);
-      ll r = f(f(0, c, N), c, N);
-      while (t != r) {
-        ll d = gcd(abs(t - r), N);
-        if (d > 1) return d;
-        t = f(t, c, N);
-        r = f(f(r, c, N), c, N);
-      }
-      return N;
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def Pollard_Rho(N):
-    c = random.randint(0, 32767) % (N - 1) + 1
-    t = f(0, c, N)
-    r = f(f(0, c, N), c, N)
-    while t != r:
-        d = gcd(abs(t - r), N)
-        if d > 1:
-            return d
-        t = f(t, c, N)
-        r = f(f(r, c, N), c, N)
-    return N
-    ```
+        ```cpp
+        ll Pollard_Rho(ll N) {
+          ll c = rand() % (N - 1) + 1;
+          ll t = f(0, c, N);
+          ll r = f(f(0, c, N), c, N);
+          while (t != r) {
+            ll d = gcd(abs(t - r), N);
+            if (d > 1) return d;
+            t = f(t, c, N);
+            r = f(f(r, c, N), c, N);
+          }
+          return N;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def Pollard_Rho(N):
+        c = random.randint(0, 32767) % (N - 1) + 1
+        t = f(0, c, N)
+        r = f(f(0, c, N), c, N)
+        while t != r:
+            d = gcd(abs(t - r), N)
+            if d > 1:
+                return d
+            t = f(t, c, N)
+            r = f(f(r, c, N), c, N)
+        return N
+        ```
 
 #### 倍增优化
 

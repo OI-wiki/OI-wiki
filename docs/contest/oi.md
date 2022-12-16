@@ -62,7 +62,7 @@ NOIP 于 2019 年 8 月 16 日 [被 CCF 暂停](http://www.noi.cn/xw/2019-08-16/
 
 ### CSP J/S
 
-**CSP**（英文：Certified Software Professional Junior/Senior) 是 NOIP 在 2019 年被取消之后，CCF 开设的非专业级软件能力认证，面向全年龄段。具体赛制、时间基本同 NOIP 一致。在部分地区，CSP 2019 设有小学组。
+**CSP**（英文：Certified Software Professional Junior/Senior) 是 NOIP 在 2019 年被取消之后，CCF 开设的非专业级软件能力认证，面向全年龄段。具体赛制、时间基本同 NOIP 一致。在部分地区，CSP 设有小学组。
 
 目前暂不清楚获得 CSP J/S 认证对自主招生资格的获取是否有帮助。
 
