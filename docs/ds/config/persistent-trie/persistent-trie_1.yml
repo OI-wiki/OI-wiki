@@ -1,0 +1,10 @@
+id: oi-wiki:ds/persistent-trie-1
+name: Persistent Trie
+solution:
+  cpp: docs/ds/code/persistent-trie/persistent-trie_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/persistent-trie/persistent-trie_1.ans
+  input: docs/ds/examples/persistent-trie/persistent-trie_1.in
+version: 1000

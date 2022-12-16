@@ -1,0 +1,10 @@
+id: oi-wiki:string/ac-automaton-1
+name: Ac Automaton
+solution:
+  cpp: docs/string/code/ac-automaton/ac-automaton_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/string/examples/ac-automaton/ac-automaton_1.ans
+  input: docs/string/examples/ac-automaton/ac-automaton_1.in
+version: 1000

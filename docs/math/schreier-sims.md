@@ -1,4 +1,4 @@
-## 简介
+## 引入
 
 **Schreier-Sims 算法** 是计算群论的一种算法，以数学家 Otto Schreier 和 Charles Sims 的名字命名。它可以在多项式时间（polynomial time）内找到有限置换群的阶数、查看给定排列是否包含在群中以及其他许多任务。Schreier-Sims 算法最早由 Sims 在 1970 年基于 Schreier 的子群引理引入。1991 年，Donald Knuth 基于此改进了时序。后来，又有了该算法更快的随机版本。
 
@@ -53,7 +53,7 @@ $$
 
 定义 $G$ 相对于 $B$ 的 **强生成集**（SGS，strong generating set) 是一个对于每个 $i$ 有 $\langle S \cap G^{(i)} = G(i)$ 的集合 $S \subseteq G$，其中 $G^{(i)} := G_{b1,\cdots,bi}$,$G^{(0)} := G$。
 
-## 算法
+## 过程
 
 用来计算排列群（permutation group）$G$ 阶数的 Schreier-Sims 算法一般有三种。它们同样也可以用来计算 $G$ 的基和强生成集。
 
@@ -87,7 +87,7 @@ $$
 
 增量 Schreier-Sims 算法的运行时间为 $O(n^{8}\log^{3}n)$，即 $n$ 的多项式。$t$ 个生成器构建 Schreier 树需要 $O(n^{2}+nt)$，或对于 $t>n$ 为 $O(nt)$。因为已经用 $O(n^{2}\log n)$ 限制了 Schreier 生成器 $t$ 的数量，所以每个筛选过程都可以在 $nO(n(n^{2}\log n)) = O(n^{4}\log n)$ 中完成。
 
-## 代码
+## 实现
 
 以下为基础 Schreier-Sims 算法的参考代码。
 

@@ -2,7 +2,7 @@
 
 ## 字符串匹配问题
 
-### 简介
+### 定义
 
 又称模式匹配（pattern matching）。该问题可以概括为「给定字符串 $S$ 和 $T$，在主串 $S$ 中寻找子串 $T$」。字符 $T$ 称为模式串 (pattern)。
 
@@ -18,41 +18,46 @@
 
 简称 BF (Brute Force) 算法。该算法的基本思想是从主串 $S$ 的第一个字符开始和模式串 $T$ 的第一个字符进行比较，若相等，则继续比较二者的后续字符；否则，模式串 $T$ 回退到第一个字符，重新和主串 $S$ 的第二个字符进行比较。如此往复，直到 $S$ 或 $T$ 中所有字符比较完毕。
 
-### 参考代码
+### 实现
 
-```cpp
-// C++ Version
-/*
- * s：待匹配的主串
- * t：模式串
- * n：主串的长度
- * m：模式串的长度
- */
-std::vector<int> match(char *s, char *t, int n, int m) {
-  std::vector<int> ans;
-  int i, j;
-  for (i = 0; i < n - m + 1; i++) {
-    for (j = 0; j < m; j++) {
-      if (s[i + j] != t[j]) break;
+=== "C++"
+
+    ```cpp
+    /*
+    * s：待匹配的主串
+    * t：模式串
+    * n：主串的长度
+    * m：模式串的长度
+    */
+    std::vector<int> match(char *s, char *t, int n, int m) {
+      std::vector<int> ans;
+      int i, j;
+      for (i = 0; i < n - m + 1; i++) {
+        for (j = 0; j < m; j++) {
+          if (s[i + j] != t[j]) break;
+        }
+        if (j == m) ans.push_back(i);
+      }
+      return ans;
     }
-    if (j == m) ans.push_back(i);
-  }
-  return ans;
-}
-```
+    ```
 
-```python
-# Python Version
-def match(s, t, n, m):
-    ans = []
-    for i in range(0, n - m + 1):
-        for j in range(0, m):
-            if s[i + j] != t[j]:
-                break
-        if j == m:
-            ans.append(i)
-    return ans
-```
+=== "Python"
+
+    ```python
+    def match(s, t, n, m):
+        if m < 1:
+            return []
+
+        ans = []
+        for i in range(0, n - m + 1):
+            for j in range(0, m):
+                if s[i + j] != t[j]:
+                    break
+            else:
+                ans.append(i)
+        return ans
+    ```
 
 ### 时间复杂度
 

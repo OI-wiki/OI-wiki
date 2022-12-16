@@ -1,6 +1,6 @@
-## 「物不知数」问题
+## 引入
 
-> 有物不知其数，三三数之剩二，五五数之剩三，七七数之剩二。问物几何？
+> 「物不知数」问题：有物不知其数，三三数之剩二，五五数之剩三，七七数之剩二。问物几何？
 
 即求满足以下条件的整数：除以 $3$ 余 $2$，除以 $5$ 余 $3$，除以 $7$ 余 $2$。
 
@@ -10,7 +10,7 @@
 
 $2\times 70+3\times 21+2\times 15=233=2\times 105+23$，故答案为 $23$。
 
-## 算法简介及过程
+## 定义
 
 中国剩余定理 (Chinese Remainder Theorem, CRT) 可求解如下形式的一元线性同余方程组（其中 $n_1, n_2, \cdots, n_k$ 两两互质）：
 
@@ -25,47 +25,47 @@ $$
 
 上面的「物不知数」问题就是一元线性同余方程组的一个实例。
 
-### 算法流程
+## 过程
 
 1. 计算所有模数的积 $n$；
 2.  对于第 $i$ 个方程：
     1. 计算 $m_i=\frac{n}{n_i}$；
     2. 计算 $m_i$ 在模 $n_i$ 意义下的 [逆元](./inverse.md)  $m_i^{-1}$；
     3. 计算 $c_i=m_im_i^{-1}$（**不要对 $n_i$ 取模**）。
-3. 方程组的唯一解为：$x=\sum_{i=1}^k a_ic_i \pmod n$。
+3. 方程组在模 $n$ 意义下的唯一解为：$x=\sum_{i=1}^k a_ic_i \pmod n$。
 
-### C 语言代码
+## 实现
 
-```cpp
-// C++ Version
-LL CRT(int k, LL* a, LL* r) {
-  LL n = 1, ans = 0;
-  for (int i = 1; i <= k; i++) n = n * r[i];
-  for (int i = 1; i <= k; i++) {
-    LL m = n / r[i], b, y;
-    exgcd(m, r[i], b, y);  // b * m mod r[i] = 1
-    ans = (ans + a[i] * m * b % n) % n;
-  }
-  return (ans % n + n) % n;
-}
-```
+=== "C++"
 
-### Python 语言代码
+    ```cpp
+    LL CRT(int k, LL* a, LL* r) {
+      LL n = 1, ans = 0;
+      for (int i = 1; i <= k; i++) n = n * r[i];
+      for (int i = 1; i <= k; i++) {
+        LL m = n / r[i], b, y;
+        exgcd(m, r[i], b, y);  // b * m mod r[i] = 1
+        ans = (ans + a[i] * m * b % n) % n;
+      }
+      return (ans % n + n) % n;
+    }
+    ```
 
-```python
-# Python Version
-def CRT(k, a, r):
-    n = 1; ans = 0
-    for i in range(1, k + 1):
-        n = n * r[i]
-    for i in range(1, k + 1):
-        m = n // r[i]; b = y = 0
-        exgcd(m, r[i], b, y) # b * m mod r[i] = 1
-        ans = (ans + a[i] * m * b % n) % n
-    return (ans % n + n) % n
-```
+=== "Python"
 
-## 算法的证明
+    ```python
+    def CRT(k, a, r):
+        n = 1; ans = 0
+        for i in range(1, k + 1):
+            n = n * r[i]
+        for i in range(1, k + 1):
+            m = n // r[i]; b = y = 0
+            exgcd(m, r[i], b, y) # b * m mod r[i] = 1
+            ans = (ans + a[i] * m * b % n) % n
+        return (ans % n + n) % n
+    ```
+
+## 证明
 
 我们需要证明上面算法计算所得的 $x$ 对于任意 $i=1,2,\cdots,k$ 满足 $x\equiv a_i \pmod {n_i}$。
 
@@ -88,7 +88,7 @@ $$
 
 **故系数列表 $\{a_i\}$ 与解 $x$ 之间是一一映射关系，方程组总是有唯一解。**
 
-## 例
+## 解释
 
 下面演示 CRT 如何解「物不知数」问题。
 
@@ -155,31 +155,51 @@ $$
 x_k=(...((a_k-x_1)r_{1,k}-x_2)r_{2,k})-...)r_{k-1,k} \bmod p_k
 $$
 
-??? note "参考代码"
-    ```cpp
-    // C++ Version
-    for (int i = 0; i < k; ++i) {
-      x[i] = a[i];
-      for (int j = 0; j < i; ++j) {
-        x[i] = r[j][i] * (x[i] - x[j]);
-        x[i] = x[i] % p[i];
-        if (x[i] < 0) x[i] += p[i];
-      }
-    }
-    ```
+??? note "实现"
+    === "C++"
     
-    ```python
-    # Python Version
-    for i in range(0, k):
-        x[i] = a[i]
-        for j in range(0, i):
-            x[i] = r[j][i] * (x[i] - x[j])
-            x[i] = x[i] % p[i]
-            if (x[i] < 0):
-                x[i] = x[i] + p[i]
-    ```
+        ```cpp
+        for (int i = 0; i < k; ++i) {
+          x[i] = a[i];
+          for (int j = 0; j < i; ++j) {
+            x[i] = r[j][i] * (x[i] - x[j]);
+            x[i] = x[i] % p[i];
+            if (x[i] < 0) x[i] += p[i];
+          }
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        for i in range(0, k):
+            x[i] = a[i]
+            for j in range(0, i):
+                x[i] = r[j][i] * (x[i] - x[j])
+                x[i] = x[i] % p[i]
+                if (x[i] < 0):
+                    x[i] = x[i] + p[i]
+        ```
 
-该算法的时间复杂度为 $O(k^2)$。
+该算法的时间复杂度为 $O(k^2)$。实际上 Garner 算法并不要求模数为质数，只要求模数两两互质，我们有如下伪代码：
+
+$$
+\begin{array}{ll}
+&\textbf{Chinese Remainder Algorithm }\operatorname{cra}(\mathbf{v}, \mathbf{m})\text{:} \\
+&\textbf{Input}\text{: }\mathbf{m}=(m_0,m_1,\dots ,m_{n-1})\text{, }m_i\in\mathbb{Z}^+\land\gcd(m_i,m_j)=1\text{ for all } i\neq j\text{,} \\
+&\qquad \mathbf{v}=(v_0,\dots ,v_{n-1}) \text{ where }v_i=x\bmod m_i\text{.} \\
+&\textbf{Output}\text{: }x\bmod{\prod_{i=0}^{n-1} m_i}\text{.} \\
+1&\qquad \textbf{for }i\text{ from }1\text{ to }(n-1)\textbf{ do} \\
+2&\qquad \qquad C_i\gets \left(\prod_{j=0}^{i-1}m_j\right)^{-1}\bmod{m_i} \\
+3&\qquad x\gets v_0 \\
+4&\qquad \textbf{for }i\text{ from }1\text{ to }(n-1)\textbf{ do} \\
+5&\qquad \qquad u\gets (v_i-x)\cdot C_i\bmod{m_i} \\
+6&\qquad \qquad x\gets x+u\prod_{j=0}^{i-1}m_j \\
+7&\qquad \textbf{return }(x)
+\end{array}
+$$
+
+可以发现在第六行中的计算过程对应上述混合基数的表示。
 
 ## 应用
 

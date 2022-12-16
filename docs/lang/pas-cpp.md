@@ -48,12 +48,11 @@ INFO: 恭喜你找到了隐藏彩蛋！
 
 -  [Dev-C++](../tools/editor/devcpp.md) 
 -  [Code::Blocks](https://sourceforge.net/projects/codeblocks/) 
--  [VS Code](../tools/editor/vscode.md) 
 
 ### 方式二：使用 代码编辑器 + 编译器 + 调试器
+-  [VS Code](../tools/editor/vscode.md)  
 
-如果愿意折腾就去配吧，此处略，需要注意配置环境变量。
-
+    Visual Studio Code 官方网站上有文档解释如何进行 C++ 的配置。一般而言 VS Code 搭配插件使用更方便，见 [VS Code 的官方网站](https://code.visualstudio.com/)。
 ## C++ 语法快速提要 Start Here
 
 C++ 程序都是从 `main` 这个部分开始运行的。
@@ -442,7 +441,7 @@ C 风格的数组与指针有密切关系，所以此处不多展开。
 
 C++ 几乎可以在 **任何地方** 声明变量。
 
-以下对于 C++ 的变量作用域的介绍摘自 [变量作用域 - OI Wiki](../var/#_3) ：
+以下对于 C++ 的变量作用域的介绍摘自 [变量作用域 - OI Wiki](../var/#字符型) ：
 
 > 作用域是变量可以发挥作用的代码块。
 >

@@ -1,3 +1,4 @@
+/authors.json
 _build/
 site/
 mkdocs-material/
@@ -6,3 +7,4 @@ mkdocs-material/
 .env
 .well-known/
 node_modules/
+*.pyc

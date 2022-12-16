@@ -2,17 +2,20 @@ name: Build LaTeX document
 
 on:
   push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
 
 jobs:
   build:
+    name: OI-Wiki LaTeX Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Build the LaTeX document
-        uses: xu-cheng/latex-action@v2
+        uses: OI-wiki/latex-action@v1.0.0
         with:
           latexmk_use_xelatex: true
           latexmk_shell_escape: true

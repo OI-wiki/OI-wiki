@@ -1,0 +1,10 @@
+id: oi-wiki:graph/dynamic-tree-divide-1
+name: Dynamic Tree Divide
+solution:
+  cpp: docs/graph/code/dynamic-tree-divide/dynamic-tree-divide_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/examples/dynamic-tree-divide/dynamic-tree-divide_1.ans
+  input: docs/graph/examples/dynamic-tree-divide/dynamic-tree-divide_1.in
+version: 1000

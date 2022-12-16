@@ -1,6 +1,6 @@
-本文介绍模意义下乘法运算的逆元（Modular Multiplicative Inverse），并介绍如何使用扩展欧几里德算法（Extended Euclidean algorithm）求解乘法逆元
+本文介绍模意义下乘法运算的逆元（Modular Multiplicative Inverse），并介绍如何使用扩展欧几里德算法（Extended Euclidean algorithm）求解乘法逆元。
 
-## 逆元简介
+## 定义
 
 如果一个线性同余方程 $ax \equiv 1 \pmod b$，则 $x$ 称为 $a \bmod b$ 的逆元，记作 $a^{-1}$。
 
@@ -8,32 +8,36 @@
 
 ### 扩展欧几里得法
 
-???+note "模板代码"
-    ```cpp
-    // C++ Version
-    void exgcd(int a, int b, int& x, int& y) {
-      if (b == 0) {
-        x = 1, y = 0;
-        return;
-      }
-      exgcd(b, a % b, y, x);
-      y -= a / b * x;
-    }
-    ```
+???+note "实现"
+    === "C++"
     
-    ```python
-    # Python Version
-    def exgcd(a, b, x, y):
-      if b == 0:
-          x, y = 1, 0
-          return
-      exgcd(b, a % b, y, x)
-      y = y - (a // b * x)
-    ```
+        ```cpp
+        void exgcd(int a, int b, int& x, int& y) {
+          if (b == 0) {
+            x = 1, y = 0;
+            return;
+          }
+          exgcd(b, a % b, y, x);
+          y -= a / b * x;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def exgcd(a, b, x, y):
+          if b == 0:
+              x, y = 1, 0
+              return
+          exgcd(b, a % b, y, x)
+          y = y - (a // b * x)
+        ```
 
 扩展欧几里得法和求解 [线性同余方程](./linear-equation.md) 是一个原理，在这里不展开解释。
 
 ### 快速幂法
+
+#### 证明
 
 因为 $ax \equiv 1 \pmod b$；
 
@@ -43,32 +47,34 @@
 
 然后我们就可以用快速幂来求了。
 
-???+note "模板代码"
-    ```cpp
-    // C++ Version
-    inline int qpow(long long a, int b) {
-      int ans = 1;
-      a = (a % p + p) % p;
-      for (; b; b >>= 1) {
-        if (b & 1) ans = (a * ans) % p;
-        a = (a * a) % p;
-      }
-      return ans;
-    }
-    ```
+???+note "实现"
+    === "C++"
     
-    ```python
-    # Python Version
-    def qpow(a, b):
-      ans = 1
-      a = (a % p + p) % p
-      while b:
-          if b & 1:
-              ans = (a * ans) % p
+        ```cpp
+        inline int qpow(long long a, int b) {
+          int ans = 1;
+          a = (a % p + p) % p;
+          for (; b; b >>= 1) {
+            if (b & 1) ans = (a * ans) % p;
+            a = (a * a) % p;
+          }
+          return ans;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def qpow(a, b):
+          ans = 1
+          a = (a % p + p) % p
+          while b:
+              if b & 1:
+                  ans = (a * ans) % p
               a = (a * a) % p
-          b >>= 1
-      return ans
-    ```
+              b >>= 1
+          return ans
+        ```
 
 注意使用 [费马小定理](./fermat.md) 需要限制 $b$ 是一个素数，而扩展欧几里得算法只要求 $\gcd(a, p) = 1$。
 
@@ -102,25 +108,27 @@ $i^{-1} \equiv -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1} \pmod p$
 $$
 i^{-1} \equiv \begin{cases}
     1,                                           & \text{if } i = 1, \\
-    -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1}, & \text{otherwises}.
+    -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1}, & \text{otherwise}.
 \end{cases} \pmod p
 $$
 
-???+note "代码实现"
-    ```cpp
-    // C++ Version
-    inv[1] = 1;
-    for (int i = 2; i <= n; ++i) {
-      inv[i] = (long long)(p - p / i) * inv[p % i] % p;
-    }
-    ```
+???+note "实现"
+    === "C++"
     
-    ```python
-    # Python Version
-    inv[1] = 1
-    for i in range(2, n + 1):
-        inv[i] = (p - p // i) * inv[p % i] % p
-    ```
+        ```cpp
+        inv[1] = 1;
+        for (int i = 2; i <= n; ++i) {
+          inv[i] = (long long)(p - p / i) * inv[p % i] % p;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        inv[1] = 1
+        for i in range(2, n + 1):
+            inv[i] = (p - p // i) * inv[p % i] % p
+        ```
 
 使用 $p-\lfloor \dfrac{p}{i} \rfloor$ 来防止出现负数。
 
@@ -146,29 +154,31 @@ $$
 
 所以我们就在 $O(n + \log p)$ 的时间内计算出了 $n$ 个数的逆元。
 
-???+note "代码实现"
-    ```cpp
-    // C++ Version
-    s[0] = 1;
-    for (int i = 1; i <= n; ++i) s[i] = s[i - 1] * a[i] % p;
-    sv[n] = qpow(s[n], p - 2);
-    // 当然这里也可以用 exgcd 来求逆元,视个人喜好而定.
-    for (int i = n; i >= 1; --i) sv[i - 1] = sv[i] * a[i] % p;
-    for (int i = 1; i <= n; ++i) inv[i] = sv[i] * s[i - 1] % p;
-    ```
+???+note "实现"
+    === "C++"
     
-    ```python
-    # Python Version
-    s[0] = 1
-    for i in range(1, n + 1):
-        s[i] = s[i - 1] * a[i] % p
-    sv[n] = qpow(s[n], p - 2)
-    # 当然这里也可以用 exgcd 来求逆元,视个人喜好而定.
-    for i in range(n, 0, -1):
-        sv[i - 1] = sv[i] * a[i] % p
-    for i in range(1, n + 1):
-        inv[i] = sv[i] * s[i - 1] % p
-    ```
+        ```cpp
+        s[0] = 1;
+        for (int i = 1; i <= n; ++i) s[i] = s[i - 1] * a[i] % p;
+        sv[n] = qpow(s[n], p - 2);
+        // 当然这里也可以用 exgcd 来求逆元,视个人喜好而定.
+        for (int i = n; i >= 1; --i) sv[i - 1] = sv[i] * a[i] % p;
+        for (int i = 1; i <= n; ++i) inv[i] = sv[i] * s[i - 1] % p;
+        ```
+    
+    === "Python"
+    
+        ```python
+        s[0] = 1
+        for i in range(1, n + 1):
+            s[i] = s[i - 1] * a[i] % p
+        sv[n] = qpow(s[n], p - 2)
+        # 当然这里也可以用 exgcd 来求逆元,视个人喜好而定.
+        for i in range(n, 0, -1):
+            sv[i - 1] = sv[i] * a[i] % p
+        for i in range(1, n + 1):
+            inv[i] = sv[i] * s[i - 1] % p
+        ```
 
 ## 逆元练习题
 

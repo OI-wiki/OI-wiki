@@ -62,7 +62,7 @@ int main() {
     }
     for (int i = 1; i <= 3; i++)
       for (int j = 1; j <= 3; j++)
-        if (!x.a.a[i][j]) fx = i, fy = j;  // 如果该点上的数不为0
+        if (!x.a.a[i][j]) fx = i, fy = j;  // 查找空格子（0号点）的位置
     for (int i = 0; i < 4; i++) {  // 对四种移动方式分别进行搜索
       int xx = fx + dx[i], yy = fy + dy[i];
       if (1 <= xx && xx <= 3 && 1 <= yy && yy <= 3) {

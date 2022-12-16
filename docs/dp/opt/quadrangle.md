@@ -1,4 +1,4 @@
-author: Marcythm, zyf0726, hsfzLZH1, MingqiHuang, Ir1d, greyqz, billchenchina, Chrogeek, StudyingFather
+author: Marcythm, zyf0726, hsfzLZH1, MingqiHuang, Ir1d, greyqz, billchenchina, Chrogeek, StudyingFather, NFLSCode
 
 ## 区间类（2D1D）动态规划中的应用
 
@@ -144,49 +144,51 @@ $$
 $$
 
 ???+note "核心代码"
-    ```cpp
-    // C++ Version
-    for (int len = 2; len <= n; ++len)  // 枚举区间长度
-      for (int l = 1, r = len; r <= n; ++l, ++r) {
-        // 枚举长度为len的所有区间
-        f[l][r] = INF;
-        for (int k = m[l][r - 1]; k <= m[l + 1][r]; ++k)
-          if (f[l][r] > f[l][k] + f[k + 1][r] + w(l, r)) {
-            f[l][r] = f[l][k] + f[k + 1][r] + w(l, r);  // 更新状态值
-            m[l][r] = k;  // 更新（最小）最优决策点
-          }
-      }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    for len in range(2, n + 1): # 枚举区间长度
-        r = len
-        l = 1
-        while(r <= n):
-            # 枚举长度为len的所有区间
-            r += 1
-            l += 1
-            f[l][r] = INF
-            k = m[l][r - 1]
-            while k <= m[l + 1][r]:
-                if f[l][r] > f[l][k] + f[k + 1][r] + w(l, r):
-                    f[l][r] = f[l][k] + f[k + 1][r] + w(l, r) # 更新状态值
-                    m[l][r] = k # 更新（最小）最优决策点
-                k += 1
-    ```
+        ```cpp
+        for (int len = 2; len <= n; ++len)  // 枚举区间长度
+        for (int l = 1, r = len; r <= n; ++l, ++r) {
+            // 枚举长度为len的所有区间
+            f[l][r] = INF;
+            for (int k = m[l][r - 1]; k <= m[l + 1][r]; ++k)
+            if (f[l][r] > f[l][k] + f[k + 1][r] + w(l, r)) {
+                f[l][r] = f[l][k] + f[k + 1][r] + w(l, r);  // 更新状态值
+                m[l][r] = k;  // 更新（最小）最优决策点
+            }
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        for len in range(2, n + 1): # 枚举区间长度
+            r = len
+            l = 1
+            while(r <= n):
+                # 枚举长度为len的所有区间
+                r += 1
+                l += 1
+                f[l][r] = INF
+                k = m[l][r - 1]
+                while k <= m[l + 1][r]:
+                    if f[l][r] > f[l][k] + f[k + 1][r] + w(l, r):
+                        f[l][r] = f[l][k] + f[k + 1][r] + w(l, r) # 更新状态值
+                        m[l][r] = k # 更新（最小）最优决策点
+                    k += 1
+        ```
 
-### 另一种常见的形式
+### 基于分治的决策单调性优化
 
-某些 dp 问题有着如下的形式：
+某些 dp 问题形式如下：
 
 $$
 f_{i,j} = \min_{k \leq j}\{f_{i-1,k}\} + w(k,j)\qquad\left(1 \leq i \leq n,1 \leq j \leq m\right)
 $$
 
-总共有 $n \times m$ 个状态，每个状态要有 $m$ 次转换，上述 dp 问题的时间复杂度就是 $O(n m^2)$。
+总共有 $n \times m$ 个状态，每个状态有 $O(m)$ 个决策，上述 dp 问题的时间复杂度就是 $O(n m^2)$。
 
-> 实际上此形式也有同样的结论，可以在 $O(n m)$ 复杂度解决，读者可以模仿 2D1D 类似的给出证明。
+> 实际上此形式也有同样的结论，可以在 $O((n+m)m)$ 复杂度解决（且 **只需要满足四边形不等式即可**），读者可以模仿 2D1D 类似的给出证明。
 
 令 $opt(i, j)$ 为使上述表达式最小化的 $k$ 的值。如果对于所有的 $i, j$ 都有 $opt(i, j) \leq opt(i, j + 1)$，那么我们就可以用分治法来优化 dp 问题。
 
@@ -260,36 +262,38 @@ $$
 在这种情况下，我们定义过程 $\textsf{DP}(l, r, k_l, k_r)$ 表示求解 $f_{l}\sim f_{r}$ 的状态值，并且已知这些状态的最优决策点必定位于 $[k_l, k_r]$ 中，然后使用分治算法如下：
 
 ???+note "代码实现"
-    ```cpp
-    // C++ Version
-    void DP(int l, int r, int k_l, int k_r) {
-      int mid = (l + r) / 2, k = k_l;
-      // 求状态f[mid]的最优决策点
-      for (int i = k_l; i <= min(k_r, mid - 1); ++i)
-        if (w(i, mid) < w(k, mid)) k = i;
-      f[mid] = w(k, mid);
-      // 根据决策单调性得出左右两部分的决策区间，递归处理
-      if (l < mid) DP(l, mid - 1, k_l, k);
-      if (r > mid) DP(mid + 1, r, k, k_r);
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def DP(l, r, k_l, k_r):
-        mid = int((l + r) / 2)
-        k = k_l
-        # 求状态f[mid]的最优决策点
-        for i in range(k_l, min(k_r, mid - 1)):
-            if w(i, mid) < w(k, mid):
-                k = i
-        f[mid] = w(k, mid)
-        # 根据决策单调性得出左右两部分的决策区间，递归处理
-        if l < mid:
-            DP(l, mid - 1, k_l, k)
-        if r > mid:
-            DP(mid + 1, r, k, k_r)
-    ```
+        ```cpp
+        void DP(int l, int r, int k_l, int k_r) {
+          int mid = (l + r) / 2, k = k_l;
+          // 求状态f[mid]的最优决策点
+          for (int i = k_l; i <= min(k_r, mid - 1); ++i)
+            if (w(i, mid) < w(k, mid)) k = i;
+          f[mid] = w(k, mid);
+          // 根据决策单调性得出左右两部分的决策区间，递归处理
+          if (l < mid) DP(l, mid - 1, k_l, k);
+          if (r > mid) DP(mid + 1, r, k, k_r);
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def DP(l, r, k_l, k_r):
+            mid = int((l + r) / 2)
+            k = k_l
+            # 求状态f[mid]的最优决策点
+            for i in range(k_l, min(k_r, mid - 1)):
+                if w(i, mid) < w(k, mid):
+                    k = i
+            f[mid] = w(k, mid)
+            # 根据决策单调性得出左右两部分的决策区间，递归处理
+            if l < mid:
+                DP(l, mid - 1, k_l, k)
+            if r > mid:
+                DP(mid + 1, r, k, k_r)
+        ```
 
 使用递归树的方法，容易分析出该分治算法的复杂度为 $O(n\log n)$，因为递归树每一层的决策区间总长度不超过 $2n$，而递归层数显然为 $O(\log n)$ 级别。
 

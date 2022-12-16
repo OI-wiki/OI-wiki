@@ -49,24 +49,26 @@ author: du33169
 
 上面两行都显然是对的，所以说这个做法空间是 $O(N^3)$，我们需要依次增加问题规模（$k$ 从 $1$ 到 $n$），判断任意两点在当前问题规模下的最短路。
 
-```cpp
-// C++ Version
-for (k = 1; k <= n; k++) {
-  for (x = 1; x <= n; x++) {
-    for (y = 1; y <= n; y++) {
-      f[k][x][y] = min(f[k - 1][x][y], f[k - 1][x][k] + f[k - 1][k][y]);
-    }
-  }
-}
-```
+=== "C++"
 
-```python
-# Python Version
-for k in range(1, n + 1):
-    for x in range(1, n + 1):
-        for y in range(1, n + 1):
-            f[k][x][y] = min(f[k - 1][x][y], f[k - 1][x][k] + f[k - 1][k][y])
-```
+    ```cpp
+    for (k = 1; k <= n; k++) {
+      for (x = 1; x <= n; x++) {
+        for (y = 1; y <= n; y++) {
+          f[k][x][y] = min(f[k - 1][x][y], f[k - 1][x][k] + f[k - 1][k][y]);
+        }
+      }
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    for k in range(1, n + 1):
+        for x in range(1, n + 1):
+            for y in range(1, n + 1):
+                f[k][x][y] = min(f[k - 1][x][y], f[k - 1][x][k] + f[k - 1][k][y])
+    ```
 
 因为第一维对结果无影响，我们可以发现数组的第一维是可以省略的，于是可以直接改成 `f[x][y] = min(f[x][y], f[x][k]+f[k][y])`。
 
@@ -77,24 +79,26 @@ for k in range(1, n + 1):
     
     故可以压缩。
 
-```cpp
-// C++ Version
-for (k = 1; k <= n; k++) {
-  for (x = 1; x <= n; x++) {
-    for (y = 1; y <= n; y++) {
-      f[x][y] = min(f[x][y], f[x][k] + f[k][y]);
-    }
-  }
-}
-```
+=== "C++"
 
-```python
-# Python Version
-for k in range(1, n + 1):
-    for x in range(1, n + 1):
-        for y in range(1, n + 1):
-            f[x][y] = min(f[x][y], f[x][k] + f[k][y])
-```
+    ```cpp
+    for (k = 1; k <= n; k++) {
+      for (x = 1; x <= n; x++) {
+        for (y = 1; y <= n; y++) {
+          f[x][y] = min(f[x][y], f[x][k] + f[k][y]);
+        }
+      }
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    for k in range(1, n + 1):
+        for x in range(1, n + 1):
+            for y in range(1, n + 1):
+                f[x][y] = min(f[x][y], f[x][k] + f[k][y])
+    ```
 
 综上时间复杂度是 $O(N^3)$，空间复杂度是 $O(N^2)$。
 
@@ -105,11 +109,11 @@ for k in range(1, n + 1):
     
     想一想这个环是怎么构成的。
     
-    考虑环上编号最大的结点 u。
+    考虑环上编号最大的结点 $u$。
     
-    `f[u-1][x][y]` 和 (u,x), (u,y）共同构成了环。
+    `f[u-1][x][y]` 和 $(u,x)$,$(u,y)$ 共同构成了环。
     
-    在 Floyd 的过程中枚举 u，计算这个和的最小值即可。
+    在 Floyd 的过程中枚举 $u$，计算这个和的最小值即可。
     
     时间复杂度为 $O(n^3)$。
 
@@ -129,17 +133,15 @@ for k in range(1, n + 1):
         if (f[i][k]) f[i] = f[i] | f[k];
     ```
 
-* * *
-
 ## Bellman-Ford 算法
 
 Bellman-Ford 算法是一种基于松弛（relax）操作的最短路算法，可以求出有负权的图的最短路，并可以对最短路不存在的情况进行判断。
 
 在国内 OI 界，你可能听说过的“SPFA”，就是 Bellman-Ford 算法的一种实现。
 
-### 流程
+### 过程
 
-先介绍 Bellman-Ford 算法要用到的松弛操作（Djikstra 算法也会用到松弛操作）。
+先介绍 Bellman-Ford 算法要用到的松弛操作（Dijkstra 算法也会用到松弛操作）。
 
 对于边 $(u,v)$，松弛操作对应下面的式子：$dis(v) = \min(dis(v), dis(u) + w(u, v))$。
 
@@ -158,69 +160,71 @@ Bellman-Ford 算法所做的，就是不断尝试对图上每一条边进行松�
     
     因此如果需要判断整个图上是否存在负环，最严谨的做法是建立一个超级源点，向图上每个节点连一条权值为 0 的边，然后以超级源点为起点执行 Bellman-Ford 算法。
 
-### 代码实现
+### 实现
 
 ??? note "参考实现"
-    ```cpp
-    // C++ Version
-    struct edge {
-      int v, w;
-    };
+    === "C++"
     
-    vector<edge> e[maxn];
-    int dis[maxn];
-    const int inf = 0x3f3f3f3f;
+        ```cpp
+        struct edge {
+          int v, w;
+        };
     
-    bool bellmanford(int n, int s) {
-      memset(dis, 63, sizeof(dis));
-      dis[s] = 0;
-      bool flag;  // 判断一轮循环过程中是否发生松弛操作
-      for (int i = 1; i <= n; i++) {
-        flag = false;
-        for (int u = 1; u <= n; u++) {
-          if (dis[u] == inf) continue;
-          // 无穷大与常数加减仍然为无穷大
-          // 因此最短路长度为 inf 的点引出的边不可能发生松弛操作
-          for (auto ed : e[u]) {
-            int v = ed.v, w = ed.w;
-            if (dis[v] > dis[u] + w) {
-              dis[v] = dis[u] + w;
-              flag = true;
+        vector<edge> e[maxn];
+        int dis[maxn];
+        const int inf = 0x3f3f3f3f;
+    
+        bool bellmanford(int n, int s) {
+          memset(dis, 63, sizeof(dis));
+          dis[s] = 0;
+          bool flag;  // 判断一轮循环过程中是否发生松弛操作
+          for (int i = 1; i <= n; i++) {
+            flag = false;
+            for (int u = 1; u <= n; u++) {
+              if (dis[u] == inf) continue;
+              // 无穷大与常数加减仍然为无穷大
+              // 因此最短路长度为 inf 的点引出的边不可能发生松弛操作
+              for (auto ed : e[u]) {
+                int v = ed.v, w = ed.w;
+                if (dis[v] > dis[u] + w) {
+                  dis[v] = dis[u] + w;
+                  flag = true;
+                }
+              }
             }
+            // 没有可以松弛的边时就停止算法
+            if (!flag) break;
           }
+          // 第 n 轮循环仍然可以松弛时说明 s 点可以抵达一个负环
+          return flag;
         }
-        // 没有可以松弛的边时就停止算法
-        if (!flag) break;
-      }
-      // 第 n 轮循环仍然可以松弛时说明 s 点可以抵达一个负环
-      return flag;
-    }
-    ```
+        ```
     
-    ```python
-    # Python Version
-    class Edge:
-        v = 0
-        w = 0
+    === "Python"
     
-    e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-    dis = [63] * maxn
+        ```python
+        class Edge:
+            v = 0
+            w = 0
     
-    def bellmanford(n, s):
-        dis[s] = 0
-        for i in range(1, n + 1):
-            flag = False
-            for u in range(1, n + 1):
-                for ed in e[u]:
-                    v = ed.v; w = ed.w
-                    if dis[v] > dis[u] + w:
-                        flag = True
-            # 没有可以松弛的边时就停止算法
-            if flag == False:
-                break
-        # 第 n 轮循环仍然可以松弛时说明 s 点可以抵达一个负环
-        return flag
-    ```
+        e = [[Edge() for i in range(maxn)] for j in range(maxn)]
+        dis = [63] * maxn
+    
+        def bellmanford(n, s):
+            dis[s] = 0
+            for i in range(1, n + 1):
+                flag = False
+                for u in range(1, n + 1):
+                    for ed in e[u]:
+                        v = ed.v; w = ed.w
+                        if dis[v] > dis[u] + w:
+                            flag = True
+                # 没有可以松弛的边时就停止算法
+                if flag == False:
+                    break
+            # 第 n 轮循环仍然可以松弛时说明 s 点可以抵达一个负环
+            return flag
+        ```
 
 ### 队列优化：SPFA
 
@@ -234,68 +238,70 @@ Bellman-Ford 算法所做的，就是不断尝试对图上每一条边进行松�
 
 SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最短路经过了多少条边，当经过了至少 $n$ 条边时，说明 $s$ 点可以抵达一个负环。
 
-??? note "参考实现"
-    ```cpp
-    // C++ Version
-    struct edge {
-      int v, w;
-    };
+??? note "实现"
+    === "C++"
     
-    vector<edge> e[maxn];
-    int dis[maxn], cnt[maxn], vis[maxn];
-    queue<int> q;
+        ```cpp
+        struct edge {
+          int v, w;
+        };
     
-    bool spfa(int n, int s) {
-      memset(dis, 63, sizeof(dis));
-      dis[s] = 0, vis[s] = 1;
-      q.push(s);
-      while (!q.empty()) {
-        int u = q.front();
-        q.pop(), vis[u] = 0;
-        for (auto ed : e[u]) {
-          int v = ed.v, w = ed.w;
-          if (dis[v] > dis[u] + w) {
-            dis[v] = dis[u] + w;
-            cnt[v] = cnt[u] + 1;  // 记录最短路经过的边数
-            if (cnt[v] >= n) return false;
-            // 在不经过负环的情况下，最短路至多经过 n - 1 条边
-            // 因此如果经过了多于 n 条边，一定说明经过了负环
-            if (!vis[v]) q.push(v), vis[v] = 1;
+        vector<edge> e[maxn];
+        int dis[maxn], cnt[maxn], vis[maxn];
+        queue<int> q;
+    
+        bool spfa(int n, int s) {
+          memset(dis, 63, sizeof(dis));
+          dis[s] = 0, vis[s] = 1;
+          q.push(s);
+          while (!q.empty()) {
+            int u = q.front();
+            q.pop(), vis[u] = 0;
+            for (auto ed : e[u]) {
+              int v = ed.v, w = ed.w;
+              if (dis[v] > dis[u] + w) {
+                dis[v] = dis[u] + w;
+                cnt[v] = cnt[u] + 1;  // 记录最短路经过的边数
+                if (cnt[v] >= n) return false;
+                // 在不经过负环的情况下，最短路至多经过 n - 1 条边
+                // 因此如果经过了多于 n 条边，一定说明经过了负环
+                if (!vis[v]) q.push(v), vis[v] = 1;
+              }
+            }
           }
+          return true;
         }
-      }
-      return true;
-    }
-    ```
+        ```
     
-    ```python
-    # Python Version
-    class Edge:
-        v = 0
-        w = 0
+    === "Python"
     
-    e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-    dis = [63] * maxn; cnt = [] * maxn; vis = [] * maxn
+        ```python
+        class Edge:
+            v = 0
+            w = 0
     
-    q = []
-    def spfa(n, s):
-        dis[s] = 0; vis[s] = 1
-        q.append(s)
-        while len(q) != 0:
-            u = q[0]
-            q.pop(); vis[u] = 0
-            for ed in e[u]:
-                if dis[v] > dis[u] + w:
-                    dis[v] = dis[u] + w
-                    cnt[v] = cnt[u] + 1 # 记录最短路经过的边数
-                    if cnt[v] >= n:
-                        return False
-                    # 在不经过负环的情况下，最短路至多经过 n - 1 条边
-                    # 因此如果经过了多于 n 条边，一定说明经过了负环
-                    if vis[v] == True:
-                        q.append(v)
-                        vis[v] = True
-    ```
+        e = [[Edge() for i in range(maxn)] for j in range(maxn)]
+        dis = [63] * maxn; cnt = [] * maxn; vis = [] * maxn
+    
+        q = []
+        def spfa(n, s):
+            dis[s] = 0; vis[s] = 1
+            q.append(s)
+            while len(q) != 0:
+                u = q[0]
+                q.pop(); vis[u] = 0
+                for ed in e[u]:
+                    if dis[v] > dis[u] + w:
+                        dis[v] = dis[u] + w
+                        cnt[v] = cnt[u] + 1 # 记录最短路经过的边数
+                        if cnt[v] >= n:
+                            return False
+                        # 在不经过负环的情况下，最短路至多经过 n - 1 条边
+                        # 因此如果经过了多于 n 条边，一定说明经过了负环
+                        if vis[v] == False:
+                            q.append(v)
+                            vis[v] = True
+        ```
 
 虽然在大多数情况下 SPFA 跑得很快，但其最坏情况下的时间复杂度为 $O(nm)$，将其卡到这个复杂度也是不难的，所以考试时要谨慎使用（在没有负权边时最好使用 Dijkstra 算法，在有负权边且题目中的图没有特殊性质时，若 SPFA 是标算的一部分，题目不应当给出 Bellman-Ford 算法无法通过的数据范围）。
 
@@ -314,7 +320,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
 
 Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. W. Dijkstra 于 1956 年发现，1959 年公开发表。是一种求解 **非负权图** 上单源最短路径的算法。
 
-### 流程
+### 过程
 
 将结点分成两个集合：已确定最短路长度的点集（记为 $S$ 集合）的和未确定最短路长度的点集（记为 $T$ 集合）。一开始所有的点都属于 $T$ 集合。
 
@@ -334,7 +340,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
 - 暴力：不使用任何数据结构进行维护，每次 2 操作执行完毕后，直接在 $T$ 集合中暴力寻找最短路长度最小的结点。2 操作总时间复杂度为 $O(m)$，1 操作总时间复杂度为 $O(n^2)$，全过程的时间复杂度为 $O(n^2 + m) = O(n^2)$。
 - 二叉堆：每成功松弛一条边 $(u,v)$，就将 $v$ 插入二叉堆中（如果 $v$ 已经在二叉堆中，直接修改相应元素的权值即可），1 操作直接取堆顶结点即可。共计 $O(m)$ 次二叉堆上的插入（修改）操作，$O(n)$ 次删除堆顶操作，而插入（修改）和删除的时间复杂度均为 $O(\log n)$，时间复杂度为 $O((n+m) \log n) = O(m \log n)$。
 - 优先队列：和二叉堆类似，但使用优先队列时，如果同一个点的最短路被更新多次，因为先前更新时插入的元素不能被删除，也不能被修改，只能留在优先队列中，故优先队列内的元素个数是 $O(m)$ 的，时间复杂度为 $O(m \log m)$。
-- Fibonacci 堆：和前面二者类似，但 Fibonacci 堆插入的时间复杂度为 $O(1)$，故时间复杂度为 $O(n \log n + m) = O(n \log n)$，时间复杂度最优。但因为 Fibonacci 堆较二叉堆不易实现，效率优势也不够大[^1]，算法竞赛中较少使用。
+- Fibonacci 堆：和前面二者类似，但 Fibonacci 堆插入的时间复杂度为 $O(1)$，故时间复杂度为 $O(n \log n + m)$，时间复杂度最优。但因为 Fibonacci 堆较二叉堆不易实现，效率优势也不够大[^1]，算法竞赛中较少使用。
 - 线段树：和二叉堆原理类似，不过将每次成功松弛后插入二叉堆的操作改为在线段树上执行单点修改，而 1 操作则是线段树上的全局查询最小值。时间复杂度为 $O(m \log n)$。
 
 在稀疏图中，$m = O(n)$，使用二叉堆实现的 Dijkstra 算法较 Bellman-Ford 算法具有较大的效率优势；而在稠密图中，$m = O(n^2)$，这时候使用暴力做法较二叉堆实现更优。
@@ -361,92 +367,122 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
 
 注意到证明过程中的关键不等式 $D(y) \leq D(u)$ 是在图上所有边边权非负的情况下得出的。当图上存在负权边时，这一不等式不再成立，Dijkstra 算法的正确性将无法得到保证，算法可能会给出错误的结果。
 
-### 代码实现
+### 实现
 
 这里同时给出 $O(n^2)$ 的暴力做法实现和 $O(m \log m)$ 的优先队列做法实现。
 
 ???+note "暴力实现"
-    ```cpp
-    // C++ Version
-    struct edge {
-      int v, w;
-    };
+    === "C++"
     
-    vector<edge> e[maxn];
-    int dis[maxn], vis[maxn];
+        ```cpp
+        struct edge {
+          int v, w;
+        };
     
-    void dijkstra(int n, int s) {
-      memset(dis, 63, sizeof(dis));
-      dis[s] = 0;
-      for (int i = 1; i <= n; i++) {
-        int u = 0, mind = 0x3f3f3f3f;
-        for (int j = 1; j <= n; j++)
-          if (!vis[j] && dis[j] < mind) u = j, mind = dis[j];
-        vis[u] = true;
-        for (auto ed : e[u]) {
-          int v = ed.v, w = ed.w;
-          if (dis[v] > dis[u] + w) dis[v] = dis[u] + w;
-        }
-      }
-    }
-    ```
+        vector<edge> e[maxn];
+        int dis[maxn], vis[maxn];
     
-    ```python
-    # Python Version
-    class Edge:
-        v = 0
-        w = 0
-    e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-    dis = [63] * maxn; vis = [] * maxn
-    def dijkstra(n, s):
-        dis[s] = 0
-        for i in range(1, n + 1):
-            u = 0; mind = 0x3f3f3f3f
-            for j in range(1, n + 1):
-                if vis[j] == False and dis[v] < mind:
-                    u = j; mind = dis[j]
-            vis[u] = True
-            for ed in e[u]:
-                v = ed.v; w = ed.w
-                if dis[v] > dis[u] + w:
-                    dis[v] = dis[u] + w
-    ```
-
-???+note "优先队列实现"
-    ```cpp
-    struct edge {
-      int v, w;
-    };
-    
-    struct node {
-      int dis, u;
-    
-      bool operator>(const node& a) const { return dis > a.dis; }
-    };
-    
-    vector<edge> e[maxn];
-    int dis[maxn], vis[maxn];
-    priority_queue<node, vector<node>, greater<node> > q;
-    
-    void dijkstra(int n, int s) {
-      memset(dis, 63, sizeof(dis));
-      dis[s] = 0;
-      q.push({0, s});
-      while (!q.empty()) {
-        int u = q.top().u;
-        q.pop();
-        if (vis[u]) continue;
-        vis[u] = 1;
-        for (auto ed : e[u]) {
-          int v = ed.v, w = ed.w;
-          if (dis[v] > dis[u] + w) {
-            dis[v] = dis[u] + w;
-            q.push({dis[v], v});
+        void dijkstra(int n, int s) {
+          memset(dis, 63, sizeof(dis));
+          dis[s] = 0;
+          for (int i = 1; i <= n; i++) {
+            int u = 0, mind = 0x3f3f3f3f;
+            for (int j = 1; j <= n; j++)
+              if (!vis[j] && dis[j] < mind) u = j, mind = dis[j];
+            vis[u] = true;
+            for (auto ed : e[u]) {
+              int v = ed.v, w = ed.w;
+              if (dis[v] > dis[u] + w) dis[v] = dis[u] + w;
+            }
           }
         }
-      }
-    }
-    ```
+        ```
+    
+    === "Python"
+    
+        ```python
+        class Edge:
+            v = 0
+            w = 0
+        e = [[Edge() for i in range(maxn)] for j in range(maxn)]
+        dis = [63] * maxn; vis = [] * maxn
+        def dijkstra(n, s):
+            dis[s] = 0
+            for i in range(1, n + 1):
+                u = 0; mind = 0x3f3f3f3f
+                for j in range(1, n + 1):
+                    if vis[j] == False and dis[v] < mind:
+                        u = j; mind = dis[j]
+                vis[u] = True
+                for ed in e[u]:
+                    v = ed.v; w = ed.w
+                    if dis[v] > dis[u] + w:
+                        dis[v] = dis[u] + w
+        ```
+
+???+note "优先队列实现"
+    === "C++"
+    
+        ```cpp
+        struct edge {
+          int v, w;
+        };
+    
+        struct node {
+          int dis, u;
+    
+          bool operator>(const node& a) const { return dis > a.dis; }
+        };
+    
+        vector<edge> e[maxn];
+        int dis[maxn], vis[maxn];
+        priority_queue<node, vector<node>, greater<node> > q;
+    
+        void dijkstra(int n, int s) {
+          memset(dis, 63, sizeof(dis));
+          dis[s] = 0;
+          q.push({0, s});
+          while (!q.empty()) {
+            int u = q.top().u;
+            q.pop();
+            if (vis[u]) continue;
+            vis[u] = 1;
+            for (auto ed : e[u]) {
+              int v = ed.v, w = ed.w;
+              if (dis[v] > dis[u] + w) {
+                dis[v] = dis[u] + w;
+                q.push({dis[v], v});
+              }
+            }
+          }
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def dijkstra(e,s):
+          '''
+          输入：
+          e:邻接表
+          s:起点
+          返回：
+          dis:从s到每个顶点的最短路长度
+          '''
+          dis = defaultdict(lambda:float("inf"))
+          dis[s] = 0
+          q = [(0,s)]
+          vis = set()
+          while q:
+              _, u = heapq.heappop(q)
+              if u in vis: continue
+              vis.add(u)
+              for v,w in e[u]:
+                  if dis[v] > dis[u] + w:
+                      dis[v] = dis[u] + w
+                      heapq.heappush(q,(dis[v],v))
+          return dis
+        ```
 
 ## Johnson 全源最短路径算法
 
@@ -515,8 +551,6 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 根据三角形不等式，图上任意一边 $(u,v)$ 上两点满足：$h_v \leq h_u + w(u,v)$。这条边重新标记后的边权为 $w'(u,v)=w(u,v)+h_u-h_v \geq 0$。这样我们证明了新图上的边权均非负。
 
 这样，我们就证明了 Johnson 算法的正确性。
-
-* * *
 
 ## 不同方法的比较
 

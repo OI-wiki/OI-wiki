@@ -74,7 +74,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
     
     如果你正在使用 Windows 10 1607 以下版本的 Windows，你的系统不支持 WSL。
 
-1. 以管理员身份打开 Windows Powershell（右击 "开始" 按钮，选择 Windows PowerShell（管理员）或 Windows 终端（管理员）)
+1. 以管理员身份打开 Windows PowerShell（右击 "开始" 按钮，选择 Windows PowerShell（管理员）或 Windows 终端（管理员）)
 
 2. 输入 `wsl --install`，并等待所有组件自动安装完成。期间你可能需要重启你的计算机来启用必要的 Windows 功能。
 
@@ -129,8 +129,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 WSL 1 与 WSL 2 的区别，请见 [比较 WSL 2 和 WSL 1](https://docs.microsoft.com/zh-cn/windows/wsl/compare-versions)
 
 ??? note "关于 systemd"
-    WSL 1 完全不支持 systemd（这意味着一些需要 systemd 的功能无法实现或需要别的 hack），WSL 2 可以使用 [genie](https://github.com/arkane-systems/genie)。
-    此外，[yuk7/arch-systemctl-alt](https://github.com/yuk7/arch-systemctl-alt) 项目提供了一个在 WSL 1 与 2 都可用的 alternative script，但是它只具有部分兼容且只在 ArchWSL 进行了测试。
+    WSL 1 完全不支持 systemd（这意味着一些需要 systemd 的功能无法实现或需要其他替代方案）。WSL 2 已经内建对 systemd 的支持。如果需要使用 systemd，而当前运行的发行版没有配置为启用 systemd，可参考 [WSL 中的高级设置配置](https://learn.microsoft.com/zh-cn/windows/wsl/wsl-config#systemd-support)。
 
 ```powershell
 # 将 WSL 默认版本设置为 WSL 2
@@ -409,6 +408,36 @@ Welcome!
 
 同时，也可以参考 Visual Studio Code 的官方文档中关于 WSL 的内容（[Remote development in WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial)），这篇文章包含从 WSL 安装到配合插件使用的全流程的更详细的介绍。
 
+## WSL1 升级为 WSL2
+
+???+ warning
+    请确认已经完成前面 WSL1 的安装步骤。
+
+执行命令 `wsl -l -v` 可以看到 WSL 版本号是 1，需要执行升级，才能到 2。
+
+1.  启用“虚拟机平台”功能
+
+    使用 PowerShell 以管理员身份运行：
+
+    ```shell
+    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+    ```
+
+    然后 **重启电脑**。
+
+2.  下载 Linux 内核更新包
+
+    - [x64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi) 的内核更新包。
+    - [ARM64/AArch64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi) 的内核更新包。
+
+3.  设置分发版版本
+
+    执行命令：`wsl --set-version <分发版名称> <版本号>`
+
+    如：将 Ubuntu18.04 设置为 WSL2 的命令为 `wsl --set-version Ubuntu-18.04 2`
+
+    这一步比较耗时，执行完成后通过命令 `wsl -l -v` 来检查升级是否成功。
+
 ## FAQ
 
 参见：[常见问题](https://docs.microsoft.com/zh-cn/windows/wsl/faq)，[WSL 2 常见问题解答](https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-faq)
@@ -432,6 +461,7 @@ Welcome!
 - [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://dowww.spencerwoo.com)
 - [GitHub 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL)
 - [排查适用于 Linux 的 Windows 子系统问题](https://docs.microsoft.com/zh-cn/windows/wsl/troubleshooting)
+- [WSL1 升级为 WSL2](https://www.cnblogs.com/stulzq/p/13926936.html)
 
 ## 参考资料与注释
 

@@ -1,0 +1,10 @@
+id: oi-wiki:basic/simulate-1
+name: Simulate Algorithm
+solution:
+  cpp: docs/basic/code/simulate/simulate_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/basic/examples/simulate/simulate_1.ans
+  input: docs/basic/examples/simulate/simulate_1.in
+version: 1000

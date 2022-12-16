@@ -1,4 +1,4 @@
-author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR
+author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI
 
 ## 带花树算法（Blossom Algorithm）
 
@@ -7,6 +7,8 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR
 此算法是第一个给出证明说最大匹配有多项式复杂度。
 
 一般图匹配和二分图匹配（bipartite matching）不同的是，图可能存在奇环。
+
+![general-matching-1](./images/general-matching-1.png)
 
 以此图为例，若直接取反（匹配边和未匹配边对调），会使得取反后的 $M$ 不合法，某些点会出现在两条匹配上，而问题就出在奇环。
 

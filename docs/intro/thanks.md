@@ -2,12 +2,13 @@ disqus:
 
 本项目目前接受捐赠，扫描下方二维码可以投食（请务必备注 `‘捐赠’+ 自己的信息`）。
 
-所有款项将被用于 **OI Wiki** 的域名、服务器、运维等必须支出
+所有款项将被用于 **OI Wiki** 的域名、服务器、运维等必需支出。
+
 大额捐赠将会记录在本页面下方或日后更合适的位置来表示感谢。
 
 <div align="center">
-<img src='/intro/images/alipay.png' width='256' />
-<img src='/intro/images/wechat.png' width='256' />
+<img src="/intro/images/alipay.png" style="width: 256px; " />
+<img src="/intro/images/wechat.png" style="width: 256px; " />
 </div>
 
 * * *

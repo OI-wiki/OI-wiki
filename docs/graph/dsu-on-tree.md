@@ -1,6 +1,6 @@
 author: abc1763613206, cesonic, Ir1d, MingqiHuang, xinchengo
 
-### 引入
+## 引入
 
 启发式算法是什么呢？
 
@@ -25,7 +25,7 @@ void merge(int x, int y) {
 
 让高度小的树成为高度较大的树的子树，这个优化可以称为启发式合并算法。
 
-### 算法内容
+## 算法内容
 
 树上启发式合并（dsu on tree）对于某些树上离线问题可以速度大于等于大部分算法且更易于理解和实现的算法。
 
@@ -43,6 +43,8 @@ void merge(int x, int y) {
 树上莫队！
 
 不行，莫队带根号，我要 log
+
+## 过程
 
 既然支持离线，考虑预处理后 $O(1)$ 输出答案。
 
@@ -74,7 +76,7 @@ void merge(int x, int y) {
 
 注意除了重儿子，每次遍历完 cnt 要清零。
 
-### 复杂度
+## 证明
 
 （对于不关心复杂度证明的，可以跳过不看）
 
@@ -88,7 +90,9 @@ void merge(int x, int y) {
 
 *图中标粗的即为重边，重边连向的子节点为重儿子*
 
-???+note "代码实现"
+## 实现
+
+???+note "实现"
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
@@ -179,7 +183,7 @@ void merge(int x, int y) {
     }
     ```
 
-### 运用
+## 运用
 
 1.  某些出题人设置的正解是 dsu on tree 的题
 
@@ -193,7 +197,7 @@ void merge(int x, int y) {
 
     可以水一些树套树的部分分（没有修改操作），还可以把树上莫队的 $O(n\sqrt{m})$ 吊着打
 
-### 练习题
+## 练习题
 
 [CF600E Lomsat gelral](http://codeforces.com/problemset/problem/600/E)
 
@@ -201,7 +205,9 @@ void merge(int x, int y) {
 
 [UOJ284 快乐游戏鸡](https://uoj.ac/problem/284)
 
-### 参考资料/扩展阅读
+[CF1709E XOR Tree](https://codeforces.com/contest/1709/problem/E)
+
+## 参考资料/扩展阅读
 
 [CF741D 作者介绍的 dsu on tree](http://codeforces.com/blog/entry/44351)
 
