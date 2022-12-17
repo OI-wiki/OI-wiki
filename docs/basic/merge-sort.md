@@ -21,7 +21,7 @@
 #### 实现
 
 === "C/C++"
-    
+
     === "数组实现"
         
         ```cpp
@@ -42,7 +42,7 @@
           for (; j < bLen; ++j, ++k) c[k] = b[j];
         }
         ```
-    
+
     === "指针实现"
         
         ```cpp
@@ -61,7 +61,7 @@
           for (; bBegin != bEnd; ++bBegin, ++c) *c = *bBegin;
         }
         ```
-    
+
     也可使用 `<algorithm>` 库的 `merge` 函数，用法与上述指针式写法的相同。
 
 === "Python"
