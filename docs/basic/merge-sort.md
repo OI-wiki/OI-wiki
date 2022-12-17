@@ -18,68 +18,71 @@
 
 为保证排序的稳定性，前段首元素小于或等于后段首元素时（`a[i] <= b[j]`）而非小于时（`a[i] < b[j]`）就要作为最小值放入 `c[k]`。
 
-参考代码：
+#### 实现
 
-C/C++:
+=== "C/C++"
+    
+    === "数组实现"
+        
+        ```cpp
+        void merge(const int *a, size_t aLen, const int *b, size_t bLen, int *c) {
+          size_t i = 0, j = 0, k = 0;
+          while (i < aLen && j < bLen) {
+            if (b[j] < a[i]) {  // <!> 先判断 b[j] < a[i]，保证稳定性
+              c[k] = b[j];
+              ++j;
+            } else {
+              c[k] = a[i];
+              ++i;
+            }
+            ++k;
+          }
+          // 此时一个数组已空，另一个数组非空，将非空的数组并入 c 中
+          for (; i < aLen; ++i, ++k) c[k] = a[i];
+          for (; j < bLen; ++j, ++k) c[k] = b[j];
+        }
+        ```
+    
+    === "指针实现"
+        
+        ```cpp
+        void merge(const int *aBegin, const int *aEnd, const int *bBegin, const int *bEnd, int *c) {
+          while (aBegin != aEnd && bBegin != bEnd) {
+            if (*bBegin < *aBegin) {
+              *c = *bBegin;
+              ++bBegin;
+            } else {
+              *c = *aBegin;
+              ++aBegin;
+            }
+            ++c;
+          }
+          for (; aBegin != aEnd; ++aBegin, ++c) *c = *aBegin;
+          for (; bBegin != bEnd; ++bBegin, ++c) *c = *bBegin;
+        }
+        ```
+    
+    也可使用 `<algorithm>` 库的 `merge` 函数，用法与上述指针式写法的相同。
 
-```cpp
-// C / C++ version, array style
-void merge(const int *a, size_t aLen, const int *b, size_t bLen, int *c) {
-  size_t i = 0, j = 0, k = 0;
-  while (i < aLen && j < bLen) {
-    if (b[j] < a[i]) {  // <!> 先判断 b[j] < a[i]，保证稳定性
-      c[k] = b[j];
-      ++j;
-    } else {
-      c[k] = a[i];
-      ++i;
-    }
-    ++k;
-  }
-  // 此时一个数组已空，另一个数组非空，将非空的数组并入 c 中
-  for (; i < aLen; ++i, ++k) c[k] = a[i];
-  for (; j < bLen; ++j, ++k) c[k] = b[j];
-}
+=== "Python"
 
-// C / C++ version, pointer style
-void merge(const int *aBegin, const int *aEnd, const int *bBegin,
-           const int *bEnd, int *c) {
-  while (aBegin != aEnd && bBegin != bEnd) {
-    if (*bBegin < *aBegin) {
-      *c = *bBegin;
-      ++bBegin;
-    } else {
-      *c = *aBegin;
-      ++aBegin;
-    }
-    ++c;
-  }
-  for (; aBegin != aEnd; ++aBegin, ++c) *c = *aBegin;
-  for (; bBegin != bEnd; ++bBegin, ++c) *c = *bBegin;
-}
-```
-
-也可使用 `<algorithm>` 库的 `merge` 函数，用法与上述指针式写法的相同。
-
-Python:
-
-```python
-def merge(a, b):
-    i, j = 0, 0
-    c = []
-    while(i < len(a) and j < len(b)):
-        # <!> 先判断 b[j] < a[i]，保证稳定性
-        if(b[j] < a[i]):
-            c.append(b[j])
-            j += 1
-        else:
-            c.append(a[i])
-            i += 1
-    # 此时一个数组已空，另一个数组非空，将非空的数组并入 c 中
-    c.extend(a[i:])
-    c.extend(b[j:])
-    return c
-```
+    ```python
+    def merge(a, b):
+        i, j = 0, 0
+        c = []
+        while(i < len(a) and j < len(b)):
+            # <!> 先判断 b[j] < a[i]，保证稳定性
+            if(b[j] < a[i]):
+                c.append(b[j])
+                j += 1
+            else:
+                c.append(a[i])
+                i += 1
+        # 此时一个数组已空，另一个数组非空，将非空的数组并入 c 中
+        c.extend(a[i:])
+        c.extend(b[j:])
+        return c
+    ```
 
 ### 分治法实现归并排序
 
