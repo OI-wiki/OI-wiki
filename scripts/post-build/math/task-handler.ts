@@ -138,14 +138,12 @@ export const taskHandler = new (class implements TaskHandler<void> {
       element.replaceWith(html);
     });
 
-    // Inject CSS <link> element (if rendered any math elements)
-    if (mathElements.length > 0) {
-      const htmlFilePathToRoot = path.relative(this.siteDir, filePath);
-      const cssFilePathToHtml = path.relative(path.dirname(htmlFilePathToRoot), MATHJAX_TARGET_CSS_FILE);
-      document
-        .querySelector("head")
-        .insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="${cssFilePathToHtml}">`);
-    }
+    // Inject CSS <link> element (not checking if we have maths since we use instant loading)
+    const htmlFilePathToRoot = path.relative(this.siteDir, filePath);
+    const cssFilePathToHtml = path.relative(path.dirname(htmlFilePathToRoot), MATHJAX_TARGET_CSS_FILE);
+    document
+      .querySelector("head")
+      .insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="${cssFilePathToHtml}">`);
 
     // Remove client-side rendering script
     document

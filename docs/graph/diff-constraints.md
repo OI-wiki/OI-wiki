@@ -32,7 +32,7 @@ author: Ir1d, Anguei, hsfzLZH1
 
 ??? note "参考代码"
     ```cpp
-      --8<-- "docs/graph/code/diff-constraints/diff-constraints_1.cpp"
+    --8<-- "docs/graph/code/diff-constraints/diff-constraints_1.cpp"
     ```
 
 ### 例题 [P4926\[1007\]倍杀测量者](https://www.luogu.com.cn/problem/P4926)
@@ -46,45 +46,47 @@ author: Ir1d, Anguei, hsfzLZH1
 下面是用 Bellman-Ford 算法判断图中是否存在负环的代码实现，请在调用前先保证图是连通的。
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    bool Bellman_Ford() {
-      for (int i = 0; i < n; i++) {
-        bool jud = false;
-        for (int j = 1; j <= n; j++)
-          for (int k = h[j]; ~k; k = nxt[k])
-            if (dist[j] > dist[p[k]] + w[k])
-              dist[j] = dist[p[k]] + w[k], jud = true;
-        if (!jud) break;
-      }
-      for (int i = 1; i <= n; i++)
-        for (int j = h[i]; ~j; j = nxt[j])
-          if (dist[i] > dist[p[j]] + w[j]) return false;
-      return true;
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def Bellman_Ford():
-        for i in range(0, n):
-            jud = False
-            for j in range(1, n + 1):
-                while ~k:
-                    k = h[j]
-                    if dist[j] > dist[p[k]] + w[k]:
-                        dist[j] = dist[p[k]] + w[k]; jud = True
-                    k = nxt[k]
-            if jud == False:
-                break
-        for i in range(1, n + 1):
-            while ~j:
-                j = h[i]
-                if dist[i] > dist[p[j]] + w[j]:
-                    return False
-                j = nxt[j]
-        return True
-    ```
+        ```cpp
+        bool Bellman_Ford() {
+          for (int i = 0; i < n; i++) {
+            bool jud = false;
+            for (int j = 1; j <= n; j++)
+              for (int k = h[j]; ~k; k = nxt[k])
+                if (dist[j] > dist[p[k]] + w[k])
+                  dist[j] = dist[p[k]] + w[k], jud = true;
+            if (!jud) break;
+          }
+          for (int i = 1; i <= n; i++)
+            for (int j = h[i]; ~j; j = nxt[j])
+              if (dist[i] > dist[p[j]] + w[j]) return false;
+          return true;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def Bellman_Ford():
+            for i in range(0, n):
+                jud = False
+                for j in range(1, n + 1):
+                    while ~k:
+                        k = h[j]
+                        if dist[j] > dist[p[k]] + w[k]:
+                            dist[j] = dist[p[k]] + w[k]; jud = True
+                        k = nxt[k]
+                if jud == False:
+                    break
+            for i in range(1, n + 1):
+                while ~j:
+                    j = h[i]
+                    if dist[i] > dist[p[j]] + w[j]:
+                        return False
+                    j = nxt[j]
+            return True
+        ```
 
 ## 习题
 

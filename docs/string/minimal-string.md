@@ -24,40 +24,42 @@ $$
 
 ### 实现
 
-```cpp
-// C++ Version
-int k = 0, i = 0, j = 1;
-while (k < n && i < n && j < n) {
-  if (sec[(i + k) % n] == sec[(j + k) % n]) {
-    ++k;
-  } else {
-    if (sec[(i + k) % n] > sec[(j + k) % n])
-      ++i;
-    else
-      ++j;
-    k = 0;
-    if (i == j) i++;
-  }
-}
-i = min(i, j);
-```
+=== "C++"
 
-```python
-# Python Version
-k, i, j = 0, 0, 1
-while k < n and i < n and j < n:
-    if sec[(i + k) % n] == sec[(j + k) % n]:
-        k += 1
-    else:
-        if sec[(i + k) % n] > sec[(j + k) % n]:
-            i += 1
+    ```cpp
+    int k = 0, i = 0, j = 1;
+    while (k < n && i < n && j < n) {
+      if (sec[(i + k) % n] == sec[(j + k) % n]) {
+        ++k;
+      } else {
+        if (sec[(i + k) % n] > sec[(j + k) % n])
+          ++i;
+        else
+          ++j;
+        k = 0;
+        if (i == j) i++;
+      }
+    }
+    i = min(i, j);
+    ```
+
+=== "Python"
+
+    ```python
+    k, i, j = 0, 0, 1
+    while k < n and i < n and j < n:
+        if sec[(i + k) % n] == sec[(j + k) % n]:
+            k += 1
         else:
-            j += 1
-        k = 0
-        if i == j:
-            i += 1
-i = min(i, j)
-```
+            if sec[(i + k) % n] > sec[(j + k) % n]:
+                i += 1
+            else:
+                j += 1
+            k = 0
+            if i == j:
+                i += 1
+    i = min(i, j)
+    ```
 
 ### 解释
 
@@ -96,34 +98,36 @@ $O(n)$
 
 ### 实现
 
-```cpp
-// C++ Version
-int k = 0, i = 0, j = 1;
-while (k < n && i < n && j < n) {
-  if (sec[(i + k) % n] == sec[(j + k) % n]) {
-    k++;
-  } else {
-    sec[(i + k) % n] > sec[(j + k) % n] ? i = i + k + 1 : j = j + k + 1;
-    if (i == j) i++;
-    k = 0;
-  }
-}
-i = min(i, j);
-```
+=== "C++"
 
-```python
-# Python Version
-k, i, j = 0, 0, 1
-while k < n and i < n and j < n:
-    if sec[(i + k) % n] == sec[(j + k) % n]:
-        k += 1
-    else:
-        if sec[(i + k) % n] > sec[(j + k) % n]:
-            i = i + k + 1
+    ```cpp
+    int k = 0, i = 0, j = 1;
+    while (k < n && i < n && j < n) {
+      if (sec[(i + k) % n] == sec[(j + k) % n]) {
+        k++;
+      } else {
+        sec[(i + k) % n] > sec[(j + k) % n] ? i = i + k + 1 : j = j + k + 1;
+        if (i == j) i++;
+        k = 0;
+      }
+    }
+    i = min(i, j);
+    ```
+
+=== "Python"
+
+    ```python
+    k, i, j = 0, 0, 1
+    while k < n and i < n and j < n:
+        if sec[(i + k) % n] == sec[(j + k) % n]:
+            k += 1
         else:
-            j = j + k + 1
-        if i == j:
-            i += 1
-        k = 0
-i = min(i, j)
-```
+            if sec[(i + k) % n] > sec[(j + k) % n]:
+                i = i + k + 1
+            else:
+                j = j + k + 1
+            if i == j:
+                i += 1
+            k = 0
+    i = min(i, j)
+    ```

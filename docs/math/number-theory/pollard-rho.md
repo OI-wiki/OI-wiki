@@ -10,36 +10,38 @@
 
 最简单的算法即为从 $[1,\sqrt N]$ 进行遍历。
 
-```C++
-// C++ Version
-list<int> breakdown(int N) {
-  list<int> result;
-  for (int i = 2; i * i <= N; i++) {
-    if (N % i == 0) {  // 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
-      while (N % i == 0) N /= i;
-      result.push_back(i);
-    }
-  }
-  if (N != 1) {  // 说明再经过操作之后 N 留下了一个素数
-    result.push_back(N);
-  }
-  return result;
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def breakdown(N):
-    result = []
-    for i in range(2, int(sqrt(N)) + 1):
-        if N % i == 0: # 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
-            while N % i == 0:
-                N = N // i
-                result.append(i)
-    if N != 1: # 说明再经过操作之后 N 留下了一个素数
-        result.append(N)
-    return result
-```
+    ```cpp
+    list<int> breakdown(int N) {
+      list<int> result;
+      for (int i = 2; i * i <= N; i++) {
+        if (N % i == 0) {  // 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
+          while (N % i == 0) N /= i;
+          result.push_back(i);
+        }
+      }
+      if (N != 1) {  // 说明再经过操作之后 N 留下了一个素数
+        result.push_back(N);
+      }
+      return result;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def breakdown(N):
+        result = []
+        for i in range(2, int(sqrt(N)) + 1):
+            if N % i == 0: # 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
+                while N % i == 0:
+                    N = N // i
+                    result.append(i)
+        if N != 1: # 说明再经过操作之后 N 留下了一个素数
+            result.append(N)
+        return result
+    ```
 
 我们能够证明 `result` 中的所有元素均为 `N` 的素因数。
 
@@ -85,7 +87,7 @@ $$
 
 将 $n=365$ 代入，解得 $k=23$。所以一个房间中至少 23 人，使其中两个人生日相同的概率达到 $50\%$, 但这个数学事实十分反直觉，故称之为一个悖论。
 
-当 $k>56$，$n=365$ 时，出现两个人同一天生日的概率将大于 $99\%$。那么在一年有 $n$ 天的情况下，当房间中有 $\sqrt{\dfrac{n}{\ln 2}}$ 个人时，至少有两个人的生日相同的概率约为 $50\%$。
+当 $k>56$，$n=365$ 时，出现两个人同一天生日的概率将大于 $99\%$。那么在一年有 $n$ 天的情况下，当房间中有 $\frac{1}{2}(\sqrt{8n\ln 2+1}+1)\approx \sqrt{2n\ln 2}$ 个人时，至少有两个人的生日相同的概率约为 $50\%$。
 
 考虑一个问题，设置一个数据 $n$，在 $[1,1000]$ 里随机选取 $i$ 个数（$i=1$ 时就是它自己），使它们之间有两个数的差值为 $k$。当 $i=1$ 时成功的概率是 $\frac{1}{1000}$，当 $i=2$ 时成功的概率是 $\frac{1}{500}$（考虑绝对值，$k_2$ 可以取 $k_1-k$ 或 $k_1+k$），随着 $i$ 的增大，这个概率也会增大最后趋向于 1。
 
@@ -144,36 +146,38 @@ $$
 我们每次令 $d=\gcd(|x_i-x_j|,n)$，判断 d 是否满足 $1< d< n$，若满足则可直接返回 $d$。由于 $x_i$ 是一个伪随机数列，必定会形成环，在形成环时就不能再继续操作了，直接返回 n 本身，并且在后续操作里调整随机常数 $c$，重新分解。
 
 ??? note "基于 Floyd 判环的 Pollard-Rho 算法"
-    ```c++
-    // C++ Version
-    ll Pollard_Rho(ll N) {
-      ll c = rand() % (N - 1) + 1;
-      ll t = f(0, c, N);
-      ll r = f(f(0, c, N), c, N);
-      while (t != r) {
-        ll d = gcd(abs(t - r), N);
-        if (d > 1) return d;
-        t = f(t, c, N);
-        r = f(f(r, c, N), c, N);
-      }
-      return N;
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def Pollard_Rho(N):
-    c = random.randint(0, 32767) % (N - 1) + 1
-    t = f(0, c, N)
-    r = f(f(0, c, N), c, N)
-    while t != r:
-        d = gcd(abs(t - r), N)
-        if d > 1:
-            return d
-        t = f(t, c, N)
-        r = f(f(r, c, N), c, N)
-    return N
-    ```
+        ```cpp
+        ll Pollard_Rho(ll N) {
+          ll c = rand() % (N - 1) + 1;
+          ll t = f(0, c, N);
+          ll r = f(f(0, c, N), c, N);
+          while (t != r) {
+            ll d = gcd(abs(t - r), N);
+            if (d > 1) return d;
+            t = f(t, c, N);
+            r = f(f(r, c, N), c, N);
+          }
+          return N;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def Pollard_Rho(N):
+        c = random.randint(0, 32767) % (N - 1) + 1
+        t = f(0, c, N)
+        r = f(f(0, c, N), c, N)
+        while t != r:
+            d = gcd(abs(t - r), N)
+            if d > 1:
+                return d
+            t = f(t, c, N)
+            r = f(f(r, c, N), c, N)
+        return N
+        ```
 
 #### 倍增优化
 

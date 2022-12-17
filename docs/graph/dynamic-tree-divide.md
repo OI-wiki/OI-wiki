@@ -83,7 +83,7 @@ int main() {
 参考代码：
 
 ```cpp
-  --8<-- "docs/graph/code/dynamic-tree-divide/dynamic-tree-divide_1.cpp"
+--8<-- "docs/graph/code/dynamic-tree-divide/dynamic-tree-divide_1.cpp"
 ```
 
 ???+note " 例题[Luogu P6329 【模板】点分树 | 震波](https://www.luogu.com.cn/problem/P6329)"
@@ -105,5 +105,5 @@ int main() {
 参考代码：
 
 ```cpp
-  --8<-- "docs/graph/code/dynamic-tree-divide/dynamic-tree-divide_2.cpp"
+--8<-- "docs/graph/code/dynamic-tree-divide/dynamic-tree-divide_2.cpp"
 ```

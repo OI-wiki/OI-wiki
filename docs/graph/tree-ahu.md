@@ -141,7 +141,7 @@ $$
 
 ???+ note "参考代码"
     ```cpp
-      --8<-- "docs/graph/code/tree-ahu/tree-ahu_1.cpp"
+    --8<-- "docs/graph/code/tree-ahu/tree-ahu_1.cpp"
     ```
 
 ## 参考资料
