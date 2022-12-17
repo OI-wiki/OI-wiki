@@ -97,7 +97,7 @@ $$
 
 为 Stern Brocot 树编制索引。根顶点被分配了一个索引 $1$。然后，对于顶点 $v$，通过将 $v$ 的前导位从 $1$ 更改为 $10$ 来分配其左子节点的索引，对于右子节点，通过将前导位从 $1$ 更改为 $11$ 来分配索引：
 
-<figure><img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Stern-brocot-index.svg" width="500px"/></figure>
+![pic](./images/Stern-brocot-index.svg)
 
 在这种索引中，连分数表示规定了有理数的 **游程长度编码**（run-length encoding）。
 
@@ -278,10 +278,7 @@ def find(x, y, a = 0, b = 1, c = 1, d = 0):
 
 通常如下所示：
 
-<figure>
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Calkin–Wilf_tree.svg" width="500px"/>
-<figcaption><a href="https://commons.wikimedia.org/wiki/File:Calkin–Wilf_tree.svg">The image</a> by <a href="https://commons.wikimedia.org/wiki/User:Olli_Niemitalo">Olli Niemitalo</a>, <a href="https://commons.wikimedia.org/wiki/User:Proz">Proz</a> is licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0 1.0</a></figcaption>
-</figure>
+![pic](./images/Calkin–Wilf_tree.svg)
 
 树的根节点为 $\frac{1}{1}$。然后，对于数字为 $\frac{p}{q}$ 的顶点，其子节点为 $\frac{p}{p+q}$ 和 $\frac{p+q}{q}$。
 
