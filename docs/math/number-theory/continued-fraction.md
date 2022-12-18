@@ -1413,7 +1413,7 @@ $$
 ### [OKC 2 - From Modular to Rational](https://codeforces.com/gym/102354/problem/I)
 
 有一个有理数 $\frac{p}{q}$，即 $1 \leq p, q \leq 10^9$。您可以询问几个素数 $m$ 的 $p q^{-1}$ 模 $m \sim 10^9$ 的值。恢复 $\frac{p}{q}$。
-    
+
 这个问题等价于：查找 $1 \leq x \leq N$ 中，使 $Ax \bmod M$ 最小的 $x$。
 
 ??? "解答"
