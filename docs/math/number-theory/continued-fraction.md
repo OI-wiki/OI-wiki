@@ -1141,8 +1141,9 @@ $$
 
 既然已经介绍了最重要的事实和概念，那么是时候深入研究具体的例题了。
 
-!!! 例题 "线下凸包"
-    找到格点 $(x;y)$ 的凸包，使得 $r=[a_0;a_1,\dots,a_k]=\frac{p_k}{q_k}$ 的 $0 \leq x \leq N$ 和 $0 \leq y \leq rx$。
+### 线下凸包
+
+找到格点 $(x;y)$ 的凸包，使得 $r=[a_0;a_1,\dots,a_k]=\frac{p_k}{q_k}$ 的 $0 \leq x \leq N$ 和 $0 \leq y \leq rx$。
 
 ??? "解答"
     如果我们考虑无界集合 $0 \leq x$，则上凸包将由线 $y=rx$ 本身给出。
@@ -1225,8 +1226,9 @@ $$
             return ah, ph, qh
         ```
 
-!!! "[Timus - Crime and Punishment](https://timus.online/problem.aspx?space=1&num=1430)"
-    您将得到整数 $A$、$B$ 和 $N$。查找 $x \geq 0$ 和 $y \geq 0$，使 $Ax + By \leq N$ 和 $Ax + By$ 达到最大值。
+### [Timus - Crime and Punishment](https://timus.online/problem.aspx?space=1&num=1430)
+
+您将得到整数 $A$、$B$ 和 $N$。查找 $x \geq 0$ 和 $y \geq 0$，使 $Ax + By \leq N$ 和 $Ax + By$ 达到最大值。
 
 ??? "解答"
     在这个问题中有 $1 \leq A, B, N \leq 2 \cdot 10^9$，因此可以用 $O(\sqrt N)$ 来解决。但是，有一个 $O(\log N)$ 解决方案包含连分数。
@@ -1269,8 +1271,9 @@ $$
             return N // A - x, y
         ```
 
-!!! "[June Challenge 2017 - Euler Sum](https://www.codechef.com/problems/ES)"
-    计算 $\sum\limits_{x=1}^N \lfloor ex \rfloor$，其中 $e = [2; 1, 2, 1, 1, 4, 1, 1, 6, 1, \dots, 1, 2n, 1, \dots]$ 是自然对数的底，$N \leq 10^{4000}$。
+### [June Challenge 2017 - Euler Sum](https://www.codechef.com/problems/ES)
+
+计算 $\sum\limits_{x=1}^N \lfloor ex \rfloor$，其中 $e = [2; 1, 2, 1, 1, 4, 1, 1, 6, 1, \dots, 1, 2n, 1, \dots]$ 是自然对数的底，$N \leq 10^{4000}$。
 
 ??? "解答"
     此和等于格点 $(x;y)$ 的数量，使得 $1 \leq x \leq N$ 和 $1 \leq y \leq ex$。
@@ -1323,8 +1326,9 @@ $$
             return ans - N
         ``` 
 
-!!! "[NAIPC 2019 - It's a Mod, Mod, Mod, Mod World](https://open.kattis.com/problems/itsamodmodmodmodworld)"
-    给定 $p$、$q$ 和 $n$，计算 $\sum\limits_{i=1}^n [p \cdot i \bmod q]$。
+### [NAIPC 2019 - It's a Mod, Mod, Mod, Mod World](https://open.kattis.com/problems/itsamodmodmodmodworld)
+
+给定 $p$、$q$ 和 $n$，计算 $\sum\limits_{i=1}^n [p \cdot i \bmod q]$。
 
 ??? "解答"
     如果您注意到 $a \bmod b = a - \lfloor \frac{a}{b} \rfloor b$，则此问题会减少到上一个问题。有了这个事实，总数减少到
@@ -1349,8 +1353,9 @@ $$
             return p * N * (N + 1) // 2 - q * sum_floor(fraction(p, q), N)
         ``` 
 
-!!! "[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)"
-    给定 $N$、$M$、$A$ 和 $B$，计算 $\sum\limits_{i=0}^{N-1} \lfloor \frac{A \cdot i + B}{M} \rfloor$。
+### [Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)
+
+给定 $N$、$M$、$A$ 和 $B$，计算 $\sum\limits_{i=0}^{N-1} \lfloor \frac{A \cdot i + B}{M} \rfloor$。
 
 ??? "解答"
     这是迄今为止技术上最麻烦的问题。
@@ -1405,10 +1410,11 @@ $$
             return ah, ph, qh
         ```
 
-!!! "[OKC 2 - From Modular to Rational](https://codeforces.com/gym/102354/problem/I)"
-    有一个有理数 $\frac{p}{q}$，即 $1 \leq p, q \leq 10^9$。您可以询问几个素数 $m$ 的 $p q^{-1}$ 模 $m \sim 10^9$ 的值。恢复 $\frac{p}{q}$。
+### [OKC 2 - From Modular to Rational](https://codeforces.com/gym/102354/problem/I)
+
+有一个有理数 $\frac{p}{q}$，即 $1 \leq p, q \leq 10^9$。您可以询问几个素数 $m$ 的 $p q^{-1}$ 模 $m \sim 10^9$ 的值。恢复 $\frac{p}{q}$。
     
-    等效公式：查找提供最小 $Ax \;\bmod\; M$ 的 $x$ 代表 $1 \leq x \leq N$。
+这个问题等价于：查找 $1 \leq x \leq N$ 中，使 $Ax \bmod M$ 最小的 $x$。
 
 ??? "解答"
     根据中国剩余定理，要求结果模化几个素数与要求其模化其乘积是相同的。因此，在不丧失一般性的情况下，假设知道余数模足够大的数 $m$。
