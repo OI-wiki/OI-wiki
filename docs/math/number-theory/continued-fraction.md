@@ -414,8 +414,11 @@ $$
 
 继续看前面定义的渐近分数。对于 $r=[a_0, a_1, a_2, \dots]$，其渐近分数为
 
-\\begin{gather}
-r_0=[a_0],\\r_1=[a_0, a_1],\\\\dots,\\r_k=[a_0, a_1, \dots, a_k].\\end{gather}
+$$
+\begin{gather}
+r_0=[a_0] \\ r_1=[a_0, a_1] \\ \dots \\ r_k=[a_0, a_1, \dots, a_k]
+\end{gather}
+$$
 
 渐近分数是连分数的核心概念，因此研究它们的性质很重要。
 
@@ -708,8 +711,7 @@ $$
     请注意，$L(A) = (L_{b_0} \circ L_{b_1} \circ \dots \circ L_{b_m})(\infty)$。知道 $b_0$ 后，可以用当前变换合成 $L_{b_0}^{-1}$，并继续添加 $L_{a_{k+1}}$、$L_{a_{k+2}}$ 等，寻找新的下界（floor）以达成一致，从中可以推断 $b_1$ 等，直到恢复 $[b_0; b_1, \dots, b_m]$ 的所有值。
 
 !!! 例题 "连分数算法"
-    Let $A=[a_0; a_1, \dots, a_n]$ and $B=[b_0; b_1, \dots, b_m]$. Compute the continued fraction representations of $A+B$ and $A \cdot B$.
-
+    令 $A=[a_0; a_1, \dots, a_n]$，$B=[b_0; b_1, \dots, b_m]$。计算 $A+B$ 和 $A \cdot B$ 的连分数表示。
 ??? "解答"
     这里的想法与前面的问题类似，但不应使用 $L(x) = \frac{ax+b}{cx+d}$，而应考虑双线性分数变换 $L(x, y) = \frac{axy+bx+cy+d}{exy+fx+gy+h}$。
     
@@ -841,8 +843,11 @@ $$
     
     因此，如果表示 $t_k = x_k - y_k a_k$，将有
     
-    \\begin{align}
-    x*{k+1} &=& z_k t_k,\\y*{k+1} &=& -y*k z_k,\\z*{k+1} &=& t_k^2 - y_k^2 n\\end{align}
+    $$
+    \begin{align}
+    x*{k+1} &=& z_k t_k \\ y*{k+1} &=& -y*k z_k \\ z*{k+1} &=& t_k^2 - y_k^2 n
+    \end{align}
+    $$
     
     这种表示法的优点在于，如果将 $x_{k+1}, y_{k+1}, z_{k+1}$ 减去它们的最大公约数，结果将是唯一的。因此，可以使用它来检查当前状态是否已经重复，以及检查具有此状态的上一个索引的位置。
     
