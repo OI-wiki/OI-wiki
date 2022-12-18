@@ -356,7 +356,7 @@ $$
     
     在下图中可以看到收敛 $r_k$ 渐进分数 $r=\frac{1+\sqrt 5}{2}$ 的可视化：
     
-    ![](https://upload.wikimedia.org/wikipedia/commons/b/b4/Golden_ration_convergents.svg)
+    ![](./images/Golden_ration_convergents.svg)
     
     无理数 $r=\frac{1+\sqrt 5}{2}$ 由蓝色虚线表示。奇数渐进分数从上面接近它，偶数渐进分数从下面接近它。
 
@@ -397,7 +397,7 @@ $$
     
     在下图中可以看到 $r=\frac{9}{7}$ 的渐进分数和中间分数（灰点）。
     
-    ![](https://upload.wikimedia.org/wikipedia/commons/9/92/Continued_convergents_geometry.svg)
+    ![](./images/Continued_convergents_geometry.svg)
 
 ### 最佳逼近
 
@@ -607,8 +607,7 @@ $$
     
     由于 $q_i q_{i-1}$ 下降的速度，与 $(-1)^k$ 具有相同的符号。因此，偶数索引的 $r_k$ 从下面接近 $r$，而奇数索引的 $r_k$ 从上面接近：
     
-    <figure><img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Golden_ration_convergents.svg" width="600px"/>
-    <figcaption>_Convergents of $r=\phi = \frac{1+\sqrt{5}}{2}=[1;1,1,\dots]$ and their distance from $r$._</figcaption></figure>
+    ![](./images/Golden_ration_convergents.svg)
     
     从这张图中可以看到
     
@@ -1109,8 +1108,7 @@ $$
     
     换句话说，$a_k$ 是您可以将 $\vec r_{k-1}$ 添加到 $\vec r_{k-2}$ 的最大整数次数，而无需跨越 $\vec r$ 定义的线：
     
-    <figure><img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Continued_convergents_geometry.svg" width="700px"/>
-    <figcaption>_Convergents of $r=\frac{7}{9}=[0;1,3,2]$. Semiconvergents correspond to intermediate points between gray arrows._</figcaption></figure>
+    ![](./images/Continued_convergents_geometry.svg)
     
     在上面的图片中，$\vec r_2 = (4;3)$ 是通过将 $\vec r_1 = (1;1)$ 重复添加到 $\vec r_0 = (1;0)$ 而获得的。
     
@@ -1151,8 +1149,7 @@ $$
     
     为了到达外壳中的下一个格点，应该到达点 $(x;y)$，该点与 $y=rx$ 相差最小，同时保持 $x \leq N$。
     
-    <figure><img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Lattice-hull.svg" width="500px"/>
-    <figcaption>Convex hull of lattice points under $y=\frac{4}{7}x$ for $0 \leq x \leq 19$ consists of points $(0;0), (7;4), (14;8), (16;9), (18;10), (19;10)$.</figcaption></figure>
+    ![](./images/Lattice-hull.svg)
     
     设 $(x; y)$ 为凸包中的最后一个当前点。然后，下一点 $(x'; y')$ 是这样的：$x' \leq N$ 和 $(x'; y') - (x; y) = (\Delta x; \Delta y)$ 尽可能接近线 $y=rx$。换句话说，$(\Delta x; \Delta y)$ 根据 $\Delta x \leq N - x$ 和 $\Delta y \leq r \Delta x$ 最大化 $r \Delta x - \Delta y$。
     
