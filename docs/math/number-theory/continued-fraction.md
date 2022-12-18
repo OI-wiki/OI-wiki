@@ -415,9 +415,9 @@ $$
 继续看前面定义的渐近分数。对于 $r=[a_0, a_1, a_2, \dots]$，其渐近分数为
 
 $$
-\begin{gather}
+\begin{gathered}
 r_0=[a_0] \\ r_1=[a_0, a_1] \\ \dots \\ r_k=[a_0, a_1, \dots, a_k]
-\end{gather}
+\end{gathered}
 $$
 
 渐近分数是连分数的核心概念，因此研究它们的性质很重要。
