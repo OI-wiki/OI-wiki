@@ -148,7 +148,9 @@
     数组的长度很可能不是 $2^x$，此时在最后就可能出现长度不完整的段，可能出现最后一个段是独立的情况。
 
 #### 实现
+
 === "C/C++"
+
     ```cpp
     void merge_sort(int *a, size_t n) {
       int tmp[1024] = {};  // 请结合实际情况设置 tmp 数组的长度（与 a 相同），或使用
@@ -164,7 +166,9 @@
           for (size_t i = left1; i < right2; ++i) a[i] = tmp[i];
         }
     ```
+
 === "Python"
+
     ```python
     def merge_sort(a):
         seg = 1
