@@ -27,9 +27,9 @@ $$
 
 我们同样考虑指数生成函数的封闭形式。
 
-序列 $\langle 1,1,1,\cdots\rangle$ 的指数生成函数是 $\sum_{n\ge 1}\frac{x^n}{n!}=e^x$。因为你将 $e^x$ 在原点处泰勒展开就得到了它的无穷级数形式。
+序列 $\langle 1,1,1,\cdots\rangle$ 的指数生成函数是 $\sum_{n\ge 0}\frac{x^n}{n!}=e^x$。因为你将 $e^x$ 在 $x = 0$ 处泰勒展开就得到了它的无穷级数形式。
 
-类似地，等比数列 $\langle 1,p,p^2,\cdots\rangle$ 的指数生成函数是 $\sum_{n\ge 1}\frac{p^nx^n}{n!}=e^{px}$。
+类似地，等比数列 $\langle 1,p,p^2,\cdots\rangle$ 的指数生成函数是 $\sum_{n\ge 0}\frac{p^nx^n}{n!}=e^{px}$。
 
 ## 指数生成函数与普通生成函数
 
