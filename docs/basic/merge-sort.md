@@ -147,41 +147,35 @@
 ???+note "为什么是 $\le n$ 而不是 $= n$"
     数组的长度很可能不是 $2^x$，此时在最后就可能出现长度不完整的段，可能出现最后一个段是独立的情况。
 
-参考代码：
-
-C/C++:
-
-```cpp
-void merge_sort(int *a, size_t n) {
-  int tmp[1024] = {};  // 请结合实际情况设置 tmp 数组的长度（与 a 相同），或使用
-                       // vector；先将合并的结果放在 tmp 里，再返回到数组 a
-  for (size_t seg = 1; seg < n; seg <<= 1) {
-    for (size_t left1 = 0; left1 < n - seg;
-         left1 += seg + seg) {  // n - seg: 如果最后只有一个段就不用合并
-      size_t right1 = left1 + seg;
-      size_t left2 = right1;
-      size_t right2 = std::min(left2 + seg, n);  // <!> 注意最后一个段的边界
-      merge(a + left1, a + right1, a + left2, a + right2,
-            tmp + left1);  // pointer-style merge
-      for (size_t i = left1; i < right2; ++i) a[i] = tmp[i];
-    }
-  }
-}
-```
-
-Python:
-
-```python
-def merge_sort(a):
-    seg = 1
-    while seg < len(a):
-        for l1 in range(0, len(a) - seg, seg + seg):
-            r1 = l1 + seg
-            l2 = r1
-            r2 = l2 + seg
-            a[l1:r2] = merge(a[l1:r1], a[l2:r2])
-    seg <<= 1
-```
+#### 实现
+=== "C/C++"
+    ```cpp
+    void merge_sort(int *a, size_t n) {
+      int tmp[1024] = {};  // 请结合实际情况设置 tmp 数组的长度（与 a 相同），或使用
+                           // vector；先将合并的结果放在 tmp 里，再返回到数组 a
+      for (size_t seg = 1; seg < n; seg <<= 1) {
+        for (size_t left1 = 0; left1 < n - seg;
+             left1 += seg + seg) {  // n - seg: 如果最后只有一个段就不用合并
+          size_t right1 = left1 + seg;
+          size_t left2 = right1;
+          size_t right2 = std::min(left2 + seg, n);  // <!> 注意最后一个段的边界
+          merge(a + left1, a + right1, a + left2, a + right2,
+                tmp + left1);  // pointer-style merge
+          for (size_t i = left1; i < right2; ++i) a[i] = tmp[i];
+        }
+    ```
+=== "Python"
+    ```python
+    def merge_sort(a):
+        seg = 1
+        while seg < len(a):
+            for l1 in range(0, len(a) - seg, seg + seg):
+                r1 = l1 + seg
+                l2 = r1
+                r2 = l2 + seg
+                a[l1:r2] = merge(a[l1:r1], a[l2:r2])
+        seg <<= 1
+    ```
 
 ## 逆序对
 
