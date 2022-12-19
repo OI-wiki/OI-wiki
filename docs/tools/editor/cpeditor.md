@@ -85,6 +85,10 @@ author: zarrtic
 
 > 完成了以上的基本操作你就可以使用最基本的功能了。
 
+## 官方社区
+
+如果你对CP Editor有问题或意见建议，可以加入官方用户交流QQ群交流：1081647997。
+
 ## 参考资料
 
 [^compiler]: [编译器 - OI Wiki](https://oi-wiki.org/tools/compiler/)
