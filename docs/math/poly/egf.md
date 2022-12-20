@@ -44,7 +44,7 @@ $$
 EGF 中 $f^n(x)$ 的 $f$ 默认是一个 EGF，那么我们首先考虑任意两个 EGF 的乘积
 
 $$
-H=FG=\sum_{n\geq 0}^\infty(\sum_{i\geq 0}^n\binom {n}{i}f_ig_{n-i})\frac{x^n}{n!}
+H=FG=\sum_{n\geq 0}^\infty \left[ \sum_{i\geq 0}^n\binom {n}{i}f_ig_{n-i} \right] \frac{x^n}{n!}
 $$
 
 对于两个 EGF 相乘得到的 $[x^k]H(x)$，实际上是一个卷积。而如果考虑多个 EGF 相乘得到的 $[x^k]H(x)$，实际上就是对每个 EGF 选择一项 $x^{a_i}$ 使得 $\sum_ia_i=k$ 时每种情况系数的和。
