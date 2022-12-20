@@ -2,10 +2,10 @@
 
 ### 描述
 
-给出一个多项式 $f\left(x\right)$ 和 $n$ 个点 $x_{1},x_{2},...,x_{n}$，求
+给出一个多项式 $f\left(x\right)$ 和 $n$ 个点 $x_{1},x_{2},\dots,x_{n}$，求
 
 $$
-f\left(x_{1}\right),f\left(x_{2}\right),...,f\left(x_{n}\right)
+f\left(x_{1}\right),f\left(x_{2}\right),\dots,f\left(x_{n}\right)
 $$
 
 ### 解法
@@ -16,8 +16,8 @@ $$
 
 $$
 \begin{aligned}
-	X_{0}&=\left\{x_{1},x_{2},...,x_{\left\lfloor\frac{n}{2}\right\rfloor}\right\}\\
-	X_{1}&=\left\{x_{\left\lfloor\frac{n}{2}\right\rfloor+1},x_{\left\lfloor\frac{n}{2}\right\rfloor+2},...,x_{n}\right\}
+	X_{0}&=\left\{x_{1},x_{2},\dots,x_{\left\lfloor\frac{n}{2}\right\rfloor}\right\}\\
+	X_{1}&=\left\{x_{\left\lfloor\frac{n}{2}\right\rfloor+1},x_{\left\lfloor\frac{n}{2}\right\rfloor+2},\dots,x_{n}\right\}
 \end{aligned}
 $$
 
@@ -52,7 +52,7 @@ $$
 给出一个 $n+1$ 个点的集合
 
 $$
-X=\left\{\left(x_{0},y_{0}\right),\left(x_{1},y_{1}\right),...,\left(x_{n},y_{n}\right)\right\}
+X=\left\{\left(x_{0},y_{0}\right),\left(x_{1},y_{1}\right),\dots,\left(x_{n},y_{n}\right)\right\}
 $$
 
 求一个 $n$ 次多项式 $f\left(x\right)$ 使得其满足 $\forall\left(x,y\right)\in X:f\left(x\right)=y$。

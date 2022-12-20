@@ -20,7 +20,7 @@
 
     转证 $a_1x+b_1y=1$.
 
-    我们先回顾一下辗转相除法是怎么做的，由 $\gcd(a, b) \rightarrow \gcd(b,a\mod b) \rightarrow ...$ 我们把模出来的数据叫做 $r$ 于是，有
+    我们先回顾一下辗转相除法是怎么做的，由 $\gcd(a, b) \rightarrow \gcd(b,a\mod b) \rightarrow \dots$ 我们把模出来的数据叫做 $r$ 于是，有
 
     $$
     \gcd(a_1,b_1)=\gcd(b_1,r_1)=\gcd(r_1,r_2)=\cdots=(r_{n-1},r_n)=1
