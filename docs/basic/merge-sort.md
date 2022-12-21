@@ -165,6 +165,8 @@
                 tmp + left1);  // pointer-style merge
           for (size_t i = left1; i < right2; ++i) a[i] = tmp[i];
         }
+      }
+    }
     ```
 
 === "Python"
