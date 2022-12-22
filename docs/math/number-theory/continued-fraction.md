@@ -28,14 +28,15 @@ $$
 
 一旦深入研究了连分数构造的细节，这背后的原因就会很清楚。
 
-!!! "定义"
-    设 $a_0, a_1, \dots, a_k \in \mathbb Z$ 和 $a_1, a_2, \dots, a_k \geq 1$。然后表达式
-    
-    $$
-    r=a_0 + \frac{1}{a_1 + \frac{1}{\dots + \frac{1}{a_k}}}
-    $$
-    
-    称为有理数 $r$ 的 **连分数表示**，并简短地表示为 $r=[a_0;a_1,a_2,\dots,a_k]$。
+#### 定义
+
+设 $a_0, a_1, \dots, a_k \in \mathbb Z$ 和 $a_1, a_2, \dots, a_k \geq 1$。然后表达式
+
+$$
+r=a_0 + \frac{1}{a_1 + \frac{1}{\dots + \frac{1}{a_k}}}
+$$
+
+称为有理数 $r$ 的 **连分数表示**，并简短地表示为 $r=[a_0;a_1,a_2,\dots,a_k]$。
 
 ??? 示例
     设 $r = \frac{5}{3}$。有两种方法可以将其表示为连分数：
@@ -69,14 +70,15 @@ $[a_0,a_1,a_2,a_3]=[a_0,a_1,a_2,a_3-1,1]$
 
 显然可以看到，连分数关于下标为偶数的变元单调递增，关于下标为奇数的变元单调递减。这无论它有限或无限都成立。
 
-!!! "定义"
-    设 $a_0,a_1,a_2, \dots$ 为整数序列，使得 $a_1, a_2, \dots \geq 1$。设 $r_k = [a_0; a_1, \dots, a_k]$。然后表达式
-    
-    $$
-    r = a_0 + \frac{1}{a_1 + \frac{1}{a_2+\dots}} = \lim\limits_{k \to \infty} r_k
-    $$
-    
-    被称为无理数 $r$ 的 **连分数表示**，并简短地表示为 $r = [a_0;a_1,a_2,\dots]$。
+#### 定义
+
+设 $a_0,a_1,a_2, \dots$ 为整数序列，使得 $a_1, a_2, \dots \geq 1$。设 $r_k = [a_0; a_1, \dots, a_k]$。然后表达式
+
+$$
+r = a_0 + \frac{1}{a_1 + \frac{1}{a_2+\dots}} = \lim\limits_{k \to \infty} r_k
+$$
+
+称为无理数 $r$ 的 **连分数表示**，并简短地表示为 $r = [a_0;a_1,a_2,\dots]$。
 
 注意，对于 $r=[a_0;a_1,\dots]$ 和整数 $k$，有 $r+k = [a_0+k; a_1, \dots]$。
 
@@ -84,10 +86,10 @@ $[a_0,a_1,a_2,a_3]=[a_0,a_1,a_2,a_3-1,1]$
 
 ## 渐进分数
 
-!!! "定义"
-    在上面的定义中，有理数 $r_0, r_1, r_2, \dots$ 称为 $r$ 的 **渐进分数**（convergents，意为“收敛”）。
+### 定义
+在上面的定义中，有理数 $r_0, r_1, r_2, \dots$ 称为 $r$ 的 **渐进分数**（convergents，意为“收敛”）。
     
-    相应地，单个 $r_k = [a_0; a_1, \dots, a_k] = \frac{p_k}{q_k}$ 称为 $r$ 的第 $k$ 个渐进分数。
+相应地，单个 $r_k = [a_0; a_1, \dots, a_k] = \frac{p_k}{q_k}$ 称为 $r$ 的第 $k$ 个渐进分数。
 
 ??? 示例
     考虑 $r = [1; 1, 1, 1, \dots]$。可以通过归纳法证明 $r_k = \frac{F_{k+2}}{F_{k+1}}$，其中 $F_k$ 是斐波那契序列，定义为 $F_0 = 0$、$F_1 = 1$ 和 $F_{k} = F_{k-1} + F_{k-2}$。从 Binet 公式可知
@@ -108,17 +110,18 @@ $[a_0,a_1,a_2,a_3]=[a_0,a_1,a_2,a_3-1,1]$
     r = 1+\frac{1}{r} \implies r^2 = r + 1
     $$
 
-!!! "定义"
-    设 $r_k = [a_0; a_1, \dots, a_{k-1}, a_k]$。对于 $1 \leq t \leq a_k$，$[a_0; a_1, \dots, a_{k-1}, t]$ 称为 **中间分数**（semiconvergents，“semi”意为“半”）。
-    
-    通常将大于 $r$ 的分数称为 **上**（upper）渐进分数或中间分数，将小于 $r$ 者称为 **下**（lower）渐进分数或中间分数。
+### 定义
+
+设 $r_k = [a_0; a_1, \dots, a_{k-1}, a_k]$。对于 $1 \leq t \leq a_k$，$[a_0; a_1, \dots, a_{k-1}, t]$ 称为 **中间分数**（semiconvergents，“semi”意为“半”）。
+
+通常将大于 $r$ 的分数称为 **上**（upper）渐进分数或中间分数，将小于 $r$ 者称为 **下**（lower）渐进分数或中间分数。
 
 ### 余项和部分商
 
-!!! "定义"
-    作为渐进分数的补充，定义 **余项**（完全商，complete quotients）为 $s_k = [a_k; a_{k+1}, a_{k+2}, \dots]$。
-    
-    相应地，将单个 $s_k$ 称为 $r$ 的第 $k$ 个完全商。
+#### 定义
+作为渐进分数的补充，定义 **余项**（完全商，complete quotients）为 $s_k = [a_k; a_{k+1}, a_{k+2}, \dots]$。
+
+相应地，将单个 $s_k$ 称为 $r$ 的第 $k$ 个完全商。
 
 相应地，取整得到的 $a_k$ 称为部分商。
 
@@ -624,8 +627,9 @@ $$
     \left|r-\frac{p_k}{q_k}\right| \leq \frac{1}{q_k q_{k+1}} \leq \frac{1}{q_k^2}
     $$
 
-!!! 例题 "扩展欧几里得"
-    您将获得 $A, B, C \in \mathbb Z$。查找 $x, y \in \mathbb Z$，使 $Ax + By = C$.
+### 例题 扩展欧几里得
+
+您将获得 $A, B, C \in \mathbb Z$。查找 $x, y \in \mathbb Z$，使 $Ax + By = C$.
 
 ??? "解答"
     虽然这个问题通常是用扩展欧几里得算法解决的，但有一个简单而直接的连分数的解决方案。
@@ -653,8 +657,9 @@ $$
 
 连分数的另一个重要概念是所谓的线性分式变换（Linear fractional transformations）。
 
-!!! "定义"
-    **线性分式变换** 是一个函数 $f : \mathbb R \to \mathbb R$，使得 $f(x) = \frac{ax+b}{cx+d}$ 对于一些 $a,b,c,d \in \mathbb R$。
+### 定义
+
+**线性分式变换** 是一个函数 $f : \mathbb R \to \mathbb R$，使得 $f(x) = \frac{ax+b}{cx+d}$ 对于一些 $a,b,c,d \in \mathbb R$。
 
 线性分式变换 $L_0(x)=\frac{a_0 x + b_0}{c_0 x + d_0}$ 和 $L_1(x)=\frac{a_1 x + b_1}{c_1 x + d_1}$ 的组合 $(L_0 \circ L_1)(x) = L_0(L_1(x))$ 也是线性分式变换：
 
@@ -668,8 +673,9 @@ $$
 y = \frac{ax+b}{cx+d} \iff y(cx+d) = ax + b \iff x = -\frac{dy-b}{cy-a}
 $$
 
-!!! "[DMOPC '19 Contest 7 P4 - Bob and Continued Fractions](https://dmoj.ca/problem/dmopc19c7p4)"
-    给您一个正整数数组 $a_1, \dots, a_n$。您需要回答 $m$ 查询。每个查询都要计算 $[a_l; a_{l+1}, \dots, a_r]$。
+### [DMOPC '19 Contest 7 P4 - Bob and Continued Fractions](https://dmoj.ca/problem/dmopc19c7p4)
+
+给您一个正整数数组 $a_1, \dots, a_n$。您需要回答 $m$ 查询。每个查询都要计算 $[a_l; a_{l+1}, \dots, a_r]$。
 
 ??? "解答"
     如果能够连接连分数，则可以用线段树来解决这个问题。
@@ -690,10 +696,11 @@ $$
     
     变换的组合是关联的，因此可以在线段树的每个节点中计算其子树中变换的组合。
 
-!!! 例题 "连分数的线性分式变换"
-    设 $L(x) = \frac{ax+b}{cx+d}$。对于 $A=[a_0; a_1, \dots, a_n]$，计算 $L(A)$ 的连分数表示 $[b_0; b_1, \dots, b_m]$。
-    
-    从而，对任意的 $\frac{p}{q}$，可以计算 $A + \frac{p}{q} = \frac{qA + p}{q}$ 和 $A \cdot \frac{p}{q} = \frac{p A}{q}$。
+### 例题 连分数的线性分式变换
+
+设 $L(x) = \frac{ax+b}{cx+d}$。对于 $A=[a_0; a_1, \dots, a_n]$，计算 $L(A)$ 的连分数表示 $[b_0; b_1, \dots, b_m]$。
+
+从而，对任意的 $\frac{p}{q}$，可以计算 $A + \frac{p}{q} = \frac{qA + p}{q}$ 和 $A \cdot \frac{p}{q} = \frac{p A}{q}$。
 
 ??? "解答"
     如上所述，$[a_0; a_1, \dots, a_k] = (L_{a_0} \circ L_{a_1} \circ \dots \circ L_{a_k})(\infty)$，因此 $L([a_0; a_1, \dots, a_k]) = (L \circ L_{a_0} \circ L_{a_1} \circ \dots L_{a_k})(\infty)$。
@@ -710,8 +717,9 @@ $$
     
     请注意，$L(A) = (L_{b_0} \circ L_{b_1} \circ \dots \circ L_{b_m})(\infty)$。知道 $b_0$ 后，可以用当前变换合成 $L_{b_0}^{-1}$，并继续添加 $L_{a_{k+1}}$、$L_{a_{k+2}}$ 等，寻找新的下界（floor）以达成一致，从中可以推断 $b_1$ 等，直到恢复 $[b_0; b_1, \dots, b_m]$ 的所有值。
 
-!!! 例题 "连分数算法"
-    令 $A=[a_0; a_1, \dots, a_n]$，$B=[b_0; b_1, \dots, b_m]$。计算 $A+B$ 和 $A \cdot B$ 的连分数表示。
+### 例题 连分数算法
+
+令 $A=[a_0; a_1, \dots, a_n]$，$B=[b_0; b_1, \dots, b_m]$。计算 $A+B$ 和 $A \cdot B$ 的连分数表示。
 
 ??? "解答"
     这里的想法与前面的问题类似，但不应使用 $L(x) = \frac{ax+b}{cx+d}$，而应考虑双线性分数变换 $L(x, y) = \frac{axy+bx+cy+d}{exy+fx+gy+h}$。
@@ -732,10 +740,11 @@ $$
 
 ## 纯循环连分数
 
-!!! "定义"
-    如果存在 $k$ 使得 $x = [a_0; a_1, \dots, a_k, x]$，则连分数 $x = [a_0; a_1, \dots]$ 被称为 **纯循环**（periodic）。
-    
-    如果 $x = [a_0; a_1, \dots, a_k, y]$，其中 $y$ 是纯循环，则连分数 $x = [a_0; a_1, \dots]$ 被称为 **混循环**（eventually periodic）。
+### 定义
+
+如果存在 $k$ 使得 $x = [a_0; a_1, \dots, a_k, x]$，则连分数 $x = [a_0; a_1, \dots]$ 被称为 **纯循环**（periodic）。
+
+如果 $x = [a_0; a_1, \dots, a_k, y]$，其中 $y$ 是纯循环，则连分数 $x = [a_0; a_1, \dots]$ 被称为 **混循环**（eventually periodic）。
 
 例如纯循环连分数：
 
@@ -812,8 +821,9 @@ $$
     
     每个 $q$ 都整除对应 $c$ 构成二次整数的范数，因此分母 $q$ 的个数有限。余数有限必重复，至此证完。
 
-!!! 例题 "二次有理数"
-    找到 $\alpha = \frac{x+y\sqrt{n}}{z}$ 的连分数，其中 $x, y, z, n \in \mathbb Z$ 和 $n > 0$ 不是完全平方。
+#### 例题 二次有理数
+
+找到 $\alpha = \frac{x+y\sqrt{n}}{z}$ 的连分数，其中 $x, y, z, n \in \mathbb Z$ 和 $n > 0$ 不是完全平方。
 
 ??? "解答"
     对于数字的第 $k$ 个完全商 $s_k$，通常认为
@@ -1014,8 +1024,9 @@ $$
 
 在后面的 Pell 方程一节中将指出，在根号 $d$ 的连分数中，循环节 $l$ 的奇偶性，将直接决定 Pell 方程中的 $-1$ 形式是否有解。
 
-!!! "[Tavrida NU Akai Contest - Continued Fraction](https://timus.online/problem.aspx?space=1&num=1814)"
-    你得到了 $x$ 和 $k$,$x$ 不是一个完全平方数。让 $\sqrt x = [a_0; a_1, \dots]$，找到 $\frac{p_k}{q_k}=[a_0; a_1, \dots, a_k]$ 的 $0 \leq k \leq 10^9$。
+#### [Tavrida NU Akai Contest - Continued Fraction](https://timus.online/problem.aspx?space=1&num=1814)
+
+你得到了 $x$ 和 $k$,$x$ 不是一个完全平方数。让 $\sqrt x = [a_0; a_1, \dots]$，找到 $\frac{p_k}{q_k}=[a_0; a_1, \dots, a_k]$ 的 $0 \leq k \leq 10^9$。
 
 ??? "解答"
     在计算完 $\sqrt x$ 的周期后，可以使用连分数表示引起的线性分数变换上的二进制幂来计算 $a_k$。要查找结果转换，请将大小为 $T$ 的周期压缩为单个转换，并将其重复 $\lfloor \frac{k-1}{T}\rfloor$ 次，然后手动将其与其余转换组合。
@@ -1107,22 +1118,23 @@ $$
     s_k = -\frac{\vec r_{k-2} \times \vec r}{\vec r_{k-1} \times \vec r}
     $$
 
-!!! 例题 "鼻子拉伸算法"
-    每次将 $\vec r_{k-1}$ 添加到向量 $\vec p$ 时，$\vec p \times \vec r$ 的值都会增加 $\vec r_{k-1} \times \vec r$。
-    
-    因此，$a_k=\lfloor s_k \rfloor$ 是 $\vec r_{k-1}$ 向量的最大整数，可以将其添加到 $\vec r_{k-2}$，而无需更改与 $\vec r$ 的外积的符号。
-    
-    换句话说，$a_k$ 是您可以将 $\vec r_{k-1}$ 添加到 $\vec r_{k-2}$ 的最大整数次数，而无需跨越 $\vec r$ 定义的线：
-    
-    ![](./images/Continued_convergents_geometry.svg)
-    
-    在上面的图片中，$\vec r_2 = (4;3)$ 是通过将 $\vec r_1 = (1;1)$ 重复添加到 $\vec r_0 = (1;0)$ 而获得的。
-    
-    当不可能在不跨越 $y=rx$ 线的情况下将 $\vec r_1$ 进一步添加到 $\vec r_0$ 时，转到另一侧，重复将 $\vec r_2$ 添加到 $\vec r_1$ 以获得 $\vec r_3 = (9;7)$。
-    
-    此过程生成接近直线的指数较长的向量。
-    
-    对于这一特性，Boris Delaunay 将生成结果收敛向量的过程称为 **鼻子拉伸算法**（Nose stretching algorithm）。
+### 例题 鼻子拉伸算法
+
+每次将 $\vec r_{k-1}$ 添加到向量 $\vec p$ 时，$\vec p \times \vec r$ 的值都会增加 $\vec r_{k-1} \times \vec r$。
+
+因此，$a_k=\lfloor s_k \rfloor$ 是 $\vec r_{k-1}$ 向量的最大整数，可以将其添加到 $\vec r_{k-2}$，而无需更改与 $\vec r$ 的外积的符号。
+
+换句话说，$a_k$ 是您可以将 $\vec r_{k-1}$ 添加到 $\vec r_{k-2}$ 的最大整数次数，而无需跨越 $\vec r$ 定义的线：
+
+![](./images/Continued_convergents_geometry.svg)
+
+在上面的图片中，$\vec r_2 = (4;3)$ 是通过将 $\vec r_1 = (1;1)$ 重复添加到 $\vec r_0 = (1;0)$ 而获得的。
+
+当不可能在不跨越 $y=rx$ 线的情况下将 $\vec r_1$ 进一步添加到 $\vec r_0$ 时，转到另一侧，重复将 $\vec r_2$ 添加到 $\vec r_1$ 以获得 $\vec r_3 = (9;7)$。
+
+此过程生成接近直线的指数较长的向量。
+
+对于这一特性，Boris Delaunay 将生成结果收敛向量的过程称为 **鼻子拉伸算法**（Nose stretching algorithm）。
 
 如果观察在点 $\vec r_{k-2}$、$\vec r_{k}$ 和 $\vec 0$ 上绘制的三角形，会注意到它的加倍面积是
 
@@ -1134,8 +1146,9 @@ $$
 
 这反过来意味着，具有奇数系数的 $\vec r_k$ 形成了线 $y=rx$ 上方 $x \geq 0$ 的格点凸包，而具有偶数系数的 $\vec r_k$ 形成线 $y=rx$ 下方 $x > 0$ 的格点凸包。
 
-!!! "定义"
-    这些多边形也被称为 **克莱因多边形**（Klein polygons），以费利克斯·克莱因（Felix Klein）的名字命名，他首次提出了对连续分数的几何解释。
+### 定义
+
+这些多边形也被称为 **克莱因多边形**（Klein polygons），以费利克斯·克莱因（Felix Klein）的名字命名，他首次提出了对连续分数的几何解释。
 
 ## 例题
 
