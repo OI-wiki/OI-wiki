@@ -21,19 +21,41 @@ $$
 \end{aligned}
 $$
 
-因此 $\hat{F}(x)\hat{G}(x)$ 是序列 $\displaystyle \left\langle \sum_{i=0}^n \binom{n}{i}a_ib_{n-i} \right\rangle$ 的指数生成函数。
+因此 $\hat{F}(x)\hat{G}(x)$ 是序列
+
+$$
+\left\langle \sum_{i=0}^n \binom{n}{i}a_ib_{n-i} \right\rangle
+$$
+
+的指数生成函数。
 
 ## 封闭形式
 
 我们同样考虑指数生成函数的封闭形式。
 
-序列 $\langle 1,1,1,\cdots\rangle$ 的指数生成函数是 $\displaystyle \sum_{n\ge 0}\frac{x^n}{n!}=e^x$。因为你将 $e^x$ 在 $x = 0$ 处泰勒展开就得到了它的无穷级数形式。
+序列 $\langle 1,1,1,\cdots\rangle$ 的指数生成函数是：
 
-类似地，等比数列 $\langle 1,p,p^2,\cdots\rangle$ 的指数生成函数是 $\displaystyle \sum_{n\ge 0}\frac{p^nx^n}{n!}=e^{px}$。
+$$
+\hat{F}(x) = \sum_{n \ge 0}\frac{x^n}{n!} = e^x
+$$
+
+因为你将 $e^x$ 在 $x = 0$ 处泰勒展开就得到了它的无穷级数形式。
+
+类似地，等比数列 $\langle 1,p,p^2,\cdots\rangle$ 的指数生成函数是：
+
+$$
+\hat{F}(x) = \sum_{n\ge 0}\frac{p^nx^n}{n!}=e^{px}
+$$
 
 ## 指数生成函数与普通生成函数
 
-如何理解指数生成函数？我们定义序列 $a$ 的指数生成函数是 $\displaystyle F(x)=\sum_{n\ge 0}a_n\frac{x^n}{n!}$，但 $F(x)$ 实际上也是序列 $\left\langle \dfrac{a_n}{n!} \right\rangle$ 的普通生成函数。
+如何理解指数生成函数？我们定义序列 $a$ 的指数生成函数是：
+
+$$
+F(x)=\sum_{n\ge 0}a_n\frac{x^n}{n!}
+$$
+
+但 $F(x)$ 实际上也是序列 $\left\langle \dfrac{a_n}{n!} \right\rangle$ 的普通生成函数。
 
 这两种理解没有任何问题。也就是说，不同的生成函数只是对问题理解方式的转变。
 
@@ -44,10 +66,10 @@ $$
 EGF 中 $f^n(x)$ 的 $f$ 默认是一个 EGF，那么我们首先考虑任意两个 EGF 的乘积
 
 $$
-H=FG=\sum_{n\geq 0}^\infty \left[ \sum_{i\geq 0}^n\binom {n}{i}f_ig_{n-i} \right] \frac{x^n}{n!}
+\hat{H}(x) = \hat{F}(x)\hat{G}(x) = \sum_{n\geq 0} \left[ \sum_{i = 0}^n\binom {n}{i}f_ig_{n-i} \right] \frac{x^n}{n!}
 $$
 
-对于两个 EGF 相乘得到的 $[x^k]H(x)$，实际上是一个卷积。而如果考虑多个 EGF 相乘得到的 $[x^k]H(x)$，实际上就是对每个 EGF 选择一项 $x^{a_i}$ 使得 $\sum_ia_i=k$ 时每种情况系数的和。
+对于两个 EGF 相乘得到的 $[x^k]\hat{H}(x)$，实际上是一个卷积。而如果考虑多个 EGF 相乘得到的 $[x^k]\hat{H}(x)$，实际上就是对每个 EGF 选择一项 $x^{a_i}$ 使得 $\sum_ia_i=k$ 时每种情况系数的和。
 从集合的角度来理解就是把 $n$ 个有标号元素划分为 $k>0$ 个有标号集合的方案数。
 
 > 如果 $k=0$ 则系数显然为原 EGF 各项常数的积，但是多项式 $\exp$ 中某些要求导致 $\exp$ 的 $f(x)$ 常数项必须为 $0$，具体的原因在下文中会做出一些说明。
@@ -64,10 +86,10 @@ $$
 
 $$
 \begin{aligned}
-G_k(x)&=\sum_{i\geq0}^\infty F_k(i)\frac{x^i}{i!}\\
-&=\sum_{i=0}^\infty x^i\frac{1}{k!}\sum_{\sum_i^ka_i=i}\frac{\prod_j^k f_{a_j}}{\prod_j^ka_j!}\\
+G_k(x)&=\sum_{n=0}^\infty F_k(n)\frac{x^n}{n!}\\
+&=\sum_{n=0}^\infty x^n\frac{1}{k!}\sum_{\sum_i^ka_i=n}\frac{\prod_j^k f_{a_j}}{\prod_j^ka_j!}\\
 &=\frac{1}{k!}F^k(x)\\
-&=\exp(F(x))
+&=[x^k]\exp(F(x))
 \end{aligned}
 $$
 
