@@ -102,7 +102,7 @@ $$
 对于所有的 $k \geq 0$：
 
 $$
-\sum_{k \geq 0}G_k(x) &= \sum_{k \geq 0}\frac{\hat{F}^k(x)}{k!} = \exp{\hat{F}(x)}
+\sum_{k \geq 0}G_k(x) = \sum_{k \geq 0}\frac{\hat{F}^k(x)}{k!} = \exp{\hat{F}(x)}
 $$
 
 上面是从组合角度直接列式理解，我们也可以从递推方面来证明 $\exp(f(x))$ 和 $f(x)$ 两者间的关系。
