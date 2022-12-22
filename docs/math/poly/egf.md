@@ -74,22 +74,38 @@ $$
 
 > 如果 $k=0$ 则系数显然为原 EGF 各项常数的积，但是多项式 $\exp$ 中某些要求导致 $\exp$ 的 $f(x)$ 常数项必须为 $0$，具体的原因在下文中会做出一些说明。
 
-多项式系数定义（具体请参考排列组合一栏中的多项式系数组合意义）里是默认集合有序的，但是 $\exp(f(x))$ 中 $f^k(x)$，$k$ 个相乘 EGF 相同，那么集合划分显然是无序的，因此其系数应该乘上 $\dfrac{1}{k!}$。
+多项式系数定义（具体请参考排列组合一栏中的多项式系数组合意义）里是默认集合有序的，但是 $\exp(f(x))$ 中 $f^k(x)$，$k$ 个 $f(x)$ 相乘得到的 EGF 相同，而集合划分显然是无序的，因此其系数应该乘上 $\dfrac{1}{k!}$。
 
 设 $F_k(n)$ 为 $n$ 个有标号元素划分成 $k$ 个非空无序集合（因为是 $\exp$ 所以有非空要求）的情况，$f_i$ 为 $i$ 个元素组成一个集合时，$i$ 个元素的有限集上特定组合结构的数量（是原有的 EGF，对这一个集合元素计数的方案，仅仅与该集合大小有关），那么 $F_k(n)$
 
 $$
-F_k(n)=\frac{n!}{k!}\sum_{\sum_{i}^ka_i=n}\frac{\prod_{i}^k f_{a_i}}{\prod_i^k a_i!}
+F_k(n)=\frac{n!}{k!}\sum_{\sum_{i}^ka_i=n}\prod_{j=1}^{k}\frac{f_{a_j}}{a_j!}
 $$
 
-设 $F_k(n)$ 的 EGF 为 $G_k(x)$
+设 $f_n$ 的 EGF 为 $\hat{F}(x)$，即：
+
+$$
+\hat{F}(x) = \sum_{n \geq 0} f_n\frac{x^n}{n!}
+$$
+
+设 $F_k(n)$ 的 EGF 为 $G_k(x)$，则：
 
 $$
 \begin{aligned}
-G_k(x)&=\sum_{n=0}^\infty F_k(n)\frac{x^n}{n!}\\
-&=\sum_{n=0}^\infty x^n\frac{1}{k!}\sum_{\sum_i^ka_i=n}\frac{\prod_j^k f_{a_j}}{\prod_j^ka_j!}\\
-&=\frac{1}{k!}F^k(x)\\
-&=[x^k]\exp(F(x))
+G_k(x)&=\sum_{n \geq 0} F_k(n)\frac{x^n}{n!}\\
+&=\sum_{n \geq 0} x^n\frac{1}{k!}\sum_{\sum_i^k a_i=n}\prod_{j=1}^{k}\frac{f_{a_j}}{a_j!}\\
+&=\frac{1}{k!}\sum_{n \geq 0}\sum_{\sum_i^k a_i=n}\prod_{j=1}^{k}\frac{f_{a_j}x^{a_j}}{a_j!}\\
+&=\frac{1}{k!}\hat{F}^k(x)
+\end{aligned}
+$$
+
+对于所有的 $k \geq 0$：
+
+$$
+\begin{aligned}
+\sum_{k \geq 0}G_k(x) &= \sum_{k \geq 0}\frac{\hat{F}^k(x)}{k!}
+\\
+&= \exp{\hat{F}(x)}
 \end{aligned}
 $$
 
@@ -191,7 +207,11 @@ $$
 
 考虑 $i$ 向 $f(i)$ 连边。相当于我们从任意一个 $i$ 走 $k$ 步和走 $k-1$ 步到达的是同一个点。也就是说基环树的环是自环且深度不超过 $k$（根结点深度为 $1$）。把这个基环树当成有根树是一样的。因此我们的问题转化为：$n$ 个点带标号，深度不超过 $k$ 的有根树森林的计数。
 
-考虑 $n$ 个点带标号深度不超过 $k$ 的有根树，假设它的生成函数是 $\displaystyle \hat{F_k}(x)=\sum_{n\ge 0}f_{n,k}\frac{x^n}{n!}$。
+考虑 $n$ 个点带标号深度不超过 $k$ 的有根树，假设它的生成函数是：
+
+$$
+\hat{F_k}(x)=\sum_{n\ge 0}f_{n,k}\frac{x^n}{n!}
+$$
 
 考虑递推求 $\hat{F_k}(x)$。深度不超过 $k$ 的有根树，实际上就是深度不超过 $k-1$ 的若干棵有根树，把它们的根结点全部连到一个结点上去。因此
 
