@@ -342,68 +342,6 @@ $$
     
     于是根据新的初值与递推就能发现倒数关系成立。
 
-### 误差估计
-
-??? "误差"
-    渐进分数 $r_k = \frac{p_k}{q_k}$ 与 $r$ 的误差（deviation）通常可以估计为
-    
-    $$
-    \left|\frac{p_k}{q_k}-r\right| \leq \frac{1}{q_k q_{k+1}} \leq \frac{1}{q_k^2}
-    $$
-    
-    将两边乘以 $q_k$，得到另一个估计：
-    
-    $$
-    |p_k - q_k r| \leq \frac{1}{q_{k+1}}
-    $$
-    
-    从上面的循环可以看出，$q_k$ 的增长速度至少与斐波那契数一样快。
-    
-    在下图中可以看到收敛 $r_k$ 渐进分数 $r=\frac{1+\sqrt 5}{2}$ 的可视化：
-    
-    ![](./images/Golden_ration_convergents.svg)
-    
-    无理数 $r=\frac{1+\sqrt 5}{2}$ 由蓝色虚线表示。奇数渐进分数从上面接近它，偶数渐进分数从下面接近它。
-
-实数 x 也可以写成：
-
-$$
-x=[a_0,a_1,\ldots,a_k,r_{k+1}]
-$$
-
-最后一项渐近分数就是 x 本身。于是根据渐进分数的递推式，就有：
-
-$$
-x=\frac{r_{k+1}p_k+p_{k-1}}{r_{k+1}q_k+q_{k-1}}
-$$
-
-于是可以估计渐进分数的误差：
-
-$$
-x-\frac{p_k}{q_k}=\frac{(-1)^k}{q_k\left(r_{k+1}q_k+q_{k-1}\right)}
-$$
-
-分别对 k 取奇数偶数就得到，x 总小于其奇数阶渐近分数，大于其偶数阶渐近分数。
-
-### 格点
-
-??? "格点"
-    考虑线 $y=rx$ 上方和下方的点的凸包。
-    
-    奇数渐进分数 $(q_k;p_k)$ 是上壳的顶点，而偶数渐进分数 $(q_k;p_k)$ 则是下壳的顶点。
-    
-    外壳上的所有整数顶点都作为 $(q;p)$ 获得，这样
-    
-    $$
-    \frac{p}{q} = \frac{tp_{k-1} + p_{k-2}}{tq_{k-1} + q_{k-2}}
-    $$
-    
-    对于整数 $0 \leq t \leq a_k$。换句话说，外壳上的格点集对应于中间分数。
-    
-    在下图中可以看到 $r=\frac{9}{7}$ 的渐进分数和中间分数（灰点）。
-    
-    ![](./images/Continued_convergents_geometry.svg)
-
 ### 最佳逼近
 
 ??? "最佳逼近"
@@ -536,7 +474,48 @@ $$
         return p, q
     ```
 
-## 余项估计
+## 误差和余项的估计
+
+??? "误差"
+    渐进分数 $r_k = \frac{p_k}{q_k}$ 与 $r$ 的误差（deviation）通常可以估计为
+    
+    $$
+    \left|\frac{p_k}{q_k}-r\right| \leq \frac{1}{q_k q_{k+1}} \leq \frac{1}{q_k^2}
+    $$
+    
+    将两边乘以 $q_k$，得到另一个估计：
+    
+    $$
+    |p_k - q_k r| \leq \frac{1}{q_{k+1}}
+    $$
+    
+    从上面的循环可以看出，$q_k$ 的增长速度至少与斐波那契数一样快。
+    
+    在下图中可以看到收敛 $r_k$ 渐进分数 $r=\frac{1+\sqrt 5}{2}$ 的可视化：
+    
+    ![](./images/Golden_ration_convergents.svg)
+    
+    无理数 $r=\frac{1+\sqrt 5}{2}$ 由蓝色虚线表示。奇数渐进分数从上面接近它，偶数渐进分数从下面接近它。
+
+实数 x 也可以写成：
+
+$$
+x=[a_0,a_1,\ldots,a_k,r_{k+1}]
+$$
+
+最后一项渐近分数就是 x 本身。于是根据渐进分数的递推式，就有：
+
+$$
+x=\frac{r_{k+1}p_k+p_{k-1}}{r_{k+1}q_k+q_{k-1}}
+$$
+
+于是可以估计渐进分数的误差：
+
+$$
+x-\frac{p_k}{q_k}=\frac{(-1)^k}{q_k\left(r_{k+1}q_k+q_{k-1}\right)}
+$$
+
+分别对 k 取奇数偶数就得到，x 总小于其奇数阶渐近分数，大于其偶数阶渐近分数。
 
 对于数字 $r$ 及其第 $k$ 个渐进分数 $r_k=\frac{p_k}{q_k}$，以下公式成立：
 
@@ -654,6 +633,108 @@ $$
             t = (-1) if len(p) % 2 else 1
             return t*C*q[-2], -t*C*p[-2]
         ```
+
+## 几何解释
+
+??? "格点"
+    考虑线 $y=rx$ 上方和下方的点的凸包。
+    
+    奇数渐进分数 $(q_k;p_k)$ 是上壳的顶点，而偶数渐进分数 $(q_k;p_k)$ 则是下壳的顶点。
+    
+    外壳上的所有整数顶点都作为 $(q;p)$ 获得，这样
+    
+    $$
+    \frac{p}{q} = \frac{tp_{k-1} + p_{k-2}}{tq_{k-1} + q_{k-2}}
+    $$
+    
+    对于整数 $0 \leq t \leq a_k$。换句话说，外壳上的格点集对应于中间分数。
+    
+    在下图中可以看到 $r=\frac{9}{7}$ 的渐进分数和中间分数（灰点）。
+    
+    ![](./images/Continued_convergents_geometry.svg)
+
+对于渐进分数 $r_k = \frac{p_k}{q_k}$，设 $\vec r_k = (q_k;p_k)$。然后，以下重复出现：
+
+$$
+\vec r_k = a_k \vec r_{k-1} + \vec r_{k-2}
+$$
+
+设 $\vec r = (1;r)$。然后，每个向量 $(x;y)$ 对应于等于其斜率系数 $\frac{y}{x}$ 的数字。
+
+利用外积 $(x_1;y_1) \times (x_2;y_2) = x_1 y_2 - x_2 y_1$ 的概念，可以看出（参见下面的解释）
+
+$$
+s_k = -\frac{\vec r_{k-2} \times \vec r}{\vec r_{k-1} \times \vec r} = \left|\frac{\vec r_{k-2} \times \vec r}{\vec r_{k-1} \times \vec r}\right|
+$$
+
+最后一个等式是由于 $r_{k-1}$ 和 $r_{k-2}$ 位于 $r$ 的不同侧，因此 $\vec r_{k-1}$ 和 $\vec r_{k-2}$ 与 $\vec r$ 的外积具有不同的符号。考虑到 $a_k = \lfloor s_k \rfloor$，$\vec r_k$ 的公式如下
+
+$$
+\vec r_k = \vec r_{k-2} + \left\lfloor \left| \frac{\vec r \times \vec r_{k-2}}{\vec r \times \vec r_{k-1}}\right|\right\rfloor \vec r_{k-1}
+$$
+
+注意到 $\vec r_k \times r = (q;p) \times (1;r) = qr - p$，因此
+
+$$
+a_k = \left\lfloor \left| \frac{q_{k-1}r-p_{k-1}}{q_{k-2}r-p_{k-2}} \right| \right\rfloor
+$$
+
+??? "解释"
+    正如已经注意到的，$a_k = \lfloor s_k \rfloor$，其中 $s_k = [a_k; a_{k+1}, a_{k+2}, \dots]$。另一方面，从渐进分数的递推，可以得出
+    
+    $$
+    r = [a_0; a_1, \dots, a_{k-1}, s_k] = \frac{s_k p_{k-1} + p_{k-2}}{s_k q_{k-1} + q_{k-2}}
+    $$
+    
+    在向量形式中，它重写为
+    
+    $$
+    \vec r \parallel s_k \vec r_{k-1} + \vec r_{k-2}
+    $$
+    
+    这意味着 $\vec r$ 和 $s_k \vec r_{k-1} + \vec r_{k-2}$ 共线（即具有相同的斜率系数）。用 $\vec r$ 计算两个部分的外积，可以得到
+    
+    $$
+    0 = s_k (\vec r_{k-1} \times \vec r) + (\vec r_{k-2} \times \vec r)
+    $$
+    
+    得出最终公式
+    
+    $$
+    s_k = -\frac{\vec r_{k-2} \times \vec r}{\vec r_{k-1} \times \vec r}
+    $$
+
+### 例题 鼻子拉伸算法
+
+每次将 $\vec r_{k-1}$ 添加到向量 $\vec p$ 时，$\vec p \times \vec r$ 的值都会增加 $\vec r_{k-1} \times \vec r$。
+
+因此，$a_k=\lfloor s_k \rfloor$ 是 $\vec r_{k-1}$ 向量的最大整数，可以将其添加到 $\vec r_{k-2}$，而无需更改与 $\vec r$ 的外积的符号。
+
+换句话说，$a_k$ 是您可以将 $\vec r_{k-1}$ 添加到 $\vec r_{k-2}$ 的最大整数次数，而无需跨越 $\vec r$ 定义的线：
+
+![](./images/Continued_convergents_geometry.svg)
+
+在上面的图片中，$\vec r_2 = (4;3)$ 是通过将 $\vec r_1 = (1;1)$ 重复添加到 $\vec r_0 = (1;0)$ 而获得的。
+
+当不可能在不跨越 $y=rx$ 线的情况下将 $\vec r_1$ 进一步添加到 $\vec r_0$ 时，转到另一侧，重复将 $\vec r_2$ 添加到 $\vec r_1$ 以获得 $\vec r_3 = (9;7)$。
+
+此过程生成接近直线的指数较长的向量。
+
+对于这一特性，Boris Delaunay 将生成结果收敛向量的过程称为 **鼻子拉伸算法**（Nose stretching algorithm）。
+
+如果观察在点 $\vec r_{k-2}$、$\vec r_{k}$ 和 $\vec 0$ 上绘制的三角形，会注意到它的加倍面积是
+
+$$
+|\vec r_{k-2} \times \vec r_k| = |\vec r_{k-2} \times (\vec r_{k-2} + a_k \vec r_{k-1})| = a_k |\vec r_{k-2} \times \vec r_{k-1}| = a_k
+$$
+
+结合 Pick 定理，这意味着三角形内部没有严格的格点，其边界上的唯一格点是 $\vec 0$ 和 $\vec r_{k-2} + t \cdot \vec r_{k-1}$，对于所有整数 $t$，使得 $0 \leq t \leq a_k$。当连接所有可能的 $k$ 时，这意味着在由偶数索引和奇数索引收敛向量形成的多边形之间的空间中没有整数点。
+
+这反过来意味着，具有奇数系数的 $\vec r_k$ 形成了线 $y=rx$ 上方 $x \geq 0$ 的格点凸包，而具有偶数系数的 $\vec r_k$ 形成线 $y=rx$ 下方 $x > 0$ 的格点凸包。
+
+### 定义
+
+这些多边形也被称为 **克莱因多边形**（Klein polygons），以费利克斯·克莱因（Felix Klein）的名字命名，他首次提出了对连续分数的几何解释。
 
 ## 线性分式变换
 
@@ -1066,91 +1147,6 @@ $$
         C = combine([a[0], 1, 1, 0], C)
         print(str(C[1]) + '/' + str(C[3]))
         ```
-
-## 几何解释
-
-对于渐进分数 $r_k = \frac{p_k}{q_k}$，设 $\vec r_k = (q_k;p_k)$。然后，以下重复出现：
-
-$$
-\vec r_k = a_k \vec r_{k-1} + \vec r_{k-2}
-$$
-
-设 $\vec r = (1;r)$。然后，每个向量 $(x;y)$ 对应于等于其斜率系数 $\frac{y}{x}$ 的数字。
-
-利用外积 $(x_1;y_1) \times (x_2;y_2) = x_1 y_2 - x_2 y_1$ 的概念，可以看出（参见下面的解释）
-
-$$
-s_k = -\frac{\vec r_{k-2} \times \vec r}{\vec r_{k-1} \times \vec r} = \left|\frac{\vec r_{k-2} \times \vec r}{\vec r_{k-1} \times \vec r}\right|
-$$
-
-最后一个等式是由于 $r_{k-1}$ 和 $r_{k-2}$ 位于 $r$ 的不同侧，因此 $\vec r_{k-1}$ 和 $\vec r_{k-2}$ 与 $\vec r$ 的外积具有不同的符号。考虑到 $a_k = \lfloor s_k \rfloor$，$\vec r_k$ 的公式如下
-
-$$
-\vec r_k = \vec r_{k-2} + \left\lfloor \left| \frac{\vec r \times \vec r_{k-2}}{\vec r \times \vec r_{k-1}}\right|\right\rfloor \vec r_{k-1}
-$$
-
-注意到 $\vec r_k \times r = (q;p) \times (1;r) = qr - p$，因此
-
-$$
-a_k = \left\lfloor \left| \frac{q_{k-1}r-p_{k-1}}{q_{k-2}r-p_{k-2}} \right| \right\rfloor
-$$
-
-??? "解释"
-    正如已经注意到的，$a_k = \lfloor s_k \rfloor$，其中 $s_k = [a_k; a_{k+1}, a_{k+2}, \dots]$。另一方面，从渐进分数的递推，可以得出
-    
-    $$
-    r = [a_0; a_1, \dots, a_{k-1}, s_k] = \frac{s_k p_{k-1} + p_{k-2}}{s_k q_{k-1} + q_{k-2}}
-    $$
-    
-    在向量形式中，它重写为
-    
-    $$
-    \vec r \parallel s_k \vec r_{k-1} + \vec r_{k-2}
-    $$
-    
-    这意味着 $\vec r$ 和 $s_k \vec r_{k-1} + \vec r_{k-2}$ 共线（即具有相同的斜率系数）。用 $\vec r$ 计算两个部分的外积，可以得到
-    
-    $$
-    0 = s_k (\vec r_{k-1} \times \vec r) + (\vec r_{k-2} \times \vec r)
-    $$
-    
-    得出最终公式
-    
-    $$
-    s_k = -\frac{\vec r_{k-2} \times \vec r}{\vec r_{k-1} \times \vec r}
-    $$
-
-### 例题 鼻子拉伸算法
-
-每次将 $\vec r_{k-1}$ 添加到向量 $\vec p$ 时，$\vec p \times \vec r$ 的值都会增加 $\vec r_{k-1} \times \vec r$。
-
-因此，$a_k=\lfloor s_k \rfloor$ 是 $\vec r_{k-1}$ 向量的最大整数，可以将其添加到 $\vec r_{k-2}$，而无需更改与 $\vec r$ 的外积的符号。
-
-换句话说，$a_k$ 是您可以将 $\vec r_{k-1}$ 添加到 $\vec r_{k-2}$ 的最大整数次数，而无需跨越 $\vec r$ 定义的线：
-
-![](./images/Continued_convergents_geometry.svg)
-
-在上面的图片中，$\vec r_2 = (4;3)$ 是通过将 $\vec r_1 = (1;1)$ 重复添加到 $\vec r_0 = (1;0)$ 而获得的。
-
-当不可能在不跨越 $y=rx$ 线的情况下将 $\vec r_1$ 进一步添加到 $\vec r_0$ 时，转到另一侧，重复将 $\vec r_2$ 添加到 $\vec r_1$ 以获得 $\vec r_3 = (9;7)$。
-
-此过程生成接近直线的指数较长的向量。
-
-对于这一特性，Boris Delaunay 将生成结果收敛向量的过程称为 **鼻子拉伸算法**（Nose stretching algorithm）。
-
-如果观察在点 $\vec r_{k-2}$、$\vec r_{k}$ 和 $\vec 0$ 上绘制的三角形，会注意到它的加倍面积是
-
-$$
-|\vec r_{k-2} \times \vec r_k| = |\vec r_{k-2} \times (\vec r_{k-2} + a_k \vec r_{k-1})| = a_k |\vec r_{k-2} \times \vec r_{k-1}| = a_k
-$$
-
-结合 Pick 定理，这意味着三角形内部没有严格的格点，其边界上的唯一格点是 $\vec 0$ 和 $\vec r_{k-2} + t \cdot \vec r_{k-1}$，对于所有整数 $t$，使得 $0 \leq t \leq a_k$。当连接所有可能的 $k$ 时，这意味着在由偶数索引和奇数索引收敛向量形成的多边形之间的空间中没有整数点。
-
-这反过来意味着，具有奇数系数的 $\vec r_k$ 形成了线 $y=rx$ 上方 $x \geq 0$ 的格点凸包，而具有偶数系数的 $\vec r_k$ 形成线 $y=rx$ 下方 $x > 0$ 的格点凸包。
-
-### 定义
-
-这些多边形也被称为 **克莱因多边形**（Klein polygons），以费利克斯·克莱因（Felix Klein）的名字命名，他首次提出了对连续分数的几何解释。
 
 ## 例题
 
