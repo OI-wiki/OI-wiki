@@ -193,7 +193,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
 
 如果能让每个合数都只被标记一次，那么时间复杂度就可以降到 $O(n)$ 了。
 
-文中要求的是所有小于MAXN的素数
+文中要求的是所有小于 MAXN 的素数
 
 ???+note "实现"
     === "C++"
