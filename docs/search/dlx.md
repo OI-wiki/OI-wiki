@@ -376,8 +376,8 @@ int col[MS], row[MS];
       // 顺着这一列从上往下遍历
       IT(i, D, c)
       // 顺着这一行从左往右遍历
-        IT(j, R, i)
-          U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
+      IT(j, R, i)
+      U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
     }
     ```
 
