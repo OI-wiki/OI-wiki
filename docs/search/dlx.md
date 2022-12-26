@@ -376,8 +376,8 @@ int col[MS], row[MS];
       // 顺着这一列从上往下遍历
       IT(i, D, c)
       // 顺着这一行从左往右遍历
-        IT(j, R, i)
-          U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
+      IT(j, R, i)
+      U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
     }
     ```
 
@@ -659,4 +659,5 @@ DLX 的难点，不全在于链表的建立，而在于建模。
 - [《算法竞赛入门经典 - 训练指南》](https://book.douban.com/subject/35431537/)
 
 ## 参考资料与
+
 [^note1]: （两岸用语差异）台灣：直行（column）、橫列（row）
