@@ -193,6 +193,8 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
 
 如果能让每个合数都只被标记一次，那么时间复杂度就可以降到 $O(n)$ 了。
 
+文中要求的是所有小于MAXN的素数
+
 ???+note "实现"
     === "C++"
     
@@ -208,8 +210,8 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
               if (i % pri[j] == 0) {
                 // i % pri[j] == 0
                 // 换言之，i 之前被 pri[j] 筛过了
-                // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
-                // pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
+                // 由于 pri 里面质数是从小到大的，所以 i乘上其他的质数的结果一定会被
+                // pri[j]的倍数筛掉，就不需要在这里先筛一次，所以这里直接 break
                 // 掉就好了
                 break;
               }
@@ -234,8 +236,8 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
                         """
                         i % pri[j] == 0
                         换言之，i 之前被 pri[j] 筛过了
-                        由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
-                        pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
+                        由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定会被
+                        pri[j]的倍数筛掉，就不需要在这里先筛一次，所以这里直接 break
                         掉就好了
                         """
                         break
