@@ -33,13 +33,13 @@ $$
 设 $f(t)$ 是关于时间 $t$ 的函数，则傅里叶变换可以检测频率 $\omega$ 的周期在 $f(t)$ 出现的程度：
 
 $$
-F(\omega)=\mathbb{F}[f(t)]=\int_{-\infty}^{\infty}f(t)e^{-iwt}dt
+F(\omega)=\mathbb{F}[f(t)]=\int_{-\infty}^{\infty}f(t)e^{-i{\omega}t}dt
 $$
 
 它的逆变换是
 
 $$
-f(t)=\mathbb{F}^{-1}[F(\omega)]=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)e^{iwt}dt
+f(t)=\mathbb{F}^{-1}[F(\omega)]=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)e^{i{\omega}t}d\omega
 $$
 
 逆变换的形式与正变换非常类似，分母 $2\pi$ 恰好是指数函数的周期。
@@ -50,21 +50,35 @@ $$
 
 ## 离散傅里叶变换
 
-离散傅里叶变换（Discrete Fourier Transform，缩写为 DFT），是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DTFT 的频域采样。
+**离散傅里叶变换**(Discrete Fourier transform，DFT) 是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DTFT 的频域采样。
 
 傅里叶变换是积分形式的连续的函数内积，离散傅里叶变换是求和形式的内积。
 
-设 $\{x_n\}_{n=0}^{N-1}$ 是某一满足有限性条件的序列，则 DFT 定义为：
+设 $\{x_n\}_{n=0}^{N-1}$ 是某一满足有限性条件的序列，它的离散傅里叶变换（DFT）为：
 
 $$
 X_k=\sum_{n=0}^{N-1}x_ne^{-i\frac{2\pi}{N}kn}
 $$
 
-类似于积分形式，逆变换为
+其中 $e$ 是自然对数的底数，$i$ 是虚数单位。通常以符号 $\mathcal {F}$ 表示这一变换，即
+
+$$
+\hat{x}=\mathcal{F}x
+$$
+
+类似于积分形式，它的 **逆离散傅里叶变换**（IDFT）为：
 
 $$
 x_n=\frac{1}{N}\sum_{k=0}^{N-1}X_ke^{i\frac{2\pi}{N}kn}
 $$
+
+可以记为：
+
+$$
+x=\mathcal{F}^{-1}\hat{x}
+$$
+
+实际上，DFT 和 IDFT 变换式中和式前面的归一化系数并不重要。在上面的定义中，DFT 和 IDFT 前的系数分别为 $1$ 和 $\frac {1}{N}$。有时我们会将这两个系数都改 $\frac  {1}{{\sqrt  {N}}}$。
 
 离散傅里叶变换仍旧是时域到频域的变换。由于求和形式的特殊性，可以有其他的解释方法。
 
@@ -103,6 +117,14 @@ C_n^{3}+C_n^{7}+C_n^{11}+C_n^{15}+\ldots=\frac{2^n+i(1+i)^n-i(1-i)^n}{4}
 $$
 
 这道数学题在单位根处插值，恰好构成离散傅里叶变换。
+
+### 矩阵公式
+
+由于离散傅立叶变换是一个 **线性** 算子，所以它可以用矩阵乘法来描述。在矩阵表示法中，离散傅立叶变换表示如下：
+
+$$
+{\displaystyle {\begin{bmatrix}f_{0}\\f_{1}\\\vdots \\f_{n-1}\end{bmatrix}}={\begin{bmatrix}1&1&1&\cdots &1\\1&\alpha &\alpha ^{2}&\cdots &\alpha ^{n-1}\\1&\alpha ^{2}&\alpha ^{4}&\cdots &\alpha ^{2(n-1)}\\\vdots &\vdots &\vdots &&\vdots \\1&\alpha ^{n-1}&\alpha ^{2(n-1)}&\cdots &\alpha ^{(n-1)(n-1)}\\\end{bmatrix}}{\begin{bmatrix}v_{0}\\v_{1}\\\vdots \\v_{n-1}\end{bmatrix}}.}
+$$
 
 ## 快速傅里叶变换
 
@@ -491,7 +513,7 @@ $$
 
 ??? "FFT 模板（ [HDU 1402 -	A * B Problem Plus](http://acm.hdu.edu.cn/showproblem.php?pid=1402) ）"
     ```cpp
-      --8<-- "docs/math/code/poly/fft/fft_3.cpp"
+    --8<-- "docs/math/code/poly/fft/fft_3.cpp"
     ```
 
 ## 参考文献

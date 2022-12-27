@@ -1,4 +1,4 @@
-## 二叉搜索树简介
+## 定义
 
 二叉搜索树是一种二叉树的树形数据结构，其定义如下：
 
@@ -12,7 +12,7 @@
 
 二叉搜索树上的基本操作所花费的时间与这棵树的高度成正比。对于一个有 $n$ 个结点的二叉搜索树中，这些操作的最优时间复杂度为 $O(\log n)$，最坏为 $O(n)$。随机构造这样一棵二叉搜索树的期望高度为 $O(\log n)$。
 
-## 基本操作
+## 过程
 
 在接下来的代码块中，我们约定 $n$ 为结点个数，$h$ 为高度，`val[x]` 为结点 $x$ 处存的数值，`cnt[x]` 为结点 $x$ 存的值所出现的次数，`lc[x]` 和 `rc[x]` 分别为结点 $x$ 的左子结点和右子结点，`siz[x]` 为结点的子树大小。
 
@@ -22,15 +22,16 @@
 
 遍历一棵二叉搜索树的代码如下：
 
-```cpp
-void print(int o) {
-  // 遍历以 o 为根节点的二叉搜索树
-  if (!o) return;  // 遇到空树，返回
-  print(lc[o]);    // 递归遍历左子树
-  for (int i = 1; i <= cnt[o]; i++) printf("%d\n", val[o]);  // 输出根节点信息
-  print(rc[o]);  // 递归遍历右子树
-}
-```
+???+note "实现"
+    ```cpp
+    void print(int o) {
+      // 遍历以 o 为根节点的二叉搜索树
+      if (!o) return;  // 遇到空树，返回
+      print(lc[o]);    // 递归遍历左子树
+      for (int i = 1; i <= cnt[o]; i++) printf("%d\n", val[o]);  // 输出根节点信息
+      print(rc[o]);  // 递归遍历右子树
+    }
+    ```
 
 ### 查找最小/最大值
 
@@ -38,17 +39,18 @@ void print(int o) {
 
 findmin 和 findmax 函数分别返回最小值和最大值所对应的结点编号 $o$，用 `val[o]` 可以获得相应的最小/最大值。
 
-```cpp
-int findmin(int o) {
-  if (!lc[o]) return o;
-  return findmin(lc[o]);  // 一直向左儿子跳
-}
-
-int findmax(int o) {
-  if (!rc[o]) return o;
-  return findmax(rc[o]);  // 一直向右儿子跳
-}
-```
+???+note "实现"
+    ```cpp
+    int findmin(int o) {
+      if (!lc[o]) return o;
+      return findmin(lc[o]);  // 一直向左儿子跳
+    }
+    
+    int findmax(int o) {
+      if (!rc[o]) return o;
+      return findmax(rc[o]);  // 一直向右儿子跳
+    }
+    ```
 
 ### 插入一个元素
 
@@ -66,23 +68,24 @@ int findmax(int o) {
 
 时间复杂度为 $O(h)$。
 
-```cpp
-void insert(int& o, int v) {
-  if (!o) {
-    val[o = ++n] = v;
-    cnt[o] = siz[o] = 1;
-    lc[o] = rc[o] = 0;
-    return;
-  }
-  siz[o]++;
-  if (val[o] == v) {
-    cnt[o]++;
-    return;
-  }
-  if (val[o] > v) insert(lc[o], v);
-  if (val[o] < v) insert(rc[o], v);
-}
-```
+???+note "实现"
+    ```cpp
+    void insert(int& o, int v) {
+      if (!o) {
+        val[o = ++n] = v;
+        cnt[o] = siz[o] = 1;
+        lc[o] = rc[o] = 0;
+        return;
+      }
+      siz[o]++;
+      if (val[o] == v) {
+        cnt[o]++;
+        return;
+      }
+      if (val[o] > v) insert(lc[o], v);
+      if (val[o] < v) insert(rc[o], v);
+    }
+    ```
 
 ### 删除一个元素
 
@@ -102,37 +105,38 @@ void insert(int& o, int v) {
 
 时间复杂度 $O(h)$。
 
-```cpp
-int deletemin(int& o) {
-  if (!lc[o]) {
-    int u = o;
-    o = rc[o];
-    return u;
-  } else {
-    int u = deletemin(lc[o]);
-    siz[o] -= cnt[u];
-    return u;
-  }
-}
-
-void del(int& o, int v) {
-  // 注意 o 有可能会被修改
-  siz[o]--;
-  if (val[o] == v) {
-    if (cnt[o] > 1) {
-      cnt[o]--;
-      return;
+???+note "实现"
+    ```cpp
+    int deletemin(int& o) {
+      if (!lc[o]) {
+        int u = o;
+        o = rc[o];
+        return u;
+      } else {
+        int u = deletemin(lc[o]);
+        siz[o] -= cnt[u];
+        return u;
+      }
     }
-    if (lc[o] && rc[o]) o = deletemin(rc[o]);
-    // 这里以找右子树的最小值为例
-    else
-      o = lc[o] + rc[o];
-    return;
-  }
-  if (val[o] > v) del(lc[o], v);
-  if (val[o] < v) del(rc[o], v);
-}
-```
+    
+    void del(int& o, int v) {
+      // 注意 o 有可能会被修改
+      siz[o]--;
+      if (val[o] == v) {
+        if (cnt[o] > 1) {
+          cnt[o]--;
+          return;
+        }
+        if (lc[o] && rc[o]) o = deletemin(rc[o]);
+        // 这里以找右子树的最小值为例
+        else
+          o = lc[o] + rc[o];
+        return;
+      }
+      if (val[o] > v) del(lc[o], v);
+      if (val[o] < v) del(rc[o], v);
+    }
+    ```
 
 ### 求元素的排名
 
@@ -142,13 +146,14 @@ void del(int& o, int v) {
 
 时间复杂度 $O(h)$。
 
-```cpp
-int queryrnk(int o, int v) {
-  if (val[o] == v) return siz[lc[o]] + 1;
-  if (val[o] > v) return queryrnk(lc[o], v);
-  if (val[o] < v) return queryrnk(rc[o], v) + siz[lc[o]] + cnt[o];
-}
-```
+???+note "实现"
+    ```cpp
+    int queryrnk(int o, int v) {
+      if (val[o] == v) return siz[lc[o]] + 1;
+      if (val[o] > v) return queryrnk(lc[o], v);
+      if (val[o] < v) return queryrnk(rc[o], v) + siz[lc[o]] + cnt[o];
+    }
+    ```
 
 ### 查找排名为 k 的元素
 
@@ -162,11 +167,69 @@ int queryrnk(int o, int v) {
 
 时间复杂度 $O(h)$。
 
-```cpp
-int querykth(int o, int k) {
-  if (siz[lc[o]] >= k) return querykth(lc[o], k);
-  if (siz[lc[o]] < k - cnt[o]) return querykth(rc[o], k - siz[lc[o]] - cnt[o]);
-  return val[o];
-  // 如要找排名为 k 的元素所对应的结点，直接 return o 即可
-}
-```
+???+note "实现"
+    ```cpp
+    int querykth(int o, int k) {
+      if (siz[lc[o]] >= k) return querykth(lc[o], k);
+      if (siz[lc[o]] < k - cnt[o]) return querykth(rc[o], k - siz[lc[o]] - cnt[o]);
+      return val[o];
+      // 如要找排名为 k 的元素所对应的结点，直接 return o 即可
+    }
+    ```
+
+## 平衡树简介
+
+使用二叉搜索树的目的之一是缩短插入与查找时间，一棵合理的二叉搜索树插入与查找时间可以缩短到 $O(\log_2 n)$。
+
+对于一般的二叉搜索树，有可能退化为链表。想象一棵每个结点只有右孩子的二叉搜索树，那么它的性质就和链表一样，插入与查找时间都是 $O(n)$，可以说是极大的时间浪费，所以研究平衡二叉搜索树是非常有必要的。
+
+关于查找效率分析，如果树的高度为 $h$，则在最坏的情况，查找一个关键字需要对比 $h$ 次，查找时间复杂度（也为平均查找长度 ASL，Average Search Length）不超过 $O(h)$。
+
+二叉搜索树的「平衡」概念是指：每一个结点的左子树和右子树高度差最多为 $1$。
+
+可以对不满足平衡条件的二叉搜索树进行调整，使不平衡的二叉搜索树变得平衡。
+
+调整要保证的标准还有二叉搜索树先天自带的条件：二叉搜索树，按照中序遍历，得到从小到大的结点值序列。对于任意一个结点，左子树各结点的最大值，小于该结点的值；该结点的值，小于右子树各结点的最小值。只有保证这一点才能称为一个二叉搜索树。
+
+对于拥有同样元素值集合的二叉搜索树，平衡状态可能是不唯一的。也就是说，可能两棵不同的二叉搜索树，含有的元素值集合相同，并且都是平衡的。
+
+### 过程
+
+保证中序遍历序列不变的平衡调整，基本操作为 **右旋（rotate right 或者 zig）** 和 **左旋（rotate left 或者 zag）**。这两种操作均不改变中序遍历序列。
+
+在这里先介绍右旋，右旋也称为「右单旋转」或「LL 平衡旋转」。对于结点 $A$ 的右旋操作是指：将 $A$ 的左孩子 $B$ 向右上旋转，代替 $A$ 成为根节点，将 $A$ 结点向右下旋转成为 $B$ 的右子树的根结点，$B$ 的原来的右子树变为 $A$ 的左子树。
+
+右旋操作只改变了三组结点关联，相当于对三组边进行循环置换一下，因此需要暂存一个结点再进行轮换更新。
+
+对于右旋操作一般的更新顺序是：暂存 $B$ 结点，先让 $A$ 的左孩子指向 $B$ 的右子树 $BR$，再让 $B$ 的右孩子指针指向 $A$（$A$ 被它的父结点指向），最后让 $A$ 的父结点指向暂存的 $B$。整个操作只要找到 $A$ 的父节点孩子即可完成。
+
+完全同理，有对应的左旋操作，也称为「左单旋转」或「RR 平衡旋转」。左旋操作与右旋操作互为镜像。
+
+一段可行的代码为：
+
+???+note "实现"
+    ```cpp
+    
+    int zig(int now) {                           // 以now为中心右旋
+      int lchild = nodes[now].lchild;            // 暂存A的左孩子B节点
+      nodes[now].lchild = nodes[lchild].rchild;  // 将A的左孩子指向B的右子树BR
+      nodes[lchild].rchild = now;                // 将B的右孩子指针指向A
+      update(nodes[lchild].rchild);  // 更新旋转后A与B两个节点的信息
+      update(lchild);
+      return lchild;  // 让A的父节点指向最初暂存的B
+    }
+    
+    int zag(int now) {  // 以now为中心左旋
+      int rchild = nodes[now].rchild;
+      nodes[now].rchild = nodes[rchild].lchild;
+      nodes[rchild].lchild = now;
+      update(nodes[rchild].lchild);
+      update(rchild);
+      return rchild;
+    }
+    
+    ```
+
+对于这段示例代码，只有调用者知道结点 $A$ 的父结点是什么。对于这种情形，代码的返回值为新的子树根结点的下标，令调用者将左边为 $A$ 的父节点赋值为指向新的子树根结点的下标即可。
+
+对于拥有同样元素值集合的全体合法的二叉搜索树，可以证明，在任意两棵树之间均可通过若干右旋和左旋操作，完成从一棵树到另一棵树的变换。因此，借助右旋和左旋操作，可以将任意一棵合法的二叉搜索树调整至平衡状态。

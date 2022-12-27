@@ -1,12 +1,14 @@
 author: HeRaNO, Xeonacid
 
-### 结构
+## 结构
 
 从二叉堆的结构说起，它是一棵二叉树，并且是完全二叉树，每个结点中存有一个元素（或者说，有个权值）。
 
 堆性质：父亲的权值不小于儿子的权值（大根堆）。同样的，我们可以定义小根堆。本文以大根堆为例。
 
 由堆性质，树根存的是最大值（getmax 操作就解决了）。
+
+## 过程
 
 ### 插入操作
 
@@ -48,7 +50,7 @@ author: HeRaNO, Xeonacid
 
 很显然，直接修改后，向上调整一次即可，时间复杂度为 $O(\log n)$。
 
-### 实现
+## 实现
 
 我们发现，上面介绍的几种操作主要依赖于两个核心：向上调整和向下调整。
 
@@ -113,23 +115,24 @@ void build_heap_2() {
 
 注意到向下调整的复杂度，为 $O(\log n - k)$，另外注意到叶节点无需调整，因此可从序列约 $n/2$ 的位置开始调整，可减少部分常数但不影响复杂度。
 
-$$
-\begin{aligned}
-\text{总复杂度} & = n \log n - \log 1 - \log 2 - \cdots - \log n \\
-& \leq n \log n - 0 \times 2^0 - 1 \times 2^1 -\cdots - (\log n - 1) \times \frac{n}{2} \\\
-& = n \log n - (n-1) - (n-2) - (n-4) - \cdots - (n-\frac{n}{2}) \\
-& = n \log n - n \log n + 1 + 2 + 4 + \cdots + \frac{n}{2} \\
-& = n - 1 \\ &  = O(n)
-\end{aligned}
-$$
+???+note "证明"
+    $$
+    \begin{aligned}
+    \text{总复杂度} & = n \log n - \log 1 - \log 2 - \cdots - \log n \\
+    & \leq n \log n - 0 \times 2^0 - 1 \times 2^1 -\cdots - (\log n - 1) \times \frac{n}{2} \\\
+    & = n \log n - (n-1) - (n-2) - (n-4) - \cdots - (n-\frac{n}{2}) \\
+    & = n \log n - n \log n + 1 + 2 + 4 + \cdots + \frac{n}{2} \\
+    & = n - 1 \\ &  = O(n)
+    \end{aligned}
+    $$
 
 之所以能 $O(n)$ 建堆，是因为堆性质很弱，二叉堆并不是唯一的。
 
 要是像排序那样的强条件就难说了。
 
-### 应用
+## 应用
 
-#### 对顶堆
+### 对顶堆
 
 ??? note "[SP16254 RMID2 - Running Median Again](https://www.luogu.com.cn/problem/SP16254)"
     维护一个序列，支持两种操作：

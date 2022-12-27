@@ -1,0 +1,10 @@
+id: oi-wiki:search/heuristic-1
+name: Heuristic
+solution:
+  cpp: docs/search/code/heuristic/heuristic_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/search/examples/heuristic/heuristic_1.ans
+  input: docs/search/examples/heuristic/heuristic_1.in
+version: 1000

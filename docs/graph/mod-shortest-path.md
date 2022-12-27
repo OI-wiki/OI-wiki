@@ -43,7 +43,7 @@ $$
 
 ???+note "参考实现"
     ```cpp
-      --8<-- "docs/graph/code/mod-shortest-path/mod-shortest-path_1.cpp"
+    --8<-- "docs/graph/code/mod-shortest-path/mod-shortest-path_1.cpp"
     ```
 
 ### 例题二

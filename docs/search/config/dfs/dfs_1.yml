@@ -1,0 +1,10 @@
+id: oi-wiki:search/dfs-1
+name: DFS
+solution:
+  cpp: docs/search/code/dfs/dfs_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/search/examples/dfs/dfs_1.ans
+  input: docs/search/examples/dfs/dfs_1.in
+version: 1000

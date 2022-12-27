@@ -1,6 +1,6 @@
 author: sshwy, StudyingFather, orzAtalod
 
-## Lyndon 分解
+## 定义
 
 首先我们介绍 Lyndon 分解的概念。
 
@@ -10,11 +10,15 @@ Lyndon 分解：串 $s$ 的 Lyndon 分解记为 $s=w_1w_2\cdots w_k$，其中所
 
 ## Duval 算法
 
+### 解释
+
 Duval 可以在 $O(n)$ 的时间内求出一个串的 Lyndon 分解。
 
 首先我们介绍另外一个概念：如果一个字符串 $t$ 能够分解为 $t=ww\cdots\overline{w}$ 的形式，其中 $w$ 是一个 Lyndon 串，而 $\overline{w}$ 是 $w$ 的前缀（$\overline{w}$ 可能是空串），那么称 $t$ 是近似简单串（pre-simple），或者近似 Lyndon 串。一个 Lyndon 串也是近似 Lyndon 串。
 
 Duval 算法运用了贪心的思想。算法过程中我们把串 $s$ 分成三个部分 $s=s_1s_2s_3$，其中 $s_1$ 是一个 Lyndon 串，它的 Lyndon 分解已经记录；$s_2$ 是一个近似 Lyndon 串；$s_3$ 是未处理的部分。
+
+### 过程
 
 整体描述一下，该算法每一次尝试将 $s_3$ 的首字符添加到 $s_2$ 的末尾。如果 $s_2$ 不再是近似 Lyndon 串，那么我们就可以将 $s_2$ 截出一部分前缀（即 Lyndon 分解）接在 $s_1$ 末尾。
 
@@ -22,55 +26,57 @@ Duval 算法运用了贪心的思想。算法过程中我们把串 $s$ 分成三
 
 1. 如果 $s[j]=s[k]$，则将 $s[j]$ 添加到 $s_2$ 末尾不会影响它的近似简单性。于是我们只需要让指针 $j,k$ 自增（移向下一位）即可。
 2. 如果 $s[j]>s[k]$，那么 $s_2s[j]$ 就变成了一个 Lyndon 串，于是我们将指针 $j$ 自增，而让 $k$ 指向 $s_2$ 的首字符，这样 $s_2$ 就变成了一个循环次数为 1 的新 Lyndon 串了。
-3. 如果 $s[j]<s[k]$，则 $s_2s[j]$ 就不是一个近似简单串了，那么我们就要把 $s_2$ 分解出它的一个 Lyndon 子串，这个 Lyndon 子串的长度将是 $j-k$，即它的一个循环节。然后把 $s_2$ 变成分解完以后剩下的部分，继续循环下去（注意，这个情况下我们没有改变指针 $j,k$），直到循环节被截完。对于剩余部分，我们只需要将进度“回退”到剩余部分的开头即可。
+3. 如果 $s[j]<s[k]$，则 $s_2s[j]$ 就不是一个近似简单串了，那么我们就要把 $s_2$ 分解出它的一个 Lyndon 子串，这个 Lyndon 子串的长度将是 $j-k$，即它的一个循环节。然后把 $s_2$ 变成分解完以后剩下的部分，继续循环下去（注意，这个情况下我们没有改变指针 $j,k$），直到循环节被截完。对于剩余部分，我们只需要将进度「回退」到剩余部分的开头即可。
 
-### 代码实现
+### 实现
 
 下面的代码返回串 $s$ 的 Lyndon 分解方案。
 
-```cpp
-// C++ Version
-// duval_algorithm
-vector<string> duval(string const& s) {
-  int n = s.size(), i = 0;
-  vector<string> factorization;
-  while (i < n) {
-    int j = i + 1, k = i;
-    while (j < n && s[k] <= s[j]) {
-      if (s[k] < s[j])
-        k = i;
-      else
-        k++;
-      j++;
-    }
-    while (i <= k) {
-      factorization.push_back(s.substr(i, j - k));
-      i += j - k;
-    }
-  }
-  return factorization;
-}
-```
+=== "C++"
 
-```python
-# Python Version
-# duval_algorithm
-def duval(s):
-    n, i = len(s), 0
-    factorization = []
-    while i < n:
-        j, k = i + 1, i
-        while j < n and s[k] <= s[j]:
-            if s[k] < s[j]:
-                k = i
-            else:
-                k += 1
-            j += 1
-        while i <= k:
-            factorization.append(s[i : i + j - k])
-            i += j - k
-    return factorization
-```
+    ```cpp
+    // duval_algorithm
+    vector<string> duval(string const& s) {
+      int n = s.size(), i = 0;
+      vector<string> factorization;
+      while (i < n) {
+        int j = i + 1, k = i;
+        while (j < n && s[k] <= s[j]) {
+          if (s[k] < s[j])
+            k = i;
+          else
+            k++;
+          j++;
+        }
+        while (i <= k) {
+          factorization.push_back(s.substr(i, j - k));
+          i += j - k;
+        }
+      }
+      return factorization;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    # duval_algorithm
+    def duval(s):
+        n, i = len(s), 0
+        factorization = []
+        while i < n:
+            j, k = i + 1, i
+            while j < n and s[k] <= s[j]:
+                if s[k] < s[j]:
+                    k = i
+                else:
+                    k += 1
+                j += 1
+            while i <= k:
+                factorization.append(s[i : i + j - k])
+                i += j - k
+        return factorization
+    ```
 
 ### 复杂度分析
 
@@ -86,49 +92,51 @@ def duval(s):
 
 于是我们在分解的过程中记录每一次的近似 Lyndon 串的开头即可。
 
-```cpp
-// C++ Version
-// smallest_cyclic_string
-string min_cyclic_string(string s) {
-  s += s;
-  int n = s.size();
-  int i = 0, ans = 0;
-  while (i < n / 2) {
-    ans = i;
-    int j = i + 1, k = i;
-    while (j < n && s[k] <= s[j]) {
-      if (s[k] < s[j])
-        k = i;
-      else
-        k++;
-      j++;
-    }
-    while (i <= k) i += j - k;
-  }
-  return s.substr(ans, n / 2);
-}
-```
+=== "C++"
 
-```python
-# Python Version
-# smallest_cyclic_string
-def min_cyclic_string(s):
-    s += s
-    n = len(s)
-    i, ans = 0, 0
-    while i < n / 2:
-        ans = i
-        j, k = i + 1, i
-        while j < n and s[k] <= s[j]:
-            if s[k] < s[j]:
-                k = i
-            else:
-                k += 1
-            j += 1
-        while i <= k:
-            i += j - k
-    return s[ans : ans + n / 2]
-```
+    ```cpp
+    // smallest_cyclic_string
+    string min_cyclic_string(string s) {
+      s += s;
+      int n = s.size();
+      int i = 0, ans = 0;
+      while (i < n / 2) {
+        ans = i;
+        int j = i + 1, k = i;
+        while (j < n && s[k] <= s[j]) {
+          if (s[k] < s[j])
+            k = i;
+          else
+            k++;
+          j++;
+        }
+        while (i <= k) i += j - k;
+      }
+      return s.substr(ans, n / 2);
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    # smallest_cyclic_string
+    def min_cyclic_string(s):
+        s += s
+        n = len(s)
+        i, ans = 0, 0
+        while i < n / 2:
+            ans = i
+            j, k = i + 1, i
+            while j < n and s[k] <= s[j]:
+                if s[k] < s[j]:
+                    k = i
+                else:
+                    k += 1
+                j += 1
+            while i <= k:
+                i += j - k
+        return s[ans : ans + n / 2]
+    ```
 
 ## 习题
 

@@ -26,7 +26,7 @@
 
 - 请确保您的文档中的引用链接的稳定性。**不推荐** 引用 **自建** 服务中的资源（如自建 OJ 里的题目）。建议在添加时同时将该外链存于互联网档案馆[^webarchive]，以防无法替代的链接失效。
 
-- 站内链接请去掉网站域名，并且使用相对路径链接对应 `.md` 文件。例如，在本页面（`intro/format`）中链接杂项简介（`misc`），应使用 `[杂项简介](../misc/index.md)`。
+- 站内链接请去掉网站域名，并且使用相对路径链接对应 `.md` 文件。例如，在本页面（`intro/format`）中链接杂项简介（`misc`），应使用 `[杂项简介](../misc/index.md)`。在站内引向某一内容的链接（例如 [平衡三进制](../math/balanced-ternary.md) 中的 [转换算法](../math/balanced-ternary.md#转换算法)），请将超链接 `#` 字符后的部分写为标题文字。
 
 ### 文档的合理性
 
@@ -201,30 +201,6 @@
     两种格式的区别是，带 `+` 的会默认保持展开，而不带 `+` 的会默认保持折叠。
 
     折叠框的标题，即 `???+note` 中 `note` 后的内容应以 `"` 包裹起来。其中的内容支持 Markdown 语法。详见 [Admonition - Changing the title](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#changing-the-title)。（不具备折叠功能的为一般的 Admonitions，参考 [Admonitions - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/admonitions)）
-
-    如果需要嵌套折叠框，推荐使用 [MDUI 的阴影样式](https://www.mdui.org/docs/shadow#use)，提高内层折叠框的海拔。
-
-    **OI Wiki** 支持 `.mdui-shadow-[0-24]`，一般情况下最多用到两层折叠框，外层用 `note` 即可（其实就是 `mdui-shadow-2`），内层推荐使用 `mdui-shadow-6`。
-
-    示例：
-
-    ````text
-    ???+note "题目"
-        内容
-        
-        ??? mdui-shadow-6 "参考代码"
-            ```cpp
-            代码
-            ```
-    ````
-
-    ???+note "题目"
-        内容
-        
-        ??? mdui-shadow-6 "参考代码"
-            ```cpp
-            代码
-            ```
 
 如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E) 和 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)。前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 Markdown 传统语法和 mkdocs-material 支持的扩展语法。
 

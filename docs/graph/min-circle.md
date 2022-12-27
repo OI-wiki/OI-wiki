@@ -1,8 +1,11 @@
-## 问题
+## 引入
 
-给出一个图，问其中的有 $n$ 个节点构成的边权和最小的环 $(n\ge 3)$ 是多大。
+???+question "问题"
+    给出一个图，问其中的有 $n$ 个节点构成的边权和最小的环 $(n\ge 3)$ 是多大。
 
 图的最小环也称围长。
+
+## 过程
 
 ### 暴力解法
 
@@ -18,13 +21,19 @@
 
 相关链接：[最短路/Dijkstra](https://oi-wiki.org/graph/shortest-path/#dijkstra)
 
+#### 过程
+
 枚举所有边，每一次求删除一条边之后对这条边的起点跑一次 Dijkstra，道理同上。
+
+#### 性质
 
 时间复杂度 $O(m(n+m)\log n)$。
 
 ### Floyd
 
 相关链接：[最短路/Floyd](https://oi-wiki.org/graph/shortest-path/#floyd)
+
+#### 过程
 
 记原图中 $u,v$ 之间边的边权为 $val\left(u,v\right)$。
 
@@ -34,51 +43,57 @@
 
 故在循环时对于每个 $k$ 枚举满足 $i<k,j<k$ 的 $(i,j)$，更新答案即可。
 
+#### 性质
+
 时间复杂度：$O(n^3)$
+
+#### 实现
 
 下面给出 C++ 的参考实现：
 
-```cpp
-// C++ Version
-int val[maxn + 1][maxn + 1];  // 原图的邻接矩阵
+=== "C++"
 
-inline int floyd(const int &n) {
-  static int dis[maxn + 1][maxn + 1];  // 最短路矩阵
-  for (int i = 1; i <= n; ++i)
-    for (int j = 1; j <= n; ++j) dis[i][j] = val[i][j];  // 初始化最短路矩阵
-  int ans = inf;
-  for (int k = 1; k <= n; ++k) {
-    for (int i = 1; i < k; ++i)
-      for (int j = 1; j < i; ++j)
-        ans = std::min(ans, dis[i][j] + val[i][k] + val[k][j]);  // 更新答案
-    for (int i = 1; i <= n; ++i)
-      for (int j = 1; j <= n; ++j)
-        dis[i][j] = std::min(
-            dis[i][j], dis[i][k] + dis[k][j]);  // 正常的 floyd 更新最短路矩阵
-  }
-  return ans;
-}
-```
+    ```cpp
+    int val[maxn + 1][maxn + 1];  // 原图的邻接矩阵
 
-```python
-# Python Version
-val = [[0 for i in range(maxn + 1)] for j in range(maxn + 1)] # 原图的邻接矩阵
+    inline int floyd(const int &n) {
+      static int dis[maxn + 1][maxn + 1];  // 最短路矩阵
+      for (int i = 1; i <= n; ++i)
+        for (int j = 1; j <= n; ++j) dis[i][j] = val[i][j];  // 初始化最短路矩阵
+      int ans = inf;
+      for (int k = 1; k <= n; ++k) {
+        for (int i = 1; i < k; ++i)
+          for (int j = 1; j < i; ++j)
+            ans = std::min(ans, dis[i][j] + val[i][k] + val[k][j]);  // 更新答案
+        for (int i = 1; i <= n; ++i)
+          for (int j = 1; j <= n; ++j)
+            dis[i][j] = std::min(
+                dis[i][j], dis[i][k] + dis[k][j]);  // 正常的 floyd 更新最短路矩阵
+      }
+      return ans;
+    }
+    ```
 
-def floyd(n):
-    dis = [[0 for i in range(maxn + 1)] for j in range(maxn + 1)] # 最短路矩阵
-    for i in range(1, n + 1):
-        for j in range(1, n + 1):
-            dis[i][j] = val[i][j] # 初始化最短路矩阵
-    ans = inf
-    for k in range(1, n + 1):
-        for i in range(1, k):
-            for j in range(1, i):
-                ans = min(ans, dis[i][j] + val[i][k] + val[k][j]) # 更新答案
+=== "Python"
+
+    ```python
+    val = [[0 for i in range(maxn + 1)] for j in range(maxn + 1)] # 原图的邻接矩阵
+
+    def floyd(n):
+        dis = [[0 for i in range(maxn + 1)] for j in range(maxn + 1)] # 最短路矩阵
         for i in range(1, n + 1):
             for j in range(1, n + 1):
-                dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j]) # 正常的 floyd 更新最短路矩阵
-    return ans
-```
+                dis[i][j] = val[i][j] # 初始化最短路矩阵
+        ans = inf
+        for k in range(1, n + 1):
+            for i in range(1, k):
+                for j in range(1, i):
+                    ans = min(ans, dis[i][j] + val[i][k] + val[k][j]) # 更新答案
+            for i in range(1, n + 1):
+                for j in range(1, n + 1):
+                    dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j]) # 正常的 floyd 更新最短路矩阵
+        return ans
+    ```
 
 ## 例题
 
