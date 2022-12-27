@@ -159,14 +159,14 @@ for (int i = 1; i <= 10; ++i) {
 break 与 continue 语句均可在三种循环语句的循环体中使用。
 
 ```cpp
-// 值得注意的是，在 do...while 语句中使用 continue
-// 语句并不会跳过本轮循环的判断条件
+// 值得注意的是，在 do...while 语句中使用 continue 语句并不会跳过本轮循环的判断条件
 
 int i = 1;
 do {
   std::cout << i << std::endl;
-  if (i == 4) continue;
-} while (++i < 5);
+  ++i;
+  if (i == 5) continue;
+} while (i <= 5);
 
 /*
 输出如下：
@@ -174,6 +174,7 @@ do {
 2
 3
 4
+5
 */
 ```
 
