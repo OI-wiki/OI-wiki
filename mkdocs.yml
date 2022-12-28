@@ -32,6 +32,7 @@ nav:
     - 题型:
       - 题型概述: contest/problems.md
       - 交互题: contest/interaction.md
+    - 考试大纲: contest/syllabus.md
     - 学习路线: contest/roadmap.md
     - 学习资源: contest/resources.md
     - 技巧:
