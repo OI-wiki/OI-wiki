@@ -352,8 +352,6 @@ $$
 
 ### 证明
 
-> 此处的证明参照了 [容斥原理一般化](https://oi-wiki.org/math/combinatorics/inclusion-exclusion-principle/#%E5%AE%B9%E6%96%A5%E5%8E%9F%E7%90%86%E4%B8%80%E8%88%AC%E5%8C%96)
-
 将反演公式的 $g_i$ 展开得到：
 
 $$
