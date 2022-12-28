@@ -84,9 +84,9 @@ $$
 
 ### 矩阵形式
 
-\\documentclass{ctexart}
-\\usepackage{amsmath}
-\\begin{document}
+\documentclass{ctexart}
+\usepackage{amsmath}
+\begin{document}
 斐波那契数列的递推可以用矩阵乘法的形式表达：
 
 $$
@@ -100,7 +100,6 @@ $$
 $$
 
 于是我们可以用矩阵乘法在 $\Theta(\log n)$ 的时间内计算斐波那契数列。此外，前一节讲述的公式也可通过矩阵对角化的技巧来得到。
-\\end{document}
 
 ### 快速倍增法
 
