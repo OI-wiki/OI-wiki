@@ -84,9 +84,6 @@ $$
 
 ### 矩阵形式
 
-\documentclass{ctexart}
-\usepackage{amsmath}
-\begin{document}
 斐波那契数列的递推可以用矩阵乘法的形式表达：
 
 $$
