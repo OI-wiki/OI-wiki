@@ -1,4 +1,4 @@
-author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005
+author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005, 0xis-cn
 
 相关阅读：[双连通分量](./bcc.md)，
 
@@ -30,7 +30,7 @@ author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005
 
 然后我们开始 DFS，我们判断某个点是否是割点的根据是：对于某个顶点 $u$，如果存在至少一个顶点 $v$（$u$ 的儿子），使得 $low_v \geq num_u$，即不能回到祖先，那么 $u$ 点为割点。
 
-另外，如果搜到了自己（在环中），如果他有两个及以上的儿子，那么他一定是割点了，如果只有一个儿子，那么把它删掉，不会有任何的影响。比如下面这个图，此处形成了一个环，从树上来讲它有 2 个儿子：
+此根据惟独不适用于搜索的起始点，其需要特殊考虑：若该点不是割点，则其他路径亦能到达全部结点，因此从起始点只「向下搜了一次」，即在搜索树内仅有一个子结点。如果在搜索树内有两个及以上的儿子，那么他一定是割点了（设想上图从 2 开始搜索，搜索树内应有两个子结点：3 或 4 及 5 或 6）。如果只有一个儿子，那么把它删掉，不会有任何的影响。比如下面这个图，此处形成了一个环。
 
 ![](./images/cut3.svg)
 
@@ -75,56 +75,58 @@ low[u] = min(low[u], num[v]);
 
 下面代码实现了求割边，其中，当 `isbridge[x]` 为真时，`(father[x],x)` 为一条割边。
 
-```cpp
-// C++ Version
-int low[MAXN], dfn[MAXN], iscut[MAXN], dfs_clock;
-bool isbridge[MAXN];
-vector<int> G[MAXN];
-int cnt_bridge;
-int father[MAXN];
+=== "C++"
 
-void tarjan(int u, int fa) {
-  father[u] = fa;
-  low[u] = dfn[u] = ++dfs_clock;
-  for (int i = 0; i < G[u].size(); i++) {
-    int v = G[u][i];
-    if (!dfn[v]) {
-      tarjan(v, u);
-      low[u] = min(low[u], low[v]);
-      if (low[v] > dfn[u]) {
-        isbridge[v] = true;
-        ++cnt_bridge;
+    ```cpp
+    int low[MAXN], dfn[MAXN], dfs_clock;
+    bool isbridge[MAXN];
+    vector<int> G[MAXN];
+    int cnt_bridge;
+    int father[MAXN];
+
+    void tarjan(int u, int fa) {
+      father[u] = fa;
+      low[u] = dfn[u] = ++dfs_clock;
+      for (int i = 0; i < G[u].size(); i++) {
+        int v = G[u][i];
+        if (!dfn[v]) {
+          tarjan(v, u);
+          low[u] = min(low[u], low[v]);
+          if (low[v] > dfn[u]) {
+            isbridge[v] = true;
+            ++cnt_bridge;
+          }
+        } else if (dfn[v] < dfn[u] && v != fa) {
+          low[u] = min(low[u], dfn[v]);
+        }
       }
-    } else if (dfn[v] < dfn[u] && v != fa) {
-      low[u] = min(low[u], dfn[v]);
     }
-  }
-}
-```
+    ```
 
-```python
-# Python Version
-low = [] * MAXN; dfn = [] * MAXN; iscut = [] * MAXN; dfs_clock = 0
-isbridge = [False] * MAXN
-G = [[0 for i in range(MAXN)] for j in range(MAXN)]
-cnt_bridge = 0
-father = [] * MAXN
+=== "Python"
 
-def tarjan(u, fa):
-    father[u] = fa
-    low[u] = dfn[u] = dfs_clock
-    dfs_clock = dfs_clock + 1
-    for i in range(0, len(G[u])):
-        v = G[u][i]
-        if dfn[v] == False:
-            tarjan(v, u)
-            low[u] = min(low[u], low[v])
-            if low[v] > dfn[u]:
-                isbridge[v] = True
-                cnt_bridge = cnt_bridge + 1
-        elif dfn[v] < dfn[u] and v != fa:
-            low[u] = min(low[u], dfn[v])
-```
+    ```python
+    low = [] * MAXN; dfn = [] * MAXN; dfs_clock = 0
+    isbridge = [False] * MAXN
+    G = [[0 for i in range(MAXN)] for j in range(MAXN)]
+    cnt_bridge = 0
+    father = [] * MAXN
+
+    def tarjan(u, fa):
+        father[u] = fa
+        low[u] = dfn[u] = dfs_clock
+        dfs_clock = dfs_clock + 1
+        for i in range(0, len(G[u])):
+            v = G[u][i]
+            if dfn[v] == False:
+                tarjan(v, u)
+                low[u] = min(low[u], low[v])
+                if low[v] > dfn[u]:
+                    isbridge[v] = True
+                    cnt_bridge = cnt_bridge + 1
+            elif dfn[v] < dfn[u] and v != fa:
+                low[u] = min(low[u], dfn[v])
+    ```
 
 ## 练习
 

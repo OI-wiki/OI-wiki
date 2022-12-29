@@ -39,54 +39,56 @@
 ### 实现
 
 ???+ note "核心代码"
-    ```cpp
-    // C++ Version
-    int sta[N], top;  // 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
-    bool is[N];
+    === "C++"
     
-    ll pf(ll x) { return x * x; }
+        ```cpp
+        int sta[N], top;  // 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
+        bool is[N];
     
-    ll dis(int p, int q) { return pf(a[p].x - a[q].x) + pf(a[p].y - a[q].y); }
+        ll pf(ll x) { return x * x; }
     
-    ll sqr(int p, int q, int y) { return abs((a[q] - a[p]) * (a[y] - a[q])); }
+        ll dis(int p, int q) { return pf(a[p].x - a[q].x) + pf(a[p].y - a[q].y); }
     
-    ll mx;
+        ll sqr(int p, int q, int y) { return abs((a[q] - a[p]) * (a[y] - a[q])); }
     
-    void get_longest() {  // 求凸包直径
-      int j = 3;
-      if (top < 4) {
-        mx = dis(sta[1], sta[2]);
-        return;
-      }
-      for (int i = 1; i <= top; ++i) {
-        while (sqr(sta[i], sta[i + 1], sta[j]) <=
-               sqr(sta[i], sta[i + 1], sta[j % top + 1]))
-          j = j % top + 1;
-        mx = max(mx, max(dis(sta[i + 1], sta[j]), dis(sta[i], sta[j])));
-      }
-    }
-    ```
+        ll mx;
     
-    ```python
-    # Python Version
-    sta = [] * N; top = 0 # 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
-    def pf(x):
-        return x * x
-    def dis(p, q):
-        return pf(a[p].x - a[q].x) + pf(a[p].y - a[q].y)
-    def sqr(p, q, y):
-        return abs((a[q] - a[p]) * (a[y] - a[q]))
-    def get_longest(): # 求凸包直径
-        j = 3
-        if top < 4:
-            mx = dis(sta[1], sta[2])
-            return
-        for i in range(1, top + 1):
-            while sqr(sta[i], sta[i + 1], sta[j]) <=\
-                sqr(sta[i], sta[i + 1], sta[j % top + 1]):
-                j = j % top + 1
-            mx = max(mx, max(dis(sta[i + 1], sta[j]), dis(sta[i], sta[j])))
-    ```
+        void get_longest() {  // 求凸包直径
+          int j = 3;
+          if (top < 4) {
+            mx = dis(sta[1], sta[2]);
+            return;
+          }
+          for (int i = 1; i <= top; ++i) {
+            while (sqr(sta[i], sta[i + 1], sta[j]) <=
+                  sqr(sta[i], sta[i + 1], sta[j % top + 1]))
+              j = j % top + 1;
+            mx = max(mx, max(dis(sta[i + 1], sta[j]), dis(sta[i], sta[j])));
+          }
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        sta = [] * N; top = 0 # 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
+        def pf(x):
+            return x * x
+        def dis(p, q):
+            return pf(a[p].x - a[q].x) + pf(a[p].y - a[q].y)
+        def sqr(p, q, y):
+            return abs((a[q] - a[p]) * (a[y] - a[q]))
+        def get_longest(): # 求凸包直径
+            j = 3
+            if top < 4:
+                mx = dis(sta[1], sta[2])
+                return
+            for i in range(1, top + 1):
+                while sqr(sta[i], sta[i + 1], sta[j]) <=\
+                    sqr(sta[i], sta[i + 1], sta[j % top + 1]):
+                    j = j % top + 1
+                mx = max(mx, max(dis(sta[i + 1], sta[j]), dis(sta[i], sta[j])))
+        ```
 
 ## 求最小矩形覆盖
 
@@ -111,52 +113,54 @@ $$
 必要的求凸包过程略去，这里贴出本题核心代码：
 
 ???+ note "核心代码"
-    ```cpp
-    // C++ Version
-    void get_biggest() {
-      int j = 3, l = 2, r = 2;
-      double t1, t2, t3, ans = 2e10;
-      for (int i = 1; i <= top; ++i) {
-        while (sqr(sta[i], sta[i + 1], sta[j]) <=
-               sqr(sta[i], sta[i + 1], sta[j % top + 1]))
-          j = j % top + 1;
-        while (dot(sta[i + 1], sta[r % top + 1], sta[i]) >=
-               dot(sta[i + 1], sta[r], sta[i]))
-          r = r % top + 1;
-        if (i == 1) l = r;
-        while (dot(sta[i + 1], sta[l % top + 1], sta[i]) <=
-               dot(sta[i + 1], sta[l], sta[i]))
-          l = l % top + 1;
-        t1 = sqr(sta[i], sta[i + 1], sta[j]);
-        t2 = dot(sta[i + 1], sta[r], sta[i]) + dot(sta[i + 1], sta[l], sta[i]);
-        t3 = dot(sta[i + 1], sta[i + 1], sta[i]);
-        ans = min(ans, t1 * t2 / t3);
-      }
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def get_biggest():
-        j = 3; l = 2; r = 2
-        ans = 2e10
-        for i in range(1, top + 1):
-            while sqr(sta[i], sta[i + 1], sta[j]) <=\
-                sqr(sta[i], sta[i + 1], sta[j % top + 1]):
-                j = j % top + 1
-            while dot(sta[i + 1], sta[r % top + 1], sta[i]) >=\
-                dot(sta[i + 1], sta[r], sta[i]):
-                r = r % top + 1
-            if i == 1:
-                l = r
-            while dot(sta[i + 1], sta[l % top + 1], sta[i]) <=\
-                dot(sta[i + 1], sta[l], sta[i]):
-                l = l % top + 1
-            t1 = sqr(sta[i], sta[i + 1], sta[j])
-            t2 = dot(sta[i + 1], sta[r], sta[i]) + dot(sta[i + 1], sta[l], sta[i])
-            t3 = dot(sta[i + 1], sta[i + 1], sta[i])
-            ans = min(ans, t1 * t2 / t3)
-    ```
+        ```cpp
+        void get_biggest() {
+          int j = 3, l = 2, r = 2;
+          double t1, t2, t3, ans = 2e10;
+          for (int i = 1; i <= top; ++i) {
+            while (sqr(sta[i], sta[i + 1], sta[j]) <=
+                  sqr(sta[i], sta[i + 1], sta[j % top + 1]))
+              j = j % top + 1;
+            while (dot(sta[i + 1], sta[r % top + 1], sta[i]) >=
+                  dot(sta[i + 1], sta[r], sta[i]))
+              r = r % top + 1;
+            if (i == 1) l = r;
+            while (dot(sta[i + 1], sta[l % top + 1], sta[i]) <=
+                  dot(sta[i + 1], sta[l], sta[i]))
+              l = l % top + 1;
+            t1 = sqr(sta[i], sta[i + 1], sta[j]);
+            t2 = dot(sta[i + 1], sta[r], sta[i]) + dot(sta[i + 1], sta[l], sta[i]);
+            t3 = dot(sta[i + 1], sta[i + 1], sta[i]);
+            ans = min(ans, t1 * t2 / t3);
+          }
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def get_biggest():
+            j = 3; l = 2; r = 2
+            ans = 2e10
+            for i in range(1, top + 1):
+                while sqr(sta[i], sta[i + 1], sta[j]) <=\
+                    sqr(sta[i], sta[i + 1], sta[j % top + 1]):
+                    j = j % top + 1
+                while dot(sta[i + 1], sta[r % top + 1], sta[i]) >=\
+                    dot(sta[i + 1], sta[r], sta[i]):
+                    r = r % top + 1
+                if i == 1:
+                    l = r
+                while dot(sta[i + 1], sta[l % top + 1], sta[i]) <=\
+                    dot(sta[i + 1], sta[l], sta[i]):
+                    l = l % top + 1
+                t1 = sqr(sta[i], sta[i + 1], sta[j])
+                t2 = dot(sta[i + 1], sta[r], sta[i]) + dot(sta[i + 1], sta[l], sta[i])
+                t3 = dot(sta[i + 1], sta[i + 1], sta[i])
+                ans = min(ans, t1 * t2 / t3)
+        ```
 
 ## 练习
 

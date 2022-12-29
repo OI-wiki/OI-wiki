@@ -2,10 +2,11 @@
 #include <iostream>
 using namespace std;
 int id[50005], len;
-// id 表示块的编号, len=sqrt(n) , sqrt的时候时间复杂度最优
+// id 表示块的编号, len=sqrt(n) , 即上述题解中的s, sqrt的时候时间复杂度最优
 long long a[50005], b[50005], s[50005];
 
-// a 数组表示数据数组, b 表示区间和, s 表示块长,因为块可能不是完整的所以要开数组
+// a 数组表示数据数组, b 数组记录每个块的整体赋值情况, 类似于 lazy_tag, s
+// 表示块内元素总和
 void add(int l, int r, long long x) {  // 区间加法
   int sid = id[l], eid = id[r];
   if (sid == eid) {  // 在一个块中

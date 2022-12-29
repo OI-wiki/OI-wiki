@@ -2102,9 +2102,9 @@ node-fetch@^2.6.7:
     whatwg-url "^5.0.0"
 
 node-fetch@^3.2.8:
-  version "3.2.9"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-3.2.9.tgz#3f6070bf854de20f21b9fe8479f823462e615d7d"
-  integrity sha512-/2lI+DBecVvVm9tDhjziTVjo2wmTsSxSk58saUYP0P/fRJ3xxtfMDY24+CKTkfm0Dlhyn3CSXNL0SoRiCZ8Rzg==
+  version "3.2.10"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-3.2.10.tgz#e8347f94b54ae18b57c9c049ef641cef398a85c8"
+  integrity sha512-MhuzNwdURnZ1Cp4XTazr69K0BTizsBroX7Zx3UgDSVcZYKF/6p0CBe4EUb/hLqmzVhl0UpYfgRljQ4yxE+iCxA==
   dependencies:
     data-uri-to-buffer "^4.0.0"
     fetch-blob "^3.1.4"

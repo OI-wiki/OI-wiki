@@ -140,7 +140,7 @@
 
 `Tarjan 算法` 是一种 `离线算法`，需要使用 `并查集` 记录某个结点的祖先结点。做法如下：
 
-1. 首先接受输入（邻接链表）、查询（存储在另一个邻接链表内）。查询边其实是虚拟加上去的边，为了方便，每次输入查询边的时候，将这个边及其反向边都加入到 `queryEdge` 数组里。
+1. 首先接受输入边（邻接链表）、查询边（存储在另一个邻接链表内）。查询边其实是虚拟加上去的边，为了方便，每次输入查询边的时候，将这个边及其反向边都加入到 `queryEdge` 数组里。
 2. 然后对其进行一次 DFS 遍历，同时使用 `visited` 数组进行记录某个结点是否被访问过、`parent` 记录当前结点的父亲结点。
 3. 其中涉及到了 `回溯思想`，我们每次遍历到某个结点的时候，认为这个结点的根结点就是它本身。让以这个结点为根节点的 DFS 全部遍历完毕了以后，再将 `这个结点的根节点` 设置为 `这个结点的父一级结点`。
 4. 回溯的时候，如果以该节点为起点，`queryEdge` 查询边的另一个结点也恰好访问过了，则直接更新查询边的 LCA 结果。
@@ -148,9 +148,14 @@
 
 #### 性质
 
-Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(n)$，Tarjan 算法处理所有 $m$ 次询问的时间复杂度为 $O(n + m)$。但是 Tarjan 算法的常数比倍增算法大。
+Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(n)$。
 
-需要注意的是，Tarjan 算法中使用的并查集性质比较特殊，在仅使用路径压缩优化的情况下，单次调用 `find()` 函数的时间复杂度为均摊 $O(1)$，而不是 $O(\log n)$。具体可以见 [并查集部分的引用：A Linear-Time Algorithm for a Special Case of Disjoint Set Union](../ds/dsu.md#references)。
+朴素的 Tarjan 算法处理所有 $m$ 次询问的时间复杂度为 $O(m \alpha(m+n, n) + n)$，。但是 Tarjan 算法的常数比倍增算法大。存在 $O(m + n)$ 的实现。
+
+???+ warning "注意"
+    并不存在“朴素 Tarjan LCA 算法中使用的并查集性质比较特殊，单次调用 `find()` 函数的时间复杂度为均摊 $O(1)$”这种说法。
+    
+    以下的朴素 Tarjan 实现复杂度为 $O(m \alpha(m+n, n) + n)$。如果需要追求严格线性，可以参考 [Gabow 和 Tarjan 于 1983 年的论文](https://dl.acm.org/doi/pdf/10.1145/800061.808753)。其中给出了一种复杂度为 $O(m + n)$ 的做法。
 
 #### 实现
 
@@ -274,16 +279,14 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
 
 ???+note "参考代码"
     ```cpp
-    int dfn[N << 1], dep[N << 1], dfntot = 0;
+    int dfn[N << 1], pos[N], dfntot = 0;
     
-    void dfs(int t, int depth) {
+    void dfs(int t) {
       dfn[++dfntot] = t;
       pos[t] = dfntot;
-      dep[dfntot] = depth;
       for (int i = head[t]; i; i = side[i].next) {
-        dfs(side[i].to, depth + 1);
+        dfs(side[i].to);
         dfn[++dfntot] = t;
-        dep[dfntot] = depth;
       }
     }
     
@@ -293,7 +296,7 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
       for (int i = 1; i <= (N << 1) - 1; ++i) st[0][i] = dfn[i];
       for (int i = 1; i <= lg[(N << 1) - 1]; ++i)
         for (int j = 1; j + (1 << i) - 1 <= ((N << 1) - 1); ++j)
-            st[i][j] = dep[st[i - 1][j]] < dep[st[i - 1][j + (1 << i - 1)]
+            st[i][j] = pos[st[i - 1][j]] < pos[st[i - 1][j + (1 << i - 1)]
                             ? st[i - 1][j]
                             : st[i - 1][j + (1 << i - 1)];
     }
@@ -327,7 +330,7 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
 
 ??? note "参考代码"
     ```cpp
-      --8<-- "docs/graph/code/lca/lca_2.cpp"
+    --8<-- "docs/graph/code/lca/lca_2.cpp"
     ```
 
 ## 习题

@@ -4,8 +4,6 @@
 
 在高中初等数学中，排列组合多是利用列表、枚举等方法解题。
 
-* * *
-
 ## 加法 & 乘法原理
 
 ### 加法原理
@@ -39,7 +37,7 @@ $$
 全排列：$n$ 个人全部来排队，队长为 $n$。第一个位置可以选 $n$ 个，第二位置可以选 $n-1$ 个，以此类推得：
 
 $$
-\mathrm A_n^n = n(n-1)(n-2) \cdots 3 × 2 × 1 = n!
+\mathrm A_n^n = n(n-1)(n-2) \cdots 3 \times 2 \times 1 = n!
 $$
 
 全排列是排列数的一个特殊情况。
@@ -134,7 +132,7 @@ $$
 然后问题三就转化成了问题二，直接用插板法公式得到答案为
 
 $$
-\binom{n + \sum a_i - 1}{n}
+\binom{n - \sum a_i + k - 1}{n - \sum a_i}
 $$
 
 ### 不相邻的排列
@@ -158,13 +156,13 @@ $$
 设 $n$ 为正整数，$x_i$ 为实数，
 
 $$
-(x_1 + x_2 + \cdots + x_t)^n = \sum_{满足 n_1 + \cdots + n_t=n 的非负整数解} \binom{n}{n_1n_2\cdots n_t} x_1^{n_1}x_2^{n_2}\cdots x_t^{n_t}
+(x_1 + x_2 + \cdots + x_t)^n = \sum_{满足 n_1 + \cdots + n_t=n 的非负整数解} \binom{n}{n_1,n_2,\cdots,n_t} x_1^{n_1}x_2^{n_2}\cdots x_t^{n_t}
 $$
 
-其中的 $\dbinom{n}{n_1,n_2,\cdots ,n_t}$ 是多项式系数，它的性质也很相似：
+其中的 $\dbinom{n}{n_1,n_2,\cdots,n_t}$ 是多项式系数，它的性质也很相似：
 
 $$
-\sum{\binom{n}{n_1n_2\cdots n_t}} = t^n
+\sum{\binom{n}{n_1,n_2,\cdots,n_t}} = t^n
 $$
 
 ## 排列与组合进阶篇
@@ -320,7 +318,7 @@ $$
 \sum_{l=0}^n\binom{l}{k} = \binom{n+1}{k+1}\tag{10}
 $$
 
-通过组合分析一一考虑 $S={a_1, a_2, \cdots, a_{n+1}}$ 的 $k+1$ 子集数可以得证，在恒等式证明中比较常用。
+通过组合分析一一考虑 $S=\{a_1, a_2, \cdots, a_{n+1}\}$ 的 $k+1$ 子集数可以得证，在恒等式证明中比较常用。
 
 $$
 \binom{n}{r}\binom{r}{k} = \binom{n}{k}\binom{n-k}{r-k}\tag{11}
@@ -333,3 +331,64 @@ $$
 $$
 
 其中 $F$ 是斐波那契数列。
+
+## 二项式反演
+
+记 $f_n$ 表示恰好使用 $n$ 个不同元素形成特定结构的方案数，$g_n$ 表示从 $n$ 个不同元素中选出 $i \geq 0$ 个元素形成特定结构的总方案数。
+
+若已知 $f_n$ 求 $g_n$，那么显然有：
+
+$$
+g_n = \sum_{i = 0}^{n} \binom{n}{i} f_i
+$$
+
+若已知 $g_n$ 求 $f_n$，那么：
+
+$$
+f_n = \sum_{i = 0}^{n} \binom{n}{i} (-1)^{n-i} g_i
+$$
+
+上述已知 $g_n$ 求 $f_n$ 的过程，就称为 **二项式反演**。
+
+### 证明
+
+将反演公式的 $g_i$ 展开得到：
+
+$$
+\begin{aligned}
+f_n &= \sum_{i = 0}^{n} \binom{n}{i} (-1)^{n-i} \left[\sum_{j = 0}^{i} \binom{i}{j} f_j\right] \\
+&= \sum_{i = 0}^{n}\sum_{j = 0}^{i}\binom{n}{i}\binom{i}{j} (-1)^{n-i}f_j
+\end{aligned}
+$$
+
+先枚举 $j$，再枚举 $i$，得到：
+
+$$
+\begin{aligned}
+f_n &= \sum_{j = 0}^{n}\sum_{i = j}^{n}\binom{n}{i}\binom{i}{j} (-1)^{n-i}f_j \\
+&= \sum_{j = 0}^{n}f_j\sum_{i = j}^{n}\binom{n}{i}\binom{i}{j} (-1)^{n-i}
+\end{aligned}
+$$
+
+使用 [「组合数性质 | 二项式推论」](https://oi-wiki.org/math/combinatorics/combination/#%E7%BB%84%E5%90%88%E6%95%B0%E6%80%A7%E8%B4%A8--%E4%BA%8C%E9%A1%B9%E5%BC%8F%E6%8E%A8%E8%AE%BA) 的公式 (11) 得到：
+
+$$
+\begin{aligned}
+f_n &= \sum_{j = 0}^{n}f_j\sum_{i = j}^{n}\binom{n}{j}\binom{n - j}{i - j} (-1)^{n-i} \\
+&= \sum_{j = 0}^{n}\binom{n}{j}f_j\sum_{i = j}^{n}\binom{n - j}{i - j} (-1)^{n-i}
+\end{aligned}
+$$
+
+令 $k = i - j$。则 $i = k + j$，上式转换为：
+
+$$
+f_n = \sum_{j = 0}^{n}\binom{n}{j}f_j\sum_{k = 0}^{n - j}\binom{n - j}{k} (-1)^{n-j-k}1^{k}
+$$
+
+使用 [「组合数性质 | 二项式推论」](https://oi-wiki.org/math/combinatorics/combination/#%E7%BB%84%E5%90%88%E6%95%B0%E6%80%A7%E8%B4%A8--%E4%BA%8C%E9%A1%B9%E5%BC%8F%E6%8E%A8%E8%AE%BA) 的公式 (5) 得到：
+
+$$
+f_n = \sum_{j = 0}^{n}\binom{n}{j}f_j[n = j] = f_n
+$$
+
+证毕。

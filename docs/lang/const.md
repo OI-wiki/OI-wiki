@@ -74,25 +74,39 @@ void sum(const std::vector<int> &data, int &total) {
 常成员指的是类型中被 const 修饰的成员，常成员可以用来限制对常对象的修改。其中，常成员变量与常量声明相同，而常成员函数声明方法为在成员函数声明的 **末尾**（参数列表的右括号的右边）添加 const 修饰符。
 
 ```cpp
-// 常成员的例子
-struct X {
-  X();
-  const int* p;  // 类型为 int* 的常成员
-  int* const q;  // 类型为 const int* 的可变成员
+#include <iostream>
 
-  const int r() const;
-  // 第一个 const 修饰返回值，而最后的 const 修饰的是这个成员函数。
+struct ConstMember {
+  const int *p;  // 常类型指针成员
+  int *const q;  // 常指针变量成员
+  int s;
+
+  void func() { std::cout << "General Function" << std::endl; }
+
+  void constFunc1() const { std::cout << "Const Function 1" << std::endl; }
+
+  void constFunc2(int ss) const {
+    // func(); // 常成员函数不能调用普通成员函数
+    constFunc1();  // 常成员函数可以调用常成员函数
+
+    // s = ss; // 常成员函数不能改变普通成员变量
+    // p = &ss; // 常成员函数不能改变常成员变量
+  }
 };
 
-X a;
-*(a.p)++;  // 可行
-// *(a.q)++; // 报错，不可修改 const int 类型变量
-
-// 常成员函数的例子
-const std::vector<int> c{1, 2};
-// c.push_back(3); // 报错，不可访问常量的可变成员
-// vector::push_back() 不是常成员
-int s = c.size();  // vector::size() 是常成员，可以访问
+int main() {
+  const int a = 1;
+  int b = 1;
+  struct ConstMember c = {.p = &a, .q = &b};  // 指派初始化器是C++20中的一种语法
+  // *(c.p) = 2; // 常类型指针无法改变指向的值
+  c.p = &b;    // 常类型指针可以改变指针指向
+  *(c.q) = 2;  // 常指针变量可以改变指向的值
+  // c.q = &a; // 常指针变量无法改变指针指向
+  const struct ConstMember d = c;
+  // d.func(); // 常对象不能调用普通成员函数
+  d.constFunc2(b);  // 常对象可以调用常成员函数
+  return 0;
+}
 ```
 
 ## 常表达式 constexpr（C++11）

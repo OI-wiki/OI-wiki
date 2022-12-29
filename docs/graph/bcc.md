@@ -27,23 +27,25 @@
 DFS 的代码如下：
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    void DFS(int p) {
-      visited[p] = true;
-      for (int to : edge[p])
-        if (!visited[to]) DFS(to);
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def DFS(p):
-        visited[p] = True
-        for to in edge[p]:
-            if visited[to] == False:
-                DFS(to)
-    ```
+        ```cpp
+        void DFS(int p) {
+          visited[p] = true;
+          for (int to : edge[p])
+            if (!visited[to]) DFS(to);
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def DFS(p):
+            visited[p] = True
+            for to in edge[p]:
+                if visited[to] == False:
+                    DFS(to)
+        ```
 
 ## 过程
 

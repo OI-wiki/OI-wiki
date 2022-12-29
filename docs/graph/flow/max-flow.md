@@ -669,7 +669,7 @@ $$
 
 适用条件：如果结点 $u$ 溢出，且 $\forall (u,v)\in E_f,h(u)\leq h(v)$，则 relabel 操作适用于 $u$。
 
-则将 $h(u)$ 更新为 $min_{(u,v)\in E_f}h(v)+1$ 即可。
+则将 $h(u)$ 更新为 $\min_{(u,v)\in E_f}h(v)+1$ 即可。
 
 #### 初始化
 

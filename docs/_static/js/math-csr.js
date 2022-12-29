@@ -3,3 +3,7 @@ MathJax = {
     matchFontHeight: false
   }
 };
+
+document$.subscribe(function () {
+  MathJax.typesetPromise();
+});
