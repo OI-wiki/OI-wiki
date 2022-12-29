@@ -70,11 +70,13 @@ $$
 即：
 
 $$
-1\quad 1\quad 0\quad 2\quad 0\\
-0\quad 1\quad 2\quad 2\\
-1\quad 1\quad 4\\
-0\quad 5\\
-5
+\begin{aligned}
+& 1\quad 1\quad 0\quad 2\quad 0\\
+& 0\quad 1\quad 2\quad 2\\
+& 1\quad 1\quad 4\\
+& 0\quad 5\\
+& 5
+\end{aligned}
 $$
 
 ## zigzag 置换
