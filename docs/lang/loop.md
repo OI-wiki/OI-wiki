@@ -140,9 +140,9 @@ continue 语句的作用是跳过循环体的余下部分。下面以 continue �
 ```cpp
 do {
   // do something...
-  continue; // 等价于 goto END;
-  // do something...
-  END:;
+  continue;  // 等价于 goto END;
+// do something...
+END:;
 } while (statement);
 
 ```
