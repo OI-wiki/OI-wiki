@@ -202,30 +202,6 @@
 
     折叠框的标题，即 `???+note` 中 `note` 后的内容应以 `"` 包裹起来。其中的内容支持 Markdown 语法。详见 [Admonition - Changing the title](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#changing-the-title)。（不具备折叠功能的为一般的 Admonitions，参考 [Admonitions - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/admonitions)）
 
-    如果需要嵌套折叠框，推荐使用 [MDUI 的阴影样式](https://www.mdui.org/docs/shadow#use)，提高内层折叠框的海拔。
-
-    **OI Wiki** 支持 `.mdui-shadow-[0-24]`，一般情况下最多用到两层折叠框，外层用 `note` 即可（其实就是 `mdui-shadow-2`），内层推荐使用 `mdui-shadow-6`。
-
-    示例：
-
-    ````text
-    ???+note "题目"
-        内容
-        
-        ??? mdui-shadow-6 "参考代码"
-            ```cpp
-            代码
-            ```
-    ````
-
-    ???+note "题目"
-        内容
-        
-        ??? mdui-shadow-6 "参考代码"
-            ```cpp
-            代码
-            ```
-
 如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E) 和 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)。前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 Markdown 传统语法和 mkdocs-material 支持的扩展语法。
 
 #### 文本内容的格式要求

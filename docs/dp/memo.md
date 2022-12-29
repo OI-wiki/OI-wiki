@@ -16,51 +16,53 @@
 很容易实现这样一个朴素的搜索做法：在搜索时记录下当前准备选第几个物品、剩余的时间是多少、已经获得的价值是多少这三个参数，然后枚举当前物品是否被选，转移到相应的状态。
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    int n, t;
-    int tcost[103], mget[103];
-    int ans = 0;
+    === "C++"
     
-    void dfs(int pos, int tleft, int tans) {
-      if (tleft < 0) return;
-      if (pos == n + 1) {
-        ans = max(ans, tans);
-        return;
-      }
-      dfs(pos + 1, tleft, tans);
-      dfs(pos + 1, tleft - tcost[pos], tans + mget[pos]);
-    }
+        ```cpp
+        int n, t;
+        int tcost[103], mget[103];
+        int ans = 0;
     
-    int main() {
-      cin >> t >> n;
-      for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
-      dfs(1, t, 0);
-      cout << ans << endl;
-      return 0;
-    }
-    ```
+        void dfs(int pos, int tleft, int tans) {
+          if (tleft < 0) return;
+          if (pos == n + 1) {
+            ans = max(ans, tans);
+            return;
+          }
+          dfs(pos + 1, tleft, tans);
+          dfs(pos + 1, tleft - tcost[pos], tans + mget[pos]);
+        }
     
-    ```python
-    # Python Version
-    tcost = [0] * 103
-    mget = [0] * 103
-    ans = 0
-    def dfs(pos, tleft, tans):
-        global ans
-        if tleft < 0:
-            return
-        if pos == n + 1:
-            ans = max(ans, tans)
-            return
-        dfs(pos + 1, tleft, tans)
-        dfs(pos + 1, tleft - tcost[pos], tans + mget[pos])
-    t, n = map(lambda x:int(x), input().split())
-    for i in range(1, n + 1):
-        tcost[i], mget[i] = map(lambda x:int(x), input().split())
-    dfs(1, t, 0)
-    print(ans)
-    ```
+        int main() {
+          cin >> t >> n;
+          for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
+          dfs(1, t, 0);
+          cout << ans << endl;
+          return 0;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        tcost = [0] * 103
+        mget = [0] * 103
+        ans = 0
+        def dfs(pos, tleft, tans):
+            global ans
+            if tleft < 0:
+                return
+            if pos == n + 1:
+                ans = max(ans, tans)
+                return
+            dfs(pos + 1, tleft, tans)
+            dfs(pos + 1, tleft - tcost[pos], tans + mget[pos])
+        t, n = map(lambda x:int(x), input().split())
+        for i in range(1, n + 1):
+            tcost[i], mget[i] = map(lambda x:int(x), input().split())
+        dfs(1, t, 0)
+        print(ans)
+        ```
 
 这种做法的时间复杂度是指数级别的，并不能通过本题。
 
@@ -75,54 +77,56 @@
 通过这样的处理，我们确保了每个状态只会被访问一次，因此该算法的的时间复杂度为 $O(TM)$。
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    int n, t;
-    int tcost[103], mget[103];
-    int mem[103][1003];
+    === "C++"
     
-    int dfs(int pos, int tleft) {
-      if (mem[pos][tleft] != -1)
-        return mem[pos][tleft];  // 已经访问过的状态，直接返回之前记录的值
-      if (pos == n + 1) return mem[pos][tleft] = 0;
-      int dfs1, dfs2 = -INF;
-      dfs1 = dfs(pos + 1, tleft);
-      if (tleft >= tcost[pos])
-        dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];  // 状态转移
-      return mem[pos][tleft] = max(dfs1, dfs2);  // 最后将当前状态的值存下来
-    }
+        ```cpp
+        int n, t;
+        int tcost[103], mget[103];
+        int mem[103][1003];
     
-    int main() {
-      memset(mem, -1, sizeof(mem));
-      cin >> t >> n;
-      for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
-      cout << dfs(1, t) << endl;
-      return 0;
-    }
-    ```
+        int dfs(int pos, int tleft) {
+          if (mem[pos][tleft] != -1)
+            return mem[pos][tleft];  // 已经访问过的状态，直接返回之前记录的值
+          if (pos == n + 1) return mem[pos][tleft] = 0;
+          int dfs1, dfs2 = -INF;
+          dfs1 = dfs(pos + 1, tleft);
+          if (tleft >= tcost[pos])
+            dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];  // 状态转移
+          return mem[pos][tleft] = max(dfs1, dfs2);  // 最后将当前状态的值存下来
+        }
     
-    ```python
-    # Python Version
-    tcost = [0] * 103
-    mget = [0] * 103
-    mem = [[-1 for i in range(1003)] for j in range(103)]
-    def dfs(pos, tleft):
-        if mem[pos][tleft] != -1:
+        int main() {
+          memset(mem, -1, sizeof(mem));
+          cin >> t >> n;
+          for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
+          cout << dfs(1, t) << endl;
+          return 0;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        tcost = [0] * 103
+        mget = [0] * 103
+        mem = [[-1 for i in range(1003)] for j in range(103)]
+        def dfs(pos, tleft):
+            if mem[pos][tleft] != -1:
+                return mem[pos][tleft]
+            if pos == n + 1:
+                mem[pos][tleft] = 0
+                return mem[pos][tleft]
+            dfs1 = dfs2 = -INF
+            dfs1 = dfs(pos + 1, tleft)
+            if tleft >= tcost[pos]:
+                dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos]
+            mem[pos][tleft] = max(dfs1, dfs2)
             return mem[pos][tleft]
-        if pos == n + 1:
-            mem[pos][tleft] = 0
-            return mem[pos][tleft]
-        dfs1 = dfs2 = -INF
-        dfs1 = dfs(pos + 1, tleft)
-        if tleft >= tcost[pos]:
-            dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos]
-        mem[pos][tleft] = max(dfs1, dfs2)
-        return mem[pos][tleft]
-    t, n = map(lambda x:int(x), input().split())
-    for i in range(1, n + 1):
-        tcost[i], mget[i] = map(lambda x:int(x), input().split())
-    print(dfs(1, t))
-    ```
+        t, n = map(lambda x:int(x), input().split())
+        for i in range(1, n + 1):
+            tcost[i], mget[i] = map(lambda x:int(x), input().split())
+        print(dfs(1, t))
+        ```
 
 ## 与递推的联系与区别
 
@@ -162,43 +166,45 @@ int main() {
 
 举例：
 
-$dp_{i} = max\{dp_{j}+1\}\quad (1 \leq j < i \land a_{j}<a_{i})$（最长上升子序列）
+$dp_{i} = \max\{dp_{j}+1\}\quad (1 \leq j < i \land a_{j}<a_{i})$（最长上升子序列）
 
 转为
 
-```cpp
-// C++ Version
-int dfs(int i) {
-  if (mem[i] != -1) return mem[i];
-  int ret = 1;
-  for (int j = 1; j < i; j++)
-    if (a[j] < a[i]) ret = max(ret, dfs(j) + 1);
-  return mem[i] = ret;
-}
+=== "C++"
 
-int main() {
-  memset(mem, -1, sizeof(mem));
-  // 读入部分略去
-  int ret = 0;
-  for (int j = 1; j <= n; j++) {
-    ret = max(ret, dfs(j));
-  }
-  cout << ret << endl;
-}
-```
+    ```cpp
+    int dfs(int i) {
+      if (mem[i] != -1) return mem[i];
+      int ret = 1;
+      for (int j = 1; j < i; j++)
+        if (a[j] < a[i]) ret = max(ret, dfs(j) + 1);
+      return mem[i] = ret;
+    }
 
-```python
-# Python Version
-def dfs(i):
-    if mem[i] != -1:
+    int main() {
+      memset(mem, -1, sizeof(mem));
+      // 读入部分略去
+      int ret = 0;
+      for (int j = 1; j <= n; j++) {
+        ret = max(ret, dfs(j));
+      }
+      cout << ret << endl;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def dfs(i):
+        if mem[i] != -1:
+            return mem[i]
+        ret = 1
+        for j in range(1, i):
+            if a[j] < a[i]:
+                ret = max(ret, dfs(j) + 1)
+        mem[i] = ret
         return mem[i]
-    ret = 1
-    for j in range(1, i):
-        if a[j] < a[i]:
-            ret = max(ret, dfs(j) + 1)
-    mem[i] = ret
-    return mem[i]
-```
+    ```
 
 ### 方法二
 

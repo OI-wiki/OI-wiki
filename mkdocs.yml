@@ -12,9 +12,6 @@ edit_uri: 'https://oi-wiki.org/edit-landing/?ref='
 
 # Copyright
 copyright: 'Copyright &copy; 2016 - 2022 OI Wiki Team'
-google_analytics:
-  - 'UA-124485594-1'
-  - 'auto'
 
 # Contents
 nav:
@@ -252,9 +249,10 @@ nav:
       - Powerful Number 筛: math/number-theory/powerful-number.md
       - Min_25 筛: math/number-theory/min-25.md
       - 洲阁筛: math/number-theory/zhou.md
-      - 二次域: math/number-theory/quadratic.md
       - 连分数: math/number-theory/continued-fraction.md
       - Stern-Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
+      - 二次域: math/number-theory/quadratic.md
+      - 循环连分数: math/number-theory/periodic-continued-fraction.md
       - Pell 方程: math/number-theory/pell-equation.md
     - 多项式与生成函数:
       - 多项式与生成函数简介: math/poly/intro.md
@@ -299,6 +297,8 @@ nav:
       - 向量: math/linear-algebra/vector.md
       - 内积和外积: math/linear-algebra/product.md
       - 矩阵: math/linear-algebra/matrix.md
+      - 初等变换: math/linear-algebra/elementary-operations.md
+      - 行列式: math/linear-algebra/determinant.md
       - 高斯消元: math/linear-algebra/gauss.md
       - 线性空间: math/linear-algebra/vector-space.md
       - Hamel基: math/linear-algebra/basis.md
@@ -526,31 +526,30 @@ theme:
   include_search_page: false
   search_index_only: true
   favicon: 'favicon.ico'
-
-  logo:
-    icon: 'school'
-  feature:
-    tabs: true
+  icon:
+    logo: 'material/school'
+  features:
+    - navigation.tabs
+    - navigation.instant
   font:
     text: 'Fira Sans'
     code: 'Fira Mono'
 
+plugins: []
+
+hooks:
+  - hooks/on_env.py
+
 # Customization
 extra:
-  search:
-    language: 'jp'
   disqus: 'OI-Wiki'
   copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
   manifest: 'manifest.webmanifest'
   githash: ''
-  # notice:
-  #   title: 'Hi'
-  #   message: '欢迎点击这里对 OI Wiki 提一点建议'
-  #   url: 'https://wj.qq.com/s2/4467592/b1e9'
-  #   position: 'topCenter'
-  #   progressBar: false
-  #   timeout: false
+  analytics:
+    provider: google
+    property: UA-124485594-1
 
 extra_javascript:
   - '_static/js/extra.js?v=16'
@@ -563,9 +562,6 @@ extra_css:
 # Extensions
 markdown_extensions:
   - admonition
-  - codehilite:
-      guess_lang: false
-      linenums: true
   - def_list
   - footnotes
   - meta
@@ -596,3 +592,5 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+  - pymdownx.tabbed:
+      alternate_style: true

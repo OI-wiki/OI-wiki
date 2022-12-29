@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
 typedef long long LL;
@@ -8,7 +7,7 @@ const int maxn = 500010;
 const int INF = 0x3f3f3f3f;
 
 int Begin[maxn], Next[maxn], To[maxn], e, n, m;
-int size[maxn], son[maxn], top[maxn], fa[maxn], dis[maxn], p[maxn], id[maxn],
+int sz[maxn], son[maxn], top[maxn], fa[maxn], dis[maxn], p[maxn], id[maxn],
     End[maxn];
 // p[i]表示i树剖后的编号，id[p[i]] = i
 int cnt, tot, a[maxn], f[maxn][2];
@@ -94,7 +93,7 @@ inline void add(int u, int v) {
 }
 
 inline void DFS1(int u) {
-  size[u] = 1;
+  sz[u] = 1;
   int Max = 0;
   f[u][1] = a[u];
   for (int i = Begin[u]; i; i = Next[i]) {
@@ -103,9 +102,9 @@ inline void DFS1(int u) {
     dis[v] = dis[u] + 1;
     fa[v] = u;
     DFS1(v);
-    size[u] += size[v];
-    if (size[v] > Max) {
-      Max = size[v];
+    sz[u] += sz[v];
+    if (sz[v] > Max) {
+      Max = sz[v];
       son[u] = v;
     }
     f[u][1] += f[v][0];

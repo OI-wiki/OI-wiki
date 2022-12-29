@@ -70,32 +70,34 @@ $$
 每行的首项是贝尔数。可以利用这个三角形来递推求出 Bell 数。
 
 ??? note "参考实现"
-    ```c++
-    // C++ Version
-    const int maxn = 2000 + 5;
-    int bell[maxn][maxn];
+    === "C++"
     
-    void f(int n) {
-      bell[1][1] = 1;
-      for (int i = 2; i <= n; i++) {
-        bell[i][1] = bell[i - 1][i - 1];
-        for (int j = 2; j <= i; j++)
-          bell[i][j] = bell[i - 1][j - 1] + bell[i][j - 1];
-      }
-    }
-    ```
+        ```cpp
+        const int maxn = 2000 + 5;
+        int bell[maxn][maxn];
     
-    ```python
-    # Python Version
-    maxn = 2000 + 5
-    bell = [[0 for i in range(maxn)] for j in range(maxn)]
-    def f(n):
-        bell[1][1] = 1
-        for i in range(2, n + 1):
-            bell[i][1] = bell[i - 1][i - 1]
-            for j in range(2, i + 1):
-                bell[i][j] = bell[i - 1][j - 1] + bell[i][j - 1]
-    ```
+        void f(int n) {
+          bell[1][1] = 1;
+          for (int i = 2; i <= n; i++) {
+            bell[i][1] = bell[i - 1][i - 1];
+            for (int j = 2; j <= i; j++)
+              bell[i][j] = bell[i - 1][j - 1] + bell[i][j - 1];
+          }
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        maxn = 2000 + 5
+        bell = [[0 for i in range(maxn)] for j in range(maxn)]
+        def f(n):
+            bell[1][1] = 1
+            for i in range(2, n + 1):
+                bell[i][1] = bell[i - 1][i - 1]
+                for j in range(2, i + 1):
+                    bell[i][j] = bell[i - 1][j - 1] + bell[i][j - 1]
+        ```
 
 ## 参考文献
 

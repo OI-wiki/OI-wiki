@@ -23,4 +23,4 @@ Hulu 北京办公室成立于 2007 年，目前规模为 200 人，其中博士�
 <a href="https://sm.ms/image/Ls1cPJAB36gUztN" target="_blank"><img src="https://i.loli.net/2020/02/03/iSGMqmy8fTDJ5bz.png" ></a>
 </div>
 
-正如 Hulu 的产品是技术与娱乐的最佳结合，在 Hulu 工作，既能与一群志同道合的技术达人合作学习，又能享受充满乐趣的工作环境。Hulu 北京面向校园群体开放全年实习生招聘项目。欢迎关注 **Hulu 微信公众号** 了解更多关于 Hulu 的信息！
+正如 Hulu 的产品是技术与娱乐的最佳结合，在 Hulu 工作，既能与一群志同道合的技术达人合作学习，又能享受充满乐趣的工作环境。Hulu 北京面向校园群体开放全年实习生招聘项目。欢迎关注 **Hulu Beijing 微信公众号** 了解更多关于 Hulu 的信息！
