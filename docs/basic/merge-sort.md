@@ -20,48 +20,46 @@
 
 ## 实现
 
-### C++
+=== "C++"
 
-```cpp
-// C++ version
-void merge(int l, int r) {
-  if (r - l <= 1) return;
-  int mid = l + ((r - l) >> 1);
-  merge(l, mid), merge(mid, r);
-  for (int i = l, j = mid, k = l; k < r; ++k) {
-    if (j == r || (i < mid && a[i] <= a[j]))
-      tmp[k] = a[i++];
-    else
-      tmp[k] = a[j++];
-  }
-  for (int i = l; i < r; ++i) a[i] = tmp[i];
-}
-```
+    ```cpp
+    void merge(int l, int r) {
+      if (r - l <= 1) return;
+      int mid = l + ((r - l) >> 1);
+      merge(l, mid), merge(mid, r);
+      for (int i = l, j = mid, k = l; k < r; ++k) {
+        if (j == r || (i < mid && a[i] <= a[j]))
+          tmp[k] = a[i++];
+        else
+          tmp[k] = a[j++];
+      }
+      for (int i = l; i < r; ++i) a[i] = tmp[i];
+    }
+    ```
 
-### Python
+=== "Python"
 
-```python
-# Python Version
-def merge_sort(ll, rr):
-    if rr - ll <= 1:
-        return
-    mid = math.floor((rr + ll) / 2)
-    merge_sort(ll, mid)
-    merge_sort(mid, rr)
-    p = s = ll
-    q = mid
-    while(s < rr):
-        if p >= mid or (q < rr and a[p] > a[q]):
-            s += 1
-            q += 1
-            t[s] = a[q]
-        else:
-            s += 1
-            p += 1
-            t[s] = a[p]
-    for i in range(ll, rr):
-        a[i] = t[i]
-```
+    ```python
+    def merge_sort(ll, rr):
+        if rr - ll <= 1:
+            return
+        mid = math.floor((rr + ll) / 2)
+        merge_sort(ll, mid)
+        merge_sort(mid, rr)
+        p = s = ll
+        q = mid
+        while(s < rr):
+            if p >= mid or (q < rr and a[p] > a[q]):
+                s += 1
+                q += 1
+                t[s] = a[q]
+            else:
+                s += 1
+                p += 1
+                t[s] = a[p]
+        for i in range(ll, rr):
+            a[i] = t[i]
+    ```
 
 ## 逆序对
 

@@ -1,4 +1,4 @@
-左偏红黑树是红黑树的一种变体，它的对红边（点）的位置做了一定限制，使得其插入与删除操作可以与 2-3-4 树构成一一对应。
+左偏红黑树是红黑树的一种变体，它的对红边（点）的位置做了一定限制，使得其插入与删除操作可以与 2-3 树构成一一对应。
 
 我们假设读者已经至少掌握了一种基于旋转的平衡树，因此本文不会对旋转操作进行讲解。
 
@@ -515,5 +515,5 @@
 
 ## 参考资料与拓展阅读
 
-- [Left-Leaning Red-Black Trees](https://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf)-  Robert Sedgewick Princeton University
-- [Balanced Search Trees](https://algs4.cs.princeton.edu/lectures/33BalancedSearchTrees-2x2.pdf)-\_Algorithms_Robert Sedgewick | Kevin Wayne
+- [Left-Leaning Red-Black Trees](https://sedgewick.io/wp-content/themes/sedgewick/papers/2008LLRB.pdf)-  Robert Sedgewick Princeton University
+- [Balanced Search Trees](https://algs4.cs.princeton.edu/lectures/keynote/33BalancedSearchTrees-2x2.pdf)-\_Algorithms_Robert Sedgewick | Kevin Wayne
