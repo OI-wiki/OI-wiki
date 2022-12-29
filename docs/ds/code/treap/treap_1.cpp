@@ -8,16 +8,16 @@
 int n;
 
 struct treap {  // 直接维护成数据结构，可以直接用
-  int l[maxn], r[maxn], val[maxn], rnd[maxn], size[maxn], w[maxn];
+  int l[maxn], r[maxn], val[maxn], rnd[maxn], size_[maxn], w[maxn];
   int sz, ans, rt;
 
-  inline void pushup(int x) { size[x] = size[l[x]] + size[r[x]] + w[x]; }
+  inline void pushup(int x) { size_[x] = size_[l[x]] + size_[r[x]] + w[x]; }
 
   void lrotate(int &k) {
     int t = r[k];
     r[k] = l[t];
     l[t] = k;
-    size[t] = size[k];
+    size_[t] = size_[k];
     pushup(k);
     k = t;
   }
@@ -26,7 +26,7 @@ struct treap {  // 直接维护成数据结构，可以直接用
     int t = l[k];
     l[k] = r[t];
     r[t] = k;
-    size[t] = size[k];
+    size_[t] = size_[k];
     pushup(k);
     k = t;
   }
@@ -35,13 +35,13 @@ struct treap {  // 直接维护成数据结构，可以直接用
     if (!k) {
       sz++;
       k = sz;
-      size[k] = 1;
+      size_[k] = 1;
       w[k] = 1;
       val[k] = x;
       rnd[k] = rand();
       return;
     }
-    size[k]++;
+    size_[k]++;
     if (val[k] == x) {
       w[k]++;
     } else if (val[k] < x) {
@@ -58,7 +58,7 @@ struct treap {  // 直接维护成数据结构，可以直接用
     if (val[k] == x) {
       if (w[k] > 1) {
         w[k]--;
-        size[k]--;
+        size_[k]--;
         return true;
       }
       if (l[k] == 0 || r[k] == 0) {
@@ -73,11 +73,11 @@ struct treap {  // 直接维护成数据结构，可以直接用
       }
     } else if (val[k] < x) {
       bool succ = del(r[k], x);
-      if (succ) size[k]--;
+      if (succ) size_[k]--;
       return succ;
     } else {
       bool succ = del(l[k], x);
-      if (succ) size[k]--;
+      if (succ) size_[k]--;
       return succ;
     }
   }
@@ -85,19 +85,19 @@ struct treap {  // 直接维护成数据结构，可以直接用
   int queryrank(int k, int x) {
     if (!k) return 0;
     if (val[k] == x)
-      return size[l[k]] + 1;
+      return size_[l[k]] + 1;
     else if (x > val[k]) {
-      return size[l[k]] + w[k] + queryrank(r[k], x);
+      return size_[l[k]] + w[k] + queryrank(r[k], x);
     } else
       return queryrank(l[k], x);
   }
 
   int querynum(int k, int x) {
     if (!k) return 0;
-    if (x <= size[l[k]])
+    if (x <= size_[l[k]])
       return querynum(l[k], x);
-    else if (x > size[l[k]] + w[k])
-      return querynum(r[k], x - size[l[k]] - w[k]);
+    else if (x > size_[l[k]] + w[k])
+      return querynum(r[k], x - size_[l[k]] - w[k]);
     else
       return val[k];
   }

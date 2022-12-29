@@ -121,19 +121,19 @@
 
 **Lemma 9**：考虑三个点 $u,v,w$ 满足 $\alpha(u)<\alpha(v)<\alpha(w)$，如果 $uw$ 相连，$vw$ 不相连，则 $w$ 只给 $u$ 的 $label$ 贡献，不给 $v$ 贡献。为了让 $v$ 比 $u$ 先加入序列，需要一个 $x$ 满足 $\alpha(v)<\alpha(x)$ 且 $vx$ 相连，$ux$ 不相连，即 $x$ 只给 $v$ 贡献而不给 $u$ 贡献。
 
-**Lemma 10**：任意一个弦图一定不存在一个序列 $v_0,v_1,...,v_k(k\ge 2)$ 满足下列性质：
+**Lemma 10**：任意一个弦图一定不存在一个序列 $v_0,v_1,\dots,v_k(k\ge 2)$ 满足下列性质：
 
 1. $v_iv_j$ 相连当且仅当 $|i-j|=1$。
 2. $\alpha(v_0)>\alpha(v_i)(i\in[1,k])$。
-3. 存在 $i\in[1,k-1]$，满足 $\alpha(v_i)<\alpha(v_{i+1})<...<\alpha(v_k)$ 且 $\alpha(v_i)<\alpha(v_{i-1})<...<\alpha(v_1)<\alpha(v_k)<\alpha(v_0)$。
+3. 存在 $i\in[1,k-1]$，满足 $\alpha(v_i)<\alpha(v_{i+1})<\dots<\alpha(v_k)$ 且 $\alpha(v_i)<\alpha(v_{i-1})<\dots<\alpha(v_1)<\alpha(v_k)<\alpha(v_0)$。
 
 证明：
 
 由于 $\alpha(v_1)<\alpha(v_k)<\alpha(v_0)$，且 $v_1v_0$ 相连，$v_kv_0$ 不相连，所以由性质一，存在 $x$ 满足 $\alpha(v_k)<\alpha(x)$ 且 $v_kx$ 相连，$v_1x$ 不相连。
 
-考虑最小的 $j\in(1,k]$ 满足 $v_jx$ 相连，我们可以推出 $v_0x$ 不相连，否则 $v_0v_1...v_jx$ 构成了一个长度 $\ge 4$ 且无弦的环。
+考虑最小的 $j\in(1,k]$ 满足 $v_jx$ 相连，我们可以推出 $v_0x$ 不相连，否则 $v_0v_1\cdots v_jx$ 构成了一个长度 $\ge 4$ 且无弦的环。
 
-如果 $x<v_0$，则 $v_0,v_1,...,v_j,x$ 也是一个满足性质的序列；如果 $v_0<x$ 则 $x,v_j,...,v_1,v_0$ 也是一个满足性质的序列。
+如果 $x<v_0$，则 $v_0,v_1,\dots,v_j,x$ 也是一个满足性质的序列；如果 $v_0<x$ 则 $x,v_j,\dots,v_1,v_0$ 也是一个满足性质的序列。
 
 在上面的推导中，我们扩大了 $\min(v_0,v_k)$，于是一直推下去，一定会产生矛盾。
 

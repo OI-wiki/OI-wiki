@@ -38,28 +38,30 @@ DFS 最显著的特征在于其 **递归调用自身**。同时与 BFS 类似，
 
 以链式前向星为例：（和上方伪代码每行一一对应）
 
-```cpp
-// C++ Version
-void dfs(int u) {
-  vis[u] = 1;
-  for (int i = head[u]; i; i = e[i].x) {
-    if (!vis[e[i].t]) {
-      dfs(v);
-    }
-  }
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def dfs(u):
-    vis[u] = True
-    while i:
-        i = head[u]
-        if vis[e[i].t] == False:
-            dfs(v)
-        i = e[i].x
-```
+    ```cpp
+    void dfs(int u) {
+      vis[u] = 1;
+      for (int i = head[u]; i; i = e[i].x) {
+        if (!vis[e[i].t]) {
+          dfs(v);
+        }
+      }
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def dfs(u):
+        vis[u] = True
+        while i:
+            i = head[u]
+            if vis[e[i].t] == False:
+                dfs(v)
+            i = e[i].x
+    ```
 
 ### DFS 序列
 

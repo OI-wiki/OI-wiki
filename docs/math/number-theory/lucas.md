@@ -17,21 +17,23 @@ $$
 时间复杂度为 $O(f(p) + g(n)\log n)$，其中 $f(n)$ 为预处理组合数的复杂度，$g(n)$ 为单次求组合数的复杂度。
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    long long Lucas(long long n, long long m, long long p) {
-      if (m == 0) return 1;
-      return (C(n % p, m % p, p) * Lucas(n / p, m / p, p)) % p;
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def Lucas(n, m, p):
-      if m == 0:
-          return 1
-      return (C(n % p, m % p, p) * Lucas(n // p, m // p, p)) % p
-    ```
+        ```cpp
+        long long Lucas(long long n, long long m, long long p) {
+          if (m == 0) return 1;
+          return (C(n % p, m % p, p) * Lucas(n / p, m / p, p)) % p;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def Lucas(n, m, p):
+          if m == 0:
+              return 1
+          return (C(n % p, m % p, p) * Lucas(n // p, m // p, p)) % p
+        ```
 
 ### 证明
 

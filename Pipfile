@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-mkdocs = "*"
+mkdocs = "==1.4.2"
 pymdown-extensions = "*"
 pygments = "*"
 beautifulsoup4 = "*"

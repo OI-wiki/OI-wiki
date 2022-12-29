@@ -312,20 +312,20 @@ $$
 
 分析前者发生的概率：
 
-- 观察：对于任意的 $A\neq B; A,B\leq N$ 和随机选取的质数 $Q\leq Q_{max}$，一定有：
+- 观察：对于任意的 $A\neq B; A,B\leq N$ 和随机选取的质数 $Q\leq Q_{\max}$，一定有：
 
 $$
 \mathrm{Pr}\big[A\equiv B\pmod {Q}\big]=O\Big(\dfrac{\log N \log Q_{max}}{Q_{max}}\Big)
 $$
 
-- 这是因为：使 $A\equiv B$ 成立的 $Q$ 一定满足 $Q\big|(A-B)$，这样的 $Q$ 有 $\omega(A-B)\leq \log_2 N$ 个；而由质数定理，$Q_{max}$ 以内不同的质数又有 $\Theta\Big(\dfrac {Q_{max}}{\log Q_{max}}\Big)$ 个。将两者相除即可得到上式。
+- 这是因为：使 $A\equiv B$ 成立的 $Q$ 一定满足 $Q\big|(A-B)$，这样的 $Q$ 有 $\omega(A-B)\leq \log_2 N$ 个；而由质数定理，$Q_{\max}$ 以内不同的质数又有 $\Theta\Big(\dfrac {Q_{\max}}{\log Q_{\max}}\Big)$ 个。将两者相除即可得到上式。
 - 在上述观察中取 $A,B$（满足 $A\neq B$）为某一特定项在 $P_0,P_1$ 中的系数（也就等于该项对应的串在 $G_0,G_1$ 中的出现次数），则易见 $A,B\leq (m_1+m_2)^{L}$，得到：
 
 $$
 \mathrm{Pr}\big[A\equiv B\pmod {Q}\big]=O\Big(\dfrac{L\log (m_1+m_2) \log Q_{max}}{Q_{max}}\Big)
 $$
 
-- 所以取 $Q_{max}\approx 10^{12}$ 就绰绰有余。如果机器无法支持这么大的整数运算，可以用双哈希代替。
+- 所以取 $Q_{\max}\approx 10^{12}$ 就绰绰有余。如果机器无法支持这么大的整数运算，可以用双哈希代替。
 
 分析后者发生的概率：
 

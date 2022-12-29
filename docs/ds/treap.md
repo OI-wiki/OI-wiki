@@ -636,8 +636,8 @@ int qnex(int val) {
 
 我们知道在朴素的二叉查找树中按照递增的顺序插入节点，建出来的树是一个长链，按照中序遍历，自然可以得到这个区间。
 
-<div align=center width=50%>
-  <img width=50% src="../images/treap-search-tree-chain.svg" >
+<div align=center>
+  <img style="width: 50%; " src="../images/treap-search-tree-chain.svg" >
 </div>
 
 如上图，按照 $1\ 2\ 3\ 4\ 5$ 的顺序给朴素搜索树插入节点，中序遍历时，得到的也是 $1\ 2\ 3\ 4\ 5$。
