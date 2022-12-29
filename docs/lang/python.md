@@ -793,7 +793,7 @@ def fib(n):
         import Queue as pq #python version < 3.0
     except ImportError:
         import queue as pq #python3.*
-    
+
     N = int(1e5 + 5)
     M = int(2e5 + 5)
     INF = 0x3f3f3f3f
@@ -807,12 +807,12 @@ def fib(n):
     struct qxx {
       int nex, t, v;
     };
-    
+
     qxx e[M];
     int h[N], cnt;
-    
+
     void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
-    
+
     typedef pair<int, int> pii;
     priority_queue<pii, vector<pii>, greater<pii>> q;
     int dist[N];
@@ -826,14 +826,14 @@ def fib(n):
             self.nex = 0
             self.t = 0
             self.v = 0
-    
+
     e = [qxx() for i in range(M)]  # 链表
     h = [0 for i in range(N)]
     cnt = 0
-    
+
     dist = [INF for i in range(N)]
     q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
-    
+
     def add_path(f, t, v):  # 在前向星中加边
         # 如果要修改全局变量，要使用 global 来声明
         global cnt, e, h
@@ -876,8 +876,8 @@ def fib(n):
         while i:
             yield i
             i = e[i].nex
-    
-    
+
+
     def dijkstra(s):
         dist[s] = 0
         q.put((0, s))
@@ -923,12 +923,12 @@ def fib(n):
         for i in range(m):
             u, v, w = map(int, input().split())
             add_path(u, v, w)
-    
+
         dijkstra(s)
-    
+
         for i in range(1, n + 1):
             print(dist[i], end = ' ')
-    
+
         print()
     ```
 
@@ -940,20 +940,20 @@ def fib(n):
     #include <bits/stdc++.h>
     using namespace std;
     const int N = 1e5 + 5, M = 2e5 + 5;
-    
+
     struct qxx {
       int nex, t, v;
     };
-    
+
     qxx e[M];
     int h[N], cnt;
-    
+
     void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
-    
+
     typedef pair<int, int> pii;
     priority_queue<pii, vector<pii>, greater<pii>> q;
     int dist[N];
-    
+
     void dijkstra(int s) {
       memset(dist, 0x3f, sizeof(dist));
       dist[s] = 0, q.push(make_pair(0, s));
@@ -969,9 +969,9 @@ def fib(n):
         }
       }
     }
-    
+
     int n, m, s;
-    
+
     int main() {
       scanf("%d%d%d", &n, &m, &s);
       for (int i = 1; i <= m; i++) {
@@ -992,24 +992,24 @@ def fib(n):
         import Queue as pq  # python version < 3.0
     except ImportError:
         import queue as pq  # python3.*
-    
+
     N = int(1e5+5)
     M = int(2e5+5)
     INF = 0x3f3f3f3f
-    
+
     class qxx:  # 前向星类（结构体）
         def __init__(self):
             self.nex = 0
             self.t = 0
             self.v = 0
-    
+
     e = [qxx() for i in range(M)]  # 链表
     h = [0 for i in range(N)]
     cnt = 0
-    
+
     dist = [INF for i in range(N)]
     q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
-    
+
     def add_path(f, t, v):  # 在前向星中加边
         # 如果要修改全局变量，要使用 global 来声名
         global cnt, e, h
@@ -1020,13 +1020,13 @@ def fib(n):
         e[cnt].t = t
         e[cnt].v = v
         h[f] = cnt
-    
+
     def nextedgeid(u):  # 生成器，可以用在 for 循环里
         i = h[u]
         while i:
             yield i
             i = e[i].nex
-    
+
     def dijkstra(s):
         dist[s] = 0
         q.put((0, s))
@@ -1041,8 +1041,8 @@ def fib(n):
                     continue
                 dist[v] = dist[u[1]]+w
                 q.put((dist[v], v))
-    
-    
+
+
     # 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
     if __name__ == '__main__':
         # 一行读入多个整数。注意它会把整行都读进来
@@ -1050,14 +1050,14 @@ def fib(n):
         for i in range(m):
             u, v, w = map(int, input().split())
             add_path(u, v, w)
-    
+
         dijkstra(s)
-    
+
         for i in range(1, n + 1):
             # 两种输出语法都是可以用的
             print("{}".format(dist[i]), end=' ')
             # print("%d" % dist[i],end=' ')
-    
+
         print()  # 结尾换行
     ```
 
