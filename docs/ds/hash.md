@@ -33,76 +33,78 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
 
 #### 实现
 
-```cpp
-// C++ Version
-const int SIZE = 1000000;
-const int M = 999997;
+=== "C++"
 
-struct HashTable {
-  struct Node {
-    int next, value, key;
-  } data[SIZE];
+    ```cpp
+    const int SIZE = 1000000;
+    const int M = 999997;
 
-  int head[M], size;
+    struct HashTable {
+      struct Node {
+        int next, value, key;
+      } data[SIZE];
 
-  int f(int key) { return (key % M + M) % M; }
+      int head[M], size;
 
-  int get(int key) {
-    for (int p = head[f(key)]; p; p = data[p].next)
-      if (data[p].key == key) return data[p].value;
-    return -1;
-  }
+      int f(int key) { return (key % M + M) % M; }
 
-  int modify(int key, int value) {
-    for (int p = head[f(key)]; p; p = data[p].next)
-      if (data[p].key == key) return data[p].value = value;
-  }
+      int get(int key) {
+        for (int p = head[f(key)]; p; p = data[p].next)
+          if (data[p].key == key) return data[p].value;
+        return -1;
+      }
 
-  int add(int key, int value) {
-    if (get(key) != -1) return -1;
-    data[++size] = (Node){head[f(key)], value, key};
-    head[f(key)] = size;
-    return value;
-  }
-};
-```
+      int modify(int key, int value) {
+        for (int p = head[f(key)]; p; p = data[p].next)
+          if (data[p].key == key) return data[p].value = value;
+      }
 
-```python
-# Python Version
-M = 999997
-SIZE = 1000000
-class Node:
-    def __init__(self, next = None, value = None, key = None): 
-        self.next = next
-        self.value = value
-        self.key = key
-data = [Node()] * SIZE
-head = [0] * M
-size = 0
-def f(key):
-    return key % M
-def get(key):
-    p = head[f(key)]
-    while p:
-        if data[p].key == key:
-            return data[p].value
-        p = data[p].next
-        return -1
-def modify(key, value):
-    p = head[f(key)]
-    while p:
-        if data[p].key == key:
-            data[p].value = value
-            return data[p].value
-        p = data[p].next
-def add(key, value):
-    if get(key) != -1:
-        return -1
-    data[size] = Node(head[f(key)], value, key)
-    size = size + 1
-    head[f(key)] = size
-    return value
-```
+      int add(int key, int value) {
+        if (get(key) != -1) return -1;
+        data[++size] = (Node){head[f(key)], value, key};
+        head[f(key)] = size;
+        return value;
+      }
+    };
+    ```
+
+=== "Python"
+
+    ```python
+    M = 999997
+    SIZE = 1000000
+    class Node:
+        def __init__(self, next = None, value = None, key = None): 
+            self.next = next
+            self.value = value
+            self.key = key
+    data = [Node()] * SIZE
+    head = [0] * M
+    size = 0
+    def f(key):
+        return key % M
+    def get(key):
+        p = head[f(key)]
+        while p:
+            if data[p].key == key:
+                return data[p].value
+            p = data[p].next
+            return -1
+    def modify(key, value):
+        p = head[f(key)]
+        while p:
+            if data[p].key == key:
+                data[p].value = value
+                return data[p].value
+            p = data[p].next
+    def add(key, value):
+        if get(key) != -1:
+            return -1
+        data[size] = Node(head[f(key)], value, key)
+        size = size + 1
+        head[f(key)] = size
+        return value
+    ```
 
 这里再提供一个封装过的模板，可以像 map 一样用，并且较短
 

@@ -55,7 +55,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
-      --8<-- "docs/graph/code/lgv/lgv_2.cpp"
+    --8<-- "docs/graph/code/lgv/lgv_2.cpp"
     ```
 
 ???+note "例 2 [hdu5852 Intersection is not allowed!](https://vjudge.net/problem/HDU-5852)"
@@ -71,5 +71,5 @@ $$
 
 ??? note "参考代码"
     ```cpp
-      --8<-- "docs/graph/code/lgv/lgv_1.cpp"
+    --8<-- "docs/graph/code/lgv/lgv_1.cpp"
     ```

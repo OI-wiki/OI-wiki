@@ -16,16 +16,18 @@
 
 一个数对 $2$ 的非负整数次幂取模，等价于取二进制下一个数的后若干位，等价于和 $mod-1$ 进行与操作。
 
-```cpp
-// C++ Version
-int modPowerOfTwo(int x, int mod) { return x & (mod - 1); }
-```
+=== "C++"
 
-```python
-# Python Version
-def modPowerOfTwo(x, mod):
-    return x & (mod - 1)
-```
+    ```cpp
+    int modPowerOfTwo(int x, int mod) { return x & (mod - 1); }
+    ```
+
+=== "Python"
+
+    ```python
+    def modPowerOfTwo(x, mod):
+        return x & (mod - 1)
+    ```
 
 于是可以知道，$2$ 的非负整数次幂对它本身取模，结果为 $0$，即如果 $n$ 是 $2$ 的非负整数次幂，$n$ 和 $n-1$ 的与操作结果为 $0$。
 
@@ -33,16 +35,18 @@ def modPowerOfTwo(x, mod):
 
 借此可以判断一个数是不是 $2$ 的非负整数次幂。当且仅当 $n$ 的二进制表示只有一个 $1$ 时，$n$ 为 $2$ 的非负整数次幂。
 
-```cpp
-// C++ Version
-bool isPowerOfTwo(int n) { return n > 0 && (n & (n - 1)) == 0; }
-```
+=== "C++"
 
-```python
-# Python Version
-def isPowerOfTwo(n):
-    return n > 0 and (n & (n - 1)) == 0
-```
+    ```cpp
+    bool isPowerOfTwo(int n) { return n > 0 && (n & (n - 1)) == 0; }
+    ```
+
+=== "Python"
+
+    ```python
+    def isPowerOfTwo(n):
+        return n > 0 and (n & (n - 1)) == 0
+    ```
 
 ### 子集遍历
 

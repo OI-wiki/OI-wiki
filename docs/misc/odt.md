@@ -6,7 +6,7 @@
 
 ## 前置知识
 
-会用 STL 的 set 就行。
+会用 STL 的 [set](../lang/csl/associative-container.md#set) 就行。
 
 ## 核心思想
 
@@ -61,7 +61,7 @@ auto split(int x) {
 }
 ```
 
-这个玩意有什么用呢？
+这段代码有什么用呢？
 任何对于 $[l,r]$ 的区间操作，都可以转换成 set 上 $[split(l),split(r + 1))$ 的操作。
 
 ### assign

@@ -83,30 +83,32 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
 
 ## 简单的时间复杂度计算的例子
 
-### for 循环
+### `for` 循环
 
-```cpp
-// C++ Version
-int n, m;
-std::cin >> n >> m;
-for (int i = 0; i < n; ++i) {
-  for (int j = 0; j < n; ++j) {
-    for (int k = 0; k < m; ++k) {
-      std::cout << "hello world\n";
+=== "C++"
+
+    ```cpp
+    int n, m;
+    std::cin >> n >> m;
+    for (int i = 0; i < n; ++i) {
+      for (int j = 0; j < n; ++j) {
+        for (int k = 0; k < m; ++k) {
+          std::cout << "hello world\n";
+        }
+      }
     }
-  }
-}
-```
+    ```
 
-```python
-# Python Version
-n = int(input())
-m = int(input())
-for i in range(0, n):
-    for j in range(0, n):
-        for k in range(0, m):
-            print("hello world")
-```
+=== "Python"
+
+    ```python
+    n = int(input())
+    m = int(input())
+    for i in range(0, n):
+        for j in range(0, n):
+            for k in range(0, m):
+                print("hello world")
+    ```
 
 如果以输入的数值 $n$ 和 $m$ 的大小作为数据规模，则上面这段代码的时间复杂度为 $\Theta(n^2m)$。
 
@@ -118,20 +120,22 @@ for i in range(0, n):
 
 当我们要进行若干次操作时，如何判断这若干次操作是否影响时间复杂度呢？例如：
 
-```cpp
-// C++ Version
-const int N = 100000;
-for (int i = 0; i < N; ++i) {
-  std::cout << "hello world\n";
-}
-```
+=== "C++"
 
-```python
-# Python Version
-N = 100000
-for i in range(0, N):
-    print("hello world")
-```
+    ```cpp
+    const int N = 100000;
+    for (int i = 0; i < N; ++i) {
+      std::cout << "hello world\n";
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    N = 100000
+    for i in range(0, N):
+        print("hello world")
+    ```
 
 如果 $N$ 的大小不被看作输入规模，那么这段代码的时间复杂度就是 $O(1)$。
 
@@ -154,7 +158,7 @@ $$
 T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}) \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon})\\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
 $$
 
-需要注意的是，这里的第二种情况还需要满足 regularity condition, 即 $a f(n/b) \leq c f(n)$，for some constant $k < 1$ and sufficiently large $n$。
+需要注意的是，这里的第二种情况还需要满足 regularity condition, 即 $a f(n/b) \leq c f(n)$，for some constant $c < 1$ and sufficiently large $n$。
 
 证明思路是是将规模为 $n$ 的问题，分解为 $a$ 个规模为 $(\frac{n}{b})$ 的问题，然后依次合并，直到合并到最高层。每一次合并子问题，都需要花费 $f(n)$ 的时间。
 
@@ -163,7 +167,7 @@ $$
     
     对于第 $0$ 层（最高层），合并子问题需要花费 $f(n)$ 的时间
     
-    对于第 $1$ 层（第一次划分出来的子问题），共有 $a$ 个子问题，每个子问题合并需要花费 $f\left(\frac{n}{b}\right)$ 的时间，所以合并总共要花费 $a \left(\frac{n}{b}\right)$ 的时间。
+    对于第 $1$ 层（第一次划分出来的子问题），共有 $a$ 个子问题，每个子问题合并需要花费 $f\left(\frac{n}{b}\right)$ 的时间，所以合并总共要花费 $a f\left(\frac{n}{b}\right)$ 的时间。
     
     层层递推，我们可以写出类推树如下：![](./images/master-theorem-proof.svg)
     

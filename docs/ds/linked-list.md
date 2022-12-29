@@ -24,21 +24,23 @@
 ![](images/list.svg)
 
 ???+note "实现"
-    ```c++
-    // C++ Version
-    struct Node {
-      int value;
-      Node *next;
-    };
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    class Node:
-        def __init__(self, value = None, next = None): 
-            self.value = value
-            self.next = next
-    ```
+        ```c++
+        struct Node {
+          int value;
+          Node *next;
+        };
+        ```
+    
+    === "Python"
+    
+        ```python
+        class Node:
+            def __init__(self, value = None, next = None): 
+                self.value = value
+                self.next = next
+        ```
 
 ### 双向链表
 
@@ -47,23 +49,25 @@
 ![](images/double-list.svg)
 
 ???+note "实现"
-    ```c++
-    // C++ Version
-    struct Node {
-      int value;
-      Node *left;
-      Node *right;
-    };
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    class Node:
-        def __init__(self, value = None, left = None, right = None): 
-            self.value = value
-            self.left = left
-            self.right = right
-    ```
+        ```c++
+        struct Node {
+          int value;
+          Node *left;
+          Node *right;
+        };
+        ```
+    
+    === "Python"
+    
+        ```python
+        class Node:
+            def __init__(self, value = None, left = None, right = None): 
+                self.value = value
+                self.left = left
+                self.right = right
+        ```
 
 ## 向链表中插入（写入）数据
 
@@ -84,24 +88,26 @@
 代码实现如下：
 
 ???+note "实现"
-    ```c++
-    // C++ Version
-    void insertNode(int i, Node *p) {
-      Node *node = new Node;
-      node->value = i;
-      node->next = p->next;
-      p->next = node;
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def insertNode(i, p):
-        node = Node()
-        node.value = i
-        node.next = p.next
-        p.next = node
-    ```
+        ```c++
+        void insertNode(int i, Node *p) {
+          Node *node = new Node;
+          node->value = i;
+          node->next = p->next;
+          p->next = node;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def insertNode(i, p):
+            node = Node()
+            node.value = i
+            node.next = p.next
+            p.next = node
+        ```
 
 ### 单向循环链表
 
@@ -124,35 +130,37 @@
 代码实现如下：
 
 ???+note "实现"
-    ```c++
-    // C++ Version
-    void insertNode(int i, Node *p) {
-      Node *node = new Node;
-      node->value = i;
-      node->next = NULL;
-      if (p == NULL) {
-        p = node;
-        node->next = node;
-      } else {
-        node->next = p->next;
-        p->next = node;
-      }
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def insertNode(i, p):
-        node = Node()
-        node.value = i
-        node.next = None
-        if p == None:
-            p = node
-            node.next = node
-        else:
-            node.next = p.next
-            p.next = node
-    ```
+        ```c++
+        void insertNode(int i, Node *p) {
+          Node *node = new Node;
+          node->value = i;
+          node->next = NULL;
+          if (p == NULL) {
+            p = node;
+            node->next = node;
+          } else {
+            node->next = p->next;
+            p->next = node;
+          }
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def insertNode(i, p):
+            node = Node()
+            node.value = i
+            node.next = None
+            if p == None:
+                p = node
+                node.next = node
+            else:
+                node.next = p.next
+                p.next = node
+        ```
 
 ### 双向循环链表
 
@@ -171,39 +179,41 @@
 代码实现如下：
 
 ???+note "实现"
-    ```c++
-    // C++ Version
-    void insertNode(int i, Node *p) {
-      Node *node = new Node;
-      node->value = i;
-      if (p == NULL) {
-        p = node;
-        node->left = node;
-        node->right = node;
-      } else {
-        node->left = p;
-        node->right = p->right;
-        p->right->left = node;
-        p->right = node;
-      }
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def insertNode(i, p):
-        node = Node()
-        node.value = i
-        if p == None:
-            p = node
-            node.left = node
-            node.right = node
-        else:
-            node.left = p
-            node.right = p.right
-            p.right.left = node
-            p.right = node
-    ```
+        ```c++
+        void insertNode(int i, Node *p) {
+          Node *node = new Node;
+          node->value = i;
+          if (p == NULL) {
+            p = node;
+            node->left = node;
+            node->right = node;
+          } else {
+            node->left = p;
+            node->right = p->right;
+            p->right->left = node;
+            p->right = node;
+          }
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def insertNode(i, p):
+            node = Node()
+            node.value = i
+            if p == None:
+                p = node
+                node.left = node
+                node.right = node
+            else:
+                node.left = p
+                node.right = p.right
+                p.right.left = node
+                p.right = node
+        ```
 
 ## 从链表中删除数据
 
@@ -227,22 +237,24 @@
 代码实现如下：
 
 ???+note "实现"
-    ```c++
-    // C++ Version
-    void deleteNode(Node *p) {
-      p->value = p->next->value;
-      Node *t = p->next;
-      p->next = p->next->next;
-      delete t;
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def deleteNode(p):
-        p.value = p.next.value
-        p.next = p.next.next
-    ```
+        ```c++
+        void deleteNode(Node *p) {
+          p->value = p->next->value;
+          Node *t = p->next;
+          p->next = p->next->next;
+          delete t;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def deleteNode(p):
+            p.value = p.next.value
+            p.next = p.next.next
+        ```
 
 ### 双向循环链表
 
@@ -257,23 +269,26 @@
 代码实现如下：
 
 ???+note "实现"
-    ```c++
-    void deleteNode(Node *&p) {
-      p->left->right = p->right;
-      p->right->left = p->left;
-      Node *t = p;
-      p = p->right;
-      delete t;
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def deleteNode(p):
-        p.left.right = p.right
-        p.right.left = p.left
-        p = p.right
-    ```
+        ```c++
+        void deleteNode(Node *&p) {
+          p->left->right = p->right;
+          p->right->left = p->left;
+          Node *t = p;
+          p = p->right;
+          delete t;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def deleteNode(p):
+            p.left.right = p.right
+            p.right.left = p.left
+            p = p.right
+        ```
 
 ## 技巧
 

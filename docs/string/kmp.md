@@ -59,33 +59,35 @@ $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
 ???+note "实现"
     具体实现如下：
     
-    ```cpp
-    // C++ Version
-    vector<int> prefix_function(string s) {
-      int n = (int)s.length();
-      vector<int> pi(n);
-      for (int i = 1; i < n; i++)
-        for (int j = i; j >= 0; j--)
-          if (s.substr(0, j) == s.substr(i - j + 1, j)) {
-            pi[i] = j;
-            break;
-          }
-      return pi;
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def prefix_function(s):
-        n = len(s)
-        pi = [0] * n
-        for i in range(1, n):
-            for j in range(i, -1, -1):
-                if s[0 : j] == s[i - j + 1 : i + 1]:
-                    pi[i] = j
-                    break
-        return pi
-    ```
+        ```cpp
+        vector<int> prefix_function(string s) {
+          int n = (int)s.length();
+          vector<int> pi(n);
+          for (int i = 1; i < n; i++)
+            for (int j = i; j >= 0; j--)
+              if (s.substr(0, j) == s.substr(i - j + 1, j)) {
+                pi[i] = j;
+                break;
+              }
+          return pi;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def prefix_function(s):
+            n = len(s)
+            pi = [0] * n
+            for i in range(1, n):
+                for j in range(i, -1, -1):
+                    if s[0 : j] == s[i - j + 1 : i + 1]:
+                        pi[i] = j
+                        break
+            return pi
+        ```
     
     注：
     
@@ -110,33 +112,35 @@ $$
 ???+note "实现"
     此时的改进的算法为：
     
-    ```cpp
-    // C++ Version
-    vector<int> prefix_function(string s) {
-      int n = (int)s.length();
-      vector<int> pi(n);
-      for (int i = 1; i < n; i++)
-        for (int j = pi[i - 1] + 1; j >= 0; j--)  // improved: j=i => j=pi[i-1]+1
-          if (s.substr(0, j) == s.substr(i - j + 1, j)) {
-            pi[i] = j;
-            break;
-          }
-      return pi;
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def prefix_function(s):
-        n = len(s)
-        pi = [0] * n
-        for i in range(1, n):
-            for j in range(pi[i - 1] + 1, -1, -1):
-                if s[0 : j] == s[i - j + 1 : i + 1]:
-                    pi[i] = j
-                    break
-        return pi
-    ```
+        ```cpp
+        vector<int> prefix_function(string s) {
+          int n = (int)s.length();
+          vector<int> pi(n);
+          for (int i = 1; i < n; i++)
+            for (int j = pi[i - 1] + 1; j >= 0; j--)  // improved: j=i => j=pi[i-1]+1
+              if (s.substr(0, j) == s.substr(i - j + 1, j)) {
+                pi[i] = j;
+                break;
+              }
+          return pi;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def prefix_function(s):
+            n = len(s)
+            pi = [0] * n
+            for i in range(1, n):
+                for j in range(pi[i - 1] + 1, -1, -1):
+                    if s[0 : j] == s[i - j + 1 : i + 1]:
+                        pi[i] = j
+                        break
+            return pi
+        ```
 
 在这个初步改进的算法中，在计算每个 $\pi[i]$ 时，最好的情况是第一次字符串比较就完成了匹配，也就是说基础的字符串比较次数是 `n-1` 次。
 
@@ -175,35 +179,37 @@ $$
 而且该算法的实现出人意料的短且直观：
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    vector<int> prefix_function(string s) {
-      int n = (int)s.length();
-      vector<int> pi(n);
-      for (int i = 1; i < n; i++) {
-        int j = pi[i - 1];
-        while (j > 0 && s[i] != s[j]) j = pi[j - 1];
-        if (s[i] == s[j]) j++;
-        pi[i] = j;
-      }
-      return pi;
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def prefix_function(s):
-        n = len(s)
-        pi = [0] * n
-        for i in range(1, n):
-            j = pi[i - 1]
-            while j > 0 and s[i] != s[j]:
-                j = pi[j - 1]
-            if s[i] == s[j]:
-                j += 1
-            pi[i] = j
-        return pi
-    ```
+        ```cpp
+        vector<int> prefix_function(string s) {
+          int n = (int)s.length();
+          vector<int> pi(n);
+          for (int i = 1; i < n; i++) {
+            int j = pi[i - 1];
+            while (j > 0 && s[i] != s[j]) j = pi[j - 1];
+            if (s[i] == s[j]) j++;
+            pi[i] = j;
+          }
+          return pi;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def prefix_function(s):
+            n = len(s)
+            pi = [0] * n
+            for i in range(1, n):
+                j = pi[i - 1]
+                while j > 0 and s[i] != s[j]:
+                    j = pi[j - 1]
+                if s[i] == s[j]:
+                    j += 1
+                pi[i] = j
+            return pi
+        ```
 
 这是一个 **在线** 算法，即其当数据到达时处理它——举例来说，你可以一个字符一个字符的读取字符串，立即处理它们以计算出每个字符的前缀函数值。该算法仍然需要存储字符串本身以及先前计算过的前缀函数值，但如果我们已经预先知道该字符串前缀函数的最大可能取值 $M$，那么我们仅需要存储该字符串的前 $M + 1$ 个字符以及对应的前缀函数值。
 
@@ -278,24 +284,26 @@ $$
 首先让我们来解决第一个问题。考虑位置 $i$ 的前缀函数值 $\pi[i]$。根据定义，其意味着字符串 $s$ 一个长度为 $\pi[i]$ 的前缀在位置 $i$ 出现并以 $i$ 为右端点，同时不存在一个更长的前缀满足前述定义。与此同时，更短的前缀可能以该位置为右端点。容易看出，我们遇到了在计算前缀函数时已经回答过的问题：给定一个长度为 $j$ 的前缀，同时其也是一个右端点位于 $i$ 的后缀，下一个更小的前缀长度 $k < j$ 是多少？该长度的前缀需同时也是一个右端点为 $i$ 的后缀。因此以位置 $i$ 为右端点，有长度为 $\pi[i]$ 的前缀，有长度为 $\pi[\pi[i] - 1]$ 的前缀，有长度为 $\pi[\pi[\pi[i] - 1] - 1]$ 的前缀，等等，直到长度变为 $0$。故而我们可以通过下述方式计算答案。
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    vector<int> ans(n + 1);
-    for (int i = 0; i < n; i++) ans[pi[i]]++;
-    for (int i = n - 1; i > 0; i--) ans[pi[i - 1]] += ans[i];
-    for (int i = 0; i <= n; i++) ans[i]++;
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    ans = [0] * (n + 1)
-    for i in range(0, n):
-        ans[pi[i]] += 1
-    for i in range(n - 1, 0, -1):
-        ans[pi[i - 1]] += ans[i]
-    for i in range(0, n + 1):
-        ans[i] += 1
-    ```
+        ```cpp
+        vector<int> ans(n + 1);
+        for (int i = 0; i < n; i++) ans[pi[i]]++;
+        for (int i = n - 1; i > 0; i--) ans[pi[i - 1]] += ans[i];
+        for (int i = 0; i <= n; i++) ans[i]++;
+        ```
+    
+    === "Python"
+    
+        ```python
+        ans = [0] * (n + 1)
+        for i in range(0, n):
+            ans[pi[i]] += 1
+        for i in range(n - 1, 0, -1):
+            ans[pi[i - 1]] += ans[i]
+        for i in range(0, n + 1):
+            ans[i] += 1
+        ```
 
 #### 解释
 

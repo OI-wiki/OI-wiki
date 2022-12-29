@@ -330,7 +330,7 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
 
 ??? note "参考代码"
     ```cpp
-      --8<-- "docs/graph/code/lca/lca_2.cpp"
+    --8<-- "docs/graph/code/lca/lca_2.cpp"
     ```
 
 ## 习题
