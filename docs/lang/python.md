@@ -727,7 +727,7 @@ NameError: name 'nothing' is not defined
 
 >>> __annotations__
 {'nothing': <class 'str'>}
-````
+```
 
 ## 装饰器
 
