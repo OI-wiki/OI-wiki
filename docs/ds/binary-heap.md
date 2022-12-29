@@ -1,4 +1,4 @@
-author: HeRaNO, Xeonacid
+author: HeRaNO, Xeonacid, AzurIce
 
 ## 结构
 
@@ -46,7 +46,7 @@ author: HeRaNO, Xeonacid
 
 时间复杂度 $O(\log n)$。
 
-### 减小某个点的权值
+### 增加某个点的权值
 
 很显然，直接修改后，向上调整一次即可，时间复杂度为 $O(\log n)$。
 
