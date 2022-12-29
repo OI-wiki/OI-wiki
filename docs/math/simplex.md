@@ -40,8 +40,8 @@ $$
 
 $$
 s.t \begin{cases}  
-\displaystyle \sum_{j = 1}^{n}a_{ij}x_j = b_i, i = 1,2,...,m\\ 
-x_j \geq 0 , j = 1,2,...,n  \\
+\displaystyle \sum_{j = 1}^{n}a_{ij}x_j = b_i, i = 1,2,\dots,m\\ 
+x_j \geq 0 , j = 1,2,\dots,n  \\
 \end{cases}
 $$
 
