@@ -18,60 +18,62 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
 
 放一个结构体封装的模板：
 
-```cpp
-// C++ Version
-struct trie {
-  int nex[100000][26], cnt;
-  bool exist[100000];  // 该结点结尾的字符串是否存在
+=== "C++"
 
-  void insert(char *s, int l) {  // 插入字符串
-    int p = 0;
-    for (int i = 0; i < l; i++) {
-      int c = s[i] - 'a';
-      if (!nex[p][c]) nex[p][c] = ++cnt;  // 如果没有，就添加结点
-      p = nex[p][c];
-    }
-    exist[p] = 1;
-  }
+    ```cpp
+    struct trie {
+      int nex[100000][26], cnt;
+      bool exist[100000];  // 该结点结尾的字符串是否存在
 
-  bool find(char *s, int l) {  // 查找字符串
-    int p = 0;
-    for (int i = 0; i < l; i++) {
-      int c = s[i] - 'a';
-      if (!nex[p][c]) return 0;
-      p = nex[p][c];
-    }
-    return exist[p];
-  }
-};
-```
+      void insert(char *s, int l) {  // 插入字符串
+        int p = 0;
+        for (int i = 0; i < l; i++) {
+          int c = s[i] - 'a';
+          if (!nex[p][c]) nex[p][c] = ++cnt;  // 如果没有，就添加结点
+          p = nex[p][c];
+        }
+        exist[p] = 1;
+      }
 
-```python
-# Python Version
-class trie:
-    nex = [[0 for i in range(26)] for j in range(100000)]
-    cnt = 0
-    exist = [False] * 100000  # 该结点结尾的字符串是否存在
+      bool find(char *s, int l) {  // 查找字符串
+        int p = 0;
+        for (int i = 0; i < l; i++) {
+          int c = s[i] - 'a';
+          if (!nex[p][c]) return 0;
+          p = nex[p][c];
+        }
+        return exist[p];
+      }
+    };
+    ```
 
-    def insert(self, s):  # 插入字符串
-        p = 0
-        for i in s:
-            c = ord(i) - ord('a')
-            if not self.nex[p][c]:
-                self.cnt += 1
-                self.nex[p][c] = self.cnt  # 如果没有，就添加结点
-            p = self.nex[p][c]
-        self.exist[p] = True
+=== "Python"
 
-    def find(self, s):  # 查找字符串
-        p = 0
-        for i in s:
-            c = ord(i) - ord('a')
-            if not self.nex[p][c]:
-                return False
-            p = self.nex[p][c]
-        return self.exist[p]
-```
+    ```python
+    class trie:
+        nex = [[0 for i in range(26)] for j in range(100000)]
+        cnt = 0
+        exist = [False] * 100000  # 该结点结尾的字符串是否存在
+
+        def insert(self, s):  # 插入字符串
+            p = 0
+            for i in s:
+                c = ord(i) - ord('a')
+                if not self.nex[p][c]:
+                    self.cnt += 1
+                    self.nex[p][c] = self.cnt  # 如果没有，就添加结点
+                p = self.nex[p][c]
+            self.exist[p] = True
+
+        def find(self, s):  # 查找字符串
+            p = 0
+            for i in s:
+                c = ord(i) - ord('a')
+                if not self.nex[p][c]:
+                    return False
+                p = self.nex[p][c]
+            return self.exist[p]
+    ```
 
 ## 应用
 

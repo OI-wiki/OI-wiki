@@ -64,38 +64,40 @@ $$
 
 #### 实现
 
-```cpp
-// C++ Version
-const int N = 1000 * 1000;
+=== "C++"
 
-double simpson_integration(double a, double b) {
-  double h = (b - a) / N;
-  double s = f(a) + f(b);
-  for (int i = 1; i <= N - 1; ++i) {
-    double x = a + h * i;
-    s += f(x) * ((i & 1) ? 4 : 2);
-  }
-  s *= h / 3;
-  return s;
-}
-```
+    ```cpp
+    const int N = 1000 * 1000;
 
-```python
-# Python Version
-N = 1000 * 1000
+    double simpson_integration(double a, double b) {
+      double h = (b - a) / N;
+      double s = f(a) + f(b);
+      for (int i = 1; i <= N - 1; ++i) {
+        double x = a + h * i;
+        s += f(x) * ((i & 1) ? 4 : 2);
+      }
+      s *= h / 3;
+      return s;
+    }
+    ```
 
-def simpson_integration(a, b):
-    h = (b - a) / N
-    s = f(a) + f(b)
-    for i in range(1, N):
-        x = a + h * i
-        if i & 1:
-            s = s + f(x) * 4
-        else:
-            s = s + f(x) * 2
-    s = s * (h / 3)
-    return s
-```
+=== "Python"
+
+    ```python
+    N = 1000 * 1000
+
+    def simpson_integration(a, b):
+        h = (b - a) / N
+        s = f(a) + f(b)
+        for i in range(1, N):
+            x = a + h * i
+            if i & 1:
+                s = s + f(x) * 4
+            else:
+                s = s + f(x) * 2
+        s = s * (h / 3)
+        return s
+    ```
 
 ### 自适应辛普森法
 
@@ -115,42 +117,44 @@ def simpson_integration(a, b):
 
 参考代码如下：
 
-```cpp
-// C++ Version
-double simpson(double l, double r) {
-  double mid = (l + r) / 2;
-  return (r - l) * (f(l) + 4 * f(mid) + f(r)) / 6;  // 辛普森公式
-}
+=== "C++"
 
-double asr(double l, double r, double eqs, double ans, int step) {
-  double mid = (l + r) / 2;
-  double fl = simpson(l, mid), fr = simpson(mid, r);
-  if (abs(fl + fr - ans) <= 15 * eqs && step < 0)
-    return fl + fr + (fl + fr - ans) / 15;  // 足够相似的话就直接返回
-  return asr(l, mid, eqs / 2, fl, step - 1) +
-         asr(mid, r, eqs / 2, fr, step - 1);  // 否则分割成两段递归求解
-}
+    ```cpp
+    double simpson(double l, double r) {
+      double mid = (l + r) / 2;
+      return (r - l) * (f(l) + 4 * f(mid) + f(r)) / 6;  // 辛普森公式
+    }
 
-double calc(double l, double r, double eps) {
-  return asr(l, r, eps, simpson(l, r), 12);
-}
-```
+    double asr(double l, double r, double eqs, double ans, int step) {
+      double mid = (l + r) / 2;
+      double fl = simpson(l, mid), fr = simpson(mid, r);
+      if (abs(fl + fr - ans) <= 15 * eqs && step < 0)
+        return fl + fr + (fl + fr - ans) / 15;  // 足够相似的话就直接返回
+      return asr(l, mid, eqs / 2, fl, step - 1) +
+            asr(mid, r, eqs / 2, fr, step - 1);  // 否则分割成两段递归求解
+    }
 
-```python
-# Python Version
-def simpson(l, r):
-    mid = (l + r) / 2
-    return (r - l) * (f(l) + 4 * f(mid) + f(r)) / 6 # 辛普森公式
-def asr(l, r, eqs, ans, step):
-    mid = (l + r) / 2
-    fl = simpson(l, mid); fr = simpson(mid, r)
-    if abs(fl + fr - ans) <= 15 * eqs and step < 0:
-        return fl + fr + (fl + fr - ans) / 15 # 足够相似的话就直接返回
-    return asr(l, mid, eqs / 2, fl, step - 1) + \
-           asr(mid, r, eqs / 2, fr, step - 1) # 否则分割成两段递归求解
-def calc(l, r, eps):
-    return asr(l, r, eps, simpson(l, r), 12)
-```
+    double calc(double l, double r, double eps) {
+      return asr(l, r, eps, simpson(l, r), 12);
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def simpson(l, r):
+        mid = (l + r) / 2
+        return (r - l) * (f(l) + 4 * f(mid) + f(r)) / 6 # 辛普森公式
+    def asr(l, r, eqs, ans, step):
+        mid = (l + r) / 2
+        fl = simpson(l, mid); fr = simpson(mid, r)
+        if abs(fl + fr - ans) <= 15 * eqs and step < 0:
+            return fl + fr + (fl + fr - ans) / 15 # 足够相似的话就直接返回
+        return asr(l, mid, eqs / 2, fl, step - 1) + \
+              asr(mid, r, eqs / 2, fr, step - 1) # 否则分割成两段递归求解
+    def calc(l, r, eps):
+        return asr(l, r, eps, simpson(l, r), 12)
+    ```
 
 ## 习题
 

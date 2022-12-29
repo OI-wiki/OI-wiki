@@ -92,79 +92,81 @@ bool toposort() {
 
 ### 实现
 
-```cpp
-// C++ Version
-using Graph = vector<vector<int>>;  // 邻接表
+=== "C++"
 
-struct TopoSort {
-  enum class Status : uint8_t { to_visit, visiting, visited };
+    ```cpp
+    using Graph = vector<vector<int>>;  // 邻接表
 
-  const Graph& graph;
-  const int n;
-  vector<Status> status;
-  vector<int> order;
-  vector<int>::reverse_iterator it;
+    struct TopoSort {
+      enum class Status : uint8_t { to_visit, visiting, visited };
 
-  TopoSort(const Graph& graph)
-      : graph(graph),
-        n(graph.size()),
-        status(n, Status::to_visit),
-        order(n),
-        it(order.rbegin()) {}
+      const Graph& graph;
+      const int n;
+      vector<Status> status;
+      vector<int> order;
+      vector<int>::reverse_iterator it;
 
-  bool sort() {
-    for (int i = 0; i < n; ++i) {
-      if (status[i] == Status::to_visit && !dfs(i)) return false;
-    }
-    return true;
-  }
+      TopoSort(const Graph& graph)
+          : graph(graph),
+            n(graph.size()),
+            status(n, Status::to_visit),
+            order(n),
+            it(order.rbegin()) {}
 
-  bool dfs(const int u) {
-    status[u] = Status::visiting;
-    for (const int v : graph[u]) {
-      if (status[v] == Status::visiting) return false;
-      if (status[v] == Status::to_visit && !dfs(v)) return false;
-    }
-    status[u] = Status::visited;
-    *it++ = u;
-    return true;
-  }
-};
-```
+      bool sort() {
+        for (int i = 0; i < n; ++i) {
+          if (status[i] == Status::to_visit && !dfs(i)) return false;
+        }
+        return true;
+      }
 
-```python
-# Python Version
-from enum import Enum, auto
+      bool dfs(const int u) {
+        status[u] = Status::visiting;
+        for (const int v : graph[u]) {
+          if (status[v] == Status::visiting) return false;
+          if (status[v] == Status::to_visit && !dfs(v)) return false;
+        }
+        status[u] = Status::visited;
+        *it++ = u;
+        return true;
+      }
+    };
+    ```
 
+=== "Python"
 
-class Status(Enum):
-    to_visit = auto()
-    visiting = auto()
-    visited = auto()
+    ```python
+    from enum import Enum, auto
 
 
-def topo_sort(graph: list[list[int]]) -> list[int] | None:
-    n = len(graph)
-    status = [Status.to_visit] * n
-    order = []
+    class Status(Enum):
+        to_visit = auto()
+        visiting = auto()
+        visited = auto()
 
-    def dfs(u: int) -> bool:
-        status[u] = Status.visiting
-        for v in graph[u]:
-            if status[v] == Status.visiting:
-                return False
-            if status[v] == Status.to_visit and not dfs(v):
-                return False
-        status[u] = Status.visited
-        order.append(u)
-        return True
 
-    for i in range(n):
-        if status[i] == Status.to_visit and not dfs(i):
-            return None
+    def topo_sort(graph: list[list[int]]) -> list[int] | None:
+        n = len(graph)
+        status = [Status.to_visit] * n
+        order = []
 
-    return order[::-1]
-```
+        def dfs(u: int) -> bool:
+            status[u] = Status.visiting
+            for v in graph[u]:
+                if status[v] == Status.visiting:
+                    return False
+                if status[v] == Status.to_visit and not dfs(v):
+                    return False
+            status[u] = Status.visited
+            order.append(u)
+            return True
+
+        for i in range(n):
+            if status[i] == Status.to_visit and not dfs(i):
+                return None
+
+        return order[::-1]
+    ```
 
 时间复杂度：$O(E+V)$ 空间复杂度：$O(V)$
 

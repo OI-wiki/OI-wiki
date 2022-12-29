@@ -18,44 +18,46 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
 
 #### 实现
 
-```cpp
-// C++ Version
-int Eratosthenes(int n) {
-  int p = 0;
-  for (int i = 0; i <= n; ++i) is_prime[i] = 1;
-  is_prime[0] = is_prime[1] = 0;
-  for (int i = 2; i <= n; ++i) {
-    if (is_prime[i]) {
-      prime[p++] = i;  // prime[p]是i,后置自增运算代表当前素数数量
-      if ((long long)i * i <= n)
-        for (int j = i * i; j <= n; j += i)
-          // 因为从 2 到 i - 1 的倍数我们之前筛过了，这里直接从 i
-          // 的倍数开始，提高了运行速度
-          is_prime[j] = 0;  // 是i的倍数的均不是素数
-    }
-  }
-  return p;
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def Eratosthenes(n):
-    p = 0
-    for i in range(0, n + 1):
-        is_prime[i] = True
-    is_prime[0] = is_prime[1] = False
-    for i in range(2, n + 1):
-        if is_prime[i]:
-            prime[p] = i
-            p = p + 1
-            if i * i <= n:
-                j = i * i
-                while j <= n:
-                    is_prime[j] = False
-                    j = j + i
-    return p
-```
+    ```cpp
+    int Eratosthenes(int n) {
+      int p = 0;
+      for (int i = 0; i <= n; ++i) is_prime[i] = 1;
+      is_prime[0] = is_prime[1] = 0;
+      for (int i = 2; i <= n; ++i) {
+        if (is_prime[i]) {
+          prime[p++] = i;  // prime[p]是i,后置自增运算代表当前素数数量
+          if ((long long)i * i <= n)
+            for (int j = i * i; j <= n; j += i)
+              // 因为从 2 到 i - 1 的倍数我们之前筛过了，这里直接从 i
+              // 的倍数开始，提高了运行速度
+              is_prime[j] = 0;  // 是i的倍数的均不是素数
+        }
+      }
+      return p;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def Eratosthenes(n):
+        p = 0
+        for i in range(0, n + 1):
+            is_prime[i] = True
+        is_prime[0] = is_prime[1] = False
+        for i in range(2, n + 1):
+            if is_prime[i]:
+                prime[p] = i
+                p = p + 1
+                if i * i <= n:
+                    j = i * i
+                    while j <= n:
+                        is_prime[j] = False
+                        j = j + i
+        return p
+    ```
 
 以上为 **Eratosthenes 筛法**（埃拉托斯特尼筛法，简称埃氏筛法），时间复杂度是 $O(n\log\log n)$。
 
@@ -93,29 +95,31 @@ def Eratosthenes(n):
 
 显然，要找到直到 $n$ 为止的所有素数，仅对不超过 $\sqrt n$ 的素数进行筛选就足够了。
 
-```cpp
-// C++ Version
-int n;
-vector<char> is_prime(n + 1, true);
-is_prime[0] = is_prime[1] = false;
-for (int i = 2; i * i <= n; i++) {
-  if (is_prime[i]) {
-    for (int j = i * i; j <= n; j += i) is_prime[j] = false;
-  }
-}
-```
+=== "C++"
 
-```python
-# Python Version
-is_prime = [True] * (n + 1)
-is_prime[0] = is_prime[1] = False
-for i in range(2, int(sqrt(n)) + 1):
-    if is_prime[i]:
-        j = i * i
-        while j <= n:
-            is_prime[j] = False
-            j += i
-```
+    ```cpp
+    int n;
+    vector<char> is_prime(n + 1, true);
+    is_prime[0] = is_prime[1] = false;
+    for (int i = 2; i * i <= n; i++) {
+      if (is_prime[i]) {
+        for (int j = i * i; j <= n; j += i) is_prime[j] = false;
+      }
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    is_prime = [True] * (n + 1)
+    is_prime[0] = is_prime[1] = False
+    for i in range(2, int(sqrt(n)) + 1):
+        if is_prime[i]:
+            j = i * i
+            while j <= n:
+                is_prime[j] = False
+                j += i
+    ```
 
 这种优化不会影响渐进时间复杂度，实际上重复以上证明，我们将得到 $n \ln \ln \sqrt n + o(n)$，根据对数的性质，它们的渐进相同，但操作次数会明显减少。
 
@@ -139,7 +143,7 @@ for i in range(2, int(sqrt(n)) + 1):
 
 由优化“筛至平方根”可知，不需要一直保留整个 `is_prime[1...n]` 数组。为了进行筛选，只保留到 $\sqrt n$ 的素数就足够了，即 `prime[1...sqrt(n)]`。并将整个范围分成块，每个块分别进行筛选。这样，我们就不必同时在内存中保留多个块，而且 CPU 可以更好地处理缓存。
 
-设 $s$ 是一个常数，它决定了块的大小，那么我们就有了 $\lceil {\frac n s} \rceil$ 个块，而块 $k$($k = 0 ... \lfloor {\frac n s} \rfloor$) 包含了区间 $[ks; ks + s - 1]$ 中的数字。我们可以依次处理块，也就是说，对于每个块 $k$，我们将遍历所有质数（从 $1$ 到 $\sqrt n$）并使用它们进行筛选。
+设 $s$ 是一个常数，它决定了块的大小，那么我们就有了 $\lceil {\frac n s} \rceil$ 个块，而块 $k$($k = 0 \dots \lfloor {\frac n s} \rfloor$) 包含了区间 $[ks; ks + s - 1]$ 中的数字。我们可以依次处理块，也就是说，对于每个块 $k$，我们将遍历所有质数（从 $1$ 到 $\sqrt n$）并使用它们进行筛选。
 
 值得注意的是，我们在处理第一个数字时需要稍微修改一下策略：首先，应保留 $[1; \sqrt n]$ 中的所有的质数；第二，数字 $0$ 和 $1$ 应该标记为非素数。在处理最后一个块时，不应该忘记最后一个数字 $n$ 并不一定位于块的末尾。
 
@@ -190,50 +194,52 @@ for i in range(2, int(sqrt(n)) + 1):
 如果能让每个合数都只被标记一次，那么时间复杂度就可以降到 $O(n)$ 了。
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    void init() {
-      for (int i = 2; i < MAXN; ++i) {
-        if (!vis[i]) {
-          pri[cnt++] = i;
-        }
-        for (int j = 0; j < cnt; ++j) {
-          if (1ll * i * pri[j] >= MAXN) break;
-          vis[i * pri[j]] = 1;
-          if (i % pri[j] == 0) {
-            // i % pri[j] == 0
-            // 换言之，i 之前被 pri[j] 筛过了
-            // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
-            // pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
-            // 掉就好了
-            break;
+    === "C++"
+    
+        ```cpp
+        void init() {
+          for (int i = 2; i < MAXN; ++i) {
+            if (!vis[i]) {
+              pri[cnt++] = i;
+            }
+            for (int j = 0; j < cnt; ++j) {
+              if (1ll * i * pri[j] >= MAXN) break;
+              vis[i * pri[j]] = 1;
+              if (i % pri[j] == 0) {
+                // i % pri[j] == 0
+                // 换言之，i 之前被 pri[j] 筛过了
+                // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
+                // pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
+                // 掉就好了
+                break;
+              }
+            }
           }
         }
-      }
-    }
-    ```
+        ```
     
-    ```python
-    # Python Version
-    def init():
-        for i in range(2, MAXN):
-            if vis[i] == False:
-                pri[cnt] = i
-                cnt = cnt + 1
-            for j in range(0, cnt):
-                if i * pri[j] >= MAXN:
-                    break
-                vis[i * pri[j]] = 1
-                if i % pri[j] == 0:
-                    """
-                    i % pri[j] == 0
-                    换言之，i 之前被 pri[j] 筛过了
-                    由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
-                    pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
-                    掉就好了
-                    """
-                    break
-    ```
+    === "Python"
+    
+        ```python
+        def init():
+            for i in range(2, MAXN):
+                if vis[i] == False:
+                    pri[cnt] = i
+                    cnt = cnt + 1
+                for j in range(0, cnt):
+                    if i * pri[j] >= MAXN:
+                        break
+                    vis[i * pri[j]] = 1
+                    if i % pri[j] == 0:
+                        """
+                        i % pri[j] == 0
+                        换言之，i 之前被 pri[j] 筛过了
+                        由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
+                        pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
+                        掉就好了
+                        """
+                        break
+        ```
 
 上面的这种 **线性筛法** 也称为 **Euler 筛法**（欧拉筛法）。
 
@@ -267,54 +273,56 @@ $$
 
 ### 实现
 
-```cpp
-// C++ Version
-void pre() {
-  for (int i = 1; i <= 5000000; i++) {
-    is_prime[i] = 1;
-  }
-  int cnt = 0;
-  is_prime[1] = 0;
-  phi[1] = 1;
-  for (int i = 2; i <= 5000000; i++) {
-    if (is_prime[i]) {
-      prime[++cnt] = i;
-      phi[i] = i - 1;
-    }
-    for (int j = 1; j <= cnt && i * prime[j] <= 5000000; j++) {
-      is_prime[i * prime[j]] = 0;
-      if (i % prime[j])
-        phi[i * prime[j]] = phi[i] * phi[prime[j]];
-      else {
-        phi[i * prime[j]] = phi[i] * prime[j];
-        break;
+=== "C++"
+
+    ```cpp
+    void pre() {
+      for (int i = 1; i <= 5000000; i++) {
+        is_prime[i] = 1;
+      }
+      int cnt = 0;
+      is_prime[1] = 0;
+      phi[1] = 1;
+      for (int i = 2; i <= 5000000; i++) {
+        if (is_prime[i]) {
+          prime[++cnt] = i;
+          phi[i] = i - 1;
+        }
+        for (int j = 1; j <= cnt && i * prime[j] <= 5000000; j++) {
+          is_prime[i * prime[j]] = 0;
+          if (i % prime[j])
+            phi[i * prime[j]] = phi[i] * phi[prime[j]];
+          else {
+            phi[i * prime[j]] = phi[i] * prime[j];
+            break;
+          }
+        }
       }
     }
-  }
-}
-```
+    ```
 
-```python
-# Python Version
-def pre():
-    cnt = 0
-    is_prime[1] = False
-    phi[1] = 1
-    for i in range(2, 5000001):
-        if is_prime[i]:
-            cnt = cnt + 1
-            prime[cnt] = i
-            phi[i] = i - 1
-        j = 1
-        while j <= cnt and i * prime[j] <= 5000000:
-            is_prime[i * prime[j]] = 0
-            if i % prime[j]:
-                phi[i * prime[j]] = phi[i] * phi[prime[j]]
-            else:
-                phi[i * prime[j]] = phi[i] * prime[j]
-                break
-            j = j + 1
-```
+=== "Python"
+
+    ```python
+    def pre():
+        cnt = 0
+        is_prime[1] = False
+        phi[1] = 1
+        for i in range(2, 5000001):
+            if is_prime[i]:
+                cnt = cnt + 1
+                prime[cnt] = i
+                phi[i] = i - 1
+            j = 1
+            while j <= cnt and i * prime[j] <= 5000000:
+                is_prime[i * prime[j]] = 0
+                if i % prime[j]:
+                    phi[i * prime[j]] = phi[i] * phi[prime[j]]
+                else:
+                    phi[i * prime[j]] = phi[i] * prime[j]
+                    break
+                j = j + 1
+    ```
 
 ## 筛法求莫比乌斯函数
 
@@ -334,44 +342,46 @@ $$
 
 ### 实现
 
-```cpp
-// C++ Version
-void pre() {
-  mu[1] = 1;
-  for (int i = 2; i <= 1e7; ++i) {
-    if (!v[i]) mu[i] = -1, p[++tot] = i;
-    for (int j = 1; j <= tot && i <= 1e7 / p[j]; ++j) {
-      v[i * p[j]] = 1;
-      if (i % p[j] == 0) {
-        mu[i * p[j]] = 0;
-        break;
-      } else {
-        mu[i * p[j]] = -mu[i];
+=== "C++"
+
+    ```cpp
+    void pre() {
+      mu[1] = 1;
+      for (int i = 2; i <= 1e7; ++i) {
+        if (!v[i]) mu[i] = -1, p[++tot] = i;
+        for (int j = 1; j <= tot && i <= 1e7 / p[j]; ++j) {
+          v[i * p[j]] = 1;
+          if (i % p[j] == 0) {
+            mu[i * p[j]] = 0;
+            break;
+          } else {
+            mu[i * p[j]] = -mu[i];
+          }
+        }
       }
     }
-  }
-}
-```
+    ```
 
-```python
-# Python Version
-def pre():
-    mu[1] = 1
-    for i in range(2, int(1e7 + 1)):
-        if v[i] == 0:
-            mu[i] = -1
-            tot = tot + 1
-            p[tot] = i
-        j = 1
-        while j <= tot and i <= 1e7 // p[j]:
-            v[i * p[j]] = 1
-            if i % p[j] == 0:
-                mu[i * p[j]] = 0
-                break
-            else:
-                mu[i * p[j]] = -mu[i]
-            j = j + 1
-```
+=== "Python"
+
+    ```python
+    def pre():
+        mu[1] = 1
+        for i in range(2, int(1e7 + 1)):
+            if v[i] == 0:
+                mu[i] = -1
+                tot = tot + 1
+                p[tot] = i
+            j = 1
+            while j <= tot and i <= 1e7 // p[j]:
+                v[i * p[j]] = 1
+                if i % p[j] == 0:
+                    mu[i * p[j]] = 0
+                    break
+                else:
+                    mu[i * p[j]] = -mu[i]
+                j = j + 1
+    ```
 
 ## 筛法求约数个数
 
@@ -387,46 +397,48 @@ def pre():
 
 因为 $d_i$ 是积性函数，所以可以使用线性筛。
 
-```cpp
-// C++ Version
-void pre() {
-  d[1] = 1;
-  for (int i = 2; i <= n; ++i) {
-    if (!v[i]) v[i] = 1, p[++tot] = i, d[i] = 2, num[i] = 1;
-    for (int j = 1; j <= tot && i <= n / p[j]; ++j) {
-      v[p[j] * i] = 1;
-      if (i % p[j] == 0) {
-        num[i * p[j]] = num[i] + 1;
-        d[i * p[j]] = d[i] / num[i * p[j]] * (num[i * p[j]] + 1);
-        break;
-      } else {
-        num[i * p[j]] = 1;
-        d[i * p[j]] = d[i] * 2;
+=== "C++"
+
+    ```cpp
+    void pre() {
+      d[1] = 1;
+      for (int i = 2; i <= n; ++i) {
+        if (!v[i]) v[i] = 1, p[++tot] = i, d[i] = 2, num[i] = 1;
+        for (int j = 1; j <= tot && i <= n / p[j]; ++j) {
+          v[p[j] * i] = 1;
+          if (i % p[j] == 0) {
+            num[i * p[j]] = num[i] + 1;
+            d[i * p[j]] = d[i] / num[i * p[j]] * (num[i * p[j]] + 1);
+            break;
+          } else {
+            num[i * p[j]] = 1;
+            d[i * p[j]] = d[i] * 2;
+          }
+        }
       }
     }
-  }
-}
-```
+    ```
 
-```python
-# Python Version
-def pre():
-    d[1] = 1
-    for i in range(2, n + 1):
-        if v[i] == 0:
-            v[i] = 1; tot = tot + 1; p[tot] = i; d[i] = 2; num[i] = 1
-        j = 1
-        while j <= tot and i <= n // p[j]:
-            v[p[j] * i] = 1
-            if i % p[j] == 0:
-                num[i * p[j]] = num[i] + 1
-                d[i * p[j]] = d[i] // num[i * p[j]] * (num[i * p[j]] + 1)
-                break
-            else:
-                num[i * p[j]] = 1
-                d[i * p[j]] = d[i] * 2
-            j = j + 1
-```
+=== "Python"
+
+    ```python
+    def pre():
+        d[1] = 1
+        for i in range(2, n + 1):
+            if v[i] == 0:
+                v[i] = 1; tot = tot + 1; p[tot] = i; d[i] = 2; num[i] = 1
+            j = 1
+            while j <= tot and i <= n // p[j]:
+                v[p[j] * i] = 1
+                if i % p[j] == 0:
+                    num[i * p[j]] = num[i] + 1
+                    d[i * p[j]] = d[i] // num[i * p[j]] * (num[i * p[j]] + 1)
+                    break
+                else:
+                    num[i * p[j]] = 1
+                    d[i * p[j]] = d[i] * 2
+                j = j + 1
+    ```
 
 ## 筛法求约数和
 
@@ -434,45 +446,47 @@ $f_i$ 表示 $i$ 的约数和，$g_i$ 表示 $i$ 的最小质因子的 $p^0+p^1+
 
 ### 实现
 
-```cpp
-// C++ Version
-void pre() {
-  g[1] = f[1] = 1;
-  for (int i = 2; i <= n; ++i) {
-    if (!v[i]) v[i] = 1, p[++tot] = i, g[i] = i + 1, f[i] = i + 1;
-    for (int j = 1; j <= tot && i <= n / p[j]; ++j) {
-      v[p[j] * i] = 1;
-      if (i % p[j] == 0) {
-        g[i * p[j]] = g[i] * p[j] + 1;
-        f[i * p[j]] = f[i] / g[i] * g[i * p[j]];
-        break;
-      } else {
-        f[i * p[j]] = f[i] * f[p[j]];
-        g[i * p[j]] = 1 + p[j];
+=== "C++"
+
+    ```cpp
+    void pre() {
+      g[1] = f[1] = 1;
+      for (int i = 2; i <= n; ++i) {
+        if (!v[i]) v[i] = 1, p[++tot] = i, g[i] = i + 1, f[i] = i + 1;
+        for (int j = 1; j <= tot && i <= n / p[j]; ++j) {
+          v[p[j] * i] = 1;
+          if (i % p[j] == 0) {
+            g[i * p[j]] = g[i] * p[j] + 1;
+            f[i * p[j]] = f[i] / g[i] * g[i * p[j]];
+            break;
+          } else {
+            f[i * p[j]] = f[i] * f[p[j]];
+            g[i * p[j]] = 1 + p[j];
+          }
+        }
       }
     }
-  }
-}
-```
+    ```
 
-```python
-# Python Version
-def pre():
-    g[1] = f[1] = 1
-    for i in range(2, n + 1):
-        if v[i] == 0:
-            v[i] = 1; tot = tot + 1; p[tot] = i; g[i] = i + 1; f[i] = i + 1
-        j = 1
-        while j <= tot and i <= n // p[j]:
-            v[p[j] * i] = 1
-            if i % p[j] == 0:
-                g[i * p[j]] = g[i] * p[j] + 1
-                f[i * p[j]] = f[i] // g[i] * g[i * p[j]]
-                break
-            else:
-                f[i * p[j]] = f[i] * f[p[j]]
-                g[i * p[j]] = 1 + p[j]
-```
+=== "Python"
+
+    ```python
+    def pre():
+        g[1] = f[1] = 1
+        for i in range(2, n + 1):
+            if v[i] == 0:
+                v[i] = 1; tot = tot + 1; p[tot] = i; g[i] = i + 1; f[i] = i + 1
+            j = 1
+            while j <= tot and i <= n // p[j]:
+                v[p[j] * i] = 1
+                if i % p[j] == 0:
+                    g[i * p[j]] = g[i] * p[j] + 1
+                    f[i * p[j]] = f[i] // g[i] * g[i * p[j]]
+                    break
+                else:
+                    f[i * p[j]] = f[i] * f[p[j]]
+                    g[i * p[j]] = 1 + p[j]
+    ```
 
 ## 一般的积性函数
 

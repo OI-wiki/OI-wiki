@@ -74,7 +74,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
     
     如果你正在使用 Windows 10 1607 以下版本的 Windows，你的系统不支持 WSL。
 
-1. 以管理员身份打开 Windows Powershell（右击 "开始" 按钮，选择 Windows PowerShell（管理员）或 Windows 终端（管理员）)
+1. 以管理员身份打开 Windows PowerShell（右击 "开始" 按钮，选择 Windows PowerShell（管理员）或 Windows 终端（管理员）)
 
 2. 输入 `wsl --install`，并等待所有组件自动安装完成。期间你可能需要重启你的计算机来启用必要的 Windows 功能。
 
@@ -129,8 +129,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 WSL 1 与 WSL 2 的区别，请见 [比较 WSL 2 和 WSL 1](https://docs.microsoft.com/zh-cn/windows/wsl/compare-versions)
 
 ??? note "关于 systemd"
-    WSL 1 完全不支持 systemd（这意味着一些需要 systemd 的功能无法实现或需要别的 hack），WSL 2 可以使用 [genie](https://github.com/arkane-systems/genie)。
-    此外，[yuk7/arch-systemctl-alt](https://github.com/yuk7/arch-systemctl-alt) 项目提供了一个在 WSL 1 与 2 都可用的 alternative script，但是它只具有部分兼容且只在 ArchWSL 进行了测试。
+    WSL 1 完全不支持 systemd（这意味着一些需要 systemd 的功能无法实现或需要其他替代方案）。WSL 2 已经内建对 systemd 的支持。如果需要使用 systemd，而当前运行的发行版没有配置为启用 systemd，可参考 [WSL 中的高级设置配置](https://learn.microsoft.com/zh-cn/windows/wsl/wsl-config#systemd-support)。
 
 ```powershell
 # 将 WSL 默认版本设置为 WSL 2
