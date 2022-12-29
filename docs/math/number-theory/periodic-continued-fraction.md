@@ -1,4 +1,3 @@
-
 ## 线性分式变换
 
 连分数的另一个重要概念是所谓的线性分式变换（Linear fractional transformations）。
