@@ -1,10 +1,10 @@
 本页面将简要介绍冒泡排序。
 
-## 简介
+## 定义
 
 冒泡排序（英语：Bubble sort）是一种简单的排序算法。由于在算法的执行过程中，较小的元素像是气泡般慢慢「浮」到数列的顶端，故叫做冒泡排序。
 
-## 工作原理
+## 过程
 
 它的工作原理是每次检查相邻两个元素，如果前面的元素与后面的元素满足给定的排序条件，就将相邻两个元素交换。当没有相邻的元素需要交换时，排序就完成了。
 
@@ -43,37 +43,35 @@ $$
 \end{array}
 $$
 
-### C++
+=== "C++"
 
-```cpp
-// C++ Version
-// 假设数组的大小是n+1，冒泡排序从数组下标1开始
-void bubble_sort(int *a, int n) {
-  bool flag = true;
-  while (flag) {
-    flag = false;
-    for (int i = 1; i < n; ++i) {
-      if (a[i] > a[i + 1]) {
-        flag = true;
-        int t = a[i];
-        a[i] = a[i + 1];
-        a[i + 1] = t;
+    ```cpp
+    // 假设数组的大小是 n + 1，冒泡排序从数组下标 1 开始
+    void bubble_sort(int *a, int n) {
+      bool flag = true;
+      while (flag) {
+        flag = false;
+        for (int i = 1; i < n; ++i) {
+          if (a[i] > a[i + 1]) {
+            flag = true;
+            int t = a[i];
+            a[i] = a[i + 1];
+            a[i + 1] = t;
+          }
+        }
       }
     }
-  }
-}
-```
+    ```
 
-### Python
+=== "Python"
 
-```python
-# Python Version
-def bubble_sort(a, n):
-    flag = True
-    while flag:
-        flag = False
-        for i in range(1, n):
-            if a[i] > a[i + 1]:
-                flag = True
-                a[i], a[i + 1] = a[i + 1], a[i]
-```
+    ```python
+    def bubble_sort(a, n):
+        flag = True
+        while flag:
+            flag = False
+            for i in range(1, n):
+                if a[i] > a[i + 1]:
+                    flag = True
+                    a[i], a[i + 1] = a[i + 1], a[i]
+    ```

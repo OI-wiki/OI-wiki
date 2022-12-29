@@ -1,6 +1,6 @@
 author: hydingsy, hyp1231, ranwen
 
-## 莫比乌斯反演
+## 引入
 
 莫比乌斯反演是数论中的重要内容。对于一些函数 $f(n)$，如果很难直接求出它的值，而容易求出其倍数和或约数和 $g(n)$，那么可以通过莫比乌斯反演简化运算，求得 $f(n)$ 的值。
 
@@ -68,40 +68,42 @@ $$
 由于 $\mu$ 函数为积性函数，因此可以线性筛莫比乌斯函数（线性筛基本可以求所有的积性函数，尽管方法不尽相同）。
 
 ???+ note "线性筛实现"
-    ```cpp
-    // C++ Version
-    void getMu() {
-      mu[1] = 1;
-      for (int i = 2; i <= n; ++i) {
-        if (!flg[i]) p[++tot] = i, mu[i] = -1;
-        for (int j = 1; j <= tot && i * p[j] <= n; ++j) {
-          flg[i * p[j]] = 1;
-          if (i % p[j] == 0) {
-            mu[i * p[j]] = 0;
-            break;
-          }
-          mu[i * p[j]] = -mu[i];
-        }
-      }
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def getMu():
-    mu[1] = 1
-    for i in range(2, n + 1):
-        if flg[i] != 0:
-            p[tot] = i; tot = tot + 1; mu[i] = -1
-        j = 1
-        while j <= tot and i * p[j] <= n:
-            flg[i * p[j]] = 1
-            if i % p[j] == 0:
-                mu[i * p[j]] = 0
-                break
-            mu[i * p[j]] = mu[i * p[j]] - mu[i]
-            j = j + 1
-    ```
+        ```cpp
+        void getMu() {
+          mu[1] = 1;
+          for (int i = 2; i <= n; ++i) {
+            if (!flg[i]) p[++tot] = i, mu[i] = -1;
+            for (int j = 1; j <= tot && i * p[j] <= n; ++j) {
+              flg[i * p[j]] = 1;
+              if (i % p[j] == 0) {
+                mu[i * p[j]] = 0;
+                break;
+              }
+              mu[i * p[j]] = -mu[i];
+            }
+          }
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def getMu():
+        mu[1] = 1
+        for i in range(2, n + 1):
+            if flg[i] != 0:
+                p[tot] = i; tot = tot + 1; mu[i] = -1
+            j = 1
+            while j <= tot and i * p[j] <= n:
+                flg[i * p[j]] = 1
+                if i % p[j] == 0:
+                    mu[i * p[j]] = 0
+                    break
+                mu[i * p[j]] = mu[i * p[j]] - mu[i]
+                j = j + 1
+        ```
 
 ### 拓展
 

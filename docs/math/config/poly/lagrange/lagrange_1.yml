@@ -1,0 +1,10 @@
+id: oi-wiki:math/lagrange-1
+name: Lagrange
+solution:
+  cpp: docs/math/code/poly/lagrange/lagrange_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/examples/poly/lagrange/lagrange_1.ans
+  input: docs/math/examples/poly/lagrange/lagrange_1.in
+version: 1000

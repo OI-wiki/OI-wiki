@@ -225,7 +225,7 @@ $$
 
 ??? note " 例题：[POJ 1679](http://poj.org/problem?id=1679)"
     ```cpp
-      --8<-- "docs/graph/code/mst/mst_1.cpp"
+    --8<-- "docs/graph/code/mst/mst_1.cpp"
     ```
 
 ## 次小生成树
@@ -500,7 +500,7 @@ int main() {
 
 ??? note "[「LOJ 137」最小瓶颈路 加强版](https://loj.ac/problem/137)"
     ```cpp
-      --8<-- "docs/graph/code/mst/mst_2.cpp"
+    --8<-- "docs/graph/code/mst/mst_2.cpp"
     ```
 
 ??? note "[NOI 2018 归程](https://uoj.ac/problem/393)"

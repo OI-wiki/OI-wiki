@@ -2,19 +2,21 @@ author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsf
 
 本页面将简要介绍倍增法。
 
-## 简介
+## 定义
 
 倍增法（英语：binary lifting），顾名思义就是翻倍。它能够使线性的处理转化为对数级的处理，大大地优化时间复杂度。
 
 这个方法在很多算法中均有应用，其中最常用的是 RMQ 问题和求 [LCA（最近公共祖先）](../graph/lca.md)。
 
-## RMQ 问题
+## 应用
+
+### RMQ 问题
 
 参见：[RMQ 专题](../topic/rmq.md)
 
 RMQ 是 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）值。使用倍增思想解决 RMQ 问题的方法是 [ST 表](../ds/sparse-table.md)。
 
-## 树上倍增求 LCA
+### 树上倍增求 LCA
 
 参见：[最近公共祖先](../graph/lca.md)
 
@@ -97,7 +99,7 @@ RMQ 是 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）�
       int ans = 0;
       int curx = 1;
       for (int i = 0; m; ++i) {
-        if (m & (1 << i)) {  // 参见位运算的相关内容，意为 m 的第 i 位是否为 1
+        if (m & (1ll << i)) {  // 参见位运算的相关内容，意为 m 的第 i 位是否为 1
           ans = modadd(ans, sum[i][curx]);
           curx = go[i][curx];
           m ^= 1ll << i;  // 将第 i 位置零

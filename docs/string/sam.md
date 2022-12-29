@@ -16,7 +16,7 @@ author: abc1763613206, ksyx
 
 直观上，字符串的 SAM 可以理解为给定字符串的 **所有子串** 的压缩形式。值得注意的事实是，SAM 将所有的这些信息以高度压缩的形式储存。对于一个长度为 $n$ 的字符串，它的空间复杂度仅为 $O(n)$。此外，构造 SAM 的时间复杂度仅为 $O(n)$。准确地说，一个 SAM 最多有 $2n-1$ 个节点和 $3n-4$ 条转移边。
 
-## SAM 的定义
+## 定义
 
 字符串 $s$ 的 SAM 是一个接受 $s$ 的所有后缀的最小 **DFA**（确定性有限自动机或确定性有限状态自动机）。
 
@@ -36,7 +36,7 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
 
 到达某个状态的路径可能不止一条，因此我们说一个状态对应一些字符串的集合，这个集合的每个元素对应这些路径。
 
-### 构造 SAM
+### 构建过程
 
 我们将会在这里展示一些简单的字符串的后缀自动机。
 
@@ -66,7 +66,7 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
 
 ![](./images/SAM/SAabbb.svg)
 
-## 在线性时间内构造 SAM
+## 在线性时间内构造
 
 在我们描述线性时间内构造 SAM 的算法之前，我们需要引入几个对理解构造过程非常重要的概念并对其进行简单证明。
 
@@ -99,11 +99,12 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
 
 > **引理 3：** 考虑一个 $\operatorname{endpos}$ 等价类，将类中的所有子串按长度非递增的顺序排序。每个子串都不会比它前一个子串长，与此同时每个子串也是它前一个子串的后缀。换句话说，对于同一等价类的任一两子串，较短者为较长者的后缀，且该等价类中的子串长度恰好覆盖整个区间 $[x,y]$。
 
-证明：如果 $\operatorname{endpos}$ 等价类中只包含一个子串，引理显然成立。现在我们来讨论子串元素个数大于 $1$ 的等价类。
-
-由引理 1，两个不同的 $\operatorname{endpos}$ 等价的字符串中，较短者总是较长者的真后缀。因此，等价类中没有等长的字符串。
-
-记 $w$ 为等价类中最长的字符串、$u$ 为等价类中最短的字符串。由引理 1，字符串 $u$ 是字符串 $w$ 的真后缀。现在考虑长度在区间 $[\left|u\right|,\left|w\right|]$ 中的 $w$ 的任意后缀。容易看出，这个后缀也在同一等价类中，因为这个后缀只能在字符串 $s$ 中以 $w$ 的一个后缀的形式存在（也因为较短的后缀 $u$ 在 $s$ 中只以 $w$ 的后缀的形式存在）。因此，由引理 1，这个后缀和字符串 $w$ 的 $\operatorname{endpos}$ 相同。
+???+note "证明"
+    如果 $\operatorname{endpos}$ 等价类中只包含一个子串，引理显然成立。现在我们来讨论子串元素个数大于 $1$ 的等价类。
+    
+    由引理 1，两个不同的 $\operatorname{endpos}$ 等价的字符串中，较短者总是较长者的真后缀。因此，等价类中没有等长的字符串。
+    
+    记 $w$ 为等价类中最长的字符串、$u$ 为等价类中最短的字符串。由引理 1，字符串 $u$ 是字符串 $w$ 的真后缀。现在考虑长度在区间 $[\left|u\right|,\left|w\right|]$ 中的 $w$ 的任意后缀。容易看出，这个后缀也在同一等价类中，因为这个后缀只能在字符串 $s$ 中以 $w$ 的一个后缀的形式存在（也因为较短的后缀 $u$ 在 $s$ 中只以 $w$ 的后缀的形式存在）。因此，由引理 1，这个后缀和字符串 $w$ 的 $\operatorname{endpos}$ 相同。
 
 ### 后缀链接 `link`
 
@@ -160,6 +161,8 @@ $$
 为了保证线性的空间复杂度，我们将只保存 $\operatorname{len}$ 和 $\operatorname{link}$ 的值和每个状态的转移列表，我们不会标记终止状态（但是我们稍后会展示在构造 SAM 后如何分配这些标记）。
 
 一开始 SAM 只包含一个状态 $t_0$，编号为 $0$（其它状态的编号为 $1,2,\ldots$）。为了方便，对于状态 $t_0$ 我们指定 $\operatorname{len}=0$、$\operatorname{link}=-1$（$-1$ 表示虚拟状态）。
+
+#### 过程
 
 现在，任务转化为实现给当前字符串添加一个字符 $c$ 的过程。算法流程如下：
 
@@ -248,36 +251,37 @@ void sam_init() {
 
 最终我们给出主函数的实现：给当前行末增加一个字符，对应地在之前的基础上建造自动机。
 
-```cpp
-void sam_extend(char c) {
-  int cur = sz++;
-  st[cur].len = st[last].len + 1;
-  int p = last;
-  while (p != -1 && !st[p].next.count(c)) {
-    st[p].next[c] = cur;
-    p = st[p].link;
-  }
-  if (p == -1) {
-    st[cur].link = 0;
-  } else {
-    int q = st[p].next[c];
-    if (st[p].len + 1 == st[q].len) {
-      st[cur].link = q;
-    } else {
-      int clone = sz++;
-      st[clone].len = st[p].len + 1;
-      st[clone].next = st[q].next;
-      st[clone].link = st[q].link;
-      while (p != -1 && st[p].next[c] == q) {
-        st[p].next[c] = clone;
+???+note "实现"
+    ```cpp
+    void sam_extend(char c) {
+      int cur = sz++;
+      st[cur].len = st[last].len + 1;
+      int p = last;
+      while (p != -1 && !st[p].next.count(c)) {
+        st[p].next[c] = cur;
         p = st[p].link;
       }
-      st[q].link = st[cur].link = clone;
+      if (p == -1) {
+        st[cur].link = 0;
+      } else {
+        int q = st[p].next[c];
+        if (st[p].len + 1 == st[q].len) {
+          st[cur].link = q;
+        } else {
+          int clone = sz++;
+          st[clone].len = st[p].len + 1;
+          st[clone].next = st[q].next;
+          st[clone].link = st[q].link;
+          while (p != -1 && st[p].next[c] == q) {
+            st[p].next[c] = clone;
+            p = st[p].link;
+          }
+          st[q].link = st[cur].link = clone;
+        }
+      }
+      last = cur;
     }
-  }
-  last = cur;
-}
-```
+    ```
 
 正如之前提到的一样，如果你用内存换时间（空间复杂度为 $O(n\left|\Sigma\right|)$，其中 $\left|\Sigma\right|$ 为字符集大小），你可以在 $O(n)$ 的时间内构造字符集大小任意的 SAM。但是这样你需要为每一个状态储存一个大小为 $\left|\Sigma\right|$ 的数组（用于快速跳转到转移的字符），和另外一个所有转移的链表（用于快速在转移中迭代）。
 
@@ -309,7 +313,7 @@ void sam_extend(char c) {
 
 ### 额外信息
 
-观察 [实现](#_8) 中的结构体的每个变量。实际上，尽管 SAM 本身由 `next` 组成，但 SAM 构造算法中作为辅助变量的 `link` 和 `len` 在应用中常常比 `next` 重要，甚至可以抛开 `next` 单独使用。
+观察 [实现](#实现) 中的结构体的每个变量。实际上，尽管 SAM 本身由 `next` 组成，但 SAM 构造算法中作为辅助变量的 `link` 和 `len` 在应用中常常比 `next` 重要，甚至可以抛开 `next` 单独使用。
 
 设字符串的长度为 $n$，考虑 `extend` 操作中 `cur` 变量的值，这个节点对应的状态是<u>执行 `extend` 操作时的当前字符串</u>，即字符串的一个前缀，每个前缀有一个终点。这样得到的 $n$ 个节点，对应了 $n$ 个不同的 **终点**。设第 $i$ 个节点为 $v_i$，对应的是 $S_{1 \ldots i}$，终点是 $i$。姑且把这些节点称之为“终点节点”。
 
@@ -560,7 +564,7 @@ string lcs(const string &S, const string &T) {
       bestpos = i;
     }
   }
-  return t.substr(bestpos - best + 1, best);
+  return T.substr(bestpos - best + 1, best);
 }
 ```
 

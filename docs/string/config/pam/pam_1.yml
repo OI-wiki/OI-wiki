@@ -1,0 +1,10 @@
+id: oi-wiki:string/pam-1
+name: PAM
+solution:
+  cpp: docs/string/code/pam/pam_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/string/examples/pam/pam_1.ans
+  input: docs/string/examples/pam/pam_1.in
+version: 1000

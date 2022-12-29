@@ -1,0 +1,10 @@
+id: oi-wiki:search/astar-1
+name: A Star Search
+solution:
+  cpp: docs/search/code/astar/astar_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/search/examples/astar/astar_1.ans
+  input: docs/search/examples/astar/astar_1.in
+version: 1000

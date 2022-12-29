@@ -2,6 +2,10 @@ FROM ubuntu:22.04
 
 LABEL org.oi-wiki.image.authors="frank99-xu@outlook.com mxr612@icloud.com coelacanthus@outlook.com"
 
+ARG WIKI_REPO PYPI_MIRROR LISTEN_IP LISTEN_PORT
+ENV LISTEN_IP=${LISTEN_IP:-0.0.0.0}
+ENV LISTEN_PORT=${LISTEN_PORT:-8000}
+
 WORKDIR /
 RUN apt-get update \
     && apt-get install -y git wget curl pipenv gcc g++ make \
@@ -17,5 +21,5 @@ RUN git clone ${WIKI_REPO:-https://github.com/OI-wiki/OI-wiki.git} --depth=1 \
 ADD .bashrc /root/
 
 WORKDIR /OI-wiki
-EXPOSE 8000
+EXPOSE ${LISTEN_PORT}
 CMD ["/bin/bash"]

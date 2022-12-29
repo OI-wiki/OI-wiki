@@ -10,7 +10,7 @@
 
 我们发现，传统的线段树无法很好地维护这样的信息。这种情况下，**李超线段树** 便应运而生。
 
-## 李超线段树
+## 过程
 
 我们可以把任务转化为维护如下操作：
 
@@ -18,7 +18,7 @@
 - 给定 $k$，求定义域包含 $k$ 的所有一次函数中，在 $x=k$ 处取值最大的那个，如果有多个函数取值相同，选编号最小的。
 
 ???+warning "注意"
-    当线段垂直于 $y$ 轴时，会出现除以零的情况。假设线段两端点分别为 $(x,y_0)$ 和 $(x,y_1)$，$y_0<y_1$，则插入定义域为 $[x,x]$ 的一次函数 $f(x)=0\cdot x+y_1$。
+    当线段垂直于 $x$ 轴时，会出现除以零的情况。假设线段两端点分别为 $(x,y_0)$ 和 $(x,y_1)$，$y_0<y_1$，则插入定义域为 $[x,x]$ 的一次函数 $f(x)=0\cdot x+y_1$。
 
 看到区间修改，我们按照线段树解决区间问题的常见方法，给每个节点一个懒标记。每个节点 $i$ 的懒标记都是一条线段，记为 $l_i$，表示要用 $l_i$ 更新该节点所表示的整个区间。
 
@@ -35,37 +35,53 @@
 如果新线段 $f$ 更优，则将 $f$ 和 $g$ 交换。那么现在考虑在中点处 $f$ 不如 $g$ 优的情况：
 
 1. 若在左端点处 $f$ 更优，那么 $f$ 和 $g$ 必然在左半区间中产生了交点，$f$ 只有在左区间才可能优于 $g$，递归到左儿子中进行下传；
-2. 若在右端点处 $f$ 更优，那么 $f$ 和 $g$ 必然在右半区间中产生了交点，$f$ 只有在右区间才可能优于 $g$，递归到右儿子中进行插入；
+2. 若在右端点处 $f$ 更优，那么 $f$ 和 $g$ 必然在右半区间中产生了交点，$f$ 只有在右区间才可能优于 $g$，递归到右儿子中进行下传；
 3. 若在左右端点处 $g$ 都更优，那么 $f$ 不可能成为答案，不需要继续下传。
+
+除了这两种情况之外，还有一种情况是 $f$ 和 $g$ 刚好交于中点，在程序实现时可以归入中点处 $f$ 不如 $g$ 优的情况，结果会往 $f$ 更优的一个端点进行递归下传。
 
 最后将 $g$ 作为当前区间的懒标记。
 
 下传标记：
 
-```cpp
-void upd(int root, int cl, int cr, int u) {  // 对线段完全覆盖到的区间进行修改
-  int &v = s[root], mid = (cl + cr) >> 1;
-  if (calc(u, mid) > calc(v, mid)) swap(u, v);
-  if (calc(u, cl) > calc(v, cl)) upd(root << 1, cl, mid, u);
-  if (calc(u, cr) > calc(v, cr)) upd(root << 1 | 1, mid + 1, cr, u);
-  // 上面两个 if 的条件最多只有一个成立，这保证了李超树的时间复杂度
-}
-```
+???+note "实现"
+    ```cpp
+    const double eps = 1e-9;
+    
+    int cmp(double x, double y) {  // 因为用到了浮点数，所以会有精度误差
+      if (x - y > eps) return 1;
+      if (y - x > eps) return -1;
+      return 0;
+    }
+    
+    //...
+    
+    void upd(int root, int cl, int cr, int u) {  // 对线段完全覆盖到的区间进行修改
+      int &v = s[root], mid = (cl + cr) >> 1;
+      if (cmp(calc(u, mid), calc(v, mid)) == 1) swap(u, v);
+      int bl = cmp(calc(u, cl), calc(v, cl)), br = cmp(calc(u, cr), calc(v, cr));
+      if (bl == 1 || (!bl && u < v))  // 在此题中记得判线段编号
+        upd(root << 1, cl, mid, u);
+      if (br == 1 || (!br && u < v)) upd(root << 1 | 1, mid + 1, cr, u);
+      // 上面两个 if 的条件最多只有一个成立，这保证了李超树的时间复杂度
+    }
+    ```
 
 拆分线段：
 
-```cpp
-void update(int root, int cl, int cr, int l, int r,
-            int u) {  // 定位插入线段完全覆盖到的区间
-  if (l <= cl && cr <= r) {
-    upd(root, cl, cr, u);  // 完全覆盖当前区间，更新当前区间的标记
-    return;
-  }
-  int mid = (cl + cr) >> 1;
-  if (l <= mid) update(root << 1, cl, mid, l, r, u);  // 递归拆分区间
-  if (mid < r) update(root << 1 | 1, mid + 1, cr, l, r, u);
-}
-```
+???+note "实现"
+    ```cpp
+    void update(int root, int cl, int cr, int l, int r,
+                int u) {  // 定位插入线段完全覆盖到的区间
+      if (l <= cl && cr <= r) {
+        upd(root, cl, cr, u);  // 完全覆盖当前区间，更新当前区间的标记
+        return;
+      }
+      int mid = (cl + cr) >> 1;
+      if (l <= mid) update(root << 1, cl, mid, l, r, u);  // 递归拆分区间
+      if (mid < r) update(root << 1 | 1, mid + 1, cr, l, r, u);
+    }
+    ```
 
 注意懒标记并不等价于在区间中点处取值最大的线段。
 
@@ -77,16 +93,17 @@ void update(int root, int cl, int cr, int l, int r,
 
 查询：
 
-```cpp
-pdi query(int root, int l, int r, int d) {  // 查询
-  if (r < d || d < l) return {0, 0};
-  int mid = (l + r) >> 1;
-  double res = calc(s[root], d);
-  if (l == r) return {res, s[root]};
-  return pmax({res, s[root]}, pmax(query(root << 1, l, mid, d),
-                                   query(root << 1 | 1, mid + 1, r, d)));
-}
-```
+???+note "实现"
+    ```cpp
+    pdi query(int root, int l, int r, int d) {  // 查询
+      if (r < d || d < l) return {0, 0};
+      int mid = (l + r) >> 1;
+      double res = calc(s[root], d);
+      if (l == r) return {res, s[root]};
+      return pmax({res, s[root]}, pmax(query(root << 1, l, mid, d),
+                                       query(root << 1 | 1, mid + 1, r, d)));
+    }
+    ```
 
 根据上面的描述，查询过程的时间复杂度显然为 $O(\log n)$，而插入过程中，我们需要将原线段拆分到 $O(\log n)$ 个区间中，对于每个区间，我们又需要花费 $O(\log n)$ 的时间递归下传，从而插入过程的时间复杂度为 $O(\log^2 n)$。
 

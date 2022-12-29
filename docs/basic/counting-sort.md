@@ -3,11 +3,11 @@
 
 本页面将简要介绍计数排序。
 
-## 简介
+## 定义
 
 计数排序（英语：Counting sort）是一种线性时间的排序算法。
 
-## 工作原理
+## 过程
 
 计数排序的工作原理是使用一个额外的数组 $C$，其中第 $i$ 个元素是待排序数组 $A$ 中值等于 $i$ 的元素的个数，然后根据数组 $C$ 来将 $A$ 中的元素排到正确的位置。[^ref1]
 
@@ -16,6 +16,18 @@
 1. 计算每个数出现了几次；
 2. 求出每个数出现次数的 [前缀和](./prefix-sum.md)；
 3. 利用出现次数的前缀和，从右至左计算每个数的排名。
+
+### 计算前缀和的原因
+
+*阅读本章内容只需要了解前缀和概念即可*
+
+直接将 $C$ 中正数对应的元素依次放入 $A$ 中不能解决元素重复的情形。
+
+我们通过为额外数组 $C$ 中的每一项计算前缀和，结合每一项的数值，就可以为重复元素确定一个唯一排名：
+
+额外数组 $C$ 中每一项的数值即是该 key 值下重复元素的个数，而该项的前缀和即是排在最后一个的重复元素的排名。
+
+如果按照 $A$ 的逆序进行排列，那么显然排序后的数组将保持 $A$ 的原序（相同 key 值情况下），也即得到一种稳定的排序算法。
 
 ![counting sort animate example](images/counting-sort-1-animate-example.svg)
 
@@ -51,41 +63,39 @@ $$
 \end{array}
 $$
 
-### C++
+=== "C++"
 
-```cpp
-// C++ Version
-const int N = 100010;
-const int W = 100010;
+    ```cpp
+    const int N = 100010;
+    const int W = 100010;
 
-int n, w, a[N], cnt[W], b[N];
+    int n, w, a[N], cnt[W], b[N];
 
-void counting_sort() {
-  memset(cnt, 0, sizeof(cnt));
-  for (int i = 1; i <= n; ++i) ++cnt[a[i]];
-  for (int i = 1; i <= w; ++i) cnt[i] += cnt[i - 1];
-  for (int i = n; i >= 1; --i) b[cnt[a[i]]--] = a[i];
-}
-```
+    void counting_sort() {
+        memset(cnt, 0, sizeof(cnt));
+        for (int i = 1; i <= n; ++i) ++cnt[a[i]];
+        for (int i = 1; i <= w; ++i) cnt[i] += cnt[i - 1];
+        for (int i = n; i >= 1; --i) b[cnt[a[i]]--] = a[i];
+    }
+    ```
 
-### Python
+=== "Python"
 
-```python
-# Python Version
-N = W = 100010
-n = w = 0
-a = b = [0] * N
-cnt = [0] * W
+    ```python
+    N = W = 100010
+    n = w = 0
+    a = b = [0] * N
+    cnt = [0] * W
 
-def counting_sort():
-    for i in range(1, n + 1):
-        cnt[a[i]] += 1
-    for i in range(1, w + 1):
-        cnt[i] += cnt[i - 1]
-    for i in range(n, 0, -1):
-        b[cnt[a[i]] - 1] = a[i]
-        cnt[a[i]] -= 1
-```
+    def counting_sort():
+        for i in range(1, n + 1):
+            cnt[a[i]] += 1
+        for i in range(1, w + 1):
+            cnt[i] += cnt[i - 1]
+        for i in range(n, 0, -1):
+            b[cnt[a[i]] - 1] = a[i]
+            cnt[a[i]] -= 1
+    ```
 
 ## 参考资料与注释
 

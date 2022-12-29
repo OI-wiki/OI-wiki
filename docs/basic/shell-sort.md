@@ -1,10 +1,10 @@
 本页面将简要介绍希尔排序。
 
-## 简介
+## 定义
 
 希尔排序（英语：Shell sort），也称为缩小增量排序法，是 [插入排序](./insertion-sort.md) 的一种改进版本。希尔排序以它的发明者希尔（英语：Donald Shell）命名。
 
-## 工作原理
+## 过程
 
 排序对不相邻的记录进行比较和移动：
 
@@ -30,43 +30,41 @@
 
 ## 实现
 
-### C++[^ref1]
+=== "C++[^ref1]"
 
-```cpp
-// C++ Version
-template <typename T>
-void shell_sort(T array[], int length) {
-  int h = 1;
-  while (h < length / 3) {
-    h = 3 * h + 1;
-  }
-  while (h >= 1) {
-    for (int i = h; i < length; i++) {
-      for (int j = i; j >= h && array[j] < array[j - h]; j -= h) {
-        std::swap(array[j], array[j - h]);
+    ```cpp
+    template <typename T>
+    void shell_sort(T array[], int length) {
+      int h = 1;
+      while (h < length / 3) {
+        h = 3 * h + 1;
+      }
+      while (h >= 1) {
+        for (int i = h; i < length; i++) {
+          for (int j = i; j >= h && array[j] < array[j - h]; j -= h) {
+            std::swap(array[j], array[j - h]);
+          }
+        }
+        h = h / 3;
       }
     }
-    h = h / 3;
-  }
-}
-```
+    ```
 
-### Python
+=== "Python"
 
-```python
-# Python Version
-def shell_sort(array, length):
-    h = 1
-    while h < length / 3:
-        h = int(3 * h + 1)
-    while h >= 1:
-        for i in range(h, length):
-            j = i
-            while j >= h and array[j] < array[j - h]:
-                array[j], array[j - h] = array[j - h], array[j]
-                j -= h
-        h = int(h / 3)
-```
+    ```python
+    def shell_sort(array, length):
+        h = 1
+        while h < length / 3:
+            h = int(3 * h + 1)
+        while h >= 1:
+            for i in range(h, length):
+                j = i
+                while j >= h and array[j] < array[j - h]:
+                    array[j], array[j - h] = array[j - h], array[j]
+                    j -= h
+            h = int(h / 3)
+    ```
 
 ## 参考资料与注释
 

@@ -2,9 +2,9 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-int t, x;
 
 int main() {
+  int t, x;
   scanf("%d", &t);
   while (t--) {
     // 大根堆，维护前一半元素（存小值）
@@ -26,7 +26,7 @@ int main() {
         else
           b.push(x);
       }
-      // 对堆顶堆进行调整
+      // 对对顶堆进行调整
       if (a.size() > (a.size() + b.size() + 1) / 2) {
         b.push(a.top());
         a.pop();

@@ -1,12 +1,12 @@
 本页面将简要介绍快速排序。
 
-## 简介
+## 定义
 
-快速排序（英语：Quicksort），又称分区交换排序（英语：partition-exchange sort），简称快排，是一种被广泛运用的排序算法。
+快速排序（英语：Quicksort），又称分区交换排序（英语：partition-exchange sort），简称「快排」，是一种被广泛运用的排序算法。
 
 ## 基本原理与实现
 
-### 原理
+### 过程
 
 快速排序的工作原理是通过 [分治](./divide-and-conquer.md) 的方式来将一个数组排序。
 
@@ -24,63 +24,61 @@
 
 第三步中的序列已经分别有序且第一个序列中的数都小于第二个数，所以直接拼接起来就好了。
 
-### 实现（C++）[^ref2]
+=== "C++[^ref2]"
 
-```cpp
-// C++ Version
-struct Range {
-  int start, end;
+    ```cpp
+    struct Range {
+      int start, end;
 
-  Range(int s = 0, int e = 0) { start = s, end = e; }
-};
+      Range(int s = 0, int e = 0) { start = s, end = e; }
+    };
 
-template <typename T>
-void quick_sort(T arr[], const int len) {
-  if (len <= 0) return;
-  Range r[len];
-  int p = 0;
-  r[p++] = Range(0, len - 1);
-  while (p) {
-    Range range = r[--p];
-    if (range.start >= range.end) continue;
-    T mid = arr[range.end];
-    int left = range.start, right = range.end - 1;
-    while (left < right) {
-      while (arr[left] < mid && left < right) left++;
-      while (arr[right] >= mid && left < right) right--;
-      std::swap(arr[left], arr[right]);
+    template <typename T>
+    void quick_sort(T arr[], const int len) {
+      if (len <= 0) return;
+      Range r[len];
+      int p = 0;
+      r[p++] = Range(0, len - 1);
+      while (p) {
+        Range range = r[--p];
+        if (range.start >= range.end) continue;
+        T mid = arr[range.end];
+        int left = range.start, right = range.end - 1;
+        while (left < right) {
+          while (arr[left] < mid && left < right) left++;
+          while (arr[right] >= mid && left < right) right--;
+          std::swap(arr[left], arr[right]);
+        }
+        if (arr[left] >= arr[range.end])
+          std::swap(arr[left], arr[range.end]);
+        else
+          left++;
+        r[p++] = Range(range.start, left - 1);
+        r[p++] = Range(left + 1, range.end);
+      }
     }
-    if (arr[left] >= arr[range.end])
-      std::swap(arr[left], arr[range.end]);
-    else
-      left++;
-    r[p++] = Range(range.start, left - 1);
-    r[p++] = Range(left + 1, range.end);
-  }
-}
-```
+    ```
 
-### 实现（Python）[^ref2]
+=== "Python[^ref2]"
 
-```python
-# Python Version
-def quick_sort(alist, first, last):
-    if first >= last:
-        return
-    mid_value = alist[first]
-    low = first
-    high = last
-    while low < high:
-        while low < high and alist[high] >= mid_value:
-            high -= 1
-        alist[low] = alist[high]
-        while low < high and alist[low] < mid_value:
-            low += 1
-        alist[high] = alist[low]
-    alist[low] = mid_value
-    quick_sort(alist, first, low - 1)
-    quick_sort(alist, low + 1, last)
-```
+    ```python
+    def quick_sort(alist, first, last):
+        if first >= last:
+            return
+        mid_value = alist[first]
+        low = first
+        high = last
+        while low < high:
+            while low < high and alist[high] >= mid_value:
+                high -= 1
+            alist[low] = alist[high]
+            while low < high and alist[low] < mid_value:
+                low += 1
+            alist[high] = alist[low]
+        alist[low] = mid_value
+        quick_sort(alist, first, low - 1)
+        quick_sort(alist, low + 1, last)
+    ```
 
 ## 性质
 
@@ -96,49 +94,52 @@ def quick_sort(alist, first, last):
 
 对于最坏情况，每一次选择的分界值都是序列的最值，此时算法时间复杂度满足的递推式为 $T(n) = T(n - 1) + \Theta(n)$，累加可得 $T(n) = \Theta(n^2)$。
 
-对于平均情况，每一次选择的分界值可以看作是等概率随机的。下面我们来证明这种情况下算法的时间复杂度是 $O(n\log n)$。
+对于平均情况，每一次选择的分界值可以看作是等概率随机的。
 
-**引理 1：** 当对 $n$ 个元素的数组进行快速排序时，假设在划分元素时总共的比较次数为 $X$，则快速排序的时间复杂度是 $O(n + X)$。
-
-由于在每次划分元素的过程中，都会选择一个元素作为分界，所以划分元素的过程至多发生 $n$ 次。又由于划分元素的过程中比较的次数和其他基础操作的次数在一个数量级，所以总时间复杂度是 $O(n + X)$ 的。
-
-设 $a_i$ 为原数组中第 $i$ 小的数，定义 $A_{i,j}$ 为 $\{ a_i, a_{i+1}, \dots, a_j \}$，$X_{i,j}$ 是一个取值为 $0$ 或者 $1$ 的离散随机变量表示在排序过程中 $a_i$ 是否和 $a_j$ 发生比较。
-
-显然每次选取的分界值是不同的，而元素只会和分界值比较，所以总比较次数
-
-$$
-\begin{aligned} X = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n X_{i,j} \end{aligned}
-$$
-
-由期望的线性性，
-
-$$
-\begin{aligned} E[X] & = E \left[ \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n X_{i,j} \right] \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n E[X_{i,j}] \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n P(a_i\ \text{和}\ a_j\ \text{比较}) \end{aligned}
-$$
-
-**引理 2：** $a_i$ 和 $a_j$ 比较的充要条件是 $a_i$ 或 $a_j$ 是集合 $A_{i,j}$ 中第一个被选中的分界值。
-
-先证必要性，即若 $a_i$ 和 $a_j$ 都不是集合 $A_{i,j}$ 中第一个被选中的分界值，则 $a_i$ 不和 $a_j$ 比较。
-
-若 $a_i$ 和 $a_j$ 都不是集合 $A_{i,j}$ 中第一个被选中的分界值，则一定存在一个 $x$ 满足 $i < x < j$，使得 $a_x$ 是 $A_{i,j}$ 中第一个被选中的分界值。在以 $a_x$ 为分界值的划分中，$a_i$ 和 $a_j$ 被划分到数组的两个不同的子序列中，所以之后 $a_i$ 和 $a_j$ 一定不会比较。又因为元素只和分界值比较，所以 $a_i$ 和 $a_j$ 在此次划分前和划分中没有比较。所以 $a_i$ 不和 $a_j$ 比较。
-
-再证充分性，即若 $a_i$ 或 $a_j$ 是集合 $A_{i,j}$ 中第一个被选中的分界值，则 $a_i$ 和 $a_j$ 比较。
-
-不失一般地，假设 $a_i$ 是集合 $A_{i,j}$ 中第一个被选中的分界值。由于 $A_{i,j}$ 中没有其他数选为分界值，所以 $A_{i,j}$ 中的元素都在数组的同一子序列中。在以 $a_i$ 为分界值的划分中，$a_i$ 和当前子序列中所有元素都进行了比较，所以 $a_i$ 和 $a_j$ 进行了比较。
-
-考虑计算 $P(a_i\ \text{和}\ a_j\ \text{比较})$。在 $A_{i,j}$ 中某个元素被选为分界值之前，$A_{i,j}$ 中的元素都在数组的同一子序列中。所以 $A_{i,j}$ 中每个元素都会被等可能地第一个被选为分界值。由于 $A_{i,j}$ 中有 $j - i + 1$ 个元素，由引理 2，
-
-$$
-P(a_i \text{和} a_j \text{比较}) = P(a_i \text{或} a_j \text{是集合} A_{i,j} \text{中第一个被选中的分界值}) = \dfrac{2}{j-i+1}
-$$
-
-所以
-
-$$
-\begin{aligned} E[X] & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n P(a_i\ \text{和}\ a_j\ \text{比较}) \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n \dfrac{2}{j - i + 1} \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {k = 2} ^ {n - i + 1} \dfrac{2}{k} \\ & = \sum \limits _ {i = 1} ^ {n - 1} O(\log n) \\ & = O(n \log n) \end{aligned}
-$$
-
-由此，快速排序的期望时间复杂度为 $O(n \log n)$。
+??? note "证明"
+    下面我们来证明这种情况下算法的时间复杂度是 $O(n\log n)$。
+    
+    **引理 1：** 当对 $n$ 个元素的数组进行快速排序时，假设在划分元素时总共的比较次数为 $X$，则快速排序的时间复杂度是 $O(n + X)$。
+    
+    由于在每次划分元素的过程中，都会选择一个元素作为分界，所以划分元素的过程至多发生 $n$ 次。又由于划分元素的过程中比较的次数和其他基础操作的次数在一个数量级，所以总时间复杂度是 $O(n + X)$ 的。
+    
+    设 $a_i$ 为原数组中第 $i$ 小的数，定义 $A_{i,j}$ 为 $\{ a_i, a_{i+1}, \dots, a_j \}$，$X_{i,j}$ 是一个取值为 $0$ 或者 $1$ 的离散随机变量表示在排序过程中 $a_i$ 是否和 $a_j$ 发生比较。
+    
+    显然每次选取的分界值是不同的，而元素只会和分界值比较，所以总比较次数
+    
+    $$
+    \begin{aligned} X = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n X_{i,j} \end{aligned}
+    $$
+    
+    由期望的线性性，
+    
+    $$
+    \begin{aligned} E[X] & = E \left[ \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n X_{i,j} \right] \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n E[X_{i,j}] \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n P(a_i\ \text{和}\ a_j\ \text{比较}) \end{aligned}
+    $$
+    
+    **引理 2：** $a_i$ 和 $a_j$ 比较的充要条件是 $a_i$ 或 $a_j$ 是集合 $A_{i,j}$ 中第一个被选中的分界值。
+    
+    先证必要性，即若 $a_i$ 和 $a_j$ 都不是集合 $A_{i,j}$ 中第一个被选中的分界值，则 $a_i$ 不和 $a_j$ 比较。
+    
+    若 $a_i$ 和 $a_j$ 都不是集合 $A_{i,j}$ 中第一个被选中的分界值，则一定存在一个 $x$ 满足 $i < x < j$，使得 $a_x$ 是 $A_{i,j}$ 中第一个被选中的分界值。在以 $a_x$ 为分界值的划分中，$a_i$ 和 $a_j$ 被划分到数组的两个不同的子序列中，所以之后 $a_i$ 和 $a_j$ 一定不会比较。又因为元素只和分界值比较，所以 $a_i$ 和 $a_j$ 在此次划分前和划分中没有比较。所以 $a_i$ 不和 $a_j$ 比较。
+    
+    再证充分性，即若 $a_i$ 或 $a_j$ 是集合 $A_{i,j}$ 中第一个被选中的分界值，则 $a_i$ 和 $a_j$ 比较。
+    
+    不失一般地，假设 $a_i$ 是集合 $A_{i,j}$ 中第一个被选中的分界值。由于 $A_{i,j}$ 中没有其他数选为分界值，所以 $A_{i,j}$ 中的元素都在数组的同一子序列中。在以 $a_i$ 为分界值的划分中，$a_i$ 和当前子序列中所有元素都进行了比较，所以 $a_i$ 和 $a_j$ 进行了比较。
+    
+    考虑计算 $P(a_i\ \text{和}\ a_j\ \text{比较})$。在 $A_{i,j}$ 中某个元素被选为分界值之前，$A_{i,j}$ 中的元素都在数组的同一子序列中。所以 $A_{i,j}$ 中每个元素都会被等可能地第一个被选为分界值。由于 $A_{i,j}$ 中有 $j - i + 1$ 个元素，由引理 2，
+    
+    $$
+    P(a_i \text{和} a_j \text{比较}) = P(a_i \text{或} a_j \text{是集合} A_{i,j} \text{中第一个被选中的分界值}) = \dfrac{2}{j-i+1}
+    $$
+    
+    所以
+    
+    $$
+    \begin{aligned} E[X] & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n P(a_i\ \text{和}\ a_j\ \text{比较}) \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n \dfrac{2}{j - i + 1} \\ & = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {k = 2} ^ {n - i + 1} \dfrac{2}{k} \\ & = \sum \limits _ {i = 1} ^ {n - 1} O(\log n) \\ & = O(n \log n) \end{aligned}
+    $$
+    
+    由此，快速排序的期望时间复杂度为 $O(n \log n)$。
 
 ## 优化
 
@@ -156,74 +157,90 @@ $$
 
 ### 三路快速排序
 
+#### 定义
+
 三路快速排序（英语：3-way Radix Quicksort）是快速排序和 [基数排序](./radix-sort.md) 的混合。它的算法思想基于 [荷兰国旗问题](https://en.wikipedia.org/wiki/Dutch_national_flag_problem) 的解法。
+
+#### 过程
 
 与原始的快速排序不同，三路快速排序在随机选取分界点 $m$ 后，将待排数列划分为三个部分：小于 $m$、等于 $m$ 以及大于 $m$。这样做即实现了将与分界元素相等的元素聚集在分界元素周围这一效果。
 
+#### 性质
+
 三路快速排序在处理含有多个重复值的数组时，效率远高于原始快速排序。其最佳时间复杂度为 $O(n)$。
+
+#### 实现
 
 三路快速排序实现起来非常简单，下面给出了一种三路快排的 C++ 实现。
 
-```cpp
-// C++ Version
-// 模板的T参数表示元素的类型，此类型需要定义小于（<）运算
-template <typename T>
-// arr 为需要被排序的数组，len 为数组长度
-void quick_sort(T arr[], const int len) {
-  if (len <= 1) return;
-  // 随机选择基准（pivot）
-  const T pivot = arr[rand() % len];
-  // i：当前操作的元素
-  // j：第一个等于 pivot 的元素
-  // k：第一个大于 pivot 的元素
-  int i = 0, j = 0, k = len;
-  // 完成一趟三路快排，将序列分为：
-  // 小于 pivot 的元素｜ 等于 pivot 的元素 ｜ 大于 pivot 的元素
-  while (i < k) {
-    if (arr[i] < pivot)
-      swap(arr[i++], arr[j++]);
-    else if (pivot < arr[i])
-      swap(arr[i], arr[--k]);
-    else
-      i++;
-  }
-  // 递归完成对于两个子序列的快速排序
-  quick_sort(arr, j);
-  quick_sort(arr + k, len - k);
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def quick_sort(arr, l, r):
-    if l >= r:
-        return
-    random_index = random.randint(l, r)
-    pivot = arr[random_index]
-    arr[l], arr[random_index] = arr[random_index], arr[l]
-    i = l + 1
-    j = l 
-    k = r + 1
-    while i < k:
-        if arr[i] < pivot:
-            arr[i], arr[j + 1] = arr[j + 1], arr[i]
-            j += 1
-            i += 1
-        elif arr[i] > pivot:
-            arr[i], arr[k - 1] = arr[k - 1], arr[i]
-            k -= 1
-        else: 
-            i += 1
-    arr[l], arr[j] = arr[j], arr[l]
-    quick_sort(arr, l, j - 1)
-    quick_sort(arr, k, r)
-```
+    ```cpp
+    // 模板的 T 参数表示元素的类型，此类型需要定义小于（<）运算
+    template <typename T>
+    // arr 为需要被排序的数组，len 为数组长度
+    void quick_sort(T arr[], const int len) {
+      if (len <= 1) return;
+      // 随机选择基准（pivot）
+      const T pivot = arr[rand() % len];
+      // i：当前操作的元素
+      // j：第一个等于 pivot 的元素
+      // k：第一个大于 pivot 的元素
+      int i = 0, j = 0, k = len;
+      // 完成一趟三路快排，将序列分为：
+      // 小于 pivot 的元素｜ 等于 pivot 的元素 ｜ 大于 pivot 的元素
+      while (i < k) {
+        if (arr[i] < pivot)
+          swap(arr[i++], arr[j++]);
+        else if (pivot < arr[i])
+          swap(arr[i], arr[--k]);
+        else
+          i++;
+      }
+      // 递归完成对于两个子序列的快速排序
+      quick_sort(arr, j);
+      quick_sort(arr + k, len - k);
+    }
+    ```
+
+=== "Python[^ref2]"
+
+    ```python
+    def quick_sort(arr, l, r):
+        if l >= r:
+            return
+        random_index = random.randint(l, r)
+        pivot = arr[random_index]
+        arr[l], arr[random_index] = arr[random_index], arr[l]
+        i = l + 1
+        j = l 
+        k = r + 1
+        while i < k:
+            if arr[i] < pivot:
+                arr[i], arr[j + 1] = arr[j + 1], arr[i]
+                j += 1
+                i += 1
+            elif arr[i] > pivot:
+                arr[i], arr[k - 1] = arr[k - 1], arr[i]
+                k -= 1
+            else: 
+                i += 1
+        arr[l], arr[j] = arr[j], arr[l]
+        quick_sort(arr, l, j - 1)
+        quick_sort(arr, k, r)
+    ```
 
 ### 内省排序[^ref4]
 
+#### 定义
+
 内省排序（英语：Introsort 或 Introspective sort）是快速排序和 [堆排序](./heap-sort.md) 的结合，由 David Musser 于 1997 年发明。内省排序其实是对快速排序的一种优化，保证了最差时间复杂度为 $O(n\log n)$。
 
+#### 性质
+
 内省排序将快速排序的最大递归深度限制为 $\lfloor \log_2n \rfloor$，超过限制时就转换为堆排序。这样既保留了快速排序内存访问的局部性，又可以防止快速排序在某些情况下性能退化为 $O(n^2)$。
+
+#### 实现
 
 从 2000 年 6 月起，SGI C++ STL 的 `stl_algo.h` 中 `sort()` 函数的实现采用了内省排序算法。
 
