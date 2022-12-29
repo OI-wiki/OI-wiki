@@ -53,42 +53,44 @@ Hash 函数值一样时原字符串却不一样的现象我们成为哈希碰撞
 
 参考代码：（效率低下的版本，实际使用时一般不会这么写）
 
-```cpp
-// C++ Version
-using std::string;
+=== "C++"
 
-const int M = 1e9 + 7;
-const int B = 233;
+    ```cpp
+    using std::string;
 
-typedef long long ll;
+    const int M = 1e9 + 7;
+    const int B = 233;
 
-int get_hash(const string& s) {
-  int res = 0;
-  for (int i = 0; i < s.size(); ++i) {
-    res = (ll)(res * B + s[i]) % M;
-  }
-  return res;
-}
+    typedef long long ll;
 
-bool cmp(const string& s, const string& t) {
-  return get_hash(s) == get_hash(t);
-}
-```
+    int get_hash(const string& s) {
+      int res = 0;
+      for (int i = 0; i < s.size(); ++i) {
+        res = (ll)(res * B + s[i]) % M;
+      }
+      return res;
+    }
 
-```python
-# Python Version
-M = int(1e9 + 7)
-B = 233
+    bool cmp(const string& s, const string& t) {
+      return get_hash(s) == get_hash(t);
+    }
+    ```
 
-def get_hash(s):
-    res = 0
-    for char in s:
-        res = (res * B + ord(char)) % M
-    return res
+=== "Python"
 
-def cmp(s, t):
-    return get_hash(s) == get_hash(t)
-```
+    ```python
+    M = int(1e9 + 7)
+    B = 233
+
+    def get_hash(s):
+        res = 0
+        for char in s:
+            res = (res * B + ord(char)) % M
+        return res
+
+    def cmp(s, t):
+        return get_hash(s) == get_hash(t)
+    ```
 
 ## Hash 的分析与改进
 
@@ -104,9 +106,9 @@ def cmp(s, t):
 
 一般采取的方法是对整个字符串先预处理出每个前缀的哈希值，将哈希值看成一个 $b$ 进制的数对 $M$ 取模的结果，这样的话每次就能快速求出子串的哈希了：
 
-令 $f_i(s)$ 表示 $f(s[1..i])$，即原串长度为 $i$ 的前缀的哈希值，那么按照定义有 $f_i(s)=s[1]\cdot b^{i-1}+s[2]\cdot b^{i-2}+...+s[i-1]\cdot b+s[i]$
+令 $f_i(s)$ 表示 $f(s[1..i])$，即原串长度为 $i$ 的前缀的哈希值，那么按照定义有 $f_i(s)=s[1]\cdot b^{i-1}+s[2]\cdot b^{i-2}+\dots+s[i-1]\cdot b+s[i]$
 
-现在，我们想要用类似前缀和的方式快速求出 $f(s[l..r])$，按照定义有字符串 $s[l..r]$ 的哈希值为 $f(s[l..r])=s[l]\cdot b^{r-l}+s[l+1]\cdot b^{r-l-1}+...+s[r-1]\cdot b+s[r]$
+现在，我们想要用类似前缀和的方式快速求出 $f(s[l..r])$，按照定义有字符串 $s[l..r]$ 的哈希值为 $f(s[l..r])=s[l]\cdot b^{r-l}+s[l+1]\cdot b^{r-l-1}+\dots+s[r-1]\cdot b+s[r]$
 
 对比观察上述两个式子，我们发现 $f(s[l..r])=f_r(s)-f_{l-1}(s) \times b^{r-l+1}$ 成立（可以手动代入验证一下），因此我们用这个式子就可以快速得到子串的哈希值。其中 $b^{r-l+1}$ 可以 $O(n)$ 的预处理出来然后 $O(1)$ 的回答每次询问（当然也可以快速幂 $O(\log n)$ 的回答每次询问）。
 

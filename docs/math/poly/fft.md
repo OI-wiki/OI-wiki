@@ -33,13 +33,13 @@ $$
 设 $f(t)$ 是关于时间 $t$ 的函数，则傅里叶变换可以检测频率 $\omega$ 的周期在 $f(t)$ 出现的程度：
 
 $$
-F(\omega)=\mathbb{F}[f(t)]=\int_{-\infty}^{\infty}f(t)e^{-iwt}dt
+F(\omega)=\mathbb{F}[f(t)]=\int_{-\infty}^{\infty}f(t)e^{-i{\omega}t}dt
 $$
 
 它的逆变换是
 
 $$
-f(t)=\mathbb{F}^{-1}[F(\omega)]=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)e^{iwt}dt
+f(t)=\mathbb{F}^{-1}[F(\omega)]=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)e^{i{\omega}t}d\omega
 $$
 
 逆变换的形式与正变换非常类似，分母 $2\pi$ 恰好是指数函数的周期。
@@ -513,7 +513,7 @@ $$
 
 ??? "FFT 模板（ [HDU 1402 -	A * B Problem Plus](http://acm.hdu.edu.cn/showproblem.php?pid=1402) ）"
     ```cpp
-      --8<-- "docs/math/code/poly/fft/fft_3.cpp"
+    --8<-- "docs/math/code/poly/fft/fft_3.cpp"
     ```
 
 ## 参考文献

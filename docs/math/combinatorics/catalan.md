@@ -46,33 +46,35 @@ $$
 ??? note " 例题[洛谷 P1044 栈](https://www.luogu.com.cn/problem/P1044)"
     题目大意：入栈顺序为 $1,2,\ldots ,n$，求所有可能的出栈顺序的总数。
 
-```cpp
-// C++ Version
-#include <iostream>
-using namespace std;
-int n;
-long long f[25];
+=== "C++"
 
-int main() {
-  f[0] = 1;
-  cin >> n;
-  for (int i = 1; i <= n; i++) f[i] = f[i - 1] * (4 * i - 2) / (i + 1);
-  // 这里用的是常见公式2
-  cout << f[n] << endl;
-  return 0;
-}
-```
+    ```cpp
+    #include <iostream>
+    using namespace std;
+    int n;
+    long long f[25];
 
-```python
-# Python Version
-f = [0] * 25
-f[0] = 1
-n = int(input())
-for i in range(1, n + 1):
-    f[i] = int(f[i - 1] * (4 * i - 2) // (i + 1))
-    # 这里用的是常见公式2
-print(f[n])
-```
+    int main() {
+      f[0] = 1;
+      cin >> n;
+      for (int i = 1; i <= n; i++) f[i] = f[i - 1] * (4 * i - 2) / (i + 1);
+      // 这里用的是常见公式2
+      cout << f[n] << endl;
+      return 0;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    f = [0] * 25
+    f[0] = 1
+    n = int(input())
+    for i in range(1, n + 1):
+        f[i] = int(f[i - 1] * (4 * i - 2) // (i + 1))
+        # 这里用的是常见公式2
+    print(f[n])
+    ```
 
 ## 封闭形式
 

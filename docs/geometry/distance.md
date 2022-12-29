@@ -147,34 +147,36 @@ $$
 只要分别求出 $x+y, x-y$ 的最大值和最小值即能得出答案。
 
 ??? note "参考代码"
-    ```cpp
-    // C++ Version
-    #include <bits/stdc++.h>
-    using namespace std;
+    === "C++"
     
-    int main() {
-      int n, x, y, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
-      scanf("%d", &n);
-      for (int i = 1; i <= n; i++) {
-        scanf("%d%d", &x, &y);
-        minx = min(minx, x + y), maxx = max(maxx, x + y);
-        miny = min(miny, x - y), maxy = max(maxy, x - y);
-      }
-      printf("%d\n", max(maxx - minx, maxy - miny));
-      return 0;
-    }
-    ```
+        ```cpp
+        #include <bits/stdc++.h>
+        using namespace std;
     
-    ```python
-    # Python Version
-    minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0
-    n = int(input())
-    for i in range(1, n + 1):
-        x, y = map(lambda x:int(x), input().split())
-        minx = min(minx, x + y); maxx = max(maxx, x + y)
-        miny = min(miny, x - y); maxy = max(maxy, x - y)
-    print(max(maxx - minx, maxy - miny))
-    ```
+        int main() {
+          int n, x, y, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
+          scanf("%d", &n);
+          for (int i = 1; i <= n; i++) {
+            scanf("%d%d", &x, &y);
+            minx = min(minx, x + y), maxx = max(maxx, x + y);
+            miny = min(miny, x - y), maxy = max(maxy, x - y);
+          }
+          printf("%d\n", max(maxx - minx, maxy - miny));
+          return 0;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0
+        n = int(input())
+        for i in range(1, n + 1):
+            x, y = map(lambda x:int(x), input().split())
+            minx = min(minx, x + y); maxx = max(maxx, x + y)
+            miny = min(miny, x - y); maxy = max(maxy, x - y)
+        print(max(maxx - minx, maxy - miny))
+        ```
 
 其实还有第二种做法，那就是把曼哈顿距离转化为切比雪夫距离求解，最后部分会讲到。
 
@@ -316,36 +318,38 @@ $$
 现要使得横坐标之差和纵坐标之差最大，只需要预处理出 $x,y$ 的最大值和最小值即可。
 
 ??? note "参考代码"
-    ```cpp
-    // C++ Version
-    #include <bits/stdc++.h>
-    using namespace std;
+    === "C++"
     
-    int main() {
-      int n, x, y, a, b, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
-      scanf("%d", &n);
-      for (int i = 1; i <= n; i++) {
-        scanf("%d%d", &a, &b);
-        x = a + b, y = a - b;
-        minx = min(minx, x), maxx = max(maxx, x);
-        miny = min(miny, y), maxy = max(maxy, y);
-      }
-      printf("%d\n", max(maxx - minx, maxy - miny));
-      return 0;
-    }
-    ```
+        ```cpp
+        #include <bits/stdc++.h>
+        using namespace std;
     
-    ```python
-    # Python Version
-    minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0
-    n = int(input())
-    for i in range(1, n + 1):
-        a, b = map(lambda x:int(x), input().split())
-        x = a + b; y = a - b
-        minx = min(minx, x); maxx = max(maxx, x)
-        miny = min(miny, y); maxy = max(maxy, y)
-    print(max(maxx - minx, maxy - miny))
-    ```
+        int main() {
+          int n, x, y, a, b, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
+          scanf("%d", &n);
+          for (int i = 1; i <= n; i++) {
+            scanf("%d%d", &a, &b);
+            x = a + b, y = a - b;
+            minx = min(minx, x), maxx = max(maxx, x);
+            miny = min(miny, y), maxy = max(maxy, y);
+          }
+          printf("%d\n", max(maxx - minx, maxy - miny));
+          return 0;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0
+        n = int(input())
+        for i in range(1, n + 1):
+            a, b = map(lambda x:int(x), input().split())
+            x = a + b; y = a - b
+            minx = min(minx, x); maxx = max(maxx, x)
+            miny = min(miny, y); maxy = max(maxy, y)
+        print(max(maxx - minx, maxy - miny))
+        ```
 
 对比两份代码，我们又能够发现，两种不同的思路，写出来的代码却是完全等价的，是不是很神奇呢？当然，更高深的东西需要大家另行研究。
 

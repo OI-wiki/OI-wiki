@@ -14,79 +14,81 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 使用一个数组来存边，数组中的每个元素都包含一条边的起点与终点（带边权的图还包含边权）。（或者使用多个数组分别存起点，终点和边权。）
 
 ??? note "参考代码"
-    ```cpp
-    // C++ Version
-    #include <iostream>
-    #include <vector>
+    === "C++"
     
-    using namespace std;
+        ```cpp
+        #include <iostream>
+        #include <vector>
     
-    struct Edge {
-      int u, v;
-    };
+        using namespace std;
     
-    int n, m;
-    vector<Edge> e;
-    vector<bool> vis;
+        struct Edge {
+          int u, v;
+        };
     
-    bool find_edge(int u, int v) {
-      for (int i = 1; i <= m; ++i) {
-        if (e[i].u == u && e[i].v == v) {
-          return true;
+        int n, m;
+        vector<Edge> e;
+        vector<bool> vis;
+    
+        bool find_edge(int u, int v) {
+          for (int i = 1; i <= m; ++i) {
+            if (e[i].u == u && e[i].v == v) {
+              return true;
+            }
+          }
+          return false;
         }
-      }
-      return false;
-    }
     
-    void dfs(int u) {
-      if (vis[u]) return;
-      vis[u] = true;
-      for (int i = 1; i <= m; ++i) {
-        if (e[i].u == u) {
-          dfs(e[i].v);
+        void dfs(int u) {
+          if (vis[u]) return;
+          vis[u] = true;
+          for (int i = 1; i <= m; ++i) {
+            if (e[i].u == u) {
+              dfs(e[i].v);
+            }
+          }
         }
-      }
-    }
     
-    int main() {
-      cin >> n >> m;
+        int main() {
+          cin >> n >> m;
     
-      vis.resize(n + 1, false);
-      e.resize(m + 1);
+          vis.resize(n + 1, false);
+          e.resize(m + 1);
     
-      for (int i = 1; i <= m; ++i) cin >> e[i].u >> e[i].v;
+          for (int i = 1; i <= m; ++i) cin >> e[i].u >> e[i].v;
     
-      return 0;
-    }
-    ```
+          return 0;
+        }
+        ```
     
-    ```python
-    # Python Version
-    class Edge:
-        u = 0
-        v = 0
+    === "Python"
     
-    n, m = map(lambda x:int(x), input().split())
+        ```python
+        class Edge:
+            u = 0
+            v = 0
     
-    e = [Edge()] * m; vis = [False] * n
+        n, m = map(lambda x:int(x), input().split())
     
-    for i in range(0, m):
-        e[i].u, e[i].v = map(lambda x:int(x), input().split())
+        e = [Edge()] * m; vis = [False] * n
     
-    def find_edge(u, v):
-        for i in range(1, m + 1):
-            if e[i].u == u and e[i].v == v:
-                return True
-        return False
+        for i in range(0, m):
+            e[i].u, e[i].v = map(lambda x:int(x), input().split())
     
-    def dfs(u):
-        if vis[u]:
-            return
-        vis[u] = True
-        for i in range(1, m + 1):
-            if e[i].u == u:
-                dfs(e[i].v)
-    ```
+        def find_edge(u, v):
+            for i in range(1, m + 1):
+                if e[i].u == u and e[i].v == v:
+                    return True
+            return False
+    
+        def dfs(u):
+            if vis[u]:
+                return
+            vis[u] = True
+            for i in range(1, m + 1):
+                if e[i].u == u:
+                    dfs(e[i].v)
+        ```
 
 ### 复杂度
 
@@ -113,65 +115,67 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 使用一个二维数组 `adj` 来存边，其中 `adj[u][v]` 为 1 表示存在 $u$ 到 $v$ 的边，为 0 表示不存在。如果是带边权的图，可以在 `adj[u][v]` 中存储 $u$ 到 $v$ 的边的边权。
 
 ??? note "参考代码"
-    ```cpp
-    // C++ Version
-    #include <iostream>
-    #include <vector>
+    === "C++"
     
-    using namespace std;
+        ```cpp
+        #include <iostream>
+        #include <vector>
     
-    int n, m;
-    vector<bool> vis;
-    vector<vector<bool> > adj;
+        using namespace std;
     
-    bool find_edge(int u, int v) { return adj[u][v]; }
+        int n, m;
+        vector<bool> vis;
+        vector<vector<bool> > adj;
     
-    void dfs(int u) {
-      if (vis[u]) return;
-      vis[u] = true;
-      for (int v = 1; v <= n; ++v) {
-        if (adj[u][v]) {
-          dfs(v);
+        bool find_edge(int u, int v) { return adj[u][v]; }
+    
+        void dfs(int u) {
+          if (vis[u]) return;
+          vis[u] = true;
+          for (int v = 1; v <= n; ++v) {
+            if (adj[u][v]) {
+              dfs(v);
+            }
+          }
         }
-      }
-    }
     
-    int main() {
-      cin >> n >> m;
+        int main() {
+          cin >> n >> m;
     
-      vis.resize(n + 1, false);
-      adj.resize(n + 1, vector<bool>(n + 1, false));
+          vis.resize(n + 1, false);
+          adj.resize(n + 1, vector<bool>(n + 1, false));
     
-      for (int i = 1; i <= m; ++i) {
-        int u, v;
-        cin >> u >> v;
-        adj[u][v] = true;
-      }
+          for (int i = 1; i <= m; ++i) {
+            int u, v;
+            cin >> u >> v;
+            adj[u][v] = true;
+          }
     
-      return 0;
-    }
-    ```
+          return 0;
+        }
+        ```
     
-    ```python
-    # Python Version
-    vis = [False] * (n + 1)
-    adj = [[False]] * (n + 1)
+    === "Python"
     
-    for i in range(1, m + 1):
-        u, v = map(lambda x:int(x), input().split())
-        adj[u][v] = True
+        ```python
+        vis = [False] * (n + 1)
+        adj = [[False]] * (n + 1)
     
-    def find_edge(u, v):
-        return adj[u][v]
+        for i in range(1, m + 1):
+            u, v = map(lambda x:int(x), input().split())
+            adj[u][v] = True
     
-    def dfs(u):
-        if vis[u]:
-            return
-        vis[u] = True
-        for v in range(1, n + 1):
-            if adj[u][v]:
-                dfs(v)
-    ```
+        def find_edge(u, v):
+            return adj[u][v]
+    
+        def dfs(u):
+            if vis[u]:
+                return
+            vis[u] = True
+            for v in range(1, n + 1):
+                if adj[u][v]:
+                    dfs(v)
+        ```
 
 ### 复杂度
 
@@ -198,70 +202,72 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 使用一个支持动态增加元素的数据结构构成的数组，如 `vector<int> adj[n + 1]` 来存边，其中 `adj[u]` 存储的是点 $u$ 的所有出边的相关信息（终点、边权等）。
 
 ??? note "参考代码"
-    ```cpp
-    // C++ Version
-    #include <iostream>
-    #include <vector>
+    === "C++"
     
-    using namespace std;
+        ```cpp
+        #include <iostream>
+        #include <vector>
     
-    int n, m;
-    vector<bool> vis;
-    vector<vector<int> > adj;
+        using namespace std;
     
-    bool find_edge(int u, int v) {
-      for (int i = 0; i < adj[u].size(); ++i) {
-        if (adj[u][i] == v) {
-          return true;
+        int n, m;
+        vector<bool> vis;
+        vector<vector<int> > adj;
+    
+        bool find_edge(int u, int v) {
+          for (int i = 0; i < adj[u].size(); ++i) {
+            if (adj[u][i] == v) {
+              return true;
+            }
+          }
+          return false;
         }
-      }
-      return false;
-    }
     
-    void dfs(int u) {
-      if (vis[u]) return;
-      vis[u] = true;
-      for (int i = 0; i < adj[u].size(); ++i) dfs(adj[u][i]);
-    }
+        void dfs(int u) {
+          if (vis[u]) return;
+          vis[u] = true;
+          for (int i = 0; i < adj[u].size(); ++i) dfs(adj[u][i]);
+        }
     
-    int main() {
-      cin >> n >> m;
+        int main() {
+          cin >> n >> m;
     
-      vis.resize(n + 1, false);
-      adj.resize(n + 1);
+          vis.resize(n + 1, false);
+          adj.resize(n + 1);
     
-      for (int i = 1; i <= m; ++i) {
-        int u, v;
-        cin >> u >> v;
-        adj[u].push_back(v);
-      }
+          for (int i = 1; i <= m; ++i) {
+            int u, v;
+            cin >> u >> v;
+            adj[u].push_back(v);
+          }
     
-      return 0;
-    }
-    ```
+          return 0;
+        }
+        ```
     
-    ```python
-    # Python Version
-    vis = [False] * (n + 1)
-    adj = [[]] * (n + 1)
+    === "Python"
     
-    for i in range(1, m + 1):
-        u, v = map(lambda x:int(x), input().split())
-        adj[u].append(v)
+        ```python
+        vis = [False] * (n + 1)
+        adj = [[]] * (n + 1)
     
-    def find_edge(u, v):
-        for i in range(0, len(adj[u])):
-            if adj[u][i] == v:
-                return True
-        return False
+        for i in range(1, m + 1):
+            u, v = map(lambda x:int(x), input().split())
+            adj[u].append(v)
     
-    def dfs(u):
-        if vis[u]:
-            return
-        vis[u] = True
-        for i in range(0, len(adj[u])):
-            dfs(adj[u][i])
-    ```
+        def find_edge(u, v):
+            for i in range(0, len(adj[u])):
+                if adj[u][i] == v:
+                    return True
+            return False
+    
+        def dfs(u):
+            if vis[u]:
+                return
+            vis[u] = True
+            for i in range(0, len(adj[u])):
+                dfs(adj[u][i])
+        ```
 
 ### 复杂度
 
@@ -285,36 +291,38 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 本质上是用链表实现的邻接表，核心代码如下：
 
-```cpp
-// C++ Version
-// head[u] 和 cnt 的初始值都为 -1
-void add(int u, int v) {
-  nxt[++cnt] = head[u];  // 当前边的后继
-  head[u] = cnt;         // 起点 u 的第一条边
-  to[cnt] = v;           // 当前边的终点
-}
+=== "C++"
 
-// 遍历 u 的出边
-for (int i = head[u]; ~i; i = nxt[i]) {  // ~i 表示 i != -1
-  int v = to[i];
-}
-```
+    ```cpp
+    // head[u] 和 cnt 的初始值都为 -1
+    void add(int u, int v) {
+      nxt[++cnt] = head[u];  // 当前边的后继
+      head[u] = cnt;         // 起点 u 的第一条边
+      to[cnt] = v;           // 当前边的终点
+    }
 
-```python
-# Python Version
-# head[u] 和 cnt 的初始值都为 -1
-def add(u, v):
-    cnt = cnt + 1
-    nex[cnt] = head[u] # 当前边的后继
-    head[u] = cnt # 起点 u 的第一条边
-    to[cnt] = v # 当前边的终点
+    // 遍历 u 的出边
+    for (int i = head[u]; ~i; i = nxt[i]) {  // ~i 表示 i != -1
+      int v = to[i];
+    }
+    ```
 
-# 遍历 u 的出边
-i = head[u]
-while ~i: # ~i 表示 i != -1
-    v = to[i]
-    i = nxt[i]
-```
+=== "Python"
+
+    ```python
+    # head[u] 和 cnt 的初始值都为 -1
+    def add(u, v):
+        cnt = cnt + 1
+        nex[cnt] = head[u] # 当前边的后继
+        head[u] = cnt # 起点 u 的第一条边
+        to[cnt] = v # 当前边的终点
+
+    # 遍历 u 的出边
+    i = head[u]
+    while ~i: # ~i 表示 i != -1
+        v = to[i]
+        i = nxt[i]
+    ```
 
 ??? note "参考代码"
     ```cpp
