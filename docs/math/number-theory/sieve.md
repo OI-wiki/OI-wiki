@@ -193,19 +193,17 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
 
 如果能让每个合数都只被标记一次，那么时间复杂度就可以降到 $O(n)$ 了。
 
-文中要求的是所有小于 MAXN 的素数。
-
 ???+note "实现"
     === "C++"
     
         ```cpp
-        void init() {
-          for (int i = 2; i < MAXN; ++i) {
+        void init(int n) {
+          for (int i = 2; i <= n; ++i) {
             if (!vis[i]) {
               pri[cnt++] = i;
             }
             for (int j = 0; j < cnt; ++j) {
-              if (1ll * i * pri[j] >= MAXN) break;
+              if (1ll * i * pri[j] > n) break;
               vis[i * pri[j]] = 1;
               if (i % pri[j] == 0) {
                 // i % pri[j] == 0
@@ -223,13 +221,13 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
     === "Python"
     
         ```python
-        def init():
-            for i in range(2, MAXN):
+        def init(n):
+            for i in range(2, n + 1):
                 if vis[i] == False:
                     pri[cnt] = i
                     cnt = cnt + 1
                 for j in range(0, cnt):
-                    if i * pri[j] >= MAXN:
+                    if i * pri[j] > n:
                         break
                     vis[i * pri[j]] = 1
                     if i % pri[j] == 0:
