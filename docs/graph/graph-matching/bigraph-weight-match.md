@@ -222,7 +222,7 @@ $a = \min \{ slack(v) | v\in{T'} \}$
 
 伪代码更清晰的论文 [A Fast Dynamic Assignment Algorithm for Solving Resource Allocation Problems](https://www.researchgate.net/publication/352490780_A_Fast_Dynamic_Assignment_Algorithm_for_Solving_Resource_Allocation_Problems)
 
-相关OJ问题 [DAP](https://www.spoj.com/problems/DAP/)
+相关 OJ 问题 [DAP](https://www.spoj.com/problems/DAP/)
 
 ???+ note "算法思路"
     1.  修改单点 $u_i$ 和所有 $v_j$ 之间的权重，即权重矩阵中的一行
