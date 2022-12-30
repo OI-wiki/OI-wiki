@@ -218,11 +218,11 @@ $a = \min \{ slack(v) | v\in{T'} \}$
 
 ## Dynamic Hungarian Algorithm
 
-原论文：<https://www.ri.cmu.edu/publications/the-dynamic-hungarian-algorithm-for-the-assignment-problem-with-changing-costs/>
+原论文 [The Dynamic Hungarian Algorithm for the Assignment Problem with Changing Costs](https://www.ri.cmu.edu/publications/the-dynamic-hungarian-algorithm-for-the-assignment-problem-with-changing-costs/)
 
-伪代码更清晰的论文：<https://www.researchgate.net/publication/352490780_A_Fast_Dynamic_Assignment_Algorithm_for_Solving_Resource_Allocation_Problems>
+伪代码更清晰的论文 [A Fast Dynamic Assignment Algorithm for Solving Resource Allocation Problems](https://www.researchgate.net/publication/352490780_A_Fast_Dynamic_Assignment_Algorithm_for_Solving_Resource_Allocation_Problems)
 
-OJ 问题链接：<https://www.spoj.com/problems/DAP/>
+相关OJ问题 [DAP](https://www.spoj.com/problems/DAP/)
 
 ???+ note "算法思路"
     1.  修改单点 $u_i$ 和所有 $v_j$ 之间的权重，即权重矩阵中的一行
