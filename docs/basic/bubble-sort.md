@@ -76,42 +76,43 @@ $$
 
 ### 小优化
 
-我们不难发现， 当数据呈反序时， 冒泡排序的比较和移动次数均达到最大值 $O(n^2)$, 那么尝试直接反转呈反序的数列。
+我们不难发现，当数据呈反序时，冒泡排序的比较和移动次数均达到最大值 $O(n^2)$, 那么尝试直接反转呈反序的数列。
 
 ```cpp
 void bubble_sort(int a[], int n) {
-    bool flag = true;
-    int left, right;
-    while (flag) {
-        flag = false;
-        for (int i = 1; i < n; ++i) {
-            if (a[i] > a[i + 1]) {
-                flag = true;
-                left = i;
-                while (a[i] > a[i + 1] && i < n) ++i;
-                right = i;
-                while (left < right) std::swap(a[left++], a[right--]); //反转区间[left, right]
-            }
-        }
+  bool flag = true;
+  int left, right;
+  while (flag) {
+    flag = false;
+    for (int i = 1; i < n; ++i) {
+      if (a[i] > a[i + 1]) {
+        flag = true;
+        left = i;
+        while (a[i] > a[i + 1] && i < n) ++i;
+        right = i;
+        while (left < right)
+          std::swap(a[left++], a[right--]);  // 反转区间[left, right]
+      }
     }
+  }
 }
 ```
 
-也有另外的方法， 比如可以记录一轮交换后的最终索引， 可以发现， 这个索引之后的数都已经是有序的， 无需再进行排序。
+也有另外的方法，比如可以记录一轮交换后的最终索引，可以发现，这个索引之后的数都已经是有序的，无需再进行排序。
 
 ```cpp
 void bubble_sort1(int a[], int n) {
-    int last, left, right;
-    while (n) {
-        last = 0;
-        for (int i = 1; i < n; ++i) {
-            if (a[i] > a[i + 1]) {
-                std::swap(a[i], a[i + 1]);
-                last = i; //记录最后一次交换元素的索引
-            }
-        }
-        n = last; //更新边界
+  int last, left, right;
+  while (n) {
+    last = 0;
+    for (int i = 1; i < n; ++i) {
+      if (a[i] > a[i + 1]) {
+        std::swap(a[i], a[i + 1]);
+        last = i;  // 记录最后一次交换元素的索引
+      }
     }
+    n = last;  // 更新边界
+  }
 }
 ```
 
