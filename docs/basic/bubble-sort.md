@@ -54,7 +54,7 @@ $$
         for (int i = 1; i < n; ++i) { //注意边界
           if (a[i] > a[i + 1]) {
             flag = true;
-            std::swap(a[i], a[i + 1];
+            std::swap(a[i], a[i + 1]);
           }
         }
       }
