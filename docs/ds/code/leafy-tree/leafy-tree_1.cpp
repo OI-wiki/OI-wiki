@@ -74,9 +74,9 @@ int main() {
   cnt = 0;
   null = new Node(0, 0, 0, 0);
   root = new Node(1, INT_MAX, null, null);
-  for (register int i = 0; i <= 200000; i++) st[i] = &t[i];
-  for (register int i = 1; i <= n; i++) {
-    register int t, a;
+  for (int i = 0; i <= 200000; i++) st[i] = &t[i];
+  for (int i = 1; i <= n; i++) {
+    int t, a;
     scanf("%d%d", &t, &a);
     if (t == 1)
       insert(root, a);
