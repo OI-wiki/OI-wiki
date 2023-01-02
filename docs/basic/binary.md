@@ -28,32 +28,32 @@
 
 ### 实现
 
-为方便讲解，本部分的示例代码的待查数组下标范围均为 $[0,len-1]$，读者也可以根据需要自行改写。
+为方便讲解，本部分的示例代码的待查数组下标范围均为 $[0,len-1]$ ，读者也可以根据需要自行改写。
 
 ```cpp
 int binary_search(int arr[], const int len, const int key) {
-  int left = 0, right = len - 1, mid;  // 查找[left, right]区间
-  while (left <= right) {
-    mid = left + ((right - left) >> 1);  // 直接平均可能会溢出，所以用这个算法
-    if (arr[mid] < key)
-      left = mid + 1;
-    else if (arr[mid] > key)
-      right = mid - 1;
-    else  // 最后检测相等是因为多数搜索情况不是大于就是小于
-      return mid;
-  }
-  return -1;  // 执行到这一步就意味着key不在数组中
+    int left = 0, right = len - 1, mid; // 查找[left, right]区间
+    while (left <= right) {
+        mid = left + ((right - left) >> 1); // 直接平均可能会溢出，所以用这个算法
+        if (arr[mid] < key)
+            left = mid + 1;
+        else if (arr[mid] > key)
+            right = mid - 1;
+        else // 最后检测相等是因为多数搜索情况不是大于就是小于
+            return mid;
+    }
+    return -1; // 执行到这一步就意味着key不在数组中
 }
 ```
 
 ### 变体
 
-上面给出的代码虽然能返回给定值在数组中的位置，但对于一些其它的要求，比如需要查找第一个值等于给定值的元素，一般的二分无法做到。举一个例子，对于数组 ${1, 2, 2, 2, 3}$，元素 `2` 出现的第一个位置是 `1`, 但上面算法给出的结果却是 `2`。所以我们需要在保证复杂度的情况下对一般的二分查找进行修改，使其能够正确输出答案。
+上面给出的代码虽然能返回给定值在数组中的位置，但对于一些其它的要求，比如需要查找第一个值等于给定值的元素，一般的二分无法做到。举一个例子，对于数组 ${1, 2, 2, 2, 3}$ ，元素 `2` 出现的第一个位置是 `1` ,但上面算法给出的结果却是 `2` 。所以我们需要在保证复杂度的情况下对一般的二分查找进行修改，使其能够正确输出答案。
 
-根据查找要求不同，二分法有多种变体。网上的实现有很多，甚至有许多代码不尽相同的实例能够完成相同的工作。二分的代码该如何写是由该算法定义的 **查找区间** 决定的。通常我们会使用 **左闭右闭** 型（即 $[left,right]$）或 **左闭右开** 型（即 $[left,right)$)。这两种方式写出的代码通常不同，但都能达到同样的效果。下面简要介绍两种变体。
+根据查找要求不同，二分法有多种变体。网上的实现有很多，甚至有许多代码不尽相同的实例能够完成相同的工作。二分的代码该如何写是由该算法定义的**查找区间**决定的。通常我们会使用**左闭右闭**型（即 $[left,right]$ )或**左闭右开**型（即 $[left,right)$ )。这两种方式写出的代码通常不同，但没有优劣之分，都能达到同样的效果。下面简要介绍两种变体。
 
 !!! warning "注意"
-    二分查找各种变体代码很相似，请读者注意观察他们的 **循环条件**、**左右边界的取值** 以及 **返回值的选择** 的不同。
+    二分查找各种变体代码很相似，请读者注意观察他们的**循环条件**、**左右边界的取值**以及**返回值的选择**的不同。
 
 #### 左侧边界
 
@@ -155,21 +155,21 @@ int binary_search(int arr[], const int len, const int key) {
     ```
 
 ???+question "细节问题"
-    -   为什么这样做可以找到右侧边界？  
-        此处就是该变体与一般二分的最大不同，当已经找到元素的位置时，继续更新区间，向右侧边界靠拢。
-    
+    - 为什么这样做可以找到右侧边界？  
+    此处就是该变体与一般二分的最大不同，当已经找到元素的位置时，继续更新区间，向右侧边界靠拢。  
+
     其余部分与左侧边界基本相同，不再赘述。
 
 #### 总结
 
-不难发现，变体算法的 **循环条件**、**左右边界的取值** 以及 **返回值的选择** 是由其定义的查找区间决定的。读者只需理解以上变体的细节并将其总结，
+不难发现，变体算法的**循环条件**、**左右边界的取值**以及**返回值的选择**是由其定义的查找区间决定的。读者只需理解以上变体的细节并将其总结，
 就能够写出满足其它要求的变体。下面给出了其它两种变体的参考实现。
 
 ??? node "其它变体"
     === "查找第一个大于等于给定值的元素"
-    
+
         === "左闭右闭"
-    
+
             ```cpp
             int binary_search(int arr[], const int len, const int key) {
                 if (key > arr[len - 1]) return -1; 
@@ -184,9 +184,9 @@ int binary_search(int arr[], const int len, const int key) {
                 return left;
             }
             ```
-    
+
         === "左闭右开"
-    
+
             ```cpp
             int binary_search(int arr[], const int len, const int key) {
                 if (key > arr[len - 1]) return -1; 
@@ -201,11 +201,11 @@ int binary_search(int arr[], const int len, const int key) {
                 return left;
             }
             ```
-    
+
     === "查找最后一个小于等于给定值的元素"
-    
+
         === "左闭右闭"
-    
+
             ```cpp
             int binary_search(int arr[], const int len, const int key) {
                 if (key < arr[0]) return -1;
@@ -220,9 +220,9 @@ int binary_search(int arr[], const int len, const int key) {
                 return right;
             }
             ```
-    
+
         === "左闭右开"
-    
+
             ```cpp
             int binary_search(int arr[], const int len, const int key) {
                 if (key < arr[0]) return -1;
@@ -322,57 +322,39 @@ int upper(const void *p1, const void *p2) {
     我们可以在 $1$ 到 $10^9$ 中枚举答案，但是这种朴素写法肯定拿不到满分，因为从 $1$ 枚举到 $10^9$ 太耗时间。我们可以在 $[1,~10^9]$ 的区间上进行二分作为答案，然后检查各个答案的可行性（一般使用贪心法）。**这就是二分答案。**
 
 ??? note "参考代码"
-    此处的参考代码选用了“左闭右开”的形式（也可以使用“左闭右闭”的形式），思路与上文查找右侧边界基本相同。
-    
+    此处的参考代码选用了“左闭右开”的形式（也可以使用“左闭右闭”的形式），思路与上文查找右侧边界基本相同。  
+
     ```cpp
     int a[1000005];
     int n, m;
-    
+
     bool check(int k) {  // 检查可行性，k 为锯片高度
-      long long sum = 0;
-      for (int i = 1; i <= n; ++i)       // 检查每一棵树
-        if (a[i] > k)                    // 如果树高于锯片高度
-          sum += (long long)(a[i] - k);  // 累加树木长度
-      return sum >= m;                   // 如果满足最少长度代表可行
+        long long sum = 0;
+        for (int i = 1; i <= n; ++i)       // 检查每一棵树
+            if (a[i] > k)                    // 如果树高于锯片高度
+                sum += (long long)(a[i] - k);  // 累加树木长度
+        return sum >= m;                   // 如果满足最少长度代表可行
     }
-    
+
     int find() {
-      int l = 1, r = 1e9 + 1;  // 因为是左闭右开的，所以 10^9 要加 1
-      while (l < r) {          // 如果两点不相邻
-        int mid = l + ((r - l) >> 1);  // 取中间值
-        if (check(mid))                // 如果可行
-          l = mid + 1;                 // 升高锯片高度
-        else
-          r = mid;  // 否则降低锯片高度
-      }
-      return r - 1;  // 返回左边值
+        int l = 1, r = 1e9 + 1;   // 因为是左闭右开的，所以 10^9 要加 1
+        while (l < r) {       // 如果两点不相邻
+            int mid = l + ((r - l) >> 1);  // 取中间值
+            if (check(mid))         // 如果可行
+                l = mid + 1;              // 升高锯片高度
+            else
+                r = mid;  // 否则降低锯片高度
+        }
+        return r - 1;  // 返回右边值-1
     }
-    
+
     int main() {
-      cin >> n >> m;
-      for (int i = 1; i <= n; ++i) cin >> a[i];
-      cout << find();
-      return 0;
+        cin >> n >> m;
+        for (int i = 1; i <= n; ++i) cin >> a[i];
+        cout << find();
+        return 0;
     }
     ```
-    
-    看完了上面的代码，你肯定会有两个疑问：
-    
-    1.  为何搜索区间是左闭右开的？
-    
-        因为搜到最后，会这样（以合法的最大值为例）：
-    
-        ![](./images/binary-final-1.png)
-    
-        然后会
-    
-        ![](./images/binary-final-2.png)
-    
-        合法的最小值恰恰相反。
-    
-    2.  为何返回左边值？
-    
-        同上。
 
 ## 三分法
 
@@ -436,14 +418,10 @@ while (r - l > eps) {
 ### 例题
 
 ???+note "[洛谷 P3382 - 【模板】三分法](https://www.luogu.com.cn/problem/P3382)"
-
-
-给定一个 $N$ 次函数和范围 $[l, r]$，求出使函数在 $[l, x]$ 上单调递增且在 $[x, r]$ 上单调递减的唯一的 $x$ 的值。
+ 给定一个 $N$ 次函数和范围 $[l, r]$，求出使函数在 $[l, x]$ 上单调递增且在 $[x, r]$ 上单调递减的唯一的 $x$ 的值。
 
 ??? note "解题思路"
-
-
-本题要求求 $N$ 次函数在 $[l, r]$ 取最大值时自变量的值，显然可以使用三分法。
+ 本题要求求 $N$ 次函数在 $[l, r]$ 取最大值时自变量的值，显然可以使用三分法。
 
 ??? note "参考代码"
     ```cpp
@@ -473,9 +451,7 @@ while (r - l > eps) {
 
 ### 复杂度
 
-插值查找的最优时间复杂度为 $O(1)$，最坏时间复杂度为 $O(n)$。
-
-插值查找的平均时间复杂度为 $O(\log \log n)$，证明过程可以参考 [关于插值查找复杂度的证明](http://www.cs.technion.ac.il/~itai/publications/Algorithms/p550-perl.pdf)。
+插值查找的最优时间复杂度为 $O(1)$，最坏时间复杂度为 $O(n)$，插值查找的平均时间复杂度为 $O(\log \log n)$，证明过程可以参考[关于插值查找复杂度的证明](http://www.cs.technion.ac.il/~itai/publications/Algorithms/p550-perl.pdf)。
 
 在数据分布均匀的情况下，插值查找的效率很高，但如果数据分布不均匀，插值查找反而会比二分慢。
 
@@ -485,21 +461,19 @@ while (r - l > eps) {
 
 ```cpp
 int interpolation_search(int arr[], const int len, const int key) {
-  int left = 0, right = len - 1, mid;
-  while ((arr[left] != arr[right]) && (arr[left] <= key) &&
-         (arr[right] >= key)) {
-    // 注意：循环条件与mid的计算相较于二分略有不同
-    mid =
-        left + ((key - arr[left]) * (right - left) / (arr[right] - arr[left]));
-    if (arr[mid] < key)
-      left = mid + 1;
-    else if (arr[mid] > key)
-      right = mid - 1;
-    else
-      return mid;
-  }
-  return key == arr[left] ? left : -1;
+   int left = 0, right = len - 1, mid;
+   while ((arr[left] != arr[right]) && (arr[left] <= key) && (arr[right] >= key)) {
+       // 注意：循环条件与mid的计算相较于二分略有不同
+       mid = left + ((key - arr[left]) * (right - left) / (arr[right] - arr[left]));
+       if (arr[mid] < key) 
+           left = mid + 1;
+       else if (arr[mid] > key) 
+           right = mid - 1;
+       else 
+           return mid;
+   }
+   return key == arr[left] ? left : -1;
 }
 ```
 
-此外还有其它高效的查找算法，如斐波那契查找、二叉树查找等。但在 OI 中，二分查找因其简单、稳定、高效且易于变形的特点而最为广泛使用。
+此外还有其它高效的查找算法，如斐波那契查找、二叉树查找等。但在OI中，二分查找因其简单、稳定、高效且易于变形的特点而最为广泛使用。
