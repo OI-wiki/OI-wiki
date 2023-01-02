@@ -409,6 +409,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
       if (mid >= qr) return query(lt(t), l, mid, ql, qr);
       if (mid < ql) return query(rt(t), mid + 1, r, ql, qr);
       return max(query(lt(t), l, mid, ql, qr), query(rt(t), mid + 1, r, ql, qr));
+    }
     ```
 
 - 没删文件操作（某些 OJ）。

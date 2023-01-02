@@ -197,19 +197,19 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
     === "C++"
     
         ```cpp
-        void init() {
-          for (int i = 2; i < MAXN; ++i) {
+        void init(int n) {
+          for (int i = 2; i <= n; ++i) {
             if (!vis[i]) {
               pri[cnt++] = i;
             }
             for (int j = 0; j < cnt; ++j) {
-              if (1ll * i * pri[j] >= MAXN) break;
+              if (1ll * i * pri[j] > n) break;
               vis[i * pri[j]] = 1;
               if (i % pri[j] == 0) {
                 // i % pri[j] == 0
                 // 换言之，i 之前被 pri[j] 筛过了
-                // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
-                // pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
+                // 由于 pri 里面质数是从小到大的，所以 i乘上其他的质数的结果一定会被
+                // pri[j]的倍数筛掉，就不需要在这里先筛一次，所以这里直接 break
                 // 掉就好了
                 break;
               }
@@ -221,21 +221,21 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
     === "Python"
     
         ```python
-        def init():
-            for i in range(2, MAXN):
+        def init(n):
+            for i in range(2, n + 1):
                 if vis[i] == False:
                     pri[cnt] = i
                     cnt = cnt + 1
                 for j in range(0, cnt):
-                    if i * pri[j] >= MAXN:
+                    if i * pri[j] > n:
                         break
                     vis[i * pri[j]] = 1
                     if i % pri[j] == 0:
                         """
                         i % pri[j] == 0
                         换言之，i 之前被 pri[j] 筛过了
-                        由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定也是
-                        pri[j] 的倍数 它们都被筛过了，就不需要再筛了，所以这里直接 break
+                        由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定会被
+                        pri[j]的倍数筛掉，就不需要在这里先筛一次，所以这里直接 break
                         掉就好了
                         """
                         break
