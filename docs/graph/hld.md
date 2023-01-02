@@ -265,7 +265,7 @@ int querymax(int x, int y) {
 
 ??? "参考代码"
     ```cpp
-      --8<-- "docs/graph/code/hld/hld_1.cpp"
+    --8<-- "docs/graph/code/hld/hld_1.cpp"
     ```
 
 ### [Nauuo and Binary Tree](https://loj.ac/problem/6669)
@@ -463,7 +463,7 @@ DP 数组的长度我们可以根据子树最深节点算出。
 例题参考代码：
 
 ```cpp
-  --8<-- "docs/graph/code/hld/hld_3.cpp"
+--8<-- "docs/graph/code/hld/hld_3.cpp"
 ```
 
 当然长链剖分优化 DP 技巧非常多，包括但是不仅限于打标记等等。这里不再展开。

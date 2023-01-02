@@ -21,21 +21,23 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 初始时，每个元素都位于一个单独的集合，表示为一棵只有根节点的树。方便起见，我们将根节点的父亲设为自己。
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    struct dsu {
-      vector<size_t> pa;
+    === "C++"
     
-      explicit dsu(size_t size) : pa(size) { iota(pa.begin(), pa.end(), 0); }
-    };
-    ```
+        ```cpp
+        struct dsu {
+          vector<size_t> pa;
     
-    ```python
-    # Python Version
-    class Dsu:
-        def __init__(self, size):
-            self.pa = list(range(size))
-    ```
+          explicit dsu(size_t size) : pa(size) { iota(pa.begin(), pa.end(), 0); }
+        };
+        ```
+    
+    === "Python"
+    
+        ```python
+        class Dsu:
+            def __init__(self, size):
+                self.pa = list(range(size))
+        ```
 
 ## 查询
 
@@ -44,16 +46,18 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 ![](images/disjoint-set-find.svg)
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    size_t dsu::find(size_t x) { return pa[x] == x ? x : find(pa[x]); }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def find(self, x):
-        return x if self.pa[x] == x else self.find(self.pa[x])
-    ```
+        ```cpp
+        size_t dsu::find(size_t x) { return pa[x] == x ? x : find(pa[x]); }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def find(self, x):
+            return x if self.pa[x] == x else self.find(self.pa[x])
+        ```
 
 ### 路径压缩
 
@@ -62,18 +66,20 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 ![](images/disjoint-set-compress.svg)
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    size_t dsu::find(size_t x) { return pa[x] == x ? x : pa[x] = find(pa[x]); }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def find(self, x):
-        if self.pa[x] != x:
-            self.pa[x] = self.find(self.pa[x])
-        return self.pa[x]
-    ```
+        ```cpp
+        size_t dsu::find(size_t x) { return pa[x] == x ? x : pa[x] = find(pa[x]); }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def find(self, x):
+            if self.pa[x] != x:
+                self.pa[x] = self.find(self.pa[x])
+            return self.pa[x]
+        ```
 
 ## 合并
 
@@ -82,16 +88,18 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 ![](images/disjoint-set-merge.svg)
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    void dsu::unite(size_t x, size_t y) { pa[find(x)] = find(y); }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def union(self, x, y):
-        self.pa[self.find(x)] = self.find(y)
-    ```
+        ```cpp
+        void dsu::unite(size_t x, size_t y) { pa[find(x)] = find(y); }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def union(self, x, y):
+            self.pa[self.find(x)] = self.find(y)
+        ```
 
 ### 启发式合并
 
@@ -109,101 +117,107 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 按节点数合并的参考实现：
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    struct dsu {
-      vector<size_t> pa, size;
+    === "C++"
     
-      explicit dsu(size_t size_) : pa(size_), size(size_, 1) {
-        iota(pa.begin(), pa.end(), 0);
-      }
+        ```cpp
+        struct dsu {
+          vector<size_t> pa, size;
     
-      void unite(size_t x, size_t y) {
-        x = find(x), y = find(y);
-        if (x == y) return;
-        if (size[x] < size[y]) swap(x, y);
-        pa[y] = x;
-        size[x] += size[y];
-      }
-    };
-    ```
+          explicit dsu(size_t size_) : pa(size_), size(size_, 1) {
+            iota(pa.begin(), pa.end(), 0);
+          }
     
-    ```python
-    # Python Version
-    class Dsu:
-        def __init__(self, size):
-            self.pa = list(range(size))
-            self.size = [1] * size
+          void unite(size_t x, size_t y) {
+            x = find(x), y = find(y);
+            if (x == y) return;
+            if (size[x] < size[y]) swap(x, y);
+            pa[y] = x;
+            size[x] += size[y];
+          }
+        };
+        ```
     
-        def union(self, x, y):
-            x, y = self.find(x), self.find(y)
-            if x == y:
-                return
-            if self.size[x] < self.size[y]:
-                x, y = y, x
-            self.pa[y] = x
-            self.size[x] += self.size[y]
-    ```
+    === "Python"
+    
+        ```python
+        class Dsu:
+            def __init__(self, size):
+                self.pa = list(range(size))
+                self.size = [1] * size
+    
+            def union(self, x, y):
+                x, y = self.find(x), self.find(y)
+                if x == y:
+                    return
+                if self.size[x] < self.size[y]:
+                    x, y = y, x
+                self.pa[y] = x
+                self.size[x] += self.size[y]
+        ```
 
 ## 删除
 
 要删除一个叶子节点，我们可以将其父亲设为自己。为了保证要删除的元素都是叶子，我们可以预先为每个节点制作副本，并将其副本作为父亲。
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    struct dsu {
-      vector<size_t> pa, size;
+    === "C++"
     
-      explicit dsu(size_t size_) : pa(size_ * 2), size(size_ * 2, 1) {
-        iota(pa.begin(), pa.begin() + size_, size_);
-        iota(pa.begin() + size_, pa.end(), size_);
-      }
+        ```cpp
+        struct dsu {
+          vector<size_t> pa, size;
     
-      void erase(size_t x) {
-        --size[find(x)];
-        pa[x] = x;
-      }
-    };
-    ```
+          explicit dsu(size_t size_) : pa(size_ * 2), size(size_ * 2, 1) {
+            iota(pa.begin(), pa.begin() + size_, size_);
+            iota(pa.begin() + size_, pa.end(), size_);
+          }
     
-    ```python
-    # Python Version
-    class Dsu:
-        def __init__(self, size):
-            self.pa = list(range(size, size * 2)) * 2
-            self.size = [1] * size * 2
+          void erase(size_t x) {
+            --size[find(x)];
+            pa[x] = x;
+          }
+        };
+        ```
     
-        def erase(self, x):
-            self.size[self.find(x)] -= 1
-            self.pa[x] = x
-    ```
+    === "Python"
+    
+        ```python
+        class Dsu:
+            def __init__(self, size):
+                self.pa = list(range(size, size * 2)) * 2
+                self.size = [1] * size * 2
+    
+            def erase(self, x):
+                self.size[self.find(x)] -= 1
+                self.pa[x] = x
+        ```
 
 ## 移动
 
 与删除类似，通过以副本作为父亲，保证要移动的元素都是叶子。
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    void dsu::move(size_t x, size_t y) {
-      auto fx = find(x), fy = find(y);
-      if (fx == fy) return;
-      pa[x] = fy;
-      --size[fx], ++size[fy];
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def move(self, x, y):
-        fx, fy = self.find(x), self.find(y)
-        if fx == fy:
-            return
-        self.pa[x] = fy
-        self.size[fx] -= 1
-        self.size[fy] += 1
-    ```
+        ```cpp
+        void dsu::move(size_t x, size_t y) {
+          auto fx = find(x), fy = find(y);
+          if (fx == fy) return;
+          pa[x] = fy;
+          --size[fx], ++size[fy];
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def move(self, x, y):
+            fx, fy = self.find(x), self.find(y)
+            if fx == fy:
+                return
+            self.pa[x] = fy
+            self.size[fx] -= 1
+            self.size[fy] += 1
+        ```
 
 ## 复杂度
 
@@ -236,15 +250,18 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
     2. 移动单个元素
     3. 查询某个元素所属集合的大小及元素和
     
-    ??? mdui-shadow-6 "参考代码（C++）"
-        ```cpp
-        --8<-- "docs/ds/code/dsu/dsu_1.cpp"
-        ```
-    
-    ??? mdui-shadow-6 "参考代码（Python）"
-        ```python
-        --8<-- "docs/ds/code/dsu/dsu_1.py"
-        ```
+    ??? mdui-shadow-6 "参考代码"
+        === "C++"
+        
+            ```cpp
+            --8<-- "docs/ds/code/dsu/dsu_1.cpp"
+            ```
+        
+        === "Python"
+        
+            ```python
+            --8<-- "docs/ds/code/dsu/dsu_1.py"
+            ```
 
 ## 习题
 

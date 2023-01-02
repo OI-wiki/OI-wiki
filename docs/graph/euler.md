@@ -122,7 +122,7 @@ $E = \{a_{j_1}a_{j_2}\cdots a_{j_{n-1}}|a_j \in S, 1 \leq j \leq n\}$
 
 ??? note "示例代码"
     ```cpp
-      --8<-- "docs/graph/code/euler/euler_1.cpp"
+    --8<-- "docs/graph/code/euler/euler_1.cpp"
     ```
 
 ## 习题

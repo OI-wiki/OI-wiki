@@ -1,4 +1,4 @@
-author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul, xyf007
+author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul, xyf007, GoodCoder666
 
 前置知识：[动态规划部分简介](./index.md)。
 
@@ -41,25 +41,25 @@ $$
 
 还有一点需要注意的是，很容易写出这样的 **错误核心代码**：
 
-```cpp
-// C++ Version
-for (int i = 1; i <= n; i++)
-  for (int l = 0; l <= W - w[i]; l++)
-    f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
-// 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]],f[i - 1][l] + w[i]),f[i][l +
-// w[i]]); 简化而来
-```
+=== "C++"
 
-```python
-# Python Version
-for i in range(1, n + 1):
-    l = 0
-    while l <= W - w[i]:
-        f[l + w[i]] = max(f[l] + v[i], f[l + w[i]])
-        l += 1
-# 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]],f[i - 1][l] + w[i]),f[i][l +
-# w[i]]) 简化而来
-```
+    ```cpp
+    for (int i = 1; i <= n; i++)
+      for (int l = 0; l <= W - w[i]; l++)
+        f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
+    // 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + w[i]), f[i][l +
+    // w[i]]); 简化而来
+    ```
+
+=== "Python"
+
+    ```python
+    for i in range(1, n + 1):
+        for l in range(0, W - w[i] + 1):
+            f[l + w[i]] = max(f[l] + v[i], f[l + w[i]])
+    # 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + w[i]), f[i][l +
+    # w[i]]) 简化而来
+    ```
 
 这段代码哪里错了呢？枚举顺序错了。
 
@@ -69,20 +69,21 @@ for i in range(1, n + 1):
 
 因此实际核心代码为
 
-```cpp
-// C++ Version
-for (int i = 1; i <= n; i++)
-  for (int l = W; l >= w[i]; l--) f[l] = max(f[l], f[l - w[i]] + v[i]);
-```
+=== "C++"
 
-```python
-# Python Version
-for i in range(1, n + 1):
-    l = W
-    while l >= w[i]:
-        f[l] = max(f[l], f[l - w[i]] + v[i])
-        l -= 1
-```
+    ```cpp
+    for (int i = 1; i <= n; i++)
+      for (int l = W; l >= w[i]; l--)
+        f[l] = max(f[l], f[l - w[i]] + v[i]);
+    ```
+
+=== "Python"
+
+    ```python
+    for i in range(1, n + 1):
+        for l in range(W, w[i] - 1, -1):
+            f[l] = max(f[l], f[l - w[i]] + v[i])
+    ```
 
 ??? 例题代码
     ```cpp
@@ -169,39 +170,41 @@ $$
 ### 实现
 
 ??? 二进制分组代码
-    ```cpp
-    // C++ Version
-    index = 0;
-    for (int i = 1; i <= m; i++) {
-      int c = 1, p, h, k;
-      cin >> p >> h >> k;
-      while (k - c > 0) {
-        k -= c;
-        list[++index].w = c * p;
-        list[index].v = c * h;
-        c *= 2;
-      }
-      list[++index].w = p * k;
-      list[index].v = h * k;
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    index = 0
-    for i in range(1, m + 1):
-        c = 1
-        p, h, k = map(lambda x:int(x), input().split())
-        while k - c > 0:
-            k -= c
-            list[index].w = c * p
+        ```cpp
+        index = 0;
+        for (int i = 1; i <= m; i++) {
+          int c = 1, p, h, k;
+          cin >> p >> h >> k;
+          while (k > c) {
+            k -= c;
+            list[++index].w = c * p;
+            list[index].v = c * h;
+            c *= 2;
+          }
+          list[++index].w = p * k;
+          list[index].v = h * k;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        index = 0
+        for i in range(1, m + 1):
+            c = 1
+            p, h, k = map(int, input().split())
+            while k > c:
+                k -= c
+                list[index].w = c * p
+                index += 1
+                list[index].v = c * h
+                c *= 2
+            list[index].w = p * k
             index += 1
-            list[index].v = c * h
-            c *= 2
-        list[index].w = p * k
-        index += 1
-        list[index].v = h * k
-    ```
+            list[index].v = h * k
+        ```
 
 ### 单调队列优化
 
@@ -244,26 +247,23 @@ for (循环物品种类) {
 
 ### 实现
 
-```cpp
-// C++ Version
-for (int k = 1; k <= n; k++) {
-  for (int i = m; i >= mi; i--)    // 对经费进行一层枚举
-    for (int j = t; j >= ti; j--)  // 对时间进行一层枚举
-      dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1);
-}
-```
+=== "C++"
 
-```python
-# Python Version
-for k in range(1, n + 1):
-    i = m
-    while i >= mi: # 对经费进行一层枚举
-        j = t
-        while j >= ti: # 对时间进行一层枚举
-            dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1)
-            j -= 1
-        i -= 1
-```
+    ```cpp
+    for (int k = 1; k <= n; k++)
+      for (int i = m; i >= mi; i--)    // 对经费进行一层枚举
+        for (int j = t; j >= ti; j--)  // 对时间进行一层枚举
+          dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1);
+    ```
+
+=== "Python"
+
+    ```python
+    for k in range(1, n + 1):
+        for i in range(m, mi - 1, -1): # 对经费进行一层枚举
+            for j in range(t, ti - 1, -1): # 对时间进行一层枚举
+                dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1)
+    ```
 
 ## 分组背包
 
@@ -276,25 +276,23 @@ for k in range(1, n + 1):
 
 ### 实现
 
-```cpp
-// C++ Version
-for (int k = 1; k <= ts; k++)          // 循环每一组
-  for (int i = m; i >= 0; i--)         // 循环背包容量
-    for (int j = 1; j <= cnt[k]; j++)  // 循环该组的每一个物品
-      if (i >= w[t[k][j]])
-        dp[i] = max(dp[i],
-                    dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
-```
+=== "C++"
 
-```python
-# Python Version
-for k in range(1, ts + 1): # 循环每一组
-    for i in range(m, -1, -1): # 循环背包容量
-        for j in range(1, cnt[k] + 1): # 循环该组的每一个物品
-            if i >= w[t[k][j]]:
-                dp[i] = max(dp[i], \
-                    dp[i - w[t[k][j]]] + c[t[k][j]]) # 像0-1背包一样状态转移
-```
+    ```cpp
+    for (int k = 1; k <= ts; k++)           // 循环每一组
+      for (int i = m; i >= w[t[k][j]]; i--) // 循环背包容量
+        for (int j = 1; j <= cnt[k]; j++)   // 循环该组的每一个物品
+          dp[i] = max(dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
+    ```
+
+=== "Python"
+
+    ```python
+    for k in range(1, ts + 1): # 循环每一组
+        for i in range(m, w[t[k][j]] - 1, -1): # 循环背包容量
+            for j in range(1, cnt[k] + 1):     # 循环该组的每一个物品
+                dp[i] = max(dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]) # 像0-1背包一样状态转移
+    ```
 
 这里要注意：**一定不能搞错循环顺序**，这样才能保证正确性。
 

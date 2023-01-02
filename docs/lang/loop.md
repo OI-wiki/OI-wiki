@@ -135,25 +135,16 @@ for (;;) {
 
 break 语句的作用是退出循环。
 
-continue 语句的作用是跳过循环体的余下部分，回到循环的开头（for 语句的更新，while 语句的判断条件）。
+continue 语句的作用是跳过循环体的余下部分。下面以 continue 语句在 do...while 语句中的使用为例：
 
 ```cpp
-for (int i = 1; i <= 10; ++i) {
-  std::cout << i << std::endl;
-  if (i > 3) break;
-  if (i > 2) continue;
-  std::cout << i << std::endl;
-}
+do {
+  // do something...
+  continue;  // 等价于 goto END;
+// do something...
+END:;
+} while (statement);
 
-/*
-输出如下：
-1
-1
-2
-2
-3
-4
-*/
 ```
 
 break 与 continue 语句均可在三种循环语句的循环体中使用。

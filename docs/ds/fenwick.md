@@ -30,30 +30,32 @@ $c_6$ 管理的是 $a_5$,$a_6$；$c_8$ 则管理全部 $8$ 个数。
 这时，我们引入一个函数——`lowbit`：
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    int lowbit(int x) {
-      // x 的二进制表示中，最低位的 1 的位置。
-      // lowbit(0b10110000) == 0b00010000
-      //          ~~~^~~~~
-      // lowbit(0b11100100) == 0b00000100
-      //          ~~~~~^~~
-      return x & -x;
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def lowbit(x):
-        """
-        x 的二进制表示中，最低位的 1 的位置。
-        lowbit(0b10110000) == 0b00010000
-                 ~~~^~~~~
-        lowbit(0b11100100) == 0b00000100
-                 ~~~~~^~~
-        """
-        return x & -x
-    ```
+        ```cpp
+        int lowbit(int x) {
+          // x 的二进制表示中，最低位的 1 的位置。
+          // lowbit(0b10110000) == 0b00010000
+          //          ~~~^~~~~
+          // lowbit(0b11100100) == 0b00000100
+          //          ~~~~~^~~
+          return x & -x;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def lowbit(x):
+            """
+            x 的二进制表示中，最低位的 1 的位置。
+            lowbit(0b10110000) == 0b00010000
+                    ~~~^~~~~
+            lowbit(0b11100100) == 0b00000100
+                    ~~~~~^~~
+            """
+            return x & -x
+        ```
 
 注释说明了 `lowbit` 的意思，对于 $x=88$：$88_{(10)}=1011000_{(2)}$   
 发现第一个 $1$ 以及他后面的 $0$ 组成的二进制是 $1000$   
@@ -66,48 +68,52 @@ $1000$ 对应的十进制是 $8$，所以 $c_{88}$ 一共管理 $8$ 个 $a$ 数�
 使用 lowbit 函数，我们可以实现很多操作，例如单点修改，将 $a_x$ 加上 $k$，只需要更新 $a_x$ 的所有上级：
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    void add(int x, int k) {
-      while (x <= n) {  // 不能越界
-        c[x] = c[x] + k;
-        x = x + lowbit(x);
-      }
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def add(x, k):
-        while x <= n: # 不能越界
-            c[x] = c[x] + k
-            x = x + lowbit(x)
-    ```
+        ```cpp
+        void add(int x, int k) {
+          while (x <= n) {  // 不能越界
+            c[x] = c[x] + k;
+            x = x + lowbit(x);
+          }
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def add(x, k):
+            while x <= n: # 不能越界
+                c[x] = c[x] + k
+                x = x + lowbit(x)
+        ```
 
 前缀求和：
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    int getsum(int x) {  // a[1]..a[x]的和
-      int ans = 0;
-      while (x >= 1) {
-        ans = ans + c[x];
-        x = x - lowbit(x);
-      }
-      return ans;
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def getsum(x): # a[1]..a[x]的和
-        ans = 0
-        while x >= 1:
-            ans = ans + c[x]
-            x = x - lowbit(x)
-        return ans
-    ```
+        ```cpp
+        int getsum(int x) {  // a[1]..a[x]的和
+          int ans = 0;
+          while (x >= 1) {
+            ans = ans + c[x];
+            x = x - lowbit(x);
+          }
+          return ans;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def getsum(x): # a[1]..a[x]的和
+            ans = 0
+            while x >= 1:
+                ans = ans + c[x]
+                x = x - lowbit(x)
+            return ans
+        ```
 
 ## 区间加 & 区间求和
 
@@ -130,67 +136,69 @@ $1000$ 对应的十进制是 $8$，所以 $c_{88}$ 一共管理 $8$ 个 $a$ 数�
 代码如下
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    int t1[MAXN], t2[MAXN], n;
+    === "C++"
     
-    inline int lowbit(int x) { return x & (-x); }
+        ```cpp
+        int t1[MAXN], t2[MAXN], n;
     
-    void add(int k, int v) {
-      int v1 = k * v;
-      while (k <= n) {
-        t1[k] += v, t2[k] += v1;
-        k += lowbit(k);
-      }
-    }
+        inline int lowbit(int x) { return x & (-x); }
     
-    int getsum(int *t, int k) {
-      int ret = 0;
-      while (k) {
-        ret += t[k];
-        k -= lowbit(k);
-      }
-      return ret;
-    }
+        void add(int k, int v) {
+          int v1 = k * v;
+          while (k <= n) {
+            t1[k] += v, t2[k] += v1;
+            k += lowbit(k);
+          }
+        }
     
-    void add1(int l, int r, int v) {
-      add(l, v), add(r + 1, -v);  // 将区间加差分为两个前缀加
-    }
+        int getsum(int *t, int k) {
+          int ret = 0;
+          while (k) {
+            ret += t[k];
+            k -= lowbit(k);
+          }
+          return ret;
+        }
     
-    long long getsum1(int l, int r) {
-      return (r + 1ll) * getsum(t1, r) - 1ll * l * getsum(t1, l - 1) -
-             (getsum(t2, r) - getsum(t2, l - 1));
-    }
-    ```
+        void add1(int l, int r, int v) {
+          add(l, v), add(r + 1, -v);  // 将区间加差分为两个前缀加
+        }
     
-    ```python
-    # Python Version
-    t1 = [0] * MAXN, t2 = [0] * MAXN; n = 0
+        long long getsum1(int l, int r) {
+          return (r + 1ll) * getsum(t1, r) - 1ll * l * getsum(t1, l - 1) -
+                (getsum(t2, r) - getsum(t2, l - 1));
+        }
+        ```
     
-    def lowbit(x):
-        return x & (-x)
+    === "Python"
     
-    def add(k, v):
-        v1 = k * v
-        while k <= n:
-            t1[k] = t1[k] + v; t2[k] = t2[k] + v1
-            k = k + lowbit(k)
+        ```python
+        t1 = [0] * MAXN, t2 = [0] * MAXN; n = 0
     
-    def getsum(t, k):
-        ret = 0
-        while k:
-            ret = ret + t[k]
-            k = k - lowbit(k)
-        return ret
+        def lowbit(x):
+            return x & (-x)
     
-    def add1(l, r, v):
-        add(l, v)
-        add(r + 1, -v)
+        def add(k, v):
+            v1 = k * v
+            while k <= n:
+                t1[k] = t1[k] + v; t2[k] = t2[k] + v1
+                k = k + lowbit(k)
     
-    def getsum1(l, r):
-        return (r) * getsum(t1, r) - l * getsum(t1, l - 1) - \
-              (getsum(t2, r) - getsum(t2, l - 1))
-    ```
+        def getsum(t, k):
+            ret = 0
+            while k:
+                ret = ret + t[k]
+                k = k - lowbit(k)
+            return ret
+    
+        def add1(l, r, v):
+            add(l, v)
+            add(r + 1, -v)
+    
+        def getsum1(l, r):
+            return (r) * getsum(t1, r) - l * getsum(t1, l - 1) - \
+                  (getsum(t2, r) - getsum(t2, l - 1))
+        ```
 
 ## Tricks
 
@@ -201,48 +209,52 @@ $1000$ 对应的十进制是 $8$，所以 $c_{88}$ 一共管理 $8$ 个 $a$ 数�
 每一个节点的值是由所有与自己直接相连的儿子的值求和得到的。因此可以倒着考虑贡献，即每次确定完儿子的值后，用自己的值更新自己的直接父亲。
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    // O(n)建树
-    void init() {
-      for (int i = 1; i <= n; ++i) {
-        t[i] += a[i];
-        int j = i + lowbit(i);
-        if (j <= n) t[j] += t[i];
-      }
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def init():
-        for i in range(1, n + 1):
-            t[i] = t[i] + a[i]
-            j = i + lowbit(i)
-            if j <= n:
-                t[j] = t[j] + t[i]
-    ```
+        ```cpp
+        // O(n) 建树
+        void init() {
+          for (int i = 1; i <= n; ++i) {
+            t[i] += a[i];
+            int j = i + lowbit(i);
+            if (j <= n) t[j] += t[i];
+          }
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def init():
+            for i in range(1, n + 1):
+                t[i] = t[i] + a[i]
+                j = i + lowbit(i)
+                if j <= n:
+                    t[j] = t[j] + t[i]
+        ```
 
 方法二：
 
 前面讲到 $c_i$ 表示的区间是 $[i-\operatorname{lowbit}(i)+1, i]$，那么我们可以先预处理一个 $sum$ 前缀和数组，再计算 $c$ 数组。
 
 ???+note "实现"
-    ```cpp
-    // C++ Version
-    void init() {
-      for (int i = 1; i <= n; ++i) {
-        t[i] = sum[i] - sum[i - lowbit(i)];
-      }
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def init():
-        for i in range(1, n + 1):
-            t[i] = sum[i] - sum[i-lowbit(i)]
-    ```
+        ```cpp
+        void init() {
+          for (int i = 1; i <= n; ++i) {
+            t[i] = sum[i] - sum[i - lowbit(i)];
+          }
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def init():
+            for i in range(1, n + 1):
+                t[i] = sum[i] - sum[i-lowbit(i)]
+        ```
 
 ### $O(\log n)$ 查询第 $k$ 小/大元素
 
@@ -262,36 +274,38 @@ $1000$ 对应的十进制是 $8$，所以 $c_{88}$ 一共管理 $8$ 个 $a$ 数�
 
 #### 实现
 
-```cpp
-// C++ Version
-// 权值树状数组查询第k小
-int kth(int k) {
-  int cnt = 0, ret = 0;
-  for (int i = log2(n); ~i; --i) {      // i 与上文 depth 含义相同
-    ret += 1 << i;                      // 尝试扩展
-    if (ret >= n || cnt + t[ret] >= k)  // 如果扩展失败
-      ret -= 1 << i;
-    else
-      cnt += t[ret];  // 扩展成功后 要更新之前求和的值
-  }
-  return ret + 1;
-}
-```
+=== "C++"
 
-```python
-# Python Version
-# 权值树状数组查询第 k 小
-def kth(k):
-    cnt = 0; ret = 0
-    i = log2(n) # i 与上文 depth 含义相同
-    while ~i:
-        ret = ret + (1 << i) # 尝试扩展
-        if ret >= n or cnt + t[ret] >= k: # 如果扩展失败
-            ret = ret - (1 << i)
-        else:
-            cnt = cnt + t[ret] # 扩展成功后 要更新之前求和的值
-    return ret + 1
-```
+    ```cpp
+    // 权值树状数组查询第k小
+    int kth(int k) {
+      int cnt = 0, ret = 0;
+      for (int i = log2(n); ~i; --i) {      // i 与上文 depth 含义相同
+        ret += 1 << i;                      // 尝试扩展
+        if (ret >= n || cnt + t[ret] >= k)  // 如果扩展失败
+          ret -= 1 << i;
+        else
+          cnt += t[ret];  // 扩展成功后 要更新之前求和的值
+      }
+      return ret + 1;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    # 权值树状数组查询第 k 小
+    def kth(k):
+        cnt = 0; ret = 0
+        i = log2(n) # i 与上文 depth 含义相同
+        while ~i:
+            ret = ret + (1 << i) # 尝试扩展
+            if ret >= n or cnt + t[ret] >= k: # 如果扩展失败
+                ret = ret - (1 << i)
+            else:
+                cnt = cnt + t[ret] # 扩展成功后 要更新之前求和的值
+        return ret + 1
+    ```
 
 ### 时间戳优化
 
@@ -301,52 +315,54 @@ def kth(k):
 
 #### 实现
 
-```cpp
-// C++ Version
-// 时间戳优化
-int tag[MAXN], t[MAXN], Tag;
+=== "C++"
 
-void reset() { ++Tag; }
+    ```cpp
+    // 时间戳优化
+    int tag[MAXN], t[MAXN], Tag;
 
-void add(int k, int v) {
-  while (k <= n) {
-    if (tag[k] != Tag) t[k] = 0;
-    t[k] += v, tag[k] = Tag;
-    k += lowbit(k);
-  }
-}
+    void reset() { ++Tag; }
 
-int getsum(int k) {
-  int ret = 0;
-  while (k) {
-    if (tag[k] == Tag) ret += t[k];
-    k -= lowbit(k);
-  }
-  return ret;
-}
-```
+    void add(int k, int v) {
+      while (k <= n) {
+        if (tag[k] != Tag) t[k] = 0;
+        t[k] += v, tag[k] = Tag;
+        k += lowbit(k);
+      }
+    }
 
-```python
-# Python Version
-# 时间戳优化
-tag = [0] * MAXN; t = [0] * MAXN; Tag = 0
-def reset():
-    Tag = Tag + 1
-def add(k, v):
-    while k <= n:
-        if tag[k] != Tag:
-            t[k] = 0
-        t[k] = t[k] + v
-        tag[k] = Tag
-        k = k + lowbit(k)
-def getsum(k):
-    ret = 0
-    while k:
-        if tag[k] == Tag:
-            ret = ret + t[k]
-        k = k - lowbit(k)
-    return ret
-```
+    int getsum(int k) {
+      int ret = 0;
+      while (k) {
+        if (tag[k] == Tag) ret += t[k];
+        k -= lowbit(k);
+      }
+      return ret;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    # 时间戳优化
+    tag = [0] * MAXN; t = [0] * MAXN; Tag = 0
+    def reset():
+        Tag = Tag + 1
+    def add(k, v):
+        while k <= n:
+            if tag[k] != Tag:
+                t[k] = 0
+            t[k] = t[k] + v
+            tag[k] = Tag
+            k = k + lowbit(k)
+    def getsum(k):
+        ret = 0
+        while k:
+            if tag[k] == Tag:
+                ret = ret + t[k]
+            k = k - lowbit(k)
+        return ret
+    ```
 
 ## 例题
 

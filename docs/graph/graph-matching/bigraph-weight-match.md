@@ -216,6 +216,227 @@ $a = \min \{ slack(v) | v\in{T'} \}$
     };
     ```
 
+## Dynamic Hungarian Algorithm
+
+原论文 [The Dynamic Hungarian Algorithm for the Assignment Problem with Changing Costs](https://www.ri.cmu.edu/publications/the-dynamic-hungarian-algorithm-for-the-assignment-problem-with-changing-costs/)
+
+伪代码更清晰的论文 [A Fast Dynamic Assignment Algorithm for Solving Resource Allocation Problems](https://www.researchgate.net/publication/352490780_A_Fast_Dynamic_Assignment_Algorithm_for_Solving_Resource_Allocation_Problems)
+
+相关 OJ 问题 [DAP](https://www.spoj.com/problems/DAP/)
+
+???+ note "算法思路"
+    1.  修改单点 $u_i$ 和所有 $v_j$ 之间的权重，即权重矩阵中的一行
+        - 修改顶标 $lx(u_i) = max(w_{ij} - v_{j}), \forall j$
+        - 删除 $u_i$ 相关的匹配
+    2.  修改所有 $u_i$ 和单点 $v_j$ 之间的权重，即权重矩阵中的一列
+        - 修改顶标 $ly(v_j) = max(w_{ij} - u_{i}), \forall i$
+        - 删除 $v_j$ 相关的匹配
+    3.  修改单点 $u_i$ 和单点 $v_j$ 之间的权重，即权重矩阵中的单个元素
+        - 做 1 或 2 两种操作之一即可
+    4.  添加某一单点 $u_i$，或者某一单点 $v_j$，即在权重矩阵中添加或者删除一行或者一列
+        - 对应地做 1 或 2 即可，注意此处加点操作仅为加点，不额外设定权重值，新加点与其他点的权重为 0.
+
+???+ note "算法证明"
+    - 设原图为 G，左右两边的顶标为 $\alpha^{i}$ 和 $\beta^{j}$，可行顶标为 l，那 $G_l$ 是 G 的一个子图，包含图 G 中满足 $w_{ij} = alpha_{i}+beta_{j}$ 的点和边。
+    - 在上面匈牙利算法的部分，定理一证明了：对于某组可行顶标，如果其相等子图存在完美匹配，那么，该匹配就是原二分图的最大权完美匹配。
+    -   假设原来的最优匹配是 $M^*$, 当一个修改发生的时候，我们会根据规则更新可行顶标，更新后的顶标设为 $\alpha^{i^*}$, 或者 $\beta^{j^*}$，会出现以下情况：
+        1. 权重矩阵的一整行被修改了，设被修改的行为 $i^*$ 行，即 $v_{i^*}$ 的所有边被修改了，所以 $v_{i^*}$ 原来的顶标可能不满足条件，因为我们需要 $w_{i^{*}j} \leq alpha_{i^*}+beta_{j}$，但对于其他的 $u_j$ 来说，除了 $i^*$ 相关的边，他们的边权是不变的，因此他们的顶标都是合法的，所以算法中修改了 $v_{i^*}$ 相关的顶标使得这组顶标是一组可行顶标。
+        2. 权重矩阵的一整列被修改了，同理可得算法修改顶标使得这组顶标是一组可行顶标。
+        3. 修改权重矩阵某一元素，任意修改其中一个顶标即可满足顶标条件
+    - 每一次权重矩阵被修改，都关系到一个特定节点，这个节点可能是左边的也可能是右边的，因此我们直接记为 $x$, 这个节点和某个节点 $y$ 在原来的最优匹配中匹配上了。每一次修改操作，最多让这一对节点 unpair，因此我们只要跑一轮匈牙利算法中的搜索我们就能得到一个新的 match，而根据定理一，新跑出来的 match 是最优的。
+
+以下代码应该为论文 2 作者提交的代码（以下代码为最大化权重版本，原始论文中为最小化 cost）
+
+??? note "动态匈牙利算法参考代码"
+    ```cpp
+    #include <algorithm>
+    #include <cstdio>
+    #include <cstring>
+    #include <list>
+    using namespace std;
+    typedef long long LL;
+    const LL INF = (LL)1e15;
+    const int MAXV = 105;
+    
+    int N, mateS[MAXV], mateT[MAXV], p[MAXV];
+    LL u[MAXV], v[MAXV], slack[MAXV];
+    LL W[MAXV][MAXV];
+    bool m[MAXV];
+    list<int> Q;
+    
+    void readMatrix() {
+      scanf("%d", &N);
+      for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++) scanf("%lld", &W[i][j]);
+    }
+    
+    void initHungarian() {
+      memset(mateS, -1, sizeof(mateS));
+      memset(mateT, -1, sizeof(mateT));
+      for (int i = 0; i < N; i++) {
+        u[i] = -INF;
+        for (int j = 0; j < N; j++) u[i] = max(u[i], W[i][j]);
+        v[i] = 0;
+      }
+    }
+    
+    void augment(int j) {
+      int i, next;
+      do {
+        i = p[j];
+        mateT[j] = i;
+        next = mateS[i];
+        mateS[i] = j;
+        if (next != -1) j = next;
+      } while (next != -1);
+    }
+    
+    LL hungarian() {
+      int nres = 0;
+      for (int i = 0; i < N; i++)
+        if (mateS[i] == -1) nres++;
+    
+      while (nres > 0) {
+        for (int i = 0; i < N; i++) {
+          m[i] = false;
+          p[i] = -1;
+          slack[i] = INF;
+        }
+        bool aug = false;
+        Q.clear();
+        for (int i = 0; i < N; i++)
+          if (mateS[i] == -1) {
+            Q.push_back(i);
+            break;
+          }
+    
+        do {
+          int i, j;
+          i = Q.front();
+          Q.pop_front();
+          m[i] = true;
+          j = 0;
+    
+          while (aug == false && j < N) {
+            if (mateS[i] != j) {
+              LL minSlack = u[i] + v[j] - W[i][j];
+              if (minSlack < slack[j]) {
+                slack[j] = minSlack;
+                p[j] = i;
+                if (slack[j] == 0) {
+                  if (mateT[j] == -1) {
+                    augment(j);
+                    aug = true;
+                    nres--;
+                  } else
+                    Q.push_back(mateT[j]);
+                }
+              }
+            }
+            j++;
+          }
+    
+          if (aug == false && Q.size() == 0) {
+            LL minSlack = INF;
+            for (int k = 0; k < N; k++)
+              if (slack[k] > 0) minSlack = min(minSlack, slack[k]);
+            for (int k = 0; k < N; k++)
+              if (m[k]) u[k] -= minSlack;
+    
+            int x = -1;
+            bool X[MAXV];
+            for (int k = 0; k < N; k++)
+              if (slack[k] == 0)
+                v[k] += minSlack;
+              else {
+                slack[k] -= minSlack;
+                if (slack[k] == 0 && mateT[k] == -1) x = k;
+                if (slack[k] == 0)
+                  X[k] = true;
+                else
+                  X[k] = false;
+              }
+    
+            if (x == -1) {
+              for (int k = 0; k < N; k++)
+                if (X[k]) Q.push_back(mateT[k]);
+            } else {
+              augment(x);
+              aug = true;
+              nres--;
+            }
+          }
+        } while (aug == false);
+      }
+    
+      LL ans = 0;
+      for (int i = 0; i < N; i++) ans += (u[i] + v[i]);
+      return ans;
+    }
+    
+    void dynamicHungarian() {
+      char type[2];
+      LL w;
+      int i, j;
+    
+      scanf("%s", type);
+      if (type[0] == 'C') {
+        scanf("%d%d%lld", &i, &j, &w);
+        if ((w < W[i][j]) && (mateS[i] == j)) {
+          W[i][j] = w;
+          if (mateS[i] != -1) {
+            mateT[mateS[i]] = -1;
+            mateS[i] = -1;
+          }
+        } else if ((w > W[i][j]) && (u[i] + v[j] < w)) {
+          W[i][j] = w;
+          u[i] = -INF;
+          for (int c = 0; c < N; c++) u[i] = max(u[i], W[i][c] - v[c]);
+          if (mateS[i] != j) {
+            mateT[mateS[i]] = -1;
+            mateS[i] = -1;
+          }
+        } else
+          W[i][j] = w;
+      } else if (type[0] == 'X') {
+        scanf("%d", &i);
+        for (int c = 0; c < N; c++) scanf("%lld", &W[i][c]);
+        if (mateS[i] != -1) {
+          mateT[mateS[i]] = -1;
+          mateS[i] = -1;
+        }
+        u[i] = -INF;
+        for (int c = 0; c < N; c++) u[i] = max(u[i], W[i][c] - v[c]);
+      } else if (type[0] == 'Y') {
+        scanf("%d", &j);
+        for (int r = 0; r < N; r++) scanf("%lld", &W[r][j]);
+        if (mateT[j] != -1) {
+          mateS[mateT[j]] = -1;
+          mateT[j] = -1;
+        }
+        v[j] = -INF;
+        for (int r = 0; r < N; r++) v[j] = max(v[j], W[r][j] - u[r]);
+      } else if (type[0] == 'A') {
+        i = j = N++;
+        u[i] = -INF;
+        for (int c = 0; c < N; c++) u[i] = max(u[i], W[i][c] - v[c]);
+        v[j] = -INF;
+        for (int r = 0; r < N; r++) v[j] = max(v[j], W[r][j] - u[r]);
+      } else if (type[0] == 'Q')
+        printf("%lld\n", hungarian());
+    }
+    
+    int main() {
+      readMatrix();
+      initHungarian();
+      LL ans = hungarian();
+      int M;
+      scanf("%d", &M);
+      while (M--) dynamicHungarian();
+      return 0;
+    }
+    ```
+
 ## 转化为费用流模型
 
 在图中新增一个源点和一个汇点。

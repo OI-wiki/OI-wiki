@@ -7,3 +7,4 @@ mkdocs-material/
 .env
 .well-known/
 node_modules/
+*.pyc

@@ -38,11 +38,11 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
 
 倍增过程：
 
-1. 用两个长度为 $1$ 的子串的排名，即 $rk_1[i]$ 和 $rk_1[i+1]$，作为排序的第一第二关键字，就可以对字符串 $s$ 的每个长度为 $2$ 的子串：$\{s[i\dots min(i+1, n)]\ |\ i \in [1,\ n]\}$ 进行排序，得到 $sa_2$ 和 $rk_2$；
+1. 用两个长度为 $1$ 的子串的排名，即 $rk_1[i]$ 和 $rk_1[i+1]$，作为排序的第一第二关键字，就可以对字符串 $s$ 的每个长度为 $2$ 的子串：$\{s[i\dots \min(i+1, n)]\ |\ i \in [1,\ n]\}$ 进行排序，得到 $sa_2$ 和 $rk_2$；
 
-2. 之后用两个长度为 $2$ 的子串的排名，即 $rk_2[i]$ 和 $rk_2[i+2]$，作为排序的第一第二关键字，就可以对字符串 $s$ 的每个长度为 $4$ 的子串：$\{s[i\dots min(i+3, n)]\ |\ i \in [1,\ n]\}$ 进行排序，得到 $sa_4$ 和 $rk_4$；
+2. 之后用两个长度为 $2$ 的子串的排名，即 $rk_2[i]$ 和 $rk_2[i+2]$，作为排序的第一第二关键字，就可以对字符串 $s$ 的每个长度为 $4$ 的子串：$\{s[i\dots \min(i+3, n)]\ |\ i \in [1,\ n]\}$ 进行排序，得到 $sa_4$ 和 $rk_4$；
 
-3. 以此倍增，用长度为 $w/2$ 的子串的排名，即 $rk_{w/2}[i]$ 和 $rk_{w/2}[i+w/2]$，作为排序的第一第二关键字，就可以对字符串 $s$ 的每个长度为 $w$ 的子串 $s[i\dots min(i+w-1,\ n)]$ 进行排序，得到 $sa_w$ 和 $rk_w$。其中，类似字母序排序规则，当 $i+w>n$ 时，$rk_w[i+w]$ 视为无穷小；
+3. 以此倍增，用长度为 $w/2$ 的子串的排名，即 $rk_{w/2}[i]$ 和 $rk_{w/2}[i+w/2]$，作为排序的第一第二关键字，就可以对字符串 $s$ 的每个长度为 $w$ 的子串 $s[i\dots \min(i+w-1,\ n)]$ 进行排序，得到 $sa_w$ 和 $rk_w$。其中，类似字母序排序规则，当 $i+w>n$ 时，$rk_w[i+w]$ 视为无穷小；
 
 4. $rk_w[i]$ 即是子串 $s[i\dots i + w - 1]$ 的排名，这样当 $w \geqslant n$ 时，得到的编号数组 $sa_w$，也就是我们需要的后缀数组。
 
@@ -313,59 +313,6 @@ for (i = 1; i <= n; ++i) {
 
 ??? note "参考代码"
     ```cpp
-    #include <cctype>
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    
-    using namespace std;
-    
-    const int N = 1000010;
-    
-    char s[N];
-    int n, sa[N], id[N], oldrk[N << 1], rk[N << 1], key1[N], cnt[N];
-    
-    bool cmp(int x, int y, int w) {
-      return oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w];
-    }
-    
-    int main() {
-      int i, w, m = 127, p, l = 1, r, tot = 0;
-    
-      cin >> n;
-      r = n;
-    
-      for (i = 1; i <= n; ++i)
-        while (!isalpha(s[i] = getchar()))
-          ;
-      for (i = 1; i <= n; ++i) rk[i] = rk[2 * n + 2 - i] = s[i];
-    
-      n = 2 * n + 1;
-    
-      for (i = 1; i <= n; ++i) ++cnt[rk[i]];
-      for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-      for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
-    
-      for (w = 1; w < n; w <<= 1, m = p) {
-        for (p = 0, i = n; i > n - w; --i) id[++p] = i;
-        for (i = 1; i <= n; ++i)
-          if (sa[i] > w) id[++p] = sa[i] - w;
-        memset(cnt, 0, sizeof(cnt));
-        for (i = 1; i <= n; ++i) ++cnt[key1[i] = rk[id[i]]];
-        for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-        for (i = n; i >= 1; --i) sa[cnt[key1[i]]--] = id[i];
-        memcpy(oldrk + 1, rk + 1, n * sizeof(int));
-        for (p = 0, i = 1; i <= n; ++i)
-          rk[sa[i]] = cmp(sa[i], sa[i - 1], w) ? p : ++p;
-      }
-    
-      while (l <= r) {
-        printf("%c", rk[l] < rk[n + 1 - r] ? s[l++] : s[r--]);
-        if ((++tot) % 80 == 0) puts("");
-      }
-    
-      return 0;
-    }
     --8<-- "docs/string/code/sa/sa_1.cpp"
     ```
 
@@ -468,62 +415,6 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 
 ??? note "参考代码"
     ```cpp
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    #include <set>
-    
-    using namespace std;
-    
-    const int N = 32000;
-    
-    int n, k, a[N], sa[N], rk[N], oldrk[N], id[N], key1[N], cnt[N << 1], ht[N], ans;
-    multiset<int> t;  // multiset 是最好写的实现方式
-    
-    bool cmp(int x, int y, int w) {
-      return oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w];
-    }
-    
-    int main() {
-      int i, j, w, p, m = 127;
-    
-      scanf("%d%d", &n, &k);
-      --k;
-    
-      for (i = 1; i <= n; ++i) scanf("%d", a + i);
-      for (i = 1; i <= n; ++i) ++cnt[rk[i] = a[i]];
-      for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-      for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
-    
-      for (w = 1; w < n; w <<= 1, m = p) {
-        for (p = 0, i = n; i > n - w; --i) id[++p] = i;
-        for (i = 1; i <= n; ++i)
-          if (sa[i] > w) id[++p] = sa[i] - w;
-        memset(cnt, 0, sizeof(cnt));
-        for (i = 1; i <= n; ++i) ++cnt[key1[i] = rk[id[i]]];
-        for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-        for (i = n; i >= 1; --i) sa[cnt[key1[i]]--] = id[i];
-        memcpy(oldrk + 1, rk + 1, n * sizeof(int));
-        for (p = 0, i = 1; i <= n; ++i)
-          rk[sa[i]] = cmp(sa[i], sa[i - 1], w) ? p : ++p;
-      }
-    
-      for (i = 1, j = 0; i <= n; ++i) {
-        if (j) --j;
-        while (a[i + j] == a[sa[rk[i] - 1] + j]) ++j;
-        ht[rk[i]] = j;
-      }
-    
-      for (i = 1; i <= n; ++i) {
-        t.insert(ht[i]);
-        if (i > k) t.erase(t.find(ht[i - k]));
-        ans = max(ans, *t.begin());
-      }
-    
-      cout << ans;
-    
-      return 0;
-    }
     --8<-- "docs/string/code/sa/sa_2.cpp"
     ```
 
@@ -562,70 +453,6 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 
 ??? note "参考代码"
     ```cpp
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    
-    using namespace std;
-    
-    const int N = 500010;
-    
-    char s[N];
-    int n, sa[N], rk[N << 1], oldrk[N << 1], id[N], key1[N], cnt[N], ht[N], sta[N],
-        top, l[N];
-    long long ans;
-    
-    bool cmp(int x, int y, int w) {
-      return oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w];
-    }
-    
-    int main() {
-      int i, k, w, p, m = 127;
-    
-      scanf("%s", s + 1);
-      n = strlen(s + 1);
-      ans = 1ll * n * (n - 1) * (n + 1) / 2;
-      for (i = 1; i <= n; ++i) ++cnt[rk[i] = s[i]];
-      for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-      for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
-    
-      for (w = 1; w < n; w <<= 1, m = p) {
-        for (p = 0, i = n; i > n - w; --i) id[++p] = i;
-        for (i = 1; i <= n; ++i)
-          if (sa[i] > w) id[++p] = sa[i] - w;
-        memset(cnt, 0, sizeof(cnt));
-        for (i = 1; i <= n; ++i) ++cnt[key1[i] = rk[id[i]]];
-        for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-        for (i = n; i >= 1; --i) sa[cnt[key1[i]]--] = id[i];
-        memcpy(oldrk + 1, rk + 1, n * sizeof(int));
-        for (p = 0, i = 1; i <= n; ++i)
-          rk[sa[i]] = cmp(sa[i], sa[i - 1], w) ? p : ++p;
-      }
-    
-      for (i = 1, k = 0; i <= n; ++i) {
-        if (k) --k;
-        while (s[i + k] == s[sa[rk[i] - 1] + k]) ++k;
-        ht[rk[i]] = k;
-      }
-    
-      for (i = 1; i <= n; ++i) {
-        while (ht[sta[top]] > ht[i]) --top;
-        l[i] = i - sta[top];
-        sta[++top] = i;
-      }
-    
-      sta[++top] = n + 1;
-      ht[n + 1] = -1;
-      for (i = n; i >= 1; --i) {
-        while (ht[sta[top]] >= ht[i]) --top;
-        ans -= 2ll * ht[i] * l[i] * (sta[top] - i);
-        sta[++top] = i;
-      }
-    
-      cout << ans;
-    
-      return 0;
-    }
     --8<-- "docs/string/code/sa/sa_3.cpp"
     ```
 
