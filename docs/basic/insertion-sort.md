@@ -42,16 +42,15 @@ $$
 === "C++"
 
     ```cpp
-    void insertion_sort(int* a, int n) {
-      // 对 a[1],a[2],...,a[n] 进行插入排序
-      for (int i = 2; i <= n; ++i) {
-        int key = a[i];
+    void insertion_sort(int arr[], int len) {
+      for (int i = 1; i < len; ++i) {
+        int key = arr[i];
         int j = i - 1;
-        while (j > 0 && a[j] > key) {
-          a[j + 1] = a[j];
-          --j;
+        while (j >= 0 && arr[j] > key) {
+          arr[j + 1] = arr[j];
+          j--;
         }
-        a[j + 1] = key;
+        arr[j + 1] = key;
       }
     }
     ```
@@ -59,12 +58,12 @@ $$
 === "Python"
 
     ```python
-    def insertion_sort(a, n):
-        for i in range(2, n + 1):
-            key = a[i]
-            j = i - 1
-            while j > 0 and a[j] > key:
-                a[j + 1] = a[j]
-                j = j - 1
-            a[j + 1] = key
+    def insertion_sort(arr, n):
+      for i in range(1, n):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > key:
+          arr[j + 1] = arr[j]
+          j = j - 1
+        arr[j + 1] = key
     ```
