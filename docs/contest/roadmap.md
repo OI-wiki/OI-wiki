@@ -99,9 +99,9 @@
 排序的方法有点多，但理解后记住它们并不难。
 
 - [排序简介](../basic/sort-intro.md)
-- [选择排序 \*](../basic/selection-sort.md)
-- [冒泡排序 \*](../basic/bubble-sort.md)
-- [插入排序 \*](../basic/insertion-sort.md)
+- [选择排序\*](../basic/selection-sort.md)
+- [冒泡排序\*](../basic/bubble-sort.md)
+- [插入排序\*](../basic/insertion-sort.md)
 - [计数排序](../basic/counting-sort.md)
 - [基数排序](../basic/radix-sort.md)
 - [快速排序](../basic/quick-sort.md)
