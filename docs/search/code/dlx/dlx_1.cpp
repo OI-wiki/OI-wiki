@@ -3,10 +3,6 @@ const int N = 500 + 10;
 int n, m, idx, ans;
 int first[N], siz[N], stk[N];
 
-struct DLXNODE {
-  int lc, rc, up, dn, r, c;
-};
-
 inline int read() {  // 快读
   register int x = 0, f = 0, ch;
   while (!isdigit(ch = getchar())) f |= ch == '-';
