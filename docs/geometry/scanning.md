@@ -156,171 +156,49 @@ B 维正交范围指在一个 B 维直角坐标系下，第 $i$ 维坐标在一�
 
 可以用 [这道题](https://www.luogu.com.cn/problem/U245713) 进行练习。
 
-### P1908 逆序对。
+### 例题
 
-[题目链接](https://www.luogu.com.cn/problem/P1908)。
+???+note "[洛谷 P1908 逆序对](https://www.luogu.com.cn/problem/P1908)"
 
-没错，逆序对也可以用扫描线的思维来做。考虑将求逆序对的个数转化为从后向前枚举每个位置 $i$，求在区间 $[i+1,n]$ 中，大小在区间 $[0,a_i]$ 中的点的个数。题目中数据范围为 $10^9$，很显然要先进行离散化，我们可以考虑从后向前遍历数组，每次遍历到一个数时更新数组数组（线段树），之后统计当前一共有多少个数小于当前枚举的数，因为我们是从后向前遍历的，所以比当前值小的数的个数就是他的逆序对的个数，可以用树状数组或线段树进行单点修改和区间查询。
+    没错，逆序对也可以用扫描线的思维来做。考虑将求逆序对的个数转化为从后向前枚举每个位置 $i$，求在区间 $[i+1,n]$ 中，大小在区间 $[0,a_i]$ 中的点的个数。题目中数据范围为 $10^9$，很显然要先进行离散化，我们可以考虑从后向前遍历数组，每次遍历到一个数时更新数组数组（线段树），之后统计当前一共有多少个数小于当前枚举的数，因为我们是从后向前遍历的，所以比当前值小的数的个数就是他的逆序对的个数，可以用树状数组或线段树进行单点修改和区间查询。
 
-代码如下：
+    ??? note "代码"
 
-```cpp
-#include <bits/stdc++.h>
-#define ll long long
-using namespace std;
+        ```cpp
+        --8<-- "docs/geometry/code/scanning/scanning_1.cpp"
+        ```
 
-struct node {
-  ll data;
-  ll num;
-} f[5000001];
+???+note "[洛谷 P1972 [SDOI2009] HH 的项链](https://www.luogu.com.cn/problem/P1972)"
 
-ll n, c[5000001], ans, a[5000001];
+    简要题意：给定一个长为 $n$ 的序列，$m$ 次查询区间中有多少不同的数。
 
-bool cmp(node a, node b) {
-  if (a.data == b.data) {
-    return a.num < b.num;
-  }
-  return a.data < b.data;
-}
+    这类问题我们可以考虑推导性质，之后使用扫描线枚举所有右端点，数据结构维护每个左端点的答案的方法来实现，我们也可以将问题转换到二维平面上，变为一个矩形查询信息的问题。
 
-inline ll lowbit(ll i) { return i & (-i); }
+    在这道题中，对于每个位置 $i$，考虑预处理出 $i$ 左边离 $i$ 最近的 $j$ 满足 $a_i=a_j$，用一个数组记录，即 $pre_i=j$。
 
-inline ll sum(ll x) {
-  ll s = 0;
-  for (; x > 0; x -= lowbit(x)) {
-    s += c[x];
-  }
-  return s;
-}
+    然后查询区间中的不同数，我们可以只把每个数在区间中最后一次出现时统计进去。
 
-int main() {
-  cin >> n;
-  for (ll i = 1; i <= n; i++) {
-    cin >> f[i].data;
-    f[i].num = i;
-  }
-  sort(f + 1, f + 1 + n, cmp);
-  for (int i = 1; i <= n; i++) {
-    a[f[i].num] = i;
-  }
-  for (ll i = n; i > 0; i--) {
-    ans += sum(a[i]);
-    for (ll j = a[i]; j <= n; j += lowbit(j)) {
-      c[j]++;
-    }
-  }
-  cout << ans;
-  return 0;
-}
+    若这个数在当前区间中是第一次出现，那么这个数肯定满足 $pre_i < l$。如果不是第一次出现，那么 $l \le pre_i$。这样问题就转变成了求区间 $[l,r]$ 中，满足 $pre_i < l$ 的 $i$ 的个数。
 
-```
+    我们可以考虑差分，将区间 $[l,r]$ 差分为前缀 $[1,r]$ 减去前缀 $[1,l-1]$。考虑将询问离线处理，假设有一个询问是对于区间 $[l,r]$ 的，我们在 $l-1$ 位置上和 $r$ 位置上分别记录一下，答案为在 $r$ 处记录的 $pre_i < l$ 的个数减去在 $l-1$ 处记录的 $pre_i < l$ 的 $i$ 的个数。
 
-### P1972[SDOI2009]HH 的项链
+    每次查询可以用值域线段树或值域树状数组来维护，注意一个位置上可能有多个询问，但总共的查询次数是 $m$ 次。总时间复杂度 $\mathcal O((n+m)\log n)$。
 
-[题目链接](https://www.luogu.com.cn/problem/P1972)
+    ??? note "代码"
 
-简要题意：给定一个长为 $n$ 的序列，$m$ 次查询区间中有多少不同的数。
-
-这类问题我们可以考虑推导性质，之后使用扫描线枚举所有右端点，数据结构维护每个左端点的答案的方法来实现，我们也可以将问题转换到二维平面上，变为一个矩形查询信息的问题。
-
-在这道题中，对于每个位置 $i$，考虑预处理出 $i$ 左边离 $i$ 最近的 $j$ 满足 $a_i=a_j$，用一个数组记录，即 $pre_i=j$。
-
-然后查询区间中的不同数，我们可以只把每个数在区间中最后一次出现时统计进去。
-
-若这个数在当前区间中是第一次出现，那么这个数肯定满足 $pre_i < l$。如果不是第一次出现，那么 $l \le pre_i$。这样问题就转变成了求区间 $[l,r]$ 中，满足 $pre_i < l$ 的 $i$ 的个数。
-
-我们可以考虑差分，将区间 $[l,r]$ 差分为前缀 $[1,r]$ 减去前缀 $[1,l-1]$。考虑将询问离线处理，假设有一个询问是对于区间 $[l,r]$ 的，我们在 $l-1$ 位置上和 $r$ 位置上分别记录一下，答案为在 $r$ 处记录的 $pre_i < l$ 的个数减去在 $l-1$ 处记录的 $pre_i < l$ 的 $i$ 的个数。
-
-每次查询可以用值域线段树或值域树状数组来维护，注意一个位置上可能有多个询问，但总共的查询次数是 $m$ 次。总时间复杂度 $\mathcal O((n+m)\log n)$。
-
-代码如下：
-
-```cpp
-#include <bits/stdc++.h>
-#define ls x << 1
-#define rs x << 1 | 1
-#define N 1000010
-using namespace std;
-
-struct node {
-  int l, r, ans;
-} q[N];
-
-struct t {
-  int num, s;
-};
-
-vector<t> p[N];
-int n, a[N], m, now[N];
-int siz[N << 2];
-
-void update(int x, int l, int r, int ad) {
-  if (l == r && l == ad) {
-    siz[x]++;
-    return;
-  }
-  int mid = l + r >> 1;
-  if (ad <= mid) {
-    update(ls, l, mid, ad);
-  } else {
-    update(rs, mid + 1, r, ad);
-  }
-  siz[x] = siz[ls] + siz[rs];
-}
-
-int query(int x, int l, int r, int L, int R) {
-  if (l >= L && r <= R) {
-    return siz[x];
-  }
-  int mid = l + r >> 1;
-  int res = 0;
-  if (L <= mid) {
-    res += query(ls, l, mid, L, R);
-  }
-  if (R > mid) {
-    res += query(rs, mid + 1, r, L, R);
-  }
-  return res;
-}
-
-int main() {
-  scanf("%d", &n);
-  for (int i = 1; i <= n; i++) {
-    scanf("%d", &a[i]);
-  }
-  scanf("%d", &m);
-  for (int i = 1; i <= m; i++) {
-    int l, r;
-    scanf("%d%d", &l, &r);
-    p[l - 1].push_back(t{i, -1});
-    p[r].push_back(t{i, 1});
-    q[i] = node{l, r, 0};
-  }
-  for (int i = 1; i <= n; i++) {
-    update(1, 0, n, now[a[i]]);
-    now[a[i]] = i;
-    for (auto x : p[i]) {
-      int num = x.num;
-      q[num].ans += x.s * query(1, 0, n, 0, q[num].l - 1);
-    }
-  }
-  for (int i = 1; i <= m; i++) {
-    printf("%d\n", q[i].ans);
-  }
-  return 0;
-}
-
-```
+        ```cpp
+        --8<-- "docs/geometry/code/scanning/scanning_2.cpp"
+        ```
 
 ### 例题
 
-- [P8593](https://www.luogu.com.cn/problem/P8593) 逆序对的应用。
+- [洛谷 P8593](https://www.luogu.com.cn/problem/P8593) 逆序对的应用。
 
 - [AcWing 4709. 三元组](https://www.acwing.com/problem/content/4712/) 上题的弱化版，同样为逆序对的应用。
 
-- [P8773 \[蓝桥杯 2022 省 A\] 选数异或](https://www.luogu.com.cn/problem/P8773) HH 的项链魔改版。
+- [洛谷 P8773 \[蓝桥杯 2022 省 A\] 选数异或](https://www.luogu.com.cn/problem/P8773) HH 的项链魔改版。
 
-- [P8844 \[传智杯 #4 初赛\] 小卡与落叶](https://www.luogu.com.cn/problem/P8844) 树上问题转序列问题然后进行二维数点。
+- [洛谷 P8844 \[传智杯 #4 初赛\] 小卡与落叶](https://www.luogu.com.cn/problem/P8844) 树上问题转序列问题然后进行二维数点。
 
 总而言之，二维数点的主要思路就是数据结构维护一维，然后枚举另一维。
 
