@@ -99,9 +99,9 @@
 排序的方法有点多，但理解后记住它们并不难。
 
 - [排序简介](../basic/sort-intro.md)
-- [选择排序\*](../basic/selection-sort.md)
-- [冒泡排序\*](../basic/bubble-sort.md)
-- [插入排序\*](../basic/insertion-sort.md)
+- [选择排序](../basic/selection-sort.md)
+- [冒泡排序](../basic/bubble-sort.md)
+- [插入排序](../basic/insertion-sort.md)
 - [计数排序](../basic/counting-sort.md)
 - [基数排序](../basic/radix-sort.md)
 - [快速排序](../basic/quick-sort.md)
@@ -110,8 +110,7 @@
 - [桶排序](../basic/bucket-sort.md)
 - [排序相关 STL](../basic/stl-sort.md)
 
-
-- NOI 大纲中入门级只要求学习这三个排序算法，但是其余的难度也并不大，且初赛中可能涉及，故一并列出。
+NOI 大纲中入门级只要求学习选择、冒泡、插入排序，共三个排序算法，但是其余的难度也并不大，且初赛中可能涉及，故一并列出。
 
 ### 2.5 二分与倍增
 
