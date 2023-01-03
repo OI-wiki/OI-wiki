@@ -128,7 +128,7 @@
 
 - [「POJ3832」Posters](http://poj.org/problem?id=3832)
 
-- [P1856\[IOI1998\]\[USACO5.5\]矩形周长 Picture](https://www.luogu.com.cn/problem/P1856)
+- [洛谷 P1856\[IOI1998\]\[USACO5.5\]矩形周长 Picture](https://www.luogu.com.cn/problem/P1856)
 
 ## B 维正交范围
 
