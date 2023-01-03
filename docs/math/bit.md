@@ -165,8 +165,8 @@ $$
 
     ```cpp
     // 如果 a >= b, (a - b) >> 31 为 0，否则为 -1
-    int max(int a, int b) { return b & ((a - b) >> 31) | a & (~(a - b) >> 31); }
-    int min(int a, int b) { return a & ((a - b) >> 31) | b & (~(a - b) >> 31); }
+    int max(int a, int b) { return (b & ((a - b) >> 31)) | (a & (~(a - b) >> 31)); }
+    int min(int a, int b) { return (a & ((a - b) >> 31)) | (b & (~(a - b) >> 31)); }
     ```
 
 === "Python"
