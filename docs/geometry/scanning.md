@@ -128,7 +128,7 @@
 
 - [「POJ3832」Posters](http://poj.org/problem?id=3832)
 
-- [洛谷 P1856\[IOI1998\]\[USACO5.5\]矩形周长 Picture](https://www.luogu.com.cn/problem/P1856)
+- [洛谷 P1856 \[IOI1998\] \[USACO5.5\] 矩形周长 Picture](https://www.luogu.com.cn/problem/P1856)
 
 ## B 维正交范围
 
@@ -166,7 +166,7 @@ B 维正交范围指在一个 B 维直角坐标系下，第 $i$ 维坐标在一�
         --8<-- "docs/geometry/code/scanning/scanning_1.cpp"
         ```
 
-???+note "[洛谷 P1972 [SDOI2009] HH 的项链](https://www.luogu.com.cn/problem/P1972)"
+???+note "[洛谷 P1972 \[SDOI2009\] HH 的项链](https://www.luogu.com.cn/problem/P1972)"
     简要题意：给定一个长为 $n$ 的序列，$m$ 次查询区间中有多少不同的数。
     
     这类问题我们可以考虑推导性质，之后使用扫描线枚举所有右端点，数据结构维护每个左端点的答案的方法来实现，我们也可以将问题转换到二维平面上，变为一个矩形查询信息的问题。
@@ -188,13 +188,13 @@ B 维正交范围指在一个 B 维直角坐标系下，第 $i$ 维坐标在一�
 
 ### 例题
 
-- [洛谷 P8593](https://www.luogu.com.cn/problem/P8593) 逆序对的应用。
+- [洛谷 P8593 「KDOI-02」一个弹的投](https://www.luogu.com.cn/problem/P8593) 逆序对的应用。
 
 - [AcWing 4709. 三元组](https://www.acwing.com/problem/content/4712/) 上题的弱化版，同样为逆序对的应用。
 
-- [洛谷 P8773\[蓝桥杯 2022 省 A\]选数异或](https://www.luogu.com.cn/problem/P8773) HH 的项链魔改版。
+- [洛谷 P8773 \[蓝桥杯 2022 省 A\] 选数异或](https://www.luogu.com.cn/problem/P8773) HH 的项链魔改版。
 
-- [洛谷 P8844\[传智杯 #4 初赛\]小卡与落叶](https://www.luogu.com.cn/problem/P8844) 树上问题转序列问题然后进行二维数点。
+- [洛谷 P8844 \[传智杯 #4 初赛\] 小卡与落叶](https://www.luogu.com.cn/problem/P8844) 树上问题转序列问题然后进行二维数点。
 
 总而言之，二维数点的主要思路就是数据结构维护一维，然后枚举另一维。
 
