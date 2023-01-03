@@ -119,7 +119,7 @@ DFT、FFT、NTT、FNTT 的具体关系是：
     int r[N];
     
     void ntt(int *x, int lim, int opt) {
-      register int i, j, k, m, gn, g, tmp;
+      int i, j, k, m, gn, g, tmp;
       for (i = 0; i < lim; ++i)
         if (r[i] < i) swap(x[i], x[r[i]]);
       for (m = 2; m <= lim; m <<= 1) {
@@ -136,7 +136,7 @@ DFT、FFT、NTT、FNTT 的具体关系是：
       }
       if (opt == -1) {
         reverse(x + 1, x + lim);
-        register int inv = qpow(lim, P - 2);
+        int inv = qpow(lim, P - 2);
         for (i = 0; i < lim; ++i) x[i] = 1ll * x[i] * inv % P;
       }
     }
@@ -146,7 +146,7 @@ DFT、FFT、NTT、FNTT 的具体关系是：
     char a[N], b[N];
     
     int main() {
-      register int i, lim(1), n;
+      int i, lim(1), n;
       scanf("%s", &a);
       n = strlen(a);
       for (i = 0; i < n; ++i) A[i] = a[n - i - 1] - '0';
