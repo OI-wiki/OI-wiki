@@ -25,5 +25,5 @@ jobs:
         run: yarn install
       - name: Run checker
         run: |
-          yarn docs:format:check
+          yarn docs:format:check -a
       
