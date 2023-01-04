@@ -123,7 +123,28 @@ $$
 由于离散傅立叶变换是一个 **线性** 算子，所以它可以用矩阵乘法来描述。在矩阵表示法中，离散傅立叶变换表示如下：
 
 $$
-{\displaystyle {\begin{bmatrix}X_{0}\\X_{1}\\X_{2}\\\vdots \\X_{n-1}\end{bmatrix}}={\begin{bmatrix}1&1&1&\cdots &1\\1&\alpha &\alpha ^{2}&\cdots &\alpha ^{n-1}\\1&\alpha ^{2}&\alpha ^{4}&\cdots &\alpha ^{2(n-1)}\\\vdots &\vdots &\vdots &&\vdots \\1&\alpha ^{n-1}&\alpha ^{2(n-1)}&\cdots &\alpha ^{(n-1)(n-1)}\\\end{bmatrix}}{\begin{bmatrix}x_{0}\\x_{1}\\x_{2}\\\vdots \\x_{n-1}\end{bmatrix}}}
+\begin{bmatrix}
+    X_{0}  \\
+    X_{1}  \\
+    X_{2}  \\
+    \vdots \\
+    X_{n-1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+    1      & 1            & 1               & \cdots & 1                   \\
+    1      & \alpha       & \alpha^{2}      & \cdots & \alpha^{n-1}        \\
+    1      & \alpha^{2}   & \alpha^{4}      & \cdots & \alpha^{2(n-1)}     \\
+    \vdots & \vdots       & \vdots          & \ddots & \vdots              \\
+    1      & \alpha^{n-1} & \alpha^{2(n-1)} & \cdots & \alpha^{(n-1)(n-1)}
+\end{bmatrix}
+\begin{bmatrix}
+    x_{0}  \\
+    x_{1}  \\
+    x_{2}  \\
+    \vdots \\
+    x_{n-1}
+\end{bmatrix}
 $$
 
 其中 $\alpha = e^{-i\frac{2\pi}{N}n}$。
