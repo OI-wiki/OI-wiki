@@ -6,30 +6,32 @@
 
 我们自然地会想到，如何用计算机来判断一个数是不是素数呢？
 
-### 暴力做法
+### 实现
 
-自然可以枚举从小到大的每个数看是否能整除
+暴力做法自然可以枚举从小到大的每个数看是否能整除
 
-```cpp
-// C++ Version
-bool isPrime(a) {
-  if (a < 2) return 0;
-  for (int i = 2; i < a; ++i)
-    if (a % i == 0) return 0;
-  return 1;
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def isPrime(a):
-    if a < 2:
-        return False
-    for i in range(2, a):
-        if a % i == 0:
+    ```cpp
+    bool isPrime(a) {
+      if (a < 2) return 0;
+      for (int i = 2; i < a; ++i)
+        if (a % i == 0) return 0;
+      return 1;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def isPrime(a):
+        if a < 2:
             return False
-    return True
-```
+        for i in range(2, a):
+            if a % i == 0:
+                return False
+        return True
+    ```
 
 这样做是十分稳妥了，但是真的有必要每个数都去判断吗？
 
@@ -39,28 +41,32 @@ def isPrime(a):
 
 由于 $1$ 肯定是约数，所以不检验它。
 
-```cpp
-// C++ Version
-bool isPrime(a) {
-  if (a < 2) return 0;
-  for (int i = 2; i * i <= a; ++i)
-    if (a % i == 0) return 0;
-  return 1;
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def isPrime(a):
-    if a < 2:
-        return False
-    for i in range(2, int(sqrt(a)) + 1):
-        if a % i == 0:
+    ```cpp
+    bool isPrime(a) {
+      if (a < 2) return 0;
+      for (int i = 2; i * i <= a; ++i)
+        if (a % i == 0) return 0;
+      return 1;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def isPrime(a):
+        if a < 2:
             return False
-    return True
-```
+        for i in range(2, int(sqrt(a)) + 1):
+            if a % i == 0:
+                return False
+        return True
+    ```
 
 ### 素性测试
+
+#### 定义
 
 **素性测试**(Primality test）是一类在 **不对给定数字进行素数分解**（prime factorization）的情况下，测试其是否为素数的算法。
 
@@ -79,33 +85,37 @@ def isPrime(a):
 
 基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$
 
-```cpp
-// C++ Version
-bool millerRabin(int n) {
-  if (n < 3) return n == 2;
-  // test_time 为测试次数,建议设为不小于 8
-  // 的整数以保证正确率,但也不宜过大,否则会影响效率
-  for (int i = 1; i <= test_time; ++i) {
-    int a = rand() % (n - 2) + 2;
-    if (quickPow(a, n - 1, n) != 1) return 0;
-  }
-  return 1;
-}
-```
+##### 实现
 
-```python
-# Python Version
-def millerRabin(n):
-    if n < 3:
-        return n == 2
-    # test_time 为测试次数,建议设为不小于 8
-    # 的整数以保证正确率,但也不宜过大,否则会影响效率
-    for i in range(1, test_time + 1):
-        a = random.randint(0, 32767) % (n - 2) + 2
-        if quickPow(a, n - 1, n) != 1:
-            return False
-    return True
-```
+=== "C++"
+
+    ```cpp
+    bool millerRabin(int n) {
+      if (n < 3) return n == 2;
+      // test_time 为测试次数,建议设为不小于 8
+      // 的整数以保证正确率,但也不宜过大,否则会影响效率
+      for (int i = 1; i <= test_time; ++i) {
+        int a = rand() % (n - 2) + 2;
+        if (quickPow(a, n - 1, n) != 1) return 0;
+      }
+      return 1;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def millerRabin(n):
+        if n < 3:
+            return n == 2
+        # test_time 为测试次数,建议设为不小于 8
+        # 的整数以保证正确率,但也不宜过大,否则会影响效率
+        for i in range(1, test_time + 1):
+            a = random.randint(0, 32767) % (n - 2) + 2
+            if quickPow(a, n - 1, n) != 1:
+                return False
+        return True
+    ```
 
 如果 $a^{n−1} \bmod n = 1$ 但 $n$ 不是素数，则 $n$ 被称为以 $a$ 为底的 **伪素数**。我们在实践中观察到，如果 $a^{n−1} \bmod n = 1$，那么 $n$ 通常是素数。但这里也有个反例：如果 $n = 341$ 且 $a = 2$，即使 $341 = 11 \cdot 31$ 是合数，有 $2^{340}\equiv 1 {\pmod {341}}$。事实上，$341$ 是最小的伪素数基数。
 
@@ -145,66 +155,72 @@ def millerRabin(n):
 
 这样得到了较正确的 Miller Rabin：（来自 fjzzq2002）
 
-```cpp
-// C++ Version
-bool millerRabin(int n) {
-  if (n < 3 || n % 2 == 0) return n == 2;
-  int a = n - 1, b = 0;
-  while (a % 2 == 0) a /= 2, ++b;
-  // test_time 为测试次数,建议设为不小于 8
-  // 的整数以保证正确率,但也不宜过大,否则会影响效率
-  for (int i = 1, j; i <= test_time; ++i) {
-    int x = rand() % (n - 2) + 2, v = quickPow(x, a, n);
-    if (v == 1) continue;
-    for (j = 0; j < b; ++j) {
-      if (v == n - 1) break;
-      v = (long long)v * v % n;
-    }
-    if (j >= b) return 0;
-  }
-  return 1;
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def millerRabin(n):
-    if n < 3 or n % 2 == 0:
-        return n == 2
-    a, b = n - 1, 0
-    while a % 2 == 0:
-        a = a // 2
-        b = b + 1
-    # test_time 为测试次数,建议设为不小于 8
-    # 的整数以保证正确率,但也不宜过大,否则会影响效率
-    for i in range(1, test_time + 1):
-        x = random.randint(0, 32767) % (n - 2) + 2
-        v = quickPow(x, a, n)
-        if v == 1:
-            continue
-        j = 0
-        while j < b:
-            if v == n - 1:
-                break
-            v = v * v % n
-            j = j + 1
-        if j >= b:
-            return False
-    return True
-```
+    ```cpp
+    bool millerRabin(int n) {
+      if (n < 3 || n % 2 == 0) return n == 2;
+      int a = n - 1, b = 0;
+      while (a % 2 == 0) a /= 2, ++b;
+      // test_time 为测试次数,建议设为不小于 8
+      // 的整数以保证正确率,但也不宜过大,否则会影响效率
+      for (int i = 1, j; i <= test_time; ++i) {
+        int x = rand() % (n - 2) + 2, v = quickPow(x, a, n);
+        if (v == 1) continue;
+        for (j = 0; j < b; ++j) {
+          if (v == n - 1) break;
+          v = (long long)v * v % n;
+        }
+        if (j >= b) return 0;
+      }
+      return 1;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def millerRabin(n):
+        if n < 3 or n % 2 == 0:
+            return n == 2
+        a, b = n - 1, 0
+        while a % 2 == 0:
+            a = a // 2
+            b = b + 1
+        # test_time 为测试次数,建议设为不小于 8
+        # 的整数以保证正确率,但也不宜过大,否则会影响效率
+        for i in range(1, test_time + 1):
+            x = random.randint(0, 32767) % (n - 2) + 2
+            v = quickPow(x, a, n)
+            if v == 1:
+                continue
+            j = 0
+            while j < b:
+                if v == n - 1:
+                    break
+                v = v * v % n
+                j = j + 1
+            if j >= b:
+                return False
+        return True
+    ```
 
 ## 反素数
+
+### 定义
 
 如果某个正整数 $n$ 满足如下条件，则称为是 **反素数**：
   任何小于 $n$ 的正数的约数个数都小于 $n$ 的约数个数
 
 注：注意区分 [emirp](https://en.wikipedia.org/wiki/Emirp)，它是用来表示从后向前写读是素数的数。
 
-### 简介
+### 引入
 
 其实顾名思义，素数就是因子只有两个的数，那么反素数，就是因子最多的数（并且因子个数相同的时候值最小），所以反素数是相对于一个集合来说的。
 
 我所理解的反素数定义就是，在一个集合中，因素最多并且值最小的数，就是反素数。
+
+### 过程
 
 那么，如何来求解反素数呢？
 

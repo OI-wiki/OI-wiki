@@ -1,0 +1,10 @@
+id: oi-wiki:search/idastar-1
+name: IDAStar
+solution:
+  cpp: docs/search/code/idastar/idastar_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/search/examples/idastar/idastar_1.ans
+  input: docs/search/examples/idastar/idastar_1.in
+version: 1000

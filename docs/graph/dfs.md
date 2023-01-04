@@ -1,10 +1,14 @@
 author: Ir1d, greyqz, yjl9903, partychicken, ChungZH, qq1010903229, Marcythm, Acfboy
 
+## 引入
+
 DFS 全称是 [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)，中文名是深度优先搜索，是一种用于遍历或搜索树或图的算法。所谓深度优先，就是说每次都尝试向更深的节点走。
 
 该算法讲解时常常与 BFS 并列，但两者除了都能遍历图的连通块以外，用途完全不同，很少有能混用两种算法的情况。
 
 DFS 常常用来指代用递归函数实现的搜索，但实际上两者并不一样。有关该类搜索思想请参阅 [DFS（搜索）](../search/dfs.md).
+
+## 过程
 
 DFS 最显著的特征在于其 **递归调用自身**。同时与 BFS 类似，DFS 会对其访问过的点打上访问标记，在遍历图时跳过已打过标记的点，以确保 **每个点仅访问一次**。符合以上两条规则的函数，便是广义上的 DFS。
 
@@ -21,6 +25,8 @@ DFS 最显著的特征在于其 **递归调用自身**。同时与 BFS 类似，
 
 以上代码只包含了 DFS 必需的主要结构。实际的 DFS 会在以上代码基础上加入一些代码，利用 DFS 性质进行其他操作。
 
+## 性质
+
 该算法通常的时间复杂度为 $O(n+m)$，空间复杂度为 $O(n)$，其中 $n$ 表示点数，$m$ 表示边数。注意空间复杂度包含了栈空间，栈空间的空间复杂度是 $O(n)$ 的。在平均 $O(1)$ 遍历一条边的条件下才能达到此时间复杂度，例如用前向星或邻接表存储图；如果用邻接矩阵则不一定能达到此复杂度。
 
 > 备注：目前大部分算法竞赛（包括 NOIP、大部分省选以及 CCF 举办的各项赛事）都支持 **无限栈空间**，即：栈空间不单独限制，但总内存空间仍然受题面限制。但大部分操作系统会对栈空间做额外的限制，因此在本地调试时需要一些方式来取消栈空间限制。
@@ -32,28 +38,30 @@ DFS 最显著的特征在于其 **递归调用自身**。同时与 BFS 类似，
 
 以链式前向星为例：（和上方伪代码每行一一对应）
 
-```cpp
-// C++ Version
-void dfs(int u) {
-  vis[u] = 1;
-  for (int i = head[u]; i; i = e[i].x) {
-    if (!vis[e[i].t]) {
-      dfs(v);
-    }
-  }
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def dfs(u):
-    vis[u] = True
-    while i:
-        i = head[u]
-        if vis[e[i].t] == False:
-            dfs(v)
-        i = e[i].x
-```
+    ```cpp
+    void dfs(int u) {
+      vis[u] = 1;
+      for (int i = head[u]; i; i = e[i].x) {
+        if (!vis[e[i].t]) {
+          dfs(v);
+        }
+      }
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def dfs(u):
+        vis[u] = True
+        while i:
+            i = head[u]
+            if vis[e[i].t] == False:
+                dfs(v)
+            i = e[i].x
+    ```
 
 ### DFS 序列
 

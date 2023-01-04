@@ -1,4 +1,4 @@
-左偏红黑树是红黑树的一种变体，它的对红边（点）的位置做了一定限制，使得其插入与删除操作可以与 2-3-4 树构成一一对应。
+左偏红黑树是红黑树的一种变体，它的对红边（点）的位置做了一定限制，使得其插入与删除操作可以与 2-3 树构成一一对应。
 
 我们假设读者已经至少掌握了一种基于旋转的平衡树，因此本文不会对旋转操作进行讲解。
 
@@ -17,6 +17,8 @@
 维护这些性质是比较复杂的，如果我们要插入一个节点，首先，它一定会被染色成红色，否则会破坏性质 3。即使这样，我们还是有可能会破坏性质 2。因此需要进行调整。而删除节点就更加麻烦，与插入类似，我们不能删除黑色节点，否则会破坏黑高的平衡。如何方便地解决这些问题呢？
 
 ## 左偏红黑树（Left Leaning Red Black Tree）
+
+### 解释
 
 左偏红黑树是一种容易实现的红黑树变体。
 
@@ -37,7 +39,9 @@
 
 这是左偏树的「左偏」性质：红色边只能是左偏的。
 
-### 插入
+### 过程
+
+#### 插入
 
 我们首先使用普通的 BST 插入方法，在树的底部插入一个红色的叶子节点，然后通过从下向上的调整，使得插入后的树仍然符合左偏红黑树的性质。下面描述调整的过程：
 
@@ -89,11 +93,11 @@
     }
     ```
 
-### 删除
+#### 删除
 
 删除操作基于这样的思想：我们不能删除黑色的节点，因为这样会破坏黑高。所以我们需要保证我们最后删除的节点是红色的。
 
-#### 删除最小值节点
+##### 删除最小值节点
 
 首先来试一下删除整棵树里的最小值。
 
@@ -147,7 +151,7 @@
     }
     ```
 
-#### 删除任意节点
+##### 删除任意节点
 
 我们首先考虑删除叶子：与删最小值类似，我们在删除任意值的过程中也要维护一个性质，不过这次比较特殊，因为我们不是只向左边走，而是可以向左右两个方向走，因此在删除过程中维护的性质是这样的：如果往左走，当前节点是 `h`，那么需要保证 `h` 是红色，或者 `h->lc` 是红色；如果往右走，当前节点是 `h`，那么需要保证 `h` 是红色，或者 `h->rc` 是红色。这样可以保证我们最后总会删掉一个红色节点。
 
@@ -190,7 +194,7 @@
     }
     ```
 
-## 参考代码
+## 实现
 
 下面的代码是用左偏红黑树实现的 `Set`，即有序不可重集合：
 
@@ -511,5 +515,5 @@
 
 ## 参考资料与拓展阅读
 
-- [Left-Leaning Red-Black Trees](https://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf)-  Robert Sedgewick Princeton University
-- [Balanced Search Trees](https://algs4.cs.princeton.edu/lectures/33BalancedSearchTrees-2x2.pdf)-\_Algorithms_Robert Sedgewick | Kevin Wayne
+- [Left-Leaning Red-Black Trees](https://sedgewick.io/wp-content/themes/sedgewick/papers/2008LLRB.pdf)-  Robert Sedgewick Princeton University
+- [Balanced Search Trees](https://algs4.cs.princeton.edu/lectures/keynote/33BalancedSearchTrees-2x2.pdf)-\_Algorithms_Robert Sedgewick | Kevin Wayne

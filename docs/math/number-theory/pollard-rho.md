@@ -1,4 +1,4 @@
-## 问题引入
+## 引入
 
 给定一个正整数 $N \in \mathbf{N}_{+}$，试快速找到它的一个因数。
 
@@ -6,40 +6,42 @@
 
 当 $N\ge10^{18}$ 时，这个算法的运行时间我们是无法接受的，希望有更优秀的算法。一种想法是通过随机的方法，猜测一个数是不是 $N$ 的因数，如果运气好可以在 $O(1)$ 的时间复杂度下求解答案，但是对于 $N\ge10^{18}$ 的数据，成功猜测的概率是 $\frac{1}{10^{18}}$, 期望猜测的次数是 $10^{18}$。如果是在 $[1,\sqrt N]$ 里进行猜测，成功率会大一些。我们希望有方法来优化猜测。
 
-## 朴素算法与 Pollard Rho 算法引入
+## 朴素算法
 
 最简单的算法即为从 $[1,\sqrt N]$ 进行遍历。
 
-```C++
-// C++ Version
-list<int> breakdown(int N) {
-  list<int> result;
-  for (int i = 2; i * i <= N; i++) {
-    if (N % i == 0) {  // 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
-      while (N % i == 0) N /= i;
-      result.push_back(i);
-    }
-  }
-  if (N != 1) {  // 说明再经过操作之后 N 留下了一个素数
-    result.push_back(N);
-  }
-  return result;
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def breakdown(N):
-    result = []
-    for i in range(2, int(sqrt(N)) + 1):
-        if N % i == 0: # 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
-            while N % i == 0:
-                N = N // i
-                result.append(i)
-    if N != 1: # 说明再经过操作之后 N 留下了一个素数
-        result.append(N)
-    return result
-```
+    ```cpp
+    list<int> breakdown(int N) {
+      list<int> result;
+      for (int i = 2; i * i <= N; i++) {
+        if (N % i == 0) {  // 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
+          while (N % i == 0) N /= i;
+          result.push_back(i);
+        }
+      }
+      if (N != 1) {  // 说明再经过操作之后 N 留下了一个素数
+        result.push_back(N);
+      }
+      return result;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def breakdown(N):
+        result = []
+        for i in range(2, int(sqrt(N)) + 1):
+            if N % i == 0: # 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
+                while N % i == 0:
+                    N = N // i
+                    result.append(i)
+        if N != 1: # 说明再经过操作之后 N 留下了一个素数
+            result.append(N)
+        return result
+    ```
 
 我们能够证明 `result` 中的所有元素均为 `N` 的素因数。
 
@@ -52,9 +54,13 @@ def breakdown(N):
 
 例题：[CF 1445C](https://codeforces.ml/problemset/problem/1445/C)
 
+## Pollard Rho 算法
+
+### 引入
+
 而下面复杂度复杂度更低的 Pollard-Rho 算法是一种用于快速分解非平凡因数的算法（**注意**！非平凡因子不是素因子）。而在此之前需要先引入生日悖论。
 
-## 生日悖论
+### 生日悖论
 
 不考虑出生年份，问：一个房间中至少多少人，才能使其中两个人生日相同的概率达到 $50\%$?
 
@@ -81,7 +87,7 @@ $$
 
 将 $n=365$ 代入，解得 $k=23$。所以一个房间中至少 23 人，使其中两个人生日相同的概率达到 $50\%$, 但这个数学事实十分反直觉，故称之为一个悖论。
 
-当 $k>56$，$n=365$ 时，出现两个人同一天生日的概率将大于 $99\%$。那么在一年有 $n$ 天的情况下，当房间中有 $\sqrt{\dfrac{n}{\ln 2}}$ 个人时，至少有两个人的生日相同的概率约为 $50\%$。
+当 $k>56$，$n=365$ 时，出现两个人同一天生日的概率将大于 $99\%$。那么在一年有 $n$ 天的情况下，当房间中有 $\frac{1}{2}(\sqrt{8n\ln 2+1}+1)\approx \sqrt{2n\ln 2}$ 个人时，至少有两个人的生日相同的概率约为 $50\%$。
 
 考虑一个问题，设置一个数据 $n$，在 $[1,1000]$ 里随机选取 $i$ 个数（$i=1$ 时就是它自己），使它们之间有两个数的差值为 $k$。当 $i=1$ 时成功的概率是 $\frac{1}{1000}$，当 $i=2$ 时成功的概率是 $\frac{1}{500}$（考虑绝对值，$k_2$ 可以取 $k_1-k$ 或 $k_1+k$），随着 $i$ 的增大，这个概率也会增大最后趋向于 1。
 
@@ -103,7 +109,7 @@ $$
 
 ![Pollard-rho1](./images/Pollard-rho1.png)
 
-## 优化随机算法
+### 优化随机算法
 
 最大公约数一定是某个数的约数，即 $\forall k \in\mathbf{N}_{+},\gcd(k,n)|n$，只要选适当的 $k$ 使得 $1<\gcd(k,n)< n$，就可以求得一个约数 $\gcd(k,n)$。满足这样条件的 $k$ 不少，$k$ 有若干个质因子，每个质因子及其倍数都是可行的。
 
@@ -123,11 +129,15 @@ $$
 
 假设存在两个位置 $i,j$，使得 $x_i\neq x_j\wedge y_i=y_j$，这意味着 $n \nmid |x_i−x_j| \wedge m \mid |x_i−x_j|$, 因此我们可以通过 $\gcd(n, |x_i-x_j|)$ 获得 $n$ 的一个非平凡因子。
 
-### 时间复杂度分析
+### 性质
 
-我们期望枚举 $O(\sqrt{m})$ 个 $i$ 来分解出 $n$ 的一个非平凡因子 $\gcd(|x_i−x_j|,n)$，因此。Pollard-rho 算法能够在 $O(\sqrt{m})$ 的期望时间复杂度内分解出 $n$ 的一个非平凡因子，通过上面的分析可知 $O(\sqrt{m})\leq O(n^{\frac{1}{4}})$，那么 Pollard-rho 算法的总时间复杂度为 $O(n^{\frac{1}{4}})$。下面介绍两种实现算法，两种算法都可以在 $O(\sqrt{m})$ 的时间复杂度内完成。
+我们期望枚举 $O(\sqrt{m})$ 个 $i$ 来分解出 $n$ 的一个非平凡因子 $\gcd(|x_i−x_j|,n)$，因此。Pollard-rho 算法能够在 $O(\sqrt{m})$ 的期望时间复杂度内分解出 $n$ 的一个非平凡因子，通过上面的分析可知 $O(\sqrt{m})\leq O(n^{\frac{1}{4}})$，那么 Pollard-rho 算法的总时间复杂度为 $O(n^{\frac{1}{4}})$。
 
-### Floyd 判环
+下面介绍两种实现算法，两种算法都可以在 $O(\sqrt{m})$ 的时间复杂度内完成。
+
+### 实现
+
+#### Floyd 判环
 
 假设两个人在赛跑，A 的速度快，B 的速度慢，经过一定时间后，A 一定会和 B 相遇，且相遇时 A 跑过的总距离减去 B 跑过的总距离一定是圈长的 n 倍。
 
@@ -136,44 +146,46 @@ $$
 我们每次令 $d=\gcd(|x_i-x_j|,n)$，判断 d 是否满足 $1< d< n$，若满足则可直接返回 $d$。由于 $x_i$ 是一个伪随机数列，必定会形成环，在形成环时就不能再继续操作了，直接返回 n 本身，并且在后续操作里调整随机常数 $c$，重新分解。
 
 ??? note "基于 Floyd 判环的 Pollard-Rho 算法"
-    ```c++
-    // C++ Version
-    ll Pollard_Rho(ll N) {
-      ll c = rand() % (N - 1) + 1;
-      ll t = f(0, c, N);
-      ll r = f(f(0, c, N), c, N);
-      while (t != r) {
-        ll d = gcd(abs(t - r), N);
-        if (d > 1) return d;
-        t = f(t, c, N);
-        r = f(f(r, c, N), c, N);
-      }
-      return N;
-    }
-    ```
+    === "C++"
     
-    ```python
-    # Python Version
-    def Pollard_Rho(N):
-    c = random.randint(0, 32767) % (N - 1) + 1
-    t = f(0, c, N)
-    r = f(f(0, c, N), c, N)
-    while t != r:
-        d = gcd(abs(t - r), N)
-        if d > 1:
-            return d
-        t = f(t, c, N)
-        r = f(f(r, c, N), c, N)
-    return N
-    ```
+        ```cpp
+        ll Pollard_Rho(ll N) {
+          ll c = rand() % (N - 1) + 1;
+          ll t = f(0, c, N);
+          ll r = f(f(0, c, N), c, N);
+          while (t != r) {
+            ll d = gcd(abs(t - r), N);
+            if (d > 1) return d;
+            t = f(t, c, N);
+            r = f(f(r, c, N), c, N);
+          }
+          return N;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def Pollard_Rho(N):
+        c = random.randint(0, 32767) % (N - 1) + 1
+        t = f(0, c, N)
+        r = f(f(0, c, N), c, N)
+        while t != r:
+            d = gcd(abs(t - r), N)
+            if d > 1:
+                return d
+            t = f(t, c, N)
+            r = f(f(r, c, N), c, N)
+        return N
+        ```
 
-### 倍增优化
+#### 倍增优化
 
 使用 $\gcd$ 求解的时间复杂度为 $O(\log N)$，频繁地调用会使算法运行地很慢，可以通过乘法累积来减少求 $\gcd$ 的次数。如果 $1< \gcd(a,b)$，则有 $1< \gcd(ac,b)$，$c\in \mathbf{N}_{+}$，并且有 $1< \gcd(ac \bmod b,b)=\gcd(a,b)$。
 
 我们每过一段时间将这些差值进行 $\gcd$ 运算，设 $s=\prod|x_0-x_j|\bmod n$，如果某一时刻得到 $s=0$ 那么表示分解失败，退出并返回 $n$ 本身。每隔 $2^k-1$ 个数，计算是否满足 $1< \gcd(s, n) < n$。此处取 $k=7$，可以根据实际情况进行调节。
 
-??? note "参考实现"
+??? note "实现"
     ```c++
     ll Pollard_Rho(ll x) {
       ll s = 0, t = 0;
@@ -199,7 +211,7 @@ $$
 
 对于一个数 $n$，用 [Miller Rabin 算法](./prime.md#miller-rabin-素性测试) 判断是否为素数，如果是就可以直接返回了，否则用 Pollard-Rho 算法找一个因子 $p$，将 $n$ 除去因子 $p$。再递归分解 $n$ 和 $p$，用 Miller Rabin 判断是否出现质因子，并用 max_factor 更新就可以求出最大质因子了。由于这个题目的数据过于庞大，用 Floyd 判环的方法是不够的，这里采用倍增优化的方法。
 
-??? note "参考实现"
+??? note "实现"
     ```c++
     --8<-- "docs/math/code/pollard-rho/pollard-rho_1.cpp"
     ```

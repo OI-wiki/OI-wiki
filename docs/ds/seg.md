@@ -1,5 +1,7 @@
 author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina, orzAtalod, luoguojie, Early0v0, wy-luke
 
+## 引入
+
 线段树是算法竞赛中常用的用来维护 **区间信息** 的数据结构。
 
 线段树可以在 $O(\log N)$ 的时间复杂度内实现单点修改、区间修改、区间查询（区间求和，求区间最大值，求区间最小值）等操作。
@@ -18,6 +20,8 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
 
 ### 线段树的基本结构与建树
 
+#### 过程
+
 线段树将每个长度不为 $1$ 的区间划分成左右两个区间递归求解，把整个线段划分为一个树形结构，通过合并左右两区间信息来求得该区间的信息。这种数据结构可以方便的进行大部分的区间操作。
 
 有个大小为 $5$ 的数组 $a=\{10,11,12,13,14\}$，要将其转化为线段树，有以下做法：设线段树的根节点编号为 $1$，用数组 $d$ 来保存我们的线段树，$d_i$ 用来保存线段树上编号为 $i$ 的节点的值（这里每个节点所维护的值就是这个节点所表示的区间总和）。
@@ -32,45 +36,51 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
 
 在实现时，我们考虑递归建树。设当前的根节点为 $p$，如果根节点管辖的区间长度已经是 $1$，则可以直接根据 $a$ 数组上相应位置的值初始化该节点。否则我们将该区间从中点处分割为两个子区间，分别进入左右子节点递归建树，最后合并两个子节点的信息。
 
-此处给出 C++ 的代码实现，可参考注释理解：
+#### 实现
 
-```cpp
-// C++ Version
-void build(int s, int t, int p) {
-  // 对 [s,t] 区间建立线段树,当前根的编号为 p
-  if (s == t) {
-    d[p] = a[s];
-    return;
-  }
-  int m = s + ((t - s) >> 1);
-  // 移位运算符的优先级小于加减法，所以加上括号
-  // 如果写成 (s + t) >> 1 可能会超出 int 范围
-  build(s, m, p * 2), build(m + 1, t, p * 2 + 1);
-  // 递归对左右区间建树
-  d[p] = d[p * 2] + d[(p * 2) + 1];
-}
-```
+此处给出代码实现，可参考注释理解：
 
-```python
-# Python Version
-def build(s, t, p):
-    # 对 [s,t] 区间建立线段树,当前根的编号为 p
-    if s == t:
-        d[p] = a[s]
-        return
-    m = s + ((t - s) >> 1)
-    # 移位运算符的优先级小于加减法，所以加上括号
-    # 如果写成 (s + t) >> 1 可能会超出 int 范围
-    build(s, m, p * 2); build(m + 1, t, p * 2 + 1)
-    # 递归对左右区间建树
-    d[p] = d[p * 2] + d[(p * 2) + 1]
-```
+=== "C++"
+
+    ```cpp
+    void build(int s, int t, int p) {
+      // 对 [s,t] 区间建立线段树,当前根的编号为 p
+      if (s == t) {
+        d[p] = a[s];
+        return;
+      }
+      int m = s + ((t - s) >> 1);
+      // 移位运算符的优先级小于加减法，所以加上括号
+      // 如果写成 (s + t) >> 1 可能会超出 int 范围
+      build(s, m, p * 2), build(m + 1, t, p * 2 + 1);
+      // 递归对左右区间建树
+      d[p] = d[p * 2] + d[(p * 2) + 1];
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def build(s, t, p):
+        # 对 [s,t] 区间建立线段树,当前根的编号为 p
+        if s == t:
+            d[p] = a[s]
+            return
+        m = s + ((t - s) >> 1)
+        # 移位运算符的优先级小于加减法，所以加上括号
+        # 如果写成 (s + t) >> 1 可能会超出 int 范围
+        build(s, m, p * 2); build(m + 1, t, p * 2 + 1)
+        # 递归对左右区间建树
+        d[p] = d[p * 2] + d[(p * 2) + 1]
+    ```
 
 关于线段树的空间：如果采用堆式存储（$2p$ 是 $p$ 的左儿子，$2p+1$ 是 $p$ 的右儿子），若有 $n$ 个叶子结点，则 d 数组的范围最大为 $2^{\left\lceil\log{n}\right\rceil+1}$。
 
 分析：容易知道线段树的深度是 $\left\lceil\log{n}\right\rceil$ 的，则在堆式储存情况下叶子节点（包括无用的叶子节点）数量为 $2^{\left\lceil\log{n}\right\rceil}$ 个，又由于其为一棵完全二叉树，则其总节点个数 $2^{\left\lceil\log{n}\right\rceil+1}-1$。当然如果你懒得计算的话可以直接把数组长度设为 $4n$，因为 $\frac{2^{\left\lceil\log{n}\right\rceil+1}-1}{n}$ 的最大值在 $n=2^{x}+1(x\in N_{+})$ 时取到，此时节点数为 $2^{\left\lceil\log{n}\right\rceil+1}-1=2^{x+2}-1=4n-5$。
 
 ### 线段树的区间查询
+
+#### 过程
 
 区间查询，比如求区间 $[l,r]$ 的总和（即 $a_l+a_{l+1}+ \cdots +a_r$）、求区间最大值/最小值等操作。
 
@@ -82,40 +92,46 @@ def build(s, t, p):
 
 一般地，如果要查询的区间是 $[l,r]$，则可以将其拆成最多为 $O(\log n)$ 个 **极大** 的区间，合并这些区间即可求出 $[l,r]$ 的答案。
 
-此处给出 C++ 的代码实现，可参考注释理解：
+#### 实现
 
-```cpp
-// C++ Version
-int getsum(int l, int r, int s, int t, int p) {
-  // [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
-  if (l <= s && t <= r)
-    return d[p];  // 当前区间为询问区间的子集时直接返回当前区间的和
-  int m = s + ((t - s) >> 1), sum = 0;
-  if (l <= m) sum += getsum(l, r, s, m, p * 2);
-  // 如果左儿子代表的区间 [s, m] 与询问区间有交集, 则递归查询左儿子
-  if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
-  // 如果右儿子代表的区间 [m + 1, t] 与询问区间有交集, 则递归查询右儿子
-  return sum;
-}
-```
+此处给出代码实现，可参考注释理解：
 
-```python
-# Python Version
-def getsum(l, r, s, t, p):
-    # [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
-    if l <= s and t <= r:
-        return d[p] # 当前区间为询问区间的子集时直接返回当前区间的和
-    m = s + ((t - s) >> 1); sum = 0
-    if l <= m:
-        sum = sum + getsum(l, r, s, m, p * 2)
-    # 如果左儿子代表的区间 [s, m] 与询问区间有交集, 则递归查询左儿子
-    if r > m:
-        sum = sum + getsum(l, r, m + 1, t, p * 2 + 1)
-    # 如果右儿子代表的区间 [m + 1, t] 与询问区间有交集, 则递归查询右儿子
-    return sum
-```
+=== "C++"
+
+    ```cpp
+    int getsum(int l, int r, int s, int t, int p) {
+      // [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
+      if (l <= s && t <= r)
+        return d[p];  // 当前区间为询问区间的子集时直接返回当前区间的和
+      int m = s + ((t - s) >> 1), sum = 0;
+      if (l <= m) sum += getsum(l, r, s, m, p * 2);
+      // 如果左儿子代表的区间 [s, m] 与询问区间有交集, 则递归查询左儿子
+      if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
+      // 如果右儿子代表的区间 [m + 1, t] 与询问区间有交集, 则递归查询右儿子
+      return sum;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def getsum(l, r, s, t, p):
+        # [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
+        if l <= s and t <= r:
+            return d[p] # 当前区间为询问区间的子集时直接返回当前区间的和
+        m = s + ((t - s) >> 1); sum = 0
+        if l <= m:
+            sum = sum + getsum(l, r, s, m, p * 2)
+        # 如果左儿子代表的区间 [s, m] 与询问区间有交集, 则递归查询左儿子
+        if r > m:
+            sum = sum + getsum(l, r, m + 1, t, p * 2 + 1)
+        # 如果右儿子代表的区间 [m + 1, t] 与询问区间有交集, 则递归查询右儿子
+        return sum
+    ```
 
 ### 线段树的区间修改与懒惰标记
+
+#### 过程
 
 如果要求修改区间 $[l,r]$，把所有包含在区间 $[l,r]$ 中的节点都遍历一次、修改一次，时间复杂度无法承受。我们这里要引入一个叫做 **「懒惰标记」** 的东西。
 
@@ -143,181 +159,234 @@ def getsum(l, r, s, t, p):
 
 现在 $6$、$7$ 两个节点的值变成了最新的值，查询的结果也是准确的。
 
+#### 实现
+
 接下来给出在存在标记的情况下，区间修改和查询操作的参考实现。
 
 区间修改（区间加上某个值）：
 
-```cpp
-// C++ Version
-void update(int l, int r, int c, int s, int t, int p) {
-  // [l, r] 为修改区间, c 为被修改的元素的变化量, [s, t] 为当前节点包含的区间, p
-  // 为当前节点的编号
-  if (l <= s && t <= r) {
-    d[p] += (t - s + 1) * c, b[p] += c;
-    return;
-  }  // 当前区间为修改区间的子集时直接修改当前节点的值,然后打标记,结束修改
-  int m = s + ((t - s) >> 1);
-  if (b[p] && s != t) {
-    // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
-    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m);
-    b[p * 2] += b[p], b[p * 2 + 1] += b[p];  // 将标记下传给子节点
-    b[p] = 0;                                // 清空当前节点的标记
-  }
-  if (l <= m) update(l, r, c, s, m, p * 2);
-  if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
-  d[p] = d[p * 2] + d[p * 2 + 1];
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def update(l, r, c, s, t, p):
-    # [l, r] 为修改区间, c 为被修改的元素的变化量, [s, t] 为当前节点包含的区间, p
-    # 为当前节点的编号
-    if l <= s and t <= r:
-        d[p] = d[p] + (t - s + 1) * c
-        b[p] = b[p] + c
-        return
-    # 当前区间为修改区间的子集时直接修改当前节点的值, 然后打标记, 结束修改
-    m = s + ((t - s) >> 1)
-    if b[p] and s != t:
-        # 如果当前节点的懒标记非空, 则更新当前节点两个子节点的值和懒标记值
-        d[p * 2] = d[p * 2] + b[p] * (m - s + 1)
-        d[p * 2 + 1] = d[p * 2 + 1] + b[p] * (t - m)
-        # 将标记下传给子节点
-        b[p * 2] = b[p * 2] + b[p]
-        b[p * 2 + 1] = b[p * 2 + 1] + b[p]
-        # 清空当前节点的标记
-        b[p] = 0
-    if l <= m:
-        update(l, r, c, s, m, p * 2)
-    if r > m:
-        update(l, r, c, m + 1, t, p * 2 + 1)
-    d[p] = d[p * 2] + d[p * 2 + 1]
-```
+    ```cpp
+    void update(int l, int r, int c, int s, int t, int p) {
+      // [l, r] 为修改区间, c 为被修改的元素的变化量, [s, t] 为当前节点包含的区间, p
+      // 为当前节点的编号
+      if (l <= s && t <= r) {
+        d[p] += (t - s + 1) * c, b[p] += c;
+        return;
+      }  // 当前区间为修改区间的子集时直接修改当前节点的值,然后打标记,结束修改
+      int m = s + ((t - s) >> 1);
+      if (b[p] && s != t) {
+        // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
+        d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m);
+        b[p * 2] += b[p], b[p * 2 + 1] += b[p];  // 将标记下传给子节点
+        b[p] = 0;                                // 清空当前节点的标记
+      }
+      if (l <= m) update(l, r, c, s, m, p * 2);
+      if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
+      d[p] = d[p * 2] + d[p * 2 + 1];
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def update(l, r, c, s, t, p):
+        # [l, r] 为修改区间, c 为被修改的元素的变化量, [s, t] 为当前节点包含的区间, p
+        # 为当前节点的编号
+        if l <= s and t <= r:
+            d[p] = d[p] + (t - s + 1) * c
+            b[p] = b[p] + c
+            return
+        # 当前区间为修改区间的子集时直接修改当前节点的值, 然后打标记, 结束修改
+        m = s + ((t - s) >> 1)
+        if b[p] and s != t:
+            # 如果当前节点的懒标记非空, 则更新当前节点两个子节点的值和懒标记值
+            d[p * 2] = d[p * 2] + b[p] * (m - s + 1)
+            d[p * 2 + 1] = d[p * 2 + 1] + b[p] * (t - m)
+            # 将标记下传给子节点
+            b[p * 2] = b[p * 2] + b[p]
+            b[p * 2 + 1] = b[p * 2 + 1] + b[p]
+            # 清空当前节点的标记
+            b[p] = 0
+        if l <= m:
+            update(l, r, c, s, m, p * 2)
+        if r > m:
+            update(l, r, c, m + 1, t, p * 2 + 1)
+        d[p] = d[p * 2] + d[p * 2 + 1]
+    ```
 
 区间查询（区间求和）：
 
-```cpp
-// C++ Version
-int getsum(int l, int r, int s, int t, int p) {
-  // [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
-  if (l <= s && t <= r) return d[p];
-  // 当前区间为询问区间的子集时直接返回当前区间的和
-  int m = s + ((t - s) >> 1);
-  if (b[p]) {
-    // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
-    d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m);
-    b[p * 2] += b[p], b[p * 2 + 1] += b[p];  // 将标记下传给子节点
-    b[p] = 0;                                // 清空当前节点的标记
-  }
-  int sum = 0;
-  if (l <= m) sum = getsum(l, r, s, m, p * 2);
-  if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
-  return sum;
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def getsum(l, r, s, t, p):
-    # [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p为当前节点的编号
-    if l <= s and t <= r:
-        return d[p]
-    # 当前区间为询问区间的子集时直接返回当前区间的和
-    m = s + ((t - s) >> 1)
-    if b[p]:
-        # 如果当前节点的懒标记非空, 则更新当前节点两个子节点的值和懒标记值
-        d[p * 2] = d[p * 2] + b[p] * (m - s + 1)
-        d[p * 2 + 1] = d[p * 2 + 1] + b[p] * (t - m)
-        # 将标记下传给子节点
-        b[p * 2] = b[p * 2] + b[p]
-        b[p * 2 + 1] = b[p * 2 + 1] + b[p]
-        # 清空当前节点的标记
-        b[p] = 0
-    sum = 0
-    if l <= m:
-        sum = getsum(l, r, s, m, p * 2)
-    if r > m:
-        sum = sum + getsum(l, r, m + 1, t, p * 2 + 1)
-    return sum
-```
+    ```cpp
+    int getsum(int l, int r, int s, int t, int p) {
+      // [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
+      if (l <= s && t <= r) return d[p];
+      // 当前区间为询问区间的子集时直接返回当前区间的和
+      int m = s + ((t - s) >> 1);
+      if (b[p]) {
+        // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值
+        d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (t - m);
+        b[p * 2] += b[p], b[p * 2 + 1] += b[p];  // 将标记下传给子节点
+        b[p] = 0;                                // 清空当前节点的标记
+      }
+      int sum = 0;
+      if (l <= m) sum = getsum(l, r, s, m, p * 2);
+      if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
+      return sum;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def getsum(l, r, s, t, p):
+        # [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p为当前节点的编号
+        if l <= s and t <= r:
+            return d[p]
+        # 当前区间为询问区间的子集时直接返回当前区间的和
+        m = s + ((t - s) >> 1)
+        if b[p]:
+            # 如果当前节点的懒标记非空, 则更新当前节点两个子节点的值和懒标记值
+            d[p * 2] = d[p * 2] + b[p] * (m - s + 1)
+            d[p * 2 + 1] = d[p * 2 + 1] + b[p] * (t - m)
+            # 将标记下传给子节点
+            b[p * 2] = b[p * 2] + b[p]
+            b[p * 2 + 1] = b[p * 2 + 1] + b[p]
+            # 清空当前节点的标记
+            b[p] = 0
+        sum = 0
+        if l <= m:
+            sum = getsum(l, r, s, m, p * 2)
+        if r > m:
+            sum = sum + getsum(l, r, m + 1, t, p * 2 + 1)
+        return sum
+    ```
 
 如果你是要实现区间修改为某一个值而不是加上某一个值的话，代码如下：
 
+=== "C++"
+
+    ```cpp
+    void update(int l, int r, int c, int s, int t, int p) {
+      if (l <= s && t <= r) {
+        d[p] = (t - s + 1) * c, b[p] = c;
+        return;
+      }
+      int m = s + ((t - s) >> 1);
+      // 额外数组储存是否修改值
+      if (v[p]) {
+        d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m);
+        b[p * 2] = b[p * 2 + 1] = b[p];
+        v[p * 2] = v[p * 2 + 1] = 1;
+        v[p] = 0;
+      }
+      if (l <= m) update(l, r, c, s, m, p * 2);
+      if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
+      d[p] = d[p * 2] + d[p * 2 + 1];
+    }
+
+    int getsum(int l, int r, int s, int t, int p) {
+      if (l <= s && t <= r) return d[p];
+      int m = s + ((t - s) >> 1);
+      if (v[p]) {
+        d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m);
+        b[p * 2] = b[p * 2 + 1] = b[p];
+        v[p * 2] = v[p * 2 + 1] = 1;
+        v[p] = 0;
+      }
+      int sum = 0;
+      if (l <= m) sum = getsum(l, r, s, m, p * 2);
+      if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
+      return sum;
+    }
+    ```
+
+=== "Python"
+
+    ```python
+    def update(l, r, c, s, t, p):
+        if l <= s and t <= r:
+            d[p] = (t - s + 1) * c
+            b[p] = c
+            return
+        m = s + ((t - s) >> 1)
+        if v[p]:
+            d[p * 2] = b[p] * (m - s + 1)
+            d[p * 2 + 1] = b[p] * (t - m)
+            b[p * 2] = b[p * 2 + 1] = b[p]
+            v[p * 2] = v[p * 2 + 1] = 1
+            v[p] = 0
+        if l <= m:
+            update(l, r, c, s, m, p * 2)
+        if r > m:
+            update(l, r, c, m + 1, t, p * 2 + 1)
+        d[p] = d[p * 2] + d[p * 2 + 1]
+
+    def getsum(l, r, s, t, p):
+        if l <= s and t <= r:
+            return d[p]
+        m = s + ((t - s) >> 1)
+        if v[p]:
+            d[p * 2] = b[p] * (m - s + 1)
+            d[p * 2 + 1] = b[p] * (t - m)
+            b[p * 2] = b[p * 2 + 1] = b[p]
+            v[p * 2] = v[p * 2 + 1] = 1
+            v[p] = 0
+        sum = 0
+        if l <= m:
+            sum = getsum(l, r, s, m, p * 2)
+        if r > m:
+            sum = sum + getsum(l, r, m + 1, t, p * 2 + 1)
+        return sum
+    ```
+
+### 动态开点线段树
+
+前面讲到堆式储存的情况下，需要给线段树开 $4n$ 大小的数组。为了节省空间，我们可以不一次性建好树，而是在最初只建立一个根结点代表整个区间。当我们需要访问某个子区间时，才建立代表这个区间的子结点。这样我们不再使用 $2p$ 和 $2p+1$ 代表 $p$ 结点的儿子，而是用 $\text{ls}$ 和 $\text{rs}$ 记录儿子的编号。总之，动态开点线段树的核心思想就是：**结点只有在有需要的时候才被创建**。
+
+单次操作的时间复杂度是不变的，为 $O(\log n)$。由于每次操作都有可能创建并访问全新的一系列结点，因此 $m$ 次单点操作后结点的数量规模是 $O(m\log n)$。最多也只需要 $2n-1$ 个结点，没有浪费。
+
+单点修改：
+
 ```cpp
-// C++ Version
-void update(int l, int r, int c, int s, int t, int p) {
-  if (l <= s && t <= r) {
-    d[p] = (t - s + 1) * c, b[p] = c;
+// root 表示整棵线段树的根结点；cnt 表示当前结点个数
+int n, cnt, root;
+int sum[n * 2], ls[n * 2], rs[n * 2];
+
+// 用法：update(root, 1, n, x, f); 其中 x 为待修改节点的编号
+void update(int& p, int s, int t, int x, int f) {  // 引用传参
+  if (!p) p = ++cnt;  // 当结点为空时，创建一个新的结点
+  if (s == t) {
+    sum[p] += f;
     return;
   }
   int m = s + ((t - s) >> 1);
-  // 额外数组储存是否修改值
-  if (v[p]) {
-    d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m);
-    b[p * 2] = b[p * 2 + 1] = b[p];
-    v[p * 2] = v[p * 2 + 1] = 1;
-    v[p] = 0;
-  }
-  if (l <= m) update(l, r, c, s, m, p * 2);
-  if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
-  d[p] = d[p * 2] + d[p * 2 + 1];
-}
-
-int getsum(int l, int r, int s, int t, int p) {
-  if (l <= s && t <= r) return d[p];
-  int m = s + ((t - s) >> 1);
-  if (v[p]) {
-    d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (t - m);
-    b[p * 2] = b[p * 2 + 1] = b[p];
-    v[p * 2] = v[p * 2 + 1] = 1;
-    v[p] = 0;
-  }
-  int sum = 0;
-  if (l <= m) sum = getsum(l, r, s, m, p * 2);
-  if (r > m) sum += getsum(l, r, m + 1, t, p * 2 + 1);
-  return sum;
+  if (x <= m)
+    update(ls[p], s, m, x, f);
+  else
+    update(rs[p], m + 1, t, x, f);
+  sum[p] = sum[ls[p]] + sum[rs[p]];  // pushup
 }
 ```
 
-```python
-# Python Version
-def update(l, r, c, s, t, p):
-    if l <= s and t <= r:
-        d[p] = (t - s + 1) * c
-        b[p] = c
-        return
-    m = s + ((t - s) >> 1)
-    if v[p]:
-        d[p * 2] = b[p] * (m - s + 1)
-        d[p * 2 + 1] = b[p] * (t - m)
-        b[p * 2] = b[p * 2 + 1] = b[p]
-        v[p * 2] = v[p * 2 + 1] = 1
-        v[p] = 0
-    if l <= m:
-        update(l, r, c, s, m, p * 2)
-    if r > m:
-        update(l, r, c, m + 1, t, p * 2 + 1)
-    d[p] = d[p * 2] + d[p * 2 + 1]
+区间询问：
 
-def getsum(l, r, s, t, p):
-    if l <= s and t <= r:
-        return d[p]
-    m = s + ((t - s) >> 1)
-    if v[p]:
-        d[p * 2] = b[p] * (m - s + 1)
-        d[p * 2 + 1] = b[p] * (t - m)
-        b[p * 2] = b[p * 2 + 1] = b[p]
-        v[p * 2] = v[p * 2 + 1] = 1
-        v[p] = 0
-    sum = 0
-    if l <= m:
-        sum = getsum(l, r, s, m, p * 2)
-    if r > m:
-        sum = sum + getsum(l, r, m + 1, t, p * 2 + 1)
-    return sum
+```cpp
+// 用法：query(root, 1, n, l, r);
+int query(int p, int s, int t, int l, int r) {
+  if (!p) return 0;  // 如果结点为空，返回 0
+  if (s >= l && t <= r) return sum[p];
+  int m = s + ((t - s) >> 1), ans = 0;
+  if (l <= m) ans += query(ls[p], s, m, l, r);
+  if (r > m) ans += query(rs[p], m + 1, t, l, r);
+  return ans;
+}
 ```
+
+区间修改也是一样的，不过下放标记时要注意如果缺少孩子，就直接创建一个新的孩子。或者使用标记永久化技巧。
 
 ## 一些优化
 
@@ -328,6 +397,18 @@ def getsum(l, r, s, t, p):
 - 下放懒惰标记可以写一个专门的函数 `pushdown`，从儿子节点更新当前节点也可以写一个专门的函数 `maintain`（或者对称地用 `pushup`），降低代码编写难度。
 
 - 标记永久化：如果确定懒惰标记不会在中途被加到溢出（即超过了该类型数据所能表示的最大范围），那么就可以将标记永久化。标记永久化可以避免下传懒惰标记，只需在进行询问时把标记的影响加到答案当中，从而降低程序常数。具体如何处理与题目特性相关，需结合题目来写。这也是树套树和可持久化数据结构中会用到的一种技巧。
+
+## C++ 模板
+
+??? "SegTreeLazyRangeAdd 可以区间加/求和的线段树模板"
+    ```cpp
+    --8<-- "docs/ds/code/seg/seg_4.hpp"
+    ```
+
+??? "SegTreeLazyRangeSet 可以区间修改/求和的线段树模板"
+    ```cpp
+    --8<-- "docs/ds/code/seg/seg_5.hpp"
+    ```
 
 ## 例题
 

@@ -1,5 +1,7 @@
 author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
+## 引入
+
 悬线法的适用范围是单调栈的子集。具体来说，悬线法可以应用于满足以下条件的题目：
 
 - 需要在扫描序列时维护单调的信息；
@@ -7,6 +9,8 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 - 不需要在单调栈上二分。
 
 看起来悬线法可以被替代，用处不大，但是悬线法概念比单调栈简单，更适合初学 OI 的选手理解并解决最大子矩阵等问题。
+
+## 例题
 
 ???+note "[SP1805 HISTOGRA - Largest Rectangle in a Histogram](https://www.luogu.com.cn/problem/SP1805)"
     大意：在一条水平线上有 $n$ 个宽为 $1$ 的矩形，求包含于这些矩形的最大子矩形面积。
@@ -17,6 +21,8 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
 我们考虑如何快速找到悬线可以到达的最左边的位置。
 
+### 过程
+
 定义 $l_i$ 为当前找到的 $i$ 位置的悬线能扩展到的最左边的位置，容易得到 $l_i$ 初始为 $i$，我们需要进一步判断还能不能进一步往左扩展。
 
 - 如果当前 $l_i = 1$，则已经扩展到了边界，不可以。
@@ -24,6 +30,8 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 - 如果当前 $a_i \le a_{l_i - 1}$，则从当前悬线还可以往左扩展，并且 $l_i - 1$ 位置的悬线能向左扩展到的位置，$i$ 位置的悬线一定也可以扩展到，于是我们将 $l_i$ 更新为 $l_{l_i - 1}$，并继续执行判断。
 
 通过摊还分析，可以证明每个 $l_i$ 最多会被其他的 $l_j$ 遍历到一次，因此时间复杂度为 $O(n)$。
+
+### 实现
 
 ??? 参考代码
     ```cpp

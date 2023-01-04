@@ -97,7 +97,6 @@ $$
 另外，本题存在 $O\left(\dfrac{nm}{w}\right)$ 的算法[^ref1]。有兴趣的同学可以自行探索。
 
 ```cpp
-// C++ Version
 int a[MAXN], b[MAXM], f[MAXN][MAXM];
 
 int dp() {
@@ -124,38 +123,41 @@ int dp() {
 
 容易发现该算法的时间复杂度为 $O(n^2)$。
 
-```cpp
-// C++ Version
-int a[MAXN], d[MAXN];
+=== "C++"
 
-int dp() {
-  d[1] = 1;
-  int ans = 1;
-  for (int i = 2; i <= n; i++) {
-    for (int j = 1; j < i; j++)
-      if (a[j] <= a[i]) {
-        d[i] = max(d[i], d[j] + 1);
-        ans = max(ans, d[i]);
+    ```cpp
+    int a[MAXN], d[MAXN];
+
+    int dp() {
+      d[1] = 1;
+      int ans = 1;
+      for (int i = 2; i <= n; i++) {
+        d[i] = 1;
+        for (int j = 1; j < i; j++)
+          if (a[j] <= a[i]) {
+            d[i] = max(d[i], d[j] + 1);
+            ans = max(ans, d[i]);
+          }
       }
-  }
-  return ans;
-}
-```
+      return ans;
+    }
+    ```
 
-```python
-# Python Version
-a = [0] * MAXN
-d = [0] * MAXN
-def dp():
-    d[1] = 1
-    ans = 1
-    for i in range(2, n + 1):
-        for j in range(1, i):
-            if a[j] <= a[i]:
-                d[i] = max(d[i], d[j] + 1)
-                ans = max(ans, d[i])
-    return ans
-```
+=== "Python"
+
+    ```python
+    a = [0] * MAXN
+    d = [0] * MAXN
+    def dp():
+        d[1] = 1
+        ans = 1
+        for i in range(2, n + 1):
+            for j in range(1, i):
+                if a[j] <= a[i]:
+                    d[i] = max(d[i], d[j] + 1)
+                    ans = max(ans, d[i])
+        return ans
+    ```
 
 ### 算法二[^ref2]
 
@@ -174,28 +176,30 @@ def dp():
 
 参考代码如下：
 
-```cpp
-// C++ Version
-for (int i = 0; i < n; ++i) scanf("%d", a + i);
-memset(dp, 0x1f, sizeof dp);
-mx = dp[0];
-for (int i = 0; i < n; ++i) {
-  *std::upper_bound(dp, dp + n, a[i]) = a[i];
-}
-ans = 0;
-while (dp[ans] != mx) ++ans;
-```
+=== "C++"
 
-```python
-# Python Version
-dp = [0x1f1f1f1f] * MAXN
-mx = dp[0]
-for i in range(0, n):
-    bisect.insort_left(dp, a[i], 0, len(dp))
-ans = 0
-while dp[ans] != mx:
-    ans += 1
-```
+    ```cpp
+    for (int i = 0; i < n; ++i) scanf("%d", a + i);
+    memset(dp, 0x1f, sizeof dp);
+    mx = dp[0];
+    for (int i = 0; i < n; ++i) {
+      *std::upper_bound(dp, dp + n, a[i]) = a[i];
+    }
+    ans = 0;
+    while (dp[ans] != mx) ++ans;
+    ```
+
+=== "Python"
+
+    ```python
+    dp = [0x1f1f1f1f] * MAXN
+    mx = dp[0]
+    for i in range(0, n):
+        bisect.insort_left(dp, a[i], 0, len(dp))
+    ans = 0
+    while dp[ans] != mx:
+        ans += 1
+    ```
 
 ## 参考资料与注释
 

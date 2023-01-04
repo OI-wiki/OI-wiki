@@ -36,25 +36,32 @@ CDQ 分治解决这类问题的算法流程如下：
 
 ### 例题
 
-???+ 三维偏序
-    给定一个序列，每个点有两个属性 $(a,b)$，试求：这个序列里有多少对点对 $(i,j)$ 满足 $i<j,a_{i}<a_{j},b_{i}<b_{j}$。
+???+ note "[三维偏序](https://www.luogu.com.cn/problem/P3810)"
+    给定一个序列，每个点有 $a_i,b_i,c_i$ 三个属性，试求：这个序列里有多少对点对 $(i,j)$ 满足 $a_j \leq a_i$ 且 $b_j \leq b_i$ 且 $c_j \leq c_i$ 且 $j \ne i$ 的 $j。
     
     ??? 解题思路
         三维偏序是 CDQ 分治的经典问题。
         
         题目要求统计序列里点对的个数，那试一下用 CDQ 分治。
         
-        假设我们现在写好了 `solve(l,r)`，并且通过递归搞定了 `solve(l,mid)` 和 `solve(mid+1,r)`。现在我们要做的，就是统计满足 $l \leq i \leq mid$,$mid+1 \leq j \leq r$ 的点对 $(i,j)$ 中，有多个点对还满足 $i<j$,$a_{i}<a_{j}$,$b_{i}<b_{j}$ 的限制条件。
+        首先将序列按 $a$ 排序。
         
-        稍微思考一下就会发现，那个 $i<j$ 的限制条件没啥用了：既然 $i$ 比 $mid$ 小，$j$ 比 $mid$ 大，那 $i$ 肯定比 $j$ 要小。现在还剩下两个限制条件：$a_{i}<a_{j}$ 与 $b_{i}<b_{j}$, 根据这个限制条件我们就可以枚举 $j$, 求出有多少个满足条件的 $i$。
+        假设我们现在写好了 `solve(l,r)`，并且通过递归搞定了 `solve(l,mid)` 和 `solve(mid+1,r)`。现在我们要做的，就是统计满足 $l \leq i \leq mid$,$mid+1 \leq j \leq r$ 的点对 $(i,j)$ 中，有多个点对还满足 $a_{i}<a_{j}$,$b_{i}<b_{j}$,$c_{i}<c_{j}$ 的限制条件。
         
-        为了方便枚举，我们把 $(l,mid)$ 和 $(mid+1,r)$ 中的点全部按照 $a$ 的值从小到大排个序。之后我们依次枚举每一个 $j$, 把所有 $a_{i}<a_{j}$ 的点 $i$ 全部插入到某种数据结构里（这里我们选择 [树状数组](../ds/fenwick.md)）。此时只要查询树状数组里有多少个点的 $b$ 值是小于 $b_{j}$ 的，我们就求出了对于这个点 $j$，有多少个 $i$ 可以合法匹配它了。
+        稍微思考一下就会发现，那个 $a{i}<a{j}$ 的限制条件没啥用了：已经将序列按 $a$ 排序，则 $a_{i} < a_{j}$ 可转化为 $i < j$。既然 $i$ 比 $mid$ 小，$j$ 比 $mid$ 大，那 $i$ 肯定比 $j$ 要小。现在还剩下两个限制条件：$b_{i}<b_{j}$ 与 $c_{i}<c_{j}$, 根据这个限制条件我们就可以枚举 $j$, 求出有多少个满足条件的 $i$。
         
-        当我们插入一个 $b$ 值等于 $x$ 的点时，我们就令树状数组的 $x$ 这个位置单点 + 1，而查询树状数组里有多少个点小于 $x$ 的操作实际上就是在求 [前缀和](../basic/prefix-sum.md)，只要我们事先对于所有的 $b$ 值做了 [离散化](../misc/discrete.md)，我们的复杂度就是对的。
+        为了方便枚举，我们把 $(l,mid)$ 和 $(mid+1,r)$ 中的点全部按照 $b$ 的值从小到大排个序。之后我们依次枚举每一个 $j$, 把所有 $b_{i}<b_{j}$ 的点 $i$ 全部插入到某种数据结构里（这里我们选择 [树状数组](../ds/fenwick.md)）。此时只要查询树状数组里有多少个点的 $c$ 值是小于 $c_{j}$ 的，我们就求出了对于这个点 $j$，有多少个 $i$ 可以合法匹配它了。
         
-        对于每一个 $j$，我们都需要将所有 $a_{i}<a_{j}$ 的点 $i$ 插入树状数组中。由于所有的 $i$ 和 $j$ 都已事先按照 $a$ 值排好序，这样的话只要以双指针的方式在树状数组里插入点，则对树状数组的插入操作就能从 $O(n^2)$ 次降到 $O(n)$ 次。
+        当我们插入一个 $c$ 值等于 $x$ 的点时，我们就令树状数组的 $x$ 这个位置单点 + 1，而查询树状数组里有多少个点小于 $x$ 的操作实际上就是在求 [前缀和](../basic/prefix-sum.md)，只要我们事先对于所有的 $c$ 值做了 [离散化](../misc/discrete.md)，我们的复杂度就是对的。
+        
+        对于每一个 $j$，我们都需要将所有 $b_{i}<b_{j}$ 的点 $i$ 插入树状数组中。由于所有的 $i$ 和 $j$ 都已事先按照 $b$ 值排好序，这样的话只要以双指针的方式在树状数组里插入点，则对树状数组的插入操作就能从 $O(n^2)$ 次降到 $O(n)$ 次。
         
         通过这样一个算法流程，我们就用 $O(n\log n)$ 的时间处理完了关于第二类点对的信息了。此时算法的时间复杂度是 $T(n)=T(\lfloor \frac{n}{2} \rfloor)+T(\lceil \frac{n}{2} \rceil)+O(n\log n)=O(n\log^2n)$。
+    
+    ??? 示例代码
+        ```cpp
+        --8<-- "docs/misc/code/cdq-divide/cdq-divide_1.cpp"
+        ```
 
 * * *
 
@@ -65,7 +72,7 @@ CDQ 分治解决这类问题的算法流程如下：
     
     ??? 示例代码
         ```cpp
-        --8<-- "docs/misc/code/cdq-divide/cdq-divide_1.cpp"
+        --8<-- "docs/misc/code/cdq-divide/cdq-divide_2.cpp"
         ```
 
 ## CDQ 分治优化 1D/1D 动态规划的转移
@@ -136,7 +143,7 @@ CDQ 分治的递归树如下所示。
     
     ??? 参考代码
         ```cpp
-        --8<-- "docs/misc/code/cdq-divide/cdq-divide_2.cpp"
+        --8<-- "docs/misc/code/cdq-divide/cdq-divide_3.cpp"
         ```
 
 ## 将动态问题转化为静态问题
@@ -188,11 +195,11 @@ CDQ 分治的递归树如下所示。
         
         通过将连续的一段颜色看成一个点的方式，可以证明 $pre$ 的变化量是 $O(n+m)$ 的，即单次操作仅仅引起 $O(1)$ 的 $pre$ 值变化，那么我们可以用 CDQ 分治来解决动态的单点加矩形求和问题。
         
-        $pre$ 数组的具体变化可以使用 `$std::set$` 来进行处理。这个用 set 维护连续的区间的技巧也被称之为 [old driver tree](../ds/odt.md)。
+        $pre$ 数组的具体变化可以使用 `$std::set$` 来进行处理。这个用 set 维护连续的区间的技巧也被称之为 [old driver tree](./odt.md)。
     
     ??? 参考代码
         ```cpp
-        --8<-- "docs/misc/code/cdq-divide/cdq-divide_3.cpp"
+        --8<-- "docs/misc/code/cdq-divide/cdq-divide_4.cpp"
         ```
 
 * * *
@@ -238,13 +245,9 @@ CDQ 分治的递归树如下所示。
     
     ??? 示例代码
         ```cpp
-        --8<-- "docs/misc/code/cdq-divide/cdq-divide_4.cpp"
+        --8<-- "docs/misc/code/cdq-divide/cdq-divide_5.cpp"
         ```
-
-## 拓展阅读
-
-- [从《Cash》谈一类分治算法的应用](https://www.cs.princeton.edu/~danqic/papers/divide-and-conquer.pdf)
 
 ## 参考资料与注释
 
-[^ref1]: [陈丹琦：我希望女生能得到更多机会，男女生之间的 gap 会逐渐不存在的](https://www.sohu.com/a/454907115_629135)
+[^ref1]: [从《Cash》谈一类分治算法的应用](https://www.cs.princeton.edu/~danqic/papers/divide-and-conquer.pdf)

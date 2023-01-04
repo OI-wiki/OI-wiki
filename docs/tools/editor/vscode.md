@@ -1,4 +1,4 @@
-author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n, HeliumOI
+author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n, HeliumOI, Pinghigh
 
 ## 简介
 
@@ -52,15 +52,27 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 ### 配置 GDB/LLDB 调试器
 
+#### GDB
+
 在 VS Code 中新建一份 C++ 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}`），保存并按下<kbd>F5</kbd>，进入调试模式。
-如果出现了“选择环境”的提示，选择“C++ (GDB/LLDB)”。在“选择配置”中，G++ 用户选择 `g++.exe - 生成和调试活动文件`；Clang 用户选择 `clang++ - 生成和调试活动文件`。
+如果出现了“选择环境”的提示，选择 `C++ (GDB/LLDB)`。在“选择配置”中，G++ 用户选择 `g++.exe - 生成和调试活动文件`；Clang 用户选择 `clang++ - 生成和调试活动文件`。
 
 ???+ warning
     配置名称并非固定，而是可以自定义的。不同的操作系统可能具有不同的配置名称。
 
 完成后，VS Code 将自动完成初始化操作并弹出一个 `launch.json` 配置文件。关闭它。
 
-至此，所有的配置流程已经完毕。再次按下<kbd>F5</kbd>即可看到软件下方的调试信息。
+至此，GDB 所有的配置流程已经完毕。再次按下<kbd>F5</kbd>即可看到软件下方的调试信息。
+
+#### LLDB
+
+如果需要采用 LLDB，需要安装另外一款扩展[^ref1]——[CodeLLDB](https://github.com/vadimcn/vscode-lldb/)。从该项目的 Release 页面下载 .vsix 文件后[^ref2]，从 VS Code 的扩展页面安装。
+
+![](images/vscode-9.png)
+
+先按照上文 GDB 的配置过程操作一遍，然后删除 `.vscode/launch.json`，按下<kbd>F5</kbd>，选择 `LLDB`，再把 `launch.json` 中的 `${workspaceFolder}/<executable file>` 更改为 `${fileDirname}/${fileBasenameNoExtension}.exe` 即可。
+
+至此，LLDB 配置完成。再次按下<kbd>F5</kbd>即可看到软件下方的调试信息。
 
 若要在以后使用 VS Code 编译并调试代码，所有的源代码都需要保存至这个文件夹内。若要编译并调试其他文件夹中存放的代码，需要重新执行上述步骤（或将旧文件夹内的 `.vscode` 子文件夹复制到新文件夹内）。
 
@@ -83,7 +95,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 ???+ warning
     由于功能冲突，安装 clangd 插件后 C/C++ 插件的 IntelliSense 功能将被自动禁用。（调试等功能仍然使用 C/C++ 插件。）如果 clangd 插件的功能出现问题，可以查看是否禁用了 C/C++ 插件的 IntelliSense 功能。
 
-### 简介
+### clangd 简介
 
 LLVM 官网上对 clangd 的介绍是这样的：
 
@@ -115,12 +127,20 @@ sudo pacman -S clang
 brew install llvm
 ```
 
-Windows 用户在 [LLVM Download Page](https://releases.llvm.org/download.html) 上下载二进制文件并安装。
+Windows 用户在 [LLVM-MinGW](https://github.com/mstorsjo/llvm-mingw/releases/) 上下载二进制文件并安装，该版本集成了 MinGW-W64，避免缺少头文件[^ref3]。
 
 ### VS Code 插件
 
-打开 VS Code 插件商店，在搜索栏中输入 `clang` 找到 clang 插件并安装
+打开 VS Code 插件商店，在搜索栏中输入 `clangd` 找到 clangd 插件并安装
 
 ![](images/vscode-8.png)
 
 现在就可以享受 clangd 的自动补全等功能了。
+
+## 参考资料与注释
+
+[^ref1]: VS Code 的 C/C++ 插件如果选择 lldb 作调试器，则会默认采用 lldb-mi 程序，而它已经被 LLVM 开发团队从项目中分离出来，需要自己编译该程序。而它本身就有一些 bug，使用体验和方便程度都不如 CodeLLDB 插件。
+
+[^ref2]: 从插件商店安装 CodeLLDB 后它会再从 GitHub 下载本体，下载速度奇慢，有时下载出错，所以最好直接下载本体然后安装。更新也可直接按照以上步骤下载安装。
+
+[^ref3]: 使用 MSVC 构建的官方版本 [LLVM Download Page](https://releases.llvm.org/download.html) 由于需要搭配 MSVC 使用（MSVC 需要占用 2G 左右的空间，不安装会出现缺少头文件的问题），所以推荐直接安装 LLVM-MinGW。

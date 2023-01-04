@@ -94,6 +94,6 @@ title: OI Wiki
 </script>
 
 <div align="center">
-<a href="https://www.hulu.com/" target="_blank"><img height="40px" src="images/hulu-black.png"></a>
-<a href="https://www.netlify.com/" target="_blank" style="margin-left: 60px;"><img height="40px" src="images/netlify.png"></a>
+<a href="https://www.hulu.com/" target="_blank"><img style="height: 40px; " src="images/hulu-black.png"></a>
+<a href="https://www.netlify.com/" target="_blank" style="margin-left: 60px;"><img style="height: 40px; " src="images/netlify.png"></a>
 </div>

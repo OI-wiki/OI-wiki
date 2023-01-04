@@ -75,7 +75,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
     - 示例：`long long x = 0x7f7f7f7f7f7f7f7f`，`1<<62`。
 
--   未初始化局部变量，导致局部变量被赋予垃圾初值。
+-   未初始化局部变量。
 
     ???+ note "未初始化变量会发生什么"
         原文：<https://loj.ac/d/3679> by @hly1204
@@ -100,7 +100,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
         
         在一些编译器和环境上开启优化后，其输出为 false。
         
-        有兴趣的话可以看 <https://www.ralfj.de/blog/2019/07/14/uninit.html>，尽管其实用 Rust 做的实验，但是本质是一样的。
+        有兴趣的话可以看 <https://www.ralfj.de/blog/2019/07/14/uninit.html>，尽管其是用 Rust 做的实验，但是本质是一样的。
 
 - 局部变量与全局变量重名，导致全局变量被意外覆盖。（开 `-Wshadow` 就可检查此类错误。）
 
@@ -244,7 +244,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 ### 会导致未知的结果
 
-未定义行为会导致未知的结果，可能是 WA，RE 等。
+未定义行为会导致未知的结果，可能是 WA，RE 等。编译器通常会假定你的程序不会出现未定义行为，因此出现开 O2 与不开 O2 代码行为不一致的情况。
 
 -   除以 0（求 0 的逆元）
 
@@ -275,7 +275,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
     即使有一个分支有返回值，但是其他分支却没有，结果也是未定义的。
 
-    可以开 `-Wall` 选项，看一看自己有没有关于函数未 return 的警告。
+    可以向编译选项中追加 `-Wall`，检查编译器是否给出有关于函数未 return 的警告。
 
 -   尝试修改字符串字面量
 
@@ -286,7 +286,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
         p[1] = 'i';
         ```
 
-    这样定义并不符合 c++11 标准，迎丹使用其他 **合适** 的数据类型，例如 `std::string`,`char[]`。
+    这样试图修改字符串字面量会导致 **未定义行为**，应当使用其他 **合适** 的数据类型，例如 `std::string` 和 `char[]`。
 
 -   多次释放/非法解引用一片内存
 
@@ -311,6 +311,34 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     正常输出应当是 `true`，但是在 `INT_MAX` 作为 `x` 时输出 `false`，这时称为 `signed integer overflow`。
 
     可以使用更大的数据类型（例如 `long long` 或 `__int128`），或判断溢出。若保证无负数，亦可使用无符号整型。
+
+    有符号整数溢出可能影响编译优化，例如代码：
+
+    ```cpp
+    int foo(int x) {
+      if (x > x + 1) return 1;
+      return 0;
+    }
+    ```
+
+    可能被编译器直接优化为：
+
+    ```cpp
+    int foo(int x) { return 0; }
+    ```
+
+    因为编译器可以假定有符号整数永远不会溢出，因此 `x > x + 1` 恒成立。
+
+-   使用未初始化的变量
+
+    ???+ warning "示例"
+        ```cpp
+        int foo(int a) {
+          int t; /* 没有初始化 */
+          if (/* 使用 */ t > 3) return a;
+          return 0;
+        }
+        ```
 
 ### 会导致 RE
 
@@ -381,6 +409,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
       if (mid >= qr) return query(lt(t), l, mid, ql, qr);
       if (mid < ql) return query(rt(t), mid + 1, r, ql, qr);
       return max(query(lt(t), l, mid, ql, qr), query(rt(t), mid + 1, r, ql, qr));
+    }
     ```
 
 - 没删文件操作（某些 OJ）。
