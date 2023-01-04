@@ -354,8 +354,8 @@ $$
 
 $$
 \begin{aligned}
-f(\omega_n^k) &= G(\omega_{n/2}^k) + \omega_n^k  \times H(\omega_{n/2}^k) \\
-f(\omega_n^{k+n/2}) &= G(\omega_{n/2}^k) - \omega_n^k  \times H(\omega_{n/2}^k)
+    f(\omega_n^k)       & = G(\omega_{n/2}^k) + \omega_n^k \times H(\omega_{n/2}^k) \\
+    f(\omega_n^{k+n/2}) & = G(\omega_{n/2}^k) - \omega_n^k \times H(\omega_{n/2}^k)
 \end{aligned}
 $$
 
