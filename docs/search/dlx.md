@@ -462,17 +462,17 @@ int col[MS], row[MS];
 
     -   把 $idx$ 插入到 $first(r)$ 的正右方，此时：
 
-        1. $idx$ 右侧的结点为原来 $first(r)$ 的右结点；
-        2. 原来 $first(r)$ 右侧的结点的左结点为 $idx$；
-        3. $idx$ 的左结点为 $first(r)$；
-        4.  $first(r)$ 的右结点为 $idx$。
+        - $idx$ 右侧的结点为原来 $first(r)$ 的右结点；
+        - 原来 $first(r)$ 右侧的结点的左结点为 $idx$；
+        - $idx$ 的左结点为 $first(r)$；
+        - $first(r)$ 的右结点为 $idx$。
 
-            ```cpp
-            L[idx] = first[r], R[idx] = R[first[r]];
-            R[first[r]] = idx, L[R[first[r]]] = idx;
-            ```
+        ```cpp
+        L[idx] = first[r], R[idx] = R[first[r]];
+        L[R[first[r]]] = idx, R[first[r]] = idx;
+        ```
 
-            **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。**
+        **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。**
 
 `insert(r, c)` 这个操作可以通过图片来辅助理解：
 

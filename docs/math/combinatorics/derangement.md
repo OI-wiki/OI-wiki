@@ -25,13 +25,13 @@ $$
 那么选择 $k$ 个元素的方案数为 $C_n^k$，因此有：
 
 $$
-\begin{split}
+\begin{aligned}
 \left|\bigcup_{i=1}^n\overline{S_i}\right|
 &=\sum_{k=1}^n(-1)^{k-1}\sum_{a_{1,\cdots,k} }\left|\bigcap_{i=1}^{k}S_{a_i}\right|\\
 &=\sum_{k=1}^n(-1)^{k-1}C_n^k(n-k)!\\
 &=\sum_{k=1}^n(-1)^{k-1}\frac{n!}{k!}\\
 &=n!\sum_{k=1}^n\frac{(-1)^{k-1} }{k!}
-\end{split}
+\end{aligned}
 $$
 
 因此 $n$ 的错位排列数为：
