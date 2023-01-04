@@ -315,7 +315,7 @@ if (!sta.empty()) {
     using namespace std;
     
     inline int gi() {
-      register int x, c, op = 1;
+      int x, c, op = 1;
       while (c = getchar(), c < '0' || c > '9')
         if (c == '-') op = -op;
       x = c ^ 48;
