@@ -206,4 +206,4 @@ B 维正交范围指在一个 B 维直角坐标系下，第 $i$ 维坐标在一�
 
 - <https://blog.csdn.net/winddreams/article/details/38495093>
 
-- <https://dregen-yor.eu.org/2022/10/01/sao-miao-xian>
+- <https://dregen-yor.cf/2022/10/01/sao-miao-xian>

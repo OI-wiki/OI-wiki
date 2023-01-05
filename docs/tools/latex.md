@@ -564,11 +564,17 @@ $$
 1+2=3
 $$
 
-如果是生成带标号的公式，可以使用 `\begin{equation}...\end{equation}`。例如 `\begin{equation}1+2=3\end{equation}` 生成的效果为：
+如果是生成带标号的公式，可以使用 `\begin{equation}...\end{equation}`。例如：
 
-$$
-\begin{equation}1+2=3\end{equation}
-$$
+```tex
+\begin{equation}
+  1+2=3
+\end{equation}
+```
+
+生成的效果为：
+
+![equation](images/latex-equation.svg)
 
 数字 6 代表的是章节的编号，仅当你的文档有设置章节时才会出现，比如 **report** 类型的文档。
 
@@ -576,19 +582,14 @@ $$
 
 ```tex
 \begin{eqnarray}
-a & = & b + c \\
-  & = & y - z
+  a & = & b + c \\
+    & = & y - z
 \end{eqnarray}
 ```
 
 生成的效果为
 
-$$
-\begin{eqnarray}
-a & = & b + c \\
-  & = & y - z
-\end{eqnarray}
-$$
+![eqnarray](images/latex-eqnarray.svg)
 
 要撰写不标号的公式就在环境标志的后面添加 `*` 字符，如 `{equation*}`，`{eqnarray*}`。
 
