@@ -245,6 +245,7 @@ nav:
       - 离散对数: math/number-theory/discrete-logarithm.md
       - 剩余与单位根: math/number-theory/residue.md
       - 二次剩余: math/number-theory/quad-residue.md
+      - p 进数: math/number-theory/p-adic.md
       - 莫比乌斯反演: math/number-theory/mobius.md
       - 杜教筛: math/number-theory/du.md
       - Powerful Number 筛: math/number-theory/powerful-number.md
