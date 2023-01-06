@@ -113,7 +113,7 @@
 
 1. 标题请写明本次 PR 的目的（做了 **什么** 工作，修复了 **什么** 问题）。
 2. 内容请简要叙述修改的内容。如果修复了一个 issue 的问题，请在内容中添加 `fix #xxxx` 字段，其中 `xxxx` 代表 issue 的编号。
-3. 推荐删除 pull request message 中的模板信息（“首先，十分感谢……”这一段）。
+3. 请您仔细阅读 [贡献指南](https://github.com/OI-wiki/OI-wiki/blob/master/.github/CONTRIBUTING.md) 和 [社区公约](https://github.com/OI-wiki/OI-wiki/blob/master/CODE_OF_CONDUCT.md)，并在同意后勾选PR模板中的框，表示您同意了以上指南和公约。
 
 对于 Pull Request 的标题，推荐使用如下格式书写：
 
