@@ -20,10 +20,10 @@ $$
 设 U 中元素有 n 种不同的属性，而第 i 种属性称为 $P_i$，拥有属性 $P_i$ 的元素构成集合 $S_i$，那么
 
 $$
-\begin{split}
+\begin{aligned}
 \left|\bigcup_{i=1}^{n}S_i\right|=&\sum_{i}|S_i|-\sum_{i<j}|S_i\cap S_j|+\sum_{i<j<k}|S_i\cap S_j\cap S_k|-\cdots\\
 &+(-1)^{m-1}\sum_{a_i<a_{i+1} }\left|\bigcap_{i=1}^{m}S_{a_i}\right|+\cdots+(-1)^{n-1}|S_1\cap\cdots\cap S_n|
-\end{split}
+\end{aligned}
 $$
 
 即
@@ -37,13 +37,13 @@ $$
 对于每个元素使用二项式定理计算其出现的次数。对于元素 x，假设它出现在 $T_1,T_2,\cdots,T_m$ 的集合中，那么它的出现次数为
 
 $$
-\begin{split}
+\begin{aligned}
 Cnt=&|\{T_i\}|-|\{T_i\cap T_j|i<j\}|+\cdots+(-1)^{k-1}\left|\left\{\bigcap_{i=1}^{k}T_{a_i}|a_i<a_{i+1}\right\}\right|\\
 &+\cdots+(-1)^{m-1}|\{T_1\cap\cdots\cap T_m\}|\\
 =&C_m^1-C_m^2+\cdots+(-1)^{m-1}C_m^m\\
 =&C_m^0-\sum_{i=0}^m(-1)^iC_m^i\\
 =&1-(1-1)^m=1
-\end{split}
+\end{aligned}
 $$
 
 于是每个元素出现的次数为 1，那么合并起来就是并集。证毕。
@@ -171,10 +171,10 @@ $$
 那么要求的式子展开
 
 $$
-\begin{split}
+\begin{aligned}
 Ans &= \sum_{K\subseteq M}(-1)^{|K|-1}\left|\bigcap_{k_i\in K}Q_{k_i}\right|\\
     &= \sum_{i}|Q_i|-\sum_{i<j}|Q_i\cap Q_j|+\sum_{i<j<k}|Q_i\cap Q_j\cap Q_k|-\cdots+(-1)^{T-1}\left|\bigcap_{i=1}^TQ_i\right|
-\end{split}
+\end{aligned}
 $$
 
 于是就出现了容斥原理的展开形式，因此对这个式子逆向推导
@@ -259,11 +259,11 @@ $$
 因此可得
 
 $$
-\begin{split}
-\varphi(n)=&n-\sum_{i}\frac{n}{p_i}+\sum_{i<j}\frac{n}{p_ip_j}-\cdots+(-1)^k\frac{n}{p_1p_2\cdots p_n}\\
-=&n\left(1-\frac{1}{p_1}\right)\left(1-\frac{1}{p_2}\right)\cdots\left(1-\frac{1}{p_k}\right)\\
-=&n\prod_{i=1}^k\left(1-\frac{1}{p_i}\right)
-\end{split}
+\begin{aligned}
+\varphi(n)&=n-\sum_{i}\frac{n}{p_i}+\sum_{i<j}\frac{n}{p_ip_j}-\cdots+(-1)^k\frac{n}{p_1p_2\cdots p_n}\\
+&=n\left(1-\frac{1}{p_1}\right)\left(1-\frac{1}{p_2}\right)\cdots\left(1-\frac{1}{p_k}\right)\\
+&=n\prod_{i=1}^k\left(1-\frac{1}{p_i}\right)
+\end{aligned}
 $$
 
 这就是欧拉函数的数学表示啦
@@ -287,11 +287,11 @@ $$
 接下来我们简单证明一下。我们从等式的右边开始推：
 
 $$
-\begin{split}
+\begin{aligned}
 &\sum_{T\subseteq S}(-1)^{|S|-|T|}f(T)\\
 =&\sum_{T\subseteq S}(-1)^{|S|-|T|}\sum_{Q\subseteq T}g(Q)\\
 =&\sum_{Q}g(Q)\sum_{Q\subseteq T\subseteq S}(-1)^{|S|-|T|}\\
-\end{split}
+\end{aligned}
 $$
 
 我们发现后半部分的求和与 $Q$ 无关，因此把后半部分的 $Q$ 剔除：
@@ -303,11 +303,11 @@ $$
 记关于集合 $P$ 的函数 $F(P)=\sum_{T\subseteq P}(-1)^{|P|-|T|}$，并化简这个函数：
 
 $$
-\begin{split}
-F(P)=&\sum_{T\subseteq P}(-1)^{|P|-|T|}\\
-=&\sum_{i=0}^{|P|}C_{|P|}^i(-1)^{|P|-i}=\sum_{i=0}^{|P|}C_{|P|}^i1^i(-1)^{|P|-i}\\
-=&(1-1)^{|P|}=0^{|P|}
-\end{split}
+\begin{aligned}
+F(P)&=\sum_{T\subseteq P}(-1)^{|P|-|T|}\\
+&=\sum_{i=0}^{|P|}C_{|P|}^i(-1)^{|P|-i}=\sum_{i=0}^{|P|}C_{|P|}^i1^i(-1)^{|P|-i}\\
+&=(1-1)^{|P|}=0^{|P|}
+\end{aligned}
 $$
 
 因此原来的式子的值是

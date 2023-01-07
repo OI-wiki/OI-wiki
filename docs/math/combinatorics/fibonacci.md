@@ -87,13 +87,13 @@ $$
 斐波那契数列的递推可以用矩阵乘法的形式表达：
 
 $$
-\begin{bmatrix}F_{n-1} & F_{n} \cr\end{bmatrix} = \begin{bmatrix}F_{n-2} & F_{n-1} \cr\end{bmatrix} \cdot \begin{bmatrix}0 & 1 \cr 1 & 1 \cr\end{bmatrix}
+\begin{bmatrix}F_{n-1} & F_{n} \cr\end{bmatrix} = \begin{bmatrix}F_{n-2} & F_{n-1} \cr\end{bmatrix} \begin{bmatrix}0 & 1 \cr 1 & 1 \cr\end{bmatrix}
 $$
 
 设 $P = \begin{bmatrix}0 & 1 \cr 1 & 1 \cr\end{bmatrix}$，我们得到
 
 $$
-\begin{bmatrix}F_n & F_{n+1} \cr\end{bmatrix} = \begin{bmatrix}F_0 & F_1 \cr\end{bmatrix} \cdot P^n
+\begin{bmatrix}F_n & F_{n+1} \cr\end{bmatrix} = \begin{bmatrix}F_0 & F_1 \cr\end{bmatrix} P^n
 $$
 
 于是我们可以用矩阵乘法在 $\Theta(\log n)$ 的时间内计算斐波那契数列。此外，前一节讲述的公式也可通过矩阵对角化的技巧来得到。
@@ -103,10 +103,10 @@ $$
 使用上面的方法我们可以得到以下等式：
 
 $$
-\begin{array}{rll}
-F_{2k} &= F_k \left( 2F_{k+1} - F_{k} \right)\\
+\begin{aligned}
+F_{2k} &= F_k (2 F_{k+1} - F_{k}) \\
 F_{2k+1} &= F_{k+1}^2 + F_{k}^2
-\end{array}
+\end{aligned}
 $$
 
 于是可以通过这样的方法快速计算两个相邻的斐波那契数（常数比矩乘小）。代码如下，返回值是一个二元组 $(F_n,F_{n+1})$。
