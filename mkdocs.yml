@@ -11,7 +11,7 @@ repo_url: 'https://github.com/OI-wiki/OI-wiki'
 edit_uri: 'https://oi-wiki.org/edit-landing/?ref='
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2022 OI Wiki Team'
+copyright: 'Copyright &copy; 2016 - 2023 OI Wiki Team'
 
 # Contents
 nav:
@@ -36,6 +36,7 @@ nav:
     - 学习资源: contest/resources.md
     - 技巧:
       - 读入、输出优化: contest/io.md
+      - 分段打表: contest/dictionary.md
       - 常见错误: contest/common-mistakes.md
       - 常见技巧: contest/common-tricks.md
     - 出题: contest/problemsetting.md
@@ -325,7 +326,6 @@ nav:
       - 反常游戏: math/game-theory/misere-game.md
     - 牛顿迭代法: math/newton.md
     - 数值积分: math/integral.md
-    - 分段打表: math/dictionary.md
     - 傅里叶-莫茨金消元法: math/fourier-motzkin-elimination.md
     - 序理论: math/order-theory.md
     - 杨氏矩阵: math/young-tableau.md

@@ -1,7 +1,5 @@
 author: xingjiapeng, MingqiHuang
 
-# Geany
-
 Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者较为友好。
 
 与 Dev-C++ 一样，它可以编译运行单个文件。

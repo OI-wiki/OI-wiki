@@ -216,6 +216,42 @@ $a = \min \{ slack(v) | v\in{T'} \}$
     };
     ```
 
+## Dynamic Hungarian Algorithm
+
+原论文 [The Dynamic Hungarian Algorithm for the Assignment Problem with Changing Costs](https://www.ri.cmu.edu/publications/the-dynamic-hungarian-algorithm-for-the-assignment-problem-with-changing-costs/)
+
+伪代码更清晰的论文 [A Fast Dynamic Assignment Algorithm for Solving Resource Allocation Problems](https://www.researchgate.net/publication/352490780_A_Fast_Dynamic_Assignment_Algorithm_for_Solving_Resource_Allocation_Problems)
+
+相关 OJ 问题 [DAP](https://www.spoj.com/problems/DAP/)
+
+???+ note "算法思路"
+    1.  修改单点 $u_i$ 和所有 $v_j$ 之间的权重，即权重矩阵中的一行
+        - 修改顶标 $lx(u_i) = max(w_{ij} - v_{j}), \forall j$
+        - 删除 $u_i$ 相关的匹配
+    2.  修改所有 $u_i$ 和单点 $v_j$ 之间的权重，即权重矩阵中的一列
+        - 修改顶标 $ly(v_j) = max(w_{ij} - u_{i}), \forall i$
+        - 删除 $v_j$ 相关的匹配
+    3.  修改单点 $u_i$ 和单点 $v_j$ 之间的权重，即权重矩阵中的单个元素
+        - 做 1 或 2 两种操作之一即可
+    4.  添加某一单点 $u_i$，或者某一单点 $v_j$，即在权重矩阵中添加或者删除一行或者一列
+        - 对应地做 1 或 2 即可，注意此处加点操作仅为加点，不额外设定权重值，新加点与其他点的权重为 0.
+
+???+ note "算法证明"
+    - 设原图为 G，左右两边的顶标为 $\alpha^{i}$ 和 $\beta^{j}$，可行顶标为 l，那 $G_l$ 是 G 的一个子图，包含图 G 中满足 $w_{ij} = alpha_{i}+beta_{j}$ 的点和边。
+    - 在上面匈牙利算法的部分，定理一证明了：对于某组可行顶标，如果其相等子图存在完美匹配，那么，该匹配就是原二分图的最大权完美匹配。
+    -   假设原来的最优匹配是 $M^*$, 当一个修改发生的时候，我们会根据规则更新可行顶标，更新后的顶标设为 $\alpha^{i^*}$, 或者 $\beta^{j^*}$，会出现以下情况：
+        1. 权重矩阵的一整行被修改了，设被修改的行为 $i^*$ 行，即 $v_{i^*}$ 的所有边被修改了，所以 $v_{i^*}$ 原来的顶标可能不满足条件，因为我们需要 $w_{i^{*}j} \leq alpha_{i^*}+beta_{j}$，但对于其他的 $u_j$ 来说，除了 $i^*$ 相关的边，他们的边权是不变的，因此他们的顶标都是合法的，所以算法中修改了 $v_{i^*}$ 相关的顶标使得这组顶标是一组可行顶标。
+        2. 权重矩阵的一整列被修改了，同理可得算法修改顶标使得这组顶标是一组可行顶标。
+        3. 修改权重矩阵某一元素，任意修改其中一个顶标即可满足顶标条件
+    - 每一次权重矩阵被修改，都关系到一个特定节点，这个节点可能是左边的也可能是右边的，因此我们直接记为 $x$, 这个节点和某个节点 $y$ 在原来的最优匹配中匹配上了。每一次修改操作，最多让这一对节点 unpair，因此我们只要跑一轮匈牙利算法中的搜索我们就能得到一个新的 match，而根据定理一，新跑出来的 match 是最优的。
+
+以下代码应该为论文 2 作者提交的代码（以下代码为最大化权重版本，原始论文中为最小化 cost）
+
+??? note "动态匈牙利算法参考代码"
+    ```cpp
+    --8<-- "docs/graph/graph-matching/code/bigraph-weight-match/bigraph-weight-match_1.cpp"
+    ```
+
 ## 转化为费用流模型
 
 在图中新增一个源点和一个汇点。
@@ -232,155 +268,5 @@ $a = \min \{ slack(v) | v\in{T'} \}$
     模板题
     
     ```cpp
-    #include <bits/stdc++.h>
-    using namespace std;
-    
-    template <typename T>
-    struct hungarian {  // km
-      int n;
-      vector<int> matchx;
-      vector<int> matchy;
-      vector<int> pre;
-      vector<bool> visx;
-      vector<bool> visy;
-      vector<T> lx;
-      vector<T> ly;
-      vector<vector<T> > g;
-      vector<T> slack;
-      T inf;
-      T res;
-      queue<int> q;
-      int org_n;
-      int org_m;
-    
-      hungarian(int _n, int _m) {
-        org_n = _n;
-        org_m = _m;
-        n = max(_n, _m);
-        inf = numeric_limits<T>::max();
-        res = 0;
-        g = vector<vector<T> >(n, vector<T>(n));
-        matchx = vector<int>(n, -1);
-        matchy = vector<int>(n, -1);
-        pre = vector<int>(n);
-        visx = vector<bool>(n);
-        visy = vector<bool>(n);
-        lx = vector<T>(n, -inf);
-        ly = vector<T>(n);
-        slack = vector<T>(n);
-      }
-    
-      void addEdge(int u, int v, int w) {
-        g[u][v] = max(w, 0);  // 负值还不如不匹配 因此设为0不影响
-      }
-    
-      bool check(int v) {
-        visy[v] = true;
-        if (matchy[v] != -1) {
-          q.push(matchy[v]);
-          visx[matchy[v]] = true;
-          return false;
-        }
-        while (v != -1) {
-          matchy[v] = pre[v];
-          swap(v, matchx[pre[v]]);
-        }
-        return true;
-      }
-    
-      void bfs(int i) {
-        while (!q.empty()) {
-          q.pop();
-        }
-        q.push(i);
-        visx[i] = true;
-        while (true) {
-          while (!q.empty()) {
-            int u = q.front();
-            q.pop();
-            for (int v = 0; v < n; v++) {
-              if (!visy[v]) {
-                T delta = lx[u] + ly[v] - g[u][v];
-                if (slack[v] >= delta) {
-                  pre[v] = u;
-                  if (delta) {
-                    slack[v] = delta;
-                  } else if (check(v)) {
-                    return;
-                  }
-                }
-              }
-            }
-          }
-          // 没有增广路 修改顶标
-          T a = inf;
-          for (int j = 0; j < n; j++) {
-            if (!visy[j]) {
-              a = min(a, slack[j]);
-            }
-          }
-          for (int j = 0; j < n; j++) {
-            if (visx[j]) {  // S
-              lx[j] -= a;
-            }
-            if (visy[j]) {  // T
-              ly[j] += a;
-            } else {  // T'
-              slack[j] -= a;
-            }
-          }
-          for (int j = 0; j < n; j++) {
-            if (!visy[j] && slack[j] == 0 && check(j)) {
-              return;
-            }
-          }
-        }
-      }
-    
-      void solve() {
-        // 初始顶标
-        for (int i = 0; i < n; i++) {
-          for (int j = 0; j < n; j++) {
-            lx[i] = max(lx[i], g[i][j]);
-          }
-        }
-    
-        for (int i = 0; i < n; i++) {
-          fill(slack.begin(), slack.end(), inf);
-          fill(visx.begin(), visx.end(), false);
-          fill(visy.begin(), visy.end(), false);
-          bfs(i);
-        }
-    
-        // custom
-        for (int i = 0; i < n; i++) {
-          if (g[i][matchx[i]] > 0) {
-            res += g[i][matchx[i]];
-          } else {
-            matchx[i] = -1;
-          }
-        }
-        cout << res << "\n";
-        for (int i = 0; i < org_n; i++) {
-          cout << matchx[i] + 1 << " ";
-        }
-        cout << "\n";
-      }
-    };
-    
-    int main() {
-      ios::sync_with_stdio(0), cin.tie(0);
-      int n, m, e;
-      cin >> n >> m >> e;
-    
-      hungarian<long long> solver(n, m);
-    
-      int u, v, w;
-      for (int i = 0; i < e; i++) {
-        cin >> u >> v >> w;
-        u--, v--;
-        solver.addEdge(u, v, w);
-      }
-      solver.solve();
-    }
+    --8<-- "docs/graph/graph-matching/code/bigraph-weight-match/bigraph-weight-match_2.cpp"
     ```
