@@ -212,9 +212,9 @@ $$
 
 一方面，设 $\sum_{n=m}^{\infty}c_{n}p^{n}$ 是定义 2 的元素，它对应的柯西列是 $c_{m}p^{m}, c_{m}p^{m}+c_{m+1}p^{m+1}, c_{m}p^{m}+c_{m+1}p^{m+1}+c_{m+2}p^{m+2},\cdots$。
 
-另一方面，设 $x_{n}$ 是有理数柯西列，取整数 $m$ 使得 $\text{v}_{p}(x_{n})\geq m$，从而 $p^{-m}(x_{n})\in \mathbb{Z}_{p}$。
+另一方面，设 $x_{n}$ 是有理数柯西列，取整数 $m$ 使得 $v_{p}(x_{n})\geq m$，从而 $p^{-m}(x_{n})\in \mathbb{Z}_{p}$。
 
-存在整数 $0\leq c_{m}\leq p-1$，使得 $\text{v}_{p}((x_{n})-p^{m}c_{m})\geq m+1$，以此类推可得展开式 $x_{n}=\sum_{n=m}^{\infty}c_{n}p^{n}$，其中 $0\leq c_{n}\leq p-1$。
+存在整数 $0\leq c_{m}\leq p-1$，使得 $v_{p}((x_{n})-p^{m}c_{m})\geq m+1$，以此类推可得展开式 $x_{n}=\sum_{n=m}^{\infty}c_{n}p^{n}$，其中 $0\leq c_{n}\leq p-1$。
 
 定义 2 表明，可以这样看待 p 进数：和每个实数都可以写成一个小数的形式一样，每个 p 进数 $\sum_{n=m}^{\infty}c_{n}p^{n}$ 也可以写成小数的形式：$\cdots,c_{1},c_{0},c_{-1},\cdots,c_{m+1},c_{m}$。
 
@@ -374,7 +374,7 @@ $\ln 5$ 的例子参见：
 - [OEIS A152228 2-adic expansion of log(5).](http://oeis.org/A152228)
 - [OEIS A321690 Approximations up to 2^n for the 2-adic integer log(5).](http://oeis.org/A321690)
 
-同样还能找到更多有趣的数列，可以在 OEIS 上搜索“2-adic integer”，例如 $\ln -3$ 等等（A321694、A321691）。
+同样还能找到更多有趣的数列，可以在 OEIS 上搜索“2-adic integer”，例如 $\ln (-3)$ 等等（A321694、A321691）。
 
 注意，无论奇素数或 2 的情形，$e$ 和 $\ln 2$ 的相应 p 进数表示均无法计算，落在收敛域外，找不到对应的表示。
 
@@ -382,20 +382,20 @@ $\ln 5$ 的例子参见：
 
 仿照离散对数可以刻画缩系乘法群的结构一样，照样可以刻画 p 进数中的乘法群结构。首先给出定理：
 
-- p 为奇素数时，乘法群 $1+p mathbb{Z}_p$ 与 $mathbb{Z}_p$ 同构。
-- p 为 $2$ 时，乘法群 $1+2 mathbb{Z}_2$ 为子群 $\{-1,1\}$ 与子群 $1+4 mathbb{Z}_2$ 的直积，而 $1+4 mathbb{Z}_2$ 同构于 $4 mathbb{Z}_2$。
+- p 为奇素数时，乘法群 $1+p \mathbb{Z}_p$ 与 $\mathbb{Z}_p$ 同构。
+- p 为 $2$ 时，乘法群 $1+2 \mathbb{Z}_2$ 为子群 $\{-1,1\}$ 与子群 $1+4 \mathbb{Z}_2$ 的直积，而 $1+4 \mathbb{Z}_2$ 同构于 $4 \mathbb{Z}_2$。
 
 这与离散对数中的结论完全一致。
 
 证明：
 
-- 对于奇素数的情形，按照指对数的双射性，有乘法群 $1+p mathbb{Z}_p$ 同构于 $p mathbb{Z}_p$，定理显然。
-- 对于 p 为 $2$ 的情形，按照指对数的双射性，有乘法群 $1+4 mathbb{Z}_p$ 同构于 $4 mathbb{Z}_p$，定理显然。证毕。
+- 对于奇素数的情形，按照指对数的双射性，有乘法群 $1+p \mathbb{Z}_p$ 同构于 $p \mathbb{Z}_p$，定理显然。
+- 对于 p 为 $2$ 的情形，按照指对数的双射性，有乘法群 $1+4 \mathbb{Z}_p$ 同构于 $4 \mathbb{Z}_p$，定理显然。证毕。
 
 根据科学记数法和费马欧拉定理，可以证得定理：
 
-- p 为奇素数时，乘法群 $mathbb{Q}_p$ 同构于 $mathbb{Z}$、$\frac{mathbb{Z}}{(p-1)mathbb{Z}}$ 和 $mathbb{Z}_p$ 三个群的笛卡尔积。
-- p 为 $2$ 时，乘法群 $mathbb{Q}_2$ 同构于 $mathbb{Z}$、$\frac{mathbb{Z}}{2 mathbb{Z}}$ 和 $mathbb{Z}_2$ 三个群的笛卡尔积。
+- p 为奇素数时，乘法群 $\mathbb{Q}_p$ 同构于 $\mathbb{Z}$、$\frac{\mathbb{Z}}{(p-1)\mathbb{Z}}$ 和 $\mathbb{Z}_p$ 三个群的笛卡尔积。
+- p 为 $2$ 时，乘法群 $\mathbb{Q}_2$ 同构于 $\mathbb{Z}$、$\frac{\mathbb{Z}}{2 \mathbb{Z}}$ 和 $\mathbb{Z}_2$ 三个群的笛卡尔积。
 
 ## p 进数中的平方元
 
@@ -405,7 +405,7 @@ $\ln 5$ 的例子参见：
 
 关于 p 进数平方元的充要条件，有定理：
 
-$mathbb{Q}_p$ 中的元素按照科学记数法写成 $p^n u$，$u$ 的小数点后均为 $0$，小数点前一位不为 $0$。从而平方元首先要求 $n$ 是偶数，并且有：
+$\mathbb{Q}_p$ 中的元素按照科学记数法写成 $p^n u$，$u$ 的小数点后均为 $0$，小数点前一位不为 $0$。从而平方元首先要求 $n$ 是偶数，并且有：
 
 - p 为奇素数时，$u$ 小数点前一位是模 $p$ 的二次剩余。
 - p 为 $2$ 时，$u$ 模 $8$ 余 $1$，即末三位为 $001$。
@@ -417,24 +417,24 @@ $mathbb{Q}_p$ 中的元素按照科学记数法写成 $p^n u$，$u$ 的小数点
 对于奇素数的情形，有关系：
 
 $$
-1+p mathbb{Z}_p=e^{p mathbb{Z}_p}=e^{2p mathbb{Z}_p}={(e^{p mathbb{Z}_p})}^2
+1+p \mathbb{Z}_p=e^{p \mathbb{Z}_p}=e^{2p \mathbb{Z}_p}={(e^{p \mathbb{Z}_p})}^2
 $$
 
-因此 $1+p mathbb{Z}_p$ 的元素在乘法群 $mathbb{Z}_p$ 中为平方元。由于乘法群 $\frac{mathbb{Z}_p}{1+p mathbb{Z}_p}$ 与乘法群 $\frac{mathbb{Z}}{p mathbb{Z}}$ 同构，从而奇素数的情形得以证明。
+因此 $1+p \mathbb{Z}_p$ 的元素在乘法群 $\mathbb{Z}_p$ 中为平方元。由于乘法群 $\frac{\mathbb{Z}_p}{1+p \mathbb{Z}_p}$ 与乘法群 $\frac{\mathbb{Z}}{p \mathbb{Z}}$ 同构，从而奇素数的情形得以证明。
 
 对于 p 为 $2$ 的情形，有关系：
 
 $$
-1+8 mathbb{Z}_2=e^{8 mathbb{Z}_2}=e^{2\cdot 4 mathbb{Z}_2}={(e^{4 mathbb{Z}_2})}^2
+1+8 \mathbb{Z}_2=e^{8 \mathbb{Z}_2}=e^{2\cdot 4 \mathbb{Z}_2}={(e^{4 \mathbb{Z}_2})}^2
 $$
 
-因此 $1+8 mathbb{Z}_2$ 的元素在乘法群 $mathbb{Z}_2$ 中为平方元。由于乘法群 $\frac{mathbb{Z}_p}{1+8 mathbb{Z}_p}$ 与乘法群 $\frac{mathbb{Z}}{8 mathbb{Z}}$ 同构，即两个 $\frac{mathbb{Z}}{2 mathbb{Z}}$ 的笛卡尔积，从而 p 为 $2$ 的情形得以证明。
+因此 $1+8 \mathbb{Z}_2$ 的元素在乘法群 $\mathbb{Z}_2$ 中为平方元。由于乘法群 $\frac{\mathbb{Z}_p}{1+8 \mathbb{Z}_p}$ 与乘法群 $\frac{\mathbb{Z}}{8 \mathbb{Z}}$ 同构，即两个 $\frac{\mathbb{Z}}{2 \mathbb{Z}}$ 的笛卡尔积，从而 p 为 $2$ 的情形得以证明。
 
 这体现了 p 进数中的平方元具有某种聚集的特征，除了含 p 的个数为偶数条件以外，只与一位有效数字有关，对于 $2$ 进数是三位有效数字，与再左边全没关系。
 
 于是 p 进数平方乘法群是 p 进数乘法群的子群，最后可以得到二者商群的同构关系。有定理：
 
-- p 为奇素数时，乘法群 $\frac{mathbb{Q}_p}{{mathbb{Q}_p}^2}$ 同构于两个 $\frac{mathbb{Z}}{2 mathbb{Z}}$ 的笛卡尔积。
-- p 为 $2$ 时，乘法群 $\frac{mathbb{Q}_2}{{mathbb{Q}_2}^2}$ 同构于三个 $\frac{mathbb{Z}}{2 mathbb{Z}}$ 的笛卡尔积。
+- p 为奇素数时，乘法群 $\frac{\mathbb{Q}_p}{{\mathbb{Q}_p}^2}$ 同构于两个 $\frac{\mathbb{Z}}{2 \mathbb{Z}}$ 的笛卡尔积。
+- p 为 $2$ 时，乘法群 $\frac{\mathbb{Q}_2}{{\mathbb{Q}_2}^2}$ 同构于三个 $\frac{\mathbb{Z}}{2 \mathbb{Z}}$ 的笛卡尔积。
 
 该定理不难证明。
