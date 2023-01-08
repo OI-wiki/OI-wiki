@@ -31,7 +31,7 @@ $$
 以下积分构成一种对数运算：
 
 $$
-\int_1^x \frac{1}{t}dt
+\int_1^x \frac{1}{t}\operatorname{d}t
 $$
 
 该对数的底数是自然常数 $\mathrm{e}$。
@@ -53,11 +53,11 @@ $$
 对于反正切函数和反正弦函数，定义为积分：
 
 $$
-\arctan x=\int_0^x \frac{1}{1+t^2} dt
+\arctan x=\int_0^x \frac{1}{1+t^2} \operatorname{d}t
 $$
 
 $$
-\arcsin x=\int_0^x \frac{1}{\sqrt{1-t^2}} dt
+\arcsin x=\int_0^x \frac{1}{\sqrt{1-t^2}} \operatorname{d}t
 $$
 
 ### 级数的方法
@@ -121,7 +121,7 @@ $$
 欧拉常数的定义是调和级数与自然对数的差值的极限：
 
 $$
-\gamma=\lim_{n\to+\infty}\left(\left(\sum_{k=1}^n\frac{1}{k}\right)-\ln n\right)=\int_{1}^{+\infty}\left(\frac{1}{\lfloor x\rfloor}-\frac{1}{x}\right)dx
+\gamma=\lim_{n\to+\infty}\left(\left(\sum_{k=1}^n\frac{1}{k}\right)-\ln n\right)=\int_{1}^{+\infty}\left(\frac{1}{\lfloor x\rfloor}-\frac{1}{x}\right)\operatorname{d}x
 $$
 
 ## C++ 中的数学常数
