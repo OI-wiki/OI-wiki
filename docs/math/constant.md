@@ -121,7 +121,7 @@ $$
 欧拉常数的定义是调和级数与自然对数的差值的极限：
 
 $$
-\gamma=\lim_{n\to+\infty}\left(\left(\sum_{k=1}^n\frac{1}{k}\right)-\ln n\right)=\int_{1}^{+\infty}\left(\frac{1}{\lfloor x\rfloor}-frac{1}{x}\right)dx
+\gamma=\lim_{n\to+\infty}\left(\left(\sum_{k=1}^n\frac{1}{k}\right)-\ln n\right)=\int_{1}^{+\infty}\left(\frac{1}{\lfloor x\rfloor}-\frac{1}{x}\right)dx
 $$
 
 ## C++ 中的数学常数
