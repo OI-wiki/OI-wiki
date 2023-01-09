@@ -1,4 +1,4 @@
-author: cutekibry, zj713300, Backl1ght
+author: cutekibry, woruo27, Backl1ght
 
 **博弈论**，是经济学的一个分支，主要研究具有竞争或对抗性质的对象，在一定规则下产生的各种行为。博弈论考虑游戏中的个体的预测行为和实际行为，并研究它们的优化策略。
 

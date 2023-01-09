@@ -55,7 +55,7 @@ BronKerbosch1(R, P, X):
 
 ??? note "实现代码"
     ```cpp
-      --8<-- "docs/graph/code/max-clique/max-clique_1.cpp"
+    --8<-- "docs/graph/code/max-clique/max-clique_1.cpp"
     ```
 
 ## 例题
@@ -92,7 +92,7 @@ BronKerbosch1(R, P, X):
 
 ??? note "实现代码"
     ```cpp
-      --8<-- "docs/graph/code/max-clique/max-clique_2.cpp"
+    --8<-- "docs/graph/code/max-clique/max-clique_2.cpp"
     ```
 
 ## 习题

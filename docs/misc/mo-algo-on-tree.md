@@ -300,7 +300,7 @@ if (!sta.empty()) {
 
 设块的大小为 $unit$：
 
-- 对于 x 指针，由于每个块中节点的距离在 $unit$ 左右，每个块中 x 指针移动 $unit^2$ 次（$unit\times dis_{max}$），共计 $n\times unit$ 次（$unit^2 \times (\frac{n}{unit})$）；
+- 对于 x 指针，由于每个块中节点的距离在 $unit$ 左右，每个块中 x 指针移动 $unit^2$ 次（$unit\times dis_{\max}$），共计 $n\times unit$ 次（$unit^2 \times (\frac{n}{unit})$）；
 - 对于 y 指针，每个块中最多移动 $O(n)$ 次，共计 $\frac{n^2}{unit}$ 次（$n \times (\frac{n}{unit})$）。
 
 加起来大概在根号处取得最小值（由于树上莫队块的大小不固定，所以不一定要严格按照）。
@@ -315,7 +315,7 @@ if (!sta.empty()) {
     using namespace std;
     
     inline int gi() {
-      register int x, c, op = 1;
+      int x, c, op = 1;
       while (c = getchar(), c < '0' || c > '9')
         if (c == '-') op = -op;
       x = c ^ 48;

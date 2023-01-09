@@ -24,63 +24,61 @@
 
 第三步中的序列已经分别有序且第一个序列中的数都小于第二个数，所以直接拼接起来就好了。
 
-### 实现（C++）[^ref2]
+=== "C++[^ref2]"
 
-```cpp
-// C++ Version
-struct Range {
-  int start, end;
+    ```cpp
+    struct Range {
+      int start, end;
 
-  Range(int s = 0, int e = 0) { start = s, end = e; }
-};
+      Range(int s = 0, int e = 0) { start = s, end = e; }
+    };
 
-template <typename T>
-void quick_sort(T arr[], const int len) {
-  if (len <= 0) return;
-  Range r[len];
-  int p = 0;
-  r[p++] = Range(0, len - 1);
-  while (p) {
-    Range range = r[--p];
-    if (range.start >= range.end) continue;
-    T mid = arr[range.end];
-    int left = range.start, right = range.end - 1;
-    while (left < right) {
-      while (arr[left] < mid && left < right) left++;
-      while (arr[right] >= mid && left < right) right--;
-      std::swap(arr[left], arr[right]);
+    template <typename T>
+    void quick_sort(T arr[], const int len) {
+      if (len <= 0) return;
+      Range r[len];
+      int p = 0;
+      r[p++] = Range(0, len - 1);
+      while (p) {
+        Range range = r[--p];
+        if (range.start >= range.end) continue;
+        T mid = arr[range.end];
+        int left = range.start, right = range.end - 1;
+        while (left < right) {
+          while (arr[left] < mid && left < right) left++;
+          while (arr[right] >= mid && left < right) right--;
+          std::swap(arr[left], arr[right]);
+        }
+        if (arr[left] >= arr[range.end])
+          std::swap(arr[left], arr[range.end]);
+        else
+          left++;
+        r[p++] = Range(range.start, left - 1);
+        r[p++] = Range(left + 1, range.end);
+      }
     }
-    if (arr[left] >= arr[range.end])
-      std::swap(arr[left], arr[range.end]);
-    else
-      left++;
-    r[p++] = Range(range.start, left - 1);
-    r[p++] = Range(left + 1, range.end);
-  }
-}
-```
+    ```
 
-### 实现（Python）[^ref2]
+=== "Python[^ref2]"
 
-```python
-# Python Version
-def quick_sort(alist, first, last):
-    if first >= last:
-        return
-    mid_value = alist[first]
-    low = first
-    high = last
-    while low < high:
-        while low < high and alist[high] >= mid_value:
-            high -= 1
-        alist[low] = alist[high]
-        while low < high and alist[low] < mid_value:
-            low += 1
-        alist[high] = alist[low]
-    alist[low] = mid_value
-    quick_sort(alist, first, low - 1)
-    quick_sort(alist, low + 1, last)
-```
+    ```python
+    def quick_sort(alist, first, last):
+        if first >= last:
+            return
+        mid_value = alist[first]
+        low = first
+        high = last
+        while low < high:
+            while low < high and alist[high] >= mid_value:
+                high -= 1
+            alist[low] = alist[high]
+            while low < high and alist[low] < mid_value:
+                low += 1
+            alist[high] = alist[low]
+        alist[low] = mid_value
+        quick_sort(alist, first, low - 1)
+        quick_sort(alist, low + 1, last)
+    ```
 
 ## 性质
 
@@ -175,60 +173,62 @@ def quick_sort(alist, first, last):
 
 三路快速排序实现起来非常简单，下面给出了一种三路快排的 C++ 实现。
 
-```cpp
-// C++ Version
-// 模板的T参数表示元素的类型，此类型需要定义小于（<）运算
-template <typename T>
-// arr 为需要被排序的数组，len 为数组长度
-void quick_sort(T arr[], const int len) {
-  if (len <= 1) return;
-  // 随机选择基准（pivot）
-  const T pivot = arr[rand() % len];
-  // i：当前操作的元素
-  // j：第一个等于 pivot 的元素
-  // k：第一个大于 pivot 的元素
-  int i = 0, j = 0, k = len;
-  // 完成一趟三路快排，将序列分为：
-  // 小于 pivot 的元素｜ 等于 pivot 的元素 ｜ 大于 pivot 的元素
-  while (i < k) {
-    if (arr[i] < pivot)
-      swap(arr[i++], arr[j++]);
-    else if (pivot < arr[i])
-      swap(arr[i], arr[--k]);
-    else
-      i++;
-  }
-  // 递归完成对于两个子序列的快速排序
-  quick_sort(arr, j);
-  quick_sort(arr + k, len - k);
-}
-```
+=== "C++"
 
-```python
-# Python Version
-def quick_sort(arr, l, r):
-    if l >= r:
-        return
-    random_index = random.randint(l, r)
-    pivot = arr[random_index]
-    arr[l], arr[random_index] = arr[random_index], arr[l]
-    i = l + 1
-    j = l 
-    k = r + 1
-    while i < k:
-        if arr[i] < pivot:
-            arr[i], arr[j + 1] = arr[j + 1], arr[i]
-            j += 1
-            i += 1
-        elif arr[i] > pivot:
-            arr[i], arr[k - 1] = arr[k - 1], arr[i]
-            k -= 1
-        else: 
-            i += 1
-    arr[l], arr[j] = arr[j], arr[l]
-    quick_sort(arr, l, j - 1)
-    quick_sort(arr, k, r)
-```
+    ```cpp
+    // 模板的 T 参数表示元素的类型，此类型需要定义小于（<）运算
+    template <typename T>
+    // arr 为需要被排序的数组，len 为数组长度
+    void quick_sort(T arr[], const int len) {
+      if (len <= 1) return;
+      // 随机选择基准（pivot）
+      const T pivot = arr[rand() % len];
+      // i：当前操作的元素
+      // j：第一个等于 pivot 的元素
+      // k：第一个大于 pivot 的元素
+      int i = 0, j = 0, k = len;
+      // 完成一趟三路快排，将序列分为：
+      // 小于 pivot 的元素｜ 等于 pivot 的元素 ｜ 大于 pivot 的元素
+      while (i < k) {
+        if (arr[i] < pivot)
+          swap(arr[i++], arr[j++]);
+        else if (pivot < arr[i])
+          swap(arr[i], arr[--k]);
+        else
+          i++;
+      }
+      // 递归完成对于两个子序列的快速排序
+      quick_sort(arr, j);
+      quick_sort(arr + k, len - k);
+    }
+    ```
+
+=== "Python[^ref2]"
+
+    ```python
+    def quick_sort(arr, l, r):
+        if l >= r:
+            return
+        random_index = random.randint(l, r)
+        pivot = arr[random_index]
+        arr[l], arr[random_index] = arr[random_index], arr[l]
+        i = l + 1
+        j = l 
+        k = r + 1
+        while i < k:
+            if arr[i] < pivot:
+                arr[i], arr[j + 1] = arr[j + 1], arr[i]
+                j += 1
+                i += 1
+            elif arr[i] > pivot:
+                arr[i], arr[k - 1] = arr[k - 1], arr[i]
+                k -= 1
+            else: 
+                i += 1
+        arr[l], arr[j] = arr[j], arr[l]
+        quick_sort(arr, l, j - 1)
+        quick_sort(arr, k, r)
+    ```
 
 ### 内省排序[^ref4]
 

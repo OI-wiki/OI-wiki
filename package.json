@@ -11,7 +11,8 @@
     "ts-node-esm": "cross-env NODE_NO_WARNINGS=1 node --loader ts-node/esm",
     "scripts:format": "prettier --write \"scripts/**/*.ts\"",
     "scripts:format:check": "prettier --check \"scripts/**/*.ts\"",
-    "docs:format:remark": "remark . -o"
+    "docs:format:remark": "remark . -o",
+    "docs:format:check": "ts-node-esm scripts/checker/checker.ts -i"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
     "remark-copywriting-correct": "0.6.0",
     "remark-details": "^3.0.0",
     "remark-footnotes": "^1.0.0",
+    "remark-gfm": "^3.0.1",
     "remark-lint-final-newline": "^1.0.2",
     "remark-lint-no-tabs": "^1.0.2",
     "remark-math": "^5.1.1",

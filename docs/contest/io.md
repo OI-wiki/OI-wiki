@@ -271,10 +271,10 @@ struct IO {
 
   template <class T>
   inline void read(T &x) {
-    register double tmp = 1;
-    register bool sign = 0;
+    double tmp = 1;
+    bool sign = 0;
     x = 0;
-    register char ch = gc();
+    char ch = gc();
     for (; !isdigit(ch); ch = gc())
       if (ch == '-') sign = 1;
     for (; isdigit(ch); ch = gc()) x = x * 10 + (ch - '0');
@@ -285,7 +285,7 @@ struct IO {
   }
 
   inline void read(char *s) {
-    register char ch = gc();
+    char ch = gc();
     for (; blank(ch); ch = gc())
       ;
     for (; !blank(ch); ch = gc()) *s++ = ch;

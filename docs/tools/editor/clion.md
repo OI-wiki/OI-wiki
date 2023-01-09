@@ -4,6 +4,10 @@ CLion 是一款由 JetBrains 公司开发的功能丰富且强大的跨平台 C/
 
 ![Clion](./images/clion.png)
 
+## 官方教程
+
+在官方网站中给出了 [学习 Clion](https://www.jetbrains.com/clion/learn/) 的教程。
+
 ## 安装
 
 ### 方法一：直接安装
@@ -69,7 +73,7 @@ StartupNotify=true
 
 ![JetBrains Toolbox](./images/clion-jetbrains-toolbox.png)
 
-通过该工具可以安装 JetBrains 公司开发的 IDE 产品，并且可以快速访问并打开您通过 JetBrains 旗下 IDE 创建的工程和项目。
+通过该工具可以安装 JetBrains 公司开发的 IDE 产品，并且可以快速访问并打开您通过 JetBrains 旗下 IDE 创建的工程和项目，以及接收软件升级信息。
 
 ### 方法三：通过 Snap 安装 (Linux)
 
@@ -188,7 +192,7 @@ CLion 为付费产品，但是可以通过教育邮箱或开源项目申请特�
 
 注意：在注册时于邮箱选项请填如 @edu.cn 后缀的教育邮箱，特殊许可证需要邮箱验证后方可拿到。
 
-你可以到所在高校的教务中心官网去申请教育邮箱，如果申请不到需要使用学信网进行认证（仅中国大陆）。
+你可以到所在高校的教务中心官网去申请教育邮箱，如果申请不到需要使用 [学信网](https://www.chsi.com.cn) 进行认证（仅中国大陆）。
 
 ### 使用开源项目获取
 
