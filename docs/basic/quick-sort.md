@@ -297,7 +297,7 @@ T find_kth_element(T arr[], int rk, const int len) {
 该算法的流程如下：
 
 1. 将整个序列划分为 $\left \lfloor \dfrac{n}{5} \right \rfloor$ 组，每组元素数不超过 5 个；
-2. 寻找每组元素的中位数（因为元素个数较少，可以直接使用 [插入排序](./intertion-sort.md) 等算法）。
+2. 寻找每组元素的中位数（因为元素个数较少，可以直接使用 [插入排序](./insertion-sort.md) 等算法）。
 3. 找出这 $\left \lfloor \dfrac{n}{5} \right \rfloor$ 组元素中位数中的中位数。将该元素作为前述算法中每次划分时的分界值即可。
 
 #### 时间复杂度证明
