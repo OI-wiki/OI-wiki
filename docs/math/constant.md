@@ -157,7 +157,10 @@ $$
 
 在 C++20 引入了 `<numbers>` 头文件。虽然目前算法竞赛领域普遍支持的版本是 C++14，但是迟早有一天算法竞赛的支持版本会到达 C++20，也许在不算太遥远的未来，介绍 `<numbers>` 头文件是必需的。
 
-以下内置常数均为 `inline constexpr double` 类型，均为与相应无理数最接近的浮点数。以下给出常量名，以及该常量的介绍。
+以下内置常数均为 `double` 类型，均为与相应无理数最接近的浮点数。这些数学常数均位于 [`std::numbers`](https://zh.cppreference.com/w/cpp/numeric/constants) 命名空间下，以 `sqrt2` 为例，使用时有以下两种方案：
+
+1. 使用 `using namespace std::numbers` 语句，然后直接使用 `sqrt2` 即可。
+2. 使用 `std::numbers::sqrt2` 的形式。
 
 #### 由开方运算引入的常数
 
