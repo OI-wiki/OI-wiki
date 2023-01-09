@@ -323,7 +323,6 @@ T(n) & \leq T(\dfrac{n}{5}) + T(\dfrac{7n}{10}) + O(n)\\
      & \leq \dfrac{9cn}{10} + O(n)\\
      & = O(n)
 \end{aligned}
-```
 $$
 
 到这里我们就证明了，该算法在最坏情况下也具有 $O(n)$ 的时间复杂度。
