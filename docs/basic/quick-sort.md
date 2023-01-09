@@ -300,6 +300,34 @@ T find_kth_element(T arr[], int rk, const int len) {
 2. 寻找每组元素的中位数（因为元素个数较少，可以直接使用 [插入排序](./intertion-sort.md) 等算法）。
 3. 找出这 $\left \lfloor \dfrac{n}{5} \right \rfloor$ 组元素中位数中的中位数。将该元素作为前述算法中每次划分时的分界值即可。
 
+#### 时间复杂度证明
+
+下面将证明，该算法在最坏情况下的时间复杂度为 $O(n)$。设 $T(n)$ 为问题规模为 $n$ 时，解决问题需要的计算量。
+
+先分析前两步——划分与寻找中位数。由于划分后每组内的元素数量非常少，可以认为寻找一组元素的中位数的时间复杂度为 $O(1)$。因此找出所有 $\left \lfloor \dfrac{n}{5} \right \rfloor$ 组元素中位数的时间复杂度为 $O(n)$。
+
+接下来分析第三步——递归过程。这一步进行了两次递归调用：第一次是寻找各组中位数中的中位数，需要的开销显然为 $T(\dfrac{n}{5})$，第二次是进入分界值的左侧部分或右侧部分。根据我们选取的划分元素，有 $\dfrac{1}{2} \times \left \lfloor \dfrac{n}{5} \right \rfloor = \left \lfloor \dfrac{n}{10} \right \rfloor$ 组元素的中位数小于分界值，这几组元素中，比中位数还小的元素也一定比分界值要小，从而整个序列中小于分界值的元素至少有 $3 \times \left \lfloor \dfrac{n}{10} \right \rfloor = \left \lfloor \dfrac{3n}{10} \right \rfloor$ 个。同理，整个序列中大于分界值的元素也至少有 $\left \lfloor \dfrac{3n}{10} \right \rfloor$ 个。因此，分界值的左边或右边至多有 $\dfrac{7n}{10}$ 个元素，这次递归的时间开销的上界为 $T(\dfrac{7n}{10}$。
+
+综上，我们可以列出这样的不等式：
+
+$$
+T(n) \leq T(\dfrac{n}{5}) + T(\dfrac{7n}{10}) + O(n)
+$$
+
+假设 $T(n) = O(n)$ 在问题规模足够小时成立。根据定义，此时有 $T(n) \leq cn$，其中 $c$ 为一正常数。将不等式右边的所有 $T(n)$ 进行代换：
+
+$$
+\begin{aligned}
+T(n) & \leq T(\dfrac{n}{5}) + T(\dfrac{7n}{10}) + O(n)\\
+     & \leq \dfrac{cn}{5} + \dfrac{7cn}{10} + O(n)\\
+     & \leq \dfrac{9cn}{10} + O(n)\\
+     & = O(n)
+\end{aligned}
+```
+$$
+
+到这里我们就证明了，该算法在最坏情况下也具有 $O(n)$ 的时间复杂度。
+
 ## 参考资料与注释
 
 [^ref1]: [C++ 性能榨汁机之局部性原理 - I'm Root lee !](http://irootlee.com/juicer_locality/)
