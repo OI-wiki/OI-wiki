@@ -21,3 +21,13 @@
 检验它是否可以进行 [拓扑排序](./topo.md) 即可。
 
 当然也有另外的方法，可以对图进行一遍 [DFS](../search/dfs.md)，在得到的 DFS 树上看看有没有连向祖先的非树边（返祖边）。如果有的话，那就有环了。
+
+## 应用
+
+### DP 求最短路
+
+在一般图上，求单源最短路径的最优时间复杂度为 $O(nm)$ （ [Bellman-Ford 算法](./shortest-path#bellman-ford-%E7%AE%97%E6%B3%95)，适用于有负权图）或 $O(m \log m)$ （ [Dijkstra 算法](./shortest-path#dijkstra-%E7%AE%97%E6%B3%95)，适用于无负权图）。
+
+但在 DAG 上，我们可以使用 DP 求最短路，使时间复杂度优化到 $O(n+m)$ 。
+
+参见：[DAG 上的 DP](../dp/dag.md)。
