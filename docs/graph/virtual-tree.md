@@ -230,13 +230,13 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy, 2
 
 于是我们就学会了虚树的建立了！
 
-### 排序+LCA 构造虚树
+### 排序 + LCA 构造虚树
 
 首先，把所有关键点按照 $dfn$ 序排序。
 
-把所有关键点加入一个序列 $A$ ，用来存储虚树中需要有的点。
+把所有关键点加入一个序列 $A$，用来存储虚树中需要有的点。
 
-之后，在**关键点序列**上，枚举相邻的两个数，两两求得 $lca$ 并且加入序列 $A$ 中。
+之后，在 **关键点序列** 上，枚举相邻的两个数，两两求得 $lca$ 并且加入序列 $A$ 中。
 
 因为 DFS 序的性质，此时的序列 $A$ 已经包含了虚树中的所有点，但是可能有重复。
 
@@ -248,35 +248,39 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy, 2
 
 分两种情况来探讨：
 
-如果 $x$ 是 $y$ 的祖先，那么 $x$ 直接到 $y$ 连边的中间不会有点，因为 dfn 序保证了这一段之中如果中间有点的话，$x$ 就不会连接 $y$ 。
+如果 $x$ 是 $y$ 的祖先，那么 $x$ 直接到 $y$ 连边的中间不会有点，因为 dfn 序保证了这一段之中如果中间有点的话，$x$ 就不会连接 $y$。
 
 如果 $x$ 不是 $y$ 的祖先，那么就把 $lca(x,y)$ 当作 $y$ 的的祖先，以上一种情况处理即可。
 
-所以就是连接 $lca$ 和 $y$ ，这样不会遗漏，也不会重复。
+所以就是连接 $lca$ 和 $y$，这样不会遗漏，也不会重复。
 
-时间复杂度 $O(m\log n)$ ，其中 $m$ 为关键点数，$n$ 为总点数。
+时间复杂度 $O(m\log n)$，其中 $m$ 为关键点数，$n$ 为总点数。
 
 代码实现：
 
 ```cpp
 int dfn[maxn];
 bool valid[maxn];
-int h[maxn],m,a[maxn],len;//存储关键点
-bool cmp(int x,int y){
-	return dfn[x]<dfn[y];//按照 dfn 序排序 
-}void build_virtual_tree(){
-	sort(h+1,h+m+1,cmp);//把关键点按照 dfn 序排序 
-	for(int i=1;i<m;++i){
-		a[++len]=h[i];
-		a[++len]=lca(h[i],h[i+1]);//插入 lca 
-	}a[++len]=h[m];
-	sort(a+1,a+len+1,cmp);//把所有虚树上的点按照 dfn 序排序 
-	len=unque(a+1,a+len+1)-a-1;//去重 
-	for(int i=1,lc;i<len;++i){
-		lc=lca(a[i],a[i+1]);
-		conn(lc,a[i+1]);//连边，如有边权 就是 distance(lc,a[i+1]) 
-	}
-} 
+int h[maxn], m, a[maxn], len;  // 存储关键点
+
+bool cmp(int x, int y) {
+  return dfn[x] < dfn[y];  // 按照 dfn 序排序
+}
+
+void build_virtual_tree() {
+  sort(h + 1, h + m + 1, cmp);  // 把关键点按照 dfn 序排序
+  for (int i = 1; i < m; ++i) {
+    a[++len] = h[i];
+    a[++len] = lca(h[i], h[i + 1]);  // 插入 lca
+  }
+  a[++len] = h[m];
+  sort(a + 1, a + len + 1, cmp);  // 把所有虚树上的点按照 dfn 序排序
+  len = unque(a + 1, a + len + 1) - a - 1;  // 去重
+  for (int i = 1, lc; i < len; ++i) {
+    lc = lca(a[i], a[i + 1]);
+    conn(lc, a[i + 1]);  // 连边，如有边权 就是 distance(lc,a[i+1])
+  }
+}
 ```
 
 对于消耗战这题，直接在虚树上跑最开始讲的那个 DP 就行了，我们等于利用了虚树排除了那些没用的非关键节点！仍然考虑 $i$ 的所有儿子 $v$：
