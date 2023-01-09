@@ -133,25 +133,25 @@ $$
 ```c++
 #if defined(_USE_MATH_DEFINES) && !defined(_MATH_DEFINES_DEFINED)
 #define _MATH_DEFINES_DEFINED
-#define M_E        2.71828182845904523536
-#define M_LOG2E    1.44269504088896340736
-#define M_LOG10E   0.434294481903251827651
-#define M_LN2      0.693147180559945309417
-#define M_LN10     2.30258509299404568402
-#define M_PI       3.14159265358979323846
-#define M_PI_2     1.57079632679489661923
-#define M_PI_4     0.785398163397448309616
-#define M_1_PI     0.318309886183790671538
-#define M_2_PI     0.636619772367581343076
+#define M_E 2.71828182845904523536
+#define M_LOG2E 1.44269504088896340736
+#define M_LOG10E 0.434294481903251827651
+#define M_LN2 0.693147180559945309417
+#define M_LN10 2.30258509299404568402
+#define M_PI 3.14159265358979323846
+#define M_PI_2 1.57079632679489661923
+#define M_PI_4 0.785398163397448309616
+#define M_1_PI 0.318309886183790671538
+#define M_2_PI 0.636619772367581343076
 #define M_2_SQRTPI 1.12837916709551257390
-#define M_SQRT2    1.41421356237309504880
-#define M_SQRT1_2  0.707106781186547524401
-#endif  /* _USE_MATH_DEFINES */
+#define M_SQRT2 1.41421356237309504880
+#define M_SQRT1_2 0.707106781186547524401
+#endif /* _USE_MATH_DEFINES */
 ```
 
-这些常量是 POSIX 标准规定的语法拓展[1](#user-content-fn-1-e92077518d669f2735cd5034a5c6ae51)，定义在 `<math.h>` 中。在应用的时候，不仅要声明 `#include<math.h>`，还需要写 `#define _USE_MATH_DEFINES` 才能正常使用这些数学常数宏。
+这些常量是 POSIX 标准规定的语法拓展 [1](#user-content-fn-1-e92077518d669f2735cd5034a5c6ae51)，定义在 `<math.h>` 中。在应用的时候，不仅要声明 `#include<math.h>`，还需要写 `#define _USE_MATH_DEFINES` 才能正常使用这些数学常数宏。
 
-同时，GNU 拓展规定了一系列以 fN 和 fNx 为为后缀的不同精度的宏定义常量[2](#user-content-fn-2-e92077518d669f2735cd5034a5c6ae51)，GNU 拓展规定的常量使用的是 ISO/IEC TS 18661-3 规定的机器无关浮点数类型。
+同时，GNU 拓展规定了一系列以 fN 和 fNx 为为后缀的不同精度的宏定义常量 [2](#user-content-fn-2-e92077518d669f2735cd5034a5c6ae51)，GNU 拓展规定的常量使用的是 ISO/IEC TS 18661-3 规定的机器无关浮点数类型。
 
 ### 在 C++20 中的数学常数
 
@@ -194,7 +194,7 @@ $$
 
 还有一个内置数学常数是欧拉常数 $\gamma$，常量记作 `egamma`。
 
-
 ## 参考资料
-1. https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/math.h.html [↩](#user-content-fnref-1-e92077518d669f2735cd5034a5c6ae51)
-2. https://www.gnu.org/software/libc/manual/html_node/Mathematical-Constants.html [↩](#user-content-fnref-2-e92077518d669f2735cd5034a5c6ae51)
+
+1. <https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/math.h.html> [↩](#user-content-fnref-1-e92077518d669f2735cd5034a5c6ae51)
+2. <https://www.gnu.org/software/libc/manual/html_node/Mathematical-Constants.html> [↩](#user-content-fnref-2-e92077518d669f2735cd5034a5c6ae51)
