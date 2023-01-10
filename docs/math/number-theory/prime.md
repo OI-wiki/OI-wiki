@@ -151,7 +151,12 @@
 
 不妨将费马小定理和二次探测定理结合起来使用：
 
-将 $a^{n-1} \equiv 1 \pmod n$ 中的指数 $n−1$ 分解为 $n−1=u \times 2^t$，在每轮测试中对随机出来的 $a$ 先求出 $a^{u} \pmod n$，之后对这个值执行最多 $t$ 次平方操作，若发现非平凡平方根时即可判断出其不是素数，否则通过此轮测试。
+将 $a^{n-1} \equiv 1 \pmod n$ 中的指数 $n−1$ 分解为 $n−1=u \times 2^t$，在每轮测试中对随机出来的 $a$ 先求出 $a^{u} \pmod n$，之后对这个值执行最多 $t$ 次平方操作，若发现非平凡平方根时即可判断出其不是素数，否则再使用 Fermat 素性测试判断。
+
+还有一些实现上的小细节：
+
+- 如果找出了一个平方根 $x \equiv p-1 \pmod n$，则之后的平方操作全都会得到 $1$，则可以直接通过本轮测试。
+- 如果找出了一个非平凡平方根 $x \not\equiv p-1 \pmod n$，则之后的平方操作全都会得到 $1$。可以选择直接返回 `false`，也可以放到 $t$ 次平方操作后再返回 `false`。
 
 这样得到了较正确的 Miller Rabin：（来自 fjzzq2002）
 
@@ -168,10 +173,12 @@
         int x = rand() % (n - 2) + 2, v = quickPow(x, a, n);
         if (v == 1) continue;
         for (j = 0; j < b; ++j) {
-          if (v == n - 1) break;
+          if (v == n - 1) break; // 得到平凡平方根 n-1，通过此轮测试
           v = (long long)v * v % n;
         }
-        if (j >= b) return 0;
+        // 如果找到了非平凡平方根，则会由于无法提前 break; 而运行到 j == b
+        // 如果 Fermat 素性测试无法通过，则一直运行到 j == b 后 v 都不会等于 1
+        if (j == b) return 0;
       }
       return 1;
     }
@@ -200,6 +207,8 @@
                     break
                 v = v * v % n
                 j = j + 1
+            # 如果找到了非平凡平方根，则会由于无法提前 break; 而运行到 j == b
+            # 如果 Fermat 素性测试无法通过，则一直运行到 j == b 后 v 都不会等于 1
             if j >= b:
                 return False
         return True
