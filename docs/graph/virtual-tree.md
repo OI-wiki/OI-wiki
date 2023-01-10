@@ -124,9 +124,11 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 int dfn[maxn];
 bool valid[maxn];
 int h[maxn], m, a[maxn], len;  // 存储关键点
+
 bool cmp(int x, int y) {
   return dfn[x] < dfn[y];  // 按照 dfn 序排序
 }
+
 void build_virtual_tree() {
   sort(h + 1, h + m + 1, cmp);  // 把关键点按照 dfn 序排序
   for (int i = 1; i < m; ++i) {
