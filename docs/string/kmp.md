@@ -256,7 +256,7 @@ $$
     
         ```python
         def find_occurences(s, t):
-            cur = s + '#' + t
+            cur = t + '#' + s
             sz1, sz2 = len(s), len(t)
             ret = []
             lps = prefix_function(cur)
