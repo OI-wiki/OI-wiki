@@ -1,6 +1,6 @@
 素数与合数的定义，见 [数论基础](./basic.md)。
 
-素数计数函数：小于或等于 $x$ 的素数的个数，用 $\pi(x)$ 表示。随着 $x$ 的增大，有这样的近似结果：$\pi(x) \sim \frac{x}{\ln(x)}$。
+素数计数函数：小于或等于 $x$ 的素数的个数，用 $\pi(x)$ 表示。随着 $x$ 的增大，有这样的近似结果：$\pi(x) \sim \dfrac{x}{\ln(x)}$。
 
 ## 素数判定
 
@@ -68,7 +68,7 @@
 
 #### 定义
 
-**素性测试**(Primality test）是一类在 **不对给定数字进行素数分解**（prime factorization）的情况下，测试其是否为素数的算法。
+**素性测试**（Primality test）是一类在 **不对给定数字进行素数分解**（prime factorization）的情况下，测试其是否为素数的算法。
 
 素性测试有两种：
 
@@ -83,7 +83,7 @@
 
 我们可以根据 [费马小定理](./fermat.md#费马小定理) 得出一种检验素数的思路：
 
-基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$
+基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$。
 
 ##### 实现
 
@@ -136,8 +136,6 @@
 **Miller-Rabin 素性测试**（Miller–Rabin primality test）是进阶的素数判定方法。它是由 Miller 和 Rabin 二人根据费马小定理的逆定理（费马测试）优化得到的。因为和许多类似算法一样，它是使用伪素数的概率性测试，我们必须使用慢得多的确定性算法来保证素性。然而，实际上没有已知的数字通过了高级概率性测试（例如 Rabin-Miller）但实际上却是复合的。因此我们可以放心使用。
 
 对数 n 进行 k 轮测试的时间复杂度是 $O(k \log^3n)$，利用 FFT 等技术可以优化到 [$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)。
-
-另外，假设 [广义 Riemann 猜想](https://en.wikipedia.org/wiki/Generalized_Riemann_hypothesis)(generalized Riemann hypothesis, GRH) 成立，则对数 n 最多只需要测试 $[2, \min\{n-2, \lfloor 2\ln^2 n \rfloor\}]$ 中的全部整数即可 **确定** 数 n 的素性，证明参见注释 7。
 
 ##### 二次探测定理
 
@@ -209,17 +207,20 @@
                 j = j + 1
             # 如果找到了非平凡平方根，则会由于无法提前 break; 而运行到 j == b
             # 如果 Fermat 素性测试无法通过，则一直运行到 j == b 后 v 都不会等于 1
-            if j >= b:
+            if j == b:
                 return False
         return True
     ```
+
+另外，假设 [广义 Riemann 猜想](https://en.wikipedia.org/wiki/Generalized_Riemann_hypothesis)（generalized Riemann hypothesis, GRH）成立，则对数 $n$ 最多只需要测试 $[2, \min\{n-2, \lfloor 2\ln^2 n \rfloor\}]$ 中的全部整数即可 **确定** 数 $n$ 的素性，证明参见注释 7。
+
+而在 OI 范围内，通常都是对 $[1, 2^64)$ 范围内的数进行素性检验。对于 $[1, 2^32)$ 范围内的数，选取 $\{2, 7, 61\}$ 三个数作为基数进行 Miller-Rabin 素性检验就可以确定素性；对于 $[1, 2^64)$ 范围内的数，选取 $\{2, 325, 9375, 28178, 450775, 9780504, 1795265022\}$ 七个数作为基数进行 Miller-Rabin 素性检验就可以确定素性。详见注释 8。
 
 ## 反素数
 
 ### 定义
 
-如果某个正整数 $n$ 满足如下条件，则称为是 **反素数**：
-  任何小于 $n$ 的正数的约数个数都小于 $n$ 的约数个数
+如果某个正整数 $n$ 满足如下条件，则称为是 **反素数**：任何小于 $n$ 的正数的约数个数都小于 $n$ 的约数个数。
 
 注：注意区分 [emirp](https://en.wikipedia.org/wiki/Emirp)，它是用来表示从后向前写读是素数的数。
 
@@ -310,3 +311,4 @@
 5. [桃子的算法笔记——反素数详解（acm/OI）](https://zhuanlan.zhihu.com/p/41759808)
 6. [The Rabin-Miller Primality Test](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)
 7. Bach, Eric , "[Explicit bounds for primality testing and related problems](https://doi.org/10.2307%2F2008811)", Mathematics of Computation, 55:191 (1990) pp 355–380.
+8. [Deterministic variant of the Miller-Rabin primality test](https://miller-rabin.appspot.com/#)
