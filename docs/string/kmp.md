@@ -255,9 +255,9 @@ $$
     === "Python"
     
         ```python
-        def find_occurences(s, t):
+        def find_occurences(t, s):
             cur = s + '#' + t
-            sz1, sz2 = len(s), len(t)
+            sz1, sz2 = len(t), len(s)
             ret = []
             lps = prefix_function(cur)
             for i in range(sz2 + 1, sz1 + sz2 + 1):
