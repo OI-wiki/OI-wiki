@@ -1069,6 +1069,7 @@ def fib(n):
 4. Real Python Tutorials，<https://realpython.com/>
 5. 廖雪峰的 Python 教程，<https://www.liaoxuefeng.com/wiki/1016959663602400/>
 6. GeeksforGeeks: Python Tutorials,<https://www.geeksforgeeks.org/python-programming-language/>
+7. Scaler Topics: Learn Python In Detail, <https://www.scaler.com/topics/python/>
 
 ## 参考资料和注释
 
