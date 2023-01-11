@@ -194,7 +194,7 @@ $$
 \sin z=\frac{\operatorname{exp} (iz)-\operatorname{exp} (-\mathrm{i}z)}{2\mathrm{i}}
 $$
 
-有关欧拉公式的更多介绍，可以参考两个视频：[欧拉公式与初等群论](https://www.bilibili.com/video/BV1fx41187tZ)、[微分方程概论 - 第五章：在 3.14 分钟内理解 \mathrm{e}^\mathrm{i}π](https://www.bilibili.com/video/BV1G4411D7kZ)。
+有关欧拉公式的更多介绍，可以参考两个视频：[欧拉公式与初等群论](https://www.bilibili.com/video/BV1fx41187tZ)、[微分方程概论 - 第五章：在 3.14 分钟内理解 \\mathrm{e}^\\mathrm{i}π](https://www.bilibili.com/video/BV1G4411D7kZ)。
 
 复三角函数在实数集上与实三角函数的定义完全一致。在复平面上拥有性质：
 
