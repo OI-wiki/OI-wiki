@@ -1,5 +1,5 @@
 ???+ warning "注意"
-    下文中的欧拉数特指 Euler number。注意与后文的 Eulerian Number，以及 Euler's number（指与欧拉相关的数学常数例如 $\gamma$ 或 $e$）作区分。
+    下文中的欧拉数特指 Euler number。注意与后文的 Eulerian Number，以及 Euler's number（指与欧拉相关的数学常数例如 $\gamma$ 或 $\mathrm{e}$）作区分。
 
 **欧拉数（Euler number）** 是与伯努利数形式相似的一个数列。
 
@@ -8,15 +8,15 @@
 欧拉多项式 $E_n(x)$ 由展开式给出：
 
 $$
-\frac{2e^{xt}}{e^t+1}=\sum_{n=0}^\infty\frac{t^n}{n!}E_n(x)
+\frac{2\mathrm{e}^{xt}}{\mathrm{e}^t+1}=\sum_{n=0}^\infty\frac{t^n}{n!}E_n(x)
 $$
 
-左方的函数称为欧拉多项式的生成函数。级数在 $|t|<\pi$ 时收敛，因为左方函数距离 $t=0$ 最近的奇点是 $t=\pm \pi i$。
+左方的函数称为欧拉多项式的生成函数。级数在 $|t|<\pi$ 时收敛，因为左方函数距离 $t=0$ 最近的奇点是 $t=\pm \pi \mathrm{i}$。
 
 在欧拉多项式的生成函数中，令 $x$ 取 $\frac{1}{2}$，等式左端变为 $t$ 的偶函数，右边不出现 $t$ 的奇次方，有：
 
 $$
-\frac{2e^{\frac{t}{2}}}{e^t+1}=sech \frac{t}{2}=\sum_{n=0}^\infty\frac{E_n}{n!}{\left(\frac{t}{2}\right)}^n
+\frac{2\mathrm{e}^{\frac{t}{2}}}{\mathrm{e}^t+1}=sech \frac{t}{2}=\sum_{n=0}^\infty\frac{E_n}{n!}{\left(\frac{t}{2}\right)}^n
 $$
 
 其中欧拉数定义为：
@@ -66,15 +66,15 @@ $$
 对比：伯努利多项式 $B_n(x)$：
 
 $$
-\frac{te^{xt}}{e^t-1}=\sum_{n=0}^\infty\frac{t^n}{n!}B_n(x)
+\frac{t\mathrm{e}^{xt}}{\mathrm{e}^t-1}=\sum_{n=0}^\infty\frac{t^n}{n!}B_n(x)
 $$
 
-左方的函数称为伯努利多项式的生成函数。级数在 $|t|<2\pi$ 时收敛，因为左方函数距离 $t=0$ 最近的奇点是 $t=\pm 2\pi i$。
+左方的函数称为伯努利多项式的生成函数。级数在 $|t|<2\pi$ 时收敛，因为左方函数距离 $t=0$ 最近的奇点是 $t=\pm 2\pi \mathrm{i}$。
 
 在伯努利多项式的生成函数中，令 $x$ 取 $0$，等式左端变为：
 
 $$
-\frac{t}{e^t-1}=\sum_{n=0}^\infty\frac{t^n}{n!}B_n
+\frac{t}{\mathrm{e}^t-1}=\sum_{n=0}^\infty\frac{t^n}{n!}B_n
 $$
 
 其中伯努利数定义为：
@@ -126,7 +126,7 @@ $$
 欧拉多项式的生成函数可以整理为：
 
 $$
-\frac{2e^{\frac{t}{2}}e^{\left(x-\frac{1}{2}\right)t}}{e^t+1}=\sum_{k=0}^\infty\frac{E_k}{k!}{\left(\frac{t}{2}\right)}^k\sum_{t=0}^\infty\frac{{\left(x-\frac{1}{2}\right)}^l}{l!}t^l=\sum_{n=0}^\infty\frac{t^n}{n!}\sum_{k=0}^n\frac{E_k}{2^k}C_n^k{\left(x-\frac{1}{2}\right)}^{n-k}
+\frac{2\mathrm{e}^{\frac{t}{2}}\mathrm{e}^{\left(x-\frac{1}{2}\right)t}}{\mathrm{e}^t+1}=\sum_{k=0}^\infty\frac{E_k}{k!}{\left(\frac{t}{2}\right)}^k\sum_{t=0}^\infty\frac{{\left(x-\frac{1}{2}\right)}^l}{l!}t^l=\sum_{n=0}^\infty\frac{t^n}{n!}\sum_{k=0}^n\frac{E_k}{2^k}C_n^k{\left(x-\frac{1}{2}\right)}^{n-k}
 $$
 
 因此欧拉多项式的显式表达为：
@@ -144,7 +144,7 @@ $$
 在前文欧拉数的双曲正割定义法中，将 $t$ 换为 $2t$，可以得到：
 
 $$
-1=\frac{e^t+e^{-t}}{2}\sum_{l=0}^\infty\frac{E_l}{l!}t^l=\sum_{r=0}^\infty\frac{t^{2r}}{(2r)!}\sum_{l=0}^\infty\frac{E_l}{l!}t^l=\sum_{k=0}^\infty\frac{t^{2k}}{(2k)!}\sum_{l=0}^k\frac{E_l(2k)!}{l!(2k-l)!}
+1=\frac{\mathrm{e}^t+\mathrm{e}^{-t}}{2}\sum_{l=0}^\infty\frac{E_l}{l!}t^l=\sum_{r=0}^\infty\frac{t^{2r}}{(2r)!}\sum_{l=0}^\infty\frac{E_l}{l!}t^l=\sum_{k=0}^\infty\frac{t^{2k}}{(2k)!}\sum_{l=0}^k\frac{E_l(2k)!}{l!(2k-l)!}
 $$
 
 于是欧拉数 $E_k$ 可以用递推关系求出。初值有：
@@ -170,7 +170,7 @@ $$
 伯努利多项式的生成函数可以整理为：
 
 $$
-\frac{te^{xt}}{e^t-1}=\sum_{k=0}^\infty\frac{t^k}{k!}B_k\sum_{l=0}^\infty\frac{t^l}{l!}x^l=\sum_{n=0}^\infty\frac{t^n}{n!}\sum_{k=0}^n C_n^k B_k x^{n-k}
+\frac{t\mathrm{e}^{xt}}{\mathrm{e}^t-1}=\sum_{k=0}^\infty\frac{t^k}{k!}B_k\sum_{l=0}^\infty\frac{t^l}{l!}x^l=\sum_{n=0}^\infty\frac{t^n}{n!}\sum_{k=0}^n C_n^k B_k x^{n-k}
 $$
 
 因此伯努利多项式的显式表达为：
@@ -188,7 +188,7 @@ $$
 在伯努利数的定义中，有：
 
 $$
-1=\frac{e^t-1}{t}\sum_{k=0}^\infty \frac{t^k}{k!}B_k=\sum{l=1}^\infty\frac{t^{l-1}}{l!}\sum\frac{t^k}{k!}B_k=\sum_{n=1}^\infty t^{n-1}\sum_{k=0}^{n-1}\frac{B_k}{k!(n-k)!}
+1=\frac{\mathrm{e}^t-1}{t}\sum_{k=0}^\infty \frac{t^k}{k!}B_k=\sum{l=1}^\infty\frac{t^{l-1}}{l!}\sum\frac{t^k}{k!}B_k=\sum_{n=1}^\infty t^{n-1}\sum_{k=0}^{n-1}\frac{B_k}{k!(n-k)!}
 $$
 
 于是伯努利数 $B_k$ 可以用递推关系求出。初值有：
@@ -258,13 +258,13 @@ $$
 欧拉多项式的 $p$ 阶导数为：
 
 $$
-\frac{d^p}{dx^p}E_n(x)=\frac{n!}{(n-p)!}E_{n-p}(x)
+\frac{\mathrm{d}^p}{\mathrm{d}x^p}E_n(x)=\frac{n!}{(n-p)!}E_{n-p}(x)
 $$
 
 欧拉多项式的积分为：
 
 $$
-\int_a^x E_n(y)dy=\frac{1}{n+1}(E_{n+1}(x)-E_{n+1}(a))
+\int_a^x E_n(y)\mathrm{d}y=\frac{1}{n+1}(E_{n+1}(x)-E_{n+1}(a))
 $$
 
 对比：
@@ -272,13 +272,13 @@ $$
 伯努利多项式的 $p$ 阶导数为：
 
 $$
-\frac{d^p}{dx^p}B_n(x)=\frac{n!}{(n-p)!}B_{n-p}(x)
+\frac{\mathrm{d}^p}{\mathrm{d}x^p}B_n(x)=\frac{n!}{(n-p)!}B_{n-p}(x)
 $$
 
 伯努利多项式的积分为：
 
 $$
-\int_a^x B_n(y)dy=\frac{1}{n+1}(B_{n+1}(x)-B_{n+1}(a))
+\int_a^x B_n(y)\mathrm{d}y=\frac{1}{n+1}(B_{n+1}(x)-B_{n+1}(a))
 $$
 
 ## 欧拉多项式的互余宗量关系
