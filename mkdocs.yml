@@ -557,7 +557,7 @@ extra_javascript:
   - 'assets/vendor/mathjax/es5/tex-mml-chtml.js?math-csr'
 
 extra_css:
-  - '_static/css/extra.css?v=13'
+  - '_static/css/extra.css?v=14'
 
 # Extensions
 markdown_extensions:

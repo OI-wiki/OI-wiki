@@ -84,7 +84,15 @@ export class MathRenderer {
 
   render(math: string, isDisplay: boolean) {
     const element = this.document.convert(math, { display: isDisplay }) as LiteElement;
-    this.adaptor.setAttribute(element, "title", math);
+    // @ts-expect-error the .create() method is wrongly set to protected
+    const emptyImg = this.adaptor.create("img");
+    this.adaptor.setAttribute(
+      emptyImg,
+      "src",
+      "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+    );
+    this.adaptor.setAttribute(emptyImg, "title", math);
+    this.adaptor.append(element, emptyImg);
     return this.adaptor.outerHTML(element);
   }
 }
