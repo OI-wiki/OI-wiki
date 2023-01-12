@@ -38,7 +38,7 @@ ST 并不支持中文，如需中文需要安装汉化插件。
 
 #### 安装汉化插件
 
-再次按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>输入 `Install` 后回车（完整命令是 `Package Contrl:Install Package`），等待加载完成，接下来应该是这个界面：
+再次按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>（Mac 为<kbd>shift</kbd>+<kbd>command</kbd>+<kbd>P</kbd>）输入 `Install` 后回车（完整命令是 `Package Contrl:Install Package`），等待加载完成，接下来应该是这个界面：
 
 ![](./images/sublime3-1.png)
 
@@ -57,7 +57,7 @@ ST 并不支持中文，如需中文需要安装汉化插件。
 
 安装插件与主题的方法与安装汉化插件一致。
 
-输入<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>输入 `Install` 后回车，然后搜索插件/主题/配色即可。
+输入<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>（Mac 为<kbd>shift</kbd>+<kbd>command</kbd>+<kbd>P</kbd>）输入 `Install` 后回车，然后搜索插件/主题/配色即可。
 
 插件推荐：
 
