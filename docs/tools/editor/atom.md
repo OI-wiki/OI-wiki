@@ -4,6 +4,7 @@ Atom，GitHub 家的编辑器。
 
 ???+ warning
 
+
 Atom 已走到了生命的尽头，个人认为同样使用 Electron 的 Visual Studio Code 是其后任。
 原文：<https://github.blog/2022-06-08-sunsetting-atom/>
 
