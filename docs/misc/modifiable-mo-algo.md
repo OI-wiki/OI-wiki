@@ -28,7 +28,6 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 这一次我们排序的方式是以 $n^{\frac{2}{3}}$ 为一块，分成了 $n^{\frac{1}{3}}$ 块，第一关键字是左端点所在块，第二关键字是右端点所在块，第三关键字是时间。
 
 ???+note "块长以及时间复杂度"
-    
     我们设序列长为 $n$，$m$ 个询问，$t$ 个修改。
     
     这里排序的第二关键字是右端点所在块编号，不同于普通莫队。
@@ -41,7 +40,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     
     无论哪一种情况，带来的时间开销都无法接受。
     
-    下面证明最优的块长为 $n^{\frac23}$ ：
+    下面证明最优的块长为 $n^{\frac23}$：
     
     设左端点在第 $i$ 个块的询问数量是 $q_i$，块长为 $s$，则有 $\frac{n}{s}$ 个块。
     
@@ -61,7 +60,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     
     根据基本不等式，当 $ms=\frac{n^2t}{s^2}$ 时原式有最小值。
     
-    也就是当 $s^3=\frac{n^2t}{m}$ 时， $s=\frac{n^\frac23t^\frac13}{m^\frac13}$ 时有最优时间复杂度，是 $O(n^\frac23m^\frac23t^\frac13)$。
+    也就是当 $s^3=\frac{n^2t}{m}$ 时，$s=\frac{n^\frac23t^\frac13}{m^\frac13}$ 时有最优时间复杂度，是 $O(n^\frac23m^\frac23t^\frac13)$。
     
     常说的 $O(n^\frac35)$ 便是把 $n,m,t$ 当做同数量级的时间复杂度。
     
