@@ -267,7 +267,6 @@ nav:
       - 多项式牛顿迭代: math/poly/newton.md
       - 多项式多点求值|快速插值: math/poly/multipoint-eval-interpolation.md
       - 多项式初等函数: math/poly/elementary-func.md
-      - 多项式三角函数: math/poly/tri-func.md
       - 多项式反三角函数: math/poly/inv-tri-func.md
       - 常系数齐次线性递推: math/linear-recurrence.md
       - 多项式平移|连续点值平移: math/poly/shift.md
