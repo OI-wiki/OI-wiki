@@ -16,7 +16,7 @@ $$
 在欧拉多项式的生成函数中，令 $x$ 取 $\frac{1}{2}$，等式左端变为 $t$ 的偶函数，右边不出现 $t$ 的奇次方，有：
 
 $$
-\frac{2\mathrm{e}^{\frac{t}{2}}}{\mathrm{e}^t+1}=sech \frac{t}{2}=\sum_{n=0}^\infty\frac{E_n}{n!}{\left(\frac{t}{2}\right)}^n
+\frac{2\mathrm{e}^{\frac{t}{2}}}{\mathrm{e}^t+1}=\operatorname{sech} \frac{t}{2}=\sum_{n=0}^\infty\frac{E_n}{n!}{\left(\frac{t}{2}\right)}^n
 $$
 
 其中欧拉数定义为：
