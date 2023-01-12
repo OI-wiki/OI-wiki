@@ -94,6 +94,7 @@
 /math/poly/div-mod /math/poly/elementary-func
 /math/poly/ln-exp /math/poly/elementary-func
 /math/poly/tri-func /math/poly/elementary-func
+/math/poly/inv-tri-func /math/poly/elementary-func
 /geometry/polar-coordinate/ /math/coordinate
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut
