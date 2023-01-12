@@ -8,7 +8,7 @@ Atom，GitHub 家的编辑器。
 
 > 在 2022 年 6 月 8 日，[Github 宣布将放弃![](https://oi-wiki.org/tools/images/atom-resize.png)Atom 编辑器](https://github.blog/2022-06-08-sunsetting-atom/)，并于 2022 年 12 月 15 日对![](https://oi-wiki.org/tools/images/atom-resize.png)Atom 编辑器存档。
 >
-> 目前可以使用 Pulsar 编辑器，它的目标是成为 Atom 的替代品,页面几乎与![](https://oi-wiki.org/tools/images/atom-resize.png)Atom 一模一样.
+> 目前可以使用 Pulsar 编辑器，它的目标是成为 Atom 的替代品，页面几乎与![](https://oi-wiki.org/tools/images/atom-resize.png)Atom 一模一样。
 
 ## 外部链接
 
