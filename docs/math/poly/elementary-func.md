@@ -16,20 +16,16 @@ author: 97littleleaf11, abc1763613206, CCXXXI, EndlessCheng, Enter-tainer, fps52
     
     若域 $F$ 中存在映射 $u\to \partial u$ 满足：
     
-    1.  $$
-        \partial(u+v)=\partial u+\partial v
-        $$
-    2.  $$
-        \partial(uv)=u\partial v+v\partial u
-        $$
+    1. $\partial(u+v)=\partial u+\partial v$
+    2. $\partial(uv)=u\partial v+v\partial u$
     
     则称这个域为 **微分域**。
     
     若 $F$ 上的函数 $u$ 满足以下的任意一条条件，则称该函数 $u$ 为初等函数：
     
     1. $u$ 是 $F$ 上的代数函数。
-    2. $u$ 是 $F$ 上的指数性函数，即存在 $a\in F$ 使得 $\partial u=u\partial a$
-    3. $u$ 是 $F$ 上的对数性函数，即存在 $a\in F$ 使得 $\partial u=\frac{\partial a}{a}$
+    2. $u$ 是 $F$ 上的指数性函数，即存在 $a\in F$ 使得 $\partial u=u\partial a$.
+    3. $u$ 是 $F$ 上的对数性函数，即存在 $a\in F$ 使得 $\partial u=\frac{\partial a}{a}$.
     
     以下是常见的初等函数：
     
@@ -40,7 +36,7 @@ author: 97littleleaf11, abc1763613206, CCXXXI, EndlessCheng, Enter-tainer, fps52
     5. 反三角函数
     6. 双曲函数
     7. 反双曲函数
-    8.  以上函数的复合，如
+    8.  以上函数的复合，如：
     
         $$
         \frac{\mathrm{e}^{\tan x}}{1+x^2}\sin\left(\sqrt{1+\ln^2 x}\right)
@@ -52,7 +48,8 @@ author: 97littleleaf11, abc1763613206, CCXXXI, EndlessCheng, Enter-tainer, fps52
     
     以下是常见的非初等函数：
     
-    1.  误差函数
+    1.  误差函数：
+    
         $$
         \operatorname{erf}(x):=\frac{2}{\sqrt{\pi}}\int_{0}^{x}\exp\left(-t^2\right)\mathrm{d}t
         $$
@@ -406,13 +403,13 @@ $$
     当 $[x^{0}]f(x)=1$ 时，有：
 
     $$
-    f^{k}(x)=\exp{(k\ln{f(x)})}
+    f^{k}(x)=\exp{\left(k\ln{f(x)}\right)}
     $$
 
     当 $[x^{0}]f(x)\neq 1$ 时，设 $f(x)$ 的最低次项为 $f_{i}x^{i}$，则：
 
     $$
-    f^{k}(x)=f_{i}^{k}x^{ik}\exp{(k\ln{\frac{f(x)}{f_{i}x^{i}}})}
+    f^{k}(x)=f_{i}^{k}x^{ik}\exp{\left(k\ln{\frac{f(x)}{f_{i}x^{i}}}\right)}
     $$
 
     **时间复杂度**  $O(n\log{n})$。
