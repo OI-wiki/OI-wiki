@@ -28,7 +28,6 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 这一次我们排序的方式是以 $n^{\frac{2}{3}}$ 为一块，分成了 $n^{\frac{1}{3}}$ 块，第一关键字是左端点所在块，第二关键字是右端点所在块，第三关键字是时间。
 
 ???+note "块长以及时间复杂度"
-    接下来的证明看似冗长，其实不算很复杂。
     
     我们设序列长为 $n$，$m$ 个询问，$t$ 个修改。
     
@@ -37,11 +36,12 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     想一想，如果不把右端点分块：
     
     - 乱序的右端点对于每个询问会移动 $n$ 次。
+    
     - 有序的右端点会带来乱序的时间，每次询问会移动 $t$ 次。
     
     无论哪一种情况，带来的时间开销都无法接受。
     
-    分析最优的块长：
+    下面证明最优的块长为 $n^{\frac23}$ ：
     
     设左端点在第 $i$ 个块的询问数量是 $q_i$，块长为 $s$，则有 $\frac{n}{s}$ 个块。
     
@@ -55,39 +55,17 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     \begin{aligned}
     &\sum_{i=1}^{\frac{n}{s}}\sum_{j=i+1}^{\frac{n}{s}}(q_{i,j}\cdot s+t)\\
     =&ms+(\frac{n}{s})^2t\\
-    =&ms+\frac{n^2t}{s^2}
+    =&ms+\frac{n^2t}{s^2}\\
     \end{aligned}
     $$
     
-    为了求这个式子的最小值，用基本不等式计算一下，得到：
+    根据基本不等式，当 $ms=\frac{n^2t}{s^2}$ 时原式有最小值。
     
-    $$
-    \begin{aligned}
-    &2\sqrt{\frac{n^2mt}{s}}\leq ms+\frac{n^2t}{s^2}\\
-    两侧同乘\sqrt s得=&2\sqrt{n^2mt}\leq ms\sqrt s+\frac{n^2t}{s\sqrt s}\\
-    \end{aligned}
-    $$
-    
-    当上述式子取等时有最小值：
-    
-    $$
-    \begin{aligned}
-    2\sqrt{n^2mt}&=ms\sqrt s+\frac{n^2t}{s\sqrt s}\\
-    设a=s\sqrt s\\
-    2\sqrt{n^2mt}&=ma+\frac{n^2t}{a}\\
-    0&=ma^2-(2\sqrt{n^2mt})a+n^2t\\
-    解该方程：\\
-    \because\Delta=&4n^2mt-4n^2mt=0\\
-    \therefore a=&\frac{2\sqrt{n^2mt}}{2m}=\frac{n\sqrt{mt}}{m}\\
-    把a=s\sqrt s带入:\\
-    s\sqrt s=&\frac{n\sqrt{mt}}{m}\\
-    s=&\frac{n^\frac23t^\frac13}{m^\frac13}
-    \end{aligned}
-    $$
-    
-    所以当块长取 $\frac{n^\frac23t^\frac13}{m^\frac13}$ 时有最优时间复杂度，是 $O(n^\frac23m^\frac23t^\frac13)$。
+    也就是当 $s^3=\frac{n^2t}{m}$ 时， $s=\frac{n^\frac23t^\frac13}{m^\frac13}$ 时有最优时间复杂度，是 $O(n^\frac23m^\frac23t^\frac13)$。
     
     常说的 $O(n^\frac35)$ 便是把 $n,m,t$ 当做同数量级的时间复杂度。
+    
+    证毕。
 
 ## 例题
 
