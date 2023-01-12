@@ -391,7 +391,15 @@ $$
 ### 代码
 
 ??? "多项式三角函数"
-    注意到我们是在 $\mathbb{Z}_{998244353}$ 上做 NTT，那么相应地，虚数单位 $\mathrm{i}$ 应该被换成 $86583718$ 或 $911660635$：$\mathrm{i} = \sqrt{-1} \equiv \sqrt{998244352} \equiv 86583718 \text{或} 911660635 \pmod{998244353}$。
+    注意到我们是在 $\mathbb{Z}_{998244353}$ 上做 NTT，那么相应地，虚数单位 $\mathrm{i}$ 应该被换成 $86583718$ 或 $911660635$：
+    
+    $$
+    \begin{aligned}
+               & \mathrm{i} = \sqrt{-1} \equiv \sqrt{998244352} \pmod{998244353}       \\
+      \implies & \phantom{\text{or}} \quad \mathrm{i} \equiv 86583718 \pmod{998244353} \\
+               & \text{or} \quad \mathrm{i} \equiv 911660635 \pmod{998244353}
+    \end{aligned}
+    $$
     
     ```cpp
     constexpr int maxn = 262144;
