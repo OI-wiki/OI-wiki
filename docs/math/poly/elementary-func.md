@@ -41,7 +41,7 @@ $$
 
 递归计算即可。
 
-时间复杂度
+**时间复杂度**
 
 $$
 T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)
@@ -49,7 +49,7 @@ $$
 
 #### Newton's Method
 
-参见 [**Newton's Method**](./newton.md#newtons-method).
+参见 [Newton's Method](./newton.md#newtons-method).
 
 #### Graeffe 法
 
@@ -140,7 +140,7 @@ $$
 
 倍增计算即可。
 
-时间复杂度
+**时间复杂度**
 
 $$
 T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)
@@ -165,11 +165,11 @@ $$
 
 #### Newton's Method
 
-参见 [**Newton's Method**](./newton.md#newtons-method).
+参见 [Newton's Method](./newton.md#newtons-method).
 
 ### 例题
 
-1. [**「Codeforces Round #250」E. The Child and Binary Tree**](https://codeforces.com/contest/438/problem/E)
+1. [「Codeforces Round #250」E. The Child and Binary Tree](https://codeforces.com/contest/438/problem/E)
 
 ## 多项式除法 & 取模
 
@@ -177,7 +177,7 @@ $$
 
 ### 解法
 
-发现若能消除 $R\left(x\right)$ 的影响则可直接 [**多项式求逆**](#多项式求逆) 解决。
+发现若能消除 $R\left(x\right)$ 的影响则可直接 [多项式求逆](#多项式求逆) 解决。
 
 考虑构造变换
 
@@ -210,7 +210,7 @@ $$
 
 使用多项式求逆即可求出 $Q\left(x\right)$，将其反代即可得到 $R\left(x\right)$。
 
-时间复杂度 $O\left(n\log{n}\right)$。
+**时间复杂度** $O\left(n\log{n}\right)$。
 
 ## 多项式对数函数 & 指数函数
 
@@ -220,64 +220,64 @@ $$
 
 #### 普通方法
 
-* * *
+=== "多项式对数函数"
 
-首先，对于多项式 $f(x)$，若 $\ln{f(x)}$ 存在，则由其 [定义](./intro.md#复合)，其必须满足：
+    首先，对于多项式 $f(x)$，若 $\ln{f(x)}$ 存在，则由其 [定义](./intro.md#复合)，其必须满足：
+    
+    $$
+    [x^{0}]f(x)=1
+    $$
+    
+    对 $\ln{f(x)}$ 求导再积分，可得：
+    
+    $$
+    \begin{aligned}
+        \frac{\mathrm{d} \ln{f(x)}}{\mathrm{d} x} & \equiv \frac{f'(x)}{f(x)} & \pmod{x^{n}} \\
+        \ln{f(x)} & \equiv \int \mathrm{d} \ln{x} \equiv \int\frac{f'(x)}{f(x)} \mathrm{d} x & \pmod{x^{n}}
+    \end{aligned}
+    $$
+    
+    多项式的求导，积分时间复杂度为 $O(n)$，求逆时间复杂度为 $O(n\log{n})$，故多项式求 $\ln$ 时间复杂度 $O(n\log{n})$。
 
-$$
-[x^{0}]f(x)=1
-$$
+=== "多项式指数函数"
 
-对 $\ln{f(x)}$ 求导再积分，可得：
-
-$$
-\begin{aligned}
-    \frac{\mathrm{d} \ln{f(x)}}{\mathrm{d} x} & \equiv \frac{f'(x)}{f(x)} & \pmod{x^{n}} \\
-    \ln{f(x)} & \equiv \int \mathrm{d} \ln{x} \equiv \int\frac{f'(x)}{f(x)} \mathrm{d} x & \pmod{x^{n}}
-\end{aligned}
-$$
-
-多项式的求导，积分时间复杂度为 $O(n)$，求逆时间复杂度为 $O(n\log{n})$，故多项式求 $\ln$ 时间复杂度 $O(n\log{n})$。
-
-* * *
-
-首先，对于多项式 $f(x)$，若 $\exp{f(x)}$ 存在，则其必须满足：
-
-$$
-[x^{0}]f(x)=0
-$$
-
-否则 $\exp{f(x)}$ 的常数项不收敛。
-
-对 $\exp{f(x)}$ 求导，可得：
-
-$$
-\frac{\mathrm{d} \exp{f(x)}}{\mathrm{d} x} \equiv \exp{f(x)}f'(x)\pmod{x^{n}}
-$$
-
-比较两边系数可得：
-
-$$
-[x^{n-1}]\frac{\mathrm{d} \exp{f(x)}}{\mathrm{d} x} = \sum_{i = 0}^{n - 1} \left([x^{i}]\exp{f(x)}\right) \left([x^{n-i-1}]f'(x)\right)
-$$
-
-$$
-n[x^{n}]\exp{f(x)} = \sum_{i = 0}^{n} \left([x^{i}]\exp{f(x)}\right) \left((n - i + 1)[x^{n - i}]f(x)\right)
-$$
-
-又 $[x^{0}]f(x)=0$，则：
-
-$$
-n[x^{n}]\exp{f(x)} = \sum_{i = 0}^{n - 1} \left([x^{i}]\exp{f(x)}\right) \left((n - i + 1)[x^{n - i}]f(x)\right)
-$$
-
-使用分治 FFT 即可解决。
-
-时间复杂度 $O(n\log^{2}{n})$。
+    首先，对于多项式 $f(x)$，若 $\exp{f(x)}$ 存在，则其必须满足：
+    
+    $$
+    [x^{0}]f(x)=0
+    $$
+    
+    否则 $\exp{f(x)}$ 的常数项不收敛。
+    
+    对 $\exp{f(x)}$ 求导，可得：
+    
+    $$
+    \frac{\mathrm{d} \exp{f(x)}}{\mathrm{d} x} \equiv \exp{f(x)}f'(x)\pmod{x^{n}}
+    $$
+    
+    比较两边系数可得：
+    
+    $$
+    [x^{n-1}]\frac{\mathrm{d} \exp{f(x)}}{\mathrm{d} x} = \sum_{i = 0}^{n - 1} \left([x^{i}]\exp{f(x)}\right) \left([x^{n-i-1}]f'(x)\right)
+    $$
+    
+    $$
+    n[x^{n}]\exp{f(x)} = \sum_{i = 0}^{n} \left([x^{i}]\exp{f(x)}\right) \left((n - i + 1)[x^{n - i}]f(x)\right)
+    $$
+    
+    又 $[x^{0}]f(x)=0$，则：
+    
+    $$
+    n[x^{n}]\exp{f(x)} = \sum_{i = 0}^{n - 1} \left([x^{i}]\exp{f(x)}\right) \left((n - i + 1)[x^{n - i}]f(x)\right)
+    $$
+    
+    使用分治 FFT 即可解决。
+    
+    **时间复杂度** $O(n\log^{2}{n})$。
 
 #### Newton's Method
 
-使用 [**Newton's Method**](./newton.md#newtons-method) 即可在 $O(n\log{n})$ 的时间复杂度内解决多项式 $\exp$。
+使用 [Newton's Method](./newton.md#newtons-method) 即可在 $O(n\log{n})$ 的时间复杂度内解决多项式 $\exp$。
 
 ### 代码
 
@@ -346,21 +346,21 @@ $$
 
 1. 计算 $f^{k}(x)$
 
-普通做法为多项式快速幂，时间复杂度 $O(n\log{n}\log{k})$。
-
-当 $[x^{0}]f(x)=1$ 时，有：
-
-$$
-f^{k}(x)=\exp{(k\ln{f(x)})}
-$$
-
-当 $[x^{0}]f(x)\neq 1$ 时，设 $f(x)$ 的最低次项为 $f_{i}x^{i}$，则：
-
-$$
-f^{k}(x)=f_{i}^{k}x^{ik}\exp{(k\ln{\frac{f(x)}{f_{i}x^{i}}})}
-$$
-
-时间复杂度 $O(n\log{n})$。
+    普通做法为多项式快速幂，时间复杂度 $O(n\log{n}\log{k})$。
+    
+    当 $[x^{0}]f(x)=1$ 时，有：
+    
+    $$
+    f^{k}(x)=\exp{(k\ln{f(x)})}
+    $$
+    
+    当 $[x^{0}]f(x)\neq 1$ 时，设 $f(x)$ 的最低次项为 $f_{i}x^{i}$，则：
+    
+    $$
+    f^{k}(x)=f_{i}^{k}x^{ik}\exp{(k\ln{\frac{f(x)}{f_{i}x^{i}}})}
+    $$
+    
+    **时间复杂度** $O(n\log{n})$。
 
 ## 多项式三角函数
 
