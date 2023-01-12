@@ -31,9 +31,10 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 ???+note "证明"
 
+
 接下来的证明看似冗长，其实不算很复杂。
 
-我们设序列长为 $n$ ， $m$ 个询问， $t$ 个修改。
+我们设序列长为 $n$，$m$ 个询问，$t$ 个修改。
 
 这里排序的第二关键字是右端点所在块编号，不同于普通莫队。
 
@@ -46,13 +47,14 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 分析最优的块长：
 
-设左端点在第 $i$ 个块的询问数量是 $q_i$ ，块长为 $s$ ，则有 $\frac{n}{s}$ 个块。
+设左端点在第 $i$ 个块的询问数量是 $q_i$，块长为 $s$，则有 $\frac{n}{s}$ 个块。
 
-每“组”左右端点不换块的询问 $(i,j)$ ，端点共会移动 $O(s)$ 次，时间单调递增， $O(t)$ 。
+每“组”左右端点不换块的询问 $(i,j)$，端点共会移动 $O(s)$ 次，时间单调递增，$O(t)$。
 
 左右端点换块的时间忽略不计。
 
 所以表示一下就是：
+
 $$
 \begin{aligned}
 &\sum_{i=1}^{\frac{n}{s}}\sum_{j=i+1}^{\frac{n}{s}}(q_{i,j}\cdot s+t)\\
@@ -60,14 +62,18 @@ $$
 =&ms+\frac{n^2t}{s^2}
 \end{aligned}
 $$
+
 为了求这个式子的最小值，用基本不等式计算一下，得到：
+
 $$
 \begin{aligned}
 &2\sqrt{\frac{n^2mt}{s}}\leq ms+\frac{n^2t}{s^2}\\
 两侧同乘\sqrt s得=&2\sqrt{n^2mt}\leq ms\sqrt s+\frac{n^2t}{s\sqrt s}\\
 \end{aligned}
 $$
+
 当上述式子取等时有最小值：
+
 $$
 \begin{aligned}
 2\sqrt{n^2mt}&=ms\sqrt s+\frac{n^2t}{s\sqrt s}\\
@@ -82,7 +88,8 @@ s\sqrt s=&\frac{n\sqrt{mt}}{m}\\
 s=&\frac{n^\frac23t^\frac13}{m^\frac13}
 \end{aligned}
 $$
-所以当块长取 $\frac{n^\frac23t^\frac13}{m^\frac13}$ 时有最优时间复杂度，是 $O(n^\frac23m^\frac23t^\frac13)$ 。
+
+所以当块长取 $\frac{n^\frac23t^\frac13}{m^\frac13}$ 时有最优时间复杂度，是 $O(n^\frac23m^\frac23t^\frac13)$。
 
 常说的 $O(n^\frac35)$ 便是把 $n,m,t$ 当做同数量级的时间复杂度。
 
