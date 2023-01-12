@@ -3,16 +3,16 @@ author: 97littleleaf11, abc1763613206, CCXXXI, EndlessCheng, Enter-tainer, fps52
 本页面包含多项式常见的初等函数操作。具体而言，本页面包含如下内容：
 
 1. 多项式求逆
-1. 多项式开方
-1. 多项式除法
-1. 多项式取模
-1. 多项式指数函数
-1. 多项式对数函数
-1. 多项式三角函数
-1. 多项式反三角函数
+2. 多项式开方
+3. 多项式除法
+4. 多项式取模
+5. 多项式指数函数
+6. 多项式对数函数
+7. 多项式三角函数
+8. 多项式反三角函数
 
 ??? note "初等函数与非初等函数"
-    初等函数的定义如下 [^ref1]：
+    初等函数的定义如下[^ref1]：
     
     若域 $F$ 中存在映射 $u\to \partial u$ 满足：
     
@@ -33,18 +33,19 @@ author: 97littleleaf11, abc1763613206, CCXXXI, EndlessCheng, Enter-tainer, fps52
     
     以下是常见的初等函数：
     
-    1.  代数函数：存在有限次多项式 $P(x)$ 使得 $P(f(x))=0$ 的函数 $f(x)$，如 $2x+1$, $\sqrt{x}$, $(1+x^2)^{-1}$, $|x|$.
-    2.  指数函数
-    3.  对数函数
-    4.  三角函数
-    5.  反三角函数
-    6.  双曲函数
-    7.  反双曲函数 
+    1. 代数函数：存在有限次多项式 $P(x)$ 使得 $P(f(x))=0$ 的函数 $f(x)$，如 $2x+1$,$\sqrt{x}$,$(1+x^2)^{-1}$,$|x|$.
+    2. 指数函数
+    3. 对数函数
+    4. 三角函数
+    5. 反三角函数
+    6. 双曲函数
+    7. 反双曲函数
     8.  以上函数的复合，如
+    
         $$
         \frac{\mathrm{e}^{\tan x}}{1+x^2}\sin\left(\sqrt{1+\ln^2 x}\right)
         $$
-
+    
         $$
         -\mathrm{i} \ln\left(x+\mathrm{i}\sqrt{1-x^2}\right)
         $$
@@ -602,4 +603,4 @@ $$
 
 ## 参考资料与链接
 
-[^ref1]: [Elementary function —— Wikipedia](https://en.wikipedia.org/wiki/Elementary_function)
+[^ref1]: [Elementary function——Wikipedia](https://en.wikipedia.org/wiki/Elementary_function)
