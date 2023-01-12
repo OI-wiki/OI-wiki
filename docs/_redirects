@@ -64,7 +64,7 @@
 /math/prime /math/number-theory/prime
 /math/meissel-lehmer /math/number-theory/meissel-lehmer
 /math/gcd /math/number-theory/gcd
-/math/euler /math/number-theory/euler
+/math/euler /math/number-theory/euler-totient
 /math/sieve /math/number-theory/sieve
 /math/fermat /math/number-theory/fermat
 /math/euclidean /math/number-theory/euclidean
@@ -89,6 +89,7 @@
 /math/quick-pow /math/binary-exponentiation
 /math/sign /math/notation
 /math/expectation /math/probability/basic-conception
+/math/number-theory/euler /math/number-theory/euler-totient
 /geometry/polar-coordinate/ /math/coordinate
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut

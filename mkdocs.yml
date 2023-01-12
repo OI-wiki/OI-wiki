@@ -227,7 +227,7 @@ nav:
       - 素数: math/number-theory/prime.md
       - 最大公约数: math/number-theory/gcd.md
       - 数论分块: math/number-theory/sqrt-decomposition.md
-      - 欧拉函数: math/number-theory/euler.md
+      - 欧拉函数: math/number-theory/euler-totient.md
       - 筛法: math/number-theory/sieve.md
       - Meissel-Lehmer 算法: math/number-theory/meissel-lehmer.md
       - 分解质因数: math/number-theory/pollard-rho.md
@@ -289,7 +289,7 @@ nav:
       - 斯特林数: math/combinatorics/stirling.md
       - 贝尔数: math/combinatorics/bell.md
       - 伯努利数: math/combinatorics/bernoulli.md
-      - 欧拉数: math/combinatorics/euler.md
+      - 欧拉数: math/combinatorics/euler-number.md
       - Entringer Number: math/combinatorics/entringer.md
       - Eulerian Number: math/combinatorics/eulerian.md
       - 分拆数: math/combinatorics/partition.md
