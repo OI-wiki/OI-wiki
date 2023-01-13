@@ -21,7 +21,7 @@ author: 97littleleaf11, abc1763613206, CCXXXI, EndlessCheng, Enter-tainer, fps52
     
     则称这个域为 **微分域**。
     
-    若 $F$ 上的函数 $u$ 满足以下的任意一条条件，则称该函数 $u$ 为初等函数：
+    若微分域 $F$ 上的函数 $u$ 满足以下的任意一条条件，则称该函数 $u$ 为初等函数：
     
     1. $u$ 是 $F$ 上的代数函数。
     2. $u$ 是 $F$ 上的指数性函数，即存在 $a\in F$ 使得 $\partial u=u\partial a$.
