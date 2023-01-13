@@ -65,7 +65,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     2\sqrt{\frac{n^2mt}{s}}\leq ms+\frac{n^2t}{s^2}
     $$
     
-    两侧同乘 $s^2$ 得： $2s\sqrt{sn^2mt}\leq ms^3+n^2t$ 。
+    两侧同乘 $s^2$ 得：$2s\sqrt{sn^2mt}\leq ms^3+n^2t$。
     
     为了让式子美观一点，设 $a=s\sqrt s$ 并移项：
     
@@ -73,7 +73,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     0\leq ma^2-(2\sqrt{n^2mt})a+n^2t
     $$
     
-    当这个式子取等号， $a$ 有最小值，也就是 $s$ 有最小值。
+    当这个式子取等号，$a$ 有最小值，也就是 $s$ 有最小值。
     
     $$
     \begin{aligned}
