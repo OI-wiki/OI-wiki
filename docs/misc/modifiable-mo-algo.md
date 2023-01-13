@@ -45,7 +45,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     
     设左端点在第 $i$ 个块的询问数量是 $q_i$，块长为 $s$，则有 $\frac{n}{s}$ 个块。
     
-    每“组”左右端点不换块的询问 $(i,j)$，端点共会移动 $O(s)$ 次，时间单调递增， $O(t)$ 。
+    每“组”左右端点不换块的询问 $(i,j)$，端点共会移动 $O(s)$ 次，时间单调递增，$O(t)$。
     
     左右端点换块的时间忽略不计。
     
@@ -59,13 +59,13 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     \end{aligned}
     $$
     
-    设 $x=ms,y=\frac{n^2t}{s^2}$ ，根据基本不等式 $\sqrt{xy}\leq\frac{x+y}{2}$ ，可以得到：
+    设 $x=ms,y=\frac{n^2t}{s^2}$，根据基本不等式 $\sqrt{xy}\leq\frac{x+y}{2}$，可以得到：
     
     $$
     2\sqrt{\frac{n^2mt}{s}}\leq ms+\frac{n^2t}{s^2}
     $$
     
-    两侧同乘 $\sqrt s$ 得 $2\sqrt{n^2mt}\leq ms\sqrt s+\frac{n^2t}{s\sqrt s}$ 。
+    两侧同乘 $\sqrt s$ 得 $2\sqrt{n^2mt}\leq ms\sqrt s+\frac{n^2t}{s\sqrt s}$。
     
     当上述式子取等时 $s$ 有最小值。
     
@@ -73,7 +73,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     2\sqrt{n^2mt}=ms\sqrt s+\frac{n^2t}{s\sqrt s}
     $$
     
-    设 $a=s\sqrt s$ ：
+    设 $a=s\sqrt s$：
     
     $$
     \begin{aligned}
@@ -87,7 +87,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     \end{aligned}
     $$
     
-    所以当块长取 $\frac{n^\frac23t^\frac13}{m^\frac13}$ 时有最优时间复杂度，是 $O(n^\frac23m^\frac23t^\frac13)$ 。
+    所以当块长取 $\frac{n^\frac23t^\frac13}{m^\frac13}$ 时有最优时间复杂度，是 $O(n^\frac23m^\frac23t^\frac13)$。
     
     常说的 $O(n^\frac35)$ 便是把 $n,m,t$ 当做同数量级的时间复杂度。
 
