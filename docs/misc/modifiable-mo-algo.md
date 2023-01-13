@@ -65,20 +65,18 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     2\sqrt{\frac{n^2mt}{s}}\leq ms+\frac{n^2t}{s^2}
     $$
     
-    两侧同乘 $\sqrt s$ 得 $2\sqrt{n^2mt}\leq ms\sqrt s+\frac{n^2t}{s\sqrt s}$。
+    两侧同乘 $s^2$ 得： $2s\sqrt{sn^2mt}\leq ms^3+n^2t$ 。
     
-    当上述式子取等时 $s$ 有最小值。
+    为了让式子美观一点，设 $a=s\sqrt s$ 并移项：
     
     $$
-    2\sqrt{n^2mt}=ms\sqrt s+\frac{n^2t}{s\sqrt s}
+    0\leq ma^2-(2\sqrt{n^2mt})a+n^2t
     $$
     
-    设 $a=s\sqrt s$：
+    当这个式子取等号， $a$ 有最小值，也就是 $s$ 有最小值。
     
     $$
     \begin{aligned}
-    2\sqrt{n^2mt}&=ma+\frac{n^2t}{a}\\
-    0&=ma^2-(2\sqrt{n^2mt})a+n^2t\\
     \because\Delta=&4n^2mt-4n^2mt=0\\
     \therefore a=&\frac{2\sqrt{n^2mt}}{2m}=\frac{n\sqrt{mt}}{m}\\
     \because a=&s\sqrt s\\
