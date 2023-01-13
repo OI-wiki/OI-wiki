@@ -1,6 +1,6 @@
 素数与合数的定义，见 [数论基础](./basic.md)。
 
-素数计数函数：小于或等于 $x$ 的素数的个数，用 $\pi(x)$ 表示。随着 $x$ 的增大，有这样的近似结果：$\pi(x) \sim \frac{x}{\ln(x)}$。
+素数计数函数：小于或等于 $x$ 的素数的个数，用 $\pi(x)$ 表示。随着 $x$ 的增大，有这样的近似结果：$\pi(x) \sim \dfrac{x}{\ln(x)}$。
 
 ## 素数判定
 
@@ -68,7 +68,7 @@
 
 #### 定义
 
-**素性测试**(Primality test）是一类在 **不对给定数字进行素数分解**（prime factorization）的情况下，测试其是否为素数的算法。
+**素性测试**（Primality test）是一类在 **不对给定数字进行素数分解**（prime factorization）的情况下，测试其是否为素数的算法。
 
 素性测试有两种：
 
@@ -83,7 +83,7 @@
 
 我们可以根据 [费马小定理](./fermat.md#费马小定理) 得出一种检验素数的思路：
 
-基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$
+基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$。
 
 ##### 实现
 
@@ -137,8 +137,6 @@
 
 对数 n 进行 k 轮测试的时间复杂度是 $O(k \log^3n)$，利用 FFT 等技术可以优化到 [$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)。
 
-另外，假设 [广义 Riemann 猜想](https://en.wikipedia.org/wiki/Generalized_Riemann_hypothesis)(generalized Riemann hypothesis, GRH) 成立，则对数 n 最多只需要测试 $[2, \min\{n-2, \lfloor 2\ln^2 n \rfloor\}]$ 中的全部整数即可 **确定** 数 n 的素性，证明参见注释 7。
-
 ##### 二次探测定理
 
 如果 $p$ 是奇素数，则 $x^2 \equiv 1 \pmod p$ 的解为 $x \equiv 1 \pmod p$ 或者 $x \equiv p - 1 \pmod p$。
@@ -151,7 +149,12 @@
 
 不妨将费马小定理和二次探测定理结合起来使用：
 
-将 $a^{n-1} \equiv 1 \pmod n$ 中的指数 $n−1$ 分解为 $n−1=u \times 2^t$，在每轮测试中对随机出来的 $a$ 先求出 $a^{u} \pmod n$，之后对这个值执行最多 $t$ 次平方操作，若发现非平凡平方根时即可判断出其不是素数，否则通过此轮测试。
+将 $a^{n-1} \equiv 1 \pmod n$ 中的指数 $n−1$ 分解为 $n−1=u \times 2^t$，在每轮测试中对随机出来的 $a$ 先求出 $v = a^{u} \bmod n$，之后对这个值执行最多 $t$ 次平方操作，若发现非平凡平方根时即可判断出其不是素数，否则再使用 Fermat 素性测试判断。
+
+还有一些实现上的小细节：
+
+- 对于一轮测试，如果某一时刻 $a^{u \times 2^s} \equiv n-1 \pmod n$，则之后的平方操作全都会得到 $1$，则可以直接通过本轮测试。
+- 如果找出了一个非平凡平方根 $a^{u \times 2^s} \not\equiv n-1 \pmod n$，则之后的平方操作全都会得到 $1$。可以选择直接返回 `false`，也可以放到 $t$ 次平方操作后再返回 `false`。
 
 这样得到了较正确的 Miller Rabin：（来自 fjzzq2002）
 
@@ -160,18 +163,21 @@
     ```cpp
     bool millerRabin(int n) {
       if (n < 3 || n % 2 == 0) return n == 2;
-      int a = n - 1, b = 0;
-      while (a % 2 == 0) a /= 2, ++b;
-      // test_time 为测试次数,建议设为不小于 8
-      // 的整数以保证正确率,但也不宜过大,否则会影响效率
-      for (int i = 1, j; i <= test_time; ++i) {
-        int x = rand() % (n - 2) + 2, v = quickPow(x, a, n);
+      int u = n - 1, t = 0;
+      while (u % 2 == 0) u /= 2, ++t;
+      // test_time 为测试次数，建议设为不小于 8
+      // 的整数以保证正确率，但也不宜过大，否则会影响效率
+      for (int i = 0; i < test_time; ++i) {
+        int a = rand() % (n - 2) + 2, v = quickPow(a, u, n);
         if (v == 1) continue;
-        for (j = 0; j < b; ++j) {
-          if (v == n - 1) break;
+        int s;
+        for (s = 0; s < t; ++s) {
+          if (v == n - 1) break; // 得到平凡平方根 n-1，通过此轮测试
           v = (long long)v * v % n;
         }
-        if (j >= b) return 0;
+        // 如果找到了非平凡平方根，则会由于无法提前 break; 而运行到 s == t
+        // 如果 Fermat 素性测试无法通过，则一直运行到 s == t 前 v 都不会等于 -1
+        if (s == t) return 0;
       }
       return 1;
     }
@@ -183,34 +189,44 @@
     def millerRabin(n):
         if n < 3 or n % 2 == 0:
             return n == 2
-        a, b = n - 1, 0
-        while a % 2 == 0:
-            a = a // 2
-            b = b + 1
+        u, t = n - 1, 0
+        while u % 2 == 0:
+            u = u // 2
+            t = t + 1
         # test_time 为测试次数,建议设为不小于 8
         # 的整数以保证正确率,但也不宜过大,否则会影响效率
-        for i in range(1, test_time + 1):
-            x = random.randint(0, 32767) % (n - 2) + 2
-            v = quickPow(x, a, n)
+        for i in range(test_time):
+            a = random.randint(2, n - 1)
+            v = pow(a, u, n)
             if v == 1:
                 continue
-            j = 0
-            while j < b:
+            s = 0
+            for s in range(t):
                 if v == n - 1:
                     break
                 v = v * v % n
-                j = j + 1
-            if j >= b:
+            # 如果找到了非平凡平方根，则会由于无法提前 break; 而运行到 s == t
+            # 如果 Fermat 素性测试无法通过，则一直运行到 s == t 前 v 都不会等于 -1
+            if s == t:
                 return False
         return True
     ```
+
+另外，假设 [广义 Riemann 猜想](https://en.wikipedia.org/wiki/Generalized_Riemann_hypothesis)（generalized Riemann hypothesis, GRH）成立，则对数 $n$ 最多只需要测试 $[2, \min\{n-2, \lfloor 2\ln^2 n \rfloor\}]$ 中的全部整数即可 **确定** 数 $n$ 的素性，证明参见注释 7。
+
+而在 OI 范围内，通常都是对 $[1, 2^{64})$ 范围内的数进行素性检验。对于 $[1, 2^{32})$ 范围内的数，选取 $\{2, 7, 61\}$ 三个数作为基底进行 Miller-Rabin 素性检验就可以确定素性；对于 $[1, 2^{64})$ 范围内的数，选取 $\{2, 325, 9375, 28178, 450775, 9780504, 1795265022\}$ 七个数作为基底进行 Miller-Rabin 素性检验就可以确定素性。参见注释 8。
+
+注意如果要使用上面的数列中的数 $a$ 作为基底判断 $n$ 的素性：
+
+- 所有的数都要取一遍，不能只选小于 $n$ 的；
+- 把 $a$ 换成 $a \bmod n$；
+- 如果 $a \equiv 0 \pmod n$，则直接通过该轮测试。
 
 ## 反素数
 
 ### 定义
 
-如果某个正整数 $n$ 满足如下条件，则称为是 **反素数**：
-  任何小于 $n$ 的正数的约数个数都小于 $n$ 的约数个数
+如果某个正整数 $n$ 满足如下条件，则称为是 **反素数**：任何小于 $n$ 的正数的约数个数都小于 $n$ 的约数个数。
 
 注：注意区分 [emirp](https://en.wikipedia.org/wiki/Emirp)，它是用来表示从后向前写读是素数的数。
 
@@ -248,7 +264,7 @@
 
 2.  我们要枚举到多少次幂呢？
 
-    我们考虑一个极端情况，当我们最小的素数的某个幂次已经比所给的 $n$（的最大值）大的话，那么展开成其他的形式，最大幂次一定小于这个幂次。unsigned long long 的最大值是 2 的 64 次方，所以我这边习惯展开成 2 的 64 次方。
+    我们考虑一个极端情况，当我们最小的素数的某个幂次已经比所给的 $n$（的最大值）大的话，那么展开成其他的形式，最大幂次一定小于这个幂次。unsigned long long 的最大值是 $2^{64} - 1$，所以我这边习惯展开成 $2^{64} - 1$。
 
 细节有了，那么我们具体如何具体实现呢？
 
@@ -301,3 +317,4 @@
 5. [桃子的算法笔记——反素数详解（acm/OI）](https://zhuanlan.zhihu.com/p/41759808)
 6. [The Rabin-Miller Primality Test](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)
 7. Bach, Eric , "[Explicit bounds for primality testing and related problems](https://doi.org/10.2307%2F2008811)", Mathematics of Computation, 55:191 (1990) pp 355–380.
+8. [Deterministic variant of the Miller-Rabin primality test](https://miller-rabin.appspot.com/#)
