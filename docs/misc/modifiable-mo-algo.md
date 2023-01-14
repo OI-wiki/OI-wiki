@@ -69,7 +69,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     2\sqrt{\frac{n^2mt}{s}}=ms+\frac{n^2t}{s^2}
     $$
     
-    解得 $s=\frac{n^\frac23t^\frac13}{m^\frac13}$ 。具体过程这里不给出。
+    解得 $s=\frac{n^\frac23t^\frac13}{m^\frac13}$。具体过程这里不给出。
     
     所以当块长取 $\frac{n^\frac23t^\frac13}{m^\frac13}$ 时有最优时间复杂度，是 $O(n^\frac23m^\frac23t^\frac13)$。
     
