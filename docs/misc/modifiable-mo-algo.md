@@ -28,8 +28,6 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 这一次我们排序的方式是以 $n^{\frac{2}{3}}$ 为一块，分成了 $n^{\frac{1}{3}}$ 块，第一关键字是左端点所在块，第二关键字是右端点所在块，第三关键字是时间。
 
 ???+note "块长以及时间复杂度"
-    接下来的证明看似冗长，其实不算很复杂。
-    
     我们设序列长为 $n$，$m$ 个询问，$t$ 个修改。
     
     这里排序的第二关键字是右端点所在块编号，不同于普通莫队。
@@ -65,29 +63,19 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     2\sqrt{\frac{n^2mt}{s}}\leq ms+\frac{n^2t}{s^2}
     $$
     
-    两侧同乘 $s^2$ 得：$2s\sqrt{sn^2mt}\leq ms^3+n^2t$。
-    
-    为了让式子美观一点，设 $a=s\sqrt s$ 并移项：
+    当此式取等号时，时间复杂度式子有最小值。所以我们要解这一方程：
     
     $$
-    0\leq ma^2-(2\sqrt{n^2mt})a+n^2t
+    2\sqrt{\frac{n^2mt}{s}}=ms+\frac{n^2t}{s^2}
     $$
     
-    当这个式子取等号，$a$ 有最小值，也就是 $s$ 有最小值。
-    
-    $$
-    \begin{aligned}
-    \because\Delta=&4n^2mt-4n^2mt=0\\
-    \therefore a=&\frac{2\sqrt{n^2mt}}{2m}=\frac{n\sqrt{mt}}{m}\\
-    \because a=&s\sqrt s\\
-    \therefore s\sqrt s=&\frac{n\sqrt{mt}}{m}\\
-    s=&\frac{n^\frac23t^\frac13}{m^\frac13}
-    \end{aligned}
-    $$
+    解得 $s=\frac{n^\frac23t^\frac13}{m^\frac13}$ 。具体过程这里不给出。
     
     所以当块长取 $\frac{n^\frac23t^\frac13}{m^\frac13}$ 时有最优时间复杂度，是 $O(n^\frac23m^\frac23t^\frac13)$。
     
-    常说的 $O(n^\frac35)$ 便是把 $n,m,t$ 当做同数量级的时间复杂度。
+    常说的 $O(n^\frac35)$ 便是把 $n,m,t$ 当做同数量级的讨论。
+    
+    这一证明并无太大实际效用。建议读者在实际应用中还是令块长等于 $n^\frac23$ 书写。
 
 ## 例题
 
