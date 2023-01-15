@@ -1,6 +1,6 @@
 author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsfzLZH1, orzAtalod, NachtgeistW
 
-Just a test in the repo. 
+只是测试。
 
 本页面将简要介绍倍增法。
 
