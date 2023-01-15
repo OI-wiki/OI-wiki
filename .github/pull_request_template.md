@@ -1,4 +1,4 @@
-- [ ] 我已认真阅读贡献指南 (contributing guidelines) 和社区公约 (code of conduct)，并遵循了如何参与页及格式手册页的相应规范。
+- [ ] 我已认真阅读 [贡献指南](https://github.com/OI-wiki/OI-wiki/blob/master/.github/CONTRIBUTING.md) 和 [社区公约](https://github.com/OI-wiki/OI-wiki/blob/master/CODE_OF_CONDUCT.md)，并遵循了 [如何参与](https://oi-wiki.org/intro/htc/) 及 [格式手册](https://oi-wiki.org/intro/format/) 中的相应规范。I have carefully read [Contributing Guidelines](https://github.com/OI-wiki/OI-wiki/blob/master/.github/CONTRIBUTING.md) and [Code of Conduct](https://github.com/OI-wiki/OI-wiki/blob/master/CODE_OF_CONDUCT.md), and have followed the specifications on [How to Contribute](https://en.oi-wiki.org/intro/htc/) and [Format Manual](https://en.oi-wiki.org/intro/format/).
 
 <!--
 这是 Pull Request 的描述页面，可拖动输入框右下角调节大小。尽管按下绿色按钮提交后，您仍可以对描述进行修改，但还请您先阅读以下注意事项。
