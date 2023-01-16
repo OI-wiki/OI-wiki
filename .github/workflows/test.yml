@@ -14,13 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Get changed code files
         id: changed-files
         uses: tj-actions/changed-files@v35.4.1
         with:
           files: |
             docs/**/*.cpp
-          separator: "\n"
       - uses: actions/setup-python@v4
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
