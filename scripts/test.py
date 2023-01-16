@@ -9,8 +9,10 @@ def generate_annotations_and_exit(file, message):
     sys.exit(1)
 
 
-files = os.environ["all_changed_files"].replace('_.cpp','.cpp').split(",")
-for line in files:
+filename = "res.txt"
+with open(filename) as file_object:
+    lines = file_object.readlines()
+for line in lines:
     name = line[:-5]
     num = name.rfind('/')
     content = name[:num]

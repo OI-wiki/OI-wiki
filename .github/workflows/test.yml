@@ -20,7 +20,7 @@ jobs:
         with:
           files: |
             docs/**/*.cpp
-          separator: ","
+          separator: "\n"
       - uses: actions/setup-python@v4
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
@@ -34,8 +34,9 @@ jobs:
       - name: Install C++
         if: steps.changed-files.outputs.any_changed == 'true'
         run: sudo apt-get install -y g++
+      - name: Make changed code file list
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: echo "${{ steps.changed-files.outputs.all_changed_files }}" > res.txt
       - name: Check changed code files
         if: steps.changed-files.outputs.any_changed == 'true'
         run: pipenv run python scripts/test.py
-        env:
-          all_changed_files: ${{ steps.changed-files.outputs.all_changed_files }}
