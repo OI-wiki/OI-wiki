@@ -26,10 +26,9 @@ def test(cppname):
     # 判断测试是否要执行
     if os.path.exists(skiptest):
         print(cpp + ' test skipped')
-        continue
+        return
 
     cmd = 'g++ -std=c++17 '+cpp+' -o '+name
-    print(f'\n\n==== Command ====\n{cmd}\n\n')
     # 判断CE
     if os.system(cmd) == 0:
         print(cpp+' Successfully compiled')
