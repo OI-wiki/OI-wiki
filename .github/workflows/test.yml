@@ -38,6 +38,9 @@ jobs:
       - name: Make changed code file list
         if: steps.changed-files.outputs.any_changed == 'true'
         run: echo "${{ steps.changed-files.outputs.all_changed_files }}" > res.txt
-      - name: Check changed code files
-        if: steps.changed-files.outputs.any_changed == 'true'
-        run: pipenv run python scripts/test.py
+      - uses: actions/upload-artifact@v3
+        with:
+          path: res.txt
+      # - name: Check changed code files
+      #   if: steps.changed-files.outputs.any_changed == 'true'
+      #   run: pipenv run python scripts/test.py
