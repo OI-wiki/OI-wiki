@@ -9,11 +9,8 @@ def generate_annotations_and_exit(file, message):
     sys.exit(1)
 
 
-filename = "res.txt"
-with open(filename) as file_object:
-    lines = file_object.readlines()
-for line in lines:
-    name = line[:-5]
+def test(cppname):
+    name = cppname[:-5]
     num = name.rfind('/')
     content = name[:num]
     filename = name[num:]
@@ -56,3 +53,10 @@ for line in lines:
     else:
         print(cpp + ' Wrong Answer')
         generate_annotations_and_exit(cpp, 'Wrong Answer')
+
+filename = "res.txt"
+with open(filename) as file_object:
+    lines = file_object.readlines()
+for line in lines:
+    for filename in line.split(' '):
+        test(filename)
