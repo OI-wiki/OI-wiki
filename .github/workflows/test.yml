@@ -35,9 +35,9 @@ jobs:
       - name: Install C++
         if: steps.changed-files.outputs.any_changed == 'true'
         run: sudo apt-get install -y g++
-      - name: Make changed code file list
+      - name: Make the File list
         if: steps.changed-files.outputs.any_changed == 'true'
         run: echo "${{ steps.changed-files.outputs.all_changed_files }}" > res.txt
-      - name: Check changed code files
+      - name: Check the Code
         if: steps.changed-files.outputs.any_changed == 'true'
         run: pipenv run python scripts/test.py
