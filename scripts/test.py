@@ -32,6 +32,7 @@ for line in lines:
         continue
 
     cmd = 'g++ -std=c++17 '+cpp+' -o '+name
+    print(f'\n\n==== Command ====\n{cmd}\n\n')
     # 判断CE
     if os.system(cmd) == 0:
         print(cpp+' Successfully compiled')
