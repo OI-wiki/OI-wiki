@@ -10,7 +10,7 @@ def generate_annotations_and_exit(file, message):
 
 
 def test(cppname):
-    name = cppname[:cppname.rfind('.cpp')]
+    name = cppname[:cppname.rfind('.')]
     num = name.rfind('/')
     content = name[:num]
     filename = name[num:]
