@@ -9,7 +9,7 @@ def generate_annotations_and_exit(file, message):
     sys.exit(1)
 
 
-files = os.environ["all_changed_files"].split(",")
+files = os.environ["all_changed_files"].replace('_.cpp','.cpp').split(",")
 for line in files:
     name = line[:-5]
     num = name.rfind('/')
