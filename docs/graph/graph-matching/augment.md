@@ -1,10 +1,10 @@
 author: accelsao, Chrogeek, t4rf9
 
-# 增广路定理 Berge's lemma
+## 增广路定理 Berge's lemma
 
 这是最大匹配的一个重要理论。
 
-## 定义
+### 定义
 
 - 交错路（alternating path) 始于非匹配点且由匹配边与非匹配边交错而成。
 - 增广路（augmenting path）是始于非匹配点且终于非匹配点的交错路。
@@ -17,14 +17,14 @@ author: accelsao, Chrogeek, t4rf9
 
 根据 Berge's lemma 当找不到增广路的时候，得到最大匹配。
 
-## 过程
+### 过程
 
 由此定理可知我们求最大匹配的核心思路。
 
 !!! 核心思路
     枚举所有未匹配点，找增广路径，直到找不到增广路径。
 
-## 证明
+### 证明
 
 事实上，对于每个点只要枚举一次就好，证明如下：
 

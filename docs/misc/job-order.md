@@ -15,11 +15,11 @@ $$
 考虑两个排列 $p$ 和 $p'$，其中 $p'$ 是把 $p$ 的第 $i$ 个位置上的数和 $i+1$ 个位置上的数交换得到的排列。则
 
 $$
-\begin{split}
+\begin{aligned}
 F(p')-F(p)&=c_{p'_i}\sum_{j=1}^{i-1}t_{p'_j}+c_{p'_{i+1}}\sum_{j=1}^{i}t_{p'_j}
 -\left(c_{p_i}\sum_{j=1}^{i-1}t_{p_j}+c_{p_{i+1}}\sum_{j=1}^{i}t_{p_j}\right)\\
 &=c_{p_i}t_{p_{i+1}}-c_{p_{i+1}}t_{p_i}
-\end{split}
+\end{aligned}
 $$
 
 于是我们使用如果 $c_{p_i}t_{p_{i+1}}-c_{p_{i+1}}t_{p_i}>0$ 就交换的策略做一下排序就可以了。写成 $\dfrac{c_{p_i}}{t_{p_i}}>\dfrac{c_{p_{i+1}}}{t_{p_{i+1}}}$ 的形式，就可以理解为将排列按 $\dfrac{c_i}{t_i}$ 升序排序。

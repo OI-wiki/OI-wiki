@@ -39,6 +39,7 @@
 /contest/construction /basic/construction
 /misc/io /contest/io
 /misc/complexity /basic/complexity
+/math/dictionary /contest/dictionary
 /math/basis /math/linear-algebra/basis
 /math/char-poly /math/linear-algebra/char-poly
 /math/gauss /math/linear-algebra/gauss

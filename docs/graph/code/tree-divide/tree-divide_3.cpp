@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define rep(i, a, b) for (register int i = (a); i <= (b); ++i)
+#define rep(i, a, b) for (int i = (a); i <= (b); ++i)
 const int N = 200005;
 int h[N], nxt[N * 2], to[N * 2], c[N], gr;
 #define il inline

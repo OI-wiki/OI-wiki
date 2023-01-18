@@ -89,7 +89,7 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
             if data[p].key == key:
                 return data[p].value
             p = data[p].next
-            return -1
+        return -1
     def modify(key, value):
         p = head[f(key)]
         while p:
@@ -100,8 +100,8 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
     def add(key, value):
         if get(key) != -1:
             return -1
-        data[size] = Node(head[f(key)], value, key)
         size = size + 1
+        data[size] = Node(head[f(key)], value, key)
         head[f(key)] = size
         return value
     ```

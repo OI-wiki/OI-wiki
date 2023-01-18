@@ -75,6 +75,12 @@
 
 在 clone 下来的本地分支仓库中继续进行修改，并提交（commit）以及推送（push）这些更改即可。你的更改会被自动追加在 Pull Request 中。
 
+### 在构建的网页中预览变更
+
+在 Pull Request 页面下方可以找到测试页面，点击 netlify/oi-wiki/deploy-preview 一项的 Details 链接（如下图），可以进入自动构建的，由您变更后的页面供您预览。
+
+![deploy_preview](./images/deploy_preview.png)
+
 ### 对于目录和引用的变更
 
 通常情况下，如果您需要添加一个新页面，或者修改已有页面在目录中的链接，您就需要对 [`mkdocs.yml`](https://github.com/OI-wiki/OI-wiki/blob/master/mkdocs.yml) 文件作出改动。
@@ -96,7 +102,7 @@
 
 对于 commit 摘要，推荐按照如下格式书写：
 
-```plain
+```text
 <修改类型>(<文件名>): <修改的内容>
 ```
 
@@ -113,7 +119,7 @@
 
 1. 标题请写明本次 PR 的目的（做了 **什么** 工作，修复了 **什么** 问题）。
 2. 内容请简要叙述修改的内容。如果修复了一个 issue 的问题，请在内容中添加 `fix #xxxx` 字段，其中 `xxxx` 代表 issue 的编号。
-3. 推荐删除 pull request message 中的模板信息（“首先，十分感谢……”这一段）。
+3. 请您仔细阅读 [贡献指南](https://github.com/OI-wiki/OI-wiki/blob/master/.github/CONTRIBUTING.md) 和 [社区公约](https://github.com/OI-wiki/OI-wiki/blob/master/CODE_OF_CONDUCT.md)，并在同意后勾选 PR 模板中的框，表示您同意了以上指南和公约。
 
 对于 Pull Request 的标题，推荐使用如下格式书写：
 

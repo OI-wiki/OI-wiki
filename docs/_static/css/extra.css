@@ -80,3 +80,8 @@ blockquote.page-copyright i.md-icon {
   background-color: var(--md-accent-fg-color);
   color: var(--md-code-bg-color);
 }
+
+mjx-container > img {
+  width: 0;
+  height: 0;
+}

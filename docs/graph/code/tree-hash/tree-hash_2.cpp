@@ -18,7 +18,7 @@ class Solution {
   ull getHash(int now, int fa) {  // 得到哈希值
     size[now] = 1;
     hashval[now] = 1;
-    for (register it i = e[now].begin(); i != e[now].end(); ++i) {
+    for (it i = e[now].begin(); i != e[now].end(); ++i) {
       int v = *i;
       if (v == fa) {
         continue;
@@ -32,7 +32,7 @@ class Solution {
   void getRoot(int now, int fa) {  // 找根，递归向上找
     int max = 0;
     size[now] = 1;
-    for (register it i = e[now].begin(); i != e[now].end(); ++i) {
+    for (it i = e[now].begin(); i != e[now].end(); ++i) {
       int v = *i;
       if (v == fa) {
         continue;
@@ -56,12 +56,12 @@ class Solution {
 
   void get() {
     scanf("%d", &m);
-    for (register int i = 1; i <= m; i++) {
+    for (int i = 1; i <= m; i++) {
       scanf("%d", &n);
-      for (register int j = 1; j <= n; j++) {
+      for (int j = 1; j <= n; j++) {
         std::vector<int>().swap(e[j]);
       }
-      for (register int j = 1, fa; j <= n; j++) {
+      for (int j = 1, fa; j <= n; j++) {
         scanf("%d", &fa);
         if (!fa) {
           root = j;
