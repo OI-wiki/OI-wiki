@@ -1,6 +1,6 @@
 ## 引入
 
-给定一个正整数 $N \in \mathbf{N}_{+}$，试快速找到它的一个[非平凡因数](basic.md)。
+给定一个正整数 $N \in \mathbf{N}_{+}$，试快速找到它的一个 [非平凡因数](basic.md)。
 
 考虑朴素算法，因数是成对分布的，$N$ 的所有因数可以被分成两块，即 $[2, \sqrt N]$ 和 $[\sqrt N+1,N)$。只需要把 $[2, \sqrt N]$ 里的数遍历一遍，再根据除法就可以找出至少两个因数了。这个方法的时间复杂度为 $O(\sqrt N)$。
 
@@ -52,7 +52,7 @@
 
 值得指出的是，如果开始已经打了一个素数表的话，时间复杂度将从 $O(\sqrt N)$ 下降到 $O(\sqrt{\frac N {\ln N}})$。去 [筛法](./sieve.md) 处查阅更多打表的信息。
 
-例题：[CF 1445C](<https://codeforces.ml/problemset/problem/1445/C>)
+例题：[CF 1445C](https://codeforces.ml/problemset/problem/1445/C)
 
 ## Pollard Rho 算法
 
@@ -207,9 +207,9 @@ $$
     }
     ```
 
-例题：[P4718【模板】Pollard-Rho 算法](<https://www.luogu.com.cn/problem/P4718>)
+例题：[P4718【模板】Pollard-Rho 算法](https://www.luogu.com.cn/problem/P4718)
 
-对于一个数 $n$，用 [Miller Rabin 算法](./prime.md#miller-rabin - 素性测试）判断是否为素数，如果是就可以直接返回了，否则用 Pollard-Rho 算法找一个因子 $p$，将 $n$ 除去因子 $p$。再递归分解 $n$ 和 $p$，用 Miller Rabin 判断是否出现质因子，并用 max_factor 更新就可以求出最大质因子了。由于这个题目的数据过于庞大，用 Floyd 判环的方法是不够的，这里采用倍增优化的方法。
+对于一个数 $n$，用[Miller Rabin 算法]\(./prime.md#miller-rabin - 素性测试）判断是否为素数，如果是就可以直接返回了，否则用 Pollard-Rho 算法找一个因子 $p$，将 $n$ 除去因子 $p$。再递归分解 $n$ 和 $p$，用 Miller Rabin 判断是否出现质因子，并用 max_factor 更新就可以求出最大质因子了。由于这个题目的数据过于庞大，用 Floyd 判环的方法是不够的，这里采用倍增优化的方法。
 
 ??? note "实现"
     ```c++
