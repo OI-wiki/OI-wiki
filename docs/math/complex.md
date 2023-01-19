@@ -12,19 +12,19 @@
 
 回顾已有的数集扩充过程，可以看到，每次扩充都与实际需求密切相关。例如，为了解决正方形对角线的度量，以及 $x^2-2=0$ 这样的方程在有理数集中无解的问题，人们把有理数集扩充到了实数集。数集扩充后，在实数集中规定的加法运算、乘法运算，与原来在有理数集中规定的加法运算、乘法运算协调一致，并且加法和乘法都满足交换律和结合律，乘法对加法满足分配律。
 
-依照这种思想，为了解决 $x^2+1=0$ 这样的方程在实数系中无解的问题，我们设想引入一个新数 $\text{i}$，使得 $x=\text{i}$ 是方程 $x^2+1=0$ 的解，即使得 $\text{i}^2=-1$。
+依照这种思想，为了解决 $x^2+1=0$ 这样的方程在实数系中无解的问题，我们设想引入一个新数 $\mathrm{i}$，使得 $x=\mathrm{i}$ 是方程 $x^2+1=0$ 的解，即使得 $\mathrm{i}^2=-1$。
 
-思考：把新引进的数 $\text{i}$ 添加到实数集中，我们希望数 $\text{i}$ 和实数之间仍然能像实数那样进行加法和乘法运算，并希望加法和乘法都满足交换律、结合律，以及乘法对加法满足分配律。那么，实数系经过扩充后，得到的新数系由哪些数组成呢？
+思考：把新引进的数 $\mathrm{i}$ 添加到实数集中，我们希望数 $\mathrm{i}$ 和实数之间仍然能像实数那样进行加法和乘法运算，并希望加法和乘法都满足交换律、结合律，以及乘法对加法满足分配律。那么，实数系经过扩充后，得到的新数系由哪些数组成呢？
 
-依照以上设想，把实数 $b$ 与 $\text{i}$ 相乘，结果记作 $b\text{i}$；把实数 $a$ 与 $b\text{i}$ 相加，结果记作 $a+b\text{i}$。注意到所有实数以及 $\text{i}$ 都可以写成 $a+b\text{i}(a,b\in \mathbb{R})$ 的形式，从而这些数都在扩充后的新数集中。
+依照以上设想，把实数 $b$ 与 $\mathrm{i}$ 相乘，结果记作 $b\mathrm{i}$；把实数 $a$ 与 $b\mathrm{i}$ 相加，结果记作 $a+b\mathrm{i}$。注意到所有实数以及 $\mathrm{i}$ 都可以写成 $a+b\mathrm{i}(a,b\in \mathbb{R})$ 的形式，从而这些数都在扩充后的新数集中。
 
 ### 定义和分类
 
 > 哇哦我们定义的数的性质这么好！
 
-我们定义形如 $a+b\text{i}$，其中 $a,b\in \mathbb{R}$ 的数叫做 **复数**，其中 $\text{i}$ 被称为 **虚数单位**，全体复数的集合叫做 **复数集**。
+我们定义形如 $a+b\mathrm{i}$，其中 $a,b\in \mathbb{R}$ 的数叫做 **复数**，其中 $\mathrm{i}$ 被称为 **虚数单位**，全体复数的集合叫做 **复数集**。
 
-复数通常用 $z$ 表示，即 $z=a+b\text{i}$。这种形式被称为 **复数的代数形式**。其中 $a$ 称为复数 $z$ 的 **实部**，$b$ 称为复数 $z$ 的 **虚部**。如无特殊说明，都有 $a,b\in \mathbb{R}$。
+复数通常用 $z$ 表示，即 $z=a+b\mathrm{i}$。这种形式被称为 **复数的代数形式**。其中 $a$ 称为复数 $z$ 的 **实部**，$b$ 称为复数 $z$ 的 **虚部**。如无特殊说明，都有 $a,b\in \mathbb{R}$。
 
 对于一个复数 $z$，当且仅当 $b=0$ 时，它是实数，当 $b\not = 0$ 时，它是虚数，当 $a=0$ 且 $b\not = 0$ 时，它是纯虚数。
 
@@ -36,23 +36,23 @@
 
 ### 几何意义
 
-我们知道了 $a+b\text{i}$ 这样类似的形式的数被称为复数，并且给出了定义和分类，我们还可以挖掘一下更深层的性质。
+我们知道了 $a+b\mathrm{i}$ 这样类似的形式的数被称为复数，并且给出了定义和分类，我们还可以挖掘一下更深层的性质。
 
 我们把所有实数都放在了数轴上，并且发现数轴上的点与实数一一对应。我们考虑对复数也这样处理。
 
-首先我们定义 **复数相等**：两个复数 $z_1=a+b\text{i},z_2=c+d\text{i}$ 是相等的，当且仅当 $a=c$ 且 $b=d$。
+首先我们定义 **复数相等**：两个复数 $z_1=a+b\mathrm{i},z_2=c+d\mathrm{i}$ 是相等的，当且仅当 $a=c$ 且 $b=d$。
 
 这么定义是十分自然的，在此不做过多解释。
 
-也就是说，我们可以用唯一的有序实数对 $(a,b)$ 表示一个复数 $z=a+b\text{i}$。这样，联想到平面直角坐标系，我们可以发现 **复数集与平面直角坐标系中的点集一一对应**。好了，我们找到了复数的一种几何意义。
+也就是说，我们可以用唯一的有序实数对 $(a,b)$ 表示一个复数 $z=a+b\mathrm{i}$。这样，联想到平面直角坐标系，我们可以发现 **复数集与平面直角坐标系中的点集一一对应**。好了，我们找到了复数的一种几何意义。
 
 那么这个平面直角坐标系就不再一般，因为平面直角坐标系中的点具有了特殊意义——表示一个复数，所以我们把这样的平面直角坐标系称为 **复平面**，$x$ 轴称为 **实轴**，$y$ 轴称为 **虚轴**。我们进一步地说：**复数集与复平面内所有的点所构成的集合是一一对应的**。
 
-我们考虑到学过的平面向量的知识，发现向量的坐标表示也是一个有序实数对 $(a,b)$，显然，复数 $z=a+b\text{i}$ 对应复平面内的点 $Z(a,b)$，那么它还对应平面向量 $\overrightarrow{OZ}=(a,b)$，于是我们又找到了复数的另一种几何意义：**复数集与复平面内的向量所构成的集合是一一对应的（实数 $0$ 与零向量对应）**。
+我们考虑到学过的平面向量的知识，发现向量的坐标表示也是一个有序实数对 $(a,b)$，显然，复数 $z=a+b\mathrm{i}$ 对应复平面内的点 $Z(a,b)$，那么它还对应平面向量 $\overrightarrow{OZ}=(a,b)$，于是我们又找到了复数的另一种几何意义：**复数集与复平面内的向量所构成的集合是一一对应的（实数 $0$ 与零向量对应）**。
 
-于是，我们由向量的知识迁移到复数上来，定义 **复数的模** 就是复数所对应的向量的模。复数 $z=a+b\text{i}$ 的模 $|z|=\sqrt{a^2+b^2}$。
+于是，我们由向量的知识迁移到复数上来，定义 **复数的模** 就是复数所对应的向量的模。复数 $z=a+b\mathrm{i}$ 的模 $|z|=\sqrt{a^2+b^2}$。
 
-于是为了方便，我们常把复数 $z=a+b\text{i}$ 称为点 $Z$ 或向量 $\overrightarrow {OZ}$，并规定相等的向量表示同一个复数。
+于是为了方便，我们常把复数 $z=a+b\mathrm{i}$ 称为点 $Z$ 或向量 $\overrightarrow {OZ}$，并规定相等的向量表示同一个复数。
 
 并且由向量的知识我们发现，虚数不可以比较大小（但是实数是可以的）。
 
@@ -62,10 +62,10 @@
 
 我们规定，复数的加法规则如下：
 
-设 $z_1=a+b\text{i},z_2=c+d\text{i}$，那么
+设 $z_1=a+b\mathrm{i},z_2=c+d\mathrm{i}$，那么
 
 $$
-z_1+z_2=(a+c)+(b+d)\text{i}
+z_1+z_2=(a+c)+(b+d)\mathrm{i}
 $$
 
 很明显，两个复数的和仍为复数。
@@ -82,7 +82,7 @@ $$
 减法作为加法的逆运算，我们可以通过加法法则与复数相等的定义来推导出减法法则：
 
 $$
-z_1-z_2=(a-c)+(b-d)\text{i}
+z_1-z_2=(a-c)+(b-d)\mathrm{i}
 $$
 
 这同样符合向量的减法运算。
@@ -91,17 +91,17 @@ $$
 
 我们规定，复数的乘法规则如下：
 
-设 $z_1=a+b\text{i},z_2=c+d\text{i}$，那么
+设 $z_1=a+b\mathrm{i},z_2=c+d\mathrm{i}$，那么
 
 $$
 \begin{aligned}
-z_1z_2&=(a+b\text{i})(c+d\text{i})\\
-&=ac+bc\text{i}+ad\text{i}+bd\text{i}^2\\
-&=(ac-bd)+(bc+ad)\text{i}
+z_1z_2&=(a+b\mathrm{i})(c+d\mathrm{i})\\
+&=ac+bc\mathrm{i}+ad\mathrm{i}+bd\mathrm{i}^2\\
+&=(ac-bd)+(bc+ad)\mathrm{i}
 \end{aligned}
 $$
 
-可以看出，两个复数相乘类似于两个多项式相乘，只需要把 $\text{i}^2$ 换成 $-1$，并将实部与虚部分别合并即可。
+可以看出，两个复数相乘类似于两个多项式相乘，只需要把 $\mathrm{i}^2$ 换成 $-1$，并将实部与虚部分别合并即可。
 
 复数确实与多项式有关，因为复数域是实系数多项式环模掉 $x^2+1$ 生成的理想。（这句话不明白其实也没有关系）
 
@@ -121,24 +121,24 @@ $$
 
 $$
 \begin{aligned}
-\frac{a+b\text{i}}{c+d\text{i}}&=\frac{(a+b\text{i})(c-d\text{i})}{(c+d\text{i})(c-d\text{i})}\\
-&=\frac{ac+bd}{c^2+d^2}+\frac{bc-ad}{c^2+d^2}\text{i} &(c+d\text{i}\not =0)
+\frac{a+b\mathrm{i}}{c+d\mathrm{i}}&=\frac{(a+b\mathrm{i})(c-d\mathrm{i})}{(c+d\mathrm{i})(c-d\mathrm{i})}\\
+&=\frac{ac+bd}{c^2+d^2}+\frac{bc-ad}{c^2+d^2}\mathrm{i} &(c+d\mathrm{i}\not =0)
 \end{aligned}
 $$
 
-为了分母实数化，我们乘了一个 $c-d\text{i}$，这个式子很有意义。
+为了分母实数化，我们乘了一个 $c-d\mathrm{i}$，这个式子很有意义。
 
-我们定义，当两个虚数实部相等，虚部互为相反数时，这两个复数互为 **共轭复数**。通常记 $z=a+b\text{i}$ 的共轭复数为 $\bar z=a-b\text{i}$。我们可以发现，两个复数互为共轭复数，那么它们 **关于实轴对称**。
+我们定义，当两个虚数实部相等，虚部互为相反数时，这两个复数互为 **共轭复数**。通常记 $z=a+b\mathrm{i}$ 的共轭复数为 $\bar z=a-b\mathrm{i}$。我们可以发现，两个复数互为共轭复数，那么它们 **关于实轴对称**。
 
 由于向量没有除法，这里不讨论与向量的关系。
 
-## 极坐标的视角
+## 辐角和辐角主值
 
-如果设定实数单位 $1$ 作为水平正方向，虚数单位 $i$ 作为竖直正方向，得到的就是直角坐标视角下的复平面。
+如果设定实数单位 $1$ 作为水平正方向，虚数单位 $\mathrm{i}$ 作为竖直正方向，得到的就是直角坐标视角下的复平面。
 
 表示复数 $z$ 的位置，也可以借助于极坐标 $(r, \theta)$ 确定。前文已经提到了 $r$ 为复数 $z$ 的模。
 
-从实轴正向到 **非零** 复数 $z=x+iy$ 对应向量的夹角 $\theta$ 满足关系：
+从实轴正向到 **非零** 复数 $z=x+\mathrm{i}y$ 对应向量的夹角 $\theta$ 满足关系：
 
 $$
 \tan \theta=\frac{y}{x}
@@ -158,16 +158,18 @@ $$
 
 称 $\operatorname{arg} z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$。
 
+下文的“多值函数”一节表明，辐角是多值函数，辐角主值是多值函数的主值。因此，辐角可以直接相加，而辐角主值不能直接相加。
+
 称模小于 $1$ 的复数，在复平面上构成的图形为 **单位圆**。称模等于 $1$ 的复数为 **单位复数**，全体单位复数在复平面上构成的图形为 **单位圆周**。在不引起混淆的情况下，有时单位圆周也简称单位圆。
 
 在极坐标的视角下，复数的乘除法变得很简单。复数乘法，模相乘，辐角相加。复数除法，模相除，辐角相减。
 
 ## 欧拉公式
 
-对于复数 $z=x+iy$，函数 $f(z)=e^x(\cos y+i\sin y)$ 满足 $f(z_1+z_2)=f(z_1)f(z_2)$。给出 **复指数函数** 的定义：
+对于复数 $z=x+\mathrm{i}y$，函数 $f(z)=\mathrm{e}^x(\cos y+\mathrm{i}\sin y)$ 满足 $f(z_1+z_2)=f(z_1)f(z_2)$。给出 **复指数函数** 的定义：
 
 $$
-\operatorname{exp} z=e^x(\cos y+i\sin y)
+\operatorname{exp} z=\mathrm{e}^x(\cos y+\mathrm{i}\sin y)
 $$
 
 复指数函数在实数集上与实指数函数的定义完全一致。在复平面上拥有性质：
@@ -178,21 +180,21 @@ $$
 
 加法定理：$\operatorname{exp} (z_1+z_2)=\operatorname{exp} (z_1)\operatorname{exp} (z_2)$。
 
-周期性：$\operatorname{exp} z$ 是以 $2\pi i$ 为基本周期的周期函数。如果一个函数 $f(z)$ 的周期是某一周期的整倍数，称该周期为 **基本周期**。
+周期性：$\operatorname{exp} z$ 是以 $2\pi \mathrm{i}$ 为基本周期的周期函数。如果一个函数 $f(z)$ 的周期是某一周期的整倍数，称该周期为 **基本周期**。
 
 这里将复指数函数记为 $\operatorname{exp}$，是为了与下文的一般指数函数做区分。
 
 **复三角函数**（也简称 **三角函数**）的定义，是 **欧拉公式**：
 
 $$
-\cos z=\frac{\operatorname{exp} (iz)+\operatorname{exp} (-iz)}{2}
+\cos z=\frac{\operatorname{exp} (iz)+\operatorname{exp} (-\mathrm{i}z)}{2}
 $$
 
 $$
-\sin z=\frac{\operatorname{exp} (iz)-\operatorname{exp} (-iz)}{2i}
+\sin z=\frac{\operatorname{exp} (iz)-\operatorname{exp} (-\mathrm{i}z)}{2\mathrm{i}}
 $$
 
-有关欧拉公式的更多介绍，可以参考两个视频：[欧拉公式与初等群论](https://www.bilibili.com/video/BV1fx41187tZ)、[微分方程概论 - 第五章：在 3.14 分钟内理解 e^iπ](https://www.bilibili.com/video/BV1G4411D7kZ)。
+有关欧拉公式的更多介绍，可以参考两个视频：[欧拉公式与初等群论](https://www.bilibili.com/video/BV1fx41187tZ)、[微分方程概论 - 第五章：在 3.14 分钟内理解 $\mathrm{e}^{\mathrm{i}\pi}$](https://www.bilibili.com/video/BV1G4411D7kZ)。
 
 复三角函数在实数集上与实三角函数的定义完全一致。在复平面上拥有性质：
 
@@ -213,7 +215,7 @@ $$
 复数的 **代数形式** 用于表示任意复数。
 
 $$
-z=x+yi
+z=x+y\mathrm{i}
 $$
 
 代数形式用于计算复数的加减乘除四个运算比较方便。
@@ -221,7 +223,7 @@ $$
 复数的 **三角形式** 和 **指数形式**，用于表示非零复数。
 
 $$
-z=r(\cos \theta +i\sin \theta)=r \operatorname{exp} (i\theta)
+z=r(\cos \theta +\mathrm{i}\sin \theta)=r \operatorname{exp} (\mathrm{i}\theta)
 $$
 
 这两种形式用于计算复数的乘除两个运算以及后面的运算较为方便。如果只用高中见过的函数，可以使用三角形式。如果引入了复指数函数，写成等价的指数形式会更加方便。
@@ -243,19 +245,19 @@ $$
 规定 **复对数函数**（也简称 **对数函数**）是复指数函数的反函数。可以解得：
 
 $$
-\operatorname{Ln} z=\ln{|z|}+i \operatorname{Arg} z
+\operatorname{Ln} z=\ln{|z|}+\mathrm{i} \operatorname{Arg} z
 $$
 
 对数函数的定义域为 **非零** 复数。由于辐角函数是多值函数，因此对数函数也是多值函数。相应地，记 **对数函数的主值** 为：
 
 $$
-\ln z=\ln{|z|}+i \operatorname{arg} z
+\ln z=\ln{|z|}+\mathrm{i} \operatorname{arg} z
 $$
 
 于是对数函数可以记为：
 
 $$
-\operatorname{Ln} z=\{\ln z +2k\pi i| k\in Z\}
+\operatorname{Ln} z=\{\ln z +2k\pi \mathrm{i}| k\in Z\}
 $$
 
 复对数函数拥有性质：
@@ -279,13 +281,13 @@ $$
 上述定义式展开是这样的：
 
 $$
-a^z=\operatorname{exp} (z \operatorname{Ln} a)=\operatorname{exp} (z\ln a +2k\pi iz)=\operatorname{exp} (z\ln a)\operatorname{exp} (2k\pi iz)
+a^z=\operatorname{exp} (z \operatorname{Ln} a)=\operatorname{exp} (z\ln a +2k\pi \mathrm{i}z)=\operatorname{exp} (z\ln a)\operatorname{exp} (2k\pi \mathrm{i}z)
 $$
 
 一般指数函数的多值性来源于底数辐角的多值性。以实数单位 $1$ 为底的指数函数应当是：
 
 $$
-1^z=\operatorname{exp} (2k\pi iz)
+1^z=\operatorname{exp} (2k\pi \mathrm{i}z)
 $$
 
 以 $1$ 为底的指数函数不恒为 $1$，而是一个多值函数。这是因为 $1$ 的辐角不一定是 $0$，于是根据复数乘法“模相乘辐角相加”的规则，指数的结果也是多值的。只有式中 $k$ 为 $0$ 的时候才不恒为 $1$，即只有主值恒为 $1$。
@@ -304,7 +306,7 @@ $$
 e^z=\operatorname{exp} z 1^z
 $$
 
-单值函数 $\operatorname{exp}$ 是以自然对数 $e$ 为底的指数函数的主值。真正以 $e$ 为底的指数函数是多值函数，而 $\operatorname{exp}$ 是一个形式上的记号，没有幂的含义。
+单值函数 $\operatorname{exp}$ 是以自然对数 $\mathrm{e}$ 为底的指数函数的主值。真正以 $\mathrm{e}$ 为底的指数函数是多值函数，而 $\operatorname{exp}$ 是一个形式上的记号，没有幂的含义。
 
 ## 一般幂函数与复数乘方开方
 
@@ -317,17 +319,17 @@ $$
 一般幂函数的取值情况需要分类讨论。将上述定义式展开：
 
 $$
-z^a=\operatorname{exp} (a \operatorname{Ln} z)=\operatorname{exp} (a(\ln z +2k\pi i))=\operatorname{exp} (a\ln z) \operatorname{exp} (2k\pi ia)
+z^a=\operatorname{exp} (a \operatorname{Ln} z)=\operatorname{exp} (a(\ln z +2k\pi \mathrm{i}))=\operatorname{exp} (a\ln z) \operatorname{exp} (2k\pi \mathrm{i}a)
 $$
 
 根据 $a$ 的取值，分三种情形。
 
-如果 $a$ 为无理数或者虚数，$\operatorname{exp} (2k\pi ia)$ 的值有无限多个，此时一般幂函数是多值函数，并且函数值集合为无限集。
+如果 $a$ 为无理数或者虚数，$\operatorname{exp} (2k\pi \mathrm{i}a)$ 的值有无限多个，此时一般幂函数是多值函数，并且函数值集合为无限集。
 
 如果 $a=n$ 为整数，此时有：
 
 $$
-\operatorname{exp} (2k\pi ia)=\operatorname{exp} (2(kn)\pi ia)=1
+\operatorname{exp} (2k\pi \mathrm{i}a)=\operatorname{exp} (2(kn)\pi \mathrm{i}a)=1
 $$
 
 此时 $z^a$ 是单值函数。复数的整数次幂（乘方）是单值函数。
@@ -335,23 +337,23 @@ $$
 如果 $a=\frac{q}{p}$ 为有理数，其中 $\gcd(q, p)=1$，此时有：
 
 $$
-\operatorname{exp} (2k\pi ia)=\operatorname{exp} (2k\pi i\frac{q}{p})
+\operatorname{exp} (2k\pi ia)=\operatorname{exp} (2k\pi \mathrm{i}\frac{q}{p})
 $$
 
 只能取 $p$ 个不同的值，即 $k$ 为 $0$ 到 $p-1$ 之间的值。这 $p$ 个不同的值将单位圆周 $n$ 等分，就是下文的单位根。
 
 此时 $z^a$ 是多值函数，并且可以取到有限的 $p$ 个不同的值。复数的有理数次幂（开方）是多值函数，函数值集合为有限集。
 
-这里引入一个经典结论。根据复数乘法，模相乘，辐角相加，也可以用来计算乘方和开方（整数次幂与有理数次幂）。如果 $z=r \operatorname{exp} (i\theta)$，则有：
+这里引入一个经典结论。根据复数乘法，模相乘，辐角相加，也可以用来计算乘方和开方（整数次幂与有理数次幂）。如果 $z=r \operatorname{exp} (\mathrm{i}\theta)$，则有：
 
 $$
-z^n=r^n(\operatorname{exp} (i\theta))^n=r^n(\cos n\theta +i\sin n\theta)
+z^n=r^n(\operatorname{exp} (\mathrm{i}\theta))^n=r^n(\cos n\theta +\mathrm{i}\sin n\theta)
 $$
 
 当模为 $1$ 的时候，就得到 **棣莫弗定理**（De Moivre's formula）：
 
 $$
-(\cos\theta+i\sin\theta)^n=\cos n\theta+i\sin n\theta
+(\cos\theta+\mathrm{i}\sin\theta)^n=\cos n\theta+\mathrm{i}\sin n\theta
 $$
 
 非零复数 $z$ 的 $n$ 次方根共有 $n$ 个，沿中心在原点，半径为 $r^\frac{1}{n}$ 的圆周均匀分布，即构成内接于该圆周的正 $n$ 边形的 $n$ 个顶点。
@@ -360,7 +362,7 @@ $$
 
 称 $x^n=1$ 在复数意义下的解是 $n$ 次复根。显然，这样的解有 $n$ 个，称这 $n$ 个解都是 $n$ 次 **单位根** 或 **单位复根**（the $n$-th root of unity）。根据复平面的知识，$n$ 次单位根把单位圆 $n$ 等分。
 
-设 $\omega_n=\operatorname{exp} \frac{2\pi i}{n}$（即幅角为 $2\pi \over n$ 的单位复数），则 $x^n=1$ 的解集表示为 $\{\omega_n^k\mid k=0,1\cdots,n-1\}$。
+设 $\omega_n=\operatorname{exp} \frac{2\pi \mathrm{i}}{n}$（即幅角为 $2\pi \over n$ 的单位复数），则 $x^n=1$ 的解集表示为 $\{\omega_n^k\mid k=0,1\cdots,n-1\}$。
 
 如果不加说明，一般叙述的 $n$ 次单位根，是指从 $1$ 开始逆时针方向的第一个解，即上述 $\omega_n$，其它解均可以用 $\omega_n$ 的幂表示。
 
@@ -404,7 +406,7 @@ $$
 
 算术运算符'+'、'-'、'\*'和'/'，可以用于浮点数和复数的任意混合。当表达式两端有一个为复数时，计算结果为复数。
 
-头文件 `<complex.h>` 提供了虚数单位 I，引入此头文件时，大写字母 I 不可以作为变量名使用。
+头文件 `<complex.h>` 提供了虚数单位 `I`，引入此头文件时，大写字母 `I` 不可以作为变量名使用。
 
 对于单个复数，`<complex.h>` 提供了若干操作：creal 函数用于提取实部，cimag 函数用于提取虚部，cabs 函数用于计算模，carg 函数用于计算辐角主值。
 
@@ -434,6 +436,6 @@ $$
 
 一个复数对象还拥有非成员函数：norm 为模的平方，conj 为共轭复数。
 
-一个复数对象还拥有非成员函数 exp、log（底为 e 的对数主值）、log10（底为 10 的对数主值，C 中没有）、pow、sqrt、sin、cos、tan，含义与 C 中的含义相同。
+一个复数对象还拥有非成员函数 exp、log（底为 $\mathrm{e}$ 的对数主值）、log10（底为 10 的对数主值，C 中没有）、pow、sqrt、sin、cos、tan，含义与 C 中的含义相同。
 
 在 C++14 及以后的版本中，定义了 [字面量运算符 `std::literals::complex_literals::""if, ""i, ""il`](https://zh.cppreference.com/w/cpp/numeric/complex/operator%22%22i)。例如输入 `100if`、`100i` 和 `100il`，三者将分别返回 `std::complex<float>{0.0f, 100.0f}`、`std::complex<double>{0.0, 100.0}` 以及 `std::complex<long double>{0.0l, 100.0l}`。这使得我们可以方便地书写形如 `auto z = 4 + 3i` 的复数声明。

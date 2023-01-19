@@ -1,4 +1,4 @@
-author : 2008verser
+author: 2008verser
 
 反常游戏、反 $Nim$ 游戏的 [定义](intro.md/#_3)。
 
