@@ -182,40 +182,42 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 我们让 $a_x \gets a_x + k$ 之后，直接让管辖 $a_x$ 的所有 $c_y$ 也自增 $k$ 即可。
 
 哪些 $c_y$ 管辖了 $a_x$ 呢？可以证明，设：
+
 $$
 p(i) = \begin{cases}x &i = 0\\p(i - 1) + \operatorname{lowbit}(p(i - 1)) & i > 0\\\end{cases}
 $$
+
 有且只有 $c[p(0)], c[p(1)], \cdots$ 覆盖 $a_x$。
 
 实际上 $p$ 是一个单调递增的序列，根据上面的迭代式，我们只需要初始让 $x' = x$，不断重复修改 $c[x']$，然后将 $x' \gets x' + \operatorname{lowbit}(x')$ 的过程，直到 $x' >n$，即超过整个序列的长度时停止。
 
 ??? note "单点修改的证明"
     约定：
-
+    
     设 $l(x)$ 表示 $x - \operatorname{lowbit}(x) + 1$；
-
+    
     对于任意正整数 $x$，总能将 $x$ 表示成 $s \times 2^{k + 1} + 2^k$ 的形式，其中 $k = \log_2(\operatorname{lowbit}(x))$，即 $k$ 是 $x$ 最低位 `1` 后 `0` 的数量。
-
+    
     **引理 $1$（管辖的传递性）：对于 $\mathbf{1 \le x \le y \le z}$，若 $\mathbf{c[y]}$ 管辖 $\mathbf{a[x]}$，$\mathbf{c[z]}$ 管辖 $\mathbf{a[y]}$，则 $\mathbf{c[z]}$ 管辖 $\mathbf{a[x]}$。**
-
+    
     证明：因为 $c[z]$ 管辖 $a[y]$，所以 $l(z) \le y \le z$，设 $z = s \times 2^{k + 1} + 2^k$，则 $l(z) = s \times 2^{k+1} + 1$。
-
+    
     因此，可以将 $y$ 表示成 $s \times 2^{k + 1} + b$ 的形式，其中 $1 \le b \le 2^k$。
-
+    
     所以，$\operatorname{lowbit}(y) = \operatorname{lowbit}(b)$。又因为 $b \ge \operatorname{lowbit}(b)$，
-
+    
     所以 $l(y) = y - \operatorname{lowbit}(y) + 1 = s \times 2^{k +1} + b - \operatorname{lowbit}(b) +1 \ge s \times 2^{k +1} + b = l(z)$。
-
+    
     因此 $c[y]$ 所管辖的区间是 $c[z]$ 所管辖区间的子集，$c[y]$ 管辖 $a[x]$ 则 $c[z]$ 管辖 $a[x]$。
-
+    
     **引理 $2$：$\mathbf{c[x + lowbit(x)]}$ 管辖 $\mathbf{a[x]}$。**
-
+    
     证明：设 $y = x + \operatorname{lowbit}(x)$，$x = s \times 2^{k + 1} + 2^k$。则 $y = (s + 1) \times 2^{k +1}$。
-
+    
     不难发现 $\operatorname{lowbit}(y) \ge 2^{k + 1} > \operatorname{lowbit}(x)$，所以 $\operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 \le 0$。
-
+    
     因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + \operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 \le x$。显然 $y \ge x$。所以 $c[y]$ 管辖 $a[x]$。
- 
+
     **引理 $3$：对于任意 $\mathbf{x < y < x + lowbit(x)}$，$\mathbf{c[y]}$ 不管辖 $\mathbf{a[x]}$。**
 
     证明：设 $x = s \times 2^{k + 1} + 2^k$，则 $y = s \times 2^{k + 1} + 2^k + b$，其中 $1 \le b < 2^k$。
@@ -239,7 +241,6 @@ $$
 ???+note "实现"
     === "C++"
     
-
         ```cpp
         void add(int x, int k) {
           while (x <= n) {  // 不能越界
@@ -480,9 +481,9 @@ $$
     ```cpp
     // 时间戳优化
     int tag[MAXN], t[MAXN], Tag;
-    
+
     void reset() { ++Tag; }
-    
+
     void add(int k, int v) {
       while (k <= n) {
         if (tag[k] != Tag) t[k] = 0;
@@ -490,7 +491,7 @@ $$
         k += lowbit(k);
       }
     }
-    
+
     int getsum(int k) {
       int ret = 0;
       while (k) {
