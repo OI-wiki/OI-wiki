@@ -217,25 +217,25 @@ $$
     不难发现 $\operatorname{lowbit}(y) \ge 2^{k + 1} > \operatorname{lowbit}(x)$，所以 $\operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 \le 0$。
     
     因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + \operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 \le x$。显然 $y \ge x$。所以 $c[y]$ 管辖 $a[x]$。
-
+    
     **引理 $3$：对于任意 $\mathbf{x < y < x + lowbit(x)}$，$\mathbf{c[y]}$ 不管辖 $\mathbf{a[x]}$。**
-
+    
     证明：设 $x = s \times 2^{k + 1} + 2^k$，则 $y = s \times 2^{k + 1} + 2^k + b$，其中 $1 \le b < 2^k$。
-
+    
     不难发现 $\operatorname{lowbit}(y) = \operatorname{lowbit}(b) < \operatorname{lowbit}(x)$，所以 $\operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 > 0$。
-
+    
     因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + \operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 > x$。所以 $c[y]$ 不管辖 $a[x]$。
-
+    
     **命题 $1$：$\mathbf{c[p(i)]}$ 一定管辖 $\mathbf{a[x]}$。**
-
+    
     归纳证明：$c[p(0)]$ 显然管辖 $a[x]$。
-
+    
     设 $c[p(i)]$ 管辖 $a[x]$，根据引理 $2$，有 $c[p(i + 1)]$ 管辖 $c[p(i)]$，根据引理 $1$（管辖的传递性），$c[p(i + 1)]$ 管辖 $a[x]$。
-
+    
     **命题 $2$：不在 $\mathbf{p}$ 中的任意 $\mathbf{y}$ 都有 $\mathbf{c[y]}$ 不管辖 $\mathbf{a[x]}$。**
-
+    
     如果 $y < p(0) = x$，显然 $c[y]$ 不管辖 $a[x]$；
-
+    
     如果 $p(i) < y < p(i + 1)$，根据引理 $3$，有 $c[y]$ 不管辖 $a[p(i)]$，$l(y) > p(i)$。因为 $p(i) \ge x$，所以 $l(y) > x$，$c[y]$ 不管辖 $a[x]$。
 
 ???+note "实现"
