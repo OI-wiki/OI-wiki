@@ -28,7 +28,7 @@
 
 在一般图上，求单源最长（短）路径的最优时间复杂度为 $O(nm)$（[Bellman-Ford 算法](./shortest-path#bellman-ford-%E7%AE%97%E6%B3%95)，适用于有负权图）或 $O(m \log m)$（[Dijkstra 算法](./shortest-path#dijkstra-%E7%AE%97%E6%B3%95)，适用于无负权图）。
 
-但在 DAG 上，我们可以使用 DP 求最长（短）路，使时间复杂度优化到 $O(n+m)$。状态转移方程为 $dis_v = min(dis_v, dis_u + w_{u,v})$ 或  $dis_v = max(dis_v, dis_u + w_{u,v})$。
+但在 DAG 上，我们可以使用 DP 求最长（短）路，使时间复杂度优化到 $O(n+m)$。状态转移方程为 $dis_v = min(dis_v, dis_u + w_{u,v})$ 或 $dis_v = max(dis_v, dis_u + w_{u,v})$。
 
 拓扑排序后，按照拓扑序遍历每个节点，用当前节点来更新之后的节点。
 
@@ -39,7 +39,7 @@ struct edge {
 
 int n, m;
 vector<edge> e[MAXN];
-vector<int> L;            // 存储拓扑排序结果
+vector<int> L;                               // 存储拓扑排序结果
 int max_dis[MAXN], min_dis[MAXN], in[MAXN];  // in 存储每个节点的入度
 
 void toposort() {  // 拓扑排序
