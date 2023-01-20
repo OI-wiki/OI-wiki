@@ -24,11 +24,11 @@
 
 ## 应用
 
-### DP 求最短路
+### DP 求最长（短）路
 
-在一般图上，求单源最短路径的最优时间复杂度为 $O(nm)$（[Bellman-Ford 算法](./shortest-path#bellman-ford-%E7%AE%97%E6%B3%95)，适用于有负权图）或 $O(m \log m)$（[Dijkstra 算法](./shortest-path#dijkstra-%E7%AE%97%E6%B3%95)，适用于无负权图）。
+在一般图上，求单源最长（短）路径的最优时间复杂度为 $O(nm)$（[Bellman-Ford 算法](./shortest-path#bellman-ford-%E7%AE%97%E6%B3%95)，适用于有负权图）或 $O(m \log m)$（[Dijkstra 算法](./shortest-path#dijkstra-%E7%AE%97%E6%B3%95)，适用于无负权图）。
 
-但在 DAG 上，我们可以使用 DP 求最短路，使时间复杂度优化到 $O(n+m)$。状态转移方程为 $dis_v = min(dis_v, dis_u + w_{u,v})$。
+但在 DAG 上，我们可以使用 DP 求最长（短）路，使时间复杂度优化到 $O(n+m)$。状态转移方程为 $dis_v = min(dis_v, dis_u + w_{u,v})$ 或  $dis_v = max(dis_v, dis_u + w_{u,v})$。
 
 拓扑排序后，按照拓扑序遍历每个节点，用当前节点来更新之后的节点。
 
@@ -40,7 +40,7 @@ struct edge {
 int n, m;
 vector<edge> e[MAXN];
 vector<int> L;            // 存储拓扑排序结果
-int dis[MAXN], in[MAXN];  // in 存储每个节点的入度
+int max_dis[MAXN], min_dis[MAXN], in[MAXN];  // in 存储每个节点的入度
 
 void toposort() {  // 拓扑排序
   queue<int> S;
@@ -64,14 +64,16 @@ void toposort() {  // 拓扑排序
   }
 }
 
-void dp(int s) {  // 以 s 为起点求单源最短路
+void dp(int s) {  // 以 s 为起点求单源最长（短）路
   toposort();     // 先进行拓扑排序
-  memset(dis, 0x3f, sizeof(dis));
-  dis[s] = 0;
+  memset(min_dis, 0x3f, sizeof(min_dis));
+  memset(max_dis, 0, sizeof(max_dis));
+  min_dis[s] = 0;
   for (int i = 0; i < L.size(); i++) {
     int u = L[i];
     for (int j = 0; j < e[u].size(); j++) {
-      dis[e[u][j].v] = min(dis[e[u][j].v], dis[u] + e[u][j].w);
+      min_dis[e[u][j].v] = min(min_dis[e[u][j].v], min_dis[u] + e[u][j].w);
+      max_dis[e[u][j].v] = max(max_dis[e[u][j].v], max_dis[u] + e[u][j].w);
     }
   }
 }
