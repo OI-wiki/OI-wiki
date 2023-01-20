@@ -57,12 +57,12 @@ $$
 $g(d)f\left(\frac{i}{d}\right)$ 就是对所有 $i\leq n$ 的做贡献，因此变换枚举顺序，枚举 $d,\frac{i}{d}$（分别对应新的 $i,j$）
 
 $$
-\begin{split}
+\begin{aligned}
 &\sum_{i=1}^n\sum_{d \mid i}g(d)f\left(\frac{i}{d}\right)\\
 =&\sum_{i=1}^n\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}g(i)f(j)\\
 =&\sum_{i=1}^ng(i)\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}f(j)\\
 =&\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
-\end{split}
+\end{aligned}
 $$
 
 那么可以得到递推式
@@ -117,12 +117,12 @@ $=\sum_{d=1}^n \mu(d) {\lfloor \frac n d \rfloor}^2$
 同样的，$\varphi\ast 1=ID$
 
 $$
-\begin{split}
-&\sum_{i=1}^n(\varphi\ast 1)(i)=\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-&\sum_{i=1}^nID(i)=\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-&\frac{1}{2}n(n+1)=\sum_{i=1}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-&S(n)=\frac{1}{2}n(n+1)-\sum_{i=2}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-\end{split}
+\begin{aligned}
+\sum_{i=1}^n(\varphi\ast 1)(i)&=\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+\sum_{i=1}^nID(i)&=\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+\frac{1}{2}n(n+1)&=\sum_{i=1}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+S(n)&=\frac{1}{2}n(n+1)-\sum_{i=2}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+\end{aligned}
 $$
 
 ??? note "代码实现"
@@ -151,10 +151,10 @@ $$
 对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2$ 做数论分块，$d^2\varphi(d)$ 的前缀和用杜教筛处理：
 
 $$
-\begin{split}
+\begin{aligned}
 &f(n)=n^2\varphi(n)=(ID^2\varphi)(n)\\
 &S(n)=\sum_{i=1}^nf(i)=\sum_{i=1}^n(ID^2\varphi)(i)
-\end{split}
+\end{aligned}
 $$
 
 需要构造积性函数 $g$，使得 $f\times g$ 和 $g$ 能快速求和
@@ -168,23 +168,23 @@ $$
 化一下卷积
 
 $$
-\begin{split}
-&(ID^2\varphi)\ast ID^2)(i)\\
+\begin{aligned}
+&((ID^2\varphi)\ast ID^2)(i)\\
 =&\sum_{d \mid i}(ID^2\varphi)(d)ID^2\left(\frac{i}{d}\right)\\
 =&\sum_{d \mid i}d^2\varphi(d)\left(\frac{i}{d}\right)^2\\
 =&\sum_{d \mid i}i^2\varphi(d)=i^2\sum_{d \mid i}\varphi(d)\\
 =&i^2(\varphi\ast1)(i)=i^3
-\end{split}
+\end{aligned}
 $$
 
 再化一下 $S(n)$
 
 $$
-\begin{split}
+\begin{aligned}
 S(n)&=\sum_{i=1}^n\left((ID^2\varphi)\ast ID^2\right)(i)-\sum_{i=2}^nID^2(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 &=\sum_{i=1}^ni^3-\sum_{i=2}^ni^2S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 &=\left(\frac{1}{2}n(n+1)\right)^2-\sum_{i=2}^ni^2S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-\end{split}
+\end{aligned}
 $$
 
 分块求解即可

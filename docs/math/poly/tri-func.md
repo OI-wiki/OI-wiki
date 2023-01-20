@@ -4,12 +4,12 @@
 
 ## 解法
 
-首先由 [Euler's formula](https://en.wikipedia.org/wiki/Euler's_formula) $\left(e^{ix} = \cos{x} + i\sin{x}\right)$ 可以得到 [三角函数的另一个表达式](https://en.wikipedia.org/wiki/Trigonometric_functions#Relationship_to_exponential_function_and_complex_numbers)：
+首先由 [Euler's formula](https://en.wikipedia.org/wiki/Euler's_formula) $\left(\mathrm{e}^{\mathrm{i}x} = \cos{x} + \mathrm{i}\sin{x}\right)$ 可以得到 [三角函数的另一个表达式](https://en.wikipedia.org/wiki/Trigonometric_functions#Relationship_to_exponential_function_and_complex_numbers)：
 
 $$
 \begin{aligned}
-	\sin{x} &= \frac{e^{ix} - e^{-ix}}{2i} \\
-	\cos{x} &= \frac{e^{ix} + e^{-ix}}{2}
+	\sin{x} &= \frac{\mathrm{e}^{\mathrm{i}x} - \mathrm{e}^{-\mathrm{i}x}}{2\mathrm{i}} \\
+	\cos{x} &= \frac{\mathrm{e}^{\mathrm{i}x} + \mathrm{e}^{-\mathrm{i}x}}{2}
 \end{aligned}
 $$
 
@@ -17,8 +17,8 @@ $$
 
 $$
 \begin{aligned}
-	\sin{f\left(x\right)} &= \frac{\exp{\left(if\left(x\right)\right)} - \exp{\left(-if\left(x\right)\right)}}{2i} \\
-	\cos{f\left(x\right)} &= \frac{\exp{\left(if\left(x\right)\right)} + \exp{\left(-if\left(x\right)\right)}}{2}
+	\sin{f\left(x\right)} &= \frac{\exp{\left(\mathrm{i}f\left(x\right)\right)} - \exp{\left(-\mathrm{i}f\left(x\right)\right)}}{2\mathrm{i}} \\
+	\cos{f\left(x\right)} &= \frac{\exp{\left(\mathrm{i}f\left(x\right)\right)} + \exp{\left(-\mathrm{i}f\left(x\right)\right)}}{2}
 \end{aligned}
 $$
 
@@ -27,7 +27,7 @@ $$
 ## 代码
 
 ??? "多项式三角函数"
-    注意到我们是在 $\mathbb{Z}_{998244353}$ 上做 NTT，那么相应地，虚数单位 $i$ 应该被换成 $86583718$ 或 $911660635$：$i = \sqrt{-1} \equiv \sqrt{998244352} \equiv 86583718 \equiv 911660635 \pmod{998244353}$。
+    注意到我们是在 $\mathbb{Z}_{998244353}$ 上做 NTT，那么相应地，虚数单位 $\mathrm{i}$ 应该被换成 $86583718$ 或 $911660635$：$\mathrm{i} = \sqrt{-1} \equiv \sqrt{998244352} \equiv 86583718 \text{或} 911660635 \pmod{998244353}$。
     
     ```cpp
     constexpr int maxn = 262144;

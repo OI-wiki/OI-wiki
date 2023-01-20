@@ -235,6 +235,37 @@ $$
 
 因此 Knuth-Morris-Pratt 算法（简称 KMP 算法）用 $O(n + m)$ 的时间以及 $O(n)$ 的内存解决了该问题。
 
+???+note "实现"
+    === "C++"
+    
+        ```cpp
+        vector<int> find_occurences(string text, string pattern) {
+          string cur = pattern + '#' + text;
+          int sz1 = text.size(), sz2 = pattern.size();
+          vector<int> v;
+          vector<int> lps = prefix_function(cur);
+          for (int i = sz2 + 1; i <= sz1 + sz2; i++) {
+            if (lps[i] == sz2)
+              v.push_back(i - 2 * sz2);
+          }
+          return v;
+        }
+        ```
+    
+    === "Python"
+    
+        ```python
+        def find_occurences(t, s):
+            cur = s + '#' + t
+            sz1, sz2 = len(t), len(s)
+            ret = []
+            lps = prefix_function(cur)
+            for i in range(sz2 + 1, sz1 + sz2 + 1):
+                if lps[i] == sz2:
+                    ret.append(i - 2 * sz2)
+            return ret
+        ```
+
 ### 字符串的周期
 
 对字符串 $s$ 和 $0 < p \le |s|$，若 $s[i] = s[i+p]$ 对所有 $i \in [0, |s| - p - 1]$ 成立，则称 $p$ 是 $s$ 的周期。

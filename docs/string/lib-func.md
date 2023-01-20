@@ -1,7 +1,5 @@
 author: Frankaiyou, henrytbtrue, zymooll
 
-# C/C++ 标准库中的字符串
-
 ## C 标准库
 
 C 标准库操作字符数组。

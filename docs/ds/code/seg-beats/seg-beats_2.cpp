@@ -3,8 +3,8 @@
 using namespace std;
 
 int inline rd() {
-  register char act = 0;
-  register int f = 1, x = 0;
+  char act = 0;
+  int f = 1, x = 0;
   while (act = getchar(), act < '0' && act != '-')
     ;
   if (act == '-') f = -1, act = getchar();
