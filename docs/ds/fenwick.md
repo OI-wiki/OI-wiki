@@ -185,16 +185,16 @@ $$
 
 有且只有 $c[p(0)], c[p(1)], \cdots$ 覆盖 $a_x$。
 
-实际上 $p$ 是一个单调递增的序列，根据上面的迭代式，我们只需要初始让 $x' = x$，不断重复修改 $c[x']$，然后将 $x' \gets x' + \operatorname{lowbit}(x')$ 的过程，直到 $x' >n$，即超过整个序列的长度时停止。
+实际上 $p$ 是一个单调递增的序列，根据上面的迭代式，我们只需要初始让 $x' = x$，不断重复先修改 $c[x']$，再将 $x' \gets x' + \operatorname{lowbit}(x')$ 的过程，直到 $x' >n$，即超过整个序列的长度时停止。
 
-??? note "单点修改的证明"
+??? note "仅有以 $p(i)$ 作为下标的 $c$ 管辖 $a[x]$ 的证明"
     注：网上几乎所有关于这一点都是在树状数组的示例图上“感性理解”证明的。这里给出一个比较简单的严谨证明。
     
     约定：
     
     设 $l(x)$ 表示 $x - \operatorname{lowbit}(x) + 1$；
     
-    对于任意正整数 $x$，总能将 $x$ 表示成 $s \times 2^{k + 1} + 2^k$ 的形式，其中 $k = \log_2(\operatorname{lowbit}(x))$，即 $k$ 是 $x$ 最低位 `1` 的二进制位
+    对于任意正整数 $x$，总能将 $x$ 表示成 $s \times 2^{k + 1} + 2^k$ 的形式，其中 $\operatorname{lowbit}(x) = 2^k$。
     
     **引理 $1$（管辖的传递性）：对于 $\boldsymbol{1 \le x \le y \le z}$，若 $\boldsymbol{c[y]}$ 管辖 $\boldsymbol{a[x]}$，$\boldsymbol{c[z]}$ 管辖 $\boldsymbol{a[y]}$，则 $\boldsymbol{c[z]}$ 管辖 $\boldsymbol{a[x]}$。**
     
@@ -202,9 +202,11 @@ $$
     
     因此，可以将 $y$ 表示成 $s \times 2^{k + 1} + b$ 的形式，其中 $1 \le b \le 2^k$。
     
-    所以，$\operatorname{lowbit}(y) = \operatorname{lowbit}(b)$。又因为 $b \ge \operatorname{lowbit}(b)$，
+    所以，$\operatorname{lowbit}(y) = \operatorname{lowbit}(b)$。又因为 $b - \operatorname{lowbit}(b) \ge 0$，
     
-    所以 $l(y) = y - \operatorname{lowbit}(y) + 1 = s \times 2^{k +1} + b - \operatorname{lowbit}(b) +1 \ge s \times 2^{k +1} + b = l(z)$。
+    所以 $l(y) = y - \operatorname{lowbit}(y) + 1 = s \times 2^{k +1} + b - \operatorname{lowbit}(b) +1 \ge s \times 2^{k +1} + 1 = l(z)$。
+    
+    所以 $l(z) \le l(y) \le y \le z$。
     
     因此 $c[y]$ 所管辖的区间是 $c[z]$ 所管辖区间的子集，$c[y]$ 管辖 $a[x]$ 则 $c[z]$ 管辖 $a[x]$。
     
@@ -214,7 +216,7 @@ $$
     
     不难发现 $\operatorname{lowbit}(y) \ge 2^{k + 1} > \operatorname{lowbit}(x)$，所以 $\operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 \le 0$。
     
-    因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + \operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 \le x$。显然 $y \ge x$。所以 $c[y]$ 管辖 $a[x]$。
+    因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + \operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 \le x$。所以 $l(y) \le x \le y$，$c[y]$ 管辖 $a[x]$。
     
     **引理 $3$：对于任意 $\boldsymbol{x < y < x + \operatorname{lowbit}(x)}$，$\boldsymbol{c[y]}$ 不管辖 $\boldsymbol{a[x]}$。**
     
