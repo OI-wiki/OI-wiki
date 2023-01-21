@@ -146,10 +146,10 @@
 
 已知两数 $a$ 和 $b$，求 $\gcd(a,b)$。
 
-不妨设 $a \ge b$，若$a = b$，则 $\gcd(a,b)=a=b$。
+不妨设 $a \ge b$，若 $a = b$，则 $\gcd(a,b)=a=b$。
 否则，$\forall d\mid a, d\mid b$，可以证明 $d\mid a-b$。
 
-因此，$a$ 和 $b$ 的**所有**公因数都是 $a-b$ 和 $b$ 的公因数，$\gcd(a,b) = \gcd(a-b, b)$。
+因此，$a$ 和 $b$ 的 **所有** 公因数都是 $a-b$ 和 $b$ 的公因数，$\gcd(a,b) = \gcd(a-b, b)$。
 
 #### 优化
 
@@ -162,72 +162,73 @@
 优化后的算法时间复杂度是 $O(\log n)$。
 
 ???+note "证明"
-	若 $2\mid a$ 或 $2\mid b$，每次递归至少会将 $a,b$ 之一减半。
-    
-	否则，$2\mid a-b$，回到了上一种情况。
 
-	算法最多递归 $O(\log n)$ 次。
+    若 $2\mid a$ 或 $2\mid b$，每次递归至少会将 $a,b$ 之一减半。
+
+    否则，$2\mid a-b$，回到了上一种情况。
+
+    算法最多递归 $O(\log n)$ 次。
 
 #### 实现
 
-高精度模板见[高精度计算](../bignum.md)。
+高精度模板见 [高精度计算](../bignum.md)。
 
 高精度运算需实现：减法、大小比较、左移、右移（可用低精乘除代替）、判断奇偶。
 
 === "C++"
 
     ```cpp
-		Big gcd(Big a, Big b) {
-				// 记录a和b的公因数2出现次数
-				int atimes = 0, btimes = 0;
-				while (a & 1) {
-						a >>= 1;
-						atimes++;
-				}
-				while (b != 0) {
-						b >>= 1;
-						btimes++;
-				}
-				for (;;) {
-						// a和b公因数中的2已经计算过了，后面不可能出现a,b均为偶数的情况
-						while (a & 1) {
-								a >>= 1;
-						}
-						while (b & 1) {
-								b >>= 1;
-						}
-						if (a == b) break;
-						// 确保 a>=b
-						if (a < b) swap(a, b);
-						a -= b;
-				}
-				return a << min(atimes, btimes);
-		}
+    	Big gcd(Big a, Big b) {
+    			// 记录a和b的公因数2出现次数
+    			int atimes = 0, btimes = 0;
+    			while (a & 1) {
+    					a >>= 1;
+    					atimes++;
+    			}
+    			while (b != 0) {
+    					b >>= 1;
+    					btimes++;
+    			}
+    			for (;;) {
+    					// a和b公因数中的2已经计算过了，后面不可能出现a,b均为偶数的情况
+    					while (a & 1) {
+    							a >>= 1;
+    					}
+    					while (b & 1) {
+    							b >>= 1;
+    					}
+    					if (a == b) break;
+    					// 确保 a>=b
+    					if (a < b) swap(a, b);
+    					a -= b;
+    			}
+    			return a << min(atimes, btimes);
+    	}
     ```
 
 === "Python"
 
     ```python
     def gcd(a, b):
-				atimes = 0
-				btimes = 0
-				while a & 2:
-						atimes += 1
-						a = a >> 1
-				while b & 2:
-						btimes += 1
-						b = b >> 1
-				while True:
-						while a & 2:
-								a = a >> 1
-						while b & 2:
-								b = b >> 1
-						if a == b:
-								break
-						if a < b:
-								a, b = b, a
-						a = a - b
-				return a << min(atimes, btimes)
+    			atimes = 0
+    			btimes = 0
+    			while a & 2:
+    					atimes += 1
+    					a = a >> 1
+    			while b & 2:
+    					btimes += 1
+    					b = b >> 1
+    			while True:
+    					while a & 2:
+    							a = a >> 1
+    					while b & 2:
+    							b = b >> 1
+    					if a == b:
+    							break
+    					if a < b:
+    							a, b = b, a
+    					a = a - b
+    			return a << min(atimes, btimes)
     ```
 
 ### 多个数的最大公约数
