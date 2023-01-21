@@ -4,7 +4,7 @@ author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicu
 
 树状数组是一种支持 **单点修改** 和 **前缀查询** 的，代码量小的数据结构。
 
-维护的信息要求满足结合律，比如 $+$ 和 $\max$。用后者举例：$\max(\max(a, b), c) = \max\{a, b, c\}$。
+维护的信息要求满足结合律，比如 $+$ 和 $\max$。用后者举例：$\max\{\max\{a, b\}, c\} = \max\{a, b, c\}$。
 
 对于可差分信息（例如和等），我们可将区间查询转化为前缀查询。例如对于一个数组 $a$，查询 $a[4 \cdots 7]$ 的区间和，只需求出 $a[1 \cdots 7]$ 的前缀和，以及 $a[1 \cdots 3]$ 的前缀和，再将两个和作差。
 
