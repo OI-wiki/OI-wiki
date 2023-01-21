@@ -38,7 +38,6 @@ author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicu
 
 不难发现信息必须满足结合律，否则就不能像上面这样合并了。
 
-
 下面这张图展示了树状数组的工作原理：
 
 ![](./images/fenwick.svg)
