@@ -218,25 +218,25 @@ $$
     
     因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + \operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 \le x$。所以 $l(y) \le x \le y$，$c[y]$ 管辖 $a[x]$。
     
-    **引理 $3$：对于任意 $\boldsymbol{x < y < x + \operatorname{lowbit}(x)}$，$\boldsymbol{c[y]}$ 不管辖 $\boldsymbol{a[x]}$。**
+    **引理 $3$：对于任意 $\boldsymbol{x < y < x + \operatorname{lowbit}(x)}$，有 $\boldsymbol{c[y]}$ 不管辖 $\boldsymbol{a[x]}$，$\boldsymbol{l(y) > x}$。**
     
     证明：设 $x = s \times 2^{k + 1} + 2^k$，则 $y = s \times 2^{k + 1} + 2^k + b$，其中 $1 \le b < 2^k$。
     
     不难发现 $\operatorname{lowbit}(y) = \operatorname{lowbit}(b) < \operatorname{lowbit}(x)$，所以 $\operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 > 0$。
     
-    因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + \operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 > x$。所以 $c[y]$ 不管辖 $a[x]$。
+    因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + \operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 > x$，$c[y]$ 不管辖 $a[x]$。
     
     **命题 $1$：$\boldsymbol{c[p(i)]}$ 一定管辖 $\boldsymbol{a[x]}$。**
     
     归纳证明：$c[p(0)]$ 显然管辖 $a[x]$。
     
-    设 $c[p(i)]$ 管辖 $a[x]$，根据引理 $2$，有 $c[p(i + 1)]$ 管辖 $c[p(i)]$，根据引理 $1$（管辖的传递性），$c[p(i + 1)]$ 管辖 $a[x]$。
+    设 $c[p(i)]$ 管辖 $a[x]$，根据引理 $2$，$c[p(i + 1)]$ 管辖 $c[p(i)]$，根据引理 $1$（管辖的传递性），有 $c[p(i + 1)]$ 管辖 $a[x]$。
     
     **命题 $2$：不在 $\boldsymbol{p}$ 中的任意 $\boldsymbol{y}$ 都有 $\boldsymbol{c[y]}$ 不管辖 $\boldsymbol{a[x]}$。**
     
     如果 $y < p(0) = x$，显然 $c[y]$ 不管辖 $a[x]$；
     
-    如果 $p(i) < y < p(i + 1)$，根据引理 $3$，有 $c[y]$ 不管辖 $a[p(i)]$，$l(y) > p(i)$。因为 $p(i) \ge x$，所以 $l(y) > x$，$c[y]$ 不管辖 $a[x]$。
+    如果 $p(i) < y < p(i + 1)$，根据引理 $3$，有 $l(y) > p(i)$。又因为 $p(i) \ge x$，所以 $l(y) > x$，$c[y]$ 不管辖 $a[x]$。
 
 ???+note "实现"
     === "C++"
