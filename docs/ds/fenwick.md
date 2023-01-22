@@ -296,7 +296,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 
 比如给定序列 $a = (5, 1, 4)$ 要求建树，直接看作对 $a[1]$ 单点加 $5$，对 $a[2]$ 单点加 $1$，对 $a[3]$ 单点加 $4$ 即可。
 
-也有 $\Theta(n)$ 的建树方法，见本页面 [$O(n)$ 建树](./#on-建树) 一节。
+也有 $\Theta(n)$ 的建树方法，见本页面 [$\Theta(n)$ 建树](./#on-建树) 一节。
 
 ### 复杂度分析
 
@@ -438,7 +438,7 @@ $$
         }
         ```
     
-    === "查询前缀和（以及子矩阵和）"
+    === "查询前缀和（以及区间和）"
     
         ```cpp
         int sum(int x, int y) {
@@ -503,15 +503,15 @@ $$
     === "C++"
     
         ```cpp
-        // 权值树状数组查询第k小
+        // 权值树状数组查询第 k 小
         int kth(int k) {
           int cnt = 0, ret = 0;
-          for (int i = log2(n); ~i; --i) {      // i 与上文 depth 含义相同
+          for (int i = log2(n); ~i; --i) {
             ret += 1 << i;                      // 尝试扩展
             if (ret >= n || cnt + t[ret] >= k)  // 如果扩展失败
               ret -= 1 << i;
             else
-              cnt += t[ret];  // 扩展成功后 要更新之前求和的值
+              cnt += t[ret];
           }
           return ret + 1;
         }
@@ -523,13 +523,13 @@ $$
         # 权值树状数组查询第 k 小
         def kth(k):
             cnt = 0; ret = 0
-            i = log2(n) # i 与上文 depth 含义相同
+            i = log2(n)
             while ~i:
                 ret = ret + (1 << i) # 尝试扩展
                 if ret >= n or cnt + t[ret] >= k: # 如果扩展失败
                     ret = ret - (1 << i)
                 else:
-                    cnt = cnt + t[ret] # 扩展成功后 要更新之前求和的值
+                    cnt = cnt + t[ret]
             return ret + 1
         ```
 
@@ -624,11 +624,11 @@ $i$ 按照 $5 \to 1$ 扫：
 
 可以考虑拆成 $n$ 个单点修改，$\Theta(n\log^2n)$ 建树。
 
-也有 $\Theta(n)$ 的建树方法，见本页面 [$O(n)$ 建树](./#on-建树) 一节。
+也有 $\Theta(n)$ 的建树方法，见本页面 [$\Theta(n)$ 建树](./#on-建树) 一节。
 
 ## Tricks
 
-### $O(n)$ 建树
+### $\Theta(n)$ 建树
 
 方法一：
 
@@ -638,7 +638,7 @@ $i$ 按照 $5 \to 1$ 扫：
     === "C++"
     
         ```cpp
-        // O(n) 建树
+        // \Theta(n) 建树
         void init() {
           for (int i = 1; i <= n; ++i) {
             t[i] += a[i];
@@ -651,6 +651,7 @@ $i$ 按照 $5 \to 1$ 扫：
     === "Python"
     
         ```python
+        # \Theta(n) 建树
         def init():
             for i in range(1, n + 1):
                 t[i] = t[i] + a[i]
@@ -684,60 +685,57 @@ $i$ 按照 $5 \to 1$ 扫：
 
 ### 时间戳优化
 
-#### 过程
+对付多组数据很常见的技巧。若每次输入新数据都暴力清空树状数组，就可能会造成超时。因此使用 $\mathrm{tag}$ 标记，存储当前节点上次使用时间（即最近一次是被第几组数据使用）。每次操作时判断这个位置 $\mathrm{tag}$ 中的时间和当前时间是否相同，就可以判断这个位置应该是 $0$ 还是数组内的值。
 
-对付多组数据很常见的技巧。如果每次输入新数据时，都暴力清空树状数组，就可能会造成超时。因此使用 $\mathrm{tag}$ 标记，存储当前节点上次使用时间（即最近一次是被第几组数据使用）。每次操作时判断这个位置 $\mathrm{tag}$ 中的时间和当前时间是否相同，就可以判断这个位置应该是 0 还是数组内的值。
+???+note "实现"
+    === "C++"
+        ```cpp
+        // 时间戳优化
+        int tag[MAXN], t[MAXN], Tag;
 
-#### 实现
+        void reset() { ++Tag; }
 
-=== "C++"
+        void add(int k, int v) {
+          while (k <= n) {
+            if (tag[k] != Tag) t[k] = 0;
+            t[k] += v, tag[k] = Tag;
+            k += lowbit(k);
+          }
+        }
 
-    ```cpp
-    // 时间戳优化
-    int tag[MAXN], t[MAXN], Tag;
+        int getsum(int k) {
+          int ret = 0;
+          while (k) {
+            if (tag[k] == Tag) ret += t[k];
+            k -= lowbit(k);
+          }
+          return ret;
+        }
+        ```
 
-    void reset() { ++Tag; }
+    === "Python"
 
-    void add(int k, int v) {
-      while (k <= n) {
-        if (tag[k] != Tag) t[k] = 0;
-        t[k] += v, tag[k] = Tag;
-        k += lowbit(k);
-      }
-    }
+        ```python
+        # 时间戳优化
+        tag = [0] * MAXN; t = [0] * MAXN; Tag = 0
+        def reset():
+            Tag = Tag + 1
+        def add(k, v):
+            while k <= n:
+                if tag[k] != Tag:
+                    t[k] = 0
+                t[k] = t[k] + v
+                tag[k] = Tag
+                k = k + lowbit(k)
+        def getsum(k):
+            ret = 0
+            while k:
+                if tag[k] == Tag:
+                    ret = ret + t[k]
+                k = k - lowbit(k)
+            return ret
+        ```
 
-    int getsum(int k) {
-      int ret = 0;
-      while (k) {
-        if (tag[k] == Tag) ret += t[k];
-        k -= lowbit(k);
-      }
-      return ret;
-    }
-    ```
-
-=== "Python"
-
-    ```python
-    # 时间戳优化
-    tag = [0] * MAXN; t = [0] * MAXN; Tag = 0
-    def reset():
-        Tag = Tag + 1
-    def add(k, v):
-        while k <= n:
-            if tag[k] != Tag:
-                t[k] = 0
-            t[k] = t[k] + v
-            tag[k] = Tag
-            k = k + lowbit(k)
-    def getsum(k):
-        ret = 0
-        while k:
-            if tag[k] == Tag:
-                ret = ret + t[k]
-            k = k - lowbit(k)
-        return ret
-    ```
 
 ## 例题
 
