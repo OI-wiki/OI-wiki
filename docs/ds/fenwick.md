@@ -4,6 +4,26 @@ author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicu
 
 树状数组是一种支持 **单点修改** 和 **前缀查询** 的，代码量小的数据结构。
 
+??? note "什么是「单点修改」和「前缀查询」？"
+
+    假设有这样一道题：
+    
+    已知一个数列 $a$，你需要进行下面两种操作：
+    
+    - 给定 $x, y$，将 $a[x]$ 自增 $y$。
+    
+    - 给定 $x$，求解 $a[1 \cdots x]$ 的和。
+    
+    其中第一种操作就是「单点修改」，第二种操作就是「前缀查询」。
+    
+    类似地，还有：「区间修改」、「区间查询」、「单点查询」。它们分别的一个例子如下：
+    
+    - 区间修改：给定 $l, r, x$，将 $a[l \cdots r]$ 中的每个数都分别自增 $x$；
+    - 区间查询：给定 $l, r$，求解 $a[l \cdots r]$ 的和；
+    - 单点查询：给定 $x$，求解 $a[x]$ 的值。
+    
+    注意到，区间问题一般严格强于单点问题，因为对单点的操作相当于对一个长度为 $1$ 的区间操作。
+
 维护的信息要求满足结合律，比如 $+$ 和 $\max$。用后者举例：$\max\{\max\{a, b\}, c\} = \max\{a, b, c\}$。
 
 对于可差分信息（例如和等），我们可将区间查询转化为前缀查询。例如对于一个数组 $a$，查询 $a[4 \cdots 7]$ 的区间和，只需求出 $a[1 \cdots 7]$ 的前缀和，以及 $a[1 \cdots 3]$ 的前缀和，再将两个和作差。
@@ -19,8 +39,6 @@ author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicu
 树状数组主要用于处理：**单点修改区间查询**（信息可差分）的问题。
 
 使用差分数组和辅助数组可以将树状数组应用于 **区间修改单点查询** 和 **区间修改区间查询**。
-
-本文主要介绍树状数组在 **单点修改区间查询** 问题中的应用。
 
 ## 树状数组
 
@@ -48,17 +66,17 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 
 例如，从图中可以看出：
 
-- $c_2$ 管理的是 $a[1 \cdots 2]$；
-- $c_4$ 管理的是 $a[1 \cdots 4]$；
-- $c_6$ 管理的是 $a[5 \cdots 6]$；
-- $c_8$ 管理的是 $a[1 \cdots 8]$；
-- 剩下的 $c[x]$ 管理的都是 $a[x]$ 自己（可以看做 $a[x \cdots x]$ 的长度为 $1$ 的小区间）。
+- $c_2$ 管辖的是 $a[1 \cdots 2]$；
+- $c_4$ 管辖的是 $a[1 \cdots 4]$；
+- $c_6$ 管辖的是 $a[5 \cdots 6]$；
+- $c_8$ 管辖的是 $a[1 \cdots 8]$；
+- 剩下的 $c[x]$ 管辖的都是 $a[x]$ 自己（可以看做 $a[x \cdots x]$ 的长度为 $1$ 的小区间）。
 
 不难发现，$c[x]$ 管辖的一定是一段右边界是 $x$ 的区间总信息。我们先不关心左边界，先来感受一下树状数组是如何查询的。
 
 举例：计算 $a[1 \cdots 7]$ 的和。
 
-过程：从 $c_{7}$ 开始往前跳，发现 $c_{7}$ 只管理 $a_{7}$ 这个元素；然后找 $c_{6}$，发现 $c_{6}$ 管理的是 $a[5 \cdots 6]$，然后跳到 $c_{4}$，发现 $c_{4}$ 管理的是 $a[1 \cdots 4]$ 这些元素，然后再试图跳到 $c_0$，但事实上 $c_0$ 不存在，不跳了。
+过程：从 $c_{7}$ 开始往前跳，发现 $c_{7}$ 只管辖 $a_{7}$ 这个元素；然后找 $c_{6}$，发现 $c_{6}$ 管辖的是 $a[5 \cdots 6]$，然后跳到 $c_{4}$，发现 $c_{4}$ 管辖的是 $a[1 \cdots 4]$ 这些元素，然后再试图跳到 $c_0$，但事实上 $c_0$ 不存在，不跳了。
 
 我们刚刚找到的 $c$ 是 $c_7, c_6, c_4$，事实上这就是 $a[1 \cdots 7]$ 拆分出的三个小区间，合并得到答案是 $c_7 + c_6 + c_4$。
 
@@ -68,20 +86,20 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 
 ### 管辖区间
 
-那么问题来了，$c_{x}(x \ge 1)$ 管理的区间到底往左延伸多少？也就是说，区间长度是多少？
+那么问题来了，$c_{x}(x \ge 1)$ 管辖的区间到底往左延伸多少？也就是说，区间长度是多少？
 
-树状数组中，规定若 $x \bmod (2^{k})=0$，$k$ 取最大整数值，那么 $c_{x}$ 管理的区间长度为 $2^{k}$。
+树状数组中，规定若 $x \bmod (2^{k})=0$，$k$ 取最大整数值，那么 $c_{x}$ 管辖的区间长度为 $2^{k}$。
 
 - 设二进制最低位为第 $0$ 位，则 $k$ 恰好为 $x$ 二进制表示中，最低位的 `1` 所在的二进制位数；
 - $2^k$ 恰好为 $x$ 二进制表示中，最低位的 `1` 以及后面所有 `0` 组成的数。
 
-举个例子，$c_{88}$ 管理的是哪个区间？
+举个例子，$c_{88}$ 管辖的是哪个区间？
 
-因为 $88_{(10)}=01011000_{(2)}$，其二进制最低位的 `1` 以及后面的 `0` 组成的二进制是 `1000`，即 $8$，所以 $c_{88}$ 管理 $8$ 个 $a$ 数组中的元素。
+因为 $88_{(10)}=01011000_{(2)}$，其二进制最低位的 `1` 以及后面的 `0` 组成的二进制是 `1000`，即 $8$，所以 $c_{88}$ 管辖 $8$ 个 $a$ 数组中的元素。
 
 因此，$c_{88}$ 代表 $a[81 \cdots 88]$ 的区间信息。
 
-我们记 $x$ 二进制最低位 `1` 以及后面的 `0` 组成的数为 $\operatorname{lowbit}(x)$，那么 $c_{x}$ 管理的区间就是 $[x-\operatorname{lowbit}(x)+1, x]$。
+我们记 $x$ 二进制最低位 `1` 以及后面的 `0` 组成的数为 $\operatorname{lowbit}(x)$，那么 $c_{x}$ 管辖的区间就是 $[x-\operatorname{lowbit}(x)+1, x]$。
 
 **这里注意：$\boldsymbol{\operatorname{lowbit}}$ 指的不是最低位 `1` 所在的位数 $\boldsymbol{k}$，而是这个 `1` 和后面所有 `0` 组成的 $\boldsymbol{2^k}$。**
 
@@ -122,15 +140,13 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
             return x & -x
         ```
 
-### 操作实现
-
-#### 前缀查询
+### 前缀查询
 
 接下来我们来看树状数组具体的操作实现，先来看前缀查询。
 
 回顾查询 $a[1 \cdots 7]$ 的过程：
 
-> 从 $c_{7}$ 开始往前跳，发现 $c_{7}$ 只管理 $a_{7}$ 这个元素；然后找 $c_{6}$，发现 $c_{6}$ 管理的是 $a[5 \cdots 6]$，然后跳到 $c_{4}$，发现 $c_{4}$ 管理的是 $a[1 \cdots 4]$ 这些元素，然后再试图跳到 $c_0$，但事实上 $c_0$ 不存在，不跳了。
+> 从 $c_{7}$ 往前跳，发现 $c_{7}$ 只管辖 $a_{7}$ 这个元素；然后找 $c_{6}$，发现 $c_{6}$ 管辖的是 $a[5 \cdots 6]$，然后跳到 $c_{4}$，发现 $c_{4}$ 管辖的是 $a[1 \cdots 4]$ 这些元素，然后再试图跳到 $c_0$，但事实上 $c_0$ 不存在，不跳了。
 >
 > 我们刚刚找到的 $c$ 是 $c_7, c_6, c_4$，事实上这就是 $a[1 \cdots 7]$ 拆分出的三个小区间，合并一下，答案是 $c_7 + c_6 + c_4$。
 
@@ -138,7 +154,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 
 我们可以写出查询 $a[1 \cdots x]$ 的过程：
 
-- 从 $c[x]$ 开始往前跳，有 $c[x]$ 管理 $a[x-\operatorname{lowbit}(x)+1 \cdots x]$；
+- 从 $c[x]$ 开始往前跳，有 $c[x]$ 管辖 $a[x-\operatorname{lowbit}(x)+1 \cdots x]$；
 - 令 $x \gets x - \operatorname{lowbit}(x)$，如果 $x = 0$ 说明已经跳到尽头了，终止循环；否则回到第一步。
 - 将跳到的 $c$ 合并。
 
@@ -152,7 +168,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
         ```cpp
         int getsum(int x) {  // a[1]..a[x]的和
           int ans = 0;
-          while (x >= 1) {
+          while (x > 0) {
             ans = ans + c[x];
             x = x - lowbit(x);
           }
@@ -165,86 +181,100 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
         ```python
         def getsum(x): # a[1]..a[x]的和
             ans = 0
-            while x >= 1:
+            while x > 0:
                 ans = ans + c[x]
                 x = x - lowbit(x)
             return ans
         ```
 
-#### 单点修改
+### 树状数组性质与树形态
 
-为方便，下面我们默认维护的信息是和，操作是单点加。
+在讲解单点修改之前，先讲解树状数组的一些性质，以及其树形态来源，这有助于更好理解树状数组的单点修改。
 
-我们让 $a[x] \gets a[x] + k$ 之后，还需要让管辖 $a[x]$ 的所有 $c[y]$ 也自增 $k$。
+我们约定：
 
-哪些 $c[y]$ 管辖了 $a[x]$ 呢？可以证明，设：
+- $l(x) = x - \operatorname{lowbit}(x) + 1$。即，$l(x)$ 是 $c[x]$ 管辖范围的左端点。
+- 对于任意正整数 $x$，总能将 $x$ 表示成 $s \times 2^{k + 1} + 2^k$ 的形式，其中 $\operatorname{lowbit}(x) = 2^k$。
+- 下面「$c[x]$ 和 $c[y]$ 不交」指 $c[x]$ 的管辖范围和 $c[y]$ 的管辖范围不相交，即 $[l(x), x]$ 和 $[l(y), y]$ 不相交。「$c[x]$ 真包含于 $c[y]$」等表述同理。
 
-$$
-p(i) = \begin{cases}x &i = 0\\p(i - 1) + \operatorname{lowbit}(p(i - 1)) & i > 0\\\end{cases}
-$$
+**性质 $\boldsymbol{1}$：对于 $\boldsymbol{x \le y}$，在要么有 $\boldsymbol{c[x]}$ 和 $\boldsymbol{c[y]}$ 不交，要么有 $\boldsymbol{c[x]}$ 真包含于 $\boldsymbol{c[y]}$。**
 
-有且只有 $c[p(0)], c[p(1)], c[p(2)], \cdots$ 覆盖 $a[x]$。
+??? note "证明"
 
-根据上面的迭代式，设 $n$ 表示 $a$ 的大小，我们可以写出修改 $a[x]$ 的过程：
+    证明：假设 $c[x]$ 和 $c[y]$ 管辖范围相交，即 $[l(x), x]$ 和 $[l(y), y]$ 相交，则一定有 $l(y) \le x \le y$。
+    
+    将 $y$ 表示为 $s \times 2^{k +1} + 2^k$，则 $l(y) = s \times 2^{k + 1} + 1$。所以，$x$ 可以表示为 $s \times 2^{k +1} + b$，其中 $1 \le b < 2^k$。
+    
+    不难发现 $\operatorname{lowbit}(x) = \operatorname{lowbit}(b)$。又因为 $b - \operatorname{lowbit}(b) \ge 0$，
+    
+    所以 $l(x) = x - \operatorname{lowbit}(x) + 1 = s \times 2^{k +1} + b - \operatorname{lowbit}(b) +1 \ge s \times 2^{k +1} + 1 = l(y)$，即 $l(y) \le l(x) \le x \le y$。
+    
+    所以，$c[x]$ 的管辖范围真包含于 $c[y]$。
 
-- 初始令 $x' = x$。
-- 修改 $c[x']$。
-- 令 $x' \gets x' + \operatorname{lowbit}(x')$，如果 $x' \ge n$ 说明已经跳到尽头了，终止循环；否则回到第二步。
+**性质 $\boldsymbol{2}$：在$\boldsymbol{c[x]}$ 真包含于 $\boldsymbol{c[x + \operatorname{lowbit}(x)]}$ 。**
 
-??? note "仅有 $c[p(i)]$ 管辖 $a[x]$ 的证明"
-    注：网上几乎所有关于这一点都是在树状数组的示例图上“感性理解”证明的。这里给出一个比较简单的严谨证明。
+??? note "证明"
+
+    证明：设 $y = x + \operatorname{lowbit}(x)$，$x = s \times 2^{k + 1} + 2^k$，则 $y = (s + 1) \times 2^{k +1}$，$l(x) = s \times 2^{k + 1} + 1$。
     
-    约定：
-    
-    设 $l(x)$ 表示 $x - \operatorname{lowbit}(x) + 1$；
-    
-    对于任意正整数 $x$，总能将 $x$ 表示成 $s \times 2^{k + 1} + 2^k$ 的形式，其中 $\operatorname{lowbit}(x) = 2^k$。
-    
-    **引理 $1$（管辖的传递性）：对于 $\boldsymbol{1 \le x \le y \le z}$，若 $\boldsymbol{c[y]}$ 管辖 $\boldsymbol{a[x]}$，$\boldsymbol{c[z]}$ 管辖 $\boldsymbol{a[y]}$，则 $\boldsymbol{c[z]}$ 管辖 $\boldsymbol{a[x]}$。**
-    
-    证明：因为 $c[z]$ 管辖 $a[y]$，所以 $l(z) \le y \le z$，设 $z = s \times 2^{k + 1} + 2^k$，则 $l(z) = s \times 2^{k+1} + 1$。
-    
-    因此，可以将 $y$ 表示成 $s \times 2^{k + 1} + b$ 的形式，其中 $1 \le b \le 2^k$。
-    
-    所以，$\operatorname{lowbit}(y) = \operatorname{lowbit}(b)$。又因为 $b - \operatorname{lowbit}(b) \ge 0$，
-    
-    所以 $l(y) = y - \operatorname{lowbit}(y) + 1 = s \times 2^{k +1} + b - \operatorname{lowbit}(b) +1 \ge s \times 2^{k +1} + 1 = l(z)$。
-    
-    所以 $l(z) \le l(y) \le y \le z$。
-    
-    因此 $c[y]$ 所管辖的区间是 $c[z]$ 所管辖区间的子集，$c[y]$ 管辖 $a[x]$ 则 $c[z]$ 管辖 $a[x]$。
-    
-    **引理 $2$：$\boldsymbol{c[x + \operatorname{lowbit}(x)]}$ 管辖 $\boldsymbol{a[x]}$。**
-    
-    证明：设 $y = x + \operatorname{lowbit}(x)$，$x = s \times 2^{k + 1} + 2^k$。则 $y = (s + 1) \times 2^{k +1}$。
-    
-    不难发现 $\operatorname{lowbit}(y) \ge 2^{k + 1} > \operatorname{lowbit}(x)$，所以 $\operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 \le 0$。
-    
-    因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + \operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 \le x$。所以 $l(y) \le x \le y$，$c[y]$ 管辖 $a[x]$。
-    
-    **引理 $3$：对于任意 $\boldsymbol{x < y < x + \operatorname{lowbit}(x)}$，有 $\boldsymbol{c[y]}$ 不管辖 $\boldsymbol{a[x]}$，$\boldsymbol{l(y) > x}$。**
-    
+    不难发现 $\operatorname{lowbit}(y) \ge 2^{k + 1}$，所以 $l(y) \le s \times 2^{k +1} + 1= l(x)$，即 $l(y) \le l(x) \le x \le y$，证毕。
+
+**性质 $3$：对于任意 $\boldsymbol{x < y < x + \operatorname{lowbit}(x)}$，有 $\boldsymbol{c[x]}$ 和 $\boldsymbol{c[y]}$ 不交。**
+
+??? note "证明"
+
     证明：设 $x = s \times 2^{k + 1} + 2^k$，则 $y = s \times 2^{k + 1} + 2^k + b$，其中 $1 \le b < 2^k$。
     
     不难发现 $\operatorname{lowbit}(y) = \operatorname{lowbit}(b) < \operatorname{lowbit}(x)$，所以 $\operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 > 0$。
     
-    因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + \operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 > x$，$c[y]$ 不管辖 $a[x]$。
-    
-    **命题 $1$：$\boldsymbol{c[p(i)]}$ 一定管辖 $\boldsymbol{a[x]}$。**
-    
-    归纳证明：$c[p(0)]$ 显然管辖 $a[x]$。
-    
-    设 $c[p(i)]$ 管辖 $a[x]$，根据引理 $2$，$c[p(i + 1)]$ 管辖 $c[p(i)]$，根据引理 $1$（管辖的传递性），有 $c[p(i + 1)]$ 管辖 $a[x]$。
-    
-    **命题 $2$：不在 $\boldsymbol{p}$ 中的任意 $\boldsymbol{y}$ 都有 $\boldsymbol{c[y]}$ 不管辖 $\boldsymbol{a[x]}$。**
-    
-    如果 $y < p(0) = x$，显然 $c[y]$ 不管辖 $a[x]$；
-    
-    如果 $p(i) < y < p(i + 1)$，根据引理 $3$，有 $l(y) > p(i)$。又因为 $p(i) \ge x$，所以 $l(y) > x$，$c[y]$ 不管辖 $a[x]$。
+    因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + \operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 > x$，即 $l(x) \le x < l(y) \le y$，证毕。
+
+有了这三条性质的铺垫，我们接下来看树状数组的树形态（请忽略 $a$ 向 $c$ 的连边）。
+
+![](C:\Users\xbc\Desktop\programming\Projects\OI-wiki\docs\ds\fenwick.assets\fenwick.svg)
+
+事实上，树状数组的树形态就是 $x$ 向 $x + \operatorname{lowbit}(x)$ 连边得到的图，其中 $x + \operatorname{lowbit}(x)$ 是 $x$ 的父亲。
+
+注意，在考虑树状数组的树形态时，我们不考虑树状数组大小的影响，即我们认为这是一棵无限大的树，方便分析。实际运用时，我们只需用到 $x \le n$ 的 $c[x]$，其中 $n$ 是原数组长度。
+
+这棵树天然满足了很多美好性质，下面我们列举若干（设 $fa[u]$ 表示 $u$ 的直系父亲）： 
+
+- $u < fa[u]$。同时，$fa[u]$ 大于其任何一个儿子编号。
+- 点 $u$ 的 $\operatorname{lowbit}$ 严格小于 $fa[u]$ 的 $\operatorname{lowbit}$，这是因为 $\operatorname{lowbit}(x) < \operatorname{lowbit}(x + \operatorname{lowbit}(x))$。
+- 我们认为 $c[1]$ 的高度是 $0$，则点 $x$ 的高度是 $\log_2\operatorname{lowbit}(x)$，即 $x$ 二进制最低位 `1` 的位数。
+- $c[u]$ 真包含于 $c[fa[u]]$（性质 $2$）。
+- $c[u]$ 真包含于 $c[v]$，其中 $v$ 是 $u$ 的任一祖先（在上一条性质上归纳即可）。
+- $c[u]$ 真包含 $c[v]$，其中 $v$ 是 $u$ 的任一后代（上面那条性质 $u$，$v$ 颠倒）。
+- 对于任意 $v' > u$，若 $v'$ 不是 $u$ 的祖先，则 $c[u]$ 和 $c[v']$ 不交。
+    - 证明：如果 $v' > u$，则 $u$ 和 $u$ 的祖先中，一定存在一个点 $v$ 使得 $v < v' < fa[v]$，根据性质 $3$ 得 $c[v']$ 不相交于 $c[v]$，而 $c[v]$ 真包含 $c[u]$，因此 $c[v']$ 不交于 $c[u]$。
+- 对于任意 $v < u$，如果 $v$ 不在 $u$ 的子树上，则 $c[u]$ 和 $c[v]$ 不交（上面那条性质 $u$，$v'$ 颠倒）。
+- 设 $u = s \times 2^{k + 1} + 2^k$，则其儿子数量为 $k = \log_2\operatorname{lowbit}(x)$，编号分别为 $u - 2^t(0 \le t < k)$。
+    - 举例：假设 $k = 3$，$u$ 的二进制编号为 `...1000`，则 $u$ 有三个儿子，二进制编号分别为 `...0111`、`...0110`、`...0100`。 
+- $u$ 的所有儿子对应 $c$ 的管辖区间恰好拼接成 $[l(u), u - 1]$。
+    - 举例：假设 $k = 3$，$u$ 的二进制编号为 `...1000`，则 $u$ 有三个儿子，二进制编号分别为`...0111`、`...0110`、`...0100`。 
+    - `c[...0100]` 表示 `a[...0001 ~ ...0100]`。
+    - `c[...0110]` 表示 `a[...0101 ~ ...0110]`。
+    - `c[...0111]` 表示 `a[...0111 ~ ...0111]`。
+    - 不难发现上面是三个管辖区间的并集恰好是 `a[...0001 ~ ...0111]`，即 $[l(u), u - 1]$。
+
+### 单点修改
+
+现在来考虑如何单点修改 $a[x]$。
+
+我们的目标是快速正确地维护 $c$ 数组。为保证效率，我们只需修改管辖了 $a[x]$ 的所有 $c[y]$，因为其他的 $c$ 显然没有发生变化。
+
+管辖 $a[x]$ 的 $c[y]$ 一定真包含 $c[x]$（根据性质 $1$），所以 $y$ 在树状数组树形态上是 $x$ 的祖先。因此我们从 $x$ 开始跳父亲即可。
+
+设 $n$ 表示 $a$ 的大小，不难写出修改 $a[x]$ 的过程：
+
+- 初始令 $x' = x$。
+- 修改 $c[x']$。
+- 令 $x' \gets x' + \operatorname{lowbit}(x')$，如果 $x' > n$ 说明已经跳到尽头了，终止循环；否则回到第二步。
 
 ???+note "实现"
     === "C++"
     
+
         ```cpp
         void add(int x, int k) {
           while (x <= n) {  // 不能越界
@@ -263,7 +293,7 @@ $$
                 x = x + lowbit(x)
         ```
 
-#### 建树
+### 建树
 
 也就是根据最开始给出的序列，将树状数组建出来（$c$ 全部预处理好）。
 
@@ -279,10 +309,10 @@ $$
 
 时间复杂度：
 
-- 对于前缀查询操作：整个 $x \gets x - \operatorname{lowbit}(x)$ 的迭代过程，可以看做将 $x$ 二进制中的所有 $1$，从低位到高位逐渐改成 $0$ 的过程，拆分出的区间不会超过 $x$ 二进制中 $1$ 的数量，因此，单次查询时间复杂度是 $\Theta(\log n)$；
-- 对于单点修改操作：$p(i)$ 到 $p(i + 1)$ 的过程中，总会将 $p(i)$ 的最低位 $1$ 修改为 $0$，且更低位均保持 $0$ 不变，因此 $\operatorname{lowbit}(p(i +1)) > \operatorname{lowbit}(p(i))$。由于 $n$ 以内所有数的 $\operatorname{lowbit}$ 只有 $\log n$ 种取值，因此只会修改最多 $\log n$ 个 $c$，所以单次单点修改时间复杂度是 $\Theta(\log n)$。
+- 对于前缀查询操作：整个 $x \gets x - \operatorname{lowbit}(x)$ 的迭代过程，可以看做将 $x$ 二进制中的所有 $1$，从低位到高位逐渐改成 $0$ 的过程，拆分出的区间等于 $x$ 二进制中 $1$ 的数量，因此，单次查询时间复杂度是 $\Theta(\log n)$；
+- 对于单点修改操作：跳父亲时，访问到的高度一直增加，且始终满足 $x \le n$。由于点 $x$ 的高度是 $\log_2\operatorname{lowbit}(x)$，所以跳到的高度不会超过 $\log_2n$，所以访问到的 $c$ 的数量是 $\log n$ 级别，单次单点修改复杂度是 $\Theta(\log n)$。
 
-## 区间加 & 区间求和
+## 区间加、区间求和
 
 若维护序列 $a$ 的差分数组 $b$，此时我们对 $a$ 的一个前缀 $r$ 求和，即 $\sum_{i=1}^{r} a_i$，由差分数组定义得 $a_i=\sum_{j=1}^i b_j$
 
@@ -369,7 +399,7 @@ $$
 
 二维树状数组，也被称作树状数组套树状数组，用来维护二维数组上的单点修改和前缀信息问题。
 
-与一维树状数组类似，我们用 $c(x, y)$ 表示 $a(x - \operatorname{lowbit}(x) + 1, y - \operatorname{lowbit}(y) + 1) \cdots a(x, y)$ 的区间总信息，即 $c(x, y)$ 表示的是一个以 $(x, y)$ 为右下角，高 $\operatorname{lowbit}(x)$，宽 $\operatorname{lowbit}(y)$ 的矩阵的信息。
+与一维树状数组类似，我们用 $c(x, y)$ 表示 $a(x - \operatorname{lowbit}(x) + 1, y - \operatorname{lowbit}(y) + 1) \cdots a(x, y)$ 的区间总信息，即 $c(x, y)$ 表示的是一个以 $a(x, y)$ 为右下角，高 $\operatorname{lowbit}(x)$，宽 $\operatorname{lowbit}(y)$ 的矩阵的总信息。
 
 对于单点修改，设：
 
@@ -392,6 +422,7 @@ $$
 ???+note "实现"
     === "单点加"
     
+
         ```cpp
         void add(int x, int y, int v) {
             for (int i = x; i <= n ;i += lowbit(i)) {
@@ -422,13 +453,17 @@ $$
         }
         ```
 
+
+
 ## Tricks
 
 ### $O(n)$ 建树
 
 方法一：
 
-每一个节点的值是由所有与自己直接相连的儿子的值求和得到的。因此可以倒着考虑贡献，即每次确定完儿子的值后，用自己的值更新自己的直接父亲。
+根据单点修改的证明，在管辖范围上完全真包含 $c[x]$ 的第一个树状数组元素是 $c[x + \operatorname{lowbit}(x)]$。
+
+考虑从 $c[1]$ 依次确定到 $c[n]$，每次确定 $c[x]$ 就加上它给 $c[x + \operatorname{lowbit}(x)]$ 的贡献，即可完成建树。
 
 ???+note "实现"
     === "C++"
@@ -457,7 +492,7 @@ $$
 
 方法二：
 
-前面讲到 $c_i$ 表示的区间是 $[i-\operatorname{lowbit}(i)+1, i]$，那么我们可以先预处理一个 $sum$ 前缀和数组，再计算 $c$ 数组。
+前面讲到 $c[i]$ 表示的区间是 $[i-\operatorname{lowbit}(i)+1, i]$，那么我们可以先预处理一个 $\mathrm{sum}$ 前缀和数组，再计算 $c$ 数组。
 
 ???+note "实现"
     === "C++"
@@ -481,6 +516,8 @@ $$
 ### $O(\log n)$ 查询第 $k$ 小/大元素
 
 #### 过程
+
+
 
 在此处只讨论第 $k$ 小，第 $k$ 大问题可以通过简单计算转化为第 $k$ 小问题。
 
@@ -542,9 +579,9 @@ $$
     ```cpp
     // 时间戳优化
     int tag[MAXN], t[MAXN], Tag;
-
+    
     void reset() { ++Tag; }
-
+    
     void add(int k, int v) {
       while (k <= n) {
         if (tag[k] != Tag) t[k] = 0;
@@ -552,7 +589,7 @@ $$
         k += lowbit(k);
       }
     }
-
+    
     int getsum(int k) {
       int ret = 0;
       while (k) {
