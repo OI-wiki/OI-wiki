@@ -365,6 +365,63 @@ $$
                   (getsum(t2, r) - getsum(t2, l - 1))
         ```
 
+## 二维树状数组
+
+二维树状数组，也被称作树状数组套树状数组，用来维护二维数组上的单点修改和前缀信息问题。
+
+与一维树状数组类似，我们用 $c(x, y)$ 表示 $a(x - \operatorname{lowbit}(x) + 1, y - \operatorname{lowbit}(y) + 1) \cdots a(x, y)$ 的区间总信息，即 $c(x, y)$ 表示的是一个以 $(x, y)$ 为右下角，高 $\operatorname{lowbit}(x)$，宽 $\operatorname{lowbit}(y)$ 的矩阵的信息。
+
+对于单点修改，设：
+
+$$
+p(x, i) = \begin{cases}x &i = 0\\p(x, i - 1) + \operatorname{lowbit}(p(x, i - 1)) & i > 0\\\end{cases}
+$$
+
+则只有 $c(p(x, i), p(y, j))$ 中的元素管辖 $a(x, y)$，修改 $a(x, y)$ 时只需要修改所有满足 $p(x, i) \le n, p(y, j) \le m$ 的 $c(p(x, i), p(y, j))$ 即可。
+
+对于查询，我们设：
+
+$$
+f(x, i) = \begin{cases}x &i = 0\\f(x, i - 1) - \operatorname{lowbit}(f(x, i - 1)) & i, f(x, i - 1) > 0\\0&\mathrm{otherwise.}\end{cases}
+$$
+
+则合并所有满足 $f(x, i), f(y, j) > 0$ 的 $c(f(x, i), f(y, j))$ 即可。
+
+下面给出单点加和查询前缀和的代码。
+
+???+note "实现"
+    === "单点加"
+    
+        ```cpp
+        void add(int x, int y, int v) {
+            for (int i = x; i <= n ;i += lowbit(i)) {
+                for (int j = y; j <= m; j += lowbit(j)) {
+                    // 注意这里必须得建循环变量，不能像一维数组一样直接 while (x <= n) 了
+                    c[i][j] += v;
+                }
+            }
+        }
+        ```
+    
+    === "查询前缀和（区间和）"
+    
+        ```cpp
+        int sum(int x, int y) {
+          int res = 0;
+          for (int i = x; i > 0; i -= lowbit(i)) {
+              for (int j = y; j > 0; j -= lowbit(j)) {
+                  res += c[i][j];
+              }
+          }
+          return res;
+        }
+
+        int ask(int x1, int y1, int x2, int y2) {
+            // 查询子矩阵和
+            return sum(x2, y2) - sum(x2, y1 - 1) - sum(x1 - 1, y2) + sum(x1 - 1, y1 - 1);
+        }
+        ```
+
 ## Tricks
 
 ### $O(n)$ 建树
