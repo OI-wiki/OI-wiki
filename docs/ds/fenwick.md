@@ -511,7 +511,7 @@ $$
             if (ret >= n || cnt + t[ret] >= k)  // 如果扩展失败
               ret -= 1 << i;
             else
-            	cnt += t[ret];  // 扩展成功后 要更新之前求和的值
+              cnt += t[ret];  // 扩展成功后 要更新之前求和的值
           }
           return ret + 1;
         }
