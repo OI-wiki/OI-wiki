@@ -161,6 +161,9 @@
 === "C++"
 
     ```cpp
+    // return pow(a, u)%n
+    int quickPow(int a, int u, int n);
+    
     bool millerRabin(int n) {
       if (n < 3 || n % 2 == 0) return n == 2;
       int u = n - 1, t = 0;
@@ -186,6 +189,9 @@
 === "Python"
 
     ```python
+    def pow(a, u, n):
+        return (a**u)%n
+    
     def millerRabin(n):
         if n < 3 or n % 2 == 0:
             return n == 2
