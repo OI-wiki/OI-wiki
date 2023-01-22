@@ -177,32 +177,32 @@
 === "C++"
 
     ```cpp
-    	Big gcd(Big a, Big b) {
-    			// 记录a和b的公因数2出现次数
-    			int atimes = 0, btimes = 0;
-    			while (a & 1) {
-    					a >>= 1;
-    					atimes++;
-    			}
-    			while (b != 0) {
-    					b >>= 1;
-    					btimes++;
-    			}
-    			for (;;) {
-    					// a和b公因数中的2已经计算过了，后面不可能出现a,b均为偶数的情况
-    					while (a & 1) {
-    							a >>= 1;
-    					}
-    					while (b & 1) {
-    							b >>= 1;
-    					}
-    					if (a == b) break;
-    					// 确保 a>=b
-    					if (a < b) swap(a, b);
-    					a -= b;
-    			}
-    			return a << min(atimes, btimes);
-    	}
+    Big gcd(Big a, Big b) {
+      // 记录a和b的公因数2出现次数
+      int atimes = 0, btimes = 0;
+      while (a & 1) {
+        a >>= 1;
+        atimes++;
+      }
+      while (b != 0) {
+        b >>= 1;
+        btimes++;
+      }
+      for (;;) {
+        // a和b公因数中的2已经计算过了，后面不可能出现a,b均为偶数的情况
+        while (a & 1) {
+          a >>= 1;
+        }
+        while (b & 1) {
+          b >>= 1;
+        }
+        if (a == b) break;
+        // 确保 a>=b
+        if (a < b) swap(a, b);
+        a -= b;
+      }
+      return a << min(atimes, btimes);
+    }
     ```
 
 === "Python"
