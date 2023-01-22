@@ -5,7 +5,6 @@ author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicu
 树状数组是一种支持 **单点修改** 和 **前缀查询** 的，代码量小的数据结构。
 
 ??? note "什么是「单点修改」和「前缀查询」？"
-
     假设有这样一道题：
     
     已知一个数列 $a$，你需要进行下面两种操作：
@@ -200,7 +199,6 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 **性质 $\boldsymbol{1}$：对于 $\boldsymbol{x \le y}$，在要么有 $\boldsymbol{c[x]}$ 和 $\boldsymbol{c[y]}$ 不交，要么有 $\boldsymbol{c[x]}$ 真包含于 $\boldsymbol{c[y]}$。**
 
 ??? note "证明"
-
     证明：假设 $c[x]$ 和 $c[y]$ 管辖范围相交，即 $[l(x), x]$ 和 $[l(y), y]$ 相交，则一定有 $l(y) \le x \le y$。
     
     将 $y$ 表示为 $s \times 2^{k +1} + 2^k$，则 $l(y) = s \times 2^{k + 1} + 1$。所以，$x$ 可以表示为 $s \times 2^{k +1} + b$，其中 $1 \le b < 2^k$。
@@ -211,10 +209,9 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
     
     所以，$c[x]$ 的管辖范围真包含于 $c[y]$。
 
-**性质 $\boldsymbol{2}$：在$\boldsymbol{c[x]}$ 真包含于 $\boldsymbol{c[x + \operatorname{lowbit}(x)]}$ 。**
+**性质 $\boldsymbol{2}$：在 $\boldsymbol{c[x]}$ 真包含于 $\boldsymbol{c[x + \operatorname{lowbit}(x)]}$。**
 
 ??? note "证明"
-
     证明：设 $y = x + \operatorname{lowbit}(x)$，$x = s \times 2^{k + 1} + 2^k$，则 $y = (s + 1) \times 2^{k +1}$，$l(x) = s \times 2^{k + 1} + 1$。
     
     不难发现 $\operatorname{lowbit}(y) \ge 2^{k + 1}$，所以 $l(y) \le s \times 2^{k +1} + 1= l(x)$，即 $l(y) \le l(x) \le x \le y$，证毕。
@@ -222,7 +219,6 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 **性质 $3$：对于任意 $\boldsymbol{x < y < x + \operatorname{lowbit}(x)}$，有 $\boldsymbol{c[x]}$ 和 $\boldsymbol{c[y]}$ 不交。**
 
 ??? note "证明"
-
     证明：设 $x = s \times 2^{k + 1} + 2^k$，则 $y = s \times 2^{k + 1} + 2^k + b$，其中 $1 \le b < 2^k$。
     
     不难发现 $\operatorname{lowbit}(y) = \operatorname{lowbit}(b) < \operatorname{lowbit}(x)$，所以 $\operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 > 0$。
@@ -237,7 +233,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 
 注意，在考虑树状数组的树形态时，我们不考虑树状数组大小的影响，即我们认为这是一棵无限大的树，方便分析。实际运用时，我们只需用到 $x \le n$ 的 $c[x]$，其中 $n$ 是原数组长度。
 
-这棵树天然满足了很多美好性质，下面我们列举若干（设 $fa[u]$ 表示 $u$ 的直系父亲）： 
+这棵树天然满足了很多美好性质，下面我们列举若干（设 $fa[u]$ 表示 $u$ 的直系父亲）：
 
 - $u < fa[u]$。同时，$fa[u]$ 大于其任何一个儿子编号。
 - 点 $u$ 的 $\operatorname{lowbit}$ 严格小于 $fa[u]$ 的 $\operatorname{lowbit}$，这是因为 $\operatorname{lowbit}(x) < \operatorname{lowbit}(x + \operatorname{lowbit}(x))$。
@@ -245,13 +241,13 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 - $c[u]$ 真包含于 $c[fa[u]]$（性质 $2$）。
 - $c[u]$ 真包含于 $c[v]$，其中 $v$ 是 $u$ 的任一祖先（在上一条性质上归纳即可）。
 - $c[u]$ 真包含 $c[v]$，其中 $v$ 是 $u$ 的任一后代（上面那条性质 $u$，$v$ 颠倒）。
-- 对于任意 $v' > u$，若 $v'$ 不是 $u$ 的祖先，则 $c[u]$ 和 $c[v']$ 不交。
+-   对于任意 $v' > u$，若 $v'$ 不是 $u$ 的祖先，则 $c[u]$ 和 $c[v']$ 不交。
     - 证明：如果 $v' > u$，则 $u$ 和 $u$ 的祖先中，一定存在一个点 $v$ 使得 $v < v' < fa[v]$，根据性质 $3$ 得 $c[v']$ 不相交于 $c[v]$，而 $c[v]$ 真包含 $c[u]$，因此 $c[v']$ 不交于 $c[u]$。
 - 对于任意 $v < u$，如果 $v$ 不在 $u$ 的子树上，则 $c[u]$ 和 $c[v]$ 不交（上面那条性质 $u$，$v'$ 颠倒）。
-- 设 $u = s \times 2^{k + 1} + 2^k$，则其儿子数量为 $k = \log_2\operatorname{lowbit}(x)$，编号分别为 $u - 2^t(0 \le t < k)$。
-    - 举例：假设 $k = 3$，$u$ 的二进制编号为 `...1000`，则 $u$ 有三个儿子，二进制编号分别为 `...0111`、`...0110`、`...0100`。 
-- $u$ 的所有儿子对应 $c$ 的管辖区间恰好拼接成 $[l(u), u - 1]$。
-    - 举例：假设 $k = 3$，$u$ 的二进制编号为 `...1000`，则 $u$ 有三个儿子，二进制编号分别为`...0111`、`...0110`、`...0100`。 
+-   设 $u = s \times 2^{k + 1} + 2^k$，则其儿子数量为 $k = \log_2\operatorname{lowbit}(x)$，编号分别为 $u - 2^t(0 \le t < k)$。
+    - 举例：假设 $k = 3$，$u$ 的二进制编号为 `...1000`，则 $u$ 有三个儿子，二进制编号分别为 `...0111`、`...0110`、`...0100`。
+-   $u$ 的所有儿子对应 $c$ 的管辖区间恰好拼接成 $[l(u), u - 1]$。
+    - 举例：假设 $k = 3$，$u$ 的二进制编号为 `...1000`，则 $u$ 有三个儿子，二进制编号分别为 `...0111`、`...0110`、`...0100`。
     - `c[...0100]` 表示 `a[...0001 ~ ...0100]`。
     - `c[...0110]` 表示 `a[...0101 ~ ...0110]`。
     - `c[...0111]` 表示 `a[...0111 ~ ...0111]`。
@@ -274,7 +270,6 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 ???+note "实现"
     === "C++"
     
-
         ```cpp
         void add(int x, int k) {
           while (x <= n) {  // 不能越界
@@ -422,7 +417,6 @@ $$
 ???+note "实现"
     === "单点加"
     
-
         ```cpp
         void add(int x, int y, int v) {
             for (int i = x; i <= n ;i += lowbit(i)) {
@@ -452,8 +446,6 @@ $$
             return sum(x2, y2) - sum(x2, y1 - 1) - sum(x1 - 1, y2) + sum(x1 - 1, y1 - 1);
         }
         ```
-
-
 
 ## Tricks
 
@@ -517,8 +509,6 @@ $$
 
 #### 过程
 
-
-
 在此处只讨论第 $k$ 小，第 $k$ 大问题可以通过简单计算转化为第 $k$ 小问题。
 
 参考「可持久化线段树」章节中，关于求区间第 $k$ 小的思想。将所有数字看成一个可重集合，即定义数组 $a$ 表示值为 $i$ 的元素在整个序列中出现了 $a_i$ 次。找第 $k$ 小就是找到最小的 $x$ 恰好满足 $\sum_{i=1}^{x}a_i \geq k$
@@ -579,9 +569,9 @@ $$
     ```cpp
     // 时间戳优化
     int tag[MAXN], t[MAXN], Tag;
-    
+
     void reset() { ++Tag; }
-    
+
     void add(int k, int v) {
       while (k <= n) {
         if (tag[k] != Tag) t[k] = 0;
@@ -589,7 +579,7 @@ $$
         k += lowbit(k);
       }
     }
-    
+
     int getsum(int k) {
       int ret = 0;
       while (k) {
