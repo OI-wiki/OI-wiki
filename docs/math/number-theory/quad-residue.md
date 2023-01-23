@@ -113,88 +113,68 @@ $$
 这里给一个示例，借助更相减损术算法计算二次剩余符号：
 
 ```cpp
-int Kronecker(int a,int b)
-{
-	if(a==1||b==1)
-	{
-		return 1;
-	}
-	if(a==0||b==0)
-	{
-		if(a==-1||b==-1)
-		{
-			return 1;
-		}
-		return 0;
-	}
-	if(b<0)
-	{
-		if(a<0)
-		{
-			return -Kronecker(a,-b);
-		}
-		b=-b;
-	}
-	if(a<-1)
-	{
-		return Kronecker(-1,b)*Kronecker(-a,b);
-	}
-	if(b%2==0)
-	{
-		if(a%2==0)
-		{
-			return 0;
-		}
-		int c=0;
-		while(b%2==0)
-		{
-			b=b/2;
-			c=c^1;
-		}
-		if(c==1)
-		{
-			return Kronecker(2,a)*Kronecker(a,b);
-		}
-	}
-	if(a==-1)
-	{
-		if(b%4==3)
-		{
-			return -1;
-		}
-		return 1;
-	}
-	if(a==2)
-	{
-		if(b%8==3||b%8==5)
-		{
-			return -1;
-		}
-		return 1;
-	}
-	if(a%2==0)
-	{
-		int c=0;
-		while(a%2==0)
-		{
-			a=a/2;
-			c=c^1;
-		}
-		if(c==1)
-		{
-			return Kronecker(2,b)*Kronecker(a,b);
-		}
-	}
-	if(a>=b)
-	{
-		a=a%b;
-		return Kronecker(a,b);
-	}
-	if(a%4==3&&b%4==3)
-	{
-		return -Kronecker(b,a);
-	}
-	return Kronecker(b,a);
+int Kronecker(int a, int b) {
+  if (a == 1 || b == 1) {
+    return 1;
+  }
+  if (a == 0 || b == 0) {
+    if (a == -1 || b == -1) {
+      return 1;
+    }
+    return 0;
+  }
+  if (b < 0) {
+    if (a < 0) {
+      return -Kronecker(a, -b);
+    }
+    b = -b;
+  }
+  if (a < -1) {
+    return Kronecker(-1, b) * Kronecker(-a, b);
+  }
+  if (b % 2 == 0) {
+    if (a % 2 == 0) {
+      return 0;
+    }
+    int c = 0;
+    while (b % 2 == 0) {
+      b = b / 2;
+      c = c ^ 1;
+    }
+    if (c == 1) {
+      return Kronecker(2, a) * Kronecker(a, b);
+    }
+  }
+  if (a == -1) {
+    if (b % 4 == 3) {
+      return -1;
+    }
+    return 1;
+  }
+  if (a == 2) {
+    if (b % 8 == 3 || b % 8 == 5) {
+      return -1;
+    }
+    return 1;
+  }
+  if (a % 2 == 0) {
+    int c = 0;
+    while (a % 2 == 0) {
+      a = a / 2;
+      c = c ^ 1;
+    }
+    if (c == 1) {
+      return Kronecker(2, b) * Kronecker(a, b);
+    }
+  }
+  if (a >= b) {
+    a = a % b;
+    return Kronecker(a, b);
+  }
+  if (a % 4 == 3 && b % 4 == 3) {
+    return -Kronecker(b, a);
+  }
+  return Kronecker(b, a);
 }
 ```
 
