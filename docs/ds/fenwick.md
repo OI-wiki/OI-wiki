@@ -214,7 +214,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 ??? note "证明"
     证明：设 $y = x + \operatorname{lowbit}(x)$，$x = s \times 2^{k + 1} + 2^k$，则 $y = (s + 1) \times 2^{k +1}$，$l(x) = s \times 2^{k + 1} + 1$。
     
-    不难发现 $\operatorname{lowbit}(y) \ge 2^{k + 1}$，所以 $l(y) \le s \times 2^{k +1} + 1= l(x)$，即 $l(y) \le l(x) \le x \le y$，证毕。
+    不难发现 $\operatorname{lowbit}(y) \ge 2^{k + 1}$，所以 $l(y) \le s \times 2^{k +1} + 1= l(x)$，即 $l(y) \le l(x) \le x < y$，证毕。
 
 **性质 $3$：对于任意 $\boldsymbol{x < y < x + \operatorname{lowbit}(x)}$，有 $\boldsymbol{c[x]}$ 和 $\boldsymbol{c[y]}$ 不交。**
 
