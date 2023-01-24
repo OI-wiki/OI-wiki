@@ -1,10 +1,10 @@
-author: hydingsy, hyp1231, ranwen
+author: hydingsy, hyp1231, ranwen, 383494
 
 ## 引入
 
 莫比乌斯反演是数论中的重要内容。对于一些函数 $f(n)$，如果很难直接求出它的值，而容易求出其倍数和或约数和 $g(n)$，那么可以通过莫比乌斯反演简化运算，求得 $f(n)$ 的值。
 
-开始学习莫比乌斯反演前，需要先学习一些前置知识：[数论分块](./sqrt-decomposition.md)、狄利克雷卷积。
+开始学习莫比乌斯反演前，需要先学习一些前置知识：[数论分块](./sqrt-decomposition.md)、[狄利克雷卷积](../poly/dgf.md#dirichlet-%E5%8D%B7%E7%A7%AF)。
 
 ### 莫比乌斯函数
 
