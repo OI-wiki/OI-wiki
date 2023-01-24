@@ -24,7 +24,9 @@ $$
 
 通过 Legendre 符号可以判断一个数 $a$ 是否为二次剩余，具体判断 $a$ 是否为模 $p$ 的二次剩余，需要通过 Euler 判别准则来实现。
 
-下表为部分 Legendre 符号的值![](./images/quad_residue.png)
+下图为部分 Legendre 符号的值。
+
+![](./images/Legendre.png)
 
 ## Euler 判别准则
 
@@ -113,6 +115,176 @@ $$
 其中 $\deg(g(x))=p-1-d$。根据 [Lagrange 定理](./lagrange.md) 我们知道 $g(x)=0$ 最多有 $p-1-d$ 个解。因为 $x^{p-1}-1\equiv 0\pmod p$ 有 $p-1$ 个解，所以显然 $x^d-1\equiv 0\pmod p$ 至少有 $d$ 个解。如果只考虑 $x^d-1\equiv 0\pmod p$，我们知道最多有 $d$ 个解。所以 $x^d-1\equiv 0\pmod p$ 恰有 $d$ 个解。
 
 根据 Euler 判别准则，对于 $a^{(p-1)/2}\equiv 1\pmod p$ 显然 $\frac{p-1}{2}\mid (p-1)$，又因上述引理所以 $a^{(p-1)/2}\equiv 1\pmod p$ 有 $\frac{p-1}{2}$ 个解，而集合中有 $p-1$ 个元素，所以也有 $\frac{p-1}{2}$ 个二次非剩余。
+
+## 相关引理
+
+二次剩余部分的重要引理有高斯引理和艾森斯坦引理。艾森斯坦是高斯的学生，两人的名字同时出现在域论、多项式理论和二次剩余部分中。
+
+### 引理
+
+在介绍高斯引理和艾森斯坦引理之前，先介绍一个引理，这个引理反复出现在高斯引理和艾森斯坦引理的证明中。
+
+设 $p$ 为奇素数， $a$ 为不被 $p$ 整除的整数。设 $u_1,u_2,\cdots,u_s$ 为 $a,2a,\cdots,\frac{p-1}{2}a$ 模 $p$ 的最小正完全剩余系中大于 $\frac{p}{2}$ 的部分， $v_1,v_2,\cdots,v_t$ 为 $a,2a,\cdots,\frac{p-1}{2}a$ 模 $p$ 的最小正完全剩余系中小于 $\frac{p}{2}$ 的部分，则有 $\{v_1,v_2,\cdots,v_t,p-u_1,p-u_2,\cdots,p-u_s\}$ 恰好是 $\{1,2,\cdots,\frac{p-1}{2}\}$ 的一个排列。
+
+不难举例解释这个引理。容易发现，$\{1,\cdots,\frac{p-1}{2}\}$ 中每个元素，在 $\{\frac{p+1}{2},\cdots,p-1\}$ 中都有自己的相反数，反之亦然。并且因为 $(a,p)=1$，所以 $(ja,p)=1,1\le j\le\frac{p-1}{2}$。
+
+例如 $p=7,a=5$ ，那么 $\{1\times 5,2\times 5,3\times 5\}=\{5,10,15\}$ 的最小正完全剩余系为 $\{5,3,1\}$ ，其中大于 $\frac{7}{2}$ 的有 $1$ 个 $\{5\}$。于是集合 $\{v_1,v_2,\cdots,v_t\}$ 就是 $\{1,3\}$，集合 $\{u_1,u_2,\cdots,u_s\}$ 就是 $\{5\}$。
+
+证明：
+
+显然 $\{v_1,v_2,\cdots,v_t,p-u_1,p-u_2,\cdots,p-u_s\}$ 个数为 $\frac{p-1}{2}$，并且取值都在 $1$ 到 $\frac{p-1}{2}$，所以只需证明 $p-u_1,\cdots,p-u_s,v_1,\cdots,v_t$ 任意两个不同余。
+
+首先， $p-u_i$ 两两不同余， $v_j$ 两两不同余。这是由于如果同余，那么必然有不相等的整数 $m,n$ 满足 $ma\equiv na\pmod{p}$ ，与之前的定义不符。
+
+另外，也不存在 $i,j$ 使得 $p-u_i\equiv v_j$ ，因为这会导致存在不超过 $\frac{p-1}{2}$ 的整数 $m,n$ 使得 $-ma\equiv na\pmod{p}$ ，从而 $(m+n)a\equiv 0\pmod{p}$，而 $m+n<p$，与之前的定义也不符。证毕。
+
+#### 推论
+
+这个引理的推论是，这两个集合的求和与乘积应当完全相等。对于乘积有：
+
+$$
+(p-u_1)\cdots(p-u_s)v_1\cdots v_t\equiv \left(\frac{p-1}{2}\right)!\pmod{p}
+$$
+
+由乘积的结论给出了高斯引理。对于求和有：
+
+$$
+\sum_{j=1}^{\frac{p-1}{2}}j=\sum_{j=1}^s(p-u_j)+\sum_{j=1}^tv_j=ps-\sum_{j=1}^su_j+\sum_{j=1}^tv_j
+$$
+
+由乘积的结论给出了艾森斯坦引理。
+
+### 高斯引理
+
+高斯对二次互反律一共给出了六个证明。由于可以引出判断 $2$ 是否为模奇素数的二次剩余的重要结论，从高斯引理引出的第三个证明是今天讲解二次互反律的普遍办法。
+
+设 $p$ 为奇素数， $a$ 为不被 $p$ 整除的整数。设 $s$ 为 $\{a,2a,\cdots,((p-1)/2)a\}$ 模 $p$ 的最小正完全剩余系中大于 $\frac{p}{2}$ 的数的个数，则有 $\left(\frac{a}{p}\right)={(-1)}^s$。
+
+证明：
+
+根据上述引理乘积的结论，有：
+
+$$
+(-1)^sv_1v_2\cdots v_tu_1u_2\cdots u_s\equiv\left(\frac{p-1}{2}\right)!\pmod{p}
+$$
+
+根据定义 $v_1v_2\cdots v_tu_1u_2\cdots u_s\equiv a^{\frac{p-1}{2}}\left(\frac{p-1}{2}\right)!\pmod{p}$，所以有：
+
+$$
+(-1)^sa^{\frac{p-1}{2}}\left(\frac{p-1}{2}\right)!\equiv \left(\frac{p-1}{2}\right)!\pmod{p}
+$$
+
+因为 $(p,\left(\frac{p-1}{2}\right)!)=1$，所以有 $(-1)^sa^{\frac{p-1}{2}}\equiv 1\pmod{p}$ ，即 $a^{\frac{p-1}{2}}\equiv (-1)^s\pmod{p}$。根据欧拉判别法，证毕。
+
+#### 2 与二次剩余
+
+高斯引理的直接推论是，模为奇素数 $p$ 时，判断 $2$ 是否为模 $p$ 的二次剩余。
+
+根据高斯引理，设 $s$ 为 $\{2,4,\cdots,p-1\}$ 模 $p$ 的最小正完全剩余系中大于 $\frac{p}{2}$ 的数的个数，有结论：
+
+$$
+\left(\frac{2}{p}\right)\equiv {(-1)}^{s}\pmod{p}
+$$
+
+因此，当且仅当 $p$ 为 $8k+1$ 型或 $8k+7$ 型奇素数时，$2$ 是模 $p$ 的二次剩余。当且仅当 $p$ 为 $8k+3$ 型或 $8k+5$ 型奇素数时，$2$ 是模 $p$ 的二次非剩余。在形式上也可以记为：
+
+$$
+\left(\frac{2}{p}\right)\equiv {(-1)}^{\frac{p^2-1}{8}}\pmod{p}
+$$
+
+注：另一种证明二次互反律的办法借助高斯和（Gauss sum）。该办法较为抽象，然而在证明二次剩余在 $2$ 的情形时却显得非常简洁。记 $8$ 次本原单位根 $w_8=\frac{1+\mathrm{i}}{\sqrt{2}}$，则有：
+
+$$
+\begin{aligned}
+\left(\frac{2}{p}\right)&\equiv 2^{\frac{p-1}{2}}\\
+&=\frac{1}{\sqrt{2}}{\left(w_8+w_8^{-1}\right)}^p\\
+&\equiv\frac{1}{\sqrt{2}}(w_8^p+w_8^{-p})\\
+&\begin{cases}
+1\pmod p,&p\equiv 1,7\pmod 8\\
+-1\pmod p,&p\equiv 3,5\pmod 8
+\end{cases}
+\end{aligned}
+$$
+
+用复数的几何直观观察这个式子会非常有趣。
+
+### 艾森斯坦引理
+
+艾森斯坦对高斯的第三个证明进行了改进，运用了几何直观的办法进行格点计数。
+
+设 $p$ 是奇素数， $a$ 是不被 $p$ 整除的奇数。记 $T(a,p)=\sum_{j=1}^{\frac{p-1}{2}}\left\lfloor\frac{ja}{p}\right\rfloor$，则有 $\left(\frac{a}{p}\right)=(-1)^{T(a,p)}$。
+
+证明：
+
+根据上述引理求和的结论，有：
+
+$$
+\sum_{j=1}^{\frac{p-1}{2}}j=ps-\sum_{j=1}^su_j+\sum_{j=1}^tv_j
+$$
+
+又注意到：
+
+$$
+\sum_{j=1}^{\frac{p-1}{2}}ja=\sum_{j=1}^{\frac{p-1}{2}}p\left\lfloor\frac{ja}{p}\right\rfloor+\sum_{j=1}^{\frac{p-1}{2}}(ja\bmod{p})=\sum_{j=1}^{\frac{p-1}{2}}p\left\lfloor\frac{ja}{p}\right\rfloor+\sum_{j=1}^s u_j+\sum_{j=1}^t v_j
+$$
+
+两式相减，得到：
+
+$$
+(a-1)\sum_{j=1}^{\frac{p-1}{2}}j=pT(a,p)-ps+2\sum_{j=1}^s u_j
+$$
+
+两边同时对 $2$ 取模，可得：
+
+$$
+0\equiv T(a,p)-s\pmod{2}
+$$
+
+从而 $\left(\frac{a}{p}\right)=(-1)^s=(-1)^{T(a,p)}$。证毕。
+
+#### 几何意义
+
+艾森斯坦引理具有几何意义。
+
+设直线 $y=\frac{ax}{p}$ ，那么和式 $T(a,p)=\sum^{\frac{p-1}{2}}_{j=1}\left\lfloor\frac{ja}{p}\right\rfloor$ 表示区域 $1\le x\le \frac{p-1}{2},1\le y\le \frac{ax}{p}$ 的整点的个数。
+
+于是 $T(q,p)$ 描述了 $1\le x\le \frac{p-1}{2},1\le y\le \frac{qx}{p}$ 的区域内整点的个数。如果沿着对角线对称，$T(p,q)$ 描述了 $1\le y\le \frac{q-1}{2},1\le x\le \frac{py}{q}$ 的区域内整点的个数。
+
+例如 $a=7,p=13$ 时，描述的就是 $1\le x\le 6,1\le y\le \frac{7x}{13}$ 里面的整点数。
+
+![](./images/quad_residue.png)
+
+对于两个奇素数 $q,p,q\ne p$，应当有 $qx\ne py$ ，否则 $q|py$，而 $q\not|y,q\not|p$，矛盾。所以这条直线在 $1\le x\le \frac{p-1}{2},1\le y\le \frac{q-1}{2}$ 的范围内不会经过整点。
+
+在范围 $1\le x\le \frac{p-1}{2},1\le y\le \frac{q-1}{2}$ 内的整点 $(x,y)$ 个数是 $\frac{p-1}{2}\frac{q-1}{2}$，故得出 $T(p,q)+T(q,p)=\frac{p-1}{2}\frac{q-1}{2}$。
+
+例如下图，$q=7,p=13$:
+
+![](./images/quad_residue1.png)
+
+## 二次互反律
+
+设 $p,q$ 为两个不相等的奇素数，则有：
+
+$$
+\left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}
+$$
+
+证明：
+
+由艾森斯坦引理可知：
+
+$$
+\left(\frac{q}{p}\right)\left(\frac{p}{q}\right)=(-1)^{T(q,p)+T(p,q)}
+$$
+
+根据上述几何意义 $\frac{p-1}{2}\frac{q-1}{2}=T(p,q)+T(q,p)$，有：
+
+$$
+(-1)^{\frac{p-1}{2}\frac{q-1}{2}}=(-1)^{T(p,q)}(-1)^{T(q,p)}\equiv \left(\frac{p}{q}\right)\left(\frac{q}{p}\right)
+$$
+
+证毕。
 
 ## 特殊情况时的算法
 
