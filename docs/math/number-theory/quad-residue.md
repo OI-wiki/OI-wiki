@@ -199,7 +199,7 @@ $$
 \left(\frac{2}{p}\right)&\equiv 2^{\frac{p-1}{2}}\\
 &=\frac{1}{\sqrt{2}}{\left(w_8+w_8^{-1}\right)}^p\\
 &\equiv\frac{1}{\sqrt{2}}(w_8^p+w_8^{-p})\\
-&\begin{cases}
+&=\begin{cases}
 1\pmod p,&p\equiv 1,7\pmod 8\\
 -1\pmod p,&p\equiv 3,5\pmod 8
 \end{cases}
