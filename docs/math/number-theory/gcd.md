@@ -209,25 +209,25 @@
 
     ```python
     def gcd(a, b):
-    			atimes = 0
-    			btimes = 0
-    			while a & 2:
-    					atimes += 1
-    					a = a >> 1
-    			while b & 2:
-    					btimes += 1
-    					b = b >> 1
-    			while True:
-    					while a & 2:
-    							a = a >> 1
-    					while b & 2:
-    							b = b >> 1
-    					if a == b:
-    							break
-    					if a < b:
-    							a, b = b, a
-    					a = a - b
-    			return a << min(atimes, btimes)
+        atimes = 0
+        btimes = 0
+        while a & 2:
+            atimes += 1
+            a = a >> 1
+        while b & 2:
+            btimes += 1
+            b = b >> 1
+        while True:
+            while a & 2:
+                a = a >> 1
+            while b & 2:
+                b = b >> 1
+            if a == b:
+                break
+            if a < b:
+                a, b = b, a
+            a = a - b
+        return a << min(atimes, btimes)
     ```
 
 ### 多个数的最大公约数
