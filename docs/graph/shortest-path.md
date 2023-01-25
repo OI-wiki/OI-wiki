@@ -216,7 +216,7 @@ Bellman-Ford 算法所做的，就是不断尝试对图上每一条边进行松�
                 flag = False
                 for u in range(1, n + 1):
                     for ed in e[u]:
-                        v = ed.v; w = ed.w
+                        v, w = ed.v, ed.w
                         if dis[v] > dis[u] + w:
                             flag = True
                 # 没有可以松弛的边时就停止算法
@@ -285,11 +285,13 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
     
         q = []
         def spfa(n, s):
-            dis[s] = 0; vis[s] = 1
+            dis[s] = 0
+            vis[s] = 1
             q.append(s)
             while len(q) != 0:
                 u = q[0]
-                q.pop(); vis[u] = 0
+                vis[u] = 0
+                q.pop()
                 for ed in e[u]:
                     if dis[v] > dis[u] + w:
                         dis[v] = dis[u] + w
@@ -409,13 +411,15 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
         def dijkstra(n, s):
             dis[s] = 0
             for i in range(1, n + 1):
-                u = 0; mind = 0x3f3f3f3f
+                u = 0
+                mind = 0x3f3f3f3f
                 for j in range(1, n + 1):
                     if vis[j] == False and dis[v] < mind:
-                        u = j; mind = dis[j]
+                        u = j
+                        mind = dis[j]
                 vis[u] = True
                 for ed in e[u]:
-                    v = ed.v; w = ed.w
+                    v, w = ed.v, ed.w
                     if dis[v] > dis[u] + w:
                         dis[v] = dis[u] + w
         ```
