@@ -146,6 +146,7 @@ nav:
       - 桶排序: basic/bucket-sort.md
       - 希尔排序: basic/shell-sort.md
       - 锦标赛排序: basic/tournament-sort.md
+      - tim排序: basic/tim-sort.md
       - 排序相关 STL: basic/stl-sort.md
       - 排序应用: basic/use-of-sort.md
     - 前缀和 & 差分: basic/prefix-sum.md
