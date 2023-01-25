@@ -11,13 +11,9 @@ changed = False
 change_list = {}
 cjk_map = None
 
-with open('scripts/cjk-map.json') as cjk_map_file:
-    cjk_map = json.load(cjk_map_file)
+cjk_map = json.load(open('scripts/cjk-map.json'))
 
-listfile = 'res.txt'
-with open(listfile) as file_object:
-    lines = file_object.readlines()
-for line in lines:
+for line in open('res.txt'):
     for filename in line.split(' '):
         name = filename[:filename.rfind('.')]
         num = name.rfind('/')
