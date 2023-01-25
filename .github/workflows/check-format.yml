@@ -2,7 +2,7 @@ name: Check PR Format
 
 on:
   pull_request:
-    branches: 
+    branches:
       - master
     paths:
       - docs/**
