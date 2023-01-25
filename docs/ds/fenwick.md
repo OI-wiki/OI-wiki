@@ -560,15 +560,15 @@ $$
     这是因为，理想规定状态下，在差分矩阵上做二维前缀和应该得到原矩阵，因为这是一对逆运算。
     
     二维前缀和的公式是这样的：
-
+    
     $s(i, j) = s(i - 1, j) + s(i, j - 1) - s(i - 1, j - 1) + a(i, j)$。
-
+    
     所以，设 $a$ 是原数组，$d$ 是差分数组，有：
-
+    
     $a(i, j) = a(i - 1, j) + a(i, j - 1) - a(i - 1, j - 1) + d(i, j)$
-
+    
     移项就得到二维差分的公式了。
-
+    
     $d(i, j) = a(i, j) - a(i - 1, j) - a(i, j - 1) + a(i - 1, j - 1)$。
 
 这样以来，对左上角 $(x_1, y_1)$，右下角 $(x_2, y_2)$ 的子矩阵区间加 $v$，相当于在差分数组上，对 $d(x_1, y_1)$ 和 $d(x_2 + 1, y_2 + 1)$ 分别单点加 $v$，对 $d(x_2 + 1, y_1)$ 和 $d(x_1, y_2 + 1)$ 分别单点加 $-v$。
@@ -613,33 +613,36 @@ $$
     ```cpp
     typedef long long ll;
     ll t1[N][N], t2[N][N], t3[N][N], t4[N][N];
-    void add(ll x, ll y, ll z){
-        for(int X = x; X <= n; X += lowbit(X))
-            for(int Y = y; Y <= m; Y += lowbit(Y)){
-                t1[X][Y] += z;
-                t2[X][Y] += z * x; // 注意是 z * x 而不是 z * X，后面同理
-                t3[X][Y] += z * y;
-                t4[X][Y] += z * x * y;
-            }
+    
+    void add(ll x, ll y, ll z) {
+      for (int X = x; X <= n; X += lowbit(X))
+        for (int Y = y; Y <= m; Y += lowbit(Y)) {
+          t1[X][Y] += z;
+          t2[X][Y] += z * x;  // 注意是 z * x 而不是 z * X，后面同理
+          t3[X][Y] += z * y;
+          t4[X][Y] += z * x * y;
+        }
     }
-    void range_add(ll xa, ll ya, ll xb, ll yb, ll z){ //(xa, ya) 到 (xb, yb) 子矩阵
-        add(xa, ya, z);
-        add(xa, yb + 1, -z);
-        add(xb + 1, ya, -z);
-        add(xb + 1, yb + 1, z);
+    
+    void range_add(ll xa, ll ya, ll xb, ll yb,
+                   ll z) {  //(xa, ya) 到 (xb, yb) 子矩阵
+      add(xa, ya, z);
+      add(xa, yb + 1, -z);
+      add(xb + 1, ya, -z);
+      add(xb + 1, yb + 1, z);
     }
-    ll ask(ll x, ll y){
-        ll res = 0;
-        for(int i = x; i; i -= lowbit(i))
-            for(int j = y; j; j -= lowbit(j))
-                res += (x + 1) * (y + 1) * t1[i][j]
-                    - (y + 1) * t2[i][j]
-                    - (x + 1) * t3[i][j]
-                    + t4[i][j];
-        return res;
+    
+    ll ask(ll x, ll y) {
+      ll res = 0;
+      for (int i = x; i; i -= lowbit(i))
+        for (int j = y; j; j -= lowbit(j))
+          res += (x + 1) * (y + 1) * t1[i][j] - (y + 1) * t2[i][j] -
+                 (x + 1) * t3[i][j] + t4[i][j];
+      return res;
     }
-    ll range_ask(ll xa, ll ya, ll xb, ll yb){
-        return ask(xb, yb) - ask(xb, ya - 1) - ask(xa - 1, yb) + ask(xa - 1, ya - 1);
+    
+    ll range_ask(ll xa, ll ya, ll xb, ll yb) {
+      return ask(xb, yb) - ask(xb, ya - 1) - ask(xa - 1, yb) + ask(xa - 1, ya - 1);
     }
     ```
 
