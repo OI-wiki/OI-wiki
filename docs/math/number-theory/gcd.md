@@ -155,7 +155,7 @@
 
 如果 $a\gg b$，更相减损术的 $O(n)$ 复杂度将会达到最坏情况。
 
-考虑一个优化，若 $2\mid a,2\mid b$，$\gcd(a,b) = 2\gcd(\dfrac a2, \dfrac b2)$。
+考虑一个优化，若 $2\mid a,2\mid b$，$\gcd(a,b) = 2\gcd\left(\dfrac a2, \dfrac b2\right)$。
 
 否则，若 $2\mid a$（$2\mid b$ 同理），因为 $2\mid b$ 的情况已经讨论过了，所以 $2 \nmid b$。因此 $\gcd(a,b)=\gcd\left(\dfrac a2,b\right)$。
 
