@@ -157,7 +157,7 @@
 
 考虑一个优化，若 $2\mid a,2\mid b$，$\gcd(a,b) = 2\gcd(\dfrac a2, \dfrac b2)$。
 
-否则，若 $2\mid a$（$2\mid b$ 同理），因为 $2\mid b$ 的情况已经讨论过了，所以 $2 \nmid b$。因此 $\gcd(a,b)=\gcd(\dfrac a2,b)$。
+否则，若 $2\mid a$（$2\mid b$ 同理），因为 $2\mid b$ 的情况已经讨论过了，所以 $2 \nmid b$。因此 $\gcd(a,b)=\gcd\left(\dfrac a2,b\right)$。
 
 优化后的算法时间复杂度是 $O(\log n)$。
 
