@@ -111,17 +111,13 @@ $$
 
 ### 阶
 
-群 $G$ 中元素 $x$ 的阶，是指存在一个最小正整数 $d$，使得 $x^d=e$。对于有限群，元素 $x$ 的阶一定存在。
+群 $G$ 的阶是它元素的个数，记作 $\operatorname{ord}(G)$ 或 $\lvert G \rvert$，无限群有无限阶。
 
-群 $G$ 的阶就是群 $G$ 元素的个数。对于无限群 $G$，阶规定为 $0$。
+群 $G$ 内的一个元素 $a$ 的阶是使 $a^m = e$ 成立的最小正整数 $m$，记作 $\operatorname{ord}(a)$ 或 $\lvert a \rvert$，等于 $\operatorname{ord}(\langle a \rangle)$。若这个数不存在，则称 $a$ 有无限阶。有限群的所有元素都有有限阶。
 
-阶：群 $S$ 中 $a$ 的阶是满足 $a^r=e$ 的最小的 $r$，符号 $\operatorname{ord}(a)$，有 $\operatorname{ord}(a)=\left|\left<a\right>\right|$，显然成立。
+例如，对于群 $Z_n^ \times =\{[a], n \in Z_n : \gcd(a, n) = 1\}, |Z_n^ \times | = \varphi(n)$，阶就是满足 $a^r \equiv 1 \pmod n$ 的最小的 $r$（这正是数论中 $a$ 模 $n$ 的阶）。
 
-考虑群 $Z_n^ \times =\{[a], n \in Z_n : \gcd(a, n) = 1\}, |Z_n^ \times | = \varphi(n)$，阶就是满足 $a^r \equiv 1 \pmod n$ 的最小的 $r$，$\operatorname{ord}(a)=r$。
-
-有定理：群中任意一个元素的阶，一定整除群的阶。
-
-另外在这里给出两个有关阶的定理：
+群中任意一个元素的阶，一定整除群的阶。
 
 如果群 $G$ 中存在两个元素 $a$、$b$ 的阶 $m$、$n$ 互素，那么 $a^sb^t=e$ 当且仅当 $a^s=e$ 并且 $b^t=e$。
 
@@ -146,8 +142,6 @@ $$
 ### 循环群
 
 循环群是最简单的群。群 $G$ 中任意一个元素 $a$ 都可以表示为 $a=g^k$，其中 $k$ 为整数。称 $g$ 为群 $G$ 的生成元。
-
-有以下定理：
 
 生成元 $g$ 的阶就是群 $G$ 的阶。
 
