@@ -210,20 +210,22 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 ??? note "证明"
     证明：假设 $c[x]$ 和 $c[y]$ 相交，即 $[l(x), x]$ 和 $[l(y), y]$ 相交，则一定有 $l(y) \le x \le y$。
     
-    将 $y$ 表示为 $s \times 2^{k +1} + 2^k$，则 $l(y) = s \times 2^{k + 1} + 1$。所以，$x$ 可以表示为 $s \times 2^{k +1} + b$，其中 $1 \le b < 2^k$。
+    将 $y$ 表示为 $s \times 2^{k +1} + 2^k$，则 $l(y) = s \times 2^{k + 1} + 1$。所以，$x$ 可以表示为 $s \times 2^{k +1} + b$，其中 $1 \le b \le 2^k$。
     
     不难发现 $\operatorname{lowbit}(x) = \operatorname{lowbit}(b)$。又因为 $b - \operatorname{lowbit}(b) \ge 0$，
     
     所以 $l(x) = x - \operatorname{lowbit}(x) + 1 = s \times 2^{k +1} + b - \operatorname{lowbit}(b) +1 \ge s \times 2^{k +1} + 1 = l(y)$，即 $l(y) \le l(x) \le x \le y$。
     
-    所以，$c[x]$ 的管辖范围包含于 $c[y]$。
+    所以，如果 $c[x]$ 和 $c[y]$ 相交，那么 $c[x]$ 的管辖范围一定完全包含于 $c[y]$。
 
 **性质 $\boldsymbol{2}$：在 $\boldsymbol{c[x]}$ 真包含于 $\boldsymbol{c[x + \operatorname{lowbit}(x)]}$。**
 
 ??? note "证明"
     证明：设 $y = x + \operatorname{lowbit}(x)$，$x = s \times 2^{k + 1} + 2^k$，则 $y = (s + 1) \times 2^{k +1}$，$l(x) = s \times 2^{k + 1} + 1$。
     
-    不难发现 $\operatorname{lowbit}(y) \ge 2^{k + 1}$，所以 $l(y) \le s \times 2^{k +1} + 1= l(x)$，即 $l(y) \le l(x) \le x < y$，证毕。
+    不难发现 $\operatorname{lowbit}(y) \ge 2^{k + 1}$，所以 $l(y) = (s + 1) \times 2^{k + 1} - \operatorname{lowbit}(y) + 1 \le s \times 2^{k +1} + 1= l(x)$，即 $l(y) \le l(x) \le x < y$。
+    
+    所以，$c[x]$ 真包含于 $c[x + \operatorname{lowbit}(x)]$。
 
 **性质 $3$：对于任意 $\boldsymbol{x < y < x + \operatorname{lowbit}(x)}$，有 $\boldsymbol{c[x]}$ 和 $\boldsymbol{c[y]}$ 不交。**
 
@@ -232,7 +234,9 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
     
     不难发现 $\operatorname{lowbit}(y) = \operatorname{lowbit}(b) < \operatorname{lowbit}(x)$，所以 $\operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 > 0$。
     
-    因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + \operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 > x$，即 $l(x) \le x < l(y) \le y$，证毕。
+    因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + \operatorname{lowbit}(x) - \operatorname{lowbit}(y) + 1 > x$，即 $l(x) \le x < l(y) \le y$。
+    
+    所以，$c[x]$ 和 $c[y]$ 不交。
 
 有了这三条性质的铺垫，我们接下来看树状数组的树形态（请忽略 $a$ 向 $c$ 的连边）。
 
@@ -465,7 +469,7 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
                   (getsum(t2, r) - getsum(t2, l - 1))
         ```
 
-根据这个原理，应该可以实现「区间乘区间积」，「区间异或一个数，求区间异或值」，感兴趣的读者可以自己尝试。
+根据这个原理，应该可以实现「区间乘区间积」，「区间异或一个数，求区间异或值」等，只要满足维护的信息和区间操作是同种运算即可，感兴趣的读者可以自己尝试。
 
 ## 二维树状数组
 
@@ -765,13 +769,13 @@ $i$ 按照 $5 \to 1$ 扫：
 
 注意到，遍历 $i$ 后的查询 $b[1 \ldots x - 1]$ 和自增 $b[x]$ 的两个步骤可以颠倒，变成先自增 $b[x]$ 再查询 $b[1 \ldots x - 1]$，不影响答案。两个角度来解释：
 
-- $b[x]$ 和 $b[1 \ldots x - 1]$ 相互不影响。
+- 对 $b[x]$ 的修改不影响对 $b[1 \ldots x - 1]$ 的查询。
 - 颠倒后，实质是在查询 $i \le j$ 且 $a[i] > a[j]$ 的数对数量，而 $i = j$ 时不存在 $a[i] > a[j]$，所以 $i \le j$ 相当于 $i < j$，所以这与原来的逆序对问题是等价的。
 
 如果查询非严格逆序对（$i < j$ 且 $a[i] \ge a[j]$）的数量，那就要改为查询 $b[1 \ldots x]$ 的和，这时就不能颠倒两步了，还是两个角度来解释：
 
-- $b[x]$ 和 $b[1 \ldots x]$ 相互影响。
-- 颠倒后，实质是在查询 $i \le j$ 且 $a[i] \ge a[j]$ 的数对数量，而 $i = j$ 时恒有 $a[i] \ge a[j]$，所以 $i \le j$ 不相当于 $i < j$，与原问题不等价。
+- 对 $b[x]$ 的修改 **影响** 对 $b[1 \ldots x]$ 的查询。
+- 颠倒后，实质是在查询 $i \le j$ 且 $a[i] \ge a[j]$ 的数对数量，而 $i = j$ 时恒有 $a[i] \ge a[j]$，所以 $i \le j$  **不相当于**  $i < j$，与原问题 **不等价**。
 
 如果查询 $i \le j$ 且 $a[i] \ge a[j]$ 的数对数量，那这两步就需要颠倒了。
 
