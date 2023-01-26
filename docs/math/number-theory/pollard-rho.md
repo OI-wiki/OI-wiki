@@ -201,7 +201,7 @@ $$
         for (step = 1; step <= goal; ++step) {
           t = f(t, c, x);
           val = val * abs(t - s) % x;
-    	  // 如果 val 为 0，退出重新分解
+          // 如果 val 为 0，退出重新分解
           if (!val) return x;
           if ((step % 127) == 0) {
             ll d = gcd(val, x);
