@@ -198,6 +198,7 @@ $$
 \begin{aligned}
 \left(\frac{2}{p}\right)&\equiv 2^{\frac{p-1}{2}}\\
 &=\frac{1}{\sqrt{2}}{\left(w_8+w_8^{-1}\right)}^p\\
+&=\frac{1}{\sqrt{2}}\left(w_8^p+w_8^{-p}+\right)+C_p^1\frac{1}{\sqrt{2}}\left(w_8^{p-2}+w_8^{2-p}+\right)+\cdots\\
 &\equiv\frac{1}{\sqrt{2}}(w_8^p+w_8^{-p})\\
 &=\begin{cases}
 1\pmod p,&p\equiv 1,7\pmod 8\\
@@ -206,7 +207,7 @@ $$
 \end{aligned}
 $$
 
-用复数的几何直观观察这个式子会非常有趣。
+中间的同余式是因为二项式展开后进行首位配对，后面每一项都是整数，而前面的二项式系数均被 $p$ 整除。
 
 ### 艾森斯坦引理
 
