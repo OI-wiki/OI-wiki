@@ -1,4 +1,3 @@
-
 ## 引入
 
 给定一个正整数 $N \in \mathbf{N}_{+}$，试快速找到它的一个 [非平凡因数](basic.md)。
@@ -48,7 +47,7 @@
 
 ???+note "证明 `result` 中均为 $N$ 的素因数"
     首先证明元素均为 $N$ 的素因数：因为当且仅当 `N % i == 0` 满足时，`result` 发生变化：储存 $i$，说明此时 $i$ 能整除 $\frac{N}{A}$，说明了存在一个数 $p$ 使得 $pi=\frac{N}{A}$，即 $piA = N$（其中，$A$ 为 $N$ 自身发生变化后遇到 $i$ 时所除的数。我们注意到 `result` 若在 push $i$ 之前就已经有数了，为 $R_1,\,R_2,\,\ldots,\,R_n$，那么有 `N` $=\frac{N}{R_1^{q_1}\cdot R_2^{q_2}\cdot \cdots \cdot R_n^{q_n}}$，被除的乘积即为 $A$）。所以 $i$ 为 $N$ 的因子。
-
+    
     其次证明 `result` 中均为素数。我们假设存在一个在 `result` 中的合数 $K$，并根据整数基本定理，分解为一个素数序列 $K = K_1^{e_1}\cdot K_2^{e_2}\cdot\cdots\cdot  K_3^{e_3}$，而因为 $K_1 < K$，所以它一定会在 $K$ 之前被遍历到，并令 `while(N % k1 == 0) N /= k1`，即让 `N` 没有了素因子 $K_1$，故遍历到 $K$ 时，`N` 和 $K$ 已经没有了整除关系了。
 
 值得指出的是，如果开始已经打了一个素数表的话，时间复杂度将从 $O(\sqrt N)$ 下降到 $O(\sqrt{\frac N {\ln N}})$。去 [筛法](./sieve.md) 处查阅更多打表的信息。
@@ -148,7 +147,7 @@ $$
 
 ??? note "基于 Floyd 判环的 Pollard-Rho 算法"
     === "C++"
-
+    
         ```cpp
         ll Pollard_Rho(ll N) {
           ll c = rand() % (N - 1) + 1;
@@ -163,9 +162,9 @@ $$
           return N;
         }
         ```
-
+    
     === "Python"
-
+    
         ```python
         def Pollard_Rho(N):
         c = random.randint(0, 32767) % (N - 1) + 1
@@ -194,7 +193,7 @@ $$
       ll t = 0;
       ll c = rand() % (x - 1) + 1;
       // 加速算法，这一步可以省略
-      for (int i=1; i<1145; ++i) t = f(t, c, x);
+      for (int i = 1; i < 1145; ++i) t = f(t, c, x);
       ll s = t;
       int step = 0, goal = 1;
       ll val = 1;
@@ -202,7 +201,9 @@ $$
         for (step = 1; step <= goal; ++step) {
           t = f(t, c, x);
           val = val * abs(t - s) % x;
-		  // 如果 val 为 0，退出重新分解
+    ```
+
+    	  // 如果 val 为 0，退出重新分解
           if (!val) return x;
           if ((step % 127) == 0) {
             ll d = gcd(val, x);
