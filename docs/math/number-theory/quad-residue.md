@@ -198,7 +198,7 @@ $$
 \begin{aligned}
 \left(\frac{2}{p}\right)&\equiv 2^{\frac{p-1}{2}}\\
 &=\frac{1}{\sqrt{2}}{\left(w_8+w_8^{-1}\right)}^p\\
-&=\frac{1}{\sqrt{2}}\left(w_8^p+w_8^{-p}+\right)+C_p^1\frac{1}{\sqrt{2}}\left(w_8^{p-2}+w_8^{2-p}+\right)+\cdots\\
+&=\frac{1}{\sqrt{2}}\left(w_8^p+w_8^{-p}\right)+C_p^1\frac{1}{\sqrt{2}}\left(w_8^{p-2}+w_8^{2-p}\right)+\cdots\\
 &\equiv\frac{1}{\sqrt{2}}(w_8^p+w_8^{-p})\\
 &=\begin{cases}
 1\pmod p,&p\equiv 1,7\pmod 8\\
