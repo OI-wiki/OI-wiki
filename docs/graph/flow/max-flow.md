@@ -933,7 +933,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u
 
 [^ref_EK]: http://pisces.ck.tp.edu.tw/~peng/index.php?action=showfile&file=f6cdf7ef750d7dc79c7d599b942acbaaee86a2e3e
 
-[^ref_Dinic]: https://courses.cs.duke.edu/fall19/compsci638/fall19_notes/lecture3.pdf
+[^ref_Dinic]: https://people.orie.cornell.edu/dpw/orie633/LectureNotes/lecture9.pdf
 
 [^ref1]: Cherkassky B V, Goldberg A V. On implementing push-relabel method for the maximum flow problem\[C]//International Conference on Integer Programming and Combinatorial Optimization. Springer, Berlin, Heidelberg, 1995: 157-171.
 
