@@ -180,20 +180,20 @@
     Big gcd(Big a, Big b) {
       // 记录a和b的公因数2出现次数
       int atimes = 0, btimes = 0;
-      while (a & 1) {
+      while (a % 2 == 0) {
         a >>= 1;
         atimes++;
       }
-      while (b != 0) {
+      while (b % 2 == 0) {
         b >>= 1;
         btimes++;
       }
       for (;;) {
         // a和b公因数中的2已经计算过了，后面不可能出现a,b均为偶数的情况
-        while (a & 1) {
+        while (a % 2 == 0) {
           a >>= 1;
         }
-        while (b & 1) {
+        while (b % 2 == 0) {
           b >>= 1;
         }
         if (a == b) break;
@@ -211,16 +211,16 @@
     def gcd(a, b):
         atimes = 0
         btimes = 0
-        while a & 2:
+        while a%2 == 0:
             atimes += 1
             a = a >> 1
-        while b & 2:
+        while b%2 == 0:
             btimes += 1
             b = b >> 1
         while True:
-            while a & 2:
+            while a%2 == 0:
                 a = a >> 1
-            while b & 2:
+            while b%2 == 0:
                 b = b >> 1
             if a == b:
                 break
