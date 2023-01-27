@@ -318,7 +318,7 @@ bool Pivot(pair<size_t, size_t> &p) {  // 返回0表示所有的非轴元素都�
   double bmin = INT_MAX;
   for (size_t i = 1; i < bn; i++) {
     double tmp = B[i] / Matrix[i][y];
-    if (Matrix[i][y] != 0 && bmin > tmp) {
+    if (Matrix[i][y] != 0 && bmin > tmp && tmp > 0) {
       bmin = tmp;
       x = i;
     }
