@@ -96,7 +96,7 @@ void performance(int l, int r) {
 
 ## 习题
 
-- [「SCOI2010」序列操作](https://www.luogu.com.cn/problem/P2572)
+- ~~[「SCOI2010」序列操作](https://www.luogu.com.cn/problem/P2572)~~（该题目来源已添加 Hack 数据）
 - [「SHOI2015」脑洞治疗仪](https://loj.ac/problem/2037)
-- [「Luogu 2787」理理思维](https://www.luogu.com.cn/problem/P2787)
 - [「Luogu 4979」矿洞：坍塌](https://www.luogu.com.cn/problem/P4979)
+- [「Luogu 8146」risrqnis](https://www.luogu.com.cn/problem/P8146)
