@@ -205,31 +205,6 @@
     }
     ```
 
-=== "Python"
-
-    ```python
-    def gcd(a, b):
-        atimes = 0
-        btimes = 0
-        while a%2 == 0:
-            atimes += 1
-            a = a >> 1
-        while b%2 == 0:
-            btimes += 1
-            b = b >> 1
-        while True:
-            while a%2 == 0:
-                a = a >> 1
-            while b%2 == 0:
-                b = b >> 1
-            if a == b:
-                break
-            if a < b:
-                a, b = b, a
-            a = a - b
-        return a << min(atimes, btimes)
-    ```
-
 ### 多个数的最大公约数
 
 那怎么求多个数的最大公约数呢？显然答案一定是每个数的约数，那么也一定是每相邻两个数的约数。我们采用归纳法，可以证明，每次取出两个数求出答案后再放回去，不会对所需要的答案造成影响。
