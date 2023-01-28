@@ -111,9 +111,9 @@ $$
 
 证明如下：
 
-若 $x\equiv y \pmod p$，则可以将它们表示为 $x=k_1p+a$，$y=k_2p+a$，满足 $k_1,k_2,a\in \Z,a\in \left[0,p\right)$。
+若 $x\equiv y \pmod p$，则可以将它们表示为 $x=k_1p+a$，$y=k_2p+a$，满足 $k_1,k_2,a\in \mathbb{Z},a\in \left[0,p\right)$。
 
-$f(x)=(x^2+c) \bmod n$，因此 $f(x)=x^2+c-kn$，其中 $k \in \Z$。
+$f(x)=(x^2+c) \bmod n$，因此 $f(x)=x^2+c-kn$，其中 $k \in \mathbb{Z}$。
 
 $$
 \begin{aligned}
