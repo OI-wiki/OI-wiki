@@ -63,7 +63,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
     也就是当块长取 $\frac{n^\frac23t^\frac13}{m^\frac13}$ 时有最优时间复杂度 $O(n^\frac23m^\frac23t^\frac13)$ 。
 
-    常说的 $O(n^\frac35)$ 便是把 $n,m,t$ 当做同数量级的时间复杂度。
+    常说的 $O(n^\frac53)$ 便是把 $n,m,t$ 当做同数量级的时间复杂度。
 
     实际操作中还是推荐设定 $n^{\frac{2}{3}}$ 为块长。
 
