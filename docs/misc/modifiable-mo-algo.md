@@ -62,14 +62,6 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
     得 $s=\sqrt[3]{\frac{2n^2t}{m}}=\frac{2^\frac{1}{3}n^\frac23t^\frac13}{m^\frac13}=s_0$ 。
 
-    设 $s=s_0+\epsilon,\epsilon\in \mathbb{R}$?。
-
-    $f'(s_0+\epsilon)=m-\frac{2n^2t}{(s_0+\epsilon)^3}$ 。
-
-    易证 $\epsilon>0$ 时 $f'(s_0+\epsilon)>0$ ， $\epsilon<0$ 时 $f'(s_0+\epsilon)<0$ 。
-
-    所以 $s=s_0$?处确为极小。
-
     也就是当块长取 $\frac{n^\frac23t^\frac13}{m^\frac13}$ 时有最优时间复杂度 $O(n^\frac23m^\frac23t^\frac13)$?。
 
     常说的 $O(n^\frac35)$ 便是把 $n,m,t$ 当做同数量级的时间复杂度。
