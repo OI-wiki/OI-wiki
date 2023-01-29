@@ -35,7 +35,10 @@
      $a\cdot(b+c)=a\cdot b+a\cdot c$ 和 $(a+b)\cdot c=a\cdot c+b\cdot c$ 成立。
 
 !!! warning
-    有的作者要求 $(R,\cdot)$ 构成幺半群（即存在乘法单位元）；相对地，不存在乘法单位元的则被称为 **伪环**（rng 或 pseudo-ring）。遇到的时候需根据上下文加以判断。
+    在有的定义中，环必须存在乘法单位元；相对地，不存在乘法单位元的则被称为 **伪环**（rng 或 pseudo-ring）。遇到的时候需根据上下文加以判断。
+    
+    维基百科采用的就是这种定义：[^ring-wiki]
+    > In the terminology of this article, a ring is defined to have a multiplicative identity, while a structure with the same axiomatic definition but without the requirement for a multiplicative identity is instead called a rng (IPA: /rʊŋ/). For example, the set of even integers with the usual + and ⋅ is a rng, but not a ring. As explained in § History below, many authors apply the term "ring" without requiring a multiplicative identity.
 
 在抽象代数中，研究环的分支为 **环论**。
 
@@ -64,7 +67,7 @@
 从群 $(G,\cdot)$ 到群 $(H,*)$ 的同态是一个函数 $\varphi :G\to H$ 使得对于 $G$ 中所有的元素 $a$ 和 $b$：
 
 $$
-\varphi (a\cdot b)=\varphi (a)*\varphi (b)
+\varphi (a\cdot b)=\varphi (a)*\varphi (b) 
 $$
 
 ### 子群
@@ -81,11 +84,11 @@ $$
 
 **陪集**（coset）是一个群的子集，它包含通过将群的一个固定元素乘以给定子群的每个元素在右边或左边相乘以得到的所有乘积。
 
-在许多情况下，两个群元素可能是等价的。例如，在正方形的对称群中，一旦进行了任何反射，仅靠旋转就不能使正方形回到原来的位置，所以可以认为正方形的反射位置相互等价，而不等价于未反射的位置；旋转操作与是否进行了反射无关。陪集被用来正式表达这个观点：一个子群 $H$ 决定了左右陪集，陪集可以说是 $H$ 经过任何群元素 $g$ 的变换（即左乘或右乘）。用符号表示，包含元素 $g$ 的 $H$ 的左右陪集分别是：
+在许多情况下，两个群元素可能是等价的。例如，在正方形的对称群中，一旦进行了反射，仅靠旋转就不能使正方形回到原来的位置，所以可以认为正方形的反射位置相互等价，而不等价于未反射的位置；旋转操作与是否进行了反射无关。陪集被用来正式表达这个观点：一个子群 $H$ 决定了左右陪集，陪集可以说是 $H$ 经过任何群元素 $g$ 的变换（即左乘或右乘）。用符号表示，包含元素 $g$ 的 $H$ 的左右陪集分别是：
 
 $$
 \begin{aligned}
-gH&=\{g\cdot h\mid h\in H\}\\
+gH&=\{g\cdot h\mid h\in H\} \\
 Hg&=\{h \cdot g\mid h\in H\}
 \end{aligned}
 $$
@@ -191,9 +194,13 @@ $$
 
 抽象群主要来源是通过正规子群 $H$ 构造群 $G$ 的商群 $G/H$。如果群 $G$ 是集合 $X$ 上的置换群，则商群 $G/H$ 不再作用于 $X$；但是抽象群的概念允许人们不必担心这种差异。
 
-## 参考资料与拓展阅读
+## 外部链接
 
 - [1][Group (mathematics) - Wikipedia](<https://en.wikipedia.org/wiki/Group_(mathematics)>)
 - [2][Group theory - Wikipedia](<https://en.wikipedia.org/wiki/Group_theory>)
 - [3][Group - Wolfram MathWorld](<https://mathworld.wolfram.com/Group.html>)
 - [4][Visual Group Theory](<https://www.youtube.com/playlist?list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv>)
+
+## 参考资料与注释
+
+[^ring-wiki]: [Ring (mathematics) - Wikipedia](<https://en.wikipedia.org/wiki/Ring_(mathematics)#History>)
