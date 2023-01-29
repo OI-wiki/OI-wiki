@@ -101,11 +101,11 @@ $[G : H]$ 表示 $G$ 中 $H$ 的左陪集数（等价于右陪集数）。
 
 ### 生成子群
 
-$S \subset G$ 的 **生成子群**（generated subgroup）$\larrow S \rarrow$ 是 $G$ 的包含 $S$ 的最小子群，也是 $G$ 的包含 $S$ 的所有子群的交，称 $S$ 为 **群的生成集**(generating set of a group)。
+$S \subset G$ 的 **生成子群**（generated subgroup）$\langle S \rangle$ 是 $G$ 的包含 $S$ 的最小子群，也是 $G$ 的包含 $S$ 的所有子群的交，称 $S$ 为 **群的生成集**(generating set of a group)。
 
-如果 $G = \larrow S \rarrow$，我们称 $S$ 生成 $G$，$S$ 中的元素叫做生成元或群生成元。
+如果 $G = \langle S \rangle$，我们称 $S$ 生成 $G$，$S$ 中的元素叫做生成元或群生成元。
 
-$S$ 中只有一个元素 $x$ 时，$\larrow S \rarrow$ 通常写为 $\larrow x \rarrow$。在这种情况下，$\larrow x \rarrow$ 是 $x$ 的幂的循环子群（即 $\larrow a \rarrow = \{a^k}, k \geq 1 \}$），我们称这个循环群是用 $x$ 生成的。
+$S$ 中只有一个元素 $x$ 时，$\langle S \rangle$ 通常写为 $\langle x \rangle$。在这种情况下，$\langle x \rangle$ 是 $x$ 的幂的循环子群（即 $\langle a \rangle = \{a^k, k \geq 1 \}$），我们称这个循环群是用 $x$ 生成的。
 
 ### 商群
 
