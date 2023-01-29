@@ -38,7 +38,8 @@
     在有的定义中，环必须存在乘法单位元；相对地，不存在乘法单位元的则被称为 **伪环**（rng 或 pseudo-ring）。遇到的时候需根据上下文加以判断。
     
     维基百科采用的就是这种定义：[^ring-wiki]
-    > In the terminology of this article, a ring is defined to have a multiplicative identity, while a structure with the same axiomatic definition but without the requirement for a multiplicative identity is instead called a rng (IPA: /rʊŋ/). For example, the set of even integers with the usual + and ⋅ is a rng, but not a ring. As explained in § History below, many authors apply the term "ring" without requiring a multiplicative identity.
+    
+    > In the terminology of this article, a ring is defined to have a multiplicative identity, while a structure with the same axiomatic definition but without the requirement for a multiplicative identity is instead called a rng (IPA:/rʊŋ/). For example, the set of even integers with the usual + and ⋅ is a rng, but not a ring. As explained in § History below, many authors apply the term "ring" without requiring a multiplicative identity.
 
 在抽象代数中，研究环的分支为 **环论**。
 
@@ -203,4 +204,4 @@ $$
 
 ## 参考资料与注释
 
-[^ring-wiki]: [Ring (mathematics) - Wikipedia](<https://en.wikipedia.org/wiki/Ring_(mathematics)#History>)
+[^ring-wiki]: [Ring (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Ring_(mathematics)#History)
