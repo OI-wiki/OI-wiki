@@ -32,7 +32,7 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
 
 ### 时间复杂度
 
-如果使用 [Bellman-Ford 算法](../shortest-path.md#bellman-ford) 求解最短路，每次找增广路的时间复杂度为 $O(nm)$。设该网络的最大流为 $f$，则最坏时间复杂度为 $O(nmf)$。事实上，SSP 算法是 [伪多项式时间](../../misc/cc-basic.md#pseudo-polynomial-time) 的。
+如果使用 [Bellman-Ford 算法](../shortest-path.md#bellman-ford-算法) 求解最短路，每次找增广路的时间复杂度为 $O(nm)$。设该网络的最大流为 $f$，则最坏时间复杂度为 $O(nmf)$。事实上，SSP 算法是 [伪多项式时间](../../misc/cc-basic.md#pseudo-polynomial-time-伪多项式时间) 的。
 
 ???+note "为什么 SSP 算法是伪多项式时间的？"
     SSP 算法的时间复杂度有 $O(nmf)$ 的上界，这是一个关于值域的多项式，所以是伪多项式时间的。
@@ -174,7 +174,7 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
 
 用 Bellman-Ford 求解最短路的时间复杂度为 $O(nm)$，无论在稀疏图上还是稠密图上都不及 Dijkstra 算法[^note2]。但网络上存在单位费用为负的边，因此无法直接使用 Dijkstra 算法。
 
-Primal-Dual 原始对偶算法的思路与 [Johnson 全源最短路径算法](../shortest-path.md#johnson) 类似，通过为每个点设置一个势能，将网络上所有边的费用（下面简称为边权）全部变为非负值，从而可以应用 Dijkstra 算法找出网络上单位费用最小的增广路。
+Primal-Dual 原始对偶算法的思路与 [Johnson 全源最短路径算法](../shortest-path.md#johnson-全源最短路径算法) 类似，通过为每个点设置一个势能，将网络上所有边的费用（下面简称为边权）全部变为非负值，从而可以应用 Dijkstra 算法找出网络上单位费用最小的增广路。
 
 首先跑一次最短路，求出源点到每个点的最短距离（也是该点的初始势能）$h_i$。接下来和 Johnson 算法一样，对于一条从 $u$ 到 $v$，单位费用为 $w$ 的边，将其边权重置为 $w+h_u-h_v$。
 
