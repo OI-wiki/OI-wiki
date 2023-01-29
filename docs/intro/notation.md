@@ -43,7 +43,8 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | 最大和最小       | `$\max \min$`                     | $\max \min$                     |                                     |
 | 上确界和下确界     | `$\sup \inf$`                     | $\sup \inf$                     | 来源是 supremum 与 infimum 的简写          |
 | 极限          | `$\lim$`                          | $\lim$                          | 当位于行间时，下标会自动记在极限记号下方                |
-| 欧拉函数        | `$\varphi$`                       | $\varphi$                       |                                     |
+| 欧拉函数        | `$\varphi(n)$`                       | $\varphi(n)$                       |                                     |
+| 莫比乌斯函数        | `$\mu(n)$`                       | $\mu(n)$                       |                                     |
 | 阶乘          | `$!$`                             | $!$                             |                                     |
 | 括号          | `$\left(\right)$`                 | $\left(\right)$                 | 左右的 left 和 right 用于适配内容大小           |
 | 小数部分        | `$\{x\}$`                         | $\{x\}$                         | 在数学类的书上用大括号表示实数的小数部分                |
@@ -73,8 +74,8 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | 模 $n$ 的同余式        | `$\pmod{n}$`                 | $\pmod{n}$                 |                         |
 | 分数                | `$\dfrac{1}{2}$`             | $\dfrac{1}{2}$             |                         |
 | 组合数               | `$\dbinom{n}{m}$`            | $\dbinom{n}{m}$            | 在本站不建议使用符号 $C$ 表示组合数    |
-| 第一类斯特林数           | `$x\brack y$`                | $x\brack y$                |                         |
-| 第二类斯特林数           | `$x\brace y$`                | $x\brace y$                |                         |
+| 第一类斯特林数           | `$x\brack y$`                | $x\brack y$                | 在一些书上用小写 $s$ 表示第一类斯特林数      |
+| 第二类斯特林数           | `$x\brace y$`                | $x\brace y$                | 在一些书上用大写 $S$ 表示第一类斯特林数    |
 | 二次剩余符号            | `$\left(\frac{a}{p}\right)$` | $\left(\frac{a}{p}\right)$ |                         |
 
 ## 常数
