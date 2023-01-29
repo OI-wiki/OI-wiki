@@ -334,3 +334,5 @@ $$
 [^ref2]: [三种快速排序以及快速排序的优化](https://blog.csdn.net/insistGoGo/article/details/7785038)
 
 [^ref3]: [introsort](https://en.wikipedia.org/wiki/Introsort)
+
+[^ref4]: [C++ 性能榨汁机之局部性原理 - I'm Root lee !](http://irootlee.com/juicer_locality/)
