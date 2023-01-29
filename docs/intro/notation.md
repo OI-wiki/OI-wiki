@@ -53,7 +53,7 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | 除数函数        | `$\sigma_{k}(n)$`                 | $\sigma_{k}(n)$                 | $\sigma_{0}(n)$ 有时记作 $\tau(n)$，$\sigma_{1}(n)$ 有时记作 $\sigma(n)$ |
 | 欧拉函数        | `$\varphi(n)$`                    | $\varphi(n)$                    |                                                                 |
 | 莫比乌斯函数      | `$\mu(n)$`                        | $\mu(n)$                        |                                                                 |
-| 阶乘          | `$!$`                             | $!$                             |                                                                 |
+| $n$ 的阶乘          | `$n!$`                             | $n!$                             | 当自变量不是单独一个数或一个量的时候应当加括号          |
 | 括号          | `$\left(\right)$`                 | $\left(\right)$                 | 左右的 left 和 right 用于适配内容大小                                       |
 | 小数部分        | `$\{x\}$`                         | $\{x\}$                         | 在数学类的书上用大括号表示实数的小数部分                                            |
 | 向下取整或整数部分   | `$\lfloor x\rfloor [x]$`          | $\lfloor x\rfloor [x]$          | 在数学类的书上用中括号表示实数的整数部分，但在本站建议使用向下取整标记                             |
@@ -106,6 +106,7 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | 竖直省略号  | `$\vdots$`             | $\vdots$             |                                 |
 | 斜向省略号  | `$\ddots$`             | $\ddots$             |                                 |
 | 三下标数组  | `$f_{i,j,k} f(i,j,k)$` | $f_{i,j,k} f(i,j,k)$ |                                 |
+| 多项式展开中 $n$ 项的系数 | `$[n]f(z)$` |  $[n]f(z)$ |                           |
 | 空集     | `$\varnothing$`        | $\varnothing$        |                                 |
 | 实数集    | `$\mathbf{R}$`         | $\mathbf{R}$         | 该写法来源于人民教育出版社普通高中数学教材 A 版       |
 | 正整数集   | `$\mathbf{N}^*$`       | $\mathbf{N}^*$       | 该写法来源于人民教育出版社普通高中数学教材 A 版       |
