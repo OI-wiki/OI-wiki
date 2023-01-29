@@ -21,7 +21,7 @@ author: sshwy, hsfzLZH1, Enter-tainer
 
 | 名称        | 书写                               | 渲染效果                           | 备注                  |
 | --------- | -------------------------------- | ------------------------------ | ------------------- |
-| 打印机体      | `\mathtt{something}`             | $\mathtt{something}$           | 支持大小写英文字母、大写希腊字母和数字 |
+| 等宽字体      | `\mathtt{something}`             | $\mathtt{something}$           | 支持大小写英文字母、大写希腊字母和数字 |
 | 无衬线体      | `\mathsf{something}`             | $\mathsf{something}$           | 支持大小写英文字母、大写希腊字母和数字 |
 | Fraktur 体 | `\mathfrak{something}`           | $\mathfrak{something}$         | 支持大小写英文字母和数字        |
 | Italic 粗体 | `\boldsymbol{something}`         | $\boldsymbol{something}$       |                     |
