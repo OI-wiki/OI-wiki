@@ -43,6 +43,10 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | 最大和最小       | `$\max \min$`                     | $\max \min$                     |                                     |
 | 上确界和下确界     | `$\sup \inf$`                     | $\sup \inf$                     | 来源是 supremum 与 infimum 的简写          |
 | 极限          | `$\lim$`                          | $\lim$                          | 当位于行间时，下标会自动记在极限记号下方                |
+| 单位函数  | `$\varepsilon(n)$`  | $\varepsilon(n)$ |       |
+| 恒等函数  | `$\operatorname{id}_k(n)$`  |   $\operatorname{id}_k(n)$  | $\operatorname{id}_{1}(n)$ 有时记作 $\operatorname{id}(n)$   |
+| 常数函数  | `$1(n)$`    | $1(n)$   |       |
+| 除数函数  | `$\sigma_{k}(n)$`    |   $\sigma_{k}(n)$  |  $\sigma_{0}(n)$ 有时记作 $\tau(n)$，$\sigma_{1}(n)$ 有时记作 $\sigma(n)$  |
 | 欧拉函数        | `$\varphi(n)$`                    | $\varphi(n)$                    |                                     |
 | 莫比乌斯函数      | `$\mu(n)$`                        | $\mu(n)$                        |                                     |
 | 阶乘          | `$!$`                             | $!$                             |                                     |
@@ -64,11 +68,11 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | ----------------- | ---------------------------- | -------------------------- | ----------------------- |
 | 等价关系              | `$\iff$`                     | $\iff$                     |                         |
 | 叉乘和点乘             | `$a\times b a\cdot b$`       | $a\times b a\cdot b$       |                         |
-| 最大公约数和最小公倍数       | `$\gcd \operatorname{lcm}$`  | $\gcd \operatorname{lcm}$  | 在 LaTeX 默认内置中没有 lcm 函数  |
+| 最大公约数和最小公倍数       | `$\gcd$`  | $\gcd$  | 在一些书上用小括号 `()` 表示最大公约数，本站使用 gcd 函数写法  |
+| 最大公约数和最小公倍数       | `$\operatorname{lcm}$`  | $\operatorname{lcm}$  | 在 LaTeX 默认内置中没有 lcm 函数。在一些书上用中括号 `[]` 表示最小公倍数，本站使用 lcm 函数写法  |
 | 两数互素              | `$\gcd(x,y)=1$`              | $\gcd(x,y)=1$              | 不建议写成垂直记号，容易费解          |
 | 两数大小关系            | `$= > < \geq \leq \neq$`     | $= > < \geq \leq \neq$     | `\ne` 和 `\neq` 显示效果完全相同 |
 | 整除和不整除            | `$\mid \not\mid$`            | $\mid \not\mid$            | 不建议使用 `\|`，两侧的空间会偏窄     |
-| 整数 $a$ 与素数 $p$ 互素 | `$p\not\mid a$`              | $p\not\mid a$              | 更方便理解                   |
 | 余数                | `$x\bmod y$`                 | $x\bmod y$                 |                         |
 | 同余和不同余            | `$\equiv \not\equiv$`        | $\equiv \not\equiv$        |                         |
 | 模 $n$ 的同余式        | `$\pmod{n}$`                 | $\pmod{n}$                 |                         |
