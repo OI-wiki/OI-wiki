@@ -4,28 +4,28 @@ author: sshwy, hsfzLZH1, Enter-tainer
 
 ## 字体
 
-| 名称               | 书写                               | 渲染效果                           | 备注                            |
-| ---------------- | -------------------------------- | ------------------------------ | ----------------------------- |
-| 正文中的公式           | `小于 $a$ 的素数`                     | 小于 $a$ 的素数                     |                               |
-| 正文中的英文           | `SPFA`                           | SPFA                           |                               |
-| LaTeX 中的行文、中文与空格 | `$\text{something}$`             | $\text{something}$             | 使用非斜体，语义上应书写为 `\text`         |
-| 函数名              | `\operatorname{something}`       | $\operatorname{something}$     | 使用罗马体，语义上应书写为 `\operatorname` |
-| 变量               | `x`                              | $x$                            | 使用意大利体，是 LaTeX 默认字体           |
-| 多字母的变量           | `\textit{something}`             | $\textit{something}$           |  显示上和默认字体没有区别       |
-| 斜体               | `\mathit{something}`             | $\mathit{something}$           | 这是 LaTeX 默认字体            |
-| 常量               | `\mathrm{something}`             | $\mathrm{something}$           | 使用罗马体，支持大小写英文字母和数字            |
-| 黑板粗体             | `\mathbb{something}`             | $\mathbb{something}$           | 仅支持大写英文字母。用于特殊集合的书写         |
-| Roman 粗体         | `\mathbf{something}`             | $\mathbf{something}$           | 支持大小写英文字母、数字和大写希腊字母。用于特殊集合的书写     |
+| 名称               | 书写                         | 渲染效果                       | 备注                            |
+| ---------------- | -------------------------- | -------------------------- | ----------------------------- |
+| 正文中的公式           | `小于 $a$ 的素数`               | 小于 $a$ 的素数                 |                               |
+| 正文中的英文           | `SPFA`                     | SPFA                       |                               |
+| LaTeX 中的行文、中文与空格 | `$\text{something}$`       | $\text{something}$         | 使用非斜体，语义上应书写为 `\text`         |
+| 函数名              | `\operatorname{something}` | $\operatorname{something}$ | 使用罗马体，语义上应书写为 `\operatorname` |
+| 变量               | `x`                        | $x$                        | 使用意大利体，是 LaTeX 默认字体           |
+| 多字母的变量           | `\textit{something}`       | $\textit{something}$       | 显示上和默认字体没有区别                  |
+| 斜体               | `\mathit{something}`       | $\mathit{something}$       | 这是 LaTeX 默认字体                 |
+| 常量               | `\mathrm{something}`       | $\mathrm{something}$       | 使用罗马体，支持大小写英文字母和数字            |
+| 黑板粗体             | `\mathbb{something}`       | $\mathbb{something}$       | 仅支持大写英文字母。用于特殊集合的书写           |
+| Roman 粗体         | `\mathbf{something}`       | $\mathbf{something}$       | 支持大小写英文字母、数字和大写希腊字母。用于特殊集合的书写 |
 
 - 还有一些字体尚未有应用，仅列在这里，表示网站 OI wiki 的架构支持下列 LaTeX 字体。
 
-| 名称               | 书写                               | 渲染效果                           | 备注                            |
-| ---------------- | -------------------------------- | ------------------------------ | ----------------------------- |
-| 打印机体             | `\mathtt{something}`             | $\mathtt{something}$           | 支持大小写英文字母、大写希腊字母和数字           |
-| 无衬线体             | `\mathsf{something}`             | $\mathsf{something}$           | 支持大小写英文字母、大写希腊字母和数字           |
-| Fraktur 体        | `\mathfrak{something}`           | $\mathfrak{something}$         | 支持大小写英文字母和数字                  |
-| Italic 粗体        | `\boldsymbol{something}`         | $\boldsymbol{something}$       |                               |
-| 小型非斜体            | `$\scriptstyle\text{something}$` | $\scriptstyle\text{something}$ | 支持大小写英文字母和数字                  |
+| 名称        | 书写                               | 渲染效果                           | 备注                  |
+| --------- | -------------------------------- | ------------------------------ | ------------------- |
+| 打印机体      | `\mathtt{something}`             | $\mathtt{something}$           | 支持大小写英文字母、大写希腊字母和数字 |
+| 无衬线体      | `\mathsf{something}`             | $\mathsf{something}$           | 支持大小写英文字母、大写希腊字母和数字 |
+| Fraktur 体 | `\mathfrak{something}`           | $\mathfrak{something}$         | 支持大小写英文字母和数字        |
+| Italic 粗体 | `\boldsymbol{something}`         | $\boldsymbol{something}$       |                     |
+| 小型非斜体     | `$\scriptstyle\text{something}$` | $\scriptstyle\text{something}$ | 支持大小写英文字母和数字        |
 
 ## 字母
 
@@ -42,7 +42,7 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | 名称          | 书写                                | 渲染效果                            | 备注                                                              |
 | ----------- | --------------------------------- | ------------------------------- | --------------------------------------------------------------- |
 | 对数函数        | `$\log \ln \lg$`                  | $\log \ln \lg$                  |                                                                 |
-| 指数函数        | `$\exp \mathrm{e}^x$`             | $\exp \mathrm{e}^x$             | 在指数结构较简单且没有歧义的情况下推荐使用 $\mathrm{e}^x$                |
+| 指数函数        | `$\exp \mathrm{e}^x$`             | $\exp \mathrm{e}^x$             | 在指数结构较简单且没有歧义的情况下推荐使用 $\mathrm{e}^x$                            |
 | 三角函数        | `$\sin \cos \tan \cot \sec \csc$` | $\sin \cos \tan \cot \sec \csc$ |                                                                 |
 | 最大和最小       | `$\max \min$`                     | $\max \min$                     |                                                                 |
 | 上确界和下确界     | `$\sup \inf$`                     | $\sup \inf$                     | 来源是 supremum 与 infimum 的简写                                      |
