@@ -79,7 +79,7 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | 分数                | `$\dfrac{1}{2}$`             | $\dfrac{1}{2}$             |                         |
 | 组合数               | `$\dbinom{n}{m}$`            | $\dbinom{n}{m}$            | 在本站不建议使用符号 $C$ 表示组合数    |
 | 第一类斯特林数           | `$x\brack y$`                | $x\brack y$                | 在一些书上用小写 $s$ 表示第一类斯特林数  |
-| 第二类斯特林数           | `$x\brace y$`                | $x\brace y$                | 在一些书上用大写 $S$ 表示第一类斯特林数  |
+| 第二类斯特林数           | `$x\brace y$`                | $x\brace y$                | 在一些书上用大写 $S$ 表示第二类斯特林数  |
 | 二次剩余符号            | `$\left(\frac{a}{p}\right)$` | $\left(\frac{a}{p}\right)$ |                         |
 
 ## 常数
