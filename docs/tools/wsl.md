@@ -263,7 +263,7 @@ Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速�
 # apt install -y build-essential vim ddd gdb fpc emacs gedit anjuta lazarus
 ```
 
-GUIDE 的安装请参考 [Debian 或 Ubuntu 下 GUIDE 的安装](./editor/guide.md#debian-ubuntu)。
+GUIDE 的安装请参考 [Debian 或 Ubuntu 下 GUIDE 的安装](./editor/guide.md#在-debian-或-ubuntu-安装)。
 
 这里安装的是基础 + NOI 官方要求的环境，如有需要可以用 `apt install <程序名>` 来安装其它软件包。
 若想安装其他版本可以参考 Debian 官方的 [包管理手册](https://www.debian.org/doc/manuals/debian-reference/ch02.zh-cn.html)。
