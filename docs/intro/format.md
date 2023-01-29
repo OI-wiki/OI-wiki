@@ -267,7 +267,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
 LaTeX 符号的书写可参考 [KaTeX 的 Supported Functions 页面](https://katex.org/docs/supported.html)（不是全部），也可以搜索求解。
 
-OI wiki 的符号书写规范，见 [记号与约定](./notation.md)。符号之外的一些行文规范包括：
+OI wiki 的符号书写规范，见 [记号与约定](./tex.md)。符号之外的一些行文规范包括：
 
 - 不要在非代码区域使用任何程序设计语言的表示方式，而是使用 LaTeX 公式。
 
@@ -310,7 +310,7 @@ OI wiki 的符号书写规范，见 [记号与约定](./notation.md)。符号之
 
 由于 **OI Wiki** 使用 LaTeX 排版引擎开发了 PDF 导出工具，因此有必要强调公式在 MathJax 和 LaTeX 之间的兼容性。
 
-相关内容在 [记号与约定](./notation.md) 中给出，已经向 MathJax 做了尽可能多的妥协。导出工具兼容了一部分原本仅能在 MathJax 中正常输出的写法。
+相关内容在 [记号与约定](./tex.md) 中给出，已经向 MathJax 做了尽可能多的妥协。导出工具兼容了一部分原本仅能在 MathJax 中正常输出的写法。
 
 #### 伪代码格式
 

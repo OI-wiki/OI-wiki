@@ -20,7 +20,7 @@ nav:
     - 关于本项目: intro/about.md
     - 如何参与: intro/htc.md
     - 格式手册: intro/format.md
-    - 记号与约定: intro/notation.md
+    - 记号与约定: intro/tex.md
     - F.A.Q.: intro/faq.md
     - 用 Docker 部署 OI Wiki: intro/docker-deploy.md
     - 镜像站列表: intro/mirrors.md
@@ -214,6 +214,7 @@ nav:
     - Main-Lorentz 算法: string/main-lorentz.md
   - 数学:
     - 数学部分简介: math/index.md
+    - 符号: math/notation.md
     - 进位制: math/base.md
     - 位运算: math/bit.md
     - 二进制集合操作: math/binary-set.md

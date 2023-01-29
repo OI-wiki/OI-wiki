@@ -88,8 +88,7 @@
 /math/stern-brocot /math/number-theory/stern-brocot
 /math/quick-pow /math/binary-exponentiation
 /math/expectation /math/probability/basic-conception
-/math/sign /intro/notation
-/math/notation /intro/notation
+/math/sign /math/notation
 /geometry/polar-coordinate/ /math/coordinate
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut
