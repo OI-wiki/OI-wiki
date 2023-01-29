@@ -66,8 +66,8 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | 最大公约数和最小公倍数       | `$\gcd \operatorname{lcm}$` | $\gcd \operatorname{lcm}$ | 在 LaTeX 默认内置中没有 lcm 函数  |
 | 两数互素              | `$\gcd(x,y)=1$`             | $\gcd(x,y)=1$             | 不建议写成垂直记号，容易费解          |
 | 两数大小关系            | `$= > < \geq \leq \neq$`    | $= > < \geq \leq \neq$    | `\ne` 和 `\neq` 显示效果完全相同 |
-| 整除和不整除            | `$\mid  \nmid$`             | $\mid \nmid$              | 不建议使用 `\|`，两侧的空间会偏窄     |
-| 整数 $a$ 与素数 $p$ 互素 | `$p\nmid a$`                | $p\nmid a$                | 更方便理解                   |
+| 整除和不整除            | `$\mid \not\mid$`             | $\mid \not\mid$              | 不建议使用 `\|`，两侧的空间会偏窄     |
+| 整数 $a$ 与素数 $p$ 互素 | `$p\not\mid a$`                | $p\not\mid a$                | 更方便理解                   |
 | 余数                | `$x\bmod y$`                | $x\bmod y$                |                         |
 | 同余和不同余            | `$\equiv \not\equiv$`       | $\equiv \not\equiv$       |                         |
 | 模 $n$ 的同余式        | `$\pmod{n}$`                | $\pmod{n}$                |                         |
