@@ -45,11 +45,12 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | 极限          | `$\lim$`                          | $\lim$                          | 当位于行间时，下标会自动记在极限记号下方            |
 | 欧拉函数        | `$\varphi$`                       | $\varphi$                       |                                 |
 | 阶乘          | `$!$`                             | $!$                             |                                 |
-| 向下取整        | `$\lfloor x\rfloor$`              | $\lfloor x\rfloor$              |                                 |
+| 括号          | `$\left(\right)$`                 | $\left(\right)$                 | 左右的 left 和 right 用于适配内容大小       |
+| 小数部分        | `$\{x\}$`              | $\{x\}$              |   在数学类的书上用大括号表示实数的小数部分     |
+| 向下取整或整数部分        | `$\lfloor x\rfloor [x]$`              | $\lfloor x\rfloor [x]$              |   在数学类的书上用中括号表示实数的整数部分，但在本站建议使用向下取整标记   |
 | 向上取整        | `$\lceil x\rceil$`                | $\lceil x\rceil$                |                                 |
 | 对 $t$ 求微分   | `$\mathrm{d}t$`                   | $\mathrm{d}t$                   | 使用罗马体                           |
 | 对 $t$ 求偏微分  | `$\partial t$`                    | $\partial t$                    |                                 |
-| 括号          | `$\left(\right)$`                 | $\left(\right)$                 | 左右的 left 和 right 用于适配内容大小       |
 | $\Theta$ 符号 | `$\Theta(n)$`                     | $\Theta(n)$                     |                                 |
 | 大 O 符号      | `$O(n)$`                          | $O(n)$                          | 来源于希腊字母 Omicron，由于字形相同，写为拉丁字母 O |
 | 小 O 符号      | `$o(n)$`                          | $o(n)$                          | 来源于希腊字母 omicron，由于字形相同，写为拉丁字母 o |
@@ -71,9 +72,10 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | 同余和不同余            | `$\equiv \not\equiv$`       | $\equiv \not\equiv$       |                         |
 | 模 $n$ 的同余式        | `$\pmod{n}$`                | $\pmod{n}$                |                         |
 | 分数                | `$\dfrac{1}{2}$`            | $\dfrac{1}{2}$            |                         |
-| 组合数               | `$\dbinom{n}{m}$`           | $\dbinom{n}{m}$           |                         |
+| 组合数               | `$\dbinom{n}{m}$`           | $\dbinom{n}{m}$           |  在本站不建议使用符号 $C$ 表示组合数  |
 | 第一类斯特林数           | `$x\brack y$`               | $x\brack y$               |                         |
 | 第二类斯特林数           | `$x\brace y$`               | $x\brace y$               |                         |
+| 二次剩余符号           | `$\left(\frac{a}{p}\right)$`               | $\left(\frac{a}{p}\right)$               |                         |
 
 ## 常数
 
@@ -82,7 +84,7 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | 自然常数 | `\mathrm{e}` | $\mathrm{e}$ |                                                                            |
 | 虚数单位 | `\mathrm{i}` | $\mathrm{i}$ |                                                                            |
 | 圆周率  | `\pi`        | $\pi$        |                                                                            |
-| 黄金分割 | `$\Phi$`     | $\Phi$       | 为 cppreference 写法。参见 <https://zh.cppreference.com/w/cpp/numeric/constants> |
+| 黄金分割 | `$\Phi$`     | $\Phi$       | 为 [cppreference](https://zh.cppreference.com/w/cpp/numeric/constants) 写法 |
 | 欧拉常数 | `$\gamma$`   | $\gamma$     |                                                                            |
 
 ## 特殊记号
