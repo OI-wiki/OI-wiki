@@ -1,4 +1,4 @@
-author: sshwy, hsfzLZH1, Enter-tainer
+author: sshwy, hsfzLZH1, Enter-tainer, Great-designer
 
 本文列举在 OI wiki 中经常使用的符号与符号的行文规范，读者也可以在此查找与学习 LaTeX 的常见符号书写办法。
 
