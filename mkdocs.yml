@@ -20,7 +20,7 @@ nav:
     - 关于本项目: intro/about.md
     - 如何参与: intro/htc.md
     - 格式手册: intro/format.md
-    - 记号与约定: intro/tex.md
+    - TeX 公式排版规范: intro/tex.md
     - F.A.Q.: intro/faq.md
     - 用 Docker 部署 OI Wiki: intro/docker-deploy.md
     - 镜像站列表: intro/mirrors.md
