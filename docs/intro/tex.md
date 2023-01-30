@@ -8,14 +8,14 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | ---------------- | -------------------------- | -------------------------- | ----------------------------- |
 | 正文中的公式           | `小于 $a$ 的素数`               | 小于 $a$ 的素数                 |                               |
 | 正文中的英文           | `SPFA`                     | SPFA                       |                               |
-| LaTeX 中的行文、中文与空格 | `$\text{something}$`       | $\text{something}$         | 使用衬线体（Roman），语义上应书写为 `\text`         |
+| LaTeX 中的行文、中文与空格 | `$\text{something}$`       | $\text{something}$         | 使用衬线体（Roman），语义上应书写为 `\text`  |
 | 函数名              | `\operatorname{something}` | $\operatorname{something}$ | 使用衬线体，语义上应书写为 `\operatorname` |
 | 常量               | `\mathrm{something}`       | $\mathrm{something}$       | 使用衬线体，支持大小写英文字母和数字            |
-| LaTeX 默认字体               | `\mathit{something}`       | $\mathit{something}$       | 斜体（Italic）                  |
-| 变量               | `x`                        | $x$                        | 使用斜体           |
+| LaTeX 默认字体       | `\mathit{something}`       | $\mathit{something}$       | 斜体（Italic）                    |
+| 变量               | `x`                        | $x$                        | 使用斜体                          |
 | 多字母的变量           | `\textit{something}`       | $\textit{something}$       | 显示上和默认字体没有区别                  |
-| 特殊集合的书写             | `\mathbb{something}`       | $\mathbb{something}$       | 使用黑板粗体，仅支持大写英文字母           |
-| 特殊集合的书写         | `\mathbf{something}`       | $\mathbf{something}$       | 使用衬线粗体，支持大小写英文字母、数字和大写希腊字母 |
+| 特殊集合的书写          | `\mathbb{something}`       | $\mathbb{something}$       | 使用黑板粗体，仅支持大写英文字母              |
+| 特殊集合的书写          | `\mathbf{something}`       | $\mathbf{something}$       | 使用衬线粗体，支持大小写英文字母、数字和大写希腊字母    |
 
 - 还有一些字体尚未有应用，仅列在这里，表示网站 OI wiki 的架构支持下列 LaTeX 字体。
 
@@ -24,7 +24,7 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | 等宽字体      | `\mathtt{something}`             | $\mathtt{something}$           | 支持大小写英文字母、大写希腊字母和数字 |
 | 无衬线体      | `\mathsf{something}`             | $\mathsf{something}$           | 支持大小写英文字母、大写希腊字母和数字 |
 | Fraktur 体 | `\mathfrak{something}`           | $\mathfrak{something}$         | 支持大小写英文字母和数字        |
-| 斜粗体 | `\boldsymbol{something}`         | $\boldsymbol{something}$       |                     |
+| 斜粗体       | `\boldsymbol{something}`         | $\boldsymbol{something}$       |                     |
 | 小型非斜体     | `$\scriptstyle\text{something}$` | $\scriptstyle\text{something}$ | 支持大小写英文字母和数字        |
 
 ## 字母
