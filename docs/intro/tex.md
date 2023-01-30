@@ -104,6 +104,7 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | -- | --------- | ------- | --------------------------- |
 | 求和 | `$\sum$`  | $\sum$  | 大型运算符应该行间使用，此时上下标位于运算符顶部和底部 |
 | 求积 | `$\prod$` | $\prod$ | 大型运算符应该行间使用，此时上下标位于运算符顶部和底部 |
+| 一元积分 | `$\int$` | $\int$ |  |
 
 求和符号：$\sum$ 符号，表示满足特定条件的数的和。举几个例子：
 
@@ -133,6 +134,22 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | 空集              | `$\varnothing$`        | $\varnothing$        |                                 |
 | 实数集             | `$\mathbf{R}$`         | $\mathbf{R}$         | 该写法来源于人民教育出版社普通高中数学教材 A 版       |
 | 正整数集            | `$\mathbf{N}^*$`       | $\mathbf{N}^*$       | 该写法来源于人民教育出版社普通高中数学教材 A 版       |
+
+## 其他
+
+LaTeX 符号的书写可参考 [KaTeX 的 Supported Functions 页面](https://katex.org/docs/supported.html)（不是全部），也可以搜索求解。
+
+符号之外的一些行文规范包括：
+
+- 如果多行对齐的公式需要 **编号**，请用 `align` 或 `equation` 环境。请使用 `\begin{aligned} ... \end{aligned}` 表示多行对齐的公式。需要换行的公式，请套在 `aligned` 或其他多行环境下。
+
+- 不要使用 `split`、`eqnarray` 环境。
+
+- 书写 LaTeX 直接书写 LaTeX 即可，不建议使用 LaTeX 符号。若要输出 LaTeX 符号 $\rm{\LaTeX}$，请用 `$\rm{\LaTeX}$`，而不是 `mathrm`；（`\LaTeX` 在 TeX 排版系统中是一个不能用于数学模式下的命令，而 `\mathrm` 又不能在普通模式下使用；另外，`\text` 命令虽然在 TeX 上正常输出，但是在 MathJax 中 `\text` 命令的参数会被原样输出，而不是按命令转义。
+
+请注意，尽管上述输入公式的语法和真正的 LaTeX 排版系统非常相似，但 **MathJax 和 LaTeX 是两个完全没有关系的东西**，MathJax 仅仅使用了一部分与 LaTeX 非常相似的语法而已。实际上，二者之间有不少细节差别，而这些差别经常导致写出来的公式在二者之间不通用。
+
+由于 **OI Wiki** 使用 LaTeX 排版引擎开发了 PDF 导出工具，因此有必要强调公式在 MathJax 和 LaTeX 之间的兼容性。
 
 ## 参考资料
 
