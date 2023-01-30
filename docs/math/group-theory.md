@@ -119,7 +119,7 @@ $S$ 中只有一个元素 $x$ 时，$\langle S \rangle$ 通常写为 $\langle x 
 在某些情况下，子群的陪集集可以被赋予群律，给出商群或因子群。为了使其成立，子群必须是正规子群（normal subgroup）。给定任何正规子群 $N$，商群定义为
 
 $$
-G/N=\{gN\mid g\in G\}.
+G/N=\{gN\mid g\in G\}
 $$
 
 ### 阶
