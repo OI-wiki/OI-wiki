@@ -8,14 +8,14 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | ---------------- | -------------------------- | -------------------------- | ----------------------------- |
 | 正文中的公式           | `小于 $a$ 的素数`               | 小于 $a$ 的素数                 |                               |
 | 正文中的英文           | `SPFA`                     | SPFA                       |                               |
-| LaTeX 中的行文、中文与空格 | `$\text{something}$`       | $\text{something}$         | 使用非斜体，语义上应书写为 `\text`         |
-| 函数名              | `\operatorname{something}` | $\operatorname{something}$ | 使用罗马体，语义上应书写为 `\operatorname` |
-| 变量               | `x`                        | $x$                        | 使用意大利体，是 LaTeX 默认字体           |
+| LaTeX 中的行文、中文与空格 | `$\text{something}$`       | $\text{something}$         | 使用衬线体（Roman），语义上应书写为 `\text`         |
+| 函数名              | `\operatorname{something}` | $\operatorname{something}$ | 使用衬线体，语义上应书写为 `\operatorname` |
+| 常量               | `\mathrm{something}`       | $\mathrm{something}$       | 使用衬线体，支持大小写英文字母和数字            |
+| LaTeX 默认字体               | `\mathit{something}`       | $\mathit{something}$       | 斜体（Italic）                  |
+| 变量               | `x`                        | $x$                        | 使用斜体           |
 | 多字母的变量           | `\textit{something}`       | $\textit{something}$       | 显示上和默认字体没有区别                  |
-| 斜体               | `\mathit{something}`       | $\mathit{something}$       | 这是 LaTeX 默认字体                 |
-| 常量               | `\mathrm{something}`       | $\mathrm{something}$       | 使用罗马体，支持大小写英文字母和数字            |
-| 黑板粗体             | `\mathbb{something}`       | $\mathbb{something}$       | 仅支持大写英文字母。用于特殊集合的书写           |
-| Roman 粗体         | `\mathbf{something}`       | $\mathbf{something}$       | 支持大小写英文字母、数字和大写希腊字母。用于特殊集合的书写 |
+| 特殊集合的书写             | `\mathbb{something}`       | $\mathbb{something}$       | 使用黑板粗体，仅支持大写英文字母           |
+| 特殊集合的书写         | `\mathbf{something}`       | $\mathbf{something}$       | 使用衬线粗体，支持大小写英文字母、数字和大写希腊字母 |
 
 - 还有一些字体尚未有应用，仅列在这里，表示网站 OI wiki 的架构支持下列 LaTeX 字体。
 
@@ -24,7 +24,7 @@ author: sshwy, hsfzLZH1, Enter-tainer
 | 等宽字体      | `\mathtt{something}`             | $\mathtt{something}$           | 支持大小写英文字母、大写希腊字母和数字 |
 | 无衬线体      | `\mathsf{something}`             | $\mathsf{something}$           | 支持大小写英文字母、大写希腊字母和数字 |
 | Fraktur 体 | `\mathfrak{something}`           | $\mathfrak{something}$         | 支持大小写英文字母和数字        |
-| Italic 粗体 | `\boldsymbol{something}`         | $\boldsymbol{something}$       |                     |
+| 斜粗体 | `\boldsymbol{something}`         | $\boldsymbol{something}$       |                     |
 | 小型非斜体     | `$\scriptstyle\text{something}$` | $\scriptstyle\text{something}$ | 支持大小写英文字母和数字        |
 
 ## 字母
@@ -143,9 +143,13 @@ LaTeX 符号的书写可参考 [KaTeX 的 Supported Functions 页面](https://ka
 
 - 如果多行对齐的公式需要 **编号**，请用 `align` 或 `equation` 环境。请使用 `\begin{aligned} ... \end{aligned}` 表示多行对齐的公式。需要换行的公式，请套在 `aligned` 或其他多行环境下。
 
+- 公式中不要使用中括号连缀（即 C++ 高维数组的表示方式）而多使用下标。
+
 - 不要使用 `split`、`eqnarray` 环境。
 
 - 书写 LaTeX 直接书写 LaTeX 即可，不建议使用 LaTeX 符号。若要输出 LaTeX 符号 $\rm{\LaTeX}$，请用 `$\rm{\LaTeX}$`，而不是 `mathrm`；（`\LaTeX` 在 TeX 排版系统中是一个不能用于数学模式下的命令，而 `\mathrm` 又不能在普通模式下使用；另外，`\text` 命令虽然在 TeX 上正常输出，但是在 MathJax 中 `\text` 命令的参数会被原样输出，而不是按命令转义。
+
+- 中文建议尽量不放在 LaTeX 公式中。如果出现数学公式中的中文文字，**必须置于 `\text{}` 命令之中**，而变量、数字、运算符、函数名称则必须置于 `\text{}` 命令之外。**请不要在 `\text{}` 命令中嵌套数学公式**。
 
 请注意，尽管上述输入公式的语法和真正的 LaTeX 排版系统非常相似，但 **MathJax 和 LaTeX 是两个完全没有关系的东西**，MathJax 仅仅使用了一部分与 LaTeX 非常相似的语法而已。实际上，二者之间有不少细节差别，而这些差别经常导致写出来的公式在二者之间不通用。
 
