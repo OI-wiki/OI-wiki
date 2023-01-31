@@ -461,7 +461,7 @@ ST 默认的编译选项为 `g++ "${file}" -o "${file_path}/${file_base_name}"`�
 
 ## 外部链接
 
-- [使用命令行调试](./cmd)
+- [使用命令行调试](../cmd.md)
 - [Sublime Text 3 官方文档](https://www.sublimetext.com/docs/3/)
 - [Sublime Text 社区文档](https://docs.sublimetext.io/)
 
