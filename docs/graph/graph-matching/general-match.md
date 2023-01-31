@@ -432,7 +432,9 @@ int main() {
 
 **定义**：对于一张 $n$ 个点的无向图 $G = (V, E)$，其 Tutte 矩阵 $\tilde{A}(G)$ 为一个 $n \times n$ 的矩阵，其中：
 
-$\tilde{A}(G)_{i,j} = \left\{ \begin{aligned} x_{i,j} & \quad & i<j,\; (v_i, v_j)\in E \\ -x_{i,j} & \quad & i > j,\; (v_i, v_j) \in E \\ 0 & \quad & \text{otherwise}\end{aligned} \right.$
+$$
+\tilde{A}(G)_{i,j} = \left\{ \begin{aligned} x_{i,j} & \quad & i<j,\; (v_i, v_j)\in E \\ -x_{i,j} & \quad & i > j,\; (v_i, v_j) \in E \\ 0 & \quad & \text{otherwise}\end{aligned} \right.
+$$
 
 其中 $x_{i, j}$ 是一个变量，因此 $\tilde{A}(G)$ 中共有 $|E|$ 个变量。
 
