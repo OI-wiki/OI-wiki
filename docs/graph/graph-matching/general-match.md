@@ -53,6 +53,7 @@ case 2:$u$ 已拜访过，遇到标记 "o" 代表需要 **缩花**，否则代�
 
 ??? note "参考代码"
 
+
 ```cpp
 // graph
 template <typename T>
@@ -219,6 +220,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
 ```
 
 ??? note "[UOJ #79. 一般图最大匹配](https://uoj.ac/problem/79)"
+
 
 ```cpp
 #include <bits/stdc++.h>
@@ -420,6 +422,7 @@ int main() {
 
 ??? tip "提示"
 
+
 在阅读以下内容前，你可能需要先阅读“线性代数”部分中关于矩阵的内容：
 
 - [矩阵](/docs/math/linear-algebra/matrix.md)
@@ -444,6 +447,7 @@ $$
 
 ??? note "证明"
 
+
 这里引入“偶环覆盖”的概念：一个无向图 $G$ 的偶环覆盖指用若干偶环（包括二元环）不重不漏地覆盖所有的点。
 
 易证 $G$ 存在完美匹配当且仅当 $G$ 存在偶环覆盖。
@@ -465,6 +469,7 @@ $$
 
 ??? note "证明"
 
+
 反对称矩阵的秩只能是偶数；后者请读者自行思考。
 
 在实际应用中不可能带着 $|E|$ 个变量进行计算，不过可以取一个数域，例如取某个素数 $p$ 的剩余系 $\mathcal{Z}_p$，将变量分别随机替换为 $\mathcal{Z}_p$ 中的数，再进行计算。方便起见，在无歧义的情况下，以下用 $\tilde{A}$ 直接指代替换后的矩阵。
@@ -484,6 +489,7 @@ $$
 **定理**：$\tilde{A}^{-1}_{j,i} \ne 0 \iff G - \{v_i, v_j\}$ 有完美匹配。
 
 ??? tip "逆矩阵与伴随矩阵"
+
 
 对任意 $n$ 阶方阵 $A$，定义其伴随矩阵为 $A^*_{i, j} = (-1)^{i + j} M_{j, i}$，其中 $M_{j, i}$ 为删去第 $j$ 行第 $i$ 列的余子式。换言之，设 $A$ 的代数余子式矩阵为 $M$，则 $A^* = M^T$。
 
@@ -515,6 +521,7 @@ $$
 
 ??? note "描述有些抽象，可以参考 C++ 代码"
 
+
 ```c++
 void eliminate(int A[][MAXN], int r, int c) {  // 消去第 r 行第 c 列
   row_marked[r] = col_marked[c] = true;        // 已经被消掉
@@ -545,6 +552,7 @@ void eliminate(int A[][MAXN], int r, int c) {  // 消去第 r 行第 c 列
 求出极大满秩子矩阵之后，再用上面的算法找出导出子图的一组完美匹配，即可得到原图的一组最大匹配。注意由于高斯消元中可能会有行的交换，因此实现时要注意维护好点的编号。
 
 ??? note "[UOJ #79. 一般图最大匹配](https://uoj.ac/problem/79)"
+
 
 ```c++
 #include <bits/stdc++.h>
