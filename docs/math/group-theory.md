@@ -195,11 +195,14 @@ $$
 
 抽象群主要来源是通过正规子群 $H$ 构造群 $G$ 的商群 $G/H$。如果群 $G$ 是集合 $X$ 上的置换群，则商群 $G/H$ 不再作用于 $X$；但是抽象群的概念允许人们不必担心这种差异。
 
-
 ## 参考资料与注释
 
-[^group-wiki]: [Group (mathematics) - Wikipedia](<https://en.wikipedia.org/wiki/Group_(mathematics)>)
+[^group-wiki]: [Group (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Group_(mathematics))
+
 [^group-theory-wiki]: (<https://en.wikipedia.org/wiki/Group_theory>)
-[^group-mathworld]: [Group - Wolfram MathWorld](<https://mathworld.wolfram.com/Group.html>)
-[^visual-group-theory]: [Visual Group Theory](<https://www.youtube.com/playlist?list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv>)
-[^ring-wiki]: [Ring (mathematics) - Wikipedia](<https://en.wikipedia.org/wiki/Ring_(mathematics)>)
+
+[^group-mathworld]: [Group - Wolfram MathWorld](https://mathworld.wolfram.com/Group.html)
+
+[^visual-group-theory]: [Visual Group Theory](https://www.youtube.com/playlist?list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv)
+
+[^ring-wiki]: [Ring (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Ring_(mathematics))
