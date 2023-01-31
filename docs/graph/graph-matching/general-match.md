@@ -706,6 +706,6 @@ int main() {
 
 ## 参考资料
 
-- 1. Mucha M, Sankowski P. [Maximum matchings via Gaussian elimination](http://web.eecs.umich.edu/~pettie/matching/Mucha-Sankowski-maximum-matching-matrix-multiplication.pdf)
-- 2. 周子鑫, 杨家齐《基于线性代数的一般图匹配》
+- 1. Mucha M, Sankowski P.[Maximum matchings via Gaussian elimination](http://web.eecs.umich.edu/~pettie/matching/Mucha-Sankowski-maximum-matching-matrix-multiplication.pdf)
+- 2. 周子鑫，杨家齐《基于线性代数的一般图匹配》
 - 3. ZYQN [《基于线性代数的一般图匹配算法》](https://oi.cyo.ng/wp-content/uploads/2017/02/maximum_matchings_via_gaussian_elimination.pdf)
