@@ -467,7 +467,7 @@ nav:
     - 三角剖分: geometry/triangulation.md
     - 凸包: geometry/convex-hull.md
     - 扫描线: geometry/scanning.md
-    - 旋转卡壳: geometry/rotating-calipers.md
+    - 旋转卡尺: geometry/rotating-calipers.md
     - 半平面交: geometry/half-plane.md
     - 平面最近点对: geometry/nearest-points.md
     - 随机增量法: geometry/random-incremental.md
