@@ -1,16 +1,17 @@
-本页面将主要介绍旋(xuán)转(zhuǎn)卡(kǎ)尺。
+本页面将主要介绍旋（xuán）转（zhuǎn）卡（kǎ）尺。
 
 ## 引入
 
 旋转卡尺（Rotating Calipers）算法在凸包算法的基础上，通过枚举凸包上某一条边的同时维护其他需要的点，能够在线性时间内求解如凸包直径、最小矩形覆盖等和凸包性质相关的问题。「旋转卡尺」是很形象的说法，因为根据我们枚举的边，可以从每个维护的点画出一条或平行或垂直的直线，为了确保对于当前枚举的边的最优性，我们的任务就是使这些直线能将凸包正好卡住。而边通常是按照向某一方向旋转的顺序来枚举，所以整个过程就是在绕着多边形「旋转」一个「卡尺」。
 
 ### 翻译和发音
-1. 旋转：
 
-    全球中文学习平台[^ref5]是在中华人民共和国教育部和国家语言文字工作委员会指导[^ref6]下，由科大讯飞股份有限公司建设和运营的智能语言学习平台。「旋转」一词截止 2023 年 1 月底在该平台的发音为(xuán zhuǎn)。
-2. 卡尺:
+1.  旋转：
 
-    根据维基百科[^ref1]，论文[^ref3]第一次发明了这个算法，论文[^ref4] 第一次使用了 "Rotating Calipers" 这个术语。英文中单词 "caliper" 较少单独使用，一般使用 "a set/pair of calipers" 来表述卡尺。该单词或相关词组没有卡壳的含义。
+    全球中文学习平台[^ref5]是在中华人民共和国教育部和国家语言文字工作委员会指导[^ref6]下，由科大讯飞股份有限公司建设和运营的智能语言学习平台。「旋转」一词截止 2023 年 1 月底在该平台的发音为（xuán zhuǎn)。
+2.  卡尺：
+
+    根据维基百科[^ref1]，论文[^ref3]第一次发明了这个算法，论文[^ref4]第一次使用了 "Rotating Calipers" 这个术语。英文中单词 "caliper" 较少单独使用，一般使用 "a set/pair of calipers" 来表述卡尺。该单词或相关词组没有卡壳的含义。
 
 ## 求凸包直径
 
@@ -162,8 +163,13 @@ $$
 ## 参考资料与注释
 
 [^ref1]: <https://en.wikipedia.org/wiki/Rotating_calipers>
+
 [^ref2]: <http://www-cgrl.cs.mcgill.ca/~godfried/research/calipers.html>
+
 [^ref3]: Shamos, Michael (1978). "Computational Geometry" (PDF). Yale University. pp. 76–81.
+
 [^ref4]: Toussaint, Godfried T. (1983). "Solving geometric problems with the rotating calipers". Proc. MELECON '83, Athens. CiteSeerX 10.1.1.155.5671
-[^ref5]: https://gclp.isay365.com/#/web
-[^ref6]: http://www.moe.gov.cn/s78/A19/A19_ztzl/ztzl_yywzfw/xuexipt/
+
+[^ref5]: <https://gclp.isay365.com/#/web>
+
+[^ref6]: <http://www.moe.gov.cn/s78/A19/A19_ztzl/ztzl_yywzfw/xuexipt/>
