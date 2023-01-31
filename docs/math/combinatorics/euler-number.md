@@ -120,13 +120,13 @@ $$
 欧拉多项式的生成函数可以整理为：
 
 $$
-\frac{2\mathrm{e}^{\frac{t}{2}}\mathrm{e}^{\left(x-\frac{1}{2}\right)t}}{\mathrm{e}^t+1}=\sum_{k=0}^\infty\frac{E_k}{k!}{\left(\frac{t}{2}\right)}^k\sum_{t=0}^\infty\frac{{\left(x-\frac{1}{2}\right)}^l}{l!}t^l=\sum_{n=0}^\infty\frac{t^n}{n!}\sum_{k=0}^n\frac{E_k}{2^k}C_n^k{\left(x-\frac{1}{2}\right)}^{n-k}
+\frac{2\mathrm{e}^{\frac{t}{2}}\mathrm{e}^{\left(x-\frac{1}{2}\right)t}}{\mathrm{e}^t+1}=\sum_{k=0}^\infty\frac{E_k}{k!}{\left(\frac{t}{2}\right)}^k\sum_{t=0}^\infty\frac{{\left(x-\frac{1}{2}\right)}^l}{l!}t^l=\sum_{n=0}^\infty\frac{t^n}{n!}\sum_{k=0}^n\frac{E_k}{2^k}\dbinom{n}{k}{\left(x-\frac{1}{2}\right)}^{n-k}
 $$
 
 因此欧拉多项式的显式表达为：
 
 $$
-E_n(x)=\sum_{k=0}^n\frac{E_k}{2^k}C_n^k{\left(x-\frac{1}{2}\right)}^{n-k}
+E_n(x)=\sum_{k=0}^n\frac{E_k}{2^k}\dbinom{n}{k}{\left(x-\frac{1}{2}\right)}^{n-k}
 $$
 
 这个等式可以形式上记为：
@@ -150,7 +150,7 @@ $$
 对于至少为 $1$ 的 $k$ 有：
 
 $$
-\sum_{l=0}^k C_{2k}^l E_l=0
+\sum_{l=0}^k \dbinom{2k}{l} E_l=0
 $$
 
 这个等式可以形式上记为：
@@ -164,13 +164,13 @@ $$
 伯努利多项式的生成函数可以整理为：
 
 $$
-\frac{t\mathrm{e}^{xt}}{\mathrm{e}^t-1}=\sum_{k=0}^\infty\frac{t^k}{k!}B_k\sum_{l=0}^\infty\frac{t^l}{l!}x^l=\sum_{n=0}^\infty\frac{t^n}{n!}\sum_{k=0}^n C_n^k B_k x^{n-k}
+\frac{t\mathrm{e}^{xt}}{\mathrm{e}^t-1}=\sum_{k=0}^\infty\frac{t^k}{k!}B_k\sum_{l=0}^\infty\frac{t^l}{l!}x^l=\sum_{n=0}^\infty\frac{t^n}{n!}\sum_{k=0}^n \dbinom{n}{k} B_k x^{n-k}
 $$
 
 因此伯努利多项式的显式表达为：
 
 $$
-B_n(x)=\sum_{k=0}^n C_n^k B_k x^{n-k}
+B_n(x)=\sum_{k=0}^n \dbinom{n}{k} B_k x^{n-k}
 $$
 
 这个等式可以形式上记为：
@@ -194,7 +194,7 @@ $$
 对于至少为 $2$ 的 $n$ 有：
 
 $$
-\sum_{k=0}^{n-1} C_n^k B_k=0
+\sum_{k=0}^{n-1} \dbinom{n}{k} B_k=0
 $$
 
 这个等式可以形式上记为：
