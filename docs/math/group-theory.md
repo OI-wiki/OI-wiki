@@ -199,7 +199,7 @@ $$
 
 [^group-wiki]: [Group (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Group_(mathematics))
 
-[^group-theory-wiki]: (<https://en.wikipedia.org/wiki/Group_theory>)
+[^group-theory-wiki]: [Group theory - Wikipedia](https://en.wikipedia.org/wiki/Group_theory)
 
 [^group-mathworld]: [Group - Wolfram MathWorld](https://mathworld.wolfram.com/Group.html)
 
