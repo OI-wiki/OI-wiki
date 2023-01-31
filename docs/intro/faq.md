@@ -89,9 +89,7 @@ A：推荐使用 [`FastGithub`](https://github.com/dotnetcore/FastGithub), 支�
 
 下载链接：
 
-- [百度网盘](https://pan.baidu.com/s/1ey0XYO01ycJGwSvvo1zOvQ?pwd=m1l7#list/path=%2F)
-- [清华云盘](https://cloud.tsinghua.edu.cn/d/df482a15afb64dfeaff8/)
-- [官方 release(Github)](https://github.com/dotnetcore/FastGithub/releases)
+- [官方 release(Github)](https://github.com/dotnetcore/FastGithub/releases)可以使用gh-proxy加速下载:[`Windows`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_win-x64.zip)[`MacOS-x64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_osx-x64.zip)[`MacOS-arm64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_osx-arm64.zip)[`Linux-x64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_linux-x64.zip)[`Linux-arm64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_linux-arm64.zip)
 - ~~发送电子邮件到 `fastgithub@qq.com`~~（已失效）
 
 操作指南[^ref5]:
@@ -118,61 +116,12 @@ A：推荐使用 [`FastGithub`](https://github.com/dotnetcore/FastGithub), 支�
     - 安装 `cacert/fastgithub.cer` 并设置信任
     - 设置系统自动代理为 `http://127.0.0.1:38457`，或手动代理 `http/https` 为 `127.0.0.1:38457`
 
-合法性说明（摘自 RAEADME)
 
-> 《国际联网暂行规定》第六条规定：“计算机信息网络直接进行国际联网，必须使用邮电部国家公用电信网提供的国际出入口信道。任何单位和个人不得自行建立或者使用其他信道进行国际联网。”FastGithub 本地代理使用的都是“公用电信网提供的国际出入口信道”，从国外 Github 服务器到国内用户电脑上 FastGithub 程序的流量，使用的是正常流量通道，其间未对流量进行任何额外加密（仅有网页原有的 TLS 加密，区别于 VPN 的流量加密），而 FastGithub 获取到网页数据之后发生的整个代理过程完全在国内，不再适用国际互联网相关之规定。
-
-或者，也可以在 hosts 中加入如下几行：
-
-```bash
-# GitHub520 Host Start
-140.82.112.26                 alive.github.com
-140.82.112.6                  api.github.com
-185.199.110.153               assets-cdn.github.com
-185.199.108.133               avatars.githubusercontent.com
-185.199.108.133               avatars0.githubusercontent.com
-185.199.108.133               avatars1.githubusercontent.com
-185.199.108.133               avatars2.githubusercontent.com
-185.199.108.133               avatars3.githubusercontent.com
-185.199.108.133               avatars4.githubusercontent.com
-185.199.108.133               avatars5.githubusercontent.com
-185.199.108.133               camo.githubusercontent.com
-140.82.113.21                 central.github.com
-185.199.108.133               cloud.githubusercontent.com
-140.82.114.9                  codeload.github.com
-140.82.112.22                 collector.github.com
-185.199.108.133               desktop.githubusercontent.com
-185.199.108.133               favicons.githubusercontent.com
-140.82.113.4                  gist.github.com
-54.231.172.105                github-cloud.s3.amazonaws.com
-54.231.139.201                github-com.s3.amazonaws.com
-52.216.20.235                 github-production-release-asset-2e65be.s3.amazonaws.com
-52.216.111.75                 github-production-repository-file-5c1aeb.s3.amazonaws.com
-52.216.48.89                  github-production-user-asset-6210df.s3.amazonaws.com
-192.0.66.2                    github.blog
-140.82.114.4                  github.com
-140.82.112.18                 github.community
-185.199.109.154               github.githubassets.com
-151.101.65.194                github.global.ssl.fastly.net
-185.199.110.153               github.io
-185.199.108.133               github.map.fastly.net
-185.199.110.153               githubstatus.com
-140.82.112.25                 live.github.com
-185.199.108.133               media.githubusercontent.com
-185.199.108.133               objects.githubusercontent.com
-13.107.42.16                  pipelines.actions.githubusercontent.com
-185.199.108.133               raw.githubusercontent.com
-185.199.108.133               user-images.githubusercontent.com
-13.107.238.51                 vscode.dev
-
-
-# Update time: 2023-01-31T12:05:25+08:00
-# Update url: https://raw.hellogithub.com/hosts
-# Star me: https://github.com/521xueweihan/GitHub520
-# GitHub520 Host End
-```
+或者，也可以在 hosts 中加入[此页面](https://raw.hellogithub.com/hosts)中的内容：
 
 可以在 [`Github520` 主页](https://github.com/521xueweihan/GitHub520) 上了解到更多信息。
+
+Linux 和 macOS 用户可以尝试使用 [依云](https://github.com/lilydjwg/) 的 [gh-check 脚本](https://gist.github.com/lilydjwg/93d33ed04547e1b9f7a86b64ef2ed058) 获取访问最快的 IP，使用 `--hosts` 参数可以直接更新 hosts 文件。使用 `--help` 参数可以获取使用帮助。使用先需要安装 Python3 和 aiohttp（`pip install aiohttp -i https://pypi.tuna.tsinghua.edu.cn/simple/`）。依云博客的介绍：[寻找最快的 GitHub IP](https://blog.lilydjwg.me/2019/8/16/gh-check.214730.html)。
 
 同时，您可以使用 [gh-proxy](https://ghproxy.com/) 服务加速 Clone。
 
