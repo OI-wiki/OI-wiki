@@ -506,15 +506,19 @@ $$
 **定理**（消去定理）：令
 
 $$
- A = \begin{bmatrix}
+A = \begin{bmatrix}
   a_{1, 1} & v^T \\
   u & B
 \end{bmatrix} \quad A^{-1} = \begin{bmatrix}
   \hat a^{1, 1} & \hat v^T \\
   \hat u & \hat B
-\end{bmatrix} , \end{aligned} $$
+\end{bmatrix}
+$$
 
 并且 $\hat a_{1, 1} \ne 0$, 那么就有
+
+$$
+B^{-1} = \hat B - \frac {\hat u \hat v^T} {\hat a_{1, 1}}
 $$
 
 定理中描述的是消去第一行第一列的情况。实际上，它可以非常显然地推广到消去任意一行一列的情况，因此我们只需在算法最开始计算一次 $\tilde{A}^{-1}$，后面每次删除两个点时，只需执行两次 $O(n^2)$ 的消去过程即可。
