@@ -85,44 +85,45 @@ A：有两种选择：
 
 Q：我尝试访问 GitHub 的时候遇到了困难
 
-A：推荐使用[`FastGithub`](https://github.com/dotnetcore/FastGithub),支持`Windows`/`MacOS`/`Linux`.
+A：推荐使用 [`FastGithub`](https://github.com/dotnetcore/FastGithub), 支持 `Windows`/`MacOS`/`Linux`.
 
-下载链接:
+下载链接：
 
 - [百度网盘](https://pan.baidu.com/s/1ey0XYO01ycJGwSvvo1zOvQ?pwd=m1l7#list/path=%2F)
 - [清华云盘](https://cloud.tsinghua.edu.cn/d/df482a15afb64dfeaff8/)
-- [官方release(Github)](https://github.com/dotnetcore/FastGithub/releases)
-- ~~发送电子邮件到`fastgithub@qq.com`~~(已失效)
+- [官方 release(Github)](https://github.com/dotnetcore/FastGithub/releases)
+- ~~发送电子邮件到 `fastgithub@qq.com`~~（已失效）
 
 操作指南[^ref5]:
 
-- windows-x64桌面
-	- 双击运行`FastGithub.UI.exe`(图形界面,建议)(关掉后最小化到任务栏)
-	- 或运行`FastGithub.exe`(命令行界面)(关掉终端会停止`Fastgithub`)
+-   windows-x64 桌面
+    - 双击运行 `FastGithub.UI.exe`（图形界面，建议）（关掉后最小化到任务栏）
+    - 或运行 `FastGithub.exe`（命令行界面）（关掉终端会停止 `Fastgithub`)
 
-- windows-x64服务(安装后开机自启动)
-    - 以windows服务安装并启动:`fastgithub.exe start`
-    - 以windows服务卸载并删除:`fastgithub.exe stop`
+-   windows-x64 服务（安装后开机自启动）
+    - 以 windows 服务安装并启动：`fastgithub.exe start`
+    - 以 windows 服务卸载并删除：`fastgithub.exe stop`
 
-- linux-x64终端
-	- 终端运行`sudo ./fastgithub`
-	- 设置系统自动代理为`http://127.0.0.1:38457`，或手动代理`http/https`为`127.0.0.1:38457`
+-   linux-x64 终端
+    - 终端运行 `sudo ./fastgithub`
+    - 设置系统自动代理为 `http://127.0.0.1:38457`，或手动代理 `http/https` 为 `127.0.0.1:38457`
 
-- linux-x64服务
-	- 以`systemd`服务安装并启动:`sudo ./fastgithub start`
-	- 以`systemd`服务卸载并删除:`sudo ./fastgithub stop`
-	- 设置系统自动代理为`http://127.0.0.1:38457`,或手动代理`http/https`为`127.0.0.1:38457`
+-   linux-x64 服务
+    - 以 `systemd` 服务安装并启动：`sudo ./fastgithub start`
+    - 以 `systemd` 服务卸载并删除：`sudo ./fastgithub stop`
+    - 设置系统自动代理为 `http://127.0.0.1:38457`, 或手动代理 `http/https` 为 `127.0.0.1:38457`
 
-- macOS-x64
-	- 双击运行`fastgithub`
-	- 安装`cacert/fastgithub.cer`并设置信任
-	- 设置系统自动代理为`http://127.0.0.1:38457`，或手动代理`http/https`为`127.0.0.1:38457`
+-   macOS-x64
+    - 双击运行 `fastgithub`
+    - 安装 `cacert/fastgithub.cer` 并设置信任
+    - 设置系统自动代理为 `http://127.0.0.1:38457`，或手动代理 `http/https` 为 `127.0.0.1:38457`
 
-合法性说明(摘自RAEADME)
->《国际联网暂行规定》第六条规定：“计算机信息网络直接进行国际联网，必须使用邮电部国家公用电信网提供的国际出入口信道。任何单位和个人不得自行建立或者使用其他信道进行国际联网。” FastGithub本地代理使用的都是“公用电信网提供的国际出入口信道”，从国外Github服务器到国内用户电脑上FastGithub程序的流量，使用的是正常流量通道，其间未对流量进行任何额外加密（仅有网页原有的TLS加密，区别于VPN的流量加密），而FastGithub获取到网页数据之后发生的整个代理过程完全在国内，不再适用国际互联网相关之规定。
+合法性说明（摘自 RAEADME)
 
+> 《国际联网暂行规定》第六条规定：“计算机信息网络直接进行国际联网，必须使用邮电部国家公用电信网提供的国际出入口信道。任何单位和个人不得自行建立或者使用其他信道进行国际联网。”FastGithub 本地代理使用的都是“公用电信网提供的国际出入口信道”，从国外 Github 服务器到国内用户电脑上 FastGithub 程序的流量，使用的是正常流量通道，其间未对流量进行任何额外加密（仅有网页原有的 TLS 加密，区别于 VPN 的流量加密），而 FastGithub 获取到网页数据之后发生的整个代理过程完全在国内，不再适用国际互联网相关之规定。
 
-或者,也可以在hosts中加入如下几行:
+或者，也可以在 hosts 中加入如下几行：
+
 ```bash
 # GitHub520 Host Start
 140.82.112.26                 alive.github.com
@@ -170,9 +171,10 @@ A：推荐使用[`FastGithub`](https://github.com/dotnetcore/FastGithub),支持`
 # Star me: https://github.com/521xueweihan/GitHub520
 # GitHub520 Host End
 ```
-可以在[ `Github520` 主页](https://github.com/521xueweihan/GitHub520) 上了解到更多信息。
 
-同时，您可以使用 [gh-proxy](https://ghproxy.com/)服务加速 Clone。
+可以在 [`Github520` 主页](https://github.com/521xueweihan/GitHub520) 上了解到更多信息。
+
+同时，您可以使用 [gh-proxy](https://ghproxy.com/) 服务加速 Clone。
 
 如果您仅仅是想 Clone OI Wiki 的仓库，那么：
 
@@ -355,6 +357,6 @@ A：`_redirects` 文件用于生成 [netlify 的配置](https://docs.netlify.com
 
 [^ref4]: [Metadata - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/extensions/metadata/#usage)
 
-[^ref5]: 修改自[ fastgithub 官方介绍](https://github.com/dotnetcore/FastGithub/blob/master/README.md)
+[^ref5]: 修改自 [fastgithub 官方介绍](https://github.com/dotnetcore/FastGithub/blob/master/README.md)
 
 [^only-ssh-connect]: GitHub 弃用了基于密码身份验证的 HTTPS 协议，连接必须使用 SSH 或者 Personal Access Token，参见 [我应使用哪个远程 URL？](https://docs.github.com/cn/github/using-git/which-remote-url-should-i-use)，[创建个人访问令牌](https://docs.github.com/cn/github/authenticating-to-github/creating-a-personal-access-token) 和 [使用 SSH 连接到 GitHub](https://docs.github.com/cn/github/authenticating-to-github/connecting-to-github-with-ssh)。
