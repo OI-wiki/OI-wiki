@@ -55,164 +55,164 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
     // graph
     template <typename T>
     class graph {
-      public:
-        struct edge {
-            int from;
-            int to;
-            T cost;
-        };
+     public:
+      struct edge {
+        int from;
+        int to;
+        T cost;
+      };
     
-        vector<edge> edges;
-        vector<vector<int> > g;
-        int n;
+      vector<edge> edges;
+      vector<vector<int> > g;
+      int n;
     
-        graph(int _n) : n(_n) { g.resize(n); }
+      graph(int _n) : n(_n) { g.resize(n); }
     
-        virtual int add(int from, int to, T cost) = 0;
+      virtual int add(int from, int to, T cost) = 0;
     };
     
     // undirectedgraph
     template <typename T>
     class undirectedgraph : public graph<T> {
-      public:
-        using graph<T>::edges;
-        using graph<T>::g;
-        using graph<T>::n;
+     public:
+      using graph<T>::edges;
+      using graph<T>::g;
+      using graph<T>::n;
     
-        undirectedgraph(int _n) : graph<T>(_n) {}
+      undirectedgraph(int _n) : graph<T>(_n) {}
     
-        int add(int from, int to, T cost = 1) {
-            assert(0 <= from && from < n && 0 <= to && to < n);
-            int id = (int)edges.size();
-            g[from].push_back(id);
-            g[to].push_back(id);
-            edges.push_back({from, to, cost});
-            return id;
-        }
+      int add(int from, int to, T cost = 1) {
+        assert(0 <= from && from < n && 0 <= to && to < n);
+        int id = (int)edges.size();
+        g[from].push_back(id);
+        g[to].push_back(id);
+        edges.push_back({from, to, cost});
+        return id;
+      }
     };
     
     // blossom / find_max_unweighted_matching
     template <typename T>
     vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
-        std::mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-        vector<int> match(g.n, -1);   // 匹配
-        vector<int> aux(g.n, -1);     // 时间戳记
-        vector<int> label(g.n);       // "o" or "i"
-        vector<int> orig(g.n);        // 花根
-        vector<int> parent(g.n, -1);  // 父节点
-        queue<int> q;
-        int aux_time = -1;
+      std::mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+      vector<int> match(g.n, -1);   // 匹配
+      vector<int> aux(g.n, -1);     // 时间戳记
+      vector<int> label(g.n);       // "o" or "i"
+      vector<int> orig(g.n);        // 花根
+      vector<int> parent(g.n, -1);  // 父节点
+      queue<int> q;
+      int aux_time = -1;
     
-        auto lca = [&](int v, int u) {
-            aux_time++;
-            while (true) {
-                if (v != -1) {
-                    if (aux[v] == aux_time) {  // 找到拜访过的点 也就是LCA
-                        return v;
-                    }
-                    aux[v] = aux_time;
-                    if (match[v] == -1) {
-                        v = -1;
-                    } else {
-                        v = orig[parent[match[v]]];  // 以匹配点的父节点继续寻找
-                    }
-                }
-                swap(v, u);
+      auto lca = [&](int v, int u) {
+        aux_time++;
+        while (true) {
+          if (v != -1) {
+            if (aux[v] == aux_time) {  // 找到拜访过的点 也就是LCA
+              return v;
             }
-        };  // lca
-    
-        auto blossom = [&](int v, int u, int a) {
-            while (orig[v] != a) {
-                parent[v] = u;
-                u = match[v];
-                if (label[u] == 1) {  // 初始点设为"o" 找增广路
-                    label[u] = 0;
-                    q.push(u);
-                }
-                orig[v] = orig[u] = a;  // 缩花
-                v = parent[u];
+            aux[v] = aux_time;
+            if (match[v] == -1) {
+              v = -1;
+            } else {
+              v = orig[parent[match[v]]];  // 以匹配点的父节点继续寻找
             }
-        };  // blossom
-    
-        auto augment = [&](int v) {
-            while (v != -1) {
-                int pv = parent[v];
-                int next_v = match[pv];
-                match[v] = pv;
-                match[pv] = v;
-                v = next_v;
-            }
-        };  // augment
-    
-        auto bfs = [&](int root) {
-            fill(label.begin(), label.end(), -1);
-            iota(orig.begin(), orig.end(), 0);
-            while (!q.empty()) {
-                q.pop();
-            }
-            q.push(root);
-            // 初始点设为 "o", 这里以"0"代替"o", "1"代替"i"
-            label[root] = 0;
-            while (!q.empty()) {
-                int v = q.front();
-                q.pop();
-                for (int id : g.g[v]) {
-                    auto &e = g.edges[id];
-                    int u = e.from ^ e.to ^ v;
-                    if (label[u] == -1) {  // 找到未拜访点
-                        label[u] = 1;        // 标记 "i"
-                        parent[u] = v;
-                        if (match[u] == -1) {  // 找到未匹配点
-                            augment(u);          // 寻找增广路径
-                            return true;
-                        }
-                        // 找到已匹配点 将与她匹配的点丢入queue 延伸交错树
-                        label[match[u]] = 0;
-                        q.push(match[u]);
-                        continue;
-                    } else if (label[u] == 0 && orig[v] != orig[u]) {
-                        // 找到已拜访点 且标记同为"o" 代表找到"花"
-                        int a = lca(orig[v], orig[u]);
-                        // 找LCA 然后缩花
-                        blossom(u, v, a);
-                        blossom(v, u, a);
-                    }
-                }
-            }
-            return false;
-        };  // bfs
-    
-        auto greedy = [&]() {
-            vector<int> order(g.n);
-            // 随机打乱 order
-            iota(order.begin(), order.end(), 0);
-            shuffle(order.begin(), order.end(), rng);
-    
-            // 将可以匹配的点匹配
-            for (int i : order) {
-                if (match[i] == -1) {
-                    for (auto id : g.g[i]) {
-                        auto &e = g.edges[id];
-                        int to = e.from ^ e.to ^ i;
-                        if (match[to] == -1) {
-                            match[i] = to;
-                            match[to] = i;
-                            break;
-                        }
-                    }
-                }
-            }
-        };  // greedy
-    
-        // 一开始先随机匹配
-        greedy();
-        // 对未匹配点找增广路
-        for (int i = 0; i < g.n; i++) {
-            if (match[i] == -1) {
-                bfs(i);
-            }
+          }
+          swap(v, u);
         }
-        return match;
+      };  // lca
+    
+      auto blossom = [&](int v, int u, int a) {
+        while (orig[v] != a) {
+          parent[v] = u;
+          u = match[v];
+          if (label[u] == 1) {  // 初始点设为"o" 找增广路
+            label[u] = 0;
+            q.push(u);
+          }
+          orig[v] = orig[u] = a;  // 缩花
+          v = parent[u];
+        }
+      };  // blossom
+    
+      auto augment = [&](int v) {
+        while (v != -1) {
+          int pv = parent[v];
+          int next_v = match[pv];
+          match[v] = pv;
+          match[pv] = v;
+          v = next_v;
+        }
+      };  // augment
+    
+      auto bfs = [&](int root) {
+        fill(label.begin(), label.end(), -1);
+        iota(orig.begin(), orig.end(), 0);
+        while (!q.empty()) {
+          q.pop();
+        }
+        q.push(root);
+        // 初始点设为 "o", 这里以"0"代替"o", "1"代替"i"
+        label[root] = 0;
+        while (!q.empty()) {
+          int v = q.front();
+          q.pop();
+          for (int id : g.g[v]) {
+            auto &e = g.edges[id];
+            int u = e.from ^ e.to ^ v;
+            if (label[u] == -1) {  // 找到未拜访点
+              label[u] = 1;        // 标记 "i"
+              parent[u] = v;
+              if (match[u] == -1) {  // 找到未匹配点
+                augment(u);          // 寻找增广路径
+                return true;
+              }
+              // 找到已匹配点 将与她匹配的点丢入queue 延伸交错树
+              label[match[u]] = 0;
+              q.push(match[u]);
+              continue;
+            } else if (label[u] == 0 && orig[v] != orig[u]) {
+              // 找到已拜访点 且标记同为"o" 代表找到"花"
+              int a = lca(orig[v], orig[u]);
+              // 找LCA 然后缩花
+              blossom(u, v, a);
+              blossom(v, u, a);
+            }
+          }
+        }
+        return false;
+      };  // bfs
+    
+      auto greedy = [&]() {
+        vector<int> order(g.n);
+        // 随机打乱 order
+        iota(order.begin(), order.end(), 0);
+        shuffle(order.begin(), order.end(), rng);
+    
+        // 将可以匹配的点匹配
+        for (int i : order) {
+          if (match[i] == -1) {
+            for (auto id : g.g[i]) {
+              auto &e = g.edges[id];
+              int to = e.from ^ e.to ^ i;
+              if (match[to] == -1) {
+                match[i] = to;
+                match[to] = i;
+                break;
+              }
+            }
+          }
+        }
+      };  // greedy
+    
+      // 一开始先随机匹配
+      greedy();
+      // 对未匹配点找增广路
+      for (int i = 0; i < g.n; i++) {
+        if (match[i] == -1) {
+          bfs(i);
+        }
+      }
+      return match;
     }
     ```
 
@@ -225,6 +225,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
 
 ??? tip "提示"
     在阅读以下内容前，你可能需要先阅读“线性代数”部分中关于矩阵的内容：
+    
     - [矩阵](/docs/math/linear-algebra/matrix.md)
     - [行列式](/docs/math/linear-algebra/determinant.md)
     - [高斯消元](/docs/math/linear-algebra/gauss.md)
@@ -249,18 +250,19 @@ $$
     这里引入“偶环覆盖”的概念：一个无向图 $G$ 的偶环覆盖指用若干偶环（包括二元环）不重不漏地覆盖所有的点。
     
     易证 $G$ 存在完美匹配当且仅当 $G$ 存在偶环覆盖。
+    
     - 如果 $G$ 存在偶环覆盖，我们只需要在每个环都隔一条取一条边，就可以得到一个完美匹配。
-    - 如果 $G$ 存在完美匹配，我们只需要将匹配边对应的二元环取出，就可以得到一个偶环覆盖。
-        然后证明 $G$ 存在偶环覆盖当且仅当 $\tilde{A} \ne 0$。
-
+    -   如果 $G$ 存在完美匹配，我们只需要将匹配边对应的二元环取出，就可以得到一个偶环覆盖。
+          然后证明 $G$ 存在偶环覆盖当且仅当 $\tilde{A} \ne 0$。
+    
         考虑行列式的定义
-        
+    
         $$
         \det A = \sum_{\pi} (-1)^{\pi} \prod_{i} A_{i, \pi_i}
         $$
-        
+    
         其中 $\pi$ 是任意排列，$(-1)^{\pi}$ 表示若 $\pi$ 中的逆序对数为奇数，则取 $-1$，否则取 $1$。
-        
+    
         不难看出每个排列都可以被看作 $G$ 的一个环覆盖。如果这个环覆盖中存在奇环，则将这个环翻转后的和一定为 $0$，因此只有偶环覆盖才能使行列式不为 $0$，证毕。
 
 **定理**：$\operatorname{rank}\tilde{A}$ 一定为偶数，并且 $G$ 的最大匹配的大小等于 $\operatorname{rank}\tilde{A}$ 的一半。
