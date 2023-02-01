@@ -4,7 +4,7 @@ author: sshwy, hsfzLZH1, Enter-tainer
 
 ### 渐进符号
 
-请参见 [复杂度](../basic/complexity.md#渐进符号)。
+请参见 [复杂度](../basic/complexity.md#渐进符号的定义)。
 
 ### 整除/同余理论常见符号
 
