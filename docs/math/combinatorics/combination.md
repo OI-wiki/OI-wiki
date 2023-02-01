@@ -56,8 +56,8 @@ $$
 
 $$
 \begin{aligned}
-\mathrm \dbinom{n}{m} \times m! &= \mathrm A_n^m\\
-\mathrm \dbinom{n}{m} &= \frac{\mathrm A_n^m}{m!} = \frac{n!}{m!(n-m)!}
+\dbinom{n}{m} \times m! &= \mathrm A_n^m\\
+\dbinom{n}{m} &= \frac{\mathrm A_n^m}{m!} = \frac{n!}{m!(n-m)!}
 \end{aligned}
 $$
 
