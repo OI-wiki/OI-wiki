@@ -26,7 +26,7 @@
 
 ### DP 求最长（短）路
 
-在一般图上，求单源最长（短）路径的最优时间复杂度为 $O(nm)$（[Bellman-Ford 算法](./shortest-path#bellman-ford-%E7%AE%97%E6%B3%95)，适用于有负权图）或 $O(m \log m)$（[Dijkstra 算法](./shortest-path#dijkstra-%E7%AE%97%E6%B3%95)，适用于无负权图）。
+在一般图上，求单源最长（短）路径的最优时间复杂度为 $O(nm)$（[Bellman-Ford 算法](./shortest-path.md#bellman-ford-算法)，适用于有负权图）或 $O(m \log m)$（[Dijkstra 算法](./shortest-path.md#dijkstra-算法)，适用于无负权图）。
 
 但在 DAG 上，我们可以使用 DP 求最长（短）路，使时间复杂度优化到 $O(n+m)$。状态转移方程为 $dis_v = min(dis_v, dis_u + w_{u,v})$ 或 $dis_v = max(dis_v, dis_u + w_{u,v})$。
 

@@ -107,7 +107,7 @@ Vintage 插件默认是禁用的。可以通过 `首选项->设置` 在用户设
 "vintage_start_in_command_mode": true,
 ```
 
-也可以通过快捷键设置将进入命令模式设置成任意键（具体详见 [修改插件](#修改插件)）。
+也可以通过快捷键设置将进入命令模式设置成任意键（具体详见 [设置快捷键](#设置快捷键)）。
 
 #### 与 Vi 的不同
 
@@ -461,7 +461,7 @@ ST 默认的编译选项为 `g++ "${file}" -o "${file_path}/${file_base_name}"`�
 
 ## 外部链接
 
-- [使用命令行调试](./cmd)
+- [使用命令行调试](../cmd.md)
 - [Sublime Text 3 官方文档](https://www.sublimetext.com/docs/3/)
 - [Sublime Text 社区文档](https://docs.sublimetext.io/)
 

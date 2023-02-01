@@ -109,7 +109,7 @@ $$
 
 ### 实现
 
-Main-Lorentz 算法以四元组 $(\textit{cntr}, l, k_1, k_2)$ 的形式给出所有重串。如果你只需要计算重串的数量，或者只需要找到最长的一个重串，这个四元组给的信息是足够的。由 [主定理](../basic/complexity.md#master-theorem) 可得，Main-Lorentz 算法的时间复杂度为 $O(n \log n)$。
+Main-Lorentz 算法以四元组 $(\textit{cntr}, l, k_1, k_2)$ 的形式给出所有重串。如果你只需要计算重串的数量，或者只需要找到最长的一个重串，这个四元组给的信息是足够的。由 [主定理](../basic/complexity.md#主定理-master-theorem) 可得，Main-Lorentz 算法的时间复杂度为 $O(n \log n)$。
 
 请注意，如果你想通过这些四元组来找到所有重串的起始位置与终止位置，则最坏时间复杂度会达到 $O(n^2)$。我们在下面的程序中实现了这一点，将所有重串的起始位置与终止位置存于 `repetitions` 中。
 
