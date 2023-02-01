@@ -91,7 +91,7 @@
 
 ### author 字段
 
-GitHub API 在文件目录变更后不能跟踪统计，所以我们在文件头手动维护了一个作者列表来解决这个问题。author 字段位于整个 Markdown 文件的开头，形如 `author: Ir1d, cjsoft`，相邻两个 ID 之间用 `, ` 隔开。这里的 ID 是 GitHub 的用户名，即 GitHub profile 的地址（例如 <https://github.com/Ir1d> 中的 `Ir1d`）。
+GitHub API 在文件目录变更后不能跟踪统计，所以我们在文件头手动维护了一个作者列表来解决这个问题。author 字段位于整个 Markdown 文件的开头，形如 `author: Ir1d, cjsoft`，相邻两个 ID 之间用逗号加空格隔开。这里的 ID 是 GitHub 的用户名，即 GitHub profile 的地址（例如 <https://github.com/Ir1d> 中的 `Ir1d`）。
 
 修改链接时，需要将当前页面中的 contributors 逐一填入 author 字段。
 
