@@ -2,12 +2,12 @@
 
 ## 引入
 
-旋转卡壳（Rotating Calipers，也称「旋转卡尺」）算法，在凸包算法的基础上，通过枚举凸包上某一条边的同时维护其他需要的点，能够在线性时间内求解如凸包直径、最小矩形覆盖等和凸包性质相关的问题。「旋转卡壳」是很形象的说法，因为根据我们枚举的边，可以从每个维护的点画出一条或平行或垂直的直线，为了确保对于当前枚举的边的最优性，我们的任务就是使这些直线能将凸包正好卡住。而边通常是按照向某一方向旋转的顺序来枚举，所以整个过程就是在边「旋转」，边「卡壳」。
+旋转卡壳（Rotating Calipers，也称「旋转卡尺」）算法，在凸包算法的基础上，通过枚举凸包上某一条边的同时维护其他需要的点，能够在线性时间内求解如凸包直径、最小矩形覆盖等和凸包性质相关的问题。
 
-???+note "名称来源"
-    Rotating Calipers，含义为「旋转卡尺」，论文[^ref4]中描述该算法：就像使用一个可动态调整的「卡尺」夹住凸包后，绕着凸包「旋转」该「卡尺」。
-    
-    根据维基百科[^ref1]，论文[^ref3]第一次发明了这个算法，论文[^ref4]第一次使用了 "Rotating Calipers" 这个术语。单词 "caliper" 为名词，意思为「卡尺」，没有卡壳的含义。该单词的单数形式使用较少，一般使用复数形式来表述卡尺，如 "a set/pair of calipers"。
+???+note "算法中文名称"
+    Rotating Calipers 比较常见的中文名是「旋转卡壳」。可以理解为：根据我们枚举的边，可以从每个维护的点画出一条或平行或垂直的直线，为了确保对于当前枚举的边的最优性，我们的任务就是使这些直线能将凸包正好卡住。而边通常是按照向某一方向旋转的顺序来枚举，所以整个过程就是在边「旋转」，边「卡壳」。
+
+    该算法的直译和意译应为「旋转卡尺」，其中 "calipers" 的意思是「卡尺」。第一次提出该术语的论文[^ref1]原意为：使用一个可动态调整的「卡尺」夹住凸包后，绕凸包「旋转」该「卡尺」。
 
 ## 求凸包直径
 
@@ -28,19 +28,19 @@
 
 ???+ note "核心代码"
     === "C++"
-    
+
         ```cpp
         int sta[N], top;  // 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
         bool is[N];
-    
+
         ll pf(ll x) { return x * x; }
-    
+
         ll dis(int p, int q) { return pf(a[p].x - a[q].x) + pf(a[p].y - a[q].y); }
-    
+
         ll sqr(int p, int q, int y) { return abs((a[q] - a[p]) * (a[y] - a[q])); }
-    
+
         ll mx;
-    
+
         void get_longest() {  // 求凸包直径
           int j = 3;
           if (top < 4) {
@@ -55,9 +55,9 @@
           }
         }
         ```
-    
+
     === "Python"
-    
+
         ```python
         sta = [] * N; top = 0 # 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
         def pf(x):
@@ -102,7 +102,7 @@ $$
 
 ???+ note "核心代码"
     === "C++"
-    
+
         ```cpp
         void get_biggest() {
           int j = 3, l = 2, r = 2;
@@ -125,9 +125,9 @@ $$
           }
         }
         ```
-    
+
     === "Python"
-    
+
         ```python
         def get_biggest():
             j = 3; l = 2; r = 2
@@ -158,10 +158,11 @@ $$
 
 ## 参考资料与注释
 
-[^ref1]: <https://en.wikipedia.org/wiki/Rotating_calipers>
+[^ref1]: Toussaint, Godfried T. (1983). "Solving geometric problems with the rotating calipers". Proc. MELECON '83, Athens. CiteSeerX 10.1.1.155.5671
 
-[^ref2]: <http://www-cgrl.cs.mcgill.ca/~godfried/research/calipers.html>
+- <https://en.wikipedia.org/wiki/Rotating_calipers>
 
-[^ref3]: Shamos, Michael (1978). "Computational Geometry" (PDF). Yale University. pp. 76–81.
+- <http://www-cgrl.cs.mcgill.ca/~godfried/research/calipers.html>
 
-[^ref4]: Toussaint, Godfried T. (1983). "Solving geometric problems with the rotating calipers". Proc. MELECON '83, Athens. CiteSeerX 10.1.1.155.5671
+- Shamos, Michael (1978). "Computational Geometry" (PDF). Yale University. pp. 76–81.
+
