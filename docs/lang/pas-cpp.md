@@ -220,7 +220,7 @@ const double PI = 3.1415926;
 请直接参考
 
 -  [附 A：Pascal 与 C++ 运算符与数学函数语法对比表](#附-apascal-与-c-运算符与数学函数语法对比表-pascal-vs-c-operator-syntax-table) 
--  [运算 - OI Wiki](../op.md) 
+-  [运算 - OI Wiki](./op.md) 
 
 ### 条件
 
