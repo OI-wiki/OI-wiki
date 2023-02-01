@@ -6,7 +6,7 @@
 
 ???+note "算法中文名称"
     Rotating Calipers 比较常见的中文名是「旋转卡壳」。可以理解为：根据我们枚举的边，可以从每个维护的点画出一条或平行或垂直的直线，为了确保对于当前枚举的边的最优性，我们的任务就是使这些直线能将凸包正好卡住。而边通常是按照向某一方向旋转的顺序来枚举，所以整个过程就是在边「旋转」，边「卡壳」。
-
+    
     该算法的直译和意译应为「旋转卡尺」，其中 "calipers" 的意思是「卡尺」。第一次提出该术语的论文[^ref1]原意为：使用一个可动态调整的「卡尺」夹住凸包后，绕凸包「旋转」该「卡尺」。
 
 ## 求凸包直径
@@ -28,19 +28,19 @@
 
 ???+ note "核心代码"
     === "C++"
-
+    
         ```cpp
         int sta[N], top;  // 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
         bool is[N];
-
+    
         ll pf(ll x) { return x * x; }
-
+    
         ll dis(int p, int q) { return pf(a[p].x - a[q].x) + pf(a[p].y - a[q].y); }
-
+    
         ll sqr(int p, int q, int y) { return abs((a[q] - a[p]) * (a[y] - a[q])); }
-
+    
         ll mx;
-
+    
         void get_longest() {  // 求凸包直径
           int j = 3;
           if (top < 4) {
@@ -55,9 +55,9 @@
           }
         }
         ```
-
+    
     === "Python"
-
+    
         ```python
         sta = [] * N; top = 0 # 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
         def pf(x):
@@ -102,7 +102,7 @@ $$
 
 ???+ note "核心代码"
     === "C++"
-
+    
         ```cpp
         void get_biggest() {
           int j = 3, l = 2, r = 2;
@@ -125,9 +125,9 @@ $$
           }
         }
         ```
-
+    
     === "Python"
-
+    
         ```python
         def get_biggest():
             j = 3; l = 2; r = 2
@@ -165,4 +165,3 @@ $$
 - <http://www-cgrl.cs.mcgill.ca/~godfried/research/calipers.html>
 
 - Shamos, Michael (1978). "Computational Geometry" (PDF). Yale University. pp. 76–81.
-
