@@ -10,5 +10,5 @@ for cur in f.readlines():
     os.makedirs(os.path.dirname(html_path), exist_ok=True)
     with open(html_path, 'w') as html_file:
         # print(f"<script type=\"text/javascript\">location.href=\"{t}\"</script>")
-        html_file.write(f'<!DOCTYPE html><html><head><link rel="canonical" href="https://oi-wiki.org${t}"/><meta name="robots" content="noindex"><meta charset="utf-8" /><meta http-equiv="refresh" content="0; url=${t}" /></head></html>')
+        html_file.write(f'<!DOCTYPE html><html><head><link rel="canonical" href="https://oi-wiki.org{t}"/><meta name="robots" content="noindex"><meta charset="utf-8" /><meta http-equiv="refresh" content="0; url={t}" /></head></html>')
         # print(html_path)
