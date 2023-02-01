@@ -70,7 +70,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
     O\left(\sum_{k=1}^{\pi(n)}{n\over p_k}\right)=O\left(n\sum_{k=1}^{\pi(n)}{1\over p_k}\right)
     $$
     
-    其中 $p_k$ 表示第 $k$ 小的素数，$\pi(n)$ 表示 $\le n$ 的素数个数。$\sum_{k=1}^{\pi(n)}$ 表示第一层 for 循环，其中累加上界 $\pi(n)$ 为  ``if (prime[i])`` 进入 true 分支的次数；$n\over p_k$ 表示第二层 for 循环的执行次数。
+    其中 $p_k$ 表示第 $k$ 小的素数，$\pi(n)$ 表示 $\le n$ 的素数个数。$\sum_{k=1}^{\pi(n)}$ 表示第一层 for 循环，其中累加上界 $\pi(n)$ 为 `if (prime[i])` 进入 true 分支的次数；$n\over p_k$ 表示第二层 for 循环的执行次数。
     
     根据 Mertens 第二定理，存在常数 $B_1$ 使得：
     
