@@ -109,22 +109,21 @@ $$
 
 选择 $f(x)=(x^2+c)\bmod n$ 这个函数生成序列，是因为它有一个性质：$\forall x \equiv y \pmod p, f(x) \equiv f(y) \pmod p$，其中 $p \mid n$。
 
-证明如下：
-
-若 $x\equiv y \pmod p$，则可以将它们表示为 $x=k_1p+a$，$y=k_2p+a$，满足 $k_1,k_2,a\in \mathbb{Z},a\in \left[0,p\right)$。
-
-$f(x)=(x^2+c) \bmod n$，因此 $f(x)=x^2+c-kn$，其中 $k \in \mathbb{Z}$。
-
-$$
-\begin{aligned}
-f(x) & = x^2+c-kn\\
-& = (k_1p+a)^2+c-kn\\
-& = k_1^2 p^2+2k_1pa+a^2+c-kn\\
-& \equiv a^2+c \pmod p
-\end{aligned}
-$$
-
-同理，$f(y) \equiv a^2+c \pmod p$，因此 $f(x) \equiv f(y) \pmod p$。
+???+note "证明"
+    若 $x\equiv y \pmod p$，则可以将它们表示为 $x=k_1p+a$，$y=k_2p+a$，满足 $k_1,k_2,a\in \mathbb{Z},a\in \left[0,p\right)$。
+    
+    $f(x)=(x^2+c) \bmod n$，因此 $f(x)=x^2+c-kn$，其中 $k \in \mathbb{Z}$。
+    
+    $$
+    \begin{aligned}
+    f(x) & = x^2+c-kn\\
+    & = (k_1p+a)^2+c-kn\\
+    & = k_1^2 p^2+2k_1pa+a^2+c-kn\\
+    & \equiv a^2+c \pmod p
+    \end{aligned}
+    $$
+    
+    同理，$f(y) \equiv a^2+c \pmod p$，因此 $f(x) \equiv f(y) \pmod p$。
 
 根据生日悖论，生成的序列中不同值的数量约为 $O(\sqrt{n})$ 个。设 $m$ 为 $n$ 的最小非平凡因子，显然有 $m\leq \sqrt{n}$。
 
