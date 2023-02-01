@@ -92,30 +92,6 @@ A：推荐使用 [`FastGithub`](https://github.com/dotnetcore/FastGithub), 支�
 - [官方 release(Github)](https://github.com/dotnetcore/FastGithub/releases) 可以使用 gh-proxy 加速下载：[`Windows`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_win-x64.zip)  [`MacOS-x64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_osx-x64.zip)  [`MacOS-arm64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_osx-arm64.zip)  [`Linux-x64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_linux-x64.zip)  [`Linux-arm64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_linux-arm64.zip)
 - ~~发送电子邮件到 `fastgithub@qq.com`~~（已失效）
 
-操作指南[^ref5]:
-
--   windows-x64 桌面
-    - 双击运行 `FastGithub.UI.exe`（图形界面，建议）（关掉后最小化到任务栏）
-    - 或运行 `FastGithub.exe`（命令行界面）（关掉终端会停止 `Fastgithub`)
-
--   windows-x64 服务（安装后开机自启动）
-    - 以 windows 服务安装并启动：`fastgithub.exe start`
-    - 以 windows 服务卸载并删除：`fastgithub.exe stop`
-
--   linux-x64 终端
-    - 终端运行 `sudo ./fastgithub`
-    - 设置系统自动代理为 `http://127.0.0.1:38457`，或手动代理 `http/https` 为 `127.0.0.1:38457`
-
--   linux-x64 服务
-    - 以 `systemd` 服务安装并启动：`sudo ./fastgithub start`
-    - 以 `systemd` 服务卸载并删除：`sudo ./fastgithub stop`
-    - 设置系统自动代理为 `http://127.0.0.1:38457`, 或手动代理 `http/https` 为 `127.0.0.1:38457`
-
--   macOS-x64
-    - 双击运行 `fastgithub`
-    - 安装 `cacert/fastgithub.cer` 并设置信任
-    - 设置系统自动代理为 `http://127.0.0.1:38457`，或手动代理 `http/https` 为 `127.0.0.1:38457`
-
 或者，也可以在 hosts 中加入 [此页面](https://raw.hellogithub.com/hosts) 中的内容：
 
 可以在 [`Github520` 主页](https://github.com/521xueweihan/GitHub520) 上了解到更多信息。
@@ -127,13 +103,13 @@ Linux 和 macOS 用户可以尝试使用 [依云](https://github.com/lilydjwg/) 
 如果您仅仅是想 Clone OI Wiki 的仓库，那么：
 
 ```bash
-git clone https://ghproxy.com/OI-wiki/OI-wiki.git
+git clone https://ghproxy.com/https://github.com/OI-wiki/OI-wiki
 ```
 
 如果您需要向 OI Wiki 贡献，那么首先 fork OI Wiki 的仓库，然后（将 `username` 替换为您的用户名），需要注意的是提供的示例将使您使用 SSH 连接到 GitHub[^only-ssh-connect]：
 
 ```bash
-git clone https://ghproxy.com/username/OI-wiki.git
+git clone https://ghproxy.com/https://github.com/OI-wiki/OI-wiki
 git remote set-url origin git@github.com:username/OI-wiki.git
 ```
 
