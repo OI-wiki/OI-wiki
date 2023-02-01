@@ -98,5 +98,5 @@ $$
 
 ## 参考资料与注释
 
--   [概率论（数学分支）\_百度百科](https://baike.baidu.com/item/概率论/829122)
--   [Probability - Wikipedia](https://en.wikipedia.org/wiki/Probability)
+- [概率论（数学分支）\_百度百科](https://baike.baidu.com/item/概率论/829122)
+- [Probability - Wikipedia](https://en.wikipedia.org/wiki/Probability)
