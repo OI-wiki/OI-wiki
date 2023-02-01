@@ -232,11 +232,11 @@
         quick_sort(arr, k, r)
     ```
 
-### 内省排序[^ref4]
+### 内省排序
 
 #### 定义
 
-内省排序（英语：Introsort 或 Introspective sort）是快速排序和 [堆排序](./heap-sort.md) 的结合，由 David Musser 于 1997 年发明。内省排序其实是对快速排序的一种优化，保证了最差时间复杂度为 $O(n\log n)$。
+内省排序（英语：Introsort 或 Introspective sort）[^ref4] 是快速排序和 [堆排序](./heap-sort.md) 的结合，由 David Musser 于 1997 年发明。内省排序其实是对快速排序的一种优化，保证了最差时间复杂度为 $O(n\log n)$。
 
 #### 性质
 
