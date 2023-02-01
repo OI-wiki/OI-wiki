@@ -44,28 +44,28 @@ $$
 
 ### 组合数
 
-从 $n$ 个不同元素中，任取 $m$($m\leq n$) 个元素组成一个集合，叫做从 $n$ 个不同元素中取出 $m$ 个元素的一个组合；从 $n$ 个不同元素中取出 $m$($m\leq n$) 个元素的所有组合的个数，叫做从 $n$ 个不同元素中取出 $m$ 个元素的组合数。用符号 $\mathrm C_n^m$ 来表示。
+从 $n$ 个不同元素中，任取 $m$($m\leq n$) 个元素组成一个集合，叫做从 $n$ 个不同元素中取出 $m$ 个元素的一个组合；从 $n$ 个不同元素中取出 $m$($m\leq n$) 个元素的所有组合的个数，叫做从 $n$ 个不同元素中取出 $m$ 个元素的组合数。用符号 $\dbinom{n}{m}$ 来表示，读作「$n$ 选 $m$」。
 
 组合数计算公式
 
 $$
-\mathrm C_n^m = \frac{\mathrm A_n^m}{m!} = \frac{n!}{m!(n - m)!}
+\dbinom{n}{m} = \frac{\mathrm A_n^m}{m!} = \frac{n!}{m!(n - m)!}
 $$
 
-如何理解上述公式？我们考虑 $n$ 个人 $m$($m \le n$) 个出来，不排队，不在乎顺序 $\mathrm C_n^m$。如果在乎排列那么就是 $\mathrm A_n^m$，如果不在乎那么就要除掉重复，那么重复了多少？同样选出的来的 $m$ 个人，他们还要“全排”得 $\mathrm A_n^m$，所以得：
+如何理解上述公式？我们考虑 $n$ 个人 $m$($m \le n$) 个出来，不排队，不在乎顺序 $\dbinom{n}{m}$。如果在乎排列那么就是 $\mathrm A_n^m$，如果不在乎那么就要除掉重复，那么重复了多少？同样选出的来的 $m$ 个人，他们还要“全排”得 $\mathrm A_n^m$，所以得：
 
 $$
 \begin{aligned}
-\mathrm C_n^m \times m! &= \mathrm A_n^m\\
-\mathrm C_n^m &= \frac{\mathrm A_n^m}{m!} = \frac{n!}{m!(n-m)!}
+\mathrm \dbinom{n}{m} \times m! &= \mathrm A_n^m\\
+\mathrm \dbinom{n}{m} &= \frac{\mathrm A_n^m}{m!} = \frac{n!}{m!(n-m)!}
 \end{aligned}
 $$
 
-组合数也常用 $\dbinom{n}{m}$ 表示，读作「$n$ 选 $m$」，即 $\displaystyle \mathrm C_n^m=\binom{n}{m}$。实际上，后者表意清晰明了，美观简洁，因此现在数学界普遍采用 $\dbinom{n}{m}$ 的记号而非 $\mathrm C_n^m$。
+组合数也常用 $\mathrm C_n^m$ 表示，即 $\displaystyle \mathrm C_n^m=\binom{n}{m}$。现在数学界普遍采用 $\dbinom{n}{m}$ 的记号而非 $\mathrm C_n^m$。
 
 组合数也被称为「二项式系数」，下文二项式定理将会阐述其中的联系。
 
-特别地，规定当 $m>n$ 时，$\mathrm A_n^m=\mathrm C_n^m=0$。
+特别地，规定当 $m>n$ 时，$\mathrm A_n^m=\dbinom{n}{m}=0$。
 
 ## 插板法
 

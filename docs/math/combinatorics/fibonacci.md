@@ -255,11 +255,11 @@ $p$ 的剩余系大小为 $p$，意味着在前 $p^2+1$ 个数对中必有两个
 由二项式展开：
 
 $$
-F_p=\frac{2}{2^p\sqrt{5}}\left(C_p^1\sqrt{5}+C_p^3\sqrt{5}^3+\ldots+C_p^p\sqrt{5}^p\right)\equiv\sqrt{5}^{p-1}\equiv 1\pmod p
+F_p=\frac{2}{2^p\sqrt{5}}\left(\dbinom{p}{1}\sqrt{5}+\dbinom{p}{3}\sqrt{5}^3+\ldots+\dbinom{p}{p}\sqrt{5}^p\right)\equiv\sqrt{5}^{p-1}\equiv 1\pmod p
 $$
 
 $$
-F_{p+1}=\frac{2}{2^{p+1}\sqrt{5}}\left(C_{p+1}^1\sqrt{5}+C_{p+1}^3\sqrt{5}^3+\ldots+C_{p+1}^p\sqrt{5}^p\right)\equiv\frac{1}{2}\left(1+\sqrt{5}^{p-1}\right)\equiv 1\pmod p
+F_{p+1}=\frac{2}{2^{p+1}\sqrt{5}}\left(\dbinom{p+1}{1}\sqrt{5}+\dbinom{p+1}{3}\sqrt{5}^3+\ldots+\dbinom{p+1}{p}\sqrt{5}^p\right)\equiv\frac{1}{2}\left(1+\sqrt{5}^{p-1}\right)\equiv 1\pmod p
 $$
 
 因为 $F_p$ 和 $F_{p+1}$ 两项都同余于 $1$，与 $F_1$ 和 $F_2$ 一致，所以 $p-1$ 是周期。
@@ -273,21 +273,21 @@ $$
 由二项式展开：
 
 $$
-F_{2p}=\frac{2}{2^{2p}\sqrt{5}}\left(C_{2p}^1\sqrt{5}+C_{2p}^3\sqrt{5}^3+\ldots+C_{2p}^{2p-1}\sqrt{5}^{2p-1}\right)
+F_{2p}=\frac{2}{2^{2p}\sqrt{5}}\left(\dbinom{2p}{1}\sqrt{5}+\dbinom{2p}{3}\sqrt{5}^3+\ldots+\dbinom{2p}{2p-1}\sqrt{5}^{2p-1}\right)
 $$
 
 $$
-F_{2p+1}=\frac{2}{2^{2p+1}\sqrt{5}}\left(C_{2p+1}^1\sqrt{5}+C_{2p+1}^3\sqrt{5}^3+\ldots+C_{2p+1}^{2p+1}\sqrt{5}^{2p+1}\right)
+F_{2p+1}=\frac{2}{2^{2p+1}\sqrt{5}}\left(\dbinom{2p+1}{1}\sqrt{5}+\dbinom{2p+1}{3}\sqrt{5}^3+\ldots+\dbinom{2p+1}{2p+1}\sqrt{5}^{2p+1}\right)
 $$
 
-模 $p$ 之后，在 $F_{2p}$ 式中，只有 $C_{2p}^p\equiv 2 \pmod p$ 项留了下来；在 $F_{2p+1}$ 式中，有 $C_{2p+1}^1\equiv 1 \pmod p$、$C_{2p+1}^p\equiv 2 \pmod p$、$C_{2p+1}^{2p+1}\equiv 1 \pmod p$，三项留了下来。
+模 $p$ 之后，在 $F_{2p}$ 式中，只有 $\dbinom{2p}{p}\equiv 2 \pmod p$ 项留了下来；在 $F_{2p+1}$ 式中，有 $\dbinom{2p+1}{1}\equiv 1 \pmod p$、$\dbinom{2p+1}{p}\equiv 2 \pmod p$、$\dbinom{2p+1}{2p+1}\equiv 1 \pmod p$，三项留了下来。
 
 $$
-F_{2p}\equiv\frac{1}{2}C_{2p}^p\sqrt{5}^{p-1}\equiv -1 \pmod p
+F_{2p}\equiv\frac{1}{2}\dbinom{2p}{p}\sqrt{5}^{p-1}\equiv -1 \pmod p
 $$
 
 $$
-F_{2p+1}\equiv\frac{1}{4}\left(C_{2p+1}^1+C_{2p+1}^p\sqrt{5}^{p-1}+C_{2p+1}^{2p+1}\sqrt{5}^{2p}\right)\equiv\frac{1}{4}\left(1-2+5\right)\equiv 1 \pmod p
+F_{2p+1}\equiv\frac{1}{4}\left(\dbinom{2p+1}{1}+\dbinom{2p+1}{p}\sqrt{5}^{p-1}+\dbinom{2p+1}{2p+1}\sqrt{5}^{2p}\right)\equiv\frac{1}{4}\left(1-2+5\right)\equiv 1 \pmod p
 $$
 
 于是 $F_{2p}$ 和 $F_{2p+1}$ 两项与 $F_{-2}$ 和 $F_{-1}$ 一致，所以 $2p+2$ 是周期。
