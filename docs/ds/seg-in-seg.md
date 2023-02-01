@@ -82,3 +82,11 @@ void vec_insert(int &k, int l, int r, int loc) {
 ## 相关算法
 
 面对多维度信息的题目时，如果题目没有要求强制在线，我们还可以考虑 **CDQ 分治**，或者 **整体二分** 等分治算法，来避免使用高级数据结构，减少代码实现难度。
+
+## 例题
+
+二维线段树可以维护单点修改、矩阵查询，也可以通过前缀和转化成矩阵修改、单点查询。
+
+- [hdu 1823](https://vjudge.csgrandeur.cn/problem/HDU-1823)
+
+- [hdu 4819](https://vjudge.csgrandeur.cn/problem/HDU-4819)
