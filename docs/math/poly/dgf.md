@@ -10,7 +10,7 @@ $$
 \tilde{F}(x) = \sum_{i\ge 1}\frac{f_i}{i^x}
 $$
 
-如果序列 $f$ 满足积性（是 [积性函数](../number-theory/du.md#积性函数) ）：$\forall i\perp j, \; f_{ij} = f_i f_j$，那么其 DGF 可以由质数幂处的取值表示：
+如果序列 $f$ 满足积性（是 [积性函数](../number-theory/du.md#积性函数)）：$\forall i\perp j, \; f_{ij} = f_i f_j$，那么其 DGF 可以由质数幂处的取值表示：
 
 $$
 \tilde{F}(x) = \prod_{p\in \mathcal{P}} \left(1 + \frac{f_p}{p^x} + \frac{f_{p^2}}{p^{2x}} + \frac{f_{p^3}}{p^{3x}} + \cdots \right)
