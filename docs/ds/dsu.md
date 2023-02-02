@@ -250,7 +250,7 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
     2. 移动单个元素
     3. 查询某个元素所属集合的大小及元素和
     
-    ??? mdui-shadow-6 "参考代码"
+    ??? note "参考代码"
         === "C++"
         
             ```cpp
