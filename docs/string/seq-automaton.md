@@ -55,7 +55,7 @@ $$
     
         $1\le |A|, |B|\le 2000$。
     
-    ??? mdui-shadow-6 "题解"
+    ??? note "题解"
         这题的 (1) 和 (3) 两问需要后缀自动机，而且做法类似，在这里只讲解 (2) 和 (4) 两问。
         
         (2) 比较简单，枚举 A 的子串输入进 B 的序列自动机，若不接受则计入答案。
@@ -66,7 +66,7 @@ $$
         
         $f(i, j)=\min\limits_{\delta_A(i,c)\ne null}f(\delta_A(i, c), \delta_B(j, c))+1$
     
-    ??? mdui-shadow-6 "参考代码"
+    ??? note "参考代码"
         ```cpp
         --8<-- "docs/string/code/seq-automaton/seq-automaton_1.cpp"
         ```
