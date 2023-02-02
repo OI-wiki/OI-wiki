@@ -85,8 +85,8 @@ void vec_insert(int &k, int l, int r, int loc) {
 
 ## 例题
 
-二维线段树可以维护单点修改、矩阵查询，也可以通过前缀和转化成矩阵修改、单点查询。
+二维线段树可以维护单点修改、矩阵查询，也可以转化成矩阵修改、单点查询。
 
-- [hdu 1823](https://vjudge.csgrandeur.cn/problem/HDU-1823)
+- [hdu 1823](https://vjudge.csgrandeur.cn/problem/HDU-1823)：单点修改，矩阵查询。
 
-- [hdu 4819](https://vjudge.csgrandeur.cn/problem/HDU-4819)
+- [hdu 4819](https://vjudge.csgrandeur.cn/problem/HDU-4819)：矩阵修改，单点查询。
