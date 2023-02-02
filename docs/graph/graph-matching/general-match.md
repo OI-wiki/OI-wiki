@@ -224,7 +224,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
 
 ## 基于高斯消元的一般图匹配算法
 
-??? tip "提示"
+???+ tip "提示"
     在阅读以下内容前，你可能需要先阅读“线性代数”部分中关于矩阵的内容：
     
     - [矩阵](../../math/linear-algebra/matrix.md)
