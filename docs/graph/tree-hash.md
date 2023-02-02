@@ -57,7 +57,7 @@ $\bigoplus$ 表示异或和。
 ### 公式
 
 $$
-f_{now}=1+\sum f_{son(now,i)} \times prime(size_{son(now,i)})
+f_{now}=1+\sum f_{son(now,i)} \times val(size_{son(now,i)})
 $$
 
 ### 注
@@ -68,10 +68,42 @@ $size_{x}$ 表示以节点 $x$ 为根的子树大小。
 
 $son_{x,i}$ 表示 $x$ 所有子节点之一（不用排序）。
 
-$prime(i)$ 表示第 $i$ 个质数。
+通常来说 $val(i)=prime(i)$，也就是第 $i$ 个质数，但是这种方法容易被 hack。
+
+一种解决方案是 $val(i)=prime(i+k)$，其中 $k$ 是一个自己选定的常数，比如 $5$。
+
+另一种解决方案是 $val(i)$ 取 $[1,V]$ 内的随机整数，$V$ 尽可能取大一些（比如 $10^{12}$），防止出现生日悖论冲突。
 
 ???+ warning
     对于两棵大小不同的树 $T_1,T_2$，$f_{T_1}=f_{T_2}$ 是可能的，因此在判断树同构前要先判断大小是否相等。
+    
+## 方法四
+
+方法四本质上是方法一的改进版。
+
+从点 $now$ 出发，按照某种顺序对 $now$ 的子树进行 DFS，令 $a_i$ 代表 DFS 过程中第 $i$ 个访问到的节点，它的子树大小。
+
+求出序列 $a$ 之后，我们只需比较两棵有根树根节点的 $a$ 数组是否相等，就可以判断两棵树是否同构。
+
+为了保证复杂度，我们并不直接维护序列 $a$ ，而是维护 $a$ 的 OGF：
+
+$$
+f_{now}=\sum_{i=1}^{size_{now}}a_i seed^i
+$$
+
+可以用树形 DP 求出 $f_{now}$。
+
+具体地，初始化 $f_{now}=size_{now}$。
+
+按照 hash 值从小到大枚举 $now$ 的儿子，这样做是为了确定 DFS 的访问顺序。
+
+设当前枚举到 $x$，那么有转移方程
+
+$$
+f_{now}=f_{now}\times seed^{size_{x}}+f_x
+$$
+
+时间复杂度 $O(n\log n)$，瓶颈在于给子树大小排序。（基数排序效率堪比 $O(n\log n)$）
 
 ## 例题
 
@@ -116,6 +148,14 @@ $prime(i)$ 表示第 $i$ 个质数。
 
 事实上，树哈希是可以很灵活的，可以有各种各样奇怪的姿势来进行 hash，只需保证充分性与必要性，选手完全可以设计出与上述方式不同的 hash 方式。
 
+## 习题
+
+[[JSOI2016]独特的树叶](https://www.luogu.com.cn/problem/P4323)
+
+[[NOI2022] 挑战 NPC Ⅱ](https://www.luogu.com.cn/problem/P8499)
+
 ## 参考资料
 
 方法三参考自博客 [树 hash](https://www.cnblogs.com/huyufeifei/p/10817673.html)。
+
+方法四可能的原始出处：[zhoukangyang's blog](https://www.luogu.com.cn/blog/173660/solution-p5043)
