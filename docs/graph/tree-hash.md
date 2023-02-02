@@ -76,7 +76,7 @@ $son_{x,i}$ 表示 $x$ 所有子节点之一（不用排序）。
 
 ???+ warning
     对于两棵大小不同的树 $T_1,T_2$，$f_{T_1}=f_{T_2}$ 是可能的，因此在判断树同构前要先判断大小是否相等。
-    
+
 ## 方法四
 
 方法四本质上是方法一的改进版。
@@ -85,7 +85,7 @@ $son_{x,i}$ 表示 $x$ 所有子节点之一（不用排序）。
 
 求出序列 $a$ 之后，我们只需比较两棵有根树根节点的 $a$ 数组是否相等，就可以判断两棵树是否同构。
 
-为了保证复杂度，我们并不直接维护序列 $a$ ，而是维护 $a$ 的 OGF：
+为了保证复杂度，我们并不直接维护序列 $a$，而是维护 $a$ 的 OGF：
 
 $$
 f_{now}=\sum_{i=1}^{size_{now}}a_i seed^i
@@ -150,9 +150,9 @@ $$
 
 ## 习题
 
-[[JSOI2016]独特的树叶](https://www.luogu.com.cn/problem/P4323)
+[\[JSOI2016\] 独特的树叶](https://www.luogu.com.cn/problem/P4323)
 
-[[NOI2022] 挑战 NPC Ⅱ](https://www.luogu.com.cn/problem/P8499)
+[\[NOI2022\] 挑战 NPC Ⅱ](https://www.luogu.com.cn/problem/P8499)
 
 ## 参考资料
 
