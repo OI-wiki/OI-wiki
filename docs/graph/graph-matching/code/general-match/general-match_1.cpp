@@ -163,3 +163,26 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
   }
   return match;
 }
+
+int main() {
+  ios::sync_with_stdio(false);
+
+  int n, m;
+  cin >> n >> m;
+
+  undirectedgraph<int> g(n);
+
+  while (m--) {
+    int u, v;
+    cin >> u >> v;
+    g.add(u - 1, v - 1); // 0-based
+  }
+
+  auto match = find_max_unweighted_matching(g);
+
+  cout << count_if(match.begin(), match.end(), [] (int x) {return x != -1;}) / 2 << endl;
+  for (int i = 0; i < n; i++)
+    cout << match[i] + 1 << " \n"[i == n - 1];
+
+  return 0;
+}
