@@ -1,3 +1,6 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
 // graph
 template <typename T>
 class graph {

@@ -15,7 +15,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
 下面考虑一般图的增广算法。
 从二分图的角度出发，每次枚举一个未匹配点，设出发点为根，标记为 **"o"**，接下来交错标记 **"o"** 和 **"i"**，不难发现 **"i"** 到 **"o"** 这段边是匹配边。
 
-假设当前点是 $v$，相邻点为 $u$，可以分为一下两种情况：
+假设当前点是 $v$，相邻点为 $u$，可以分为以下两种情况：
 
 1. $u$ 未拜访过，当 $u$ 是未匹配点，则找到增广路径，否则从 $u$ 的配偶找增广路。
 2. $u$ 已拜访过，遇到标记 "o" 代表需要 **缩花**，否则代表遇到偶环，跳过。
@@ -46,6 +46,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
 ### 复杂度分析 Complexity Analysis
 
 每次找增广路，遍历所有边，遇到 **花** 会维护 **花** 上的点，$O(|E|^2)$。
+
 枚举所有未匹配点做增广路，总共 $O(|V||E|^2)$。
 
 ### 参考代码
@@ -361,6 +362,6 @@ $$
 
 ## 参考资料
 
-- 1. Mucha M, Sankowski P.[Maximum matchings via Gaussian elimination](http://web.eecs.umich.edu/~pettie/matching/Mucha-Sankowski-maximum-matching-matrix-multiplication.pdf)
-- 2. 周子鑫，杨家齐《基于线性代数的一般图匹配》
-- 3. ZYQN [《基于线性代数的一般图匹配算法》](https://oi.cyo.ng/wp-content/uploads/2017/02/maximum_matchings_via_gaussian_elimination.pdf)
+1. Mucha M, Sankowski P.[Maximum matchings via Gaussian elimination](http://web.eecs.umich.edu/~pettie/matching/Mucha-Sankowski-maximum-matching-matrix-multiplication.pdf)
+2. 周子鑫，杨家齐《基于线性代数的一般图匹配》
+3. ZYQN [《基于线性代数的一般图匹配算法》](https://oi.cyo.ng/wp-content/uploads/2017/02/maximum_matchings_via_gaussian_elimination.pdf)
