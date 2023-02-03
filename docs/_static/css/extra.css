@@ -88,4 +88,6 @@ mjx-container > img {
 
 [data-md-color-scheme="slate"] {
   --md-primary-fg-color: #2e303e;
+  --md-accent-fg-color: #00bda4;
+  --md-typeset-a-color: #526cfe;
 }
