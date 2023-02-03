@@ -87,11 +87,27 @@
 
 添加新页面可以参考既有的格式。但除非是进行重构或修正名词，否则 **我们不建议对既有页面的引用链接进行修改**，Pull Requests 中不必要的修改也将被驳回。
 
-如果您坚持要修改链接，请注意做好以下几点：
+如果您坚持要修改链接，请注意更新 author 字段和重定向文件。
 
-- 修改链接可能会影响到作者信息统计，这时需要您更新当前文档中的 [author 字段](./faq.md#:~:text=Q：为什么-,作者信息统计,-处没有我的)，请对照当前页面中的 contributors 清单逐一填写。
-- 请需要在项目内搜索一下是否有内链需要更新。
-- 注意更新 [重定向文件](https://github.com/OI-wiki/OI-wiki/blob/master/docs/_redirects)，以避免在外站引用时出现死链。详见 [重定向文件](./faq.md#:~:text=Q：-,重定向文件怎么用？,-A：_redirects)。
+### author 字段
+
+GitHub API 在文件目录变更后不能跟踪统计，所以我们在文件头手动维护了一个作者列表来解决这个问题。author 字段位于整个 Markdown 文件的开头，形如 `author: Ir1d, cjsoft`，相邻两个 ID 之间用逗号加空格隔开。这里的 ID 是 GitHub 的用户名，即 GitHub profile 的地址（例如 <https://github.com/Ir1d> 中的 `Ir1d`）。
+
+修改链接时，需要将当前页面中的 contributors 逐一填入 author 字段。
+
+### 重定向文件
+
+在修改链接时，为了避免在站外引用时出现死链，需要修改重定向文件。
+
+[`_redirects`](https://github.com/OI-wiki/OI-wiki/blob/master/docs/_redirects) 文件用于生成 [netlify 的配置](https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file) 和 [用于跳转的文件](https://github.com/OI-wiki/OI-wiki/blob/master/scripts/gen_redirect.py)。
+
+每一行表示一个重定向规则，分别写跳转的起点和终点的 url（不包含域名）：
+
+```text
+/path/to/src /path/to/desc
+```
+
+注：所有跳转均为 301 跳转，只有在修改目录中 url 造成死链的时候需要修改。
 
 ### Commit 信息格式规范
 

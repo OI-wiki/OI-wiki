@@ -3,19 +3,19 @@ author: kexplorning, Ir1d, lvneg1
 > 用来急救，不多废话。
 
 ???+note "药方食用提示"
-    本急救贴可以让您充分了解以下内容（对应 [C++ 语法快速提要](#c-start-here) ）：
+    本急救贴可以让您充分了解以下内容（对应 [C++ 语法快速提要](#c-语法快速提要-start-here) ）：
     
     - 基本语法（块语句、注释、导入库、简单输入输出、声明变量、赋值……）
     -   C++ 的 Hello World 与 A+B Problem 写法与解释
     
-         [对应语法](#syntax) 部分较为紧凑，正式食用可能需要额外参考资料（已给出）。此部分不包括指针与 C 风格数组的介绍，也没有结构体、运算符重载等等。
+         [对应语法](#对应语法-syntax) 部分较为紧凑，正式食用可能需要额外参考资料（已给出）。此部分不包括指针与 C 风格数组的介绍，也没有结构体、运算符重载等等。
     
-         [重要不同之处](#differences) 部分为 C++ 的语法特点，也是 Pascal 转 C++ 时会碰到的坑。
+         [重要不同之处](#重要不同之处-differences) 部分为 C++ 的语法特点，也是 Pascal 转 C++ 时会碰到的坑。
     
     如要快速查找，请见附录：
     
-    -  [附 A：Pascal 与 C++ 运算符与数学函数语法对比表](#apascal-c-pascal-vs-c-operator-syntax-table) 
-    -  [附 B：文章检索](#b-index) - 按 C++ 语句语法索引
+    -  [附 A：Pascal 与 C++ 运算符与数学函数语法对比表](#附-apascal-与-c-运算符与数学函数语法对比表-pascal-vs-c-operator-syntax-table) 
+    -  [附 B：文章检索](#附-b文章检索-index) - 按 C++ 语句语法索引
 
 <!-- 
 
@@ -98,7 +98,7 @@ std::cout << "Hello World!" << std::endl;
  `std::cout` 是输出（ `cout` 即 C-out）的命令。你可能看过有些 C++ 程序中直接写的是 `cout` 。
 
 ??? note "有关 std:: 前缀"
-    有关 `std::` 这个前缀的问题，请见 [这节](../basic/#cin-cout) 底下的注释「什么是 std？」。
+    有关 `std::` 这个前缀的问题，请见 [这节](../basic/#cin-与-cout) 底下的注释「什么是 std？」。
 
 中间的 `<<` 很形象地表示流动，其实它就是表示输出怎么「流动」的。这句代码的意思就是， `"Hello World!"` 会先被推到输出流，之后 `std::endl` 再被推到输出流。
 
@@ -173,13 +173,13 @@ int a = 0, b = 0, c = 0;
 #### 简单练习
 
 1. 重写一遍代码，提交到 OJ 上，并且 AC。
-2. 更多的输入输出语法参考 [这节内容](../basic/#scanf-printf) ，并试着了解 C++ 的格式化输出。
+2. 更多的输入输出语法参考 [这节内容](../basic/#scanf-与-printf) ，并试着了解 C++ 的格式化输出。
 
 ### 结束语与下一步
 
 好了，到现在为止，你已经掌握了一些最基本的东西了，剩下就是找 Pascal 和 C++ 里面对应的语法和不同的特征。
 
-不过在此之前，强烈建议先看 [变量作用域：全局变量与局部变量](#scope) ，也可使用 [附 B：文章检索](#index) 查阅阅读。
+不过在此之前，强烈建议先看 [变量作用域：全局变量与局部变量](#变量作用域-scope全局变量与局部变量) ，也可使用 [附 B：文章检索](#附-b文章检索-index) 查阅阅读。
 
 请善用<kbd>Alt</kbd>+<kbd>←</kbd>与<kbd>Alt</kbd>+<kbd>→</kbd>返回跳转。
 
@@ -219,8 +219,8 @@ const double PI = 3.1415926;
 
 请直接参考
 
--  [附 A：Pascal 与 C++ 运算符与数学函数语法对比表](#apascal-c-pascal-vs-c-operator-syntax-table) 
--  [运算 - OI Wiki](../op/) 
+-  [附 A：Pascal 与 C++ 运算符与数学函数语法对比表](#附-apascal-与-c-运算符与数学函数语法对比表-pascal-vs-c-operator-syntax-table) 
+-  [运算 - OI Wiki](./op.md) 
 
 ### 条件
 
@@ -441,7 +441,7 @@ C 风格的数组与指针有密切关系，所以此处不多展开。
 
 C++ 几乎可以在 **任何地方** 声明变量。
 
-以下对于 C++ 的变量作用域的介绍摘自 [变量作用域 - OI Wiki](../var/#字符型) ：
+以下对于 C++ 的变量作用域的介绍摘自 [变量作用域 - OI Wiki](../var/#变量作用域) ：
 
 > 作用域是变量可以发挥作用的代码块。
 >
@@ -855,25 +855,25 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 
 > 按 C++ 语句语法索引。
 
--  [基本语法](#c-start-here) 
--    [变量](#variable) 
-    -  [数据类型](#fundamental-types) 
-    -  [常量声明](#constant) 
-    -  [作用域](#scope) 
--  [运算符](#operator) 
--    [if 语句](#if) 
+-  [基本语法](#c-语法快速提要-start-here) 
+-    [变量](#变量-variable) 
+    -  [数据类型](#基本数据类型-fundamental-types) 
+    -  [常量声明](#常量声明-constant) 
+    -  [作用域](#变量作用域-scope全局变量与局部变量) 
+-  [运算符](#运算符-operator) 
+-    [if 语句](#if-语句) 
     - if
     - else
--    [循环语句](#loop) 
-    -  [for 语句](#for) 
-    -  [while 语句](#while) 
-    -  [do while 语句](#repeat-until-do-while) 
-    -  [break, continue](#loop-control) 
--    [函数](#functionc-void-return) 
-    -  [函数定义，return](#functionc-void-return) 
-    -  [函数传参](#passing-parameters-to-functions) 
--    [数组与字符串](#array-and-string) 
-    -  [不定长数组 Vector](#vector) 
-    -  [C 风格数组](#c-array) 
-    -  [字符串 String](#string) 
--  [资料](#c-reference) 
+-    [循环语句](#循环-loop) 
+    -  [for 语句](#for-循环) 
+    -  [while 语句](#while-循环) 
+    -  [do while 语句](#repeat-until-与-do-while-循环) 
+    -  [break, continue](#循环控制-loop-control) 
+-    [函数](#函数-functionc-只有函数没有过程但有-void-没有函数值变量但有-return-) 
+    -  [函数定义，return](#函数-functionc-只有函数没有过程但有-void-没有函数值变量但有-return-) 
+    -  [函数传参](#在函数中传递参数-passing-parameters-to-functions) 
+-    [数组与字符串](#数组与字符串-array-and-string) 
+    -  [不定长数组 Vector](#不定长数组标准库类型-vector) 
+    -  [C 风格数组](#c-风格数组-array) 
+    -  [字符串 String](#字符串标准库类型-string) 
+-  [资料](#c-标准库与参考资料-reference) 
