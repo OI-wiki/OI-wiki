@@ -85,3 +85,7 @@ mjx-container > img {
   width: 0;
   height: 0;
 }
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #2e303e;
+}
