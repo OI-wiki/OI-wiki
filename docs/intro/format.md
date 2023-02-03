@@ -425,6 +425,22 @@ $$
 
 - 最后，可以将代码添加到文档中了。请直接在文档中用添加代码块的格式，并将代码块内部直接写成 `--8<-- "你的代码路径"` 的格式就可以了。
 
+#### 含西文人名概念翻译的格式要求
+
+1. 应以便于流传和检索为总原则。推荐在翻译后的文本后面注明原文本，如 "Dijkstra's algorithm" -> 「Dijkstra 算法 (Dijkstra's algorithm)」。
+2. 若某个翻译文本对应的英文文本较为罕见，则不应使用，如不应使用「Descartes 坐标系」，因为 "Descartes coordinate system" 几乎无人使用[^ngram]。
+3. 翻译时可以选择保留原人名，如 "Bernoulli number" 可译为「Bernoulli 数」；也可以选择按流传较广的音译翻译，如 "Bernoulli number" 可译为「伯努利数」。按流传较广的音译翻译时，在第一条的基础上，推荐在翻译后的文本后面同时注明保留原人名的版本，如 "Bernoulli number" -> 「伯努利数 (Bernoulli 数，Bernoulli number)」。
+4. 若人名中有扩展 ASCII 字符，若选择保留原人名的话应保持原样，如「Bézout 定理」、「Prüfer 序列」；在第一条的基础上，推荐在翻译后的文本后面同时注明流传较广的简化写法翻译，如：
+   - "Bézout's theorem" -> 「Bézout 定理 (Bezout 定理，Bézout's theorem)」，
+   - "Prüfer sequence" -> 「Prüfer 序列 (Prufer 序列，Prüfer sequence)」。
+5. 当人名部分有仅修改性数格的词缀（如英文中有时会在人名后添加 -ian 后缀，将人名视作形容词）时，若选择保留原人名则应使用原形式，如 "Hamiltonian path" 应译为「Hamilton 路径」，而不是「Hamiltonian 路径」或「Hamilton 的路径」。
+
+???+ note "例子"
+    基于第一条，"Cartesian coordinate system" 推荐使用流传较广的音译「笛卡尔坐标系」；若选择保留原人名，基于第一条，建议译为「Cartesian 坐标系」而不是「Cartesius[^renedescartes] 坐标系」，可行的方案有：
+    
+    - "Cartesian coordinate system" -> 「笛卡尔坐标系 (Cartesian 坐标系，Cartesian coordinate system)」，
+    - "Cartesian coordinate system" -> 「Cartesian 坐标系 (Cartesian coordinate system)」。
+
 ## 图解
 
 可能上述要求把握起来有些困难，接下来我们给出一些图片来具体分析哪种格式应该使用，哪种不该使用：
@@ -502,3 +518,7 @@ $$
 [^apng]: [APNG](https://en.wikipedia.org/wiki/APNG)
 
 [^intro-apng]: [OI-wiki/OI-wiki#3422](https://github.com/OI-wiki/OI-wiki/issues/3422)
+
+[^ngram]: [Google Ngram Viewer](https://books.google.com/ngrams/graph?content=Cartesian+coordinate+system%2CDescartes+coordinate+system&year_start=1800&year_end=2019&corpus=en-2019&smoothing=3)
+
+[^renedescartes]: [René Descartes - Wikipedia](https://en.wikipedia.org/wiki/Ren%C3%A9_Descartes)
