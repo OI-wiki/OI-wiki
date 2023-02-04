@@ -239,7 +239,7 @@ $$
     === "C++"
     
         ```cpp
-        vector<int> find_occurences(string text, string pattern) {
+        vector<int> find_occurrences(string text, string pattern) {
           string cur = pattern + '#' + text;
           int sz1 = text.size(), sz2 = pattern.size();
           vector<int> v;
@@ -255,7 +255,7 @@ $$
     === "Python"
     
         ```python
-        def find_occurences(t, s):
+        def find_occurrences(t, s):
             cur = s + '#' + t
             sz1, sz2 = len(t), len(s)
             ret = []
