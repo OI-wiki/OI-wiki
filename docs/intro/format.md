@@ -431,8 +431,8 @@ $$
 2. 若某个翻译文本对应的英文文本较为罕见，则不应使用，如：不应使用「Descartes 坐标系」，因为 "Descartes coordinate system" 几乎无人使用[^ngram]。
 3. 翻译时可以选择保留原人名，如 "Bernoulli number" 可译为「Bernoulli 数」；也可以选择按流传较广的音译翻译，如 "Bernoulli number" 可译为「伯努利数」。按流传较广的音译翻译时，在第一条的基础上，推荐在翻译后的文本后面同时注明保留原人名的版本，如 "Bernoulli number" -> 「伯努利数 (Bernoulli 数，Bernoulli number)」。
 4. 人名中有非 ASCII 字符时，若选择保留原人名的话应保持原样，如「Bézout 定理」、「Prüfer 序列」；在第一条的基础上，推荐在翻译后的文本后面同时注明流传较广的简化写法翻译，如：
-   - "Bézout's theorem" -> 「Bézout 定理 (Bezout 定理，Bézout's theorem)」，
-   - "Prüfer sequence" -> 「Prüfer 序列 (Prufer 序列，Prüfer sequence)」。
+    - "Bézout's theorem" -> 「Bézout 定理 (Bezout 定理，Bézout's theorem)」，
+    - "Prüfer sequence" -> 「Prüfer 序列 (Prufer 序列，Prüfer sequence)」。
 5. 当人名部分有仅修改性数格的词缀（如英文中有时会在人名后添加 -ian 后缀，将人名视作形容词）时，若选择保留原人名则应使用原形式，如 "Hamiltonian path" 应译为「Hamilton 路径」，而不是「Hamiltonian 路径」或「Hamilton 的路径」。
 
     若本条和第一条冲突，则建议侧重于第一条。
