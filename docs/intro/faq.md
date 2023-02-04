@@ -117,7 +117,7 @@ git remote set-url origin git@github.com:username/OI-wiki.git
 
 Q：我这里 pip 也太慢了
 
-A：可以选择更换国内源[^ref2]，或者：
+A：可以选择更换国内源[^ref1]，或者：
 
 ```bash
 pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
@@ -127,7 +127,7 @@ pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
 Q：我在客户端 clone 了这个项目，速度太慢
 
-A：如果有安装 `git bash`，可以加几个限制来减少下载量。[^ref3]
+A：如果有安装 `git bash`，可以加几个限制来减少下载量。[^ref2]
 
 ```bash
 git clone https://github.com/OI-wiki/OI-wiki.git --depth=1 -b master
@@ -229,7 +229,7 @@ A：是的，这个是 python-markdown 的一个 bug，可能近期会修复。
 
 Q：如何给一个页面单独声明版权信息
 
-A：在页面开头加一行即可。[^ref4]
+A：在页面开头加一行即可。[^ref3]
 
 比如：
 
@@ -255,14 +255,10 @@ A：如果你发现自己写过一个页面中的部分内容，但是你没有�
 
 ## 参考资料与注释
 
-[^ref1]: [GoogleHosts-8ff01be](https://github.com/googlehosts/hosts/blob/8ff01be91c4a70604f83e5cf0a3dd595fe8868b0/hosts-files/hosts#L1465-L1485)
+[^ref1]: [更改 pip 源至国内镜像 - L 瑜 - CSDN 博客](https://blog.csdn.net/lambert310/article/details/52412059)
 
-[^ref2]: [更改 pip 源至国内镜像 - L 瑜 - CSDN 博客](https://blog.csdn.net/lambert310/article/details/52412059)
+[^ref2]: [GIT--- 看我一步步入门（Windows Git Bash）](https://blog.csdn.net/FreeApe/article/details/46845555)
 
-[^ref3]: [GIT--- 看我一步步入门（Windows Git Bash）](https://blog.csdn.net/FreeApe/article/details/46845555)
-
-[^ref4]: [Metadata - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/extensions/metadata/#usage)
-
-[^ref5]: 修改自 [fastgithub 官方介绍](https://github.com/dotnetcore/FastGithub/blob/master/README.md)
+[^ref3]: [Metadata - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/extensions/metadata/#usage)
 
 [^only-ssh-connect]: GitHub 弃用了基于密码身份验证的 HTTPS 协议，连接必须使用 SSH 或者 Personal Access Token，参见 [我应使用哪个远程 URL？](https://docs.github.com/cn/github/using-git/which-remote-url-should-i-use)，[创建个人访问令牌](https://docs.github.com/cn/github/authenticating-to-github/creating-a-personal-access-token) 和 [使用 SSH 连接到 GitHub](https://docs.github.com/cn/github/authenticating-to-github/connecting-to-github-with-ssh)。
