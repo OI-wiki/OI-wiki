@@ -156,4 +156,4 @@ $$
 
 方法三参考自博客 [树 hash](https://www.cnblogs.com/huyufeifei/p/10817673.html)。
 
-方法四可能的原始出处：[zhoukangyang's blog](https://www.luogu.com.cn/blog/173660/solution-p5043)
+方法四参考自 [zhoukangyang 的博客](https://www.luogu.com.cn/blog/173660/solution-p5043)
