@@ -94,6 +94,9 @@ mjx-container > img {
 
 [data-md-color-scheme="slate"] .md-typeset img {
   background: white;
-  border: 3px solid white;
   filter: brightness(0.9);
+}
+
+[data-md-color-scheme="slate"] .md-typeset img[src$=".svg"] {
+  border: 4px solid white;
 }
