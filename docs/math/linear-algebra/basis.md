@@ -4,32 +4,19 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
 线性基是线性空间的一组基，是研究线性空间的重要工具。
 
-## Hamel 基
+由于 OI 中只涉及有限维线性空间，故本处仅介绍有限维线性空间的情况。
 
-### 定义
+## 定义
 
 称线性空间 $V$ 的一个极大线性无关组为 $V$ 的一组 **Hamel 基** 或 **线性基**，简称 **基**。
 
 规定线性空间 $\{\theta\}$ 的基为空集。
 
-另外，将 $V$ 的 **维数** 记作 $\dim V$, 定义如下：
+另外，将 $V$ 的 **维数** 记作 $\dim V$, 定义为基的元素个数。
 
-- 若基是有限集合，则定义 $V$ 的 **维数** 为基的元素个数。
-- 若基不是有限集合，则定义 $V$ 的 **维数** 为 $\infty$.
+有限维线性空间的基的存在性是显然的。
 
-### 存在性
-
-由 Zorn 引理，我们可以证明：任意线性空间均存在 Hamel 基。
-
-证明思路如下：
-
-设线性空间 $V$ 的全体线性无关向量组为 $\mathscr{F}$, 显然 $(\mathscr{F},\subseteq)$ 构成偏序集。
-
-容易验证 $(\mathscr{F},\subseteq)$ 上的任意全序子集均有上界，故由 Zorn 引理，$\mathscr{F}$ 有极大元 $F$.
-
-容易验证 $F$ 即为线性空间 $V$ 的 Hamel 基。
-
-### 性质（有限维）
+## 性质
 
 1.  对于有限维线性空间 $V$, 设其维数为 $n$, 则：
 
@@ -76,7 +63,7 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
     ???+ note
         1,3 两条可推广到无限维线性空间中
 
-### 例子
+## 例子
 
 考虑 $\Bbb{R}^2$ 的基。
 
@@ -233,4 +220,5 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 ## 参考资料与注释
 
 1. 丘维声，高等代数（下）。清华大学出版社。
-2. [Hamel Basis -- from Wolfram MathWorld](https://mathworld.wolfram.com/HamelBasis.html)
+2. [Basis (linear algebra) - Wikipedia](https://en.wikipedia.org/wiki/Basis_(linear_algebra))
+3. [Vector Basis -- from Wolfram MathWorld](https://mathworld.wolfram.com/VectorBasis.html)
