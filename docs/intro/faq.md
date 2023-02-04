@@ -85,14 +85,14 @@ A：有两种选择：
 
 Q：我尝试访问 GitHub 的时候遇到了困难
 
-A：推荐使用 [`FastGithub`](https://github.com/dotnetcore/FastGithub), 支持 Windows/MacOS/Linux.
+A：推荐使用 [`FastGithub`](https://github.com/dotnetcore/FastGithub)，支持 Windows/macOS/Linux。
+
 
 下载链接：
 
 - [官方 release(Github)](https://github.com/dotnetcore/FastGithub/releases) 可以使用 gh-proxy 加速下载：[`Windows`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_win-x64.zip)  [`MacOS-x64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_osx-x64.zip)  [`MacOS-arm64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_osx-arm64.zip)  [`Linux-x64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_linux-x64.zip)  [`Linux-arm64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_linux-arm64.zip)
-- ~~发送电子邮件到 `fastgithub@qq.com`~~（已失效）
 
-或者，也可以在 hosts 中加入 [此页面](https://raw.hellogithub.com/hosts) 中的内容：
+或者，也可以在 hosts 文件中加入 [此文件](https://raw.hellogithub.com/hosts) 中的内容。
 
 可以在 [`Github520` 主页](https://github.com/521xueweihan/GitHub520) 上了解到更多信息。
 
