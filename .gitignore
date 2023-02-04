@@ -1,7 +1,6 @@
 /authors.json
 _build/
 site/
-mkdocs-material/
 .vscode/
 .DS_Store
 .env
