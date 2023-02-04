@@ -91,3 +91,9 @@ mjx-container > img {
   --md-accent-fg-color: #00bda4;
   --md-typeset-a-color: #526cfe;
 }
+
+[data-md-color-scheme="slate"] .md-typeset img {
+  background: white;
+  border: 3px solid white;
+  filter: brightness(0.9);
+}
