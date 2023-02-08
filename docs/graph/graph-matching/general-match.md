@@ -256,15 +256,15 @@ $$
     - 如果 $G$ 存在完美匹配，我们只需要将匹配边对应的二元环取出，就可以得到一个偶环覆盖。
     
     然后证明 $G$ 存在偶环覆盖当且仅当 $\tilde{A} \ne 0$。
-
+    
     考虑行列式的定义
-
+    
     $$
     \det A = \sum_{\pi} (-1)^{\pi} \prod_{i} A_{i, \pi_i}
     $$
-
+    
     其中 $\pi$ 是任意排列，$(-1)^{\pi}$ 表示若 $\pi$ 中的逆序对数为奇数，则取 $-1$，否则取 $1$。
-
+    
     不难看出每个排列都可以被看作 $G$ 的一个环覆盖。如果这个环覆盖中存在奇环，则将这个环翻转后的和一定为 $0$，因此只有偶环覆盖才能使行列式不为 $0$，证毕。
 
 **定理**：$\operatorname{rank}\tilde{A}$ 一定为偶数，并且 $G$ 的最大匹配的大小等于 $\operatorname{rank}\tilde{A}$ 的一半。
@@ -290,9 +290,9 @@ $$
 
 ???+ tip "逆矩阵与伴随矩阵"
     对任意 $n$ 阶方阵 $A$，定义其伴随矩阵为 $A^*_{i, j} = (-1)^{i + j} M_{j, i}$，其中 $M_{j, i}$ 为删去第 $j$ 行第 $i$ 列的余子式。换言之，设 $A$ 的代数余子式矩阵为 $M$，则 $A^* = M^T$。
-
+    
     **定理**：如果 $A$ 可逆，那么 $A^{-1} = \frac 1 {\det A} A^*$。
-
+    
     所以这里的 $A^{-1}_{j, i} \ne 0 \iff M_{i, j} \ne 0$，也就是 $A$ 删去第 $i$ 行第 $j$ 列后的部分满秩。
 
 换言之，如果 $(v_i, v_j) \in E$，并且 $\tilde{A}^{-1}_{j, i} \ne 0$，就表明存在一个完美匹配方案包含 $(v_i, v_j)$ 这条边。以下将这种边称为 **可行边**。
@@ -325,13 +325,13 @@ $$
     ```cpp
     void eliminate(int A[][MAXN], int r, int c) {  // 消去第 r 行第 c 列
       row_marked[r] = col_marked[c] = true;        // 已经被消掉
-    
+      
       int inv = quick_power(A[r][c], p - 2);  // 逆元
-    
+      
       for (int i = 1; i <= n; i++)
         if (!row_marked[i] && A[i][c]) {
           int tmp = (long long)A[i][c] * inv % p;
-    
+          
           for (int j = 1; j <= n; j++)
             if (!col_marked[j] && A[r][j])
               A[i][j] = (A[i][j] - (long long)tmp * A[r][j]) % p;
