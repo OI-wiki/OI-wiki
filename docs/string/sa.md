@@ -232,7 +232,7 @@ for (i = 1; i <= n; ++i) {
     
     char s[N];
     // key1[i] = rk[id[i]]（作为基数排序的第一关键字数组）
-    int n, sa[N], rk[N], oldrk[N << 1], id[N], key1[N], px[N], cnt[N];
+    int n, sa[N], rk[N], oldrk[N << 1], id[N], key1[N], cnt[N];
     
     bool cmp(int x, int y, int w) {
       return oldrk[x] == oldrk[y] && oldrk[x + w] == oldrk[y + w];
