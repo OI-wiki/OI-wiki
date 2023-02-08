@@ -14,14 +14,14 @@ jobs:
     name: OI-Wiki Page Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
           cache: pipenv
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: '16.x'
           check-latest: true
@@ -30,7 +30,7 @@ jobs:
           curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python3
           pipenv install
       - name: Cache Node.js dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: cache-node
         with:
           path: node_modules
@@ -52,6 +52,10 @@ jobs:
         run: ./scripts/post-build/minify-html/minify-html.sh
       - name: Generate redirects
         run: pipenv run python scripts/post-build/redirect/generate-redirects.py
+      - name: Check links
+        uses: wjdp/htmltest-action@master
+        with:
+          skip_external: true
       - name: Deploy to gh-pages
         if: ${{ github.event_name == 'push' }}
         uses: peaceiris/actions-gh-pages@v3

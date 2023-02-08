@@ -58,7 +58,7 @@ void f()  // 这里定义的是全局命名空间的 f 函数，与 A::f 和 A::
     
     因此在工程中，并不推荐使用 `using namespace 命名空间;` 的指令。
 
-有了 `using` 指令，[C++ 语法基础](./basic.md#cin-cout) 中的代码可以有这两种等价写法：
+有了 `using` 指令，[C++ 语法基础](./basic.md#cin-与-cout) 中的代码可以有这两种等价写法：
 
 ```cpp
 #include <iostream>

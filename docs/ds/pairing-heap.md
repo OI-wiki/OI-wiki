@@ -201,6 +201,5 @@ struct Node {
 
 [^ref4]: [Towards a Final Analysis of Pairing Heaps](http://web.eecs.umich.edu/~pettie/papers/focs05.pdf)
 
-[^ref5]: <https://en.wikipedia.org/wiki/Pairing_heap>
-
-[^ref6]: <https://brilliant.org/wiki/pairing-heap/>
+- <https://en.wikipedia.org/wiki/Pairing_heap>
+- <https://brilliant.org/wiki/pairing-heap/>

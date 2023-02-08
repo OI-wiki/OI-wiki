@@ -810,12 +810,10 @@ $$
 
 [^in-place-sa-sort]: Li, Zhize; Li, Jian; Huo, Hongwei (2016).*Optimal In-Place Suffix Sorting*. Proceedings of the 25th International Symposium on String Processing and Information Retrieval (SPIRE). Lecture Notes in Computer Science. 11147. Springer. pp. 268–284. arXiv:1610.08305. doi:10.1007/978-3-030-00479-8_22. ISBN:978-3-030-00478-1.
 
-[^ka03]: Pang Ko and Srinivas Aluru. Space efficient linear time construction of suffix arrays. In Combinatorial Pattern Matching (CPM), pages 200–210. Springer, 2003.
-
 [^nzc09a]: Ge Nong, Sen Zhang, and Wai Hong Chan. Linear suffix array construction by almost pure induced-sorting. In Data Compression Conference (DCC), pages 193–202. IEEE, 2009.
 
-[^np12]: Gonzalo Navarro and Eliana Providel. Fast, small, simple rank/select on bitmaps. In Proc. 11th International Symposium on Experimental Algorithms (SEA), pages 295–306, 2012.
+[^sa-is介绍]: 推荐阅读 [博文](https://riteme.site/blog/2016-6-19/sais.html) 和它的 [issue 列表](https://github.com/riteme/riteme.github.io/issues/28)
 
 [^诱导顺序]: 如果是 LML 后缀，就先诱导 S 型后缀，唯一区别是计算 LML 后缀时需要将警戒哨也算进去。
 
-[^sa-is介绍]: 推荐阅读 [博文](https://riteme.site/blog/2016-6-19/sais.html) 和它的 [issue 列表](https://github.com/riteme/riteme.github.io/issues/28)
+[^np12]: Gonzalo Navarro and Eliana Providel. Fast, small, simple rank/select on bitmaps. In Proc. 11th International Symposium on Experimental Algorithms (SEA), pages 295–306, 2012.
