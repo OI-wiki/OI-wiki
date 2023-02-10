@@ -109,7 +109,7 @@ git clone https://ghproxy.com/https://github.com/OI-wiki/OI-wiki
 如果您需要向 OI Wiki 贡献，那么首先 fork OI Wiki 的仓库，然后（将 `username` 替换为您的用户名），需要注意的是提供的示例将使您使用 SSH 连接到 GitHub[^only-ssh-connect]：
 
 ```bash
-git clone https://ghproxy.com/https://github.com/OI-wiki/OI-wiki
+git clone https://ghproxy.com/https://github.com/username/OI-wiki
 git remote set-url origin git@github.com:username/OI-wiki.git
 ```
 
