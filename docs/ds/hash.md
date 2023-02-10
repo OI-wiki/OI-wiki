@@ -27,7 +27,7 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
 
 ### 拉链法
 
-拉链法也称开散列法（open hashing）。
+拉链法也称开散列法（open hashing / separate chaining）。
 
 拉链法是在每个存放数据的地方开一个链表，如果有多个键值索引到同一个地方，只用把他们都放到那个位置的链表里就行了。查询的时候需要把对应位置的链表整个扫一遍，对其中的每个数据比较其键值与查询的键值是否一致。如果索引的范围是 $1\ldots M$，哈希表的大小为 $N$，那么一次插入/查询需要进行期望 $O(\frac{N}{M})$ 次比较。
 
@@ -61,8 +61,8 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
 
       int add(int key, int value) {
         if (get(key) != -1) return -1;
-        data[++size] = (Node){head[f(key)], value, key};
-        head[f(key)] = size;
+        data[++size] = (Node){head[hash(key)], value, key};
+        head[hash(key)] = size;
         return value;
       }
     };
@@ -142,7 +142,7 @@ struct hash_map {  // 哈希表模板
 
 ### 闭散列法
 
-闭散列方法把所有记录直接存储在散列表中，如果发生冲突则根据某种方式继续进行探查。
+闭散列方法（closed hashing / open addressing）把所有记录直接存储在散列表中，如果发生冲突则根据某种方式继续进行探查。
 
 比如线性探查法：如果在 `d` 处发生冲突，就依次检查 `d + 1`，`d + 2`……
 

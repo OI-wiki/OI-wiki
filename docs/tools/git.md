@@ -294,7 +294,7 @@ Date:   Sun Sep 13 00:06:07 2020 +0800
 
 ### 分支的创建
 
-利用 `git branch` 命令可以创建分支，`git switch` 命令可以切换分支，`git switch -c` 命令可以创建分支并切换到这个新分支。
+利用 `git branch <分支名称>` 命令可以创建分支，`git switch <分支名称>` 命令可以切换分支，`git switch -c <分支名称>` 命令可以创建分支并切换到这个新分支。
 
 ```bash
 $ git switch -c dev # 创建一个叫做 dev 的新分支并切换当前分支到 dev
