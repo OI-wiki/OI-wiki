@@ -18,3 +18,8 @@ title: OI Wiki
 <a href="https://www.hulu.com/" target="_blank"><img style="height: 40px; " src="images/hulu-black.png"></a>
 <a href="https://www.netlify.com/" target="_blank" style="margin-left: 60px;"><img style="height: 40px; " src="images/netlify.png"></a>
 </div>
+
+<script>
+  // #758
+  document.getElementsByClassName('md-nav__title')[1].click()
+</script>
