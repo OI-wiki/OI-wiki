@@ -61,8 +61,8 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
 
       int add(int key, int value) {
         if (get(key) != -1) return -1;
-        data[++size] = (Node){head[hash(key)], value, key};
-        head[hash(key)] = size;
+        data[++size] = (Node){head[f(key)], value, key};
+        head[f(key)] = size;
         return value;
       }
     };
@@ -144,7 +144,11 @@ struct hash_map {  // 哈希表模板
 
 闭散列方法（closed hashing / open addressing）把所有记录直接存储在散列表中，如果发生冲突则根据某种方式继续进行探查。
 
-比如线性探查法：如果在 `d` 处发生冲突，就依次检查 `d + 1`，`d + 2`……
+比如:
+
+- 线性探查法（linear probing）：如果在 `d` 处发生冲突，就依次检查 `d + 1`，`d + 2`.....（i次探查后的位置 = (hash(key) + i) % TableSize)。 缺点：容易导致primary clustering, 大部分数据集中在列表的一部分，导致后期的数据查找极慢（O(n))
+- 二次探查法（quadratic probing）：如果在 `d` 处发生冲突，就依次检查 `d + 1`, `d + 4`, `d + 9`......（i次探查后的位置 = (hash(key) + i^2) % TableSize)。缺点：容易导致secondary clustering, hash到同样初始位置的keys会重复很多探查步骤。并且，随着列表存的数据增加，二次探查法会陷入循环，导致有些数据无法被插入到列表里（必须扩大列表的大小）
+- 双重散列（double hashing）：如果在 `d` 处发生冲突，就利用我们定义的第二个哈希函数来计算存储数据的位置。打个比方，两个不同的哈希函数可以是：[h(key) = key % T, g(key) = 1 + ((key / T) % (T - 1))] (T = 列表大小) 缺点：好的实现比前两种麻烦。
 
 #### 实现
 
