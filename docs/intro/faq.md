@@ -85,7 +85,7 @@ A：有两种选择：
 
 Q：我尝试访问 GitHub 的时候遇到了困难
 
-A：推荐使用 [`FastGithub`](https://github.com/dotnetcore/FastGithub)，支持 Windows/macOS/Linux。
+A：可以使用 [`FastGithub`](https://github.com/dotnetcore/FastGithub)，支持 Windows/macOS/Linux。
 
 
 下载链接：
