@@ -10,7 +10,7 @@ A：不知道你在学 **OI** 的时候，面对庞大的知识体系，有没�
 
 Q：我很感兴趣，怎么参与？
 
-A：**OI Wiki** 现在托管在 GitHub 上，你可以直接访问这个 [repo](https://github.com/OI-wiki/OI-wiki) 来查看最新进展。参与的途径包括在 GitHub 上面开 [Issue](https://github.com/OI-wiki/OI-wiki/issues)、[Pull Request](https://github.com/OI-wiki/OI-wiki/pulls)，或者在交流群中分享你的想法、直接向管理员投稿。目前，我们使用的框架是用 Python 开发的 [MkDocs](https://mkdocs.readthedocs.io)，支持 Markdown 格式（也支持插入数学公式）。
+A：**OI Wiki** 现在托管在 GitHub 上，你可以直接访问这个 [repo](https://github.com/OI-wiki/OI-wiki) 来查看最新进展。参与的途径包括在 GitHub 上面开 [Issue](https://github.com/OI-wiki/OI-wiki/issues)、[Pull Request](https://github.com/OI-wiki/OI-wiki/pulls)，或者在交流群中分享你的想法、直接向管理员投稿。目前，我们使用的框架是用 Python 开发的 [MkDocs](https://www.mkdocs.org/)，使用 [mkdocs-material](https://squidfunk.github.io/mkdocs-material/) 主题。支持 Markdown 格式（也支持插入数学公式）。
 
 * * *
 
