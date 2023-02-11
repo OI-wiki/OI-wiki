@@ -1,6 +1,6 @@
 {
   "settings": {
-    "listItemIndent": "mixed",
+    "listItemIndent": "tab",
     "emphasis": "*"
   },
   "plugins": [
