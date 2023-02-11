@@ -85,29 +85,18 @@ A：有两种选择：
 
 Q：我尝试访问 GitHub 的时候遇到了困难
 
-A：可以使用 [`FastGithub`](https://github.com/dotnetcore/FastGithub)，支持 Windows/macOS/Linux。
-
-
-下载链接：
-
-- [官方 release(Github)](https://github.com/dotnetcore/FastGithub/releases) 可以使用 gh-proxy 加速下载：[`Windows`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_win-x64.zip)  [`MacOS-x64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_osx-x64.zip)  [`MacOS-arm64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_osx-arm64.zip)  [`Linux-x64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_linux-x64.zip)  [`Linux-arm64`](https://ghproxy.com/https://github.com/dotnetcore/FastGithub/releases/download/2.1.4/fastgithub_linux-arm64.zip)
-
-或者，也可以在 hosts 文件中加入 [此文件](https://raw.hellogithub.com/hosts) 中的内容。
-
-可以在 [`Github520` 主页](https://github.com/521xueweihan/GitHub520) 上了解到更多信息。
-
-Linux 和 macOS 用户可以尝试使用 [依云](https://github.com/lilydjwg/) 的 [gh-check 脚本](https://gist.github.com/lilydjwg/93d33ed04547e1b9f7a86b64ef2ed058) 获取访问最快的 IP，使用 `--hosts` 参数可以直接更新 hosts 文件。使用 `--help` 参数可以获取使用帮助。使用先需要安装 Python3 和 aiohttp（`pip install aiohttp -i https://pypi.tuna.tsinghua.edu.cn/simple/`）。依云博客的介绍：[寻找最快的 GitHub IP](https://blog.lilydjwg.me/2019/8/16/gh-check.214730.html)。
-
-同时，您可以使用 [gh-proxy](https://ghproxy.com/) 服务加速 Clone。
-
-如果您仅仅是想 Clone OI Wiki 的仓库，那么：
-
+A：可以采用以下几种方案:
+- 使用 [`FastGithub`](https://github.com/dotnetcore/FastGithub)，支持 Windows/macOS/Linux。
+  -下载链接：[官方 release(Github)](https://github.com/dotnetcore/FastGithub/releases)
+- 在 hosts 文件中加入 [此文件](https://raw.hellogithub.com/hosts) 中的内容。(可以在 [`Github520` 主页](https://github.com/521xueweihan/GitHub520) 上了解到更多信息。)
+- Linux 和 macOS 用户可以尝试使用 [依云](https://github.com/lilydjwg/) 的 [gh-check 脚本](https://gist.github.com/lilydjwg/93d33ed04547e1b9f7a86b64ef2ed058) 获取访问最快的 IP。使用 `--help` 参数可以获取使用帮助。(使用先需要安装 Python3 和 aiohttp `pip install aiohttp -i https://pypi.tuna.tsinghua.edu.cn/simple/`)。依云博客的介绍：[寻找最快的 GitHub IP](https://blog.lilydjwg.me/2019/8/16/gh-check.214730.html))
+- 您可以使用 [gh-proxy](https://ghproxy.com/) 服务加速 Clone。
+- 如果您仅仅是想 Clone OI Wiki 的仓库，那么：
 ```bash
 git clone https://ghproxy.com/https://github.com/OI-wiki/OI-wiki
 ```
 
-如果您需要向 OI Wiki 贡献，那么首先 fork OI Wiki 的仓库，然后（将 `username` 替换为您的用户名），需要注意的是提供的示例将使您使用 SSH 连接到 GitHub[^only-ssh-connect]：
-
+- 如果您需要向 OI Wiki 贡献，那么首先 fork OI Wiki 的仓库，然后（将 `username` 替换为您的用户名），需要注意的是提供的示例将使您使用 SSH 连接到 GitHub[^only-ssh-connect]：
 ```bash
 git clone https://ghproxy.com/https://github.com/username/OI-wiki
 git remote set-url origin git@github.com:username/OI-wiki.git
