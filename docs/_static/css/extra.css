@@ -85,3 +85,18 @@ mjx-container > img {
   width: 0;
   height: 0;
 }
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #2e303e;
+  --md-accent-fg-color: #00bda4;
+  --md-typeset-a-color: #526cfe;
+}
+
+[data-md-color-scheme="slate"] .md-typeset img {
+  background: white;
+  filter: brightness(0.9);
+}
+
+[data-md-color-scheme="slate"] .md-typeset img[src$=".svg"] {
+  border: 4px solid white;
+}
