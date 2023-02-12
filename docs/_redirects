@@ -5,10 +5,11 @@
 /intro/common-mistakes /contest/common-mistakes
 /intro/common-tricks /contest/common-tricks
 /intro/non-trad /contest/problems
-/intro/judgers /tools/judgers
+/intro/judgers /tools/judger
+/tools/judgers /tools/judger
 /intro/wsl /tools/wsl
-/intro/spj /tools/spj
-/intro/testlib/index /tools/testlib/index
+/intro/spj /tools/special-judge
+/intro/testlib /tools/testlib
 /intro/testlib/general /tools/testlib/general
 /intro/testlib/generator /tools/testlib/generator
 /intro/testlib/validator /tools/testlib/validator
@@ -43,8 +44,8 @@
 /math/basis /math/linear-algebra/basis
 /math/char-poly /math/linear-algebra/char-poly
 /math/gauss /math/linear-algebra/gauss
-/math/linear-algebra-index /math/linear-algebra/index
-/math/martix /math/linear-algebra/martix
+/math/linear-algebra-index /math/linear-algebra
+/math/martix /math/linear-algebra/matrix
 /math/vector /math/linear-algebra/vector
 /math/gen-func/intro /math/poly/intro
 /math/gen-func/symbolic-method /math/poly/symbolic-method
