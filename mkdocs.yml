@@ -522,8 +522,23 @@ theme:
     - 404.html
   language: 'zh'
   palette:
-    primary: 'white'
-    accent: 'red'
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
   include_search_page: false
   search_index_only: true
   favicon: 'favicon.ico'
@@ -553,7 +568,6 @@ extra:
     property: UA-124485594-1
 
 extra_javascript:
-  - '_static/js/extra.js?v=16'
   - '_static/js/math-csr.js?math-csr'
   - 'assets/vendor/mathjax/es5/tex-mml-chtml.js?math-csr'
 
