@@ -14,8 +14,6 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
 另外，将 $V$ 的 **维数** 记作 $\dim V$, 定义为基的元素个数。
 
-有限维线性空间的基的存在性是显然的。
-
 ## 性质
 
 1.  对于有限维线性空间 $V$, 设其维数为 $n$, 则：
