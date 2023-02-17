@@ -1,14 +1,15 @@
 ## 定义
 
  以下内容的定义，请参见 [图论相关概念](./concept/#%E5%89%B2)。
-- 边连通度；
-- 点连通度。
+- 边连通度、边割集；
+- 点连通度、点割集；
+- 团。
 
 ## 性质
 
 ### Whitney 不等式
 
-**Whitney 不等式** (1932) 给出了点连通度 $\lambda$、边连通度 $\kappa$ 和最小度 $\delta$ 之间的关系：
+**Whitney 不等式**（1932）给出了点连通度 $\lambda$、边连通度 $\kappa$ 和最小度 $\delta$ 之间的关系：
 
 $$\kappa \le \lambda \le \delta$$
 
@@ -22,14 +23,29 @@ $$\kappa \le \lambda \le \delta$$
 ???+note "构造"
     把两个大小为 $\delta + 1$ 的团用 $\lambda$ 条边连起来，使两个团分别有 $\lambda$ 和 $\kappa$ 个不同的结点被连在这些边上。
 
-### Ford–Fulkerson 定理推论（Menger 定理）
+### Menger 定理
 
 !!!+warning
-    原作者将「最大流最小割定理」称为「Ford–Fulkerson 定理」，原因未知。下面推论在原文中没有正式名称，[维基百科](https://en.wikipedia.wikimirror.net/wiki/Menger%27s_theorem) 称之为「Menger's theorem」
-。
+    原作者将以下推论（还是说最小割最大流定理？）称为「Ford–Fulkerson 定理」，原因未知。[维基百科](https://en.wikipedia.wikimirror.net/wiki/Menger%27s_theorem) 称之为「Menger's theorem」。
 
-由 [最大流最小割定理](./flow/min-cut/#%E6%9C%80%E5%A4%A7%E6%B5%81%E6%9C%80%E5%B0%8F%E5%89%B2%E5%AE%9A%E7%90%86) 可知，两点间的最大不相交（指两两没有公共边）路径的最大数量等于最小割集的大小。这被称为 **Menger 定理**。
+由 [最大流最小割定理](./flow/min-cut/#%E6%9C%80%E5%A4%A7%E6%B5%81%E6%9C%80%E5%B0%8F%E5%89%B2%E5%AE%9A%E7%90%86) 可推出，两点间的最大不相交（指两两没有公共边）路径的最大数量等于最小割集的大小。这被称为 **Menger 定理**。
 
 ## 计算
 
-未完待续……
+以下如无特别说明，默认图的边权为 $1$。
+
+### 用最大流计算边连通度
+
+枚举点对 $(s, t)$，以 $s$ 为源点，$t$ 为汇点跑边权为 $1$ 的最大流。需要 $O(n^2)$ 次最大流，如果使用 [Edmonds–Karp 算法](/flow/max-flow/#edmonds-karp-算法)，复杂度为 $O(|V|^3 |E|^2)$。使用 Dinic 算法可以更优，复杂度为 $O(|V|^2 |E| \min(|V|^{2/3}, |E|^{1/2}))$。
+
+### 全局最小割
+
+使用 [Stoer–Wagner 算法](./stoer-wagner/) 只需跑一次无源汇最小割即可。复杂度为 $O(|V||E| + |V|^{2}\log|V|)$，一般可近似看作 $O(|V|^3)$。
+
+### 点连通度
+
+仍然枚举点对，这次把每个非源汇的点 $x$ 拆成两个点 $x_1$ 和 $x_2$，并连边 $(x_1, x_2)$。把原图中所有边 $(u, v)$ 换成两条边 $(u_2, v_1)$ 和 $(v_2, u_1)$。此时最大流等于 $s$、$t$ 之间的最小点割集大小（又称局部点连通度）。复杂度与用最大流计算边连通度相同。
+
+## 延伸阅读
+
+- [这篇论文](https://www.cse.msu.edu/~cse835/Papers/Graph_connectivity_revised.pdf) 介绍了近年来连通度计算算法的进展，并在最后用表格把所有算法进行汇总。感兴趣的读者可以自行浏览。
