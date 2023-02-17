@@ -1,3 +1,5 @@
+author: jifbt
+
 ## 定义
 
  以下内容的定义，请参见 [图论相关概念](./concept.md)。
