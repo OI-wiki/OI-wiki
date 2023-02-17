@@ -40,7 +40,7 @@ $$
 
 该朴素算法的实现如下：
 
-???+note "实现"
+???+ note "实现"
     === "C++"
     
         ```cpp
@@ -234,9 +234,9 @@ Manacher 算法的另一部分显然也是线性的，因此总复杂度为 $O(n
 
 ## 练习题目
 
-- [UVA #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470)
-- [「国家集训队」最长双回文串](https://www.luogu.com.cn/problem/P4555)
+-   [UVA #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470)
+-   [「国家集训队」最长双回文串](https://www.luogu.com.cn/problem/P4555)
 
-* * *
+***
 
 **本页面主要译自博文 [Нахождение всех подпалиндромов](http://e-maxx.ru/algo/palindromes_count) 与其英文翻译版 [Finding all sub-palindromes in $O(N)$](https://cp-algorithms.com/string/manacher.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

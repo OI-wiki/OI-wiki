@@ -76,9 +76,9 @@ $$
 
 初等行变换与初等列变换一样，都有 3 种：倍乘（multiplication）、对换（switching）、倍加（addition）。这里先介绍初等行变换：
 
-- 第 $i$ 行乘非零数 $k$：$B\mapsto D_i(k)B$。
-- 第 $i$，$j$ 行互换：$B\mapsto P_{ij}B$。
-- 第 $j$ 行乘 $k$ 加到第 $i$ 行：$B\mapsto T_{ij}(k)B$。
+-   第 $i$ 行乘非零数 $k$：$B\mapsto D_i(k)B$。
+-   第 $i$，$j$ 行互换：$B\mapsto P_{ij}B$。
+-   第 $j$ 行乘 $k$ 加到第 $i$ 行：$B\mapsto T_{ij}(k)B$。
 
 将上述操作的行改为列，即得到初等列变换。
 
@@ -212,9 +212,9 @@ $$
 
 一种简单的记法为：记 $E_{ij}$ 为第 $i$ 行第 $j$ 列的元素为 $1$、其余为零的 $n\times n$ 矩阵，那么
 
-- $D_i(k)=I_n+(k-1)E_{ii}$
-- $P_{ij}=I_n-E_{ii}-E_{jj}+E_{ij}+E_{ji}$
-- $T_{ij}(k)=I_n+kE_{ij}$
+-   $D_i(k)=I_n+(k-1)E_{ii}$
+-   $P_{ij}=I_n-E_{ii}-E_{jj}+E_{ij}+E_{ji}$
+-   $T_{ij}(k)=I_n+kE_{ij}$
 
 这种记法也可以应用于它们的逆矩阵。
 

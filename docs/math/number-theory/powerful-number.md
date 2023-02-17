@@ -5,9 +5,9 @@ Powerful Number（以下简称 PN）筛类似于杜教筛，或者说是杜教�
 **要求**：
 
 -   存在一个函数 $g$ 满足：
-    - $g$ 是积性函数。
-    - $g$ 易求前缀和。
-    - 对于质数 $p$，$g(p) = f(p)$。
+    -   $g$ 是积性函数。
+    -   $g$ 易求前缀和。
+    -   对于质数 $p$，$g(p) = f(p)$。
 
 假设现在要求积性函数 $f$ 的前缀和 $F(n) = \sum_{i=1}^{n} f(i)$。
 
@@ -56,11 +56,11 @@ $O(\sqrt{n})$ 找出所有 PN，计算出所有 $h$ 的有效值。对于 $h$ �
 
 ### 过程
 
-1. 构造 $g$
-2. 构造快速计算 $G$ 的方法
-3. 计算 $h(p^c)$
-4. 搜索 PN，过程中累加答案
-5. 得到结果
+1.  构造 $g$
+2.  构造快速计算 $G$ 的方法
+3.  计算 $h(p^c)$
+4.  搜索 PN，过程中累加答案
+5.  得到结果
 
 对于第 3 步，可以直接根据公式计算，可以使用枚举法预处理打表，也可以搜索到了再临时推。
 
@@ -78,7 +78,7 @@ $O(\sqrt{n})$ 找出所有 PN，计算出所有 $h$ 的有效值。对于 $h$ �
 
 ## 例题
 
-### [Luogu P5325【模板】Min_25 筛](https://www.luogu.com.cn/problem/P5325)
+### [Luogu P5325【模板】Min\_25 筛](https://www.luogu.com.cn/problem/P5325)
 
 **题意**：给定积性函数 $f(p^k) = p^k(p^k-1)$，求 $\sum_{i=1}^{n} f(i)$。
 
@@ -195,11 +195,11 @@ $S_1$ 可以用杜教筛求，$S_2$ 直接按照公式推，这样 $G$ 也可以
 
 ## 习题
 
-- [PE708 Twos are all you need](https://projecteuler.net/problem=708)
-- [PE639 Summing a multiplicative function](https://projecteuler.net/problem=639)
-- [PE484 Arithmetic Derivative](https://projecteuler.net/problem=484)
+-   [PE708 Twos are all you need](https://projecteuler.net/problem=708)
+-   [PE639 Summing a multiplicative function](https://projecteuler.net/problem=639)
+-   [PE484 Arithmetic Derivative](https://projecteuler.net/problem=484)
 
 ## 参考资料
 
-- [破壁人五号 - Powerful number 筛略解](https://www.cnblogs.com/wallbreaker5th/p/13901487.html)
-- [command_block - 杜教筛（+ 贝尔级数 + powerful number)](https://www.luogu.com.cn/blog/command-block/du-jiao-shai)
+-   [破壁人五号 - Powerful number 筛略解](https://www.cnblogs.com/wallbreaker5th/p/13901487.html)
+-   [command\_block - 杜教筛（+ 贝尔级数 + powerful number)](https://www.luogu.com.cn/blog/command-block/du-jiao-shai)

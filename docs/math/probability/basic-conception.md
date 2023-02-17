@@ -2,9 +2,9 @@
 
 在研究具体的随机现象时我们通常着重关注以下要素：
 
-- 样本空间 $\Omega$，指明随机现象所有可能出现的结果。
-- 事件域 $\mathcal{F}$，表示我们所关心的所有事件。
-- 概率 $P$，描述每一个事件发生的可能性大小。
+-   样本空间 $\Omega$，指明随机现象所有可能出现的结果。
+-   事件域 $\mathcal{F}$，表示我们所关心的所有事件。
+-   概率 $P$，描述每一个事件发生的可能性大小。
 
 ## 样本空间、随机事件
 
@@ -30,9 +30,9 @@
 
 尽管 $\mathcal{F} = 2^{\Omega}$ 不是必须的，这并不代表 $2^{\Omega}$ 的任一子集都能成为事件域。我们通常会对一些事件进行运算得到的结果事件的概率感兴趣，因此我们希望事件域 $\mathcal{F}$ 满足下列条件：
 
-- $\varnothing \in \mathcal{F}$；
-- 若 $A \in \mathcal{F}$，则补事件 $\bar{A} \in \mathcal{F}$；
-- 若有一列事件 $A_n \in \mathcal{F}, n = 1, 2, 3\dots$，则 $\bigcup A_n \in \mathcal{F}$。
+-   $\varnothing \in \mathcal{F}$；
+-   若 $A \in \mathcal{F}$，则补事件 $\bar{A} \in \mathcal{F}$；
+-   若有一列事件 $A_n \in \mathcal{F}, n = 1, 2, 3\dots$，则 $\bigcup A_n \in \mathcal{F}$。
 
 简言之，就是事件域 $\mathcal{F}$ 对在补运算、和可数并下是封闭的，且包含元素 $\varnothing$。
 
@@ -40,13 +40,13 @@
 
 以掷骰子为例，当样本空间记为 $\Omega=\{1,2,3,4,5,6\}$ 时，以下两个集合能够成为事件域：
 
-- $\mathcal{F}_1 = \{ \varnothing, \Omega \}$
-- $\mathcal{F}_2 = \{ \varnothing, \{1, 3, 5\}, \{2, 4, 6\}, \Omega \}$
+-   $\mathcal{F}_1 = \{ \varnothing, \Omega \}$
+-   $\mathcal{F}_2 = \{ \varnothing, \{1, 3, 5\}, \{2, 4, 6\}, \Omega \}$
 
 但以下两个集合则不能
 
-- $\mathcal{F}_3 = \{ \varnothing, \{1\}, \Omega \}$（对补不封闭）
-- $\mathcal{F}_4 = \{ \{1, 3, 5\}, \{2, 4, 6\} \}$（不含有 $\varnothing$ 且对并不封闭）
+-   $\mathcal{F}_3 = \{ \varnothing, \{1\}, \Omega \}$（对补不封闭）
+-   $\mathcal{F}_4 = \{ \{1, 3, 5\}, \{2, 4, 6\} \}$（不含有 $\varnothing$ 且对并不封闭）
 
 ## 概率
 
@@ -58,8 +58,8 @@
 
 如果一个随机现象满足：
 
-- 只有有限个基本结果；
-- 每个基本结果出现的可能性是一样的；
+-   只有有限个基本结果；
+-   每个基本结果出现的可能性是一样的；
 
 那么对于每个事件 $A$，定义它的概率为
 
@@ -79,16 +79,16 @@ $$
 
 概率函数 $P$ 是一个从事件域 $\mathcal{F}$ 到闭区间 $[0, 1]$ 的映射，且满足：
 
-- **规范性**：事件 $\Omega$ 的概率值为 $1$，即 $P(\Omega)=1$。
-- **可数可加性**：若一列事件 $A_1, A_2, \cdots$ 两两不交，则 $P\left( \bigcup_{i \geq 1} A_i \right) = \sum_{i \geq 1} P(A_i)$。
+-   **规范性**：事件 $\Omega$ 的概率值为 $1$，即 $P(\Omega)=1$。
+-   **可数可加性**：若一列事件 $A_1, A_2, \cdots$ 两两不交，则 $P\left( \bigcup_{i \geq 1} A_i \right) = \sum_{i \geq 1} P(A_i)$。
 
 ### 概率函数的性质
 
 对于任意随机事件 $A, B \in \mathcal{F}$，有
 
-- **单调性**：若 $A \subset B$，则有 $P(A) \leq P(B)$。
-- **容斥原理**：$P(A+B) = P(A) + P(B) - P(AB)$。
-- $P(A - B) = P(A) - P(AB)$，这里 $A - B$ 表示差集。
+-   **单调性**：若 $A \subset B$，则有 $P(A) \leq P(B)$。
+-   **容斥原理**：$P(A+B) = P(A) + P(B) - P(AB)$。
+-   $P(A - B) = P(A) - P(AB)$，这里 $A - B$ 表示差集。
 
 ## 概率空间
 
@@ -98,5 +98,5 @@ $$
 
 ## 参考资料与注释
 
-- [概率论（数学分支）\_百度百科](https://baike.baidu.com/item/概率论/829122)
-- [Probability - Wikipedia](https://en.wikipedia.org/wiki/Probability)
+-   [概率论（数学分支）\_百度百科](https://baike.baidu.com/item/概率论/829122)
+-   [Probability - Wikipedia](https://en.wikipedia.org/wiki/Probability)
