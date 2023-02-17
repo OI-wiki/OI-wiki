@@ -114,7 +114,7 @@ $$
 
 ## 例题
 
-???+note "[【CF103329F】【XXII Opencup, Grand Prix of XiAn】The Struggle](https://codeforces.com/gym/103329/problem/F)"
+???+ note "[【CF103329F】【XXII Opencup, Grand Prix of XiAn】The Struggle](https://codeforces.com/gym/103329/problem/F)"
     给出一个椭圆 $E$，其中所有整点的坐标均在 $[1,4 \cdot 10^6]$ 之间。求 $\sum_{(x,y) \in E} (x \oplus y)^{33}x^{-2}y^{-1} \mod 10^9+7$ 的值。
     
     ??? note "题解"

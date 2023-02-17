@@ -6,13 +6,13 @@
 
 整除的性质：
 
-- $a\mid b\iff-a\mid b\iff a\mid-b\iff|a|\mid|b|$
-- $a\mid b\land b\mid c\implies a\mid c$
-- $a\mid b\land a\mid c\iff\forall x,y\in\mathbf{Z}, a\mid(xb+yc)$
-- $a\mid b\land b\mid a\implies b=\pm a$
-- 设 $m\ne0$，那么 $a\mid b\iff ma\mid mb$。
-- 设 $b\ne0$，那么 $a\mid b\implies|a|\le|b|$。
-- 设 $a\ne0,b=qa+c$，那么 $a\mid b\iff a\mid c$。
+-   $a\mid b\iff-a\mid b\iff a\mid-b\iff|a|\mid|b|$
+-   $a\mid b\land b\mid c\implies a\mid c$
+-   $a\mid b\land a\mid c\iff\forall x,y\in\mathbf{Z}, a\mid(xb+yc)$
+-   $a\mid b\land b\mid a\implies b=\pm a$
+-   设 $m\ne0$，那么 $a\mid b\iff ma\mid mb$。
+-   设 $b\ne0$，那么 $a\mid b\implies|a|\le|b|$。
+-   设 $a\ne0,b=qa+c$，那么 $a\mid b\iff a\mid c$。
 
 约数（因数）：若 $a\mid b$，则称 $b$ 是 $a$ 的倍数，$a$ 是 $b$ 的约数。
 
@@ -24,8 +24,8 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 
 约数的性质：
 
-- 设整数 $b\ne0$。当 $d$ 遍历 $b$ 的全体约数的时候，$\dfrac{b}{d}$ 也遍历 $b$ 的全体约数。
-- 设整数 $b\gt 0$，则当 $d$ 遍历 $b$ 的全体正约数的时候，$\dfrac{b}{d}$ 也遍历 $b$ 的全体正约数。
+-   设整数 $b\ne0$。当 $d$ 遍历 $b$ 的全体约数的时候，$\dfrac{b}{d}$ 也遍历 $b$ 的全体约数。
+-   设整数 $b\gt 0$，则当 $d$ 遍历 $b$ 的全体正约数的时候，$\dfrac{b}{d}$ 也遍历 $b$ 的全体正约数。
 
 在具体问题中，**如果没有特别说明，约数总是指正约数。**
 
@@ -47,8 +47,8 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 
 余数的性质：
 
-- 任一整数被正整数 $a$ 除后，余数一定是且仅是 $0$ 到 $(a-1)$ 这 $a$ 个数中的一个。
-- 相邻的 $a$ 个整数被正整数 $a$ 除后，恰好取到上述 $a$ 个余数。特别地，一定有且仅有一个数被 $a$ 整除。
+-   任一整数被正整数 $a$ 除后，余数一定是且仅是 $0$ 到 $(a-1)$ 这 $a$ 个数中的一个。
+-   相邻的 $a$ 个整数被正整数 $a$ 除后，恰好取到上述 $a$ 个余数。特别地，一定有且仅有一个数被 $a$ 整除。
 
 ## 最大公约数与最小公倍数
 
@@ -82,12 +82,12 @@ $p$ 和 $-p$ 总是同为素数或者同为合数。**如果没有特别说明�
 
 素数与合数的简单性质：
 
-- 大于 $1$ 的整数 $a$ 是合数，等价于 $a$ 可以表示为整数 $d$ 和 $e$（$1<d,e<a$）的乘积。
-- 如果素数 $p$ 有大于 $1$ 的约数 $d$，那么 $d=p$。
-- 大于 $1$ 的整数 $a$ 一定可以表示为素数的乘积。
-- 对于合数 $a$，一定存在素数 $p\le\sqrt{a}$ 使得 $p\mid a$。
-- 素数有无穷多个。
-- 所有大于 $3$ 的素数都可以表示为 $6n\pm 1$ 的形式[^ref1]。
+-   大于 $1$ 的整数 $a$ 是合数，等价于 $a$ 可以表示为整数 $d$ 和 $e$（$1<d,e<a$）的乘积。
+-   如果素数 $p$ 有大于 $1$ 的约数 $d$，那么 $d=p$。
+-   大于 $1$ 的整数 $a$ 一定可以表示为素数的乘积。
+-   对于合数 $a$，一定存在素数 $p\le\sqrt{a}$ 使得 $p\mid a$。
+-   素数有无穷多个。
+-   所有大于 $3$ 的素数都可以表示为 $6n\pm 1$ 的形式[^ref1]。
 
 ## 算术基本定理
 
@@ -137,16 +137,16 @@ $$
 
 同余的性质：
 
-- 自反性：$a\equiv a\pmod m$。
-- 对称性：若 $a\equiv b\pmod m$，则 $b\equiv a\pmod m$。
-- 传递性：若 $a\equiv b\pmod m,b\equiv c\pmod m$，则 $a\equiv c\pmod m$。
+-   自反性：$a\equiv a\pmod m$。
+-   对称性：若 $a\equiv b\pmod m$，则 $b\equiv a\pmod m$。
+-   传递性：若 $a\equiv b\pmod m,b\equiv c\pmod m$，则 $a\equiv c\pmod m$。
 -   线性运算：若 $a,b,c,d\in\mathbf{Z},m\in\mathbf{N}^*,a\equiv b\pmod m,c\equiv d\pmod m$ 则有：
-    - $a\pm c\equiv b\pm d\pmod m$。
-    - $a\times c\equiv b\times d\pmod m$。
-- 若 $a,b\in\mathbf{Z},k,m\in\mathbf{N}^*,a\equiv b\pmod m$, 则 $ak\equiv bk\pmod{mk}$。
-- 若 $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid a,d\mid b,d\mid m$，则当 $a\equiv b\pmod m$ 成立时，有 $\dfrac{a}{d}\equiv\dfrac{b}{d}\left(\bmod\;{\dfrac{m}{d}}\right)$。
-- 若 $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid m$，则当 $a\equiv b\pmod m$ 成立时，有 $a\equiv b\pmod d$。
-- 若 $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*$，则当 $a\equiv b\pmod m$ 成立时，有 $\gcd(a,m)=\gcd(b,m)$。若 $d$ 能整除 $m$ 及 $a,b$ 中的一个，则 $d$ 必定能整除 $a,b$ 中的另一个。
+    -   $a\pm c\equiv b\pm d\pmod m$。
+    -   $a\times c\equiv b\times d\pmod m$。
+-   若 $a,b\in\mathbf{Z},k,m\in\mathbf{N}^*,a\equiv b\pmod m$, 则 $ak\equiv bk\pmod{mk}$。
+-   若 $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid a,d\mid b,d\mid m$，则当 $a\equiv b\pmod m$ 成立时，有 $\dfrac{a}{d}\equiv\dfrac{b}{d}\left(\bmod\;{\dfrac{m}{d}}\right)$。
+-   若 $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid m$，则当 $a\equiv b\pmod m$ 成立时，有 $a\equiv b\pmod d$。
+-   若 $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*$，则当 $a\equiv b\pmod m$ 成立时，有 $\gcd(a,m)=\gcd(b,m)$。若 $d$ 能整除 $m$ 及 $a,b$ 中的一个，则 $d$ 必定能整除 $a,b$ 中的另一个。
 
 还有性质是乘法逆元。见 [乘法逆元](./inverse.md)。
 
@@ -156,8 +156,8 @@ $$
 
 对于所有标准版本的 C/C++，规定在整数除法中：
 
-1. 当除数为 0 时，行为未定义；
-2. 否则 `(a / b) * b + a % b` 的运算结果与 `a` 相等。
+1.  当除数为 0 时，行为未定义；
+2.  否则 `(a / b) * b + a % b` 的运算结果与 `a` 相等。
 
 也就是说，取模运算的符号取决于除法如何取整；而除法如何取整，这是实现定义的（由编译器决定）。
 
@@ -203,18 +203,18 @@ $$
 
 ### 例子
 
-- 单位函数：$\varepsilon(n)=[n=1]$。（完全积性）
-- 恒等函数：$\operatorname{id}_k(n)=n^k$，$\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$。（完全积性）
-- 常数函数：$1(n)=1$。（完全积性）
-- 除数函数：$\sigma_{k}(n)=\sum_{d\mid n}d^{k}$。$\sigma_{0}(n)$ 通常简记作 $d(n)$ 或 $\tau(n)$，$\sigma_{1}(n)$ 通常简记作 $\sigma(n)$。
-- 欧拉函数：$\varphi(n)=\sum_{i=1}^n[\gcd(i,n)=1]$
-- 莫比乌斯函数：$\mu(n)=\begin{cases}1&n=1\\0&\exists d>1,d^{2}\mid n\\(-1)^{\omega(n)}&\text{otherwise}\end{cases}$，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它是一个加性函数。
+-   单位函数：$\varepsilon(n)=[n=1]$。（完全积性）
+-   恒等函数：$\operatorname{id}_k(n)=n^k$，$\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$。（完全积性）
+-   常数函数：$1(n)=1$。（完全积性）
+-   除数函数：$\sigma_{k}(n)=\sum_{d\mid n}d^{k}$。$\sigma_{0}(n)$ 通常简记作 $d(n)$ 或 $\tau(n)$，$\sigma_{1}(n)$ 通常简记作 $\sigma(n)$。
+-   欧拉函数：$\varphi(n)=\sum_{i=1}^n[\gcd(i,n)=1]$
+-   莫比乌斯函数：$\mu(n)=\begin{cases}1&n=1\\0&\exists d>1,d^{2}\mid n\\(-1)^{\omega(n)}&\text{otherwise}\end{cases}$，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它是一个加性函数。
 
-???+note "加性函数"
+???+ note "加性函数"
     此处加性函数指数论上的加性函数 (Additive function)。对于加性函数 $f$，当整数 $a,b$ 互质时，均有 $f(ab)=f(a)+f(b)$。
     应与代数中的加性函数 (Additive map) 区分。
 
-* * *
+***
 
 ## 参考资料与注释
 

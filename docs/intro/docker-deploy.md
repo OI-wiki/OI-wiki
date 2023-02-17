@@ -26,16 +26,16 @@ cd OI-wiki/
 docker build -t [name][:tag] . --build-arg [variable1]=[value1] [variable2]=[value2]...
 ```
 
-- （必须）设置 `[name]` 以设置镜像名，（可选）设置 `[tag]` 以设置镜像标签（若设置，则运行时镜像名由两部分构成）。
-- 可以通过 `--build-arg` 参数设置环境变量。
+-   （必须）设置 `[name]` 以设置镜像名，（可选）设置 `[tag]` 以设置镜像标签（若设置，则运行时镜像名由两部分构成）。
+-   可以通过 `--build-arg` 参数设置环境变量。
 
 可以使用的环境变量：
 
-- 可以设置 `WIKI_REPO` 来使用 Wiki 仓库的镜像站点（当未设置时自动使用 GitHub）
+-   可以设置 `WIKI_REPO` 来使用 Wiki 仓库的镜像站点（当未设置时自动使用 GitHub）
 -   可以设置 `PYPI_MIRROR` 来使用 PyPI 仓库的镜像站点（当未设置时自动使用官方 PyPI）
-    - 在国内建议使用 TUNA 镜像站 `https://pypi.tuna.tsinghua.edu.cn/simple/`
-- 可以设置 `LISTEN_IP` 来更改监听 IP（当未设置时为 `0.0.0.0`，即监听所有 IP 的访问）
-- 可以设置 `LISTEN_PORT` 来更改监听端口（当未设置时为 `8000`）
+    -   在国内建议使用 TUNA 镜像站 `https://pypi.tuna.tsinghua.edu.cn/simple/`
+-   可以设置 `LISTEN_IP` 来更改监听 IP（当未设置时为 `0.0.0.0`，即监听所有 IP 的访问）
+-   可以设置 `LISTEN_PORT` 来更改监听端口（当未设置时为 `8000`）
 
 示例：
 
@@ -51,9 +51,9 @@ docker build -t OI_Wiki . --build-arg WIKI_REPO=https://hub.fastgit.xyz/OI-wiki/
 docker run -d -it [image]
 ```
 
-- （必须）设置 `[image]` 以设置镜像。例如，从 Docker Hub 拉取的为 `24oi/oi-wiki`；DaoCloud Hub 拉取的则为 `daocloud.io/sirius/oi-wiki`。
-- （必须）设置 `-p [port]:8000` 以映射容器端口至主机端口（不写该语句则默认为不暴露端口。设置时请替换 `[port]` 为主机端口）。设置后可以在主机使用 `http://127.0.0.1:[port]` 访问 **OI Wiki**。
-- 设置 `--name [name]` 以设置容器名字。（默认空。设置时请替换 `[name]` 为自定义的容器名字。若想查看容器 id，则输入 `docker ps`）
+-   （必须）设置 `[image]` 以设置镜像。例如，从 Docker Hub 拉取的为 `24oi/oi-wiki`；DaoCloud Hub 拉取的则为 `daocloud.io/sirius/oi-wiki`。
+-   （必须）设置 `-p [port]:8000` 以映射容器端口至主机端口（不写该语句则默认为不暴露端口。设置时请替换 `[port]` 为主机端口）。设置后可以在主机使用 `http://127.0.0.1:[port]` 访问 **OI Wiki**。
+-   设置 `--name [name]` 以设置容器名字。（默认空。设置时请替换 `[name]` 为自定义的容器名字。若想查看容器 id，则输入 `docker ps`）
 
 ## 使用容器
 

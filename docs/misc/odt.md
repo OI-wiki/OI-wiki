@@ -37,7 +37,7 @@ struct Node_t {
 
 其中，`int v` 是你自己指定的附加数据。
 
-???+note "`mutable` 关键字的含义是什么？"
+???+ note "`mutable` 关键字的含义是什么？"
     `mutable` 的意思是“可变的”，让我们可以在后面的操作中修改 `v` 的值。在 C++ 中，mutable 是为了突破 const 的限制而设置的。被 mutable 修饰的变量（mutable 只能用于修饰类中的非静态数据成员），将永远处于可变的状态，即使在一个 const 函数中。
     
     这意味着，我们可以直接修改已经插入 `set` 的元素的 `v` 值，而不用将该元素取出后重新加入 `set`。
@@ -96,7 +96,7 @@ void performance(int l, int r) {
 
 ## 习题
 
-- ~~[「SCOI2010」序列操作](https://www.luogu.com.cn/problem/P2572)~~（该题目来源已添加 Hack 数据）
-- [「SHOI2015」脑洞治疗仪](https://loj.ac/problem/2037)
-- [「Luogu 4979」矿洞：坍塌](https://www.luogu.com.cn/problem/P4979)
-- [「Luogu 8146」risrqnis](https://www.luogu.com.cn/problem/P8146)
+-   ~~[「SCOI2010」序列操作](https://www.luogu.com.cn/problem/P2572)~~（该题目来源已添加 Hack 数据）
+-   [「SHOI2015」脑洞治疗仪](https://loj.ac/problem/2037)
+-   [「Luogu 4979」矿洞：坍塌](https://www.luogu.com.cn/problem/P4979)
+-   [「Luogu 8146」risrqnis](https://www.luogu.com.cn/problem/P8146)
