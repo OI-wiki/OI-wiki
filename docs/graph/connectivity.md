@@ -28,7 +28,7 @@ $$\kappa \le \lambda \le \delta$$
 ### Menger 定理
 
 !!!+warning
-    原作者将以下推论（还是说最小割最大流定理？）称为「Ford–Fulkerson 定理」，原因未知。[维基百科](https://en.wikipedia.wikimirror.net/wiki/Menger%27s_theorem) 称之为「Menger's theorem」。
+    原作者将以下推论称为「Ford–Fulkerson 定理」，原因未知。[维基百科](https://en.wikipedia.wikimirror.net/wiki/Menger%27s_theorem) 称之为「Menger's theorem」。
 
 由 [最大流最小割定理](./flow/min-cut.md) 可推出，两点间的最大不相交（指两两没有公共边）路径的最大数量等于最小割集的大小。这被称为 **Menger 定理**。
 
@@ -48,6 +48,8 @@ $$\kappa \le \lambda \le \delta$$
 
 仍然枚举点对，这次把每个非源汇的点 $x$ 拆成两个点 $x_1$ 和 $x_2$，并连边 $(x_1, x_2)$。把原图中所有边 $(u, v)$ 换成两条边 $(u_2, v_1)$ 和 $(v_2, u_1)$。此时最大流等于 $s$、$t$ 之间的最小点割集大小（又称局部点连通度）。复杂度与用最大流计算边连通度相同。
 
+**本页面译自博文 [Рёберная связность. Свойства и нахождение](http://e-maxx.ru/algo/rib_connectivity)、[Вершинная связность. Свойства и нахождение](http://e-maxx.ru/algo/vertex_connectivity) 与其英文翻译版 [Edge connectivity / Vertex connectivity](https://cp-algorithms.com/graph/edge_vertex_connectivity.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+
 ## 延伸阅读
 
-- [这篇论文](https://www.cse.msu.edu/~cse835/Papers/Graph_connectivity_revised.pdf) 介绍了近年来连通度计算算法的进展，并在最后用表格把所有算法进行汇总。感兴趣的读者可以自行浏览。
+- [这篇论文](https://www.cse.msu.edu/~cse835/Papers/Graph_connectivity_revised.pdf) 介绍了近年来连通度计算算法的进展。感兴趣的读者可以自行浏览。
