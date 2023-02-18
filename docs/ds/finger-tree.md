@@ -17,9 +17,9 @@ author: isdanni
 
 手指树在树的“手指”（叶子）的地方存储数据，访问时间为分摊常量。手指是一个可以访问部分数据结构的点。在命令式语言（imperative language）中，这被称做指针。在手指树中，“手指”是指向序列末端或叶节点的结构。手指树还在每个内部节点中存储对其后代应用一些关联操作的结果。存储在内部节点中的数据可用于提供除树类数据结构之外的功能。
 
-1. 手指树的深度由下到上计算。
-2. 手指树的第一级，即树的叶节点，仅包含值，深度为 $0$。第二级为深度 $1$。第三级为深度 $2$，依此类推。
-3. 离根越近，节点指向的原始树（在它是手指树之前的树）的子树越深。这样，沿着树向下工作就是从叶子到树的根，这与典型的树数据结构相反。为了获得这种的结构，我们必须确保原始树具有统一的深度。在声明节点对象时，必须通过子节点的类型进行参数化。深度为 $1$ 及以上的脊椎上的节点指向树，通过这种参数化，它们可以由嵌套节点表示。
+1.  手指树的深度由下到上计算。
+2.  手指树的第一级，即树的叶节点，仅包含值，深度为 $0$。第二级为深度 $1$。第三级为深度 $2$，依此类推。
+3.  离根越近，节点指向的原始树（在它是手指树之前的树）的子树越深。这样，沿着树向下工作就是从叶子到树的根，这与典型的树数据结构相反。为了获得这种的结构，我们必须确保原始树具有统一的深度。在声明节点对象时，必须通过子节点的类型进行参数化。深度为 $1$ 及以上的脊椎上的节点指向树，通过这种参数化，它们可以由嵌套节点表示。
 
 ### 将一棵树变成手指树
 
@@ -57,10 +57,10 @@ type Digit a = One a | Two a a | Three a a a | Four a a a a
 
 ### 双向队列操作
 
-指状树也可以制作高效的双向队列。无论结构是否持久，所有操作都需要 `Θ(1)` 时间。它可以被看作是的隐式双端队列的扩展[3]：
+指状树也可以制作高效的双向队列。无论结构是否持久，所有操作都需要 `Θ(1)` 时间。它可以被看作是的隐式双端队列的扩展 \[3]：
 
-1. 用 2-3 个节点替换对提供了足够的灵活性来支持有效的串联。（为了保持恒定时间的双端队列操作，必须将 Digit 扩展为四。）
-2. 用幺半群（monoid）注释内部节点允许有效的分裂。
+1.  用 2-3 个节点替换对提供了足够的灵活性来支持有效的串联。（为了保持恒定时间的双端队列操作，必须将 Digit 扩展为四。）
+2.  用幺半群（monoid）注释内部节点允许有效的分裂。
 
 ```haskell
 data ImplicitDeque a = Empty
@@ -95,6 +95,6 @@ data Digit a = One a | Two a a | Three a a a
 
 ## 参考资料与拓展阅读
 
-- [1]Ralf Hinze and Ross Paterson, "[Finger trees: a simple general-purpose data structure](http://www.staff.city.ac.uk/~ross/papers/FingerTree.html)", Journal of Functional Programming 16:2 (2006) pp 197-217.
-- [2][Finger Tree - Wikipedia](<https://en.wikipedia.org/wiki/Finger_tree>)
-- [3][Purely Functional Data Structures](<https://www.cambridge.org/us/academic/subjects/computer-science/programming-languages-and-applied-logic/purely-functional-data-structures>), Chris Okasaki (1999)
+-   \[1]Ralf Hinze and Ross Paterson, "[Finger trees: a simple general-purpose data structure](http://www.staff.city.ac.uk/~ross/papers/FingerTree.html)", Journal of Functional Programming 16:2 (2006) pp 197-217.
+-   \[2][Finger Tree - Wikipedia](https://en.wikipedia.org/wiki/Finger_tree)
+-   \[3][Purely Functional Data Structures](https://www.cambridge.org/us/academic/subjects/computer-science/programming-languages-and-applied-logic/purely-functional-data-structures), Chris Okasaki (1999)

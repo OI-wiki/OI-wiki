@@ -14,12 +14,12 @@ Schreier-Sims 算法是一种计算置换群的基强生成集（**BSGS**, base 
 
 Schreier-Sims 的运行时间因实现而异。令 $G\leq S_{n}$ 由 $t$ 个生成器给出。该算法可能的运行时间为：
 
-- $O(n^{2}\log ^{3}|G|+tn\log |G|)$ 需要 $O(n^{2}\log |G|+tn)$ 的内存；
-- $O(n^{3}\log ^{3}|G|+tn^{2}\log |G|)$ 需要 $O(n\log ^{2}|G|+tn)$ 的内存；
+-   $O(n^{2}\log ^{3}|G|+tn\log |G|)$ 需要 $O(n^{2}\log |G|+tn)$ 的内存；
+-   $O(n^{3}\log ^{3}|G|+tn^{2}\log |G|)$ 需要 $O(n\log ^{2}|G|+tn)$ 的内存；
 
 Schreier 向量的使用会对 Schreier-Sims 算法的实现性能产生重大影响。对于 Schreier-Sims 算法的 Monte Carlo 变体，预估复杂度如下：
 
-- $O(n\log n\log ^{4}|G|+tn\log |G|)$ 需要 $O(n\log |G|+tn)$ 的内存；
+-   $O(n\log n\log ^{4}|G|+tn\log |G|)$ 需要 $O(n\log |G|+tn)$ 的内存；
 
 现代计算机代数系统（例如 GAP 和 Magma）通常使用优化过的蒙特卡罗算法。
 
@@ -31,9 +31,9 @@ Schreier 向量的使用会对 Schreier-Sims 算法的实现性能产生重大�
 
 对于 $S$ 根为 $\alpha$ 的 **Schreier 树** 是 $α$ 轨道的如下表示：
 
-- Schreier 树是一棵以 $\alpha$ 为根，以 $\alpha^{G}$ 的元素为顶点的树，
-- 它的边描述了从 $\alpha$ 到每个顶点所需的 $S$ 的元素，即树中的每条边 ${i, j}$，其中 比 $j$ 更靠近根的 $i$ 由生成器 $s \in S$ 标记，将 $i$ 移动到 $j$。
-- Schreier 树可以通过 **广度优先搜索** 或 **深度优先搜索** 从 $\alpha$ 开始用所有生成器 $s \in S$ 尝试到达新的节点 $\alpha^{s}$ 来找到。因此，计算 Schreier 树所需的时间以 $O(rn)$ 为界。这意味着我们可以以一种有效的方式找到 $|\alpha^{G}|$。
+-   Schreier 树是一棵以 $\alpha$ 为根，以 $\alpha^{G}$ 的元素为顶点的树，
+-   它的边描述了从 $\alpha$ 到每个顶点所需的 $S$ 的元素，即树中的每条边 ${i, j}$，其中 比 $j$ 更靠近根的 $i$ 由生成器 $s \in S$ 标记，将 $i$ 移动到 $j$。
+-   Schreier 树可以通过 **广度优先搜索** 或 **深度优先搜索** 从 $\alpha$ 开始用所有生成器 $s \in S$ 尝试到达新的节点 $\alpha^{s}$ 来找到。因此，计算 Schreier 树所需的时间以 $O(rn)$ 为界。这意味着我们可以以一种有效的方式找到 $|\alpha^{G}|$。
 
 ### Schreier 引理
 
@@ -59,10 +59,10 @@ $$
 
 ### 基础 Schreier-Sims 算法
 
-1. 如果 $G$ 为不平凡（non-trivial）群，选择一个尚未被选择的点 $b\in \Omega$。
-2. 计算根为 $b$ 的 Schreier 树，得到 $|b^{G}|$。
-3. 使用 Schreier 引理找到 $G_{b}$ 的生成器。
-4. 对 $G_{b}$ 递归使此算法，到找到 $|G_{b}|$ 为止。
+1.  如果 $G$ 为不平凡（non-trivial）群，选择一个尚未被选择的点 $b\in \Omega$。
+2.  计算根为 $b$ 的 Schreier 树，得到 $|b^{G}|$。
+3.  使用 Schreier 引理找到 $G_{b}$ 的生成器。
+4.  对 $G_{b}$ 递归使此算法，到找到 $|G_{b}|$ 为止。
 
 当算法结束时，$(b_{1},\cdots,b_{m})$ 是一个基，找到的所有生成器的并集是一个强生成集。
 
@@ -78,10 +78,10 @@ $$
 
 定义 $T_{i+1}$ 为通过 Schreier 树 $G^{(i)}$ 对 $G^{(i+1)}$ 的陪集的作用。
 
-1. 如果 $S = {}$，返回 $B, S$;
-2. 非空部分基 $B = (b_{1},\cdots, b_{k}]$。部分强生成集 $S$。集 $C:= [b_{2},\cdots,b_{k}]$,$T := S \cap G_{b1}$，并递归地应用于输入 $C, T$，以将它们修改为 $H = \langle T \rangle$ 的基和强生成集。
-3. 设 $B := B \cup C$,$S := S \cap T$。用筛选算法在 $H \leqslant G_{b_{1}}$ 中进行*成员资格测试*（Membership testing，检查集合（列表、集合、字典等）是否包含特定元素）。对 $G_{b_{1}}$ 测试每个 Schreier 生成器 $s$ 以查看 $s \in H$。如果都在 $H$ 中，那么有 $H = G_{b_{1}}$, 返回 $B，S$。否则到步骤 4。
-4. 否则有一个 Schreier 生成器 $s \in G_{b_{1}}$ 但 $s \notin H$。设 $S := S \cup {s}$。如果 $s$ 固定了 $B$ 的所有点，将一个由 $s$ 移动的 $\Omega$ 点附加到 $B$。回到步骤 2。
+1.  如果 $S = {}$，返回 $B, S$;
+2.  非空部分基 $B = (b_{1},\cdots, b_{k}]$。部分强生成集 $S$。集 $C:= [b_{2},\cdots,b_{k}]$,$T := S \cap G_{b1}$，并递归地应用于输入 $C, T$，以将它们修改为 $H = \langle T \rangle$ 的基和强生成集。
+3.  设 $B := B \cup C$,$S := S \cap T$。用筛选算法在 $H \leqslant G_{b_{1}}$ 中进行*成员资格测试*（Membership testing，检查集合（列表、集合、字典等）是否包含特定元素）。对 $G_{b_{1}}$ 测试每个 Schreier 生成器 $s$ 以查看 $s \in H$。如果都在 $H$ 中，那么有 $H = G_{b_{1}}$, 返回 $B，S$。否则到步骤 4。
+4.  否则有一个 Schreier 生成器 $s \in G_{b_{1}}$ 但 $s \notin H$。设 $S := S \cup {s}$。如果 $s$ 固定了 $B$ 的所有点，将一个由 $s$ 移动的 $\Omega$ 点附加到 $B$。回到步骤 2。
 
 当算法结束时，$B$ 为基，$S$ 是大小为 $O(n^{2}\log n)$ 的强生成集。
 
@@ -252,15 +252,15 @@ $$
 
 ## 例题
 
-???+note "[Grand Prix of Yekaterinburg 2015 Problem H Heimdall](http://opencup.ru/files/ocg/gp5/problems1-e.pdf)"
+???+ note "[Grand Prix of Yekaterinburg 2015 Problem H Heimdall](http://opencup.ru/files/ocg/gp5/problems1-e.pdf)"
     海姆达尔——阿斯加德最伟大的儿子之一，众神和世界之树的守护者。自古以来古他的主要职责就是守卫阿斯嘉德的入口——一座世界之间的桥梁。现存唯一古老的技术是将一定数量的桥梁结合起来，创造出一座穿越中间世界的桥梁。例如：如果第一座桥将物质从世界 A 传输到世界 B，第二座桥——从 B 到 C，那么它们的组合可以直接将物质从世界 A 传输到世界 C. 而且，这个古老的技术甚至可以让你自己结合一座桥。海姆达尔想知道——使用他所知道的桥梁以及它们的组合，可以创造出多少不同的桥梁。输入两个整数 $R$,$N$ 分别是海姆达尔发现的桥梁总数和宇宙中的世界数（$1 \leqslant N \leqslant 15$,$1 \leqslant R \leqslant 1000$）。接下来的 R 行包含这些桥的信息。每个桥由 $N$ 个整数 $a_{1}, a_{2},\cdots a_{n}$ 组成。其中 $a_{i}$ 表示物质可以通过当前的桥梁转移到世界 $i$。如果当前的桥不影响那些世界，$a_{i} = i$。请输出一个可以通过古老技术建造的不同桥梁的总数。
 
 ## 参考资料与拓展阅读
 
-- [1][Schreier–Sims algorithm - Wikipedia](<https://en.wikipedia.org/wiki/Schreier%E2%80%93Sims_algorithm>)
-- [2]Knuth, Donald E，[Efficient representation of perm groups](https://arxiv.org/abs/math/9201304), Combinatorica 11 (1991), no. 1, 33–43.
-- [3]Ákos Seress,[Permutation Group Algorithms](https://www.cambridge.org/core/books/permutation-group-algorithms/199629665EC545A10BCB99FFE6AAFD25), Cambridge University Press
-- [4]Sims, Charles C,[Computational methods in the study of permutation groups](https://www.sciencedirect.com/science/article/pii/B9780080129754500205), Computational Problems in Abstract Algebra, pp. 169–183, Pergamon, Oxford, 1970.
-- [5]Martin Jaggi,[Implementations of 3 Types of the Schreier-Sims Algorithm](https://www.m8j.net/data/List/Files-118/Documentation.pdf), MAS334 - Mathematics Computing Project, 2005
-- [6][The Schreier-Sims algorithm for finite permutation groups](<https://blogs.cs.st-andrews.ac.uk/codima/files/2015/11/CoDiMa2015_Holt.pdf>)
-- Henrik B¨a¨arnhielm,[The Schreier-Sims algorithm for matrix groups](https://henrik.baarnhielm.net/schreiersims.pdf)
+-   \[1][Schreier–Sims algorithm - Wikipedia](https://en.wikipedia.org/wiki/Schreier%E2%80%93Sims_algorithm)
+-   \[2]Knuth, Donald E，[Efficient representation of perm groups](https://arxiv.org/abs/math/9201304), Combinatorica 11 (1991), no. 1, 33–43.
+-   \[3]Ákos Seress,[Permutation Group Algorithms](https://www.cambridge.org/core/books/permutation-group-algorithms/199629665EC545A10BCB99FFE6AAFD25), Cambridge University Press
+-   \[4]Sims, Charles C,[Computational methods in the study of permutation groups](https://www.sciencedirect.com/science/article/pii/B9780080129754500205), Computational Problems in Abstract Algebra, pp. 169–183, Pergamon, Oxford, 1970.
+-   \[5]Martin Jaggi,[Implementations of 3 Types of the Schreier-Sims Algorithm](https://www.m8j.net/data/List/Files-118/Documentation.pdf), MAS334 - Mathematics Computing Project, 2005
+-   \[6][The Schreier-Sims algorithm for finite permutation groups](https://blogs.cs.st-andrews.ac.uk/codima/files/2015/11/CoDiMa2015_Holt.pdf)
+-   Henrik B¨a¨arnhielm,[The Schreier-Sims algorithm for matrix groups](https://henrik.baarnhielm.net/schreiersims.pdf)

@@ -89,7 +89,7 @@ void radix_sort() {
 
 实际上并非必须从后往前枚举才是稳定排序，只需对 `cnt` 数组进行等价于 `std::exclusive_scan` 的操作即可。
 
-???+ note "例题 [洛谷 P1177 【模板】快速排序](https://www.luogu.com.cn/problem/P1177)"
+???+ note " 例题 [洛谷 P1177【模板】快速排序](https://www.luogu.com.cn/problem/P1177)"
     给出 $n$ 个正整数，从小到大输出。
     
     ```cpp

@@ -126,7 +126,7 @@ $$
 
 直接用递推式计算前 $n$ 项是 $O(n^2)$ 的，[运用 FFT](https://oi-wiki.org/math/poly/inv/) 可得到 $O(n\log n)$ 的算法。
 
-???+note "注"
+???+ note "注"
     容易发现，$f(x)$ 的倒数就是 $\frac{1}{f(x)}$ 的无穷项麦克劳林展开（在 $x=0$ 处的无穷项泰勒展开）。
 
 ### 常见的幂级数展开式
@@ -278,7 +278,7 @@ $$
 
 这两种操作的实质就是将多项式在 **系数表示** 和 **点值表示** 间转化。多点求值将多项式的系数表示转为点值表示，插值将多项式的点值表示转为系数表示。
 
-???+note "注"
+???+ note "注"
     按照幂级数的观点看，多点求值相当于将无穷项的信息“压缩”到有限个点值表示，因此丢失了一些信息，而插值相当于还原到相应次数的系数表示。
     
     编程常见的求值与插值，例如离散傅里叶变换（及其逆变换）等等，选择的 $n+1$ 个点重数均为 $1$，即两两不同，免去求导的麻烦。
@@ -374,7 +374,7 @@ $$
 
 考虑“截断”的概念，一般把模 $x^n$ 意义下的逆元记作 $f^{-1}(x)$，也是后文默认使用的逆元概念。如果不加说明，逆元的模就是指 $x^n$。
 
-???+note "注"
+???+ note "注"
     一个问题是，可不可以用各种插值变换，直接求解“逆元”，比如计算：
     
     $$
@@ -395,14 +395,14 @@ $$
 
 其中 $k_n(x)$ 被称为核函数。不同的核函数会导出不同的生成函数，拥有不同的性质。举个例子：
 
-1. 普通生成函数：$k_n(x)=x^n$。
-2. 指数生成函数：$k_n(x)=\dfrac{x^n}{n!}$。
-3. 狄利克雷生成函数：$k_n(x)=\dfrac{1}{n^x}$。
+1.  普通生成函数：$k_n(x)=x^n$。
+2.  指数生成函数：$k_n(x)=\dfrac{x^n}{n!}$。
+3.  狄利克雷生成函数：$k_n(x)=\dfrac{1}{n^x}$。
 
 ## 参考资料与拓展阅读
 
-- [**Picks's Blog**](https://picks.logdown.com)
-- [**Miskcoo's Space**](https://blog.miskcoo.com)
-- [**Polynomial ring - Wikipedia**](https://en.wikipedia.org/wiki/Polynomial_ring)
-- [**Formal power series - Wikipedia**](https://en.wikipedia.org/wiki/Formal_power_series#The_ring_of_formal_power_series)
-- 《信息学竞赛中的生成函数计算理论框架》
+-   [**Picks's Blog**](https://picks.logdown.com)
+-   [**Miskcoo's Space**](https://blog.miskcoo.com)
+-   [**Polynomial ring - Wikipedia**](https://en.wikipedia.org/wiki/Polynomial_ring)
+-   [**Formal power series - Wikipedia**](https://en.wikipedia.org/wiki/Formal_power_series#The_ring_of_formal_power_series)
+-   《信息学竞赛中的生成函数计算理论框架》
