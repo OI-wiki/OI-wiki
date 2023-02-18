@@ -30,10 +30,10 @@ ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分
 
 ## 赛季赛程
 
-- ICPC/CCPC 网络赛（8 月底至 9 月初）
-- ICPC/CCPC 区域赛（9 月底至 11 月底）
-- ICPC EC Final/CCPC Final（12 月中旬）
-- ICPC World Finals（次年 4 月至 6 月）
+-   ICPC/CCPC 网络赛（8 月底至 9 月初）
+-   ICPC/CCPC 区域赛（9 月底至 11 月底）
+-   ICPC EC Final/CCPC Final（12 月中旬）
+-   ICPC World Finals（次年 4 月至 6 月）
 
 ## 训练指南
 
@@ -49,10 +49,10 @@ OJ 里查询用的关键词：`Multi-University Training Contest`。
 
 ### 训练营
 
-- 寒假的时候头条/清华/CCPC (Wannafly Camp) 举办的 Camp
-- Wannafly Camp
+-   寒假的时候头条/清华/CCPC (Wannafly Camp) 举办的 Camp
+-   Wannafly Camp
 
 ## 训练资源
 
-- **OI Wiki：<https://oi-wiki.org>**
-- Codeforces Gym：<https://codeforces.com/gyms>
+-   **OI Wiki：<https://oi-wiki.org>**
+-   Codeforces Gym：<https://codeforces.com/gyms>

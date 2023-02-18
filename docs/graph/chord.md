@@ -123,9 +123,9 @@
 
 **Lemma 10**：任意一个弦图一定不存在一个序列 $v_0,v_1,\dots,v_k(k\ge 2)$ 满足下列性质：
 
-1. $v_iv_j$ 相连当且仅当 $|i-j|=1$。
-2. $\alpha(v_0)>\alpha(v_i)(i\in[1,k])$。
-3. 存在 $i\in[1,k-1]$，满足 $\alpha(v_i)<\alpha(v_{i+1})<\dots<\alpha(v_k)$ 且 $\alpha(v_i)<\alpha(v_{i-1})<\dots<\alpha(v_1)<\alpha(v_k)<\alpha(v_0)$。
+1.  $v_iv_j$ 相连当且仅当 $|i-j|=1$。
+2.  $\alpha(v_0)>\alpha(v_i)(i\in[1,k])$。
+3.  存在 $i\in[1,k-1]$，满足 $\alpha(v_i)<\alpha(v_{i+1})<\dots<\alpha(v_k)$ 且 $\alpha(v_i)<\alpha(v_{i-1})<\dots<\alpha(v_1)<\alpha(v_k)<\alpha(v_0)$。
 
 证明：
 
@@ -272,9 +272,9 @@ for (int i = 1; i <= n; i++)
 
 [SP5446 FISHNET - Fishing Net](https://www.luogu.com.cn/problem/SP5446)
 
-[P3196\[HNOI2008\]神奇的国度](https://www.luogu.com.cn/problem/P3196)
+[P3196\[HNOI2008\] 神奇的国度](https://www.luogu.com.cn/problem/P3196)
 
-[P3852\[TJOI2007\]小朋友](https://www.luogu.com.cn/problem/P3852)
+[P3852\[TJOI2007\] 小朋友](https://www.luogu.com.cn/problem/P3852)
 
 ## 参考资料
 

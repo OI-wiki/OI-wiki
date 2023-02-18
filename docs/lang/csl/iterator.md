@@ -19,20 +19,20 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 // 在C++11后可以使用 auto iter = data.begin() 来简化上述代码
 ```
 
-???+note "`auto` 在竞赛中的使用"
+???+ note "`auto` 在竞赛中的使用 "
     大部分选手都喜欢使用 `auto` 来代替繁琐的迭代器声明。根据 2021 年 9 月发布的 [关于 NOI 系列活动中编程语言使用限制的补充说明](https://www.noi.cn/xw/2021-09-01/735729.shtml)，NOI 系列比赛（包括 CSP J/S）在评测时将使用 **C++14**，这个版本已经支持了 `auto` 关键字。
 
 ## 分类
 
 在 STL 的定义中，迭代器根据其支持的操作依次分为以下几类：
 
-- InputIterator（输入迭代器）：只要求支持拷贝、自增和解引访问。
-- OutputIterator（输出迭代器）：只要求支持拷贝、自增和解引赋值。
-- ForwardIterator（向前迭代器）：同时满足 InputIterator 和 OutputIterator 的要求。
-- BidirectionalIterator（双向迭代器）：在 ForwardIterator 的基础上支持自减（即反向访问）。
-- RandomAccessIterator（随机访问迭代器）：在 BidirectionalIterator 的基础上支持加减运算和比较运算（即随机访问）。
+-   InputIterator（输入迭代器）：只要求支持拷贝、自增和解引访问。
+-   OutputIterator（输出迭代器）：只要求支持拷贝、自增和解引赋值。
+-   ForwardIterator（向前迭代器）：同时满足 InputIterator 和 OutputIterator 的要求。
+-   BidirectionalIterator（双向迭代器）：在 ForwardIterator 的基础上支持自减（即反向访问）。
+-   RandomAccessIterator（随机访问迭代器）：在 BidirectionalIterator 的基础上支持加减运算和比较运算（即随机访问）。
 
-???+note "为什么输入迭代器叫输入迭代器？"
+???+ note "为什么输入迭代器叫输入迭代器？"
     “输入”指的是“可以从迭代器中获取输入”，而“输出”指的是“可以输出到迭代器”。
     
     “输入”和“输出”的施动者是程序的其它部分，而不是迭代器自身。
