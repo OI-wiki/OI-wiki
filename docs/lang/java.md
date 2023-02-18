@@ -155,7 +155,7 @@ int[] ary = new int[10];
 
 ### 字符串
 
-- 字符串是 Java 一个内置的类。
+-   字符串是 Java 一个内置的类。
 
 ```java
 // 最为简单的构造一个字符串变量的方法如下
@@ -235,7 +235,7 @@ Java 的流程控制语句与 C++ 是基本相同的。
 
 #### 选择
 
-- if
+-   if
 
 ```java
 class Test {
@@ -247,7 +247,7 @@ class Test {
 }
 ```
 
-- if...else
+-   if...else
 
 ```java
 class Test {
@@ -261,7 +261,7 @@ class Test {
 }
 ```
 
-- if...else if...else
+-   if...else if...else
 
 ```java
 class Test {
@@ -277,7 +277,7 @@ class Test {
 }
 ```
 
-- switch...case
+-   switch...case
 
 ```java
 class Test {
@@ -298,7 +298,7 @@ class Test {
 
 #### 循环
 
-- for
+-   for
 
 `for` 关键字有两种使用方法，其中第一种是普通的 `for` 循环，形式如下：
 
@@ -324,7 +324,7 @@ class Test {
 }
 ```
 
-- while
+-   while
 
 ```java
 class Test {
@@ -336,7 +336,7 @@ class Test {
 }
 ```
 
-- do...while
+-   do...while
 
 ```java
 class Test {

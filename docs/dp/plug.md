@@ -8,7 +8,7 @@
 
 温故而知新，在开始学习插头 DP 之前，不妨先让我们回顾一个经典问题。
 
-???+note " 例题 [「HDU 1400」Mondriaan’s Dream](https://vjudge.net/problem/HDU-1400)"
+???+ note " 例题 [「HDU 1400」Mondriaan’s Dream](https://vjudge.net/problem/HDU-1400)"
     题目大意：在 $N\times M$ 的棋盘内铺满 $1\times 2$ 或 $2\times 1$ 的多米诺骨牌，求方案数。
 
 当 $n$ 或 $m$ 规模不大的时候，这类问题可以使用 [状压 DP](./state.md) 解决。逐行划分阶段，设 $dp(i,s)$ 表示当前已考虑过前 $i$ 行，且第 $i$ 行的状态为 $s$ 的方案数。这里的状态 $s$ 的每一位可以表示这个这个位置是否已被上一行覆盖。
@@ -88,7 +88,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 例题
 
-???+note " 例题 [「HDU 1693」Eat the Trees](https://vjudge.net/problem/HDU-1693)"
+???+ note " 例题 [「HDU 1693」Eat the Trees](https://vjudge.net/problem/HDU-1693)"
     题目大意：求用若干条回路覆盖 $N\times M$ 棋盘的方案数，有些位置有障碍。
 
 严格来说，多条回路问题并不属于插头 DP，因为我们只需要和上面的骨牌覆盖问题一样，记录插头是否存在，然后成对的合并和生成插头就可以了。
@@ -109,7 +109,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 例题
 
-???+note " 例题 [「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
+???+ note " 例题 [「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
     题目大意：求用一条回路覆盖 $N\times M$ 棋盘的方案数。
 
 在上面的状态表示中我们每合并一组连通的插头，就会生成一条独立的回路，因而在本题中，我们还需要区分插头之间的连通性（出现了！）。这需要我们对状态进行额外的编码。
@@ -120,8 +120,8 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 那么下面两组编码方式表示的是相同的状态：
 
-- `0 3 1 0 1 3`
-- `0 1 2 0 2 1`
+-   `0 3 1 0 1 3`
+-   `0 1 2 0 2 1`
 
 我们将相同的状态都映射成字典序最小表示，例如在上例中的 `0 1 2 0 2 1` 就是一组最小表示。
 
@@ -157,9 +157,9 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 手写哈希
 
-在一些 [状压 DP](./state.md) 的问题中，合法的状态可能是稀疏的（例如本题），为了优化时空复杂度，我们可以使用哈希表存储合法的 DP 状态。对于 C++ 选手，我们可以使用 [std::unordered_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/)，当然也可以直接手写，这样可以灵活的将状态转移函数也封装于其中。
+在一些 [状压 DP](./state.md) 的问题中，合法的状态可能是稀疏的（例如本题），为了优化时空复杂度，我们可以使用哈希表存储合法的 DP 状态。对于 C++ 选手，我们可以使用 [std::unordered\_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/)，当然也可以直接手写，这样可以灵活的将状态转移函数也封装于其中。
 
-???+note "代码实现"
+???+ note "代码实现"
     ```cpp
     const int MaxSZ = 16796, Prime = 9973;
     
@@ -192,21 +192,21 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 上面的代码中：
 
-- `MaxSZ` 表示合法状态的上界，可以估计，也可以预处理出较为精确的值。
-- `Prime` 一个小于 `MaxSZ` 的大素数。
-- `head[]` 表头节点的指针。
-- `next[]` 后续状态的指针。
-- `state[]` 节点的状态。
-- `key[]` 节点的关键字，在本题中是方案数。
-- `clear()` 初始化函数，和手写邻接表类似，我们只需要初始化表头节点的指针。
-- `push()` 状态转移函数，其中 `d` 是一个全局变量（偷懒），表示每次状态转移所带来的增量。如果找到的话就 `+=`，否则就创建一个状态为 `s`，关键字为 `d` 的新节点。
-- `roll()` 迭代完一整行之后，滚动轮廓线。
+-   `MaxSZ` 表示合法状态的上界，可以估计，也可以预处理出较为精确的值。
+-   `Prime` 一个小于 `MaxSZ` 的大素数。
+-   `head[]` 表头节点的指针。
+-   `next[]` 后续状态的指针。
+-   `state[]` 节点的状态。
+-   `key[]` 节点的关键字，在本题中是方案数。
+-   `clear()` 初始化函数，和手写邻接表类似，我们只需要初始化表头节点的指针。
+-   `push()` 状态转移函数，其中 `d` 是一个全局变量（偷懒），表示每次状态转移所带来的增量。如果找到的话就 `+=`，否则就创建一个状态为 `s`，关键字为 `d` 的新节点。
+-   `roll()` 迭代完一整行之后，滚动轮廓线。
 
 关于哈希表的复杂度分析，以及开哈希和闭哈希的不同，可以参见 [《算法导论》](../contest/resources.md#书籍) 中关于散列表的相关章节。
 
 #### 状态转移
 
-???+note "代码实现"
+???+ note "代码实现"
     ```cpp
     REP(ii, H0->sz) {
       decode(H0->state[ii]);                  // 取出状态，并解码
@@ -265,7 +265,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 例题
 
-???+note " 例题 [「ZOJ 3213」Beautiful Meadow](https://vjudge.net/problem/ZOJ-3213)"
+???+ note " 例题 [「ZOJ 3213」Beautiful Meadow](https://vjudge.net/problem/ZOJ-3213)"
     题目大意：一个 $N\times M$ 的方阵（$N,M\le 8$），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和。
 
 本题是标准的一条路径问题，在一条路径问题中，编码的状态中还会存在不能配对的独立插头。需要在状态转移函数中，额外讨论独立插头的生成、合并与消失的情况。独立插头的生成和消失对应着路径的一端，因而这类事件不会发生超过两次（一次生成一次消失，或者两次生成一次合并），否则最终结果一定会出现多个连通块。
@@ -274,7 +274,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 状态转移
 
-???+note "代码实现"
+???+ note "代码实现"
     ```cpp
     REP(i, n) {
       REP(j, m) {
@@ -338,10 +338,10 @@ if (s >> j & 1) {       // 如果已被覆盖
 #### 习题
 
 ??? note " 习题 [「NOI 2010 Day2」旅行路线](https://www.luogu.com.cn/problem/P1933)"
-    题目大意：$n\times m$ 的棋盘，棋盘的每个格子有一个 01 权值 T[x][y]，要求寻找一个路径覆盖，满足：
+    题目大意：$n\times m$ 的棋盘，棋盘的每个格子有一个 01 权值 T\[x]\[y]，要求寻找一个路径覆盖，满足：
     
-    - 第 i 个参观的格点 (x, y)，满足 T[x][y]= L[i]
-    - 路径的一端在棋盘的边界上
+    -   第 i 个参观的格点 (x, y)，满足 T\[x]\[y]= L\[i]
+    -   路径的一端在棋盘的边界上
     
     求可行的方案数。
 
@@ -351,10 +351,10 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 例题「UVA 10572」Black & White
 
-???+note " 例题 [「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572)"
+???+ note " 例题 [「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572)"
     题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白染色，要求所有黑色区域和白色区域连通，且任意一个 $2\times 2$ 的子矩形内的颜色不能完全相同（例如下图中的情况非法），求合法的方案数，并构造一组合法的方案。
     
-    ![black_and_white1](./images/black_and_white1.svg)
+    ![black\_and\_white1](./images/black_and_white1.svg)
 
 ### 状态编码
 
@@ -368,7 +368,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 在最多情况下（例如第一行黑白相间），每个插头的连通性信息都不一样，因此我们需要 $4$ 位二进制位记录连通性，再加上颜色信息，本题的 `Offset` 为 $5$ 位。
 
-???+note "代码实现"
+???+ note "代码实现"
     ```cpp
     const int Offset = 5, Mask = (1 << Offset) - 1;
     int c[N + 2];
@@ -402,7 +402,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 因为需要构造任意一组方案，这里的哈希表我们需要添加一组域 `pre[]` 来记录每个状态在上一阶段的任意一个前驱。
 
-???+note "代码实现"
+???+ note "代码实现"
     ```cpp
     const int Prime = 9979, MaxSZ = 1 << 20;
     
@@ -441,7 +441,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 有了上面的信息，我们就可以容易的构造方案了。首先遍历当前哈希表中的状态，如果连通块数目不超过 $2$，那么统计进方案数。如果方案数不为 $0$，我们倒序用 `pre` 数组构造出方案，注意每一行的末尾因为我们执行了 `Roll()` 操作，颜色需要取 `c[j+1]`。
 
-???+note "代码实现"
+???+ note "代码实现"
     ```cpp
     void print() {
       T_key z = 0;
@@ -474,14 +474,14 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 我们记：
 
-- `cc` 当前正在染色的格子的颜色
-- `lf` 左边格子的颜色
-- `up` 上边格子的颜色
-- `lu` 左上格子的颜色
+-   `cc` 当前正在染色的格子的颜色
+-   `lf` 左边格子的颜色
+-   `up` 上边格子的颜色
+-   `lu` 左上格子的颜色
 
 我们用 $-1$ 表示颜色不存在。接下来讨论状态转移，一共有三种情况，合并，继承与生成：
 
-???+note "状态转移-代码"
+???+ note "状态转移 - 代码"
     ```cpp
     void trans(int i, int j, int u, int cc) {
       decode(H0->state[u]);
@@ -509,7 +509,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 对于最后一种情况需要注意的是，如果已经生成了一个封闭的连通区域，那么我们不能再使用她的颜色染色，否则这种颜色会出现两个连通块。我们似乎需要额度记录这种事件，可以参考 [「ZOJ 3213」Beautiful Meadow](#例题_2) 中的做法，再开一维记录这个事件。不过利用本题的特殊性，我们也可以特判掉。
 
-???+note "特判-代码"
+???+ note "特判 - 代码"
     ```cpp
     bool ok(int i, int j, int cc) {
       if (cc == c[j + 1]) return true;
@@ -554,12 +554,12 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ## 图论模型
 
-???+note " 例题 [「NOI 2007 Day2」生成树计数](https://www.luogu.com.cn/problem/P2109)"
+???+ note " 例题 [「NOI 2007 Day2」生成树计数](https://www.luogu.com.cn/problem/P2109)"
     题目大意：某类特殊图的生成树计数，每个节点恰好与其前 $k$ 个节点之间有边相连。
 
-???+note " 例题 [「2015 ACM-ICPC Asia Shenyang Regional Contest - Problem E」Efficient Tree](https://vjudge.net/problem/HDU-5513)"
+???+ note " 例题 [「2015 ACM-ICPC Asia Shenyang Regional Contest - Problem E」Efficient Tree](https://vjudge.net/problem/HDU-5513)"
     题目大意：给出一个 $N\times M$ 的网格图，以及相邻四连通格子之间的边权。
-    对于一颗生成树，每个节点的得分为 1+[有一条连向上的边]+[有一条连向左的边]。
+    对于一颗生成树，每个节点的得分为 1+\[有一条连向上的边]+\[有一条连向左的边]。
     生成树的得分为所有节点的得分之积。
     
     你需要求出：最小生成树的边权和，以及所有最小生成树的得分之和。
@@ -569,7 +569,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 例题
 
-???+note " 例题 [「HDU 4113」Construct the Great Wall](https://vjudge.net/problem/HDU-4113)"
+???+ note " 例题 [「HDU 4113」Construct the Great Wall](https://vjudge.net/problem/HDU-4113)"
     题目大意：在 $N\times M$ 的棋盘内构造一组回路，分割所有的 `x` 和 `o`。
 
 有一类插头 DP 问题要求我们在棋盘上构造一组墙，以分割棋盘上的某些元素。不妨称之为修墙问题，这类问题既可视作染色模型，也可视作路径模型。
@@ -754,9 +754,9 @@ if (s >> j & 1) {       // 如果已被覆盖
 ??? note " 习题 [「World Finals 2009/2010 Harbin」Channel](https://vjudge.net/problem/UVALive-4789)"
     题目大意：一张方格地图上用 `.` 表示空地、`#` 表示石头，找到最长的一条路径满足：
     
-    1. 起点在左上角，终点在右下角。
-    2. 不能经过石头。
-    3. 路径自身不能在八连通的意义下成环。（即包括拐角处也不能接触）
+    1.  起点在左上角，终点在右下角。
+    2.  不能经过石头。
+    3.  路径自身不能在八连通的意义下成环。（即包括拐角处也不能接触）
 
 ??? note " 习题 [「HDU 3958」Tower Defence](https://vjudge.net/problem/HDU-3958)"
     题目大意：可以转化为求解一条从 $\mathit{S}$ 到 $\mathit{T}$ 的不能接触的最长路径，拐角处可以接触。
@@ -779,8 +779,8 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 插头 DP 问题通常编码难度较大，讨论复杂，因而属于 OI/ACM 中相对较为 [偏门的领域](https://github.com/OI-wiki/libs/blob/master/topic/7-%E7%8E%8B%E5%A4%A9%E6%87%BF-%E8%AE%BA%E5%81%8F%E9%A2%98%E7%9A%84%E5%8D%B1%E5%AE%B3.ppt)。这方面最为经典的资料，当属 2008 年 [陈丹琦](https://www.cs.princeton.edu/~danqic/) 的集训队论文——[基于连通性状态压缩的动态规划问题](https://github.com/AngelKitty/review_the_national_post-graduate_entrance_examination/tree/master/books_and_notes/professional_courses/data_structures_and_algorithms/sources/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2008%E8%AE%BA%E6%96%87%E9%9B%86/%E9%99%88%E4%B8%B9%E7%90%A6%E3%80%8A%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E6%80%A7%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E7%9A%84%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E3%80%8B)。其次，HDU 的 notonlysuccess 2011 年曾经在博客中连续写过两篇由浅入深的专题，也是不可多得的好资料，不过现在需要在 Web Archive 里考古。
 
-- [notonlysuccess，【专辑】插头 DP](https://web.archive.org/web/20110815044829/http://www.notonlysuccess.com/?p=625)
-- [notonlysuccess，【完全版】插头 DP](https://web.archive.org/web/20111007185146/http://www.notonlysuccess.com/?p=931)
+-   [notonlysuccess，【专辑】插头 DP](https://web.archive.org/web/20110815044829/http://www.notonlysuccess.com/?p=625)
+-   [notonlysuccess，【完全版】插头 DP](https://web.archive.org/web/20111007185146/http://www.notonlysuccess.com/?p=931)
 
 ### 多米诺骨牌覆盖
 
@@ -790,14 +790,14 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 当 $m\le 10,n\le 10^9$ 时，可以将转移方程预处理成矩阵形式，并使用 [矩阵乘法进行加速](http://www.matrix67.com/blog/archives/276)。
 
-![domino_v2_transform_matrix](./images/domino_v2_transform_matrix.svg)
+![domino\_v2\_transform\_matrix](./images/domino_v2_transform_matrix.svg)
 
 当 $n,m\le 100$，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数。
 
-- [「51nod 1031」骨牌覆盖](http://www.51nod.com/Challenge/Problem.html#problemId=1031)
-- [「51nod 1033」骨牌覆盖 V2](http://www.51nod.com/Challenge/Problem.html#problemId=1033)\|[「Vijos 1194」Domino](https://vijos.org/p/1194)
-- [「51nod 1034」骨牌覆盖 V3](http://www.51nod.com/Challenge/Problem.html#problemId=1034)\|[「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594)
-- [Wolfram MathWorld, Chebyshev Polynomial of the Second Kind](https://mathworld.wolfram.com/ChebyshevPolynomialoftheSecondKind.html)
+-   [「51nod 1031」骨牌覆盖](http://www.51nod.com/Challenge/Problem.html#problemId=1031)
+-   [「51nod 1033」骨牌覆盖 V2](http://www.51nod.com/Challenge/Problem.html#problemId=1033)|[「Vijos 1194」Domino](https://vijos.org/p/1194)
+-   [「51nod 1034」骨牌覆盖 V3](http://www.51nod.com/Challenge/Problem.html#problemId=1034)|[「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594)
+-   [Wolfram MathWorld, Chebyshev Polynomial of the Second Kind](https://mathworld.wolfram.com/ChebyshevPolynomialoftheSecondKind.html)
 
 ### 一条路径
 
@@ -805,4 +805,4 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ![sm18847458](./images/sm18847458.png)
 
-- [【动画】从方格这头走向那头有多少种走法呢～【结尾迷之感动】](https://www.bilibili.com/video/BV1Cx411D74e)\|[Youtube](https://www.youtube.com/watch?v=Q4gTV4r0zRs)
+-   [【动画】从方格这头走向那头有多少种走法呢～【结尾迷之感动】](https://www.bilibili.com/video/BV1Cx411D74e)|[Youtube](https://www.youtube.com/watch?v=Q4gTV4r0zRs)

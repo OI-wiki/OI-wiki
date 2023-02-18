@@ -8,8 +8,8 @@ author: hyp1231
 
 给定反演中心点 $O$ 和反演半径 $R$。若平面上点 $P$ 和 $P'$ 满足：
 
-- 点 $P'$ 在射线 $\overrightarrow{OP}$ 上
-- $|OP| \cdot |OP'| = R^2$
+-   点 $P'$ 在射线 $\overrightarrow{OP}$ 上
+-   $|OP| \cdot |OP'| = R^2$
 
 则称点 $P$ 和点 $P'$ 互为反演点。
 
@@ -21,7 +21,7 @@ author: hyp1231
 
 ## 性质
 
-1. 圆 $O$ 外的点的反演点在圆 $O$ 内，反之亦然；圆 $O$ 上的点的反演点为其自身。
+1.  圆 $O$ 外的点的反演点在圆 $O$ 内，反之亦然；圆 $O$ 上的点的反演点为其自身。
 
 2.  不过点 $O$ 的圆 $A$，其反演图形也是不过点 $O$ 的圆。
 
@@ -66,7 +66,7 @@ author: hyp1231
 
     ![Inv4](./images/inverse4.png)
 
-4. 两个图形相切，则他们的反演图形也相切。
+4.  两个图形相切，则他们的反演图形也相切。
 
 ## 例题
 
@@ -260,6 +260,6 @@ author: hyp1231
 
 ## 参考资料与拓展阅读
 
-- [Inversive geometry - Wikipedia](https://en.wikipedia.org/wiki/Inversive_geometry)
+-   [Inversive geometry - Wikipedia](https://en.wikipedia.org/wiki/Inversive_geometry)
 
-- [圆的反演变换 - ACdreamers 的博客](https://blog.csdn.net/acdreamers/article/details/16966369)
+-   [圆的反演变换 - ACdreamers 的博客](https://blog.csdn.net/acdreamers/article/details/16966369)

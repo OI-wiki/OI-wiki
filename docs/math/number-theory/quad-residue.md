@@ -363,8 +363,8 @@ $$
 
 ## 外部链接
 
-- <https://en.wikipedia.org/wiki/Quadratic_residue>
-- <https://en.wikipedia.org/wiki/Euler%27s_criterion>
+-   <https://en.wikipedia.org/wiki/Quadratic_residue>
+-   <https://en.wikipedia.org/wiki/Euler%27s_criterion>
 
 ## 参考文献
 

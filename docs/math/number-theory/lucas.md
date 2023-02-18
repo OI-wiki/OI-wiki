@@ -16,7 +16,7 @@ $$
 
 时间复杂度为 $O(f(p) + g(n)\log n)$，其中 $f(n)$ 为预处理组合数的复杂度，$g(n)$ 为单次求组合数的复杂度。
 
-???+note "实现"
+???+ note "实现"
     === "C++"
     
         ```cpp
@@ -149,9 +149,9 @@ $22!=3^7 \times (1\times 2\times 3\times 4\times 5\times 6\times 7)$$\times(1\ti
 
 可以看到，式子分为三个整式的乘积：
 
-1. 是 $3$ 的幂，次数是 $\lfloor\frac{n}{q}\rfloor$；
+1.  是 $3$ 的幂，次数是 $\lfloor\frac{n}{q}\rfloor$；
 
-2. 是 $7!$，即 $\lfloor\frac{n}{q}\rfloor!$，由于阶乘中仍然可能有 $q$ 的倍数，考虑递归求解；
+2.  是 $7!$，即 $\lfloor\frac{n}{q}\rfloor!$，由于阶乘中仍然可能有 $q$ 的倍数，考虑递归求解；
 
 3.  是 $n!$ 中与 $q$ 互质的部分的乘积，具有如下性质：  
     $1\times 2\times 4\times 5\times 7\times 8\equiv10 \times 11\times 13\times 14\times 16\times 17 \pmod{3^2}$，  
@@ -187,7 +187,7 @@ $$
 
 下面这种写法，拥有单次询问 $O(p\log p)$ 的时间复杂度。其中 `int inverse(int x)` 函数返回 $x$ 在模 $p$ 意义下的逆元。
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     LL calc(LL n, LL x, LL P) {
       if (!n) return 1;
@@ -228,7 +228,7 @@ $$
 
 ## 习题
 
-- [Luogu3807【模板】卢卡斯定理](https://www.luogu.com.cn/problem/P3807)
-- [SDOI2010 古代猪文  卢卡斯定理](https://loj.ac/problem/10229)
-- [Luogu4720【模板】扩展卢卡斯](https://www.luogu.com.cn/problem/P4720)
-- [Ceizenpok’s formula](http://codeforces.com/gym/100633/problem/J)
+-   [Luogu3807【模板】卢卡斯定理](https://www.luogu.com.cn/problem/P3807)
+-   [SDOI2010 古代猪文  卢卡斯定理](https://loj.ac/problem/10229)
+-   [Luogu4720【模板】扩展卢卡斯](https://www.luogu.com.cn/problem/P4720)
+-   [Ceizenpok’s formula](http://codeforces.com/gym/100633/problem/J)

@@ -40,7 +40,7 @@
 
 #### 实现
 
-???+note "代码实现"
+???+ note "代码实现"
     === "C++"
     
         ```cpp
@@ -120,8 +120,8 @@ $$
 
 求凸包的过程如下：
 
-- 首先对其微小扰动，避免出现四点共面的情况。
-- 对于一个已知凸包，新增一个点 $P$，将 $P$ 视作一个点光源，向凸包做射线，可以知道，光线的可见面和不可见面一定是由若干条棱隔开的。
+-   首先对其微小扰动，避免出现四点共面的情况。
+-   对于一个已知凸包，新增一个点 $P$，将 $P$ 视作一个点光源，向凸包做射线，可以知道，光线的可见面和不可见面一定是由若干条棱隔开的。
 -   将光的可见面删去，并新增由其分割棱与 $P$ 构成的平面。
     重复此过程即可，由 [Pick 定理](./pick.md)、欧拉公式（在凸多面体中，其顶点 $V$、边数 $E$ 及面数 $F$ 满足 $V−E+F=2$）和圆的反演，复杂度 $O(n^2)$。[^3d-v]
 
@@ -138,15 +138,15 @@ $$
 
 ## 练习
 
-- [UVA11626 Convex Hull](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=78&page=show_problem&problem=2673)
+-   [UVA11626 Convex Hull](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=78&page=show_problem&problem=2673)
 
-- [「USACO5.1」圈奶牛 Fencing the Cows](https://www.luogu.com.cn/problem/P2742)
+-   [「USACO5.1」圈奶牛 Fencing the Cows](https://www.luogu.com.cn/problem/P2742)
 
-- [POJ1873 The Fortified Forest](http://poj.org/problem?id=1873)
+-   [POJ1873 The Fortified Forest](http://poj.org/problem?id=1873)
 
-- [POJ1113 Wall](http://poj.org/problem?id=1113)
+-   [POJ1113 Wall](http://poj.org/problem?id=1113)
 
-- [「SHOI2012」信用卡凸包](https://www.luogu.com.cn/problem/P3829)
+-   [「SHOI2012」信用卡凸包](https://www.luogu.com.cn/problem/P3829)
 
 ## 参考资料与注释
 

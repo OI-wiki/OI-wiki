@@ -18,10 +18,10 @@ author: Xarfa
 
 两个关键数组：
 
-tree[log(N),N]&#x3A;也就是树，要存下所有的值，空间复杂度 $O(n\log n)$。
-toleft[log(N),n]&#x3A;也就是每一层 1~i 进入左儿子的数量，这里需要理解一下，这是一个前缀和。
+tree\[log(N),N]: 也就是树，要存下所有的值，空间复杂度 $O(n\log n)$。
+toleft\[log(N),n]: 也就是每一层 1\~i 进入左儿子的数量，这里需要理解一下，这是一个前缀和。
 
-???+note "实现"
+???+ note "实现"
     ```pascal
     procedure Build(left,right,deep:longint); // left,right 表示区间左右端点,deep是第几层
     var
@@ -64,7 +64,7 @@ toleft[log(N),n]&#x3A;也就是每一层 1~i 进入左儿子的数量，这里�
 
 ![](./images/dividing2.png)
 
-???+note "实现"
+???+ note "实现"
     ```pascal
     function Query(left,right,k,l,r,deep:longint):longint;
     var
@@ -94,7 +94,7 @@ toleft[log(N),n]&#x3A;也就是每一层 1~i 进入左儿子的数量，这里�
 
 ## 划分树的应用
 
-例题：[Luogu P3157\[CQOI2011\]动态逆序对](https://www.luogu.com.cn/problem/P3157)
+例题：[Luogu P3157\[CQOI2011\] 动态逆序对](https://www.luogu.com.cn/problem/P3157)
 
 > 题意简述：给定一个 $n$ 个元素的排列（$n\leq 10^5$），有 m 次询问（$m\leq 5\times 10^4$），每次删去排列中的一个数，求删去这个数之后排列的逆序对个数。
 
