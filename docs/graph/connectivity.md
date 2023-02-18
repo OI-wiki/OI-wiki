@@ -3,6 +3,7 @@ author: jifbt
 ## 定义
 
  以下内容的定义，请参见 [图论相关概念](./concept.md)：
+ 
 - 边连通度、边割集；
 - 点连通度、点割集；
 - 团。
@@ -27,7 +28,7 @@ $$\kappa \le \lambda \le \delta$$
 
 ### Menger 定理
 
-!!!+warning
+??? warning
     原作者将以下推论称为「Ford–Fulkerson 定理」，原因未知。[维基百科](https://en.wikipedia.wikimirror.net/wiki/Menger%27s_theorem) 称之为「Menger's theorem」。
 
 由 [最大流最小割定理](./flow/min-cut.md) 可推出，两点间的最大不相交（指两两没有公共边）路径的最大数量等于最小割集的大小。这被称为 **Menger 定理**。
@@ -52,4 +53,4 @@ $$\kappa \le \lambda \le \delta$$
 
 ## 延伸阅读
 
-- [这篇论文](https://www.cse.msu.edu/~cse835/Papers/Graph_connectivity_revised.pdf) 介绍了近年来连通度计算算法的进展。感兴趣的读者可以自行浏览。
+- 论文 [_Connectivity Algorithms_](https://www.cse.msu.edu/~cse835/Papers/Graph_connectivity_revised.pdf) 介绍了近年来连通度计算算法的进展。感兴趣的读者可以自行浏览。
