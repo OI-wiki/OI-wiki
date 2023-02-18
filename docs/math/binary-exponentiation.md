@@ -119,7 +119,7 @@ $$
 
 ### 模意义下取幂
 
-???+note "问题描述"
+???+ note "问题描述"
     计算 $x^n\bmod m$。
 
 这是一个非常常见的应用，例如它可以用于计算模意义下的乘法逆元。
@@ -159,14 +159,14 @@ $$
 
 ### 计算斐波那契数
 
-???+note "问题描述"
+???+ note "问题描述"
     计算斐波那契数列第 $n$ 项 $F_n$。
 
 根据斐波那契数列的递推式 $F_n = F_{n-1} + F_{n-2}$，我们可以构建一个 $2\times 2$ 的矩阵来表示从 $F_i,F_{i+1}$ 到 $F_{i+1},F_{i+2}$ 的变换。于是在计算这个矩阵的 $n$ 次幂的时侯，我们使用快速幂的思想，可以在 $\Theta(\log n)$ 的时间内计算出结果。对于更多的细节参见 [斐波那契数列](./combinatorics/fibonacci.md)。
 
 ### 多次置换
 
-???+note "问题描述"
+???+ note "问题描述"
     给你一个长度为 $n$ 的序列和一个置换，把这个序列置换 $k$ 次。
 
 简单地把这个置换取 $k$ 次幂，然后把它应用到序列 $n$ 上即可。时间复杂度是 $O(n \log k)$ 的。
@@ -179,9 +179,9 @@ $$
 
 > 三维空间中，$n$ 个点 $p_i$，要求将 $m$ 个操作都应用于这些点。包含 3 种操作：
 >
-> 1. 沿某个向量移动点的位置（Shift）。
-> 2. 按比例缩放这个点的坐标（Scale）。
-> 3. 绕某个坐标轴旋转（Rotate）。
+> 1.  沿某个向量移动点的位置（Shift）。
+> 2.  按比例缩放这个点的坐标（Scale）。
+> 3.  绕某个坐标轴旋转（Rotate）。
 >
 > 还有一个特殊的操作，就是将一个操作序列重复 $k$ 次（Loop），这个序列中也可能有 Loop 操作（Loop 操作可以嵌套）。现在要求你在低于 $O(n \cdot \textit{length})$ 的时间内将这些变换应用到这个 $n$ 个点，其中 $\textit{length}$ 表示把所有的 Loop 操作展开后的操作序列的长度。
 
@@ -189,9 +189,9 @@ $$
 
 让我们来观察一下这三种操作对坐标的影响：
 
-1. Shift 操作：将每一维的坐标分别加上一个常量；
-2. Scale 操作：把每一维坐标分别乘上一个常量；
-3. Rotate 操作：这个有点复杂，我们不打算深入探究，不过我们仍然可以使用一个线性组合来表示新的坐标。
+1.  Shift 操作：将每一维的坐标分别加上一个常量；
+2.  Scale 操作：把每一维坐标分别乘上一个常量；
+3.  Rotate 操作：这个有点复杂，我们不打算深入探究，不过我们仍然可以使用一个线性组合来表示新的坐标。
 
 可以看到，每一个变换可以被表示为对坐标的线性运算，因此，一个变换可以用一个 $4\times 4$ 的矩阵来表示：
 
@@ -260,7 +260,7 @@ $$
 
 ### 定长路径计数
 
-???+note "问题描述"
+???+ note "问题描述"
     给一个有向图（边权为 1），求任意两点 $u,v$ 间从 $u$ 到 $v$，长度为 $k$ 的路径的条数。
 
 我们把该图的邻接矩阵 M 取 k 次幂，那么 $M_{i,j}$ 就表示从 $i$ 到 $j$ 长度为 $k$ 的路径的数目。该算法的复杂度是 $O(n^3 \log k)$。有关该算法的细节请参见 [矩阵](./linear-algebra/matrix.md) 页面。
@@ -281,7 +281,7 @@ $$
 
 #### 快速乘
 
-但是 $O(\log_2 m)$ 的“龟速乘”还是太慢了，这在很多对常数要求比较高的算法比如 Miller_Rabin 和 Pollard-Rho 中，就显得不够用了。所以我们要介绍一种可以处理模数在 `long long` 范围内、不需要使用黑科技 `__int128` 的、复杂度为 $O(1)$ 的“快速乘”。
+但是 $O(\log_2 m)$ 的“龟速乘”还是太慢了，这在很多对常数要求比较高的算法比如 Miller\_Rabin 和 Pollard-Rho 中，就显得不够用了。所以我们要介绍一种可以处理模数在 `long long` 范围内、不需要使用黑科技 `__int128` 的、复杂度为 $O(1)$ 的“快速乘”。
 
 我们发现：
 
@@ -320,8 +320,8 @@ long long binmul(long long a, long long b, long long m) {
 ??? note "前置技能"
     请先学习 [高精度](./bignum.md)
 
-???+note " 例题【NOIP2003 普及组改编·麦森数】（[原题在此](https://www.luogu.com.cn/problem/P1045)）"
-    题目大意：从文件中输入 P（1000&lt;P&lt;3100000），计算 $2^P−1$ 的最后 100 位数字（用十进制高精度数表示），不足 100 位时高位补 0。
+???+ note " 例题【NOIP2003 普及组改编·麦森数】（[原题在此](https://www.luogu.com.cn/problem/P1045)）"
+    题目大意：从文件中输入 P（1000\<P<3100000），计算 $2^P−1$ 的最后 100 位数字（用十进制高精度数表示），不足 100 位时高位补 0。
 
 代码实现如下：
 
@@ -335,12 +335,12 @@ long long binmul(long long a, long long b, long long m) {
 
 #### 过程
 
-1. 选定一个数 $s$，预处理出 $a^0$ 到 $a^s$ 与 $a^{0\cdot s}$ 到 $a^{\lceil\frac ps\rceil\cdot s}$ 的值并存在一个（或两个）数组里；
-2. 对于每一次询问 $a^b\bmod p$，将 $b$ 拆分成 $\left\lfloor\dfrac bs\right\rfloor\cdot s+b\bmod s$，则 $a^b=a^{\lfloor\frac bs\rfloor\cdot s}\times a^{b\bmod s}$，可以 $O(1)$ 求出答案。
+1.  选定一个数 $s$，预处理出 $a^0$ 到 $a^s$ 与 $a^{0\cdot s}$ 到 $a^{\lceil\frac ps\rceil\cdot s}$ 的值并存在一个（或两个）数组里；
+2.  对于每一次询问 $a^b\bmod p$，将 $b$ 拆分成 $\left\lfloor\dfrac bs\right\rfloor\cdot s+b\bmod s$，则 $a^b=a^{\lfloor\frac bs\rfloor\cdot s}\times a^{b\bmod s}$，可以 $O(1)$ 求出答案。
 
 关于这个数 $s$ 的选择，我们一般选择 $\sqrt p$ 或者一个大小适当的 $2$ 的次幂（选择 $\sqrt p$ 可以使预处理较优，选择 $2$ 的次幂可以使用位运算优化/简化计算）。
 
-??? note " 参考代码"
+??? note "参考代码"
     ```cpp
     int pow1[65536], pow2[65536];
     
@@ -356,13 +356,13 @@ long long binmul(long long a, long long b, long long m) {
 
 ## 习题
 
-- [UVa 1230 - MODEX](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3671)
-- [UVa 374 - Big Mod](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=310)
-- [UVa 11029 - Leading and Trailing](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1970)
-- [Codeforces - Parking Lot](http://codeforces.com/problemset/problem/630/I)
-- [SPOJ - The last digit](http://www.spoj.com/problems/LASTDIG/)
-- [SPOJ - Locker](http://www.spoj.com/problems/LOCKER/)
-- [LA - 3722 Jewel-eating Monsters](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1723)
+-   [UVa 1230 - MODEX](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3671)
+-   [UVa 374 - Big Mod](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=310)
+-   [UVa 11029 - Leading and Trailing](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1970)
+-   [Codeforces - Parking Lot](http://codeforces.com/problemset/problem/630/I)
+-   [SPOJ - The last digit](http://www.spoj.com/problems/LASTDIG/)
+-   [SPOJ - Locker](http://www.spoj.com/problems/LOCKER/)
+-   [LA - 3722 Jewel-eating Monsters](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1723)
 -   [SPOJ - Just add it](http://www.spoj.com/problems/ZSUM/)
 
     **本页面部分内容译自博文 [Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow) 与其英文翻译版 [Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

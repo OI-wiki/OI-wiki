@@ -13,15 +13,15 @@ __gnu_pbds ::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
 
 ## 模板形参
 
-- `Key`: 储存的元素类型，如果想要存储多个相同的 `Key` 元素，则需要使用类似于 `std::pair` 和 `struct` 的方法，并配合使用 `lower_bound` 和 `upper_bound` 成员函数进行查找
-- `Mapped`: 映射规则（Mapped-Policy）类型，如果要指示关联容器是 **集合**，类似于存储元素在 `std::set` 中，此处填入 `null_type`，低版本 `g++` 此处为 `null_mapped_type`；如果要指示关联容器是 **带值的集合**，类似于存储元素在 `std::map` 中，此处填入类似于 `std::map<Key, Value>` 的 `Value` 类型
-- `Cmp_Fn`: 关键字比较函子，例如 `std::less<Key>`
+-   `Key`: 储存的元素类型，如果想要存储多个相同的 `Key` 元素，则需要使用类似于 `std::pair` 和 `struct` 的方法，并配合使用 `lower_bound` 和 `upper_bound` 成员函数进行查找
+-   `Mapped`: 映射规则（Mapped-Policy）类型，如果要指示关联容器是 **集合**，类似于存储元素在 `std::set` 中，此处填入 `null_type`，低版本 `g++` 此处为 `null_mapped_type`；如果要指示关联容器是 **带值的集合**，类似于存储元素在 `std::map` 中，此处填入类似于 `std::map<Key, Value>` 的 `Value` 类型
+-   `Cmp_Fn`: 关键字比较函子，例如 `std::less<Key>`
 -   `Tag`: 选择使用何种底层数据结构类型，默认是 `rb_tree_tag`。`__gnu_pbds` 提供不同的三种平衡树，分别是：
-    - `rb_tree_tag`：红黑树，一般使用这个，后两者的性能一般不如红黑树
-    - `splay_tree_tag`：splay 树
-    - `ov_tree_tag`：有序向量树，只是一个由 `vector` 实现的有序结构，类似于排序的 `vector` 来实现平衡树，性能取决于数据想不想卡你
-- `Node_Update`：用于更新节点的策略，默认使用 `null_node_update`，若要使用 `order_of_key` 和 `find_by_order` 方法，需要使用 `tree_order_statistics_node_update`
-- `Allocator`：空间分配器类型
+    -   `rb_tree_tag`：红黑树，一般使用这个，后两者的性能一般不如红黑树
+    -   `splay_tree_tag`：splay 树
+    -   `ov_tree_tag`：有序向量树，只是一个由 `vector` 实现的有序结构，类似于排序的 `vector` 来实现平衡树，性能取决于数据想不想卡你
+-   `Node_Update`：用于更新节点的策略，默认使用 `null_node_update`，若要使用 `order_of_key` 和 `find_by_order` 方法，需要使用 `tree_order_statistics_node_update`
+-   `Allocator`：空间分配器类型
 
 ## 构造方式
 
@@ -34,16 +34,16 @@ __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
 
 ## 成员函数
 
-- `insert(x)`：向树中插入一个元素 x，返回 `std::pair<point_iterator, bool>`。
-- `erase(x)`：从树中删除一个元素/迭代器 x，返回一个 `bool` 表明是否删除成功。
-- `order_of_key(x)`：返回 x 以 `Cmp_Fn` 比较的排名。
-- `find_by_order(x)`：返回 `Cmp_Fn` 比较的排名所对应元素的迭代器。
-- `lower_bound(x)`：以 `Cmp_Fn` 比较做 `lower_bound`，返回迭代器。
-- `upper_bound(x)`：以 `Cmp_Fn` 比较做 `upper_bound`，返回迭代器。
-- `join(x)`：将 x 树并入当前树，前提是两棵树的类型一样，x 树被删除。
-- `split(x,b)`：以 `Cmp_Fn` 比较，小于等于 x 的属于当前树，其余的属于 b 树。
-- `empty()`：返回是否为空。
-- `size()`：返回大小。
+-   `insert(x)`：向树中插入一个元素 x，返回 `std::pair<point_iterator, bool>`。
+-   `erase(x)`：从树中删除一个元素/迭代器 x，返回一个 `bool` 表明是否删除成功。
+-   `order_of_key(x)`：返回 x 以 `Cmp_Fn` 比较的排名。
+-   `find_by_order(x)`：返回 `Cmp_Fn` 比较的排名所对应元素的迭代器。
+-   `lower_bound(x)`：以 `Cmp_Fn` 比较做 `lower_bound`，返回迭代器。
+-   `upper_bound(x)`：以 `Cmp_Fn` 比较做 `upper_bound`，返回迭代器。
+-   `join(x)`：将 x 树并入当前树，前提是两棵树的类型一样，x 树被删除。
+-   `split(x,b)`：以 `Cmp_Fn` 比较，小于等于 x 的属于当前树，其余的属于 b 树。
+-   `empty()`：返回是否为空。
+-   `size()`：返回大小。
 
 ## 示例
 

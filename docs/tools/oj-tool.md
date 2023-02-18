@@ -12,17 +12,17 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ### 特点
 
-- 支持 Codeforces 中的所有编程语言。
-- 支持 Contests 和 Gym。
-- 提交代码。
-- 动态刷新提交后的情况。
-- 拉取问题的样例。
-- 本地编译和测试样例。
-- 拉取某人的所有代码。
-- 从指定模板生成代码（包括时间戳，作者等信息）。
-- 列出某场比赛的所有题目的整体信息。
-- 用默认的网页浏览器打开题目页面、榜单、提交页面等。
-- 丰富多彩的命令行。
+-   支持 Codeforces 中的所有编程语言。
+-   支持 Contests 和 Gym。
+-   提交代码。
+-   动态刷新提交后的情况。
+-   拉取问题的样例。
+-   本地编译和测试样例。
+-   拉取某人的所有代码。
+-   从指定模板生成代码（包括时间戳，作者等信息）。
+-   列出某场比赛的所有题目的整体信息。
+-   用默认的网页浏览器打开题目页面、榜单、提交页面等。
+-   丰富多彩的命令行。
 
 ### 下载
 
@@ -86,11 +86,11 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 3.  如何加一个新的测试数据
 
-    新建两个额外的测试数据文件 `inK.txt` 和 `ansK.txt`（K 是包含 0~9 的字符串）。
+    新建两个额外的测试数据文件 `inK.txt` 和 `ansK.txt`（K 是包含 0\~9 的字符串）。
 
 4.  怎样在终端里启用 tab 补全命令
 
-    使用这个工具 [Infinidat/infi.docopt_completion](https://github.com/Infinidat/infi.docopt_completion) 即可。
+    使用这个工具 [Infinidat/infi.docopt\_completion](https://github.com/Infinidat/infi.docopt_completion) 即可。
 
     注意：如果有一个新版本发布（尤其是添加了新命令），你应该重新运行 `docopt-completion cf`。
 
@@ -102,9 +102,9 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 这个网站有三个功能：
 
-- 用炫酷的图表来可视化某个用户的各种信息（比如通过题目的难度分布）。
-- 对比两个用户。
-- 计算一场比赛的 Rating 预测。
+-   用炫酷的图表来可视化某个用户的各种信息（比如通过题目的难度分布）。
+-   对比两个用户。
+-   计算一场比赛的 Rating 预测。
 
 ## Competitive Companion
 
@@ -114,8 +114,8 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 使用方法：
 
-- 在谷歌或者火狐浏览器上安装插件。该工具会将解析到的测例数据以 JSON 格式的形式发到指定的端口。
-- 在本地安装任何可以从端口监听读取数据的工具即可，可以参考 [官方给出的示例](https://github.com/jmerle/competitive-companion-example)。
+-   在谷歌或者火狐浏览器上安装插件。该工具会将解析到的测例数据以 JSON 格式的形式发到指定的端口。
+-   在本地安装任何可以从端口监听读取数据的工具即可，可以参考 [官方给出的示例](https://github.com/jmerle/competitive-companion-example)。
 
 图片演示：
 

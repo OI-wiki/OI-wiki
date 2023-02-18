@@ -14,9 +14,9 @@ LaTeX 基于 TeX（Donald Knuth 在 1978 年为数字化排版设计的排版系
 
 下面列出在本文中使用到的记号：
 
-- 希望你实施的操作会被打上一个箭头 $\rightarrow$；
-- 你输入的字符会被装进代码块中；
-- 菜单命令与按钮的名称会被标记为 **粗体**。
+-   希望你实施的操作会被打上一个箭头 $\rightarrow$；
+-   你输入的字符会被装进代码块中；
+-   菜单命令与按钮的名称会被标记为 **粗体**。
 
 ### 一些概念
 
@@ -120,18 +120,18 @@ $\rightarrow$ 点击 **Typeset** 按扭，核对生成的 PDF 文档。
 
 要点笔记：
 
-- `\today` 是插入当前时间的命令。你也可以输入一个不同的时间，比如 `\date{November 2013}`。
-- **article** 文档的正文会紧跟着标题之后在同一页上排版。**report** 会将标题置为单独的一页。
+-   `\today` 是插入当前时间的命令。你也可以输入一个不同的时间，比如 `\date{November 2013}`。
+-   **article** 文档的正文会紧跟着标题之后在同一页上排版。**report** 会将标题置为单独的一页。
 
 ### 章节
 
 如果需要的话，你可能想将你的文档分为章（Chatpers）、节（Sections）和小节（Subsections）。下列分节命令适用于 **article** 类型的文档：
 
-- `\section{...}`
-- `\subsection{...}`
-- `\subsubsection{...}`
-- `\paragraph{...}`
-- `\subparagraph{...}`
+-   `\section{...}`
+-   `\subsection{...}`
+-   `\subsubsection{...}`
+-   `\paragraph{...}`
+-   `\subparagraph{...}`
 
 花括号内的文本表示章节的标题。对于 **report** 和 **book** 类型的文档我们还支持 `\chapter{...}` 的命令。
 
@@ -457,19 +457,19 @@ $\rightarrow$ 输入代码来在你的文档中生成下面内容：
 
 省略号会由定义表格的列的代码替换：
 
-- `l` 表示一个左对齐的列；
-- `r` 表示一个右对齐的列；
-- `c` 表示一个向中对齐的列；
-- `|` 表示一个列的竖线；
+-   `l` 表示一个左对齐的列；
+-   `r` 表示一个右对齐的列；
+-   `c` 表示一个向中对齐的列；
+-   `|` 表示一个列的竖线；
 
 例如，`{lll}` 会生成一个三列的表格，并且保存向左对齐，没有显式的竖线；`{|l|l|r|}` 会生成一个三列表格，前两列左对齐，最后一列右对齐，并且相邻两列之间有显式的竖线。
 
 表格的数据在 `\begin{tabular}` 后输入：
 
-- `&` 用于分割列；
-- `\\` 用于换行；
-- `\hline` 表示插入一个贯穿所有列的横着的分割线；
-- `\cline{1-2}` 会在第一列和第二列插入一个横着的分割线。
+-   `&` 用于分割列；
+-   `\\` 用于换行；
+-   `\hline` 表示插入一个贯穿所有列的横着的分割线；
+-   `\cline{1-2}` 会在第一列和第二列插入一个横着的分割线。
 
 最后使用 `\end{tabular}` 结束表格。举一些例子：
 
@@ -593,7 +593,7 @@ $$
 
 要撰写不标号的公式就在环境标志的后面添加 `*` 字符，如 `{equation*}`，`{eqnarray*}`。
 
-!!! warning
+??? warning
     可以发现，使用 `eqnarray` 时，会出现等号周围的空隙过大之类的问题。
     
     可以使用 `amsmath` 宏包中的 `align` 环境：
@@ -675,14 +675,14 @@ $$
 
 我们可以使用反斜杠加希腊字母的名称来表示一个希腊字母。名称的首字母的大小写决定希腊字母的形态。例如
 
-- `$\alpha$`=$\alpha$
-- `$\beta$`=$\beta$
-- `$\delta, \Delta$`=$\delta, \Delta$
-- `$\pi, \Pi$`=$\pi, \Pi$
-- `$\sigma, \Sigma$`=$\sigma, \Sigma$
-- `$\phi, \Phi, \varphi$`=$\phi, \Phi, \varphi$
-- `$\psi, \Psi$`=$\psi, \Psi$
-- `$\omega, \Omega$`=$\omega, \Omega$
+-   `$\alpha$`=$\alpha$
+-   `$\beta$`=$\beta$
+-   `$\delta, \Delta$`=$\delta, \Delta$
+-   `$\pi, \Pi$`=$\pi, \Pi$
+-   `$\sigma, \Sigma$`=$\sigma, \Sigma$
+-   `$\phi, \Phi, \varphi$`=$\phi, \Phi, \varphi$
+-   `$\psi, \Psi$`=$\psi, \Psi$
+-   `$\omega, \Omega$`=$\omega, \Omega$
 
 ### 实践
 

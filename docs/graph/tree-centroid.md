@@ -20,7 +20,7 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld
 
 在 DFS 中计算每个子树的大小，记录“向下”的子树的最大大小，利用总点数 - 当前子树（这里的子树指有根树的子树）的大小得到“向上”的子树的大小，然后就可以依据定义找到重心了。
 
-???+note "参考代码"
+???+ note "参考代码"
     ```cpp
     // 这份代码默认节点编号从 1 开始，即 i ∈ [1,n]
     int size[MAXN],  // 这个节点的“大小”（所有子树上节点数 + 该节点）
@@ -54,6 +54,6 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld
 
 ## 习题
 
-- [POJ 1655 Balancing Art](http://poj.org/problem?id=1655)（模板题）
-- [洛谷 P1364 医院设置](https://www.luogu.com.cn/problem/P1364)
-- [CodeForces 1406C Link Cut Centroids](https://codeforces.com/contest/1406/problem/C)
+-   [POJ 1655 Balancing Art](http://poj.org/problem?id=1655)（模板题）
+-   [洛谷 P1364 医院设置](https://www.luogu.com.cn/problem/P1364)
+-   [CodeForces 1406C Link Cut Centroids](https://codeforces.com/contest/1406/problem/C)
