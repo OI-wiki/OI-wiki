@@ -109,7 +109,7 @@ $$
 
 选择 $f(x)=(x^2+c)\bmod n$ 这个函数生成序列，是因为它有一个性质：$\forall x \equiv y \pmod p, f(x) \equiv f(y) \pmod p$，其中 $p \mid n$。
 
-???+note "证明"
+???+ note "证明"
     若 $x\equiv y \pmod p$，则可以将它们表示为 $x=k_1p+a$，$y=k_2p+a$，满足 $k_1,k_2,a\in \mathbb{Z},a\in \left[0,p\right)$。
     
     $f(x)=(x^2+c) \bmod n$，因此 $f(x)=x^2+c-kn$，其中 $k \in \mathbb{Z}$。
