@@ -54,9 +54,9 @@ $$
 
 DFT、FFT、NTT、FNTT 的具体关系是：
 
-- 在 DFT 与 NTT 的基础上，增加分治操作，得到 FFT 与 FNTT。分治操作的办法与原理，可以参见快速傅里叶变换一文。
+-   在 DFT 与 NTT 的基础上，增加分治操作，得到 FFT 与 FNTT。分治操作的办法与原理，可以参见快速傅里叶变换一文。
 
-- 在 DFT 与 FFT 的基础上，将复数加法与复数乘法替换为模 $p$ 意义下的加法和乘法，一般大小限制在 $0$ 到 $p-1$ 之间；将本原单位根改为模 $p$ 意义下的相同阶数的本原单位根，阶数为 $2$ 的幂，即可得到 NTT 与 FNTT。
+-   在 DFT 与 FFT 的基础上，将复数加法与复数乘法替换为模 $p$ 意义下的加法和乘法，一般大小限制在 $0$ 到 $p-1$ 之间；将本原单位根改为模 $p$ 意义下的相同阶数的本原单位根，阶数为 $2$ 的幂，即可得到 NTT 与 FNTT。
 
 由于替换的运算只涉及加法和乘法，因此 DFT、FFT、NTT、FNTT 拥有相同的原理，均在满足加法与乘法的环上进行，无需域上满足除法运算的更加严格的条件。
 
@@ -174,7 +174,7 @@ DFT、FFT、NTT、FNTT 的具体关系是：
 
 ## 参考资料与拓展阅读
 
-- [1][FWT(快速沃尔什变换)零基础详解qaq（ACM/OI）](<https://zhuanlan.zhihu.com/p/41867199>)
-- [2][FFT(快速傅里叶变换)0基础详解！附NTT（ACM/OI）](<https://zhuanlan.zhihu.com/p/40505277>)
-- [3][Number-theoretic transform(NTT) - Wikipedia](<https://en.wikipedia.org/wiki/Discrete_Fourier_transform_(general)#Number-theoretic_transform>)
-- [4][Tutorial on FFT/NTT — The tough made simple. ( Part 1 )](<https://codeforces.com/blog/entry/43499>)
+-   \[1][FWT（快速沃尔什变换）零基础详解 qaq（ACM/OI）](https://zhuanlan.zhihu.com/p/41867199)
+-   \[2][FFT（快速傅里叶变换）0 基础详解！附 NTT（ACM/OI）](https://zhuanlan.zhihu.com/p/40505277)
+-   \[3][Number-theoretic transform(NTT) - Wikipedia](https://en.wikipedia.org/wiki/Discrete_Fourier_transform_\(general\)#Number-theoretic_transform)
+-   \[4][Tutorial on FFT/NTT—The tough made simple. (Part 1)](https://codeforces.com/blog/entry/43499)

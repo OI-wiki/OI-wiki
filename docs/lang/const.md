@@ -128,5 +128,5 @@ void test(const int x) {
 
 ## 参考资料
 
-- [C++ 关键字——const](https://zh.cppreference.com/w/cpp/keyword/const)
-- [C++ 关键字——constexpr](https://zh.cppreference.com/w/cpp/keyword/constexpr)
+-   [C++ 关键字——const](https://zh.cppreference.com/w/cpp/keyword/const)
+-   [C++ 关键字——constexpr](https://zh.cppreference.com/w/cpp/keyword/constexpr)

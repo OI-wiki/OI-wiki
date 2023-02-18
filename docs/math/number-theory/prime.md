@@ -72,8 +72,8 @@
 
 素性测试有两种：
 
-1. 确定性测试：绝对确定一个数是否为素数。常见示例包括 Lucas-Lehmer 测试和椭圆曲线素性证明。
-2. 概率性测试：通常比确定性测试快很多，但有可能（尽管概率很小）错误地将 [合数](../number-theory/basic.md#素数与合数) 识别为质数（尽管反之则不会）。因此，通过概率素性测试的数字被称为 **可能素数**，直到它们的素数可以被确定性地证明。而通过测试但实际上是合数的数字则被称为 **伪素数**。有许多特定类型的伪素数，最常见的是费马伪素数，它们是满足费马小定理的合数。概率性测试的常见示例包括 Miller–Rabin 测试。
+1.  确定性测试：绝对确定一个数是否为素数。常见示例包括 Lucas-Lehmer 测试和椭圆曲线素性证明。
+2.  概率性测试：通常比确定性测试快很多，但有可能（尽管概率很小）错误地将 [合数](../number-theory/basic.md#素数与合数) 识别为质数（尽管反之则不会）。因此，通过概率素性测试的数字被称为 **可能素数**，直到它们的素数可以被确定性地证明。而通过测试但实际上是合数的数字则被称为 **伪素数**。有许多特定类型的伪素数，最常见的是费马伪素数，它们是满足费马小定理的合数。概率性测试的常见示例包括 Miller–Rabin 测试。
 
 接下来我们将着重介绍几个概率性素性测试：
 
@@ -153,8 +153,8 @@
 
 还有一些实现上的小细节：
 
-- 对于一轮测试，如果某一时刻 $a^{u \times 2^s} \equiv n-1 \pmod n$，则之后的平方操作全都会得到 $1$，则可以直接通过本轮测试。
-- 如果找出了一个非平凡平方根 $a^{u \times 2^s} \not\equiv n-1 \pmod n$，则之后的平方操作全都会得到 $1$。可以选择直接返回 `false`，也可以放到 $t$ 次平方操作后再返回 `false`。
+-   对于一轮测试，如果某一时刻 $a^{u \times 2^s} \equiv n-1 \pmod n$，则之后的平方操作全都会得到 $1$，则可以直接通过本轮测试。
+-   如果找出了一个非平凡平方根 $a^{u \times 2^s} \not\equiv n-1 \pmod n$，则之后的平方操作全都会得到 $1$。可以选择直接返回 `false`，也可以放到 $t$ 次平方操作后再返回 `false`。
 
 这样得到了较正确的 Miller Rabin：（来自 fjzzq2002）
 
@@ -220,9 +220,9 @@
 
 注意如果要使用上面的数列中的数 $a$ 作为基底判断 $n$ 的素性：
 
-- 所有的数都要取一遍，不能只选小于 $n$ 的；
-- 把 $a$ 换成 $a \bmod n$；
-- 如果 $a \equiv 0 \pmod n$，则直接通过该轮测试。
+-   所有的数都要取一遍，不能只选小于 $n$ 的；
+-   把 $a$ 换成 $a \bmod n$；
+-   如果 $a \equiv 0 \pmod n$，则直接通过该轮测试。
 
 ## 反素数
 
@@ -248,15 +248,15 @@
 
 我们来观察一下反素数的特点。
 
-1. 反素数肯定是从 $2$ 开始的连续素数的幂次形式的乘积。
+1.  反素数肯定是从 $2$ 开始的连续素数的幂次形式的乘积。
 
-2. 数值小的素数的幂次大于等于数值大的素数，即 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 中，有 $k_1 \geq k_2 \geq k_3 \geq \cdots \geq k_n$
+2.  数值小的素数的幂次大于等于数值大的素数，即 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 中，有 $k_1 \geq k_2 \geq k_3 \geq \cdots \geq k_n$
 
 解释：
 
-1. 如果不是从 $2$ 开始的连续素数，那么如果幂次不变，把素数变成数值更小的素数，那么此时因子个数不变，但是 $n$ 的数值变小了。交换到从 $2$ 开始的连续素数的时候 $n$ 值最小。
+1.  如果不是从 $2$ 开始的连续素数，那么如果幂次不变，把素数变成数值更小的素数，那么此时因子个数不变，但是 $n$ 的数值变小了。交换到从 $2$ 开始的连续素数的时候 $n$ 值最小。
 
-2. 如果数值小的素数的幂次小于数值大的素数的幂，那么如果把这两个素数交换位置（幂次不变），那么所得的 $n$ 因子数量不变，但是 $n$ 的值变小。
+2.  如果数值小的素数的幂次小于数值大的素数的幂，那么如果把这两个素数交换位置（幂次不变），那么所得的 $n$ 因子数量不变，但是 $n$ 的值变小。
 
 另外还有两个问题，
 
@@ -272,21 +272,21 @@
 
 我们可以把当前走到每一个素数前面的时候列举成一棵树的根节点，然后一层层的去找。找到什么时候停止呢？
 
-1. 当前走到的数字已经大于我们想要的数字了
+1.  当前走到的数字已经大于我们想要的数字了
 
-2. 当前枚举的因子已经用不到了（和 $1$ 重复了嘻嘻嘻）
+2.  当前枚举的因子已经用不到了（和 $1$ 重复了嘻嘻嘻）
 
-3. 当前因子大于我们想要的因子了
+3.  当前因子大于我们想要的因子了
 
-4. 当前因子正好是我们想要的因子（此时判断是否需要更新最小 $ans$）
+4.  当前因子正好是我们想要的因子（此时判断是否需要更新最小 $ans$）
 
 然后 dfs 里面不断一层一层枚举次数继续往下迭代可以。
 
 ### 常见题型
 
-1. 求因子数一定的最小数
+1.  求因子数一定的最小数
 
-???+note " 例题 [Codeforces 27E. A number with a given number of divisors](https://codeforces.com/problemset/problem/27/E)"
+???+ note " 例题 [Codeforces 27E. A number with a given number of divisors](https://codeforces.com/problemset/problem/27/E)"
     求具有给定除数的最小自然数。请确保答案不超过 $10^{18}$。
 
 ??? note "解题思路"
@@ -297,9 +297,9 @@
     --8<-- "docs/math/code/prime/prime_1.cpp"
     ```
 
-2. 求 n 以内因子数最多的数
+2.  求 n 以内因子数最多的数
 
-???+note " 例题 [ZOJ - More Divisors](https://zoj.pintia.cn/problem-sets/91827364500/problems/91827366061)"
+???+ note " 例题 [ZOJ - More Divisors](https://zoj.pintia.cn/problem-sets/91827364500/problems/91827366061)"
     大家都知道我们使用十进制记数法，即记数的基数是 $10$。历史学家说这是因为人有十个手指，也许他们是对的。然而，这通常不是很方便，十只有四个除数——$1$、$2$、$5$ 和 $10$。因此，像 $\frac{1}{3}$、$\frac{1}{4}$ 或 $\frac{1}{6}$ 这样的分数不便于用十进制表示。从这个意义上说，以 $12$、$24$ 甚至 $60$ 为底会方便得多。主要原因是这些数字的除数要大得多——分别是 $6$、$8$ 和 $12$。请回答：除数最多的不超过 $n$ 的数是多少？
 
 ??? note "解题思路"
@@ -312,11 +312,11 @@
 
 ## 参考资料与注释
 
-1. Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006) pp 197-217.
-2. [数论部分第一节：素数与素性测试](http://www.matrix67.com/blog/archives/234)
-3. [Miller-Rabin 与 Pollard-Rho 学习笔记 - Bill Yang's Blog](https://blog.bill.moe/miller-rabin-notes/)
-4. [Primality test - Wikipedia](https://en.wikipedia.org/wiki/Primality_test)
-5. [桃子的算法笔记——反素数详解（acm/OI）](https://zhuanlan.zhihu.com/p/41759808)
-6. [The Rabin-Miller Primality Test](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)
-7. Bach, Eric , "[Explicit bounds for primality testing and related problems](https://doi.org/10.2307%2F2008811)", Mathematics of Computation, 55:191 (1990) pp 355–380.
-8. [Deterministic variant of the Miller-Rabin primality test](https://miller-rabin.appspot.com/#)
+1.  Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006) pp 197-217.
+2.  [数论部分第一节：素数与素性测试](http://www.matrix67.com/blog/archives/234)
+3.  [Miller-Rabin 与 Pollard-Rho 学习笔记 - Bill Yang's Blog](https://blog.bill.moe/miller-rabin-notes/)
+4.  [Primality test - Wikipedia](https://en.wikipedia.org/wiki/Primality_test)
+5.  [桃子的算法笔记——反素数详解（acm/OI）](https://zhuanlan.zhihu.com/p/41759808)
+6.  [The Rabin-Miller Primality Test](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)
+7.  Bach, Eric , "[Explicit bounds for primality testing and related problems](https://doi.org/10.2307%2F2008811)", Mathematics of Computation, 55:191 (1990) pp 355–380.
+8.  [Deterministic variant of the Miller-Rabin primality test](https://miller-rabin.appspot.com/#)

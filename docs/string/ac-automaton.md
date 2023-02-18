@@ -10,8 +10,8 @@ AC 自动机是 **以 Trie 的结构为基础**，结合 **KMP 的思想** 建�
 
 简单来说，建立一个 AC 自动机有两个步骤：
 
-1. 基础的 Trie 结构：将所有的模式串构成一棵 Trie。
-2. KMP 的思想：对 Trie 树上所有的结点构造失配指针。
+1.  基础的 Trie 结构：将所有的模式串构成一棵 Trie。
+2.  KMP 的思想：对 Trie 树上所有的结点构造失配指针。
 
 然后就可以利用它进行多模式匹配了。
 
@@ -29,8 +29,8 @@ AC 自动机利用一个 fail 指针来辅助多模式串的匹配。
 
 状态 $u$ 的 fail 指针指向另一个状态 $v$，其中 $v\in Q$，且 $v$ 是 $u$ 的最长后缀（即在若干个后缀状态中取最长的一个作为 fail 指针）。对于学过 KMP 的朋友，我在这里简单对比一下这里的 fail 指针与 KMP 中的 next 指针：
 
-1. 共同点：两者同样是在失配的时候用于跳转的指针。
-2. 不同点：next 指针求的是最长 Border（即最长的相同前后缀），而 fail 指针指向所有模式串的前缀中匹配当前状态的最长后缀。
+1.  共同点：两者同样是在失配的时候用于跳转的指针。
+2.  不同点：next 指针求的是最长 Border（即最长的相同前后缀），而 fail 指针指向所有模式串的前缀中匹配当前状态的最长后缀。
 
 因为 KMP 只对一个模式串做匹配，而 AC 自动机要对多个模式串做匹配。有可能 fail 指针指向的结点对应着另一个模式串，两者前缀不同。
 
@@ -46,9 +46,9 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 考虑字典树中当前的结点 $u$，$u$ 的父结点是 $p$，$p$ 通过字符 `c` 的边指向 $u$，即 $trie[p,\mathtt{c}]=u$。假设深度小于 $u$ 的所有结点的 fail 指针都已求得。
 
-1. 如果 $\text{trie}[\text{fail}[p],\mathtt{c}]$ 存在：则让 u 的 fail 指针指向 $\text{trie}[\text{fail}[p],\mathtt{c}]$。相当于在 $p$ 和 $\text{fail}[p]$ 后面加一个字符 `c`，分别对应 $u$ 和 $fail[u]$。
-2. 如果 $\text{trie}[\text{fail}[p],\mathtt{c}]$ 不存在：那么我们继续找到 $\text{trie}[\text{fail}[\text{fail}[p]],\mathtt{c}]$。重复 1 的判断过程，一直跳 fail 指针直到根结点。
-3. 如果真的没有，就让 fail 指针指向根结点。
+1.  如果 $\text{trie}[\text{fail}[p],\mathtt{c}]$ 存在：则让 u 的 fail 指针指向 $\text{trie}[\text{fail}[p],\mathtt{c}]$。相当于在 $p$ 和 $\text{fail}[p]$ 后面加一个字符 `c`，分别对应 $u$ 和 $fail[u]$。
+2.  如果 $\text{trie}[\text{fail}[p],\mathtt{c}]$ 不存在：那么我们继续找到 $\text{trie}[\text{fail}[\text{fail}[p]],\mathtt{c}]$。重复 1 的判断过程，一直跳 fail 指针直到根结点。
+3.  如果真的没有，就让 fail 指针指向根结点。
 
 如此即完成了 $\text{fail}[u]$ 的构建。
 
@@ -56,16 +56,16 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 下面放一张 GIF 帮助大家理解。对字符串 `i`  `he`  `his`  `she`  `hers` 组成的字典树构建 fail 指针：
 
-1. 黄色结点：当前的结点 $u$。
-2. 绿色结点：表示已经 BFS 遍历完毕的结点，
-3. 橙色的边：fail 指针。
-4. 红色的边：当前求出的 fail 指针。
+1.  黄色结点：当前的结点 $u$。
+2.  绿色结点：表示已经 BFS 遍历完毕的结点，
+3.  橙色的边：fail 指针。
+4.  红色的边：当前求出的 fail 指针。
 
-![AC_automation_gif_b_3.gif](./images/ac-automaton1.gif)
+![AC\_automation\_gif\_b\_3.gif](./images/ac-automaton1.gif)
 
 我们重点分析结点 6 的 fail 指针构建：
 
-![AC_automation_6_9.png](./images/ac-automaton1.png)
+![AC\_automation\_6\_9.png](./images/ac-automaton1.png)
 
 找到 6 的父结点 5，$\text{fail}[5]=10$。然而 10 结点没有字母 `s` 连出的边；继续跳到 10 的 fail 指针，$\text{fail}[10]=0$。发现 0 结点有字母 `s` 连出的边，指向 7 结点；所以 $\text{fail}[6]=7$。最后放一张建出来的图
 
@@ -75,11 +75,11 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 我们直接上代码吧。字典树插入的代码就不分析了（后面完整代码里有），先来看构建函数 `build()`，该函数的目标有两个，一个是构建 fail 指针，一个是构建自动机。参数如下：
 
-1. `tr[u,c]`：有两种理解方式。我们可以简单理解为字典树上的一条边，即 $\text{trie}[u,c]$；也可以理解为从状态（结点）$u$ 后加一个字符 `c` 到达的状态（结点），即一个状态转移函数 $\text{trans}(u,c)$。下文中我们将用第二种理解方式继续讲解。
-2. 队列 `q`：用于 BFS 遍历字典树。
-3. `fail[u]`：结点 $u$ 的 fail 指针。
+1.  `tr[u,c]`：有两种理解方式。我们可以简单理解为字典树上的一条边，即 $\text{trie}[u,c]$；也可以理解为从状态（结点）$u$ 后加一个字符 `c` 到达的状态（结点），即一个状态转移函数 $\text{trans}(u,c)$。下文中我们将用第二种理解方式继续讲解。
+2.  队列 `q`：用于 BFS 遍历字典树。
+3.  `fail[u]`：结点 $u$ 的 fail 指针。
 
-???+note "实现"
+???+ note "实现"
     === "C++"
     
         ```cpp
@@ -123,8 +123,8 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 然后开始 BFS：每次取出队首的结点 u（$\text{fail}[u]$ 在之前的 BFS 过程中已求得），然后遍历字符集（这里是 0-25，对应 a-z，即 $u$ 的各个子节点）：
 
-1. 如果 $\text{trans}[u][\mathtt{i}]$ 存在，我们就将 $\text{trans}[u][\mathtt{i}]$ 的 fail 指针赋值为 $\text{trans}[\text{fail}[u]][\mathtt{i}]$。这里似乎有一个问题。根据之前的讲解，我们应该用 while 循环，不停的跳 fail 指针，判断是否存在字符 `i` 对应的结点，然后赋值，但是这里通过特殊处理简化了这些代码。
-2. 否则，令 $\text{trans}[u][\mathtt{i}]$ 指向 $\text{trans}[\text{fail}[u]][\mathtt{i}]$ 的状态。
+1.  如果 $\text{trans}[u][\mathtt{i}]$ 存在，我们就将 $\text{trans}[u][\mathtt{i}]$ 的 fail 指针赋值为 $\text{trans}[\text{fail}[u]][\mathtt{i}]$。这里似乎有一个问题。根据之前的讲解，我们应该用 while 循环，不停的跳 fail 指针，判断是否存在字符 `i` 对应的结点，然后赋值，但是这里通过特殊处理简化了这些代码。
+2.  否则，令 $\text{trans}[u][\mathtt{i}]$ 指向 $\text{trans}[\text{fail}[u]][\mathtt{i}]$ 的状态。
 
 这里的处理是，通过 `else` 语句的代码修改字典树的结构。没错，它将不存在的字典树的状态链接到了失配指针的对应状态。在原字典树中，每一个结点代表一个字符串 $S$，是某个模式串的前缀。而在修改字典树结构后，尽管增加了许多转移关系，但结点（状态）所代表的字符串是不变的。
 
@@ -140,18 +140,18 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 好的，我知道大家都受不了长篇叙述。上图！我们将之前的 GIF 图改一下：
 
-![AC_automation_gif_b_pro3.gif](./images/ac-automaton2.gif)
+![AC\_automation\_gif\_b\_pro3.gif](./images/ac-automaton2.gif)
 
-1. 蓝色结点：BFS 遍历到的结点 u
-2. 蓝色的边：当前结点下，AC 自动机修改字典树结构连出的边。
-3. 黑色的边：AC 自动机修改字典树结构连出的边。
-4. 红色的边：当前结点求出的 fail 指针
-5. 黄色的边：fail 指针
-6. 灰色的边：字典树的边
+1.  蓝色结点：BFS 遍历到的结点 u
+2.  蓝色的边：当前结点下，AC 自动机修改字典树结构连出的边。
+3.  黑色的边：AC 自动机修改字典树结构连出的边。
+4.  红色的边：当前结点求出的 fail 指针
+5.  黄色的边：fail 指针
+6.  灰色的边：字典树的边
 
 可以发现，众多交错的黑色边将字典树变成了 **字典图**。图中省略了连向根结点的黑边（否则会更乱）。我们重点分析一下结点 5 遍历时的情况。我们求 $\text{trans}[5][s]=6$ 的 fail 指针：
 
-![AC_automation_b_7.png](./images/ac-automaton2.png)
+![AC\_automation\_b\_7.png](./images/ac-automaton2.png)
 
 本来的策略是找 fail 指针，于是我们跳到 $\text{fail}[5]=10$ 发现没有 `s` 连出的字典树的边，于是跳到 $\text{fail}[10]=0$，发现有 $\text{trie}[0][s]=7$，于是 $\text{fail}[6]=7$；但是有了黑边、蓝边，我们跳到 $\text{fail}[5]=10$ 之后直接走 $\text{trans}[10][s]=7$ 就走到 $7$ 号结点了。
 
@@ -199,16 +199,16 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 这里 $u$ 作为字典树上当前匹配到的结点，`res` 即返回的答案。循环遍历匹配串，$u$ 在字典树上跟踪当前字符。利用 fail 指针找出所有匹配的模式串，累加到答案中。然后清零。在上文中我们分析过，字典树的结构其实就是一个 trans 函数，而构建好这个函数后，在匹配字符串的过程中，我们会舍弃部分前缀达到最低限度的匹配。fail 指针则指向了更多的匹配状态。最后上一份图。对于刚才的自动机：
 
-![AC_automation_b_13.png](./images/ac-automaton3.png)
+![AC\_automation\_b\_13.png](./images/ac-automaton3.png)
 
 我们从根结点开始尝试匹配 `ushersheishis`，那么 $p$ 的变化将是：
 
-![AC_automation_gif_c.gif](./images/ac-automaton3.gif)
+![AC\_automation\_gif\_c.gif](./images/ac-automaton3.gif)
 
-1. 红色结点：$p$ 结点
-2. 粉色箭头：$p$ 在自动机上的跳转，
-3. 蓝色的边：成功匹配的模式串
-4. 蓝色结点：示跳 fail 指针时的结点（状态）。
+1.  红色结点：$p$ 结点
+2.  粉色箭头：$p$ 在自动机上的跳转，
+3.  蓝色的边：成功匹配的模式串
+4.  蓝色结点：示跳 fail 指针时的结点（状态）。
 
 ## 总结
 
@@ -238,11 +238,11 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 有限状态自动机（deterministic finite automaton，DFA）是由
 
-1. 状态集合 $Q$；
-2. 字符集 $\Sigma$；
-3. 状态转移函数 $\delta:Q\times \Sigma \to Q$，即 $\delta(q,\sigma)=q',\ q,q'\in Q,\sigma\in \Sigma$；
-4. 一个开始状态 $s\in Q$；
-5. 一个接收的状态集合 $F\subseteq Q$。
+1.  状态集合 $Q$；
+2.  字符集 $\Sigma$；
+3.  状态转移函数 $\delta:Q\times \Sigma \to Q$，即 $\delta(q,\sigma)=q',\ q,q'\in Q,\sigma\in \Sigma$；
+4.  一个开始状态 $s\in Q$；
+5.  一个接收的状态集合 $F\subseteq Q$。
 
 组成的五元组 $(Q,\Sigma,\delta,s,F)$。
 

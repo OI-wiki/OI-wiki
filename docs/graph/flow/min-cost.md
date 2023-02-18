@@ -34,7 +34,7 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
 
 如果使用 [Bellman-Ford 算法](../shortest-path.md#bellman-ford-算法) 求解最短路，每次找增广路的时间复杂度为 $O(nm)$。设该网络的最大流为 $f$，则最坏时间复杂度为 $O(nmf)$。事实上，SSP 算法是 [伪多项式时间](../../misc/cc-basic.md#pseudo-polynomial-time-伪多项式时间) 的。
 
-???+note "为什么 SSP 算法是伪多项式时间的？"
+???+ note "为什么 SSP 算法是伪多项式时间的？"
     SSP 算法的时间复杂度有 $O(nmf)$ 的上界，这是一个关于值域的多项式，所以是伪多项式时间的。
     
     可以构造 $m=n^2,f=2^{n/2}$ 的网络[^note1]使得 SSP 算法的时间复杂度达到 $O(n^3 2^{n/2})$，所以 SSP 算法不是多项式时间的。
@@ -299,15 +299,15 @@ Primal-Dual 原始对偶算法的思路与 [Johnson 全源最短路径算法](..
 
 ## 习题
 
-- [「Luogu 3381」【模板】最小费用最大流](https://www.luogu.com.cn/problem/P3381)
-- [「Luogu 4452」航班安排](https://www.luogu.com.cn/problem/P4452)
-- [「SDOI 2009」晨跑](https://www.luogu.com.cn/problem/P2153)
-- [「SCOI 2007」修车](https://www.luogu.com.cn/problem/P2053)
-- [「HAOI 2010」订货](https://www.luogu.com.cn/problem/P2517)
-- [「NOI 2012」美食节](https://loj.ac/problem/2674)
+-   [「Luogu 3381」【模板】最小费用最大流](https://www.luogu.com.cn/problem/P3381)
+-   [「Luogu 4452」航班安排](https://www.luogu.com.cn/problem/P4452)
+-   [「SDOI 2009」晨跑](https://www.luogu.com.cn/problem/P2153)
+-   [「SCOI 2007」修车](https://www.luogu.com.cn/problem/P2053)
+-   [「HAOI 2010」订货](https://www.luogu.com.cn/problem/P2517)
+-   [「NOI 2012」美食节](https://loj.ac/problem/2674)
 
 ## 参考资料与注释
 
-[^note1]: 详细构造方法可以参考 [min_25 的博客](https://web.archive.org/web/20211009144446/https://min-25.hatenablog.com/entry/2018/03/19/235802)。
+[^note1]: 详细构造方法可以参考 [min\_25 的博客](https://web.archive.org/web/20211009144446/https://min-25.hatenablog.com/entry/2018/03/19/235802)。
 
 [^note2]: 在稀疏图上使用堆优化可以做到 $O(m \log n)$ 的时间复杂度，而在稠密图上不使用堆优化，可以做到 $O(n^2)$ 的时间复杂度。
