@@ -40,12 +40,12 @@ Vim 的基础操作在 Vim 自带的教程里将会讲述。打开终端输入 `
 
 从普通模式进入插入模式有如下数个键位可选：
 
-- <kbd>a</kbd>：往后挪一个字符插入文本。
-- <kbd>A</kbd>：移动到当前行尾插入文本。
-- <kbd>i</kbd>：在光标当前位置插入文本。
-- <kbd>I</kbd>：移动到当前行头插入文本。
-- <kbd>o</kbd>：在当前行的下一行新建一行，并插入文本。
-- <kbd>O</kbd>：在当前行的上一行新建一行，并插入文本。
+-   <kbd>a</kbd>：往后挪一个字符插入文本。
+-   <kbd>A</kbd>：移动到当前行尾插入文本。
+-   <kbd>i</kbd>：在光标当前位置插入文本。
+-   <kbd>I</kbd>：移动到当前行头插入文本。
+-   <kbd>o</kbd>：在当前行的下一行新建一行，并插入文本。
+-   <kbd>O</kbd>：在当前行的上一行新建一行，并插入文本。
 
 返回普通模式的键位是<kbd>Esc</kbd>键；亦可使用快捷键<kbd>Ctrl</kbd>+<kbd>\[</kbd>。
 
@@ -162,9 +162,9 @@ imap <RIGHT> <Nop>
 
 还可以进一步缩小双手需要控制的区域：
 
-- 用<kbd>Ctrl</kbd>+<kbd>h</kbd>代替<kbd>Backspace</kbd>（甚至可以在终端里这样用）。
-- 用<kbd>Ctrl</kbd>+<kbd>m</kbd>代替回车（甚至可以在终端里这样用）。
-- 在绝大多数的情况下，不要去按右边的<kbd>Ctrl</kbd>和<kbd>Shift</kbd>，用左边的代替。
+-   用<kbd>Ctrl</kbd>+<kbd>h</kbd>代替<kbd>Backspace</kbd>（甚至可以在终端里这样用）。
+-   用<kbd>Ctrl</kbd>+<kbd>m</kbd>代替回车（甚至可以在终端里这样用）。
+-   在绝大多数的情况下，不要去按右边的<kbd>Ctrl</kbd>和<kbd>Shift</kbd>，用左边的代替。
 
 ### 对调 Esc 键与 CapsLock 键
 
@@ -283,7 +283,7 @@ Vim 的宏功能可以重复任意长的命令。
 :a,b normal command
 ```
 
-这行命令的意思是在普通模式下，对 a~b 行执行 `command` 命令。
+这行命令的意思是在普通模式下，对 a\~b 行执行 `command` 命令。
 
 由于 `normal` 命令可以被 `.` 命令重复调用，且其易于理解，它的使用频率甚至更高于宏。
 
@@ -297,12 +297,12 @@ Vim 的宏功能可以重复任意长的命令。
 
 以下是用 Vim 处理的过程：
 
-1. 按下<kbd>/</kbd>调出查找框，输入正则表达式进行查找；
-2. 用 `q` 命令开始录制宏；
-3. 键入 `I#` 命令，然后按下<kbd>ESC</kbd>；
-4. 用 `q` 进行修改操作并结束宏录制；
-5. 键入 `normal n@字母` 转到下一处并重复上一步操作；
-6. 键入 `数字 + .` 多次重复。
+1.  按下<kbd>/</kbd>调出查找框，输入正则表达式进行查找；
+2.  用 `q` 命令开始录制宏；
+3.  键入 `I#` 命令，然后按下<kbd>ESC</kbd>；
+4.  用 `q` 进行修改操作并结束宏录制；
+5.  键入 `normal n@字母` 转到下一处并重复上一步操作；
+6.  键入 `数字 + .` 多次重复。
 
 ## 插件篇
 
@@ -325,7 +325,7 @@ filetype plugin on
 
 安装 vim-plug 的具体过程如下：
 
-1. 首先是在 home 目录下建立文件夹 .vim；
+1.  首先是在 home 目录下建立文件夹 .vim；
 2.  打开终端输入以下命令：
 
     ```bash
@@ -381,8 +381,8 @@ vim-airline 的源码托管在 [vim-airline/vim-airline](https://github.com/vim-
 
 主题掌管着语法高亮的色彩、背景颜色等等。以 onedark 主题为例，使用主题的方法如下：
 
-1. 在 `.vim` 文件夹下建立 `colors` 文件夹；
-2. 将后缀名为 `.vim` 的主题文件放入其中。本例中要放入的文件名为 `onedark.vim`。
+1.  在 `.vim` 文件夹下建立 `colors` 文件夹；
+2.  将后缀名为 `.vim` 的主题文件放入其中。本例中要放入的文件名为 `onedark.vim`。
 
 ![onedarktheme](./images/vim-3.png "onedrak theme")
 
@@ -392,23 +392,23 @@ vim-airline 的源码托管在 [vim-airline/vim-airline](https://github.com/vim-
 
 ### 小方便性插件
 
-- [vim-commentary](https://github.com/tpope/vim-commentary)：快捷键 `gc` 注释选中行，`gcu` 撤销上次注释。
+-   [vim-commentary](https://github.com/tpope/vim-commentary)：快捷键 `gc` 注释选中行，`gcu` 撤销上次注释。
 
-- [ale](https://github.com/dense-analysis/ale)：`:w` 保存时提示语法错误，并且可以开启与 `airline` 的携同，状态栏上也会显示 `Error` 和 `Warning`。
+-   [ale](https://github.com/dense-analysis/ale)：`:w` 保存时提示语法错误，并且可以开启与 `airline` 的携同，状态栏上也会显示 `Error` 和 `Warning`。
 
-- [easymotion](https://github.com/easymotion/vim-easymotion)：快速跳转。
+-   [easymotion](https://github.com/easymotion/vim-easymotion)：快速跳转。
 
-- [rainbow](https://github.com/luochen1990/rainbow)：彩虹括号，使具有包含关系的括号显现出不同的颜色，增强多括号代码的可读性……
+-   [rainbow](https://github.com/luochen1990/rainbow)：彩虹括号，使具有包含关系的括号显现出不同的颜色，增强多括号代码的可读性……
 
-- [delimitMate](https://github.com/Raimondi/delimitMate_)：括号补全功能。考试中可用配置实现部分功能，见配置篇。
+-   [delimitMate](https://github.com/Raimondi/delimitMate_)：括号补全功能。考试中可用配置实现部分功能，见配置篇。
 
-- [vimcdoc](https://github.com/yianwillis/vimcdoc)：汉化 Vim 在线文档。
+-   [vimcdoc](https://github.com/yianwillis/vimcdoc)：汉化 Vim 在线文档。
 
-- [gundo](https://github.com/sjl/gundo.vim)：这个插件能够像 git 一样显示文件修改树。Vim 中键入 `:GundoToggle` 即可在左侧打开时光机。使用前需要在 Vim 里开启 Python 支持。
+-   [gundo](https://github.com/sjl/gundo.vim)：这个插件能够像 git 一样显示文件修改树。Vim 中键入 `:GundoToggle` 即可在左侧打开时光机。使用前需要在 Vim 里开启 Python 支持。
 
-- [vimim](https://vim.sourceforge.io/scripts/script.php?script_id=2506)：相当于给 Vim 安装中文输入法。安装方法为在 `.vim` 文件夹中创建文件夹 `plugin`，然后点击 [vimim 下载链接](https://www.vim.org/scripts/download_script.php?src_id=23122) 下载文件，最后放入此文件夹中。使用方法为打开 Vim 并进入插入模式，按下<kbd>Ctrl</kbd>+<kbd>/</kbd>即可启用。但是该插件使用的是云词库，若没网就会卡死。所以建议下载 [本地超大词库](https://github.com/vimim/vimim/raw/master/plugin/vimim.gbk.bsddb)，与插件一并放入 `plugin` 文件夹中，与插件脚本同目录即可启用。
+-   [vimim](https://vim.sourceforge.io/scripts/script.php?script_id=2506)：相当于给 Vim 安装中文输入法。安装方法为在 `.vim` 文件夹中创建文件夹 `plugin`，然后点击 [vimim 下载链接](https://www.vim.org/scripts/download_script.php?src_id=23122) 下载文件，最后放入此文件夹中。使用方法为打开 Vim 并进入插入模式，按下<kbd>Ctrl</kbd>+<kbd>/</kbd>即可启用。但是该插件使用的是云词库，若没网就会卡死。所以建议下载 [本地超大词库](https://github.com/vimim/vimim/raw/master/plugin/vimim.gbk.bsddb)，与插件一并放入 `plugin` 文件夹中，与插件脚本同目录即可启用。
 
-- [vim-instant-markdown](https://github.com/suan/vim-instant-markdown)：一个即时预览 Markdown 文件的插件。打开 Markdown 文件时会自动在浏览器中打开一个标签页，实时预览 Vim 中正在编辑的 Markdown 文件的内容。
+-   [vim-instant-markdown](https://github.com/suan/vim-instant-markdown)：一个即时预览 Markdown 文件的插件。打开 Markdown 文件时会自动在浏览器中打开一个标签页，实时预览 Vim 中正在编辑的 Markdown 文件的内容。
 
 ## 配置篇
 
@@ -537,7 +537,7 @@ inoremap "  ""<esc>i
 inoremap '  ''<esc>i
 ```
 
-<kbd>F1</kbd>~<kbd>F12</kbd>键是 Vim 里少有的方便自由的快捷键。可以对它们进行客制化操作。
+<kbd>F1</kbd>\~<kbd>F12</kbd>键是 Vim 里少有的方便自由的快捷键。可以对它们进行客制化操作。
 
 <kbd>F9</kbd>：一键编译
 
@@ -672,11 +672,11 @@ Vim 是一款非常优秀的文本编辑器，但由于其陡峭的学习曲线�
 
 ## 外部链接
 
-- [Vim 官网](https://www.vim.org/)
-- [原作者提供的配置](https://github.com/LuoshuiTianyi/Vim-for-OIWiki)
-- [Vim 调试：termdebug 入门](https://fzheng.me/2018/05/28/termdebug/)
-- [Vim scripting cheatsheet](https://devhints.io/vimscript)
-- [Learn Vimscript the Hard Way](https://learnvimscriptthehardway.stevelosh.com)
+-   [Vim 官网](https://www.vim.org/)
+-   [原作者提供的配置](https://github.com/LuoshuiTianyi/Vim-for-OIWiki)
+-   [Vim 调试：termdebug 入门](https://fzheng.me/2018/05/28/termdebug/)
+-   [Vim scripting cheatsheet](https://devhints.io/vimscript)
+-   [Learn Vimscript the Hard Way](https://learnvimscriptthehardway.stevelosh.com)
 
 ## 参考资料与注释
 

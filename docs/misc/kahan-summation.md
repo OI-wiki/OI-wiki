@@ -41,21 +41,21 @@ Kahan 求和算法主要通过一个单独变量用来累积误差。如下方�
 
 在 OI 中，Kahan 求和主要作为辅助工具存在，为计算结果提供误差更小的值。
 
-???+note " 例题 [CodeForces Contest 800 Problem A. Voltage Keepsake](https://codeforces.com/contest/800/problem/A)"
+???+ note " 例题 [CodeForces Contest 800 Problem A. Voltage Keepsake](https://codeforces.com/contest/800/problem/A)"
     有 $n$ 个同时使用的设备。第 $i$ 个设备每秒使用 $a_{i}$ 单位的功率。这种用法是连续的。也就是说，在 $\lambda$ 秒内，设备将使用 $\lambda \times a_{i}$ 单位的功率。第 $i$ 个设备当前存储了 $b_{i}$ 单位的电力。所有设备都可以存储任意数量的电量。有一个可以插入任何单个设备的充电器。充电器每秒会为设备增加 $p$ 个单位的电量。这种充电是连续的。也就是说，如果将设备插入 $\lambda$ 秒，它将获得 $\lambda \times p$ 单位的功率。我们可以在任意时间单位内（包括实数）切换哪个设备正在充电（切换所需时间忽略不计）。求其中一个设备达到 $0$ 单位功率前，可以使用这些设备的最长时间。
 
-???+note " 例题 [CodeForces Contest 504 Problem B. Misha and Permutations Summation](https://codeforces.com/problemset/problem/504/B)"
+???+ note " 例题 [CodeForces Contest 504 Problem B. Misha and Permutations Summation](https://codeforces.com/problemset/problem/504/B)"
     定义数字 $0, 1, \cdots, (n - 1)$ 的两个排列 $p$ 和 $q$ 的和为 $Perm((Ord(p)+Ord(q))\bmod n!)$，其中 $Perm(x)$ 是数字 $0, 1, \cdots, (n-1)$ 的第 $x$ 个字典排列（从零开始计数），$Ord(p)$ 是字典序排列 $p$ 的个数。例如，$Perm(0) = (0, 1, \cdots , n - 2, n - 1)$，$Perm(n! - 1) = (n - 1, n-2,\cdots, 1,0))$。Misha 有两个排列 $p$ 和 $q$，找到它们的总和。
 
 ## 编程语言的求和
 
 Python 的标准库指定了精确舍入求和的 [fsum](https://docs.python.org/3/library/math.html#math.fsum) 函数可用于返回可迭代对象中值的准确浮点总和，它通过使用 Shewchuk 算法跟踪多个中间部分和来避免精度损失。
 
-Julia 语言中，[sum](https://docs.julialang.org/en/v1/base/collections/#Base.sum) 函数的默认实现是成对求和，以获得高精度和良好的性能。同时外部库函数 [sum_kbn](http://www.jlhub.com/julia/manual/en/function/sum_kbn) 为需要更高精度的情况提供了 Neumaier 变体的实现，具体可见 [KahanSummation.jl](https://github.com/JuliaMath/KahanSummation.jl)。
+Julia 语言中，[sum](https://docs.julialang.org/en/v1/base/collections/#Base.sum) 函数的默认实现是成对求和，以获得高精度和良好的性能。同时外部库函数 [sum\_kbn](http://www.jlhub.com/julia/manual/en/function/sum_kbn) 为需要更高精度的情况提供了 Neumaier 变体的实现，具体可见 [KahanSummation.jl](https://github.com/JuliaMath/KahanSummation.jl)。
 
 ## 参考资料与注释
 
-1. [Kahan_summation_algorithm - Wikipedia](https://en.wikipedia.org/wiki/Kahan_summation_algorithm)
-2. [Kahan summation - Rosetta Code](https://rosettacode.org/wiki/Kahan_summation)
-3. [VK Cup Round 2 + Codeforces Round 409 Announcement](https://codeforces.com/blog/entry/51577)
-4. [Rounding off errors in Java - GeeksforGeeks](https://www.geeksforgeeks.org/rounding-off-errors-java/)
+1.  [Kahan\_summation\_algorithm - Wikipedia](https://en.wikipedia.org/wiki/Kahan_summation_algorithm)
+2.  [Kahan summation - Rosetta Code](https://rosettacode.org/wiki/Kahan_summation)
+3.  [VK Cup Round 2 + Codeforces Round 409 Announcement](https://codeforces.com/blog/entry/51577)
+4.  [Rounding off errors in Java - GeeksforGeeks](https://www.geeksforgeeks.org/rounding-off-errors-java/)

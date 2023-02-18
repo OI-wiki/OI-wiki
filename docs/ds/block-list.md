@@ -9,7 +9,7 @@ author: HeRaNO, konnyakuxzy, littlefrog
 所以我们这么定义结构体，代码见下。
 其中 `sqn` 表示 `sqrt(n)` 即 $\sqrt{n}$，`pb` 表示 `push_back`，即在这个 `node` 中加入一个元素。
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     struct node {
       node* nxt;

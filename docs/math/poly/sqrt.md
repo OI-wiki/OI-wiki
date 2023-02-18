@@ -52,11 +52,11 @@ $$
 
 若 $\left[x^0\right]g(x) = 0$，则将 $g(x)$ 分解成 $x^{k}h(x)$，其中 $\left[x^0\right]h(x) \not = 0$。
 
-- 若 $k$ 是奇数，则 $g(x)$ 没有平方根。
+-   若 $k$ 是奇数，则 $g(x)$ 没有平方根。
 
-- 若 $k$ 是偶数，则求出 $h(x)$ 的平方根 $\sqrt{h(x)}$，然后得到 $f(x) \equiv x^{k/2} \sqrt{h(x)} \pmod{x^{n}}$。
+-   若 $k$ 是偶数，则求出 $h(x)$ 的平方根 $\sqrt{h(x)}$，然后得到 $f(x) \equiv x^{k/2} \sqrt{h(x)} \pmod{x^{n}}$。
 
-??? "洛谷模板题 [P5205 【模板】多项式开根](https://www.luogu.com.cn/problem/P5205) 参考代码"
+??? " 洛谷模板题 [P5205【模板】多项式开根](https://www.luogu.com.cn/problem/P5205) 参考代码 "
     ```cpp
     --8<-- "docs/math/code/poly/sqrt/sqrt_1.cpp"
     ```
@@ -67,4 +67,4 @@ $$
 
 ## 例题
 
-1. [**「Codeforces Round #250」E. The Child and Binary Tree**](https://codeforces.com/contest/438/problem/E)
+1.  [**「Codeforces Round #250」E. The Child and Binary Tree**](https://codeforces.com/contest/438/problem/E)

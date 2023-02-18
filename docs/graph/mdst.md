@@ -36,13 +36,13 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
 
 ### 过程
 
-1. 使用多源最短路算法（[Floyd](./shortest-path.md#floyd-算法)，[Johnson](./shortest-path.md#johnson-全源最短路径算法) 等），求出 $d$ 数组；
+1.  使用多源最短路算法（[Floyd](./shortest-path.md#floyd-算法)，[Johnson](./shortest-path.md#johnson-全源最短路径算法) 等），求出 $d$ 数组；
 
-2. 求出 $\textit{rk}(i,j)$，并将其升序排序；
+2.  求出 $\textit{rk}(i,j)$，并将其升序排序；
 
-3. 图的绝对中心可能在某个结点上，用距离预选结点最远的那个结点来更新，遍历所有结点并用 $\textit{ans}\leftarrow \min(\textit{ans},d(i,\textit{rk}(i,n)) \times 2)$ 更新最小值。
+3.  图的绝对中心可能在某个结点上，用距离预选结点最远的那个结点来更新，遍历所有结点并用 $\textit{ans}\leftarrow \min(\textit{ans},d(i,\textit{rk}(i,n)) \times 2)$ 更新最小值。
 
-4. 图的绝对中心可能在某条边上，枚举所有的边。对于一条边 $w(u,v)$ 从距离 $u$ 最远的结点开始更新。当出现 $d(v,\textit{rk}(u,i)) > \max_{j=i+1}^n d(v,\textit{rk}(u,j))$ 的情况时，用 $\textit{ans}\leftarrow  \min(\textit{ans}, d(u,\textit{rk}(u,i))+\max_{j=i+1}^n d(v,\textit{rk}(u,j))+w(u,v))$ 来更新。因为这种情况会使图的绝对中心改变。
+4.  图的绝对中心可能在某条边上，枚举所有的边。对于一条边 $w(u,v)$ 从距离 $u$ 最远的结点开始更新。当出现 $d(v,\textit{rk}(u,i)) > \max_{j=i+1}^n d(v,\textit{rk}(u,j))$ 的情况时，用 $\textit{ans}\leftarrow  \min(\textit{ans}, d(u,\textit{rk}(u,i))+\max_{j=i+1}^n d(v,\textit{rk}(u,j))+w(u,v))$ 来更新。因为这种情况会使图的绝对中心改变。
 
 ??? note "实现"
     ```cpp
@@ -81,7 +81,7 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
 
 ### 例题
 
-- [CodeForce 266D BerDonalds](https://codeforces.ml/contest/266/problem/D)
+-   [CodeForce 266D BerDonalds](https://codeforces.ml/contest/266/problem/D)
 
 ## 最小直径生成树
 

@@ -47,7 +47,7 @@ int binary_search(int start, int end, int key) {
 }
 ```
 
-???+note
+???+ note
     参考 [编译优化 #位运算代替乘法](/lang/optimizations/#%E4%BD%8D%E8%BF%90%E7%AE%97%E4%BB%A3%E6%9B%BF%E4%B9%98%E6%B3%95)，对于 $n$ 是有符号数的情况，当你可以保证 $n\ge 0$ 时，`n >> 1` 比 `n / 2` 指令数更少。
 
 ### 最大值最小化
@@ -56,9 +56,9 @@ int binary_search(int start, int end, int key) {
 
 要求满足某种条件的最大值的最小可能情况（最大值最小化），首先的想法是从小到大枚举这个作为答案的「最大值」，然后去判断是否合法。若答案单调，就可以使用二分搜索法来更快地找到答案。因此，要想使用二分搜索法来解这种「最大值最小化」的题目，需要满足以下三个条件：
 
-1. 答案在一个固定区间内；
-2. 可能查找一个符合条件的值不是很容易，但是要求能比较容易地判断某个值是否是符合条件的；
-3. 可行解对于区间满足一定的单调性。换言之，如果 $x$ 是符合条件的，那么有 $x + 1$ 或者 $x - 1$ 也符合条件。（这样下来就满足了上面提到的单调性）
+1.  答案在一个固定区间内；
+2.  可能查找一个符合条件的值不是很容易，但是要求能比较容易地判断某个值是否是符合条件的；
+3.  可行解对于区间满足一定的单调性。换言之，如果 $x$ 是符合条件的，那么有 $x + 1$ 或者 $x - 1$ 也符合条件。（这样下来就满足了上面提到的单调性）
 
 当然，最小值最大化是同理的。
 
@@ -78,14 +78,14 @@ bsearch 函数相比 qsort（[排序相关 STL](./stl-sort.md)）的四个参数
 
 bsearch 函数的返回值是查找到的元素的地址，该地址为 void 类型。
 
-注意：bsearch 与上文的 lower_bound 和 upper_bound 有两点不同：
+注意：bsearch 与上文的 lower\_bound 和 upper\_bound 有两点不同：
 
-- 当符合条件的元素有重复多个的时候，会返回执行二分查找时第一个符合条件的元素，从而这个元素可能位于重复多个元素的中间部分。
-- 当查找不到相应的元素时，会返回 NULL。
+-   当符合条件的元素有重复多个的时候，会返回执行二分查找时第一个符合条件的元素，从而这个元素可能位于重复多个元素的中间部分。
+-   当查找不到相应的元素时，会返回 NULL。
 
-用 lower_bound 可以实现与 bsearch 完全相同的功能，所以可以使用 bsearch 通过的题目，直接改写成 lower_bound 同样可以实现。但是鉴于上述不同之处的第二点，例如，在序列 1、2、4、5、6 中查找 3，bsearch 实现 lower_bound 的功能会变得困难。
+用 lower\_bound 可以实现与 bsearch 完全相同的功能，所以可以使用 bsearch 通过的题目，直接改写成 lower\_bound 同样可以实现。但是鉴于上述不同之处的第二点，例如，在序列 1、2、4、5、6 中查找 3，bsearch 实现 lower\_bound 的功能会变得困难。
 
-利用 bsearch 实现 lower_bound 的功能比较困难，是否一定就不能实现？答案是否定的，存在比较 tricky 的技巧。借助编译器处理比较函数的特性：总是将第一个参数指向待查元素，将第二个参数指向待查数组中的元素，也可以用 bsearch 实现 lower_bound 和 upper_bound，如下文示例。只是，这要求待查数组必须是全局数组，从而可以直接传入首地址。
+利用 bsearch 实现 lower\_bound 的功能比较困难，是否一定就不能实现？答案是否定的，存在比较 tricky 的技巧。借助编译器处理比较函数的特性：总是将第一个参数指向待查元素，将第二个参数指向待查数组中的元素，也可以用 bsearch 实现 lower\_bound 和 upper\_bound，如下文示例。只是，这要求待查数组必须是全局数组，从而可以直接传入首地址。
 
 ```cpp
 int A[100005];  // 示例全局数组
@@ -115,13 +115,13 @@ int upper(const void *p1, const void *p2) {
 }
 ```
 
-因为现在的 OI 选手很少写纯 C，并且此方法作用有限，所以不是重点。对于新手而言，建议老老实实地使用 C++ 中的 lower_bound 和 upper_bound 函数。
+因为现在的 OI 选手很少写纯 C，并且此方法作用有限，所以不是重点。对于新手而言，建议老老实实地使用 C++ 中的 lower\_bound 和 upper\_bound 函数。
 
 ### 二分答案
 
 解题的时候往往会考虑枚举答案然后检验枚举的值是否正确。若满足单调性，则满足使用二分法的条件。把这里的枚举换成二分，就变成了「二分答案」。
 
-???+note "[Luogu P1873 砍树](https://www.luogu.com.cn/problem/P1873)"
+???+ note "[Luogu P1873 砍树](https://www.luogu.com.cn/problem/P1873)"
     伐木工人米尔科需要砍倒 $M$ 米长的木材。这是一个对米尔科来说很容易的工作，因为他有一个漂亮的新伐木机，可以像野火一样砍倒森林。不过，米尔科只被允许砍倒单行树木。
     
     米尔科的伐木机工作过程如下：米尔科设置一个高度参数 $H$（米），伐木机升起一个巨大的锯片到高度 $H$，并锯掉所有的树比 $H$ 高的部分（当然，树木不高于 $H$ 米的部分保持不变）。米尔科就得到树木被锯下的部分。
@@ -179,7 +179,6 @@ int upper(const void *p1, const void *p2) {
         ![](./images/binary-final-2.png)
     
         合法的最小值恰恰相反。
-    
     2.  为何返回左边值？
     
         同上。
@@ -197,7 +196,7 @@ int upper(const void *p1, const void *p2) {
     
     其次，某些题中需要求极值点的单峰函数并非一个单独的函数，而是多个函数进行特殊运算得到的函数（如求多个单调性不完全相同的一次函数的最小值的最大值）。此时函数的导函数可能是分段函数，且在函数某些点上可能不可导。
 
-???+warning "注意"
+???+ warning "注意"
     只要函数是单峰函数，三分法既可以求出其最大值，也可以求出其最小值。为行文方便，除特殊说明外，下文中均以求单峰函数的最小值为例。
 
 三分法与二分法的基本思想类似，但每次操作需在当前区间 $[l,r]$（下图中除去虚线范围内的部分）内任取两点 $lmid,rmid(lmid < rmid)$（下图中的两蓝点）。如下图，如果 $f(lmid)<f(rmid)$，则在 $[rmid,r]$（下图中的红色部分）中函数必然单调递增，最小值所在点（下图中的绿点）必然不在这一区间内，可舍去这一区间。反之亦然。
@@ -245,7 +244,7 @@ while (r - l > eps) {
 
 ### 例题
 
-???+note "[洛谷 P3382 - 【模板】三分法](https://www.luogu.com.cn/problem/P3382)"
+???+ note "[洛谷 P3382 -【模板】三分法](https://www.luogu.com.cn/problem/P3382)"
     给定一个 $N$ 次函数和范围 $[l, r]$，求出使函数在 $[l, x]$ 上单调递增且在 $[x, r]$ 上单调递减的唯一的 $x$ 的值。
 
 ??? note "解题思路"
@@ -258,10 +257,10 @@ while (r - l > eps) {
 
 ### 习题
 
-- [Uva 1476 - Error Curves](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4222)
-- [Uva 10385 - Duathlon](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=15&page=show_problem&problem=1326)
-- [UOJ 162 -【清华集训 2015】灯泡测试](https://uoj.ac/problem/162)
-- [洛谷 P7579 -「RdOI R2」称重（weigh）](https://www.luogu.com.cn/problem/P7579)
+-   [Uva 1476 - Error Curves](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4222)
+-   [Uva 10385 - Duathlon](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=15&page=show_problem&problem=1326)
+-   [UOJ 162 -【清华集训 2015】灯泡测试](https://uoj.ac/problem/162)
+-   [洛谷 P7579 -「RdOI R2」称重（weigh）](https://www.luogu.com.cn/problem/P7579)
 
 ## 分数规划
 

@@ -8,11 +8,11 @@ author: cutekibry, woruo27, Backl1ght
 
 公平组合游戏（Impartial Game）的定义如下：
 
-- 游戏有两个人参与，二者轮流做出决策，双方均知道游戏的完整信息；
+-   游戏有两个人参与，二者轮流做出决策，双方均知道游戏的完整信息；
 
-- 任意一个游戏者在某一确定状态可以作出的决策集合只与当前的状态有关，而与游戏者无关；
+-   任意一个游戏者在某一确定状态可以作出的决策集合只与当前的状态有关，而与游戏者无关；
 
-- 游戏中的同一个状态不可能多次抵达，游戏以玩家无法行动为结束，且游戏一定会在有限步后以非平局结束。
+-   游戏中的同一个状态不可能多次抵达，游戏以玩家无法行动为结束，且游戏一定会在有限步后以非平局结束。
 
 ## 非公平组合游戏
 
@@ -24,4 +24,4 @@ author: cutekibry, woruo27, Backl1ght
 
 ## 参考资料
 
-- [Wikipedia - Misère](https://en.wikipedia.org/wiki/Mis%C3%A8re)
+-   [Wikipedia - Misère](https://en.wikipedia.org/wiki/Mis%C3%A8re)

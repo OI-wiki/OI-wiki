@@ -38,6 +38,6 @@
 
 ## 顺序选择惯例
 
-- 小端序：x86, ARM processors running Android, iOS, and Windows
+-   小端序：x86, ARM processors running Android, iOS, and Windows
 
-- 大端序：Sun, PPC Mac, Internet
+-   大端序：Sun, PPC Mac, Internet

@@ -26,7 +26,7 @@ $$
 
 这个也很好推。你从 $0$ 开始数 $k$ 个，让第 $k-1$ 个人出局后剩下 $n-1$ 个人，你计算出在 $n-1$ 个人中选的答案后，再加一个相对位移 $k$ 得到真正的答案。这个算法的复杂度显然是 $\Theta (n)$ 的。
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     int josephus(int n, int k) {
       int res = 0;
@@ -41,7 +41,7 @@ $$
 
 考虑到我们每次走 $k$ 个删一个，那么在一圈以内我们可以删掉 $\left\lfloor\frac{n}{k}\right\rfloor$ 个，然后剩下了 $n-\left\lfloor\frac{n}{k}\right\rfloor$ 个人。这时我们在第 $\left\lfloor\frac{n}{k}\right\rfloor\cdot k$ 个人的位置上。而你发现它等于 $n-n\bmod k$。于是我们继续递归处理，算完后还原它的相对位置。还原相对位置的依据是：每次做一次删除都会把数到的第 $k$ 个人删除，他们的编号被之后的人逐个继承，也即用 $n-\left\lfloor\frac{n}{k}\right\rfloor$ 人环算时每 $k$ 个人即有 $1$ 个人的位置失算，因此在得数小于 $0$ 时，用还没有被删去 $k$ 倍数编号的 $n$ 人环的 的 $n$ 求模，在得数大于等于 $0$ 时，即可以直接乘 $\frac{k}{k-1}$, 于是得到如下的算法：
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     int josephus(int n, int k) {
       if (n == 1) return 0;
@@ -71,7 +71,7 @@ $$
 
 下面我们证明该算法的复杂度是 $\Theta (k\log n)$ 的。
 
-???+note "证明"
+???+ note "证明"
     考虑 $\displaystyle \lim _{k \rightarrow \infty} k \log \left(1-\frac{1}{k}\right)$，我们有
     
     $$

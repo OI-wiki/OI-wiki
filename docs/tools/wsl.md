@@ -4,7 +4,7 @@ author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613
 
 本章主要介绍了在 Windows 系统下使用 Windows Subsystem for Linux 运行 Linux 环境的方法。
 
-* * *
+***
 
 ## 引言[^ref1]
 
@@ -38,15 +38,15 @@ NOI 竞赛（自 2021 年 9 月 1 日）的环境要求如下。[^ref2]
 
 考场环境与一般环境会有一系列差异：
 
-- 命令行上的操作和图形界面上的操作会有差异。
-- Linux 和 Windows 的差异，如对于大小写的敏感性差异。
-- 不同编译器的行为（MSVC 和 GCC）和不同版本的编译器（Windows 上和 Linux 上的 GCC，32 位和 64 位的 Linux GCC，GCC 7 和 GCC 8 等）的行为，如对变量初始化和对数组下标越界的处理会有差异。
-- 不同评测系统（洛谷和 Arbiter）的超时检查和内存限制检查会有差异。
+-   命令行上的操作和图形界面上的操作会有差异。
+-   Linux 和 Windows 的差异，如对于大小写的敏感性差异。
+-   不同编译器的行为（MSVC 和 GCC）和不同版本的编译器（Windows 上和 Linux 上的 GCC，32 位和 64 位的 Linux GCC，GCC 7 和 GCC 8 等）的行为，如对变量初始化和对数组下标越界的处理会有差异。
+-   不同评测系统（洛谷和 Arbiter）的超时检查和内存限制检查会有差异。
 
 这有可能导致一系列的尴尬情况：
 
-- 想用<kbd>Ctrl</kbd>+<kbd>C</kbd>复制，结果退出了程序。
-- 平时 AC 的程序模板到了 Linux 上就 WA。
+-   想用<kbd>Ctrl</kbd>+<kbd>C</kbd>复制，结果退出了程序。
+-   平时 AC 的程序模板到了 Linux 上就 WA。
 
 为了防止考场上出现此类尴尬情况，我们必须要提前熟悉 Linux 系统的操作方法。
 
@@ -54,14 +54,14 @@ NOI 竞赛（自 2021 年 9 月 1 日）的环境要求如下。[^ref2]
 
 Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 年 5 月更新中升级到了 WSL 2。截至 2020 年 6 月 1 日，WSL 已支持安装 Ubuntu、openSUSE Leap、Kali、Debian 等主流 Linux 分发版。但 WSL 并不支持 NOI 评测用的 Arbiter。
 
-???+ note "[什么是 Linux 子系统（WSL）](https://zh.wikipedia.org/zh-cn/%E9%80%82%E7%94%A8%E4%BA%8E_Linux_%E7%9A%84_Windows_%E5%AD%90%E7%B3%BB%E7%BB%9F) "
+???+ note "[什么是 Linux 子系统（WSL）](https://zh.wikipedia.org/zh-cn/%E9%80%82%E7%94%A8%E4%BA%8E_Linux_%E7%9A%84_Windows_%E5%AD%90%E7%B3%BB%E7%BB%9F)"
     适用于 Linux 的 Windows 子系统（英语：Windows Subsystem for Linux，简称 WSL）是一个为在 Windows 10、Windows 11 与 Windows Server 2019 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。
     
     WSL 可让开发人员按原样运行 GNU/Linux 环境 - 包括大多数命令行工具、实用工具和应用程序 - 且不会产生虚拟机开销。
     
     WSL 仅在版本 1607 之后的 64 位版本的 Windows 10 中可用。它也可在 Windows Server 2019 中使用。
 
-* * *
+***
 
 ## 启用 WSL[^ref3]
 
@@ -74,13 +74,13 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
     
     如果你正在使用 Windows 10 1607 以下版本的 Windows，你的系统不支持 WSL。
 
-1. 以管理员身份打开 Windows PowerShell（右击 "开始" 按钮，选择 Windows PowerShell（管理员）或 Windows 终端（管理员）)
+1.  以管理员身份打开 Windows PowerShell（右击 "开始" 按钮，选择 Windows PowerShell（管理员）或 Windows 终端（管理员）)
 
-2. 输入 `wsl --install`，并等待所有组件自动安装完成。期间你可能需要重启你的计算机来启用必要的 Windows 功能。
+2.  输入 `wsl --install`，并等待所有组件自动安装完成。期间你可能需要重启你的计算机来启用必要的 Windows 功能。
 
-3. 安装完成后，你可以在 "开始" 菜单或 Windows 终端的标签页中找到你安装的发行版。
+3.  安装完成后，你可以在 "开始" 菜单或 Windows 终端的标签页中找到你安装的发行版。
 
-4. 接下来，请转到下面“配置分发版”一节完成其他设置。
+4.  接下来，请转到下面“配置分发版”一节完成其他设置。
 
 ### 手动安装[^ref4]
 
@@ -101,21 +101,21 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
     Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
     ```
 
-2. 出现提示时，重启计算机。
+2.  出现提示时，重启计算机。
 
 **使用图形界面：**
 
 ![Windows 功能](./images/wsl-windows-features.png)
 
-1. 打开“控制面板”
+1.  打开“控制面板”
 
-2. 访问“程序和功能”子菜单“打开或关闭 Windows 功能”
+2.  访问“程序和功能”子菜单“打开或关闭 Windows 功能”
 
-3. 选择 "适用于 Linux 的 Windows 子系统" 与 "虚拟机平台"
+3.  选择 "适用于 Linux 的 Windows 子系统" 与 "虚拟机平台"
 
-4. 点击确定
+4.  点击确定
 
-5. 重启
+5.  重启
 
 #### 安装内核更新包
 
@@ -196,7 +196,7 @@ sudo apt install g++
 
 Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速度，如 [清华 TUNA 的软件源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)。
 
-???+ warning  "使用与自己系统版本匹配的软件源"
+???+ warning "使用与自己系统版本匹配的软件源"
     请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a` 查看 Ubuntu 版本）。
     
     除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！
@@ -427,8 +427,8 @@ Welcome!
 
 2.  下载 Linux 内核更新包
 
-    - [x64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi) 的内核更新包。
-    - [ARM64/AArch64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi) 的内核更新包。
+    -   [x64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi) 的内核更新包。
+    -   [ARM64/AArch64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi) 的内核更新包。
 
 3.  设置分发版版本
 
@@ -456,12 +456,12 @@ Welcome!
 
 ## 外部链接
 
-- [关于适用于 Linux 的 Windows 子系统](https://docs.microsoft.com/zh-cn/windows/wsl/about)
-- [Ubuntu 镜像使用帮助，清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
-- [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://dowww.spencerwoo.com)
-- [GitHub 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL)
-- [排查适用于 Linux 的 Windows 子系统问题](https://docs.microsoft.com/zh-cn/windows/wsl/troubleshooting)
-- [WSL1 升级为 WSL2](https://www.cnblogs.com/stulzq/p/13926936.html)
+-   [关于适用于 Linux 的 Windows 子系统](https://docs.microsoft.com/zh-cn/windows/wsl/about)
+-   [Ubuntu 镜像使用帮助，清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
+-   [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://dowww.spencerwoo.com)
+-   [GitHub 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL)
+-   [排查适用于 Linux 的 Windows 子系统问题](https://docs.microsoft.com/zh-cn/windows/wsl/troubleshooting)
+-   [WSL1 升级为 WSL2](https://www.cnblogs.com/stulzq/p/13926936.html)
 
 ## 参考资料与注释
 
