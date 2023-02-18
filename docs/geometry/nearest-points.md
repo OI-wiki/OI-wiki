@@ -43,9 +43,9 @@ $$
 
 由此我们得到了合并的步骤：
 
-1. 构建集合 $B$。
-2. 将 $B$ 中的点按照 $y_i$ 排序。通常做法是 $O(n\log n)$，但是我们可以改变策略优化到 $O(n)$（下文讲解）。
-3. 对于每个 $p_i \in B$ 考虑 $p_j \in C(p_i)$，对于每对 $(p_i,p_j)$ 计算距离并更新答案（当前所处集合的最近点对）。
+1.  构建集合 $B$。
+2.  将 $B$ 中的点按照 $y_i$ 排序。通常做法是 $O(n\log n)$，但是我们可以改变策略优化到 $O(n)$（下文讲解）。
+3.  对于每个 $p_i \in B$ 考虑 $p_j \in C(p_i)$，对于每对 $(p_i,p_j)$ 计算距离并更新答案（当前所处集合的最近点对）。
 
 注意到我们上文提到了两次排序，因为点坐标全程不变，第一次排序可以只在分治开始前进行一次。我们令每次递归返回当前点集按 $y_i$ 排序的结果，对于第二次排序，上层直接使用下层的两个分别排序过的点集归并即可。
 
@@ -67,7 +67,7 @@ $$
 
 我们使用一个结构体来存储点，并定义用于排序的函数对象：
 
-???+note "结构体定义"
+???+ note "结构体定义"
     ```cpp
     struct pt {
       int x, y, id;
@@ -89,7 +89,7 @@ $$
 
 为了方便实现递归，我们引入 `upd_ans()` 辅助函数来计算两点间距离并尝试更新答案：
 
-???+note "答案更新函数"
+???+ note "答案更新函数"
     ```cpp
     double mindist;
     int ansa, ansb;
@@ -105,7 +105,7 @@ $$
 
 我们使用 `std::inplace_merge()` 来执行归并排序，并创建辅助缓冲区 `t[]`，$B$ 存储在其中。
 
-???+note "主体函数"
+???+ note "主体函数"
     ```cpp
     void rec(int l, int r) {
       if (r - l <= 3) {
@@ -133,7 +133,7 @@ $$
 
 在主函数中，这样开始递归即可：
 
-???+note "调用接口"
+???+ note "调用接口"
     ```cpp
     sort(a, a + n, &cmp_x);
     mindist = 1E20;
@@ -156,9 +156,9 @@ $$
 
 具体地，我们把所有点按照 $x_i$ 为第一关键字、$y_i$ 为第二关键字排序，并建立一个以 $y_i$ 为第一关键字、$x_i$ 为第二关键字排序的 multiset。对于每一个位置 $i$，我们执行以下操作：
 
-1. 将所有满足 $x_i - x_j >= d$ 的点从集合中删除。它们不会再对答案有贡献。
-2. 对于集合内满足 $\lvert y_i - y_j \rvert < d$ 的所有点，统计它们和 $p_i$ 的距离。
-3. 将 $p_i$ 插入到集合中。
+1.  将所有满足 $x_i - x_j >= d$ 的点从集合中删除。它们不会再对答案有贡献。
+2.  对于集合内满足 $\lvert y_i - y_j \rvert < d$ 的所有点，统计它们和 $p_i$ 的距离。
+3.  将 $p_i$ 插入到集合中。
 
 由于每个点最多会被插入和删除一次，所以插入和删除点的时间复杂度为 $O(n \log n)$，而统计答案部分的时间复杂度证明与分治算法的时间复杂度证明方法类似，读者不妨一试。
 
@@ -229,13 +229,13 @@ $$
 
 ## 习题
 
-- [UVA 10245 "The Closest Pair Problem"\[难度：低\]](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1186)
-- [SPOJ #8725 CLOPPAIR "Closest Point Pair"\[难度：低\]](https://www.spoj.com/problems/CLOPPAIR/)
-- [CODEFORCES Team Olympiad Saratov - 2011 "Minimum amount"\[难度：中\]](http://codeforces.com/contest/120/problem/J)
-- [SPOJ #7029 CLOSEST "Closest Triple"\[难度：中\]](https://www.spoj.com/problems/CLOSEST/)
-- [Google Code Jam 2009 Final "Min Perimeter"\[难度：中\]](https://codingcompetitions.withgoogle.com/codejam/round/0000000000432ad5/0000000000433195)
+-   [UVA 10245 "The Closest Pair Problem"\[难度：低\]](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1186)
+-   [SPOJ #8725 CLOPPAIR "Closest Point Pair"\[难度：低\]](https://www.spoj.com/problems/CLOPPAIR/)
+-   [CODEFORCES Team Olympiad Saratov - 2011 "Minimum amount"\[难度：中\]](http://codeforces.com/contest/120/problem/J)
+-   [SPOJ #7029 CLOSEST "Closest Triple"\[难度：中\]](https://www.spoj.com/problems/CLOSEST/)
+-   [Google Code Jam 2009 Final "Min Perimeter"\[难度：中\]](https://codingcompetitions.withgoogle.com/codejam/round/0000000000432ad5/0000000000433195)
 
-* * *
+***
 
 ## 参考资料与拓展阅读
 

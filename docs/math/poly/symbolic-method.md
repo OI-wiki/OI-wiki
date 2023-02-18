@@ -18,8 +18,8 @@ $$
 
 下面将引入两种特殊的组合类和组合对象：
 
-- 记 $\epsilon$ 为中性对象（neutral object）和 $\mathcal{E}=\lbrace \epsilon \rbrace$ 为中性类（neutral class），中性对象的大小为 $0$，中性类的 OGF 为 $E(z)=1$。
-- 记 $\circ$ 或 $\bullet$ 为原子对象（atom object）和 $\mathcal{Z}_{\circ}=\lbrace \circ\rbrace$ 或 $\mathcal{Z}_{\bullet}=\lbrace \bullet\rbrace$ 或简写为 $\mathcal{Z}$ 为原子类（atom class），原子对象的大小为 $1$，原子类的 OGF 为 $Z(z)=z$。
+-   记 $\epsilon$ 为中性对象（neutral object）和 $\mathcal{E}=\lbrace \epsilon \rbrace$ 为中性类（neutral class），中性对象的大小为 $0$，中性类的 OGF 为 $E(z)=1$。
+-   记 $\circ$ 或 $\bullet$ 为原子对象（atom object）和 $\mathcal{Z}_{\circ}=\lbrace \circ\rbrace$ 或 $\mathcal{Z}_{\bullet}=\lbrace \bullet\rbrace$ 或简写为 $\mathcal{Z}$ 为原子类（atom class），原子对象的大小为 $1$，原子类的 OGF 为 $Z(z)=z$。
 
 对于两个组合类 $\mathcal{A}$ 和 $\mathcal{B}$ 在组合意义上同构记为 $\mathcal{A}=\mathcal{B}$ 或 $\mathcal{A}\cong\mathcal{B}$，但仅当该同构不平凡时才使用后者的记号。
 
@@ -87,7 +87,7 @@ $$
 
 Sequence 构造生成了所有可能的组合。
 
-???+note "例"
+???+ note "例"
     $$
     \begin{aligned}
     \operatorname{SEQ}(\lbrace a\rbrace)&=\lbrace \epsilon\rbrace +\lbrace a\rbrace +\lbrace (a,a)\rbrace +\lbrace (a,a,a)\rbrace +\cdots\\
@@ -116,7 +116,7 @@ $$
 
 其中 $Q$ 为 Pólya 准逆（quasi-inversion）。
 
-???+note "例：有序有根树（ordered rooted tree）"
+???+ note "例：有序有根树（ordered rooted tree）"
     我们可以使用 Sequence 构造来定义有序有根树，即孩子之间的顺序有意义的有根树，设该组合类为 $\mathcal{T}$ 那么一棵树为一个根节点和树的 Sequence，即
     
     $$
@@ -135,7 +135,7 @@ $$
 
 Multiset 构造生成了所有可能的组合，但不区分组成部分的元素之间的顺序。
 
-???+note "例"
+???+ note "例"
     $$
     \begin{aligned}
     \operatorname{MSET}(\lbrace a\rbrace)&=\lbrace \epsilon\rbrace +\lbrace a\rbrace +\lbrace (a,a)\rbrace +\lbrace (a,a,a)\rbrace +\cdots\\
@@ -192,7 +192,7 @@ $$
 
 其中 $\operatorname{Exp}$ 为 Pólya 指数，也被称为 Euler 变换。
 
-???+note "例题 [LOJ 6268. 分拆数](https://loj.ac/p/6268)"
+???+ note " 例题 [LOJ 6268. 分拆数](https://loj.ac/p/6268)"
     **题意**：令 $f(n)$ 表示将 $n$ 进行分拆的方案数，求 $f(1),f(2),\dots,f(10^5)$ 对 $998244353$ 取模的值。
     
     **解**：设全体正整数类为 $\mathcal{I}$，那么 $\mathcal{I}=\operatorname{SEQ}_{\geq 1}(\mathcal{Z})=\mathcal{Z}\times \operatorname{SEQ}(\mathcal{Z})$（下标 $\geq 1$ 为有限制的构造，见后文）。所求即
@@ -203,12 +203,12 @@ $$
     
     对应 OGF 前几项系数为 `1 2 3 5 7 11 15 22 30 42`（忽略常数项）即 OEIS [A000041](https://oeis.org/A000041)。
 
-???+note "例题 [洛谷 P4389 付公主的背包](https://www.luogu.com.cn/problem/P4389)"
+???+ note " 例题 [洛谷 P4389 付公主的背包](https://www.luogu.com.cn/problem/P4389)"
     **题意**：给出 $n$ 种体积分别为 $v_1,\dots ,v_n$ 的商品和正整数 $m$，求体积为 $1,2,\dots,m$ 的背包装满的方案数（商品数量不限，有同体积的不同种商品）对 $998244353$ 取模的值。约定 $1\leq n,m\leq 10^5$ 且 $1\leq v_i\leq m$。
     
     **解**：设商品的组合类为 $\mathcal{A}$，所求即 $\operatorname{MSET}(\mathcal{A})$ 对应 OGF 的系数。
 
-???+note "例题 [洛谷 P5900 无标号无根树计数](https://www.luogu.com.cn/problem/P5900)"
+???+ note " 例题 [洛谷 P5900 无标号无根树计数](https://www.luogu.com.cn/problem/P5900)"
     **题意**：求出 $n$ 个节点的无标号无根树的个数对 $998244353$ 取模的值。约定 $1\leq n\leq 2\times 10^5$。
     
     **解**：设无标号有根树的组合类为 $\mathcal{T}$，那么
@@ -229,7 +229,7 @@ $$
 
 Powerset 构造生成了所有子集。
 
-???+note "例"
+???+ note "例"
     $$
     \begin{aligned}
     \operatorname{PSET}(\lbrace a\rbrace)&=\lbrace \epsilon\rbrace +\lbrace a\rbrace \\
@@ -279,7 +279,7 @@ $$
 
 其中 $\mathbf{S}$ 为等价关系，我们说 $(\alpha_1,\dots,\alpha_n)\mathbf{S}(\beta_1,\dots,\beta_n)$ 当且仅当存在任一循环移位 $\tau$ 对于所有 $j$ 都满足 $\beta_j=\alpha_{\tau(j)}$。
 
-???+note "例"
+???+ note "例"
     为了简便我们令 $\texttt{a},\texttt{b}$ 均为大小为 $1$ 的字符，这里仅列举大小为 $3$ 和 $4$ 的字符串：
     
     $$
@@ -375,7 +375,7 @@ $$
 
 对于 $\operatorname{CYC}_k(\mathcal{B})$ 同理。
 
-??? note "使用上式计算 $\operatorname{MSET}_3(\mathcal{B})$ 和 $\operatorname{MSET}_4(\mathcal{B})$ 对应 OGF"
+??? note " 使用上式计算 $\operatorname{MSET}_3(\mathcal{B})$ 和 $\operatorname{MSET}_4(\mathcal{B})$ 对应 OGF"
     尝试计算 $\mathcal{A}=\operatorname{MSET}_3(\mathcal{B})$ 为
     
     $$
@@ -404,7 +404,7 @@ $$
 
 需要注意的是对于有限制的构造 $\mathfrak{K}_k(\mathcal{B})$ 并没有要求 $\mathcal{B}_0=\varnothing$。
 
-???+note "常用有限制的构造"
+???+ note "常用有限制的构造"
     $$
     \begin{aligned}
     \operatorname{PSET} _ {2}(\mathcal{A})&:\quad \frac{A(z)^2}{2}-\frac{A(z^2)}{2}\\
@@ -431,7 +431,7 @@ $$
 
 上面的计算方法虽然有效但比较麻烦，读者可阅读 WolframMathWorld 网站的 [Pólya Enumeration Theorem](https://mathworld.wolfram.com/PolyaEnumerationTheorem.html) 和 [Cycle Index](https://mathworld.wolfram.com/CycleIndex.html) 等相关资料，后者 Cycle Index 在 OEIS 的生成函数表达式中也经常出现。
 
-???+note "例题 [LOJ 6538. 烷基计数 加强版 加强版](https://loj.ac/p/6538)"
+???+ note " 例题 [LOJ 6538. 烷基计数 加强版 加强版](https://loj.ac/p/6538)"
     **题意**：求出 $n$ 个节点的有根且根节点度数不超过 $3$，其余节点度数不超过 $4$ 的无序树的个数对 $998244353$ 取模的值。约定 $1\leq n\leq 10^5$。
     
     **解**：设组合类为 $\mathcal{T}$ 那么
@@ -450,4 +450,4 @@ $$
 
 ## 参考文献
 
-- Philippe Flajolet and Robert Sedgewick.[Analytic Combinatorics](http://algo.inria.fr/flajolet/Publications/books.html).
+-   Philippe Flajolet and Robert Sedgewick.[Analytic Combinatorics](http://algo.inria.fr/flajolet/Publications/books.html).

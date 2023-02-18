@@ -2,7 +2,7 @@
 
 它主要利用了富比尼定理（Fubini's theorem），将 $\left\lfloor\dfrac ni\right\rfloor$ 相同的数打包同时计算。
 
-???+note "富比尼定理"
+???+ note "富比尼定理"
     又称「算两次」，以意大利数学家圭多·富比尼（Guido Fubini）命名。
     富比尼定理的积分形式：只要二重积分 $\int\int |f(x,y)|dxdy$ 有界，则可以逐次计算二重积分，并且可以交换逐次积分的顺序。
     积分号也是特殊的求和号，因此在一般求和中，富比尼定理往往呈现为更换计数顺序，即交换两个求和号。
@@ -102,7 +102,7 @@ $$
 
 最终得到的 $result$ 即为所求的和式。
 
-???+note "例题：[UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)"
+???+ note " 例题：[UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)"
     题意：$T$ 组数据，每组一个整数 $n$。对于每组数据，输出 $\sum_{i=1}^n\left\lfloor\dfrac ni\right\rfloor$。
     
     思路：如上推导，对于每一块相同的 $\left\lfloor\dfrac ni\right\rfloor$ 一起计算。时间复杂度为 $O(T\sqrt n)$。
@@ -122,7 +122,7 @@ $$
     }
     ```
 
-???+note "N 维数论分块"
+???+ note "N 维数论分块"
     求含有 $\left\lfloor\dfrac {a_1}i\right\rfloor$、$\left\lfloor\dfrac {a_2}i\right\rfloor\cdots\left\lfloor\dfrac {a_n}i\right\rfloor$ 的和式时，数论分块右端点的表达式从一维的 $\left\lfloor\dfrac ni\right\rfloor$ 变为 $\min\limits_{j=1}^n\{\left\lfloor\dfrac {a_j}i\right\rfloor\}$，即对于每一个块的右端点取最小（最接近左端点）的那个作为整体的右端点。可以借助下图理解：
     
     ![多维数论分块图解](./images/n-dimension-sqrt-decomposition.png)
@@ -131,8 +131,8 @@ $$
 
 ## 习题
 
-1. [CQOI2007 余数求和](https://www.luogu.com.cn/problem/P2261)（需要一点转化和特判）
+1.  [CQOI2007 余数求和](https://www.luogu.com.cn/problem/P2261)（需要一点转化和特判）
 
-2. [UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)（几乎可以当做模板题）
+2.  [UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)（几乎可以当做模板题）
 
-3. [POI2007 ZAP-Queries](https://www.luogu.com.cn/problem/P3455)（数论分块一般配合 [莫比乌斯反演](./mobius.md) 用以进一步降低复杂度；本题需要用到 $[n=1]=\sum_{d|n}\mu(n)$ 这一条莫反结论）
+3.  [POI2007 ZAP-Queries](https://www.luogu.com.cn/problem/P3455)（数论分块一般配合 [莫比乌斯反演](./mobius.md) 用以进一步降低复杂度；本题需要用到 $[n=1]=\sum_{d|n}\mu(n)$ 这一条莫反结论）

@@ -151,7 +151,7 @@ Beta_ab ab = Beta().getAB();  // 这里是移动语义，而非拷贝
 
 ## 参考内容
 
-1. [C++ 语言文档——引用声明](https://zh.cppreference.com/w/cpp/language/reference)
-2. [C++ 语言文档——值类别](https://zh.cppreference.com/w/cpp/language/value_category)
-3. [Is returning by rvalue reference more efficient?](https://stackoverflow.com/questions/1116641/is-returning-by-rvalue-reference-more-efficient)
-4. [浅谈值类别及其历史](https://www.luogu.com.cn/blog/SuperConstructor/qian-tan-zhi-lei-bie-ji-ji-li-shi)
+1.  [C++ 语言文档——引用声明](https://zh.cppreference.com/w/cpp/language/reference)
+2.  [C++ 语言文档——值类别](https://zh.cppreference.com/w/cpp/language/value_category)
+3.  [Is returning by rvalue reference more efficient?](https://stackoverflow.com/questions/1116641/is-returning-by-rvalue-reference-more-efficient)
+4.  [浅谈值类别及其历史](https://www.luogu.com.cn/blog/SuperConstructor/qian-tan-zhi-lei-bie-ji-ji-li-shi)

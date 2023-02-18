@@ -11,9 +11,9 @@ author: Ir1d, LeoJacob, Xeonacid, greyqz, StudyingFather, Marcythm, minghu6, Bac
 给定一个长度为 $n$ 的字符串 $s$，其 **前缀函数** 被定义为一个长度为 $n$ 的数组 $\pi$。
 其中 $\pi[i]$ 的定义是：
 
-1. 如果子串 $s[0\dots i]$ 有一对相等的真前缀与真后缀：$s[0\dots k-1]$ 和 $s[i - (k - 1) \dots i]$，那么 $\pi[i]$ 就是这个相等的真前缀（或者真后缀，因为它们相等：)）的长度，也就是 $\pi[i]=k$；
-2. 如果不止有一对相等的，那么 $\pi[i]$ 就是其中最长的那一对的长度；
-3. 如果没有相等的，那么 $\pi[i]=0$。
+1.  如果子串 $s[0\dots i]$ 有一对相等的真前缀与真后缀：$s[0\dots k-1]$ 和 $s[i - (k - 1) \dots i]$，那么 $\pi[i]$ 就是这个相等的真前缀（或者真后缀，因为它们相等：)）的长度，也就是 $\pi[i]=k$；
+2.  如果不止有一对相等的，那么 $\pi[i]$ 就是其中最长的那一对的长度；
+3.  如果没有相等的，那么 $\pi[i]=0$。
 
 简单来说 $\pi[i]$ 就是，子串 $s[0\dots i]$ 最长的相等的真前缀与真后缀的长度。
 
@@ -51,12 +51,12 @@ $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
 
 一个直接按照定义计算前缀函数的算法流程：
 
-- 在一个循环中以 $i = 1\to n - 1$ 的顺序计算前缀函数 $\pi[i]$ 的值（$\pi[0]$ 被赋值为 $0$）。
-- 为了计算当前的前缀函数值 $\pi[i]$，我们令变量 $j$ 从最大的真前缀长度 $i$ 开始尝试。
-- 如果当前长度下真前缀和真后缀相等，则此时长度为 $\pi[i]$，否则令 j 自减 1，继续匹配，直到 $j=0$。
-- 如果 $j = 0$ 并且仍没有任何一次匹配，则置 $\pi[i] = 0$ 并移至下一个下标 $i + 1$。
+-   在一个循环中以 $i = 1\to n - 1$ 的顺序计算前缀函数 $\pi[i]$ 的值（$\pi[0]$ 被赋值为 $0$）。
+-   为了计算当前的前缀函数值 $\pi[i]$，我们令变量 $j$ 从最大的真前缀长度 $i$ 开始尝试。
+-   如果当前长度下真前缀和真后缀相等，则此时长度为 $\pi[i]$，否则令 j 自减 1，继续匹配，直到 $j=0$。
+-   如果 $j = 0$ 并且仍没有任何一次匹配，则置 $\pi[i] = 0$ 并移至下一个下标 $i + 1$。
 
-???+note "实现"
+???+ note "实现"
     具体实现如下：
     
     === "C++"
@@ -91,7 +91,7 @@ $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
     
     注：
     
-    - `string substr (size_t pos = 0, size_t len = npos) const;`
+    -   `string substr (size_t pos = 0, size_t len = npos) const;`
 
 显见该算法的时间复杂度为 $O(n^3)$，具有很大的改进空间。
 
@@ -109,7 +109,7 @@ $$
 
 所以当移动到下一个位置时，前缀函数的值要么增加一，要么维持不变，要么减少。
 
-???+note "实现"
+???+ note "实现"
     此时的改进的算法为：
     
     === "C++"
@@ -178,7 +178,7 @@ $$
 
 而且该算法的实现出人意料的短且直观：
 
-???+note "实现"
+???+ note "实现"
     === "C++"
     
         ```cpp
@@ -235,7 +235,7 @@ $$
 
 因此 Knuth-Morris-Pratt 算法（简称 KMP 算法）用 $O(n + m)$ 的时间以及 $O(n)$ 的内存解决了该问题。
 
-???+note "实现"
+???+ note "实现"
     === "C++"
     
         ```cpp
@@ -284,7 +284,7 @@ $$
 
 首先让我们来解决第一个问题。考虑位置 $i$ 的前缀函数值 $\pi[i]$。根据定义，其意味着字符串 $s$ 一个长度为 $\pi[i]$ 的前缀在位置 $i$ 出现并以 $i$ 为右端点，同时不存在一个更长的前缀满足前述定义。与此同时，更短的前缀可能以该位置为右端点。容易看出，我们遇到了在计算前缀函数时已经回答过的问题：给定一个长度为 $j$ 的前缀，同时其也是一个右端点位于 $i$ 的后缀，下一个更小的前缀长度 $k < j$ 是多少？该长度的前缀需同时也是一个右端点为 $i$ 的后缀。因此以位置 $i$ 为右端点，有长度为 $\pi[i]$ 的前缀，有长度为 $\pi[\pi[i] - 1]$ 的前缀，有长度为 $\pi[\pi[\pi[i] - 1] - 1]$ 的前缀，等等，直到长度变为 $0$。故而我们可以通过下述方式计算答案。
 
-???+note "实现"
+???+ note "实现"
     === "C++"
     
         ```cpp
@@ -338,7 +338,7 @@ $$
 
 假定 $n$ 可被 $k$ 整除。那么字符串可被划分为长度为 $k$ 的若干块。根据前缀函数的定义，该字符串长度为 $n - k$ 的前缀等于其后缀。但是这意味着最后一个块同倒数第二个块相等，并且倒数第二个块同倒数第三个块相等，等等。作为其结果，所有块都是相等的，因此我们可以将字符串 $s$ 压缩至长度 $k$。
 
-???+note "证明"
+???+ note "证明"
     诚然，我们仍需证明该值为最优解。实际上，如果有一个比 $k$ 更小的压缩表示，那么前缀函数的最后一个值 $\pi[n - 1]$ 必定比 $n - k$ 要大。因此 $k$ 就是答案。
     
     现在假设 $n$ 不可以被 $k$ 整除，我们将通过反证法证明这意味着答案为 $n$[^1]。假设其最小压缩表示 $r$ 的长度为 $p$（$p$ 整除 $n$），字符串 $s$ 被划分为 $n / p \ge 2$ 块。那么前缀函数的最后一个值 $\pi[n - 1]$ 必定大于 $n - p$（如果等于则 $n$ 可被 $k$ 整除），也即其所表示的后缀将部分的覆盖第一个块。现在考虑字符串的第二个块。该块有两种解释：第一种为 $r_0 r_1 \dots r_{p - 1}$，另一种为 $r_{p - k} r_{p - k + 1} \dots r_{p - 1} r_0 r_1 \dots r_{p - k - 1}$。由于两种解释对应同一个字符串，因此可得到 $p$ 个方程组成的方程组，该方程组可简写为 $r_{(i + k) \bmod p} = r_{i \bmod p}$，其中 $\cdot \bmod p$ 表示模 $p$ 意义下的最小非负剩余。
@@ -372,7 +372,7 @@ $$
 
 因此，即使没有字符串 $t$，我们同样可以应用构造转移表的算法构造一个转移表 $( \text { old } \pi , c ) \rightarrow \text { new } _ { - } \pi$：
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     void compute_automaton(string s, vector<vector<int>>& aut) {
       s += '#';
@@ -392,7 +392,7 @@ $$
 
 然而在这种形式下，对于小写字母表，算法的时间复杂度为 $O(|\Sigma|n^2)$。注意到我们可以应用动态规划来利用表中已计算过的部分。只要我们从值 $j$ 变化到 $\pi[j - 1]$，那么我们实际上在说转移 $(j, c)$ 所到达的状态同转移 $(\pi[j - 1], c)$ 一样，但该答案我们之前已经精确计算过了。
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     void compute_automaton(string s, vector<vector<int>>& aut) {
       s += '#';
@@ -467,15 +467,15 @@ $$
 
 ## 练习题目
 
-- [UVA 455 "Periodic Strings"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
-- [UVA 11022 "String Factoring"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
-- [UVA 11452 "Dancing the Cheeky-Cheeky"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2447)
-- [UVA 12604 - Caesar Cipher](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4282)
-- [UVA 12467 - Secret Word](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3911)
-- [UVA 11019 - Matrix Matcher](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1960)
-- [SPOJ - Pattern Find](http://www.spoj.com/problems/NAJPF/)
-- [Codeforces - Anthem of Berland](http://codeforces.com/contest/808/problem/G)
-- [Codeforces - MUH and Cube Walls](http://codeforces.com/problemset/problem/471/D)
+-   [UVA 455 "Periodic Strings"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
+-   [UVA 11022 "String Factoring"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
+-   [UVA 11452 "Dancing the Cheeky-Cheeky"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2447)
+-   [UVA 12604 - Caesar Cipher](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4282)
+-   [UVA 12467 - Secret Word](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3911)
+-   [UVA 11019 - Matrix Matcher](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1960)
+-   [SPOJ - Pattern Find](http://www.spoj.com/problems/NAJPF/)
+-   [Codeforces - Anthem of Berland](http://codeforces.com/contest/808/problem/G)
+-   [Codeforces - MUH and Cube Walls](http://codeforces.com/problemset/problem/471/D)
 
 ## 参考资料与注释
 

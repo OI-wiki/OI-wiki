@@ -22,7 +22,7 @@ author: leoleoasd, yzxoi
 
 ### 例题 1
 
-???+note "[Codeforces Round #384 (Div. 2) C.Vladik and fractions](http://codeforces.com/problemset/problem/743/C)"
+???+ note "[Codeforces Round #384 (Div. 2) C.Vladik and fractions](http://codeforces.com/problemset/problem/743/C)"
     构造一组 $x,y,z$，使得对于给定的 $n$，满足 $\dfrac{1}{x}+\dfrac{1}{y}+\dfrac{1}{z}=\dfrac{2}{n}$
 
 ??? note "解题思路"
@@ -34,7 +34,7 @@ author: leoleoasd, yzxoi
 
 ### 例题 2
 
-???+note "[Luogu P3599 Koishi Loves Construction](https://www.luogu.com.cn/problem/P3599)"
+???+ note "[Luogu P3599 Koishi Loves Construction](https://www.luogu.com.cn/problem/P3599)"
     Task1：试判断能否构造并构造一个长度为 $n$ 的 $1\dots n$ 的排列，满足其 $n$ 个前缀和在模 $n$ 的意义下互不相同
     
     Taks2：试判断能否构造并构造一个长度为 $n$ 的 $1\dots n$ 的排列，满足其 $n$ 个前缀积在模 $n$ 的意义下互不相同
@@ -78,11 +78,11 @@ author: leoleoasd, yzxoi
 
 ### 例题 3
 
-???+note "[AtCoder Grand Contest 032 B](https://atcoder.jp/contests/agc032/tasks/agc032_b)"
+???+ note "[AtCoder Grand Contest 032 B](https://atcoder.jp/contests/agc032/tasks/agc032_b)"
     给定一个整数 $N$，试构造一个节点数为 $N$ 无向图。令节点编号为 $1\ldots N$，要求其满足以下条件：
     
-    - 这是一个简单连通图。
-    - 存在一个整数 $S$ 使得对于任意节点，与其相邻节点的下标和为 $S$。
+    -   这是一个简单连通图。
+    -   存在一个整数 $S$ 使得对于任意节点，与其相邻节点的下标和为 $S$。
     
     保证输入数据有解。
 
@@ -101,7 +101,7 @@ author: leoleoasd, yzxoi
 
 ### 例题 4
 
-???+note "BZOJ 4971「Lydsy1708 月赛」记忆中的背包"
+???+ note "BZOJ 4971「Lydsy1708 月赛」记忆中的背包"
     经过一天辛苦的工作，小 Q 进入了梦乡。他脑海中浮现出了刚进大学时学 01 背包的情景，那时还是大一萌新的小 Q 解决了一道简单的 01 背包问题。这个问题是这样的：
     
     给定 $n$ 个物品，每个物品的体积分别为 $v_1,v_2,…,v_n$，请计算从中选择一些物品（也可以不选），使得总体积恰好为 $w$ 的方案数。因为答案可能非常大，你只需要输出答案对 $P$ 取模的结果。
