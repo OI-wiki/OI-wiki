@@ -22,8 +22,8 @@ author: accelsao, thallium, Chrogeek, Enter-tainer, ksyx, StudyingFather, H-J-Gr
 
 归纳一下，对于一个匹配有两点要求：
 
-- 匹配是边的集合
-- 在匹配中，任意两边不能有公共顶点
+-   匹配是边的集合
+-   在匹配中，任意两边不能有公共顶点
 
 然后我们就可以开始解决二分图的最大匹配问题啦！
 
@@ -31,11 +31,11 @@ author: accelsao, thallium, Chrogeek, Enter-tainer, ksyx, StudyingFather, H-J-Gr
 
 下面模拟匈牙利算法的过程：
 
-1. $U$ 中的第一个 $U_1$ 寻求匹配，发现只能到 $V_1$，所以这一对可以；
-2. 再看 $U_2$，发现它可以到 $V_1$ 和 $V_2$，但是 $V_1$ 已经有男朋友了，虽然 $U_2$ 是海王但是它不会抢别人的女友，并且 $U_1$ 只能和 $V_1$ 在一起，所以 $U_2$ 只好去找 $V_2$ 了；
-3. 再看 $U_3$，发现它可以到 $V_3$ 和 $V_4$，这两个人都没有男朋友，所以先假设 $U_3$ 和 $V_3$ 在一起了。
-4. 再看 $U_4$，发现它只能到 $V_2$，可是 $V_2$ 已经名花有主了，考虑让 $U_2$ 换一个目标，但是 $U_2$ 的另一个暧昧对象已经给 $U_1$，根据“先来后到”原则，$U_4$ 就和我们一样注定单身了；
-5. 最后看 $U_5$，可以到 $V_1$ 和 $V_5$，$V_5$ 刚好没有男朋友，所以 $U_5$ 就开开心心地抱得美人（V_5）归了。
+1.  $U$ 中的第一个 $U_1$ 寻求匹配，发现只能到 $V_1$，所以这一对可以；
+2.  再看 $U_2$，发现它可以到 $V_1$ 和 $V_2$，但是 $V_1$ 已经有男朋友了，虽然 $U_2$ 是海王但是它不会抢别人的女友，并且 $U_1$ 只能和 $V_1$ 在一起，所以 $U_2$ 只好去找 $V_2$ 了；
+3.  再看 $U_3$，发现它可以到 $V_3$ 和 $V_4$，这两个人都没有男朋友，所以先假设 $U_3$ 和 $V_3$ 在一起了。
+4.  再看 $U_4$，发现它只能到 $V_2$，可是 $V_2$ 已经名花有主了，考虑让 $U_2$ 换一个目标，但是 $U_2$ 的另一个暧昧对象已经给 $U_1$，根据“先来后到”原则，$U_4$ 就和我们一样注定单身了；
+5.  最后看 $U_5$，可以到 $V_1$ 和 $V_5$，$V_5$ 刚好没有男朋友，所以 $U_5$ 就开开心心地抱得美人（V\_5）归了。
 
 这样一模拟，就是匈牙利算法的过程。
 
@@ -47,52 +47,50 @@ author: accelsao, thallium, Chrogeek, Enter-tainer, ksyx, StudyingFather, H-J-Gr
 #include <bits/stdc++.h>
 using namespace std;
 
-const int maxn=5e4+5;
-int head[maxn],nxt[maxn],to[maxn],vis[maxn],cnt,match[505]/*表示右边点对应左边的cp*/,m,n,e;
+const int maxn = 5e4 + 5;
+int head[maxn], nxt[maxn], to[maxn], vis[maxn], cnt,
+    match[505] /*表示右边点对应左边的cp*/, m, n, e;
 
-void add(int x,int y)
-{
-	to[++cnt]=y;
-	nxt[cnt]=head[x];
-	head[x]=cnt;
+void add(int x, int y) {
+  to[++cnt] = y;
+  nxt[cnt] = head[x];
+  head[x] = cnt;
 }
 
-bool dfs(int now)//找对象
+bool dfs(int now)  // 找对象
 {
-	for(int i=head[now];i;i=nxt[i])
-	{
-		if(vis[to[i]]) continue;
-		vis[to[i]]=1;
-		if(!match[to[i]]||dfs(match[to[i]]))//想找的对象没有男朋友或者这个对象的当前男朋友还可以找别的女朋友
-		{
-			match[to[i]]=now;//左侧元素和当前的右侧元素形成匹配
-			return 1;
-		}
-	}
-	return 0;
+  for (int i = head[now]; i; i = nxt[i]) {
+    if (vis[to[i]]) continue;
+    vis[to[i]] = 1;
+    if (!match[to[i]] ||
+        dfs(match
+                [to[i]]))  // 想找的对象没有男朋友或者这个对象的当前男朋友还可以找别的女朋友
+    {
+      match[to[i]] = now;  // 左侧元素和当前的右侧元素形成匹配
+      return 1;
+    }
+  }
+  return 0;
 }
 
-void gett()
-{
-	int ans=0;
-	for(int i=1;i<=n;i++)
-	{
-		memset(vis,0,sizeof(vis));
-		if(dfs(i)) ans++;
-	}
-	cout<<ans;
+void gett() {
+  int ans = 0;
+  for (int i = 1; i <= n; i++) {
+    memset(vis, 0, sizeof(vis));
+    if (dfs(i)) ans++;
+  }
+  cout << ans;
 }
 
-int main()
-{
-	cin>>n>>m>>e;
-	for(int i=1;i<=e;i++) 
-	{
-		int u,v;cin>>u>>v;
-		add(u,v);
-	}
-	gett();
-	return 0;
+int main() {
+  cin >> n >> m >> e;
+  for (int i = 1; i <= e; i++) {
+    int u, v;
+    cin >> u >> v;
+    add(u, v);
+  }
+  gett();
+  return 0;
 }
 ```
 
