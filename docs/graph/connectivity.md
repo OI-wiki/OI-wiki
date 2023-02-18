@@ -14,7 +14,9 @@ author: jifbt
 
 **Whitney 不等式**（1932）给出了点连通度 $\lambda$、边连通度 $\kappa$ 和最小度 $\delta$ 之间的关系：
 
-$\kappa \le \lambda \le \delta$
+$$
+\kappa \le \lambda \le \delta
+$$
 
 ???+ note "证明"
     直觉上，如果有一个大小为 $\lambda$ 的边割集，其中每一条边任选一个端点，就可以得到一个大小为 $\lambda$ 的点割集，所以第一个不等式成立。
