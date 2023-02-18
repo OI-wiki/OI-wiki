@@ -30,14 +30,11 @@ $$
 
 ### Menger 定理
 
-??? warning
-    原作者将以下推论称为「Ford–Fulkerson 定理」，原因未知。[维基百科](https://en.wikipedia.wikimirror.net/wiki/Menger%27s_theorem) 称之为「Menger's theorem」。
-
-由 [最大流最小割定理](./flow/min-cut.md) 可推出，两点间的最大不相交（指两两没有公共边）路径的最大数量等于最小割集的大小。这被称为 **Menger 定理**。
+由 [最大流最小割定理](./flow/min-cut.md)（又名 Ford–Fulkerson 定理）可推出，两点间的不相交（指两两没有公共边）路径的最大数量等于割集的最小大小（这个推论又叫 **Menger 定理**——译者注）。
 
 ## 计算
 
-以下如无特别说明，默认图的边权为 $1$。
+以下图的边权均为 $1$。
 
 ### 用最大流计算边连通度
 
