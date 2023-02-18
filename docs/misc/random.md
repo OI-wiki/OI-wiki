@@ -12,10 +12,10 @@
 
 随机数与伪随机数在实际生活和算法中的应用举例：
 
-- 抽样调查时往往只需使用伪随机数。这是因为我们本就只关心统计特征。
-- 网络安全中往往要用到（比刚刚提到的伪随机数）更强的随机数。这是因为攻击者可能会利用可预测性做文章。
-- OI/ICPC 中用到的随机算法，基本都只需要伪随机数。这是因为，这些算法往往是 通过引入随机数 来把概率引入复杂度分析，从而降低复杂度。这本质上依然只利用了随机数的统计特征。
-- 某些随机算法（例如 [Moser 算法](https://en.wikipedia.org/wiki/Algorithmic_Lov%C3%A1sz_local_lemma)）用到了随机数的熵相关的性质，因此必须使用真正的随机数。
+-   抽样调查时往往只需使用伪随机数。这是因为我们本就只关心统计特征。
+-   网络安全中往往要用到（比刚刚提到的伪随机数）更强的随机数。这是因为攻击者可能会利用可预测性做文章。
+-   OI/ICPC 中用到的随机算法，基本都只需要伪随机数。这是因为，这些算法往往是 通过引入随机数 来把概率引入复杂度分析，从而降低复杂度。这本质上依然只利用了随机数的统计特征。
+-   某些随机算法（例如 [Moser 算法](https://en.wikipedia.org/wiki/Algorithmic_Lov%C3%A1sz_local_lemma)）用到了随机数的熵相关的性质，因此必须使用真正的随机数。
 
 ## 实现
 
@@ -31,20 +31,20 @@
 
 有一个选择是使用当前系统时间来作为随机种子：`srand(time(0))`。
 
-!!! warning
+??? warning
     在 `Windows` 系统下 `rand()` 返回值的取值范围为 $\left[0,2^{15}\right)$（即 `RAND_MAX` 等于 $2^{15}-1$），当需要生成的数不小于 $2^{15}$ 时建议使用 `(rand() << 15 | rand())` 来生成更大的随机数。
 
 关于 `rand()` 和 `rand()%n` 的随机性：
 
-- C/C++ 标准并未关于 `rand()` 所生成随机数的任何方面的质量做任何规定。
-- GCC 编译器对 `rand()` 所采用的实现方式，保证了分布的均匀性等基本性质，但具有 低位周期长度短 等明显缺陷。（例如在笔者的机器上，`rand()%2` 所生成的序列的周期长约 $2\cdot 10^6$）
-- 即使假设 `rand()` 是均匀随机的，`rand()%n` 也不能保证均匀性，因为 `[0,n)` 中的每个数在 `0%n,1%n,...,RAND_MAX%n` 中的出现次数可能不相同。
+-   C/C++ 标准并未关于 `rand()` 所生成随机数的任何方面的质量做任何规定。
+-   GCC 编译器对 `rand()` 所采用的实现方式，保证了分布的均匀性等基本性质，但具有 低位周期长度短 等明显缺陷。（例如在笔者的机器上，`rand()%2` 所生成的序列的周期长约 $2\cdot 10^6$）
+-   即使假设 `rand()` 是均匀随机的，`rand()%n` 也不能保证均匀性，因为 `[0,n)` 中的每个数在 `0%n,1%n,...,RAND_MAX%n` 中的出现次数可能不相同。
 
 ### 预定义随机数生成器
 
 定义了数个特别的流行算法。如没有特别说明，均定义于头文件 `<random>`。
 
-!!! warning
+??? warning
     预定义随机数生成器仅在于 C++11 标准[^ref2]中开始使用。
 
 #### mt19937
@@ -100,11 +100,11 @@ $$
 
 关于 `random_shuffle` 的随机性：
 
-- C++ 标准中要求 `random_shuffle` 在所有可能的排列中 **等概率** 随机选取，但 GCC[^note1]编译器 **并未** 严格执行。
-- GCC 中 `random_shuffle` 随机性上的缺陷的原因之一，是因为它使用了 `rand()%n` 这样的写法。如先前所述，这样生成的不是均匀随机的整数。
-- 原因之二，是因为 `rand()` 的值域有限。如果所传入的区间长度超过 `RAND_MAX`，将存在某些排列 **不可能** 被产生[^ref1]。
+-   C++ 标准中要求 `random_shuffle` 在所有可能的排列中 **等概率** 随机选取，但 GCC[^note1]编译器 **并未** 严格执行。
+-   GCC 中 `random_shuffle` 随机性上的缺陷的原因之一，是因为它使用了 `rand()%n` 这样的写法。如先前所述，这样生成的不是均匀随机的整数。
+-   原因之二，是因为 `rand()` 的值域有限。如果所传入的区间长度超过 `RAND_MAX`，将存在某些排列 **不可能** 被产生[^ref1]。
 
-!!! warning
+??? warning
     `random_shuffle` 已于 C++14 标准中被弃用，于 C++17 标准中被移除。
 
 ### `shuffle`
@@ -235,28 +235,28 @@ int main() {
 
 类名请参照下表，本文仅以等概率整数作为示例，其余实现请替换类名。
 
-| 类名                              | 注释                  |
-| ------------------------------- | ------------------- |
-| uniform_int_distribution        | 产生在一个范围上均匀分布的整数值    |
-| uniform_real_distribution       | 产生在一个范围上均匀分布的实数值    |
-| bernoulli_distribution          | 产生伯努利分布上的布尔值。       |
-| binomial_distribution           | 产生二项分布上的整数值。        |
-| negative_binomial_distribution  | 产生负二项分布上的整数值。       |
-| geometric_distribution          | 产生几何分布上的整数值。        |
-| poisson_distribution            | 产生泊松分布上的整数值。        |
-| exponential_distribution        | 产生指数分布上的实数值。        |
-| gamma_distribution              | 产生 $\gamma$ 分布上的实数值 |
-| weibull_distribution            | 产生威布尔分布上的实数值。       |
-| extreme_value_distribution      | 产生极值分布上的实数值。        |
-| normal_distribution             | 产生标准正态（高斯）分布上的实数值。  |
-| lognormal_distribution          | 产生对数正态分布上的实数值。      |
-| chi_squared_distribution        | 产生 $x^2$ 分布上的实数值。   |
-| cauchy_distribution             | 产生柯西分布上的实数值。        |
-| fisher_f_distribution           | 产生费舍尔 F 分布上的实数值。    |
-| student_t_distribution          | 产生学生 t 分布上的实数值。     |
-| discrete_distribution           | 产生离散分布上的随机整数。       |
-| piecewise_constant_distribution | 产生分布在常子区间上的实数值。     |
-| piecewise_linear_distribution   | 产生分布在定义的子区间上的实数值。   |
+| 类名                                | 注释                  |
+| --------------------------------- | ------------------- |
+| uniform\_int\_distribution        | 产生在一个范围上均匀分布的整数值    |
+| uniform\_real\_distribution       | 产生在一个范围上均匀分布的实数值    |
+| bernoulli\_distribution           | 产生伯努利分布上的布尔值。       |
+| binomial\_distribution            | 产生二项分布上的整数值。        |
+| negative\_binomial\_distribution  | 产生负二项分布上的整数值。       |
+| geometric\_distribution           | 产生几何分布上的整数值。        |
+| poisson\_distribution             | 产生泊松分布上的整数值。        |
+| exponential\_distribution         | 产生指数分布上的实数值。        |
+| gamma\_distribution               | 产生 $\gamma$ 分布上的实数值 |
+| weibull\_distribution             | 产生威布尔分布上的实数值。       |
+| extreme\_value\_distribution      | 产生极值分布上的实数值。        |
+| normal\_distribution              | 产生标准正态（高斯）分布上的实数值。  |
+| lognormal\_distribution           | 产生对数正态分布上的实数值。      |
+| chi\_squared\_distribution        | 产生 $x^2$ 分布上的实数值。   |
+| cauchy\_distribution              | 产生柯西分布上的实数值。        |
+| fisher\_f\_distribution           | 产生费舍尔 F 分布上的实数值。    |
+| student\_t\_distribution          | 产生学生 t 分布上的实数值。     |
+| discrete\_distribution            | 产生离散分布上的随机整数。       |
+| piecewise\_constant\_distribution | 产生分布在常子区间上的实数值。     |
+| piecewise\_linear\_distribution   | 产生分布在定义的子区间上的实数值。   |
 
 #### 实现
 

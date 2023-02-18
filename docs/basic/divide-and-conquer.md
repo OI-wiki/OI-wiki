@@ -16,10 +16,10 @@ author: fudonglai, AngelKitty, labuladong
 
 以下是一些有助于理解递归的例子：
 
-1. [什么是递归？](./divide-and-conquer.md)
-2. 如何给一堆数字排序？答：分成两半，先排左半边再排右半边，最后合并就行了，至于怎么排左边和右边，请重新阅读这句话。
-3. 你今年几岁？答：去年的岁数加一岁，1999 年我出生。
-4. ![一个用于理解递归的例子](images/divide-and-conquer-1.png)
+1.  [什么是递归？](./divide-and-conquer.md)
+2.  如何给一堆数字排序？答：分成两半，先排左半边再排右半边，最后合并就行了，至于怎么排左边和右边，请重新阅读这句话。
+3.  你今年几岁？答：去年的岁数加一岁，1999 年我出生。
+4.  ![一个用于理解递归的例子](images/divide-and-conquer-1.png)
 
 递归在数学中非常常见。例如，集合论对自然数的正式定义是：1 是一个自然数，每个自然数都有一个后继，这一个后继也是自然数。
 
@@ -84,7 +84,7 @@ int func(传入数值) {
 
     显然，递归版本比非递归版本更易理解。递归版本的做法一目了然：把左半边排序，把右半边排序，最后合并两边。而非递归版本看起来不知所云，充斥着各种难以理解的边界计算细节，特别容易出 bug，且难以调试。
 
-2. 练习分析问题的结构。当发现问题可以被分解成相同结构的小问题时，递归写多了就能敏锐发现这个特点，进而高效解决问题。
+2.  练习分析问题的结构。当发现问题可以被分解成相同结构的小问题时，递归写多了就能敏锐发现这个特点，进而高效解决问题。
 
 ### 递归的缺点
 
@@ -107,7 +107,7 @@ int size_recursion(Node *head) {
 }
 ```
 
-![\[二者的对比，compiler 设为 Clang 10.0，优化设为 O1\](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.png "[二者的对比，compiler 设为 Clang 10.0，优化设为 O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)")
+![\[二者的对比，compiler 设为 Clang 10.0，优化设为 O1\](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.png "\[二者的对比，compiler 设为 Clang 10.0，优化设为 O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)")
 
 ### 递归的优化
 
@@ -127,17 +127,17 @@ int size_recursion(Node *head) {
 
 大概的流程可以分为三步：分解 -> 解决 -> 合并。
 
-1. 分解原问题为结构相同的子问题。
-2. 分解到某个容易求解的边界之后，进行递归求解。
-3. 将子问题的解合并成原问题的解。
+1.  分解原问题为结构相同的子问题。
+2.  分解到某个容易求解的边界之后，进行递归求解。
+3.  将子问题的解合并成原问题的解。
 
 分治法能解决的问题一般有如下特征：
 
-- 该问题的规模缩小到一定的程度就可以容易地解决。
-- 该问题可以分解为若干个规模较小的相同问题，即该问题具有最优子结构性质，利用该问题分解出的子问题的解可以合并为该问题的解。
-- 该问题所分解出的各个子问题是相互独立的，即子问题之间不包含公共的子问题。
+-   该问题的规模缩小到一定的程度就可以容易地解决。
+-   该问题可以分解为若干个规模较小的相同问题，即该问题具有最优子结构性质，利用该问题分解出的子问题的解可以合并为该问题的解。
+-   该问题所分解出的各个子问题是相互独立的，即子问题之间不包含公共的子问题。
 
-???+warning "注意"
+???+ warning "注意"
     如果各子问题是不独立的，则分治法要重复地解公共的子问题，也就做了许多不必要的工作。此时虽然也可用分治法，但一般用 [动态规划](../dp/basic.md) 较好。
 
 以归并排序为例。假设实现归并排序的函数名为 `merge_sort`。明确该函数的职责，即 **对传入的一个数组排序**。这个问题显然可以分解。给一个数组排序等于给该数组的左右两半分别排序，然后合并成一个数组。
@@ -194,14 +194,14 @@ void traverse(TreeNode* root) {
 
 ## 例题详解
 
-???+note "[437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)" 
+???+ note "[437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)"
     给定一个二叉树，它的每个结点都存放着一个整数值。
     
     找出路径和等于给定数值的路径总数。
     
     路径不需要从根节点开始，也不需要在叶子节点结束，但是路径方向必须是向下的（只能从父节点到子节点）。
     
-    二叉树不超过 1000 个节点，且节点数值范围是[-1000000,1000000]的整数。
+    二叉树不超过 1000 个节点，且节点数值范围是 \[-1000000,1000000] 的整数。
     
     示例：
     
@@ -290,8 +290,8 @@ void traverse(TreeNode* root) {
 
 ## 习题
 
-- [LeetCode 上的递归专题练习](https://leetcode.com/explore/learn/card/recursion-i/)
-- [LeetCode 上的分治算法专项练习](https://leetcode.com/tag/divide-and-conquer/)
+-   [LeetCode 上的递归专题练习](https://leetcode.com/explore/learn/card/recursion-i/)
+-   [LeetCode 上的分治算法专项练习](https://leetcode.com/tag/divide-and-conquer/)
 
 ## 参考资料与注释
 
