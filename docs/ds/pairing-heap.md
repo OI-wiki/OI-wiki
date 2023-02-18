@@ -38,7 +38,7 @@ struct Node {
 
 需要注意的是，一个节点的儿子链表是按插入时间排序的，即最右边的节点最早成为父节点的儿子，最左边的节点最近成为父节点的儿子。
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     Node* meld(Node* x, Node* y) {
       // 若有一个为空则直接返回另一个
@@ -66,8 +66,8 @@ struct Node {
 
 为了保证总的均摊复杂度，需要使用一个“两步走”的合并方法：
 
-1. 把儿子们两两配成一对，用 `meld` 操作把被配成同一对的两个儿子合并到一起（见下图 1)，
-2. 将新产生的堆 **从右往左**（即老的儿子到新的儿子的方向）挨个合并在一起（见下图 2）。
+1.  把儿子们两两配成一对，用 `meld` 操作把被配成同一对的两个儿子合并到一起（见下图 1)，
+2.  将新产生的堆 **从右往左**（即老的儿子到新的儿子的方向）挨个合并在一起（见下图 2）。
 
 ![](./images/pairingheap4.jpg)
 
@@ -75,7 +75,7 @@ struct Node {
 
 先实现一个辅助函数 `merges`，作用是合并一个节点的所有兄弟。
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     Node* merges(Node* x) {
       if (x == nullptr || x->sibling == nullptr)
@@ -89,15 +89,15 @@ struct Node {
 
 最后一句话是该函数的核心，这句话分三部分：
 
-1. `meld(x,y)`“配对”了 x 和 y。
-2. `merges(c)` 递归合并 c 和他的兄弟们。
-3. 将上面 2 个操作产生的 2 个新树合并。
+1.  `meld(x,y)`“配对”了 x 和 y。
+2.  `merges(c)` 递归合并 c 和他的兄弟们。
+3.  将上面 2 个操作产生的 2 个新树合并。
 
 需要注意到的是，上文提到了第二步时的合并方向是有要求的（从右往左合并），该递归函数的实现已保证了这个顺序，如果读者需要自行实现迭代版本的话请务必注意保证该顺序，否则复杂度将失去保证。
 
 有了 `merges` 函数，`delete-min` 操作就显然了。
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     Node* delete_min(Node* x) {
       Node* t = merges(x->child);
@@ -112,7 +112,7 @@ struct Node {
 
 首先节点的定义修改为：
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     struct Node {
       LL v;
@@ -124,7 +124,7 @@ struct Node {
 
 `meld` 操作修改为：
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     Node* meld(Node* x, Node* y) {
       if (x == nullptr) return y;
@@ -142,7 +142,7 @@ struct Node {
 
 `merges` 操作修改为：
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     Node *merges(Node *x) {
       if (x == nullptr) return nullptr;
@@ -159,7 +159,7 @@ struct Node {
 首先我们发现，当我们减少节点 `x` 的权值之后，以 `x` 为根的子树仍然满足配对堆性质，但 `x` 的父亲和 `x` 之间可能不再满足堆性质。  
 因此我们把整棵以 `x` 为根的子树剖出来，现在两棵树都符合配对堆性质了，然后把他们合并起来，就完成了全部操作。
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     // root为堆的根，x为要操作的节点，v为新的权值，调用时需保证 v <= x->v
     // 返回值为新的根节点
@@ -201,5 +201,5 @@ struct Node {
 
 [^ref4]: [Towards a Final Analysis of Pairing Heaps](http://web.eecs.umich.edu/~pettie/papers/focs05.pdf)
 
-- <https://en.wikipedia.org/wiki/Pairing_heap>
-- <https://brilliant.org/wiki/pairing-heap/>
+-   <https://en.wikipedia.org/wiki/Pairing_heap>
+-   <https://brilliant.org/wiki/pairing-heap/>

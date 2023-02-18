@@ -36,7 +36,7 @@ while (队列 q 不为空)
 
 ## Meet in the middle
 
-???+warning
+???+ warning
     本节要介绍的不是 [**二分搜索**](../basic/binary.md)（二分搜索的另外一个译名为「折半搜索」）。
 
 ### 引入
@@ -55,7 +55,7 @@ Meet in the middle 算法的主要思想是将整个搜索过程分成两半，�
 
 ### 例题
 
-???+note "例题 [「USACO09NOV」灯 Lights](https://www.luogu.com.cn/problem/P2962)"
+???+ note " 例题 [「USACO09NOV」灯 Lights](https://www.luogu.com.cn/problem/P2962)"
     有 $n$ 盏灯，每盏灯与若干盏灯相连，每盏灯上都有一个开关，如果按下一盏灯上的开关，这盏灯以及与之相连的所有灯的开关状态都会改变。一开始所有灯都是关着的，你需要将所有灯打开，求最小的按开关次数。
     
     $1\le n\le 35$。
@@ -70,5 +70,5 @@ Meet in the middle 算法的主要思想是将整个搜索过程分成两半，�
 
 ## 外部链接
 
-- [What is meet in the middle algorithm w.r.t. competitive programming? - Quora](https://www.quora.com/What-is-meet-in-the-middle-algorithm-w-r-t-competitive-programming)
-- [Meet in the Middle Algorithm - YouTube](https://www.youtube.com/watch?v=57SUNQL4JFA)
+-   [What is meet in the middle algorithm w.r.t. competitive programming? - Quora](https://www.quora.com/What-is-meet-in-the-middle-algorithm-w-r-t-competitive-programming)
+-   [Meet in the Middle Algorithm - YouTube](https://www.youtube.com/watch?v=57SUNQL4JFA)

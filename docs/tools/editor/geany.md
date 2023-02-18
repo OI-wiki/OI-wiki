@@ -12,16 +12,16 @@ Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者�
 
 ### 优点
 
-1. 轻量；
-2. 可以编译运行单个文件；
-3. 不需要太多配置；
-4. 跨平台。
+1.  轻量；
+2.  可以编译运行单个文件；
+3.  不需要太多配置；
+4.  跨平台。
 
 ### 缺点
 
-1. 没有太多人使用；
-2. 在 macOS Catalina 下有一些权限问题[^1]；
-3. 新建文件时，默认不会有语法高亮，需要手动切换文件类型。
+1.  没有太多人使用；
+2.  在 macOS Catalina 下有一些权限问题[^1]；
+3.  新建文件时，默认不会有语法高亮，需要手动切换文件类型。
 
 ## 安装
 
@@ -41,8 +41,8 @@ sudo apt install geany
 
 #### 方法二
 
-1. 从官网下载源码
-2. 终端下运行：
+1.  从官网下载源码
+2.  终端下运行：
 
 ```bash
 ./configure
@@ -68,8 +68,8 @@ sudo make install
 
 这里给出 macOS 和 Linux 下的默认模板配置文件目录：
 
-- 系统目录：`/usr/share/geany/templates/files/`
-- 用户目录：`~/.config/geany/templates/files/`[^2]
+-   系统目录：`/usr/share/geany/templates/files/`
+-   用户目录：`~/.config/geany/templates/files/`[^2]
 
 ## 常见问题
 

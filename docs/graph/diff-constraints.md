@@ -35,7 +35,7 @@ author: Ir1d, Anguei, hsfzLZH1
     --8<-- "docs/graph/code/diff-constraints/diff-constraints_1.cpp"
     ```
 
-### 例题 [P4926\[1007\]倍杀测量者](https://www.luogu.com.cn/problem/P4926)
+### 例题 [P4926\[1007\] 倍杀测量者](https://www.luogu.com.cn/problem/P4926)
 
 不考虑二分等其他的东西，这里只论述差分系统 $\frac{x_i}{x_j}\leq c_k$ 的求解方法。
 
@@ -45,7 +45,7 @@ author: Ir1d, Anguei, hsfzLZH1
 
 下面是用 Bellman-Ford 算法判断图中是否存在负环的代码实现，请在调用前先保证图是连通的。
 
-???+note "实现"
+???+ note "实现"
     === "C++"
     
         ```cpp

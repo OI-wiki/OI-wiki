@@ -1,6 +1,6 @@
-author: Ir1d, Marcythm, YanWQ-monad, x4Cx58x54, rui_er
+author: Ir1d, Marcythm, YanWQ-monad, x4Cx58x54, rui\_er
 
-???+ note "例题 [Luogu P4781【模板】拉格朗日插值](https://www.luogu.com.cn/problem/P4781)"
+???+ note " 例题 [Luogu P4781【模板】拉格朗日插值](https://www.luogu.com.cn/problem/P4781)"
     给出 $n$ 个点 $P_i(x_i,y_i)$，将过这 $n$ 个点的最多 $n-1$ 次的多项式记为 $f(x)$，求 $f(k)$ 的值。
 
 ### 方法 1：差分法
@@ -137,7 +137,7 @@ $$
 
 预处理 $(x-i)$ 前后缀积、阶乘阶乘逆，然后代入这个式子，复杂度为 $O(n)$。
 
-???+ note "例题 [CF622F The Sum of the k-th Powers](https://codeforces.com/contest/622/problem/F)"
+???+ note " 例题 [CF622F The Sum of the k-th Powers](https://codeforces.com/contest/622/problem/F)"
     给出 $n,k$，求 $\sum\limits_{i=1}^ni^k$ 对 $10^9+7$ 取模的值。
 
 本题中，答案是一个 $k+1$ 次多项式，因此我们可以线性筛出 $1^i,\cdots,(k+2)^i$ 的值然后进行 $O(n)$ 插值。

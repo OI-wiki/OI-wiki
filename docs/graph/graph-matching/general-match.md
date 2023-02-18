@@ -17,8 +17,8 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
 
 假设当前点是 $v$，相邻点为 $u$，可以分为以下两种情况：
 
-1. $u$ 未拜访过，当 $u$ 是未匹配点，则找到增广路径，否则从 $u$ 的配偶找增广路。
-2. $u$ 已拜访过，遇到标记 "o" 代表需要 **缩花**，否则代表遇到偶环，跳过。
+1.  $u$ 未拜访过，当 $u$ 是未匹配点，则找到增广路径，否则从 $u$ 的配偶找增广路。
+2.  $u$ 已拜访过，遇到标记 "o" 代表需要 **缩花**，否则代表遇到偶环，跳过。
 
 遇到偶环的情况，将他视为二分图解决，故可忽略。**缩花** 后，再新图中继续找增广路。
 
@@ -26,8 +26,8 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
 
 设原图为 $G$，**缩花** 后的图为 $G'$，我们只需要证明：
 
-1. 若 $G$ 存在增广路，$G'$ 也存在。
-2. 若 $G'$ 存在增广路，$G$ 也存在。
+1.  若 $G$ 存在增广路，$G'$ 也存在。
+2.  若 $G'$ 存在增广路，$G$ 也存在。
 
 ![general-matching-3](./images/general-matching-3.png)
 
@@ -227,9 +227,9 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
 ???+ tip "提示"
     在阅读以下内容前，你可能需要先阅读“线性代数”部分中关于矩阵的内容：
     
-    - [矩阵](../../math/linear-algebra/matrix.md)
-    - [行列式](../../math/linear-algebra/determinant.md)
-    - [高斯消元](../../math/linear-algebra/gauss.md)
+    -   [矩阵](../../math/linear-algebra/matrix.md)
+    -   [行列式](../../math/linear-algebra/determinant.md)
+    -   [高斯消元](../../math/linear-algebra/gauss.md)
 
 这一部分将介绍一种基于高斯消元的一般图匹配算法。与传统的带花树算法相比，它的优势在于更易于理解与编写，同时便于解决“最大匹配中的必须点”等问题；缺点在于常数比较大，因为高斯消元的 $O(n^3)$ 基本是跑满的，而带花树一般跑不满。
 
@@ -252,8 +252,8 @@ $$
     
     易证 $G$ 存在完美匹配当且仅当 $G$ 存在偶环覆盖。
     
-    - 如果 $G$ 存在偶环覆盖，我们只需要在每个环都隔一条取一条边，就可以得到一个完美匹配。
-    - 如果 $G$ 存在完美匹配，我们只需要将匹配边对应的二元环取出，就可以得到一个偶环覆盖。
+    -   如果 $G$ 存在偶环覆盖，我们只需要在每个环都隔一条取一条边，就可以得到一个完美匹配。
+    -   如果 $G$ 存在完美匹配，我们只需要将匹配边对应的二元环取出，就可以得到一个偶环覆盖。
     
     然后证明 $G$ 存在偶环覆盖当且仅当 $\tilde{A} \ne 0$。
     
@@ -271,8 +271,8 @@ $$
 
 ??? note "证明"
     反对称矩阵的秩只能是偶数；后者请读者自行思考。
-    
-在实际应用中不可能带着 $|E|$ 个变量进行计算，不过可以取一个数域，例如取某个素数 $p$ 的剩余系 $\mathcal{Z}_p$，将变量分别随机替换为 $\mathcal{Z}_p$ 中的数，再进行计算。方便起见，在无歧义的情况下，以下用 $\tilde{A}$ 直接指代替换后的矩阵。
+
+实际应用中不可能带着 $|E|$ 个变量进行计算，不过可以取一个数域，例如取某个素数 $p$ 的剩余系 $\mathcal{Z}_p$，将变量分别随机替换为 $\mathcal{Z}_p$ 中的数，再进行计算。方便起见，在无歧义的情况下，以下用 $\tilde{A}$ 直接指代替换后的矩阵。
 
 **定理**：$\operatorname{rank}\tilde{A}$ 至多为 $G$ 的最大匹配大小的两倍，并且二者相等的概率至少为 $1 - \frac n p$。
 
@@ -325,13 +325,13 @@ $$
     ```cpp
     void eliminate(int A[][MAXN], int r, int c) {  // 消去第 r 行第 c 列
       row_marked[r] = col_marked[c] = true;        // 已经被消掉
-      
+    
       int inv = quick_power(A[r][c], p - 2);  // 逆元
-      
+    
       for (int i = 1; i <= n; i++)
         if (!row_marked[i] && A[i][c]) {
           int tmp = (long long)A[i][c] * inv % p;
-          
+    
           for (int j = 1; j <= n; j++)
             if (!col_marked[j] && A[r][j])
               A[i][j] = (A[i][j] - (long long)tmp * A[r][j]) % p;
@@ -358,11 +358,11 @@ $$
 
 ## 习题
 
-- [UOJ #79. 一般图最大匹配](https://uoj.ac/problem/79)
-- [UOJ#171.【WC2016】挑战 NPC](https://uoj.ac/problem/171)
+-   [UOJ #79. 一般图最大匹配](https://uoj.ac/problem/79)
+-   [UOJ#171.【WC2016】挑战 NPC](https://uoj.ac/problem/171)
 
 ## 参考资料
 
-1. Mucha M, Sankowski P.[Maximum matchings via Gaussian elimination](http://web.eecs.umich.edu/~pettie/matching/Mucha-Sankowski-maximum-matching-matrix-multiplication.pdf)
-2. 周子鑫，杨家齐《基于线性代数的一般图匹配》
-3. ZYQN [《基于线性代数的一般图匹配算法》](https://oi.cyo.ng/wp-content/uploads/2017/02/maximum_matchings_via_gaussian_elimination.pdf)
+1.  Mucha M, Sankowski P.[Maximum matchings via Gaussian elimination](http://web.eecs.umich.edu/~pettie/matching/Mucha-Sankowski-maximum-matching-matrix-multiplication.pdf)
+2.  周子鑫，杨家齐《基于线性代数的一般图匹配》
+3.  ZYQN [《基于线性代数的一般图匹配算法》](https://oi.cyo.ng/wp-content/uploads/2017/02/maximum_matchings_via_gaussian_elimination.pdf)

@@ -71,19 +71,19 @@ players/
 
 然后开始测评文件夹的配置。
 
-左下角“显示应用程序”-“全部”-“Arbiter_local”，启动 Arbiter。
+左下角“显示应用程序”-“全部”-“Arbiter\_local”，启动 Arbiter。
 
-![Arbiter_Home](./images/arbiter_home.png)
+![Arbiter\_Home](./images/arbiter_home.png)
 
 点击 OPEN 可以打开已经建立的比赛，之后需选择对应比赛文件夹下的 `setup.cfg` 文件；点击 NEW 可以新建一个竞赛，并设置名称和比赛目录。注意，需要在用户 **主目录下** 新建一个文件夹，然后选择其为比赛目录，如果在桌面上建立比赛目录的话无法测评。出现这种问题很有可能是因为比赛文件夹路径中不能包含中文。
 
-![add_problem](./images/arbiter_addproblem.png)
+![add\_problem](./images/arbiter_addproblem.png)
 
 在左边试题概要里“右键”-“添加考试”，再在考试标签上“右键”-“添加试题”，新建出试题即可。
 
 单击考试左边的向下箭头即可全部显示，单击试题标签对试题名称进行修改，改为题目的英文名称，同时修改题目时间与空间限制和比较方式。比较方式十分不推荐用“全文完全直接比较”，对于 Windows 下制作的数据十分不友好。可以根据题目自主选择比较器，但是需要注意必须选择一个比较器，否则测评结果将是 `No Score.`。
 
-![problem_list](./images/arbiter_problem.png)
+![problem\_list](./images/arbiter_problem.png)
 
 点击“文件”-“保存”。该操作不可省略，否则程序将不会生成题目配置文件。注意每一次对题目配置的修改都要保存。
 
@@ -138,12 +138,12 @@ players/
 
 ### 注意事项
 
-- 据说很容易死机。
-- 据说大量测评时移动鼠标会导致死机。
-- 据说不定时闪退，和 Anjuta 一样，需要注意。
-- 据说配置时需要注意权限问题（但是我并未遇到）。
-- 由于 Linux 运行时栈限制，如果要开无限栈，应在终端先输入 `ulimit -s unlimited` 后执行 `arbiter_local` 打开测评器。
-- ……
+-   据说很容易死机。
+-   据说大量测评时移动鼠标会导致死机。
+-   据说不定时闪退，和 Anjuta 一样，需要注意。
+-   据说配置时需要注意权限问题（但是我并未遇到）。
+-   由于 Linux 运行时栈限制，如果要开无限栈，应在终端先输入 `ulimit -s unlimited` 后执行 `arbiter_local` 打开测评器。
+-   ……
 
 ### 漏洞
 

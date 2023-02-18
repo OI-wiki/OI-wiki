@@ -92,7 +92,7 @@ $$
 
 注意到 $A,B$ 均小于 $\left \lceil \sqrt p \right \rceil$，所以时间复杂度为 $\Theta\left  (\sqrt p\right )$，用 `map` 则多一个 $\log$。
 
-??? note "为什么要求 $a$ 与 $p$ 互质"
+??? note " 为什么要求 $a$ 与 $p$ 互质 "
     注意到我们求出的是 $A,B$，我们需要保证从 $a^{A\left \lceil \sqrt p \right \rceil} \equiv ba^B \pmod p$ 可以推回 $a^{A\left \lceil \sqrt p \right \rceil -B} \equiv b \pmod p$，后式是前式左右两边除以 $a^B$ 得到，所以必须有 $a^B \perp p$ 即 $a\perp p$。
 
 ## 进阶篇
@@ -269,12 +269,12 @@ $$
 
 ## 习题
 
-- [SPOJ MOD](https://www.spoj.com/problems/MOD/) 模板
-- [SDOI2013 随机数生成器](https://www.luogu.com.cn/problem/P3306)
-- [SGU261 Discrete Roots](https://codeforces.com/problemsets/acmsguru/problem/99999/261) 模板
-- [SDOI2011 计算器](https://loj.ac/problem/10214) 模板
-- [Luogu4195【模板】exBSGS/Spoj3105 Mod](https://www.luogu.com.cn/problem/P4195) 模板
-- [Codeforces - Lunar New Year and a Recursive Sequence](https://codeforces.com/contest/1106/problem/F)
+-   [SPOJ MOD](https://www.spoj.com/problems/MOD/) 模板
+-   [SDOI2013 随机数生成器](https://www.luogu.com.cn/problem/P3306)
+-   [SGU261 Discrete Roots](https://codeforces.com/problemsets/acmsguru/problem/99999/261) 模板
+-   [SDOI2011 计算器](https://loj.ac/problem/10214) 模板
+-   [Luogu4195【模板】exBSGS/Spoj3105 Mod](https://www.luogu.com.cn/problem/P4195) 模板
+-   [Codeforces - Lunar New Year and a Recursive Sequence](https://codeforces.com/contest/1106/problem/F)
 -   [LOJ6542 离散对数](https://loj.ac/problem/6542) index calculus 方法，非模板
 
     **本页面部分内容以及代码译自博文 [Дискретное извлечение корня](http://e-maxx.ru/algo/discrete_root) 与其英文翻译版 [Discrete Root](https://cp-algorithms.com/algebra/discrete-root.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
