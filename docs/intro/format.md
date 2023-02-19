@@ -98,7 +98,7 @@
 #### 标点符号的使用
 
 -   请在每句话的末尾添加 **句号**。
--   请正确使用 **全角** 标点符号与 **半角** 标点符号。汉语请使用全角符号，英语请使用半角符号。
+-   请正确使用 **全角** 标点符号与 **半角** 标点符号。汉语请使用全角符号，英语请使用半角符号。中英文混用时，请参考 [中文出版物夹用英文的编辑规范](https://www.nppa.gov.cn/nppa/contents/805/102791.shtml)。
 -   注意区分 **顿号** 与 **逗号** 的使用。
 -   注意 **括号** 的位置。句内括号与句外括号的位置不同。
 -   通常使用 **分号** 来表示列表环境中各复句之间的关系。
@@ -118,6 +118,7 @@
             4.  遍历所有与此元素相连的边，若到这个点存在更短的距离，则进行松弛操作；
             5.  若这个点未被访问过，则将这个点放入队列，且设置这个点为已经访问过；
             6.  回到第三步，直到队列为空。
+        -   脱氧核糖核酸（deoxyribonucleic acid, DNA）[^note2]
 
 #### Markdown 格式与主题扩展格式要求
 
@@ -484,10 +485,13 @@ $$
 -   [中文文案排版指北（简体中文版）](https://mazhuang.org/wiki/chinese-copywriting-guidelines/)
 -   [中文文案风格指南 - PDFE GUIDELINE](https://pdfe.github.io/GUIDELINE/#/others/copywriter)
 -   [一份（不太）简短的 LATEX2ε 介绍或 106 分钟了解 LATEX2ε](https://github.com/CTeX-org/lshort-zh-cn/releases)
+-   [中文出版物夹用英文的编辑规范](https://www.nppa.gov.cn/nppa/contents/805/102791.shtml)
 
 ## 参考资料与注释
 
 [^note1]: （冒号）表示总结上文。
+
+[^note2]: 科学技术名称的英文全称与其缩略形式间，应使用英文逗号。中文句子内夹用了用以注释、补充或说明的英文句子或语段，该英文句子或语段用中文圆括号标示。
 
 [^ref1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace)
 
