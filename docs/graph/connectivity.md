@@ -14,7 +14,9 @@ author: jifbt
 
 **Whitney 不等式**（1932）给出了点连通度 $\lambda$、边连通度 $\kappa$ 和最小度 $\delta$ 之间的关系：
 
-$\kappa \le \lambda \le \delta$
+$$
+\kappa \le \lambda \le \delta
+$$
 
 ???+ note "证明"
     直觉上，如果有一个大小为 $\lambda$ 的边割集，其中每一条边任选一个端点，就可以得到一个大小为 $\lambda$ 的点割集，所以第一个不等式成立。
@@ -28,14 +30,11 @@ $\kappa \le \lambda \le \delta$
 
 ### Menger 定理
 
-???+ warning
-    原作者将以下推论称为「Ford–Fulkerson 定理」，原因未知。[维基百科](https://en.wikipedia.wikimirror.net/wiki/Menger%27s_theorem) 称之为「Menger's theorem」。
-
-由 [最大流最小割定理](./flow/min-cut.md) 可推出，两点间的最大不相交（指两两没有公共边）路径的最大数量等于最小割集的大小。这被称为 **Menger 定理**。
+由 [最大流最小割定理](./flow/min-cut.md)（又名 Ford–Fulkerson 定理）可推出，两点间的不相交（指两两没有公共边）路径的最大数量等于割集的最小大小（这个推论又叫 **Menger 定理**——译者注）。
 
 ## 计算
 
-以下如无特别说明，默认图的边权为 $1$。
+以下图的边权均为 $1$。
 
 ### 用最大流计算边连通度
 
@@ -53,4 +52,4 @@ $\kappa \le \lambda \le \delta$
 
 ## 延伸阅读
 
--   [这篇论文](https://www.cse.msu.edu/~cse835/Papers/Graph_connectivity_revised.pdf) 介绍了近年来连通度计算算法的进展。感兴趣的读者可以自行浏览。
+-   论文 [*Connectivity Algorithms*](https://www.cse.msu.edu/~cse835/Papers/Graph_connectivity_revised.pdf) 介绍了近年来连通度计算算法的进展。感兴趣的读者可以自行浏览。
