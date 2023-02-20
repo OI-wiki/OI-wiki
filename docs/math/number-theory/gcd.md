@@ -21,7 +21,7 @@
 
 我们通过证明可以得到 $\gcd(a,b)=\gcd(b,a \bmod b)$，过程如下：
 
-???+note "证明"
+???+ note "证明"
     设 $a=bk+c$，显然有 $c=a \bmod b$。设 $d \mid a,~d \mid b$，则 $c=a-bk, \frac{c}{d}=\frac{a}{d}-\frac{b}{d}k$。
     
     由右边的式子可知 $\frac{c}{d}$ 为整数，即 $d \mid c$，所以对于 $a,b$ 的公约数，它也会是 $b,a \bmod b$ 的公约数。
@@ -126,11 +126,11 @@
 
 欧几里得算法的时间效率如何呢？下面我们证明，欧几里得算法的时间复杂度为 $O(\log n)$。
 
-???+note "证明"
+???+ note "证明"
     当我们求 $\gcd(a,b)$ 的时候，会遇到两种情况：
     
-    - $a < b$，这时候 $\gcd(a,b)=\gcd(b,a)$；
-    - $a \geq b$，这时候 $\gcd(a,b)=\gcd(b,a \bmod b)$，而对 $a$ 取模会让 $a$ 至少折半。这意味着这一过程最多发生 $O(\log n)$ 次。
+    -   $a < b$，这时候 $\gcd(a,b)=\gcd(b,a)$；
+    -   $a \geq b$，这时候 $\gcd(a,b)=\gcd(b,a \bmod b)$，而对 $a$ 取模会让 $a$ 至少折半。这意味着这一过程最多发生 $O(\log n)$ 次。
     
     第一种情况发生后一定会发生第二种情况，因此第一种情况的发生次数一定 **不多于** 第二种情况的发生次数。
     
@@ -140,7 +140,7 @@
 
 ### 更相减损术
 
-大整数取模的时间复杂度较高，而加减法时间复杂度较低。针对大整数，我们可以用更相减损术求出最大公约数。
+大整数取模的时间复杂度较高，而加减法时间复杂度较低。针对大整数，我们可以用加减代替乘除求出最大公约数。
 
 #### 过程
 
@@ -151,7 +151,7 @@
 
 因此，$a$ 和 $b$ 的 **所有** 公因数都是 $a-b$ 和 $b$ 的公因数，$\gcd(a,b) = \gcd(a-b, b)$。
 
-#### 优化
+#### Stein 算法的优化
 
 如果 $a\gg b$，更相减损术的 $O(n)$ 复杂度将会达到最坏情况。
 
@@ -159,9 +159,9 @@
 
 否则，若 $2\mid a$（$2\mid b$ 同理），因为 $2\mid b$ 的情况已经讨论过了，所以 $2 \nmid b$。因此 $\gcd(a,b)=\gcd\left(\dfrac a2,b\right)$。
 
-优化后的算法时间复杂度是 $O(\log n)$。
+优化后的算法（即 Stein 算法）时间复杂度是 $O(\log n)$。
 
-???+note "证明"
+???+ note "证明"
     若 $2\mid a$ 或 $2\mid b$，每次递归至少会将 $a,b$ 之一减半。
     
     否则，$2\mid a-b$，回到了上一种情况。
@@ -459,6 +459,6 @@ int exgcd(int a, int b, int &x, int &y) {
 
 ## 应用
 
-- [10104 - Euclid Problem](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1045)
-- [GYM - (J) once upon a time](http://codeforces.com/gym/100963)
-- [UVA - 12775 - Gift Dilemma](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4628)
+-   [10104 - Euclid Problem](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1045)
+-   [GYM - (J) once upon a time](http://codeforces.com/gym/100963)
+-   [UVA - 12775 - Gift Dilemma](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4628)

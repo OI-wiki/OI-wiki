@@ -171,7 +171,7 @@ void after(int x) {
 
 基本块 (Basic Block)，是控制流的基本结构，一个过程 (Procedure) 由若干个基本块组成，形成一个有向图。生成可执行文件的过程中，编译器需要安排一个放置基本块的布局 (Layout)，而如何编排布局，是此优化的重点。
 
-原则上，应该更偏好与将热代码放在一起，而将冷代码隔开。
+原则上，应该更偏好与将热代码放在一起，而将冷代码隔开。原因是这样能够更好地利用指令缓存，热代码的局部性会更好。
 
 ```cpp
 // clang-format off
@@ -186,7 +186,7 @@ int hotpath_again;  // <-- 热！
 
 我们用 label 来表达一种“伪机器码”，这个 C++ 程序有两种翻译方法：
 
-???+note "布局1"
+???+ note "布局 1"
     ```c++
     // clang-format off
     hotblock1:
@@ -207,7 +207,7 @@ int hotpath_again;  // <-- 热！
 
 另一种布局为：
 
-???+note "布局2"
+???+ note "布局 2"
     ```c++
     // clang-format off
     hotblock1:
@@ -243,7 +243,7 @@ if (unlikely(/* 一些边界条件检查 */ false)) {
 
 一个过程 (Procedure) 包含同时包含冷热路径，而冷代码较长，更好的做法是让冷代码作为函数调用，而不是阻断热路径。这同时也提示我们不要自作聪明的让所有函数 `inline`。冷代码对执行速度的阻碍比函数调用要多得多。
 
-???+note "不好的代码布局"
+???+ note "不好的代码布局"
     ```c++
     // clang-format off
     void foo() {
@@ -265,7 +265,7 @@ if (unlikely(/* 一些边界条件检查 */ false)) {
     }
     ```
 
-???+note "好的代码布局"
+???+ note "好的代码布局"
     ```c++
     // clang-format off
     void foo() {
@@ -369,12 +369,12 @@ int fac(int acc, int n) {
 
 既然函数已经尾递归，那就可以直接删除递归语句，通过一定的静态分析，将函数直接转换为非递归的形式。我们此处并不去深究编译器作者如何做到这一点，从实际体验来看，绝大多数 OI 代码，如果存在递归版本和非递归版本，则此代码一般可自动优化为非递归版本。这里给读者一些具体的例子：
 
-???+note "[GCD](https://godbolt.org/z/8Wb6WEnzv)"
+???+ note "[GCD](https://godbolt.org/z/8Wb6WEnzv)"
     ```cpp
     int gcd(int a, int b) { return b ? gcd(b, a % b) : a; }
     ```
 
-???+note "[斐波那契数列](https://godbolt.org/z/4enof6Wcb)"
+???+ note "[斐波那契数列](https://godbolt.org/z/4enof6Wcb)"
     ```cpp
     // 展开 fib(n - 2) 这一项
     // fib(n - 1) 不能变换为非递归，优化后的代码依然是指数级别的
@@ -384,7 +384,7 @@ int fac(int acc, int n) {
     }
     ```
 
-???+note "[阶乘](https://godbolt.org/z/n64e75xrf)"
+???+ note "[阶乘](https://godbolt.org/z/n64e75xrf)"
     ```cpp
     // 展开成标量循环，然后执行自动向量化，生成的代码是 SIMD 的
     unsigned fac(unsigned n) {
@@ -432,8 +432,8 @@ mid >>= 1; /* 算术右移 */
 
 可行的解决方案：
 
-- 用 `unsigned l, r;`，下标本来就应该是无符号的
-- 在源代码中使用移位
+-   用 `unsigned l, r;`，下标本来就应该是无符号的
+-   在源代码中使用移位
 
 ##### 乘法代替除法
 
@@ -441,7 +441,7 @@ mid >>= 1; /* 算术右移 */
 int x = a / 3;
 ```
 
-此过程可以被变换为 `x = a * 0x55555556 >> 32`，感兴趣可以自行搜索类似变换的证明。
+此过程可以被变换为 `x = a * 0x55555556 >> 32`，具体可以看 [这篇知乎回答](https://zhuanlan.zhihu.com/p/151038723) 或者 [原始论文](https://dl.acm.org/doi/10.1145/773473.178249)。
 
 #### 索引变量强度削减 (IndVars)
 
@@ -538,12 +538,12 @@ void test(int* __restrict a, int* __restrict b, int n) {
 
 GCC 和 Clang 都支持这个 Sanitizer。包括如下检查项：
 
-- 越界
-- 释放后使用 (use-after-free)
-- 返回后使用 (use-after-return)
-- 重复释放 (double-free)
-- 内存泄漏 (memory-leaks)
-- 离开作用域后使用  (use-after-scope)
+-   越界
+-   释放后使用 (use-after-free)
+-   返回后使用 (use-after-return)
+-   重复释放 (double-free)
+-   内存泄漏 (memory-leaks)
+-   离开作用域后使用  (use-after-scope)
 
 应用这项检查会让你的程序慢 2x 左右。
 
@@ -553,9 +553,9 @@ GCC 和 Clang 都支持这个 Sanitizer。包括如下检查项：
 
 Undefined Behavior Sanitizer (a.k.a UBSan) 用于检查代码中的未定义行为。GCC 和 Clang 都支持这个 Sanitizer。自动检查你的程序有无未定义行为。UBSan 的检查项目包括：
 
-- 位运算溢出，例如 32 位整数左移 72 位
-- 有符号整数溢出
-- 浮点数转换到整数数据溢出
+-   位运算溢出，例如 32 位整数左移 72 位
+-   有符号整数溢出
+-   浮点数转换到整数数据溢出
 
 UBSan 的检查项可选，对程序的影响参考提供的网页地址。
 

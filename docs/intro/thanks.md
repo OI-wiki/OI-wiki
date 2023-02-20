@@ -11,7 +11,7 @@ disqus:
 <img src="/intro/images/wechat.png" style="width: 256px; " />
 </div>
 
-* * *
+***
 
 |       id      |  amount |    date    |
 | :-----------: | :-----: | :--------: |

@@ -19,9 +19,9 @@ author: accelsao, StudyingFather, t4rf9
 
 一个点如果属于 $M$ 且为至多一条边的端点，称为 **匹配点**，反之称为 **未匹配点**。
 
-- maximal matching: 无法再增加匹配边的匹配。不见得是最大匹配。
-- 最大匹配（maximum matching): 匹配数最多的匹配。
-- 完美匹配（perfect matching): 所有点都属于匹配，同时也符合最大匹配。
+-   maximal matching: 无法再增加匹配边的匹配。不见得是最大匹配。
+-   最大匹配（maximum matching): 匹配数最多的匹配。
+-   完美匹配（perfect matching): 所有点都属于匹配，同时也符合最大匹配。
 -   近完美匹配（near-perfect matching): 发生在图的点数为奇数，刚好只有一个点不在匹配中，扣掉此点以后的图称为 factor-critical graph。
 
     **maximal matching** ![graph-match-1](./images/graph-match-1.png) **最大匹配** ![graph-match-2](./images/graph-match-2.png)
@@ -78,11 +78,11 @@ author: accelsao, StudyingFather, t4rf9
 
 ## 参考资料
 
-- [1][Wikiwand - Matching (graph theory)](<https://www.wikiwand.com/en/Matching_(graph_theory)>)
-- [2][Wikiwand - Blossom algorithm](<https://www.wikiwand.com/en/Blossom_algorithm>)
-- [3]2015 年《浅谈图的匹配算法及其应用》- 陈胤伯
-- [4][演算法笔记 - Matching](<http://web.ntnu.edu.tw/~algo/Matching.html>)
-- [5][the-tourist/algo](<https://github.com/the-tourist/algo>)
-- [6][Bill Yang's Blog - 带花树学习笔记](<https://blog.bill.moe/blossom-algorithm-notes/>)
-- [7][二分图的最大匹配、完美匹配和匈牙利算法](<https://www.renfei.org/blog/bipartite-matching.html>)
-- [8][Wikiwand - Hopcroft–Karp algorithm](<https://www.wikiwand.com/en/Hopcroft%E2%80%93Karp_algorithm>)
+-   \[1][Wikiwand - Matching (graph theory)](https://www.wikiwand.com/en/Matching_\(graph_theory\))
+-   \[2][Wikiwand - Blossom algorithm](https://www.wikiwand.com/en/Blossom_algorithm)
+-   \[3]2015 年《浅谈图的匹配算法及其应用》- 陈胤伯
+-   \[4][演算法笔记 - Matching](http://web.ntnu.edu.tw/~algo/Matching.html)
+-   \[5][the-tourist/algo](https://github.com/the-tourist/algo)
+-   \[6][Bill Yang's Blog - 带花树学习笔记](https://blog.bill.moe/blossom-algorithm-notes/)
+-   \[7][二分图的最大匹配、完美匹配和匈牙利算法](https://www.renfei.org/blog/bipartite-matching.html)
+-   \[8][Wikiwand - Hopcroft–Karp algorithm](https://www.wikiwand.com/en/Hopcroft%E2%80%93Karp_algorithm)

@@ -7,7 +7,7 @@ author: Link-cute, Xeonacid, ouuan, Alphnia, Lyccrius
 ???+ warning "注意"
     在 [NOI 大纲](https://www.noi.cn/xw/2021-04-02/724387.shtml) 中，单调队列被称为“有序队列”。
 
-???+note "例题"
+???+ note "例题"
     [Sliding Window](http://poj.org/problem?id=2823)
     
     本题大意是给出一个长度为 $n$ 的数组，编程输出每 $k$ 个连续的数中的最大值和最小值。
@@ -74,7 +74,7 @@ Ps. 单调队列中的 "队列" 与正常的队列有一定的区别，稍后会
 
 Ps. 此处的 "队列" 跟普通队列的一大不同就在于可以从队尾进行操作，STL 中有类似的数据结构 deque。
 
-???+ note "例题 2 [Luogu P2698 Flowerpot S ](https://www.luogu.com.cn/problem/P2698)"
+???+ note " 例题 2 [Luogu P2698 Flowerpot S](https://www.luogu.com.cn/problem/P2698)"
     给出 $N$ 滴水的坐标，$y$ 表示水滴的高度，$x$ 表示它下落到 $x$ 轴的位置。每滴水以每秒 1 个单位长度的速度下落。你需要把花盆放在 $x$ 轴上的某个位置，使得从被花盆接着的第 1 滴水开始，到被花盆接着的最后 1 滴水结束，之间的时间差至少为 $D$。
     我们认为，只要水滴落到 $x$ 轴上，与花盆的边沿对齐，就认为被接住。给出 $N$ 滴水的坐标和 $D$ 的大小，请算出最小的花盆的宽度 $W$。$1\leq N \leq 100000 , 1 \leq D \leq 1000000, 0 \leq x,y\leq 10^6$
 

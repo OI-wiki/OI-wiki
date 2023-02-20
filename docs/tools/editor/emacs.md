@@ -44,9 +44,9 @@ Emacs 是一款非常容易上手的编辑器，只需要简短的几行配置�
 
 几个快捷键：
 
-- 删除分屏 "C-x 0"：将这个分屏删去
-- 横向分屏 "C-x 3"：将这个分屏横向分成两半
-- 纵向分屏 "C-x 2"：将这个分屏纵向分成两半
+-   删除分屏 "C-x 0"：将这个分屏删去
+-   横向分屏 "C-x 3"：将这个分屏横向分成两半
+-   纵向分屏 "C-x 2"：将这个分屏纵向分成两半
 
 推荐的窗口布局为将窗口分为四块：先横向分，调整一块的宽度约为 3/4 屏，作为编辑窗口。将另一块横向分，一块作为调试和编译信息显示的窗口，另一块再纵向分，一块打开输入文件，一块打开输出文件。
 
@@ -68,16 +68,16 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
 
 一般有以下三种：
 
-- `F?`、`ESC`：直接按下对应的功能键。
-- `M-?`、`C-?`、`C-M-?`：按下<kbd>Alt</kbd>或者<kbd>Ctrl</kbd>的同时按下 `?`。
-- `? ?`：先按下第一个 `?` 代表的键，松开再按下第二个 `?` 代表的键。
+-   `F?`、`ESC`：直接按下对应的功能键。
+-   `M-?`、`C-?`、`C-M-?`：按下<kbd>Alt</kbd>或者<kbd>Ctrl</kbd>的同时按下 `?`。
+-   `? ?`：先按下第一个 `?` 代表的键，松开再按下第二个 `?` 代表的键。
 
 下面是一些常用的快捷键：
 
-- `C-x h`：全选
-- `C-x left`、`C-x right`：切换到上/下一个缓冲
-- `C-x d`：打开一个目录
-- `C-x C-f`：打开一个文件（如果不存在文件则新建文件）
+-   `C-x h`：全选
+-   `C-x left`、`C-x right`：切换到上/下一个缓冲
+-   `C-x d`：打开一个目录
+-   `C-x C-f`：打开一个文件（如果不存在文件则新建文件）
 
 ## 个性化
 
@@ -87,12 +87,12 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
 
 ### 直接设置
 
-- Options：`Highlight Matching Parentheses` 高亮匹配括号
-- Options：`Blink Cursor` 设置光标闪烁
-- Options Show/Hide：`Tool Bar` 显示/不显示工具栏（默认显示，建议不显示）
-- Options：`Use CUA Keys` 勾选后可以使用 Ctrl + C,Ctrl + V 等快捷键进行复制粘贴
-- Options Customize-Emacs：`Custom Theme` 选择配色方案，选择完后需要点击保存
-- Options：`Save Options`  **保存配置**
+-   Options：`Highlight Matching Parentheses` 高亮匹配括号
+-   Options：`Blink Cursor` 设置光标闪烁
+-   Options Show/Hide：`Tool Bar` 显示/不显示工具栏（默认显示，建议不显示）
+-   Options：`Use CUA Keys` 勾选后可以使用 Ctrl + C,Ctrl + V 等快捷键进行复制粘贴
+-   Options Customize-Emacs：`Custom Theme` 选择配色方案，选择完后需要点击保存
+-   Options：`Save Options`  **保存配置**
 
 ### 配置
 

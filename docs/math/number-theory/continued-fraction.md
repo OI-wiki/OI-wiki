@@ -155,9 +155,9 @@ $$
 
 如果要求 $(0,1)$ 区间内某个数的简单连分数表示（第 $0$ 项为 $0$），只需：
 
-- 取倒数，得到的余项大于 $1$。
-- 取整得到整数部分为部分商，小数部分在 $0$ 到 $1$ 之间。
-- 对小数部分重复上述操作。
+-   取倒数，得到的余项大于 $1$。
+-   取整得到整数部分为部分商，小数部分在 $0$ 到 $1$ 之间。
+-   对小数部分重复上述操作。
 
 这样就得到了相应的表示。
 
@@ -254,7 +254,7 @@ $$
 
 只是形式上成立。第 $-1$ 项渐进分数是 1/0，没有实际意义。
 
-???+note "证明"
+???+ note "证明"
     可以注意到，$p_k$ 与 $q_k$ 对于 $a_k$ 和 $b_k$ 都是线性函数。这是因为，$a_k$ 和 $b_k$ 都只出现了一次，无论如何通分也不会有另一个 $a_k$ 或 $b_k$ 乘上去。于是通过待定系数，即可解得这个递推关系。
 
 ### 反序定理
@@ -275,7 +275,7 @@ $$
 \frac{p_k}{p_{k-1}}=[a_k,a_{k-1},\ldots,a_2]
 $$
 
-???+note "证明"
+???+ note "证明"
     对递推关系稍加改造，有：
     
     $$
@@ -306,7 +306,7 @@ $$
 \frac{p_{k+1}}{q_{k+1}}-\frac{p_k}{q_k}=\frac{(-1)^k}{q_{k+1}q_k}
 $$
 
-???+note "注"
+???+ note "注"
     可以观察到，式 $p_{k+1}q_k-q_{k+1}p_k$ 特别像一个行列式，完全可以按“行列式”理解。
     
     渐进分数的递推关系很像行列式的列变换。行列式一列加到另一列上不改变它的值，两列交换则反号。
@@ -331,7 +331,7 @@ $$
 
 对于大于 1 的实数 x，x 的渐进分数的倒数恰好是 $\frac{1}{x}$ 的渐进分数。显然，该定理也应该对于 0 到 1 之间的实数 x 成立。
 
-???+note "证明"
+???+ note "证明"
     $$
     x=[a_0,a_1,a_2,\ldots]
     $$
@@ -1046,13 +1046,13 @@ $$
 
 ## 习题
 
-- [UVa OJ - Continued Fractions](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=775)
-- [ProjectEuler+ #64: Odd period square roots](https://www.hackerrank.com/contests/projecteuler/challenges/euler064/problem)
-- [Codeforces Round #184 (Div. 2) - Continued Fractions](https://codeforces.com/contest/305/problem/B)
-- [Codeforces Round #201 (Div. 1) - Doodle Jump](https://codeforces.com/contest/346/problem/E)
-- [Codeforces Round #325 (Div. 1) - Alice, Bob, Oranges and Apples](https://codeforces.com/contest/585/problem/C)
-- [POJ Founder Monthly Contest 2008.03.16 - A Modular Arithmetic Challenge](http://poj.org/problem?id=3530)
-- [2019 Multi-University Training Contest 5 - fraction](http://acm.hdu.edu.cn/showproblem.php?pid=6624)
-- [SnackDown 2019 Elimination Round - Election Bait](https://www.codechef.com/SNCKEL19/problems/EBAIT)
+-   [UVa OJ - Continued Fractions](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=775)
+-   [ProjectEuler+ #64: Odd period square roots](https://www.hackerrank.com/contests/projecteuler/challenges/euler064/problem)
+-   [Codeforces Round #184 (Div. 2) - Continued Fractions](https://codeforces.com/contest/305/problem/B)
+-   [Codeforces Round #201 (Div. 1) - Doodle Jump](https://codeforces.com/contest/346/problem/E)
+-   [Codeforces Round #325 (Div. 1) - Alice, Bob, Oranges and Apples](https://codeforces.com/contest/585/problem/C)
+-   [POJ Founder Monthly Contest 2008.03.16 - A Modular Arithmetic Challenge](http://poj.org/problem?id=3530)
+-   [2019 Multi-University Training Contest 5 - fraction](http://acm.hdu.edu.cn/showproblem.php?pid=6624)
+-   [SnackDown 2019 Elimination Round - Election Bait](https://www.codechef.com/SNCKEL19/problems/EBAIT)
 
 **本页面主要译自博文 [Continued fractions](https://cp-algorithms.com/algebra/continued-fractions.html)，版权协议为 CC-BY-SA 4.0。**
