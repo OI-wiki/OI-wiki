@@ -87,7 +87,7 @@ Q：我尝试访问 GitHub 的时候遇到了困难
 
 A：可以采用以下几种方案：
 
-- 你可以使用 [`FastGithub`](https://github.com/dotnetcore/FastGithub)（支持 Windows/macOS/Linux）进行本地代理。前往 [GitHub Release](https://github.com/dotnetcore/FastGithub/releases) 下载软件后，按照 [其文档](https://github.com/dotnetcore/FastGithub#2-%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F) 进行部署即可使用。
+- 你可以使用 [`FastGithub`](https://github.com/dotnetcore/FastGithub)（支持 Windows/macOS/Linux）进行本地代理。前往 [GitHub Release](https://github.com/dotnetcore/FastGithub/releases) 下载软件后，按照 [FastGitHub 的文档](https://github.com/dotnetcore/FastGithub#2-%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F) 进行部署即可使用。
 
 - 您可以在 hosts 文件中加入 [GitHub520 项目提供的 hosts 文件](https://raw.hellogithub.com/hosts) 的内容，或者前往 [该项目主页](https://github.com/521xueweihan/GitHub520) 查看更多设置方法。
 
