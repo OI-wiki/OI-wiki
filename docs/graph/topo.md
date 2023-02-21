@@ -26,7 +26,7 @@
 
 首先看来自 [Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm) 的伪代码
 
-???+note "实现"
+???+ note "实现"
     ```text
     L ← Empty list that will contain the sorted elements
     S ← Set of all nodes with no incoming edges
@@ -192,6 +192,6 @@ bool toposort() {
 
 ## 参考
 
-1. 离散数学及其应用。ISBN:9787111555391
-2. <https://blog.csdn.net/dm_vincent/article/details/7714519>
-3. Topological sorting,<https://en.wikipedia.org/w/index.php?title=Topological_sorting&oldid=854351542>
+1.  离散数学及其应用。ISBN:9787111555391
+2.  <https://blog.csdn.net/dm_vincent/article/details/7714519>
+3.  Topological sorting,<https://en.wikipedia.org/w/index.php?title=Topological_sorting&oldid=854351542>

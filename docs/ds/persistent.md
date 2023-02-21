@@ -38,5 +38,5 @@ author: morris821028
 
 ## 参考
 
-- <https://en.wikipedia.org/wiki/Persistent_data_structure>
-- MIT 课程 <https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-854j-advanced-algorithms-fall-2005/lecture-notes/persistent.pdf>
+-   <https://en.wikipedia.org/wiki/Persistent_data_structure>
+-   MIT 课程 <https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-854j-advanced-algorithms-fall-2005/lecture-notes/persistent.pdf>

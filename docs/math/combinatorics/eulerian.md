@@ -93,7 +93,7 @@ $$
 
 ## 习题
 
-- [CF1349F1 Slime and Sequences (Easy Version)](https://codeforces.com/problemset/problem/1349/F1)
-- [CF1349F2 Slime and Sequences (Hard Version)](https://codeforces.com/problemset/problem/1349/F2)
-- [UOJ 593. 新年的军队](https://uoj.ac/problem/593)
-- [P7511 三到六](https://www.luogu.com.cn/problem/P7511)
+-   [CF1349F1 Slime and Sequences (Easy Version)](https://codeforces.com/problemset/problem/1349/F1)
+-   [CF1349F2 Slime and Sequences (Hard Version)](https://codeforces.com/problemset/problem/1349/F2)
+-   [UOJ 593. 新年的军队](https://uoj.ac/problem/593)
+-   [P7511 三到六](https://www.luogu.com.cn/problem/P7511)

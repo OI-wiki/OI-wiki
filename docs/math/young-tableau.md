@@ -11,7 +11,7 @@
 
 ### 杨图
 
-**杨图**（Young diagram，使用点表示时又称 [Ferrers 图](https://en.wikipedia.org/wiki/Partition_(number_theory)#Ferrers_diagram)，在 [分拆数](./combinatorics/partition.md#ferrers-%E5%9B%BE) 一节中有相关介绍）是一个有限的框或单元格集合，左对齐排列，行长按非递增顺序排列。如果把杨图每行的方格数列出，我们得到了一个非负整数 $n$（总方格数）的 **整数分拆**(integer partition)$\lambda$。因此，我们可以将杨图的形状看作 $\lambda$，因为它携带与其整数拆分相同的信息。
+**杨图**（Young diagram，使用点表示时又称 [Ferrers 图](https://en.wikipedia.org/wiki/Partition_\(number_theory\)#Ferrers_diagram)，在 [分拆数](./combinatorics/partition.md#ferrers-%E5%9B%BE) 一节中有相关介绍）是一个有限的框或单元格集合，左对齐排列，行长按非递增顺序排列。如果把杨图每行的方格数列出，我们得到了一个非负整数 $n$（总方格数）的 **整数分拆**(integer partition)$\lambda$。因此，我们可以将杨图的形状看作 $\lambda$，因为它携带与其整数拆分相同的信息。
 
 杨图之间的包含关系定义了整数分拆上的一个偏序关系，此关系拥有格的结构，被称为 **杨格**(Young's lattice)。如果把杨图各列的方格数列出，则会得到整数分拆 $\lambda$ 的「共轭分拆」，或「转置分拆」，它所对应到的杨图可由原本的杨图沿主对角线作镜射对称而得。
 
@@ -19,8 +19,8 @@
 
 以下表格中分别为整数分拆 $(5,4,1)$ 对应的杨图不同画法：
 
-- 英式画法：![](./images/young-diagram-1.png)
-- 法式画法：![](./images/young-diagram-2.png)
+-   英式画法：![](./images/young-diagram-1.png)
+-   法式画法：![](./images/young-diagram-2.png)
 
 ### 杨表
 
@@ -28,7 +28,7 @@
 
 **杨表**(Young tableau）是通过用取自某个字母表的符号填充杨氏图的框来获得的，这通常需要是一个全序集和。填入的元素写作 $x_{1}$,$x_{2}$,$x_{3}$,$\ldots$。但为了方便起见，都直接填入正整数。
 
-杨表最初应用于对称群的表示理论时，允许在杨图的 $n$ 的方格中任意填入 $1$ 到 $n$ 中相异的正整数。但现在的研究大多使用「标准」的杨表，即上述条件中各行与各列中方格的数字皆为严格递增的。由 $n$ 个方格的相异杨表数个数形成 [对和数](https://en.wikipedia.org/wiki/Telephone_number_(mathematics))：
+杨表最初应用于对称群的表示理论时，允许在杨图的 $n$ 的方格中任意填入 $1$ 到 $n$ 中相异的正整数。但现在的研究大多使用「标准」的杨表，即上述条件中各行与各列中方格的数字皆为严格递增的。由 $n$ 个方格的相异杨表数个数形成 [对和数](https://en.wikipedia.org/wiki/Telephone_number_\(mathematics\))：
 
 ???+ note "注释"
     **对和数**(involution number/telephone number）是在数学中是一个整数序列，用来计算 $n$ 条电话线中每条线路最多可以连接到另一条线路时可以相互连接的方法个数。它还可以用来描述完全图 $n$ 个顶点上的匹配数，$n$ 个对合元素的排列数，Hermite 多项式系数的绝对值之和，含有 $n$ 个格子的标准杨表的个数，以及不可约对称群的度数之和。
@@ -43,9 +43,9 @@ $1, 1, 2, 4, 10, 26, 76, 232, 764, 2620, 9496, \ldots$（[OEIS](https://en.wikip
 
 令 $S$ 是一个杨表，定义 $S \leftarrow x$ 表示将 $x$ 从第一行插入杨表中，具体如下：
 
-1. 在当前行中找到最小的比 $x$ 大的数 $y$。
-2. 如果找到了，用 $x$ 去替换 $y$，移到下一行，令 $x \leftarrow y$ 重复操作 1。
-3. 如果找不到，就把 $x$ 放在该行末尾并退出。记 $x$ 在第 $s$ 行第 $t$ 列，$(s, t)$ 必定是一个边角。一个格子 $(s, t)$ 是边角当且仅当 $(s + 1, t)$ 和 $(s, t + 1)$ 都不存在格子。
+1.  在当前行中找到最小的比 $x$ 大的数 $y$。
+2.  如果找到了，用 $x$ 去替换 $y$，移到下一行，令 $x \leftarrow y$ 重复操作 1。
+3.  如果找不到，就把 $x$ 放在该行末尾并退出。记 $x$ 在第 $s$ 行第 $t$ 列，$(s, t)$ 必定是一个边角。一个格子 $(s, t)$ 是边角当且仅当 $(s + 1, t)$ 和 $(s, t + 1)$ 都不存在格子。
 
 例如，将 $3$ 插入杨表 $(2, 5, 9)(6, 7)(8)$ 的步骤为：
 
@@ -99,7 +99,7 @@ $$
 
 对于杨表 $P$, 定义对于一个从 $1$ 到 $n$ 的排列 $X = x_{1}, \ldots , x_{n}$。
 
-1. $P_{X}$ 中第一行的长度即为排列 $X$ 的 **最长上升子序列（LIS)** 长度。注意，$P$ 的第一行并不一定是 LIS 本身，所以不能直接利用杨表性质解决「LIS 划分」之类的问题。
+1.  $P_{X}$ 中第一行的长度即为排列 $X$ 的 **最长上升子序列（LIS)** 长度。注意，$P$ 的第一行并不一定是 LIS 本身，所以不能直接利用杨表性质解决「LIS 划分」之类的问题。
 
 2.  对于一个排列 $X$ 和它产生的杨表 $P_{X}$，若 $X^R$ 是 $X$ 的翻转，那么 $X^R$ 产生的杨表 $P_{X^R}$ 即为 $P_{X}$ 交换行列得到。
 
@@ -107,7 +107,7 @@ $$
 
     ![](./images/young-tableau-LIS-1.jpg)![](./images/young-tableau-LIS-2.jpg)
 
-3. 杨表 $P_{X}$ 中的第一列长度即为排列 $X$ 的 **最长下降子序列（LDS)** 长度。
+3.  杨表 $P_{X}$ 中的第一列长度即为排列 $X$ 的 **最长下降子序列（LDS)** 长度。
 
 定义长度不超过 $k$ 的 $LIS/LDS$ 长度为 $k-LIS$ 和 $k-LDS$, 此类问题我们同样可以用杨表来解决。对于 $1-LIS$，显而易见最长的 $1-LIS$ 子序列就是该序列的 $LDS$，这也正是杨表的第一列；同样可得，杨表前 $k$ 列的长度就是最长的 $k-LIS$ 子序列的长度。证明如下：
 
@@ -115,7 +115,7 @@ $$
 
 所以，最长 $k-LIS$ 子序列长度可以表示成 $F(k)=\sum_{i=1}^{m} \min(k,\lambda_{i})$，即前 $k$ 列的长度和。
 
-???+note "[CTSC2017 最长上升子序列](https://uoj.ac/problem/301)"
+???+ note "[CTSC2017 最长上升子序列](https://uoj.ac/problem/301)"
     有一个长为 $n$ 的数列 $b$。对于序列 $B_{m} = (b_{1}, b_{2},\ldots, b_{m})$，设 $C$ 是 $B_{m}$ 的子序列，且 $C$ 的最长上升子序列的长度不超过 $k$，询问 $C$ 的长度最大值。
 
 ??? note "解题思路"
@@ -123,15 +123,15 @@ $$
     
     可以发现，杨表一定不会完全覆盖这个 $W \times H$ 的矩形。如果 $K \leq W$，那么可以直接得答案；如果 $K > W$，那么大于 $W$ 的部分一定在 $H$ 行内。所以可以考虑如何同时维护前 $\sqrt{n}$ 列和前 $\sqrt{n}$ 行。将这个排列翻转一下就可以得到杨表的翻转，所以只需要再同时维护 $-A_{i}$ 即可，复杂度为 $O(n \sqrt{n} \log n)$。
 
-???+note "[BJWC2018 最长上升子序列](https://www.luogu.com.cn/problem/P4484)"
+???+ note "[BJWC2018 最长上升子序列](https://www.luogu.com.cn/problem/P4484)"
     现在有一个长度为 $n$ 的随机排列，求它的最长上升子序列长度的期望。
 
-???+note "[CF1268B 杨氏多米诺骨牌](https://codeforces.com/problemset/problem/1268/B)"
+???+ note "[CF1268B 杨氏多米诺骨牌](https://codeforces.com/problemset/problem/1268/B)"
     给定一个具有 $n$ 列长度 $a_{1} ,a_{2},\ldots,a_{n}$$(a_{1} \geq a_{2} \geq \ldots \geq a_{n} \geq 1)$ 的直方图。$a=[3,2,2,2,1]$ 的杨图。找到可以在此直方图中绘制的最大数量的非重叠多米诺骨牌（$1 \times 2$ 或 $2 \times 1$ 矩形）。
 
 ## 参考资料与拓展阅读
 
-- [1][Young Tableau - from Wolfram MathWorld](<https://mathworld.wolfram.com/YoungTableau.html>)
-- [2][Young tableau - Wikipedia](<https://en.wikipedia.org/wiki/Young_tableau>)
-- [3][Hook length formula - Wikipedia](<https://en.wikipedia.org/wiki/Hook_length_formula>)
-- [4]袁方舟，[《浅谈杨氏矩阵在信息学竞赛中的应用》IOI2019](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2019%E8%AE%BA%E6%96%87%E9%9B%86.pdf), 中国国家候选队论文集，202-229
+-   \[1][Young Tableau - from Wolfram MathWorld](https://mathworld.wolfram.com/YoungTableau.html)
+-   \[2][Young tableau - Wikipedia](https://en.wikipedia.org/wiki/Young_tableau)
+-   \[3][Hook length formula - Wikipedia](https://en.wikipedia.org/wiki/Hook_length_formula)
+-   \[4] 袁方舟，[《浅谈杨氏矩阵在信息学竞赛中的应用》IOI2019](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2019%E8%AE%BA%E6%96%87%E9%9B%86.pdf), 中国国家候选队论文集，202-229
