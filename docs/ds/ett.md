@@ -206,7 +206,7 @@ void Delete(int u, int v) {
 
 点 $u$ 和点 $v$ 连通，当且仅当两个点属于同一棵树 $T$，即 $(u, u)$ 和 $(v, v)$ 属于 $\operatorname{ETR}(T)$，这可以根据点 $u$ 和点 $v$ 对应的 Treap 节点所在的 Treap 的根是否相同判断。
 
-### 例题 [P2147\[SDOI2008\]洞穴勘测](https://www.luogu.com.cn/problem/P2147)
+### 例题 [P2147\[SDOI2008\] 洞穴勘测](https://www.luogu.com.cn/problem/P2147)
 
 维护连通性的模板题。
 
@@ -251,5 +251,5 @@ void Delete(int u, int v) {
 
 ## 参考资料
 
-- Dynamic trees as search trees via euler tours, applied to the network simplex algorithm - Robert E. Tarjan
-- Randomized fully dynamic graph algorithms with polylogarithmic time per operation - Henzinger et al.
+-   Dynamic trees as search trees via euler tours, applied to the network simplex algorithm - Robert E. Tarjan
+-   Randomized fully dynamic graph algorithms with polylogarithmic time per operation - Henzinger et al.

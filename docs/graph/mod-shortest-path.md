@@ -8,7 +8,7 @@
 
 ### 例题一
 
-???+note "[P3403 跳楼机](https://www.luogu.com.cn/problem/P3403)"
+???+ note "[P3403 跳楼机](https://www.luogu.com.cn/problem/P3403)"
     题目大意：给定 $x，y，z，h$，对于 $k \in [1,h]$，有多少个 $k$ 能够满足 $ax+by+cz=k$。（$0\leq a,b,c$，$1\le x,y,z\le 10^5$，$h\le 2^{63}-1$）
 
 不妨假设 $x < y < z$。
@@ -17,9 +17,9 @@
 
 可以得到两个状态：
 
-- $i \xrightarrow{y} (i+y) \bmod x$
+-   $i \xrightarrow{y} (i+y) \bmod x$
 
-- $i \xrightarrow{z} (i+z) \bmod x$
+-   $i \xrightarrow{z} (i+z) \bmod x$
 
 注意通常选取一组 $a_i$ 中最小的那个数对它取模，也就是此处的 $x$，这样可以尽量减小空间复杂度（剩余系最小）。
 
@@ -41,14 +41,14 @@ $$
 
 加 1 是由于 $d_i$ 所在楼层也算一次。
 
-???+note "参考实现"
+???+ note "参考实现"
     ```cpp
     --8<-- "docs/graph/code/mod-shortest-path/mod-shortest-path_1.cpp"
     ```
 
 ### 例题二
 
-???+note "[ARC084B Small Multiple](https://atcoder.jp/contests/arc084/tasks/arc084_b)"
+???+ note "[ARC084B Small Multiple](https://atcoder.jp/contests/arc084/tasks/arc084_b)"
     题目大意：给定 $n$，求 $n$ 的倍数中，数位和最小的那一个的数位和。（$1\le n\le 10^5$）
 
 本题可以使用循环卷积优化完全背包在 $O(n\log^2 n)$ 的时间内解决，但我们希望得到线性的算法。
@@ -67,7 +67,7 @@ $$
 
 [洛谷 P2662 牛场围栏](https://www.luogu.com.cn/problem/P2662)
 
-[\[国家集训队\]墨墨的等式](https://www.luogu.com.cn/problem/P2371)
+[\[国家集训队\] 墨墨的等式](https://www.luogu.com.cn/problem/P2371)
 
 [「NOIP2018」货币系统](https://loj.ac/problem/2951)
 

@@ -16,19 +16,19 @@ Splay 树由 Daniel Sleator 和 Robert Tarjan 于 1985 年发明。
 
 ### 节点维护信息
 
-|   rt  |  tot | fa[i] | ch[i][0/1] | val[i] | cnt[i] | sz[i] |
-| :---: | :--: | :---: | :--------: | :----: | :----: | :---: |
-| 根节点编号 | 节点个数 |   父亲  |   左右儿子编号   |  节点权值  | 权值出现次数 |  子树大小 |
+|   rt  |  tot | fa\[i] | ch\[i]\[0/1] | val\[i] | cnt\[i] | sz\[i] |
+| :---: | :--: | :----: | :----------: | :-----: | :-----: | :----: |
+| 根节点编号 | 节点个数 |   父亲   |    左右儿子编号    |   节点权值  |  权值出现次数 |  子树大小  |
 
 ## 操作
 
 ### 基本操作
 
-- `maintain(x)`：在改变节点位置后，将节点 $x$ 的 $\text{size}$ 更新。
-- `get(x)`：判断节点 $x$ 是父亲节点的左儿子还是右儿子。
-- `clear(x)`：销毁节点 $x$。
+-   `maintain(x)`：在改变节点位置后，将节点 $x$ 的 $\text{size}$ 更新。
+-   `get(x)`：判断节点 $x$ 是父亲节点的左儿子还是右儿子。
+-   `clear(x)`：销毁节点 $x$。
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     void maintain(int x) { sz[x] = sz[ch[x][0]] + sz[ch[x][1]] + cnt[x]; }
     
@@ -43,9 +43,9 @@ Splay 树由 Daniel Sleator 和 Robert Tarjan 于 1985 年发明。
 
 **旋转需要保证**：
 
-- 整棵 Splay 的中序遍历不变（不能破坏二叉查找树的性质）。
-- 受影响的节点维护的信息依然正确有效。
-- `root` 必须指向旋转后的根节点。
+-   整棵 Splay 的中序遍历不变（不能破坏二叉查找树的性质）。
+-   受影响的节点维护的信息依然正确有效。
+-   `root` 必须指向旋转后的根节点。
 
 在 Splay 中旋转分为两种：左旋和右旋。
 
@@ -55,9 +55,9 @@ Splay 树由 Daniel Sleator 和 Robert Tarjan 于 1985 年发明。
 
 **具体分析旋转步骤**（假设需要旋转的节点为 $x$，其父亲为 $y$，以右旋为例）
 
-1. 将 $y$ 的左儿子指向 $x$ 的右儿子，且 $x$ 的右儿子（如果 $x$ 有右儿子的话）的父亲指向 $y$；`ch[y][0]=ch[x][1]; fa[ch[x][1]]=y;`
-2. 将 $x$ 的右儿子指向 $y$，且 $y$ 的父亲指向 $x$；`ch[x][chk^1]=y; fa[y]=x;`
-3. 如果原来的 $y$ 还有父亲 $z$，那么把 $z$ 的某个儿子（原来 $y$ 所在的儿子位置）指向 $x$，且 $x$ 的父亲指向 $z$。`fa[x]=z; if(z) ch[z][y==ch[z][1]]=x;`
+1.  将 $y$ 的左儿子指向 $x$ 的右儿子，且 $x$ 的右儿子（如果 $x$ 有右儿子的话）的父亲指向 $y$；`ch[y][0]=ch[x][1]; fa[ch[x][1]]=y;`
+2.  将 $x$ 的右儿子指向 $y$，且 $y$ 的父亲指向 $x$；`ch[x][chk^1]=y; fa[y]=x;`
+3.  如果原来的 $y$ 还有父亲 $z$，那么把 $z$ 的某个儿子（原来 $y$ 所在的儿子位置）指向 $x$，且 $x$ 的父亲指向 $z$。`fa[x]=z; if(z) ch[z][y==ch[z][1]]=x;`
 
 #### 实现
 
@@ -81,38 +81,38 @@ Splay 操作规定：每访问一个节点 $x$ 后都要强制将其旋转到根
 
 Splay 操作即对 $x$ 做一系列的 **splay 步骤**。每次对 $x$ 做一次 splay 步骤，$x$ 到根节点的距离都会更近。定义 $p$ 为 $x$ 的父节点。Splay 步骤有三种，具体分为六种情况：
 
-1. **zig**: 在 $p$ 是根节点时操作。Splay 树会根据 $x$ 和 $p$ 间的边旋转。$zig$ 存在是用于处理奇偶校验问题，仅当 $x$ 在 splay 操作开始时具有奇数深度时作为 splay 操作的最后一步执行。
+1.  **zig**: 在 $p$ 是根节点时操作。Splay 树会根据 $x$ 和 $p$ 间的边旋转。$zig$ 存在是用于处理奇偶校验问题，仅当 $x$ 在 splay 操作开始时具有奇数深度时作为 splay 操作的最后一步执行。
 
-![splay-zig](./images/splay-zig.svg)
+    ![splay-zig](./images/splay-zig.svg)
 
-即直接将 $x$ 左旋或右旋（图 1, 2）
+    即直接将 $x$ 左旋或右旋（图 1, 2）
 
-![图 1](./images/splay-rotate1.svg)
+    ![图 1](./images/splay-rotate1.svg)
 
-![图 2](./images/splay-rotate2.svg)
+    ![图 2](./images/splay-rotate2.svg)
 
-2. **zig-zig**: 在 $p$ 不是根节点且 $x$ 和 $p$ 都是右侧子节点或都是左侧子节点时操作。下方例图显示了 $x$ 和 $p$ 都是左侧子节点时的情况。Splay 树首先按照连接 $p$ 与其父节点 $g$ 边旋转，然后按照连接 $x$ 和 $p$ 的边旋转。
+2.  **zig-zig**: 在 $p$ 不是根节点且 $x$ 和 $p$ 都是右侧子节点或都是左侧子节点时操作。下方例图显示了 $x$ 和 $p$ 都是左侧子节点时的情况。Splay 树首先按照连接 $p$ 与其父节点 $g$ 边旋转，然后按照连接 $x$ 和 $p$ 的边旋转。
 
-![splay-zig-zig](./images/splay-zig-zig.svg)
+    ![splay-zig-zig](./images/splay-zig-zig.svg)
 
-即首先将 $g$ 左旋或右旋，然后将 $x$ 右旋或左旋（图 3, 4）。
+    即首先将 $g$ 左旋或右旋，然后将 $x$ 右旋或左旋（图 3, 4）。
 
-![图 3](./images/splay-rotate3.svg)
+    ![图 3](./images/splay-rotate3.svg)
 
-![图 4](./images/splay-rotate4.svg)
+    ![图 4](./images/splay-rotate4.svg)
 
-3. **zig-zag**: 在 $p$ 不是根节点且 $x$ 和 $p$ 一个是右侧子节点一个是左侧子节点时操作。Splay 树首先按 $p$ 和 $x$ 之间的边旋转，然后按 $x$ 和 $g$ 新生成的结果边旋转。
+3.  **zig-zag**: 在 $p$ 不是根节点且 $x$ 和 $p$ 一个是右侧子节点一个是左侧子节点时操作。Splay 树首先按 $p$ 和 $x$ 之间的边旋转，然后按 $x$ 和 $g$ 新生成的结果边旋转。
 
-![splay-zig-zag](./images/splay-zig-zag.svg)
+    ![splay-zig-zag](./images/splay-zig-zag.svg)
 
-即将 $x$ 先左旋再右旋、或先右旋再左旋（图 5, 6）。
+    即将 $x$ 先左旋再右旋、或先右旋再左旋（图 5, 6）。
 
-![图 5](./images/splay-rotate5.svg)
+    ![图 5](./images/splay-rotate5.svg)
 
-![图 6](./images/splay-rotate6.svg)
+    ![图 6](./images/splay-rotate6.svg)
 
-!!! tip
-    请读者尝试自行模拟 $6$ 种旋转情况，以理解 Splay 的基本思想。
+    ??? tip
+        请读者尝试自行模拟 $6$ 种旋转情况，以理解 Splay 的基本思想。
 
 #### 实现
 
@@ -128,35 +128,35 @@ void splay(int x) {
 
 因为 zig 和 zag 是 **对称** 操作，我们只需要对 zig，zig−zig，zig−zag 操作分析复杂度。采用 [势能分析](../basic/complexity.md#势能分析)，定义一个 $n$ 个节点的 splay 树进行了 $m$ 次 splay 步骤。可记 $w(x)=[\log(\operatorname{size}(x))]$, 定义势能函数为 $\varphi =\sum w(x)$,$\varphi (0) \leq n \log n$，在第 $i$ 次操作后势能为 $\varphi (i)$, 则我们只需要求出初始势能和每次的势能变化量的和即可。
 
-1. **zig**: 势能的变化量为
+1.  **zig**: 势能的变化量为
 
-$$
-\begin{aligned}
-1+w'(x)+w'(fa)−w(x)−w(fa) & \leq 1+w'(fa)−w(x) \\
-& \leq 1+w'(x)−w(x)
-\end{aligned}
-$$
+    $$
+    \begin{aligned}
+    1+w'(x)+w'(fa)−w(x)−w(fa) & \leq 1+w'(fa)−w(x) \\
+    & \leq 1+w'(x)−w(x)
+    \end{aligned}
+    $$
 
-2. **zig-zig**:  势能变化量为
+2.  **zig-zig**:  势能变化量为
 
-$$
-\begin{aligned}
-1+w'(x)+w'(fa)+w'(g)−w(x)−w(fa)−w(g) & \leq 1+w'(fa)+w'(g)−w(x)−w(fa) \\
-& \leq 1+ w'(x)+w'(g)−2w(x) \\
-& \leq 3(w'(x)−w(x))
-\end{aligned}
-$$
+    $$
+    \begin{aligned}
+    1+w'(x)+w'(fa)+w'(g)−w(x)−w(fa)−w(g) & \leq 1+w'(fa)+w'(g)−w(x)−w(fa) \\
+    & \leq 1+ w'(x)+w'(g)−2w(x) \\
+    & \leq 3(w'(x)−w(x))
+    \end{aligned}
+    $$
 
-3. **zig-zag**:  势能变化量为
+3.  **zig-zag**:  势能变化量为
 
-$$
-\begin{aligned}
-1+w'(x)+w'(fa)+w'(g)−w(x)−w(fa)−w(g) & \leq 1+w'(fa)+w'(g)−w(x)−w(fa) \\
-& \leq 1+w'(g)+w'(fa)−2w(x) \\
-& \leq 2 w'(x)−w'(g)−w'(fa) + w'(fa)+w'(g)−w(x)−w(fa) \\
-& \leq 2(w'(x)−w(x))
-\end{aligned}
-$$
+    $$
+    \begin{aligned}
+    1+w'(x)+w'(fa)+w'(g)−w(x)−w(fa)−w(g) & \leq 1+w'(fa)+w'(g)−w(x)−w(fa) \\
+    & \leq 1+w'(g)+w'(fa)−2w(x) \\
+    & \leq 2 w'(x)−w'(g)−w'(fa) + w'(fa)+w'(g)−w(x)−w(fa) \\
+    & \leq 2(w'(x)−w(x))
+    \end{aligned}
+    $$
 
 由此可见，三种 splay 步骤的势能全部可以缩放为 $\leq 3(w'(x)−w(x))$. 令 $w^{(n)}(x)=w'^{(n-1)}(x)$,$w^{(0)}(x)=w(x)$, 假设 splay 操作一次依次访问了 $x_{1}, x_{2}, \cdots, x_{n}$, 最终 $x_{1}$ 成为根节点，我们可以得到：
 
@@ -181,9 +181,9 @@ $$
 
 插入操作是一个比较复杂的过程，具体步骤如下（假设插入的值为 $k$）：
 
-- 如果树空了，则直接插入根并退出。
-- 如果当前节点的权值等于 $k$ 则增加当前节点的大小并更新节点和父亲的信息，将当前节点进行 Splay 操作。
-- 否则按照二叉查找树的性质向下找，找到空节点就插入即可（请不要忘记 Splay 操作）。
+-   如果树空了，则直接插入根并退出。
+-   如果当前节点的权值等于 $k$ 则增加当前节点的大小并更新节点和父亲的信息，将当前节点进行 Splay 操作。
+-   否则按照二叉查找树的性质向下找，找到空节点就插入即可（请不要忘记 Splay 操作）。
 
 #### 实现
 
@@ -227,9 +227,9 @@ void ins(int k) {
 
 根据二叉查找树的定义和性质，显然可以按照以下步骤查询 $x$ 的排名：
 
-- 如果 $x$ 比当前节点的权值小，向其左子树查找。
-- 如果 $x$ 比当前节点的权值大，将答案加上左子树（$size$）和当前节点（$cnt$）的大小，向其右子树查找。
-- 如果 $x$ 与当前节点的权值相同，将答案加 $1$ 并返回。
+-   如果 $x$ 比当前节点的权值小，向其左子树查找。
+-   如果 $x$ 比当前节点的权值大，将答案加上左子树（$size$）和当前节点（$cnt$）的大小，向其右子树查找。
+-   如果 $x$ 与当前节点的权值相同，将答案加 $1$ 并返回。
 
 注意最后需要进行 Splay 操作。
 
@@ -260,8 +260,8 @@ int rk(int k) {
 
 设 $k$ 为剩余排名，具体步骤如下：
 
-- 如果左子树非空且剩余排名 $k$ 不大于左子树的大小 $size$，那么向左子树查找。
-- 否则将 $k$ 减去左子树的和根的大小。如果此时 $k$ 的值小于等于 $0$，则返回根节点的权值，否则继续向右子树查找。
+-   如果左子树非空且剩余排名 $k$ 不大于左子树的大小 $size$，那么向左子树查找。
+-   否则将 $k$ 减去左子树的和根的大小。如果此时 $k$ 的值小于等于 $0$，则返回根节点的权值，否则继续向右子树查找。
 
 #### 实现
 
@@ -325,8 +325,8 @@ int nxt() {
 
 合并两棵 Splay 树，设两棵树的根节点分别为 $x$ 和 $y$，那么我们要求 $x$ 树中的最大值小于 $y$ 树中的最小值。合并操作如下：
 
-- 如果 $x$ 和 $y$ 其中之一或两者都为空树，直接返回不为空的那一棵树的根节点或空树。
-- 否则将 $x$ 树中的最大值 $\operatorname{Splay}$ 到根，然后把它的右子树设置为 $y$ 并更新节点的信息，然后返回这个节点。
+-   如果 $x$ 和 $y$ 其中之一或两者都为空树，直接返回不为空的那一棵树的根节点或空树。
+-   否则将 $x$ 树中的最大值 $\operatorname{Splay}$ 到根，然后把它的右子树设置为 $y$ 并更新节点的信息，然后返回这个节点。
 
 ### 删除操作
 
@@ -336,8 +336,8 @@ int nxt() {
 
 首先将 $x$ 旋转到根的位置。
 
-- 如果 $cnt[x]>1$（有不止一个 $x$），那么将 $cnt[x]$ 减 $1$ 并退出。
-- 否则，合并它的左右两棵子树即可。
+-   如果 $cnt[x]>1$（有不止一个 $x$），那么将 $cnt[x]$ 减 $1$ 并退出。
+-   否则，合并它的左右两棵子树即可。
 
 #### 实现
 
@@ -400,8 +400,8 @@ struct Splay {
     fa[y] = x;
     fa[x] = z;
     if (z) ch[z][y == ch[z][1]] = x;
-    maintain(x);
     maintain(y);
+    maintain(x);
   }
 
   void splay(int x) {
@@ -551,17 +551,17 @@ int main() {
 
 以下题目都是裸的 Splay 维护二叉查找树。
 
-- [【模板】普通平衡树](https://loj.ac/problem/104)
-- [【模板】文艺平衡树](https://loj.ac/problem/105)
-- [「HNOI2002」营业额统计](https://loj.ac/problem/10143)
-- [「HNOI2004」宠物收养所](https://loj.ac/problem/10144)
+-   [【模板】普通平衡树](https://loj.ac/problem/104)
+-   [【模板】文艺平衡树](https://loj.ac/problem/105)
+-   [「HNOI2002」营业额统计](https://loj.ac/problem/10143)
+-   [「HNOI2004」宠物收养所](https://loj.ac/problem/10144)
 
 ## 习题
 
-- [「Cerc2007」robotic sort 机械排序](https://www.luogu.com.cn/problem/P4402)
-- [二逼平衡树（树套树）](https://loj.ac/problem/106)
-- [bzoj 2827 千山鸟飞绝](https://hydro.ac/d/bzoj/p/2827)
-- [「Lydsy1706 月赛」K 小值查询](https://hydro.ac/d/bzoj/p/4923)
+-   [「Cerc2007」robotic sort 机械排序](https://www.luogu.com.cn/problem/P4402)
+-   [二逼平衡树（树套树）](https://loj.ac/problem/106)
+-   [bzoj 2827 千山鸟飞绝](https://hydro.ac/d/bzoj/p/2827)
+-   [「Lydsy1706 月赛」K 小值查询](https://hydro.ac/d/bzoj/p/4923)
 
 ## 参考资料与注释
 
