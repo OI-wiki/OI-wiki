@@ -9,11 +9,8 @@ def generate_annotations_and_exit(file, message):
     sys.exit(1)
 
 
-filename = "res.txt"
-with open(filename) as file_object:
-    lines = file_object.readlines()
-for line in lines:
-    name = line[:-5]
+def test(cppname):
+    name = cppname[:cppname.rfind('.')]
     num = name.rfind('/')
     content = name[:num]
     filename = name[num:]
@@ -29,7 +26,7 @@ for line in lines:
     # 判断测试是否要执行
     if os.path.exists(skiptest):
         print(cpp + ' test skipped')
-        continue
+        return
 
     cmd = 'g++ -std=c++17 '+cpp+' -o '+name
     # 判断CE
@@ -55,3 +52,10 @@ for line in lines:
     else:
         print(cpp + ' Wrong Answer')
         generate_annotations_and_exit(cpp, 'Wrong Answer')
+
+filename = "res.txt"
+with open(filename) as file_object:
+    lines = file_object.readlines()
+for line in lines:
+    for filename in line.split(' '):
+        test(filename)

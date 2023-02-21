@@ -13,18 +13,31 @@ jobs:
     name: OI-wiki Offline Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Get changed code files
+        id: changed-files
+        uses: tj-actions/changed-files@v35.4.1
+        with:
+          files: |
+            docs/**/*.cpp
       - uses: actions/setup-python@v4
+        if: steps.changed-files.outputs.any_changed == 'true'
         with:
           python-version: '3.10'
           cache: pipenv
       - name: Install Python dependencies
+        if: steps.changed-files.outputs.any_changed == 'true'
         run: |
           curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python3
           pipenv install
       - name: Install C++
+        if: steps.changed-files.outputs.any_changed == 'true'
         run: sudo apt-get install -y g++
       - name: Make the File list
-        run: find . -name *.cpp > res.txt
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: echo "${{ steps.changed-files.outputs.all_changed_files }}" > res.txt
       - name: Check the Code
+        if: steps.changed-files.outputs.any_changed == 'true'
         run: pipenv run python scripts/test.py

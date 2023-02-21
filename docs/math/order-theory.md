@@ -25,13 +25,13 @@
 
 次序是特别的二元关系。设 $P$ 为一个集合，而 $\leq$ 是在 $P$ 的关系，那么 $\leq$ 是个偏序当他是自反的，反对称的，且递移的，则，对于所有 $a,b$ 和 $c$ 于 $P$，皆能满足：
 
-- $a\leq a$（自反的）
-- 如果 $a\leq b$ 且 $b\leq a$，那么 $a=b$（反对称性）
-- 如果 $a\leq b$ 且 $b\leq c$，那么 $a\leq c$（递移性）
+-   $a\leq a$（自反的）
+-   如果 $a\leq b$ 且 $b\leq a$，那么 $a=b$（反对称性）
+-   如果 $a\leq b$ 且 $b\leq c$，那么 $a\leq c$（递移性）
 
 一个偏序性质的集合称为 **偏序集合**、**poset** 或是 **有序集合**。通过这些性质，我们可以得出在自然数、整数、有理数、以及实数中皆有明确的序关系。当然，它们还有额外的性质成为 **全序**，即在 $P$ 中对于每一个 $a$ 和 $b$ 皆能满足：
 
-- $a\leq b$ 或 $b\leq a$（全序性）
+-   $a\leq b$ 或 $b\leq a$（全序性）
 
 ???+ note "注释"
     **全序关系**（Total order/Linear order）在数学中指集合 $X$ 上反对称的、传递的和完全的二元关系（一般称其为 $\leq$）。
@@ -95,28 +95,28 @@ $a \leq m$ 意味着对于阶的所有元素 $a$，$a = m$。
 
 [C++ 基础库的排序函数](../basic/stl-sort.md) 中有偏序关系的应用。很多情况时，我们需要在 C++ 中自定义比较器（custom comparator），而 STL 自定义比较器的要求就是它必须为 **严格弱序** 的（Strict Weak Ordering）。严格弱序定义为部分有序集合，其中不可比性是传递关系。设比较器为 $f$，$f(x,y)$ 为真表示 $x<y$，则有：
 
-- $f(x,x)$ 必须为假。（非自反性）
+-   $f(x,x)$ 必须为假。（非自反性）
 
-- 如果 $f(x,y)$ 为真，则 $f(y,x)$ 必须为假。（非对称性）
+-   如果 $f(x,y)$ 为真，则 $f(y,x)$ 必须为假。（非对称性）
 
-- 如果 $f(x,y)$ 为真且 $f(y,z)$ 为真，则 $f(x,z)$ 必须为真。（传递性）
+-   如果 $f(x,y)$ 为真且 $f(y,z)$ 为真，则 $f(x,z)$ 必须为真。（传递性）
 
-- 如果 $f(x,y)$ 为假，$f(y,x)$ 为假，$f(y,z)$ 为假且 $f(z,y)$ 为假，则 $f(x,z)$ 为假 且 $f(z,x)$ 为假。（不可比性的传递性）
+-   如果 $f(x,y)$ 为假，$f(y,x)$ 为假，$f(y,z)$ 为假且 $f(z,y)$ 为假，则 $f(x,z)$ 为假 且 $f(z,x)$ 为假。（不可比性的传递性）
 
 其中反对称性可以由非自反性和传递性推导得到。而所有 STL 中的自定义比较器都可以用简单的 $<$ 关系表示。因为我们可以推断得知：
 
-- $x>y$ 表示 $y<x$;
-- $x \leq y$ 表示 $y \nless x$；
-- $x \geq y$ 表示 $x \nless y$；
-- $x=y$ 表示 $x \nless y$ 和 $y \nless x$。这就是为什么上面第四条规则被称为等价的传递性。如果 $x \nless y$ 和 $y \nless x$，我们可以说「$x$ 和 $y$ 是不可比的」。
+-   $x>y$ 表示 $y<x$;
+-   $x \leq y$ 表示 $y \nless x$；
+-   $x \geq y$ 表示 $x \nless y$；
+-   $x=y$ 表示 $x \nless y$ 和 $y \nless x$。这就是为什么上面第四条规则被称为等价的传递性。如果 $x \nless y$ 和 $y \nless x$，我们可以说「$x$ 和 $y$ 是不可比的」。
 
 ## 参考资料与拓展阅读
 
-- [1][Order theory - From Academic Kids](<https://academickids.com/encyclopedia/index.php/Order_theory>)
-- [2][Binary Relation - Wikipedia](<https://en.wikipedia.org/wiki/Binary_relation>)
-- [3][Order Theory - Wikipedia](<https://en.wikipedia.org/wiki/Order_theory>)
-- [3][Order Theory, Lecture Notes by Mark Dean for Decision Theory](<http://www.columbia.edu/~md3405/DT_Order_15.pdf>)
-- [4]卢开澄，卢华明，[《组合数学》（第 3 版）](http://www.tup.tsinghua.edu.cn/bookscenter/book_00458101.html), 2006
-- [5][List of Order Theory Topics - Wikipedia](<https://en.wikipedia.org/wiki/List_of_order_theory_topics>)
-- [6][浅谈邻项交换排序的应用以及需要注意的问题 by ouuan](<https://ouuan.github.io/post/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/>)
-- [7][One thing you should know about comparators — Strict Weak Ordering](<https://codeforces.com/blog/entry/72525>)
+-   \[1][Order theory - From Academic Kids](https://academickids.com/encyclopedia/index.php/Order_theory)
+-   \[2][Binary Relation - Wikipedia](https://en.wikipedia.org/wiki/Binary_relation)
+-   \[3][Order Theory - Wikipedia](https://en.wikipedia.org/wiki/Order_theory)
+-   \[3][Order Theory, Lecture Notes by Mark Dean for Decision Theory](http://www.columbia.edu/~md3405/DT_Order_15.pdf)
+-   \[4] 卢开澄，卢华明，[《组合数学》（第 3 版）](http://www.tup.tsinghua.edu.cn/bookscenter/book_00458101.html), 2006
+-   \[5][List of Order Theory Topics - Wikipedia](https://en.wikipedia.org/wiki/List_of_order_theory_topics)
+-   \[6][浅谈邻项交换排序的应用以及需要注意的问题 by ouuan](https://ouuan.github.io/post/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/)
+-   \[7][One thing you should know about comparators—Strict Weak Ordering](https://codeforces.com/blog/entry/72525)
