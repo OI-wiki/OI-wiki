@@ -429,11 +429,11 @@ nav:
     - k 短路: graph/kth-path.md
     - 同余最短路: graph/mod-shortest-path.md
     - 连通性相关:
-      - 点/边连通度: graph/connectivity.md
       - 强连通分量: graph/scc.md
       - 双连通分量: graph/bcc.md
       - 割点和桥: graph/cut.md
       - 圆方树: graph/block-forest.md
+      - 点/边连通度: graph/connectivity.md
     - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
