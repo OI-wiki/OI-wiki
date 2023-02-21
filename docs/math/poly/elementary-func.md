@@ -2,40 +2,40 @@ author: 97littleleaf11, abc1763613206, CCXXXI, EndlessCheng, Enter-tainer, fps52
 
 本页面包含多项式常见的初等函数操作。具体而言，本页面包含如下内容：
 
-1. 多项式求逆
-2. 多项式开方
-3. 多项式除法
-4. 多项式取模
-5. 多项式指数函数
-6. 多项式对数函数
-7. 多项式三角函数
-8. 多项式反三角函数
+1.  多项式求逆
+2.  多项式开方
+3.  多项式除法
+4.  多项式取模
+5.  多项式指数函数
+6.  多项式对数函数
+7.  多项式三角函数
+8.  多项式反三角函数
 
 ??? note "初等函数与非初等函数"
     初等函数的定义如下[^ref1]：
     
     若域 $F$ 中存在映射 $u\to \partial u$ 满足：
     
-    1. $\partial(u+v)=\partial u+\partial v$
-    2. $\partial(uv)=u\partial v+v\partial u$
+    1.  $\partial(u+v)=\partial u+\partial v$
+    2.  $\partial(uv)=u\partial v+v\partial u$
     
     则称这个域为 **微分域**。
     
     若微分域 $F$ 上的函数 $u$ 满足以下的任意一条条件，则称该函数 $u$ 为初等函数：
     
-    1. $u$ 是 $F$ 上的代数函数。
-    2. $u$ 是 $F$ 上的指数性函数，即存在 $a\in F$ 使得 $\partial u=u\partial a$.
-    3. $u$ 是 $F$ 上的对数性函数，即存在 $a\in F$ 使得 $\partial u=\frac{\partial a}{a}$.
+    1.  $u$ 是 $F$ 上的代数函数。
+    2.  $u$ 是 $F$ 上的指数性函数，即存在 $a\in F$ 使得 $\partial u=u\partial a$.
+    3.  $u$ 是 $F$ 上的对数性函数，即存在 $a\in F$ 使得 $\partial u=\frac{\partial a}{a}$.
     
     以下是常见的初等函数：
     
-    1. 代数函数：存在有限次多项式 $P$ 使得 $P(f(x))=0$ 的函数 $f(x)$，如 $2x+1$,$\sqrt{x}$,$(1+x^2)^{-1}$,$|x|$.
-    2. 指数函数
-    3. 对数函数
-    4. 三角函数
-    5. 反三角函数
-    6. 双曲函数
-    7. 反双曲函数
+    1.  代数函数：存在有限次多项式 $P$ 使得 $P(f(x))=0$ 的函数 $f(x)$，如 $2x+1$,$\sqrt{x}$,$(1+x^2)^{-1}$,$|x|$.
+    2.  指数函数
+    3.  对数函数
+    4.  三角函数
+    5.  反三角函数
+    6.  双曲函数
+    7.  反双曲函数
     8.  以上函数的复合，如：
     
         $$
@@ -210,7 +210,7 @@ $$
 
 -   若 $k$ 是偶数，则求出 $h(x)$ 的平方根 $\sqrt{h(x)}$，然后得到 $f(x) \equiv x^{k/2} \sqrt{h(x)} \pmod{x^{n}}$。
 
-??? "洛谷模板题 [P5205 【模板】多项式开根](https://www.luogu.com.cn/problem/P5205) 参考代码"
+??? " 洛谷模板题 [P5205【模板】多项式开根](https://www.luogu.com.cn/problem/P5205) 参考代码 "
     ```cpp
     --8<-- "docs/math/code/poly/sqrt/sqrt_1.cpp"
     ```
@@ -221,7 +221,7 @@ $$
 
 ### 例题
 
-1. [「Codeforces Round #250」E. The Child and Binary Tree](https://codeforces.com/contest/438/problem/E)
+1.  [「Codeforces Round #250」E. The Child and Binary Tree](https://codeforces.com/contest/438/problem/E)
 
 ## 多项式除法 & 取模
 
