@@ -22,7 +22,7 @@ $$
 \end{cases}
 $$
 
-通过 Legendre 符号可以判断一个数 $a$ 是否为二次剩余，具体判断 $a$ 是否为模 $p$ 的二次剩余，需要通过 [Euler 判别准则](./residue.md#Euler-判别准则) 来实现。
+通过 Legendre 符号可以判断一个数 $a$ 是否为二次剩余，具体判断 $a$ 是否为模 $p$ 的二次剩余，需要通过 [Euler 判别准则](./residue.md#euler-判别准则) 来实现。
 
 下表为部分 Legendre 符号的值![](./images/quad_residue.png)
 
