@@ -6,7 +6,7 @@
 
 根据 [爬山算法](./hill-climbing.md) 的过程，我们发现：对于一个当前最优解附近的非最优解，爬山算法直接舍去了这个解。而很多情况下，我们需要去接受这个非最优解从而跳出这个局部最优解，即为模拟退火算法。
 
-??? note "什么是退火？（选自[百度百科](https://baike.baidu.com/item/%E9%80%80%E7%81%AB/1039313)）"
+??? note " 什么是退火？（选自 [百度百科](https://baike.baidu.com/item/%E9%80%80%E7%81%AB/1039313)）"
     退火是一种金属热处理工艺，指的是将金属缓慢加热到一定温度，保持足够时间，然后以适宜速度冷却。目的是降低硬度，改善切削加工性；消除残余应力，稳定尺寸，减少变形与裂纹倾向；细化晶粒，调整组织，消除组织缺陷。准确的说，退火是一种对材料的热处理工艺，包括金属材料、非金属材料。而且新材料的退火目的也与传统金属退火存在异同。
 
 由于退火的规律引入了更多随机因素，那么我们得到最优解的概率会大大增加。于是我们可以去模拟这个过程，将目标函数作为能量函数。
@@ -39,7 +39,7 @@ $$
 
 ![](./images/simulated-annealing.gif)
 
-* * *
+***
 
 ## 实现
 
@@ -49,7 +49,7 @@ $$
 --8<-- "docs/misc/code/simulated-annealing/simulated-annealing_1.cpp"
 ```
 
-* * *
+***
 
 ## 一些技巧
 
@@ -67,10 +67,10 @@ $$
 
 这里的 `MAX_TIME` 是一个自定义的略小于时限的数（单位：秒）。
 
-* * *
+***
 
 ## 习题
 
-- [「BZOJ 3680」吊打 XXX](https://www.luogu.com.cn/problem/P1337)
-- [「JSOI 2016」炸弹攻击](https://loj.ac/problem/2076)
-- [「HAOI 2006」均分数据](https://www.luogu.com.cn/problem/P2503)
+-   [「BZOJ 3680」吊打 XXX](https://www.luogu.com.cn/problem/P1337)
+-   [「JSOI 2016」炸弹攻击](https://loj.ac/problem/2076)
+-   [「HAOI 2006」均分数据](https://www.luogu.com.cn/problem/P2503)

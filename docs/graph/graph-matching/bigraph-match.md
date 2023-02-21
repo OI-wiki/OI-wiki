@@ -109,7 +109,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
 二分图中，最小点覆盖 $=$ 最大匹配。
 
-???+note "证明"
+???+ note "证明"
     将二分图点集分成左右两个集合，使得所有边的两个端点都不在一个集合。
     
     考虑如下构造：从左侧未匹配的节点出发，按照匈牙利算法中增广路的方式走，即先走一条未匹配边，再走一条匹配边。由于已经求出了最大匹配，所以这样的增广路一定以匹配边结束。在所有经过这样“增广路”的节点上打标记。则最后构造的集合是：所有左侧未打标记的节点和所有右侧打了标记的节点。
@@ -128,7 +128,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
 ## 习题
 
-??? note "[UOJ #78. 二分图最大匹配](https://uoj.ac/problem/78) "
+??? note "[UOJ #78. 二分图最大匹配](https://uoj.ac/problem/78)"
     模板题
     
     ```cpp
@@ -214,12 +214,12 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
     }
     ```
 
-??? note "[P1640 [SCOI2010]连续攻击游戏](https://www.luogu.com.cn/problem/P1640) "
+??? note "[P1640 \[SCOI2010\] 连续攻击游戏](https://www.luogu.com.cn/problem/P1640)"
     None
 
-??? note "[Codeforces 1139E - Maximize Mex](https://codeforces.com/problemset/problem/1139/E) "
+??? note "[Codeforces 1139E - Maximize Mex](https://codeforces.com/problemset/problem/1139/E)"
     None
 
 ## 参考资料
 
-1. <http://www.matrix67.com/blog/archives/116>
+1.  <http://www.matrix67.com/blog/archives/116>

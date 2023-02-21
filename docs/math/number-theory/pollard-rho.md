@@ -45,7 +45,7 @@
 
 我们能够证明 `result` 中的所有元素均为 `N` 的素因数。
 
-???+note "证明 `result` 中均为 $N$ 的素因数"
+???+ note " 证明 `result` 中均为 $N$ 的素因数 "
     首先证明元素均为 $N$ 的素因数：因为当且仅当 `N % i == 0` 满足时，`result` 发生变化：储存 $i$，说明此时 $i$ 能整除 $\frac{N}{A}$，说明了存在一个数 $p$ 使得 $pi=\frac{N}{A}$，即 $piA = N$（其中，$A$ 为 $N$ 自身发生变化后遇到 $i$ 时所除的数。我们注意到 `result` 若在 push $i$ 之前就已经有数了，为 $R_1,\,R_2,\,\ldots,\,R_n$，那么有 `N` $=\frac{N}{R_1^{q_1}\cdot R_2^{q_2}\cdot \cdots \cdot R_n^{q_n}}$，被除的乘积即为 $A$）。所以 $i$ 为 $N$ 的因子。
     
     其次证明 `result` 中均为素数。我们假设存在一个在 `result` 中的合数 $K$，并根据整数基本定理，分解为一个素数序列 $K = K_1^{e_1}\cdot K_2^{e_2}\cdot\cdots\cdot  K_3^{e_3}$，而因为 $K_1 < K$，所以它一定会在 $K$ 之前被遍历到，并令 `while(N % k1 == 0) N /= k1`，即让 `N` 没有了素因子 $K_1$，故遍历到 $K$ 时，`N` 和 $K$ 已经没有了整除关系了。
@@ -209,7 +209,7 @@ $$
 
 例题：[P4718【模板】Pollard-Rho 算法](https://www.luogu.com.cn/problem/P4718)
 
-对于一个数 $n$，用 [Miller Rabin 算法](./prime.md#miller-rabin-素性测试) 判断是否为素数，如果是就可以直接返回了，否则用 Pollard-Rho 算法找一个因子 $p$，将 $n$ 除去因子 $p$。再递归分解 $n$ 和 $p$，用 Miller Rabin 判断是否出现质因子，并用 max_factor 更新就可以求出最大质因子了。由于这个题目的数据过于庞大，用 Floyd 判环的方法是不够的，这里采用倍增优化的方法。
+对于一个数 $n$，用 [Miller Rabin 算法](./prime.md#miller-rabin-素性测试) 判断是否为素数，如果是就可以直接返回了，否则用 Pollard-Rho 算法找一个因子 $p$，将 $n$ 除去因子 $p$。再递归分解 $n$ 和 $p$，用 Miller Rabin 判断是否出现质因子，并用 max\_factor 更新就可以求出最大质因子了。由于这个题目的数据过于庞大，用 Floyd 判环的方法是不够的，这里采用倍增优化的方法。
 
 ??? note "实现"
     ```c++

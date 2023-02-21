@@ -20,7 +20,7 @@
 
 用伪代码描述如下：
 
-???+note "实现"
+???+ note "实现"
     ```text
     insert x
     while !sta.empty() && sta.top()<x
@@ -47,5 +47,5 @@
 
 ## 习题
 
-- [洛谷 P5788【模板】单调栈](https://www.luogu.com.cn/problem/P5788)
-- [洛谷 P1901 发射站](https://www.luogu.com.cn/problem/P1901)
+-   [洛谷 P5788【模板】单调栈](https://www.luogu.com.cn/problem/P5788)
+-   [洛谷 P1901 发射站](https://www.luogu.com.cn/problem/P1901)

@@ -10,8 +10,8 @@ tim 排序在最好情况下的时间复杂度为 $O(n)$，最差情况下的时
 
 tim 排序为了利用数组中本身就存在的连续且有序的子数组，以 RUN 作为合并操作的最小单位。其中，RUN 是一个满足以下性质的子数组：
 
-- 一个 RUN 要么是非降序的，要么是严格升序的。
-- 一个 RUN 存在一个长度的下限。
+-   一个 RUN 要么是非降序的，要么是严格升序的。
+-   一个 RUN 存在一个长度的下限。
 
 tim 排序的过程就是一个类似归并排序的过程，将数组划分为多个 RUN，然后以某种规则不断地合并两个 RUN，直到数组有序。具体过程如下：
 
@@ -44,8 +44,8 @@ $$
 
 ## 参考资料
 
-1. [Timsort](https://en.wikipedia.org/wiki/Timsort)
-2. [On the Worst-Case Complexity of TimSort](https://drops.dagstuhl.de/opus/volltexte/2018/9467/pdf/LIPIcs-ESA-2018-4.pdf)
-3. [original explanation by Tim Peters](https://bugs.python.org/file4451/timsort.txt)
-4. [java 实现](https://web.archive.org/web/20150716000631/https://android.googlesource.com/platform/libcore/+/gingerbread/luni/src/main/java/java/util/TimSort.java)
-5. [c 语言实现](http://svn.python.org/projects/python/trunk/Objects/listobject.c)
+1.  [Timsort](https://en.wikipedia.org/wiki/Timsort)
+2.  [On the Worst-Case Complexity of TimSort](https://drops.dagstuhl.de/opus/volltexte/2018/9467/pdf/LIPIcs-ESA-2018-4.pdf)
+3.  [original explanation by Tim Peters](https://bugs.python.org/file4451/timsort.txt)
+4.  [java 实现](https://web.archive.org/web/20150716000631/https://android.googlesource.com/platform/libcore/+/gingerbread/luni/src/main/java/java/util/TimSort.java)
+5.  [c 语言实现](http://svn.python.org/projects/python/trunk/Objects/listobject.c)

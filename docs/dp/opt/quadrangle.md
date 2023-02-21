@@ -10,8 +10,8 @@ $$
 
 直接简单实现状态转移，总时间复杂度将会达到 $O(n^3)$，但当函数 $w(l,r)$ 满足一些特殊的性质时，我们可以利用决策的单调性进行优化。
 
-- **区间包含单调性**：如果对于任意 $l \leq l' \leq r' \leq r$，均有 $w(l',r') \leq w(l,r)$ 成立，则称函数 $w$ 对于区间包含关系具有单调性。
-- **四边形不等式**：如果对于任意 $l_1\leq l_2 \leq r_1 \leq r_2$，均有 $w(l_1,r_1)+w(l_2,r_2) \leq w(l_1,r_2) + w(l_2,r_1)$ 成立，则称函数 $w$ 满足四边形不等式（简记为“交叉小于包含”）。若等号永远成立，则称函数 $w$ 满足 **四边形恒等式**。
+-   **区间包含单调性**：如果对于任意 $l \leq l' \leq r' \leq r$，均有 $w(l',r') \leq w(l,r)$ 成立，则称函数 $w$ 对于区间包含关系具有单调性。
+-   **四边形不等式**：如果对于任意 $l_1\leq l_2 \leq r_1 \leq r_2$，均有 $w(l_1,r_1)+w(l_2,r_2) \leq w(l_1,r_2) + w(l_2,r_1)$ 成立，则称函数 $w$ 满足四边形不等式（简记为“交叉小于包含”）。若等号永远成立，则称函数 $w$ 满足 **四边形恒等式**。
 
 **引理 1**：若 $w(l, r)$ 满足区间包含单调性和四边形不等式，则状态 $f_{l,r}$ 满足四边形不等式。
 
@@ -143,7 +143,7 @@ $$
 \sum_{1\leq l<r\leq n} m_{l+1,r} - m_{l,r-1} = \sum_{i=1}^n m_{i,n} - m_{1,i}\leq n^2
 $$
 
-???+note "核心代码"
+???+ note "核心代码"
     === "C++"
     
         ```cpp
@@ -261,7 +261,7 @@ $$
 
 在这种情况下，我们定义过程 $\textsf{DP}(l, r, k_l, k_r)$ 表示求解 $f_{l}\sim f_{r}$ 的状态值，并且已知这些状态的最优决策点必定位于 $[k_l, k_r]$ 中，然后使用分治算法如下：
 
-???+note "代码实现"
+???+ note "代码实现"
     === "C++"
     
         ```cpp
@@ -299,7 +299,7 @@ $$
 
 ### [「POI2011」Lightning Conductor](https://loj.ac/problem/2157)
 
-???+note "题目大意"
+???+ note "题目大意"
     给定一个长度为 $n$（$n\leq 5\times 10^5$）的序列 $a_1, a_2, \cdots, a_n$，要求对于每一个 $1 \leq r \leq n$，找到最小的非负整数 $f_r$ 满足
     
     $$
@@ -370,7 +370,7 @@ $$
 
 ### [「HNOI2008」玩具装箱 toy](https://loj.ac/problem/10188)
 
-???+note "题目大意"
+???+ note "题目大意"
     有 $n$ 个玩具需要装箱，要求每个箱子中的玩具编号必须是连续的。每个玩具有一个长度 $C_i$，如果一个箱子中有多个玩具，那么每两个玩具之间要加入一个单位长度的分隔物。形式化地说，如果将编号在 $[l,r]$ 间的玩具装在一个箱子里，那么这个箱子的长度为 $r-l+\sum_{k=l}^r C_k$。现在需要制定一个装箱方案，使得所有容器的长度与 $K$ 差值的平方之和最小。
 
 设 $f_{r}$ 表示将前 $r$ 个玩具装箱的最小代价，则枚举第 $r$ 个玩具与哪些玩具放在一个箱子中，可以得到状态转移方程为
@@ -383,19 +383,19 @@ $$
 
 ## 习题
 
-- [「IOI2000」邮局](https://www.luogu.com.cn/problem/P4767)
-- [Codeforces - Ciel and Gondolas](https://codeforces.com/contest/321/problem/E)(Be careful with I/O!)
-- [SPOJ - LARMY](https://www.spoj.com/problems/LARMY/)
-- [Codechef - CHEFAOR](https://www.codechef.com/problems/CHEFAOR)
-- [Hackerrank - Guardians of the Lunatics](https://www.hackerrank.com/contests/ioi-2014-practice-contest-2/challenges/guardians-lunatics-ioi14)
-- [ACM ICPC World Finals 2017 - Money](https://open.kattis.com/problems/money)
+-   [「IOI2000」邮局](https://www.luogu.com.cn/problem/P4767)
+-   [Codeforces - Ciel and Gondolas](https://codeforces.com/contest/321/problem/E)(Be careful with I/O!)
+-   [SPOJ - LARMY](https://www.spoj.com/problems/LARMY/)
+-   [Codechef - CHEFAOR](https://www.codechef.com/problems/CHEFAOR)
+-   [Hackerrank - Guardians of the Lunatics](https://www.hackerrank.com/contests/ioi-2014-practice-contest-2/challenges/guardians-lunatics-ioi14)
+-   [ACM ICPC World Finals 2017 - Money](https://open.kattis.com/problems/money)
 
 ## 参考资料
 
-- [noiau 的 CSDN 博客](https://blog.csdn.net/noiau/article/details/72514812)
-- [Quora Answer by Michael Levin](https://www.quora.com/What-is-divide-and-conquer-optimization-in-dynamic-programming)
-- [Video Tutorial by "Sothe" the Algorithm Wolf](https://www.youtube.com/watch?v=wLXEWuDWnzI)
+-   [noiau 的 CSDN 博客](https://blog.csdn.net/noiau/article/details/72514812)
+-   [Quora Answer by Michael Levin](https://www.quora.com/What-is-divide-and-conquer-optimization-in-dynamic-programming)
+-   [Video Tutorial by "Sothe" the Algorithm Wolf](https://www.youtube.com/watch?v=wLXEWuDWnzI)
 
-* * *
+***
 
 **本页面主要译自英文版博文 [Divide and Conquer DP](https://cp-algorithms.com/dynamic_programming/divide-and-conquer-dp.html)。版权协议为 CC-BY-SA 4.0。**
