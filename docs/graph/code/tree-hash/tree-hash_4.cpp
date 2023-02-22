@@ -38,6 +38,6 @@ int main(){
 		e[v].push_back(u);
 	}
 	dfs(1,0);
-	printf("%llu",s.size());
+	printf("%lu",s.size());
 }
 
