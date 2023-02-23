@@ -120,27 +120,27 @@ findmin 和 findmax 函数分别返回最小值和最大值所对应的结点编
     }
     
     void del(int& o, int v) {
-        // 注意 o 有可能会被修改
-        siz[o]--;
-        if (val[o] == v) {
-            if (cnt[o] > 1) {
-                cnt[o]--;
-                return;
-            }
-            if (lc[o] && rc[o]) {
-                int t = deletemin(rc[o]);
-                lc[t] = lc[o];
-                rc[t] = rc[o];
-                siz[t] = siz[o];
-                o = t;
-            }
-            // 这里以找右子树的最小值为例
-            else
-                o = lc[o] + rc[o];
-            return;
+      // 注意 o 有可能会被修改
+      siz[o]--;
+      if (val[o] == v) {
+        if (cnt[o] > 1) {
+          cnt[o]--;
+          return;
         }
-        if (val[o] > v) del(lc[o], v);
-        if (val[o] < v) del(rc[o], v);
+        if (lc[o] && rc[o]) {
+          int t = deletemin(rc[o]);
+          lc[t] = lc[o];
+          rc[t] = rc[o];
+          siz[t] = siz[o];
+          o = t;
+        }
+        // 这里以找右子树的最小值为例
+        else
+          o = lc[o] + rc[o];
+        return;
+      }
+      if (val[o] > v) del(lc[o], v);
+      if (val[o] < v) del(rc[o], v);
     }
     ```
 
