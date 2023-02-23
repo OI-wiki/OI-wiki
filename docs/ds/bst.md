@@ -119,6 +119,7 @@ findmin 和 findmax 函数分别返回最小值和最大值所对应的结点编
       }
     }
     
+    ```
 
     void del(int& o, int v) {
         // 注意 o 有可能会被修改
