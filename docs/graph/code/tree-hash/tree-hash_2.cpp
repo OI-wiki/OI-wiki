@@ -1,101 +1,75 @@
-#include <algorithm>
 #include <cstdio>
-#include <tr1/unordered_map>
 #include <vector>
+#include <set>
+#include <map>
+#include <random>
+#include <chrono>
 
-class Solution {
- private:
-  typedef unsigned long long ull;
-  typedef std::vector<int>::iterator it;
-  static const ull seed = 2333233233;
-  static const int maxn = 107;
+typedef unsigned long long ull;
 
-  int n, m, size[maxn], lastRoot, root, lastMax, Max, ans;
-  ull hashval[maxn], res;
-  std::vector<int> e[maxn];
-  std::tr1::unordered_map<ull, int> id;
+const int N=1e5+10, M=998244353;
+const ull mask=std::chrono::steady_clock::now().time_since_epoch().count();
 
-  ull getHash(int now, int fa) {  // 得到哈希值
-    size[now] = 1;
-    hashval[now] = 1;
-    for (it i = e[now].begin(); i != e[now].end(); ++i) {
-      int v = *i;
-      if (v == fa) {
-        continue;
-      }
-      hashval[now] ^= getHash(v, now) * seed + size[v];
-      size[now] += size[v];
+ull shift(ull x)
+{
+    x ^= mask;
+    x ^= x << 13;
+    x ^= x >> 7;
+    x ^= x << 17;
+    x ^= mask;
+    return x;
+}
+
+std::vector<int> edge[N];
+ull sub[N], root[N];
+std::map<ull, int> trees;
+
+void dfs(int x)
+{
+    sub[x] = mask ^ 1;
+    for (int i : edge[x]) {
+        dfs(i);
+        sub[x] += shift(sub[i]);
     }
-    return hashval[now];
-  }
+}
 
-  void getRoot(int now, int fa) {  // 找根，递归向上找
-    int max = 0;
-    size[now] = 1;
-    for (it i = e[now].begin(); i != e[now].end(); ++i) {
-      int v = *i;
-      if (v == fa) {
-        continue;
-      }
-      getRoot(v, now);
-      size[now] += size[v];
-      max = std::max(max, size[v]);
+void dfs2(int x)
+{
+    for (int i : edge[x]) {
+        root[i] = sub[i] + shift(root[x] - shift(sub[i]));
+        dfs2(i);
     }
-    max = std::max(max, n - size[now]);
-    if (max < Max && now != lastRoot) {
-      root = now;
-      Max = max;
-    }
-  }
+}
 
- public:
-  Solution() {
-    get();
-    solve();
-  }
-
-  void get() {
+int main()
+{
+    int m;
     scanf("%d", &m);
-    for (int i = 1; i <= m; i++) {
-      scanf("%d", &n);
-      for (int j = 1; j <= n; j++) {
-        std::vector<int>().swap(e[j]);
-      }
-      for (int j = 1, fa; j <= n; j++) {
-        scanf("%d", &fa);
-        if (!fa) {
-          root = j;
-        } else {
-          e[fa].push_back(j);
-          e[j].push_back(fa);
+    for (int t=1; t<=m; t++) {
+        int n, rt=0;
+        scanf("%d", &n);
+        for (int i=1; i<=n; i++) {
+            int fa;
+            scanf("%d", &fa);
+            if (fa) {
+                edge[fa].push_back(i);
+            } else {
+                rt = i;
+            }
         }
-      }
-      lastRoot = root = 0;
-      Max = n;
-      getRoot(1, 0);
-      lastRoot = root, lastMax = Max;
-      res = getHash(root, 0);
-      if (!id.count(res)) {
-        id[res] = i;
-      }
-      ans = id[res];
-
-      Max = n;
-      getRoot(1, 0);
-      if (lastMax == Max) {
-        res = getHash(root, 0);
-        if (!id.count(res)) {
-          id[res] = i;
+        dfs(rt);
+        root[rt] = sub[rt];
+        dfs2(rt);
+        ull hash = mask ^ 1;
+        for (int i=1; i<=n; ++i) {
+            hash += shift(root[i]);
         }
-        ans = std::min(ans, id[res]);
-      }
-      printf("%d\n", ans);
+        if (!trees.count(hash)) {
+            trees[hash] = t;
+        }
+        printf("%d\n", trees[hash]);
+        for (int i=1; i<=n; i++) {
+            edge[i].clear();
+        }
     }
-  }
-
-  void solve() {}
-};
-
-Solution sol;
-
-int main() {}
+}
