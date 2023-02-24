@@ -42,7 +42,7 @@ void dfs(int x, int p)
 int main()
 {
     scanf("%d", &n);
-    for (int i=1; i<n; ++i) {
+    for (int i=1; i<n; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
         edge[u].push_back(v);
