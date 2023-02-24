@@ -6,25 +6,23 @@
 #include <chrono>
 
 typedef unsigned long long ull;
-typedef unsigned long long ll;
 
 const int N=1e5+10, M=998244353;
 const ull mask=std::chrono::steady_clock::now().time_since_epoch().count();
 
 struct Tree {
-    ull hash;
-    ll deg, ans;
-    std::map<ull, ll> son;
-    
+    ull hash, deg, ans;
+    std::map<ull, ull> son;
+
     Tree() {clear();}
     void add(Tree& o);
     void remove(Tree& o);
     void clear();
 };
 
-ll inv(ll x)
+ull inv(ull x)
 {
-    ll y=M-2, z=1;
+    ull y=M-2, z=1;
     while (y) {
         if (y & 1) {
             z = z * x % M;
@@ -69,7 +67,7 @@ void Tree::clear()
 
 std::vector<int> edge[N];
 Tree sub[N], root[N];
-std::map<ull, ll> trees;
+std::map<ull, ull> trees;
 
 void dfs(int x, int fa)
 {
@@ -112,7 +110,7 @@ int main()
         dfs(1, 0);
         root[1] = sub[1];
         dfs2(1, 0);
-        ll tot = 0;
+        ull tot = 0;
         for (auto p : trees) {
             tot = (tot + p.second) % M;
         }
