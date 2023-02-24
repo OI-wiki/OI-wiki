@@ -56,7 +56,6 @@ $$
     --8<-- "docs/graph/code/tree-hash/tree-hash_4.cpp"
     ```
 
-
 ## 参考资料
 
 文中的哈希方法参考并拓展自博客 [一种好写且卡不掉的树哈希](https://peehs-moorhsum.blog.uoj.ac/blog/7891)。
