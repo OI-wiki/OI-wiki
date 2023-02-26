@@ -13,7 +13,7 @@ const ull mask=std::chrono::steady_clock::now().time_since_epoch().count();
 struct Tree {
     ull hash, deg, ans;
     std::map<ull, ull> son;
-
+    
     Tree() {clear();}
     void add(Tree& o);
     void remove(Tree& o);
@@ -59,7 +59,7 @@ void Tree::remove(Tree& o)
 
 void Tree::clear()
 {
-    hash = mask ^ 1;
+    hash = 1;
     deg = 0;
     ans = 1;
     son.clear();
@@ -69,18 +69,18 @@ std::vector<int> edge[N];
 Tree sub[N], root[N];
 std::map<ull, ull> trees;
 
-void dfs(int x, int fa)
+void getSub(int x, int fa)
 {
     for (int i : edge[x]) {
         if (i == fa) {
             continue;
         }
-        dfs(i, x);
+        getSub(i, x);
         sub[x].add(sub[i]);
     }
 }
 
-void dfs2(int x, int fa)
+void getRoot(int x, int fa)
 {
     for (int i : edge[x]) {
         if (i == fa) {
@@ -90,7 +90,7 @@ void dfs2(int x, int fa)
         root[i] = sub[i];
         root[i].add(root[x]);
         root[x].add(sub[i]);
-        dfs2(i, x);
+        getRoot(i, x);
     }
     trees[root[x].hash] = root[x].ans;
 }
@@ -107,9 +107,9 @@ int main()
             edge[u].push_back(v);
             edge[v].push_back(u);
         }
-        dfs(1, 0);
+        getSub(1, 0);
         root[1] = sub[1];
-        dfs2(1, 0);
+        getRoot(1, 0);
         ull tot = 0;
         for (auto p : trees) {
             tot = (tot + p.second) % M;
