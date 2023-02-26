@@ -20,7 +20,6 @@ $$
 
 ## 例题
 
-
 ### [UOJ #763. 树哈希](https://uoj.ac/problem/763)
 
 这是一道模板题。不用多说，以 $1$ 为根跑一遍 DFS 就好了。
@@ -30,7 +29,7 @@ $$
     --8<-- "docs/graph/code/tree-hash/tree-hash_4.cpp"
     ```
 
-### [[BJOI2015] 树的同构](https://www.luogu.com.cn/problem/P5043)
+### [\[BJOI2015\] 树的同构](https://www.luogu.com.cn/problem/P5043)
 
 我们用上述方式进行哈希。注意只有当根一样时，同构的两棵子树哈希值才相同。由于数据范围较小，我们可以暴力求出以每个点为根时的哈希值，排序后比较。
 
