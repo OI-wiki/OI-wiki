@@ -7,7 +7,7 @@
 
 typedef unsigned long long ull;
 
-const int N=1e5+10, M=998244353;
+const int N=60, M=998244353;
 const ull mask=std::chrono::steady_clock::now().time_since_epoch().count();
 
 ull shift(ull x)
@@ -24,20 +24,20 @@ std::vector<int> edge[N];
 ull sub[N], root[N];
 std::map<ull, int> trees;
 
-void dfs(int x)
+void getSub(int x)
 {
-    sub[x] = mask ^ 1;
+    sub[x] = 1;
     for (int i : edge[x]) {
-        dfs(i);
+        getSub(i);
         sub[x] += shift(sub[i]);
     }
 }
 
-void dfs2(int x)
+void getRoot(int x)
 {
     for (int i : edge[x]) {
         root[i] = sub[i] + shift(root[x] - shift(sub[i]));
-        dfs2(i);
+        getRoot(i);
     }
 }
 
@@ -57,9 +57,9 @@ int main()
                 rt = i;
             }
         }
-        dfs(rt);
+        getSub(rt);
         root[rt] = sub[rt];
-        dfs2(rt);
+        getRoot(rt);
         ull hash = mask ^ 1;
         for (int i=1; i<=n; ++i) {
             hash += shift(root[i]);
