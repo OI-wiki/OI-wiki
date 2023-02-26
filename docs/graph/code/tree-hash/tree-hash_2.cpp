@@ -60,8 +60,8 @@ int main()
         getSub(rt);
         root[rt] = sub[rt];
         getRoot(rt);
-        ull hash = mask ^ 1;
-        for (int i=1; i<=n; ++i) {
+        ull hash = 1;
+        for (int i=1; i<=n; i++) {
             hash += shift(root[i]);
         }
         if (!trees.count(hash)) {
