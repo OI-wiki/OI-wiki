@@ -26,14 +26,14 @@ ull hash[N];
 std::vector<int> edge[N];
 std::set<ull> trees;
 
-void dfs(int x, int p)
+void getHash(int x, int p)
 { 
-    hash[x] = mask ^ 1;
+    hash[x] = 1;
     for (int i : edge[x]) {
         if (i == p) {
             continue;
         }
-        dfs(i, x);
+        getHash(i, x);
         hash[x] += shift(hash[i]);
     }
     trees.insert(hash[x]);
@@ -48,6 +48,6 @@ int main()
         edge[u].push_back(v);
         edge[v].push_back(u);
     }
-    dfs(1, 0);
+    getHash(1, 0);
     printf("%lu", trees.size());
 }
