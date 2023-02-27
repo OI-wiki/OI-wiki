@@ -241,17 +241,27 @@ $x$ 可以是复数。
 | n13.2 | $\rho$,$\varphi$,$z$      | $\mathbf{r} = \rho~\mathbf{e}_{\rho} + z~\mathbf{e}_z$;$\mathrm{d}\mathbf{r} = \mathrm{d}\rho~\mathbf{e}_{\rho} +\rho~\mathrm{d}\varphi~\mathbf{e}_{\varphi} + \mathrm{d}z~\mathbf{e}_z$         | 柱坐标   | $\mathbf{e}_{\rho}(\varphi)$,$\mathbf{e}_{\varphi}(\varphi)$,$\mathbf{e}_z$ 组成右手正交系，见图 2。若 $z = 0$, 则 $\rho$ 和 $\varphi$ 是平面上的极坐标。                                                                           |
 | n13.3 | $r$,$\vartheta$,$\varphi$ | $\mathbf{r} = r \mathbf{e}_r$;$\mathrm{d}\mathbf{r} = \mathrm{d}r~\mathbf{e}_r + r~\mathrm{d}\vartheta~\mathbf{e}_{\vartheta} + r~\sin\vartheta~\mathrm{\mathrm{d}}\varphi~\mathbf{e}_{\varphi}$ | 球坐标   | $\mathbf{e}_r(\vartheta,\varphi)$,$\mathbf{e}_{\vartheta}(\vartheta,\varphi)$,$\mathbf{e}_{\varphi}(\varphi)$ 组成右手正交系，见图 3。                                                                                  |
 
-如果不使用右手系（见图 4），而使用左手系（见图 5），则应在之前明确强调，以免符号误用。
+如果不使用右手坐标系（见图 4），而使用左手坐标系（见图 5），则应在之前明确强调，以免符号误用。
 
-图 1
+![](./images/symbol-1.svg)
 
-图 2
+**图 1** 右手笛卡尔坐标系
 
-图 3
+![](./images/symbol-2.svg)
 
-图 4
+**图 2** 右手柱坐标系
 
-图 5
+![](./images/symbol-3.svg)
+
+**图 3** 右手球坐标系
+
+![](./images/symbol-4.svg)
+
+**图 4** 右手坐标系
+
+![](./images/symbol-5.svg)
+
+**图 5** 左手坐标系
 
 ## 标量和向量
 
