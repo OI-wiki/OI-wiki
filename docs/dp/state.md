@@ -4,7 +4,7 @@
 
 ## 例题
 
-???+note "[「SCOI2005」互不侵犯](https://loj.ac/problem/2153)"
+???+ note "[「SCOI2005」互不侵犯](https://loj.ac/problem/2153)"
     在 $N\times N$ 的棋盘里面放 $K$ 个国王（$1 \leq N \leq 9, 1 \leq K \leq N \times N$），使他们互不攻击，共有多少种摆放方案。
     
     国王能攻击到它上下左右，以及左上左下右上右下八个方向上附近的各一个格子，共 $8$ 个格子。
@@ -34,7 +34,7 @@ $$
 
 ## 习题
 
-- [「NOI2001」炮兵阵地](https://loj.ac/problem/10173)
-- [「USACO06NOV」玉米田 Corn Fields](https://www.luogu.com.cn/problem/P1879)
-- [「AHOI2009」中国象棋](https://www.luogu.com.cn/problem/P2051)
-- [「九省联考 2018」一双木棋](https://loj.ac/problem/2471)
+-   [「NOI2001」炮兵阵地](https://loj.ac/problem/10173)
+-   [「USACO06NOV」玉米田 Corn Fields](https://www.luogu.com.cn/problem/P1879)
+-   [「AHOI2009」中国象棋](https://www.luogu.com.cn/problem/P2051)
+-   [「九省联考 2018」一双木棋](https://loj.ac/problem/2471)

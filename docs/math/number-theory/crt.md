@@ -27,12 +27,12 @@ $$
 
 ## 过程
 
-1. 计算所有模数的积 $n$；
+1.  计算所有模数的积 $n$；
 2.  对于第 $i$ 个方程：
-    1. 计算 $m_i=\frac{n}{n_i}$；
-    2. 计算 $m_i$ 在模 $n_i$ 意义下的 [逆元](./inverse.md)  $m_i^{-1}$；
-    3. 计算 $c_i=m_im_i^{-1}$（**不要对 $n_i$ 取模**）。
-3. 方程组在模 $n$ 意义下的唯一解为：$x=\sum_{i=1}^k a_ic_i \pmod n$。
+    1.  计算 $m_i=\frac{n}{n_i}$；
+    2.  计算 $m_i$ 在模 $n_i$ 意义下的 [逆元](./inverse.md)  $m_i^{-1}$；
+    3.  计算 $c_i=m_im_i^{-1}$（**不要对 $n_i$ 取模**）。
+3.  方程组在模 $n$ 意义下的唯一解为：$x=\sum_{i=1}^k a_ic_i \pmod n$。
 
 ## 实现
 
@@ -92,11 +92,11 @@ $$
 
 下面演示 CRT 如何解「物不知数」问题。
 
-1. $n=3\times 5\times 7=105$；
-2. 三人同行 **七十** 希：$n_1=3, m_1=n/n_1=35, m_1^{-1}\equiv 2\pmod 3$，故 $c_1=35\times 2=70$；
-3. 五树梅花 **廿一** 支：$n_2=5, m_2=n/n_2=21, m_2^{-1}\equiv 1\pmod 5$，故 $c_2=21\times 1=21$；
-4. 七子团圆正 **半月**：$n_3=7, m_3=n/n_3=15, m_3^{-1}\equiv 1\pmod 7$，故 $c_3=15\times 1=15$；
-5. 所以方程组的唯一解为 $x\equiv 2\times 70+3\times 21+2\times 15\equiv 233\equiv 23 \pmod {105}$。（除 **百零五** 便得知）
+1.  $n=3\times 5\times 7=105$；
+2.  三人同行 **七十** 希：$n_1=3, m_1=n/n_1=35, m_1^{-1}\equiv 2\pmod 3$，故 $c_1=35\times 2=70$；
+3.  五树梅花 **廿一** 支：$n_2=5, m_2=n/n_2=21, m_2^{-1}\equiv 1\pmod 5$，故 $c_2=21\times 1=21$；
+4.  七子团圆正 **半月**：$n_3=7, m_3=n/n_3=15, m_3^{-1}\equiv 1\pmod 7$，故 $c_3=15\times 1=15$；
+5.  所以方程组的唯一解为 $x\equiv 2\times 70+3\times 21+2\times 15\equiv 233\equiv 23 \pmod {105}$。（除 **百零五** 便得知）
 
 ## Garner 算法
 
@@ -211,7 +211,7 @@ $$
 
 下面这道题就是一个不错的例子。
 
-???+note "[洛谷 P2480 [SDOI2010]古代猪文](https://www.luogu.com.cn/problem/P2480)"
+???+ note "[洛谷 P2480 \[SDOI2010\] 古代猪文](https://www.luogu.com.cn/problem/P2480)"
     给出 $G,n$（$1 \leq G,n \leq 10^9$），求：
     
     $$
@@ -257,9 +257,9 @@ $$
 
 将它们转化为不定方程：$x=m_1p+a_1=m_2q+a_2$，其中 $p, q$ 是整数，则有 $m_1p-m_2q=a_2-a_1$。
 
-由裴蜀定理，当 $a_2-a_1$ 不能被 $\gcd(m_1,m_2)$ 整除时，无解；
+由 [裴蜀定理](./bezouts.md)，当 $a_2-a_1$ 不能被 $\gcd(m_1,m_2)$ 整除时，无解；
 
-其他情况下，可以通过扩展欧几里得算法解出来一组可行解 $(p, q)$；
+其他情况下，可以通过 [扩展欧几里得算法](./gcd.md) 解出来一组可行解 $(p, q)$；
 
 则原来的两方程组成的模方程组的解为 $x\equiv b\pmod M$，其中 $b=m_1p+a_1$，$M=\text{lcm}(m_1, m_2)$。
 
@@ -269,8 +269,8 @@ $$
 
 ## 习题
 
-- [【模板】扩展中国剩余定理](https://www.luogu.com.cn/problem/P4777)
-- [「NOI2018」屠龙勇士](https://uoj.ac/problem/396)
+-   [【模板】扩展中国剩余定理](https://www.luogu.com.cn/problem/P4777)
+-   [「NOI2018」屠龙勇士](https://uoj.ac/problem/396)
 -   [「TJOI2009」猜数字](https://www.luogu.com.cn/problem/P3868)
 
     **本页面部分内容译自博文 [Китайская теорема об остатках](http://e-maxx.ru/algo/chinese_theorem) 与其英文翻译版 [Chinese Remainder Theorem](https://cp-algorithms.com/algebra/chinese-remainder-theorem.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

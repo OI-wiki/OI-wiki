@@ -4,10 +4,10 @@
 
 ST 表是用于解决 **可重复贡献问题** 的数据结构。
 
-???+note "什么是可重复贡献问题？"
+???+ note "什么是可重复贡献问题？"
     **可重复贡献问题** 是指对于运算 $\operatorname{opt}$，满足 $x\operatorname{opt} x=x$，则对应的区间询问就是一个可重复贡献问题。例如，最大值有 $\max(x,x)=x$，gcd 有 $\operatorname{gcd}(x,x)=x$，所以 RMQ 和区间 GCD 就是一个可重复贡献问题。像区间和就不具有这个性质，如果求区间和的时候采用的预处理区间重叠了，则会导致重叠部分被计算两次，这是我们所不愿意看到的。另外，$\operatorname{opt}$ 还必须满足结合律才能使用 ST 表求解。
 
-???+note "什么是RMQ？"
+???+ note "什么是 RMQ？"
     RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）值。解决 RMQ 问题有很多种方法，可以参考 [RMQ 专题](../topic/rmq.md)。
 
 ## 引入
@@ -66,9 +66,9 @@ ST 表基于 [倍增](../basic/binary-lifting.md) 思想，可以做到 $\Theta(
 
 ## 注意点
 
-1. 输入输出数据一般很多，建议开启输入输出优化。
+1.  输入输出数据一般很多，建议开启输入输出优化。
 
-2. 每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议进行如下的预处理：
+2.  每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议进行如下的预处理：
 
 $$
 \left\{\begin{aligned}
@@ -95,7 +95,7 @@ ST 表能较好的维护“可重复贡献”的区间信息（同时也应满�
 
 [「SCOI2007」降雨量](https://loj.ac/problem/2279)
 
-[\[USACO07JAN\]平衡的阵容 Balanced Lineup](https://www.luogu.com.cn/problem/P2880)
+[\[USACO07JAN\] 平衡的阵容 Balanced Lineup](https://www.luogu.com.cn/problem/P2880)
 
 ## 附录：ST 表求区间 GCD 的时间复杂度分析
 
