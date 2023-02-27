@@ -8,21 +8,21 @@ author: sshwy, hsfzLZH1, Enter-tainer
 
 ### 整除/同余理论常见符号
 
-1.  整除符号[^ref1]：$x\mid y$，表示 $x$ 整除 $y$，即 $x$ 是 $y$ 的因数。
-2.  取模符号[^ref2]：$x\bmod y$，表示 $x$ 除以 $y$ 得到的余数。
-3.  互质符号[^ref3]：$x\perp y$，表示 $x$，$y$ 互质。
-4.  最大公约数[^ref4]：$\gcd(x,y)$，在无混淆意义的时侯可以写作 $(x,y)$。
-5.  最小公倍数[^ref5]：$\operatorname{lcm}(x,y)$，在无混淆意义的时侯可以写作 $[x,y]$。
+1.  整除符号：$x\mid y$，表示 $x$ 整除 $y$，即 $x$ 是 $y$ 的因数。
+2.  取模符号：$x\bmod y$，表示 $x$ 除以 $y$ 得到的余数。
+3.  互质符号：$x\perp y$，表示 $x$，$y$ 互质。
+4.  最大公约数：$\gcd(x,y)$，在无混淆意义的时侯可以写作 $(x,y)$。
+5.  最小公倍数：$\operatorname{lcm}(x,y)$，在无混淆意义的时侯可以写作 $[x,y]$。
 
 ### 数论函数常见符号
 
-求和符号[^ref6]：$\sum$ 符号，表示满足特定条件的数的和。举几个例子：
+求和符号：$\sum$ 符号，表示满足特定条件的数的和。举几个例子：
 
 -   $\sum_{i=1}^n i$ 表示 $1+2+\dotsb+n$ 的和。其中 $i$ 是一个变量，在求和符号的意义下 $i$ 通常是 **正整数或者非负整数**（除非特殊说明）。这个式子的含义可以理解为，$i$ 从 $1$ 循环到 $n$，所有 $i$ 的和。这个式子用代码的形式很容易表达。当然，学过简单的组合数学的同学都知道 $\sum_{i=1}^n i=\dfrac{n(n+1)}{2}$。
 -   $\sum_{S\subseteq T}|S|$ 表示所有被 $T$ 包含的集合的大小的和。
 -   $\sum_{p\le n,p\perp n}1$ 表示的是 $n$ 以内有多少个与 $n$ 互质的数，即 $\varphi(n)$，$\varphi$ 是欧拉函数。
 
-求积符号[^ref7]：$\prod$ 符号，表示满足特定条件的数的积。举几个例子：
+求积符号：$\prod$ 符号，表示满足特定条件的数的积。举几个例子：
 
 -   $\prod_{i=1}^ni$ 表示 $n$ 的阶乘，即 $n!$。在组合数学常见符号中会讲到。
 -   $\prod_{i=1}^na_i$ 表示 $a_1\times a_2\times a_3\times \dotsb\times a_n$。
@@ -32,35 +32,9 @@ author: sshwy, hsfzLZH1, Enter-tainer
 
 ### 其他常见符号
 
-1.  阶乘符号[^ref8] $!$，$n!$ 表示 $1\times 2\times 3\times \dotsb \times n$。特别地，$0!=1$。
-2.  向下取整符号[^ref9]：$\lfloor x\rfloor$，表示小于等于 $x$ 的最大的整数。常用于分数，比如分数的向下取整 $\left\lfloor\dfrac{x}{y}\right\rfloor$。
-3.  向上取整符号[^ref10]：$\lceil x\rceil$，与向下取整符号相对，表示大于等于 $x$ 的最小的整数。
-4.  组合数[^ref11]：$\binom{x}{y}$
-5.  第一类斯特林数[^ref12]：$x\brack y$
-6.  第二类斯特林数[^ref13]：$x\brace y$
-
-[^ref1]: [数学符号表 n4.17](../intro/symbol.md#n4.17)
-
-[^ref2]: [数学符号表 n4.19](../intro/symbol.md#n4.19)
-
-[^ref3]: [数学符号表 n4.18](../intro/symbol.md#n4.18)
-
-[^ref4]: [数学符号表 n6.23](../intro/symbol.md#n6.23)
-
-[^ref5]: [数学符号表 n6.24](../intro/symbol.md#n6.24)
-
-[^ref6]: [数学符号表 n6.7](../intro/symbol.md#n6.7)
-
-[^ref7]: [数学符号表 n6.8](../intro/symbol.md#n6.8)
-
-[^ref8]: [数学符号表 n7.1](../intro/symbol.md#n7.1)
-
-[^ref9]: [数学符号表 n6.17](../intro/symbol.md#n6.17)
-
-[^ref10]: [数学符号表 n6.18](../intro/symbol.md#n6.18)
-
-[^ref11]: [数学符号表 n7.4](../intro/symbol.md#n7.4)
-
-[^ref12]: [数学符号表 n7.6](../intro/symbol.md#n7.6)
-
-[^ref13]: [数学符号表 n7.7](../intro/symbol.md#n7.7)
+1.  阶乘符号 $!$，$n!$ 表示 $1\times 2\times 3\times \dotsb \times n$。特别地，$0!=1$。
+2.  向下取整符号：$\lfloor x\rfloor$，表示小于等于 $x$ 的最大的整数。常用于分数，比如分数的向下取整 $\left\lfloor\dfrac{x}{y}\right\rfloor$。
+3.  向上取整符号：$\lceil x\rceil$，与向下取整符号相对，表示大于等于 $x$ 的最小的整数。
+4.  组合数：$\binom{x}{y}$
+5.  第一类斯特林数：$x\brack y$
+6.  第二类斯特林数：$x\brace y$
