@@ -791,4 +791,4 @@ TeX Live <http://www.tug.org/texlive/>“An easy way to get up and running with 
 
 Workbook Source Files <http://edin.ac/17EQPM1> Download the .tex file and other files needed to compile this workbook.
 
-**本文译自 <http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf>**，[Archived](https://web.archive.org/web/20220309055041/http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf), 依据其他文献略有修改。
+**本文译自 [http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf](https://web.archive.org/web/20220309055041/http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf)**, 依据其他文献略有修改。
