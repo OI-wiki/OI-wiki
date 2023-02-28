@@ -41,16 +41,16 @@
 
 | 编号    | 符号，表达式       | 意义，等同表述           | 备注与示例                                                                                                                                                                             |
 | ----- | ------------ | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| n3.1  | $\mathsf{N}$ | 自然数集              | $\mathsf{N} = \{0, 1, 2, 3, \dots\}$;$\mathsf{N}^* = \mathsf{N}_+ = \{1, 2, 3, \dots\}$; 可用如下方式添加其他限制：$\mathsf{N}_{> 5} = \{n \in \mathsf{N} ~\vert~ n > 5\}$; 也可使用 $\mathbb{N}$. |
-| n3.2  | $\mathsf{Z}$ | 整数集               | $\mathsf{Z}^* = \mathsf{Z}_+ = \{n \in \mathsf{Z} ~\vert~ n \ne 0\}$; 可用如下方式添加其他限制：$\mathsf{Z}_{> -3} = \{n \in \mathsf{Z} ~\vert~ n > -3\}$; 也可使用 $\mathbb{Z}$.                  |
-| n3.3  | $\mathsf{Q}$ | 有理数集              | $\mathsf{Q}^* = \mathsf{Q}_+ = \{r \in \mathsf{Q} ~\vert~ r \ne 0\}$; 可用如下方式添加其他限制：$\mathsf{Q}_{< 0} = \{r \in \mathsf{Q} ~\vert~ r < 0\}$; 也可使用 $\mathbb{Q}$.                    |
-| n3.4  | $\mathsf{R}$ | 实数集               | $\mathsf{R}^* = \mathsf{R}_+ = \{x \in \mathsf{R} ~\vert~ x \ne 0\}$; 可用如下方式添加其他限制：$\mathsf{R}_{> 0} = \{x \in \mathsf{R} ~\vert~ x > 0\}$; 也可使用 $\mathbb{R}$.                    |
-| n3.5  | $\mathsf{C}$ | 复数集               | $\mathsf{C}^* = \mathsf{C}_+ = \{z \in \mathsf{C} ~\vert~ z \ne 0\}$; 也可使用 $\mathbb{C}$.                                                                                          |
-| n3.6  | $\mathsf{P}$ | （正）素数集            | $\mathsf{P} = \{2, 3, 5, 7, 11, 13, 17, \dots\}$; 也可使用 $\mathbb{P}$.                                                                                                              |
-| n3.7  | $[a, b]$     | $a$ 到 $b$ 的闭区间    | $[a, b] = \{x \in \mathsf{R} ~\vert~ a \leq x \leq b\}$                                                                                                                           |
-| n3.8  | $(a, b]$     | $a$ 到 $b$ 的左开右闭区间 | $(a, b] = \{x \in \mathsf{R} ~\vert~ a < x \leq b\}$;$(-\infty, b] = \{x \in \mathsf{R} ~\vert~ x \leq b\}$                                                                       |
-| n3.9  | $[a, b)$     | $a$ 到 $b$ 的左闭右开区间 | $[a, b) = \{x \in \mathsf{R} ~\vert~ a \leq x < b\}$;$[a, +\infty) = \{x \in \mathsf{R} ~\vert~ a \leq x\}$                                                                       |
-| n3.10 | $(a, b)$     | $a$ 到 $b$ 的开区间    | $(a, b) = \{x \in \mathsf{R} ~\vert~ a < x < b\}$;$(-\infty, b) = \{x \in \mathsf{R} ~\vert~ x < b\}$;$(a, +\infty) = \{x \in \mathsf{R} ~\vert~ a < x\}$                         |
+| n3.1  | $\mathbf{N}$ | 自然数集              | $\mathbf{N} = \{0, 1, 2, 3, \dots\}$;$\mathbf{N}^* = \mathbf{N}_+ = \{1, 2, 3, \dots\}$; 可用如下方式添加其他限制：$\mathbf{N}_{> 5} = \{n \in \mathbf{N} ~\vert~ n > 5\}$; 也可使用 $\mathbb{N}$. |
+| n3.2  | $\mathbf{Z}$ | 整数集               | $\mathbf{Z}^* = \mathbf{Z}_+ = \{n \in \mathbf{Z} ~\vert~ n \ne 0\}$; 可用如下方式添加其他限制：$\mathbf{Z}_{> -3} = \{n \in \mathbf{Z} ~\vert~ n > -3\}$; 也可使用 $\mathbb{Z}$.                  |
+| n3.3  | $\mathbf{Q}$ | 有理数集              | $\mathbf{Q}^* = \mathbf{Q}_+ = \{r \in \mathbf{Q} ~\vert~ r \ne 0\}$; 可用如下方式添加其他限制：$\mathbf{Q}_{< 0} = \{r \in \mathbf{Q} ~\vert~ r < 0\}$; 也可使用 $\mathbb{Q}$.                    |
+| n3.4  | $\mathbf{R}$ | 实数集               | $\mathbf{R}^* = \mathbf{R}_+ = \{x \in \mathbf{R} ~\vert~ x \ne 0\}$; 可用如下方式添加其他限制：$\mathbf{R}_{> 0} = \{x \in \mathbf{R} ~\vert~ x > 0\}$; 也可使用 $\mathbb{R}$.                    |
+| n3.5  | $\mathbf{C}$ | 复数集               | $\mathbf{C}^* = \mathbf{C}_+ = \{z \in \mathbf{C} ~\vert~ z \ne 0\}$; 也可使用 $\mathbb{C}$.                                                                                          |
+| n3.6  | $\mathbf{P}$ | （正）素数集            | $\mathbf{P} = \{2, 3, 5, 7, 11, 13, 17, \dots\}$; 也可使用 $\mathbb{P}$.                                                                                                              |
+| n3.7  | $[a, b]$     | $a$ 到 $b$ 的闭区间    | $[a, b] = \{x \in \mathbf{R} ~\vert~ a \leq x \leq b\}$                                                                                                                           |
+| n3.8  | $(a, b]$     | $a$ 到 $b$ 的左开右闭区间 | $(a, b] = \{x \in \mathbf{R} ~\vert~ a < x \leq b\}$;$(-\infty, b] = \{x \in \mathbf{R} ~\vert~ x \leq b\}$                                                                       |
+| n3.9  | $[a, b)$     | $a$ 到 $b$ 的左闭右开区间 | $[a, b) = \{x \in \mathbf{R} ~\vert~ a \leq x < b\}$;$[a, +\infty) = \{x \in \mathbf{R} ~\vert~ a \leq x\}$                                                                       |
+| n3.10 | $(a, b)$     | $a$ 到 $b$ 的开区间    | $(a, b) = \{x \in \mathbf{R} ~\vert~ a < x < b\}$;$(-\infty, b) = \{x \in \mathbf{R} ~\vert~ x < b\}$;$(a, +\infty) = \{x \in \mathbf{R} ~\vert~ a < x\}$                         |
 
 ## 杂项
 
@@ -72,9 +72,9 @@
 | n4.14 | $b \gg a$            | $b$ 远大于 $a$        |                                                                                                 |
 | n4.15 | $\infty$             | 无穷大                | 该符号 **不** 是数字。也可以使用符号 $+\infty$,$-\infty$.                                                      |
 | n4.16 | $x \to a$            | $x$ 趋近于 $a$        | 一般出现在极限表达式中。$a$ 也可以为 $\infty$,$+\infty$, 或 $-\infty$.                                           |
-| n4.17 | $m \mid n$           | $m$ 整除 $n$         | 对整数 $m$ 和 $n$:$(\exists~k \in \mathsf{Z})~~m\cdot k = n$                                        |
-| n4.18 | $m \perp n$          | $m$ 与 $n$ 互质       | 对整数 $m$ 和 $n$:$(\nexists~k \in \mathsf{Z}_{>1})~~(k \mid m) \land (k \mid n)$; 该符号的另一种用法参见 n5.2 |
-| n4.19 | $n \bmod m$          | $n$ 模 $m$ 的余数      | 对正整数 $n$,$m$:$(\exists~q\in\mathsf{N},r\in[0,m))~~n=qm+r$; 其中 $r=n \bmod m$                     |
+| n4.17 | $m \mid n$           | $m$ 整除 $n$         | 对整数 $m$ 和 $n$:$(\exists~k \in \mathbf{Z})~~m\cdot k = n$                                        |
+| n4.18 | $m \perp n$          | $m$ 与 $n$ 互质       | 对整数 $m$ 和 $n$:$(\nexists~k \in \mathbf{Z}_{>1})~~(k \mid m) \land (k \mid n)$; 该符号的另一种用法参见 n5.2 |
+| n4.19 | $n \bmod m$          | $n$ 模 $m$ 的余数      | 对正整数 $n$,$m$:$(\exists~q\in\mathbf{N},r\in[0,m))~~n=qm+r$; 其中 $r=n \bmod m$                     |
 | n4.20 | $n \equiv k \pmod m$ | $n$ 模 $m$ 与 $k$ 同余 | 对整数 $n$,$k$ 和 $m$:$m \mid (n - k)$; 不能与 n4.1 中提到的相混淆。                                           |
 
 ## 初等几何学
@@ -207,7 +207,7 @@ $x$ 可以是复数。
 | ----- | ---------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | n11.1 | $\mathrm{i}$           | 虚数单位       | $\mathrm{i}^2 = -1$; 不可使用 $i$ 或 `i`                                                                                                                                                                     |
 | n11.2 | $\operatorname{Re} z$  | $z$ 的实部    | 参见 n11.3.                                                                                                                                                                                               |
-| n11.3 | $\operatorname{Im} z$  | $z$ 的虚部    | 若 $z = x + \mathrm{i} y$, 其中 $x,y\in\mathsf{R}$, 则 $x = \operatorname{Re} z$ 且 $y = \operatorname{Im} z$.                                                                                               |
+| n11.3 | $\operatorname{Im} z$  | $z$ 的虚部    | 若 $z = x + \mathrm{i} y$, 其中 $x,y\in\mathbf{R}$, 则 $x = \operatorname{Re} z$ 且 $y = \operatorname{Im} z$.                                                                                               |
 | n11.4 | $\lvert z\rvert$       | $z$ 的模     | $\lvert z\rvert=\sqrt{x^2+y^2}$, 其中 $x = \operatorname{Re} z$,$y = \operatorname{Im} z$.                                                                                                                |
 | n11.5 | $\arg z$               | $z$ 的辐角    | 若 $z = r \mathrm{e}^{\mathrm{i}\varphi}$, 其中 $r = \lvert z\rvert$ 且 $-\pi < \varphi \leq \pi$, 则 $\varphi = \arg z$. 有 $\operatorname{Re} z = r \cos \varphi$ 和 $\operatorname{Im} z = r \sin \varphi$. |
 | n11.6 | $\bar{z}$;$z^*$        | $z$ 的复共轭   | $\bar{z}=\operatorname{Re}z-\mathrm{i}\operatorname{Im}z$                                                                                                                                               |
@@ -302,6 +302,6 @@ $x$ 可以是复数。
 | 编号    | 符号，表达式                  | 意义，等同表述             | 备注与示例                                                                                                                                                                                                                                                                              |
 | ----- | ----------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | n15.1 | $\gamma$                | Euler—Mascheroni 常数 | $\displaystyle \gamma=\lim\limits_{n\to\infty}\left(\sum\limits_{k=1}^n\frac{1}{k}-\ln n\right)= 0.577~215~6 \dots$                                                                                                                                                                |
-| n15.2 | $\Gamma(z)$             | gamma 函数            | $\displaystyle\Gamma(z)=\int\limits_0^{\infty}t^{z-1}\mathrm{e}^{-t}\mathrm{d}t\quad (\operatorname{Re}z>0)$;$\Gamma(n+1)=n!\quad (n\in\mathsf{N})$                                                                                                                                |
+| n15.2 | $\Gamma(z)$             | gamma 函数            | $\displaystyle\Gamma(z)=\int\limits_0^{\infty}t^{z-1}\mathrm{e}^{-t}\mathrm{d}t\quad (\operatorname{Re}z>0)$;$\Gamma(n+1)=n!\quad (n\in\mathbf{N})$                                                                                                                                |
 | n15.3 | $\zeta(z)$              | Riemann zeta 函数     | $\displaystyle\zeta(z)=\sum\limits_{n=1}^{\infty}\frac{1}{n^2}\quad (\operatorname{Re}z>1)$                                                                                                                                                                                        |
 | n15.4 | $\operatorname{B}(z,w)$ | beta 函数             | $\displaystyle\operatorname{B}(z,w)=\int\limits_0^1 t^{z-1}(1-t)^{w-1}\mathrm{d}t\quad (\operatorname{Re} z>0$,$\operatorname{Re} w>0)$;$\operatorname{B}(z,w)=\dfrac{\Gamma(z)\Gamma(w)}{\Gamma(z+w)}$;$\dfrac{1}{(n+1)\operatorname{B}(k+1,n-k+1)}=\dbinom{n}{k}\quad (k\leq n)$ |
