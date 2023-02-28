@@ -11,24 +11,24 @@
 
 如果是从第 $k$ 关键字到第 $1$ 关键字顺序进行比较，则该基数排序称为 LSD（Least Significant Digit first）基数排序。
 
-## k-关键字元素的比较
+## k - 关键字元素的比较
 
 下面用 $a_i$ 表示元素 $a$ 的第 $i$ 关键字。
 
 假如元素有 $k$ 个关键字，对于两个元素 $a$ 和 $b$，默认的比较方法是：
 
-- 比较两个元素的第 $1$ 关键字 $a_1$ 和 $b_1$，如果 $a_1 < b_1$ 则 $a < b$，如果 $a_1 > b_1$ 则 $a > b$，如果 $a_1 = b_1$ 则进行下一步；
-- 比较两个元素的第 $2$ 关键字 $a_2$ 和 $b_2$，如果 $a_2 < b_2$ 则 $a < b$，如果 $a_2 > b_2$ 则 $a > b$，如果 $a_2 = b_2$ 则进行下一步；
-- ……
-- 比较两个元素的第 $k$ 关键字 $a_k$ 和 $b_k$，如果 $a_k < b_k$ 则 $a < b$，如果 $a_k > b_k$ 则 $a > b$，如果 $a_k = b_k$ 则 $a = b$。
+-   比较两个元素的第 $1$ 关键字 $a_1$ 和 $b_1$，如果 $a_1 < b_1$ 则 $a < b$，如果 $a_1 > b_1$ 则 $a > b$，如果 $a_1 = b_1$ 则进行下一步；
+-   比较两个元素的第 $2$ 关键字 $a_2$ 和 $b_2$，如果 $a_2 < b_2$ 则 $a < b$，如果 $a_2 > b_2$ 则 $a > b$，如果 $a_2 = b_2$ 则进行下一步；
+-   ……
+-   比较两个元素的第 $k$ 关键字 $a_k$ 和 $b_k$，如果 $a_k < b_k$ 则 $a < b$，如果 $a_k > b_k$ 则 $a > b$，如果 $a_k = b_k$ 则 $a = b$。
 
 例子：
 
-- 如果对自然数进行比较，将自然数按个位对齐后往高位补齐 $0$，则一个数字从左往右数第 $i$ 位数就可以作为第 $i$ 关键字；
-- 如果对字符串基于字典序进行比较，一个字符串从左往右数第 $i$ 个字符就可以作为第 $i$ 关键字；
-- C++ 自带的 `std::pair` 与 `std::tuple` 的默认比较方法与上述的相同。
+-   如果对自然数进行比较，将自然数按个位对齐后往高位补齐 $0$，则一个数字从左往右数第 $i$ 位数就可以作为第 $i$ 关键字；
+-   如果对字符串基于字典序进行比较，一个字符串从左往右数第 $i$ 个字符就可以作为第 $i$ 关键字；
+-   C++ 自带的 `std::pair` 与 `std::tuple` 的默认比较方法与上述的相同。
 
-## MSD基数排序
+## MSD 基数排序
 
 基于 k - 关键字元素的比较方法，可以想到：先比较所有元素的第 $1$ 关键字，就可以确定出各元素大致的大小关系；然后对 **具有相同第 $1$ 关键字的元素**，再比较它们的第 $2$ 关键字……以此类推。
 
@@ -57,47 +57,45 @@ using std::string;
 const size_t MAXBUCKET = 128;
 
 // 注意一定要将这两套容器放在执行递归操作的函数外边，否则很有可能 MLE / RE
-queue<string> bucket[MAXBUCKET];     // 存储具有相同关键字的元素，注意使用 queue 这种 FIFO 型数据结构才能使排序稳定
-string *borders[MAXBUCKET + 1] = {}; // 具有相同关键字元素的范围边界，注意是 [L, R) 形式的
+queue<string> bucket[MAXBUCKET];  // 存储具有相同关键字的元素，注意使用 queue
+                                  // 这种 FIFO 型数据结构才能使排序稳定
+string *borders[MAXBUCKET + 1] =
+    {};  // 具有相同关键字元素的范围边界，注意是 [L, R) 形式的
 
 // [first, last) 里的元素是每个字符串
 // offset 表示访问每个字符串的第 offset 个字符，即第 offset 关键字
 void MSD_radix_sort(string *first, string *last, size_t offset = 0) {
-  
   // 如果只剩一个字符串，直接返回
-  if(last - first == 1)
-    return;
-  
+  if (last - first == 1) return;
+
   // 使用基于 queue 实现的计数排序分组，存储到 bucket 里
-  for(string *iter = first; iter != last; ++iter) {
-    char ch = (*iter)[offset]; // 获取字符串 *iter 的第 offset 个关键字
+  for (string *iter = first; iter != last; ++iter) {
+    char ch = (*iter)[offset];  // 获取字符串 *iter 的第 offset 个关键字
     size_t idx = ch;
-    bucket[idx].push(*iter);   // 将字符串放进对应的 bucket 里
+    bucket[idx].push(*iter);  // 将字符串放进对应的 bucket 里
   }
-  
+
   // 倒回原数组，iter 记录当前数组末端的位置
   string *iter = first;
   borders[0] = first;
-    
-  // 由于已知 0 < 1 < ... < MAXBUCKET-1，所以按关键字从小到大清空各个 bucket 即可完成基于第 offset 个关键字的排序
-  for(size_t idx = 0; idx < MAXBUCKET; ++idx) {
-    
+
+  // 由于已知 0 < 1 < ... < MAXBUCKET-1，所以按关键字从小到大清空各个 bucket
+  // 即可完成基于第 offset 个关键字的排序
+  for (size_t idx = 0; idx < MAXBUCKET; ++idx) {
     // 清空第 idx 个 bucket
-    while(!bucket[idx].empty()) {
+    while (!bucket[idx].empty()) {
       *iter++ = bucket[idx].front();
       bucket[idx].pop();
     }
-    
+
     // 记录当前组的右边界，左边界 border[idx] 已经事先记录过了
-    borders[idx+1] = iter;
-    
+    borders[idx + 1] = iter;
   }
-  
+
   // 递归对具有相同关键字的元素进行下一关键字的排序
-  for(int idx = 0; idx < MAXBUCKET; ++idx)
-    if(borders[idx] != borders[idx+1]) // 非空
-      MSD_radix_sort(borders[idx], borders[idx+1], offset+1);
-  
+  for (int idx = 0; idx < MAXBUCKET; ++idx)
+    if (borders[idx] != borders[idx + 1])  // 非空
+      MSD_radix_sort(borders[idx], borders[idx + 1], offset + 1);
 }
 ```
 
@@ -113,7 +111,7 @@ void MSD_radix_sort(string *first, string *last, size_t offset = 0) {
 
 也因此，可以提出 MSD 基数排序在时间常数上的一种优化方法：假如到某一步桶的元素数量 $\le B$（$B$ 是自己选的常数），则直接执行插入排序然后返回，降低递归次数。
 
-## LSD基数排序
+## LSD 基数排序
 
 MSD 基数排序从第 $1$ 关键字到第 $k$ 关键字顺序进行比较，为此需要借助递归或迭代来实现，时间常数还是较大，而且在比较自然数上还是略显不便。
 
@@ -133,19 +131,19 @@ LSD 基数排序的正确性可以参考 [《算法导论（第三版）》第 8
 
 回顾一下 k - 关键字元素的比较方法，
 
-- 假如想通过 $a_1$ 和 $b_1$ 就比较出两个元素 $a$ 和 $b$ 的大小，则需要提前知道通过比较 $a_2$ 和 $b_2$ 得到的结论，以便于应对 $a_1 = b_1$ 的情况；
-- 而想通过 $a_2$ 和 $b_2$ 就比较出两个元素 $a$ 和 $b$ 的大小，则需要提前知道通过比较 $a_3$ 和 $b_3$ 得到的结论，以便于应对 $a_2 = b_2$ 的情况；
-- ……
-- 而想通过 $a_{k-1}$ 和 $b_{k-1}$ 就比较出两个元素 $a$ 和 $b$ 的大小，则需要提前知道通过比较 $a_k$ 和 $b_k$ 得到的结论，以便于应对 $a_{k-1} = b_{k-1}$ 的情况；
-- $a_k$ 和 $b_k$ 可以直接比较。
+-   假如想通过 $a_1$ 和 $b_1$ 就比较出两个元素 $a$ 和 $b$ 的大小，则需要提前知道通过比较 $a_2$ 和 $b_2$ 得到的结论，以便于应对 $a_1 = b_1$ 的情况；
+-   而想通过 $a_2$ 和 $b_2$ 就比较出两个元素 $a$ 和 $b$ 的大小，则需要提前知道通过比较 $a_3$ 和 $b_3$ 得到的结论，以便于应对 $a_2 = b_2$ 的情况；
+-   ……
+-   而想通过 $a_{k-1}$ 和 $b_{k-1}$ 就比较出两个元素 $a$ 和 $b$ 的大小，则需要提前知道通过比较 $a_k$ 和 $b_k$ 得到的结论，以便于应对 $a_{k-1} = b_{k-1}$ 的情况；
+-   $a_k$ 和 $b_k$ 可以直接比较。
 
 现在，将顺序反过来：
 
-- $a_k$ 和 $b_k$ 可以直接比较；
-- 而知道通过比较 $a_k$ 和 $b_k$ 得到的结论后，就可以得到比较 $a_{k-1}$ 和 $b_{k-1}$ 的结论；
-- ……
-- 而知道通过比较 $a_2$ 和 $b_2$ 得到的结论后，就可以得到比较 $a_1$ 和 $b_1$ 的结论；
-- 而知道通过比较 $a_1$ 和 $b_1$ 得到的结论后，就最终得到了比较 $a$ 和 $b$ 的结论。
+-   $a_k$ 和 $b_k$ 可以直接比较；
+-   而知道通过比较 $a_k$ 和 $b_k$ 得到的结论后，就可以得到比较 $a_{k-1}$ 和 $b_{k-1}$ 的结论；
+-   ……
+-   而知道通过比较 $a_2$ 和 $b_2$ 得到的结论后，就可以得到比较 $a_1$ 和 $b_1$ 的结论；
+-   而知道通过比较 $a_1$ 和 $b_1$ 得到的结论后，就最终得到了比较 $a$ 和 $b$ 的结论。
 
 在这个过程中，对每个关键字边比较边重排元素的顺序，就得到了 LSD 基数排序。
 
