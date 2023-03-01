@@ -158,7 +158,9 @@ Kummer 定理：p 在组合数 $\dbinom{m}{n}$ 中的幂次，恰好是 p 进制
 
 特别地，组合数中 2 的幂次是：
 
-$v_2(\dbinom{m}{n})=S_2(n)+S_2(m-n)-S_2(m)$
+$$
+v_2\left[\dbinom{m}{n}\right]=S_2(n)+S_2(m-n)-S_2(m)
+$$
 
 ## Wilson 定理的推广
 
