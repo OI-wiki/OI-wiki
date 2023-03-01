@@ -128,13 +128,13 @@ pair<int, int> fib(int n) {
 
 斐波那契数列拥有许多有趣的性质，这里列举出一部分简单的性质：
 
-1. 卡西尼性质（Cassini's identity）：$F_{n-1} F_{n+1} - F_n^2 = (-1)^n$。
-2. 附加性质：$F_{n+k} = F_k F_{n+1} + F_{k-1} F_n$。
-3. 取上一条性质中 $k = n$，我们得到 $F_{2n} = F_n (F_{n+1} + F_{n-1})$。
-4. 由上一条性质可以归纳证明，$\forall k\in \mathbb{N},F_n|F_{nk}$。
-5. 上述性质可逆，即 $\forall F_a|F_b,a|b$。
-6. GCD 性质：$(F_m, F_n) = F_{(m, n)}$。
-7. 以斐波那契数列相邻两项作为输入会使欧几里德算法达到最坏复杂度（具体参见 [维基 - 拉梅](https://en.wikipedia.org/wiki/Gabriel_Lam%C3%A9)）。
+1.  卡西尼性质（Cassini's identity）：$F_{n-1} F_{n+1} - F_n^2 = (-1)^n$。
+2.  附加性质：$F_{n+k} = F_k F_{n+1} + F_{k-1} F_n$。
+3.  取上一条性质中 $k = n$，我们得到 $F_{2n} = F_n (F_{n+1} + F_{n-1})$。
+4.  由上一条性质可以归纳证明，$\forall k\in \mathbb{N},F_n|F_{nk}$。
+5.  上述性质可逆，即 $\forall F_a|F_b,a|b$。
+6.  GCD 性质：$(F_m, F_n) = F_{(m, n)}$。
+7.  以斐波那契数列相邻两项作为输入会使欧几里德算法达到最坏复杂度（具体参见 [维基 - 拉梅](https://en.wikipedia.org/wiki/Gabriel_Lam%C3%A9)）。
 
 ### 斐波那契数列与卢卡斯数列的关系
 
@@ -215,10 +215,10 @@ $$
 
 给 $n$ 编码的过程可以使用贪心算法解决：
 
-1. 从大到小枚举斐波那契数 $F_i$，直到 $F_i\le n$。
-2. 把 $n$ 减掉 $F_i$，在编码的 $i-2$ 的位置上放一个 1（编码从左到右以 0 为起点）。
-3. 如果 $n$ 为正，回到步骤 1。
-4. 最后在编码末位添加一个 1，表示编码的结束位置。
+1.  从大到小枚举斐波那契数 $F_i$，直到 $F_i\le n$。
+2.  把 $n$ 减掉 $F_i$，在编码的 $i-2$ 的位置上放一个 1（编码从左到右以 0 为起点）。
+3.  如果 $n$ 为正，回到步骤 1。
+4.  最后在编码末位添加一个 1，表示编码的结束位置。
 
 解码过程同理，先删掉末位的 1，对于编码为 1 的位置 $i$（编码从左到右以 0 为起点），累加一个 $F_{i+2}$ 到答案。最后的答案就是原数字。
 
@@ -393,10 +393,10 @@ unsigned long long get_cycle_from_mod(
 
 ## 习题
 
-- [SPOJ - Euclid Algorithm Revisited](http://www.spoj.com/problems/MAIN74/)
-- [SPOJ - Fibonacci Sum](http://www.spoj.com/problems/FIBOSUM/)
-- [HackerRank - Is Fibo](https://www.hackerrank.com/contests/codesprint5/challenges/is-fibo/problem)
-- [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem)
+-   [SPOJ - Euclid Algorithm Revisited](http://www.spoj.com/problems/MAIN74/)
+-   [SPOJ - Fibonacci Sum](http://www.spoj.com/problems/FIBOSUM/)
+-   [HackerRank - Is Fibo](https://www.hackerrank.com/contests/codesprint5/challenges/is-fibo/problem)
+-   [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem)
 -   [洛谷 P4000 斐波那契数列](https://www.luogu.com.cn/problem/P4000)
 
     **本页面主要译自博文 [Числа Фибоначчи](http://e-maxx.ru/algo/fibonacci_numbers) 与其英文翻译版 [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

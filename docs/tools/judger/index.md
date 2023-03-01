@@ -4,7 +4,7 @@ author: Ir1d, HeRaNO, NachtgeistW, i-Yirannn, bear-good, ranwen, CoelacanthusHex
 
 本部分介绍了以下几种评测软件：
 
-- [Arbiter](./arbiter.md)
-- [CCR Plus](./ccr-plus.md)
-- [Cena](./cena.md)
-- [Lemon](./lemon.md)
+-   [Arbiter](./arbiter.md)
+-   [CCR Plus](./ccr-plus.md)
+-   [Cena](./cena.md)
+-   [Lemon](./lemon.md)

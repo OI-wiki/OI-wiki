@@ -69,10 +69,10 @@ $$
 
 设操作前 $c$ 的势能为 $\Phi(c)$，操作后为 $\Phi(c')$，这里 $c$ 可以是任意一个 $rnk(c)>0$ 的非根节点，操作可以是任意操作，包括下面的 find 操作。我们分三种情况讨论。
 
-1. $iter(c)$ 和 $level(c)$ 并未增加。显然有 $\Phi(c)=\Phi(c')$。
-2. $iter(c)$ 增加了，$level(c)$ 并未增加。这里 $iter(c)$ 至少增加一，即 $\Phi(c')\leq \Phi(c)-1$，势能函数减少了，并且至少减少 1。
-3. $level(c)$ 增加了，$iter(c)$ 可能减少。但是由于 $0<iter(c)\leq rnk(c)$，$iter(c)$ 最多减少 $rnk(c)-1$，而 $level(c)$ 至少增加 $1$。由定义 $\Phi(c)=(\alpha(n)-level(c))\times rnk(c)-iter(c)$，可得 $\Phi(c')\leq\Phi(c)-1$。
-4. 其他情况。由于 $rnk(c)$ 不变，$rnk(fa(c))$ 不减，所以不存在。
+1.  $iter(c)$ 和 $level(c)$ 并未增加。显然有 $\Phi(c)=\Phi(c')$。
+2.  $iter(c)$ 增加了，$level(c)$ 并未增加。这里 $iter(c)$ 至少增加一，即 $\Phi(c')\leq \Phi(c)-1$，势能函数减少了，并且至少减少 1。
+3.  $level(c)$ 增加了，$iter(c)$ 可能减少。但是由于 $0<iter(c)\leq rnk(c)$，$iter(c)$ 最多减少 $rnk(c)-1$，而 $level(c)$ 至少增加 $1$。由定义 $\Phi(c)=(\alpha(n)-level(c))\times rnk(c)-iter(c)$，可得 $\Phi(c')\leq\Phi(c)-1$。
+4.  其他情况。由于 $rnk(c)$ 不变，$rnk(fa(c))$ 不减，所以不存在。
 
 所以，势能增加的节点仅可能是 $x$ 或 $y$。而 $x$ 从树根变成了非树根，如果 $rnk(x)=0$，则一直有 $\Phi(x)=\Phi(x')=0$。否则，一定有 $\alpha(x)\times rnk(x)\geq(\alpha(n)-level(x))\times rnk(x)-iter(x)$。即，$\Phi(x')\leq \Phi(x)$。
 
@@ -136,9 +136,9 @@ $$
 
 首先，可以从秩参与证明的性质来说明。如果 $size$ 可以代替 $rnk$ 的地位，则可以使用启发式合并。快速总结一下，秩参与证明的性质有以下三条：
 
-1. 每次合并，最多有一个节点的秩上升，而且最多上升 1。
-2. 总有 $rnk(fa(x))\geq rnk(x)+1$。
-3. 节点的秩不减。
+1.  每次合并，最多有一个节点的秩上升，而且最多上升 1。
+2.  总有 $rnk(fa(x))\geq rnk(x)+1$。
+3.  节点的秩不减。
 
 关于第二条和第三条，$siz$ 显然满足，然而第一条不满足，如果将 $x$ 合并到 $y$ 上面，则 $siz(y)$ 会增大 $siz(x)$ 那么多。
 
