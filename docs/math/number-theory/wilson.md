@@ -174,8 +174,8 @@ $(p^q!)_p\equiv \begin{cases}1&\text{if }p=2\text{ and }q\geq 3,\\-1&\text{other
 
 对于素数 $p$、正整数 $q$、非负整数 $n$ 和 $N_0=n\bmod{p^q}$ 有 $(n!)_p\equiv (\pm 1)^{\lfloor n/{p^q}\rfloor}(N_0!)_p\pmod{p^q}$。
 
-???note "证明"
-证明：令 $\displaystyle \prod '$ 表示不能被 $p$ 整除的数的乘积，有
+??? note "证明"
+    证明：令 $\displaystyle \prod '$ 表示不能被 $p$ 整除的数的乘积，有
 
     $$
     \begin{aligned}
