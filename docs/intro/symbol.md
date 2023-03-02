@@ -26,8 +26,8 @@
 | n2.6  | $\varnothing$                              | 空集                              | 不应使用 $\emptyset$.                                                                                                                                                                                                           |
 | n2.7  | $B \subseteq A$                            | $B$ 包含于 $A$ 中，$B$ 是 $A$ 的子集     | $B$ 的每个元素都属于 $A$.<br>$\subset$ 也可用于该含义，但请参阅 n2.8 的说明。<br>$A \supseteq B$ 和 $B \subseteq A$ 同义。                                                                                                                              |
 | n2.8  | $B \subset A$                              | $B$ 真包含于 $A$ 中，$B$ 是 $A$ 的真子集   | $B$ 的每个元素都属于 $A$, 且 $A$ 中至少有一个元素不属于 $B$.<br>若 $\subset$ 的含义取 n2.7, 则 n2.8 对应的符号应使用 $\subsetneq$.<br>$A \supset B$ 与 $B \subset A$ 同义。                                                                                       |
-| n2.9  | $A \cup B$                                 | $A$ 和 $B$ 的并集                   | $A \cup B = \{x ~\vert~ x \in A \lor x \in B\}$.                                                                                                                                                                            |
-| n2.10 | $A \cap B$                                 | $A$ 和 $B$ 的交集                   | $A \cap B = \{x ~\vert~ x \in A \land x \in B\}$.                                                                                                                                                                           |
+| n2.9  | $A \cup B$                                 | $A$ 和 $B$ 的并集                   | $A \cup B := \{x ~\vert~ x \in A \lor x \in B\}$;<br>$:=$ 的定义参见 n4.3                                                                                                                                                        |
+| n2.10 | $A \cap B$                                 | $A$ 和 $B$ 的交集                   | $A \cap B := \{x ~\vert~ x \in A \land x \in B\}$;<br>$:=$ 的定义参见 n4.3                                                                                                                                                       |
 | n2.11 | $\displaystyle \bigcup\limits_{i=1}^n A_i$ | 集合 $A_1, A_2, \dots, A_n$ 的并集   | $\displaystyle \bigcup\limits_{i=1}^n A_i=A_1\cup A_2\cup \dots \cup A_n$;<br>也可使用 $\displaystyle \bigcup\nolimits_{i=1}^n$,$\displaystyle \bigcup\limits_{i\in I}$,$\displaystyle \bigcup\nolimits_{i\in I}$, 其中 $I$ 表示指标集 |
 | n2.12 | $\displaystyle \bigcap\limits_{i=1}^n A_i$ | 集合 $A_1, A_2, \dots, A_n$ 的交集   | $\displaystyle \bigcap\limits_{i=1}^n A_i=A_1\cap A_2\cap \dots \cap A_n$;<br>也可使用 $\displaystyle \bigcap\nolimits_{i=1}^n$,$\displaystyle \bigcap\limits_{i\in I}$,$\displaystyle \bigcap\nolimits_{i\in I}$, 其中 $I$ 表示指标集 |
 | n2.13 | $A \setminus B$                            | $A$ 和 $B$ 的差集                   | $A \setminus B = \{x ~\vert~ x \in A \land x \notin B\}$;<br>不应使用 $A - B$;<br>当 $B$ 是 $A$ 的子集时也可使用 $\complement_A B$, 如果从上下文中可以得知考虑的是哪个集合 $A$，则 $A$ 可以省略。                                                                   |
@@ -56,33 +56,32 @@
 
 | 编号    | 符号，表达式               | 意义，等同表述            | 备注与示例                                                                                                |
 | ----- | -------------------- | ------------------ | ---------------------------------------------------------------------------------------------------- |
-| n4.1  | $a = b$              | $a$ 等于 $b$         | $\equiv$ 用于强调某等式是恒等式<br>该符号的另一个含义参见 n4.20.                                                           |
+| n4.1  | $a = b$              | $a$ 等于 $b$         | $\equiv$ 用于强调某等式是恒等式<br>该符号的另一个含义参见 n4.19.                                                           |
 | n4.2  | $a \ne b$            | $a$ 不等于 $b$        |                                                                                                      |
-| n4.3  | $a := b$             | $a$ 定义为 $b$        | 例如：<br>$\mathbf{p} := m\mathbf{v}$, 其中 $\mathbf{p}$ 为动量，$m$ 为质量，$\mathbf{v}$ 为速度。                    |
-| n4.4  | $a~\hat{=}~b$        | $a$ 相当于 $b$        | 例如：<br>当地图上的 $1~\rm{cm}$ 对应实际上的 $10~\rm{km}$ 时，可以记作 $1~\rm{cm}~\hat{=}~10~\rm{km}$.                  |
-| n4.5  | $a \approx b$        | $a$ 约等于 $b$        | 不排除相等。                                                                                               |
-| n4.6  | $a \simeq b$         | $a$ 渐进等于 $b$       | 例如：<br>当 $x\to a$ 时，$\dfrac{1}{\sin(x-a)} \simeq \dfrac{1}{x-a}$;<br>$x \to a$ 的含义参见 n4.16.          |
-| n4.7  | $a \propto b$        | $a$ 与 $b$ 成正比      | 也可使用 $a \sim b$.<br>$\sim$ 也用于表示等价关系。                                                                |
-| n4.8  | $M \cong N$          | $M$ 与 $N$ 全等       | 当 $M$ 和 $N$ 是点集（几何图形）时。<br>该符号也用于表示代数结构的同构。                                                          |
-| n4.9  | $a < b$              | $a$ 小于 $b$         |                                                                                                      |
-| n4.10 | $b > a$              | $b$ 大于 $a$         |                                                                                                      |
-| n4.11 | $a \leq b$           | $a$ 小于等于 $b$       |                                                                                                      |
-| n4.12 | $b \geq a$           | $b$ 大于等于 $a$       |                                                                                                      |
-| n4.13 | $a \ll b$            | $a$ 远小于 $b$        |                                                                                                      |
-| n4.14 | $b \gg a$            | $b$ 远大于 $a$        |                                                                                                      |
-| n4.15 | $\infty$             | 无穷大                | 该符号 **不** 是数字。<br>也可以使用 $+\infty$,$-\infty$.                                                         |
-| n4.16 | $x \to a$            | $x$ 趋近于 $a$        | 一般出现在极限表达式中。<br>$a$ 也可以为 $\infty$,$+\infty$,$-\infty$.                                               |
-| n4.17 | $m \mid n$           | $m$ 整除 $n$         | 对整数 $m$,$n$:<br>$(\exists~k \in \mathbf{Z})~~m\cdot k = n$.                                          |
-| n4.18 | $m \perp n$          | $m$ 与 $n$ 互质       | 对整数 $m$,$n$:<br>$(\nexists~k \in \mathbf{Z}_{>1})~~(k \mid m) \land (k \mid n)$;<br>该符号的另一种用法参见 n5.2 |
-| n4.19 | $n \bmod m$          | $n$ 模 $m$ 的余数      | 对正整数 $n$,$m$:<br>$(\exists~q\in\mathbf{N},r\in[0,m))~~n=qm+r$;<br>其中 $r=n \bmod m$.                  |
-| n4.20 | $n \equiv k \pmod m$ | $n$ 模 $m$ 与 $k$ 同余 | 对整数 $n$,$k$,$m$:<br>$m \mid (n - k)$;<br>不要与 n4.1 中提到的相混淆。                                           |
+| n4.3  | $a := b$             | $a$ 定义为 $b$        | 参见 n2.9,n2.10                                                                                        |
+| n4.4  | $a \approx b$        | $a$ 约等于 $b$        | 不排除相等。                                                                                               |
+| n4.5  | $a \simeq b$         | $a$ 渐进等于 $b$       | 例如：<br>当 $x\to a$ 时，$\dfrac{1}{\sin(x-a)} \simeq \dfrac{1}{x-a}$;<br>$x \to a$ 的含义参见 n4.15.          |
+| n4.6  | $a \propto b$        | $a$ 与 $b$ 成正比      | 也可使用 $a \sim b$.<br>$\sim$ 也用于表示等价关系。                                                                |
+| n4.7  | $M \cong N$          | $M$ 与 $N$ 全等       | 当 $M$ 和 $N$ 是点集（几何图形）时。<br>该符号也用于表示代数结构的同构。                                                          |
+| n4.8  | $a < b$              | $a$ 小于 $b$         |                                                                                                      |
+| n4.9  | $b > a$              | $b$ 大于 $a$         |                                                                                                      |
+| n4.10 | $a \leq b$           | $a$ 小于等于 $b$       |                                                                                                      |
+| n4.11 | $b \geq a$           | $b$ 大于等于 $a$       |                                                                                                      |
+| n4.12 | $a \ll b$            | $a$ 远小于 $b$        |                                                                                                      |
+| n4.13 | $b \gg a$            | $b$ 远大于 $a$        |                                                                                                      |
+| n4.14 | $\infty$             | 无穷大                | 该符号 **不** 是数字。<br>也可以使用 $+\infty$,$-\infty$.                                                         |
+| n4.15 | $x \to a$            | $x$ 趋近于 $a$        | 一般出现在极限表达式中。<br>$a$ 也可以为 $\infty$,$+\infty$,$-\infty$.                                               |
+| n4.16 | $m \mid n$           | $m$ 整除 $n$         | 对整数 $m$,$n$:<br>$(\exists~k \in \mathbf{Z})~~m\cdot k = n$.                                          |
+| n4.17 | $m \perp n$          | $m$ 与 $n$ 互质       | 对整数 $m$,$n$:<br>$(\nexists~k \in \mathbf{Z}_{>1})~~(k \mid m) \land (k \mid n)$;<br>该符号的另一种用法参见 n5.2 |
+| n4.18 | $n \bmod m$          | $n$ 模 $m$ 的余数      | 对正整数 $n$,$m$:<br>$(\exists~q\in\mathbf{N},r\in[0,m))~~n=qm+r$;<br>其中 $r=n \bmod m$.                  |
+| n4.19 | $n \equiv k \pmod m$ | $n$ 模 $m$ 与 $k$ 同余 | 对整数 $n$,$k$,$m$:<br>$m \mid (n - k)$;<br>不要与 n4.1 中提到的相混淆。                                           |
 
 ## 初等几何学
 
 | 编号   | 符号，表达式                         | 意义，等同表述                             | 备注与示例                           |
 | ---- | ------------------------------ | ----------------------------------- | ------------------------------- |
 | n5.1 | $\parallel$                    | 平行                                  |                                 |
-| n5.2 | $\perp$                        | 垂直                                  | 该符号的另一种用法参见 n4.18               |
+| n5.2 | $\perp$                        | 垂直                                  | 该符号的另一种用法参见 n4.17               |
 | n5.3 | $\angle$                       | （平面）角                               |                                 |
 | n5.4 | $\overline{\mathrm{AB}}$       | 线段 $\mathrm{AB}$                    |                                 |
 | n5.5 | $\overrightarrow{\mathrm{AB}}$ | 有向线段 $\mathrm{AB}$                  |                                 |
@@ -104,7 +103,7 @@
 | n6.10 | $a^{1/2}$;<br>$\sqrt{a}$                                    | $a$ 的 $1/2$ 次方，$a$ 的平方根               | 应避免使用 $\sqrt{}a$.                                                                                                                                  |
 | n6.11 | $a^{1/n}$;<br>$\sqrt[n]{a}$                                 | $a$ 的 $1/n$ 次幂，$a$ 的 $n$ 次根           | 应避免使用 $\sqrt[n]{}a$.                                                                                                                               |
 | n6.12 | $\bar{x}$;<br>$\bar{x}_a$                                   | $x$ 的算数均值                             | 其他均值有：<br>调和均值 $\bar{x}_h$;<br>几何均值 $\bar{x}_g$;<br>二次均值/均方根 $\bar{x}_q$ 或 $\bar{x}_{rms}$.<br>$\bar{x}$ 也用于表示复数 $x$ 的共轭，参见 n11.6.                 |
-| n6.13 | $\operatorname{sgn} a$                                      | $a$ 的符号函数                             | 对实数 $a$:<br>$\operatorname{sgn} a=1\quad (a>0)$;<br>$\operatorname{sgn} a=-1\quad (a<0)$;<br>$\operatorname{sgn} 0=0$;<br>参见 n11.7.                                                  |
+| n6.13 | $\operatorname{sgn} a$                                      | $a$ 的符号函数                             | 对实数 $a$:<br>$\operatorname{sgn} a=1\quad (a>0)$;<br>$\operatorname{sgn} a=-1\quad (a<0)$;<br>$\operatorname{sgn} 0=0$;<br>参见 n11.7.                |
 | n6.14 | $\inf M$                                                    | $M$ 的下确界                              | 小于等于非空集合 $M$ 中元素的最大上界。                                                                                                                             |
 | n6.15 | $\sup M$                                                    | $M$ 的上确界                              | 大于等于非空集合 $M$ 中元素的最小下界。                                                                                                                             |
 | n6.16 | $\lvert a\rvert$                                            | $a$ 的绝对值                              | 也可使用 $\operatorname{abs} a$.                                                                                                                       |
@@ -121,8 +120,8 @@
 
 | 编号   | 符号，表达式                     | 意义，等同表述        | 备注与示例                                                                                                                                         |
 | ---- | -------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| n7.1 | $n!$                       | 阶乘             | $n!=\prod_{k=1}^n k=1\cdot 2\cdot 3\cdot \dots \cdot n\quad (n>0)$;<br>$0!=1$.                                                  |
-| n7.2 | $a^{\underline{k}}$        | 下降阶乘幂          | $a^{\underline{k}}=a\cdot(a-1)\cdot \dots \cdot(a-k+1)\quad (k>0)$;<br>$a^{\underline{0}}=1$;<br>$n^{\underline{k}}=\dfrac{n!}{(n-k)!}$.       |
+| n7.1 | $n!$                       | 阶乘             | $n!=\prod_{k=1}^n k=1\cdot 2\cdot 3\cdot \dots \cdot n\quad (n>0)$;<br>$0!=1$.                                                                |
+| n7.2 | $a^{\underline{k}}$        | 下降阶乘幂          | $a^{\underline{k}}=a\cdot(a-1)\cdot \dots \cdot(a-k+1)\quad (k>0)$;<br>$a^{\underline{0}}=1$;<br>$n^{\underline{k}}=\dfrac{n!}{(n-k)!}$.      |
 | n7.3 | $a^{\overline{k}}$         | 上升阶乘幂          | $a^{\overline{k}}=a\cdot(a+1)\cdot \dots \cdot(a+k-1)\quad (k>0)$;<br>$a^{\overline{0}}=1$;<br>$n^{\underline{k}}=\dfrac{(n+k-1)!}{(n-1)!}$.  |
 | n7.4 | $\dbinom{n}{k}$            | 组合数            | $\dbinom{n}{k}=\dfrac{n!}{k!(n-k)!}$.                                                                                                         |
 | n7.5 | $\displaystyle{n\brack k}$ | 第一类 Stirling 数 | $\displaystyle{n+1\brack k}=n{n\brack k}+{n\brack k-1}$;<br>$\displaystyle x^{\overline{n}}=\sum_{k=0}^n{n\brack k}x^k$.                      |
@@ -150,14 +149,14 @@
 | n8.16 | $\left(\dfrac{\mathrm{d}f}{\mathrm{d}x}\right)_{x=a}$;<br>$f'(a)$         | $f$ 在 $a$ 处的导（函）数值                                         | 参见 n8.15                                                                                                                                                                                                                                                                                                                                                  |
 | n8.17 | $\dfrac{\mathrm{d}^n f}{\mathrm{d}x^n}$;<br>$f^{(n)}$                     | $f$ 对 $x$ 的 $n$ 阶导（函）数                                     | 仅用于一元函数。<br>可以显式指明自变量，如 $\dfrac{\mathrm{d}^n f(x)}{\mathrm{d}x^n}$,$f^{(n)}(x)$.<br>可用 $f''$ 和 $f'''$ 分别表示 $f^{(2)}$ 和 $f^{(3)}$.                                                                                                                                                                                                                         |
 | n8.18 | $\dfrac{\partial f}{\partial x}$;<br>$f_x$                                | $f$ 对 $x$ 的偏导数                                             | 仅用于多元函数。<br>可以显式指明自变量，如 $\dfrac{\partial f(x,y,\dots)}{\partial x}$,$f_x(x, y, \dots)$.<br>可以扩展到高阶，如 $f_{xx}=\dfrac{\partial^2 f}{\partial x^2}=\dfrac{\partial}{\partial x}\left(\dfrac{\partial f}{\partial x}\right)$;<br>$f_{xy}=\dfrac{\partial^2 f}{\partial y\partial x}=\dfrac{\partial}{\partial y}\left(\dfrac{\partial f}{\partial x}\right)$. |
-| n8.19 | $\dfrac{\partial(f_1, \dots, f_m)}{\partial(x_1, \dots, x_n)}$            | Jacobi 矩阵                                                  | _参见_ [^n8.19-ref1]                                                 |
+| n8.19 | $\dfrac{\partial(f_1, \dots, f_m)}{\partial(x_1, \dots, x_n)}$            | Jacobi 矩阵                                                  | *参见*[^n8.19-ref1]                                                                                                                                                                                                                                                                                                                                         |
 | n8.20 | $\mathrm{d}f$                                                             | $f$ 的全微分                                                   | $\mathrm{d}f(x,y,\dots)=\dfrac{\partial f}{\partial x}\mathrm{d}x+\dfrac{\partial f}{\partial y}\mathrm{d}y+\dots$.                                                                                                                                                                                                                                       |
 | n8.21 | $\delta f$                                                                | $f$ 的（无穷小）变分                                               |                                                                                                                                                                                                                                                                                                                                                           |
 | n8.22 | $\displaystyle \int f(x)\mathrm{d}x$                                      | $f$ 的不定积分                                                  |                                                                                                                                                                                                                                                                                                                                                           |
 | n8.23 | $\displaystyle \int\limits_a^b f(x)\mathrm{d}x$                           | $f$ 从 $a$ 到 $b$ 的定积分                                       | 也可使用 $\displaystyle \int\nolimits_a^b f(x)\mathrm{d}x$;<br>定积分还可以定义在更一般的域上。如 $\displaystyle\int\limits_C$,$\displaystyle\int\limits_S$,$\displaystyle\int\limits_V$,$\displaystyle\oint$, 分别表示在曲线 $C$, 曲面 $S$, 三维区域 $V$, 和闭曲线或曲面上的定积分。<br>多重积分可写成 $\displaystyle\iint$,$\displaystyle\iiint$ 等。                                                           |
 | n8.24 | $f*g$                                                                     | $f$ 的 $g$ 的卷积                                              | $\displaystyle (f*g)(x)=\int\limits_{-\infty}^{\infty}f(y)g(x-y)\mathrm{d}y$.                                                                                                                                                                                                                                                                             |
 
-[^n8.19-ref1]: $\dfrac{\partial(f_1, \dots, f_m)}{\partial(x_1, \dots, x_n)}=\begin{pmatrix}\dfrac{\partial f_1}{\partial x_1}&\cdots&\dfrac{\partial f_1}{\partial x_n}\\\vdots&\ddots&\vdots\\\dfrac{\partial f_m}{\partial x_1}&\cdots&\dfrac{\partial f_m}{\partial x_n}\end{pmatrix}$; 矩阵的定义参见 n12.1 
+[^n8.19-ref1]: $\dfrac{\partial(f_1, \dots, f_m)}{\partial(x_1, \dots, x_n)}=\begin{pmatrix}\dfrac{\partial f_1}{\partial x_1}&\cdots&\dfrac{\partial f_1}{\partial x_n}\\\vdots&\ddots&\vdots\\\dfrac{\partial f_m}{\partial x_1}&\cdots&\dfrac{\partial f_m}{\partial x_n}\end{pmatrix}$; 矩阵的定义参见 n12.1
 
 ## 指数和对数函数
 
@@ -213,27 +212,28 @@ $x$ 可以是复数。
 | n11.4 | $\lvert z\rvert$       | $z$ 的模     | $\lvert z\rvert=\sqrt{(\operatorname{Re} z)^2+(\operatorname{Im} z)^2}$.                                                                                                                               |
 | n11.5 | $\arg z$               | $z$ 的辐角    | 若 $z = r \mathrm{e}^{\mathrm{i}\varphi}$, 其中 $r = \lvert z\rvert$ 且 $-\pi < \varphi \leq \pi$, 则 $\varphi = \arg z$.<br>$\operatorname{Re} z = r \cos \varphi$,$\operatorname{Im} z = r \sin \varphi$. |
 | n11.6 | $\bar{z}$;<br>$z^*$    | $z$ 的复共轭   | $\bar{z}=\operatorname{Re}z-\mathrm{i}\operatorname{Im}z$.                                                                                                                                             |
-| n11.7 | $\operatorname{sgn} z$ | $z$ 的单位模函数 | $\operatorname{sgn} z =z / \lvert z\rvert = \exp(\mathrm{i} \arg z)\quad (z \ne 0)$;<br>$\operatorname{sgn} 0 = 0$;<br>参见 n6.13.                                                                          |
+| n11.7 | $\operatorname{sgn} z$ | $z$ 的单位模函数 | $\operatorname{sgn} z =z / \lvert z\rvert = \exp(\mathrm{i} \arg z)\quad (z \ne 0)$;<br>$\operatorname{sgn} 0 = 0$;<br>参见 n6.13.                                                                       |
 
 ## 矩阵
 
-| 编号     | 符号，表达式                                                                                                 | 意义，等同表述             | 备注与示例                                                                                     |
-| ------ | ------------------------------------------------------------------------------------------------------ | ------------------- | ----------------------------------------------------------------------------------------- |
-| n12.1  | $A$;<br>_参见_ [^n12.1-ref1] | $m\times n$ 型矩阵 $A$ | $a_{ij} = (A)_{ij}$;<br>也可使用 $A = (a_{ij})$.$m$ 为行数，$n$ 为列数<br>$m=n$ 时称为方阵<br>可用方括号替代圆括号。 |
-| n12.2  | $A + B$                                                                                                | 矩阵 $A$ 和 $B$ 的和     | $(A + B)_{ij} = (A)_{ij} + (B)_{ij}$;<br>矩阵 $A$ 和 $B$ 的行数和列数必须相同。                         |
-| n12.3  | $x A$                                                                                                  | 标量 $x$ 和矩阵 $A$ 的乘积  | $(x A)_{ij} = x (A)_{ij}$.                                                                |
-| n12.4  | $AB$                                                                                                   | 矩阵 $A$ 和 $B$ 的乘积    | $\displaystyle(AB)_{ik} = \sum\limits_{j}(A)_{ij}(B)_{jk}$;<br>矩阵 $A$ 的列数必须等于矩阵 $B$ 的行数。  |
-| n12.5  | $I$;<br>$E$                                                                                            | 单位矩阵                | $(I)_{ik} = \delta_{ik}$;<br>$\delta_{ik}$ 的定义参见 n14.9.                                   |
-| n12.6  | $A^{-1}$                                                                                               | 方阵 $A$ 的逆           | $AA^{-1} = A^{-1}A = I\quad (\det A \ne 0)$.<br>$\det A$ 的定义参见 n12.10.                    |
-| n12.7  | $A^{\mathrm{T}}$;<br>$A'$                                                                              | $A$ 的转置矩阵           | $(A^{\mathrm{T}})_{ik} = (A)_{ki}$.                                                       |
-| n12.8  | $\overline{A}$;<br>$A^*$                                                                               | $A$ 的复共轭矩阵          | $\left(\overline{A}\right)_{ik}=\overline{(A)_{ik}}$.                                     |
-| n12.9  | $A^{\mathrm{H}}$;<br>$A^{\dagger}$                                                                     | $A$ 的 Hermite 共轭矩阵  | $A^{\mathrm{H}} = \left(\overline{A}\right)^{\mathrm{T}}$.                                |
-| n12.10 | $\det A$;<br>_参见_ [^n12.10-ref1] | 方阵 $A$ 的行列式         | 也可使用 $\lvert A\rvert$.                                                                    |
-| n12.11 | $\operatorname{rank}A$                                                                                 | 矩阵 $A$ 的秩           |                                                                                           |
-| n12.12 | $\operatorname{tr}A$                                                                                   | 方阵 $A$ 的迹           | $\displaystyle\operatorname{tr}A=\sum\limits_{i}(A)_{ii}$.                                |
-| n12.13 | $\lVert A\rVert$                                                                                       | 矩阵 $A$ 的范数          | 满足三角不等式：若 $A + B = C$, 则 $\lVert A\rVert+\lVert B\rVert \geq \lVert C\rVert$.             |
+| 编号     | 符号，表达式                             | 意义，等同表述             | 备注与示例                                                                                     |
+| ------ | ---------------------------------- | ------------------- | ----------------------------------------------------------------------------------------- |
+| n12.1  | $A$;<br>*参见*[^n12.1-ref1]          | $m\times n$ 型矩阵 $A$ | $a_{ij} = (A)_{ij}$;<br>也可使用 $A = (a_{ij})$.$m$ 为行数，$n$ 为列数<br>$m=n$ 时称为方阵<br>可用方括号替代圆括号。 |
+| n12.2  | $A + B$                            | 矩阵 $A$ 和 $B$ 的和     | $(A + B)_{ij} = (A)_{ij} + (B)_{ij}$;<br>矩阵 $A$ 和 $B$ 的行数和列数必须分别相同。                       |
+| n12.3  | $x A$                              | 标量 $x$ 和矩阵 $A$ 的乘积  | $(x A)_{ij} = x (A)_{ij}$.                                                                |
+| n12.4  | $AB$                               | 矩阵 $A$ 和 $B$ 的乘积    | $\displaystyle(AB)_{ik} = \sum\limits_{j}(A)_{ij}(B)_{jk}$;<br>矩阵 $A$ 的列数必须等于矩阵 $B$ 的行数。  |
+| n12.5  | $I$;<br>$E$                        | 单位矩阵                | $(I)_{ik} = \delta_{ik}$;<br>$\delta_{ik}$ 的定义参见 n14.9.                                   |
+| n12.6  | $A^{-1}$                           | 方阵 $A$ 的逆           | $AA^{-1} = A^{-1}A = I\quad (\det A \ne 0)$.<br>$\det A$ 的定义参见 n12.10.                    |
+| n12.7  | $A^{\mathrm{T}}$;<br>$A'$          | $A$ 的转置矩阵           | $(A^{\mathrm{T}})_{ik} = (A)_{ki}$.                                                       |
+| n12.8  | $\overline{A}$;<br>$A^*$           | $A$ 的复共轭矩阵          | $\left(\overline{A}\right)_{ik}=\overline{(A)_{ik}}$.                                     |
+| n12.9  | $A^{\mathrm{H}}$;<br>$A^{\dagger}$ | $A$ 的 Hermite 共轭矩阵  | $A^{\mathrm{H}} = \left(\overline{A}\right)^{\mathrm{T}}$.                                |
+| n12.10 | $\det A$;<br>*参见*[^n12.10-ref1]    | 方阵 $A$ 的行列式         | 也可使用 $\lvert A\rvert$.                                                                    |
+| n12.11 | $\operatorname{rank}A$             | 矩阵 $A$ 的秩           |                                                                                           |
+| n12.12 | $\operatorname{tr}A$               | 方阵 $A$ 的迹           | $\displaystyle\operatorname{tr}A=\sum\limits_{i}(A)_{ii}$.                                |
+| n12.13 | $\lVert A\rVert$                   | 矩阵 $A$ 的范数          | 满足三角不等式：若 $A + B = C$, 则 $\lVert A\rVert+\lVert B\rVert \geq \lVert C\rVert$.             |
 
 [^n12.1-ref1]: $\begin{pmatrix}a_{11}&\cdots&a_{1n}\\\vdots&\ddots&\vdots\\a_{m1}&\cdots&a_{mn}\end{pmatrix}$
+
 [^n12.10-ref1]: $\begin{vmatrix}a_{11}&\cdots&a_{1n}\\\vdots& &\vdots\\a_{n1}&\cdots&a_{nn}\end{vmatrix}$
 
 ## 坐标系
@@ -290,7 +290,7 @@ $x$ 可以是复数。
 | n14.6  | $\mathbf{e_a}$                                                                                | $\mathbf{a}$ 方向的单位向量                    | $\mathbf{e_a} = \mathbf{a}/\lvert\mathbf{a}\rvert\quad (\mathbf{a}\ne \mathbf{0})$.                                                                                                                                                                                                                                                      |
 | n14.7  | $\mathbf{e}_x$,$\mathbf{e}_y$,$\mathbf{e}_z$;<br>$\mathbf{e}_1$,$\mathbf{e}_2$,$\mathbf{e}_3$ | 笛卡尔坐标轴方向的单位向量                           | 也可使用 $\mathbf{i}$,$\mathbf{j}$,$\mathbf{k}$.                                                                                                                                                                                                                                                                                             |
 | n14.8  | $a_x$,$a_y$,$a_z$;<br>$a_i$                                                                   | 向量 $\mathbf{a}$ 的笛卡尔分量                  | $\mathbf{a} = a_x \mathbf{e}_x + a_y \mathbf{e}_y + a_z \mathbf{e}_z$;<br>如果上下文确定了基向量，则向量可以写为 $\mathbf{a} = (a_x, a_y, a_z)$.<br>$a_x = \mathbf{a}\cdot \mathbf{e}_x$,$a_y = \mathbf{a}\cdot \mathbf{e}_y$,$a_z = \mathbf{a}\cdot \mathbf{e}_z$;<br>$\mathbf{r} = x\mathbf{e}_x + y\mathbf{e}_y + z\mathbf{e}_z$ 是坐标为 $x$,$y$,$z$ 的位置向量。 |
-| n14.9  | $\delta_{ik}$                                                                                 | Kronecker delta 符号                      | $\delta_{ik}=1\quad (i=k)$;<br>$\delta_{ik}=0\quad (i\ne k)$.                                                                                                                                                                                                                                                                                 |
+| n14.9  | $\delta_{ik}$                                                                                 | Kronecker delta 符号                      | $\delta_{ik}=1\quad (i=k)$;<br>$\delta_{ik}=0\quad (i\ne k)$.                                                                                                                                                                                                                                                                            |
 | n14.10 | $\varepsilon_{ijk}$                                                                           | Levi—Civita 符号                          | $\varepsilon_{123} = \varepsilon_{231} = \varepsilon_{312} = 1$;<br>$\varepsilon_{132} = \varepsilon_{321} = \varepsilon_{213} = -1$;<br>其余的 $\varepsilon_{ijk}$ 均为 $0$.                                                                                                                                                                 |
 | n14.11 | $\mathbf{a}\cdot\mathbf{b}$                                                                   | 向量 $\mathbf{a}$ 和 $\mathbf{b}$ 的标量积/内积  | $\displaystyle\mathbf{a}\cdot\mathbf{b}=\sum\limits_i a_ib_i$.                                                                                                                                                                                                                                                                           |
 | n14.12 | $\mathbf{a}\times\mathbf{b}$                                                                  | 向量 $\mathbf{a}$ 和 $\mathbf{b}$ 的向量积/外积  | 右手笛卡尔坐标系中，$\displaystyle (\mathbf{a}\times\mathbf{b})_i = \sum\limits_j\sum\limits_k\varepsilon_{ijk}a_jb_k$;<br>$\varepsilon_{ijk}$ 的定义参见 n14.10.                                                                                                                                                                                       |
