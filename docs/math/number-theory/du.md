@@ -134,12 +134,12 @@ $$
 
 求 $S(n)=\sum_{i=1}^n\varphi(i)$.
 
-同样的，$\varphi * 1=\operatorname{ID}$
+同样的，$\varphi * 1=\operatorname{id}$
 
 $$
 \begin{aligned}
 \sum_{i=1}^n(\varphi * 1)(i)&=\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-\sum_{i=1}^n\operatorname{ID}(i)&=\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+\sum_{i=1}^n\operatorname{id}(i)&=\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 \frac{1}{2}n(n+1)&=\sum_{i=1}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 S(n)&=\frac{1}{2}n(n+1)-\sum_{i=2}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 \end{aligned}
@@ -161,7 +161,7 @@ $$
     
     其中 $n\leq 10^{10},5\times 10^8\leq p\leq 1.1\times 10^9$,$p$ 是质数。
 
-利用 $\varphi * 1=\operatorname{ID}$ 做莫比乌斯反演化为
+利用 $\varphi * 1=\operatorname{id}$ 做莫比乌斯反演化为
 
 $$
 \sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)\quad\left(F(n)=\frac{1}{2}n\left(n+1\right)\right)
@@ -170,26 +170,26 @@ $$
 对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2$ 做数论分块，$d^2\varphi(d)$ 的前缀和用杜教筛处理：
 
 $$
-f(n)=n^2\varphi(n)=(\operatorname{ID}^2\varphi)(n)
+f(n)=n^2\varphi(n)=(\operatorname{id}^2\varphi)(n)
 $$
 
 $$
-S(n)=\sum_{i=1}^nf(i)=\sum_{i=1}^n(\operatorname{ID}^2\varphi)(i)
+S(n)=\sum_{i=1}^nf(i)=\sum_{i=1}^n(\operatorname{id}^2\varphi)(i)
 $$
 
 需要构造积性函数 $g$，使得 $f\times g$ 和 $g$ 能快速求和
 
-单纯的 $\varphi$ 的前缀和可以用 $\varphi * 1$ 的杜教筛处理，但是这里的 $f$ 多了一个 $\operatorname{ID}^2$，那么我们就卷一个 $\operatorname{ID}^2$ 上去，让它变成常数：
+单纯的 $\varphi$ 的前缀和可以用 $\varphi * 1$ 的杜教筛处理，但是这里的 $f$ 多了一个 $\operatorname{id}^2$，那么我们就卷一个 $\operatorname{id}^2$ 上去，让它变成常数：
 
 $$
-S(n)=\sum_{i=1}^n\left(\left(\operatorname{ID}^2\varphi\right) * \operatorname{ID}^2\right)(i)-\sum_{i=2}^n\operatorname{ID}^2(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+S(n)=\sum_{i=1}^n\left(\left(\operatorname{id}^2\varphi\right) * \operatorname{id}^2\right)(i)-\sum_{i=2}^n\operatorname{id}^2(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
 
 化一下卷积：
 
 $$
 \begin{aligned}
-((\operatorname{ID}^2\varphi)* \operatorname{ID}^2)(i)&=\sum_{d \mid i}\left(\operatorname{ID}^2\varphi\right)(d)\operatorname{ID}^2\left(\frac{i}{d}\right)\\
+((\operatorname{id}^2\varphi)* \operatorname{id}^2)(i)&=\sum_{d \mid i}\left(\operatorname{id}^2\varphi\right)(d)\operatorname{id}^2\left(\frac{i}{d}\right)\\
 &=\sum_{d \mid i}d^2\varphi(d)\left(\frac{i}{d}\right)^2\\
 &=\sum_{d \mid i}i^2\varphi(d)=i^2\sum_{d \mid i}\varphi(d)\\
 &=i^2(\varphi*1)(i)=i^3
@@ -200,7 +200,7 @@ $$
 
 $$
 \begin{aligned}
-S(n)&=\sum_{i=1}^n\left((\operatorname{ID}^2\varphi)* \operatorname{ID}^2\right)(i)-\sum_{i=2}^n\operatorname{ID}^2(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+S(n)&=\sum_{i=1}^n\left((\operatorname{id}^2\varphi)* \operatorname{id}^2\right)(i)-\sum_{i=2}^n\operatorname{id}^2(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 &=\sum_{i=1}^ni^3-\sum_{i=2}^ni^2S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 &=\left(\frac{1}{2}n(n+1)\right)^2-\sum_{i=2}^ni^2S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
 \end{aligned}
