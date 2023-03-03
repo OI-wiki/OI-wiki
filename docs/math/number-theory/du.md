@@ -78,7 +78,7 @@ $$
 
 从而：
 
-$$T(n)=O(k)+T'(n)=O(k)+O\left(\frac{n}{\sqrt{k}}\right)$$
+$T(n)=O(k)+T'(n)=O(k)+O\left(\frac{n}{\sqrt{k}}\right)$
 
 由均值不等式可知，当 $k=O\left(n^{\frac{2}{3}}\right)$ 时，$T(n)$ 取得最小值 $O\left(n^{\frac{2}{3}}\right)$.
 
@@ -124,7 +124,6 @@ $$
 \end{aligned}
 $$
 
-
 由于题目所求的是 $\sum_{i=1}^n \sum_{j=1}^i [\gcd(i,j)=1]$, 所以我们排除掉 $i=1,j=1$ 的情况，并将结果除以 $2$ 即可。
 
 观察到，只需求出莫比乌斯函数的前缀和，就可以快速计算出欧拉函数的前缀和了。时间复杂度 $O\left(n^{\frac 2 3}\right)$.
@@ -158,7 +157,7 @@ $$
     \sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot\gcd(i,j)\pmod p
     $$
     
-    其中 $n\leq 10^{10},5\times 10^8\leq p\leq 1.1\times 10^9$, $p$ 是质数。
+    其中 $n\leq 10^{10},5\times 10^8\leq p\leq 1.1\times 10^9$,$p$ 是质数。
 
 利用 $\varphi * 1=\operatorname{ID}$ 做莫比乌斯反演化为
 
