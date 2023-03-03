@@ -9,15 +9,20 @@ template <unsigned int Mod>
 class Fp {
   static_assert(static_cast<int>(Mod) > 1);
 
-public:
+ public:
   Fp() : v_() {}
+
   Fp(int v) : v_(safe_mod(v)) {}
+
   static unsigned int safe_mod(int v) {
     v %= static_cast<int>(Mod);
     return v < 0 ? v + static_cast<int>(Mod) : v;
   }
+
   unsigned int value() const { return v_; }
+
   Fp operator-() const { return Fp(Mod - v_); }
+
   Fp pow(int e) const {
     if (e < 0) return inv().pow(-e);
     for (Fp x(*this), res(1);; x *= x) {
@@ -25,6 +30,7 @@ public:
       if ((e >>= 1) == 0) return res;
     }
   }
+
   Fp inv() const {
     int x1 = 1, x3 = 0, a = v_, b = Mod;
     while (b != 0) {
@@ -33,57 +39,82 @@ public:
     }
     return Fp(x1);
   }
+
   Fp &operator+=(const Fp &rhs) {
     if ((v_ += rhs.v_) >= Mod) v_ -= Mod;
     return *this;
   }
+
   Fp &operator-=(const Fp &rhs) {
     if ((v_ += Mod - rhs.v_) >= Mod) v_ -= Mod;
     return *this;
   }
+
   Fp &operator*=(const Fp &rhs) {
     v_ = static_cast<unsigned long long>(v_) * rhs.v_ % Mod;
     return *this;
   }
+
   Fp &operator/=(const Fp &rhs) { return operator*=(rhs.inv()); }
+
   void swap(Fp &rhs) {
     unsigned int v = v_;
     v_ = rhs.v_, rhs.v_ = v;
   }
+
   friend Fp operator+(const Fp &lhs, const Fp &rhs) { return Fp(lhs) += rhs; }
+
   friend Fp operator-(const Fp &lhs, const Fp &rhs) { return Fp(lhs) -= rhs; }
+
   friend Fp operator*(const Fp &lhs, const Fp &rhs) { return Fp(lhs) *= rhs; }
+
   friend Fp operator/(const Fp &lhs, const Fp &rhs) { return Fp(lhs) /= rhs; }
-  friend bool operator==(const Fp &lhs, const Fp &rhs) { return lhs.v_ == rhs.v_; }
-  friend bool operator!=(const Fp &lhs, const Fp &rhs) { return lhs.v_ != rhs.v_; }
+
+  friend bool operator==(const Fp &lhs, const Fp &rhs) {
+    return lhs.v_ == rhs.v_;
+  }
+
+  friend bool operator!=(const Fp &lhs, const Fp &rhs) {
+    return lhs.v_ != rhs.v_;
+  }
+
   friend std::istream &operator>>(std::istream &lhs, Fp &rhs) {
     int v;
     lhs >> v;
     rhs = Fp(v);
     return lhs;
   }
-  friend std::ostream &operator<<(std::ostream &lhs, const Fp &rhs) { return lhs << rhs.v_; }
 
-private:
+  friend std::ostream &operator<<(std::ostream &lhs, const Fp &rhs) {
+    return lhs << rhs.v_;
+  }
+
+ private:
   unsigned int v_;
 };
 
 template <typename T>
 class Poly : public std::vector<T> {
-public:
-  using std::vector<T>::vector; // 使用继承的构造函数
+ public:
+  using std::vector<T>::vector;  // 使用继承的构造函数
+
   bool is_zero() const { return deg() == -1; }
+
   void shrink() { this->resize(std::max(deg() + 1, 1)); }
-  int deg() const { // 多项式的次数，当多项式为零时度数为 -1 而不是一般定义的负无穷
+
+  int deg()
+      const {  // 多项式的次数，当多项式为零时度数为 -1 而不是一般定义的负无穷
     int d = static_cast<int>(this->size()) - 1;
     const T z;
     while (d >= 0 && this->operator[](d) == z) --d;
     return d;
   }
+
   T leading_coeff() const {
     int d = deg();
     return d == -1 ? T() : this->operator[](d);
   }
+
   Poly operator-() const {
     Poly res;
     res.reserve(this->size());
@@ -91,18 +122,23 @@ public:
     res.shrink();
     return res;
   }
+
   Poly &operator+=(const Poly &rhs) {
     if (this->size() < rhs.size()) this->resize(rhs.size());
-    for (int i = 0, e = static_cast<int>(rhs.size()); i != e; ++i) this->operator[](i) += rhs[i];
+    for (int i = 0, e = static_cast<int>(rhs.size()); i != e; ++i)
+      this->operator[](i) += rhs[i];
     shrink();
     return *this;
   }
+
   Poly &operator-=(const Poly &rhs) {
     if (this->size() < rhs.size()) this->resize(rhs.size());
-    for (int i = 0, e = static_cast<int>(rhs.size()); i != e; ++i) this->operator[](i) -= rhs[i];
+    for (int i = 0, e = static_cast<int>(rhs.size()); i != e; ++i)
+      this->operator[](i) -= rhs[i];
     shrink();
     return *this;
   }
+
   Poly &operator*=(const Poly &rhs) {
     int n = deg(), m = rhs.deg();
     if (n == -1 || m == -1) return operator=(Poly{0});
@@ -111,6 +147,7 @@ public:
       for (int j = 0; j <= m; ++j) res[i + j] += this->operator[](i) * rhs[j];
     return operator=(res);
   }
+
   Poly &operator/=(const Poly &rhs) {
     int n = deg(), m = rhs.deg(), q = n - m;
     if (m == -1) throw std::runtime_error("Division by zero");
@@ -122,6 +159,7 @@ public:
         for (int j = 0; j != m; ++j) this->operator[](i + j) -= res[i] * rhs[j];
     return operator=(res);
   }
+
   Poly &operator%=(const Poly &rhs) {
     int n = deg(), m = rhs.deg(), q = n - m;
     if (m == -1) throw std::runtime_error("Division by zero");
@@ -132,6 +170,7 @@ public:
     shrink();
     return *this;
   }
+
   std::pair<Poly, Poly> div_mod(const Poly &rhs) const {
     int n = deg(), m = rhs.deg(), q = n - m;
     if (m == -1) throw std::runtime_error("Division by zero");
@@ -142,19 +181,35 @@ public:
       if ((quo[i] = rem[n--] * iv) != T())
         for (int j = 0; j <= m; ++j) rem[i + j] -= quo[i] * rhs[j];
     rem.shrink();
-    return std::make_pair(quo, rem); // (quotient, remainder)
+    return std::make_pair(quo, rem);  // (quotient, remainder)
   }
+
   T eval(const T &pt) const {
     T res;
     for (int i = deg(); i >= 0; --i) res = res * pt + this->operator[](i);
     return res;
   }
 
-  friend Poly operator+(const Poly &lhs, const Poly &rhs) { return Poly(lhs) += rhs; }
-  friend Poly operator-(const Poly &lhs, const Poly &rhs) { return Poly(lhs) -= rhs; }
-  friend Poly operator*(const Poly &lhs, const Poly &rhs) { return Poly(lhs) *= rhs; }
-  friend Poly operator/(const Poly &lhs, const Poly &rhs) { return Poly(lhs) /= rhs; }
-  friend Poly operator%(const Poly &lhs, const Poly &rhs) { return Poly(lhs) %= rhs; }
+  friend Poly operator+(const Poly &lhs, const Poly &rhs) {
+    return Poly(lhs) += rhs;
+  }
+
+  friend Poly operator-(const Poly &lhs, const Poly &rhs) {
+    return Poly(lhs) -= rhs;
+  }
+
+  friend Poly operator*(const Poly &lhs, const Poly &rhs) {
+    return Poly(lhs) *= rhs;
+  }
+
+  friend Poly operator/(const Poly &lhs, const Poly &rhs) {
+    return Poly(lhs) /= rhs;
+  }
+
+  friend Poly operator%(const Poly &lhs, const Poly &rhs) {
+    return Poly(lhs) %= rhs;
+  }
+
   friend bool operator==(const Poly &lhs, const Poly &rhs) {
     int d = lhs.deg();
     if (d != rhs.deg()) return false;
@@ -162,7 +217,11 @@ public:
       if (lhs[d] != rhs[d]) return false;
     return true;
   }
-  friend bool operator!=(const Poly &lhs, const Poly &rhs) { return !(lhs == rhs); }
+
+  friend bool operator!=(const Poly &lhs, const Poly &rhs) {
+    return !(lhs == rhs);
+  }
+
   friend std::ostream &operator<<(std::ostream &lhs, const Poly &rhs) {
     int s = 0, e = static_cast<int>(rhs.size());
     lhs << '[';
@@ -177,10 +236,11 @@ public:
 };
 
 template <typename T>
-Poly<T> lagrange_interpolation(const std::vector<T> &x, const std::vector<T> &y) {
+Poly<T> lagrange_interpolation(const std::vector<T> &x,
+                               const std::vector<T> &y) {
   if (x.size() != y.size()) throw std::runtime_error("x.size() != y.size()");
   const int n = static_cast<int>(x.size());
-  Poly<T> M   = {T(1)};
+  Poly<T> M = {T(1)};
   for (int i = 0; i != n; ++i) M *= Poly<T>{-x[i], T(1)};
   std::vector<Poly<T>> m(n);
   for (int i = 0; i != n; ++i) m[i] = M / Poly<T>{-x[i], T(1)};
