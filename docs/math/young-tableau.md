@@ -131,7 +131,7 @@ $$
 
 ## 参考资料与拓展阅读
 
--   \[1][Young Tableau - from Wolfram MathWorld](https://mathworld.wolfram.com/YoungTableau.html)
--   \[2][Young tableau - Wikipedia](https://en.wikipedia.org/wiki/Young_tableau)
--   \[3][Hook length formula - Wikipedia](https://en.wikipedia.org/wiki/Hook_length_formula)
--   \[4] 袁方舟，[《浅谈杨氏矩阵在信息学竞赛中的应用》IOI2019](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2019%E8%AE%BA%E6%96%87%E9%9B%86.pdf), 中国国家候选队论文集，202-229
+1.  [Young Tableau - from Wolfram MathWorld](https://mathworld.wolfram.com/YoungTableau.html)
+2.  [Young tableau - Wikipedia](https://en.wikipedia.org/wiki/Young_tableau)
+3.  [Hook length formula - Wikipedia](https://en.wikipedia.org/wiki/Hook_length_formula)
+4.  袁方舟，[《浅谈杨氏矩阵在信息学竞赛中的应用》IOI2019](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2019%E8%AE%BA%E6%96%87%E9%9B%86.pdf), 中国国家候选队论文集，202-229

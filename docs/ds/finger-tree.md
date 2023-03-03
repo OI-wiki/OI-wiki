@@ -95,6 +95,6 @@ data Digit a = One a | Two a a | Three a a a
 
 ## 参考资料与拓展阅读
 
--   \[1]Ralf Hinze and Ross Paterson, "[Finger trees: a simple general-purpose data structure](http://www.staff.city.ac.uk/~ross/papers/FingerTree.html)", Journal of Functional Programming 16:2 (2006) pp 197-217.
--   \[2][Finger Tree - Wikipedia](https://en.wikipedia.org/wiki/Finger_tree)
--   \[3][Purely Functional Data Structures](https://www.cambridge.org/us/academic/subjects/computer-science/programming-languages-and-applied-logic/purely-functional-data-structures), Chris Okasaki (1999)
+1.  Ralf Hinze and Ross Paterson, "[Finger trees: a simple general-purpose data structure](http://www.staff.city.ac.uk/~ross/papers/FingerTree.html)", Journal of Functional Programming 16:2 (2006) pp 197-217.
+2.  [Finger Tree - Wikipedia](https://en.wikipedia.org/wiki/Finger_tree)
+3.  [Purely Functional Data Structures](https://www.cambridge.org/us/academic/subjects/computer-science/programming-languages-and-applied-logic/purely-functional-data-structures), Chris Okasaki (1999)

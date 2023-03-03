@@ -112,11 +112,11 @@ $a \leq m$ 意味着对于阶的所有元素 $a$，$a = m$。
 
 ## 参考资料与拓展阅读
 
--   \[1][Order theory - From Academic Kids](https://academickids.com/encyclopedia/index.php/Order_theory)
--   \[2][Binary Relation - Wikipedia](https://en.wikipedia.org/wiki/Binary_relation)
--   \[3][Order Theory - Wikipedia](https://en.wikipedia.org/wiki/Order_theory)
--   \[3][Order Theory, Lecture Notes by Mark Dean for Decision Theory](http://www.columbia.edu/~md3405/DT_Order_15.pdf)
--   \[4] 卢开澄，卢华明，[《组合数学》（第 3 版）](http://www.tup.tsinghua.edu.cn/bookscenter/book_00458101.html), 2006
--   \[5][List of Order Theory Topics - Wikipedia](https://en.wikipedia.org/wiki/List_of_order_theory_topics)
--   \[6][浅谈邻项交换排序的应用以及需要注意的问题 by ouuan](https://ouuan.github.io/post/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/)
--   \[7][One thing you should know about comparators—Strict Weak Ordering](https://codeforces.com/blog/entry/72525)
+1.  [Order theory - From Academic Kids](https://academickids.com/encyclopedia/index.php/Order_theory)
+2.  [Binary Relation - Wikipedia](https://en.wikipedia.org/wiki/Binary_relation)
+3.  [Order Theory - Wikipedia](https://en.wikipedia.org/wiki/Order_theory)
+4.  [Order Theory, Lecture Notes by Mark Dean for Decision Theory](http://www.columbia.edu/~md3405/DT_Order_15.pdf)
+5.  卢开澄，卢华明，[《组合数学》（第 3 版）](http://www.tup.tsinghua.edu.cn/bookscenter/book_00458101.html), 2006
+6.  [List of Order Theory Topics - Wikipedia](https://en.wikipedia.org/wiki/List_of_order_theory_topics)
+7.  [浅谈邻项交换排序的应用以及需要注意的问题 by ouuan](https://ouuan.github.io/post/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/)
+8.  [One thing you should know about comparators—Strict Weak Ordering](https://codeforces.com/blog/entry/72525)
