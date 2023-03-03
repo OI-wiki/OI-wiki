@@ -387,7 +387,7 @@ GCC 中还有一些用于位运算的内建函数：
 1. 位运算技巧： <https://graphics.stanford.edu/~seander/bithacks.html> 
 2. Other Builtins of GCC： <https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html> 
 
-[^note1]: 适用于 C++14 以前的标准。在 C++14 和 C++17 标准中，若原值为带符号类型，且移位后的结果能被原类型的无符号版本容纳，则将该结果 [转换](../lang/var.md#variable-conversion) 为相应的带符号值，否则行为未定义。在 C++20 标准中，规定了无论是带符号数还是无符号数，左移均直接舍弃移出结果类型的位。
+[^note1]: 适用于 C++14 以前的标准。在 C++14 和 C++17 标准中，若原值为带符号类型，且移位后的结果能被原类型的无符号版本容纳，则将该结果 [转换](../lang/var.md#类型转换) 为相应的带符号值，否则行为未定义。在 C++20 标准中，规定了无论是带符号数还是无符号数，左移均直接舍弃移出结果类型的位。
 
 [^note2]: 适用于 C++20 以前的标准。
 

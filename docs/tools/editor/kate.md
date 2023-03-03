@@ -29,7 +29,7 @@ Kate 支持三百余种语言的语法高亮。一般来说，Kate 可以自动�
 #### 自己编写语法高亮文件
 
 尽管 Kate 支持超过三百种语言的语法高亮，但是仍不免有语言未被覆盖到，此时可以自己动手编写语法高亮文件。
-Kate 自身自带的文件位于 [Syntax Highlighting Powered By KSyntaxHighlighting Framework](https://kate-editor.org/syntax/)，语法可参照 [Working with Syntax Highlighting](https://docs.kde.org/trunk5/en/kate/katepart/highlight.html)，编写好的文件根据 [Syntax definition files](https://github.com/KDE/syntax-highlighting#syntax-definition-files) 放置。[CoelacanthusHex/dotfiles@80a913c/pam_env.xml](https://github.com/CoelacanthusHex/dotfiles/blob/80a913cc5b90d7878eb0ed77b8df2d9b97926272/kate/.local/share/katepart5/syntax/pam_env.xml) 有我编写的一个配置文件可供参考。
+Kate 自身自带的文件位于 [Syntax Highlighting Powered By KSyntaxHighlighting Framework](https://kate-editor.org/syntax/)，语法可参照 [Working with Syntax Highlighting](https://docs.kde.org/trunk5/en/kate/katepart/highlight.html)，编写好的文件根据 [Syntax definition files](https://github.com/KDE/syntax-highlighting#syntax-definition-files) 放置。[CoelacanthusHex/dotfiles@80a913c/pam\_env.xml](https://github.com/CoelacanthusHex/dotfiles/blob/80a913cc5b90d7878eb0ed77b8df2d9b97926272/kate/.local/share/katepart5/syntax/pam_env.xml) 有我编写的一个配置文件可供参考。
 
 ### 切换语言
 
@@ -47,10 +47,10 @@ Kate 可以自动识别当前文件使用的是什么编码，如果识别错误
 
 具体操作和其他编辑器并无太大差别，但是支持一些额外的特性，例如：
 
-1. 是否区分大小写
-2. 支持正则表达式（包括捕获组）
-3. 从当前文件到多文件再到当前工程不等的范围
-4. 对查找的结果进行选择替换
+1.  是否区分大小写
+2.  支持正则表达式（包括捕获组）
+3.  从当前文件到多文件再到当前工程不等的范围
+4.  对查找的结果进行选择替换
 
 ### Language Server Protocol
 
@@ -126,8 +126,8 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 
 ### 内置终端
 
-???+note "注意"
-    内置终端依赖了 KDE 的 Konsole[^ref1]，而 Konsole 为\*nix 独有包。也就是说，Windows 下该特性不可用。
+???+ note "注意"
+    内置终端依赖了 KDE 的 Konsole[^ref1]，而 Konsole 为 \* nix 独有包。也就是说，Windows 下该特性不可用。
 
 按<kbd>F4</kbd>可打开或关闭内置终端，也可点击左下角 `终端` 按钮打开，内置终端的当前目录会自动与当前文件保持一致，并随着你选择的文件而改变。其余与一般终端并无太大不同。
 
@@ -153,9 +153,9 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 
 ##### 编译并执行单个 C++ 文件
 
-在\*nix 系统下，打开任意 C++ 源文件，在外部工具里找到 `编译执行 cpp`，点击即可。
+在 \* nix 系统下，打开任意 C++ 源文件，在外部工具里找到 `编译执行 cpp`，点击即可。
 
-???+note "对于 Windows 用户"
+???+ note "对于 Windows 用户"
     在默认情况下，由于该工具的可执行文件为 `sh`，使得该工具在 Windows 下不可用。然而，用户可以对该工具进行修改，使其可用于 Windows 系统。
     
     要进行修改，请先确保你的系统内有一个可用的 C++ 编译器。然后从默认工具添加 `编译运行 cpp`，将其中 `可执行文件` 从 `sh` 改为 `powershell`，参数改为 `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"` [^note1][^note2]即可。
@@ -178,9 +178,9 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 
 ## 相关外部链接
 
-- [The Kate Handbook](https://docs.kde.org/stable5/en/kate/kate/kate.pdf)
-- [关于如何手写自己的 LSP 客户端配置（英文）](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-lspclient.html#Configuration)
-- [关于如何手写自己的外部工具配置（英文）](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html)
+-   [The Kate Handbook](https://docs.kde.org/stable5/en/kate/kate/kate.pdf)
+-   [关于如何手写自己的 LSP 客户端配置（英文）](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-lspclient.html#Configuration)
+-   [关于如何手写自己的外部工具配置（英文）](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html)
 
 ## 参考资料与脚注
 

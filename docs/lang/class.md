@@ -34,9 +34,9 @@ Object *c;
 
 不同于 [`struct`](./struct.md) 中的举例，本例中出现了 `public`，这属于访问说明符。
 
-- `public`：该访问说明符之后的各个成员都可以被公开访问，简单来说就是无论 **类内** 还是 **类外** 都可以访问。
-- `protected`：该访问说明符之后的各个成员可以被 **类内**、派生类或者友元的成员访问，但类外 **不能访问**。
-- `private`：该访问说明符之后的各个成员 **只能** 被 **类内** 成员或者友元的成员访问，**不能** 被从类外或者派生类中访问。
+-   `public`：该访问说明符之后的各个成员都可以被公开访问，简单来说就是无论 **类内** 还是 **类外** 都可以访问。
+-   `protected`：该访问说明符之后的各个成员可以被 **类内**、派生类或者友元的成员访问，但类外 **不能访问**。
+-   `private`：该访问说明符之后的各个成员 **只能** 被 **类内** 成员或者友元的成员访问，**不能** 被从类外或者派生类中访问。
 
 对于 `struct`，它的所有成员都是默认 `public`。对于 `class`，它的所有成员都是默认 `private`。
 
@@ -57,8 +57,8 @@ Object *c;
 
 方法形同 [`struct`](./struct.md)
 
-- 对于变量，使用 `.` 符号。
-- 对于指针，使用 `->` 符号。
+-   对于变量，使用 `.` 符号。
+-   对于指针，使用 `->` 符号。
 
 ## 成员函数
 
@@ -158,7 +158,7 @@ Vector Vector::operator-(const Vector& other) {
 
 *如要了解更多，参见“参考资料”第四条。*
 
-??? note " 可以被重载的运算符"
+??? note "可以被重载的运算符"
     ```cpp
     = +-* / = % += -= *= /= %= <> == != <= >= & | !^~ &= |= ^=
         //----------
@@ -196,23 +196,21 @@ class Object {
 
 如果需要自定义初始化的值，可以再定义（或重载）构造函数。
 
-??? note "关于定义(或重载)构造函数"
+??? note "关于定义（或重载）构造函数"
     一般来说，默认构造函数是不带参数的，这区别于构造函数。构造函数和默认构造函数的定义大同小异，只是参数数量上的不同。
     
     构造函数可以被重载（当然首次被叫做定义）。需要注意的是，如果已经定义了构造函数，那么编译器便不会再生成无参数的默认构造函数。这会可能会使试图以默认方法构造变量的行为编译失败（指不填入初始化参数）。
 
 使用 C++11 或以上时，可以使用 `{}` 进行变量的初始化。
 
-??? note "关于`{}`"
-    使用 `{}` 进行初始化，会用到 std::initializer_list 这一个轻量代理对象进行初始化。
+??? note " 关于 `{}`"
+    使用 `{}` 进行初始化，会用到 std::initializer\_list 这一个轻量代理对象进行初始化。
     
     初始化步骤大概如下
     
-    1. 尝试寻找参数中有 `std::initializer_list` 的默认构造函数，如果有则调用（调用完后不再进行下面的查找，下同）。
-    
-    2. 尝试将 `{}` 中的元素填入其他构造参数，如果能将参数按照顺序填满（默认参数也算在内），则调用该默认构造函数。
-    
-    3. 若无 `private` 成员元素，则尝试在 **类外** 按照元素定义顺序或者下标顺序依次赋值。
+    1.  尝试寻找参数中有 `std::initializer_list` 的默认构造函数，如果有则调用（调用完后不再进行下面的查找，下同）。
+    2.  尝试将 `{}` 中的元素填入其他构造参数，如果能将参数按照顺序填满（默认参数也算在内），则调用该默认构造函数。
+    3.  若无 `private` 成员元素，则尝试在 **类外** 按照元素定义顺序或者下标顺序依次赋值。
     
     *上述过程只是完整过程的简化版本，详细内容参见 "参考资料九"*
 
@@ -330,12 +328,12 @@ tmp3 = {...};
 
 ## 参考资料
 
-1. [cppreference class](https://zh.cppreference.com/w/cpp/language/class)
-2. [cppreference access](https://zh.cppreference.com/w/cpp/language/access)
-3. [cppreference default_constructor](https://zh.cppreference.com/w/cpp/language/default_constructor)
-4. [cppreference operator](https://zh.cppreference.com/w/cpp/language/operators)
-5. [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/)
-6. [cplusplus Special members](http://www.cplusplus.com/doc/tutorial/classes2/)
-7. [C++11 FAQ](http://www.stroustrup.com/C++11FAQ.html)
-8. [cppreference Friendship and inheritance](http://www.cplusplus.com/doc/tutorial/inheritance/)
-9. [cppreference value initialization](https://zh.cppreference.com/w/cpp/language/value_initialization)
+1.  [cppreference class](https://zh.cppreference.com/w/cpp/language/class)
+2.  [cppreference access](https://zh.cppreference.com/w/cpp/language/access)
+3.  [cppreference default\_constructor](https://zh.cppreference.com/w/cpp/language/default_constructor)
+4.  [cppreference operator](https://zh.cppreference.com/w/cpp/language/operators)
+5.  [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/)
+6.  [cplusplus Special members](http://www.cplusplus.com/doc/tutorial/classes2/)
+7.  [C++11 FAQ](http://www.stroustrup.com/C++11FAQ.html)
+8.  [cppreference Friendship and inheritance](http://www.cplusplus.com/doc/tutorial/inheritance/)
+9.  [cppreference value initialization](https://zh.cppreference.com/w/cpp/language/value_initialization)
