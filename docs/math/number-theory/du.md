@@ -82,7 +82,7 @@ $$
 T(n)=O(k)+T'(n)=O(k)+O\left(\frac{n}{\sqrt{k}}\right)
 $$
 
-由均值不等式可知，当 $k=O\left(n^{\frac{2}{3}}\right)$ 时，$T(n)$ 取得最小值 $O\left(n^{\frac{2}{3}}\right)$.
+由均值不等式可知，当 $k=\Theta\left(n^{\frac{2}{3}}\right)$ 时，$T(n)$ 取得最小值 $O\left(n^{\frac{2}{3}}\right)$.
 
 ## 问题一
 
