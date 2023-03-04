@@ -251,7 +251,7 @@ Poly<T> lagrange_interpolation(const std::vector<T> &x,
 
 int main() {
   std::ios::sync_with_stdio(false);
-  std::cin.tie(0);
+  std::cin.tie(nullptr);
   using Z = Fp<998244353>;
   int n;
   Z k;
