@@ -240,12 +240,12 @@ Poly<T> lagrange_interpolation(const std::vector<T> &x,
                                const std::vector<T> &y) {
   if (x.size() != y.size()) throw std::runtime_error("x.size() != y.size()");
   const int n = static_cast<int>(x.size());
-  Poly<T> M = {T(1)};
+  Poly<T> M = {T(1)}, f;
   for (int i = 0; i != n; ++i) M *= Poly<T>{-x[i], T(1)};
-  std::vector<Poly<T>> m(n);
-  for (int i = 0; i != n; ++i) m[i] = M / Poly<T>{-x[i], T(1)};
-  Poly<T> f;
-  for (int i = 0; i != n; ++i) f += Poly<T>{y[i] / m[i].eval(x[i])} * m[i];
+  for (int i = 0; i != n; ++i) {
+    auto m = M / Poly<T>{-x[i], T(1)};
+    f += Poly<T>{y[i] / m.eval(x[i])} * m;
+  }
   return f;
 }
 
@@ -256,13 +256,8 @@ int main() {
   int n;
   Z k;
   std::cin >> n >> k;
-  std::vector<Z> x, y;
-  for (int i = 0; i != n; ++i) {
-    Z xi, yi;
-    std::cin >> xi >> yi;
-    x.push_back(xi);
-    y.push_back(yi);
-  }
+  std::vector<Z> x(n), y(n);
+  for (int i = 0; i != n; ++i) std::cin >> x[i] >> y[i];
   std::cout << lagrange_interpolation(x, y).eval(k) << std::endl;
   return 0;
 }
