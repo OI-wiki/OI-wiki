@@ -8,7 +8,10 @@ Java 是一种广泛使用的计算机编程语言，拥有 **跨平台**、**�
 
 可以在 [Oracle 官网](https://www.oracle.com/java/technologies/javase-downloads.html) 下载 Oracle JDK（需要登录 Oracle 账号）。推荐下载 EXE 安装包来自动配置环境变量。
 
-如果需要使用 OpenJDK，可以使用 [AdoptOpenJDK](https://adoptopenjdk.net/) 提供的预编译包。如果下载较慢，可以使用 [清华大学 TUNA 镜像站](https://mirrors.tuna.tsinghua.edu.cn/AdoptOpenJDK/)。推荐下载 MSI 安装包来自动配置环境变量。
+如果需要使用 OpenJDK，可以使用 [Adoptium OpenJDK](https://adoptium.net/) 提供的预编译包。如果下载较慢，可以使用 [清华大学 TUNA 镜像站](https://mirrors.tuna.tsinghua.edu.cn/Adoptium/)。推荐下载 MSI 安装包来自动配置环境变量。
+
+???+ note
+    [Adoptium OpenJDK](https://adoptium.net/) 即为原 [AdoptOpenJDK](https://adoptopenjdk.net/)，后者已于 2021 年 7 月移交 [Eclipse 基金会](https://www.eclipse.org/org/foundation/)。具体可见 [本声明](https://blog.adoptopenjdk.net/2021/03/transition-to-eclipse-an-update/)。
 
 ### Linux
 
@@ -152,7 +155,7 @@ int[] ary = new int[10];
 
 ### 字符串
 
-- 字符串是 Java 一个内置的类。
+-   字符串是 Java 一个内置的类。
 
 ```java
 // 最为简单的构造一个字符串变量的方法如下
@@ -232,7 +235,7 @@ Java 的流程控制语句与 C++ 是基本相同的。
 
 #### 选择
 
-- if
+-   if
 
 ```java
 class Test {
@@ -244,7 +247,7 @@ class Test {
 }
 ```
 
-- if...else
+-   if...else
 
 ```java
 class Test {
@@ -258,7 +261,7 @@ class Test {
 }
 ```
 
-- if...else if...else
+-   if...else if...else
 
 ```java
 class Test {
@@ -274,7 +277,7 @@ class Test {
 }
 ```
 
-- switch...case
+-   switch...case
 
 ```java
 class Test {
@@ -295,7 +298,7 @@ class Test {
 
 #### 循环
 
-- for
+-   for
 
 `for` 关键字有两种使用方法，其中第一种是普通的 `for` 循环，形式如下：
 
@@ -321,7 +324,7 @@ class Test {
 }
 ```
 
-- while
+-   while
 
 ```java
 class Test {
@@ -333,7 +336,7 @@ class Test {
 }
 ```
 
-- do...while
+-   do...while
 
 ```java
 class Test {

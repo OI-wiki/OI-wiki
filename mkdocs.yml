@@ -146,6 +146,7 @@ nav:
       - 桶排序: basic/bucket-sort.md
       - 希尔排序: basic/shell-sort.md
       - 锦标赛排序: basic/tournament-sort.md
+      - tim排序: basic/tim-sort.md
       - 排序相关 STL: basic/stl-sort.md
       - 排序应用: basic/use-of-sort.md
     - 前缀和 & 差分: basic/prefix-sum.md
@@ -303,7 +304,7 @@ nav:
       - 行列式: math/linear-algebra/determinant.md
       - 高斯消元: math/linear-algebra/gauss.md
       - 线性空间: math/linear-algebra/vector-space.md
-      - Hamel基: math/linear-algebra/basis.md
+      - 线性基: math/linear-algebra/basis.md
       - 线性映射: math/linear-algebra/linear-mapping.md
       - 特征多项式: math/linear-algebra/char-poly.md
       - 对角化: math/linear-algebra/diagonalization.md
@@ -433,6 +434,7 @@ nav:
       - 双连通分量: graph/bcc.md
       - 割点和桥: graph/cut.md
       - 圆方树: graph/block-forest.md
+      - 点/边连通度: graph/connectivity.md
     - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
@@ -454,7 +456,7 @@ nav:
       - 二分图最大权匹配: graph/graph-matching/bigraph-weight-match.md
       - 一般图最大匹配: graph/graph-matching/general-match.md
       - 一般图最大权匹配: graph/graph-matching/general-weight-match.md
-    - Prufer 序列: graph/prufer.md
+    - Prüfer 序列: graph/prufer.md
     - LGV 引理: graph/lgv.md
     - 弦图: graph/chord.md
     - 最大团搜索算法: graph/max-clique.md
@@ -505,7 +507,7 @@ nav:
     - Garsia-Wachs 算法: misc/garsia-wachs.md
     - 15-puzzle: misc/15-puzzle.md
     - Kahan 求和: misc/kahan-summation.md
-    - 珂朵莉树: misc/odt.md
+    - 珂朵莉树/颜色段均摊: misc/odt.md
   - 专题:
     - RMQ: topic/rmq.md
     - 并查集应用: topic/dsu-app.md
@@ -522,8 +524,23 @@ theme:
     - 404.html
   language: 'zh'
   palette:
-    primary: 'white'
-    accent: 'red'
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
   include_search_page: false
   search_index_only: true
   favicon: 'favicon.ico'
@@ -553,12 +570,11 @@ extra:
     property: UA-124485594-1
 
 extra_javascript:
-  - '_static/js/extra.js?v=16'
   - '_static/js/math-csr.js?math-csr'
   - 'assets/vendor/mathjax/es5/tex-mml-chtml.js?math-csr'
 
 extra_css:
-  - '_static/css/extra.css?v=13'
+  - '_static/css/extra.css?v=14'
 
 # Extensions
 markdown_extensions:

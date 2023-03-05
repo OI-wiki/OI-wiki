@@ -30,7 +30,7 @@ author: frank-xjh
 
 以下是一个使用枚举解题与优化枚举范围的例子。
 
-!!! 例题
+??? 例题
     一个数组中的数互不相同，求其中和为 $0$ 的数对的个数。
 
 ??? note "解题思路"
@@ -103,7 +103,7 @@ author: frank-xjh
 
 ## 习题
 
-- [2811: 熄灯问题 - OpenJudge](http://bailian.openjudge.cn/practice/2811/)
+-   [2811: 熄灯问题 - OpenJudge](http://bailian.openjudge.cn/practice/2811/)
 
 ## 脚注
 

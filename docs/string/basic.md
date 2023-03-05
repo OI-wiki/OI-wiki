@@ -50,10 +50,10 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 ## 字符串的存储
 
-- 使用 `char` 数组存储，用空字符 `\0` 表示字符串的结尾（C 风格字符串）。
-- 使用 C++ 标准库提供的 [`string` 类](../lang/csl/string.md)。
-- 字符串常量可以用字符串字面量（用双引号括起来的字符串）表示。
+-   使用 `char` 数组存储，用空字符 `\0` 表示字符串的结尾（C 风格字符串）。
+-   使用 C++ 标准库提供的 [`string` 类](../lang/csl/string.md)。
+-   字符串常量可以用字符串字面量（用双引号括起来的字符串）表示。
 
 ## 参考资料与注释
 
-- [后缀数组 by. 徐智磊](https://wenku.baidu.com/view/0dc03d2b1611cc7931b765ce0508763230127479.html)
+-   [后缀数组 by. 徐智磊](https://wenku.baidu.com/view/0dc03d2b1611cc7931b765ce0508763230127479.html)

@@ -16,7 +16,7 @@
 
 -   $n = \sum_{d \mid n}{\varphi(d)}$。
 
-    ???+note "证明"
+    ???+ note "证明"
         利用 [莫比乌斯反演](./mobius.md) 相关知识可以得出。
         
         也可以这样考虑：如果 $\gcd(k, n) = d$，那么 $\gcd(\dfrac{k}{d},\dfrac{n}{d}) = 1, ( k < n )$。
@@ -30,7 +30,7 @@
 
 -   由唯一分解定理，设 $n = \prod_{i=1}^{s}p_i^{k_i}$，其中 $p_i$ 是质数，有 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$。
 
-    ???+note "证明"
+    ???+ note "证明"
         -   引理：设 $p$ 为任意质数，那么 $\varphi(p^k)=p^{k-1}\times(p-1)$。
         
             证明：显然对于从 1 到 $p^k$ 的所有数中，除了 $p^{k-1}$ 个 $p$ 的倍数以外其它数都与 $p^k$ 互素，故 $\varphi(p^k)=p^k-p^{k-1}=p^{k-1}\times(p-1)$，证毕。
