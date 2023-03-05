@@ -438,7 +438,7 @@ nav:
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
     - 二分图: graph/bi-graph.md
-    - 最小环: graph/min-circle.md
+    - 最小环: graph/min-cycle.md
     - 平面图: graph/planar.md
     - 图的着色: graph/color.md
     - 网络流:
