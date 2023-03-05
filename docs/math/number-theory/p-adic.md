@@ -256,8 +256,8 @@ $$
 
 收敛，等价于：
 
-- p 为奇素数时，$x$ 是 $p$ 的倍数（即 $x$ 是整数且末位为 $0$）。
-- p 为 $2$ 时，$x$ 是 $4$ 的倍数（即 $x$ 是整数且末两位为 $00$）。
+-   p 为奇素数时，$x$ 是 $p$ 的倍数（即 $x$ 是整数且末位为 $0$）。
+-   p 为 $2$ 时，$x$ 是 $4$ 的倍数（即 $x$ 是整数且末两位为 $00$）。
 
 在 p 进数中，对数函数
 
@@ -321,15 +321,15 @@ $$
 
 有定理：
 
-- p 为奇素数时，令 $m\geq 1$。
-- p 为 $2$ 时，令 $m\geq 2$。
+-   p 为奇素数时，令 $m\geq 1$。
+-   p 为 $2$ 时，令 $m\geq 2$。
 
 则指数和对数给出群的互逆的同构。即，加法群 $p^m\mathbb{Z}_{p}$ 与乘法群 $1+p^m\mathbb{Z}_{p}$ 的同构。
 
 特别地，其中最大的群为
 
-- p 为奇素数时，加法群 $p\mathbb{Z}_{p}$ 与乘法群 $1+p\mathbb{Z}_{p}$ 同构。
-- p 为 $2$ 时，加法群 $p^2\mathbb{Z}_{p}$ 与乘法群 $1+p^2\mathbb{Z}_{p}$ 的同构。
+-   p 为奇素数时，加法群 $p\mathbb{Z}_{p}$ 与乘法群 $1+p\mathbb{Z}_{p}$ 同构。
+-   p 为 $2$ 时，加法群 $p^2\mathbb{Z}_{p}$ 与乘法群 $1+p^2\mathbb{Z}_{p}$ 的同构。
 
 证明：对于所有 $n\geq 1$ 容易得到不等式：
 
@@ -339,8 +339,8 @@ $$
 
 于是可以得到，对于 $n\geq 1$ 有结论：
 
-- 对于定义域 $p^m\mathbb{Z}_{p}$，由于 $v_p\left(\frac{x^n}{n!}\right)\geq m$，所以 $\mathrm{e}^x$ 的值域在 $1+p^m\mathbb{Z}_{p}$。
-- 对于定义域 $1+p^m\mathbb{Z}_{p}$，由于 $v_p\left({(-1)}^{n-1}\frac{{(t-1)}^n}{n}\right)\geq m$，所以 $\ln t$ 的值域在 $p^m\mathbb{Z}_{p}$。
+-   对于定义域 $p^m\mathbb{Z}_{p}$，由于 $v_p\left(\frac{x^n}{n!}\right)\geq m$，所以 $\mathrm{e}^x$ 的值域在 $1+p^m\mathbb{Z}_{p}$。
+-   对于定义域 $1+p^m\mathbb{Z}_{p}$，由于 $v_p\left({(-1)}^{n-1}\frac{{(t-1)}^n}{n}\right)\geq m$，所以 $\ln t$ 的值域在 $p^m\mathbb{Z}_{p}$。
 
 对这个范围内的 $x$ 和 $t$ 则可以只用多项式理论证得 $\ln(\mathrm{e}^x)=x$ 和 $\mathrm{e}^(\ln t)=t$，证毕。
 
@@ -372,13 +372,13 @@ $$
 
 $\mathrm{e}^4$ 的例子参见：
 
-- [OEIS A320815 Digits of the 2-adic integer exp(4).](http://oeis.org/A320815)
-- [OEIS A320814 Approximation of the 2-adic integer exp(4) up to 2^n.](http://oeis.org/A320814)
+-   [OEIS A320815 Digits of the 2-adic integer exp(4).](http://oeis.org/A320815)
+-   [OEIS A320814 Approximation of the 2-adic integer exp(4) up to 2^n.](http://oeis.org/A320814)
 
 $\ln 5$ 的例子参见：
 
-- [OEIS A152228 2-adic expansion of log(5).](http://oeis.org/A152228)
-- [OEIS A321690 Approximations up to 2^n for the 2-adic integer log(5).](http://oeis.org/A321690)
+-   [OEIS A152228 2-adic expansion of log(5).](http://oeis.org/A152228)
+-   [OEIS A321690 Approximations up to 2^n for the 2-adic integer log(5).](http://oeis.org/A321690)
 
 同样还能找到更多有趣的数列，可以在 OEIS 上搜索“2-adic integer”，例如 $\ln (-3)$ 等等（A321694、A321691）。
 
@@ -388,20 +388,20 @@ $\ln 5$ 的例子参见：
 
 仿照离散对数可以刻画缩系乘法群的结构一样，照样可以刻画 p 进数中的乘法群结构。首先给出定理：
 
-- p 为奇素数时，乘法群 $1+p \mathbb{Z}_p$ 与 $\mathbb{Z}_p$ 同构。
-- p 为 $2$ 时，乘法群 $1+2 \mathbb{Z}_2$ 为子群 $\{-1,1\}$ 与子群 $1+4 \mathbb{Z}_2$ 的直积，而 $1+4 \mathbb{Z}_2$ 同构于 $4 \mathbb{Z}_2$。
+-   p 为奇素数时，乘法群 $1+p \mathbb{Z}_p$ 与 $\mathbb{Z}_p$ 同构。
+-   p 为 $2$ 时，乘法群 $1+2 \mathbb{Z}_2$ 为子群 $\{-1,1\}$ 与子群 $1+4 \mathbb{Z}_2$ 的直积，而 $1+4 \mathbb{Z}_2$ 同构于 $4 \mathbb{Z}_2$。
 
 这与离散对数中的结论完全一致。
 
 证明：
 
-- 对于奇素数的情形，按照指对数的双射性，有乘法群 $1+p \mathbb{Z}_p$ 同构于 $p \mathbb{Z}_p$，定理显然。
-- 对于 p 为 $2$ 的情形，按照指对数的双射性，有乘法群 $1+4 \mathbb{Z}_p$ 同构于 $4 \mathbb{Z}_p$，定理显然。证毕。
+-   对于奇素数的情形，按照指对数的双射性，有乘法群 $1+p \mathbb{Z}_p$ 同构于 $p \mathbb{Z}_p$，定理显然。
+-   对于 p 为 $2$ 的情形，按照指对数的双射性，有乘法群 $1+4 \mathbb{Z}_p$ 同构于 $4 \mathbb{Z}_p$，定理显然。证毕。
 
 根据科学记数法和费马欧拉定理，可以证得定理：
 
-- p 为奇素数时，乘法群 $\mathbb{Q}_p$ 同构于 $\mathbb{Z}$、$\frac{\mathbb{Z}}{(p-1)\mathbb{Z}}$ 和 $\mathbb{Z}_p$ 三个群的笛卡尔积。
-- p 为 $2$ 时，乘法群 $\mathbb{Q}_2$ 同构于 $\mathbb{Z}$、$\frac{\mathbb{Z}}{2 \mathbb{Z}}$ 和 $\mathbb{Z}_2$ 三个群的笛卡尔积。
+-   p 为奇素数时，乘法群 $\mathbb{Q}_p$ 同构于 $\mathbb{Z}$、$\frac{\mathbb{Z}}{(p-1)\mathbb{Z}}$ 和 $\mathbb{Z}_p$ 三个群的笛卡尔积。
+-   p 为 $2$ 时，乘法群 $\mathbb{Q}_2$ 同构于 $\mathbb{Z}$、$\frac{\mathbb{Z}}{2 \mathbb{Z}}$ 和 $\mathbb{Z}_2$ 三个群的笛卡尔积。
 
 ## p 进数中的平方元
 
@@ -413,8 +413,8 @@ $\ln 5$ 的例子参见：
 
 $\mathbb{Q}_p$ 中的元素按照科学记数法写成 $p^n u$，$u$ 的小数点后均为 $0$，小数点前一位不为 $0$。从而平方元首先要求 $n$ 是偶数，并且有：
 
-- p 为奇素数时，$u$ 小数点前一位是模 $p$ 的二次剩余。
-- p 为 $2$ 时，$u$ 模 $8$ 余 $1$，即末三位为 $001$。
+-   p 为奇素数时，$u$ 小数点前一位是模 $p$ 的二次剩余。
+-   p 为 $2$ 时，$u$ 模 $8$ 余 $1$，即末三位为 $001$。
 
 这与二次剩余部分的结论一致。
 
@@ -442,7 +442,7 @@ $$
 
 于是 p 进数平方乘法群是 p 进数乘法群的子群，最后可以得到二者商群的同构关系。有定理：
 
-- p 为奇素数时，乘法群 $\frac{\mathbb{Q}_p}{{\mathbb{Q}_p}^2}$ 同构于两个 $\frac{\mathbb{Z}}{2 \mathbb{Z}}$ 的笛卡尔积。
-- p 为 $2$ 时，乘法群 $\frac{\mathbb{Q}_2}{{\mathbb{Q}_2}^2}$ 同构于三个 $\frac{\mathbb{Z}}{2 \mathbb{Z}}$ 的笛卡尔积。
+-   p 为奇素数时，乘法群 $\frac{\mathbb{Q}_p}{{\mathbb{Q}_p}^2}$ 同构于两个 $\frac{\mathbb{Z}}{2 \mathbb{Z}}$ 的笛卡尔积。
+-   p 为 $2$ 时，乘法群 $\frac{\mathbb{Q}_2}{{\mathbb{Q}_2}^2}$ 同构于三个 $\frac{\mathbb{Z}}{2 \mathbb{Z}}$ 的笛卡尔积。
 
 该定理不难证明。
