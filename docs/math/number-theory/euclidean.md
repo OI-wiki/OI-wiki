@@ -89,10 +89,11 @@ $$
 理解了最基础的类欧几里德算法，我们再来思考以下两个变种求和式：
 
 $$
-\begin{array}{c}
-g(a,b,c,n)=\sum_{i=0}^ni\left\lfloor \frac{ai+b}{c} \right\rfloor\\
+g(a,b,c,n)=\sum_{i=0}^ni\left\lfloor \frac{ai+b}{c} \right\rfloor
+$$
+
+$$
 h(a,b,c,n)=\sum_{i=0}^n\left\lfloor \frac{ai+b}{c} \right\rfloor^2
-\end{array}
 $$
 
 ### 推导 g
