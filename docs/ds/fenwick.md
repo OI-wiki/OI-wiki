@@ -887,7 +887,7 @@ $i$ 按照 $5 \to 1$ 扫：
     === "C++"
     
         ```cpp
-        // O(n) 建树
+        // Θ(n) 建树
         void init() {
           for (int i = 1; i <= n; ++i) {
             t[i] += a[i];
@@ -900,7 +900,7 @@ $i$ 按照 $5 \to 1$ 扫：
     === "Python"
     
         ```python
-        # \Theta(n) 建树
+        # Θ(n) 建树
         def init():
             for i in range(1, n + 1):
                 t[i] = t[i] + a[i]
@@ -917,6 +917,7 @@ $i$ 按照 $5 \to 1$ 扫：
     === "C++"
     
         ```cpp
+        // Θ(n) 建树
         void init() {
           for (int i = 1; i <= n; ++i) {
             t[i] = sum[i] - sum[i - lowbit(i)];
@@ -927,6 +928,7 @@ $i$ 按照 $5 \to 1$ 扫：
     === "Python"
     
         ```python
+        # Θ(n) 建树
         def init():
             for i in range(1, n + 1):
                 t[i] = sum[i] - sum[i-lowbit(i)]
