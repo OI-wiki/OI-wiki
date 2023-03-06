@@ -58,7 +58,7 @@ $\cos \theta=\cfrac{\boldsymbol a\cdot\boldsymbol b}{|\boldsymbol a||\boldsymbol
 
 二阶与三阶行列式，可以作为行列式的较为简单的情形特殊定义。在微积分的最后一个部分场论部分，格林公式用到了二阶行列式，高斯公式用到了点乘，斯托克斯公式用到了三阶行列式。
 
-二阶行列式可以视为四元函数，定义为：
+二阶行列式可以视为四元函数，其定义为：
 
 $$
 \left |\begin{array}{ccc}
@@ -67,7 +67,7 @@ c & d \\
 \end{array}\right |=ad-bc
 $$
 
-三阶行列式可以视为九元函数，的定义为：
+三阶行列式可以视为九元函数，其定义为：
 
 $$
 \left |\begin{array}{ccc}
@@ -91,8 +91,8 @@ $$
 
 定义向量 $\boldsymbol a,\boldsymbol b$ 的外积为一个向量，记为 $\boldsymbol a\times \boldsymbol b$，其模与方向定义如下：
 
-1. $|\boldsymbol a\times \boldsymbol b|=|\boldsymbol a||\boldsymbol b|\sin \langle \boldsymbol a,\boldsymbol b\rangle$；
-2. $\boldsymbol a\times \boldsymbol b$ 与 $\boldsymbol a,\boldsymbol b$ 都垂直，且 $\boldsymbol a,\boldsymbol b,\boldsymbol a\times \boldsymbol b$ 符合右手法则。
+1.  $|\boldsymbol a\times \boldsymbol b|=|\boldsymbol a||\boldsymbol b|\sin \langle \boldsymbol a,\boldsymbol b\rangle$；
+2.  $\boldsymbol a\times \boldsymbol b$ 与 $\boldsymbol a,\boldsymbol b$ 都垂直，且 $\boldsymbol a,\boldsymbol b,\boldsymbol a\times \boldsymbol b$ 符合右手法则。
 
 注意到外积的模，联想到三角形面积计算公式 $S=\frac{1}{2}ab\sin C$，可以发现外积的几何意义是：**$|\boldsymbol a\times \boldsymbol b|$ 是以 $\boldsymbol a,\boldsymbol b$ 为邻边的平行四边形的面积**。
 
