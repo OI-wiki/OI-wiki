@@ -1,11 +1,13 @@
 ???+ warning "注意"
     以下内容均基于 Java JDK 8 版本编写，不排除在更高版本中有部分改动的可能性。
+    
+## 模板提供
 
-## 更高速的输入输出
+### 更高速的输入输出
 
 `Scanner` 和 `System.out.print` 在最开始会工作得很好，但是在处理更大的输入的时候会降低效率，因此我们会需要使用一些方法来提高 IO 速度。
 
-### 使用 Kattio + StringTokenizer 作为输入
+#### 使用 Kattio + StringTokenizer 作为输入
 
 最常用的方法之一是使用来自 Kattis 的 [Kattio.java](https://github.com/Kattis/kattio/blob/master/Kattio.java) 来提高 IO 效率。[^ref1]这个方法会将 `StringTokenizer` 与 `PrintWriter` 包装在一个类中方便使用。而在具体进行解题的时候（假如赛会/组织方允许）可以直接使用这个模板。
 
@@ -59,7 +61,7 @@ class Test {
 }
 ```
 
-### 使用 StreamTokenizer 作为输入
+#### 使用 StreamTokenizer 作为输入
 
 在某些情况使用 `StringTokenizer` 会导致 MLE（Memory Limit Exceeded，超过内存上限），此时我们需要使用 `StreamTokenizer` 作为输入。
 
@@ -84,7 +86,7 @@ public class Main {
 }
 ```
 
-### Kattio + StringTokenizer 的方法与 StreamTokenizer 的方法之间的分析与对比
+#### Kattio + StringTokenizer 的方法与 StreamTokenizer 的方法之间的分析与对比
 
 1. `StreamTokenizer` 相较于 `StringTokenizer` 使用的内存较少，当 Java 标程 MLE 时可以尝试使用 `StreamTokenizer`，但是 `StreamTokenizer` 会丢失精度，读入部分数据时会出现问题；
     - `StreamTokenizer` 源码存在 `Type`，该 `Type` 根据你输入内容来决定类型，倘若你输入类似于 `123oi` 以 **数字开头** 的字符串，他会强制认为你的类型是 `double` 类型，因此在读入中以 `double` 类型去读 `String` 类型便会抛出异常；
@@ -94,6 +96,75 @@ public class Main {
 
 综上所述，在大部分情况下，`StringTokenizer` 的使用处境要优越于 `StreamTokenizer`，在极端 MLE 的情况下可以尝试 `StreamTokenizer`，同时 `int` 范围以上的数据 `StreamTokenizer` 处理是无能为力的。
 
+### 二分四模板
+
+在 Java 中，自带的二分搜索函数不适合算法竞赛，因此在这里提供四个常使用的整数二分模板函数。
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
+
+public class 二分四模板 {
+    static int getL(int a[], int n, int x) {
+        int l = 0, r = n - 1;
+        while (l < r) {
+            int mid = l + r >> 1;
+            if (x <= a[mid]) {
+                r = mid;
+            } else {
+                l = mid + 1;
+            }
+        }
+        if (a[l] != x) return -1;
+        return l;
+    }
+    static int getR(int a[], int n, int x) {
+        int l = 0, r = n - 1;
+        while (l < r) {
+            int mid = l + r + 1 >> 1;
+            if (x < a[mid]) {
+                r = mid - 1;
+            } else {
+                l = mid;
+            }
+        }
+        if (a[l] != x) return -1;
+        return l;
+    }
+    static int lower_bound(int a[], int n, int x) {
+        int l = 0, r = n - 1;
+        if (x > a[n - 1]) return n;
+        while (l < r) {
+            int mid = l + r >> 1;
+            if (x <= a[mid]) {
+                r = mid;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return l;
+    }
+    static int upper_bound(int a[], int n, int x) {
+        int l = 0, r = n - 1;
+        if (x >= a[n - 1]) return n;
+        while (l < r) {
+            int mid = l + r >> 1;
+            if (x < a[mid]) {
+                r = mid;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return l;
+    }
+}
+```
+1. `getL()` 是有序序列中 $=x$ 的最左边的数的位置，若 $x$ 不存在则输出-1。
+2. `getR()`是有序序列中 $=x$ 的最右边的数的位置，若 $x$ 不存在则输出-1。
+3. `lower_bound()` 是有序序列中 $\ge x$ 的第一个数的位置，如果 $x>$ 序列最后一个数，则返回 $n$。
+4. `upper_bound()` 是有序序列中 $>x$ 的第一个数的位置，如果 $x\ge$ 序列最后一个数，则返回 $n$。
 
 ## BigInteger 与数论
 
@@ -1521,6 +1592,7 @@ public class Main {
     }
 }
 ```
+
 ## 参考资料
 
 [^ref1]: [Input & Output - USACO Guide](https://usaco.guide/general/input-output?lang=java#method-3---io-template)
