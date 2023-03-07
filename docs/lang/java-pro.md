@@ -107,8 +107,8 @@ import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 public class 二分四模板 {
-    static int getL(int a[], int n, int x) {
-        int l = 0, r = n - 1;
+    
+    static int getL(int a[], int l, int r, int x) {
         while (l < r) {
             int mid = l + r >> 1;
             if (x <= a[mid]) {
@@ -120,8 +120,8 @@ public class 二分四模板 {
         if (a[l] != x) return -1;
         return l;
     }
-    static int getR(int a[], int n, int x) {
-        int l = 0, r = n - 1;
+
+    static int getR(int a[], int l, int r, int x) {
         while (l < r) {
             int mid = l + r + 1 >> 1;
             if (x < a[mid]) {
@@ -133,9 +133,9 @@ public class 二分四模板 {
         if (a[l] != x) return -1;
         return l;
     }
-    static int lower_bound(int a[], int n, int x) {
-        int l = 0, r = n - 1;
-        if (x > a[n - 1]) return n;
+
+    static int lower_bound(int a[], int l, int r, int x) {
+        if (x > a[r]) return r + 1;
         while (l < r) {
             int mid = l + r >> 1;
             if (x <= a[mid]) {
@@ -146,9 +146,9 @@ public class 二分四模板 {
         }
         return l;
     }
-    static int upper_bound(int a[], int n, int x) {
-        int l = 0, r = n - 1;
-        if (x >= a[n - 1]) return n;
+
+    static int upper_bound(int a[], int l, int r, int x) {
+        if (x >= a[r]) return r + 1;
         while (l < r) {
             int mid = l + r >> 1;
             if (x < a[mid]) {
