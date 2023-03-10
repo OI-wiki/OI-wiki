@@ -8,7 +8,7 @@ author: ouuan, NachtgeistW
 
 网址：[Index Page - Polygon](https://polygon.codeforces.com)
 
-Polygon 是一个支持多人协作的出题平台，功能非常完善。官网描述为“Polygon 的使命是为创建编程竞赛题目提供平台。”
+Polygon 是一个支持多人协作的出题平台，功能非常完善。官网描述为「Polygon 的使命是为创建编程竞赛题目提供平台。」
 
 在 Codeforces (CF) 出题必须使用 Polygon。在其它地方出题，尤其是多人合作出题时，使用 Polygon 也是不错的选择。
 
