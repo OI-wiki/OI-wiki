@@ -725,9 +725,10 @@ pair<Node*, Node*> split(Node* cur, int sz) {
     cur->upd_siz();
     return {temp.first, cur};
   } else {
-    auto temp = split(cur->ch[1],
-                      sz - siz(cur->ch[0]) -
-                          1);  // 这里的转换在有旋 treap 的 「根据排名查询值有讲」
+    auto temp =
+        split(cur->ch[1],
+              sz - siz(cur->ch[0]) -
+                  1);  // 这里的转换在有旋 treap 的 「根据排名查询值有讲」
     cur->ch[1] = temp.first;
     cur->upd_siz();
     return {cur, temp.second};
