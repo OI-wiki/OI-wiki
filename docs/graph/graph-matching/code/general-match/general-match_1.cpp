@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
- 
+
 // graph
 template <typename T>
 class graph {
-  public:
+ public:
   struct edge {
     int from;
     int to;
@@ -23,7 +23,7 @@ class graph {
 // undirectedgraph
 template <typename T>
 class undirectedgraph : public graph<T> {
-  public:
+ public:
   using graph<T>::edges;
   using graph<T>::g;
   using graph<T>::n;
@@ -43,12 +43,13 @@ class undirectedgraph : public graph<T> {
 // blossom / find_max_unweighted_matching
 template <typename T>
 vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
-  std::mt19937 rng(114514); // 这里随机种子是无关紧要的
-  // 也可以用 chrono::steady_clock::now().time_since_epoch().count() 获取当前时间
+  std::mt19937 rng(114514);  // 这里随机种子是无关紧要的
+  // 也可以用 chrono::steady_clock::now().time_since_epoch().count()
+  // 获取当前时间
   vector<int> match(g.n, -1);   // 匹配
-  vector<int> aux(g.n, -1);   // 时间戳记
-  vector<int> label(g.n);     // "o" or "i"
-  vector<int> orig(g.n);    // 花根
+  vector<int> aux(g.n, -1);     // 时间戳记
+  vector<int> label(g.n);       // "o" or "i"
+  vector<int> orig(g.n);        // 花根
   vector<int> parent(g.n, -1);  // 父节点
   queue<int> q;
   int aux_time = -1;
@@ -110,10 +111,10 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
         auto &e = g.edges[id];
         int u = e.from ^ e.to ^ v;
         if (label[u] == -1) {  // 找到未拜访点
-          label[u] = 1;    // 标记 "i"
+          label[u] = 1;        // 标记 "i"
           parent[u] = v;
           if (match[u] == -1) {  // 找到未匹配点
-            augment(u);      // 寻找增广路径
+            augment(u);          // 寻找增广路径
             return true;
           }
           // 找到已匹配点 将与她匹配的点丢入queue 延伸交错树
@@ -176,14 +177,15 @@ int main() {
   while (m--) {
     int u, v;
     cin >> u >> v;
-    g.add(u - 1, v - 1); // 0-based
+    g.add(u - 1, v - 1);  // 0-based
   }
 
   auto match = find_max_unweighted_matching(g);
 
-  cout << count_if(match.begin(), match.end(), [] (int x) {return x != -1;}) / 2 << endl;
-  for (int i = 0; i < n; i++)
-    cout << match[i] + 1 << " \n"[i == n - 1];
+  cout << count_if(match.begin(), match.end(), [](int x) { return x != -1; }) /
+              2
+       << endl;
+  for (int i = 0; i < n; i++) cout << match[i] + 1 << " \n"[i == n - 1];
 
   return 0;
 }
