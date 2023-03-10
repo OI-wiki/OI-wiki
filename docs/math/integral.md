@@ -164,4 +164,4 @@ $$
 
 ## 参考资料
 
-<http://pisces.ck.tp.edu.tw/~peng/index.php?action=showfile&file=f6cdf7ef750d7dc79c7d599b942acbaaee86a2e3e>
+<https://files.cnblogs.com/files/pks-t/AdaptiveQuadProof.pdf)>：该文章的误差分析部分对上文代码中的常数 `15` 有更多讨论。
