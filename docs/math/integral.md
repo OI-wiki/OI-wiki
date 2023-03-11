@@ -164,4 +164,4 @@ $$
 
 ## 参考资料
 
-<https://files.cnblogs.com/files/pks-t/AdaptiveQuadProof.pdf)>：该文章的误差分析部分对上文代码中的常数 `15` 有更多讨论。
+<https://files.cnblogs.com/files/pks-t/AdaptiveQuadProof.pdf>：该文章的误差分析部分对上文代码中的常数 `15` 有更多讨论。
