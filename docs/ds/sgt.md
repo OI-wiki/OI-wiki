@@ -84,7 +84,7 @@ void Rbu(int& k) {
 ```cpp
 void Ins(int& k, int p) {
   // 在以 k 为根的子树内添加权值为 p 节点
-  if (!k) {
+  if (!k || cnt == 0) {
     k = ++cnt;
     if (!rt) rt = 1;
     w[k] = p;
