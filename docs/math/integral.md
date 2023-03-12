@@ -164,4 +164,4 @@ $$
 
 ## 参考资料
 
-<https://files.cnblogs.com/files/pks-t/AdaptiveQuadProof.pdf>：该文章的误差分析部分对上文代码中的常数 `15` 有更多讨论。
+<https://doi.org/10.1145/321526.321537>：该文章讨论了自适应 Simpson 法的改进方案，其中详细论述了上文代码中的常数 `15` 的由来与优势。
