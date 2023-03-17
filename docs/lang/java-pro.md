@@ -361,7 +361,7 @@ public class Main {
 | `modPow(BigInteger b, BigInteger p)` |          返回 this `^` b `mod` p           |
 |      `modInverse(BigInteger p)`      |          返回 a `mod` p 的乘法逆元          |
 
-使用案例如下：
+使用案例如下：[^ref2]
 
 ```java
 import java.io.PrintWriter;
@@ -389,7 +389,7 @@ public class Main {
         out.println(String.format("a nextPrime is %s", a.nextProbablePrime().toString()));  // a nextPrime is 1200324143214321442199 
     }
 
-    static void modPow() {  // 快速幂，比正常版本要快，内部有数学优化 
+    static void modPow() {  // 大数快速幂，比正常版本要快，内部采用了蒙哥马利模乘优化
         a = new BigInteger("2");
         b = new BigInteger("10");
         p = new BigInteger("1000");
@@ -1524,3 +1524,5 @@ public class Main {
 ## 参考资料
 
 [^ref1]: [Input & Output - USACO Guide](https://usaco.guide/general/input-output?lang=java#method-3---io-template)
+
+[^ref2]: [Java BigInteger中的oddModPow - 博客园](https://www.cnblogs.com/youchandaisuki/p/15076382.html)
