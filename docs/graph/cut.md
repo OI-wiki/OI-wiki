@@ -22,13 +22,13 @@ author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005, 0xis-
 
 ![](./images/cut2.svg)
 
-这些信息被我们保存在一个叫做 `num` 的数组中。
+这些信息被我们保存在一个叫做 `dfn` 的数组中。
 
 还需要另外一个数组 `low`，用它来存储不经过其父亲能到达的最小的时间戳。
 
 例如 `low[2]` 的话是 1，`low[5]` 和 `low[6]` 是 3。
 
-然后我们开始 DFS，我们判断某个点是否是割点的根据是：对于某个顶点 $u$，如果存在至少一个顶点 $v$（$u$ 的儿子），使得 $low_v \geq num_u$，即不能回到祖先，那么 $u$ 点为割点。
+然后我们开始 DFS，我们判断某个点是否是割点的根据是：对于某个顶点 $u$，如果存在至少一个顶点 $v$（$u$ 的儿子），使得 $low_v \geq dfn_u$，即不能回到祖先，那么 $u$ 点为割点。
 
 此根据惟独不适用于搜索的起始点，其需要特殊考虑：若该点不是割点，则其他路径亦能到达全部结点，因此从起始点只「向下搜了一次」，即在搜索树内仅有一个子结点。如果在搜索树内有两个及以上的儿子，那么他一定是割点了（设想上图从 2 开始搜索，搜索树内应有两个子结点：3 或 4 及 5 或 6）。如果只有一个儿子，那么把它删掉，不会有任何的影响。比如下面这个图，此处形成了一个环。
 
@@ -41,7 +41,7 @@ author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005, 0xis-
 ```cpp
 如果 v 是 u 的儿子 low[u] = min(low[u], low[v]);
 否则
-low[u] = min(low[u], num[v]);
+low[u] = min(low[u], dfn[v]);
 ```
 
 ### 例题
@@ -67,9 +67,9 @@ low[u] = min(low[u], num[v]);
 
 ### 过程
 
-和割点差不多，只要改一处：$low_v>num_u$ 就可以了，而且不需要考虑根节点的问题。
+和割点差不多，只要改一处：$low_v>dfn_u$ 就可以了，而且不需要考虑根节点的问题。
 
-割边是和是不是根节点没关系的，原来我们求割点的时候是指点 $v$ 是不可能不经过父节点 $u$ 为回到祖先节点（包括父节点），所以顶点 $u$ 是割点。如果 $low_v=num_u$ 表示还可以回到父节点，如果顶点 $v$ 不能回到祖先也没有另外一条回到父亲的路，那么 $u-v$ 这条边就是割边。
+割边是和是不是根节点没关系的，原来我们求割点的时候是指点 $v$ 是不可能不经过父节点 $u$ 为回到祖先节点（包括父节点），所以顶点 $u$ 是割点。如果 $low_v=dfn_u$ 表示还可以回到父节点，如果顶点 $v$ 不能回到祖先也没有另外一条回到父亲的路，那么 $u-v$ 这条边就是割边。
 
 ### 实现
 
@@ -78,7 +78,7 @@ low[u] = min(low[u], num[v]);
 === "C++"
 
     ```cpp
-    int low[MAXN], num[MAXN], dfs_clock;
+    int low[MAXN], dfn[MAXN], dfs_clock;
     bool isbridge[MAXN];
     vector<int> G[MAXN];
     int cnt_bridge;
@@ -86,18 +86,18 @@ low[u] = min(low[u], num[v]);
 
     void tarjan(int u, int fa) {
       father[u] = fa;
-      low[u] = num[u] = ++dfs_clock;
+      low[u] = dfn[u] = ++dfs_clock;
       for (int i = 0; i < G[u].size(); i++) {
         int v = G[u][i];
-        if (!num[v]) {
+        if (!dfn[v]) {
           tarjan(v, u);
           low[u] = min(low[u], low[v]);
-          if (low[v] > num[u]) {
+          if (low[v] > dfn[u]) {
             isbridge[v] = true;
             ++cnt_bridge;
           }
-        } else if (num[v] < num[u] && v != fa) {
-          low[u] = min(low[u], num[v]);
+        } else if (dfn[v] < dfn[u] && v != fa) {
+          low[u] = min(low[u], dfn[v]);
         }
       }
     }
@@ -106,7 +106,7 @@ low[u] = min(low[u], num[v]);
 === "Python"
 
     ```python
-    low = [] * MAXN; num = [] * MAXN; dfs_clock = 0
+    low = [] * MAXN; dfn = [] * MAXN; dfs_clock = 0
     isbridge = [False] * MAXN
     G = [[0 for i in range(MAXN)] for j in range(MAXN)]
     cnt_bridge = 0
@@ -114,18 +114,18 @@ low[u] = min(low[u], num[v]);
 
     def tarjan(u, fa):
         father[u] = fa
-        low[u] = num[u] = dfs_clock
+        low[u] = dfn[u] = dfs_clock
         dfs_clock = dfs_clock + 1
         for i in range(0, len(G[u])):
             v = G[u][i]
-            if num[v] == False:
+            if dfn[v] == False:
                 tarjan(v, u)
                 low[u] = min(low[u], low[v])
-                if low[v] > num[u]:
+                if low[v] > dfn[u]:
                     isbridge[v] = True
                     cnt_bridge = cnt_bridge + 1
-            elif num[v] < num[u] and v != fa:
-                low[u] = min(low[u], num[v])
+            elif dfn[v] < dfn[u] and v != fa:
+                low[u] = min(low[u], dfn[v])
     ```
 
 ## 练习
