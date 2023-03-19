@@ -1,37 +1,5 @@
 author: hsfzLZH1, sshwy, StudyingFather, Marcythm
 
-## 积性函数
-
-在数论题目中，常常需要根据一些 **积性函数** 的性质，求出一些式子的值。
-
-**积性函数**：对于所有互质的 $a$ 和 $b$，总有 $f(ab)=f(a)f(b)$，则称 $f(x)$ 为积性函数。
-
-常见的积性函数有：
-
-$d(x)=\sum_{i \mid n} 1$
-
-$\sigma(x)=\sum_{i \mid n} i$
-
-$\varphi(x)=\sum_{i=1}^x 1[\gcd(x,i)=1]$
-
-设 $x = \prod \limits_{i=1} ^ {k} p_i ^ {\alpha_i}$，$p_i$ 为质数，
-
-$\mu(x)=\begin{cases}1&\ x=1 \\(-1)^k& \ \forall \alpha_i =  1 \\0 &\ \max\{\alpha_i\}>1\end{cases}$
-
-积性函数有如下性质：
-
-若 $f(x)$，$g(x)$ 为积性函数，则
-
-$h(x)=f(x^p)$
-
-$h(x)=f^p(x)$
-
-$h(x)=f(x)g(x)$
-
-$h(x)=\sum_{d \mid x} f(d)g(\frac x d)$
-
-中的 $h(x)$ 也为积性函数。
-
 在莫比乌斯反演的题目中，往往要求出一些数论函数的前缀和，利用 **杜教筛** 可以快速求出这些前缀和。
 
 ## 杜教筛
