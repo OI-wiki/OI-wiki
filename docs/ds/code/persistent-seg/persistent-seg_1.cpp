@@ -1,83 +1,129 @@
-#include <algorithm>
-#include <cstdio>
-const int N = 1e5, M = 2e5;  // 数据范围
+#include <bits/stdc++.h>
+using namespace std;
 
-struct node {
-  int val, rank, lchild, rchild;
-} tree[4 * N + M * 19];  // 每次操作增加节点数最多为 log2(4 * N) = 19
+struct SegmentTree {
+  int lc, rc, val, rnk;
+};
 
-int init[N + 1], root[M + 1], tot;
+const int MAXN = 100000 + 5;
+const int MAXM = 200000 + 5;
 
-int build(int l, int r) {  // 建树
-  int now = ++tot;
+SegmentTree
+    t[MAXN * 2 +
+      MAXM * 40];  //每次操作1会修改两次，一次修改父节点，一次修改父节点的秩
+int rt[MAXM];
+int n, m, tot;
+
+int build(int l, int r) {
+  int p = ++tot;
   if (l == r) {
-    tree[now].val = init[l];
-    tree[now].rank = 1;
-    return now;
+    t[p].val = l;
+    t[p].rnk = 1;
+    return p;
   }
-  int mid = l + r >> 1;
-  tree[now].lchild = build(l, mid);
-  tree[now].rchild = build(mid + 1, r);
-  return now;
+  int mid = (l + r) / 2;
+  t[p].lc = build(l, mid);
+  t[p].rc = build(mid + 1, r);
+  return p;
 }
 
-int update(int x, int l, int r, int target,
-           int newroot) {  // 合并操作-更新父亲节点信息
-  int now = ++tot;
-  tree[now] = tree[x];
+int getRnk(int p, int l, int r, int pos) {  //查询秩
   if (l == r) {
-    tree[now].val = newroot;
-    tree[newroot].rank = std::max(tree[newroot].rank, tree[now].rank + 1);
-    return now;
+    return t[p].rnk;
   }
-  int mid = l + r >> 1;
-  if (target <= mid)
-    tree[now].lchild = update(tree[x].lchild, l, mid, target, newroot);
-  else
-    tree[now].rchild = update(tree[x].rchild, mid + 1, r, target, newroot);
-  return now;
+  int mid = (l + r) / 2;
+  if (pos <= mid) {
+    return getRnk(t[p].lc, l, mid, pos);
+  } else {
+    return getRnk(t[p].rc, mid + 1, r, pos);
+  }
 }
 
-int query(int x, int l, int r, int target) {  // 查询父亲节点
-  if (l == r) return tree[x].val;
-  int mid = l + r >> 1;
-  if (target <= mid)
-    return query(tree[x].lchild, l, mid, target);
-  else
-    return query(tree[x].rchild, mid + 1, r, target);
+int modifyRnk(int now, int l, int r, int pos, int val) {  //修改秩（高度）
+  int p = ++tot;
+  t[p] = t[now];
+  if (l == r) {
+    t[p].rnk = max(t[p].rnk, val);
+    return p;
+  }
+  int mid = (l + r) / 2;
+  if (pos <= mid) {
+    t[p].lc = modifyRnk(t[now].lc, l, mid, pos, val);
+  } else {
+    t[p].rc = modifyRnk(t[now].rc, mid + 1, r, pos, val);
+  }
+  return p;
 }
 
-int getroot(int x, int l, int r, int target) {  // 查询根节点
-  int ans = query(x, l, r, target);
-  if (ans == target)
-    return ans;
-  else
-    return getroot(x, l, r, ans);
+int query(int p, int l, int r, int pos) {  //查询父节点（序列中的值）
+  if (l == r) {
+    return t[p].val;
+  }
+  int mid = (l + r) / 2;
+  if (pos <= mid) {
+    return query(t[p].lc, l, mid, pos);
+  } else {
+    return query(t[p].rc, mid + 1, r, pos);
+  }
+}
+
+int findRoot(int p, int pos) {  //查询根节点
+  int f = query(p, 1, n, pos);
+  if (pos == f) {
+    return pos;
+  }
+  return findRoot(p, f);
+}
+
+int modify(int now, int l, int r, int pos, int fa) {  //修改父节点（合并）
+  int p = ++tot;
+  t[p] = t[now];
+  if (l == r) {
+    t[p].val = fa;
+    return p;
+  }
+  int mid = (l + r) / 2;
+  if (pos <= mid) {
+    t[p].lc = modify(t[now].lc, l, mid, pos, fa);
+  } else {
+    t[p].rc = modify(t[now].rc, mid + 1, r, pos, fa);
+  }
+  return p;
 }
 
 int main() {
-  int n, m;
   scanf("%d%d", &n, &m);
-  for (int i = 1; i <= n; i++) init[i] = i;
-  root[0] = build(1, n);
-  int op, a, b, k;
+  rt[0] = build(1, n);
   for (int i = 1; i <= m; i++) {
+    int op, a, b;
+
     scanf("%d", &op);
     if (op == 1) {
       scanf("%d%d", &a, &b);
-      int root_a = getroot(root[i - 1], 1, n, a);
-      int root_b = getroot(root[i - 1], 1, n, b);
-      if (tree[root_a].rank < tree[root_b].rank)  // 按秩合并
-        root[i] = update(root[i - 1], 1, n, root_a, root_b);
-      else
-        root[i] = update(root[i - 1], 1, n, root_b, root_a);
+      int fa = findRoot(rt[i - 1], a), fb = findRoot(rt[i - 1], b);
+      if (fa != fb) {
+        if (getRnk(rt[i - 1], 1, n, fa) >
+            getRnk(rt[i - 1], 1, n, fb)) {  //按秩合并
+          swap(fa, fb);
+        }
+        int tmp = modify(rt[i - 1], 1, n, fa, fb);
+        rt[i] = modifyRnk(tmp, 1, n, fb, getRnk(rt[i - 1], 1, n, fa) + 1);
+      } else {
+        rt[i] = rt[i - 1];
+      }
     } else if (op == 2) {
-      scanf("%d", &k);
-      root[i] = root[k];
+      scanf("%d", &a);
+      rt[i] = rt[a];
     } else {
       scanf("%d%d", &a, &b);
-      root[i] = root[i - 1];
-      printf("%d\n", getroot(root[i], 1, n, a) == getroot(root[i], 1, n, b));
+      rt[i] = rt[i - 1];
+      if (findRoot(rt[i], a) == findRoot(rt[i], b)) {
+        printf("1\n");
+      } else {
+        printf("0\n");
+      }
     }
   }
+
+  return 0;
 }

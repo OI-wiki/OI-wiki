@@ -58,7 +58,7 @@ $\cos \theta=\cfrac{\boldsymbol a\cdot\boldsymbol b}{|\boldsymbol a||\boldsymbol
 
 二阶与三阶行列式，可以作为行列式的较为简单的情形特殊定义。在微积分的最后一个部分场论部分，格林公式用到了二阶行列式，高斯公式用到了点乘，斯托克斯公式用到了三阶行列式。
 
-二阶行列式可以视为四元函数，定义为：
+二阶行列式可以视为四元函数，其定义为：
 
 $$
 \left |\begin{array}{ccc}
@@ -67,7 +67,7 @@ c & d \\
 \end{array}\right |=ad-bc
 $$
 
-三阶行列式可以视为九元函数，的定义为：
+三阶行列式可以视为九元函数，其定义为：
 
 $$
 \left |\begin{array}{ccc}
