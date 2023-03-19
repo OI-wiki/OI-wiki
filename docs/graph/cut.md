@@ -78,7 +78,7 @@ low[u] = min(low[u], num[v]);
 === "C++"
 
     ```cpp
-    int low[MAXN], dfn[MAXN], dfs_clock;
+    int low[MAXN], num[MAXN], dfs_clock;
     bool isbridge[MAXN];
     vector<int> G[MAXN];
     int cnt_bridge;
@@ -86,18 +86,18 @@ low[u] = min(low[u], num[v]);
 
     void tarjan(int u, int fa) {
       father[u] = fa;
-      low[u] = dfn[u] = ++dfs_clock;
+      low[u] = num[u] = ++dfs_clock;
       for (int i = 0; i < G[u].size(); i++) {
         int v = G[u][i];
-        if (!dfn[v]) {
+        if (!num[v]) {
           tarjan(v, u);
           low[u] = min(low[u], low[v]);
-          if (low[v] > dfn[u]) {
+          if (low[v] > num[u]) {
             isbridge[v] = true;
             ++cnt_bridge;
           }
-        } else if (dfn[v] < dfn[u] && v != fa) {
-          low[u] = min(low[u], dfn[v]);
+        } else if (num[v] < num[u] && v != fa) {
+          low[u] = min(low[u], num[v]);
         }
       }
     }
@@ -106,7 +106,7 @@ low[u] = min(low[u], num[v]);
 === "Python"
 
     ```python
-    low = [] * MAXN; dfn = [] * MAXN; dfs_clock = 0
+    low = [] * MAXN; num = [] * MAXN; dfs_clock = 0
     isbridge = [False] * MAXN
     G = [[0 for i in range(MAXN)] for j in range(MAXN)]
     cnt_bridge = 0
@@ -114,18 +114,18 @@ low[u] = min(low[u], num[v]);
 
     def tarjan(u, fa):
         father[u] = fa
-        low[u] = dfn[u] = dfs_clock
+        low[u] = num[u] = dfs_clock
         dfs_clock = dfs_clock + 1
         for i in range(0, len(G[u])):
             v = G[u][i]
-            if dfn[v] == False:
+            if num[v] == False:
                 tarjan(v, u)
                 low[u] = min(low[u], low[v])
-                if low[v] > dfn[u]:
+                if low[v] > num[u]:
                     isbridge[v] = True
                     cnt_bridge = cnt_bridge + 1
-            elif dfn[v] < dfn[u] and v != fa:
-                low[u] = min(low[u], dfn[v])
+            elif num[v] < num[u] and v != fa:
+                low[u] = min(low[u], num[v])
     ```
 
 ## 练习
