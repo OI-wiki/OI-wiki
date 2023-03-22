@@ -81,7 +81,7 @@ sudo make install
 deepin-terminal -x "/bin/sh" %c
 ```
 
-点击“应用”按钮即可。[^3]
+点击「应用」按钮即可。[^3]
 
 ## 参考资料与注释
 

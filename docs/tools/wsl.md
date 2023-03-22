@@ -80,7 +80,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 3.  安装完成后，你可以在 "开始" 菜单或 Windows 终端的标签页中找到你安装的发行版。
 
-4.  接下来，请转到下面“配置分发版”一节完成其他设置。
+4.  接下来，请转到下面「配置分发版」一节完成其他设置。
 
 ### 手动安装[^ref4]
 
@@ -89,7 +89,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 #### 启用适用于 Linux 的 Windows 子系统
 
-在安装适用于 WSL 的任何 Linux 分发版之前，必须在下述两种方法中选择一种，以确保启用“适用于 Linux 的 Windows 子系统”可选功能：
+在安装适用于 WSL 的任何 Linux 分发版之前，必须在下述两种方法中选择一种，以确保启用「适用于 Linux 的 Windows 子系统」可选功能：
 
 **使用命令行：**
 
@@ -107,9 +107,9 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 ![Windows 功能](./images/wsl-windows-features.png)
 
-1.  打开“控制面板”
+1.  打开「控制面板」
 
-2.  访问“程序和功能”子菜单“打开或关闭 Windows 功能”
+2.  访问「程序和功能」子菜单「打开或关闭 Windows 功能」
 
 3.  选择 "适用于 Linux 的 Windows 子系统" 与 "虚拟机平台"
 
@@ -140,7 +140,7 @@ wsl --set-default-version 2
 
 ![搜索页](./images/wsl-search-page.png)
 
-进入 Microsoft Store，搜索“Ubuntu”，然后选择“Ubuntu”，点击“安装”进行安装。也可打开 [Ubuntu 的商店页面](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6)。
+进入 Microsoft Store，搜索「Ubuntu」，然后选择「Ubuntu」，点击「安装」进行安装。也可打开 [Ubuntu 的商店页面](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6)。
 
 ???+ warning
     Microsoft Store 的 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。如果想获取稳定的 Ubuntu 长期支持版，可以在 Microsoft Store 安装 Ubuntu 的 LTS 版本。
@@ -151,7 +151,7 @@ wsl --set-default-version 2
 
 ### 运行 Ubuntu
 
-打开“开始”菜单找到 Ubuntu 并启动，或使用 `wsl` 命令从 Windows 命令行启动。
+打开「开始」菜单找到 Ubuntu 并启动，或使用 `wsl` 命令从 Windows 命令行启动。
 
 可以为 Ubuntu 创建应用程序磁贴或固定至任务栏，以在下次方便地打开。
 
@@ -415,7 +415,7 @@ Welcome!
 
 执行命令 `wsl -l -v` 可以看到 WSL 版本号是 1，需要执行升级，才能到 2。
 
-1.  启用“虚拟机平台”功能
+1.  启用「虚拟机平台」功能
 
     使用 PowerShell 以管理员身份运行：
 
