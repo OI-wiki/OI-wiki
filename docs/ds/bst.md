@@ -127,8 +127,12 @@ findmin 和 findmax 函数分别返回最小值和最大值所对应的结点编
           cnt[o]--;
           return;
         }
-        if (lc[o] && rc[o]) o = deletemin(rc[o]);
-        // 这里以找右子树的最小值为例
+        if (lc[o] && rc[o]) {
+          // 这里以找右子树的最小值为例
+          int pre = o;
+          o = deletemin(rc[o]);
+          lc[o] = lc[pre], rc[o] = rc[pre];
+        }
         else
           o = lc[o] + rc[o];
         return;
