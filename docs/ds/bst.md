@@ -132,8 +132,7 @@ findmin 和 findmax 函数分别返回最小值和最大值所对应的结点编
           int pre = o;
           o = deletemin(rc[o]);
           lc[o] = lc[pre], rc[o] = rc[pre];
-        }
-        else
+        } else
           o = lc[o] + rc[o];
         return;
       }
