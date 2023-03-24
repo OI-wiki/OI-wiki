@@ -31,7 +31,8 @@
 为证明这两个命题，我们先给出一个重要的定理并证明它，这个定理反应了希尔排序的最主要特征。
 
 <strong>定理 $1$：</strong>只要程序执行了一次 $\text{InsertionSort}(h)$，不管之后怎样调用 $\text{InsertionSort}$ 函数，$A$ 数组怎样变换，下列性质均会被一直保持：
-$$A[1],A[1+h],A[1+2h],\ldots\\
+
+$$$A[1],A[1+h],A[1+2h],\ldots\
 A[2],A[2+h],A[2+2h],\ldots\\
 \vdots\\
 A[h-1],A[h-1+h],A[h-1+2h],\ldots$$
@@ -92,9 +93,11 @@ $$A[i],A[i+k],A[i+2k],\ldots\\
 则第二个组就是引理 $1$ 中的 $X$ 数组，第一个组就是 $Y$ 数组，$l$ 就是第二个组从 $i+h$ 之后顶到末尾的长度，$n$ 是第二个组中前面那个 “$\ldots$” 的长度，$m$ 是第一个组去掉前 $l$ 个后剩下的个数。
 
 又因为有：
-$$
-A[i]\le A[i+h],A[i+k]\le A[i+h+k],\ldots
-$$
+$$$
+
+A\[i]\le A\[i+h],A\[i+k]\le A\[i+h+k],\ldots
+
+$$$
 
 所以由引理 $1$ 可得执行 $\text{InsertionSort}(k)$ 将两个组分别排序后，这个关系依然满足，即依然有 $A[i]\le A[i+h]\,(1\le i< \min(h,k))$。
 
@@ -150,28 +153,38 @@ $\Box$
 故以下假设 $j>h_{t+1}h_t$。
 
 对于任意的正整数 $k$ 满足 $1\le k\le j-h_{t+1}h_t$，注意到：
-$$
-h_{t+1}h_t-h_{t+1}-h_t<h_{t+1}h_t\le j-k\le j-1
+$$$
+
+h\_{t+1}h\_t-h\_{t+1}-h\_t\<h\_{t+1}h\_t\le j-k\le j-1
+
 $$
 
 又因为 $\gcd(h_{t+1},h_t)=1$，故由引理 $2$，得存在非负整数 $a,b$，使得：
 $$
-ah_{t+1}+bh_t=j-k
+
+ah\_{t+1}+bh\_t=j-k
+
 $$
 
 即得：
 $$
-k=j-ah_{t+1}-bh_t
+
+k=j-ah\_{t+1}-bh\_t
+
 $$
 
 由跳跃保序定理，得：
 $$
-A[j-bh_t]\le A[j-(b-1)h_t]\le \ldots\le A[j-h_t]\le A[j]
+
+A\[j-bh\_t]\le A\[j-(b-1)h\_t]\le \ldots\le A\[j-h\_t]\le A\[j]
+
 $$
 
 与
 $$
-A[j-bh_t-ah_{t+1}]\le A[j-bh_t-(a-1)h_{t+1}]\le \ldots\le A[j-bh_t-h_{t+1}]\le A[j-bh_t]
+
+A\[j-bh\_t-ah\_{t+1}]\le A\[j-bh\_t-(a-1)h\_{t+1}]\le \ldots\le A\[j-bh\_t-h\_{t+1}]\le A\[j-bh\_t]
+
 $$
 
 综合以上既有：$A[k]=A[j-ah_{t+1}-bh_t]\le A[j]$。
@@ -182,7 +195,9 @@ $$
 
 证明完对于每个 $j$ 的移动复杂度后，即可得到总的时间复杂度：
 $$
-\sum_{j=h_{t-1}+1}^n{O\left(\frac{h_{t+1}h_t}{h_{t-1}} \right)}=O\left(\frac{nh_{t+1}h_t}{h_{t-1}}\right)
+
+\sum\_{j=h\_{t-1}+1}^n{O\left(\frac{h\_{t+1}h\_t}{h\_{t-1}} \right)}=O\left(\frac{nh\_{t+1}h\_t}{h\_{t-1}}\right)
+
 $$
 
 得证。
@@ -200,8 +215,10 @@ $\Box$
 将 $H$ 写为序列的形式：
 
 $$
-H(h_1=1,h_2=3,h_3=7,\ldots,h_{\lfloor \log_2 n\rfloor}=2^{\lfloor \log_2 n\rfloor}-1)
-$$
+
+H(h\_1=1,h\_2=3,h\_3=7,\ldots,h\_{\lfloor \log\_2 n\rfloor}=2^{\lfloor \log\_2 n\rfloor}-1)
+
+$$$
 
 Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor-1}),\ldots,\text{InsertionSort}(h_2),$  
 $\text{InsertionSort}(h_1)$.
@@ -299,3 +316,4 @@ $\Box$
 ## 参考资料与注释
 
 [^ref1]: [希尔排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F)
+$$$
