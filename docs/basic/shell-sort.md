@@ -32,19 +32,14 @@
 
 <strong>定理 $1$：</strong>只要程序执行了一次 $\text{InsertionSort}(h)$，不管之后怎样调用 $\text{InsertionSort}$ 函数，$A$ 数组怎样变换，下列性质均会被一直保持：
 
-$$$A[1],A[1+h],A[1+2h],\ldots\
-A[2],A[2+h],A[2+2h],\ldots\\
-\vdots\\
-A[h-1],A[h-1+h],A[h-1+2h],\ldots$$
+$$$A[1],A[1+h],A[1+2h],\ldots\\\\A[2],A[2+h],A[2+2h],\ldots\\\\\vdots\\\\A[h-1],A[h-1+h],A[h-1+2h],\ldots$$
 
 <strong>证明：</strong>
 
 我们先证明一个引理：
 
 > <strong>引理 $1$：</strong>对于整数 $n,m$、正整数 $l$ 与两个数组 $X(x_1,x_2,\ldots,x_{n+l}),Y(y_1,y_2,\ldots,y_{m+l})$，满足如下要求：
-> $$
-> y_1\le x_{n+1},y_2\le x_{n+2},\ldots,y_l\le x_{n+l}
-> $$
+> $$y_1\le x_{n+1},y_2\le x_{n+2},\ldots,y_l\le x_{n+l}$$
 > 
 > 则我们将两个数组分别升序排序后，上述要求依然成立。
 >
@@ -57,9 +52,7 @@ A[h-1],A[h-1+h],A[h-1+2h],\ldots$$
 > 那么在可重集合 $\{x_{n+1},\ldots,x_{n+l} \} \subset X$ 中，大等于 $x'_{n+i}$ 的元素个数不超过 $l-i$ 个。
 > 
 > 进而小于 $x'_{n+i}$ 的元素个数至少有 $i$ 个，取出其中的 $i$ 个，设它们为 $x_{n+k_1},x_{n+k_2},\ldots,x_{n+k_i}$。于是有：
-> $$
-> y_{k_1}\le x_{n+k_1}\le x'_{n+i},y_{k_2}\le x_{n+k_2}\le x'_{n+i},\ldots,y_{k_i}\le x_{n+k_i}\le x'_{n+i}
-> $$
+> $$y_{k_1}\le x_{n+k_1}\le x'_{n+i},y_{k_2}\le x_{n+k_2}\le x'_{n+i},\ldots,y_{k_i}\le x_{n+k_i}\le x'_{n+i}$$
 > 
 > 所以 $x'_{n+i}$ 至少大等于 $Y$ 也即 $Y'$ 中的 $i$ 个元素，那么自然有 $y'_i\le x'_{n+i}\,(1\le i\le l)$。
 > 
@@ -71,33 +64,22 @@ A[h-1],A[h-1+h],A[h-1+2h],\ldots$$
 
 执行完 $\text{InsertionSort}(h)$ 后，如下组已经完成排序：
 
-$$A[1],A[1+h],A[1+2h],\ldots\\
-A[2],A[2+h],A[2+2h],\ldots\\
-\vdots\\
-A[h-1],A[h-1+h],A[h-1+2h],\ldots$$
+$$A[1],A[1+h],A[1+2h],\ldots\\\\A[2],A[2+h],A[2+2h],\ldots\\\\\vdots\\\\A[h-1],A[h-1+h],A[h-1+2h],\ldots$$
 
 而之后执行 $\text{InsertionSort}(k)$，则会将如下组排序：
 
-$$A[1],A[1+k],A[1+2k],\ldots\\
-A[2],A[2+k],A[2+2k],\ldots\\
-\vdots\\
-A[k-1],A[k-1+k],A[k-1+2k],\ldots$$
+$$A[1],A[1+k],A[1+2k],\ldots\\\\A[2],A[2+k],A[2+2k],\ldots\\\\\vdots\\\\A[k-1],A[k-1+k],A[k-1+2k],\ldots$$
 
 对于每个 $i\,(1\le i< \min(h,k))$，考虑如下两个组：
 
-$$A[i],A[i+k],A[i+2k],\ldots\\
-\ldots,A[i+h],A[i+h+k],A[i+h+2k],\ldots$$
+$$A[i],A[i+k],A[i+2k],\ldots\\\\\ldots,A[i+h],A[i+h+k],A[i+h+2k],\ldots$$
 
 第二个组前面也加上 “$\ldots$” 的原因是可能 $i+h\ge k$ 从而前面也有元素。
 
 则第二个组就是引理 $1$ 中的 $X$ 数组，第一个组就是 $Y$ 数组，$l$ 就是第二个组从 $i+h$ 之后顶到末尾的长度，$n$ 是第二个组中前面那个 “$\ldots$” 的长度，$m$ 是第一个组去掉前 $l$ 个后剩下的个数。
 
 又因为有：
-$$$
-
-A\[i]\le A\[i+h],A\[i+k]\le A\[i+h+k],\ldots
-
-$$$
+$$A\[i]\le A\[i+h],A\[i+k]\le A\[i+h+k],\ldots$$
 
 所以由引理 $1$ 可得执行 $\text{InsertionSort}(k)$ 将两个组分别排序后，这个关系依然满足，即依然有 $A[i]\le A[i+h]\,(1\le i< \min(h,k))$。
 
@@ -153,39 +135,19 @@ $\Box$
 故以下假设 $j>h_{t+1}h_t$。
 
 对于任意的正整数 $k$ 满足 $1\le k\le j-h_{t+1}h_t$，注意到：
-$$$
-
-h\_{t+1}h\_t-h\_{t+1}-h\_t\<h\_{t+1}h\_t\le j-k\le j-1
-
-$$
+$$h\_{t+1}h\_t-h\_{t+1}-h\_t\<h\_{t+1}h\_t\le j-k\le j-1$$
 
 又因为 $\gcd(h_{t+1},h_t)=1$，故由引理 $2$，得存在非负整数 $a,b$，使得：
-$$
-
-ah\_{t+1}+bh\_t=j-k
-
-$$
+$$ah\_{t+1}+bh\_t=j-k$$
 
 即得：
-$$
-
-k=j-ah\_{t+1}-bh\_t
-
-$$
+$$k=j-ah\_{t+1}-bh\_t$$
 
 由跳跃保序定理，得：
-$$
-
-A\[j-bh\_t]\le A\[j-(b-1)h\_t]\le \ldots\le A\[j-h\_t]\le A\[j]
-
-$$
+$$A\[j-bh\_t]\le A\[j-(b-1)h\_t]\le \ldots\le A\[j-h\_t]\le A\[j]$$
 
 与
-$$
-
-A\[j-bh\_t-ah\_{t+1}]\le A\[j-bh\_t-(a-1)h\_{t+1}]\le \ldots\le A\[j-bh\_t-h\_{t+1}]\le A\[j-bh\_t]
-
-$$
+$$A\[j-bh\_t-ah\_{t+1}]\le A\[j-bh\_t-(a-1)h\_{t+1}]\le \ldots\le A\[j-bh\_t-h\_{t+1}]\le A\[j-bh\_t]$$
 
 综合以上既有：$A[k]=A[j-ah_{t+1}-bh_t]\le A[j]$。
 
@@ -194,11 +156,7 @@ $$
 在 Shell-Sort 伪代码中 $i$ 指针每次减 $h_{t-1}$，减 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ 次，即可使得 $i\le j-h_{t+1}h_t$，进而有 $A[i]\le A[j]$，不满足 while 循环的条件退出。
 
 证明完对于每个 $j$ 的移动复杂度后，即可得到总的时间复杂度：
-$$
-
-\sum\_{j=h\_{t-1}+1}^n{O\left(\frac{h\_{t+1}h\_t}{h\_{t-1}} \right)}=O\left(\frac{nh\_{t+1}h\_t}{h\_{t-1}}\right)
-
-$$
+$$\sum\_{j=h\_{t-1}+1}^n{O\left(\frac{h\_{t+1}h\_t}{h\_{t-1}} \right)}=O\left(\frac{nh\_{t+1}h\_t}{h\_{t-1}}\right)$$
 
 得证。
 
@@ -214,14 +172,9 @@ $\Box$
 
 将 $H$ 写为序列的形式：
 
-$$
+$$H(h\_1=1,h\_2=3,h\_3=7,\ldots,h\_{\lfloor \log\_2 n\rfloor}=2^{\lfloor \log\_2 n\rfloor}-1)$$
 
-H(h\_1=1,h\_2=3,h\_3=7,\ldots,h\_{\lfloor \log\_2 n\rfloor}=2^{\lfloor \log\_2 n\rfloor}-1)
-
-$$$
-
-Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor-1}),\ldots,\text{InsertionSort}(h_2),$  
-$\text{InsertionSort}(h_1)$.
+Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor-1}),\ldots,\text{InsertionSort}(h_2),\text{InsertionSort}(h_1)$.
 
 分两部分去分析复杂度：
 
