@@ -32,15 +32,15 @@
 
 <strong>定理 $1$：</strong>只要程序执行了一次 $\text{InsertionSort}(h)$，不管之后怎样调用 $\text{InsertionSort}$ 函数，$A$ 数组怎样变换，下列性质均会被一直保持：
 
-$$ A[1],A[1+h],A[1+2h],\ldots\\\\ A[2],A[2+h],A[2+2h],\ldots\\\\ \vdots \\\\ A[h-1],A[h-1+h],A[h-1+2h],\ldots $$
+$A[1],A[1+h],A[1+2h],\ldots\\\\ A[2],A[2+h],A[2+2h],\ldots\\\\ \vdots \\\\ A[h-1],A[h-1+h],A[h-1+2h],\ldots$
 
 <strong>证明：</strong>
 
 我们先证明一个引理：
 
 > <strong>引理 $1$：</strong>对于整数 $n,m$、正整数 $l$ 与两个数组 $X(x_1,x_2,\ldots,x_{n+l}),Y(y_1,y_2,\ldots,y_{m+l})$，满足如下要求：
-> 
-> $$ y_1 \le x_{n+1},y_2 \le x_{n+2},\ldots,y_l \le x_{n+l} $$
+>
+> $y_1 \le x_{n+1},y_2 \le x_{n+2},\ldots,y_l \le x_{n+l}$
 >
 > 则我们将两个数组分别升序排序后，上述要求依然成立。
 >
@@ -64,15 +64,15 @@ $$ A[1],A[1+h],A[1+2h],\ldots\\\\ A[2],A[2+h],A[2+2h],\ldots\\\\ \vdots \\\\ A[h
 
 执行完 $\text{InsertionSort}(h)$ 后，如下组已经完成排序：
 
-$$ A[1],A[1+h],A[1+2h],\ldots \\\\ A[2],A[2+h],A[2+2h],\ldots \\\\ \vdots\\\\ A[h-1],A[h-1+h],A[h-1+2h],\ldots $$
+$A[1],A[1+h],A[1+2h],\ldots \\\\ A[2],A[2+h],A[2+2h],\ldots \\\\ \vdots\\\\ A[h-1],A[h-1+h],A[h-1+2h],\ldots$
 
 而之后执行 $\text{InsertionSort}(k)$，则会将如下组排序：
 
-$$ A[1],A[1+k],A[1+2k],\ldots \\\\ A[2],A[2+k],A[2+2k], \ldots \\\\ \vdots \\\\ A[k-1],A[k-1+k],A[k-1+2k],\ldots $$
+$A[1],A[1+k],A[1+2k],\ldots \\\\ A[2],A[2+k],A[2+2k], \ldots \\\\ \vdots \\\\ A[k-1],A[k-1+k],A[k-1+2k],\ldots$
 
 对于每个 $i\,(1\le i< \min(h,k))$，考虑如下两个组：
 
-$$A[i],A[i+k],A[i+2k],\ldots \\\\ \ldots,A[i+h],A[i+h+k],A[i+h+2k],\ldots $$
+$ A[i],A[i+k],A[i+2k],\ldots \\\\ \ldots,A[i+h],A[i+h+k],A[i+h+2k],\ldots  $
 
 第二个组前面也加上“$\ldots$”的原因是可能 $i+h\ge k$ 从而前面也有元素。
 
@@ -151,7 +151,7 @@ $\Box$
 
 证明完对于每个 $j$ 的移动复杂度后，即可得到总的时间复杂度：
 
-$$\sum\_{j=h\_{t-1}+1}^n{O\left(\frac{h\_{t+1}h\_t}{h\_{t-1}} \right)}=O\left(\frac{nh\_{t+1}h\_t}{h\_{t-1}}\right)$$
+$\sum\_{j=h\_{t-1}+1}^n{O\left(\frac{h\_{t+1}h\_t}{h\_{t-1}} \right)}=O\left(\frac{nh\_{t+1}h\_t}{h\_{t-1}}\right)$
 
 得证。
 
@@ -176,24 +176,24 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
 -   对于前面的若干个满足 $h_t\ge \sqrt{n}$ 的 $h_t$，显然有 $\text{InsertionSort}(h_t)$ 的时间复杂度为 $O\left(\dfrac{n^2}{h_t} \right)$。
 
     考虑对最接近 $\sqrt{n}$ 的项 $h_k$，有：
-    
-    $$O\left(\dfrac{n^2}{h_t} \right)=O(n^{3/2})$$
+
+    $O\left(\dfrac{n^2}{h_t} \right)=O(n^{3/2})$
 
     而对于 $i>k$ 的 $h_i$，因为有 $2h_i<h_{i+1}$，所以可得：
-    
-    $$O\left(\dfrac{n^2}{h_i} \right)=O(n^{3/2}/2^{i-k})\,(i>k)$$
+
+    $O\left(\dfrac{n^2}{h_i} \right)=O(n^{3/2}/2^{i-k})\,(i>k)$
 
     所以大等于 $\sqrt n$ 部分的总时间复杂度为：
-    
-    $$\sum_{i=k}^{\lfloor \log_2 n\rfloor}{O(n^{3/2}/2^{i-k})}=O(n^{3/2})$$
+
+    $\sum_{i=k}^{\lfloor \log_2 n\rfloor}{O(n^{3/2}/2^{i-k})}=O(n^{3/2})$
 
 -   对于后面剩下的满足 $h_t< \sqrt{n}$ 的项，前两项的复杂度还是 $O(n^{3/2})$，而对于后面的项 $h_{t}$，有定理 $2$ 可得时间复杂度为：
 
-    $$O\left(\frac{nh_{t+2}h_{t+1}}{h_t} \right)=O\left(\frac{nh_{t+2}\cdot h_{t+2}/2}{h_{t+2}/4} \right)=O(nh_{t+2})$$
+    $O\left(\frac{nh_{t+2}h_{t+1}}{h_t} \right)=O\left(\frac{nh_{t+2}\cdot h_{t+2}/2}{h_{t+2}/4} \right)=O(nh_{t+2})$
 
     再次利用 $2h_i<h_{i+1}$ 性质可得此部分总时间复杂度为（下式中 $k$ 沿用了上一种情况中的含义）：
-    
-    $$2O(n^{3/2})+\sum_{i=1}^{k-3}{O(nh_{i+1})}=O(n^{3/2})+\sum_{i=1}^{k-3}{O(nh_{k-1}/2^{k-i-3})}=O(n^{3/2})+O(nh_{k-1})=O(n^{3/2})$$
+
+    $2O(n^{3/2})+\sum_{i=1}^{k-3}{O(nh_{i+1})}=O(n^{3/2})+\sum_{i=1}^{k-3}{O(nh_{k-1}/2^{k-i-3})}=O(n^{3/2})+O(nh_{k-1})=O(n^{3/2})$
 
 综上可得总时间复杂度即为 $O(n^{3/2})$。
 
