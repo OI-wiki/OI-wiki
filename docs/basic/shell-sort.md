@@ -32,30 +32,28 @@
 
 <strong>定理 $1$：</strong>只要程序执行了一次 $\text{InsertionSort}(h)$，不管之后怎样调用 $\text{InsertionSort}$ 函数，$A$ 数组怎样变换，下列性质均会被一直保持：
 
-$$$A[1],A[1+h],A[1+2h],\ldots\\\\A[2],A[2+h],A[2+2h],\ldots\\\\\vdots\\\\A[h-1],A[h-1+h],A[h-1+2h],\ldots$$
+\$\$\$A\[1],A\[1+h],A\[1+2h],\ldots\\\A\[2],A\[2+h],A\[2+2h],\ldots\\\\\vdots\\\A\[h-1],A\[h-1+h],A\[h-1+2h],\ldots\$\$
 
 <strong>证明：</strong>
 
 我们先证明一个引理：
 
-> <strong>引理 $1$：</strong>对于整数 $n,m$、正整数 $l$ 与两个数组 $X(x_1,x_2,\ldots,x_{n+l}),Y(y_1,y_2,\ldots,y_{m+l})$，满足如下要求：
-> $$y_1\le x_{n+1},y_2\le x_{n+2},\ldots,y_l\le x_{n+l}$$
-> 
+> <strong>引理 $1$：</strong>对于整数 $n,m$、正整数 $l$ 与两个数组 $X(x_1,x_2,\ldots,x_{n+l}),Y(y_1,y_2,\ldots,y_{m+l})$，满足如下要求：$y_1\le x_{n+1},y_2\le x_{n+2},\ldots,y_l\le x_{n+l}$
+>
 > 则我们将两个数组分别升序排序后，上述要求依然成立。
 >
 > <strong>证明：</strong>
-> 
+>
 > 设数组 $X$ 排序完为数组 $X'(x'_1,\ldots,x'_{n+l})$，数组 $Y$ 排序完为数组 $Y'(y'_1,\ldots,y'_{m+l})$。
-> 
+>
 > 对于任何 $1\le i\le l$，$x'_{n+i}$ 小等于数组 $X'$ 中的 $l-i$ 个元素，也小等于数组 $X$ 中的 $l-i$ 个元素（这是因为 $X$ 与 $X'$ 的元素可重集合是相同的）。
-> 
+>
 > 那么在可重集合 $\{x_{n+1},\ldots,x_{n+l} \} \subset X$ 中，大等于 $x'_{n+i}$ 的元素个数不超过 $l-i$ 个。
-> 
-> 进而小于 $x'_{n+i}$ 的元素个数至少有 $i$ 个，取出其中的 $i$ 个，设它们为 $x_{n+k_1},x_{n+k_2},\ldots,x_{n+k_i}$。于是有：
-> $$y_{k_1}\le x_{n+k_1}\le x'_{n+i},y_{k_2}\le x_{n+k_2}\le x'_{n+i},\ldots,y_{k_i}\le x_{n+k_i}\le x'_{n+i}$$
-> 
+>
+> 进而小于 $x'_{n+i}$ 的元素个数至少有 $i$ 个，取出其中的 $i$ 个，设它们为 $x_{n+k_1},x_{n+k_2},\ldots,x_{n+k_i}$。于是有：$y_{k_1}\le x_{n+k_1}\le x'_{n+i},y_{k_2}\le x_{n+k_2}\le x'_{n+i},\ldots,y_{k_i}\le x_{n+k_i}\le x'_{n+i}$
+>
 > 所以 $x'_{n+i}$ 至少大等于 $Y$ 也即 $Y'$ 中的 $i$ 个元素，那么自然有 $y'_i\le x'_{n+i}\,(1\le i\le l)$。
-> 
+>
 > $\blacksquare$
 
 再回到原命题的证明：
@@ -64,22 +62,21 @@ $$$A[1],A[1+h],A[1+2h],\ldots\\\\A[2],A[2+h],A[2+2h],\ldots\\\\\vdots\\\\A[h-1],
 
 执行完 $\text{InsertionSort}(h)$ 后，如下组已经完成排序：
 
-$$A[1],A[1+h],A[1+2h],\ldots\\\\A[2],A[2+h],A[2+2h],\ldots\\\\\vdots\\\\A[h-1],A[h-1+h],A[h-1+2h],\ldots$$
+$A[1],A[1+h],A[1+2h],\ldots\\\\A[2],A[2+h],A[2+2h],\ldots\\\\\vdots\\\\A[h-1],A[h-1+h],A[h-1+2h],\ldots$
 
 而之后执行 $\text{InsertionSort}(k)$，则会将如下组排序：
 
-$$A[1],A[1+k],A[1+2k],\ldots\\\\A[2],A[2+k],A[2+2k],\ldots\\\\\vdots\\\\A[k-1],A[k-1+k],A[k-1+2k],\ldots$$
+$A[1],A[1+k],A[1+2k],\ldots\\\\A[2],A[2+k],A[2+2k],\ldots\\\\\vdots\\\\A[k-1],A[k-1+k],A[k-1+2k],\ldots$
 
 对于每个 $i\,(1\le i< \min(h,k))$，考虑如下两个组：
 
-$$A[i],A[i+k],A[i+2k],\ldots\\\\\ldots,A[i+h],A[i+h+k],A[i+h+2k],\ldots$$
+$A[i],A[i+k],A[i+2k],\ldots\\\\\ldots,A[i+h],A[i+h+k],A[i+h+2k],\ldots$
 
-第二个组前面也加上 “$\ldots$” 的原因是可能 $i+h\ge k$ 从而前面也有元素。
+第二个组前面也加上“$\ldots$”的原因是可能 $i+h\ge k$ 从而前面也有元素。
 
-则第二个组就是引理 $1$ 中的 $X$ 数组，第一个组就是 $Y$ 数组，$l$ 就是第二个组从 $i+h$ 之后顶到末尾的长度，$n$ 是第二个组中前面那个 “$\ldots$” 的长度，$m$ 是第一个组去掉前 $l$ 个后剩下的个数。
+则第二个组就是引理 $1$ 中的 $X$ 数组，第一个组就是 $Y$ 数组，$l$ 就是第二个组从 $i+h$ 之后顶到末尾的长度，$n$ 是第二个组中前面那个“$\ldots$”的长度，$m$ 是第一个组去掉前 $l$ 个后剩下的个数。
 
-又因为有：
-$$A\[i]\le A\[i+h],A\[i+k]\le A\[i+h+k],\ldots$$
+又因为有：$A\[i]\le A\[i+h],A\[i+k]\le A\[i+h+k],\ldots$
 
 所以由引理 $1$ 可得执行 $\text{InsertionSort}(k)$ 将两个组分别排序后，这个关系依然满足，即依然有 $A[i]\le A[i+h]\,(1\le i< \min(h,k))$。
 
@@ -93,33 +90,33 @@ $\Box$
 
 这个定理揭示了希尔排序在特定集合 $H$ 下可以优化复杂度的关键，因为在整个过程中，它可以一致保持前面的成果不被摧毁（即 $h-1$ 个子列分别有序），从而使后面的调用中，指针 $i$ 的移动次数大大减少。
 
-接下来我们单拎出来一个数论引理进行证明。这个定理在 OI 界因[小凯的疑惑](https://www.luogu.com.cn/problem/P3951)一题而大为出名。而在希尔排序复杂度的证明中，它也使得定理 $1$ 得到了很大的扩展。
+接下来我们单拎出来一个数论引理进行证明。这个定理在 OI 界因 [小凯的疑惑](https://www.luogu.com.cn/problem/P3951) 一题而大为出名。而在希尔排序复杂度的证明中，它也使得定理 $1$ 得到了很大的扩展。
 
 > <strong>引理 $2$：</strong>若 $a,b$ 均为正整数且互素，则不在集合 $\{ax+by\mid x,y\in \mathbb N \}$ 中的最大正整数为 $ab-a-b$。
 >
 > <strong>证明：</strong>
-> 
+>
 > 分两步证明：
-> - 先证明方程 $ax+by=ab-a-b$ 没有 $x,y$ 均为非负整数的解：
-> 
-> 	若无非负整数的限制，容易得到两组解 $(b-1,-1),(-1,a-1)$。
-> 
-> 	通过其通解形式 $x=x_0+tb,y=y_0-ta$，容易得到上面两组解是 “相邻” 的（因为 $b-1-b=-1$）。
-> 
-> 	当 $t$ 递增时，$x$ 递增，$y$ 递减，所以如果方程有非负整数解，必然会夹在这两组解中间，但这两组解 “相邻”，中间没有别的解。
-> 
-> 	故不可能有非负整数解。
-> - 再证明对任意整数 $c>ab-a-b$，方程 $ax+by=c$ 有非负整数解：
-> 
-> 	我们找一组解 $(x_0,y_0)$ 满足 $0\le x_0<b$（由通解的表达式，这可以做到）。
-> 
-> 	则有：
-> 	$$by_0=c-ax_0\ge c-a(b-1)>ab-a-b-ab+a=-b$$
-> 
-> 	所以 $b(y_0+1)>0$，又因为 $b>0$，所以 $y_0+1>0$，所以 $y_0\ge 0$。
-> 
-> 	所以 $(x_0,y_0)$ 为一组非负整数解。
-> 
+>
+> -   先证明方程 $ax+by=ab-a-b$ 没有 $x,y$ 均为非负整数的解：
+>
+>     若无非负整数的限制，容易得到两组解 $(b-1,-1),(-1,a-1)$。
+>
+>     通过其通解形式 $x=x_0+tb,y=y_0-ta$，容易得到上面两组解是“相邻”的（因为 $b-1-b=-1$）。
+>
+>     当 $t$ 递增时，$x$ 递增，$y$ 递减，所以如果方程有非负整数解，必然会夹在这两组解中间，但这两组解“相邻”，中间没有别的解。
+>
+>     故不可能有非负整数解。
+> -   再证明对任意整数 $c>ab-a-b$，方程 $ax+by=c$ 有非负整数解：
+>
+>     我们找一组解 $(x_0,y_0)$ 满足 $0\le x_0<b$（由通解的表达式，这可以做到）。
+>
+>     则有：$by_0=c-ax_0\ge c-a(b-1)>ab-a-b-ab+a=-b$
+>
+>     所以 $b(y_0+1)>0$，又因为 $b>0$，所以 $y_0+1>0$，所以 $y_0\ge 0$。
+>
+>     所以 $(x_0,y_0)$ 为一组非负整数解。
+>
 > 综上得证。
 >
 > $\blacksquare$
@@ -134,20 +131,15 @@ $\Box$
 
 故以下假设 $j>h_{t+1}h_t$。
 
-对于任意的正整数 $k$ 满足 $1\le k\le j-h_{t+1}h_t$，注意到：
-$$h\_{t+1}h\_t-h\_{t+1}-h\_t\<h\_{t+1}h\_t\le j-k\le j-1$$
+对于任意的正整数 $k$ 满足 $1\le k\le j-h_{t+1}h_t$，注意到：$h\_{t+1}h\_t-h\_{t+1}-h\_t\<h\_{t+1}h\_t\le j-k\le j-1$
 
-又因为 $\gcd(h_{t+1},h_t)=1$，故由引理 $2$，得存在非负整数 $a,b$，使得：
-$$ah\_{t+1}+bh\_t=j-k$$
+又因为 $\gcd(h_{t+1},h_t)=1$，故由引理 $2$，得存在非负整数 $a,b$，使得：$ah\_{t+1}+bh\_t=j-k$
 
-即得：
-$$k=j-ah\_{t+1}-bh\_t$$
+即得：$k=j-ah\_{t+1}-bh\_t$
 
-由跳跃保序定理，得：
-$$A\[j-bh\_t]\le A\[j-(b-1)h\_t]\le \ldots\le A\[j-h\_t]\le A\[j]$$
+由跳跃保序定理，得：$A\[j-bh\_t]\le A\[j-(b-1)h\_t]\le \ldots\le A\[j-h\_t]\le A\[j]$
 
-与
-$$A\[j-bh\_t-ah\_{t+1}]\le A\[j-bh\_t-(a-1)h\_{t+1}]\le \ldots\le A\[j-bh\_t-h\_{t+1}]\le A\[j-bh\_t]$$
+与 $A\[j-bh\_t-ah\_{t+1}]\le A\[j-bh\_t-(a-1)h\_{t+1}]\le \ldots\le A\[j-bh\_t-h\_{t+1}]\le A\[j-bh\_t]$
 
 综合以上既有：$A[k]=A[j-ah_{t+1}-bh_t]\le A[j]$。
 
@@ -155,14 +147,13 @@ $$A\[j-bh\_t-ah\_{t+1}]\le A\[j-bh\_t-(a-1)h\_{t+1}]\le \ldots\le A\[j-bh\_t-h\_
 
 在 Shell-Sort 伪代码中 $i$ 指针每次减 $h_{t-1}$，减 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ 次，即可使得 $i\le j-h_{t+1}h_t$，进而有 $A[i]\le A[j]$，不满足 while 循环的条件退出。
 
-证明完对于每个 $j$ 的移动复杂度后，即可得到总的时间复杂度：
-$$\sum\_{j=h\_{t-1}+1}^n{O\left(\frac{h\_{t+1}h\_t}{h\_{t-1}} \right)}=O\left(\frac{nh\_{t+1}h\_t}{h\_{t-1}}\right)$$
+证明完对于每个 $j$ 的移动复杂度后，即可得到总的时间复杂度：$\sum\_{j=h\_{t-1}+1}^n{O\left(\frac{h\_{t+1}h\_t}{h\_{t-1}} \right)}=O\left(\frac{nh\_{t+1}h\_t}{h\_{t-1}}\right)$
 
 得证。
 
 $\Box$
 
-认真观察定理 $2$ 的证明过程，可以发现：定理 $1$ 可以进行 “线性组合”，即 $A$ 以 $h$ 为间隔有序，以 $k$ 为间隔亦有序，则以 $h$ 和 $k$ 的非负系数线性组合仍是有序的。而这种 “线性性” 即是由引理 $2$ 保证的。
+认真观察定理 $2$ 的证明过程，可以发现：定理 $1$ 可以进行“线性组合”，即 $A$ 以 $h$ 为间隔有序，以 $k$ 为间隔亦有序，则以 $h$ 和 $k$ 的非负系数线性组合仍是有序的。而这种“线性性”即是由引理 $2$ 保证的。
 
 有了这两个定理，我们可以命题 $1$ 与 $2$。
 
@@ -172,28 +163,23 @@ $\Box$
 
 将 $H$ 写为序列的形式：
 
-$$H(h\_1=1,h\_2=3,h\_3=7,\ldots,h\_{\lfloor \log\_2 n\rfloor}=2^{\lfloor \log\_2 n\rfloor}-1)$$
+$H(h\_1=1,h\_2=3,h\_3=7,\ldots,h\_{\lfloor \log\_2 n\rfloor}=2^{\lfloor \log\_2 n\rfloor}-1)$
 
 Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor-1}),\ldots,\text{InsertionSort}(h_2),\text{InsertionSort}(h_1)$.
 
 分两部分去分析复杂度：
 
-- 对于前面的若干个满足 $h_t\ge \sqrt{n}$ 的 $h_t$，显然有 $\text{InsertionSort}(h_t)$ 的时间复杂度为 $O\left(\dfrac{n^2}{h_t} \right)$.
-  
-  考虑对最接近 $\sqrt{n}$ 的项 $h_k$，有：
-  $$O\left(\dfrac{n^2}{h_t} \right)=O(n^{3/2})$$
+-   对于前面的若干个满足 $h_t\ge \sqrt{n}$ 的 $h_t$，显然有 $\text{InsertionSort}(h_t)$ 的时间复杂度为 $O\left(\dfrac{n^2}{h_t} \right)$.
 
-  而对于 $i>k$ 的 $h_i$，因为有 $2h_i<h_{i+1}$，所以可得：
-  $$O\left(\dfrac{n^2}{h_i} \right)=O(n^{3/2}/2^{i-k})\,(i>k)$$
+    考虑对最接近 $\sqrt{n}$ 的项 $h_k$，有：$O\left(\dfrac{n^2}{h_t} \right)=O(n^{3/2})$
 
-  所以大等于 $\sqrt n$ 部分的总时间复杂度为：
-  $$\sum_{i=k}^{\lfloor \log_2 n\rfloor}{O(n^{3/2}/2^{i-k})}=O(n^{3/2})$$
+    而对于 $i>k$ 的 $h_i$，因为有 $2h_i<h_{i+1}$，所以可得：$O\left(\dfrac{n^2}{h_i} \right)=O(n^{3/2}/2^{i-k})\,(i>k)$
 
-- 对于后面剩下的满足 $h_t< \sqrt{n}$ 的项，前两项的复杂度还是 $O(n^{3/2})$，而对于后面的项 $h_{t}$，有定理 $2$ 可得时间复杂度为：
-  $$O\left(\frac{nh_{t+2}h_{t+1}}{h_t} \right)=O\left(\frac{nh_{t+2}\cdot h_{t+2}/2}{h_{t+2}/4} \right)=O(nh_{t+2})$$
+    所以大等于 $\sqrt n$ 部分的总时间复杂度为：$\sum_{i=k}^{\lfloor \log_2 n\rfloor}{O(n^{3/2}/2^{i-k})}=O(n^{3/2})$
 
-  再次利用 $2h_i<h_{i+1}$ 性质可得此部分总时间复杂度为（下式中 $k$ 沿用了上一种情况中的含义）：
-  $$2O(n^{3/2})+\sum_{i=1}^{k-3}{O(nh_{i+1})}=O(n^{3/2})+\sum_{i=1}^{k-3}{O(nh_{k-1}/2^{k-i-3})}=O(n^{3/2})+O(nh_{k-1})=O(n^{3/2})$$
+-   对于后面剩下的满足 $h_t< \sqrt{n}$ 的项，前两项的复杂度还是 $O(n^{3/2})$，而对于后面的项 $h_{t}$，有定理 $2$ 可得时间复杂度为：$O\left(\frac{nh_{t+2}h_{t+1}}{h_t} \right)=O\left(\frac{nh_{t+2}\cdot h_{t+2}/2}{h_{t+2}/4} \right)=O(nh_{t+2})$
+
+    再次利用 $2h_i<h_{i+1}$ 性质可得此部分总时间复杂度为（下式中 $k$ 沿用了上一种情况中的含义）：$2O(n^{3/2})+\sum_{i=1}^{k-3}{O(nh_{i+1})}=O(n^{3/2})+\sum_{i=1}^{k-3}{O(nh_{k-1}/2^{k-i-3})}=O(n^{3/2})+O(nh_{k-1})=O(n^{3/2})$
 
 综上可得总时间复杂度即为 $O(n^{3/2})$。
 
@@ -211,14 +197,14 @@ $\Box$
 
 接下来分为两部分分析复杂度：
 
-- 对于 $h_t>n/3$ 的部分，则执行每个 $\text{InsertionSort}(h_t)$ 的复杂度为 $O(n^2/h_t)$。
-  
-  而 $n^2/h_t<3n$，所以单词插入排序复杂度为 $O(n)$。
+-   对于 $h_t>n/3$ 的部分，则执行每个 $\text{InsertionSort}(h_t)$ 的复杂度为 $O(n^2/h_t)$。
 
-  而这一部分元素个数是 $O(\log^2 n)$ 级别的，所以这一部分时间复杂度为 $O(n\log^2 n)$。
+    而 $n^2/h_t<3n$，所以单词插入排序复杂度为 $O(n)$。
 
-- 对于 $h_t\le n/3$ 的部分，因为 $3h_t\le n$，所以这之前已经执行了 $\text{InsertionSort}(2h_t)$ 与 $\text{InsertionSort}(3h_t)$，于是执行 $\text{InsertionSort}(h_t)$ 是 $O(n)$。
-  还是一样的，这一部分元素个数也是 $O(\log^2 n)$ 级别的，所以这一部分时间复杂度为 $O(n\log^2 n)$。
+    而这一部分元素个数是 $O(\log^2 n)$ 级别的，所以这一部分时间复杂度为 $O(n\log^2 n)$。
+
+-   对于 $h_t\le n/3$ 的部分，因为 $3h_t\le n$，所以这之前已经执行了 $\text{InsertionSort}(2h_t)$ 与 $\text{InsertionSort}(3h_t)$，于是执行 $\text{InsertionSort}(h_t)$ 是 $O(n)$。
+    还是一样的，这一部分元素个数也是 $O(\log^2 n)$ 级别的，所以这一部分时间复杂度为 $O(n\log^2 n)$。
 
 综上可得总时间复杂度即为 $O(n\log^2 n)$。
 
@@ -269,4 +255,6 @@ $\Box$
 ## 参考资料与注释
 
 [^ref1]: [希尔排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F)
-$$$
+
+$$
+$$
