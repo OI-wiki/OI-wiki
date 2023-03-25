@@ -92,7 +92,7 @@ $$
 
 则第二个组就是引理 $1$ 中的 $X$ 数组，第一个组就是 $Y$ 数组，$l$ 就是第二个组从 $i+h$ 之后顶到末尾的长度，$n$ 是第二个组中前面那个“$\ldots$”的长度，$m$ 是第一个组去掉前 $l$ 个后剩下的个数。
 
-又因为有：$A\[i]\le A\[i+h],A\[i+k]\le A\[i+h+k],\ldots$
+又因为有：$A[i]\le A[i+h],A[i+k]\le A[i+h+k],\ldots$
 
 所以由引理 $1$ 可得执行 $\text{InsertionSort}(k)$ 将两个组分别排序后，这个关系依然满足，即依然有 $A[i]\le A[i+h]\,(1\le i< \min(h,k))$。
 
@@ -147,11 +147,15 @@ $$
 
 故以下假设 $j>h_{t+1}h_t$。
 
-对于任意的正整数 $k$ 满足 $1\le k\le j-h_{t+1}h_t$，注意到：$h\_{t+1}h\_t-h\_{t+1}-h\_t\<h\_{t+1}h\_t\le j-k\le j-1$
+对于任意的正整数 $k$ 满足 $1\le k\le j-h_{t+1}h_t$，注意到：$h_{t+1}h_t-h_{t+1}-h_t<h_{t+1}h_t\le j-k\le j-1$
 
 又因为 $\gcd(h_{t+1},h_t)=1$，故由引理 $2$，得存在非负整数 $a,b$，使得：$ah\_{t+1}+bh\_t=j-k$
 
-即得：$k=j-ah\_{t+1}-bh\_t$
+即得：
+
+$$
+k=j-ah_{t+1}-bh_t
+$$
 
 由定理 $1$，得：
 
@@ -174,7 +178,7 @@ $$
 证明完对于每个 $j$ 的移动复杂度后，即可得到总的时间复杂度：
 
 $$
-\sum\_{j=h\_{t-1}+1}^n{O\left(\frac{h\_{t+1}h\_t}{h\_{t-1}} \right)}=O\left(\frac{nh\_{t+1}h\_t}{h\_{t-1}}\right)
+\sum\_{j=h_{t-1}+1}^n{O\left(\frac{h_{t+1}h_t}{h_{t-1}} \right)}=O\left(\frac{nh_{t+1}h_t}{h_{t-1}}\right)
 $$
 
 得证。
@@ -191,7 +195,9 @@ $$
 
 将 $H$ 写为序列的形式：
 
-$H(h\_1=1,h\_2=3,h\_3=7,\ldots,h\_{\lfloor \log\_2 n\rfloor}=2^{\lfloor \log\_2 n\rfloor}-1)$
+$$
+H(h_1=1,h_2=3,h_3=7,\ldots,h_{\lfloor \log_2 n\rfloor}=2^{\lfloor \log_2 n\rfloor}-1)
+$$
 
 Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor-1}),\ldots,\text{InsertionSort}(h_2),\text{InsertionSort}(h_1)$.
 
@@ -239,7 +245,7 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
 
 注意到一个事实：如果已经执行过了 $\text{InsertionSort}(2)$ 与 $\text{InsertionSort}(3)$，那么因为 $2\cdot 3-2-3=1$，所以由定理 $2$，每个元素只有与它相邻的前一个元素可能大于它，之前的元素全部都小于它。于是 $i$ 指针只需要最多两次就可以退出 while 循环。也就是说，此时再执行 $\text{InsertionSort}(1)$，复杂度降为 $O(n)$，便将整个 $A$ 数组排好序。
 
-更进一步：如果已经执行过了 $\text{InsertionSort}(4)$ 与 $\text{InsertionSort}(6)$，我们考虑所有的下标为奇数的元素组成的子列与下标为偶数的元素组成的子列。则这相当于把这两个子列分别执行 $\text{InsertionSort}(2)$ 与 $\text{InsertionSort}(3)$。那么也是一样，这时候再执行 $\text{InsertionSort}(2)$，相当于对两个子列分别执行 $\text{InsertionSort}(1)$，也只需要两个序列和级别，即 $O(n)$ 的复杂度就可以将数组变为 $2$ 间隔有序。
+更进一步：如果已经执行过了 $\text{InsertionSort}(4)$ 与 $\text{InsertionSort}(6)$，我们考虑所有的下标为奇数的元素组成的子列与下标为偶数的元素组成的子列。则这相当于把这两个子列分别执行 $\text{InsertionSort}(2)$ 与 $\text{InsertionSort}(3)$。那么也是一样，这时候再执行 $\text{InsertionSort}(2)$，相当于对两个子列分别执行 $\text{InsertionSort}(1)$，也只需要两个序列和的级别，即 $O(n)$ 的复杂度就可以将数组变为 $2$ 间隔有序。
 
 不断归纳，就可以得到：如果已经执行过了 $\text{InsertionSort}(2h)$ 与 $\text{InsertionSort}(3h)$，则执行 $\text{InsertionSort}(h)$ 的复杂度只有 $O(n)$。
 
