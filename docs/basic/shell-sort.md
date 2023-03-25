@@ -269,7 +269,6 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
 
 **证毕**
 
-
 ### 空间复杂度
 
 希尔排序的空间复杂度为 $O(1)$。
