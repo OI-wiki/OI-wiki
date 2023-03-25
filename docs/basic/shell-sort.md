@@ -33,7 +33,7 @@
 **定理 $1$**：只要程序执行了一次 $\text{InsertionSort}(h)$，不管之后怎样调用 $\text{InsertionSort}$ 函数，$A$ 数组怎样变换，下列性质均会被一直保持：
 
 $$
-A[1],A[1+h],A[1+2h],\ldots\\\\ A[2],A[2+h],A[2+2h],\ldots\\\\ \vdots \\\\ A[h-1],A[h-1+h],A[h-1+2h],\ldots
+A_{1},A_{1+h},A_{1+2h},\ldots\\\\ A_{2},A_{2+h},A_{2+2h},\ldots\\\\ \vdots \\\\ A_{h-1},A_{h-1+h},A_{h-1+2h},\ldots
 $$
 
 证明：
@@ -73,32 +73,36 @@ $$
 执行完 $\text{InsertionSort}(h)$ 后，如下组已经完成排序：
 
 $$
-A[1],A[1+h],A[1+2h],\ldots \\\\ A[2],A[2+h],A[2+2h],\ldots \\\\ \vdots\\\\ A[h-1],A[h-1+h],A[h-1+2h],\ldots
+A_{1},A_{1+h},A_{1+2h},\ldots \\\\ A_{2},A_{2+h},A_{2+2h},\ldots \\\\ \vdots\\\\ A_{h-1},A_{h-1+h},A_{h-1+2h},\ldots
 $$
 
 而之后执行 $\text{InsertionSort}(k)$，则会将如下组排序：
 
 $$
-A[1],A[1+k],A[1+2k],\ldots \\\\ A[2],A[2+k],A[2+2k], \ldots \\\\ \vdots \\\\ A[k-1],A[k-1+k],A[k-1+2k],\ldots
+A_{1},A_{1+k},A_{1+2k},\ldots \\\\ A_{2},A_{2+k},A_{2+2k}, \ldots \\\\ \vdots \\\\ A_{k-1},A_{k-1+k},A_{k-1+2k},\ldots
 $$
 
 对于每个 $i\,(1\le i< \min(h,k))$，考虑如下两个组：
 
 $$
-A[i],A[i+k],A[i+2k],\ldots \\\\ \ldots,A[i+h],A[i+h+k],A[i+h+2k],\ldots
+A_{i},A_{i+k},A_{i+2k},\ldots \\\\ \ldots,A_{i+h},A_{i+h+k},A_{i+h+2k},\ldots
 $$
 
 第二个组前面也加上“$\ldots$”的原因是可能 $i+h\ge k$ 从而前面也有元素。
 
 则第二个组就是引理 $1$ 中的 $X$ 数组，第一个组就是 $Y$ 数组，$l$ 就是第二个组从 $i+h$ 之后顶到末尾的长度，$n$ 是第二个组中前面那个“$\ldots$”的长度，$m$ 是第一个组去掉前 $l$ 个后剩下的个数。
 
-又因为有：$A[i]\le A[i+h],A[i+k]\le A[i+h+k],\ldots$
+又因为有：
 
-所以由引理 $1$ 可得执行 $\text{InsertionSort}(k)$ 将两个组分别排序后，这个关系依然满足，即依然有 $A[i]\le A[i+h]\,(1\le i< \min(h,k))$。
+$$
+A_{i}\le A_{i+h},A_{i+k}\le A_{i+h+k},\ldots
+$$
+
+所以由引理 $1$ 可得执行 $\text{InsertionSort}(k)$ 将两个组分别排序后，这个关系依然满足，即依然有 $A_{i}\le A_{i+h}\,(1\le i< \min(h,k))$。
 
 若有 $i\ge \min(h,k)$，容易发现取正整数 $w\,(1\le w< \min(h,k))$ 再加上若干个 $k$ 即可得到 $i$，则之前的情况已经蕴含了此情况的证明。
 
-综合以上论述便有：执行完 $\text{InsertionSort}(k)$ 依然有 $A[i]\le A[i+h]\,(1\le i<h)$。
+综合以上论述便有：执行完 $\text{InsertionSort}(k)$ 依然有 $A_{i}\le A_{i+h}\,(1\le i<h)$。
 
 得证。
 
@@ -160,20 +164,20 @@ $$
 由定理 $1$，得：
 
 $$
-A[j-bh_t]\le A[j-(b-1)h_t]\le \ldots\le A[j-h_t]\le A[j]
+A_{j-bh_t}\le A_{j-(b-1)h_t}\le \ldots\le A_{j-h_t}\le A_{j}
 $$
 
 与
 
 $$
-A[j-bh_t-ah_{t+1}]\le A[j-bh_t-(a-1)h_{t+1}]\le \ldots\le A[j-bh_t-h_{t+1}]\le A[j-bh_t]
+A_{j-bh_t-ah_{t+1}}\le A_{j-bh_t-(a-1)h_{t+1}}\le \ldots\le A_{j-bh_t-h_{t+1}}\le A_{j-bh_t}
 $$
 
-综合以上既有：$A[k]=A[j-ah_{t+1}-bh_t]\le A[j]$。
+综合以上既有：$A_{k}=A_{j-ah_{t+1}-bh_t}\le A_{j}$。
 
-所以对于任何 $1\le k\le j-h_{t+1}h_t$，有 $A[k]\le A[j]$。
+所以对于任何 $1\le k\le j-h_{t+1}h_t$，有 $A_{k}\le A_{j}$。
 
-在 Shell-Sort 伪代码中 $i$ 指针每次减 $h_{t-1}$，减 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ 次，即可使得 $i\le j-h_{t+1}h_t$，进而有 $A[i]\le A[j]$，不满足 while 循环的条件退出。
+在 Shell-Sort 伪代码中 $i$ 指针每次减 $h_{t-1}$，减 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ 次，即可使得 $i\le j-h_{t+1}h_t$，进而有 $A_{i}\le A_{j}$，不满足 while 循环的条件退出。
 
 证明完对于每个 $j$ 的移动复杂度后，即可得到总的时间复杂度：
 
@@ -264,6 +268,7 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
 综上可得总时间复杂度即为 $O(n\log^2 n)$。
 
 **证毕**
+
 
 ### 空间复杂度
 
