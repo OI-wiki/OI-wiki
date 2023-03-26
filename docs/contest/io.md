@@ -11,7 +11,7 @@ author: Marcythm, yizr-cnyali, Chaigidel, Tiger3018, voidge, H-J-Granger, ouuan,
 
 ### `std::ios::sync_with_stdio(false)`
 
-这个函数是一个“是否兼容 stdio”的开关，C++ 为了兼容 C，保证程序在使用了 `printf` 和 `std::cout` 的时候不发生混乱，将输出流绑到了一起。同步的输出流是线程安全的。
+这个函数是一个「是否兼容 stdio」的开关，C++ 为了兼容 C，保证程序在使用了 `printf` 和 `std::cout` 的时候不发生混乱，将输出流绑到了一起。同步的输出流是线程安全的。
 
 这其实是 C++ 为了兼容而采取的保守措施，也是使 `cin`/`cout` 速度较慢的主要原因。我们可以在进行 IO 操作之前将 stdio 解除绑定，但是在这样做之后要注意不能同时使用 `std::cin` 和 `scanf`，也不能同时使用 `std::cout` 和 `printf`，但是可以同时使用 `std::cin` 和 `printf`，也可以同时使用 `scanf` 和 `std::cout`。
 
@@ -48,7 +48,7 @@ std::cin.tie(0);
 
 ### 原理
 
-众所周知，`getchar` 是用来读入 1 byte 的数据并将其转换为 `char` 类型的函数，且速度很快，故可以用“读入字符——转换为整型”来代替缓慢的读入
+众所周知，`getchar` 是用来读入 1 byte 的数据并将其转换为 `char` 类型的函数，且速度很快，故可以用「读入字符——转换为整型」来代替缓慢的读入
 
 每个整数由两部分组成——符号和数字
 
@@ -69,8 +69,8 @@ int read() {
     ch = getchar();               // 继续读入
   }
   while (ch >= '0' && ch <= '9') {  // ch 是数字时
-    x = x * 10 + (ch - '0');  // 将新读入的数字’加’在 x 的后面
-    // x 是 int 类型，char 类型的 ch 和 ’0’ 会被自动转为其对应的
+    x = x * 10 + (ch - '0');  // 将新读入的数字「加」在 x 的后面
+    // x 是 int 类型，char 类型的 ch 和 '0' 会被自动转为其对应的
     // ASCII 码，相当于将 ch 转化为对应数字
     // 此处也可以使用 (x<<3)+(x<<1) 的写法来代替 x*10
     ch = getchar();  // 继续读入

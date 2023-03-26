@@ -43,7 +43,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     
     设块长为 $s$，则有 $\frac{n}{s}$ 个块。对于块 $i$ 和块 $j$，记有 $q_{i,j}$ 个询问的左端点位于块 $i$，右端点位于块 $j$。
     
-    每“组”左右端点不换块的询问 $(i,j)$，端点每次移动 $O(s)$ 次，时间单调递增，$O(t)$。
+    每「组」左右端点不换块的询问 $(i,j)$，端点每次移动 $O(s)$ 次，时间单调递增，$O(t)$。
     
     左右端点换块的时间忽略不计。
     

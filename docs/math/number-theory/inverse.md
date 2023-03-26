@@ -25,12 +25,15 @@
     === "Python"
     
         ```python
-        def exgcd(a, b, x, y):
-          if b == 0:
-              x, y = 1, 0
-              return
-          exgcd(b, a % b, y, x)
-          y = y - (a // b * x)
+        def exgcd(a, b):
+            if b == 0:
+                x = 1
+                y = 0
+                return x, y
+            x1, y1 = exgcd(b, a % b)
+            x = y1
+            y = x1 - (a // b) * y1
+            return x, y
         ```
 
 扩展欧几里得法和求解 [线性同余方程](./linear-equation.md) 是一个原理，在这里不展开解释。

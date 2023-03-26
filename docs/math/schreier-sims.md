@@ -257,10 +257,10 @@ $$
 
 ## 参考资料与拓展阅读
 
--   \[1][Schreier–Sims algorithm - Wikipedia](https://en.wikipedia.org/wiki/Schreier%E2%80%93Sims_algorithm)
--   \[2]Knuth, Donald E，[Efficient representation of perm groups](https://arxiv.org/abs/math/9201304), Combinatorica 11 (1991), no. 1, 33–43.
--   \[3]Ákos Seress,[Permutation Group Algorithms](https://www.cambridge.org/core/books/permutation-group-algorithms/199629665EC545A10BCB99FFE6AAFD25), Cambridge University Press
--   \[4]Sims, Charles C,[Computational methods in the study of permutation groups](https://www.sciencedirect.com/science/article/pii/B9780080129754500205), Computational Problems in Abstract Algebra, pp. 169–183, Pergamon, Oxford, 1970.
--   \[5]Martin Jaggi,[Implementations of 3 Types of the Schreier-Sims Algorithm](https://www.m8j.net/data/List/Files-118/Documentation.pdf), MAS334 - Mathematics Computing Project, 2005
--   \[6][The Schreier-Sims algorithm for finite permutation groups](https://blogs.cs.st-andrews.ac.uk/codima/files/2015/11/CoDiMa2015_Holt.pdf)
--   Henrik B¨a¨arnhielm,[The Schreier-Sims algorithm for matrix groups](https://henrik.baarnhielm.net/schreiersims.pdf)
+1.  [Schreier–Sims algorithm - Wikipedia](https://en.wikipedia.org/wiki/Schreier%E2%80%93Sims_algorithm)
+2.  Knuth, Donald E，[Efficient representation of perm groups](https://arxiv.org/abs/math/9201304), Combinatorica 11 (1991), no. 1, 33–43.
+3.  Ákos Seress,[Permutation Group Algorithms](https://www.cambridge.org/core/books/permutation-group-algorithms/199629665EC545A10BCB99FFE6AAFD25), Cambridge University Press
+4.  Sims, Charles C,[Computational methods in the study of permutation groups](https://www.sciencedirect.com/science/article/pii/B9780080129754500205), Computational Problems in Abstract Algebra, pp. 169–183, Pergamon, Oxford, 1970.
+5.  Martin Jaggi,[Implementations of 3 Types of the Schreier-Sims Algorithm](https://www.m8j.net/data/List/Files-118/Documentation.pdf), MAS334 - Mathematics Computing Project, 2005
+6.  [The Schreier-Sims algorithm for finite permutation groups](https://blogs.cs.st-andrews.ac.uk/codima/files/2015/11/CoDiMa2015_Holt.pdf)
+7.  Henrik B¨a¨arnhielm,[The Schreier-Sims algorithm for matrix groups](https://henrik.baarnhielm.net/schreiersims.pdf)

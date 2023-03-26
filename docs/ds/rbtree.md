@@ -406,7 +406,7 @@ class RBTreeMap {
 
 #### Case 2
 
-兄弟节点 S 和侄节点 C, D 均为黑色，父节点 P 为红色。此时只需将 S 染黑，将 P 染红即可满足性质 3 和 4。
+兄弟节点 S 和侄节点 C, D 均为黑色，父节点 P 为红色。此时只需将 S 染红，将 P 染黑即可满足性质 3 和 4。
 
 ![rbtree-remove-case2](images/rbtree-remove-case2.png)
 
