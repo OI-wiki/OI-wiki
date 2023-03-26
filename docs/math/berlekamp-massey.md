@@ -24,8 +24,8 @@ $a_i = \sum_{j = 0} ^ {m - 1} f_j a_{i - j - 1}, \forall i \ge m$
 
 显然初始时有 $F_0 = \{\}$。假设递推系数 $F_{i - 1}$ 对数列 $\{a_i\}$ 的前 $i - 1$ 项均成立，这时对第 $i$ 项就有两种情况：
 
-1. 递推系数对 $a_i$ 也成立，这时不需要进行任何调整，直接令 $F_i = F_{i - 1}$ 即可。
-2. 递推系数对 $a_i$ 不成立，这时需要对 $F_{i - 1}$ 进行调整，得到新的 $F_i$。
+1.  递推系数对 $a_i$ 也成立，这时不需要进行任何调整，直接令 $F_i = F_{i - 1}$ 即可。
+2.  递推系数对 $a_i$ 不成立，这时需要对 $F_{i - 1}$ 进行调整，得到新的 $F_i$。
 
 设 $\Delta_i = a_i - \sum_{j = 0} ^ m f_{i - 1, j} a_{i - j - 1}$，即 $a_i$ 与 $F_{i - 1}$ 的递推结果的差值。
 
@@ -204,5 +204,5 @@ $A^{-1} \mathbf b = -\frac 1 {r_{m - 1}} \sum_{i = 0} ^ {m - 2} A^i \mathbf b r_
 
 ### 例题
 
-1. [LibreOJ #163. 高斯消元 2](https://loj.ac/p/163)
-2. [ICPC2021 台北 Gym103443E. Composition with Large Red Plane, Yellow, Black, Gray, and Blue](https://codeforces.com/gym/103443/problem/E)
+1.  [LibreOJ #163. 高斯消元 2](https://loj.ac/p/163)
+2.  [ICPC2021 台北 Gym103443E. Composition with Large Red Plane, Yellow, Black, Gray, and Blue](https://codeforces.com/gym/103443/problem/E)

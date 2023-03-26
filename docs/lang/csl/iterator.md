@@ -19,25 +19,25 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 // 在C++11后可以使用 auto iter = data.begin() 来简化上述代码
 ```
 
-???+note "`auto` 在竞赛中的使用"
+???+ note "`auto` 在竞赛中的使用 "
     大部分选手都喜欢使用 `auto` 来代替繁琐的迭代器声明。根据 2021 年 9 月发布的 [关于 NOI 系列活动中编程语言使用限制的补充说明](https://www.noi.cn/xw/2021-09-01/735729.shtml)，NOI 系列比赛（包括 CSP J/S）在评测时将使用 **C++14**，这个版本已经支持了 `auto` 关键字。
 
 ## 分类
 
 在 STL 的定义中，迭代器根据其支持的操作依次分为以下几类：
 
-- InputIterator（输入迭代器）：只要求支持拷贝、自增和解引访问。
-- OutputIterator（输出迭代器）：只要求支持拷贝、自增和解引赋值。
-- ForwardIterator（向前迭代器）：同时满足 InputIterator 和 OutputIterator 的要求。
-- BidirectionalIterator（双向迭代器）：在 ForwardIterator 的基础上支持自减（即反向访问）。
-- RandomAccessIterator（随机访问迭代器）：在 BidirectionalIterator 的基础上支持加减运算和比较运算（即随机访问）。
+-   InputIterator（输入迭代器）：只要求支持拷贝、自增和解引访问。
+-   OutputIterator（输出迭代器）：只要求支持拷贝、自增和解引赋值。
+-   ForwardIterator（向前迭代器）：同时满足 InputIterator 和 OutputIterator 的要求。
+-   BidirectionalIterator（双向迭代器）：在 ForwardIterator 的基础上支持自减（即反向访问）。
+-   RandomAccessIterator（随机访问迭代器）：在 BidirectionalIterator 的基础上支持加减运算和比较运算（即随机访问）。
 
-???+note "为什么输入迭代器叫输入迭代器？"
-    “输入”指的是“可以从迭代器中获取输入”，而“输出”指的是“可以输出到迭代器”。
+???+ note "为什么输入迭代器叫输入迭代器？"
+    「输入」指的是「可以从迭代器中获取输入」，而「输出」指的是「可以输出到迭代器」。
     
-    “输入”和“输出”的施动者是程序的其它部分，而不是迭代器自身。
+    「输入」和「输出」的施动者是程序的其它部分，而不是迭代器自身。
 
-其实这个“分类”并不互斥——一个“类别”是可以包含另一个“类别”的。例如，在要求使用向前迭代器的地方，同样可以使用双向迭代器。
+其实这个「分类」并不互斥——一个「类别」是可以包含另一个「类别」的。例如，在要求使用向前迭代器的地方，同样可以使用双向迭代器。
 
 不同的 [STL 容器](./container.md) 支持的迭代器类型不同，在使用时需要留意。
 
@@ -53,4 +53,4 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 
 在 C++11 以后可以使用 `std::prev(it)` 获得双向迭代器 `it` 的前驱（此时迭代器 `it` 不变），`std::prev(it, n)` 获得双向迭代器 `it` 的第 `n` 个前驱。
 
-[STL 容器](./container.md) 一般支持从一端或两端开始的访问，以及对 [const 修饰符](../const.md) 的支持。例如容器的 `begin()` 函数可以获得指向容器第一个元素的迭代器，`rbegin()` 函数可以获得指向容器最后一个元素的反向迭代器，`cbegin()` 函数可以获得指向容器第一个元素的 const 迭代器，`end()` 函数可以获得指向容器尾端（“尾端”并不是最后一个元素，可以看作是最后一个元素的后继；“尾端”的前驱是容器里的最后一个元素，其本身不指向任何一个元素）的迭代器。
+[STL 容器](./container.md) 一般支持从一端或两端开始的访问，以及对 [const 修饰符](../const.md) 的支持。例如容器的 `begin()` 函数可以获得指向容器第一个元素的迭代器，`rbegin()` 函数可以获得指向容器最后一个元素的反向迭代器，`cbegin()` 函数可以获得指向容器第一个元素的 const 迭代器，`end()` 函数可以获得指向容器尾端（「尾端」并不是最后一个元素，可以看作是最后一个元素的后继；「尾端」的前驱是容器里的最后一个元素，其本身不指向任何一个元素）的迭代器。

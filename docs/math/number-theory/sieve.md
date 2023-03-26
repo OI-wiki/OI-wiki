@@ -61,16 +61,18 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
 
 以上为 **Eratosthenes 筛法**（埃拉托斯特尼筛法，简称埃氏筛法），时间复杂度是 $O(n\log\log n)$。
 
-???+note "证明"
+???+ note "证明"
     现在我们就来看看推导过程：
     
     如果每一次对数组的操作花费 1 个单位时间，则时间复杂度为：
     
     $$
-    O\left(n\sum_{k=1}^{\pi(n)}{1\over p_k}\right)
+    O\left(\sum_{k=1}^{\pi(n)}{n\over p_k}\right)=O\left(n\sum_{k=1}^{\pi(n)}{1\over p_k}\right)
     $$
     
-    其中 $p_k$ 表示第 $k$ 小的素数。根据 Mertens 第二定理，存在常数 $B_1$ 使得：
+    其中 $p_k$ 表示第 $k$ 小的素数，$\pi(n)$ 表示 $\le n$ 的素数个数。$\sum_{k=1}^{\pi(n)}$ 表示第一层 for 循环，其中累加上界 $\pi(n)$ 为 `if (prime[i])` 进入 true 分支的次数；$n\over p_k$ 表示第二层 for 循环的执行次数。
+    
+    根据 Mertens 第二定理，存在常数 $B_1$ 使得：
     
     $$
     \sum_{k=1}^{\pi(n)}{1\over p_k}=\log\log n+B_1+O\left(1\over\log n\right)
@@ -141,15 +143,15 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
 
 #### 分块筛选
 
-由优化“筛至平方根”可知，不需要一直保留整个 `is_prime[1...n]` 数组。为了进行筛选，只保留到 $\sqrt n$ 的素数就足够了，即 `prime[1...sqrt(n)]`。并将整个范围分成块，每个块分别进行筛选。这样，我们就不必同时在内存中保留多个块，而且 CPU 可以更好地处理缓存。
+由优化「筛至平方根」可知，不需要一直保留整个 `is_prime[1...n]` 数组。为了进行筛选，只保留到 $\sqrt n$ 的素数就足够了，即 `prime[1...sqrt(n)]`。并将整个范围分成块，每个块分别进行筛选。这样，我们就不必同时在内存中保留多个块，而且 CPU 可以更好地处理缓存。
 
-设 $s$ 是一个常数，它决定了块的大小，那么我们就有了 $\lceil {\frac n s} \rceil$ 个块，而块 $k$($k = 0 \dots \lfloor {\frac n s} \rfloor$) 包含了区间 $[ks; ks + s - 1]$ 中的数字。我们可以依次处理块，也就是说，对于每个块 $k$，我们将遍历所有质数（从 $1$ 到 $\sqrt n$）并使用它们进行筛选。
+设 $s$ 是一个常数，它决定了块的大小，那么我们就有了 $\lceil {\frac n s} \rceil$ 个块，而块 $k$($k = 0 \dots \lfloor {\frac n s} \rfloor$) 包含了区间 $[ks, ks + s - 1]$ 中的数字。我们可以依次处理块，也就是说，对于每个块 $k$，我们将遍历所有质数（从 $1$ 到 $\sqrt n$）并使用它们进行筛选。
 
-值得注意的是，我们在处理第一个数字时需要稍微修改一下策略：首先，应保留 $[1; \sqrt n]$ 中的所有的质数；第二，数字 $0$ 和 $1$ 应该标记为非素数。在处理最后一个块时，不应该忘记最后一个数字 $n$ 并不一定位于块的末尾。
+值得注意的是，我们在处理第一个数字时需要稍微修改一下策略：首先，应保留 $[1, \sqrt n]$ 中的所有的质数；第二，数字 $0$ 和 $1$ 应该标记为非素数。在处理最后一个块时，不应该忘记最后一个数字 $n$ 并不一定位于块的末尾。
 
 以下实现使用块筛选来计算小于等于 $n$ 的质数数量。
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     int count_primes(int n) {
       const int S = 10000;
@@ -193,7 +195,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
 
 如果能让每个合数都只被标记一次，那么时间复杂度就可以降到 $O(n)$ 了。
 
-???+note "实现"
+???+ note "实现"
     === "C++"
     
         ```cpp
@@ -243,7 +245,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
 
 上面的这种 **线性筛法** 也称为 **Euler 筛法**（欧拉筛法）。
 
-???+note
+???+ note
     注意到筛法求素数的同时也得到了每个数的最小质因子。
 
 ## 筛法求欧拉函数

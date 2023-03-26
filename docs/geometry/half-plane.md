@@ -84,7 +84,7 @@ C 语言有一个库函数叫做 `atan2(double y,double x)`，可以返回 $\the
 
 ![](./images/hpi5.svg)
 
-但是毕竟每次操作都是一般的，因此可能会有把 $M$ 点“挤出去”的情况。
+但是毕竟每次操作都是一般的，因此可能会有把 $M$ 点「挤出去」的情况。
 
 ![](./images/hpi6.svg)
 
@@ -96,7 +96,7 @@ C 语言有一个库函数叫做 `atan2(double y,double x)`，可以返回 $\the
 
 所以一定要先排除队尾再排除队首。
 
-???+note "代码-比较部分"
+???+ note "代码 - 比较部分"
     ```cpp
     friend bool operator<(seg x, seg y) {
       db t1 = atan2((x.b - x.a).y, (x.b - x.a).x);
@@ -108,7 +108,7 @@ C 语言有一个库函数叫做 `atan2(double y,double x)`，可以返回 $\the
     }
     ```
 
-???+note "代码-增量部分"
+???+ note "代码 - 增量部分"
     ```cpp
     // pnt its(seg a,seg b)表示求线段a,b的交点
     // s[]是极角排序后的向量
