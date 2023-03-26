@@ -51,7 +51,7 @@ $$
 \operatorname{wnext}(i,t)=\begin{cases}\operatorname{next}(i) & t=0 \\\max(\operatorname{next}(i),\operatorname{wnext}(i,t-1)) & t>0 \\\min(\operatorname{next}(i),\operatorname{wnext}(i,t+1)) & t<0\end{cases}
 $$
 
-另外，不要使用 `std::random_shuffle()` ，请使用 Testlib 中的 `shuffle()` ，它同样接受一对迭代器。它使用 `rnd` 来打乱序列，即满足如上“好的 generator”的要求。
+另外，不要使用 `std::random_shuffle()` ，请使用 Testlib 中的 `shuffle()` ，它同样接受一对迭代器。它使用 `rnd` 来打乱序列，即满足如上「好的 generator」的要求。
 
 ## 示例：生成一棵树
 

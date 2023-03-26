@@ -18,14 +18,14 @@
 
 ![](./images/scanning.svg)
 
-- 如图所示，我们可以把整个矩形分成如图各个颜色不同的小矩形，那么这个小矩形的高就是我们扫过的距离，那么剩下了一个变量，那就是矩形的长一直在变化。
-- 我们的线段树就是为了维护矩形的长，我们给每一个矩形的上下边进行标记，下面的边标记为 1，上面的边标记为 -1，每遇到一个矩形时，我们知道了标记为 1 的边，我们就加进来这一条矩形的长，等到扫描到 -1 时，证明这一条边需要删除，就删去，利用 1 和 -1 可以轻松的到这种状态。
-- 还要注意这里的线段树指的并不是线段的一个端点，而指的是一个区间，所以我们要计算的是 $r+1$ 和 $r-1$。
-- 需要 [离散化](../misc/discrete.md)。
+-   如图所示，我们可以把整个矩形分成如图各个颜色不同的小矩形，那么这个小矩形的高就是我们扫过的距离，那么剩下了一个变量，那就是矩形的长一直在变化。
+-   我们的线段树就是为了维护矩形的长，我们给每一个矩形的上下边进行标记，下面的边标记为 1，上面的边标记为 -1，每遇到一个矩形时，我们知道了标记为 1 的边，我们就加进来这一条矩形的长，等到扫描到 -1 时，证明这一条边需要删除，就删去，利用 1 和 -1 可以轻松的到这种状态。
+-   还要注意这里的线段树指的并不是线段的一个端点，而指的是一个区间，所以我们要计算的是 $r+1$ 和 $r-1$。
+-   需要 [离散化](../misc/discrete.md)。
 
 ### 实现
 
-???+note "代码实现"
+???+ note "代码实现"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -122,13 +122,13 @@
 
 ## 练习
 
-- [「POJ1151」Atlantis](http://poj.org/problem?id=1151)
+-   [「POJ1151」Atlantis](http://poj.org/problem?id=1151)
 
-- [「POJ1177」Picture](http://poj.org/problem?id=1177)
+-   [「POJ1177」Picture](http://poj.org/problem?id=1177)
 
-- [「POJ3832」Posters](http://poj.org/problem?id=3832)
+-   [「POJ3832」Posters](http://poj.org/problem?id=3832)
 
-- [洛谷 P1856\[IOI1998\]\[USACO5.5\]矩形周长 Picture](https://www.luogu.com.cn/problem/P1856)
+-   [洛谷 P1856\[IOI1998\]\[USACO5.5\] 矩形周长 Picture](https://www.luogu.com.cn/problem/P1856)
 
 ## B 维正交范围
 
@@ -154,11 +154,11 @@ B 维正交范围指在一个 B 维直角坐标系下，第 $i$ 维坐标在一�
 
 先将所有的询问离散化，用树状数组维护权值，对于每次询问的 $l$ 和 $r$，我们在枚举到 $l-1$ 时统计当前位于区间 $[x,y]$ 内的数的数量 $a$，继续向后枚举，枚举到 $r$ 时统计当前位于区间 $[x,y]$ 内的数的数量 $b$，$b-a$ 即为该次询问的答案。
 
-可以用 [洛谷 P2163\[SHOI2007\]园丁的烦恼](https://www.luogu.com.cn/problem/P2163) 这道题进行练习。
+可以用 [洛谷 P2163\[SHOI2007\] 园丁的烦恼](https://www.luogu.com.cn/problem/P2163) 这道题进行练习。
 
 ### 例题
 
-???+note "[洛谷 P1908 逆序对](https://www.luogu.com.cn/problem/P1908)"
+???+ note "[洛谷 P1908 逆序对](https://www.luogu.com.cn/problem/P1908)"
     没错，逆序对也可以用扫描线的思维来做。考虑将求逆序对的个数转化为从后向前枚举每个位置 $i$，求在区间 $[i+1,n]$ 中，大小在区间 $[0,a_i]$ 中的点的个数。题目中数据范围为 $10^9$，很显然要先进行离散化，我们可以考虑从后向前遍历数组，每次遍历到一个数时更新数组数组（线段树），之后统计当前一共有多少个数小于当前枚举的数，因为我们是从后向前遍历的，所以比当前值小的数的个数就是他的逆序对的个数，可以用树状数组或线段树进行单点修改和区间查询。
     
     ??? note "代码"
@@ -166,7 +166,7 @@ B 维正交范围指在一个 B 维直角坐标系下，第 $i$ 维坐标在一�
         --8<-- "docs/geometry/code/scanning/scanning_1.cpp"
         ```
 
-???+note "[洛谷 P1972 \[SDOI2009\] HH 的项链](https://www.luogu.com.cn/problem/P1972)"
+???+ note "[洛谷 P1972 \[SDOI2009\] HH 的项链](https://www.luogu.com.cn/problem/P1972)"
     简要题意：给定一个长为 $n$ 的序列，$m$ 次查询区间中有多少不同的数。
     
     这类问题我们可以考虑推导性质，之后使用扫描线枚举所有右端点，数据结构维护每个左端点的答案的方法来实现，我们也可以将问题转换到二维平面上，变为一个矩形查询信息的问题。
@@ -188,22 +188,22 @@ B 维正交范围指在一个 B 维直角坐标系下，第 $i$ 维坐标在一�
 
 ### 例题
 
-- [洛谷 P8593「KDOI-02」一个弹的投](https://www.luogu.com.cn/problem/P8593) 逆序对的应用。
+-   [洛谷 P8593「KDOI-02」一个弹的投](https://www.luogu.com.cn/problem/P8593) 逆序对的应用。
 
-- [AcWing 4709. 三元组](https://www.acwing.com/problem/content/4712/) 上题的弱化版，同样为逆序对的应用。
+-   [AcWing 4709. 三元组](https://www.acwing.com/problem/content/4712/) 上题的弱化版，同样为逆序对的应用。
 
-- [洛谷 P8773\[蓝桥杯 2022 省 A\]选数异或](https://www.luogu.com.cn/problem/P8773) HH 的项链魔改版。
+-   [洛谷 P8773\[蓝桥杯 2022 省 A\] 选数异或](https://www.luogu.com.cn/problem/P8773) HH 的项链魔改版。
 
-- [洛谷 P8844\[传智杯 #4 初赛\]小卡与落叶](https://www.luogu.com.cn/problem/P8844) 树上问题转序列问题然后进行二维数点。
+-   [洛谷 P8844\[传智杯 #4 初赛\] 小卡与落叶](https://www.luogu.com.cn/problem/P8844) 树上问题转序列问题然后进行二维数点。
 
 总而言之，二维数点的主要思路就是数据结构维护一维，然后枚举另一维。
 
 ## 参考资料
 
-- <https://www.cnblogs.com/yangsongyi/p/8378629.html>
+-   <https://www.cnblogs.com/yangsongyi/p/8378629.html>
 
-- <https://blog.csdn.net/riba2534/article/details/76851233>
+-   <https://blog.csdn.net/riba2534/article/details/76851233>
 
-- <https://blog.csdn.net/winddreams/article/details/38495093>
+-   <https://blog.csdn.net/winddreams/article/details/38495093>
 
-- <https://dregen-yor.cf/2022/10/01/sao-miao-xian>
+-   <https://dregen-yor.cf/2022/10/01/sao-miao-xian>

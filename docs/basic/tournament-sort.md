@@ -135,4 +135,4 @@
 
 ## 外部链接
 
-- [Tournament sort - Wikipedia](https://en.wikipedia.org/wiki/Tournament_sort)
+-   [Tournament sort - Wikipedia](https://en.wikipedia.org/wiki/Tournament_sort)

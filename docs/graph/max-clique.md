@@ -22,14 +22,14 @@ author: Persdre
 
 **Bron-Kerbosch** 算法对于这种想法进行了优化实现。它的基础形式是通过给定三个集合：$R$、$P$、$X$ 来递归地进行搜索。步骤如下：
 
-1. 初始化集合 $R,X$ 分别为空，集合 $P$ 是图中所有点的集合。
+1.  初始化集合 $R,X$ 分别为空，集合 $P$ 是图中所有点的集合。
 2.  每次从集合 $P$ 中取顶点 $v$，当集合中没有顶点时，有两种情况：
-    1. 集合 $R$ 是最大团，此时集合 $X$ 为空
-    2. 无最大团，此时回溯
+    1.  集合 $R$ 是最大团，此时集合 $X$ 为空
+    2.  无最大团，此时回溯
 3.  对于每一个从集合 $P$ 中取得的顶点 $v$，有如下处理：
-    1. 将顶点 $v$ 加到集合 $R$ 中，之后递归集合 $R,P,X$
-    2. 从集合 $P$ 中删除顶点 $v$，并将顶点 $v$ 添加到集合 $X$ 中
-    3. 若集合 $P,X$ 都为空，则集合 $R$ 即为最大团
+    1.  将顶点 $v$ 加到集合 $R$ 中，之后递归集合 $R,P,X$
+    2.  从集合 $P$ 中删除顶点 $v$，并将顶点 $v$ 添加到集合 $X$ 中
+    3.  若集合 $P,X$ 都为空，则集合 $R$ 即为最大团
 
 此方法也可继续优化。为了节省时间让算法更快的回溯，可以通过设定关键点（pivot vertex）来进行搜索。另一种优化思路是在开始时把所有点排序，枚举时按照下标顺序，防止重复。
 
@@ -60,7 +60,7 @@ BronKerbosch1(R, P, X):
 
 ## 例题
 
-???+note "[POJ 2989: All Friends](http://poj.org/problem?id=2989)"
+???+ note "[POJ 2989: All Friends](http://poj.org/problem?id=2989)"
     题目大意：给出 $n$ 个人，其中有 $m$ 对朋友，求最大团数量。
 
 思路：模版题，要用 Bron-Kerbosch 算法
@@ -97,13 +97,13 @@ BronKerbosch1(R, P, X):
 
 ## 习题
 
-- [ZOJ 1492 最大团](https://zoj.pintia.cn/problem-sets/91827364500/problems/91827364991)
-- [POJ 1419 无向图最大团](http://poj.org/problem?id=1419)
-- [POJ 1129 广播电台](http://poj.org/problem?id=1129)
+-   [ZOJ 1492 最大团](https://zoj.pintia.cn/problem-sets/91827364500/problems/91827364991)
+-   [POJ 1419 无向图最大团](http://poj.org/problem?id=1419)
+-   [POJ 1129 广播电台](http://poj.org/problem?id=1129)
 
 ## 参考资料
 
-- [团问题 - 维基百科](https://en.wikipedia.org/wiki/Clique_problem)
-- [无向图的极大团、最大团（Bron-Kerbosch 算法）](https://blog.csdn.net/yo_bc/article/details/77453478)
-- [最大团问题——Bron-Kerbosch 算法](https://hallelujahjeff.github.io/2018/04/12/34/)
-- [最大团问题](https://www.cnblogs.com/zhj5chengfeng/archive/2013/07/29/3224092.html)
+-   [团问题 - 维基百科](https://en.wikipedia.org/wiki/Clique_problem)
+-   [无向图的极大团、最大团（Bron-Kerbosch 算法）](https://blog.csdn.net/yo_bc/article/details/77453478)
+-   [最大团问题——Bron-Kerbosch 算法](https://hallelujahjeff.github.io/2018/04/12/34/)
+-   [最大团问题](https://www.cnblogs.com/zhj5chengfeng/archive/2013/07/29/3224092.html)

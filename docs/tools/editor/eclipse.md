@@ -10,13 +10,13 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 缺点：
 
-- 实测这个 IDE 打开速度比 Visual Studio 慢
-- 更新速度玄学，插件更新速度跟不上 IDE 的更新速度，对于经常更新的同学很不友好。
+-   实测这个 IDE 打开速度比 Visual Studio 慢
+-   更新速度玄学，插件更新速度跟不上 IDE 的更新速度，对于经常更新的同学很不友好。
 
 优点：
 
-- 使用体验较好
-- 能够快速上手，所以比较推荐 OIer 用这个 IDE。
+-   使用体验较好
+-   能够快速上手，所以比较推荐 OIer 用这个 IDE。
 
 ## 安装 & 配置指南
 
@@ -30,7 +30,7 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 截至 2021-08-18，最新版本的 Eclipse 安装包已经附带了一个 Java 运行时环境（JRE）。如果需要独立的 JRE，可以访问 [Java.com](https://www.java.com) 或 [Oracle JDK Download](https://www.oracle.com/java/technologies/javase-downloads.html) 以下载。
 
-???+warning "注意"
+???+ warning "注意"
     Eclipse 2020-09 及之后的版本需要 Java 11 及以后版本的运行时。然而，在 Java.com 获取到的 JRE 多为 Java 8。在下载时还请读者多加留意。
 
 #### 下载并安装 MinGW/TDM

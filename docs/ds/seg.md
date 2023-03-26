@@ -6,16 +6,6 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
 
 线段树可以在 $O(\log N)$ 的时间复杂度内实现单点修改、区间修改、区间查询（区间求和，求区间最大值，求区间最小值）等操作。
 
-线段树维护的信息在很多时候可以认为是满足（幺）半群的性质的信息。
-
-一个幺半群 $M=(S,\circ ,e)$，其中 $\circ$ 为在集合 $S$ 上定义的二元运算符，幺半群具有以下性质：
-
-- 封闭性：$\forall x\in S$ 和 $\forall y\in S$ 有 $x\circ y\in S$。
-- 结合律：$\forall x,y,z\in S$ 有 $(x\circ y)\circ z=x\circ (y\circ z)$。
-- 存在幺元：即 $\exists e\in S$ 满足 $\forall x \in S$ 有 $e\circ x=x$，$e$ 为左幺元；或 $x\circ e=x$，$e$ 为右幺元。
-
-我们观察到线段树上的信息一般满足这样的性质，一些数域上的加法与乘法自然，考虑二元的 $\max(x,y)$ 运算，此时幺元为 $-\infty$ 也满足这样的性质（一般左右幺元相同时简称为幺元）。
-
 ## 线段树
 
 ### 线段树的基本结构与建树
@@ -392,11 +382,11 @@ int query(int p, int s, int t, int l, int r) {
 
 这里总结几个线段树的优化：
 
-- 在叶子节点处无需下放懒惰标记，所以懒惰标记可以不下传到叶子节点。
+-   在叶子节点处无需下放懒惰标记，所以懒惰标记可以不下传到叶子节点。
 
-- 下放懒惰标记可以写一个专门的函数 `pushdown`，从儿子节点更新当前节点也可以写一个专门的函数 `maintain`（或者对称地用 `pushup`），降低代码编写难度。
+-   下放懒惰标记可以写一个专门的函数 `pushdown`，从儿子节点更新当前节点也可以写一个专门的函数 `maintain`（或者对称地用 `pushup`），降低代码编写难度。
 
-- 标记永久化：如果确定懒惰标记不会在中途被加到溢出（即超过了该类型数据所能表示的最大范围），那么就可以将标记永久化。标记永久化可以避免下传懒惰标记，只需在进行询问时把标记的影响加到答案当中，从而降低程序常数。具体如何处理与题目特性相关，需结合题目来写。这也是树套树和可持久化数据结构中会用到的一种技巧。
+-   标记永久化：如果确定懒惰标记不会在中途被加到溢出（即超过了该类型数据所能表示的最大范围），那么就可以将标记永久化。标记永久化可以避免下传懒惰标记，只需在进行询问时把标记的影响加到答案当中，从而降低程序常数。具体如何处理与题目特性相关，需结合题目来写。这也是树套树和可持久化数据结构中会用到的一种技巧。
 
 ## C++ 模板
 
@@ -415,8 +405,8 @@ int query(int p, int s, int t, int l, int r) {
 ???+ note "[luogu P3372【模板】线段树 1](https://www.luogu.com.cn/problem/P3372)"
     已知一个数列，你需要进行下面两种操作：
     
-    - 将某区间每一个数加上 $k$。
-    - 求出某区间每一个数的和。
+    -   将某区间每一个数加上 $k$。
+    -   求出某区间每一个数的和。
     
     ??? "参考代码"
         ```cpp
@@ -426,9 +416,9 @@ int query(int p, int s, int t, int l, int r) {
 ???+ note "[luogu P3373【模板】线段树 2](https://www.luogu.com.cn/problem/P3373)"
     已知一个数列，你需要进行下面三种操作：
     
-    - 将某区间每一个数乘上 $x$。
-    - 将某区间每一个数加上 $x$。
-    - 求出某区间每一个数的和。
+    -   将某区间每一个数乘上 $x$。
+    -   将某区间每一个数加上 $x$。
+    -   求出某区间每一个数的和。
     
     ??? "参考代码"
         ```cpp
@@ -455,7 +445,7 @@ int query(int p, int s, int t, int l, int r) {
 
 简单来说就是线段树建树的时候需要做 $O(n)$ 次合并操作，而每一次区间询问需要做 $O(\log{n})$ 次合并操作，询问区间和这种东西的时候还可以忍受，但是当我们需要询问区间线性基这种合并复杂度高达 $O(\log^2{w})$ 的信息的话，此时就算是做 $O(\log{n})$ 次合并有些时候在时间上也是不可接受的。
 
-而所谓“猫树”就是一种不支持修改，仅仅支持快速区间询问的一种静态线段树。
+而所谓「猫树」就是一种不支持修改，仅仅支持快速区间询问的一种静态线段树。
 
 构造一棵这样的静态线段树需要 $O(n\log{n})$ 次合并操作，但是此时的查询复杂度被加速至 $O(1)$ 次合并操作。
 
@@ -465,9 +455,9 @@ int query(int p, int s, int t, int l, int r) {
 
 在查询 $[l,r]$ 这段区间的信息和的时候，将线段树树上代表 $[l,l]$ 的节点和代表 $[r,r]$ 这段区间的节点在线段树上的 LCA 求出来，设这个节点 $p$ 代表的区间为 $[L,R]$，我们会发现一些非常有趣的性质：
 
-1. $[L,R]$ 这个区间一定包含 $[l,r]$。显然，因为它既是 $l$ 的祖先又是 $r$ 的祖先。
+1.  $[L,R]$ 这个区间一定包含 $[l,r]$。显然，因为它既是 $l$ 的祖先又是 $r$ 的祖先。
 
-2. $[l,r]$ 这个区间一定跨越 $[L,R]$ 的中点。由于 $p$ 是 $l$ 和 $r$ 的 LCA，这意味着 $p$ 的左儿子是 $l$ 的祖先而不是 $r$ 的祖先，$p$ 的右儿子是 $r$ 的祖先而不是 $l$ 的祖先。因此，$l$ 一定在 $[L,\mathit{mid}]$ 这个区间内，$r$ 一定在 $(\mathit{mid},R]$ 这个区间内。
+2.  $[l,r]$ 这个区间一定跨越 $[L,R]$ 的中点。由于 $p$ 是 $l$ 和 $r$ 的 LCA，这意味着 $p$ 的左儿子是 $l$ 的祖先而不是 $r$ 的祖先，$p$ 的右儿子是 $r$ 的祖先而不是 $l$ 的祖先。因此，$l$ 一定在 $[L,\mathit{mid}]$ 这个区间内，$r$ 一定在 $(\mathit{mid},R]$ 这个区间内。
 
 有了这两个性质，我们就可以将询问的复杂度降至 $O(1)$ 了。
 
@@ -509,6 +499,6 @@ int query(int p, int s, int t, int l, int r) {
 
 ### 参考
 
-- [immortalCO 大爷的博客](https://immortalco.blog.uoj.ac/blog/2102)
-- [\[Kle77\]](http://ieeexplore.ieee.org/document/1675628/) V. Klee,“Can the Measure of be Computed in Less than O (n log n) Steps?,”Am. Math. Mon., vol. 84, no. 4, pp. 284–285, Apr. 1977.
-- [\[BeW80\]](https://www.tandfonline.com/doi/full/10.1080/00029890.1977.11994336) Bentley and Wood,“An Optimal Worst Case Algorithm for Reporting Intersections of Rectangles,”IEEE Trans. Comput., vol. C–29, no. 7, pp. 571–577, Jul. 1980.
+-   [immortalCO 大爷的博客](https://immortalco.blog.uoj.ac/blog/2102)
+-   [\[Kle77\]](http://ieeexplore.ieee.org/document/1675628/) V. Klee, "Can the Measure of be Computed in Less than O (n log n) Steps?," Am. Math. Mon., vol. 84, no. 4, pp. 284–285, Apr. 1977.
+-   [\[BeW80\]](https://www.tandfonline.com/doi/full/10.1080/00029890.1977.11994336) Bentley and Wood, "An Optimal Worst Case Algorithm for Reporting Intersections of Rectangles," IEEE Trans. Comput., vol. C–29, no. 7, pp. 571–577, Jul. 1980.

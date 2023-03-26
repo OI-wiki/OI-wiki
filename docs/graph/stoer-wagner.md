@@ -22,7 +22,7 @@ author: DanJoshua, opsiff, yzy-1
 
 显然，直接跑网络流的复杂度是行不通的。
 
-* * *
+***
 
 ## Stoer-Wagner 算法
 
@@ -38,9 +38,9 @@ Stoer-Wagner 算法在 1995 年由*Mechthild Stoer*与*Frank Wagner*提出，是
 
 ### 过程
 
-1. 在图 $G$ 中任意指定两点 $s, t$，并且以这两点作为源汇点求出图 $G$ 的 $S-T$ 最小割（定义为*cut of phase*），更新当前答案。
-2. 「合并」点 $s, t$，如果图 $G$ 中 $|V|$ 大于 $1$，则回到第一步。
-3. 输出所有*cut of phase*的最小值。
+1.  在图 $G$ 中任意指定两点 $s, t$，并且以这两点作为源汇点求出图 $G$ 的 $S-T$ 最小割（定义为*cut of phase*），更新当前答案。
+2.  「合并」点 $s, t$，如果图 $G$ 中 $|V|$ 大于 $1$，则回到第一步。
+3.  输出所有*cut of phase*的最小值。
 
 合并两点 $s, t$：删除 $s, t$ 之间的连边 $(s, t)$，对于 $G/\{s, t\}$ 中任意一点 $k$，删除 $(t, k)$，并将其边权 $d(t, k)$ 加到 $d(s, k)$ 上
 
@@ -80,7 +80,7 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
 
 定义诱导割 $C_v$ 为 $C \cap E_v$。$w(C_v) = \sum_{(i,j) \in C_v} d(i, j)$。
 
-???+note "Lemma 1"
+???+ note "Lemma 1"
     对于任何被激活的点 $v$，$w(A_v, v) \le w(C_v)$。
     
     证明：使用数学归纳法。
@@ -105,12 +105,12 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
 
 由于 $\operatorname{pos}(s) < \operatorname{pos}(t)$，并且 $s, t$ 不在同一连通块，因此 $t$ 会被激活，由此可以得出 $w(A_t, t) \le w(C_t) = w(C)$。
 
-??? note "[P5632 【模板】Stoer-Wagner算法](https://www.luogu.com.cn/problem/P5632)"
+??? note "[P5632【模板】Stoer-Wagner 算法](https://www.luogu.com.cn/problem/P5632)"
     ```cpp
     --8<-- "docs/graph/code/stoer-wagner/stoer-wagner_1.cpp"
     ```
 
-* * *
+***
 
 ### 复杂度分析与优化
 

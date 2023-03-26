@@ -17,8 +17,8 @@ $$
 
 我们插入一个新元素时，有两种方案：
 
-- 将新元素单独放入一个子集，有 $\begin{Bmatrix}n-1\\ k-1\end{Bmatrix}$ 种方案；
-- 将新元素放入一个现有的非空子集，有 $k\begin{Bmatrix}n-1\\ k\end{Bmatrix}$ 种方案。
+-   将新元素单独放入一个子集，有 $\begin{Bmatrix}n-1\\ k-1\end{Bmatrix}$ 种方案；
+-   将新元素放入一个现有的非空子集，有 $k\begin{Bmatrix}n-1\\ k\end{Bmatrix}$ 种方案。
 
 根据加法原理，将两式相加即可得到递推式。
 
@@ -57,7 +57,7 @@ $$
 
 ### 同一行第二类斯特林数的计算
 
-“同一行”的第二类斯特林数指的是，有着不同的 $i$，相同的 $n$ 的一系列 $\begin{Bmatrix}n\\i\end{Bmatrix}$。求出同一行的所有第二类斯特林数，就是对 $i=0..n$ 求出了将 $n$ 个不同元素划分为 $i$ 个非空集的方案数。
+「同一行」的第二类斯特林数指的是，有着不同的 $i$，相同的 $n$ 的一系列 $\begin{Bmatrix}n\\i\end{Bmatrix}$。求出同一行的所有第二类斯特林数，就是对 $i=0..n$ 求出了将 $n$ 个不同元素划分为 $i$ 个非空集的方案数。
 
 根据上面给出的通项公式，卷积计算即可。该做法的时间复杂度为 $O(n \log n)$。
 
@@ -643,7 +643,7 @@ $$
     #endif
     ```
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     int main() {
       scanf("%d", &n);
@@ -664,7 +664,7 @@ $$
 
 ### 同一列第二类斯特林数的计算
 
-“同一列”的第二类斯特林数指的是，有着不同的 $i$，相同的 $k$ 的一系列 $\begin{Bmatrix}i\\k\end{Bmatrix}$。求出同一列的所有第二类斯特林数，就是对 $i=0..n$ 求出了将 $i$ 个不同元素划分为 $k$ 个非空集的方案数。
+「同一列」的第二类斯特林数指的是，有着不同的 $i$，相同的 $k$ 的一系列 $\begin{Bmatrix}i\\k\end{Bmatrix}$。求出同一列的所有第二类斯特林数，就是对 $i=0..n$ 求出了将 $i$ 个不同元素划分为 $k$ 个非空集的方案数。
 
 利用指数型生成函数计算。
 
@@ -674,9 +674,9 @@ $\begin{Bmatrix}i\\k\end{Bmatrix}=\dfrac{\left[\dfrac{x^i}{i!}\right]F^k(x)}{k!}
 
 另外，$\exp F(x)=\sum\limits_{i=0}^{+\infty}\dfrac{F^i(x)}{i!}$ 就是 $i$ 个有标号物品放到任意多个无标号盒子里的指数型生成函数（EXP 通过每项除以一个 $i!$ 去掉了盒子的标号）。这其实就是贝尔数的生成函数。
 
-这里涉及到很多“有标号”“无标号”的内容，注意辨析。
+这里涉及到很多「有标号」「无标号」的内容，注意辨析。
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     int main() {
       scanf("%d%d", &n, &k);
@@ -710,8 +710,8 @@ $$
 
 我们插入一个新元素时，有两种方案：
 
-- 将该新元素置于一个单独的轮换中，共有 $\begin{bmatrix}n-1\\ k-1\end{bmatrix}$ 种方案；
-- 将该元素插入到任何一个现有的轮换中，共有 $(n-1)\begin{bmatrix}n-1\\ k\end{bmatrix}$ 种方案。
+-   将该新元素置于一个单独的轮换中，共有 $\begin{bmatrix}n-1\\ k-1\end{bmatrix}$ 种方案；
+-   将该元素插入到任何一个现有的轮换中，共有 $(n-1)\begin{bmatrix}n-1\\ k\end{bmatrix}$ 种方案。
 
 根据加法原理，将两式相加即可得到递推式。
 
@@ -745,7 +745,7 @@ $F(x)=\sum\limits_{i=1}^n\dfrac{(i-1)!x^i}{i!}=\sum\limits_{i=1}^n\dfrac{x^i}{i}
 
 它的 $k$ 次幂就是 $\begin{bmatrix}i\\k\end{bmatrix}$ 的指数型生成函数，$O(n\log n)$ 计算即可。
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     int main() {
       scanf("%d%d", &n, &k);
@@ -830,11 +830,11 @@ $$
 
 ## 习题
 
-- [HDU3625 Examining the Rooms](https://vjudge.net/problem/HDU-3625)
-- [UOJ540 联合省选 2020 组合数问题](https://uoj.ac/problem/540)
-- [UOJ269 清华集训 2016 如何优雅地求和](https://uoj.ac/problem/269)
+-   [HDU3625 Examining the Rooms](https://vjudge.net/problem/HDU-3625)
+-   [UOJ540 联合省选 2020 组合数问题](https://uoj.ac/problem/540)
+-   [UOJ269 清华集训 2016 如何优雅地求和](https://uoj.ac/problem/269)
 
 ## 参考资料与注释
 
-1. [Stirling Number of the First Kind - Wolfram MathWorld](http://mathworld.wolfram.com/StirlingNumberoftheFirstKind.html)
-2. [Stirling Number of the Second Kind - Wolfram MathWorld](http://mathworld.wolfram.com/StirlingNumberoftheSecondKind.html)
+1.  [Stirling Number of the First Kind - Wolfram MathWorld](http://mathworld.wolfram.com/StirlingNumberoftheFirstKind.html)
+2.  [Stirling Number of the Second Kind - Wolfram MathWorld](http://mathworld.wolfram.com/StirlingNumberoftheSecondKind.html)

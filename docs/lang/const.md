@@ -40,7 +40,7 @@ const int &r2 = a;
 const int &r4 = b;
 ```
 
-另外需要区分开的是“常类型指针”和“常指针变量”（即常指针、指针常量），例如下列声明
+另外需要区分开的是「常类型指针」和「常指针变量」（即常指针、指针常量），例如下列声明
 
 ```cpp
 int* const p1;        // 类型为int的常指针，需要初始化
@@ -111,7 +111,7 @@ int main() {
 
 ## 常表达式 constexpr（C++11）
 
-constexpr 说明符的作用是声明可以在编译时求得函数或变量的值，它的行为和 C 语言中的 const 关键字是一致的，会将变量结果直接编译到栈空间中。constexpr 还可以用来替换宏定义的常量，规避 [宏定义的风险](./basic.md#define)。constexpr 修饰的是变量和函数，而 const 修饰的是类型。
+constexpr 说明符的作用是声明可以在编译时求得函数或变量的值，它的行为和 C 语言中的 const 关键字是一致的，会将变量结果直接编译到栈空间中。constexpr 还可以用来替换宏定义的常量，规避 [宏定义的风险](./basic.md#define-命令)。constexpr 修饰的是变量和函数，而 const 修饰的是类型。
 
 > 实际上把 const 理解成 **"readonly"**，而把 constexpr 理解成 **"const"** 更加直观。
 
@@ -128,5 +128,5 @@ void test(const int x) {
 
 ## 参考资料
 
-- [C++ 关键字——const](https://zh.cppreference.com/w/cpp/keyword/const)
-- [C++ 关键字——constexpr](https://zh.cppreference.com/w/cpp/keyword/constexpr)
+-   [C++ 关键字——const](https://zh.cppreference.com/w/cpp/keyword/const)
+-   [C++ 关键字——constexpr](https://zh.cppreference.com/w/cpp/keyword/constexpr)

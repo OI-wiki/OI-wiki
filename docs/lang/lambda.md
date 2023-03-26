@@ -22,11 +22,11 @@ Lambda 表达式以 capture 子句开头，它指定哪些变量被捕获，以�
 
 例如 Lambda 体要通过引用访问外部变量 `a` 并通过值访问外部变量 `b`，则以下子句等效：
 
-- `[&a, b]`
-- `[b, &a]`
-- `[&, b]`
-- `[b, &]`
-- `[=, &a]`
+-   `[&a, b]`
+-   `[b, &a]`
+-   `[&, b]`
+-   `[b, &]`
+-   `[=, &a]`
 
 默认捕获时，会捕获 Lambda 中提及的变量。获的变量成为 Lambda 的一部分；与函数参数相比，调用 Lambda 时不必传递它们。
 
@@ -35,8 +35,8 @@ Lambda 表达式以 capture 子句开头，它指定哪些变量被捕获，以�
 ```cpp
 int a = 0;
 auto f = []() { return a * 9; };   // Error, 无法访问 'a'
-auto f = [a]() { return a * 9; };  // OK, 'a' 被值“捕获”
-auto f = [&a]() { return a++; };   // OK, 'a' 被引用“捕获”
+auto f = [a]() { return a * 9; };  // OK, 'a' 被值「捕获」
+auto f = [&a]() { return a++; };   // OK, 'a' 被引用「捕获」
                                   // 注意：请保证 Lambda 被调用时 a 没有被销毁
 auto b = f();  // f 从捕获列表里获得 a 的值，无需通过参数传入 a
 ```
@@ -131,11 +131,11 @@ auto x2 = [] { return {1, 2}; };    // Error, 返回类型被推导为 void
 
 Lambda 主体可包含任何函数可包含的部分。普通函数和 Lambda 表达式主体均可访问以下变量类型：
 
-- 从封闭范围捕获变量
-- 参数
-- 本地声明的变量
-- 在一个 `class` 中声明时，若捕获 `this`，则可以访问该对象的成员
-- 具有静态存储时间的任何变量，如全局变量
+-   从封闭范围捕获变量
+-   参数
+-   本地声明的变量
+-   在一个 `class` 中声明时，若捕获 `this`，则可以访问该对象的成员
+-   具有静态存储时间的任何变量，如全局变量
 
 下面是一个例子
 
@@ -220,4 +220,4 @@ void func(AbstractCallable *);
 
 ## 参考文献
 
-- <https://en.cppreference.com/w/cpp/language/lambda>
+-   <https://en.cppreference.com/w/cpp/language/lambda>
