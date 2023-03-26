@@ -67,7 +67,7 @@ $$
 > y_{k_1}\le x_{n+k_1}\le x^\prime_{n+i},y_{k_2}\le x_{n+k_2}\le x^\prime_{n+i},\ldots,y_{k_i}\le x_{n+k_i}\le x^\prime_{n+i}
 > $$
 >
-> 所以 $x^\prime_{n+i}$ 至少大等于 $Y$ 也即 $Y^\prime$ 中的 $i$ 个元素，那么自然有 $y^\prime_i\le x^\prime_{n+i}$$(1\le i\le l)$。
+> 所以 $x^\prime_{n+i}$ 至少大等于 $Y$ 也即 $Y^\prime$ 中的 $i$ 个元素，那么自然有 $y^\prime_i\le x^\prime_{n+i}\,(1\le i\le l)$。
 >
 > **证毕**
 
@@ -116,11 +116,11 @@ $$
 A_{i}\le A_{i+h},A_{i+k}\le A_{i+h+k},\ldots
 $$
 
-所以由引理 1 可得执行 $\text{InsertionSort}(k)$ 将两个组分别排序后，这个关系依然满足，即依然有 $A_{i}\le A_{i+h}$$(1\le i < \min(h,k))$。
+所以由引理 1 可得执行 $\text{InsertionSort}(k)$ 将两个组分别排序后，这个关系依然满足，即依然有 $A_{i}\le A_{i+h}\,(1\le i < \min(h,k))$。
 
 若有 $i\ge \min(h,k)$，容易发现取正整数 $w$ $(1\le w< \min(h,k))$ 再加上若干个 $k$ 即可得到 $i$，则之前的情况已经蕴含了此情况的证明。
 
-综合以上论述便有：执行完 $\text{InsertionSort}(k)$ 依然有 $A_i\le A_{i+h}$$(1\le i < h)$。
+综合以上论述便有：执行完 $\text{InsertionSort}(k)$ 依然有 $A_i\le A_{i+h}\,(1\le i < h)$。
 
 得证。
 
@@ -336,6 +336,3 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
 ## 参考资料与注释
 
 [^ref1]: [希尔排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F)
-
-$$
-$$
