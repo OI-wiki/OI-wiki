@@ -8,25 +8,25 @@ author: ouuan, NachtgeistW
 
 网址：[Index Page - Polygon](https://polygon.codeforces.com)
 
-Polygon 是一个支持多人协作的出题平台，功能非常完善。官网描述为“Polygon 的使命是为创建编程竞赛题目提供平台。”
+Polygon 是一个支持多人协作的出题平台，功能非常完善。官网描述为「Polygon 的使命是为创建编程竞赛题目提供平台。」
 
 在 Codeforces (CF) 出题必须使用 Polygon。在其它地方出题，尤其是多人合作出题时，使用 Polygon 也是不错的选择。
 
 ### 优点
 
-- 有版本管理系统，多人合作时不会乱成一团，也不需要互相传文件。
+-   有版本管理系统，多人合作时不会乱成一团，也不需要互相传文件。
 
-- 出题系统完善，validator、generator、checker、solutions 环环相扣，输出自动生成。
+-   出题系统完善，validator、generator、checker、solutions 环环相扣，输出自动生成。
 
-- 可以为 solutions 设置标签，错解 AC、正解未 AC 都会警告，方便地逐一卡掉错解。
+-   可以为 solutions 设置标签，错解 AC、正解未 AC 都会警告，方便地逐一卡掉错解。
 
-- 可以方便地对拍，拍出来的数据可以直接添加到题目数据中。
+-   可以方便地对拍，拍出来的数据可以直接添加到题目数据中。
 
-- 发现问题可以提 issue，而不会被消息刷屏却一直没有 fix。
+-   发现问题可以提 issue，而不会被消息刷屏却一直没有 fix。
 
-- 为日后出 CF 做准备。
+-   为日后出 CF 做准备。
 
-- ……
+-   ……
 
 ## 题目列表
 
@@ -47,11 +47,11 @@ Polygon 的大部分功能都不需要学，能看懂英文就基本能用了。
 ???+ warning
     题面不能使用 Markdown，只能用 TeX。
 
-- Invocation 是用来测试 solution 的。
+-   Invocation 是用来测试 solution 的。
 
-- Stress 是用来对拍的。
+-   Stress 是用来对拍的。
 
-- 数据在 Tests 中用 generator 造，generator 在 Files 中上传。
+-   数据在 Tests 中用 generator 造，generator 在 Files 中上传。
 
 ### General Info
 
@@ -117,7 +117,7 @@ Tests 页面的下方是用来输入生成数据的脚本的，如 `generator-na
 
 这个页面是用来对拍的。
 
-点击 "Add Stress" 就可以添加一组对拍，"Script pattern" 是一个生成数据的脚本，其中可以使用 "[10..100]" 之类的来表示在一个范围内随机选择。
+点击 "Add Stress" 就可以添加一组对拍，"Script pattern" 是一个生成数据的脚本，其中可以使用 "\[10..100]" 之类的来表示在一个范围内随机选择。
 
 然后运行对拍，如果拍出错就会显示 "Crashed"，并且可以一键把这组数据加到 Tests 中。
 

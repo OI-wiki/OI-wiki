@@ -6,7 +6,7 @@ LaTeX（读作/ˈlɑːtɛx/或/ˈleɪtɛx/）是一个让你的文档看起来�
 
 LaTeX 基于 TeX（Donald Knuth 在 1978 年为数字化排版设计的排版系统）。TeX 是一种电脑能够处理的低级语言，但大多数人发现它很难使用。LaTeX 正是为了让它变得更加易用而设计的。目前 LaTeX 的版本是 LaTeX 2e。
 
-如果你习惯于使用微软的 Office Word 处理文档，那么你会觉得 LaTeX 的工作方式让你很不习惯。Word 是典型的“所见即所得”的编辑器，你可以在编排文档的时侯查看到最终的排版效果。但使用 LaTeX 时你并不能方便地查看最终效果，这使得你专注于内容而不是外观的调整。
+如果你习惯于使用微软的 Office Word 处理文档，那么你会觉得 LaTeX 的工作方式让你很不习惯。Word 是典型的「所见即所得」的编辑器，你可以在编排文档的时侯查看到最终的排版效果。但使用 LaTeX 时你并不能方便地查看最终效果，这使得你专注于内容而不是外观的调整。
 
 一个 LaTeX 文档是一个以 `.tex` 结尾的文本文件，可以使用任意的文本编辑器编辑，比如 Notepad，但对于大多数人而言，使用一个合适的 LaTeX 编辑器会使得编辑的过程容易很多。在编辑的过程中你可以标记文档的结构。完成后你可以进行编译——这意味着将它转化为另一种格式的文档。它支持多种格式，但最常用的是 PDF 文档格式。
 
@@ -14,9 +14,9 @@ LaTeX 基于 TeX（Donald Knuth 在 1978 年为数字化排版设计的排版系
 
 下面列出在本文中使用到的记号：
 
-- 希望你实施的操作会被打上一个箭头 $\rightarrow$；
-- 你输入的字符会被装进代码块中；
-- 菜单命令与按钮的名称会被标记为 **粗体**。
+-   希望你实施的操作会被打上一个箭头 $\rightarrow$；
+-   你输入的字符会被装进代码块中；
+-   菜单命令与按钮的名称会被标记为 **粗体**。
 
 ### 一些概念
 
@@ -120,18 +120,18 @@ $\rightarrow$ 点击 **Typeset** 按扭，核对生成的 PDF 文档。
 
 要点笔记：
 
-- `\today` 是插入当前时间的命令。你也可以输入一个不同的时间，比如 `\date{November 2013}`。
-- **article** 文档的正文会紧跟着标题之后在同一页上排版。**report** 会将标题置为单独的一页。
+-   `\today` 是插入当前时间的命令。你也可以输入一个不同的时间，比如 `\date{November 2013}`。
+-   **article** 文档的正文会紧跟着标题之后在同一页上排版。**report** 会将标题置为单独的一页。
 
 ### 章节
 
 如果需要的话，你可能想将你的文档分为章（Chatpers）、节（Sections）和小节（Subsections）。下列分节命令适用于 **article** 类型的文档：
 
-- `\section{...}`
-- `\subsection{...}`
-- `\subsubsection{...}`
-- `\paragraph{...}`
-- `\subparagraph{...}`
+-   `\section{...}`
+-   `\subsection{...}`
+-   `\subsubsection{...}`
+-   `\paragraph{...}`
+-   `\subparagraph{...}`
 
 花括号内的文本表示章节的标题。对于 **report** 和 **book** 类型的文档我们还支持 `\chapter{...}` 的命令。
 
@@ -457,19 +457,19 @@ $\rightarrow$ 输入代码来在你的文档中生成下面内容：
 
 省略号会由定义表格的列的代码替换：
 
-- `l` 表示一个左对齐的列；
-- `r` 表示一个右对齐的列；
-- `c` 表示一个向中对齐的列；
-- `|` 表示一个列的竖线；
+-   `l` 表示一个左对齐的列；
+-   `r` 表示一个右对齐的列；
+-   `c` 表示一个向中对齐的列；
+-   `|` 表示一个列的竖线；
 
 例如，`{lll}` 会生成一个三列的表格，并且保存向左对齐，没有显式的竖线；`{|l|l|r|}` 会生成一个三列表格，前两列左对齐，最后一列右对齐，并且相邻两列之间有显式的竖线。
 
 表格的数据在 `\begin{tabular}` 后输入：
 
-- `&` 用于分割列；
-- `\\` 用于换行；
-- `\hline` 表示插入一个贯穿所有列的横着的分割线；
-- `\cline{1-2}` 会在第一列和第二列插入一个横着的分割线。
+-   `&` 用于分割列；
+-   `\\` 用于换行；
+-   `\hline` 表示插入一个贯穿所有列的横着的分割线；
+-   `\cline{1-2}` 会在第一列和第二列插入一个横着的分割线。
 
 最后使用 `\end{tabular}` 结束表格。举一些例子：
 
@@ -530,7 +530,7 @@ Oranges & Orange \\
 
 `[width=1\textwidth]` 是一个可选的参数，它指定图片的宽度——与文本的宽度相同。宽度也可以以厘米为单位。你也可以使用 `[scale=0.5]` 将图片按比例缩小（示例相当于缩小一半）。
 
-`\caption{...}` 定义了图表的标题。如果使用了它，LaTeX 会给你的图表添加“Figure”开头的序号。你可以使用 `\listoffigures` 来生成一个图表的目录。
+`\caption{...}` 定义了图表的标题。如果使用了它，LaTeX 会给你的图表添加「Figure」开头的序号。你可以使用 `\listoffigures` 来生成一个图表的目录。
 
 `\label{...}` 创建了一个可以供你引用的标签。
 
@@ -593,7 +593,7 @@ $$
 
 要撰写不标号的公式就在环境标志的后面添加 `*` 字符，如 `{equation*}`，`{eqnarray*}`。
 
-!!! warning
+??? warning
     可以发现，使用 `eqnarray` 时，会出现等号周围的空隙过大之类的问题。
     
     可以使用 `amsmath` 宏包中的 `align` 环境：
@@ -675,14 +675,14 @@ $$
 
 我们可以使用反斜杠加希腊字母的名称来表示一个希腊字母。名称的首字母的大小写决定希腊字母的形态。例如
 
-- `$\alpha$`=$\alpha$
-- `$\beta$`=$\beta$
-- `$\delta, \Delta$`=$\delta, \Delta$
-- `$\pi, \Pi$`=$\pi, \Pi$
-- `$\sigma, \Sigma$`=$\sigma, \Sigma$
-- `$\phi, \Phi, \varphi$`=$\phi, \Phi, \varphi$
-- `$\psi, \Psi$`=$\psi, \Psi$
-- `$\omega, \Omega$`=$\omega, \Omega$
+-   `$\alpha$`=$\alpha$
+-   `$\beta$`=$\beta$
+-   `$\delta, \Delta$`=$\delta, \Delta$
+-   `$\pi, \Pi$`=$\pi, \Pi$
+-   `$\sigma, \Sigma$`=$\sigma, \Sigma$
+-   `$\phi, \Phi, \varphi$`=$\phi, \Phi, \varphi$
+-   `$\psi, \Psi$`=$\psi, \Psi$
+-   `$\omega, \Omega$`=$\omega, \Omega$
 
 ### 实践
 
@@ -787,8 +787,8 @@ LaTeX Wikibook <http://en.wikibooks.org/wiki/LaTeX/> Comprehensive and clearly w
 
 Comparison of TeX Editors on Wikipedia <http://en.wikipedia.org/wiki/Comparison_of_TeX_editors> Information to help you to choose which L A TEX editor to install on your own computer.
 
-TeX Live <http://www.tug.org/texlive/>“An easy way to get up and running with the TeX document production system”。Available for Unix and Windows (links to MacTeX for MacOSX users). Includes the TeXworks editor.
+TeX Live <http://www.tug.org/texlive/>"An easy way to get up and running with the TeX document production system". Available for Unix and Windows (links to MacTeX for MacOSX users). Includes the TeXworks editor.
 
 Workbook Source Files <http://edin.ac/17EQPM1> Download the .tex file and other files needed to compile this workbook.
 
-**本文译自 <http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf>**，依据其他文献略有修改。
+**本文译自 [http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf](https://web.archive.org/web/20220309055041/http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf)**, 依据其他文献略有修改。

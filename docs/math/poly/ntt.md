@@ -42,9 +42,9 @@ $$
 
 快速数论变换使用的分治办法，与快速傅里叶变换使用的分治办法完全一致。这意味着，只需在快速傅里叶变换的代码基础上进行简单修改，即可得到快速数论变换的代码。
 
-在算法竞赛中常提到的 NTT 一词，往往实际指的是快速数论变换，一般默认“数论变换”是指“快速数论变换”。
+在算法竞赛中常提到的 NTT 一词，往往实际指的是快速数论变换，一般默认「数论变换」是指「快速数论变换」。
 
-这样简写的逻辑与快速傅里叶变换相似。事实上，“快速傅里叶变换”（FFT）一词指的是“快速离散傅里叶变换”（FDFT），但由于“快速”只能作用于离散，甚至是本原单位根阶数为 $2$ 的幂的特殊情形，不能作用于连续，因此“离散”一词被省略掉，FDFT 变为 FFT，即 FFT 永远指的是特殊的离散情形。
+这样简写的逻辑与快速傅里叶变换相似。事实上，「快速傅里叶变换」（FFT）一词指的是「快速离散傅里叶变换」（FDFT），但由于「快速」只能作用于离散，甚至是本原单位根阶数为 $2$ 的幂的特殊情形，不能作用于连续，因此「离散」一词被省略掉，FDFT 变为 FFT，即 FFT 永远指的是特殊的离散情形。
 
 数论变换或快速数论变换是在取模意义下进行的操作，不存在连续的情形，永远是离散的，自然也无需提到离散一词。
 
@@ -54,9 +54,9 @@ $$
 
 DFT、FFT、NTT、FNTT 的具体关系是：
 
-- 在 DFT 与 NTT 的基础上，增加分治操作，得到 FFT 与 FNTT。分治操作的办法与原理，可以参见快速傅里叶变换一文。
+-   在 DFT 与 NTT 的基础上，增加分治操作，得到 FFT 与 FNTT。分治操作的办法与原理，可以参见快速傅里叶变换一文。
 
-- 在 DFT 与 FFT 的基础上，将复数加法与复数乘法替换为模 $p$ 意义下的加法和乘法，一般大小限制在 $0$ 到 $p-1$ 之间；将本原单位根改为模 $p$ 意义下的相同阶数的本原单位根，阶数为 $2$ 的幂，即可得到 NTT 与 FNTT。
+-   在 DFT 与 FFT 的基础上，将复数加法与复数乘法替换为模 $p$ 意义下的加法和乘法，一般大小限制在 $0$ 到 $p-1$ 之间；将本原单位根改为模 $p$ 意义下的相同阶数的本原单位根，阶数为 $2$ 的幂，即可得到 NTT 与 FNTT。
 
 由于替换的运算只涉及加法和乘法，因此 DFT、FFT、NTT、FNTT 拥有相同的原理，均在满足加法与乘法的环上进行，无需域上满足除法运算的更加严格的条件。
 
@@ -174,7 +174,7 @@ DFT、FFT、NTT、FNTT 的具体关系是：
 
 ## 参考资料与拓展阅读
 
-- [1][FWT(快速沃尔什变换)零基础详解qaq（ACM/OI）](<https://zhuanlan.zhihu.com/p/41867199>)
-- [2][FFT(快速傅里叶变换)0基础详解！附NTT（ACM/OI）](<https://zhuanlan.zhihu.com/p/40505277>)
-- [3][Number-theoretic transform(NTT) - Wikipedia](<https://en.wikipedia.org/wiki/Discrete_Fourier_transform_(general)#Number-theoretic_transform>)
-- [4][Tutorial on FFT/NTT — The tough made simple. ( Part 1 )](<https://codeforces.com/blog/entry/43499>)
+1.  [FWT（快速沃尔什变换）零基础详解 qaq（ACM/OI）](https://zhuanlan.zhihu.com/p/41867199)
+2.  [FFT（快速傅里叶变换）0 基础详解！附 NTT（ACM/OI）](https://zhuanlan.zhihu.com/p/40505277)
+3.  [Number-theoretic transform(NTT) - Wikipedia](https://en.wikipedia.org/wiki/Discrete_Fourier_transform_\(general\)#Number-theoretic_transform)
+4.  [Tutorial on FFT/NTT—The tough made simple. (Part 1)](https://codeforces.com/blog/entry/43499)

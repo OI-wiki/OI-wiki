@@ -41,9 +41,9 @@ cd OI-wiki
 pipenv install --pypi-mirror https://pypi.tuna.tsinghua.edu.cn/simple/
 
 # 使用我们的自定义主题（Windows 下请使用 Git Bash 执行）
-# 安装主题时将连接网络下载资源，可通过以下环境变量控制下载链接
-# scripts/pre-build/install-theme.sh:
-# - THEME_REPO
+# 安装主题时将连接网络下载资源，可通过以下配置项控制下载链接
+# .gitmodules:
+# - url
 # scripts/pre-build/install-theme-vendor.sh:
 # - MATHJAX_URL
 # - MATERIAL_ICONS_URL

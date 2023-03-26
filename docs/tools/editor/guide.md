@@ -6,28 +6,28 @@ GUIDE（GAIT Universal IDE）是由北航 GAIT 研究组开发的、专门为 NO
 
 ### 需要的动态库文件及包名
 
-| 动态库                 | Arch 包名          | Debian 包名      | Fedora 包名  | openSUSE x86 包名  | openSUSE x86_64 包名     |
-| ------------------- | ---------------- | -------------- | ---------- | ---------------- | ---------------------- |
-| libpng12.so.0       | lib32-libpng12   | libpng12       | libpng12   | libpng12-0       | libpng12-0-32bit       |
-| libSM.so.6          | lib32-libsm      | libsm6         | libSM      | libSM6           | libSM6-32bit           |
-| libICE.so.6         | lib32-libice     | libice6        | libICE     | libICE6          | libICE6-32bit          |
-| libXi.so.6          | lib32-libxi      | libxi6         | libXi      | libXi6           | libXi6-32bit           |
-| libXrender.so.1     | lib32-libxrender | libxrender1    | libXrender | libXrender1      | libXrender1-32bit      |
-| libXrandr.so.2      | lib32-libxrandr  | libxrandr      | libXrandr  | libXrandr2       | libXrandr2-32bit       |
-| libfreetype.so.6    | lib32-freetype2  | libfreetype6   | freetype   | libfreetype6     | libfreetype6-32bit     |
-| libfontconfig.so.1  | lib32-fontconfig | libfontconfig1 | fontconfig | libfontconfig1   | libfontconfig1-32bit   |
-| libXext.so.6        | lib32-libxext    | libxext6       | libXext    | libXext6         | libXext6-32bit         |
-| libX11.so.6         | lib32-libx11     | libx11-6       | libX11     | libX11-6         | libX11-6-32bit         |
-| libz.so.1           | lib32-zlib       | zlib1g         | zlib       | libz1            | libz1-32bit            |
-| libgthread-2.0.so.0 | lib32-glib2      | libglib2.0-0   | glib2      | libgthread-2_0-0 | libgthread-2_0-0-32bit |
-| libglib-2.0.so.0    | lib32-glib2      | libglib2.0-0   | glib2      | libglib2_0-0     | libglib2_0-0-32bit     |
-| libstdc++.so.6      | lib32-gcc-libs   | libstdc++6     | libstdc++  | libstdc++6       | libstdc++6-32bit       |
-| libgcc_s.so.1       | lib32-gcc-libs   | lib32gcc1      | libgcc     | libgcc_s1        | libgcc_s1              |
-| librt.so.1          | lib32-glibc      | libc6          | glibc      | glibc            | glibc-32bit            |
-| libpthread.so.0     | lib32-glibc      | libc6          | glibc      | glibc            | glibc-32bit            |
-| libdl.so.2          | lib32-glibc      | libc6          | glibc      | glibc            | glibc-32bit            |
-| libm.so.6           | lib32-glibc      | libc6          | glibc      | glibc            | glibc-32bit            |
-| libc.so.6           | lib32-glibc      | libc6          | glibc      | glibc            | glibc-32bit            |
+| 动态库                 | Arch 包名          | Debian 包名      | Fedora 包名  | openSUSE x86 包名   | openSUSE x86\_64 包名     |
+| ------------------- | ---------------- | -------------- | ---------- | ----------------- | ----------------------- |
+| libpng12.so.0       | lib32-libpng12   | libpng12       | libpng12   | libpng12-0        | libpng12-0-32bit        |
+| libSM.so.6          | lib32-libsm      | libsm6         | libSM      | libSM6            | libSM6-32bit            |
+| libICE.so.6         | lib32-libice     | libice6        | libICE     | libICE6           | libICE6-32bit           |
+| libXi.so.6          | lib32-libxi      | libxi6         | libXi      | libXi6            | libXi6-32bit            |
+| libXrender.so.1     | lib32-libxrender | libxrender1    | libXrender | libXrender1       | libXrender1-32bit       |
+| libXrandr.so.2      | lib32-libxrandr  | libxrandr      | libXrandr  | libXrandr2        | libXrandr2-32bit        |
+| libfreetype.so.6    | lib32-freetype2  | libfreetype6   | freetype   | libfreetype6      | libfreetype6-32bit      |
+| libfontconfig.so.1  | lib32-fontconfig | libfontconfig1 | fontconfig | libfontconfig1    | libfontconfig1-32bit    |
+| libXext.so.6        | lib32-libxext    | libxext6       | libXext    | libXext6          | libXext6-32bit          |
+| libX11.so.6         | lib32-libx11     | libx11-6       | libX11     | libX11-6          | libX11-6-32bit          |
+| libz.so.1           | lib32-zlib       | zlib1g         | zlib       | libz1             | libz1-32bit             |
+| libgthread-2.0.so.0 | lib32-glib2      | libglib2.0-0   | glib2      | libgthread-2\_0-0 | libgthread-2\_0-0-32bit |
+| libglib-2.0.so.0    | lib32-glib2      | libglib2.0-0   | glib2      | libglib2\_0-0     | libglib2\_0-0-32bit     |
+| libstdc++.so.6      | lib32-gcc-libs   | libstdc++6     | libstdc++  | libstdc++6        | libstdc++6-32bit        |
+| libgcc\_s.so.1      | lib32-gcc-libs   | lib32gcc1      | libgcc     | libgcc\_s1        | libgcc\_s1              |
+| librt.so.1          | lib32-glibc      | libc6          | glibc      | glibc             | glibc-32bit             |
+| libpthread.so.0     | lib32-glibc      | libc6          | glibc      | glibc             | glibc-32bit             |
+| libdl.so.2          | lib32-glibc      | libc6          | glibc      | glibc             | glibc-32bit             |
+| libm.so.6           | lib32-glibc      | libc6          | glibc      | glibc             | glibc-32bit             |
+| libc.so.6           | lib32-glibc      | libc6          | glibc      | glibc             | glibc-32bit             |
 
 ### 在 Debian 或 Ubuntu 安装
 
@@ -59,24 +59,24 @@ sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y -rpmi
 
 ## 编辑文件
 
-点击页面上方工具栏的“新文件”按钮（或者使用<kbd>Ctrl</kbd>+<kbd>N</kbd>快捷键）来创建一个新文件。
+点击页面上方工具栏的「新文件」按钮（或者使用<kbd>Ctrl</kbd>+<kbd>N</kbd>快捷键）来创建一个新文件。
 
 在默认情况下，GUIDE 的代码字体并非等宽字体，看上去非常不美观，因此需要在设置中更改字体。
 
-在 编辑 -> 选项 -> 语法高亮设置 中，点击“全部字体”按钮，即可切换编辑器字体。
+在 编辑 -> 选项 -> 语法高亮设置 中，点击「全部字体」按钮，即可切换编辑器字体。
 
-需要注意的是，对于未保存的新文件，字体仍然是默认字体。因此建议在开始编辑前先保存文件（点击工具栏的“保存”按钮，或按下<kbd>Ctrl</kbd>+<kbd>S</kbd>快捷键），再进行编辑。
+需要注意的是，对于未保存的新文件，字体仍然是默认字体。因此建议在开始编辑前先保存文件（点击工具栏的「保存」按钮，或按下<kbd>Ctrl</kbd>+<kbd>S</kbd>快捷键），再进行编辑。
 
 ## 编译与运行
 
-在编辑完源代码后，点击工具栏的“编译”按钮（或<kbd>F7</kbd>快捷键）进行编译。
+在编辑完源代码后，点击工具栏的「编译」按钮（或<kbd>F7</kbd>快捷键）进行编译。
 
-???+note "更改编译选项"
+???+ note "更改编译选项"
     GUIDE 没有设置默认编译选项的功能，用户只能更改对某个文件的编译选项。
     
     右键点击想要更改编译选项的文件的标签，选择 **设置编译命令** 选项，即可更改该文件的编译选项。
 
-如果源代码正常编译，点击工具栏的“运行”按钮（或<kbd>Ctrl</kbd>+<kbd>F5</kbd>快捷键）即可运行程序。
+如果源代码正常编译，点击工具栏的「运行」按钮（或<kbd>Ctrl</kbd>+<kbd>F5</kbd>快捷键）即可运行程序。
 
 ## 调试
 
