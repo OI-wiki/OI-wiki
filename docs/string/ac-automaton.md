@@ -233,7 +233,7 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 如果大家理解了上面的讲解，那么作为拓展延伸，文末我们简单介绍一下 [自动机](./automaton.md) 与 [KMP 自动机](./kmp.md)。（现在你再去看自动机的定义就会好懂很多啦）
 
-有限状态自动机（**D** eterministic **F** inite **A** utomaton，DFA）是由
+有限状态自动机（Deterministic Finite Automaton，DFA）是由
 
 1.  状态集合 $Q$；
 2.  字符集 $\Sigma$；
@@ -253,7 +253,7 @@ $$
 \text{trans}_{i,c} =
 \begin{cases}
 i + 1,  & \text{if }b_{i} = c \\[2ex]
-\text{trans}_{next_{i},c}, & \text{else}
+\text{trans}_{\text{next}_{i},c}, & \text{otherwise}
 \end{cases}
 $$
 
