@@ -411,8 +411,20 @@ $$
 =\begin{bmatrix}a_n\\a_{n-1}\\a_{n-2}\\\vdots\\a_{n-m+2}\\a_{n-m+1}\end{bmatrix}
 $$
 
-设 $ B(\lambda)=\begin{bmatrix}P_1(\lambda)&P_2(\lambda)&P_3(\lambda)&\cdots&P_{m-1}(\lambda)&P_m(\lambda)\\-P_0(\lambda)\\&-P_0(\lambda)\\&&-P_0(\lambda)\\&&&\ddots\\&&&&-P_0(\lambda)\\\end{bmatrix}
- $，我们先撇开前面的 $-\frac1{P_0(n)}$ 因子不论，我们现在要维护 $\prod_{i=0}^{T-1}B(aT+m+i)$ 这种形式的量，其中乘法自右往左。
+设
+
+$$
+B(\lambda)=\begin{bmatrix}
+    P_1(\lambda)&P_2(\lambda)&P_3(\lambda)&\cdots&P_{m-1}(\lambda)&P_m(\lambda)\\
+    -P_0(\lambda)\\
+    &-P_0(\lambda)\\
+    &&-P_0(\lambda)\\
+    &&&\ddots\\
+    &&&&-P_0(\lambda)\\
+\end{bmatrix}
+$$
+
+我们先撇开前面的 $-\frac1{P_0(n)}$ 因子不论，我们现在要维护 $\prod_{i=0}^{T-1}B(aT+m+i)$ 这种形式的量，其中乘法自右往左。
 
 容易发现 $B_T(\lambda)=\prod_{i=0}^{T-1}B(\lambda+i)$ 是一个各项次数不高于 $dT$ 的 $\lambda$ 矩阵，只用 $dT+1$ 个值即可维护。
 
