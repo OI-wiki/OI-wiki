@@ -288,7 +288,7 @@ void build_virtual_tree() {
 
 ## 推荐习题
 
--   [「SDOI2011」消耗战](https://darkbzoj.tk/problem/2286)
--   [「HEOI2014」大工程](https://darkbzoj.tk/problem/3611)
+-   [「SDOI2011」消耗战](https://www.luogu.com.cn/problem/P2495)
+-   [「HEOI2014」大工程](https://www.luogu.com.cn/problem/P4103)
 -   [CF613D Kingdom and its Cities](http://codeforces.com/contest/613/problem/D/)
--   [「HNOI2014」世界树](https://darkbzoj.tk/problem/3572)
+-   [「HNOI2014」世界树](https://www.luogu.com.cn/problem/P3233)
