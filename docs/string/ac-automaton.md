@@ -228,7 +228,7 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
     ```
 
 ???+ note "模版 3"
-    [Luogu P5357 【模板】AC 自动机（二次加强版）](https://www.luogu.com.cn/problem/P5357)
+    [Luogu P5357【模板】AC 自动机（二次加强版）](https://www.luogu.com.cn/problem/P5357)
     
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_3.cpp"
