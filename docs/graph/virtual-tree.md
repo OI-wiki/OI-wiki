@@ -117,9 +117,10 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 为什么连接 $lca$ 和 $y$ 可以做到不重不漏呢？
 
 ??? note "证明"
+    
 
     如果 $x$ 是 $y$ 的祖先，那么 $x$ 直接到 $y$ 连边。因为 dfn 序保证了 $x$ 和 $y$ 的 dfn 序是相邻的，所以 $x$ 到 $y$ 的路径上面没有关键点。
-  
+
     如果 $x$ 不是 $y$ 的祖先，那么就把 $lca(x,y)$ 当作 $y$ 的的祖先，根据上一种情况也可以证明 $lca(x,y)$ 到 $y$ 点的路径上不会有关键点。
 
     所以连接 $lca$ 和 $y$，不会遗漏，也不会重复。
