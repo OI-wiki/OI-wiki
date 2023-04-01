@@ -38,13 +38,16 @@ $$
 #### 证明
 
 由行列式定义可得
+
 $$
 \begin{align}
 \det(M)&=\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n e(a_i,b_{\sigma(i)})\\
 &=\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n \sum_{P:a_i\to b_{\sigma(i)}} \omega(P)
 \end{align}
 $$
+
 观察到 $\prod\limits_{i=1}^n \sum\limits_{P:a_i\to b_{\sigma(i)}} \omega(P)$，实际上是所有从 $A$ 到 $B$ 排列为 $\sigma$ 的路径组 $P$ 的 $\omega(P)$ 之和。
+
 $$
 \begin{align}
 &\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n \sum_{P:a_i\to b_{\sigma(i)}} \omega(P)\\
@@ -52,15 +55,18 @@ $$
 =&\sum_{P:A\to B}(-1)^{t(\sigma)}\prod_{i=1}^n \omega(P_i)
 \end{align}
 $$
+
 此处 $P$ 为任意路径组。
 
 设 $U$ 为不相交路径组，$V$ 为相交路径组，
+
 $$
 \begin{align}
 &\sum_{P:A\to B}(-1)^{t(\sigma)}\prod_{i=1}^n \omega(P_i)\\
 =&\sum_{U:A\to B}(-1)^{t(U)}\prod_{i=1}^n \omega(U_i)+\sum_{V:A\to B}(-1)^{t(V)}\prod_{i=1}^n \omega(V_i)
 \end{align}
 $$
+
 设 $P$ 中存在一个相交路径组 $P_i:a_1 \to u \to b_1,P_j:a_2 \to u \to b_2$，则必然存在和它相对的一个相交路径组 $P_i'=a_1\to u\to b_2,P_j'=a_2\to u\to b_1$，$P'$ 的其他路径与 $P$ 相同。可得 $\omega(P)=\omega(P'),t(P)=t(P')\pm 1$。
 
 因此我们有 $\sum\limits_{V:A\to B}(-1)^{t(\sigma)}\prod\limits_{i=1}^n \omega(V_i)=0$。
@@ -108,4 +114,4 @@ $$
 
 ### 参考资料
 
-[^1]: 引理证明：[【学习笔记】LGV引理 - 知乎 (zhihu.com)](
+[^1]: 引理证明：\[【学习笔记】LGV 引理 - 知乎 (zhihu.com)]\(
