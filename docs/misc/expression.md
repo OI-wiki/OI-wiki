@@ -274,7 +274,7 @@ while (!op.empty() &&
 
 ## 延申阅读
 
-1.  [Operator-precedence_parser](https://en.wikipedia.org/wiki/Operator-precedence_parser)
+1.  [Operator-precedence\_parser](https://en.wikipedia.org/wiki/Operator-precedence_parser)
 2.  [Shunting yard algorithm](https://en.wikipedia.org/wiki/Shunting_yard_algorithm)
 
 ## 习题
