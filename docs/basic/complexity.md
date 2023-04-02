@@ -155,7 +155,7 @@ $$
 那么
 
 $$
-T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}) \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon})\\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
+T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}),\epsilon > 0 \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon}),\epsilon\ge 0\\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
 $$
 
 需要注意的是，这里的第二种情况还需要满足 regularity condition, 即 $a f(n/b) \leq c f(n)$，for some constant $c < 1$ and sufficiently large $n$。
@@ -181,7 +181,7 @@ $$
 
 下面举几个例子来说明主定理如何使用。
 
-例如 $T(n) = 3 T\left(\frac{n}{2}\right) + 2n$，那么 $a=3, b=2, 1< {\log_2 3} <2$，那么 $\epsilon$ 可以取值为 $1$，从而满足第一种情况，所以 $T(n) = \Theta(n^2)$。
+例如 $T(n) = T\left(\frac{n}{2}\right) + 1$，那么 $a=1, b=2, {\log_2 1} = 0$，那么 $\epsilon$ 可以取值为 $0$，从而满足第一种情况，所以 $T(n) = \Theta(\log n)$。
 
 又例如 $T(n) = T\left(\frac{n}{2}\right) + n$，那么 $a=1, b=2, {\log_2 1} = 0$，那么 $\epsilon$ 可以取值为 $0.5$，从而满足第二种情况，所以 $T(n) = \Theta(n)$。
 
