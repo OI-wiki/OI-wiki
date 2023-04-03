@@ -251,9 +251,18 @@ while (r - l > eps) {
     本题要求求 $N$ 次函数在 $[l, r]$ 取最大值时自变量的值，显然可以使用三分法。
 
 ??? note "参考代码"
-    ```cpp
-    --8<-- "docs/basic/code/binary/binary_1.cpp"
-    ```
+    
+    === "C++"
+    
+        ```cpp
+        --8<-- "docs/basic/code/binary/binary_1.cpp"
+        ```
+    
+    === "Python"
+    
+        ```python
+        --8<-- "docs/basic/code/binary/binary_1.py"
+        ```
 
 ### 习题
 
