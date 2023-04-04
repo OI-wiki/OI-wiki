@@ -28,7 +28,6 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     递推：`B[0] = A[0]`，对于 $i \ge 1$ 则 `B[i] = B[i-1] + A[i]`。
 
 ??? note "参考代码"
-    
     === "C++"
     
         ```cpp
@@ -77,7 +76,6 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     在一个 $n\times m$ 的只包含 $0$ 和 $1$ 的矩阵里找出一个不包含 $0$ 的最大正方形，输出边长。
 
 ??? note "参考代码"
-    
     === "C++"
     
         ```cpp
