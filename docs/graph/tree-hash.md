@@ -43,12 +43,12 @@ $$
 
 ??? "做法一"
     ```cpp
-    --8<-- "docs/graph/code/tree-hash/tree-hash_1.cpp"
+    --8<-- "docs/graph/code/tree-hash/tree-hash_2.cpp"
     ```
 
 ??? "做法二"
     ```cpp
-    --8<-- "docs/graph/code/tree-hash/tree-hash_2.cpp"
+    --8<-- "docs/graph/code/tree-hash/tree-hash_1.cpp"
     ```
 
 ### [HDU 6647 Bracket Sequences on Tree](https://vjudge.net/problem/HDU-6647)
