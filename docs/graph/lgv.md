@@ -114,4 +114,4 @@ $$
 
 ### 参考资料
 
-[^1]: 证明来源于 [知乎-LGV引理证明](https://zhuanlan.zhihu.com/p/517819133)
+[^1]: 证明来源于 [知乎 - LGV 引理证明](https://zhuanlan.zhihu.com/p/517819133)
