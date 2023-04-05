@@ -13,12 +13,12 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
 以此图为例，若直接取反（匹配边和未匹配边对调），会使得取反后的 $M$ 不合法，某些点会出现在两条匹配上，而问题就出在奇环。
 
 下面考虑一般图的增广算法。
-从二分图的角度出发，每次枚举一个未匹配点，设出发点为根，标记为 **"o"**，接下来交错标记 **"o"** 和 **"i"**，不难发现 **"i"** 到 **"o"** 这段边是匹配边。
+从二分图的角度出发，每次枚举一个未匹配点，设出发点为根，标记为 **「o」**，接下来交错标记 **「o」** 和 **「i」**，不难发现 **「i」** 到 **「o」** 这段边是匹配边。
 
 假设当前点是 $v$，相邻点为 $u$，可以分为以下两种情况：
 
 1.  $u$ 未拜访过，当 $u$ 是未匹配点，则找到增广路径，否则从 $u$ 的配偶找增广路。
-2.  $u$ 已拜访过，遇到标记 "o" 代表需要 **缩花**，否则代表遇到偶环，跳过。
+2.  $u$ 已拜访过，遇到标记「o」代表需要 **缩花**，否则代表遇到偶环，跳过。
 
 遇到偶环的情况，将他视为二分图解决，故可忽略。**缩花** 后，再新图中继续找增广路。
 
@@ -98,7 +98,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
       std::mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
       vector<int> match(g.n, -1);   // 匹配
       vector<int> aux(g.n, -1);     // 时间戳记
-      vector<int> label(g.n);       // "o" or "i"
+      vector<int> label(g.n);       // 「o」或「i」
       vector<int> orig(g.n);        // 花根
       vector<int> parent(g.n, -1);  // 父节点
       queue<int> q;
@@ -126,7 +126,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
         while (orig[v] != a) {
           parent[v] = u;
           u = match[v];
-          if (label[u] == 1) {  // 初始点设为"o" 找增广路
+          if (label[u] == 1) {  // 初始点设为「o」找增广路
             label[u] = 0;
             q.push(u);
           }
@@ -152,7 +152,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
           q.pop();
         }
         q.push(root);
-        // 初始点设为 "o", 这里以"0"代替"o", "1"代替"i"
+        // 初始点设为「o」，这里以「0」代替「o」，「1」代替「i」
         label[root] = 0;
         while (!q.empty()) {
           int v = q.front();
@@ -161,7 +161,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
             auto &e = g.edges[id];
             int u = e.from ^ e.to ^ v;
             if (label[u] == -1) {  // 找到未拜访点
-              label[u] = 1;        // 标记 "i"
+              label[u] = 1;        // 标记「i」
               parent[u] = v;
               if (match[u] == -1) {  // 找到未匹配点
                 augment(u);          // 寻找增广路径
@@ -172,7 +172,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
               q.push(match[u]);
               continue;
             } else if (label[u] == 0 && orig[v] != orig[u]) {
-              // 找到已拜访点 且标记同为"o" 代表找到"花"
+              // 找到已拜访点 且标记同为「o」代表找到「花」
               int a = lca(orig[v], orig[u]);
               // 找LCA 然后缩花
               blossom(u, v, a);
@@ -225,13 +225,13 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
 ## 基于高斯消元的一般图匹配算法
 
 ???+ tip "提示"
-    在阅读以下内容前，你可能需要先阅读“线性代数”部分中关于矩阵的内容：
+    在阅读以下内容前，你可能需要先阅读「线性代数」部分中关于矩阵的内容：
     
     -   [矩阵](../../math/linear-algebra/matrix.md)
     -   [行列式](../../math/linear-algebra/determinant.md)
     -   [高斯消元](../../math/linear-algebra/gauss.md)
 
-这一部分将介绍一种基于高斯消元的一般图匹配算法。与传统的带花树算法相比，它的优势在于更易于理解与编写，同时便于解决“最大匹配中的必须点”等问题；缺点在于常数比较大，因为高斯消元的 $O(n^3)$ 基本是跑满的，而带花树一般跑不满。
+这一部分将介绍一种基于高斯消元的一般图匹配算法。与传统的带花树算法相比，它的优势在于更易于理解与编写，同时便于解决「最大匹配中的必须点」等问题；缺点在于常数比较大，因为高斯消元的 $O(n^3)$ 基本是跑满的，而带花树一般跑不满。
 
 ### 前置知识：Tutte 矩阵
 
@@ -248,7 +248,7 @@ $$
 **定理**（Tutte 定理）：$G$ 存在完美匹配当且仅当 $\det \tilde{A} \ne 0$。
 
 ??? note "证明"
-    这里引入“偶环覆盖”的概念：一个无向图 $G$ 的偶环覆盖指用若干偶环（包括二元环）不重不漏地覆盖所有的点。
+    这里引入「偶环覆盖」的概念：一个无向图 $G$ 的偶环覆盖指用若干偶环（包括二元环）不重不漏地覆盖所有的点。
     
     易证 $G$ 存在完美匹配当且仅当 $G$ 存在偶环覆盖。
     
@@ -282,7 +282,7 @@ $$
 
 ## 构造完美匹配
 
-由 Tutte 定理和上面的定理可知，如果 $G$ 存在完美匹配，那么 $\tilde{A}$ 有很大概率满秩。方便起见，以下叙述中均省略“有很大概率”。
+由 Tutte 定理和上面的定理可知，如果 $G$ 存在完美匹配，那么 $\tilde{A}$ 有很大概率满秩。方便起见，以下叙述中均省略「有很大概率」。
 
 记 $G$ 中标号为 $i$ 的点为 $v_i$，进一步地我们有如下定理：
 

@@ -6,9 +6,9 @@ author: StudyingFather, ayalhw, qinyihao, CoderOJ, mcendu
 
 ## 基础
 
-Windows 自带的命令行界面有两个。“命令提示符”（`cmd`）是其中较为古老的一个，功能也相对简单。PowerShell 是较新的一个命令行界面，自带的功能丰富，但相对臃肿。两个界面都可以在开始菜单中找到。
+Windows 自带的命令行界面有两个。「命令提示符」（`cmd`）是其中较为古老的一个，功能也相对简单。PowerShell 是较新的一个命令行界面，自带的功能丰富，但相对臃肿。两个界面都可以在开始菜单中找到。
 
-类 Unix 系统（包含 macOS 和 Linux，以下称为 Unix）分为有图形界面和无图形界面两种情况。如果系统有图形界面（如使用 macOS 或者在 Linux 下安装了 GNOME、KDE 等图形界面），则命令行一般可以通过名为“终端”（Terminal 或 Console）的程序打开。没有图形界面的系统会在启动完成后自动进入命令行。
+类 Unix 系统（包含 macOS 和 Linux，以下称为 Unix）分为有图形界面和无图形界面两种情况。如果系统有图形界面（如使用 macOS 或者在 Linux 下安装了 GNOME、KDE 等图形界面），则命令行一般可以通过名为「终端」（Terminal 或 Console）的程序打开。没有图形界面的系统会在启动完成后自动进入命令行。
 
 Windows 下的命令行长这样：
 
@@ -262,9 +262,9 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 
 ### 帮助文档
 
-一般来说，命令行下的程序都附有“帮助”，Windows 下一般使用 `command /?` 或者 `command -?` 获取，Unix-like（例如 Linux) 上一般使用 `command --help` 或者 `command -h` 获取（但是 BSD 下的“帮助”往往过分简略而难以使用）。
+一般来说，命令行下的程序都附有「帮助」，Windows 下一般使用 `command /?` 或者 `command -?` 获取，Unix-like（例如 Linux) 上一般使用 `command --help` 或者 `command -h` 获取（但是 BSD 下的「帮助」往往过分简略而难以使用）。
 
-此外，在 Unix-like 系统上，还有可通过 `man command` 获取的“手册”(manual)，相比“帮助”一般更为详细。
+此外，在 Unix-like 系统上，还有可通过 `man command` 获取的「手册」(manual)，相比「帮助」一般更为详细。
 
 ### built-in time 和 GNU time
 
