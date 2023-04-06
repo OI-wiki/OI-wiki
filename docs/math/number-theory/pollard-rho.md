@@ -13,8 +13,8 @@
 === "C++"
 
     ```cpp
-    list<int> breakdown(int N) {
-      list<int> result;
+    vector<int> breakdown(int N) {
+      vector<int> result;
       for (int i = 2; i * i <= N; i++) {
         if (N % i == 0) {  // 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
           while (N % i == 0) N /= i;
