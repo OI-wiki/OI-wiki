@@ -149,7 +149,7 @@ POI 是不少省选选手最常刷的外国 OI 比赛。
 -   第三轮：赛制同上。
 -   ONTAK：POI 训练营（类似国内的集训队）。
 
-另有 PA，大意为“算法大战”。
+另有 PA，大意为「算法大战」。
 
 目前在国内 OJ 中，POI 题目最全的是 BZOJ。
 
@@ -224,7 +224,7 @@ CCC Junior/Senior 贴近 NOIP 普及组/提高组难度。CCO 想要拿到金牌
 
 ### 台湾地区：資訊奧林匹亞競賽
 
-台湾地区把 OI 中的 informatics 翻译成「資訊」而非大陆通用的翻译“信息”。
+台湾地区把 OI 中的 informatics 翻译成「資訊」而非大陆通用的翻译「信息」。
 
 台湾地区的选手如果想参加 IOI，需要经过这几轮比赛：
 
@@ -277,7 +277,7 @@ eJOI 每年都公开题面、测试数据和题解，官网地址见 [帖子](ht
 
 ### ISIJ
 
-**ISIJ** 全名 International School in Informatics "Junior"，中文名“国际初中生信息学竞赛”。
+**ISIJ** 全名 International School in Informatics "Junior"，中文名「国际初中生信息学竞赛」。
 
 官网地址：<http://isi-junior.com/>
 
@@ -286,7 +286,7 @@ eJOI 每年都公开题面、测试数据和题解，官网地址见 [帖子](ht
 ### NOI
 
 ???+ warning
-    此处介绍的不是“全国信息学奥林匹克竞赛”。
+    此处介绍的不是「全国信息学奥林匹克竞赛」。
 
 **NOI** 全名 Nordic Olympiads in Informatics。
 

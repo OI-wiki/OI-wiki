@@ -269,6 +269,7 @@ $$
 
 ## 习题
 
+-   [【模板】中国剩余定理（CRT）/曹冲养猪](https://www.luogu.com.cn/problem/P1495)
 -   [【模板】扩展中国剩余定理](https://www.luogu.com.cn/problem/P4777)
 -   [「NOI2018」屠龙勇士](https://uoj.ac/problem/396)
 -   [「TJOI2009」猜数字](https://www.luogu.com.cn/problem/P3868)
