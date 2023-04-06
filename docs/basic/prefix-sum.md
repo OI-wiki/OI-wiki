@@ -103,7 +103,7 @@ $$
 \textbf{for } state \\
 \qquad sum[state] \gets f[state] \\
 \textbf{for } i \gets 0 \textbf{ to } D \\
-\qquad \textbf{for } state \textbf{ in } \text{lexicographical order} \\
+\qquad \textbf{for } state' \textbf{ in } \text{lexicographical order} \\
 \qquad \qquad sum[state] \gets sum[state] + sum[state']
 \end{array}
 $$
