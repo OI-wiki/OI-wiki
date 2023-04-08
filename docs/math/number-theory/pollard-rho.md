@@ -174,7 +174,7 @@ $$
         ```python
         import random
         def Pollard_Rho(N):
-            c = random.randint(0, 32767) % (N - 1) + 1
+            c = random.randint(1, N - 1)
             t = f(0, c, N)
             r = f(f(0, c, N), c, N)
             while t != r:
