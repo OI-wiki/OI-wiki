@@ -88,7 +88,7 @@ $(-12 + 2y + 6z)/3 \leq (9 + 6y - 3z)/3$
 
 ## 参考资料与拓展阅读
 
--   \[1]Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006) pp 197-217.
--   \[2][Fourier–Motzkin elimination - Wikipedia](https://en.wikipedia.org/wiki/Fourier%E2%80%93Motzkin_elimination)
--   \[3][Fourier-Motzkin elimination and its dual](https://www.sciencedirect.com/science/article/pii/0097316573900046)
--   \[4]GE Liepins,[Fourier-Motzkin elimination for mixed systems](https://www.osti.gov/servlets/purl/5860090), 1983
+1.  Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006) pp 197-217.
+2.  [Fourier–Motzkin elimination - Wikipedia](https://en.wikipedia.org/wiki/Fourier%E2%80%93Motzkin_elimination)
+3.  [Fourier-Motzkin elimination and its dual](https://www.sciencedirect.com/science/article/pii/0097316573900046)
+4.  GE Liepins,[Fourier-Motzkin elimination for mixed systems](https://www.osti.gov/servlets/purl/5860090), 1983

@@ -257,9 +257,9 @@ $$
 
 将它们转化为不定方程：$x=m_1p+a_1=m_2q+a_2$，其中 $p, q$ 是整数，则有 $m_1p-m_2q=a_2-a_1$。
 
-由裴蜀定理，当 $a_2-a_1$ 不能被 $\gcd(m_1,m_2)$ 整除时，无解；
+由 [裴蜀定理](./bezouts.md)，当 $a_2-a_1$ 不能被 $\gcd(m_1,m_2)$ 整除时，无解；
 
-其他情况下，可以通过扩展欧几里得算法解出来一组可行解 $(p, q)$；
+其他情况下，可以通过 [扩展欧几里得算法](./gcd.md) 解出来一组可行解 $(p, q)$；
 
 则原来的两方程组成的模方程组的解为 $x\equiv b\pmod M$，其中 $b=m_1p+a_1$，$M=\text{lcm}(m_1, m_2)$。
 
@@ -269,6 +269,7 @@ $$
 
 ## 习题
 
+-   [【模板】中国剩余定理（CRT）/曹冲养猪](https://www.luogu.com.cn/problem/P1495)
 -   [【模板】扩展中国剩余定理](https://www.luogu.com.cn/problem/P4777)
 -   [「NOI2018」屠龙勇士](https://uoj.ac/problem/396)
 -   [「TJOI2009」猜数字](https://www.luogu.com.cn/problem/P3868)

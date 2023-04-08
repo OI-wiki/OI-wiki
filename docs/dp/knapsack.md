@@ -280,18 +280,20 @@ for (循环物品种类) {
 
     ```cpp
     for (int k = 1; k <= ts; k++)           // 循环每一组
-      for (int i = m; i >= w[t[k][j]]; i--) // 循环背包容量
+      for (int i = m; i >= 0; i--) // 循环背包容量
         for (int j = 1; j <= cnt[k]; j++)   // 循环该组的每一个物品
-          dp[i] = max(dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
+          if (i >= w[t[k][j]])  // 背包容量充足
+            dp[i] = max(dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
     ```
 
 === "Python"
 
     ```python
     for k in range(1, ts + 1): # 循环每一组
-        for i in range(m, w[t[k][j]] - 1, -1): # 循环背包容量
+        for i in range(m, -1, -1): # 循环背包容量
             for j in range(1, cnt[k] + 1):     # 循环该组的每一个物品
-                dp[i] = max(dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]) # 像0-1背包一样状态转移
+                if i >= w[t[k][j]]: #背包容量充足
+                    dp[i] = max(dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]) # 像0-1背包一样状态转移
     ```
 
 这里要注意：**一定不能搞错循环顺序**，这样才能保证正确性。

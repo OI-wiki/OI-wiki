@@ -157,7 +157,7 @@ vector 提供了如下几种 [迭代器](./iterator.md)
 
 ### `vector<bool>`
 
-标准库特别提供了对 `bool` 的 `vector` 特化，每个“`bool`”只占 1 bit，且支持动态增长。但是其 `operator[]` 的返回值的类型不是 `bool&` 而是 `vector<bool>::reference`。因此，使用 `vector<bool>` 使需谨慎，可以考虑使用 `deque<bool>` 或 `vector<char>` 替代。而如果你需要节省空间，请直接使用 [`bitset`](./bitset.md)。
+标准库特别提供了对 `bool` 的 `vector` 特化，每个「`bool`」只占 1 bit，且支持动态增长。但是其 `operator[]` 的返回值的类型不是 `bool&` 而是 `vector<bool>::reference`。因此，使用 `vector<bool>` 使需谨慎，可以考虑使用 `deque<bool>` 或 `vector<char>` 替代。而如果你需要节省空间，请直接使用 [`bitset`](./bitset.md)。
 
 ## `array`(C++11)
 

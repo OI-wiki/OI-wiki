@@ -189,6 +189,126 @@ $$
 
 与定理 1 中不同的是，关联矩阵 $B$ 限制了只有边的起点能选择这条边，剩下的讨论均与定理 1 相同。
 
+## 实现
+
+一个无向图的生成树个数为邻接矩阵度数矩阵去一行一列的行列式，可以使用 Gauss-Jordan 消元法。
+
+例如，一个正方形图的生成树个数
+
+$$
+\begin{pmatrix}
+2 & 0 & 0 & 0 \\
+0 & 2 & 0 & 0 \\
+0 & 0 & 2 & 0 \\
+0 & 0 & 0 & 2 \end{pmatrix}-\begin{pmatrix}
+0 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 \\
+0 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 \end{pmatrix}=\begin{pmatrix}
+2 & -1 & 0 & -1 \\
+-1 & 2 & -1 & 0 \\
+0 & -1 & 2 & -1 \\
+-1 & 0 & -1 & 2 \end{pmatrix}
+$$
+
+$$
+\begin{vmatrix}
+2 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 2 \end{vmatrix} = 4
+$$
+
+可以用高斯消元解决，时间复杂度为 $O(n^3)$。
+
+??? note "实现"
+    ```cpp
+    #include <algorithm>
+    #include <cassert>
+    #include <cmath>
+    #include <cstdio>
+    #include <cstring>
+    #include <iostream>
+    using namespace std;
+    #define MOD 100000007
+    #define eps 1e-7
+    
+    struct matrix {
+      static const int maxn = 20;
+      int n, m;
+      double mat[maxn][maxn];
+    
+      matrix() { memset(mat, 0, sizeof(mat)); }
+    
+      void print() {
+        cout << "MATRIX " << n << " " << m << endl;
+        for (int i = 0; i < n; i++) {
+          for (int j = 0; j < m; j++) {
+            cout << mat[i][j] << "\t";
+          }
+          cout << endl;
+        }
+      }
+    
+      void random(int n) {
+        this->n = n;
+        this->m = n;
+        for (int i = 0; i < n; i++)
+          for (int j = 0; j < n; j++) mat[i][j] = rand() % 100;
+      }
+    
+      void initSquare() {
+        this->n = 4;
+        this->m = 4;
+        memset(mat, 0, sizeof(mat));
+        mat[0][1] = mat[0][3] = 1;
+        mat[1][0] = mat[1][2] = 1;
+        mat[2][1] = mat[2][3] = 1;
+        mat[3][0] = mat[3][2] = 1;
+        mat[0][0] = mat[1][1] = mat[2][2] = mat[3][3] = -2;
+        this->n--;  // 去一行
+        this->m--;  // 去一列
+      }
+    
+      double gauss() {
+        double ans = 1;
+        for (int i = 0; i < n; i++) {
+          int sid = -1;
+          for (int j = i; j < n; j++)
+            if (abs(mat[j][i]) > eps) {
+              sid = j;
+              break;
+            }
+          if (sid == -1) continue;
+          if (sid != i) {
+            for (int j = 0; j < n; j++) {
+              swap(mat[sid][j], mat[i][j]);
+              ans = -ans;
+            }
+          }
+          for (int j = i + 1; j < n; j++) {
+            double ratio = mat[j][i] / mat[i][i];
+            for (int k = 0; k < n; k++) {
+              mat[j][k] -= mat[i][k] * ratio;
+            }
+          }
+        }
+        for (int i = 0; i < n; i++) ans *= mat[i][i];
+        return abs(ans);
+      }
+    };
+    
+    int main() {
+      srand(1);
+      matrix T;
+      // T.random(2);
+      T.initSquare();
+      T.print();
+      double ans = T.gauss();
+      T.print();
+      cout << ans << endl;
+    }
+    ```
+
 ## 例题
 
 ???+ note " 例题 1：[「HEOI2015」小 Z 的房间](https://loj.ac/problem/2122)"
@@ -276,7 +396,7 @@ $$
     改写成 $(\det M_n+2) = 3(\det M_{n-1}+2) - (\det M_{n-2} + 2)$ 后，采用矩阵快速幂即可求出答案。
 
 ???+ note "例题 3：「BZOJ3659」WHICH DREAMED IT"
-    **解** 本题是 BEST 定理的直接应用，但是要注意，由于题目规定“两种完成任务的方式算作不同当且仅当使用钥匙的顺序不同”，对每个欧拉回路，1 号房间可以沿着任意一条出边出发，从而答案还要乘以 1 号房间的出度。
+    **解** 本题是 BEST 定理的直接应用，但是要注意，由于题目规定「两种完成任务的方式算作不同当且仅当使用钥匙的顺序不同」，对每个欧拉回路，1 号房间可以沿着任意一条出边出发，从而答案还要乘以 1 号房间的出度。
 
 ???+ note " 例题 4：[「联合省选 2020 A」作业题](https://loj.ac/p/3304)"
     **解** 首先需要用莫比乌斯反演转化成计算所有生成树的边权和，因为与本文关系不大所以略去。
