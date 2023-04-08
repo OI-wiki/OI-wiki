@@ -149,7 +149,7 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
 Master Theorem 递推关系式如下
 
 $$
-T(n) = a T\left(\frac{n}{b}\right)＋f(n)\qquad \forall n > b
+T(n) = a T\left(\frac{n}{b}\right)+f(n)\qquad \forall n > b
 $$
 
 那么
