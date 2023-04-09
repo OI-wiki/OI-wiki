@@ -386,7 +386,7 @@ int query(int p, int s, int t, int l, int r) {
 
 线段树合并的过程本质上相当暴力：
 
-假设两颗线段树为 A 和 B，我们从1号节点开始递归合并。
+假设两颗线段树为 A 和 B，我们从 1 号节点开始递归合并。
 
 递归到某个节点时，如果 A 树或者 B 树上的对应节点为空，直接返回另一个树上对应节点，这里运用了动态开点线段树的特性。
 
@@ -397,23 +397,23 @@ int query(int p, int s, int t, int l, int r) {
 代码大概如下：
 
 ```cpp
-int merge(int a,int b,int l,int r){
-    if(!a) return b;
-    if(!b) return a;
-    if(l==r){
-        //do something...
-        return a;
-    }
-    int mid=(l+r)>>1;
-    tr[a].l=merge(tr[a].l,tr[b].l,l,mid);
-    tr[a].r=merge(tr[a].r,tr[b].r,mid+1,r);
-    pushup(a);
+int merge(int a, int b, int l, int r) {
+  if (!a) return b;
+  if (!b) return a;
+  if (l == r) {
+    // do something...
     return a;
+  }
+  int mid = (l + r) >> 1;
+  tr[a].l = merge(tr[a].l, tr[b].l, l, mid);
+  tr[a].r = merge(tr[a].r, tr[b].r, mid + 1, r);
+  pushup(a);
+  return a;
 }
 ```
 
 ???+ note "线段树合并的复杂度"
-    显然，对于两颗满的线段树，合并操作的复杂度是 $O(n\logn)$ 的。但实际情况下使用的常常是权值线段树，总点数和 $n$ 的规模相差并不大。并且合并时一般不会重复地合并某个线段树，所以我们最终增加的点数大致是 $n\logn$级别的。这样，总的复杂度就是 $O(n\logn)$ 级别的。当然，在一些情况下，可并堆可能是更好的选择。
+    显然，对于两颗满的线段树，合并操作的复杂度是 $O(n\logn)$ 的。但实际情况下使用的常常是权值线段树，总点数和 $n$ 的规模相差并不大。并且合并时一般不会重复地合并某个线段树，所以我们最终增加的点数大致是 $n\logn$ 级别的。这样，总的复杂度就是 $O(n\logn)$ 级别的。当然，在一些情况下，可并堆可能是更好的选择。
 
 ## 一些优化
 
@@ -474,13 +474,12 @@ int merge(int a,int b,int l,int r){
     ??? "解题思路"
         维护一下每个区间的永久标记就可以了，最后在线段树上跑一边 DFS 统计结果即可。注意打标记的时候加个剪枝优化，否则会 TLE。
 
-???+ note "[luogu P4556 [Vani有约会]雨天的尾巴 /【模板】线段树合并](https://www.luogu.com.cn/problem/P4556)"
+???+ note "[luogu P4556 \[Vani 有约会\] 雨天的尾巴/【模板】线段树合并](https://www.luogu.com.cn/problem/P4556)"
     ??? "解题思路"
         线段树合并模板题，用差分把树上修改转化为单点修改，然后向上 dfs 线段树合并统计答案即可。
-    ??? "参考代码"
-        ```cpp
-        --8<-- "docs/ds/code/seg/seg_6.cpp"
-        ```
+    
+    ?? "参考代码"`cpp     --8<-- "docs/ds/code/seg/seg_6.cpp"
+        `
 
 ## 拓展 - 猫树
 
