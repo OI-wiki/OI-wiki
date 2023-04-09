@@ -193,37 +193,39 @@ $$
 
 注意到在环上更容易分解出因数，我们可以先迭代一定的次数。
 
-??? note "实现"  
-    === "C++"  
-      
-      
-        ```c++
-        ll Pollard_Rho(ll x) {
-        ll t = 0;
-        ll c = rand() % (x - 1) + 1;
-        // 加速算法，这一步可以省略
-        for (int i = 1; i < 1145; ++i) t = f(t, c, x);
-        ll s = t;
-        int step = 0, goal = 1;
-        ll val = 1;
-        for (goal = 1;; goal <<= 1, s = t, val = 1) {
-            for (step = 1; step <= goal; ++step) {
-            t = f(t, c, x);
-            val = val * abs(t - s) % x;
-            // 如果 val 为 0，退出重新分解
-            if (!val) return x;
-            if ((step % 127) == 0) {
-                ll d = gcd(val, x);
-                if (d > 1) return d;
-            }
-            }
+??? note "实现"
+    === "C++"
+    
+    ````
+    ```c++
+    ll Pollard_Rho(ll x) {
+    ll t = 0;
+    ll c = rand() % (x - 1) + 1;
+    // 加速算法，这一步可以省略
+    for (int i = 1; i < 1145; ++i) t = f(t, c, x);
+    ll s = t;
+    int step = 0, goal = 1;
+    ll val = 1;
+    for (goal = 1;; goal <<= 1, s = t, val = 1) {
+        for (step = 1; step <= goal; ++step) {
+        t = f(t, c, x);
+        val = val * abs(t - s) % x;
+        // 如果 val 为 0，退出重新分解
+        if (!val) return x;
+        if ((step % 127) == 0) {
             ll d = gcd(val, x);
             if (d > 1) return d;
         }
         }
-        ```  
-          
-            
+        ll d = gcd(val, x);
+        if (d > 1) return d;
+    }
+    }
+    ```  
+      
+        
+    ````
+    
     === "Python"
     
         ```python
@@ -253,8 +255,7 @@ $$
                 val=1
         ```
 
-
-例题：[P4718【模板】Pollard-Rho 算法](https://www.luogu.com.cn/problem/P4718) 
+例题：[P4718【模板】Pollard-Rho 算法](https://www.luogu.com.cn/problem/P4718)
 
 对于一个数 $n$，用 [Miller Rabin 算法](./prime.md#miller-rabin-素性测试) 判断是否为素数，如果是就可以直接返回了，否则用 Pollard-Rho 算法找一个因子 $p$，将 $n$ 除去因子 $p$。再递归分解 $n$ 和 $p$，用 Miller Rabin 判断是否出现质因子，并用 max\_factor 更新就可以求出最大质因子了。由于这个题目的数据过于庞大，用 Floyd 判环的方法是不够的，这里采用倍增优化的方法。
 
