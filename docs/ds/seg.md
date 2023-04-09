@@ -482,7 +482,8 @@ int merge(int a, int b, int l, int r) {
         ```cpp
         --8<-- "docs/ds/code/seg/seg_6.cpp"
         ```
-        `
+        
+        \`
 
 ## 拓展 - 猫树
 
