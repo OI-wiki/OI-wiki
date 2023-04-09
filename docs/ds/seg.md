@@ -478,7 +478,10 @@ int merge(int a, int b, int l, int r) {
     ??? "解题思路"
         线段树合并模板题，用差分把树上修改转化为单点修改，然后向上 dfs 线段树合并统计答案即可。
     
-    ?? "参考代码"`cpp     --8<-- "docs/ds/code/seg/seg_6.cpp"
+    ??? "参考代码"
+        ```cpp
+        --8<-- "docs/ds/code/seg/seg_6.cpp"
+        ```
         `
 
 ## 拓展 - 猫树
