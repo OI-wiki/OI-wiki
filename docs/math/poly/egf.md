@@ -107,19 +107,40 @@ $$
 
 上面是从组合角度直接列式理解，我们也可以从递推方面来证明 $\exp(f(x))$ 和 $f(x)$ 两者间的关系。
 
-同样设 $F_k(n)$ 为 $n$ 个有标号元素划分成 $k$ 个非空集合（无标号）的情况，$g_i$ 为 $i$ 个元素组成一个集合内部的方案数（意义同上文中的 $f_i$），并令 $G(x)$ 为 $\{g_i\}$ 的 EGF
+同样设 $F_k(n)$ 为 $n$ 个有标号元素划分成 $k$ 个非空集合（无标号）的情况，$g_i$ 为 $i$ 个元素组成一个集合内部的方案数（意义同上文中的 $f_i$），并令 $G(x)$ 为 $\{g_i\}$ 的 EGF，$H_k(x)$ 为 $\{F_k(n)\}$ 的 EGF。
+
+$n$ 个元素中取出 $i$ 个元素作为一个单独划分出去的集合共有 $g_i$ 种方案，剩下的 $n-i$ 个元素构成 $k-1$ 个集合共 $F_{k-1}(n-i)$ 种方案，但最后的划分方案中，一个方案里的每个集合都会被枚举为单独划分出去的集合，所以重复计算了 $k$ 次，故还需要除以 $k$。
 
 $$
 \begin{aligned}
-F_k(n)&=\sum_{i=1}^{n-k+1}\binom niF_{k-1}(n-i)\times g_i\times \frac{1}{k!}
-\\&=\sum_{i=0}^n\binom ni F_{k-1}(n-i)\times g_i \times \frac{1}{k!}\\
-&=[x^n]\frac{1}{k!}F_{k-1}\times G\\
-&=[x^n]\frac{1}{k!}G^k\\
-&=[x^n]\exp(G(x))
+H_k(x) &= \sum_{n\ge 0}\cfrac{x^n}{n!}F_k(n)\\
+&=\sum_{n\ge 0}\cfrac{x^n}{n!}\sum_{i=1}^{n-k+1}\binom n {i} F_{k-1}(n-i)\times g_i\times \cfrac{1}{k}\\
+&=\cfrac{1}{k}\sum_{n\ge 0}\cfrac{x^n}{n!}\sum_{i=0}^{n}\binom n {i}F_{k-1}(n-i)\times g_i\\
+&=\cfrac{1}{k}\cdot  H_{k-1}(x)G(x)
 \end{aligned}
 $$
 
 上界是由非空集合划分推出的 $n-(k-1)\geq i$（前 $k-1$ 个集合每个集合最少有一个元素），但是如果超过枚举上界涉及的 $F_{k-1}(n-i)$ 设为 $0$，那么就没有影响。
+
+得到递推式之后可递归展开，边界为 $k=1$ 时 $H_1(x)=G(x)$。
+
+$$
+\begin{aligned}
+H_k(x) &= \cfrac{1}{k}\cdot   H_{k-1}(x)G(x)\\
+&= \cfrac{1}{k}\cdot\cfrac{1}{k-1}\cdot   H_{k-2}(x)G^2(x)\\
+&=\cdots \\
+&= \cfrac{1}{k}\cdot\cfrac{1}{k-1} \cdots\cfrac{1}{2}\cdot H_{1}(x)G^{k-1}(x)\\
+&= \cfrac{1}{k!}G^{k}(x)\\
+\end{aligned}
+$$
+
+同样的有：
+
+$$
+\begin{aligned}
+\sum_{k\ge 0}H_k(x)=\sum_{k\ge 0}\cfrac{G^k(x)}{k!}=\exp G(x)
+\end{aligned}
+$$
 
 显然 **定义成划分为非空集合**（$g_0=0$）是符合本身的意义的，如果 **包含空集**（$g_0=1$），那么对应 $[x^n]G^k$ 中就会有 $[x^n]G^y,y>k$ 的贡献（在至少一个 $G$ 中选择常数项），有计重，得不到所求量。
 
