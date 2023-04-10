@@ -193,10 +193,11 @@ $$
 
 注意到在环上更容易分解出因数，我们可以先迭代一定的次数。
 
-??? note "实现"  
+??? note "实现"
+    
 
     === "C++"
-    
+
         ```cpp
         ll Pollard_Rho(ll x) {
         ll t = 0;
@@ -224,9 +225,9 @@ $$
         ```  
       
         
-    
+
     === "Python"
-    
+
         ```python
         def Pollard_Rho(x):
             c = randint(1,x-1)
