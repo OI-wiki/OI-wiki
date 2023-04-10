@@ -1019,6 +1019,80 @@ public class Main {
 
 }
 ```
+### Deque
+
+`Deque` 是 `Java` 中的双端队列，我们通常用其进行队列的操作以及栈的操作。
+
+#### 主要函数
+以下均用 `this` 代替当前 `Deque<Integer>` :
+
+|         函数名          |               功能               |
+|:-----------------------:|:--------------------------------:|
+|         `push(Integer val)`          |         将一个元素从队头加入this，等效于addFirst        |
+|    `pop()`     |        将队头元素删除，等效于removeFirst        |
+|  `addFirst(Integer val)`  |      将一个元素从队头加入this     |
+|  `removeFirst()`   | 将队头元素删除，并返回该元素  |
+|  `addLast(Integer val)`  |      将一个元素从队尾加入this     |
+|  `removeLast()`   | 将队尾元素删除，并返回该元素 |
+|  `offerFirst(Integer val)`  |      将一个元素从队头加入this     |
+|  `pollFirst()`   | 将队头元素删除，并返回该元素  |
+|  `offerLast(Integer val)`  |      将一个元素从队尾加入this     |
+|  `pollLast()`   | 将队尾元素删除，并返回该元素  |
+|  `add(Integer val)`  |      将一个元素从队尾加入this     |
+|  `offer(Integer val)`  |      将一个元素从队尾加入this     |
+|  `poll()`   | 将队头元素删除，并返回该元素  |
+|  `remove()`   | 将队头元素删除，并返回该元素  |
+|  `peekFirst()`   | 返回队头元素  |
+|  `peekLast()`   | 返回队尾元素 |
+.
+`add`、`remove` 操作在遇到异常时会抛出异常，而`offer`、 `poll` 不会抛出异常。
+
+#### 栈的操作
+```java
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+public class OIWIKI {
+    static Deque<Integer> stack = new ArrayDeque<>();
+    static int a[] = {1, 2, 3, 4, 5};
+
+    public static void main(String[] args) {
+        for (int v : a) stack.push(v);
+        while (!stack.isEmpty()) { //输出 5 4 3 2 1
+            System.out.println(stack.pop()); 
+        }
+    }
+}
+
+```
+#### 双端队列的操作
+```java
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+public class OIWIKI {
+    static Deque<Integer> deque = new ArrayDeque<>();
+
+    static void insert() {
+        deque.addFirst(1);
+        deque.addFirst(2);
+        deque.addLast(3);
+        deque.addLast(4);
+    }
+
+    public static void main(String[] args) {
+        insert();
+        while (!deque.isEmpty()) { //输出 2 1 3 4
+            System.out.println(deque.poll());
+        }
+        insert();
+        while (!deque.isEmpty()) { //输出 4 3 1 2
+            System.out.println(deque.pollLast());
+        }
+    }
+}
+```
+
 
 ### Set
 
@@ -1055,7 +1129,58 @@ Set<Integer> s3 = new TreeSet<>();
 Set<Integer> s4 = new TreeSet<>((x, y) -> {return y - x;});  // 降序 
 ```
 
-#### 常用方法
+##### TreeSet的更多使用
+
+这些方法是`TreeSet`新创建并实现的，我们无法使用`Set`接口调用以下方法，因此我们创建方式如下:
+
+```java
+TreeSet<Integer> s3 = new TreeSet<>();
+TreeSet<Integer> s4 = new TreeSet<>((x, y) -> {return y - x;});  // 降序 
+```
+
+以下均用 `this` 代替当前 `TreeSet<Integer>` :
+
+|         函数名          |               功能               |
+|:-----------------------:|:--------------------------------:|
+|         `first()`          |         返回 this 中第一个元素，无则返回 null         |
+|         `last()`          |         返回 this 中最后一个元素，无则返回 null         |
+|    `floor(Integer val)`     |       返回集合中 >=val 的第一个元素，无则返回 null        |
+|  `ceil(Integer val)`  |     返回集合中 <=val 的第一个元素，无则返回 null      |
+|  `higher(Integer val)`   | 返回集合中 >val 的第一个元素，无则返回 null|
+| `lower(Integer val)` |  返回集合中 <val 的第一个元素，无则返回 null  |
+| `pollFirst()` |    返回并删除 this 中第一个元素，无则返回 null     |
+| `pollLast()` |     返回并删除 this 中最后一个元素，无则返回 null     |
+
+
+代码示例：
+```java
+import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
+public class Main {
+    static int a[] = {4,7,1,2,3,6};
+    static void test() {
+        TreeSet<Integer> s3 = new TreeSet<>();
+        for(int v:a){
+            s3.add(v);
+        }
+        Integer a2 = s3.first(); //返回 1
+        Integer a3 = s3.last(); //返回 7
+        Integer a4 = s3.floor(5); //返回 6
+        Integer a5 = s3.ceil(6); //返回 5
+        Integer a6 = s3.higher(7); //返回 null 
+        Integer a7 = s3.lower(2); //返回 1
+        Integer a8 = s3.pollFirst(); //返回 1
+        Integer a9 = s3.pollLast(); //返回 7
+    }
+}
+```
+
+
+
+#### Set常用方法
 
 以下均用 `this` 代替当前 `Set<Integer>` :
 
