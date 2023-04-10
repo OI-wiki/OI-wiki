@@ -1,5 +1,3 @@
-author: iamtwz, 383494, Backl1ght, Bubbleioa, CCXXXI, Enter-tainer, Great-designer, Ir1d, kenlig, leoleoasd, Menci, PeterlitsZo, Saisyc, ShaoChenHeng, shuzhouliu, StudyingFather, TianKong-y, Tiphereth-A, usamoi, Xeonacid, xyf007, 2740365712  
-
 ## 引入
 
 给定一个正整数 $N \in \mathbf{N}_{+}$，试快速找到它的一个 [非平凡因数](basic.md)。
@@ -195,7 +193,8 @@ $$
 
 注意到在环上更容易分解出因数，我们可以先迭代一定的次数。
 
-??? note "实现"
+??? note "实现"  
+
     === "C++"
     
         ```cpp
