@@ -40,7 +40,7 @@ const int &r2 = a;
 const int &r4 = b;
 ```
 
-另外需要区分开的是“常类型指针”和“常指针变量”（即常指针、指针常量），例如下列声明
+另外需要区分开的是「常类型指针」和「常指针变量」（即常指针、指针常量），例如下列声明
 
 ```cpp
 int* const p1;        // 类型为int的常指针，需要初始化
@@ -128,5 +128,5 @@ void test(const int x) {
 
 ## 参考资料
 
-- [C++ 关键字——const](https://zh.cppreference.com/w/cpp/keyword/const)
-- [C++ 关键字——constexpr](https://zh.cppreference.com/w/cpp/keyword/constexpr)
+-   [C++ 关键字——const](https://zh.cppreference.com/w/cpp/keyword/const)
+-   [C++ 关键字——constexpr](https://zh.cppreference.com/w/cpp/keyword/constexpr)

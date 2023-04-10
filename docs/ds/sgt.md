@@ -6,7 +6,7 @@ author: Ir1d, 0xis-cn
 
 我们在此实现一个可重的权值平衡树。
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     int cnt,                 // 树中元素总数
         rt,                  // 根节点，初值为 0 代表空树
@@ -127,7 +127,7 @@ void Del(int& k, int p) {
 }
 ```
 
-### upper_bound
+### upper\_bound
 
 返回权值严格大于某值的最小名次。
 

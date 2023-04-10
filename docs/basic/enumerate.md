@@ -30,7 +30,7 @@ author: frank-xjh
 
 以下是一个使用枚举解题与优化枚举范围的例子。
 
-!!! 例题
+??? 例题
     一个数组中的数互不相同，求其中和为 $0$ 的数对的个数。
 
 ??? note "解题思路"
@@ -40,17 +40,17 @@ author: frank-xjh
     
         ```cpp
         for (int i = 0; i < n; ++i)
-          for (int j = 0; j < n; ++j)
-            if (a[i] + a[j] == 0) ++ans;
+            for (int j = 0; j < n; ++j)
+                if (a[i] + a[j] == 0) ++ans;
         ```
     
     === "Python"
     
         ```python
-        for i in range(0, n):
-          for j in range(0, n):
-              if(a[i] + a[j] == 0):
-                  ans = ans + 1
+        for i in range(n):
+            for j in range(n):
+                if a[i] + a[j] == 0:
+                    ans += 1
         ```
     
     来看看枚举的范围如何优化。由于题中没要求数对是有序的，答案就是有序的情况的两倍（考虑如果 `(a, b)` 是答案，那么 `(b, a)` 也是答案）。对于这种情况，只需统计人为要求有顺序之后的答案，最后再乘上 $2$ 就好了。
@@ -61,17 +61,17 @@ author: frank-xjh
     
         ```cpp
         for (int i = 0; i < n; ++i)
-          for (int j = 0; j < i; ++j)
-            if (a[i] + a[j] == 0) ++ans;
+            for (int j = 0; j < i; ++j)
+                if (a[i] + a[j] == 0) ++ans;
         ```
     
     === "Python"
     
         ```python
-        for i in range(0, n):
-          for j in range(0, i):
-              if(a[i] + a[j] == 0):
-                  ans = ans + 1
+        for i in range(n):
+            for j in range(i):
+                if a[i] + a[j] == 0:
+                    ans += 1
         ```
     
     不难发现这里已经减少了 $j$ 的枚举范围，减少了这段代码的时间开销。
@@ -86,8 +86,8 @@ author: frank-xjh
         bool met[MAXN * 2];
         memset(met, 0, sizeof(met));
         for (int i = 0; i < n; ++i) {
-          if (met[MAXN - a[i]]) ans += 1;
-          met[MAXN + a[i]] = true;
+            if (met[MAXN - a[i]]) ++ans;
+            met[MAXN + a[i]] = true;
         }
         ```
     
@@ -95,15 +95,15 @@ author: frank-xjh
     
         ```python
         met = [False] * MAXN * 2
-        for i in range(0, n):
+        for i in range(n):
             if met[MAXN - a[i]]:
-                ans = ans + 1
+                ans += 1
             met[a[i] + MAXN] = True
         ```
 
 ## 习题
 
-- [2811: 熄灯问题 - OpenJudge](http://bailian.openjudge.cn/practice/2811/)
+-   [2811: 熄灯问题 - OpenJudge](http://bailian.openjudge.cn/practice/2811/)
 
 ## 脚注
 

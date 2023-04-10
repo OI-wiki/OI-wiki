@@ -20,6 +20,7 @@ nav:
     - 关于本项目: intro/about.md
     - 如何参与: intro/htc.md
     - 格式手册: intro/format.md
+    - 数学符号表: intro/symbol.md
     - F.A.Q.: intro/faq.md
     - 用 Docker 部署 OI Wiki: intro/docker-deploy.md
     - 镜像站列表: intro/mirrors.md
@@ -303,7 +304,7 @@ nav:
       - 行列式: math/linear-algebra/determinant.md
       - 高斯消元: math/linear-algebra/gauss.md
       - 线性空间: math/linear-algebra/vector-space.md
-      - Hamel基: math/linear-algebra/basis.md
+      - 线性基: math/linear-algebra/basis.md
       - 线性映射: math/linear-algebra/linear-mapping.md
       - 特征多项式: math/linear-algebra/char-poly.md
       - 对角化: math/linear-algebra/diagonalization.md
@@ -433,6 +434,7 @@ nav:
       - 双连通分量: graph/bcc.md
       - 割点和桥: graph/cut.md
       - 圆方树: graph/block-forest.md
+      - 点/边连通度: graph/connectivity.md
     - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
@@ -454,7 +456,7 @@ nav:
       - 二分图最大权匹配: graph/graph-matching/bigraph-weight-match.md
       - 一般图最大匹配: graph/graph-matching/general-match.md
       - 一般图最大权匹配: graph/graph-matching/general-weight-match.md
-    - Prufer 序列: graph/prufer.md
+    - Prüfer 序列: graph/prufer.md
     - LGV 引理: graph/lgv.md
     - 弦图: graph/chord.md
     - 最大团搜索算法: graph/max-clique.md

@@ -18,8 +18,8 @@ $$
 
 $k$ 位的格雷码可以通过以下方法构造。我们从全 $0$ 格雷码开始，按照下面策略：
 
-1. 翻转最低位得到下一个格雷码，（例如 $000\to 001$）；
-2. 把最右边的 $1$ 的左边的位翻转得到下一个格雷码，（例如 $001\to 011$）；
+1.  翻转最低位得到下一个格雷码，（例如 $000\to 001$）；
+2.  把最右边的 $1$ 的左边的位翻转得到下一个格雷码，（例如 $001\to 011$）；
 
 交替按照上述策略生成 $2^{k-1}$ 次，可得到 $k$ 位的格雷码序列。
 
@@ -104,9 +104,9 @@ int rev_g(int g) {
 
 格雷码有一些十分有用的应用，有些应用让人意想不到：
 
-- $k$ 位二进制数的格雷码序列可以当作 $k$ 维空间中的一个超立方体（二维里的正方形，一维里的单位向量）顶点的哈密尔顿回路，其中格雷码的每一位代表一个维度的坐标。
+-   $k$ 位二进制数的格雷码序列可以当作 $k$ 维空间中的一个超立方体（二维里的正方形，一维里的单位向量）顶点的哈密尔顿回路，其中格雷码的每一位代表一个维度的坐标。
 
-- 格雷码被用于最小化数字模拟转换器（比如传感器）的信号传输中出现的错误，因为它每次只改变一个位。
+-   格雷码被用于最小化数字模拟转换器（比如传感器）的信号传输中出现的错误，因为它每次只改变一个位。
 
 -   格雷码可以用来解决汉诺塔的问题。
 
@@ -118,12 +118,12 @@ int rev_g(int g) {
 
     如果 $n$ 是偶数：$f \to r \to t \to f \to r \to t \to \cdots$
 
-- 格雷码也在遗传算法理论中得到应用。
+-   格雷码也在遗传算法理论中得到应用。
 
 ## 习题
 
-- [CSP S2 2019 D1T1](https://www.luogu.com.cn/problem/P5657) Difficulty: easy
+-   [CSP S2 2019 D1T1](https://www.luogu.com.cn/problem/P5657) Difficulty: easy
 
-- [SGU #249 Matrix](http://codeforces.com/problemsets/acmsguru/problem/99999/249) Difficulty: medium
+-   [SGU #249 Matrix](http://codeforces.com/problemsets/acmsguru/problem/99999/249) Difficulty: medium
 
 > 本页面部分内容译自博文 [Код Грея](http://e-maxx.ru/algo/gray_code) 与其英文翻译版 [Gray code](https://cp-algorithms.com/algebra/gray-code.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。

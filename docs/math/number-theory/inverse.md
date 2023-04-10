@@ -8,7 +8,7 @@
 
 ### 扩展欧几里得法
 
-???+note "实现"
+???+ note "实现"
     === "C++"
     
         ```cpp
@@ -25,12 +25,15 @@
     === "Python"
     
         ```python
-        def exgcd(a, b, x, y):
-          if b == 0:
-              x, y = 1, 0
-              return
-          exgcd(b, a % b, y, x)
-          y = y - (a // b * x)
+        def exgcd(a, b):
+            if b == 0:
+                x = 1
+                y = 0
+                return x, y
+            x1, y1 = exgcd(b, a % b)
+            x = y1
+            y = x1 - (a // b) * y1
+            return x, y
         ```
 
 扩展欧几里得法和求解 [线性同余方程](./linear-equation.md) 是一个原理，在这里不展开解释。
@@ -47,7 +50,7 @@
 
 然后我们就可以用快速幂来求了。
 
-???+note "实现"
+???+ note "实现"
     === "C++"
     
         ```cpp
@@ -86,7 +89,7 @@
 
 首先，很显然的 $1^{-1} \equiv 1 \pmod p$；
 
-???+note "证明"
+???+ note "证明"
     对于 $\forall p \in \mathbf{Z}$，有 $1 \times 1 \equiv 1 \pmod p$ 恒成立，故在 $p$ 下 $1$ 的逆元是 $1$，而这是推算出其他情况的基础。
 
 其次对于递归情况 $i^{-1}$，我们令 $k = \lfloor \frac{p}{i} \rfloor$，$j = p \bmod i$，有 $p = ki + j$。再放到 $\mod p$ 意义下就会得到：$ki+j \equiv 0 \pmod p$；
@@ -112,7 +115,7 @@ i^{-1} \equiv \begin{cases}
 \end{cases} \pmod p
 $$
 
-???+note "实现"
+???+ note "实现"
     === "C++"
     
         ```cpp
@@ -154,7 +157,7 @@ $$
 
 所以我们就在 $O(n + \log p)$ 的时间内计算出了 $n$ 个数的逆元。
 
-???+note "实现"
+???+ note "实现"
     === "C++"
     
         ```cpp
