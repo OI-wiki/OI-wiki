@@ -1,3 +1,5 @@
+author: iamtwz, 383494, Backl1ght, Bubbleioa, CCXXXI, Enter-tainer, Great-designer, Ir1d, kenlig, leoleoasd, Menci, PeterlitsZo, Saisyc, ShaoChenHeng, shuzhouliu, StudyingFather, TianKong-y, Tiphereth-A, usamoi, Xeonacid, xyf007, 2740365712  
+
 ## 引入
 
 给定一个正整数 $N \in \mathbf{N}_{+}$，试快速找到它的一个 [非平凡因数](basic.md)。
@@ -196,35 +198,33 @@ $$
 ??? note "实现"
     === "C++"
     
-    ````
-    ```c++
-    ll Pollard_Rho(ll x) {
-    ll t = 0;
-    ll c = rand() % (x - 1) + 1;
-    // 加速算法，这一步可以省略
-    for (int i = 1; i < 1145; ++i) t = f(t, c, x);
-    ll s = t;
-    int step = 0, goal = 1;
-    ll val = 1;
-    for (goal = 1;; goal <<= 1, s = t, val = 1) {
-        for (step = 1; step <= goal; ++step) {
-        t = f(t, c, x);
-        val = val * abs(t - s) % x;
-        // 如果 val 为 0，退出重新分解
-        if (!val) return x;
-        if ((step % 127) == 0) {
+        ```cpp
+        ll Pollard_Rho(ll x) {
+        ll t = 0;
+        ll c = rand() % (x - 1) + 1;
+        // 加速算法，这一步可以省略
+        for (int i = 1; i < 1145; ++i) t = f(t, c, x);
+        ll s = t;
+        int step = 0, goal = 1;
+        ll val = 1;
+        for (goal = 1;; goal <<= 1, s = t, val = 1) {
+            for (step = 1; step <= goal; ++step) {
+            t = f(t, c, x);
+            val = val * abs(t - s) % x;
+            // 如果 val 为 0，退出重新分解
+            if (!val) return x;
+            if ((step % 127) == 0) {
+                ll d = gcd(val, x);
+                if (d > 1) return d;
+            }
+            }
             ll d = gcd(val, x);
             if (d > 1) return d;
         }
         }
-        ll d = gcd(val, x);
-        if (d > 1) return d;
-    }
-    }
-    ```  
+        ```  
       
         
-    ````
     
     === "Python"
     
