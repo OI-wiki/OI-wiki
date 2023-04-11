@@ -1,10 +1,9 @@
 author: hsfzLZH1, sshwy, StudyingFather, Marcythm
 
-杜教筛被用来处理数论函数的前缀和问题。对于求解一个前缀和，杜教筛可以在低于线性时间的复杂度内求解。
+杜教筛被用于处理一类数论函数的前缀和问题。对于数论函数 $f$，杜教筛可以在低于线性时间的复杂度内计算 $S(n)=\sum_{i=1}^{n}f(i)$。
 
-## 公式推导
+## 算法思想
 
-对于数论函数 $f$，要求我们计算 $S(n)=\sum_{i=1}^{n}f(i)$.
 
 我们想办法构造一个 $S(n)$ 关于 $S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 的递推式。
 
@@ -30,10 +29,16 @@ $$
 那么可以得到递推式：
 
 $$
-g(1)S(n)=\sum_{i=1}^n(f * g)(i)-\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+\begin{aligned}
+g(1)S(n)	& = \sum_{i=1}^n g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right) - \sum_{i=2}^n g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right) \\
+			& = \sum_{i=1}^n (f * g)(i) - \sum_{i=2}^n g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right) \\
+\end{aligned}
 $$
 
-假如我们可以快速对 $\sum_{i=1}^n(f * g)(i)$ 求和，并用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 就可以在较短时间内求得 $g(1)S(n)$.
+假如我们可以构造恰当的数论函数 $g$ 使得：
+1. 可以快速计算 $\sum_{i=1}^n(f * g)(i)$；
+2. 可以快速计算 $g$ 的单点值以用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$。
+则我们可以在较短时间内求得 $g(1)S(n)$。
 
 ???+ warning "注意"
     无论数论函数 $f$ 是否为积性函数，只要可以快速求出 $\sum_{i=1}^n(f * g)(i)$, 便都可以考虑用杜教筛求 $f$ 的前缀和。
@@ -46,7 +51,7 @@ $$
 S(n)=\sum_{i=2}^n S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 $$
 
-由 [整除分块/数论分块](./sqrt-decomposition.md) 可知 $n/i$ 共有 $O(\sqrt{n})$ 种取值，故有：
+由 [整除分块/数论分块](./sqrt-decomposition.md) 可知 $\left\lfloor \dfrac n i \right\rfloor$ 共有 $O(\sqrt{n})$ 种取值，故有：
 
 $$
 T(n)=O\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\sqrt{n}} T\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\right)
@@ -91,7 +96,7 @@ $$
 
 ### 莫比乌斯函数前缀和
 
-由 **狄利克雷卷积**，我们知道：
+我们知道：
 
 $$
 \epsilon = [n=1] = \mu * 1 = \sum_{d \mid n} \mu(d)
@@ -113,7 +118,7 @@ $$
 O\left(\int_{0}^{n^{1/3}} \sqrt{\frac{n}{x}} ~ dx\right)=O\left(n^{\frac 2 3}\right)
 $$
 
-对于较大的值，需要用 `map` 存下其对应的值，方便以后使用时直接使用之前计算的结果。
+对于较大的值，需要用 `map/unordered_map` 存下其对应的值，方便以后使用时直接使用之前计算的结果。
 
 ### 欧拉函数前缀和
 
