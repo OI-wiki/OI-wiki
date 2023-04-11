@@ -1070,7 +1070,7 @@ public class OIWIKI {
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class OIWIKI {
+public class Main {
     static Deque<Integer> deque = new ArrayDeque<>();
 
     static void insert() {
